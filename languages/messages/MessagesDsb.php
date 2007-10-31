@@ -1930,11 +1930,11 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-gpsmapdatum'                 => 'Wužyte geodetiske dataje',
 'exif-gpsdestlatituderef'          => 'Referenca šyriny celowego městna',
 'exif-gpsdestlatitude'             => 'Šyrina celowego městna',
-'exif-gpsdestlongituderef'         => 'Referenca dlińi celowego městna',
+'exif-gpsdestlongituderef'         => 'Referenca dlini celowego městna',
 'exif-gpsdestlongitude'            => 'Dliń abo celowe městno',
 'exif-gpsdestbearingref'           => 'Referenca za wusměrjenje',
 'exif-gpsdestbearing'              => 'Wusměrjenje',
-'exif-gpsdestdistanceref'          => 'Referenca za distanca k celowemu městnu',
+'exif-gpsdestdistanceref'          => 'Referenca za distancu k celowemu městnu',
 'exif-gpsdestdistance'             => 'Distanca k celowemu městnu',
 'exif-gpsprocessingmethod'         => 'Mě metody pśeźěłanja GPS',
 'exif-gpsareainformation'          => 'Mě wobcerka GPS',
@@ -1942,39 +1942,41 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
 
 # EXIF attributes
-'exif-compression-1' => 'Njeskompriměrowany',
+'exif-compression-1' => 'Njekompriměrowany',
 
 'exif-unknowndate' => 'Njeznaty datum',
 
 'exif-orientation-1' => 'Normalny', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Wobrośiony horicontalnje', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Pśewobrośiony', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Wobrośiony wertikalnje', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Wobrośiony wó 90° nalěwo a wertikalnje', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Wobrośiony wó 90° napšawo', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Wobrośiony wó 90° napšawo a wertikalnje', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Wobrośiony wó 90° nalěwo', # 0th row: left; 0th column: bottom
+'exif-orientation-2' => 'horicontalnje wobrośony', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Pśewobrośony', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'wertikalnje wobrośony', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Wobrośony wó 90° nalěwo a wertikalnje', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Wobrośony wó 90° napšawo', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Wobrośony wó 90° napšawo a wertikalnje', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Wobrośony wó 90° nalěwo', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'gropny format',
 'exif-planarconfiguration-2' => 'płony format',
 
 'exif-xyresolution-i' => '$1 dpi (dypkow na col)',
 
-'exif-componentsconfiguration-0' => 'njeeksistěruje',
+'exif-componentsconfiguration-0' => 'njeeksistěrujo',
 
-'exif-exposureprogram-0' => 'Njezdefiněrowane',
-'exif-exposureprogram-1' => 'rucny',
+'exif-exposureprogram-0' => 'Njedefiněrowane',
+'exif-exposureprogram-1' => 'manualnje',
 'exif-exposureprogram-2' => 'Normalny program',
-'exif-exposureprogram-3' => 'Priorita zasłony',
+'exif-exposureprogram-3' => 'Priorita blendy',
 'exif-exposureprogram-4' => 'Priorita blendy',
 'exif-exposureprogram-5' => 'Kreatiwny program (wjelika dłym wótšosći)',
 'exif-exposureprogram-6' => 'Aktiwny program (wjelika malsnosć momentoweje bildki)',
+'exif-exposureprogram-7' => 'portretowy modus (za closeup-fotografije z njefokusěrowaneju slězynu)',
+'exif-exposureprogram-8' => 'wobraze krajiny',
 
-'exif-subjectdistance-value' => '$1 metrow',
+'exif-subjectdistance-value' => '{{Plural:$1|meter|metra|metry}}',
 
 'exif-meteringmode-0'   => 'Njeznaty',
-'exif-meteringmode-1'   => 'Pśerězna',
-'exif-meteringmode-2'   => 'Pśerězna měrjona',
+'exif-meteringmode-1'   => 'Pśerězna gódnota',
+'exif-meteringmode-2'   => 'srjejźa wusměrjone',
 'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'MultiSpot',
 'exif-meteringmode-5'   => 'Muster',
@@ -1982,7 +1984,7 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-meteringmode-255' => 'Drugi',
 
 'exif-lightsource-0'   => 'Njeznaty',
-'exif-lightsource-1'   => 'Dnjowe swětło',
+'exif-lightsource-1'   => 'Dnjowne swětło',
 'exif-lightsource-2'   => 'Fluorescentny',
 'exif-lightsource-3'   => 'Žaglawka',
 'exif-lightsource-4'   => 'Błysk',
@@ -1996,25 +1998,25 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-lightsource-17'  => 'Standardne swětło A',
 'exif-lightsource-18'  => 'Standardne swětło B',
 'exif-lightsource-19'  => 'Standardne swětło C',
-'exif-lightsource-24'  => 'ISO studjowe swětło',
+'exif-lightsource-24'  => 'ISO studijowe swětło',
 'exif-lightsource-255' => 'Druge žrědło swětła',
 
-'exif-focalplaneresolutionunit-2' => 'cola',
+'exif-focalplaneresolutionunit-2' => 'cole',
 
 'exif-sensingmethod-1' => 'Njedefiněrujobny',
-'exif-sensingmethod-2' => 'Jadno-chipowy barwowy rumowy sensor',
-'exif-sensingmethod-3' => 'Dwu-chipowy barwowy rumowy sensor',
-'exif-sensingmethod-4' => 'Tśi-chipowy barwowy rumowy sensor',
-'exif-sensingmethod-5' => 'Sekwencielny barwowy rumowy sensor',
+'exif-sensingmethod-2' => 'Jadnochipowy barwowy sensor ruma',
+'exif-sensingmethod-3' => 'Dwuchipowy barwowy sensor ruma',
+'exif-sensingmethod-4' => 'Tśichipowy barwowy sensor ruma',
+'exif-sensingmethod-5' => 'Sekwencielny barwowy sensor ruma',
 'exif-sensingmethod-7' => 'Tśilinearny sensor',
-'exif-sensingmethod-8' => 'Barwowy sekwencielny linearny sensor',
+'exif-sensingmethod-8' => 'Sekwencielny barwowy linearny sensor',
 
-'exif-scenetype-1' => 'Direktnje fotografowany wobraz',
+'exif-scenetype-1' => 'Direktnje fotografěrowany wobraz',
 
 'exif-customrendered-0' => 'Normalne wobźěłanje',
 'exif-customrendered-1' => 'Wužywarske wobźěłanje',
 
-'exif-exposuremode-0' => 'Awtomatiske naswětlenje',
+'exif-exposuremode-0' => 'Awtomatiske wobswětlenje',
 'exif-exposuremode-1' => 'Manuelna blenda',
 'exif-exposuremode-2' => 'Awtoblenda',
 
@@ -2024,21 +2026,21 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Krajina',
 'exif-scenecapturetype-2' => 'Portret',
-'exif-scenecapturetype-3' => 'Nócna scena',
+'exif-scenecapturetype-3' => 'Nocna scena',
 
 'exif-gaincontrol-0' => 'Žedne',
-'exif-gaincontrol-1' => 'Niske zmócnjenje',
-'exif-gaincontrol-2' => 'Wusoke zmócnjenje',
-'exif-gaincontrol-3' => 'Niske wosłabjenje',
-'exif-gaincontrol-4' => 'Wusoke wosłabjenje',
+'exif-gaincontrol-1' => 'Małe zmócnjenje',
+'exif-gaincontrol-2' => 'wjelike zmócnjenje',
+'exif-gaincontrol-3' => 'małe wósłabjenje',
+'exif-gaincontrol-4' => 'Wjelike wósłabjenje',
 
 'exif-contrast-0' => 'Normalny',
 'exif-contrast-1' => 'Słaby',
 'exif-contrast-2' => 'Mócny',
 
 'exif-saturation-0' => 'Normalny',
-'exif-saturation-1' => 'Niske naseśenje',
-'exif-saturation-2' => 'Wusoke naseśenje',
+'exif-saturation-1' => 'małe naseśenje',
+'exif-saturation-2' => 'wjelike naseśenje',
 
 'exif-sharpness-0' => 'Normalny',
 'exif-sharpness-1' => 'Słaby',
@@ -2058,7 +2060,7 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-gpslongitude-w' => 'Pódwjacorna dliń',
 
 'exif-gpsstatus-a' => 'Měrjenje w běgu',
-'exif-gpsstatus-v' => 'Měrjenje mjazyźěłabne',
+'exif-gpsstatus-v' => 'kompatibelnosć měry',
 
 'exif-gpsmeasuremode-2' => '2-dimensionalne měrjenje',
 'exif-gpsmeasuremode-3' => '3-dimensionalne měrjenje',
@@ -2073,8 +2075,8 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-gpsdirection-m' => 'Magnetiski směr',
 
 # External editor support
-'edit-externally'      => 'Toś te dataja z eksternom programom wobźěłaś',
-'edit-externally-help' => 'Glědaj [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions], aby wěcej informacijow dostaś.',
+'edit-externally'      => 'Dataje z eksternym programom wobźěłaś',
+'edit-externally-help' => 'Za dalšne informacije glědaj [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšykne',
@@ -2084,29 +2086,36 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'monthsall'        => 'wšykne',
 
 # E-mail address confirmation
-'confirmemail'           => 'Wobkšuśiś e-mailowu adresu.',
-'confirmemail_noemail'   => 'Ty njamaš zapodanej dobreje e-mailoweje adresy w [[Special:Preferences|swójich nastajenjach]].',
-'confirmemail_send'      => 'Wobkšuśjeński kod pósłaś',
-'confirmemail_sent'      => 'Wobkšuśjeński e-mail pósłany.',
-'confirmemail_needlogin' => 'Trjeba $1 aby twóju e-mailowu adresu wobkšuśiś.',
-'confirmemail_success'   => 'Twója e-mailowa adresa jo něnto wobkšuśjona. Južo móžoš se pśizjawiś.',
-'confirmemail_loggedin'  => 'Twója e-mailowa adresa jo něnto wobkšuśjona.',
-'confirmemail_error'     => 'Zmółka pśi wobkšuśjenju e-mailoweje adresy.',
-'confirmemail_subject'   => '{{SITENAME}} - Wobkšuśienje  e-mailowej adresy',
-'confirmemail_body'      => 'Něcht, wěrjepódobnje ty z adresy $1, jo na boku: {{SITENAME}}, wužywarske konto "$2" z e-mailowom adresom natworił.
+'confirmemail'            => 'E-mailowu adresu wobkšuśiś.',
+'confirmemail_noemail'    => 'W swójich [[Special:Preferences|nastajenjach]] njejsy płaśecu e-mailowu adresu zapódał.',
+'confirmemail_text'       => '{{SITENAME}} pomina, až wobkšuśijoš swóju e-mailowu adresu, nježlic až móžoš e-mailowe funkcije wužywaś. Tłocyš-lic na tłocatko, dostanjoš e-mailku, w kótarejž jo wótkaz z wobkšuśenskim gronidłom. Tłocenje na wótkaz wobkšuśijo, až twója e-mailowa adresa jo korektna.',
+'confirmemail_pending'    => '<div class="error">Tebje jo južo jadno wobkšuśeńske gronidło se pśimailowało. Sy-lic swójo wužywarske konto akle gano wutwórił, ga pócakaj hyšći žedne minuty na e-mail, nježlic až pominaš nowe gronidło.</div>',
+'confirmemail_send'       => 'Wobkšuśeńske gronidło pósłaś',
+'confirmemail_sent'       => 'Wobkšuśeńska e-mailka pósłana.',
+'confirmemail_oncreate'   => 'Na Twóju adresu jo se wótpósłało wobkšuśeńske gronidło. Toś ten kod njejo notny za pśizjawjenje, ale za aktiwěrowanje e-mailowych funkcijow we wikiju.',
+'confirmemail_sendfailed' => 'Wobkšuśeńska e-mailka njejo se mógła wótpósłaś. Pšosym kontrolěruj swóju e-mailowu adresu na njepłaśece znamuška.
 
-Aby wobkšuśiś toś to konto a zmožniś wužywanje e-mailowych funkcijow z bokom: {{SITENAME}}, trjeba kliknuś wótkaz: $3
+Serwer wótegronijo:$1',
+'confirmemail_invalid'    => 'Njepłaśece wobkšuśeńske gronidło. Snaź jo kod mjaztym płaśiwosć zgubił.',
+'confirmemail_needlogin'  => 'Dejš $1 aby swóju e-mailowu adresu wobkšuśił.',
+'confirmemail_success'    => 'Twója e-mailowa adresa jo wobkšuśona, móžoš se pśizjawiś.',
+'confirmemail_loggedin'   => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
+'confirmemail_error'      => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
+'confirmemail_subject'    => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',
+'confirmemail_body'       => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z e-mailoweju adresu wutwórił.
 
-Gaž to *njesy* był ty, njeklikaj. Toś ta wobkšuśieńska koda zgasnu do $4.',
+Coš-lic to konto wobkšuśiś a wužywanje e-mailowych funkcijow zmóžniś na boce {{SITENAME}}, tłoc na wótkaz: $3
+
+Jolic až *njejsy* to ty był, njetłoc. Toś to wobkšuśeńske gronidło płaśi do $4.',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Pśidawanje Interwiki jo njezmóžnjone]',
-'scarytranscludefailed'   => '[Póśěgnjenje šablony za $1 njejo było wuspěšne]',
-'scarytranscludetoolong'  => '[URL jo za dłujki; zagronju]',
+'scarytranscludedisabled' => '[Pśidawanje interwiki jo deaktiwěrowane]',
+'scarytranscludefailed'   => '[Ześěgnjenje šablony za $1 njejo było wuspěšne]',
+'scarytranscludetoolong'  => '[URL jo pśeliž dłujki; wódaj pšosym]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacki za togo boka:<br />
+Trackbacki za toś ten bok:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1 wulašowaś])',
@@ -2114,30 +2123,30 @@ $1
 'trackbackdeleteok' => 'Trackback jo wuspěšnje wulašowany.',
 
 # Delete conflict
-'deletedwhileediting' => 'Warnowanje: toś ten bok buźo wulašowany kak zachopiš jogo wóbźełanje.',
-'confirmrecreate'     => 'Wužywaŕ [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|diskusija]]) jo togo boka wulašował nježli ty sy zachopił jogo wobźełaś, pśicyna: : <i>$2</i> 
-Prošym wobkšuśiś, až coš togo boka wótnowotki natwóriś.',
-'recreate'            => 'Wótnowotki natwóriś',
+'deletedwhileediting' => 'Warnowanje: Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś.',
+'confirmrecreate'     => 'Wužywaŕ [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna: : <i>$2</i> 
+Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.',
+'recreate'            => 'Wótnowótki wutwóriś',
 
 # HTML dump
 'redirectingto' => 'Pśeadresěrowanje do [[$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Wulašowaś cache togo boka? $1',
-'confirm_purge_button' => 'Okay',
+'confirm_purge_button' => 'W pórědku.',
 
 # AJAX search
-'searchcontaining' => "Pytaś wó nastawki, kótarymž tekst ''$1'' pśisłuša.",
-'searchnamed'      => "Pytaś wó nastawki z mjenjami ''$1''",
-'articletitles'    => "Nastawki, kótarež se z ''$1'' zachopijo",
-'hideresults'      => 'Schowaś  rezultatu',
+'searchcontaining' => "Nastawki pytaś, do kótarychž słuša tekst ''$1''.",
+'searchnamed'      => "Pytaś nastawki z mjenim ''$1''",
+'articletitles'    => "Nastawki, kótarež zachopiju z ''$1''",
+'hideresults'      => 'rezultat schowaś',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← slědny bok',
 'imgmultipagenext'   => 'pśiducy bok →',
-'imgmultigo'         => 'Okay',
-'imgmultigotopre'    => 'Źo k boku',
-'imgmultiparseerror' => 'Wobraz jo defektny, tak bok {{SITENAME}} njemóže lisćinu bokow natworiś.',
+'imgmultigo'         => 'W pórědku',
+'imgmultigotopre'    => 'Hyś na bok',
+'imgmultiparseerror' => 'Wobraz jo defektny, toś njamóžo bok {{SITENAME}} lisćinu bokow wutwóriś.',
 
 # Table pager
 'ascending_abbrev'         => 'górjej',
@@ -2145,46 +2154,50 @@ Prošym wobkšuśiś, až coš togo boka wótnowotki natwóriś.',
 'table_pager_next'         => 'Pśiducy bok',
 'table_pager_prev'         => 'Pjerwjejšny bok',
 'table_pager_first'        => 'Prědny bok',
-'table_pager_last'         => 'Póslědny bok',
-'table_pager_limit'        => 'Pokazś $1 objektow na bok',
+'table_pager_last'         => 'Slědny bok',
+'table_pager_limit'        => 'Pokazaś {{Plural:$1|objekt|objekta|objekty}} na bok',
 'table_pager_limit_submit' => 'Start',
 'table_pager_empty'        => 'Žedne wuslědki',
 
 # Auto-summaries
-'autosumm-blank'   => 'Bok buźo wulašowany.',
-'autosumm-replace' => "Bok buźo zapiany z tekstom: '$1'",
-'autoredircomment' => 'Pśeadresěrowanje na [[$1]]',
+'autosumm-blank'   => 'Bok se wulašujo.',
+'autosumm-replace' => "Bok narownajo se z: '$1'",
+'autoredircomment' => 'Pśesměrowanje na [[$1]]',
 'autosumm-new'     => 'Nowy bok: $1',
 
 # Live preview
 'livepreview-loading' => 'Lodowanje …',
 'livepreview-ready'   => 'Lodowanje … gótowe!',
-'livepreview-failed'  => 'Kontakt njejo zmóžnjony. Pšosym normalny pśeglěd wužywaś.',
-'livepreview-error'   => 'Kontakt njejo zmóžnjony: $1 "$2". Pšosym normalny pśeglěd wužywaś.',
+'livepreview-failed'  => 'Live-pśeglěd njejo móžny. Pšosym normalny pśeglěd wužywaś.',
+'livepreview-error'   => 'Kontaktowanje njejo se zglucyło: $1 "$2". Pšosym normalny pśeglěd wužywaś.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Pśinoski nowše kak $1 sekund mogu njebyś na toś tej liśćinje.',
-'lag-warn-high'   => 'Z pśicyny dłujkego cakanja na wótegono serwera pśinoski nowše kak $1 sekund mogu njebyś na toś tej liśćinje.',
+'lag-warn-normal' => 'Pśinoski, kótarež su nowše ako $1 sekundy, snaź na lisćinje hyšći se njejawje.',
+'lag-warn-high'   => 'Dla dłujkego cakanja na wótegrono serwera jo móžno, až pśinoski, kótarež su nowše ako $1 sekundy snaź na toś tej liśćinje se njejawje.',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Twója wobglědowańska lisćina ma {{PLURAL:$1|1 zapisk|$1 zapiskaj|$1 zapiski|$1 zapiskow}}, bźez diskusijnech bokow.',
-'watchlistedit-noitems'       => 'Twója wobglědowańska lisćina jo pusta.',
-'watchlistedit-normal-title'  => 'Wobźěłaś zapisy',
-'watchlistedit-normal-legend' => 'Wuprozniś zapiski z wobglědowańskeje lisćiny',
-'watchlistedit-normal-submit' => 'Wulašowaś zapisy',
-'watchlistedit-raw-title'     => 'Redigěrowaś surowu wobglědowańsku lisćinu',
-'watchlistedit-raw-legend'    => 'Redigěrowaś surowu wobglědowańsku lisćinu',
-'watchlistedit-raw-explain'   => 'Dołoj su zapisy z twójeje wobglědowańskeje lisćiny, a wóne mógu byś wobźełane pśez dodawanje a wuproznjanje z lisćiny; jadan zapis na rěd. Kak skóńcyjoš kliknij Lisćinu aktualizowaś.',
-'watchlistedit-raw-titles'    => 'Zapisy:',
-'watchlistedit-raw-submit'    => 'Lisćinu aktualizowaś',
-'watchlistedit-raw-done'      => 'Twója lisćina jo zaktualizowana.',
-'watchlistedit-raw-added'     => '{{PLURAL:$1|1 Zapis jo był pśidany|$1 Zapisy su były pśidane}} :',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 Zapis jo był wulašowany|$1 Zapisy su były wulašowane}} :',
+'watchlistedit-numitems'       => 'Twóje wobglědowańka wopśimjeju {{PLURAL:$1|zapisk|zapiska|zapiski}}, bźez diskusijnych bokow.',
+'watchlistedit-noitems'        => 'Twóje wobglědowańka su prozne.',
+'watchlistedit-normal-title'   => 'Zapise wobźěłaś',
+'watchlistedit-normal-legend'  => 'Zapiski z wobglědowańkow wulašowaś',
+'watchlistedit-normal-explain' => 'To su zapise w twójich wobglědowańkach. Coš-lic zapise wulašowaś, markěruj kašćik pódla zapisow a tłoc na "zapise wulašowaś". Móžoš swóje wobglědowańka teke w [[Special:Watchlist/raw|lisćinowem formaśe]] wobźěłaś abo je [[Special:Watchlist/clear|kompletnje wulašowaś]].',
+'watchlistedit-normal-submit'  => 'Zapise wulašowaś',
+'watchlistedit-normal-done'    => '{{PLURAL:$1 zapis jo|$1 zapisa stej|$1 zapise su}} z twójich wobglědowańkow se {{Plural:wulašował|wulašowałej|wulašowali}}.',
+'watchlistedit-raw-title'      => 'Same wobglědowańka wobźěłaś',
+'watchlistedit-raw-legend'     => 'Same wobglědowańka wobźěłaś',
+'watchlistedit-raw-explain'    => 'Zapise, kótarež namakaju se w twójich wobglědowańkach pokazuju se dołojce. Wóni mógu se wobźěłaś pśez to, až do lisćiny se dodawaju resp. z njeje se wulašuju (stawnje jaden zapis na smužku). Gaž sy gótowy, tłoc "Lisćinu aktualizěrowaś".
+
+Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
+'watchlistedit-raw-titles'     => 'Zapise:',
+'watchlistedit-raw-submit'     => 'Lisćinu aktualizěrowaś',
+'watchlistedit-raw-done'       => 'Twóje wobglědowańka su se zaktualizěrowali.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|zapis jo se dodał|zapisa stej se dodałej|zapise su se dodali}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|zapis jo se wulašował|zapisa stej se wulašowałej|zapise su se wulašowali}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Změny wobglědaś',
-'watchlisttools-edit' => 'Lisćinu wobglědaś a wobźełaś',
-'watchlisttools-raw'  => 'Lisćinu wobźełaś',
+'watchlisttools-edit' => 'Woblědowańka pokazaś a wobźěłaś',
+'watchlisttools-raw'  => 'Wobglědowańka wobźěłaś',
 
 # Unknown messages
 'iranian-calendar-m1'  => 'Prědny mjasec Jalāli',
@@ -2192,7 +2205,7 @@ Prošym wobkšuśiś, až coš togo boka wótnowotki natwóriś.',
 'iranian-calendar-m11' => 'Jadenasty mjasec Jalāli',
 'iranian-calendar-m12' => 'Dwanasty mjasec Jalāli',
 'iranian-calendar-m2'  => 'Drugi mjasec Jalāli',
-'iranian-calendar-m3'  => 'Tśeśi mjesec Jalāli',
+'iranian-calendar-m3'  => 'Tśeśi mjasec Jalāli',
 'iranian-calendar-m4'  => 'Stwórty mjasec Jalāli',
 'iranian-calendar-m5'  => 'Pěty mjasec Jalāli',
 'iranian-calendar-m6'  => 'Šesty mjasec Jalāli',

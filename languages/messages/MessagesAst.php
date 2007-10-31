@@ -1,8 +1,12 @@
 <?php
 /** Asturian (Asturianu)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Esbardu
+ * @author G - ג
+ * @author Helix84
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -34,6 +38,16 @@ $messages = array(
 'thursday'  => 'xueves',
 'friday'    => 'vienres',
 'saturday'  => 'sábadu',
+'sun'       => 'dom',
+'mon'       => 'llu',
+'tue'       => 'mar',
+'wed'       => 'mié',
+'thu'       => 'xue',
+'fri'       => 'vie',
+'sat'       => 'sáb',
+'january'   => 'xineru',
+'february'  => 'febreru',
+'october'   => 'ochobre',
 
 # Bits of text used by many pages
 'categories'      => 'Categoríes',

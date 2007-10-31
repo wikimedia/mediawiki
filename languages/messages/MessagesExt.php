@@ -7,8 +7,6 @@
  * @author Nike
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
@@ -252,6 +250,9 @@ $messages = array(
 'nosuchactiontext'  => "Nu se puei realizal l'ación
 especificá ena URL",
 'nosuchspecialpage' => 'Nu desisti tal páhina especial',
+'nospecialpagetext' => "'''<big>Nu desisti esa páhina especial.</big>'''
+
+Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:Specialpages]].",
 
 # General errors
 'error'                => 'Marru',
@@ -273,6 +274,7 @@ La razón dá pol el alministraol que pusu el tarugu es: $1',
 'filedeleteerror'      => 'Nu se puei esborral el archivu "$1".',
 'directorycreateerror' => 'Nu se puei creal el diretoriu "$1".',
 'filenotfound'         => 'Nu se puei alcuentral el archivu "$1".',
+'fileexistserror'      => 'Nu es posibri escrebil el archivu "$1": el archivu ya desisti',
 'formerror'            => 'Marru: nu se puei envial el hormulariu',
 'badarticleerror'      => 'Nu se puei realizal esta ación nesta páhina.',
 'cannotdelete'         => 'Nu se puei esborral esa páhina u archivu. (Puei que ya lo aiga esborrau otra presona.)',
@@ -352,6 +354,7 @@ pol ca $1 oras.',
 'mailerror'                  => 'Marru enviandu el mensahi: $1',
 'acct_creation_throttle_hit' => 'Perdona, ya tiinis creás $1 cuentas, ya nu pueis creal mas.',
 'emailauthenticated'         => 'La tu direción d´email hue comprebá a las $1.',
+'noemailprefs'               => "Escreba la su direción de correu p'atival estas caraterísticas.",
 'emailconfirmlink'           => 'Confirma el tu e-mail',
 'accountcreated'             => 'Cuenta creá',
 'accountcreatedtext'         => 'La cuenta d´usuáriu pa $1 á siu creá.',
@@ -401,6 +404,7 @@ pol ca $1 oras.',
 'anoneditwarning'          => "'''Avisu:''' Nu t´alcuentras rustrau, polo que s´emburacará la tu IP nel estorial d´esta páhina.",
 'missingsummary'           => "'''Atención:''' Nu as escrebiu una síntesis al tentu la tu eición. Si pursas otra vezi sobri «{{MediaWiki:Savearticle}}» la tu eición s´emburacará sin él.",
 'missingcommenttext'       => 'Pol favol, escrebi un testu embahu.',
+'missingcommentheader'     => "'''Atención:''' Nu as escrebiu un entítulu pal tu comentáriu. Si güervis a pursal sobri \"Emburacal\", s'emburacará sin él.",
 'summary-preview'          => 'Previsoreal síntesis',
 'subject-preview'          => 'Previsoreal tema/entítulu',
 'blockedtitle'             => 'Esti usuáriu está atarugau',
@@ -414,6 +418,17 @@ pol ca $1 oras.',
 Pueis contatal con \$1 u con otru [[{{MediaWiki:grouppage-sysop}}|duendi]] pa chalral al tentu el tarugu.
 Si nu as especificau ena tu cuenta d´usuáriu una direción d´email, nu te sedrá posibri gastal el botón \"Envial un email a esti usuáriu\" (amás, tendrás qu´asperal a qu´el tarugu acabihi).
 \$3 es la tu direción IP atual, i el ID el tarugu es #\$5. Pol favol, incluyi angún/dambus dos datus en cualisquiel consurta que hagas.",
+'autoblockedtext'          => "La tu direción IP á siu atarugá autumáticamenti ebiu a qu'estaba siendu gastá pol otru usuáriu, qu'á siu atarugau pol $1 cola siguienti razón:
+
+:''$2''
+
+* Fecha en qu'el tarugu prencipia: $8
+* Fecha en qu'el tarugu acabiha: $6
+
+Pueis ponelti en contatu con $1 u otru
+[[{{MediaWiki:grouppage-sysop}}|alministraol]] pa chalral al tentu el tarugu.
+
+La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 'blockedoriginalsource'    => "El cóigu huenti e '''$1''' se 
 muestra embahu:",
 'blockededitsource'        => "Embahu se muestra el testu '''las tus eicionis''' en '''$1''':",
@@ -437,6 +452,7 @@ muestra embahu:",
 Si quieis creal esti articulu, escrebi nel cuairu d´embahu
 (si t´es mestel, mira la [[{{MediaWiki:helppage}}|páhina d´ayua]]).
 Si nu quieis creal esti artículu, solu tiinis que pursal nel botón \"'''p´atrás'''\" el tu escrucaol.",
+'anontalkpagetext'         => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á creau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'an derihiu a tí con cosas que nu vienin a cuentu, pol favol [[Special:Userlogin|crea una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
 'noarticletext'            => 'Entovia nu ai dengún testu escrebiu nesta páhina, pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu el artículu]] n´otras páhinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta].',
 'usercssjsyoucanpreview'   => "<strong>Consehu:</strong> Gasta el botón 'Previsoreal' pa prebal el tu nuevu CSS/JS enantis d´emburacal.",
 'usercsspreview'           => "'''Recuerda que solu estás previsoreandu el tu CSS d´usuáriu, entovia nu está emburacau!'''",
@@ -475,6 +491,8 @@ razón pola que nu pueis emburacal los tus chambus agora. Pa nu perdel los chamb
 'template-semiprotected'   => '(abati-protehiu)',
 'edittools'                => '<!-- Esti testu apaicirá embahu los hormulárius d´eición i empuntu. -->',
 'nocreatetitle'            => 'Criaeru e páhinas enlimitau',
+'nocreatetext'             => 'Nu se premiti creal páhinas nuevas a usuárius anónimus.
+Pueis gorvel i eital anguna páhina ya desistenti, u [[Special:Userlogin|rustralti]].',
 'nocreate-loggedin'        => 'Nu tiinis premisu pa creal nuevas páhinas nesti güiqui.',
 'permissionserrors'        => 'Marrus colos premisus',
 'permissionserrorstext'    => 'Nu t´está premitiu hazel esu, {{PLURAL:$1|pola siguienti razón|polas siguientis razonis}}:',
@@ -513,6 +531,7 @@ La razón dá pol $3 es ''$2''",
 'orig'                => 'orih',
 'page_first'          => 'primel',
 'page_last'           => 'úrtimu',
+'histlegend'          => 'Leyenda: (ati) = deferéncias cola velsión atual, (anter) = deferéncias cola velsión anteriol, C = eición chiquenina',
 'deletedrev'          => '[esborrau]',
 'histfirst'           => 'Mas recienti',
 'histlast'            => 'Mas antigu',
@@ -527,20 +546,25 @@ Es posibri qu´aiga siu esborrá e la güiqui, u que s´aiga chambau el su nombr
 Preba [[Special:Search|landeandu]] entri las nuevas páhinas de la güiqui.',
 
 # Revision deletion
-'rev-deleted-comment'     => '(comentáriu esborrau)',
-'rev-deleted-user'        => '(nombri d´usuáriu esborrau)',
-'rev-deleted-event'       => '(entrá esborrá)',
-'rev-delundel'            => 'muestral/açonchal',
-'revisiondelete'          => 'Esborral/arrecuperal revisionis',
-'revdelete-nooldid-title' => 'Nu ai una revisión destinu',
-'revdelete-nooldid-text'  => 'Nu as prehisau denguna revisión destinu ondi realizal esta hunción.',
-'revdelete-selected'      => "{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''$1:'''",
-'logdelete-selected'      => "{{PLURAL:$2|Un eventu aseñalau|$2 eventus aseñalaus}} el rustrihu pa '''$1:'''",
-'revdelete-hide-text'     => 'Açonchal el testu la revisión',
-'revdelete-hide-name'     => 'Açonchal ación i ohetivu',
-'revdelete-hide-user'     => 'Açonchal nombri d´usuáriu/IP el eitol',
-'revdelete-hide-image'    => 'Açonchal el continiu el archivu',
-'revdelete-submit'        => 'Aprical a la revisión aseñalá',
+'rev-deleted-comment'         => '(comentáriu esborrau)',
+'rev-deleted-user'            => '(nombri d´usuáriu esborrau)',
+'rev-deleted-event'           => '(entrá esborrá)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+La revisión desta páhina á siu esborrá.
+Es posibri qu\'aiga detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rustrihu d\'esborrau].
+</div>',
+'rev-delundel'                => 'muestral/açonchal',
+'revisiondelete'              => 'Esborral/arrecuperal revisionis',
+'revdelete-nooldid-title'     => 'Nu ai una revisión destinu',
+'revdelete-nooldid-text'      => 'Nu as prehisau denguna revisión destinu ondi realizal esta hunción.',
+'revdelete-selected'          => "{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Un eventu aseñalau|$2 eventus aseñalaus}} el rustrihu pa '''$1:'''",
+'revdelete-hide-text'         => 'Açonchal el testu la revisión',
+'revdelete-hide-name'         => 'Açonchal ación i ohetivu',
+'revdelete-hide-comment'      => 'Açonchal síntesis la eición',
+'revdelete-hide-user'         => 'Açonchal nombri d´usuáriu/IP el eitol',
+'revdelete-hide-image'        => 'Açonchal el continiu el archivu',
+'revdelete-submit'            => 'Aprical a la revisión aseñalá',
 
 # Oversight log
 'oversightlog'    => 'Rustrihu e descúdius',
@@ -1016,6 +1040,7 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'editcomment'                 => 'La síntesis la eición hue: "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'              => 'Rustrihu e proteción',
 'protectedarticle'            => '"[[$1]]" protehiu',
+'modifiedarticleprotection'   => 'chambau el nivel de proteción a "[[$1]]"',
 'unprotectedarticle'          => '"[[$1]]" esprotehiu',
 'confirmprotect'              => 'Confirmal proteción',
 'protectexpiry'               => 'Acabiha:',
@@ -1138,6 +1163,7 @@ $1',
 'blocklistline'               => '$1, $2 ataruga a $3 ($4)',
 'infiniteblock'               => 'enfinitu',
 'expiringblock'               => 'acabiha $1',
+'anononlyblock'               => 'solu anón.',
 'noautoblockblock'            => 'autu-tarugu esativau',
 'createaccountblock'          => 'creaeru e páhinas atarugau',
 'emailblock'                  => 'email atarugau',
@@ -1157,22 +1183,23 @@ $1',
 'proxyblocksuccess'           => 'Hechu.',
 
 # Developer tools
-'lockdb'             => 'Atarugal la basi e datus',
-'unlockdb'           => 'Desatarugal la basi e datus',
-'lockdbtext'         => 'Al atarugal la basi e datus el restu d´usuárius nu pudrán
+'lockdb'              => 'Atarugal la basi e datus',
+'unlockdb'            => 'Desatarugal la basi e datus',
+'lockdbtext'          => 'Al atarugal la basi e datus el restu d´usuárius nu pudrán
 eital páhinas, chambal las sus preferéncias, eital las sus listas de seguimientu,
 i algotras cosas que requieran chambus ena basi e datus.
 Pol favol, confirma que realmenti quieis atarugal la basi e datus, i qu´esborrarás el tarugu
 cuandu aigas acabihau.',
-'lockconfirm'        => 'Sí, realmenti quieu atarugal la basi e datus.',
-'unlockconfirm'      => 'Sí, realmenti quieu desatarugal la basi e datus.',
-'lockbtn'            => 'Atarugal basi e datus',
-'unlockbtn'          => 'Desatarugal la basi e datus',
-'lockdbsuccesssub'   => 'Tarugu la basi e datus ativu',
-'unlockdbsuccesssub' => 'Esborrau el tarugu la basi e datus',
-'lockdbsuccesstext'  => 'La basi e datus á siu atarugá.
+'lockconfirm'         => 'Sí, realmenti quieu atarugal la basi e datus.',
+'unlockconfirm'       => 'Sí, realmenti quieu desatarugal la basi e datus.',
+'lockbtn'             => 'Atarugal basi e datus',
+'unlockbtn'           => 'Desatarugal la basi e datus',
+'lockdbsuccesssub'    => 'Tarugu la basi e datus ativu',
+'unlockdbsuccesssub'  => 'Esborrau el tarugu la basi e datus',
+'lockdbsuccesstext'   => 'La basi e datus á siu atarugá.
 <br />Alcuerdati d´[[Special:Unlockdb|esborral el tarugu]] cuandu aigas acabihau.',
-'databasenotlocked'  => 'La basi e datus nu está atarugá.',
+'unlockdbsuccesstext' => "S'á desatarugau la basi e datus.",
+'databasenotlocked'   => 'La basi e datus nu está atarugá.',
 
 # Move page
 'movepage'                => 'Movel páhina',
@@ -1237,6 +1264,7 @@ Pol favol, escrebi otru entítulu.',
 
 # Import log
 'importlogpage'                    => 'Emporteal rustrihu',
+'import-logentry-upload'           => "emporteá [[$1]] pol empuntu d'archivu",
 'import-logentry-upload-detail'    => '$1 revisión/is',
 'import-logentry-interwiki'        => 'trasgüiquipeau $1',
 'import-logentry-interwiki-detail' => '$1 revisión/is endi $2',
@@ -1339,6 +1367,7 @@ $1',
 'widthheightpage'      => '$1×$2, $3 páhinas',
 'file-info'            => '(grandol el archivu: $1, MIME type: $2)',
 'file-info-size'       => '($1 × $2 pixel, grandol el archivu: $3, MIME type: $4)',
+'svg-long-desc'        => '(archivu SVG, $1 × $2 pixelis, grandol: $3)',
 'show-big-image'       => 'Resolución máisima',
 'show-big-image-thumb' => '<small>Grandol al previsoreal: $1 × $2 pixelis</small>',
 
@@ -1364,22 +1393,31 @@ $1',
 'exif-model'               => 'Moelu la cámara',
 'exif-software'            => 'Software gastau',
 'exif-artist'              => 'Autol',
+'exif-usercomment'         => 'Comentárius el usuáriu',
 'exif-exposuretime-format' => '$1 seg ($2)',
+'exif-aperturevalue'       => 'Apertura',
 'exif-filesource'          => 'Coigu el archivu',
 'exif-gpsaltituderef'      => 'Artitú e referéncia',
 'exif-gpsaltitude'         => 'Artitú',
 'exif-gpssatellites'       => 'Satélitis gastaus pala miia',
+'exif-gpsimgdirection'     => 'Direción la imahin',
 'exif-gpsdestdistance'     => 'Longol al destinu',
+
+'exif-planarconfiguration-2' => 'hormatu pranu',
 
 'exif-componentsconfiguration-0' => 'nu desisti',
 
 'exif-subjectdistance-value' => '$1 metrus',
 
 'exif-meteringmode-0'   => 'Andarriu',
+'exif-meteringmode-6'   => 'Parcial',
 'exif-meteringmode-255' => 'Otru',
 
-'exif-lightsource-0' => 'Andarriu',
-'exif-lightsource-9' => 'Güen tiempu',
+'exif-lightsource-0'  => 'Andarriu',
+'exif-lightsource-1'  => 'Lus el dia',
+'exif-lightsource-2'  => 'Fluorescenti',
+'exif-lightsource-9'  => 'Güen tiempu',
+'exif-lightsource-10' => 'Tiempu nubrau',
 
 'exif-customrendered-0' => 'Procesu normal',
 'exif-customrendered-1' => 'Procesu presonalizau',
@@ -1480,6 +1518,7 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'Esborral el continiu la páhina',
+'autosumm-replace' => "Páhina escambiá pol '$1'",
 'autoredircomment' => 'Rederihiendu a [[$1]]',
 'autosumm-new'     => 'Páhina nueva: $1',
 
@@ -1517,5 +1556,19 @@ $1',
 'watchlisttools-view' => 'Vel chambus emportantis',
 'watchlisttools-edit' => 'Vel i eital la lista e seguimientu',
 'watchlisttools-raw'  => 'Eital lista e seguimientu',
+
+# Unknown messages
+'iranian-calendar-m1'  => '1 mes Jalāli',
+'iranian-calendar-m10' => '10 mes Jalāli',
+'iranian-calendar-m11' => '11 mes Jalāli',
+'iranian-calendar-m12' => '12 mes Jalāli',
+'iranian-calendar-m2'  => '2 mes Jalāli',
+'iranian-calendar-m3'  => '3 mes Jalāli',
+'iranian-calendar-m4'  => '4 mes Jalāli',
+'iranian-calendar-m5'  => '5 mes Jalāli',
+'iranian-calendar-m6'  => '6 mes Jalāli',
+'iranian-calendar-m7'  => '7 mes Jalāli',
+'iranian-calendar-m8'  => '8 mes Jalāli',
+'iranian-calendar-m9'  => '9 mes Jalāli',
 
 );

@@ -2,7 +2,22 @@
 /** Italian (Italiano)
  *
  * @addtogroup Language
+ *
+ * @author BrokenArrow
+ * @author G - ג
+ * @author Gianfranco
+ * @author Felis
+ * @author Broc
+ * @author .anaconda
+ * @author Nick1915
+ * @author Tonyfroio
+ * @author Cruccone
+ * @author Nike
+ * @author Martorell
+ * @author Cryptex
+ * @author SabineCretella
  */
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Speciale',
@@ -1403,7 +1418,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'viewdeletedpage'              => 'Visualizza le pagine cancellate',
 'undeletepagetext'             => "Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio può essere svuotato periodicamente.",
 'undeleteextrahelp'            => "Per recuperare l'intera pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reset''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
-'undeleterevisions'            => '$1 revisioni in archivio',
+'undeleterevisions'            => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
 'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno inserite di nuovo nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
 'undeleterevdel'               => "Il ripristino non verrà effettuato se dovesse avere come conseguenza la cancellazione parziale della versione corrente della pagina. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti. Le revisioni dei file per i quali non si possiede il permesso di accesso non verranno ripristinate.",
 'undeletehistorynoadmin'       => 'La pagina è stata cancellata. Il motivo della cancellazione è indicato di seguito, assieme ai dati degli utenti che avevano modificato la pagina prima della cancellazione. Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.',
@@ -1802,6 +1817,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'markedaspatrollederror'              => 'Impossibile contrassegnare la voce come verificata',
 'markedaspatrollederrortext'          => 'Occorre specificare una revisione da contrassegnare come verificata.',
 'markedaspatrollederror-noautopatrol' => 'Non si dispone dei permessi necessari per segnare le proprie modifiche come verificate.',
+'nppatroldisabled'                    => 'Verifica delle pagine più recenti disabilitata',
+'nppatroldisabledtext'                => 'La funzione di verifica delle pagine più recenti non è attiva al momento.',
 
 # Patrol log
 'patrol-log-page' => 'Modifiche verificate',
@@ -2248,8 +2265,8 @@ Usare l\'anteprima standard.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|È stata eliminata una pagina|Sono state eliminate $1 pagine}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Visualizza le modifiche pertinenti',
-'watchlisttools-edit'  => 'Visualizza e modifica la lista',
-'watchlisttools-raw'   => 'Modifica la lista in formato testo',
+'watchlisttools-view' => 'Visualizza le modifiche pertinenti',
+'watchlisttools-edit' => 'Visualizza e modifica la lista',
+'watchlisttools-raw'  => 'Modifica la lista in formato testo',
 
 );
