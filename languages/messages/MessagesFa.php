@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** Persian (فارسی)
   *
   * @addtogroup Language
