@@ -90,7 +90,7 @@ class EditPage {
 		$this->mArticle =& $article;
 		global $wgTitle;
 		$this->uiTitle =& $wgTitle;
-		$this->dbTitle =& $article->getTitle();
+		$this->dbTitle = $article->getTitle();
 
 		# Placeholders for text injection by hooks (empty per default)
 		$this->editFormPageTop =
