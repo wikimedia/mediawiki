@@ -1450,7 +1450,7 @@ class Article {
 				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, $bot,
 				  '', strlen( $text ), $revisionId );
 				# Mark as patrolled if the user can
-				if( $GLOBALS['wgUseRCPatrol'] && $wgUser->isAllowed( 'autopatrol' ) ) {
+				if( ($GLOBALS['wgUseRCPatrol'] || $GLOBALS['wgUseNPPatrol']) && $wgUser->isAllowed( 'autopatrol' ) ) {
 					RecentChange::markPatrolled( $rcid );
 					PatrolLog::record( $rcid, true );
 				}
