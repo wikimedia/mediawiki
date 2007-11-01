@@ -540,6 +540,17 @@ $user: the User object being authenticated against
 $password: the password being submitted and found wanting
 $retval: a LoginForm class constant with authenticateUserData() return value (SUCCESS, WRONG_PASS, etc)
 
+'LogLine': Processes a single log entry on Special:Log
+$log_type: string for the type of log entry (e.g. 'move'). Corresponds to logging.log_type 
+    database field.
+$log_action: string for the type of log action (e.g. 'delete', 'block', 'create2'). Corresponds
+    to logging.log_action database field.
+$title: Title object that corresponds to logging.log_namespace and logging.log_title database fields.
+$paramArray: Array of parameters that corresponds to logging.log_params field. Note that only $paramArray[0]
+    appears to contain anything.
+&$comment: string that corresponds to logging.log_comment database field, and which is displayed in the UI.
+&$revert: string that is displayed in the UI, similar to $comment.
+
 'LogPageValidTypes': action being logged. DEPRECATED: Use $wgLogTypes
 &$type: array of strings
 

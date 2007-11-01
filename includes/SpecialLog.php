@@ -394,7 +394,7 @@ class LogViewer {
 			} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
 				$revert = '(' .  $skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' ) . ')';
 			// show user tool links for self created users
-			// TODO: The extension should be handling this, get it out of core!
+			// @todo The extension should be handling this, get it out of core! E.g. Use the hook below.
 			} elseif ( $s->log_action == 'create2' ) {
 				if( isset( $paramArray[0] ) ) {
 					$revert = $this->skin->userToolLinks( $paramArray[0], $s->log_title, true );
@@ -404,6 +404,9 @@ class LogViewer {
 				}
 				# Suppress $comment from old entries, not needed and can contain incorrect links
 				$comment = '';
+			} elseif ( wfRunHooks( 'LogLine', array( $s->log_type, $s->log_action, $title, $paramArray, &$comment, &$revert ) ) ) {
+				//wfDebug( "Invoked LogLine hook for " $s->log_type . ", " . $s->log_action . "\n" );
+				// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 			}
 		}
 
