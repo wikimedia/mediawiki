@@ -11,15 +11,17 @@
 class NewPagesPage extends QueryPage {
 
 	var $namespace;
-	var $username = '';
+	var $username;
 	var $hideliu;
 	var $hidepatrolled;
-
-	function NewPagesPage( $namespace = NS_MAIN, $username = '', $hideliu = false, $hidepatrolled = false ) {
+	var $defaults;
+		
+	function NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $defaults) {
 		$this->namespace = $namespace;
 		$this->username = $username;
 		$this->hideliu = $hideliu;
 		$this->hidepatrolled = $hidepatrolled;
+		$this->defaults = $defaults;
 	}
 
 	function getName() {
@@ -156,6 +158,15 @@ class NewPagesPage extends QueryPage {
 
 		// show/hide links
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
+
+		$nondefaults = array();
+		wfAppendToArrayIfNotDefault( 'hidepatrolled', $this->hidepatrolled, $this->defaults, $nondefaults);
+		wfAppendToArrayIfNotDefault( 'hideliu', $this->hideliu, $this->defaults, $nondefaults);
+		wfAppendToArrayIfNotDefault( 'namespace', $this->namespace, $this->defaults, $nondefaults);
+		wfAppendToArrayIfNotDefault( 'limit', $this->limit , $this->defaults, $nondefaults);
+		wfAppendToArrayIfNotDefault( 'offset', $this->offset , $this->defaults, $nondefaults);
+		wfAppendToArrayIfNotDefault( 'username', $this->username , $this->defaults, $nondefaults);
+		
 		$liuLink =  $wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( 'Newpages' ),
 			htmlspecialchars( $showhide[1-$this->hideliu] ), wfArrayToCGI( array( 'hideliu' => 1-$this->hideliu ),  $nondefaults ) );
 		$patrLink =  $wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( 'Newpages' ),
@@ -215,11 +226,19 @@ class NewPagesPage extends QueryPage {
 function wfSpecialNewpages($par, $specialPage) {
 	global $wgRequest, $wgContLang;
 
+
 	list( $limit, $offset ) = wfCheckLimits();
-	$namespace = NS_MAIN;
-	$username = '';
-	$hideliu = false; 
-	$hidepatrolled = false;
+
+	$defaults = array(
+        /* bool */ 'hideliu' => false,  
+        /* bool */ 'hidepatrolled' => false,
+        /* text */ 'namespace' => NS_MAIN,
+        /* text */ 'username' => '',
+        /* int  */ 'offset' => $offset,
+        /* int  */ 'limit' => $limit,
+        );
+                                                                                                        	
+	extract($defaults);        
 
 	if ( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -260,7 +279,7 @@ function wfSpecialNewpages($par, $specialPage) {
 	if ( ! isset( $shownavigation ) )
 		$shownavigation = ! $specialPage->including();
 
-	$npp = new NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled );
+	$npp = new NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $defaults );
 
 	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ), $limit ) )
 		$npp->doQuery( $offset, $limit, $shownavigation );
