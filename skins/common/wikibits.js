@@ -1146,7 +1146,7 @@ function ts_dateToSortKey(date) {
 
 function ts_parseFloat(num) {
 	if (!num) return 0;
-	num = parseFloat(num.replace(/,/, ""));
+	num = parseFloat(num.replace(/,/g, ""));
 	return (isNaN(num) ? 0 : num);
 }
 
