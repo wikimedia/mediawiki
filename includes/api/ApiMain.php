@@ -88,11 +88,24 @@ class ApiMain extends ApiBase {
 	* @param $enableWrite bool should be set to true if the api may modify data
 	*/
 	public function __construct($request, $enableWrite = false) {
+		global $wgRequest, $wgUser; 
 
 		$this->mInternalMode = ($request instanceof FauxRequest);
 
 		// Special handling for the main module: $parent === $this
 		parent :: __construct($this, $this->mInternalMode ? 'main_int' : 'main');
+		
+		// Check if request has cookie-like variables, and set them
+		if( ($request->getVal('lgtoken')) && ($request->getVal('lgusername')) && ($request->getVal('lguserid')) ) {
+			
+			// Got variables, set cookies. 
+			$_SESSION['wsUserID'] = $request->getVal('lguserid');
+			$_SESSION['wsUserName'] = $request->getVal('lgusername');
+			$_SESSION['wsToken'] = $request->getVal('lgtoken');
+			
+			// Reinitialize $wgUser from session data
+			$wgUser = User::newFromSession();			
+		} 
 
 		if (!$this->mInternalMode) {
 			
