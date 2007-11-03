@@ -70,13 +70,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				$vals['rights'] = $wgUser->getRights();
 				$result->setIndexedTagName($vals['rights'], 'r');	// even if empty
 			}
-		}
-
-		if (!empty($params['option'])) {
-			foreach( $params['option'] as $option ) {
-				if (empty($option))
-					$this->dieUsage('Empty value is not allowed for the option parameter', 'option');
-				$vals['options'][$option] = $wgUser->getOption($option);
+			if (isset($prop['options'])) {
+				$vals['options'] = (is_null($wgUser->mOptions) ? User::getDefaultOptions() : $wgUser->mOptions);
 			}
 		}
 		
@@ -93,11 +88,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'hasmsg',
 					'groups',
 					'rights',
-				)),
-			'option' => array (
-				ApiBase :: PARAM_DFLT => NULL,
-				ApiBase :: PARAM_ISMULTI => true,
-				),
+					'options'
+				))
 		);
 	}
 
@@ -109,8 +101,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  hasmsg    - adds a tag "message" if user has pending messages',
 				'  groups    - lists all the groups the current user belongs to',
 				'  rights    - lists of all rights the current user has',
-			),
-			'option' => 'A list of user preference options to get',
+				'  options   - lists all preferences the current user has set'
+			)
 		);
 	}
 
