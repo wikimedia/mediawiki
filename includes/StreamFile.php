@@ -2,7 +2,7 @@
 /** */
 
 /** */
-function wfStreamFile( $fname ) {
+function wfStreamFile( $fname, $headers = array() ) {
 	$stat = @stat( $fname );
 	if ( !$stat ) {
 		header( 'HTTP/1.0 404 Not Found' );
@@ -33,6 +33,10 @@ function wfStreamFile( $fname ) {
 
 	global $wgContLanguageCode;
 	header( "Content-Disposition: inline;filename*=utf-8'$wgContLanguageCode'" . urlencode( basename( $fname ) ) );
+
+	foreach ( $headers as $header ) {
+		header( $header );
+	}
 
 	if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 		$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );

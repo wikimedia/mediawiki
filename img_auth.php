@@ -66,7 +66,7 @@ if( is_dir( $filename ) ) {
 
 // Stream the requested file
 wfDebugLog( 'img_auth', "Streaming `{$filename}`" );
-wfStreamFile( $filename );
+wfStreamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
 wfLogProfilingData();
 
 /**
@@ -75,15 +75,16 @@ wfLogProfilingData();
  */
 function wfForbidden() {
 	header( 'HTTP/1.0 403 Forbidden' );
+	header( 'Vary: Cookie' );
 	header( 'Content-Type: text/html; charset=utf-8' );
-	echo <<<END
+	echo <<<ENDS
 <html>
 <body>
 <h1>Access Denied</h1>
 <p>You need to log in to access files on this server.</p>
 </body>
 </html>
-END;
+ENDS;
 	wfLogProfilingData();
 	exit();
 }
