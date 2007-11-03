@@ -157,6 +157,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11721) Use a different title for results than for the help page.
 * (bug 11562) Added a user_registration parameter/field to the list=allusers query.
 * (bug 11588) Preserve document structure for empty dataset in backlinks query.
+* Allow staying logged in through lg* parameters instead of cookies
 
 === Languages updated in 1.12 ===
 
