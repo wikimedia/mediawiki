@@ -58,7 +58,7 @@ class ApiRender extends ApiBase {
 		$result = $this->getResult();
 		$retval_array = array();
 		$result->setContent( $retval_array, $retval );
-		$result->addValue( null, 'render', $retval_array );
+		$result->addValue( null, $this->getModuleName(), $retval_array );
 	}
 
 	protected function getAllowedParams() {
