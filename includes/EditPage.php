@@ -8,6 +8,12 @@
  * The actual database and text munging is still in Article,
  * but it should get easier to call those from alternate
  * interfaces.
+ *
+ * EditPage cares about two distinct titles:
+ * $wgTitle is the page that forms submit to, links point to,
+ * redirects go to, etc. $this->mTitle (as well as $mArticle) is the
+ * page in the database that is actually being edited. These are
+ * usually the same, but they are now allowed to be different.
  */
 class EditPage {
 	const AS_SUCCESS_UPDATE				= 200;
@@ -65,22 +71,29 @@ class EditPage {
 	# extensions should take care to _append_ to the present value
 	public $editFormPageTop; // Before even the preview
 	public $editFormTextTop;
+	public $editFormTextBeforeContent;
 	public $editFormTextAfterWarn;
 	public $editFormTextAfterTools;
 	public $editFormTextBottom;
+	
+	/* $didSave should be set to true whenever an article was succesfully altered. */
+	public $didSave = false;
+	
+	public $suppressIntro = false;
 
 	/**
 	 * @todo document
 	 * @param $article
 	 */
 	function EditPage( $article ) {
-		$this->mArticle =& $article;
 		global $wgTitle;
-		$this->mTitle =& $wgTitle;
+		$this->mArticle =& $article;
+		$this->mTitle = $article->getTitle();
 
 		# Placeholders for text injection by hooks (empty per default)
 		$this->editFormPageTop =
 		$this->editFormTextTop =
+		$this->editFormTextBeforeContent =
 		$this->editFormTextAfterWarn =
 		$this->editFormTextAfterTools =
 		$this->editFormTextBottom = "";
@@ -395,8 +408,8 @@ class EditPage {
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
-		$this->isCssJsSubpage      = $wgTitle->isCssJsSubpage();
-		$this->isValidCssJsSubpage = $wgTitle->isValidCssJsSubpage();
+		$this->isCssJsSubpage      = $this->mTitle->isCssJsSubpage();
+		$this->isValidCssJsSubpage = $this->mTitle->isValidCssJsSubpage();
 
 		/* Notice that we can't use isDeleted, because it returns true if article is ever deleted
 		 * no matter it's current state
@@ -610,6 +623,7 @@ class EditPage {
 	 */
 	private function showIntro() {
 		global $wgOut, $wgUser;
+		if( $this->suppressIntro ) return;
 		if( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
 			if( $wgUser->isLoggedIn() ) {
 				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
@@ -688,7 +702,7 @@ class EditPage {
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR_EXPECTED;
 		}
-		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
+		if ( $wgUser->isBlockedFrom( $wgTitle, false ) ) {
 			# Check block state against master, thus 'false'.
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
@@ -913,8 +927,8 @@ class EditPage {
 		$this->textbox1 = $this->getContent(false);
 		if ($this->textbox1 === false) return false;
 
-		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
-			$this->textbox1 = wfMsgWeirdKey( $this->mArticle->mTitle->getText() );
+		if ( !$this->mArticle->exists() && $this->mTitle->getNamespace() == NS_MEDIAWIKI )
+			$this->textbox1 = wfMsgWeirdKey( $this->mTitle->getText() );
 		wfProxyCheck();
 		return true;
 	}
@@ -926,7 +940,7 @@ class EditPage {
 	 *                      near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback=null ) {
-		global $wgOut, $wgUser, $wgLang, $wgContLang, $wgMaxArticleSize;
+		global $wgOut, $wgUser, $wgLang, $wgContLang, $wgMaxArticleSize, $wgTitle;
 
 		$fname = 'EditPage::showEditForm';
 		wfProfileIn( $fname );
@@ -945,7 +959,7 @@ class EditPage {
 		}
 
 		if ( $this->isConflict ) {
-			$s = wfMsg( 'editconflict', $this->mTitle->getPrefixedText() );
+			$s = wfMsg( 'editconflict', $wgTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );
 			$wgOut->addWikiText( wfMsg( 'explainconflict' ) );
 
@@ -956,9 +970,9 @@ class EditPage {
 
 			if( $this->section != '' ) {
 				if( $this->section == 'new' ) {
-					$s = wfMsg('editingcomment', $this->mTitle->getPrefixedText() );
+					$s = wfMsg('editingcomment', $wgTitle->getPrefixedText() );
 				} else {
-					$s = wfMsg('editingsection', $this->mTitle->getPrefixedText() );
+					$s = wfMsg('editingsection', $wgTitle->getPrefixedText() );
 					$matches = array();
 					if( !$this->summary && !$this->preview && !$this->diff ) {
 						preg_match( "/^(=+)(.+)\\1/mi",
@@ -973,7 +987,7 @@ class EditPage {
 					}
 				}
 			} else {
-				$s = wfMsg( 'editing', $this->mTitle->getPrefixedText() );
+				$s = wfMsg( 'editing', $wgTitle->getPrefixedText() );
 			}
 			$wgOut->setPageTitle( $s );
 
@@ -1018,7 +1032,7 @@ class EditPage {
 				if( $this->isValidCssJsSubpage ) {
 					$wgOut->addWikiText( wfMsg( 'usercssjsyoucanpreview' ) );
 				} else {
-					$wgOut->addWikiText( wfMsg( 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ) );
+					$wgOut->addWikiText( wfMsg( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() ) );
 				}
 			}
 		}
@@ -1075,12 +1089,12 @@ class EditPage {
 
 		$q = 'action=submit';
 		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
-		$action = $this->mTitle->escapeLocalURL( $q );
+		$action = $wgTitle->escapeLocalURL( $q );
 
 		$summary = wfMsg('summary');
 		$subject = wfMsg('subject');
 
-		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
+		$cancel = $sk->makeKnownLink( $wgTitle->getPrefixedText(),
 				wfMsgExt('cancel', array('parseinline')) );
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
@@ -1219,6 +1233,7 @@ END
 $recreate
 {$commentsubject}
 {$subjectpreview}
+{$this->editFormTextBeforeContent}
 <textarea tabindex='1' accesskey="," name="wpTextbox1" id="wpTextbox1" rows='{$rows}'
 cols='{$cols}'{$ew} $hidden>
 END
@@ -1428,13 +1443,13 @@ END
 		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
 
 		if ( $this->isCssJsSubpage ) {
-			if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
+			if(preg_match("/\\.css$/", $this->mTitle->getText() ) ) {
 				$previewtext = wfMsg('usercsspreview');
-			} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
+			} else if(preg_match("/\\.js$/", $this->mTitle->getText() ) ) {
 				$previewtext = wfMsg('userjspreview');
 			}
 			$parserOptions->setTidy(true);
-			$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
+			$parserOutput = $wgParser->parse( $previewtext , $this->mTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
 			wfProfileOut( $fname );
 			return $previewhead;
@@ -1450,13 +1465,13 @@ END
 			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
 			$parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
-					$wgTitle, $parserOptions );
+					$this->mTitle, $parserOptions );
 
 			$previewHTML = $parserOutput->getText();
 			$wgOut->addParserOutputNoText( $parserOutput );
 			
 			# ParserOutput might have altered the page title, so reset it
-			$wgOut->setPageTitle( wfMsg( 'editing', $this->mTitle->getPrefixedText() ) );			
+			$wgOut->setPageTitle( wfMsg( 'editing', $wgTitle->getPrefixedText() ) );			
 
 			foreach ( $parserOutput->getTemplates() as $ns => $template)
 				foreach ( array_keys( $template ) as $dbk)
@@ -1498,18 +1513,18 @@ END
 	 * Produce the stock "please login to edit pages" page
 	 */
 	function userNotLoggedInPage() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgTitle;
 		$skin = $wgUser->getSkin();
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
+		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
 
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
-		$wgOut->returnToMain( false, $this->mTitle );
+		$wgOut->returnToMain( false, $wgTitle );
 	}
 
 	/**
@@ -1517,14 +1532,14 @@ END
 	 * they have attempted to edit a nonexistant section.
 	 */
 	function noSuchSectionPage() {
-		global $wgOut;
+		global $wgOut, $wgTitle;
 
 		$wgOut->setPageTitle( wfMsg( 'nosuchsectiontitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'nosuchsectiontext', $this->section ) );
-		$wgOut->returnToMain( false, $this->mTitle );
+		$wgOut->returnToMain( false, $wgTitle );
 	}
 
 	/**
@@ -1533,7 +1548,7 @@ END
 	 * @param $match Text which triggered one or more filters
 	 */
 	function spamPage( $match = false ) {
-		global $wgOut;
+		global $wgOut, $wgTitle;
 
 		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -1543,7 +1558,7 @@ END
 		if ( $match )
 			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
 
-		$wgOut->returnToMain( false, $this->mTitle );
+		$wgOut->returnToMain( false, $wgTitle );
 	}
 
 	/**
@@ -1558,7 +1573,7 @@ END
 
 		// This is the revision the editor started from
 		$baseRevision = Revision::loadFromTimestamp(
-			$db, $this->mArticle->mTitle, $this->edittime );
+			$db, $this->mTitle, $this->edittime );
 		if( is_null( $baseRevision ) ) {
 			wfProfileOut( $fname );
 			return false;
@@ -1567,7 +1582,7 @@ END
 
 		// The current state, we want to merge updates into it
 		$currentRevision =  Revision::loadFromTitle(
-			$db, $this->mArticle->mTitle );
+			$db, $this->mTitle );
 		if( is_null( $currentRevision ) ) {
 			wfProfileOut( $fname );
 			return false;
@@ -2069,7 +2084,7 @@ END
 	 * @param OutputPage $out
 	 */
 	private function showDeletionLog( $out ) {
-		$title = $this->mArticle->getTitle();
+		$title = $this->mTitle;
 		$reader = new LogReader(
 			new FauxRequest(
 				array(
@@ -2092,10 +2107,15 @@ END
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
 	function attemptSave() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgTitle;
 
 		$resultDetails = false;
 		$value = $this->internalAttemptSave( $resultDetails );
+		
+		if( $value == self::AS_SUCCESS_UPDATE || $value = self::AS_SUCCESS_NEW_ARTICLE ) {
+			$this->didSave = true;
+		}
+		
 		switch ($value)
 		{
 			case self::AS_HOOK_ERROR_EXPECTED:
@@ -2140,7 +2160,7 @@ END
 		 		return;
 		 	
 			case self::AS_BLANK_ARTICLE:
-		 		$wgOut->redirect( $this->mTitle->getFullURL() );
+		 		$wgOut->redirect( $wgTitle->getFullURL() );
 		 		return false;
 		}
 	}
