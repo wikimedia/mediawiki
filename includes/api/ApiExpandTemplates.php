@@ -57,7 +57,7 @@ class ApiExpandTemplates extends ApiBase {
 		$result = $this->getResult();
 		$retval_array = array();
 		$result->setContent( $retval_array, $retval );
-		$result->addValue( null, 'expandtemplates', $retval_array );
+		$result->addValue( null, $this->getModuleName(), $retval_array );
 	}
 
 	protected function getAllowedParams() {

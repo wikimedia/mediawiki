@@ -294,6 +294,7 @@ function __autoload($className) {
 
 		# API
 		'ApiBase' => 'includes/api/ApiBase.php',
+		'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 		'ApiFormatFeedWrapper' => 'includes/api/ApiFormatBase.php',
 		'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
 		'ApiFormatBase' => 'includes/api/ApiFormatBase.php',
@@ -308,7 +309,6 @@ function __autoload($className) {
 		'ApiLogin' => 'includes/api/ApiLogin.php',
 		'ApiMain' => 'includes/api/ApiMain.php',
 		'ApiOpenSearch' => 'includes/api/ApiOpenSearch.php',
-		'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 		'ApiPageSet' => 'includes/api/ApiPageSet.php',
 		'ApiQuery' => 'includes/api/ApiQuery.php',
 		'ApiQueryAllpages' => 'includes/api/ApiQueryAllpages.php',
