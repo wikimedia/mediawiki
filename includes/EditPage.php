@@ -661,7 +661,7 @@ class EditPage {
 	 */
 	function internalAttemptSave( &$result ) {
 		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut, $wgParser;
-		global $wgMaxArticleSize;
+		global $wgMaxArticleSize, $wgTitle;
 
 		$fname = 'EditPage::attemptSave';
 		wfProfileIn( $fname );
