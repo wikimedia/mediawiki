@@ -2027,7 +2027,7 @@ class Article {
 				<label for='wpReason'>{$delcom}:</label>
 			</td>
 			<td align='left'>
-				<input type='text' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"1\" />
+				<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"1\" />
 			</td>
 		</tr>
 		<tr>
