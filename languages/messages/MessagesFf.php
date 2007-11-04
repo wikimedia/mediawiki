@@ -17,15 +17,15 @@ $messages = array(
 'edit'             => 'Wallifaade',
 'talkpagelinktext' => 'Kaldigal',
 'talk'             => 'Kaldigal',
-'toolbox'          => 'Wakannde gollir?e',
-'otherlanguages'   => '?em?e go?e',
-'jumptosearch'     => '?a??itugol',
+'toolbox'          => 'Wakannde gollirɗe',
+'otherlanguages'   => 'ɗemɗe goɗe',
+'jumptosearch'     => 'Ɗaɓɓitugol',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'     => 'Tawtora?i',
-'currentevents-url' => '{{ns:project}}:Tawtora?i',
-'mainpage'          => 'Hello ja??orgo',
-'portal'            => 'Ja??ogol renndo',
+'currentevents'     => 'Tawtoraɗi',
+'currentevents-url' => '{{ns:project}}:Tawtoraɗi',
+'mainpage'          => 'Hello jaɓɓorgo',
+'portal'            => 'Jaɓɓogol renndo',
 'sitesupport'       => 'Dokkal',
 'sitesupport-url'   => '{{ns:project}}:Dokkal',
 
@@ -48,7 +48,7 @@ $messages = array(
 'ilsubmit' => 'Yiilaade',
 
 # Miscellaneous special pages
-'randompage' => '?erewol kawral',
+'randompage' => 'Ɗerewol kawral',
 
 # Special:Allpages
 'allarticles' => 'Winndannde hesere',
