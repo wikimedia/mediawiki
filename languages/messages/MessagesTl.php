@@ -1,17 +1,21 @@
 <?php
-/**
- * Tagalog
+/** Tagalog (Tagalog)
  *
  * @addtogroup Language
  *
  * @author Sky Harbor
  * @author Gangleri
- */	
+ * @author G - ?
+ * @author Siebrand
+ */
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'Salungguhitan ang mga kawing:',
-'tog-highlightbroken' => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
+'tog-underline'        => 'Salungguhitan ang mga kawing:',
+'tog-highlightbroken'  => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
+'tog-justify'          => 'Pantayin ang mga talata',
+'tog-hideminor'        => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
+'tog-rememberpassword' => 'Tandaan ang paglagda ko sa kompyuter na ito',
 
 # Dates
 'sunday'        => 'Linggo',
@@ -105,7 +109,7 @@ $messages = array(
 'deletethispage'   => 'Burahin itong pahina',
 'protect'          => 'Ipagsanggalang',
 'protectthispage'  => 'Ipagsanggalang itong pahina',
-'unprotect'        => 'Huwag ipagsanggalang',
+'unprotect'        => 'huwag ipagsanggalang',
 'newpage'          => 'Bagong pahina',
 'talkpage'         => 'Pag-usapan itong pahina',
 'talkpagelinktext' => 'Usapan',
@@ -141,13 +145,18 @@ $messages = array(
 'badaccess-group0' => 'Hindi ka pinahintulutan na isagawa ang gawang hiniling mo.',
 'badaccess-group1' => 'Ang gawang hiniling mo ay natatakdaan lamang sa mga tagagamit sa pangkat $1.',
 
-'youhavenewmessages'  => 'Mayroon kang $1 ($2).',
-'newmessageslink'     => 'mga bagong mensahe',
-'newmessagesdifflink' => 'huling pagbabago',
-'toc'                 => 'Mga nilalaman',
-'showtoc'             => 'ipakita',
-'hidetoc'             => 'itago',
-'restorelink'         => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
+'versionrequired'     => 'Kinakailangan ang bersyong $1 ng MediaWiki',
+'versionrequiredtext' => 'Kinakailangan ang bersyong $1 ng MediaWiki upang magamit ang pahinang ito. Tingnan ang [[Special:Version|pahina ng bersyon]].',
+
+'youhavenewmessages'      => 'Mayroon kang $1 ($2).',
+'newmessageslink'         => 'mga bagong mensahe',
+'newmessagesdifflink'     => 'huling pagbabago',
+'youhavenewmessagesmulti' => 'Mayroon kang mga bagong mensahe sa $1',
+'editsection'             => 'baguhin',
+'toc'                     => 'Mga nilalaman',
+'showtoc'                 => 'ipakita',
+'hidetoc'                 => 'itago',
+'restorelink'             => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artikulo',
@@ -192,7 +201,12 @@ $messages = array(
 
 # Edit pages
 'summary'                => 'Buod',
+'minoredit'              => 'Ito ay isang maliit na pagbabago',
+'watchthis'              => 'Bantayan itong pahina',
 'savearticle'            => 'Itala ang pahina',
+'blockedtitle'           => 'Nakaharang ang tagagamit',
+'blockedoriginalsource'  => "Ang pinagmulan ng '''$1''' ay 
+pinapakita sa ibaba:",
 'editing'                => 'Binabago ang $1',
 'editingsection'         => 'Binabago ang $1 (bahagi)',
 'editingcomment'         => 'Binabago ang $1 (komento)',
@@ -252,16 +266,41 @@ upang makapagkarga ng talaksan.',
 'contribsub2'   => 'Para kay $1 ($2)',
 
 # What links here
-'whatlinkshere' => 'Mga nakaturo dito',
+'whatlinkshere'       => 'Mga nakaturo dito',
+'whatlinkshere-title' => 'Mga pahinang kumakawing sa $1',
 
 # Block/unblock
-'ipboptions' => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
+'ipbexpiry'          => 'Pagkawalang-bisa:',
+'ipbreason'          => 'Dahilan:',
+'ipbreasonotherlist' => 'Ibang dahilan',
+'ipbreason-dropdown' => '*Mga karaniwang dahilan sa paghaharang
+** Pagpasok ng hindi totoong impormasyon
+** Pag-alis ng nilalaman mula sa mga pahina
+** Walang-itinatanging paglalagay ng mga kawing panlabas
+** Pagpasok ng impormasyong walang kabuluhan/satsat sa mga pahina
+** Ugaling nananakot/pagligalig
+** Pagmamalabis ng maramihang kuwenta
+** Hindi kanais-nais na bansag',
+'ipbanononly'        => "Harangin ang mga 'di-kilalang tagagamit lamang",
+'ipbcreateaccount'   => 'Hadlangan ang paglikha ng kuwenta',
+'ipbemailban'        => 'Hadlangan ang tagagamit sa pagpapadala ng e-liham',
+'ipbenableautoblock' => 'Automatikong harangin and huling direksyong IP na ginamit ng tagagamit na ito, at anumang sumusunod pang mga IP na masusubukan nilang bago mula roon',
+'ipbsubmit'          => 'Harangin itong tagagamit',
+'ipbother'           => 'Ibang oras:',
+'ipboptions'         => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 
 # Move page
+'movenologintext' => 'Kailangang ikaw ay isang naka-rehistrong tagagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
+'movenotallowed'  => 'Wala kang permisong maglipat ng pahina sa wiking ito.',
+'newtitle'        => 'Sa bagong pamagat:',
 'movepage-moved'  => '<big>\'\'\'Ang "$1" ay inilipat sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'   => 'May umiiral nang pahinang may ganitong pangalan, o ang
+pangalang pinili mo ay hindi mabisa.
+Pumili muli ng ibang pangalan.',
+'movedto'         => 'inilipat sa',
 'movetalk'        => 'Ilipat ang kaugnay na pahinang usapan',
 '1movedto2'       => 'Ang [[$1]] ay inilipat sa [[$2]]',
-'1movedto2_redir' => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng redireksyon',
+'1movedto2_redir' => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng pagkarga',
 
 # Export
 'export'        => 'Magluwas ng pahina',
@@ -270,6 +309,7 @@ upang makapagkarga ng talaksan.',
 # Namespace 8 related
 'allmessages'        => 'Lahat ng mensahe',
 'allmessagesname'    => 'Pangalan',
+'allmessagesdefault' => 'Tinakdang teksto',
 'allmessagescurrent' => 'Kasalukuyang teksto',
 
 # Special:Import

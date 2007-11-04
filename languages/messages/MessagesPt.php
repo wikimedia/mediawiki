@@ -1,16 +1,18 @@
 <?php
 /** Portuguese (Português)
- * This translation was made by:
- *  - Yves Marques Junqueira
- *  - Rodrigo Calanca Nishino
- *  - Nuno Tavares
- *  - Paulo Juntas
- *  - Manuel Menezes de Sequeira
- *  - Sérgio Ribeiro
- *  - Lugusto
- * from the Portuguese Wikipedia
  *
  * @addtogroup Language
+ *
+ * @author Yves Marques Junqueira
+ * @author Rodrigo Calanca Nishino
+ * @author Nuno Tavares
+ * @author Paulo Juntas
+ * @author Manuel Menezes de Sequeira
+ * @author Sérgio Ribeiro
+ * @author Lugusto
+ * @author 555
+ * @author Malafaya
+ * @author G - ג
  */
 
 $namespaceNames = array(
@@ -743,7 +745,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 
 # Search results
 'searchresults'         => 'Resultados de pesquisa',
-'searchresulttext'      => 'Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{ns:project}}:Pesquisa|Pesquisando {{SITENAME}}]].',
+'searchresulttext'      => 'Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Você pesquisou por "[[:$1]]"',
 'searchsubtitleinvalid' => 'Você pesquisou por "$1"',
 'noexactmatch'          => "'''Não existe uma página com o título \"\$1\".''' Você pode [[:\$1|criar tal página]].",
@@ -1020,6 +1022,12 @@ Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-
 'filerevert-badversion'     => 'Não há uma versão local anterior deste ficheiro no período de tempo especificado.',
 
 # File deletion
+'filedelete'           => 'Eliminar $1',
+'filedelete-legend'    => 'Eliminar ficheiro',
+'filedelete-intro'     => "Você está prestes a eliminar '''[[Media:$1|$1]]'''.",
+'filedelete-comment'   => 'Motivo de eliminação:',
+'filedelete-submit'    => 'Eliminar',
+'filedelete-success'   => "'''$1''' foi eliminado.",
 'filedelete-nofile'    => "'''$1''' não existe neste sítio.",
 'filedelete-iscurrent' => 'Você está tentando eliminar a versão mais recente deste ficheiro. Por gentileza, reverta para uma edição anterior antes de tentar novamente.',
 
@@ -1123,6 +1131,8 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'movethispage'            => 'Mover esta página',
 'unusedimagestext'        => '<p>Por favor, note que outros websites podem apontar para uma imagem através de um URL directamente e, por isso, podem estar a não aparecer aqui, mesmo estando em uso.</p>',
 'unusedcategoriestext'    => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
+'notargettitle'           => 'Sem alvo',
+'notargettext'            => 'Você não especificou uma página alvo ou um utilizador para executar esta função.',
 
 # Book sources
 'booksources'               => 'Fontes de livros',
@@ -1306,7 +1316,7 @@ Esta acção foi cancelada como medida de protecção contra a intercepção de 
 Experimente usar o botão "Voltar" e refrescar a página de onde veio e tente novamente.',
 'protectlogpage'              => 'Registo de protecção',
 'protectlogtext'              => 'Abaixo encontra-se o registo de protecção e desprotecção de páginas.
-Veja [[{{ns:project}}:Página protegida]] para mais informações.',
+Veja a [[Special:Protectedpages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
 'modifiedarticleprotection'   => 'foi alterado o nível de protecção para "[[$1]]"',
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
@@ -1417,8 +1427,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Páginas afluentes',
 'whatlinkshere-title' => 'Páginas que apontam para $1',
-'notargettitle'       => 'Sem alvo',
-'notargettext'        => 'Você não especificou uma página alvo ou um utilizador para executar esta função.',
+'whatlinkshere-page'  => 'Página:',
 'linklistsub'         => '(Lista de ligações)',
 'linkshere'           => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
 'nolinkshere'         => "Não existem ligações para '''[[:$1]]'''.",
@@ -1692,6 +1701,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões seleccionadas desta página.',
 'tooltip-watch'                   => 'Adicionar esta página à sua lista de artigos vigiados',
 'tooltip-recreate'                => 'Recriar a página apesar de ter sido eliminada',
+'tooltip-upload'                  => 'Iniciar o upload',
 
 # Stylesheets
 'common.css'   => '/** o código CSS colocado aqui será aplicado a todos os temas */',
@@ -2095,8 +2105,8 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Foi removido um título|Foram removidos $1 títulos}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Ver alterações relevantes',
-'watchlisttools-edit'  => 'Ver e editar a lista de vigiados',
-'watchlisttools-raw'   => 'Edição crua dos vigiados',
+'watchlisttools-view' => 'Ver alterações relevantes',
+'watchlisttools-edit' => 'Ver e editar a lista de vigiados',
+'watchlisttools-raw'  => 'Edição crua dos vigiados',
 
 );

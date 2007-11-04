@@ -1,10 +1,15 @@
 <?php
-/** Sundanese language file (Basa Sunda)
-  *
-  * Source: http://su.wikipedia.org/
-  *
-  * @addtogroup Language
-  */
+/** Sundanese (Basa Sunda)
+ *
+ * @addtogroup Language
+ *
+ * @author Kandar
+ * @author Irwangatot
+ * @author Nike
+ * @author G - ג
+ * @author Siebrand
+ */
+
 $fallback = 'id';
 
 $namespaceNames = array(
@@ -459,7 +464,7 @@ ID peungpeukan anjeun $5. Mangga sebatkeun éta ID dina pamundut-pamundut anjeun
 'whitelistacctitle'         => 'Anjeun teu diwenangkeun nyieun rekening',
 'whitelistacctext'          => 'Sangkan diwenangkeun nyieun rekening na wiki ieu, anjeun kudu asup [[Special:Userlogin|log]] sarta boga kawenangan nu cukup.',
 'confirmedittitle'          => 'Konfirmasi surélék diperlukeun pikeun ngédit.',
-'confirmedittext'           => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun. Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences|préferénsi pamaké]].',
+'confirmedittext'           => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun. Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[{{ns:special}}:Preferences|préferénsi pamaké]].',
 'nosuchsectiontitle'        => 'Subbab éta teu aya',
 'nosuchsectiontext'         => 'Anjeun geus nyoba ngarobah bab $1 nu sabenerna euweuh, ku kituna robahan anjeun teu bisa disimpen.',
 'loginreqtitle'             => 'Kudu asup log',
@@ -911,6 +916,8 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'movethispage'            => 'Pindahkeun kaca ieu',
 'unusedimagestext'        => 'Perhatikeun yén jalaloka séjén bisa numbukeun ka hiji gambar ku URL langsung, sahingga masih didaptarkeun di dieu najan sabenerna dipaké.',
 'unusedcategoriestext'    => 'Kaca kategori di handap ieu aya, tapi taya artikel nu diasupkeun kana kategori ieu.',
+'notargettitle'           => 'Taya tujuleun',
+'notargettext'            => 'Anjeun can nangtukeun hiji targét atawa pamaké pikeun migawé sangkan fungsi ieu jalan.',
 
 # Book sources
 'booksources-search-legend' => 'Sungsi sumber buku',
@@ -1131,8 +1138,6 @@ Asupan jeung bantuan salajengna:
 
 # What links here
 'whatlinkshere'       => 'Nu numbu ka dieu',
-'notargettitle'       => 'Taya tujuleun',
-'notargettext'        => 'Anjeun can nangtukeun hiji targét atawa pamaké pikeun migawé sangkan fungsi ieu jalan.',
 'linklistsub'         => '(Daptar tumbu)',
 'linkshere'           => "Kaca di handap ieu numbu ka '''[[:$1]]''':",
 'nolinkshere'         => "Euweuh kaca nu numbu ka '''[[:$1]]'''.",
@@ -1598,7 +1603,7 @@ Coba ku sawangan normal.',
 'lag-warn-high'   => 'Kusabab kasibukan lag server pangkalan data, parobahan nu leuwih anyar $1 detik moal ditémbongkeun dina ieu béréndélan.',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Témbongkeun parobahan nu patali',
-'watchlisttools-edit'  => 'Témbongkeun sarta édit béréndélan awaskeuneun',
+'watchlisttools-view' => 'Témbongkeun parobahan nu patali',
+'watchlisttools-edit' => 'Témbongkeun sarta édit béréndélan awaskeuneun',
 
 );
