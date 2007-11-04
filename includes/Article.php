@@ -1923,8 +1923,8 @@ class Article {
 
 			$length = strlen( $text );
 
-			# this should not happen, since it is not possible to store an empty, new
-			# page. Let's insert a standard text in case it does, though
+			# If the last revision is a blank revision (move, import or
+			# protection summary) and the one before it was blank
 			if( $length == 0 && $reason === '' ) {
 				$reason = wfMsgForContent( 'exblank' );
 			}
