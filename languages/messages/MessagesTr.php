@@ -314,7 +314,7 @@ Hesabınız açıldı. {{SITENAME}} tercihlerinizi değiştirmeyi unutmayın.',
 'remembermypassword'         => 'Parolayı hatırla.',
 'yourdomainname'             => 'Alan adınız',
 'login'                      => 'Oturum aç',
-'loginprompt'                => "Dikkat: {{SITENAME}} sitesinde oturum açabilmek için tarayıcınızda çerezlerin (cookies) aktifleştirilmiş olması gerekmektedir.<br>
+'loginprompt'                => "Dikkat: {{SITENAME}} sitesinde oturum açabilmek için tarayıcınızda çerezlerin (cookies) aktifleştirilmiş olması gerekmektedir.<br />
 Kullanıcı adınız Türkçe karakter, boşluk '''içerebilir'''. Kullanıcı adınıza e-posta adresi '''girmemeniz''' tavsiye edilir.",
 'userlogin'                  => 'Oturum aç ya da yeni hesap edin',
 'logout'                     => 'Oturumu kapat',
@@ -657,8 +657,8 @@ veya doğrudan bağlantı için
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten tyüklemek isteyip istemediğinizden emin olun.',
 'fileexists'                  => 'Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce $1 dosyasına bir gözatın.',
-'fileexists-forbidden'        => 'Bu isimde zaten dosya var; lütfen farklı bir isimle yeniden yükleyin. [[Resim:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut; lütfen geri gidip dosyayı yeni bir isimle yükleyiniz. [[Resim:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Bu isimde zaten dosya var; lütfen farklı bir isimle yeniden yükleyin. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut; lütfen geri gidip dosyayı yeni bir isimle yükleyiniz. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Yükleme başarılı',
 'uploadwarning'               => 'Yükleme uyarısı',
 'savefile'                    => 'Dosyayı kaydet',
@@ -896,7 +896,7 @@ Ayarları değiştirmek için:
 {{fullurl:Special:Watchlist/edit}}
 
 Yardım ve öneriler için:
-{{fullurl:{{ns:help}}:İçindekiler}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Sayfayı sil',
@@ -986,7 +986,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 
 # Block/unblock
 'blockip'            => "Bu IP'den erişimi engelle",
-'blockiptext'        => "Aşağıdaki formu kullanarak belli bir IP'nin veya kayıtlı kullanıcının değişiklik yapmasını engelleyebilirsiniz. Bu sadece vandalizmi engellemek için ve [[{{ns:project}}:Engelleme kuralları|kurallara]] uygun olarak yapılmalı. Aşağıya mutlaka engelleme ile ilgili bir açıklama yazınız. (örnek: -Şu- sayfalarda vandalizm yapmıştır).",
+'blockiptext'        => "Aşağıdaki formu kullanarak belli bir IP'nin veya kayıtlı kullanıcının değişiklik yapmasını engelleyebilirsiniz. Bu sadece vandalizmi engellemek için ve [[{{MediaWiki:policy-url}}|kurallara]] uygun olarak yapılmalı. Aşağıya mutlaka engelleme ile ilgili bir açıklama yazınız. (örnek: -Şu- sayfalarda vandalizm yapmıştır).",
 'ipaddress'          => 'IP Adresi',
 'ipadressorusername' => 'IP adresi veya kullanıcı adı',
 'ipbexpiry'          => 'Bitiş süresi',
@@ -1118,7 +1118,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'tooltip-ca-move'                 => 'Sayfanın adını değiştir',
 'tooltip-ca-watch'                => 'Bu sayfayı izlemeye al',
 'tooltip-ca-unwatch'              => 'Bu sayfayı izlemeyi bırakın',
-'tooltip-search'                  => '{{SITENAME}} içinde ara [alt-f]',
+'tooltip-search'                  => '{{SITENAME}} içinde ara',
 'tooltip-p-logo'                  => 'Ana sayfa',
 'tooltip-n-mainpage'              => 'Başlangıç sayfasına dönün',
 'tooltip-n-portal'                => 'Proje üzerine, ne nerdedir, neler yapılabilir',
@@ -1146,11 +1146,11 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'tooltip-ca-nstab-help'           => 'Yardım sayfasını görmek için tıklayın',
 'tooltip-ca-nstab-category'       => 'Kategori sayfasını göster',
 'tooltip-minoredit'               => 'Küçük değişiklik olarak işaretle',
-'tooltip-save'                    => 'Değişiklikleri kaydet [alt-s]',
+'tooltip-save'                    => 'Değişiklikleri kaydet',
 'tooltip-preview'                 => 'Önizleme; kaydetmeden önce bu özelliği kullanarak değişikliklerinizi gözden geçirin!',
-'tooltip-diff'                    => 'Metine yaptığınız değişiklikleri gösterir. [alt-v]',
-'tooltip-compareselectedversions' => 'Seçilmiş iki sürüm arasındaki farkları göster. [alt-v]',
-'tooltip-watch'                   => 'Sayfayı izleme listene ekle [alt-w]',
+'tooltip-diff'                    => 'Metine yaptığınız değişiklikleri gösterir.',
+'tooltip-compareselectedversions' => 'Seçilmiş iki sürüm arasındaki farkları göster.',
+'tooltip-watch'                   => 'Sayfayı izleme listene ekle',
 
 # Stylesheets
 'common.css'   => '/* Buraya konulacak CSS kodu tüm temalarda etkin olur */',

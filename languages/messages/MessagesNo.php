@@ -1474,6 +1474,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Lenker hit',
 'whatlinkshere-title' => 'Sider som lenker til $1',
+'whatlinkshere-page'  => 'Side:',
 'linklistsub'         => '(Liste over lenker)',
 'linkshere'           => "Følgende sider lenker til '''[[:$1]]''':",
 'nolinkshere'         => "Ingen sider lenker til '''[[:$1]]'''.",
@@ -1823,6 +1824,8 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'markedaspatrollederror'              => 'Kan ikke merke som godkjent',
 'markedaspatrollederrortext'          => 'Du må spesifisere en versjon å merke som godkjent.',
 'markedaspatrollederror-noautopatrol' => 'Du kan ikke merke dine egne endringer som godkjente.',
+'nppatroldisabled'                    => 'Patruljering av nye sider slått av',
+'nppatroldisabledtext'                => 'Funksjonen Patruljering av nye sider er for tiden slått av.',
 
 # Patrol log
 'patrol-log-page' => 'Godkjenningslogg',
@@ -2048,6 +2051,8 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Østlig lengdegrad',
 'exif-gpslongitude-w' => 'Vestlig lengdegrad',
+
+'exif-gpsstatus-a' => 'Måling pågår',
 
 'exif-gpsmeasuremode-2' => 'todimensjonell måling',
 'exif-gpsmeasuremode-3' => 'tredimensjonell måling',

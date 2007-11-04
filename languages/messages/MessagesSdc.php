@@ -502,7 +502,7 @@ Ippiegazioni: (curr) = diffarènzi cu la versioni currenti, (priz) = diffarènzi
 'deletedrev'          => '[canzilladda]',
 'histfirst'           => 'Primma',
 'histlast'            => 'Ulthima',
-'historysize'         => '($1 byte)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(biodda)',
 
 # Revision feed
@@ -585,24 +585,32 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'rightslogentry' => "ha mudìfiggaddu l'apparthinènzia di $1 da lu gruppu $2 a lu gruppu $3",
 
 # Recent changes
-'recentchanges'   => 'Ulthimi mudìfigghi',
-'rcnote'          => "Inogghi {{PLURAL:$1|è erencadda la mudìfigga più rizzenti arriggadda|sò erencaddi li '''$1''' mudìfigghi più rizzenti arriggaddi}} a lu situ {{PLURAL:$2|i li ulthimi 24 ori|i li '''$2''' dì passaddi}}; i dati sò aggiornaddi a $3.",
-'rcnotefrom'      => "Inogghi sò erencaddi li mudìfigghi arriggaddi a parthì da <b>$2</b> (finz'a <b>$1</b>).",
-'rclistfrom'      => 'Musthra li mudìfigghi arriggaddi à partì da $1',
-'rcshowhideminor' => '$1 li mudìfigghi minori',
-'rcshowhidebots'  => '$1 li bot',
-'rcshowhideliu'   => '$1 li utenti registhraddi',
-'rcshowhideanons' => '$1 li utenti anònimi',
-'rcshowhidepatr'  => '$1 li mudìfigghi contrulladdi',
-'rcshowhidemine'  => '$1 li mé mudìfigghi',
-'diff'            => 'diff',
-'hist'            => 'cron',
-'hide'            => 'cua',
+'recentchanges'     => 'Ulthimi mudìfigghi',
+'rcnote'            => "Inogghi {{PLURAL:$1|è erencadda la mudìfigga più rizzenti arriggadda|sò erencaddi li '''$1''' mudìfigghi più rizzenti arriggaddi}} a lu situ {{PLURAL:$2|i li ulthimi 24 ori|i li '''$2''' dì passaddi}}; i dati sò aggiornaddi a $3.",
+'rcnotefrom'        => "Inogghi sò erencaddi li mudìfigghi arriggaddi a parthì da <b>$2</b> (finz'a <b>$1</b>).",
+'rclistfrom'        => 'Musthra li mudìfigghi arriggaddi à partì da $1',
+'rcshowhideminor'   => '$1 li mudìfigghi minori',
+'rcshowhidebots'    => '$1 li bot',
+'rcshowhideliu'     => '$1 li utenti registhraddi',
+'rcshowhideanons'   => '$1 li utenti anònimi',
+'rcshowhidepatr'    => '$1 li mudìfigghi contrulladdi',
+'rcshowhidemine'    => '$1 li mé mudìfigghi',
+'diff'              => 'diff',
+'hist'              => 'cron',
+'hide'              => 'cua',
+'rc_categories_any' => 'Cassisia',
 
 # Recent changes linked
 'recentchangeslinked' => 'Mudìfigghi curriraddi',
 
 # Upload
+'upload'          => 'Carrigga un file',
+'uploadbtn'       => 'Carrigga',
+'reupload'        => 'Carrigga di nobu',
+'reuploaddesc'    => 'Turra a lu mòdulu pa lu carriggamentu.',
+'uploadnologin'   => 'Intradda nò effettuadda',
+'uploaderror'     => 'Errori i lu carriggamentu',
+'uploadlog'       => 'File carriggaddi',
 'uploadlogpage'   => 'Rigisthru di li file carrigaddi',
 'filesource'      => 'Funtana',
 'watchthisupload' => 'Aggiungi a li abbaidaddi ippiziari',
@@ -636,6 +644,15 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 # Unused templates
 'unusedtemplates' => 'Mudelli inutirizaddi',
 
+# Random redirect
+'randomredirect' => 'Un rimandu a casu',
+
+# Statistics
+'statistics'             => 'Sthatisthigghi',
+'sitestats'              => 'Sthatisthigghi reratibi a {{SITENAME}}',
+'userstats'              => 'Sthatisthigghi reratibi a li utenti',
+'statistics-mostpopular' => 'Pàgini più visitaddi',
+
 'disambiguations'      => 'Pàgini cu lu matessi innommu',
 'disambiguations-text' => "Li pàgini i la sighenti listha cuntinani di cullegamenti a '''pàgini cu lu matessi innommu''' e nò a la rasgiòni a chi dubaristhia fà rifirimentu.<br />Sò cunsidaraddu pàgini cu lu matessi innommu tutti chissi chi cuntinani i mudelli erencaddi i [[MediaWiki:disambiguationspage]].",
 
@@ -663,12 +680,20 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'wantedpages'             => 'Pàgini più dumandaddi',
 'mostrevisions'           => 'Pàgini cun più ribisioni',
 'allpages'                => 'Tutti li pàgini',
-'randompage'              => 'Una pàgina a brèttiu',
+'prefixindex'             => 'Indizi di li bozi pa léttari a l’ischumenzu',
+'randompage'              => 'Una pàgina a casu',
+'shortpages'              => 'Pàgini più corthi',
+'longpages'               => 'Pàgini più longhi',
 'deadendpages'            => 'Pàgini chena iscidda',
+'protectedpages'          => 'Pàgini prutiggiddi',
+'listusers'               => 'Erencu di li utenti',
 'specialpages'            => 'Pàgini ippiziari',
 'spheading'               => 'Pàgini ippiziari nò riseivvaddi',
 'restrictedpheading'      => 'Pàgini ippiziari riseivvaddi',
+'newpages'                => 'Pàgini più rizzenti',
+'newpages-username'       => 'Nommu utenti:',
 'ancientpages'            => 'Pàgini mancu rizzenti',
+'intl'                    => 'Cullegamenti tra linghi dibessi',
 'move'                    => 'ippustha',
 'movethispage'            => 'Ippustha chistha pàgina',
 

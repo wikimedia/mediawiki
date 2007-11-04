@@ -1,10 +1,10 @@
 <?php
-/**
- * Kurdish (Latin)
+/** ‪Kurdî (latînî)‬ (‪Kurdî (latînî)‬)
  *
  * @addtogroup Language
  *
  * @author Bangin
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -291,27 +291,70 @@ $messages = array(
 'nosuchaction'      => 'Çalakiyek bi vê rengê tune',
 'nosuchactiontext'  => "Ew tişta yê di wê URL'ê da tê gotin ji MediaWiki netê çêkirin.",
 'nosuchspecialpage' => 'Rûpeleke taybet bi vê rengê tune',
+'nospecialpagetext' => "'''<big>Rûpelê taybetî yê te xwastîyê tune ye.</big>'''
+
+Hemû rûpelên taybetî di [[{{ns:special}}:Specialpages|lîsteya rûpelên taybetî]] da werin dîtin.",
 
 # General errors
-'error'            => 'Çewtî (Error)',
-'databaseerror'    => "Şaşbûnek di database'ê da",
-'noconnect'        => 'Bibexşîne! Çend pirsgrêkên teknîkî heye, girêdan ji pêşkêşvanê (suxrekirê, server) re niha ne gengaz e. <br />
+'error'                => 'Çewtî (Error)',
+'databaseerror'        => "Şaşbûnek di database'ê da",
+'dberrortext'          => 'Li cem sekirina database <blockquote><tt>$1</tt></blockquote>
+ji fonksyonê "<tt>$2</tt>" yê
+MySQL ev şaşbûna hate dîtin: "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Li cem sekirina database "$1 ji fonksyonê "<tt>$2</tt>" yê
+MySQL ev şaşbûna hate dîtin: "<tt>$3: $4</tt>".',
+'noconnect'            => 'Bibexşîne! Çend pirsgrêkên teknîkî heye, girêdan ji pêşkêşvanê (suxrekirê, server) re niha ne gengaz e. <br />
 $1',
-'enterlockreason'  => 'Hoyek ji bo bestin binav bike, herweha zemaneke mezende kirî ji bo helgirtina bestinê!',
-'filecopyerror'    => 'Datayê „$1“ nikanî çûba berve „$2“ kopîkirin.',
-'filerenameerror'  => 'Navê faylê "$1" nebû "$2".',
-'filedeleteerror'  => '"$1" nikanî hatiba jêbirin.',
-'filenotfound'     => 'Dosya bi navê "$1" nehat dîtin.',
-'badarticleerror'  => 'Ev çalakî di vê rûpelê de nabe.',
-'badtitle'         => 'Sernivîsa nebaş',
-'badtitletext'     => "Sernavê rûpelê xastî qedexe ye, vala ye ya lînkekî zimanekî wîkî'yekî din e.",
-'viewsource'       => 'Çavkanî',
-'viewsourcefor'    => 'ji $1 ra',
-'editinginterface' => "'''Hîşyar:''' Tu rûpelekî diguherînê yê ji wêşandinê înformasyonan di sistêmê da girîn in. Guherandin di vê rûpelê da ji her bikarhêneran ra yê were dîtin.",
-'cascadeprotected' => '<strong>Ev rûpela hatîye parastin ji ber guherandinê, ji ber ku ev rûpela di {{PLURAL:$1|vê rûpelê|van rûpelan da}} tê bikaranîn:
+'nodb'                 => 'Database $1 nikanî hatiba sekirin. Xêra xwe derengtir dîsa bicerbîne.',
+'cachederror'          => "Evê jêr bes kopîyek ji cache'ê ye û belkî ne yê niha ye.",
+'laggedslavemode'      => 'Zanibe: Ev rûpela belkî guherandinên yê ne niha nîşandide.',
+'readonly'             => 'Database hatîye girtin',
+'enterlockreason'      => 'Hoyek ji bo bestin binav bike, herweha zemaneke mezende kirî ji bo helgirtina bestinê!',
+'readonlytext'         => "Database'ê {{SITENAME}} ji bo guherandinan û gotarên nuh hatîye girtin.
+
+Sedemê girtinê ev e: $1",
+'missingarticle'       => '<p><span class="error">Şaşbûn:</span> Nivîsê „$1“ di database\'ê da nehate dîtin.</p>
+<p>Ew rûpela belkî <span class="plainlinks">[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} hatîye jêbirin]</span> ya <span class="plainlinks">[{{fullurl:Special:Log/move|page={{FULLPAGENAMEE}}}} navî wê gotarê hatîye guherandin]</span>.</p>
+<p>Belkî jî mişklek li cem sekirinê database\'ê heye. Eger wisa be, xêra xwe derengtir dîsa bicerbîne.</p>',
+'readonly_lag'         => "Database otomatîk hate girtin, ji bo server'î database'î slave kanibe xwe wekî server'î database'î master'ê bike.",
+'internalerror'        => 'Şaşbûnekî înternal',
+'internalerror_info'   => 'Şaşbûnê înternal: $1',
+'filecopyerror'        => 'Datayê „$1“ nikanî çûba berve „$2“ kopîkirin.',
+'filerenameerror'      => 'Navê faylê "$1" nebû "$2".',
+'filedeleteerror'      => '"$1" nikanî hatiba jêbirin.',
+'directorycreateerror' => '"$1" nikanî hatiba çêkirin.',
+'filenotfound'         => 'Dosya bi navê "$1" nehat dîtin.',
+'fileexistserror'      => 'Di data\'yê "$1" nikanî hatiba nivîsandin, ji ber ku ew data\'ya berê heye.',
+'unexpected'           => 'Tiştek yê nehatibû zanîn: "$1"="$2".',
+'formerror'            => 'Şaşbûn: Ew nivîs nikanîn hatibana bikaranîn.',
+'badarticleerror'      => 'Ev çalakî di vê rûpelê de nabe.',
+'cannotdelete'         => 'Ev rûpela nikanî hatiba jêbirin. Meqûle ku kesekî din vê rûpelê jêbir.',
+'badtitle'             => 'Sernivîsa nebaş',
+'badtitletext'         => "Sernavê rûpelê xastî qedexe ye, vala ye ya lînkekî zimanekî wîkî'yekî din e.",
+'perfdisabled'         => "Bibexşîne! Ev fonksîyona ji bo westîyanê server'ê niha hatîye sikinandin.",
+'perfcached'           => "The following data is cached and may not be up to date.
+
+Ev data'yan ji cache'ê ne û belkî ne zindî bin.
+----
+<div style=\"text-align:center; font-size:90%\">'''Rûpelên taybetî:''' [[Special:Shortpages|Gotarên kin]] · [[Special:Longpages|Gotarên dirêj]] · [[Special:Wantedpages|Rûpelên xastî]] · [[Special:Newpages|Gotarên nuh]] · [[Special:Lonelypages|Rûpelên sêwî]] · [[Special:Deadendpages|Gotarên bê dergeh]] · [[Special:CrossNamespaceLinks|Gotar bi lînkan berve namespace'ên din]] · [[Special:Protectedpages|Rûpelên parastî]]</div>
+----",
+'perfcachedts'         => "Ev data'ya hatîye cache'kirin û carê paşîn $1 hate zindîkirin.",
+'querypage-no-updates' => "Fonksîyonê zindîkirinê yê vê rûpelê hatîye sikinandin. Data'yên vir netên zindîkirin.",
+'wrong_wfQuery_params' => "Parameter'ên şaş ji bo wfQuery()<br />
+Fonksîyon: $1<br />
+Jêpirskirin: $2",
+'viewsource'           => 'Çavkanî',
+'viewsourcefor'        => 'ji $1 ra',
+'protectedpagetext'    => 'Ev rûpela hatîye parastin ji bo nenivîsandinê.',
+'viewsourcetext'       => 'Tu dikarê li çavkanîyê vê rûpelê sekê û wê kopîbikê:',
+'protectedinterface'   => "Di vê rûpelê da nivîsandin ji bo interface'î zimanan yê vê software'ê ye. Ew tê parstin ji bo vandalîzm li vê derê çênebe.",
+'editinginterface'     => "'''Hîşyar:''' Tu rûpelekî diguherînê yê ji wêşandinê înformasyonan di sistêmê da girîn in. Guherandin di vê rûpelê da ji her bikarhêneran ra yê were dîtin.",
+'sqlhidden'            => '(Jêpirskirina SQL hatîye veşartin)',
+'cascadeprotected'     => '<strong>Ev rûpela hatîye parastin ji ber guherandinê, ji ber ku ev rûpela di {{PLURAL:$1|vê rûpelê|van rûpelan da}} tê bikaranîn:
 $2
 
 </strong>',
+'namespaceprotected'   => "Qebûlkirinê te tune, ku tu vê rûpelê di namespace'a $1 da biguherînê.",
 
 # Login and logout pages
 'logouttitle'                => 'Derketina bikarhêner',
@@ -414,6 +457,7 @@ IP'yê te yê niha $3 ye, û ID'ya astengkirinê te #$5 e. Xêra xwe yek ji van 
 'whitelistreadtext'      => 'Ji bo xandinê vê gotarê tu gireke xwe [[Special:Userlogin|li vir]] qedybikê.',
 'whitelistacctitle'      => 'Tu nikanê xwe qeydbikê.',
 'loginreqtitle'          => 'Têketin pêwîst e',
+'loginreqlink'           => 'têkevê',
 'accmailtitle'           => 'Şîfre hat şandin.',
 'accmailtext'            => "Şîfreya '$1' hat şandin ji $2 re.",
 'newarticle'             => '(Nû)',
@@ -502,10 +546,15 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'history-feed-item-nocomment' => '$1 li $2', # user at time
 
 # Revision deletion
-'rev-deleted-comment' => '(nivîs hate jêbirin)',
-'rev-deleted-user'    => '(navî bikarhêner hate jêbirin)',
-'rev-delundel'        => 'nîşan bide/veşêre',
-'revisiondelete'      => 'Rêvîsyona jêbibe/dîsa çêke',
+'rev-deleted-comment'       => '(nivîs hate jêbirin)',
+'rev-deleted-user'          => '(navî bikarhêner hate jêbirin)',
+'rev-delundel'              => 'nîşan bide/veşêre',
+'revisiondelete'            => 'Rêvîsyona jêbibe/dîsa çêke',
+'revdelete-legend'          => 'Qebûlkirinan ji vê versyonê ra:',
+'revdelete-hide-comment'    => 'Nivîsandinê kurte yê guherandinê veşêre',
+'revdelete-hide-user'       => "Navî bikarhêner/IP'yê veşêre",
+'revdelete-hide-restricted' => 'Ev qebûlkirin ji koordînatoran ra ye jî',
+'revdelete-suppress'        => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 
 # Oversight log
 'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content 
@@ -1017,17 +1066,6 @@ da bikarî navê wê rûpelê biguherînî.',
 'delete_and_move'         => 'Jêbibe û nav biguherîne',
 'delete_and_move_confirm' => 'Erê, wê rûpelê jêbibe',
 'delete_and_move_reason'  => 'Jêbir ji bo navguherandinê',
-
-# Export
-'exporttext' => 'You can export the text and editing history of a particular page or
-set of pages wrapped in some XML. This can be imported into another wiki using MediaWiki
-via the [[Special:Import|import page]].
-
-To export pages, enter the titles in the text box below, one title per line, and
-select whether you want the current version as well as all old versions, with the page
-history lines, or just the current version with the info about the last edit.
-
-In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] for the page {{MediaWiki:mainpage}}.',
 
 # Namespace 8 related
 'allmessages'               => 'Hemû mesajên sîstemê',
