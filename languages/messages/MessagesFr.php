@@ -8,6 +8,12 @@
  * @author Korg
  * @author JeanVoisin
  * @author Cedric31
+ * @author G - ג
+ * @author Urhixidur
+ * @author Sherbrooke
+ * @author Siebrand
+ * @author ChrisPtDe
+ * @author Горан Анђелковић
  */
 
 $skinNames = array(
@@ -243,7 +249,7 @@ $messages = array(
 'redirectedfrom'    => '(Redirigé depuis $1)',
 'redirectpagesub'   => 'Page de redirection',
 'lastmodifiedat'    => 'Dernière modification de cette page le $1 à $2.<br />', # $1 date, $2 time
-'viewcount'         => 'Cette page a été consultée $1 fois.',
+'viewcount'         => 'Cette page a été consultée {{PLURAL:$1|$1 fois|$1 fois}}.',
 'protectedpage'     => 'Page protégée',
 'jumpto'            => 'Aller à :',
 'jumptonavigation'  => 'Navigation',
@@ -287,7 +293,7 @@ $messages = array(
 'youhavenewmessages'      => 'Vous avez $1 ($2).',
 'newmessageslink'         => 'des nouveaux messages',
 'newmessagesdifflink'     => 'dernière modification',
-'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1',
+'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection'             => 'modifier',
 'editold'                 => 'modifier',
 'editsectionhint'         => 'Modifier la section : $1',
@@ -384,7 +390,7 @@ $2',
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, vous reconnecter sous le même nom ou un autre.",
 'welcomecreation'            => '== Bienvenue, $1 ! ==
 
-Votre compte a été créé. N’oubliez pas de personnaliser vos Préférences sur {{SITENAME}}.',
+Votre compte a été créé. N’oubliez pas de personnaliser vos préférences sur {{SITENAME}}.',
 'loginpagetitle'             => 'Connexion',
 'yourname'                   => 'Votre nom d’utilisateur :',
 'yourpassword'               => 'Votre mot de passe :',
@@ -420,7 +426,6 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos Préférences 
 'prefs-help-realname'        => '(facultatif) : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',
 'loginerror'                 => 'Erreur d’identification',
 'prefs-help-email'           => '(facultatif) : permet aux autres utilisateurs de vous contacter par courriel (lien sur vos pages utilisateur) sans que votre courriel soit visible, et de vous envoyer un nouveau mot de passe si vous l’oubliez.',
-'prefs-help-email-required'  => 'L’adresse courriel est requise.',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
@@ -639,7 +644,7 @@ La raison donnée par $3 était ''$2''.",
 'deletedrev'          => '[supprimé]',
 'histfirst'           => 'Premières contributions',
 'histlast'            => 'Dernières contributions',
-'historysize'         => '($1 octets)',
+'historysize'         => '({{PLURAL:$1|$1 octet|$1 octets}})',
 'historyempty'        => '(vide)',
 
 # Revision feed
@@ -675,11 +680,11 @@ D’autres administrateurs sur ce wiki pourront toujours accéder au contenu cac
 'revdelete-log'               => 'Commentaire pour le journal :',
 'revdelete-submit'            => 'Appliquer à la version sélectionnée',
 'revdelete-logentry'          => 'La visibilité de la version a été modifiée pour [[$1]]',
-'logdelete-logentry'          => 'La visibilité de l’évènement a été modifiée pour [[$1]]',
+'logdelete-logentry'          => 'La visibilité de l’événement a été modifiée pour [[$1]]',
 'revdelete-logaction'         => '$1 {{plural:$1|version changée|versions changées}} en mode $2',
-'logdelete-logaction'         => '$1 {{plural:$1|évènement de [[$3]] changé|évènements de [[$3]] changés}} en mode $2',
+'logdelete-logaction'         => '$1 {{plural:$1|événement de [[$3]] changé|événements de [[$3]] changés}} en mode $2',
 'revdelete-success'           => 'Visibilité des versions changées avec succès.',
-'logdelete-success'           => 'Visibilité des évènements changées avec succès.',
+'logdelete-success'           => 'Visibilité des événements changée avec succès.',
 
 # Oversight log
 'oversightlog'    => 'Journal oversight',
@@ -717,7 +722,7 @@ Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste de
 'powersearch'           => 'Rechercher',
 'powersearchtext'       => 'Rechercher dans les espaces de noms :<br />
 $1<br />
-$2 Inclure les page de redirections<br /> Rechercher $3 $9',
+$2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'searchdisabled'        => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu {{SITENAME}} peut ne pas être à jour.',
 
 # Preferences page
@@ -727,14 +732,14 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'prefsnologin'             => 'Non connecté',
 'prefsnologintext'         => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier vos préférences d’utilisateur.',
 'prefsreset'               => 'Les préférences ont été rétablies à partir de la version enregistrée.',
-'qbsettings'               => 'Barre outils',
+'qbsettings'               => 'Barre d’outils',
 'qbsettings-none'          => 'Aucune',
 'qbsettings-fixedleft'     => 'Gauche',
 'qbsettings-fixedright'    => 'Droite',
 'qbsettings-floatingleft'  => 'Flottante à gauche',
 'qbsettings-floatingright' => 'Flottante à droite',
 'changepassword'           => 'Modification du mot de passe',
-'skin'                     => 'Apparence',
+'skin'                     => 'Habillage',
 'math'                     => 'Rendu des maths',
 'dateformat'               => 'Format de date',
 'datedefault'              => 'Aucune préférence',
@@ -783,7 +788,7 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 
 # User rights
 'userrights-lookup-user'      => 'Gestion des droits utilisateur',
-'userrights-user-editname'    => 'Entrer un nom d’utilisateur :',
+'userrights-user-editname'    => 'Entrez un nom d’utilisateur :',
 'editusergroup'               => 'Modification des groupes utilisateurs',
 'userrights-editusergroup'    => 'Modifier les groupes de l’utilisateur',
 'saveusergroups'              => 'Sauvegarder les groupes utilisateur',
@@ -1014,19 +1019,19 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'statistics'             => 'Statistiques',
 'sitestats'              => 'Statistiques de {{SITENAME}}',
 'userstats'              => 'Statistiques utilisateur',
-'sitestatstext'          => "La base de données contient actuellement <b>\$1</b> pages.
+'sitestatstext'          => "La base de données contient actuellement {{PLURAL:$1|'''$1''' page|'''$1''' pages}}.
 
-Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (\"ébauches\"),  les pages de redirection, ainsi que d’autres pages qui ne peuvent sans doute pas être considérées comme des articles.
-Si l’on exclut ces pages, il reste <b>\$2</b> pages qui sont probablement de véritables articles.<p>
+Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (« ébauches »), les pages de redirection, ainsi que d’autres pages qui ne sont pas considérées comme des articles.
+Si l’on exclut ces pages, il reste {{PLURAL:$2|'''$2''' page qui est probablement un véritable article|'''$2''' pages qui sont probablement de véritables articles}}.
 
-'''\$8''' fichiers ont été téléchargés.
+{{PLURAL:$8|'''$8''' fichier a été téléchargé|'''$8''' fichiers ont été téléchargés}}.
 
-<b>\$3</b> pages ont été consultées et <b>\$4</b> pages modifiées.
+{{PLURAL:$3|'''$3''' page a été consultée|'''$3''' pages ont été consultées}} et {{PLURAL:$4|'''$4''' page modifiée|'''$4''' pages modifiées}}.
 
-Cela représente une moyenne de <b>\$5</b> modifications par page et de <b>\$6</b> consultations pour une modification.</p>
+Cela représente une moyenne de {{PLURAL:$5|'''$5''' modification|'''$5''' modifications}} par page et de {{PLURAL:$6|'''$6''' consultation|'''$6''' consultations}} pour une modification.
 
-<p>Il y a '''\$7''' articles dans [http://meta.wikimedia.org/wiki/Help:Job_queue la file de tâche].</p>",
-'userstatstext'          => "Il y a <b>$1</b> utilisateurs enregistrés. Parmi ceux-ci, '''$2''' (ou '''$4%''') sont $5 (voir $3).",
+Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_queue|la file de tâche]].",
+'userstatstext'          => "Il y a {{PLURAL:$1|'''$1''' [[Special:Listusers|utilisateur enregistré]]. Il y a '''$2''' (ou '''$4%''') qui est $5 (voir $3).|'''$1''' [[Special:Listusers|utilisateurs enregistrés]]. Parmi ceux-ci, '''$2''' (ou '''$4%''') sont $5 (voir $3).}}",
 'statistics-mostpopular' => 'Pages les plus consultées',
 
 'disambiguations'      => 'Pages d’homonymie',
@@ -1095,6 +1100,8 @@ Cela représente une moyenne de <b>\$5</b> modifications par page et de <b>\$6</
 'movethispage'            => 'Renommer la page',
 'unusedimagestext'        => '<p>N’oubliez pas que d’autres sites peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu’elle est en réalité utilisée.</p>',
 'unusedcategoriestext'    => 'Les catégories suivantes existent mais aucun article ou catégorie ne les utilisent.',
+'notargettitle'           => 'Pas de cible',
+'notargettext'            => 'Indiquez une page cible ou un utilisateur cible.',
 
 # Book sources
 'booksources'               => 'Ouvrages de référence',
@@ -1368,8 +1375,8 @@ $1',
 
 'sp-contributions-newest'      => 'Dernières contributions',
 'sp-contributions-oldest'      => 'Premières contributions',
-'sp-contributions-newer'       => '$1 précédents',
-'sp-contributions-older'       => '$1 suivants',
+'sp-contributions-newer'       => '$1 précédentes',
+'sp-contributions-older'       => '$1 suivantes',
 'sp-contributions-newbies'     => 'Ne montrer que les contributions des nouveaux utilisateurs',
 'sp-contributions-newbies-sub' => 'Liste des contributions des nouveaux utilisateurs. Les pages qui ont été supprimées ne sont pas affichées.',
 'sp-contributions-blocklog'    => 'Journal des blocages',
@@ -1382,8 +1389,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Pages liées',
 'whatlinkshere-title' => 'Pages ayant des liens pointant vers $1',
-'notargettitle'       => 'Pas de cible',
-'notargettext'        => 'Indiquez une page cible ou un utilisateur cible.',
 'linklistsub'         => '(Liste de liens)',
 'linkshere'           => 'Les pages ci-dessous contiennent un lien vers <b>[[:$1]]</b> :',
 'nolinkshere'         => 'Aucune page ne contient de lien vers <b>[[:$1]]</b>.',
@@ -1771,7 +1776,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 # Bad image list
 'bad_image_list' => "Le format est le suivant:
 
-Seulement les lignes commençant par une * sont prises en compte. Le premier lien de la ligne est celui vers une mauvaise image.
+Seulement les lignes commençant par * sont prises en compte. Le premier lien de la ligne est celui vers une mauvaise image.
 Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des articles sur lesquels l'image doit apparaître.",
 
 # Metadata
@@ -2112,7 +2117,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 
 # Auto-summaries
 'autosumm-blank'   => 'Résumé automatique : blanchiment',
-'autosumm-replace' => "Résumé automatique : contenu remplacé par '$1'",
+'autosumm-replace' => 'Résumé automatique : contenu remplacé par « $1 ».',
 'autoredircomment' => 'Redirection vers [[$1]]',
 'autosumm-new'     => 'Nouvelle page : $1',
 
@@ -2152,8 +2157,8 @@ Essayez la prévisualisation normale.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Une page a été enlevée|$1 pages ont été enlevées}} :',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Liste de suivi',
-'watchlisttools-edit'  => 'Voir et modifier la liste de suivi',
-'watchlisttools-raw'   => 'Modifier la liste (mode brut)',
+'watchlisttools-view' => 'Liste de suivi',
+'watchlisttools-edit' => 'Voir et modifier la liste de suivi',
+'watchlisttools-raw'  => 'Modifier la liste (mode brut)',
 
 );

@@ -1,4 +1,17 @@
 <?php
+/** Esperanto (Esperanto)
+ *
+ * @addtogroup Language
+ *
+ * @author G - ג
+ * @author Tlustulimu
+ * @author Michawiki
+ * @author Nike
+ * @author Amikeco
+ * @author Gangleri
+ * @author Jon Harald Søby
+ */
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Speciala',
@@ -86,28 +99,47 @@ $messages = array(
 'skinpreview' => '(Antaŭrigardo)',
 
 # Dates
-'sunday'    => 'dimanĉo',
-'monday'    => 'lundo',
-'tuesday'   => 'mardo',
-'wednesday' => 'merkredo',
-'thursday'  => 'ĵaŭdo',
-'friday'    => 'vendredo',
-'saturday'  => 'sabato',
-'january'   => 'januaro',
-'february'  => 'februaro',
-'march'     => 'marto',
-'april'     => 'aprilo',
-'may_long'  => 'majo',
-'june'      => 'junio',
-'july'      => 'julio',
-'august'    => 'aŭgusto',
-'september' => 'septembro',
-'october'   => 'oktobro',
-'november'  => 'novembro',
-'december'  => 'decembro',
-'may'       => 'Maj',
-'aug'       => 'Aŭg',
-'oct'       => 'Okt',
+'sunday'        => 'dimanĉo',
+'monday'        => 'lundo',
+'tuesday'       => 'mardo',
+'wednesday'     => 'merkredo',
+'thursday'      => 'ĵaŭdo',
+'friday'        => 'vendredo',
+'saturday'      => 'sabato',
+'sun'           => 'Dim',
+'mon'           => 'Lun',
+'tue'           => 'Mar',
+'wed'           => 'Mer',
+'thu'           => 'Ĵaŭ',
+'fri'           => 'Ven',
+'sat'           => 'Sab',
+'january'       => 'januaro',
+'february'      => 'februaro',
+'march'         => 'marto',
+'april'         => 'aprilo',
+'may_long'      => 'majo',
+'june'          => 'junio',
+'july'          => 'julio',
+'august'        => 'aŭgusto',
+'september'     => 'septembro',
+'october'       => 'oktobro',
+'november'      => 'novembro',
+'december'      => 'decembro',
+'january-gen'   => 'Januaro',
+'february-gen'  => 'Februaro',
+'march-gen'     => 'Marto',
+'april-gen'     => 'Aprilo',
+'may-gen'       => 'Majo',
+'june-gen'      => 'Junio',
+'july-gen'      => 'Julio',
+'august-gen'    => 'Aŭgusto',
+'september-gen' => 'Septembro',
+'october-gen'   => 'Oktobro',
+'november-gen'  => 'Novembro',
+'december-gen'  => 'Decembro',
+'may'           => 'Maj',
+'aug'           => 'Aŭg',
+'oct'           => 'Okt',
 
 # Bits of text used by many pages
 'categories'      => '{{PLURAL:$1|Kategorio|Kategorioj}}',
@@ -243,7 +275,7 @@ $messages = array(
 'hidetoc'                 => 'kaŝu',
 'thisisdeleted'           => 'Vidu aŭ restarigu $1?',
 'viewdeleted'             => 'Rigardu $1?',
-'restorelink'             => '$1 forigita(j)n versio(j)n',
+'restorelink'             => '{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}',
 'feedlinks'               => 'Nutro:',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
@@ -441,12 +473,17 @@ ne estas permesate uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
 'missingcommenttext'       => 'Bonvolu entajpi komenton malsupre.',
 'summary-preview'          => 'Resuma antaŭrigardo',
 'blockedtitle'             => 'La uzanto estas forbarita.',
-'blockedtext'              => 'Via konto aŭ IP-adreso estis forbarita fare de $1,
-kiu priskribis la kialon jene:<br />
-$2<br />
-Vi rajtas kontakti tiun administranton por pridiskuti la forbaradon.
+'blockedtext'              => "<big>'''Via konto aŭ IP-adreso estis forbarita'''</big> fare de $1.
+Kialo estas ''$2''.
 
-Via IP-adreso estas $3. Bonvolu mencii ĝin en ajna plendo.',
+Vi rajtas kontakti $1 aŭ alian [[{{MediaWiki:grouppage-sysop}}|administranton]] por pridiskuti la forbaradon.
+Vi ne povas uzi la 'retpoŝtan' funkcion, escepte se vi indikis validan retpoŝtan adreson en viaj [[Special:Preferences|kontaj agordoj]] kaj vi ne estas blokita uzi ĝin.
+Via IP-adreso estas $3 kaj la ID de la forbarado ests $5. Bonvolu mencii jenajn indikojn en ĉiu plendo:
+* IP-adreso: $3
+* ID de forbarado: $5
+* Komenco de la forbarado: $8
+* Malvalidiĝo de la forbarado: $6
+* Forbaroto: $7",
 'blockedoriginalsource'    => "La fonto de '''$1''' estas 
 montrata malsupre:",
 'blockededitsource'        => "La teksto de '''viaj redaktoj''' al '''$1''' estas montrata malsupre:",
@@ -527,8 +564,6 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',
-'cantcreateaccounttext'  => 'Konta kreado de ĉi tiu IP-adreso (<b>$1</b>) estas blokita.
-Ĉi tio estas probable kulpigebla al iu pro persista vandalismo de via lernejo aŭ Interreta servoliveranto.',
 
 # History pages
 'revhistory'          => 'Historio de redaktoj',
@@ -552,7 +587,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
 'deletedrev'          => '[forigita]',
 'histfirst'           => 'plej frua',
 'histlast'            => 'plej lasta',
-'historysize'         => '($1 bajtoj)',
+'historysize'         => '({{PLURAL:$1|1 bajto|$1 bajtoj}})',
 'historyempty'        => '(malplena)',
 
 # Revision feed
@@ -584,8 +619,8 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
 'prevn'                 => '$1 antaŭajn',
 'nextn'                 => '$1 sekvajn',
 'viewprevnext'          => 'Montru ($1) ($2) ($3).',
-'showingresults'        => 'Montras <b>$1</b> trovitajn ekde la <b>$2</b>-a.',
-'showingresultsnum'     => 'Montras <b>$3</b> trovitajn ekde la <b>$2</b>-a.',
+'showingresults'        => "Montras {{PLURAL:$1|'''1''' trovitan|'''$1''' trovitajn}} ekde la #'''$2'''-a.",
+'showingresultsnum'     => "Montras {{PLURAL:$3|'''1''' trovitan|'''$3''' trovitajn}} ekde la #'''$2'''-a.",
 'nonefound'             => '<strong>Noto</strong>: malsukcesaj serĉoj ofte
 okazas ĉar oni serĉas tro da ofte uzataj vortoj, kiujn ne enhavas la indekso,
 aŭ ĉar oni petas tro da serĉvortoj (nur paĝoj kiuj enhavas ĉiun serĉvorton
@@ -690,7 +725,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'nchanges'                          => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 'recentchanges'                     => 'Lastaj ŝanĝoj',
 'recentchangestext'                 => 'Sekvu la plej lastajn ŝanĝojn en la {{SITENAME}} per ĉi tiu paĝo.',
-'rcnote'                            => 'Jen la plej lastaj <strong>$1</strong> ŝanĝoj dum la lastaj <strong>$2</strong> tagoj gxis la <strong>$3</strong>.',
+'rcnote'                            => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $3.",
 'rcnotefrom'                        => 'Jen la ŝanĝoj ekde <strong>$2</strong> (lastaj ĝis <strong>$1</strong>).',
 'rclistfrom'                        => 'Montru novajn ŝanĝojn ekde "$1"',
 'rcshowhideminor'                   => '$1 redaktetojn',
@@ -770,7 +805,7 @@ aŭ por sono
 
 # Image list
 'imagelist'                 => 'Listo de alŝutitaj dosieroj',
-'imagelisttext'             => 'Jen listo de $1 alŝutaĵoj, ordigitaj laŭ $2.',
+'imagelisttext'             => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
 'getimagelist'              => 'akiras dosierliston',
 'ilsubmit'                  => 'Trovu!',
 'showlast'                  => 'Montru la $1 lastajn bildojn laŭ $2.',
@@ -779,12 +814,17 @@ aŭ por sono
 'bysize'                    => 'grandeco',
 'imgdelete'                 => 'forigu',
 'imgdesc'                   => 'pri',
+'imgfile'                   => 'dosiero',
+'filehist-datetime'         => 'Dato/Tempo',
 'imagelinks'                => 'Ligiloj al la dosiero',
 'linkstoimage'              => 'La jenaj paĝoj ligas al ĉi tiu dosiero:',
 'nolinkstoimage'            => 'Neniu paĝo ligas al ĉi tiu dosiero.',
 'noimage'                   => 'Ne ekzistas dosiero kun tia nomo vi povas $1.',
 'noimage-linktext'          => 'alŝuti ĝin',
 'uploadnewversion-linktext' => 'Alŝutu novan version de ĉi tiu dosiero',
+'imagelist_date'            => 'Dato',
+'imagelist_name'            => 'Nomo',
+'imagelist_description'     => 'Priskribo',
 
 # File deletion
 'filedelete-intro'   => "Vi forigas '''[[Media:$1|$1]]'''.",
@@ -814,17 +854,16 @@ aŭ por sono
 'statistics'             => 'Statistiko',
 'sitestats'              => 'Pri la retejo',
 'userstats'              => 'Pri la uzantaro',
-'sitestatstext'          => "Troviĝas en nia datumaro sume '''\$1''' paĝoj.
-Tiu nombro enhavas \"diskutpaĝojn\", paĝojn pri {{SITENAME}}, \"artikoletetojn\", alidirektilojn, kaj aliajn, kiuj eble ne vere estas artikoloj. Malatentante ilin, oni povas nombri '''\$2''' probablajn ĝustajn artikolojn.
+'sitestatstext'          => "Troviĝas en nia datumaro sume '''\$1''' {{PLURAL:\$1|paĝo|paĝoj}}.
+Tiu nombro enhavas \"diskutpaĝojn\", paĝojn pri {{SITENAME}}, \"artikoletetojn\", alidirektilojn, kaj aliajn, kiuj eble ne vere estas artikoloj. Malatentante ilin, oni povas nombri '''\$2''' {{PLURAL:\$2|probable ĝustan artikolon|probable ĝustajn artikolojn}}.
 
-'''\$8''' dosieroj estis alŝutitaj.
+'''\$8''' {{PLURAL:\$8|dosiero|dosieroj}} estis {{PLURAL:\$8|alŝutita|alŝutitaj}}.
 
-Oni vidis sume '''\$3''' paĝojn, kaj redaktis sume '''\$4''' plural paĝojn
-ekde la starigo de la vikio.
+Oni vidis sume '''\$3''' {{PLURAL:\$3|paĝo|paĝojn}}, kaj redaktis sume '''\$4''' {{PLURAL:\$4|paĝo|paĝojn}} ekde la starigo de la vikio.
 Tio estas meznombre po unu paĝo por '''\$5''' paĝoj viditaj, kaj por '''\$6''' redaktoj.
 
 La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda vico] estas '''\$7'''.",
-'userstatstext'          => "Enskribiĝis '''$1''' uzantoj. El tiuj, '''$2''' (aŭ '''$4%''') estas administrantoj (vidu $3).",
+'userstatstext'          => "Enskribiĝis '''$1''' {{PLURAL:$1|[[Special:Listusers|uzanto]]|[[Special:Listusers|uzantoj]]}}. El tiuj, '''$2''' (aŭ '''$4%''') havas rajtojn de $5.",
 'statistics-mostpopular' => 'Plej ofte montrataj paĝoj',
 
 'disambiguations'      => 'Misligitaj apartigiloj',
@@ -888,6 +927,8 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 la alilingvaj {{SITENAME}}j, povas rekte ligi al dosiero per URL.
 Tio ne estus enkalkutita en la jena listo.',
 'unusedcategoriestext'    => 'La paĝoj de la sekvanta kategorio jam ekzistas, sed neniu alia artikolo aŭ kategorio rilatas al ĝi.',
+'notargettitle'           => 'Sen celpaĝo',
+'notargettext'            => 'Vi ne precizigis, kiun paĝon aŭ uzanton priumi.',
 
 # Book sources
 'booksources'      => 'Libroservoj',
@@ -922,6 +963,9 @@ komprenata kiel rekomendo aŭ reklamo.',
 'allpagesnext'      => 'Sekven',
 'allpagessubmit'    => 'Ek!',
 'allpagesprefix'    => 'Montru paĝojn kun prefikso:',
+
+# Special:Listusers
+'listusers-submit' => 'Montri',
 
 # E-mail user
 'mailnologin'     => 'Neniu alsendota adreso',
@@ -958,14 +1002,14 @@ komprenata kiel rekomendo aŭ reklamo.',
 'unwatchthispage'      => 'Malatentu paĝon',
 'notanarticle'         => 'Ne estas artikolo',
 'watchnochange'        => 'Neniu artikolo en via atentaro redaktiĝis dum la prispektita tempoperiodo.',
-'watchlist-details'    => '(Vi priatentas $1 paĝojn [krom diskutopaĝoj])',
+'watchlist-details'    => 'Vi priatentas {{PLURAL:$1|$1 paĝon|$1 paĝojn}}, krom diskutpaĝoj.',
 'wlheader-enotif'      => '* Retpoŝta sciigo estas ebligita',
 'wlheader-showupdated' => "* Montriĝas per '''dikaj literoj''' tiuj paĝoj, kiujn oni ŝanĝis ekde kiam vi laste vizitis ilin",
 'watchmethod-recent'   => 'traserĉas lastajn redaktojn',
 'watchmethod-list'     => 'traserĉas priatentitajn',
-'watchlistcontains'    => 'Via atentaro enhavas $1 paĝojn.',
+'watchlistcontains'    => 'Via atentaro enhavas $1 {{PLURAL:$1|paĝon|paĝojn}}.',
 'iteminvalidname'      => 'Ia eraro pri "$1", nevalida titolo...',
-'wlnote'               => 'Jen la plej lastaj $1 redaktoj dum la lastaj <b>$2</b> horoj.',
+'wlnote'               => "Jen la {{PLURAL:$1|lasta redakto|lastaj '''$1''' redaktoj}} dum la {{PLURAL:$2|lasta horo|lastaj '''$2''' horoj}}.",
 'wlshowlast'           => 'Montru el lastaj $1 horoj $2 tagoj $3',
 'watchlist-show-bots'  => 'Montru robotajn redaktojn',
 'watchlist-hide-bots'  => 'Kaŝu robotajn redaktojn',
@@ -1061,7 +1105,7 @@ Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj
 'undeletepagetext'         => 'La jenaj paĝoj estis forigitaj, sed ankoraŭ restas arkivitaj,
 kaj oni povas restarigi ilin. La arkivo povas esti malplenigita periode.',
 'undeleteextrahelp'        => "Por restarigi la tuton de la paĝo, marku neniun markobutonon kaj klaku la butonon '''''Restarigu'''''. Por restarigi selektitajn versiojn de la paĝo, marku la butonojn konformajn al la dezirataj versioj, kaj klaku la butonon '''''Restarigu'''''. Klako je '''''Restarigu''''' malplenigos la komentozonon kaj malmarkos ĉiujn la markobutonojn.",
-'undeleterevisions'        => '$1 versioj arkivitaj',
+'undeleterevisions'        => '$1 {{PLURAL:$1|versio arkivita|versioj arkivitaj}}',
 'undeletehistory'          => 'Se vi restarigos la paĝon, ĉiuj versioj estos restarigitaj
 en la historio. Se nova paĝo kun la sama nomo estis kreita post la forigo, la restarigitaj
 versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭigita.',
@@ -1070,12 +1114,13 @@ versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭi
 'undeletereset'            => 'Reŝarĝu',
 'undeletecomment'          => 'Komento:',
 'undeletedarticle'         => 'restarigis "$1"',
-'undeletedrevisions'       => '$1 restarigita(j) versio(j)',
-'undeletedrevisions-files' => '$1 revizioj kaj $2 dosiero(j) restarigitaj',
-'undeletedfiles'           => '$1 dosiero(j) restarigita(j)',
+'undeletedrevisions'       => '{{PLURAL:$1|1 versio restarigita|$1 versioj restarigitaj}}',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 versio|$1 versioj}} kaj {{PLURAL:$2|1 dosiero|$2 dosieroj}} restarigitaj',
+'undeletedfiles'           => '{{PLURAL:$1|1 dosiero restarigita|$1 dosieroj restarigitaj}}',
 'undeletedpage'            => "<big>'''$1 estis restarigita'''</big>
 
 Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj forigoj kaj restarigoj.",
+'undelete-search-submit'   => 'Serĉi',
 
 # Namespace form on various pages
 'namespace'      => 'Nomspaco:',
@@ -1107,13 +1152,12 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'sp-newimages-showfrom' => 'Montru novajn bildojn komencante de $1',
 
 # What links here
-'whatlinkshere' => 'Ligiloj ĉi tien',
-'notargettitle' => 'Sen celpaĝo',
-'notargettext'  => 'Vi ne precizigis, kiun paĝon aŭ uzanton priumi.',
-'linklistsub'   => '(Listo de ligiloj)',
-'linkshere'     => 'La jenaj paĝoj ligas ĉi tien:',
-'nolinkshere'   => 'Neniu paĝo ligas ĉi tien.',
-'isredirect'    => 'alidirekto',
+'whatlinkshere'      => 'Ligiloj ĉi tien',
+'whatlinkshere-page' => 'Paĝo:',
+'linklistsub'        => '(Listo de ligiloj)',
+'linkshere'          => "La jenaj paĝoj ligas al '''[[:$1]]''':",
+'nolinkshere'        => "Neniu paĝo ligas al '''[[:$1]]'''.",
+'isredirect'         => 'alidirekto',
 
 # Block/unblock
 'blockip'              => 'Forbaru uzanton/IP-adreson',
@@ -1122,10 +1166,12 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'ipadressorusername'   => 'IP adreso aŭ uzantonomo',
 'ipbexpiry'            => 'Blokdaŭro',
 'ipbreason'            => 'Kialo',
+'ipbreasonotherlist'   => 'Alia kaŭzo',
 'ipbsubmit'            => 'Forbaru la adreson',
 'ipbother'             => 'Alia daŭro',
 'ipboptions'           => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite',
 'ipbotheroption'       => 'alia',
+'ipbotherreason'       => 'Alia/aldona kaŭzo:',
 'badipaddress'         => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'    => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext'   => '"$1" estas forbarita. <br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].',
@@ -1135,6 +1181,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'ipusubmit'            => 'Malforbaru la adreson',
 'ipblocklist'          => 'Listo de forbaritaj IP-adresoj/nomoj',
 'ipblocklist-username' => 'Uzantonomo aŭ IP-adreso:',
+'ipblocklist-submit'   => 'Serĉi',
 'blocklistline'        => 'Je $1, $2 forbaris $3 ($4)',
 'infiniteblock'        => 'senfina',
 'expiringblock'        => 'finiĝas je $1',
@@ -1143,7 +1190,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'contribslink'         => 'kontribuoj',
 'autoblocker'          => 'Provizore forbarita aŭtomate pro tio, ke vi uzas la saman IP-adreson kiel "$1", kiu estis forbarita pro : "$2".',
 'blocklogpage'         => 'Forbarlibro',
-'blocklogentry'        => 'forbaris "$1" por daŭro de "$2"',
+'blocklogentry'        => 'forbaris [[$1]] por daŭro de $2 $3',
 'blocklogtext'         => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry'      => '$1 estis malbarita',
 'ipb_expiry_invalid'   => 'Nevalida blokdaŭro.',
@@ -1228,9 +1275,12 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'immobile_namespace'      => 'La celtitolo estas de speciala speco; ne eblas movi paĝojn en tiun nomspacon.',
 
 # Export
-'export'        => 'Eksportu paĝojn',
-'exporttext'    => 'Vi povas eksporti la tekston kaj la redaktohistorion de aparta paĝo aŭ de paĝaro kolektita en ia XML ; tio povas esti importita en alian programon funkciantan per MediaWiki-softvaro, ŝanĝita, aŭ nur prenita por propra privata uzo.',
-'exportcuronly' => 'Entenas nur la aktualan version, ne la malnovajn.',
+'export'            => 'Eksportu paĝojn',
+'exporttext'        => 'Vi povas eksporti la tekston kaj la redaktohistorion de aparta paĝo aŭ de paĝaro kolektita en ia XML ; tio povas esti importita en alian programon funkciantan per MediaWiki-softvaro, ŝanĝita, aŭ nur prenita por propra privata uzo.',
+'exportcuronly'     => 'Entenas nur la aktualan version, ne la malnovajn.',
+'export-submit'     => 'Eksporti',
+'export-addcattext' => 'Aldoni paĝojn el kategorio:',
+'export-addcat'     => 'Aldoni',
 
 # Namespace 8 related
 'allmessages'               => 'Ĉiuj mesaĝoj',
@@ -1249,14 +1299,16 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'thumbnail_error' => 'Okazis eraro kreante antaŭvidan bildeton: $1',
 
 # Special:Import
-'import'                => 'Importitaj paĝoj',
-'importinterwiki'       => 'Transvikia importo',
-'importtext'            => 'Bonvole eksportu la dosieron el la fonta vikio per la ilo Speciala:Export, konservu ĝin sur via disko kaj poste alŝutu ĝin tien ĉi.',
-'importfailed'          => 'Malsukcesis la importo: $1',
-'importnotext'          => 'Malplena aŭ senteksta',
-'importsuccess'         => 'La importo sukcesis!',
-'importhistoryconflict' => 'Malkongrua historia versio ekzistas (eble la paĝo importiĝis antaŭe)',
-'importnosources'       => 'Neniu transvikia importfonto estis difinita kaj rekta historio de alŝutoj estas malaktivigita.',
+'import'                  => 'Importitaj paĝoj',
+'importinterwiki'         => 'Transvikia importo',
+'import-interwiki-submit' => 'Importi',
+'importtext'              => 'Bonvole eksportu la dosieron el la fonta vikio per la ilo Speciala:Export, konservu ĝin sur via disko kaj poste alŝutu ĝin tien ĉi.',
+'import-revision-count'   => '$1 {{PLURAL:$1|versio|versioj}}',
+'importfailed'            => 'Malsukcesis la importo: $1',
+'importnotext'            => 'Malplena aŭ senteksta',
+'importsuccess'           => 'La importo sukcesis!',
+'importhistoryconflict'   => 'Malkongrua historia versio ekzistas (eble la paĝo importiĝis antaŭe)',
+'importnosources'         => 'Neniu transvikia importfonto estis difinita kaj rekta historio de alŝutoj estas malaktivigita.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mia uzantopaĝo',
@@ -1360,10 +1412,11 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'nextdiff'     => 'Iru al sekvanta ŝanĝo →',
 
 # Media information
-'mediawarning' => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
+'mediawarning'    => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
 <hr />",
-'imagemaxsize' => 'Elmontru bildojn en bildpriskribaj paĝoj je maksimume :',
-'thumbsize'    => 'Grandeco de bildetoj :',
+'imagemaxsize'    => 'Elmontru bildojn en bildpriskribaj paĝoj je maksimume :',
+'thumbsize'       => 'Grandeco de bildetoj :',
+'widthheightpage' => '$1×$2, $3 paĝoj',
 
 # Special:Newimages
 'newimages'    => 'Aro da novaj bildoj',
@@ -1375,13 +1428,21 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'metadata-collapse' => 'Kaŝu etendajn detalojn',
 
 # EXIF tags
+'exif-imagewidth'      => 'Larĝeco',
+'exif-imagelength'     => 'Alteco',
 'exif-artist'          => 'Kreinto',
 'exif-pixelxdimension' => 'Valind image height',
 'exif-aperturevalue'   => 'Aperturo',
 'exif-brightnessvalue' => 'Heleco',
 'exif-contrast'        => 'Kontrasto',
 
+'exif-unknowndate' => 'Nekonata dato',
+
+'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
+
 'exif-componentsconfiguration-0' => 'ne ekzistas',
+
+'exif-meteringmode-0' => 'Nekonata',
 
 # External editor support
 'edit-externally'      => 'Ŝanĝu ĉi dosieron per ekstera softvaro',
@@ -1399,7 +1460,9 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'confirmemail_text'       => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
 'confirmemail_send'       => 'Retmesaĝi konfirmkodon',
 'confirmemail_sent'       => 'Konfirma retmesaĝo estas sendita.',
-'confirmemail_sendfailed' => 'Ne eblis sendi konfirmretmesaĝon. Bonvolu kontroli ĉu en la adreso ne estus nevalidaj karaktroj.',
+'confirmemail_sendfailed' => 'Ne eblis sendi konfirmretmesaĝon. Bonvolu kontroli ĉu en la adreso ne estus nevalidaj karaktroj.
+
+Retpoŝta programo sciigis: $1',
 'confirmemail_invalid'    => 'Nevalida konfirmkodo. La kodo eble ne plu validas.',
 'confirmemail_needlogin'  => 'Vi devas $1 por konfirmi vian retpoŝtan adreson.',
 'confirmemail_success'    => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
@@ -1446,7 +1509,15 @@ $1',
 'articletitles' => "Artikoloj komencante de ''$1''",
 'hideresults'   => 'Kaŝu rezultojn',
 
+# Table pager
+'table_pager_next'  => 'Sekva paĝo',
+'table_pager_prev'  => 'Antaŭa paĝo',
+'table_pager_first' => 'Unua paĝo',
+'table_pager_last'  => 'Lasta paĝo',
+'table_pager_empty' => 'Neniaj rezultoj',
+
 # Auto-summaries
 'autoredircomment' => 'Redirektante al [[$1]]',
+'autosumm-new'     => 'Nova paĝo: $1',
 
 );

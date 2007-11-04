@@ -1,9 +1,14 @@
 <?php
 /** Persian (فارسی)
-  *
-  * @addtogroup Language
-  * Maintainer: Hojjat - huji.odp@gmail.com
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Hojjat - huji.odp@gmail.com
+ * @author Soroush
+ * @author G - ג
+ * @author Gangleri
+ */
+
 $skinNames = array(
 	'standard' => 'کلاسیک',
 	'nostalgia' => 'نوستالژی',
@@ -13,6 +18,7 @@ $skinNames = array(
 	'chick' => 'شیک',
 	'simple' => 'ساده',
 );
+
 $namespaceNames = array(
 	NS_MEDIA          => 'مدیا',
 	NS_SPECIAL        => 'ویژه',
@@ -73,6 +79,7 @@ $datePreferences = array(
 	'mdy',
 	'dmy',
 	'ymd',
+	'persian',
 	'ISO 8601',
 );
 
@@ -115,6 +122,10 @@ $dateFormats = array(
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y xg j',
 	'ymd both' => 'H:i، Y xg j', # Arabic comma
+
+	'persian time' => 'H:i',
+	'persian date' => 'xij xiF xiY',
+	'persian both' => 'H:i، xij xiF xiY',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -563,7 +574,6 @@ $2',
 'prefs-help-realname'        => '*نام واقعی (اختیاری): اگر تصمیم به ذکر آن بگیرید هنگام ارجاع به آثارتان و انتساب آنها به شما از نام واقعی‌تان استفاده خواهد شد.',
 'loginerror'                 => 'خطا در ورود به سیستم',
 'prefs-help-email'           => '* نشانی پست الکترونیک (اختیاری) : تماس دیگر کاربران با شما را بوسیلهٔ نامهٔ الکترونیکی از طریق صفحهٔ کاربری یا صفحهٔ بحث کاربری، بدون نیاز به فاش کردن هویت‌‌ و نشانی واقعی پست الکترونیک‌تان ممکن می‌سازد.',
-'prefs-help-email-required'  => 'نشانی پست الکترونیکی الزامی است.',
 'nocookiesnew'               => 'حساب کاربری ایجاد شد، اما شما وارد سامانه نشدید. {{SITENAME}} برای ورود کاربران به سامانه از cookie استفاده می‌کند. شما cookieها را از کار انداخته‌اید. لطفاً cookieها را به کار بیندازید، و سپس با نام کاربری و گذرواژهٔ جدیدتان به سیستم وارد شوید.',
 'nocookieslogin'             => '{{SITENAME}} برای ورود کاربران به سیستم از cookie استفاده می‌کند. شما cookieها را از کار
 انداخته‌اید. لطفاً cookieها را به کار بیندازید و دوباره تلاش کنید.',
@@ -887,7 +897,7 @@ your old password.
 'searchresulttext'      => 'برای اطلاعات بیشتر دربارهٔ جستجوی {{SITENAME}}، به [[{{ns:project}}:جستجو کردن|جستجوی {{SITENAME}}]] مراجعه کنید.',
 'searchsubtitle'        => '«[[:$1]]» را جُستید',
 'searchsubtitleinvalid' => 'برای پرس‌وجوی «$1»',
-'noexactmatch'          => "'''صفحه‌ای با عنوان دقیق \"\$1\" وجود ندارد.''' شما می‌توانید این صفحه را [[:\$1|ایجاد کنید]].",
+'noexactmatch'          => 'صفحه‌ای با عنوان دقیق $1 وجود ندارد. شما می‌توانید این صفحه را [[:\$1|ایجاد کنید]].',
 'titlematches'          => 'عنوان مقاله تطبیق می‌کند',
 'notitlematches'        => 'عنوان هیچ مقاله‌ای نمی‌خورد',
 'textmatches'           => 'متن مقاله تطبیق می‌کند',
@@ -1780,7 +1790,7 @@ $1',
 'allmessagesname'           => 'نام',
 'allmessagesdefault'        => 'متن پیش‌فرض',
 'allmessagescurrent'        => 'متن کنونی',
-'allmessagestext'           => 'این فهرستی از همهٔ پیغام‌های موجود در فضای نام مدیاویکی است.',
+'allmessagestext'           => 'این فهرستی از همهٔ پیغام‌های موجود در فضای نام مدیاویکی: است',
 'allmessagesnotsupportedDB' => "نمی‌توان از '''ویژه:همهٔ پیغام‌ها''' استفاده کرد چود '''\$wgUseDatabaseMessages''' خاموش شده است.",
 'allmessagesfilter'         => 'صافی نام پیغام:',
 'allmessagesmodified'       => 'تنها نمایش تغییریافته‌ها',
@@ -2384,5 +2394,19 @@ $1',
 'watchlisttools-view' => 'فهرست تعقیبات',
 'watchlisttools-edit' => 'مشاهده و ویرایش فهرست تعقیبات',
 'watchlisttools-raw'  => 'ویرایش فهرست خام تعقیبات',
+
+# Unknown messages
+'iranian-calendar-m1'  => 'فروردین',
+'iranian-calendar-m10' => 'دی',
+'iranian-calendar-m11' => 'بهمن',
+'iranian-calendar-m12' => 'اسفند',
+'iranian-calendar-m2'  => 'اردیبهشت',
+'iranian-calendar-m3'  => 'خرداد',
+'iranian-calendar-m4'  => 'تیر',
+'iranian-calendar-m5'  => 'امرداد',
+'iranian-calendar-m6'  => 'شهریور',
+'iranian-calendar-m7'  => 'مهر',
+'iranian-calendar-m8'  => 'آبان',
+'iranian-calendar-m9'  => 'آذر',
 
 );

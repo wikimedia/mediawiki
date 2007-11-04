@@ -1,4 +1,13 @@
-<?php 
+<?php
+/** Afrikaans (Afrikaans)
+ *
+ * @addtogroup Language
+ *
+ * @author SPQRobin
+ * @author Adriaan
+ * @author Siebrand
+ * @author Spacebirdy
+ */
 
 $skinNames = array(
 	'standard' => 'Standaard',
@@ -33,8 +42,6 @@ $namespaceNames = array(
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $linkTrail = "/^([a-z]+)(.*)\$/sD";
 
-# Messagesaf.php
-# Afrikaans (Adriaan - 34, Siebrand - 5, Spacebirdy - 1)
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Onderstreep skakels.',
@@ -114,6 +121,7 @@ $messages = array(
 'pagecategories'  => '{{PLURAL:$1|Kategorie|Kategorieë}}',
 'category_header' => 'Artikels in "$1"-kategorie',
 'subcategories'   => 'Subkategorieë',
+'category-empty'  => "''Hierdie kategorie bevat geen artikels of media.''",
 
 'about'          => 'Omtrent',
 'newwindow'      => '(verskyn in nuwe venster)',
@@ -179,13 +187,14 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Inligting oor {{SITENAME}}',
-'aboutpage'         => '{{ns:4}}:Omtrent',
+'aboutpage'         => '{{ns:project}}:Omtrent',
 'bugreports'        => 'Foutrapporte',
 'bugreportspage'    => '{{ns:4}}:FoutRapporte',
 'copyright'         => 'Teks is beskikbaar onderhewig aan $1.',
 'copyrightpagename' => '{{SITENAME}} kopiereg',
 'copyrightpage'     => '{{ns:4}}:kopiereg',
 'currentevents'     => 'Huidige gebeure',
+'currentevents-url' => '{{ns:project}}:Huidige gebeure',
 'disclaimers'       => 'Voorbehoud',
 'edithelp'          => 'Wysighulp',
 'edithelppage'      => '{{ns:4}}:Redigeer',
@@ -195,10 +204,11 @@ $messages = array(
 'mainpage'          => 'Tuisblad',
 'policy-url'        => '{{ns:project}}:Policy',
 'portal'            => 'Gebruikersportaal',
-'portal-url'        => 'Project:Gebruikersportaal',
+'portal-url'        => '{{ns:project}}:Gebruikersportaal',
 'privacy'           => 'Privaatheidsbeleid',
 'privacypage'       => 'Project:Privaatheidsbeleid',
 'sitesupport'       => 'Skenkings',
+'sitesupport-url'   => '{{ns:project}}:Skenkings',
 
 'ok'                  => 'Aanvaar',
 'retrievedfrom'       => 'Ontsluit van "$1"',
@@ -306,7 +316,9 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'yournick'                   => 'Bynaam (vir handtekening)',
 'badsig'                     => 'Ongeldige handtekening; gaan HTML na.',
 'email'                      => 'E-pos',
+'prefs-help-realname'        => 'Regte naam (opsioneel): as u hierdie verskaf, kan dit gebruik word om erkenning vir u werk te gee.',
 'loginerror'                 => 'Intekenfout',
+'prefs-help-email'           => 'E-pos (opsioneel): Maak dit vir ander moontlik om u te kontak deur u gebruikerblad sonder dat u identiteit verraai word.',
 'nocookieslogin'             => '{{SITENAME}} gebruik koekies vir die aanteken van gebruikers, maar u blaaier laat dit nie toe nie. Skakel dit asseblief aan en probeer weer.',
 'noname'                     => 'Ongeldige gebruikersnaam.',
 'loginsuccesstitle'          => 'Suksesvolle intekening',
@@ -370,10 +382,18 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'missingsummary'           => "'''Onthou:''' Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer geklik word, word die wysiging sonder opsomming gestoor.",
 'missingcommenttext'       => 'Tik die opsomming onder.',
 'blockedtitle'             => 'Gebruiker is geblokkeer',
-'blockedtext'              => "Jou gebruikersnaam of IP-adres is deur $1 geblokkeer:
-<br />''$2''
+'blockedtext'              => "<big>'''Jou gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
-Jy mag $1 of een van die ander [[{{MediaWiki:grouppage-sysop}}|administreerders]] kontak om dit te bespreek.",
+The block was made by $1. The reason given is ''$2''.
+
+* Start of block: $8
+* Expiry of block: $6
+* Intended blockee: $7
+
+Jy mag $1 of een van die ander [[{{MediaWiki:grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
+You cannot use the 'email this user' feature unless a valid email address is specified in your
+[[Special:Preferences|account preferences]] and you have not been blocked from using it.
+Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
 'confirmedittitle'         => 'E-pos-bevestiging nodig om te redigeer',
 'confirmedittext'          => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'accmailtitle'             => 'Wagwoord gestuur.',
@@ -432,8 +452,11 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'next'                => 'volgende',
 'last'                => 'vorige',
 'orig'                => 'oorspronklike',
+'page_first'          => 'eerste',
+'page_last'           => 'laaste',
 'histlegend'          => 'Byskrif: (huidige) = verskil van huidige weergawe,
 (vorige) = verskil van vorige weergawe, M = klein wysiging',
+'deletedrev'          => '[geskrap]',
 'histfirst'           => 'Oudste',
 'histlast'            => 'Nuutste',
 
@@ -526,24 +549,29 @@ om voorkeure te spesifiseer.',
 'default'                  => 'verstek',
 'files'                    => 'Lêers',
 
+# Groups
+'group'     => 'Groep:',
+'group-all' => '(alle)',
+
 # Recent changes
-'nchanges'        => '$1 {{PLURAL:$1|wysiging|wysigings}}',
-'recentchanges'   => 'Onlangse wysigings',
-'rcnote'          => 'Hier volg die laaste <strong>$1</strong> wysigings gedurende die afgelope <strong>$2</strong> dae.',
-'rcnotefrom'      => 'Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).',
-'rclistfrom'      => 'Vertoon wysigings vanaf $1',
-'rcshowhideminor' => '$1 klein wysigings',
-'rcshowhidebots'  => '$1 robotte',
-'rcshowhideliu'   => '$1 aangetekende gebruikers',
-'rcshowhideanons' => '$1 anonieme gebruikers',
-'rcshowhidepatr'  => '$1 gepatrolleerde wysigings',
-'rcshowhidemine'  => '$1 my wysigings',
-'rclinks'         => 'Vertoon die laaste $1 wysigings in die afgelope $2 dae<br />$3',
-'diff'            => 'verskil',
-'hist'            => 'geskiedenis',
-'hide'            => 'versteek',
-'show'            => 'wys',
-'minoreditletter' => 'k',
+'nchanges'          => '$1 {{PLURAL:$1|wysiging|wysigings}}',
+'recentchanges'     => 'Onlangse wysigings',
+'rcnote'            => 'Hier volg die laaste <strong>$1</strong> wysigings gedurende die afgelope <strong>$2</strong> dae.',
+'rcnotefrom'        => 'Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).',
+'rclistfrom'        => 'Vertoon wysigings vanaf $1',
+'rcshowhideminor'   => '$1 klein wysigings',
+'rcshowhidebots'    => '$1 robotte',
+'rcshowhideliu'     => '$1 aangetekende gebruikers',
+'rcshowhideanons'   => '$1 anonieme gebruikers',
+'rcshowhidepatr'    => '$1 gepatrolleerde wysigings',
+'rcshowhidemine'    => '$1 my wysigings',
+'rclinks'           => 'Vertoon die laaste $1 wysigings in die afgelope $2 dae<br />$3',
+'diff'              => 'verskil',
+'hist'              => 'geskiedenis',
+'hide'              => 'versteek',
+'show'              => 'wys',
+'minoreditletter'   => 'k',
+'newsectionsummary' => '/* $1 */ nuwe afdeling',
 
 # Recent changes linked
 'recentchangeslinked' => 'Verwante veranderings',
@@ -632,6 +660,9 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'unusedtemplatestext' => "Hierdie blad lys alle bladsye in die sjabloonnaamruimte wat nêrens in 'n ander blad ingesluit word nie. Onthou om ook ander skakels na die sjablone na te gaan voor verwydering.",
 'unusedtemplateswlh'  => 'ander skakels',
 
+# Random redirect
+'randomredirect' => 'Lukrake aanstuur',
+
 # Statistics
 'statistics'    => 'Statistiek',
 'sitestats'     => 'Werfstatistiek',
@@ -656,6 +687,8 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'brokenredirects'     => 'Stukkende aansture',
 'brokenredirectstext' => "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
 
+'fewestrevisions' => 'Artikels met die minste wysigings',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 grepe',
 'ncategories'             => '$1 {{PLURAL:$1|kategorie|kategorieë}}',
@@ -675,14 +708,17 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'wantedpages'             => 'Gesogte bladsye',
 'mostlinked'              => 'Bladsye met meeste skakels daarheen',
 'mostlinkedcategories'    => 'Kategorieë met die meeste skakels daarheen',
+'mostlinkedtemplates'     => 'Sjablone met die meeste skakels daarheen',
 'mostcategories'          => 'Artikels met die meeste kategorieë',
 'mostimages'              => 'Beelde met meeste skakels daarheen',
 'mostrevisions'           => 'Artikels met meeste wysigings',
 'allpages'                => 'Alle bladsye',
+'prefixindex'             => 'Alle bladsye (voorvoegselindeks)',
 'randompage'              => 'Lukrake bladsy',
 'shortpages'              => 'Kort bladsye',
 'longpages'               => 'Lang bladsye',
 'deadendpages'            => 'Doodloopbladsye',
+'protectedpages'          => 'Beskermde bladsye',
 'listusers'               => 'Gebruikerslys',
 'specialpages'            => 'Spesiale bladsye',
 'spheading'               => 'Spesiale bladsye',
@@ -693,16 +729,21 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'movethispage'            => 'Skuif hierdie bladsy',
 'unusedimagestext'        => "Let asseblief op dat ander webwerwe, soos die internasionale {{SITENAME}}s, dalk met 'n direkte URL na 'n prent skakel, so die prent sal dus hier verskyn al word dit aktief gebruik.",
 'unusedcategoriestext'    => 'Die volgende kategoriebladsye bestaan alhoewel geen artikel of kategorie hulle gebruik nie.',
+'notargettitle'           => 'Geen teiken',
+'notargettext'            => "Jy het nie 'n teikenbladsy of gebruiker waarmee hierdie funksie moet werk, gespesifiseer nie.",
 
 # Book sources
-'booksources' => 'Boekbronne',
+'booksources'               => 'Boekbronne',
+'booksources-search-legend' => 'Soek vir boekbronne',
 
 'categoriespagetext' => 'Die volgende kategorieë bestaan op die wiki.',
+'alphaindexline'     => '$1 tot $2',
 'version'            => 'Weergawe',
 
 # Special:Log
 'specialloguserlabel'  => 'Gebruiker:',
 'speciallogtitlelabel' => 'Titel:',
+'all-logs-page'        => 'Alle logboeke',
 'alllogstext'          => "Vertoon 'n samestelling van laai-, skrap-, beskerm-, blok- en administrateurlogs van {{SITENAME}}.
 Jy kan die vertoning vernou deur 'n logtipe, gebruikersnaam of spesifieke blad te kies.",
 
@@ -716,6 +757,11 @@ Jy kan die vertoning vernou deur 'n logtipe, gebruikersnaam of spesifieke blad t
 'allpagesnext'      => 'Volgende',
 'allpagessubmit'    => 'Gaan',
 'allpagesprefix'    => 'Wys bladsye wat begin met:',
+
+# Special:Listusers
+'listusersfrom'      => 'Wys gebruikers, beginnende by:',
+'listusers-submit'   => 'Wys',
+'listusers-noresult' => 'Geen gebruiker gevind.',
 
 # E-mail user
 'mailnologin'     => 'Geen versendadres beskikbaar',
@@ -776,7 +822,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'deletedarticle'              => '"$1" geskrap',
 'dellogpage'                  => 'Skraplogboek',
 'dellogpagetext'              => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",
-'deletionlog'                 => 'skrappingslog',
+'deletionlog'                 => 'skrappingslogboek',
 'reverted'                    => 'Het terug gegaan na vroeëre weergawe',
 'deletecomment'               => 'Rede vir skrapping',
 'rollback'                    => 'Rol veranderinge terug',
@@ -786,16 +832,19 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'cantrollback'                => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
 'editcomment'                 => 'Die wysigopsomming was: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
+'rollback-success'            => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 'protectlogpage'              => 'Beskermlogboek',
 'protectedarticle'            => 'het [[$1]] beskerm',
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
 'protectsub'                  => '(Beskerm "$1")',
 'confirmprotect'              => 'Bevestig beskerming',
 'protectcomment'              => 'Rede vir beskerming:',
+'protectexpiry'               => 'Verval:',
 'unprotectsub'                => '(Verwyder beskerming van "$1")',
 'protect-default'             => '(normaal)',
 'protect-level-autoconfirmed' => 'Beskerm teen anonieme wysigings',
 'protect-level-sysop'         => 'Slegs administrateurs',
+'pagesize'                    => '(grepe)',
 
 # Undelete
 'undelete'          => 'Herstel geskrapte bladsy',
@@ -804,7 +853,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'undeleterevisions' => '$1 weergawes in argief',
 'undeletehistory'   => "As jy die bladsy herstel, sal alle weergawes herstel word.
 As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die herstelde weergawes in die nuwe bladsy se voorgeskiedenis verskyn en die huidige weergawe van die lewendige bladsy sal nie outomaties vervang word nie.",
-'undeletebtn'       => 'Herstel!',
+'undeletebtn'       => 'Herstel',
 'undeletedarticle'  => 'het "$1" herstel',
 
 # Namespace form on various pages
@@ -821,10 +870,11 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'uclinks'       => 'Vertoon die laaste $1 veranderings; vertoon die afgelope $2 dae.',
 'uctop'         => ' (boontoe)',
 
+'sp-contributions-newbies' => 'Wys slegs bydraes deur nuwe rekenings',
+'sp-contributions-search'  => 'Soek na bydraes',
+
 # What links here
 'whatlinkshere' => 'Skakels hierheen',
-'notargettitle' => 'Geen teiken',
-'notargettext'  => "Jy het nie 'n teikenbladsy of gebruiker waarmee hierdie funksie moet werk, gespesifiseer nie.",
 'linklistsub'   => '(Lys van skakels)',
 'linkshere'     => 'Die volgende bladsye skakel hierheen:',
 'nolinkshere'   => 'Geen bladsye skakel hierheen nie.',
@@ -839,6 +889,15 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipadressorusername' => 'IP-adres of gebruikernaam:',
 'ipbexpiry'          => 'Duur:',
 'ipbreason'          => 'Rede',
+'ipbreasonotherlist' => 'Ander rede',
+'ipbreason-dropdown' => '*Algemene redes vir blokkering
+** Invoeg van valse inligting
+** Skrap van bladsyinhoud
+** "Spam" van skakels na eksterne webwerwe
+** Invoeg van gemors op bladsye
+** Intimiderende gedrag (teistering)
+** Misbruik van veelvuldige rekeninge
+** Onaanvaarbare gebruikersnaam',
 'ipbsubmit'          => 'Blok hierdie adres',
 'ipbother'           => 'Ander tydperk:',
 'ipboptions'         => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
@@ -857,6 +916,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'unblocklink'        => 'maak oop',
 'contribslink'       => 'bydraes',
 'blocklogpage'       => 'Blokkeerlogboek',
+'blocklogentry'      => '"[[$1]]" is geblokkeer vir \'n periode van $2',
 'unblocklogentry'    => 'blokkade van $1 is opgehef:',
 'proxyblocker'       => 'Proxyblokker',
 
@@ -879,8 +939,8 @@ Bevestig asseblief dat dit is wat jy wil doen.',
 'unlockdbsuccesstext' => 'Die {{SITENAME}}-databasis is ontsluit.',
 
 # Move page
-'movepage'         => 'Skuif bladsy',
-'movepagetext'     => "Die vorm hieronder hernoem 'n bladsy en skuif die hele wysigingsgeskiedenis na die nuwe naam.
+'movepage'                => 'Skuif bladsy',
+'movepagetext'            => "Die vorm hieronder hernoem 'n bladsy en skuif die hele wysigingsgeskiedenis na die nuwe naam.
 Die ou bladsy sal vervang word met 'n aanstuurblad na die nuwe titel.
 '''Skakels na die ou bladsytitel sal nie outomaties verander word nie; maak seker dat dubbele aanstuurverwysings nie voorkom nie deur die \"wat skakel hierheen\"-funksie na die skuif te gebruik.''' Dit is jou verantwoordelikheid om seker te maak dat skakels steeds wys na waarheen hulle behoort te gaan.
 
@@ -889,26 +949,33 @@ Let daarop dat 'n bladsy '''nie''' geskuif sal word indien daar reeds 'n bladsy 
 <b>WAARSKUWING!</b>
 Hierdie kan 'n drastiese en onverwagte verandering vir 'n populêre bladsy wees;
 maak asseblief seker dat jy die gevolge van hierdie aksie verstaan voordat jy voortgaan. Gebruik ook die ooreenstemmende besprekingsbladsy om oorleg te pleeg met ander bydraers.",
-'movearticle'      => 'Skuif bladsy',
-'movenologin'      => 'Nie ingeteken nie',
-'movenologintext'  => "Jy moet 'n geregistreerde gebruiker wees en [[Special:Userlogin|ingeteken]]
+'movearticle'             => 'Skuif bladsy',
+'movenologin'             => 'Nie ingeteken nie',
+'movenologintext'         => "Jy moet 'n geregistreerde gebruiker wees en [[Special:Userlogin|ingeteken]]
 wees om 'n bladsy te skuif.",
-'newtitle'         => 'Na nuwe titel',
-'movepagebtn'      => 'Skuif bladsy',
-'pagemovedsub'     => 'Verskuiwing het geslaag',
-'movepage-moved'   => '<big>\'\'\'"$1" geskuif na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => "'n Bladsy met daardie naam bestaan reeds, of die naam wat jy gekies het, is nie geldig nie.
+'newtitle'                => 'Na nuwe titel',
+'move-watch'              => 'Hou hierdie bladsy dop',
+'movepagebtn'             => 'Skuif bladsy',
+'pagemovedsub'            => 'Verskuiwing het geslaag',
+'movepage-moved'          => '<big>\'\'\'"$1" geskuif na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => "'n Bladsy met daardie naam bestaan reeds, of die naam wat jy gekies het, is nie geldig nie.
 Kies asseblief 'n ander naam.",
-'talkexists'       => "'''Die bladsy self is suksesvol geskuif, maar die besprekingsbladsy is nie geskuif nie omdat een reeds bestaan met die nuwe titel. Smelt hulle asseblief met die hand saam.'''",
-'movedto'          => 'geskuif na',
-'movetalk'         => 'Skuif besprekingsblad ook, indien van toepassing.',
-'talkpagemoved'    => 'Die ooreenkomstige besprekingsblad is ook geskuif.',
-'talkpagenotmoved' => 'Die ooreenkomstige besprekingsblad is <strong>nie</strong> geskuif nie.',
-'1movedto2'        => '[[$1]] geskuif na [[$2]]',
-'1movedto2_redir'  => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
-'movelogpage'      => 'Skuiflogboek',
-'movereason'       => 'Rede:',
-'selfmove'         => 'Bron- en teikentitels is dieselfde; kan nie bladsy oor homself skuif nie.',
+'talkexists'              => "'''Die bladsy self is suksesvol geskuif, maar die besprekingsbladsy is nie geskuif nie omdat een reeds bestaan met die nuwe titel. Smelt hulle asseblief met die hand saam.'''",
+'movedto'                 => 'geskuif na',
+'movetalk'                => 'Skuif besprekingsblad ook, indien van toepassing.',
+'talkpagemoved'           => 'Die ooreenkomstige besprekingsblad is ook geskuif.',
+'talkpagenotmoved'        => 'Die ooreenkomstige besprekingsblad is <strong>nie</strong> geskuif nie.',
+'1movedto2'               => '[[$1]] geskuif na [[$2]]',
+'1movedto2_redir'         => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
+'movelogpage'             => 'Skuiflogboek',
+'movereason'              => 'Rede:',
+'delete_and_move'         => 'Skrap en skuif',
+'delete_and_move_text'    => '==Skrapping benodig==
+
+Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir die skuif?',
+'delete_and_move_confirm' => 'Ja, skrap die bladsy',
+'delete_and_move_reason'  => 'Geskrap om plek te maak vir skuif',
+'selfmove'                => 'Bron- en teikentitels is dieselfde; kan nie bladsy oor homself skuif nie.',
 
 # Export
 'export' => 'Eksporteer bladsye',
@@ -921,6 +988,12 @@ Kies asseblief 'n ander naam.",
 'allmessagestext'     => "Hierdie is 'n lys boodskappe wat beskikbaar is in die ''MediaWiki''-naamspasie.",
 'allmessagesfilter'   => 'Boodskapnaamfilter:',
 'allmessagesmodified' => 'Wys slegs gewysigdes',
+
+# Thumbnails
+'thumbnail-more' => 'Vergroot',
+
+# Special:Import
+'import' => 'Voer bladsye in',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'My gebruikerbladsy',
@@ -953,6 +1026,7 @@ Kies asseblief 'n ander naam.",
 'anonymous' => 'Anonieme gebruiker(s) van {{SITENAME}}',
 'siteuser'  => '{{SITENAME}} gebruiker $1',
 'and'       => 'en',
+'others'    => 'ander',
 'siteusers' => '{{SITENAME}} gebruiker(s) $1',
 
 # Spam protection
@@ -968,12 +1042,16 @@ Kies asseblief 'n ander naam.",
 'mw_math_modern' => 'Moderne blaaiers.',
 'mw_math_mathml' => 'MathML',
 
+# Image deletion
+'deletedrevision' => 'Ou weergawe $1 geskrap',
+
 # Browsing diffs
 'previousdiff' => '← Ouer wysiging',
 'nextdiff'     => 'Nuwer wysiging →',
 
 # Media information
-'imagemaxsize' => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
+'imagemaxsize'   => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
+'show-big-image' => 'Volle resolusie',
 
 # Special:Newimages
 'newimages' => 'Gallery van nuwe beelde',
@@ -1043,7 +1121,7 @@ $1',
 'livepreview-ready'   => 'Laai tans… Gereed!',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Besigtig ter saaklike veranderinge',
-'watchlisttools-raw'   => 'Redigeer brondophoulys',
+'watchlisttools-view' => 'Besigtig ter saaklike veranderinge',
+'watchlisttools-raw'  => 'Redigeer brondophoulys',
 
 );
