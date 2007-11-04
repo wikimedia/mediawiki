@@ -1,10 +1,15 @@
 <?php
-/** Limburgian (Limburgs)
-  *
-  * @addtogroup Language
-  *
-  * @author Ooswesthoesbes
-  * @author Cicero
+/** Limburgish (Limburgs)
+ *
+ * @addtogroup Language
+ *
+ * @author Ooswesthoesbes
+ * @author Cicero
+ * @author G - ג
+ * @author Siebrand
+ * @author SPQRobin
+ * @author Jon Harald Søby
+ * @author Nike
  */
 
 $fallback = 'nl';
@@ -171,7 +176,7 @@ $messages = array(
 'protect'           => 'Besjerm',
 'protect_change'    => 'beveiligingsstatus verangere',
 'protectthispage'   => 'Beveilige',
-'unprotect'         => 'Vriegaeve',
+'unprotect'         => 'vriegaeve',
 'unprotectthispage' => 'Besjerming opheffe',
 'newpage'           => 'Nuuj pazjena',
 'talkpage'          => 'euverlikpazjena',
@@ -194,7 +199,7 @@ $messages = array(
 'redirectedfrom'    => '(Doorverweze van $1)',
 'redirectpagesub'   => 'Redirectpazjena',
 'lastmodifiedat'    => "Dees pazjena is 't litst verangert op $2, $1.", # $1 date, $2 time
-'viewcount'         => 'Dees pazjena is $1 kier bekeke.',
+'viewcount'         => 'Dees pazjena is {{PLURAL:$1|1 kier|$1 kier}} bekeke.',
 'protectedpage'     => 'Beveiligde pazjena',
 'jumpto'            => 'Gao nao:',
 'jumptonavigation'  => 'navigatie',
@@ -1318,7 +1323,7 @@ $1",
 'ipbenableautoblock'          => 'Automatisch de IP-adresse van deze gebroeker blokkere',
 'ipbsubmit'                   => 'Blokkeer dit IP-adres',
 'ipbother'                    => 'Anger verloup',
-'ipboptions'                  => '2 oer,1 daag,3 daag,1 waek,2 waek,1 maondj,3 maondj,6 maondj,1 jaor,veur iwweg',
+'ipboptions'                  => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite',
 'ipbotheroption'              => 'anger verloup',
 'ipbotherreason'              => 'Angere/eventuele rejer:',
 'ipbhidename'                 => "Verberg gebroekersnaam/IP van 't blokkeerlogbook, de actieve blokkeerlies en de gebroekerslies",
@@ -1352,7 +1357,7 @@ Zuug de [[Special:Ipblocklist|lies van geblokkeerde IP-adresse]].',
 'contribslink'                => 'biedrages',
 'autoblocker'                 => 'Ómdets te \'n IP-adres deils mit "$1" (geblokkeerd mit raeje "$2") bis te automatisch geblokkeerd.',
 'blocklogpage'                => 'Blokkeerlogbook',
-'blocklogentry'               => '"$1" is geblokkeerd veur d\'n tied van $2',
+'blocklogentry'               => '"[[$1]]" is geblokkeerd veur d\'n tied van $2 $3',
 'blocklogtext'                => "Dit is 'n log van blokkades van gebroekers. Automatisch geblokkeerde IP-adresse sjtoon hie neet bie. Zuug de [[Special:Ipblocklist|Lies van geblokkeerde IP-adresse]] veur de lies van op dit mement wèrkende blokkades.",
 'unblocklogentry'             => 'blokkade van $1 opgeheve',
 'block-log-flags-anononly'    => 'allein anoniem',
@@ -1758,8 +1763,8 @@ Probeer normaal veurvertuun.',
 'watchlistedit-raw-removed'    => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} verwiederd:",
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Volglies bekieke',
-'watchlisttools-edit'  => 'Volglies bekieke en bewerke',
-'watchlisttools-raw'   => 'Ruwe volglies bewerke',
+'watchlisttools-view' => 'Volglies bekieke',
+'watchlisttools-edit' => 'Volglies bekieke en bewerke',
+'watchlisttools-raw'  => 'Ruwe volglies bewerke',
 
 );

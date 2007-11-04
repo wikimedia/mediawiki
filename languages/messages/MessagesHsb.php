@@ -463,7 +463,7 @@ Prošu spytaj hišće raz!',
 'createaccount'              => 'Wužiwarske konto wutworić',
 'gotaccount'                 => 'Maš hižo wužiwarske konto? $1.',
 'gotaccountlink'             => 'Přizjewić',
-'createaccountmail'          => 'z e-mejlu',
+'createaccountmail'          => 'z mejlku',
 'badretype'                  => 'Hesle, kotrejž sy zapodał, so njekryjetej.',
 'userexists'                 => 'Wužiwarske mjeno, kotrež sy wubrał, so hižo wužiwa. Prošu wubjer druhe mjeno.',
 'youremail'                  => 'E-mejl *:',
@@ -724,7 +724,7 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'deletedrev'          => '[wušmórnjena]',
 'histfirst'           => 'tuchwilnu',
 'histlast'            => 'najstaršu',
-'historysize'         => '({{PLURAL:$1|$1 bajt|$1 bajtaj|$1 bajty|$1 bajtow}})',
+'historysize'         => '({{PLURAL:$1|1 bajt|$1 bajtaj|$1 bajty|$1 bajtow}})',
 'historyempty'        => '(prózdna)',
 
 # Revision feed
@@ -883,7 +883,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'group'               => 'Skupina:',
 'group-autoconfirmed' => 'awtomatisce potwjerdźeny',
 'group-bot'           => 'Boty',
-'group-sysop'         => 'Administratorojo',
+'group-sysop'         => 'administratorojo',
 'group-bureaucrat'    => 'Běrokraća',
 'group-all'           => '(wšě)',
 
@@ -1139,7 +1139,7 @@ PICT # misc.
 Běše dohromady '''$3''' {{PLURAL:$3|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} stronow a '''$4''' {{PLURAL:$4|změna|změnje|změny|změnow}} stronow, wot toho zo bu {{SITENAME}} připrawjeny. Bě to přerěznje '''$5''' {{PLURAL:$5|změna|změnje|změny|změnow}} na stronu a '''$6''' {{PLURAL:$6|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} na změnu.
 
 Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Je '''1''' [[Special:Listusers|wužiwar]] zregistrowany|Staj '''$1''' [[Special:Listusers|wužiwarjej]] zregistrowanej|Su '''$1''' [[Special:Listusers|wužiwarjo]] zregistrowani|Je '''$1''' [[Special:Listusers|wužiwarjow]] zregistrowanych}}, '''$2''' (abo '''$4%''') z nich {{PLURAL:$2|je|staj|su|je}} $5.",
+'userstatstext'          => "{{PLURAL:$1|Je '''1''' [[{{ns:special}}:Listusers|wužiwar]] zregistrowany|Staj '''$1''' [[{{ns:special}}:Listusers|wužiwarjej]] zregistrowanej|Su '''$1''' [[{{ns:special}}:Listusers|wužiwarjo]] zregistrowani|Je '''$1''' [[{{ns:special}}:Listusers|wužiwarjow]] zregistrowanych}}, '''$2''' (abo '''$4%''') z nich {{PLURAL:$2|je|staj|su|je}} $5.",
 'statistics-mostpopular' => 'Najhusćišo wopytowane strony',
 
 'disambiguations'         => 'Rozjasnjenja wjacezmyslnosće',

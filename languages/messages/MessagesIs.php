@@ -1055,15 +1055,19 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'statistics'             => 'Tölfræði',
 'sitestats'              => 'Tölfræði fyrir {{SITENAME}}',
 'userstats'              => 'Notendatölfræði',
-'sitestatstext'          => "Please update me!
+'sitestatstext'          => "Það {{PLURAL:$1|er '''1''' síða|eru '''$1''' síður}} í gagnagrunninum.
+Meðtaldar eru „spjallsíður“, síður varðandi {{SITENAME}}, smávægilegir „stubbar“, 
+tilvísanir og aðrar síður sem mundu líklega ekki teljast sem efnislegar síður.
+Fyrir utan þær þá {{PLURAL:$2|er '''1''' síða sem líklega getur|eru '''$2''' síður sem líklega geta}} talist
+{{PLURAL:$2|efnisleg grein|efnislegar greinar}}.
 
-{{SITENAME}} inniheldur nú {{PLURAL:$1|'''$1''' grein|'''$1''' greinar}}, en grein telst síða í aðalnafnrýminu sem ekki er tilvísun og inniheldur strenginn „[[“. Alls {{PLURAL:$2|er '''$2''' síða|eru '''$2''' síður}} í gagnagrunninum, þar á meðal greinar.
+'''$8''' {{PLURAL:$8|skrá|skrám}} hefur verið hlaðið inn.
 
-'''$8''' files have been uploaded.
+Það hafa alls '''$3''' {{PLURAL:$3|síða verið skoðuð|síður verið skoðaðar}} og '''$4''' {{PLURAL:$4|síðubreyting|síðubreytingar}}
+síðan {{SITENAME}} hóf göngu sína.
+Sem gerir að meðaltali '''$5''' breytingar á hverja síðu og '''$6''' skoðanir á hverja breytingu.
 
-'''$4''' breytingar hafa verið gerðar síðan vefurinn var settur upp, eða '''$5''' breytingar á síðu að meðaltali.
-
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
+Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '''$7'''.",
 'userstatstext'          => "Hér {{PLURAL:$1|er '''1''' skráður [[{{ns:special}}:Listusers|notandi]]|eru '''$1''' skráðir [[{{ns:special}}:Listusers|notendur]]}}, þar af 
 '''$2''' (eða '''$4%''') {{PLURAL:$2|hefur|hafa}} $5 stjórnendaréttindi (sjá $3).",
 'statistics-mostpopular' => 'Mest skoðuðu síður',
@@ -1723,7 +1727,9 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'confirmemail_noemail'    => 'Þú hefur ekki gefið upp gilt netfang í [[{{ns:special}}:Preferences|notandastillingum]] þínum.',
 'confirmemail_send'       => 'Senda staðfestingarkóða með tölvupósti',
 'confirmemail_sent'       => 'Staðfestingartölvupóstur sendur.',
-'confirmemail_sendfailed' => 'Gat ekki sent staðfestingarkóða. Athugaðu hvort netfangið sé rétt.',
+'confirmemail_sendfailed' => 'Gat ekki sent staðfestingarkóða. Athugaðu hvort netfangið sé rétt.
+
+Póstþjónninn gaf eftirfarandi skilaboð: $1',
 'confirmemail_invalid'    => 'Ógildur staðfestingarkóði. Hann gæti verið útrunninn.',
 'confirmemail_needlogin'  => 'Þú verður að $1 til að staðfesta netfangið þitt.',
 'confirmemail_success'    => 'Netfang þitt hefur verið staðfest. Þú getur nú skráð þig inn og vafrað um wiki-kerfið.',

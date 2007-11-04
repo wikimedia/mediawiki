@@ -292,7 +292,7 @@ $messages = array(
 'youhavenewmessages'      => 'Vos avéd de $1 ($2).',
 'newmessageslink'         => 'mèssâjos novéls',
 'newmessagesdifflink'     => 'dèrriére modificacion',
-'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls dessus $1',
+'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls dessus $1.',
 'editsection'             => 'modifiar',
 'editold'                 => 'modifiar',
 'editsectionhint'         => 'Modifiar la sèccion : $1',
@@ -304,6 +304,10 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|yona modificacion èfaciê|$1 modificacions èfaciês}}',
 'feedlinks'               => 'Flux :',
 'feed-invalid'            => 'Tipo de flux envalido.',
+'site-rss-feed'           => 'Flux RSS de $1',
+'site-atom-feed'          => 'Flux Atom de $1',
+'page-rss-feed'           => 'Flux RSS de « $1 »',
+'page-atom-feed'          => 'Flux Atom de « $1 »',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Articllo',
@@ -335,7 +339,7 @@ La dèrriére requéta trètâ per la bâsa de balyês ére :
 <blockquote><tt>$1</tt></blockquote>
 dês la fonccion « <tt>$2</tt> ».
 MySQL at retornâ l’èrror « <tt>$3 : $4</tt> ».',
-'dberrortextcl'        => 'Una requéta a la bâsa de balyês compôrte una èrror de sintaxa.
+'dberrortextcl'        => 'Una requéta a la bâsa de balyês presente una èrror de sintaxa.
 La dèrriére requéta emmandâ ére :
 « $1 »
 fêta per la fonccion « $2 ».
@@ -398,7 +402,7 @@ $2',
 Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben vos tornar conèctar desot lo mémo nom ou un ôtro.',
 'welcomecreation'            => '== Benvegnua, $1 ! ==
 
-Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres Prèferences dessus {{SITENAME}}.',
+Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres prèferences dessus {{SITENAME}}.',
 'loginpagetitle'             => 'Conèccion',
 'yourname'                   => 'Voutron nom d’utilisator :',
 'yourpassword'               => 'Voutron mot de pâssa :',
@@ -627,6 +631,9 @@ Demandâd-vos s’o est verément convegnâblo de la recrèar en vos rèferent u
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vos pouede pas crèar un compto.',
+'cantcreateaccount-text' => "La crèacion de compto dês ceta adrèce IP (<b>$1</b>) at étâ blocâ per [[User:$3|$3]].
+
+La rêson balyê per $3 ére ''$2''.",
 
 # History pages
 'revhistory'          => 'Historico de la pâge et lista des ôtors.',
@@ -711,6 +718,7 @@ a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèr
 Consultâd la [[Special:Ipblocklist|lista des comptos blocâs]] por la lista des blocâjos en cors.',
 
 # Diffs
+'history-title'             => 'Historico de les vèrsions de « $1 »',
 'difference'                => '(Difèrences entre les vèrsions)',
 'loadingrev'                => 'chargement de la vielye vèrsion por comparèson',
 'lineno'                    => 'Legne $1 :',
@@ -809,7 +817,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 
 # User rights
 'userrights-lookup-user'      => 'Maneyance des drêts utilisator',
-'userrights-user-editname'    => 'Entrar un nom d’utilisator :',
+'userrights-user-editname'    => 'Entrâd un nom d’utilisator :',
 'editusergroup'               => 'Modificacion des groupes d’utilisators',
 'userrights-editusergroup'    => 'Èditar los groupes de l’utilisator',
 'saveusergroups'              => 'Sôvar los groupes d’utilisators',
@@ -936,6 +944,10 @@ Volyéd controlar lo fichiér.',
 'destfilename'                => 'Nom desot loquint lo fichiér serat enregistrâ ',
 'watchthisupload'             => 'Siuvre ceti fichiér',
 'filewasdeleted'              => 'Un fichiér avouéc ceti nom at ja étâ copiyê, et pués suprimâ. Vos devriâd controlar lo $1 devant que fâre una novèla copia.',
+'upload-wasdeleted'           => "'''Atencion : vos éte aprés importar un fichiér qu’at ja étâ suprimâ dês devant.'''
+
+Vos devriâd considèrar s’o est convegnâblo de continuar l’impôrt de cél fichiér. Lo jornal de les suprèssions vos barat los èlèments d’enformacion.",
+'filename-bad-prefix'         => 'Lo nom du fichiér que vos importâd comence per <strong>« $1 »</strong> qu’est un nom g·ènèralament balyê per los aparèlys-fotô numericos et que dècrit pas lo fichiér. Volyéd chouèsir/cièrdre un nom de fichiér dècrisent voutron fichiér.',
 
 'upload-proto-error'      => 'Protocolo fôx',
 'upload-proto-error-text' => 'L’impôrt requerét des URLs comencient per <code>http://</code> ou ben <code>ftp://</code>.',
@@ -1042,19 +1054,19 @@ Volyéd controlar lo fichiér.',
 'statistics'             => 'Statistiques',
 'sitestats'              => 'Statistiques de {{SITENAME}}',
 'userstats'              => 'Statistiques utilisator',
-'sitestatstext'          => "La bâsa de balyês contint ora {{PLURAL:$1|<b>1</b> pâge|<b>$1</b> pâges}}.
+'sitestatstext'          => "Orendrêt, la bâsa de balyês contint {{PLURAL:$1|'''1''' pâge|'''$1''' pâges}}.
 
-Ceti chifro encllut les pâges de discussion, les pâges sur {{SITENAME}}, les pâges côrtes (« començons »), les pâges de redirèccion, et pués d’ôtres pâges que pôvont de sûr pas étre considèrâs coment des articllos.
-S’on èxcllut celes pâges, réste {{PLURAL:$2|<b>1</b> pâge qu’est|<b>$2</b> pâges que sont}} probâblament {{PLURAL:$2|un veretâblo articllo|de veretâblos articllos}}.<p>
+Ceti chifro encllut les pâges de discussion, les pâges sur {{SITENAME}}, les pâges côrtes (« començons »), les pâges de redirèccion, et pués d’ôtres pâges que sont pas considèrâs coment des articllos.
+S’on èxcllut celes pâges, réste {{PLURAL:$2|'''1''' pâge qu’est probâblament un veretâblo articllo|'''$2''' pâges que sont probâblament de veretâblos articllos}}.<p>
 
-'''$8''' {{PLURAL:$8|fichiér at étâ tèlèchargiê|fichiérs ont étâ tèlèchargiês}}.
+{{PLURAL:$8|'''$8''' fichiér at étâ tèlèchargiê|'''$8''' fichiérs ont étâ tèlèchargiês}}.
 
-{{PLURAL:$3|<b>1</b> pâge at étâ consultâ|<b>$3</b> pâges ont étâ consultâs}} et {{PLURAL:$4|<b>1</b> pâge modifiâ|<b>$4</b> pâges modifiâs}} dês la crèacion de {{SITENAME}}.
+{{PLURAL:$3|'''$3''' pâge at étâ consultâ|'''$3''' pâges ont étâ consultâs}} et {{PLURAL:$4|'''$4''' pâge modifiâ|'''$4''' pâges modifiâs}} dês la crèacion de {{SITENAME}}.
 
-Cen reprèsente una moyena de '''$5''' modificacions per pâge et de '''$6''' consultes por una modificacion.</p>
+Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modificacions}} per pâge et de {{PLURAL:$6|'''$6''' consulta|'''$6''' consultes}} por una modificacion.</p>
 
-<p>Y at ora '''$7''' {{PLURAL:$7|ovrâjo|ovrâjos}} dens la [http://meta.wikimedia.org/wiki/Help:Job_queue fela d’atenta des travâlys].</p>",
-'userstatstext'          => "Y at {{PLURAL:$1|<b>1</b> utilisator enregistrâ|<b>$1</b> utilisators enregistrâs}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5 (vêre $3).",
+<p>Y at ora {{PLURAL:$7|'''$7''' ovrâjo|'''$7''' ovrâjos}} dens la [http://meta.wikimedia.org/wiki/Help:Job_queue fela d’atenta des travâlys].</p>",
+'userstatstext'          => "Y at {{PLURAL:$1|'''1''' [[Special:Listusers|utilisator enregistrâ]]|'''$1''' [[Special:Listusers|utilisators enregistrâs]]}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5 (vêre $3).",
 'statistics-mostpopular' => 'Pâges les ples consultâs',
 
 'disambiguations'      => 'Pâges d’homonimia',
@@ -1408,8 +1420,8 @@ $1',
 
 'sp-contributions-newest'      => 'Dèrriéres contribucions',
 'sp-contributions-oldest'      => 'Premiéres contribucions',
-'sp-contributions-newer'       => '$1 prècèdents',
-'sp-contributions-older'       => '$1 siuvents',
+'sp-contributions-newer'       => '$1 prècèdentes',
+'sp-contributions-older'       => '$1 siuventes',
 'sp-contributions-newbies'     => 'Montrar ren que les contribucions des novéls utilisators',
 'sp-contributions-newbies-sub' => 'Lista de les contribucions des novéls utilisators. Les pâges qu’ont étâ suprimâs sont pas afichiês.',
 'sp-contributions-blocklog'    => 'Jornal des blocâjos',
@@ -1422,6 +1434,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Pâges liyês',
 'whatlinkshere-title' => 'Pâges liyês a $1',
+'whatlinkshere-page'  => 'Pâge :',
 'linklistsub'         => '(Lista de lims)',
 'linkshere'           => 'Les pâges ce-desot contegnont un lim vers <b>[[:$1]]</b> :',
 'nolinkshere'         => 'Niona pâge contint de lim vers <b>[[:$1]]</b>.',
@@ -1569,7 +1582,7 @@ Dens cél câs, vos devréd renomar ou fusionar la pâge manuèlament se vos lo 
 'pagemovedsub'            => 'Renomâjo reussi',
 'movepage-moved'          => "<big>'''La pâge « $1 » <small>([[Special:Whatlinkshere/$3|lims]])</small> at étâ renomâ en « $2 » <small>([[Special:Whatlinkshere/$4|lims]])</small>.'''</big>
 
-Volyéd controlar qu’ègziste gins de redirèccion dobla ou câssa, et corregiéd cetes s’o fôt.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+Volyéd controlar qu’ègziste gins de redirèccion dobla ou câssa, et corregiéd cetes se fôt.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ègziste ja un articllo portent cél titro, ou ben lo titro
 que vos éd chouèsi/cièrdu est pas valido.
 Volyéd nen chouèsir/cièrdre un ôtro.',
@@ -1683,6 +1696,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-ca-watch'                => 'Apondéd ceta pâge a voutra lista de siuvu.',
 'tooltip-ca-unwatch'              => 'Reteriéd ceta pâge de voutra lista de siuvu.',
 'tooltip-search'                  => 'Chèrchiér dens {{SITENAME}}',
+'tooltip-search-go'               => 'Alar vers una pâge portent justament ceti nom s’ègziste.',
+'tooltip-search-fulltext'         => 'Rechèrchiér les pâges presentent ceti tèxte.',
 'tooltip-p-logo'                  => 'Pâge principâla',
 'tooltip-n-mainpage'              => 'Visitâd la pâge principâla.',
 'tooltip-n-portal'                => 'A propôs du projèt',
@@ -1725,7 +1740,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'monobook.css' => '/* Lo css placiê ique afècterat los utilisators de l’aparence Monobook. */',
 
 # Scripts
-'common.js'   => '/* Quint que seye JavaScript ique serat chargiê por tôs los utilisators et por châque pâge arrevâ. */',
+'common.js'   => '/* Quint que seye lo JavaScript placiê ique serat chargiê por tôs los utilisators et por châque pâge accèdâ. */',
 'monobook.js' => '/* Dèplaciê vers [[MediaWiki:Common.js]]. */',
 
 # Metadata
@@ -1822,7 +1837,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 # Bad image list
 'bad_image_list' => 'Lo format est lo siuvent :
 
-Solament les legnes comencient per una * sont prêses en compto. Lo premiér lim de la legne est celi vers una môvésa émâge.
+Solament les legnes comencient per * sont prêses en compto. Lo premiér lim de la legne est celi vers una môvésa émâge.
 Los ôtros lims sur la méma legne sont considèrâs coment des èxcèpcions, per ègzemplo des articllos sur losquints l’émâge dêt aparêtre.',
 
 # Metadata
@@ -2166,7 +2181,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev'   => '← pâge prècèdenta',
 'imgmultipagenext'   => 'pâge siuventa →',
-'imgmultigo'         => 'Arrevar !',
+'imgmultigo'         => 'Accèdar !',
 'imgmultigotopre'    => 'Arrevar a la pâge',
 'imgmultiparseerror' => 'Ceti fichiér émâge est aparament corrompu ou fôx, et {{SITENAME}} pôt pas fornir una lista de les pâges.',
 
@@ -2178,12 +2193,12 @@ $1',
 'table_pager_first'        => 'Premiére pâge',
 'table_pager_last'         => 'Dèrriére pâge',
 'table_pager_limit'        => 'Montrar $1 èlèments per pâge',
-'table_pager_limit_submit' => 'Arrevar',
+'table_pager_limit_submit' => 'Accèdar',
 'table_pager_empty'        => 'Nion rèsultat',
 
 # Auto-summaries
 'autosumm-blank'   => 'Rèsumâ ôtomatico : blanchiment',
-'autosumm-replace' => 'Rèsumâ ôtomatico : contegnu remplaciê per « $1 »',
+'autosumm-replace' => 'Rèsumâ ôtomatico : contegnu remplaciê per « $1 ».',
 'autoredircomment' => 'Redirèccion vers [[$1]]',
 'autosumm-new'     => 'Novèla pâge : $1',
 

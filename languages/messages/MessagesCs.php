@@ -1,8 +1,15 @@
 <?php
-/** Czech (česky)
+/** Czech (Česky)
  *
  * @addtogroup Language
+ *
+ * @author Li-sung
+ * @author G - ג
+ * @author Helix84
+ * @author Danny B.
+ * @author Martin Kozák
  */
+
 $fallback8bitEncoding = 'cp1250';
 
 $namespaceNames = array(
@@ -279,7 +286,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategorie',
-'pagecategories'        => 'Kategorie',
+'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorie|Kategorie}}',
 'category_header'       => 'Články v kategorii „$1“',
 'subcategories'         => 'Podkategorie',
 'category-media-header' => 'Soubory v kategorii „$1“',
@@ -766,7 +773,7 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'deletedrev'          => '[smazáno]',
 'histfirst'           => 'Nejstarší',
 'histlast'            => 'Nejnovější',
-'historysize'         => '($1 bajtů)',
+'historysize'         => '({{PLURAL:$1|1 bajt|$1 bajty|$1 bajtů}})',
 'historyempty'        => '(prázdné)',
 
 # Revision feed
@@ -1257,6 +1264,8 @@ Aktuální délka fronty údržby je '''$7'''.",
 'movethispage'            => 'Přesunout stránku',
 'unusedimagestext'        => '<p>Jiné WWW stránky mohou odkazovat přímo pomocí URL, na takové odkazy se v tomto seznamu nebere zřetel.',
 'unusedcategoriestext'    => 'Následující kategorie mají své stránky, ačkoli je žádná stránka ani jiná kategorie nepoužívá.',
+'notargettitle'           => 'Bez cílové stránky',
+'notargettext'            => 'Této funkci musíte určit cílovou stránku nebo uživatele.',
 
 # Book sources
 'booksources'               => 'Zdroje knih',
@@ -1532,8 +1541,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Odkazuje sem',
 'whatlinkshere-title' => 'Stránky, které odkazují na $1',
-'notargettitle'       => 'Bez cílové stránky',
-'notargettext'        => 'Této funkci musíte určit cílovou stránku nebo uživatele.',
 'linklistsub'         => '(Seznam odkazů)',
 'linkshere'           => "Na '''[[:$1]]''' odkazují tyto stránky:",
 'nolinkshere'         => "Žádná stránka na '''[[:$1]]''' neodkazuje.",
@@ -2306,8 +2313,8 @@ $1',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Odstraněna položka|Ostraněny $1 položky|Odstraněno $1 položek}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Zobrazit změny sledovaných stránek',
-'watchlisttools-edit'  => 'Zobrazit a editovat seznam sledovaných stránek',
-'watchlisttools-raw'   => 'Editovat textový soubor sledovaných stránek',
+'watchlisttools-view' => 'Zobrazit změny sledovaných stránek',
+'watchlisttools-edit' => 'Zobrazit a editovat seznam sledovaných stránek',
+'watchlisttools-raw'  => 'Editovat textový soubor sledovaných stránek',
 
 );

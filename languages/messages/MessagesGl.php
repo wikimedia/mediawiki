@@ -556,10 +556,10 @@ Se a garda, perderanse os cambios realizados tras esta revisión.</strong>',
 Ao mesmo tempo, prométanos que o que escribiu é da súa autoría ou que está copiado dun recurso do dominio público ou que permite unha liberdade semellante.
 <strong>NON ENVÍE MATERIAL CON DEREITOS DE AUTOR SEN PERMISO!</strong>',
 'copyrightwarning2'         => 'Decátese de que todas as súas contribucións a {{SITENAME}}
-poden ser editadas, alteradas ou removidas por outras persoas.
+poden ser editadas, alteradas ou eliminadas por outras persoas.
 Se non quere que os seus escritos sexan editados sen piedade, non os envíe.
 <br />
-Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante. (ver $1 para detalles). 
+Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (ver $1 para detalles). 
 <strong>NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!</strong>',
 'longpagewarning'           => 'ATENCIÓN: Esta páxina ten $1 kilobytes; algúns navegadores poden ter problemas editando páxinas de 32kb ou máis.
 Por favor, considere partir a páxina en seccións máis pequenas.',
