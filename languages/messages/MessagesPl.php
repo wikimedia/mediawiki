@@ -328,6 +328,7 @@ $messages = array(
 'disclaimerpage'    => '{{ns:Project}}:Informacje_prawne',
 'edithelp'          => 'Pomoc w edycji',
 'edithelppage'      => '{{ns:Project}}:Jak edytować stronę',
+'faq'               => 'FAQ',
 'faqpage'           => '{{ns:Project}}:FAQ',
 'helppage'          => '{{ns:Project}}:Pomoc',
 'mainpage'          => 'Strona główna',
@@ -346,8 +347,9 @@ $messages = array(
 'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
 
 'versionrequired'     => 'Wymagana MediaWiki w wersji $1',
-'versionrequiredtext' => 'Wymagana jest MediaWiki w wersji $1 aby skorzystać z tej strony. Zobacz [[Special:Version]]',
+'versionrequiredtext' => 'Wymagane jest MediaWiki w wersji $1 aby skorzystać z tej strony. Zobacz [[Special:Version]]',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Źródło: "$1"',
 'youhavenewmessages'      => 'Masz $1 ($2).',
 'newmessageslink'         => 'nowe wiadomości',
@@ -364,6 +366,10 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|jedną skasowaną wersję|skasowane wersje (w sumie $1)}}',
 'feedlinks'               => 'Kanały:',
 'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
+'site-rss-feed'           => 'Kanał RSS $1',
+'site-atom-feed'          => 'Kanał Atom $1',
+'page-rss-feed'           => 'Kanał RSS "$1"',
+'page-atom-feed'          => 'Kanał Atom "$1"',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artykuł',
@@ -421,6 +427,7 @@ administratorowi podając także powyższy adres.',
 'filedeleteerror'      => 'Nie można skasować pliku "$1".',
 'directorycreateerror' => 'Nie udało się utworzyć katalogu "$1".',
 'filenotfound'         => 'Nie można znaleźć pliku "$1".',
+'fileexistserror'      => 'Nie udało się zapisać do pliku "$1": plik istnieje',
 'unexpected'           => 'Niespodziewana wartość: "$1"="$2".',
 'formerror'            => 'Błąd: nie można wysłać formularza',
 'badarticleerror'      => 'Dla tej strony ta operacja nie może być wykonana.',
@@ -484,6 +491,7 @@ Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:Specia
 'yournick'                   => 'Twój podpis',
 'badsig'                     => 'Błędny podpis, sprawdź tagi HTML.',
 'badsiglength'               => 'Nazwa użytkownika jest zbyt długa. Maksymalna jej długość to $1 znaków.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => '* Imię i nazwisko (opcjonalnie): jeśli zdecydujesz się je podać, zostaną użyte, aby zapewnić Twojej pracy atrybucję.',
 'loginerror'                 => 'Błąd logowania',
 'prefs-help-email'           => '* E-mail (opcjonalnie): Podanie e-maila pozwala innym skontaktować się z tobą za pośrednictwem twojej strony użytkownika
@@ -605,7 +613,7 @@ Identyfikator Twojej blokady to $5. Należy go dołączyć do wysyłanych zapyta
 'whitelistedittext'         => 'Musisz $1 żeby móc edytować artykuły.',
 'whitelistreadtitle'        => 'Przed przeczytaniem musisz się zalogować',
 'whitelistreadtext'         => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]] żeby czytać strony.',
-'whitelistacctitle'         => 'Nie jesteś dopuszczony do utworzenia konta',
+'whitelistacctitle'         => 'Nie wolno ci zakładać konta',
 'whitelistacctext'          => 'Aby móc zakładać konta na tej Wiki musisz [[{{ns:Special}}:Userlogin|zalogować się]] i mieć przyznane specjalne prawa.',
 'confirmedittitle'          => 'Wymagane potwierdzenie e-maila by móc edytować',
 'confirmedittext'           => 'Musisz podać i potwierdzić swój e-mail by móc edytować. Możesz to zrobić w [[{{ns:Special}}:Preferences|swoich ustawieniach]].',
@@ -670,7 +678,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'edittools'                 => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
 'nocreatetitle'             => 'Ograniczono tworzenie stron',
 'nocreatetext'              => 'Ograniczono możliwość tworzenia nowych stron. Możesz edytować istniejące strony lub [[{{ns:Special}}:Userlogin|zalogować się albo utworzyć nowe konto]].',
-'nocreate-loggedin'         => 'Ni9e masz uprawnień do tworzenia nowych stron w tym serwisie wiki.',
+'nocreate-loggedin'         => 'Nie masz uprawnień do tworzenia nowych stron w tym serwisie wiki.',
 'permissionserrors'         => 'Błędy uprawnień',
 'permissionserrorstext'     => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
 'recreate-deleted-warn'     => "'''Uwaga: Próbujesz odtworzyć uprzednio skasowaną stronę.'''
@@ -739,6 +747,7 @@ Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{PAGENAM
 'revdelete-nooldid-title'     => 'Nie wybrano wersji',
 'revdelete-nooldid-text'      => 'Nie wybrano wersji na których ma zostać wykonana ta operacja.',
 'revdelete-selected'          => '{{PLURAL:$2|Wybrana wersja|Wybrane wersje}} strony [[:$1]]:',
+'logdelete-selected'          => "{{PLURAL:$2|Wybrane zdarzenie z rejestru|Wybrane zdarzenia z rejestru}} dla '''$1:'''",
 'revdelete-text'              => 'Usunięte wersje będą nadal widoczne w historii strony ale ich treść nie będzie publicznie dostępna.
 
 Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je odtworzyć poprzez ten sam interfejs, chyba że operator serwisu nałożył dodatkowe ograniczenia.',
@@ -751,8 +760,14 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'revdelete-log'               => 'Komentarz:',
 'revdelete-submit'            => 'Zaakceptuj dla wybranych wersji',
 'revdelete-logentry'          => 'zmieniono widoczność wersji w [[$1]]',
+'logdelete-logentry'          => 'zmieniono widoczność zdarzeń dla [[$1]]',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|wersję|wersje}} ustawiono w tryb $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|zdarzenie|zdarzenia}} dla [[$3]] przestawiono w tryb $2',
+'revdelete-success'           => 'Pomyślnie zmieniono widoczność wersji.',
+'logdelete-success'           => 'Pomyślnie zmieniono widoczność zdarzeń.',
 
 # Diffs
+'history-title'             => 'Historia edycji "$1"',
 'difference'                => '(Różnice między wersjami)',
 'loadingrev'                => 'pobieranie wersji w celu porównania',
 'lineno'                    => 'Linia $1:',
@@ -829,6 +844,7 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'resultsperpage'           => 'Liczba wyników na stronie',
 'contextlines'             => 'Pierwsze wiersze artykułu',
 'contextchars'             => 'Litery kontekstu w linijce',
+'stub-threshold'           => 'Maksymalny rozmiar artykułu oznaczanego jako <a href="#" class="stub">stub (zalążek)</a>',
 'recentchangesdays'        => 'Liczba dni do pokazania w ostatnich zmianach:',
 'recentchangescount'       => 'Liczba pozycji na liście ostatnich zmian:',
 'savedprefs'               => 'Twoje preferencje zostały zapisane.',
@@ -864,6 +880,7 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'group-bureaucrat' => 'Biurokraci',
 'group-all'        => '(wszyscy)',
 
+'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Administrator',
 'group-bureaucrat-member' => 'Biurokrata',
 
@@ -893,15 +910,20 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'rcshowhidemine'                    => '$1 moje edycje',
 'rclinks'                           => 'Wyświetl ostatnie $1 zmian w ciągu ostatnich $2 dni.<br />$3',
 'diff'                              => 'różn',
+'hist'                              => 'hist',
 'hide'                              => 'ukryj',
 'show'                              => 'pokaż',
 'minoreditletter'                   => 'd',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|obserwujący użytkownik|obserwujących użytkowników}}/s]',
 'rc_categories'                     => 'Ogranicz do kategorii (oddzielaj za pomocą "|")',
 'rc_categories_any'                 => 'Wszystkie',
+'newsectionsummary'                 => '/* $1 */ nowa sekcja',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Zmiany w dolinkowanych',
+'recentchangeslinked-title'    => 'Zmiany w stronach linkujących do $1',
 'recentchangeslinked-noresult' => 'Nie było żadnych zmian na dolinkowanych stronych w wybranym okresie.',
 'recentchangeslinked-summary'  => "Ta strona specjalna zawiera listę ostatnich zmian dokonanych na stronach dolinkowanych. Strony znajdujące się na Twojej liście obserwowanych zostały '''zagrubione'''.",
 
@@ -952,6 +974,7 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 'uploadwarning'               => 'Ostrzeżenie o przesyłce',
 'savefile'                    => 'Zapisz plik',
 'uploadedimage'               => 'przesłano "[[$1]]"',
+'overwroteimage'              => 'przesłano nową wersję "[[$1]]"',
 'uploaddisabled'              => 'Przesyłanie plików wyłączone',
 'uploaddisabledtext'          => 'Możliwość przesyłania plików została wyłączona.',
 'uploadscripted'              => 'Ten plik zawiera kod HTML lub skrypt który może zostać błędnie zinterpretowany przez przeglądarkę internetową.',
@@ -961,6 +984,11 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 'destfilename'                => 'Nazwa docelowa',
 'watchthisupload'             => 'Obserwuj tę stronę',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został skasowany. Zanim załadujesz go ponownie, sprawdź $1.',
+'upload-wasdeleted'           => "'''Ostrzeżenie: Ładujesz plik, który był poprzednio usunięty.'''
+
+Zastanów się, czy powinno się ładować ten plik.
+Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
+'filename-bad-prefix'         => 'Nazwa pliku, który ładujesz, zaczyna się od <strong>"$1"</strong> &ndash; jest to nazwa zazwyczaj przypisywana automatycznie przez cyfrowe aparaty fotograficzne, która nie daje żadnych informacji o zawartości pliku. Prosimy o wybranie bardziej zrozumiałej nazwy pliku.',
 
 'upload-proto-error'      => 'Nieprawidłowy protokół',
 'upload-proto-error-text' => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się na <code>http://</code> lub <code>ftp://</code>.',
@@ -994,6 +1022,11 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 'imgdesc'                   => 'opis',
 'imgfile'                   => 'plik',
 'filehist'                  => 'Historia pliku',
+'filehist-help'             => 'Kliknij na datę/czas, aby zobaczyć, jak plik wyglądał w tym czasie.',
+'filehist-deleteall'        => 'usuń wszystkie',
+'filehist-deleteone'        => 'usuń tę wersję',
+'filehist-revert'           => 'cofnij',
+'filehist-current'          => 'aktualny',
 'filehist-datetime'         => 'Data/czas',
 'filehist-user'             => 'Użytkownik',
 'filehist-dimensions'       => 'Wymiary',
@@ -1002,6 +1035,7 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 'imagelinks'                => 'Odnośniki do pliku',
 'linkstoimage'              => 'Następujące strony odwołują się do tego pliku:',
 'nolinkstoimage'            => 'Żadna strona nie odwołuje się do tego pliku.',
+'sharedupload'              => 'Ten plik znajduje się na wspólnym serwerze plików i może być używany na innych projektach.',
 'shareduploadwiki'          => 'Zobacz $1 aby dowiedzieć się więcej.',
 'shareduploadwiki-linktext' => 'stronę opisu grafiki',
 'noimage'                   => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
@@ -1016,10 +1050,12 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 
 # File reversion
 'filerevert'                => 'Przywracanie $1',
+'filerevert-legend'         => 'Przywracanie poprzedniej wersji pliku',
 'filerevert-intro'          => '<span class="plainlinks">Zamierzasz przywrócić \'\'\'[[Media:$1|$1]]\'\'\' do wersji z [$4 $3, $2].</span>',
 'filerevert-comment'        => 'Komentarz:',
 'filerevert-defaultcomment' => 'Przywrócono wersję z $2, $1',
 'filerevert-submit'         => 'Przywróć',
+'filerevert-success'        => '<span class="plainlinks">Plik \'\'\'[[Media:$1|$1]]\'\'\' został cofnięty do [wersji $4 z $3, $2].</span>',
 'filerevert-badversion'     => 'Nie ma poprzedniej lokalnej wersji tego pliku z podaną datą.',
 
 # File deletion
@@ -1169,6 +1205,7 @@ Rozmiar [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''\$7
 'specialloguserlabel'  => 'Użytkownik:',
 'speciallogtitlelabel' => 'Tytuł:',
 'log'                  => 'Rejestry operacji',
+'all-logs-page'        => 'Wszystkie rejestry',
 'log-search-legend'    => 'Szukaj w rejestrze',
 'log-search-submit'    => 'Szukaj',
 'alllogstext'          => 'Połączone rejestry przesłanych plików, skasowanych stron, zabezpieczania, blokowania i nadawania uprawnień. Możesz zawęzić wynik przez wybranie typu rejestru, nazwy użytkownika albo nazwy interesującej Cię strony.',
@@ -1348,8 +1385,8 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'pagesize'                    => '(bajtów)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Edytuj',
-'restriction-move' => 'Przenieś',
+'restriction-edit' => 'Edycja',
+'restriction-move' => 'Przeniesienie',
 
 # Restriction levels
 'restriction-level-sysop'         => 'pełne zabezpieczenie',
@@ -1424,6 +1461,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Linkujące',
 'whatlinkshere-title' => 'Strony linkujące do $1',
+'whatlinkshere-page'  => 'Strona:',
 'linklistsub'         => '(Lista linków)',
 'linkshere'           => "Następujące strony odwołują się do '''[[:$1]]''':",
 'nolinkshere'         => "Żadna strona nie odwołuje się do '''[[:$1]]'''.",
@@ -1432,6 +1470,7 @@ $1',
 'istemplate'          => 'dołączony szablon',
 'whatlinkshere-prev'  => '{{PLURAL:$1|poprzednie|poprzednie $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|następne|następne $1}}',
+'whatlinkshere-links' => '← linkujące',
 
 # Block/unblock
 'blockip'                     => 'Zablokuj użytkownika',
@@ -1486,6 +1525,7 @@ $1',
 'createaccountblock'          => 'blokada tworzenia kont',
 'emailblock'                  => 'zablokowany e-mail',
 'ipblocklist-empty'           => 'Lista blokad jest pusta.',
+'ipblocklist-no-results'      => 'Podany adres IP lub użytkownik nie jest zablokowany.',
 'blocklink'                   => 'zablokuj',
 'unblocklink'                 => 'odblokuj',
 'contribslink'                => 'wkład',
@@ -1527,7 +1567,7 @@ $1',
 'databasenotlocked'   => 'Baza danych nie jest zablokowana.',
 
 # Move page
-'movepage'                => 'Przenieś stronę',
+'movepage'                => 'Przeniesienie strony',
 'movepagetext'            => "Za pomocą poniższego formularza zmienisz nazwę strony, przenosząc jednocześnie jej historię.
 Pod starym tytułem zostanie umieszczona strona przekierowująca. Linki do starego tytułu pozostaną niezmienione.
 Upewnij się, że uwzględniasz podwójne lub zerwane przekierowania. Odpowiadasz za to, żeby linki odnosiły się do właściwych artykułów!
@@ -1543,7 +1583,7 @@ Może to być drastyczna lub nieprzewidywalna zmiana w przypadku popularnych str
 *nie przenosisz strony do innej przestrzeni nazw
 *nie istnieje strona dyskusji o nowej nazwie
 W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączyć z istniejącym, ręcznie. Możesz też zrezygnować z przeniesienia dyskusji (poniższy ''checkbox'').",
-'movearticle'             => 'Przenieś stronę',
+'movearticle'             => 'Przeniesienie strony',
 'movenologin'             => 'Brak logowania',
 'movenologintext'         => 'Musisz być zarejestrowanym i [[{{ns:Special}}:Userlogin|zalogowanym]] użytkownikiem aby móc przenieść stronę.',
 'movenotallowed'          => 'Nie masz uprawnień do przenoszenia stron w tym serwisie wiki.',
@@ -1586,6 +1626,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'export-submit'     => 'Eksportuj',
 'export-addcattext' => 'Dodaj strony z kategorii:',
 'export-addcat'     => 'Dodaj',
+'export-download'   => 'Oferuj do zapisania jako plik',
 
 # Namespace 8 related
 'allmessages'               => 'Komunikaty',
@@ -1660,6 +1701,8 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'tooltip-ca-watch'                => 'Dodaj tę stronę do listy obserwowanych',
 'tooltip-ca-unwatch'              => 'Usuń tę stronę z listy obserwowanych',
 'tooltip-search'                  => 'Przeszukaj serwis {{SITENAME}}',
+'tooltip-search-go'               => 'Przejście do strony o dokładnie takiej nazwie (o ile istnieje)',
+'tooltip-search-fulltext'         => 'Szukanie wprowadzonego tekstu',
 'tooltip-p-logo'                  => 'Strona główna',
 'tooltip-n-mainpage'              => 'Zobacz stronę główną',
 'tooltip-n-portal'                => 'O projekcie, co możesz zrobić, gdzie możesz znaleźć informacje',
@@ -1677,10 +1720,11 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'tooltip-t-upload'                => 'Wyślij plik na serwer',
 'tooltip-t-specialpages'          => 'Lista wszystkich specjalnych stron',
 'tooltip-t-print'                 => 'Wersja do wydruku',
+'tooltip-t-permalink'             => 'Stały link do tej wersji strony',
 'tooltip-ca-nstab-main'           => 'Zobacz stronę artykułu',
 'tooltip-ca-nstab-user'           => 'Zobacz stronę osobistą użytkownika',
 'tooltip-ca-nstab-media'          => 'Pokaż stronę pliku',
-'tooltip-ca-nstab-special'        => 'To jest specjalna strona. Nie możesz jej edytować.',
+'tooltip-ca-nstab-special'        => 'To jest strona specjalna. Nie możesz jej edytować.',
 'tooltip-ca-nstab-project'        => 'Zobacz stronę projektu',
 'tooltip-ca-nstab-image'          => 'Zobacz stronę grafiki',
 'tooltip-ca-nstab-mediawiki'      => 'Zobacz komunikat systemowy',
@@ -1694,6 +1738,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'tooltip-compareselectedversions' => 'Zobacz różnice między dwoma wybranymi wersjami strony.',
 'tooltip-watch'                   => 'Dodaj tę stronę do listy obserwowanych',
 'tooltip-recreate'                => 'Odtworzono stronę pomimo jej wcześniejszego usunięcia.',
+'tooltip-upload'                  => 'Rozpoczęcie ładowania',
 
 # Stylesheets
 'common.css'   => '/* Umieszczony tutaj kod CSS zostanie zastosowany we wszystkich skórkach */',
@@ -1757,6 +1802,8 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'markedaspatrollederror'              => 'Nie można oznaczyć jako sprawdzone',
 'markedaspatrollederrortext'          => 'Musisz wybrać wersję żeby oznaczyć ją jako sprawdzoną.',
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako sprawdzone.',
+'nppatroldisabled'                    => 'Wyłączono patrolowanie nowych stron',
+'nppatroldisabledtext'                => 'Funkcja patrolowania nowych stron jest teraz wyłączona.',
 
 # Patrol log
 'patrol-log-page' => 'Patrolowane',
@@ -2078,6 +2125,7 @@ Sygnały Trackback dla tego artykułu:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Usuń])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback został usunięty.',
 
 # Delete conflict

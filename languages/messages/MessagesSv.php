@@ -426,7 +426,11 @@ MySQL returnerade felen "$3<tt>: $4</tt>".',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
 'readonlytext'         => 'Databasen är tillfälligt låst för ändringar, förmodligen på grund av rutinmässigt underhåll. Efter avslutat arbete kommer den att återgå till normalläge. Den utvecklare som skrivskyddade den har angivit följande anledning: <p>$1',
-'missingarticle'       => 'Databasen borde ha funnit sidan "$1", men det gjorde den inte. Den vanligaste orsaken till denna typ av fel är vanligen en utdaterad jämförelse mellan sidversioner (diff) eller en länk från versionshistoriken till en sida som raderats. Om inte något av detta stämmer, kan du ha hittat en bugg i mjukvaran. Rapportera gärna buggar direkt i [http://bugzilla.wikimedia.org/ Bugzilla]; du kan även posta dem på sidan för [[Project:Felrapporter|felrapporter]], eller kontakta en [[Project:Administratörer|administratör]] och be honom eller henne skicka informationen vidare. Oavsett vilket av alternativen du väljer, notera url:en (webbadressen).',
+'missingarticle'       => 'Databasen borde ha funnit sidan "$1", men det gjorde den inte.
+
+Den vanligaste orsaken till denna typ av fel är en utdaterad jämförelse mellan sidversioner (diff) eller en länk från versionshistoriken till en sida som raderats.
+
+Om inte så är fallet, kan du ha hittat en bugg i mjukvaran. Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
@@ -585,12 +589,17 @@ Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt ga
 'summary-preview'           => 'Sammanfattningsförhandsgranskning',
 'subject-preview'           => 'Rubrikförhandsgranskning',
 'blockedtitle'              => 'Användaren är blockerad',
-'blockedtext'               => "<big>'''Ditt användarnamn eller IP-adress har blivit blockerat.'''</big>
+'blockedtext'               => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.</big>'''
 
-Blockeringen utfördes av $1, som uppgav denna anledning: ''$2''
+Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
-Du kan kontakta $1 eller någon annan [[{{MediaWiki:grouppage-sysop}}|administratör]] för att diskutera blockeringen.
-Såvida du inte uppgivit någon e-postadress i dina [[Special:Preferences|inställningar]], kan du inte amvända wikimail till detta. Din nuvarande IP-adress är $3, och blockeringens ID-nummer är #$5. Uppge minst en av dessa om du vill diskutera blockeringen.",
+* Blockeringen startade $8
+* Blockeringen gäller till $6.
+* Blockeringen var avsedd för $7.
+
+Du kan kontakta $1 eller någon annan av [[{{MediaWiki:grouppage-sysop}}|administratörerna]] för att diskutera blockeringen. Om du är inloggad och har uppgivit en e-postadress i dina inställningar så kan du använda funktionen 'skicka e-post till den här användaren', såvida du inte blivit blockerad från funktionen.
+
+Din IP-adress är $3 och blockerings-ID är #$5. Vänligen ange IP-adress eller blockerings-ID i alla förfrågningar som du gör i ärendet.",
 'autoblockedtext'           => 'Din IP-adress har blockerats automatiskt eftersom den har använts av en annan användare som blockerats av $1.
 Motiveringen av blockeringen var:
 
@@ -622,10 +631,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'accmailtitle'              => 'Lösenordet är skickat.',
 'accmailtext'               => "Lösenordet för '$1' har skickats till $2.",
 'newarticle'                => '(Ny)',
-'newarticletext'            => 'Du har klickat på en röd länk, en sida som inte finns ännu. 
-Du kan skapa sidan genom att skriva vad du vet om ämnet i fältet nedan 
-(du kan läsa mer på [[Project:Help|hjälpsidan]]).
-Om du kom hit av misstag, så kan du bara trycka på "tillbaka" i din webbläsare.',
+'newarticletext'            => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
 'anontalkpagetext'          => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. [[{{SITENAME}}]] måste därför använda personens numeriska [[IP-adress]] för identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
 'noarticletext'             => "<div class=\"plainlinks\" style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} har inte någon artikel om \"{{PAGENAME}}\" ännu.'''<br />
 *Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera den här sidan]''' för att skapa en ny artikel.<br />
@@ -790,7 +796,7 @@ det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 
 # Search results
 'searchresults'         => 'Sökresultat',
-'searchresulttext'      => 'Läs mera om [[Project:Sökning|sökning på {{SITENAME}}]].',
+'searchresulttext'      => 'Se [[{{MediaWiki:helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
 'searchsubtitle'        => 'Du sökte efter [[:$1]]',
 'searchsubtitleinvalid' => 'För sökbegreppet $1',
 'noexactmatch'          => "'''Det finns ingen artikel med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
@@ -914,7 +920,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'recentchanges'                     => 'Senaste ändringarna',
 'recentchangestext'                 => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description'    => 'Följ de senaste ändringarna i wikin genom den här matningen.',
-'rcnote'                            => 'Nedan visas de senaste <strong>$1</strong> ändringarna under de senaste <strong>$2</strong> dagarna, per $3.',
+'rcnote'                            => "Nedan visas {{PLURAL:$1|den senaste '''1''' ändringen|de senaste '''$1''' ändringarna}} {{PLURAL:$2|den senaste dagen|de senaste <strong>$2</strong> dagarna}}, per $3.",
 'rcnotefrom'                        => 'Nedan visas de senaste <strong>$1</strong> ändringarna sedan <strong>$2</strong>.',
 'rclistfrom'                        => 'Visa ändringar efter $1',
 'rcshowhideminor'                   => '$1 mindre ändringar',
@@ -1131,11 +1137,11 @@ PICT # allmänt bildprefix
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistiksida',
 'userstats'              => 'Användarstatistik',
-'sitestatstext'          => "I databasen finns just nu <b>$1</b> sidor, inklusive diskussionssidor, sidor om {{SITENAME}}, korta stumpartiklar, omdirigeringssidor, och andra sidor som inte kan räknas som artiklar. Om man tar bort ovanstående, återstår <b>$2</b> riktiga artiklar.
+'sitestatstext'          => "I databasen finns just nu <b>$1</b> {{PLURAL:$1|sida|sidor}}, inklusive diskussionssidor, sidor om {{SITENAME}}, korta stumpartiklar, omdirigeringssidor, och andra sidor som inte kan räknas som artiklar. Om man tar bort ovanstående, återstår <b>$2</b> {{PLURAL:$2|riktig artikel|riktiga artiklar}}.
 
-'''$8''' filer har laddats upp.
+'''$8''' {{PLURAL:$8|fil|filer}} har laddats upp.
 
-Sedan denna wiki startades har sidor visats totalt <b>$3</b> gånger, och <b>$4</b> sidor har ändrats. Detta är i genomsnitt <b>$5</b> ändringar per sida, och <b>$6</b> sidvisningar per ändring.
+Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|gånger}}, och <b>$4</b> {{PLURAL:$4|sida|sidor}} har ändrats. Detta är i genomsnitt <b>$5</b> ändringar per sida, och <b>$6</b> sidvisningar per ändring.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Jobbkön]s längd är för tillfället '''$7'''.",
 'userstatstext'          => "Det finns '''$1''' {{PLURAL:$1|registrerad|registrerade}} [[Special:Listusers|användare]]. Av dem är '''$2''' (eller '''$4%''') $5.",
@@ -1606,7 +1612,11 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 
 # Move page
 'movepage'                => 'Flytta sida',
-'movepagetext'            => "'''Om en diskussionssida hör till sidan,''' kommer denna automatiskt att flyttas med såvida inte * flytten spänner över flera [[Project:Namnrymd|namnrymder]], eller * en diskussionssida redan finns på den tilltänkta destinationen, eller * rutan nedan är urklickad. Ibland är det önskvärt att flytta denna diskussionssida manuellt.",
+'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn. Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln; kontrollera därför om du skapar några dubbla eller trasiga omdirigeringar. Du bör också se till att länkar fortsätter att peka dit de ska.
+
+Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigiring till den gamla titeln och saknar annan versionshistorik. Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.
+
+'''VARNING!''' Att flytta en populär sida kan vara en drastisk och oväntad ändring; därför bör du vara säker på att du förstår konsekvenserna innan du fortsätter med flytten.",
 'movepagetalktext'        => "Diskussionssidan kommer att även den automatiskt flyttas '''om inte''':
 *Det redan finns en diskussionssida som inte är tom med det nya namnet, eller
 *Du avmarkerar rutan nedan.",
@@ -1829,6 +1839,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'markedaspatrollederror'              => 'Kan inte markera som patrullerad',
 'markedaspatrollederrortext'          => 'Det går inte att markera som patrullerad utan att ange version.',
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
+'nppatroldisabled'                    => 'Patrullering av nya sidor avaktiverad',
+'nppatroldisabledtext'                => 'Funktionen att patrullera nya sidor är för närvarande avstängd.',
 
 # Patrol log
 'patrol-log-page' => 'Patrulleringslogg',

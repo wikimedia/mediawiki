@@ -2,7 +2,18 @@
 /** Romanian (Română)
  *
  * @addtogroup Language
+ *
+ * @author Emily
+ * @author KlaudiuMihaila
+ * @author Laurap
+ * @author G - ג
+ * @author SCriBu
+ * @author Nike
+ * @author Gangleri
+ * @author Siebrand
+ * @author Teak
  */
+
 $skinNames = array(
 	'standard' => 'Normală',
 	'nostalgia' => 'Nostalgie'
@@ -163,8 +174,7 @@ pe titlul secţiunii (JavaScript)',
 'category-media-header' => 'Fişiere media în categoria "$1"',
 'category-empty'        => "''Această categorie nu conţine articole sau fişiere media.''",
 
-'mainpagetext'      => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
-'mainpagedocfooter' => 'Vezi [http://meta.wikimedia.org/wiki/MediaWiki_localisation documentaţia asupra adaptării interfeţei] şi [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Ghidul de utilizator] pentru ajutor la utilizare şi configurare.',
+'mainpagetext' => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
 
 'about'          => 'Despre',
 'article'        => 'Articol',
@@ -485,11 +495,11 @@ Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai cu
 
 :''$2''
 
-Adresa dumneavoastră IP este $3, iar identificatorul de blocare este #$5.<br/>
+Adresa dumneavoastră IP este $3, iar identificatorul de blocare este #$5.<br />
 Blocarea expiră la: $6<br />
 Intended blockee: $7
 
-Dacă nu înţelegeţi motivul blocării vă invităm să consultaţi [[Project:Blocare|regulamentul de blocare]]. În cazul în care vă consideraţi nedreptăţit îl puteţi contacta pe $1 sau pe unul dintre ceilalţi [[{{MediaWiki:grouppage-sysop}}|administratori]] pentru a explica situaţia.
+Dacă nu înţelegeţi motivul blocării vă invităm să consultaţi [[{{MediaWiki:policy-url}}|regulamentul de blocare]]. În cazul în care vă consideraţi nedreptăţit îl puteţi contacta pe $1 sau pe unul dintre ceilalţi [[{{MediaWiki:grouppage-sysop}}|administratori]] pentru a explica situaţia.
 
 '''Blocarea nu se referă la citirea paginilor {{SITENAME}}, ci doar la modificarea lor.''' 
 
@@ -525,7 +535,7 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 'accmailtext'               => "Parola pentru '$1' a fost trimisă la $2.",
 'newarticle'                => '(Nou)',
 'newarticletext'            => 'Ai ajuns la o pagină care nu există. Pentru a o crea, începe să scrii în caseta de mai jos (vezi [[{{MediaWiki:helppage}}|pagina de ajutor]] pentru mai multe informaţii). Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ului tău',
-'anontalkpagetext'          => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim [[adresă IP|adresa IP]] pentru a identifica această persoană. O adresă IP poate fi folosită în comun de mai mulţi utilizatori. Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:Userlogin|vă creaţi un cont sau să vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
+'anontalkpagetext'          => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim adresă IP pentru a identifica această persoană. O adresă IP poate fi folosită în comun de mai mulţi utilizatori. Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:Userlogin|vă creaţi un cont sau să vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
 'noarticletext'             => '{{SITENAME}} nu are încă un articol referitor la această pagină. Puteţi [[Special:Search/{{PAGENAME}}|căuta titlul paginii cu acest nume]] în alte pagini sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita această pagină].',
 'clearyourcache'            => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
 'usercssjsyoucanpreview'    => "<strong>Sfat:</strong> Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
@@ -561,7 +571,7 @@ Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistri
 'longpageerror'             => '<strong>EROARE: Textul pe care vrei să-l salvezi are $1 kilobytes,
 ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este posibilă.</strong>',
 'readonlywarning'           => '<strong>ATENŢIE! Baza de date a fost blocată pentru întreţinere, deci nu vei putea să salvezi editările în acest moment. Poţi copia textul într-un fişier text local pentru a modifica conţinutul în {{SITENAME}} când va fi posibil.</strong>',
-'protectedpagewarning'      => '<strong>ATENŢIE! Această pagină a fost protejată la scriere şi numai utilizatorii cu privilegii de administrator o pot modifica. Vă rugăm urmaţi sugestiile [[Project:Pagină protejată|despre pagini protejate]] când modificaţi.</strong>',
+'protectedpagewarning'      => '<strong>ATENŢIE! Această pagină a fost protejată la scriere şi numai utilizatorii cu privilegii de administrator o pot modifica. Vă rugăm urmaţi sugestiile [[Special:Protectedpages|despre pagini protejate]] când modificaţi.</strong>',
 'semiprotectedpagewarning'  => "'''Atenţie:''' Această pagină poate fi modificată numai de utilizatorii înregistraţi.",
 'cascadeprotectedwarning'   => "'''Atenţie:''' Această pagină a fost blocată astfel încât numai administratorii o pot modifica, deoarece este inclusă în {{PLURAL:$1|următoarea pagină protejată|următoarele pagini protejate}} în cascadă:",
 'templatesused'             => 'Formate folosite în această pagină:',
@@ -809,7 +819,7 @@ $3',
 'uploadnologintext'           => 'Trebuie să fiţi [[Special:Userlogin|autentificat]] pentru a putea trimite fişiere.',
 'upload_directory_read_only'  => 'Directorul de trimitere ($1) nu are drepturi de scriere de către server.',
 'uploaderror'                 => 'Eroare la trimitere fişier',
-'uploadtext'                  => "<strong>STOP!</strong> Înainte de a trimite un fişier aici, te rugăm să citeşti şi să respecţi [[Project:Politica de utilizare a imaginilor|politica de utilizare a imaginilor]].<br />
+'uploadtext'                  => "<strong>STOP!</strong> Înainte de a trimite un fişier aici, te rugăm să citeşti şi să respecţi [[{{MediaWiki:policy-url}}|politica de utilizare a imaginilor]].<br />
 Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:Imagelist|lista de imagini]]. Fişierele noi şi cele şterse sunt contorizate pe pagina [[Special:Log/upload|raport de trimiteri]].<br />
 Foloseşte formularul de mai jos pentru a trimite imagini noi pe care le vei putea folosi pentru a ilustra articolele. În majoritatea browserelor vei vedea un buton \"Răsfoire...\" (sau \"Browse...\") care va deschide fereastra standard dialog a sistemului tău de operare pentru alegerea de fişiere. Când alegei un fişier în acest fel, caseta de dialog se va completa cu calea locală către acesta. Este de asemenea necesar să bifezi căsuţa asociată textului în care confirmi că nu violezi nici un drept de autor trimiţând această imagine. În final, apasă pe butonul \"Trimite\" pentru a trimite efectiv fişierul. Această operaţiune poate dura, mai ales dacă ai o legătură lentă la Internet.<br />
 Formatele preferate sunt JPEG pentru imagini fotografice, PNG pentru desene şi alte imagini cu contururi clare şi OGG pentru fişiere de sunet. Te rugăm să foloseşti nume explicite pentru fişiere ca să eviţi confuziile. Pentru a include o imagine într-un articol, foloseşte o legătură de forma<br />
@@ -1023,6 +1033,8 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'movethispage'            => 'Mută această pagină',
 'unusedimagestext'        => '<p>Te rugăm ţine cont de faptul că alte situri, inclusiv alte versiuni de limbă {{SITENAME}} pot să aibă legături aici fără ca aceste pagini să fie listate aici - această listă se referă strict la {{SITENAME}} în română.</p>',
 'unusedcategoriestext'    => 'Următoarele categorii de pagini există şi totuşi nici un articol sau categorie nu le foloseşte.',
+'notargettitle'           => 'Lipsă ţintă',
+'notargettext'            => 'Nu ai specificat nici o pagină sau un utilizator ţintă pentru care să se efectueze această operaţiune.',
 
 # Book sources
 'booksources'               => 'Surse de cărţi',
@@ -1089,7 +1101,9 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'watchnologin'         => 'Nu sunteţi autentificat',
 'watchnologintext'     => 'Trebuie să fiţi [[Special:Userlogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
 'addedwatch'           => 'Adăugată la lista de pagini urmărite',
-'addedwatchtext'       => 'Pagina "[[:$1]]" a fost adăugată la lista ta de [[Special:Watchlist|articole urmărite]]. Modificările viitoare ale acestei pagini şi a paginii asociate de discuţii vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de [[Special:Recentchanges|modificări recente]] pentru evidenţiere.<p>Dacă doreşti să elimini această pagină din lista ta de pagini urmărite în viitor, apasă pe "Nu mai urmări" în bara de comenzi în timp ce această pagină este vizibilă.',
+'addedwatchtext'       => 'Pagina "[[:$1]]" a fost adăugată la lista ta de [[Special:Watchlist|articole urmărite]]. Modificările viitoare ale acestei pagini şi a paginii asociate de discuţii vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de [[Special:Recentchanges|modificări recente]] pentru evidenţiere.
+
+Dacă doreşti să elimini această pagină din lista ta de pagini urmărite în viitor, apasă pe "Nu mai urmări" în bara de comenzi în timp ce această pagină este vizibilă.',
 'removedwatch'         => 'Ştearsă din lista de pagini urmărite',
 'removedwatchtext'     => 'Pagina "[[:$1]]" a fost eliminată din lista de pagini urmărite.',
 'watch'                => 'Urmăreşte',
@@ -1178,7 +1192,7 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'revertpage'                  => 'Reveniri la ultima modificare de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]); revenire la ultima versiune de către [[User:$1|$1]]',
 'sessionfailure'              => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
 'protectlogpage'              => 'Jurnal protecţii',
-'protectlogtext'              => 'Mai jos se află lista de blocări/deblocări a paginilor. Vezi [[Project:Pagină protejată]] pentru mai multe informaţii.',
+'protectlogtext'              => 'Mai jos se află lista de blocări/deblocări a paginilor. Vezi [[Special:Protectedpages]] pentru mai multe informaţii.',
 'protectedarticle'            => 'a protejat "[[$1]]"',
 'modifiedarticleprotection'   => 'schimbat nivelul de protecţie pentru "[[$1]]"',
 'unprotectedarticle'          => 'a deprotejat "[[$1]]"',
@@ -1188,7 +1202,7 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'protectexpiry'               => 'Expirare',
 'unprotectsub'                => '(Deprotejând "$1")',
 'protect-unchain'             => 'Deblochează permisiunile de mutare',
-'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong>$1</strong>. Asigură-te că acţionezi în conformitate cu [[Project:Pagină protejată|politica proiectului]].',
+'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong>$1</strong>. Asigură-te că acţionezi în conformitate cu [[{{MediaWiki:policy-url}}|politica proiectului]].',
 'protect-default'             => '(standard)',
 'protect-fallback'            => 'Cere permisiunea "$1"',
 'protect-level-autoconfirmed' => 'Blochează utilizatorii neînregistraţi',
@@ -1264,8 +1278,6 @@ Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ş
 # What links here
 'whatlinkshere'       => 'Ce se leagă aici',
 'whatlinkshere-title' => 'Pagini care se leagă de $1',
-'notargettitle'       => 'Lipsă ţintă',
-'notargettext'        => 'Nu ai specificat nici o pagină sau un utilizator ţintă pentru care să se efectueze această operaţiune.',
 'linklistsub'         => '(Lista de legături)',
 'linkshere'           => "Următoarele pagini conţin legături către '''[[:$1]]''':",
 'nolinkshere'         => "Nici o pagină nu se leagă la '''[[:$1]]'''.",
@@ -1276,7 +1288,7 @@ Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ş
 # Block/unblock
 'blockip'                     => 'Blochează utilizator / IP',
 'blockiptext'                 => "Pentru a bloca un utilizator completaţi rubricile de mai jos.<br />
-'''Respectaţi [[Project:Blocare|politica de blocare]].'''<br />
+'''Respectaţi [[{{MediaWiki:policy-url}}|politica de blocare]].'''<br />
 Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest utilizator.",
 'ipaddress'                   => 'Adresa IP',
 'ipadressorusername'          => 'Adresă IP sau nume de utilizator',
@@ -1326,12 +1338,10 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'blocklink'                   => 'blochează',
 'unblocklink'                 => 'deblochează',
 'contribslink'                => 'contribuţii',
-'autoblocker'                 => 'Autoblocat fiindcă foloseşti aceeaşi [[Adresă IP|adresă IP]] ca şi "$1". Motivul este "$2".',
+'autoblocker'                 => 'Autoblocat fiindcă foloseşti aceeaşi adresă IP ca şi "$1". Motivul este "$2".',
 'blocklogpage'                => 'Jurnal blocări',
 'blocklogentry'               => 'a blocat "[[$1]]" pe o perioadă de $2 $3',
-'blocklogtext'                => 'Acesta este un raport al acţiunilor de blocare şi deblocare.
-[[Adresă IP|Adresele IP]] blocate automat nu sunt afişate.
-Vizitaţi [[Special:Ipblocklist|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
+'blocklogtext'                => 'Acesta este un raport al acţiunilor de blocare şi deblocare. Adresele IP blocate automat nu sunt afişate. Vizitaţi [[Special:Ipblocklist|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
 'unblocklogentry'             => 'a deblocat $1',
 'block-log-flags-anononly'    => 'doar utilizatorii anonimi',
 'block-log-flags-nocreate'    => 'creare de conturi dezactivată',
@@ -1602,7 +1612,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 # Patrol log
 'patrol-log-page' => 'Jurnal patrulări',
 'patrol-log-auto' => '(automat)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'       => 'A fost ştearsă vechea revizie $1.',

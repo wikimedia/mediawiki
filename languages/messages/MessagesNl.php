@@ -993,10 +993,10 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 'nextn'                 => 'volgende $1',
 'viewprevnext'          => '($1) ($2) ($3) tonen.',
 'showingresults'        => "Hieronder staan {{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} vanaf #'''$2'''.",
-'showingresultsnum'     => "Hieronder staan {{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} vanaf #'''$2'''.",
+'showingresultsnum'     => "Hieronder staan {{PLURAL:$3|'''1''' resultaat|'''$3''' resultaten}} vanaf #'''$2'''.",
 'nonefound'             => "'''Opmerking''': mislukte zoekopdrachten worden vaak veroorzaakt door zoeken naar veelvoorkomende woorden als \"van\" en \"het\", die niet in de indexen worden opgenomen, of door meer dan één zoekterm op te geven. Alleen pagina's die alle zoektermen bevatten worden opgenomen in de resultaten.",
 'powersearch'           => 'Zoeken',
-'powersearchtext'       => 'Zoek in naamruimten:<br />$1<br />$2 Toon redirects<br />Zoek naar $3 $9',
+'powersearchtext'       => 'Zoeken in naamruimten:<br />$1<br />$2 Doorverwijzingen tonen<br />Zoeken naar $3 $9',
 'searchdisabled'        => 'Zoeken in {{SITENAME}} is niet mogelijk. U kunt gebruik maken van Google. De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 
 # Preferences page
@@ -1046,7 +1046,7 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 'contextlines'             => 'Regels per resultaat:',
 'contextchars'             => 'Context per regel:',
 'stub-threshold'           => 'Drempel voor markering <a href="#" class="stub">beginnetje</a>:',
-'recentchangesdays'        => 'Aantal dagen te tonen in de reccente wijzingen:',
+'recentchangesdays'        => 'Aantal dagen te tonen in de recente wijzigingen:',
 'recentchangescount'       => "Aantal pagina's in Recente wijzigingen:",
 'savedprefs'               => 'Uw voorkeuren zijn opgeslagen.',
 'timezonelegend'           => 'Tijdzone',
@@ -1056,7 +1056,7 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 'servertime'               => 'Servertijd',
 'guesstimezone'            => 'Vanuit de browser toevoegen',
 'allowemail'               => 'E-mail van andere gebruikers toestaan',
-'defaultns'                => 'Zoek standaard in deze naamruimten:',
+'defaultns'                => 'Standaard in deze naamruimten zoeken',
 'default'                  => 'standaard',
 'files'                    => 'Bestanden',
 
@@ -1241,7 +1241,7 @@ PICT # overig
 'imagelist'                 => 'Bestandslijst',
 'imagelisttext'             => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
 'getimagelist'              => 'bezig met ophalen bestandslijst',
-'ilsubmit'                  => 'Zoek',
+'ilsubmit'                  => 'Zoeken',
 'showlast'                  => 'Toon de laatste $1 afbeeldingen gesorteerd $2.',
 'byname'                    => 'op naam',
 'bydate'                    => 'op datum',
@@ -1681,7 +1681,7 @@ $1',
 'sp-contributions-username'    => 'IP-adres of gebruikersnaam:',
 'sp-contributions-submit'      => 'Tonen',
 
-'sp-newimages-showfrom' => 'Toon nieuwe afbeeldingen vanaf $1',
+'sp-newimages-showfrom' => 'Nieuwe afbeeldingen tonen vanaf $1',
 
 # What links here
 'whatlinkshere'       => 'Links naar deze pagina',
@@ -1756,7 +1756,7 @@ Zie de [[{{ns:special}}:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'contribslink'                => 'bijdragen',
 'autoblocker'                 => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
 'blocklogpage'                => 'Blokkeerlogboek',
-'blocklogentry'               => '"[[$1]]" is geblokkeerd voor de duur van $2 $3.',
+'blocklogentry'               => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
 'blocklogtext'                => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[{{ns:special}}:Ipblocklist|Ipblocklist]] voor geblokkeerde adressen.',
 'unblocklogentry'             => 'blokkade van $1 opgeheven',
 'block-log-flags-anononly'    => 'alleen anoniemen',
@@ -2021,8 +2021,8 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'mw_math_mathml' => 'MathML als mogelijk (experimenteel)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Markeer als gecontroleerd',
-'markaspatrolledtext'                 => 'Markeer deze pagina als gecontroleerd',
+'markaspatrolleddiff'                 => 'Markeren als gecontroleerd',
+'markaspatrolledtext'                 => 'Deze pagina markeren als gecontroleerd',
 'markedaspatrolled'                   => 'Gemarkeerd als gecontroleerd',
 'markedaspatrolledtext'               => 'De gekozen versie is gemarkeerd als gecontroleerd.',
 'rcpatroldisabled'                    => 'De controlemogelijkheid op recente wijzigingen is uitgeschakeld.',
@@ -2030,6 +2030,8 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'markedaspatrollederror'              => 'Kan niet als gecontroleerd worden aangemerkt',
 'markedaspatrollederrortext'          => 'Selecteer een versie om als gecontroleerd aan te merken.',
 'markedaspatrollederror-noautopatrol' => 'U kunt uw eigen wijzigingen niet als gecontroleerd markeren.',
+'nppatroldisabled'                    => "De controlemogelijkheid op nieuwe pagina's is uitgeschakeld.",
+'nppatroldisabledtext'                => "De mogelijkheid om nieuwe pagina's als gecontroleerd aan te merken is op dit ogenblik uitgeschakeld.",
 
 # Patrol log
 'patrol-log-page' => 'Markeerlogboek',
@@ -2067,7 +2069,7 @@ $1',
 
 # Special:Newimages
 'newimages'    => 'Nieuwe afbeeldingen',
-'showhidebots' => '($1 bots)',
+'showhidebots' => '(Bots $1)',
 'noimages'     => 'Niets te zien.',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages

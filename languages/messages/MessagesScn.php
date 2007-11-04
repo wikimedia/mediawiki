@@ -5,6 +5,8 @@
  *
  * @author Tonyfroio
  * @author Niklas Laxström
+ * @author G - ג
+ * @author Nike
  */
 
 $fallback = 'it';
@@ -960,7 +962,7 @@ PICT # arcuni
 
 # Image list
 'imagelist'                 => 'Alencu dî file',
-'imagelisttext'             => "Di sèquitu veni prisintata na lista di '''$1''' file urdinati $2.",
+'imagelisttext'             => "Di sèquitu veni prisintata na lista di '''$1''' file urdinat{{PLURAL:$1|u|i}} pi $2.",
 'getimagelist'              => 'carricamentu alencu file',
 'ilsubmit'                  => "Va' cerca",
 'showlast'                  => "Ammustra l'ùrtimi $1 file urdinati pi $2.",
@@ -1114,6 +1116,7 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'movethispage'            => 'Sposta sta pàggina',
 'unusedimagestext'        => "<p>Accura: è pussibbili rializzari liami ai file da àutri siti, usannu direttamenti la URL; chisti ponnu quinni èssiri utilizzati anche siddu cumparinu nte l'alencu.</p>",
 'unusedcategoriestext'    => 'Li siquenti pàggini dî catigurìi esìstinu, sibbeni li catigurìi currispunnenti sunnu vacanti.',
+'notargettext'            => "Nun hà statu innicata na pàggina o un utenti 'n rilazzioni a lu quali esèquiri l'opirazzioni addumannata.",
 
 # Book sources
 'booksources'               => 'Libbra secunnu lu còdici ISBN',
@@ -1324,7 +1327,7 @@ Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'viewdeletedpage'              => 'Talìa li pàggini cancillati',
 'undeletepagetext'             => "Li pàggini innicati di sèquitu hannu statu cancillati, ma sunnu ancora n archiviu e pirtantu ponnu èssiri ricupirati. L'archiviu pò èssiri svacantatu piriodicamenti.",
 'undeleteextrahelp'            => "Pi ricupirari tutti li rivisioni, fari clic supra '''''riprìstina''''' senza silizziunari nudda casella. P'effittuari un riprìstinu silittivu, silizziunari li caselli currispunnenti a li rivisioni a ripristinari e fari clic supra '''''riprìstina'''''. Facennu clic supra '''''Reset''''' vèninu disilizziunati tutti li caselli e svacantatu lu spazziu pi lu cummentu.",
-'undeleterevisions'            => '$1 rivisioni n archiviu',
+'undeleterevisions'            => "$1 rivisioni 'n archiviu",
 'undeletehistory'              => "Siddu ricùpiri st'artìculu, tutti li sò rivisioni vèninu ricupirati ntâ rilativa cronoluggìa.
 Sidda na pàggina nova hà statu criata cu stu stissu nomu doppu la cancillazzioni, li rivisioni ricupirati sunnu nziriti ntâ cronoluggìa e la virsioni attuarmenti online dâ pàggina nun veni canciata. Accura macari chi li ristrizzioni vèninu pirdutu cu lu riprìstinu.",
 'undeleterevdel'               => "Lu riprìstinu nun sarà effettuatu siddu avissi a haviri pi cunsiquenza la cancillazzioni parziale dâ virsioni correnti dâ pàggina. Nte chistu casu, è nicissarii cacciàri lu signu di spunta o l'oscuramentu dê rivisioni cancillate cchiù ricenti. Li rivisioni dî file pi cui nun s'havi lu pirmissu d'accessu nun venanu ripristinati.",
@@ -1334,7 +1337,7 @@ Sidda na pàggina nova hà statu criata cu stu stissu nomu doppu la cancillazzio
 'undeletebtn'                  => 'Riprìstina!',
 'undeletecomment'              => 'Cummentu:',
 'undeletedarticle'             => 'hà ricupiratu "[[$1]]"',
-'undeletedrevisions'           => '$1 rivisioni ricupirati',
+'undeletedrevisions'           => '$1 rivisioni ricupirat{{PLURAL:$1|a|i}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|na rivisioni|$1 rivisioni}} e {{PLURAL:$2|nu file ricupiratu|$2 file ricupirati}}',
 'undeletedfiles'               => '{{PLURAL:$1|un file ricupiratu|$1 file ricupirati}}',
 'cannotundelete'               => 'Lu ricùpiru nun è arrinisciutu: quarcunu àutru putissi aviri già ricupiratu la pàggina.',
@@ -1382,7 +1385,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Chi punta ccà',
 'whatlinkshere-title' => 'Pàggini chi puntano a $1',
-'notargettext'        => "Nun hà statu innicata na pàggina o un utenti 'n rilazzioni a lu quali esèquiri l'opirazzioni addumannata.",
 'linklistsub'         => '(Lista di liami)',
 'linkshere'           => "Sti pàggini hannu nu liami a '''[[:$1]]''':",
 'nolinkshere'         => "Nudda pàggina havi nu liami a '''[[:$1]]'''.",
@@ -2108,8 +2110,8 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'watchlistedit-raw-removed'    => 'Hà{{PLURAL:$1|&nbsp;stata eliminata na pàggina|nnu stati eliminati $1 pàggini}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Vidi li canciamenti rilivanti',
-'watchlisttools-edit'  => 'Vidi e cancia la lista',
-'watchlisttools-raw'   => "Cancia la lista 'n forma testuali",
+'watchlisttools-view' => 'Vidi li canciamenti rilivanti',
+'watchlisttools-edit' => 'Vidi e cancia la lista',
+'watchlisttools-raw'  => "Cancia la lista 'n forma testuali",
 
 );

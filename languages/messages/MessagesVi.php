@@ -1,11 +1,13 @@
 <?php
-/**
-  * Based on Language.php 1.645
-  * @addtogroup Language
-  * Compatible to MediaWiki 1.5
-  * Initial translation by Trần Thế Trung and Nguyễn Thanh Quang
-  * Last update 28 August 2005 (UTC)
-  */
+/** Vietnamese (Tiếng Việt)
+ *
+ * @addtogroup Language
+ *
+ * @author Trần Thế Trung
+ * @author Nguyễn Thanh Quang
+ * @author G - ג
+ * @author SPQRobin
+ */
 
 $namespaceNames = array(
 	NS_MEDIA			=> 'Phương_tiện',
@@ -111,7 +113,6 @@ $datePreferenceMigrationMap = array(
 
 $linkTrail = "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu";
 $separatorTransformTable = array(',' => '.', '.' => ',' );
-
 
 $messages = array(
 # User preference toggles
@@ -230,7 +231,7 @@ $messages = array(
 'help'              => 'Trợ giúp',
 'search'            => 'Tìm kiếm',
 'searchbutton'      => 'Tìm kiếm',
-'go'                => 'Xem',
+'go'                => 'Hiển thị',
 'searcharticle'     => 'Xem',
 'history'           => 'Lịch sử trang',
 'history_short'     => 'Lịch sử',
@@ -238,14 +239,14 @@ $messages = array(
 'printableversion'  => 'Bản để in',
 'permalink'         => 'Liên kết thường trực',
 'print'             => 'In',
-'edit'              => 'Sửa',
+'edit'              => 'Sửa đổi',
 'editthispage'      => 'Sửa trang này',
 'delete'            => 'Xóa',
 'deletethispage'    => 'Xóa trang này',
 'undelete_short'    => 'Phục hồi',
 'protect'           => 'Khóa',
 'protectthispage'   => 'Khóa trang này',
-'unprotect'         => 'Mở',
+'unprotect'         => 'Mở khóa',
 'unprotectthispage' => 'Mở trang này',
 'newpage'           => 'Trang mới',
 'talkpage'          => 'Trang thảo luận',
@@ -275,27 +276,24 @@ $messages = array(
 'copyrightpagename' => 'giấy phép {{SITENAME}}',
 'copyrightpage'     => '{{ns:4}}:Bản quyền',
 'currentevents'     => 'Thời sự',
-'currentevents-url' => 'Thời_sự',
+'currentevents-url' => 'Project:Thời sự',
 'disclaimers'       => 'Cảnh báo',
 'disclaimerpage'    => '{{ns:4}}:Cảnh báo chung',
 'edithelp'          => 'Trợ giúp',
 'edithelppage'      => 'Trợ_giúp:Soạn thảo',
-'faq'               => 'FAQ',
 'faqpage'           => '{{ns:4}}:FAQ',
 'helppage'          => '{{ns:4}}:Trợ giúp',
-'mainpage'          => 'Trang đầu',
+'mainpage'          => 'Trang Chính',
 'portal'            => 'Cộng đồng',
 'portal-url'        => '{{ns:4}}:Cộng_đồng',
 'sitesupport'       => 'Quyên góp',
-'sitesupport-url'   => '{{ns:4}}:Quyên_góp',
+'sitesupport-url'   => 'Project:Quyên góp',
 
 'badaccess' => 'Lỗi truy cập',
 
 'versionrequired'     => 'Cần phiên bản $1 của MediaWiki',
 'versionrequiredtext' => 'Cần phiên bản $1 của MediaWiki để xem trang này. Xem [[Đặc_biệt:Phiên_bản]]',
 
-'ok'              => 'OK',
-'pagetitle'       => '$1 - {{SITENAME}}',
 'retrievedfrom'   => 'Lấy từ « $1 »',
 'newmessageslink' => 'tin nhắn mới',
 'editsection'     => 'Sửa',
@@ -308,13 +306,13 @@ $messages = array(
 'feedlinks'       => 'Nạp:',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'      => 'Bài',
+'nstab-main'      => 'Bài viết',
 'nstab-user'      => 'Trang thành viên',
 'nstab-media'     => 'Phương tiện',
 'nstab-special'   => 'Đặc biệt',
 'nstab-project'   => 'Giới thiệu',
 'nstab-image'     => 'Hình',
-'nstab-mediawiki' => 'Tin nhắn',
+'nstab-mediawiki' => 'Thông báo',
 'nstab-template'  => 'Tiêu bản',
 'nstab-help'      => 'Trợ giúp',
 'nstab-category'  => 'Thể loại',
@@ -336,7 +334,8 @@ MySQL báo lỗi "<tt>$3: $4</tt>".',
 "$1"
 thực hiện bởi hàm "$2"
 MySQL báo lỗi "$3 : $4".',
-'noconnect'            => 'Hiện tại không kết nối với cơ sở dữ liệu được.',
+'noconnect'            => 'Hiện tại không kết nối với cơ sở dữ liệu được.<br />
+$1',
 'nodb'                 => 'Không thấy cơ sở dữ liệu $1',
 'cachederror'          => 'Đây là bản sao của trang bạn yêu cầu, có thể không cập nhật.',
 'laggedslavemode'      => 'Chú ý : trang có thể chưa được cập nhật phiên bản cuối.',
@@ -361,6 +360,7 @@ Xin báo lỗi này cho người quản lý, nói rõ tên trang bị lỗi.',
 'badtitletext'         => 'Đề mục sai, rỗng hay liên kết liên ngôn ngữ sai.',
 'perfdisabled'         => 'Chức năng này bị khóa vì nó làm chậm cơ sở dữ liệu.',
 'perfcached'           => 'Dữ liệu sau lấy từ bộ nhớ đệm và có thể không cập nhật:',
+'perfcachedts'         => 'Dữ liệu dưới đây được đưa vào vùng nhớ đệm và được cập nhật lần cuối lúc $1.',
 'wrong_wfQuery_params' => 'Tham số sai trong wfQuery()<br />
 Hàm : $1<br />
 Truy vấn : $2',
@@ -382,7 +382,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'loginproblem'               => '<b>Trục trặc đăng nhập.</b><br />Mời thử lại!',
 'login'                      => 'Đăng nhập',
 'loginprompt'                => 'Bạn cần bật cookie để đăng nhập vào {{SITENAME}}.',
-'userlogin'                  => 'Mở tài khoản hay đăng nhập',
+'userlogin'                  => 'Đăng nhập / Mở tài khoản',
 'logout'                     => 'Đăng xuất',
 'userlogout'                 => 'Đăng xuất',
 'notloggedin'                => 'Chưa đăng nhập',
@@ -494,6 +494,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'readonlywarning'        => '<strong>Chú ý : trang này bị khóa để bảo trì. Bạn chỉ có thể sao nội dung để sửa đổi trên máy cá nhân.</strong>',
 'protectedpagewarning'   => '<strong>Chú ý : trang này bị khóa. Chỉ có quản lý viên mới sửa được. Chú ý tuân thủ [[{{ns:4}}:Trang_bị_khóa|quy định về trang bị khóa]].</strong>',
 'templatesused'          => 'Các tiêu bản dùng trong trang này',
+'permissionserrors'      => 'Không có quyền thực hiện',
 
 # History pages
 'revhistory'          => 'Bản cũ',
@@ -510,6 +511,8 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'next'                => 'sau',
 'last'                => 'cũ',
 'orig'                => 'gốc',
+'page_first'          => 'đầu',
+'page_last'           => 'cuối',
 'histlegend'          => 'Chú thích : (nay) = so sánh với bản hiện nay,
 (cũ) = so sánh với bản trước, n = sửa nhỏ',
 'deletedrev'          => '[đã xóa]',
@@ -530,9 +533,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'searchresulttext'      => 'Xem thêm [[{{ns:4}}:Tìm_kiếm|hướng dẫn tìm kiếm {{SITENAME}}]].',
 'searchsubtitle'        => 'Cho truy vấn "[[:$1]]"',
 'searchsubtitleinvalid' => 'Cho truy vấn "$1"',
-'badquery'              => 'Truy vấn sai',
-'badquerytext'          => 'Truy vấn sai: ngắn hơn 3 chữ cái, hoặc sai chính tả ví dụ như "mèo và và chuột". Xin mời thử lại.',
-'matchtotals'           => 'Truy vấn "$1" phù hợp với $2 tên bài và câu chữ trong $3 bài.',
 'noexactmatch'          => 'Không có trang tên như này, xin thử công cụ tìm.',
 'titlematches'          => 'Đề mục tương tự',
 'notitlematches'        => 'Không có tên bài nào có nội dung tương tự',
@@ -550,10 +550,9 @@ Tìm trong :<br />
 $1<br />
 $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9',
 'searchdisabled'        => '<p>Công cụ tìm kiếm hiện bị khóa. Chức năng này sẽ được mở lại khi có điều kiện lắp thêm máy chủ. Hiện tại có thể tìm với Google:</p>',
-'blanknamespace'        => '(Chính)',
 
 # Preferences page
-'preferences'             => 'Lựa chọn cá nhân',
+'preferences'             => 'Tùy chọn',
 'prefsnologin'            => 'Chưa đăng nhập',
 'prefsnologintext'        => 'Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] để sửa các Lựa chọn cá nhân của bạn.',
 'prefsreset'              => 'Các Lựa chọn cá nhân đã được mặc định lại.',
@@ -635,7 +634,7 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9',
 'recentchangeslinked' => 'Thay đổi liên quan',
 
 # Upload
-'upload'                     => 'Tải lên',
+'upload'                     => 'Truyền lên tập tin',
 'uploadbtn'                  => 'Tải lên',
 'reupload'                   => 'Tải lại',
 'reuploaddesc'               => 'Quay lại.',
@@ -671,6 +670,7 @@ Sau khi truyền hình lên:
 'uploadwarning'              => 'Chú ý!',
 'savefile'                   => 'Lưu tệp tin',
 'uploadedimage'              => 'đã tải lên « [[$1]] »',
+'overwroteimage'             => 'đã tải lên một phiên bản mới của "[[$1]]"',
 'uploaddisabled'             => 'Xin lỗi, chức năng tải lên bị khóa.',
 'uploadcorrupt'              => 'Tập tin bị hỏng hoặc có đuôi không chuẩn. Xin kiểm tra và tải lại.',
 'uploadvirus'                => 'Tệp tin có virút: $1',
@@ -732,7 +732,7 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 'mostlinked'              => 'Trang được liên kết đến nhiều nhất',
 'allpages'                => 'Tất cả các trang',
 'prefixindex'             => 'Mục lục theo không gian tên',
-'randompage'              => 'Trang ngẫu nhiên',
+'randompage'              => 'Bài viết ngẫu nhiên',
 'shortpages'              => 'Bài ngắn',
 'longpages'               => 'Bài dài',
 'deadendpages'            => 'Trang đường cùng',
@@ -744,9 +744,11 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 'newpages'                => 'Các bài mới nhất',
 'ancientpages'            => 'Các bài cũ nhất',
 'intl'                    => 'Liên kết liên ngôn ngữ',
-'move'                    => 'đổi tên',
+'move'                    => 'Di chuyển',
 'movethispage'            => 'Đổi tên trang này',
 'unusedimagestext'        => '<p>Xin lưu ý là các địa chỉ mạng bên ngoài có thể liên kết đến một hình ở đây qua một địa chỉ trực tiếp, dù hình này được liệt kê là chưa dùng.</p>',
+'notargettitle'           => 'Không hiểu',
+'notargettext'            => 'Xin chỉ rõ trang mục tiêu.',
 
 # Book sources
 'booksources' => 'Nguồn tham khảo',
@@ -806,7 +808,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'removedwatchtext'     => 'Trang « $1 » đã ra khỏi danh sách theo dõi.',
 'watch'                => 'Theo dõi',
 'watchthispage'        => 'Theo dõi trang này',
-'unwatch'              => 'ngừng theo dõi',
+'unwatch'              => 'Ngừng theo dõi',
 'unwatchthispage'      => 'Ngừng theo dõi',
 'notanarticle'         => 'Không phải bài viết',
 'watchnochange'        => 'Không có trang nào bạn theo dõi được sửa đổi.',
@@ -819,7 +821,6 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'iteminvalidname'      => "Tên trang '$1' không hợp lệ...",
 'wlnote'               => '$1 sửa đổi mới trong <b>$2</b> giờ qua.',
 'wlshowlast'           => 'Xem $1 giờ $2 ngày qua, hoặc $3',
-'wlsaved'              => 'Đây là bản lưu danh sách theo dõi.',
 
 'enotif_mailer'      => 'Thông báo của {{SITENAME}}',
 'enotif_reset'       => 'Đánh dấu đã xem mọi trang',
@@ -868,7 +869,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'unprotectsub'       => '(Mở "$1")',
 
 # Undelete
-'undelete'           => 'Khôi phục',
+'undelete'           => 'Phục hồi lại trang đã bị xóa',
 'undeletepage'       => 'Xem và khôi phục trang bị xóa',
 'undeletepagetext'   => 'Các trang sau có thể khôi phục được từ thùng rác. Thùng rác được xóa định kỳ.',
 'undeleterevisions'  => '$1 bản được lưu',
@@ -878,8 +879,9 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'undeletedrevisions' => '$1 bản được khôi phục',
 
 # Namespace form on various pages
-'namespace' => 'Không gian:',
-'invert'    => 'Đảo ngược lựa chọn',
+'namespace'      => 'Không gian:',
+'invert'         => 'Đảo ngược lựa chọn',
+'blanknamespace' => '(Chính)',
 
 # Contributions
 'contributions' => 'Đóng góp',
@@ -891,9 +893,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'uctop'         => '(mới nhất)',
 
 # What links here
-'whatlinkshere' => 'Liên kết đến đây',
-'notargettitle' => 'Không hiểu',
-'notargettext'  => 'Xin chỉ rõ trang mục tiêu.',
+'whatlinkshere' => 'Các liên kết đến đây',
 'linklistsub'   => '(Các liên kết)',
 'linkshere'     => 'Các trang sau liên kết đến đây:',
 'nolinkshere'   => 'Không có liên kết đến đây.',
@@ -983,7 +983,7 @@ Xin hãy hợp nhất chúng lại.',
 'movetalk'               => 'Di chuyển trang "thảo luận" nếu có.',
 'talkpagemoved'          => 'Trang thảo luận tương ứng đã chuyển.',
 'talkpagenotmoved'       => 'Trang thảo luận tương ứng <strong>không</strong> chuyển.',
-'1movedto2'              => '$1 đổi thành $2',
+'1movedto2'              => '[[$1]] đổi thành [[$2]]',
 '1movedto2_redir'        => '$1 đổi thành $2 qua đổi hướng',
 'movelogpage'            => 'Nhật trình đổi tên',
 'movelogpagetext'        => 'Các trang bị đổi tên.',
@@ -1085,9 +1085,6 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 # Stylesheets
 'monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
 
-# Scripts
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
-
 # Metadata
 'nodublincore'      => 'Máy chủ không hỗ trợ siêu dữ liệu Dublin Core RDF.',
 'nocreativecommons' => 'Máy chủ không hỗ trợ siêu dữ liệu Creative Commons RDF.',
@@ -1135,6 +1132,10 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'markedaspatrolledtext' => 'Bản được đánh dấu đã tuần tra.',
 'rcpatroldisabled'      => '"Thay đổi gần đây" của các trang tuần tra không bật',
 'rcpatroldisabledtext'  => 'Chức năng "thay đổi gần đây"  của các trang tuần tra hiện không được bật.',
+
+# Patrol log
+'patrol-log-page' => 'Nhật ký tuần tra',
+'patrol-log-auto' => '(tự động)',
 
 # Image deletion
 'deletedrevision' => 'Đã xóa phiên bản cũ $1',

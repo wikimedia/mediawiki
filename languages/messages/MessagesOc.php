@@ -3,9 +3,13 @@
  *
  * @addtogroup Language
  *
- * Translators:
  * @author Cedric31
+ * @author Nike
+ * @author G - ג
+ * @author Горан Анђелковић
+ * @author Spacebirdy
  */
+
 $skinNames = array(
 	'standard' => 'Normal',
 	'nostalgia' => 'Nostalgia',
@@ -224,7 +228,7 @@ $messages = array(
 'protect'           => 'Protegir',
 'protect_change'    => 'cambiar la proteccion',
 'protectthispage'   => 'Protegir aquesta pagina',
-'unprotect'         => 'Desprotegir',
+'unprotect'         => 'desprotegir',
 'unprotectthispage' => 'Desprotegir aquesta pagina',
 'newpage'           => 'Pagina novèla',
 'talkpage'          => 'Pagina de discussion',
@@ -267,7 +271,6 @@ $messages = array(
 'disclaimerpage'    => '{{ns:4}}:Avertiments generals',
 'edithelp'          => 'Ajuda',
 'edithelppage'      => '{{ns:project}}:Cossí editar una pagina',
-'faqpage'           => '{{ns:project}}:FAQ',
 'helppage'          => '{{ns:project}}:Ajuda',
 'mainpage'          => 'Acuèlh',
 'portal'            => 'Comunautat',
@@ -574,7 +577,6 @@ Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referiss
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Podètz pas crear de compte.',
-'cantcreateaccounttext'  => 'La creacion de compte dempuèi aquesta adreça IP (<b>$1</b>) es estada blocada. Aquò es probablament la consequéncia d’un vandalisme repetit dempuèi vòstra escòla o vòstre fornidor d’accès a internet.',
 
 # History pages
 'revhistory'          => 'Versions precedentas',
@@ -599,7 +601,7 @@ Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referiss
 'deletedrev'          => '[suprimit]',
 'histfirst'           => 'Primièras contribucions',
 'histlast'            => 'Darrièras contribucions',
-'historysize'         => '($1 octets)',
+'historysize'         => '({{PLURAL:$1|1 octet|$1 octets}})',
 'historyempty'        => '(void)',
 
 # Revision feed
@@ -825,7 +827,9 @@ Per inclure un imatge dins una pagina, utilizatz un dels modèls seguents:
 'uploadlog'                   => 'Jornals dels telecargaments (uploads)',
 'uploadlogpage'               => "Log_d'upload",
 'uploadlogpagetext'           => "Vaquí la lista dels darrièrs fichièrs copiats sul serveire.
-L'ora indicada es la del serveire (UTC).",
+L'ora indicada es la del serveire (UTC).
+<ul>
+</ul>",
 'filename'                    => 'Nom',
 'filedesc'                    => 'Descripcion',
 'fileuploadsummary'           => 'Resumit:',
@@ -1012,6 +1016,8 @@ Demest eles, <b>$2</b> (o '''$4%''') {{PLURAL:$2|a|an}} l'estatut d'administrato
 'movethispage'            => 'Desplaçar la pagina',
 'unusedimagestext'        => "<p>Doblidetz pas que d'autres sits non occitanofònes, pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
+'notargettitle'           => 'Pas de cibla',
+'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
 
 # Book sources
 'booksources'               => 'Obratges de referéncia',
@@ -1109,7 +1115,6 @@ Per suprimir aquesta pagina de vòstra lista de seguida, clicatz sus "Arrestar d
 'iteminvalidname'      => "Problèma amb l'article '$1': lo nom es invalid...",
 'wlnote'               => 'Los darrièrs cambiaments dempuèi las <br>$2</b> darrièras oras se tròban çai jos.',
 'wlshowlast'           => 'Mostrar las darrièras $1 oras, los darrièrs $2 jorns, o $3.',
-'wlsaved'              => 'La lista de seguit es remesa a jorn pas qu’un còp per ora per aleugerir la carga sul serveire.',
 'watchlist-show-bots'  => 'Afichar las contribucions dels bòts',
 'watchlist-hide-bots'  => 'Amagar las contribucions dels bòts',
 'watchlist-show-own'   => 'Afichar mas modificacions',
@@ -1196,7 +1201,7 @@ aquesta accion es estada anullada en prevencion d’un piratatge de session.
 Clicatz sus « Precedent » e recargatz la pagina d’ont venètz, puèi ensajatz tornarmai.',
 'protectlogpage'              => 'Istoric de las proteccions',
 'protectlogtext'              => 'Vejatz las [[Special:Protectedpages|directivas]] per mai d’informacion.',
-'protectedarticle'            => 'a protegit « [[$1]] »',
+'protectedarticle'            => 'a protegit « [[$1] »',
 'modifiedarticleprotection'   => 'a modificat lo nivèl de proteccion de « [[$1]] »',
 'unprotectedarticle'          => 'a desprotegit « [[$1]] »',
 'protectsub'                  => '(Protegir « $1 »)',
@@ -1293,8 +1298,6 @@ Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las p
 
 # What links here
 'whatlinkshere'       => 'Paginas ligadas a aquesta',
-'notargettitle'       => 'Pas de cibla',
-'notargettext'        => 'Indicatz una pagina cibla o un utilizaire cibla.',
 'linklistsub'         => '(Lista de ligams)',
 'linkshere'           => 'Las paginas çai jos contenon un ligam vèrs aquesta:',
 'nolinkshere'         => "Cap de pagina conten pas de ligam vèrs '''[[:$1]]'''.",
@@ -1627,7 +1630,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'patrol-log-diff' => '$1',
 
 # Image deletion
-'deletedrevision' => 'La version anciana $1 es estada suprimida',
+'deletedrevision' => 'La version anciana $1 es estada suprimida.',
 
 # Browsing diffs
 'previousdiff' => '← Dif precedenta',
@@ -1997,8 +2000,8 @@ Ensajatz la previsualizacion normala.',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} :',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Lista de seguit',
-'watchlisttools-edit'  => 'Veire e modificar la lista de seguit',
-'watchlisttools-raw'   => 'Modificar la lista (mòde brut)',
+'watchlisttools-view' => 'Lista de seguit',
+'watchlisttools-edit' => 'Veire e modificar la lista de seguit',
+'watchlisttools-raw'  => 'Modificar la lista (mòde brut)',
 
 );
