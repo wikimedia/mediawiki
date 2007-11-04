@@ -166,6 +166,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 === Languages updated in 1.12 ===
 
+* Afrikaans (af)
 * Amharic (am) (new)
 * Aragonese (an)
 * Old English (ang) (new)
@@ -173,6 +174,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Mapudungun (arn) (new)
 * Asturian (ast)
 * Samogitian (bat-smg)
+* Boarisch (bar)
 * Bikol Central (bcl)
 * Belarusian Taraskievica orthography (be-tarask)
 * Bulgarian (bg)
@@ -183,6 +185,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Catalan (ca)
 * Czech (cs)
 * Cassubian (csb)
+* Old Church Slavonic (cu)
 * Welsh (cy)
 * Danish (da)
 * German (de)
@@ -236,6 +239,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Newari (new) (new)
 * Dutch (nl)
 * Norwegian (no)
+* Occitan (oc)
 * Deitsch (pdc) (new)
 * Polish (pl)
 * Piemontèis (pms)
@@ -260,7 +264,9 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Tetun (tet) (new)
 * Tajik (tg)
 * Tagalog (tl) (new)
+* Turkish (tr)
 * Uyghur (ug)
+* Vietnamese (vi)
 * West Flemish (vls)
 * Volapük (vo)
 * Walloon (wa)
