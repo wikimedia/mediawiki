@@ -1930,23 +1930,36 @@ class Article {
 			}
 
 			if( $reason === '' ) {
-				# comment field=255, let's grep the first 150 to have some user
-				# space left
-				global $wgContLang;
-				$text = $wgContLang->truncate( $text, 150, '...' );
+				if( !$blanked ) {
+					if( $authorOfAll === false ) {
+						$reason = wfMsgForContent( 'excontent', '$1' );
+					} else {
+						$reason = wfMsgForContent( 'excontentauthor', '$1', $authorOfAll );
+					}
+				} else {
+					$reason = wfMsgForContent( 'exbeforeblank', '$1' );
+				}
+
+				# comment field=255, find the max length of the content from page
+				# Max content length is max comment length, minus length of the actual
+				# comment (except for the $1), and minus the possible ... chars
+				$maxLength = 255 - ( strlen( $reason ) - 2 ) - 3;
+				if( $maxLength < 0 ) {
+					$maxLength = 0;
+				}
 
 				# let's strip out newlines
 				$text = preg_replace( "/[\n\r]/", '', $text );
 
-				if( !$blanked ) {
-					if( $authorOfAll === false ) {
-						$reason = wfMsgForContent( 'excontent', $text );
-					} else {
-						$reason = wfMsgForContent( 'excontentauthor', $text, $authorOfAll );
-					}
-				} else {
-					$reason = wfMsgForContent( 'exbeforeblank', $text );
-				}
+				# Truncate to max length
+				global $wgContLang;
+				$text = $wgContLang->truncate( $text, $maxLength, '...' );
+
+				# Remove possible unfinished links
+				$text = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $text );
+
+				# Add to the reason field
+				$reason = str_replace( '$1', $text, $reason );
 			}
 		}
 
