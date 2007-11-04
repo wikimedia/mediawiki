@@ -11,6 +11,7 @@
  * @author Siebrand
  * @author Nike
  * @author Steinninn
+ * @author Lejonel
  */
 
 $skinNames = array(
@@ -161,7 +162,7 @@ $messages = array(
 'tog-editondblclick'          => 'Redigera sidor med dubbelklick (Javascript)',
 'tog-editsection'             => 'Visa [redigera]-länkar för att redigera sektioner',
 'tog-editsectiononrightclick' => 'Högerklick på rubriker redigerar sektioner (Javascript)',
-'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har åtminstone 4 rubriker)',
+'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
 'tog-rememberpassword'        => 'Kom ihåg lösenordet till nästa besök',
 'tog-editwidth'               => 'Full bredd på redigeringsrutan',
 'tog-watchcreations'          => 'Lägg till sidor jag skapar i min övervakningslista',
@@ -169,14 +170,14 @@ $messages = array(
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min övervakningslista',
 'tog-watchdeletion'           => 'Lägg till sidor jag raderar i min övervakningslista',
 'tog-minordefault'            => 'Markera automatiskt ändringar som mindre',
-'tog-previewontop'            => 'Visa förhandsgranskning före texten, istället för efter',
+'tog-previewontop'            => 'Visa förhandsgranskning före redigeringsrutan, istället för efter',
 'tog-previewonfirst'          => 'Visa förhandsgranskning när redigering påbörjas',
 'tog-nocache'                 => 'Stäng av cachning av sidor',
 'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när någon övervakad sida ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post om uppdateringar',
-'tog-shownumberswatching'     => 'Visa antalet användare som övervakar denna sida.',
+'tog-shownumberswatching'     => 'Visa antalet användare som övervakar sidor',
 'tog-fancysig'                => 'Rå signatur, utan automatisk länk',
 'tog-externaleditor'          => 'Använd extern editor automatiskt',
 'tog-externaldiff'            => 'Använd externt diff-verktyg',
@@ -282,6 +283,9 @@ $messages = array(
 'anontalk'       => 'Diskussionssidan för denna IP-adress',
 'navigation'     => 'Navigering',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'    => 'Fel',
 'returnto'          => 'Tillbaka till $1.',
 'tagline'           => '{{SITENAME}}',
@@ -363,9 +367,9 @@ $messages = array(
 
 'badaccess'        => 'Behörighetsfel',
 'badaccess-group0' => 'Du har inte behörighet att utföra den handling du begärt.',
-'badaccess-group1' => 'Den handling du har begärt kan enbart utföras av användare i grupp $1.',
-'badaccess-group2' => 'Den handling du har begärt kan enbart utföras av användare i någon av grupperna $1.',
-'badaccess-groups' => 'Den handling du har begärt kan enbart utföras av användare i någon av grupperna $1.',
+'badaccess-group1' => 'Den handling du har begärt kan enbart utföras av användare i gruppen $1.',
+'badaccess-group2' => 'Den handling du har begärt kan enbart utföras av användare i grupperna $1.',
+'badaccess-groups' => 'Den handling du har begärt kan enbart utföras av användare i grupperna $1.',
 
 'versionrequired'     => 'Version $1 av MediaWiki krävs',
 'versionrequiredtext' => 'För att kunna använda den här sidan, behövs version $1 av MediaWiki. Se [[Special:Version]].',
@@ -396,9 +400,10 @@ $messages = array(
 'nstab-main'      => 'Artikel',
 'nstab-user'      => 'Användarsida',
 'nstab-media'     => 'Media',
-'nstab-project'   => 'projektsida',
+'nstab-special'   => 'Special',
+'nstab-project'   => 'Projektsida',
 'nstab-image'     => 'Bild',
-'nstab-mediawiki' => 'systemmeddelande',
+'nstab-mediawiki' => 'Systemmeddelande',
 'nstab-template'  => 'Mall',
 'nstab-help'      => 'Hjälp',
 'nstab-category'  => 'Kategori',
@@ -504,6 +509,7 @@ $2',
 'prefs-help-realname'        => 'Riktigt namn behöver inte anges. Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'                 => 'Inloggningsproblem',
 'prefs-help-email'           => 'E-postadress behöver inte anges, men den gör det möjligt för andra användare att kontakta dig, utan att du behöver avslöja din identitet och/eller e-postadress.',
+'prefs-help-email-required'  => 'E-postadress måste anges.',
 'nocookiesnew'               => 'Användarkontot skapades, men du blev inte inloggad. {{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din bläddrare. Om du slår på cookies kan du logga in med ditt nya användarnamn och lösenord.',
 'nocookieslogin'             => '{{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din webbläsare. Försök igen med stöd för cookies aktiverat.',
 'noname'                     => 'Du har angett ett ogiltigt användarnamn.',
@@ -518,7 +524,7 @@ Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt 
 'passwordtooshort'           => 'Ditt lösenord är för kort. Det måste innehålla minst $1 tecken.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle'      => 'Nytt lösenord från {{SITENAME}}',
-'passwordremindertext'       => 'Någon - förmodligen du - har från IP-numret $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4). 
+'passwordremindertext'       => 'Någon - förmodligen du - har från IP-adressen $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4). 
 Lösenordet för användaren "$2" är nu "$3". 
 Du bör nu logga in, och byta lösenord.
 
@@ -632,7 +638,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'accmailtext'               => "Lösenordet för '$1' har skickats till $2.",
 'newarticle'                => '(Ny)',
 'newarticletext'            => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
-'anontalkpagetext'          => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. [[{{SITENAME}}]] måste därför använda personens numeriska [[IP-adress]] för identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
+'anontalkpagetext'          => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. [[{{SITENAME}}]] måste därför använda personens numeriska IP-adress för att identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
 'noarticletext'             => "<div class=\"plainlinks\" style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} har inte någon artikel om \"{{PAGENAME}}\" ännu.'''<br />
 *Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera den här sidan]''' för att skapa en ny artikel.<br />
 *Du kan också [[Special:Search/{{PAGENAME}}|söka efter {{PAGENAME}}]] i andra artiklar på {{SITENAME}}.<br />
@@ -643,7 +649,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'usercssjsyoucanpreview'    => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
 'usercsspreview'            => "'''Observera att du bara förhandsgranskar din användar-css - den har inte sparats än.'''",
 'userjspreview'             => "'''Observera att du bara testar/förhandsgranskar ditt javascript! Det är inte sparat än.'''",
-'userinvalidcssjstitle'     => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: Användare:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Uppdaterad)',
 'note'                      => '<strong>Obs!</strong>',
 'previewnote'               => 'Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!',
@@ -733,7 +739,7 @@ Anledningen till blockeringen var "$2".',
 'deletedrev'          => '[raderad]',
 'histfirst'           => 'Första',
 'histlast'            => 'Senaste',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historysize'         => '($1 byte)',
 'historyempty'        => '(tom)',
 
 # Revision feed
@@ -749,10 +755,7 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-user'            => '(användarnamn borttaget)',
 'rev-deleted-event'           => '(loggåtgärd borttagen)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Denna version av sidan har avlägsnats från de öppna arkiven. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen]. </div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Denna version av sidan har avlägsnats från de öppna arkiven. 
-Som administratör på denna wiki kan du se den; 
-det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen]. </div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks"> Denna version av sidan har avlägsnats från de öppna arkiven. Som administratör på denna wiki kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen]. </div>',
 'rev-delundel'                => 'visa/göm',
 'revisiondelete'              => 'Ta bort/återställ versioner',
 'revdelete-nooldid-title'     => 'Ingen version angiven',
@@ -764,14 +767,14 @@ det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'revdelete-hide-text'         => 'Dölj versionstext',
 'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
 'revdelete-hide-comment'      => 'Dölj redigeringskommentar',
-'revdelete-hide-user'         => 'Dölj redaktörens användarnamn/IP-address',
+'revdelete-hide-user'         => 'Dölj redaktörens användarnamn/IP-adress',
 'revdelete-hide-restricted'   => 'Låt dessa begränsningar gälla administratörer likväl som andra',
 'revdelete-suppress'          => 'Undanhåll data även från administratörer',
 'revdelete-hide-image'        => 'Dölj filinnehåll',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
 'revdelete-log'               => 'Loggkommentar:',
 'revdelete-submit'            => 'Tillämpa på vald version',
-'revdelete-logentry'          => 'om [[:$1|$1]] visas eller ej har ändrats',
+'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'          => 'ändrade synlighet för åtgärder på [[$1]]',
 'revdelete-logaction'         => '$1 {{plural:$1|version|versioner}} satta till $2',
 'logdelete-logaction'         => '$1 {{plural:$1|åtgärd|åtgärder}} för [[$3]] satta till $2',
@@ -807,9 +810,9 @@ det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'prevn'                 => 'förra $1',
 'nextn'                 => 'nästa $1',
 'viewprevnext'          => 'Visa ($1) ($2) ($3).',
-'showingresults'        => "Nedan visas upp till {{PLURAL:$1|'''1''' resultat|'''$1''' resultat}} från och med nummer #'''$2'''.",
-'showingresultsnum'     => "Nedan visas {{PLURAL:$3|'''1''' resultat|'''$3''' resultat}} från och med # '''$2'''.",
-'nonefound'             => '<strong>Observera:</strong>: Sökningar utan träffar beror ofta på att man försöker söka efter vanliga ord som "har" och "från". Dessa indexeras inte, och fungerar inte som söktermer. Försök istället hitta mera specifika ord.',
+'showingresults'        => "Nedan visas upp till '''$1''' resultat från och med nummer #'''$2'''.",
+'showingresultsnum'     => "Nedan visas '''$3''' resultat från och med #'''$2'''.",
+'nonefound'             => '<strong>Observera:</strong>: Sökningar utan träffar beror ofta på att man försöker söka efter vanliga ord som "har" och "från", dessa ord indexeras inte och fungerar inte som söktermer. En annan orsak kan vara att du söker på flera ord, då visas bara sidor som innehåller alla orden bland sökresultaten.',
 'powersearch'           => 'Sök',
 'powersearchtext'       => 'Sök i namnrymderna :<br />
 $1<br />
@@ -848,7 +851,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'prefs-rc'                 => 'Senaste ändringar',
 'prefs-watchlist'          => 'Övervakningslistan',
 'prefs-watchlist-days'     => 'Maximalt antal dagar som visas på övervakningslistan:',
-'prefs-watchlist-edits'    => 'Antal redigeringar som visas i utökad övervakningslista:',
+'prefs-watchlist-edits'    => 'Maximalt antal redigeringar som visas i utökad övervakningslista:',
 'prefs-misc'               => 'Diverse',
 'saveprefs'                => 'Spara inställningar',
 'resetprefs'               => 'Återställ ursprungliga inställningar',
@@ -910,7 +913,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'grouppage-bureaucrat'    => 'Project:Byråkrater',
 
 # User rights log
-'rightslog'      => 'Logg över användarrättigheter',
+'rightslog'      => 'Användarrättighetslogg',
 'rightslogtext'  => 'Detta är en logg över ändringar av användares rättigheter.',
 'rightslogentry' => 'grupptillhörighet för $1 ändrad från $2 till $3',
 'rightsnone'     => '(inga)',
@@ -920,7 +923,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'recentchanges'                     => 'Senaste ändringarna',
 'recentchangestext'                 => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description'    => 'Följ de senaste ändringarna i wikin genom den här matningen.',
-'rcnote'                            => "Nedan visas {{PLURAL:$1|den senaste '''1''' ändringen|de senaste '''$1''' ändringarna}} {{PLURAL:$2|den senaste dagen|de senaste <strong>$2</strong> dagarna}}, per $3.",
+'rcnote'                            => "Nedan visas {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} under {{PLURAL:$2|den senaste dagen|de senaste '''$2''' dagarna}}, per $3.",
 'rcnotefrom'                        => 'Nedan visas de senaste <strong>$1</strong> ändringarna sedan <strong>$2</strong>.',
 'rclistfrom'                        => 'Visa ändringar efter $1',
 'rcshowhideminor'                   => '$1 mindre ändringar',
@@ -958,11 +961,10 @@ $3',
 'uploadnologintext'           => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ladda upp filer.',
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
 'uploaderror'                 => 'Fel vid uppladdningen',
-'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer. För att titta på eller leta efter bilder som redan har laddats upp, se [[Special:Imagelist|lista över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]]. För att infoga en bild på en sida, använd en länk i i följande format:
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|alt text]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
-om du vill länka direkt till filen.",
+'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer. För att titta på eller leta efter bilder som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]]. För att infoga en bild på en sida, använd en länk i följande format:
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>''',
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|alt text]]</nowiki>''' eller
+* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>''' om du vill länka direkt till filen.",
 'uploadlog'                   => 'Uppladdningar',
 'uploadlogpage'               => 'Uppladdningslogg',
 'uploadlogpagetext'           => 'Nedan följer en lista med de senaste uppladdade filerna.',
@@ -994,12 +996,12 @@ Den enda skillnaden är versaliseringen av filnamnsändelsen. Var vänlig kontro
 Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.',
 'file-thumbnail-no'           => 'Filnamnet börjar med <strong><tt>$1</tt></strong>. Det verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>.
 Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars bör du ändra filens namn.',
-'fileexists-forbidden'        => 'En fil med detta namn finns redan. Backa och ladda upp denna fil under ett nytt namn [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'En file med detta namn finns redan bland de delade filerna; vänligen backa och ladda upp denna fil under ett nytt namn. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'En fil med detta namn finns redan. Backa och ladda upp din fil under ett nytt namn [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'En fil med detta namn finns redan bland de delade filerna; vänligen backa och ladda upp din fil under ett annat namn. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Uppladdningen lyckades',
 'uploadwarning'               => 'Uppladdningsvarning',
 'savefile'                    => 'Spara fil',
-'uploadedimage'               => '"[[$1]]" laddades upp',
+'uploadedimage'               => 'laddade upp "[[$1]]"',
 'overwroteimage'              => 'laddade upp ny version av "[[$1]]"',
 'uploaddisabled'              => 'Uppladdningsfunktionen är avstängd',
 'uploaddisabledtext'          => 'Uppladdning av filer är avstängd på den här wikin',
@@ -1288,7 +1290,7 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'mywatchlist'          => 'Min övervakningslista',
 'watchlistfor'         => "(för '''$1''')",
 'nowatchlist'          => 'Du har inga sidor i din övervakningslista.',
-'watchlistanontext'    => '$1 för att se eller redigera din övervakningslista.',
+'watchlistanontext'    => 'Du måste $1 för att se eller redigera din övervakningslista.',
 'watchnologin'         => 'Du är inte inloggad',
 'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna göra ändringar i din övervakningslista.',
 'addedwatch'           => 'Tillagd på övervakningslistan',
@@ -1420,7 +1422,7 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'restriction-type'            => 'Typ av skydd',
 'restriction-level'           => 'Skyddsnivå',
 'minimum-size'                => 'Minsta storlek',
-'maximum-size'                => 'Maxstorlek',
+'maximum-size'                => 'Största storlek',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
@@ -1545,7 +1547,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'blockipsuccesstext'          => 'IP-adressen "$1" har blockerats.<br /><br />
 Lämna gärna besked om detta på [[User talk:$1|användarens diskussionssida]]. För att se alla blockeringar som ligger just nu, gå till [[Special:Ipblocklist|listan över blockeringar]].<br /><br />
 En logg över blockeringar och borttagningar av blockeringar finns på [[Special:Log/Block]].',
-'ipb-edit-dropdown'           => 'Redigera blockeringsanledning',
+'ipb-edit-dropdown'           => 'Redigera blockeringsanledningar',
 'ipb-unblock-addr'            => 'Ta bort blockering av $1',
 'ipb-unblock'                 => 'Ta bort blockering av en användare eller IP-adress',
 'ipb-blocklist-addr'          => 'Visa gällande blockeringar av $1',
@@ -1560,8 +1562,8 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'ipblocklist-username'        => 'Användarnamn eller IP-adress',
 'ipblocklist-submit'          => 'Sök',
 'blocklistline'               => '$1: $2 blockerar $3 $4',
-'infiniteblock'               => 'evig',
-'expiringblock'               => 'förfaller $1',
+'infiniteblock'               => 'för evigt',
+'expiringblock'               => 'till $1',
 'anononlyblock'               => 'endast för oinloggade',
 'noautoblockblock'            => 'utan automatisk blockering',
 'createaccountblock'          => 'kontoregistrering blockerad',
@@ -1622,7 +1624,7 @@ Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya
 *Du avmarkerar rutan nedan.",
 'movearticle'             => 'Flytta sida',
 'movenologin'             => 'Inte inloggad',
-'movenologintext'         => 'För att kunna flytta en sida, måste du måste vara registrerad som användare, och [[Special:Userlogin|inloggad]].',
+'movenologintext'         => 'För att flytta en sida måste du vara registrerad användare och [[Special:Userlogin|inloggad]].',
 'movenotallowed'          => 'Du har inte behörighet att flytta sidor på den här wikin.',
 'newtitle'                => 'Till den nya sidtiteln',
 'move-watch'              => 'Bevaka denna sida',
@@ -1845,7 +1847,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 # Patrol log
 'patrol-log-page' => 'Patrulleringslogg',
 'patrol-log-line' => 'markerade $1 av $2 som patrullerad $3',
-'patrol-log-auto' => '(automatisk)',
+'patrol-log-auto' => '(automatiskt)',
 'patrol-log-diff' => 'version $1',
 
 # Image deletion
@@ -1904,7 +1906,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-bitspersample'               => 'Bitar per komponent',
 'exif-compression'                 => 'Komprimeringsalgoritm',
 'exif-photometricinterpretation'   => 'Pixelsammansättning',
-'exif-orientation'                 => 'Position',
+'exif-orientation'                 => 'Orientering',
 'exif-samplesperpixel'             => 'Antal komponenter',
 'exif-planarconfiguration'         => 'Dataarrangemang',
 'exif-ycbcrsubsampling'            => 'Subsamplingsförhållande mellan Y och C',
@@ -1918,7 +1920,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-jpeginterchangeformat'       => 'Offset till JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Antal bytes JPEG-data',
 'exif-transferfunction'            => 'Överföringsfunktion',
-'exif-whitepoint'                  => 'VItpunktens renhet',
+'exif-whitepoint'                  => 'Vitpunktens renhet',
 'exif-primarychromaticities'       => 'Primärfärgernas renhet',
 'exif-ycbcrcoefficients'           => 'Koefficienter för färgrymdstransformationsmatris',
 'exif-referenceblackwhite'         => 'Referensvärden för svart och vitt',
@@ -1969,7 +1971,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-focalplaneresolutionunit'    => 'Enhet för upplösning i fokalplan',
 'exif-subjectlocation'             => 'Motivets läge',
 'exif-exposureindex'               => 'Exponeringsindex',
-'exif-sensingmethod'               => 'Avkänning',
+'exif-sensingmethod'               => 'Avkänningsmetod',
 'exif-filesource'                  => 'Filkälla',
 'exif-scenetype'                   => 'Scentyp',
 'exif-cfapattern'                  => 'CFA-mönster',
@@ -1984,7 +1986,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-saturation'                  => 'Mättnad',
 'exif-sharpness'                   => 'Skärpa',
 'exif-devicesettingdescription'    => 'Beskrivning av apparatens inställning',
-'exif-subjectdistancerange'        => 'Avstånd till det avbildade',
+'exif-subjectdistancerange'        => 'Avståndsintervall till motiv',
 'exif-imageuniqueid'               => 'Unikt bild-ID',
 'exif-gpsversionid'                => 'Version för GPS-taggar',
 'exif-gpslatituderef'              => 'Nordlig eller sydlig latitud',
@@ -2052,6 +2054,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-meteringmode-0'   => 'Okänd',
 'exif-meteringmode-1'   => 'Medelvärde',
 'exif-meteringmode-2'   => 'Centrumviktat medelvärde',
+'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Multispot',
 'exif-meteringmode-5'   => 'Mönster',
 'exif-meteringmode-6'   => 'Partiell',
@@ -2097,6 +2100,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-whitebalance-0' => 'Automatisk vitbalans',
 'exif-whitebalance-1' => 'Manuell vitbalans',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Porträtt',
 'exif-scenecapturetype-3' => 'Nattfotografering',
