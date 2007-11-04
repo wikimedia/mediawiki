@@ -73,6 +73,7 @@ $datePreferences = array(
 	'mdy',
 	'dmy',
 	'ymd',
+	'persian',
 	'ISO 8601',
 );
 
@@ -115,6 +116,11 @@ $dateFormats = array(
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y xg j',
 	'ymd both' => 'H:i، Y xg j', # Arabic comma
+	
+	'persian time' => 'H:i',
+	'persian date' => '‏xij xiF xiY', # Don't delete the invisible RLM from the beginning.
+	'persian both' => 'H:i، xij xiF xiY',
+	
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -287,6 +293,18 @@ $messages = array(
 'oct'           => 'اکتبر',
 'nov'           => 'نوامبر',
 'dec'           => 'دسامبر',
+'iranian-calendar-m1' => 'فروردین',
+'iranian-calendar-m2' => 'اردیبهشت',
+'iranian-calendar-m3' => 'خرداد',
+'iranian-calendar-m4' => 'تیر',
+'iranian-calendar-m5' => 'مرداد',
+'iranian-calendar-m6' => 'شهریور',
+'iranian-calendar-m7' => 'مهر',
+'iranian-calendar-m8' => 'آبان',
+'iranian-calendar-m9' => 'آذر',
+'iranian-calendar-m10' => 'دی',
+'iranian-calendar-m11' => 'بهمن',
+'iranian-calendar-m12' => 'اسفند',
 
 # Bits of text used by many pages
 'categories'            => 'رده‌های صفحه',
