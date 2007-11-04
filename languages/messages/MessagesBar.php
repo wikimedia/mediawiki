@@ -9,33 +9,33 @@
 $fallback = 'de';
 
 $messages = array(
-'about'    => 'Üba',
+'about'    => 'Ãœba',
 'mypage'   => 'Eigne Seitn',
 'mytalk'   => 'Eigne Diskussion',
 'anontalk' => 'Diskussionsseitn vo dera IP',
 
 'edit'              => 'werkln',
-'delete'            => 'löschn',
+'delete'            => 'lÃ¶schn',
 'unprotect'         => 'freigem',
 'unprotectthispage' => 'Schutz aufhem',
 'talk'              => 'bschprecha',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Üba {{SITENAME}}',
-'aboutpage' => '{{ns:project}}:Üba_{{SITENAME}}',
+'aboutsite' => 'Ãœba {{SITENAME}}',
+'aboutpage' => '{{ns:project}}:Ãœba_{{SITENAME}}',
 'mainpage'  => 'Hauptsaitn',
 
 'youhavenewmessagesmulti' => 'Sie ham neie Nachrichten: $1',
 
 # General errors
-'filedeleteerror' => 'De Datei „$1“ håt net glöscht wern kinna.',
+'filedeleteerror' => 'De Datei Â„$1Â“ hÃ¥t net glÃ¶scht wern kinna.',
 
 # Login and logout pages
 'yourname'                   => 'Benutzernam:',
 'yourdomainname'             => 'Eanane Domain:',
 'notloggedin'                => 'Net ogmeldt',
 'yourrealname'               => 'Echter Nam:',
-'yourlanguage'               => 'Sprache vo da Benutzeroberfläche:',
+'yourlanguage'               => 'Sprache vo da BenutzeroberflÃ¤che:',
 'wrongpassword'              => "Des Passwort is falsch (oda fehlt). Bitte probier's no amoi.",
 'wrongpasswordempty'         => 'Des eigemne Passwort is laar gwen. Bitte no amoi probiern.',
 'acct_creation_throttle_hit' => 'Du hosst scho $1 Benutzakonten und kinnan iatzat koane mehr oleng.',
@@ -44,10 +44,10 @@ $messages = array(
 
 # Edit pages
 'watchthis'          => 'De Seitn beobachtn',
-'whitelistedittitle' => 'Zum Bearbatn miaßn Sie si oomeidn',
-'whitelistedittext'  => 'Sie miaßn si $1, um Seiten bearbatn zum kinna.',
+'whitelistedittitle' => 'Zum Bearbatn miaÃŸn Sie si oomeidn',
+'whitelistedittext'  => 'Sie miaÃŸn si $1, um Seiten bearbatn zum kinna.',
 'whitelistreadtitle' => 'Zum Lesn is erforderlich, ogmeldt zum sei',
-'whitelistreadtext'  => 'Sie miaßn si [[Special:Userlogin|da oomeidn]], um de Seitn lesen zum kinna.',
+'whitelistreadtext'  => 'Sie miaÃŸn si [[Special:Userlogin|da oomeidn]], um de Seitn lesen zum kinna.',
 'whitelistacctitle'  => 'Sie san net berechtigt, a Benutzerkonto ozumlegn.',
 'accmailtitle'       => 'Passwort is vaschickt worn',
 'newarticle'         => '(Nei)',
@@ -65,7 +65,7 @@ $messages = array(
 # Miscellaneous special pages
 'allpages'     => 'Alle Seitn',
 'newpages'     => 'Neie Seitn',
-'ancientpages' => 'Scho länger nimma bearbate Artikel',
+'ancientpages' => 'Scho lÃ¤nger nimma bearbate Artikel',
 'move'         => 'vaschiam',
 
 # Special:Log
@@ -77,17 +77,17 @@ $messages = array(
 'allnotinnamespace' => 'Alle Seitn (net im $1 Namensraum)',
 'allpagesprev'      => 'Vorige',
 'allpagessubmit'    => 'Owendn',
-'allpagesprefix'    => 'Seitn zoagn mit Präfix:',
+'allpagesprefix'    => 'Seitn zoagn mit PrÃ¤fix:',
 
 # Watchlist
 'mywatchlist'       => 'Beobachtungslistn',
-'watchlistanontext' => 'Sie miaßn si $1, um Eanane Beobachtungslistn zum seng oda Einträge auf ihr zum bearbatn.',
+'watchlistanontext' => 'Sie miaÃŸn si $1, um Eanane Beobachtungslistn zum seng oda EintrÃ¤ge auf ihr zum bearbatn.',
 'watchnologin'      => 'Sie san net ogmeidt',
 'watchthispage'     => 'Seitn beobachtn',
 'unwatch'           => 'nimma beobachten',
 
 # Contributions
-'mycontris' => 'Eigene Beiträg',
+'mycontris' => 'Eigene BeitrÃ¤g',
 
 # What links here
 'whatlinkshere' => 'Links auf de Seitn',
@@ -95,14 +95,14 @@ $messages = array(
 # Move page
 'movepage'        => 'Seitn vaschiam',
 'move-watch'      => 'De Seitn beobachten',
-'1movedto2'       => 'håt [[$1]] nåch [[$2]] verschom',
-'1movedto2_redir' => 'håt [[$1]] nåch [[$2]] verschom und dabei a Weiterleitung überschriem',
+'1movedto2'       => 'hÃ¥t [[$1]] nÃ¥ch [[$2]] verschom',
+'1movedto2_redir' => 'hÃ¥t [[$1]] nÃ¥ch [[$2]] verschom und dabei a Weiterleitung Ã¼berschriem',
 
 # Namespace 8 related
 'allmessagesname'     => 'Nam',
 'allmessagescurrent'  => 'Aktuella Text',
 'allmessagestext'     => 'Des is a Listn vo de MediaWiki-Systemtexte.',
-'allmessagesmodified' => 'Nur geänderte zoagn',
+'allmessagesmodified' => 'Nur geÃ¤nderte zoagn',
 
 # Special:Newimages
 'newimages' => 'Neie Dateien',
