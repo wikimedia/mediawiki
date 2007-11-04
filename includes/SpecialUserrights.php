@@ -214,7 +214,7 @@ class UserrightsForm extends HTMLForm {
 					Xml::label( wfMsg( 'userrights-reason' ), 'wpReason' ) .
 				"</td>
 				<td>" .
-					Xml::input( 'user-reason', 60, false, array( 'id' => 'wpReason' ) ) .
+					Xml::input( 'user-reason', 60, false, array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
 				"</td>
 			</tr>
 			<tr>

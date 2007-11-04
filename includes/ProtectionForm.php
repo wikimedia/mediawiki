@@ -321,6 +321,7 @@ class ProtectionForm {
 			'</td><td>' .
 			wfElement( 'input', array(
 				'size' => 60,
+				'maxlength' => 255,
 				'name' => $id,
 				'id' => $id,
 				'value' => $this->mReason ) );
