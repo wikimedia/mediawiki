@@ -293,18 +293,6 @@ $messages = array(
 'oct'           => 'اکتبر',
 'nov'           => 'نوامبر',
 'dec'           => 'دسامبر',
-'iranian-calendar-m1' => 'فروردین',
-'iranian-calendar-m2' => 'اردیبهشت',
-'iranian-calendar-m3' => 'خرداد',
-'iranian-calendar-m4' => 'تیر',
-'iranian-calendar-m5' => 'مرداد',
-'iranian-calendar-m6' => 'شهریور',
-'iranian-calendar-m7' => 'مهر',
-'iranian-calendar-m8' => 'آبان',
-'iranian-calendar-m9' => 'آذر',
-'iranian-calendar-m10' => 'دی',
-'iranian-calendar-m11' => 'بهمن',
-'iranian-calendar-m12' => 'اسفند',
 
 # Bits of text used by many pages
 'categories'            => 'رده‌های صفحه',
@@ -2402,5 +2390,19 @@ $1',
 'watchlisttools-view' => 'فهرست تعقیبات',
 'watchlisttools-edit' => 'مشاهده و ویرایش فهرست تعقیبات',
 'watchlisttools-raw'  => 'ویرایش فهرست خام تعقیبات',
+
+# Iranian month names
+'iranian-calendar-m1' => 'فروردین',
+'iranian-calendar-m2' => 'اردیبهشت',
+'iranian-calendar-m3' => 'خرداد',
+'iranian-calendar-m4' => 'تیر',
+'iranian-calendar-m5' => 'مرداد',
+'iranian-calendar-m6' => 'شهریور',
+'iranian-calendar-m7' => 'مهر',
+'iranian-calendar-m8' => 'آبان',
+'iranian-calendar-m9' => 'آذر',
+'iranian-calendar-m10' => 'دی',
+'iranian-calendar-m11' => 'بهمن',
+'iranian-calendar-m12' => 'اسفند',
 
 );
