@@ -179,7 +179,7 @@ $messages = array(
 'tog-editondblclick'          => 'Seiten mit Doppelklick bearbeiten (JavaScript)',
 'tog-editsection'             => 'Links zum Bearbeiten einzelner Absätze anzeigen',
 'tog-editsectiononrightclick' => 'Einzelne Absätze per Rechtsklick bearbeiten (JavaScript)',
-'tog-showtoc'                 => 'Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als 3 Überschriften',
+'tog-showtoc'                 => 'Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als drei Überschriften',
 'tog-rememberpassword'        => 'Benutzer soll auf diesem Computer dauerhaft angemeldet bleiben',
 'tog-editwidth'               => 'Text-Eingabefeld mit voller Breite',
 'tog-watchcreations'          => 'Selbst erstellte Seiten automatisch beobachten',
@@ -1498,7 +1498,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''$1''' einsehen und ändern.",
 'protect-locked-blocked'      => 'Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
-'protect-locked-access'       => 'Ihr Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
+'protect-locked-access'       => 'Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
 'protect-cascadeon'           => 'Diese Seite ist gegenwärtig Teil einer Kaskadensperre. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, welche durch die Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}. Der Seitenschutzstatus kann für diese Seite geändert werden, dies hat jedoch keinen Einfluss auf die Kaskadensperre:',
 'protect-default'             => 'Alle (Standard)',
 'protect-fallback'            => 'Es wird die „$1“-Berechtigung benötigt.',
@@ -1528,7 +1528,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'             => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
 'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, gib bitte eine Begründung an und klicke auf „Wiederherstellen“.
-* Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln an Hand der Markierungen aus, gib eine Begründung an und klicke dann auf „Wiederherstellen“.
+* Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln anhand der Markierungen aus, gib eine Begründung an und klicke dann auf „Wiederherstellen“.
 * „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeleterevisions'            => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
 'undeletehistory'              => 'Wenn du diese Seite wiederherstellst, werden auch alle alten
@@ -1716,11 +1716,13 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 # Move page
 'movepage'                => 'Seite verschieben',
 'movepagetext'            => 'Mit diesem Formular kannst du eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Links auf den alten Titel werden nicht geändert.',
-'movepagetalktext'        => "Die dazugehörige Diskussionsseite wird mitverschoben, '''es sei denn:'''
+'movepagetalktext'        => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
 *du wählst die untenstehende Option ab.
 
-In diesen Fällen musst du, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.",
+In diesen Fällen musst du, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
+
+Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
 'movearticle'             => 'Seite verschieben:',
 'movenologin'             => 'Du bist nicht angemeldet',
 'movenologintext'         => 'Du musst ein registrierter Benutzer und [[Special:Userlogin|angemeldet]] sein, um eine Seite zu verschieben.',
@@ -1914,7 +1916,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Spam protection
 'spamprotectiontitle'    => 'Spamschutzfilter',
 'spamprotectiontext'     => 'Die Seite, die du speichern willst, wurde von dem Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link zu einer externen Seite.',
-'spamprotectionmatch'    => "'''Der folgende Text wurde von dem Spam-Filter gefunden: ''$1'''''",
+'spamprotectionmatch'    => "'''Der folgende Text wurde vom Spamfilter gefunden: ''$1'''''",
 'subcategorycount'       => '{{PLURAL:$1|Es wird $1 Unterkategorie|Es werden $1 Unterkategorien}} angezeigt.',
 'categoryarticlecount'   => '<small>Es {{PLURAL:$1|wird $1 Seite|werden $1 Seiten}} aus dieser Kategorie angezeigt.</small>',
 'category-media-count'   => '<small>Es {{PLURAL:$1|wird $1 Datei|werden $1 Dateien}} aus dieser Kategorie angezeigt.</small>',
