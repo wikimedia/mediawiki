@@ -523,6 +523,9 @@ class DatabasePostgres extends Database {
 	}
 
 	function doQuery( $sql ) {
+		if (function_exists('mb_convert_encoding')) {
+			return $this->mLastResult=pg_query( $this->mConn , mb_convert_encoding($sql,'UTF-8') );
+		}
 		return $this->mLastResult=pg_query( $this->mConn , $sql);
 	}
 
