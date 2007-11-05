@@ -2399,8 +2399,9 @@ Variants for Chinese language",
 	'sizeunits'           => 'Size units',
 	'livepreview'         => 'Live preview',
 	'lagwarning'          => 'Friendlier slave lag warnings',
-	'watchlisteditor' => 'Watchlist editor',
-	'watchlisttools' => 'Watchlist editing tools',
+	'watchlisteditor'     => 'Watchlist editor',
+	'watchlisttools'      => 'Watchlist editing tools',
+	'iranian-dates'       => 'Iranian month names',
 );
 
 /** Short comments for standalone messages */
