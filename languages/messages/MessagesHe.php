@@ -1614,8 +1614,7 @@ $NEWPAGE
 'undelete-error-short'         => 'שגיאה בשחזור הקובץ: $1',
 'undelete-error-long'          => 'שגיאות שאירעו בעת שחזור הקובץ:
 
-$1
-',
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'מרחב שם:',
@@ -2023,8 +2022,7 @@ $1
 'filedeleteerror-short'           => 'שגיאה במחיקת הקובץ: $1',
 'filedeleteerror-long'            => 'שגיאות שאירעו בעת מחיקת הקובץ:
 
-$1
-',
+$1',
 'filedelete-missing'              => 'מחיקת הקובץ "$1" נכשלה, כיוון שהוא אינו קיים.',
 'filedelete-old-unregistered'     => 'גרסת הקובץ "$1" אינה רשומה במסד הנתונים.',
 'filedelete-current-unregistered' => 'הקובץ "$1" אינו רשום במסד הנתונים.',
