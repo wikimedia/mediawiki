@@ -850,7 +850,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
 
 # Upload
-'upload'                      => 'Importer une image ou un son',
+'upload'                      => 'Importer le fichier',
 'uploadbtn'                   => 'Importer le fichier',
 'reupload'                    => 'Copier à nouveau',
 'reuploaddesc'                => 'Retour au formulaire.',
