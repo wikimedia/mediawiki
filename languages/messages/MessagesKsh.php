@@ -231,7 +231,7 @@ $messages = array(
 'navigation'     => 'Jangk noh',
 
 # Metadata in edit box
-'metadata_help' => 'Däm Beld sing Meta-Daate ([[{{ns:project}}:Meta-Daate vun Belder|hee sin se usenanderposementeet]])',
+'metadata_help' => 'Meta-Daate:',
 
 'errorpagetitle'    => 'Fähler',
 'returnto'          => 'Jangk widder noh: „$1“.',
@@ -784,7 +784,7 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 
 # Search results
 'searchresults'         => 'Wat beim Söke eruskom',
-'searchresulttext'      => 'Luur op de Sigg üvver et [[{{ns:project}}:Söke en de {{SITENAME}}|Söke en de {{SITENAME}}]] noh, wann de mieh drüvver wesse wells, wie mer en de {{SITENAME}} jet fingk.',
+'searchresulttext'      => 'Luur op de Sigg üvver et [[{{MediaWiki:helppage}}|{{int:help}}]] noh, wann de mieh drüvver wesse wells, wie mer en de {{SITENAME}} jet fingk.',
 'searchsubtitle'        => 'För Ding Froch noh „[[:$1]]“.',
 'searchsubtitleinvalid' => 'För Ding Froch noh „$1“.',
 'badquery'              => 'Verkihrte Aanfroch för et Söke',
@@ -881,8 +881,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'servertime'               => 'De Uhrzigg om Sörver es jetz:',
 'guesstimezone'            => 'Fing et erus üvver dä Brauser',
 'allowemail'               => 'E-Mail vun andere Metmaacher zolooße',
-'defaultns'                => 'Dun standaadmäßich en hee dä 
-[[{{ns:project}}:Appachtemeng_%E2%80%94_Wat_es_dat%3F|Appachtemengs]] söke:',
+'defaultns'                => 'Dun standaadmäßich en hee dä Appachtemengs söke:',
 'default'                  => 'Standaad',
 'files'                    => 'Dateie',
 
@@ -1319,8 +1318,7 @@ Do kanns hee noh Hölp luure:
 'deletesub'                   => '(De Sigg „$1“ soll fottjeschmesse wääde)',
 'historywarning'              => '<strong>Opjepass:</strong> Die Sigg hät ene janze Püngel Versione',
 'confirmdeletetext'           => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss hee jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
-<strong>Dun et nor, wann De met de [[{{ns:project}}:Üvver et Sigge Fottschmieße|Rejele doför]] wirklich zosamme 
-jeihs!</strong>',
+<strong>Dun et nor, wann De met de [[{{MediaWiki:policy-url}}]] wirklich zosamme jeihs!</strong>',
 'actioncomplete'              => 'Erledich',
 'deletedtext'                 => 'De Sigg „$1“ es jetz fottjeschmesse woode. Luur Der „$2“ aan, do häs De en Liss met de Neuste fottjeschmesse Sigge.',
 'deletedarticle'              => 'hät fottjeschmesse: „[[$1]]“',
@@ -1424,7 +1422,7 @@ un widder herjehollte Sigge.',
 IP-Adresse sperre, su dat se hee em Wiki nit mieh 
 schrieve und Sigge ändere künne. Dat sollt nor jedon wääde om sujenannte 
 Vandaale ze bremse. Un mer müsse uns dobei natörlich aan uns 
-[[{{ns:project}}:Policy|Rejele]] för sun Fäll halde.
+[[{{MediaWiki:policy-url}}|Rejele]] för sun Fäll halde.
 Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passeet. Nenn un Link op de Sigge wo Einer kapott jemaat hät, zem Beispill.
 Luur op [[Special:Ipblocklist|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperrunge han wells, un och wann De se ändere wells.',
 'ipaddress'                   => 'IP-Adress',
