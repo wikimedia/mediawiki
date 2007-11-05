@@ -2458,4 +2458,18 @@ $1',
 'watchlisttools-edit' => 'הצגה ועריכה של רשימת המעקב',
 'watchlisttools-raw'  => 'עריכת הרשימה הגולמית',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'פרברדין',
+'iranian-calendar-m2'  => 'אורדיבהשט',
+'iranian-calendar-m3'  => 'חורדאד',
+'iranian-calendar-m4'  => 'תיר',
+'iranian-calendar-m5'  => 'מורדאד',
+'iranian-calendar-m6'  => 'שהריבר',
+'iranian-calendar-m7'  => 'מהר',
+'iranian-calendar-m8'  => 'אבן',
+'iranian-calendar-m9'  => 'אזר',
+'iranian-calendar-m10' => 'די',
+'iranian-calendar-m11' => 'בהמן',
+'iranian-calendar-m12' => 'אספנד',
+
 );
