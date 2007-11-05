@@ -10,7 +10,7 @@
 	'ab' => 'Аҧсуа',	# Abkhaz, should possibly add ' бысжѡа'
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akan',		# Akan
-	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility
+	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility. See gsw.
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'Aragonés',	# Aragonese
 	'ang' => 'Anglo Saxon',	# Old English
@@ -308,4 +308,3 @@
 	'zh-yue' => '粵語',					# Cantonese -- (see bug 8217)
 	'zu' => 'isiZulu'		# Zulu
 );
-
