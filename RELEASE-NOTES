@@ -44,11 +44,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed "Clear" link in watchlist editor tools, as people were afraid to
   click it. Existing clear links will fall back to the raw editor, which is
   very easy to clear your watchlist with.
-* Allow hiding new pages by logged-in users on Special:Newpages
 * (bug 1405) Add wgUseNPPatrol option to control patroling for new articles
   on Special:Newpages
 * LogLine hook added to allow formatting custom entries in Special:Log.
 * Support for Iranian calendar
+* (bug 1401) Allow hiding logged-in users, bots and patrolled pages on Special:Newpages
 
 === Bug fixes in 1.12 ===
 
