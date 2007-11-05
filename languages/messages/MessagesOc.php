@@ -1201,7 +1201,7 @@ aquesta accion es estada anullada en prevencion d’un piratatge de session.
 Clicatz sus « Precedent » e recargatz la pagina d’ont venètz, puèi ensajatz tornarmai.',
 'protectlogpage'              => 'Istoric de las proteccions',
 'protectlogtext'              => 'Vejatz las [[Special:Protectedpages|directivas]] per mai d’informacion.',
-'protectedarticle'            => 'a protegit « [[$1] »',
+'protectedarticle'            => 'a protegit « [[$1]] »',
 'modifiedarticleprotection'   => 'a modificat lo nivèl de proteccion de « [[$1]] »',
 'unprotectedarticle'          => 'a desprotegit « [[$1]] »',
 'protectsub'                  => '(Protegir « $1 »)',
