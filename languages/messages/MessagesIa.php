@@ -237,11 +237,11 @@ Per favor initia un session post reciper lo.',
 'blockedtitle'     => 'Le usator es blocate',
 'blockedtext'      => "Tu nomine de usator o adresse de IP ha essite blocate per $1.
 Le motivo presentate es iste:<br />''$2''<p>Tu pote contactar $1 o un del altere
-[[{{ns:project}}:administratores|administratores]] pro discuter le bloco.",
+[[{{MediaWiki:grouppage-sysop}}|administratores]] pro discuter le bloco.",
 'newarticle'       => '(Nove)',
 'newarticletext'   => "Tu ha sequite un ligamine a un pagina que ancora non existe.
 Pro crear un nove pagina, comencia a scriber in le cassa infra.
-(Vide le [[{{ns:project}}:Adjuta|pagina de adjuta]] pro plus information.)
+(Vide le [[{{MediaWiki:helppage}}|pagina de adjuta]] pro plus information.)
 Si tu es hic per error, simplemente clicca le button '''Retornar''' de tu navigator.",
 'anontalkpagetext' => "---- ''Iste es le pagina de discussion pro un usator anonyme qui ancora non ha create un conto o qui non lo usa. Consequentemente nos debe usar le [[adresse de IP]] numeric pro identificar le/la. Un tal adresse de IP pote esser usate in commun per varie personas. Si tu es un usator anonyme e senti que commentarios irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
 'noarticletext'    => '(Actualmente il non ha texto in iste pagina)',
@@ -295,7 +295,7 @@ Verifica le URL que tu ha usate pro accessar iste pagina.',
 
 # Search results
 'searchresults'         => 'Resultatos del recerca',
-'searchresulttext'      => 'Pro plus information super le recerca de {{SITENAME}}, vide [[Project:Recerca|Recerca in {{SITENAME}}]].',
+'searchresulttext'      => 'Pro plus information super le recerca de {{SITENAME}}, vide [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Pro le consulta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Pro le consulta "$1"',
 'badquery'              => 'Consulta de recerca mal formate',
@@ -369,18 +369,7 @@ e illo del servitor (UTC).',
 
 # Recent changes
 'recentchanges'     => 'Modificationes recente',
-'recentchangestext' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.
-[[{{ns:project}}:Benvenite,_novicios|Benvenite, novicios]]!
-Per favor lege equalmente iste paginas: [[{{ns:project}}:Questiones_frequente|Questiones frequente super {{SITENAME}}]],
-[[{{ns:project}}:Politicas e directivas|Politica de {{SITENAME}}]]
-(specialmente [[{{ns:project}}:Conventiones de nomenclatura|conventiones de nomenclatura]],
-[[{{ns:project}}:Neutralitate e objectivitate|neutralitate e objectivitate]]),
-e [[{{ns:project}}:Le passos false plus commun|le passos false plus commun]].
-
-Si tu vole que {{SITENAME}} habe successo, es multo importante que tu non
-include material protegite per [[{{ns:project}}:Copyright|derectos de autor]].
-Le aspectos legal connexe poterea prejudicar gravemente le projecto,
-alora per favor non lo face.',
+'recentchangestext' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
 'rcnote'            => 'Infra es le <strong>$1</strong> ultime modificationes in le <strong>$2</strong> ultime dies.',
 'rcnotefrom'        => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom'        => 'Monstrar nove modificationes a partir de $1',
@@ -405,14 +394,13 @@ alora per favor non lo face.',
 pro poter cargar files.',
 'uploaderror'       => 'Error de carga',
 'uploadtext'        => "'''STOP!''' Ante cargar files al servitor,
-prende cognoscentia del
-[[Project:Image_use_policy|politica de {{SITENAME}} super le uso de imagines]],
+prende cognoscentia del politica de {{SITENAME}} super le uso de imagines,
 e assecura te de respectar lo.
 
 Pro vider o recercar imagines cargate previemente,
 vade al [[Special:Imagelist|lista de imagines cargate]].
 Cargas e eliminationes es registrate in le
-[[Project:Upload_log|registro de cargas]].
+[[Special:Log/upload|registro de cargas]].
 
 Usa le formulario infra pro cargar nove files de imagine pro
 illustrar tu articulos.
@@ -635,7 +623,7 @@ executar iste function.',
 'blockiptext'        => 'Usa le formulario infra pro blocar le accesso de scriptura
 a partir de un adresse IP specific.
 Isto debe esser facite solmente pro impedir vandalismo, e de
-accordo con le [[{{ns:project}}:Policy|politica de {{SITENAME}}]].
+accordo con le [[{{MediaWiki:policy-url}}|politica de {{SITENAME}}]].
 Scribe un motivo specific infra (per exemplo, citante paginas
 specific que ha essite vandalisate).',
 'ipaddress'          => 'Adresse IP',
