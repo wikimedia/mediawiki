@@ -323,7 +323,7 @@ Y gofyniad olaf y trïodd y databas oedd:
 "$1"
 o\'r ffwythiant "$2".
 Rhoddwyd y côd gwall "$3: $4<" gan MySQL.',
-'noconnect'          => "Mae'n ddrwg gennym ni! Oherwydd anawsterau technegol, nid yw'r wici yn gallu cysylltu â gweinydd y databas. <br/>
+'noconnect'          => "Mae'n ddrwg gennym ni! Oherwydd anawsterau technegol, nid yw'r wici yn gallu cysylltu â gweinydd y databas. <br />
 $1",
 'nodb'               => 'Ddim yn gallu dewis databas $1',
 'cachederror'        => "Codwyd y copi hwn o'r dudalen y gofynasoch amdani o gelc; efallai nad yw hi'n gyfamserol.",
