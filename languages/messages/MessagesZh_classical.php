@@ -876,7 +876,6 @@ $3見封，''$2''之故",
 
 # Unused templates
 'unusedtemplates'         => '未用之模',
-'unusedtemplates-summary' => '', # only translate this message to other languages if you have to change it
 'unusedtemplatestext'     => '斯文所示，咸為未用之模，請覆視之，以定存否。',
 'unusedtemplateswlh'      => '他連',
 
