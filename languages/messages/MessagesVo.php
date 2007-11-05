@@ -6,6 +6,7 @@
  * @author G - ג
  * @author Smeira
  * @author Nike
+ * @author Malafaya
  */
 
 $namespaceNames = array(
@@ -32,15 +33,16 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Dislienükolöd yümis:',
-'tog-highlightbroken'         => 'Jonolöd yümis dädik <a href="" class="new">ön mod at</a> (voto: ön mod at<a href="" class="internal">?</a>).',
-'tog-hideminor'               => 'Klänedolöd redakamis pülik in lised votükamas nulik',
-'tog-extendwatchlist'         => 'Stäänükolöd galädalisedi ad jonön votükamis tefik valik',
+'tog-highlightbroken'         => 'Jonön yümis dädik <a href="" class="new">ön mod at</a> (voto: ön mod at<a href="" class="internal">?</a>).',
+'tog-hideminor'               => 'Klänedön redakamis pülik su lised votükamas nulik',
+'tog-extendwatchlist'         => 'Stäänükön galädalisedi ad jonön votükamis tefik valik',
 'tog-usenewrc'                => 'Lised pamenodöl votükamas nulik (JavaScript)',
-'tog-showtoolbar'             => 'Jonolöd redakastumemi (JavaScript)',
-'tog-editondblclick'          => 'Dälolöd redakön padis pö drän telik mugaknopa (JavaScript)',
-'tog-editsection'             => 'Dälolöd redakami diläda me yüms: [redakön]',
-'tog-editsectiononrightclick' => 'Dälolöd redakami diläda me mugaknop detik pö dilädatiäds (JavaScript)',
-'tog-rememberpassword'        => 'Dakipolöd nunädamanünis obik in nünöm at',
+'tog-showtoolbar'             => 'Jonön redakastumemi (JavaScript)',
+'tog-editondblclick'          => 'Dälön redakön padis pö drän telik mugaknopa (JavaScript)',
+'tog-editsection'             => 'Dälön redakami dilädas me yüms: [redakön]',
+'tog-editsectiononrightclick' => 'Dälön redakami diläda me klik mugaknopa detik su dilädatiäds (JavaScript)',
+'tog-showtoc'                 => 'Jonön ninädalisedi (su pads labü diläds plu 3)',
+'tog-rememberpassword'        => 'Dakipön nunädamanünis obik in nünöm at',
 'tog-editwidth'               => 'Redakaspad labon vidoti lölöfik',
 'tog-watchcreations'          => 'Läükolöd padis fa ob pejafölis lä galädalised obik',
 'tog-watchdefault'            => 'Läükolöd padis fa ob peredakölis la galädalised obik',
@@ -49,6 +51,9 @@ $messages = array(
 'tog-minordefault'            => 'Lelogolöd redakamis no pebepenölis valikis asä pülikis',
 'tog-previewontop'            => 'Jonolöd büologedi bü redakaspad',
 'tog-previewonfirst'          => 'Jonolöd büologedi pö redakam balid',
+'tog-enotifwatchlistpages'    => 'Sedolös obe penedi leäktronik ven pad se galädalised obik pavotükon',
+'tog-enotifusertalkpages'     => 'Sedolös obe penedi leäktronik ven gebanapad obik pavotükon',
+'tog-enotifminoredits'        => 'Sedolös obe penedi leäktronik igo pö padavotükams pülik',
 'tog-fancysig'                => 'Dispenäd balugik (nen yüms lü gebanapad)',
 'tog-externaleditor'          => 'Gebolöd nomiko redakömi plödik',
 'tog-externaldiff'            => 'Gebolöd nomiko eli diff plödik',
@@ -56,6 +61,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'Sagolöd obe, ven redakaplän brefik vagon',
 'tog-watchlisthideown'        => 'No jonolöd redakamis obik in galädalised',
 'tog-watchlisthidebots'       => 'No jonolöd redakamis mäikamenas in galädalised',
+'tog-watchlisthideminor'      => 'Klänolöd redakamis pülik se galädalised',
 'tog-ccmeonemails'            => 'Sedolöd obe kopiedis penedas, kelis sedob gebanes votik',
 
 'underline-always'  => 'Pö jenets valik',
@@ -188,6 +194,7 @@ $messages = array(
 'helppage'          => '{{ns:help}}:Ninäd',
 'mainpage'          => 'Cifapad',
 'portal'            => 'Komotanefaleyan',
+'portal-url'        => '{{ns:project}}:Komotanefaleyan',
 'privacy'           => 'Dunamod demü soelöf',
 'privacypage'       => '{{ns:project}}:Dunamod_demü_soelöf',
 'sitesupport'       => 'Födagivots',
