@@ -210,7 +210,7 @@ De behearder hat dizze útlis joen:
 'missingarticle'  => 'De databank kin in side net fine, nammentlik: "$1".
 <p>Faak is dit om\'t in âlde ferskil-, of skiednisside opfreege wurdt fan in side dy\'t wiske is.
 <p>As dat it hjir net is, dan hawwe jo faaks in brek yn it programa fûn.
-Jou dat asjebleaft troch oan de [[{{ns:project}}:Brekmelding|behearder]], tegearre mei de URL.',
+Jou dat asjebleaft troch oan de behearder, tegearre mei de URL.',
 'internalerror'   => 'Ynwindige fout',
 'filecopyerror'   => 'Koe bestân "$1" net kopiearje as "$2".',
 'filerenameerror' => 'Koe bestân "$1" net werneame as "$2".',
@@ -293,7 +293,7 @@ e-postadres opjûn hawwe in jo [[{{ns:special}}:Preferences|ynstellings]].",
 'newarticle'           => '(Nij)',
 'newarticletext'       => "Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
 Om sels tekst te meistjsen kinne jo dy gewoan yntype in dit bewurkingsfjild
-([[{{ns:project}}:Bewurk-rie|Mear ynformaasje oer bewurkjen]].)
+([[{{MediaWiki:helppage}}|Mear ynformaasje oer bewurkjen]].)
 Oars kinne jo tebek mei de tebek-knop fan jo blêdzjer.",
 'anontalkpagetext'     => "---- ''Dit is de oerlisside fan in unbekinde brûker; in brûker
 dy't sich net oanmeld hat. Om't der gjin namme is wurd it Ynternet-adres brûkt om
@@ -324,9 +324,7 @@ Besykje de side yn lytsere stikken te brekken.</strong>',
 'readonlywarning'      => '<strong>Waarskôging: De databank is ôfsletten foar
 ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze.
 It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>',
-'protectedpagewarning' => '<strong>Waarskôging: Dizze side is beskerme, dat
-gewoane brûkers dy net bewurkje kinne. Tink om de
-[[Project:Beskerm-rie|rie oer beskerme siden]].</strong>',
+'protectedpagewarning' => '<strong>Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.</strong>',
 
 # History pages
 'revhistory'      => 'Sideskiednis',
@@ -450,7 +448,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'uploadnologintext' => 'Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om in bestân oanbieden te kinnen.',
 'uploaderror'       => 'Oanbied-fout',
 'uploadtext'        => "'''STOP!''' Lês ear't jo eat oanbiede
-de [[Project:Ofbyld-rie|regels foar ôfbyldbrûk]] foar de {{SITENAME}}.
+de regels foar ôfbyldbrûk foar de {{SITENAME}}.
 
 Earder oanbeane ôfbylden, kinne jo fine op de
 [[Special:Imagelist|list of oanbeane ôfbylden]].
@@ -530,7 +528,7 @@ It tal fan behearders dêrfan is: <b>$2</b>.',
 'disambiguations'      => 'Trochverwizings',
 'disambiguationspage'  => '{{ns:project}}:trochferwizing',
 'disambiguations-text' => 'Dizze siden binne keppele fia in
-[[{{ns:project}}:trochferwizing]].
+[[MediaWiki:disambiguationspage]].
 Se soenen mei de side sels keppele wurde moatte.<br />
 (Allinnich siden út deselde nammeromte binne oanjûn.)',
 
@@ -627,7 +625,7 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 'confirmdeletetext' => 'Jo binne dwaande mei it foar altyd wiskjen fan in side
 of ôfbyld, tegearre mei alle skiednis, út de databank.
 Befêstigje dat jo dat wier dwaan wolle. Befêstigje dat dat is wat jo witte wat it gefolch
-is en dat jo dit dogge neffens de [[{{ns:project}}:wisk-rie]].',
+is en dat jo dit dogge neffens de [[{{MediaWiki:policy-url}}]].',
 'actioncomplete'    => 'Dien',
 'deletedtext'       => '"$1" is wiske.
 Sjoch "$2" foar in list fan wat resint wiske is.',
@@ -685,7 +683,7 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 'blockip'            => 'Slut brûker út',
 'blockiptext'        => "Brûk dizze fjilden om in brûker fan skriuwtagong út te sluten.
 Dit soe allinnich omwillens fan fandalisme dwaan wurde moatte, sa't de
-[[{{ns:project}}:Utslut-rie|útslut-rie]] it oanjout.
+[[{{MediaWiki:policy-url}}|útslut-rie]] it oanjout.
 Meld de krekte reden! Begelyk, neam de siden dy't oantaaste waarden.",
 'ipaddress'          => 'Brûkernamme of Ynternet-adres',
 'ipbreason'          => 'Reden',
