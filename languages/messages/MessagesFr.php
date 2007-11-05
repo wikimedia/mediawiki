@@ -1737,6 +1737,8 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'markedaspatrollederror'              => 'Ne peut être marqué comme non vandalisé',
 'markedaspatrollederrortext'          => 'Vous devez sélectionner une version pour pouvoir la marquer comme non vandalisée.',
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme surveillées.',
+'nppatroldisabled'                    => 'Patrouille des nouvelles pages désactivée.',
+'nppatroldisabledtext'                => 'La Patrouille des nouvelles pages est actuellement désactivée.',
 
 # Patrol log
 'patrol-log-page' => 'Historique des versions patrouillées',
