@@ -692,7 +692,7 @@ class Language {
 	 * Algorithm by Roozbeh Pournader and Mohammad Toossi to convert 
 	 * Gregorian dates to Iranian dates. Originally written in C, it
 	 * is released under the terms of GNU Lesser General Public
-	 * License. Conversion to PHP was performed by Niklas Laxström.
+	 * License. Conversion to PHP was performed by Niklas LaxstrÃ¶m.
 	 * 
 	 * Link: http://www.farsiweb.info/jalali/jalali.c
 	 */
@@ -2006,8 +2006,3 @@ class Language {
 		return str_replace( '$1', $this->formatNum( $size ), $text );
 	}
 }
-
-
-
-
-
