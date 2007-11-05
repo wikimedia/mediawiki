@@ -14,13 +14,15 @@ class NewPagesPage extends QueryPage {
 	var $username;
 	var $hideliu;
 	var $hidepatrolled;
+	var $hidebots;
 	var $defaults;
 		
-	function NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $defaults) {
+	function NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $hidebots, $defaults) {
 		$this->namespace = $namespace;
 		$this->username = $username;
 		$this->hideliu = $hideliu;
 		$this->hidepatrolled = $hidepatrolled;
+		$this->hidebots = $hidebots;
 		$this->defaults = $defaults;
 	}
 
@@ -37,17 +39,18 @@ class NewPagesPage extends QueryPage {
 		global $wgGroupPermissions;
 		$where = '';
 		if ($this->hidepatrolled) 
-			$where = ' AND rc_patrolled = 0';
+			$where .= ' AND rc_patrolled = 0';
+		if ($this->hidebots)
+			$where .= ' AND rc_bot = 0';
 		if ($wgGroupPermissions['*']['createpage'] == true && $this->hideliu) {
-			return  $where . ' AND rc_user = 0';	
+			$where .= ' AND rc_user = 0';	
 		} else {
 			$title = Title::makeTitleSafe( NS_USER, $this->username );
 			if( $title ) {
-				return $where . ' AND rc_user_text = ' . $dbo->addQuotes( $title->getText() );
-			} else {
-				return $where;
+				$where .= ' AND rc_user_text = ' . $dbo->addQuotes( $title->getText() );
 			}
 		}
+		return $where;
 	}
 
 	private function makeNamespaceWhere() {
@@ -171,12 +174,15 @@ class NewPagesPage extends QueryPage {
 			htmlspecialchars( $showhide[1-$this->hideliu] ), wfArrayToCGI( array( 'hideliu' => 1-$this->hideliu ),  $nondefaults ) );
 		$patrLink =  $wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( 'Newpages' ),
 			htmlspecialchars( $showhide[1-$this->hidepatrolled] ), wfArrayToCGI( array( 'hidepatrolled' => 1-$this->hidepatrolled ),  $nondefaults ) );
+		$botsLink =  $wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( 'Newpages' ),
+			htmlspecialchars( $showhide[1-$this->hidebots] ), wfArrayToCGI( array( 'hidebots' => 1-$this->hidebots ),  $nondefaults ) );
 		$links = array();
 		if( $wgGroupPermissions['*']['createpage'] == true )
 			$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
-                if( $wgUseNPPatrol )
-                	$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
-                $hl = implode( ' | ', $links );                
+		if( $wgUseNPPatrol )
+			$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
+		$links[] = wfMsgHtml( 'rcshowhidebots', $botsLink );
+		$hl = implode( ' | ', $links );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
@@ -230,15 +236,16 @@ function wfSpecialNewpages($par, $specialPage) {
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$defaults = array(
-        /* bool */ 'hideliu' => false,  
-        /* bool */ 'hidepatrolled' => false,
-        /* text */ 'namespace' => NS_MAIN,
-        /* text */ 'username' => '',
-        /* int  */ 'offset' => $offset,
-        /* int  */ 'limit' => $limit,
-        );
-                                                                                                        	
-	extract($defaults);        
+		/* bool */ 'hideliu' => false,  
+		/* bool */ 'hidepatrolled' => false,
+		/* bool */ 'hidebots' => false,
+		/* text */ 'namespace' => NS_MAIN,
+		/* text */ 'username' => '',
+		/* int  */ 'offset' => $offset,
+		/* int  */ 'limit' => $limit,
+);
+
+	extract($defaults);
 
 	if ( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -249,6 +256,8 @@ function wfSpecialNewpages($par, $specialPage) {
 				$hideliu = true;
 			if ( 'hidepatrolled' == $bit )
 				$hidepatrolled = true;
+			if ( 'hidebots' == $bit )
+				$hidebots = true;
 			if ( is_numeric( $bit ) )
 				$limit = $bit;
 
@@ -273,13 +282,14 @@ function wfSpecialNewpages($par, $specialPage) {
 			$hideliu = $hliu;
 		if( $hpatrolled = $wgRequest->getBool( 'hidepatrolled' ) )
 			$hidepatrolled = $hpatrolled;
-			
+		if( $hbots =  $wgRequest->getBool( 'hidebots' ) )
+			$hidebots = $hbots;
 	}
 	
 	if ( ! isset( $shownavigation ) )
 		$shownavigation = ! $specialPage->including();
 
-	$npp = new NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $defaults );
+	$npp = new NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $hidebots, $defaults );
 
 	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ), $limit ) )
 		$npp->doQuery( $offset, $limit, $shownavigation );
