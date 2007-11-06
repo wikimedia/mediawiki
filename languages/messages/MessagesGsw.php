@@ -8,6 +8,9 @@
  * @author Helix84
  */
 
+$fallback = 'de';
+$linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstryche',
