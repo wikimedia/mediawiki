@@ -5,7 +5,6 @@
  *
  * @author Sky Harbor
  * @author Gangleri
- * @author G - ?
  * @author Siebrand
  * @author G - ג
  */
