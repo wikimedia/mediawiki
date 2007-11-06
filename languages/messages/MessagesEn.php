@@ -1960,7 +1960,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'undelete-missing-filearchive' => 'Unable to restore file archive ID $1 because it isn\'t in the database. ' .
 	'It may have already been undeleted.',
 'undelete-error-short'     => 'Error undeleting file: $1',
-'undelete-error-long'      => "Errors were encountered while undeleting the file:\n\n$1\n",
+'undelete-error-long'      => "Errors were encountered while undeleting the file:\n\n$1",
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -2448,7 +2448,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 # Image deletion
 'deletedrevision' => 'Deleted old revision $1',
 'filedeleteerror-short' => "Error deleting file: $1",
-'filedeleteerror-long' => "Errors were encountered while deleting the file:\n\n$1\n",
+'filedeleteerror-long' => "Errors were encountered while deleting the file:\n\n$1",
 'filedelete-missing' => 'The file "$1" cannot be deleted, because it doesn\'t exist.',
 'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
 'filedelete-current-unregistered' => 'The specified file "$1" is not in the database.',
