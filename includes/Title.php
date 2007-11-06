@@ -2184,9 +2184,11 @@ class Title {
 	 * @param Title &$nt the new title
 	 * @param bool $auth indicates whether $wgUser's permissions
 	 * 	should be checked
+	 * @param string $reason The reason for the move
+	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title
 	 * @return mixed true on success, message name on failure
 	 */
-	public function moveTo( &$nt, $auth = true, $reason = '' ) {
+	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
 		$err = $this->isValidMoveOperation( $nt, $auth );
 		if( is_string( $err ) ) {
 			return $err;
@@ -2194,11 +2196,11 @@ class Title {
 
 		$pageid = $this->getArticleID();
 		if( $nt->exists() ) {
-			$this->moveOverExistingRedirect( $nt, $reason );
-			$pageCountChange = 0;
+			$this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
+			$pageCountChange = ($createRedirect ? 0 : -1);
 		} else { # Target didn't exist, do normal move.
-			$this->moveToNewTitle( $nt, $reason );
-			$pageCountChange = 1;
+			$this->moveToNewTitle( $nt, $reason, $createRedirect );
+			$pageCountChange = ($createRedirect ? 1 : 0);
 		}
 		$redirid = $this->getArticleID();
 
@@ -2257,8 +2259,10 @@ class Title {
 	 *
 	 * @param Title &$nt the page to move to, which should currently
 	 * 	be a redirect
+	 * @param string $reason The reason for the move
+	 * @param bool $createRedirect Whether to leave a redirect at the old title
 	 */
-	private function moveOverExistingRedirect( &$nt, $reason = '' ) {
+	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
 		global $wgUseSquid;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
@@ -2297,31 +2301,34 @@ class Title {
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Recreate the redirect, this time in the other direction.
-		$mwRedir = MagicWord::get( 'redirect' );
-		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$redirectArticle = new Article( $this );
-		$newid = $redirectArticle->insertOn( $dbw );
-		$redirectRevision = new Revision( array(
-			'page'    => $newid,
-			'comment' => $comment,
-			'text'    => $redirectText ) );
-		$redirectRevision->insertOn( $dbw );
-		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
-		$linkCache->clearLink( $this->getPrefixedDBkey() );
+		if($createRedirect)
+		{
+			$mwRedir = MagicWord::get( 'redirect' );
+			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
+			$redirectArticle = new Article( $this );
+			$newid = $redirectArticle->insertOn( $dbw );
+			$redirectRevision = new Revision( array(
+				'page'    => $newid,
+				'comment' => $comment,
+				'text'    => $redirectText ) );
+			$redirectRevision->insertOn( $dbw );
+			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
+			$linkCache->clearLink( $this->getPrefixedDBkey() );
 
+			# Now, we record the link from the redirect to the new title.
+			# It should have no other outgoing links...
+			$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), $fname );
+			$dbw->insert( 'pagelinks',
+				array(
+					'pl_from'      => $newid,
+					'pl_namespace' => $nt->getNamespace(),
+					'pl_title'     => $nt->getDbKey() ),
+				$fname );
+		}
+		
 		# Log the move
 		$log = new LogPage( 'move' );
 		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText() ) );
-
-		# Now, we record the link from the redirect to the new title.
-		# It should have no other outgoing links...
-		$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), $fname );
-		$dbw->insert( 'pagelinks',
-			array(
-				'pl_from'      => $newid,
-				'pl_namespace' => $nt->getNamespace(),
-				'pl_title'     => $nt->getDbKey() ),
-			$fname );
 
 		# Purge squid
 		if ( $wgUseSquid ) {
@@ -2334,8 +2341,10 @@ class Title {
 	/**
 	 * Move page to non-existing title.
 	 * @param Title &$nt the new Title
+	 * @param string $reason The reason for the move
+	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title
 	 */
-	private function moveToNewTitle( &$nt, $reason = '' ) {
+	private function moveToNewTitle( &$nt, $reason = '', $createRedirect = true ) {
 		global $wgUseSquid;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
@@ -2367,18 +2376,28 @@ class Title {
 
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
-		# Insert redirect
-		$mwRedir = MagicWord::get( 'redirect' );
-		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$redirectArticle = new Article( $this );
-		$newid = $redirectArticle->insertOn( $dbw );
-		$redirectRevision = new Revision( array(
-			'page'    => $newid,
-			'comment' => $comment,
-			'text'    => $redirectText ) );
-		$redirectRevision->insertOn( $dbw );
-		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
-		$linkCache->clearLink( $this->getPrefixedDBkey() );
+		if($createRedirect)
+		{
+			# Insert redirect
+			$mwRedir = MagicWord::get( 'redirect' );
+			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
+			$redirectArticle = new Article( $this );
+			$newid = $redirectArticle->insertOn( $dbw );
+			$redirectRevision = new Revision( array(
+				'page'    => $newid,
+				'comment' => $comment,
+				'text'    => $redirectText ) );
+			$redirectRevision->insertOn( $dbw );
+			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
+			$linkCache->clearLink( $this->getPrefixedDBkey() );
+			# Record the just-created redirect's linking to the page
+			$dbw->insert( 'pagelinks',
+				array(
+					'pl_from'      => $newid,
+					'pl_namespace' => $nt->getNamespace(),
+					'pl_title'     => $nt->getDBkey() ),
+				$fname );
+		}
 
 		# Log the move
 		$log = new LogPage( 'move' );
@@ -2386,14 +2405,6 @@ class Title {
 
 		# Purge caches as per article creation
 		Article::onArticleCreate( $nt );
-
-		# Record the just-created redirect's linking to the page
-		$dbw->insert( 'pagelinks',
-			array(
-				'pl_from'      => $newid,
-				'pl_namespace' => $nt->getNamespace(),
-				'pl_title'     => $nt->getDBkey() ),
-			$fname );
 
 		# Purge old title from squid
 		# The new title, and links to the new title, are purged in Article::onArticleCreate()
