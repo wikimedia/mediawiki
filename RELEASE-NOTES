@@ -49,6 +49,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * LogLine hook added to allow formatting custom entries in Special:Log.
 * Support for Iranian calendar
 * (bug 1401) Allow hiding logged-in users, bots and patrolled pages on Special:Newpages
+* ChangesListInsertArticleLink hook added for adding extra article info to RC.
+* MediaWikiPerformAction hook added for diverting control after the main
+  globals have been set up but before any actions have been taken.
+* BeforeWatchlist hook added for filtering or replacing watchlist.
+* SkinTemplateTabAction hook added for altering the properties of tab links.
+* OutputPage::getRedirect public method added.
 
 === Bug fixes in 1.12 ===
 

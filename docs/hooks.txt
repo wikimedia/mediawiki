@@ -385,6 +385,13 @@ $out: OutputPage object
 &$parser: Parser object
 &$ig: ImageGallery object
 
+'BeforeWatchlist': Override watchlist display or add extra SQL clauses.
+$nondefaults: Assoc array with the following keys:
+              days, hideOwn, hideBots, hideMinor, namespace
+$wgUser: wgUser.
+&$hookSql: a string which will be inserted without sanitation into the SQL query
+           used to get the watchlist, at the end of the WHERE part.
+
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
@@ -399,6 +406,14 @@ $output: OutputPage object in use
 
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
+
+'ChangesListInsertArticleLink': Override or augment link to article in RC list.
+&$this:        ChangesList instance.
+&$articlelink: HTML of link to article (already filled-in).
+&$s:           HTML of row that is being constructed.
+&$rc:          RecentChange instance.
+$unpatrolled:  Whether or not we are showing unpatrolled changes.
+$watched:      Whether or not the change is watched by the user.
 
 'ContributionsToolLinks': Change tool links above Special:Contributions
 $id: User identifier
@@ -580,6 +595,15 @@ $mathRenderer: instance of MathRenderer
 $errmsg: error message, in HTML (string). Nonempty indicates failure
  of rendering the formula
 
+'MediaWikiPerformAction': Override MediaWiki::performAction().
+       Use this to do something completely different, after the basic
+       globals have been set up, but before ordinary actions take place.
+$output:  $wgOut
+$article: $wgArticle
+$title:   $wgTitle
+$user:    $wgUser
+$request: $wgRequest
+
 'OutputPageBeforeHTML': a page has been processed by the parser and
 the resulting HTML is about to be displayed.  
 $parserOutput: the parserOutput (object) that corresponds to the page 
@@ -670,6 +694,18 @@ for an example]
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts page output
 &$sktemplate: SkinTemplate object
 &$tpl: Template engine object
+
+'SkinTemplateTabAction': Override SkinTemplate::tabAction().
+       You can either create your own array, or alter the parameters for the normal one.
+&$this:     The SkinTemplate instance.
+$title:     Title instance for the page.
+$message:   Visible label of tab.
+$selected:  Whether this is a selected tab.
+$checkEdit: Whether or not the action=edit query should be added if appropriate.
+&$classes:  Array of CSS classes to apply.
+&$query:    Query string to add to link.
+&$text:     Link text.
+&$result:   Complete assoc. array if you want to return true.
 
 'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
 $id: User identifier
