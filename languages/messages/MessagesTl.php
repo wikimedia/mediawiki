@@ -7,6 +7,7 @@
  * @author Gangleri
  * @author G - ?
  * @author Siebrand
+ * @author G - ג
  */
 
 $messages = array(
@@ -15,7 +16,14 @@ $messages = array(
 'tog-highlightbroken'  => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
 'tog-justify'          => 'Pantayin ang mga talata',
 'tog-hideminor'        => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
+'tog-numberheadings'   => 'Automatikong bilangin ang mga pamagat',
+'tog-showtoc'          => 'Ipakita ang talaan ng nilalaman (para sa mga pahinang may higit sa 3 pamagat)',
 'tog-rememberpassword' => 'Tandaan ang paglagda ko sa kompyuter na ito',
+'tog-fancysig'         => 'Hilaw na lagda (walang automatikong pagkawing)',
+
+'underline-default' => 'Tinakda ng pambasa-basa',
+
+'skinpreview' => '(Pribyu)',
 
 # Dates
 'sunday'        => 'Linggo',

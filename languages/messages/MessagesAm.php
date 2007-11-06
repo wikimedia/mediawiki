@@ -1,10 +1,12 @@
 <?php
-/**
- * Amharic
+/** Amharic (አማርኛ)
  *
  * @addtogroup Language
  *
  * @author Codex Sinaiticus
+ * @author Siebrand
+ * @author Nike
+ * @author G - ג
  */
 
 $messages = array(
@@ -192,7 +194,7 @@ $messages = array(
 
 ይህ እትም የአሁኑ አይደለም፣ ከዚህ ሁናቴ ታድሷል።
 
- ይህንን እንዳቀረቡ ከዚህ እትም በኋላ የተቀየረው ለውጥ ሁሉ ያልፋል።</strong>',
+ይህንን እንዳቀረቡ ከዚህ እትም በኋላ የተቀየረው ለውጥ ሁሉ ያልፋል።</strong>',
 'copyrightwarning'         => "*<big> '''መጣጥፎችን ለመፍጠርና ለማሻሻል አይፈሩ''!''''' — </big>ሥራዎ ትክክለኛ ካልሆነ፣ በሌሎቹ አዘጋጆች ሊታረም ይችላል።",
 'longpagewarning'          => '<strong>ማስጠንቀቂያ፦ የዚሁ ገጽ መጠን እስከ $1 kilobyte ድረስ ደርሷል፤ አንድ ጽሑፍ ከ32 kilobyte የበለጠ ሲሆን ይህ ግዙፍነት ለአንዳንድ ተጠቃሚ ዌብ-ብራውዘር ያስቸግራል። እባክዎን፣ ገጹን ወደ ተለያዩ ገጾች ማከፋፈልን ያስቡበት። </strong>',
 'readonlywarning'          => ':<strong>ማስታወቂያ፦</strong> {{SITENAME}} አሁን ለአጭር ግዜ ተቆልፎ ገጹን ለማቅረብ አይቻልም። ጥቂት ደቂቃ ቆይተው እባክዎ እንደገና ይሞክሩት!
@@ -204,10 +206,7 @@ $messages = array(
 
 *እባክዎ፥ ገጹ እንደገና እንዲፈጠር የሚገባ መሆኑን ያረጋግጡ።
 
-*የገጹ መጥፋት ዝርዝር ከዚህ ታች ይታያል።
-
-'''Warning:''' This page has previously been deleted. Please consider whether it is appropriate to recreate this page.
-The deletion log for this page appears below:",
+*የገጹ መጥፋት ዝርዝር ከዚህ ታች ይታያል።",
 
 # "Undo" feature
 'undo-success' => "ያ ለውጥ በቀጥታ ሊገለበጥ ይቻላል። እባክዎ ከታች ያለውን ማነጻጸርያ ተመልክተው ይህ እንደሚፈልጉ ያረጋግጡና ለውጡ እንዲገለበጥ '''ገጹን ለማቅረብ''' ይጫኑ።",
@@ -526,7 +525,7 @@ The deletion log for this page appears below:",
 'actioncomplete'            => 'ተፈጽሟል',
 'deletedtext'               => '«$1» ጠፍቷል።
 
- (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
+(የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
 'deletedarticle'            => '«[[$1]]» አጠፋ',
 'dellogpage'                => 'የማጥፋት መዝገብ (del log)',
 'dellogpagetext'            => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',
@@ -720,8 +719,8 @@ $3
 'watchlistedit-raw-removed'    => '$1 አርዕስት {{PLURAL:$1|ተወገደ|ተወገዱ}}፦',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'የምከታተላቸው ለውጦች',
-'watchlisttools-edit'  => 'ዝርዝሩን ለማስተካከል',
-'watchlisttools-raw'   => 'የዝርዝሩ ጥሬ ኮድ',
+'watchlisttools-view' => 'የምከታተላቸው ለውጦች',
+'watchlisttools-edit' => 'ዝርዝሩን ለማስተካከል',
+'watchlisttools-raw'  => 'የዝርዝሩ ጥሬ ኮድ',
 
 );

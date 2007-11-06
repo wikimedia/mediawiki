@@ -1,7 +1,12 @@
 <?php
-
-$fallback = 'de';
-$linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
+/** Swiss German (Alemannisch)
+ *
+ * @addtogroup Language
+ *
+ * @author 80686
+ * @author G - ג
+ * @author Helix84
+ */
 
 $messages = array(
 # User preference toggles
@@ -19,7 +24,10 @@ $messages = array(
 'tog-showtoc'                 => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword'        => 'Passwort spychere (Cookie)',
 'tog-editwidth'               => 'Tekschtygabfäld mit voller Breiti',
+'tog-watchcreations'          => 'Sälbr gmachti Sytene beobachte',
 'tog-watchdefault'            => 'Vo dir nöi gmachti oder verändereti Syte beobachte',
+'tog-watchmoves'              => 'Sälbr vrschobeni Sytene beobachte',
+'tog-watchdeletion'           => 'Sälbr glöschti Sytene beobachte',
 'tog-minordefault'            => 'Alli dyni Änderigen als «chlyni Änderige» markiere',
 'tog-previewontop'            => 'Vorschou vor em Editierfänschter aazeige',
 'tog-previewonfirst'          => 'Vorschou aazeige bim erschten Editiere',
@@ -149,18 +157,18 @@ $messages = array(
 'versionrequired'     => 'Version $1 vun MediaWiki wird bnötigt',
 'versionrequiredtext' => 'Version $1 vun MediaWiki wird bnötigt um diä Syte zue nutze. Luege [[Special:Version]]',
 
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Vun "$1"',
-'youhavenewmessages'  => 'Du hesch $1 ($2).',
-'newmessageslink'     => 'nöji Nachrichte',
-'newmessagesdifflink' => 'Unterschid',
-'editsection'         => 'ändere',
-'editsectionhint'     => 'Abschnitt ändere: $1',
-'showtoc'             => 'ufklappe',
-'hidetoc'             => 'zueklappe',
-'thisisdeleted'       => 'Onluege oder widrherstelle vun $1?',
-'viewdeleted'         => '$1 onluege?',
-'restorelink'         => '{{PLURAL:$1|glöschti Änderig|$1 glöschti Ändrige}}',
+'retrievedfrom'           => 'Vun "$1"',
+'youhavenewmessages'      => 'Du hesch $1 ($2).',
+'newmessageslink'         => 'nöji Nachrichte',
+'newmessagesdifflink'     => 'Unterschid',
+'youhavenewmessagesmulti' => 'Si hen neui Nochrichte: $1',
+'editsection'             => 'ändere',
+'editsectionhint'         => 'Abschnitt ändere: $1',
+'showtoc'                 => 'ufklappe',
+'hidetoc'                 => 'zueklappe',
+'thisisdeleted'           => 'Onluege oder widrherstelle vun $1?',
+'viewdeleted'             => '$1 onluege?',
+'restorelink'             => '{{PLURAL:$1|glöschti Änderig|$1 glöschti Ändrige}}',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-user'      => 'Benutzersyte',
@@ -237,7 +245,6 @@ Vergis nid, dyni [[Special:Preferences|Ystelligen]] aazpasse.',
 'yourdomainname'             => 'Diini Domäne',
 'externaldberror'            => 'Entwedr s ligt ä Fähler bi dr extern Authentifizierung vor, odr du derfsch din externs Benutzerkonto nit aktualisiere.',
 'loginproblem'               => "'''S het ä Problem mit dinre Onmeldung gäbe.'''<br />Bitte vosuechs grad nomal!",
-'alreadyloggedin'            => '<strong>Si sin scho als Benutzer $1 aagmolde!</strong><br />',
 'login'                      => 'Aamälde',
 'loginprompt'                => '<small>Für di bir {{SITENAME}} aazmälde, muesch Cookies erloube!</small>',
 'userlogin'                  => 'Aamälde',
@@ -407,7 +414,6 @@ Suche in Namensräumen :<br />
 $1<br />
 $2 Zeige auch REDIRECTs   Suche nach $3 $9',
 'searchdisabled'        => '<p>Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie entweder folgende Google- oder Yahoo-Suche verwenden, die allerdings nicht den aktuellen Stand widerspiegeln.</p>',
-'blanknamespace'        => '(Haupt-)',
 
 # Preferences page
 'preferences'        => 'Iistellige',
@@ -495,10 +501,6 @@ go direkt e Gleich uff d Datei z'mache.",
 'getimagelist'     => 'Lade Bilderliste',
 'ilsubmit'         => 'Suech',
 'showlast'         => 'Zeige die letzten $1 Bilder, sortiert nach $2.',
-'imglegend'        => 'Legende: (Beschreibung) = Zeige/Bearbeite Bildbeschreibung.',
-'imghistory'       => 'Versione',
-'imghistlegend'    => 'Legende: (cur) = Dies ist das aktuelle Bild, (Löschen) = lösche
-diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.',
 'imagelinks'       => 'Bildverweise',
 'linkstoimage'     => 'Di folgende Sytene händ en Link zu dem Bildli:',
 'nolinkstoimage'   => 'Kein Artikel benutzt dieses Bild.',
@@ -603,21 +605,21 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 'emailsenttext'   => 'Dys e-Mail isch verschickt worde.',
 
 # Watchlist
-'watchlist'        => 'Beobachtigslischte',
-'mywatchlist'      => 'Beobachtigslischte',
-'nowatchlist'      => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
-'watchnologintext' => 'Du musst [[Special:Userlogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
-'addedwatch'       => 'zue de Beobachtigslischte drzue do',
-'addedwatchtext'   => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
+'watchlist'         => 'Beobachtigslischte',
+'mywatchlist'       => 'Beobachtigslischte',
+'nowatchlist'       => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
+'watchnologintext'  => 'Du musst [[Special:Userlogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
+'addedwatch'        => 'zue de Beobachtigslischte drzue do',
+'addedwatchtext'    => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
 Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:Recentchanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
 
 Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
-'watch'            => 'beobachte',
-'watchthispage'    => 'Die Syte beobachte',
-'unwatch'          => 'nümm beobachte',
-'watchnochange'    => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
-'watchlist-details' => "$1 Artikel wärde beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).",
-'wlshowlast'       => 'Zeig di letschte $1 Stunde $2 Tage $3',
+'watch'             => 'beobachte',
+'watchthispage'     => 'Die Syte beobachte',
+'unwatch'           => 'nümm beobachte',
+'watchnochange'     => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
+'watchlist-details' => '$1 Artikel wärde beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
+'wlshowlast'        => 'Zeig di letschte $1 Stunde $2 Tage $3',
 
 'enotif_subject'     => 'Die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => '$1 zeigt alle Änderungen auf einen Blick.',
@@ -670,8 +672,9 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'undeletedrevisions'     => '{{PLURAL:$1|ei Revision|$1 Revisione}} wiedr zruckgholt.',
 
 # Namespace form on various pages
-'namespace' => 'Namensruum:',
-'invert'    => 'Uswahl umkehre',
+'namespace'      => 'Namensruum:',
+'invert'         => 'Uswahl umkehre',
+'blanknamespace' => '(Haupt-)',
 
 # Contributions
 'contributions' => 'Benutzer-Byträg',
@@ -730,7 +733,6 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'allmessagesdefault'        => 'Standard-Tekscht',
 'allmessagescurrent'        => 'jetzige Tekscht',
 'allmessagestext'           => 'Sell isch e Lischte vo alle mögliche Systemnochrichte ussem MediaWiki Namensruum.',
-'allmessagesnotsupportedUI' => "Diini Sprochiistellig '''$1''' wird vo Special:Allmessages uff sellere Syte nit unterschtützt.",
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
 'allmessagesfilter'         => 'Nochrichte nochem Name filtere:',
 'allmessagesmodified'       => 'numme gänderti aazeige',
@@ -783,9 +785,6 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'tooltip-ca-nstab-help'         => 'D Hilfssyten aaluege',
 'tooltip-ca-nstab-category'     => 'D Kategoryesyten aaluege',
 
-# Scripts
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
-
 # Attribution
 'anonymous'        => 'Anonyme Benutzer uff {{SITENAME}}',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt geändert um $2, $1 von $3.', # $1 date, $2 time, $3 user
@@ -828,6 +827,7 @@ sollte umgehend ein Administrator informiert werden!',
 'imagemaxsize' => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
 'thumbsize'    => 'Bildvorschou-Gröössi:',
 
+# Special:Newimages
 'newimages' => 'Gallery vo noie Bilder',
 
 # EXIF tags
@@ -883,8 +883,4 @@ Fründtlechi Grüess',
 ''Ds Lösche vor Zwüschespycherig zwingt der Server, dir di aktuellschti Version vor Syte z gä!''
 </div>",
 
-'youhavenewmessagesmulti' => 'Si hen neui Nochrichte: $1',
-
 );
-
-

@@ -639,13 +639,13 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'unwatchedpages' => 'Pàgini nò abbaidaddi',
 
 # List redirects
-'listredirects' => 'Erencu di li rimandi',
+'listredirects' => 'Erencu di li rinvii',
 
 # Unused templates
 'unusedtemplates' => 'Mudelli inutirizaddi',
 
 # Random redirect
-'randomredirect' => 'Un rimandu a casu',
+'randomredirect' => 'Un rinviu a casu',
 
 # Statistics
 'statistics'             => 'Sthatisthigghi',
@@ -656,9 +656,9 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'disambiguations'      => 'Pàgini cu lu matessi innommu',
 'disambiguations-text' => "Li pàgini i la sighenti listha cuntinani di cullegamenti a '''pàgini cu lu matessi innommu''' e nò a la rasgiòni a chi dubaristhia fà rifirimentu.<br />Sò cunsidaraddu pàgini cu lu matessi innommu tutti chissi chi cuntinani i mudelli erencaddi i [[MediaWiki:disambiguationspage]].",
 
-'doubleredirects' => 'Rimandi doppi',
+'doubleredirects' => 'Rinvii doppi',
 
-'brokenredirects' => 'Rimandi ibbagliaddi',
+'brokenredirects' => 'Rinvii ibbagliaddi',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 byte',
@@ -678,6 +678,11 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'popularpages'            => 'Pàgini più visitaddi',
 'wantedcategories'        => 'Categuri dumandaddi',
 'wantedpages'             => 'Pàgini più dumandaddi',
+'mostlinked'              => 'Pàgini più riciamaddi',
+'mostlinkedcategories'    => 'Categuri più riciamaddi',
+'mostlinkedtemplates'     => 'Mudelli più utirizaddi',
+'mostcategories'          => 'Pàgini cun più categuri',
+'mostimages'              => 'Immagini più riciamaddi',
 'mostrevisions'           => 'Pàgini cun più ribisioni',
 'allpages'                => 'Tutti li pàgini',
 'prefixindex'             => 'Indizi di li bozi pa léttari a l’ischumenzu',
@@ -801,10 +806,12 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'whatlinkshere-links' => '← cullegamenti',
 
 # Block/unblock
-'blocklink'    => 'brocca',
-'unblocklink'  => 'ibbrucca',
-'contribslink' => 'cuntributi',
-'blocklogpage' => 'Brocchi',
+'ipblocklist'        => 'Listha di li utenti e indirizzi IP broccaddi',
+'ipblocklist-submit' => 'Zircha',
+'blocklink'          => 'brocca',
+'unblocklink'        => 'ibbrucca',
+'contribslink'       => 'cuntributi',
+'blocklogpage'       => 'Brocchi',
 
 # Move page
 'movepage'                => 'Ippusthamentu di pàgina',
@@ -824,6 +831,7 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'export-submit' => 'Ippurtha',
 
 # Namespace 8 related
+'allmessages'        => 'Imbasciaddi di sisthema',
 'allmessagesname'    => 'Nommu',
 'allmessagesdefault' => 'Testhu pridifiniddu',
 
@@ -831,7 +839,7 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'importlogpage' => 'Impurthazioni',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'           => 'La tóia pàgina utenti',
+'tooltip-pt-userpage'           => 'La pàgina utenti tóia',
 'tooltip-pt-mytalk'             => 'La tóia pàgina di dischussioni',
 'tooltip-pt-preferences'        => 'Li tó prifirènzi',
 'tooltip-pt-watchlist'          => "La listha di li pàgini ch'isthai tinendi sottu osseivvazioni",

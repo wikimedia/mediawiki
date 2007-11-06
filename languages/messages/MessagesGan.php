@@ -427,23 +427,23 @@ $2',
 'hr_tip'          => '橫線 (小聲使用)',
 
 # Edit pages
-'summary'                  => '摘要',
-'subject'                  => '主題/頭條',
-'minoredit'                => '箇係隻細修改',
-'watchthis'                => '眏到箇頁',
-'savearticle'              => '存到箇頁',
-'preview'                  => '預覽',
-'showpreview'              => '顯示預覽',
-'showlivepreview'          => '即時預覽',
-'showdiff'                 => '顯示差異',
-'anoneditwarning'          => "'''警告:'''倷還冇登入，箇頁嗰編寫歷史會記到倷嗰IP。",
-'missingsummary'           => "'''提示:''' 倷冇提供編寫摘要。要係倷再按係保存嗰話，倷保存嗰編輯就會冇編輯摘要。",
-'missingcommenttext'       => '請到底下評論。',
-'missingcommentheader'     => "'''提示:''' 倷嗰評論冇提供標題。要係倷再按係保存嗰話，倷保存嗰編輯就會冇標題。",
-'summary-preview'          => '摘要預覽',
-'subject-preview'          => '主題/頭條預覽',
-'blockedtitle'             => '用戶封到嘞',
-'blockedtext'              => "<big>倷嗰用戶名或IP地址拕$1封到嘞。</big> 
+'summary'                   => '摘要',
+'subject'                   => '主題/頭條',
+'minoredit'                 => '箇係隻細修改',
+'watchthis'                 => '眏到箇頁',
+'savearticle'               => '存到箇頁',
+'preview'                   => '預覽',
+'showpreview'               => '顯示預覽',
+'showlivepreview'           => '即時預覽',
+'showdiff'                  => '顯示差異',
+'anoneditwarning'           => "'''警告:'''倷還冇登入，箇頁嗰編寫歷史會記到倷嗰IP。",
+'missingsummary'            => "'''提示:''' 倷冇提供編寫摘要。要係倷再按係保存嗰話，倷保存嗰編輯就會冇編輯摘要。",
+'missingcommenttext'        => '請到底下評論。',
+'missingcommentheader'      => "'''提示:''' 倷嗰評論冇提供標題。要係倷再按係保存嗰話，倷保存嗰編輯就會冇標題。",
+'summary-preview'           => '摘要預覽',
+'subject-preview'           => '主題/頭條預覽',
+'blockedtitle'              => '用戶封到嘞',
+'blockedtext'               => "<big>倷嗰用戶名或IP地址拕$1封到嘞。</big> 
 
 箇道封鎖係$1封嗰。個中原因係''$2''。 
 
@@ -452,7 +452,7 @@ $2',
 * 對於拕查封嗰人：$7 
 
 倷聯繫得正$1或別嗰[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論箇回封鎖。除非倷到倷嗰[[Special:Preferences|帳號參數設置]]裡度設正嘞有效嗰email，伓然嗰話倷係用伓正「email到箇隻用戶」嗰功能。設正嘞有效嗰email後，箇隻功能係伓會拕封到嗰。倷嗰IP地址係$3，許拕封到嗰ID係 #$5。請倷到全部嗰查詢裡度注明箇隻地址同／或查封ID。",
-'autoblockedtext'          => '因為別嗰人用過倷嗰IP地址，佢拕自動鎖到嘞。封佢嗰人係$1.
+'autoblockedtext'           => '因為別嗰人用過倷嗰IP地址，佢拕自動鎖到嘞。封佢嗰人係$1.
 下首係封鎖嗰理由:
 
 :\'\'$2\'\'
@@ -465,62 +465,83 @@ $2',
 注意嗰係話伓定倷冇"e-mail箇隻用戶"功能，因為倷還冇到[[Special:Preferences|用戶設置]]有隻註冊email地址，更加倷冇因為用佢拕封過。
 
 倷嗰封鎖ID係$5。請莫管到哪首都標到佢。',
-'blockedoriginalsource'    => "底下係'''$1'''嗰原始碼:",
-'blockededitsource'        => "底下係倷對'''$1'''嗰'''編輯'''內容:",
-'whitelistedittitle'       => '登入後才編得正',
-'whitelistedittext'        => '起先倷要$1才編得正箇頁。',
-'whitelistreadtitle'       => '登入後才眵得正',
-'whitelistreadtext'        => '起先倷要[[Special:Userlogin|登入]] 才眵得正箇頁。',
-'whitelistacctitle'        => '倷伓可以開帳戶',
-'whitelistacctext'         => '到箇隻Wiki開帳戶嗰時間倷起首要[[Special:Userlogin|登入]]同到提供有關許可。',
-'confirmedittitle'         => 'email確認後才編得正',
-'confirmedittext'          => '確認嘞email才能編寫箇頁。麻煩用[[Special:Preferences|參數設置]]設置同確認倷嗰email。',
-'nosuchsectiontitle'       => '冇箇隻段落',
-'nosuchsectiontext'        => '倷嘗試編寫嗰段落伓存在。到箇首係冇第$1隻段落，所以係冇場窪去存到倷嗰編輯。',
-'loginreqtitle'            => '需要登入',
-'loginreqlink'             => '登入',
-'loginreqpagetext'         => '倷要$1才能眵別嗰頁面。',
-'accmailtitle'             => '密碼寄出嘞',
-'accmailtext'              => "'$1'嗰密碼發到$2嘞。",
-'newarticle'               => '(新)',
-'newarticletext'           => '倷連到嗰頁面唔存在。要新開箇隻頁面，倷能到下底嗰方框編寫內容(細節請望[[Help:説明|説明]])。要係倷伓係特試來到箇首，按吖瀏覽器嗰"返回"即可。',
-'anontalkpagetext'         => "---- ''箇係匿名用戶嗰討論頁，話伓定佢還冇開帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:Userlogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶混淆。''",
-'noarticletext'            => '眼下箇頁還冇內容，倷可以在別嗰頁面[[Special:Search/{{PAGENAME}}|撏吖箇頁嗰標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編寫箇頁]。',
-'clearyourcache'           => "'''注意:''' 保存之後, 倷要清吥瀏覽器嗰緩存才眵得正改嗰內容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''(或按吖''Ctrl-Shift-R''，到蘋果Mac上按''Cmd-Shift-R'')；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 單只要按 ''刷新''；'''Opera:''' 用戶要到 ''工具-設置'' 完全嗰清除緩存。",
-'usercssjsyoucanpreview'   => "<strong>提示:</strong> 保存前請用'顯示預覽 '來測試倷嗰新CSS/JS 。",
-'usercsspreview'           => "'''注意倷單係到預覽倷個人嗰 CSS, 內容還冇保存！'''",
-'userjspreview'            => "'''注意倷單係到測試／預覽倷個人嗰 JavaScript，內容還冇保存！'''",
-'userinvalidcssjstitle'    => "'''警告:''' 冇\"\$1\"嗰皮膚。請記到自定義嗰 .css 同 .js 頁要用小寫。就話，{{ns:user}}:Foo/monobook.css 伓等同 {{ns:user}}:Foo/Monobook.css。",
-'updated'                  => '(已更新)',
-'note'                     => '<strong>注意:</strong>',
-'previewnote'              => '請記到箇單只係預覽，內容還冇保存！',
-'previewconflict'          => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
-'editing'                  => '眼下在編輯$1',
-'editinguser'              => '眼下在編輯用戶<b>$1</b>',
-'editingsection'           => '眼下在編輯$1 (段落)',
-'editingcomment'           => '眼下在編輯$1 (評論)',
-'editconflict'             => '編輯仗: $1',
-'explainconflict'          => '倷開始編輯之後有人改動嘞箇頁。上首嗰方框顯示嗰係眼下本頁嗰內容。倷嗰修改到下底嗰方框顯示。倷需要拿倷嗰修改並到眼下嗰內容。 
+'blockedoriginalsource'     => "底下係'''$1'''嗰原始碼:",
+'blockededitsource'         => "底下係倷對'''$1'''嗰'''編輯'''內容:",
+'whitelistedittitle'        => '登入後才編得正',
+'whitelistedittext'         => '起先倷要$1才編得正箇頁。',
+'whitelistreadtitle'        => '登入後才眵得正',
+'whitelistreadtext'         => '起先倷要[[Special:Userlogin|登入]] 才眵得正箇頁。',
+'whitelistacctitle'         => '倷伓可以開帳戶',
+'whitelistacctext'          => '到箇隻Wiki開帳戶嗰時間倷起首要[[Special:Userlogin|登入]]同到提供有關許可。',
+'confirmedittitle'          => 'email確認後才編得正',
+'confirmedittext'           => '確認嘞email才能編寫箇頁。麻煩用[[Special:Preferences|參數設置]]設置同確認倷嗰email。',
+'nosuchsectiontitle'        => '冇箇隻段落',
+'nosuchsectiontext'         => '倷嘗試編寫嗰段落伓存在。到箇首係冇第$1隻段落，所以係冇場窪去存到倷嗰編輯。',
+'loginreqtitle'             => '需要登入',
+'loginreqlink'              => '登入',
+'loginreqpagetext'          => '倷要$1才能眵別嗰頁面。',
+'accmailtitle'              => '密碼寄出嘞',
+'accmailtext'               => "'$1'嗰密碼發到$2嘞。",
+'newarticle'                => '(新)',
+'newarticletext'            => '倷連到嗰頁面唔存在。要新開箇隻頁面，倷能到下底嗰方框編寫內容(細節請望[[Help:説明|説明]])。要係倷伓係特試來到箇首，按吖瀏覽器嗰"返回"即可。',
+'anontalkpagetext'          => "---- ''箇係匿名用戶嗰討論頁，話伓定佢還冇開帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:Userlogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶混淆。''",
+'noarticletext'             => '眼下箇頁還冇內容，倷可以在別嗰頁面[[Special:Search/{{PAGENAME}}|撏吖箇頁嗰標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編寫箇頁]。',
+'clearyourcache'            => "'''注意:''' 保存之後, 倷要清吥瀏覽器嗰緩存才眵得正改嗰內容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''(或按吖''Ctrl-Shift-R''，到蘋果Mac上按''Cmd-Shift-R'')；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 單只要按 ''刷新''；'''Opera:''' 用戶要到 ''工具-設置'' 完全嗰清除緩存。",
+'usercssjsyoucanpreview'    => "<strong>提示:</strong> 保存前請用'顯示預覽 '來測試倷嗰新CSS/JS 。",
+'usercsspreview'            => "'''注意倷單係到預覽倷個人嗰 CSS, 內容還冇保存！'''",
+'userjspreview'             => "'''注意倷單係到測試／預覽倷個人嗰 JavaScript，內容還冇保存！'''",
+'userinvalidcssjstitle'     => "'''警告:''' 冇\"\$1\"嗰皮膚。請記到自定義嗰 .css 同 .js 頁要用小寫。就話，{{ns:user}}:Foo/monobook.css 伓等同 {{ns:user}}:Foo/Monobook.css。",
+'updated'                   => '(已更新)',
+'note'                      => '<strong>注意:</strong>',
+'previewnote'               => '請記到箇單只係預覽，內容還冇保存！',
+'previewconflict'           => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
+'session_fail_preview'      => '<strong>對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。
+請試過吖。還係扤伓正嗰話，試吖退出後登入過。</strong>',
+'session_fail_preview_html' => "<strong>對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。</strong> 
+
+''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。'' 
+
+<strong>要係佢係合法編輯嗰，請試過吖。還係扤伓正嗰話，試吖退出後登入過。</strong>",
+'token_suffix_mismatch'     => '<strong>倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
+箇種情況通常係含到好多臭蟲、以網絡為主嗰匿名代理服務扤得。</strong>',
+'editing'                   => '眼下在編輯$1',
+'editinguser'               => '眼下在編輯用戶<b>$1</b>',
+'editingsection'            => '眼下在編輯$1 (段落)',
+'editingcomment'            => '眼下在編輯$1 (評論)',
+'editconflict'              => '編輯仗: $1',
+'explainconflict'           => '倷開始編輯之後有人改動嘞箇頁。上首嗰方框顯示嗰係眼下本頁嗰內容。倷嗰修改到下底嗰方框顯示。倷需要拿倷嗰修改並到眼下嗰內容。 
 <b>單只係</b>上首方框嗰內容會等倷按"存到箇頁"之後拕保存。<br />',
-'yourtext'                 => '倷編嗰內容',
-'storedversion'            => '存到嗰版本',
-'yourdiff'                 => '差異',
-'readonlywarning'          => '<strong>警告: 資料庫鎖到嘞進行定期修護，眼下倷存伓正倷嗰改動。倷可以拿佢存到文檔再著。</strong>',
-'protectedpagewarning'     => '<strong>警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正。</strong>',
-'semiprotectedpagewarning' => "'''注意：'''箇頁拕鎖到嘞，單只註冊用戶編得正。",
-'cascadeprotectedwarning'  => '警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正，因為箇頁同底下嗰連鎖保護嗰{{PLURAL:$1|一隻|多隻}}頁面包到嘞:',
-'templatesused'            => '箇隻頁面使用嗰模板有:',
-'templatesusedpreview'     => '箇隻預覽使用嗰模板有:',
-'templatesusedsection'     => '箇隻段落使用嗰模板有:',
-'template-protected'       => '(保護)',
-'template-semiprotected'   => '(半保護)',
-'edittools'                => '<!--箇首嗰文本會到下底嗰編輯同上傳列表裡坨顯示。 -->',
-'nocreatetitle'            => '新建頁面拕限制',
-'nocreatetext'             => '箇隻網站限制新建頁面嗰功能。倷可以回頭去編輯有嘞嗰頁面，或者[[Special:Userlogin|登入或新開帳戶]]。',
-'nocreate-loggedin'        => '倷到箇隻wiki冇許可權去新開頁面。',
-'permissionserrors'        => '許可權錯誤',
-'permissionserrorstext'    => '根據底下嗰{{PLURAL:$1|原因|原因}}，倷冇許可權去扤:',
-'recreate-deleted-warn'    => "'''警告: 倷正重建一隻之前拕刪吥嗰頁面。''' 
+'yourtext'                  => '倷編嗰內容',
+'storedversion'             => '存到嗰版本',
+'nonunicodebrowser'         => '<strong>警告：倷嗰瀏覽器伓兼容Unicode。箇度有隻辦法方便倷安全嗰編寫得正文章：伓係ASCII嗰字符會到編輯框裡度用十六進位編碼顯到。</strong>',
+'editingold'                => '<strong>警告：倷於今正編寫箇頁嗰舊版本。
+要係倷存到佢嗰話，箇隻版本嗰全部改動會都跌吥去。</strong>',
+'yourdiff'                  => '差異',
+'copyrightwarning'          => '請記得到{{SITENAME}}嗰全部貢獻會拕認為係$2之下發出嗰（望吖$1有別嗰資料）。要係倷伓想自家嗰編輯好嚟嚟拕亂扤吥，唉就莫遞交。<br />
+倷都要話正倷嗰文字係倷自家寫嗰，或者係公有領域或別嗰自由資源複製到嗰。
+<strong>冇任何許可嗰情況下請莫遞交有版權嗰作品！</strong>',
+'copyrightwarning2'         => '請記得別嗰人編得正、改得正或者刪得正倷到{{SITENAME}}嗰全部貢獻。要係倷伓想自家嗰編輯好嚟嚟拕改吥，唉就莫遞交。<br />
+倷都要話正倷嗰文字係倷自家寫嗰，或者係公有領域或別嗰自由資源複製到嗰（望吖$1有別嗰資料）。
+<strong>冇任何許可嗰情況下請莫遞交有版權嗰作品！</strong>',
+'longpagewarning'           => '<strong>警告：箇頁有$1 kilobytes咁長；有嗰瀏覽器會編伓正超吥32kb嗰頁面。
+請考慮吖拿佢分到細嚸嗰小段落。</strong>',
+'longpageerror'             => '<strong>錯誤：倷遞交嗰文字有$1 kilobytes咁長，佢長過最大嗰$2 kilobytes。存伓正倷遞交嗰文字。</strong>',
+'readonlywarning'           => '<strong>警告: 資料庫鎖到嘞進行定期修護，眼下倷存伓正倷嗰改動。倷可以拿佢存到文檔再著。</strong>',
+'protectedpagewarning'      => '<strong>警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正。</strong>',
+'semiprotectedpagewarning'  => "'''注意：'''箇頁拕鎖到嘞，單只註冊用戶編得正。",
+'cascadeprotectedwarning'   => '警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正，因為箇頁同底下嗰連鎖保護嗰{{PLURAL:$1|一隻|多隻}}頁面包到嘞:',
+'templatesused'             => '箇隻頁面使用嗰模板有:',
+'templatesusedpreview'      => '箇隻預覽使用嗰模板有:',
+'templatesusedsection'      => '箇隻段落使用嗰模板有:',
+'template-protected'        => '(保護)',
+'template-semiprotected'    => '(半保護)',
+'edittools'                 => '<!--箇首嗰文本會到下底嗰編輯同上傳列表裡坨顯示。 -->',
+'nocreatetitle'             => '新建頁面拕限制',
+'nocreatetext'              => '箇隻網站限制新建頁面嗰功能。倷可以回頭去編輯有嘞嗰頁面，或者[[Special:Userlogin|登入或新開帳戶]]。',
+'nocreate-loggedin'         => '倷到箇隻wiki冇許可權去新開頁面。',
+'permissionserrors'         => '許可權錯誤',
+'permissionserrorstext'     => '根據底下嗰{{PLURAL:$1|原因|原因}}，倷冇許可權去扤:',
+'recreate-deleted-warn'     => "'''警告: 倷正重建一隻之前拕刪吥嗰頁面。''' 
 
 倷應該要考慮吖繼續編輯箇頁面係否有必要。為到方便，箇頁嗰刪除記錄已經到下底提供:",
 
@@ -820,6 +841,11 @@ $2',
 'destfilename'                => '目標檔案名',
 'watchthisupload'             => '眏到箇頁',
 'filewasdeleted'              => '先前有隻同名檔案上傳後又拕刪吥嘞。上傳箇隻檔案之前倷非要檢查$1。',
+'upload-wasdeleted'           => "'''警告: 倷於今上傳嗰檔案係先前刪過嗰。'''
+
+倷要想正係真嗰上傳箇隻檔案。
+為到方便起見，箇隻檔案嗰刪除記錄到下底提供嘞:",
+'filename-bad-prefix'         => '倷上傳嗰檔案名係以<strong>"$1"</strong>做開頭嗰，通常箇種冇意義嗰名字係數碼相機度嗰自動編排。請到倷嗰檔案揀過隻更加有意義嗰名字。',
 
 'upload-proto-error'      => '協定錯誤',
 'upload-proto-error-text' => '遠程上傳要求 URL 用 <code>http://</code> 或 <code>ftp://</code> 開頭。',
@@ -927,6 +953,16 @@ $2',
 'statistics'             => '數據',
 'sitestats'              => '{{SITENAME}} 數據',
 'userstats'              => '用戶數據',
+'sitestatstext'          => "資料庫攏共有'''$1'''頁。
+佢就含到「討論」頁、關於{{SITENAME}}頁、嚸大嗰「stub」頁、重定向頁，同到別嗰冇算到內容嗰頁面。
+冇算非內容頁嗰話，唉'''$2'''頁就能算到正規嗰內容。
+
+'''$8'''隻檔案上傳嘞。
+
+箇隻{{SITENAME}}建立以來，攏共有'''$3'''道瀏覽，同到'''$4'''回編輯。
+平均每頁有'''$5'''道瀏覽，同到'''$6'''回編輯。 
+
+[http://meta.wikimedia.org/wiki/Help:Job_queue job queue] 嗰長度係'''$7'''。",
 'userstatstext'          => "網站有'''$1'''隻註冊[[Special:Listusers|用戶]]，其中 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '眵嗰人最多嗰頁面',
 
@@ -995,6 +1031,8 @@ $2',
 'movethispage'            => '移動箇頁',
 'unusedimagestext'        => '<p>請注意別嗰網站直接用得正URL連結到箇隻圖像，所以箇首列到嗰圖像可能還會拕使用。</p>',
 'unusedcategoriestext'    => '話係話冇拕別嗰文章或分類採用，但列表嗰分類頁還係存在。',
+'notargettitle'           => '冇目標',
+'notargettext'            => '倷冇指正隻功能要用到嗰對象係頁面或用戶。',
 
 # Book sources
 'booksources'               => '書籍來源',
@@ -1492,6 +1530,8 @@ $NEWPAGE
 'tooltip-ca-watch'                => '拿箇頁加到監視列表',
 'tooltip-ca-unwatch'              => '拿箇頁從監視列表移走',
 'tooltip-search'                  => '尋吖{{SITENAME}}',
+'tooltip-search-go'               => '要係一樣嗰標題存在嗰話就直接去箇一版',
+'tooltip-search-fulltext'         => '尋箇隻文字嗰頁面',
 'tooltip-p-logo'                  => '封面',
 'tooltip-n-mainpage'              => '眵吖封面',
 'tooltip-n-portal'                => '對於箇隻計畫, 倷能做什哩, 又啷做',
@@ -1587,10 +1627,12 @@ $NEWPAGE
 'markedaspatrolled'                   => '標到係檢查過嗰',
 'markedaspatrolledtext'               => '選正嗰版本標到係檢查過嗰。',
 'rcpatroldisabled'                    => '近來修改檢查拕關閉',
-'rcpatroldisabledtext'                => '近來修改檢查嗰功能拕關閉。',
+'rcpatroldisabledtext'                => '該朝子改動檢查嗰功能拕關閉嘞。',
 'markedaspatrollederror'              => '標伓正佢係檢查過嗰',
 'markedaspatrollederrortext'          => '倷要指正某隻版本才標得正佢係檢查過嗰。',
 'markedaspatrollederror-noautopatrol' => '倷標伓正倷自家嗰修改係檢查過嗰。',
+'nppatroldisabled'                    => '新頁面巡查停用嘞',
+'nppatroldisabledtext'                => '新頁面巡查停用中。',
 
 # Patrol log
 'patrol-log-page' => '巡查記錄',
@@ -1600,10 +1642,10 @@ $NEWPAGE
 # Image deletion
 'deletedrevision'                 => '刪卟嘞舊版本$1。',
 'filedeleteerror-short'           => '刪卟檔案出錯: $1',
-'filedeleteerror-long'            => '當刪卟檔案出嘞錯: 
+'filedeleteerror-long'            => '刪卟檔案出嘞錯: 
 
 $1',
-'filedelete-missing'              => '因為檔案 "$1" 伓存在，所以刪佢伓正。',
+'filedelete-missing'              => '檔案 "$1" 伓存在，所以刪佢伓正。',
 'filedelete-old-unregistered'     => '指正嗰檔案修改 "$1" 資料庫裡伓存在。',
 'filedelete-current-unregistered' => '指正嗰檔案 "$1" 資料庫裡伓存在。',
 'filedelete-archive-read-only'    => '存檔目錄 "$1" 服務器裡寫伓正。',
