@@ -1,6 +1,12 @@
 <?php
-/** Old Church Slavonic (Ѩзыкъ словѣньскъ)
-  */
+/** Church Slavic (Словѣньскъ)
+ *
+ * @addtogroup Language
+ *
+ * @author SPQRobin
+ * @author Svetko
+ * @author Nike
+ */
 
 $separatorTransformTable = array(
 	',' => ".",
@@ -54,6 +60,20 @@ $linkTrail = '/^([a-zабвгдеєжѕзїіıићклмнопсстѹфхѡѿ�
 
 $messages = array(
 # Dates
+'sunday'        => 'недѣл',
+'monday'        => 'понедѣл҄ьникъ',
+'tuesday'       => 'въторьникъ',
+'wednesday'     => 'срѣда',
+'thursday'      => 'четврьтъкъ',
+'friday'        => 'пѧтъкъ',
+'saturday'      => 'сѫбота',
+'sun'           => 'н҃д',
+'mon'           => 'п҃н',
+'tue'           => 'в҃т',
+'wed'           => 'с҃р',
+'thu'           => 'ч҃т',
+'fri'           => 'п҃т',
+'sat'           => 'с҃б',
 'january'       => 'їанѹарїи',
 'february'      => 'феврѹарїи',
 'march'         => 'мартїи',
@@ -78,6 +98,22 @@ $messages = array(
 'october-gen'   => 'октѡврї',
 'november-gen'  => 'ноемврї',
 'december-gen'  => 'декемврї',
+'jan'           => '҃н',
+'feb'           => 'фе҃в',
+'mar'           => 'ма҃р',
+'apr'           => 'ап҃р',
+'may'           => 'маи',
+'jun'           => 'їѹ҃н',
+'jul'           => 'їѹ҃л',
+'aug'           => 'аѵ҃г',
+'sep'           => 'се҃п',
+'oct'           => 'ок҃т',
+'nov'           => 'но҃е',
+'dec'           => 'де҃к',
+
+# Bits of text used by many pages
+'categories'     => 'Катигорїѩ',
+'pagecategories' => '{{PLURAL:$1|Катигорї|Катигорїи|Катигориѩ|Катигориѩ}}',
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 
@@ -101,34 +137,65 @@ $messages = array(
 'specialpage'      => 'нарочьна страница',
 'talk'             => 'бесѣда',
 'toolbox'          => 'Орѫди',
+'otherlanguages'   => 'Дрѹгы ѩзыкы',
+'jumptosearch'     => 'поискъ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents' => 'Текѫща събыти',
 'mainpage'      => 'Главьна страница',
 'portal'        => 'Обьщины съвѣтъ',
+'portal-url'    => '{{ns:project}}:Обьщени съвѣтъ',
 'sitesupport'   => 'Дани',
 
 'editsection' => 'исправи',
 'editold'     => 'исправи',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'    => 'статї',
-'nstab-user'    => 'польѕеватель',
-'nstab-special' => 'Нарочьна',
-'nstab-project' => 'съвѣтъ',
+'nstab-main'     => 'статї',
+'nstab-user'     => 'польѕеватель',
+'nstab-special'  => 'Нарочьна',
+'nstab-project'  => 'съвѣтъ',
+'nstab-image'    => 'Видъ',
+'nstab-template' => 'Образьць',
+'nstab-help'     => 'Страница помощи',
+
+# General errors
+'viewsource' => 'Страницѧ источьнъ образъ',
 
 # Login and logout pages
-'login'         => 'Въниди',
-'userlogin'     => 'Въниди / съзижди си мѣсто',
-'logout'        => 'иходъ',
-'userlogout'    => 'иходъ',
-'createaccount' => 'Cъзижди си мѣсто',
+'loginpagetitle'    => 'Въходъ',
+'yourname'          => 'Твоѥ имѧ',
+'yourpassword'      => 'Таино слово напиши',
+'yourpasswordagain' => 'Опакы таиноѥ слово напиши',
+'login'             => 'Въниди',
+'userlogin'         => 'Въниди / съзижди си мѣсто',
+'logout'            => 'иходъ',
+'userlogout'        => 'иходъ',
+'createaccount'     => 'Cъзижди си мѣсто',
+'gotaccount'        => 'Мѣсто ти ѥстъ ли? $1.',
+'gotaccountlink'    => 'Въниди',
+'userexists'        => 'Сѫще польѕевател имѧ пьса. Ино изобрѧщи.',
+'username'          => 'Польѕевател имѧ:',
+'loginerror'        => 'Въхода блазна',
+
+# Edit pages
+'loginreqlink' => 'Въниди',
+'editing'      => 'Исправлѥниѥ: $1',
 
 # Search results
 'powersearch' => 'Ищи',
 
 # Preferences page
 'mypreferences' => 'мои строи',
+
+# Groups
+'group-bot'        => 'Аѵтомати',
+'group-sysop'      => 'съмотрителе',
+'group-bureaucrat' => 'Чинодателе',
+
+'group-bot-member'        => 'аѵтоматъ',
+'group-sysop-member'      => 'съмотрител҄ь',
+'group-bureaucrat-member' => 'чинодател҄ь',
 
 # Recent changes
 'recentchanges' => 'Послѣдьнѩ мѣны',
@@ -143,9 +210,25 @@ $messages = array(
 # Image list
 'ilsubmit' => 'Ищи',
 
+# File deletion
+'filedelete-submit' => 'ничьжи',
+
+# Statistics
+'statistics' => 'Статїстїка',
+'sitestats'  => '{{SITENAME}} статїстїка',
+'userstats'  => 'Польѕевателъ статїстїка',
+
 # Miscellaneous special pages
-'specialpages' => 'Нарочьны страницѧ',
-'move'         => 'прѣименѹи',
+'allpages'          => 'Вьсѩ страницѧ',
+'randompage'        => 'Люба страница',
+'specialpages'      => 'Нарочьны страницѧ',
+'newpages'          => 'Новы статїѩ',
+'newpages-username' => 'Польѕевател имѧ:',
+'move'              => 'прѣименѹи',
+
+# Special:Allpages
+'allpagesfrom' => 'Страницѧ видѣти хощѫ съ начѧльнами бѹкъвами:',
+'allarticles'  => 'Вьсѩ статїѩ',
 
 # E-mail user
 'emailuser' => 'Посъли епїстолѫ',
@@ -155,6 +238,10 @@ $messages = array(
 'mywatchlist' => 'Мо блюдени',
 'watch'       => 'блюди',
 'unwatch'     => 'остави блюдениѥ',
+
+# Delete/protect/revert
+'excontent'       => "вънѫтри бѣ: '$1'",
+'excontentauthor' => "вънѫтри бѣ: '$1' (и послѣдьн҄ии дѣтел҄ь бѣ '[[Special:Contributions/$2|$2]]')",
 
 # Restrictions (nouns)
 'restriction-edit' => 'исправи',
@@ -167,11 +254,11 @@ $messages = array(
 'whatlinkshere' => ' Досьдещьнѩ съвѧзи',
 
 # Block/unblock
-'blockip' => 'Загради польѕеватель',
+'blockip'            => 'Загради польѕеватель',
+'ipblocklist-submit' => 'поискъ',
 
 # Move page
+'1movedto2'       => '[[$1]] нареченъ [[$2]] ѥстъ',
 '1movedto2_redir' => '[[$1]] нареченъ [[$2]] врьхѹ прѣнаправлѥни ѥстъ.',
 
 );
-
-

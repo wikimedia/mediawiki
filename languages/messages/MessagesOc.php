@@ -827,9 +827,7 @@ Per inclure un imatge dins una pagina, utilizatz un dels modèls seguents:
 'uploadlog'                   => 'Jornals dels telecargaments (uploads)',
 'uploadlogpage'               => "Log_d'upload",
 'uploadlogpagetext'           => "Vaquí la lista dels darrièrs fichièrs copiats sul serveire.
-L'ora indicada es la del serveire (UTC).
-<ul>
-</ul>",
+L'ora indicada es la del serveire (UTC).",
 'filename'                    => 'Nom',
 'filedesc'                    => 'Descripcion',
 'fileuploadsummary'           => 'Resumit:',

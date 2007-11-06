@@ -2,6 +2,10 @@
 /** Finnish (Suomi)
  *
  * @addtogroup Language
+ *
+ * @author Crt
+ * @author Nike
+ * @author G - ג
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -394,6 +398,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
 
+'ok'                      => 'OK',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Haettu osoitteesta $1',
 'youhavenewmessages'      => 'Sinulle on $1 ($2).',
@@ -929,6 +934,7 @@ $1 | $2',
 'show'                              => 'näytä',
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'U',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 tarkkailevaa käyttäjää]',
 'rc_categories'                     => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'                 => 'Mikä tahansa',
@@ -1201,6 +1207,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 
 'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
+'data'               => 'Data',
 'userrights'         => 'Käyttöoikeuksien hallinta',
 'groups'             => 'Ryhmät',
 'alphaindexline'     => '$1…$2',
@@ -1791,6 +1798,8 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'markedaspatrollederror'              => 'Muutoksen merkitseminen tarkastetuksi epäonnistui.',
 'markedaspatrollederrortext'          => 'Tarkastetuksi merkittävää versiota ei ole määritelty.',
 'markedaspatrollederror-noautopatrol' => 'Et voi merkitä omia muutoksiasi tarkastetuiksi.',
+'nppatroldisabled'                    => 'Uusien sivujen tarkastus ei ole käytössä',
+'nppatroldisabledtext'                => 'Uusien sivujen tarkastustoiminto ei ole käytössä.',
 
 # Patrol log
 'patrol-log-page' => 'Muutostentarkastusloki',
@@ -2139,6 +2148,7 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
 'trackbackremove'   => ' ([$1 poista])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback poistettiin.',
 
 # Delete conflict
@@ -2224,8 +2234,8 @@ Yritä normaalia esikatselua.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Yksi sivu|$1 sivua}} poistettiin:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Näytä muutokset',
-'watchlisttools-edit'  => 'Muokkaa listaa',
-'watchlisttools-raw'   => 'Lista raakamuodossa',
+'watchlisttools-view' => 'Näytä muutokset',
+'watchlisttools-edit' => 'Muokkaa listaa',
+'watchlisttools-raw'  => 'Lista raakamuodossa',
 
 );

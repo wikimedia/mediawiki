@@ -2480,11 +2480,8 @@ Probeer normale voorvertoning.',
 'watchlisttools-edit' => 'Volglijst bekijken en bewerken',
 'watchlisttools-raw'  => 'Ruwe volglijst bewerken',
 
-# Unknown messages
+# Iranian month names
 'iranian-calendar-m1'  => 'Eerste Perzische maand',
-'iranian-calendar-m10' => 'Tiende Perzische maand',
-'iranian-calendar-m11' => 'Elfde Perzische maand',
-'iranian-calendar-m12' => 'Twaalfde Perzische maand',
 'iranian-calendar-m2'  => 'Tweede Perzische maand',
 'iranian-calendar-m3'  => 'Derde Perzische maand',
 'iranian-calendar-m4'  => 'Vierde Perzische maand',
@@ -2493,5 +2490,8 @@ Probeer normale voorvertoning.',
 'iranian-calendar-m7'  => 'Zevende Perzische maand',
 'iranian-calendar-m8'  => 'Achtste Perzische maand',
 'iranian-calendar-m9'  => 'Negende Perzische maand',
+'iranian-calendar-m10' => 'Tiende Perzische maand',
+'iranian-calendar-m11' => 'Elfde Perzische maand',
+'iranian-calendar-m12' => 'Twaalfde Perzische maand',
 
 );

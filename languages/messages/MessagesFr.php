@@ -430,7 +430,7 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos préférences 
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Identification réussie.',
-'loginsuccess'               => 'Vous êtes maintenant connecté sur {{SITENAME}} en tant que « $1 ».',
+'loginsuccess'               => 'Vous êtes maintenant connecté à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser'                 => 'L’utilisateur « $1 » n’existe pas.
 Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.',
 'nosuchusershort'            => 'Il n’y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l’orthographe.',

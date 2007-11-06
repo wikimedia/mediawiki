@@ -1,9 +1,11 @@
 <?php
-/** Brezhoneg
+/** Breton (Brezhoneg)
  *
  * @addtogroup Language
- * Translators:
+ *
  * @author Fulup
+ * @author G - ג
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -647,7 +649,7 @@ Alc'hwez : (red) = diforc'hioù gant ar stumm a-vremañ,
 'deletedrev'          => '[diverket]',
 'histfirst'           => 'Kentañ',
 'histlast'            => 'Diwezhañ',
-'historysize'         => '($1 okted)',
+'historysize'         => '({{PLURAL:$1|$1 okted|$1 okted}})',
 'historyempty'        => '(goullo)',
 
 # Revision feed
@@ -1432,6 +1434,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Pajennoù liammet',
 'whatlinkshere-title' => 'Pajennoù liammet ouzh $1',
+'whatlinkshere-page'  => 'Pajenn :',
 'linklistsub'         => '(Roll al liammoù)',
 'linkshere'           => "Ar pajennoù a-is zo enno ul liamm a gas war-du '''[[:$1]]''':",
 'nolinkshere'         => "N'eus pajenn ebet enni ul liamm war-du '''[[:$1]]'''.",
@@ -2090,6 +2093,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'imagelistall'     => 'an holl',
 'watchlistall2'    => 'pep tra',
 'namespacesall'    => 'pep tra',
+'monthsall'        => 'an holl',
 
 # E-mail address confirmation
 'confirmemail'            => "Kadarnaat ar chomlec'h postel",
@@ -2211,8 +2215,22 @@ Klaskit rakwelet er mod boutin.',
 'watchlistedit-raw-removed'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} :',
 
 # Watchlist editing tools
-'watchlisttools-view'  => "Gwelet ar c'hemmoù degaset",
-'watchlisttools-edit'  => 'Gwelet ha kemmañ ar roll evezhiañ',
-'watchlisttools-raw'   => 'Kemmañ ar roll (mod diginkl)',
+'watchlisttools-view' => "Gwelet ar c'hemmoù degaset",
+'watchlisttools-edit' => 'Gwelet ha kemmañ ar roll evezhiañ',
+'watchlisttools-raw'  => 'Kemmañ ar roll (mod diginkl)',
+
+# Iranian month names
+'iranian-calendar-m1'  => '1añ miz Jalāli',
+'iranian-calendar-m2'  => '2l miz Jalāli',
+'iranian-calendar-m3'  => '3e miz Jalāli',
+'iranian-calendar-m4'  => '4e miz Jalāli',
+'iranian-calendar-m5'  => '5vet miz Jalāli',
+'iranian-calendar-m6'  => '6vet miz Jalāli',
+'iranian-calendar-m7'  => '7vet miz Jalāli',
+'iranian-calendar-m8'  => '8vet miz Jalāli',
+'iranian-calendar-m9'  => '9vet miz Jalāli',
+'iranian-calendar-m10' => '10vet miz Jalāli',
+'iranian-calendar-m11' => '11vet miz Jalāli',
+'iranian-calendar-m12' => '12vet miz Jalāli',
 
 );
