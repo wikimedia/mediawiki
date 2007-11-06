@@ -1245,7 +1245,7 @@ $2',
 'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המצוין.',
 
 # File deletion
-'filedelete'             => 'מוחק את $1',
+'filedelete'             => 'מחיקת $1',
 'filedelete-backlink'    => '→ $1',
 'filedelete-legend'      => 'מחיקת קובץ',
 'filedelete-intro'       => "מוחק את '''[[Media:$1|$1]]'''.",
