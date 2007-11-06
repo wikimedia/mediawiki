@@ -13,7 +13,7 @@ function wfSpecialBlockme() {
 	$ip = wfGetIP();
 	
 	if( !$wgBlockOpenProxies || $wgRequest->getText( 'ip' ) != md5( $ip . $wgProxyKey ) ) {
-		$wgOut->addWikiText( wfMsg( 'disabled' ) );
+		$wgOut->addWikiText( wfMsg( 'proxyblocker-disabled' ) );
 		return;
 	}
 

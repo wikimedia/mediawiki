@@ -138,6 +138,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   255 characters (already restricted in the database)
 * In the deletion default reasons, calculate how much text to get from the
   article text, rather than getting 150 characters (which may be too much)
+* Add two messages for Special:Blockme which were used but undefined
 
 === API changes in 1.12 ===
 
