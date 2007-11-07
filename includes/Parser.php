@@ -412,7 +412,7 @@ class Parser
 	function recursiveTagParse( $text ) {
 		wfProfileIn( __METHOD__ );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
-		$text = $this->strip( $text, &$this->mStripState );
+		$text = $this->strip( $text, $this->mStripState );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text );
 		wfProfileOut( __METHOD__ );
