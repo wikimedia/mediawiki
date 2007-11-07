@@ -225,6 +225,100 @@ to'mende ko'rsetilgen:",
 'group-bureaucrat' => 'Byurokratlar',
 'group-all'        => "(ha'mmesi)",
 
-'group-bot-member' => 'Bot',
+'group-bot-member'        => 'Bot',
+'group-sysop-member'      => 'Administrator',
+'group-bureaucrat-member' => 'Byurokrat',
+
+'grouppage-bot'        => '{{ns:project}}:Botlar',
+'grouppage-sysop'      => '{{ns:project}}:Administratorlar',
+'grouppage-bureaucrat' => '{{ns:project}}:Byurokratlar',
+
+# Upload
+'filename' => 'Fayl atı',
+
+'upload_source_file' => " (sizin' kompyuterin'izdegi fayl)",
+
+# Image list
+'imagelist' => 'Fayllar dizimi',
+'imgfile'   => 'fayl',
+
+# File deletion
+'filedelete-legend' => "Fayldı o'shiriw",
+'filedelete-submit' => "O'shiriw",
+
+# Statistics
+'statistics' => 'Statistika',
+'sitestats'  => '{{SITENAME}} statistikası',
+
+'brokenredirects-delete' => "(o'shiriw)",
+
+# Miscellaneous special pages
+'allpages'     => "Ha'mme betler",
+'shortpages'   => 'Qısqa maqalalar',
+'longpages'    => 'Uzın maqalalar',
+'newpages'     => 'Taza maqalalar',
+'move'         => "Ko'shiriw",
+'movethispage' => "Bul betti ko'shiriw",
+
+'data' => "Mag'lıwmatlar",
+
+# Special:Log
+'speciallogtitlelabel' => 'Atama:',
+
+# Special:Allpages
+'nextpage'     => 'Keyingi bet ($1)',
+'prevpage'     => "Aldıng'ı bet ($1)",
+'allarticles'  => "Ha'mme maqalalar",
+'allpagesprev' => "Aldıng'ı",
+'allpagesnext' => 'Keyingi',
+
+# E-mail user
+'emailfrom' => 'Kimnen',
+'emailto'   => 'Kimge',
+
+# Watchlist
+'notanarticle' => 'Maqala emes',
+
+# Delete/protect/revert
+'deletepage'          => "Betti o'shiriw",
+'confirm'             => 'Tastıyıqlaw',
+'protect-level-sysop' => 'Tek administratorlar',
+'pagesize'            => '(bayt)',
+
+# Block/unblock
+'ipaddress'          => 'IP Adres:',
+'ipbreason'          => 'Sebep:',
+'ipbreasonotherlist' => 'Basqa sebep',
+'ipboptions'         => "2 saat:2 hours,1 ku'n:1 day,3 ku'n:3 days,1 ha'pte:1 week,2 h'apte:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 jil:1 year,sheksiz:infinite",
+'ipbotheroption'     => 'basqa',
+'ipbotherreason'     => 'Basqa/qosımsha sebep:',
+
+# Move page
+'newtitle'   => 'Taza atama:',
+'movereason' => 'Sebep:',
+
+# Tooltip help for the actions
+'tooltip-p-logo'     => 'Bas bet',
+'tooltip-n-mainpage' => "Bas betke o'tiw",
+
+# Metadata
+'metadata' => "Metamag'lıwmat",
+
+# EXIF tags
+'exif-imagewidth'  => 'Yeni:',
+'exif-imagelength' => "Uzunlıg'ı",
+'exif-artist'      => 'Avtor',
+
+# Delete conflict
+'recreate' => 'Qaytadan jaratıw',
+
+# action=purge
+'confirm_purge_button' => 'OK',
+
+# Table pager
+'table_pager_next'  => 'Keyingi bet',
+'table_pager_prev'  => "Aldıng'ı bet",
+'table_pager_first' => 'Birinshi bet',
+'table_pager_last'  => "Aqırg'ı bet",
 
 );
