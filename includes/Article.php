@@ -1839,6 +1839,83 @@ class Article {
 		}
 		return implode( ':', $bits );
 	}
+	
+	/**
+	 * Auto-generates a deletion reason
+	 * @param bool &$hashistory Whether the page has a history
+	 */
+	public function generateReason(&$hashistory)
+	{
+		global $wgContLang;
+		$dbw = wfGetDB(DB_MASTER);
+		// Get the last revision
+		$rev = Revision::newFromTitle($this->mTitle);
+		if(is_null($rev))
+			return false;
+		// Get the article's contents
+		$contents = $rev->getText();
+		$blank = false;
+		// If the page is blank, use the text from the previous revision,
+		// which can only be blank if there's a move/import/protect dummy revision involved
+		if($contents == '')
+		{
+			$prev = $rev->getPrevious();
+			if($prev)
+			{
+				$contents = $prev->getText();
+				$blank = true;
+			}
+		}
+
+		// Find out if there was only one contributor
+		// Only scan the last 20 revisions
+		$limit = 20;
+		$res = $dbw->select('revision', 'rev_user_text', array('rev_page' => $this->getID()), __METHOD__,
+				array('LIMIT' => $limit));
+		if($res === false)
+			// This page has no revisions, which is very weird
+			return false;
+		if($res->numRows() > 1)
+				$hasHistory = true;
+		else
+				$hasHistory = false;
+		$row = $dbw->fetchObject($res);
+		$onlyAuthor = $row->rev_user_text;
+		// Try to find a second contributor
+		while(($row = $dbw->fetchObject($res)))
+			if($row->rev_user_text != $onlyAuthor)
+			{
+				$onlyAuthor = false;
+				break;
+			}
+		$dbw->freeResult($res);
+
+		// Generate the summary with a '$1' placeholder
+		if($blank)
+			// The current revision is blank and the one before is also
+			// blank. It's just not our lucky day
+			$reason = wfMsgForContent('exbeforeblank', '$1');
+		else
+		{
+			if($onlyAuthor)
+				$reason = wfMsgForContent('excontentauthor', '$1', $onlyAuthor);
+			else
+				$reason = wfMsgForContent('excontent', '$1');
+		}
+		
+		// Replace newlines with spaces to prevent uglyness
+		$contents = preg_replace("/[\n\r]/", ' ', $contents);
+		// Calculate the maximum amount of chars to get
+		// Max content length = max comment length - length of the comment (excl. $1) - '...'
+		$maxLength = 255 - (strlen($reason) - 2) - 3;
+		$contents = $wgContLang->truncate($contents, $maxLength, '...');
+		// Remove possible unfinished links
+		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );
+		// Now replace the '$1' placeholder
+		$reason = str_replace( '$1', $contents, $reason );
+		return $reason;
+	}
+
 
 	/*
 	 * UI entry point for page deletion
@@ -1881,88 +1958,16 @@ class Article {
 			return;
 		}
 
-		# determine whether this page has earlier revisions
-		# and insert a warning if it does
-		$maxRevisions = 20;
-		$authors = $this->getLastNAuthors( $maxRevisions, $latest );
+		// Generate deletion reason
+		$hasHistory = false;
+		$reason = $this->generateReason($hasHistory);
 
-		if( count( $authors ) > 1 && !$confirm ) {
+		// If the page has a history, insert a warning
+		if( $hasHistory && !$confirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML( '<strong>' . wfMsg( 'historywarning' ) . ' ' . $skin->historyLink() . '</strong>' );
 		}
-
-		# If a single user is responsible for all revisions, find out who they are
-		if ( count( $authors ) == $maxRevisions ) {
-			// Query bailed out, too many revisions to find out if they're all the same
-			$authorOfAll = false;
-		} else {
-			$authorOfAll = reset( $authors );
-			foreach ( $authors as $author ) {
-				if ( $authorOfAll != $author ) {
-					$authorOfAll = false;
-					break;
-				}
-			}
-		}
-		# Fetch article text
-		$rev = Revision::newFromTitle( $this->mTitle );
-
-		if( !is_null( $rev ) ) {
-			# if this is a mini-text, we can paste part of it into the deletion reason
-			$text = $rev->getText();
-
-			#if this is empty, an earlier revision may contain "useful" text
-			$blanked = false;
-			if( $text == '' ) {
-				$prev = $rev->getPrevious();
-				if( $prev ) {
-					$text = $prev->getText();
-					$blanked = true;
-				}
-			}
-
-			$length = strlen( $text );
-
-			# If the last revision is a blank revision (move, import or
-			# protection summary) and the one before it was blank
-			if( $length == 0 && $reason === '' ) {
-				$reason = wfMsgForContent( 'exblank' );
-			}
-
-			if( $reason === '' ) {
-				if( !$blanked ) {
-					if( $authorOfAll === false ) {
-						$reason = wfMsgForContent( 'excontent', '$1' );
-					} else {
-						$reason = wfMsgForContent( 'excontentauthor', '$1', $authorOfAll );
-					}
-				} else {
-					$reason = wfMsgForContent( 'exbeforeblank', '$1' );
-				}
-
-				# comment field=255, find the max length of the content from page
-				# Max content length is max comment length, minus length of the actual
-				# comment (except for the $1), and minus the possible ... chars
-				$maxLength = 255 - ( strlen( $reason ) - 2 ) - 3;
-				if( $maxLength < 0 ) {
-					$maxLength = 0;
-				}
-
-				# let's strip out newlines
-				$text = preg_replace( "/[\n\r]/", '', $text );
-
-				# Truncate to max length
-				global $wgContLang;
-				$text = $wgContLang->truncate( $text, $maxLength, '...' );
-
-				# Remove possible unfinished links
-				$text = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $text );
-
-				# Add to the reason field
-				$reason = str_replace( '$1', $text, $reason );
-			}
-		}
-
+		
 		return $this->confirmDelete( '', $reason );
 	}
 
