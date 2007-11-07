@@ -7,6 +7,8 @@
  * @author G - ג
  */
 
+$fallback = 'de';
+
 $messages = array(
 # Dates
 'monday' => 'Méindeg',
