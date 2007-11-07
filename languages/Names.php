@@ -221,7 +221,6 @@
 	'roa-rup' => 'Armãneashce', # Aromanian
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
-	'ru-sib' => 'Сибирской',	# Siberian/North Russian
 	'rw' => 'Kinyarwanda',	# Kinyarwanda, should possibly be Kinyarwandi
 	'sa' => 'संस्कृत',	# Sanskrit
 	'sah' => 'Саха тыла', # Sakha
