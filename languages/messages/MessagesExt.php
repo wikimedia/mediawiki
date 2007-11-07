@@ -567,6 +567,7 @@ Es posibri qu\'aiga detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'revdelete-hide-name'         => 'Açonchal ación i ohetivu',
 'revdelete-hide-comment'      => 'Açonchal síntesis la eición',
 'revdelete-hide-user'         => 'Açonchal nombri d´usuáriu/IP el eitol',
+'revdelete-hide-restricted'   => 'Tamién aprical estus tarugus a los duendis',
 'revdelete-hide-image'        => 'Açonchal el continiu el archivu',
 'revdelete-log'               => 'Comentáriu e rustrihu:',
 'revdelete-submit'            => 'Aprical a la revisión aseñalá',
@@ -621,6 +622,7 @@ Es posibri qu\'aiga detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'datedefault'              => 'Sin preferéncias',
 'datetime'                 => 'Fecha i ora',
 'math_unknown_error'       => 'marru andarriu',
+'math_unknown_function'    => 'hunción andarria',
 'math_lexing_error'        => 'marru lésicu',
 'math_syntax_error'        => 'marru ena sintasis',
 'prefs-personal'           => 'Datus el usuáriu',
@@ -717,62 +719,63 @@ Es posibri qu\'aiga detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'recentchangeslinked-summary'  => "Nesta páhina especial ai una lista colos úrtimus chambus en páhinas qu´están enlazás. Las páhinas de la tu lista e seguimientu están en '''negrina'''.",
 
 # Upload
-'upload'                     => 'Empuntal archivu',
-'uploadbtn'                  => 'Empuntal archivu',
-'reupload'                   => 'Re-empuntal',
-'reuploaddesc'               => 'Gorvel al hormulariu d´empuntu.',
-'uploadnologin'              => 'Nu estás rustrau',
-'uploadnologintext'          => 'Ebis estal [[Special:Userlogin|rustrau]]
+'upload'                      => 'Empuntal archivu',
+'uploadbtn'                   => 'Empuntal archivu',
+'reupload'                    => 'Re-empuntal',
+'reuploaddesc'                => 'Gorvel al hormulariu d´empuntu.',
+'uploadnologin'               => 'Nu estás rustrau',
+'uploadnologintext'           => 'Ebis estal [[Special:Userlogin|rustrau]]
 pa empuntal archivus.',
-'upload_directory_read_only' => "Nu puei escrebilsi nel diretoriu d'empuntu ($1) el sirviol.",
-'uploaderror'                => 'Marru d´empuntu',
-'uploadtext'                 => "Gasta el hormulariu d´embahu pa empuntal archivus, pa vel u landeal imahis ya empuntás vaiti pala [[Special:Imagelist|lista d´archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus tamién se rustran nel [[Special:Log/upload|rustrihu d´empuntu]].
+'upload_directory_read_only'  => "Nu puei escrebilsi nel diretoriu d'empuntu ($1) el sirviol.",
+'uploaderror'                 => 'Marru d´empuntu',
+'uploadtext'                  => "Gasta el hormulariu d´embahu pa empuntal archivus, pa vel u landeal imahis ya empuntás vaiti pala [[Special:Imagelist|lista d´archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus tamién se rustran nel [[Special:Log/upload|rustrihu d´empuntu]].
 
 P´añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' u
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' p´atihal diretamenti el archivu.",
-'uploadlog'                  => "rustrihu d'empuntu",
-'uploadlogpage'              => "Rustrihu d'empuntu",
-'uploadlogpagetext'          => 'Embahu ai una lista e los úrtimus empuntus d´archivus.',
-'filename'                   => 'Nombri el archivu',
-'filedesc'                   => 'Síntesis',
-'fileuploadsummary'          => 'Síntesis:',
-'filestatus'                 => 'Estau el Copyright',
-'filesource'                 => 'Coigu huenti',
-'uploadedfiles'              => 'Archivus empuntaus',
-'ignorewarning'              => 'Inoral el avisihu i emburacal el achivu.',
-'ignorewarnings'             => 'Inoral tolos avisihus',
-'minlength1'                 => 'Los nombris d´archivus ebin tenel al menus una letra.',
-'illegalfilename'            => 'El nombri "$1" tiini carateris que nu están premitius enus entítulus de páhinas. Pol favol, ponli otru nombri al archivu i preba a empuntalu e nuevu.',
-'badfilename'                => 'S´á chambau el nombri el archivu a "$1".',
-'filetype-badmime'           => 'Nu está premitiu empuntal los archivus MIME type "$1".',
-'filetype-badtype'           => "'''\".\$1\"''' es un archivu nu premitiu. Lista d´archivus premitius: \$2",
-'filetype-missing'           => 'El archivu nu tiini estensión (cumu ".jpg").',
-'largefileserver'            => 'Esti archivu es mas grandi que lo premitiu pol el sirviol.',
-'fileexists'                 => 'Ya desisti un archivu con esi nombri. Pol favol, compreba que realmenti quieis chambal el archivu <strong><tt>$1</tt></strong>.',
-'fileexists-extension'       => 'Ya desisti un archivu con un nombri paiciu:<br />
+'uploadlog'                   => "rustrihu d'empuntu",
+'uploadlogpage'               => "Rustrihu d'empuntu",
+'uploadlogpagetext'           => 'Embahu ai una lista e los úrtimus empuntus d´archivus.',
+'filename'                    => 'Nombri el archivu',
+'filedesc'                    => 'Síntesis',
+'fileuploadsummary'           => 'Síntesis:',
+'filestatus'                  => 'Estau el Copyright',
+'filesource'                  => 'Coigu huenti',
+'uploadedfiles'               => 'Archivus empuntaus',
+'ignorewarning'               => 'Inoral el avisihu i emburacal el achivu.',
+'ignorewarnings'              => 'Inoral tolos avisihus',
+'minlength1'                  => 'Los nombris d´archivus ebin tenel al menus una letra.',
+'illegalfilename'             => 'El nombri "$1" tiini carateris que nu están premitius enus entítulus de páhinas. Pol favol, ponli otru nombri al archivu i preba a empuntalu e nuevu.',
+'badfilename'                 => 'S´á chambau el nombri el archivu a "$1".',
+'filetype-badmime'            => 'Nu está premitiu empuntal los archivus MIME type "$1".',
+'filetype-badtype'            => "'''\".\$1\"''' es un archivu nu premitiu. Lista d´archivus premitius: \$2",
+'filetype-missing'            => 'El archivu nu tiini estensión (cumu ".jpg").',
+'largefileserver'             => 'Esti archivu es mas grandi que lo premitiu pol el sirviol.',
+'fileexists'                  => 'Ya desisti un archivu con esi nombri. Pol favol, compreba que realmenti quieis chambal el archivu <strong><tt>$1</tt></strong>.',
+'fileexists-extension'        => 'Ya desisti un archivu con un nombri paiciu:<br />
 Nombri el archivu empuntau: <strong><tt>$1</tt></strong><br />
 Nombri el archivu ya desistenti: <strong><tt>$2</tt></strong><br />
 Pol favol, lihi un nombri deferenti.',
-'fileexists-thumb'           => "'''<center>Esta imáhin ya desisti</center>'''",
-'fileexists-thumbnail-yes'   => "El archivu paci sel una imahin chiquenina <i>(cuairu)</i>. Pol favol, compreba qu'el archivu <strong><tt>$1</tt></strong> nu es la mesma imahin.<br />
+'fileexists-thumb'            => "'''<center>Esta imáhin ya desisti</center>'''",
+'fileexists-thumbnail-yes'    => "El archivu paci sel una imahin chiquenina <i>(cuairu)</i>. Pol favol, compreba qu'el archivu <strong><tt>$1</tt></strong> nu es la mesma imahin.<br />
 Nel chascu en que huera la mesm imahin (inque seya en grandi) nu es mestel qu'empuntis el tu archivu.",
-'fileexists-forbidden'       => 'Ya desisti un archivu con esti nombri; pol favol, güervi p´atrás i empunta el archivu con otru nombri. [[Image:$1|thumb|center|$1]]',
-'successfulupload'           => 'Empuntu satisfatoriu',
-'uploadwarning'              => 'Avisu d´empuntu',
-'savefile'                   => 'Emburacal archivu',
-'uploadedimage'              => 'emputau "[[$1]]"',
-'overwroteimage'             => 'empuntá una nueva velsión de "[[$1]]"',
-'uploaddisabled'             => 'Empuntus desativaus',
-'uploaddisabledtext'         => 'El empuntu d´archivus está desativau nesti güiqui.',
-'uploadcorrupt'              => 'Marru cola estensión el archivu. Pol favol, compreba el archivu i empúntalu otra vezi.',
-'uploadvirus'                => 'El archivu tiini un virus! Detallis: $1',
-'sourcefilename'             => 'Nombri orihinal',
-'destfilename'               => 'Nombri e destinu',
-'watchthisupload'            => 'Vehilal esta páhina',
-'filewasdeleted'             => 'Un archivu con el mesmu nombri ya hue empuntau i alogu esborrau. Eberias comprebal el $1 enantis de gorvel a empuntalu.',
-'upload-wasdeleted'          => "'''Avisu: Estás tratandu d´empuntal un archivu que ya hue esborrau.'''
+'fileexists-forbidden'        => 'Ya desisti un archivu con esti nombri; pol favol, güervi p´atrás i empunta el archivu con otru nombri. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => "Ya desisti un archivu con esti nombri; pol favol, vaiti p'atrás i empunta el archivu con otru nombri. [[Image:$1|thumb|center|$1]]",
+'successfulupload'            => 'Empuntu satisfatoriu',
+'uploadwarning'               => 'Avisu d´empuntu',
+'savefile'                    => 'Emburacal archivu',
+'uploadedimage'               => 'emputau "[[$1]]"',
+'overwroteimage'              => 'empuntá una nueva velsión de "[[$1]]"',
+'uploaddisabled'              => 'Empuntus desativaus',
+'uploaddisabledtext'          => 'El empuntu d´archivus está desativau nesti güiqui.',
+'uploadcorrupt'               => 'Marru cola estensión el archivu. Pol favol, compreba el archivu i empúntalu otra vezi.',
+'uploadvirus'                 => 'El archivu tiini un virus! Detallis: $1',
+'sourcefilename'              => 'Nombri orihinal',
+'destfilename'                => 'Nombri e destinu',
+'watchthisupload'             => 'Vehilal esta páhina',
+'filewasdeleted'              => 'Un archivu con el mesmu nombri ya hue empuntau i alogu esborrau. Eberias comprebal el $1 enantis de gorvel a empuntalu.',
+'upload-wasdeleted'           => "'''Avisu: Estás tratandu d´empuntal un archivu que ya hue esborrau.'''
 
 Eberias arreparal en si es convenienti acontinal empuntandu el archivu u nu.
 Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
@@ -924,6 +927,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'intl'                    => 'Atihus EntelGüiqui',
 'move'                    => 'Movel',
 'movethispage'            => 'Movel esta páhina',
+'unusedcategoriestext'    => "Las siguientis categorias desistin, inque nu s'alcuentra denguna páhina/categoria en ellas.",
 'notargettitle'           => 'Dengún ohetivu',
 
 # Book sources
@@ -961,6 +965,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'allpagesnext'      => 'Siguientis',
 'allpagessubmit'    => 'Dil',
 'allpagesprefix'    => 'Muestral páhinas con el prefihu:',
+'allpages-bad-ns'   => '{{SITENAME}} nu tieni el espaciu e nombris "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Muestral usuárius qu´encetin pol:',
@@ -1192,6 +1197,7 @@ $1',
 'blocklink'                   => 'atarugal',
 'unblocklink'                 => 'desatarugal',
 'contribslink'                => 'endirguis',
+'autoblocker'                 => 'Autu-atarugau ebiu a que la tu IP á siu gastá hazi pocu pol "[[User:$1|$1]]". La razón el tarugu de $1 es: "$2"',
 'blocklogpage'                => 'Rustrihu e tarugus',
 'blocklogentry'               => 'atarugó a "[[$1]]" $3 duranti un praçu e "$2"',
 'unblocklogentry'             => '$1 desatarugau',
@@ -1199,7 +1205,10 @@ $1',
 'block-log-flags-noautoblock' => 'autu-tarugu esativau',
 'block-log-flags-noemail'     => 'email atarugau',
 'ipb_already_blocked'         => '"$1" ya está atarugau',
+'ipb_cant_unblock'            => "Marru: Nu s'á alcuentrau el tarugu con ID $1. Es posibri que ya aiga siu desatarugau.",
+'blockme'                     => 'Atarugami',
 'proxyblocker'                => 'Tarugaol de proxys',
+'proxyblocker-disabled'       => "Esta hunción s'alcuentra desativá.",
 'proxyblocksuccess'           => 'Hechu.',
 
 # Developer tools
@@ -1245,10 +1254,17 @@ Pol favol, escrebi otru entítulu.',
 'movelogpagetext'         => 'Embahu ai una lista colas páhinas movias.',
 'movereason'              => 'Razón:',
 'delete_and_move'         => 'Esborral i movel',
+'delete_and_move_text'    => '==Es mestel esborral==
+
+Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 'delete_and_move_confirm' => 'Sí, esborral la páhina',
+'delete_and_move_reason'  => 'Esborrá pa premitil el treslau',
+'selfmove'                => "Los entítulus d'orihin i destinu son los mesmus. Nu es posibri movel una páhina sobri sí mesma..",
+'immobile_namespace'      => 'El entítulu e destinu es dun tipu especial. Nu es posibri movel páhinas a esi espaciu e nombris.',
 
 # Export
 'export'            => 'Esporteal páhinas',
+'exportcuronly'     => 'Incluyi solu la revisión atual, nu el estorial de revisionis al completu',
 'export-submit'     => 'Esporteal',
 'export-addcattext' => 'Añiil páhinas endi anguna categoria:',
 'export-addcat'     => 'Añiil',
@@ -1264,6 +1280,7 @@ Pol favol, escrebi otru entítulu.',
 
 # Thumbnails
 'thumbnail-more'  => 'Agrandal',
+'missingimage'    => '<b>Farta la imahin</b><br /><i>$1</i>',
 'filemissing'     => 'Archivu escambulliu',
 'thumbnail_error' => 'Marru creandu cuairu: $1',
 'djvu_page_error' => 'Páhina DjVu huera el rangu',
@@ -1314,6 +1331,7 @@ Pol favol, escrebi otru entítulu.',
 'tooltip-p-logo'                  => 'Páhina prencipal',
 'tooltip-n-mainpage'              => 'Vesital la Páhina Prencipal',
 'tooltip-n-portal'                => 'Al tentu el proyeutu, lo que pueis hazel, ondi alcuentral cosas',
+'tooltip-n-currentevents'         => 'Enhormación de contestu al tentu acontecimientus atualis',
 'tooltip-n-recentchanges'         => 'La lista e los úrtimus chambus nesti güiqui.',
 'tooltip-n-randompage'            => 'Cargal cualisquiel páhina',
 'tooltip-n-help'                  => 'El lugal pa deprendel.',
@@ -1361,6 +1379,7 @@ Pol favol, escrebi otru entítulu.',
 'category-media-count'   => 'Ai {{PLURAL:$1|un archivu|$1 archivus}} nesta categoria.',
 'listingcontinuesabbrev' => 'acont.',
 'spambot_username'       => 'MediaWiki limpia-spam',
+'spam_blanking'          => 'Tolas revisionis tienin atihus a $1, branqueandu',
 
 # Info page
 'infosubtitle'   => 'Enhormación pala páhina',
@@ -1371,6 +1390,7 @@ Pol favol, escrebi otru entítulu.',
 'numtalkauthors' => 'Númeru d´autoris deferentis (páhina e caraba): $1',
 
 # Patrol log
+'patrol-log-page' => 'Rustrihu e revisionis',
 'patrol-log-auto' => '(autumáticu)',
 
 # Image deletion
@@ -1392,6 +1412,7 @@ $1',
 'widthheightpage'      => '$1×$2, $3 páhinas',
 'file-info'            => '(grandol el archivu: $1, MIME type: $2)',
 'file-info-size'       => '($1 × $2 pixel, grandol el archivu: $3, MIME type: $4)',
+'file-nohires'         => '<small>Nu disponibri a mayol resolución.</small>',
 'svg-long-desc'        => '(archivu SVG, $1 × $2 pixelis, grandol: $3)',
 'show-big-image'       => 'Resolución máisima',
 'show-big-image-thumb' => '<small>Grandol al previsoreal: $1 × $2 pixelis</small>',
@@ -1411,6 +1432,7 @@ $1',
 'exif-imagewidth'          => 'Anchón',
 'exif-imagelength'         => 'Artura',
 'exif-orientation'         => 'Orientación',
+'exif-ycbcrpositioning'    => 'Posicionamientus Y i C',
 'exif-xresolution'         => 'Resolución orizontal',
 'exif-yresolution'         => 'Resolución vertical',
 'exif-imagedescription'    => 'Entítulu la imáhin',
@@ -1421,12 +1443,17 @@ $1',
 'exif-usercomment'         => 'Comentárius el usuáriu',
 'exif-exposuretime-format' => '$1 seg ($2)',
 'exif-aperturevalue'       => 'Apertura',
+'exif-brightnessvalue'     => 'Brillu',
 'exif-filesource'          => 'Coigu el archivu',
+'exif-contrast'            => 'Contrasti',
 'exif-gpslatitude'         => 'Latitú',
 'exif-gpsaltituderef'      => 'Artitú e referéncia',
 'exif-gpsaltitude'         => 'Artitú',
 'exif-gpssatellites'       => 'Satélitis gastaus pala miia',
+'exif-gpsspeedref'         => 'Uniá e velociá',
+'exif-gpstrack'            => 'Direción el movimientu',
 'exif-gpsimgdirection'     => 'Direción la imahin',
+'exif-gpsdestdistanceref'  => 'Longol al destinu',
 'exif-gpsdestdistance'     => 'Longol al destinu',
 
 'exif-orientation-3' => 'Repiau 180°', # 0th row: bottom; 0th column: right
@@ -1450,20 +1477,41 @@ $1',
 'exif-lightsource-9'  => 'Güen tiempu',
 'exif-lightsource-10' => 'Tiempu nubrau',
 
+'exif-focalplaneresolutionunit-2' => 'purgás',
+
+'exif-sensingmethod-1' => 'Nu definiu',
+'exif-sensingmethod-7' => 'Sensol trilinial',
+
 'exif-customrendered-0' => 'Procesu normal',
 'exif-customrendered-1' => 'Procesu presonalizau',
 
+'exif-scenecapturetype-1' => 'Paisahi',
+'exif-scenecapturetype-2' => 'Retratu',
+
 'exif-gaincontrol-0' => 'Dengunu',
+
+'exif-contrast-1' => 'Suavi',
+'exif-contrast-2' => 'Duru',
+
+'exif-sharpness-1' => 'Suavi',
+'exif-sharpness-2' => 'Dura',
 
 'exif-subjectdistancerange-0' => 'Andarriu',
 'exif-subjectdistancerange-2' => 'Afechal vista',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Latitú norti',
 'exif-gpslatitude-s' => 'Latitú sul',
+
+'exif-gpsstatus-a' => 'Miia en pogresu',
+
+'exif-gpsmeasuremode-2' => 'Miia bidimensional',
+'exif-gpsmeasuremode-3' => 'Miia tridimensional',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Quilómetrus pol ora',
 'exif-gpsspeed-m' => 'Millas pol ora',
+'exif-gpsspeed-n' => 'Ñus',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direción verdaera',
@@ -1480,20 +1528,21 @@ $1',
 'monthsall'        => 'tó',
 
 # E-mail address confirmation
-'confirmemail'          => 'Confirmal email',
-'confirmemail_noemail'  => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
-'confirmemail_pending'  => '<div class="error">
+'confirmemail'           => 'Confirmal email',
+'confirmemail_noemail'   => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
+'confirmemail_pending'   => '<div class="error">
 Un coigu e confirmación s´á enviau a la tu direción d´email; si acabihas de
 creal la tu cuenta, aspera duranti angunus minutus a que te chegui el
 correu enantis de solicital otru coigu.
 </div>',
-'confirmemail_send'     => 'Envial un coigu e confirmación pol email',
-'confirmemail_sent'     => 'Email de confirmación enviau.',
-'confirmemail_invalid'  => 'Coigu e confirmación envaliu. Es posibri qu´aiga caucau.',
-'confirmemail_success'  => 'Ya s´á confirmau la tu direción d´email. Ya pueis entral ena tu cuenta i embailti cola Güiqui.',
-'confirmemail_loggedin' => 'Ya s´á confirmau la tu direción d´email.',
-'confirmemail_error'    => 'Marru al emburacal la tu confirmación.',
-'confirmemail_body'     => 'Yeu!
+'confirmemail_send'      => 'Envial un coigu e confirmación pol email',
+'confirmemail_sent'      => 'Email de confirmación enviau.',
+'confirmemail_invalid'   => 'Coigu e confirmación envaliu. Es posibri qu´aiga caucau.',
+'confirmemail_needlogin' => "Es mestel $1 pa confirmal la tu direción d'email.",
+'confirmemail_success'   => 'Ya s´á confirmau la tu direción d´email. Ya pueis entral ena tu cuenta i embailti cola Güiqui.',
+'confirmemail_loggedin'  => 'Ya s´á confirmau la tu direción d´email.',
+'confirmemail_error'     => 'Marru al emburacal la tu confirmación.',
+'confirmemail_body'      => 'Yeu!
 
 Alguien, seguramenti tú, á rustrau la cuenta "$2" endi la direción 
 IP $1 con esta direción d´email en {{SITENAME}}.
@@ -1591,11 +1640,8 @@ $1',
 'watchlisttools-edit' => 'Vel i eital la lista e seguimientu',
 'watchlisttools-raw'  => 'Eital lista e seguimientu',
 
-# Unknown messages
+# Iranian month names
 'iranian-calendar-m1'  => '1 mes Jalāli',
-'iranian-calendar-m10' => '10 mes Jalāli',
-'iranian-calendar-m11' => '11 mes Jalāli',
-'iranian-calendar-m12' => '12 mes Jalāli',
 'iranian-calendar-m2'  => '2 mes Jalāli',
 'iranian-calendar-m3'  => '3 mes Jalāli',
 'iranian-calendar-m4'  => '4 mes Jalāli',
@@ -1604,5 +1650,8 @@ $1',
 'iranian-calendar-m7'  => '7 mes Jalāli',
 'iranian-calendar-m8'  => '8 mes Jalāli',
 'iranian-calendar-m9'  => '9 mes Jalāli',
+'iranian-calendar-m10' => '10 mes Jalāli',
+'iranian-calendar-m11' => '11 mes Jalāli',
+'iranian-calendar-m12' => '12 mes Jalāli',
 
 );
