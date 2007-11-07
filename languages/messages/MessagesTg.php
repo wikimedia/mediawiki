@@ -1,6 +1,5 @@
 <?php
-/**
- * Tajik (Тоҷикӣ)
+/** Tajik (Тоҷикӣ)
  *
  * @addtogroup Language
  *
@@ -8,6 +7,8 @@
  * @author SPQRobin
  * @author Gangleri
  * @author Soroush
+ * @author G - ג
+ * @author FrancisTyers
  */
 
 $namespaceNames = array(
@@ -172,5 +173,19 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-new' => 'Саҳифаи нав: $1',
+
+# Iranian month names
+'iranian-calendar-m1'  => 'Ҳамал',
+'iranian-calendar-m2'  => 'Савр',
+'iranian-calendar-m3'  => 'Ҷавзо',
+'iranian-calendar-m4'  => 'Саратон',
+'iranian-calendar-m5'  => 'Асад',
+'iranian-calendar-m6'  => 'Сунбула',
+'iranian-calendar-m7'  => 'Мизон',
+'iranian-calendar-m8'  => 'Ақраб',
+'iranian-calendar-m9'  => 'Қавс',
+'iranian-calendar-m10' => 'Ҷадӣ',
+'iranian-calendar-m11' => 'Далв',
+'iranian-calendar-m12' => 'Ҳут',
 
 );

@@ -48,6 +48,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'Sei miers, wänn I s Zommefassungsfeld leer los',
 'tog-watchlisthideown'        => 'Eigeni Änderige uf d Beobachtungslischt usblende',
 'tog-watchlisthidebots'       => 'Bot-Änderige in d Beobachtungslischt usblende',
+'tog-watchlisthideminor'      => 'Chlyni Änderige nit in de Beobachtigslischte aazeige',
 'tog-ccmeonemails'            => "Schick mr Kopie vo de Boscht wo n'ich andere schicke due.",
 
 'underline-always'  => 'immer',
@@ -64,6 +65,9 @@ $messages = array(
 'thursday'  => 'Durschdi',
 'friday'    => 'Fridi',
 'saturday'  => 'Somschdi',
+'sun'       => 'Sun',
+'mon'       => 'Män',
+'tue'       => 'Zischdig',
 'january'   => 'Jänner',
 'august'    => 'Ougschte',
 'september' => 'Septämber',
