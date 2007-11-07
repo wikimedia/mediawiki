@@ -210,7 +210,7 @@
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'Polski',		# Polish
 	'pms' => 'Piemontèis', 	# Piedmontese
-	'pnt' => 'Pontic', 	# Pontic, aka Pontic Greek
+	'pnt' => 'Ποντιακά', 	# Pontic, aka Pontic Greek
 	'ps' => 'پښتو',	# Pashto
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
