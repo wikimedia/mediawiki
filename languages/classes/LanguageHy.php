@@ -49,7 +49,7 @@ class LanguageHy extends Language {
 		return $word;
 	}
 
-	function convertPlural( $count, $wordform1, $wordform2) {
+	function convertPlural( $count, $wordform1, $wordform2, $w3, $w4, $w5) {
 		$count = str_replace (' ', '', $count);
 		if (abs($count) <= 1) {
 			return $wordform1;
