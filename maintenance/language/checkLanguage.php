@@ -290,6 +290,7 @@ ENDS;
 				$detailText .= $detailTextForLang . implode( "\n", $detailTextForLangChecks ) . "\n";
 			}
 
+			if ( !$problems ) { continue; } // Don't list languages without problems
 			$language = $wgContLang->getLanguageName( $code );
 			$rows[] = "| $language || $code || $problems || " . implode( ' || ', $numbers );
 		}

@@ -11,4 +11,5 @@ $checkBlacklist = array(
 'zh-classical' => array( 'plural' ),
 'zh-hans' => array( 'plural' ),
 'zh-hant' => array( 'plural' ),
+'gan' => array( 'plural' ),
 );
