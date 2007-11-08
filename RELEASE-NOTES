@@ -55,6 +55,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * BeforeWatchlist hook added for filtering or replacing watchlist.
 * SkinTemplateTabAction hook added for altering the properties of tab links.
 * OutputPage::getRedirect public method added.
+* (bug 11848) Allow URL parameters 'editintro' and 'preload' in Special:Mypage 
+  and Special:Mytalk
 
 === Bug fixes in 1.12 ===
 
