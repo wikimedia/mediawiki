@@ -689,7 +689,7 @@ class UndeleteForm {
 					$wgOut->addHtml( '<hr />' );
 				}
 			} else {
-				$wgOut->addHtml( 'No previous revision found.' );
+				$wgOut->addHtml( wfMsgHtml( 'undelete-nodiff' ) );
 			}
 		}
 		
