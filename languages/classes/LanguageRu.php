@@ -56,8 +56,29 @@ class LanguageRu extends Language {
 		return $word;
 	}
 
-	function convertPlural( $count, $wordform1, $wordform2, $wordform3, $w4, $w5) {
-		$count = str_replace (' ', '', $count);
+	/**
+	 * Plural form transformations
+         *
+         * $wordform1 - singular form (for 1, 21, 31, 41...)
+         * $wordform2 - paucal form (for 2, 3, 4, 22, 23, 24, 32, 33, 34...)
+	 * $wordform3 - plural form (for 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 26...)
+         * $wordform4 - plural form for messages without number
+         * $wordform5 - not used
+         *
+	 * Examples:
+         *   message with number
+         *     "Сделано $1 {{PLURAL:$1|изменение|изменения|изменений}}"
+         *   message without number
+	 *     "Действие не может быть выполнено по {{PLURAL:$1|следующей причине|||следующим причинам}}:"
+         *
+	 */
+
+	function convertPlural( $count, $wordform1, $wordform2, $wordform3, $wordform4, $wordform5) {
+		$count=abs($count);
+
+		if ( $wordform4 && $count <> 1 )
+			return $wordform4;
+
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
 			return $wordform3;
 		} else {
@@ -83,4 +104,5 @@ class LanguageRu extends Language {
 		}
 	}
 }
+
 
