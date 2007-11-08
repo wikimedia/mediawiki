@@ -1938,6 +1938,7 @@ before deletion. The actual text of these deleted revisions is only available to
 'undelete-revision' => 'Deleted revision of $1 (as of $2) by $3:',
 'undeleterevision-missing' => 'Invalid or missing revision. You may have a bad link, or the
 revision may have been restored or removed from the archive.',
+'undelete-nodiff'          => 'No previous revision found.',
 'undeletebtn'              => 'Restore',
 'undeletereset'            => 'Reset',
 'undeletecomment'          => 'Comment:',
