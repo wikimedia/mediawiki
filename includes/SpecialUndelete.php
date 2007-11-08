@@ -672,9 +672,8 @@ class UndeleteForm {
 		$wgOut->setPageTitle( wfMsg( 'undeletepage' ) );
 		
 		$link = $skin->makeKnownLinkObj(
-			$self,
-			htmlspecialchars( $this->mTargetObj->getPrefixedText() ),
-			'target=' . $this->mTargetObj->getPrefixedUrl()
+			SpecialPage::getTitleFor( 'Undelete', $this->mTargetObj->getPrefixedUrl() ),
+			htmlspecialchars( $this->mTargetObj->getPrefixedText() )
 		);
 		$time = htmlspecialchars( $wgLang->timeAndDate( $timestamp, true ) );
 		$user = $skin->userLink( $rev->getUser(), $rev->getUserText() )
