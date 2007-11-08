@@ -1544,6 +1544,7 @@ genauso wie Details zum letzten Benutzer, der diese Seite vor der Löschung bear
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undelete-revision'            => 'Gelöschte Version von $1 - $2, $3:',
 'undeleterevision-missing'     => 'Ungültige oder fehlende Version. Entweder ist der Link falsch oder die Version wurde aus dem Archiv wiederhergestellt oder entfernt.',
+'undelete-nodiff'              => 'Keine vorhergehende Version vorhanden.',
 'undeletebtn'                  => 'Wiederherstellen',
 'undeletereset'                => 'Abbrechen',
 'undeletecomment'              => 'Begründung:',
@@ -1692,7 +1693,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ip_range_invalid'            => 'Ungültiger IP-Addressbereich.',
 'blockme'                     => 'Sperre mich',
 'proxyblocker'                => 'Proxy blocker',
-'proxyblocker-disabled'       => 'Diese Funktion ist deaktiviert.'
+'proxyblocker-disabled'       => 'Diese Funktion ist deaktiviert.',
 'proxyblockreason'            => 'Deine IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktiere deinen Internet-Provider oder deine Systemadministratoren und informiere sie über dieses mögliche Sicherheitsproblem.',
 'proxyblocksuccess'           => 'Fertig.',
 'sorbsreason'                 => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.',
