@@ -1479,6 +1479,7 @@ sammen med oplysninger om den sidste bruger, der ændrede denne side før sletni
 Den aktuelle tekst for den slettede side er kun tilgængelig for administratorer.',
 'undelete-revision'        => 'Slettet version fra $1 af $2 slettet af $3:',
 'undeleterevision-missing' => 'Ugyldig eller manglende version. Enten er henvisningen forkert eller versionen blev fjernet eller gendannet fra arkivet.',
+'undelete-nodiff'          => 'Der findes ingen tidligere version.',
 'undeletebtn'              => 'Gendan!',
 'undeletereset'            => 'Afbryde',
 'undeletecomment'          => 'Begrundelse:',
@@ -1621,8 +1622,10 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'ipb_expiry_invalid'          => 'Udløbstiden er ugyldig.',
 'ipb_already_blocked'         => '„$1“ er allerede blokeret',
 'ip_range_invalid'            => 'Ugyldigt IP-interval.',
-'proxyblocker'                => 'Proxy-blokering',
 'ipb_cant_unblock'            => 'Fejl: Spærre-ID $1 ikke fundet. Spærringen er allerede ophævet.',
+'blockme'                     => 'Bloker mig',
+'proxyblocker'                => 'Proxy-blokering',
+'proxyblocker-disabled'       => 'Denne funktion er ikke i brug.',
 'proxyblockreason'            => "Din IP-adresse er blevet blokeret fordi den er en såkaldt ''åben proxy''. Kontakt din Internet-udbyder eller tekniske hotline og oplyse dem om dette alvorlige sikkerhedsproblem.",
 'proxyblocksuccess'           => 'Færdig.',
 'sorbsreason'                 => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY.',
@@ -1872,6 +1875,8 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'markedaspatrollederror'              => 'Markering som „kontrolleret“ ikke mulig.',
 'markedaspatrollederrortext'          => 'Du skal vælge en sideændring.',
 'markedaspatrollederror-noautopatrol' => 'Du må ikke markere dine egne ændringer som kontrolleret.',
+'nppatroldisabled'                    => 'Patruljering af nye sider er slået fra.',
+'nppatroldisabledtext'                => 'Muligheden for at patruljere nye sider er slået fra for øjeblikket.',
 
 # Patrol log
 'patrol-log-page' => 'Kontrollog',
