@@ -1,5 +1,5 @@
 <?php
-/** Pontic (Pontic)
+/** Pontic Greek (Pontic Greek)
  *
  * @addtogroup Language
  *
@@ -8,7 +8,12 @@
 
 $messages = array(
 # Dates
+'sun' => 'Κυρ',
 'mon' => 'Δευ',
 'tue' => 'Τρι',
+'wed' => 'Τετ',
+'thu' => 'Πεμ',
+'fri' => 'Παρ',
+'sat' => 'Σαβ',
 
 );

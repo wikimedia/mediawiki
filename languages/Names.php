@@ -250,6 +250,7 @@
 	'sr-jl' => 'ijekavica',	# Serbian latin iyekavian
 	'ss' => 'SiSwati',		# Swati
 	'st' => 'seSotho',		# Southern Sotho
+	'stq' => 'Seeltersk',		# Saterland Frisian
 	'su' => 'Basa Sunda',	# Sundanese
 	'sv' => 'Svenska',		# Swedish
 	'sw' => 'Kiswahili',	# Swahili
