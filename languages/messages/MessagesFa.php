@@ -1,9 +1,13 @@
 <?php
 /** Persian (فارسی)
-  *
-  * @addtogroup Language
-  * Maintainer: Hojjat - huji.odp@gmail.com
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author G - ג
+ * @author Huji
+ * @author Gangleri
+ */
+
 $skinNames = array(
 	'standard' => 'کلاسیک',
 	'nostalgia' => 'نوستالژی',
@@ -1553,6 +1557,7 @@ $NEWPAGE
 'undeletehistorynoadmin'       => 'این مقاله حذف شده‌است. دلیل حذف این مقاله به همراه مشخصات کاربرانی که قبل از حذف این صفحه را ویرایش کرده‌اند، در خلاصهٔ زیر آمده‌است. متن واقعی این ویرایش‌های حذف شده فقط در دسترس مدیران است.',
 'undelete-revision'            => 'حذف نسخهٔ $1 از $2 توسط $3:',
 'undeleterevision-missing'     => 'نسخه نامعتبر یا مفقود است. ممکن است پیوندتان نادرست باشد یا اینکه نسخه از بایگانی حذف یا بازیابی شده باشد .',
+'undelete-nodiff'              => 'نسخهٔ قدیمی‌تری یافت نشد.',
 'undeletebtn'                  => 'احیا شود!',
 'undeletereset'                => 'از نو',
 'undeletecomment'              => 'توضیح:',
@@ -1692,9 +1697,11 @@ $1',
 'range_block_disabled'        => 'قابلیت بستن گستره‌ای مدیران سلب  شده‌است.',
 'ipb_expiry_invalid'          => 'زمان خاتمه نامعتبر.',
 'ipb_already_blocked'         => '«$1» همین الان هم بسته‌است.',
-'ip_range_invalid'            => 'گسترهٔ آی‌پی (IP) نامعتبر است.',
-'proxyblocker'                => 'پروکسی‌بَند',
 'ipb_cant_unblock'            => 'خطا: آی‌دی بسته‌شدن $1 یافت نشد. ممکن است پیشتر باز شده باشد.',
+'ip_range_invalid'            => 'گسترهٔ آی‌پی (IP) نامعتبر است.',
+'blockme'                     => 'دسترسی مرا قطع کن',
+'proxyblocker'                => 'پروکسی‌بَند',
+'proxyblocker-disabled'       => 'این عملکرد غیرفعال شده‌است.',
 'proxyblockreason'            => 'نشانیIP شما بسته شده است چون یک پیشکار (proxy) باز است. لطفاً با تأمین‌کنندهٔ اینترنت خود تماس بگیرید و آنها را از این مشکل امنیتی جدی آگاه کنید.',
 'proxyblocksuccess'           => 'انجام شد.',
 'sorbsreason'                 => 'نشانی اینترنتی (IP) شما توسط DNSBL به عنوان یک پروکسی باز گزارش شده‌است.',
@@ -2396,15 +2403,15 @@ $1',
 'watchlisttools-raw'  => 'ویرایش فهرست خام پی‌گیری‌ها',
 
 # Iranian month names
-'iranian-calendar-m1' => 'فروردین',
-'iranian-calendar-m2' => 'اردیبهشت',
-'iranian-calendar-m3' => 'خرداد',
-'iranian-calendar-m4' => 'تیر',
-'iranian-calendar-m5' => 'مرداد',
-'iranian-calendar-m6' => 'شهریور',
-'iranian-calendar-m7' => 'مهر',
-'iranian-calendar-m8' => 'آبان',
-'iranian-calendar-m9' => 'آذر',
+'iranian-calendar-m1'  => 'فروردین',
+'iranian-calendar-m2'  => 'اردیبهشت',
+'iranian-calendar-m3'  => 'خرداد',
+'iranian-calendar-m4'  => 'تیر',
+'iranian-calendar-m5'  => 'مرداد',
+'iranian-calendar-m6'  => 'شهریور',
+'iranian-calendar-m7'  => 'مهر',
+'iranian-calendar-m8'  => 'آبان',
+'iranian-calendar-m9'  => 'آذر',
 'iranian-calendar-m10' => 'دی',
 'iranian-calendar-m11' => 'بهمن',
 'iranian-calendar-m12' => 'اسفند',
