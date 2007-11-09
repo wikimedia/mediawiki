@@ -173,7 +173,7 @@ $messages = array(
 'category-empty'        => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
-'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu Guido de l’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
+'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu Guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
 
 == Dèmarrar avouéc MediaWiki ==
 
@@ -820,7 +820,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'userrights-user-editname'    => 'Entrâd un nom d’utilisator :',
 'editusergroup'               => 'Modificacion des groupes d’utilisators',
 'userrights-editusergroup'    => 'Èditar los groupes de l’utilisator',
-'saveusergroups'              => 'Sôvar los groupes d’utilisators',
+'saveusergroups'              => 'Sôvar los groupes de l’utilisator',
 'userrights-groupsmember'     => 'Membro de :',
 'userrights-groupsavailable'  => 'Groupes disponiblos :',
 'userrights-groupshelp'       => 'Chouèsésséd/cièrde los groupes desquints vos voléd reteriér ou ben rapondre l’utilisator.
@@ -1147,7 +1147,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modific
 
 'categoriespagetext' => 'Les catègories siuventes ègzistont dens lo vouiqui.',
 'data'               => 'Balyês',
-'userrights'         => 'Maneyance des drêts d’utilisator',
+'userrights'         => 'Maneyance des drêts de l’utilisator',
 'groups'             => 'Groupes d’utilisators',
 'alphaindexline'     => '$1 a $2',
 'version'            => 'Vèrsion',
@@ -1492,7 +1492,7 @@ d’una adrèce IP prècèdament blocâ.',
 'unblocked-id'                => 'Lo blocâjo $1 at étâ enlevâ',
 'ipblocklist'                 => 'Lista des utilisators blocâs',
 'ipblocklist-legend'          => 'Chèrchiér un utilisator blocâ',
-'ipblocklist-username'        => 'Nom de l’utilisator ou adrèce IP :',
+'ipblocklist-username'        => 'Nom d’utilisator ou adrèce IP :',
 'ipblocklist-summary'         => 'La lista ce-desot montre tôs los utilisators et totes les adrèces IP blocâs, per ôrdre anticronologico. Consultar lo [[Special:Log/block|jornal des blocâjos]] por vêre les dèrriéres accions de blocâjo et dèblocâjo fêtes.',
 'ipblocklist-submit'          => 'Chèrchiér',
 'blocklistline'               => '$1 ($4) : $2 at blocâ $3',
@@ -1519,9 +1519,9 @@ d’una adrèce IP prècèdament blocâ.',
 'range_block_disabled'        => 'Lo blocâjo de plages d’IP at étâ dèsactivâ.',
 'ipb_expiry_invalid'          => 'Temps d’èxpiracion envalido.',
 'ipb_already_blocked'         => '« $1 » est ja blocâ',
+'ipb_cant_unblock'            => 'Èrror : lo blocâjo d’ID $1 ègziste pas. O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ip_range_invalid'            => 'Bloc IP fôx.',
 'proxyblocker'                => 'Bloquior de proxy',
-'ipb_cant_unblock'            => 'Èrror : lo blocâjo d’ID $1 ègziste pas. O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'proxyblockreason'            => 'Voutra adrèce IP at étâ blocâ perce qu’el est un proxy uvèrt. Marci de vos veriér vers voutron fornissor d’accès u Malyâjo ou voutron supôrt tècnico et de l’enformar de ceti problèmo de sècuritât.',
 'proxyblocksuccess'           => 'Chavonâ.',
 'sorbsreason'                 => 'Voutra adrèce IP est listâ a titro de proxy uvèrt DNSBL.',
@@ -1797,6 +1797,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'markedaspatrollederror'              => 'Pôt pas étre marcâ coment pas vandalisâ',
 'markedaspatrollederrortext'          => 'Vos dête sèlèccionar una vèrsion por povêr la marcar coment pas vandalisâ.',
 'markedaspatrollederror-noautopatrol' => 'Vos avéd pas lo drêt de marcar voutres prôpres modificacions coment survelyês.',
+'nppatroldisabled'                    => 'Patrolye de les novèles pâges dèsactivâ.',
+'nppatroldisabledtext'                => 'La Patrolye de les novèles pâges est ora dèsactivâ.',
 
 # Patrol log
 'patrol-log-page' => 'Historico de les vèrsions patrolyês',
@@ -2241,5 +2243,11 @@ $1',
 'watchlisttools-view' => 'Lista de siuvu',
 'watchlisttools-edit' => 'Vêre et modifiar la lista de siuvu',
 'watchlisttools-raw'  => 'Modifiar la lista de siuvu (fôrma bruta)',
+
+# Iranian month names
+'iranian-calendar-m3' => 'Khordād',
+'iranian-calendar-m5' => 'Mordād',
+'iranian-calendar-m8' => 'Ābān',
+'iranian-calendar-m9' => 'Āzar',
 
 );

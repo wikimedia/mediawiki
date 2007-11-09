@@ -1,10 +1,11 @@
 <?php
-/**
- * Aragonese (Aragonés)
+/** Aragonese (Aragonés)
  *
  * @addtogroup Language
- * Translators:
+ *
  * @author SPQRobin
+ * @author Juanpabl
+ * @author G - ג
  */
 
 $fallback = 'es';
@@ -31,6 +32,33 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline'               => 'Subrayar os binclos:',
+'tog-highlightbroken'         => 'Formatiar os binclos trencaus <a href="" class="new"> d\'ista traza </a> (y si no, asinas <a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Achustar parrafos',
+'tog-hideminor'               => 'Amagar edizions menors en a pachina de "zaguers cambeos"',
+'tog-extendwatchlist'         => 'Enamplar a lista de seguimiento ta mostrar toz os cambeos afeutatos.',
+'tog-usenewrc'                => 'Presentazión amillorada de "zaguers cambeos" (cal JavaScript)',
+'tog-numberheadings'          => 'Numerar automaticament os encabezaus',
+'tog-showtoolbar'             => "Mostrar a barra d'ainas d'edizión (cal JavaScript)",
+'tog-editondblclick'          => 'Autibar edizión de pachinas fendo-ie doble click (cal JavaScript)',
+'tog-editsection'             => 'Autibar a edizión por seczions usando binclos [editar]',
+'tog-editsectiononrightclick' => "Autibar a edizión de seczions con o botón dreito d'o ratón <br /> en os titols de seczions (cal JavaScript)",
+'tog-showtoc'                 => 'Mostrar o endize de contenius (ta pachinas con más de 3 encabezaus)',
+'tog-rememberpassword'        => 'Remerar a parabra de paso entre sesions',
+'tog-editwidth'               => "O cuatrón d'edizión tien l'amplaria masima",
+'tog-watchcreations'          => 'Bexilar as pachinas que creye',
+'tog-watchdefault'            => 'Bexilar as pachinas que edite',
+'tog-watchmoves'              => 'Bexilar as pachinas que treslade',
+'tog-watchdeletion'           => 'Bexilar as pachinas que borre',
+'tog-minordefault'            => 'Marcar por defeuto todas as edizions como menors',
+'tog-previewontop'            => "Mostrar l'ambiesta prebia antes d'o cuatrón d'edizión (en cuenta de dimpués)",
+'tog-previewonfirst'          => "Mostrar l'ambiesta prebia de l'articlo en a primera edizión",
+'tog-nocache'                 => "Desautibar a ''caché'' de pachinas",
+'tog-enotifwatchlistpages'    => 'Nimbiar-me un correu cuan bi aiga cambeos en una pachina bexilada por yo',
+'tog-enotifusertalkpages'     => 'Nimbiar-me un correu cuan cambee a mía pachina de descusión',
+'tog-enotifminoredits'        => 'Nimbiar-me un correu tamién cuan bi aiga edizions menors de pachinas',
+
 # Dates
 'monday'    => 'lunes',
 'wednesday' => 'miércols',
@@ -168,6 +196,8 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'preferences'       => 'Preferenzias',
 'mypreferences'     => 'As mías preferenzias',
 'prefsnologintext'  => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] y aber enzetau una sesión ta cambear as preferenzias d'usuario.",
+'prefs-rc'          => 'Zaguers cambeos',
+'prefs-watchlist'   => 'Lista de seguimiento',
 'saveprefs'         => 'Alzar preferenzias',
 'retypenew'         => 'Torna á escribir a tuya nueba parabra de paso:',
 'searchresultshead' => "Confegurar resultaus d'a rechira",

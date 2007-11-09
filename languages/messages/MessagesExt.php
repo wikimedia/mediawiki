@@ -115,7 +115,14 @@ $messages = array(
 'category-media-header' => 'Meya ena categoria "$1"',
 'category-empty'        => "''Uguañoti esta categoria ni tiini artículus u meya.''",
 
-'mainpagetext' => "<big>'''MeyaGüiqui s´á istalau satihatóriamenti.'''</big>",
+'mainpagetext'      => "<big>'''MeyaGüiqui s´á istalau satihatóriamenti.'''</big>",
+'mainpagedocfooter' => "Consurta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pa sabel mas al tentu el huncionamientu el software güiqui.
+
+== Esminciandu ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Al tentu',
 'article'        => 'Artículu',
@@ -259,6 +266,17 @@ Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:Sp
 # General errors
 'error'                => 'Marru',
 'databaseerror'        => 'Marru ena basi e datus',
+'dberrortext'          => 'Marru e sintasis nuna consurta a la basi e datus:
+estu puei sel ebiu a un marru nel software.
+La úrtima consurta que s\'ententó hue:
+<blockquote><tt>$1</tt></blockquote>
+endrentu la hunción "<tt>$2</tt>".
+MySQL degorvió el marru "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Marru e sintasis nuna consurta a la basi e datus.
+La úrtima consurta que s\'ententó hue:
+"$1"
+endrentu la hunción "$2".
+MySQL degorvió el marru "$3: $4"',
 'noconnect'            => 'Estamus teniendu angunas dificultais ténicas con esta Güiqui, i nu es posibri contatal con el sirviol la basi e datus. Perdonin la molestança.<br />
 $1',
 'nodb'                 => 'Nu se puei selecional la basi e datus $1',
@@ -290,6 +308,7 @@ La razón dá pol el alministraol que pusu el tarugu es: $1',
 'viewsourcefor'        => 'pa $1',
 'protectedpagetext'    => 'Esta páhina s´alcuentra atarugá a nuevas eicionis.',
 'viewsourcetext'       => 'Pueis vel i copial el cóigu huenti desta páhina:',
+'protectedinterface'   => "Esta páhina proporciona el testu la entrihazi el software, razón pola que s'alcuentra atarugá.",
 'editinginterface'     => "'''Cudiau:''' Estás eitandu una páhina que proporciona el testu la entrihazi el software. Los chambus hechus aquí afetarán al entrihazi d´otrus usuárius.",
 'namespaceprotected'   => "Nu tiinis premisu pa eital páhinas nel \"espaciu e nombris\" '''\$1'''.",
 'customcssjsprotected' => 'Nu tiinis premisu pa eital esta páhina ebiu a que contieni la configuración presonal d´otru usuáriu.',
@@ -366,6 +385,7 @@ pol ca $1 oras.',
 
 # Password reset dialog
 'resetpass'           => 'Reahustal la consínia la tu cuenta',
+'resetpass_announce'  => 'As entrau ena tu cuenta con una consínia temporal. Pol favol, escrebi una nueva consínia aquí:',
 'resetpass_text'      => '<!-- Aquí s´escrebi el testu -->',
 'resetpass_header'    => 'Reahustal consínia',
 'resetpass_submit'    => 'Escrebi la consínia i entra',
@@ -568,9 +588,16 @@ Es posibri qu\'aiga detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'revdelete-hide-comment'      => 'Açonchal síntesis la eición',
 'revdelete-hide-user'         => 'Açonchal nombri d´usuáriu/IP el eitol',
 'revdelete-hide-restricted'   => 'Tamién aprical estus tarugus a los duendis',
+'revdelete-suppress'          => 'Esborral tamién los datus de los duendis',
 'revdelete-hide-image'        => 'Açonchal el continiu el archivu',
 'revdelete-log'               => 'Comentáriu e rustrihu:',
 'revdelete-submit'            => 'Aprical a la revisión aseñalá',
+'revdelete-logentry'          => 'chambá la visibiliá la revisión pa [[$1]]',
+'logdelete-logentry'          => "chambá la visibiliá d'eventus de [[$1]]",
+'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión|revisionis}} en mó $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu|eventus}} a [[$3]] en mó $2',
+'revdelete-success'           => 'Visibiliá e revisionis chambá.',
+'logdelete-success'           => "Visibiliá d'eventus chambá.",
 
 # Oversight log
 'oversightlog'    => 'Rustrihu e descúdius',
@@ -609,6 +636,7 @@ Es posibri qu\'aiga detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'prefs-edits'              => 'Númeru d´eicionis:',
 'prefsnologin'             => 'Nu t´alcuentras rustrau',
 'prefsnologintext'         => 'Ebis estal [[Special:Userlogin|rustrau]] pa chambal las tus preferéncias.',
+'prefsreset'               => "S'an restaurau las preferéncias a los valoris pol defetu.",
 'qbsettings'               => 'Preferéncias la "Quickbar"',
 'qbsettings-none'          => 'Dengunu',
 'qbsettings-fixedleft'     => 'Asiahau a la gocha',
@@ -1202,6 +1230,7 @@ $1',
 'blocklogentry'               => 'atarugó a "[[$1]]" $3 duranti un praçu e "$2"',
 'unblocklogentry'             => '$1 desatarugau',
 'block-log-flags-anononly'    => 'sólu usuárius anónimus',
+'block-log-flags-nocreate'    => 'Desativau el creaeru e cuentas',
 'block-log-flags-noautoblock' => 'autu-tarugu esativau',
 'block-log-flags-noemail'     => 'email atarugau',
 'ipb_already_blocked'         => '"$1" ya está atarugau',
@@ -1275,15 +1304,17 @@ Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 'allmessagesname'     => 'Nombri',
 'allmessagesdefault'  => 'Testu pol defeutu',
 'allmessagescurrent'  => 'Testu atual',
+'allmessagestext'     => 'Esta es una lista e mensahis el sistema disponibris nel espaciu e nombris MediaWiki:',
 'allmessagesfilter'   => 'Filtru e mensahis:',
 'allmessagesmodified' => 'Solu muestral chambaus',
 
 # Thumbnails
-'thumbnail-more'  => 'Agrandal',
-'missingimage'    => '<b>Farta la imahin</b><br /><i>$1</i>',
-'filemissing'     => 'Archivu escambulliu',
-'thumbnail_error' => 'Marru creandu cuairu: $1',
-'djvu_page_error' => 'Páhina DjVu huera el rangu',
+'thumbnail-more'           => 'Agrandal',
+'missingimage'             => '<b>Farta la imahin</b><br /><i>$1</i>',
+'filemissing'              => 'Archivu escambulliu',
+'thumbnail_error'          => 'Marru creandu cuairu: $1',
+'djvu_page_error'          => 'Páhina DjVu huera el rangu',
+'thumbnail_invalid_params' => 'Nu se premitin esus parámetrus pal cuairu',
 
 # Special:Import
 'import'                     => 'Emporteal páhinas',
@@ -1368,12 +1399,14 @@ Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 'siteuser'         => '{{SITENAME}} usuáriu $1',
 'lastmodifiedatby' => 'Esta páhina se chambó pol úrtima vezi a las $2, el dia $1 pol $3.', # $1 date, $2 time, $3 user
 'and'              => 'i',
+'othercontribs'    => 'Basau nun labutu e $1.',
 'others'           => 'otrus',
 'siteusers'        => '{{SITENAME}} usuáriu/s $1',
 'creditspage'      => 'Créitus la páhina',
 
 # Spam protection
 'spamprotectiontitle'    => 'Filtru e proteción anti-Spam',
+'spamprotectiontext'     => "La páhina qu'ententas emburacal á siu atarugá pol el filtru anti-spam. Estu puei sel ebiu a angún atihu a una páhina esterna.",
 'subcategorycount'       => 'Ai {{PLURAL:$1|una sucategoria|$1 sucategorias}} nesta categoria.',
 'categoryarticlecount'   => 'Ai {{PLURAL:$1|un artículu|$1 artículus}} nesta categoria.',
 'category-media-count'   => 'Ai {{PLURAL:$1|un archivu|$1 archivus}} nesta categoria.',
@@ -1429,32 +1462,42 @@ $1',
 'metadata-collapse' => 'Açonchal detallis',
 
 # EXIF tags
-'exif-imagewidth'          => 'Anchón',
-'exif-imagelength'         => 'Artura',
-'exif-orientation'         => 'Orientación',
-'exif-ycbcrpositioning'    => 'Posicionamientus Y i C',
-'exif-xresolution'         => 'Resolución orizontal',
-'exif-yresolution'         => 'Resolución vertical',
-'exif-imagedescription'    => 'Entítulu la imáhin',
-'exif-make'                => 'Fabricanti e la cámara',
-'exif-model'               => 'Moelu la cámara',
-'exif-software'            => 'Software gastau',
-'exif-artist'              => 'Autol',
-'exif-usercomment'         => 'Comentárius el usuáriu',
-'exif-exposuretime-format' => '$1 seg ($2)',
-'exif-aperturevalue'       => 'Apertura',
-'exif-brightnessvalue'     => 'Brillu',
-'exif-filesource'          => 'Coigu el archivu',
-'exif-contrast'            => 'Contrasti',
-'exif-gpslatitude'         => 'Latitú',
-'exif-gpsaltituderef'      => 'Artitú e referéncia',
-'exif-gpsaltitude'         => 'Artitú',
-'exif-gpssatellites'       => 'Satélitis gastaus pala miia',
-'exif-gpsspeedref'         => 'Uniá e velociá',
-'exif-gpstrack'            => 'Direción el movimientu',
-'exif-gpsimgdirection'     => 'Direción la imahin',
-'exif-gpsdestdistanceref'  => 'Longol al destinu',
-'exif-gpsdestdistance'     => 'Longol al destinu',
+'exif-imagewidth'              => 'Anchón',
+'exif-imagelength'             => 'Artura',
+'exif-orientation'             => 'Orientación',
+'exif-ycbcrpositioning'        => 'Posicionamientus Y i C',
+'exif-xresolution'             => 'Resolución orizontal',
+'exif-yresolution'             => 'Resolución vertical',
+'exif-transferfunction'        => 'Hunción de trasferencia',
+'exif-whitepoint'              => 'Cromaciá e puntu brancu',
+'exif-primarychromaticities'   => 'Cromaciais primarias',
+'exif-imagedescription'        => 'Entítulu la imáhin',
+'exif-make'                    => 'Fabricanti e la cámara',
+'exif-model'                   => 'Moelu la cámara',
+'exif-software'                => 'Software gastau',
+'exif-artist'                  => 'Autol',
+'exif-exifversion'             => 'Velsión Exif',
+'exif-colorspace'              => 'Espaciu e colol',
+'exif-componentsconfiguration' => 'Senificau e ca componenti',
+'exif-compressedbitsperpixel'  => 'Mó de compresión la imahin',
+'exif-makernote'               => 'Notas el fabricanti',
+'exif-usercomment'             => 'Comentárius el usuáriu',
+'exif-relatedsoundfile'        => "Archivu d'audiu relacionau",
+'exif-exposuretime-format'     => '$1 seg ($2)',
+'exif-isospeedratings'         => 'Calificación de velociá ISO',
+'exif-aperturevalue'           => 'Apertura',
+'exif-brightnessvalue'         => 'Brillu',
+'exif-filesource'              => 'Coigu el archivu',
+'exif-contrast'                => 'Contrasti',
+'exif-gpslatitude'             => 'Latitú',
+'exif-gpsaltituderef'          => 'Artitú e referéncia',
+'exif-gpsaltitude'             => 'Artitú',
+'exif-gpssatellites'           => 'Satélitis gastaus pala miia',
+'exif-gpsspeedref'             => 'Uniá e velociá',
+'exif-gpstrack'                => 'Direción el movimientu',
+'exif-gpsimgdirection'         => 'Direción la imahin',
+'exif-gpsdestdistanceref'      => 'Longol al destinu',
+'exif-gpsdestdistance'         => 'Longol al destinu',
 
 'exif-orientation-3' => 'Repiau 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-6' => 'Repiau 90° CW', # 0th row: right; 0th column: top

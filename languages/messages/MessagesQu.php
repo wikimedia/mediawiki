@@ -5,6 +5,7 @@
  *
  * @author AlimanRuna
  * @author G - ג
+ * @author Siebrand
  */
 
 $fallback = 'es';
@@ -118,42 +119,43 @@ $messages = array(
 'category-empty'        => "''Kay katiguriyaqa ch'usaqmi.''",
 
 'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",
-'mainpagedocfooter' => "Consulta la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para obtener información sobre el uso del software wiki.
+'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
 
-== Empezando ==
+== Qallarichkaspa ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => "P'anqamanta",
-'article'        => 'Artículo',
+'article'        => 'Qillqa',
 'newwindow'      => '(Musuq wintanam kichakun)',
 'cancel'         => 'Ama niy',
 'qbfind'         => 'Maskay',
 'qbbrowse'       => 'Maskapuy',
 'qbedit'         => "Llamk'apuy",
-'qbpageoptions'  => 'Opciones de página',
-'qbpageinfo'     => 'Información de página',
-'qbmyoptions'    => 'Mis opciones',
+'qbpageoptions'  => "P'anqap akllanankuna",
+'qbpageinfo'     => "P'anqamanta willay",
+'qbmyoptions'    => 'Akllanaykuna',
 'qbspecialpages' => "Sapaq p'anqakuna",
 'moredotdotdot'  => 'Aswan...',
 'mypage'         => "P'anqay",
 'mytalk'         => 'Rimachinay',
 'anontalk'       => 'Kay IP huchhapaq rimanakuy',
-'navigation'     => "Wanp'una",
+'navigation'     => "Wamp'una",
 
+'errorpagetitle'    => 'Pantasqa',
 'returnto'          => '$1-man kutimuy.',
-'tagline'           => 'Wikipidiyaman',
+'tagline'           => '{{SITENAME}}manta',
 'help'              => 'Yanapa',
-'search'            => 'Maskhay',
+'search'            => 'Maskay',
 'searchbutton'      => 'Maskay',
 'go'                => 'Riy',
 'searcharticle'     => 'Riy',
-'history'           => 'Wiñay kawsay panka',
+'history'           => "Wiñay kawsay p'anqa",
 'history_short'     => 'Wiñay kawsay',
-'updatedmarker'     => 'actualizado desde mi última visita',
-'info_short'        => 'Información',
+'updatedmarker'     => 'qayna watukamusqaymantapacha musuqchasqa',
+'info_short'        => 'Willay',
 'printableversion'  => "Ch'ipachinapaq",
 'permalink'         => "Kakuq t'inki",
 'print'             => "Ch'ipachiy",
@@ -163,20 +165,20 @@ $messages = array(
 'deletethispage'    => "Kay p'anqata qulluy",
 'undelete_short'    => "Paqarichiy {{PLURAL:$1|huk llamk'apusqa|$1 llamk'apusqa}}",
 'protect'           => 'Amachay',
-'protect_change'    => 'cambiar protección',
+'protect_change'    => 'amachayta hukchay',
 'protectthispage'   => "Kay p'anqata amachay",
 'unprotect'         => 'Amaña amachaychu',
 'unprotectthispage' => "Kay p'anqata amaña amachaychu",
-'newpage'           => 'Página nueva',
+'newpage'           => "Musuq p'anqa",
 'talkpage'          => "Kay p'anqamanta rimanakuy",
 'talkpagelinktext'  => 'rimanakuy',
 'specialpage'       => "Sapaq p'anqa",
-'personaltools'     => 'Kikin ruraqpa khillaykuna',
-'postcomment'       => 'Poner un comentario',
+'personaltools'     => "Kikin ruraqpa llamk'anankuna",
+'postcomment'       => 'Willamuy',
 'articlepage'       => 'Qillqata qhaway',
 'talk'              => 'Rimachina',
 'views'             => 'Rikunakuna',
-'toolbox'           => "Llank'anakuna",
+'toolbox'           => "Llamk'anakuna",
 'userpage'          => "Ruraqpa p'anqanta rikuy",
 'projectpage'       => "Meta p'anqata qhaway",
 'imagepage'         => "Rikch'amanta p'anqata qhaway",
@@ -185,9 +187,9 @@ $messages = array(
 'viewhelppage'      => "Yanapana p'anqata qhaway",
 'categorypage'      => "Katiguriya p'anqata qhaway",
 'viewtalkpage'      => 'Rimachinata rikuy',
-'otherlanguages'    => 'Huq simikunapi',
-'redirectedfrom'    => '(Redirigido desde $1)',
-'redirectpagesub'   => 'Página redirigida',
+'otherlanguages'    => 'Huk simikunapi',
+'redirectedfrom'    => '($1-manta pusampusqa)',
+'redirectpagesub'   => "Pusampusqa p'anqa",
 'lastmodifiedat'    => "Kay p'anqaqa $2, $1 qhipaq kutitam hukchasqa karqan.", # $1 date, $2 time
 'viewcount'         => "Kay p'anqaqa {{PLURAL:$1|huk kuti|$1 kuti}} watukusqañam.",
 'protectedpage'     => "Amachasqa p'anqa",
@@ -197,42 +199,42 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}}manta',
-'aboutpage'         => 'Wikipidiya:Wikipidiyamanta',
-'bugreports'        => 'Informes de error de software',
-'bugreportspage'    => 'Project:Informes de error',
+'aboutpage'         => '{{ns:project}}:manta',
+'bugreports'        => "Llamp'u kaqpi pantasqamanta willaykuna",
+'bugreportspage'    => '{{ns:project}}:Pantasqamanta willaykuna',
 'copyright'         => "Ch'aqtasqakunataqa llamk'achinkiman <i>$1</i> nisqap ruraq hayñinkama",
 'copyrightpagename' => "{{SITENAME}} p'anqayuq ruraqpa iskaychay hayñin",
-'copyrightpage'     => 'Wikipidiya:Ruraqpa hayñin',
+'copyrightpage'     => '{{ns:project}}:Ruraqpa hayñin',
 'currentevents'     => 'Kunan pacha',
-'currentevents-url' => 'Project:Kunan pacha',
+'currentevents-url' => '{{ns:project}}:Kunan pacha',
 'disclaimers'       => 'Chiqakunamanta rikuchiy',
-'disclaimerpage'    => 'Wikipidiya:Sapsilla saywachasqa paqtachiy',
+'disclaimerpage'    => '{{ns:project}}:Sapsilla saywachasqa paqtachiy',
 'edithelp'          => "Llamk'ana yanapay",
-'edithelppage'      => 'Yanapa:Qillqa yanapay',
-'helppage'          => 'Wikipidiya:Yanapana',
-'mainpage'          => 'Qhapaq panka',
-'policy-url'        => 'Project:Políticas',
+'edithelppage'      => '{{ns:help}}:Qillqa yanapay',
+'helppage'          => '{{ns:help}}:Yanapana',
+'mainpage'          => "Qhapaq p'anqa",
+'policy-url'        => '{{ns:project}}:Kawpay',
 'portal'            => 'Ayllupaq panka',
-'portal-url'        => 'Project:Ayllupaq panka',
-'privacy'           => 'Wikipidiyap willakunata amachaynin',
-'privacypage'       => 'Wikipidiya:Willakunata amachay',
+'portal-url'        => "{{ns:project}}:Ayllupaq p'anqa",
+'privacy'           => 'Willakunata amachaynin',
+'privacypage'       => '{{ns:project}}:Willakunata amachay',
 'sitesupport'       => 'Qarana',
-'sitesupport-url'   => 'Wikipidiya:Ruraykamayman qarana',
+'sitesupport-url'   => '{{ns:project}}:Ruraykamayman qarana',
 
-'badaccess'        => 'Error de permisos',
-'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
-'badaccess-group1' => 'La acción que ha solicitado está restringida a los usuarios de uno de estos grupos: $1.',
-'badaccess-group2' => 'La acción que ha solicitado está restringida a los usuarios de uno de estos grupos: $1.',
-'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios de uno de estos grupos: $1.',
+'badaccess'        => 'Saqillay pantasqa',
+'badaccess-group0' => 'Manam saqillasunkichu munasqayta rurayta.',
+'badaccess-group1' => 'Munasqay ruranaqa kay huñupi kachkaq ruraqkunallatam rurayta saqillan: $1.',
+'badaccess-group2' => 'Munasqay ruranaqa kay huñupi kachkaq ruraqkunallatam rurayta saqillan: $1.',
+'badaccess-groups' => 'Munasqay ruranaqa kay huñupi kachkaq ruraqkunallatam rurayta saqillan: $1.',
 
-'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
-'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consulte [[Special:Version]]',
+'versionrequired'     => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq",
+'versionrequiredtext' => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq. Astawan willasunaykipaqqa, [[Special:Version]] nisqapi qhaway",
 
 'pagetitle'               => '$1 - Wikipidiya',
 'retrievedfrom'           => '"$1" p\'anqamanta chaskisqa (Qhichwa / Quechua)',
 'youhavenewmessages'      => '$1(ni)ykim kachkan ($2).',
 'newmessageslink'         => 'Musuq willay',
-'newmessagesdifflink'     => 'dif. entre las dos últimas versiones',
+'newmessagesdifflink'     => 'qayna hukchasqapi huk kaynin',
 'youhavenewmessagesmulti' => 'Musuq willayniykikunam kachkan $1-pi',
 'editsection'             => 'allichay',
 'editold'                 => "llamk'apuy",
@@ -243,39 +245,44 @@ $messages = array(
 'thisisdeleted'           => '$1-ta rikuy icha paqarichiy?',
 'viewdeleted'             => "$1 p'anqata rikuyta munankichu?",
 'restorelink'             => '{{PLURAL:$1|qullusqa hukchasqa|$1 qullusqa hukchasqa}}',
-'feedlinks'               => 'Sindicación:',
-'feed-invalid'            => 'Tipo de subscripción a sindicación de noticias inválida.',
+'feedlinks'               => 'Mikhuchiy:',
+'feed-invalid'            => 'Willaykuna mikhuchina layaqa manam allinchu.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'      => 'Qillqasqa',
-'nstab-user'      => 'Ruwaqpa panka',
-'nstab-media'     => 'Media',
+'nstab-main'      => 'Qillqa',
+'nstab-user'      => "Ruraqpa p'anqan",
+'nstab-media'     => 'Midya',
 'nstab-special'   => 'Sapaq',
 'nstab-project'   => "Ruraykamaypa p'anqan",
 'nstab-image'     => "Rikch'a",
 'nstab-mediawiki' => 'Willay',
 'nstab-template'  => 'Plantilla',
 'nstab-help'      => 'Yanapa',
-'nstab-category'  => 'Categoría',
+'nstab-category'  => 'Katiguriya',
 
 # Main script and global functions
-'nosuchaction'      => 'No existe tal acción',
-'nosuchactiontext'  => 'La acción especificada en la dirección no es válida en {{SITENAME}}',
-'nosuchspecialpage' => 'No existe esa página especial',
-'nospecialpagetext' => 'Ha requerido una página especial que no existe en {{SITENAME}}.',
+'nosuchaction'      => 'Kay hina rurayqa manam kanchu',
+'nosuchactiontext'  => "URL tiyaypi sut'ichasqa rurayqa manam kanchu {{SITENAME}} sutiyuq wikipi",
+'nosuchspecialpage' => "Kay hina sapaq p'anqaqa manam kanchu",
+'nospecialpagetext' => "'''<big>Mana kaq sapaq p'anqatam munanki.</big>'''
+
+Allin sapaq p'anqakunataqa tarinki [[Special:Specialpages|Sapaq p'anqakuna]] nisqa p'anqapim.",
 
 # General errors
-'databaseerror'        => 'Error de la base de datos',
-'dberrortext'          => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
-Esto puede indicar un error en el software.
-La última consulta que se intentó fue: <blockquote><tt>$1</tt></blockquote> dentro de la función "<tt>$2</tt>". El error devuelto por la base de datos fue"<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos. La última consulta que se intentó fue:
-"$1" 
-desde la función "$2".
-MySQL devolvió el error "$3: $4".',
-'noconnect'            => "Manam $1-pi willañiqintinwan t'inkiyta atinichu",
-'nodb'                 => 'No se pudo seleccionar la base de datos $1',
-'cachederror'          => 'Esta es una copia guardada en el caché de la página requerida, y puede no estar actualizada.',
+'error'                => 'Pantasqa',
+'databaseerror'        => 'Willañiqintin pantasqa',
+'dberrortext'          => 'Willañiqimanta mañakuptiyki sintaksis pantasqam tukurqan.
+Llamp\'u kaq wakichipi pantasqachá.
+Qayna willañiqimanta mañakusqaqa karqan kaypacham: <blockquote><tt>$1</tt></blockquote> kay ruraypim: "<tt>$2</tt>". MySQL-pa kutichisqan pantasqaqa karqan "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Willañiqimanta mañakuptiyki sintaksis pantasqam tukurqan.
+Qayna willañiqimanta mañakusqaqa karqan kaymi:
+"$1"
+kay ruraymantam: "$2".
+MySQL-pa kutichisqan pantasqaqa karqan "$3: $4".',
+'noconnect'            => "Achachaw, $1-pi willañiqintinwanqa manam t'inkiyta atinichu. <br />
+$1",
+'nodb'                 => 'Manam atinchu $1 willañiqintinta akllayqa',
+'cachederror'          => "Kayqa mañakusqayki p'anqamanta iskaychasqam, manachá kunan kachkaq p'anqa hinachu.",
 'laggedslavemode'      => 'Aviso: puede que falten las actualizaciones más recientes en esta página.',
 'readonly'             => "Willañiqintinqa hark'asqam",
 'enterlockreason'      => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
@@ -495,7 +502,7 @@ Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cual
 'usercssjsyoucanpreview'    => "<strong>Kunay:</strong> «Ñawpaqta qhawallay» nisqa ñit'inata llamk'achiy musuq css/js qhawanaykipaq, manaraq waqaychaspa.",
 'usercsspreview'            => "'''¡Recuerde que sólo está previsualizando su css de usuario y aún no se ha grabado!'''",
 'userjspreview'             => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
-'userinvalidcssjstitle'     => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. Usuario:Foo/monobook.css en vez de  Usuario:Foo/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Musuqchasqa)',
 'note'                      => '<strong>Nota:</strong>',
 'previewnote'               => 'Yuyaykuy: Kayqa manaraq waqaychaspa qhawariymi!',
@@ -749,9 +756,9 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'group-sysop-member'         => 'Kamachiq',
 'group-bureaucrat-member'    => 'Burócrata',
 
-'grouppage-bot'        => 'Project:Bot',
+'grouppage-bot'        => '{{ns:project}}:Bot',
 'grouppage-sysop'      => '{{ns:project}}:Kamachiq',
-'grouppage-bureaucrat' => 'Project:Burócratas',
+'grouppage-bureaucrat' => '{{ns:project}}:Burócratas',
 
 # User rights log
 'rightslog'      => 'Ruraqpa hayñinkunap hukyasqankuna',
@@ -1369,9 +1376,9 @@ Hark'asqaykip hamuntapas sut'ichay (ahinataq, sapaq p'anqapi wandaluchaspa hukch
 'range_block_disabled'        => 'La facultad de administrador de crear bloqueos por rangos está deshabilitada.',
 'ipb_expiry_invalid'          => 'El tiempo de caducidad no es válido.',
 'ipb_already_blocked'         => '"$1" sutiyuqqa hark\'asqañam kachkan.',
+'ipb_cant_unblock'            => "'''Error''': Número ID $1 de bloqueo no encontrado. Pudo haber sido desbloqueado ya.",
 'ip_range_invalid'            => "IP huchha k'itiqa manam chanichkanchu.",
 'proxyblocker'                => 'Bloqueador de proxies',
-'ipb_cant_unblock'            => "'''Error''': Número ID $1 de bloqueo no encontrado. Pudo haber sido desbloqueado ya.",
 'proxyblockreason'            => 'Su dirección IP ha sido bloqueada porque es un proxy abierto. Por favor, contacte con su proveedor de servicios de Internet o con su servicio de asistencia técnica e infórmeles de este grave problema de seguridad.',
 'proxyblocksuccess'           => 'Rurasqañam.',
 'sorbsreason'                 => 'Su dirección IP está listada como proxy abierto en DNSBL.',
@@ -1449,7 +1456,7 @@ Tukuna p\'anqaqa ("[[$1]]") kachkañam. Astanapaq qulluyta munankichu?',
 
 Para exportar páginas, escribe los títulos en la caja de texto de abajo, un título por línea, y selecciona si quieres la versión actual junto a las versiones anteriores, con las líneas del historial, o sólo la versión actual con la información sobre la última edición.
 
-En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/{{Mediawiki:Mainpage}}]] para la página {{Mediawiki:Mainpage}}.',
+En el último caso también puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] para la página {{Mediawiki:mainpage}}.',
 'exportcuronly'     => 'Incluye sólo la revisión actual, no el historial de revisiones al completo.',
 'exportnohistory'   => "----
 '''Nota:''' Exportar el historial completo de páginas a través de este formulario ha sido deshabilitado debido a problemas de rendimiento del servidor.",
@@ -1463,7 +1470,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/
 'allmessagesdefault'        => 'Ñawpaq qillqa',
 'allmessagescurrent'        => 'Kunan kachkaq qillqa',
 'allmessagestext'           => "Kayqa MediaWiki suti k'itipi tukuy llamk'achinalla willaykunam:",
-'allmessagesnotsupportedDB' => "Special:AllMessages manam llamk'achinallachu, wgUseDatabaseMessages nisqaman ama nisqa kaptinmi.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' manam llamk'achinallachu, '''wgUseDatabaseMessages''' nisqaman ama nisqa kaptinmi.",
 'allmessagesfilter'         => "Willaypa sutinkama ch'illchiy:",
 'allmessagesmodified'       => 'Hukchasqallata rikuchiy',
 

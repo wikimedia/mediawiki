@@ -1,8 +1,11 @@
 <?php
-/** Frisian (Frysk)
+/** Western Frisian (Frysk)
  *
  * @addtogroup Language
  *
+ * @author G - ג
+ * @author Helix84
+ * @author Maartenvdbent
  */
 
 $skinNames = array(
@@ -60,7 +63,6 @@ $namespaceAliases = array(
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)$/sDu';
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Keppelings ûnderstreekje',
@@ -76,6 +78,7 @@ $messages = array(
 'tog-showtoc'                 => 'Ynhâldsopjefte, foar siden mei mear as twa koppen',
 'tog-rememberpassword'        => 'Oare kear fansels oanmelde',
 'tog-editwidth'               => 'Bewurkingsfjild sa breed as de side',
+'tog-watchcreations'          => "Sides dy't jo makke hawwe folgje",
 'tog-watchdefault'            => "Sides dy't jo feroare hawwe folgje",
 'tog-minordefault'            => 'Feroarings yn it earst oanjaan as tekstwizigings.',
 'tog-previewontop'            => 'By it neisjen, bewurkingsfjild ûnderoan sette',
@@ -126,16 +129,17 @@ $messages = array(
 'qbmyoptions'   => 'Myn Opsjes',
 'mypage'        => 'Myn side',
 'mytalk'        => 'Myn oerlis',
+'navigation'    => 'navigaasje',
 
 'errorpagetitle'   => 'Fout',
 'returnto'         => 'Werom nei "$1".',
-'help'             => 'Help',
 'search'           => 'Sykje',
 'searchbutton'     => 'Sykje',
 'go'               => 'Side',
 'searcharticle'    => 'Side',
 'history'          => 'Sideskiednis',
 'printableversion' => 'Ofdruk-ferzje',
+'edit'             => 'Wizigje',
 'editthispage'     => 'Side bewurkje',
 'deletethispage'   => 'Side wiskje',
 'protectthispage'  => 'Side beskermje',
@@ -163,15 +167,11 @@ $messages = array(
 'currentevents'     => 'Hjoeddeis',
 'edithelp'          => 'Siden bewurkje',
 'edithelppage'      => '{{ns:project}}:Bewurk-rie',
-'faq'               => 'FAQ',
-'faqpage'           => '{{ns:project}}:FAQ',
 'helppage'          => '{{ns:project}}:Help',
 'mainpage'          => 'Haadside',
 
 'ok'            => 'Goed',
 'retrievedfrom' => 'Untfongen fan "$1"',
-'editsection'   => 'edit',
-'editold'       => 'edit',
 'toc'           => 'Ynhâld',
 'showtoc'       => 'sjen litte',
 'hidetoc'       => 'net sjen litte',
@@ -239,7 +239,6 @@ Ferjit net se oan jo foarkar oan te passen.',
 'yourpasswordagain'     => 'Jo wachtwurd (nochris)',
 'remembermypassword'    => 'Oare kear fansels oanmelde.',
 'loginproblem'          => '<b>Der wie wat mis mei jo oanmelden.</b><br />Besykje it nochris, a.j.w.',
-'alreadyloggedin'       => '<strong>Brûker $1, jo binne al oanmeld!</strong><br />',
 'login'                 => 'Oanmelde',
 'userlogin'             => 'Oanmelde',
 'logout'                => 'Ofmelde',
@@ -353,11 +352,6 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 'searchresulttext'      => '"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
 'searchsubtitle'        => 'Foar fraach "[[:$1]]"',
 'searchsubtitleinvalid' => 'Foar fraach "$1"',
-'badquery'              => 'Misfoarme sykfraach',
-'badquerytext'          => 'Jo fraach koe net ferwurke wurde.
-Dit is faaks om\'t jo besyke hawwe en sykje in word fan ien of twa letters, wat it programma noch net kin.
-Of it soe kinne dat jo de fraach misskreaun hawwe, lykas "frysk en en frei". Besykje it nochris.',
-'matchtotals'           => 'Foar "$1" binne $2 titles fûn en $3 siden.',
 'noexactmatch'          => 'Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.',
 'titlematches'          => 'Titels',
 'notitlematches'        => 'Gjin titels',
@@ -434,7 +428,6 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'hide'              => 'gjin',
 'show'              => 'al',
 'minoreditletter'   => 'T',
-'newpageletter'     => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Folgje keppelings',
@@ -487,41 +480,33 @@ meitsje fan it systeem..",
 'uploaddisabled'    => 'Sorry, op dizze tsjinner kin net oanbean wurde.',
 
 # Image list
-'imagelist'           => 'Ofbyld list',
-'imagelisttext'       => 'Dit is in list fan $1 ôfbylden, op $2.',
-'getimagelist'        => 'Ofbyld list ...',
-'ilsubmit'            => 'Sykje',
-'showlast'            => 'Jou lêste $1 ôfbylden, op $2.',
-'byname'              => 'namme',
-'bydate'              => 'datum',
-'bysize'              => 'grutte',
-'imgdelete'           => 'wisk',
-'imgdesc'             => 'tekst',
-'imglegend'           => 'Utlis: (tekst) = Jou/bewurk ôfbyld-omskriuwing.',
-'imghistory'          => 'Ofbyldskiednis',
-'revertimg'           => 'tebek',
-'deleteimg'           => 'wisk',
-'deleteimgcompletely' => 'wisk',
-'imghistlegend'       => 'Utlis: (no) = dit is it hjoeddeiske ôfbyld,
-(wisk) = wiskje dizze âldere ferzje, (tebek) = set ôfbyld tebek nei dizze âldere ferzje.
-<br /><i>Fia de datum kinne jo it ôfbyld dat doe oanbean besjen</i>.',
-'imagelinks'          => 'Ofbyldkeppelings',
-'linkstoimage'        => 'Dizze siden binne keppele oan it ôfbyld:',
-'nolinkstoimage'      => 'Der binne gjin siden oan dit ôfbyld keppelje.',
+'imagelist'      => 'Ofbyld list',
+'imagelisttext'  => 'Dit is in list fan $1 ôfbylden, op $2.',
+'getimagelist'   => 'Ofbyld list ...',
+'ilsubmit'       => 'Sykje',
+'showlast'       => 'Jou lêste $1 ôfbylden, op $2.',
+'byname'         => 'namme',
+'bydate'         => 'datum',
+'bysize'         => 'grutte',
+'imgdelete'      => 'wisk',
+'imgdesc'        => 'tekst',
+'imagelinks'     => 'Ofbyldkeppelings',
+'linkstoimage'   => 'Dizze siden binne keppele oan it ôfbyld:',
+'nolinkstoimage' => 'Der binne gjin siden oan dit ôfbyld keppelje.',
 
 # Statistics
 'statistics'    => 'Statistyk',
 'sitestats'     => 'Side statistyk',
 'userstats'     => 'Brûker statistyk',
-'sitestatstext' => 'It tal fan siden in de {{SITENAME}} is: <b>$2</b>.<br />
-(Oerlissiden, siden oer de {{SITENAME}}, oare bysûndere siden,  stobben en
-trochferwizings yn de databank binne dêrby net meiteld.)<br />
+'sitestatstext' => "It tal fan siden in de {{SITENAME}} is: <b>$2</b>.<br />
+(Oerlissiden, siden oer de {{SITENAME}}, oare bysûndere siden, stobben en trochferwizings yn de databank binne dêrby net meiteld.)<br />
 It tal fan siden in de databank is: <b>$1</b>.
-<p>
-Der is <b>$3</b> kear in side opfrege, en <b>$4</b> kear in side bewurke,
-sûnt it programma bywurke is (15 oktober 2002).
-Dat komt yn trochslach del op <b>$5</b> kear bewurke de side,
-en <b>$6</b> kear opfrege de bewurking.',
+
+'''$8''' files have been uploaded.
+
+Der is <b>$3</b> kear in side opfrege, en <b>$4</b> kear in side bewurke, sûnt it programma bywurke is (15 oktober 2002). Dat komt yn trochslach del op <b>$5</b> kear bewurke de side, en <b>$6</b> kear opfrege de bewurking.
+
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
 'userstatstext' => 'It tal fan registreare brûkers is <b>$1</b>.
 It tal fan behearders dêrfan is: <b>$2</b>.',
 
@@ -563,6 +548,8 @@ de twadde trochferwizing, wat it "echte" doel wêze moat.',
 'unusedimagestext' => '<p>Tink derom dat ore web sides lykas fan de oare
 parten fan it meartaliche projekt mei in keppeling nei in direkte URL nei
 an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze list.',
+'notargettitle'    => 'Gjin side',
+'notargettext'     => 'Jo hawwe net sein oer hokfoar side jo dit witte wolle.',
 
 'alphaindexline' => "$1 oan't $2",
 
@@ -606,7 +593,7 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 'unwatchthispage'    => 'Ferjit dizze side',
 'notanarticle'       => 'Dit kin net folge wurde.',
 'watchnochange'      => "Fan de siden dy't jo folgje is der yn dizze perioade net ien feroare.",
-'watchlist-details'    => 'Jo folchlist hat $1 siden (oerlissiden net meiteld).',
+'watchlist-details'  => 'Jo folchlist hat $1 siden (oerlissiden net meiteld).',
 'watchmethod-recent' => 'Koarts feroare ...',
 'watchmethod-list'   => 'Folge ...',
 'watchlistcontains'  => 'Jo folgje op it stuit $1 siden.',
@@ -636,7 +623,6 @@ Sjoch "$2" foar in list fan wat resint wiske is.',
 'deletionlog'       => 'wisk loch',
 'reverted'          => 'Tebekset nei eardere ferzje',
 'deletecomment'     => 'Reden foar it wiskjen',
-'imagereverted'     => 'Tebeksette nei eardere ferzje is slagge.',
 'rollback'          => 'Feroarings tebeksette',
 'rollbacklink'      => 'feroaring tebeksette',
 'rollbackfailed'    => 'Feroaring tebeksette net slagge',
@@ -672,8 +658,6 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 
 # What links here
 'whatlinkshere' => 'Wat is hjirmei keppele',
-'notargettitle' => 'Gjin side',
-'notargettext'  => 'Jo hawwe net sein oer hokfoar side jo dit witte wolle.',
 'linklistsub'   => '(List fan keppelings)',
 'linkshere'     => 'Dizze siden binne hjirmei keppele:',
 'nolinkshere'   => 'Gjinien side is hjirmei keppele!',
@@ -754,6 +738,9 @@ Gearfoegje de oerlissiden hânmjittig.",
 'talkpagemoved'    => 'De oerlisside is al noch keppele.',
 'talkpagenotmoved' => 'De oerlisside is <strong>net</strong> mear keppele.',
 
+# Namespace 8 related
+'allmessages' => 'Alle wikiberjochten',
+
 # Math options
 'mw_math_png'    => 'Altiten as PNG ôfbyldzje',
 'mw_math_simple' => 'HTML foar ienfâldiche formules, oars PNG',
@@ -763,5 +750,3 @@ Gearfoegje de oerlissiden hânmjittig.",
 'mw_math_mathml' => 'MathML',
 
 );
-
-
