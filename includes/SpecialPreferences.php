@@ -350,7 +350,7 @@ class PreferencesForm {
 		$wgUser->saveSettings();
 
 		if( $needRedirect && $error === false ) {
-			$title =& SpecialPage::getTitleFor( "Preferences" );
+			$title = SpecialPage::getTitleFor( 'Preferences' );
 			$wgOut->redirect($title->getFullURL('success'));
 			return;
 		}
