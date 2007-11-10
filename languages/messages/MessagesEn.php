@@ -1349,7 +1349,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'boteditletter'                     => 'b',
 'sectionlink'                       => '→', # only translate this message to other languages if you have to change it
 'number_of_watching_users_RCview'   => '[$1]', # don't translate or duplicate this message to other languages
-'number_of_watching_users_pageview' => '[$1 watching user/s]',
+'number_of_watching_users_pageview' => '[$1 watching {{PLURAL:$1|user|users}}]',
 'rc_categories'                     => 'Limit to categories (separate with "|")',
 'rc_categories_any'                 => 'Any',
 'rc-change-size'                    => '$1', # only translate this message to other languages if you have to change it

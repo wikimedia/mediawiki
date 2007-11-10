@@ -1079,7 +1079,10 @@ END;
 				"' AND  wl_namespace=" . $wgTitle->getNamespace() ;
 			$res = $dbr->query( $sql, 'Skin::pageStats');
 			$x = $dbr->fetchObject( $res );
-			$s .= ' ' . wfMsg('number_of_watching_users_pageview', $x->n );
+
+			$s .= ' ' . wfMsgExt( 'number_of_watching_users_pageview',
+				array( 'parseinline' ), $wgLang->formatNum($x->n)
+			);
 		}
 
 		return $s . ' ' .  $this->getCopyright();
