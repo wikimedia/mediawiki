@@ -1,9 +1,12 @@
 <?php
-/** Tyvan localization (Тыва дыл)
+/** Tuvinian (Тыва дыл)
+ *
  * @addtogroup Language
+ *
+ * @author Sborsody
+ * @author G - ג
+ * @author friends at tyvawiki.org
  */
-
-# From friends at tyvawiki.org
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа', //Media
@@ -47,16 +50,14 @@ $bookstoreList = array(
 
 $fallback8bitEncoding = "windows-1251";
 
-
 $messages = array(
 # User preference toggles
 'tog-hideminor'      => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннер чажырар',
-'tog-showtoolbar'    => 'Редактолаар херекселтер көргүзер (JavaScript)',
+'tog-showtoolbar'    => 'Өскертир херекселтер көргүзер (JavaScript)',
 'tog-editondblclick' => 'Арынны өскертирде ийи катап базар (JavaScript)',
 
-'underline-always'  => 'Кезээде',
-'underline-never'   => 'Кажан-даа',
-'underline-default' => 'Browser default',
+'underline-always' => 'Кезээде',
+'underline-never'  => 'Кажан-даа',
 
 # Dates
 'sunday'    => 'Чеди дугаар хүн',
@@ -103,9 +104,8 @@ $messages = array(
 'cancel'         => 'Ап каар',
 'qbfind'         => 'Тывар',
 'qbbrowse'       => 'Көөр',
-'qbedit'         => 'Редакторлаар',
+'qbedit'         => 'Өскертир',
 'qbpageoptions'  => 'Бо арын',
-'qbpageinfo'     => 'Context',
 'qbmyoptions'    => 'Мээң арыннарым',
 'qbspecialpages' => 'Тускай арыннар',
 'moredotdotdot'  => 'Ам-даа...',
@@ -125,7 +125,6 @@ $messages = array(
 'history'           => 'Арынның Төөгүзү',
 'history_short'     => 'Төөгү',
 'printableversion'  => 'Саазынга үндүрерин көөр',
-'permalink'         => 'Permanent link',
 'print'             => 'Саазынга үндүрер',
 'edit'              => 'Өскертир',
 'editthispage'      => 'Бо арынны өскертир',
@@ -141,28 +140,34 @@ $messages = array(
 'personaltools'     => 'Херекселдер',
 'articlepage'       => 'Допчу арынны көргүзер',
 'talk'              => 'Чугаалажыр',
+'views'             => 'Бодалдар',
 'userpage'          => 'Ажыглакчыниң арынын көргүзер',
 'imagepage'         => 'Чурук арынын көргүзер',
+'viewhelppage'      => 'Дуза арыны көөр',
+'categorypage'      => 'Бөлүк арыны көөр',
 'viewtalkpage'      => 'Чугаалажыры көргүзер',
 'otherlanguages'    => 'Өске дылдарга',
 'lastmodifiedat'    => 'Бо арын сөөлгү каттап $1 өскерилген.', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'    => '{{SITENAME}} дугайында',
-'aboutpage'    => 'Project:Дугайында',
-'edithelppage' => 'Дуза:Өскертир',
-'helppage'     => 'Дуза:Допчузу',
-'mainpage'     => 'Кол Арын',
-'sitesupport'  => 'Белектер',
+'aboutsite'         => '{{SITENAME}} дугайында',
+'aboutpage'         => 'Project:Дугайында',
+'currentevents'     => 'Амгы үе болуушкуннер',
+'currentevents-url' => 'Амгы үе болуушкуннер',
+'edithelppage'      => 'Дуза:Өскертир',
+'helppage'          => 'Дуза:Допчузу',
+'mainpage'          => 'Кол Арын',
+'sitesupport'       => 'Белектер',
 
-'retrievedfrom'   => '"$1" арынында парлаттынган',
-'newmessageslink' => 'чаа чагаалар',
-'editsection'     => 'өскертир',
-'editold'         => 'өскертир',
-'toc'             => 'Допчу',
-'showtoc'         => 'көргүзер',
-'hidetoc'         => 'чажырар',
-'restorelink'     => '$1 балаттынган өскерилгелер',
+'retrievedfrom'       => '"$1" арынында парлаттынган',
+'newmessageslink'     => 'чаа чагаалар',
+'newmessagesdifflink' => 'бурунгу өскерлири',
+'editsection'         => 'өскертир',
+'editold'             => 'өскертир',
+'toc'                 => 'Допчу',
+'showtoc'             => 'көргүзер',
+'hidetoc'             => 'чажырар',
+'restorelink'         => '$1 балаттынган өскерилгелер',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Чүүл',
@@ -177,17 +182,25 @@ $messages = array(
 'nstab-category'  => 'Бөлүк',
 
 # Main script and global functions
+'nosuchaction'      => 'Ындыг чорук чок',
 'nosuchspecialpage' => 'Ындыг арын чок',
 
 # General errors
 'noconnect'       => 'Буруулуг болдувус! Викиде чамдык техниктиг бергедээшкиннер бар болганындан database серверинче коштунмаан. <br />
 $1',
 'laggedslavemode' => 'Оваарымчалыг: Бо арында чаартыышкыннар чок болуп болур',
+'badtitle'        => 'Багай ат',
+'viewsource'      => 'Бажы көөр',
 
 # Login and logout pages
 'yourname'           => 'Aжыглакчының ады',
 'yourpassword'       => 'Чажыт сөс',
 'remembermypassword' => 'Мени сактып алыр',
+'login'              => 'Кирер',
+'userlogin'          => 'Кирер / create account',
+'logout'             => 'Үнер',
+'userlogout'         => 'Үнер',
+'gotaccountlink'     => 'Кирер',
 'createaccountmail'  => 'email-биле',
 'badretype'          => 'Силернин парлаан чажыт созуңер таарышпас.',
 'userexists'         => 'Силернин парлаан адыңар амгы уеде ажыглаттынып турар. өске аттан шилип алыңар.',
@@ -195,6 +208,9 @@ $1',
 'yourrealname'       => 'Шын адыңар *',
 'yourlanguage'       => 'Дылыңар:',
 'yournick'           => 'Шола ат:',
+'loginerror'         => 'Багай кирери',
+'loginsuccesstitle'  => 'Чедимчелиг кирери',
+'loginlanguagelabel' => 'Дыл: $1',
 
 # Edit page toolbar
 'bold_sample'   => 'Карартыр',
@@ -202,14 +218,26 @@ $1',
 'nowiki_sample' => 'Форматтаваан текстини бээр салыр',
 
 # Edit pages
-'watchthis'    => 'Бо арынны көөр',
-'accmailtitle' => 'Чажыт сөс чоргустунган.',
-'accmailtext'  => '"{{grammar:genitive|$1}}" чажыт сөстү {{grammar:directive1|$2}} чоргузуптувус.',
-'newarticle'   => '(Чаа)',
-'yourtext'     => 'Силерниң сөзүглел',
+'watchthis'          => 'Бо арынны көөр',
+'showdiff'           => 'Өскерлирилер көргүзер',
+'nosuchsectiontitle' => 'Ындыг бөлгүм чок',
+'loginreqlink'       => 'кирер',
+'accmailtitle'       => 'Чажыт сөс чоргустунган.',
+'accmailtext'        => '"{{grammar:genitive|$1}}" чажыт сөстү {{grammar:directive1|$2}} чоргузуптувус.',
+'newarticle'         => '(Чаа)',
+'editing'            => '$1 арынны өскертип турар',
+'editinguser'        => '<b>$1</b> ажыглакчыны өскертип турар',
+'editingsection'     => '$1 бөлгүмнү өскертип турар',
+'yourtext'           => 'Силерниң сөзүглел',
+'yourdiff'           => 'Ылгалдар',
 
 # History pages
-'next' => 'соонда',
+'currentrev'          => 'Амгы үе өскерлири',
+'currentrevisionlink' => 'Амгы үе өскерлири',
+'next'                => 'соонда',
+
+# Revision feed
+'history-feed-title' => 'Өскерлири төөгүзү',
 
 # Diffs
 'compareselectedversions' => 'Шилип алган хевирлери деңнээр',
@@ -229,11 +257,14 @@ $1',
 'show'          => 'көргүзер',
 
 # Upload
+'upload'     => 'Файлду киирер',
+'uploadbtn'  => 'Файлду киирер',
 'filename'   => 'Файлдың ады:',
 'filesource' => 'Эгези:',
 
 # Image list
-'ilsubmit' => 'Дилээр',
+'ilsubmit'         => 'Дилээр',
+'filehist-current' => 'амгы үе',
 
 # Miscellaneous special pages
 'randompage'   => 'Даап арын',
@@ -278,5 +309,3 @@ $1',
 'allmessagescurrent' => 'Амгы сөзүглел',
 
 );
-
-

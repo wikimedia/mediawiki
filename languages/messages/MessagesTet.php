@@ -127,6 +127,7 @@ $messages = array(
 'search'           => 'Buka',
 'searchbutton'     => 'Buka',
 'go'               => 'Bá',
+'searcharticle'    => 'Pájina',
 'history'          => 'Istória pájina',
 'history_short'    => 'Istória',
 'info_short'       => 'Informasaun',
@@ -260,6 +261,7 @@ $messages = array(
 # Preferences page
 'prefs-rc'          => 'Mudansa foufoun sira',
 'prefs-watchlist'   => 'Lista hateke',
+'textboxsize'       => 'Edita',
 'searchresultshead' => 'Buka',
 
 # User rights
@@ -288,6 +290,7 @@ $messages = array(
 
 # Recent changes
 'recentchanges'   => 'Mudansa foufoun sira',
+'rcshowhideminor' => '$1 osan-rahun sira',
 'rcshowhidebots'  => '$1 bot sira',
 'diff'            => 'diferensa',
 'hist'            => 'istória',
@@ -334,6 +337,7 @@ $messages = array(
 'specialpages'      => 'Pájina espesiál sira',
 'newpages'          => 'Pájina foun',
 'newpages-username' => "Naran uza-na'in:",
+'ancientpages'      => 'Pájina tuan liu hotu sira',
 'move'              => 'Book',
 'movethispage'      => "Book pájina ne'e",
 
@@ -342,6 +346,14 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => "Uza-na'in:",
+
+# Special:Allpages
+'nextpage'     => 'Pájina oinmai ($1)',
+'allarticles'  => 'Pájina hotu',
+'allpagesnext' => 'Oinmai',
+
+# Special:Listusers
+'listusers-submit' => 'Hatudu',
 
 # Watchlist
 'watchlist'            => "Ha'u-nia lista hateke",
@@ -354,7 +366,10 @@ $messages = array(
 'watchlist-show-minor' => 'Hatudu osan-rahun',
 'watchlist-hide-minor' => 'Subar osan-rahun',
 
-'enotif_newpagetext' => "Ne'e pájina foun.",
+'enotif_newpagetext'           => "Ne'e pájina foun.",
+'enotif_impersonal_salutation' => "Uza-na'in {{SITENAME}} nian",
+'changed'                      => 'filak',
+'created'                      => 'kria',
 
 # Delete/protect/revert
 'deletepage'          => 'Halakon pájina',

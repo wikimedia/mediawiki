@@ -942,6 +942,9 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 
 # File deletion
 'filedelete'            => 'Borrar $1',
+'filedelete-intro'      => "Estás borrando '''[[Media:$1|$1]]'''.",
+'filedelete-submit'     => 'Borrar',
+'filedelete-success'    => "'''$1''' ha sido borrado.",
 'filedelete-nofile-old' => "No existe una versión guardada de '''$1''' con los atributos especificados.",
 
 # MIME search
