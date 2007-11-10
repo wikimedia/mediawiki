@@ -44,7 +44,11 @@ $namespaceNames = array(
 	'chick'               => 'Kuře'
 );
 
-$datePreferences = false;
+$datePreferences =  array(
+	'dmy',
+	'alt dmy',
+	'ISO 8601',
+);
 
 $defaultDateFormat = 'dmy';
 
@@ -52,6 +56,14 @@ $dateFormats = array(
 	'dmy time' => 'H:i',
 	'dmy date' => 'j. n. Y',
 	'dmy both' => 'H:i, j. n. Y',
+
+	'alt dmy time' => 'H.i',
+	'alt dmy date' => 'j. xg Y',
+	'alt dmy both' => 'H.i, j. xg Y',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
 /**
