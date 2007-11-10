@@ -794,9 +794,8 @@ class Revision {
 	 * @param bool     $minor
 	 * @return Revision
 	 */
-	function newNullRevision( &$dbw, $pageId, $summary, $minor ) {
-		$fname = 'Revision::newNullRevision';
-		wfProfileIn( $fname );
+	public static function newNullRevision( &$dbw, $pageId, $summary, $minor ) {
+		wfProfileIn( __METHOD__ );
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
@@ -805,7 +804,7 @@ class Revision {
 				'page_id' => $pageId,
 				'page_latest=rev_id',
 				),
-			$fname );
+			__METHOD__ );
 
 		if( $current ) {
 			$revision = new Revision( array(
@@ -818,7 +817,7 @@ class Revision {
 			$revision = null;
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $revision;
 	}
 	
