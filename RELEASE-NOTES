@@ -141,6 +141,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * In the deletion default reasons, calculate how much text to get from the
   article text, rather than getting 150 characters (which may be too much)
 * Add two messages for Special:Blockme which were used but undefined
+* (bug 11921) Support plural in message number_of_watching_users_pageview
 
 === API changes in 1.12 ===
 

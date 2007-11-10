@@ -357,7 +357,10 @@ class SkinTemplate extends Skin {
 				$x = $dbr->fetchObject( $res );
 				$numberofwatchingusers = $x->n;
 				if ($numberofwatchingusers > 0) {
-					$tpl->set('numberofwatchingusers', wfMsg('number_of_watching_users_pageview', $numberofwatchingusers));
+					$tpl->set('numberofwatchingusers',
+						wfMsgExt('number_of_watching_users_pageview', array('parseinline'),
+						$wgLang->formatNum($numberofwatchingusers))
+					);
 				} else {
 					$tpl->set('numberofwatchingusers', false);
 				}
