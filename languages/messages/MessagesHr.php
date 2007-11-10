@@ -429,6 +429,7 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'loginerror'                 => 'Greška u prijavi',
 'prefs-help-email'           => '* E-mail (nije obvezno): Omogućuje drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.
 Također, ako zaboravite lozinku možemo vam na ovu adresu poslati novu, privremenu.',
+'prefs-help-email-required'  => 'Potrebno je navesti adresu e-pošte (e-mail).',
 'nocookiesnew'               => "Suradnički račun je otvoren, ali niste uspješno prijavljeni. Naime, {{SITENAME}} koristi kolačiće (''cookies'') u procesu prijave. Isključili ste kolačiće. Molim uključite ih i pokušajte ponovo s vašim novim imenom i lozinkom.",
 'nocookieslogin'             => "{{SITELOGIN}} koristi kolačiće (''cookies'') u procesu prijave. Isključili ste kolačiće. Molim uključite ih i pokušajte ponovo.",
 'noname'                     => 'Niste unijeli valjano suradničko ime.',
@@ -469,6 +470,7 @@ Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Password reset dialog
+'resetpass'               => 'Postavi novu lozinku',
 'resetpass_header'        => 'Resetiraj lozinku',
 'resetpass_submit'        => 'Postavite lozinku i prijavite se',
 'resetpass_bad_temporary' => 'Nevažeća privremena lozinka. Možda ste već uspješno promijenili svoju lozinku ili ste zatražili novu privremenu lozinku.',
@@ -615,6 +617,7 @@ promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je 
 'nocreatetext'             => 'Na ovom je projektu ograničeno otvaranje novih stranica.
 Možete se vratiti i uređivati već postojeće stranice ili se [[Special:Userlogin|prijaviti ili otvoriti suradnički račun]].',
 'nocreate-loggedin'        => 'Nemate ovlasti za stvaranje novih stranica na ovoj wiki.',
+'permissionserrors'        => 'Greška u pravima',
 'permissionserrorstext'    => 'Nemate ovlasti za tu radnju iz sljedećih {{PLURAL:$1|razlog|razloga}}:',
 'recreate-deleted-warn'    => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.''' 
  
@@ -702,6 +705,9 @@ postavili dodatna ograničenja.',
 'revdelete-submit'            => 'Izvrši brisanje/sakrivanje',
 'revdelete-logentry'          => 'promijenjena su prava pristupa za stranicu [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}} postavljena u mod $2',
+
+# Oversight log
+'oversightlog' => 'Oversight log',
 
 # Diffs
 'history-title'             => 'Povijest izmjena stranice "$1"',
@@ -801,16 +807,19 @@ za podešavanje korisničkih postavki.',
 'files'                    => 'Datoteke',
 
 # User rights
-'userrights-lookup-user'     => 'Upravljaj skupinama suradnika',
-'userrights-user-editname'   => 'Unesite suradničko ime:',
-'editusergroup'              => 'Uredi suradničke skupine',
-'userrights-editusergroup'   => 'Uredi skupine suradnika',
-'saveusergroups'             => 'Snimi skupine suradnika',
-'userrights-groupsmember'    => 'Član:',
-'userrights-groupsavailable' => 'Dostupne skupine:',
-'userrights-groupshelp'      => 'Izaberite skupine u koje želite dodati ili iz njih ukloniti suradnika.
+'userrights-lookup-user'      => 'Upravljaj skupinama suradnika',
+'userrights-user-editname'    => 'Unesite suradničko ime:',
+'editusergroup'               => 'Uredi suradničke skupine',
+'userrights-editusergroup'    => 'Uredi skupine suradnika',
+'saveusergroups'              => 'Snimi skupine suradnika',
+'userrights-groupsmember'     => 'Član:',
+'userrights-groupsavailable'  => 'Dostupne skupine:',
+'userrights-groupshelp'       => 'Izaberite skupine u koje želite dodati ili iz njih ukloniti suradnika.
 Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovremenim pritiskom CTRL + lijeva tipka miša',
-'userrights-reason'          => 'Razlog za promjenu:',
+'userrights-reason'           => 'Razlog za promjenu:',
+'userrights-available-none'   => 'Ne možete mijenjati prava grupe.',
+'userrights-available-add'    => 'Možete dodavati suradnike grupi $1.',
+'userrights-available-remove' => 'Možete uklanjati suradnike iz grupe $1.',
 
 # Groups
 'group'            => 'Grupa:',
@@ -1313,6 +1322,7 @@ Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutno za�
 'protectcomment'              => 'Razlog za zaštitu',
 'protectexpiry'               => 'Trajanje zaštite:',
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
+'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',
 'unprotectsub'                => '(Uklanjam zaštitu stranice "$1")',
 'protect-unchain'             => 'Otključaj ovlaštenja za premještanje',
 'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong>$1</strong>.
@@ -1323,6 +1333,10 @@ Molim pripazite da ovo radite u skladu s [[{{MediaWiki:policy-url}}|pravilima]].
 'protect-summary-cascade'     => 'prenosiva zaštita',
 'protect-expiring'            => 'istječe $1 (UTC)',
 'protect-cascade'             => 'Prenosiva zaštita - zaštiti sve stranice koje su uključene u ovu.',
+'restriction-type'            => 'Dozvola:',
+'restriction-level'           => 'Nivo ograničenja:',
+'minimum-size'                => 'Najmanja veličina',
+'maximum-size'                => 'Najveća veličina',
 'pagesize'                    => '(bajtova)',
 
 # Restrictions (nouns)
@@ -1341,6 +1355,7 @@ Molim pripazite da ovo radite u skladu s [[{{MediaWiki:policy-url}}|pravilima]].
 detaljima o suradnicima koji su uređivali ovu stranicu prije brisanja.
 Tekst izbrisanih inačica dostupan je samo administratorima.',
 'undelete-revision'        => 'Izbrisana inačica članka $1 (dana $2), obrisao $3:',
+'undelete-nodiff'          => 'Prethodne promjene nisu nađene.',
 'undeletebtn'              => 'Vrati!',
 'undeletereset'            => 'Obriši razlog',
 'undeletecomment'          => 'Komentar:',
@@ -1441,6 +1456,7 @@ vandalizirane).',
 'unblockiptext'               => 'Ovaj se obrazac koristi za vraćanje prava na pisanje prethodno blokiranoj IP adresi.',
 'ipusubmit'                   => 'Deblokiraj ovu adresu',
 'unblocked'                   => '[[Suradnik:$1|$1]] je deblokiran',
+'unblocked-id'                => 'Blok $1 je uklonjen',
 'ipblocklist'                 => 'Popis blokiranih IP adresa',
 'ipblocklist-legend'          => 'Pronađi blokiranog suradnika',
 'ipblocklist-username'        => 'Ime suradnika ili IP adresa:',
@@ -1448,6 +1464,7 @@ vandalizirane).',
 'blocklistline'               => '$1, $2 je blokirao $3 ($4)',
 'infiniteblock'               => 'neograničeno',
 'expiringblock'               => 'istječe $1',
+'noautoblockblock'            => 'blokiranje samoga sebe je onemogućeno',
 'createaccountblock'          => 'blokirano stvaranje suradničkog računa',
 'emailblock'                  => 'e-mail je blokiran',
 'ipblocklist-no-results'      => 'Tražena IP adresa ili suradničko ime nije blokirano.',
@@ -1461,11 +1478,14 @@ vandalizirane).',
 nema automatski blokiranih IP adresa. Za popis trenutnih zabrana i
 blokiranja vidi [[Special:Ipblocklist|listu IP blokiranja]].',
 'unblocklogentry'             => 'Deblokiran "$1"',
+'block-log-flags-anononly'    => 'samo za neprijavljene (anonimne) suradnike',
+'block-log-flags-nocreate'    => 'otvaranje novih suradničkih imena nije moguće',
 'block-log-flags-noemail'     => 'e-mail je blokiran',
 'range_block_disabled'        => 'Isključena je administratorska naredba za blokiranje raspona IP adresa.',
 'ipb_expiry_invalid'          => 'Vremenski rok nije valjan.',
 'ip_range_invalid'            => 'Raspon IP adresa nije valjan.',
 'proxyblocker'                => 'Zaštita od otvorenih posrednika (proxyja)',
+'proxyblocker-disabled'       => 'Ova funkcija je onemogućena.',
 'proxyblockreason'            => 'Vaša je IP adresa blokirana jer se radi o otvorenom posredniku (proxyju). Molim stupite u vezu s vašim davateljem internetskih usluga (ISP-om) ili službom tehničke podrške i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
 'proxyblocksuccess'           => 'Napravljeno.',
 'sorbsreason'                 => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL.',
@@ -1666,6 +1686,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'tooltip-diff'                    => 'Prikaži promjene učinjene u tekstu.',
 'tooltip-compareselectedversions' => 'Prikaži usporedbu izabranih inačica ove stranice.',
 'tooltip-watch'                   => 'Dodaj na popis praćenja',
+'tooltip-upload'                  => "Pokreni snimanje (''upload'')",
 
 # Stylesheets
 'monobook.css' => '/** Ovdje idu izmjene monobook stylesheeta */',
@@ -1728,12 +1749,14 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 # Patrol log
 'patrol-log-page' => 'Evidencija pregledavanja promjena',
 'patrol-log-line' => 'promjena broj $1 stranice $2 pregledana $3',
+'patrol-log-auto' => '(automatski pregledano)',
 
 # Image deletion
 'deletedrevision'                 => 'Izbrisana stara inačica $1',
 'filedeleteerror-short'           => 'Greška u brisanju datoteke: $1',
 'filedelete-missing'              => 'Datoteka "$1" ne može biti obrisana, jer ne postoji.',
 'filedelete-current-unregistered' => 'Navedene datoteke "$1" nema u bazi podataka.',
+'filedelete-archive-read-only'    => 'Web poslužitelj nema pravo pisanja u direktorij "$1".',
 
 # Browsing diffs
 'previousdiff' => '← Usporedba s prethodnom',

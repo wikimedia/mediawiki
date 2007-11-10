@@ -1462,6 +1462,7 @@ Poslednja změna běše wot wužiwarja [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}
 'undeletehistorynoadmin'       => 'Strona bu wušmórnjena. Přičina za wušmórnjenje so deleka w zjeću pokazuje, zhromadnje z podrobnosćemi wužiwarjow, kotřiž běchu tutu stronu do zničenja wobdźěłali. Tuchwilny wobsah strony je jenož administratoram přistupny.',
 'undelete-revision'            => 'Wušmórnjena wersija strony $1 - $2, $3:',
 'undeleterevision-missing'     => 'Njepłaćiwa abo pobrachowaca wersija. Pak je wotkaz wopačny, pak bu wotpowědna wersija z archiwa wobnowjena abo wotstronjena.',
+'undelete-nodiff'              => 'Předchadna wersija njeeksistuje.',
 'undeletebtn'                  => 'Wobnowić',
 'undeletereset'                => 'Cofnyć',
 'undeletecomment'              => 'Přičina:',

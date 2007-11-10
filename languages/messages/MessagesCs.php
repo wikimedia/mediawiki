@@ -8,6 +8,7 @@
  * @author Helix84
  * @author Danny B.
  * @author Martin Kozák
+ * @author Michawiki
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -365,7 +366,7 @@ $messages = array(
 'redirectedfrom'    => '(Přesměrováno z $1)',
 'redirectpagesub'   => 'Přesměrování',
 'lastmodifiedat'    => ' Stránka byla naposledy editována v $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Stránka byla zobrazena $1krát.',
+'viewcount'         => 'Stránka byla zobrazena {{PLURAL:$1|jedenkrát|$1krát|$1krát}}.',
 'protectedpage'     => 'Zamčená stránka',
 'jumpto'            => 'Přejít na:',
 'jumptonavigation'  => 'navigace',
@@ -926,7 +927,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'timezoneoffset'           => 'Posun',
 'servertime'               => 'Aktuální čas na serveru',
 'guesstimezone'            => 'Načíst z prohlížeče',
-'allowemail'               => 'Dovolit e-mail od ostatních uživatelů',
+'allowemail'               => 'Povolit e-mail od ostatních uživatelů',
 'defaultns'                => 'Implicitně hledat v těchto jmenných prostorech:',
 'default'                  => 'implicitní',
 'files'                    => 'Soubory',
@@ -1108,7 +1109,7 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 
 # Image list
 'imagelist'                 => 'Seznam načtených obrázků',
-'imagelisttext'             => 'Níže je seznam $1 obrázků, seřazených $2.',
+'imagelisttext'             => "Níže je seznam '''$1''' {{PLURAL:$1|obrázku|obrázků|obrázků}}, seřazených $2.",
 'getimagelist'              => 'načítám seznam obrázků',
 'ilsubmit'                  => 'Hledat',
 'showlast'                  => 'Ukázat posledních $1 obrázků řazených $2.',
@@ -1227,7 +1228,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'nlinks'                  => '$1 {{plural:$1|odkaz|odkazy|odkazů}}',
 'nmembers'                => '$1 {{plural:$1|stránka|stránky|stránek}}',
 'nrevisions'              => '$1 {{plural:$1|revize|revize|revizí}}',
-'nviews'                  => '$1 zobrazení',
+'nviews'                  => '$1 {{PLURAL:$1|zobrazení|zobrazení|zobrazení}}',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí články',
 'lonelypagestext'         => 'Na následující stránky na této wiki neodkazuje žádná jiná stránka.',
@@ -1620,7 +1621,7 @@ $1',
 'unblocklogentry'             => 'odblokovává „$1“',
 'block-log-flags-anononly'    => 'jen nepřihl.',
 'block-log-flags-nocreate'    => 'vytváření účtů zablokováno',
-'block-log-flags-noautoblock' => 'autoblokování vypnuto',
+'block-log-flags-noautoblock' => 'automatické blokování vypnuto',
 'block-log-flags-noemail'     => 'e-maily zablokovány',
 'range_block_disabled'        => 'Blokování rozsahů IP adres je zakázáno.',
 'ipb_expiry_invalid'          => 'Neplatný čas vypršení.',
@@ -2325,5 +2326,16 @@ $1',
 'watchlisttools-view' => 'Zobrazit změny sledovaných stránek',
 'watchlisttools-edit' => 'Zobrazit a editovat seznam sledovaných stránek',
 'watchlisttools-raw'  => 'Editovat textový soubor sledovaných stránek',
+
+# Iranian month names
+'iranian-calendar-m1'  => 'Farvardín',
+'iranian-calendar-m2'  => 'Ordíbehešt',
+'iranian-calendar-m3'  => 'Chordád',
+'iranian-calendar-m4'  => 'Tír',
+'iranian-calendar-m5'  => 'Mordád',
+'iranian-calendar-m6'  => 'Šahrívár',
+'iranian-calendar-m9'  => 'Ázár',
+'iranian-calendar-m10' => 'Dej',
+'iranian-calendar-m11' => 'Bahmán',
 
 );
