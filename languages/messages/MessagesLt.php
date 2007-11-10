@@ -68,7 +68,7 @@ $messages = array(
 'tog-showtoolbar'             => 'Rodyti redagavimo įrankinę (JavaScript)',
 'tog-editondblclick'          => 'Puslapių redagavimas dvigubu spustelėjimu (JavaScript)',
 'tog-editsection'             => 'Įjungti skyrelių redagavimą naudojant nuorodas [taisyti]',
-'tog-editsectiononrightclick' => 'Įjungti skyrelių redagavimą paspaudus skyrelio pavadinimą<br />dešiniuoju pelės klavišu (JavaScript)',
+'tog-editsectiononrightclick' => 'Įjungti skyrelių redagavimą paspaudus skyrelio pavadinimą dešiniuoju pelės klavišu (JavaScript)',
 'tog-showtoc'                 => 'Rodyti turinį, jei puslapyje daugiau nei 3 skyreliai',
 'tog-rememberpassword'        => 'Prisiminti prisijungimo informaciją šiame kompiuteryje',
 'tog-editwidth'               => 'Pilno pločio redagavimo laukas',
@@ -434,6 +434,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'prefs-help-realname'        => 'Tikrasis vardas yra neprivalomas, bet jei jūs jį įvesite, jis bus naudojamas jūsų darbo pažymėjimui.',
 'loginerror'                 => 'Prisijungimo klaida',
 'prefs-help-email'           => 'El. pašto adresas yra neprivalomas, bet jis leidžia kitiems pasiekti jus per jūsų naudotojo ar naudotojo aptarimo puslapį neatskleidžiant jūsų tapatybės.',
+'prefs-help-email-required'  => 'El. pašto adresas yra būtinas.',
 'nocookiesnew'               => 'Naudotojo paskyra buvo sukurta, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.',
 'nocookieslogin'             => '{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
@@ -680,7 +681,7 @@ $3 nurodyta priežastis yra ''$2''",
 'deletedrev'          => '[ištrinta]',
 'histfirst'           => 'Seniausi',
 'histlast'            => 'Paskutiniai',
-'historysize'         => '($1 baitų)',
+'historysize'         => '($1 {{PLURAL:$1|baitas|baitai|baitų}})',
 'historyempty'        => '(tuščia)',
 
 # Revision feed
@@ -890,7 +891,7 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'minoreditletter'                   => 'S',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'R',
-'number_of_watching_users_pageview' => '[$1 stebintys naudotojai]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|stebintis naudotojas|stebintys naudotojai|stebinčių naudotojų}}]',
 'rc_categories'                     => 'Rodyti tik šias kategorijas (atskirkite naudodami „|“)',
 'rc_categories_any'                 => 'Bet kokia',
 'newsectionsummary'                 => '/* $1 */ naujas skyrius',
@@ -1156,6 +1157,8 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'movethispage'            => 'Pervadinti šį puslapį',
 'unusedimagestext'        => '<p>Primename, kad kitos svetainės gali būti nurodžiusios į paveikslėlį tiesioginiu URL, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.</p>',
 'unusedcategoriestext'    => 'Šie kategorijų puslapiai sukurti, nors joks kitas straipsnis ar kategorija jo nenaudoja.',
+'notargettitle'           => 'Nenurodytas objektas',
+'notargettext'            => 'Jūs nenurodėte norimo puslapio ar naudotojo, kuriam įvykdyti šią funkciją.',
 
 # Book sources
 'booksources'               => 'Knygų šaltiniai',
@@ -1392,10 +1395,8 @@ archyve, todėl jie gali būti atstatyti. Archyvas gali būti periodiškai valom
 spauskite '''''Atkurti'''''. Norėdami atlikti pasirinktinį atstatymą, pažymėkite varneles tų versijų, kurias norėtumėte atstatyti, ir spauskite '''''Atkurti'''''. Paspaudus
 '''''Iš naujo''''' bus išvalytos visos varnelės bei komentaro laukas.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versija|versijos|versijų}} suarchyvuota',
-'undeletehistory'              => 'Jei atstatysite straipsnį, istorijoje bus atstatytos visos versijos.
-Jei po ištrynimo buvo sukurtas straipsnis tokiu pačiu pavadinimu,
-atstatytos versijos atsiras ankstesnėje istorijoje, o dabartinė
-versija liks nepakeista. Atkuriant yra prarandami apribojimai failų versijoms.',
+'undeletehistory'              => 'Jei atstatysite puslapį, istorijoje bus atstatytos visos versijos.
+Jei po ištrynimo buvo sukurtas puslapis tokiu pačiu pavadinimu, atstatytos versijos atsiras ankstesnėje istorijoje. Atkuriant yra prarandami apribojimai failų versijoms.',
 'undeleterevdel'               => 'Atkūrimas nebus įvykdytas, jei tai nulems paskutinės puslapio versijos dalinį ištrynimą.
 Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausias ištrintas versijas.
 Failų versijos, kurių neturite teisių žiūrėti, nebus atkurtos.',
@@ -1404,13 +1405,14 @@ rodoma žemiau, taip pat kas redagavo puslapį
 iki trynimo. Ištrintų puslapių tekstas yra galimas tik administratoriams.',
 'undelete-revision'            => 'Ištrinta $1 versija, kurią $2 sukūrė $3:',
 'undeleterevision-missing'     => 'Neteisinga arba dingusi versija. Jūs turbūt turite blogą nuorodą, arba versija buvo atkurta arba pašalinta iš archyvo.',
+'undelete-nodiff'              => 'Nerasta jokių ankstesnių versijų.',
 'undeletebtn'                  => 'Atkurti',
 'undeletereset'                => 'Iš naujo',
 'undeletecomment'              => 'Komentaras:',
 'undeletedarticle'             => 'atkurta „[[$1]]“',
-'undeletedrevisions'           => 'atkurta $1 versija(-os)',
-'undeletedrevisions-files'     => 'atkurta $1 versija(-os) ir $2 failas(-ai)',
-'undeletedfiles'               => 'atkurta $1 failas(-ai)',
+'undeletedrevisions'           => '{{PLURAL:$1|atkurta $1 versija|atkurtos $1 versijos|atkurta $1 versijų}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|atkurta $1 versija|atkurtos $1 versijos|atkurta $1 versijų}} ir $2 {{PLURAL:$2|failas|failai|failų}}',
+'undeletedfiles'               => '{{PLURAL:$1|atkurtas $1 failas|atkurti $1 failai|atkurta $1 failų}}',
 'cannotundelete'               => 'Atkūrimas nepavyko; kažkas kitas pirmas galėjo atkurti puslapį.',
 'undeletedpage'                => "<big>'''$1 buvo atkurtas'''</big>
 
@@ -1461,8 +1463,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Susiję puslapiai',
 'whatlinkshere-title' => 'Puslapiai, kurie nurodo į $1',
-'notargettitle'       => 'Nenurodytas objektas',
-'notargettext'        => 'Jūs nenurodėte norimo puslapio ar naudotojo, kuriam įvykdyti šią funkciją.',
+'whatlinkshere-page'  => 'Puslapis:',
 'linklistsub'         => '(Nuorodų sąrašas)',
 'linkshere'           => "Šie puslapiai rodo į '''[[:$1]]''':",
 'nolinkshere'         => "Į '''[[:$1]]''' nuorodų nėra.",
@@ -1544,9 +1545,11 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'range_block_disabled'        => 'Administratoriaus galimybė kurti intevalinius blokus yra išjungta.',
 'ipb_expiry_invalid'          => 'Galiojimo laikas neleistinas.',
 'ipb_already_blocked'         => '„$1“ jau užblokuotas',
-'ip_range_invalid'            => 'Neleistina IP sritis.',
-'proxyblocker'                => 'Tarpinių serverių blokuotojas',
 'ipb_cant_unblock'            => 'Klaida: Blokavimo ID $1 nerastas. Galbūt jis jau atblokuotas.',
+'ip_range_invalid'            => 'Neleistina IP sritis.',
+'blockme'                     => 'Užblokuoti mane',
+'proxyblocker'                => 'Tarpinių serverių blokuotojas',
+'proxyblocker-disabled'       => 'Ši funkcija yra išjungta.',
 'proxyblockreason'            => 'Jūsų IP adresas yra užblokuotas, nes jis yra atvirasis tarpinis serveris. Prašome susisiekti su savo interneto paslaugų tiekėju ar technine pagalba ir praneškite jiems apie šią svarbią saugumo problemą.',
 'proxyblocksuccess'           => 'Atlikta.',
 'sorbsreason'                 => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės.',
@@ -1730,6 +1733,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-ca-watch'                => 'Pridėti puslapį į stebimųjų sąrašą',
 'tooltip-ca-unwatch'              => 'Pašalinti puslapį iš stebimųjų sąrašo',
 'tooltip-search'                  => 'Ieškoti šiame projekte',
+'tooltip-search-go'               => 'Eiti į puslapį su tokiu pavadinimu, jei toks yra',
+'tooltip-search-fulltext'         => 'Ieškoti puslapių su šiuo tekstu',
 'tooltip-p-logo'                  => 'Pradinis puslapis',
 'tooltip-n-mainpage'              => 'Eiti į pradinį puslapį',
 'tooltip-n-portal'                => 'Apie projektą, ką galima daryti, kur ką rasti',
@@ -1829,6 +1834,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'markedaspatrollederror'              => 'Negalima pažymėti, kad patikrinta',
 'markedaspatrollederrortext'          => 'Jums reikia nurodyti versiją, kurią pažymėti kaip patikrintą.',
 'markedaspatrollederror-noautopatrol' => 'Jums neleidžiama pažymėti savo paties keitimų kaip patikrintų.',
+'nppatroldisabled'                    => 'Naujų puslapių stebėjimas išjungtas',
+'nppatroldisabledtext'                => 'Naujų puslapių stebėjimo funkcija šiuo metu išjungta.',
 
 # Patrol log
 'patrol-log-page' => 'Patikrinimo istorija',
@@ -2279,8 +2286,8 @@ $1',
 'watchlistedit-raw-removed'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Rodyti susijusius keitimus',
-'watchlisttools-edit'  => 'Rodyti ir redaguoti stebimųjų sąrašą',
-'watchlisttools-raw'   => 'Redaguoti grynąjį sąrašą',
+'watchlisttools-view' => 'Rodyti susijusius keitimus',
+'watchlisttools-edit' => 'Rodyti ir redaguoti stebimųjų sąrašą',
+'watchlisttools-raw'  => 'Redaguoti grynąjį sąrašą',
 
 );
