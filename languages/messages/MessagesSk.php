@@ -12,6 +12,7 @@
  * @author Robbot
  * @author G - ג
  * @author Nike
+ * @author SPQRobin
  */
 
 $datePreferences = array(
@@ -1191,6 +1192,10 @@ PICT # misc.
 'unusedtemplatestext' => 'Táto stránka obsahuje zoznam všetkých stránok v mennom prisetore Šablóna:, ktoré nie sú vložené v žiadnej inej stránke. Pred zmazaním nezabudnite skontrolovať ostatné odkazy!',
 'unusedtemplateswlh'  => 'iné odkazy',
 
+# Random pages
+'randompage'         => 'Náhodná stránka',
+'randompage-nopages' => 'V tomto mennom priestore nie sú žiadne stránky.',
+
 # Random redirect
 'randomredirect'         => 'Náhodná presmerovacia stránka',
 'randomredirect-nopages' => 'V tomto mennom priestore nie sú žiadne presmerovania.',
@@ -1213,7 +1218,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'statistics-mostpopular' => 'Najčastejšie prezerané stránky',
 
 'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
-'disambiguationspage'  => 'Šablóna:Rozlišovacia stránka',
+'disambiguationspage'  => 'Template:Rozlišovacia stránka',
 'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''. Mali by však odkazovať priamo na príslušnú tému.<br />Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Dvojité presmerovania',
@@ -1256,8 +1261,6 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'mostrevisions'           => 'Stránky s najväčším počtom úprav',
 'allpages'                => 'Všetky stránky',
 'prefixindex'             => 'Index prefixu',
-'randompage'              => 'Náhodná stránka',
-'randompage-nopages'      => 'V tomto mennom priestore nie sú žiadne stránky.',
 'shortpages'              => 'Krátke stránky',
 'longpages'               => 'Dlhé stránky',
 'deadendpages'            => 'Slepé stránky',
