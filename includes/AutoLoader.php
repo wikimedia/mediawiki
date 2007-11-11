@@ -206,6 +206,8 @@ function __autoload($className) {
 		'PopularPagesPage' => 'includes/SpecialPopularpages.php',
 		'PreferencesForm' => 'includes/SpecialPreferences.php',
 		'SpecialPrefixindex' => 'includes/SpecialPrefixindex.php',
+		'RandomPage' => 'includes/SpecialRandompage.php',
+		'RandomPageInCategory' => 'includes/SpecialRandomincategory.php',
 		'PasswordResetForm' => 'includes/SpecialResetpass.php',
 		'RevisionDeleteForm' => 'includes/SpecialRevisiondelete.php',
 		'RevisionDeleter' => 'includes/SpecialRevisiondelete.php',
@@ -290,7 +292,6 @@ function __autoload($className) {
 
 		# Languages
 		'Language' => 'languages/Language.php',
-		'RandomPage' => 'includes/SpecialRandompage.php',
 
 		# API
 		'ApiBase' => 'includes/api/ApiBase.php',
