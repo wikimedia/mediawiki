@@ -57,6 +57,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * OutputPage::getRedirect public method added.
 * (bug 11848) Allow URL parameters 'editintro' and 'preload' in Special:Mypage 
   and Special:Mytalk
+* Add special page for getting random page from category
 
 === Bug fixes in 1.12 ===
 

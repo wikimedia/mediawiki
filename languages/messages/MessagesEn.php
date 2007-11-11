@@ -1550,9 +1550,16 @@ PICT # misc.
 'unusedtemplatestext'     => 'This page lists all pages in the template namespace which are not included in another page. Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh'      => 'other links',
 
-# Random redirect
-'randomredirect'         => 'Random redirect',
-'randomredirect-nopages' => 'There are no redirects in this namespace.',
+# Random pages
+'randompage'                      => 'Random page',
+'randompage-nopages'              => 'There are no pages in this namespace.',
+'randompage-url'                  => 'Special:Random', # don't translate or duplicate this message to other languages
+'randomincategory'                => 'Random page in category',
+'randomincategory-nocategory'     => 'Category $1 doesn\'t exist or is empty',
+'randomincategory-label'          => 'Category:',
+'randomincategory-submit'         => 'Go',
+'randomredirect'                  => 'Random redirect',
+'randomredirect-nopages'          => 'There are no redirects in this namespace.',
 
 # Statistics
 'statistics'             => 'Statistics',
@@ -1641,9 +1648,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'allpages-summary'                => '', # only translate this message to other languages if you have to change it
 'prefixindex'                     => 'Prefix index',
 'prefixindex-summary'             => '', # only translate this message to other languages if you have to change it
-'randompage'                      => 'Random page',
-'randompage-nopages'              => 'There are no pages in this namespace.',
-'randompage-url'                  => 'Special:Random', # don't translate or duplicate this message to other languages
 'shortpages'                      => 'Short pages',
 'shortpages-summary'              => '', # only translate this message to other languages if you have to change it
 'longpages'                       => 'Long pages',

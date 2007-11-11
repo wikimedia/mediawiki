@@ -90,6 +90,7 @@ class SpecialPage
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
 		'Statistics'                => array( 'SpecialPage', 'Statistics' ),
 		'Randompage'                => array( 'SpecialPage', 'Randompage' ),
+		'Randomincategory'          => array( 'SpecialPage', 'Randomincategory' ),
 		'Lonelypages'               => array( 'SpecialPage', 'Lonelypages' ),
 		'Uncategorizedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),
 		'Uncategorizedcategories'   => array( 'SpecialPage', 'Uncategorizedcategories' ),

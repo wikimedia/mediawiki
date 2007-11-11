@@ -943,6 +943,12 @@ $wgMessageStructure = array(
 		'unusedtemplatestext',
 		'unusedtemplateswlh',
 	),
+	'randomincategory' => array(
+		'randomincategory',
+		'randomincategory-nocategory',
+		'randomincategory-label',
+		'randomincategory-submit',
+	),
 	'randomredirect' => array(
 		'randomredirect',
 		'randomredirect-nopages',
