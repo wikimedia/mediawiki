@@ -53,7 +53,8 @@ class RandomPageInCategory {
 		return $this->namespace;
 	}
 	public function setCategory ( $cat ) {
-		$this->category = $cat;
+		$category = Title::makeTitleSafe( NS_CATEGORY, $cat );
+		$this->category = $category->getDBKey();
 	}
 
 	/**
@@ -120,5 +121,6 @@ class RandomPageInCategory {
 		return $f;
 	}
 }
+
 
 
