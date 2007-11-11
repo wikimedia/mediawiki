@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Maartenvdbent
+ * @author Nike
  */
 
 $fallback = 'fy';
@@ -40,11 +41,19 @@ $messages = array(
 'cancel'   => 'Oubreeke',
 'anontalk' => 'Diskussionssiede foar dissen IP',
 
+'delete'         => 'Läskje',
+'deletethispage' => 'Disse Siede läskje',
+
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'bugreports' => 'Kontakt Wikipedia',
-'copyright'  => 'Inhoold is ferföichboar unner de $1.',
+'bugreports'        => 'Kontakt Wikipedia',
+'copyright'         => 'Inhoold is ferföichboar unner de $1.',
+'currentevents'     => 'Aktuälle Geböärnisse',
+'currentevents-url' => 'Aktuälle Geböärnisse',
+'disclaimerpage'    => 'Project:Siede tou Begriepskläärenge',
 
 # General errors
+'dberrortext'     => 'Dät roat n Syntaxfailer in dän Doatenboankoufroage. Ju lääste Doatenboankoufroage lutte:
+<blockquote><tt>$1</tt></blockquote> uut de Funktion "<tt>$2</tt>". MySQL mäldede dän Failer "<tt>$3: $4</tt>".',
 'cachederror'     => 'Dät Foulgjende is ne Kopie uut de Cache un is fielicht ferallerd.',
 'badarticleerror' => 'Disse Honnelenge kon ap disse Siede nit moaked wäide.',
 'cannotdelete'    => 'Kon spezifizierde Siede of Artikkel nit läskje. Fielicht is ju al läsked wuuden.',
@@ -75,16 +84,26 @@ Ju Duur fon ju Speerenge fint sik in $4. Deer IP-Adrässen bie fuul Providere dy
 Iek fersicherje hiermäd, dät iek dän Biedraach sälwen ferfoated hääbe blw. dät hie neen froamd Gjucht ferlätset un willigje ien, him unner dän [[Wikipedia:Lizenzbestimmungen|GNU-Lizenz für freie Dokumentation]] tou fereepentlikjen.',
 
 # History pages
-'cur' => 'Aktuäl',
+'currentrevisionlink' => 'Aktuälle Version ounsjo',
+'cur'                 => 'Aktuäl',
+'deletedrev'          => '[läsked]',
 
 # Diffs
+'difference'              => '(Unnerschied twiske Versionen)',
 'compareselectedversions' => 'Wäälde Versione ferglieke',
 
 # Preferences page
 'changepassword' => 'Paaswoud annerje',
+'dateformat'     => 'Doatumsformoat',
+'datedefault'    => 'Neen Preferenz',
+'datetime'       => 'Doatum un Tied',
 'contextlines'   => 'Teekene pro Träffer:',
 'contextchars'   => 'Teekene pro Riege:',
 'allowemail'     => 'Emails fon uur Benutsere kriegen',
+'defaultns'      => 'In disse Noomensruume schäl standoardmäitich soacht wäide:',
+
+# Recent changes
+'diff' => 'Unnerschied',
 
 # Upload
 'badfilename' => 'Die Datäi-Noome is automatisk annerd tou "$1".',
@@ -94,13 +113,18 @@ Iek fersicherje hiermäd, dät iek dän Biedraach sälwen ferfoated hääbe blw.
 'bydate' => 'ätter Doatum',
 'bysize' => 'ätter Grööte',
 
+'disambiguations'     => 'Begriepskläärengssieden',
+'disambiguationspage' => 'Foarloage:Begriepskläärenge',
+
 'brokenredirects'     => 'Ferkierde Truchferwiese',
 'brokenredirectstext' => 'Disse Truchferwiese laitje tou nit existierjende Artikkel:',
 
 # Miscellaneous special pages
-'allpages' => 'Aal Artikkele',
+'allpages'     => 'Aal Artikkele',
+'deadendpages' => 'Siede sunner Ferwiese',
 
 'categoriespagetext' => 'Do foulgjende Kategorien existierje in de Wiki.',
+'data'               => 'Failer in dän Doatenboank',
 
 # Special:Log
 'alllogstext' => 'Dit is ne kombinierde Anwiesenge fon aal Logs fon {{SITENAME}}.',
@@ -126,9 +150,18 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'created' => 'näi anlaid',
 
 # Delete/protect/revert
+'deletepage'        => 'Siede läskje',
 'confirm'           => 'Bestäätigje',
 'confirmdelete'     => 'Läskenge bestäätigje',
+'deletesub'         => '(Läskje "$1")',
 'confirmdeletetext' => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:policy-url}}]] honnelje.',
+'deletedtext'       => '"$1" wuude läsked. 
+In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
+'deletedarticle'    => '"$1" wuude läsked',
+'dellogpage'        => 'Läsk-Logbouk',
+'dellogpagetext'    => 'Hier is ne Lieste fon do lääste Läskengen.',
+'deletionlog'       => 'Läsk-Logbouk',
+'deletecomment'     => 'Gruund foar ju Läskenge',
 'cantrollback'      => 'Disse Annerenge kon nit touräächstoald wäide; deer et naan fröieren Autor rakt.',
 
 # Contributions
@@ -149,8 +182,14 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'blocklogtext'       => 'Dit is n Logbouk fon Speerengen un Äntspeerengen fon Benutsere. Ju Sunnersiede fiert aal aktuäl speerde Benutsere ap, iensluutend automatisk blokkierde IP-Adrässe.',
 
 # Move page
-'articleexists' => 'Dät rakt al n Siede mäd disse Noome, of uurs is die Noome dän du anroat hääst, nit toulät.
+'articleexists'           => 'Dät rakt al n Siede mäd disse Noome, of uurs is die Noome dän du anroat hääst, nit toulät.
 Fersäik jädden n uur Noome.',
+'delete_and_move'         => 'Läskje un ferschuuwe',
+'delete_and_move_text'    => '==Sielartikkel is al deer, läskje?== 
+
+Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje?',
+'delete_and_move_confirm' => 'Jee, Sielartikkel foar ju Ferschuuwenge läskje',
+'delete_and_move_reason'  => 'Läsked uum Plats tou moakjen foar Ferschuuwenge',
 
 # Namespace 8 related
 'allmessages'        => 'Aal Ättergjuchte',
@@ -165,6 +204,13 @@ Fersäik jädden n uur Noome.',
 # Spam protection
 'categoryarticlecount' => 'Tou disse Kategorie heere $1 Artikkele.',
 'category-media-count' => 'Tou disse Kategorie heere $1 Artikkele.',
+
+# Image deletion
+'deletedrevision' => 'Oolde Version $1 läsked',
+
+# Delete conflict
+'deletedwhileediting' => 'Oachtenge: Disse Siede wuude al läsked ätter dät du anfangd hiedest, hier tou beoarbaidjen!
+Wan du disse Siede spiekerst, wäd ju deeruum näi anlaid.',
 
 # action=purge
 'confirm_purge' => 'Dän Cache fon disse Siede loosmoakje?

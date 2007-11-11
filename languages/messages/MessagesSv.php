@@ -12,6 +12,7 @@
  * @author Nike
  * @author Steinninn
  * @author Lejonel
+ * @author Habj
  */
 
 $skinNames = array(
@@ -354,7 +355,6 @@ $messages = array(
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Innehåll',
 'mainpage'          => 'Huvudsida',
-'policy-url'        => 'Project:Policy',
 'portal'            => 'Deltagarportalen',
 'portal-url'        => 'Project:Deltagarportalen',
 'privacy'           => 'Integritetspolicy',
@@ -1438,7 +1438,7 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 * För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''. 
 * '''Rensa''' tömmer kommentarfältet och kryssrutorna.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
-'undeletehistory'              => 'Om du återställer sidan, kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Den nuvarande versionen kommer alltså inte att ersättas av de raderade och återskapade.',
+'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Notera att restriktioner på sidversioner förloras i samband med återställningen.',
 'undeleterevdel'               => 'Återställningen kan inte utföras om den resulterar i att den senaste versionen är delvis borttagen.
 I sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.
 Sidversioner som du inte har behörighet att se kommer inte att återställas.',

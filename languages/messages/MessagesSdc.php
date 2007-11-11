@@ -613,6 +613,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'uploadlog'       => 'File carriggaddi',
 'uploadlogpage'   => 'Rigisthru di li file carrigaddi',
 'filesource'      => 'Funtana',
+'sourcefilename'  => "Nommu d'orìgini di lu file",
+'destfilename'    => 'Nommu di lu file di disthinazioni',
 'watchthisupload' => 'Aggiungi a li abbaidaddi ippiziari',
 
 # Image list

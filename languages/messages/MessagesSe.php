@@ -1,10 +1,12 @@
 <?php
-/** Sámegiella
- * This is the Sámegiella localisation file
+/** Northern Sami (Sámegiella)
  *
- * @author Skuolfi (September 2007)
- * 
  * @addtogroup Language
+ *
+ * @author Skuolfi
+ * @author G - ג
+ * @author Siebrand
+ * @author Teak
  */
 
 $messages = array(
@@ -255,7 +257,7 @@ $messages = array(
 'perfcached'           => 'Dieđut leat gaskabottosašmuittus eaige sihkarit vástit dálá hámi.',
 'perfcachedts'         => 'Čuovvovaš data lea buktojuvvon gaskabottosašmuittus ja dat lea maŋimusta beaividuvvon $1.',
 'querypage-no-updates' => 'Dán siiddu dieđut eai beaividuvvo.',
-'viewsource'           => 'Geahčča gálddu',
+'viewsource'           => 'Geahča gálddu',
 'viewsourcefor'        => 'siidui $1',
 'protectedpagetext'    => 'Dát siidu lea suodjaluvvon rievdadusain.',
 'viewsourcetext'       => 'Sáhtat geahčat ja kopieret dán siiddu gáldokoda:',
@@ -429,6 +431,7 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'previousrevision'    => '← Boarrásut veršuvdna',
 'nextrevision'        => 'Ođđasut veršuvdna →',
 'currentrevisionlink' => 'Dálá veršuvdna',
+'cur'                 => 'dálá',
 'next'                => 'čuovvovaš',
 'last'                => 'ovddit',
 'orig'                => 'originála',
@@ -803,6 +806,8 @@ $1 | $2',
 'movethispage'            => 'Sirdde dán siiddu',
 'unusedimagestext'        => 'Fuomaš, ahte eará neahttasiiddut sáhtet čujuhit fiilii njuolgga URL-čujuhusain. Dalle fiila soaitá leat dán listtus, vaikko dat leage anus.',
 'unusedcategoriestext'    => 'Dát luohkát dihttot, muhto dat eai geavahuvvo.',
+'notargettitle'           => 'Ii mearri',
+'notargettext'            => 'It leat meroštallan mearresiiddu dahje -geavaheaddji, masa dahku laktása.',
 
 # Book sources
 'booksources'               => 'Girjegálddut',
@@ -1016,8 +1021,6 @@ $1 | $2',
 # What links here
 'whatlinkshere'       => 'Siiddut mat čujuhit deikke',
 'whatlinkshere-title' => 'Siiddut mat čujuhit $1',
-'notargettitle'       => 'Ii mearri',
-'notargettext'        => 'It leat meroštallan mearresiiddu dahje -geavaheaddji, masa dahku laktása.',
 'linklistsub'         => 'Liŋkalistu',
 'linkshere'           => 'Čuovvovaš siidduin lea liŋka siidui <strong>[[:$1]]</strong>:',
 'nolinkshere'         => 'Siidui <strong>[[:$1]]</strong> eai leat liŋkkat.',
@@ -1107,6 +1110,9 @@ $1 | $2',
 
 # Thumbnails
 'filemissing' => 'Fiila váilo',
+
+# Special:Import
+'import-revision-count' => '$1 {{PLURAL:$1|veršuvdna|veršuvnna}}',
 
 # Import log
 'import-logentry-upload-detail' => '$1 veršuvdna/veršuvnna',
@@ -1334,7 +1340,7 @@ $1 | $2',
 'watchlistedit-raw-removed'  => '{{PLURAL:$1|Okta siidu|$1 siiddu}} sihkkojuvvui:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Čájet rievdadusaid',
-'watchlisttools-edit'  => 'Ođasmahte listtu',
+'watchlisttools-view' => 'Čájet rievdadusaid',
+'watchlisttools-edit' => 'Ođasmahte listtu',
 
 );

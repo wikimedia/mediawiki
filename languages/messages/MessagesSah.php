@@ -1,11 +1,12 @@
 <?php
-/** Sakha (Саха тыла)
+/** Yakut (Саха тыла)
  *
  * @addtogroup Language
- * Translator:
+ *
  * @author HalanTul
  * @author Bert Jickty
- *
+ * @author Siebrand
+ * @author Teak
  */
 
 $messages = array(
@@ -127,7 +128,7 @@ $messages = array(
 
 'about'          => 'Бу туһунан',
 'article'        => 'Ыстатыйа',
-'newwindow'      => '(атын түннүккэ арый)',
+'newwindow'      => '(атын түннүккэ арыллар)',
 'cancel'         => 'Алҕас',
 'qbfind'         => 'Бул',
 'qbbrowse'       => 'Көр',
@@ -168,7 +169,7 @@ $messages = array(
 'protect'           => 'Уларыппат гын',
 'protect_change'    => 'Көмүскэл таһымын уларыт',
 'protectthispage'   => 'Бу сирэйи уларыппат гын',
-'unprotect'         => 'Уларытары көҥүллээ',
+'unprotect'         => 'уларытары көҥүллээ',
 'unprotectthispage' => 'Бу сирэйи уларытары көҥүллээ',
 'newpage'           => 'Саҥа сирэй',
 'talkpage'          => 'Бу сирэйи ырыт',
@@ -247,6 +248,10 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|биир сотторуллубут көннөрүү|$1 сотторуллубут көннөрүүлэр}}',
 'feedlinks'               => 'Маннык:',
 'feed-invalid'            => 'Суруттарыыга анаммыт ханаал сыыһа тииптээх.',
+'site-rss-feed'           => '$1 RSS биэрии',
+'site-atom-feed'          => '$1 Atom биэрии',
+'page-rss-feed'           => '"$1" RSS биэрии',
+'page-atom-feed'          => '"$1" Atom биэрии',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Ыстатыйа',
@@ -356,6 +361,7 @@ MySQL маннык сыыһаны төнүннэрдэ "$3: $4"',
 'userexists'                 => 'Суруйбут аатыҥ бэлиэр баар. Атын аатта тал',
 'youremail'                  => 'E-mail-ыҥ:',
 'username'                   => 'Бэлиэтэммит аатыҥ:',
+'uid'                        => 'Кыттааччы ID-та:',
 'yourrealname'               => 'Докумуонунан аатыҥ:',
 'yourlanguage'               => 'Омугуҥ тыла:',
 'yourvariant'                => 'Барыйаан',
@@ -430,7 +436,9 @@ MySQL маннык сыыһаны төнүннэрдэ "$3: $4"',
 'math_tip'        => 'Математика формулата (LaTeX)',
 'nowiki_sample'   => 'Манна форматтамматах суругу киллэриҥ',
 'nowiki_tip'      => 'Биики формаатын билинимэ',
+'image_sample'    => 'Холобур.jpg',
 'image_tip'       => 'Иһинээҕи ойуу',
+'media_sample'    => 'Холобур.ogg',
 'media_tip'       => 'Медиа билэтигэр ыйынньык',
 'sig_tip'         => 'Илии баттааһыныҥ уонна хаһан илии баттаабытыҥ',
 'hr_tip'          => 'Туора сурааһын (наһаа элбэхтик туттума)',
@@ -652,6 +660,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 Билигин туттуллар хааччахтаныылары [[Special:Ipblocklist|манна]] көрүөххэ сөп.',
 
 # Diffs
+'history-title'             => 'Көннөрүү историята "$1"',
 'difference'                => '(Торумнар бэйэ-бэйэлэриттэн уратылара)',
 'loadingrev'                => 'загрузка версии для различения',
 'lineno'                    => '$1 строка:',
@@ -838,6 +847,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'uploadedfiles'               => 'Киллэриллибит билэлэр',
 'ignorewarning'               => 'Сэрэтиилэри истибэккэ билэни киллэр.',
 'ignorewarnings'              => 'Сэрэтиини истимэ',
+'minlength1'                  => 'Билэ аата биир суругунан буолуохтаах.',
 'illegalfilename'             => '«$1» билэ аата аакка туттуллубат бэлиэлэрдээх. Уларыт уонна өссө киллэрэн көр.',
 'badfilename'                 => 'Билэ аата маннык буолла: "$1".',
 'filetype-badmime'            => 'Файлы, имеющие MIME-тип "$1" не могут быть загружены.',
@@ -871,6 +881,9 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'destfilename'                => 'Билэ бүтэһик аата',
 'watchthisupload'             => 'Билэни кэтииргэ',
 'filewasdeleted'              => 'Маннык ааттаах билэ урут баар эбит, ону соппуттар. $1 суруттарыах иннинэ өссө биирдэ толкуйдаа.',
+'upload-wasdeleted'           => "'''Сэрэтии: Эн суох оҥоһуллубут биэни саҥаттан суруйан эрэҕин.'''
+
+Бу билэни суруттарар тоҕоостооҕун ырыҥалаан көр. Суох оҥорууну (сотторууну) регистрациялыыр файл манна баар:",
 'filename-bad-prefix'         => 'Киллэрээри гынар билэҥ аата <strong>"$1"</strong> фотоаппарат аптамаатынан ааттыыр аатыгар майгынныыр. Бука диэн атыннык, арыый сиһилии ааттаан киллэрэриҥ буоллар.',
 'filename-prefix-blacklist'   => ' #<!-- Бу строканы оннунан хааллар --> <pre>
 # Синтаксииһа маннык: 
@@ -919,6 +932,7 @@ PICT # misc.
 'imgdesc'                   => 'быһаарыы',
 'imgfile'                   => 'билэ',
 'filehist'                  => 'Билэ устуоруйата',
+'filehist-help'             => 'Ыйын-күнүн/кэмин баттаа, оччотооҕуга баар буолбут.',
 'filehist-deleteall'        => 'барытын сот',
 'filehist-deleteone'        => 'маны сот',
 'filehist-revert'           => 'төттөрү',
@@ -953,6 +967,7 @@ PICT # misc.
 # File deletion
 'filedelete'            => 'Сот: $1',
 'filedelete-legend'     => 'Билэни сот',
+'filedelete-intro'      => "Маны сотон эрэҕин '''[[Media:$1|$1]]'''.",
 'filedelete-comment'    => 'Быһаарыыта:',
 'filedelete-submit'     => 'Сотуу',
 'filedelete-success'    => "'''$1''' сотулунна.",
@@ -961,7 +976,9 @@ PICT # misc.
 'filedelete-iscurrent'  => 'Эн билэ саҥа торумун сото сатыыгын. Бастаан эргэ торумун көр.',
 
 # MIME search
-'download' => 'хачайдаан ылыы',
+'mimesearch' => 'MIME көрдөөһүн',
+'mimetype'   => 'MIME көрүҥэ:',
+'download'   => 'хачайдаан ылыы',
 
 # Unwatched pages
 'unwatchedpages' => 'Ким да кэтээбэт сирэйдэрэ',
@@ -1057,6 +1074,8 @@ PICT # misc.
 'movethispage'            => 'Бу сирэй аатын уларыт',
 'unusedimagestext'        => '<p>Атын веб-сирдэр бу ойууга URL көмөтүнэн сигэниэхтэрин эмиэ сөп, онон ойуу бу испииһэккэ киирбитин да үрдүнэн элбэхтик туһаныллар буолуон сөп.</p>',
 'unusedcategoriestext'    => 'Манна көрдөрүллүбүт категория сирэйдэрэ ыстатыйата эбэтэр атын категорията суохтар.',
+'notargettitle'           => 'Сыала суох',
+'notargettext'            => 'Көрөөрү гыммыт сирэйгин уонна кыттааччыгын эппэтиҥ.',
 
 # Book sources
 'booksources'               => 'Кинигэлэр источниктара',
@@ -1356,8 +1375,8 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Манна сигэнэллэр',
-'notargettitle'       => 'Сыала суох',
-'notargettext'        => 'Көрөөрү гыммыт сирэйгин уонна кыттааччыгын эппэтиҥ.',
+'whatlinkshere-title' => 'Сирэй манна сигэнэр $1',
+'whatlinkshere-page'  => 'Сирэй:',
 'linklistsub'         => '(Ыйынньыктар испииһэктэрэ)',
 'linkshere'           => "'''[[:$1]]''' билэҕэ манна көрдөрүллүбүт сирэйдэр сигэнэллэр:",
 'nolinkshere'         => "'''[[:$1]]''' сирэйгэ сигэнэр сирэйдэр суохтар.",
@@ -1442,9 +1461,9 @@ $1',
 'range_block_disabled'        => 'Админнар диапазоннары боболлоро көҥүллэммэт.',
 'ipb_expiry_invalid'          => 'Сатаммат кэми туруордуҥ.',
 'ipb_already_blocked'         => '"$1" номнуо бобуллубут',
+'ipb_cant_unblock'            => 'Алҕас: $1 нүөмэрдээх бобуу булуллубата. Баҕар кыттааччы хааччаҕын устубуттара буолуо.',
 'ip_range_invalid'            => 'IP-лар диапазоннара сатаммат.',
 'proxyblocker'                => 'Прокси бобуллуута',
-'ipb_cant_unblock'            => 'Алҕас: $1 нүөмэрдээх бобуу булуллубата. Баҕар кыттааччы хааччаҕын устубуттара буолуо.',
 'proxyblockreason'            => 'Эн IP-ҥ аһаҕас прокси эбит, онон бобулунна. Интернет-провайдергын эбэтэр техническэй сулууспаны кытта сибээстэһэн кутталлаах суол баарын биллэр.',
 'proxyblocksuccess'           => 'Сатанна.',
 'sorbsreason'                 => 'Эн IP-ҥ DNSBL-га аһаҕас прокси быһыытынан сылдьар.',
@@ -1554,6 +1573,7 @@ $1',
 'allmessagescurrent'        => 'Билиҥҥи тиэкис',
 'allmessagestext'           => 'Манна систиэмэ биллэриилэрин испииһэгэ көстөр.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' туттуллар кыаҕа суох, тоҕо диэтэххэ '''\$wgUseDatabaseMessages''' араарыллыбыт.",
+'allmessagesfilter'         => 'Сурук аатын фильтра:',
 'allmessagesmodified'       => 'Уларыйбыттары эрэ көрдөр',
 
 # Thumbnails
@@ -1621,9 +1641,12 @@ $1',
 'tooltip-ca-watch'                => 'Кэтээн көрүү испииһэгэр киллэр',
 'tooltip-ca-unwatch'              => 'Бу сирэйи кэтээн көрүү испииһэгиттэн сот',
 'tooltip-search'                  => 'Тылы көрдөө',
+'tooltip-search-go'               => 'Маннык толору ааттаах сирэйи (сирэйгэ) көрдүүргэ',
+'tooltip-search-fulltext'         => 'Сирэйдэргэ бу тиэкиһи көрдөө',
 'tooltip-p-logo'                  => 'Сүрүн сирэй',
 'tooltip-n-mainpage'              => 'Сүрүн сирэйгэ барыы',
 'tooltip-n-portal'                => 'Бу бырайыак туһунан, манна тугу гыныаххытын сөбүй уонна туох ханна баара',
+'tooltip-n-currentevents'         => 'Найдите вводную информацию на текущих событиях',
 'tooltip-n-recentchanges'         => 'Бу биикигэ буолбут бүтэһик уларытыылар.',
 'tooltip-n-randompage'            => 'Үлүбээй сирэйи көрдөр',
 'tooltip-n-help'                  => '«{{SITENAME}}» справочнига.',
@@ -2164,8 +2187,8 @@ $1',
 'watchlistedit-raw-removed'    => 'Испииһэктэн $1 пуун көҕүрээтэ:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Атыҥҥа сабыдыаллаах уларытыылар',
-'watchlisttools-edit'  => 'Кэтэбил испииһэгин көрүү/уларытыы',
-'watchlisttools-raw'   => '"Сиикэй" испииһэги уларытыы',
+'watchlisttools-view' => 'Атыҥҥа сабыдыаллаах уларытыылар',
+'watchlisttools-edit' => 'Кэтэбил испииһэгин көрүү/уларытыы',
+'watchlisttools-raw'  => '"Сиикэй" испииһэги уларытыы',
 
 );
