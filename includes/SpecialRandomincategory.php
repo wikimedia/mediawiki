@@ -62,7 +62,7 @@ class RandomPageInCategory {
 			return false;
 		}
 		$this->category = $category->getDBKey();
-		return false;
+		return true;
 	}
 
 	/**
