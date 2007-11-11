@@ -53,7 +53,7 @@ $fallback8bitEncoding = "windows-1251";
 $messages = array(
 # User preference toggles
 'tog-hideminor'      => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннер чажырар',
-'tog-showtoolbar'    => 'Өскертир херекселтер көргүзер (JavaScript)',
+'tog-showtoolbar'    => 'Өскертир херекселдер көргүзер (JavaScript)',
 'tog-editondblclick' => 'Арынны өскертирде ийи катап базар (JavaScript)',
 
 'underline-always' => 'Кезээде',
@@ -124,6 +124,7 @@ $messages = array(
 'searcharticle'     => 'Чоруур',
 'history'           => 'Арынның Төөгүзү',
 'history_short'     => 'Төөгү',
+'info_short'        => 'Медее',
 'printableversion'  => 'Саазынга үндүрерин көөр',
 'print'             => 'Саазынга үндүрер',
 'edit'              => 'Өскертир',
@@ -136,6 +137,7 @@ $messages = array(
 'unprotectthispage' => 'Бо арынның камгалалын ап каар',
 'newpage'           => 'Чаа Арын',
 'talkpage'          => 'Бо арын дугайында чугаалажыр',
+'talkpagelinktext'  => 'Чугаалажыр',
 'specialpage'       => 'Тускай Арын',
 'personaltools'     => 'Херекселдер',
 'articlepage'       => 'Допчу арынны көргүзер',
@@ -148,15 +150,20 @@ $messages = array(
 'viewtalkpage'      => 'Чугаалажыры көргүзер',
 'otherlanguages'    => 'Өске дылдарга',
 'lastmodifiedat'    => 'Бо арын сөөлгү каттап $1 өскерилген.', # $1 date, $2 time
+'jumptonavigation'  => 'навигация',
+'jumptosearch'      => 'дилээр',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} дугайында',
 'aboutpage'         => 'Project:Дугайында',
 'currentevents'     => 'Амгы үе болуушкуннер',
 'currentevents-url' => 'Амгы үе болуушкуннер',
+'edithelp'          => 'Өскертир дуза',
 'edithelppage'      => 'Дуза:Өскертир',
 'helppage'          => 'Дуза:Допчузу',
 'mainpage'          => 'Кол Арын',
+'portal'            => 'Ниитилелдиң порталы',
+'portal-url'        => 'Project:Ниитилелдиң порталы',
 'sitesupport'       => 'Белектер',
 
 'retrievedfrom'       => '"$1" арынында парлаттынган',
@@ -167,6 +174,7 @@ $messages = array(
 'toc'                 => 'Допчу',
 'showtoc'             => 'көргүзер',
 'hidetoc'             => 'чажырар',
+'viewdeleted'         => '{{grammar:accusative|$1}} көөр?',
 'restorelink'         => '$1 балаттынган өскерилгелер',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
@@ -182,7 +190,7 @@ $messages = array(
 'nstab-category'  => 'Бөлүк',
 
 # Main script and global functions
-'nosuchaction'      => 'Ындыг чорук чок',
+'nosuchaction'      => 'Ындыг ажыл чок',
 'nosuchspecialpage' => 'Ындыг арын чок',
 
 # General errors
@@ -213,11 +221,16 @@ $1',
 'loginlanguagelabel' => 'Дыл: $1',
 
 # Edit page toolbar
-'bold_sample'   => 'Карартыр',
-'italic_sample' => 'Ийлендирер',
-'nowiki_sample' => 'Форматтаваан текстини бээр салыр',
+'bold_sample'    => 'Карартыр',
+'italic_sample'  => 'Ийлендирер',
+'link_sample'    => 'Холбаа ады',
+'link_tip'       => 'Иштики холбаа',
+'extlink_sample' => 'http://www.example.com холбаа ады',
+'extlink_tip'    => 'Даштыкы холбаа (http:// сактып алыр)',
+'nowiki_sample'  => 'Форматтаваан текстини бээр салыр',
 
 # Edit pages
+'minoredit'          => 'Бо өскерлири биче-дир',
 'watchthis'          => 'Бо арынны көөр',
 'showdiff'           => 'Өскерлирилер көргүзер',
 'nosuchsectiontitle' => 'Ындыг бөлгүм чок',
@@ -232,6 +245,8 @@ $1',
 'yourdiff'           => 'Ылгалдар',
 
 # History pages
+'revhistory'          => 'Өскерлири төөгүзү',
+'nohistory'           => 'Бо арынның өскерлири төөгүзү чок.',
 'currentrev'          => 'Амгы үе өскерлири',
 'currentrevisionlink' => 'Амгы үе өскерлири',
 'next'                => 'соонда',
@@ -242,19 +257,30 @@ $1',
 # Diffs
 'compareselectedversions' => 'Шилип алган хевирлери деңнээр',
 
+# Search results
+'powersearch' => 'Дилээр',
+
 # Preferences page
 'preferences'       => 'Дээре деп санаарылар',
+'changepassword'    => 'Чажыт сөстү өскертир',
 'prefs-personal'    => 'Ажыглакчының медээлери',
+'prefs-rc'          => 'Дээм чаагы өскерлирилер',
 'saveprefs'         => 'Шыгжаар',
 'oldpassword'       => 'Эгри чажыт сөс:',
 'newpassword'       => 'Чаа чажыт сөс:',
+'textboxsize'       => 'Өскертир',
 'searchresultshead' => 'Дилээр',
 'files'             => 'Файлдар',
 
 # Recent changes
-'recentchanges' => 'Өскерлиишкиннер',
-'hide'          => 'Чажырар',
-'show'          => 'көргүзер',
+'recentchanges'   => 'Өскерлиишкиннер',
+'rcshowhideminor' => 'Биче өскерлирилерни $1',
+'rcshowhidebots'  => 'Боц $1',
+'rcshowhideliu'   => 'Кирер ажыглакчыларны $1',
+'rcshowhideanons' => 'Ат чок ажыглакчыларны $1',
+'rcshowhidemine'  => 'Мээң өскерлиринеримни $1',
+'hide'            => 'Чажырар',
+'show'            => 'көргүзер',
 
 # Upload
 'upload'     => 'Файлду киирер',
@@ -263,14 +289,36 @@ $1',
 'filesource' => 'Эгези:',
 
 # Image list
-'ilsubmit'         => 'Дилээр',
-'filehist-current' => 'амгы үе',
+'ilsubmit'              => 'Дилээр',
+'imgfile'               => 'файл',
+'filehist'              => 'Файлдың төөгүзү',
+'filehist-current'      => 'амгы үе',
+'filehist-datetime'     => 'Үйе/Шак',
+'filehist-user'         => 'Ажыглакчы',
+'imagelinks'            => 'Холбаалар',
+'imagelist_name'        => 'Ат',
+'imagelist_user'        => 'Ажыглакчы',
+'imagelist_size'        => 'Хемчээл',
+'imagelist_description' => 'Тодарадып бижээни',
+
+# File deletion
+'filedelete-submit' => 'Ап каар',
+
+'brokenredirects-edit'   => '(өскертир)',
+'brokenredirects-delete' => '(ап каар)',
 
 # Miscellaneous special pages
-'randompage'   => 'Даап арын',
-'specialpages' => 'Тускай арыннар',
-'spheading'    => 'Шупту ажыглакчыниң тускай арыннар',
-'newpages'     => 'Чаа Арыннар',
+'allpages'          => 'Шупту арыннар',
+'randompage'        => 'Даап арын',
+'shortpages'        => 'Чолдак арыннар',
+'longpages'         => 'Узун арыннар',
+'specialpages'      => 'Тускай арыннар',
+'spheading'         => 'Шупту ажыглакчыниң тускай арыннар',
+'newpages'          => 'Чаа Арыннар',
+'newpages-username' => 'Ажыглакчының ады:',
+
+# Book sources
+'booksources-go' => 'Чоруур',
 
 # Special:Log
 'specialloguserlabel' => 'Ажыглакчы:',

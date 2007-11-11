@@ -1,12 +1,12 @@
 <?php
-/**
-  * Seri (Cmique Itom)
-  *
-  * @addtogroup Language
-  *
-  * @author SeriCtam
-  * @author Ccaxjoj Iteja Z Iti Poop
-  */
+/** Cmique Itom (Cmique Itom)
+ *
+ * @addtogroup Language
+ *
+ * @author SeriCtam
+ * @author Ccaxjoj Iteja Z Iti Poop
+ * @author Teak
+ */
 
 $messages = array(
 # User preference toggles
@@ -161,7 +161,7 @@ $messages = array(
 'protect'           => 'Protectom',
 'protect_change'    => 'Proteccion quiix',
 'protectthispage'   => 'Protectom jan páhina',
-'unprotect'         => 'Unprotectom',
+'unprotect'         => 'unprotectom',
 'unprotectthispage' => 'Unprotectom jan páhina',
 'newpage'           => 'Páhina quiih',
 'talkpage'          => 'Czaxö jan páhina',
