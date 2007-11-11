@@ -25,6 +25,7 @@ $defaultUserOptionOverrides = array(
 	# Underlines seriously harm legibility. Force off:
 	'underline' => 0,
 );
+
 /**
  * A list of date format preference keys which can be selected in user 
  * preferences. New preference keys can be added, provided they are supported
@@ -1134,7 +1135,7 @@ $1 ساعة.',
 'newpageletter'                     => 'ج',
 'boteditletter'                     => 'ب',
 'sectionlink'                       => '←',
-'number_of_watching_users_pageview' => '[$1 مستخدم مراقب]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|مستخدم مراقب|مستخدم مراقب}}]',
 'rc_categories'                     => 'حصر لتصنيفات (مفرقة برمز "|")',
 'rc_categories_any'                 => 'أي',
 'newsectionsummary'                 => '/* $1 */ قسم جديد',

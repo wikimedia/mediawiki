@@ -1,10 +1,9 @@
 <?php
-/** Mapudungun
- * This is the Mapudungun localisation file
+/** Araucanian (Mapudungun)
  *
- * @author Lin linao (September 2007)
- * 
  * @addtogroup Language
+ *
+ * @author Lin linao
  */
 
 $fallback = 'es';
@@ -21,6 +20,10 @@ $messages = array(
 'thursday'      => 'Kuefe',
 'friday'        => 'Fierne',
 'saturday'      => 'Safado',
+'sun'           => 'dom',
+'mon'           => 'lun',
+'tue'           => 'mar',
+'wed'           => 'mie',
 'thu'           => 'kue',
 'fri'           => 'fie',
 'sat'           => 'saf',
@@ -107,7 +110,8 @@ $messages = array(
 
 # Login and logout pages
 'yourname'           => 'Tami lludüchi üy',
-'yourpassword'       => 'Tami dungu konael',
+'yourpassword'       => 'Tami konün dungu',
+'login'              => 'Konün',
 'logout'             => 'Tripan',
 'userlogout'         => 'Tripan',
 'notloggedin'        => 'Petu konlaymi.',
@@ -128,6 +132,9 @@ $messages = array(
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 $2 mew', # user at time
+
+# Revision deletion
+'rev-delundel' => 'pengelün/ellkan',
 
 # Diffs
 'lineno'   => 'Wirin $1:',
@@ -237,6 +244,9 @@ $messages = array(
 'imagelistall'     => 'kom',
 'namespacesall'    => 'kom',
 'monthsall'        => '(kom)',
+
+# action=purge
+'confirm_purge_button' => 'Feley may',
 
 # Multipage image navigation
 'imgmultigo' => 'Amun!',

@@ -13,6 +13,7 @@
  * @author Orgullomoore
  * @author Mahadeva
  * @author Alpertron
+ * @author Better
  */
 
 $skinNames = array(
@@ -823,6 +824,7 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios en enlazadas',
+'recentchangeslinked-title'    => 'Cambios relacionados con $1',
 'recentchangeslinked-noresult' => 'No hubo cambios en las páginas enlazadas durante el periodo indicado.',
 'recentchangeslinked-summary'  => "Esta página especial lista los últimos cambios en las páginas enlazadas. Las páginas en su lista de seguimiento están en '''negrita'''.",
 
@@ -906,6 +908,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 
 'license'            => 'Licencia',
 'nolicense'          => 'Ninguna seleccionada',
+'license-nopreview'  => '(Previsualización no disponible)',
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivo en su ordenador)',
 
@@ -1616,6 +1619,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'tooltip-compareselectedversions' => 'Ver las diferencias entre las dos versiones seleccionadas de esta página.',
 'tooltip-watch'                   => 'Añadir esta página a su lista de seguimiento',
 'tooltip-recreate'                => 'Recupera una página que ha sido borrada',
+'tooltip-upload'                  => 'Empieza la subida',
 
 # Stylesheets
 'common.css'   => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',

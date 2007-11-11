@@ -210,7 +210,7 @@ $messages = array(
 'tog-editondblclick'          => 'Editovat dvojklikem (JavaScript)',
 'tog-editsection'             => 'Zapnout možnost editace části článku pomocí odkazu [editovat]',
 'tog-editsectiononrightclick' => 'Zapnout možnost editace části článku pomocí kliknutí pravým tlačítkem na nadpisy v článku (JavaScript)',
-'tog-showtoc'                 => 'Ukázat obsah článku (pokud má článek více než tři nadpisy)',
+'tog-showtoc'                 => 'Ukázat tabulku obsahu (pokud má stránka více než tři nadpisy)',
 'tog-rememberpassword'        => 'Pamatovat si mé heslo mezi návštěvami',
 'tog-editwidth'               => 'Roztáhnout editační okno na celou šířku',
 'tog-watchcreations'          => 'Přidávat mnou založené stránky ke sledovaným',
@@ -362,7 +362,7 @@ $messages = array(
 'specialpage'       => 'Speciální stránka',
 'personaltools'     => 'Osobní nástroje',
 'postcomment'       => 'Přidat komentář',
-'articlepage'       => 'Prohlédnout si článek',
+'articlepage'       => 'Prohlédnout si stránku',
 'talk'              => 'Diskuse',
 'views'             => 'Zobrazení',
 'toolbox'           => 'Nástroje',
@@ -385,7 +385,7 @@ $messages = array(
 'jumptosearch'      => 'hledání',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'O&nbsp;{{grammar:6sg|{{SITENAME}}}}',
+'aboutsite'         => 'O {{grammar:6sg|{{SITENAME}}}}',
 'aboutpage'         => 'Project:{{SITENAME}}',
 'bugreports'        => 'Hlášení chyb',
 'bugreportspage'    => 'Project:Chyby',
@@ -441,7 +441,7 @@ $messages = array(
 'page-atom-feed'          => 'Atom kanál stránky „$1“',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'      => 'Článek',
+'nstab-main'      => 'Stránka',
 'nstab-user'      => 'Uživatelova stránka',
 'nstab-media'     => 'Soubor',
 'nstab-special'   => 'Speciální',
@@ -498,7 +498,7 @@ V jiném případě jste možná narazil(a) na chybu v programu. Oznamte to pros
 'fileexistserror'      => 'Nelze uložit do souboru „$1“: soubor existuje',
 'unexpected'           => 'Neočekávaná hodnota: "$1"="$2".',
 'formerror'            => 'Chyba: nebylo možné odeslat formulář',
-'badarticleerror'      => 'Tento úkon nelze použít na tento článek.',
+'badarticleerror'      => 'Tento úkon nelze použít na tuto stránku.',
 'cannotdelete'         => 'Nebylo možné smazat zvolenou stránku ani soubor. (Možná už byla smazána někým jiným.)',
 'badtitle'             => 'Neplatný název',
 'badtitletext'         => 'Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
@@ -638,7 +638,7 @@ Heslo může být zasláno jen jednou za $1 {{plural:$1|hodinu|hodiny|hodin}}.',
 'summary'                   => '<a href="{{LOCALURLE:Project:Shrnutí editace}}" class="internal" title="Stručně popište změny, které jste zde učinili">Shrnutí editace</a>',
 'subject'                   => 'Předmět/nadpis',
 'minoredit'                 => 'Tato změna je malá editace.',
-'watchthis'                 => 'Sledovat tento článek',
+'watchthis'                 => 'Sledovat tuto stránku',
 'savearticle'               => 'Uložit změny',
 'preview'                   => 'Náhled',
 'showpreview'               => 'Ukázat náhled',
@@ -1207,7 +1207,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'statistics'             => 'Statistika',
 'sitestats'              => 'Statistika {{grammar:2sg|{{SITENAME}}}}',
 'userstats'              => 'O uživatelích',
-'sitestatstext'          => "V databázi je celkem '''$1''' {{plural:$1|stránka|stránky|stránek}}. Toto číslo zahrnuje diskusní stránky, stránky o {{grammar:6sg|{{SITENAME}}}}, pahýly, přesměrování a další, které nejsou články v pravém slova smyslu. Kromě nich zbývá '''$2''' pravděpodobně {{plural:$2|skutečný článek|skutečné články|skutečných článků}}.
+'sitestatstext'          => "V databázi je celkem '''$1''' {{plural:$1|stránka|stránky|stránek}}. Toto číslo zahrnuje diskusní stránky, stránky o {{grammar:6sg|{{SITENAME}}}}, pahýly, přesměrování a další, které pravděpodobně nelze hodnotit jako obsahové stránky. Kromě nich zbývá '''$2''' pravděpodobně {{plural:$2|skutečná obsahová stránka|skutečné obsahové stránky|skutečných obsahových stránek}}.
 
 {{plural:$8|Byl načten|Byly načteny|Bylo načteno}} '''$8''' {{plural:$8|obrázek|obrázky|obrázků}}.
 
@@ -1365,7 +1365,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'watchthispage'        => 'Sledovat tuto stránku',
 'unwatch'              => 'Nesledovat',
 'unwatchthispage'      => 'Nesledovat tuto stránku',
-'notanarticle'         => 'Toto není článek',
+'notanarticle'         => 'Toto není stránka',
 'watchnochange'        => 'Žádná ze sledovaných položek nebyla editována v době, která je zobrazena.',
 'watchlist-details'    => 'Na svém seznamu sledovaných stránek máte $1 {{plural:$1|stránku|stránky|stránek}}',
 'wlheader-enotif'      => '* Upozorňování e-mailem je zapnuto.',
@@ -1444,7 +1444,7 @@ Rady a kontakt:
 'rollbacklink'                => 'vrácení zpět',
 'rollbackfailed'              => 'Nešlo vrátit zpět',
 'cantrollback'                => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem tohoto článku.',
-'alreadyrolled'               => 'Nelze vrátit zpět poslední editaci [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskuse]]), protože někdo jiný již článek editoval nebo vrátil tuto změnu zpět. Poslední editace byla od [[User:$3|$3]] ([[User talk:$3|Diskuse]]).',
+'alreadyrolled'               => 'Nelze vrátit zpět poslední editaci [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskuse]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět. Poslední editace byla od [[User:$3|$3]] ([[User talk:$3|Diskuse]]).',
 'editcomment'                 => 'Shrnutí editace bylo: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.',
 'rollback-success'            => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
@@ -1504,6 +1504,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'undeletehistorynoadmin'       => 'Tato stránka byla smazána. Důvod smazání je uveden níže, spolu s informacemi o uživatelích, kteří tuto stránku před smazáním editovali. Samotný text stránky je dostupný pouze správcům.',
 'undelete-revision'            => 'Smazaná verze článku $1 (z $2) - $3:',
 'undeleterevision-missing'     => 'Nesprávná nebo chybějící revize. Možná máte špatný odkaz, nebo revize byla obnovena či odstraněna z archivu.',
+'undelete-nodiff'              => 'Nebyla nalezena žádná předchozí verze.',
 'undeletebtn'                  => 'Obnovit',
 'undeletecomment'              => 'Komentář:',
 'undeletedarticle'             => 'obnovuje „[[$1]]“',
@@ -1809,7 +1810,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'tooltip-t-specialpages'          => 'Seznam všech speciálních stránek',
 'tooltip-t-print'                 => 'Tato stránka v podobě vhodné k tisku',
 'tooltip-t-permalink'             => 'Trvalý odkaz na tuto verzi této stránky',
-'tooltip-ca-nstab-main'           => 'Zobrazit článek',
+'tooltip-ca-nstab-main'           => 'Zobrazit obsahovou stránku',
 'tooltip-ca-nstab-user'           => 'Zobrazit uživatelovu stránku',
 'tooltip-ca-nstab-media'          => 'Zobrazit stránku souboru',
 'tooltip-ca-nstab-special'        => 'Toto je speciální stránka, kterou nelze editovat.',
@@ -1857,7 +1858,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'spamprotectiontext'     => 'Stránka, kterou jste se pokusil(a) uložit, byla zablokována protispamovým filtrem. Pravděpodobnou příčinou je odkaz na externí stránky. Může vás zajímat následující regulární výraz, který označuje v současné době blokované stránky:',
 'spamprotectionmatch'    => 'Následující text spustil náš filtr proti spamu: $1',
 'subcategorycount'       => 'Tato kategorie obsahuje $1 {{plural:$1|podkategorii|podkategorie|podkategorií}}.',
-'categoryarticlecount'   => 'Tato kategorie obsahuje $1 {{plural:$1|článek|články|článků}}.',
+'categoryarticlecount'   => 'Tato kategorie obsahuje $1 {{plural:$1|stránku|stránky|stránek}}.',
 'category-media-count'   => 'Tato kategorie obsahuje {{plural:$1|jeden soubor|$1 soubory|$1 souborů}}.',
 'listingcontinuesabbrev' => 'pokrač.',
 'spambot_username'       => 'Systémový čistič spamu',
@@ -1866,10 +1867,10 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 
 # Info page
 'infosubtitle'   => 'Informace o stránce',
-'numedits'       => 'Počet editací (článek): $1',
+'numedits'       => 'Počet editací (obsahová stránka): $1',
 'numtalkedits'   => 'Počet editací (diskusní stránka): $1',
 'numwatchers'    => 'Počet sledujících uživatelů: $1',
-'numauthors'     => 'Počet různých autorů (článek): $1',
+'numauthors'     => 'Počet různých autorů (obsahová stránka): $1',
 'numtalkauthors' => 'Počet různých autorů (diskusní stránka): $1',
 
 # Math options
@@ -1882,7 +1883,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Označit jako prověřené',
-'markaspatrolledtext'                 => 'Označit tento článek jako prověřený',
+'markaspatrolledtext'                 => 'Označit tuto stránku jako prověřenou',
 'markedaspatrolled'                   => 'Označeno jako prověřené',
 'markedaspatrolledtext'               => 'Vybraná verze byla označena jako prověřená.',
 'rcpatroldisabled'                    => 'Hlídka posledních změn vypnuta',
@@ -1891,6 +1892,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'markedaspatrollederrortext'          => 'Musíte zvolit revizi, která má být označena jako prověřená.',
 'markedaspatrollederror-noautopatrol' => 'Nemáte dovoleno označovat vlastní editace jako prověřené.',
 'nppatroldisabled'                    => 'Hlídka nových stránek vypnuta',
+'nppatroldisabledtext'                => 'Hlídka nových stránek je momentálně vypnuta.',
 
 # Patrol log
 'patrol-log-page' => 'Kniha prověřených editací',

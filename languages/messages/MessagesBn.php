@@ -1,8 +1,14 @@
 <?php
 /** Bengali (বাংলা)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Bellayet
+ * @author Zaheen
+ * @author G - ג
+ * @author Siebrand
+ * @author Nike
+ */
 
 $namespaceNames = array(
 	NS_SPECIAL        => 'বিশেষ',
@@ -615,7 +621,7 @@ $1',
 'recentchanges'                     => 'সাম্প্রতিক পরিবর্তনসমূহ',
 'rcnote'                            => 'বিগত <strong>$2</strong> দিনে সংঘটিত <strong>$1</strong>টি পরিবর্তন নীচে দেখানো হল (যেখানে বর্তমান সময় ও তারিখ $3)।',
 'rcnotefrom'                        => '<b>$2</b>-এর পরে সংঘটিত পরিবর্তনগুলো নিচে দেখানো হল (<b>$1</b>টি)।',
-'rclistfrom'                        => '* $1-এর পর সংঘটিত নতুন পরিবর্তনগুলো দেখাও।<br />',
+'rclistfrom'                        => '$1-এর পর সংঘটিত নতুন পরিবর্তনগুলো দেখাও।',
 'rcshowhideminor'                   => 'অনুল্লেখ্য পরিবর্তনগুলো $1',
 'rcshowhidebots'                    => 'বটগুলো $1',
 'rcshowhideliu'                     => 'প্রবেশ করেছেন এমন ব্যবহারকারীদের $1',
@@ -1151,8 +1157,8 @@ $1',
 'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 শিরোনাম|$1 শিরোনামসমূহ}} মুছে ফেলা হয়েছে:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'সম্পর্কিত পরিবর্তনসমূহ দেখুন',
-'watchlisttools-edit'  => 'নজর তালিকা দেখুন এবং সম্পাদনা করুন',
-'watchlisttools-raw'   => 'অশোধিত নজর তালিকা সম্পাদনা করো',
+'watchlisttools-view' => 'সম্পর্কিত পরিবর্তনসমূহ দেখুন',
+'watchlisttools-edit' => 'নজর তালিকা দেখুন এবং সম্পাদনা করুন',
+'watchlisttools-raw'  => 'অশোধিত নজর তালিকা সম্পাদনা করো',
 
 );

@@ -1,12 +1,14 @@
 <?php
-/** Bikol (Bikol Central)
+/** Bikol Central (Bikol Central)
  *
  * @addtogroup Language
- * Translators:
+ *
  * @author Filipinayzd
  * @author Steven*fung
  * @author Siebrand Mazeland
  * @author Niklas Laxström
+ * @author Siebrand
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -405,6 +407,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'prefs-help-realname'        => 'Opsyonal an totoong pangaran asin kun itatao mo ini, gagamiton ini yangarig an mga sinurat mo maatribuir saimo.',
 'loginerror'                 => 'Salâ an paglaog',
 'prefs-help-email'           => "Opsyonal an ''e''-surat, pero pwede kan masosog kan iba sa paagi kan saimong páhina o páhina nin olay na dai kinakaipuhan na ipabisto an identidad mo.",
+'prefs-help-email-required'  => "Kaipuhan an ''e''-surat.",
 'nocookiesnew'               => "Nagibo na an ''account'' kan parágamit, alagad dai ka pa nakalaog. Naggagamit nin ''cookies'' an {{SITENAME}} para magpalaog sa mga parágamit. Nakapondo an ''cookies'' mo. Paandaron tabî ini, dangan, maglaog gamit an bâgo mong pangaran asin sekretong panlaog.",
 'nocookieslogin'             => 'Naggagamit nin mga cookies an {{SITENAME}} para magpalaog nin mga paragamit. Nakapondo an mga cookies mo. Paandaron tabi ini asin probaran giraray.',
 'noname'                     => 'Dai ka pa nagkaag nin pwedeng gamiton na pangaran.',
@@ -1112,6 +1115,8 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'movethispage'            => 'Ibalyó ining páhina',
 'unusedimagestext'        => "<p>Giromdomon tabî na an mga ibang ''site'' pwedeng nakatakod sa ladawan na may direktong URL, pues pwede ser na nakalista pa digdi a pesar na ini piggagamit pa.</p>",
 'unusedcategoriestext'    => 'Igwa ining mga pahinang kategoria maski mayo man na iba pang pahina o kategoria an naggagamit kaiyan.',
+'notargettitle'           => 'Mayong target',
+'notargettext'            => 'Dai ka pa nagpili nin pahina o paragamit na muya mong gibohon an accion na ini.',
 
 # Book sources
 'booksources'               => 'Ginikanang libro',
@@ -1409,8 +1414,6 @@ $1",
 # What links here
 'whatlinkshere'       => 'An nakatakod digdi',
 'whatlinkshere-title' => 'Mga pahinang nakatakod sa $1',
-'notargettitle'       => 'Mayong target',
-'notargettext'        => 'Dai ka pa nagpili nin pahina o paragamit na muya mong gibohon an accion na ini.',
 'linklistsub'         => '(Lista kan mga takod)',
 'linkshere'           => "An mga minasunod na pahina nakatakod sa '''[[:$1]]''':",
 'nolinkshere'         => "Mayong pahinang nakatakod sa '''[[:$1]]'''.",
@@ -1492,9 +1495,9 @@ IP dai nakalista digdi. Hilingon an [[Special:Ipblocklist|IP lista nin mga binag
 'range_block_disabled'        => 'Pigpopondo an abilidad kan sysop na maggibo nin bagat na hilera.',
 'ipb_expiry_invalid'          => 'Dai pwede ini bilang oras kan pagpasó.',
 'ipb_already_blocked'         => 'Dating binagat na si "$1"',
+'ipb_cant_unblock'            => 'Error: Dai nahanap an ID nin binagat na $1. Puede ser na dati nang binawi an pagbagat kaini.',
 'ip_range_invalid'            => 'Dai pwede ining serye nin IP.',
 'proxyblocker'                => 'Parabagát na karibay',
-'ipb_cant_unblock'            => 'Error: Dai nahanap an ID nin binagat na $1. Puede ser na dati nang binawi an pagbagat kaini.',
 'proxyblockreason'            => 'Binagat an saimong direccion nin IP ta ini sarong bukas na proxy. Apodon tabi an saimong Internet service provider o tech support asin ipaaram sainda ining seriosong problema nin seguridad.',
 'proxyblocksuccess'           => 'Tapos.',
 'sorbsreason'                 => 'An saimong direccion in IP nakalista na bukas na proxy sa DNSBL na piggagamit kaining sitio.',
@@ -1945,12 +1948,6 @@ $1',
 'autoredircomment' => 'Piglilikay sa [[$1]]',
 'autosumm-new'     => 'Bâgong páhina: $1',
 
-# Size units
-'size-bytes'     => '$1 B',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
-
 # Live preview
 'livepreview-loading' => 'Pigkakarga…',
 'livepreview-ready'   => 'Pigkakarga… Magpreparar!',
@@ -1981,8 +1978,8 @@ $1',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 an titulong|$1 mga titulong}} hinalî:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Hilingón an mga dapít na pagbabâgo',
-'watchlisttools-edit'  => 'Hilingón asin hirahón an pigbabantayan',
-'watchlisttools-raw'   => 'Hirahón an bâgong pigbabantayan',
+'watchlisttools-view' => 'Hilingón an mga dapít na pagbabâgo',
+'watchlisttools-edit' => 'Hilingón asin hirahón an pigbabantayan',
+'watchlisttools-raw'  => 'Hirahón an bâgong pigbabantayan',
 
 );
