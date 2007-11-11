@@ -26,7 +26,10 @@ function wfSpecialRandomincategory( $par = null ) {
 	}
 
 	$rnd = new RandomPageInCategory();
-	$rnd->setCategory( $par );
+	if( !$rnd->setCategory( $par ) ) {
+		$wgOut->addHTML( RandomPageInCategory::getForm( $par ) );
+		return;
+	}
 
 	$title = $rnd->getRandomTitle();
 
@@ -54,7 +57,12 @@ class RandomPageInCategory {
 	}
 	public function setCategory ( $cat ) {
 		$category = Title::makeTitleSafe( NS_CATEGORY, $cat );
+		//Invalid title
+		if( !$category ) {
+			return false;
+		}
 		$this->category = $category->getDBKey();
+		return false;
 	}
 
 	/**
