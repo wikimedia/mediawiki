@@ -21,8 +21,12 @@ $messages = array(
 'november'  => 'Lídvúba',
 'december'  => 'íNgongóni',
 
+'help'          => 'sitani',
+'search'        => 'kucálata',
+'searchbutton'  => 'kucálata',
 'go'            => 'Kúhámba',
 'history_short' => 'umlandvo',
+'edit'          => 'kúhlela',
 
 # Login and logout pages
 'yourlanguage'       => 'Lú-lwîmi:',

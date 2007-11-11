@@ -494,6 +494,9 @@ meitsje fan it systeem..",
 'linkstoimage'   => 'Dizze siden binne keppele oan it ôfbyld:',
 'nolinkstoimage' => 'Der binne gjin siden oan dit ôfbyld keppelje.',
 
+# Random pages
+'randompage' => 'Samar in side',
+
 # Statistics
 'statistics'    => 'Statistyk',
 'sitestats'     => 'Side statistyk',
@@ -535,7 +538,6 @@ de twadde trochferwizing, wat it "echte" doel wêze moat.',
 'popularpages'     => 'Grage siden',
 'wantedpages'      => 'Nedige siden',
 'allpages'         => 'Alle titels',
-'randompage'       => 'Samar in side',
 'shortpages'       => 'Koarte siden',
 'longpages'        => 'Lange siden',
 'listusers'        => 'Brûkerlist',
@@ -603,7 +605,7 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 # Delete/protect/revert
 'deletepage'        => 'Wisk side',
 'confirm'           => 'Befêstigje',
-'excontent'         => "inhâld wie: '$1'",
+'excontent'         => "ynhâld wie: '$1'",
 'exbeforeblank'     => "foar de tekst wiske wie, wie dat: '$1'",
 'exblank'           => 'side wie leech',
 'confirmdelete'     => 'Befestigje wiskjen',
