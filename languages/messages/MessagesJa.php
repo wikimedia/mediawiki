@@ -1262,7 +1262,7 @@ $NEWPAGE
 
 このページの最後の編集は [[User:$3|$3]] ([[User_talk:$3|会話]] | [[Special:Contributions/$3|履歴]]) によるものです。',
 'editcomment'                 => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し',
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を $1 による版へ差し戻し',
 'rollback-success'            => '$2 による編集を $1 による版へと差し戻しました。',
 'sessionfailure'              => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
 'protectlogpage'              => '保護記録',
@@ -1454,9 +1454,9 @@ $NEWPAGE
 'range_block_disabled'        => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'          => '不正な期間です。',
 'ipb_already_blocked'         => '"$1" は既にブロックされています。',
+'ipb_cant_unblock'            => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
 'ip_range_invalid'            => '不正なIPアドレス範囲です。',
 'proxyblocker'                => 'プロクシブロッカー',
-'ipb_cant_unblock'            => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
 'proxyblockreason'            => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.
 
 :あなたの使用しているIPアドレスはオープン・プロクシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
@@ -2185,11 +2185,8 @@ $1',
 'watchlisttools-edit' => 'ウォッチリストの編集',
 'watchlisttools-raw'  => 'ウォッチリストをテキストで編集',
 
-# Unknown messages
+# Iranian month names
 'iranian-calendar-m1'  => 'イラン歴第1月',
-'iranian-calendar-m10' => 'イラン歴第10月',
-'iranian-calendar-m11' => 'イラン歴第11月',
-'iranian-calendar-m12' => 'イラン歴第12月',
 'iranian-calendar-m2'  => 'イラン歴第2月',
 'iranian-calendar-m3'  => 'イラン歴第3月',
 'iranian-calendar-m4'  => 'イラン歴第4月',
@@ -2198,5 +2195,8 @@ $1',
 'iranian-calendar-m7'  => 'イラン歴第7月',
 'iranian-calendar-m8'  => 'イラン歴第8月',
 'iranian-calendar-m9'  => 'イラン歴第9月',
+'iranian-calendar-m10' => 'イラン歴第10月',
+'iranian-calendar-m11' => 'イラン歴第11月',
+'iranian-calendar-m12' => 'イラン歴第12月',
 
 );

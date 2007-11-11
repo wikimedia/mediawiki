@@ -1,7 +1,10 @@
 <?php
-/** Hakka (Hak-kâ-fâ)
+/** Hak-kâ-fa (Hak-kâ-fa)
  *
  * @addtogroup Language
+ *
+ * @author Hakka
+ * @author Nike
  */
 
 $messages = array(
@@ -921,6 +924,8 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'movethispage'            => 'Yì-thung pún-chông',
 'unusedimagestext'        => '<p>Chhiáng chu-yi khì-thâ mióng-chham khó-nèn chhṳ̍t-chiap theu-ko URL lièn-chiap thù-chhiong, só-yî liá-piên lie̍t-chhut ke thù-chhiong khó-nèn pûn-ngìn sṳ́-yung.</p>',
 'unusedcategoriestext'    => 'Sûi-yèn mò-yû pûn khì-thâ vùn-chông fe̍t-chá fûn-lui só chhái-yung, than lie̍t-péu chûng ke fûn-lui chông chhùn-chhai.',
+'notargettitle'           => 'Mò muk-phêu',
+'notargettext'            => 'Ngì hàn-mò chṳ́-thin yit-ke muk-phêu vùn-chông fe̍t-chá yung-fu chin-hàng chhṳ́-hong chhâu-chok.',
 
 # Book sources
 'booksources'               => 'Chham-ngoi sû-ngièn',
@@ -1048,7 +1053,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'deletedtext'                 => '"$1" yí-kîn pûn chhù-thet. Chui-khiûn chhù-hi ke ki-liu̍k chhiáng chhâm-siòng $2.',
 'deletedarticle'              => 'Yí-kîn chhù-thet "[[$1]]"',
 'dellogpage'                  => 'Chhù-chhiang ki-liu̍k',
-'dellogpagetext'              => 'Yî-ha he chui-khiûn chhù-thet ke ki-liu̍k lie̍t-péu. <ul> </ul>',
+'dellogpagetext'              => 'Yî-ha he chui-khiûn chhù-thet ke ki-liu̍k lie̍t-péu.',
 'deletionlog'                 => 'Chhù-chhiang ki-liu̍k',
 'reverted'                    => 'Fî-fu̍k to  chó-khì pán-pún',
 'deletecomment'               => 'Chhù-thet ke lî-yù',
@@ -1109,7 +1114,7 @@ Yî-ha he <strong>$1</strong> hien-sṳ̀ ke pó-fu khi̍p-phe̍t:',
 'undeleterevisions'        => '$1 pán-pún chhùn-tong',
 'undeletehistory'          => 'Kó-yèn ngì fî-fu̍k liáu ke-vùn-chông, só-yû pán-pún chiông-voi pûn fî-fu̍k to siû-thin li̍t-sṳ́ chûng. Kó-yèn pún-chông chhù-hi heu yû yit-ke thùng-miàng ke sîn vùn-chông kien-li̍p, pûn fî-fu̍k ke pán-pún chiông-voi chhṳ̂n-vi kha-sîn ke li̍t-sṳ́, sîn vùn-chông ke tong-chhièn pán-pún chiông mò-fap pûn chhṳ-thung fu̍k-ngièn.',
 'undeleterevdel'           => 'Kó-yèn pá chui-sîn siû-thin phu-fun chhù-thet, fán chhù-hi phien mò-fap chin-hàng. Kó-yèn ngi-to liá-chúng chhìn-khóng, ngì pit-sî fán-sién fe̍t-chá fán-chhòng chui-sîn yí-kîn chhù-hi ke siû-thin. Tui-yî ngì mò-yû khièn-han hi kiám-sṳ ke siû-thin he mò-fap fî-fu̍k ke.',
-'undeletehistorynoadmin'   => 'Liá-ke vùn-chông yí-kîn pûn chhù-thet, chhù-hi ngièn-yîn hién-sṳ chhai hâ-fông phiên-si̍p chak-yeu chûng. Pûn chhù-thet chhièn ke só-yû siû-thin pán-pún, lièn-thùng chhù-thet chhièn kung-hien yung-fu tén-tén se-chiet chṳ́-yû [[Wikipedia:Kón-lî-yèn|Kón-lî-yèn]] khó-yî khon-kien.',
+'undeletehistorynoadmin'   => 'Liá-ke vùn-chông yí-kîn pûn chhù-thet, chhù-hi ngièn-yîn hién-sṳ chhai hâ-fông phiên-si̍p chak-yeu chûng. Pûn chhù-thet chhièn ke só-yû siû-thin pán-pún, lièn-thùng chhù-thet chhièn kung-hien yung-fu tén-tén se-chiet chṳ́-yû [[{{MediaWiki:grouppage-sysop}}|Kón-lî-yèn]] khó-yî khon-kien.',
 'undelete-revision'        => 'Chhù-thet pán-pún $1 chhṳ $2：',
 'undeleterevision-missing' => 'Chhṳ́ pán-pún ke nui-yùng put chṳn-khok fe̍t-chá yí-kîn yì-sṳt. Khó-nèn lièn-kiet chho-ngu, pûn yì-chhù fe̍t-he yí-kîn pûn fî-fu̍k.',
 'undeletebtn'              => 'Fî-fu̍k',
@@ -1158,8 +1163,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 
 # What links here
 'whatlinkshere'      => 'Lièn-ngi̍p to liá-chham',
-'notargettitle'      => 'Mò muk-phêu',
-'notargettext'       => 'Ngì hàn-mò chṳ́-thin yit-ke muk-phêu vùn-chông fe̍t-chá yung-fu chin-hàng chhṳ́-hong chhâu-chok.',
 'linklistsub'        => '(lièn-kiet lie̍t-péu)',
 'linkshere'          => 'Yî-ha vùn-chông lièn-kiet to [[:$1]]：',
 'nolinkshere'        => 'Mò-yû vùn-chông lièn-kiet to [[:$1]].',
@@ -1231,9 +1234,9 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'range_block_disabled'        => 'Chṳ́-yû kón-lî-yèn chhòi-nèn kien-chho kim-chṳ́ chhà-fûng ke fam-vì.',
 'ipb_expiry_invalid'          => 'Mò-háu ke chûng-chṳ́ sṳ̀-kiên.',
 'ipb_already_blocked'         => 'Yí-kîn fûng-só "$1"',
+'ipb_cant_unblock'            => 'Chho-ngu: Mò-yû fat-hien Block ID $1. Ke-IP khó-nèn yí-kîn pûn kié-fûng.',
 'ip_range_invalid'            => 'Mò-háu ke IP fam-vì.',
 'proxyblocker'                => 'Thoi-lî fûng-só hi-khí',
-'ipb_cant_unblock'            => 'Chho-ngu: Mò-yû fat-hien Block ID $1. Ke-IP khó-nèn yí-kîn pûn kié-fûng.',
 'proxyblockreason'            => 'Ngì-ke IP thi-tiám he yit-ke khôi-fong ke thoi-lî, kì yí-kîn pûn fûng-só. Chhiáng lièn-kiê Ngì-ke mióng-chi mióng-lu fu̍k-vu thì-kiûng-sông fe̍t-he kî-su̍t kî-yèn-chá pin lo-tî ke-ngiàm-chhung ke ôn-chhiòn mun-thì.',
 'proxyblocksuccess'           => 'Vàn-sṳ̀n.',
 'sorbsreason'                 => 'Ngì-ke IP chhô-vi pûn DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí.',
@@ -1482,7 +1485,6 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 'patrol-log-page' => 'Sùn-chhà ki-liu̍k',
 'patrol-log-line' => 'Yí-kîn phêu-sṳ $1/$2-pán cho yí-kîn sùn-chhà ke $3',
 'patrol-log-auto' => '(chhṳ-thung)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision' => 'Yí-kîn chhù-thet khiu-ke pán-pún $1.',
@@ -1613,10 +1615,7 @@ $1',
 'autosumm-new'     => 'Sîn hong-mien: $1',
 
 # Size units
-'size-bytes'     => '$1 Vi-ngièn-chû',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
+'size-bytes' => '$1 Vi-ngièn-chû',
 
 # Live preview
 'livepreview-loading' => 'Chang-chhai chai-ngi̍p…',

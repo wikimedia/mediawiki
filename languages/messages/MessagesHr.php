@@ -905,6 +905,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'uploadedfiles'               => 'Postavljene datoteke',
 'ignorewarning'               => 'Zanemari upozorenja i snimi datoteku.',
 'ignorewarnings'              => 'Zanemari sva upozorenja',
+'minlength1'                  => 'Ime datoteke mora imati barem jedno slovo.',
 'illegalfilename'             => 'Ime datoteke "$1" sadrži znakove koji nisu dozvoljeni u imenima stranica. Preimenujte datoteku i ponovno je postavite.',
 'badfilename'                 => 'Ime slike automatski je promijenjeno u "$1".',
 'filetype-badmime'            => 'Datoteke MIME tipa "$1" ne mogu se snimati.',
@@ -1355,6 +1356,8 @@ Molim pripazite da ovo radite u skladu s [[{{MediaWiki:policy-url}}|pravilima]].
 detaljima o suradnicima koji su uređivali ovu stranicu prije brisanja.
 Tekst izbrisanih inačica dostupan je samo administratorima.',
 'undelete-revision'        => 'Izbrisana inačica članka $1 (dana $2), obrisao $3:',
+'undeleterevision-missing' => 'Nevaljana ili nepostojeća promjena. Poveznica je nevaljana,
+ili je promjena vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'          => 'Prethodne promjene nisu nađene.',
 'undeletebtn'              => 'Vrati!',
 'undeletereset'            => 'Obriši razlog',
@@ -1372,6 +1375,7 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 'undelete-search-prefix'   => 'Pretraži stranice koje počinju s:',
 'undelete-search-submit'   => 'Pretraži',
 'undelete-no-results'      => 'Nije pronađena odgovarajuća stranica u arhivu brisanja.',
+'undelete-error-short'     => 'Greška pri vraćanju datoteke: $1',
 
 # Namespace form on various pages
 'namespace'      => 'Prostor:',
@@ -1592,10 +1596,11 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'allmessagesmodified'       => 'Prikaži samo promijenjene',
 
 # Thumbnails
-'thumbnail-more'  => 'Povećaj',
-'missingimage'    => '<b>Nedostaje slika</b><br /><i>$1</i>',
-'filemissing'     => 'Nedostaje datoteka',
-'thumbnail_error' => 'Pogrješka pri izradbi sličice: $1',
+'thumbnail-more'           => 'Povećaj',
+'missingimage'             => '<b>Nedostaje slika</b><br /><i>$1</i>',
+'filemissing'              => 'Nedostaje datoteka',
+'thumbnail_error'          => 'Pogrješka pri izradbi sličice: $1',
+'thumbnail_dest_directory' => 'Ne mogu stvoriti ciljni direktorij',
 
 # Special:Import
 'import'                     => 'Uvezi stranice',
