@@ -556,10 +556,10 @@ XHTML id names.
 'categories'            => 'Categories',
 'pagecategories'        => '{{PLURAL:$1|Category|Categories}}',
 'pagecategorieslink'    => 'Special:Categories', # don't translate or duplicate this message to other languages
-'category_header'       => 'Articles in category "$1"',
+'category_header'       => 'Pages in category "$1"',
 'subcategories'         => 'Subcategories',
 'category-media-header' => 'Media in category "$1"',
-'category-empty' => "''This category currently contains no articles or media.''",
+'category-empty' => "''This category currently contains no pages or media.''",
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
@@ -712,7 +712,7 @@ XHTML id names.
 'newsectionheaderdefaultlevel' => '== $1 ==', # don't translate or duplicate this message to other languages
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'      => 'Article',
+'nstab-main'      => 'Page',
 'nstab-user'      => 'User page',
 'nstab-media'     => 'Media page',
 'nstab-special'   => 'Special',
@@ -1023,7 +1023,7 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 
 <strong>If this is a legitimate edit attempt, please try again. If it still doesn't work, try logging out and logging back in.</strong>",
 'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters 
-in the edit token. The edit has been rejected to prevent corruption of the article text. 
+in the edit token. The edit has been rejected to prevent corruption of the page text. 
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editing $1',
 'editinguser'               => 'Editing user <b>$1</b>',
@@ -1038,7 +1038,7 @@ You will have to merge your changes into the existing text.
 press "Save page".<br />',
 'yourtext'                  => 'Your text',
 'storedversion'             => 'Stored version',
-'nonunicodebrowser'         => '<strong>WARNING: Your browser is not unicode compliant. A workaround is in place to allow you to safely edit articles: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>',
+'nonunicodebrowser'         => '<strong>WARNING: Your browser is not unicode compliant. A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>',
 'editingold'                => '<strong>WARNING: You are editing an out-of-date
 revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>',
@@ -1193,7 +1193,7 @@ hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list o
 'searchsubtitle'        => "You searched for '''[[:$1]]'''",
 'searchsubtitleinvalid' => "You searched for '''$1'''",
 'noexactmatch'          => "'''There is no page titled \"\$1\".''' You can [[:\$1|create this page]].",
-'titlematches'          => 'Article title matches',
+'titlematches'          => 'Page title matches',
 'notitlematches'        => 'No page title matches',
 'textmatches'           => 'Page text matches',
 'notextmatches'         => 'No page text matches',
@@ -1606,7 +1606,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'withoutinterwiki-header'  => 'The following pages do not link to other language versions:',
 'withoutinterwiki-summary' => '', # only translate this message to other languages if you have to change it
 
-'fewestrevisions'         => 'Articles with the fewest revisions',
+'fewestrevisions'         => 'Pages with the fewest revisions',
 'fewestrevisions-summary' => '', # only translate this message to other languages if you have to change it
 
 # Miscellaneous special pages
@@ -1642,11 +1642,11 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'mostlinkedcategories-summary'    => '', # only translate this message to other languages if you have to change it
 'mostlinkedtemplates'             => 'Most linked-to templates',
 'mostlinkedtemplates-summary'     => '', # only translate this message to other languages if you have to change it
-'mostcategories'                  => 'Articles with the most categories',
+'mostcategories'                  => 'Pages with the most categories',
 'mostcategories-summary'          => '', # only translate this message to other languages if you have to change it
 'mostimages'                      => 'Most linked to images',
 'mostimages-summary'              => '', # only translate this message to other languages if you have to change it
-'mostrevisions'                   => 'Articles with the most revisions',
+'mostrevisions'                   => 'Pages with the most revisions',
 'mostrevisions-summary'           => '', # only translate this message to other languages if you have to change it
 'allpages'                        => 'All pages',
 'allpages-summary'                => '', # only translate this message to other languages if you have to change it
@@ -1681,7 +1681,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'unusedimagestext'                => '<p>Please note that other web sites may link to an image with
 a direct URL, and so may still be listed here despite being
 in active use.</p>',
-'unusedcategoriestext'            => 'The following category pages exist although no other article or category make use of them.',
+'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 
@@ -1721,7 +1721,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 'nextpage'          => 'Next page ($1)',
 'prevpage'          => 'Previous page ($1)',
 'allpagesfrom'      => 'Display pages starting at:',
-'allarticles'       => 'All articles',
+'allarticles'       => 'All pages',
 'allinnamespace'    => 'All pages ($1 namespace)',
 'allnotinnamespace' => 'All pages (not in $1 namespace)',
 'allpagesprev'      => 'Previous',
@@ -1939,7 +1939,7 @@ revisions will appear in the prior history. Also note that restrictions on file 
 'undeleterevdel'           => "Undeletion will not be performed if it will result in the top page revision being
 partially deleted. In such cases, you must uncheck or unhide the newest deleted revisions. Revisions of files
 that you don't have permission to view will not be restored.",
-'undeletehistorynoadmin'   => 'This article has been deleted. The reason for deletion is
+'undeletehistorynoadmin'   => 'This page has been deleted. The reason for deletion is
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
 'undelete-revision' => 'Deleted revision of $1 (as of $2) by $3:',
@@ -2182,7 +2182,7 @@ Please choose another name.',
 'delete_and_move'         => 'Delete and move',
 'delete_and_move_text'    => '==Deletion required==
 
-The destination article "[[$1]]" already exists. Do you want to delete it to make way for the move?',
+The destination page "[[$1]]" already exists. Do you want to delete it to make way for the move?',
 'delete_and_move_confirm' => 'Yes, delete the page',
 'delete_and_move_reason'  => 'Deleted to make way for move',
 'selfmove'                => "Source and destination titles are the same; can't move a page over itself.",
@@ -2413,7 +2413,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'spamprotectiontext'     => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.',
 'spamprotectionmatch'    => 'The following text is what triggered our spam filter: $1',
 'subcategorycount'       => 'There {{PLURAL:$1|is one subcategory|are $1 subcategories}} to this category.',
-'categoryarticlecount'   => 'There {{PLURAL:$1|is one article|are $1 articles}} in this category.',
+'categoryarticlecount'   => 'There {{PLURAL:$1|is one page|are $1 pages}} in this category.',
 'category-media-count'   => 'There {{PLURAL:$1|is one file|are $1 files}} in this category.',
 'listingcontinuesabbrev' => 'cont.',
 'spambot_username'       => 'MediaWiki spam cleanup',
@@ -2422,10 +2422,10 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 
 # Info page
 'infosubtitle'   => 'Information for page',
-'numedits'       => 'Number of edits (article): $1',
+'numedits'       => 'Number of edits (page): $1',
 'numtalkedits'   => 'Number of edits (discussion page): $1',
 'numwatchers'    => 'Number of watchers: $1',
-'numauthors'     => 'Number of distinct authors (article): $1',
+'numauthors'     => 'Number of distinct authors (page): $1',
 'numtalkauthors' => 'Number of distinct authors (discussion page): $1',
 
 # Math options
@@ -2439,7 +2439,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 # Patrolling
 'markaspatrolleddiff'                 => 'Mark as patrolled',
 'markaspatrolledlink'                 => '[$1]', # don't translate or duplicate this message to other languages
-'markaspatrolledtext'                 => 'Mark this article as patrolled',
+'markaspatrolledtext'                 => 'Mark this page as patrolled',
 'markedaspatrolled'                   => 'Marked as patrolled',
 'markedaspatrolledtext'               => 'The selected revision has been marked as patrolled.',
 'rcpatroldisabled'                    => 'Recent Changes Patrol disabled',
@@ -2499,7 +2499,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'bad_image_list' => 'The format is as follows:
 
 Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
-Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
+Any subsequent links on the same line are considered to be exceptions, i.e. pages where the image may occur inline.',
 
 /*
 Short names for language variants used for language conversion links.
@@ -2881,7 +2881,7 @@ will expire at $4.',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacks for this article:<br />
+Trackbacks for this page:<br />
 $1
 </div>',
 'trackback'         => '; $4$5 : [$2 $1]', # don't translate or duplicate this message to other languages
@@ -2909,9 +2909,9 @@ $1',
 'confirm_purge_button' => 'OK',
 
 # AJAX search
-'searchcontaining' => "Search for articles containing ''$1''.",
-'searchnamed'      => "Search for articles named ''$1''.",
-'articletitles'    => "Articles starting with ''$1''",
+'searchcontaining' => "Search for pages containing ''$1''.",
+'searchnamed'      => "Search for pages named ''$1''.",
+'articletitles'    => "Pages starting with ''$1''",
 'hideresults'      => 'Hide results',
 
 # Separator for categories in page lists
