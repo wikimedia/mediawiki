@@ -360,6 +360,7 @@ $specialPageAliases = array(
 	'Listusers'                 => array( 'Listusers', 'Userlist' ),
 	'Statistics'                => array( 'Statistics' ),
 	'Randompage'                => array( 'Random', 'Randompage' ),
+	'Randomincategory'          => array( 'Randomincategory' ),
 	'Lonelypages'               => array( 'Lonelypages', 'Orphanedpages' ),
 	'Uncategorizedpages'        => array( 'Uncategorizedpages' ),
 	'Uncategorizedcategories'   => array( 'Uncategorizedcategories' ),
@@ -1559,6 +1560,8 @@ PICT # misc.
 'randomincategory-nocategory'     => 'Category $1 doesn\'t exist or is empty',
 'randomincategory-label'          => 'Category:',
 'randomincategory-submit'         => 'Go',
+
+# Random redirect
 'randomredirect'                  => 'Random redirect',
 'randomredirect-nopages'          => 'There are no redirects in this namespace.',
 
