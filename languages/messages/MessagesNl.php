@@ -1321,6 +1321,10 @@ PICT # overig
 'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte sjabloon die op geen enkele pagina gebruikt worden. Vergeet niet de "Links naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
 'unusedtemplateswlh'  => 'andere links',
 
+# Random pages
+'randompage'         => 'Willekeurig artikel',
+'randompage-nopages' => "Er zijn geen pagina's in deze naamruimte.",
+
 # Random redirect
 'randomredirect'         => 'Willekeurige doorverwijzing',
 'randomredirect-nopages' => 'Er zijn geen redirects in deze naamruimte.',
@@ -1343,7 +1347,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'statistics-mostpopular' => "Meestbekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",
-'disambiguationspage'  => 'Template:Disambig',
+'disambiguationspage'  => 'Template:Doorverwijspagina',
 'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''. Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen. <br />Een pagina wordt gezien als dooverwijspagina als er een sjabloon op staat dat gelinkt is vanaf [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Dubbele doorverwijzingen',
@@ -1386,8 +1390,6 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'mostrevisions'           => "Pagina's met de meeste bewerkingen",
 'allpages'                => "Alle pagina's",
 'prefixindex'             => 'Prefix-index',
-'randompage'              => 'Willekeurig artikel',
-'randompage-nopages'      => "Er zijn geen pagina's in deze naamruimte.",
 'shortpages'              => "Korte pagina's",
 'longpages'               => "Lange pagina's",
 'deadendpages'            => "Pagina's zonder links",
@@ -1607,8 +1609,8 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'protect-summary-cascade'     => 'cascade',
 'protect-expiring'            => 'verloopt op $1',
 'protect-cascade'             => "Cascadebeveiliging - beveilig alle pagina's en sjablonen die in deze pagina opgenomen zijn (let op; dit kan grote gevolgen hebben).",
-'restriction-type'            => 'Permissie:',
-'restriction-level'           => 'Beperking niveau:',
+'restriction-type'            => 'Rechten:',
+'restriction-level'           => 'Beperkingsniveau:',
 'minimum-size'                => 'Min. grootte',
 'maximum-size'                => 'Max. grootte',
 'pagesize'                    => '(bytes)',

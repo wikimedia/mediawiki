@@ -58,6 +58,7 @@ $messages = array(
 'tog-enotifusertalkpages' => 'ನನ್ನ ಚರ್ಚೆ ಪುಟ ಬದಲಾದರೆ ನನಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸು',
 'tog-shownumberswatching' => 'ಪುಟವನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಸದಸ್ಯರ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು',
 'tog-watchlisthideown'    => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ನನ್ನ ಸಂಪಾದನೆಗಳನ್ನು ತೋರಿಸಬೇಡ',
+'tog-watchlisthideminor'  => 'ಚಿಕ್ಕ ಬದಲಾವಣೆಗಳನ್ನು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ಅಡಗಿಸು',
 
 'underline-always' => 'ಯಾವಾಗಲೂ',
 'underline-never'  => 'ಎಂದಿಗೂ ಇಲ್ಲ',
@@ -123,16 +124,20 @@ $messages = array(
 
 'mainpagetext' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
 
-'about'         => 'ನಮ್ಮ ಬಗ್ಗೆ',
-'article'       => 'ಲೇಖನ ಪುಟ',
-'newwindow'     => '(ಹೊಸ ಕಿಟಕಿಯನ್ನು ತೆರೆಯುತ್ತದೆ)',
-'cancel'        => 'ವಜಾ ಮಾಡಿ',
-'qbmyoptions'   => 'ನನ್ನ ಪುಟಗಳು',
-'moredotdotdot' => 'ಇನ್ನಷ್ಟು...',
-'mypage'        => 'ನನ್ನ ಪುಟ',
-'mytalk'        => 'ನನ್ನ ಚರ್ಚೆ',
-'anontalk'      => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
-'navigation'    => 'ಸಂಚರಣೆ',
+'about'          => 'ನಮ್ಮ ಬಗ್ಗೆ',
+'article'        => 'ಲೇಖನ ಪುಟ',
+'newwindow'      => '(ಹೊಸ ಕಿಟಕಿಯನ್ನು ತೆರೆಯುತ್ತದೆ)',
+'cancel'         => 'ವಜಾ ಮಾಡಿ',
+'qbfind'         => 'ಹುಡುಕು',
+'qbedit'         => 'ಸಂಪಾದಿಸು',
+'qbpageoptions'  => 'ಈ ಪುಟ',
+'qbmyoptions'    => 'ನನ್ನ ಪುಟಗಳು',
+'qbspecialpages' => 'ವಿಶೇಷ ಪುಟಗಳು',
+'moredotdotdot'  => 'ಇನ್ನಷ್ಟು...',
+'mypage'         => 'ನನ್ನ ಪುಟ',
+'mytalk'         => 'ನನ್ನ ಚರ್ಚೆ',
+'anontalk'       => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
+'navigation'     => 'ಸಂಚರಣೆ',
 
 'errorpagetitle'   => 'ದೋಷ',
 'returnto'         => '$1 ಗೆ ಹಿಂತಿರುಗಿ.',
@@ -154,17 +159,22 @@ $messages = array(
 'unprotect'        => 'ಸಂರಕ್ಷಣೆ ತೆಗೆ',
 'newpage'          => 'ಹೊಸ ಪುಟ',
 'talkpage'         => 'ಈ ಪುಟದ ಬಗ್ಗೆ ಚರ್ಚೆ ಮಾಡಿ',
+'talkpagelinktext' => 'ಚರ್ಚೆ',
 'specialpage'      => 'ವಿಶೇಷ ಪುಟ',
 'personaltools'    => 'ವೈಯಕ್ತಿಕ ಉಪಕರಣಗಳು',
 'postcomment'      => 'ನಿಮ್ಮ ಮಾತನ್ನು ಲಗತ್ತಿಸಿ',
 'articlepage'      => 'ಲೇಖನ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
 'talk'             => 'ಚರ್ಚೆ',
 'toolbox'          => 'ಉಪಕರಣ',
+'userpage'         => 'ಸದಸ್ಯರ ಪುಟ ತೋರು',
 'imagepage'        => 'ಚಿತ್ರದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
+'viewhelppage'     => 'ಸಹಾಯ ಪುಟ ತೋರು',
+'categorypage'     => 'ವರ್ಗ ಪುಟ ತೋರು',
 'viewtalkpage'     => 'ಚರ್ಚೆಯನ್ನು ವೀಕ್ಷಿಸಿ',
 'otherlanguages'   => 'ಇತರ ಭಾಷೆಗಳು',
 'lastmodifiedat'   => 'ಈ ಪುಟವನ್ನು ಕೊನೆಯಾಗಿ $2, $1 ರಂದು ಬದಲಾಯಿಸಲಾಗಿತ್ತು.', # $1 date, $2 time
 'protectedpage'    => 'ಸಂರಕ್ಷಿತ ಪುಟ',
+'jumptosearch'     => 'ಹುಡುಕು',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'ಕನ್ನಡ {{SITENAME}} ಬಗ್ಗೆ',
@@ -183,15 +193,17 @@ $messages = array(
 'sitesupport'       => 'ದೇಣಿಗೆ',
 'sitesupport-url'   => 'Project:ದೇಣಿಗೆ',
 
-'ok'              => 'ಸರಿ',
-'newmessageslink' => 'ಹೊಸ ಸಂದೇಶಗಳು',
-'editsection'     => 'ಬದಲಾಯಿಸಿ',
-'editold'         => 'ಬದಲಾಯಿಸಿ',
-'editsectionhint' => '$1 ವಿಭಾಗ ಸಂಪಾದಿಸಿ',
-'toc'             => 'ಪರಿವಿಡಿ',
-'showtoc'         => 'ತೋರಿಸು',
-'hidetoc'         => 'ಅಡಗಿಸು',
-'feedlinks'       => 'ಫೀಡ್:',
+'ok'                      => 'ಸರಿ',
+'newmessageslink'         => 'ಹೊಸ ಸಂದೇಶಗಳು',
+'newmessagesdifflink'     => 'ಕೊನೆಯ ಬದಲಾವಣೆ',
+'youhavenewmessagesmulti' => '$1 ಅಲ್ಲಿ ನಿಮಗೆ ಹೊಸ ಸಂದೇಶಗಳಿವೆ',
+'editsection'             => 'ಬದಲಾಯಿಸಿ',
+'editold'                 => 'ಬದಲಾಯಿಸಿ',
+'editsectionhint'         => '$1 ವಿಭಾಗ ಸಂಪಾದಿಸಿ',
+'toc'                     => 'ಪರಿವಿಡಿ',
+'showtoc'                 => 'ತೋರಿಸು',
+'hidetoc'                 => 'ಅಡಗಿಸು',
+'feedlinks'               => 'ಫೀಡ್:',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'ಲೇಖನ',
@@ -339,6 +351,9 @@ $messages = array(
 'bysize'       => 'ಗಾತ್ರಕ್ಕನುಗುಣವಾಗಿ',
 'linkstoimage' => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
 
+# Random pages
+'randompage' => 'ಯಾದೃಚ್ಛಿಕ ಪುಟ',
+
 # Statistics
 'statistics'    => 'ಅಂಕಿ ಅಂಶಗಳು',
 'sitestats'     => 'ತಾಣದ ಅಂಕಿಅಂಶಗಳು',
@@ -362,7 +377,6 @@ $messages = array(
 'popularpages'       => 'ಜನಪ್ರಿಯ ಪುಟಗಳು',
 'wantedpages'        => 'ಬೇಕಾಗಿರುವ ಪುಟಗಳು',
 'allpages'           => 'ಎಲ್ಲ ಪುಟಗಳು',
-'randompage'         => 'ಯಾದೃಚ್ಛಿಕ ಪುಟ',
 'shortpages'         => 'ಪುಟ್ಟ ಪುಟಗಳು',
 'longpages'          => 'ಉದ್ದನೆಯ ಪುಟಗಳು',
 'deadendpages'       => 'ಕೊನೆಯಂಚಿನ ಪುಟಗಳು',
@@ -481,8 +495,6 @@ $messages = array(
 'importbadinterwiki' => 'ಇಂಟರ್‍ವಿಕಿ ಲಿಂಕ್ ಸರಿಯಾಗಿಲ್ಲ',
 'importnotext'       => 'ಖಾಲಿ ಅಥವಾ ಯಾವುದೇ ಶಬ್ಧಗಳಿಲ್ಲ',
 'importsuccess'      => 'ಆಮದು ಯಶಸ್ವಿಯಾಯಿತು!',
-
-# Scripts
 
 # Attribution
 'anonymous'     => '{{SITENAME}} : ಅನಾಮಧೇಯ ಬಳಕೆದಾರ(ರು)',

@@ -6,6 +6,7 @@
  * @author Sborsody
  * @author G - ג
  * @author friends at tyvawiki.org
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -159,8 +160,8 @@ $messages = array(
 'currentevents'     => 'Амгы үе болуушкуннер',
 'currentevents-url' => 'Амгы үе болуушкуннер',
 'edithelp'          => 'Өскертир дуза',
-'edithelppage'      => 'Дуза:Өскертир',
-'helppage'          => 'Дуза:Допчузу',
+'edithelppage'      => 'Help:Өскертир',
+'helppage'          => 'Help:Допчузу',
 'mainpage'          => 'Кол Арын',
 'portal'            => 'Ниитилелдиң порталы',
 'portal-url'        => 'Project:Ниитилелдиң порталы',
@@ -304,12 +305,14 @@ $1',
 # File deletion
 'filedelete-submit' => 'Ап каар',
 
+# Random pages
+'randompage' => 'Даап арын',
+
 'brokenredirects-edit'   => '(өскертир)',
 'brokenredirects-delete' => '(ап каар)',
 
 # Miscellaneous special pages
 'allpages'          => 'Шупту арыннар',
-'randompage'        => 'Даап арын',
 'shortpages'        => 'Чолдак арыннар',
 'longpages'         => 'Узун арыннар',
 'specialpages'      => 'Тускай арыннар',
@@ -333,6 +336,7 @@ $1',
 'emailmessage' => 'Дыңнадыры',
 
 'enotif_newpagetext' => 'Бо чаа арын-дыр.',
+'enotif_anon_editor' => 'ат чок ажыглакчы $1',
 
 # Delete/protect/revert
 'actioncomplete' => 'Ажыл доосту',
@@ -345,15 +349,19 @@ $1',
 'whatlinkshere' => 'Pages that link here',
 
 # Block/unblock
-'ipaddress'          => 'ИП-адрес',
-'ipadressorusername' => 'ИП-адрес азы aжыглaкчының aды',
-'badipaddress'       => 'Багай ИП-адрес',
-'infiniteblock'      => 'кезээ-мөңгеде',
+'ipaddress'                => 'ИП-адрес',
+'ipadressorusername'       => 'ИП-адрес азы aжыглaкчының aды',
+'badipaddress'             => 'Багай ИП-адрес',
+'infiniteblock'            => 'кезээ-мөңгеде',
+'block-log-flags-anononly' => 'чаңгыс ат чок ажыглакчылар',
 
 # Namespace 8 related
 'allmessages'        => 'Системниң дыңнадырылар',
 'allmessagesname'    => 'Ат',
 'allmessagesdefault' => 'Default сөзүглел',
 'allmessagescurrent' => 'Амгы сөзүглел',
+
+# Attribution
+'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат чок ажыглакчызы(лары)',
 
 );
