@@ -224,7 +224,7 @@ class MonoBookTemplate extends QuickTemplate {
 		
 		if(!empty($this->data['nav_urls']['randomincategory']['href'])) { ?>
 				<li id="t-random"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['randomincategory']['href'])
-				?>"<?php echo $skin->tooltipAndAccesskey('t-print') ?>><?php $this->msg('randomincategory-toolbox') ?></a></li><?php
+				?>"<?php echo $skin->tooltipAndAccesskey('t-random') ?>><?php $this->msg('randomincategory-toolbox') ?></a></li><?php
 		}
 
 		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
