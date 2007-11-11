@@ -1555,6 +1555,7 @@ PICT # misc.
 'randompage-nopages'              => 'There are no pages in this namespace.',
 'randompage-url'                  => 'Special:Random', # don't translate or duplicate this message to other languages
 'randomincategory'                => 'Random page in category',
+'randomincategory-toolbox'        => 'Random page',
 'randomincategory-nocategory'     => 'Category $1 doesn\'t exist or is empty',
 'randomincategory-label'          => 'Category:',
 'randomincategory-submit'         => 'Go',

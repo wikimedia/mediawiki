@@ -221,6 +221,11 @@ class MonoBookTemplate extends QuickTemplate {
 		} elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
 				<li id="t-ispermalink"<?php echo $skin->tooltip('t-ispermalink') ?>><?php $this->msg('permalink') ?></li><?php
 		}
+		
+		if(!empty($this->data['nav_urls']['randomincategory']['href'])) { ?>
+				<li id="t-random"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['randomincategory']['href'])
+				?>"<?php echo $skin->tooltipAndAccesskey('t-print') ?>><?php $this->msg('randomincategory-toolbox') ?></a></li><?php
+		}
 
 		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
 ?>
