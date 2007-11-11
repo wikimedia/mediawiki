@@ -471,8 +471,8 @@ $messages = array(
 Þetta gæti verið vegna villu í hugbúnaðinum.
 Síðasta gagnagrunnsspurnin var:
 <blockquote><tt>$1</tt></blockquote>
-úr aðgerðinni: "<tt>$2</tt>".
-MySQL skilar villuboðanum "<tt>$3: $4</tt>".',
+úr aðgerðinni: „<tt>$2</tt>“.
+MySQL skilar villuboðanum „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Spurnarvilla kom upp í gagnagrunninum.
 Síðasta gagnagrunnsspurnin var:
 "$1"
@@ -531,7 +531,7 @@ Spurn: $2',
 Þú getur þó haldið áfram að nota {{SITENAME}} nafnlaust og þú getur skráð þig inn sem annar notandi. Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá innskráður, hægt er að koma í veg fyrir það með því að hreinsa biðminnið í vafranum.',
 'welcomecreation'            => '== Velkomin(n) $1 ==
 
-Reikningurinn þinn er til.  Gleymdu ekki að lagfæra stillingar þínar hér á {{SITENAME}}.',
+Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Kerfissíða:Preferences|stillingunum]] eftir þínum vilja.',
 'loginpagetitle'             => 'Innskráning notanda',
 'yourname'                   => 'Notandanafn',
 'yourpassword'               => 'Lykilorð',
@@ -1296,12 +1296,13 @@ Síðasta breyting er frá [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Spjall]]
 'protect-unchain'             => 'Opna fyrir færslur',
 'protect-text'                => 'Hér getur þú skoðað og breytt verndunarstigi síðunnar <strong>$1</strong>.',
 'protect-default'             => '(sjálfgefið)',
-'protect-fallback'            => '"$1" réttindi nauðsynleg',
+'protect-fallback'            => '„$1“ réttindi nauðsynleg',
 'protect-level-autoconfirmed' => 'Banna óinnskráða notendur',
 'protect-level-sysop'         => 'Leyfa aðeins stjórnendur',
 'protect-summary-cascade'     => 'keðjuvörn',
 'protect-expiring'            => 'rennur út $1 (UTC)',
 'restriction-type'            => 'Réttindi:',
+'restriction-level'           => 'Takmarkaði við:',
 'minimum-size'                => 'Lágmarksstærð',
 'maximum-size'                => 'Hámarksstærð',
 'pagesize'                    => '(bæt)',
@@ -1313,6 +1314,7 @@ Síðasta breyting er frá [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Spjall]]
 # Restriction levels
 'restriction-level-sysop'         => 'alvernduð',
 'restriction-level-autoconfirmed' => 'hálfvernduð',
+'restriction-level-all'           => 'öll stig',
 
 # Undelete
 'undelete'                 => 'Endurvekja eydda síðu',
@@ -1695,7 +1697,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'exif-artist'           => 'Höfundur',
 'exif-pixelydimension'  => 'Leyfð myndalengd',
 'exif-pixelxdimension'  => 'Leyfð myndahæð',
-'exif-usercomment'      => 'Athugunarsemdir notenda',
+'exif-usercomment'      => 'Athugunarsemdir notanda',
 
 # EXIF attributes
 'exif-compression-1' => 'Ósamþjappað',
@@ -1776,7 +1778,7 @@ $1',
 # AJAX search
 'searchcontaining' => "Leita að greinum sem innihalda ''$1''.",
 'searchnamed'      => "Leita að greinum sem heita ''$1''.",
-'articletitles'    => "Greinar sem byrja á ''$1''",
+'articletitles'    => "Greinar sem hefjast á ''$1''",
 'hideresults'      => 'Fela niðurstöður',
 
 # Multipage image navigation
@@ -1796,7 +1798,7 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'Tæmdi síðuna',
-'autosumm-replace' => "Skipti út innihaldi með '$1'",
+'autosumm-replace' => 'Skipti út innihaldi með „$1“',
 'autoredircomment' => 'Tilvísun á [[$1]]',
 'autosumm-new'     => 'Ný síða: $1',
 
@@ -1813,12 +1815,12 @@ $1',
 'watchlistedit-noitems'        => 'Vaktalistinn þinn inniheldur enga titla.',
 'watchlistedit-normal-title'   => 'Breyta vaktalistanum',
 'watchlistedit-normal-legend'  => 'Fjarlægja titla af vaktalistanum',
-'watchlistedit-normal-explain' => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan. Til að fjarlægja titil hakaðu í kassan við hliðina á honum og smelltu á Fjarlægja titla. Þú getur einnig [[Special:Watchlist/raw|breytt honum opnum]] eða [[Special:Watchlist/clear|fjarlægt alla titla]].',
+'watchlistedit-normal-explain' => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan. Til að fjarlægja titil hakaðu í kassan við hliðina á honum og smelltu á „Fjarlægja titla“. Þú getur einnig [[Special:Watchlist/raw|breytt honum opnum]] eða [[Special:Watchlist/clear|fjarlægt alla titla]].',
 'watchlistedit-normal-submit'  => 'Fjarlægja titla',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|Ein síða var fjarlægð|$1 síður voru fjarlægðar}} af vaktlista þínum:',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Ein síða var fjarlægð|$1 síður voru fjarlægðar}} af vaktlistanum þínum:',
 'watchlistedit-raw-title'      => 'Breyta opnum vaktlistanum',
 'watchlistedit-raw-legend'     => 'Breyta opnum vaktlistanum',
-'watchlistedit-raw-explain'    => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan, þar sem mögulegt er að breyta þeim með því að bæta við hann og taka af honum; einn tiltil í hverri línu. Þegar þú er búinn smelltu þá á Uppfæra vaktlistann. Þú getur einnig notað [[Special:Watchlist/edit|staðlaða breytinn]].',
+'watchlistedit-raw-explain'    => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan, þar sem mögulegt er að breyta þeim með því að bæta við hann og taka af honum; einn tiltil í hverri línu. Þegar þú er búinn, smelltu þá á „Uppfæra vaktlistann“. Þú getur einnig notað [[Special:Watchlist/edit|staðlaða breytinn]].',
 'watchlistedit-raw-titles'     => 'Titlar:',
 'watchlistedit-raw-submit'     => 'Uppfæra vaktalistann',
 'watchlistedit-raw-done'       => 'Vaktalistinn þinn hefur verið uppfærður.',
