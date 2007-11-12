@@ -11,6 +11,7 @@
  * @author Nike
  * @author Siebrand
  * @author Hatukanezumi
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -288,7 +289,7 @@ $messages = array(
 'feedlinks'               => 'フィード:',
 'feed-invalid'            => 'フィード形式の指定が間違っています。',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => '本文',
 'nstab-user'      => '利用者ページ',
 'nstab-media'     => 'メディア',
@@ -1000,6 +1001,10 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'unusedtemplatestext' => 'このページでは {{ns:template}} 名前空間にあって他のページから使用されていないものを一覧にしています。削除する前にリンク元を確認してください。',
 'unusedtemplateswlh'  => 'リンク元',
 
+# Random pages
+'randompage'         => 'おまかせ表示',
+'randompage-nopages' => 'この名前空間にはページはありません。',
+
 # Random redirect
 'randomredirect'         => 'おまかせリダイレクト',
 'randomredirect-nopages' => 'この名前空間にはリダイレクトはありません。',
@@ -1019,7 +1024,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'statistics-mostpopular' => '最も閲覧されているページ',
 
 'disambiguations'      => '曖昧さ回避ページ',
-'disambiguationspage'  => 'Template:aimai',
+'disambiguationspage'  => 'Template:Aimai',
 'disambiguations-text' => "以下のページは'''曖昧さ回避ページ'''へリンクしています。これらのページはより適した主題のページへリンクされるべきです。<br />
 [[MediaWiki:disambiguationspage]] からリンクされたテンプレートを使用しているページは曖昧さ回避ページと見なされます。",
 
@@ -1063,8 +1068,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'mostrevisions'           => '版の多い項目',
 'allpages'                => '全ページ',
 'prefixindex'             => '全ページ (ページ指定)',
-'randompage'              => 'おまかせ表示',
-'randompage-nopages'      => 'この名前空間にはページはありません。',
 'shortpages'              => '短いページ',
 'longpages'               => '長いページ',
 'deadendpages'            => '有効なページへのリンクがないページ',

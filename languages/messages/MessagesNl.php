@@ -552,7 +552,7 @@ $messages = array(
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Pagina',
 'nstab-user'      => 'Gebruikerspagina',
 'nstab-media'     => 'Mediapagina',

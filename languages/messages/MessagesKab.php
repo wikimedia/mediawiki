@@ -6,6 +6,7 @@
  * @author Agurzil
  * @author Nike
  * @author Teak
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -263,7 +264,7 @@ $messages = array(
 'feedlinks'               => 'Asuddem:',
 'feed-invalid'            => 'Anaw n usuddem mačči ṣaḥiḥ.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Amagrad',
 'nstab-user'      => 'Asebter n wemseqdac',
 'nstab-media'     => 'Asebter n media',
@@ -918,6 +919,10 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'unusedtemplatestext' => 'Asebter-agi yesɛa umuɣ n akk isebtar n isem n taɣult s yisem "talɣa" iwumi ulac-iten deg ḥedd asebter. Ur tettuḍ ara ad tessenqdeḍ isebtar n talɣa wiyaḍ qbel ad temḥuḍ.',
 'unusedtemplateswlh'  => 'izdayen wiyaḍ',
 
+# Random pages
+'randompage'         => 'Asebter menwala',
+'randompage-nopages' => 'Ulac isebtar deg isem n taɣult agi.',
+
 # Random redirect
 'randomredirect' => 'Asemmimeḍ menwala',
 
@@ -940,7 +945,7 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'statistics-mostpopular' => 'isebtar mmeẓren aṭṭas',
 
 'disambiguations'      => 'isebtar n usefham',
-'disambiguationspage'  => 'Talɣa:asefham',
+'disambiguationspage'  => 'Template:Asefham',
 'disambiguations-text' => "Isebtar-agi sɛan azday ɣer '''usebter n usefham'''. Yessefk ad sɛun azday ɣer wezwel ṣaḥiḥ mačči ɣer usebter n usefham.",
 
 'doubleredirects'     => 'Asemmimeḍ yeḍra snat tikwal',
@@ -980,8 +985,6 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'mostrevisions'           => 'Isebtar i yettubedlen aṭas',
 'allpages'                => 'Akk isebtar',
 'prefixindex'             => 'Akk isebtar s yisekkilen imezwura',
-'randompage'              => 'Asebter menwala',
-'randompage-nopages'      => 'Ulac isebtar deg isem n taɣult agi.',
 'shortpages'              => 'isebtar imecṭuḥen',
 'longpages'               => 'Isebtar imeqqranen',
 'deadendpages'            => 'isebtar mebla izdayen',

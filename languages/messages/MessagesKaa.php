@@ -83,7 +83,7 @@ $messages = array(
 'qbbrowse'      => "Ko'riw",
 'qbedit'        => "O'zgertiw",
 'qbpageoptions' => 'Usı bet',
-'qbpageinfo'    => 'Maqala haqqında',
+'qbpageinfo'    => 'Kontekst',
 'qbmyoptions'   => "Sizin' sazlawlarınız",
 'moredotdotdot' => "Ja'ne...",
 'mypage'        => 'Shaxsıy bet',
@@ -97,7 +97,7 @@ $messages = array(
 'errorpagetitle'   => 'Qatelik',
 'returnto'         => '$1 betine qaytıw.',
 'tagline'          => "{{SITENAME}} saytınan mag'lıwmat",
-'help'             => "Ja'rdem",
+'help'             => 'Anıqlama',
 'search'           => 'İzlew',
 'searchbutton'     => 'İzlew',
 'go'               => "O'tiw",
@@ -142,7 +142,7 @@ $messages = array(
 'showtoc'             => "ko'rset",
 'hidetoc'             => 'jasır',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Maqala',
 'nstab-user'      => 'Paydalanıwshı beti',
 'nstab-project'   => 'Proekt beti',

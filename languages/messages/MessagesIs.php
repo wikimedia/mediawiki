@@ -12,6 +12,7 @@
  * @author G - ג
  * @author Nike
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -446,7 +447,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
 'feedlinks'               => 'Nippan:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Grein',
 'nstab-user'      => 'Notandi',
 'nstab-media'     => 'Margmiðlunarsíða',
@@ -531,7 +532,7 @@ Spurn: $2',
 Þú getur þó haldið áfram að nota {{SITENAME}} nafnlaust og þú getur skráð þig inn sem annar notandi. Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá innskráður, hægt er að koma í veg fyrir það með því að hreinsa biðminnið í vafranum.',
 'welcomecreation'            => '== Velkomin(n) $1 ==
 
-Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Kerfissíða:Preferences|stillingunum]] eftir þínum vilja.',
+Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Preferences|stillingunum]] eftir þínum vilja.',
 'loginpagetitle'             => 'Innskráning notanda',
 'yourname'                   => 'Notandanafn',
 'yourpassword'               => 'Lykilorð',
@@ -1049,6 +1050,10 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'unusedtemplatestext' => 'Þetta er listi yfir allar síður í sniðanafnrýminu sem ekki eru notaðar í neinum öðrum síðum. Munið að gá að öðrum tenglum í sniðin áður en þeim er eytt.',
 'unusedtemplateswlh'  => 'aðrir tenglar',
 
+# Random pages
+'randompage'         => 'Handahófsvalin grein',
+'randompage-nopages' => 'Það eru engar síður í þessu nafnrými.',
+
 # Random redirect
 'randomredirect' => 'Handahófsvalin tilvísun',
 
@@ -1116,8 +1121,6 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'mostrevisions'           => 'Greinar eftir fjölda breytinga',
 'allpages'                => 'Allar síður',
 'prefixindex'             => 'Forskeytisleit',
-'randompage'              => 'Handahófsvalin grein',
-'randompage-nopages'      => 'Það eru engar síður í þessu nafnrými.',
 'shortpages'              => 'Stuttar síður',
 'longpages'               => 'Langar síður',
 'deadendpages'            => 'Botnlangar',
