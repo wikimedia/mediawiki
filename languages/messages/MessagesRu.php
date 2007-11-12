@@ -1215,13 +1215,6 @@ $3 указал следующую причину: ''$2''",
 # Random pages
 'randompage'                      => 'Случайная страница',
 'randompage-nopages'              => 'В данном пространстве имён отсутствуют страницы.',
-'randomincategory'                => 'Случайная страница в категории',
-'randomincategory-toolbox'        => 'Случайная страница',
-'randomincategory-nocategory'     => 'Категория "$1" пуста или не существует',
-'randomincategory-label'          => 'Категория:',
-'randomincategory-submit'         => 'Перейти',
-'randomredirect-nopages'          => 'В данном пространстве имён нет перенаправлений.',
-'randomredirect'                  => 'Случайное перенаправление',
 
 # Statistics
 'statistics'             => 'Статистика',
