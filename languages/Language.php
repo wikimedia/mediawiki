@@ -931,7 +931,8 @@ class Language {
 	}
 
 	function ucfirst( $str ) {
-		return self::uc( $str, true );
+		if ( ord($str[0]) < 128 ) return ucfirst($str);
+		else return self::uc($str,true); // fall back to more complex logic in case of multibyte strings
 	}
 
 	function uc( $str, $first = false ) {
