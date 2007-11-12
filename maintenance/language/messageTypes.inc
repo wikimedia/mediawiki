@@ -214,18 +214,6 @@ $wgOptionalMessages = array(
 	'size-kilobytes',
 	'size-megabytes',
 	'size-gigabytes',
-	'iranian-calendar-m1',
-	'iranian-calendar-m2',
-	'iranian-calendar-m3',
-	'iranian-calendar-m4',
-	'iranian-calendar-m5',
-	'iranian-calendar-m6',
-	'iranian-calendar-m7',
-	'iranian-calendar-m8',
-	'iranian-calendar-m9',
-	'iranian-calendar-m10',
-	'iranian-calendar-m11',
-	'iranian-calendar-m12',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

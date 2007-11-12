@@ -90,13 +90,6 @@ class Language {
 		'sep', 'oct', 'nov', 'dec'
 	);
 
-	static public $mIranianCalendarMonthMsgs = array(
-		'iranian-calendar-m1', 'iranian-calendar-m2', 'iranian-calendar-m3',
-		'iranian-calendar-m4', 'iranian-calendar-m5', 'iranian-calendar-m6',
-		'iranian-calendar-m7', 'iranian-calendar-m8', 'iranian-calendar-m9',
-		'iranian-calendar-m10', 'iranian-calendar-m11', 'iranian-calendar-m12'
-	);
-
 	/**
 	 * Create a language object for a given language code
 	 */
@@ -400,11 +393,6 @@ class Language {
 		return $this->getMessageFromDB( self::$mWeekdayAbbrevMsgs[$key-1] );
 	}
 
-	function getIranianCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mIranianCalendarMonthMsgs[$key-1] );
-	}
-
-
 	/**
 	 * Used by date() and time() to adjust the time output.
 	 * @public
@@ -476,11 +464,6 @@ class Language {
 	 *    xx   Literal x
 	 *    xg   Genitive month name
 	 *
-	 *    xij  j (day number) in Iranian calendar
-	 *    xiF  F (month name) in Iranian calendar
-	 *    xin  n (month number) in Iranian calendar
-	 *    xiY  Y (full year) in Iranian calendar
-	 *
 	 * Characters enclosed in double quotes will be considered literal (with
 	 * the quotes themselves removed). Unmatched quotes will be considered
 	 * literal quotes. Example:
@@ -504,18 +487,13 @@ class Language {
 		$roman = false;
 		$unix = false;
 		$rawToggle = false;
-		$iranian = false;
 		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$num = false;
 			$code = $format[$p];
 			if ( $code == 'x' && $p < strlen( $format ) - 1 ) {
 				$code .= $format[++$p];
 			}
-
-			if ( $code === 'xi' && $p < strlen( $format ) - 1 ) {
-				$code .= $format[++$p];
-			}
-
+			
 			switch ( $code ) {
 				case 'xx':
 					$s .= 'x';
@@ -542,10 +520,6 @@ class Language {
 				case 'j':
 					$num = intval( substr( $ts, 6, 2 ) );
 					break;
-				case 'xij':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$num = $iranian[2];
-					break;
 				case 'l':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
 					$s .= $this->getWeekdayName( gmdate( 'w', $unix ) + 1 );
@@ -566,13 +540,9 @@ class Language {
 				case 'W':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
 					$num = gmdate( 'W', $unix );
-					break;
+					break;					
 				case 'F':
 					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
-					break;
-				case 'xiF':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$s .= $this->getIranianCalendarMonthName( $iranian[1] );
 					break;
 				case 'm':
 					$num = substr( $ts, 4, 2 );
@@ -583,10 +553,6 @@ class Language {
 				case 'n':
 					$num = intval( substr( $ts, 4, 2 ) );
 					break;
-				case 'xin':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$num = $iranian[1];
-					break;
 				case 't':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
 					$num = gmdate( 't', $unix );
@@ -594,13 +560,9 @@ class Language {
 				case 'L':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
 					$num = gmdate( 'L', $unix );
-					break;
+					break;					
 				case 'Y':
 					$num = substr( $ts, 0, 4 );
-					break;
-				case 'xiY':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$num = $iranian[0];
 					break;
 				case 'y':
 					$num = substr( $ts, 2, 2 );
@@ -684,64 +646,6 @@ class Language {
 			}
 		}
 		return $s;
-	}
-
-	private static $GREG_DAYS = array( 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 );
-	private static $IRANIAN_DAYS = array( 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29 );
-	/**
-	 * Algorithm by Roozbeh Pournader and Mohammad Toossi to convert 
-	 * Gregorian dates to Iranian dates. Originally written in C, it
-	 * is released under the terms of GNU Lesser General Public
-	 * License. Conversion to PHP was performed by Niklas Laxström.
-	 * 
-	 * Link: http://www.farsiweb.info/jalali/jalali.c
-	 */
-	private static function tsToIranian( $ts ) {
-		$gy = substr( $ts, 0, 4 ) -1600;
-		$gm = substr( $ts, 4, 2 ) -1;
-		$gd = substr( $ts, 6, 2 ) -1;
-
-		# Days passed from the beginning (including leap years)
-		$gDayNo = 365*$gy
-			+ floor(($gy+3) / 4)
-			- floor(($gy+99) / 100)
-			+ floor(($gy+399) / 400);
-
-
-		// Add days of the past months of this year
-		for( $i = 0; $i < $gm; $i++ ) {
-			$gDayNo += self::$GREG_DAYS[$i];
-		}
-
-		// Leap years
-		if ( $gm > 1 && (($gy%4===0 && $gy%100!==0 || ($gy%400==0)))) {
-			$gDayNo++;
-		}
-
-		// Days passed in current month
-		$gDayNo += $gd;
-		
-		$jDayNo = $gDayNo - 79;
-
-		$jNp = floor($jDayNo / 12053);
-		$jDayNo %= 12053;
-
-		$jy = 979 + 33*$jNp + 4*floor($jDayNo/1461);
-		$jDayNo %= 1461;
-
-		if ( $jDayNo >= 366 ) {
-			$jy += floor(($jDayNo-1)/365);
-			$jDayNo = floor(($jDayNo-1)%365);
-		}
-
-		for ( $i = 0; $i < 11 && $jDayNo >= self::$IRANIAN_DAYS[$i]; $i++ ) {
-			$jDayNo -= self::$IRANIAN_DAYS[$i];
-		}
-
-		$jm= $i+1;
-		$jd= $jDayNo+1;
-
-		return array($jy, $jm, $jd);
 	}
 
 	/**
