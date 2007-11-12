@@ -768,7 +768,15 @@ class EditPage {
 					return self::AS_BLANK_ARTICLE;
 			}
 
-			$isComment=($this->section=='new');
+			// Run post-section-merge edit filter
+			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError ) ) ) {
+				# Error messages etc. could be handled within the hook...
+				wfProfileOut( $fname );
+				return false;
+			}
+
+			$isComment = ( $this->section == 'new' );
+			
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
 				$this->minoredit, $this->watchthis, false, $isComment);
 
@@ -842,6 +850,13 @@ class EditPage {
 		}
 
 		$oldtext = $this->mArticle->getContent();
+
+		// Run post-section-merge edit filter
+		if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError ) ) ) {
+			# Error messages etc. could be handled within the hook...
+			wfProfileOut( $fname );
+			return false;
+		}
 
 		# Handle the user preference to force summaries here, but not for null edits
 		if( $this->section != 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary')

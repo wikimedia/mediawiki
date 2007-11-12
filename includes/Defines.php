@@ -260,6 +260,7 @@ define( 'UTF8_FFFF', "\xef\xbf\xbf" /*codepointToUtf8( 0xffff )*/ );
 define( 'UTF8_HEAD', false );
 define( 'UTF8_TAIL', true );
 
-
+# Hook support constants
+define( 'MW_SUPPORTS_EDITFILTERMERGED', 1 );
 
 

@@ -20,6 +20,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.12 ===
 
+=== Removed features in 1.12 ===
+* {{REVISIONID}} will no longer give the correct revision ID for current revision 
+  views. It will still work for history views. 
+
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
 * Add {{filepath:}} parser function to get full path to an uploaded file,
