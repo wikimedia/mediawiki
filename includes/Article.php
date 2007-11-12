@@ -135,6 +135,7 @@ class Article {
 		$this->mRevIdFetched = 0;
 		$this->mRedirectUrl = false;
 		$this->mLatest = false;
+		$this->mPreparedEdit = false;
 	}
 
 	/**
@@ -1330,7 +1331,8 @@ class Article {
 		if ($flags & EDIT_AUTOSUMMARY && $summary == '')
 			$summary = $this->getAutosummary( $oldtext, $text, $flags );
 
-		$text = $this->preSaveTransform( $text );
+		$editInfo = $this->prepareTextForEdit( $text );
+		$text = $editInfo->pst;
 		$newsize = strlen( $text );
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -2420,6 +2422,27 @@ class Article {
 	}
 
 	/**
+	 * Prepare text which is about to be saved.
+	 * Returns a stdclass with source, pst and output members
+	 */
+	function prepareTextForEdit( $text ) {
+		if ( $this->mPreparedEdit && $this->mPreparedEdit->newText == $text ) {
+			// Already prepared
+			return $this->mPreparedEdit;
+		}
+		global $wgParser;
+		$edit = (object)array();
+		$edit->newText = $text;
+		$edit->pst = $this->preSaveTransform( $text );
+		$options = new ParserOptions;
+		$options->setTidy( true );
+		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $options, true, true );
+		$edit->oldText = $this->getContent();
+		$this->mPreparedEdit = $edit;
+		return $edit;
+	}
+
+	/**
 	 * Do standard deferred updates after page edit.
 	 * Update links tables, site stats, search index and message cache.
 	 * Every 100th edit, prune the recent changes table.
@@ -2438,16 +2461,19 @@ class Article {
 		wfProfileIn( __METHOD__ );
 
 		# Parse the text
-		$options = new ParserOptions;
-		$options->setTidy(true);
-		$poutput = $wgParser->parse( $text, $this->mTitle, $options, true, true, $newid );
+		# Be careful not to double-PST: $text is usually already PST-ed once
+		if ( !$this->mPreparedEdit ) {
+			$editInfo = $this->prepareTextForEdit( $text );
+		} else {
+			$editInfo = $this->mPreparedEdit;
+		}
 
 		# Save it to the parser cache
 		$parserCache =& ParserCache::singleton();
-		$parserCache->save( $poutput, $this, $wgUser );
+		$parserCache->save( $editInfo->output, $this, $wgUser );
 
 		# Update the links tables
-		$u = new LinksUpdate( $this->mTitle, $poutput );
+		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
 		$u->doUpdate();
 
 		if( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
