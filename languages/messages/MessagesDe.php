@@ -272,7 +272,7 @@ $messages = array(
 'category_header'       => 'Seiten in der Kategorie „$1“',
 'subcategories'         => 'Unterkategorien',
 'category-media-header' => 'Medien in der Kategorie „$1“',
-'category-empty'        => "''Diese Kategorie enthält zur Zeit keine Artikel oder Medien.''",
+'category-empty'        => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
 
 'mainpagetext'      => 'MediaWiki wurde erfolgreich installiert.',
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki Software findest du im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
@@ -629,7 +629,7 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 
 <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
-Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf einen noch nicht existenten Artikel gefolgt.</p>
+Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf eine noch nicht existente Seite gefolgt.</p>
 
 Du kannst $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
@@ -650,7 +650,7 @@ Als Grund wurde angegeben:
 
 <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
-Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf einen noch nicht existenten Artikel gefolgt.</p>
+Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf eine noch nicht existente Seite gefolgt.</p>
 
 Du kannst $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
@@ -737,7 +737,7 @@ speichern kannst. Sichere den Text und versuche die Änderungen später einzuspi
 'semiprotectedpagewarning'  => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
 'cascadeprotectedwarning'   => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
 'templatesused'             => 'Folgende Vorlagen werden von dieser Seite verwendet:',
-'templatesusedpreview'      => 'Folgende Vorlagen werden von dieser Artikelvorschau verwendet:',
+'templatesusedpreview'      => 'Folgende Vorlagen werden von dieser Seitenvorschau verwendet:',
 'templatesusedsection'      => 'Folgende Vorlagen werden von diesem Abschnitt verwendet:',
 'template-protected'        => '(schreibgeschützt)',
 'template-semiprotected'    => '(schreibgeschützt für unangemeldete und neue Benutzer)',
@@ -923,7 +923,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'contextchars'             => 'Zeichen pro Zeile:',
 'stub-threshold'           => 'Linkformatierung <a href="#" class="stub">kleiner Seiten</a> (in Byte):',
 'recentchangesdays'        => 'Anzahl der Tage, die die Liste der „Letzten Änderungen“ standardmäßig umfassen soll:',
-'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“ und „Neue Artikel“:',
+'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“ und „Neue Seiten“:',
 'savedprefs'               => 'Deine Einstellungen wurden gespeichert.',
 'timezonelegend'           => 'Zeitzone',
 'timezonetext'             => 'Gib die Anzahl der Stunden ein, die zwischen Deiner Zeitzone und UTC liegen.',
@@ -1215,7 +1215,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' Benutzer (=$4 %) $5-Rechte.",
 'statistics-mostpopular' => 'Meist besuchte Seiten',
 
 'disambiguations'      => 'Begriffsklärungsseiten',
-'disambiguationspage'  => '{{ns:project}}:Begriffsklärung',
+'disambiguationspage'  => 'Template:Begriffsklärung',
 'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:disambiguationspage]] auf sie verlinkt.<br />Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'         => 'Doppelte Weiterleitungen',
@@ -1225,7 +1225,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'doubleredirectstext'     => '',
 
 'brokenredirects'         => 'Kaputte Weiterleitungen',
-'brokenredirects-summary' => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Artikel auf.',
+'brokenredirects-summary' => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
 'brokenredirectstext'     => '',
 'brokenredirects-edit'    => '(bearbeiten)',
 'brokenredirects-delete'  => '(löschen)',
@@ -1301,7 +1301,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'newpages'                        => 'Neue Seiten',
 'newpages-summary'                => 'Diese Spezialseite listet alle neu erstellten Seiten der letzten 30 Tage auf. Die Ausgabe kann auf einen Namensraum und/oder Benutzernamen eingeschränkt werden.',
 'newpages-username'               => 'Benutzername:',
-'ancientpages'                    => 'Seit längerem unbearbeitete Artikel',
+'ancientpages'                    => 'Seit längerem unbearbeitete Seiten',
 'ancientpages-summary'            => 'Diese Spezialseite zeigt eine Liste von Seiten, die am längsten nicht mehr geändert worden sind.',
 'intl'                            => 'Interwiki-Links',
 'move'                            => 'verschieben',
@@ -1474,8 +1474,8 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'rollbackfailed'              => 'Zurücksetzen gescheitert',
 'cantrollback'                => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
 'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$2|Diskussion]], 
-[[{{ns:special}}:Contributions/$2|Beiträge]])</span> am Artikel [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
-Änderungen an diesem Artikel vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$3|Diskussion]])</span>.",
+[[{{ns:special}}:Contributions/$2|Beiträge]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
+Änderungen an dieser Seite vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$3|Diskussion]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Änderungen von [[{{ns:user}}:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt',
 'rollback-success'            => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
@@ -1999,7 +1999,7 @@ $1',
 'bad_image_list' => 'Format:
 
 Nur Zeilen, die mit einem * anfangen, werden ausgewertet. Als erstes nach dem * muss ein Link auf ein unerwünschtes Bild stehen.
-Darauf folgende Artikellinks in derselben Zeile definieren Ausnahmen, in deren Kontext das Bild trotzdem erscheinen darf.',
+Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Kontext das Bild trotzdem erscheinen darf.',
 
 # Metadata
 'metadata'          => 'Metadaten',
