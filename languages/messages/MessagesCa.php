@@ -387,7 +387,7 @@ $messages = array(
 'feedlinks'               => 'Sindicament:',
 'feed-invalid'            => 'La subscripció no és vàlida pel tipus de sindicament.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Article',
 'nstab-user'      => "Pàgina d'usuari",
 'nstab-media'     => 'Pàgina de mitjans',
@@ -928,7 +928,7 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'diff'                              => 'dif',
 'hide'                              => 'amaga',
 'show'                              => 'mostra',
-'number_of_watching_users_pageview' => '[Usuaris que vigilen aquesta pàgina: $1]',
+'number_of_watching_users_pageview' => '[{{PLURAL:$1|Un usuari vigila|$1 usuaris vigilen}} aquesta pàgina]',
 'rc_categories'                     => 'Limita a les categories (separades amb "|")',
 'rc_categories_any'                 => 'Qualsevol',
 
@@ -1062,6 +1062,9 @@ Totes les hores són les del servidor (UTC).",
 'unusedtemplatestext' => "Aquesta pàgina mostra les pàgines en l'espai de noms de plantilles, que no estan incloses en cap altra pàgina. Recordeu de comprovar les pàgines que hi enllacen abans d'esborrar-les.",
 'unusedtemplateswlh'  => 'altres enllaços',
 
+# Random pages
+'randompage' => "Pàgina a l'atzar",
+
 # Random redirect
 'randomredirect' => "Redirecció a l'atzar",
 
@@ -1128,7 +1131,6 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'mostrevisions'           => 'Pàgines més modificades',
 'allpages'                => 'Totes les pàgines',
 'prefixindex'             => 'Cercar per prefix',
-'randompage'              => "Pàgina a l'atzar",
 'shortpages'              => 'Pàgines curtes',
 'longpages'               => 'Pàgines llargues',
 'deadendpages'            => 'Pàgines atzucac',

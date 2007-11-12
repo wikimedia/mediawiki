@@ -1,6 +1,12 @@
 <?php
-/**
+/** Kashubian (Kaszëbsczi)
+ *
  * @addtogroup Language
+ *
+ * @author Warszk
+ * @author G - ג
+ * @author Siebrand
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -132,6 +138,8 @@ $messages = array(
 'category-media-header' => 'Media w kategòrëji "$1"',
 'category-empty'        => "''Ta ktegòrëja nie zamëkô w se terô niżódnëch artiklów ni mediów.''",
 
+'mainpagetext' => "<big>'''MediaWiki òsta zainstalowónô.'''</big>",
+
 'about'          => 'Ò serwise',
 'article'        => 'Artikel',
 'newwindow'      => '(òtmëkô sã w nowim òczenkù)',
@@ -149,6 +157,9 @@ $messages = array(
 'anontalk'       => 'Diskùsëjô dlô ti IP-adresë',
 'navigation'     => 'Nawigacëjô',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'   => 'Brida',
 'returnto'         => 'Wôrcë sã do starnë: $1.',
 'tagline'          => 'Z {{SITENAME}}',
@@ -159,9 +170,14 @@ $messages = array(
 'searcharticle'    => 'Biôj!',
 'history'          => 'Historëjô starnë',
 'history_short'    => 'Historëjô',
+'updatedmarker'    => 'aktualizowóne òd mòji slédny wizytë',
+'info_short'       => 'Wëdowiédza',
+'printableversion' => 'Wersëjô do drëkù',
+'print'            => 'Drëkùjë',
 'edit'             => 'Edicëjô',
 'editthispage'     => 'Editëjë ną starnã',
 'delete'           => 'Rëmôj',
+'deletethispage'   => 'Rëmôj tã starnã',
 'protect'          => 'Zazychrëjë',
 'unprotect'        => 'Òdzychrëjë',
 'talkpagelinktext' => 'Diskùsëjô',
@@ -211,7 +227,7 @@ $messages = array(
 'hidetoc'                 => 'zatacë',
 'viewdeleted'             => 'Òbaczë $1',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Artikel',
 'nstab-user'      => 'Starna brëkòwnika',
 'nstab-special'   => 'Specjalnô',
@@ -456,6 +472,9 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'nolinkstoimage' => 'Niżódnô starna nie òdwòłëje sã do negò lopka.',
 'imagelist_user' => 'Brëkòwnik',
 
+# Random pages
+'randompage' => 'Kawlowô starna',
+
 # Statistics
 'sitestats'     => 'Statistika artiklów',
 'userstats'     => 'Statistika brëkòwników',
@@ -469,7 +488,7 @@ Bëło w sëmie '''$3''' òdwiôdënów ë '''$4''' edicëji òd sztótu, czej m
 
 Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je '''$7'''.",
 
-'disambiguationspage' => '{{ns:project}}:Starnë_ùjednoznacznieniô',
+'disambiguationspage' => 'Template:Starnë_ùjednoznacznieniô',
 
 'doubleredirects' => 'Dëbeltné przeczérowania',
 
@@ -482,7 +501,6 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 'popularpages'      => 'Nôwidzalszé starnë',
 'wantedpages'       => 'Nônótniészé starnë',
 'allpages'          => 'Wszëtczé starnë',
-'randompage'        => 'Kawlowô starna',
 'shortpages'        => 'Nôkrótszé starnë',
 'longpages'         => 'Nôdłëgszé starnë',
 'listusers'         => 'Lësta brëkòwników',
@@ -493,6 +511,7 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 'ancientpages'      => 'Nôstarszé starnë',
 'move'              => 'Przeniesë',
 'movethispage'      => 'Przeniesë',
+'notargettitle'     => 'Nie da taczi starnë',
 
 # Book sources
 'booksources' => 'Ksążczi',
@@ -608,7 +627,6 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 
 # What links here
 'whatlinkshere' => 'Lënkùjącé',
-'notargettitle' => 'Nie da taczi starnë',
 'linkshere'     => 'Do ny starnë òdwòłëją sã hewòtné starnë:',
 'isredirect'    => 'starna przeczerowaniô',
 
@@ -718,8 +736,8 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'autoredircomment' => 'Przeczérowanié do [[$1]]',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Òbaczë wôżnészé zmianë',
-'watchlisttools-edit'  => 'Òbaczë a editëjë lëstã ùzérónëch artiklów',
-'watchlisttools-raw'   => 'Editëjë sërą lëstã',
+'watchlisttools-view' => 'Òbaczë wôżnészé zmianë',
+'watchlisttools-edit' => 'Òbaczë a editëjë lëstã ùzérónëch artiklów',
+'watchlisttools-raw'  => 'Editëjë sërą lëstã',
 
 );

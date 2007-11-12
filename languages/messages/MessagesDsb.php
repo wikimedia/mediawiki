@@ -14,6 +14,7 @@
  * @author Nike
  * @author Siebrand
  * @author Tlustulimu
+ * @author SPQRobin
  */
 
 $fallback = 'de';
@@ -279,7 +280,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Nastawk',
 'nstab-user'      => 'Wužywaŕski bok',
 'nstab-media'     => 'Medije',
@@ -1043,6 +1044,10 @@ PICT # misc.
 'unusedtemplatestext'     => 'Toś ten bok nalicujo wšykne boki w pśedłoze "mjenjowy rum", kótarež njejsu do žednego drugego boka zawězane. Pšosym kontrolěruj dalšne wótkaze, nježli až je wulašujoš.',
 'unusedtemplateswlh'      => 'Druge wótkaze',
 
+# Random pages
+'randompage'         => 'Pśipadny nastawk',
+'randompage-nopages' => 'W toś tom rumje njejsu žedne boki.',
+
 # Random redirect
 'randomredirect'         => 'Pśipadne dalejpósrědnjenje',
 'randomredirect-nopages' => 'W toś tom mjenjowem rumje njeeksistěruju žedne dalejpósrědnjenja.',
@@ -1067,7 +1072,7 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'statistics-mostpopular' => 'Nejwěcej woglědane boki',
 
 'disambiguations'      => 'Rozjasnjenja zapśimjeśow',
-'disambiguationspage'  => '{{ns:project}}:Rozjasnjenje zapśimjeśow',
+'disambiguationspage'  => 'Template:Rozjasnjenje zapśimjeśow',
 'disambiguations-text' => 'Slědujuce boki wótkazuju na bok za rozjasnjenje zapśimjeśow. Wótkazujśo lubjej na pótrjefjony bok.
 
 <br />Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[MediaWiki:disambiguationspage]].<br />Wótkaze z mjenjowych rumow se how njenalicuju.',
@@ -1130,8 +1135,6 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'allpages-summary'                => 'Toś ten specialny bok nalicujo boki {{SITENAME}} wót A do Ź. Sortěrujo se alfabetiski, nejžpjerwjej licby, pón wjelike pismiki, małe pismiki a pón wósebne znamuška.',
 'prefixindex'                     => 'Wšykne nastawki (z prefiksom)',
 'prefixindex-summary'             => 'Toś ten specialny bok pokazujo wšykne boki ze zapódanym prefiksom. Output móžo se na jaden mjenjowy rum reducěrowaś.',
-'randompage'                      => 'Pśipadny nastawk',
-'randompage-nopages'              => 'W toś tom rumje njejsu žedne boki.',
 'shortpages'                      => 'Krotke nastawki',
 'shortpages-summary'              => 'Toś ta lisćina pokazujo nejkrotše boki w głownem mjenjowem rumje. Lice se znamuška teksta, tak ako we wobźěłańskem woknyšku se pokažo, pótakem we wiki-syntaksy a mimo wopśimjeśa zawězanych pśedłogow. Zakład licenja jo pó UTF-8 koděrowany tekst, pó kótaremž płaśe na pś. serbske pismiki z diakritiskimi znamuškami ako dwa znamuška.',
 'longpages'                       => 'Dłujke nastawki',
