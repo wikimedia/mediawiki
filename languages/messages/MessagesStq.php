@@ -57,6 +57,8 @@ $messages = array(
 'disclaimerpage'    => 'Project:Siede tou Begriepskläärenge',
 'edithelp'          => 'Beoarbaidengshälpe',
 'edithelppage'      => 'Help:Beoarbaidengshälpe',
+'faq'               => 'Oafte stoalde Froagen',
+'faqpage'           => 'Project:FAQ',
 
 'editsection' => 'Beoarbaidje',
 'editold'     => 'Beoarbaidje',
@@ -67,6 +69,8 @@ $messages = array(
 <blockquote><tt>$1</tt></blockquote> uut de Funktion "<tt>$2</tt>". MySQL mäldede dän Failer "<tt>$3: $4</tt>".',
 'cachederror'     => 'Dät Foulgjende is ne Kopie uut de Cache un is fielicht ferallerd.',
 'enterlockreason' => 'Reeke jädden n Gruund ien, wieruum ju Doatenboank speerd wäide schuul un ne Ouschätsenge uur ju Duur fon ju Speerenge',
+'filecopyerror'   => 'Kuude Doatäi "$1" nit ätter "$2" kopierje.',
+'filedeleteerror' => 'Kuude Doatäi "$1" nit läskje.',
 'badarticleerror' => 'Disse Honnelenge kon ap disse Siede nit moaked wäide.',
 'cannotdelete'    => 'Kon spezifizierde Siede of Artikkel nit läskje. Fielicht is ju al läsked wuuden.',
 'badtitle'        => 'Uungultige Tittel.',
@@ -88,8 +92,10 @@ Mail-Fersoand un Ämpfang foar do foulgjende Funktionen muugelk.',
 'emailconfirmlink'           => 'Bestäätigje Jou Email-Adrässe',
 
 # Edit page toolbar
-'bold_sample' => 'Fatte Text',
-'bold_tip'    => 'Fatte Text',
+'bold_sample'    => 'Fatte Text',
+'bold_tip'       => 'Fatte Text',
+'extlink_sample' => 'http://www.Biespil.de Link-Text',
+'extlink_tip'    => 'Externen Link (http:// beoachtje)',
 
 # Edit pages
 'blockedtitle'     => 'Benutser is blokkierd',
@@ -105,6 +111,7 @@ Ju Duur fon ju Speerenge fint sik in $4. Deer IP-Adrässen bie fuul Providere dy
 'editingsection'   => 'Beoarbaidje fon $1 (Apsats)',
 'editingcomment'   => 'Beoarbaidjen fon $1 (Kommentoar)',
 'editconflict'     => 'Beoarbaidengs-Konflikt: "$1"',
+'explainconflict'  => "Uurswäl häd dissen Artikkel annerd, ätterdät du anfangd bäst, him tou beoarbaidjen. Dät buppere Textfäild änthaalt dän aktuälle Artikkel. Dät unnere Textfäild änthaalt dien Annerengen. Föige jädden dien Annerengen in dät buppere Textfäild ien.<br/> '''Bloot''' die Inhoold fon dät buppere Textfäild wäd spiekerd, wan du ap \"Spiekerje\" klikst!",
 'editingold'       => '<strong>OACHTENGE: Jie beoarbaidje ne oolde Version fon disse Artikkel. Wan Jie spiekerje, wäide alle näiere Versione uurschrieuwen.</strong>',
 'copyrightwarning' => 'Aal Biedraage tou dän {{SITENAME}} wäide betrachted as stoundend unner ju GNU Fräie Dokumentationslizenz (sjuch fääre: "$1"). Fals Jie nit moaten dät Jou Oarbaid hier fon uur Ljuude ferannerd un fersprat wäd, dan drukke Jie nit ap "Spiekerje".<br />
 Iek fersicherje hiermäd, dät iek dän Biedraach sälwen ferfoated hääbe blw. dät hie neen froamd Gjucht ferlätset un willigje ien, him unner dän [[Wikipedia:Lizenzbestimmungen|GNU-Lizenz für freie Dokumentation]] tou fereepentlikjen.',
@@ -137,8 +144,11 @@ Iek fersicherje hiermäd, dät iek dän Biedraach sälwen ferfoated hääbe blw.
 'diff' => 'Unnerschied',
 
 # Upload
+'filedesc'    => 'Beschrieuwenge, Wälle',
 'badfilename' => 'Die Datäi-Noome is automatisk annerd tou "$1".',
 'emptyfile'   => 'Ju hoochleedene Doatäi is loos. Die Gruund kon n Typfailer in dän Doatäinoome weese. Kontrollierje jädden, of du ju Doatäi wuddelk hoochleede wolt.',
+'fileexists'  => "Ne Doatäi mäd dissen Noome bestoant al. Wan du ap 'Doatäi spiekerje' klikst, wäd ju Doatäi
+uurschrieuwen. Unner $1 koast du die bewisje, of du dät wuddelk wolt.",
 
 # Image list
 'byname' => 'ätter Noome',
@@ -276,6 +286,13 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'delete_and_move_confirm' => 'Jee, Sielartikkel foar ju Ferschuuwenge läskje',
 'delete_and_move_reason'  => 'Läsked uum Plats tou moakjen foar Ferschuuwenge',
 
+# Export
+'export'          => 'Sieden exportierje',
+'exporttext'      => 'Du koast dän Täkst un ju Beoarbaidengshistorie fon ne bestimde Siede of fon n Uutwoal fon Sieden ättter XML exportierje.',
+'exportcuronly'   => 'Bloot ju aktuälle Version fon de Siede exportierje',
+'exportnohistory' => "--- 
+'''Waiwiesenge:''' Die Export fon komplette Versionsgeschichten is uut Performancegruunden bit ap fääre nit muugelk. Ne Deelleedenge fon Versiongeschichten as Dump is oawers muugelk unner [http://download.wikimedia.org/ download.wikimedia.org] — ''Wikimedia-Serveradministratoren''.",
+
 # Namespace 8 related
 'allmessages'        => 'Aal Ättergjuchte',
 'allmessagesname'    => 'Noome',
@@ -294,36 +311,102 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'deletedrevision' => 'Oolde Version $1 läsked',
 
 # EXIF tags
-'exif-bitspersample'            => 'Bits pro Faawenkomponente',
-'exif-compression'              => 'Oard fon ju Kompression',
-'exif-datetime'                 => 'Spiekertiedpunkt',
-'exif-artist'                   => 'Photograph',
-'exif-copyright'                => 'Uurheebergjuchte',
-'exif-exifversion'              => 'Exif-Version',
-'exif-flashpixversion'          => 'unnerstöände Flashpix-Version',
-'exif-colorspace'               => 'Faawenruum',
-'exif-componentsconfiguration'  => 'Betjuudenge fon älke Komponente',
-'exif-compressedbitsperpixel'   => 'Komprimierde Bits pro Pixel',
-'exif-datetimeoriginal'         => 'Ärfoatengstiedpunkt',
-'exif-datetimedigitized'        => 'Digitalisierengstiedpunkt',
-'exif-exposuretime'             => 'Beljoachtengsduur',
-'exif-exposureprogram'          => 'Beljuchtengsprogram',
-'exif-aperturevalue'            => 'Bländenwäid',
-'exif-brightnessvalue'          => 'Ljoachtegaidswäid',
-'exif-exposurebiasvalue'        => 'Beljuchtengsfoargoawe',
-'exif-flash'                    => 'Blits (Loai!)',
-'exif-flashenergy'              => 'Blitsstäärke',
-'exif-exposureindex'            => 'Beljuchtengsindex',
-'exif-filesource'               => 'Wälle fon ju Doatäi',
-'exif-cfapattern'               => 'CFA-Muster',
-'exif-customrendered'           => 'Benutserdefinierde Bieldeferoarbaidenge',
-'exif-exposuremode'             => 'Beljuchtengsmodus',
-'exif-digitalzoomratio'         => 'Digitoalzoom',
-'exif-contrast'                 => 'Kontrast',
-'exif-devicesettingdescription' => 'Reewen-Ienstaalenge',
+'exif-imagewidth'                  => 'Bratte',
+'exif-imagelength'                 => 'Laangte',
+'exif-bitspersample'               => 'Bits pro Faawenkomponente',
+'exif-compression'                 => 'Oard fon ju Kompression',
+'exif-orientation'                 => 'Kamera-Uutgjuchtenge',
+'exif-planarconfiguration'         => 'Doatenuutgjuchtenge',
+'exif-yresolution'                 => 'Vertikoale Aplöösenge',
+'exif-resolutionunit'              => 'Mäite-Eenhaid fon ju Aplöösenge',
+'exif-stripoffsets'                => 'Bieldedoatenfersät',
+'exif-rowsperstrip'                => 'Antaal Riegen pro Striepe',
+'exif-jpeginterchangeformat'       => 'Offset tou JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Gratte fon do JPEG SOI-Doaten in Bytes',
+'exif-transferfunction'            => 'Uurdreegengsfunktion',
+'exif-datetime'                    => 'Spiekertiedpunkt',
+'exif-imagedescription'            => 'Bieldetittel',
+'exif-make'                        => 'Häärstaaler',
+'exif-model'                       => 'Modäl',
+'exif-artist'                      => 'Photograph',
+'exif-copyright'                   => 'Uurheebergjuchte',
+'exif-exifversion'                 => 'Exif-Version',
+'exif-flashpixversion'             => 'unnerstöände Flashpix-Version',
+'exif-colorspace'                  => 'Faawenruum',
+'exif-componentsconfiguration'     => 'Betjuudenge fon älke Komponente',
+'exif-compressedbitsperpixel'      => 'Komprimierde Bits pro Pixel',
+'exif-pixelydimension'             => 'Gultige Bieldebratte',
+'exif-pixelxdimension'             => 'Gultige Bieldehöchte',
+'exif-makernote'                   => 'Häärstaalernotiz',
+'exif-usercomment'                 => 'Benutserkommentoare',
+'exif-relatedsoundfile'            => 'Touheerige Toondoatäi',
+'exif-datetimeoriginal'            => 'Ärfoatengstiedpunkt',
+'exif-datetimedigitized'           => 'Digitalisierengstiedpunkt',
+'exif-subsectime'                  => 'Spiekertiedpunkt',
+'exif-subsectimeoriginal'          => 'Ärfoatengstiedpunkt',
+'exif-subsectimedigitized'         => 'Digitoalisierengstiedpunkt',
+'exif-exposuretime'                => 'Beljoachtengsduur',
+'exif-exposuretime-format'         => '$1 Sekunden ($2)',
+'exif-fnumber'                     => 'Blände',
+'exif-exposureprogram'             => 'Beljuchtengsprogram',
+'exif-spectralsensitivity'         => 'Beljoachtengstiedwäid',
+'exif-isospeedratings'             => 'Film- of Sensorämpfiendelkaid (ISO)',
+'exif-oecf'                        => 'Optoelektroniske Uumreekenengsfaktor',
+'exif-aperturevalue'               => 'Bländenwäid',
+'exif-brightnessvalue'             => 'Ljoachtegaidswäid',
+'exif-exposurebiasvalue'           => 'Beljuchtengsfoargoawe',
+'exif-maxaperturevalue'            => 'Grootste Blände',
+'exif-subjectdistance'             => 'Fierte',
+'exif-meteringmode'                => 'Meetferfoaren',
+'exif-lightsource'                 => 'Luchtwälle',
+'exif-flash'                       => 'Blits (Loai!)',
+'exif-flashenergy'                 => 'Blitsstäärke',
+'exif-focalplanexresolution'       => 'Sensoraplöösenge horizontoal',
+'exif-focalplaneyresolution'       => 'Sensoraplöösenge vertikoal',
+'exif-focalplaneresolutionunit'    => 'Eenhaid fon Sensoraplöösenge',
+'exif-subjectlocation'             => 'Motivstandploats',
+'exif-exposureindex'               => 'Beljuchtengsindex',
+'exif-sensingmethod'               => 'Meetmethode',
+'exif-filesource'                  => 'Wälle fon ju Doatäi',
+'exif-scenetype'                   => 'Scenetyp',
+'exif-cfapattern'                  => 'CFA-Muster',
+'exif-customrendered'              => 'Benutserdefinierde Bieldeferoarbaidenge',
+'exif-exposuremode'                => 'Beljuchtengsmodus',
+'exif-whitebalance'                => 'Wiet-Ougliek',
+'exif-digitalzoomratio'            => 'Digitoalzoom',
+'exif-focallengthin35mmfilm'       => 'Baadenwiete',
+'exif-scenecapturetype'            => 'Apnoame-Oard',
+'exif-gaincontrol'                 => 'Ferstäärkenge',
+'exif-contrast'                    => 'Kontrast',
+'exif-saturation'                  => 'Säädigenge',
+'exif-sharpness'                   => 'Schäärpegaid',
+'exif-devicesettingdescription'    => 'Reewen-Ienstaalenge',
+'exif-subjectdistancerange'        => 'Motivfierte',
+'exif-imageuniqueid'               => 'Bielde-ID',
+'exif-gpsaltituderef'              => 'Beluukengshöchte',
+'exif-gpsaltitude'                 => 'Höchte',
+'exif-gpsdestlatituderef'          => 'Referenz foar ju Bratte',
+'exif-gpsdestlatitude'             => 'Bratte',
+'exif-gpsdestlongituderef'         => 'Referenz foar ju Laangte',
+'exif-gpsdestlongitude'            => 'Laangte',
+'exif-gpsdestbearingref'           => 'Referenz foar Motivgjuchte',
+'exif-gpsdestbearing'              => 'Motivgjuchte',
+'exif-gpsdestdistanceref'          => 'Referenz foar Motivfierte',
+'exif-gpsdestdistance'             => 'Motivfierte',
+'exif-gpsareainformation'          => 'Noome fon dät GPS-Gestrich',
+'exif-gpsdatestamp'                => 'GPS-Doatum',
 
 # EXIF attributes
 'exif-compression-1' => 'Uunkomprimierd',
+
+'exif-orientation-1' => 'Normoal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Horizontoal uumewoand', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Uum 180° uumewoand', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Vertikoal uumewoand', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Juun dän Klokkenwiesersin uum 90° troald un vertikoal uumewoand', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Uum 90° in Klokkenwiesersin troald', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Uum 90° in Klokkenwiesersin troald un vertikoal uumewoand', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Uum 90° juun dän Klokkenwiesersin troald', # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'Bestoant nit',
 
@@ -337,12 +420,67 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'exif-exposureprogram-7' => 'Portrait-Program',
 'exif-exposureprogram-8' => 'Londskupsapnoamen',
 
+'exif-subjectdistance-value' => '$1 Meters',
+
+'exif-meteringmode-0'   => 'Uunbekoand',
+'exif-meteringmode-1'   => 'in n Truchsleek',
+'exif-meteringmode-2'   => 'Middezentrierd',
+'exif-meteringmode-3'   => 'Punktmeetenge',
+'exif-meteringmode-4'   => 'Moorfachpunktmeetenge',
+'exif-meteringmode-5'   => 'Muster',
+'exif-meteringmode-6'   => 'Bieldedeel',
+'exif-meteringmode-255' => 'Uur',
+
+'exif-lightsource-0'   => 'Uunbekoand',
+'exif-lightsource-1'   => 'Deegeslucht',
+'exif-lightsource-3'   => 'Gloilaampe',
+'exif-lightsource-4'   => 'Blits (Loai)',
+'exif-lightsource-9'   => 'Fluch Weeder',
+'exif-lightsource-10'  => 'beleekene Luft',
+'exif-lightsource-11'  => 'Schaad',
+'exif-lightsource-17'  => 'Standoardlucht A',
+'exif-lightsource-18'  => 'Standoardlucht B',
+'exif-lightsource-19'  => 'Standoardlucht C',
+'exif-lightsource-255' => 'Uur Luchtwälle',
+
+'exif-focalplaneresolutionunit-2' => 'Tuume',
+
+'exif-sensingmethod-1' => 'Uundefinierd',
+'exif-sensingmethod-2' => 'Een-Chip-Faawesensor',
+'exif-sensingmethod-3' => 'Twoo-Chip-Faawesensor',
+'exif-sensingmethod-4' => 'Trjoo-Chip-Faawesensor',
+
+'exif-scenetype-1' => 'Normoal',
+
 'exif-customrendered-0' => 'Standoard',
 'exif-customrendered-1' => 'Benutserdefinierd',
+
+'exif-whitebalance-0' => 'Automatisk',
+'exif-whitebalance-1' => 'Manuäl',
+
+'exif-scenecapturetype-0' => 'Standoard',
+'exif-scenecapturetype-1' => 'Londskup',
+'exif-scenecapturetype-2' => 'Portrait',
+'exif-scenecapturetype-3' => 'Noachtszene',
+
+'exif-gaincontrol-0' => 'Neen',
 
 'exif-contrast-0' => 'Normoal',
 'exif-contrast-1' => 'Swäk',
 'exif-contrast-2' => 'Stäärk',
+
+'exif-saturation-0' => 'Normoal',
+'exif-saturation-1' => 'Min Säädigenge',
+'exif-saturation-2' => 'Hooge Säädigenge',
+
+'exif-sharpness-0' => 'Normoal',
+'exif-sharpness-1' => 'Schäärpegaid min',
+'exif-sharpness-2' => 'Schäärpegaid stäärk',
+
+'exif-subjectdistancerange-0' => 'Uunbekoand',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Nai',
+'exif-subjectdistancerange-3' => 'Fier',
 
 # External editor support
 'edit-externally'      => 'Disse Doatäi mäd n extern Program beoarbaidje',

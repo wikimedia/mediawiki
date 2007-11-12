@@ -236,7 +236,7 @@ $messages = array(
 'restorelink'             => '$1 éditan dihapus',
 'feed-invalid'            => 'Tipe paménta asupan henteu pas.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-user'      => 'Kaca pamaké',
 'nstab-media'     => 'Média',
 'nstab-special'   => 'Husus',
@@ -515,7 +515,7 @@ Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti doma
 'longpagewarning'           => 'PERHATOSAN: Kaca ieu panjangna $1 kilobytes; sababaraha panyungsi boga masalah dina ngédit kaca nu panjangna nepi ka 32kb. Please consider breaking the page into smaller sections.',
 'longpageerror'             => '<strong>SALAH: Téks anu dikirimkeun gedéna $1 kb, leuwih ti maksimum $2 kb. Téks teu bisa disimpen.</strong>',
 'readonlywarning'           => "PERHATOSAN: pangkalan data dikonci pikeun diropéa, anjeun moal bisa nyimpen éditan anjeun ayeuna. Cobi ''cut-n-paste'' téksna ka na koropak téks sarta simpen dina waktu séjén.",
-'protectedpagewarning'      => "<strong>PERHATOSAN: Kaca ieu dikonci sahingga ngan bisa dirobah ku pamaké nu statusna kuncén. Pastikeun yén anjeun tumut kana [[{{ns:project}}:tungtunan_kaca_nu_dikonci'|tungtunan kaca nu dikonci]].</strong>",
+'protectedpagewarning'      => '<strong>PERHATOSAN: Kaca ieu dikonci sahingga ngan bisa dirobah ku pamaké nu statusna kuncén.</strong>',
 'semiprotectedpagewarning'  => "'''Perhatoskeun''': ieu kaca dikonci sahingga ukur bisa dirobah ku pamaké nu geus asup log.",
 'cascadeprotectedwarning'   => "'''Awas''': ieu kaca dikonci sahingga ukur bisa dirobah ku kuncén, sabab kaasup {{PLURAL:$1|kaca|kaca}} dina panyalindungan-ngaruntuy di handap ieu:",
 'templatesused'             => 'Citaka nu dipaké na kaca ieu:',
@@ -840,6 +840,9 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'unusedtemplates'    => 'Citakan nu teu kapaké',
 'unusedtemplateswlh' => 'tumbu lianna',
 
+# Random pages
+'randompage' => 'Kaca acak',
+
 # Random redirect
 'randomredirect' => 'Alihan acak',
 
@@ -895,7 +898,6 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'mostrevisions'           => 'Artikel nu pangmindengna dirévisi',
 'allpages'                => 'Sadaya kaca',
 'prefixindex'             => 'Daftar kaca maké awalan',
-'randompage'              => 'Kaca acak',
 'shortpages'              => 'Kaca-kaca parondok',
 'longpages'               => 'Kaca-kaca paranjang',
 'deadendpages'            => 'Kaca buntu',
