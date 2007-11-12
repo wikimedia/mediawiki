@@ -962,7 +962,12 @@ class Language {
 	}
 	
 	function lcfirst( $str ) {
-		return self::lc( $str, true );
+		if ( ord($str[0]) < 128 ) {
+			// editing string in place = cool
+			$str[0]=strtolower($str[0]);
+			return $str;
+		}
+		else return self::lc( $str, true );
 	}
 
 	function lc( $str, $first = false ) {
