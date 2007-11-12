@@ -1927,7 +1927,11 @@ $wgSkinExtensionFunctions = array();
  * Extension messages files
  * Associative array mapping extension name to the filename where messages can be found.
  * The file must create a variable called $messages.
- * When the messages are needed, the extension should call wfLoadMessagesFile()
+ * When the messages are needed, the extension should call wfLoadExtensionMessages().
+ *
+ * Example: 
+ *    $wgExtensionMessagesFiles['ConfirmEdit'] = dirname(__FILE__).'/ConfirmEdit.i18n.php';
+ *
  */
 $wgExtensionMessagesFiles = array();
 
