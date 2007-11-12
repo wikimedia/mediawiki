@@ -312,7 +312,7 @@ $messages = array(
 'page-rss-feed'           => 'Flus RSS de "$1"',
 'page-atom-feed'          => 'Flus Atom de "$1"',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Article',
 'nstab-user'      => "Pagina d'utilizaire",
 'nstab-media'     => 'Pagina de mèdia',
@@ -1732,7 +1732,9 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 # Image deletion
 'deletedrevision'                 => 'La version anciana $1 es estada suprimida.',
 'filedeleteerror-short'           => 'Error al moment de la supression del fichièr : $1',
-'filedeleteerror-long'            => "D'errors son estadas rencontradas al moment de la supression del fichièr :\n\n$1\n",
+'filedeleteerror-long'            => "D'errors son estadas rencontradas al moment de la supression del fichièr :
+
+$1",
 'filedelete-missing'              => 'Lo fichièr « $1 » pòt pas èsser suprimit perque existís pas.',
 'filedelete-old-unregistered'     => 'La revision del fichièr especificat « $1 » es pas dins la banca de donadas.',
 'filedelete-current-unregistered' => 'Lo fichièr especificat « $1 » es pas dins la banca de donadas.',

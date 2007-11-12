@@ -1,9 +1,14 @@
 <?php
-/** Low Saxon (Plattdüütsch)
+/** Low German (Plattdüütsch)
  *
  * @addtogroup Language
+ *
+ * @author Slomox
+ * @author G - ג
+ * @author Nike
+ * @author SPQRobin
  */
- 
+
 $fallback = 'de';
 
 $magicWords = array(
@@ -301,7 +306,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'viewdeleted'             => '$1 ankieken?',
 'restorelink'             => '$1 löscht Bearbeidensvörgäng',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Artikel',
 'nstab-user'      => 'Siet vun den Bruker',
 'nstab-media'     => 'Media',
@@ -887,6 +892,10 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 # Unused templates
 'unusedtemplates' => 'Nich bruukte Vörlagen',
 
+# Random pages
+'randompage'         => 'Tofällige Siet',
+'randompage-nopages' => 'Gifft kene Sieden in dissen Naamruum.',
+
 # Random redirect
 'randomredirect'         => 'Tofällig Redirect',
 'randomredirect-nopages' => 'Gifft kene Redirects in dissen Naamruum.',
@@ -910,11 +919,7 @@ Dorvun {{PLURAL:$2|hett '''een'''|hebbt '''$2'''}} {{PLURAL:$1||($4 %)}} $5-Rech
 'statistics-mostpopular' => 'opmehrst ankekene Sieden',
 
 'disambiguations'     => 'Mehrdüdige Begrepen',
-'disambiguationspage' => "Op disse Siet schöölt all Vörlagen un Redirects na sone Vörlagen indragen warrn, de bi Begrepen staht, de mehrdüdig sünd un den Leser op de richtige Siet wiederwiest. Op Sieden mit disse Vörlagen schall keen Lenk wiesen. Lenken, de dor doch op wiest, warrt denn op de Siet [[Special:Disambiguations]] optellt.
-
-<small>Vun disse Siet warrt blots de Lenken na den Vörlagen-Naamruum utleest ('''<nowiki>[[</nowiki>{{ns:template}}<nowiki>:...]]</nowiki>''') un allens annere kann geern ännert warrn.</small>
-
-* [[{{ns:template}}:mehrdüdig Begreep]]",
+'disambiguationspage' => 'Template:Mehrdüdig_Begreep',
 
 'doubleredirects'     => 'Dubbelte Wiederleiden',
 'doubleredirectstext' => '<b>Wohrscho:</b> Disse List kann „falsche Positive“ bargen.
@@ -957,8 +962,6 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'mostimages'              => 'Biller, de veel bruukt warrt',
 'mostrevisions'           => 'Sieden mit de mehrsten Versionen',
 'allpages'                => 'Alle Sieden',
-'randompage'              => 'Tofällige Siet',
-'randompage-nopages'      => 'Gifft kene Sieden in dissen Naamruum.',
 'shortpages'              => 'Korte Sieden',
 'longpages'               => 'Lange Sieden',
 'deadendpages'            => 'Sackstraatsieden',
@@ -979,6 +982,8 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'movethispage'            => 'Siet schuven',
 'unusedimagestext'        => 'Denk doran, dat annere Wikis mööglicherwies en poor vun disse Biller bruken.',
 'unusedcategoriestext'    => 'Disse Kategorien sünd leddig, keen Artikel un kene Ünnerkategorie steiht dor in.',
+'notargettitle'           => 'Kene Siet angeven',
+'notargettext'            => 'Du hest nich angeven, op welke Siet du disse Funktschoon anwennen willst.',
 
 # Book sources
 'booksources'               => 'Bookhannel',
@@ -1171,8 +1176,6 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 
 # What links here
 'whatlinkshere'  => 'Wat wiest na disse Siet hen',
-'notargettitle'  => 'Kene Siet angeven',
-'notargettext'   => 'Du hest nich angeven, op welke Siet du disse Funktschoon anwennen willst.',
 'linklistsub'    => '(List vun de Verwiesen)',
 'linkshere'      => 'Disse Sieden wiest hierher:',
 'nolinkshere'    => 'Kene Siet wiest hierher.',

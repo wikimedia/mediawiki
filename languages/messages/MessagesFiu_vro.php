@@ -6,6 +6,8 @@
  * @author Niklas Laxsröm
  * @author Sulev Iva (Võrok)
  * @author Nike
+ * @author Võrok
+ * @author SPQRobin
  */
 
 $fallback = 'et';
@@ -286,7 +288,7 @@ $messages = array(
 'page-rss-feed'           => '$1 (RSS-söödüs)',
 'page-atom-feed'          => '$1 (Atom-söödüs)',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Artikli',
 'nstab-user'      => 'Pruukjalehekülg',
 'nstab-media'     => 'Meediä',
@@ -981,6 +983,10 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'unusedtemplatestext' => 'Tan ommaq kirän kõik näüdüseq, midä olõ-i ütegi lehe pääle pant. Inne ku naaq ärq kistutat, kaeq perrä, kas näide pääle kost määnest linki näütä-i.',
 'unusedtemplateswlh'  => 'muuq lingiq',
 
+# Random pages
+'randompage'         => 'Johuslinõ artikli',
+'randompage-nopages' => 'Seon nimeruumin olõ-i üttegi lehte.',
+
 # Random redirect
 'randomredirect'         => 'Johuslinõ ümbresaatminõ',
 'randomredirect-nopages' => 'Seon nimeruumin olõ-i üttegi ümbresaatmist.',
@@ -996,7 +1002,7 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'statistics-mostpopular' => 'Kõgõ kaetumbaq leheq',
 
 'disambiguations'      => 'Lingiq, miä näütäseq täpsüstüslehekülgi pääle',
-'disambiguationspage'  => '{{ns:project}}:Linke täpsüstüslehekülile',
+'disambiguationspage'  => 'Template:Linke täpsüstüslehekülile',
 'disambiguations-text' => "Naaq leheq näütäseq '''täpsüstüslehti''' pääle. Tuu asõmal pidänüq nä näütämä as'a sisu pääle.<br />Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs link lehelt [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Katõkõrdsõq ümbresaatmisõq',
@@ -1039,8 +1045,6 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'mostrevisions'           => 'Artikliq, mil om kõgõ rohkõmb toimõnduisi',
 'allpages'                => 'Kõik artikliq',
 'prefixindex'             => 'Leheq päälkirä algusõ perrä',
-'randompage'              => 'Johuslinõ artikli',
-'randompage-nopages'      => 'Seon nimeruumin olõ-i üttegi lehte.',
 'shortpages'              => 'Lühküq artikliq',
 'longpages'               => 'Pikäq artikliq',
 'deadendpages'            => 'Leheq, kon olõ-i linke',

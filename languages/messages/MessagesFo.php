@@ -7,6 +7,7 @@
  * @author G - ג
  * @author S.Örvarr.S
  * @author Nike
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -268,7 +269,7 @@ $messages = array(
 'viewdeleted'             => 'Vís $1?',
 'restorelink'             => '{{PLURAL:$1|strikaða rætting|$1 strikaðar rættingar}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Grein',
 'nstab-user'      => 'Brúkarasíða',
 'nstab-media'     => 'Miðil',
@@ -468,12 +469,15 @@ fyri at leggja fílur upp.',
 'unusedtemplates'    => 'Óbrúktar fyrimyndir',
 'unusedtemplateswlh' => 'aðrar slóðir',
 
+# Random pages
+'randompage' => 'Tilvildarlig síða',
+
 # Statistics
 'statistics' => 'Hagtøl',
 'userstats'  => 'Brúkarahagtøl',
 
 'disambiguations'     => 'Síður við fleirfaldum týdningi',
-'disambiguationspage' => 'Fyrimynd:fleiri týdningar',
+'disambiguationspage' => 'Template:Fleiri týdningar',
 
 'doubleredirects' => 'Tvífaldað ávísing',
 
@@ -495,7 +499,6 @@ fyri at leggja fílur upp.',
 'mostcategories'          => 'Greinir við flest bólkum',
 'mostrevisions'           => 'Greinir við flest útgávum',
 'allpages'                => 'Allar síður',
-'randompage'              => 'Tilvildarlig síða',
 'listusers'               => 'Brúkaralisti',
 'specialpages'            => 'Serligar síður',
 'spheading'               => 'Serligar síður til allar brúkarar',
@@ -756,8 +759,8 @@ fer úr gildi tann $4.',
 'watchlistedit-raw-legend'   => 'Rætta rátt eftirlit',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Vís viðkomandi broytingar',
-'watchlisttools-edit'  => 'Vís og rætta eftirlit',
-'watchlisttools-raw'   => 'Rætta rátt eftirlit',
+'watchlisttools-view' => 'Vís viðkomandi broytingar',
+'watchlisttools-edit' => 'Vís og rætta eftirlit',
+'watchlisttools-raw'  => 'Rætta rátt eftirlit',
 
 );
