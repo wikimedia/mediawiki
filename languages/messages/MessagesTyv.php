@@ -53,21 +53,21 @@ $fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # User preference toggles
-'tog-hideminor'      => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннер чажырар',
-'tog-showtoolbar'    => 'Өскертир херекселдер көргүзер (JavaScript)',
+'tog-hideminor'      => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннерни чажырар',
+'tog-showtoolbar'    => 'Өскертир херекселдерни көргүзер (JavaScript)',
 'tog-editondblclick' => 'Арынны өскертирде ийи катап базар (JavaScript)',
 
 'underline-always' => 'Кезээде',
 'underline-never'  => 'Кажан-даа',
 
 # Dates
-'sunday'    => 'Чеди дугаар хүн',
+'sunday'    => 'Улуг хүн',
 'monday'    => 'Бир дугаар хүн',
 'tuesday'   => 'Ийи дугаар хүн',
 'wednesday' => 'Үш дугаар хүн',
 'thursday'  => 'Дөрт дугаар хүн',
 'friday'    => 'Беш дугаар хүн',
-'saturday'  => 'Алды дугаар хүн',
+'saturday'  => 'Чартык улуг хүн',
 'january'   => 'Бир ай',
 'february'  => 'ийи ай',
 'march'     => 'Үш ай',
@@ -100,9 +100,9 @@ $messages = array(
 'subcategories'   => 'Бичии бөлүктер',
 
 'about'          => 'Дугайында',
-'article'        => 'Азыраары арын',
-'newwindow'      => '(чаа козенектен ажар)',
-'cancel'         => 'Ап каар',
+'article'        => 'Допчу арын',
+'newwindow'      => '(чаа козенекке ажыытынар)',
+'cancel'         => 'Соксаар',
 'qbfind'         => 'Тывар',
 'qbbrowse'       => 'Көөр',
 'qbedit'         => 'Өскертир',
@@ -125,14 +125,14 @@ $messages = array(
 'searcharticle'     => 'Чоруур',
 'history'           => 'Арынның Төөгүзү',
 'history_short'     => 'Төөгү',
-'info_short'        => 'Медее',
+'info_short'        => 'Медээ',
 'printableversion'  => 'Саазынга үндүрерин көөр',
 'print'             => 'Саазынга үндүрер',
 'edit'              => 'Өскертир',
 'editthispage'      => 'Бо арынны өскертир',
 'delete'            => 'Ап каар',
 'deletethispage'    => 'Бо арынны ап каар',
-'protect'           => 'Камгалал',
+'protect'           => 'Камгалаар',
 'protectthispage'   => 'Бо арынны камгалаар',
 'unprotect'         => 'Камгалалды ап каар',
 'unprotectthispage' => 'Бо арынның камгалалын ап каар',
@@ -140,15 +140,15 @@ $messages = array(
 'talkpage'          => 'Бо арын дугайында чугаалажыр',
 'talkpagelinktext'  => 'Чугаалажыр',
 'specialpage'       => 'Тускай Арын',
-'personaltools'     => 'Херекселдер',
+'personaltools'     => 'Хууда херекселдер',
 'articlepage'       => 'Допчу арынны көргүзер',
 'talk'              => 'Чугаалажыр',
-'views'             => 'Бодалдар',
-'userpage'          => 'Ажыглакчыниң арынын көргүзер',
-'imagepage'         => 'Чурук арынын көргүзер',
-'viewhelppage'      => 'Дуза арыны көөр',
-'categorypage'      => 'Бөлүк арыны көөр',
-'viewtalkpage'      => 'Чугаалажыры көргүзер',
+'views'             => 'Көрүштер',
+'userpage'          => 'Ажыглакчының арынын көөр',
+'imagepage'         => 'Чурук арынын көөр',
+'viewhelppage'      => 'Дуза арынын көөр',
+'categorypage'      => 'Бөлүк арынын көөр',
+'viewtalkpage'      => 'Чугаалажыры көөр',
 'otherlanguages'    => 'Өске дылдарга',
 'lastmodifiedat'    => 'Бо арын сөөлгү каттап $1 өскерилген.', # $1 date, $2 time
 'jumptonavigation'  => 'навигация',
@@ -157,9 +157,9 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} дугайында',
 'aboutpage'         => 'Project:Дугайында',
-'currentevents'     => 'Амгы үе болуушкуннер',
-'currentevents-url' => 'Амгы үе болуушкуннер',
-'edithelp'          => 'Өскертир дуза',
+'currentevents'     => 'Амгы үеде болуушкуннар',
+'currentevents-url' => 'Амгы үеде болуушкуннар',
+'edithelp'          => 'Өскертиринге дуза',
 'edithelppage'      => 'Help:Өскертир',
 'helppage'          => 'Help:Допчузу',
 'mainpage'          => 'Кол Арын',
@@ -178,13 +178,13 @@ $messages = array(
 'viewdeleted'         => '{{grammar:accusative|$1}} көөр?',
 'restorelink'         => '$1 балаттынган өскерилгелер',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Чүүл',
 'nstab-user'      => 'Ажыглакчының арыны',
 'nstab-media'     => 'Медиа арыны',
 'nstab-special'   => 'Тускай',
 'nstab-project'   => 'Проект арыны',
-'nstab-image'     => 'Файл',
+'nstab-image'     => 'Бижиири',
 'nstab-mediawiki' => 'Чагаа',
 'nstab-template'  => 'Хээ',
 'nstab-help'      => 'Дуза',
@@ -210,7 +210,7 @@ $1',
 'logout'             => 'Үнер',
 'userlogout'         => 'Үнер',
 'gotaccountlink'     => 'Кирер',
-'createaccountmail'  => 'email-биле',
+'createaccountmail'  => 'е-чагаа-биле',
 'badretype'          => 'Силернин парлаан чажыт созуңер таарышпас.',
 'userexists'         => 'Силернин парлаан адыңар амгы уеде ажыглаттынып турар. өске аттан шилип алыңар.',
 'username'           => 'Aжыглакчының ады:',
@@ -228,11 +228,12 @@ $1',
 'link_tip'       => 'Иштики холбаа',
 'extlink_sample' => 'http://www.example.com холбаа ады',
 'extlink_tip'    => 'Даштыкы холбаа (http:// сактып алыр)',
-'nowiki_sample'  => 'Форматтаваан текстини бээр салыр',
+'nowiki_sample'  => 'Форматтаваан сөзүглелини бээр салыр',
 
 # Edit pages
 'minoredit'          => 'Бо өскерлири биче-дир',
 'watchthis'          => 'Бо арынны көөр',
+'savearticle'        => 'Арынны шыгжаар',
 'showdiff'           => 'Өскерлирилер көргүзер',
 'nosuchsectiontitle' => 'Ындыг бөлгүм чок',
 'loginreqlink'       => 'кирер',
@@ -271,7 +272,7 @@ $1',
 'newpassword'       => 'Чаа чажыт сөс:',
 'textboxsize'       => 'Өскертир',
 'searchresultshead' => 'Дилээр',
-'files'             => 'Файлдар',
+'files'             => 'бижиирилер',
 
 # Recent changes
 'recentchanges'   => 'Өскерлиишкиннер',
@@ -284,10 +285,11 @@ $1',
 'show'            => 'көргүзер',
 
 # Upload
-'upload'     => 'Файлду киирер',
-'uploadbtn'  => 'Файлду киирер',
-'filename'   => 'Файлдың ады:',
+'upload'     => 'Бижиирини киирер',
+'uploadbtn'  => 'Бижиирини киирер',
+'filename'   => 'бижиириниң ады:',
 'filesource' => 'Эгези:',
+'savefile'   => 'бижиирини шыгжаар',
 
 # Image list
 'ilsubmit'              => 'Дилээр',
@@ -305,6 +307,9 @@ $1',
 # File deletion
 'filedelete-submit' => 'Ап каар',
 
+# MIME search
+'download' => 'алыр',
+
 # Random pages
 'randompage' => 'Даап арын',
 
@@ -312,6 +317,11 @@ $1',
 'brokenredirects-delete' => '(ап каар)',
 
 # Miscellaneous special pages
+'ncategories'       => '$1 бөлүк',
+'nlinks'            => '$1 холбаа',
+'nmembers'          => '$1 кежигүн',
+'nrevisions'        => '$1 үндүрери',
+'nviews'            => '$1 көрүүшкүн',
 'allpages'          => 'Шупту арыннар',
 'shortpages'        => 'Чолдак арыннар',
 'longpages'         => 'Узун арыннар',
@@ -361,7 +371,16 @@ $1',
 'allmessagesdefault' => 'Default сөзүглел',
 'allmessagescurrent' => 'Амгы сөзүглел',
 
+# Tooltip help for the actions
+'tooltip-save' => 'Силерниң өскерлиишкиннериңерни шыгжаар',
+
 # Attribution
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат чок ажыглакчызы(лары)',
+
+'exif-subjectdistancerange-2' => 'Чоок көрүүшкүн',
+'exif-subjectdistancerange-3' => 'ырак көрүүшкүн',
+
+# Auto-summaries
+'autosumm-new' => 'Чаа арын: $1',
 
 );

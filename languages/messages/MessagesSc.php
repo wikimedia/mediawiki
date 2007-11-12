@@ -1,7 +1,11 @@
 <?php
-/**
-  * @addtogroup Language
-  */
+/** Sardinian (Sardu)
+ *
+ * @addtogroup Language
+ *
+ * @author Nike
+ * @author G - ג
+ */
 
 $namespaceNames = array(
 	NS_SPECIAL         => 'Speciale',
@@ -65,16 +69,12 @@ $messages = array(
 'november'  => 'Novembre',
 'december'  => 'Dicembre',
 'jan'       => 'Gen',
-'feb'       => 'Feb',
-'mar'       => 'Mar',
-'apr'       => 'Apr',
 'may'       => 'Mag',
 'jun'       => 'Giu',
 'jul'       => 'Lug',
 'aug'       => 'Ago',
 'sep'       => 'Set',
 'oct'       => 'Ott',
-'nov'       => 'Nov',
 'dec'       => 'Dic',
 
 'about'         => 'A proposito di',
@@ -98,6 +98,7 @@ $messages = array(
 'searcharticle'     => 'Vai',
 'history'           => 'Versioni precedenti',
 'printableversion'  => 'Versione stampabile',
+'edit'              => 'Modificare',
 'editthispage'      => 'Modifica questo articolo',
 'deletethispage'    => 'Cancella questa pagina',
 'protectthispage'   => 'Proteggi questa pagina',
@@ -114,21 +115,18 @@ $messages = array(
 'protectedpage'     => 'Pagina protetta',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'A proposito di {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:About',
-'bugreports'        => 'Segnalazioni di malfunzionamento',
-'bugreportspage'    => '{{ns:project}}:Malfunzionamenti',
-'copyrightpagename' => '{{SITENAME}} copyright',
-'copyrightpage'     => '{{ns:project}}:Copyrights',
-'currentevents'     => 'Attualità',
-'edithelp'          => 'Guida per la modifica o la scrittura di un articolo',
-'edithelppage'      => '{{ns:project}}:Come_scrivere_un_articolo',
-'faq'               => 'FAQ',
-'faqpage'           => '{{ns:project}}:FAQ',
-'helppage'          => '{{ns:project}}:Aiuto',
-'mainpage'          => 'Pàggina principali',
+'aboutsite'      => 'A proposito di {{SITENAME}}',
+'aboutpage'      => '{{ns:project}}:About',
+'bugreports'     => 'Segnalazioni di malfunzionamento',
+'bugreportspage' => '{{ns:project}}:Malfunzionamenti',
+'copyrightpage'  => '{{ns:project}}:Copyrights',
+'currentevents'  => 'Attualità',
+'edithelp'       => 'Guida per la modifica o la scrittura di un articolo',
+'edithelppage'   => '{{ns:project}}:Come_scrivere_un_articolo',
+'faqpage'        => '{{ns:project}}:FAQ',
+'helppage'       => '{{ns:project}}:Aiuto',
+'mainpage'       => 'Pàggina principali',
 
-'ok'            => 'OK',
 'retrievedfrom' => 'Ricavato da  "$1"',
 
 # Main script and global functions
@@ -179,11 +177,7 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'yourpasswordagain'     => 'Ripeti la password',
 'remembermypassword'    => 'Ricorda la mia password per più sessioni (richiede uso dei cookies).',
 'loginproblem'          => '<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!',
-'alreadyloggedin'       => '<strong>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</strong><br />',
-'login'                 => 'Log in',
 'userlogin'             => 'Log in',
-'logout'                => 'Log out',
-'userlogout'            => 'Log out',
 'createaccount'         => 'Crea nuovo account',
 'badretype'             => 'Le password che hai immesso non coincidono, sono diverse fra loro.',
 'userexists'            => 'Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.',
@@ -214,9 +208,14 @@ Per favore, fai subito un log in non appena la ricevi.',
 'preview'         => 'Anteprima',
 'showpreview'     => 'Visualizza Anteprima',
 'blockedtitle'    => 'Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.',
-'blockedtext'     => "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br />
-La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri
-[[{{ns:project}}:administrators|administrators]] per discutere del blocco.",
+'blockedtext'     => "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.
+
+
+La motivazione del blocco è la seguente:
+
+''$2''
+
+Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:grouppage-sysop}}|administrators]] per discutere del blocco.",
 'newarticle'      => '(Nuovo)',
 'newarticletext'  => 'Scrivi qui il tuo testo.',
 'noarticletext'   => "(L'articolo è vuoto, potresti gentilmente iniziare l'articolo oppure richiedere la cancellazione di questa pagina)",
@@ -249,7 +248,6 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.',
 'cur'             => 'corr',
 'next'            => 'succ',
 'last'            => 'prec',
-'orig'            => 'orig',
 'histlegend'      => 'Legend: (corr) = differenze con la versione corrente,
 (prec) = differenze con la versione precedente, M = modifica minore',
 
@@ -261,15 +259,9 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.',
 
 # Search results
 'searchresults'         => 'Risultato della ricerca',
-'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].',
+'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:helppage}}|Ricerca in {{SITENAME}}]].',
 'searchsubtitle'        => 'Richiesta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Richiesta "$1"',
-'badquery'              => 'Richiesta mal inoltrata',
-'badquerytext'          => 'La tua richiesta non ha potuto essere processata.
-Questo potrebbe dipendere dall\'aver ricercato una parola di meno di tre caratteri.
-Oppure potresti aver scritto male la richiesta, per esempio "pesce and and azzurro".
-Per favore, riprova.',
-'matchtotals'           => 'La ricerca per la voce "$1" ha trovato<br />$2 riscontri nei titoli degli articoli e<br />$3 riscontri nei testi degli articoli.',
 'titlematches'          => 'Nei titoli degli articoli',
 'notitlematches'        => 'Voce richiesta non trovata in titoli di articolo',
 'textmatches'           => 'Nel testo degli articoli',
@@ -323,19 +315,15 @@ per poter personalizzare le tue preferenze.',
 'rcnotefrom'      => ' Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).',
 'rclistfrom'      => 'Mostra modifiche a partire da $1',
 'rclinks'         => ' Mostra le ultime $1 modifiche negli ultimi $2 giorni.',
-'diff'            => 'diff',
 'hist'            => 'cron',
 'hide'            => 'nascondi',
 'show'            => 'mostra',
 'minoreditletter' => 'M',
-'newpageletter'   => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Modifiche correlate',
 
 # Upload
-'upload'            => 'Upload file',
-'uploadbtn'         => 'Upload file',
 'reupload'          => 'Ri-upload',
 'reuploaddesc'      => 'Torna al modulo per lo upload.',
 'uploadnologin'     => 'Devi fare il login per eseguire questa operazione.',
@@ -365,7 +353,6 @@ Per inserire la nuova immagine in un articolo, usa semplicemente un link nella f
 '''<nowiki>[[media:file.ogg]]</nowiki>''' per i suoni.
 
 Tieni presente che, come per tutte le pagine di {{SITENAME}}, chiunque può modificare o sostituire o cancellare i tuoi files ove ritenga che ciò sia negli interessi della nostra enciclopedia. Tieni anche presente che, in caso di abuso, o di sovraccarico sul sistema, potresti essere bloccato (oltre ad essere perseguito per le connesse responsabilità).",
-'uploadlog'         => 'upload log',
 'uploadlogpage'     => 'Upload_log',
 'uploadlogpagetext' => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
 Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
@@ -379,26 +366,21 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'uploadedimage'     => 'caricato "[[$1]]"',
 
 # Image list
-'imagelist'           => 'Lista delle immagini',
-'imagelisttext'       => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',
-'getimagelist'        => 'ricerca nella lista delle immagini',
-'ilsubmit'            => 'Cerca',
-'showlast'            => 'Mostra le ultime $1 immagini ordinate per $2.',
-'byname'              => 'nome',
-'bydate'              => 'data',
-'bysize'              => 'peso',
-'imgdelete'           => 'canc',
-'imgdesc'             => 'desc',
-'imglegend'           => 'Legenda: (desc) = mostra/modifica descrizione immagine.',
-'imghistory'          => 'Storia di questa immagine',
-'revertimg'           => 'ripr',
-'deleteimg'           => 'canc',
-'deleteimgcompletely' => 'canc',
-'imghistlegend'       => 'Legenda: (cur) = immagine corrente, (canc) = cancella questa vecchia versione, (ripr) = ripristina questa vecchia versione come versione attuale.
-<br /><i>Clicca su una data per vedere tutte le immagini che sono state caricate in quella data </i>.',
-'imagelinks'          => 'Link alle immagini',
-'linkstoimage'        => 'Le pagine seguenti linkano questa immagine:',
-'nolinkstoimage'      => 'Nessuna pagina linka questa immagine.',
+'imagelist'      => 'Lista delle immagini',
+'imagelisttext'  => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',
+'getimagelist'   => 'ricerca nella lista delle immagini',
+'ilsubmit'       => 'Cerca',
+'showlast'       => 'Mostra le ultime $1 immagini ordinate per $2.',
+'byname'         => 'nome',
+'bydate'         => 'data',
+'bysize'         => 'peso',
+'imgdelete'      => 'canc',
+'imagelinks'     => 'Link alle immagini',
+'linkstoimage'   => 'Le pagine seguenti linkano questa immagine:',
+'nolinkstoimage' => 'Nessuna pagina linka questa immagine.',
+
+# Random pages
+'randompage' => 'Una pagina a caso',
 
 # Statistics
 'statistics'    => 'Statistiche',
@@ -412,7 +394,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 'userstatstext' => 'Ci sono <b>$1</b> Utenti registrati.
 <b>$2</b> di questi hanno il grado di amministratori (vedi $3).',
 
-'disambiguations'     => 'Disambiguation pages',
 'disambiguationspage' => '{{ns:project}}:Links_to_disambiguating_pages',
 
 'doubleredirects'     => 'Doppi Redirects',
@@ -431,7 +412,6 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'popularpages'     => 'Pagine più viste',
 'wantedpages'      => 'Articoli più richiesti',
 'allpages'         => 'Tutte le pagine',
-'randompage'       => 'Una pagina a caso',
 'shortpages'       => 'Pagine corte',
 'longpages'        => 'Pagine lunghe',
 'listusers'        => 'Elenco degli Utenti',
@@ -441,23 +421,18 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'newpages'         => 'Pagine nuove',
 'movethispage'     => 'Sposta questa pagina',
 'unusedimagestext' => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.',
+'notargettitle'    => 'Dati mancanti',
+'notargettext'     => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 
 # E-mail user
-'mailnologin'     => 'No send address',
 'mailnologintext' => 'Devi fare il [[Special:Userlogin|login]]
 ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|preferenze]] per mandare posta elettronica ad altri Utenti.',
 'emailuser'       => 'Manda una E-mail a questo Utente',
-'emailpage'       => 'E-mail user',
 'emailpagetext'   => 'Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
 La e-mail che hai indicato nelle tue preferenze apparirà nel campo "From" della mail, così che il destinatario possa, solo se lo desidera però, risponderti.',
 'noemailtitle'    => 'Nessun indirizzo e-mail',
 'noemailtext'     => 'Questo Utente non ha registrato alcuna casella e-mail,
 oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
-'emailfrom'       => 'From',
-'emailto'         => 'To',
-'emailsubject'    => 'Subject',
-'emailmessage'    => 'Message',
-'emailsend'       => 'Send',
 'emailsent'       => 'E-mail inviata',
 'emailsenttext'   => 'La tua e-mail è stata inviata.',
 
@@ -494,10 +469,8 @@ Vedi $2 per un elenco delle pagine cancellate di recente.',
 'dellogpage'        => 'Deletion_log',
 'dellogpagetext'    => 'Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server (UTC).',
-'deletionlog'       => 'deletion log',
 'reverted'          => 'Ripristinata versione precedente',
 'deletecomment'     => 'Motivazione della cancellazione',
-'imagereverted'     => 'Versione precedente correttamente ripristinata.',
 'rollback'          => 'Usa una revisione precdente',
 'cantrollback'      => "Impossibile tornare ad una versione precedente: l'ultima modifica è stata apportata dall'unico utente che abbia lavorato a questo articolo.",
 'revertpage'        => 'Riportata alla revisione precedente da $1',
@@ -522,8 +495,6 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 
 # What links here
 'whatlinkshere' => 'Pagine che linkano questa',
-'notargettitle' => 'Dati mancanti',
-'notargettext'  => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 'linklistsub'   => '(Lista di links)',
 'linkshere'     => 'Le seguenti pagine contengono link che puntano qui:',
 'nolinkshere'   => 'Nessuna pagina contiene links che puntano a questa.',
@@ -531,8 +502,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 
 # Block/unblock
 'blockip'            => 'Blocca indirizzo IP',
-'blockiptext'        => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP.
-Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{ns:project}}:Policy|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
+'blockiptext'        => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP. Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{MediaWiki:policy-url}}|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
 'ipaddress'          => 'Indirizzo IP (IP Address)',
 'ipbreason'          => 'Motivazione',
@@ -601,5 +571,3 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'talkpagenotmoved' => 'La corrispondente pagina di discussione <strong>non è stata spostata</strong>.',
 
 );
-
-

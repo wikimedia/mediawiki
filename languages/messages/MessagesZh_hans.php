@@ -1,9 +1,11 @@
 <?php
-/**
-  * Chinese (Simplified) (中文 (简化字))
-  *
-  * @addtogroup Language
-  */
+/** Simplified Chinese (‪中文(简体)‬)
+ *
+ * @addtogroup Language
+ *
+ * @author Shinjiman
+ * @author O
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -303,7 +305,6 @@ $messages = array(
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此页。参见[[Special:Version|版本頁]]。',
 
 'ok'                      => '确定',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => '取自"$1"',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新信息',
@@ -325,7 +326,7 @@ $messages = array(
 'page-rss-feed'           => '“$1”的RSS订阅',
 'page-atom-feed'          => '“$1”的Atom订阅',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => '文章',
 'nstab-user'      => '用户页面',
 'nstab-media'     => '媒体页面',
@@ -511,9 +512,7 @@ $2',
 'math_tip'        => '插入数学公式 (LaTeX)',
 'nowiki_sample'   => '在此插入非格式文本',
 'nowiki_tip'      => '插入非格式文本',
-'image_sample'    => 'Example.jpg',
 'image_tip'       => '嵌入图像',
-'media_sample'    => 'Example.ogg',
 'media_tip'       => '媒体文件链接',
 'sig_tip'         => '带有时间的签名',
 'hr_tip'          => '水平线 (小心使用)',
@@ -1043,11 +1042,11 @@ $2',
 'filedelete'             => '删除$1',
 'filedelete-legend'      => '删除文件',
 'filedelete-intro'       => "您现正删除'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'   => "<span class=\"plainlinks\">你现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。</span>",
+'filedelete-intro-old'   => '<span class="plainlinks">你现正删除\'\'\'[[Media:$1|$1]]\'\'\'于[$4 $2 $3]的版本。</span>',
 'filedelete-comment'     => '注解:',
 'filedelete-submit'      => '删除',
 'filedelete-success'     => "'''$1'''已经删除。",
-'filedelete-success-old' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。</span>",
+'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'于 $2 $3 的版本已经删除。</span>',
 'filedelete-nofile'      => "'''$1'''在这个网站中不存在。",
 'filedelete-nofile-old'  => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
 'filedelete-iscurrent'   => '您现正尝试删除这个文件的最近版本。请先将个该文件回退成较旧的版本。',
@@ -1069,6 +1068,10 @@ $2',
 'unusedtemplatestext' => '此页面列出模板名字空间下所有未被其它页面使用的页面。请在删除这些模板前检查其它链入该模板的页面。',
 'unusedtemplateswlh'  => '其它链接',
 
+# Random pages
+'randompage'         => '随机页面',
+'randompage-nopages' => '在这个名字空间中没有页面。',
+
 # Random redirect
 'randomredirect'         => '随机重定向页面',
 'randomredirect-nopages' => '在这个名字空间中没有重定向页面。',
@@ -1077,16 +1080,16 @@ $2',
 'statistics'             => '统计',
 'sitestats'              => '{{SITENAME}}统计数据',
 'userstats'              => '用户统计',
-'sitestatstext'          => "数据库中共有'''$1'''页页面。
+'sitestatstext'          => "数据库中共有'''\$1'''页页面。
 其中包括对话页、关于{{SITENAME}}的页面、最少量的\"小作品\"页、重定向的页面，
-以及未达到页面质量的页面。除此之外还有'''$2'''页可能是合乎标准的页面。
+以及未达到页面质量的页面。除此之外还有'''\$2'''页可能是合乎标准的页面。
 
-'''$8'''个文件已被上传。
+'''\$8'''个文件已被上传。
 
-从{{SITENAME}}设置以来，全站点共有页面浏览'''$3'''次，页面编辑'''$4'''次。
-即每页平均编辑'''$5'''次，各次编辑后页面的每个版本平均浏览'''$6'''次。
+从{{SITENAME}}设置以来，全站点共有页面浏览'''\$3'''次，页面编辑'''\$4'''次。
+即每页平均编辑'''\$5'''次，各次编辑后页面的每个版本平均浏览'''\$6'''次。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue 工作排队]的长度是'''$7'''。",
+[http://meta.wikimedia.org/wiki/Help:Job_queue 工作排队]的长度是'''\$7'''。",
 'userstatstext'          => "网站有'''$1'''位注册[[Special:Listusers|用户]]，其中
 '''$2''' (或 '''$4%''') 有$5权限。",
 'statistics-mostpopular' => '浏览最多的页面',
@@ -1141,8 +1144,6 @@ Template:消除歧義',
 'mostrevisions'           => '最多修订文章',
 'allpages'                => '所有页面',
 'prefixindex'             => '前缀索引',
-'randompage'              => '随机页面',
-'randompage-nopages'      => '在这个名字空间中没有页面。',
 'shortpages'              => '短页面',
 'longpages'               => '长页面',
 'deadendpages'            => '断链页面',
@@ -1543,9 +1544,10 @@ $1',
 'range_block_disabled'        => '只有管理员才能创建禁止查封的范围。',
 'ipb_expiry_invalid'          => '无效的终止时间。',
 'ipb_already_blocked'         => '已经封锁"$1"',
-'ip_range_invalid'            => '无效的IP范围。\n',
-'proxyblocker'                => '代理封锁器',
 'ipb_cant_unblock'            => '错误: 没有发现 Block ID $1。该 IP 可能已经被解封。',
+'ip_range_invalid'            => '无效的IP范围。\n',
+'blockme'                     => '禁封我',
+'proxyblocker'                => '代理封锁器',
 'proxyblockreason'            => '您的IP地址是一个开放的代理，它已经被封锁。请联系您的因特网服务提供商或技术支持者并告知告知他们该严重的安全问题。',
 'proxyblocksuccess'           => '完成。\n',
 'sorbsreason'                 => '您的IP地址被 DNSBL 列为属于开放代理服务器。',
@@ -2242,7 +2244,7 @@ $1
 'autosumm-new'     => '新页面: $1',
 
 # Size units
-'size-bytes'     => '$1 字节',
+'size-bytes' => '$1 字节',
 
 # Live preview
 'livepreview-loading' => '正在加载…',
@@ -2272,8 +2274,8 @@ $1
 'watchlistedit-raw-removed'    => '已经移除了$1个标题:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => '查看有关更改',
-'watchlisttools-edit'  => '查看并编辑监视列表',
-'watchlisttools-raw'   => '编辑源监视列表',
+'watchlisttools-view' => '查看有关更改',
+'watchlisttools-edit' => '查看并编辑监视列表',
+'watchlisttools-raw'  => '编辑源监视列表',
 
 );

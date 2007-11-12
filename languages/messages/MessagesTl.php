@@ -16,7 +16,7 @@ $messages = array(
 'tog-justify'          => 'Pantayin ang mga talata',
 'tog-hideminor'        => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
 'tog-numberheadings'   => 'Automatikong bilangin ang mga pamagat',
-'tog-showtoc'          => 'Ipakita ang talaan ng nilalaman (para sa mga pahinang may higit sa 3 pamagat)',
+'tog-showtoc'          => 'Ipakita ang tala ng nilalaman (para sa mga pahinang may higit sa 3 pamagat)',
 'tog-rememberpassword' => 'Tandaan ang paglagda ko sa kompyuter na ito',
 'tog-fancysig'         => 'Hilaw na lagda (walang automatikong pagkawing)',
 
@@ -165,7 +165,7 @@ $messages = array(
 'hidetoc'                 => 'itago',
 'restorelink'             => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Artikulo',
 'nstab-user'      => 'Pahina ng tagagamit',
 'nstab-media'     => 'Pahina ng midya',
@@ -244,6 +244,9 @@ pinapakita sa ibaba:",
 upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
 
+# Random pages
+'randompage' => 'Random na pahina',
+
 # Statistics
 'statistics' => 'Mga estadistika',
 'sitestats'  => 'Mga estadistika ng {{SITENAME}}',
@@ -253,7 +256,6 @@ upang makapagkarga ng talaksan.',
 # Miscellaneous special pages
 'lonelypages'        => 'Mga inulilang pahina',
 'allpages'           => 'Lahat ng pahina',
-'randompage'         => 'Random na pahina',
 'shortpages'         => 'Mga maiikling pahina',
 'longpages'          => 'Mga mahahabang pahina',
 'specialpages'       => 'Mga natatanging pahina',

@@ -7,6 +7,7 @@
  * @author Bert Jickty
  * @author Siebrand
  * @author Teak
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -253,7 +254,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS биэрии',
 'page-atom-feed'          => '"$1" Atom биэрии',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Ыстатыйа',
 'nstab-user'      => 'Кыттааччы',
 'nstab-media'     => 'Мэлдьимиэдийэ',
@@ -991,6 +992,10 @@ PICT # misc.
 'unusedtemplatestext' => 'Манна атын сирэйдэр ахсааннарыгар киирбэтэтх "Халыыптарга" сыһыаннаах сирэйдэр көстөллөр. Соторгор атын билэлэртэн сигэммэтэхтэрин көр.',
 'unusedtemplateswlh'  => 'атын ыйынньыктар',
 
+# Random pages
+'randompage'         => 'Үлүбээй сирэй',
+'randompage-nopages' => 'Майгынныыр ааттаах сирэйдэр суохтар.',
+
 # Random redirect
 'randomredirect'         => 'Случайное перенаправление',
 'randomredirect-nopages' => 'Бу ааттарга көһөрөр ыйынньыктар суохтар.',
@@ -1010,7 +1015,7 @@ PICT # misc.
 'statistics-mostpopular' => 'Саамай элбэхтик көрүллэр ыстатыйалар',
 
 'disambiguations'     => 'Элбэх суолталаах өйдөбүллэр сирэйдэрэ',
-'disambiguationspage' => 'Халыып:элбэх суолталаах өйдөбүллэр',
+'disambiguationspage' => 'Template:элбэх суолталаах өйдөбүллэр',
 
 'doubleredirects'     => 'Хос көһөрөөһүн',
 'doubleredirectstext' => 'Каждая строка содержит ссылки на первое и второе перенаправления, а также первую строчку страницы второго перенаправления, в которой обычно указывается название страницы, куда должно осуществляться перенаправление. Нужно, чтобы и первое перенаправление ссылалось на эту страницу.',
@@ -1052,8 +1057,6 @@ PICT # misc.
 'mostrevisions'           => 'Саамай элбэхтик уларытыллыбыт ыстатыйалар',
 'allpages'                => 'Сирэйдэр барыта',
 'prefixindex'             => 'Префикс бэлиэтэ',
-'randompage'              => 'Үлүбээй сирэй',
-'randompage-nopages'      => 'Майгынныыр ааттаах сирэйдэр суохтар.',
 'shortpages'              => 'Кылгас ыстатыйалар',
 'longpages'               => 'Уһун ыстатыйалар',
 'deadendpages'            => 'Dead-end (Бүтэй) сирэйдэр',
