@@ -643,7 +643,7 @@ class SpecialPage
 		if ( $this->userCanExecute( $wgUser ) ) {
 			$func = $this->mFunction;
 			// only load file if the function does not exist
-			if(!function_exists($func) and $this->mFile) {
+			if(!is_callable($func) and $this->mFile) {
 				require_once( $this->mFile );
 			}
 			# FIXME: these hooks are broken for extensions and anything else that subclasses SpecialPage. 
@@ -651,7 +651,7 @@ class SpecialPage
 				$this->outputHeader();
 			if ( ! wfRunHooks( 'SpecialPageExecuteBeforePage', array( &$this, &$par, &$func ) ) )
 				return;
-			$func( $par, $this );
+			call_user_func( $func, $par, $this );
 			if ( ! wfRunHooks( 'SpecialPageExecuteAfterPage', array( &$this, &$par, &$func ) ) )
 				return;
 		} else {
