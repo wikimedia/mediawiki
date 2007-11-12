@@ -7,6 +7,7 @@
  * @author Siebrand
  * @author Nike
  * @author G - ג
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -103,7 +104,7 @@ $messages = array(
 'showtoc'             => 'ይታይ',
 'hidetoc'             => 'ይደበቅ',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'መጣጥፍ',
 'nstab-user'      => 'ያባል መኖርያ ገጽ',
 'nstab-special'   => 'ልዩ ገጽ',
@@ -129,7 +130,7 @@ $messages = array(
 በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦',
 'welcomecreation'       => '== ሰላምታ፣ $1! ==
 
-የብዕር ስምዎ ተፈጥሯል። ስለ [[Wikipedia:Welcome, newcomers!|ምርጫዎች ምክር]] ይረዱ።',
+የብዕር ስምዎ ተፈጥሯል። ስለ ምርጫዎች ምክር ይረዱ።',
 'yourname'              => 'Username / የብዕር ስም:',
 'yourpassword'          => 'Password / መግቢያ ቃል',
 'yourpasswordagain'     => 'መግቢያ ቃልዎን ዳግመኛ ይስጡ',
@@ -365,6 +366,9 @@ $messages = array(
 'unusedtemplatestext' => 'እነኚህ መልጠፊያዎች አሁን ባንዳችም ገጽ ላይ አልተለጠፉም።',
 'unusedtemplateswlh'  => 'ሌሎች መያያዣዎች',
 
+# Random pages
+'randompage' => 'ማናቸውንም ለማየት',
+
 # Random redirect
 'randomredirect' => 'ማናቸውም መምሪያ መንገድ',
 
@@ -419,7 +423,6 @@ $messages = array(
 'mostrevisions'           => 'ለውጦች የበዙላቸው መጣጥፎች',
 'allpages'                => 'ገጾች ሁሉ በሙሉ',
 'prefixindex'             => 'ገጾች በፊደል ለመፈልግ',
-'randompage'              => 'ማናቸውንም ለማየት',
 'shortpages'              => 'ጽሁፎች ካጭሩ ተደርድረው',
 'longpages'               => 'ጽሁፎች ከረጅሙ ተደርድረው',
 'deadendpages'            => 'መያያዣ የሌለባቸው ፅሑፎች',

@@ -14,6 +14,7 @@
  * @author Mahadeva
  * @author Alpertron
  * @author Better
+ * @author Nike
  */
 
 $skinNames = array(
@@ -288,7 +289,7 @@ $messages = array(
 'feedlinks'               => 'Sindicación:',
 'feed-invalid'            => 'Tipo de subscripción a sindicación de noticias inválida.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the 'page' tab in monobook
 'nstab-main'      => 'Artículo',
 'nstab-user'      => 'Usuario',
 'nstab-media'     => 'Media',
@@ -568,9 +569,7 @@ Por favor considere la posibilidad de dividir esta página en secciones más peq
 'longpageerror'             => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, lo cual es mayor que $2 kilobytes. No se puede guardar.</strong>',
 'readonlywarning'           => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
 Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
-'protectedpagewarning'      => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla. Asegúrate de que estás siguiendo las [[Project:Políticas de bloqueo de páginas|Políticas de bloqueo de páginas]].</strong>
-__NOEDITSECTION__<h3>La edición de esta página está [[Project:Esta página está protegida|protegida]].</h3>
-* Puedes opinar sobre este bloqueo en la [[{{TALKPAGENAME}}|página de discusión]] del artículo.<br />',
+'protectedpagewarning'      => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'   => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está transcluida en las siguientes páginas protegidas con la opción de ''cascada'':",
 'templatesused'             => 'Plantillas usadas en esta página:',
@@ -966,6 +965,10 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'unusedtemplatestext' => 'Aquí se enumeran todas las páginas en la zona de plantillas que no están incluidas en otras páginas. Recuerda mirar lo que enlaza a las plantillas antes de borrarlas.',
 'unusedtemplateswlh'  => 'otros enlaces',
 
+# Random pages
+'randompage'         => 'Página aleatoria',
+'randompage-nopages' => 'No hay páginas en este espacio de nombres.',
+
 # Random redirect
 'randomredirect'         => 'Ir a una redirección cualquiera',
 'randomredirect-nopages' => 'No hay redirecciones en este espacio de nombres.',
@@ -1033,8 +1036,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'mostrevisions'           => 'Artículos con más ediciones',
 'allpages'                => 'Todas las páginas',
 'prefixindex'             => 'Páginas por prefijo',
-'randompage'              => 'Página aleatoria',
-'randompage-nopages'      => 'No hay páginas en este espacio de nombres.',
 'shortpages'              => 'Páginas cortas',
 'longpages'               => 'Páginas largas',
 'deadendpages'            => 'Páginas sin salida',
@@ -1231,8 +1232,7 @@ Véase $2 para un registro de los borrados recientes.',
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
 Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de nuevo.',
 'protectlogpage'              => 'Protecciones de páginas',
-'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página.
-Véase [[Project:Esta página está protegida]] para más información.',
+'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:Protectedpages|Esta página está protegida]] para más información.',
 'protectedarticle'            => 'protegió [[$1]]',
 'modifiedarticleprotection'   => 'Cambiado el nivel de protección de "[[$1]]"',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
