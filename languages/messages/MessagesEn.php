@@ -360,7 +360,6 @@ $specialPageAliases = array(
 	'Listusers'                 => array( 'Listusers', 'Userlist' ),
 	'Statistics'                => array( 'Statistics' ),
 	'Randompage'                => array( 'Random', 'Randompage' ),
-	'Randomincategory'          => array( 'Randomincategory' ),
 	'Lonelypages'               => array( 'Lonelypages', 'Orphanedpages' ),
 	'Uncategorizedpages'        => array( 'Uncategorizedpages' ),
 	'Uncategorizedcategories'   => array( 'Uncategorizedcategories' ),
@@ -1555,11 +1554,6 @@ PICT # misc.
 'randompage'                      => 'Random page',
 'randompage-nopages'              => 'There are no pages in this namespace.',
 'randompage-url'                  => 'Special:Random', # don't translate or duplicate this message to other languages
-'randomincategory'                => 'Random page in category',
-'randomincategory-toolbox'        => 'Random page',
-'randomincategory-nocategory'     => 'Category $1 doesn\'t exist or is empty',
-'randomincategory-label'          => 'Category:',
-'randomincategory-submit'         => 'Go',
 
 # Random redirect
 'randomredirect'                  => 'Random redirect',
@@ -2294,7 +2288,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-n-sitesupport'           => '', # don't translate or duplicate this message to other languages
 'accesskey-t-whatlinkshere'         => 'j', # don't translate or duplicate this message to other languages
 'accesskey-t-recentchangeslinked'   => 'k', # don't translate or duplicate this message to other languages
-'accesskey-t-random'                => '', # don't translate or duplicate this message to other languages
 'accesskey-feed-rss'                => '', # don't translate or duplicate this message to other languages
 'accesskey-feed-atom'               => '', # don't translate or duplicate this message to other languages
 'accesskey-t-contributions'         => '', # don't translate or duplicate this message to other languages
@@ -2356,7 +2349,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-n-sitesupport'           => 'Support us',
 'tooltip-t-whatlinkshere'         => 'List of all wiki pages that link here',
 'tooltip-t-recentchangeslinked'   => 'Recent changes in pages linked from this page',
-'tooltip-t-random'                => 'Random page in this category',
 'tooltip-feed-rss'                => 'RSS feed for this page',
 'tooltip-feed-atom'               => 'Atom feed for this page',
 'tooltip-t-contributions'         => 'View the list of contributions of this user',

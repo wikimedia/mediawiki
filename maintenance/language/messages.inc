@@ -947,11 +947,6 @@ $wgMessageStructure = array(
 		'randompage',
 		'randompage-nopages',
 		'randompage-url',
-		'randomincategory',
-		'randomincategory-toolbox',
-		'randomincategory-nocategory',
-		'randomincategory-label',
-		'randomincategory-submit',
 	),
 	'randomredirect' => array(
 		'randomredirect',
