@@ -835,7 +835,7 @@ class Language {
 	}
 
 	function ucfirst( $str ) {
-		if (empty($str)) return "";
+		if ( $str === '' ) return "";
 		if ( ord($str[0]) < 128 ) return ucfirst($str);
 		else return self::uc($str,true); // fall back to more complex logic in case of multibyte strings
 	}
@@ -867,7 +867,7 @@ class Language {
 	}
 	
 	function lcfirst( $str ) {
-		if (empty($str)) return "";
+		if ( $str === '' ) return "";
 		if ( ord($str[0]) < 128 ) {
 			// editing string in place = cool
 			$str[0]=strtolower($str[0]);
