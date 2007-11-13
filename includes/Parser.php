@@ -1578,11 +1578,15 @@ class Parser
 		# Match cases where there is no "]]", which might still be images
 		static $e1_img = FALSE;
 		if ( !$e1_img ) { $e1_img = "/^([{$tc}]+)\\|(.*)\$/sD"; }
-		# Match the end of a line for a word that's not followed by whitespace,
-		# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-		$e2 = wfMsgForContent( 'linkprefix' );
 
 		$useLinkPrefixExtension = $wgContLang->linkPrefixExtension();
+		$e2 = null;
+		if ( $useLinkPrefixExtension ) {
+			# Match the end of a line for a word that's not followed by whitespace,
+			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
+			$e2 = wfMsgForContent( 'linkprefix' );
+		}
+
 		if( is_null( $this->mTitle ) ) {
 			throw new MWException( __METHOD__.": \$this->mTitle is null\n" );
 		}
