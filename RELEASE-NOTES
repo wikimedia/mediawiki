@@ -64,6 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add ot=raw to Special:Allmessages
 * Support for Hebrew calendar
 * Support for Hebrew numerals in dates and times
+* (bug 11315) Signatures can be configured in [[MediaWiki:Signature]] and [[MediaWiki:Signature-ip]]
+* Signatures for anonymous users link to Special:Contributions page rather than user page
 
 === Bug fixes in 1.12 ===
 

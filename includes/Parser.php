@@ -3875,7 +3875,17 @@ class Parser
 
 		# If we're still here, make it a link to the user page
 		$userpage = $user->getUserPage();
-		return( '[[' . $userpage->getPrefixedText() . '|' . wfEscapeWikiText( $nickname ) . ']]' );
+		if ( $user->isAnon() )  {
+			$title = SpecialPage::getTitleFor('Contributions' );
+			return ( wfMsg( 'signature-ip', 
+							$title->getPrefixedText() . '/' . wfEscapeWikiText( $username ), 
+							wfEscapeWikiText( $nickname ), 
+							$userpage->getTalkPage(), wfMsg('talkpagelinktext') ) );
+		} else {
+			return ( wfMsg( 'signature', $userpage->getPrefixedText(), 
+							wfEscapeWikiText( $nickname ), 
+							$userpage->getTalkPage(), wfMsg('talkpagelinktext') ) );
+		}
 	}
 
 	/**
