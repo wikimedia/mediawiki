@@ -156,7 +156,13 @@ class IPUnblockForm {
 				$block = Block::newFromID( $id );
 			} else {
 				$block = Block::newFromDB( $this->ip );
+
 				if ( !$block ) { 
+					$block = null;
+				} else if ( !$block->mUser && $block->mRangeStart 
+						&& !strstr ( $this->ip, "/" ) ) {
+					/* If the specified IP is a single address, and the block is
+					 * a range block, don't unblock the range. */
 					$block = null;
 				}
 			}

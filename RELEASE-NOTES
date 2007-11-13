@@ -147,6 +147,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   article text, rather than getting 150 characters (which may be too much)
 * Add two messages for Special:Blockme which were used but undefined
 * (bug 11921) Support plural in message number_of_watching_users_pageview
+* If an IP address is blocked as part of a rangeblock, attempting to unblock
+  the single IP should not unblock the entire range.
 
 === API changes in 1.12 ===
 
