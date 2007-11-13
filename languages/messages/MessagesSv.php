@@ -253,10 +253,10 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => 'Kategorier',
 'pagecategories'        => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'       => 'Artiklar i kategorin "$1"',
+'category_header'       => 'Sidor i kategorin "$1"',
 'subcategories'         => 'Underkategorier',
 'category-media-header' => 'Media i kategorin "$1"',
-'category-empty'        => "''Den här kategorin innehåller just nu inga artiklar eller filer.''",
+'category-empty'        => "''Den här kategorin innehåller just nu inga sidor eller filer.''",
 
 'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
@@ -283,6 +283,9 @@ $messages = array(
 'mytalk'         => 'Min diskussionssida',
 'anontalk'       => 'Diskussionssidan för denna IP-adress',
 'navigation'     => 'Navigering',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Fel',
 'returnto'          => 'Tillbaka till $1.',
@@ -355,6 +358,7 @@ $messages = array(
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Innehåll',
 'mainpage'          => 'Huvudsida',
+'policy-url'        => 'Project:Policy',
 'portal'            => 'Deltagarportalen',
 'portal-url'        => 'Project:Deltagarportalen',
 'privacy'           => 'Integritetspolicy',
@@ -372,7 +376,7 @@ $messages = array(
 'versionrequiredtext' => 'För att kunna använda den här sidan, behövs version $1 av MediaWiki. Se [[Special:Version]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => 'Den här artikeln är hämtad från $1',
+'retrievedfrom'           => 'Den här sidan är hämtad från $1',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nya meddelanden',
 'newmessagesdifflink'     => 'ändring mot tidigare version',
@@ -393,10 +397,11 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS-matning',
 'page-atom-feed'          => '"$1" Atom-matning',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'      => 'Artikel',
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'Sida',
 'nstab-user'      => 'Användarsida',
 'nstab-media'     => 'Media',
+'nstab-special'   => 'Special',
 'nstab-project'   => 'Projektsida',
 'nstab-image'     => 'Bild',
 'nstab-mediawiki' => 'Systemmeddelande',
@@ -505,6 +510,7 @@ $2',
 'prefs-help-realname'        => 'Riktigt namn behöver inte anges. Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'                 => 'Inloggningsproblem',
 'prefs-help-email'           => 'E-postadress behöver inte anges, men den gör det möjligt för andra användare att kontakta dig, utan att du behöver avslöja din identitet och/eller e-postadress.',
+'prefs-help-email-required'  => 'E-postadress måste anges.',
 'nocookiesnew'               => 'Användarkontot skapades, men du blev inte inloggad. {{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din bläddrare. Om du slår på cookies kan du logga in med ditt nya användarnamn och lösenord.',
 'nocookieslogin'             => '{{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din webbläsare. Försök igen med stöd för cookies aktiverat.',
 'noname'                     => 'Du har angett ett ogiltigt användarnamn.',
@@ -617,9 +623,9 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'blockedoriginalsource'     => "Källkoden för '''$1''' visas nedan:",
 'blockededitsource'         => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
 'whitelistedittitle'        => 'Redigering kräver inloggning',
-'whitelistedittext'         => 'Du måste $1 för att kunna redigera artiklar.',
+'whitelistedittext'         => 'Du måste $1 för att kunna redigera sidor.',
 'whitelistreadtitle'        => 'Läsning kräver inloggning',
-'whitelistreadtext'         => 'För att kunna läsa artiklar, måste du [[Special:Userlogin|logga in]].',
+'whitelistreadtext'         => 'För att kunna läsa sidor, måste du [[Special:Userlogin|logga in]].',
 'whitelistacctitle'         => 'Du kan inte skapa konton',
 'whitelistacctext'          => 'För att kunna skapa konton på denna wiki måste du vara [[Special:Userlogin|inloggad]] och ha rätt behörighet.',
 'confirmedittitle'          => 'E-postbekräftelse krävs för redigering',
@@ -656,7 +662,7 @@ så som det kommer att se ut om du väljer att spara.',
 
 ''Eftersom denna wiki har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd med syfte att förhindra JavaScript-attacker.''",
 'token_suffix_mismatch'     => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
-i redigeringens "edit token". Redigeringen stoppades för att förhindra att artikeltexten skadas.
+i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
 'editing'                   => 'Redigerar $1',
 'editinguser'               => 'Redigerar $1',
@@ -668,7 +674,7 @@ Det översta textblocket innehåller den nuvarande texten, och din version syns 
 <p>',
 'yourtext'                  => 'Din text',
 'storedversion'             => 'Den sparade versionen',
-'nonunicodebrowser'         => '<strong>VARNING: Din webbläsare saknar stöd för unicode. Var vänlig åtgärda detta, förslagsvis genom att uppgradera din webbläsare, innan du redigerar någon artikel. Artiklar riskerar annars att förstöras.</strong>',
+'nonunicodebrowser'         => '<strong>VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.</strong>',
 'editingold'                => '<strong>VARNING: Du redigerar en gammal version av denna sida. Om du sparar den kommer alla ändringar som har gjorts sedan denna version att skrivas över.</strong>',
 'yourdiff'                  => 'Skillnader',
 'copyrightwarning'          => 'Observera att alla bidrag till {{SITENAME}} är att betrakta som utgivna under $2 (se $1 för detaljer). Om du inte vill att din text ska redigeras eller kopieras efter andras gottfinnande skall du inte skriva något här.<br />
@@ -757,7 +763,9 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'revdelete-nooldid-text'      => 'Du angav inte vilken eller vilka versioner du vill utföra funktionen på.',
 'revdelete-selected'          => "{{PLURAL:$2|Vald version|Valda versioner}} av '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Vald loggåtgärd|valda loggåtgärder}} för '''$1:'''",
-'revdelete-text'              => 'Borttagna versioner kommer fortfarande att synas i historiken, men deras innehåll kommer ej att vara tillgängligt för allmänheten. Andra administratörer på denna wiki kommer fortfarande att kunna läsa det dolda innehållet och kan återställa artikeln genom samma gränssnitt, om inte en ytterligare begränsning har utfärdats av sajtens ägare.',
+'revdelete-text'              => 'Borttagna versioner kommer fortfarande att synas i historiken, men deras innehåll kommer ej att vara tillgängligt för allmänheten.
+
+Andra administratörer på denna wiki kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte en ytterligare begränsningar finns.',
 'revdelete-legend'            => 'Ange begränsningar för version:',
 'revdelete-hide-text'         => 'Dölj versionstext',
 'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
@@ -797,11 +805,11 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'searchresulttext'      => 'Se [[{{MediaWiki:helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
 'searchsubtitle'        => 'Du sökte efter [[:$1]]',
 'searchsubtitleinvalid' => 'För sökbegreppet $1',
-'noexactmatch'          => "'''Det finns ingen artikel med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
+'noexactmatch'          => "'''Det finns ingen sida med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
 'titlematches'          => 'Träffar i sidtitlar',
-'notitlematches'        => 'Det finns ingen artikel vars titel överensstämmer med sökordet.',
-'textmatches'           => 'Artikeltexter som innehåller sökordet:',
-'notextmatches'         => 'Det finns inga artiklar som innehåller sökordet',
+'notitlematches'        => 'Det finns ingen sida vars titel överensstämmer med sökordet.',
+'textmatches'           => 'Sidor som innehåller sökordet:',
+'notextmatches'         => 'Det finns inga sidor som innehåller sökordet',
 'prevn'                 => 'förra $1',
 'nextn'                 => 'nästa $1',
 'viewprevnext'          => 'Visa ($1) ($2) ($3).',
@@ -854,15 +862,15 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'newpassword'              => 'Nytt lösenord',
 'retypenew'                => 'Upprepa det nya lösenordet',
 'textboxsize'              => 'Redigering',
-'rows'                     => 'Rader',
-'columns'                  => 'Kolumner',
+'rows'                     => 'Rader:',
+'columns'                  => 'Kolumner:',
 'searchresultshead'        => 'Sökresultat',
 'resultsperpage'           => 'Träffar per sida',
 'contextlines'             => 'Antal rader per träff',
 'contextchars'             => 'Bokstäver per rad',
 'stub-threshold'           => 'Formatera länkar <a href="#" class="stub">så här</a> till sidor som är kortare än:',
 'recentchangesdays'        => 'Antal dagar i "senaste ändringarna":',
-'recentchangescount'       => 'Antalet artiklar i "senaste ändringarna":',
+'recentchangescount'       => 'Antalet ändringar i "senaste ändringarna":',
 'savedprefs'               => 'Dina inställningar har sparats',
 'timezonelegend'           => 'Tidszon',
 'timezonetext'             => 'Ange skillnaden i timmar mellan din lokala tid och serverns tid (UTC).',
@@ -1126,6 +1134,10 @@ PICT # allmänt bildprefix
 'unusedtemplatestext' => 'Denna sida listar alla de sidor i namnrymden Mall som inte inkluderas på någon annan sida. Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 'unusedtemplateswlh'  => 'andra länkar',
 
+# Random page
+'randompage'         => 'Slumpsida',
+'randompage-nopages' => 'Det finns inte några sidor i denna namnrymd.',
+
 # Random redirect
 'randomredirect'         => 'Slumpvald omdirigering',
 'randomredirect-nopages' => 'Det finns inte några omdirigeringar i denna namnrymd.',
@@ -1149,17 +1161,17 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'disambiguations-text' => "Följande sidor länkar till ''förgreningssidor''. Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<br />En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Dubbla omdirigeringar',
-'doubleredirectstext' => 'Det här är en lista över sidor som omdirigerar till andra omdirigeringssidor. Varje rad innehåller länkar till den första och den andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" artikeln, som den första omdirigeringen egentligen ska leda till.',
+'doubleredirectstext' => 'Det här är en lista över sidor som omdirigerar till andra omdirigeringssidor. Varje rad innehåller länkar till den första och den andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.',
 
 'brokenredirects'        => 'Dåliga omdirigeringar',
-'brokenredirectstext'    => 'Följande länkar omdirigerar till en artikel som inte existerar.',
+'brokenredirectstext'    => 'Följande länkar omdirigerar till sidor som inte existerar.',
 'brokenredirects-edit'   => '(redigera)',
 'brokenredirects-delete' => '(radera)',
 
 'withoutinterwiki'        => 'Sidor utan språklänkar',
 'withoutinterwiki-header' => 'Följande sidor innehåller inte några länkar till andra språkversioner:',
 
-'fewestrevisions' => 'Artiklar med minst antal ändringar',
+'fewestrevisions' => 'Sidor med minst antal ändringar',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -1183,13 +1195,11 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'mostlinked'              => 'Sidor med flest länkar till sig',
 'mostlinkedcategories'    => 'Kategorier med flest länkar till sig',
 'mostlinkedtemplates'     => 'Mest använda mallar',
-'mostcategories'          => 'Artiklar med flest kategorier',
+'mostcategories'          => 'Sidor med flest kategorier',
 'mostimages'              => 'Bilder med flest länkar till sig',
-'mostrevisions'           => 'Artiklar med flest ändringar',
+'mostrevisions'           => 'Sidor med flest ändringar',
 'allpages'                => 'Alla sidor',
 'prefixindex'             => 'Prefixindex',
-'randompage'              => 'Slumpartikel',
-'randompage-nopages'      => 'Det finns inte några sidor i denna namnrymd.',
 'shortpages'              => 'Korta sidor',
 'longpages'               => 'Långa sidor',
 'deadendpages'            => 'Sidor utan länkar',
@@ -1204,13 +1214,13 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'rclsub'                  => '(som "$1" länkar till)',
 'newpages'                => 'Nya sidor',
 'newpages-username'       => 'Användare:',
-'ancientpages'            => 'Äldsta artiklarna',
+'ancientpages'            => 'Äldsta sidorna',
 'intl'                    => 'Interwiki-länkar',
 'move'                    => 'Flytta',
 'movethispage'            => 'Flytta denna sida',
 'unusedimagestext'        => '<p>Lägg märke till att andra hemsidor kan länka till bilder 
 med en direkt URL, och kan därför bli listade här trots att de används kontinuerligt.',
-'unusedcategoriestext'    => 'Dessa existerande kategorier innehåller inga artiklar eller underkategorier.',
+'unusedcategoriestext'    => 'Följande kategorier finns men innehåller inga sidor eller underkategorier.',
 'notargettitle'           => 'Inget mål',
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
 
@@ -1242,7 +1252,7 @@ med en direkt URL, och kan därför bli listade här trots att de används konti
 'nextpage'          => 'Nästa sida ($1)',
 'prevpage'          => 'Föregående sida ($1)',
 'allpagesfrom'      => 'Visa sidor från och med:',
-'allarticles'       => 'Alla artiklar',
+'allarticles'       => 'Alla sidor',
 'allinnamespace'    => 'Alla sidor (i namnrymden $1)',
 'allnotinnamespace' => 'Alla sidor (inte i namnrymden $1)',
 'allpagesprev'      => 'Föregående',
@@ -1380,8 +1390,10 @@ Se $2 för noteringar om de senaste raderingarna.',
 'rollback_short'              => 'Återställning',
 'rollbacklink'                => 'rulla tillbaka',
 'rollbackfailed'              => 'Tillbakarullning misslyckades',
-'cantrollback'                => 'Det gick inte att rulla tillbaka, då artikeln redigerats av en enda användare och äldre versioner saknas.',
-'alreadyrolled'               => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka, eller redigerat sidan. Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
+'cantrollback'                => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
+'alreadyrolled'               => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
+
+Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
 'editcomment'                 => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Återställt redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]); återställd till senaste version av [[User:$1|$1]]',
 'rollback-success'            => 'Återställde ändringar av $1 till senaste versionen av $2.',
@@ -1393,13 +1405,13 @@ Se $2 för noteringar om de senaste raderingarna.',
 'unprotectedarticle'          => 'tog bort skydd av $1',
 'protectsub'                  => '(Skyddsinställningar för "$1")',
 'confirmprotect'              => 'Bekräfta skrivskydd av sida',
-'protectcomment'              => 'Anledning till skydd av sidan',
-'protectexpiry'               => 'Varaktighet',
+'protectcomment'              => 'Anledning:',
+'protectexpiry'               => 'Varaktighet:',
 'protect_expiry_invalid'      => 'Ogiltig varaktighetstid.',
 'protect_expiry_old'          => 'Den angivna varaktighetentiden har redan passerats.',
 'unprotectsub'                => '(Tog bort skydd av "$1")',
 'protect-unchain'             => 'Lås upp flyttillstånd',
-'protect-text'                => 'Du kan visa och ändra skyddsnivån av artikeln <strong>$1</strong>. Kontrollera att du följer riktlinjerna.',
+'protect-text'                => 'Här kan du se och ändra skyddsnivån av sidan <strong>$1</strong>.',
 'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad. 
 Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Skrivskydd kan inte ändras då databasen är låst.
@@ -1442,9 +1454,10 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'undeleterevdel'               => 'Återställningen kan inte utföras om den resulterar i att den senaste versionen är delvis borttagen.
 I sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.
 Sidversioner som du inte har behörighet att se kommer inte att återställas.',
-'undeletehistorynoadmin'       => 'Den här artikeln har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.',
+'undeletehistorynoadmin'       => 'Den här sidan har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.',
 'undelete-revision'            => 'Raderad version av $1 från den $2 av $3.',
 'undeleterevision-missing'     => 'Versionen finns inte eller är felaktig. Versionen kan ha återställts eller tagits bort från arkivet, du kan också ha följt en felaktig länk.',
+'undelete-nodiff'              => 'Ingen tidigare version hittades.',
 'undeletebtn'                  => 'Återställ',
 'undeletereset'                => 'Rensa',
 'undeletecomment'              => 'Kommentar:',
@@ -1466,7 +1479,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'undelete-cleanup-error'       => 'Fel vid radering av den oanvända arkivfilen "$1".',
 'undelete-missing-filearchive' => 'Filen med arkiv-ID $1 kunde inte återställas eftersom den inte finns i databasen. Filen kanske redan har återställts.',
 'undelete-error-short'         => 'Fel vid filåterställning: $1',
-'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:\n\n$1\n',
+'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:\n\n$1',
 
 # Namespace form on various pages
 'namespace'      => 'Namnrymd:',
@@ -1582,7 +1595,9 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'ipb_already_blocked'         => '"$1" är redan blockerad',
 'ipb_cant_unblock'            => 'Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.',
 'ip_range_invalid'            => 'Ogiltigt IP-intervall.',
+'blockme'                     => 'Blockera mig',
 'proxyblocker'                => 'Proxy-block',
+'proxyblocker-disabled'       => 'Den här funktionen är avaktiverad.',
 'proxyblockreason'            => 'Din IP-adress har blivit blockerad eftersom den tillhör en öppen proxy. Kontakta din internetleverantör eller din organisations eller företags tekniska support, och informera dem om denna allvarliga säkerhetsrisk.',
 'proxyblocksuccess'           => 'Gjort.',
 'sorbsreason'                 => 'Din IP-adress finns med på DNSBL:s lista över öppna proxies.',
@@ -1640,21 +1655,23 @@ Välj något annat namn istället.',
 'movereason'              => 'Anledning',
 'revertmove'              => 'flytta tillbaka',
 'delete_and_move'         => 'Radera och flytta',
-'delete_and_move_text'    => '==Radering krävs== Den titel du vill flytta artikeln till, "[[:$1|$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
+'delete_and_move_text'    => '==Radering krävs==
+Den titel du vill flytta sidan till, "[[:$1|$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
 'delete_and_move_confirm' => 'Ja, radera sidan',
 'delete_and_move_reason'  => 'Raderad för att flytta hit en annan sida.',
 'selfmove'                => 'Ursprungstitel och destinationstitel är identiska. Sidan kan inte flyttas till sig själv.',
-'immobile_namespace'      => 'Det går inte att flytta artiklar till den namnrymd du angivit, då denna ej kan utökas.',
+'immobile_namespace'      => 'Namnrymden du försöker flytta sidan till eller från är av en speciell typ. Det går inte att flytta sidor till eller från den namnrymden.',
 
 # Export
 'export'            => 'Exportera sidor',
 'exporttext'        => 'Du kan exportera text och versionshistorik för en eller flera sidor i XML-format. Filen kan sedan importeras till en annan MediaWiki-wiki med hjälp av sidan [[{{ns:special}}:Import|importera]].
 
-Exportera sidor genom att skriva in artikelnamnen i rutan här nedan. Skriv ett artikelnamn per rad och välj om du du vill exportera alla versioner av texten med sidhistorik, eller om du enbart vill exportera den nuvarande versionen med information om den senaste redigeringen.
+Exportera sidor genom att skriva in sidtitlarna i rutan här nedan. Skriv en titel per rad och välj om du du vill exportera alla versioner av texten med sidhistorik, eller om du enbart vill exportera den nuvarande versionen med information om den senaste redigeringen.
 
 I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] för sidan {{Mediawiki:Mainpage}}.',
-'exportcuronly'     => 'Inkludera endast den nuvarande versionen, inte hela historien',
-'exportnohistory'   => "---- '''OBS:''' export av fullständig artikelhistorik med hjälp av detta formulär har stängts av på grund av prestandaskäl.",
+'exportcuronly'     => 'Inkludera endast den nuvarande versionen, inte hela historiken',
+'exportnohistory'   => "----
+'''OBS:''' export av fullständig sidhistorik med hjälp av detta formulär har stängts av på grund av prestandaskäl.",
 'export-submit'     => 'Exportera',
 'export-addcattext' => 'Lägg till sidor från kategori:',
 'export-addcat'     => 'Lägg till',
@@ -1686,7 +1703,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 'import-interwiki-text'      => 'Välj en wiki och sidtitel att importera.
 Versionshistorik (datum och redaktörer) kommer att bevaras.
 All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|importloggen]].',
-'import-interwiki-history'   => 'Kopiera hela versionshistoriken för denna artikel',
+'import-interwiki-history'   => 'Kopiera hela versionshistoriken för denna sida',
 'import-interwiki-submit'    => 'Importera',
 'import-interwiki-namespace' => 'Överför sidorna till namnrymden:',
 'importtext'                 => 'Exportera filen från ursprungs-wikin genom Special:Export, spara den till din hårddisk och ladda upp den här.',
@@ -1742,7 +1759,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-n-portal'                => 'Om {{SITENAME}}, vad som kan göras, var man kan hitta olika funktioner',
 'tooltip-n-currentevents'         => 'Information om aktuella händelser',
 'tooltip-n-recentchanges'         => 'Lista över de senaste ändringarna på {{SITENAME}}',
-'tooltip-n-randompage'            => 'Gå till en slumpmässigt vald artikel',
+'tooltip-n-randompage'            => 'Gå till en slumpmässigt vald sida',
 'tooltip-n-help'                  => 'Hjälp och information om {{SITENAME}}',
 'tooltip-n-sitesupport'           => 'Stöd {{SITENAME}}',
 'tooltip-t-whatlinkshere'         => 'Lista över alla sidor på {{SITENAME}} som länkar hit',
@@ -1803,7 +1820,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'spamprotectiontext'     => 'Sidan du ville spara blockerades av spamfiltret. Detta orsakades troligen av en extern länk på sidan.',
 'spamprotectionmatch'    => 'Följande text aktiverade vårt spamfilter: $1',
 'subcategorycount'       => 'Det finns {{PLURAL:$1|en underkategori|$1 underkategorier}} till den här kategorin.',
-'categoryarticlecount'   => 'Det finns {{PLURAL:$1|en artikel|$1 artiklar}} i den här kategorin.',
+'categoryarticlecount'   => 'Det finns {{PLURAL:$1|en sida|$1 sidor}} i den här kategorin.',
 'category-media-count'   => 'Det finns {{PLURAL:$1|en fil|$1 filer}} i den här kategorin.',
 'listingcontinuesabbrev' => 'forts.',
 'spambot_username'       => 'MediaWikis spampatrull',
@@ -1812,10 +1829,10 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 
 # Info page
 'infosubtitle'   => 'Information om sida',
-'numedits'       => 'Antal redigeringar (artikel): $1',
+'numedits'       => 'Antal redigeringar (sida): $1',
 'numtalkedits'   => 'Antal redigeringar (diskussionssida): $1',
 'numwatchers'    => 'Antal användare som bevakar sidan: $1',
-'numauthors'     => 'Antal olika bidragsgivare (artikel): $1',
+'numauthors'     => 'Antal olika bidragsgivare (sida): $1',
 'numtalkauthors' => 'Antal olika bidragsgivare (diskussionssida): $1',
 
 # Math options
@@ -1828,7 +1845,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Märk upp som patrullerad',
-'markaspatrolledtext'                 => 'Märk den här artikeln som patrullerad',
+'markaspatrolledtext'                 => 'Märk den här sidan som patrullerad',
 'markedaspatrolled'                   => 'Markerad som patrullerad',
 'markedaspatrolledtext'               => 'Den valda versionen har märkts som patrullerad.',
 'rcpatroldisabled'                    => 'Patrullering av Senaste ändringar är avstängd.',
@@ -1848,7 +1865,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 # Image deletion
 'deletedrevision'                 => 'Raderade gammal sidversion $1',
 'filedeleteerror-short'           => 'Fel vid radering av fil: $1',
-'filedeleteerror-long'            => 'Fel inträffade vid raderingen av filen:\n\n$1\n',
+'filedeleteerror-long'            => 'Fel inträffade vid raderingen av filen:\n\n$1',
 'filedelete-missing'              => 'Filen "$1" kan inte raderas eftersom den inte finns.',
 'filedelete-old-unregistered'     => 'Den angivna filversionen "$1" finns inte i databasen.',
 'filedelete-current-unregistered' => 'Den angivna filen "$1" finns inte i databasen.',
@@ -1879,7 +1896,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'bad_image_list' => 'Listan fungerar enligt följande:
 
 Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första länken på en rad anger en otillåten bild.
-Övriga länkar på en rad anger undantag, d.v.s sidor där bilden tillåts användas.',
+Övriga länkar på en rad anger undantag, d.v.s. sidor där bilden tillåts användas.',
 
 # Metadata
 'metadata'          => 'Metadata',
@@ -2049,6 +2066,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-meteringmode-0'   => 'Okänd',
 'exif-meteringmode-1'   => 'Medelvärde',
 'exif-meteringmode-2'   => 'Centrumviktat medelvärde',
+'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Multispot',
 'exif-meteringmode-5'   => 'Mönster',
 'exif-meteringmode-6'   => 'Partiell',
@@ -2094,6 +2112,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-whitebalance-0' => 'Automatisk vitbalans',
 'exif-whitebalance-1' => 'Manuell vitbalans',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Porträtt',
 'exif-scenecapturetype-3' => 'Nattfotografering',
@@ -2184,14 +2203,16 @@ Om det *inte* är du som registrerat kontot, följ inte länken. Efter $4 kommer
 'scarytranscludetoolong'  => '[Beklagar, URL:en är för lång]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks"> Till denna artikel finns följande trackback:<br /> $1 </div>',
+'trackbackbox'      => '<div id="mw_trackbacks"> Till denna sida finns följande trackback:<br /> $1 </div>',
 'trackbackremove'   => '([$1 Ta bort])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback har tagits bort.',
 
 # Delete conflict
 'deletedwhileediting' => 'Varning: Denna sida har tagits bort efter att du började redigera den!',
-'confirmrecreate'     => "Användaren [[User:$1|$1]] ([[User talk:$1|diskussion]]) raderade den här artikeln efter att du påbörjade redigering av den med motiveringen: : ''$2'' Bekräfta att du verkligen vill återskapa artikeln.",
+'confirmrecreate'     => "Användaren [[User:$1|$1]] ([[User talk:$1|diskussion]]) raderade den här sidan efter att du började redigera den med motiveringen:
+: ''$2''
+Bekräfta att du verkligen vill återskapa sidan.",
 'recreate'            => 'Återskapa',
 
 # HTML dump
@@ -2204,9 +2225,9 @@ $1',
 'confirm_purge_button' => 'OK',
 
 # AJAX search
-'searchcontaining' => "Leta efter artiklar som innehåller ''$1''.",
-'searchnamed'      => "Leta efter artiklar som heter ''$1''.",
-'articletitles'    => "Artiklar som börjar med ''$1''",
+'searchcontaining' => "Leta efter sidor som innehåller ''$1''.",
+'searchnamed'      => "Leta efter sidor som heter ''$1''.",
+'articletitles'    => "Sidor som börjar med ''$1''",
 'hideresults'      => 'Göm resultat',
 
 # Multipage image navigation
