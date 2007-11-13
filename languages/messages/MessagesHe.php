@@ -518,7 +518,7 @@ $messages = array(
 'page-rss-feed'           => 'RSS של $1',
 'page-atom-feed'          => 'Atom של $1',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'דף תוכן',
 'nstab-user'      => 'דף משתמש',
 'nstab-media'     => 'מדיה',
@@ -819,7 +819,7 @@ $2',
 כיוון שבאתר זה אפשרות השימוש ב־HTML מאופשרת, התצוגה המקדימה מוסתרת כדי למנוע התקפות JavaScript.
 
 '''אם זהו ניסיון עריכה לגיטימי, אנא נסו שנית. אם זה לא עוזר, נסו לצאת מהחשבון ולהיכנס אליו שנית.'''",
-'token_suffix_mismatch'     => '<strong>עריכתכם נדחתה כיוון שהדפדפן שלכם מחק את תווי הניקוד בסימון העריכה. העריכה נדחתה כדי למנוע בעיות כאלה בטקסט הערך. ייתכן שזה קרה בגלל שירות פרוקסי אנונימי פגום.</strong>',
+'token_suffix_mismatch'     => '<strong>עריכתכם נדחתה כיוון שהדפדפן שלכם מחק את תווי הניקוד בסימון העריכה. העריכה נדחתה כדי למנוע בעיות כאלה בטקסט של הדף. ייתכן שזה קרה בגלל שירות פרוקסי אנונימי פגום.</strong>',
 'editing'                   => 'עריכת $1',
 'editinguser'               => 'עריכת המשתמש <b>$1</b>',
 'editingsection'            => 'עריכת $1 (פסקה)',
@@ -1275,6 +1275,10 @@ $2',
 'unusedtemplatestext' => 'דף זה מכיל רשימה של כל הדפים במרחב השם של התבניות שאינם נכללים בדף אחר. אנא זכרו לבדוק את הקישורים האחרים לתבניות לפני שתמחקו אותן.',
 'unusedtemplateswlh'  => 'קישורים אחרים',
 
+# Random page
+'randompage'         => 'דף אקראי',
+'randompage-nopages' => 'אין דפים במרחב השם הזה.',
+
 # Random redirect
 'randomredirect'         => 'הפניה אקראית',
 'randomredirect-nopages' => 'אין הפניות במרחב השם הזה.',
@@ -1339,8 +1343,6 @@ $2',
 'mostrevisions'           => 'הדפים בעלי מספר העריכות הגבוה ביותר',
 'allpages'                => 'כל הדפים',
 'prefixindex'             => 'רשימת הדפים המתחילים ב…',
-'randompage'              => 'דף אקראי',
-'randompage-nopages'      => 'אין דפים במרחב השם הזה.',
 'shortpages'              => 'דפים קצרים',
 'longpages'               => 'דפים ארוכים',
 'deadendpages'            => 'דפים ללא קישורים',
@@ -1810,7 +1812,7 @@ $1',
 'revertmove'              => 'החזר',
 'delete_and_move'         => 'מחק והעבר',
 'delete_and_move_text'    => '== בקשת מחיקה ==
-דף היעד [[$1]] כבר קיים. האם ברצונכם למחוק אותו כדי לאפשר את ההעברה?',
+דף היעד, [[$1]], כבר קיים. האם ברצונכם למחוק אותו כדי לאפשר את ההעברה?',
 'delete_and_move_confirm' => 'כן, מחק את הדף',
 'delete_and_move_reason'  => 'מחיקה על מנת לאפשר העברה',
 'selfmove'                => 'כותרות המקור והיעד זהות; לא ניתן להעביר דף לעצמו.',
@@ -2393,7 +2395,7 @@ $1',
 'searchcontaining' => "חיפוש דפים המכילים את הטקסט '''$1'''.",
 'searchnamed'      => "חיפוש דפים בשם '''$1'''.",
 'articletitles'    => "חיפוש דפים המתחילים עם '''$1'''",
-'hideresults'      => 'הסתר תוצאות',
+'hideresults'      => 'הסתרת התוצאות',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&rarr; לדף הקודם',

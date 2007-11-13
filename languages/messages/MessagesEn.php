@@ -710,7 +710,7 @@ XHTML id names.
 'anonnotice'              => '-', # don't translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # don't translate or duplicate this message to other languages
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
 'nstab-user'      => 'User page',
 'nstab-media'     => 'Media page',
@@ -1550,7 +1550,7 @@ PICT # misc.
 'unusedtemplatestext'     => 'This page lists all pages in the template namespace which are not included in another page. Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh'      => 'other links',
 
-# Random pages
+# Random page
 'randompage'                      => 'Random page',
 'randompage-nopages'              => 'There are no pages in this namespace.',
 'randompage-url'                  => 'Special:Random', # don't translate or duplicate this message to other languages
