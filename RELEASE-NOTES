@@ -51,6 +51,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 1405) Add wgUseNPPatrol option to control patroling for new articles
   on Special:Newpages
 * LogLine hook added to allow formatting custom entries in Special:Log.
+* Support for Iranian calendar
 * (bug 1401) Allow hiding logged-in users, bots and patrolled pages on Special:Newpages
 * ChangesListInsertArticleLink hook added for adding extra article info to RC.
 * MediaWikiPerformAction hook added for diverting control after the main
