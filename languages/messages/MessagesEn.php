@@ -3000,4 +3000,18 @@ $1',
 'watchlisttools-edit'  => 'View and edit watchlist',
 'watchlisttools-raw'   => 'Edit raw watchlist',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'Farvardin', # only translate this message to other languages if you have to change it
+'iranian-calendar-m2'  => 'Ordibehesht', # only translate this message to other languages if you have to change it
+'iranian-calendar-m3'  => 'Khordad', # only translate this message to other languages if you have to change it
+'iranian-calendar-m4'  => 'Tir', # only translate this message to other languages if you have to change it
+'iranian-calendar-m5'  => 'Mordad', # only translate this message to other languages if you have to change it
+'iranian-calendar-m6'  => 'Shahrivar', # only translate this message to other languages if you have to change it
+'iranian-calendar-m7'  => 'Mehr', # only translate this message to other languages if you have to change it
+'iranian-calendar-m8'  => 'Aban', # only translate this message to other languages if you have to change it
+'iranian-calendar-m9'  => 'Azar', # only translate this message to other languages if you have to change it
+'iranian-calendar-m10' => 'Dey', # only translate this message to other languages if you have to change it
+'iranian-calendar-m11' => 'Bahman', # only translate this message to other languages if you have to change it
+'iranian-calendar-m12' => 'Esfand', # only translate this message to other languages if you have to change it
+
 );
