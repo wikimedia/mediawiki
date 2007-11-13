@@ -5,14 +5,15 @@ $options = array('only','help');
 
 require_once( 'commandLine.inc' );
 
-require_once( 'SpecialPage.php' );
-require_once( 'QueryPage.php' );
+require_once( "$IP/includes/SpecialPage.php" );
+require_once( "$IP/includes/QueryPage.php" );
 
 if(@$options['help']) {
 	print "usage:updateSpecialPages.php [--help] [--only=page]\n";
 	print "  --help      : this help message\n";
 	print "  --list      : list special pages names\n";
 	print "  --only=page : only update 'page'. Ex: --only=BrokenRedirects\n";
+	print "  --override  : update even pages which have had updates disabled\n";
 	wfDie();
 }
 
@@ -28,7 +29,7 @@ foreach ( $wgQueryPages as $page ) {
 		continue;
 	}
 
-	if ( $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate ) ) {
+	if ( !isset( $options['override'] ) && $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate ) ) {
 		printf("%-30s disabled\n", $special);
 		continue;
 	}
