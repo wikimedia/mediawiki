@@ -6,6 +6,7 @@ $checkBlacklist = array(
 'hak' => array( 'plural' ),
 'ja' => array( 'plural' ), // Does not use plural
 'my' => array( 'chars' ), // Uses a lot zwnj
+'tet' => array( 'plural' ),
 'th' => array( 'plural' ),
 'yue' => array( 'plural' ),
 'zh-classical' => array( 'plural' ),
