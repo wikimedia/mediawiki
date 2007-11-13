@@ -309,7 +309,7 @@ $messages = array(
 'page-rss-feed'           => 'Flux RSS de « $1 »',
 'page-atom-feed'          => 'Flux Atom de « $1 »',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articllo',
 'nstab-user'      => 'Pâge utilisator',
 'nstab-media'     => 'Mèdia',
@@ -870,7 +870,7 @@ Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar
 'diff'                              => 'dif',
 'hide'                              => 'mâscar',
 'show'                              => 'afichiér',
-'number_of_watching_users_pageview' => '[$1 utilisator(s) siuvent(s)]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utilisator siuvent|utilisators siuvents}}]',
 'rc_categories'                     => 'Limita de les catègories (sèparacion avouéc « | »)',
 'rc_categories_any'                 => 'Totes',
 'newsectionsummary'                 => '/* $1 */ novèla sèccion',
@@ -1047,6 +1047,10 @@ Vos devriâd considèrar s’o est convegnâblo de continuar l’impôrt de cél
 'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de nom « Modèlo » que sont pas encllues dens niona ôtra pâge. Oubliâd pas de controlar s’y at pas d’ôtros lims vers los modèlos devant que los suprimar.',
 'unusedtemplateswlh'  => 'ôtros lims',
 
+# Random page
+'randompage'         => 'Una pâge a l’hasârd',
+'randompage-nopages' => 'Y at gins de pâge dens ceti èspâço de nom.',
+
 # Random redirect
 'randomredirect'         => 'Una pâge de redirèccion a l’hasârd',
 'randomredirect-nopages' => 'Y at gins de pâge de redirèccion dens ceti èspâço de nom.',
@@ -1114,8 +1118,6 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modific
 'mostrevisions'           => 'Articllos los ples modifiâs',
 'allpages'                => 'Totes les pâges',
 'prefixindex'             => 'Totes les pâges per premiéres lètres',
-'randompage'              => 'Una pâge a l’hasârd',
-'randompage-nopages'      => 'Y at gins de pâge dens ceti èspâço de nom.',
 'shortpages'              => 'Pâges côrtes',
 'longpages'               => 'Pâges longes',
 'deadendpages'            => 'Pâges en cul-de-sac',
@@ -1378,6 +1380,7 @@ les vèrsions rèstorâs aparêtront dens l’historico prècèdent et la vèrsi
 'undeletehistorynoadmin'       => 'Ceti articllo at étâ suprimâ. La rêson de la suprèssion est endicâ dens lo rèsumâ ce-desot, avouéc los dètalys des utilisators que l’ont modifiâ devant sa suprèssion. Lo contegnu de cetes vèrsions est accèssiblo ren qu’ux administrators.',
 'undelete-revision'            => 'Vèrsion suprimâ de $1, (vèrsion du $2) per $3 :',
 'undeleterevision-missing'     => 'Vèrsion envalida ou manquenta. Vos avéd pôt-étre un môvés lim, ou la vèrsion at étâ rèstorâ ou suprimâ de les arch·ives.',
+'undelete-nodiff'              => 'Niona vèrsion prècèdenta trovâ.',
 'undeletebtn'                  => 'Rèstorar !',
 'undeletereset'                => 'Tornar inicialisar',
 'undeletecomment'              => 'Rèsumâ :',
@@ -1522,7 +1525,9 @@ d’una adrèce IP prècèdament blocâ.',
 'ipb_already_blocked'         => '« $1 » est ja blocâ',
 'ipb_cant_unblock'            => 'Èrror : lo blocâjo d’ID $1 ègziste pas. O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ip_range_invalid'            => 'Bloc IP fôx.',
+'blockme'                     => 'Blocâd mè',
 'proxyblocker'                => 'Bloquior de proxy',
+'proxyblocker-disabled'       => 'Cela fonccion est dèsactivâ.',
 'proxyblockreason'            => 'Voutra adrèce IP at étâ blocâ perce qu’el est un proxy uvèrt. Marci de vos veriér vers voutron fornissor d’accès u Malyâjo ou voutron supôrt tècnico et de l’enformar de ceti problèmo de sècuritât.',
 'proxyblocksuccess'           => 'Chavonâ.',
 'sorbsreason'                 => 'Voutra adrèce IP est listâ a titro de proxy uvèrt DNSBL.',

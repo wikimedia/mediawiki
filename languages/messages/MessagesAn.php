@@ -151,7 +151,7 @@ $messages = array(
 'about'          => 'Informazión sobre',
 'article'        => 'Articlo',
 'newwindow'      => "(s'ubre en una nueba finestra)",
-'cancel'         => 'Nular',
+'cancel'         => 'Anular',
 'qbfind'         => 'Mirar',
 'qbbrowse'       => 'Nabegar',
 'qbedit'         => 'Editar',
@@ -274,9 +274,10 @@ $messages = array(
 'feedlinks'               => 'Sendicazión de fuent de notizias:',
 'feed-invalid'            => 'Sendicazión de fuent de notizias no balida.',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articlo',
 'nstab-user'      => "Pachina d'usuario",
+'nstab-media'     => 'Pachina multimedia',
 'nstab-special'   => 'Espezial',
 'nstab-project'   => "Pachina d'o proyeuto",
 'nstab-image'     => 'Imachen',
@@ -285,9 +286,62 @@ $messages = array(
 'nstab-help'      => 'Aduya',
 'nstab-category'  => 'Categoría',
 
+# Main script and global functions
+'nosuchaction'      => 'No se reconoxe ista aizión',
+'nosuchactiontext'  => "{{SITENAME}} no reconoxe l'aizión espezificata en l'adreza URL",
+'nosuchspecialpage' => 'No esiste ixa pachina espezial',
+'nospecialpagetext' => "'''<big> A pachina espezial que ha demandato no esiste.</big>'''
+
+Puede trobar una lista de pachinas espezials en [[Special:Specialpages]].",
+
 # General errors
-'viewsource'    => 'Beyer codigo fuen',
-'viewsourcefor' => 'ta $1',
+'databaseerror'        => "Error d'a base de datos",
+'dberrortext'          => 'Ha escaizito una error de sintacsis en una consulta á la base de datos.
+Isto podría endicar una error en o programa.
+A zaguera consulta que se miró de fer estió: <blockquote><tt>$1</tt></blockquote> aintro d\'a funzión "<tt>$2</tt>". A error tornata por a base de datos estió "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ha escaizito una error de sintacsis en una consulta á la base de datos. A zaguera consulta que se miró de fer estió: 
+"$1" 
+aintro d\'a funzión "$2". 
+A base de datos retornó a error "<tt>$3: $4</tt>".',
+'noconnect'            => "A wiki tiene agora bellas dificultaz tecnicas, y no se podió contautar con o serbidor d'a base de datos. <br />
+$1",
+'nodb'                 => 'No se podió trigar a base de datos $1',
+'cachederror'          => "Ista ye una copia en caché d'a pachina demandata, y puestar que no siga autualizata.",
+'laggedslavemode'      => "Abiso: podrían faltar as zagueras autualizazions d'ista pachina.",
+'readonly'             => 'Base de datos bloquiata',
+'enterlockreason'      => "Esplique o motibo d'o bloqueyo, encluyendo una estimazión de cuán se produzirá o desbloqueyo",
+'readonlytext'         => "A base de datos de {{SITENAME}} ye bloquiata temporalment, probablement por mantenimiento rutinario, dimpués d'ixo tornará á la normalidat.
+L'almenistrador que la bloquió dió ista esplicazión:
+<p>$1",
+'missingarticle'       => "A base de datos no trobó o testo d'a pachina \"\$1\", que abría d'aber trobato.
+
+Isto gosa pasar si se sigue un binclo enta una esferenzia de bersions zircunduzita, u enta un istorial d'una pachina que ha estato borrata.
+
+Si ista no ye a causa, podría aber trobato una error en o programa. Por fabor, informe d'isto á un almenistrador, endicando-le l'adreza URL.",
+'readonly_lag'         => 'A base de datos ye bloquiata temporalment entre que os serbidors se sincronizan.',
+'internalerror'        => 'Error interna',
+'internalerror_info'   => 'Error interna: $1',
+'filecopyerror'        => 'No s\'ha puesto copiar l\'archibo "$1" ta "$2".',
+'filerenameerror'      => 'No s\'ha puesto cambiar o nombre de l\'archibo "$1" á "$2".',
+'filedeleteerror'      => 'No s\'ha puesto borrar l\'archibo "$1".',
+'directorycreateerror' => 'No s\'ha puesto crear o direutorio "$1".',
+'filenotfound'         => 'No s\'ha puesto trobar l\'archibo "$1".',
+'fileexistserror'      => 'No s\'ha puesto escribir en l\'archibo "$1": l\'archibo ya esiste',
+'unexpected'           => 'Balura no prebista: "$1"="$2".',
+'formerror'            => 'Error: no se podió nimbiar o formulario',
+'badarticleerror'      => 'Ista aizión no se puede no se puede reyalizar en ista pachina.',
+'cannotdelete'         => "No se podió borrar a pachina u l'archibo espezificato. (Puestar que belatro usuario l'aiga borrato dinantes)",
+'badtitle'             => 'Títol incorreuto',
+'badtitletext'         => "O títol d'a pachina demandata ye buedo, incorreuto, u tiene un binclo interwiki mal feito. Puede contener uno u más carauters que no se pueden fer serbir en títols.",
+'perfcached'           => 'Os datos que siguen son en caché, y podrían no estar esbiellatos:',
+'querypage-no-updates' => "S'han desautibato as autualizazions d'ista pachina. Por ixo, no s'esta esbiellando os datos.",
+'wrong_wfQuery_params' => 'Parametros incorreutos ta wfQuery()<br />
+Funzión: $1<br />
+Consulta: $2',
+'viewsource'           => 'Beyer codigo fuen',
+'viewsourcefor'        => 'ta $1',
+'protectedpagetext'    => 'Ista pachina ha estato bloquiata y no se puede editar.',
+'viewsourcetext'       => "Puez beyer y copiar o codigo fuent d'ista pachina:",
 
 # Login and logout pages
 'yourname'          => "Nombre d'usuario:",
@@ -378,7 +432,7 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 # Unused templates
 'unusedtemplates' => 'Plantillas sin de uso',
 
-# Random pages
+# Random page
 'randompage' => "Una pachina á l'azar",
 
 # Random redirect
