@@ -62,6 +62,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11848) Allow URL parameters 'editintro' and 'preload' in Special:Mypage 
   and Special:Mytalk
 * Add ot=raw to Special:Allmessages
+* Support for Hebrew calendar
+* Support for Hebrew numerals in dates and times
 
 === Bug fixes in 1.12 ===
 

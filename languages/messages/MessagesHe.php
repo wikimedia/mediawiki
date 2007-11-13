@@ -27,6 +27,15 @@ $skinNames = array(
 	'chick'       => "צ'יק"
 );
 
+$datePreferences = array(
+	'default',
+	'mdy',
+	'dmy',
+	'ymd',
+	'hebrew',
+	'ISO 8601',
+);
+
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j, Y',
@@ -39,6 +48,10 @@ $dateFormats = array(
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y xg j',
 	'ymd both' => 'H:i, Y xg j',
+
+	'hebrew time' => 'H:i',
+	'hebrew date' => 'xhxjj xjx xhxjY',
+	'hebrew both' => 'H:i, xhxjj xjx xhxjY',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -2472,5 +2485,35 @@ $1',
 'iranian-calendar-m10' => 'די',
 'iranian-calendar-m11' => 'בהמן',
 'iranian-calendar-m12' => 'אספנד',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'תשרי',
+'hebrew-calendar-m2'      => 'חשוון',
+'hebrew-calendar-m3'      => 'כסלו',
+'hebrew-calendar-m4'      => 'טבת',
+'hebrew-calendar-m5'      => 'שבט',
+'hebrew-calendar-m6'      => 'אדר',
+'hebrew-calendar-m6a'     => "אדר א'",
+'hebrew-calendar-m6b'     => "אדר ב'",
+'hebrew-calendar-m7'      => 'ניסן',
+'hebrew-calendar-m8'      => 'אייר',
+'hebrew-calendar-m9'      => 'סיוון',
+'hebrew-calendar-m10'     => 'תמוז',
+'hebrew-calendar-m11'     => 'אב',
+'hebrew-calendar-m12'     => 'אלול',
+'hebrew-calendar-m1-gen'  => 'בתשרי',
+'hebrew-calendar-m2-gen'  => 'בחשוון',
+'hebrew-calendar-m3-gen'  => 'בכסלו',
+'hebrew-calendar-m4-gen'  => 'בטבת',
+'hebrew-calendar-m5-gen'  => 'בשבט',
+'hebrew-calendar-m6-gen'  => 'באדר',
+'hebrew-calendar-m6a-gen' => "באדר א'",
+'hebrew-calendar-m6b-gen' => "באדר ב'",
+'hebrew-calendar-m7-gen'  => 'בניסן',
+'hebrew-calendar-m8-gen'  => 'באייר',
+'hebrew-calendar-m9-gen'  => 'בסיוון',
+'hebrew-calendar-m10-gen' => 'בתמוז',
+'hebrew-calendar-m11-gen' => 'באב',
+'hebrew-calendar-m12-gen' => 'באלול',
 
 );

@@ -3014,4 +3014,34 @@ $1',
 'iranian-calendar-m11' => 'Bahman', # only translate this message to other languages if you have to change it
 'iranian-calendar-m12' => 'Esfand', # only translate this message to other languages if you have to change it
 
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Tishrei', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m2'      => 'Cheshvan', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m3'      => 'Kislev', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m4'      => 'Tevet', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m5'      => 'Shevat', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m6'      => 'Adar', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m6a'     => 'Adar I', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m6b'     => 'Adar II', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m7'      => 'Nisan', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m8'      => 'Iyar', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m9'      => 'Sivan', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m10'     => 'Tamuz', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m11'     => 'Av', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m12'     => 'Elul', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m1-gen'  => 'Tishrei', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m2-gen'  => 'Cheshvan', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m3-gen'  => 'Kislev', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m4-gen'  => 'Tevet', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m5-gen'  => 'Shevat', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m6-gen'  => 'Adar', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m6a-gen' => 'Adar I', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m6b-gen' => 'Adar II', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m7-gen'  => 'Nisan', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m8-gen'  => 'Iyar', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m9-gen'  => 'Sivan', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m10-gen' => 'Tamuz', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m11-gen' => 'Av', # only translate this message to other languages if you have to change it
+'hebrew-calendar-m12-gen' => 'Elul', # only translate this message to other languages if you have to change it
+
 );
