@@ -552,7 +552,7 @@ $messages = array(
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pagina',
 'nstab-user'      => 'Gebruikerspagina',
 'nstab-media'     => 'Mediapagina',
@@ -1321,7 +1321,7 @@ PICT # overig
 'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte sjabloon die op geen enkele pagina gebruikt worden. Vergeet niet de "Links naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
 'unusedtemplateswlh'  => 'andere links',
 
-# Random pages
+# Random page
 'randompage'         => 'Willekeurig artikel',
 'randompage-nopages' => "Er zijn geen pagina's in deze naamruimte.",
 
@@ -2478,12 +2478,12 @@ Probeer normale voorvertoning.',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 pagina is|$1 pagina's zijn}} verwijderd van uw volglijst:",
 'watchlistedit-raw-title'      => 'Ruwe volglijst bewerken',
 'watchlistedit-raw-legend'     => 'Ruwe volglijst bewerken',
-'watchlistedit-raw-explain'    => "Hieronder staan pagina's op uw volglijst. U kunt de lijst bewerken door pagina's te verwijderen en toe te voegen. Eén pagina per regel. Als u klaar bent, klik dan op 'Volglijst bijwerken'. U kunt ook [[{{ns:special}}:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].",
-'watchlistedit-raw-titles'     => "Pagina's:",
+'watchlistedit-raw-explain'    => 'Hieronder staan pagina’s op uw volglijst. U kunt de lijst bewerken door pagina’s te verwijderen en toe te voegen. Eén pagina per regel. Als u klaar bent, klik dan op ‘Volglijst bijwerken’. U kunt ook [[{{ns:special}}:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].',
+'watchlistedit-raw-titles'     => 'Pagina’s:',
 'watchlistedit-raw-submit'     => 'Volglijst bijwerken',
 'watchlistedit-raw-done'       => 'Uw volglijst is bijgewerkt.',
-'watchlistedit-raw-added'      => "{{PLURAL:$1|1 pagina is|$1 pagina's zijn}} toegevoegd:",
-'watchlistedit-raw-removed'    => "{{PLURAL:$1|1 pagina is|$1 pagina's zijn}} verwijderd:",
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 pagina werd|$1 pagina’s werden}} toegevoegd:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 pagina werd|$1 pagina’s werden}} verwijderd:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Volglijst bekijken',

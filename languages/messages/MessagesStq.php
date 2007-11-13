@@ -8,7 +8,7 @@
  * @author SPQRobin
  */
 
-$fallback = 'fy';
+$fallback = 'de';
 
 $messages = array(
 # Dates
@@ -38,15 +38,22 @@ $messages = array(
 'categories'      => 'Kategorien',
 'category_header' => 'Artikkel in de Kategorie "$1"',
 
+'mainpagetext' => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',
+
 'article'  => 'Inhoold Siede',
 'cancel'   => 'Oubreeke',
+'qbedit'   => 'Beoarbaidje',
 'anontalk' => 'Diskussionssiede foar dissen IP',
 
 'errorpagetitle' => 'Failer',
+'tagline'        => 'Fon {{SITENAME}}',
+'help'           => 'Hälpe',
+'history_short'  => 'Geschichte',
 'edit'           => 'Siede beoarbaidje',
 'editthispage'   => 'Siede beoarbaidje',
 'delete'         => 'Läskje',
 'deletethispage' => 'Disse Siede läskje',
+'talk'           => 'Diskussion',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'bugreports'        => 'Kontakt Wikipedia',
@@ -59,9 +66,12 @@ $messages = array(
 'edithelppage'      => 'Help:Beoarbaidengshälpe',
 'faq'               => 'Oafte stoalde Froagen',
 'faqpage'           => 'Project:FAQ',
+'helppage'          => '{{ns:project}}:Hälpe',
+'mainpage'          => 'Haudsiede',
 
 'editsection' => 'Beoarbaidje',
 'editold'     => 'Beoarbaidje',
+'hidetoc'     => 'ferbierge',
 
 # General errors
 'error'           => 'Failer',
@@ -70,7 +80,10 @@ $messages = array(
 'cachederror'     => 'Dät Foulgjende is ne Kopie uut de Cache un is fielicht ferallerd.',
 'enterlockreason' => 'Reeke jädden n Gruund ien, wieruum ju Doatenboank speerd wäide schuul un ne Ouschätsenge uur ju Duur fon ju Speerenge',
 'filecopyerror'   => 'Kuude Doatäi "$1" nit ätter "$2" kopierje.',
+'filerenameerror' => 'Kuude Doatäi "$1" nit ätter "$2" uumenaame.',
 'filedeleteerror' => 'Kuude Doatäi "$1" nit läskje.',
+'filenotfound'    => 'Kuude Doatäi "$1" nit fiende.',
+'formerror'       => '<b style="color: #cc0000;">Failer: Do Iengoawen konne nit feroarbaided wäide.</b>',
 'badarticleerror' => 'Disse Honnelenge kon ap disse Siede nit moaked wäide.',
 'cannotdelete'    => 'Kon spezifizierde Siede of Artikkel nit läskje. Fielicht is ju al läsked wuuden.',
 'badtitle'        => 'Uungultige Tittel.',
@@ -78,6 +91,8 @@ $messages = array(
 
 # Login and logout pages
 'createaccount'              => 'Benutserkonto anlääse',
+'gotaccount'                 => 'Du hääst al n Konto? $1.',
+'gotaccountlink'             => 'Hier gungt dät ätter dän Login',
 'createaccountmail'          => 'Uur Email',
 'badretype'                  => 'Do bee Paaswoude stimme nit uureen.',
 'badsig'                     => 'Signatursyntax is uungultich; HTML uurpröiwje.',
@@ -96,6 +111,10 @@ Mail-Fersoand un Ämpfang foar do foulgjende Funktionen muugelk.',
 'bold_tip'       => 'Fatte Text',
 'extlink_sample' => 'http://www.Biespil.de Link-Text',
 'extlink_tip'    => 'Externen Link (http:// beoachtje)',
+'headline_tip'   => 'Ieuwene 2 Uurschrift',
+'image_sample'   => 'Biespil.jpg',
+'image_tip'      => 'Bielde-Ferwies',
+'hr_tip'         => 'Horizontoale Lienje (spoarsoam ferweende)',
 
 # Edit pages
 'blockedtitle'     => 'Benutser is blokkierd',
@@ -120,7 +139,10 @@ Iek fersicherje hiermäd, dät iek dän Biedraach sälwen ferfoated hääbe blw.
 # History pages
 'currentrevisionlink' => 'Aktuälle Version ounsjo',
 'cur'                 => 'Aktuäl',
+'histlegend'          => "Diff  Uutwoal: Do Boxen fon do wonskede Versionen markierje un 'Enter' drukke ap dän Button unner klikke/alt-v.<br /> Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version, (Lääste) = Unnerscheed tou ju foarige Version, M = Litje Annerenge",
 'deletedrev'          => '[läsked]',
+'histfirst'           => 'Ooldste',
+'histlast'            => 'Näiste',
 
 # Diffs
 'difference'              => '(Unnerschied twiske Versionen)',
@@ -134,26 +156,53 @@ Iek fersicherje hiermäd, dät iek dän Biedraach sälwen ferfoated hääbe blw.
 'datetime'       => 'Doatum un Tied',
 'contextlines'   => 'Teekene pro Träffer:',
 'contextchars'   => 'Teekene pro Riege:',
+'guesstimezone'  => 'Ienföigje uut dän Browser',
 'allowemail'     => 'Emails fon uur Benutsere kriegen',
 'defaultns'      => 'In disse Noomensruume schäl standoardmäitich soacht wäide:',
+'files'          => 'Doatäie',
 
 # User rights
 'editusergroup' => 'Beoarbaidede Benutsergjuchte',
 
+# Groups
+'group'            => 'Gruppe:',
+'group-bureaucrat' => 'Bürokraten',
+
+'group-bureaucrat-member' => 'Bürokrat',
+
 # Recent changes
 'diff' => 'Unnerschied',
+'hide' => 'ferbierge',
 
 # Upload
-'filedesc'    => 'Beschrieuwenge, Wälle',
-'badfilename' => 'Die Datäi-Noome is automatisk annerd tou "$1".',
-'emptyfile'   => 'Ju hoochleedene Doatäi is loos. Die Gruund kon n Typfailer in dän Doatäinoome weese. Kontrollierje jädden, of du ju Doatäi wuddelk hoochleede wolt.',
-'fileexists'  => "Ne Doatäi mäd dissen Noome bestoant al. Wan du ap 'Doatäi spiekerje' klikst, wäd ju Doatäi
+'filename'                    => 'Doatäinoome',
+'filedesc'                    => 'Beschrieuwenge, Wälle',
+'fileuploadsummary'           => 'Beschrieuwenge/Wälle:',
+'filesource'                  => 'Wälle',
+'ignorewarning'               => 'Woarschauenge ignorierje un Doatäi daach spiekerje.',
+'ignorewarnings'              => 'Woarschauengen ignorierje',
+'illegalfilename'             => 'Die Doatäinoome "$1" änthaalt ap minste een nit toulät Teeken. Benaam jädden ju Doatäi uum un fersäik, hier fon näien hoochtouleeden.',
+'badfilename'                 => 'Die Datäi-Noome is automatisk annerd tou "$1".',
+'emptyfile'                   => 'Ju hoochleedene Doatäi is loos. Die Gruund kon n Typfailer in dän Doatäinoome weese. Kontrollierje jädden, of du ju Doatäi wuddelk hoochleede wolt.',
+'fileexists'                  => "Ne Doatäi mäd dissen Noome bestoant al. Wan du ap 'Doatäi spiekerje' klikst, wäd ju Doatäi
 uurschrieuwen. Unner $1 koast du die bewisje, of du dät wuddelk wolt.",
+'fileexists-forbidden'        => 'Mäd dissen Noome bestoant al ne Doatäi. Gung jädden tourääch un leede dien Doatäi unner n uur Noome hooch. [[Bielde:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Mäd dissen Noome bestoant al ne Doatäi ap Wikipedia Commons. Gung jädden tourääch un leede dien Doatäi unner n uur Noome hooch. [[Bielde:$1|thumb|center|$1]]',
 
 # Image list
-'byname' => 'ätter Noome',
-'bydate' => 'ätter Doatum',
-'bysize' => 'ätter Grööte',
+'imagelist'             => 'Bieldelieste',
+'imagelisttext'         => 'Hier is ne Lieste fon $1 Bielden, sortierd $2.',
+'getimagelist'          => 'Leede Bieldelieste',
+'ilsubmit'              => 'Säik',
+'byname'                => 'ätter Noome',
+'bydate'                => 'ätter Doatum',
+'bysize'                => 'ätter Grööte',
+'imgdelete'             => 'Läskje',
+'imagelinks'            => 'Bieldeferwiese',
+'imagelist_description' => 'Beschrieuwenge',
+
+# File reversion
+'filerevert-comment' => 'Kommentoar:',
 
 # MIME search
 'download' => 'Deelleede',
@@ -172,9 +221,11 @@ Lääste schällen dan wächhoald wäide.',
 # Miscellaneous special pages
 'allpages'     => 'Aal Artikkele',
 'deadendpages' => 'Siede sunner Ferwiese',
+'move'         => 'Ferschuuwe',
 
 'categoriespagetext' => 'Do foulgjende Kategorien existierje in de Wiki.',
 'data'               => 'Failer in dän Doatenboank',
+'groups'             => 'Benutsergruppen',
 
 # Special:Log
 'alllogstext' => 'Dit is ne kombinierde Anwiesenge fon aal Logs fon {{SITENAME}}.',
@@ -248,6 +299,7 @@ Hälpe tou ju Benutsenge rakt
 'exblank'           => 'Siede waas loos',
 'confirmdelete'     => 'Läskenge bestäätigje',
 'deletesub'         => '(Läskje "$1")',
+'historywarning'    => 'WOARSCHAUENGE: Ju Siede, ju du läskje moatest, häd ne Versionsgeschichte: &nbsp;',
 'confirmdeletetext' => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:policy-url}}]] honnelje.',
 'deletedtext'       => '"$1" wuude läsked. 
 In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
@@ -285,6 +337,7 @@ Fersäik jädden n uur Noome.',
 Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje?',
 'delete_and_move_confirm' => 'Jee, Sielartikkel foar ju Ferschuuwenge läskje',
 'delete_and_move_reason'  => 'Läsked uum Plats tou moakjen foar Ferschuuwenge',
+'immobile_namespace'      => 'Die wonskede Siedentittel is aan besunneren; ju Siede kon nit in dissen (uur) Noomensruum ferschäuwen wäide.',
 
 # Export
 'export'          => 'Sieden exportierje',
@@ -300,6 +353,17 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'allmessagescurrent' => 'Disse Text',
 'allmessagestext'    => 'Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.',
 
+# Thumbnails
+'filemissing' => 'Doatäi failt',
+
+# Special:Import
+'import'                => 'Sieden importierje',
+'importfailed'          => 'Import failsloain: $1',
+'importnotext'          => 'Loos of neen Text',
+'importhistoryconflict' => 'Deer bestounde al allere Versionen, do mäd disse kollidierje. Muugelkerwiese wuude ju Siede al eer importierd.',
+'importnosources'       => 'Foar dän Transwiki Import sunt neen Wällen definierd un dät direkte Hoochleeden fon Versione is blokkierd.',
+'importnofile'          => 'Deer is neen Importdoatäi hoochleeden wuuden.',
+
 # Attribution
 'creditspage' => 'Siedenstatistik',
 
@@ -309,6 +373,9 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 
 # Image deletion
 'deletedrevision' => 'Oolde Version $1 läsked',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 'U',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bratte',
@@ -487,6 +554,9 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'edit-externally-help' => 'Sjuch [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] foar
 wiedere Informatione.',
 
+# 'all' in various places, this might be different for inflected languages
+'imagelistall' => 'aal',
+
 # Delete conflict
 'deletedwhileediting' => 'Oachtenge: Disse Siede wuude al läsked ätter dät du anfangd hiedest, hier tou beoarbaidjen!
 Wan du disse Siede spiekerst, wäd ju deeruum näi anlaid.',
@@ -495,5 +565,8 @@ Wan du disse Siede spiekerst, wäd ju deeruum näi anlaid.',
 'confirm_purge' => 'Dän Cache fon disse Siede loosmoakje?
 
 $1',
+
+# AJAX search
+'hideresults' => 'ferbierge',
 
 );

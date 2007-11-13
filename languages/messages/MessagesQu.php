@@ -212,6 +212,8 @@ $messages = array(
 'disclaimerpage'    => '{{ns:project}}:Sapsilla saywachasqa paqtachiy',
 'edithelp'          => "Llamk'ana yanapay",
 'edithelppage'      => '{{ns:help}}:Qillqa yanapay',
+'faq'               => 'Pasaq tapuykuna',
+'faqpage'           => '{{ns:project}}:Pasaq tapuykuna',
 'helppage'          => '{{ns:help}}:Yanapana',
 'mainpage'          => "Qhapaq p'anqa",
 'policy-url'        => '{{ns:project}}:Kawpay',
@@ -249,7 +251,7 @@ $messages = array(
 'feedlinks'               => 'Mikhuchiy:',
 'feed-invalid'            => 'Willaykuna mikhuchina layaqa manam allinchu.',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Qillqa',
 'nstab-user'      => "Ruraqpa p'anqan",
 'nstab-media'     => 'Midya',
@@ -367,30 +369,32 @@ Rakiqunaykiqa kichasqañam. Wikipidiyapaq [[Special:Preferences|allinkachinaykit
 'yourvariant'                => "Rimaypa rikch'aynin",
 'yournick'                   => 'Chutu sutiyki (ruruchinapaq)',
 'badsig'                     => "Chawa silq'usqaykiqa manam allinchu; HTML sananchakunata llanchiy.",
-'badsiglength'               => 'Chutu sutiykiqa nisyu sunim; $1-manta aswan pisi kananmi.',
+'badsiglength'               => 'Chutu sutiykiqa nisyu sunim; $1 sanampamanta aswan pisi kananmi.',
 'email'                      => 'E-chaski',
 'prefs-help-realname'        => "* Chiqap sutiyki (munaspaqa): quwaptiykiqa, llamk'apusqaykikunam paywan sananchasqa kanqa.",
 'loginerror'                 => "Pantasqa llamk'apuy tiyaypa qallarisqan",
-'prefs-help-email'           => '* Correo (opcional): Permite a otros usuarios escribirle por correo desde su página de usuario o su página de discusión sin la necesidad de revelar su identidad.',
-'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero ahora mismo no está identificado. {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados, pero parecen deshabilitadas. Por favor, habilítelas e identifíquese con su nombre de usuario y contraseña.',
+'prefs-help-email'           => "* Chaski (munaspayki): Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusunaykiwan atichin qampa sutiykita mana rikuchispa.",
+'prefs-help-email-required'  => 'E-chaskiykillawanmi atin.',
+'nocookiesnew'               => "Ruraqpa rakiqunaykiqa kichasqañam, ichataq manaraqmi yaykurqankichu. {{SITENAME}}qa <em>kuki</em> nisqakunatam llamk'achin ruraqkunata kikinyachinapaq. Antañiqiqniykipiqa manam <em>kuki</em> nisqakuna atinchu. Ama hina kaspa, atichispa huk kutita yaykuykachay.",
 'nocookieslogin'             => "{{SITENAME}} <em>kuki</em> nisqakunata llamk'achin ruraqkunata kikinyachinapaq. Antañiqiqniykipiqa manam <em>kuki</em> nisqakuna atinchu. Ama hina kaspa, atichispa huk kutita ruraykachay.",
-'noname'                     => 'No ha especificado un nombre de usuario válido.',
+'noname'                     => 'Manam niwarqankichu ruraqpa allin sutinta.',
 'loginsuccesstitle'          => "Llamk'apuy tiyayqa qallarisqañam",
 'loginsuccess'               => 'Llamk\'apuy tiyayniykiqa qallarisqam {{SITENAME}}-pi "$1" sutiyuq kaspa.',
-'nosuchuser'                 => 'No existe usuario alguno llamado "$1".
-Compruebe que lo ha escrito correctamente, o use el formulario de abajo para crear una nueva cuenta de usuario.',
-'nosuchusershort'            => 'No hay un usuario con el nombre "$1". Compruebe que lo ha escrito correctamente.',
-'nouserspecified'            => 'Debes especificar un nombre de usuario.',
+'nosuchuser'                 => 'Nisqayki "$1" sutiyuq ruraqqa manam kanchu.
+Allin qillqasqaykita llanchiriy, ichataq urapi kaq hunt\'ana p\'anqata llamk\'achiy musuq rakiqunata kicharinaykipaq.',
+'nosuchusershort'            => 'Nisqayki "$1" sutiyuq ruraqqa manam kanchu.
+Allin qillqasqaykita llanchiriy.',
+'nouserspecified'            => 'Ruraqpa sutiykitam qunayki.',
 'wrongpassword'              => 'Qillqamusqayki yaykuna rimaqa manam allinchu. Huk kutita ruraykachay.',
 'wrongpasswordempty'         => 'Yaykuna rimaykita qillqamuyta qunqarqunkim, huk kutita ruraykachay.',
-'passwordtooshort'           => 'Su contraseña es muy corta. Debe tener al menos $1 caracteres.',
+'passwordtooshort'           => 'Yaykuna rimaykiqa nisyu pisillam. $1 sanampayuq icha chaymanta aswan kananmi.',
 'mailmypassword'             => 'Musuq yaykuna rimatam e-chaskiwan kachamuway',
-'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
-'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4). 
-La contraseña para el usuario "$2" es ahora "$3".
-Ahora deberías iniciar sesión y cambiar tu contraseña.
+'passwordremindertitle'      => '{{SITENAME}}manta yaykuna rima yuyachina',
+'passwordremindertext'       => 'Pipas (qamchiki, $1 IP huchhayuq tiyaymanta) mañakuwarqan {{SITENAME}}paq musuq yaykuna rimatam e-chaski imamaytaykiman kachayta ($4). 
+"$2" sutiyuq ruraqpa yaykuna rimaqa kunan "$3" kachkan.
+Kunanqa yaykunaykim atinman yaykuna rimaykita hukchanaykipaq.
 
-Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no deseas cambiarla, puedes ignorar este mensaje y seguir usando tu contraseña original.',
+Huk runa kay willayta mañakurqaptinqa icha yaykuna rimaykita hukchayta manaña munaspayki, kay willayta qhawarparispa ñawpaq yaykuna rimaykita llamk\'arayachiytam atinki.',
 'noemail'                    => 'No hay una dirección de correo electrónico registrada para "$1".',
 'passwordsent'               => 'Una nueva contraseña ha sido enviada al correo electrónico de "$1".
 Por favor, identifíquese de nuevo tras recibirla.',
@@ -940,7 +944,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'unusedtemplatestext' => 'Aquí se enumeran todas las páginas en la zona de plantillas que no están incluidas en otras páginas. Recuerda mirar lo que enlaza a las plantillas antes de borrarlas.',
 'unusedtemplateswlh'  => "huk t'inkikuna",
 
-# Random pages
+# Random page
 'randompage'         => "Mayninpi p'anqa",
 'randompage-nopages' => 'No hay páginas en este espacio de nombres.',
 
