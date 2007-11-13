@@ -20,7 +20,7 @@ class RawPage {
 	var $mContentType, $mExpandTemplates;
 
 	function __construct( &$article, $request = false ) {
-		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType;
+		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType, $wgForcedRawSMaxage, $wgGroupPermissions;
 
 		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
@@ -35,6 +35,7 @@ class RawPage {
 		$ctype = $this->mRequest->getVal( 'ctype' );
 		$smaxage = $this->mRequest->getIntOrNull( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
+		
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
 		$this->mUseMessageCache = $this->mRequest->getBool( 'usemsgcache' );
 
@@ -81,12 +82,23 @@ class RawPage {
 			$this->mGen = false;
 		}
 		$this->mCharset = $wgInputEncoding;
-		$this->mSmaxage = intval( $smaxage );
+		
+		# Force caching for CSS and JS raw content, default: 5 minutes
+		if (is_null($smaxage) and ($ctype=='text/css' or $ctype==$wgJsMimeType)) {
+			$this->mSmaxage = intval($wgForcedRawSMaxage);
+		} else {
+			$this->mSmaxage = intval( $smaxage );
+		}
 		$this->mMaxage = $maxage;
 		
-		// Output may contain user-specific data; vary for open sessions
-		$this->mPrivateCache = ( $this->mSmaxage == 0 ) ||
-			( session_id() != '' );
+		# Output may contain user-specific data; 
+		# vary generated content for open sessions and private wikis
+		if ($this->mGen or !$wgGroupPermissions['*']['read']) {
+			$this->mPrivateCache = ( $this->mSmaxage == 0 ) ||
+				( session_id() != '' );
+		} else {
+			$this->mPrivateCache = false;
+		}
 		
 		if ( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';
