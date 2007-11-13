@@ -1337,6 +1337,8 @@ class Linker {
 	 *   element (e.g., ' title="This does something [x]" accesskey="x"').
 	 */
 	public function tooltipAndAccesskey($name) {
+		$fname="Linker::tooltipAndAccesskey";
+		wfProfileIn($fname);
 		$out = '';
 
 		$tooltip = wfMsg('tooltip-'.$name);
@@ -1352,6 +1354,7 @@ class Linker {
 		} elseif ($out) {
 			$out .= '"';
 		}
+		wfProfileOut($fname);
 		return $out;
 	}
 
