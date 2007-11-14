@@ -2127,7 +2127,7 @@ END
 		$resultDetails = false;
 		$value = $this->internalAttemptSave( $resultDetails );
 		
-		if( $value == self::AS_SUCCESS_UPDATE || $value = self::AS_SUCCESS_NEW_ARTICLE ) {
+		if( $value == self::AS_SUCCESS_UPDATE || $value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
 		}
 		
