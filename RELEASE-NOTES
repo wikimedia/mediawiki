@@ -154,6 +154,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11921) Support plural in message number_of_watching_users_pageview
 * If an IP address is blocked as part of a rangeblock, attempting to unblock
   the single IP should not unblock the entire range.
+* (bug 6695) Fix native language name of Southern Sotho (Sesotho) (st)
 
 === API changes in 1.12 ===
 

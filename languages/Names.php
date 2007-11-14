@@ -249,7 +249,7 @@
 	'sr-el' => 'latinica',	# Serbian latin ekavian
 	'sr-jl' => 'ijekavica',	# Serbian latin iyekavian
 	'ss' => 'SiSwati',		# Swati
-	'st' => 'seSotho',		# Southern Sotho
+	'st' => 'Sesotho',		# Southern Sotho
 	'stq' => 'Seeltersk',		# Saterland Frisian
 	'su' => 'Basa Sunda',	# Sundanese
 	'sv' => 'Svenska',		# Swedish
