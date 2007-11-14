@@ -252,7 +252,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pàgina',
 'nstab-user'      => 'Utenti',
 'nstab-media'     => 'File mùrthimediari',
@@ -424,6 +424,7 @@ Pa piazeri, effettua una intradda nò appèna la rizzibi.',
 'showpreview'              => 'Visuarizza antiprimma',
 'showlivepreview'          => "Funzioni ''Live preview''",
 'showdiff'                 => 'Musthra ciambamenti',
+'summary-preview'          => 'Antiprimma oggettu',
 'loginreqtitle'            => 'Pa mudìfiggà chistha pàgina è nezzessàriu intrà',
 'loginreqlink'             => 'intra',
 'loginreqpagetext'         => 'Pa vidé althri pàgini è nezzessàriu $1.',
@@ -440,6 +441,9 @@ Pa piazeri, effettua una intradda nò appèna la rizzibi.',
 'editingsection'           => 'Mudifigga di $1 (sezzioni)',
 'editingcomment'           => 'Mudifigga di $1 (cummentu)',
 'editconflict'             => "Cuntrasthu d'edizioni i $1",
+'yourtext'                 => 'Lu testhu tóiu',
+'storedversion'            => 'La versioni mimurizadda',
+'yourdiff'                 => 'Diffarènzi',
 'copyrightwarning'         => "Nota: tutti li cuntributi a {{SITENAME}} so rilassaddi i la licènzia d'usu $2 (vedi $1 pa maggiori dettàgli). Si nò vói chi li testhi tói siani mudìfiggaddi e disthribuiddi a cassisia chena l'autorizzazioni tóia, nò l'invia à {{SITENAME}}. <br />
 Inviendi lu testhu hai la ripunsabiriddai chi lu testhu sia toiu oppuru sia i lu pùbbriggu dumìniu.
 
@@ -604,18 +608,34 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'recentchangeslinked' => 'Mudìfigghi curriraddi',
 
 # Upload
-'upload'          => 'Carrigga un file',
-'uploadbtn'       => 'Carrigga',
-'reupload'        => 'Carrigga di nobu',
-'reuploaddesc'    => 'Turra a lu mòdulu pa lu carriggamentu.',
-'uploadnologin'   => 'Intradda nò effettuadda',
-'uploaderror'     => 'Errori i lu carriggamentu',
-'uploadlog'       => 'File carriggaddi',
-'uploadlogpage'   => 'Rigisthru di li file carrigaddi',
-'filesource'      => 'Funtana',
-'sourcefilename'  => "Nommu d'orìgini di lu file",
-'destfilename'    => 'Nommu di lu file di disthinazioni',
-'watchthisupload' => 'Aggiungi a li abbaidaddi ippiziari',
+'upload'            => 'Carrigga un file',
+'uploadbtn'         => 'Carrigga',
+'reupload'          => 'Carrigga di nobu',
+'reuploaddesc'      => 'Turra a lu mòdulu pa lu carriggamentu.',
+'uploadnologin'     => 'Intradda nò effettuadda',
+'uploaderror'       => 'Errori i lu carriggamentu',
+'uploadtext'        => "Use lu mòdulu in giossu pà carriggà file. Pà visuarizzà o zirchà li file già carriggaddi, cunsulthà  lu [[Special:Imagelist|rigisthru di li file carriggaddi]]. Carriggamenti e ischarriggamenti di file sò rigisthraddi i lu  [[Special:Log/upload|rigisthru di li carriggamenti]].
+
+Pà insirì un'immagina i'na pàgina, fà un cullegamentu cussì:
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' ;
+usa inveci
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
+pà culligà direttamenti li althri tipi di file.",
+'uploadlog'         => 'File carriggaddi',
+'uploadlogpage'     => 'Rigisthru di li file carrigaddi',
+'filename'          => 'Nommu di lu file',
+'filedesc'          => 'Dettàgliu',
+'fileuploadsummary' => 'Dettàgli di lu file:',
+'filestatus'        => 'Infuimmazioni i lu copyright',
+'filesource'        => 'Funtana',
+'uploadedfiles'     => 'Erencu di li file carriggaddi',
+'ignorewarning'     => "Ignora l'avvirthimentu e saivva cumenti si sia lu file.",
+'ignorewarnings'    => 'Ignora li imbasciaddi di avvirthimentu di lu sisthema',
+'minlength1'        => "Lu nommu di lu file débi assé cumposthu arumandu d'un caràtteri.",
+'sourcefilename'    => "Nommu d'orìgini di lu file",
+'destfilename'      => 'Nommu di lu file di disthinazioni',
+'watchthisupload'   => 'Aggiungi a li abbaidaddi ippiziari',
 
 # Image list
 'imagelist' => 'Erencu di li file',
@@ -645,6 +665,9 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 
 # Unused templates
 'unusedtemplates' => 'Mudelli inutirizaddi',
+
+# Random page
+'randompage' => 'Una pàgina a casu',
 
 # Random redirect
 'randomredirect' => 'Un rinviu a casu',
@@ -688,7 +711,6 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'mostrevisions'           => 'Pàgini cun più ribisioni',
 'allpages'                => 'Tutti li pàgini',
 'prefixindex'             => 'Indizi di li bozi pa léttari a l’ischumenzu',
-'randompage'              => 'Una pàgina a casu',
 'shortpages'              => 'Pàgini più corthi',
 'longpages'               => 'Pàgini più longhi',
 'deadendpages'            => 'Pàgini chena iscidda',

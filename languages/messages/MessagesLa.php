@@ -260,6 +260,7 @@ $messages = array(
 'anontalk'       => 'Disputatio huius IP',
 'navigation'     => 'Navigatio',
 
+'errorpagetitle'    => 'Error',
 'returnto'          => 'Redire ad $1.',
 'tagline'           => 'E {{grammar:ablative|{{SITENAME}}}}',
 'help'              => 'Adiutatum',
@@ -350,7 +351,7 @@ $messages = array(
 'thisisdeleted'           => 'Videre aut restituere $1?',
 'restorelink'             => '{{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Res',
 'nstab-user'      => 'Pagina usoris',
 'nstab-media'     => 'Media',
@@ -369,6 +370,7 @@ $messages = array(
 'nospecialpagetext' => 'Paginam specialem invalidam petivisti. Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{MediaWiki:specialpages}}]].',
 
 # General errors
+'error'               => 'Error',
 'databaseerror'       => 'Error in basi datorum',
 'noconnect'           => 'Nos paenitet! {{SITENAME}} per aerumnas technicas agit, et server basis datorum invenire non potest. <br />
 $1',
@@ -716,6 +718,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'rightslogtext' => 'Haec est index mutationum iuribus usorum.',
 
 # Recent changes
+'nchanges'                          => '$1 {{PLURAL:$1|mutatio|mutationes}}',
 'recentchanges'                     => 'Nuper mutata',
 'recentchangestext'                 => 'Inspice mutationes recentes huic vici in hac pagina.',
 'rcnote'                            => "Subter {{PLURAL:$1|est '''1''' nuper mutatum|sunt '''$1''' nuperrime mutata}} in {{PLURAL:$2|die proximo|'''$2''' diebus proximis}}, ad $3 tempus.",
@@ -727,14 +730,19 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'rcshowhidemine'                    => '$1 conlationes meas',
 'rclinks'                           => 'Monstrare $1 nuperrime mutata in $2 diebus proximis.<br />$3',
 'diff'                              => 'diss',
+'hist'                              => 'hist',
 'hide'                              => 'celare',
 'show'                              => 'monstrare',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usor custodiens|usores custodientes}}]',
 'rc_categories_any'                 => 'Ulla',
 'newsectionsummary'                 => '/* $1 */ nova pars',
 
 # Recent changes linked
-'recentchangeslinked' => 'Nuper mutata annexorum',
+'recentchangeslinked'         => 'Nuper mutata annexorum',
+'recentchangeslinked-title'   => 'Nuper mutata in paginis quibus pagina $1 nectit',
+'recentchangeslinked-summary' => "Subter sunt nuperrime mutata paginis annexis. Paginae a te custoditae '''litteris pinguis''' monstrantur.",
 
 # Upload
 'upload'            => 'Fasciculum onerare',
@@ -774,34 +782,35 @@ Ad imaginem includendum in pagina, utere nexu
 'upload-file-error' => 'Error internus',
 
 # Image list
-'imagelist'             => 'Fasciculi',
-'imagelisttext'         => "Subter est index {{plural:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
-'getimagelist'          => 'onerans indicem fasciculorum',
-'ilsubmit'              => 'Quaerere',
-'byname'                => 'ex nomine',
-'bydate'                => 'ex die',
-'bysize'                => 'ex magnitudine',
-'imgfile'               => 'fasciculus',
-'filehist'              => 'Historia fasciculi',
-'filehist-help'         => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
-'filehist-deleteall'    => 'delere omnes emendationes',
-'filehist-deleteone'    => 'delere hanc emendationem',
-'filehist-revert'       => 'revertere',
-'filehist-current'      => 'recentissima',
-'filehist-datetime'     => 'Dies/Tempus',
-'filehist-user'         => 'Usor',
-'filehist-dimensions'   => 'Dimensiones',
-'filehist-filesize'     => 'Magnitudo fasciculi',
-'filehist-comment'      => 'Summarium',
-'imagelinks'            => 'Nexus',
-'linkstoimage'          => 'Paginae sequentes ad hunc fasciculum nectunt:',
-'nolinkstoimage'        => 'Nullae paginae ad hunc fasciculum nectunt.',
-'noimage'               => 'Fasciculus huius nominis non est. $1 potes.',
-'noimage-linktext'      => 'Fasciculum huius nominis onerare',
-'imagelist_name'        => 'Nomen',
-'imagelist_user'        => 'Usor',
-'imagelist_size'        => 'Magnitudo',
-'imagelist_description' => 'Descriptio',
+'imagelist'                 => 'Fasciculi',
+'imagelisttext'             => "Subter est index {{plural:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
+'getimagelist'              => 'onerans indicem fasciculorum',
+'ilsubmit'                  => 'Quaerere',
+'byname'                    => 'ex nomine',
+'bydate'                    => 'ex die',
+'bysize'                    => 'ex magnitudine',
+'imgfile'                   => 'fasciculus',
+'filehist'                  => 'Historia fasciculi',
+'filehist-help'             => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
+'filehist-deleteall'        => 'delere omnes emendationes',
+'filehist-deleteone'        => 'delere hanc emendationem',
+'filehist-revert'           => 'revertere',
+'filehist-current'          => 'recentissima',
+'filehist-datetime'         => 'Dies/Tempus',
+'filehist-user'             => 'Usor',
+'filehist-dimensions'       => 'Dimensiones',
+'filehist-filesize'         => 'Magnitudo fasciculi',
+'filehist-comment'          => 'Summarium',
+'imagelinks'                => 'Nexus',
+'linkstoimage'              => 'Paginae sequentes ad hunc fasciculum nectunt:',
+'nolinkstoimage'            => 'Nullae paginae ad hunc fasciculum nectunt.',
+'noimage'                   => 'Fasciculus huius nominis non est. $1 potes.',
+'noimage-linktext'          => 'Fasciculum huius nominis onerare',
+'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi onerare',
+'imagelist_name'            => 'Nomen',
+'imagelist_user'            => 'Usor',
+'imagelist_size'            => 'Magnitudo',
+'imagelist_description'     => 'Descriptio',
 
 # File reversion
 'filerevert-comment' => 'Sententia:',
@@ -828,6 +837,10 @@ Ad imaginem includendum in pagina, utere nexu
 
 # Unused templates
 'unusedtemplates' => 'Formulae non in usu',
+
+# Random page
+'randompage'         => 'Pagina fortuita',
+'randompage-nopages' => 'Non est ulla pagina hoc in spatio nominali.',
 
 # Random redirect
 'randomredirect'         => 'Redirectio fortuita',
@@ -861,6 +874,8 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'brokenredirects-edit'   => '(recensere)',
 'brokenredirects-delete' => '(delere)',
 
+'withoutinterwiki' => 'Paginae sine nexibus ad linguas alias',
+
 'fewestrevisions' => 'Paginae minime mutatae',
 
 # Miscellaneous special pages
@@ -873,6 +888,7 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'uncategorizedpages'      => 'Paginae sine categoriis',
 'uncategorizedcategories' => 'Categoriae sine categoriis',
 'uncategorizedimages'     => 'Fasciculi sine categoriis',
+'uncategorizedtemplates'  => 'Formulae sine categoriis',
 'unusedcategories'        => 'Categoriae non in usu',
 'unusedimages'            => 'Fasciculi non in usu',
 'popularpages'            => 'Paginae saepe monstratae',
@@ -880,13 +896,12 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'wantedpages'             => 'Paginae desideratae',
 'mostlinked'              => 'Paginae maxime annexae',
 'mostlinkedcategories'    => 'Categoriae maxime annexae',
+'mostlinkedtemplates'     => 'Formulae maxime annexae',
 'mostcategories'          => 'Paginae plurimis categoriis',
 'mostimages'              => 'Fasciculi maxime annexi',
 'mostrevisions'           => 'Paginae plurimum mutatae',
 'allpages'                => 'Paginae omnes',
 'prefixindex'             => 'Quaerere per praefixa',
-'randompage'              => 'Pagina fortuita',
-'randompage-nopages'      => 'Non est ulla pagina hoc in spatio nominali.',
 'shortpages'              => 'Paginae breves',
 'longpages'               => 'Paginae longae',
 'deadendpages'            => 'Paginae sine nexu',
@@ -1083,22 +1098,29 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'ucnote'        => 'Subter sunt <b>$1</b> mutationes proximae huius usoris in <b>$2</b> diebus proximis.',
 'uclinks'       => 'Videre $1 mutationes proximas; videre $2 dies proximos.',
 'uctop'         => ' (vertex)',
+'month'         => 'Ab mense (et prior):',
+'year'          => 'Ab anno (et prior):',
 
 'sp-contributions-newest'      => 'Novissimus',
 'sp-contributions-oldest'      => 'Veterrimus',
-'sp-contributions-newbies-sub' => 'Usorum novorum',
+'sp-contributions-newbies'     => 'Monstrare solum conlationes rationum novarum',
+'sp-contributions-newbies-sub' => 'Conlationes rationum novarum',
 'sp-contributions-blocklog'    => 'Acta obstructionum',
-'sp-contributions-search'      => 'Quaerere conlationes',
+'sp-contributions-search'      => 'Conlationes usoris quaerere',
+'sp-contributions-username'    => 'Locus IP aut nomen usoris:',
 'sp-contributions-submit'      => 'Ire',
 
 # What links here
 'whatlinkshere'       => 'Nexus ad paginam',
+'whatlinkshere-title' => 'Paginae quae ad $1 nectunt',
 'whatlinkshere-page'  => 'Pagina:',
 'linklistsub'         => '(Index nexuum)',
 'linkshere'           => "Paginae sequentes ad '''[[:$1]]''' nectunt:",
 'nolinkshere'         => "Nullae paginae ad '''[[:$1]]''' nectunt.",
 'isredirect'          => 'pagina redirectionis',
 'istemplate'          => 'inclusio',
+'whatlinkshere-prev'  => '{{PLURAL:$1|superior|$1 superiores}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|proxima|proxima $1}}',
 'whatlinkshere-links' => '← nexus',
 
 # Block/unblock
@@ -1402,5 +1424,10 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Tituli:',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Mutationes paginarum custoditarum monstrare',
+'watchlisttools-edit' => 'Indicem paginarum custoditarum inspicere vel recensere',
+'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum inspicere vel recensere',
 
 );

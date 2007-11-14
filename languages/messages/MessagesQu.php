@@ -11,6 +11,27 @@
 
 $fallback = 'es';
 
+$namespaceNames = array(
+	NS_MEDIA          => 'Midya',
+	NS_SPECIAL        => 'Sapaq',
+	NS_MAIN           => '',
+	NS_TALK           => 'Rimanakuy',
+	NS_USER           => 'Ruraq',
+	NS_USER_TALK      => 'Ruraq_rimanakuy',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_rimanakuy',
+	NS_IMAGE          => 'Rikcha',
+	NS_IMAGE_TALK     => 'Rikcha_rimanakuy',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_rimanakuy',
+	NS_TEMPLATE       => 'Plantilla',
+	NS_TEMPLATE_TALK  => 'Plantilla_rimanakuy',
+	NS_HELP           => 'Yanapa',
+	NS_HELP_TALK      => 'Yanapa_rimanakuy',
+	NS_CATEGORY       => 'Katiguriya',
+	NS_CATEGORY_TALK  => 'Katiguriya_rimanakuy',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => "T'inkikunata uranpi sikwiy",

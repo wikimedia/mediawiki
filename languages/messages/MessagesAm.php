@@ -57,7 +57,7 @@ $messages = array(
 'category-empty'  => 'ይህ መደብ አሁን ባዶ ነው።',
 
 'newwindow'  => '(ባዲስ መስኮት ውስጥ ይከፈታል።)',
-'cancel'     => 'ይቅር! (ለመሰረዝ)',
+'cancel'     => '<br>ይቅር! (ለመሰረዝ)',
 'mytalk'     => 'የኔ ውይይት፤',
 'navigation' => 'የማውጫ ቁልፎች',
 
@@ -104,7 +104,7 @@ $messages = array(
 'showtoc'             => 'ይታይ',
 'hidetoc'             => 'ይደበቅ',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'መጣጥፍ',
 'nstab-user'      => 'ያባል መኖርያ ገጽ',
 'nstab-special'   => 'ልዩ ገጽ',
@@ -130,7 +130,7 @@ $messages = array(
 በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦',
 'welcomecreation'       => '== ሰላምታ፣ $1! ==
 
-የብዕር ስምዎ ተፈጥሯል። ስለ ምርጫዎች ምክር ይረዱ።',
+የብዕር ስምዎ ተፈጥሯል። [[Special:Preferences|ምርጫዎችዎን]] ለማስተካከል ይችላሉ።',
 'yourname'              => 'Username / የብዕር ስም:',
 'yourpassword'          => 'Password / መግቢያ ቃል',
 'yourpasswordagain'     => 'መግቢያ ቃልዎን ዳግመኛ ይስጡ',
@@ -366,7 +366,7 @@ $messages = array(
 'unusedtemplatestext' => 'እነኚህ መልጠፊያዎች አሁን ባንዳችም ገጽ ላይ አልተለጠፉም።',
 'unusedtemplateswlh'  => 'ሌሎች መያያዣዎች',
 
-# Random pages
+# Random page
 'randompage' => 'ማናቸውንም ለማየት',
 
 # Random redirect
@@ -591,7 +591,7 @@ $messages = array(
 
 # Block/unblock
 'ipblocklist'              => 'የአሁኑ ማገጃዎች ዝርዝር',
-'ipblocklist-legend'       => 'አንድ የታገደውን ተጠቃሚ ለመለግ፦',
+'ipblocklist-legend'       => 'አንድ የታገደውን ተጠቃሚ ለመፈለግ፦',
 'ipblocklist-username'     => 'ይህ ብዕር ስም ወይም የቁጥር አድራሻ #፡',
 'ipblocklist-submit'       => 'ይፈለግ',
 'blocklistline'            => '$1 (እ.ኤ.አ.)፦ $2 በ$3 ላይ ማገጃ ጣለ ($4)',

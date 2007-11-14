@@ -13,6 +13,7 @@
  * @author G - ג
  * @author Nike
  * @author SPQRobin
+ * @author Michawiki
  */
 
 $datePreferences = array(
@@ -397,7 +398,7 @@ $messages = array(
 'page-rss-feed'           => 'RSS kanál „$1“',
 'page-atom-feed'          => 'Atom kanál „$1“',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Stránka',
 'nstab-user'      => 'Stránka redaktora',
 'nstab-media'     => 'Médiá',
@@ -865,7 +866,7 @@ Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
 'nextn'                 => 'ďalších $1',
 'viewprevnext'          => 'Zobraziť ($1) ($2) ($3).',
 'showingresults'        => "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
-'showingresultsnum'     => "Nižšie {{PLURAL:$3|je zobrazený najviac jeden výsledok|sú zobrazené najviac '''$3''' výsledky|je zobrazených najviac '''$3''' výsledkov}}, počnúc od  #<b>$2</b>.",
+'showingresultsnum'     => "Nižšie {{PLURAL:$3|je zobrazený najviac '''1''' výsledok|sú zobrazené najviac '''$3''' výsledky|je zobrazených najviac '''$3''' výsledkov}}, počnúc od  #'''$2'''.",
 'nonefound'             => "<strong>Poznámka</strong>: bezvýsledné vyhľadávania sú často spôsobené buď snahou hľadať príliš bežné, obyčajné slová (napríklad slovo ''je''), pretože tieto sa nezaraďujú do indexu vyhľadávača, alebo uvedením viac ako jedného vyhľadávaného výrazu, pretože výsledky uvádzajú len stránky obsahujúce všetky vyhľadávané výrazy.",
 'powersearch'           => 'Vyhľadávanie',
 'powersearchtext'       => 'Vyhľadávania v menných priestoroch :<br />
@@ -999,7 +1000,7 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'minoreditletter'                   => 'D',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[{{PLURAL:jeden sledujúci používateľ|$1 sledujúci používatelia|$1 sledujúcich používateľov}}]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|sledujúci používateľ|sledujúci používatelia|sledujúcich používateľov}}]',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte znakom „|“)',
 'rc_categories_any'                 => 'akékoľvek',
 'newsectionsummary'                 => '/* $1 */ nová sekcia',
@@ -1192,7 +1193,7 @@ PICT # misc.
 'unusedtemplatestext' => 'Táto stránka obsahuje zoznam všetkých stránok v mennom prisetore Šablóna:, ktoré nie sú vložené v žiadnej inej stránke. Pred zmazaním nezabudnite skontrolovať ostatné odkazy!',
 'unusedtemplateswlh'  => 'iné odkazy',
 
-# Random pages
+# Random page
 'randompage'         => 'Náhodná stránka',
 'randompage-nopages' => 'V tomto mennom priestore nie sú žiadne stránky.',
 

@@ -551,7 +551,7 @@ $messages = array(
 'feed-atom'               => 'أتوم',
 'feed-rss'                => 'أر إس إس',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'صفحة',
 'nstab-user'      => 'صفحة مستخدم',
 'nstab-media'     => 'صفحة ميديا',
@@ -1327,6 +1327,10 @@ PICT # misc.
 'unusedtemplatestext' => 'تحتوي هذه الصفحة على قائمة بالصفحات من نطاق قالب غير المستعملة في صفحات أخرى. تذكر بأن تتحقق من عدم وجود وصلات أخرى لهذه القوالب قبل حذفها.',
 'unusedtemplateswlh'  => 'وصلات أخرى',
 
+# Random page
+'randompage'         => 'صفحة عشوائية',
+'randompage-nopages' => 'لا توجد صفحات في هذا النطاق.',
+
 # Random redirect
 'randomredirect'         => 'تحويلة عشوائية',
 'randomredirect-nopages' => 'لا توجد تحويلات في هذا النطاق.',
@@ -1396,8 +1400,6 @@ PICT # misc.
 'mostrevisions'           => 'أكثر المقالات تعديلا',
 'allpages'                => 'كل الصفحات',
 'prefixindex'             => 'فهرس بادئة',
-'randompage'              => 'صفحة عشوائية',
-'randompage-nopages'      => 'لا توجد صفحات في هذا النطاق.',
 'shortpages'              => 'صفحات قصيرة',
 'longpages'               => 'صفحات طويلة',
 'deadendpages'            => 'صفحات نهاية مسدودة',
@@ -2556,5 +2558,35 @@ $1',
 'iranian-calendar-m10' => 'دی',
 'iranian-calendar-m11' => 'بهمن',
 'iranian-calendar-m12' => 'اسفند',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'تيشري',
+'hebrew-calendar-m2'      => 'تيشفان',
+'hebrew-calendar-m3'      => 'كيسليف',
+'hebrew-calendar-m4'      => 'تيفيت',
+'hebrew-calendar-m5'      => 'شيفات',
+'hebrew-calendar-m6'      => 'أدار',
+'hebrew-calendar-m6a'     => 'أدار الأول',
+'hebrew-calendar-m6b'     => 'أدار الثاني',
+'hebrew-calendar-m7'      => 'نيزان',
+'hebrew-calendar-m8'      => 'أيار',
+'hebrew-calendar-m9'      => 'سيفان',
+'hebrew-calendar-m10'     => 'تموز',
+'hebrew-calendar-m11'     => 'آف',
+'hebrew-calendar-m12'     => 'أيلول',
+'hebrew-calendar-m1-gen'  => 'تيشري',
+'hebrew-calendar-m2-gen'  => 'تيشفان',
+'hebrew-calendar-m3-gen'  => 'كيسليف',
+'hebrew-calendar-m4-gen'  => 'تيفيت',
+'hebrew-calendar-m5-gen'  => 'شيفات',
+'hebrew-calendar-m6-gen'  => 'أدار',
+'hebrew-calendar-m6a-gen' => 'أدار الأول',
+'hebrew-calendar-m6b-gen' => 'أدار الثاني',
+'hebrew-calendar-m7-gen'  => 'نيزان',
+'hebrew-calendar-m8-gen'  => 'أيار',
+'hebrew-calendar-m9-gen'  => 'سيفان',
+'hebrew-calendar-m10-gen' => 'تموز',
+'hebrew-calendar-m11-gen' => 'آف',
+'hebrew-calendar-m12-gen' => 'أيلول',
 
 );
