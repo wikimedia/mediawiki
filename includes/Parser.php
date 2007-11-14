@@ -3877,14 +3877,14 @@ class Parser
 		$userpage = $user->getUserPage();
 		if ( $user->isAnon() )  {
 			$title = SpecialPage::getTitleFor('Contributions' );
-			return ( wfMsg( 'signature-ip', 
+			return ( wfMsgForContent( 'signature-ip', 
 							$title->getPrefixedText() . '/' . wfEscapeWikiText( $username ), 
 							wfEscapeWikiText( $nickname ), 
-							$userpage->getTalkPage(), wfMsg('talkpagelinktext') ) );
+							$userpage->getTalkPage(), wfMsgForContent('talkpagelinktext') ) );
 		} else {
-			return ( wfMsg( 'signature', $userpage->getPrefixedText(), 
+			return ( wfMsgForContent( 'signature', $userpage->getPrefixedText(), 
 							wfEscapeWikiText( $nickname ), 
-							$userpage->getTalkPage(), wfMsg('talkpagelinktext') ) );
+							$userpage->getTalkPage(), wfMsgForContent('talkpagelinktext') ) );
 		}
 	}
 
