@@ -254,6 +254,8 @@ $wgOptionalMessages = array(
 	'hebrew-calendar-m10-gen',
 	'hebrew-calendar-m11-gen',
 	'hebrew-calendar-m12-gen',
+	'signature',
+	'signature-ip',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
