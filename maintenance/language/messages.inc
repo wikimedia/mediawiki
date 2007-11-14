@@ -2270,6 +2270,10 @@ $wgMessageStructure = array(
 		'hebrew-calendar-m11-gen',
 		'hebrew-calendar-m12-gen',
 	),
+	'signatures' => array(
+		'signature',
+		'signature-ip',
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
@@ -2441,6 +2445,7 @@ Variants for Chinese language",
 	'watchlisttools'      => 'Watchlist editing tools',
 	'iranian-dates'       => 'Iranian month names',
 	'hebrew-dates'        => 'Hebrew month names',
+	'signatures'          => 'Signatures',
 );
 
 /** Short comments for standalone messages */
