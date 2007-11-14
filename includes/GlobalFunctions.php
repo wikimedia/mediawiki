@@ -2181,11 +2181,7 @@ function wfGetPrecompiledData( $name ) {
 function wfGetCaller( $level = 2 ) {
 	$backtrace = wfDebugBacktrace();
 	if ( isset( $backtrace[$level] ) ) {
-		if ( isset( $backtrace[$level]['class'] ) ) {
-			$caller = $backtrace[$level]['class'] . '::' . $backtrace[$level]['function'];
-		} else {
-			$caller = $backtrace[$level]['function'];
-		}
+		return wfFormatStackFrame($backtrace[$level]);
 	} else {
 		$caller = 'unknown';
 	}
@@ -2194,13 +2190,14 @@ function wfGetCaller( $level = 2 ) {
 
 /** Return a string consisting all callers in stack, somewhat useful sometimes for profiling specific points */
 function wfGetAllCallers() {
-	return implode('/', array_map(
-		create_function('$frame',' 
-			return isset( $frame["class"] )?
-				$frame["class"]."::".$frame["function"]:
-				$frame["function"]; 
-			'),
-		array_reverse(wfDebugBacktrace())));
+	return implode('/', array_map('wfFormatStackFrame',array_reverse(wfDebugBacktrace())));
+}
+
+/** Return a string representation of frame */
+function wfFormatStackFrame($frame) {
+	return isset( $frame["class"] )?
+		$frame["class"]."::".$frame["function"]:
+		$frame["function"];
 }
 
 /**
