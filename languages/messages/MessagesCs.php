@@ -441,7 +441,7 @@ $messages = array(
 'page-rss-feed'           => 'RSS kanál stránky „$1“',
 'page-atom-feed'          => 'Atom kanál stránky „$1“',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Stránka',
 'nstab-user'      => 'Uživatelova stránka',
 'nstab-media'     => 'Soubor',
@@ -1200,7 +1200,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'unusedtemplatestext' => 'Tato stránka obsahuje seznam všech stran ve jmenném prostoru {{ns:-1}}, které nejsou vloženy do žádné jiné strany. Před jejich smazáním nezapomeňte zkontrolovat ostatní odkazy.',
 'unusedtemplateswlh'  => 'ostatní odkazy',
 
-# Random pages
+# Random page
 'randompage'         => 'Náhodná stránka',
 'randompage-nopages' => 'V tomto jmenném prostoru nejsou žádné stránky.',
 
@@ -1245,7 +1245,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'nlinks'                  => '$1 {{plural:$1|odkaz|odkazy|odkazů}}',
 'nmembers'                => '$1 {{plural:$1|stránka|stránky|stránek}}',
 'nrevisions'              => '$1 {{plural:$1|revize|revize|revizí}}',
-'nviews'                  => '$1 {{PLURAL:$1|zobrazení|zobrazení|zobrazení}}',
+'nviews'                  => '$1 zobrazení',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí stránky',
 'lonelypagestext'         => 'Na následující stránky na této wiki neodkazuje žádná jiná stránka.',

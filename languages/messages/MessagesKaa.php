@@ -5,6 +5,7 @@
  *
  * @author Atabek
  * @author Jiemurat
+ * @author AlefZet
  */
 
 $linkTrail = '/^([a-zʻ`]+)(.*)$/sDu';
@@ -113,24 +114,29 @@ $messages = array(
 'talkpagelinktext' => "Sa'wbet",
 'postcomment'      => 'Kommentariy beriw',
 'talk'             => 'Diskussiya',
+'views'            => "Ko'rinis",
 'toolbox'          => "A'sbaplar",
 'otherlanguages'   => 'Basqa tillerde',
 'lastmodifiedat'   => "Bul bettin' aqırg'ı ma'rte o'zgertilgen waqtı: $2, $1.", # $1 date, $2 time
 'viewcount'        => "Bul bet {{PLURAL:$1|bir ma'rte|$1 ma'rte}} ko'rip shıg'ılg'an.",
-'jumptosearch'     => 'İzlew',
+'jumptosearch'     => 'izlew',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} haqqında',
+'aboutpage'         => "{{ns:project}}:Tu'sindirme",
 'copyrightpagename' => "{{SITENAME}} proektinin' avtorlıq huquqları",
 'copyrightpage'     => '{{ns:project}}:Avtorlıq huquqı',
 'currentevents'     => "Ha'zirgi ha'diyseler",
-'currentevents-url' => "{{ns:project}}:Ha'zirgi ha'diyseler",
+'currentevents-url' => "Ha'zirgi ha'diyseler",
+'edithelp'          => "O'zgertiw anıqlaması",
+'edithelppage'      => "{{ns:help}}:O'zgertiw",
+'helppage'          => '{{ns:help}}:Mazmunı',
 'mainpage'          => 'Bas bet',
 'policy-url'        => "{{ns:project}}:Qag'ıydalar",
 'portal'            => "Ja'miyet portalı",
 'portal-url'        => "{{ns:project}}:Ja'miyet Portalı",
-'privacy'           => 'Konfidentsiallıq siyasatı',
-'privacypage'       => '{{ns:project}}:Konfidentsiallıq siyasatı',
+'privacy'           => "Konfidentsiallıq qag'ıydası",
+'privacypage'       => "{{ns:project}}:Konfidentsiallıq qag'ıydası",
 
 'versionrequired' => "MediaWikidin' $1 versiyası kerek",
 
@@ -142,14 +148,14 @@ $messages = array(
 'showtoc'             => "ko'rset",
 'hidetoc'             => 'jasır',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
-'nstab-main'      => 'Maqala',
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'Bet',
 'nstab-user'      => 'Paydalanıwshı beti',
 'nstab-project'   => 'Proekt beti',
 'nstab-image'     => 'Fayl',
 'nstab-mediawiki' => 'Xabar',
 'nstab-template'  => 'Shablon',
-'nstab-help'      => "Ja'rdem beti",
+'nstab-help'      => 'Anıqlama beti',
 'nstab-category'  => 'Kategoriya',
 
 # General errors
@@ -164,7 +170,7 @@ $messages = array(
 'yourname'           => 'Paydalanıwshı ismi:',
 'yourpassword'       => 'Parol:',
 'yourpasswordagain'  => "Paroldi qayta kiritin':",
-'remembermypassword' => "Menin' loginimdi usı kompyuterde saqlap qal",
+'remembermypassword' => "Menin' kirgenimdi usı kompyuterde saqlap qal",
 'yourdomainname'     => "Sizin' domen:",
 'login'              => 'Kiriw',
 'loginprompt'        => "{{SITENAME}}g'a kiriw ushın kukiler qosılg'an bolıwı kerek.",
@@ -211,6 +217,7 @@ $messages = array(
 
 # Edit pages
 'summary'                => 'Juwmaq',
+'minoredit'              => "Bul kishkene o'zgertiw",
 'savearticle'            => 'Betti saqlaw',
 'preview'                => "Ko'rip shıg'ıw",
 'showpreview'            => "Ko'rip shıg'ıw",
@@ -237,7 +244,7 @@ to'mende ko'rsetilgen:",
 'permissionserrors'      => 'Ruxsatnamalar Qatelikleri',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Akkaunt jaratıw',
+'cantcreateaccounttitle' => 'Akkaunt jaratılmadı',
 
 # History pages
 'next'         => 'keyingi',
@@ -308,6 +315,18 @@ to'mende ko'rsetilgen:",
 'rightsnone' => '(hesh qanday)',
 
 # Recent changes
+'nchanges'          => "{{PLURAL:$1|1 o'zgeris|$1 o'zgeris}}",
+'rcshowhideminor'   => "Kishkene o'zgertiwlerdi $1",
+'rcshowhidebots'    => 'Botlardı $1',
+'rcshowhideliu'     => 'Kirgenlerdi $1',
+'rcshowhideanons'   => 'Kirmegenlerdi $1',
+'rcshowhidemine'    => "O'zgertiwlerimdi $1",
+'hist'              => 'tar.',
+'hide'              => 'jasır',
+'show'              => "ko'rset",
+'minoreditletter'   => 'k',
+'newpageletter'     => 'T',
+'boteditletter'     => 'b',
 'rc_categories_any' => "Ha'r qanday",
 
 # Upload
@@ -358,6 +377,7 @@ to'mende ko'rsetilgen:",
 'filedelete-nofile'  => "'''$1''' bul saytta joq.",
 
 # Unused templates
+'unusedtemplates'    => "Paydalanılmag'an shablonlar",
 'unusedtemplateswlh' => 'basqa burıwshılar',
 
 # Statistics
@@ -372,15 +392,16 @@ to'mende ko'rsetilgen:",
 'brokenredirects-delete' => "(o'shiriw)",
 
 # Miscellaneous special pages
+'nbytes'           => '{{PLURAL:$1|1 bayt|$1 bayt}}',
 'unusedcategories' => "Paydalanılmag'an kategoriyalar",
 'unusedimages'     => "Paydalanılmag'an fayllar",
 'wantedcategories' => "Talap qılıng'an kategoriyalar",
 'wantedpages'      => "Talap qılıng'an betler",
 'allpages'         => "Ha'mme betler",
-'shortpages'       => 'Qısqa maqalalar',
-'longpages'        => 'Uzın maqalalar',
+'shortpages'       => 'Qısqa betler',
+'longpages'        => 'Uzın betler',
 'listusers'        => 'Paydalanıwshı dizimi',
-'newpages'         => 'Taza maqalalar',
+'newpages'         => 'Taza betler',
 'move'             => "Ko'shiriw",
 'movethispage'     => "Bul betti ko'shiriw",
 
@@ -403,7 +424,7 @@ to'mende ko'rsetilgen:",
 # Special:Allpages
 'nextpage'       => 'Keyingi bet ($1)',
 'prevpage'       => "Aldıng'ı bet ($1)",
-'allarticles'    => "Ha'mme maqalalar",
+'allarticles'    => "Ha'mme betler",
 'allpagesprev'   => "Aldıng'ı",
 'allpagesnext'   => 'Keyingi',
 'allpagessubmit' => "O'tiw",
@@ -421,7 +442,7 @@ to'mende ko'rsetilgen:",
 'emailto'         => 'Kimge',
 
 # Watchlist
-'notanarticle' => 'Maqala emes',
+'notanarticle' => "Mag'lıwmat emes",
 
 'enotif_newpagetext'           => 'Bul taza bet.',
 'enotif_impersonal_salutation' => '{{SITENAME}} paydalanıwshısı',
@@ -495,7 +516,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'tooltip-ca-nstab-project'  => "Proekt betin ko'riw",
 'tooltip-ca-nstab-image'    => "Su'wret betin ko'riw",
 'tooltip-ca-nstab-template' => "Shablondı ko'riw",
-'tooltip-ca-nstab-help'     => "Ja'rdem betin ko'riw",
+'tooltip-ca-nstab-help'     => "Anıqlama betin ko'riw",
 'tooltip-ca-nstab-category' => "Kategoriya betin ko'riw",
 
 # Spam protection

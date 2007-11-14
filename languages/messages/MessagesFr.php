@@ -310,7 +310,7 @@ $messages = array(
 'page-rss-feed'           => 'Flux RSS de "$1"',
 'page-atom-feed'          => 'Flux Atom de "$1"',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Article',
 'nstab-user'     => 'Page utilisateur',
 'nstab-media'    => 'Média',
@@ -582,11 +582,11 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
 'editingold'                => '<strong>Attention : vous êtes en train de modifier une version désuète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
 'yourdiff'                  => 'Différences',
-'copyrightwarning'          => 'Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre.<strong>N’UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</strong>',
-'copyrightwarning2'         => 'Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+'copyrightwarning'          => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre.<strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
+'copyrightwarning2'         => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
-<strong>N’UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</strong>',
+<strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
 'longpagewarning'           => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
 certains navigateurs gèrent mal la modification des pages approchant ou dépassant 32 Kio.
 Peut-être devriez-vous diviser la page en sections plus petites.'''",
@@ -871,7 +871,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
-'filestatus'                  => 'Statut du copyright',
+'filestatus'                  => "Statut du droit d'auteur",
 'uploadedfiles'               => 'Fichiers copiés',
 'ignorewarning'               => 'Ignorer l’avertissement et sauvegarder le fichier.',
 'ignorewarnings'              => 'Ignorer les avertissements lors de l’import',
@@ -1012,6 +1012,10 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'unusedtemplatestext' => 'Cette page liste toutes les pages de l’espace de noms « Modèle » qui ne sont inclus dans aucune autre page. N’oubliez pas de vérifier s’il n’y a pas d’autre lien vers les modèles avant de les supprimer.',
 'unusedtemplateswlh'  => 'autres liens',
 
+# Random page
+'randompage'         => 'Une page au hasard',
+'randompage-nopages' => 'Il n’y a aucune page dans cet espace de nom.',
+
 # Random redirect
 'randomredirect'         => 'Une page de redirection au hasard',
 'randomredirect-nopages' => 'Il n’y a aucune page de redirection dans cet espace de nom.',
@@ -1079,8 +1083,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'mostrevisions'           => 'Articles les plus modifiés',
 'allpages'                => 'Toutes les pages',
 'prefixindex'             => 'Toutes les pages par premières lettres',
-'randompage'              => 'Une page au hasard',
-'randompage-nopages'      => 'Il n’y a aucune page dans cet espace de nom.',
 'shortpages'              => 'Pages courtes',
 'longpages'               => 'Pages longues',
 'deadendpages'            => 'Pages en impasse',
@@ -1827,7 +1829,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-model'                       => 'Modèle de l’appareil',
 'exif-software'                    => 'Logiciel utilisé',
 'exif-artist'                      => 'Auteur',
-'exif-copyright'                   => 'Détenteur du copyright',
+'exif-copyright'                   => "Détenteur du droit d'auteur",
 'exif-exifversion'                 => 'Version EXIF',
 'exif-flashpixversion'             => 'Version FlashPix',
 'exif-colorspace'                  => 'Espace colorimétrique',
