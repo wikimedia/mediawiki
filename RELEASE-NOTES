@@ -152,6 +152,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * If an IP address is blocked as part of a rangeblock, attempting to unblock
   the single IP should not unblock the entire range.
 * (bug 6695) Fix native language name of Southern Sotho (Sesotho) (st)
+* Make action=render follow redirects by default
 
 === API changes in 1.12 ===
 
