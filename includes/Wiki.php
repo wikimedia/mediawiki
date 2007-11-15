@@ -252,7 +252,7 @@ class MediaWiki {
 		$article = $this->articleFromTitle( $title );
 
 		// Namespace might change when using redirects
-		if( $action == 'view' && !$request->getVal( 'oldid' ) &&
+		if( ( $action == 'view' || $action == 'render' ) && !$request->getVal( 'oldid' ) &&
 						$request->getVal( 'redirect' ) != 'no' ) {
 
 			$dbr = wfGetDB(DB_SLAVE);
