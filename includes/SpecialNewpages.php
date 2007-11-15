@@ -165,6 +165,7 @@ class NewPagesPage extends QueryPage {
 		$nondefaults = array();
 		wfAppendToArrayIfNotDefault( 'hidepatrolled', $this->hidepatrolled, $this->defaults, $nondefaults);
 		wfAppendToArrayIfNotDefault( 'hideliu', $this->hideliu, $this->defaults, $nondefaults);
+		wfAppendToArrayIfNotDefault( 'hidebots', $this->hidebots, $this->defaults, $nondefaults);
 		wfAppendToArrayIfNotDefault( 'namespace', $this->namespace, $this->defaults, $nondefaults);
 		wfAppendToArrayIfNotDefault( 'limit', $this->limit , $this->defaults, $nondefaults);
 		wfAppendToArrayIfNotDefault( 'offset', $this->offset , $this->defaults, $nondefaults);
@@ -274,7 +275,7 @@ function wfSpecialNewpages($par, $specialPage) {
 			}
 		}
 	} else {
-		if( $ns = $wgRequest->getText( 'namespace', NS_MAIN ) )
+		if( $ns = $wgRequest->getInt( 'namespace', NS_MAIN ) )
 			$namespace = $ns;
 		if( $un = $wgRequest->getText( 'username' ) )
 			$username = $un;
