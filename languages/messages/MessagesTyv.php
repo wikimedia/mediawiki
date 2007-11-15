@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  *
+ * @author Krice from Tyvanet.com
  * @author Sborsody
  * @author G - ג
  * @author friends at tyvawiki.org
