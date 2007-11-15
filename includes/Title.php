@@ -1056,6 +1056,9 @@ class Title {
 
 			$id = $user->blockedBy();
 			$reason = $user->blockedFor();
+			if( $reason == '' ) {
+				$reason = wfMsg( 'blockednoreason' );
+			}
 			$ip = wfGetIP();
 
 			if ( is_numeric( $id ) ) {

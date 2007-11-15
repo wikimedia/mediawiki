@@ -764,6 +764,9 @@ class OutputPage {
 
 		$name = User::whoIs( $wgUser->blockedBy() );
 		$reason = $wgUser->blockedFor();
+		if( $reason == '' ) {
+			$reason = wfMsg( 'blockednoreason' );
+		}
 		$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $wgUser->mBlock->mTimestamp ), true );
 		$ip = wfGetIP();
 

@@ -977,6 +977,7 @@ Note that you may not use the "e-mail this user" feature unless you have a valid
 registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
 Your block ID is $5. Please include this ID in any queries you make.',
+'blockednoreason'           => 'no reason given',
 'blockedoriginalsource'     => "The source of '''$1''' is 
 shown below:",
 'blockededitsource'         => "The text of '''your edits''' to '''$1''' is shown below:",
