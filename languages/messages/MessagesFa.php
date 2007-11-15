@@ -446,7 +446,7 @@ $messages = array(
 'page-rss-feed'           => 'خبرخوان RSS برای «$1»',
 'page-atom-feed'          => 'خبرخوان Atom برای «$1»',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'مقاله',
 'nstab-user'      => 'صفحهٔ کاربر',
 'nstab-media'     => 'رسانه',
@@ -702,6 +702,7 @@ your old password.
 توجه کنید که برای ارسال پست الکترونیکی در ویکی، باید پست الکترونیکی خود را از طریق صفحهٔ [[Special:Preferences|تنظیمات]] فعال کرده باشید، و نیز، باید امکان استفاده از این ویژگی برای شما قطع نباشد.
 
 شماره قطع دسترسی شما $5 است. لطفاً این شماره را در هر درخواستی که در این باره مطرح می‌کنید قید کنید.",
+'blockednoreason'           => 'دلیلی مشخص نشده‌است',
 'blockedoriginalsource'     => "متن مبدأ '''$1''' در زیر نمایش داده شده است:",
 'blockededitsource'         => "متن '''ویرایش‌های شما''' در '''$1''' در زیر نشان داده شده‌است:",
 'whitelistedittitle'        => 'برای ویرایش باید به سیستم وارد شوید.',
@@ -1224,6 +1225,10 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'unusedtemplatestext' => 'این صفحه همهٔ صفحه‌هایی در فضای نام الگو را که در هیچ صفحه‌ای به کار نرفته‌اند، فهرست می‌کند. لطفاً پیش از پاک‌کردن این صفحه‌ها  پیوندهای دیگر به آنها را هم وارسی کنید.',
 'unusedtemplateswlh'  => 'پیوندهای دیگر',
 
+# Random page
+'randompage'         => 'صفحهٔ تصادفی',
+'randompage-nopages' => 'هیچ صفحه‌ای در این فضای نام موجود نیست',
+
 # Random redirect
 'randomredirect'         => 'تغییرمسیر تصادفی',
 'randomredirect-nopages' => 'هیج صفحهٔ تغییر مسیری در این فضای نام موجود نیست.',
@@ -1291,8 +1296,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'mostrevisions'           => 'مقاله‌هایی که بیشتر از بقیه ویرایش شده‌اند',
 'allpages'                => 'همهٔ صفحه‌ها',
 'prefixindex'             => 'نمایهٔ پیشوندی',
-'randompage'              => 'صفحهٔ تصادفی',
-'randompage-nopages'      => 'هیچ صفحه‌ای در این فضای نام موجود نیست',
 'shortpages'              => 'صفحه‌های کوتاه',
 'longpages'               => 'صفحه‌های بلند',
 'deadendpages'            => 'صفحه‌های بن‌بست',
