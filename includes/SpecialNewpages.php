@@ -17,7 +17,7 @@ class NewPagesPage extends QueryPage {
 	var $hidebots;
 	var $defaults;
 		
-	function NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $hidebots, $defaults) {
+	function NewPagesPage( $namespace=NS_MAIN, $username='', $hideliu=false, $hidepatrolled=false, $hidebots=false, $defaults=array()) {
 		$this->namespace = $namespace;
 		$this->username = $username;
 		$this->hideliu = $hideliu;
