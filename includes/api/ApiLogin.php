@@ -104,6 +104,7 @@ class ApiLogin extends ApiBase {
 				$result['lgusername'] = $_SESSION['wsUserName'];
 				$result['lgtoken'] = $_SESSION['wsToken'];
 				$result['cookieprefix'] = $wgCookiePrefix;
+				$result['sessionid'] = $_COOKIE["{$wgCookiePrefix}_session"];
 				break;
 
 			case LoginForm :: NO_NAME :
