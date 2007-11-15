@@ -2272,7 +2272,7 @@ $wgMessageStructure = array(
 	),
 	'signatures' => array(
 		'signature',
-		'signature-ip',
+		'signature-anon',
 	),
 );
 /** Comments for each block */

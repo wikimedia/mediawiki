@@ -6251,7 +6251,7 @@ MSGNW magic word
 !! input
 {{MSGNW:msg}}
 !! result
-<p>&#91;&#91;:Template:Msg]]
+<p>&#91;&#91;:Template:Msg&#93;&#93;
 </p>
 !! end
 
