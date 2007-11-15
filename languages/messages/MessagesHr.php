@@ -301,7 +301,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'page-rss-feed'           => '"$1" RSS izvor',
 'page-atom-feed'          => '"$1" Atom izvor',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',
 'nstab-user'      => 'Stranica suradnika',
 'nstab-media'     => 'Mediji',
@@ -707,7 +707,9 @@ postavili dodatna ograničenja.',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}} postavljena u mod $2',
 
 # Oversight log
-'oversightlog' => 'Oversight log',
+'oversightlog'    => 'Oversight log',
+'overlogpagetext' => 'Slijedi popis posljednjih brisanja stranica i blokiranja koja uključuju sadržaj sakriven od Administratora.
+Vidi [[Special:Ipblocklist|IP popis blokiranja]] za popis trenutno blokiranih IP adresa.',
 
 # Diffs
 'history-title'             => 'Povijest izmjena stranice "$1"',
@@ -1036,6 +1038,10 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'unusedtemplatestext' => 'Slijedi popis svih stranica imenskog prostora "Predlošci", koje nisu umetnute na drugim stranicama. Pripazite da prije brisanja provjerite druge poveznice koje vode na te predloške.',
 'unusedtemplateswlh'  => 'druge poveznice',
 
+# Random page
+'randompage'         => 'Slučajna stranica',
+'randompage-nopages' => 'Nema stranica u ovom imenskom prostoru.',
+
 # Random redirect
 'randomredirect'         => 'Slučajno preusmjeravanje',
 'randomredirect-nopages' => 'Nema preusmjeravanja u ovom imenskom prostoru.',
@@ -1106,8 +1112,6 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'mostrevisions'           => 'Popis članaka po broju uređivanja',
 'allpages'                => 'Sve stranice',
 'prefixindex'             => 'Kazalo prema početku naslova',
-'randompage'              => 'Slučajna stranica',
-'randompage-nopages'      => 'Nema stranica u ovom imenskom prostoru.',
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Duge stranice',
 'deadendpages'            => 'Slijepe ulice',
@@ -1416,6 +1420,8 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 'nolinkshere-ns'      => "Nijedna stranica ne vodi na '''[[:$1]]''' u odabranom imenskom prostoru.",
 'isredirect'          => 'stranica za preusmjeravanje',
 'istemplate'          => 'kao predložak',
+'whatlinkshere-prev'  => '{{PLURAL:$1|prethodna|prethodnih $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|slijedeća|slijedećih $1}}',
 'whatlinkshere-links' => '← poveznice',
 
 # Block/unblock
@@ -1759,7 +1765,11 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 # Image deletion
 'deletedrevision'                 => 'Izbrisana stara inačica $1',
 'filedeleteerror-short'           => 'Greška u brisanju datoteke: $1',
+'filedeleteerror-long'            => 'Dogodila se greška prilikom brisanja datoteke:
+
+$1',
 'filedelete-missing'              => 'Datoteka "$1" ne može biti obrisana, jer ne postoji.',
+'filedelete-old-unregistered'     => 'Navedena promjena datoteke "$1" ne postoji u bazi podataka.',
 'filedelete-current-unregistered' => 'Navedene datoteke "$1" nema u bazi podataka.',
 'filedelete-archive-read-only'    => 'Web poslužitelj nema pravo pisanja u direktorij "$1".',
 
@@ -1785,6 +1795,12 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'showhidebots' => '($1 botova)',
 'noimages'     => 'Nema slika.',
 
+# Bad image list
+'bad_image_list' => "Rabi se slijedeći format:
+
+Samo retci koji počinju sa zvjezdicom su prikazani. Prva poveznica u retku mora biti poveznica na nevaljanu sliku.
+Svaka slijedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se slike pojavljuju ''inline''.",
+
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',
 'variantname-sr-el' => 'latinica',
@@ -1794,6 +1810,13 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'metadata-help'     => 'Ova datoteka sadržava dodatne podatke koje je vjerojatno dodala digitalna kamera ili skener u procesu snimanja odnosno digitalizacije. Ako je datoteka mijenjana, podatci možda nisu u skladu sa stvarnim stanjem.',
 'metadata-expand'   => 'Pokaži sve podatke',
 'metadata-collapse' => 'Sakrij dodatne podatke',
+'metadata-fields'   => "Slijedeći EXIF metapodaci će biti prikazani ispod slike u tablici s metapodacima. Ostali će biti sakriveni (možete ih vidjeti ako kliknete na poveznicu ''Pokaži sve podatke'').
+* proizvođač kamere
+* model kamere
+* datum i vrijeme slikanja
+* trajanje ekspozicije
+* F broj dijafragme
+* žarišna duljina leće",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2105,6 +2128,7 @@ Valjanost ovog potvrdnog koda istječe $4.',
 $1
 </div>",
 'trackbackremove'   => ' ([$1 izbrisati])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback izbrisan.',
 
 # Delete conflict
@@ -2130,10 +2154,11 @@ $1',
 'hideresults'      => 'Sakrij rezultate',
 
 # Multipage image navigation
-'imgmultipageprev' => '← prethodna slika',
-'imgmultipagenext' => 'slijedeća slika →',
-'imgmultigo'       => 'Idi!',
-'imgmultigotopre'  => 'Idi na stranicu',
+'imgmultipageprev'   => '← prethodna slika',
+'imgmultipagenext'   => 'slijedeća slika →',
+'imgmultigo'         => 'Idi!',
+'imgmultigotopre'    => 'Idi na stranicu',
+'imgmultiparseerror' => 'Slika je neispravna, te {{SITENAME}} ne može prikazati popis stranica slike.',
 
 # Table pager
 'ascending_abbrev'         => 'rast',
