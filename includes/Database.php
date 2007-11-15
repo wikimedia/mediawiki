@@ -1564,7 +1564,15 @@ class Database {
 			} elseif ( ($mode == LIST_SET) && is_numeric( $field ) ) {
 				$list .= "$value";
 			} elseif ( ($mode == LIST_AND || $mode == LIST_OR) && is_array($value) ) {
-				$list .= $field." IN (".$this->makeList($value).") ";
+				if( count( $value ) == 0 ) {
+					// Empty input... or should this throw an error?
+					$list .= '0';
+				} elseif( count( $value ) == 1 ) {
+					// Special-case single values, as IN isn't terribly efficient
+					$list .= $field." = ".$this->addQuotes( $value[0] );
+				} else {
+					$list .= $field." IN (".$this->makeList($value).") ";
+				}
 			} elseif( is_null($value) ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
 					$list .= "$field IS ";
