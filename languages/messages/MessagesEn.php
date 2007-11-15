@@ -3044,8 +3044,8 @@ $1',
 'hebrew-calendar-m11-gen' => 'Av', # only translate this message to other languages if you have to change it
 'hebrew-calendar-m12-gen' => 'Elul', # only translate this message to other languages if you have to change it
 
-# Default signatures for all languages. Do not duplicate to other languages
-'signature' => '[[User:$1|$2]]', # default signature for registered users
-'signature-anon' => '[[Special:Contributions/$1|$2]]', # default signature for anonymous users
+# Signatures
+'signature' => '[[User:$1|$2]]', # don't translate or duplicate this message to other languages
+'signature-anon' => '[[Special:Contributions/$1|$2]]', # don't translate or duplicate this message to other languages
 
 );
