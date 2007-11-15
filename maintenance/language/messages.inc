@@ -461,6 +461,7 @@ $wgMessageStructure = array(
 		'blockedtitle',
 		'blockedtext',
 		'autoblockedtext',
+		'blockednoreason',
 		'blockedoriginalsource',
 		'blockededitsource',
 		'whitelistedittitle',
