@@ -1321,8 +1321,13 @@ class Title {
 			 * and check again
 			 */
 			if( $this->getNamespace() == NS_SPECIAL ) {
-				$name = $this->getText();
+				$name = $this->getDBKey();
 				list( $name, /* $subpage */) = SpecialPage::resolveAliasWithSubpage( $name );
+				if ( $name === false ) {
+					# Invalid special page, but we show standard login required message
+					return false;
+				}
+
 				$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 				if( in_array( $pure, $wgWhitelistRead, true ) )
 					return true;

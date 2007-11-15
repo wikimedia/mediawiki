@@ -153,6 +153,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the single IP should not unblock the entire range.
 * (bug 6695) Fix native language name of Southern Sotho (Sesotho) (st)
 * Make action=render follow redirects by default
+* If restricted read access was enabled, whitelist didn't work with special
+  pages which had spaces in theirs names
+* If restricted read access was enabled, requests for non-existing special pages
+  threw an exception
 
 === API changes in 1.12 ===
 
