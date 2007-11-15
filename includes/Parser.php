@@ -3878,17 +3878,12 @@ class Parser
 		$nickname = $this->cleanSigInSig( $nickname );
 
 		# If we're still here, make it a link to the user page
-		$userpage = $user->getUserPage();
+		$userText = wfEscapeWikiText( $username );
+		$nickText = wfEscapeWikiText( $nickname );
 		if ( $user->isAnon() )  {
-			$title = SpecialPage::getTitleFor('Contributions' );
-			return ( wfMsgForContent( 'signature-ip', 
-							$title->getPrefixedText() . '/' . wfEscapeWikiText( $username ), 
-							wfEscapeWikiText( $nickname ), 
-							$userpage->getTalkPage(), wfMsgForContent('talkpagelinktext') ) );
+			return wfMsgForContent( 'signature-anon', $userText, $nickText );
 		} else {
-			return ( wfMsgForContent( 'signature', $userpage->getPrefixedText(), 
-							wfEscapeWikiText( $nickname ), 
-							$userpage->getTalkPage(), wfMsgForContent('talkpagelinktext') ) );
+			return wfMsgForContent( 'signature', $userText, $nickText );
 		}
 	}
 
