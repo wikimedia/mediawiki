@@ -2528,6 +2528,10 @@ class Parser
 				$subjPage = $this->mTitle->getSubjectPage();
 				return $subjPage->getPrefixedUrl();
 			case 'revisionid':
+				// Let the edit saving system know we should parse the page
+				// *after* a revision ID has been assigned.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision...\n" );
 				return $this->mRevisionId;
 			case 'revisionday':
 				return intval( substr( $this->getRevisionTimestamp(), 6, 2 ) );
