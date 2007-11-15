@@ -185,12 +185,13 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Ó iha mensajen foun sira iha $1',
 'editsection'             => 'edita',
 'editold'                 => 'edita',
+'editsectionhint'         => 'Edita parte $1 pájina nian',
 'showtoc'                 => 'hatudu',
 'hidetoc'                 => 'subar',
 'thisisdeleted'           => 'Haree ka restaurar $1?',
 'viewdeleted'             => 'Haree $1?',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pájina',
 'nstab-user'      => "Pájina uza-na'in",
 'nstab-special'   => 'Espesiál',
@@ -206,8 +207,10 @@ $messages = array(
 'yourname'           => "Naran uza-n'in:",
 'nologinlink'        => "Registrar uza-na'in ida",
 'createaccount'      => "Registrar uza-na'in",
+'youremail'          => 'Diresaun korreiu eletróniku:',
 'username'           => "Naran uza-na'in:",
 'yourlanguage'       => 'Lian:',
+'email'              => 'Korreiu eletróniku',
 'accountcreated'     => "Registrar tiha uza-na'in",
 'loginlanguagelabel' => 'Lian: $1',
 
@@ -324,6 +327,9 @@ $messages = array(
 'filedelete-comment' => 'Komentáriu:',
 'filedelete-submit'  => 'Halakon',
 
+# Random page
+'randompage' => 'Pájina ruma',
+
 # Statistics
 'statistics' => 'Estátistika',
 
@@ -332,7 +338,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'allpages'          => 'Pájina hotu',
-'randompage'        => 'Pájina ruma',
 'listusers'         => "Lista uza-na'in",
 'specialpages'      => 'Pájina espesiál sira',
 'newpages'          => 'Pájina foun',
@@ -341,8 +346,9 @@ $messages = array(
 'move'              => 'Book',
 'movethispage'      => "Book pájina ne'e",
 
-'groups'  => "Lubu uza-na'in",
-'version' => 'Versaun',
+'groups'         => "Lubu uza-na'in",
+'alphaindexline' => "$1 to'o $2",
+'version'        => 'Versaun',
 
 # Special:Log
 'specialloguserlabel' => "Uza-na'in:",
@@ -354,6 +360,12 @@ $messages = array(
 
 # Special:Listusers
 'listusers-submit' => 'Hatudu',
+
+# E-mail user
+'emailuser'       => "Haruka korreiu eletróniku ba uza-na'in ne'e",
+'defemailsubject' => '{{SITENAME}} korreiu eletróniku',
+'noemailtitle'    => "Lá'os diresaun korreiu eletróniku",
+'emailsend'       => 'Haruka',
 
 # Watchlist
 'watchlist'            => "Ha'u-nia lista hateke",
@@ -391,11 +403,17 @@ $messages = array(
 'undeletedarticle'   => 'restaurar "[[$1]]"',
 'undeletedrevisions' => 'restaurar $1 versaun',
 
-'sp-contributions-newest' => 'Foun liu hotu',
-'sp-contributions-oldest' => 'Tuan liu hotu',
-'sp-contributions-newer'  => 'Foun liu $1',
-'sp-contributions-older'  => 'Tuan liu $1',
-'sp-contributions-submit' => 'Buka',
+# Contributions
+'contributions' => "Kontribuisaun uza-na'in",
+
+'sp-contributions-newest'   => 'Foun liu hotu',
+'sp-contributions-oldest'   => 'Tuan liu hotu',
+'sp-contributions-newer'    => 'Foun liu $1',
+'sp-contributions-older'    => 'Tuan liu $1',
+'sp-contributions-newbies'  => "Hatudu de'it kontribuisaun uza-na'in foun sira-nia",
+'sp-contributions-search'   => 'Buka kontribuisaun',
+'sp-contributions-username' => "Diresaun IP ka naran uza-na'in:",
+'sp-contributions-submit'   => 'Buka',
 
 # What links here
 'whatlinkshere'      => "Artigu sira ne'ebé bá iha ne'e",
@@ -406,21 +424,11 @@ $messages = array(
 
 # Block/unblock
 'blockip'                 => "Blokeiu uza-na'in",
-'ipbreason-dropdown'      => '*Common block reasons
-** Inserting false information
-** Removing content from pages
-** Spamming links to external sites
-** Inserting nonsense/gibberish into pages
-** Intimidating behaviour/harassment
-** Abusing multiple accounts
-** Unacceptable username
-** W/index.php vandal
-** vandalism
-** creating English pages in Main namespace',
 'ipbotheroption'          => 'seluk',
 'ipblocklist-username'    => "Naran uza-na'in ka IP:",
 'ipblocklist-submit'      => 'Buka',
 'blocklink'               => 'blokeiu',
+'contribslink'            => 'kontribuisaun',
 'block-log-flags-noemail' => 'korreiu eletróniku blokeiu',
 'ipb_already_blocked'     => '"$1" nablokeiu tiha ona',
 
@@ -437,6 +445,12 @@ $messages = array(
 # Namespace 8 related
 'allmessagesname'    => 'Naran',
 'allmessagescurrent' => 'Testu atuál',
+
+# Tooltip help for the actions
+'tooltip-search'          => 'Buka iha {{SITENAME}}',
+'tooltip-n-mainpage'      => 'Vizita Pájina Mahuluk',
+'tooltip-t-contributions' => "Haree lista kontribuisaun uza-na'in ne'e nian",
+'tooltip-t-specialpages'  => 'Lista pájina espesiál hotu nian',
 
 # Browsing diffs
 'previousdiff' => '←Diferensa molok',

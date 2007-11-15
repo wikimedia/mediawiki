@@ -280,7 +280,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Nastawk',
 'nstab-user'      => 'Wužywaŕski bok',
 'nstab-media'     => 'Medije',
@@ -1044,7 +1044,7 @@ PICT # misc.
 'unusedtemplatestext'     => 'Toś ten bok nalicujo wšykne boki w pśedłoze "mjenjowy rum", kótarež njejsu do žednego drugego boka zawězane. Pšosym kontrolěruj dalšne wótkaze, nježli až je wulašujoš.',
 'unusedtemplateswlh'      => 'Druge wótkaze',
 
-# Random pages
+# Random page
 'randompage'         => 'Pśipadny nastawk',
 'randompage-nopages' => 'W toś tom rumje njejsu žedne boki.',
 
@@ -1390,6 +1390,7 @@ Mysli teke na to, až ewtl. wobgranicowanja datajowych wersijow pśi nawrośenju
 'undeletehistorynoadmin'       => 'Toś ten bok jo se wulašował. Pśicyna wulašowanja pokazujo se w zespominanju. Tam stoje teke nadrobnosći wó wužywarjach, kótarež su bok pśed wulašowanim wobźěłali. Aktualny tekst toś tych wulašowanych wersijow jo jano administratoram pśistupny.',
 'undelete-revision'            => 'Wulašowane wersije wót $1 - $2, $3:',
 'undeleterevision-missing'     => 'Njepłaśeca abo felujuca wersija. Snaź jo link wopacny abo wersija jo z archiwa se nawrośiła resp. wulašowała.',
+'undelete-nodiff'              => 'Žedne něgajšne wersije',
 'undeletebtn'                  => 'Wulašowaś',
 'undeletereset'                => 'Slědk wześ',
 'undeletecomment'              => 'Wobtwarźenje:',
@@ -1528,7 +1529,9 @@ $1',
 'ipb_already_blocked'         => '"$1" jo južo blokěrowany/-a',
 'ipb_cant_unblock'            => 'Zmólka: Blokěrowańska ID $1 njejo se namakała. Blokěrowanje jo było južo wótpórane.',
 'ip_range_invalid'            => 'Njepłaśecy wobłuk IP-adresow.',
+'blockme'                     => 'blokěruj mě',
 'proxyblocker'                => 'Blokěrowanje proxy',
+'proxyblocker-disabled'       => 'Toś ta funkcija jo znjemóžnjona.',
 'proxyblockreason'            => 'Twója IP-adresa jo se blokěrowała, dokulaž jo wócynjony proxy. Pšosym kontaktěruj swójogo seśowego providera abo swóje systemowe administratory a informěruj je wó toś tom móžnem wěstotnem problemje.',
 'proxyblocksuccess'           => 'Gótowe.',
 'sorbsreason'                 => 'Twója IP-adresa jo w DNSBL w(e) {{SITENAME}} zapisana ako wócynjony proxy.',

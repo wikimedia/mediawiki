@@ -408,12 +408,18 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'undo-summary' => 'Esfeita la edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
 
 # History pages
-'revhistory'   => 'Istorial de rebisions',
-'nohistory'    => "Ista pachina no tiene un istorial d'edizions.",
-'nextrevision' => 'Rebisión siguién →',
-'cur'          => 'aut',
-'next'         => 'siguién',
-'last'         => 'zagu',
+'revhistory'       => 'Istorial de rebisions',
+'nohistory'        => "Ista pachina no tiene un istorial d'edizions.",
+'revisionasof'     => "Rebisión d'o $1",
+'previousrevision' => '← Rebisión anterior',
+'nextrevision'     => 'Rebisión siguién →',
+'cur'              => 'aut',
+'next'             => 'siguién',
+'last'             => 'zagu',
+
+# Diffs
+'lineno'   => 'Linia $1:',
+'editundo' => 'esfer',
 
 # Search results
 'searchresults' => "Resultaus d'a rechira",
@@ -439,6 +445,8 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'rcshowhideliu'   => '$1 usuarios rechistraus',
 'rcshowhideanons' => '$1 usuarios anonimos',
 'rcshowhidemine'  => '$1 as mías edizions',
+'diff'            => 'esf',
+'hist'            => 'ist',
 'show'            => 'Mostrar',
 
 # Recent changes linked
@@ -450,6 +458,8 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 
 # Image list
 'ilsubmit'       => 'Uscar',
+'filehist'       => "Istorial d'o archibo",
+'imagelinks'     => 'Binclos ta la imachen',
 'nolinkstoimage' => 'Denguna pachina tiene un binclo con ista imachen.',
 
 # Unwatched pages
@@ -470,6 +480,7 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'userstats'  => "Estadisticas d'usuario",
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'uncategorizedpages'      => 'Pachinas sin categorizar',
 'uncategorizedcategories' => 'Categorías sin categorizar',
 'uncategorizedimages'     => 'Imachens sin categorizar',
@@ -520,6 +531,10 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'unwatch'         => 'Dixar de bexilar',
 'unwatchthispage' => 'Dixar de bexilar',
 
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Bexilando...',
+'unwatching' => 'Deixar de bexilar...',
+
 # Delete/protect/revert
 'historywarning' => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
 'actioncomplete' => 'Aizión rematada',
@@ -529,7 +544,8 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'undeletepagetext' => "As pachinas siguiens han siu borradas, pero encara son en l'archibo y podría estar restauradas. El archibo se borra periodicamén.",
 
 # Namespace form on various pages
-'namespace' => 'Espazio de nombres:',
+'namespace'      => 'Espazio de nombres:',
+'blanknamespace' => '(Prenzipal)',
 
 # Contributions
 'contributions' => "Contrebuzions de l'usuario",
@@ -538,9 +554,11 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'sp-contributions-blocklog' => 'Rechistro de bloqueyos',
 
 # What links here
-'whatlinkshere' => 'Pachinas que enlazan con ista',
+'whatlinkshere'       => 'Pachinas que enlazan con ista',
+'whatlinkshere-links' => '← binclos',
 
 # Block/unblock
+'blocklink'    => 'bloquiar',
 'contribslink' => 'contrebuzions',
 'blocklogpage' => 'Rechistro de bloqueyos',
 
@@ -559,6 +577,9 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'allmessagescurrent' => 'Testo autual',
 'allmessagestext'    => 'Ista ye una lista de toz os mensaches disposables en o espazio de nombres MediaWiki.',
 
+# Thumbnails
+'thumbnail-more' => 'Fer más gran',
+
 # Tooltip help for the actions
 'tooltip-pt-login'        => 'Li recomendamos rechistrar-se, encara que no ye obligatorio',
 'tooltip-ca-talk'         => "Descusión sobre l'articlo",
@@ -566,6 +587,7 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'tooltip-search'          => 'Mirar en {{SITENAME}}',
 'tooltip-n-mainpage'      => 'Besitar a Portalada',
 'tooltip-n-portal'        => 'Sobre o procheuto, que puede fer, án trobar as cosas',
+'tooltip-n-currentevents' => 'Trobar informazión cheneral sobre escaizimientos autuals',
 'tooltip-n-recentchanges' => "A lista d'os zaguers cambeos en o wiki",
 'tooltip-n-randompage'    => 'Cargar una pachina aleatoriament',
 'tooltip-n-help'          => 'O puesto ta saber más.',

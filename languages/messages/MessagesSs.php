@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author MF-Warburg
+ * @author Jatrobat
  */
 
 $messages = array(
@@ -21,15 +22,19 @@ $messages = array(
 'november'  => 'Lídvúba',
 'december'  => 'íNgongóni',
 
-'help'          => 'sitani',
-'search'        => 'kucálata',
+'help'          => 'Kúsíta',
+'search'        => 'Kucálata',
 'searchbutton'  => 'kucálata',
 'go'            => 'Kúhámba',
-'history_short' => 'umlandvo',
+'history_short' => 'Umlandvo',
 'edit'          => 'kúhlela',
 
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'portal'     => 'Likhefi leinthanethi',
+'portal-url' => '{{ns:project}}:Likhefi leinthanethi',
+
 # Login and logout pages
-'yourlanguage'       => 'Lú-lwîmi:',
-'loginlanguagelabel' => 'Lú-lwîmi: $1',
+'yourlanguage'       => 'Lúlwîmi:',
+'loginlanguagelabel' => 'Lúlwîmi: $1',
 
 );
