@@ -931,7 +931,7 @@ class Title {
 	/**
 	 * Does the title correspond to a protected article?
 	 * @param string $what the action the page is protected from,
-	 *	by default checks move and edit
+	 * by default checks move and edit
 	 * @return boolean
 	 */
 	public function isProtected( $action = '' ) {
@@ -980,7 +980,7 @@ class Title {
 		return $this->mWatched;
 	}
 
- 	/**
+	/**
 	 * Can $wgUser perform $action on this page?
 	 * This skips potentially expensive cascading permission checks.
 	 *
@@ -999,7 +999,7 @@ class Title {
 	/**
 	 * Determines if $wgUser is unable to edit this page because it has been protected
 	 * by $wgNamespaceProtection.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function isNamespaceProtected() {
@@ -1013,7 +1013,7 @@ class Title {
 		return false;
 	}
 
- 	/**
+	/**
 	 * Can $wgUser perform $action on this page?
 	 * @param string $action action that permission needs to be checked for
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
@@ -1024,7 +1024,7 @@ class Title {
 		return ( $this->getUserPermissionsErrorsInternal( $action, $wgUser, $doExpensiveQueries ) === array());
 	}
 
-        /**
+	/**
 	 * Can $user perform $action on this page?
 	 * @param string $action action that permission needs to be checked for
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
