@@ -81,6 +81,7 @@ Italics and bold
 * plain''italic'''bold-italic'''''plain
 * plain'''bold''bold-italic'''''plain
 * plain l'''italic''plain
+* plain l''''bold''' plain
 !! result
 <ul><li> plain
 </li><li> plain<i>italic</i>plain
@@ -96,6 +97,7 @@ Italics and bold
 </li><li> plain<i>italic<b>bold-italic</b></i>plain
 </li><li> plain<b>bold<i>bold-italic</i></b>plain
 </li><li> plain l'<i>italic</i>plain
+</li><li> plain l'<b>bold</b> plain
 </li></ul>
 
 !! end
