@@ -2425,18 +2425,19 @@ class Article {
 	 * Prepare text which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
 	 */
-	function prepareTextForEdit( $text ) {
-		if ( $this->mPreparedEdit && $this->mPreparedEdit->newText == $text ) {
+	function prepareTextForEdit( $text, $revid=null ) {
+		if ( $this->mPreparedEdit && $this->mPreparedEdit->newText == $text && $this->mPreparedEdit->revid == $revid) {
 			// Already prepared
 			return $this->mPreparedEdit;
 		}
 		global $wgParser;
 		$edit = (object)array();
+		$edit->revid = $revid;
 		$edit->newText = $text;
 		$edit->pst = $this->preSaveTransform( $text );
 		$options = new ParserOptions;
 		$options->setTidy( true );
-		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $options, true, true );
+		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $options, true, true, $revid );
 		$edit->oldText = $this->getContent();
 		$this->mPreparedEdit = $edit;
 		return $edit;
@@ -2462,9 +2463,11 @@ class Article {
 
 		# Parse the text
 		# Be careful not to double-PST: $text is usually already PST-ed once
-		if ( !$this->mPreparedEdit ) {
-			$editInfo = $this->prepareTextForEdit( $text );
+		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
+			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
+			$editInfo = $this->prepareTextForEdit( $text, $newid );
 		} else {
+			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;
 		}
 

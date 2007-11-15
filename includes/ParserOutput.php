@@ -165,6 +165,17 @@ class ParserOutput
 		return $this->displayTitle;
 	}
 	
+	/**
+	 * Fairly generic flag setter thingy.
+	 */
+	public function setFlag( $flag ) {
+		$this->mFlags[$flag] = true;
+	}
+	
+	public function getFlag( $flag ) {
+		return isset( $this->mFlags[$flag] );
+	}
+	
 }
 
 
