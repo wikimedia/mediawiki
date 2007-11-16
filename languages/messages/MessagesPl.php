@@ -371,7 +371,7 @@ $messages = array(
 'page-rss-feed'           => 'Kanał RSS "$1"',
 'page-atom-feed'          => 'Kanał Atom "$1"',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artykuł',
 'nstab-user'      => 'Strona użytkownika',
 'nstab-media'     => 'Media',
@@ -1090,6 +1090,10 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'unusedtemplatestext' => 'Poniżej znajduje się lista szablonów nieużywanych na innych stronach.',
 'unusedtemplateswlh'  => 'linkujące',
 
+# Random page
+'randompage'         => 'Losuj stronę',
+'randompage-nopages' => 'Nie ma żadnych stron w tej przestrzeni nazw.',
+
 # Random redirect
 'randomredirect'         => 'Losowe przekierowanie',
 'randomredirect-nopages' => 'Nie ma przekierowań w tej przestrzeni nazw.',
@@ -1160,8 +1164,6 @@ Rozmiar [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''\$7
 'mostrevisions-summary'           => 'Poniżej znajduje się lista najczęściej edytowanych stron.',
 'allpages'                        => 'Wszystkie strony',
 'prefixindex'                     => 'Wszystkie strony według prefiksu',
-'randompage'                      => 'Losuj stronę',
-'randompage-nopages'              => 'Nie ma żadnych stron w tej przestrzeni nazw.',
 'shortpages'                      => 'Najkrótsze strony',
 'shortpages-summary'              => 'Poniżej znajduje się lista najkrótszych stron.',
 'longpages'                       => 'Najdłuższe strony',
@@ -1541,9 +1543,9 @@ $1',
 'range_block_disabled'        => 'Możliwość blokowania zakresu numerów IP została wyłączona.',
 'ipb_expiry_invalid'          => 'Błędny czas blokady.',
 'ipb_already_blocked'         => '"$1" jest już zablokowany.',
+'ipb_cant_unblock'            => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać odblokowana wcześniej.',
 'ip_range_invalid'            => 'Niewłaściwy zakres adresów IP.',
 'proxyblocker'                => 'Blokowanie proxy',
-'ipb_cant_unblock'            => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać odblokowana wcześniej.',
 'proxyblockreason'            => 'Twój adres IP został zablokowany - jest to otwarte proxy. Sprawę należy rozwiązać u dostawcy Internetu.',
 'proxyblocksuccess'           => 'Wykonane.',
 'sorbsreason'                 => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL.',
@@ -1838,6 +1840,11 @@ $1',
 'newimages'    => 'Najnowsze grafiki',
 'showhidebots' => '($1 boty)',
 'noimages'     => 'Nic.',
+
+# Bad image list
+'bad_image_list' => 'Format jest następujący:
+
+Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwagę. Pierwszy link w linii musi być linkiem do złej grafiki. Następne linki w linii są traktowane jako wyjątki, tzn. strony, gdzie grafika może być wstawiona.',
 
 # Metadata
 'metadata'          => 'Metadane',

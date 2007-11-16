@@ -43,7 +43,7 @@ $messages = array(
 'tog-showtoolbar'             => "Amostrar a barra d'ainas d'edizión (cal JavaScript)",
 'tog-editondblclick'          => 'Autibar edizión de pachinas fendo-ie doble click (cal JavaScript)',
 'tog-editsection'             => 'Autibar a edizión por seczions usando binclos [editar]',
-'tog-editsectiononrightclick' => "Autibar a edizión de sezions con o botón dreito d'o ratón <br /> en os titols de seczions (cal JavaScript)",
+'tog-editsectiononrightclick' => "Autibar a edizión de sezions con o botón dreito d'o ratet <br /> en os titols de seczions (cal JavaScript)",
 'tog-showtoc'                 => 'Amostrar o endize de contenius (ta pachinas con más de 3 encabezaus)',
 'tog-rememberpassword'        => 'Remerar a parabra de paso entre sesions',
 'tog-editwidth'               => "O cuatrón d'edizión tien l'amplaria masima",
@@ -173,7 +173,7 @@ $messages = array(
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Aduya',
 'search'            => 'Mirar',
-'searchbutton'      => 'Mirar',
+'searchbutton'      => 'Mirar-lo',
 'go'                => 'Ir-ie',
 'searcharticle'     => 'Ir-ie',
 'history'           => 'Istorial de cambeos',
@@ -384,21 +384,45 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'noname'             => "No has introduziu un nombre d'usuario correuto.",
 
 # Edit page toolbar
-'nowiki_tip' => 'Innorar o formato wiki',
+'bold_sample'     => 'Testo en negreta',
+'bold_tip'        => 'Testo en negreta',
+'italic_sample'   => 'Testo en cursiba',
+'italic_tip'      => 'Testo en cursiba',
+'link_sample'     => "Títol d'o binclo",
+'link_tip'        => 'Binclo interno',
+'extlink_sample'  => "http://www.exemplo.com Títol d'o binclo",
+'extlink_tip'     => "Binclo esterno (alcuerde-se d'adibir o prefixo http://)",
+'headline_sample' => 'Testo de tetular',
+'headline_tip'    => 'Tetular de libel 2',
+'math_sample'     => 'Escriba aquí a formula',
+'math_tip'        => 'Formula matematica (LaTeX)',
+'nowiki_sample'   => 'Escriba aquí testo sin de formato',
+'nowiki_tip'      => 'Innorar o formato wiki',
+'image_sample'    => 'Exemplo.jpg',
+'image_tip'       => 'Imachen enserita',
+'media_sample'    => 'Exemplo.ogg',
+'media_tip'       => 'Binclo con un archibo multimedia',
+'sig_tip'         => 'Siñadura, calendata y ora',
+'hr_tip'          => 'Línia orizontal (en faiga un emplego amoderau)',
 
 # Edit pages
 'summary'                  => 'Resumen',
+'subject'                  => 'Tema/títol',
 'minoredit'                => 'He feito una edizión menor',
 'watchthis'                => 'Bexilar ista pachina',
 'savearticle'              => 'Alzar pachina',
 'preview'                  => 'Bisualizazión prebia',
 'showpreview'              => 'Bisualizazión prebia',
 'showdiff'                 => 'Mostrar cambeos',
+'anoneditwarning'          => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en o istorial d'a pachina.",
 'newarticle'               => '(Nuebo)',
 'newarticletext'           => "Has siguito un binclo á una pachina que encara no esiste.
 Ta creyar a pachina, prenzipia á escribir en a caxa d'abaxo
 (se beiga l'[[{{MediaWiki:helppage}}|aduya]] ta más informazión).
 Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
+'noarticletext'            => 'Por agora no bi ha testo en ista pachina. Puede [[Special:Search/{{PAGENAME}}|mirar o títol]] en atras pachinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} prenzipiar á escribir en ista pachina].',
+'copyrightwarning'         => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} se consideran feitas publicas baxo a lizenzia $2 (beyer detalles en $1). Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
+<strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong><br />",
 'semiprotectedpagewarning' => "'''Nota:''' Ista página ha estato protexita ta que nomás usuarios rechistratos puedan editar-la.",
 'templatesused'            => 'Plantillas emplegatas en ista pachina:',
 'template-protected'       => '(protexito)',
@@ -423,6 +447,7 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 
 # Search results
 'searchresults' => "Resultaus d'a rechira",
+'noexactmatch'  => "'''No esiste garra pachina tetulata \"\$1\".''' Puede aduyar [[:\$1|creyando-la]].",
 'prevn'         => 'anteriors $1',
 'nextn'         => 'siguiens $1',
 'viewprevnext'  => 'Beyer ($1) ($2) ($3)',
@@ -440,27 +465,39 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 
 # Recent changes
 'recentchanges'   => 'Zaguers cambeos',
+'rcnote'          => "Más t'abaxo bi son os zaguers <b>$1</b> cambeos en os zaguers <b>$2</b> días, autualizatos o $3",
 'rclistfrom'      => 'Mostrar nuebos cambeos dende $1',
 'rcshowhideminor' => '$1 edizions menors',
 'rcshowhideliu'   => '$1 usuarios rechistraus',
 'rcshowhideanons' => '$1 usuarios anonimos',
 'rcshowhidemine'  => '$1 as mías edizions',
+'rclinks'         => 'Amostrar os zaguers $1 cambeos en os zaguers $2 días.<br />$3',
 'diff'            => 'esf',
 'hist'            => 'ist',
+'hide'            => 'amagar',
 'show'            => 'Mostrar',
 
 # Recent changes linked
-'recentchangeslinked' => 'Cambeos en pachinas relazionadas',
+'recentchangeslinked'         => 'Cambeos en pachinas relazionadas',
+'recentchangeslinked-title'   => 'Cambeos relazionatos con $1',
+'recentchangeslinked-summary' => "Ista pachina espezial amuestra os zaguers cambeos en as pachinas binculatas. As pachinas d'a suya lista de seguimiento son en  '''negreta'''.",
 
 # Upload
 'upload'            => 'Cargar archibo',
 'uploadnologintext' => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] ta cargar archibos.",
 
 # Image list
-'ilsubmit'       => 'Uscar',
-'filehist'       => "Istorial d'o archibo",
-'imagelinks'     => 'Binclos ta la imachen',
-'nolinkstoimage' => 'Denguna pachina tiene un binclo con ista imachen.',
+'ilsubmit'          => 'Uscar',
+'filehist'          => "Istorial d'o archibo",
+'filehist-help'     => "Punche en una calendata/ora ta beyer l'archibo como amanixeba por ixas engüeltas.",
+'filehist-current'  => 'autual',
+'filehist-datetime' => 'Calendata/Ora',
+'filehist-user'     => 'Usuario',
+'filehist-filesize' => "Grandaria d'o fichero",
+'filehist-comment'  => 'Comentario',
+'imagelinks'        => 'Binclos ta la imachen',
+'linkstoimage'      => 'Istas son as pachinas que tienen binclos con ista imachen:',
+'nolinkstoimage'    => 'Denguna pachina tiene un binclo con ista imachen.',
 
 # Unwatched pages
 'unwatchedpages' => 'Pachinas sin bexilar',
@@ -481,6 +518,7 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'nmembers'                => '$1 {{PLURAL:$1|miembro|miembros}}',
 'uncategorizedpages'      => 'Pachinas sin categorizar',
 'uncategorizedcategories' => 'Categorías sin categorizar',
 'uncategorizedimages'     => 'Imachens sin categorizar',
@@ -552,6 +590,7 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'mycontris'     => 'As mías contrebuzions',
 
 'sp-contributions-blocklog' => 'Rechistro de bloqueyos',
+'sp-contributions-username' => "Adreza IP u nombre d'usuario:",
 
 # What links here
 'whatlinkshere'       => 'Pachinas que enlazan con ista',
@@ -581,7 +620,13 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'thumbnail-more' => 'Fer más gran',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'     => "A mía pachina d'usuario",
+'tooltip-pt-mytalk'       => 'A mía pachina de descusión',
+'tooltip-pt-preferences'  => 'As mías preferenzias',
+'tooltip-pt-watchlist'    => 'A lista de pachinas en que ha estato bexilando os cambeos',
+'tooltip-pt-mycontris'    => "Lista d'as mías contribuzions",
 'tooltip-pt-login'        => 'Li recomendamos rechistrar-se, encara que no ye obligatorio',
+'tooltip-pt-logout'       => 'Rematar a sesión',
 'tooltip-ca-talk'         => "Descusión sobre l'articlo",
 'tooltip-ca-edit'         => 'Puede editar ista pachina. Por fabor, faga serbir o botón de bisualizazión prebia antes de grabar.',
 'tooltip-search'          => 'Mirar en {{SITENAME}}',
@@ -595,10 +640,17 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'tooltip-t-whatlinkshere' => "Lista de todas as pachinas d'o wiki binculatas con ista",
 'tooltip-t-upload'        => 'Puyar imáchens u archibos multimedia ta o serbidor',
 'tooltip-t-specialpages'  => 'Lista de todas as pachinas espezials',
+'tooltip-ca-nstab-image'  => "Beyer a pachina d'a imachen",
+'tooltip-save'            => 'Alzar os cambeos',
+'tooltip-preview'         => 'Rebise os suyos cambeos, por fabor, faga serbir isto antes de grabar!',
+'tooltip-diff'            => 'Amuestra os cambeos que ha feito en o testo.',
 
 # Attribution
 'and'    => 'y',
 'others' => 'atros',
+
+# Media information
+'file-info-size' => "($1 × $2 píxels; grandaria de l'archivo: $3; tipo MIME: $4)",
 
 # Special:Newimages
 'newimages' => 'Galería de nuebas imachens',
@@ -607,6 +659,9 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'bad_image_list' => "O formato ye asinas:
 
 Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O primer binclo de cada linia ha d'estar un binclo ta una imachen mala. Cualsiquiers atros binclos en a mesma linia se consideran eszepzions, i.e. pachinas an que a imachen puede amanexer enserita en a línia.",
+
+# EXIF tags
+'exif-gpstimestamp' => 'Tiempo GPS (reloch atomico)',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'todo',

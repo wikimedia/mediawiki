@@ -966,7 +966,7 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'group-bot'           => 'Boti',
 'group-sysop'         => 'Správci',
 'group-bureaucrat'    => 'Byrokraté',
-'group-all'           => '(všichni)',
+'group-all'           => '(všechny)',
 
 'group-autoconfirmed-member' => 'schválený uživatel',
 'group-sysop-member'         => 'Správce',

@@ -172,7 +172,7 @@ $messages = array(
 'categorypage'      => 'Бөлүк арынын көөр',
 'viewtalkpage'      => 'Чугаалажырыны көөр',
 'otherlanguages'    => 'Өске дылдарга',
-'lastmodifiedat'    => 'Бо арын сөөлгү каттап $1 өскерилген.', # $1 date, $2 time
+'lastmodifiedat'    => 'Бо арын сөөлгү каттап $2, $1 өскерилген.', # $1 date, $2 time
 'jumptonavigation'  => 'навигация',
 'jumptosearch'      => 'дилээр',
 
@@ -215,7 +215,7 @@ $messages = array(
 'nstab-media'     => 'Медиа арыны',
 'nstab-special'   => 'Тускай',
 'nstab-project'   => 'Проект арыны',
-'nstab-image'     => 'Бижиири',
+'nstab-image'     => 'Файл',
 'nstab-mediawiki' => 'Чагаа',
 'nstab-template'  => 'Хээ',
 'nstab-help'      => 'Дуза',
@@ -285,7 +285,7 @@ $1',
 'nowiki_tip'      => 'Вики форматтаарын херекке албас',
 'image_sample'    => 'Чижек.jpg',
 'media_sample'    => 'Чижек.ogg',
-'media_tip'       => 'Медиа бижиири холбаазы',
+'media_tip'       => 'Медиа файл холбаазы',
 
 # Edit pages
 'subject'            => 'Кол сөс',
@@ -316,8 +316,10 @@ $1',
 'last'                => 'бурунгу',
 'page_first'          => 'бирги',
 'page_last'           => 'сөөлгү',
+'deletedrev'          => '[ап каан]',
 'histfirst'           => 'Эң эрте',
 'histlast'            => 'Эң дээм чаагы',
+'historysize'         => '($1 байт)',
 'historyempty'        => '(куруг)',
 
 # Revision feed
@@ -355,19 +357,20 @@ $1',
 'columns'            => 'Баганалар:',
 'searchresultshead'  => 'Дилээр',
 'servertime'         => 'Сервер шакы',
-'files'              => 'бижиирилер',
+'files'              => 'файлдар',
 
 # Groups
 'group'     => 'Бөлүк:',
-'group-bot' => 'Боц',
+'group-bot' => 'Боттар',
 'group-all' => '(шупту)',
 
 'group-bot-member' => 'Бот',
 
 # Recent changes
+'nchanges'          => '$1 өскерлиишкин',
 'recentchanges'     => 'Өскерлиишкиннер',
 'rcshowhideminor'   => 'Бичии өскерлиишкиннерни $1',
-'rcshowhidebots'    => 'Боцту $1',
+'rcshowhidebots'    => 'Боттарну $1',
 'rcshowhideliu'     => 'Кирер ажыглакчыларны $1',
 'rcshowhideanons'   => 'Ат эвес ажыглакчыларны $1',
 'rcshowhidemine'    => 'Мээң өскерлиишкинимни $1',
@@ -378,14 +381,14 @@ $1',
 'newsectionsummary' => '/* $1 */ чаа бөлгүм',
 
 # Upload
-'upload'          => 'Бижиирини киирер',
-'uploadbtn'       => 'Бижиирини киирер',
+'upload'          => 'Файлды киирер',
+'uploadbtn'       => 'Файлды киирер',
 'reupload'        => 'Катап киирер',
 'uploadnologin'   => 'Кирбес',
 'uploaderror'     => 'Кииреринге алдаг',
-'filename'        => 'бижиириниң ады:',
+'filename'        => 'файлдың ады:',
 'filesource'      => 'Эгези:',
-'savefile'        => 'бижиирини шыгжаар',
+'savefile'        => 'файлды шыгжаар',
 'watchthisupload' => 'Бо арынны истээр',
 
 'upload-file-error' => 'Иштики алдаг',
@@ -393,14 +396,14 @@ $1',
 
 # Image list
 'ilsubmit'              => 'Дилээр',
-'imgfile'               => 'бижиири',
-'filehist'              => 'Бижиириниң төөгүзү',
+'imgfile'               => 'файл',
+'filehist'              => 'Файлдың төөгүзү',
 'filehist-deleteall'    => 'шуптуну ап каар',
 'filehist-deleteone'    => 'мону ап каар',
 'filehist-current'      => 'амгы үе',
 'filehist-datetime'     => 'Үе/Шак',
 'filehist-user'         => 'Ажыглакчы',
-'filehist-filesize'     => 'Бижиири хемчээли',
+'filehist-filesize'     => 'Файл хемчээли',
 'imagelinks'            => 'Холбаалар',
 'imagelist_name'        => 'Ат',
 'imagelist_user'        => 'Ажыглакчы',
@@ -422,6 +425,10 @@ $1',
 'brokenredirects-edit'   => '(өскертир)',
 'brokenredirects-delete' => '(ап каар)',
 
+'withoutinterwiki' => 'Дыл холбаалар эвес арыннар',
+
+'fewestrevisions' => 'Эң эвээш үндүрери арыннар',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 байт',
 'ncategories'             => '$1 бөлүк',
@@ -430,18 +437,30 @@ $1',
 'nrevisions'              => '$1 үндүрери',
 'nviews'                  => '$1 көрүш',
 'specialpage-empty'       => 'Бо илеткелдиң түңнели чок.',
+'lonelypages'             => 'Чааскаан арыннар',
 'uncategorizedpages'      => 'Бөлүк эвес арыннар',
 'uncategorizedcategories' => 'Бөлүк эвес бөлүктер',
 'uncategorizedimages'     => 'Бөлүк эвес чуруктар',
 'uncategorizedtemplates'  => 'Бөлүк эвес хээлер',
+'unusedcategories'        => 'Ажыглаваан бөлүктер',
+'unusedimages'            => 'Ажыглаваан файлдар',
+'popularpages'            => 'Чоннуң арыннар',
+'wantedcategories'        => 'Күзээринге бөлүктер',
 'wantedpages'             => 'Күзээрүнге арыннар',
+'mostlinked'              => 'Эң холбаалар арыннар',
+'mostlinkedcategories'    => 'Эң холбаалар бөлүктер',
+'mostlinkedtemplates'     => 'Эң холбаалар хээлер',
+'mostcategories'          => 'Эңне бөлүктер арыннар',
+'mostimages'              => 'Эң холбаалар чуруктар',
 'allpages'                => 'Шупту арыннар',
 'shortpages'              => 'Чолдак арыннар',
 'longpages'               => 'Узун арыннар',
+'protectedpages'          => 'Камгалаган арыннар',
 'specialpages'            => 'Тускай арыннар',
 'spheading'               => 'Шупту ажыглакчыларның тускай арыннары',
 'newpages'                => 'Чаа Арыннар',
 'newpages-username'       => 'Ажыглакчының ады:',
+'ancientpages'            => 'Эң эрги арыннар',
 'move'                    => 'Шимчээр',
 'movethispage'            => 'Бо арынны шимчээр',
 
@@ -595,7 +614,12 @@ $1',
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес ажыглакчызы(лары)',
 
 # Spam protection
+'subcategorycount'     => 'Бо бөлүкте $1 бичии бөлүк бар.',
 'categoryarticlecount' => 'Бо бөлүкте $1 арын бар.',
+'category-media-count' => 'Бо бөлүкте $1 файл бар.',
+
+# Image deletion
+'filedelete-missing' => '"$1" деп файл чок, ынчангаш ол ап калдынмас.',
 
 # Browsing diffs
 'previousdiff' => '← Бүрүнгү ылгал',

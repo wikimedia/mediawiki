@@ -89,6 +89,8 @@ $messages = array(
 
 'errorpagetitle'    => '错误',
 'returnto'          => '返回到$1。',
+'tagline'           => '来自{{SITENAME}}',
+'searcharticle'     => '进入',
 'history'           => '页面历史',
 'history_short'     => '历史',
 'info_short'        => '信息',
@@ -146,5 +148,14 @@ $messages = array(
 'yourrealname' => '真实姓名:',
 'yourlanguage' => '语言:',
 'email'        => '电子邮件',
+
+# Upload
+'upload' => '上载文物',
+
+# Miscellaneous special pages
+'specialpages' => '特殊页面',
+
+# Block/unblock
+'contribslink' => '贡献',
 
 );

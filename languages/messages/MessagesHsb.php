@@ -351,7 +351,7 @@ $messages = array(
 'page-rss-feed'           => 'RSS-kanal za „$1“',
 'page-atom-feed'          => 'Atom-Kanal za „$1“',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Nastawk',
 'nstab-user'      => 'Wužiwarska strona',
 'nstab-media'     => 'Medije',
@@ -1123,6 +1123,10 @@ PICT # misc.
 'unusedtemplatestext'     => 'Tuta specialna strona naliči wšě předłohi, kiž so w druhich stronach njewužiwaja. Prošu přepruwuj tež druhe móžne wotkazy na předłohi, prjedy hač je wušmórnješ.',
 'unusedtemplateswlh'      => 'Druhe wotkazy',
 
+# Random page
+'randompage'         => 'Připadny nastawk',
+'randompage-nopages' => 'W tutym mjenowym rumje strony njejsu.',
+
 # Random redirect
 'randomredirect'         => 'Připadne daleposrědkowanje',
 'randomredirect-nopages' => 'Žane daleposrědkowanja w tutym mjenowym rumje.',
@@ -1207,8 +1211,6 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'allpages-summary'                => 'Tuta specialna strona naliči wšě strony {{GRAMMAR:genitiw|{{SITENAME}}}} wot A do Ž.',
 'prefixindex'                     => 'Wšě nastawki (z prefiksom)',
 'prefixindex-summary'             => 'Tuta specialna strona naliči wšě strony, kotrež započinaja z podatym rjadom znamješkow (prefiks). Pohlad móže so na wěsty mjenowy rum wobmjezować.',
-'randompage'                      => 'Připadny nastawk',
-'randompage-nopages'              => 'W tutym mjenowym rumje strony njejsu.',
 'shortpages'                      => 'Krótke nastawki',
 'shortpages-summary'              => 'Tuta specialna strona naliči najkrótše nastawki w hłownym mjenowym rumje. Liča so znamješka teksta kajkež so we wobdźěłanskim woknom jewja, potajkim we wiki-syntaksu a bjez wobsaha zapřijatych předłohow. Zakład ličenja je z UTF-8 koděrowany tekst.',
 'longpages'                       => 'Dołhe nastawki',
@@ -1772,7 +1774,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'tooltip-n-recentchanges'         => 'lisćina aktualnych změnow w tutym wikiju',
 'tooltip-n-randompage'            => 'připadny nastawk wopytać',
 'tooltip-n-help'                  => 'pomocna strona',
-'tooltip-n-sitesupport'           => 'projekt podpěrować',
+'tooltip-n-sitesupport'           => 'Podpěrajće nas',
 'tooltip-t-whatlinkshere'         => 'lisćina wšěch stronow, kotrež sem wotkazuja',
 'tooltip-t-recentchangeslinked'   => 'aktualne změny w stronach, na kotrež tuta strona wotkazuje',
 'tooltip-feed-rss'                => 'RSS-feed za tutu stronu',

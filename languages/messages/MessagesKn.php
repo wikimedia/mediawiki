@@ -205,7 +205,7 @@ $messages = array(
 'hidetoc'                 => 'ಅಡಗಿಸು',
 'feedlinks'               => 'ಫೀಡ್:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ಲೇಖನ',
 'nstab-user'      => 'ಸದಸ್ಯರ ಪುಟ',
 'nstab-special'   => 'ವಿಶೇಷ',
@@ -343,15 +343,16 @@ $messages = array(
 'savefile'      => 'ಕಡತವನ್ನು ಉಳಿಸಿ',
 
 # Image list
-'imagelist'    => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿ',
-'getimagelist' => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ',
-'ilsubmit'     => 'ಹುಡುಕು',
-'byname'       => 'ಹೆಸರಿಗನುಗುಣವಾಗಿ',
-'bydate'       => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
-'bysize'       => 'ಗಾತ್ರಕ್ಕನುಗುಣವಾಗಿ',
-'linkstoimage' => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
+'imagelist'     => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿ',
+'getimagelist'  => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ',
+'ilsubmit'      => 'ಹುಡುಕು',
+'byname'        => 'ಹೆಸರಿಗನುಗುಣವಾಗಿ',
+'bydate'        => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
+'bysize'        => 'ಗಾತ್ರಕ್ಕನುಗುಣವಾಗಿ',
+'filehist-user' => 'ಸದಸ್ಯ',
+'linkstoimage'  => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
 
-# Random pages
+# Random page
 'randompage' => 'ಯಾದೃಚ್ಛಿಕ ಪುಟ',
 
 # Statistics
@@ -415,6 +416,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'      => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
+'mywatchlist'    => 'ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
 'nowatchlist'    => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಿಲ್ಲ',
 'watchnologin'   => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'addedwatch'     => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸಲಾಯಿತು',
@@ -495,6 +497,17 @@ $messages = array(
 'importbadinterwiki' => 'ಇಂಟರ್‍ವಿಕಿ ಲಿಂಕ್ ಸರಿಯಾಗಿಲ್ಲ',
 'importnotext'       => 'ಖಾಲಿ ಅಥವಾ ಯಾವುದೇ ಶಬ್ಧಗಳಿಲ್ಲ',
 'importsuccess'      => 'ಆಮದು ಯಶಸ್ವಿಯಾಯಿತು!',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'     => 'ನನ್ನ ಸದಸ್ಯ ಪುಟ',
+'tooltip-pt-mycontris'    => 'ನನ್ನ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿ',
+'tooltip-ca-edit'         => 'ಈ ಪುಟವನ್ನು ನೀವು ಸಂಪಾದಿಸಬಹುದು. ಉಳಿಸುವ ಮುನ್ನ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸಿ.',
+'tooltip-n-mainpage'      => 'ಮುಖ್ಯ ಪುಟ ನೋಡಿ',
+'tooltip-n-recentchanges' => 'ವಿಕಿಯಲ್ಲಿನ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳ ಪಟ್ಟಿ.',
+'tooltip-t-whatlinkshere' => 'ಇಲ್ಲಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಎಲ್ಲಾ ವಿಕಿ ಪುಟಗಳ ಪಟ್ಟಿ',
+'tooltip-t-upload'        => 'ಚಿತ್ರಗಳನ್ನು ಅಥವ ಮೀಡಿಯ ಫೈಲುಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
+'tooltip-t-specialpages'  => 'ಎಲ್ಲಾ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ',
+'tooltip-save'            => 'ನಿಮ್ಮ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ',
 
 # Attribution
 'anonymous'     => '{{SITENAME}} : ಅನಾಮಧೇಯ ಬಳಕೆದಾರ(ರು)',

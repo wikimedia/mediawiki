@@ -412,21 +412,21 @@ Allin qillqasqaykita llanchiriy.',
 'mailmypassword'             => 'Musuq yaykuna rimatam e-chaskiwan kachamuway',
 'passwordremindertitle'      => '{{SITENAME}}manta yaykuna rima yuyachina',
 'passwordremindertext'       => 'Pipas (qamchiki, $1 IP huchhayuq tiyaymanta) mañakuwarqan {{SITENAME}}paq musuq yaykuna rimatam e-chaski imamaytaykiman kachayta ($4). 
-"$2" sutiyuq ruraqpa yaykuna rimaqa kunan "$3" kachkan.
+"$2" sutiyuq ruraqpa yaykuna rimanqa kunan "$3" kachkan.
 Kunanqa yaykunaykim atinman yaykuna rimaykita hukchanaykipaq.
 
 Huk runa kay willayta mañakurqaptinqa icha yaykuna rimaykita hukchayta manaña munaspayki, kay willayta qhawarparispa ñawpaq yaykuna rimaykita llamk\'arayachiytam atinki.',
-'noemail'                    => 'No hay una dirección de correo electrónico registrada para "$1".',
-'passwordsent'               => 'Una nueva contraseña ha sido enviada al correo electrónico de "$1".
-Por favor, identifíquese de nuevo tras recibirla.',
-'blocked-mailpassword'       => 'Tu dirección IP está bloqueada, y no se te permite el uso de la función de recuperación de contraseñas para prevenir abusos.',
-'eauthentsent'               => 'Un correo electrónico de confirmación ha sido enviado a la dirección especificada. Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las instrucciones enviadas en el mensaje,  para así confirmar que la dirección te pertenece.',
-'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en las últimas $1 horas. Para evitar los abusos, solo se enviará un recordatorio de password cada $1 horas.',
-'mailerror'                  => 'Error al enviar correo: $1',
+'noemail'                    => 'Manam kanchu "$1" sutiyuq ruraqpa e-chaski imamaytan.',
+'passwordsent'               => 'Musuq yaykuna rimaqa kachasqañam "$1" sutiyuq ruraqpa e-chaski imamaytanman.
+Ama hina kaspa, chaskispaykiqa ruraqpa sutiykita nispa musuqmanta yaykuy.',
+'blocked-mailpassword'       => "IP tiyayniykiqa hark'asqam, chayrayku manam saqillanchu yaykuna rimata musuqmanta chaskiyta, millay rurayta hark'anapaq.",
+'eauthentsent'               => 'Takyachina e-chaskiqa qusqayki e-chaski imamaytaman kachamusqam. Manaraq huk e-chaskikuna kachamusqa kaptinqa, ñawpaqta e-chaskipi kamachisqakunata qatinaykim atin, chiqap e-chaski imamaytaykita takyachinaykipaq.',
+'throttled-mailpassword'     => "Huk yaykuna rima yuyachinañam qayna $1 ura mit'api kachamusqam. $1 ura mit'apiqa hukllam yaykuna rima yuyachina kachasqa kachun millay rurayta hark'anapaq.",
+'mailerror'                  => 'E-chaskita kachaspa pantasqa: $1',
 'acct_creation_throttle_hit' => '$1 sutiyuq rakiqunaqa kachkañam. Manam atinkichu kaqllata kichayta.',
 'emailauthenticated'         => 'E-chaski imamaytaykiqa $1 nisqapi chiqapchasqañam.',
 'emailnotauthenticated'      => 'E-chaski imamaytaykitaqa manaraqmi sinchicharqunkichu. Mana sinchicharquptiykiqa, kay qatiq rurachinakunataqa manam atinkichu.',
-'noemailprefs'               => '<strong>Especifique una dirección electrónica para habilitar estas características.</strong>',
+'noemailprefs'               => "E-chaski imamaytaykita willaway kay rurachinakunata llamk'achinapaq.",
 'emailconfirmlink'           => 'E-chaski imamaytaykita sinchichariy',
 'invalidemailaddress'        => "E-chaski imamaytaykiqa manam allinchu. Ama hina kaspa, musuq allin sananchayuq imamaytaykita qillqamuy icha k'itichata ch'usaqchay.",
 'accountcreated'             => 'Rakiqunaqa kichasqañam',
@@ -434,11 +434,11 @@ Por favor, identifíquese de nuevo tras recibirla.',
 'loginlanguagelabel'         => 'Rimay: $1',
 
 # Password reset dialog
-'resetpass'               => 'Restablecer la contraseña de usuario',
+'resetpass'               => 'Ruraqpa yaykuna rimanta kutichiy',
 'resetpass_announce'      => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico. Por favor, ingresa una nueva contraseña aquí:',
 'resetpass_text'          => '<!-- Añada texto aquí -->',
-'resetpass_header'        => 'Restablecer contraseña',
-'resetpass_submit'        => 'Cambiar la contraseña e identificarse',
+'resetpass_header'        => 'Yaykuna rimata kutichiy',
+'resetpass_submit'        => 'Yaykuna rimata hukchaspa yaykuy',
 'resetpass_success'       => 'Se ha cambiado su contraseña. Autenticándole...',
 'resetpass_bad_temporary' => 'Contraseña temporal no válida. Puede que ya hayas cambiado tu contraseña o que hayas solicitado el envío de otra.',
 'resetpass_forbidden'     => 'Imposible cambiar contraseñas en esta wiki',
