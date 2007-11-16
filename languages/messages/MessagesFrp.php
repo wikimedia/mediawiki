@@ -1803,8 +1803,6 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'markedaspatrollederror'              => 'Pôt pas étre marcâ coment pas vandalisâ',
 'markedaspatrollederrortext'          => 'Vos dête sèlèccionar una vèrsion por povêr la marcar coment pas vandalisâ.',
 'markedaspatrollederror-noautopatrol' => 'Vos avéd pas lo drêt de marcar voutres prôpres modificacions coment survelyês.',
-'nppatroldisabled'                    => 'Patrolye de les novèles pâges dèsactivâ.',
-'nppatroldisabledtext'                => 'La Patrolye de les novèles pâges est ora dèsactivâ.',
 
 # Patrol log
 'patrol-log-page' => 'Historico de les vèrsions patrolyês',

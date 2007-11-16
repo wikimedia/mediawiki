@@ -1853,8 +1853,6 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'markedaspatrollederror'              => 'Kan inte markera som patrullerad',
 'markedaspatrollederrortext'          => 'Det går inte att markera som patrullerad utan att ange version.',
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
-'nppatroldisabled'                    => 'Patrullering av nya sidor avaktiverad',
-'nppatroldisabledtext'                => 'Funktionen att patrullera nya sidor är för närvarande avstängd.',
 
 # Patrol log
 'patrol-log-page' => 'Patrulleringslogg',

@@ -1894,8 +1894,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'markedaspatrollederror'              => 'Nelze označit za prověřené',
 'markedaspatrollederrortext'          => 'Musíte zvolit revizi, která má být označena jako prověřená.',
 'markedaspatrollederror-noautopatrol' => 'Nemáte dovoleno označovat vlastní editace jako prověřené.',
-'nppatroldisabled'                    => 'Hlídka nových stránek vypnuta',
-'nppatroldisabledtext'                => 'Hlídka nových stránek je momentálně vypnuta.',
 
 # Patrol log
 'patrol-log-page' => 'Kniha prověřených editací',

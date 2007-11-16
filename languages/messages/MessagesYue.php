@@ -1886,8 +1886,6 @@ $1',
 'markedaspatrollederror'              => '唔可以標示做已巡查嘅',
 'markedaspatrollederrortext'          => '你需要指定一個修訂用嚟將佢標示做已巡查嘅。',
 'markedaspatrollederror-noautopatrol' => '你係唔准去標示你自己嘅更改做已巡查嘅。',
-'nppatroldisabled'                    => '新版巡查已經停用',
-'nppatroldisabledtext'                => '新版巡查功能現時停用中。',
 
 # Patrol log
 'patrol-log-page' => '巡查日誌',

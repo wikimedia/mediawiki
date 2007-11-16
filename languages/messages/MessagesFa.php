@@ -1970,8 +1970,6 @@ $1',
 'markedaspatrollederror'              => 'علامت بررسی زده نشد.',
 'markedaspatrollederrortext'          => 'باید یک نسخه را مشخص کنید تا برچسب به عنوان بررسی‌شده علامت بخورد.',
 'markedaspatrollederror-noautopatrol' => 'شما نمی‌توانید به تغییرات انجام شده توسط خودتان علامت بررسی‌شده بزنید.',
-'nppatroldisabled'                    => 'بررسی صفحه‌های جدید غیر فعال است',
-'nppatroldisabledtext'                => 'گزینه بررسی صفحه‌های جدید غیر فعال است.',
 
 # Patrol log
 'patrol-log-page' => 'سیاههٔ نگهبانی',

@@ -2040,8 +2040,6 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'markedaspatrollederror'              => 'Kan niet als gecontroleerd worden aangemerkt',
 'markedaspatrollederrortext'          => 'Selecteer een versie om als gecontroleerd aan te merken.',
 'markedaspatrollederror-noautopatrol' => 'U kunt uw eigen wijzigingen niet als gecontroleerd markeren.',
-'nppatroldisabled'                    => "De controlemogelijkheid op nieuwe pagina's is uitgeschakeld.",
-'nppatroldisabledtext'                => "De mogelijkheid om nieuwe pagina's als gecontroleerd aan te merken is op dit ogenblik uitgeschakeld.",
 
 # Patrol log
 'patrol-log-page' => 'Markeerlogboek',

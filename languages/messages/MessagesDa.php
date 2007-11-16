@@ -1876,8 +1876,6 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'markedaspatrollederror'              => 'Markering som „kontrolleret“ ikke mulig.',
 'markedaspatrollederrortext'          => 'Du skal vælge en sideændring.',
 'markedaspatrollederror-noautopatrol' => 'Du må ikke markere dine egne ændringer som kontrolleret.',
-'nppatroldisabled'                    => 'Patruljering af nye sider er slået fra.',
-'nppatroldisabledtext'                => 'Muligheden for at patruljere nye sider er slået fra for øjeblikket.',
 
 # Patrol log
 'patrol-log-page' => 'Kontrollog',

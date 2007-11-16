@@ -1532,12 +1532,10 @@ class Article {
 			return;
 		}
 
-		if ( $rc->mAttribs['rc_type'] == RC_NEW && !$wgUseNPPatrol ) {
-	                $wgOut->errorpage( 'nppatroldisabled', 'nppatroldisabledtext' );
-			return;
-		}
-		
 		if ( !$wgUseRCPatrol && $rc->mAttribs['rc_type'] != RC_NEW) {
+			// Only new pages can be patrolled if the general patrolling is off....???
+			// @fixme -- is this necessary? Shouldn't we only bother controlling the
+			// front end here?
 			$wgOut->errorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}

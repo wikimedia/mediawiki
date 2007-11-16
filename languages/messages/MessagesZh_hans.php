@@ -1819,8 +1819,6 @@ $1',
 'markedaspatrollederror'              => '不能标志为已检查',
 'markedaspatrollederrortext'          => '你需要指定某个版本才能标志为已检查。',
 'markedaspatrollederror-noautopatrol' => '您无法将你自己所作的更改标记为已检查。',
-'nppatroldisabled'                    => '新页面检查被关闭',
-'nppatroldisabledtext'                => '新页面检查的功能目前已关闭。',
 
 # Patrol log
 'patrol-log-page' => '巡查记录',

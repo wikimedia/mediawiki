@@ -1961,8 +1961,6 @@ The wiki server can't provide data in a format your client can read.",
 'markedaspatrollederror'              => 'Невозможно отметить как проверенную',
 'markedaspatrollederrortext'          => 'Вы должны указать версию, которая будет отмечена как проверенная.',
 'markedaspatrollederror-noautopatrol' => 'Вам не разрешено отмечать собственные правки как проверенные.',
-'nppatroldisabled'                    => 'Проверка новых страниц отключена',
-'nppatroldisabledtext'                => 'Опция «Проверка новых страниц» в настоящий момент отключена.',
 
 # Patrol log
 'patrol-log-page' => 'Журнал патрулирования',

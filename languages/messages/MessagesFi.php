@@ -1804,8 +1804,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'markedaspatrollederror'              => 'Muutoksen merkitseminen tarkastetuksi epäonnistui.',
 'markedaspatrollederrortext'          => 'Tarkastetuksi merkittävää versiota ei ole määritelty.',
 'markedaspatrollederror-noautopatrol' => 'Et voi merkitä omia muutoksiasi tarkastetuiksi.',
-'nppatroldisabled'                    => 'Uusien sivujen tarkastus ei ole käytössä',
-'nppatroldisabledtext'                => 'Uusien sivujen tarkastustoiminto ei ole käytössä.',
 
 # Patrol log
 'patrol-log-page' => 'Muutostentarkastusloki',
