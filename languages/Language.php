@@ -1202,7 +1202,7 @@ class Language {
 	
 	function lcfirst( $str ) {
 		if ( empty($str) ) return $str;
-		if ( ord($str[0]) < 128 ) {
+		if ( is_string( $str ) && ord($str[0]) < 128 ) {
 			// editing string in place = cool
 			$str[0]=strtolower($str[0]);
 			return $str;
