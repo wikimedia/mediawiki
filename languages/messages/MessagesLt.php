@@ -1834,8 +1834,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'markedaspatrollederror'              => 'Negalima pažymėti, kad patikrinta',
 'markedaspatrollederrortext'          => 'Jums reikia nurodyti versiją, kurią pažymėti kaip patikrintą.',
 'markedaspatrollederror-noautopatrol' => 'Jums neleidžiama pažymėti savo paties keitimų kaip patikrintų.',
-'nppatroldisabled'                    => 'Naujų puslapių stebėjimas išjungtas',
-'nppatroldisabledtext'                => 'Naujų puslapių stebėjimo funkcija šiuo metu išjungta.',
 
 # Patrol log
 'patrol-log-page' => 'Patikrinimo istorija',

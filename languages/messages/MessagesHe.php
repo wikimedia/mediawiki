@@ -2027,8 +2027,6 @@ $1',
 'markedaspatrollederror'              => 'לא ניתן לסמן כבדוק',
 'markedaspatrollederrortext'          => 'עליכם לציין גרסה שתציינו כבדוקה.',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
-'nppatroldisabled'                    => 'בדיקת הדפים החדשים מבוטלת',
-'nppatroldisabledtext'                => 'התכונה של סימון דף מבין הדפים החדשים כבדוק מבוטלת.',
 
 # Patrol log
 'patrol-log-page' => 'יומן שינויים בדוקים',

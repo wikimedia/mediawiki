@@ -1955,8 +1955,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'markedaspatrollederror'              => 'Nie je možné označiť ako strážené',
 'markedaspatrollederrortext'          => 'Pre označenie ako strážený je potrebné uviesť revíziu, ktorá sa má označiť ako strážená.',
 'markedaspatrollederror-noautopatrol' => 'Nie je vám umožnené označiť vlastné zmeny za strážené.',
-'nppatroldisabled'                    => 'Sledovanie nových stránok je vypnuté',
-'nppatroldisabledtext'                => 'Funkcia Sledovanie nových stránok je momentálne vypnutá.',
 
 # Patrol log
 'patrol-log-page' => 'Záznam strážení',

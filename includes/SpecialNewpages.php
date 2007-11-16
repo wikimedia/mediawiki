@@ -60,8 +60,8 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
-		global $wgUser, $wgUseNPPatrol;
-		$usepatrol = ( $wgUseNPPatrol ) ? 1 : 0;
+		global $wgUser, $wgUseNPPatrol, $wgUseRCPatrol;
+		$usepatrol = ( $wgUseNPPatrol || $wgUseRCPatrol ) ? 1 : 0;
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $recentchanges, $page ) = $dbr->tableNamesN( 'recentchanges', 'page' );
 
@@ -133,8 +133,10 @@ class NewPagesPage extends QueryPage {
 	 * @return bool
 	 */
 	function patrollable( $result ) {
-		global $wgUser, $wgUseNPPatrol;
-		return $wgUseNPPatrol && $wgUser->isAllowed( 'patrol' ) && !$result->patrolled;
+		global $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
+		return ( $wgUseRCPatrol || $wgUseNPPatrol )
+			&& $wgUser->isAllowed( 'patrol' )
+			&& !$result->patrolled;
 	}
 
 	function feedItemDesc( $row ) {
@@ -155,7 +157,7 @@ class NewPagesPage extends QueryPage {
 	 * @return string
 	 */	
 	function getPageHeader() {
-		global $wgScript, $wgContLang, $wgGroupPermissions, $wgUser, $wgUseNPPatrol;
+		global $wgScript, $wgContLang, $wgGroupPermissions, $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
 		$align = $wgContLang->isRTL() ? 'left' : 'right';
 		$self = SpecialPage::getTitleFor( $this->getName() );
 
@@ -180,7 +182,7 @@ class NewPagesPage extends QueryPage {
 		$links = array();
 		if( $wgGroupPermissions['*']['createpage'] == true )
 			$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
-		if( $wgUseNPPatrol )
+		if( $wgUseNPPatrol || $wgUseRCPatrol )
 			$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
 		$links[] = wfMsgHtml( 'rcshowhidebots', $botsLink );
 		$hl = implode( ' | ', $links );

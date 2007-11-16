@@ -1802,8 +1802,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'markedaspatrollederror'              => 'Nie można oznaczyć jako sprawdzone',
 'markedaspatrollederrortext'          => 'Musisz wybrać wersję żeby oznaczyć ją jako sprawdzoną.',
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako sprawdzone.',
-'nppatroldisabled'                    => 'Wyłączono patrolowanie nowych stron',
-'nppatroldisabledtext'                => 'Funkcja patrolowania nowych stron jest teraz wyłączona.',
 
 # Patrol log
 'patrol-log-page' => 'Patrolowane',

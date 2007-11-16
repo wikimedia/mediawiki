@@ -1337,8 +1337,6 @@ $1',
 'rcpatroldisabled'           => '不哨近易',
 'markedaspatrollederror'     => '未可哨',
 'markedaspatrollederrortext' => '揀之方可哨',
-'nppatroldisabled'           => '新哨已止',
-'nppatroldisabledtext'       => '暫止新哨之行',
 
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',

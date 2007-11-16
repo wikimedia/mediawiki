@@ -1790,8 +1790,6 @@ $1',
 'markedaspatrollederror'              => '不能標誌為已檢查',
 'markedaspatrollederrortext'          => '你需要指定某個版本才能標誌為已檢查。',
 'markedaspatrollederror-noautopatrol' => '您無法將你自己所作的更改標記為已檢查。',
-'nppatroldisabled'                    => '新頁面檢查被關閉',
-'nppatroldisabledtext'                => '新頁面檢查的功能目前已關閉。',
 
 # Patrol log
 'patrol-log-page' => '巡查記錄',

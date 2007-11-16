@@ -1784,8 +1784,6 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'markedaspatrollederror'              => 'Markěrowanje ako "kontrolěrowane" njejo móžne.',
 'markedaspatrollederrortext'          => 'Musyš wersiju wuzwóliś.',
 'markedaspatrollederror-noautopatrol' => 'Njesmějoš swóje změny ako kontrolěrowane markěrowaś.',
-'nppatroldisabled'                    => 'Pśekontrolěrowanje nowych bokow jo se deaktiwizěrowało',
-'nppatroldisabledtext'                => 'Pśekontrolěrowanje nowych bokow jo tuchylu deaktiwizěrowane.',
 
 # Patrol log
 'patrol-log-page' => 'Log-lisćina kontrolow',

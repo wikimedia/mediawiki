@@ -2440,8 +2440,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'markedaspatrollederror'              => 'Cannot mark as patrolled',
 'markedaspatrollederrortext'          => 'You need to specify a revision to mark as patrolled.',
 'markedaspatrollederror-noautopatrol' => 'You are not allowed to mark your own changes as patrolled.',
-'nppatroldisabled'                    => 'New Pages Patrol disabled',
-'nppatroldisabledtext'                => 'The New Pages Patrol feature is currently disabled.',
 
 # Patrol log
 'patrol-log-page'   => 'Patrol log',

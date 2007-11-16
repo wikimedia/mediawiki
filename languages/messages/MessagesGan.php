@@ -573,7 +573,7 @@ $2',
 'orig'                => '起先',
 'page_first'          => '最早',
 'page_last'           => '最晏',
-'histlegend'          => '差異選擇: 標到伓同版本嗰單選鍵，接到按𢽴上嗰按鈕做比較。<br /> 
+'histlegend'          => '差異選擇: 標到伓同版本嗰單選鍵，接到按⽴上嗰按鈕做比較。<br /> 
 說明: (眼下) 指同目前版本嗰比較，(之前) 指同之前修改版本嗰比較，細 = 細修改。',
 'deletedrev'          => '[拕刪除]',
 'histfirst'           => '最早版本',
@@ -1631,8 +1631,6 @@ $NEWPAGE
 'markedaspatrollederror'              => '標伓正佢係檢查過嗰',
 'markedaspatrollederrortext'          => '倷要指正某隻版本才標得正佢係檢查過嗰。',
 'markedaspatrollederror-noautopatrol' => '倷標伓正倷自家嗰修改係檢查過嗰。',
-'nppatroldisabled'                    => '新頁面巡查停用嘞',
-'nppatroldisabledtext'                => '新頁面巡查停用中。',
 
 # Patrol log
 'patrol-log-page' => '巡查記錄',

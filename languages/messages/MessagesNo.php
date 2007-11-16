@@ -1828,8 +1828,6 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'markedaspatrollederror'              => 'Kan ikke merke som godkjent',
 'markedaspatrollederrortext'          => 'Du må spesifisere en versjon å merke som godkjent.',
 'markedaspatrollederror-noautopatrol' => 'Du kan ikke merke dine egne endringer som godkjente.',
-'nppatroldisabled'                    => 'Patruljering av nye sider slått av',
-'nppatroldisabledtext'                => 'Funksjonen Patruljering av nye sider er for tiden slått av.',
 
 # Patrol log
 'patrol-log-page' => 'Godkjenningslogg',

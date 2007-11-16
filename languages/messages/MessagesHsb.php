@@ -1864,8 +1864,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'markedaspatrollederror'              => 'Njemóžno jako přepruwowanu woznamjenić.',
 'markedaspatrollederrortext'          => 'Dyrbiš wersiju podać, kotraž so ma jako přepruwowana woznamjenić.',
 'markedaspatrollederror-noautopatrol' => 'Njesměš swoje změny jako přepruwowane woznamjenjeć.',
-'nppatroldisabled'                    => 'Pruwowanje nowych stronow znjemóžnjene',
-'nppatroldisabledtext'                => 'Pruwowanje nowych stronow je tuchwilu znjemóžnjene.',
 
 # Patrol log
 'patrol-log-page' => 'Protokol přepruwowanjow',

@@ -1721,8 +1721,6 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'markedaspatrollederror'              => 'Pòt pas èsser marcat coma non vandalizat',
 'markedaspatrollederrortext'          => 'Devètz seleccionar una version per poder la marcar coma non vandalizada.',
 'markedaspatrollederror-noautopatrol' => 'Avètz pas lo drech de marcar vòstras pròprias modificacions coma susvelhadas.',
-'nppatroldisabled'                    => 'Patrolha de las paginas novèlas desactivada.',
-'nppatroldisabledtext'                => 'La Patrolha de las paginas novèlas es actualament desactivada.',
 
 # Patrol log
 'patrol-log-page' => 'Istoric de las versions patrolhadas',

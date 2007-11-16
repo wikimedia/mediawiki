@@ -1817,8 +1817,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'markedaspatrollederror'              => 'Impossibile contrassegnare la voce come verificata',
 'markedaspatrollederrortext'          => 'Occorre specificare una revisione da contrassegnare come verificata.',
 'markedaspatrollederror-noautopatrol' => 'Non si dispone dei permessi necessari per segnare le proprie modifiche come verificate.',
-'nppatroldisabled'                    => 'Verifica delle pagine più recenti disabilitata',
-'nppatroldisabledtext'                => 'La funzione di verifica delle pagine più recenti non è attiva al momento.',
 
 # Patrol log
 'patrol-log-page' => 'Modifiche verificate',

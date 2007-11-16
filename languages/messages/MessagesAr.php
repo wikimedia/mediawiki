@@ -2066,8 +2066,6 @@ $1',
 'markedaspatrollederror'              => 'لا يمكن التعليم بالمراجعة',
 'markedaspatrollederrortext'          => 'يجب عليك اختيار النسخة التي تريد أن تشير أنها مراجعة',
 'markedaspatrollederror-noautopatrol' => 'من غير المسموح لك التعليم على تغييراتك الشخصية كمراجعة.',
-'nppatroldisabled'                    => 'مراجعة الصفحات الجديدة معطلة',
-'nppatroldisabledtext'                => 'خاصية مراجعة الصفحات الجديدة معطلة حاليا.',
 
 # Patrol log
 'patrol-log-page' => 'سجل المراجعة',
