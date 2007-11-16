@@ -620,6 +620,7 @@ Du kan kontakte $1 eller en af de andre [[{{MediaWiki:grouppage-sysop}}|administ
 Bemærk, at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail addresse registreret i din [[Special:Preferences|brugerindstilling]].
 
 Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
+'blockednoreason'           => 'ingen begrundelse givet',
 'blockedoriginalsource'     => "Kildekoden fra '''$1''' vises her:",
 'blockededitsource'         => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
 'whitelistedittitle'        => 'Log på for at redigere',
@@ -945,7 +946,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 overvågende bruger/e]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|overvåget bruger|overvågede brugere}}]',
 'rc_categories'                     => 'Kun sider fra kategorierne (adskilt med „|“):',
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
@@ -1581,7 +1582,7 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'badipaddress'                => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub'           => 'Blokeringen er gennemført.',
 'blockipsuccesstext'          => '"$1" er blevet blokeret.
-<br />Se [[Special:Ipblocklist|IP blokeringslisten]] for alle blokeringer.',
+<br />Se [[Special:Ipblocklist|IP-blokeringslisten]] for alle blokeringer.',
 'ipb-edit-dropdown'           => 'Ændre spærreårsager',
 'ipb-unblock-addr'            => 'frigive „$1“',
 'ipb-unblock'                 => 'Frigive IP-adresse/bruger',
