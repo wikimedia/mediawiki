@@ -386,8 +386,9 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|una versió esborrada|$1 versions esborrades}}',
 'feedlinks'               => 'Sindicament:',
 'feed-invalid'            => 'La subscripció no és vàlida pel tipus de sindicament.',
+'page-rss-feed'           => '«$1» RSS Feed',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
 'nstab-user'      => "Pàgina d'usuari",
 'nstab-media'     => 'Pàgina de mitjans',
@@ -913,6 +914,7 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'rightsnone'     => '(cap)',
 
 # Recent changes
+'nchanges'                          => '$1 {{PLURAL:$1|canvi|canvis}}',
 'recentchanges'                     => 'Canvis recents',
 'recentchangestext'                 => 'Seguiu els canvis recents del projecte {{SITENAME}} en aquesta pàgina.',
 'recentchanges-feed-description'    => 'Segueix en aquest canal els canvis més recents del wiki.',
@@ -933,7 +935,10 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'rc_categories_any'                 => 'Qualsevol',
 
 # Recent changes linked
-'recentchangeslinked' => "Seguiment d'enllaços",
+'recentchangeslinked'          => "Seguiment d'enllaços",
+'recentchangeslinked-title'    => 'Canvis relacionats amb $1',
+'recentchangeslinked-noresult' => 'No ha hagut cap canvi a les pàgines enllaçades durant el període de temps.',
+'recentchangeslinked-summary'  => "Aquesta pàgina especial mostra els canvis recents de les pàgines enllaçades. Les pàgines de la vostra llista de seguiment són en '''negreta'''.",
 
 # Upload
 'upload'                      => 'Carrega',
@@ -1014,6 +1019,8 @@ Totes les hores són les del servidor (UTC).",
 'bysize'                    => 'per mida',
 'imgdelete'                 => 'edi',
 'imgfile'                   => 'fitxer',
+'filehist'                  => 'Historial del fitxer',
+'filehist-help'             => 'Cliqueu una data/hora per veure el fitxer tal com era aleshores.',
 'filehist-revert'           => 'reverteix',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Data/hora',
@@ -1062,7 +1069,7 @@ Totes les hores són les del servidor (UTC).",
 'unusedtemplatestext' => "Aquesta pàgina mostra les pàgines en l'espai de noms de plantilles, que no estan incloses en cap altra pàgina. Recordeu de comprovar les pàgines que hi enllacen abans d'esborrar-les.",
 'unusedtemplateswlh'  => 'altres enllaços',
 
-# Random pages
+# Random page
 'randompage' => "Pàgina a l'atzar",
 
 # Random redirect
@@ -1106,6 +1113,10 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'brokenredirects-edit'   => '(edita)',
 'brokenredirects-delete' => '(elimina)',
 
+'withoutinterwiki' => 'Pàgines sense enllaços a altres llengües',
+
+'fewestrevisions' => 'Pàgines amb menys revisions',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|octet|octets}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categories}}',
@@ -1119,6 +1130,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'uncategorizedpages'      => 'Pàgines sense categoria',
 'uncategorizedcategories' => 'Categories sense categoria',
 'uncategorizedimages'     => 'Imatges sense categoria',
+'uncategorizedtemplates'  => 'Plantilles sense categoria',
 'unusedcategories'        => 'Categories sense articles',
 'unusedimages'            => 'Imatges sense ús',
 'popularpages'            => 'Pàgines populars',
@@ -1126,6 +1138,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'wantedpages'             => 'Pàgines demanades',
 'mostlinked'              => 'Pàgines més enllaçades',
 'mostlinkedcategories'    => 'Categories més utilitzades',
+'mostlinkedtemplates'     => 'Plantilles més usades',
 'mostcategories'          => 'Pàgines que utilitzen més categories',
 'mostimages'              => 'Imatges més enllaçades',
 'mostrevisions'           => 'Pàgines més modificades',
@@ -1415,13 +1428,18 @@ Consulteu el [[Special:Log/delete|registre d'esborrats]] per a veure els esborra
 'ucnote'        => "A sota hi ha els darrers <b>$1</b> canvis d'aquest usuari en els darrers <b>$2</b> dies.",
 'uclinks'       => 'Mostra els darrers $1 canvis; mostra els darrers $2 dies.',
 'uctop'         => ' (actual)',
+'month'         => 'Mes (i anteriors):',
+'year'          => 'Any (i anteriors):',
 
 'sp-contributions-newest'      => 'Les més noves',
 'sp-contributions-oldest'      => 'Les més antigues',
 'sp-contributions-newer'       => '$1 anteriors',
 'sp-contributions-older'       => '$1 següents',
+'sp-contributions-newbies'     => 'Mostra les contribucions dels usuaris novells',
 'sp-contributions-newbies-sub' => 'Per a novells',
 'sp-contributions-blocklog'    => 'Registre de blocatges',
+'sp-contributions-search'      => 'Cerca les contribucions',
+'sp-contributions-username'    => "Adreça IP o nom d'usuari:",
 'sp-contributions-submit'      => 'Cerca',
 
 'sp-newimages-showfrom' => 'Mostra imatges des de $1',
@@ -1434,6 +1452,9 @@ Consulteu el [[Special:Log/delete|registre d'esborrats]] per a veure els esborra
 'nolinkshere'         => "Cap pàgina no enllaça amb '''[[:$1]]'''.",
 'isredirect'          => 'pàgina redirigida',
 'istemplate'          => 'inclosa',
+'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|anteriors $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|següent|següents $1}}',
+'whatlinkshere-links' => '← enllaços',
 
 # Block/unblock
 'blockip'                     => "Bloca l'usuari",
@@ -1793,14 +1814,25 @@ $1",
 'nextdiff'     => 'Vés a la pròxima diferència →',
 
 # Media information
-'mediawarning'    => "'''Advertència''': Aquest arxiu pot contenir codi maliciós, si l'executeu podeu comprometre la seguretat del vostre sistema.<hr />",
-'imagemaxsize'    => "Limita les imatges de les pàgines de descripció d'imatges a:",
-'thumbsize'       => 'Mida de la miniatura:',
-'widthheightpage' => '$1×$2, $3 pàgines',
+'mediawarning'         => "'''Advertència''': Aquest arxiu pot contenir codi maliciós, si l'executeu podeu comprometre la seguretat del vostre sistema.<hr />",
+'imagemaxsize'         => "Limita les imatges de les pàgines de descripció d'imatges a:",
+'thumbsize'            => 'Mida de la miniatura:',
+'widthheightpage'      => '$1×$2, $3 pàgines',
+'file-info-size'       => "($1 × $2 píxels, mida de l'arxiu: $3, tipus MIME: $4)",
+'file-nohires'         => '<small>No hi ha una versió amb una resolució més gran.</small>',
+'svg-long-desc'        => "(fitxer SVG, nominalment $1 × $2 píxels, mida de l'arxiu: $3)",
+'show-big-image'       => 'Imatge en màxima resolució',
+'show-big-image-thumb' => "<small>Mida d'aquesta previsualització: $1 × $2 píxels</small>",
 
 # Special:Newimages
 'newimages' => 'Galeria de nous fitxers',
 'noimages'  => 'Res per veure.',
+
+# Bad image list
+'bad_image_list' => "El format ha de ser el següent:
+
+Només els elements de llista (les línies que comencin amb un *) es prenen en consideració. El primer enllaç de cada línia ha de ser el de la imatge dolent.
+La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgines on es permet fer servir la imatge.",
 
 # Metadata
 'metadata'          => 'Metadades',
@@ -2062,6 +2094,7 @@ $1",
 'imagelistall'     => 'totes',
 'watchlistall2'    => 'totes',
 'namespacesall'    => 'tots',
+'monthsall'        => 'tots',
 
 # E-mail address confirmation
 'confirmemail'            => "Confirma l'adreça de correu electrònic",
@@ -2182,5 +2215,6 @@ Trieu amb la previsualització normal.',
 # Watchlist editing tools
 'watchlisttools-view' => 'Visualitza els canvis rellevants',
 'watchlisttools-edit' => 'Visualitza i edita la llista de seguiment',
+'watchlisttools-raw'  => 'Edita la llista de seguiment sense format',
 
 );

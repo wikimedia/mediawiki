@@ -1,5 +1,5 @@
 <?php
-/** Pontic (Ποντιακά)
+/** Ποντιακά (Ποντιακά)
  *
  * @addtogroup Language
  *
@@ -28,8 +28,24 @@ $messages = array(
 'nov' => 'Νοέ',
 'dec' => 'Δεκ',
 
+'search'        => 'Εύρον',
+'searchbutton'  => 'Εύρον',
 'go'            => 'Δέβα',
 'searcharticle' => 'Δέβα',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user' => 'Σελίδα χρήστες',
+
+# General errors
+'viewsourcefor' => 'για $1',
+
+# Login and logout pages
+'logout'     => 'Αποσύνδεσε',
+'userlogout' => 'Αποσύνδεσε',
+'loginerror' => 'Σφάλμα εγγραφές',
+
+# Search results
+'powersearch' => 'Εύρον',
 
 # Book sources
 'booksources-go' => 'Δέβα',

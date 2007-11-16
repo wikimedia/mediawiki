@@ -456,6 +456,9 @@ koristiti staru lozinku.',
 'blocked-mailpassword'       => 'Vašoj IP adresi je blokirano uređivanje stranica, a da bi se spriječila nedozvoljena akcija, mogućnost zahtijevanja nove lozinke je također onemogućena.',
 'eauthentsent'               => 'Na navedenu adresu poslan je e-mail s potvrdom. Prije nego što pošaljemo daljnje poruke,
 molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva.',
+'throttled-mailpassword'     => 'Već Vam je poslan e-mail za promjenu lozinke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
+Da bi spriječili zloupotrebu, moguće je poslati jedan e-mail
+za promjenu lozinke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
 'mailerror'                  => 'Greška pri slanju e-maila: $1',
 'acct_creation_throttle_hit' => 'Nažalost, ne možete otvoriti nove suradničke račune. Već ste otvorili $1.',
 'emailauthenticated'         => 'Vaša e-mail adresa je ovjerena $1.',
@@ -471,8 +474,10 @@ Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
 
 # Password reset dialog
 'resetpass'               => 'Postavi novu lozinku',
+'resetpass_announce'      => 'Prijavljeni ste s privremenom lozinkom. Da završite proces mijenjanja lozinke, upišite ovdje novu lozinku:',
 'resetpass_header'        => 'Resetiraj lozinku',
 'resetpass_submit'        => 'Postavite lozinku i prijavite se',
+'resetpass_success'       => 'Lozinka uspješno postavljena! Prijava u tijeku...',
 'resetpass_bad_temporary' => 'Nevažeća privremena lozinka. Možda ste već uspješno promijenili svoju lozinku ili ste zatražili novu privremenu lozinku.',
 'resetpass_forbidden'     => 'Na ovom wikiju lozinka ne može biti promijenjena',
 'resetpass_missing'       => 'Forma ne sadrži tražene podatke.',
@@ -664,9 +669,10 @@ Molimo provjerite URL koji vas je doveo ovamo.',
 'historyempty'        => '(prazna stranica)',
 
 # Revision feed
-'history-feed-title'       => 'Povijest promjena',
-'history-feed-description' => 'Povijest promjena ove stranice na wikiju',
-'history-feed-empty'       => 'Tražena stranica ne postoji.
+'history-feed-title'          => 'Povijest promjena',
+'history-feed-description'    => 'Povijest promjena ove stranice na wikiju',
+'history-feed-item-nocomment' => '$1 u (test) $2', # user at time
+'history-feed-empty'          => 'Tražena stranica ne postoji.
 Stranica je vjerojatno prethodno izbrisana s wikija, ili preimenovana.
 Pokušajte [[Special:Search|pretražiti]] važnije nove stranice na wikiju.',
 
@@ -696,6 +702,7 @@ vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu n
 postavili dodatna ograničenja.',
 'revdelete-legend'            => 'Postavi ograničenja na izmjenu:',
 'revdelete-hide-text'         => 'Sakrij tekst izmjene',
+'revdelete-hide-name'         => 'Sakrij uređivanje i njegov predmet',
 'revdelete-hide-comment'      => 'Sakrij komentar (sažetak)',
 'revdelete-hide-user'         => 'Sakrij suradnikovo ime/IP adresu',
 'revdelete-hide-restricted'   => 'Postavi ograničenja i za administratore kao i za ostale suradnike',
@@ -1118,6 +1125,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'deadendpagestext'        => 'Slijedeće stranice nemaju poveznice na druge stranice na {{SITENAME}}.',
 'protectedpages'          => 'Zaštićene stranice',
 'protectedpagestext'      => 'Slijedeće stranice su zaštićene od premještanja ili uređivanja',
+'protectedpagesempty'     => 'Nema zaštićenih stranica koje ispunjavaju uvjete koje ste postavili.',
 'listusers'               => 'Popis suradnika',
 'specialpages'            => 'Posebne stranice',
 'spheading'               => 'Posebne stranice za sve suradnike',
@@ -1333,6 +1341,7 @@ Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutno za�
 'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong>$1</strong>.
 Molim pripazite da ovo radite u skladu s [[{{MediaWiki:policy-url}}|pravilima]].',
 'protect-default'             => '(bez zaštite)',
+'protect-fallback'            => 'Potrebno je imati "$1" ovlasti',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrirane suradnike',
 'protect-level-sysop'         => 'Samo administratori',
 'protect-summary-cascade'     => 'prenosiva zaštita',
@@ -1347,6 +1356,10 @@ Molim pripazite da ovo radite u skladu s [[{{MediaWiki:policy-url}}|pravilima]].
 # Restrictions (nouns)
 'restriction-edit' => 'Uređivanje',
 'restriction-move' => 'Premještanje',
+
+# Restriction levels
+'restriction-level-sysop'         => 'samo administratori',
+'restriction-level-autoconfirmed' => 'samo prijavljeni suradnici',
 
 # Undelete
 'undelete'                 => 'Vrati izbrisanu stranicu',
@@ -1420,8 +1433,8 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 'nolinkshere-ns'      => "Nijedna stranica ne vodi na '''[[:$1]]''' u odabranom imenskom prostoru.",
 'isredirect'          => 'stranica za preusmjeravanje',
 'istemplate'          => 'kao predložak',
-'whatlinkshere-prev'  => '{{PLURAL:$1|prethodna|prethodnih $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|slijedeća|slijedećih $1}}',
+'whatlinkshere-prev'  => '{{PLURAL:$1|prethodna|prethodne|prethodnih}} $1',
+'whatlinkshere-next'  => '{{PLURAL:$1|slijedeća|slijedeće|slijedećih}} $1',
 'whatlinkshere-links' => '← poveznice',
 
 # Block/unblock
@@ -1477,6 +1490,7 @@ vandalizirane).',
 'noautoblockblock'            => 'blokiranje samoga sebe je onemogućeno',
 'createaccountblock'          => 'blokirano stvaranje suradničkog računa',
 'emailblock'                  => 'e-mail je blokiran',
+'ipblocklist-empty'           => 'Popis blokiranja je prazan.',
 'ipblocklist-no-results'      => 'Tražena IP adresa ili suradničko ime nije blokirano.',
 'blocklink'                   => 'blokiraj',
 'unblocklink'                 => 'deblokiraj',
@@ -1493,7 +1507,10 @@ blokiranja vidi [[Special:Ipblocklist|listu IP blokiranja]].',
 'block-log-flags-noemail'     => 'e-mail je blokiran',
 'range_block_disabled'        => 'Isključena je administratorska naredba za blokiranje raspona IP adresa.',
 'ipb_expiry_invalid'          => 'Vremenski rok nije valjan.',
+'ipb_already_blocked'         => '"$1" je već blokiran',
+'ipb_cant_unblock'            => 'Greška: blok ID $1 nije nađen. Moguće je da je suradnik već odblokiran.',
 'ip_range_invalid'            => 'Raspon IP adresa nije valjan.',
+'blockme'                     => 'Blokiraj me',
 'proxyblocker'                => 'Zaštita od otvorenih posrednika (proxyja)',
 'proxyblocker-disabled'       => 'Ova funkcija je onemogućena.',
 'proxyblockreason'            => 'Vaša je IP adresa blokirana jer se radi o otvorenom posredniku (proxyju). Molim stupite u vezu s vašim davateljem internetskih usluga (ISP-om) ili službom tehničke podrške i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
