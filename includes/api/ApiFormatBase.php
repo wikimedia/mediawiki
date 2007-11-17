@@ -276,3 +276,49 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
+
+/**
+ * This printer is used to wrap raw printer
+ * @addtogroup API
+ */
+class ApiFormatRaw extends ApiFormatBase {
+
+	public function __construct($main, $format) {
+		parent :: __construct($main, $format);
+	}
+
+	public static function setRawData( $result, $raw_data ) {
+		$data = & $result->getData();
+		$data['_raw'] = $raw_data;
+	}
+
+	public function getMimeType() {
+		return 'text/plain';
+	}
+
+	public function execute() {
+		$data = $this->getResultData();
+		if( !isset( $data['_raw'] ) && !isset( $data['error'] ) ) {
+			ApiBase :: dieDebug( 'ApiFormatRaw', 'No raw data is set for this module' );
+		}
+		elseif( isset( $data['error'] ) ) {
+			header( '500 Internal error' );
+			echo "{$data['error']['code']}\n";
+			echo "{$data['error']['info']}\n";
+			return;
+		}
+		$this->printText( $data['_raw'] );
+	}
+
+	public function getNeedsRawData() {
+		return true;
+	}
+
+	protected function getDescription() {
+		return 'Output data in raw format. NOTE: not all actions support it' . parent :: getDescription();
+	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
+}
