@@ -23,6 +23,6 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK  => 'Дакъан_дийца',
 	NS_HELP           => 'ГІо',
 	NS_HELP_TALK      => 'ГІодан_дийца',
-	NS_CATEGORY       => 'Категорий',
-	NS_CATEGORY_TALK  => 'Категорийн_дийца',
+	NS_CATEGORY       => 'Тоба',
+	NS_CATEGORY_TALK  => 'Тобан_дийца',
 );
