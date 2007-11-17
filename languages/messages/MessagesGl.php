@@ -20,7 +20,7 @@ $namespaceNames = array(
 	NS_USER           => 'Usuario',
 	NS_USER_TALK      => 'Conversa_Usuario',
 	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => 'Conversa_Wikipedia',
+	NS_PROJECT_TALK   => 'Conversa_$1',
 	NS_IMAGE          => 'Imaxe',
 	NS_IMAGE_TALK     => 'Conversa_Imaxe',
 	NS_MEDIAWIKI      => 'MediaWiki',
