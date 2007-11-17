@@ -8,6 +8,27 @@
  * @author AlefZet
  */
 
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Arnawlı',
+	NS_MAIN           => '',
+	NS_TALK           => 'Sa\'wbet',
+	NS_USER           => 'Paydalanıwshı',
+	NS_USER_TALK      => 'Paydalanıwshı_sa\'wbeti',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_sa\'wbeti',
+	NS_IMAGE          => 'Su\'wret',
+	NS_IMAGE_TALK     => 'Su\'wret_sa\'wbeti',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_sa\'wbeti',
+	NS_TEMPLATE       => 'Shablon',
+	NS_TEMPLATE_TALK  => 'Shablon_sa\'wbeti',
+	NS_HELP           => 'Anıqlama',
+	NS_HELP_TALK      => 'Anıqlama_sa\'wbeti',
+	NS_CATEGORY       => 'Kategoriya',
+	NS_CATEGORY_TALK  => 'Kategoriya_sa\'wbeti',
+);
+
 $linkTrail = '/^([a-zʻ`]+)(.*)$/sDu';
 
 $messages = array(
