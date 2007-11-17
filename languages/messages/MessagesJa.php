@@ -1474,9 +1474,8 @@ $NEWPAGE
 
 :あなたの使用しているIPアドレスはオープン・プロクシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess'           => '終了しました。',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'あなたのIPアドレスはオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されています。',
-'sorbs_create_account_reason' => 'あなたのIPアドレスがオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されているため、アカウントを作成できません。',
+'sorbsreason'                 => 'あなたのIPアドレスはオープンプロクシであると、DNSBLに掲載されています。',
+'sorbs_create_account_reason' => 'あなたのIPアドレスがオープンプロクシであると DNSBLに掲載されているため、アカウントを作成できません。',
 
 # Developer tools
 'lockdb'              => 'データベースのロック',

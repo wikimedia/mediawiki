@@ -605,6 +605,7 @@ Móžeš administratora $1 abo jednoho z druhich [[{{MediaWiki:grouppage-sysop}}
 *IP-adresa: $3
 *ID blokowanja: #$5
 </div>',
+'blockednoreason'           => 'žana přičina podata',
 'blockedoriginalsource'     => 'To je žórłowy tekst strony <b>$1</b>:',
 'blockededitsource'         => 'Tekst <b>twojich změnow</b> strony <b>$1</b> so tu pokazuje:',
 'whitelistedittitle'        => 'Za wobdźěłowanje je přizjewjenje trěbne.',

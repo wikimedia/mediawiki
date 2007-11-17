@@ -622,7 +622,7 @@ Eston syy on:
 *Esto vanhenee: $6
 
 Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Estotunnus on #$5. Liitä se kyselyihisi.",
-'blockednoreason'           => 'ei annettua syytä',
+'blockednoreason'           => '(syytä ei annettu)',
 'blockedoriginalsource'     => 'Sivun ”$1” lähdekoodi:',
 'blockededitsource'         => 'Muokkauksesi sivuun ”$1”:',
 'whitelistedittitle'        => 'Sisäänkirjautuminen vaaditaan muokkaamiseen',

@@ -1,8 +1,10 @@
 <?php
-/**
- * Magyar (Hungarian)
+/** Hungarian (Magyar)
  *
  * @addtogroup Language
+ *
+ * @author Bdanee
+ * @author Bdamokos
  */
 
 $namespaceNames = array(
@@ -229,8 +231,6 @@ $messages = array(
 'aug'           => 'aug',
 'sep'           => 'szep',
 'oct'           => 'Okt',
-'nov'           => 'Nov',
-'dec'           => 'Dec',
 
 # Bits of text used by many pages
 'categories'            => 'Kategóriák',
@@ -356,7 +356,6 @@ $messages = array(
 'versionrequired'     => 'A MediaWiki $1-s verziója szükséges',
 'versionrequiredtext' => 'A MediaWiki $1-s verziójára van szükség ennek a lapnak a használatához. Lásd a [[Special:Version|version page]] lapot.',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'A lap eredeti címe "$1"',
 'youhavenewmessages'      => '$1 van. ($2)',
 'newmessageslink'         => 'Új üzeneted',
@@ -374,7 +373,7 @@ $messages = array(
 'feedlinks'               => 'Hírcsatorna:',
 'feed-invalid'            => 'Érvénytelen a figyelt hírcsatorna típusa.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Cikk',
 'nstab-user'      => 'User lap',
 'nstab-media'     => 'Médialap',
@@ -503,10 +502,10 @@ A fiókodat létrehoztuk. Ne felejtsd el módosítani a személyes {{SITENAME}} 
 'yournick'                   => 'Beceneved (aláírásokhoz):',
 'badsig'                     => 'Rossz aláírás; ellenőrizd a HTML-kódelemeket.',
 'badsiglength'               => 'Túl hosszú a beceneved; $1 karakternél kevesebbnek kell lennie.',
-'email'                      => 'E-mail',
 'prefs-help-realname'        => 'A valódi név elhagyható, de ha úgy döntesz, hogy megadod, akkor ez kerül felhasználásra a munkád szerzőjének megjelölésére.',
 'loginerror'                 => 'Belépési hiba',
 'prefs-help-email'           => '1 E-mail cím (nem kötelező megadni): Lehetővé teszi, hogy más szerkesztők kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
+'prefs-help-email-required'  => 'E-mail cím szükséges.',
 'nocookiesnew'               => 'A felhasználói fiók létrehozása befejeződött, de nem léptél be. A(z) {{SITENAME}} cookie-kat ("süti") használ a felhasználók azonosítására, és lehetséges, hogy te ezeket letiltottad. Kérjük, hogy engedélyezd a cookie-kat, majd lépj be azonosítóddal és jelszavaddal.',
 'nocookieslogin'             => 'A wiki cookie-kat ("süti") használ az azonosításhoz, de te ezeket letiltottad. Engedélyezd őket, majd próbálkozz ismét.',
 'noname'                     => 'Nem adtál meg érvényes felhasználónevet.',
@@ -731,6 +730,8 @@ Ezen lap törlésnaplóját a kényelem kedvéért alább találod:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nem hozható létre a fiók',
+'cantcreateaccount-text' => "Erről az IP-címről (<b>$1</b>) átmenetileg nem lehet regisztrálni, mert [[User:$3|$3]] blokkolta az alábbi indokkal:
+:''$2''",
 
 # History pages
 'revhistory'          => 'Változások története',
@@ -757,7 +758,7 @@ Jelmagyarázat: (akt) = eltérés az aktuális változattól,
 'deletedrev'          => '[törölve]',
 'histfirst'           => 'legkorábbi',
 'histlast'            => 'legutolsó',
-'historysize'         => '($1 bájt)',
+'historysize'         => '($1 byte)',
 'historyempty'        => '(üres)',
 
 # Revision feed
@@ -816,6 +817,7 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
  A jelenleg érvényben lévő kitiltásokat és blokkolásokat lásd az [[Special:Ipblocklist|IP blokkolási listában]].',
 
 # Diffs
+'history-title'             => 'A(z) „$1” laptörténete',
 'difference'                => '(Változatok közti eltérés)',
 'loadingrev'                => 'változat betöltése a különbségképzéshez',
 'lineno'                    => '$1. sor:',
@@ -1035,7 +1037,7 @@ Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetbe
 'savefile'                    => 'Fájl mentése',
 'uploadedimage'               => '"[[$1]]" feltöltve',
 'overwroteimage'              => 'feltöltötték a(z) "[[$1]]" kép új változatát',
-'uploaddisabled'              => 'A feltöltés letiltott',
+'uploaddisabled'              => 'Feltöltések kikapcsolva',
 'uploaddisabledtext'          => 'A fájlfeltöltés ebben a wikiben letiltott.',
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',
 'uploadcorrupt'               => 'A fájl sérült, vagy hibás a kiterjesztése. Kérjük, hogy ellenőrizd a fájlt, és próbálkozz újra!',
@@ -1044,6 +1046,10 @@ Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetbe
 'destfilename'                => 'Célmédiafájl neve',
 'watchthisupload'             => 'Figyeld ezt a lapot',
 'filewasdeleted'              => 'Már töltöttek föl ilyen nevű fájlt, de később törlésre került. Ellenőrizned kell a $1 fájlt a feltöltés folytatás előtt.',
+'upload-wasdeleted'           => "'''Vigyázat: egy olyan fájlt akarsz feltölteni, ami korábban már törölve lett.'''
+
+Mielőtt ismét feltöltenéd, nézd meg, miért lett korábban törölve, és ellenőrizd, hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
+'filename-bad-prefix'         => 'Annak a fájlnak a neve, amelyet fel akarsz tölteni <strong>„$1”</strong> karakterekkel kezdődik. Ilyeneket általában a digitális kamerák adnak a fájloknak, automatikusan, azonban ezek nem írják le annak tartalmát. Válassz egy leíró nevet!',
 
 'upload-proto-error'      => 'Hibás protokoll',
 'upload-proto-error-text' => 'A távoli feltöltéshez <code>http://</code> vagy <code>ftp://</code> kezdetű URL-ekre van szükség.',
@@ -1142,6 +1148,10 @@ Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetbe
 'unusedtemplates'     => 'Nem használt sablonok',
 'unusedtemplatestext' => 'Ez a lap azon sablon névtérben lévő lapokat gyűjti össze, melyek nem találhatók meg más lapokon. Ellenőrizd a hivatkozásokat, mielőtt törölnéd őket.',
 
+# Random page
+'randompage'         => 'Lap találomra',
+'randompage-nopages' => 'Ebben a névtérben nincsenek lapok.',
+
 # Random redirect
 'randomredirect'         => 'Átirányítás találomra',
 'randomredirect-nopages' => 'Ebben a névtérben nincsenek átirányítások.',
@@ -1211,8 +1221,6 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue feladat várólista] hossza '''
 'mostrevisions'           => 'Legtöbb változattal rendelkező szócikkek',
 'allpages'                => 'Az összes lap listája',
 'prefixindex'             => 'Keresés előtag szerint',
-'randompage'              => 'Lap találomra',
-'randompage-nopages'      => 'Ebben a névtérben nincsenek lapok.',
 'shortpages'              => 'Rövid lapok',
 'longpages'               => 'Hosszú lapok',
 'deadendpages'            => 'Zsákutca lapok',
@@ -1296,7 +1304,6 @@ Feladóként a beállításaid között megadott e-mail címed
 fog szerepelni, 
 hogy a címzett válaszolni tudjon.',
 'usermailererror' => 'A postázó objektum által visszaadott hiba:',
-'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Nincs e-mail cím',
 'noemailtext'     => 'Ez a felhasználó nem adta meg az e-mail címét, vagy
 nem kíván másoktól leveleket kapni.',
@@ -1489,6 +1496,7 @@ a törölt változatoknak a tényleges szövege csak az adminisztrátorok szám�
 'undelete-revision'            => '$1 változatának törlése kész ($2), $3:',
 'undeleterevision-missing'     => 'Érvénytelen vagy hiányzó változat. Lehet, hogy rossz hivatkozásod van, ill. a
 változatot visszaállították vagy eltávolították az archívumból.',
+'undelete-nodiff'              => 'Nem található korábbi változat.',
 'undeletebtn'                  => 'Visszaállítás!',
 'undeletereset'                => 'Alaphelyzet',
 'undeletecomment'              => 'Visszaállítás oka:',
@@ -1539,12 +1547,14 @@ $1',
 'sp-contributions-blocklog'    => 'Blokkolási napló',
 'sp-contributions-search'      => 'Cikkek keresése',
 'sp-contributions-username'    => 'IP-cím vagy felhasználónév:',
+'sp-contributions-submit'      => 'Szűrés',
 
 'sp-newimages-showfrom' => 'Új képek mutatása $1 után',
 
 # What links here
 'whatlinkshere'       => 'Mi hivatkozik erre',
 'whatlinkshere-title' => 'A(z) $1 lapra hivatkozó lapok',
+'whatlinkshere-page'  => 'Oldal:',
 'linklistsub'         => '(Hivatkozások )',
 'linkshere'           => 'Az alábbi lapok hivatkoznak erre: [[:$1]]',
 'nolinkshere'         => 'Erre a lapra semmi nem hivatkozik: [[:$1]]',
@@ -1631,9 +1641,11 @@ Az automatikusan blokkolt IP-címek nem szerepelnek a listában. Lásd még [[Sp
 'range_block_disabled'        => 'A rendszerfelelős tartományblokkolás létrehozási képessége letiltott.',
 'ipb_expiry_invalid'          => 'Hibás lejárati dátum.',
 'ipb_already_blocked'         => '"$1" már blokkolva',
-'ip_range_invalid'            => 'Érvénytelen IP-tartomány.',
-'proxyblocker'                => 'Proxyblokkoló',
 'ipb_cant_unblock'            => 'Hiba: A(z) $1 blokkoéási azonosító nem található. Lehet, hogy már feloldották a blokkolását.',
+'ip_range_invalid'            => 'Érvénytelen IP-tartomány.',
+'blockme'                     => 'Saját magam blokkolása',
+'proxyblocker'                => 'Proxyblokkoló',
+'proxyblocker-disabled'       => 'Ez a funkció le van tiltva.',
 'proxyblockreason'            => "Az IP címed ''open proxy'' probléma miatt le van tiltva. Vedd fel a kapcsolatot egy informatikussal vagy az internet szolgáltatóddal ezen súlyos biztonsági probléma ügyében.",
 'proxyblocksuccess'           => 'Kész.',
 'sorbsreason'                 => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán.',
@@ -1814,6 +1826,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-ca-watch'                => 'A lap hozzáadása a figyelőlistádhoz',
 'tooltip-ca-unwatch'              => 'A lap eltávolítása a figyelőlistádról',
 'tooltip-search'                  => 'Keresés a wikiben',
+'tooltip-search-go'               => 'Ugrás a megadott lapra, ha létezik',
+'tooltip-search-fulltext'         => 'Oldalak keresése a megadott szöveg alapján',
 'tooltip-p-logo'                  => 'Főlap',
 'tooltip-n-mainpage'              => 'A főlap felkeresése',
 'tooltip-n-portal'                => 'A közösségről, miben segíthetsz, mit hol találsz meg',
@@ -1853,6 +1867,10 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 
 # Stylesheets
 'common.css'   => '/* Közös CSS az összes felszínnek */',
+'monobook.css' => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
+
+# Scripts
+'common.js' => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
 
 # Metadata
 'nodublincore'      => 'Ezen a kiszolgálón a Dublin Core RDF metaadatok használata letiltott.',
@@ -2234,8 +2252,8 @@ Ha ez *nem* te vagy, ne kattints a hivatkozásra. Ennek a megerősítésre szán
 a felhasználhatósági ideje lejár: $4.',
 
 # Scary transclusion
-'scarytranscludefailed'   => '[$1 sablonjának visszakeresése nem sikerült; sajnáljuk]',
-'scarytranscludetoolong'  => '[Túl hosszú az URL; sajnáljuk]',
+'scarytranscludefailed'  => '[$1 sablonjának visszakeresése nem sikerült; sajnáljuk]',
+'scarytranscludetoolong' => '[Túl hosszú az URL; sajnáljuk]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2257,10 +2275,9 @@ Kérjük, erősítsd meg, hogy valóban újból létre akarod-e hozni ezt a lapo
 'redirectingto' => 'Átirányítás a következőre: [[:$1|$1]]...',
 
 # action=purge
-'confirm_purge'        => 'Kiüríted ennek a lapnak gyorsítótárát?
+'confirm_purge' => 'Kiüríted ennek a lapnak gyorsítótárát?
 
 $1',
-'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "''$1''-t tartalmazó lapokra keresés.",
@@ -2293,6 +2310,7 @@ $1',
 'autosumm-new'     => 'Új oldal, tartalma: „$1”',
 
 # Live preview
+'livepreview-loading' => 'Loading…',
 'livepreview-ready'   => 'Betöltés… Kész!',
 'livepreview-failed'  => 'Az élő előnézet nem sikerült! Próbálkozz a normál előnézettel.',
 'livepreview-error'   => 'A csatlakozás nem sikerült: $1 "$2". Próbálkozz a normál előnézettel.',
