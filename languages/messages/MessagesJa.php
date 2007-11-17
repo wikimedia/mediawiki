@@ -12,6 +12,7 @@
  * @author Siebrand
  * @author Hatukanezumi
  * @author SPQRobin
+ * @author Emk
  */
 
 $skinNames = array(
@@ -83,7 +84,7 @@ $messages = array(
 'tog-enotifminoredits'        => '細部の編集でもメールを受け取る',
 'tog-enotifrevealaddr'        => 'あなた以外に送られる通知メールにあなたのメールアドレスを記載する',
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示する',
-'tog-fancysig'                => '署名を自動的に利用者ページへリンクさせない',
+'tog-fancysig'                => '署名に利用者ページへの自動的なリンクを付けない（このチェックを付ける場合でも利用者ページへのリンクを外さないようにしましょう）',
 'tog-externaleditor'          => '編集に外部アプリケーションを使う',
 'tog-externaldiff'            => '差分表示に外部アプリケーションを使う',
 'tog-showjumplinks'           => 'アクセシビリティのための "{{int:jumpto}}" リンクを有効にする',
@@ -98,7 +99,7 @@ $messages = array(
 
 'underline-always'  => '常に付ける',
 'underline-never'   => '常に付けない',
-'underline-default' => 'WWWブラウザに従う',
+'underline-default' => 'WWWブラウザ既定',
 
 'skinpreview' => '（プレビュー）',
 
@@ -206,7 +207,7 @@ $messages = array(
 'deletethispage'    => 'このページを削除',
 'undelete_short'    => '削除済$1版',
 'protect'           => '保護',
-'protect_change'    => '保護状態の変更',
+'protect_change'    => '保護・解除',
 'protectthispage'   => 'このページを保護',
 'unprotect'         => '保護解除',
 'unprotectthispage' => 'ページ保護解除',
@@ -231,7 +232,7 @@ $messages = array(
 'otherlanguages'    => '他の言語',
 'redirectedfrom'    => '（$1 から転送）',
 'redirectpagesub'   => 'リダイレクトページ',
-'lastmodifiedat'    => '最終更新 $2, $1。', # $1 date, $2 time
+'lastmodifiedat'    => '最終更新 $1 $2', # $1 date, $2 time
 'viewcount'         => 'このページは $1 回アクセスされました。',
 'protectedpage'     => '保護されたページ',
 'jumpto'            => '移動:',
@@ -288,6 +289,9 @@ $messages = array(
 'restorelink'             => '削除された $1 編集',
 'feedlinks'               => 'フィード:',
 'feed-invalid'            => 'フィード形式の指定が間違っています。',
+'site-rss-feed'           => '$1 をRSSフィード',
+'site-atom-feed'          => '$1 をAtomフィード',
+'page-rss-feed'           => '"$1" をRSSフィード',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '本文',
@@ -372,8 +376,10 @@ $2',
 'logouttitle'                => 'ログアウト',
 'logouttext'                 => '<p><strong>ログアウトしました。</strong>このまま{{SITENAME}}を匿名で使い続けることができます。もう一度ログインして元の、あるいは別の利用者として使うこともできます。</p>
 <p>※いくつかのページはブラウザのキャッシュをクリアするまでログインしているかのように表示されることがあります。</p>',
-'welcomecreation'            => '== $1 さん、ようこそ! ==
-あなたのアカウントができました。お好みに合わせて[[Special:Preferences|オプション]]を変更することをお忘れなく。',
+'welcomecreation'            => '== $1 さん、ようこそ！ ==
+あなたのアカウントができました。
+
+お好みに合わせて[[Special:Preferences|オプション]]を変更することができます。',
 'loginpagetitle'             => 'ログイン',
 'yourname'                   => '利用者名',
 'yourpassword'               => 'パスワード',
@@ -468,7 +474,7 @@ $2',
 'math_tip'        => '数式 (LaTeX)',
 'nowiki_sample'   => 'そのまま表示させたい文字を入力',
 'nowiki_tip'      => '入力文字をそのまま表示',
-'image_tip'       => '埋め込み画像',
+'image_tip'       => '画像の埋め込み',
 'media_sample'    => 'Example.mp3',
 'media_tip'       => 'メディアファイル（音声）へのリンク',
 'sig_tip'         => '時刻つきの署名',
@@ -691,7 +697,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 # Search results
 'searchresults'         => '検索結果',
 'searchresulttext'      => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:helppage}}|{{int:help}}]]をご覧ください。',
-'searchsubtitle'        => '問い合わせ: "[[:$1]]"',
+'searchsubtitle'        => '問い合わせ："[[:$1]]" （[[Special:Prefixindex/$1|全ページ]]/[[Special:Whatlinkshere/$1|リンク元]]）',
 'searchsubtitleinvalid' => '問い合わせ: "$1"',
 'noexactmatch'          => '"$1" という名称のページは存在しませんでした。[[:$1|新規作成する]]。',
 'titlematches'          => '項目名と一致',
@@ -801,8 +807,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'grouppage-bureaucrat' => 'Project:{{int:group-bureaucrat}}',
 
 # User rights log
-'rightslog'      => '権限変更記録',
-'rightslogtext'  => '以下は利用者権限変更の一覧です。',
+'rightslog'      => '利用者権限変更記録',
+'rightslogtext'  => '以下は利用者の権限変更の一覧です。',
 'rightslogentry' => '$1 の権限を $2 から $3 へ変更しました。',
 'rightsnone'     => '（権限なし）',
 
@@ -976,7 +982,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filerevert-submit'         => '差し戻す',
 
 # File deletion
-'filedelete'             => '$1 を削除',
+'filedelete'             => '$1の削除',
 'filedelete-legend'      => 'ファイルの削除',
 'filedelete-intro'       => "あなたは'''[[Media:$1|$1]]'''を削除しようとしています。",
 'filedelete-intro-old'   => '<span class="plainlinks">あなたは\'\'\'[[Media:$1|$1]]\'\'\'の[$4 $3, $2]の版を削除しようとしています。</span>',
@@ -1033,7 +1039,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 [[MediaWiki:disambiguationspage]] からリンクされたテンプレートを使用しているページは曖昧さ回避ページと見なされます。",
 
 'doubleredirects'     => '二重リダイレクト',
-'doubleredirectstext' => '以下はリダイレクトにリンクしているリダイレクトの一覧です。最も左のリダイレクトは二番目のリダイレクトが指している、恐らく「真に」リダイレクトしたいページを指すよう、変更されるべきです。',
+'doubleredirectstext' => '各列は最初及び2つ目のリダイレクトへのリンクが記されています。2つ目のそれ同様、最初のものを本来のページへリダイレクトしなおしてください。',
 
 'brokenredirects'        => '迷子のリダイレクト',
 'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです。',
@@ -1139,7 +1145,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'listusers-noresult' => '利用者が見つかりませんでした。大文字・小文字の区別を確認してください。',
 
 # E-mail user
-'mailnologin'     => '送信先のアドレスがありません。',
+'mailnologin'     => 'メールアドレスの記載がありません。',
 'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:Userlogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|オプション]]に設定する必要があります。',
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
@@ -1245,7 +1251,7 @@ $NEWPAGE
 'deletepage'                  => 'ページを削除',
 'confirm'                     => '確認',
 'excontent'                   => "内容: '$1'",
-'excontentauthor'             => "内容: '$1' (投稿者 $2 のみ)",
+'excontentauthor'             => "内容: '$1' (投稿者 [[Special:Contributions/$2|$2]] のみ)",
 'exbeforeblank'               => "白紙化前の内容: '$1'",
 'exblank'                     => '白紙ページ',
 'confirmdelete'               => '削除の確認',
@@ -1434,6 +1440,7 @@ $NEWPAGE
 'unblocked'                   => '[[User:$1|$1]] の投稿ブロックを解除しました',
 'unblocked-id'                => 'ブロック $1 は解除されました',
 'ipblocklist'                 => '投稿ブロック中の利用者やIPアドレス',
+'ipblocklist-legend'          => 'ブロック中の利用者を検索',
 'ipblocklist-username'        => 'ユーザー名またはIPアドレス:',
 'ipblocklist-submit'          => '検索',
 'blocklistline'               => '$1, $2 は $3 をブロック （$4）',
@@ -1467,8 +1474,9 @@ $NEWPAGE
 
 :あなたの使用しているIPアドレスはオープン・プロクシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess'           => '終了しました。',
-'sorbsreason'                 => 'あなたのIPアドレスはオープンプロクシであると、DNSBLに掲載されています。',
-'sorbs_create_account_reason' => 'あなたのIPアドレスがオープンプロクシであると、DNSBLに掲載されているため、アカウントを作成できません。',
+'sorbs'                       => 'SORBS DNSBL',
+'sorbsreason'                 => 'あなたのIPアドレスはオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されています。',
+'sorbs_create_account_reason' => 'あなたのIPアドレスがオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されているため、アカウントを作成できません。',
 
 # Developer tools
 'lockdb'              => 'データベースのロック',
@@ -1491,8 +1499,9 @@ $NEWPAGE
 'movepage'                => 'ページの移動',
 'movepagetext'            => '下のフォームを利用すると、ページ名を変更し、その履歴も変更先へ移動することができます。古いページは変更先へのリダイレクトページとなります。ページの中身と変更前のページに張られたリンクは変わりません。ですから、二重になったり壊れてしまったリダイレクトをチェックする必要があります。
 
-変更先がすでに存在する場合には、履歴が移動元ページへのリダイレクトただ一つである場合を除いて、移動できません。つまり、間違えてページ名を変更した場合には元に戻せます。
+移動先がすでに存在する場合には、履歴が移動元ページへのリダイレクトただ一つである場合を除いて移動できません。つまり、間違えてページ名を変更した場合には元に戻せます。
 
+<strong>注意！</strong>
 よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。ページの移動に伴う影響をよく考えてから踏み切るようにしてください。',
 'movepagetalktext'        => '付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
 
@@ -1510,7 +1519,7 @@ $NEWPAGE
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
 'pagemovedsub'            => '無事移動しました。',
-'movepage-moved'          => 'ページ "$1" は "$2" に移動されました。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" は "$2" へ移動されました。\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'talkexists'              => 'ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。',
 'movedto'                 => '移動先:',
@@ -1543,6 +1552,7 @@ $NEWPAGE
 'export-submit'     => '書き出し',
 'export-addcattext' => 'カテゴリ内のページを対象に加える。 Category:',
 'export-addcat'     => '追加',
+'export-download'   => '書き出した結果をファイルに保存する',
 
 # Namespace 8 related
 'allmessages'               => '表示メッセージの一覧',
@@ -1750,7 +1760,7 @@ $NEWPAGE
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => '新着画像ギャラリー',
+'newimages'    => '新規画像展示室',
 'showhidebots' => '（ボットを$1）',
 'noimages'     => '画像がありません。',
 
@@ -1993,7 +2003,7 @@ Variants for Chinese language
 'exif-gaincontrol-1' => '弱増感',
 'exif-gaincontrol-2' => '強増感',
 'exif-gaincontrol-3' => '弱減感',
-'exif-gaincontrol-4' => '強増感',
+'exif-gaincontrol-4' => '強減感',
 
 'exif-contrast-0' => '標準',
 'exif-contrast-1' => '軟調',
@@ -2170,21 +2180,20 @@ $1',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'あなたのウォッチリストには $1タイトルが登録されています（ノートページを除く）。',
-'watchlistedit-noitems'        => 'あなたのウォッチリストにはタイトルが登録されていません。',
+'watchlistedit-noitems'        => 'あなたのウォッチリストには、現在タイトルがありません。',
 'watchlistedit-normal-title'   => 'ウォッチリストの編集',
-'watchlistedit-normal-legend'  => 'ウォッチリストからタイトルを除去',
-'watchlistedit-normal-explain' => 'あなたのウォッチリストにあるタイトルが以下に表示されています。除去したいタイトルの横にあるチェックボックスにチェックを入れ、 &quot;{{int:watchlistedit-normal-submit}}&quot; ボタンをクリックしてください。
-[[Special:Watchlist/raw|一覧をテキストで編集]]したり、[[Special:Watchlist/clear|タイトルを全て除去]]することもできます。',
-'watchlistedit-normal-submit'  => 'タイトルの除去',
-'watchlistedit-normal-done'    => '$1タイトルがあなたのウォッチリストから除去されました:',
+'watchlistedit-normal-legend'  => 'ウォッチリストからタイトルを削除',
+'watchlistedit-normal-explain' => 'あなたのウォッチリストにあるタイトルが以下に表示されています。タイトルの横にあるチェックボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」を選べば削除できます。また、[[Special:Watchlist/raw|一覧をテキストで編集]]したり、[[Special:Watchlist/clear|タイトルをすべて削除]]することもできます。',
+'watchlistedit-normal-submit'  => 'タイトルの削除',
+'watchlistedit-normal-done'    => 'あなたのウォッチリストから $1 タイトルを削除しました:',
 'watchlistedit-raw-title'      => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをテキストで編集',
-'watchlistedit-raw-explain'    => 'あなたのウォッチリストにあるタイトルが以下に表示されています。一行につき一つのタイトルを表し、タイトルを追加・除去することにより編集できます。編集を反映させる時は &quot;ウォッチリストを更新&quot; を選びます。この編集方法の他に、[[Special:Watchlist/edit|標準的なエディタ]]も利用できます。',
+'watchlistedit-raw-explain'    => 'あなたのウォッチリストにあるタイトルが以下に表示されています。1行につき1つのタイトルを表し、タイトルを追加・削除することにより編集できます。編集を反映させる時は "{{int:Watchlistedit-raw-submit}}" を選びます。この編集方法の他に、[[Special:Watchlist/edit|標準的なエディタ]]も利用できます。',
 'watchlistedit-raw-titles'     => 'タイトル:',
 'watchlistedit-raw-submit'     => 'ウォッチリストを更新',
-'watchlistedit-raw-done'       => 'あなたのウォッチリストは更新されました。',
-'watchlistedit-raw-added'      => '$1タイトルが追加されました:',
-'watchlistedit-raw-removed'    => '$1タイトルが除去されました:',
+'watchlistedit-raw-done'       => 'あなたのウォッチリストを更新しました。',
+'watchlistedit-raw-added'      => '$1 タイトルを追加しました:',
+'watchlistedit-raw-removed'    => '$1 タイトルを削除しました:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ウォッチリストの確認',

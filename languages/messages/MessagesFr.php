@@ -14,6 +14,7 @@
  * @author Siebrand
  * @author ChrisPtDe
  * @author Горан Анђелковић
+ * @author Grondin
  */
 
 $skinNames = array(
@@ -840,7 +841,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'rclinks'                           => 'Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours<br />$3.',
 'hide'                              => 'masquer',
 'show'                              => 'afficher',
-'number_of_watching_users_pageview' => '[$1 utilisateur(s) suivant]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utilisateur suivant|utilisateurs suivants}}]',
 'rc_categories'                     => 'Limite des catégories (séparation avec « | »)',
 'rc_categories_any'                 => 'Toutes',
 'newsectionsummary'                 => '/* $1 */ nouvelle section',

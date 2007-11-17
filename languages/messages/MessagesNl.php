@@ -787,6 +787,7 @@ De opgegeven reden is:
 * Einde blokkade: $6
 
 U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
+'blockednoreason'           => 'geen reden opgegeven',
 'blockedoriginalsource'     => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'         => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
 'whitelistedittitle'        => 'Voor bewerken is aanmelden verplicht',
