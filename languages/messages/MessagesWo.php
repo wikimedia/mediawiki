@@ -12,6 +12,10 @@ $fallback = 'fr';
 
 $messages = array(
 # User preference toggles
+'tog-underline'           => 'Rëddaatu lëkkalekaay yi :',
+'tog-highlightbroken'     => 'Wone leen <a href="" class="new">ñu xonq</a> lëkkalekaay yiy yóbbe ciy xët yu amul (lu ko moy :  lu mel nii <a href="" class="internal">?</a>)',
+'tog-hideminor'           => 'Nëbb coppite yu néewal yi mujj',
+'tog-extendwatchlist'     => 'Jëfandikul limu toppte gi ñu gënal',
 'tog-rememberpassword'    => 'Fattaliku sama baatu duggu(cookie)',
 'tog-enotifusertalkpages' => 'Yònnee ma ab bataaxal su ay coppite amee ci sama xëtu waxtaanukaay',
 'tog-shownumberswatching' => "Wone limu jëfëndikookat yi'y topp xët mii",

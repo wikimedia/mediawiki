@@ -117,7 +117,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => '$1 {{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
-'pagecategories'  => 'ವರ್ಗಗಳು',
+'pagecategories'  => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
 'category_header' => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
 'subcategories'   => 'ಉಪವಿಭಾಗಗಳು',
 'category-empty'  => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
@@ -212,6 +212,7 @@ $messages = array(
 'nstab-project'   => 'ಬಗ್ಗೆ',
 'nstab-image'     => 'ಚಿತ್ರ',
 'nstab-mediawiki' => 'ಸಂದೇಶ',
+'nstab-template'  => 'ಟೆಂಪ್ಲೇಟು',
 'nstab-help'      => 'ಸಹಾಯ',
 'nstab-category'  => 'ವರ್ಗ',
 
@@ -258,29 +259,35 @@ $messages = array(
 'link_tip'        => 'ಆಂತರಿಕ ಸಂಪರ್ಕ',
 'headline_sample' => 'ಶಿರೋಲೇಖ',
 'sig_tip'         => 'ಸಮಯಮುದ್ರೆಯೊಂದಿಗೆ ನಿಮ್ಮ ಸಹಿ',
+'hr_tip'          => 'ಅಡ್ಡ ಗೆರೆ (ಆದಷ್ಟು ಕಡಿಮೆ ಉಪಯೋಗಿಸಿ)',
 
 # Edit pages
-'summary'       => 'ಸಾರಾಂಶ',
-'minoredit'     => 'ಇದು ಚುಟುಕಾದ ಬದಲಾವಣೆ',
-'watchthis'     => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
-'savearticle'   => 'ಪುಟವನ್ನು ಉಳಿಸಿ',
-'preview'       => 'ಮುನ್ನೋಟ',
-'showpreview'   => 'ಮುನ್ನೋಟ',
-'blockedtitle'  => 'ಈ ಸದಸ್ಯರನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ.',
-'loginreqtitle' => 'ಲಾಗಿನ್ ಆಗಬೇಕು',
-'accmailtitle'  => 'ಪ್ರವೇಶ ಪದ ಕಳುಹಿಸಲಾಯಿತು.',
-'accmailtext'   => "'$1'ನ ಪ್ರವೇಶ ಪದ $2 ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
-'newarticle'    => '(ಹೊಸತು)',
-'noarticletext' => '(ಈ ಪುಟದಲ್ಲಿ ಸದ್ಯಕ್ಕೆ ಏನೂ ಇಲ್ಲ)',
-'note'          => '<strong>ಸೂಚನೆ:</strong>',
-'previewnote'   => 'ಇದು ಕೇವಲ ಮುನ್ನೋಟ, ಪುಟವನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ ಎ೦ಬುದನ್ನು ಮರೆಯದಿರಿ!',
-'editing'       => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
-'editinguser'   => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
-'storedversion' => 'ಈಗಾಗಲೇ ಉಳಿಸಲಾಗಿರುವ ಆವೃತ್ತಿ',
-'editingold'    => '<strong>ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬದಲಾಯಿಸುತ್ತಿದ್ದೀರಿ. ಈ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿದಲ್ಲಿ, ನ೦ತರದ ಆವೃತ್ತಿಗಳೆಲ್ಲವೂ ಕಳೆದುಹೋಗುತ್ತವೆ.</strong>',
-'templatesused' => 'ಈ ಪುಟದಲ್ಲಿ ಉಪಯೋಗಿಸಲಾಗಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು:',
+'summary'                => 'ಸಾರಾಂಶ',
+'minoredit'              => 'ಇದು ಚುಟುಕಾದ ಬದಲಾವಣೆ',
+'watchthis'              => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
+'savearticle'            => 'ಪುಟವನ್ನು ಉಳಿಸಿ',
+'preview'                => 'ಮುನ್ನೋಟ',
+'showpreview'            => 'ಮುನ್ನೋಟ',
+'showdiff'               => 'ಬದಲಾವಣೆಗಳನ್ನು ತೋರಿಸಿ',
+'blockedtitle'           => 'ಈ ಸದಸ್ಯರನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ.',
+'loginreqtitle'          => 'ಲಾಗಿನ್ ಆಗಬೇಕು',
+'accmailtitle'           => 'ಪ್ರವೇಶ ಪದ ಕಳುಹಿಸಲಾಯಿತು.',
+'accmailtext'            => "'$1'ನ ಪ್ರವೇಶ ಪದ $2 ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
+'newarticle'             => '(ಹೊಸತು)',
+'noarticletext'          => '(ಈ ಪುಟದಲ್ಲಿ ಸದ್ಯಕ್ಕೆ ಏನೂ ಇಲ್ಲ)',
+'note'                   => '<strong>ಸೂಚನೆ:</strong>',
+'previewnote'            => 'ಇದು ಕೇವಲ ಮುನ್ನೋಟ, ಪುಟವನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ ಎ೦ಬುದನ್ನು ಮರೆಯದಿರಿ!',
+'editing'                => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
+'editinguser'            => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
+'storedversion'          => 'ಈಗಾಗಲೇ ಉಳಿಸಲಾಗಿರುವ ಆವೃತ್ತಿ',
+'editingold'             => '<strong>ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬದಲಾಯಿಸುತ್ತಿದ್ದೀರಿ. ಈ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿದಲ್ಲಿ, ನ೦ತರದ ಆವೃತ್ತಿಗಳೆಲ್ಲವೂ ಕಳೆದುಹೋಗುತ್ತವೆ.</strong>',
+'longpagewarning'        => '<strong>ಎಚ್ಚರ: ಈ ಪುಟ $1 ಕಿಲೋಬೈಟ್‍ಗಳಷ್ಟು ಉದ್ದ ಇದೆ; ಕೆಲವು ಬ್ರೌಸರ್‍ಗಳಲ್ಲಿ ೩೨ ಕಿಲೋಬೈಟ್‍ಗಳಿಗಿಂತ ಉದ್ದದ ಪುಟಗಳನ್ನು ಸಂಪಾದನೆ ಮಾಡುವುದು ಕಷ್ಟ. ಪುಟವನ್ನು ಆದಷ್ಟು ವಿಭಾಗಗಳಾಗಿ ವಿಂಗಡಿಸಲು ಪ್ರಯತ್ನಿಸಿ.</strong>',
+'templatesused'          => 'ಈ ಪುಟದಲ್ಲಿ ಉಪಯೋಗಿಸಲಾಗಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು:',
+'template-protected'     => '(ಸಂರಕ್ಷಿತ)',
+'template-semiprotected' => '(ಅರೆ-ಸಂರಕ್ಷಿತ)',
 
 # History pages
+'revhistory'          => 'ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
 'currentrev'          => 'ಈಗಿನ ತಿದ್ದುಪಡಿ',
 'previousrevision'    => '←ಹಿಂದಿನ ಪರಿಷ್ಕರಣೆ',
 'nextrevision'        => 'ಮುಂದಿನ ಪರಿಷ್ಕರಣೆ',
@@ -288,8 +295,11 @@ $messages = array(
 'cur'                 => 'ಸದ್ಯದ',
 'next'                => 'ಮುಂದಿನದು',
 'last'                => 'ಕೊನೆಯ',
+'page_first'          => 'ಮೊದಲ',
+'page_last'           => 'ಕೊನೆಯ',
 
 # Diffs
+'history-title'           => '"$1"ರ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
 'difference'              => '(ಆವೃತ್ತಿಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸ)',
 'lineno'                  => '$1 ನೇ ಸಾಲು:',
 'editcurrent'             => 'ಈ ಪುಟದ ಪ್ರಸಕ್ತ ಆವೃತ್ತಿಯನ್ನು ಸ೦ಪಾದಿಸಿ',
@@ -318,6 +328,7 @@ $messages = array(
 'group-all' => '(ಎಲ್ಲವೂ)',
 
 # Recent changes
+'nchanges'          => '$1 {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಗಳು}}',
 'recentchanges'     => 'ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳು',
 'recentchangestext' => 'ವಿಕಿಗೆ ಮಾಡಲ್ಪಟ್ಟ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಪುಟದಲ್ಲಿ ನೀವು ಕಾಣಬಹುದು.',
 'rcnote'            => 'ಕೊನೆಯ <strong>$2</strong> ದಿನಗಳಲ್ಲಿ ಮಾಡಿದ <strong>$1</strong> ಬದಲಾವಣೆಗಳು ಕೆಳಗಿನಂತಿವೆ.',
@@ -343,14 +354,18 @@ $messages = array(
 'savefile'      => 'ಕಡತವನ್ನು ಉಳಿಸಿ',
 
 # Image list
-'imagelist'     => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿ',
-'getimagelist'  => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ',
-'ilsubmit'      => 'ಹುಡುಕು',
-'byname'        => 'ಹೆಸರಿಗನುಗುಣವಾಗಿ',
-'bydate'        => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
-'bysize'        => 'ಗಾತ್ರಕ್ಕನುಗುಣವಾಗಿ',
-'filehist-user' => 'ಸದಸ್ಯ',
-'linkstoimage'  => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
+'imagelist'      => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿ',
+'getimagelist'   => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ',
+'ilsubmit'       => 'ಹುಡುಕು',
+'byname'         => 'ಹೆಸರಿಗನುಗುಣವಾಗಿ',
+'bydate'         => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
+'bysize'         => 'ಗಾತ್ರಕ್ಕನುಗುಣವಾಗಿ',
+'filehist-user'  => 'ಸದಸ್ಯ',
+'linkstoimage'   => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
+'nolinkstoimage' => 'ಈ ಫೈಲಿಗೆ ಯಾವ ಪುಟವೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.',
+
+# Unused templates
+'unusedtemplates' => 'ಉಪಯೋಗದಲ್ಲಿರದ ಟೆಂಪ್ಲೇಟುಗಳು',
 
 # Random page
 'randompage' => 'ಯಾದೃಚ್ಛಿಕ ಪುಟ',
@@ -369,25 +384,41 @@ $messages = array(
 
 'brokenredirects' => 'ಮುರಿದ ರಿಡೈರೆಕ್ಟ್‌ಗಳು',
 
+'fewestrevisions' => 'ಅತ್ಯಂತ ಕಡಿಮೆ ಬದಲಾವಣೆಗಳನ್ನು ಹೊಂದಿರುವ ಪುಟಗಳು',
+
 # Miscellaneous special pages
-'ncategories'        => '$1 {{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
-'nlinks'             => '$1 {{PLURAL:$1|ಸಂಪರ್ಕ|ಸಂಪರ್ಕಗಳು}}',
-'lonelypages'        => 'ಒಬ್ಬಂಟಿ ಪುಟಗಳು',
-'uncategorizedpages' => 'ವರ್ಗ ಗೊತ್ತು ಮಾಡದ ಪುಟಗಳು',
-'unusedimages'       => 'ಉಪಯೋಗಿಸದ ಚಿತ್ರಗಳು',
-'popularpages'       => 'ಜನಪ್ರಿಯ ಪುಟಗಳು',
-'wantedpages'        => 'ಬೇಕಾಗಿರುವ ಪುಟಗಳು',
-'allpages'           => 'ಎಲ್ಲ ಪುಟಗಳು',
-'shortpages'         => 'ಪುಟ್ಟ ಪುಟಗಳು',
-'longpages'          => 'ಉದ್ದನೆಯ ಪುಟಗಳು',
-'deadendpages'       => 'ಕೊನೆಯಂಚಿನ ಪುಟಗಳು',
-'specialpages'       => 'ವಿಶೇಷ ಪುಟಗಳು',
-'spheading'          => 'ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಇರುವ ವಿಶೇಷ ಪುಟಗಳು',
-'newpages'           => 'ಹೊಸ ಪುಟಗಳು',
-'ancientpages'       => 'ಹಳೆಯ ಪುಟಗಳು',
-'intl'               => 'ಅಂತರಭಾಷೆ ಸಂಪರ್ಕಗಳು',
-'move'               => 'ಸ್ಥಳಾಂತರಿಸಿ',
-'movethispage'       => 'ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
+'ncategories'             => '$1 {{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
+'nlinks'                  => '$1 {{PLURAL:$1|ಸಂಪರ್ಕ|ಸಂಪರ್ಕಗಳು}}',
+'nmembers'                => '$1 {{PLURAL:$1|ಸದಸ್ಯ|ಸದಸ್ಯರು}}',
+'lonelypages'             => 'ಒಬ್ಬಂಟಿ ಪುಟಗಳು',
+'uncategorizedpages'      => 'ವರ್ಗ ಗೊತ್ತು ಮಾಡದ ಪುಟಗಳು',
+'uncategorizedcategories' => 'ಅವರ್ಗೀಕೃತ ವರ್ಗಗಳು',
+'uncategorizedimages'     => 'ಅವರ್ಗೀಕೃತ ಚಿತ್ರಗಳು',
+'uncategorizedtemplates'  => 'ಅವರ್ಗೀಕೃತ ಟೆಂಪ್ಲೇಟುಗಳು',
+'unusedcategories'        => 'ಬಳಕೆಯಲ್ಲಿರದ ವರ್ಗಗಳು',
+'unusedimages'            => 'ಉಪಯೋಗಿಸದ ಚಿತ್ರಗಳು',
+'popularpages'            => 'ಜನಪ್ರಿಯ ಪುಟಗಳು',
+'wantedcategories'        => 'ಬೇಕಾಗಿರುವ ವರ್ಗಗಳು',
+'wantedpages'             => 'ಬೇಕಾಗಿರುವ ಪುಟಗಳು',
+'mostlinked'              => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿರುವ ಪುಟಗಳು',
+'mostlinkedcategories'    => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿರುವ ವರ್ಗಗಳು',
+'mostlinkedtemplates'     => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು',
+'mostcategories'          => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ವರ್ಗಗಳನ್ನು ಹೊಂದಿರುವ ಪುಟಗಳು',
+'mostimages'              => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿರುವ ಚಿತ್ರಗಳು',
+'mostrevisions'           => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ಬದಲಾವಣೆಗಳಾಗಿವು ಪುಟಗಳು',
+'allpages'                => 'ಎಲ್ಲ ಪುಟಗಳು',
+'shortpages'              => 'ಪುಟ್ಟ ಪುಟಗಳು',
+'longpages'               => 'ಉದ್ದನೆಯ ಪುಟಗಳು',
+'deadendpages'            => 'ಕೊನೆಯಂಚಿನ ಪುಟಗಳು',
+'protectedpages'          => 'ಸಂರಕ್ಷಿತ ಪುಟಗಳು',
+'listusers'               => 'ಸದಸ್ಯರ ಪಟ್ಟಿ',
+'specialpages'            => 'ವಿಶೇಷ ಪುಟಗಳು',
+'spheading'               => 'ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಇರುವ ವಿಶೇಷ ಪುಟಗಳು',
+'newpages'                => 'ಹೊಸ ಪುಟಗಳು',
+'ancientpages'            => 'ಹಳೆಯ ಪುಟಗಳು',
+'intl'                    => 'ಅಂತರಭಾಷೆ ಸಂಪರ್ಕಗಳು',
+'move'                    => 'ಸ್ಥಳಾಂತರಿಸಿ',
+'movethispage'            => 'ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
 
 # Book sources
 'booksources' => 'ಪುಸ್ತಕಗಳ ಮೂಲ',
@@ -397,13 +428,17 @@ $messages = array(
 'alphaindexline'     => '$1 ಇಂದ $2',
 'version'            => 'ಆವೃತ್ತಿ',
 
+# Special:Log
+'speciallogtitlelabel' => 'ಶೀರ್ಷಿಕೆ:',
+
 # Special:Allpages
 'nextpage'       => 'ಮುಂದಿನ ಪುಟ ($1)',
+'prevpage'       => 'ಹಿಂದಿನ ಪುಟ ($1)',
 'allarticles'    => 'ಎಲ್ಲ ಲೇಖನಗಳು',
 'allpagessubmit' => 'ಹೋಗು',
 
 # E-mail user
-'emailuser'       => 'ಈ ಸದಸ್ಯರಿಗೆ ವಿ-ಅ೦ಚೆ ಕಳಿಸಿ',
+'emailuser'       => 'ಈ ಸದಸ್ಯರಿಗೆ ಇ-ಅಂಚೆ ಕಳಿಸಿ',
 'emailpage'       => 'ಸದಸ್ಯರಿಗೆ ವಿ-ಅ೦ಚೆ ಕಳಿಸಿ',
 'defemailsubject' => 'ವಿಕಿಪೀಡಿಯ ವಿ-ಅ೦ಚೆ',
 'emailfrom'       => 'ಇಂದ',
@@ -415,17 +450,19 @@ $messages = array(
 'emailsenttext'   => 'ನಿಮಗೆ ವಿ-ಅಂಚೆ ಕಳಿಸಲಾಗಿದೆ.',
 
 # Watchlist
-'watchlist'      => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
-'mywatchlist'    => 'ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
-'nowatchlist'    => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಿಲ್ಲ',
-'watchnologin'   => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
-'addedwatch'     => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸಲಾಯಿತು',
-'addedwatchtext' => '"$1" ಪುಟವನ್ನು ನಿಮ್ಮ [[Special:Watchlist|ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ]] ಸೇರಿಸಲಾಗಿದೆ. ಈ ಪುಟದ ಮತ್ತು ಇದರ ಚರ್ಚಾ ಪುಟದ ಮುಂದಿನ ಬದಲಾವಣೆಗಳು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ, ಮತ್ತು [[Special:Recentchanges|ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳ]] ಪಟ್ಟಿಯಲ್ಲಿ ಈ ಪುಟಗಳನ್ನು ದಪ್ಪಕ್ಷರಗಳಲ್ಲಿ ಕಾಣಿಸಲಾಗುವುದು.
+'watchlist'            => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
+'mywatchlist'          => 'ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
+'nowatchlist'          => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಿಲ್ಲ',
+'watchnologin'         => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
+'addedwatch'           => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸಲಾಯಿತು',
+'addedwatchtext'       => '"$1" ಪುಟವನ್ನು ನಿಮ್ಮ [[Special:Watchlist|ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ]] ಸೇರಿಸಲಾಗಿದೆ. ಈ ಪುಟದ ಮತ್ತು ಇದರ ಚರ್ಚಾ ಪುಟದ ಮುಂದಿನ ಬದಲಾವಣೆಗಳು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ, ಮತ್ತು [[Special:Recentchanges|ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳ]] ಪಟ್ಟಿಯಲ್ಲಿ ಈ ಪುಟಗಳನ್ನು ದಪ್ಪಕ್ಷರಗಳಲ್ಲಿ ಕಾಣಿಸಲಾಗುವುದು.
 
 <p>ಈ ಪುಟವನ್ನು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆಯಬಯಸಿದಲ್ಲಿ, ಮೇಲ್ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಿಸಿರುವ "ವೀಕ್ಷಣಾ ಪುಟದಿಂದ ತೆಗೆ" ಅನ್ನು ಕ್ಲಿಕ್ಕಿಸಿ.',
-'watch'          => 'ವೀಕ್ಷಿಸಿ',
-'watchthispage'  => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
-'unwatch'        => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆ',
+'watch'                => 'ವೀಕ್ಷಿಸಿ',
+'watchthispage'        => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
+'unwatch'              => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆ',
+'watchlist-hide-own'   => 'ನನ್ನ ಸಂಪಾದನೆಗಳನ್ನು ಅಡಗಿಸು',
+'watchlist-hide-minor' => 'ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸು',
 
 'enotif_reset'       => 'ಭೇಟಿಯಿತ್ತ ಎಲ್ಲಾ ಪುಟಗಳನ್ನು ಗುರುತು ಮಾಡಿ',
 'enotif_newpagetext' => 'ಇದೊಂದು ಹೊಸ ಪುಟ.',
@@ -457,9 +494,18 @@ $messages = array(
 'contribsub2'   => '$1 ($2) ಗೆ',
 'uctop'         => ' (ಮೇಲಕ್ಕೆ)',
 
+'sp-contributions-search' => 'ಸಂಪಾದನೆಗಳನ್ನು ಹುಡುಕು',
+'sp-contributions-submit' => 'ಹುಡುಕು',
+
 # What links here
-'whatlinkshere' => 'ಇಲ್ಲಿಗೆ ಯಾವ ಸಂಪರ್ಕ ಕೂಡುತ್ತದೆ',
-'linklistsub'   => '(ಸ೦ಪರ್ಕಗಳ ಪಟ್ಟಿ)',
+'whatlinkshere'       => 'ಇಲ್ಲಿಗೆ ಯಾವ ಸಂಪರ್ಕ ಕೂಡುತ್ತದೆ',
+'whatlinkshere-title' => '$1 ಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಪುಟಗಳು',
+'linklistsub'         => '(ಸ೦ಪರ್ಕಗಳ ಪಟ್ಟಿ)',
+'linkshere'           => "'''[[:$1]]'''ಗೆ ಈ ಪುಟಗಳು ಸಂಪರ್ಕ ಹೊಂದಿವೆ:",
+'nolinkshere'         => "'''[[:$1]]''' ಗೆ ಯಾವ ಪುಟಗಳೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.",
+'istemplate'          => 'ಸೇರ್ಪಡೆ',
+'whatlinkshere-prev'  => '{{PLURAL:$1|ಹಿಂದಿನ|ಹಿಂದಿನ $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|ಮುಂದಿನ|ಮುಂದಿನ $1}}',
 
 # Block/unblock
 'blockip'           => 'ಈ ಸದಸ್ಯನನ್ನು ತಡೆ ಹಿಡಿಯಿರಿ',
@@ -499,15 +545,18 @@ $messages = array(
 'importsuccess'      => 'ಆಮದು ಯಶಸ್ವಿಯಾಯಿತು!',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'ನನ್ನ ಸದಸ್ಯ ಪುಟ',
-'tooltip-pt-mycontris'    => 'ನನ್ನ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿ',
-'tooltip-ca-edit'         => 'ಈ ಪುಟವನ್ನು ನೀವು ಸಂಪಾದಿಸಬಹುದು. ಉಳಿಸುವ ಮುನ್ನ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸಿ.',
-'tooltip-n-mainpage'      => 'ಮುಖ್ಯ ಪುಟ ನೋಡಿ',
-'tooltip-n-recentchanges' => 'ವಿಕಿಯಲ್ಲಿನ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳ ಪಟ್ಟಿ.',
-'tooltip-t-whatlinkshere' => 'ಇಲ್ಲಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಎಲ್ಲಾ ವಿಕಿ ಪುಟಗಳ ಪಟ್ಟಿ',
-'tooltip-t-upload'        => 'ಚಿತ್ರಗಳನ್ನು ಅಥವ ಮೀಡಿಯ ಫೈಲುಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
-'tooltip-t-specialpages'  => 'ಎಲ್ಲಾ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ',
-'tooltip-save'            => 'ನಿಮ್ಮ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ',
+'tooltip-pt-userpage'       => 'ನನ್ನ ಸದಸ್ಯ ಪುಟ',
+'tooltip-pt-mycontris'      => 'ನನ್ನ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿ',
+'tooltip-ca-edit'           => 'ಈ ಪುಟವನ್ನು ನೀವು ಸಂಪಾದಿಸಬಹುದು. ಉಳಿಸುವ ಮುನ್ನ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸಿ.',
+'tooltip-ca-watch'          => 'ಈ ಪುಟವನ್ನು ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸಿ',
+'tooltip-n-mainpage'        => 'ಮುಖ್ಯ ಪುಟ ನೋಡಿ',
+'tooltip-n-recentchanges'   => 'ವಿಕಿಯಲ್ಲಿನ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳ ಪಟ್ಟಿ.',
+'tooltip-t-whatlinkshere'   => 'ಇಲ್ಲಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಎಲ್ಲಾ ವಿಕಿ ಪುಟಗಳ ಪಟ್ಟಿ',
+'tooltip-t-upload'          => 'ಚಿತ್ರಗಳನ್ನು ಅಥವ ಮೀಡಿಯ ಫೈಲುಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
+'tooltip-t-specialpages'    => 'ಎಲ್ಲಾ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ',
+'tooltip-ca-nstab-image'    => 'ಚಿತ್ರದ ಪುಟ ವೀಕ್ಷಿಸಿ',
+'tooltip-ca-nstab-category' => 'ವರ್ಗದ ಪುಟವನ್ನು ನೋಡಿ',
+'tooltip-save'              => 'ನಿಮ್ಮ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ',
 
 # Attribution
 'anonymous'     => '{{SITENAME}} : ಅನಾಮಧೇಯ ಬಳಕೆದಾರ(ರು)',
@@ -518,9 +567,11 @@ $messages = array(
 # Spam protection
 'subcategorycount'     => 'ಒಟ್ಟು $1 ಉಪವಿಭಾಗಗಳು ಈ ವರ್ಗದಡಿ ಇವೆ.',
 'categoryarticlecount' => 'ಈ ವರ್ಗದಲ್ಲಿ {{PLURAL:$1|ಒಂದು ಲೇಖನ| $1 ಲೇಖನಗಳು}} ಇವೆ.',
+'category-media-count' => 'ಈ ವರ್ಗದಲ್ಲಿ {{PLURAL:$1|ಒಂದು ಫೈಲು|$1 ಫೈಲುಗಳು}} ಇವೆ.',
 
 # Browsing diffs
-'nextdiff' => 'ಮುಂದಿನ ವ್ಯತ್ಯಾಸ',
+'previousdiff' => '← ಹಿಂದಿನ ವ್ಯತ್ಯಾಸ',
+'nextdiff'     => 'ಮುಂದಿನ ವ್ಯತ್ಯಾಸ',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'ಎಲ್ಲಾ',
