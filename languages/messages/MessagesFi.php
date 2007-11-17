@@ -421,7 +421,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'page-rss-feed'           => '$1 (RSS-syöte)',
 'page-atom-feed'          => '$1 (Atom-syöte)',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Sivu',
 'nstab-user'      => 'Käyttäjäsivu',
 'nstab-media'     => 'Media',
@@ -622,6 +622,7 @@ Eston syy on:
 *Esto vanhenee: $6
 
 Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Estotunnus on #$5. Liitä se kyselyihisi.",
+'blockednoreason'           => 'ei annettua syytä',
 'blockedoriginalsource'     => 'Sivun ”$1” lähdekoodi:',
 'blockededitsource'         => 'Muokkauksesi sivuun ”$1”:',
 'whitelistedittitle'        => 'Sisäänkirjautuminen vaaditaan muokkaamiseen',
@@ -959,9 +960,9 @@ $1 | $2',
 'uploadtext'                  => "Voit tallentaa tiedostoja alla olevalla lomakkeella. [[Special:Imagelist|Tiedostoluettelo]] sisältää listan tallennetuista tiedostoista. Tallennukset ja poistot kirjataan myös [[Special:Log/upload|tallennuslokiin]].
 
 Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|kuvaus]]</nowiki>''' tai
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''', jos haluat suoran linkin tiedostoon.",
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tiedosto.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tiedosto.png|Kuvaus]]</nowiki>''' tai
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tiedosto.ogg]]</nowiki>''', jos haluat suoran linkin tiedostoon.",
 'uploadlog'                   => 'Tiedostoloki',
 'uploadlogpage'               => 'Tiedostoloki',
 'uploadlogpagetext'           => 'Alla on luettelo uusimmista tiedostonlisäyksistä. Kaikki ajat näytetään palvelimen aikavyöhykkeessä (UTC).',
@@ -999,7 +1000,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'uploadwarning'               => 'Tallennusvaroitus',
 'savefile'                    => 'Tallenna',
 'uploadedimage'               => 'tallensi tiedoston [[$1]]',
-'overwroteimage'              => 'tallensi uuden version tiedostosta ”[[$1]]”',
+'overwroteimage'              => 'tallensi uuden version tiedostosta [[$1]]',
 'uploaddisabled'              => '{{GRAMMAR:genitive|{{SITENAME}}}} ei voi lisätä tiedostoja.',
 'uploaddisabledtext'          => 'Tiedostojen tallennus on poistettu käytöstä.',
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
@@ -1011,8 +1012,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'filewasdeleted'              => 'Tämän niminen tiedosto on lisätty ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 'upload-wasdeleted'           => "'''Varoitus: Olet tallentamassa tiedostoa, joka on jo aikaisemmin poistettu.'''
 
-Harkitse, onko asianmukaista jatkaa tämän tiedoston tallentamista.
-Kyseisen tiedoston poistoloki on tässä:",
+Harkitse, onko asianmukaista jatkaa tämän tiedoston tallentamista. Kyseisen tiedoston poistoloki näkyy tässä:",
 'filename-bad-prefix'         => 'Tallentamasi tiedoston nimi alkaa merkkijonolla <strong>$1</strong>, joka on yleensä digitaalikameroiden automaattisesti antama nimi, joka ei kuvaa tiedoston sisältöä. Anna tiedostolle kuvaavampi nimi.',
 
 'upload-proto-error'      => 'Virheellinen protokolla',
@@ -1113,7 +1113,7 @@ Kyseisen tiedoston poistoloki on tässä:",
 'unusedtemplatestext' => 'Tässä on lista kaikista mallineista, joita ei ole liitetty toiselle sivulle. Muista tarkistaa onko malline siitä huolimatta käytössä.',
 'unusedtemplateswlh'  => 'muut linkit',
 
-# Random pages
+# Random page
 'randompage'         => 'Satunnainen sivu',
 'randompage-nopages' => 'Tässä nimiavaruudessa ei ole sivuja.',
 
