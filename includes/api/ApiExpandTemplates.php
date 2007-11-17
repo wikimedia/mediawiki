@@ -55,9 +55,16 @@ class ApiExpandTemplates extends ApiBase {
 
 		// Return result
 		$result = $this->getResult();
+		if( $this->isRaw() ) {
+			ApiFormatRaw :: setRawData( $result, $retval );
+		}
 		$retval_array = array();
 		$result->setContent( $retval_array, $retval );
 		$result->addValue( null, $this->getModuleName(), $retval_array );
+	}
+
+	public function supportRaw() {
+		return true;
 	}
 
 	protected function getAllowedParams() {
@@ -90,4 +97,5 @@ class ApiExpandTemplates extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
+
 

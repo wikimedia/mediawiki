@@ -75,6 +75,7 @@ class ApiMain extends ApiBase {
 		'xmlfm' => 'ApiFormatXml',
 		'yaml' => 'ApiFormatYaml',
 		'yamlfm' => 'ApiFormatYaml',
+		'raw' => 'ApiFormatRaw',
 		'rawfm' => 'ApiFormatJson'
 	);
 
@@ -291,6 +292,15 @@ class ApiMain extends ApiBase {
 		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
 
 		if (!$this->mInternalMode) {
+
+			//Check usage of raw printer
+			if( $params['format'] == 'raw' ) {
+				if( !$module->supportRaw() ) {
+					ApiBase :: dieUsage( 'This module doesn\'t support format=raw', 'rawnotsupported' );
+					return;
+				}
+				$module->setRaw();
+			}
 
 			// See if custom printer is used
 			$this->mPrinter = $module->getCustomPrinter();
@@ -541,5 +551,6 @@ class UsageException extends Exception {
 		return "{$this->getCodeString()}: {$this->getMessage()}";
 	}
 }
+
 
 
