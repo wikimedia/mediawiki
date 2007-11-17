@@ -12,6 +12,27 @@
  * @author G - ג
  */
 
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Especial',
+	NS_MAIN           => '',
+	NS_TALK           => 'Conversa',
+	NS_USER           => 'Usuario',
+	NS_USER_TALK      => 'Conversa_Usuario',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => 'Conversa_Wikipedia',
+	NS_IMAGE          => 'Imaxe',
+	NS_IMAGE_TALK     => 'Conversa_Imaxe',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Conversa_MediaWiki',
+	NS_TEMPLATE       => 'Modelo',
+	NS_TEMPLATE_TALK  => 'Conversa_Modelo',
+	NS_HELP           => 'Axuda',
+	NS_HELP_TALK      => 'Conversa_Axuda',
+	NS_CATEGORY       => 'Categoría',
+	NS_CATEGORY_TALK  => 'Conversa_Categoría',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subliñar ligazóns:',
