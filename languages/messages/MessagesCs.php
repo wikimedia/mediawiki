@@ -10,6 +10,7 @@
  * @author Martin Kozák
  * @author Michawiki
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -1074,7 +1075,7 @@ váš uživatelský účet zablokován.',
 Jméno načítaného souboru: <strong><tt>$1</tt></strong><br />
 Jméno existujícího souboru: <strong><tt>$2</tt></strong><br />
 Vyberte jiné jméno.',
-'fileexists-thumb'            => "'''<center>Existujícího soubor:</center>'''",
+'fileexists-thumb'            => "'''<center\">Existující soubor:</center>'''",
 'fileexists-thumbnail-yes'    => 'Toto soubor je možná obrázek ve zmenšené velikosti <i>(náhled)</i>. Zkontrolujte soubor <strong><tt>$1</tt></strong>.<br />
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.',
 'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>. Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>. 
@@ -1122,7 +1123,7 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 
 # Image list
 'imagelist'                 => 'Seznam načtených obrázků',
-'imagelisttext'             => "Níže je seznam '''$1''' {{PLURAL:$1|obrázku|obrázků|obrázků}}, seřazených $2.",
+'imagelisttext'             => "Níže je {{plural:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
 'getimagelist'              => 'načítám seznam obrázků',
 'ilsubmit'                  => 'Hledat',
 'showlast'                  => 'Ukázat posledních $1 obrázků řazených $2.',
@@ -1741,7 +1742,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'thumbnail_dest_directory' => 'Nelze vytvořit cílový adresář',
 
 # Special:Import
-'import'                     => 'Importovat stránky',
+'import'                     => 'Import stránek',
 'importinterwiki'            => 'Import mezi wiki',
 'import-interwiki-text'      => 'Pro import zvolte zdrojovou wiki a název stránky. Data revizí a jména autorů budou zachována. Všechny importy se zaznamenávají do [[Special:Log/import|knihy importů]].',
 'import-interwiki-history'   => 'Zkopírovat všechny historické verze této stránky',
