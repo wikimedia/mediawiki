@@ -403,10 +403,16 @@ Si nò sei isthaddu tu a fà la prigonta, oppuru hai acciapaddu la paràura d'ó
 'passwordsent'              => 'Una noba paràura d\'órdhini è isthadda inviadda a l\'indirizzu di postha erettrònica registhraddu pa l\'utenti "$1".
 Pa piazeri, effettua una intradda nò appèna la rizzibi.',
 'blocked-mailpassword'      => 'Pa pribinì abusi, nò è cunsintiddu usà la funzioni "Invia noba paràura d\'órdhini" da un indirizzu IP broccaddu.',
+'mailerror'                 => "Errori i l'inviu di l'imbasciadda: $1",
 'emailauthenticated'        => "L'indirizzu di postha erettrònica è isthaddu cunfèimmaddu lu $1.",
 'emailconfirmlink'          => 'Cunfèimmà lu proprio indirizzu di postha erettrònica',
 'accountcreated'            => 'Registhrazioni criadda',
 'loginlanguagelabel'        => 'Linga: $1',
+
+# Password reset dialog
+'resetpass'        => "Rimpustha la paràura d'órdhini",
+'resetpass_header' => "Rimpustha paràura d'órdhini",
+'resetpass_submit' => "Impustha la paràura d'órdhini e intra",
 
 # Edit page toolbar
 'bold_sample'    => 'Grassetu',
@@ -417,6 +423,10 @@ Pa piazeri, effettua una intradda nò appèna la rizzibi.',
 'link_tip'       => 'Cullegamentu internu',
 'extlink_sample' => 'http://www.esempiu.com tìturu di lu cullegamentu',
 'extlink_tip'    => 'Cullegamentu esthernu (nota lu prefissu http:// )',
+'image_sample'   => 'Esempiu.jpg',
+'media_sample'   => 'Esempio.ogg',
+'media_tip'      => 'Cullegamentu a file mùrthimediari',
+'sig_tip'        => 'Fimma cun data e ora',
 
 # Edit pages
 'summary'                  => 'Oggettu',
@@ -429,6 +439,7 @@ Pa piazeri, effettua una intradda nò appèna la rizzibi.',
 'showlivepreview'          => "Funzioni ''Live preview''",
 'showdiff'                 => 'Musthra ciambamenti',
 'summary-preview'          => 'Antiprimma oggettu',
+'blockedtitle'             => 'Utenti broccaddu.',
 'loginreqtitle'            => 'Pa mudìfiggà chistha pàgina è nezzessàriu intrà',
 'loginreqlink'             => 'intra',
 'loginreqpagetext'         => 'Pa vidé althri pàgini è nezzessàriu $1.',
@@ -682,6 +693,10 @@ pà culligà direttamenti li althri tipi di file.",
 'filehist-filesize'    => 'Misuri di lu file',
 'filehist-comment'     => 'Oggettu',
 'imagelinks'           => "Cullegamenti a l'immagina",
+'imagelist_date'       => 'Data',
+'imagelist_name'       => 'Innòmu',
+'imagelist_user'       => 'Utenti',
+'imagelist_size'       => 'Misuri i byte',
 'imagelist_search_for' => 'Zircha immagini pà innòmu:',
 
 # File reversion
@@ -831,6 +846,7 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'watchthispage'        => 'Sighi chistha pàgina',
 'unwatch'              => 'Nò sighì',
 'unwatchthispage'      => 'Zissa di sighì',
+'notanarticle'         => 'Chistha pàgina nò è una bozi',
 'watchnochange'        => 'Nisciuna di li pàgini abbaidaddi è isthadda mudìfiggadda i lu perìodu cunsidaraddu.',
 'watchlist-details'    => 'La listha di li abbaidaddi ippiziari cuntini {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.',
 'wlheader-showupdated' => "* Li pàgini chi sò isthaddi mudìfiggaddi daboi l'ulthima vìsita sò evidenziaddi in '''grasseddu'''",
@@ -847,11 +863,16 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'watching'   => "Aggiunta a l'abbaidaddi ippiziari...",
 'unwatching' => "Eliminazioni da l'abbaidaddi ippiziari...",
 
-'enotif_reset' => 'Signa tutti li pàgini cumenti già visitaddi',
+'enotif_reset'                 => 'Signa tutti li pàgini cumenti già visitaddi',
+'enotif_newpagetext'           => 'Chistha è una pàgina nóba.',
+'enotif_impersonal_salutation' => 'Utenti di {{SITENAME}}',
+'changed'                      => 'ciambadda',
+'created'                      => 'criadda',
 
 # Delete/protect/revert
 'deletepage'      => 'Canzilla pàgina',
 'confirm'         => 'Cunfèimma',
+'exblank'         => 'la pàgina era biodda',
 'confirmdelete'   => 'Cunfèimma canzilladdura',
 'deletesub'       => '(Canzilladdura di "$1")',
 'deletedarticle'  => 'ha canzilladdu "[[$1]]"',
@@ -860,9 +881,15 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'deletecomment'   => 'Mutibu di la canzilladdura',
 'protectlogpage'  => 'Prutizioni',
 'protect-default' => '(pridifiniddu)',
+'pagesize'        => '(byte)',
 
 # Restrictions (nouns)
+'restriction-edit' => 'Mudifigga',
 'restriction-move' => 'Ippusthamentu',
+
+# Undelete
+'undeletebtn'     => 'Turra che primma',
+'undeletecomment' => 'Cummentu:',
 
 # Contributions
 'contributions' => 'Cuntributi utenti',
@@ -903,10 +930,15 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'ipbreasonotherlist' => 'Althra mutibazioni',
 'ipblocklist'        => 'Listha di li utenti e indirizzi IP broccaddi',
 'ipblocklist-submit' => 'Zircha',
+'noautoblockblock'   => 'chena broccu otomàtiggu',
 'blocklink'          => 'brocca',
 'unblocklink'        => 'ibbrucca',
 'contribslink'       => 'cuntributi',
 'blocklogpage'       => 'Brocchi',
+
+# Developer tools
+'lockdb'   => 'Brocca lu database',
+'unlockdb' => 'Ibbrucca lu database',
 
 # Move page
 'movepage'                => 'Ippusthamentu di pàgina',
@@ -931,7 +963,10 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'allmessagesdefault' => 'Testhu pridifiniddu',
 
 # Import log
-'importlogpage' => 'Impurthazioni',
+'importlogpage'                    => 'Impurthazioni',
+'import-logentry-upload-detail'    => '{{PLURAL:$1|una ribisioni impurthadda|$1 ribisioni impurthaddi}}',
+'import-logentry-interwiki'        => "ha traiffiriddu da un'althra wiki la pàgina $1",
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|una ribisioni impurthadda|$1 ribisioni impurthaddi}} da $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'           => 'La pàgina utenti tóia',
@@ -954,6 +989,15 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'tooltip-t-permalink'           => 'Cullegamentu peimmanenti a chistha versioni di la pàgina',
 'tooltip-ca-nstab-main'         => 'Vèdi la bozi',
 'tooltip-ca-nstab-user'         => 'Vèdi la pàgina utenti',
+'tooltip-save'                  => 'Saivva li mudìfigghi',
+'tooltip-watch'                 => "Aggiungi chistha pàgina a la listha di l'abbaidaddi ippiziari",
+'tooltip-upload'                => 'Ischuminza lu carriggamentu',
+
+# Attribution
+'siteuser'  => '$1, utenti di {{SITENAME}}',
+'and'       => 'e',
+'others'    => 'althri',
+'siteusers' => '$1, utenti di {{SITENAME}}',
 
 # Math options
 'mw_math_png'    => 'Musthra sempri in PNG',
@@ -986,6 +1030,8 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'exif-lightsource-21' => 'Illuminanti D65',
 'exif-lightsource-22' => 'Illuminanti D75',
 'exif-lightsource-23' => 'Illuminanti D50',
+
+'exif-gaincontrol-0' => 'Nisciunu',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutti',
@@ -1038,8 +1084,15 @@ $1',
 'table_pager_limit_submit' => 'Vai',
 'table_pager_empty'        => 'Nisciun risulthaddu',
 
+# Auto-summaries
+'autoredircomment' => 'Rinviu à la pàgina [[$1]]',
+'autosumm-new'     => 'Nóba pàgina: $1',
+
 # Watchlist editor
-'watchlistedit-numitems' => 'La listha di li abbaidaddi ippiziari cuntini {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.',
+'watchlistedit-numitems'     => 'La listha di li abbaidaddi ippiziari cuntini {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.',
+'watchlistedit-normal-title' => 'Mudìfigga abbaidaddi ippiziari',
+'watchlistedit-raw-titles'   => 'Pàgini:',
+'watchlistedit-raw-submit'   => 'Aggiorna la listha',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Visuarizza li mudìfigghi attinenti',
