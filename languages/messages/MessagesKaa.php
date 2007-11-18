@@ -8,28 +8,79 @@
  * @author AlefZet
  */
 
+$fallback = 'kk-tr';
+
+$separatorTransformTable = array(
+	',' => "\xc2\xa0",
+	'.' => ',',
+);
+
+$fallback8bitEncoding = 'windows-1254';
+
+$linkPrefixExtension = true;
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Arnawlı',
 	NS_MAIN           => '',
-	NS_TALK           => 'Sa\'wbet',
+	NS_TALK           => "Sa'wbet",
 	NS_USER           => 'Paydalanıwshı',
-	NS_USER_TALK      => 'Paydalanıwshı_sa\'wbeti',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_sa\'wbeti',
-	NS_IMAGE          => 'Su\'wret',
-	NS_IMAGE_TALK     => 'Su\'wret_sa\'wbeti',
+	NS_USER_TALK      => "Paydalanıwshı_sa'wbeti",
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => "$1_sa'wbeti",
+	NS_IMAGE          => "Su'wret",
+	NS_IMAGE_TALK     => "Su'wret_sa'wbeti",
 	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_sa\'wbeti',
+	NS_MEDIAWIKI_TALK => "MediaWiki_sa'wbeti",
 	NS_TEMPLATE       => 'Shablon',
-	NS_TEMPLATE_TALK  => 'Shablon_sa\'wbeti',
+	NS_TEMPLATE_TALK  => "Shablon_sa'wbeti",
 	NS_HELP           => 'Anıqlama',
-	NS_HELP_TALK      => 'Anıqlama_sa\'wbeti',
+	NS_HELP_TALK      => "Anıqlama_sa'wbeti",
 	NS_CATEGORY       => 'Kategoriya',
-	NS_CATEGORY_TALK  => 'Kategoriya_sa\'wbeti',
+	NS_CATEGORY_TALK  => "Kategoriya_sa'wbeti",
 );
 
-$linkTrail = '/^([a-zʻ`]+)(.*)$/sDu';
+$datePreferences = array(
+	'default',
+	'mdy',
+	'dmy',
+	'ymd',
+	'yyyy-mm-dd',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'ymd';
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'mdy',
+	'dmy',
+	'ymd'
+);
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'xg j, Y "j."',
+	'mdy both' => 'H:i, xg j, Y "j."',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j F, Y "j."',
+	'dmy both' => 'H:i, j F, Y "j."',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y "j." xg j',
+	'ymd both' => 'H:i, Y "j." xg j',
+
+	'yyyy-mm-dd time' => 'xnH:xni:xns',
+	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
+	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
+
+$linkTrail = "/^([a-zı'ʼ’“»]+)(.*)$/sDu";
 
 $messages = array(
 # User preference toggles
