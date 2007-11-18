@@ -157,6 +157,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   pages which had spaces in theirs names
 * If restricted read access was enabled, requests for non-existing special pages
   threw an exception
+* Feeds for recent changes now provide correct URLs for the change, not just
+  the page
 
 === API changes in 1.12 ===
 

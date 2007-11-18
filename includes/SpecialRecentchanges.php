@@ -379,9 +379,12 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 	return true;
 }
 
+/**
+ * @todo document
+ * @param $rows Database resource with recentchanges rows
+ */
 function rcDoOutputFeed( $rows, &$feed ) {
-	$fname = 'rcDoOutputFeed';
-	wfProfileIn( $fname );
+	wfProfileIn( __METHOD__ );
 
 	$feed->outHeader();
 
@@ -406,7 +409,7 @@ function rcDoOutputFeed( $rows, &$feed ) {
 		$item = new FeedItem(
 			$title->getPrefixedText(),
 			rcFormatDiff( $obj ),
-			$title->getFullURL(),
+			$title->getFullURL( 'diff=' . $obj->rc_this_oldid . '&oldid=prev' ),
 			$obj->rc_timestamp,
 			$obj->rc_user_text,
 			$talkpage->getFullURL()
@@ -414,7 +417,7 @@ function rcDoOutputFeed( $rows, &$feed ) {
 		$feed->outItem( $item );
 	}
 	$feed->outFooter();
-	wfProfileOut( $fname );
+	wfProfileOut( __METHOD__ );
 }
 
 /**
