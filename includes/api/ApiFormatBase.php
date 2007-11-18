@@ -287,27 +287,42 @@ class ApiFormatRaw extends ApiFormatBase {
 		parent :: __construct($main, $format);
 	}
 
-	public static function setRawData( $result, $raw_data ) {
+	public static function setRawData( $result, $raw_data, $raw_type = 'text/plain' ) {
 		$data = & $result->getData();
 		$data['_raw'] = $raw_data;
+		$data['_raw_mimetype'] = $raw_type;
 	}
 
 	public function getMimeType() {
-		return 'text/plain';
+		$data = $this->getResultData();
+		if( !isset( $data['_raw_mimetype'] ) && !isset( $data['error'] ) ) {
+			ApiBase :: dieDebug( 'ApiFormatRaw', 'No raw data is set for this module' );
+			return;
+		}
+		elseif( isset( $data['error'] ) ) {
+			$this->executeError( $data );
+			return;
+		}
+		return $data['_raw_mimetype'];
 	}
 
 	public function execute() {
 		$data = $this->getResultData();
 		if( !isset( $data['_raw'] ) && !isset( $data['error'] ) ) {
 			ApiBase :: dieDebug( 'ApiFormatRaw', 'No raw data is set for this module' );
+			return;
 		}
 		elseif( isset( $data['error'] ) ) {
-			header( '500 Internal error' );
-			echo "{$data['error']['code']}\n";
-			echo "{$data['error']['info']}\n";
+			$this->executeError( $data );
 			return;
 		}
 		$this->printText( $data['_raw'] );
+	}
+	
+	private function executeError( $data ) {
+		wfHttpError(500, 'Internal Server Error', '');
+		echo "{$data['error']['code']}\n";
+		echo "{$data['error']['info']}\n";
 	}
 
 	public function getNeedsRawData() {
