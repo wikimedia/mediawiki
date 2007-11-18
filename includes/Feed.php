@@ -41,6 +41,7 @@ class FeedItem {
 
 	/**#@+
 	 * @todo document
+	 * @param $Url URL uniquely designating the item.
 	 */
 	function __construct( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
 		$this->Title = $Title;
