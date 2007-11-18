@@ -1400,6 +1400,7 @@ $wgMessageStructure = array(
 		'ipb_expiry_invalid',
 		'ipb_already_blocked',
 		'ipb_cant_unblock',
+		'ipb_blocked_as_range',
 		'ip_range_invalid',
 		'blockme',
 		'proxyblocker',
