@@ -185,8 +185,10 @@ function wfSpecialWatchlist( $par ) {
 			'" /><input type="hidden" name="reset" value="all" /></form>' .
 			"\n\n" );
 	}
-
-	$sql = "SELECT *
+	if ( $wgShowUpdatedMarker ) {
+		$wltsfield=", ${watchlist}.wl_notificationtimestamp ";
+	}
+	$sql = "SELECT ${recentchanges}.* ${wltsfield}
 	  FROM $watchlist,$recentchanges,$page
 	  WHERE wl_user=$uid
 	  AND wl_namespace=rc_namespace
