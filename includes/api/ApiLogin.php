@@ -40,7 +40,7 @@ class ApiLogin extends ApiBase {
 	 * Time (in seconds) a user must wait after submitting
 	 * a bad login (will be multiplied by the THROTTLE_FACTOR for each bad attempt)
 	 */
-	const THROTTLE_TIME = 1;
+	const THROTTLE_TIME = 5;
 
 	/**
 	 * The factor by which the wait-time in between authentication
