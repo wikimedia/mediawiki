@@ -71,9 +71,10 @@ class LanguageSl extends Language {
 		return $word; # this will return the original value for 'imenovalnik' (nominativ) and all undefined case values
 	}
 
-	function convertPlural( $count, $w1, $w2, $w3, $w4, $w5) {
-		$count = str_replace ('.', '', $count);
-		$forms = array( $w1, $w2, $w3, $w4, $w5 );
+	function convertPlural( $count, $forms ) {
+		if ( !count($forms) ) { return ''; }
+		$forms = $this->preConvertPlural( $forms, 5 );
+
 		if ( $count % 100 == 1 ) {
 			$index = 0;
 		} elseif ( $count % 100 == 2 ) {

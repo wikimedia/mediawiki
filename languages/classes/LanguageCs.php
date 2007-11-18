@@ -78,20 +78,17 @@ class LanguageCs extends Language {
 		return $word;
 	}
 
-  # Plural form transformations, needed for some languages.
-  # Invoked by {{plural:count|wordform1|wordform2|wordform3}}
-  function convertPlural( $count, $wordform1, $wordform2, $wordform3, $w4, $w5) {
-	switch ( $count ) {
-		case 1:
-			return $wordform1;
+	function convertPlural( $count, $forms ) {
+		if ( !count($forms) ) { return ''; }
+		$forms = $this->preConvertPlural( $forms, 3 );
 
-		case 2:
-		case 3:
-		case 4:
-			return $wordform2;
+		switch ( $count ) {
+			case 1:  return $forms[0];
+			case 2:
+			case 3:
+			case 4:  return $forms[1];
+			default: return $forms[2];
+		}
+	}
 
-		default:
-			return $wordform3;
-	};
-  }
 }
