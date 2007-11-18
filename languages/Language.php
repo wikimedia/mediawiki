@@ -1702,16 +1702,30 @@ class Language {
 	 *
 	 * Example: {{plural:{{NUMBEROFARTICLES}}|article|articles}}
 	 *
-	 * @param integer $count
-	 * @param string $wordform1
-	 * @param string $wordform2
-	 * @param string $wordform3 (optional)
-	 * @param string $wordform4 (optional)
-	 * @param string $wordform5 (optional)
-	 * @return string
+	 * @param integer $count Non-localized number
+	 * @param array $forms Different plural forms
+	 * @return string Correct form of plural for $count in this language
 	 */
-	function convertPlural( $count, $w1, $w2, $w3, $w4, $w5) {
-		return ( $count == '1' || $count == '-1' ) ? $w1 : $w2;
+	function convertPlural( $count, $forms ) {
+		if ( !count($forms) ) { return ''; }
+		$forms = $this->preConvertPlural( $forms, 2 );
+
+		return ( abs($count) == 1 ) ? $forms[0] : $forms[1];
+	}
+
+	/**
+	 * Checks that convertPlural was given an array and pads it to requested
+	 * amound of forms by copying the last one.
+	 *
+	 * @param integer $count How many forms should there be at least
+	 * @param array $forms Array of forms given to convertPlural
+	 * @return array Padded array of forms or an exception if not an array
+	 */
+	protected function preConvertPlural( Array $forms, $count ) {
+		while ( count($forms) < $count ) {
+			$forms[] = $forms[count($forms)-1];
+		}
+		return $forms;
 	}
 
 	/**
