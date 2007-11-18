@@ -163,7 +163,9 @@ class IPUnblockForm {
 						&& !strstr ( $this->ip, "/" ) ) {
 					/* If the specified IP is a single address, and the block is
 					 * a range block, don't unblock the range. */
-					$block = null;
+
+					$this->showForm ( wfMsg ( 'ipb_blocked_as_range', $this->ip, $block->mAddress ) );
+					return;
 				}
 			}
 		}

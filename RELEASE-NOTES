@@ -64,6 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   [[MediaWiki:Signature-anon]]
 * Signatures for anonymous users link to Special:Contributions page rather than user page
 * Added --override switch for disabled pages in updateSpecialPages.php
+* Provide a unique message (ipb_blocked_as_range) if unblock of a single IP fails 
+  because it is part of a blocked range.
 
 === Bug fixes in 1.12 ===
 
