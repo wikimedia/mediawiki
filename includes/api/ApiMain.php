@@ -186,6 +186,17 @@ class ApiMain extends ApiBase {
 	 * have been accumulated, and replace it with an error message and a help screen.
 	 */
 	protected function executeActionWithErrorHandling() {
+		$params = $this->extractRequestParams();
+		if( isset( $params['maxlag'] ) ) {
+			// Check for maxlag
+			global $wgLoadBalancer;
+			$maxLag = $params['maxlag'];
+			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+			if ( $lag > $maxLag ) {
+				wfMaxlagError( $host, $lag, $maxLag );
+				return;
+			}
+		}
 
 		// In case an error occurs during data output,
 		// clear the output buffer and print just the error information
@@ -358,7 +369,10 @@ class ApiMain extends ApiBase {
 				ApiBase :: PARAM_DFLT => 'help',
 				ApiBase :: PARAM_TYPE => $this->mModuleNames
 			),
-			'version' => false
+			'version' => false,
+			'maxlag'  => array (
+				ApiBase :: PARAM_TYPE => 'integer'
+			),
 		);
 	}
 
@@ -369,7 +383,8 @@ class ApiMain extends ApiBase {
 		return array (
 			'format' => 'The format of the output',
 			'action' => 'What action you would like to perform',
-			'version' => 'When showing help, include version for each module'
+			'version' => 'When showing help, include version for each module',
+			'maxlag' => 'Maximum lag'
 		);
 	}
 
