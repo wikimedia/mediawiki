@@ -161,6 +161,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   threw an exception
 * Feeds for recent changes now provide correct URLs for the change, not just
   the page
+* Check for if IP is blocked as part of a range when unblocking (see above bug-
+  fix) was faulty. Now fixed.
 
 === API changes in 1.12 ===
 
