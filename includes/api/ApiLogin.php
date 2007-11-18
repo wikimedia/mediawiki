@@ -131,6 +131,7 @@ class ApiLogin extends ApiBase {
 
 		if ($result['result'] != 'Success') {
 			$result['wait'] = $this->cacheBadLogin();
+			$result['details'] = "Please wait " . self::THROTTLE_TIME . " seconds before next log-in attempt";
 		}
 		// if we were allowed to try to login, memcache is fine
 		
