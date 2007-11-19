@@ -825,6 +825,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 # Recent changes linked
 'recentchangeslinked'          => 'Siiäq putvaq muutmisõq',
 'recentchangeslinked-noresult' => 'Taaha putvit lehti olõ-i taa ao seen muudõt.',
+'recentchangeslinked-summary'  => "Taan nimekirän ommaq noidõ lehti muutmisõq, mink pääle näütäs linke. Naad leheq ommaq perräkaemisnimekirän märgidüq '''paksu kiräga'''.",
 
 # Upload
 'upload'                      => 'Teedüstü üleslaatminõ',
@@ -1085,6 +1086,7 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'specialloguserlabel'  => 'Pruukja:',
 'speciallogtitlelabel' => 'Päälkiri:',
 'log'                  => 'Muutmisnimekiri',
+'all-logs-page'        => 'Kõik muutmisõq',
 'log-search-legend'    => 'Muutmiisi otsminõ',
 'log-search-submit'    => 'Otsiq',
 'alllogstext'          => '{{SITENAME}} kõiki muutmiisi - kistutamiisi, kaitsmiisi, kinniqpidämiisi ja kõrraldamiisi ütine nimekiri. Võit valliq ka eräle muutmistüübi, pruukjanime vai lehe päälkirä perrä.',
@@ -1663,7 +1665,8 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'patrol-log-auto' => '(automaatnõ)',
 
 # Image deletion
-'deletedrevision' => 'Kistutõdi ärq vana kujo $1.',
+'deletedrevision'    => 'Kistutõdi ärq vana kujo $1.',
+'filedelete-missing' => 'Teedüstüt "$1" saa-i kistutaq, taad olõ-i olõman.',
 
 # Browsing diffs
 'previousdiff' => '← Mineväne muutminõ',

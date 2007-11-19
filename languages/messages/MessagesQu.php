@@ -439,10 +439,10 @@ Ama hina kaspa, chaskispaykiqa ruraqpa sutiykita nispa musuqmanta yaykuy.',
 'resetpass_text'          => '<!-- Añada texto aquí -->',
 'resetpass_header'        => 'Yaykuna rimata kutichiy',
 'resetpass_submit'        => 'Yaykuna rimata hukchaspa yaykuy',
-'resetpass_success'       => 'Se ha cambiado su contraseña. Autenticándole...',
-'resetpass_bad_temporary' => 'Contraseña temporal no válida. Puede que ya hayas cambiado tu contraseña o que hayas solicitado el envío de otra.',
-'resetpass_forbidden'     => 'Imposible cambiar contraseñas en esta wiki',
-'resetpass_missing'       => 'No hay datos en el formulario.',
+'resetpass_success'       => 'Yaykuna rimaykiqa hukchasqañam. Yaykamuchkankim...',
+'resetpass_bad_temporary' => "Mit'alla yaykuna rimaqa manam allinchu. Yaykuna rimaykiqa hukchasqañachá ichataq musuqtach mañakurqanki.",
+'resetpass_forbidden'     => 'Kay wikipiqa manam saqillanchu yaykuna rimata hukchayta',
+'resetpass_missing'       => "Kay hunt'ana p'anqapiqa manam willakunachu kachkan.",
 
 # Edit page toolbar
 'bold_sample'     => 'Yanasapa qillqa',
@@ -451,66 +451,68 @@ Ama hina kaspa, chaskispaykiqa ruraqpa sutiykita nispa musuqmanta yaykuy.',
 'italic_tip'      => 'Wiksu qillqa',
 'link_sample'     => "T'inkip sutin",
 'link_tip'        => "Ukhu t'inki",
-'extlink_sample'  => 'http://www.ejemplo.com Título del enlace',
-'extlink_tip'     => 'Enlace externo (recuerde añadir el prefijo http://)',
+'extlink_sample'  => "http://www.example.com t'inkip umallin",
+'extlink_tip'     => "Hawa t'inki (ñawpaqta http:// nisqata yapariy)",
 'headline_sample' => "Uma siq'i qillqa",
 'headline_tip'    => "Iskay ñiqi hanaq siq'i qillqa",
-'math_sample'     => 'Escriba aquí una fórmula',
-'math_tip'        => 'Fórmula matemática (LaTeX)',
-'nowiki_sample'   => 'Inserte aquí texto sin formato',
-'nowiki_tip'      => 'Pasar por alto el formato wiki',
-'image_sample'    => 'Ejemplo.jpg',
+'math_sample'     => 'Kayman minuywata qillqamuy',
+'math_tip'        => 'Yupana minuywa (LaTeX)',
+'nowiki_sample'   => 'Kayman mana sumaqchasqa qillqata yapamuy',
+'nowiki_tip'      => 'Wiki sumaqchayta qhawarpariy',
+'image_sample'    => 'Qhawarichiy.jpg',
 'image_tip'       => "Ch'aqtasqa rikch'a",
-'media_sample'    => 'Ejemplo.ogg',
-'media_tip'       => 'Enlace a archivo multimedia',
-'sig_tip'         => 'Firma, fecha y hora',
-'hr_tip'          => 'Línea horizontal (utilícela con moderación)',
+'media_sample'    => 'Example.ogg',
+'media_tip'       => "Multimidya willañiqiman t'inki",
+'sig_tip'         => "Sutiykita, p'unchawta, pachatapas silq'umuy",
+'hr_tip'          => "Siriq siq'i (ama nisyutachu llamk'apuy)",
 
 # Edit pages
 'summary'                   => 'Pisichay',
-'subject'                   => 'Tema/título',
+'subject'                   => 'Yachaywa/umalli',
 'minoredit'                 => 'Kayqa uchuylla hukchaymi',
 'watchthis'                 => 'Kay qillqata watiqay',
 'savearticle'               => "P'anqata waqaychay",
 'preview'                   => 'Manaraq waqaychaspa qhawariy',
 'showpreview'               => 'Ñawpaqta qhawallay',
+'showlivepreview'           => 'Kawsaqlla qhawariy',
 'showdiff'                  => 'Hukchasqakunata rikuchiy',
 'anoneditwarning'           => "''Paqtataq:'' Manaraqmi ruraqpa sutiykita qumurqunkichu. IP huchhaykim kay p'anqap hukchay hallch'ayninpi waqaychasqa kanqa.",
-'missingsummary'            => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.",
-'missingcommenttext'        => 'Por favor introduce texto debajo.',
-'missingcommentheader'      => "'''Atención:''' No has escrito un título para este comentario. Si haces clic nuevamente en Grabar tu edición se grabará sin él.",
+'missingsummary'            => "'''Paqtataq:''' Manaraqmi llamk'apusqaykimanta pisichaytachu qillqamurqunki. Musuqmanta «{{MediaWiki:Savearticle}}» nisqapi ñit'iptiykiqa, llamk'apusqayki waqaychasqam kanqa mana pisichay kaptinpas.",
+'missingcommenttext'        => 'Ama hina kaspa, kay qatiqpi willaspa qillqamuy.',
+'missingcommentheader'      => "'''Paqtataq:''' Manaraqmi kay willaypa umallintachu qillqamurqunki. Musuqmanta «waqaychay» nisqapi ñit'iptiykiqa, llamk'apusqayki waqaychasqam kanqa mana willaypa umallin kaptinpas.",
 'summary-preview'           => 'Pisichayta ñawpaqta qhawarillay',
-'subject-preview'           => 'Previsualización del tema/título',
+'subject-preview'           => 'Yachaywata/umallita ñawpaqta qhawarillay',
 'blockedtitle'              => "Ruraqqa hark'asqam",
-'blockedtext'               => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
+'blockedtext'               => "<big>'''Ruraqpa sutiykiqa icha IP huchhaykiqa hark'asqam.'''</big>
 
-El bloqueo fue hecho por \$1. La razón dada es ''\$2''.
+$1 sutiyuqmi hark'asurqunki ''$2'' nisqarayku.
 
-Puedes contactar con \$1 o con otro [[{{MediaWiki:grouppage-sysop}}|administrador]] para discutir el bloqueo.
+* Hark'aypa qallarisqan: $8
+* Hark'aypa puchukanan: $6
+* Awaytiyasqa hark'ana ruraq: $7
 
-No puedes usar el enlace \"enviar correo electrónico a este usuario\" si no has registrado una dirección válida de correo electrónico en tus [[Special:Preferences|preferencias]]. Tu dirección IP actual es \$3, y el identificador del bloqueo es #\$5. Por favor incluye uno o ambos datos en cualquier consulta que hagas.",
-'autoblockedtext'           => 'Tu dirección IP ha sido bloqueada automáticamente porque era utilizada por otro ususario que fue bloqueado por $1.
+Hark'aymanta rimanakunapaqqa $1-man icha huk [[{{MediaWiki:grouppage-sysop}}|kamachiqman]] willariy.
+Manam saqillasunkichu 'Kay ruraqman e-chaskita kachay' nisqata llamk'achiyta manaraq allin e-chaski imamaytaykita [[Special:Preferences|allinkachinaykikunaman]] quptiyki manaraqpas chaymanta hark'asqa kaptiyki.
+Kunan IP huchhaykiqa $3 nisqam, hark'ay huchhataq #$5 nisqam. Mañakuspaykiqa chay huchhakunata willay.",
+'autoblockedtext'           => "IP huchhaykiqa kikinmanta hark'asqam, $1-pa hark'asqan ruraqpa llamk'achisqan kaptinmi. Hark'asqaqa kayraykum:
 
-La razón dada es esta:
+:''$2''
 
-:\'\'$2\'\'
+* Hark'aypa qallarisqan: $8
+* Hark'aypa puchukanan: $6
 
-Caducidad del bloqueo: $6
-
-
-Puedes contactar con $1 o con otro de los [[{{MediaWiki:grouppage-sysop}}|administradores]] para discutir el bloqueo.
-
-Nota que no puedes utilizar la función "Enviar correo electrónico a este usuario" a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]].
-
-Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cualquier petición que hagas.',
-'blockedoriginalsource'     => "El código fuente de '''$1''' se muestra a continuación:",
-'blockededitsource'         => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
-'whitelistedittitle'        => 'Se requiere identificación para editar.',
-'whitelistedittext'         => 'Tienes que $1 para editar artículos.',
-'whitelistreadtitle'        => 'Se requiere identificación para leer',
-'whitelistreadtext'         => 'Tienes que [[Special:Userlogin|registrarte]] para leer artículos.',
+Hark'aymanta rimanakunapaqqa $1-man icha huk [[{{MediaWiki:grouppage-sysop}}|kamachiqman]] willariy.
+Manam saqillasunkichu 'Kay ruraqman e-chaskita kachay' nisqata llamk'achiyta manaraq allin e-chaski imamaytaykita [[Special:Preferences|allinkachinaykikunaman]] quptiyki manaraqpas chaymanta hark'asqa kaptiyki.
+Hark'ay huchhaykiqa $5 nisqam. Mañakuspaykiqa chay huchhata willay.",
+'blockednoreason'           => "hark'aqqa manam ninchu imarayku",
+'blockedoriginalsource'     => "'''$1'''-pa pukyu qillqanqa kaymi:",
+'blockededitsource'         => "'''$1'''-pi '''llamk'apusqaykikuna''' nisqapi qillqasqaqa kaymi:",
+'whitelistedittitle'        => "Yaykuspallaykim llamk'apuyta atinki.",
+'whitelistedittext'         => "$1ta ruranaykim atin qillqakunata llamk'apunaykipaq.",
+'whitelistreadtitle'        => 'Yaykuspallaykim ñawiriyta atinki',
+'whitelistreadtext'         => '[[Special:Userlogin|Yaykuspallaykim]] qillqakunata ñawiriyta atinki.',
 'whitelistacctitle'         => 'Rakiqunata kichariyqa manam saqillasqachu',
-'whitelistacctext'          => 'Para que se te permita crear cuentas en este wiki tienes que [[Special:Userlogin|iniciar sesión]] y tener los permisos apropiados.',
+'whitelistacctext'          => 'Kay wikipi rakiqunakunata kicharinaykipaqqa sapaqta saqillasqa kaspayki [[Special:Userlogin|yaykunaykim]] atin.',
 'confirmedittitle'          => 'Se requiere confirmación de dirección electrónica para editar',
 'confirmedittext'           => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'        => 'No existe tal sección',
@@ -830,29 +832,30 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 
 # Upload
 'upload'                      => 'Willañiqita churkuy',
-'uploadbtn'                   => 'Subir un archivo',
+'uploadbtn'                   => 'Willañiqita churkuy',
 'reupload'                    => 'Huk kutita churkuy',
 'reuploaddesc'                => "Churkuna hunt'ana p'anqaman kutimuy.",
-'uploadnologin'               => 'No ha iniciado sesión',
-'uploadnologintext'           => 'Tienes que [[Special:Userlogin|iniciar sesión]] para poder subir archivos.',
-'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
-'uploaderror'                 => 'Error al intentar subir archivo',
-'uploadtext'                  => "Utiliza el formulario de abajo para subir archivos, para ver o buscar imágenes subidas previamente vete a la [[Special:Imagelist|lista de archivos subidos]], las subidas y los borrados también están registrados en el [[Special:Log/upload|registro de subidas]].
+'uploadnologin'               => 'Manaraqmi yaykurqunkichu',
+'uploadnologintext'           => '[[Special:Userlogin|Yaykunaykim]] atin willañiqikunata churkunaykipaq.',
+'upload_directory_read_only'  => "Llika sirwiqqa manam atinchu churkuna hallch'aman ($1) qillqayta.",
+'uploaderror'                 => 'Willañiqita churkunayaptiyki pantasqam tukurqan',
+'uploadtext'                  => "Willañiqita churkunaykipaqqa kay qatiqpi kaq hunt'ana p'anqata llamk'achiy. Churkusqaña rikchakunatataq qhawanaykipaq icha maskanaykipaqqa [[Special:Imagelist|rikchakuna p'anqaman]] riy. Churkusqakunata qullusqakunatapas [[Special:Log/upload|churkuy hallch'apim]] rikunki.
 
-Para incluir la imágen en una página, usa un enlace en el formulario '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|texto alternativo]]</nowiki>''' o
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' para enlazar directamente al archivo.",
-'uploadlog'                   => 'registro de subidas',
-'uploadlogpage'               => 'Subidas de archivos',
-'uploadlogpagetext'           => 'Abajo hay una lista de los últimos archivos subidos. Todas las horas son del servidor.',
-'filename'                    => 'Nombre del archivo',
-'filedesc'                    => 'Sumario',
-'fileuploadsummary'           => 'Descripción:',
-'filestatus'                  => 'Estado de copyright',
-'filesource'                  => 'Fuente',
-'uploadedfiles'               => 'Archivos subidos',
-'ignorewarning'               => 'Ignorar aviso y guardar de todos modos.',
-'ignorewarnings'              => 'Ignorar cualquier aviso',
-'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
+Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'achiy: '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Willañiqi.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Willañiqi.png|huk qillqa]]</nowiki>''' icha
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Willañiqi.ogg]]</nowiki>''' (willañiqiman chiqalla t'inkinapaq).",
+'uploadlog'                   => "churkuy hallch'a",
+'uploadlogpage'               => 'Churkusqa willañiqikuna',
+'uploadlogpagetext'           => 'Kay qatiqpiqa ñaqha willañiqi churkusqakunam. Pachakunaqa sirwiqpa rurasqanmi.',
+'filename'                    => 'Willañiqip sutin',
+'filedesc'                    => 'Pisichay',
+'fileuploadsummary'           => "T'iktu:",
+'filestatus'                  => 'Ima hayñiyuq',
+'filesource'                  => 'Pukyu',
+'uploadedfiles'               => 'Churkusqa willañiqikuna',
+'ignorewarning'               => 'Paqtataq waqyayta qhawarparispa waqaychay.',
+'ignorewarnings'              => 'Ima paqtataq waqyaytapas qhawarpariy',
+'minlength1'                  => 'Willañiqip sutinqa huk icha aswan sanampayuq kachun.',
+'illegalfilename'             => "«$1» nisqa williñiqip sutinqa p'anqa umallipaq mana allin sananchayuqmi. Ama hina kaspa, williñiqita sutincharaspa musuqmanta churkuykachay.",
 'badfilename'                 => 'Rikch\'ap sutinqa "$1"-man hukchasqam.',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
 'filetype-badtype'            => "'''\".\$1\"''' es un tipo de archivo no permitido. Lista de tipos permitidos: \$2",
@@ -888,8 +891,8 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador.',
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
-'sourcefilename'              => 'Nombre del archivo origen',
-'destfilename'                => 'Nombre del archivo de destino',
+'sourcefilename'              => 'Qallariy willañiqip sutin',
+'destfilename'                => 'Tukuna willañiqip sutin',
 'watchthisupload'             => "Kay p'anqata watiqay",
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
 

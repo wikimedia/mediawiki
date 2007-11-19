@@ -79,7 +79,7 @@ $messages = array(
 'underline-never'   => 'Nunca',
 'underline-default' => "Confegurazión por defeuto d'o nabegador",
 
-'skinpreview' => '(Prebar cómo queda)',
+'skinpreview' => '(Fer una prebatina)',
 
 # Dates
 'sunday'        => 'Domingo',

@@ -224,8 +224,8 @@ Li sighenti cullegamenti so in linga ingrese:
 'sitesupport'       => 'Dunazioni',
 'sitesupport-url'   => '{{ns:project}}:Dunazioni',
 
-'badaccess'        => 'Primmissi nò suffizenti',
-'badaccess-group0' => "Nò si dipuni di li primmissi nezzessàri pa eseguì l'azioni dumandadda.",
+'badaccess'        => 'Primmissi no suffizenti',
+'badaccess-group0' => "No si diponi di li primmissi nezzessari pa eseguì l'azioni dumandadda.",
 'badaccess-group1' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a lu gruppu $1.',
 'badaccess-group2' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a li gruppi $1.',
 'badaccess-groups' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a unu di li sighenti gruppi: $1.',
@@ -269,9 +269,9 @@ Li sighenti cullegamenti so in linga ingrese:
 
 # Main script and global functions
 'nosuchaction'      => 'Operazioni no ricuniscidda',
-'nosuchactiontext'  => "L'indirizzu immissu nò curripundì a 'nu cumandu ricunisciddu da lu software MediaWiki",
-'nosuchspecialpage' => 'Pàgina ippiziari nò dipunìbiri',
-'nospecialpagetext' => "La pàgina ippiziari dumandadda nò e isthadda ricuniscidda da lu software MediaWiki; l'erencu di li pàgini ippiziari vàriddi s'acciappa i [[Special:Specialpages|Erencu di li pàgini ippiziari]].",
+'nosuchactiontext'  => "L'indirizzu immessu no curripondi a unu cumandu ricunisciddu da lu software MediaWiki",
+'nosuchspecialpage' => 'Pàgina ippiziari no dipunìbiri',
+'nospecialpagetext' => "La pàgina ippiziari dumandadda no è isthadda ricuniscidda da lu software MediaWiki; l'erencu di li pàgini ippiziari vàriddi s'acciappa i [[Special:Specialpages|Erencu di li pàgini ippiziari]].",
 
 # General errors
 'error'                => 'Errori',
@@ -287,21 +287,21 @@ L\'ulthima query inviadda a lu database è isthadda:
 "$1"
 riciamadda da la funzioni "$2".
 MySQL ha turraddu lu sighenti errori "$3: $4".',
-'noconnect'            => "Cullegamentu a lu database nò ririsciddu a càusa d'un probrema tènniggu di lu situ.<br />$1",
-'nodb'                 => 'Isciubaraddura di lu database $1 nò ririscidda',
-'cachederror'          => "Chidda sighenti è una còpia ''cache'' di la pàgina dumandadda; pudia dunca nò assé aggiornadda.",
-'laggedslavemode'      => "Attenzioni: la pàgina pudia nò cuntinì l'aggiornamenti più rizzenti.",
+'noconnect'            => "Cullegamentu a lu database no ridisciddu a càusa d'un probrema tènniggu di lu situ.<br />$1",
+'nodb'                 => 'Isciubaraddura di lu database $1 no ridiscidda',
+'cachederror'          => "Chidda sighenti è una còpia ''cache'' di la pàgina dumandadda; pudia dunca no assé aggiornadda.",
+'laggedslavemode'      => "Attinzioni: la pàgina pudia no cuntinì l'aggiornamenti più rizzenti.",
 'readonly'             => 'Database broccaddu',
 'enterlockreason'      => 'Indica lu mutibu di lu broccu, ippizzifichendhi candu po’ assé chi venghia buggaddu.',
-'readonlytext'         => "Abà lu database è broccaddu e nò so pussìbiri aggiunti o mudìfigghi a li pàgini. Lu broccu soritamenti è liaddu a operazioni di manutinzioni urdhinària, a lu tèimmini di li quari lu database è di nobu mudifiggabiri.
+'readonlytext'         => "Attuarmenti lu database è broccaddu e no so' pussìbiri aggiunti o mudìfigghi a li pàgini. Lu broccu soritamenti è liaddu a operazioni di manutinzioni urdhinària, a lu tèimmini di li quari lu database è di nobu mudifiggabiri.
 
 L'amministhradori di sisthema chi l'ha broccaddu ha lassaddu chistha giusthifiggazioni: $1",
-'missingarticle'       => 'Lu database nò ha acciappaddu lu testhu di la pagina da lu tìturu "$1", chi abaria dubuddu assé prisenti.
+'missingarticle'       => "Lu database no ha acciappaddu lu testhu di la pagina da lu tìturu \"\$1\", chi abaria dubuddu assé prisenti.
 
-A lu sóritu lu chi si verifigga candu bèni  sighiddu, a parthì da la cronologia o da lu cunfrontu i li versioni, un collegamentu a una pàgina canzilladda.
+Soritamenti chisthu probrema si verifigga candu, a parthì da la cronologia o da lu cunfrontu tra li versioni, veni sighiddu un cullegamentu a una pàgina canzilladda.
 
-Ancausè pó assé isthaddu ischuberthu un errori di lu software MediaWiki.
-Gintirmenti si pò signarà l\'accaduddu a un amministhradori ippizzifichendi l\'indirizzu di l\'errori.',
+Ancausè po' assé isthaddu ischuberthu un errori di lu software MediaWiki.
+Gintirmenti, sìgnara l'accaduddu a un amministhradori ippizzifichendi l'indirizzu di l'errori.",
 'readonly_lag'         => 'Lu database è isthaddu broccaddu automatiggamenti pà cunsintì a li server cu li database slave di fà i’ lu matessi mamentu cu lu master',
 'internalerror'        => 'Errori internu',
 'internalerror_info'   => 'Errori internu: $1',
@@ -309,14 +309,14 @@ Gintirmenti si pò signarà l\'accaduddu a un amministhradori ippizzifichendi l\
 'filerenameerror'      => 'Impussìbiri rinuminà lu file "$1" in "$2".',
 'filedeleteerror'      => 'Impussìbiri canzillà lu file "$1".',
 'directorycreateerror' => 'Impussìbiri crià la directory "$1".',
-'filenotfound'         => 'File "$1" nò acciappaddu.',
+'filenotfound'         => 'File "$1" no acciappaddu.',
 'fileexistserror'      => 'Impussìbiri ischribì lu file "$1": lu file isisthì già',
 'unexpected'           => 'Varori impribisthu: "$1"="$2".',
 'formerror'            => 'Errori: impussìbiri invià lu mòdulu',
-'badarticleerror'      => 'Operazioni nò cunsintidda pa chistha pàgina.',
+'badarticleerror'      => 'Operazioni no cunsintidda pa chistha pàgina.',
 'cannotdelete'         => 'Impussìbiri canzillà la pàgina o lu file dumandaddu. (Pudia assé isthaddu già canzilladdu.)',
-'badtitle'             => 'Tìturu nò currettu',
-'badtitletext'         => 'Lu tìturu di la pàgina dumandadda è bioddu, ibbagliaddu o cun caràtteri nò ammissi oppuru deriba da un errori i li cullegamenti i siti wiki dibessi o versioni in linghi dibessi di lu matessi situ.',
+'badtitle'             => 'Tìturu no currettu',
+'badtitletext'         => "Lu tìturu di la pàgina dumandadda è bioddu, ibbagliaddu o cun caràtteri no ammessi oppuru deriba da un errori i' li cullegamenti tra siti wiki dibessi o versioni in linghi dibessi di lu matessi situ.",
 'perfdisabled'         => "Semmu dipiazuddi, chistha funzionariddai è timpuraniamenti disàbiritadda parchí lu so'usu rallinta lu database finz'a rindì lu situ inutirizabiri pa tutti l'utenti.",
 'perfcached'           => "Li dati chi seghini so cabaddi da una còpia ''cache'' di lu database, nò aggiornaddi in tempu riari.",
 'perfcachedts'         => "Li dati chi seghini so cabaddi da una còpia ''cache'' di lu database. Ulthimu aggiornamentu: $1.",
