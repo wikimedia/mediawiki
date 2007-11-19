@@ -4174,7 +4174,6 @@ class Parser
 							        $s->page_is_redirect ||
 							        !Namespace::isContent( $s->page_namespace ) )
 							    ? 1 : 2 );
-					wfRunHooks( 'GetLinkColour', array( $dbr, $s->page_id, &$colours[$pdbk] ) );
 				}
 			}
 			wfProfileOut( $fname.'-check' );
@@ -4322,8 +4321,12 @@ class Parser
 					$replacePairs[$searchkey] = $sk->makeBrokenLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
-				} else {
-					$replacePairs[$searchkey] = $sk->makeColouredLinkObj( $title, $colours[$pdbk],
+				} elseif ( $colours[$pdbk] == 1 ) {
+					$replacePairs[$searchkey] = $sk->makeKnownLinkObj( $title,
+									$this->mLinkHolders['texts'][$key],
+									$this->mLinkHolders['queries'][$key] );
+				} elseif ( $colours[$pdbk] == 2 ) {
+					$replacePairs[$searchkey] = $sk->makeStubLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
 				}
