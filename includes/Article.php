@@ -1842,9 +1842,9 @@ class Article {
 	
 	/**
 	 * Auto-generates a deletion reason
-	 * @param bool &$hashistory Whether the page has a history
+	 * @param bool &$hasHistory Whether the page has a history
 	 */
-	public function generateReason(&$hashistory)
+	public function generateReason(&$hasHistory)
 	{
 		global $wgContLang;
 		$dbw = wfGetDB(DB_MASTER);
