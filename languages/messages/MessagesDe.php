@@ -663,6 +663,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administrato
 *IP-Adresse: $3
 *Sperr-ID: #$5
 </div>',
+'blockednoreason'           => 'keine Begründung angegeben',
 'blockedoriginalsource'     => "Der Quelltext von '''$1''' wird hier angezeigt:",
 'blockededitsource'         => "Der Quelltext '''deiner Änderungen''' an '''$1''':",
 'whitelistedittitle'        => 'Zum Bearbeiten ist es erforderlich, angemeldet zu sein',
@@ -1689,6 +1690,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipb_expiry_invalid'          => 'Die eingegebene Dauer ist ungültig.',
 'ipb_already_blocked'         => '„$1“ wurde bereits gesperrt',
 'ipb_cant_unblock'            => 'Fehler: Sperr-ID $1 nicht gefunden. Die Sperre wurde bereits aufgehoben.',
+'ipb_blocked_as_range'        => 'Fehler: Die IP-Adresse $1 wurde als Teil der Bereichssperre $2 indirekt gesperrt. Eine Entsperrung von $1 alleine ist nicht möglich.',
 'ip_range_invalid'            => 'Ungültiger IP-Addressbereich.',
 'blockme'                     => 'Sperre mich',
 'proxyblocker'                => 'Proxy blocker',
@@ -1956,7 +1958,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 
 # Patrol log
 'patrol-log-page' => 'Prüf-Logbuch',
-'patrol-log-line' => 'hat $1 von $2 als geprüft markiert $3.',
+'patrol-log-line' => 'hat $1 von $2 als geprüft markiert $3',
 'patrol-log-auto' => '(automatisch)',
 'patrol-log-diff' => 'Version $1',
 
@@ -2288,9 +2290,9 @@ Rückmeldung des Mailservers: $1',
 'confirmemail_subject'    => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
 'confirmemail_body'       => 'Hallo,
 
-jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Bestätigung dieser E-Mail-Adresse für das Benutzerkonto "$2" in der Wikipedia angefordert. 
+jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Bestätigung dieser E-Mail-Adresse für das Benutzerkonto "$2" in {{SITENAME}} angefordert. 
 
-Um die E-Mail-Funktion für Wikipedia (wieder) zu aktivieren und um zu bestätigen, dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
+Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
 
 $3
 
