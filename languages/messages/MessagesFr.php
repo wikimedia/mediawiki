@@ -557,7 +557,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:helppage}}|la page d’aide]] pour plus d’information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
 'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
-'clearyourcache'            => "'''Note :''' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
+'clearyourcache'            => "'''Note :''' Après avoir sauvegardé la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'    => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
 'usercsspreview'            => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille CSS et qu’elle n’a pas encore été enregistrée !'''",
 'userjspreview'             => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
@@ -585,7 +585,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'editingold'                => '<strong>Attention : vous êtes en train de modifier une version désuète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
 'yourdiff'                  => 'Différences',
 'copyrightwarning'          => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre.<strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
+Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
 'copyrightwarning2'         => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
 <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
@@ -1299,7 +1299,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-locked-access'       => 'Vous n’avez pas les droits nécessaires pour modifier la protection de la page.
 Voici les réglages actuels de la page <strong>$1</strong> :',
-'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
+'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, {{PLURAL:$1|laquelle a été protégée|lesquelles ont été protégées}} avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
 'protect-default'             => 'Pas de protection',
 'protect-fallback'            => 'Nécessite l’habilitation "$1"',
 'protect-level-autoconfirmed' => 'Semi-protection',
@@ -1326,11 +1326,11 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'undelete'                     => 'Voir les pages supprimées',
 'undeletepage'                 => 'Voir et restaurer la page supprimée',
 'viewdeletedpage'              => 'Historique de la page supprimée',
-'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive, elles sont toujours dans la base de données et peuvent être restaurées.
+'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive. Elles figurent toujours dans la base de données et peuvent être restaurées.
 L’archive peut être effacée périodiquement.',
 'undeleteextrahelp'            => "Pour restaurer toutes les versions de cette page, laissez vierges toutes les cases à cocher, puis cliquez sur '''''Procéder à la restauration'''''.<br />Pour procéder à une restauration sélective, cochez les cases correspondant aux versions qui sont à restaurer, puis cliquez sur '''''Procéder à la restauration'''''.<br />En cliquant sur le bouton '''''Réinitialiser''''', la boîte de résumé et les cases cochées seront remises à zéro.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|révision archivée|révisions archivées}}',
-'undeletehistory'              => 'Si vous restaurez la page, toutes les révisions seront restaurées dans l’historique.
+'undeletehistory'              => 'Si vous restaurez la page, toutes les révisions seront replacées dans l’historique.
 
 Si une nouvelle page avec le même nom a été créée depuis la suppression, les révisions restaurées apparaîtront dans l’historique antérieur et la version courante ne sera pas automatiquement remplacée.',
 'undeleterevdel'               => 'La restauration ne sera pas effectuée si, au final, la version la plus récente de la page sera partiellement supprimée. Dans ce cas, vous devez déselectionner les versions les plus récentes (en haut). Les versions des fichiers auxquelles vous n’avez pas accès ne seront pas restaurées.',
@@ -1512,10 +1512,13 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 
 # Move page
 'movepage'                => 'Renommer une page',
-'movepagetext'            => 'Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
+'movepagetext'            => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
 L’ancien titre deviendra une page de redirection vers le nouveau titre. Les liens vers le titre de l’ancienne page ne seront pas changés ; veuillez vérifier que ce déplacement n’a pas créé de double redirect. Vous devez vous assurez que les liens continuent de pointer vers leur destination supposée.
 
-Une page ne sera pas déplacée si il y a déjà une page au nouveau titre, à moins que la page soit vide, ou une redirection, et qu’elle n’ait pas d’historique. Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, et que vous ne pouvez effacer une page déjà existante par ce procédé.',
+Une page ne sera pas déplacée si la page du nouveau titre existe déjà, à moins que cette dernière soit vide ou en redirection, et qu’elle n’ait pas d’historique. Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez effacer une page déjà existante par ce procédé.
+
+<b>ATTENTION ! </b>
+Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée. Assurez-vous d'en avoir compris les conséquences avant de continuer.",
 'movepagetalktext'        => 'La page de discussion associée, si présente, sera automatiquement renommée avec <b>sauf si :</b>
 *Vous renommez une page vers un autre espace,
 *Une page de discussion existe déjà avec le nouveau nom, ou
@@ -1782,7 +1785,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'noimages'  => 'Aucune image à afficher.',
 
 # Bad image list
-'bad_image_list' => "Le format est le suivant:
+'bad_image_list' => "Le format est le suivant :
 
 Seulement les lignes commençant par * sont prises en compte. Le premier lien de la ligne est celui vers une mauvaise image.
 Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des articles sur lesquels l'image doit apparaître.",

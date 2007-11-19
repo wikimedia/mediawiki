@@ -288,7 +288,7 @@ $messages = array(
 'page-rss-feed'           => '$1 (RSS-söödüs)',
 'page-atom-feed'          => '$1 (Atom-söödüs)',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikli',
 'nstab-user'      => 'Pruukjalehekülg',
 'nstab-media'     => 'Meediä',
@@ -983,7 +983,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'unusedtemplatestext' => 'Tan ommaq kirän kõik näüdüseq, midä olõ-i ütegi lehe pääle pant. Inne ku naaq ärq kistutat, kaeq perrä, kas näide pääle kost määnest linki näütä-i.',
 'unusedtemplateswlh'  => 'muuq lingiq',
 
-# Random pages
+# Random page
 'randompage'         => 'Johuslinõ artikli',
 'randompage-nopages' => 'Seon nimeruumin olõ-i üttegi lehte.',
 
@@ -1689,7 +1689,13 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'metadata-help'     => 'Seon teedüstün om lisateedüst, miä om arvadaq peri pildinudsijast, digikaamõrast vai pilditoimõndusprogrammist. Ku pilti om peräst timä tegemist muudõt, sis pruugi-i taa teedüs inämb õigõ ollaq.',
 'metadata-expand'   => 'Näütäq kõiki sisuseletüisi',
 'metadata-collapse' => 'Näütäq õnnõ tähtsämbit sisuseletüisi',
-'metadata-fields'   => 'Naaq riaq ommaq nätäq pildilehe pääl, ku sisuseletüse tapõl om tühi. * make * model * datetimeoriginal * exposuretime * fnumber * focallength',
+'metadata-fields'   => 'Naaq riaq ommaq nätäq pildilehe pääl, ku sisuseletüse tapõl om tühi.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lakjus',
