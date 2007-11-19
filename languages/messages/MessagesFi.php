@@ -911,7 +911,7 @@ $1 | $2',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
-'rightslogtext'  => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
+'rightslogtext'  => 'Tämä on loki käyttäjien käyttöoikeuksien muutoksista.',
 'rightslogentry' => 'Käyttäjän [[$1]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
 'rightsnone'     => '(ei oikeuksia)',
 
@@ -1546,7 +1546,7 @@ $1',
 'autoblocker'                 => 'Olet automaattisesti estetty, koska jaat IP-osoitteen käyttäjän $1 kanssa. Eston syy: $2.',
 'blocklogpage'                => 'Estoloki',
 'blocklogentry'               => 'esti käyttäjän tai IP-osoitteen $1. Eston kesto $2 $3',
-'blocklogtext'                => 'Tässä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:Ipblocklist|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
+'blocklogtext'                => 'Tämä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:Ipblocklist|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
 'unblocklogentry'             => 'poisti käyttäjältä $1 muokkauseston',
 'block-log-flags-anononly'    => 'vain kirjautumattomat käyttäjät',
 'block-log-flags-nocreate'    => 'tunnusten luonti estetty',

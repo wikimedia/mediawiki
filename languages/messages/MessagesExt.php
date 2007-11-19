@@ -307,6 +307,7 @@ Pol favol, enhorma d'estu a un duendi u a un alministraol, incluyendu la direci�
 'directorycreateerror' => 'Nu se puei creal el diretoriu "$1".',
 'filenotfound'         => 'Nu se puei alcuentral el archivu "$1".',
 'fileexistserror'      => 'Nu es posibri escrebil el archivu "$1": el archivu ya desisti',
+'unexpected'           => 'Valol nu asperau: "$1"="$2".',
 'formerror'            => 'Marru: nu se puei envial el hormulariu',
 'badarticleerror'      => 'Nu se puei realizal esta ación nesta páhina.',
 'cannotdelete'         => 'Nu se puei esborral esa páhina u archivu. (Puei que ya lo aiga esborrau otra presona.)',
@@ -891,9 +892,10 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload-misc-error-text'  => 'Marru al empuntal el archivu. Pol favol compreba que la URL es vália i acesibri i enténtalu e nuevu. Si acontina el pobrema, contata con un duendi.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'      => 'Nu se puei dil a la URL',
-'upload-curl-error6-text' => 'Nu á siu posibri dil a la URL.',
-'upload-curl-error28'     => "Tiempu d'empuntu esceiu",
+'upload-curl-error6'       => 'Nu se puei dil a la URL',
+'upload-curl-error6-text'  => 'Nu á siu posibri dil a la URL.',
+'upload-curl-error28'      => "Tiempu d'empuntu esceiu",
+'upload-curl-error28-text' => "La páhina está tardandu abondu en contestal. Pol favol, compreba qu'el sirviol hunciona, aspera un pocu i güervi a ententalu. Quiciás prefieras ententalu n'otru momentu con menus carga.",
 
 'license'            => 'Licencia',
 'nolicense'          => 'Dengunu selecionau',
@@ -986,7 +988,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'userstats'              => 'Estaísticas d´usuáriu',
 'sitestatstext'          => "Atualmenti desistin {{PLURAL:\$1|'''1''' páhina|'''\$1''' páhinas}} ena basi e datus.
 Estu encrui \"carabas\", páhinas al tentu {{SITENAME}}, artículus nu acabihaus, redirecionis i algotras páhinas que nu chegan a sel artículus.
-S'estima que realmenti ai {{PLURAL:\$2|'''1''' páhina|'''\$2''' páhinas}} que realmenti {{PLURAL:\$2|seya artículu|seyan artículus}}.
+Se crei que ai {{PLURAL:\$2|'''1''' páhina|unas '''\$2''' páhinas}} que realmenti {{PLURAL:\$2|es artículu|son artículus}}.
 
 Un total de '''\$8''' {{PLURAL:\$8|archivu á siu empuntau|archivus an siu empuntaus}}.
 
@@ -1275,6 +1277,7 @@ Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
 
 # Undelete
 'undelete'                 => 'Vel páhinas esborrás',
+'undeletepage'             => 'Vel i restaural páhinas esborrás',
 'viewdeletedpage'          => 'Vel páhinas esborrás',
 'undeleterevisions'        => '$1 {{PLURAL:$1|revisión emburacá|revisionis emburacás}}',
 'undelete-revision'        => 'Esborrá la revisión de $1 (cumu $2) pol $3:',
@@ -1359,6 +1362,7 @@ $1',
 ** Abusal con varias cuentas
 ** Nombris d´usuárius enacetabris',
 'ipbanononly'                 => 'Atarugal sólu a los usuárius anónimus',
+'ipbenableautoblock'          => "Atarugal autumáticamenti la direción IP gastá pol esti usuáriu, i cualisquiel IP posteriol endi la cual trati d'eital",
 'ipbsubmit'                   => 'Atarugal a esti usuáriu',
 'ipbother'                    => 'Otra ora:',
 'ipboptions'                  => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite',
@@ -1651,13 +1655,13 @@ $1',
 'metadata-help'     => "Esti archivu contieni enhormación aicional (metadatus), probabrienti añiia pola cámara dehital, el escánel u el pograma gastau pa crealu u dehitalizalu. Si s'an hechu chambus nel archivu, es posibri que s'aigan perdiu detallis.",
 'metadata-expand'   => 'Muestral detallis',
 'metadata-collapse' => 'Açonchal detallis',
-'metadata-fields'   => "Los datus de metadatus EXIF que se listan nesti mensahi se muestrarán ena páhina e descrición la imahin aún cuandu la tabra e metadatus esté açonchá. Desistin algotrus campus que se mantendrán açonchaus pol defetu.
-* Fabricanti
-* Moelu
-* Fecha i ora e creación
-* Tiempu d'esposición
-* Númeru f
-* Longol focal",
+'metadata-fields'   => 'Los datus de metadatus EXIF que se listan nesti mensahi se muestrarán ena páhina e descrición la imahin aún cuandu la tabra e metadatus esté açonchá. Desistin algotrus campus que se mantendrán açonchaus pol defetu.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'              => 'Anchón',

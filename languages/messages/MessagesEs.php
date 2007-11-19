@@ -289,7 +289,7 @@ $messages = array(
 'feedlinks'               => 'Sindicación:',
 'feed-invalid'            => 'Tipo de subscripción a sindicación de noticias inválida.',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artículo',
 'nstab-user'      => 'Usuario',
 'nstab-media'     => 'Media',
@@ -965,7 +965,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'unusedtemplatestext' => 'Aquí se enumeran todas las páginas en la zona de plantillas que no están incluidas en otras páginas. Recuerda mirar lo que enlaza a las plantillas antes de borrarlas.',
 'unusedtemplateswlh'  => 'otros enlaces',
 
-# Random pages
+# Random page
 'randompage'         => 'Página aleatoria',
 'randompage-nopages' => 'No hay páginas en este espacio de nombres.',
 
@@ -1715,12 +1715,12 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'metadata-expand'   => 'Mostrar datos detallados',
 'metadata-collapse' => 'Ocultar datos detallados',
 'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto. 
-* Fabricante
-* Modelo
-* Fecha y hora de creación
-* Tiempo de exposición
-* Número f
-* Distancia focal',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Anchura',
