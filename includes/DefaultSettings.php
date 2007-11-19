@@ -594,7 +594,21 @@ $wgSharedDB = null;
 #   These and any other user-defined properties will be assigned to the mLBInfo member
 #   variable of the Database object.
 #
-# Leave at false to use the single-server variables above
+# Leave at false to use the single-server variables above. If you set this 
+# variable, the single-server variables will generally be ignored (except 
+# perhaps in some command-line scripts). 
+#
+# The first server listed in this array (with key 0) will be the master. The 
+# rest of the servers will be slaves. To prevent writes to your slaves due to 
+# accidental misconfiguration or MediaWiki bugs, set read_only=1 on all your 
+# slaves in my.cnf. You can set read_only mode at runtime using:
+#
+#     SET @@read_only=1;
+#
+# Since the effect of writing to a slave is so damaging and difficult to clean
+# up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even 
+# our masters, and then set read_only=0 on masters at runtime. 
+#
 $wgDBservers		= false;
 
 /** How long to wait for a slave to catch up to the master */
