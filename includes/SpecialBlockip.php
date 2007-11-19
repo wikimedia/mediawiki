@@ -281,8 +281,21 @@ class IPBlockForm {
 		}
 	}
 
-	function doSubmit() {
-		global $wgOut, $wgUser, $wgSysopUserBans, $wgSysopRangeBans;
+	const BLOCK_SUCCESS = 0; // Success
+	const BLOCK_RANGE_INVALID = 1; // Invalid IP range
+	const BLOCK_RANGE_DISABLED = 2; // Sysops can't block ranges
+	const BLOCK_NONEXISTENT_USER = 3; // No such user
+	const BLOCK_IP_INVALID = 4; // Invalid IP address
+	const BLOCK_EXPIRY_INVALID = 5; // Invalid expiry time
+	const BLOCK_ALREADY_BLOCKED = 6; // User is already blocked
+	/**
+	 * Backend block code.
+	 * $userID and $expiry will be filled accordingly
+	 * Returns one of the BLOCK_* constants
+	 */
+	function doBlock(&$userId = null, &$expiry = null)
+	{
+		global $wgUser, $wgSysopUserBans, $wgSysopRangeBans;
 
 		$userId = 0;
 		# Expand valid IPv6 addresses, usernames are left as is
@@ -299,27 +312,23 @@ class IPBlockForm {
 		  		# IPv4
 				if ( $wgSysopRangeBans ) {
 					if ( !IP::isIPv4( $this->BlockAddress ) || $matches[2] < 16 || $matches[2] > 32 ) {
-						$this->showForm( wfMsg( 'ip_range_invalid' ) );
-						return;
+						return self::BLOCK_RANGE_INVALID;
 					}
 					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
 				} else {
 					# Range block illegal
-					$this->showForm( wfMsg( 'range_block_disabled' ) );
-					return;
+					return self::BLOCK_RANGE_DISABLED;
 				}
 			} else if ( preg_match( "/^($rxIP6)\\/(\\d{1,3})$/", $this->BlockAddress, $matches ) ) {
 		  		# IPv6
 				if ( $wgSysopRangeBans ) {
 					if ( !IP::isIPv6( $this->BlockAddress ) || $matches[2] < 64 || $matches[2] > 128 ) {
-						$this->showForm( wfMsg( 'ip_range_invalid' ) );
-						return;
+						return self::BLOCK_RANGE_INVALID;
 					}
 					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
 				} else {
 					# Range block illegal
-					$this->showForm( wfMsg( 'range_block_disabled' ) );
-					return;
+					return self::BLOCK_RANGE_DISABLED;
 				}
 			} else {
 				# Username block
@@ -330,12 +339,10 @@ class IPBlockForm {
 						$this->BlockAddress = $user->getName();
 						$userId = $user->getID();
 					} else {
-						$this->showForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->BlockAddress ) ) );
-						return;
+						return self::BLOCK_NONEXISTENT_USER;
 					}
 				} else {
-					$this->showForm( wfMsg( 'badipaddress' ) );
-					return;
+					return self::BLOCK_IP_INVALID;
 				}
 			}
 		}
@@ -353,8 +360,7 @@ class IPBlockForm {
 			$expirestr = $this->BlockOther;
 
 		if (strlen($expirestr) == 0) {
-			$this->showForm( wfMsg( 'ipb_expiry_invalid' ) );
-			return;
+			return self::BLOCK_EXPIRY_INVALID;
 		}
 
 		if ( $expirestr == 'infinite' || $expirestr == 'indefinite' ) {
@@ -364,8 +370,7 @@ class IPBlockForm {
 			$expiry = strtotime( $expirestr );
 
 			if ( $expiry < 0 || $expiry === false ) {
-				$this->showForm( wfMsg( 'ipb_expiry_invalid' ) );
-				return;
+				return self::BLOCK_EXPIRY_INVALID;
 			}
 
 			$expiry = wfTimestamp( TS_MW, $expiry );
@@ -381,9 +386,7 @@ class IPBlockForm {
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
 			if ( !$block->insert() ) {
-				$this->showForm( wfMsg( 'ipb_already_blocked',
-					htmlspecialchars( $this->BlockAddress ) ) );
-				return;
+				return self::BLOCK_ALREADY_BLOCKED;
 			}
 
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
@@ -400,9 +403,45 @@ class IPBlockForm {
 			  $reasonstr, $logParams );
 
 			# Report to the user
-			$titleObj = SpecialPage::getTitleFor( 'Blockip' );
-			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip=' .
-				urlencode( $this->BlockAddress ) ) );
+			return self::BLOCK_SUCCESS;
+		}
+	}
+
+	/**
+	 * UI entry point for blocking
+	 * Wraps around doBlock()
+	 */
+	function doSubmit()
+	{
+		global $wgOut;
+		$retval = $this->doBlock();
+		switch($retval)
+		{
+			case self::BLOCK_RANGE_INVALID:
+				$this->showForm( wfMsg( 'ip_range_invalid' ) );
+				return;
+			case self::BLOCK_RANGE_DISABLED:
+				$this->showForm( wfMsg( 'range_block_disabled' ) );
+				return;
+			case self::BLOCK_NONEXISTENT_USER:
+				$this->showForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->BlockAddress ) ) );
+				return;
+			case self::BLOCK_IP_INVALID:
+				$this->showForm( wfMsg( 'badipaddress' ) );
+				return;
+			case self::BLOCK_EXPIRY_INVALID:
+				$this->showForm( wfMsg( 'ipb_expiry_invalid' ) );
+				return;
+			case self::BLOCK_ALREADY_BLOCKED:
+				$this->showForm( wfMsg( 'ipb_already_blocked', htmlspecialchars( $this->BlockAddress ) ) );
+				return;
+			case self::BLOCK_SUCCESS:
+				$titleObj = SpecialPage::getTitleFor( 'Blockip' );
+				$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip=' .
+					urlencode( $this->BlockAddress ) ) );
+				return;
+			default:
+				throw new MWException( __METHOD__ . ": Unknown return value ``{$retval}''" );
 		}
 	}
 
