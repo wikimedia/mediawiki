@@ -110,11 +110,7 @@ class LocalFile extends File
 			wfDebug( "Pulling file metadata from cache key $key\n" );
 			$this->fileExists = $cachedValues['fileExists'];
 			if ( $this->fileExists ) {
-				unset( $cachedValues['version'] );
-				unset( $cachedValues['fileExists'] );
-				foreach ( $cachedValues as $name => $value ) {
-					$this->$name = $value;
-				}
+				$this->setProps( $cachedValues );
 			}
 		}
 		if ( $this->dataLoaded ) {
@@ -313,6 +309,13 @@ class LocalFile extends File
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * Set properties in this object to be equal to those given in the 
+	 * associative array $info. Only cacheable fields can be set.
+	 * 
+	 * If 'mime' is given, it will be split into major_mime/minor_mime. 
+	 * If major_mime/minor_mime are given, $this->mime will also be set.
+	 */
 	function setProps( $info ) {
 		$this->dataLoaded = true;
 		$fields = $this->getCacheFields( '' );
