@@ -302,7 +302,7 @@ $messages = array(
 'page-rss-feed'           => 'Lanv RSS evit "$1"',
 'page-atom-feed'          => 'Lanv Atom evit "$1"',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pennad',
 'nstab-user'      => 'Pajenn implijer',
 'nstab-media'     => 'Media',
@@ -1056,7 +1056,7 @@ PICT # misc.
 'unusedtemplatestext' => 'Rollet eo amañ an holl bajennoù dezho an esaouenn anv "patrom" ha n\'int ket implijet war pajenn ebet. Ho pet soñj da wiriañ mat hag-eñ n\'eus ket liammoù all war-du ar patromoù-se a-raok diverkañ anezho.',
 'unusedtemplateswlh'  => 'liammoù all',
 
-# Random pages
+# Random page
 'randompage'         => 'Ur bajenn dre zegouezh',
 'randompage-nopages' => "N'eus pajenn ebet en esaouenn anv-mañ.",
 
@@ -1106,7 +1106,7 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'nrevisions'              => '$1 stumm',
 'nviews'                  => '$1 selladenn',
 'specialpage-empty'       => 'Goullo eo ar bajenn-mañ.',
-'lonelypages'             => 'Pajennoù en o-unan',
+'lonelypages'             => 'Pajennoù hep liamm daveto',
 'lonelypagestext'         => "N'eus liamm ebet e pajenn ebet eus ar wiki-mañ a gasfe war-du ar pajennoù a-is.",
 'uncategorizedpages'      => 'Pajennoù hep rummad ebet',
 'uncategorizedcategories' => 'Rummadoù hep rummadoù',

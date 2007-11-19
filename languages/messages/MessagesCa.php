@@ -1445,7 +1445,7 @@ pot haver-se restaurat o eliminat de l'arxiu.",
 'cannotundelete'           => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
 'undeletedpage'            => "<big>'''S'ha restaurat «$1»'''</big>
 
-Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborrats i els restauraments més recents.",
+Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborraments i els restauraments més recents.",
 'undelete-header'          => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
 'undelete-search-box'      => 'Cerca pàgines esborrades',
 'undelete-search-prefix'   => 'Mostra pàgines que comencin:',

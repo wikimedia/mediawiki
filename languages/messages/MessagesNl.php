@@ -1776,6 +1776,7 @@ Zie de [[{{ns:special}}:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'ipb_expiry_invalid'          => 'Ongeldige duur.',
 'ipb_already_blocked'         => '"$1" is al geblokkeerd',
 'ipb_cant_unblock'            => 'Fout: Blokkadenummer $1 niet gevonden. Misschien is de blokkade al opgeheven.',
+'ipb_blocked_as_range'        => 'Fout: het IP-adres $1 is niet direct geblokkeerd en de blokkade kan niet opgeheven worden. De blokkade is onderdeel van de reeks $2, waarvan de blokkade wel opgeheven kan worden.',
 'ip_range_invalid'            => 'Ongeldige IP-reeks',
 'blockme'                     => 'Mij blokkeren',
 'proxyblocker'                => 'Proxyblocker',
@@ -2091,6 +2092,7 @@ Alleen regels in een lijst (regels die beginnen met *) worden verwerkt. De eerst
 Alle volgende links die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop de afbeelding in te tekst is opgenomen.",
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand is aangepast, dan komen details mogelijk niet overeen met de gewijzigde afbeelding.',
 'metadata-expand'   => 'Uitgebreide gegevens tonen',
 'metadata-collapse' => 'Uitgebreide gegevens verbergen',

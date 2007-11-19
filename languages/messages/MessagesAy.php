@@ -6,7 +6,7 @@
  * @author Kanon6917
  * @author Siebrand
  */
- 
+
 $fallback = 'es';
 
 $messages = array(
@@ -28,6 +28,7 @@ $messages = array(
 'talkpagelinktext' => 'Kutkatasiña',
 'talk'             => 'Tuqisiwi',
 'otherlanguages'   => 'Yaqha arunaka',
+'jumptosearch'     => 'thaqaña',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'     => 'Jichha pacha',
