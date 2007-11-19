@@ -533,6 +533,14 @@ abstract class ApiBase {
 	}
 
 	/**
+	 * Indicates if API needs to check maxlag
+	 */
+	public function shouldCheckMaxlag() {
+		return true;
+	}
+
+
+	/**
 	 * Profiling: total module execution time
 	 */
 	private $mTimeIn = 0, $mModuleTime = 0;
