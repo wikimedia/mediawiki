@@ -289,6 +289,21 @@ class ApiMain extends ApiBase {
 
 		// Instantiate the module requested by the user
 		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
+		
+		if( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
+			// Check for maxlag
+			global $wgLoadBalancer, $wgShowHostnames;
+			$maxLag = $params['maxlag'];
+			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+			if ( $lag > $maxLag ) {
+				if( $wgShowHostnames ) {
+					ApiBase :: dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
+				} else {
+					ApiBase :: dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
+				}
+				return;
+			}
+		}
 
 		if (!$this->mInternalMode) {
 
@@ -348,7 +363,10 @@ class ApiMain extends ApiBase {
 				ApiBase :: PARAM_DFLT => 'help',
 				ApiBase :: PARAM_TYPE => $this->mModuleNames
 			),
-			'version' => false
+			'version' => false,
+			'maxlag'  => array (
+				ApiBase :: PARAM_TYPE => 'integer'
+			),
 		);
 	}
 
@@ -359,7 +377,8 @@ class ApiMain extends ApiBase {
 		return array (
 			'format' => 'The format of the output',
 			'action' => 'What action you would like to perform',
-			'version' => 'When showing help, include version for each module'
+			'version' => 'When showing help, include version for each module',
+			'maxlag' => 'Maximum lag'
 		);
 	}
 
