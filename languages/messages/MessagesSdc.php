@@ -7,11 +7,12 @@
  * @author Felis
  * @author Siebrand
  * @author Teak
+ * @author Antofa
  */
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sotturinià i cullegamenti:',
+'tog-underline'               => 'Sotturinia li cullegamenti:',
 'tog-highlightbroken'         => 'Fuimmadda <a href="" class="new">cussì</a> li cullegamenti a pàgini inesisthenti (si disattibaddu: cussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alliniamentu di li paràgrafi giusthifiggaddu',
 'tog-hideminor'               => 'Cua li mudìfigghi minori ni li ulthimi mudìfigghi',
@@ -134,11 +135,11 @@ Li sighenti cullegamenti so in linga ingrese:
 'qbedit'         => 'Mudifigga',
 'qbpageoptions'  => 'Prifirènzi pàgina',
 'qbpageinfo'     => 'Infuimmazioni i la pàgina',
-'qbmyoptions'    => 'Li mé pàgini',
+'qbmyoptions'    => "Li me' pàgini",
 'qbspecialpages' => 'Pàgini ippiziari',
 'moredotdotdot'  => 'Althru...',
 'mypage'         => 'La mea pàgina',
-'mytalk'         => 'Li mé dischussioni',
+'mytalk'         => "Li me' dischussioni",
 'anontalk'       => 'Dischussioni pa chisthu IP',
 'navigation'     => 'Nabiggazioni',
 
@@ -149,13 +150,13 @@ Li sighenti cullegamenti so in linga ingrese:
 'returnto'          => 'Turra a $1.',
 'tagline'           => 'Da {{SITENAME}}.',
 'help'              => 'Aggiuddu',
-'search'            => 'Zircha',
-'searchbutton'      => 'Zircha',
+'search'            => 'Zercha',
+'searchbutton'      => 'Zercha',
 'go'                => 'Vai',
 'searcharticle'     => 'Vai',
 'history'           => 'Versioni prizzidenti',
 'history_short'     => 'Cronologia',
-'updatedmarker'     => 'Mudìfiggadda da la mea ulthima vìsita',
+'updatedmarker'     => "mudìfiggadda di la me' ulthima vìsita",
 'info_short'        => 'Infuimmazioni',
 'printableversion'  => 'Versioni sthampabiri',
 'permalink'         => 'Cullegamentu peimmanenti',
@@ -196,7 +197,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'protectedpage'     => 'Pàgina broccadda',
 'jumpto'            => 'Vai a:',
 'jumptonavigation'  => 'nabiggazioni',
-'jumptosearch'      => 'Zircha',
+'jumptosearch'      => 'zercha',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Infuimmazioni i {{SITENAME}}',
@@ -225,9 +226,9 @@ Li sighenti cullegamenti so in linga ingrese:
 
 'badaccess'        => 'Primmissi nò suffizenti',
 'badaccess-group0' => "Nò si dipuni di li primmissi nezzessàri pa eseguì l'azioni dumandadda.",
-'badaccess-group1' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthinini a lu gruppu $1.',
-'badaccess-group2' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthinini a li gruppi $1.',
-'badaccess-groups' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthinini a unu di li sighenti gruppi: $1.',
+'badaccess-group1' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a lu gruppu $1.',
+'badaccess-group2' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a li gruppi $1.',
+'badaccess-groups' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a unu di li sighenti gruppi: $1.',
 
 'versionrequired'     => 'Versioni $1 di MediaWiki dumandadda',
 'versionrequiredtext' => "Pa usà chistha pàgina è nezzessàriu dipunì di la versioni $1 di lu software MediaWiki. Vedi [[Special:Version|l'appósidda pàgina]].",
@@ -248,7 +249,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'viewdeleted'             => 'Vedi $1?',
 'restorelink'             => '{{PLURAL:$1|una mudìfigga canzilladda|$1 mudìfigghi canzilladdi}}',
 'feedlinks'               => 'Feed:',
-'feed-invalid'            => 'Manera di suttischrizioni di lu feed nò vàridda.',
+'feed-invalid'            => 'Manera di suttischrizioni di lu feed no vàridda.',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
@@ -267,7 +268,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'nstab-category'  => 'Categuria',
 
 # Main script and global functions
-'nosuchaction'      => 'Operazioni nò ricuniscidda',
+'nosuchaction'      => 'Operazioni no ricuniscidda',
 'nosuchactiontext'  => "L'indirizzu immissu nò curripundì a 'nu cumandu ricunisciddu da lu software MediaWiki",
 'nosuchspecialpage' => 'Pàgina ippiziari nò dipunìbiri',
 'nospecialpagetext' => "La pàgina ippiziari dumandadda nò e isthadda ricuniscidda da lu software MediaWiki; l'erencu di li pàgini ippiziari vàriddi s'acciappa i [[Special:Specialpages|Erencu di li pàgini ippiziari]].",
@@ -325,7 +326,7 @@ funzioni: $1<br />
 Query: $2',
 'viewsource'           => 'Vèdi càntaru',
 'viewsourcefor'        => 'di $1',
-'protectedpagetext'    => "Chistha pàgina è isthadda prutiggidda pa n'impidì la mudìfigga.",
+'protectedpagetext'    => 'Chistha pàgina è isthadda prutiggidda pa impidinni la mudìfigga.',
 'viewsourcetext'       => 'È pussìbiri visuarizzà e cupià lu còdizi càntaru di chistha pàgina:',
 'protectedinterface'   => "Chistha pàgina cuntini un'erementu chi fazzi parthi di l'interfàccia utenti di lu software; è dunca prutiggidda pa evità pussìbiri abusi.",
 'editinginterface'     => "'''Attinzioni:''' Lu testhu di chistha pàgina fazzi parthi di l'interfàccia utenti di lu situ. Tutti li le mudìfigghi arriggaddi a chistha pàgina si rifrittìni i li imbasciaddi visuarizzaddi pa tutti li utenti.",
@@ -356,8 +357,8 @@ La registhrazioni è isthadda criadda currittamenti. Nò dimintiggà di passunar
 'login'                     => 'Intra',
 'loginprompt'               => 'Pa intrà a {{SITENAME}} è nezzessàriu abirità li cookie.',
 'userlogin'                 => 'Intra o cria una noba registhrazioni',
-'logout'                    => 'Isci',
-'userlogout'                => 'Isci',
+'logout'                    => 'Esci',
+'userlogout'                => 'Esci',
 'notloggedin'               => 'Intradda nò effettuadda',
 'nologin'                   => 'Nò hai ancóra una registhrazioni? $1.',
 'nologinlink'               => 'Crìala abà',

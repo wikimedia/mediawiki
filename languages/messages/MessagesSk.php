@@ -295,7 +295,7 @@ $messages = array(
 'search'            => 'Hľadať',
 'searchbutton'      => 'Hľadať',
 'go'                => 'Choď',
-'searcharticle'     => 'Hľadať',
+'searcharticle'     => 'Ísť na',
 'history'           => 'história stránky',
 'history_short'     => 'História',
 'updatedmarker'     => 'aktualizované od mojej poslednej návštevy',
@@ -648,6 +648,7 @@ Pozn.: Nemôžete použiť funkciu "Poslať email tomuto používateľovi", ak s
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
 
 ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.',
+'blockednoreason'           => 'nebol uvedený dôvod',
 'blockedoriginalsource'     => "Zdroj '''$1''' je zobrazený nižšie:",
 'blockededitsource'         => "Text '''vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
 'whitelistedittitle'        => 'Aby ste mohli upravovať stránky, musíte sa prihlásiť',

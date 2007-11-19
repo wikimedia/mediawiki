@@ -249,7 +249,7 @@ $messages = array(
 'feedlinks'               => 'Só-thin:',
 'feed-invalid'            => 'Mò-háu ke só-thin lui-hìn.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Vùn-chông',
 'nstab-user'      => 'Yung-fu thiàu-muk',
 'nstab-media'     => 'Chhiòn-thí hong-mien',
@@ -848,6 +848,10 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'unusedtemplatestext' => '<p>Chhiáng chu-yi khì-thâ mióng-chham khó-nèn chhṳ̍t-chiap theu-ko URL lièn-chiap chhṳ́ thù-hìn, só-yî liá-piên clie̍t-chhut ke thù-hìn yû khó-nèn pûn sṳ́-yung.</p>',
 'unusedtemplateswlh'  => 'Khì-thâ lièn-kiet',
 
+# Random page
+'randompage'         => 'Sùi-kî thiàu-muk',
+'randompage-nopages' => 'Chhai liá-ke miàng-sṳ khûng-kiên chûng mò-yû hong-mien.',
+
 # Random redirect
 'randomredirect'         => 'Sùi-kî chhùng-thin hong-mien',
 'randomredirect-nopages' => 'Chhai liá-ke miàng-sṳ khûng-kiên mò-yû chhùng-thin hong-mien.',
@@ -902,8 +906,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'mostrevisions'           => 'Chui-tô siû-thin vùn-chông',
 'allpages'                => 'Só-yû ke hong-mian',
 'prefixindex'             => 'Chhièn-chhàng sok-yîn',
-'randompage'              => 'Sùi-kî thiàu-muk',
-'randompage-nopages'      => 'Chhai liá-ke miàng-sṳ khûng-kiên chûng mò-yû hong-mien.',
 'shortpages'              => 'Tón vùn-chông',
 'longpages'               => 'Chhòng vùn-chông',
 'deadendpages'            => 'Thôn-lièn vùn-chông',
@@ -1514,12 +1516,12 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 'metadata-expand'   => 'Hién-sṳ siòng-se ke chṳ̂-liau',
 'metadata-collapse' => 'Yún-chhòng siòng-se ke chṳ̂-liau',
 'metadata-fields'   => 'Chhai pún sêu-sit chûng só lie̍t-chhut ke EXIF ngièn-su-kí chiông-chhiu pâu-hàm chhai thù-phién hién-sṳ thiàu-muk, tông ngièn-su-kí péu sún-fái sṳ̀ chak hién-sṳ yî-ha sêu-sit, khì-thâ ke ngièn-su-kí yi-sat vì yún-chhòng. 
-* siông-kî chṳ-chho sông 
-* siông-kî hìn-ho
-* ngièn-sṳ́ ngit-khì sṳ̀-kiên  
-* hién-lu kông-khiên sṳ̀-kiên 
-* kông-khiên (F-chhṳ̍t) 
-* chhèu-khî',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Yung ngoi-phu chhàng-sṳt phiên-siá chhṳ́ tóng-on',
