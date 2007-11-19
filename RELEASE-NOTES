@@ -166,6 +166,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Check for if IP is blocked as part of a range when unblocking (see above bug-
   fix) was faulty. Now fixed.
 * Fixed wpReason URL parameter to action=delete.
+* Do not force a password for account creation by email
 
 === API changes in 1.12 ===
 

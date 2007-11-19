@@ -264,22 +264,29 @@ class LoginForm {
 			return false;
 		}
 
+		# check for minimal password length
 		if ( !$u->isValidPassword( $this->mPassword ) ) {
-			$this->mainLoginForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
-			return false;
+			if ( !$this->mCreateaccountMail ) {
+				$this->mainLoginForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
+				return false;
+			} else {
+				# do not force a password for account creation by email
+				# set pseudo password, it will be replaced later by a random generated password
+				$this->mPassword = '-';
+			}
 		}
-		
+
 		# if you need a confirmed email address to edit, then obviously you need an email address.
 		if ( $wgEmailConfirmToEdit && empty( $this->mEmail ) ) {
 			$this->mainLoginForm( wfMsg( 'noemailtitle' ) );
 			return false;
 		}
-		
+
 		if( !empty( $this->mEmail ) && !User::isValidEmailAddr( $this->mEmail ) ) {
 			$this->mainLoginForm( wfMsg( 'invalidemailaddress' ) );
 			return false;
 		}
-		
+
 		# Set some additional data so the AbortNewAccount hook can be
 		# used for more than just username validation
 		$u->setEmail( $this->mEmail );
