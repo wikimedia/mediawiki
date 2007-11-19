@@ -712,7 +712,7 @@ Podeu editar les planes ja existents o bé [[Special:Userlogin|entrar en un comp
 'recreate-deleted-warn'     => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
-A continuació s'ofereix el registre d'esborrats de la pàgina:",
+A continuació s'ofereix el registre d'esborraments de la pàgina:",
 
 # "Undo" feature
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
@@ -1445,7 +1445,7 @@ pot haver-se restaurat o eliminat de l'arxiu.",
 'cannotundelete'           => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
 'undeletedpage'            => "<big>'''S'ha restaurat «$1»'''</big>
 
-Consulteu el [[Special:Log/delete|registre d'esborrats]] per a veure els esborrats i les restauracions més recents.",
+Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborrats i els restauraments més recents.",
 'undelete-header'          => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
 'undelete-search-box'      => 'Cerca pàgines esborrades',
 'undelete-search-prefix'   => 'Mostra pàgines que comencin:',
