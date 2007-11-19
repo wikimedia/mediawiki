@@ -301,7 +301,6 @@ function __autoload($className) {
 		'Services_JSON' => 'includes/api/ApiFormatJson_json.php',
 		'ApiFormatJson' => 'includes/api/ApiFormatJson.php',
 		'ApiFormatPhp' => 'includes/api/ApiFormatPhp.php',
-		'ApiFormatRaw' => 'includes/api/ApiFormatBase.php',
 		'ApiFormatWddx' => 'includes/api/ApiFormatWddx.php',
 		'ApiFormatXml' => 'includes/api/ApiFormatXml.php',
 		'Spyc' => 'includes/api/ApiFormatYaml_spyc.php',
