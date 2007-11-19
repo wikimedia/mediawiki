@@ -163,6 +163,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the page
 * Check for if IP is blocked as part of a range when unblocking (see above bug-
   fix) was faulty. Now fixed.
+* Fixed wgReason URL parameter to action=delete.
 
 === API changes in 1.12 ===
 
