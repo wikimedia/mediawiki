@@ -56,16 +56,9 @@ class ApiRender extends ApiBase {
 
 		// Return result
 		$result = $this->getResult();
-		if( $this->isRaw() ) {
-			ApiFormatRaw :: setRawData( $result, $retval, 'text/html' );
-		}
 		$retval_array = array();
 		$result->setContent( $retval_array, $retval );
 		$result->addValue( null, $this->getModuleName(), $retval_array );
-	}
-
-	public function supportRaw() {
-		return true;
 	}
 
 	protected function getAllowedParams() {
@@ -98,5 +91,4 @@ class ApiRender extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-
 
