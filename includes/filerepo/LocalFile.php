@@ -112,6 +112,7 @@ class LocalFile extends File
 			if ( $this->fileExists ) {
 				$this->setProps( $cachedValues );
 			}
+			$this->dataLoaded = true;
 		}
 		if ( $this->dataLoaded ) {
 			wfIncrStats( 'image_cache_hit' );
