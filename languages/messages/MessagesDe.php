@@ -572,6 +572,11 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'invalidemailaddress'        => 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte gib eine Adresse in einem gültigen Format ein oder leere das Feld.',
 'accountcreated'             => 'Benutzerkonto erstellt',
 'accountcreatedtext'         => 'Das Benutzerkonto $1 wurde eingerichtet.',
+'createaccount-title'        => 'Erstellung eines Benutzerkontos für {{SITENAME}}',
+'createaccount-text'         => 'Jemand ($1) hat ein Benutzerkonto "$2" auf {{SITENAME}}.
+($4) erstellt. Das Passwort for "$2" ist "$3". Du solltest dich nun anmelden und dein Passwort ändern.
+
+Du kannst diese Nachricht ignorieren, falls das Benutzerkonto durch einen Fehler angelegt wurde.',
 'loginlanguagelabel'         => 'Sprache: $1',
 
 # Password reset dialog

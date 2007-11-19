@@ -406,6 +406,8 @@ $wgMessageStructure = array(
 		'invalidemailaddress',
 		'accountcreated',
 		'accountcreatedtext',
+		'createaccount-title',
+		'createaccount-text',
 		'loginlanguagelabel',
 		'loginlanguagelinks',
 	),
