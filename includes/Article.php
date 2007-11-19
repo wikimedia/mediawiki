@@ -1960,7 +1960,7 @@ class Article {
 
 		// Generate deletion reason
 		$hasHistory = false;
-		$reason = $this->generateReason($hasHistory);
+		if ( !$reason ) $reason = $this->generateReason($hasHistory);
 
 		// If the page has a history, insert a warning
 		if( $hasHistory && !$confirm ) {
