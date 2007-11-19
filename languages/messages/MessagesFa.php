@@ -110,20 +110,20 @@ $datePreferenceMigrationMap = array(
  */
 $dateFormats = array(
 	'mdy time' => 'H:i',
-	'mdy date' => 'xg j، Y', # Arabic comma
-	'mdy both' => 'H:i، xg j، Y', # Arabic comma
+	'mdy date' => 'n/j/Y میلادی',
+	'mdy both' => 'n/j/Y میلادی، ساعت H:i',
 
 	'dmy time' => 'H:i',
 	'dmy date' => 'j xg Y',
-	'dmy both' => 'H:i، j xg Y', # Arabic comma
+	'dmy both' => 'j xg Y، ساعت H:i',
 
 	'ymd time' => 'H:i',
-	'ymd date' => 'Y xg j',
-	'ymd both' => 'H:i، Y xg j', # Arabic comma
+	'ymd date' => 'Y/n/j میلادی',
+	'ymd both' => 'Y/n/j میلادی، ساعت H:i',
 	
 	'persian time' => 'H:i',
 	'persian date' => '‏xij xiF xiY', # Don't delete the invisible RLM from the beginning.
-	'persian both' => 'H:i، xij xiF xiY',
+	'persian both' => '‏xij xiF xiY، ساعت H:i', # Don't delete the invisible RLM from the beginning.
 	
 
 	'ISO 8601 time' => 'xnH:xni:xns',
@@ -273,13 +273,13 @@ $messages = array(
 'october'       => 'اکتبر',
 'november'      => 'نوامبر',
 'december'      => 'دسامبر',
-'january-gen'   => 'ژانویه',
-'february-gen'  => 'فوریه',
+'january-gen'   => 'ژانویهٔ',
+'february-gen'  => 'فوریهٔ',
 'march-gen'     => 'مارس',
 'april-gen'     => 'آوریل',
-'may-gen'       => 'مه',
+'may-gen'       => 'مهٔ',
 'june-gen'      => 'ژوئن',
-'july-gen'      => 'ژوئیه',
+'july-gen'      => 'ژوئیهٔ',
 'august-gen'    => 'اوت',
 'september-gen' => 'سپتامبر',
 'october-gen'   => 'اکتبر',
@@ -351,8 +351,8 @@ $messages = array(
 'printableversion'  => 'نسخهٔ قابل چاپ',
 'permalink'         => 'پیوند دائمی',
 'print'             => 'چاپ',
-'edit'              => 'این صفحه را ویرایش کنید',
-'editthispage'      => 'ویرایش این صفحه',
+'edit'              => 'ويرايش',
+'editthispage'      => 'اين صفحه را ويرايش كنيد',
 'delete'            => 'حذف',
 'deletethispage'    => 'حذف این صفحه',
 'undelete_short'    => 'احیای {{PLURAL:$1|یک ویرایش|$1 ویرایش}}',
