@@ -66,6 +66,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added --override switch for disabled pages in updateSpecialPages.php
 * Provide a unique message (ipb_blocked_as_range) if unblock of a single IP fails 
   because it is part of a blocked range.
+* (bug 3973) Use a separate message for the email content when an account is 
+  created by another user
 
 === Bug fixes in 1.12 ===
 
