@@ -488,7 +488,7 @@ $messages = array(
 'otherlanguages'    => 'Andere talen',
 'redirectedfrom'    => '(Doorverwezen vanaf $1)',
 'redirectpagesub'   => 'Doorverwijspagina',
-'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $2 om $1.', # $1 date, $2 time
 'viewcount'         => 'Deze pagina is {{PLURAL:$1|1 maal|$1 maal}} bekeken.',
 'protectedpage'     => 'Beveiligde pagina',
 'jumpto'            => 'Ga naar:',
@@ -2428,8 +2428,8 @@ $1',
 'hideresults'      => 'Resultaten verbergen',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; vorige pagina',
-'imgmultipagenext'   => 'volgende pagina &rarr;',
+'imgmultipageprev'   => '← vorige pagina',
+'imgmultipagenext'   => 'volgende pagina →',
 'imgmultigo'         => 'OK',
 'imgmultigotopre'    => 'Gaan naar pagina',
 'imgmultiparseerror' => "Het afbeeldingsbestand schijnt onjuist te zijn, zodat {{SITENAME}} geen lijst van pagina's kon terugvinden.",

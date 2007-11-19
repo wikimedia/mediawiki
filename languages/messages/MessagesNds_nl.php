@@ -1,15 +1,17 @@
 <?php
-/** Dutch Lower Saxon (Nedersaksisch)
-  *
-  * @addtogroup Language
-  *
-  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
-  * @author Gangleri
-  * @author SPQRobin
-  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank
-  * @copyright Copyright © 2007, Betawiki users
-  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
-  */
+/** Nedersaksisch (Nedersaksisch)
+ *
+ * @addtogroup Language
+ *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
+ * @author Gangleri
+ * @author SPQRobin
+ * @author G - ג
+ * @author Erwin85
+ * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank
+ * @copyright Copyright © 2007, Betawiki users
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
 
 $fallback = 'nl';
 
@@ -193,6 +195,13 @@ $magicWords = array(
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 
 $messages = array(
+# User preference toggles
+'tog-hideminor'      => 'Kleine wiezigingen verbargen in leste wiezigingen',
+'tog-watchcreations' => 'Artikels dee-j anmaken an volglieste toevoegen',
+'tog-watchdefault'   => 'Artikels dee-j wiezigen an volglieste toevoegen',
+'tog-watchmoves'     => "Pagina's dee-k herneum an mien volglieste toevoegen",
+'tog-watchdeletion'  => 'Voeg pagina dee-k vortdo an mien volglieste toe',
+
 # Dates
 'sunday'       => 'zundag',
 'monday'       => 'maondag',
@@ -229,6 +238,7 @@ $messages = array(
 'toolbox'       => 'Hulpmiddels',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'         => 'Over {{SITENAME}}',
 'copyright'         => 'De inhold is beschikbaor onder de $1.',
 'currentevents'     => "In 't niejs",
 'currentevents-url' => "Project:In 't niejs",
@@ -240,7 +250,7 @@ $messages = array(
 'sitesupport'       => 'Financiële steun',
 'sitesupport-url'   => 'Project:Financiële steun',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'Gebruker',
 'nstab-special'   => 'Speciaol',
 'nstab-mediawiki' => 'Berich',
@@ -266,9 +276,11 @@ $messages = array(
 # Upload
 'upload' => 'Bestand toevoegen',
 
+# Random page
+'randompage' => 'Willekeurig artikel',
+
 # Miscellaneous special pages
 'allpages'     => "Alle pagina's",
-'randompage'   => 'Willekeurig artikel',
 'specialpages' => "Speciaole pagina's",
 'move'         => 'herneumen',
 
