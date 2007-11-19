@@ -4,7 +4,7 @@
  * @addtogroup Language
  *
  * @author SPQRobin
- * @author G - ?
+ * @author G - ג
  * @author Helix84
  */
 
@@ -520,8 +520,8 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'loadhist'            => 'Orrialdearen historia kargatzen',
 'currentrev'          => 'Oraingo berrikuspena',
 'revisionasof'        => '$1(e)ko berrikuspena',
-'previousrevision'    => '?Berrikuspen zaharragoa',
-'nextrevision'        => 'Berrikuspen berriagoa?',
+'previousrevision'    => '←Berrikuspen zaharragoa',
+'nextrevision'        => 'Berrikuspen berriagoa→',
 'currentrevisionlink' => 'Oraingo berrikuspena ikusi',
 'cur'                 => 'orain',
 'next'                => 'hurrengoa',
@@ -643,7 +643,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'timezonelegend'          => 'Ordu zona',
 'timezonetext'            => 'Zure ordu lokala eta zerbitzariaren orduaren (UTC) arteko ezberdintasuna.',
 'localtime'               => 'Ordu lokala',
-'timezoneoffset'          => 'Ezberdintasuna�',
+'timezoneoffset'          => 'Ezberdintasuna¹',
 'servertime'              => 'Zerbitzariko ordua',
 'guesstimezone'           => 'Nabigatzailetik jaso',
 'allowemail'              => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
@@ -1107,7 +1107,7 @@ Laguntza:
 'istemplate'          => 'erabilpena',
 'whatlinkshere-prev'  => '{{PLURAL:$1|aurrekoa|aurreko $1ak}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|hurrengoa|hurrengo $1ak}}',
-'whatlinkshere-links' => '? loturak',
+'whatlinkshere-links' => '← loturak',
 
 # Block/unblock
 'blockip'                     => 'Erabiltzailea blokeatu',
@@ -1391,14 +1391,14 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 'deletedrevision' => '$1 berrikuspen zaharra ezabatu da',
 
 # Browsing diffs
-'previousdiff' => '? Aurreko ezberdintasuna',
-'nextdiff'     => 'Hurrengo ezberdintasuna ?',
+'previousdiff' => '← Aurreko ezberdintasuna',
+'nextdiff'     => 'Hurrengo ezberdintasuna →',
 
 # Media information
 'mediawarning'   => "'''Oharra''': Fitxategi honek kode mingarria izan lezake; zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
 'imagemaxsize'   => 'Irudiak deskribapen-orrialdetan hurrengo tamainara txikitu:',
 'thumbsize'      => 'Irudi txikiaren tamaina:',
-'file-info-size' => '($1 � $2 pixel, fitxategiaren tamaina: $3, MIME mota: $4)',
+'file-info-size' => '($1 × $2 pixel, fitxategiaren tamaina: $3, MIME mota: $4)',
 
 # Special:Newimages
 'newimages'    => 'Fitxategi berrien galeria',
