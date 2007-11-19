@@ -12,7 +12,7 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sotturinia li cullegamenti:',
+'tog-underline'               => 'Sotturìnia li cullegamenti:',
 'tog-highlightbroken'         => 'Fuimmadda <a href="" class="new">cussì</a> li cullegamenti a pàgini inesisthenti (si disattibaddu: cussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alliniamentu di li paràgrafi giusthifiggaddu',
 'tog-hideminor'               => 'Cua li mudìfigghi minori ni li ulthimi mudìfigghi',
@@ -114,7 +114,7 @@ $messages = array(
 'category_header'       => 'Pàgini ni la categuria "$1"',
 'subcategories'         => 'Sottucateguri',
 'category-media-header' => 'File ni la categuria "$1"',
-'category-empty'        => "''Abà la categuria nò cuntini nisciuna pàgina o file.''",
+'category-empty'        => "''Attuarmenti la categuria no cunteni nisciuna pàgina o file.''",
 
 'mainpagetext'      => "<big>'''Isthallazioni di MediaWiki accabadda di lu tuttu.'''</big>",
 'mainpagedocfooter' => "Cunsultha la [http://meta.wikimedia.org/wiki/Aggiuddu:Summàriu Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu software wiki.
