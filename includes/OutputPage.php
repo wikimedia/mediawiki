@@ -1337,10 +1337,17 @@ class OutputPage {
 	 */
 	public function rateLimited() {
 		global $wgOut;
-		$wgOut->disable();
-		wfHttpError( 500, 'Internal Server Error',
-			'Sorry, the server has encountered an internal error. ' .
-			'Please wait a moment and hit "refresh" to submit the request again.' );
+
+		$this->setPageTitle(wfMsg('actionthrottled'));
+		$this->setRobotPolicy( 'noindex,nofollow' );
+		$this->setArticleRelated( false );
+		$this->enableClientCache( false );
+		$this->mRedirect = '';
+		$this->clearHTML();
+		$this->setStatusCode(503);
+		$this->addWikiText( wfMsg('actionthrottledtext') );
+
+		$this->returnToMain( false, $wgTitle );
 	}
 	
 	/**

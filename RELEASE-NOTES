@@ -170,6 +170,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   fix) was faulty. Now fixed.
 * Fixed wpReason URL parameter to action=delete.
 * Do not force a password for account creation by email
+* Ensure that rate-limiting is applied to rollbacks.
+* Make a better rate-limiting error message (i.e. a normal MW error,
+  rather than an "Internal Server Error").
 
 === API changes in 1.12 ===
 
