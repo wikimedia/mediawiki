@@ -60,8 +60,11 @@ $messages = array(
 'tog-editondblclick'   => 'Арынны өскертирде ийи катап базар (JavaScript)',
 'tog-rememberpassword' => 'Мени сактып алыр',
 
-'underline-always' => 'Кезээде',
-'underline-never'  => 'Кажан-даа',
+'underline-always'  => 'Кезээде',
+'underline-never'   => 'Кажан-даа',
+'underline-default' => 'Веб-браузерниң ниити үнези',
+
+'skinpreview' => '(Чижеглей көөр)',
 
 # Dates
 'sunday'        => 'Улуг хүн',
@@ -159,6 +162,7 @@ $messages = array(
 'talkpagelinktext'  => 'Чугаалажыр',
 'specialpage'       => 'Тускай Арын',
 'personaltools'     => 'Хууда херекселдер',
+'postcomment'       => 'Комментарийни чогаадыр',
 'articlepage'       => 'Допчу арынны көөр',
 'talk'              => 'Чугаалажыр',
 'views'             => 'Көрүштер',
@@ -288,11 +292,17 @@ $1',
 'media_tip'       => 'Медиа файл холбаазы',
 
 # Edit pages
+'summary'            => 'Түңнел',
 'subject'            => 'Кол сөс',
 'minoredit'          => 'Бо өскерлиишкин биче-дир',
-'watchthis'          => 'Бо арынны истээр',
+'watchthis'          => 'Бо арынны хайгаараар',
 'savearticle'        => 'Арынны шыгжаар',
+'preview'            => 'Чижеглей көөр',
+'showpreview'        => 'Чижеглей көөр',
 'showdiff'           => 'Өскерлиишкиннерни көргүзер',
+'missingcommenttext' => 'Комментарийни адаанда чогаадыңар.',
+'summary-preview'    => 'Түңнелдү чижеглей көөр',
+'subject-preview'    => 'Кол сөс чижеглей көөр',
 'nosuchsectiontitle' => 'Ындыг бөлгүм чок',
 'loginreqlink'       => 'кирер',
 'accmailtitle'       => 'Чажыт сөс чоргустунган.',
@@ -301,8 +311,10 @@ $1',
 'editing'            => '$1 деп арынны өскертип турар',
 'editinguser'        => '<b>$1</b> деп ажыглакчыны өскертип турар',
 'editingsection'     => '$1 деп бөлгүмнү өскертип турар',
+'editingcomment'     => '$1 (комментарий) өскертип турар',
 'yourtext'           => 'Силерниң сөзүглелиңер',
 'yourdiff'           => 'Ылгалдар',
+'template-protected' => '(камгалаан)',
 
 # History pages
 'revhistory'          => 'Үндүрериниң төөгүзү',
@@ -326,6 +338,7 @@ $1',
 'history-feed-title' => 'Үндүрериниң төөгүзү',
 
 # Revision deletion
+'rev-deleted-comment' => '(комментарийни ап каан)',
 'rev-delundel'        => 'көргүзер/чажырар',
 'revisiondelete'      => 'Үндүрерилерни ап каар/диргисир',
 'revdelete-hide-user' => 'Чогаалчының адын/ИП-адресин чажырар',
@@ -357,6 +370,7 @@ $1',
 'columns'            => 'Баганалар:',
 'searchresultshead'  => 'Дилээр',
 'servertime'         => 'Сервер шакы',
+'default'            => 'ниити',
 'files'              => 'файлдар',
 
 # Groups
@@ -365,6 +379,8 @@ $1',
 'group-all' => '(шупту)',
 
 'group-bot-member' => 'Бот',
+
+'grouppage-sysop' => '{{ns:project}}:Администраторлар',
 
 # Recent changes
 'nchanges'          => '$1 өскерлиишкин',
@@ -381,20 +397,23 @@ $1',
 'newsectionsummary' => '/* $1 */ чаа бөлгүм',
 
 # Upload
-'upload'          => 'Файлды киирер',
-'uploadbtn'       => 'Файлды киирер',
-'reupload'        => 'Катап киирер',
-'uploadnologin'   => 'Кирбес',
-'uploaderror'     => 'Кииреринге алдаг',
-'filename'        => 'файлдың ады:',
-'filesource'      => 'Эгези:',
-'savefile'        => 'файлды шыгжаар',
-'watchthisupload' => 'Бо арынны истээр',
+'upload'            => 'Файлды киирер',
+'uploadbtn'         => 'Файлды киирер',
+'reupload'          => 'Катап киирер',
+'uploadnologin'     => 'Кирбес',
+'uploaderror'       => 'Кииреринге алдаг',
+'filename'          => 'файлдың ады:',
+'filedesc'          => 'Түңнел',
+'fileuploadsummary' => 'Түңнел:',
+'filesource'        => 'Эгези:',
+'savefile'          => 'файлды шыгжаар',
+'watchthisupload'   => 'Бо арынны хайгаараар',
 
 'upload-file-error' => 'Иштики алдаг',
 'upload-misc-error' => 'Билбес кииреринге алдаг',
 
 # Image list
+'imagelist'             => 'Файл даңзызы',
 'ilsubmit'              => 'Дилээр',
 'imgfile'               => 'файл',
 'filehist'              => 'Файлдың төөгүзү',
@@ -404,7 +423,9 @@ $1',
 'filehist-datetime'     => 'Үе/Шак',
 'filehist-user'         => 'Ажыглакчы',
 'filehist-filesize'     => 'Файл хемчээли',
+'filehist-comment'      => 'Комментарий',
 'imagelinks'            => 'Холбаалар',
+'noimage-linktext'      => 'Ону киирер',
 'imagelist_name'        => 'Ат',
 'imagelist_user'        => 'Ажыглакчы',
 'imagelist_size'        => 'Хемчээл',
@@ -417,6 +438,7 @@ $1',
 'download' => 'алыр',
 
 # Unused templates
+'unusedtemplates'    => 'Ажыглаан эвес хээлер',
 'unusedtemplateswlh' => 'өске холбаалар',
 
 # Random page
@@ -456,6 +478,7 @@ $1',
 'shortpages'              => 'Чолдак арыннар',
 'longpages'               => 'Узун арыннар',
 'protectedpages'          => 'Камгалаган арыннар',
+'listusers'               => 'Ажыглакчы даңзызы',
 'specialpages'            => 'Тускай арыннар',
 'spheading'               => 'Шупту ажыглакчыларның тускай арыннары',
 'newpages'                => 'Чаа Арыннар',
@@ -487,6 +510,7 @@ $1',
 'listusers-submit' => 'Көргүзер',
 
 # E-mail user
+'emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаар',
 'defemailsubject' => '{{grammar:ablative|{{SITENAME}}}} э-чагаа',
 'emailfrom'       => 'Кайыын',
 'emailto'         => 'Каяа',
@@ -495,11 +519,13 @@ $1',
 'emailsend'       => 'Чорудар',
 
 # Watchlist
+'watchlist'            => 'Мээң хайгаарылга даңзызым',
+'mywatchlist'          => 'Мээң хайгаарылга даңзызым',
 'watchnologin'         => 'Кирбес',
-'watch'                => 'Истээр',
-'watchthispage'        => 'Бо арынны истээр',
-'unwatch'              => 'Истевес',
-'unwatchthispage'      => 'Бо арынны истевес',
+'watch'                => 'Хайгаараар',
+'watchthispage'        => 'Бо арынны хайгаараар',
+'unwatch'              => 'Хайгааравас',
+'unwatchthispage'      => 'Бо арынны хайгаарабас',
 'watchlist-show-bots'  => 'Боттуң өскерлиишкиннерин көргүзер',
 'watchlist-hide-bots'  => 'Боттуң өскерлиишкиннерин чажырар',
 'watchlist-show-own'   => 'Мээң өскерлиишкиннеримни көргүзер',
@@ -508,8 +534,8 @@ $1',
 'watchlist-hide-minor' => 'Бичии өскерлиишкиннерни чажырар',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => 'Истеп турар...',
-'unwatching' => 'Истевейн турар...',
+'watching'   => 'Хайгаарап турар...',
+'unwatching' => 'Хайгааравайн турар...',
 
 'enotif_newpagetext'           => 'Бо чаа арын-дыр.',
 'enotif_impersonal_salutation' => '{{grammar:genitive|{{SITENAME}}}} ажыглакчызы',
@@ -521,6 +547,7 @@ $1',
 'actioncomplete'      => 'Ажыл доосту',
 'deletedarticle'      => '"[[$1]]" деп арынны ап каан',
 'unprotectsub'        => '("$1" деп арынны истевейн турар)',
+'protect-default'     => '(ниити)',
 'protect-level-sysop' => 'Чүгле сисоплар',
 'pagesize'            => '(байттар)',
 
@@ -550,6 +577,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Pages that link here',
+'linklistsub'         => '(Холбаалар даңзызы)',
 'whatlinkshere-links' => '← холбаалар',
 
 # Block/unblock
@@ -576,7 +604,7 @@ $1',
 # Move page
 'movepage'        => 'Арынны шимчээр',
 'movearticle'     => 'Арынны шимчээр:',
-'move-watch'      => 'Бо арынны истээр',
+'move-watch'      => 'Бо арынны хайгаараар',
 'movepagebtn'     => 'Арынны шимчээр',
 'movereason'      => 'Чылдагаан:',
 'delete_and_move' => 'Ап каар болгаш шимчээр',
@@ -584,7 +612,7 @@ $1',
 # Namespace 8 related
 'allmessages'        => 'Системниң дыңнадыглары',
 'allmessagesname'    => 'Ат',
-'allmessagesdefault' => 'Default сөзүглел',
+'allmessagesdefault' => 'Ниити сөзүглел',
 'allmessagescurrent' => 'Амгы сөзүглел',
 
 # Import log
@@ -593,6 +621,7 @@ $1',
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'Мээң ажыглакчы арыным',
 'tooltip-pt-mytalk'         => 'Мээң чугаалажыр арыным',
+'tooltip-pt-mycontris'      => 'Мээң деткимчемнерим даңзызы',
 'tooltip-pt-logout'         => 'Үнер',
 'tooltip-ca-talk'           => 'Допчу арыны дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаар',
@@ -601,12 +630,19 @@ $1',
 'tooltip-search'            => '{{grammar:locative|{{SITENAME}}}} дилээр',
 'tooltip-p-logo'            => 'Кол Арын',
 'tooltip-n-mainpage'        => 'Кол Арынны баар',
+'tooltip-n-recentchanges'   => 'Викиниң дээм чагы өскерлиишкиннери',
 'tooltip-feed-rss'          => 'Бо арының РСС медээ агымы',
 'tooltip-feed-atom'         => 'Бо арының Атом медээ агымы',
+'tooltip-t-emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаар',
+'tooltip-t-upload'          => 'Чурук азы медиа файлдар киирер',
+'tooltip-t-specialpages'    => 'Шупту тускай арыннар даңзызы',
 'tooltip-ca-nstab-main'     => 'Допчы арынын көөр',
 'tooltip-ca-nstab-user'     => 'Ажыглакчы арынын көөр',
 'tooltip-ca-nstab-media'    => 'Медиа арынын көөр',
+'tooltip-ca-nstab-project'  => 'Проект арынын көөр',
 'tooltip-ca-nstab-image'    => 'Чурук арынын көөр',
+'tooltip-ca-nstab-template' => 'Хээни көөр',
+'tooltip-ca-nstab-help'     => 'Дуза арынын көөр',
 'tooltip-ca-nstab-category' => 'Бөлүк арынын көөр',
 'tooltip-save'              => 'Силерниң өскерлиишкиннериңерни шыгжаар',
 
@@ -668,5 +704,8 @@ $1',
 # Watchlist editor
 'watchlistedit-normal-submit' => 'Адарны ап каар',
 'watchlistedit-raw-titles'    => 'Адар:',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Хайгаарылга даңзын көөр болгаш өскертир',
 
 );

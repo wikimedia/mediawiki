@@ -626,6 +626,8 @@ Functie: $1<br />
 Query: $2',
 'viewsource'           => 'Brontekst tonen',
 'viewsourcefor'        => 'van $1',
+'actionthrottled'      => 'Handeling tegengehouden',
+'actionthrottledtext'  => 'Als maatregel tegen spam is het aantal keren per tijdseenheid dat u deze handeling kunt verrichten beperkt. U heeft de limiet overschreden. Probeer het over een aantal minuten opnieuw.',
 'protectedpagetext'    => 'Deze pagina is beveiligd. Bewerken is niet mogelijk.',
 'viewsourcetext'       => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
@@ -714,6 +716,11 @@ Meld u a.u.b. aan nadat u het heeft ontvangen.',
 'invalidemailaddress'        => 'Het e-mailadres is niet geaccepteerd omdat het een ongeldige opmaak heeft. Geef a.u.b. een geldig e-mailadres op of laat het veld leeg.',
 'accountcreated'             => 'Gebruiker aangemaakt',
 'accountcreatedtext'         => 'De gebruiker $1 is aangemaakt.',
+'createaccount-title'        => 'Gebruikers aanmaken voor {{SITENAME}}',
+'createaccount-text'         => 'Iemand ($1) heeft een gebruiker voor $2 aangemaakt op {{SITENAME}}
+($4). Het wachtwoord voor "$2" is "$3". Meldt u zich nu aan en wijzig uw wachtwoord.
+
+Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'loginlanguagelabel'         => 'Taal: $1',
 
 # Password reset dialog
@@ -1632,7 +1639,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'undeletepagetext'             => "Hieronder staan pagina's die zijn verwijderd en vanuit het archief teruggeplaatst kunnen worden.",
 'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''. Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''. Als u op '''''Reset''''' klikt wordt het toelichtingsveld leeggemaakt en worden alle versies gedeselecteerd.",
 'undeleterevisions'            => '$1 versi{{PLURAL:$1|e|es}} gearchiveerd',
-'undeletehistory'              => 'Als u een pagina terugplaatst, worden alle versies hersteld. Als er al een nieuwe pagina met dezelfde naam is aangemaakt, worden deze versies teruggeplaatst en blijft de huidige versie in tact.',
+'undeletehistory'              => 'Als u een pagina terugplaatst, worden alle versies hersteld. Als er al een nieuwe pagina met dezelfde naam is aangemaakt, worden deze versies teruggeplaatst en blijft de huidige versie intact.',
 'undeleterevdel'               => 'Herstellen is niet mogelijk als daardoor de meest recente versie van de pagina gedeeltelijk wordt vewijderd. Verwijder in zulke gevallen de meest recent verwijderde versies uit de selectie. Versies van bestanden waar u geen toegang toe heeft worden niet hersteld.',
 'undeletehistorynoadmin'       => 'Deze pagina is verwijderd. De reden hiervoor staat hieronder, samen met de details van de gebruikers die deze pagina hebben bewerkt vóór de verwijdering. De verwijderde inhoud van de pagina is alleen zichtbaar voor beheerders.',
 'undelete-revision'            => 'Verwijderde versie van $1 (per $2) door $3:',
@@ -1914,9 +1921,9 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'importlogpage'                    => 'Importlogboek',
 'importlogpagetext'                => "Administratieve import van pagina's met geschiedenis van andere wiki's.",
 'import-logentry-upload'           => '[[$1]] geïmporteerd via een bestandsupload',
-'import-logentry-upload-detail'    => '$1 versie(s)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
 'import-logentry-interwiki'        => 'transwiki voor $1 geslaagd',
-'import-logentry-interwiki-detail' => '$1 versie(s) van $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mijn gebruikerspagina',

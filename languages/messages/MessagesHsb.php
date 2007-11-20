@@ -424,6 +424,8 @@ Funkcija: $1
 Wotprašenje: $2',
 'viewsource'           => 'Žórło wobhladać',
 'viewsourcefor'        => 'za $1',
+'actionthrottled'      => 'Akcije wobmjezowane',
+'actionthrottledtext'  => 'Jako připrawa přećiwo spamej, je častosć wuwjedźenja tuteje akcije w krótkej dobje wobmjezowana a ty sy tutón limit překročił. Prošu spytaj za něšto mjeńšiny hišće raz.',
 'protectedpagetext'    => 'Strona je přećiwo wobdźěłowanju škitana.',
 'viewsourcetext'       => 'Móžeš pak jeje žórło wobhladać a jo kopěrować:',
 'protectedinterface'   => 'Tuta strona skići tekst za rěčny zwjerch a je škitana zo by so znjewužiwanju zadźěwało.',
@@ -514,6 +516,10 @@ Prjedy hač so druha mejlka ke kontu pósćele, dyrbiš so po instrukcijach w me
 format. Prošu zapodaj płaćiwu adresu abo wuprózdń polo.',
 'accountcreated'             => 'Wužiwarske konto wutworjene',
 'accountcreatedtext'         => 'Wužiwarske konto za $1 bu wutworjene.',
+'createaccount-title'        => 'Wutworjenje wužiwarskeho konta za {{SITENAME}}',
+'createaccount-text'         => 'Něchtó ($1) je wužiwarske konto za "$2" na {{SITENAME}} ($4) wutworił. Hesło za "$2" je "$3". Ty měł so nětko přizjewić a swoje hesło změnić.
+
+Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto ze zmylkom wutworiło.',
 'loginlanguagelabel'         => 'Rěč: $1',
 
 # Password reset dialog
