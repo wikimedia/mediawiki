@@ -178,7 +178,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   rather than an "Internal Server Error").
 * Do not present an image bigger than the source when 'frameless' option is used
   (to be consistent with the 'thumb' option now)
-
+* Support {{PLURAL}} for import log
+  
 == Parser changes in 1.12 ==
 
 The parser pass order has changed from
