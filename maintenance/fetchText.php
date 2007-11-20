@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Communications protocol...
+ */
+
+require "commandLine.inc";
+
+$db = wfGetDB( DB_SLAVE );
+$stdin = fopen( "php://stdin", "rt" );
+while( !feof( $stdin ) ) {
+	$line = fgets( $stdin );
+	$textId = intval( $line );
+	$text = doGetText( $db, $textId );
+	echo strlen( $text ) . "\n";
+	echo $text;
+}
+
+/**
+ * May throw a database error if, say, the server dies during query.
+ */
+function doGetText( $db, $id ) {
+	$id = intval( $id );
+	$row = $db->selectRow( 'text',
+		array( 'old_text', 'old_flags' ),
+		array( 'old_id' => $id ),
+		'TextPassDumper::getText' );
+	$text = Revision::getRevisionText( $row );
+	if( $text === false ) {
+		return false;
+	}
+	$stripped = str_replace( "\r", "", $text );
+	$normalized = UtfNormal::cleanUp( $stripped );
+	return $normalized;
+}
+
+
+?>
