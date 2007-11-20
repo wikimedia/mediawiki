@@ -579,6 +579,11 @@ class FauxRequest extends WebRequest {
 	var $data = null;
 	var $wasPosted = false;
 
+	/**
+	 * @param array $data Array of *non*-urlencoded key => value pairs, the
+	 *   fake GET/POST values
+	 * @param bool $wasPosted Whether to treat the data as POST
+	 */
 	function FauxRequest( $data, $wasPosted = false ) {
 		if( is_array( $data ) ) {
 			$this->data = $data;
