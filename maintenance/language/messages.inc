@@ -325,6 +325,8 @@ $wgMessageStructure = array(
 		'wrong_wfQuery_params',
 		'viewsource',
 		'viewsourcefor',
+		'actionthrottled',
+		'actionthrottledtext',
 		'protectedpagetext',
 		'viewsourcetext',
 		'protectedinterface',
