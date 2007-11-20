@@ -173,6 +173,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Ensure that rate-limiting is applied to rollbacks.
 * Make a better rate-limiting error message (i.e. a normal MW error,
   rather than an "Internal Server Error").
+* Do not present an image bigger than the source when 'frameless' option is used
+  (to be consistent with the 'thumb' option now)
 
 == Parser changes in 1.12 ==
 

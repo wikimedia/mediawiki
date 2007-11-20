@@ -555,6 +555,15 @@ class Linker {
 			return $prefix.$this->makeThumbLink2( $title, $file, $fp, $hp ).$postfix;
 		}
 
+		if ( $file && isset( $fp['frameless'] ) ) {
+			$srcWidth = $file->getWidth( $page );
+			# For "frameless" option: do not present an image bigger than the source (for bitmap-style images)
+			# This is the same behaviour as the "thumb" option does it already.
+			if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
+				$hp['width'] = $srcWidth;
+			}
+		}
+
 		if ( $file && $hp['width'] ) {
 			# Create a resized image, without the additional thumbnail features
 			$thumb = $file->transform( $hp );
@@ -1379,7 +1388,3 @@ class Linker {
 		return $out;
 	}
 }
-
-
-
-
