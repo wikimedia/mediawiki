@@ -521,6 +521,9 @@ $messages = array(
 پرس‌وجو: $2',
 'viewsource'           => 'نمایش مبدأ',
 'viewsourcefor'        => 'برای $1',
+'actionthrottled'      => 'جلوی عمل شما گرفته شد',
+'actionthrottledtext'  => 'به منظور جلوگیری از هرزنگاری، شما اجازه ندارید که چنین عملی را بیش از چند بار در یک مدت زمان کوتاه انجام بدهید.
+لطفاً پس از چند دقیقه دوباره تلاش کنید.',
 'protectedpagetext'    => 'این صفحه برای جلوگیری از ویرایش قفل شده‌است.',
 'viewsourcetext'       => 'می‌توانید متن مبدأ این صفحه را مشاهده کنید یا از آن نسخه بردارید',
 'protectedinterface'   => 'این صفحه ارائه‌دهندهٔ متنی برای رابط کاربر این نرم‌افزار است و به منظور پیشگیری از خرابکاری قفل شده‌است.',
@@ -620,6 +623,13 @@ your old password.
 'invalidemailaddress'        => 'نشانی واردشدهٔ پست الکترونیک قابل‌قبول نیست، چرا که دارای ساختار نامعتبری است. لطفاً نشانی‌آی با ساختار صحیح وارد کنید و یا بخش مربوط را خالی بگذارید.',
 'accountcreated'             => 'حساب ایجاد شد.',
 'accountcreatedtext'         => 'حساب کاربری $1 ایجاد شده‌است.',
+'createaccount-title'        => 'ایجاد حساب کاربری در {{SITENAME}}',
+'createaccount-text'         => 'یک نفر ($1) برای $2 یک حساب کاربری در {{SITENAME}} ایجاد کرده‌است ($4).
+کلمه عبور «$2« چنین است: $3
+
+شما باید وارد سیستم شوید تا کلمه عبورتان را تغییر بدهید.
+
+اگر این حساب اشتباهی ساخته شده است، این پیغام را نادیده بگیرید.',
 'loginlanguagelabel'         => 'زبان: $1',
 
 # Password reset dialog
@@ -1843,9 +1853,9 @@ $1',
 'importlogpage'                    => 'سیاههٔ واردکردن‌ها',
 'importlogpagetext'                => 'وارد کردن صفحه‌ها به همراه تارخچهٔ ویرایش آن‌ها از ویکی‌های دیگر',
 'import-logentry-upload'           => '[[$1]] از طریق بارگذاری پرونده، وارد شد.',
-'import-logentry-upload-detail'    => '$1 نسخه',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|نسخه|نسخه}}',
 'import-logentry-interwiki'        => '$1 تراویکی شد',
-'import-logentry-interwiki-detail' => '$1 نسخه از $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|نسخه|نسخه}} از $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'صفحهٔ کاربری من',
@@ -2418,5 +2428,35 @@ $1',
 'iranian-calendar-m10' => 'دی',
 'iranian-calendar-m11' => 'بهمن',
 'iranian-calendar-m12' => 'اسفند',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'تشری',
+'hebrew-calendar-m2'      => 'حشوان',
+'hebrew-calendar-m3'      => 'کسلو',
+'hebrew-calendar-m4'      => 'طوت',
+'hebrew-calendar-m5'      => 'شباط',
+'hebrew-calendar-m6'      => 'آذار',
+'hebrew-calendar-m6a'     => 'آذار',
+'hebrew-calendar-m6b'     => 'واذار',
+'hebrew-calendar-m7'      => 'نیسان',
+'hebrew-calendar-m8'      => 'ایار',
+'hebrew-calendar-m9'      => 'سیوان',
+'hebrew-calendar-m10'     => 'تموز',
+'hebrew-calendar-m11'     => 'آب',
+'hebrew-calendar-m12'     => 'ایلول',
+'hebrew-calendar-m1-gen'  => 'تشری',
+'hebrew-calendar-m2-gen'  => 'حشوان',
+'hebrew-calendar-m3-gen'  => 'کسلو',
+'hebrew-calendar-m4-gen'  => 'طوت',
+'hebrew-calendar-m5-gen'  => 'شباط',
+'hebrew-calendar-m6-gen'  => 'آذار',
+'hebrew-calendar-m6a-gen' => 'آذار',
+'hebrew-calendar-m6b-gen' => 'واذار',
+'hebrew-calendar-m7-gen'  => 'نیسان',
+'hebrew-calendar-m8-gen'  => 'ایار',
+'hebrew-calendar-m9-gen'  => 'سیوان',
+'hebrew-calendar-m10-gen' => 'تموز',
+'hebrew-calendar-m11-gen' => 'آب',
+'hebrew-calendar-m12-gen' => 'ایلول',
 
 );
