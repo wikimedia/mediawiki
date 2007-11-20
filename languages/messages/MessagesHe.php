@@ -1904,11 +1904,11 @@ $1',
 
 # Import log
 'importlogpage'                    => 'יומן ייבוא',
-'importlogpagetext'                => 'ייבוא מנהלי של דפים כולל היסטוריית העריכות שלהם מאתרי ויקי אחרים.',
+'importlogpagetext'                => 'ייבוא מנהלי של דפים (כולל היסטוריית העריכות שלהם) מאתרי ויקי אחרים.',
 'import-logentry-upload'           => 'ייבא את [[$1]] על־ידי העלאת קובץ',
-'import-logentry-upload-detail'    => '$1 גרסאות',
+'import-logentry-upload-detail'    => '{{plural:$1|גרסה אחת|$1 גרסאות}}',
 'import-logentry-interwiki'        => 'ייבא את $1 בייבוא בין־אתרי',
-'import-logentry-interwiki-detail' => '$1 גרסאות מהאתר $2',
+'import-logentry-interwiki-detail' => '{{plural:$1|גרסה אחת|$1 גרסאות}} מהאתר $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'דף המשתמש שלי',
