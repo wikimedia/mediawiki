@@ -58,8 +58,7 @@ class Parser
 	# Constants needed for external link processing
 	# Everything except bracket, space, or control characters
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F]';
-	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F]+)\
-		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/S';
+	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F]+)\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/S';
 
 	// State constants for the definition list colon extraction
 	const COLON_STATE_TEXT = 0;
