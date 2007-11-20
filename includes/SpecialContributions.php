@@ -265,7 +265,7 @@ function wfSpecialContributions( $par = null ) {
 	} else {
 		$options['namespace'] = '';
 	}
-	if ( $wgUser->isAllowed( 'rollback' ) && $wgRequest->getBool( 'bot' ) ) {
+	if ( $wgUser->isAllowed( 'markbotedit' ) && $wgRequest->getBool( 'bot' ) ) {
 		$options['bot'] = '1';
 	}
 	

@@ -19,6 +19,9 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.12 ===
+* Marking edits as bot edits with Special:Contributions?bot=1 now requires the
+  markbotedit permission, rather than the rollback permission previously used.
+  This permission is assigned by default to the sysop group.
 
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
