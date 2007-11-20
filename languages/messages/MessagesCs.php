@@ -513,6 +513,8 @@ Funkce: $1<br />
 Dotaz: $2',
 'viewsource'           => ' Ukázat zdroj',
 'viewsourcefor'        => 'stránky $1',
+'actionthrottled'      => 'Akce byla pozastavena',
+'actionthrottledtext'  => 'Kvůli protispamový opatřením, nemůžete požadovanou akci provést příliš častokrát v krátkém sledu za sebou. Zkuste to znovu za několik minut.',
 'protectedpagetext'    => 'Tato stránka byla zamčena, takže ji nelze editovat.',
 'viewsourcetext'       => 'Můžete si prohlédnout a zkopírovat zdrojový kód této stránky:',
 'protectedinterface'   => 'Tato stránka obsahuje text softwarového rozhraní a smějí ji editovat jen správci.',
@@ -541,7 +543,7 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 Zkuste to znovu!',
 'login'                      => 'Přihlaste se',
 'loginprompt'                => 'K přihlášení do {{grammar:2sg|{{SITENAME}}}} musíte mít povoleny cookies.',
-'userlogin'                  => 'Přihlaste se',
+'userlogin'                  => 'Přihlášení / vytvoření účtu',
 'logout'                     => 'Odhlásit se',
 'userlogout'                 => 'Odhlášení',
 'notloggedin'                => 'Nejste přihlášen(a)',
@@ -601,6 +603,11 @@ Heslo může být zasláno jen jednou za $1 {{plural:$1|hodinu|hodiny|hodin}}.',
 'invalidemailaddress'        => 'Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte laskavě platnou e-mailovou adresu, nebo obsah tohoto pole vymažte.',
 'accountcreated'             => 'Účet vytvořen',
 'accountcreatedtext'         => 'Uživatelský účet $1 byl vytvořen.',
+'createaccount-title'        => 'Vytvoření účtu na {{grammar:6sg|{{SITENAME}}}}',
+'createaccount-text'         => 'Někdo ($1) vytvořil účet $2 na {{grammar:6sg|{{SITENAME}}}}
+($4). Heslo účtu „$2“ je „$3“. Měli byste se co nejdřív přihlásit a změnit si heslo.
+
+Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 
 # Password reset dialog
@@ -682,6 +689,7 @@ Můžete kontaktovat správce $1 nebo některého z dalších [[{{MediaWiki:grou
 Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete použít, pokud nemáte zadaný platný email ve svém [[Special:Preferences|nastavení]] a nebylo vám zablokováno jeho užívání.
 
 Číslo Vašeho zablokování je $5. Prosíme, uveďte ho při komunikaci se správci.',
+'blockednoreason'           => 'důvod nebyl zadán',
 'blockedoriginalsource'     => "Zdrojový text stránky '''$1''' následuje:",
 'blockededitsource'         => "Text '''vašich editací''' stránky '''$1''' následuje:",
 'whitelistedittitle'        => 'Pro editaci je vyžadováno přihlášení',
@@ -931,7 +939,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'resultsperpage'           => 'Počet výsledků na jedné stránce',
 'contextlines'             => ' Počet řádek zobrazených z každé nalezené stránky',
 'contextchars'             => ' Počet znaků kontextu na každé řádce',
-'stub-threshold'           => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a>:',
+'stub-threshold'           => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'recentchangesdays'        => 'Počet dní zobrazených v posledních změnách:',
 'recentchangescount'       => 'Počet zobrazených záznamů v posledních změnách',
 'savedprefs'               => 'Vaše nastavení bylo uloženo.',
@@ -1070,7 +1078,7 @@ váš uživatelský účet zablokován.',
 'large-file'                  => 'Doporučuje se, aby délka souboru nepřesahovala $1, tento soubor má $2.',
 'largefileserver'             => 'Velikost tohoto souboru překračuje limit nastavený na serveru.',
 'emptyfile'                   => 'Soubor, který jste vložili, se zdá být prázdný. Mohl to způsobit překlep v názvu souboru. Prosím zkontrolujte, zda jste opravdu chtěli vložit tento soubor.',
-'fileexists'                  => ' Soubor s tímto jménem již existuje, prosím podívejte se na $1, pokud nevíte jistě, zda chcete tento soubor nahradit.',
+'fileexists'                  => 'Soubor s tímto jménem již existuje, prosím podívejte se na <strong><tt>$1</tt></strong>, pokud nevíte jistě, zda chcete tento soubor nahradit.',
 'fileexists-extension'        => 'Již existuje soubor s podobným jménem:<br />
 Jméno načítaného souboru: <strong><tt>$1</tt></strong><br />
 Jméno existujícího souboru: <strong><tt>$2</tt></strong><br />
@@ -1436,7 +1444,8 @@ Rady a kontakt:
 'historywarning'              => 'Varování: Stránka, jíž chcete smazat, má historii:',
 'confirmdeletetext'           => 'Chystáte se trvale smazat z databáze stránku nebo obrázek s celou jeho historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:policy-url}}|pravidly]].',
 'actioncomplete'              => 'Provedeno',
-'deletedtext'                 => ' Stránka nebo soubor „$1“ byla smazána; $2 zaznamenává poslední smazání.',
+'deletedtext'                 => 'Stránka nebo soubor „$1“ byla smazána.
+$2 zaznamenává poslední smazání.',
 'deletedarticle'              => 'maže „$1“',
 'dellogpage'                  => 'Kniha smazaných stránek',
 'dellogpagetext'              => 'Zde je seznam posledních smazaných stránek.',
@@ -1644,6 +1653,7 @@ $1',
 'ipb_expiry_invalid'          => 'Neplatný čas vypršení.',
 'ipb_already_blocked'         => '„$1“ již je zablokován.',
 'ipb_cant_unblock'            => 'Chyba: Blokování s ID $1 nebylo nalezeno. Uživatel již možná byl odblokován.',
+'ipb_blocked_as_range'        => 'Chyba: IP adresa $1 není blokována přímo a tak ji nelze odblokovat. Je částí zablokovaného rozsahu $2, který může být odblokován.',
 'ip_range_invalid'            => 'Neplatný IP rozsah.',
 'proxyblocker'                => 'Blokování proxy serverů',
 'proxyblocker-disabled'       => 'Tato funkce je vypnuta.',
