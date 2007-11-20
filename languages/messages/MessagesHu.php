@@ -390,7 +390,7 @@ $messages = array(
 'nosuchactiontext'  => 'Az URL által megadott tevékenységet
 a wiki nem ismeri föl',
 'nosuchspecialpage' => 'Nincs ilyen speciális lap',
-'nospecialpagetext' => "'''<big>Érvénytelen speciális lapot kértél.</big>'''
+'nospecialpagetext' => "<big>'''Érvénytelen speciális lapot kértél.'''</big>
 
 Az érvényes speciális lapok listáját a [[Special:Specialpages|Speciális lapok]] címen találod.",
 
@@ -1025,7 +1025,7 @@ To include the image in a page, use a link in the form
 A feltöltendő fájl neve: <strong><tt>$1</tt></strong><br />
 A létező fájl neve: <strong><tt>$2</tt></strong><br />
 Kérjük, hogy válassz másik nevet.',
-'fileexists-thumb'            => "'''<center>Létező kép</center>'''",
+'fileexists-thumb'            => "<center>'''Létező kép'''</center>",
 'fileexists-thumbnail-yes'    => 'A fájl egy csökkentett méretű képnek <i>(bélyegképnek)</i> tűnik. Kérjük, hogy ellenőrizd a(z) <strong><tt>$1</tt></strong> fájlt.<br />
 Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor a bélyegképet nem kell külön feltöltened.',
 'file-thumbnail-no'           => 'A fájlnév a(z) <strong><tt>$1</tt></strong> karakterlánccal kezdődik. Úgy tűnik, hogy ez egy csökkentett méretű kép <i>(bélyegkép)</i>.

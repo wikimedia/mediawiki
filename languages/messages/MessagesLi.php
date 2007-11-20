@@ -808,7 +808,7 @@ of veur mediabesjtande:
 Naam van 't geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van 't bestaonde bestand: <strong><tt>$2</tt></strong><br />
 Lèver 'ne angere naam te keze.",
-'fileexists-thumb'            => "'''<center>Bestaonde afbeilding</center>'''",
+'fileexists-thumb'            => "<center>'''Bestaonde afbeilding'''</center>",
 'fileexists-thumbnail-yes'    => "'t Liek 'n afbeilding van 'n verkleinde grootte te zeen <i>(thumbnail)</i>. Lèver 't bestand <strong><tt>$1</tt></strong> te controlere.<br />
 Es 't gecontroleerde bestand dezelfde afbeilding van oorspronkelike grootte is, is 't neet noodzakelik 'ne extra thumbnail te uploade.",
 'file-thumbnail-no'           => "De bestandsnaam begint met <strong><tt>$1</tt></strong>. 't Liek 'n verkleinde afbeelding te zeen <i>(thumbnail)</i>. Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding dan. Wiezig anges estebleef de bestandsnaam.",

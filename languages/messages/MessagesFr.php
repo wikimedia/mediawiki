@@ -892,7 +892,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
 Nom du fichier existant : <strong><tt>$2</tt></strong><br />
 la seule différence est la casse (majuscules / minuscules) de l’extension. Veuillez vérifier que le fichier est différent et changer son nom.',
-'fileexists-thumb'            => "'''<center>Image existante</center>'''",
+'fileexists-thumb'            => "<center>'''Image existante'''</center>",
 'fileexists-thumbnail-yes'    => 'Le fichier semble être une image en taille réduite <i>(thumbnail)</i>. Veuillez vérifier le fichier <strong><tt>$1</tt></strong>.<br />
 Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.',
 'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>. Il est possible qu’il s’agisse d’une version réduite <i>(thumbnail)</i>.

@@ -295,7 +295,7 @@ $messages = array(
 'nosuchaction'      => 'Mayong siring na aksyón',
 'nosuchactiontext'  => 'An gibo na pinilî nin URL dai bisto kan wiki',
 'nosuchspecialpage' => 'Mayong siring na espesyal na páhina',
-'nospecialpagetext' => "'''<big>Dai puede an páhinang especial na pinilî mo.</big>'''
+'nospecialpagetext' => "<big>'''Dai puede an páhinang especial na pinilî mo.'''</big>
 
 Pwede mong mahiling an lista nin mga marhay na páhina sa [[Special:Specialpages]].",
 
@@ -901,7 +901,7 @@ Kun boot mong ikaag an ladawan sa páhina, gamiton tabî an takod arog kan
 Pangaran kan pigkakargang ''file'': <strong><tt>$1</tt></strong><br />
 Pangaran kan yaon nang ''file'': <strong><tt>$2</tt></strong><br />
 Magpili tabî nin ibang pangaran.",
-'fileexists-thumb'            => "'''<center>Presenteng ladawan</center>'''",
+'fileexists-thumb'            => "<center>'''Presenteng ladawan'''</center>",
 'fileexists-thumbnail-yes'    => "An ''file'' garo ladawan kan pinasadit <i>(thumbnail)</i>. Sosogon tabî an ''file'' <strong><tt>$1</tt></strong>.<br />
 Kun an sinosog na ''file'' iyo an parehong ladawan na nasa dating sokol, dai na kaipuhan magkarga nin iba pang retratito.",
 'file-thumbnail-no'           => "An ''filename'' nagpopoon sa <strong><tt>$1</tt></strong>. Garo ladawan na pinasadit ini <i>(thumbnail)</i>.

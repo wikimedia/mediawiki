@@ -947,7 +947,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 Ime datoteke koju postavljate: <strong><tt>$1</tt></strong><br />
 Ime postojeće datoteke: <strong><tt>$2</tt></strong><br />
 Molimo da izaberete drugo ime.',
-'fileexists-thumb'            => "'''<center>Postojeća slika</center>'''",
+'fileexists-thumb'            => "<center>'''Postojeća slika'''</center>",
 'fileexists-thumbnail-yes'    => 'Datoteka je najvjerojatnije slika u smanjenoj veličini <i>(thumbnail)</i>. Molimo provjerite datoteku <strong><tt>$1</tt></strong>.<br />
 Ukoliko je ta datoteka ista kao i ova koju ste upravo pokušali snimiti, samo u višoj rezoluciji, nije nužno snimanje smanjenje slike<br />
 <i>(thumbnaila)</i>, prikazivanje smanjene slike iz izvornika radi se softverski.',

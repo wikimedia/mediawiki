@@ -288,7 +288,7 @@ $messages = array(
 'nosuchaction'      => 'Kay hina rurayqa manam kanchu',
 'nosuchactiontext'  => "URL tiyaypi sut'ichasqa rurayqa manam kanchu {{SITENAME}} sutiyuq wikipi",
 'nosuchspecialpage' => "Kay hina sapaq p'anqaqa manam kanchu",
-'nospecialpagetext' => "'''<big>Mana kaq sapaq p'anqatam munanki.</big>'''
+'nospecialpagetext' => "<big>'''Mana kaq sapaq p'anqatam munanki.'''</big>
 
 Allin sapaq p'anqakunataqa tarinki [[Special:Specialpages|Sapaq p'anqakuna]] nisqa p'anqapim.",
 
@@ -875,7 +875,7 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 Nombre del archivo que se está subiendo: <strong><tt>$1</tt></strong><br />
 Nombre del archivo ya existente: <strong><tt>$2</tt></strong><br />
 Por favor, elige un nombre diferente.',
-'fileexists-thumb'            => "'''<center>Kachkaq rikch'a</center>'''",
+'fileexists-thumb'            => "<center>'''Kachkaq rikch'a'''</center>",
 'fileexists-thumbnail-yes'    => 'El archivo parece ser una imagen de tamaño reducido <i>(thumbnail)</i>. Por favor comprueba el archivo <strong><tt>$1</tt></strong>.<br />
 Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.',
 'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.

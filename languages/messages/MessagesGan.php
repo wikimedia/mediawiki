@@ -264,7 +264,7 @@ $messages = array(
 'nosuchaction'      => '冇有箇隻命令',
 'nosuchactiontext'  => 'Wiki識別伓到箇隻URL命令',
 'nosuchspecialpage' => '冇有箇隻特殊頁',
-'nospecialpagetext' => "'''<big>倷要求嗰特殊頁冇有用。</big>''' 
+'nospecialpagetext' => "<big>'''倷要求嗰特殊頁冇有用。'''</big> 
 
 [[Special:Specialpages]]上尋得到用得上嗰特殊頁。",
 
@@ -822,7 +822,7 @@ $2',
 'emptyfile'                   => '倷上傳嗰檔案伓存在。箇可能係因為檔案名按錯嘞。請檢查倷係否真嗰要上傳箇隻檔案。',
 'fileexists'                  => '箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查<strong><tt>$1</tt></strong>。',
 'fileexists-extension'        => '有嘞隻飛像嗰檔名:<br /> 上載文檔嗰檔名: <strong><tt>$1</tt></strong><br /> 目前檔嗰檔名: <strong><tt>$2</tt></strong><br /> 請揀隻伓同嗰名字。',
-'fileexists-thumb'            => "'''<center>存在咭嗰圖像</center>'''",
+'fileexists-thumb'            => "<center>'''存在咭嗰圖像'''</center>",
 'fileexists-thumbnail-yes'    => '箇隻檔案好像係一隻圖像嗰縮小版<i>(縮圖)</i>。請檢查清楚箇隻檔案<strong><tt>$1</tt></strong>。<br /> 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。',
 'file-thumbnail-no'           => '箇隻檔案名係以<strong><tt>$1</tt></strong>開頭。佢好像一隻圖像嗰縮小版<i>(縮圖)</i>。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。',
 'fileexists-forbidden'        => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[Image:$1|thumb|center|$1]]',

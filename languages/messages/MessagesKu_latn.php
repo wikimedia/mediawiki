@@ -291,7 +291,7 @@ $messages = array(
 'nosuchaction'      => 'Çalakiyek bi vê rengê tune',
 'nosuchactiontext'  => "Ew tişta yê di wê URL'ê da tê gotin ji MediaWiki netê çêkirin.",
 'nosuchspecialpage' => 'Rûpeleke taybet bi vê rengê tune',
-'nospecialpagetext' => "'''<big>Rûpelê taybetî yê te xwastîyê tune ye.</big>'''
+'nospecialpagetext' => "<big>'''Rûpelê taybetî yê te xwastîyê tune ye.'''</big>
 
 Hemû rûpelên taybetî di [[{{ns:special}}:Specialpages|lîsteya rûpelên taybetî]] da werin dîtin.",
 
@@ -690,7 +690,7 @@ anjî ji bo faylên dengî
 Navî datayê yê tê barkirin: <strong><tt>$1</tt></strong><br />
 Navî datayê yê berê heyê: <strong><tt>$2</tt></strong><br />
 Xêra xwe navekî din bibîne.',
-'fileexists-thumb'     => "'''<center>Wêne yê berê heye</center>'''",
+'fileexists-thumb'     => "<center>'''Wêne yê berê heye'''</center>",
 'file-thumbnail-no'    => 'Navî vê datayê bi <strong><tt>$1</tt></strong> destpêdike. Ev dibêje ku ev wêneyekî çûçik e <i>(thumbnail)</i>. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.',
 'fileexists-forbidden' => 'Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.
 [[Image:$1|thumb|center|$1]]',

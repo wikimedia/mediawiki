@@ -1075,7 +1075,7 @@ váš uživatelský účet zablokován.',
 Jméno načítaného souboru: <strong><tt>$1</tt></strong><br />
 Jméno existujícího souboru: <strong><tt>$2</tt></strong><br />
 Vyberte jiné jméno.',
-'fileexists-thumb'            => "'''<center\">Existující soubor:</center>'''",
+'fileexists-thumb'            => "<center>'''Existující soubor:'''</center>",
 'fileexists-thumbnail-yes'    => 'Toto soubor je možná obrázek ve zmenšené velikosti <i>(náhled)</i>. Zkontrolujte soubor <strong><tt>$1</tt></strong>.<br />
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.',
 'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>. Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>. 

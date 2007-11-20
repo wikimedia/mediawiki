@@ -980,7 +980,7 @@ abo zo by so direktnje z dataju zwjazało
 Mjeno dataje, kotruž chceš nahrać: <strong><tt>$1</tt></strong><br />
 Mjeno eksistowaceje dataje: <strong><tt>$2</tt></strong><br />
 Jenož kóncowce rozeznawatej so we wulko- a małopisanju. Prošu wuzwol hinaše mjeno.',
-'fileexists-thumb'            => "'''<center>Eksistowacy wobraz</center>'''",
+'fileexists-thumb'            => "<center>'''Eksistowacy wobraz'''</center>",
 'fileexists-thumbnail-yes'    => 'Dataja zda so minaturka <i>(thumbnail)</i> być. Prošu přepruwuj dataju <strong><tt>$1</tt></strong>.<br />
 Jeli je to wobraz w originalnej wulkosći, njetrjebaš minaturku nahrać.',
 'file-thumbnail-no'           => 'Mjeno dataje započa so z <strong><tt>$1</tt></strong>. Móže to na wobraz pomjeńšeneje wulkosće <i>(thumbnail, miniaturka)</i> pokazać.

@@ -388,7 +388,7 @@ $messages = array(
 'nosuchactiontext'  => 'Tindakan yang dinyatakan dalam URL
 ini tidak dikenali oleh perisian wiki ini',
 'nosuchspecialpage' => 'Laman khas tidak wujud',
-'nospecialpagetext' => "'''<big>Anda telah meminta laman khas yang tidak sah.</big>'''
+'nospecialpagetext' => "<big>'''Anda telah meminta laman khas yang tidak sah.'''</big>
 
 Senarai laman khas yang sah boleh dilihat di [[Special:Specialpages]].",
 
@@ -1022,7 +1022,7 @@ Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
 Nama fail yang dimuat naik: <strong><tt>$1</tt></strong><br />
 Nama fail yang sedia ada: <strong><tt>$2</tt></strong><br />
 Sila pilih nama lain.',
-'fileexists-thumb'            => "'''<center>Imej sedia ada</center>'''",
+'fileexists-thumb'            => "<center>'''Imej sedia ada'''</center>",
 'fileexists-thumbnail-yes'    => 'Fail ini kelihatan seperti sebuah imej yang telah dikecilkan <i>(imej ringkas)</i>. Sila semak fail <strong><tt>$1</tt></strong>.<br />
 Jika fail yang disemak itu adalah sama dengan yang saiz asal, maka anda tidak perlu memuat naik imej ringkas tambahan.',
 'file-thumbnail-no'           => 'Nama fail ini bermula dengan <strong><tt>$1</tt></strong>. Barangkali ia adalah sebuah imej yang telah dikecilkan <i>(imej ringkas)</i>.

@@ -872,7 +872,7 @@ Lubaduq teedüstütüübiq ommaq: \$2",
 Üleslaaditava teedüstü nimi: <strong><tt>$1</tt></strong><br />
 Olõmanolõva teedüstü nimi: <strong><tt>$2</tt></strong><br />
 Ainugõnõ vaih om laendusõ suurõ/väiku algustähe man. Kaeq perrä, kas naaq ommaq üts ja tuusama teedüstü.',
-'fileexists-thumb'            => "'''<center>Olõmanollõv pilt</center>'''",
+'fileexists-thumb'            => "<center>'''Olõmanollõv pilt'''</center>",
 'fileexists-thumbnail-yes'    => 'Taa paistus ollõv vähändet pilt <i>(thumbnail)</i>. Kaeq teedüstü <strong><tt>$1</tt></strong>üle.<br />
 Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia eräle vähändedüt pilti üles laatiq.',
 'file-thumbnail-no'           => 'Teedüstü nimi nakkas pääle <strong><tt>$1</tt></strong>. Taa paistus ollõv vähändet pilt <i>(thumbnail)</i>. Ku sul om olõman taa pilt tävven suurusõn, sis laadiq üles tuu, ku olõ-i, sis muudaq teedüstü nimi ärq.',

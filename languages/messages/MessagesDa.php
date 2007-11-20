@@ -1009,7 +1009,7 @@ Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
 Navnet på den valgte fil: <strong><tt>$1</tt></strong><br />
 Navnet på den eksisterende fil: <strong><tt>$2</tt></strong><br />
 Kun filendelsen adskiller sig med store og små bogstaver. Kontroller venligst om filerne har samme indhold.',
-'fileexists-thumb'            => "'''<center>Eksisterende billede</center>'''",
+'fileexists-thumb'            => "<center>'''Eksisterende billede'''</center>",
 'fileexists-thumbnail-yes'    => 'Det ser ud som om filen indeholder et billede i reduceret størrelse <i>(thumbnail)</i>. Kontroller filen <strong><tt>$1</tt></strong>.<br />
 Hvis det er billedet i original størrelse, er det ikke nødvendigt at uploade et separat forhåndsvisningsbillede.',
 'file-thumbnail-no'           => 'Filnavnet begynder med <strong><tt>$1</tt></strong>. Det tyder på et billede i reduceret format <i>(thumbnail)</i>.

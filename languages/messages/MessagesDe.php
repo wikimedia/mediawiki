@@ -430,7 +430,7 @@ $messages = array(
 'nosuchaction'      => 'Diese Aktion gibt es nicht',
 'nosuchactiontext'  => 'Die in der URL angegebene Aktion wird von MediaWiki nicht unterstützt.',
 'nosuchspecialpage' => 'Spezialseite nicht vorhanden',
-'nospecialpagetext' => "'''<big>Die aufgerufene Spezialseite ist nicht vorhanden.</big>'''
+'nospecialpagetext' => "<big>'''Die aufgerufene Spezialseite ist nicht vorhanden.'''</big>
 
 Alle verfügbaren Spezialseiten sind in der [[{{ns:special}}:Specialpages|Liste der Spezialseiten]] zu finden.",
 
@@ -1068,7 +1068,7 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 Name der hochzuladenden Datei: <strong><tt>$1</tt></strong><br />
 Name der vorhandenen Datei: <strong><tt>$2</tt></strong><br />
 Nur die Dateiendung unterscheidet sich in Groß-/Kleinschreibung. Bitte prüfe, ob die Dateien inhaltlich identisch sind.',
-'fileexists-thumb'            => "'''<center>Vorhandenes Bild</center>'''",
+'fileexists-thumb'            => "<center>'''Vorhandenes Bild'''</center>",
 'fileexists-thumbnail-yes'    => 'Bei der Datei scheint es sich um ein Bild verringerter Größe <i>(thumbnail)</i> zu handeln. Bitte prüfe die Datei <strong><tt>$1</tt></strong>.<br />
 Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.',
 'file-thumbnail-no'           => 'Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Größe <i>(thumbnail)</i> hin.

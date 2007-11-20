@@ -834,7 +834,7 @@ Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
 Isem n ufaylu i tazneḍ: <strong><tt>$1</tt></strong><br />
 Isem n ufaylu i yewǧed: <strong><tt>$2</tt></strong><br />
 Amgirred i yella kan deg isekkilen imecṭuḥen/imeqqranen deg taseggiwit (am ".jpg"/".jPg"). G leɛnayek ssenqed-it.',
-'fileexists-thumb'            => "'''<center>Tugna i tewǧed</center>'''",
+'fileexists-thumb'            => "<center>'''Tugna i tewǧed'''</center>",
 'fileexists-thumbnail-yes'    => 'Iban-d belli tugna-nni d tugna tamecṭuht n tugna nniḍen <i>(thumbnail)</i>. G leɛnayek ssenqed tugna-agi <strong><tt>$1</tt></strong>.<br />
 Ma llant kif-kif ur tt-taznepd ara.',
 'file-thumbnail-no'           => 'Isem n tugna yebda s <strong><tt>$1</tt></strong>. Waqila tugna-nni d tugna tamecṭuht n tugna nniḍen <i>(thumbnail)</i>.

@@ -871,7 +871,7 @@ Para incluir la imágen en una página, usa un enlace en el formulario '''<nowik
 Nombre del archivo que se está subiendo: <strong><tt>$1</tt></strong><br />
 Nombre del archivo ya existente: <strong><tt>$2</tt></strong><br />
 Por favor, elige un nombre diferente.',
-'fileexists-thumb'            => "'''<center>Imagen existente</center>'''",
+'fileexists-thumb'            => "<center>'''Imagen existente'''</center>",
 'fileexists-thumbnail-yes'    => 'El archivo parece ser una imagen de tamaño reducido <i>(thumbnail)</i>. Por favor comprueba el archivo <strong><tt>$1</tt></strong>.<br />
 Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.',
 'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.

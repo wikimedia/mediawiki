@@ -978,7 +978,7 @@ per collegare direttamente gli altri tipi di file.",
 Nome del file caricato: <strong><tt>$1</tt></strong><br />
 Nome del file esistente: <strong><tt>$2</tt></strong><br />
 Verificare che i due file non siano identici.",
-'fileexists-thumb'            => "'''<center>Immagine esistente</center>'''",
+'fileexists-thumb'            => "<center>'''Immagine esistente'''</center>",
 'fileexists-thumbnail-yes'    => "Il file caricato sembra essere il risultato di un'anteprima <i>(thumbnail)</i>. Verificare, per confronto, il file <strong><tt>$1</tt></strong>.<br />
 Se si tratta della stessa immagine, nelle dimensioni originali, non è necessario caricarne altre anteprime.",
 'file-thumbnail-no'           => "Il nome del file inizia con <strong><tt>$1</tt></strong>; sembra quindi essere il risultato di un'anteprima <i>(thumbnail)</i>.

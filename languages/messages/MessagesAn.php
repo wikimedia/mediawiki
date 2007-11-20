@@ -292,7 +292,7 @@ $messages = array(
 'nosuchaction'      => 'No se reconoxe ista aizión',
 'nosuchactiontext'  => "{{SITENAME}} no reconoxe l'aizión espezificata en l'adreza URL",
 'nosuchspecialpage' => 'No esiste ixa pachina espezial',
-'nospecialpagetext' => "'''<big> A pachina espezial que ha demandato no esiste.</big>'''
+'nospecialpagetext' => "<big>'''A pachina espezial que ha demandato no esiste.'''</big>
 
 Puede trobar una lista de pachinas espezials en [[Special:Specialpages]].",
 
