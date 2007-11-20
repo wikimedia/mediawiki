@@ -284,8 +284,9 @@ class ParserTest {
 		foreach( $this->hooks as $tag => $callback ) {
 			$parser->setHook( $tag, $callback );
 		}
-		foreach( $this->functionHooks as $tag => $callback ) {
-			$parser->setFunctionHook( $tag, $callback );
+		foreach( $this->functionHooks as $tag => $bits ) {
+			list( $callback, $flags ) = $bits;
+			$parser->setFunctionHook( $tag, $callback, $flags );
 		}
 		wfRunHooks( 'ParserTestParser', array( &$parser ) );
 
