@@ -179,6 +179,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Do not present an image bigger than the source when 'frameless' option is used
   (to be consistent with the 'thumb' option now)
 * Support {{PLURAL}} for import log
+* Make sure that the correct log entries are shown on Special:Userrights even
+  for users with special characters in their names
   
 == Parser changes in 1.12 ==
 

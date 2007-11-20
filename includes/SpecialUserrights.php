@@ -390,7 +390,7 @@ class UserrightsForm extends HTMLForm {
 				new FauxRequest(
 					array(
 						'type' => 'rights',
-						'page' => $user->getUserPage()->getPrefixedUrl(),
+						'page' => $user->getUserPage()->getPrefixedText(),
 					)
 				)
 			)

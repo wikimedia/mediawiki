@@ -123,6 +123,7 @@ class LogReader {
 	 */
 	function limitTitle( $page , $pattern ) {
 		global $wgMiserMode;
+		
 		$title = Title::newFromText( $page );
 		
 		if( strlen( $page ) == 0 || !$title instanceof Title )
@@ -182,7 +183,7 @@ class LogReader {
 	 * @return ResultWrapper result object to return the relevant rows
 	 */
 	function getRows() {
-		$res = $this->db->query( $this->getQuery(), 'LogReader::getRows' );
+		$res = $this->db->query( $this->getQuery(), __METHOD__ );
 		return $this->db->resultObject( $res );
 	}
 
