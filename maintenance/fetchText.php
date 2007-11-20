@@ -29,9 +29,7 @@ function doGetText( $db, $id ) {
 	if( $text === false ) {
 		return false;
 	}
-	$stripped = str_replace( "\r", "", $text );
-	$normalized = UtfNormal::cleanUp( $stripped );
-	return $normalized;
+	return $text;
 }
 
 

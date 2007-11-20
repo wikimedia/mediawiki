@@ -132,6 +132,10 @@ class TextPassDumper extends BackupDumper {
 		if( WikiError::isError( $result ) ) {
 			wfDie( $result->getMessage() );
 		}
+		
+		if( $this->spawnProc ) {
+			$this->closeSpawn();
+		}
 
 		$this->report( true );
 	}
@@ -362,6 +366,7 @@ class TextPassDumper extends BackupDumper {
 	}
 	
 	private function closeSpawn() {
+		wfSuppressWarnings();
 		if( $this->spawnRead )
 			fclose( $this->spawnRead );
 		$this->spawnRead = false;
@@ -374,6 +379,7 @@ class TextPassDumper extends BackupDumper {
 		if( $this->spawnProc )
 			pclose( $this->spawnProc );
 		$this->spawnProc = false;
+		wfRestoreWarnings();
 	}
 	
 	private function getTextSpawnedOnce( $id ) {
@@ -405,7 +411,10 @@ class TextPassDumper extends BackupDumper {
 			return false;
 		}
 		
-		return $text;
+		// Do normalization in the dump thread...
+		$stripped = str_replace( "\r", "", $text );
+		$normalized = UtfNormal::cleanUp( $stripped );
+		return $normalized;
 	}
 
 	function startElement( $parser, $name, $attribs ) {
