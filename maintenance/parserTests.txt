@@ -3878,7 +3878,7 @@ Bug 2304: HTML attribute safety (unsafe breakout parameter; 2309)
 !! input
 {{div style|"><script>alert(document.cookie)</script>}}
 !! result
-<div>Magic div</div>
+<div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
 
 !! end
 
@@ -3887,7 +3887,7 @@ Bug 2304: HTML attribute safety (unsafe breakout parameter 2; 2309)
 !! input
 {{div style|" ><script>alert(document.cookie)</script>}}
 !! result
-<div style="float: right;">Magic div</div>
+<div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
 
 !! end
 
@@ -4151,7 +4151,7 @@ array(0) {
 
 
 !! test
-Parser hook: case insensetive
+Parser hook: case insensitive
 !! input
 <TAG>input</TAG>
 !! result
@@ -4165,7 +4165,7 @@ array(0) {
 
 
 !! test
-Parser hook: case insensetive, redux
+Parser hook: case insensitive, redux
 !! input
 <TaG>input</TAg>
 !! result
@@ -4724,8 +4724,8 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 |
 !! result
 <table>
-
-<u class="&#124;">} &gt;
+{{{|
+<u class="&#124;">}}}} &gt;
 <br style="onmouseover=&#39;alert(document.cookie);&#39;" />
 
 MOVE YOUR MOUSE CURSOR OVER THIS TEXT
@@ -4749,8 +4749,10 @@ noxml
  >
 }}}blah" onmouseover="alert('hello world');" align="left"'''MOVE MOUSE CURSOR OVER HERE
 !! result
+<p>{{{| 
+</p>
 <li class="&#124;&#124;">
-blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
+}}}blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
 
 !! end
 
@@ -5251,10 +5253,11 @@ Section extraction test with comment after heading (section 1)
 section=1
 !! input
 ==a==
-==legal== <!-- a legal section -->
+==unmarked== <!-- an unmarked section -->
 ==b==
 !! result
 ==a==
+==unmarked== <!-- an unmarked section -->
 !! end
 
 !! test
@@ -5263,10 +5266,10 @@ Section extraction test with comment after heading (section 2)
 section=2
 !! input
 ==a==
-==legal== <!-- a legal section -->
+==unmarked== <!-- an unmarked section -->
 ==b==
 !! result
-==legal== <!-- a legal section -->
+==b==
 !! end
 
 !! test
@@ -5295,101 +5298,78 @@ section=2
 !! end
 
 
+# Formerly testing for bug 2587, now resolved by the use of unmarked sections 
+# instead of respecting commented sections
 !! test
-Section extraction prefixed by comment (section 1) (bug 2587)
+Section extraction prefixed by comment (section 1)
 !! options
 section=1
 !! input
 <!-- -->==sec1==
 ==sec2==
 !!result
-<!-- -->==sec1==
+==sec2==
 !!end
 
 !! test
-Section extraction prefixed by comment (section 2) (bug 2587)
+Section extraction prefixed by comment (section 2)
 !! options
 section=2
 !! input
 <!-- -->==sec1==
 ==sec2==
 !!result
-==sec2==
+
 !!end
 
 
+# Formerly testing for bug 2607, now resolved by the use of unmarked sections 
+# instead of respecting HTML-style headings
 !! test
-Section extraction, mixed wiki and html (section 1) (bug 2607)
+Section extraction, mixed wiki and html (section 1)
 !! options
 section=1
 !! input
-<h2>1</h2>
+<h2>unmarked</h2>
+unmarked
+==1==
 one
 ==2==
 two
-==3==
-three
 !! result
-<h2>1</h2>
+==1==
 one
 !! end
 
 !! test
-Section extraction, mixed wiki and html (section 2) (bug 2607)
+Section extraction, mixed wiki and html (section 2)
 !! options
 section=2
 !! input
-<h2>1</h2>
+<h2>unmarked</h2>
+unmarked
+==1==
 one
 ==2==
 two
-==3==
-three
 !! result
 ==2==
 two
 !! end
 
 
+# Formerly testing for bug 3342
 !! test
-Section extraction, heading surrounded by <noinclude> (bug 3342)
+Section extraction, heading surrounded by <noinclude>
 !! options
 section=1
 !! input
-<noinclude>==a==</noinclude>
-text
+<noinclude>==unmarked==</noinclude>
+==marked==
 !! result
-<noinclude>==a==</noinclude>
-text
+==marked==
 !!end
 
-
-!! test
-Section extraction, HTML heading subsections (bug 5272)
-!! options
-section=1
-!! input
-<h2>a</h2>
-<h3>aa</h3>
-<h2>b</h2>
-!! result
-<h2>a</h2>
-<h3>aa</h3>
-!! end
-
-!! test
-Section extraction, HTML headings should be ignored in extensions (bug 3476)
-!! options
-section=2
-!! input
-<h2>a</h2>
-<tag>
-<h2>not b</h2>
-</tag>
-<h2>b</h2>
-!! result
-<h2>b</h2>
-!! end
 
 !! test
 Section replacement test (section 0)
@@ -5719,94 +5699,6 @@ start
 ===bc===
 ==c==
 xxx
-!! end
-
-
-!! test
-Section extraction, HTML headings not at line boundaries (section 0)
-!! options
-section=0
-!! input
-<h2>Evil</h2><i>blah blah blah</i>
-
-evil blah
-
-<h2>Nice</h2>
-
-nice blah
-
-<i>extra evil</i><h2>Extra nasty</h2>
-
-extra nasty
-!! result
-!! end
-
-!! test
-Section extraction, HTML headings not at line boundaries (section 1)
-!! options
-section=1
-!! input
-<h2>Evil</h2><i>blah blah blah</i>
-
-evil blah
-
-<h2>Nice</h2>
-
-nice blah
-
-<i>extra evil</i><h2>Extra nasty</h2>
-
-extra nasty
-!! result
-<h2>Evil</h2><i>blah blah blah</i>
-
-evil blah
-!! end
-
-!! test
-Section extraction, HTML headings not at line boundaries (section 2)
-!! options
-section=2
-!! input
-<h2>Evil</h2><i>blah blah blah</i>
-
-evil blah
-
-<h2>Nice</h2>
-
-nice blah
-
-<i>extra evil</i><h2>Extra nasty</h2>
-
-extra nasty
-!! result
-<h2>Nice</h2>
-
-nice blah
-
-<i>extra evil</i>
-!! end
-
-!! test
-Section extraction, HTML headings not at line boundaries (section 3)
-!! options
-section=3
-!! input
-<h2>Evil</h2><i>blah blah blah</i>
-
-evil blah
-
-<h2>Nice</h2>
-
-nice blah
-
-<i>extra evil</i><h2>Extra nasty</h2>
-
-extra nasty
-!! result
-<h2>Extra nasty</h2>
-
-extra nasty
 !! end
 
 

@@ -881,6 +881,8 @@ $wgMaxNameChars		= 255;  # Maximum number of bytes in username
 $wgMaxSigChars      = 255;  # Maximum number of Unicode characters in signature
 $wgMaxArticleSize	= 2048; # Maximum article size in kilobytes
 
+$wgMaxPPNodeCount = 1000000;  # A complexity limit on template expansion
+
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
@@ -1875,7 +1877,7 @@ $wgAlwaysUseTidy = false;
 $wgTidyBin = 'tidy';
 $wgTidyConf = $IP.'/includes/tidy.conf';
 $wgTidyOpts = '';
-$wgTidyInternal = function_exists( 'tidy_load_config' );
+$wgTidyInternal = extension_loaded( 'tidy' );
 
 /** See list of skins and their symbolic names in languages/Language.php */
 $wgDefaultSkin = 'monobook';
@@ -2782,3 +2784,19 @@ $wgDisableOutputCompression = false;
  */
 $wgSlaveLagWarning = 10;
 $wgSlaveLagCritical = 30;
+
+/**
+ * Parser configuration. Associative array with the following members:
+ *
+ *     class        The class name
+ * 
+ * The entire associative array will be passed through to the constructor as 
+ * the first parameter. Note that only Setup.php can use this variable -- 
+ * the configuration will change at runtime via $wgParser member functions, so 
+ * the contents of this variable will be out-of-date. The variable can only be 
+ * changed during LocalSettings.php, in particular, it can't be changed during 
+ * an extension setup function. 
+ */
+$wgParserConf = array( 
+	'class' => 'Parser',
+);

@@ -235,7 +235,8 @@ $wgRequest->interpolateTitle();
 $wgUser = new StubUser;
 $wgLang = new StubUserLang;
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
-$wgParser = new StubObject( 'wgParser', 'Parser' );
+$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
+
 $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache', 
 	array( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
 
