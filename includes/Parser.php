@@ -3181,6 +3181,13 @@ class Parser
 						$allArgs = array_merge( $initialArgs, $funcArgs );
 					}
 
+					if (! is_callable($callback)) {
+						if (is_array($callback))
+							$callback = $callback[0];
+						else
+							die ("\nInvalid callback for $function: '$callback' ($flags)\n");
+					}
+					
 					$result = call_user_func_array( $callback, $allArgs );
 					$found = true;
 
