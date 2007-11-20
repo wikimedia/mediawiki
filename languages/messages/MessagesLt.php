@@ -320,7 +320,7 @@ $messages = array(
 'nosuchaction'      => 'Nėra tokio veiksmo',
 'nosuchactiontext'  => 'Veiksmas, nurodytas adrese, neatpažintas',
 'nosuchspecialpage' => 'Nėra tokio specialiojo puslapio',
-'nospecialpagetext' => "'''<big>Jūs prašėte neleistino specialiojo puslapio</big>'''
+'nospecialpagetext' => "<big>'''Jūs prašėte neleistino specialiojo puslapio'''</big>
 
 Leistinų specialiųjų puslapių sąrašą galite rasti [[{{ns:special}}:Specialpages|specialiųjų puslapių sąraše]].",
 
@@ -944,7 +944,7 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 Įkeliamo failo pavadinimas: <strong><tt>$1</tt></strong><br />
 Jau esančio failo pavadinimas: <strong><tt>$2</tt></strong><br />
 Prašome pasirinkti kitą vardą.',
-'fileexists-thumb'            => "'''<center>Egzistuojantis paveikslėlis</center>'''",
+'fileexists-thumb'            => "<center>'''Egzistuojantis paveikslėlis'''</center>",
 'fileexists-thumbnail-yes'    => 'Failas turbūt yra sumažinto dydžio failas <i>(miniatiūra)</i>. Prašome peržiūrėti failą  <strong><tt>$1</tt></strong>.<br />
 Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos miniatūros nereikia.',
 'file-thumbnail-no'           => 'Failo pavadinimas prasideda  <strong><tt>$1</tt></strong>. Atrodo, kad yra sumažinto dydžio paveikslėlis <i>(miniatiūra)</i>.

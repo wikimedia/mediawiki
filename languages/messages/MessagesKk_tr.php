@@ -616,7 +616,7 @@ $messages = array(
 'nosuchactiontext'  => 'Osı URL jaýımen engizilgen äreketti
 osı wïkï joramaldap bilmedi.',
 'nosuchspecialpage' => 'Bul arnaýı bet emes',
-'nospecialpagetext' => "'''<big>Siz suranısqan arnaýı bet jaramsız.</big>'''
+'nospecialpagetext' => "<big>'''Siz suranısqan arnaýı bet jaramsız.'''</big>
 
 Jaramdı arnaýı bet tizimin [[{{ns:special}}:Specialpages]] degennen taba alasız.",
 
@@ -1257,7 +1257,7 @@ Swretterdi betke kirgizw üşin, faýlğa twra baýlanıstratın
 Qotarılatın faýl atawı: <strong><tt>$1</tt></strong><br />
 Bar bolğan faýl atawı: <strong><tt>$2</tt></strong><br />
 Basqa ataw tañdañız.',
-'fileexists-thumb'            => "'''<center>Bar bolğan swret</center>'''",
+'fileexists-thumb'            => "<center>'''Bar bolğan swret'''</center>",
 'fileexists-thumbnail-yes'    => 'Osı faýl — mölşeri kişiritilgen swret <i>(nobaý)</i> sïyaqtı. Bul <strong><tt>$1</tt></strong> degen faýldı sınap şığıñız.<br />
 Eger sınalğan faýl tüpnusqalı mölşeri bar dälme-däl swret bolsa, qosısmşa nobaýdı qotarw qajeti joq.',
 'file-thumbnail-no'           => 'Faýl atawı <strong><tt>$1</tt></strong> degenmen bastaladı. Bul — mölşeri kişiritilgen swret <i>(nobaý)</i> sïyaqtı.

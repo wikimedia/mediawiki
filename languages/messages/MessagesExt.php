@@ -263,7 +263,7 @@ $messages = array(
 'nosuchactiontext'  => "Nu se puei realizal l'ación
 especificá ena URL",
 'nosuchspecialpage' => 'Nu desisti tal páhina especial',
-'nospecialpagetext' => "'''<big>Nu desisti esa páhina especial.</big>'''
+'nospecialpagetext' => "<big>'''Nu desisti esa páhina especial.'''</big>
 
 Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:Specialpages]].",
 
@@ -857,7 +857,7 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 Nombri el archivu empuntau: <strong><tt>$1</tt></strong><br />
 Nombri el archivu ya desistenti: <strong><tt>$2</tt></strong><br />
 Pol favol, lihi un nombri deferenti.',
-'fileexists-thumb'            => "'''<center>Esta imáhin ya desisti</center>'''",
+'fileexists-thumb'            => "<center>'''Esta imáhin ya desisti'''</center>",
 'fileexists-thumbnail-yes'    => "El archivu paci sel una imahin chiquenina <i>(cuairu)</i>. Pol favol, compreba qu'el archivu <strong><tt>$1</tt></strong> nu es la mesma imahin.<br />
 Nel chascu en que huera la mesm imahin (inque seya en grandi) nu es mestel qu'empuntis el tu archivu.",
 'file-thumbnail-no'           => 'El nombri el archivu enceta pol <strong><tt>$1</tt></strong>. Paci sel una imahin pequeña <i>(cuairu)</i>.

@@ -863,7 +863,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 Эн суруйбут билэҥ аата: <strong><tt>$1</tt></strong><br /> 
 Уруккуттан баар билэ аата: <strong><tt>$2</tt></strong><br /> 
 Атын аатта таларыҥ буоллар.',
-'fileexists-thumb'            => "'''<center>Баар ойуу</center>'''",
+'fileexists-thumb'            => "<center>'''Баар ойуу'''</center>",
 'fileexists-thumbnail-yes'    => 'Ойуу арааһа кыччатыллыбыт ойуу (миниатюра) быһыылаах. Көр <strong><tt>$1</tt></strong>.<br /> Бу ойуу урукку ойуу кыччатыллыбыта буоллаҕына суруйар наадата суох.',
 'file-thumbnail-no'           => 'Билэ аата мантан саҕаланар <strong><tt>$1</tt></strong>. Арааһа ойуу кыра куоппуйата быһыылаах (миниатюра). Бу ойуу толору барыйаана баар буоллаҕына ону манна суруй, эбэтэр аатын уларыт.',
 'fileexists-forbidden'        => 'Маннык ааттаах ойуу баар, төннөн атыннык ааттаа. [[Image:$1|thumb|center|$1]]',

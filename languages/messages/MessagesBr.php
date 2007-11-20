@@ -916,7 +916,7 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 Anv ar restr pellgarget : <strong><tt>$1</tt></strong><br />
 Anv ar restr zo anezhi dija : <strong><tt>$2</tt></strong><br />
 An diforc'h nemetañ zo war pennlizherenn an astenn. Gwiriit eo disheñvel ar restroù ha klaskit en-dro.",
-'fileexists-thumb'            => "'''<center>Skeudenn zo anezhi</center>'''",
+'fileexists-thumb'            => "<center>'''Skeudenn zo anezhi'''</center>",
 'fileexists-thumbnail-yes'    => "Evit doare ez eus ur skeudenn krennet he ment eus ar restr <i>(thumbnail)</i>. Gwiriit ar restr <strong><tt>$1</tt></strong>.<br />
 Mard eo an hevelep skeudenn ha hini ar restr orin zo gwelloc'h he ferzhded n'eo ket dav pellgargañ ur stumm krennet ouzhpenn.",
 'file-thumbnail-no'           => "Kregiñ a ra anv ar restr gant <strong><tt>$1</tt></strong>. Evit doare eo ur skeudenn krennet he ment <i>(thumbnail)</i>.

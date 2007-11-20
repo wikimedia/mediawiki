@@ -568,7 +568,7 @@ $messages = array(
 'nosuchaction'      => 'Opgegeven handeling bestaat niet',
 'nosuchactiontext'  => 'De opdracht in de URL werd niet herkend door de wiki',
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
-'nospecialpagetext' => "'''<big>U heeft een niet-bestaande speciale pagina opgevraagd.</big>'''
+'nospecialpagetext' => "<big>'''U heeft een niet-bestaande speciale pagina opgevraagd.'''</big>
 
 Een lijst met speciale pagina’s staat op [[Special:Specialpages|Speciale pagina’s]].",
 
@@ -1183,7 +1183,7 @@ De laatste link is bedoeld voor mediabestanden.",
 Naam van het geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van het bestaande bestand: <strong><tt>$2</tt></strong><br />
 Gelieve een andere naam te kiezen.',
-'fileexists-thumb'            => "'''<center>Bestaande afbeelding</center>'''",
+'fileexists-thumb'            => "<center>'''Bestaande afbeelding'''</center>",
 'fileexists-thumbnail-yes'    => 'Het lijkt een afbeelding van een verkleinde grootte te zijn <i>(thumbnail)</i>. Gelieve het bestand <strong><tt>$1</tt></strong> te controleren.<br />
 Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte is, is het niet noodzakelijk een extra thumbnail te uploaden.',
 'file-thumbnail-no'           => 'De bestandsnaam begint met <strong><tt>$1</tt></strong>. Het lijkt een verkleinde afbeelding te zijn <i>(thumbnail)</i>. Als u deze afbeelding in volledige resolutie heeft, upload die afbeelding dan. Wijzig anders alstublieft de bestandsnaam.',

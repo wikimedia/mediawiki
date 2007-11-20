@@ -973,7 +973,7 @@ For å lenke direkte til bildet, skriv:
 Navnet på din fil: <strong><tt>$1</tt></strong><br />
 Navn på eksisterende fil: <strong><tt>$2</tt></strong><br />
 Den eneste forskjellen ligger i store/små bokstaver i filendelsen. Vennligst sjekk filene for likheter.',
-'fileexists-thumb'            => "'''<center>Eksisterende bilde</center>'''",
+'fileexists-thumb'            => "<center>'''Eksisterende bilde'''</center>",
 'fileexists-thumbnail-yes'    => 'Filen ser ut til å være et bilde av redusert størrelse. Vennligst sjekk filen <strong><tt>$1</tt></strong>.<br />
 Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.',
 'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>. Det virker som om det er et bilde av redusert størrelse. Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',

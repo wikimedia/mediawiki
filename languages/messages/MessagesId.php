@@ -1089,7 +1089,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 Nama berkas yang akan dimuat: <strong><tt>$1</tt></strong><br />
 Nama berkas yang telah ada: <strong><tt>$2</tt></strong><br />
 Satu-satunya perbedaan adalah pada kapitalisasi ekstensi. Harap cek apakah berkas tersebut sama.',
-'fileexists-thumb'            => "'''<center>Berkas yang tersedia</center>'''",
+'fileexists-thumb'            => "<center>'''Berkas yang tersedia'''</center>",
 'fileexists-thumbnail-yes'    => 'Berkas ini tampaknya merupakan gambar dengan ukuran yang lebih kecil <em>(thumbnail)</em>. Harap cek berkas <strong><tt>$1</tt></strong>.<br />
 Jika berkas tersebut merupakan berkas yang sama, tidak perlu untuk memuat kembali versi kecil lainnya.',
 'file-thumbnail-no'           => 'Nama berkas dimulai dengan <strong><tt>$1</tt></strong>. Tampaknya berkas ini merupakan gambar dengan ukuran yang lebih kecil <em>(thumbnail)</em>.

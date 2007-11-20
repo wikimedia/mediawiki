@@ -596,7 +596,7 @@ Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt ga
 'summary-preview'           => 'Sammanfattningsförhandsgranskning',
 'subject-preview'           => 'Rubrikförhandsgranskning',
 'blockedtitle'              => 'Användaren är blockerad',
-'blockedtext'               => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.</big>'''
+'blockedtext'               => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
 
 Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
@@ -994,7 +994,7 @@ $3',
 Namn på den fil du försöker ladda upp: <strong><tt>$1</tt></strong><br />
 Namn på filen som redan finns: <strong><tt>$2</tt></strong><br />
 Den enda skillnaden är versaliseringen av filnamnsändelsen. Var vänlig kontrollera om filerna är identiska.',
-'fileexists-thumb'            => "'''<center>Den existerande filen</center>'''",
+'fileexists-thumb'            => "<center>'''Den existerande filen'''</center>",
 'fileexists-thumbnail-yes'    => 'Filen verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>. Var vänlig kontrollera filen <strong><tt>$1</tt></strong>.<br />
 Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.',
 'file-thumbnail-no'           => 'Filnamnet börjar med <strong><tt>$1</tt></strong>. Det verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>.

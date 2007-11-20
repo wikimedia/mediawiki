@@ -777,7 +777,7 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
 Enw'r ffeil ar fin ei uwchlwytho: <strong><tt>$1</tt></strong><br />
 Enw'r ffeil sydd eisoes yn bod: <strong><tt>$2</tt></strong><br />
 Dewiswch enw arall os gwelwch yn dda.",
-'fileexists-thumb'            => "'''<center>Y ddelwedd eisoes ar glawr</center>'''",
+'fileexists-thumb'            => "<center>'''Y ddelwedd eisoes ar glawr'''</center>",
 'fileexists-thumbnail-yes'    => "Ymddengys bod delwedd wedi ei leihau <i>(bawd)</i> ar y ffeil. Cymharwch gyda'r ffeil <strong><tt>$1</tt></strong>.<br />
 Os mai'r un un llun ar ei lawn faint sydd ar yr ail ffeil yna does dim angen uwchlwytho llun ychwanegol o faint bawd.",
 'file-thumbnail-no'           => "Mae <strong><tt>$1</tt></strong> ar ddechrau enw'r ffeil. Mae'n ymddangos bod y ddelwedd wedi ei leihau <i>(maint bawd)</i>.

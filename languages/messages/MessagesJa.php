@@ -888,7 +888,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 アップロード中のファイル: <strong><tt>$1</tt></strong><br />
 既存のファイル: <strong><tt>$2</tt></strong><br />
 ファイルが本当に違うものであるか、確認してください。',
-'fileexists-thumb'            => "'''<center>既存の画像</center>'''",
+'fileexists-thumb'            => "<center>'''既存の画像'''</center>",
 'fileexists-thumbnail-yes'    => 'このファイルは既存の画像のサイズ縮小版（サムネール）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
 確認した画像がオリジナルサイズにおける元画像である場合、追加でサムネールを登録する必要はありません。',
 'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっています。画像が縮小版（サムネール）である場合があります。

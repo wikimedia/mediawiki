@@ -325,7 +325,7 @@ $messages = array(
 'nosuchaction'      => 'Accion encognua',
 'nosuchactiontext'  => 'L’accion spècefiâ dens l’URL est pas recognua per lo vouiqui.',
 'nosuchspecialpage' => 'Pâge spèciâla pas ègzistenta',
-'nospecialpagetext' => "'''<big>Vos éd demandâ una pâge spèciâla qu’est pas recognua per lo vouiqui.</big>'''
+'nospecialpagetext' => "<big>'''Vos éd demandâ una pâge spèciâla qu’est pas recognua per lo vouiqui.'''</big>
 
 Una lista de les pâges spèciâles pôt étre trovâ dessus [[Special:Specialpages]].",
 
@@ -923,7 +923,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 Nom du fichiér a importar : <strong><tt>$1</tt></strong><br />
 Nom du fichiér ègzistent : <strong><tt>$2</tt></strong><br />
 la solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l’èxtension. Volyéd controlar que lo fichiér est difèrent et changiér son nom.',
-'fileexists-thumb'            => "'''<center>Émâge ègzistenta</center>'''",
+'fileexists-thumb'            => "<center>'''Émâge ègzistenta'''</center>",
 'fileexists-thumbnail-yes'    => 'Lo fichiér semble étre una émâge en talye rèduita <i>(thumbnail)</i>. Volyéd controlar lo fichiér <strong><tt>$1</tt></strong>.<br />
 Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta d’importar una vèrsion rèduita.',
 'file-thumbnail-no'           => 'Lo nom du fichiér comence per <strong><tt>$1</tt></strong>. O est possiblo que s’ag·ésse d’una vèrsion rèduita <i>(thumbnail)</i>.

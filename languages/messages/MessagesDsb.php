@@ -901,7 +901,7 @@ Pšosym mysli na to, až mógu druge wužywarje twóje dataje wulašowaś a změ
 Mě dataje, kótaraž dej se uploadowaś: <strong><tt>$1</tt></strong><br />
 Mě eksistěrujuceje dataje: <strong><tt>$2</tt></strong><br />
 Wuzwól nowe mě, jolic až sy se wěsty, až dataji njejstej identiskej.',
-'fileexists-thumb'            => "'''<center>Eksistěrujucy wobraz</center>'''",
+'fileexists-thumb'            => "<center>'''Eksistěrujucy wobraz'''</center>",
 'fileexists-thumbnail-yes'    => 'Zazdaśim ma wobraz reducěrowanu wjelikosć <i>(thumbnail)</i>. Kontrolěruj pšosym dataju <strong><tt>$1</tt></strong>.<br />
 Jadna-lic se wó wobraz w originalnej wjelikosći, pón njejo notne, separatny pśeglědowy wobraz uploadowaś.',
 'file-thumbnail-no'           => 'Mě dataje zachopijo z <strong><tt>$1</tt></strong>. To pokazujo na wobraz z reducěrowaneju wjelikosću. <i>(thumbnail)</i>.

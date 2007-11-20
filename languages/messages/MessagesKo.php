@@ -789,7 +789,7 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 올리려는 파일 이름: <strong><tt>$1</tt></strong><br />
 존재하는 파일 이름: <strong><tt>$2</tt></strong><br />
 다른 이름으로 시도해 주세요.',
-'fileexists-thumb'            => "'''<center>존재하는 그림</center>'''",
+'fileexists-thumb'            => "<center>'''존재하는 그림'''</center>",
 'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 공용 파일 저장소에 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => '올리기 성공',

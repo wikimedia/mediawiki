@@ -355,7 +355,7 @@ $messages = array(
 'nosuchaction'      => 'Opirazzioni nun ricanusciuta',
 'nosuchactiontext'  => 'La URL mmessa nun currispunni a un cumannu ricanusciutu dû software MediaWiki',
 'nosuchspecialpage' => 'Sta pàggina spiciali nun è dispunìbbili',
-'nospecialpagetext' => "'''<big>Hai cercatu na pàggina spiciali nun vàlida.</big>'''
+'nospecialpagetext' => "<big>'''Hai cercatu na pàggina spiciali nun vàlida.'''</big>
 
 L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:Specialpages|Alencu dî pàggini spiciali]].",
 
@@ -901,7 +901,7 @@ pi culligari direttamenti l'àutri tipi di file.",
 Nomu dû file carricatu: <strong><tt>$1</tt></strong><br />
 Nome dû file esistenti: <strong><tt>$2</tt></strong><br />
 Pi favuri scegghiti n'àutru nomu.",
-'fileexists-thumb'            => "'''<center>Mmagini esistenti</center>'''",
+'fileexists-thumb'            => "<center>'''Mmagini esistenti'''</center>",
 'fileexists-thumbnail-yes'    => "Lu file carricato sembra èssiri lu risurtatu di n'antiprima <i>(thumbnail)</i>. Virificari, pi cunfruntu, lu file <strong><tt>$1</tt></strong>.<br />
 Siduu si tratta dâ stissa mmagini, nte dimenzioni urigginali, nun è nicissariu carricara àutri antiprimi.",
 'file-thumbnail-no'           => "Lu nomu dô file ncigna cu <strong><tt>$1</tt></strong>; sembra quinni èssiri lu risurtatu di n'antiprima <i>(thumbnail)</i>.

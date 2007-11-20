@@ -970,7 +970,7 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 Nazwa przesyłanego pliku: <strong><tt>$1</tt></strong><br />
 Nazwa istniejącego pliku: <strong><tt>$2</tt></strong><br />
 Proszę wybrać inną nazwę.',
-'fileexists-thumb'            => "'''<center>Istniejąca grafika</center>'''",
+'fileexists-thumb'            => "<center>'''Istniejąca grafika'''</center>",
 'fileexists-thumbnail-yes'    => 'Plik wydaje się być pomniejszoną grafiką <i>(miniaturką)</i>. Zobacz plik <strong><tt>$1</tt></strong>.<br />
 Jeśli plik jest tą samą grafiką co ta w oryginalnym rozmiarze, to nie musisz przesyłać dodatkowej miniaturki.',
 'file-thumbnail-no'           => 'Nazwa pliku zaczyna się od <strong><tt>$1</tt></strong>. Wydaje się, że jest to pomniejszona grafika <i>(miniaturka)</i>.

@@ -260,7 +260,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'ਕੋਈ ਇੰਝ ਦਾ ਐਕਸ਼ਨ ਨਹੀਂ',
 'nosuchspecialpage' => 'ਕੋਈ ਇੰਝ ਦਾ ਖਾਸ ਪੇਜ਼ ਨਹੀਂ',
-'nospecialpagetext' => "'''<big>ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ਼ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।</big>'''
+'nospecialpagetext' => "<big>'''ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ਼ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।'''</big>
 
 A list of valid special pages can be found at [[Special:Specialpages]].",
 
@@ -583,7 +583,7 @@ to upload files.',
 ਅੱਪਲੋਡ ਕੀਤੀ ਫਾਇਲ ਦਾ ਨਾਂ: <strong><tt>$1</tt></strong><br />
 ਮੌਜੂਦ ਫਾਇਲ ਦਾ ਨਾਂ: <strong><tt>$2</tt></strong><br />
 ਇੱਕ ਵੱਖਰਾ ਨਾਂ ਚੁਣੋ ਜੀ',
-'fileexists-thumb'     => "'''<center>ਮੌਜੂਦ ਚਿੱਤਰ</center>'''",
+'fileexists-thumb'     => "<center>'''ਮੌਜੂਦ ਚਿੱਤਰ'''</center>",
 'successfulupload'     => 'ਠੀਕ ਤਰ੍ਹਾਂ ਅੱਪਲੋਡ',
 'uploadwarning'        => 'ਅੱਪਲੋਡ ਚੇਤਾਵਨੀ',
 'savefile'             => 'ਫਾਇਲ ਸੰਭਾਲੋ',

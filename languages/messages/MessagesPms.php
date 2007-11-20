@@ -934,7 +934,7 @@ Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
 Nòm dl'archivi ch'as carìa: <strong><tt>$1</tt></strong><br />
 Nòm dl'archivi ch'a-i é già: <strong><tt>$2</tt></strong><br />
 Për piasì, ch'a serna un nòm diferent.",
-'fileexists-thumb'            => "'''<center>Figura ch'a-i é</center>'''",
+'fileexists-thumb'            => "<center>'''Figura ch'a-i é'''</center>",
 'fileexists-thumbnail-yes'    => "L'archivi a-j ëmsija a na <i>figurin-a</i>. Për piasì, ch'a contròla l'archivi <strong><tt>$1</tt></strong>.<br />
 S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",
 'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con <strong><tt>$1</tt></strong>. A-j ësmija a na <i>figurin-a</i>.

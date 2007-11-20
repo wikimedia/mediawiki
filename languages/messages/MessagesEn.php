@@ -727,7 +727,7 @@ XHTML id names.
 'nosuchactiontext'  => 'The action specified by the URL is not
 recognized by the wiki',
 'nosuchspecialpage' => 'No such special page',
-'nospecialpagetext' => "'''<big>You have requested an invalid special page.</big>'''
+'nospecialpagetext' => "<big>'''You have requested an invalid special page.'''</big>
 
 A list of valid special pages can be found at [[Special:Specialpages]].",
 
@@ -1412,7 +1412,7 @@ To include the image in a page, use a link in the form
 Name of the uploading file: <strong><tt>$1</tt></strong><br />
 Name of the existing file: <strong><tt>$2</tt></strong><br />
 Please choose a different name.',
-'fileexists-thumb'            => "'''<center>Existing image</center>'''",
+'fileexists-thumb'            => "<center>'''Existing image'''</center>",
 'fileexists-thumbnail-yes'    => 'The file seems to be an image of reduced size <i>(thumbnail)</i>. Please check the file <strong><tt>$1</tt></strong>.<br />
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.',
 'file-thumbnail-no'           => 'The filename begins with <strong><tt>$1</tt></strong>. It seems to be an image of reduced size <i>(thumbnail)</i>.

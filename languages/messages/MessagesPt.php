@@ -931,7 +931,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 Nome do ficheiro que está sendo enviado: <strong><tt>$1</tt></strong><br />
 Nome do ficheiro existente: <strong><tt>$2</tt></strong><br />
 Por gentileza, escolha um nome diferente.',
-'fileexists-thumb'            => "'''<center>Imagem existente</center>'''",
+'fileexists-thumb'            => "<center>'''Imagem existente'''</center>",
 'fileexists-thumbnail-yes'    => 'O ficheiro aparenta ser uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail)</i>. Por gentileza, verifique o ficheiro <strong><tt>$1</tt></strong>.<br />
 Se o ficheiro enviado é o mesmo do de tamanho original, não é necessário enviar uma versão de miniatura adicional.',
 'file-thumbnail-no'           => 'O nome do ficheiro começa com <strong><tt>$1</tt></strong>. Isso faz parecer se tratar de uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail)</i>.

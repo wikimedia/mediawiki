@@ -771,7 +771,7 @@ Ad imaginem includendum in pagina, utere nexu
 'ignorewarnings'    => 'Ignorare monita omnes',
 'badfilename'       => 'Nomen fasciculi ad "$1" mutatum est.',
 'large-file'        => 'Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.',
-'fileexists-thumb'  => "'''<center>Imago quae iam est</center>'''",
+'fileexists-thumb'  => "<center>'''Imago quae iam est'''</center>",
 'successfulupload'  => 'Oneratum perfectum',
 'uploadwarning'     => 'Monitus onerati',
 'savefile'          => 'Servare fasciculum',

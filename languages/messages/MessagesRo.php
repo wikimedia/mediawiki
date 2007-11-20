@@ -850,7 +850,7 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'largefileserver'             => 'Fişierul este mai mare decât este configurat serverul să permită.',
 'emptyfile'                   => 'Fişierul pe care l-aţi încărcat pare a fi gol. Aceasta poate fi datorită unei greşeli în numele fişierului. Verificaţi dacă într-adevăr doriţi să încărcaţi acest fişier.',
 'fileexists'                  => 'Un fişier cu acelaşi nume există deja, vă rugăm verificaţi $1 dacă nu sunteţi sigur dacă doriţi să îl modificaţi.',
-'fileexists-thumb'            => "'''<center>Imagine existentă</center>'''",
+'fileexists-thumb'            => "<center>'''Imagine existentă'''</center>",
 'fileexists-forbidden'        => 'Un fişier cu acest nume există deja; mergeţi înapoi şi încărcaţi acest fişier sub un nume nou. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fişier cu acest nume există deja în magazia de imagini comune; mergeţi înapoi şi încărcaţi fişierul sub un nou nume. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Fişierul a fost trimis',

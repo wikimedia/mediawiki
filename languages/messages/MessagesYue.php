@@ -398,7 +398,7 @@ $messages = array(
 'nosuchaction'      => '冇呢個動作',
 'nosuchactiontext'  => '呢個 URL 嘅指定動作 wiki 識別唔到',
 'nosuchspecialpage' => '冇呢頁特別頁',
-'nospecialpagetext' => "'''<big>無你所要求嘅特別頁。</big>'''
+'nospecialpagetext' => "<big>'''無你所要求嘅特別頁。'''</big>
 
 喺[[Special:Specialpages|特別頁一覽]]有全部用得嘅特別頁。",
 

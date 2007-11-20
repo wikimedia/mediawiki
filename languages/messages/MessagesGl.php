@@ -295,7 +295,7 @@ $messages = array(
 'nosuchaction'      => 'Non existe esa acción',
 'nosuchactiontext'  => 'A acción especificada polo URL non é recoñecida polo wiki',
 'nosuchspecialpage' => 'Non existe esa páxina especial',
-'nospecialpagetext' => "'''<big>Pediu unha páxina especial que non está recoñecida polo wiki.</big>'''
+'nospecialpagetext' => "<big>'''Pediu unha páxina especial que non está recoñecida polo wiki.'''</big>
 
 Pode atopar unha listaxe coas páxinas especiais válidas en [[Special:Specialpages]].",
 
@@ -911,7 +911,7 @@ Para incluir unha imaxe na páxina, use unha ligazón do seguinte xeito:
 Nome do ficheiro que tenta cargar: <strong><tt>$1</tt></strong><br />
 Nome de ficheiro que hai: <strong><tt>$2</tt></strong><br />
 A única diferenza é o uso de minúsculas/maiúsculas na extensión. Por favor comprobe se se trata dun ficheiro diferente e cárgueo con outro nome.',
-'fileexists-thumb'            => "'''<center>Imaxe existente</center>'''",
+'fileexists-thumb'            => "<center>'''Imaxe existente'''</center>",
 'fileexists-thumbnail-yes'    => 'Parece que o ficheiro é unha imaxe de tamaño reducido <i>(miniatura)</i>. Comprobe o ficheiro <strong><tt>$1</tt></strong>.<br />
 Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso enviar unha miniatura adicional.',
 'file-thumbnail-no'           => 'O nome do ficheiro comeza por <strong><tt>$1</tt></strong>. Parece tratarse dunha imaxe de tamaño reducido <i>(miniatura)</i>.

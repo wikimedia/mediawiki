@@ -325,7 +325,7 @@ $messages = array(
 'nosuchaction'      => '無可為',
 'nosuchactiontext'  => '查無此址',
 'nosuchspecialpage' => '查無奇頁',
-'nospecialpagetext' => "'''<big>查無奇頁。</big>'''
+'nospecialpagetext' => "<big>'''查無奇頁。'''</big>
 
 見[[{{ns:special}}:Specialpages]]。",
 

@@ -762,7 +762,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 Song-chhòn tóng-on ke tóng-miàng: <strong><tt>$1</tt></strong><br /> 
 hien-chhai yû tóng-on ke tóng-miàng: <strong><tt>$2</tt></strong><br /> 
 Chhiáng sién-chet yit-ke put-thùng ke miàng-sṳ.',
-'fileexists-thumb'            => "'''<center>Yí-kîn chhùn-chhai ke thù-hìn</center>'''",
+'fileexists-thumb'            => "<center>'''Yí-kîn chhùn-chhai ke thù-hìn'''</center>",
 'fileexists-thumbnail-yes'    => 'Liá-ke tóng-on chhin-chhiong he yit-pu thù-hìn ke suk-thù pán-pún <i>(suk-thù)</i>.
 Chhiáng kiám-chhà chhîn-chhú ke tóng-on <strong><tt>$1</tt></strong>.<br /> 
 Kó-yèn kiám-chhà heu ke tóng-on he khiung-thùng ngièn-pún thù-hiong ke thai-séu he yit-yong, chhiu put-yung song-chhòn tô yit-puk suk-thù.',

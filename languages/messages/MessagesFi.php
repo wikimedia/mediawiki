@@ -989,7 +989,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 Tallennetun tiedoston nimi: <strong><tt>$1</tt></strong><br />
 Olemassa olevan tiedoston nimi: <strong><tt>$2</tt></strong><br />
 Ainoa ero on tiedostopäätteen kirjainkoko. Tarkista ovatko tiedostot identtisiä.',
-'fileexists-thumb'            => "'''<center>Olemassa oleva kuva</center>'''",
+'fileexists-thumb'            => "<center>'''Olemassa oleva kuva'''</center>",
 'fileexists-thumbnail-yes'    => 'Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>. Tarkista tiedosto <strong><tt>$1</tt></strong>.<br />
 Jos yllä oleva tiedosto on alkuperäisversio samasta kuvasta, ei sille tarvi tallentaa pienoiskuvaa.',
 'file-thumbnail-no'           => 'Tiedostonimi alkaa merkkijonolla <strong><tt>$1</tt></strong>. Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>.

@@ -964,7 +964,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'filetype-missing'  => 'Skráin hefur engan viðauka (dæmi ".jpg").',
 'large-file'        => 'Það er mælt með að skrár séu ekki stærri en $1; þessi skrá er $2.',
 'fileexists'        => 'Skrá með þessu nafni er þegar til, skoðaðu <strong><tt>$1</tt></strong> ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.',
-'fileexists-thumb'  => "'''<center>Núverandi mynd</center>'''",
+'fileexists-thumb'  => "<center>'''Núverandi mynd'''</center>",
 'successfulupload'  => 'Innhlaðning tókst',
 'uploadwarning'     => 'Aðvörun',
 'savefile'          => 'Vista',

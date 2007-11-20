@@ -1056,7 +1056,7 @@ Všetky uvedené časy sú časy na serveri (UTC).',
 Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
 Názov existujúceho súboru: <strong><tt>$2</tt></strong><br />
 Jediný rozdiel je vo veľkosti písmen prípony. Prosím, skontrolujte totožnosť týchto súborov.',
-'fileexists-thumb'            => "'''<center>Existujúci obrázok</center>'''",
+'fileexists-thumb'            => "<center>'''Existujúci obrázok'''</center>",
 'fileexists-thumbnail-yes'    => 'Zdá sa, že súbor je obrázkom redukovanej veľkosti <i>(náhľadom)</i>. Prosím, skontolujte súbor <strong><tt>$1</tt></strong>.<br />
 Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potrebné nahrávať ďalší náhľad.',
 'file-thumbnail-no'           => 'Názov súboru začína <strong><tt>$1</tt></strong>. Zdá sa, že je to obrázok redukovanej veľkosti <i>(náhľad)</i>. Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.',
