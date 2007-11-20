@@ -1333,13 +1333,12 @@ class OutputPage {
 	/**
 	 * Turn off regular page output and return an error reponse
 	 * for when rate limiting has triggered.
-	 * @todo i18n
 	 */
 	public function rateLimited() {
 		global $wgOut;
 
 		$this->setPageTitle(wfMsg('actionthrottled'));
-		$this->setRobotPolicy( 'noindex,nofollow' );
+		$this->setRobotPolicy( 'noindex,follow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
