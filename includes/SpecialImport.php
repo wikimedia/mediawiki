@@ -193,13 +193,13 @@ class ImportReporter {
 		if( $successCount > 0 ) {
 			$log = new LogPage( 'import' );
 			if( $this->mIsUpload ) {
-				$detail = wfMsgForContent( 'import-logentry-upload-detail',
+				$detail = wfMsgExt( 'import-logentry-upload-detail', array( 'content', 'parsemag' ),
 					$contentCount );
 				$log->addEntry( 'upload', $title, $detail );
 			} else {
 				$interwiki = '[[:' . $this->mInterwiki . ':' .
 					$origTitle->getPrefixedText() . ']]';
-				$detail = wfMsgForContent( 'import-logentry-interwiki-detail',
+				$detail = wfMsgExt( 'import-logentry-interwiki-detail', array( 'content', 'parsemag' ),
 					$contentCount, $interwiki );
 				$log->addEntry( 'interwiki', $title, $detail );
 			}

@@ -2259,9 +2259,9 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importlogpage'                    => 'Import log',
 'importlogpagetext'                => 'Administrative imports of pages with edit history from other wikis.',
 'import-logentry-upload'           => 'imported [[$1]] by file upload',
-'import-logentry-upload-detail'    => '$1 revision(s)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revisions}}',
 'import-logentry-interwiki'        => 'transwikied $1',
-'import-logentry-interwiki-detail' => '$1 revision(s) from $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisions}} from $2',
 
 # Keyboard access keys for power users
 'accesskey-pt-userpage'             => '.', # don't translate or duplicate this message to other languages
