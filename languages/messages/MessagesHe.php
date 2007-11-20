@@ -714,6 +714,10 @@ $2',
 'invalidemailaddress'        => 'כתובת הדוא"ל אינה מתקבלת כיוון שנראה שהיא בפורמט לא נכון. אנא הכנס כתובת נכונה או ותר על השדה הזה.',
 'accountcreated'             => 'החשבון נוצר',
 'accountcreatedtext'         => 'חשבון המשתמש $1 נוצר.',
+'createaccount-title'        => 'יצירת חשבון ב{{grammar:תחילית|{{SITENAME}}}}',
+'createaccount-text'         => 'מישהו ($1) יצר חשבון בשם $2 ב{{grammar:תחילית|{{SITENAME}}}} ($4). הסיסמה לחשבון "$2" היא "$3". עליכם להיכנס ולשנות עכשיו את הסיסמה.
+
+באפשרותכם להתעלם מהודעה זו, אם החשבון נוצר בטעות.',
 'loginlanguagelabel'         => 'שפה: $1',
 
 # Password reset dialog
