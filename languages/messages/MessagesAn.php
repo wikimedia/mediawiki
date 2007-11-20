@@ -350,7 +350,7 @@ Consulta: $2',
 'editinginterface'     => "'''Pare cuenta:''' Ye editando una pachina emplegata ta furnir o testo d'a interfaz de {{SITENAME}}. Os cambeos en ista pachina tendrán efeuto en l'aparenzia d'a interfaz ta os atros usuarios.",
 'sqlhidden'            => '(Consulta SQL amagata)',
 'cascadeprotected'     => 'Ista pachina ye protexita y no se puede editar porque ye encluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que son protexitas con a opzión de "cascada": $2',
-'namespaceprotected'   => "No tiens premiso ta editar as pachinas d'o espazio de nombres '''$1'''.",
+'namespaceprotected'   => "No tiene premiso ta editar as pachinas d'o espazio de nombres '''$1'''.",
 'customcssjsprotected' => "No tiens premiso ta editar ista pachina porque contiene para editar esta página porque contiene a confegurazión presonal d'atro usuario.",
 'ns-specialprotected'  => "No ye posible editar as pachinas d'o espazio de nombres {{ns:special}}.",
 
@@ -379,14 +379,23 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'nologinlink'        => 'Creyar una nueba cuenta',
 'createaccount'      => 'Creyar una nueba cuenta',
 'gotaccount'         => 'Tiene ya una cuenta? $1.',
+'gotaccountlink'     => 'Identificar-se y enzetar sesión',
+'createaccountmail'  => 'por correu electronico',
+'badretype'          => 'As parabras de paso que ha escrito no son iguals.',
+'userexists'         => 'Ixe nombre ya ye en uso. Por fabor, meta un nombre diferent.',
+'youremail'          => 'Adreza de correu electronico:',
 'username'           => "Nombre d'usuario:",
-'yourrealname'       => 'O tuyo nombre reyal:',
+'yourrealname'       => 'O suyo nombre reyal:',
 'yourlanguage'       => 'Luenga:',
-'yournick'           => 'A tuya embotada (ta siñar):',
+'yourvariant'        => 'Modalidat linguistica',
+'yournick'           => 'A suya embotada (ta siñar):',
 'prefs-help-email'   => "Correu-e (ozional): Premite á atros usuarios contautar con tu por meyo de a tuya pachina d'usuario u a tuya pachina de descusión sin de aber menester de rebelar a tuya identidá.",
 'noname'             => "No has introduziu un nombre d'usuario correuto.",
 'loginsuccesstitle'  => "S'ha identificato correutamén",
 'mailmypassword'     => 'Nimbia-me una nueba parabra de paso por correu electronico',
+
+# Password reset dialog
+'resetpass_text' => '<!-- Adiba aquí o testo -->',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo en negreta',
@@ -452,6 +461,7 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'templatesusedpreview'     => 'Plantillas emplegatas en ista ambiesta prebia:',
 'template-protected'       => '(protexito)',
 'template-semiprotected'   => '(semiprotexito)',
+'edittools'                => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 'nocreatetext'             => 'Iste wiki ha limitato a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
 'recreate-deleted-warn'    => "'''Pare cuenta: ye creyando una pachina que ya ha estato borrata denantes.'''
 
@@ -540,11 +550,25 @@ Puede consultar o rechistro de borraus que s'amuestra a continuazión:",
 'recentchangeslinked-summary'  => "Ista pachina espezial amuestra os zaguers cambeos en as pachinas binculatas. As pachinas d'a suya lista de seguimiento son en  '''negreta'''.",
 
 # Upload
-'upload'            => 'Cargar archibo',
-'uploadbtn'         => 'Cargar un archibo',
-'uploadnologintext' => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] ta cargar archibos.",
-'uploadlogpage'     => "Rechistro de cargas d'archibos",
-'uploadedimage'     => '«[[$1]]» cargato.',
+'upload'                    => 'Cargar archibo',
+'uploadbtn'                 => 'Cargar un archibo',
+'uploadnologintext'         => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] ta cargar archibos.",
+'uploadlogpage'             => "Rechistro de cargas d'archibos",
+'uploadedimage'             => '«[[$1]]» cargato.',
+'filename-prefix-blacklist' => ' #<!-- dixe ista linia esautament igual como ye --> <pre>
+# A sintacsis ye asinas: 
+#   * Tot o que prenzipia por un caráuter "#" dica la fin d\'a linia ye un comentario
+#   * As atras linias tienen os prefixos que claban automaticament as camaras dichitals
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # bels telefonos móbils
+IMG # chenerica
+JD # Jenoptik
+MGP # Pentax
+PICT # misz.
+ #</pre> <!-- dixe ista linia esautament igual como ye -->',
 
 # Image list
 'imagelist'                 => 'Lista de imachens',

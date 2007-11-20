@@ -90,10 +90,14 @@ $messages = array(
 'errorpagetitle'    => '错误',
 'returnto'          => '返回到$1。',
 'tagline'           => '来自{{SITENAME}}',
+'search'            => '搜寻',
+'searchbutton'      => '搜寻',
 'searcharticle'     => '进入',
 'history'           => '页面历史',
 'history_short'     => '历史',
 'info_short'        => '信息',
+'printableversion'  => '好打印个版本',
+'permalink'         => '永久链接',
 'print'             => '打印',
 'edit'              => '编辑',
 'editthispage'      => '编辑此页',
@@ -109,11 +113,16 @@ $messages = array(
 'talkpage'          => '讨论此页',
 'talkpagelinktext'  => '对话',
 'talk'              => '讨论',
+'jumptosearch'      => '搜寻',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => '关于{{SITENAME}}',
-'aboutpage' => 'Project:关于',
-'mainpage'  => '封面',
+'aboutsite'      => '关于{{SITENAME}}',
+'aboutpage'      => 'Project:关于',
+'disclaimers'    => '免责声明',
+'disclaimerpage' => 'Project:免责声明',
+'mainpage'       => '封面',
+'privacy'        => '隐私政策',
+'privacypage'    => 'Project:隐私政策',
 
 'retrievedfrom'           => '取自“$1”',
 'youhavenewmessages'      => '你有$1（$2）。',
@@ -122,10 +131,13 @@ $messages = array(
 'youhavenewmessagesmulti' => '你有新信息在$1',
 'editsection'             => '编辑',
 'editold'                 => '编辑',
+'editsectionhint'         => '编辑段落: $1',
 'toc'                     => '目录',
 'showtoc'                 => '显示',
 'hidetoc'                 => '隐藏',
 'restorelink'             => '$1个被删除个版本',
+'site-rss-feed'           => '$1的RSS订阅',
+'site-atom-feed'          => '$1的Atom订阅',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文章',
@@ -140,6 +152,7 @@ $messages = array(
 'error' => '错误',
 
 # Login and logout pages
+'userlogin'    => '登录 / 新开户头',
 'logout'       => '登出',
 'userlogout'   => '登出',
 'youremail'    => '电子邮件:',
@@ -149,13 +162,30 @@ $messages = array(
 'yourlanguage' => '语言:',
 'email'        => '电子邮件',
 
+# Edit pages
+'editing'            => '正在编辑$1',
+'template-protected' => '(保护)',
+
+# Search results
+'powersearch' => '搜寻',
+
+# Recent changes
+'newpageletter' => '新',
+
 # Upload
 'upload' => '上载文物',
 
 # Miscellaneous special pages
 'specialpages' => '特殊页面',
 
+'alphaindexline' => '$1到$2',
+
 # Block/unblock
 'contribslink' => '贡献',
+
+# Tooltip help for the actions
+'tooltip-pt-mytalk'  => '我个讲张',
+'tooltip-search'     => '搜寻{{SITENAME}}',
+'tooltip-n-mainpage' => '进入封面',
 
 );
