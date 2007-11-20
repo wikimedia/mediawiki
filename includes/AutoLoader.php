@@ -7,6 +7,8 @@ ini_set('unserialize_callback_func', '__autoload' );
 function __autoload($className) {
 	global $wgAutoloadClasses;
 
+	# Locations of core classes
+	# Extension classes are specified with $wgAutoloadClasses
 	static $localClasses = array(
 		# Includes
 		'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
@@ -133,9 +135,11 @@ function __autoload($className) {
 		'ReverseChronologicalPager' => 'includes/Pager.php',
 		'TablePager' => 'includes/Pager.php',
 		'Parser' => 'includes/Parser.php',
+		'Parser_OldPP' => 'includes/Parser_OldPP.php',
+		'Parser_DiffTest' => 'includes/Parser_DiffTest.php',
+		'ParserCache' => 'includes/ParserCache.php',
 		'ParserOutput' => 'includes/ParserOutput.php',
 		'ParserOptions' => 'includes/ParserOptions.php',
-		'ParserCache' => 'includes/ParserCache.php',
 		'PatrolLog' => 'includes/PatrolLog.php',
 		'ProfilerSimple' => 'includes/ProfilerSimple.php',
 		'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
