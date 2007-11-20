@@ -2282,7 +2282,7 @@ class Article {
 		}
 	
 		$set = array();
-		if ( $bot ) {
+		if ( $bot && $wgUser->isAllowed('markbotedits') ) {
 			# Mark all reverted edits as bot
 			$set['rc_bot'] = 1;
 		}
