@@ -47,6 +47,7 @@ class Article {
 	const BAD_TITLE = 5;		// $this is not a valid Article
 	const ALREADY_ROLLED = 6;	// Someone else already rolled this back. $from and $summary will be set
 	const ONLY_AUTHOR = 7;		// User is the only author of the page
+	const RATE_LIMITED = 8;
  
 	/**
 	 * Constructor and clear the article
@@ -2243,6 +2244,10 @@ class Article {
 		if( !$wgUser->matchEditToken( $token, array( $this->mTitle->getPrefixedText(), $fromP ) ) )
 			return self::BAD_TOKEN;
 
+		if ( $wgUser->pingLimiter('rollback') || $wgUser->pingLimiter() ) {
+			return self::RATE_LIMITED;
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Get the last editor
@@ -2378,6 +2383,9 @@ class Article {
 			case self::ONLY_AUTHOR:
 				$wgOut->setPageTitle( wfMsg( 'rollbackfailed' ) );
 				$wgOut->addHtml( wfMsg( 'cantrollback' ) );
+				break;
+			case self::RATE_LIMITED:
+				$wgOut->rateLimited();
 				break;
 			case self::SUCCESS:
 				$current = $details['current'];

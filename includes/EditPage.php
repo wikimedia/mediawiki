@@ -2130,7 +2130,7 @@ END
 		if( $value == self::AS_SUCCESS_UPDATE || $value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
 		}
-		
+
 		switch ($value)
 		{
 			case self::AS_HOOK_ERROR_EXPECTED:

@@ -787,6 +787,8 @@ Function: $1<br />
 Query: $2',
 'viewsource'           => 'View source',
 'viewsourcefor'        => 'for $1',
+'actionthrottled'      => 'Action Throttled',
+'actionthrottledtext'  => "As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit. Please try again in a few minutes.",
 'protectedpagetext'    => 'This page has been locked to prevent editing.',
 'viewsourcetext'       => 'You can view and copy the source of this page:',
 'protectedinterface'   => 'This page provides interface text for the software, and is locked to prevent abuse.',
