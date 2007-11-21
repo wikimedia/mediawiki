@@ -129,8 +129,8 @@ $dateFormats = array(
 	'persian both' => '‏xij xiF xiY، ساعت H:i',
 	
     'hebrew time' => '‏H:i',
-	'hebrew date' => '‏xij xjx xiY',
-	'hebrew both' => '‏H:i, xij xjx xiY',
+	'hebrew date' => '‏xij xjF xjY',
+	'hebrew both' => '‏H:i, xij xjF xjY',
 	
 
 	'ISO 8601 time' => 'xnH:xni:xns',
