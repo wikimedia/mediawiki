@@ -64,30 +64,15 @@ class UserrightsForm extends HTMLForm {
 		}
 	}
 
-	/**
-	 * Save user groups changes in the database.
-	 * Data comes from the editUserGroupsForm() form function
-	 *
-	 * @param string $username Username to apply changes to.
-	 * @param array $removegroup id of groups to be removed.
-	 * @param array $addgroup id of groups to be added.
-	 * @param string $reason Reason for group change
-	 *
+	/** Back-end for saveUserGroups()
+	 * @param User $u
+	 * @param array $removegroup
+	 * @param array $addgroup
+	 * @param string $reason
 	 */
-	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '' ) {
-		global $wgOut;
-		$u = User::newFromName($username);
 
-		if(is_null($u)) {
-			$wgOut->addWikiText( wfMsg( 'nosuchusershort', htmlspecialchars( $username ) ) );
-			return;
-		}
-
-		if($u->getID() == 0) {
-			$wgOut->addWikiText( wfMsg( 'nosuchusershort', htmlspecialchars( $username ) ) );
-			return;
-		}
-
+	function doSaveUserGroups($u, $removegroup, $addgroup, $reason)
+	{
 		$oldGroups = $u->getGroups();
 		$newGroups = $oldGroups;
 		// remove then add groups
@@ -116,6 +101,29 @@ class UserrightsForm extends HTMLForm {
 		$log = new LogPage( 'rights' );
 		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), $reason, array( $this->makeGroupNameList( $oldGroups ),
 			$this->makeGroupNameList( $newGroups ) ) );
+	}
+
+	/**
+	 * Save user groups changes in the database.
+	 * Data comes from the editUserGroupsForm() form function
+	 *
+	 * @param string $username Username to apply changes to.
+	 * @param array $removegroup id of groups to be removed.
+	 * @param array $addgroup id of groups to be added.
+	 * @param string $reason Reason for group change
+	 *
+	 */
+	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '' ) {
+		global $wgOut;
+		$u = User::newFromName($username);
+		if(is_null($u)) {
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', htmlspecialchars( $username ) ) );
+		}
+		if($u->getID() == 0) {
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', htmlspecialchars( $username ) ) );
+		}
+
+		$this->doSaveUserGroups($u, $removegroup, $addgroup, $reason);
 	}
 
 	function makeGroupNameList( $ids ) {
@@ -318,7 +326,7 @@ class UserrightsForm extends HTMLForm {
 	 *
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) )
 	 */
-	private function changeableGroups() {
+	function changeableGroups() {
 		global $wgUser;
 
 		$groups = array( 'add' => array(), 'remove' => array() );
