@@ -3,9 +3,9 @@
  *
  * @addtogroup Language
  *
- * @author Roozbeh Pournader <roozbeh@gmail.com>
+ * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author G - ג
- * @author Huji
+ * @author Huji <huji.huji at gmail.com>
  * @author Gangleri
  */
 
@@ -127,6 +127,10 @@ $dateFormats = array(
 	'persian time' => '‏H:i',
 	'persian date' => '‏xij xiF xiY', 
 	'persian both' => '‏xij xiF xiY، ساعت H:i',
+	
+    'hebrew time' => '‏H:i',
+	'hebrew date' => '‏xij xjx xiY',
+	'hebrew both' => '‏H:i, xij xjx xiY',
 	
 
 	'ISO 8601 time' => 'xnH:xni:xns',
