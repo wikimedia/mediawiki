@@ -3377,6 +3377,7 @@ class Parser
 	 * and its redirect destination title. Cached.
 	 */
 	function getTemplateDom( $title ) {
+		$cacheTitle = $title;
 		$titleText = $title->getPrefixedDBkey();
 		
 		if ( isset( $this->mTplRedirCache[$titleText] ) ) {
@@ -3410,7 +3411,14 @@ class Parser
 		}
 
 		$dom = $this->preprocessToDom( $text );
-		$this->mTplDomCache[$titleText] = $dom;
+
+		$this->mTplDomCache[ $titleText ] = $dom;
+
+		if (! $title->equals($cacheTitle)) {
+			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] = 
+				array( $title->getNamespace(),$cdb = $title->getDBkey() );
+		}
+
 		return array( $dom, $title );
 	}
 
