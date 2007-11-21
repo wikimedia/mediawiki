@@ -147,7 +147,8 @@ class SpecialPage
 		'Mytalk'                    => array( 'SpecialMytalk' ),
 		'Mycontributions'           => array( 'SpecialMycontributions' ),
 		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
-	);
+		'Listbots'                  => array( 'SpecialRedirectToSpecial', 'Listbots', 'Listusers', 'bot' ),
+		);
 
 	static public $mAliases;
 	static public $mListInitialised = false;
