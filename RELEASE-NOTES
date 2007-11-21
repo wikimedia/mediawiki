@@ -27,14 +27,16 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
 * Add {{filepath:}} parser function to get full path to an uploaded file,
   complementing {{fullurl:}} for pages.
-* (bug 11136) If using Postgres, search path is explicitly set if wgDBmwschema is 
-  not set to 'mediawiki', allowing multiple mediawiki instances per user.
+* (bug 11136) If using Postgres, search path is explicitly set if wgDBmwschema 
+  is not set to 'mediawiki', allowing multiple mediawiki instances per user.
 * (bug 11151) Add descriptive <title> to revision history page
 * (bug 5412) Add feed links for the site to all pages
 * (bug 11353) Add ability to retrieve raw section content via action=raw
-* Show relevant deletion log lines when uploading a previously deleted file
-* On SkinTemplate based skins (like MonoBook), omit confusing "edit"/"view source"
-  tab entirely if the page doesn't exist and the user isn't allowed to create it
+* (bug 6909) Show relevant deletion log lines when uploading a previously 
+  deleted file
+* On SkinTemplate based skins (like MonoBook), omit confusing "edit"/"view
+  source" tab entirely if the page doesn't exist and the user isn't allowed to
+  create it
 * Clarify instructions given when an exception is thrown
 * AuthPlugin added strictUserAuth() method to allow per-user override
   of the strict() authentication behavior.
@@ -51,7 +53,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on Special:Newpages
 * LogLine hook added to allow formatting custom entries in Special:Log.
 * Support for Iranian calendar
-* (bug 1401) Allow hiding logged-in users, bots and patrolled pages on Special:Newpages
+* (bug 1401) Allow hiding logged-in users, bots and patrolled pages on 
+  Special:Newpages
 * ChangesListInsertArticleLink hook added for adding extra article info to RC.
 * MediaWikiPerformAction hook added for diverting control after the main
   globals have been set up but before any actions have been taken.
@@ -65,9 +68,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Support for Hebrew numerals in dates and times
 * (bug 11315) Signatures can be configured in [[MediaWiki:Signature]] and
   [[MediaWiki:Signature-anon]]
-* Signatures for anonymous users link to Special:Contributions page rather than user page
+* Signatures for anonymous users link to Special:Contributions page rather than 
+  user page
 * Added --override switch for disabled pages in updateSpecialPages.php
-* Provide a unique message (ipb_blocked_as_range) if unblock of a single IP fails 
+* Provide a unique message (ipb_blocked_as_range) if unblock of a single IP 
+  fails 
   because it is part of a blocked range.
 * (bug 3973) Use a separate message for the email content when an account is 
   created by another user
@@ -101,17 +106,21 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4021) Fix for MySQL wildcard search
 * (bug 10699) Fix for MySQL phrase search
 * (bug 11321) Fix width of gallerybox when option "width=xxx" is used
-* (bug 7890) Special:BrokenRedirects links deleted redirects to a non-existent page
+* (bug 7890) Special:BrokenRedirects links deleted redirects to a non-existent 
+  page
 * Fix initial statistics when installing: add correct values
 * (bug 11342) Fix several 'returnto' links in permissions/error pages which
   linked to the main page instead of targetted page
-* Strike the link to the redirect rather than using an asterisk in Special:Listredirects
+* Strike the link to the redirect rather than using an asterisk in 
+  Special:Listredirects
 * (bug 11355) Fix false positives in Safe Mode and other config detection
   when boolean settings are disabled with 'Off' via php_admin_value/php_value
-* (bug 11292) Fixed unserialize errors with Postgres by creating special Blob object.
+* (bug 11292) Fixed unserialize errors with Postgres by creating special Blob 
+  object.
 * (bug 11363) Make all metadata fields bytea when using Postgres.
-* (bug 11331) Add buildConcat() and use CASE not IF for DB compatibility. Make oldimage 
-  cascade delete via image table for Postgres, change fa_storage_key TEXT.
+* (bug 11331) Add buildConcat() and use CASE not IF for DB compatibility. Make 
+  oldimage cascade delete via image table for Postgres, change fa_storage_key 
+  TEXT.
 * (bug 11438) Live Preview chops returned text
 * Show the right message on account creation when the user is blocked
 * (bug 11450) Fix creation of objectcache table on upgrade
@@ -149,7 +158,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11744) Incorrect return value from Title::getParentCategories()
 * (bug 11762) Fix native language name of Akan (ak)
 * (bug 11722) Fix inconsistent case in unprotect tabs
-* (bug 11795) Be more paranoid about confirming accept-encoding header is present
+* (bug 11795) Be more paranoid about confirming accept-encoding header is 
+  present
 * (bug 11809) Use formatNum() for more numbers
 * (bug 11818) Fix native language name of Inuktitut (iu)
 * Remove all commas when parsing float numbers in sorted tables
@@ -253,29 +263,35 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 * (bug 11275) Enable descending sort in categorymembers
 * (bug 11308) Allow the API to output the image metadata
-* (bug 11296) Temporary fix for escaping of ampersands inside links in pretty-printed
+* (bug 11296) Temporary fix for escaping of ampersands inside links in 
+  pretty-printed
   help document.
 * (bug 11405) Expand templates implementation in the API
-* (bug 11218) Add option to feedwatchlist to display multiple revisions for each page.
-* (bug 11404) Provide name of exception caught in error code field of internal api 
-  error messages.
+* (bug 11218) Add option to feedwatchlist to display multiple revisions for each
+  page.
+* (bug 11404) Provide name of exception caught in error code field of internal 
+  api error messages.
 * (bug 11534) rvendid doesn't work
 * Fixed rvlimit of the revisions query to only enforce the lower query limit if
   revision content is requested.
-* Include svn revision number (if install is checked-out from svn) in siteinfo query.
+* Include svn revision number (if install is checked-out from svn) in siteinfo 
+  query.
 * (bug 11173) Allow limited wikicode rendering via api.php
 * (bug 11572) API should provide interface for expanding templates
 * (bug 11569) Login should return the cookie prefix 
-* (bug 11632) Breaking change: Specify the type of a change in the recentchanges list
-  as 'edit', 'new', 'log' instead of 0, 1, 2, respectively.
+* (bug 11632) Breaking change: Specify the type of a change in the recentchanges
+  list as 'edit', 'new', 'log' instead of 0, 1, 2, respectively.
 * Compatibility fix for PHP 5.0.x.
 * Add rctype parameter to list=recentchanges that filters by type
-* Add apprtype and apprlevel parameters to filter list=allpages by protection types and levels
+* Add apprtype and apprlevel parameters to filter list=allpages by protection 
+  types and levels
 * Add apdir parameter to enable listing all pages from Z to A
 * (bug 11721) Use a different title for results than for the help page.
-* (bug 11562) Added a user_registration parameter/field to the list=allusers query.
+* (bug 11562) Added a user_registration parameter/field to the list=allusers 
+  query.
 * (bug 11588) Preserve document structure for empty dataset in backlinks query.
-* Outputting list of all user preferences rather than having to request them by name
+* Outputting list of all user preferences rather than having to request them by 
+  name
 * (bug 11206) api.php should honor maxlag
 
 === Languages updated in 1.12 ===
