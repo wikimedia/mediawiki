@@ -19,8 +19,8 @@ $messages = array(
 'tog-showtoolbar'             => 'Shaw edit toolbar',
 'tog-editondblclick'          => 'Edit pages on dooble-dab (JavaScript)',
 'tog-editsection'             => 'Enable section editin via [edit] airtins',
-'tog-editsectiononrightclick' => 'Enable section editin bi richt-dabbin<br /> on section teitles (JavaScript)',
-'tog-showtoc'                 => 'Shaw table o contents<br />(for pages wi mair nor 3 heidins)',
+'tog-editsectiononrightclick' => 'Enable section editin bi richt-dabbin on section teitles (JavaScript)',
+'tog-showtoc'                 => 'Shaw table o contents (for pages wi mair nor 3 heidins)',
 'tog-rememberpassword'        => 'Mynd password ower sessions',
 'tog-editwidth'               => 'Edit box haes fou weenth',
 'tog-watchcreations'          => 'Add pages ye mak tar yer watchleet',
@@ -228,8 +228,14 @@ $1",
 'wrongpasswordempty'         => 'The password ye entered is blank. Please gie it anither shot.',
 'passwordtooshort'           => 'Yer password is ower short. It maun hae at laest $1 characters.',
 'passwordremindertitle'      => 'Password reminder frae {{SITENAME}}',
-'passwordremindertext'       => 'Somebodie (maist likely you, frae IP address $1) requestit that we send ye a new {{SITENAME}} login password. The password for uiser "$2" is nou "$3". Ye shuid log in an chynge yer password richt awa.
-Gin some ither bodie made this request or gin ye\'v myndit o yer password an ye dinna want tae chynge it onie mair, ye can ignore this message an cairrie on uisin yer auld password.',
+'passwordremindertext'       => 'Somebodie (maist likely you, frae IP address $1)
+requestit that we send ye a new {{SITENAME}} login password ($4).
+The password for uiser "$2" is nou "$3".
+Ye shuid log in an chynge yer password richt awa.
+
+Gin some ither bodie made this request or gin ye\'v myndit o yer password an
+ye dinna want tae chynge it onie mair, ye can ignore this message an cairrie on uisin
+yer auld password.',
 'noemail'                    => 'The\'r nae e-mail address recordit for uiser "$1".',
 'passwordsent'               => 'A new password haes been sent tae the e-mail address registert for "$1". Please log in again efter ye receive it.',
 'blocked-mailpassword'       => 'Yer IP address is blockit frae editin, sae it
@@ -274,14 +280,24 @@ Please enter a weel-formattit address or mak that field tuim.',
 'missingcommenttext'     => 'Please enter a comment ablo.',
 'missingcommentheader'   => "'''Mynd:''' Ye hivna gien a subject/heidline for this comment. Gin ye dab on Hain again, yer edit will be haint athoot ane.",
 'blockedtitle'           => 'Uiser is blockit',
-'blockedtext'            => 'Yer uisername or IP address haes been blockit bi $1. The raeson gien is this:<br />\'\'$2\'\'<p>Ye can contact $1 or ane o the ither [[Project:Administrators|administrators]] tae discuss the block. Mynd that ye canna uise the "email this uiser" featur unless ye hae a valid email address registert in yer [[Special:Preferences|uiser preferences]]. Yer IP address is $3. Please include this address in onie queries ye mak.',
+'blockedtext'            => '<big>\'\'\'Yer uisername or IP address haes been blockit.\'\'\'</big>
+
+The block was made bi $1. The raeson gien is \'\'$2\'\'.
+
+* Start of block: $8
+* Expiry of block: $6
+* Intended blockee: $7
+
+Ye can contact $1 or ane o the ither [[{{MediaWiki:grouppage-sysop}}|administrators]] tae discuss the block.
+Mynd that ye canna uise the "email this uiser" featur unless ye hae a valid email address registert in yer [[Special:Preferences|uiser preferences]] an ye hae not been blocked from using it.
+Yer IP address is $3, and the block ID is #$5. Please include this address in onie queries ye mak.',
 'blockedoriginalsource'  => "The soorce o '''$1''' is shawn ablo:",
 'blockededitsource'      => "The text o '''your edits''' tae '''$1''' is shawn ablo:",
 'confirmedittitle'       => 'E-mail confirmation needit for tae edit',
 'confirmedittext'        => 'Ye maun confirm yer e-mail address afore editin pages. Please set an validate yer e-mail address throu yer [[Special:Preferences|uiser settins]].',
 'loginreqpagetext'       => 'Ye maun $1 tae view ither pages.',
 'accmailtext'            => "The Password for '$1' haes been sent tae $2.",
-'newarticletext'         => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[Project:Help|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
+'newarticletext'         => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[{{MediaWiki:helppage}}|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
 'anontalkpagetext'       => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical [[IP address]] tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:Userlogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
 'noarticletext'          => "The'r nae text on this page the nou. Ye can [[{{ns:special}}:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages or [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} edit this page].",
 'clearyourcache'         => "'''Tak tent:''' Efter hainin, ye micht hae tae bypass yer brouser's cache for tae see the chynges. '''Mozilla / Firefox / Safari:''' haud doun ''Shift'' while dabbin on ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' haud doun ''Ctrl'' while dabbin on ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''' juist dab on the ''Reload'' button, or press ''F5''; '''Opera''' users micht hae tae haillie dicht thair cache in ''Tools&rarr;Preferences''.",
@@ -299,13 +315,17 @@ Please enter a weel-formattit address or mak that field tuim.',
 'nonunicodebrowser'      => "<strong>WARNIN: Yer brouser isna unicode compliant.  The'r a wirkaroond tae allou ye tae sauflie edit airticles: non-ASCII characters will kythe in the edit box as hexadecimal codes.</strong>",
 'editingold'             => "<strong>WARNIN: Ye'r editin an oot-o-date reveision o this page. Gin ye hain it, onie chynges made syne this reveision will be lost.</strong>",
 'yourdiff'               => 'Differs',
-'copyrightwarning'       => "Please mynd that aa contreibutions tae {{SITENAME}} is conseidert tae be released unner the $2 (see $1 for details). Gin ye dinna want yer writin tae be editit athoot mercy an redistribute at will, than dinna submit it here.<br/> Forbye thon, ye'r promisin us that ye wrat this yersel, or copied it frae a public domain or siclike free resoorce. <strong>DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!</strong>",
-'copyrightwarning2'      => "Please mynd that aa contreibutions tae {{SITENAME}} micht be editit, chynged, or remuved bi ither contreibutors. Gin ye dinna want yer writin tae be editit athoot mercy and redistribute at will, than dinna submit it here.<br/> Ye'r promisin us forbye that ye wrat this yersel, or copied it frae a public domain or siclike free resoorce. <strong>DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!</strong>",
+'copyrightwarning'       => "Please mynd that aa contreibutions tae {{SITENAME}} is conseidert tae be released unner the $2 (see $1 for details). Gin ye dinna want yer writin tae be editit athoot mercy an redistribute at will, than dinna submit it here.<br /> Forbye thon, ye'r promisin us that ye wrat this yersel, or copied it frae a public domain or siclike free resoorce. <strong>DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!</strong>",
+'copyrightwarning2'      => "Please mynd that aa contreibutions tae {{SITENAME}} micht be editit, chynged, or remuved bi ither contreibutors.
+Gin ye dinna want yer writin tae be editit athoot mercy and redistribute at will, than dinna submit it here.<br />
+YYe'r promisin us forbye that ye wrat this yersel, or copied it frae a
+public domain or siclike free resoorce (see $1 for details).
+<strong>DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!</strong>",
 'longpagewarning'        => "WARNIN: This page is $1 kilobytes lang; some brousers micht hae trouble editin pages approachin or langer nor 32kb. Please conseider brakkin the page intae smaa'er sections.",
 'longpageerror'          => "<strong>ERROR: The text ye hae submitted is $1 kilobytes 
 lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</strong>",
 'readonlywarning'        => "WARNIN: The database haes been lockit for maintenance, sae ye'll no can hain yer edits richt nou. Ye micht wish tae cut-n-paste the text intil a text file an hain it for later.",
-'protectedpagewarning'   => 'WARNIN: This page haes been lockit sae that juist uisers wi administrator privileges can edit it. Be siccar ye follae the [[Project:Protectit_page_guidelines|protectit page guidelines]].',
+'protectedpagewarning'   => '<strong>WARNIN: This page haes been lockit sae that juist uisers wi administrator privileges can edit it.</strong>',
 'templatesused'          => 'Templates uised on this page:',
 
 # Account creation failure
@@ -390,7 +410,7 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 'nchanges'                          => '$1 {{PLURAL:$1|chynge|chynges}}',
 'recentchanges'                     => 'Recent chynges',
 'recentchangestext'                 => 'Follae the maist recent chynges tae the wiki on this page.',
-'rcnote'                            => 'Ablo is the last <strong>$1</strong> chynges in the last <strong>$2</strong> days.',
+'rcnote'                            => "Ablo {{PLURAL:$1|is '''1''' chynge|are the last '''$1''' chynges}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $3.",
 'rcnotefrom'                        => 'Ablo is the chynges syne <b>$2</b> (up tae <b>$1</b> shawn).',
 'rclistfrom'                        => 'Shaw new chynges stertin frae $1',
 'rclinks'                           => 'Shaw last $1 chynges in last $2 days<br />$3',
@@ -463,8 +483,21 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 
 # Statistics
 'userstats'     => 'Uiser statistics',
-'sitestatstext' => "The'r '''\$1''' total pages in the database. This includes \"collogue\" pages, pages aboot {{SITENAME}}, meinimal \"stub\" pages, reguidals, an ithers that likely disna qualifee as content pages. Excludin thaim, the'r '''\$2''' pages that's maist likely legeitimate content pages. Thare haes been a total o '''\$4''' page edits syne the wiki wis set up. That comes tae '''\$5''' average edits per page.",
-'userstatstext' => "The'r '''$1''' registert uisers. '''$2''' (or '''$4%''') o thaim is administrators (see $3).",
+'sitestatstext' => "{{PLURAL:\$1|There is '''1''' page|The'r '''\$1''' total pages}} in the database.
+This includes \"collogue\" pages, pages aboot {{SITENAME}}, meinimal \"stub\"
+pages, reguidals, an ithers that likely disna qualifee as content pages. 
+Excludin thaim, {{PLURAL:\$2|there is '''1''' page that is a|the'r '''\$2''' pages that's}} maist likely
+legeitimate content {{PLURAL:\$2|page|pages}}.
+
+'''\$8''' {{PLURAL:\$8|file has|files have}} been uploaded.
+
+Thare haes been a total o '''\$3''' {{PLURAL:\$3|page view|page views}}, an '''\$4''' {{PLURAL:\$4|page edit|page edits}}
+syne {{SITENAME}} wis set up.
+That comes tae '''\$5''' average edits per page, and '''\$6''' views per edit.
+
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+'userstatstext' => "{{PLURAL:$1|There is '''1''' registert [[Special:Listusers|uiser]]|The'r '''$1''' registert [[Special:Listusers|uisers]]}}.
+'''$2''' (or '''$4%''') o thaim {{PLURAL:$2|has|have}} $5 rights.",
 
 'doubleredirects'     => 'Dooble reguidals',
 'doubleredirectstext' => 'Ilka raw hauds airtins tae the first an saicont reguidal, as weel as the first line o the saicont reguidal text, for usual giein the "rael" tairget page, that the first reguidal shuid pynt til.',
@@ -568,7 +601,9 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 'exblank'             => 'page wis tuim',
 'deletesub'           => '(Deletin "$1")',
 'historywarning'      => "Warnin: The page ye're aboot tae delete haes a history:",
-'confirmdeletetext'   => "Ye'r aboot tae permanently delete a page or eimage alang wi aa its history frae the database. Please confirm that ye intend tae dae this, that ye unnerstaun the consequences, an that ye'r daein this in accord wi [[{{ns:project}}:Policy]].",
+'confirmdeletetext'   => "Ye'r aboot tae permanently delete a page or eimage alang wi aa its history frae the database.
+Please confirm that ye intend tae dae this, that ye unnerstaun the consequences,
+an that ye'r daein this in accord wi [[{{MediaWiki:policy-url}}]].",
 'actioncomplete'      => 'Action duin',
 'deletedtext'         => '"$1" haes been delete. See $2 for a record o recent deletions.',
 'deletedarticle'      => 'deletit "[[$1]]"',
@@ -620,8 +655,8 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 # What links here
 'whatlinkshere' => 'Whit airts tae here',
 'linklistsub'   => '(Leet o airtins)',
-'linkshere'     => 'The follaein pages airts tae here',
-'nolinkshere'   => 'Nae pages airt tae here.',
+'linkshere'     => "The follaein pages airts tae '''[[:$1]]''':",
+'nolinkshere'   => "Nae pages airt tae '''[[:$1]]'''.",
 'isredirect'    => 'reguidal page',
 
 # Block/unblock
@@ -646,7 +681,7 @@ tae an afore-blockit IP address or uisername.',
 'anononlyblock'               => 'anon. juist',
 'createaccountblock'          => 'accoont-makkin blockit',
 'autoblocker'                 => 'Autaematically blockit syne yer IP address haes been uised recently bi "[[User:$1|$1]]". The raeson gien for $1\'s block is "\'\'$2\'\'"',
-'blocklogentry'               => 'blockit "$1" wi an expiry time o $2',
+'blocklogentry'               => 'blockit [[$1]] wi an expiry time o $2 $3',
 'blocklogtext'                => 'This is a log o uiser blockin an unblockin actions. Autaematically blockit IP addresses isna leetit. See the [[Special:Ipblocklist|IP block leet]] for the leet o bans and blocks on the gae the nou.',
 'unblocklogentry'             => 'unblockit $1',
 'range_block_disabled'        => 'The administrator abeility tae mak range blocks is disabled.',
@@ -832,7 +867,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 afore uisin e-mail featurs. Activate the button ablo tae send a confirmation
 mail tae yer address. The mail will include an airtin containing a code; laid the
 airtin in yer brouser tae confirm that yer e-mail address is guid.',
-'confirmemail_sendfailed' => 'Cuidna send confirmation mail. Hae a leuk at the address for invalid characters.',
+'confirmemail_sendfailed' => 'Cuidna send confirmation mail. Hae a leuk at the address for invalid characters.
+
+Mailer returned: $1',
 'confirmemail_invalid'    => 'Confirmation code nae guid. The code haes mibbe expired.',
 'confirmemail_needlogin'  => 'Ye maun $1 for tae confirm yer email address.',
 'confirmemail_success'    => 'Yer e-mail address haes been confirmed. Ye can nou log in an enjoy the wiki.',

@@ -338,10 +338,13 @@ $1',
 'history-feed-title' => 'Үндүрериниң төөгүзү',
 
 # Revision deletion
-'rev-deleted-comment' => '(комментарийни ап каан)',
-'rev-delundel'        => 'көргүзер/чажырар',
-'revisiondelete'      => 'Үндүрерилерни ап каар/диргисир',
-'revdelete-hide-user' => 'Чогаалчының адын/ИП-адресин чажырар',
+'rev-deleted-comment'    => '(комментарийни ап каан)',
+'rev-deleted-user'       => '(ажыглакчының адын ап каан)',
+'rev-deleted-event'      => '(болуушкунну ап каан)',
+'rev-delundel'           => 'көргүзер/чажырар',
+'revisiondelete'         => 'Үндүрерилерни ап каар/диргисир',
+'revdelete-hide-comment' => 'Өскерлиишкинниң комментарийн чажырар',
+'revdelete-hide-user'    => 'Чогаалчының адын/ИП-адресин чажырар',
 
 # Diffs
 'history-title'           => '"$1" деп арынның үндүрери төөгүзү',
@@ -362,6 +365,7 @@ $1',
 'math_unknown_error' => 'билбес алдаг',
 'prefs-personal'     => 'Ажыглакчының медээлери',
 'prefs-rc'           => 'Дээм чаагы өскерлиишкиннер',
+'prefs-watchlist'    => 'Хайгаарылга даңзызы',
 'saveprefs'          => 'Шыгжаар',
 'oldpassword'        => 'Эгри чажыт сөс:',
 'newpassword'        => 'Чаа чажыт сөс:',
@@ -383,18 +387,19 @@ $1',
 'grouppage-sysop' => '{{ns:project}}:Администраторлар',
 
 # Recent changes
-'nchanges'          => '$1 өскерлиишкин',
-'recentchanges'     => 'Өскерлиишкиннер',
-'rcshowhideminor'   => 'Бичии өскерлиишкиннерни $1',
-'rcshowhidebots'    => 'Боттарну $1',
-'rcshowhideliu'     => 'Кирер ажыглакчыларны $1',
-'rcshowhideanons'   => 'Ат эвес ажыглакчыларны $1',
-'rcshowhidemine'    => 'Мээң өскерлиишкинимни $1',
-'diff'              => 'ылгал',
-'hist'              => 'төөгү',
-'hide'              => 'Чажырар',
-'show'              => 'көргүзер',
-'newsectionsummary' => '/* $1 */ чаа бөлгүм',
+'nchanges'                          => '$1 өскерлиишкин',
+'recentchanges'                     => 'Өскерлиишкиннер',
+'rcshowhideminor'                   => 'Бичии өскерлиишкиннерни $1',
+'rcshowhidebots'                    => 'Боттарну $1',
+'rcshowhideliu'                     => 'Кирер ажыглакчыларны $1',
+'rcshowhideanons'                   => 'Ат эвес ажыглакчыларны $1',
+'rcshowhidemine'                    => 'Мээң өскерлиишкинимни $1',
+'diff'                              => 'ылгал',
+'hist'                              => 'төөгү',
+'hide'                              => 'Чажырар',
+'show'                              => 'көргүзер',
+'number_of_watching_users_pageview' => '[$1 хайгаараар ажыглакчы]',
+'newsectionsummary'                 => '/* $1 */ чаа бөлгүм',
 
 # Upload
 'upload'            => 'Файлды киирер',
@@ -431,11 +436,20 @@ $1',
 'imagelist_size'        => 'Хемчээл',
 'imagelist_description' => 'Тодарадып бижээни',
 
+# File reversion
+'filerevert-comment' => 'Комментарий:',
+
 # File deletion
-'filedelete-submit' => 'Ап каар',
+'filedelete'         => '$1 деп файлды ап каар',
+'filedelete-legend'  => 'Файлды ап каар',
+'filedelete-comment' => 'Комментарий:',
+'filedelete-submit'  => 'Ап каар',
 
 # MIME search
 'download' => 'алыр',
+
+# Unwatched pages
+'unwatchedpages' => 'Хайгаарабас арыннар',
 
 # Unused templates
 'unusedtemplates'    => 'Ажыглаан эвес хээлер',
@@ -521,6 +535,7 @@ $1',
 # Watchlist
 'watchlist'            => 'Мээң хайгаарылга даңзызым',
 'mywatchlist'          => 'Мээң хайгаарылга даңзызым',
+'nowatchlist'          => 'Чүү-даа силерниң хайгаарылга даңзызыда чок.',
 'watchnologin'         => 'Кирбес',
 'watch'                => 'Хайгаараар',
 'watchthispage'        => 'Бо арынны хайгаараар',
@@ -546,6 +561,7 @@ $1',
 'exblank'             => 'Арын куруг турган',
 'actioncomplete'      => 'Ажыл доосту',
 'deletedarticle'      => '"[[$1]]" деп арынны ап каан',
+'protectcomment'      => 'Комментарий:',
 'unprotectsub'        => '("$1" деп арынны истевейн турар)',
 'protect-default'     => '(ниити)',
 'protect-level-sysop' => 'Чүгле сисоплар',
@@ -557,6 +573,7 @@ $1',
 
 # Undelete
 'undeletebtn'            => 'Диргисир',
+'undeletecomment'        => 'Комментарий:',
 'undelete-search-submit' => 'Дилээр',
 
 # Namespace form on various pages
@@ -670,6 +687,7 @@ $1',
 'exif-imagelength'      => 'Бедик',
 'exif-imagedescription' => 'Чуруктуң ады',
 'exif-artist'           => 'Чогаадыкчы',
+'exif-usercomment'      => 'Ажыглакчы комментарийлери',
 
 'exif-subjectdistancerange-2' => 'Чоок көрүш',
 'exif-subjectdistancerange-3' => 'ырак көрүш',
@@ -702,10 +720,14 @@ $1',
 'autosumm-new' => 'Чаа арын: $1',
 
 # Watchlist editor
+'watchlistedit-normal-title'  => 'Хайгаарылга даңзын өскертир',
 'watchlistedit-normal-submit' => 'Адарны ап каар',
+'watchlistedit-raw-title'     => 'Чиг хайгаарылга даңзын өскертир',
+'watchlistedit-raw-legend'    => 'Чиг хайгаарылга даңзын өскертир',
 'watchlistedit-raw-titles'    => 'Адар:',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Хайгаарылга даңзын көөр болгаш өскертир',
+'watchlisttools-raw'  => 'Чиг хайгаарылга даңзын өскертир',
 
 );

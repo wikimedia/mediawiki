@@ -487,8 +487,8 @@ Si bi has plegau por error, puncha o botón d'o tuyo nabegador ta ir entazaga.",
 'editingsection'           => 'Editando $1 (sezión)',
 'copyrightwarning'         => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} se consideran feitas publicas baxo a lizenzia $2 (beyer detalles en $1). Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong><br />",
-'copyrightwarning2'        => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} puede estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
-<strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong><br />",
+'copyrightwarning2'        => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} puede estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
+<strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong>",
 'longpagewarning'          => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32KB o más.
 Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más chicoz.</strong>',
 'semiprotectedpagewarning' => "'''Nota:''' Ista página ha estato protexita ta que nomás usuarios rechistratos puedan editar-la.",
@@ -564,7 +564,7 @@ Puede consultar o rechistro de borraus que s'amuestra a continuazión:",
 'nchanges'                       => '$1 {{PLURAL:$1|cambeo|cambeos}}',
 'recentchanges'                  => 'Zaguers cambeos',
 'recentchanges-feed-description' => "Seguir en ista canal de notizias os cambeos más rezients d'o wiki.",
-'rcnote'                         => "Más t'abaxo bi son os zaguers <b>$1</b> cambeos en os zaguers <b>$2</b> días, autualizatos o $3",
+'rcnote'                         => "Más t'abaxo {{PLURAL:$1|s'amuestra o unico cambeo feito|s'amuestran os '''$1''' zaguers cambeos feitos}} en {{PLURAL:$2|o zaguer día|os zaguers '''$2''' días}}, {{PLURAL:$1|autualizato|autualizatos}} a $3.",
 'rcnotefrom'                     => "Contino s'amuestran os cambeos dende <b>$2</b> (dica <b>$1</b>).",
 'rclistfrom'                     => 'Mostrar nuebos cambeos dende $1',
 'rcshowhideminor'                => '$1 edizions menors',

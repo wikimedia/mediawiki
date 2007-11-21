@@ -39,7 +39,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Signarami pa postha erettrònica puru li mudìfigghi minori',
 'tog-enotifrevealaddr'        => "Rivera lu meu indirizzu di postha erettrònica i l'imbasciaddi d'avvisu",
 'tog-shownumberswatching'     => "Musthra lu nùmaru d'utenti chi hani la pàgina abbaidadda",
-'tog-fancysig'                => 'Nò mudìfiggà lu markup di la fimma (usà pa fimmi nò standard)',
+'tog-fancysig'                => 'No mudifiggà lu markup di la fimma (usà pa fimmi no standard)',
 'tog-externaleditor'          => 'Impustha cumenti pridifiniddu un editor di testhi esthernu',
 'tog-externaldiff'            => 'Impustha cumenti pridifiniddu un prugramma di diff esthernu',
 'tog-showjumplinks'           => "Attiba li cullegamenti atzessibili 'vai a'",
@@ -50,7 +50,7 @@ $messages = array(
 'tog-watchlisthideminor'      => "Cua li mudìfigghi minori i l'abbaidaddi ippiziari",
 'tog-nolangconversion'        => 'Disattiba lu cunvirthimentu i li varianti linghìsthighi',
 'tog-ccmeonemails'            => "Inviammi una còpia di l'imbasciaddi ippididdi a l'althri utenti",
-'tog-diffonly'                => 'Nò visuarizzà lu cuntinuddu di la pàgina daboi lu cunfrontu i li versioni',
+'tog-diffonly'                => 'No visuarizzà lu cuntinuddu di la pàgina daboi lu cunfrontu tra versioni',
 
 'underline-always'  => 'Sempri',
 'underline-never'   => 'Mai',
@@ -318,9 +318,9 @@ Gintirmenti, sìgnara l'accaduddu a un amministhradori ippizzifichendi l'indiriz
 'badtitle'             => 'Tìturu no currettu',
 'badtitletext'         => "Lu tìturu di la pàgina dumandadda è bioddu, ibbagliaddu o cun caràtteri no ammessi oppuru deriba da un errori i' li cullegamenti tra siti wiki dibessi o versioni in linghi dibessi di lu matessi situ.",
 'perfdisabled'         => "Semmu dipiazuddi, chistha funzionariddai è timpuraniamenti disàbiritadda parchí lu so'usu rallinta lu database finz'a rindì lu situ inutirizabiri pa tutti l'utenti.",
-'perfcached'           => "Li dati chi seghini so cabaddi da una còpia ''cache'' di lu database, nò aggiornaddi in tempu riari.",
+'perfcached'           => "Li dati chi seghini so cabaddi da una còpia ''cache'' di lu database, no aggiornaddi in tempu riari.",
 'perfcachedts'         => "Li dati chi seghini so cabaddi da una còpia ''cache'' di lu database. Ulthimu aggiornamentu: $1.",
-'querypage-no-updates' => "L'aggiornamenti di la pàgina so timpuraniamenti suippesi. Li dati in edda cuntinuddi nò sarani aggiornaddi.",
+'querypage-no-updates' => "L'aggiornamenti di la pàgina so timpuraniamenti suippesi. Li dati in edda cuntinuddi no sarani aggiornaddi.",
 'wrong_wfQuery_params' => 'Errori i li parametri inviaddi a la funzioni wfQuery()<br />
 funzioni: $1<br />
 Query: $2',
@@ -1068,9 +1068,9 @@ $1',
 'confirm_purge_button' => 'Cunfèimma',
 
 # AJAX search
-'searchcontaining' => "Zircha li pàgini chi cuntinani ''$1''.",
-'searchnamed'      => "Zircha li pàgini cun tìturu ''$1''.",
-'articletitles'    => "Zirchendi li pàgini ch'ischuminzani cun ''$1''",
+'searchcontaining' => "Zercha li pàgini chi cuntènini ''$1''.",
+'searchnamed'      => "Zercha li pàgini cun tìturu ''$1''.",
+'articletitles'    => "Zercha di li pàgini ch'ischuminzani cun ''$1''",
 'hideresults'      => 'Cua li risulthaddi',
 
 # Multipage image navigation
@@ -1095,7 +1095,7 @@ $1',
 'autosumm-new'     => 'Nóba pàgina: $1',
 
 # Watchlist editor
-'watchlistedit-numitems'     => 'La listha di li abbaidaddi ippiziari cuntini {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.',
+'watchlistedit-numitems'     => "La listha di l'abbaidaddi ippiziari cunteni {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.",
 'watchlistedit-normal-title' => 'Mudìfigga abbaidaddi ippiziari',
 'watchlistedit-raw-titles'   => 'Pàgini:',
 'watchlistedit-raw-submit'   => 'Aggiorna la listha',
