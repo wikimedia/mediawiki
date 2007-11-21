@@ -169,8 +169,12 @@ $messages = array(
 # Search results
 'powersearch' => '搜寻',
 
+# Preferences page
+'mypreferences' => '我个所欢喜',
+
 # Recent changes
 'newpageletter' => '新',
+'boteditletter' => '机',
 
 # Upload
 'upload' => '上载文物',
@@ -179,6 +183,9 @@ $messages = array(
 'specialpages' => '特殊页面',
 
 'alphaindexline' => '$1到$2',
+
+# Contributions
+'mycontris' => '我个贡献',
 
 # Block/unblock
 'contribslink' => '贡献',

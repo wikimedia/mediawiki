@@ -513,10 +513,10 @@ Hark'ay huchhaykiqa $5 nisqam. Mañakuspaykiqa chay huchhata willay.",
 'whitelistreadtext'         => '[[Special:Userlogin|Yaykuspallaykim]] qillqakunata ñawiriyta atinki.',
 'whitelistacctitle'         => 'Rakiqunata kichariyqa manam saqillasqachu',
 'whitelistacctext'          => 'Kay wikipi rakiqunakunata kicharinaykipaqqa sapaqta saqillasqa kaspayki [[Special:Userlogin|yaykunaykim]] atin.',
-'confirmedittitle'          => 'Se requiere confirmación de dirección electrónica para editar',
-'confirmedittext'           => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
-'nosuchsectiontitle'        => 'No existe tal sección',
-'nosuchsectiontext'         => 'Has intentado editar una sección que no existe. Como no hay sección $1, no hay ningún lugar donde salvar tu edición.',
+'confirmedittitle'          => "E-chaski imamaytaykita takyachiy llamk'apunaykipaq",
+'confirmedittext'           => "P'anqakunata llamk'apunaykipaqqa e-chaski imamaytaykita takyachinaykim atin. Ama hina kaspa, e-chaski imamaytata kicharispa takyachiy [[Special:Preferences|allinkachinaykikunapi]].",
+'nosuchsectiontitle'        => 'Manam kanchu chay raki',
+'nosuchsectiontext'         => "Allichaykacharqunki mana kachkaq rakitam. $1 raki mana kachkaptinmi, manam kanchu llamk'apusqaykita waqachana.",
 'loginreqtitle'             => 'Yaykunaykim atin',
 'loginreqlink'              => 'yaykuna',
 'loginreqpagetext'          => "Huk p'anqakunata rikunaykipaqqa $1ykim atin.",
@@ -526,25 +526,27 @@ Hark'ay huchhaykiqa $5 nisqam. Mañakuspaykiqa chay huchhata willay.",
 'newarticletext'            => "Manaraq kachkaq p'anqatam llamk'apuchkanki. Musuq p'anqata kamariyta munaspaykiqa, qillqarillay. Astawan ñawiriyta munaspaykiqa, [[{{MediaWiki:helppage}}|yanapana p'anqata]] qhaway. Mana munaspaykitaq, ñawpaq p'anqaman ripuy.",
 'anontalkpagetext'          => "---- ''Kayqa huk sutinnaq icha mana sutinta llamk'achiq ruraqpa rimanakuyninmi. IP huchhantam hallch'asunchik payta sutinchanapaq. Achka ruraqkunam huklla IP huchhanta llamk'achiyta atin. Sutinnaq ruraq kaspaykiqa, mana qampa rurasqaykimanta willamusqakunata rikuspaykiqa, ama hina kaspa [[Special:Userlogin|ruraqpa sutiykita kamariy icha yaykuy]] huk sutinnaq ruraqkunawan ama pantasqa kanaykipaq.''",
 'noarticletext'             => "Kay p'anqaqa ch'usaqmi. Kaytam rurayta atinkiman: {{PAGENAME}} nisqata [[Special:Search/{{PAGENAME}}|huk qillqakunapi maskay]] icha [{{fullurl:{{FULLPAGENAME}}|action=edit}} musuq qillqata qallariy].",
-'clearyourcache'            => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
+'clearyourcache'            => "'''Paqtataq:''' Willañiqita waqaycharquspaykiqa, wamp'unaykip ''cache'' nisqa pakasqa waqaychananta ch'usaqchanaykichá atinman hukchasqaykikunata rikunaykipaq:
 *'''Mozilla:'''  ''ctrl-shift-r'',
 *'''Internet Explorer:''' ''ctrl-f5'',
 *'''Safari:''' ''cmd-shift-r'',
 *'''Konqueror''' ''f5''.",
 'usercssjsyoucanpreview'    => "<strong>Kunay:</strong> «Ñawpaqta qhawallay» nisqa ñit'inata llamk'achiy musuq css/js qhawanaykipaq, manaraq waqaychaspa.",
-'usercsspreview'            => "'''¡Recuerde que sólo está previsualizando su css de usuario y aún no se ha grabado!'''",
-'userjspreview'             => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
-'userinvalidcssjstitle'     => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
+'usercsspreview'            => "'''Yuyariy, qhawarillachkankim ruraqpa css-niykita, manaraqmi waqaychasqachu!'''",
+'userjspreview'             => "'''Yuyariy, qhawarillachkankim ruraqpa JavaScript-niykita, manaraqmi waqaychasqachu!'''",
+'userinvalidcssjstitle'     => "'''Paqtataq:''' Manam kanchu \"\$1\" qara. Yuyariy, kikinpa .css, .js p'anqankunaqa uchuy sanampa umalliyuqmi, ahinataq {{ns:user}}:Foo/monobook.css manataq  {{ns:user}}:Foo/Monobook.css nisqachu.",
 'updated'                   => '(Musuqchasqa)',
-'note'                      => '<strong>Nota:</strong>',
+'note'                      => '<strong>Musyay:</strong>',
 'previewnote'               => 'Yuyaykuy: Kayqa manaraq waqaychaspa qhawariymi!',
 'previewconflict'           => "Rikuchkanki kay p'anqataqa, ima hinachus waqaychasqa kanqa.",
-'session_fail_preview'      => '<strong>Lo sentimos, no pudimos efectuar su edición debido a una pérdida de los datos de sesión. Por favor, inténtelo de nuevo y si no funciona, salga de su sesión y vuelva a identificarse.</strong>',
-'session_fail_preview_html' => "<strong>Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.</strong>
+'session_fail_preview'      => "<strong>Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi. Ama hina kaspa, musuqmanta ruraykachay. Mana atispaykiqa, lluqsispa musuqmanta yaykuy.</strong>",
+'session_fail_preview_html' => "<strong>Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi.</strong>
 
-''Puesto que este wiki tiene el HTML puro habilitado, la visión preliminar está oculta para prevenirse contra ataques en JavaScript.''
+''Kay wiki llump'aq HTML nisqawan llamk'achkaptinmi, ñawpaq qhawariyqa pakasqam kachkan JavaScript nisqawan wankhayta hark'anapaq.''
 
-<strong>Si éste es un intento legítimo de modificación, por favor, inténtelo de nuevo. Si aún entonces no funcionase, pruebe a cerrar la sesión y a ingresar de nuevo.</strong>",
+<strong>Allin sunquwan kamarirqaspaykiqa, musuqmanta ruraykachay. Mana atispaykiqa, lluqsispa musuqmanta yaykuspa ruraykachay.</strong>",
+'token_suffix_mismatch'     => "<strong>Llamk'apusqaykimanqa ama nisqam, mink'akuqniyki llamk'apuy willaypi sapaq sananchakunata arwiptinmi. Ama nisqa karqanqa qillqata waqlliymantam amachanapaq. 
+Kayqa maykunapi tukukun, mana allin wakichisqa proxy sirwiytam llamk'achiptiyki.</strong>",
 'editing'                   => "$1-ta llamk'apuspa",
 'editinguser'               => "$1-ta llamk'apuspa",
 'editingsection'            => "$1-ta llamk'apuspa (raki)",
@@ -555,8 +557,8 @@ Umapi kaq qillqana k'itipi kunan kachkaq qillqam. Qampa hukchasqaykikunataq siki
 Kunanqa rurasqaykikunata musuq qillqaman ch'aqtanaykim atin.
 <b>Umapi kaq qillqallam</b> waqaychasqa kanqa.<br />",
 'yourtext'                  => 'Qillqasqayki',
-'storedversion'             => 'Versión almacenada',
-'nonunicodebrowser'         => '<strong>Atención: Su navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.</strong>',
+'storedversion'             => "Hallch'asqa musuqchasqa",
+'nonunicodebrowser'         => "<strong>Paqtataq: Wamp'unaykiqa manam Unicode nisqawan llamk'anchu. Huk llamk'apuna llikam llamk'achkan p'anqakunata takyasqalla llamk'apunaykipaq: mana ASCII kaq sananchakunaqa chunka suqtayuqnintin huchha llikapim kanqa.</strong>",
 'editingold'                => "<strong>Paqtataq: Kay p'anqap mawk'a hukchasqantam llamk'apuchkanki. Waqaychaptiykiqa, chaymanta aswan musuq hukchasqankuna chinkanqam.</strong>",
 'yourdiff'                  => 'Hukchasqaykikuna',
 'copyrightwarning'          => "Lliw {{SITENAME}}paq llamk'apuykunaqa $2 nisqawanmi uyaychasqa kanqa ($1 p'anqata qhaway). Llamk'asqaykikunata huk runakunap allinchayninta qispilla mast'ariyninta mana munaptiykiqa, ama kayman qillqamuychu.<br />

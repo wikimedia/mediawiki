@@ -385,6 +385,8 @@ Fonccion : $1<br />
 Requéta : $2',
 'viewsource'           => 'Vêre lo tèxte sôrsa',
 'viewsourcefor'        => 'por $1',
+'actionthrottled'      => 'Accion limitâ',
+'actionthrottledtext'  => 'Por combatre lo spame, l’usâjo de cela accion est limitâ a un cèrtin nombro de côps dens un moment prod côrt. S’acomplét que vos éd dèpassâ ceta limita. Tornâd èprovar dens doux-três menutes.',
 'protectedpagetext'    => 'Ceta pâge at étâ protègiê por empachiér sa modificacion.',
 'viewsourcetext'       => 'Vos pouede vêre et copiyér lo contegnu de la pâge por povêr travalyér dessus :',
 'protectedinterface'   => 'Ceta pâge fornét du tèxte d’entèrface por la programeria et est protègiê por èvitar los abus.',
@@ -473,6 +475,11 @@ Devant qu’un ôtro mèl seye emmandâ a cél compto, vos devréd siuvre les en
 'invalidemailaddress'        => 'Ceta adrèce de mèl pôt pas étre accèptâ perce que semble avêr un format envalido. Volyéd entrar una adrèce valida ou lèssiér cél champ vouedo.',
 'accountcreated'             => 'Compto crèâ.',
 'accountcreatedtext'         => 'Lo compto utilisator por $1 at étâ crèâ.',
+'createaccount-title'        => 'Crèacion d’un compto por {{SITENAME}}',
+'createaccount-text'         => 'Quârqu’un ($1) at crèâ un compto por $2 dessus {{SITENAME}}
+($4). Lo mot de pâssa por « $2 » est « $3 ». Vos devriâd uvrir una sèssion et changiér dês ora ceti mot de pâssa.
+
+Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',
 'loginlanguagelabel'         => 'Lengoua : $1',
 
 # Password reset dialog
@@ -546,6 +553,7 @@ Vos pouede vos veriér vers $1 ou yon des ôtros [[{{MediaWiki:grouppage-sysop}}
 Se vos éd balyê una adrèce de mèl valida dens voutres [[Special:Preferences|prèferences]] et que son usâjo vos est pas dèfendu, vos pouede utilisar la fonccion « Emmandar un mèssâjo a ceti utilisator » por vos veriér vers un administrator.
 
 Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los spècefiar dens tota requéta.",
+'blockednoreason'           => 'Niona rêson balyê',
 'blockedoriginalsource'     => "Lo code sôrsa de '''$1''' est endicâ ce-desot :",
 'blockededitsource'         => "Lo contegnu de '''voutres modificacions''' aplicâs a '''$1''' est endicâ ce-desot :",
 'whitelistedittitle'        => 'Enregistrament nècèssèro por modifiar lo contegnu',
@@ -1524,6 +1532,7 @@ d’una adrèce IP prècèdament blocâ.',
 'ipb_expiry_invalid'          => 'Temps d’èxpiracion envalido.',
 'ipb_already_blocked'         => '« $1 » est ja blocâ',
 'ipb_cant_unblock'            => 'Èrror : lo blocâjo d’ID $1 ègziste pas. O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
+'ipb_blocked_as_range'        => 'Èrror : l’adrèce IP $1 at pas étâ blocâ tot drêt et pôt vêr pas étre dèblocâ. Portant, el at étâ blocâ per la plage $2 laquinta pôt étre dèblocâ.',
 'ip_range_invalid'            => 'Bloc IP fôx.',
 'blockme'                     => 'Blocâd mè',
 'proxyblocker'                => 'Bloquior de proxy',
@@ -1675,9 +1684,9 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'importlogpage'                    => 'Historico de les importacions de pâges',
 'importlogpagetext'                => 'Impôrts administratifs de pâges avouéc l’historico dês los ôtros vouiquis.',
 'import-logentry-upload'           => 'at importâ (tèlèchargement) [[$1]]',
-'import-logentry-upload-detail'    => '$1 vèrsion(s)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|vèrsion|vèrsions}}',
 'import-logentry-interwiki'        => 'at importâ (entèrvouiqui) [[$1]]',
-'import-logentry-interwiki-detail' => '$1 vèrsion(s) dês $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|vèrsion|vèrsions}} dês $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ma pâge utilisator',
@@ -2253,5 +2262,17 @@ $1',
 'iranian-calendar-m5' => 'Mordād',
 'iranian-calendar-m8' => 'Ābān',
 'iranian-calendar-m9' => 'Āzar',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Tishri',
+'hebrew-calendar-m2'      => 'Heshvan',
+'hebrew-calendar-m7'      => 'Nissan',
+'hebrew-calendar-m10'     => 'Tamouz',
+'hebrew-calendar-m12'     => 'Eloul',
+'hebrew-calendar-m1-gen'  => 'Tishri',
+'hebrew-calendar-m2-gen'  => 'Heshvan',
+'hebrew-calendar-m7-gen'  => 'Nissan',
+'hebrew-calendar-m10-gen' => 'Tamouz',
+'hebrew-calendar-m12-gen' => 'Eloul',
 
 );

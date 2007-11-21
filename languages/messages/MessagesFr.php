@@ -326,7 +326,9 @@ $messages = array(
 'nosuchaction'      => 'Action inconnue',
 'nosuchactiontext'  => 'L’action spécifiée dans l’URL n’est pas reconnue par le wiki.',
 'nosuchspecialpage' => 'Page spéciale inexistante',
-'nospecialpagetext' => 'Vous avez demandé une page spéciale qui n’est pas reconnue par le wiki. Une liste des pages spéciales peut être trouvée sur [[{{ns:special}}:Specialpages]]',
+'nospecialpagetext' => "<big>'''Vous avez demandé une page spéciale qui n’est pas reconnue par le wiki.'''</big>
+
+Une liste des pages spéciales peut être trouvée sur [[{{ns:special}}:Specialpages]]",
 
 # General errors
 'error'                => 'Erreur',
@@ -374,6 +376,8 @@ Fonction : $1<br />
 Requête : $2',
 'viewsource'           => 'Voir le texte source',
 'viewsourcefor'        => 'pour $1',
+'actionthrottled'      => 'Action limitée',
+'actionthrottledtext'  => "Pour lutter contre le spam, l’utilisation de cette action est limitée à un certain nombre de fois dans un laps temps assez court. Il s'avère que vous avez dépassé cette limite. Essayez à nouveau dans quelques minutes.",
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de l’article pour pouvoir travailler dessus :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
@@ -695,7 +699,7 @@ D’autres administrateurs sur ce wiki pourront toujours accéder au contenu cac
 'logdelete-success'           => 'Visibilité des événements changée avec succès.',
 
 # Oversight log
-'oversightlog'    => 'Journal oversight',
+'oversightlog'    => "Journal d'oversight",
 'overlogpagetext' => 'la liste ci-dessous montre les suppressions et blocages récents dont le contenu est masqué même pour les administrateurs.
 Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
 
@@ -898,9 +902,9 @@ Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
 Nom du fichier existant : <strong><tt>$2</tt></strong><br />
 la seule différence est la casse (majuscules / minuscules) de l’extension. Veuillez vérifier que le fichier est différent et changer son nom.',
 'fileexists-thumb'            => "<center>'''Image existante'''</center>",
-'fileexists-thumbnail-yes'    => 'Le fichier semble être une image en taille réduite <i>(thumbnail)</i>. Veuillez vérifier le fichier <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => 'Le fichier semble être une image en taille réduite <i>(vignette)</i>. Veuillez vérifier le fichier <strong><tt>$1</tt></strong>.<br />
 Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.',
-'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>. Il est possible qu’il s’agisse d’une version réduite <i>(thumbnail)</i>.
+'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>. Il est possible qu’il s’agisse d’une version réduite <i>(vignette)</i>.
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez changer le nom du fichier.',
 'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà ; merci de retourner en arrière et de copier le fichier sous un nouveau nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune ; veuillez revenir en arrière et le renvoyer sous un autre nom. [[Image:$1|thumb|center|$1]]',
@@ -1626,9 +1630,9 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'importlogpage'                    => 'Historique des importations de pages',
 'importlogpagetext'                => 'Imports administratifs de pages avec l’historique à partir des autres wikis.',
 'import-logentry-upload'           => 'a importé (téléchargement) $1',
-'import-logentry-upload-detail'    => '$1 version(s)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
 'import-logentry-interwiki'        => 'a importé (transwiki) $1',
-'import-logentry-interwiki-detail' => '$1 version(s) depuis $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} depuis $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ma page utilisateur',

@@ -373,6 +373,8 @@ Funkcija: $1<br />
 Upit: $2',
 'viewsource'           => 'Vidi izvornik',
 'viewsourcefor'        => 'za $1',
+'actionthrottled'      => 'Uređivanje je usporeno',
+'actionthrottledtext'  => 'Kao anti-spam mjeru, ograničeni ste u broju ovih akcija u određenom vremenu, i trenutno ste dosegli to ograničenje. Pokušajte opet za koju minutu.',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se onemogućile izmjene.',
 'viewsourcetext'       => 'Možete pogledati i kopirati izvorni sadržaj ove stranice:',
 'protectedinterface'   => 'Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.',
@@ -470,6 +472,11 @@ Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
 Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
 'accountcreated'             => 'Suradnički račun otvoren',
 'accountcreatedtext'         => 'Suradnički račun za $1 je otvoren.',
+'createaccount-title'        => 'Otvaranje suradničkog računa za {{SITENAME}}',
+'createaccount-text'         => 'Netko ($1) je stvorio suradnički račun $2 na {{SITENAME}} ($4).
+Lozinka za "$2" je "$3". Trebali biste se prijaviti i promijeniti lozinku.
+
+Možete zanemariti ovu poruku, ukoliko je suradnički račun stvoren nenamjerno.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Password reset dialog
@@ -1157,6 +1164,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'protectedpagesempty'     => 'Nema zaštićenih stranica koje ispunjavaju uvjete koje ste postavili.',
 'listusers'               => 'Popis suradnika',
 'specialpages'            => 'Posebne stranice',
+'specialpages-summary'    => 'Slijedi popis posebnih stranica koje služe kako administratorima tako i suradnicima za lakše održavanje projekta. Molim ovdje navesti posebne stranice/kategorije za održavanje projekta.',
 'spheading'               => 'Posebne stranice za sve suradnike',
 'restrictedpheading'      => 'Posebne stranice s ograničenim pristupom',
 'rclsub'                  => '(na stranice povezane iz "$1")',

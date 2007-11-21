@@ -343,7 +343,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Eigen bewerkingen op mijn volglijst verbergen',
 'tog-watchlisthidebots'       => 'Botbewerkingen op mijn volglijst verbergen',
 'tog-watchlisthideminor'      => 'Kleine bewerkingen op mijn volglijst verbergen',
-'tog-nolangconversion'        => 'Variantconversie uitschakelen',
+'tog-nolangconversion'        => 'Variantomzetting uitschakelen',
 'tog-ccmeonemails'            => 'Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur',
 'tog-diffonly'                => 'Pagina-inhoud onder wijzigingen niet tonen',
 
@@ -409,7 +409,7 @@ $messages = array(
 'categories'            => 'Categorieën',
 'pagecategories'        => '{{PLURAL:$1|Categorie|Categorieën}}',
 'category_header'       => 'Pagina’s in categorie “$1”',
-'subcategories'         => 'Subcategorieën',
+'subcategories'         => 'Ondercategorieën',
 'category-media-header' => 'Media in categorie “$1”',
 'category-empty'        => "''Deze categorie bevat geen pagina’s of media.''",
 
@@ -632,7 +632,7 @@ Query: $2',
 'viewsourcetext'       => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
 'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die gebruikt wordt door de software. Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.",
-'sqlhidden'            => '(SQL query verborgen)',
+'sqlhidden'            => '(SQL-query verborgen)',
 'cascadeprotected'     => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
 'namespaceprotected'   => "U heeft geen rechten om pagina's in de naamruimte '''$1''' te bewerken.",
@@ -655,7 +655,7 @@ Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te 
 'externaldberror'            => 'Er is een fout opgetreden bij het aanmelden bij de database of u heeft geen toestemming uw externe gebruiker bij te werken.',
 'loginproblem'               => '<b>Er was een probleem bij het aanmelden.</b><br />Probeer het a.u.b. opnieuw.',
 'login'                      => 'Aanmelden',
-'loginprompt'                => 'U moet cookies accepteren om aan te kunnen melden bij {{SITENAME}}.',
+'loginprompt'                => 'U moet cookies ingeschakeld hebben om u te kunnen aanmelden bij {{SITENAME}}.',
 'userlogin'                  => 'Aanmelden / Inschrijven',
 'logout'                     => 'Afmelden',
 'userlogout'                 => 'Afmelden',
@@ -668,19 +668,19 @@ Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te 
 'createaccountmail'          => 'per e-mail',
 'badretype'                  => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists'                 => 'De gekozen gebruikersnaam is al in gebruik. Kies a.u.b. een andere naam.',
-'youremail'                  => 'Uw e-mailadres (optioneel)*:',
+'youremail'                  => 'Uw e-mailadres:',
 'username'                   => 'Gebruikersnaam:',
 'uid'                        => 'Gebruikersnummer:',
-'yourrealname'               => 'Uw echte naam *:',
+'yourrealname'               => 'Uw echte naam:',
 'yourlanguage'               => 'Taal:',
 'yourvariant'                => 'Taalvariant',
 'yournick'                   => 'Tekst voor ondertekening:',
 'badsig'                     => 'Ongeldige ondertekening; controleer de HTML-tags.',
-'badsiglength'               => 'Nicknaam is te lang; het moet onder $1 karakters zijn.',
+'badsiglength'               => 'Bijnaam is te lang; het moet onder $1 karakters zijn.',
 'email'                      => 'E-mail',
-'prefs-help-realname'        => '* Echte naam (optioneel): als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
+'prefs-help-realname'        => 'Echte naam is optioneel, als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 'loginerror'                 => 'Aanmeldfout',
-'prefs-help-email'           => '* E-mail (optioneel): Stelt anderen in staat contact met u op te nemen via uw gebruikers- of overlegpagina zonder dat u uw identiteit prijsgeeft.',
+'prefs-help-email'           => 'E-mailadres is optioneel, maar stelt anderen in staat contact met u op te nemen via uw gebruikers- of overlegpagina zonder dat u uw identiteit prijsgeeft.',
 'prefs-help-email-required'  => 'Hiervoor is een e-mailadres nodig.',
 'nocookiesnew'               => 'De gebruiker is aangemaakt maar niet aangemeld. {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers. Schakel die a.u.b. in en meld daarna aan met uw nieuwe gebruikersnaam en wachtwoord.',
 'nocookieslogin'             => '{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers. U accepteert geen cookies. Schakel deze optie a.u.b. aan en probeer het opnieuw.',
@@ -737,11 +737,11 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 # Edit page toolbar
 'bold_sample'     => 'Vetgedrukte tekst',
 'bold_tip'        => 'Vet',
-'italic_sample'   => 'Cursieve tekst',
-'italic_tip'      => 'Cursief',
+'italic_sample'   => 'Schuingedrukte tekst',
+'italic_tip'      => 'Schuin',
 'link_sample'     => 'Onderwerp',
 'link_tip'        => 'Interne link',
-'extlink_sample'  => 'http://www.example.com linktekst',
+'extlink_sample'  => 'http://www.voorbeeld.com linktekst',
 'extlink_tip'     => 'Externe link (vergeet http:// niet)',
 'headline_sample' => 'Deelonderwerp',
 'headline_tip'    => 'Tussenkopje (hoogste niveau)',
@@ -782,7 +782,7 @@ De blokkade is uitgevoerd door $1. De opgegeven reden is ''$2''.
 * Bedoeld te blokkeren: $7
 
 U kunt contact opnemen met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]] om te blokkade te bespreken.
-U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw 
+U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres heeft opgegeven in uw 
 [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'autoblockedtext'           => "Uw IP-adres is automatisch geblokkeerd omdat het is gebruikt door een andere gebruiker, die is geblokkeerd door $1.
@@ -793,7 +793,7 @@ De opgegeven reden is:
 * Aanvang blokkade: $8
 * Einde blokkade: $6
 
-U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
+U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres heeft opgegeven in uw [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'blockednoreason'           => 'geen reden opgegeven',
 'blockedoriginalsource'     => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'         => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
@@ -2015,7 +2015,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'spamprotectiontitle'    => 'Spamfilter',
 'spamprotectiontext'     => 'De pagina die u wilde opslaan is geblokkeerd door het spamfilter. Meestal wordt dit door een externe link veroorzaakt.',
 'spamprotectionmatch'    => 'De volgende tekst veroorzaakte een alarm van de spamfilter: $1',
-'subcategorycount'       => 'Er {{PLURAL:$1|is 1 subcategorie|zijn $1 subcategorieën}} binnen deze categorie.',
+'subcategorycount'       => 'Er {{PLURAL:$1|is 1 ondercategorie|zijn $1 ondercategorieën}} binnen deze categorie.',
 'categoryarticlecount'   => 'Er {{PLURAL:$1|is 1 artikel|zijn $1 artikelen}} in deze categorie.',
 'category-media-count'   => 'Er {{PLURAL:$1|staat één bestand|staan $1 bestanden}} in deze categorie.',
 'listingcontinuesabbrev' => ' meer',
