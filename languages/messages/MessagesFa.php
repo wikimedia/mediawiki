@@ -79,6 +79,7 @@ $datePreferences = array(
 	'dmy',
 	'ymd',
 	'persian',
+	'hebrew',
 	'ISO 8601',
 );
 
