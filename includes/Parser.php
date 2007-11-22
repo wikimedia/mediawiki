@@ -4315,10 +4315,7 @@ class Parser
 	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 * Placeholders created in Skin::makeLinkObj()
-	 * Returns an array of links found, indexed by PDBK:
-	 *  0 - broken
-	 *  1 - normal link
-	 *  2 - stub
+	 * Returns an array of link CSS classes, indexed by PDBK.
 	 * $options is a bit field, RLH_FOR_UPDATE to select for update
 	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
@@ -4330,6 +4327,7 @@ class Parser
 
 		$pdbks = array();
 		$colours = array();
+		$linkcolour_ids = array();
 		$sk = $this->mOptions->getSkin();
 		$linkCache =& LinkCache::singleton();
 
@@ -4358,14 +4356,14 @@ class Parser
 
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
-					$colours[$pdbk] = 1;
+					$colours[$pdbk] = '';
 				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
-					$colours[$pdbk] = 1;
+					$colours[$pdbk] = '';
 					$this->mOutput->addLink( $title, $id );
 				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
-					$colours[$pdbk] = 0;
+					$colours[$pdbk] = 'new';
 				} elseif ( $title->getNamespace() == NS_SPECIAL && !SpecialPage::exists( $pdbk ) ) {
-					$colours[$pdbk] = 0;
+					$colours[$pdbk] = 'new';
 				} else {
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
@@ -4395,20 +4393,17 @@ class Parser
 
 				# Fetch data and form into an associative array
 				# non-existent = broken
-				# 1 = known
-				# 2 = stub
 				while ( $s = $dbr->fetchObject($res) ) {
 					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 					$pdbk = $title->getPrefixedDBkey();
 					$linkCache->addGoodLinkObj( $s->page_id, $title );
 					$this->mOutput->addLink( $title, $s->page_id );
-
-					$colours[$pdbk] = ( $threshold == 0 || (
-								$s->page_len >= $threshold || # always true if $threshold <= 0
-							        $s->page_is_redirect ||
-							        !Namespace::isContent( $s->page_namespace ) )
-							    ? 1 : 2 );
+					$colours[$pdbk] = $sk->getLinkColour( $s, $threshold );
+					//add id to the extension todolist
+					$linkcolour_ids[$s->page_id] = $pdbk;
 				}
+				//pass an array of page_ids to an extension
+				wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 			}
 			wfProfileOut( $fname.'-check' );
 
@@ -4504,18 +4499,10 @@ class Parser
 
 								// set pdbk and colour
 								$pdbks[$key] = $varPdbk;
-								if ( $threshold >  0 ) {
-									$size = $s->page_len;
-									if ( $s->page_is_redirect || $s->page_namespace != 0 || $size >= $threshold ) {
-										$colours[$varPdbk] = 1;
-									} else {
-										$colours[$varPdbk] = 2;
-									}
-								}
-								else {
-									$colours[$varPdbk] = 1;
-								}
+								$colours[$varPdbk] = $sk->getLinkColour( $s, $threshold );
+								$linkcolour_ids[$s->page_id] = $pdbk;
 							}
+							wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 						}
 
 						// check if the object is a variant of a category
@@ -4548,19 +4535,15 @@ class Parser
 				$pdbk = $pdbks[$key];
 				$searchkey = "<!--LINK $key-->";
 				$title = $this->mLinkHolders['titles'][$key];
-				if ( empty( $colours[$pdbk] ) ) {
+				if ( !isset( $colours[$pdbk] ) ) {
 					$linkCache->addBadLinkObj( $title );
-					$colours[$pdbk] = 0;
+					$colours[$pdbk] = 'new';
 					$this->mOutput->addLink( $title, 0 );
 					$replacePairs[$searchkey] = $sk->makeBrokenLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
-				} elseif ( $colours[$pdbk] == 1 ) {
-					$replacePairs[$searchkey] = $sk->makeKnownLinkObj( $title,
-									$this->mLinkHolders['texts'][$key],
-									$this->mLinkHolders['queries'][$key] );
-				} elseif ( $colours[$pdbk] == 2 ) {
-					$replacePairs[$searchkey] = $sk->makeStubLinkObj( $title,
+				} else {
+					$replacePairs[$searchkey] = $sk->makeColouredLinkObj( $title, $colours[$pdbk],
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
 				}
