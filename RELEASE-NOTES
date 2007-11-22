@@ -191,6 +191,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Support {{PLURAL}} for import log
 * Make sure that the correct log entries are shown on Special:Userrights even
   for users with special characters in their names
+* The number of watching users in watchlists was always reported as 1
   
 == Parser changes in 1.12 ==
 
