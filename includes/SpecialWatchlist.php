@@ -294,7 +294,7 @@ function wfSpecialWatchlist( $par ) {
 		}
 
 		if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
-			$sql3 = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_title='" .$dbr->strencode($obj->page_title). "' AND wl_namespace='{$obj->page_namespace}'" ;
+			$sql3 = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_title='" .$dbr->strencode($obj->rc_title). "' AND wl_namespace='{$obj->rc_namespace}'" ;
 			$res3 = $dbr->query( $sql3, $fname );
 			$x = $dbr->fetchObject( $res3 );
 			$rc->numberofWatchingusers = $x->n;
