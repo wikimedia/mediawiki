@@ -827,7 +827,7 @@ class Language {
 
 		# Days since 1 March - calculating 30 days a month,
 		# and then adding the missing number of days
-		$day += (int)( 7 * $month / 12 + 30 * ( $month - 1 ) );
+		$day += intval( 7 * $month / 12 + 30 * ( $month - 1 ) );
 		# Calculate Hebrew year for days after 1 Nisan
 		$hebrewYear = $year + 3760;
 		# Passover date for this year (as days since 1 March)
@@ -917,19 +917,19 @@ class Language {
 	 * Used for Hebrew date.
 	 */
 	private static function passoverDate( $year ) {
-		$a = (int)( ( 12 * $year + 17 ) % 19 );
-		$b = (int)( $year % 4 );
+		$a = intval( ( 12 * $year + 17 ) % 19 );
+		$b = intval( $year % 4 );
 		$m = 32.044093161144 + 1.5542417966212 * $a +  $b / 4.0 - 0.0031777940220923 * $year;
 		if( $m < 0 ) {
 			$m--;
 		}
-		$Mar = (int)$m;
+		$Mar = intval( $m );
 		if( $m < 0 ) {
 			$m++;
 		}
 		$m -= $Mar;
 
-		$c = (int)( ( $Mar + 3 * $year + 5 * $b + 5 ) % 7);
+		$c = intval( ( $Mar + 3 * $year + 5 * $b + 5 ) % 7);
 		if( $c == 0 && $a > 11 && $m >= 0.89772376543210 ) {
 			$Mar++;
 		} else if( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
@@ -938,7 +938,7 @@ class Language {
 			$Mar++;
 		}
 
-		$Mar += (int)( ( $year - 3760 ) / 100 ) - (int)( ( $year - 3760 ) / 400 ) - 2;
+		$Mar += intval( ( $year - 3760 ) / 100 ) - intval( ( $year - 3760 ) / 400 ) - 2;
 		return $Mar;
 	}
 
@@ -988,10 +988,10 @@ class Language {
 		for ( $pow10 = 1000, $i = 3; $i >= 0; $pow10 /= 10, $i-- ) {
 			if ( $num >= $pow10 ) {
 				if ( $num == 15 || $num == 16 ) {
-					$s .= $table[0][9] . $table[0][$num - 10];
+					$s .= $table[0][9] . $table[0][$num - 9];
 					$num = 0;
 				} else {
-					$s .= $table[$i][(int)( $num / $pow10 )];
+					$s .= $table[$i][intval( ( $num / $pow10 ) )];
 					if( $pow10 == 1000 ) {
 						$s .= "'";
 					}
