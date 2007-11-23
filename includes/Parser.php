@@ -4111,7 +4111,7 @@ class Parser
 		if ( $user->isAnon() )  {
 			return wfMsgForContent( 'signature-anon', $userText, $nickText );
 		} else {
-			return wfMsgForContent( 'signature', $userText, $nickText );
+			return wfMsgExt( 'signature', array( 'content', 'parsemag' ), $userText, $nickText );
 		}
 	}
 
