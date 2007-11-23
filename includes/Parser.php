@@ -130,34 +130,39 @@ class Parser
 		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
 
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
-		
-		$this->setFunctionHook( 'int', array( 'CoreParserFunctions', 'intFunction' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'ns', array( 'CoreParserFunctions', 'ns' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'urlencode', array( 'CoreParserFunctions', 'urlencode' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'lcfirst', array( 'CoreParserFunctions', 'lcfirst' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'ucfirst', array( 'CoreParserFunctions', 'ucfirst' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'lc', array( 'CoreParserFunctions', 'lc' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'uc', array( 'CoreParserFunctions', 'uc' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'localurl', array( 'CoreParserFunctions', 'localurl' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'localurle', array( 'CoreParserFunctions', 'localurle' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'fullurl', array( 'CoreParserFunctions', 'fullurl' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'fullurle', array( 'CoreParserFunctions', 'fullurle' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'formatnum', array( 'CoreParserFunctions', 'formatnum' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'grammar', array( 'CoreParserFunctions', 'grammar' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'plural', array( 'CoreParserFunctions', 'plural' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofpages', array( 'CoreParserFunctions', 'numberofpages' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofusers', array( 'CoreParserFunctions', 'numberofusers' ), SFH_NO_HASH );
+
+		# Syntax for arguments (see self::setFunctionHook):
+		#  "name for lookup in localized magic words array",
+		#  function callback,
+		#  optional SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}
+		#    instead of {{#int:...}})
+		$this->setFunctionHook( 'int',              array( 'CoreParserFunctions', 'intFunction'      ), SFH_NO_HASH );
+		$this->setFunctionHook( 'ns',               array( 'CoreParserFunctions', 'ns'               ), SFH_NO_HASH );
+		$this->setFunctionHook( 'urlencode',        array( 'CoreParserFunctions', 'urlencode'        ), SFH_NO_HASH );
+		$this->setFunctionHook( 'lcfirst',          array( 'CoreParserFunctions', 'lcfirst'          ), SFH_NO_HASH );
+		$this->setFunctionHook( 'ucfirst',          array( 'CoreParserFunctions', 'ucfirst'          ), SFH_NO_HASH );
+		$this->setFunctionHook( 'lc',               array( 'CoreParserFunctions', 'lc'               ), SFH_NO_HASH );
+		$this->setFunctionHook( 'uc',               array( 'CoreParserFunctions', 'uc'               ), SFH_NO_HASH );
+		$this->setFunctionHook( 'localurl',         array( 'CoreParserFunctions', 'localurl'         ), SFH_NO_HASH );
+		$this->setFunctionHook( 'localurle',        array( 'CoreParserFunctions', 'localurle'        ), SFH_NO_HASH );
+		$this->setFunctionHook( 'fullurl',          array( 'CoreParserFunctions', 'fullurl'          ), SFH_NO_HASH );
+		$this->setFunctionHook( 'fullurle',         array( 'CoreParserFunctions', 'fullurle'         ), SFH_NO_HASH );
+		$this->setFunctionHook( 'formatnum',        array( 'CoreParserFunctions', 'formatnum'        ), SFH_NO_HASH );
+		$this->setFunctionHook( 'grammar',          array( 'CoreParserFunctions', 'grammar'          ), SFH_NO_HASH );
+		$this->setFunctionHook( 'plural',           array( 'CoreParserFunctions', 'plural'           ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofpages',    array( 'CoreParserFunctions', 'numberofpages'    ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofusers',    array( 'CoreParserFunctions', 'numberofusers'    ), SFH_NO_HASH );
 		$this->setFunctionHook( 'numberofarticles', array( 'CoreParserFunctions', 'numberofarticles' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberoffiles', array( 'CoreParserFunctions', 'numberoffiles' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofadmins', array( 'CoreParserFunctions', 'numberofadmins' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofedits', array( 'CoreParserFunctions', 'numberofedits' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'language', array( 'CoreParserFunctions', 'language' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'padleft', array( 'CoreParserFunctions', 'padleft' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'padright', array( 'CoreParserFunctions', 'padright' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'anchorencode', array( 'CoreParserFunctions', 'anchorencode' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'special', array( 'CoreParserFunctions', 'special' ) );
-		$this->setFunctionHook( 'defaultsort', array( 'CoreParserFunctions', 'defaultsort' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'filepath', array( 'CoreParserFunctions', 'filepath' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberoffiles',    array( 'CoreParserFunctions', 'numberoffiles'    ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofadmins',   array( 'CoreParserFunctions', 'numberofadmins'   ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofedits',    array( 'CoreParserFunctions', 'numberofedits'    ), SFH_NO_HASH );
+		$this->setFunctionHook( 'language',         array( 'CoreParserFunctions', 'language'         ), SFH_NO_HASH );
+		$this->setFunctionHook( 'padleft',          array( 'CoreParserFunctions', 'padleft'          ), SFH_NO_HASH );
+		$this->setFunctionHook( 'padright',         array( 'CoreParserFunctions', 'padright'         ), SFH_NO_HASH );
+		$this->setFunctionHook( 'anchorencode',     array( 'CoreParserFunctions', 'anchorencode'     ), SFH_NO_HASH );
+		$this->setFunctionHook( 'special',          array( 'CoreParserFunctions', 'special'          ) );
+		$this->setFunctionHook( 'defaultsort',      array( 'CoreParserFunctions', 'defaultsort'      ), SFH_NO_HASH );
+		$this->setFunctionHook( 'filepath',         array( 'CoreParserFunctions', 'filepath'         ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
 			$this->setFunctionHook( 'displaytitle', array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
@@ -4109,7 +4114,7 @@ class Parser
 		$userText = wfEscapeWikiText( $username );
 		$nickText = wfEscapeWikiText( $nickname );
 		if ( $user->isAnon() )  {
-			return wfMsgForContent( 'signature-anon', $userText, $nickText );
+			return wfMsgExt( 'signature-anon', array( 'content', 'parsemag' ), $userText, $nickText );
 		} else {
 			return wfMsgExt( 'signature', array( 'content', 'parsemag' ), $userText, $nickText );
 		}

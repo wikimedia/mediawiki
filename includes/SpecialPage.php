@@ -487,6 +487,11 @@ class SpecialPage
 
 	/**
 	 * Get the local name for a specified canonical name
+	 *
+	 * @param $name
+	 * @param mixed $subpage Boolean false, or string
+	 *
+	 * @return string
 	 */
 	static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
