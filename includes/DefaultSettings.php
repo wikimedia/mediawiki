@@ -13,7 +13,7 @@
  * depends on it.
  *
  * Documentation is in the source and on:
- * http://www.mediawiki.org/wiki/Help:Configuration_settings
+ * http://www.mediawiki.org/wiki/Manual:Configuration_settings
  *
  */
 
