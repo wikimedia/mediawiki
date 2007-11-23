@@ -3054,6 +3054,6 @@ $1',
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]]', # don't translate or duplicate this message to other languages
-'signature-anon' => '[[Special:Contributions/$1|$2]]', # don't translate or duplicate this message to other languages
+'signature-anon' => '[[{{#special:Contributions}}/$1|$2]]', # don't translate or duplicate this message to other languages
 
 );

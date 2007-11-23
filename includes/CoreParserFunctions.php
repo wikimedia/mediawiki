@@ -191,7 +191,7 @@ class CoreParserFunctions {
 			return wfMsgForContent( 'nosuchspecialpage' );
 		}
 	}
-
+	
 	public static function defaultsort( $parser, $text ) {
 		$text = trim( $text );
 		if( strlen( $text ) > 0 )
