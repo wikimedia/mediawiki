@@ -6,6 +6,7 @@
  * @author sco.wikipedia.org editors
  * @author SPQRobin
  * @author G - ג
+ * @author Nike
  */
 
 $messages = array(
@@ -298,7 +299,7 @@ Yer IP address is $3, and the block ID is #$5. Please include this address in on
 'loginreqpagetext'       => 'Ye maun $1 tae view ither pages.',
 'accmailtext'            => "The Password for '$1' haes been sent tae $2.",
 'newarticletext'         => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[{{MediaWiki:helppage}}|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
-'anontalkpagetext'       => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical [[IP address]] tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:Userlogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
+'anontalkpagetext'       => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical IP address tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:Userlogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
 'noarticletext'          => "The'r nae text on this page the nou. Ye can [[{{ns:special}}:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages or [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} edit this page].",
 'clearyourcache'         => "'''Tak tent:''' Efter hainin, ye micht hae tae bypass yer brouser's cache for tae see the chynges. '''Mozilla / Firefox / Safari:''' haud doun ''Shift'' while dabbin on ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' haud doun ''Ctrl'' while dabbin on ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''' juist dab on the ''Reload'' button, or press ''F5''; '''Opera''' users micht hae tae haillie dicht thair cache in ''Tools&rarr;Preferences''.",
 'usercssjsyoucanpreview' => "<strong>Tip:</strong> Uise the 'Show preview' button tae proof yer new CSS/JS afore savin.",

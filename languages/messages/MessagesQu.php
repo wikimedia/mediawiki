@@ -567,9 +567,9 @@ Takyachiwachkankim: Kayqa ñuqap qillqasqaymi icha qispi pukyumanta iskaychamusq
 'copyrightwarning2'         => "Lliw {{SITENAME}}paq llamk'apuykunaqa huk ruraqkunap llamk'apunallanmi, hukchanallanmi icha qullunallanmi. Llamk'asqaykikunata huk runakunap allinchayninta qispilla mast'ariyninta mana munaptiykiqa, ama kayman qillqamuychu.<br />
 Takyachiwachkankim: Kayqa ñuqap qillqasqaymi, ñuqamanmi kapuwan icha qispi pukyumanta iskaychamusqaymi, nispa ($1 p'anqata qhaway).
 <br /><strong>Mana saqillasqa kaspaykiqa, ama qillqarimuychu iskaychay hayñi ''(copyright)'' nisqayuq qillqakunata iskaychamuspa!</strong>",
-'longpagewarning'           => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32KB o más.
-Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.</strong>',
-'longpageerror'             => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, lo cual es mayor que $2 kilobytes. No se puede guardar.</strong>',
+'longpagewarning'           => "<strong>Paqtataq: Kay p'anqaqa $1 kB hatunmi; huk wamp'unakunaqa sasachakunmanchá 32 kB-manta aswan hatun willañiqita llamk'apuspa.
+Ama hina kaspa, hamut'ariy kay p'anqata rakiyta.</strong>",
+'longpageerror'             => '<strong>PANTASQA: Kachasqayki qillqaqa $1 kB hatunmi, $2 kB-manta aswan hatunmi. Manam waqaychasqa kayta atinchu.</strong>',
 'readonlywarning'           => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
 Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
 'protectedpagewarning'      => "<strong>PAQTATAQ: Kay p'anqaqa llamk'apuymanta amachasqam kamachiqkunallap hukchananpaq. Sinchita qhawakuy [[Wikipidiya:Amachay|Wikipidiyap amachaymanta kamachinkunata]] qatiyniykita.</strong>
@@ -1354,7 +1354,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'whatlinkshere-title' => "$1 sutiyuq p'anqaman t'inkimuqkuna",
 'linklistsub'         => "(T'inkikuna)",
 'linkshere'           => "'''[[:$1]]''' sutiyuq p'anqamanqa kay qatiq p'anqakunam t'inkimun:",
-'nolinkshere'         => "Manam kachkanchu '''[[:$1]]'''-man t'inkiq p'anqa:",
+'nolinkshere'         => "Manam kachkanchu '''[[:$1]]'''-man t'inkiq p'anqa.",
 'nolinkshere-ns'      => "Manam kachkanchu '''[[:$1]]'''-man t'inkiq p'anqa pallasqay suti k'itipi.",
 'isredirect'          => "pusapusqa p'anqa",
 'istemplate'          => "ch'aqtasqa",

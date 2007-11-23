@@ -994,7 +994,7 @@ $1 ساعة.',
 'selectolderversionfordiff' => 'اختر نسخة أقدم للمقارنة',
 'compareselectedversions'   => 'قارن بين النسختين المختارتين',
 'editundo'                  => 'رجوع',
-'diff-multi'                => '(عدد التعديلات غير الظاهرة هو {{PLURAL:$1|1|$1 تعديل}}.)',
+'diff-multi'                => '({{PLURAL:$1|نسخة واحدة متوسطة|$1 نسخة متوسطة}} غير معروضة.)',
 
 # Search results
 'searchresults'         => 'نتائج البحث',
@@ -1947,9 +1947,9 @@ $1',
 'importlogpage'                    => 'سجل الاستيراد',
 'importlogpagetext'                => 'استيرادات إدارية (للإداريين فقط) لصفحات من مواقع ويكي أخرى.',
 'import-logentry-upload'           => 'استورد [[$1]] بواسطة رفع ملف',
-'import-logentry-upload-detail'    => 'تعديل(ات) $1',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تعديل واحد|تعديل}}',
 'import-logentry-interwiki'        => 'استيراد ويكي $1',
-'import-logentry-interwiki-detail' => 'تعديل(ات) من $2 $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|تعديل واحد|تعديل}} من $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'صفحتي الخاصة',

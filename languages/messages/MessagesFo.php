@@ -131,6 +131,9 @@ $messages = array(
 'tog-fancysig'                => 'Rá undirskrift (uttan sjálvvirkandi slóð)',
 'tog-externaleditor'          => 'Nýt útvortis ritil sum fyrimynd',
 'tog-externaldiff'            => 'Nýt útvortis diff sum fyrimynd',
+'tog-watchlisthideown'        => 'Fjal mínar rættingar frá eftirliti',
+'tog-watchlisthidebots'       => 'Fjal bot rættingar frá eftirliti',
+'tog-watchlisthideminor'      => 'Fjal minni rættingar frá eftirliti',
 
 'underline-always'  => 'Altíð',
 'underline-never'   => 'Ongantíð',
@@ -423,6 +426,7 @@ verður sendur fyri nakað av fylgjandi hentleikum.',
 
 # Edit pages
 'summary'                  => 'Samandráttur',
+'subject'                  => 'Evni/heiti',
 'minoredit'                => 'Hetta er smábroyting',
 'watchthis'                => 'Hav eftirlit við hesi síðuni',
 'savearticle'              => 'Goym síðu',
@@ -449,6 +453,7 @@ Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin 
 'editing'                  => 'Tú rættar $1',
 'editingcomment'           => 'Tú rættar $1 (viðmerking)',
 'yourtext'                 => 'Tín tekstur',
+'storedversion'            => 'Goymd útgáva',
 'yourdiff'                 => 'Munir',
 'copyrightwarning'         => "Alt íkast til {{SITENAME}} er útgivið undir $2 (sí $1 fyri smálutir). Vilt tú ikki hava skriving tína broytta miskunnarleyst og endurspjadda frítt, so send hana ikki inn.<br />
 Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at tú hevur avritað tað frá tilfeingi ið er almenn ogn &#8212; hetta umfatar '''ikki''' flestu vevsíður. 
@@ -524,6 +529,7 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'qbsettings-fixedright'   => 'Fast høgru',
 'qbsettings-floatingleft' => 'Flótandi vinstru',
 'changepassword'          => 'Broyt loyniorð',
+'skin'                    => 'Hamur',
 'math'                    => 'Støddfrøðiligir formlar',
 'dateformat'              => 'Dato forsnið',
 'datetime'                => 'Dato og tíð',
@@ -547,7 +553,10 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'contextchars'            => 'Tekin fyri hvørja linju í úrslitinum:',
 'recentchangescount'      => 'Heiti í seinastu broytingum:',
 'savedprefs'              => 'Tínar innstillingar eru goymdar.',
+'timezonelegend'          => 'Lokal tíð',
+'timezonetext'            => 'Talið av tímum, ið tín lokala tíð víkir frá ambætaratíð (UTC).',
 'localtime'               => 'Lokal klokka',
+'timezoneoffset'          => 'Frávik¹',
 'servertime'              => 'Ambætaraklokkan er nú',
 'guesstimezone'           => 'Fyll út við kagara',
 'allowemail'              => 'Tilset t-post frá øðrum brúkarum',
@@ -614,6 +623,8 @@ fyri at leggja fílur upp.',
 'destfilename'      => 'Málfílunavn',
 'watchthisupload'   => 'Hav eftirlit við hesi síðuni',
 
+'upload-file-error' => 'Innvortis brek',
+
 'license'   => 'Loyvi',
 'nolicense' => 'Onki valt',
 
@@ -647,8 +658,23 @@ fyri at leggja fílur upp.',
 'randompage' => 'Tilvildarlig síða',
 
 # Statistics
-'statistics' => 'Hagtøl',
-'userstats'  => 'Brúkarahagtøl',
+'statistics'    => 'Hagtøl',
+'sitestats'     => '{{SITENAME}} síðuhagtøl',
+'userstats'     => 'Brúkarahagtøl',
+'sitestatstext' => "Tilsamans {{PLURAL:$1|'''1''' síða er|'''$1''' síður eru}} í dátugrunninum.
+Hetta umfatar kjaksíður, síður um {{SITENAME}}, heilt stuttar stubbasíður,
+ávísingar og aðrar, sum helst ikki kunnu metast sum innihaldssíður.
+Verða tær tiknar burtur úr, {{PLURAL:$2|er '''1''' síða|eru '''$2''' síður}}, sum kunnu metast sum
+{{PLURAL:$2|innihaldssíða|innihaldssíður}}.
+
+<!--'''$8''' {{PLURAL:$8|file has|files have}} been uploaded.-->
+
+Tilsamans '''$3''' {{PLURAL:$3|síðuskoðan hevur|síðuskoðanir hava}} verið og '''$4''' {{PLURAL:$4|síðubroyting|síðubroytingar}}
+síðani henda wikan varð sett up.
+Tað gevur í miðal '''$5''' broytingar fyri hvørja síðu og '''$6''' skoðanir fyri hvørja broyting.
+
+<!--The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.-->",
+'userstatstext' => "Tilsamans  {{PLURAL:$1|er '''1''' skrásettur [[Special:Listusers|brúkari]]|eru '''$1''' skrásettir [[Special:Listusers|brúkarar]]}}. '''$2''' (ella '''$4%''') av hesum {{PLURAL:$2|er umboðsstjóri|eru umboðsstjórar}} (sí $3).",
 
 'disambiguations'     => 'Síður við fleirfaldum týdningi',
 'disambiguationspage' => 'Template:fleiri týdningar',
@@ -661,6 +687,9 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'brokenredirectstext'    => 'Hesar ávísingarnar slóða til síður, ið ikki eru til.',
 'brokenredirects-edit'   => '(rætta)',
 'brokenredirects-delete' => '(strika)',
+
+'withoutinterwiki'        => 'Síður uttan mál slóðir',
+'withoutinterwiki-header' => 'Fylgjandi síður slóða ikki til útgávur á øðrum málum:',
 
 'fewestrevisions' => 'Greinir við minst útgávum',
 
@@ -912,6 +941,8 @@ ella er navnið tú valdi ógyldugt.
 Vinarliga vel eitt annað navn.',
 'movedto'                 => 'flyt til',
 'movetalk'                => 'Flyt kjaksíðuna eisini, um hon er til.',
+'talkpagemoved'           => 'Tilhoyrandi kjaksíðan varð eisini flutt.',
+'talkpagenotmoved'        => 'Tilhoyrandi kjaksíðan varð <strong>ikki</strong> flutt.',
 '1movedto2'               => '$1 flutt til $2',
 '1movedto2_redir'         => '$1 flutt til $2 um ávísing',
 'movelogpage'             => 'Flyti logg',
@@ -1024,6 +1055,7 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 
 # Media information
 'imagemaxsize' => 'Avmarka myndir á myndalýsingarsíðum til:',
+'thumbsize'    => 'Smámyndastødd:',
 
 # Special:Newimages
 'newimages' => 'Nýggjar myndir',
