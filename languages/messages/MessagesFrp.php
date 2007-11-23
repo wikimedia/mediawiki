@@ -354,7 +354,7 @@ $1',
 'readonlytext'         => 'Les aponses et mises a jorn sur la bâsa de balyês sont ora blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
 
 L’administrator èyent vèrrolyê la bâsa de balyês at balyê l’èxpllicacion siuventa : $1',
-'missingarticle'       => 'La bâsa de balyês at pas possu trovar lo tèxte d’una pâge qu’ègziste portant, que lo nom est « $1 ».
+'missingarticle'       => 'La bâsa de balyês at pas possu trovar lo tèxte d’una pâge ègzistenta, que lo nom est « $1 ».
 
 Cen est g·ènèralament diu a un dif pas més utilisâ ou un lim vers l’historico d’una pâge èfaciê.
 
@@ -1532,9 +1532,9 @@ d’una adrèce IP prècèdament blocâ.',
 'ipb_expiry_invalid'          => 'Temps d’èxpiracion envalido.',
 'ipb_already_blocked'         => '« $1 » est ja blocâ',
 'ipb_cant_unblock'            => 'Èrror : lo blocâjo d’ID $1 ègziste pas. O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
-'ipb_blocked_as_range'        => 'Èrror : l’adrèce IP $1 at pas étâ blocâ tot drêt et pôt vêr pas étre dèblocâ. Portant, el at étâ blocâ per la plage $2 laquinta pôt étre dèblocâ.',
+'ipb_blocked_as_range'        => 'Èrror : l’adrèce IP $1 at pas étâ blocâ tot drêt et pôt vêr pas étre dèblocâ. Portant el at étâ blocâ per la plage $2 laquinta pôt étre dèblocâ.',
 'ip_range_invalid'            => 'Bloc IP fôx.',
-'blockme'                     => 'Blocâd mè',
+'blockme'                     => 'Blocâd-mè',
 'proxyblocker'                => 'Bloquior de proxy',
 'proxyblocker-disabled'       => 'Cela fonccion est dèsactivâ.',
 'proxyblockreason'            => 'Voutra adrèce IP at étâ blocâ perce qu’el est un proxy uvèrt. Marci de vos veriér vers voutron fornissor d’accès u Malyâjo ou voutron supôrt tècnico et de l’enformar de ceti problèmo de sècuritât.',
@@ -1702,7 +1702,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-ca-talk'                 => 'Discussion a propôs de ceta pâge',
 'tooltip-ca-edit'                 => 'Vos pouede modifiar ceta pâge. Marci de prèvisualisar devant qu’enregistrar.',
 'tooltip-ca-addsection'           => 'Apondre un comentèro a ceta discussion',
-'tooltip-ca-viewsource'           => 'Ceta pâge est protègiê. Vos pouede portant nen vêre lo contegnu.',
+'tooltip-ca-viewsource'           => 'Ceta pâge est protègiê. Portant vos pouede nen vêre lo contegnu.',
 'tooltip-ca-history'              => 'Los ôtors et les vèrsions prècèdentes de ceta pâge',
 'tooltip-ca-protect'              => 'Protègiér ceta pâge',
 'tooltip-ca-delete'               => 'Suprimar ceta pâge',

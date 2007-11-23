@@ -454,6 +454,11 @@ ignorare, et tessera seni uti continuare.',
 'emailauthenticated'         => 'Tua inscriptio electronica recognita est $1.',
 'accountcreated'             => 'Ratio creata',
 'accountcreatedtext'         => 'Ratio pro usore $1 creata est.',
+'createaccount-title'        => 'Ratio creata apud {{grammar:accusative|{{SITENAME}}}}',
+'createaccount-text'         => 'Aliquis ($1) creavit rationem pro $2 apud {{grammar:accusative|{{SITENAME}}}}
+($4). Tessera usoris "$2" est "$3". Conventum aperias et statim tesseram tuam mutes.
+
+Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog

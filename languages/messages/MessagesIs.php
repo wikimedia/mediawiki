@@ -447,7 +447,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
 'feedlinks'               => 'Nippan:',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Grein',
 'nstab-user'      => 'Notandi',
 'nstab-media'     => 'Margmiðlunarsíða',
@@ -868,6 +868,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'resultsperpage'          => 'Niðurstöður á síðu',
 'contextlines'            => 'Línur á hverja niðurstöðu',
 'contextchars'            => 'Stafir í samhengi á hverja línu',
+'recentchangesdays'       => 'Hve marga daga á að sýna í nýlegum breytingum:',
 'recentchangescount'      => 'Fjöldi síðna á „nýlegum breytingum“',
 'savedprefs'              => 'Stillingarnar þínar hafa verið vistaðar.',
 'timezonelegend'          => 'Tímabelti',
@@ -882,27 +883,37 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'files'                   => 'Skrár',
 
 # User rights
+'userrights-lookup-user'      => 'Yfirlit notandaflokka',
 'userrights-user-editname'    => 'Skráðu notandanafn:',
 'editusergroup'               => 'Breyta notendahópum',
+'userrights-editusergroup'    => 'Breyta notandaflokkum',
+'saveusergroups'              => 'Vista notandaflokka',
+'userrights-groupsmember'     => 'Meðlimur:',
+'userrights-groupsavailable'  => 'Tiltækir flokkar:',
+'userrights-groupshelp'       => 'Veldu þá flokka sem að þú vilt fjarlægja eða bæta notandanum við.
+Óvaldir flokkar verða ekki vistaðir. Þú getur afvalið flokk með CTRL + hægri smella',
 'userrights-reason'           => 'Ástæða fyrir breytingunni:',
 'userrights-available-none'   => 'Þú getur ekki breytt notendaréttindum.',
 'userrights-available-add'    => 'Þú getur bætt notendum við $1.',
 'userrights-available-remove' => 'Þú getur fjarlægt notendur af $1.',
 
 # Groups
-'group'            => 'Hópur:',
-'group-bot'        => 'Vélmenni',
-'group-sysop'      => 'Stjórnendur',
-'group-bureaucrat' => 'Möppudýr',
-'group-all'        => '(allir)',
+'group'               => 'Flokkur:',
+'group-autoconfirmed' => 'Sjálfkrafa staðfesting notenda',
+'group-bot'           => 'Vélmenni',
+'group-sysop'         => 'Stjórnendur',
+'group-bureaucrat'    => 'Möppudýr',
+'group-all'           => '(allir)',
 
-'group-bot-member'        => 'Vélmenni',
-'group-sysop-member'      => 'Stjórnandi',
-'group-bureaucrat-member' => 'Möppudýr',
+'group-autoconfirmed-member' => 'Sjálfkrafa staðfesting notanda',
+'group-bot-member'           => 'Vélmenni',
+'group-sysop-member'         => 'Stjórnandi',
+'group-bureaucrat-member'    => 'Möppudýr',
 
-'grouppage-bot'        => '{{ns:project}}:Vélmenni',
-'grouppage-sysop'      => '{{ns:project}}:Stjórnendur',
-'grouppage-bureaucrat' => '{{ns:project}}:Möppudýr',
+'grouppage-autoconfirmed' => '{{ns:project}}:Sjálfkrafa staðfesting notenda',
+'grouppage-bot'           => '{{ns:project}}:Vélmenni',
+'grouppage-sysop'         => '{{ns:project}}:Stjórnendur',
+'grouppage-bureaucrat'    => '{{ns:project}}:Möppudýr',
 
 # User rights log
 'rightslog'      => 'Réttindaskrá notenda',
@@ -931,6 +942,8 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'show'                              => 'Sýna',
 'boteditletter'                     => 'v',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|notandi skoðandi|$1 notendur skoðandi}}]',
+'rc_categories'                     => 'Takmark á flokkum (aðskilja með "|")',
+'rc_categories_any'                 => 'Alla',
 'newsectionsummary'                 => 'Nýr hluti: /* $1 */',
 
 # Recent changes linked
@@ -1050,7 +1063,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'unusedtemplatestext' => 'Þetta er listi yfir allar síður í sniðanafnrýminu sem ekki eru notaðar í neinum öðrum síðum. Munið að gá að öðrum tenglum í sniðin áður en þeim er eytt.',
 'unusedtemplateswlh'  => 'aðrir tenglar',
 
-# Random pages
+# Random page
 'randompage'         => 'Handahófsvalin grein',
 'randompage-nopages' => 'Það eru engar síður í þessu nafnrými.',
 
@@ -1573,7 +1586,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'tooltip-pt-preferences'          => 'Almennar stillingar',
 'tooltip-pt-watchlist'            => 'Vaktlistinn.',
 'tooltip-pt-mycontris'            => 'Listi yfir framlög þín',
-'tooltip-pt-login'                => 'Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki nauðsynlegt.',
+'tooltip-pt-login'                => 'Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki skylda.',
 'tooltip-pt-anonlogin'            => 'Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki nauðsynlegt.',
 'tooltip-pt-logout'               => 'Útskráning',
 'tooltip-ca-talk'                 => 'Spallsíða þessarar síðu',
@@ -1686,7 +1699,8 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'noimages'     => 'Ekkert að sjá.',
 
 # Metadata
-'metadata' => 'Lýsigögn',
+'metadata'          => 'Lýsigögn',
+'metadata-collapse' => 'Fela auka upplýsingar',
 
 # EXIF tags
 'exif-imagewidth'       => 'Breidd',

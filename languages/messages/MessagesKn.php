@@ -141,6 +141,7 @@ $messages = array(
 
 'errorpagetitle'   => 'ದೋಷ',
 'returnto'         => '$1 ಗೆ ಹಿಂತಿರುಗಿ.',
+'tagline'          => '{{SITENAME}} ಇಂದ',
 'help'             => 'ಸಹಾಯ',
 'search'           => 'ಹುಡುಕು',
 'searchbutton'     => 'ಹುಡುಕು',
@@ -174,6 +175,7 @@ $messages = array(
 'otherlanguages'   => 'ಇತರ ಭಾಷೆಗಳು',
 'lastmodifiedat'   => 'ಈ ಪುಟವನ್ನು ಕೊನೆಯಾಗಿ $2, $1 ರಂದು ಬದಲಾಯಿಸಲಾಗಿತ್ತು.', # $1 date, $2 time
 'protectedpage'    => 'ಸಂರಕ್ಷಿತ ಪುಟ',
+'jumpto'           => 'ಇಲ್ಲಿಗೆ ಹೋಗು:',
 'jumptosearch'     => 'ಹುಡುಕು',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -190,6 +192,7 @@ $messages = array(
 'mainpage'          => 'ಮುಖ್ಯ ಪುಟ',
 'portal'            => 'ಸಮುದಾಯ ಪುಟ',
 'portal-url'        => 'Project:ಸಮುದಾಯ ಪುಟ',
+'privacy'           => 'ಖಾಸಗಿ ಮಾಹಿತಿಯ ಬಗ್ಗೆ ನಿಲುವು',
 'sitesupport'       => 'ದೇಣಿಗೆ',
 'sitesupport-url'   => 'Project:ದೇಣಿಗೆ',
 
@@ -262,33 +265,46 @@ $messages = array(
 'hr_tip'          => 'ಅಡ್ಡ ಗೆರೆ (ಆದಷ್ಟು ಕಡಿಮೆ ಉಪಯೋಗಿಸಿ)',
 
 # Edit pages
-'summary'                => 'ಸಾರಾಂಶ',
-'minoredit'              => 'ಇದು ಚುಟುಕಾದ ಬದಲಾವಣೆ',
-'watchthis'              => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
-'savearticle'            => 'ಪುಟವನ್ನು ಉಳಿಸಿ',
-'preview'                => 'ಮುನ್ನೋಟ',
-'showpreview'            => 'ಮುನ್ನೋಟ',
-'showdiff'               => 'ಬದಲಾವಣೆಗಳನ್ನು ತೋರಿಸಿ',
-'blockedtitle'           => 'ಈ ಸದಸ್ಯರನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ.',
-'loginreqtitle'          => 'ಲಾಗಿನ್ ಆಗಬೇಕು',
-'accmailtitle'           => 'ಪ್ರವೇಶ ಪದ ಕಳುಹಿಸಲಾಯಿತು.',
-'accmailtext'            => "'$1'ನ ಪ್ರವೇಶ ಪದ $2 ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
-'newarticle'             => '(ಹೊಸತು)',
-'noarticletext'          => '(ಈ ಪುಟದಲ್ಲಿ ಸದ್ಯಕ್ಕೆ ಏನೂ ಇಲ್ಲ)',
-'note'                   => '<strong>ಸೂಚನೆ:</strong>',
-'previewnote'            => 'ಇದು ಕೇವಲ ಮುನ್ನೋಟ, ಪುಟವನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ ಎ೦ಬುದನ್ನು ಮರೆಯದಿರಿ!',
-'editing'                => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
-'editinguser'            => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
-'storedversion'          => 'ಈಗಾಗಲೇ ಉಳಿಸಲಾಗಿರುವ ಆವೃತ್ತಿ',
-'editingold'             => '<strong>ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬದಲಾಯಿಸುತ್ತಿದ್ದೀರಿ. ಈ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿದಲ್ಲಿ, ನ೦ತರದ ಆವೃತ್ತಿಗಳೆಲ್ಲವೂ ಕಳೆದುಹೋಗುತ್ತವೆ.</strong>',
-'longpagewarning'        => '<strong>ಎಚ್ಚರ: ಈ ಪುಟ $1 ಕಿಲೋಬೈಟ್‍ಗಳಷ್ಟು ಉದ್ದ ಇದೆ; ಕೆಲವು ಬ್ರೌಸರ್‍ಗಳಲ್ಲಿ ೩೨ ಕಿಲೋಬೈಟ್‍ಗಳಿಗಿಂತ ಉದ್ದದ ಪುಟಗಳನ್ನು ಸಂಪಾದನೆ ಮಾಡುವುದು ಕಷ್ಟ. ಪುಟವನ್ನು ಆದಷ್ಟು ವಿಭಾಗಗಳಾಗಿ ವಿಂಗಡಿಸಲು ಪ್ರಯತ್ನಿಸಿ.</strong>',
-'templatesused'          => 'ಈ ಪುಟದಲ್ಲಿ ಉಪಯೋಗಿಸಲಾಗಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು:',
-'template-protected'     => '(ಸಂರಕ್ಷಿತ)',
-'template-semiprotected' => '(ಅರೆ-ಸಂರಕ್ಷಿತ)',
+'summary'                  => 'ಸಾರಾಂಶ',
+'minoredit'                => 'ಇದು ಚುಟುಕಾದ ಬದಲಾವಣೆ',
+'watchthis'                => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
+'savearticle'              => 'ಪುಟವನ್ನು ಉಳಿಸಿ',
+'preview'                  => 'ಮುನ್ನೋಟ',
+'showpreview'              => 'ಮುನ್ನೋಟ',
+'showdiff'                 => 'ಬದಲಾವಣೆಗಳನ್ನು ತೋರಿಸಿ',
+'anoneditwarning'          => "'''ಎಚ್ಚರ:''' ನೀವು ಲಾಗ್ ಇನ್ ಆಗಿಲ್ಲ. ನಿಮ್ಮ ಐಪಿ ವಿಳಾಸವು ಪುಟದ ಸಂಪಾದನೆಗಳ ಇತಿಹಾಸದಲ್ಲಿ ದಾಖಲಾಗುತ್ತದೆ.",
+'blockedtitle'             => 'ಈ ಸದಸ್ಯರನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ.',
+'loginreqtitle'            => 'ಲಾಗಿನ್ ಆಗಬೇಕು',
+'accmailtitle'             => 'ಪ್ರವೇಶ ಪದ ಕಳುಹಿಸಲಾಯಿತು.',
+'accmailtext'              => "'$1'ನ ಪ್ರವೇಶ ಪದ $2 ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
+'newarticle'               => '(ಹೊಸತು)',
+'newarticletext'           => "ಇನ್ನೂ ಅಸ್ಥಿತ್ವದಲ್ಲಿ ಇರದ ಪುಟದ ಲಿಂಕ್ ಅನ್ನು ನೀವು ಒತ್ತಿರುವಿರಿ.
+ಈ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸಲು ಕೆಳಗಿನ ಚೌಕದಲ್ಲಿ ಬರೆಯಲು ಆರಂಭಿಸಿರಿ. 
+(ಹೆಚ್ಚು ಮಾಹಿತಿಗೆ [[{{MediaWiki:helppage}}|ಸಹಾಯ ಪುಟ]] ನೋಡಿ).
+ಈ ಪುಟಕ್ಕೆ ನೀವು ತಪ್ಪಾಗಿ ಬಂದಿದ್ದಲ್ಲಿ ನಿಮ್ಮ ಬ್ರೌಸರ್‍ನ '''back''' ಬಟನ್ ಅನ್ನು ಒತ್ತಿ.",
+'noarticletext'            => '(ಈ ಪುಟದಲ್ಲಿ ಸದ್ಯಕ್ಕೆ ಏನೂ ಇಲ್ಲ)',
+'note'                     => '<strong>ಸೂಚನೆ:</strong>',
+'previewnote'              => 'ಇದು ಕೇವಲ ಮುನ್ನೋಟ, ಪುಟವನ್ನು ಇನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ ಎ೦ಬುದನ್ನು ಮರೆಯದಿರಿ!',
+'editing'                  => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
+'editinguser'              => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
+'storedversion'            => 'ಈಗಾಗಲೇ ಉಳಿಸಲಾಗಿರುವ ಆವೃತ್ತಿ',
+'editingold'               => '<strong>ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬದಲಾಯಿಸುತ್ತಿದ್ದೀರಿ. ಈ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿದಲ್ಲಿ, ನ೦ತರದ ಆವೃತ್ತಿಗಳೆಲ್ಲವೂ ಕಳೆದುಹೋಗುತ್ತವೆ.</strong>',
+'yourdiff'                 => 'ವ್ಯತ್ಯಾಸಗಳು',
+'copyrightwarning'         => 'ದಯವಿಟ್ಟು ಗಮನಿಸಿ: {{SITENAME}} ಸೈಟಿನಲ್ಲಿ ನಿಮ್ಮ ಎಲ್ಲಾ ಕಾಣಿಕೆಗಳನ್ನೂ $2 ಅಡಿಯಲ್ಲಿ ಬಿಡುಗಡೆ ಮಾಡಲಾಗುತ್ತದೆ (ಮಾಹಿತಿಗೆ $1 ನೋಡಿ). ನಿಮ್ಮ ಸಂಪಾದನೆಗಳನ್ನು ಬೇರೆಯವರು ನಿರ್ಧಾಕ್ಷಿಣ್ಯವಾಗಿ ಬದಲಾಯಿಸಿ ಬೇರೆ ಕಡೆಗಳಲ್ಲಿ ಹಂಚಬಹುದು. ಇದಕ್ಕೆ ನಿಮ್ಮ ಒಪ್ಪಿಗೆ ಇದ್ದರೆ ಮಾತ್ರ ಇಲ್ಲಿ ಸಂಪಾದನೆ ಮಾಡಿ.<br />
+ಅಲ್ಲದೆ ನಿಮ್ಮ ಸಂಪಾದನೆಗಳನ್ನು ಸ್ವತಃ ರಚಿಸಿದ್ದು, ಅಥವ ಕೃತಿಸ್ವಾಮ್ಯತೆಯಿಂದ ಮುಕ್ತವಾಗಿರುವ ಕಡೆಯಿಂದ ಪಡೆದಿದ್ದು ಎಂದು ಪ್ರಮಾಣಿಸುತ್ತಿರುವಿರಿ.
+<strong>ಕೃತಿಸ್ವಾಮ್ಯತೆಯ ಅಡಿಯಲ್ಲಿರುವ ರಚನೆಗಳನ್ನು ಅನುಮತಿ ಇಲ್ಲದೆ ಇಲ್ಲಿಗೆ ಹಾಕಬೇಡಿ!</strong>',
+'longpagewarning'          => '<strong>ಎಚ್ಚರ: ಈ ಪುಟ $1 ಕಿಲೋಬೈಟ್‍ಗಳಷ್ಟು ಉದ್ದ ಇದೆ; ಕೆಲವು ಬ್ರೌಸರ್‍ಗಳಲ್ಲಿ ೩೨ ಕಿಲೋಬೈಟ್‍ಗಳಿಗಿಂತ ಉದ್ದದ ಪುಟಗಳನ್ನು ಸಂಪಾದನೆ ಮಾಡುವುದು ಕಷ್ಟ. ಪುಟವನ್ನು ಆದಷ್ಟು ವಿಭಾಗಗಳಾಗಿ ವಿಂಗಡಿಸಲು ಪ್ರಯತ್ನಿಸಿ.</strong>',
+'semiprotectedpagewarning' => "'''ಗಮನಿಸಿ:''' ಈ ಪುಟವನ್ನು ಕೇವಲ ನೊಂದಯಿತ ಸದಸ್ಯರು ಸಂಪಾದನೆ ಮಾಡಬರುವಂತೆ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ.",
+'templatesused'            => 'ಈ ಪುಟದಲ್ಲಿ ಉಪಯೋಗಿಸಲಾಗಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು:',
+'templatesusedpreview'     => 'ಈ ಮುನ್ನೋಟದಲ್ಲಿ ಉಪಯೋಗಿಸಲ್ಪಟ್ಟಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು:',
+'templatesusedsection'     => 'ಈ ವಿಭಾಗದಲ್ಲಿ ಉಪಯೋಗಿಸಲ್ಪಟ್ಟಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು:',
+'template-protected'       => '(ಸಂರಕ್ಷಿತ)',
+'template-semiprotected'   => '(ಅರೆ-ಸಂರಕ್ಷಿತ)',
 
 # History pages
 'revhistory'          => 'ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
 'currentrev'          => 'ಈಗಿನ ತಿದ್ದುಪಡಿ',
+'revisionasof'        => '$1 ದಿನದ ಆವೃತ್ತಿ',
 'previousrevision'    => '←ಹಿಂದಿನ ಪರಿಷ್ಕರಣೆ',
 'nextrevision'        => 'ಮುಂದಿನ ಪರಿಷ್ಕರಣೆ',
 'currentrevisionlink' => 'ಈಗಿನ ಪರಿಷ್ಕರಣೆ',
@@ -298,8 +314,12 @@ $messages = array(
 'page_first'          => 'ಮೊದಲ',
 'page_last'           => 'ಕೊನೆಯ',
 
+# Revision feed
+'history-feed-title'       => 'ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
+'history-feed-description' => 'ವಿಕಿಯ ಈ ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
+
 # Diffs
-'history-title'           => '"$1"ರ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
+'history-title'           => '"$1" ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
 'difference'              => '(ಆವೃತ್ತಿಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸ)',
 'lineno'                  => '$1 ನೇ ಸಾಲು:',
 'editcurrent'             => 'ಈ ಪುಟದ ಪ್ರಸಕ್ತ ಆವೃತ್ತಿಯನ್ನು ಸ೦ಪಾದಿಸಿ',
@@ -313,9 +333,11 @@ $messages = array(
 
 # Preferences page
 'preferences'        => 'ಇಚ್ಛೆಗಳು',
+'mypreferences'      => 'ನನ್ನ ಆಯ್ಕೆಗಳು',
 'prefsnologin'       => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'changepassword'     => 'ಪ್ರವೇಶ ಪದ ಬದಲಾಯಿಸಿ',
 'dateformat'         => 'ದಿನಾಂಕದ ಫಾರ್ಮ್ಯಾಟ್',
+'saveprefs'          => 'ಉಳಿಸಿ',
 'oldpassword'        => 'ಹಳೆಯ ಪ್ರವೇಶ ಪದ',
 'newpassword'        => 'ಹೊಸ ಪ್ರವೇಶ ಪದ',
 'recentchangescount' => 'ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳಲ್ಲಿರುವ ವಿಷಯಗಳ ಸಂಖ್ಯೆ',
@@ -333,6 +355,11 @@ $messages = array(
 'recentchangestext' => 'ವಿಕಿಗೆ ಮಾಡಲ್ಪಟ್ಟ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಪುಟದಲ್ಲಿ ನೀವು ಕಾಣಬಹುದು.',
 'rcnote'            => 'ಕೊನೆಯ <strong>$2</strong> ದಿನಗಳಲ್ಲಿ ಮಾಡಿದ <strong>$1</strong> ಬದಲಾವಣೆಗಳು ಕೆಳಗಿನಂತಿವೆ.',
 'rclistfrom'        => '$1 ಇಂದ ಪ್ರಾರಂಭಿಸಿ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ',
+'rcshowhideminor'   => 'ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು $1',
+'rcshowhidebots'    => 'ಬಾಟ್‍ಗಳನ್ನು $1',
+'rcshowhideliu'     => 'ಲಾಗ್-ಇನ್ ಆಗಿರುವ ಸದಸ್ಯರು $1',
+'rcshowhideanons'   => 'ಅನಾಮಧೇಯ ಸದಸ್ಯರು $1',
+'rcshowhidemine'    => 'ನನ್ನ ಸಂಪಾದನೆಗಳನ್ನು $1',
 'rclinks'           => 'ಕೊನೆಯ $2 ದಿನಗಳಲ್ಲಿ ಮಾಡಿದ $1 ಕೊನೆಯ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ <br />$3',
 'diff'              => 'ವ್ಯತ್ಯಾಸ',
 'hist'              => 'ಇತಿಹಾಸ',
@@ -363,6 +390,9 @@ $messages = array(
 'filehist-user'  => 'ಸದಸ್ಯ',
 'linkstoimage'   => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
 'nolinkstoimage' => 'ಈ ಫೈಲಿಗೆ ಯಾವ ಪುಟವೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.',
+
+# File deletion
+'filedelete-success' => "'''$1''' ಅಳಿಸಲಾಗಿದೆ.",
 
 # Unused templates
 'unusedtemplates' => 'ಉಪಯೋಗದಲ್ಲಿರದ ಟೆಂಪ್ಲೇಟುಗಳು',
@@ -461,6 +491,7 @@ $messages = array(
 'watch'                => 'ವೀಕ್ಷಿಸಿ',
 'watchthispage'        => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
 'unwatch'              => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆ',
+'watchlist-hide-bots'  => 'ಬಾಟ್ ಸಂಪಾದನೆಗಳನ್ನು ಅಡಗಿಸು',
 'watchlist-hide-own'   => 'ನನ್ನ ಸಂಪಾದನೆಗಳನ್ನು ಅಡಗಿಸು',
 'watchlist-hide-minor' => 'ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸು',
 
@@ -546,6 +577,7 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'ನನ್ನ ಸದಸ್ಯ ಪುಟ',
+'tooltip-pt-mytalk'         => 'ನನ್ನ ಚರ್ಚೆ ಪುಟ',
 'tooltip-pt-mycontris'      => 'ನನ್ನ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿ',
 'tooltip-ca-edit'           => 'ಈ ಪುಟವನ್ನು ನೀವು ಸಂಪಾದಿಸಬಹುದು. ಉಳಿಸುವ ಮುನ್ನ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸಿ.',
 'tooltip-ca-watch'          => 'ಈ ಪುಟವನ್ನು ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸಿ',

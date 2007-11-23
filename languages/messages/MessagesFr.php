@@ -467,7 +467,7 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 'accountcreated'             => 'Compte créé.',
 'accountcreatedtext'         => 'Le compte utilisateur pour $1 a été créé.',
 'createaccount-title'        => "Création d'un compte pour {{SITENAME}}",
-'createaccount-text'         => "Quelqu'un ($1) a créé un compte pour $2 sur {{SITENAME}
+'createaccount-text'         => "Quelqu'un ($1) a créé un compte pour $2 sur {{SITENAME}}
 ($4). Le mot de passe pour « $2 » est « $3 ». Vous devriez ouvrir une session et changer dès à présent ce mot de passe.
 
 Ignorez ce message si ce compte a été créé par erreur.",

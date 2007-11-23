@@ -5,11 +5,6 @@
  *
  * @author Behzod Saidov <behzodsaidov@gmail.com>
  * @author Abdulla
- *
- * **********************************************************
- * Iltimos, MediaWiki tarjimalari bilan bo'g'liq taklif va
- * mulohazalaringiz bo'lsa men bilan e-mail orqali bo'g'laning
- * **********************************************************
  */
 
 $fallback8bitEncoding = 'windows-1252';
@@ -103,6 +98,7 @@ $messages = array(
 'pagecategories'  => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'category_header' => '"$1" kategoriyadagi maqolalar.',
 'subcategories'   => 'Podkategoriyalar',
+'category-empty'  => "''Ushbu kategoriyada hozircha sahifa yoki fayllar yoʻq.''",
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xffʻʼ«„]+)$/sDu',
 'mainpagetext'      => "<big>'''MediaWiki muvaffaqiyatli o'rnatildi.'''</big>",
@@ -198,6 +194,7 @@ $messages = array(
 'nstab-category' => 'Kategoriya',
 
 # General errors
+'badtitle'          => 'Notoʻgʻri sarlavha',
 'viewsource'        => "Ko'rib chiqish",
 'viewsourcefor'     => '$1 uchun',
 'protectedpagetext' => 'Bu sahifa tahrirlashdan saqlanish maqsadida qulflangan.',
@@ -213,6 +210,7 @@ $messages = array(
 'login'              => 'Kirish',
 'loginprompt'        => "{{SITENAME}}ga kirish uchun kukilar yoqilgan bo'lishi kerak.",
 'userlogin'          => 'Kirish / Hisob yaratish',
+'logout'             => 'Chiqish',
 'userlogout'         => 'Chiqish',
 'nologin'            => "Hisobingiz yo'q-mi? $1.",
 'nologinlink'        => 'Hisob yaratish',
@@ -268,6 +266,8 @@ Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bu
 'copyrightwarning2'      => "Iltimos, shuni esda tutingki, {{SITENAME}} sahifalaridagi barcha matnlar boshqa foydalanuvchilar tomonidan tahrirlanishi, almashtirilishi yoki o'chirilishi mumkin. Agar siz yozgan ma'lumotlaringizni bunday tartibda tahrirlanishiga rozi bo'lmasangiz, unda uni bu yerga joylashtirmang.<br />
 Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar ushun $1 sahifasiga murojaat qiling).
 <strong>MUALLIFLIK HUQUQI QO'YILGAN ISHLARNI RUXSATSIZ BU YERGA JOYLASHTIRMANG!</strong>",
+'longpagewarning'        => "<strong>DIQQAT: Ushbu sahifa hajmi $1 kilobaytdir; ayrim browser'lar 32kb dan oshiq hajmli sahifalarni tahrirlashda muammolarga duch kelishi mumkin.
+Agar sizda shunday muammolar yuzaga kelsa, iltimos, sahifani butunlay emas, qismlab tahrirlang.</strong>",
 'templatesused'          => 'Ushbu sahifada ishlatilgan shablonlar:',
 'template-protected'     => '(himoyalangan)',
 'template-semiprotected' => '(yarim-himoyalangan)',
@@ -355,19 +355,24 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'uploadedimage' => '"[[$1]]" yuklandi',
 
 # Image list
-'ilsubmit'            => 'Qidirish',
-'filehist'            => 'Fayl tarixi',
-'filehist-help'       => 'Faylning biror paytdagi holatini koʻrish uchun tegishli sana/vaqtga bosingiz.',
-'filehist-current'    => 'joriy',
-'filehist-datetime'   => 'Sana/Vaqt',
-'filehist-user'       => 'Foydalanuvchi',
-'filehist-dimensions' => 'Oʻlchamlari',
-'filehist-filesize'   => 'Fayl hajmi',
-'filehist-comment'    => 'Izoh',
-'imagelinks'          => 'Ishoratlar',
-'linkstoimage'        => 'Bu faylga quyidagi sahifalar bogʻlangan:',
-'nolinkstoimage'      => 'Bu faylga bogʻlangan sahifalar yoʻq.',
-'sharedupload'        => 'Ushbu fayl umumiy joyga yuklangandir va boshqa loyihalarda ishlatilishi mumkin.',
+'imagelist'                 => 'Fayllar roʻyxati',
+'ilsubmit'                  => 'Qidirish',
+'filehist'                  => 'Fayl tarixi',
+'filehist-help'             => 'Faylning biror paytdagi holatini koʻrish uchun tegishli sana/vaqtga bosingiz.',
+'filehist-current'          => 'joriy',
+'filehist-datetime'         => 'Sana/Vaqt',
+'filehist-user'             => 'Foydalanuvchi',
+'filehist-dimensions'       => 'Oʻlchamlari',
+'filehist-filesize'         => 'Fayl hajmi',
+'filehist-comment'          => 'Izoh',
+'imagelinks'                => 'Ishoratlar',
+'linkstoimage'              => 'Bu faylga quyidagi sahifalar bogʻlangan:',
+'nolinkstoimage'            => 'Bu faylga bogʻlangan sahifalar yoʻq.',
+'sharedupload'              => 'Ushbu fayl umumiy joyga yuklangandir va boshqa loyihalarda ishlatilishi mumkin.',
+'uploadnewversion-linktext' => 'Bu faylning yangi versiyasini yukla',
+
+# Unused templates
+'unusedtemplates' => 'Ishlatilinmagan shablonlar',
 
 # Random page
 'randompage' => 'Tasodifiy sahifa',
@@ -378,20 +383,31 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'disambiguationspage' => '{{ns:template}}:Disambig',
 
 # Miscellaneous special pages
-'ncategories'      => '$1 {{PLURAL:$1|kategoriya|kategoriyalar}}',
-'wantedcategories' => 'Talab qilinayotgan kategoriyalar',
-'mostcategories'   => "Eng ko'p kategoriyalarli sahifalar",
-'allpages'         => 'Barcha sahifalar',
-'specialpages'     => 'Maxsus sahifalar',
-'rclsub'           => '("$1" bogʻlangan sahifalarga)',
-'newpages'         => 'Yangi sahifalar',
-'move'             => "Ko'chirish",
+'ncategories'             => '$1 {{PLURAL:$1|kategoriya|kategoriyalar}}',
+'lonelypages'             => 'Yetim sahifalar',
+'uncategorizedpages'      => 'Kategoriyasiz sahifalar',
+'uncategorizedcategories' => 'Kategoriyasiz kategoriyalar',
+'uncategorizedimages'     => 'Kategoriyasiz tasvirlar',
+'uncategorizedtemplates'  => 'Kategoriyasiz shablonlar',
+'unusedcategories'        => 'Ishlatilinmagan kategoriyalar',
+'unusedimages'            => 'Ishlatilinmagan fayllar',
+'wantedcategories'        => 'Talab qilinayotgan kategoriyalar',
+'mostcategories'          => "Eng ko'p kategoriyalarli sahifalar",
+'allpages'                => 'Barcha sahifalar',
+'protectedpages'          => 'Himoyalangan sahifalar',
+'listusers'               => 'Foydalanuvchilar roʻyxati',
+'specialpages'            => 'Maxsus sahifalar',
+'rclsub'                  => '("$1" bogʻlangan sahifalarga)',
+'newpages'                => 'Yangi sahifalar',
+'move'                    => "Ko'chirish",
+'movethispage'            => 'Bu sahifani koʻchir',
 
 'categoriespagetext' => 'Ushbu kategoriyalar vikida bor.',
 'alphaindexline'     => '$1 dan $2 ga',
 
 # Special:Log
 'log'               => 'Qaydlar',
+'all-logs-page'     => 'Barcha qaydlar',
 'log-search-submit' => "O'tish",
 
 # Special:Allpages
@@ -435,6 +451,9 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 # Restrictions (nouns)
 'restriction-edit' => 'Tahrirlash',
 
+# Undelete
+'undeletebtn' => 'Qayta tikla',
+
 # Namespace form on various pages
 'namespace' => 'Soha:',
 'invert'    => 'Tanlash tartibini almashtirish',
@@ -465,7 +484,9 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'whatlinkshere-links' => '← ishoratlar',
 
 # Block/unblock
+'blockip'      => 'Foydalanuvchini chetlashtir',
 'ipboptions'   => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
+'ipblocklist'  => 'Chetlashtirilgan IP manzillari va foydalanuvchilar roʻyxati',
 'blocklink'    => 'chetlashtir',
 'contribslink' => 'hissasi',
 'blocklogpage' => 'Chetlashtirish qaydlari',
