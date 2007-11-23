@@ -1071,6 +1071,7 @@ $wgGroupPermissions['bot'  ]['bot']             = true;
 $wgGroupPermissions['bot'  ]['autoconfirmed']   = true;
 $wgGroupPermissions['bot'  ]['nominornewtalk']  = true;
 $wgGroupPermissions['bot'  ]['autopatrol']      = true;
+$wgGroupPermissions['bot'  ]['suppressredirect'] = true;
 
 // Most extra permission abilities go to this group
 $wgGroupPermissions['sysop']['block']           = true;
