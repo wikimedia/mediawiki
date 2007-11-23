@@ -1097,6 +1097,7 @@ $wgGroupPermissions['sysop']['upload_by_url']   = true;
 $wgGroupPermissions['sysop']['ipblock-exempt']	= true;
 $wgGroupPermissions['sysop']['blockemail']      = true;
 $wgGroupPermissions['sysop']['markbotedits']	= true;
+$wgGroupPermissions['sysop']['suppressredirect'] = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;

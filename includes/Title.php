@@ -2193,7 +2193,8 @@ class Title {
 	 * @param bool $auth indicates whether $wgUser's permissions
 	 * 	should be checked
 	 * @param string $reason The reason for the move
-	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title
+	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
+	 *  Ignored if the user doesn't have the suppressredirect right.
 	 * @return mixed true on success, message name on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
@@ -2268,10 +2269,11 @@ class Title {
 	 * @param Title &$nt the page to move to, which should currently
 	 * 	be a redirect
 	 * @param string $reason The reason for the move
-	 * @param bool $createRedirect Whether to leave a redirect at the old title
+	 * @param bool $createRedirect Whether to leave a redirect at the old title.
+	 *  Ignored if the user doesn't have the suppressredirect right
 	 */
 	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUseSquid;
+		global $wgUseSquid, $wgUser;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
 
@@ -2309,7 +2311,7 @@ class Title {
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Recreate the redirect, this time in the other direction.
-		if($createRedirect)
+		if($createRedirect || !$wgUser->isAllowed('suppressredirect'))
 		{
 			$mwRedir = MagicWord::get( 'redirect' );
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
@@ -2351,9 +2353,10 @@ class Title {
 	 * @param Title &$nt the new Title
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title
+	 *  Ignored if the user doesn't have the suppressredirect right
 	 */
 	private function moveToNewTitle( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUseSquid;
+		global $wgUseSquid, $wgUser;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		if ( $reason ) {
@@ -2384,7 +2387,7 @@ class Title {
 
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
-		if($createRedirect)
+		if($createRedirect || !$wgUser->isAllowed('suppressredirect'))
 		{
 			# Insert redirect
 			$mwRedir = MagicWord::get( 'redirect' );
