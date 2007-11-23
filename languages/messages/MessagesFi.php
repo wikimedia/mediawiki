@@ -474,6 +474,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'wrong_wfQuery_params' => 'Virheelliset parametrit wfQuery()<br />Funktio: $1<br />Tiedustelu: $2',
 'viewsource'           => 'Lähdekoodi',
 'viewsourcefor'        => 'sivulle $1',
+'actionthrottled'      => 'Toiminto nopeusrajoitettu',
+'actionthrottledtext'  => 'Ylläpitosyistä tämän toiminnon suorittamista on rajoitettu. Olet suorittanut tämän toiminnon liian monta kertaa lyhyen ajan sisällä. Yritä myöhemmin uudelleen.',
 'protectedpagetext'    => 'Tämä sivu on suojattu muutoksilta.',
 'viewsourcetext'       => 'Voit tarkastella ja kopioida tämän sivun lähdekoodia:',
 'protectedinterface'   => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.',
@@ -554,6 +556,11 @@ Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{
 'invalidemailaddress'        => 'Sähköpostiosoitetta ei voida hyväksyä, koska se ei ole oikeassa muodossa. Ole hyvä ja anna oikea sähköpostiosoite tai jätä kenttä tyhjäksi.',
 'accountcreated'             => 'Käyttäjätunnus luotiin',
 'accountcreatedtext'         => 'Käyttäjän $1 käyttäjätunnus luotiin.',
+'createaccount-title'        => 'Tunnus luoto {{GRAMMAR:genitive|{{SITENAME}}}}',
+'createaccount-text'         => 'Joku ($1) on luonut tunnuksen $2 {{GRAMMAR:genitive|{{SITENAME}}}}
+($4). Tunnuksen $2 salasana on » $3 ». Kirjaudu sisään ja vaihda salasanasi.
+
+Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.',
 'loginlanguagelabel'         => 'Kieli: $1',
 
 # Password reset dialog
@@ -1556,6 +1563,7 @@ $1',
 'ipb_expiry_invalid'          => 'Virheellinen umpeutumisaika.',
 'ipb_already_blocked'         => '”$1” on jo estetty.',
 'ipb_cant_unblock'            => 'Estoa ”$1” ei löytynyt. Se on saatettu poistaa.',
+'ipb_blocked_as_range'        => 'IP-osoite $1 on estetty välillisesti ja sen estoa ei voi poistaa. Se on estetty osana verkkoaluetta $2, jonka eston voi poistaa',
 'ip_range_invalid'            => 'Virheellinen IP-alue.',
 'blockme'                     => 'Estä minut',
 'proxyblocker'                => 'Välityspalvelinesto',
@@ -1676,9 +1684,9 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'importlogpage'                    => 'Tuontiloki',
 'importlogpagetext'                => 'Loki toisista wikeistä tuoduista sivuista.',
 'import-logentry-upload'           => 'toi sivun ”[[$1]]” lähettämällä tiedoston',
-'import-logentry-upload-detail'    => '$1 versio(ta)',
+'import-logentry-upload-detail'    => '{{PLURAL:$1|yksi versio|$1 versiota}}',
 'import-logentry-interwiki'        => 'toi toisesta wikistä sivun ”$1”',
-'import-logentry-interwiki-detail' => '$1 versio(ta) sivusta $2',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|yksi versio|$1 versiota}} wikistä $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Oma käyttäjäsivu',
@@ -1993,6 +2001,9 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'exif-orientation-6' => 'Käännetty 90° myötäpäivään', # 0th row: right; 0th column: top
 'exif-orientation-7' => 'Käännetty 90° myötäpäivään ja pystysuunnassa', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Käännetty 90° vastapäivään', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'kokkaremuoto',
+'exif-planarconfiguration-2' => 'litteämuoto',
 
 'exif-componentsconfiguration-0' => 'ei ole',
 
