@@ -826,7 +826,9 @@ class LoginForm {
 			foreach( $langs as $lang ) {
 				$lang = trim( $lang, '* ' );
 				$parts = explode( '|', $lang );
-				$links[] = $this->makeLanguageSelectorLink( $parts[0], $parts[1] );
+				if (count($parts) >= 2) {
+					$links[] = $this->makeLanguageSelectorLink( $parts[0], $parts[1] );
+				}
 			}
 			return count( $links ) > 0 ? wfMsgHtml( 'loginlanguagelabel', implode( ' | ', $links ) ) : '';
 		} else {
