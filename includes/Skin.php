@@ -479,7 +479,7 @@ class Skin extends Linker {
 	function reallyDoGetUserStyles() {
 		global $wgUser;
 		$s = '';
-		if (($undopt = $wgUser->getOption("underline")) != 2) {
+		if (($undopt = $wgUser->getOption("underline")) < 2) {
 			$underline = $undopt ? 'underline' : 'none';
 			$s .= "a { text-decoration: $underline; }\n";
 		}
@@ -490,17 +490,14 @@ class Skin extends Linker {
 a.new, #quickbar a.new,
 a.stub, #quickbar a.stub {
 	color: inherit;
-	text-decoration: inherit;
 }
 a.new:after, #quickbar a.new:after {
 	content: "?";
 	color: #CC2200;
-	text-decoration: $underline;
 }
 a.stub:after, #quickbar a.stub:after {
 	content: "!";
 	color: #772233;
-	text-decoration: $underline;
 }
 END;
 		}
