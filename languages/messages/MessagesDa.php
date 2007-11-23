@@ -451,6 +451,8 @@ Funktion: $1<br />
 Forespørgsel: $2',
 'viewsource'           => 'Vis kilden',
 'viewsourcefor'        => 'for $1',
+'actionthrottled'      => 'Begrænsning af handling',
+'actionthrottledtext'  => "For at modvirke spam, er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Vær venlig at forsøge igen om et par minutter.",
 'protectedpagetext'    => 'Denne side er skrivebeskyttet.',
 'viewsourcetext'       => 'Du kan dog se og kopiere kildekoden til siden:',
 'protectedinterface'   => 'Denne side indeholder tekst til softwarens sprog-interface og er skrivebeskyttet for at forhindre misbrug.',
@@ -545,6 +547,11 @@ Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, ska
 'invalidemailaddress'        => 'E-mail-adressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mail-adresse med et korrekt format eller tøm feltet.',
 'accountcreated'             => 'Brugerkonto oprettet',
 'accountcreatedtext'         => 'Brugerkontoen $1 er oprettet.',
+'createaccount-title'        => 'Opret brugerkonto på {{SITENAME}}',
+'createaccount-text'         => 'En bruger ($1) har oprettet en konto for $2 på {{SITENAME}}
+($4). Password for "$2" er "$3". Du opfordres til at logge ind, og ændre kodeordet omgående.
+
+Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.',
 
 # Password reset dialog
 'resetpass'               => 'Nulstille password for brugerkonto',
@@ -1622,8 +1629,9 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'range_block_disabled'        => 'Sysop-muligheden for at oprette blokeringsklasser er slået fra.',
 'ipb_expiry_invalid'          => 'Udløbstiden er ugyldig.',
 'ipb_already_blocked'         => '„$1“ er allerede blokeret',
-'ip_range_invalid'            => 'Ugyldigt IP-interval.',
 'ipb_cant_unblock'            => 'Fejl: Spærre-ID $1 ikke fundet. Spærringen er allerede ophævet.',
+'ipb_blocked_as_range'        => 'Fejl: IP-adressen $1 er ikke dirkete blokeret. Derfor kan en blokering ikke ophæves. Adressen er blokeret som en del af intervallet $2. Denne blokering kan ophæves.',
+'ip_range_invalid'            => 'Ugyldigt IP-interval.',
 'blockme'                     => 'Bloker mig',
 'proxyblocker'                => 'Proxy-blokering',
 'proxyblocker-disabled'       => 'Denne funktion er ikke i brug.',
