@@ -50,4 +50,7 @@ function updateBlockOptions() {
 
 	var emailblockRow = document.getElementById('wpEnableEmailBan');
 	emailblockRow.style.display = isIp && !isEmpty ? 'none' : '';
+	
+	var emailblockRow = document.getElementById('wpEnableHideUser');
+	emailblockRow.style.display = isIp && !isEmpty ? 'none' : '';
 }
