@@ -1005,6 +1005,25 @@ class Language {
 			$str = substr( $s, 0, strlen( $s ) - 2 ) . '"';
 			$str .= substr( $s, strlen( $s ) - 2, 2 );
 		}
+		$start = substr( $str, 0, strlen( $str ) - 2 );
+		$end = substr( $str, strlen( $str ) - 2 );
+		switch( $end ) {
+			case 'כ':
+				$str = $start . 'ך';
+				break;
+			case 'מ':
+				$str = $start . 'ם';
+				break;
+			case 'נ':
+				$str = $start . 'ן';
+				break;
+			case 'פ':
+				$str = $start . 'ף';
+				break;
+			case 'צ':
+				$str = $start . 'ץ';
+				break;
+		}
 		return $str;
 	}
 
