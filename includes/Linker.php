@@ -254,10 +254,9 @@ class Linker {
 						$dbr = wfGetDB( DB_SLAVE );
 						$s = $dbr->selectRow(
 							array( 'page' ),
-							array( 'page_len',
-							       'page_is_redirect' ),
+							array( 'page_len', 'page_is_redirect', 'page_namespace' ),
 							array( 'page_id' => $aid ), __METHOD__ ) ;
-						$colour=$this->getLinkColour( $s, $threshold );
+						$colour = $this->getLinkColour( $s, $threshold );
 					}
 				}
 				$retVal = $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
