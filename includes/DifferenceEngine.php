@@ -220,14 +220,49 @@ CONTROL;
 			$newminor = wfElement( 'span', array( 'class' => 'minor' ),
 			wfMsg( 'minoreditletter') ) . ' ';
 		}
+		
+		$rdel = ''; $ldel = '';
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+			if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
+			// If revision was hidden from sysops
+				$ldel = wfMsgHtml('rev-delundel');	
+			} else {
+				$ldel = $sk->makeKnownLinkObj( $revdel,
+					wfMsgHtml('rev-delundel'),
+					'target=' . urlencode( $this->mOldRev->mTitle->getPrefixedDbkey() ) .
+					'&oldid=' . urlencode( $this->mOldRev->getId() ) );
+				// Bolden oversighted content
+				if( $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) )
+					$ldel = "<strong>$ldel</strong>";
+			}
+			$ldel = "&nbsp;&nbsp;&nbsp;<tt>(<small>$ldel</small>)</tt> ";
+			// We don't currently handle well changing the top revision's settings
+			if( $this->mNewRev->isCurrent() ) {
+			// If revision was hidden from sysops
+				$rdel = wfMsgHtml('rev-delundel');	
+			} else if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
+			// If revision was hidden from sysops
+				$rdel = wfMsgHtml('rev-delundel');	
+			} else {
+				$rdel = $sk->makeKnownLinkObj( $revdel,
+					wfMsgHtml('rev-delundel'),
+					'target=' . urlencode( $this->mNewRev->mTitle->getPrefixedDbkey() ) .
+					'&oldid=' . urlencode( $this->mNewRev->getId() ) );
+				// Bolden oversighted content
+				if( $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) )
+					$rdel = "<strong>$rdel</strong>";
+			}
+			$rdel = "&nbsp;&nbsp;&nbsp;<tt>(<small>$rdel</small>)</tt> ";
+		}
 
-		$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $this->mOldtitle . '</strong></div>' .
-			'<div id="mw-diff-otitle2">' . $sk->revUserTools( $this->mOldRev ) . "</div>" .
-			'<div id="mw-diff-otitle3">' . $oldminor . $sk->revComment( $this->mOldRev, !$diffOnly ) . "</div>" .
-			'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
-		$newHeader = '<div id="mw-diff-ntitle1"><strong>' .$this->mNewtitle . '</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . $sk->revUserTools( $this->mNewRev ) . " $rollback</div>" .
-			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly ) . "</div>" .
+		$oldHeader = '<div id="mw-diff-otitle1"><strong>'.$this->mOldtitle.'</strong></div>' .
+			'<div id="mw-diff-otitle2">' . $sk->revUserTools( $this->mOldRev, true ) . "</div>" .
+			'<div id="mw-diff-otitle3">' . $oldminor . $sk->revComment( $this->mOldRev, !$diffOnly, true ) . $ldel . "</div>" .
+			'<div id="mw-diff-otitle4">' . $prevlink .'</div>';
+		$newHeader = '<div id="mw-diff-ntitle1"><strong>'.$this->mNewtitle.'</strong></div>' .
+			'<div id="mw-diff-ntitle2">' . $sk->revUserTools( $this->mNewRev, true ) . " $rollback</div>" .
+			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, true ) . $rdel . "</div>" .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
 		$this->showDiff( $oldHeader, $newHeader );
@@ -248,8 +283,10 @@ CONTROL;
 
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 		#add deleted rev tag if needed
-		if ( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
 		  	$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
+		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
+		  	$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
 		}
 
 		if( !$this->mNewRev->isCurrent() ) {
@@ -407,20 +444,25 @@ CONTROL;
 			} // don't try to load but save the result
 		}
 
-		#loadtext is permission safe, this just clears out the diff
+		// Loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
 			wfProfileOut( $fname );
 			return false;
 		} else if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
-		  return '';
+		  	return '';
 		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-		  return '';
+		  	return '';
 		}
 
 		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
 		
 		// Save to cache for 7 days
-		if ( $key !== false && $difftext !== false ) {
+		// Only do this for public revs, otherwise an admin can view the diff and a non-admin can nab it!
+		if ( $this->mOldRev && $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
+			wfIncrStats( 'diff_uncacheable' );
+		} else if ( $this->mNewRev && $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
+			wfIncrStats( 'diff_uncacheable' );
+		} else if ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
 			$wgMemc->set( $key, $difftext, 7*86400 );
 		} else {
@@ -552,15 +594,9 @@ CONTROL;
 	/**
 	 * Add the header to a diff body
 	 */
-	function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
+	static function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
 		global $wgOut;
-	
-		if ( $this->mOldRev && $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
-		   $otitle = '<span class="history-deleted">'.$otitle.'</span>';
-		}
-		if ( $this->mNewRev && $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-		   $ntitle = '<span class="history-deleted">'.$ntitle.'</span>';
-		}
+
 		$header = "
 			<table class='diff'>
 			<col class='diff-marker' />
@@ -631,10 +667,15 @@ CONTROL;
 		} else {
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mNewid );
-			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $timestamp ) );
+			$this->mPagetitle = wfMsgHTML( 'revisionasof', $timestamp );
 
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>"
 				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+		}
+		if ( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		  	$this->mNewtitle = "<span class='history-deleted'>{$this->mPagetitle}</span>";
+		} else if ( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
+		  	$this->mNewtitle = '<span class="history-deleted">'.$this->mNewtitle.'</span>';
 		}
 
 		// Load the old revision object
@@ -663,12 +704,20 @@ CONTROL;
 			$t = $wgLang->timeanddate( $this->mOldRev->getTimestamp(), true );
 			$oldLink = $this->mOldPage->escapeLocalUrl( 'oldid=' . $this->mOldid );
 			$oldEdit = $this->mOldPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mOldid );
-			$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) )
-				. "</a> (<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+			$this->mOldPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
 			
+			$this->mOldtitle = "<a href='$oldLink'>{$this->mOldPagetitle}</a>"
+				. "(<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
 			// Add an "undo" link
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undoafter=' . $this->mOldid . '&undo=' . $this->mNewid);
-			$this->mNewtitle .= " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
+			if ( $this->mNewRev->userCan(Revision::DELETED_TEXT) )
+				$this->mNewtitle .= " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
+			
+			if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
+		  		$this->mOldtitle = "<span class='history-deleted'>{$this->mOldPagetitle}</span>";
+			} else if ( $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
+		  		$this->mOldtitle = '<span class="history-deleted">'.$this->mOldtitle.'</span>';
+			}
 		}
 
 		return true;
@@ -689,7 +738,6 @@ CONTROL;
 			return false;
 		}
 		if ( $this->mOldRev ) {
-			// FIXME: permission tests
 			$this->mOldtext = $this->mOldRev->revText();
 			if ( $this->mOldtext === false ) {
 				return false;
