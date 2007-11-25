@@ -173,6 +173,11 @@ class LogPage {
 							$text = $wgContLang->ucfirst( $title->getText() );
 							$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
 							break;
+						case 'merge':
+							$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
+							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), htmlspecialchars( $params[0] ) );
+							$params[1] = $wgLang->timeanddate( $params[1] );
+							break;
 						default:
 							$titleLink = $skin->makeLinkObj( $title );
 					}

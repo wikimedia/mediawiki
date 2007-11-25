@@ -405,8 +405,13 @@ class LogViewer {
 				}
 				# Suppress $comment from old entries, not needed and can contain incorrect links
 				$comment = '';
+			// Show unmerge link
+			} elseif ( $s->log_action == 'merge' ) {
+				$merge = SpecialPage::getTitleFor( 'Mergehistory' );
+				$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, wfMsg('revertmerge'),
+					wfArrayToCGI( array('target' => $paramArray[0], 'dest' => $title->getPrefixedText() ) ) ) . ')';
 			} elseif ( wfRunHooks( 'LogLine', array( $s->log_type, $s->log_action, $title, $paramArray, &$comment, &$revert ) ) ) {
-				//wfDebug( "Invoked LogLine hook for " $s->log_type . ", " . $s->log_action . "\n" );
+				// wfDebug( "Invoked LogLine hook for " $s->log_type . ", " . $s->log_action . "\n" );
 				// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 			}
 		}

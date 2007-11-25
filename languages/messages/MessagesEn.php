@@ -1183,6 +1183,30 @@ undelete it again through this same interface, unless additional restrictions ar
 'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content
 hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 
+# History merging
+'mergehistory'          => 'Merge page histories',
+'mergehistory-header'   => "This page lets you merge revisions of the history of one source page into a newer page.
+Make sure that this change will maintain historical page continuity.
+
+'''At least the current revision of the source page must remain.'''",
+'mergehistory-box'      => 'Merge revisions of two pages:',
+'mergehistory-from'     => 'Source page:',
+'mergehistory-into'     => 'Destination page:',
+'mergehistory-list'     => 'Mergeable edit history',
+'mergehistory-merge'    => 'The following revisions of [[:$1|$1]] can be merged into [[:$2|$2]]. Use the radio 
+button column to merge in only the revisions created at and before the specified time. Note that using the 
+navigation links will reset this column.',
+'mergehistory-go'       => 'Show mergeable edits',
+'mergehistory-submit'   => 'Merge revisions',
+'mergehistory-empty'    => 'No revisions can be merged',
+'mergehistory-success'  => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
+'mergehistory-fail'     => 'Unable to perform history merge, please recheck the page and time parameters.',
+
+'mergelog'              => 'Merge log',
+'pagemerge-logentry'    => 'merged $1 into $2 (revisions up to $3)',
+'revertmerge'           => 'Unmerge',
+'mergelogpagetext'      => 'Below is a list of the most recent merges of one page history into another.',
+
 # Diffs
 'history-title'             => 'Revision history of "$1"',
 'difference'                => '(Difference between revisions)',
