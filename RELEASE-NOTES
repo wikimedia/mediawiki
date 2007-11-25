@@ -79,6 +79,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * dumpTextPass.php can spawn fetchText.php as a subprocess, which should restart
   cleanly if database connections fail unpleasantly.
 * (bug 12028) Add Special:Listbots as shortcut for Special:Listusers/bot
+* (bug 9633) Add a predefined list of delete reasons to the deletion form
 
 === Bug fixes in 1.12 ===
 
