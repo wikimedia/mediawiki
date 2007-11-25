@@ -1891,6 +1891,13 @@ See $2 for a record of recent deletions.',
 'deletionlog'                 => 'deletion log',
 'reverted'                    => 'Reverted to earlier revision',
 'deletecomment'               => 'Reason for deletion',
+'deleteotherreason'           => 'Other/additional reason:',
+'deletereasonotherlist'       => 'Other reason',
+'deletereason-dropdown'       => '
+*Common delete reasons
+** Author request
+** Copyright violation
+** Vandalism',
 'rollback'                    => 'Roll back edits',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',

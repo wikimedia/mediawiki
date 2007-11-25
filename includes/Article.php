@@ -1925,7 +1925,15 @@ class Article {
 		global $wgUser, $wgOut, $wgRequest;
 		$confirm = $wgRequest->wasPosted() &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
-		$reason = $wgRequest->getText( 'wpReason' );
+		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
+		$this->DeleteReason = $wgRequest->getText( 'wpReason' );
+		$reason = $this->DeleteReasonList;
+		if ( $reason != 'other' && $this->DeleteReason != '') {
+			// Entry from drop down menu + additional comment
+			$reason .= ': ' . $this->DeleteReason;
+		} elseif ( $reason == 'other' ) {
+			$reason = $this->DeleteReason;
+		}
 
 		# This code desperately needs to be totally rewritten
 
@@ -2034,18 +2042,63 @@ class Article {
 		$formaction = $this->mTitle->escapeLocalURL( 'action=delete' . $par );
 
 		$confirm = htmlspecialchars( wfMsg( 'deletepage' ) );
-		$delcom = htmlspecialchars( wfMsg( 'deletecomment' ) );
+		$delcom = Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' );
 		$token = htmlspecialchars( $wgUser->editToken() );
 		$watch = Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching(), array( 'tabindex' => '2' ) );
+		
+		$mDeletereasonother = Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' );
+		$mDeletereasonotherlist = wfMsgHtml( 'deletereasonotherlist' );
+		$scDeleteReasonList = wfMsgForContent( 'deletereason-dropdown' );
 
+		$deleteReasonList = '';
+		if ( $scDeleteReasonList != '' && $scDeleteReasonList != '-' ) { 
+			$deleteReasonList = "<option value=\"other\">$mDeletereasonotherlist</option>";
+			$optgroup = "";
+			foreach ( explode( "\n", $scDeleteReasonList ) as $option) {
+				$value = trim( htmlspecialchars($option) );
+				if ( $value == '' ) {
+					continue;
+				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
+					// A new group is starting ...
+					$value = trim( substr( $value, 1 ) );
+					$deleteReasonList .= "$optgroup<optgroup label=\"$value\">";
+					$optgroup = "</optgroup>";
+				} elseif ( substr( $value, 0, 2) == '**' ) {
+					// groupmember
+					$selected = "";
+					$value = trim( substr( $value, 2 ) );
+					if ( $this->DeleteReasonList === $value)
+						$selected = ' selected="selected"';
+					$deleteReasonList .= "<option value=\"$value\"$selected>$value</option>";
+				} else {
+					// groupless delete reason
+					$selected = "";
+					if ( $this->DeleteReasonList === $value)
+						$selected = ' selected="selected"';
+					$deleteReasonList .= "$optgroup<option value=\"$value\"$selected>$value</option>";
+					$optgroup = "";
+				}
+			}
+			$deleteReasonList .= $optgroup;
+		}
 		$wgOut->addHTML( "
 <form id='deleteconfirm' method='post' action=\"{$formaction}\">
 	<table border='0'>
 		<tr>
 			<td align='right'>
-				<label for='wpReason'>{$delcom}:</label>
+				$delcom:
 			</td>
 			<td align='left'>
+				<select tabindex='2' id='wpDeleteReasonList' name=\"wpDeleteReasonList\">
+					$deleteReasonList
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				$mDeletereasonother
+			</td>
+			<td align='right'>
 				<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"1\" />
 			</td>
 		</tr>
