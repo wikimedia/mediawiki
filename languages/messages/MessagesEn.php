@@ -1193,15 +1193,14 @@ Make sure that this change will maintain historical page continuity.
 'mergehistory-from'     => 'Source page:',
 'mergehistory-into'     => 'Destination page:',
 'mergehistory-list'     => 'Mergeable edit history',
-'mergehistory-merge'    => 'The following revisions of [[:$1|$1]] can be merged into [[:$2|$2]]. Use the radio 
-button column to merge in only the revisions created at and before the specified time. Note that using the 
-navigation links will reset this column.',
+'mergehistory-merge'    => 'The following revisions of [[:$1]] can be merged into [[:$2]]. Use the radio button column to merge in only the revisions created at and before the specified time. Note that using the navigation links will reset this column.',
 'mergehistory-go'       => 'Show mergeable edits',
 'mergehistory-submit'   => 'Merge revisions',
 'mergehistory-empty'    => 'No revisions can be merged',
-'mergehistory-success'  => '$3 revisions of [[:$1|$1]] successfully merged into [[:$2|$2]].',
+'mergehistory-success'  => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
 'mergehistory-fail'     => 'Unable to perform history merge, please recheck the page and time parameters.',
 
+# Merge log
 'mergelog'              => 'Merge log',
 'pagemerge-logentry'    => 'merged [[$1]] into [[$2]] (revisions up to $3)',
 'revertmerge'           => 'Unmerge',
