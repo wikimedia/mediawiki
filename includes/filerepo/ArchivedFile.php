@@ -304,8 +304,7 @@ class ArchivedFile
 	 * @return bool
 	 */
 	public function userCan( $field ) {
-		if( isset($this->deleted) && ($this->deleted & $field) == $field ) {
-		// images
+		if( ($this->deleted & $field) == $field ) {
 			global $wgUser;
 			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
 				? 'hiderevision'
