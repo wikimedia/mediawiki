@@ -1099,6 +1099,7 @@ $wgGroupPermissions['sysop']['ipblock-exempt']	= true;
 $wgGroupPermissions['sysop']['blockemail']      = true;
 $wgGroupPermissions['sysop']['markbotedits']	= true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
+#$wgGroupPermissions['sysop']['mergehistory']    = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
@@ -2276,6 +2277,7 @@ $wgLogTypes = array( '',
 	'move',
 	'import',
 	'patrol',
+	'merge',
 );
 
 /**
@@ -2294,6 +2296,7 @@ $wgLogNames = array(
 	'move'    => 'movelogpage',
 	'import'  => 'importlogpage',
 	'patrol'  => 'patrol-log-page',
+	'merge'   => 'mergelog',
 );
 
 /**
@@ -2312,6 +2315,7 @@ $wgLogHeaders = array(
 	'move'    => 'movelogpagetext',
 	'import'  => 'importlogpagetext',
 	'patrol'  => 'patrol-log-header',
+	'merge'   => 'mergelogpagetext',
 );
 
 /**
@@ -2337,6 +2341,7 @@ $wgLogActions = array(
 	'move/move_redir'   => '1movedto2_redir',
 	'import/upload'     => 'import-logentry-upload',
 	'import/interwiki'  => 'import-logentry-interwiki',
+	'merge/merge'        => 'pagemerge-logentry',
 );
 
 /**
