@@ -265,6 +265,9 @@ class MergehistoryForm {
 		# Verify that this timestamp is valid
 		# Must be older than the destination page
 		$dbw = wfGetDB( DB_MASTER );
+		# Get timestamp into DB format
+		$this->mTimestamp = $this->mTimestamp ? $dbw->timestamp($this->mTimestamp) : '';
+		
 		$maxtimestamp = $dbw->selectField( 'revision', 'MIN(rev_timestamp)',
 			array('rev_page' => $this->mDestID ),
 			__METHOD__ );
@@ -280,32 +283,34 @@ class MergehistoryForm {
 			__METHOD__ );
 		# Take the most restrictive of the twain
 		$maxtimestamp = ($lasttime < $maxtimestamp) ? $lasttime : $maxtimestamp;
+		// $this->mTimestamp must be less than $maxtimestamp
 		if( $this->mTimestamp >= $maxtimestamp ) {
 			$wgOut->addHtml( wfMsg('mergehistory-fail') );
 			return false;
 		}
 		# Update the revisions
-		if( $this->mTimestamp )
+		if( $this->mTimestamp ) {
 			$timewhere = "rev_timestamp <= {$this->mTimestamp}";
-		else
-			$timewhere = '1 = 1';
+			$TimestampLimit = wfTimestamp(TS_MW,$this->mTimestamp);
+		} else {
+			$timewhere = "rev_timestamp < {$maxtimestamp}";
+			$TimestampLimit = wfTimestamp(TS_MW,$maxtimestamp);
+		}
 		
 		$dbw->update( 'revision',
 			array( 'rev_page' => $this->mDestID ),
-			array( 'rev_page' => $this->mTargetID, 
-				"rev_timestamp < {$maxtimestamp}",
+			array( 'rev_page' => $this->mTargetID,
 				$timewhere ),
 			__METHOD__ );
 		# Check if this did anything
-		$count = $dbw->affectedRows();
-		if( !$count ) {
+		if( !$count = $dbw->affectedRows() ) {
 			$wgOut->addHtml( wfMsg('mergehistory-fail') );
 			return false;
 		}
 		# Update our logs
 		$log = new LogPage( 'merge' );
 		$log->addEntry( 'merge', $targetTitle, $this->mComment, 
-			array($destTitle->getPrefixedText(),$this->mTimestamp) );
+			array($destTitle->getPrefixedText(),$TimestampLimit) );
 		
 		$wgOut->addHtml( wfMsgExt( 'mergehistory-success', array('parseinline'),
 			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count ) );

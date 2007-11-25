@@ -1199,11 +1199,11 @@ navigation links will reset this column.',
 'mergehistory-go'       => 'Show mergeable edits',
 'mergehistory-submit'   => 'Merge revisions',
 'mergehistory-empty'    => 'No revisions can be merged',
-'mergehistory-success'  => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
+'mergehistory-success'  => '$3 revisions of [[:$1|$1]] successfully merged into [[:$2|$2]].',
 'mergehistory-fail'     => 'Unable to perform history merge, please recheck the page and time parameters.',
 
 'mergelog'              => 'Merge log',
-'pagemerge-logentry'    => 'merged [[:$1]] into [[:$2]] (revisions up to $3)',
+'pagemerge-logentry'    => 'merged [[$1]] into [[$2]] (revisions up to $3)',
 'revertmerge'           => 'Unmerge',
 'mergelogpagetext'      => 'Below is a list of the most recent merges of one page history into another.',
 
