@@ -1203,7 +1203,7 @@ navigation links will reset this column.',
 'mergehistory-fail'     => 'Unable to perform history merge, please recheck the page and time parameters.',
 
 'mergelog'              => 'Merge log',
-'pagemerge-logentry'    => 'merged $1 into $2 (revisions up to $3)',
+'pagemerge-logentry'    => 'merged [[$1]] into [[$2]] (revisions up to $3)',
 'revertmerge'           => 'Unmerge',
 'mergelogpagetext'      => 'Below is a list of the most recent merges of one page history into another.',
 
