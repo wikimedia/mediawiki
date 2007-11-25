@@ -5,6 +5,7 @@
  *
  * @author Bangin
  * @author Nike
+ * @author SieBot
  */
 
 $namespaceNames = array(
@@ -345,6 +346,7 @@ Fonksîyon: $1<br />
 Jêpirskirin: $2",
 'viewsource'           => 'Çavkanî',
 'viewsourcefor'        => 'ji $1 ra',
+'actionthrottled'      => 'Hejmarê guherandinan hatîye hesibandin',
 'protectedpagetext'    => 'Ev rûpela hatîye parastin ji bo nenivîsandinê.',
 'viewsourcetext'       => 'Tu dikarê li çavkanîyê vê rûpelê sekê û wê kopîbikê:',
 'protectedinterface'   => "Di vê rûpelê da nivîsandin ji bo interface'î zimanan yê vê software'ê ye. Ew tê parstin ji bo vandalîzm li vê derê çênebe.",
@@ -408,18 +410,29 @@ Hesaba te hat afirandin. Tu dikarî niha tercîhên xwe eyar bikî.',
 'loginsuccess'               => 'Tu niha di {{SITENAME}} de qeydkirî yî wek "$1".',
 'nosuchuser'                 => 'Bikarhênera/ê bi navê "$1" tune. Navê rast binivîse an bi vê formê <b>hesabeke nû çêke</b>. (Ji bo hevalên nû "Têkeve" çênabe!)',
 'nosuchusershort'            => 'Li vê derê ne bikarhênerek bi navî "$1" heye. Li nivîsandinê xwe seke.',
+'nouserspecified'            => 'Navî xwe wek bikarhêner têkê.',
 'wrongpassword'              => 'Şifreya ku te nivîsand şaşe. Ji kerema xwe careke din biceribîne.',
 'wrongpasswordempty'         => 'Cîhê şîfreya te vala ye. Carekê din binivisîne.',
+'passwordtooshort'           => 'Şîfreya te netê qebûlkirin: Şîfreya te gereke bi kêmani $1 nîşanên xwe hebe û ne wek navî tê wek bikarhêner be.',
 'mailmypassword'             => 'Şîfreyeke nû bi e-mail ji min re bişîne',
+'passwordremindertitle'      => 'Şîfreyakekî nuh ji hesabekî {{SITENAME}} ra',
+'passwordremindertext'       => 'Kesek (têbê tu, bi IP\'ya $1) xwast ku şîfreyekî nuh ji {{SITENAME}} ($4) ji te ra were şandin. Şîfreya nuh ji bikarhêner "$2" niha "$3" e. Tu dikarî niha têkevê û şîfreya xwe biguherînê.
+
+Eger kesekî din vê xastinê ji te ra xast ya şîfreya kevin dîsa hate bîrê te, tu dikarê guh nedê vê peyamê û tu dikarê bi şîfreya xwe yê kevin hên karbikê.',
 'noemail'                    => 'Navnîşana bikarhênerê/î "$1" nehat tomar kirine.',
 'passwordsent'               => 'Ji navnîşana e-mail ku ji bo "$1" hat tomarkirin şîfreyekê nû hat şandin. Vê bistîne û dîsa têkeve.',
+'mailerror'                  => 'Şaşbûnek li cem şandina e-nameyekê: $1',
 'acct_creation_throttle_hit' => 'Biborîne! Te hesab $1 vekirine. Tu êdî nikarî hesabên din vekî.',
+'emailauthenticated'         => 'Adresa e-nameya hate naskirin: $1.',
 'emailconfirmlink'           => 'E-Mail adresê xwe nasbike',
 'accountcreated'             => 'Account hate çêkirin',
+'accountcreatedtext'         => 'Hesabê bikarhêneran ji $1 ra hate çêkirin.',
+'createaccount-title'        => 'Çêkirina hesabekî ji {{SITENAME}}',
 'loginlanguagelabel'         => 'Ziman: $1',
 
 # Password reset dialog
-'resetpass_text' => '<!-- Nivîsê xwe li vir binivisîne -->',
+'resetpass_text'   => '<!-- Nivîsê xwe li vir binivisîne -->',
+'resetpass_header' => 'Şîfreya xwe betalbike',
 
 # Edit page toolbar
 'bold_sample'     => 'Nivîsa estûr',
@@ -609,6 +622,7 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 'prefsnologin'      => 'Xwe qeyd nekir',
 'changepassword'    => 'Şîfre biguherîne',
 'skin'              => 'Pêste',
+'math'              => 'TeX',
 'dateformat'        => 'Formata rojê',
 'datedefault'       => 'Tercih tune ne',
 'datetime'          => 'Dem û rêkewt',

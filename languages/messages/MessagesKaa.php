@@ -250,7 +250,7 @@ $messages = array(
 'bugreports'        => 'Qatelik esabatları',
 'bugreportspage'    => '{{ns:project}}:Qatelik esabatları',
 'copyrightpagename' => "{{SITENAME}} proyektinin' avtorlıq huquqları",
-'copyrightpage'     => '{{ns:project}}:Avtorlıq huquqlarları',
+'copyrightpage'     => '{{ns:project}}:Avtorlıq huquqları',
 'currentevents'     => "Ha'zirgi ha'diyseler",
 'currentevents-url' => "Ha'zirgi ha'diyseler",
 'disclaimers'       => 'Juwapkershilikten bas tartıw',
@@ -418,6 +418,7 @@ Bloklawdı \$1 a'melge asırg'an. Keltirilgen sebebi: ''\$2''.
 Usı bloklawdı diskussiya qılıw ushın \$1 yamasa basqa [[{{{{ns:mediawiki}}:grouppage-sysop}}|administratorlar]] menen baylanısqa shıg'ıwın'ızg'a boladı.
 Siz [[{{ns:special}}:Preferences|akkaunt sazlawların'ızda]] haqıyqıy e-mailin'izdı ko'rsetpegenin'izshe ha'mde onı paydalanıwdan bloklang'an bolg'anısha \"Usı paydalanıwshıg'a xat jazıw\" qa'siyetinen qollana almaysız.
 Sizin' ha'zirgi IP adresin'iz: \$3, bloklaw IDı: #\$5. Usılardın' birewin yamasa ekewinde ha'r bir sorawın'ızg'a qosın'.",
+'blockednoreason'        => 'hesh sebep keltirilmegen',
 'blockedoriginalsource'  => "'''$1''' degennin' deregi
 to'mende ko'rsetilgen:",
 'blockededitsource'      => "'''$1''' degennin' '''siz ozgertken''' teksti to'mende ko'rsetilgen:",
@@ -464,6 +465,9 @@ Qolaylıq ushın to'mende o'shiriw jurnalı keltirilgen:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akkaunt jaratılmadı',
+'cantcreateaccount-text' => "[[{{ns:user}}:$3|$3]] usı IP adresten (<b>$1</b>) akkaunt jaratıwın blokladı.
+
+$3 keltirilgen sebebi: ''$2''",
 
 # History pages
 'revhistory'          => 'Nusqa tariyxı',
@@ -507,6 +511,9 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'revdelete-hide-image'   => "Fayl mag'lıwmatın jasır",
 'revdelete-log'          => 'Jurnal kommentariyi:',
 'revdelete-logentry'     => "[[$1]] nusqa ko'rinisin o'zgertti",
+
+# Oversight log
+'oversightlog' => 'Nusqa jasırıw jurnalı',
 
 # Diffs
 'history-title'             => '"$1" betinin\' nusqa tariyxı',
@@ -805,7 +812,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'all-logs-page'        => "Ha'mme jurnallar",
 'log-search-legend'    => 'Jurnallardı izlew',
 'log-search-submit'    => "O'tin'",
-'log-title-wildcard'   => "Mına tekstten baslang'an atamalardı izlew",
+'log-title-wildcard'   => "Usı tekstten baslang'an atamalardı izlew",
 
 # Special:Allpages
 'nextpage'          => 'Keyingi bet ($1)',

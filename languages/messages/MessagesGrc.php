@@ -2,8 +2,14 @@
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
  *
  * @addtogroup Language
- * Translators: LeighvsOptimvsMaximvs, Lefcant, AndreasJS, Neachili, SPQRobin,
- *   Yannos
+ *
+ * @author LeighvsOptimvsMaximvs
+ * @author Lefcant
+ * @author AndreasJS
+ * @author Neachili
+ * @author SPQRobin
+ * @author Nike
+ * @author Yannos
  */
 
 $dateFormats = array(
@@ -40,7 +46,10 @@ $messages = array(
 'tog-watchdefault'            => 'Προστινθέναι τὰς δέλτους ἃς μεταγράφω τοῖς ἐφορώμενοῖς ἔμου',
 'tog-watchmoves'              => 'Προστινθέναι τὰς δέλτους ἃς κινῶ τοῖς ἐφορώμενοῖς ἔμου',
 'tog-watchdeletion'           => 'Προστινθέναι τὰς δέλτους ἃς διαγράφω τοῖς ἐφορώμενοῖς ἔμου',
+'tog-previewonfirst'          => 'Τῆς πρῶτης μεταγράφης, δεικνύναι τὸ προεπισκοπεῖν',
 'tog-shownumberswatching'     => 'Δεικνύναι ἀριθμὸν παρακολουθούντων χρηστῶν',
+'tog-watchlisthideown'        => 'Οὐ δηλοῦν τὰς ἐμὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
+'tog-watchlisthideminor'      => 'Οὐ δηλοῦν τὰς μικρὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
 
 'underline-always' => 'Ἀεὶ',
 'underline-never'  => 'Οὔποτε',
@@ -145,7 +154,7 @@ $messages = array(
 'undelete_short'    => 'Ἐπανορθοῦν {{PLURAL:$1|ἕνα μεταγραφέν|$1 μεταγραφέντα}}',
 'protect'           => 'Φυλλάττειν',
 'protectthispage'   => 'Tήνδε τὴν δέλτον φυλάττειν',
-'unprotect'         => 'Μὴ φυλάττειν',
+'unprotect'         => 'μὴ φυλάττειν',
 'unprotectthispage' => 'Tήνδε τὴν δέλτον  μὴ φυλάττειν',
 'newpage'           => 'Δέλτος νέα',
 'talkpage'          => 'Διαλέγε τήνδε τὴν δέλτον',
@@ -195,7 +204,7 @@ $messages = array(
 'hidetoc'             => 'κρύπτειν',
 'viewdeleted'         => 'Ὁρᾶν $1;',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Χρῆμα',
 'nstab-user'      => 'Δέλτος χρωμένου',
 'nstab-mediawiki' => 'Ἀγγελία',
@@ -234,6 +243,7 @@ $messages = array(
 'loginreqlink'       => 'Ἐγγράφειν',
 'newarticle'         => '(νέα)',
 'editing'            => 'Μεταγράφων $1',
+'yourtext'           => 'Τὰ ὑπό σου γραφόμενα',
 'yourdiff'           => 'Τὰ διαφέροντα',
 'template-protected' => '(φυλλάττεται)',
 
@@ -243,6 +253,8 @@ $messages = array(
 'last'                => 'ἡ ὑστάτη',
 'page_first'          => 'πρώτη',
 'page_last'           => 'ἐσχάτη',
+'histfirst'           => 'πρώτη',
+'histlast'            => 'ἐσχάτη',
 
 # Revision deletion
 'rev-delundel' => 'δεικνύναι/κρύπτειν',
@@ -304,13 +316,15 @@ $messages = array(
 # Unused templates
 'unusedtemplateswlh' => 'οἱ σύνδεσμοι οἱ ἄλλοι',
 
+# Random page
+'randompage' => 'Δέλτος τυχοῦσα',
+
 'brokenredirects-edit'   => '(μεταγράφειν)',
 'brokenredirects-delete' => '(διαγράφειν)',
 
 # Miscellaneous special pages
 'ncategories'  => '$1 {{PLURAL:$1|Γένος|Γένη}}',
 'allpages'     => 'Πᾶσαι αἱ δέλτοι',
-'randompage'   => 'Δέλτος τυχοῦσα',
 'newpages'     => 'Δέλτοι νέαι',
 'move'         => 'κινεῖν',
 'movethispage' => 'Κινεῖν τήνδε τὴν δέλτον',
@@ -398,6 +412,7 @@ $messages = array(
 'tooltip-p-logo'        => 'Δέλτος Μεγίστη',
 'tooltip-ca-nstab-main' => 'χρῆμα δέλτον ὁρᾶν',
 'tooltip-ca-nstab-user' => 'Δέλτος χρωμένου ὁρᾶν',
+'tooltip-minoredit'     => 'Δεικνύναι ἥδε ἡ μεταβολή μικρά εἴναι',
 'tooltip-save'          => 'Γράφειν τὰς μεταβολάς σου',
 
 # Attribution

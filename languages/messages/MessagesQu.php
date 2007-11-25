@@ -343,6 +343,8 @@ Ruray paqtachi: $1<br />
 Tapuna: $2',
 'viewsource'           => 'Pukyu qillqata qhaway',
 'viewsourcefor'        => '$1-paq',
+'actionthrottled'      => "Rurayniykiqa hark'asqam",
+'actionthrottledtext'  => "Spam nisqa millay rurayta hark'anapaq, manam saqillasunkichu kayta nisyu kutikunata rurayta ratulla mit'api. Nisyutam ruraykachanki. Ama hina kaspa, huk minutukunamanta musuqmanta ruraykachay.",
 'protectedpagetext'    => "Kay p'anqaqa llamk'apuymanta amachasqam.",
 'viewsourcetext'       => "Kay p'anqatam qhawayta iskaychaytapas atinki:",
 'protectedinterface'   => "Kay p'anqapiqa wakichintinpa uyapuranpaq qillqam. Wandalismu nisqamanta amachasqam kachkan. Kay qillqata allinchayta munaspaykiqa, [[{{MediaWiki:grouppage-sysop}}|kamachiqta]] tapuy.",
@@ -431,11 +433,16 @@ Ama hina kaspa, chaskispaykiqa ruraqpa sutiykita nispa musuqmanta yaykuy.',
 'invalidemailaddress'        => "E-chaski imamaytaykiqa manam allinchu. Ama hina kaspa, musuq allin sananchayuq imamaytaykita qillqamuy icha k'itichata ch'usaqchay.",
 'accountcreated'             => 'Rakiqunaqa kichasqañam',
 'accountcreatedtext'         => '$1 sutiyuq ruraqpa rakiqunanqa kichasqañam.',
+'createaccount-title'        => '{{SITENAME}}paq musuq rakiqunata kichariy',
+'createaccount-text'         => 'Pipas ($1) $2-paq rakiqunatam kicharqan {{SITENAME}}pi
+($4). "$2"-paq yaykuna rimaqa "$3" nisqam. Yaykuspayki yaykuna rimaykita hukchanaykim atinman.
+
+Kay willay pantasqa kaptinqa, qhawarparillay.',
 'loginlanguagelabel'         => 'Rimay: $1',
 
 # Password reset dialog
 'resetpass'               => 'Ruraqpa yaykuna rimanta kutichiy',
-'resetpass_announce'      => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico. Por favor, ingresa una nueva contraseña aquí:',
+'resetpass_announce'      => "E-chaskiwan kachasqa mit'alla yaykuna rimawanmi yaykurqunki. Ama hina kaspa, musuq yaykuna rimaykita qillqamuy:",
 'resetpass_text'          => '<!-- Añada texto aquí -->',
 'resetpass_header'        => 'Yaykuna rimata kutichiy',
 'resetpass_submit'        => 'Yaykuna rimata hukchaspa yaykuy',
@@ -570,27 +577,30 @@ Takyachiwachkankim: Kayqa ñuqap qillqasqaymi, ñuqamanmi kapuwan icha qispi puk
 'longpagewarning'           => "<strong>Paqtataq: Kay p'anqaqa $1 kB hatunmi; huk wamp'unakunaqa sasachakunmanchá 32 kB-manta aswan hatun willañiqita llamk'apuspa.
 Ama hina kaspa, hamut'ariy kay p'anqata rakiyta.</strong>",
 'longpageerror'             => '<strong>PANTASQA: Kachasqayki qillqaqa $1 kB hatunmi, $2 kB-manta aswan hatunmi. Manam waqaychasqa kayta atinchu.</strong>',
-'readonlywarning'           => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
-Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
+'readonlywarning'           => "<strong>PAQTATAQ: Willañiqintinqa hark'asqam mit'awa kakuchinapaq. Chayrayku kunanqa manam atichkankichu llamk'apusqaykikunata waqaychayta.
+Qillqasqaykita iskaychaspa antañiqiqniykipi willañiqiman llut'amuspa chaypi waqaychariy. Kunanmanta huk pachallapi musuqmanta waqaychaykachay.</strong>",
 'protectedpagewarning'      => "<strong>PAQTATAQ: Kay p'anqaqa llamk'apuymanta amachasqam kamachiqkunallap hukchananpaq. Sinchita qhawakuy [[Wikipidiya:Amachay|Wikipidiyap amachaymanta kamachinkunata]] qatiyniykita.</strong>
 __NOEDITSECTION__<h3>Kay p'anqaqa [[Wikipidiya:Amachay|amachasqam]].</h3>
 * Kay amachaymanta ama niyta munaspaykiqa [[{{TALKPAGENAME}}|rimachina p'anqaman]] qillqamuy.<br />",
-'semiprotectedpagewarning'  => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
+'semiprotectedpagewarning'  => "'''Musyay:''' Kay p'anqaqa amachasqam rakiqunayuq ruraqkunallap hukchananpaq.",
 'cascadeprotectedwarning'   => "'''Paqtataq:''' Kay p'anqaqa amachasqam, kamachiqkunallam llamk'apuyta atin, ''phaqcha'' nisqa kamachiwan amachasqa kay p'anqakunapim ch'aqtasqa kaspanmi:",
 'templatesused'             => "Kay p'anqapi llamk'achisqa plantillakuna:",
 'templatesusedpreview'      => "Kay qhawariypi llamk'achisqa plantillakuna:",
 'templatesusedsection'      => "Kay p'anqa rakipi llamk'achisqa plantillakuna:",
 'template-protected'        => '(amachasqa)',
 'template-semiprotected'    => '(rakilla amachasqa)',
-'nocreatetitle'             => 'Creación de páginas limitada',
-'nocreatetext'              => 'Este wiki ha restringido la posibilidad de crear nuevas páginas. Puede volver atrás y editar una página existente, [[Special:Userlogin|identificarse o crear una cuenta]].',
-'recreate-deleted-warn'     => "'''Atención: está creando una página que ha sido borrada previamente.'''
+'nocreatetitle'             => "P'anqa kamariyqa saywachasqam",
+'nocreatetext'              => "Kay wikipiqa saywachasqam musuq p'anqakunata kamariy. Ñawpaqman kutiytam atinkiman kachkaqña p'anqata llamk'apuspa. Astawantaq, [[Special:Userlogin|yaykuy icha musuq rakiqunata kichariy]].",
+'nocreate-loggedin'         => "Manam saqillasunkichu kay wikipi musuq p'anqakunata kamariyta.",
+'permissionserrors'         => 'Saqillay pantasqakuna',
+'permissionserrorstext'     => 'Manam saqillasunkichu, {{PLURAL:$1|kayraykum|kayraykum}}:',
+'recreate-deleted-warn'     => "'''Paqtataq: Ñawpaqta qullusqaña p'anqatam musuqmanta kamarichkanki.'''
 
-Debería considerar si es apropiado continuar editando esta página.
-Consulte a continuación el registro de borrados:",
+Hamut'arillay, chayaqillachu manallachu kay p'anqata kamariy.
+Kaymi kay p'anqamanta qulluy hallch'a:",
 
 # "Undo" feature
-'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quiere hacer, y entonces guarde los cambios para así deshacer la edición.',
+'undo-success' => 'Rurasqata kutichiyta atinkim. Manaraq kutichispaykiqa, kay qatiq wakichayta qhawariy rikunaykipaq chiqapta munasqaykichu manallachu, chaymantataq waqaychay kutichinapaq.',
 'undo-failure' => 'No se puede deshacer la edición ya que otro usuario ha realizado una edición intermedia.',
 'undo-summary' => '[[Special:Contributions/$2|$2]]-pa $1 hukchasqanta kutichisqa ([[User talk:$2|rimay]])',
 
@@ -621,7 +631,7 @@ Ama hina kaspa, kay p'anqap URL nisqa tiyayninta k'uskiriy.",
 'deletedrev'          => '[qullusqa]',
 'histfirst'           => 'Ñawpaqkuna',
 'histlast'            => 'Qhipaqkuna',
-'historyempty'        => '(vacío)',
+'historyempty'        => "(ch'usaq)",
 
 # Revision feed
 'history-feed-title'          => 'Hukchasqakunap wiñay kawsaynin',
@@ -678,49 +688,47 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 
 # Diffs
 'history-title'             => '"$1" p\'anqata hukchasqakunap wiñay kawsaynin',
-'difference'                => '(Diferencias entre revisiones)',
-'loadingrev'                => 'recuperando revisión para diff',
+'difference'                => '(Hukchasqapura wak kaynin)',
+'loadingrev'                => "diff nisqapaq llamk'apusqata chaskichkaspa",
 'lineno'                    => "Siq'i $1:",
 'editcurrent'               => "Kunan kachkaq p'anqata llamk'apuy",
-'selectnewerversionfordiff' => 'Seleccione una versión más reciente para comparar',
-'selectolderversionfordiff' => 'Seleccione una versión más antigua para comparar',
+'selectnewerversionfordiff' => 'Aswan ñaqha musuqchasqata akllay wakichanapaq',
+'selectolderversionfordiff' => 'Aswan ñawpa musuqchasqata akllay wakichanapaq',
 'compareselectedversions'   => "Pallasqa llamk'apusqakunata wakichay",
 'editundo'                  => 'kutichiy',
-'diff-multi'                => '({{plural:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
+'diff-multi'                => "({{plural:$1|Chawpipi huk llamk'apusqaqa manam rikuchisqachu|Chawpipi $1 llamk'apusqaqa manam rikuchisqachu}}.)",
 
 # Search results
-'searchresults'         => 'Resultados de la búsqueda',
+'searchresults'         => 'Maskaymanta tarisqakuna',
 'searchresulttext'      => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Has consultado por '''[[:$1]]'''",
-'searchsubtitleinvalid' => 'Para consulta "$1"',
-'noexactmatch'          => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
-'titlematches'          => 'Coincidencias de título de artículo',
-'notitlematches'        => 'No hay coincidencias de título de artículo',
-'textmatches'           => 'Coincidencias de texto de artículo',
-'notextmatches'         => 'No hay coincidencias de texto de artículo',
+'searchsubtitle'        => "'''[[:$1]]''' nisqatam maskanki",
+'searchsubtitleinvalid' => '"$1" nisqatam maskanki',
+'noexactmatch'          => "'''Manam kanchu \"\$1\" sutiyuq p'anqa.''' Munaspaykiqa [[:\$1|kamarillay]].",
+'titlematches'          => "P'anqakunap sutinkunapi tarisqa",
+'notitlematches'        => "Manam ima p'anqakunap sutinkunapipas tarisqachu",
+'textmatches'           => "P'anqakunap qillqankunapi tarisqa",
+'notextmatches'         => "Manam ima p'anqakunap qillqankunapipas tarisqachu",
 'prevn'                 => '$1 ñawpaq',
 'nextn'                 => '$1 qatiq',
 'viewprevnext'          => 'Qhaway ($1) ($2) ($3).',
 'showingresults'        => 'Qhipanpiqa rikuchkanki <b>$1</b>-kama tarisqakunatam, <b>$2</b> huchhawan qallarispa.',
 'showingresultsnum'     => 'Qhipanpiqa rikuchkanki <b>$3</b> tarisqam, <b>$2</b> huchhawan qallarispa.',
-'nonefound'             => '<strong>Nota</strong>: las búsquedas fallidas suelen producirse al buscar palabras comunes como "la" o "de", que no están en el índice, o por especificar más de una palabra a buscar (sólo las páginas
-que contengan todos los términos de búsqueda aparecerán en el resultado).',
+'nonefound'             => '<strong>Musyay</strong>: Mana aypalla maskasqaqa paqarin ancha pasaq, mana hallch\'api kaq rimakunata ("kay", "chay", "huk") maskaptiykim, ichataq hukmanta aswan maskana rimakunata quptiykim (tukuy maskana rimayuq p\'anqakunallam paqarinqa).',
 'powersearch'           => 'Maskay',
-'powersearchtext'       => '
-Buscar en espacio de nombres:<br />
+'powersearchtext'       => "Kay suti k'itikunapi maskay:<br />
 $1<br />
-$2 Listar redirecciones   Buscar $3 $9',
-'searchdisabled'        => 'Las búsquedas en {{SITENAME}} está temporalmente deshabilitadas. Mientras tanto puede buscar mediante buscadores externos, pero tenga en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
+$2 Pusapunakunata rikuchiy<br />Maskay: $3 $9",
+'searchdisabled'        => "{{SITENAME}} nisqapi maskaymanqa ama nisqam. Hinachkaptinqa, maskariy google nisqawan icha huk hawa maskanakunawan, ichataq yuyariy, {{SITENAME}}manta hallch'asqankunaqa manañachá musuqllachu.",
 
 # Preferences page
-'preferences'              => 'Preferencias',
+'preferences'              => 'Allinkachinakuna',
 'mypreferences'            => 'Allinkachinaykuna',
-'prefs-edits'              => 'Cantidad de ediciones:',
+'prefs-edits'              => 'Hukchasqakunap yupaynin:',
 'prefsnologin'             => 'No está identificado',
 'prefsnologintext'         => 'Debes [[Special:Userlogin|entrar]] para cambiar las preferencias de usuario.',
 'prefsreset'               => 'Las preferencias han sido restauradas a los valores por defecto.',
 'qbsettings'               => 'Preferencias de "Quickbar"',
-'qbsettings-none'          => 'Ninguna',
+'qbsettings-none'          => 'Mana imapas',
 'qbsettings-fixedleft'     => 'Fija a la izquierda',
 'qbsettings-fixedright'    => 'Fija a la derecha',
 'qbsettings-floatingleft'  => 'Flotante a la izquierda',
@@ -768,36 +776,37 @@ $2 Listar redirecciones   Buscar $3 $9',
 'servertime'               => 'La hora en el servidor es',
 'guesstimezone'            => 'Pacha suyuta chaskimuy',
 'allowemail'               => 'Huk ruraqkunamanta e-chaskita saqillay',
-'defaultns'                => 'Buscar en estos espacios de nombres por defecto:',
+'defaultns'                => "Kay suti k'itikunapi kikinmanta maskay:",
 'default'                  => 'kikinmanta',
-'files'                    => 'Archivos',
+'files'                    => 'Willañiqikuna',
 
 # User rights
-'userrights-lookup-user'     => 'Configurar grupos de usuarios',
-'userrights-user-editname'   => 'Escriba un nombre de usuario:',
+'userrights-lookup-user'     => 'Ruraqkunap huñunkunata allinkachiy',
+'userrights-user-editname'   => 'Ruraqpa sutinta qillqamuy:',
 'editusergroup'              => 'Ruraqkunap huñunkunata hukchay',
-'userrights-editusergroup'   => 'Modificar grupos de usuarios',
+'userrights-editusergroup'   => 'Ruraqkunap huñunkunata hukchay',
 'saveusergroups'             => 'Ruraq huñukunata waqaychay',
-'userrights-groupsmember'    => 'Miembro de:',
-'userrights-groupsavailable' => 'Grupos disponibles:',
-'userrights-groupshelp'      => 'Seleccione los grupos a los que quiere añadir al usuario (o de los que le quiere dar de baja).
-Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla CTRL',
-'userrights-reason'          => 'Motivo para el cambio:',
+'userrights-groupsmember'    => 'Kayman kapuq:',
+'userrights-groupsavailable' => 'Makihawa huñukuna:',
+'userrights-groupshelp'      => "Ruraqkunap huñunkunata akllay ruraqta qichunaykipaq icha yapanaykipaq. Mana akllasqa huñukunaqa manam hukchasqachu kanqa. Ukuchapi lluq'i ñit'inata CTRL ñit'inatapas t'uyllata ñit'ispa akllasqata puchukachinkim.",
+'userrights-reason'          => 'Imarayku hukchasqa:',
 
 # Groups
 'group'               => 'Huñu:',
 'group-autoconfirmed' => 'Rakiqunayuq ruraqkuna',
+'group-bot'           => 'Rurana antachakuna',
 'group-sysop'         => 'Kamachiqkuna',
-'group-bureaucrat'    => 'Burócratas',
+'group-bureaucrat'    => 'Burukratakuna',
 'group-all'           => '(tukuy)',
 
 'group-autoconfirmed-member' => 'Rakiqunayuq ruraq',
+'group-bot-member'           => 'Rurana antacha',
 'group-sysop-member'         => 'Kamachiq',
 'group-bureaucrat-member'    => 'Burócrata',
 
 'grouppage-bot'        => '{{ns:project}}:Bot',
 'grouppage-sysop'      => '{{ns:project}}:Kamachiq',
-'grouppage-bureaucrat' => '{{ns:project}}:Burócratas',
+'grouppage-bureaucrat' => '{{ns:project}}:Burukrata',
 
 # User rights log
 'rightslog'      => 'Ruraqpa hayñinkunap hukyasqankuna',
@@ -823,13 +832,14 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'diff'                              => 'dif',
 'hide'                              => 'pakay',
 'show'                              => 'rikuchiy',
-'number_of_watching_users_pageview' => '[$1 usuarios vigilando]',
-'rc_categories'                     => 'Limitar a categorías (separadas por "|")',
-'rc_categories_any'                 => 'Cualquiera',
-'newsectionsummary'                 => 'Nueva sección: /* $1 */',
+'number_of_watching_users_pageview' => '[$1 watiqachkaq {{PLURAL:$1|ruraq|ruraqkuna}}]',
+'rc_categories'                     => 'Kay katiguriyakunaman saywachay ("|" nisqawan rakisqa)',
+'rc_categories_any'                 => 'Imapas',
+'newsectionsummary'                 => 'Musuq raki: /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked'          => "Hukchasqa t'inkimuq",
+'recentchangeslinked-title'    => "$1-wan t'inkisqa hukchasqa",
 'recentchangeslinked-noresult' => "Nisqa mit'apiqa manam hukchasqa t'inkimuqkuna kanchu.",
 'recentchangeslinked-summary'  => "Kay sapaq p'anqaqa t'inkisqa p'anqakunapi ñaqha hukchasqakunatam rikuchin. Watiqasqayki p'anqakunaqa '''yanasapa qillqasqam'''.",
 
@@ -860,9 +870,9 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 'minlength1'                  => 'Willañiqip sutinqa huk icha aswan sanampayuq kachun.',
 'illegalfilename'             => "«$1» nisqa williñiqip sutinqa p'anqa umallipaq mana allin sananchayuqmi. Ama hina kaspa, williñiqita sutincharaspa musuqmanta churkuykachay.",
 'badfilename'                 => 'Rikch\'ap sutinqa "$1"-man hukchasqam.',
-'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
-'filetype-badtype'            => "'''\".\$1\"''' es un tipo de archivo no permitido. Lista de tipos permitidos: \$2",
-'filetype-missing'            => 'El archivo no tiene extensión (como ".jpg").',
+'filetype-badmime'            => '"$1" MIME layayuq willañiqikunata churkuyqa manam saqillasqachu.',
+'filetype-badtype'            => "'''\".\$1\"''' nisqaqa mana munasqa willañiqi layam. Kaymi munasqa willañiqi layakuna: \$2",
+'filetype-missing'            => 'Manam kachkanchu willañiqip k\'askaqnin (".jpg" hina).',
 'large-file'                  => 'Se recomienda que los archivos no sean mayores de de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
@@ -884,16 +894,17 @@ Si el archivo comprobado es la misma imagen a tamaño original no es necesario s
 'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
 Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nombre del archivo.',
 'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido; por favor, regresa a la página anterior y sube tu archivo con otro nombre. [[Image:$1|thumb|center|$1]]',
-'successfulupload'            => 'Subida con éxito',
-'uploadwarning'               => 'Advertencia de subida de archivo',
+'fileexists-shared-forbidden' => "Kay sutiyuq willañiqiqa kachkañam rakinakusqa willañiqi qullqapi; ama hina kaspa, ñawpaq p'anqaman kutispa willañiqiykita huk sutiwan churkuy. [[Image:$1|thumb|center|$1]]",
+'successfulupload'            => 'Aypalla churkusqañam',
+'uploadwarning'               => 'Willañiqi churkuymanta paqtataq niy',
 'savefile'                    => 'Willañiqita waqaychay',
-'uploadedimage'               => '«[[$1]]» subido.',
-'uploaddisabled'              => 'Subida de archivos deshabilitada',
-'uploaddisabledtext'          => 'No es posible subir archivos en esta wiki.',
+'uploadedimage'               => '«[[$1]]» churkusqa.',
+'overwroteimage'              => '"[[$1]]" musuqmanta churkusqa',
+'uploaddisabled'              => 'Willañiqi churkuyman ama nisqa',
+'uploaddisabledtext'          => 'Kay wikipiqa willañiqita churkuy manam saqillasqachu.',
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador.',
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
-'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
+'uploadvirus'                 => 'Willañiqipiqa añawmi! Yuyay: $1',
 'sourcefilename'              => 'Qallariy willañiqip sutin',
 'destfilename'                => 'Tukuna willañiqip sutin',
 'watchthisupload'             => "Kay p'anqata watiqay",
@@ -971,9 +982,10 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'filedelete-nofile-old' => "No existe una versión guardada de '''$1''' con los atributos especificados.",
 
 # MIME search
-'mimesearch' => 'Búsqueda MIME',
-'mimetype'   => 'Tipo MIME:',
-'download'   => 'chaqnamuy',
+'mimesearch'         => 'MIME maskay',
+'mimesearch-summary' => "Kay p'anqawanqa willañiqikunata MIME layankamam ch'illchiyta atinki. Qunapaq: contenttype/subtype, ahinataq <tt>image/jpeg</tt>.",
+'mimetype'           => 'MIME laya:',
+'download'           => 'chaqnamuy',
 
 # Unwatched pages
 'unwatchedpages' => "Mana watiqasqa p'anqakuna",
@@ -983,42 +995,42 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 
 # Unused templates
 'unusedtemplates'     => "Mana llamk'achisqa plantillakuna",
-'unusedtemplatestext' => 'Aquí se enumeran todas las páginas en la zona de plantillas que no están incluidas en otras páginas. Recuerda mirar lo que enlaza a las plantillas antes de borrarlas.',
+'unusedtemplatestext' => "Kay p'anqapi tukuy plantilla suti k'itipi kaq, manataq huk p'anqapi ch'aqtasqa p'anqakunap sutinkunam. Yuyariy, manaraq qulluspayki chay p'anqakunaman t'inkikunata qhaway.",
 'unusedtemplateswlh'  => "huk t'inkikuna",
 
 # Random page
 'randompage'         => "Mayninpi p'anqa",
-'randompage-nopages' => 'No hay páginas en este espacio de nombres.',
+'randompage-nopages' => "Manam kanchu kay suti k'itipi p'anqakuna.",
 
 # Random redirect
-'randomredirect'         => 'Ir a una redirección cualquiera',
-'randomredirect-nopages' => 'No hay redirecciones en este espacio de nombres.',
+'randomredirect'         => "Mayninpi pusapuna p'anqa",
+'randomredirect-nopages' => "Manam kanchu kay suti k'itipi pusapuna p'anqakuna.",
 
 # Statistics
-'statistics'             => 'Estadísticas',
-'sitestats'              => 'Estadísticas del sitio',
-'userstats'              => 'Estadísticas de usuario',
-'sitestatstext'          => "Hay un total de {{PLURAL:$1|'''1''' página|'''$1''' páginas}} en la base de datos.
-Esto incluye páginas de discusión, páginas sobre {{SITENAME}}, esbozos mínimos, redirecciones y otras que probablemente no puedan ser consideradas páginas de contenidos.
-Excluyéndolas, hay {{PLURAL:$2|1 página que, probablemente sea una página|'''$2''' páginas que, probablemente, sean páginas}} de contenido legítimo.
+'statistics'             => 'Ranuy (kanchachani)',
+'sitestats'              => '{{SITENAME}} tiyaymanta ranuy',
+'userstats'              => 'Ruraqmanta ranuy',
+'sitestatstext'          => "Willañiqintinpiqa {{PLURAL:$1|'''1''' p'anqam|'''$1''' p'anqakunam}} kachkan.
+Kaypi ch'aqtasqaqa rimanakuymi, {{SITENAME}}manta p'anqakunam, ch'iñicha tuna qillqakunam, pusapuna p'anqakunam, huk manachá samiqniyuqchu kaq p'anqakunapas.
+Chaykunata mana yupaptinchikqa, {{PLURAL:$2|huklla samiqniyuq qillqa p'anqachá|'''$2''' samiqniyuq qillqa p'anqachá}} kachkan.
 
-Hay '''$8''' {{PLURAL:$8|archivo almacenado|archivos almacenados}} en el servidor.
+Sirwiqpiqa '''$8''' {{PLURAL:$8|churkusqa willañiqim|churkusqa willañiqikunam}} kachkan.
 
-Desde la instalación del wiki ha habido un total de '''$3''' {{PLURAL:$3|visita|visitas}} y '''$4''' {{PLURAL:$4|edición de página|ediciones de páginas}}.
-Esto resulta en un promedio de '''$5''' {{PLURAL:$5|edición|ediciones}} por página y '''$6''' {{PLURAL:$6|visita|visitas}} por edición.
+Kay wikip qallarisqanmantaqa '''$3''' kutiñam {{PLURAL:$3|watukusqa|watukusqa}}, '''$4''' kutitaqmi {{PLURAL:$4|p'anqa llamk'apusqa|p'anqakuna llamk'apusqa}} karqan.
+Chaymantaqa yurinmi: kuskanchaku '''$5''' {{PLURAL:$5|llamk'apusqa|llamk'apusqa}} p'anqaman, '''$6''' {{PLURAL:$6|watukusqa|watukusqa}} llamk'apusqaman.
 
-La longitud de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola de tareas] es de '''$7'''",
-'userstatstext'          => "Hay {{PLURAL:$1|'''1''' usuario registrado|'''$1''' usuarios registrados}},
-de los cuales '''$2''' (el '''$4%''') tienen privilegios de $5.",
-'statistics-mostpopular' => 'Páginas más vistas',
+[http://meta.wikimedia.org/wiki/Help:Job_queue Llamk'ana chupaqa] '''$7''' sunim.",
+'userstatstext'          => "{{PLURAL:$1|'''1''' rakiqunayuq ruraqmi|'''$1''' rakiqunayuq ruraqkunam}} kachkan,
+paypurataq '''$2''' ('''$4%'''-nin) $5 hayñiyuqmi.",
+'statistics-mostpopular' => "Lliwmanta astawan rikusqa p'anqakuna",
 
-'disambiguations'      => 'Páginas de desambiguación',
+'disambiguations'      => "Sut'ichana qillqakuna",
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "Kay qatiq p'anqakunam t'inkimun sut'ichana qillqaman. Chiqap, hukchanasqa p'anqaman t'inkichunman.<br />Tukuy [[:Plantilla:Disambig]] plantillayuq p'anqakunaqa sut'ichana qillqam.",
 
 'doubleredirects'     => 'Iskaylla pusapunakuna',
-'doubleredirectstext' => '<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br />
-Cada fila contiene enlaces al segundo y tercer redirect, así como la primera línea del segundo redirect, en la que usualmente se encontrará el artículo "real" al que el primer redirect debería apuntar.',
+'doubleredirectstext' => "<b>Paqtataq:</b> Kay p'anqapiqa pantasqalla p'anqa sutikunachá rikuchisqa kayta atinman, ñawpaq kaq #REDIRECT nisqap qhipanpi t'inkiyuq p'anqakuna.<br />
+Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. Sapa siq'ipiqa ñawpaq ñiqin, iskay ñiqinpas pusapunaman t'inkikunam, iskay ñiqin pusapunap taripananpa qallariyninpas, sapsilla chiqap allin qillqam.",
 
 'brokenredirects'        => 'Panta pusapunakuna',
 'brokenredirectstext'    => "Kay pusapuna p'anqakunaqa mana kachkaq p'anqamanmi pusapuchkan.",
@@ -1028,7 +1040,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'withoutinterwiki'        => "Interwiki t'inkinnaq p'anqakuna",
 'withoutinterwiki-header' => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',
 
-'fewestrevisions' => 'Artículos con menos ediciones',
+'fewestrevisions' => "Aslla kuti llamk'apusqa p'anqakuna",
 
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categorías}}',
@@ -1045,9 +1057,9 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'uncategorizedtemplates'  => 'Katiguriyannaq plantillakuna',
 'unusedcategories'        => "Mana llamk'achisqa katiguriyakuna",
 'unusedimages'            => "Mana llamk'achisqa rikch'akuna",
-'popularpages'            => 'Páginas populares',
-'wantedcategories'        => 'Categorías requeridas',
-'wantedpages'             => 'Páginas requeridas',
+'popularpages'            => "Munasqa p'anqakuna",
+'wantedcategories'        => 'Muchusqa katiguriyakuna',
+'wantedpages'             => "Muchusqa p'anqakuna",
 'mostlinked'              => "Lliwmanta aswan t'inkimuqniyuq qillqakuna",
 'mostlinkedcategories'    => "Lliwmanta aswan t'inkimuqniyuq katiguriyakuna",
 'mostlinkedtemplates'     => "Lliwmanta aswan t'inkimuqniyuq plantillakuna",
@@ -1055,7 +1067,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'mostimages'              => "Lliwmanta astawan llamk'achisqa rikch'akuna",
 'mostrevisions'           => 'Lliwmanta aswan hukchasqayuq qillqakuna',
 'allpages'                => "Tukuy p'anqakuna",
-'prefixindex'             => 'Páginas por prefijo',
+'prefixindex'             => "P'anqakuna, ñawpa k'askaqchakama",
 'shortpages'              => "Uchuylla p'anqakuna",
 'longpages'               => "Hatun p'anqakuna",
 'deadendpages'            => "Lluqsinannaq p'anqakuna",
@@ -1090,7 +1102,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'userrights'         => 'Ruraqkunata saqillanap allinkachinan',
 'groups'             => 'Ruraq huñukuna',
 'alphaindexline'     => '$1 a $2',
-'version'            => 'Versión',
+'version'            => 'Musuqchasqa',
 
 # Special:Log
 'specialloguserlabel'  => 'Ruraq:',
@@ -1347,7 +1359,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'sp-contributions-username'    => 'IP huchha icha ruraqpa sutin:',
 'sp-contributions-submit'      => 'Maskay',
 
-'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $1',
+'sp-newimages-showfrom' => 'Musuq rikchakunata rikuchiy, $1-wan qallarispa',
 
 # What links here
 'whatlinkshere'       => "Kayman t'inkimuq",
@@ -1507,18 +1519,19 @@ Tukuna p\'anqaqa ("[[$1]]") kachkañam. Astanapaq qulluyta munankichu?',
 'immobile_namespace'      => 'El título de destino es de un tipo especial. No se pueden trasladar páginas a ese espacio de nombres.',
 
 # Export
-'export'            => 'Exportar páginas',
-'exporttext'        => 'Puedes exportar el texto y el historial de ediciones de una página en particular o de un conjunto de páginas a un texto XML. En el futuro, este texto podría importarse en otro wiki que ejecutase MediaWiki a través de [[Special:Import|importar página]].
+'export'            => "P'anqakunata hawaman quy",
+'exporttext'        => "Huk sapaq p'anqap icha aswan p'anqakunap qillqanta wiñay kawsaynintapas hawaman quyta atinki XML qillqaman. Chaytaqa huk MediaWikita llak'achiq wikiman hawamanta chaskiyta atinku [[Special:Import|hawamanta chaskiy p'anqa]] nisqawan.
 
-Para exportar páginas, escribe los títulos en la caja de texto de abajo, un título por línea, y selecciona si quieres la versión actual junto a las versiones anteriores, con las líneas del historial, o sólo la versión actual con la información sobre la última edición.
+P'anqakunata hawaman qunaykipaqqa, sutinkunata kay qatiqppi qillqana k'itichaman qillqay, sapa siq'ipi huk suti, akllaspa kunan p'anqata wiñay kawsaynintapas munankichu ichataq kunan p'anqatallachu qhipaq hukchasqallamanta willayllawan.
 
-En el último caso también puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] para la página {{Mediawiki:mainpage}}.',
-'exportcuronly'     => 'Incluye sólo la revisión actual, no el historial de revisiones al completo.',
+Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]], \"[[{{MediaWiki:mainpage}}]]\" p'anqapaq.",
+'exportcuronly'     => "Kunan llamk'apusqatam ch'aqtay, manataqmi wiñay kawsaynintinchu.",
 'exportnohistory'   => "----
-'''Nota:''' Exportar el historial completo de páginas a través de este formulario ha sido deshabilitado debido a problemas de rendimiento del servidor.",
-'export-submit'     => 'Exportar',
-'export-addcattext' => 'Añadir páginas desde la categoría:',
-'export-addcat'     => 'Añadir',
+'''Musyay:''' Wiñay kawsaynintinta kay hunt'ana p'anqawan hawan quymanqa ama nisqam, sirwiq mana atiptinmi.",
+'export-submit'     => 'Hawaman quy',
+'export-addcattext' => "P'anqakunata yapay kay katiguriyamanta:",
+'export-addcat'     => 'Yapay',
+'export-download'   => 'Willañiqi hina waqaychay niy',
 
 # Namespace 8 related
 'allmessages'               => 'MediaWiki-p tukuy willayninkuna',
@@ -1541,36 +1554,36 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{ns:Special}}:
 'thumbnail_dest_directory' => 'Incapaz de crear el directorio de destino',
 
 # Special:Import
-'import'                     => 'Importar páginas',
-'importinterwiki'            => 'Importación transwiki',
-'import-interwiki-text'      => 'Selecciona un wiki y un título de página para importar.
-Las fechas de revisiones y los nombres de editores se preservarán.
-Todas las importaciones transwiki se registran en el [[Special:Log/import|registro de importaciones]].',
-'import-interwiki-history'   => 'Copiar todas las versiones históricas para esta página',
-'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir páginas al espacio de nombres:',
-'importtext'                 => 'Por favor, exporte el archivo desde el wiki de origen usando la utilidad Special:Export, guárdelo en su ordenador y súbalo aquí.',
-'importstart'                => 'Importando páginas...',
-'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisiones}}',
-'importnopages'              => 'No hay páginas que importar.',
-'importfailed'               => 'La importación ha fallado: $1',
-'importunknownsource'        => 'Tipo de fuente de importación desconocida',
-'importcantopen'             => 'No se puedo importar este archivo',
-'importbadinterwiki'         => 'Enlace interwiki anómalo',
-'importnotext'               => 'Vacío o sin texto',
-'importsuccess'              => '¡La importación tuvo éxito!',
-'importhistoryconflict'      => 'Existen revisiones en conflicto en el historial (puede que se haya importado esta página antes)',
-'importnosources'            => 'No hay fuentes de importación transwiki y no está permitido subir directamente el historial.',
-'importnofile'               => 'No se subieron archivos de importación.',
-'importuploaderror'          => 'La subida del archivo de importación ha fallado. Quizá el archivo es mayor que el tamaño máximo de subida permitido.',
+'import'                     => "P'anqakunata hawamanta chaskiy",
+'importinterwiki'            => "Huk wikimanta p'anqakunata chaskiy",
+'import-interwiki-text'      => "Huk wikita p'anqap sutintapas akllay hawamanta chaskinapaq.
+Llamk'apusqap pachankunaqa ruraqpa sutinkunapas kakuspa hallch'asqam kanqa.
+Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hallch'api]] hallch'asqam kanqa.",
+'import-interwiki-history'   => "Kay p'anqapaq tukuy wiñay kawsaynintinta iskaychay",
+'import-interwiki-submit'    => 'Hawamanta chaskiy',
+'import-interwiki-namespace' => "P'anqakunata kay suti k'itiman churay:",
+'importtext'                 => "Ama hina kaspa, willañiqita qallariy wikimanta Special:Export nisqa llamk'anawan hawaman quy antañiqiqniykipi waqaychaspa, chaymantataq kaypi churkuy.",
+'importstart'                => "P'anqakunatam hawamanta chaskichkani...",
+'import-revision-count'      => "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}}",
+'importnopages'              => "Manam kanchu hawamanta chaskina p'anqakuna.",
+'importfailed'               => 'Manam atinichu hawamanta chaskiy: $1',
+'importunknownsource'        => 'Hawamanta chaskina pukyu layaqa manam riqsisqachu',
+'importcantopen'             => 'Manam atinichu kay willañiqita hawamanta chaskiyta',
+'importbadinterwiki'         => "Interwiki t'inkiqa manam allinchu",
+'importnotext'               => "Ch'usaqmi",
+'importsuccess'              => 'Aypalla hawamanta chaskisqañam!',
+'importhistoryconflict'      => "Wiñay kawsaypiqa hayunakuqmi llamk'apusqakuna (ñawpaqtaña hawamanta chaskisqachá karqan)",
+'importnosources'            => 'Manam qusqachu hawamanta chaskina pukyukuna, wiñay kawsayta chiqalla churkuymantaq ama nisqam.',
+'importnofile'               => 'Manam ima chaskina willañiqi churkusqachu.',
+'importuploaderror'          => 'Manam atinichu hawamanta chaskina willañiqita churkuyta. Nisyu hatunchá kachkan, saqillasqa chhikan kaymanta aswan.',
 
 # Import log
-'importlogpage'                    => 'Registro de importaciones',
-'importlogpagetext'                => 'Importaciones administrativas de páginas con historial desde otros wikis.',
-'import-logentry-upload'           => 'importada [[$1]] por subida de archivo',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
-'import-logentry-interwiki'        => 'transwikificada $1',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} desde $2',
+'importlogpage'                    => "Hawamanta chaskiy hallch'a",
+'importlogpagetext'                => "Huk wikikunamanta wiñay kawsayniyuq p'anqakunata kamachina chaskiykuna.",
+'import-logentry-upload'           => 'hawamanta chaskisqa [[$1]] willañiqita churkuspa',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}}',
+'import-logentry-interwiki'        => 'huk wikimanta chaskisqa $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}} $2-manta',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mi página de usuario',

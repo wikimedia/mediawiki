@@ -950,25 +950,25 @@ Als beheerder van deze site kunt u deze zien;
 er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek verwijderde pagina\'s].
 </div>',
 'rev-delundel'                => 'tonen/verbergen',
-'revisiondelete'              => 'versies verwijderen/herstellen',
+'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
 'revdelete-nooldid-title'     => 'Geen doelversie',
 'revdelete-nooldid-text'      => 'U heeft geen doelversie(s) voor deze handeling opgegeven.',
 'revdelete-selected'          => "Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van '''[[:$1]]''':",
 'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde logboekactie|Geselecteerde logboekacties}} voor '''$1:'''",
 'revdelete-text'              => 'Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
 
-Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er additionele restricties gelden die zijn ingesteld door de systeembeheerder.',
-'revdelete-legend'            => 'Stel versiebeperkingen in:',
-'revdelete-hide-text'         => 'Verberg de bewerkte tekst',
+Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er toegevoegde beperkingen gelden die zijn ingesteld door de systeembeheerder.',
+'revdelete-legend'            => 'Versiebeperkingen instellen',
+'revdelete-hide-text'         => 'De bewerkte tekst verbergen',
 'revdelete-hide-name'         => 'Actie en doel verbergen',
-'revdelete-hide-comment'      => 'Verberg de bewerkingssamenvatting',
-'revdelete-hide-user'         => 'Verberg gebruikersnaam/IP van de gebruiker',
-'revdelete-hide-restricted'   => 'Pas deze beperkingen toe op zowel beheerders als anderen',
+'revdelete-hide-comment'      => 'De bewerkingssamenvatting verbergen',
+'revdelete-hide-user'         => 'Gebruikersnaam/IP van de gebruiker verbergen',
+'revdelete-hide-restricted'   => 'Deze beperkingen toepassen op zowel beheerders als anderen',
 'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-hide-image'        => 'Verberg bestandsinhoud',
 'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
 'revdelete-log'               => 'Opmerking in logboek:',
-'revdelete-submit'            => 'Pas toe op de geselecteerde bewerking',
+'revdelete-submit'            => 'Toepassen op de geselecteerde bewerking',
 'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wijziging|wijzigingen}} ingesteld naar modus $2',
@@ -1300,8 +1300,8 @@ PICT # overig
 'filerevert-badversion'     => 'Er is geen vorige lokale versie van dit bestand met van het opgegeven tijdstip.',
 
 # File deletion
-'filedelete'             => 'Verwijder $1',
-'filedelete-legend'      => 'Verwijder bestand',
+'filedelete'             => '"$1" verwijderen',
+'filedelete-legend'      => 'Bestand verwijderen',
 'filedelete-intro'       => "U bent '''[[Media:$1|$1]]''' aan het verwijderen.",
 'filedelete-intro-old'   => '<span class="plainlinks">U bent de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] aan het verwijderen.</span>',
 'filedelete-comment'     => 'Opmerking:',
@@ -1729,7 +1729,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 ** Invoegen van nonsens in pagina's
 ** Intimiderend gedrag
 ** Misbruik door meerdere gebruikers
-** Onaanvaarbare gebruikersnaam",
+** Onaanvaardbare gebruikersnaam",
 'ipbanononly'                 => 'Alleen anonieme gebruikers blokkeren',
 'ipbcreateaccount'            => 'Aanmaken gebruikers blokkeren',
 'ipbemailban'                 => 'Gebruiker weerhouden van het sturen van e-mail',
