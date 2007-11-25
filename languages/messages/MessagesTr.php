@@ -55,6 +55,8 @@ $messages = array(
 'tog-editwidth'               => 'Yazma alanı tam genişlikte olsun',
 'tog-watchcreations'          => 'Yaratmış olduğum sayfaları izleme listeme ekle',
 'tog-watchdefault'            => 'Değişiklik yapılan sayfayı izleme listesine ekle',
+'tog-watchmoves'              => 'Taşıdığım sayfaları izleme listeme ekle',
+'tog-watchdeletion'           => 'Sildiğim sayfaları izleme listeme ekle',
 'tog-minordefault'            => "Değişikliği 'küçük değişiklik' olarak seçili getir",
 'tog-previewontop'            => 'Önizlemeyi yazma alanın üstünde göster',
 'tog-previewonfirst'          => 'Değiştirmede önizlemeyi göster',
@@ -71,6 +73,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'Özeti boş bıraktığımda beni uyar',
 'tog-watchlisthideown'        => 'İzleme listemden benim değişikliklerimi gizle',
 'tog-watchlisthidebots'       => 'İzleme listemden bot değişikliklerini gizle',
+'tog-watchlisthideminor'      => 'İzleme listemden küçük değişiklikleri gizle',
 
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
@@ -244,7 +247,7 @@ $messages = array(
 'feedlinks'               => 'Besleme:',
 'feed-invalid'            => 'Hatalı besleme tipi.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Madde',
 'nstab-user'      => 'kullanıcı sayfası',
 'nstab-media'     => 'Medya',
@@ -709,6 +712,9 @@ veya doğrudan bağlantı için
 'unusedtemplatestext' => 'Bu sayfa şablon alan adında bulunan ve diğer sayfalara eklenmemiş olan şablonları göstermektedir. Şablonlara olan diğer bağlantıları da kontrol etmeden silmeyiniz.',
 'unusedtemplateswlh'  => 'diğer bağlantılar',
 
+# Random page
+'randompage' => 'Rastgele sayfa',
+
 # Random redirect
 'randomredirect' => 'Rastgele yönlendirme',
 
@@ -761,7 +767,6 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'mostrevisions'           => 'En çok değişikliğe uğramış sayfalar',
 'allpages'                => 'Tüm sayfalar',
 'allpages-summary'        => 'Bu sayfa sitedeki bütün sayfaları listeler.',
-'randompage'              => 'Rastgele sayfa',
 'shortpages'              => 'Kısa sayfalar',
 'longpages'               => 'Uzun sayfalar',
 'deadendpages'            => 'Başka sayfalara bağlantısı olmayan sayfalar',

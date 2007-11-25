@@ -556,7 +556,7 @@ Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{
 'invalidemailaddress'        => 'Sähköpostiosoitetta ei voida hyväksyä, koska se ei ole oikeassa muodossa. Ole hyvä ja anna oikea sähköpostiosoite tai jätä kenttä tyhjäksi.',
 'accountcreated'             => 'Käyttäjätunnus luotiin',
 'accountcreatedtext'         => 'Käyttäjän $1 käyttäjätunnus luotiin.',
-'createaccount-title'        => 'Tunnus luoto {{GRAMMAR:genitive|{{SITENAME}}}}',
+'createaccount-title'        => 'Tunnuksen luominen {{GRAMMAR:illative|{{SITENAME}}}}',
 'createaccount-text'         => 'Joku ($1) on luonut tunnuksen $2 {{GRAMMAR:genitive|{{SITENAME}}}}
 ($4). Tunnuksen $2 salasana on » $3 ». Kirjaudu sisään ja vaihda salasanasi.
 

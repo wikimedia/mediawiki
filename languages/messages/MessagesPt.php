@@ -307,7 +307,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feed-invalid'            => 'Tipo de subscrição feed inválido.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artigo',
 'nstab-user'      => 'Página de utilizador',
 'nstab-media'     => 'Mídia',
@@ -378,6 +378,7 @@ Function: $1<br />
 Query: $2',
 'viewsource'           => 'Ver código',
 'viewsourcefor'        => 'para $1',
+'actionthrottledtext'  => 'Como medida "anti-spam", está impedido de realizar esta operação demasiadas vezes num curto espaço de tempo, e já excedeu esse limite. Por favor, tente de novo dentro de alguns minutos.',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
@@ -433,6 +434,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'                 => 'Erro de autenticação',
 'prefs-help-email'           => 'O fornecimento de um endereço de e-mail é opcional, mas permite que os utilizadores entrem em contacto consigo sem que tenha de lhes revelar o seu endereço de e-mail.',
+'prefs-help-email-required'  => 'O endereço de correio electrónico é requerido.',
 'nocookiesnew'               => 'A conta de utilizador foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor, os active, depois autentique-se com o seu nome de utilizador e a sua palavra-chave.',
 'nocookieslogin'             => 'Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active e tente novamente.',
 'noname'                     => 'Você não colocou um nome de utilizador válido.',
@@ -470,6 +472,7 @@ $1 horas.',
 'invalidemailaddress'        => 'O endereço de correio electrónico não pode ser aceite devido a talvez possuír um formato inválido. Por favor, introduza um endereço bem formatado ou esvazie o campo.',
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta de utilizador para $1 foi criada.',
+'createaccount-title'        => 'Criação de conta em {{SITENAME}}',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -610,10 +613,10 @@ Você terá que mesclar suas modificações no texto existente.
 desactualizada desta página.
 Se salvá-la, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>',
 'yourdiff'                  => 'Diferenças',
-'copyrightwarning'          => 'Por favor, note que todas as suas contributições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se você não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
+'copyrightwarning'          => 'Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se você não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
 Você está, ao mesmo tempo, garantindo a nós que isto é algo escrito por você mesmo ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre.
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
-'copyrightwarning2'         => 'Por favor, note que todas as suas contributições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
+'copyrightwarning2'         => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, garantindo a nós que isto é algo escrito por você mesmo ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
 'longpagewarning'           => '<strong>AVISO: Esta página possui $1 kilobytes; alguns 
@@ -1047,6 +1050,10 @@ Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-
 'unusedtemplatestext' => 'Esta página lista todas as páginas no espaço nominal {{ns:10}} que não estão incluídas numa outra página. Lembre-se de verificar por outras ligações para as predefinições antes de as apagar.',
 'unusedtemplateswlh'  => 'outras ligações',
 
+# Random page
+'randompage'         => 'Página aleatória',
+'randompage-nopages' => 'Não há páginas neste espaço nominal.',
+
 # Random redirect
 'randomredirect'         => 'Redireccionamento aleatório',
 'randomredirect-nopages' => 'Não há redireccionamentos neste espaço nominal.',
@@ -1109,8 +1116,6 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'mostrevisions'           => 'Páginas de conteúdo com mais revisões',
 'allpages'                => 'Todas as páginas',
 'prefixindex'             => 'Índice de prefixo',
-'randompage'              => 'Página aleatória',
-'randompage-nopages'      => 'Não há páginas neste espaço nominal.',
 'shortpages'              => 'Páginas curtas',
 'longpages'               => 'Páginas longas',
 'deadendpages'            => 'Páginas sem saída',
@@ -1504,9 +1509,10 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'range_block_disabled'        => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'          => 'Tempo de expiração inválido.',
 'ipb_already_blocked'         => '"$1" já encontra-se bloqueado',
+'ipb_cant_unblock'            => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'ip_range_invalid'            => 'Gama de IPs inválida.',
 'proxyblocker'                => 'Bloqueador de proxy',
-'ipb_cant_unblock'            => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
+'proxyblocker-disabled'       => 'Esta função está desabilitada.',
 'proxyblockreason'            => 'O seu endereço de IP foi bloqueado por ser um proxy público. Por favor contacte o seu fornecedor do serviço de Internet ou o apoio técnico e informe-os deste problema de segurança grave.',
 'proxyblocksuccess'           => 'Concluído.',
 'sorbsreason'                 => 'O seu endereço IP encontra-se listado como proxy aberto pela DNSBL utilizada por este sítio.',
@@ -1859,6 +1865,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-exposuretime-format'         => '$1 seg ($2)',
 'exif-fnumber'                     => 'Número F',
 'exif-exposureprogram'             => 'Programa de exposição',
+'exif-spectralsensitivity'         => 'Sensibilidade espectral',
 'exif-isospeedratings'             => 'Taxa de velocidade ISO',
 'exif-oecf'                        => 'Factor optoelectrónico de conversão.',
 'exif-shutterspeedvalue'           => 'Velocidade do obturador',
@@ -1936,6 +1943,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-lightsource-0'   => 'Desconhecida',
 'exif-lightsource-1'   => 'Luz do dia',
 'exif-lightsource-2'   => 'Fluorescente',
+'exif-lightsource-3'   => 'Tungsténio (luz incandescente)',
 'exif-lightsource-10'  => 'Tempo nublado',
 'exif-lightsource-255' => 'Outra fonte de luz',
 
