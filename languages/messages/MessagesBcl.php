@@ -506,7 +506,7 @@ Si $1 an nagbagat. Ini an itinaong rasón, ''$2''.
 * Pagpasó kan pagbagat: $6
 * Piniling bagaton: $7
 
-Pwede mong suratan si $1 o an iba pang [[{{MediaWiki:grouppage-sysop}}|administrador]] para pagoralayan an manonongod sa pagbagat.
+Pwede mong suratan si $1 o an iba pang [[{{MediaWiki:Grouppage-sysop}}|administrador]] para pagoralayan an manonongod sa pagbagat.
 Dai mo pwedeng gamiton an ' ''e''-suratan an parágamit ' kun mayong tamang ''e''-surat sa  [[Special:Preferences|mga kabôtan kan ''account'']] mo asin dai ka pigbagat sa paggamit kaini.
 $3 an presente mong IP, asin #$5 an ID nin pigbagat. Ikaag tabî an arin man o pareho sain man na hapót.",
 'autoblockedtext'           => "Enseguidang pigbagat an IP mo ta ginamit ini kan ibang parágamit, na binagat ni \$1.
@@ -518,7 +518,7 @@ Ini an rasón:
 * Pagpasó kan pagbagat: \$6
 
 Pwedeng mong suratan si \$1 o an iba pang mga
-[[{{MediaWiki:grouppage-sysop}}|administrador]] para pagolayan an manonongod sa pagbagat.
+[[{{MediaWiki:Grouppage-sysop}}|administrador]] para pagolayan an manonongod sa pagbagat.
 
 Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\" na gamit kun igwa kang tamang ''e''-surat na nakarehistro saimong [[Special:Preferences|mga kabôtan nin parágamit]] asin dai ka pigbabagat sa paggamit kaini.
 
@@ -543,7 +543,7 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 'newarticle'                => '(Bâgo)',
 'newarticletext'            => "Sinunod mo an takod sa pahinang mayô pa man.
 Para magibo an páhina, magpoon pagsurat sa kahon sa babâ
-(hilingón an [[{{MediaWiki:helppage}}|páhina nin tabang]] para sa iba pang impormasyon).
+(hilingón an [[{{MediaWiki:Helppage}}|páhina nin tabang]] para sa iba pang impormasyon).
 Kun dai tinuyong nakaabot ka digdi, pindoton sana an '''back''' sa ''browser'' mo.",
 'anontalkpagetext'          => "----''Ini an páhina kan olay kan sarong parágamit na dai bisto na dai pa naggibo nin'' account ''o dai naggagamit kaini. Entonces, piggagamit mi an numero nin IP para mabisto siya. Ining IP pwede gamiton kan manlain-lain na mga parágamit. Kun ika sarong páragamit na dai bisto asin konbensido ka na pigsasabi ka ining mga komento bakô man dapit saimo,  [[Special:Userlogin|maggibo nin'' account ''o maglaog]] tabî para maibitaran an pagkaribong saimo asin sa ibang mga parágamit na dai bisto.''",
 'noarticletext'             => 'Mayo man na teksto sa páhinang ini, pwede mong [[Special:Search/{{PAGENAME}}|hanápon ining titulo nin páhina]] sa ibang mga páhina o [{{fullurl:{{FULLPAGENAME}}|action=edit}} hirahon ining páhina].',
@@ -713,7 +713,7 @@ Hilingon tabî an [[Special:Ipblocklist|lista nin binagat na IP]] para sa lista 
 
 # Search results
 'searchresults'         => 'Hanapon an mga resulta',
-'searchresulttext'      => 'Para sa iba pang impormasyon manonongod sa paghanap sa {{SITENAME}}, hilingon tabî an [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Para sa iba pang impormasyon manonongod sa paghanap sa {{SITENAME}}, hilingon tabî an [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Hinanap mo an '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Hinanap mo an '''$1'''",
 'noexactmatch'          => "'''Mayong siring na páhinang may títulong \"\$1\".''' Pwede mong [[:\$1|gibohon ining páhina]].",
@@ -1259,7 +1259,7 @@ Para bâgohon an pagpwesto kan saimong mga pigbabantayan, bisitahon an
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Komentaryo asin iba pang tabang:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Parâon an pahina',
@@ -1274,7 +1274,7 @@ Komentaryo asin iba pang tabang:
 'confirmdeletetext'           => 'Paparâon mo sa base nin datos ining páhina
 o ladawan kasabay an gabos na mga historya kaini.
 Konpirmaron tabî na talagang boot mong gibohon ini, nasasabotan mo an mga resulta, asin an piggigibo mo ini konporme sa
-[[{{MediaWiki:policy-url}}]].',
+[[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Nagibo na',
 'deletedtext'                 => 'Pigparâ na an "$1" .
 Hilingón tabî an $2 para mahiling an lista nin mga kaaagi pa sanang pagparâ.',
@@ -1427,7 +1427,7 @@ $1",
 # Block/unblock
 'blockip'                     => 'Bagáton an parágamit',
 'blockiptext'                 => 'Gamiton an pormularyo sa babâ para bagaton an pagsurat kan sarong espesipikong IP o ngaran nin parágamit.
-Dapat gibohon sana ini para maibitaran vandalismo, asin kompirmi sa [[{{MediaWiki:policy-url}}|palakaw]].
+Dapat gibohon sana ini para maibitaran vandalismo, asin kompirmi sa [[{{MediaWiki:Policy-url}}|palakaw]].
 Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang rinaot).',
 'ipaddress'                   => 'Direksyón nin IP:',
 'ipadressorusername'          => 'dirección nin IP o gaha:',
@@ -1573,7 +1573,7 @@ Igwa nang páhina na "[[$1]]". Gusto mong parâon ini tangarig maibalyó?',
 
 Para makapadara nin mga páhina, ilaag an mga titulo sa kahon para sa teksto sa babâ, sarong titulo kada linya, dangan pilîon kun boot mo presenteng bersyón asin dating bersyón, na may mga linya kan historya, o an presenteng bersyón sana na may impormasyon manonongod sa huring hirá.
 
-Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] para sa páhinang "[[{{MediaWiki:mainpage}}]]".',
+Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]] para sa páhinang "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Mga presenteng pagpakarhay sana an ibali, bakong an enterong historya',
 'exportnohistory'   => "----
 '''Paisi:''' Dai pigpatogotan an pagpadara kan enterong historya kan mga páhina sa paagi kaining forma huli sa mga rasón dapit sa pagsagibo kaini.",

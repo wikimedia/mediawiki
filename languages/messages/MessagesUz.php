@@ -253,7 +253,7 @@ Sizni $1 chetlashtirdi. Bunga sabab: ''$2''.
 * Chetlashtirish muddati boshi: $8
 * Chetlashtirish muddati yakuni: $6
 
-Siz $1 yoki boshqa [[{{MediaWiki:grouppage-sysop}}|administrator]] bilan bogʻlanib, arz qilishingiz mumkin.
+Siz $1 yoki boshqa [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilan bogʻlanib, arz qilishingiz mumkin.
 Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bularni ilova qilishingiz mumkin.",
 'newarticle'             => '(Yangi)',
 'newarticletext'         => "Bu sahifa hali mavjud emas. Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qo'shimcha axborot uchun [[Help:Mundarija|yordam sahifasini]] ko'ring). Agar bu sahifaga xatolik sabab kelgan bo'lsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
@@ -299,7 +299,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Search results
 'searchresults'    => 'Qidiruv natijalari',
-'searchresulttext' => "{{SITENAME}}da qidirish haqida qo'shimcha ma'lumotga ega bo'lishini xoxlasangiz, [[{{MediaWiki:helppage}}|{{SITENAME}}da qidiruv]] sahifasini o'qing.",
+'searchresulttext' => "{{SITENAME}}da qidirish haqida qo'shimcha ma'lumotga ega bo'lishini xoxlasangiz, [[{{MediaWiki:Helppage}}|{{SITENAME}}da qidiruv]] sahifasini o'qing.",
 'noexactmatch'     => "'''\"\$1\" nomli birorta ham sahifa yo'q.''' Bu sahifani [[:\$1|yaratishingiz]] mumkin.",
 'prevn'            => 'oldingi $1',
 'nextn'            => 'keyingi $1',

@@ -289,7 +289,7 @@ The block was made bi $1. The raeson gien is \'\'$2\'\'.
 * Expiry of block: $6
 * Intended blockee: $7
 
-Ye can contact $1 or ane o the ither [[{{MediaWiki:grouppage-sysop}}|administrators]] tae discuss the block.
+Ye can contact $1 or ane o the ither [[{{MediaWiki:Grouppage-sysop}}|administrators]] tae discuss the block.
 Mynd that ye canna uise the "email this uiser" featur unless ye hae a valid email address registert in yer [[Special:Preferences|uiser preferences]] an ye hae not been blocked from using it.
 Yer IP address is $3, and the block ID is #$5. Please include this address in onie queries ye mak.',
 'blockedoriginalsource'  => "The soorce o '''$1''' is shawn ablo:",
@@ -298,7 +298,7 @@ Yer IP address is $3, and the block ID is #$5. Please include this address in on
 'confirmedittext'        => 'Ye maun confirm yer e-mail address afore editin pages. Please set an validate yer e-mail address throu yer [[Special:Preferences|uiser settins]].',
 'loginreqpagetext'       => 'Ye maun $1 tae view ither pages.',
 'accmailtext'            => "The Password for '$1' haes been sent tae $2.",
-'newarticletext'         => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[{{MediaWiki:helppage}}|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
+'newarticletext'         => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[{{MediaWiki:Helppage}}|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
 'anontalkpagetext'       => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical IP address tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:Userlogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
 'noarticletext'          => "The'r nae text on this page the nou. Ye can [[{{ns:special}}:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages or [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} edit this page].",
 'clearyourcache'         => "'''Tak tent:''' Efter hainin, ye micht hae tae bypass yer brouser's cache for tae see the chynges. '''Mozilla / Firefox / Safari:''' haud doun ''Shift'' while dabbin on ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' haud doun ''Ctrl'' while dabbin on ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''' juist dab on the ''Reload'' button, or press ''F5''; '''Opera''' users micht hae tae haillie dicht thair cache in ''Tools&rarr;Preferences''.",
@@ -356,7 +356,7 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 
 # Search results
 'searchresults'         => 'Rake results',
-'searchresulttext'      => 'For mair information aboot rakin {{SITENAME}}, see [[{{MediaWiki:helppage}}|Rakin {{SITENAME}}]].',
+'searchresulttext'      => 'For mair information aboot rakin {{SITENAME}}, see [[{{MediaWiki:Helppage}}|Rakin {{SITENAME}}]].',
 'searchsubtitle'        => "Ye raked for '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Ye raked for '''$1'''",
 'noexactmatch'          => "'''There nae page wi the teetle \"\$1\".''' Ye can [[:\$1|mak this page]].",
@@ -604,7 +604,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'historywarning'      => "Warnin: The page ye're aboot tae delete haes a history:",
 'confirmdeletetext'   => "Ye'r aboot tae permanently delete a page or eimage alang wi aa its history frae the database.
 Please confirm that ye intend tae dae this, that ye unnerstaun the consequences,
-an that ye'r daein this in accord wi [[{{MediaWiki:policy-url}}]].",
+an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'      => 'Action duin',
 'deletedtext'         => '"$1" haes been delete. See $2 for a record o recent deletions.',
 'deletedarticle'      => 'deletit "[[$1]]"',
@@ -662,7 +662,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 
 # Block/unblock
 'blockip'                     => 'Block uiser',
-'blockiptext'                 => 'Uise the form ablo tae block write access frae a specific IP address or uisername. This shuid be duin juist tae prevent vandalism, and in accord wi [[{{MediaWiki:policy-url}}|policy]]. Fill in a specific raeson ablo (for exemplar, citin parteicular pages that wis damaged).',
+'blockiptext'                 => 'Uise the form ablo tae block write access frae a specific IP address or uisername. This shuid be duin juist tae prevent vandalism, and in accord wi [[{{MediaWiki:Policy-url}}|policy]]. Fill in a specific raeson ablo (for exemplar, citin parteicular pages that wis damaged).',
 'ipaddress'                   => 'IP Address',
 'ipadressorusername'          => 'IP Address or uisername',
 'ipbreason'                   => 'Raeson',
@@ -739,7 +739,7 @@ The destination airticle "[[$1]]" aareadies exists. Div ye want tae delete it fo
 
 Tae export airticle pages, enter the teitles in the text box ablo, ae teitle tae ilka line, an wale whither ye want the current version alang wi aa auld versions, wi the page history lines, or the current version juist, wi wittins anent the last edit.
 
-In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] for the airticle "[[{{MediaWiki:mainpage}}]]".',
+In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]] for the airticle "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly' => 'Include juist the current revision, no the fou history',
 
 # Namespace 8 related

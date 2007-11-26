@@ -417,7 +417,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 
 # Search results
 'searchresults'         => 'Suech-Ergäbnis',
-'searchresulttext'      => 'Für wiiteri Informatione zuem Sueche uff {{SITENAME}} chönne Si mol uff [[{{MediaWiki:helppage}}|{{int:help}}]] luege.',
+'searchresulttext'      => 'Für wiiteri Informatione zuem Sueche uff {{SITENAME}} chönne Si mol uff [[{{MediaWiki:Helppage}}|{{int:help}}]] luege.',
 'searchsubtitle'        => 'Für d Suechaafrag «[[:$1]]»',
 'searchsubtitleinvalid' => 'Für d Suechaafrag «$1»',
 'prevn'                 => 'vorderi $1',
@@ -656,7 +656,7 @@ Es wird chei wiiteri Benochrichtigungsbost gschickt bis Si selli Syte wiedr bsue
 
 ---
 Ihri Beobachtigslischte {{fullurl:Special:Watchlist/edit}}
-Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:helppage}}}}',
+Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'        => 'Syte lösche',
@@ -666,7 +666,7 @@ Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:helppage}}}}',
 'deletesub'         => '(«$1» lösche)',
 'historywarning'    => '<span style="color:#ff0000">WARNUNG:</span> Die Seite die Sie zu löschen gedenken hat eine Versionsgeschichte:',
 'confirmdeletetext' => 'Du bisch drann, en Artikel oder es Bild mitsamt Versionsgschicht permanänt us der Datebank z lösche.
-Bitte bis dir über d Konsequänze bewusst, u bis sicher, das du di a üsi [[{{MediaWiki:policy-url}}|Leitlinien]] haltisch.',
+Bitte bis dir über d Konsequänze bewusst, u bis sicher, das du di a üsi [[{{MediaWiki:Policy-url}}|Leitlinien]] haltisch.',
 'actioncomplete'    => 'Uftrag usgfuehrt.',
 'deletedtext'       => '«$1» isch glösche worde.
 Im $2 het’s e Lischte vo de letschte Löschige.',

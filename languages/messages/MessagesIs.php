@@ -658,7 +658,7 @@ Bannið var sett af $1. Ástæðan sem gefin var er eftirfarandi: ''$2''.
 * Banninu líkur: $6
 * Sá sem átti að vera bannaður: $7
 
-Þú getur reynt að hafa samband við $1 eða einhvern annan [[{{MediaWiki:grouppage-sysop}}|stjórnanda]] til að ræða bannið.
+Þú getur reynt að hafa samband við $1 eða einhvern annan [[{{MediaWiki:Grouppage-sysop}}|stjórnanda]] til að ræða bannið.
 Athugaðu að „Senda þessum notanda tölvupóst“ möguleikinn er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|notandastillingum þínum]] og að þú hafir ekki verið bannaður frá því að nota það.
 
 Vistfangið þitt er $3 og bönnunarnúmerið er #$5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
@@ -671,7 +671,7 @@ Vistfangið þitt er $3 og bönnunarnúmerið er #$5. Vinsamlegast taktu það f
 * Bannið endist til: $6
 
 Þú getur haft samband við $1 eða einn af hinum
-[[{{MediaWiki:grouppage-sysop}}|stjórendunum]] til að ræða bannið.
+[[{{MediaWiki:Grouppage-sysop}}|stjórendunum]] til að ræða bannið.
 
 Athugið að „Senda þessum notanda tölvupóst“ möguleikinn er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|stillingunum]] þínum.
 
@@ -695,7 +695,7 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'newarticle'               => '(Ný)',
 'newarticletext'           => "Þú hefur fylgt tengli á síðu sem er ekki til enn þá.
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið að neðan 
-(meiri upplýsingar á [[{{MediaWiki:helppage}}|hjálp]]).
+(meiri upplýsingar á [[{{MediaWiki:Helppage}}|hjálp]]).
 Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranum þínum.",
 'anontalkpagetext'         => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það getur gerst að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
 'noarticletext'            => 'Hér er engin texti enn sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
@@ -811,7 +811,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 
 # Search results
 'searchresults'         => 'Leitarniðurstöður',
-'searchresulttext'      => 'Fyrir frekari upplýsingar um leit á {{SITENAME}} farið á [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Fyrir frekari upplýsingar um leit á {{SITENAME}} farið á [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Þú leitaðir að '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Þú leitaðir að '''$1'''",
 'noexactmatch'          => "'''Engin síða ber nafnið „$1“.''' Þú getur [[:$1|búið hana til]].",
@@ -1280,7 +1280,7 @@ Til að fjarlægja síðu þessa af vaktlistanum þarft þú að ýta á tengili
 breytingaskrá hennar úr gagnagrunninum.
 Vinsamlegast staðfestu hér bæði að þetta sé vilji þinn
 og að þú skiljir afleiðingarnar. Þar að auki að þetta
-sé í samræmi við [[{{MediaWiki:policy-url}}]].',
+sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Aðgerð lokið',
 'deletedtext'                 => '„[[$1]]“ hefur verið eytt. Sjá lista yfir nýlegar eyðingar í $2.',
 'deletedarticle'              => 'eyddi „[[$1]]“',
@@ -1395,7 +1395,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 
 # Block/unblock
 'blockip'                     => 'Banna notanda',
-'blockiptext'                 => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða vistföngum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:policy-url}}|reglur]] {{SITENAME}}.
+'blockiptext'                 => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða vistföngum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:Policy-url}}|reglur]] {{SITENAME}}.
 
 Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).',
 'ipaddress'                   => 'Vistfang:',

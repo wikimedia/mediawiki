@@ -606,7 +606,7 @@ A blokkolást $1 tette. Az általa felhozott indok: ''$2''.
 * A blokkolás lejárata: $6
 * Szándékos blokkoló: $7
 
-Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolásodat.
+Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolásodat.
 Az 'E-mail küldése ennek a felhasználónak' funkciót nem használhatod, ha a megadott e-mail cím a
 [[Special:Preferences|fiókbeállításaidban]] nem érvényes, és nem blokkolták annak a használatát.
 Jelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5. Kérjük, hogy érdeklődés esetén lehetőleg mindkettőt add meg.",
@@ -619,7 +619,7 @@ Az indok a következő:
 * Blokkolás lejárata: $6
 
 Felveheted $1 felhasználóval vagy egy másik
-[[{{MediaWiki:grouppage-sysop}}|adminisztrátorral]] a kapcsolatot, és megbeszélheted vele a blokkolásodat.
+[[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]] a kapcsolatot, és megbeszélheted vele a blokkolásodat.
 
 Az "E-mail küldése ennek a felhasználónak" funkciót nem használhatod, ha a megadott e-mail cím a
 [[Special:Preferences|fiókbeállításaidban]] nem érvényes, és nem blokkolták annak a használatát.
@@ -646,7 +646,7 @@ megtalálható alább:",
 'newarticle'                => '(Új)',
 'newarticletext'            => "Egy olyan lapra mutató hivatkozást követtél, mely még nem létezik.
 A lap létrehozásához kezdd el írni a szövegét az alábbi keretben
-(a [[{{MediaWiki:helppage}}|súgó]] lapon lelsz további
+(a [[{{MediaWiki:Helppage}}|súgó]] lapon lelsz további
 információkat).
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
@@ -830,7 +830,7 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 
 # Search results
 'searchresults'         => 'A keresés eredménye',
-'searchresulttext'      => 'A {{SITENAME}} keresésével kapcsolatos további információ a [[{{MediaWiki:helppage}}|{{int:súgóban}}]].',
+'searchresulttext'      => 'A {{SITENAME}} keresésével kapcsolatos további információ a [[{{MediaWiki:Helppage}}|{{int:súgóban}}]].',
 'searchsubtitle'        => 'Erre kerestél: „[[:$1]]”',
 'searchsubtitleinvalid' => 'A "$1" kereséshez',
 'noexactmatch'          => "'''Nincs \"\$1\" című lap.''' [[:\$1|Elkészítheted ezt a lapot]].",
@@ -1331,7 +1331,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz
 látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]]
 lapon, hogy könnyen észrevehető legyen.
 
-Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az oldalmenü „{{MediaWiki:unwatchthispage}}” pontjával (vagy a „{{MediaWiki:unwatch}}” füllel) teheted meg.",
+Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az oldalmenü „{{MediaWiki:Unwatchthispage}}” pontjával (vagy a „{{MediaWiki:Unwatch}}” füllel) teheted meg.",
 'removedwatch'         => 'Figyelőlistáról eltávolítva',
 'removedwatchtext'     => 'A „$1” lapot eltávolítottam a figyelőlistáról.',
 'watch'                => 'Lap figyelése',
@@ -1392,7 +1392,7 @@ A figyelőlistád beállításainak módosításához keresd fel a
 {{fullurl:{{ns:special}}:Figyelőlistám/edit}} címet
 
 Visszajelzés és további segítség:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Lap törlése',
@@ -1407,7 +1407,7 @@ Visszajelzés és további segítség:
 'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti 
 végleges törlésére készülsz.  
 Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni, 
-átlátod a következményeit, és a [[{{MediaWiki:policy-url}}|törlési irányelvekkel]] 
+átlátod a következményeit, és a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]] 
 összhangban cselekedsz.',
 'actioncomplete'              => 'Művelet végrehajtva',
 'deletedtext'                 => 'A(z) „$1” lapot törölted.  
@@ -1569,7 +1569,7 @@ $1',
 'blockip'                     => 'Blokkolás',
 'blockiptext'                 => 'Az alábbi űrlappal blokkolhatod egy adott IP-cím 
 vagy felhasználónév írási hozzáférését. Ezt az 
-[[{{MediaWiki:policy-url}}|adatvédelmi szabályzat]] 
+[[{{MediaWiki:Policy-url}}|adatvédelmi szabályzat]] 
 alapján csak a vandalizmus megelőzése érdekében kell 
 megtenni. Írj be alább egy konkrét indokot (például 
 barbár módra elbánt oldalak idézése).',

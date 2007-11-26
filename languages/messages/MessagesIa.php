@@ -237,11 +237,11 @@ Per favor initia un session post reciper lo.',
 'blockedtitle'     => 'Le usator es blocate',
 'blockedtext'      => "Tu nomine de usator o adresse de IP ha essite blocate per $1.
 Le motivo presentate es iste:<br />''$2''<p>Tu pote contactar $1 o un del altere
-[[{{MediaWiki:grouppage-sysop}}|administratores]] pro discuter le bloco.",
+[[{{MediaWiki:Grouppage-sysop}}|administratores]] pro discuter le bloco.",
 'newarticle'       => '(Nove)',
 'newarticletext'   => "Tu ha sequite un ligamine a un pagina que ancora non existe.
 Pro crear un nove pagina, comencia a scriber in le cassa infra.
-(Vide le [[{{MediaWiki:helppage}}|pagina de adjuta]] pro plus information.)
+(Vide le [[{{MediaWiki:Helppage}}|pagina de adjuta]] pro plus information.)
 Si tu es hic per error, simplemente clicca le button '''Retornar''' de tu navigator.",
 'anontalkpagetext' => "---- ''Iste es le pagina de discussion pro un usator anonyme qui ancora non ha create un conto o qui non lo usa. Consequentemente nos debe usar le [[adresse de IP]] numeric pro identificar le/la. Un tal adresse de IP pote esser usate in commun per varie personas. Si tu es un usator anonyme e senti que commentarios irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
 'noarticletext'    => '(Actualmente il non ha texto in iste pagina)',
@@ -295,7 +295,7 @@ Verifica le URL que tu ha usate pro accessar iste pagina.',
 
 # Search results
 'searchresults'         => 'Resultatos del recerca',
-'searchresulttext'      => 'Pro plus information super le recerca de {{SITENAME}}, vide [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Pro plus information super le recerca de {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Pro le consulta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Pro le consulta "$1"',
 'badquery'              => 'Consulta de recerca mal formate',
@@ -569,7 +569,7 @@ Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancella
 'confirmdeletetext' => 'Tu es a puncto de eliminar permanentemente un pagina
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
-e tu lo face de accordo con [[{{MediaWiki:policy-url}}]].',
+e tu lo face de accordo con [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Action complete',
 'deletedtext'       => '"$1" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
@@ -623,7 +623,7 @@ executar iste function.',
 'blockiptext'        => 'Usa le formulario infra pro blocar le accesso de scriptura
 a partir de un adresse IP specific.
 Isto debe esser facite solmente pro impedir vandalismo, e de
-accordo con le [[{{MediaWiki:policy-url}}|politica de {{SITENAME}}]].
+accordo con le [[{{MediaWiki:Policy-url}}|politica de {{SITENAME}}]].
 Scribe un motivo specific infra (per exemplo, citante paginas
 specific que ha essite vandalisate).',
 'ipaddress'          => 'Adresse IP',

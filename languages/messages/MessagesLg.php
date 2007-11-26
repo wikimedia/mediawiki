@@ -144,7 +144,7 @@ mu lukalala lw'enkuykakyuka ez'omu lupapula luno.",
 'accmailtext'      => 'Ekigambo ekikuumi ekya "$1" kisindikiddwa ku $2.',
 'newarticletext'   => "Enyunzi gy'ogenzeko egguka ku lupapula olutannakolebwawo.
 Oba gwe oyagala okulukolawo, wandiika mu kabokisi wammanga.
-(okuyiga ebisingawo, genda ku [[{{MediaWiki:helppage}}|lupapula olw'obuyambi]]).
+(okuyiga ebisingawo, genda ku [[{{MediaWiki:Helppage}}|lupapula olw'obuyambi]]).
 Bw'obanga tewagenderedde kutuuka wano, nyigabunyizi eppeesa ery'omu kalambula-neti yo
 erya '''ddayo'''.",
 'editing'          => 'Kukyuusa $1',

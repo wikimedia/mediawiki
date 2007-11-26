@@ -415,7 +415,7 @@ The block was made by $1. The reason given is ''$2''.
 * Expiry of block: $6
 * Intended blockee: $7
 
-Jy mag $1 of een van die ander [[{{MediaWiki:grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
+Jy mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
 You cannot use the 'email this user' feature unless a valid email address is specified in your
 [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
@@ -425,7 +425,7 @@ Your current IP address is $3, and the block ID is #$5. Please include either or
 'accmailtext'              => "Die wagwoord van '$1' is gestuur aan $2.",
 'newarticle'               => '(Nuut)',
 'newarticletext'           => "Die bladsy waarna geskakel is, bestaan nie.
-Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:helppage}}|hulp bladsy]]
+Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:Helppage}}|hulp bladsy]]
 vir meer inligting.
 Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
 'anontalkpagetext'         => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
@@ -498,7 +498,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 
 # Search results
 'searchresults'         => 'soekresultate',
-'searchresulttext'      => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Vir navraag "[[:$1]]"',
 'searchsubtitleinvalid' => 'Vir navraag "$1"',
 'noexactmatch'          => "Geen bladsy met hierdie presiese titel bestaan nie, probeer 'n volteksnavraag.",
@@ -615,7 +615,7 @@ om voorkeure te spesifiseer.',
 om lêers te laai.',
 'uploaderror'       => 'Laaifout',
 'uploadtext'        => "'''STOP!''' Voor jy hier laai, lees en volg {{SITENAME}} se
-[[{{MediaWiki:copyrightpage}}|beleid oor prentgebruik]].
+[[{{MediaWiki:Copyrightpage}}|beleid oor prentgebruik]].
 
 Om prente wat voorheen gelaai is te sien of te soek, gaan na die
 [[Special:Imagelist|lys van gelaaide prente]].
@@ -852,7 +852,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'confirmdelete'               => 'Bevestig skrapping',
 'deletesub'                   => '(Besig om "$1" te skrap)',
 'confirmdeletetext'           => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
-Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:policy-url}}]].",
+Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Aksie uitgevoer',
 'deletedtext'                 => '"$1" is geskrap.
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
@@ -931,7 +931,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 # Block/unblock
 'blockip'            => 'Blok IP-adres',
 'blockiptext'        => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
-Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:policy-url}}|{{SITENAME}} policy]].
+Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}} policy]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 'ipaddress'          => 'IP-adres',
 'ipadressorusername' => 'IP-adres of gebruikernaam:',

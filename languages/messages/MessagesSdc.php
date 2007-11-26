@@ -555,7 +555,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 
 # Search results
 'searchresults'         => 'Risulthaddi zirchadi',
-'searchresulttext'      => 'Pà maggiori infuimmazioni i cumenti zirchà i {{SITENAME}}, vèdi [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Pà maggiori infuimmazioni i cumenti zirchà i {{SITENAME}}, vèdi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Zirchendi '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Zirchendi '''$1'''",
 'noexactmatch'          => "'''La pàgina \"\$1\" nò esisthi.''' È pussìbiri [[:\$1|crialla abà]].",

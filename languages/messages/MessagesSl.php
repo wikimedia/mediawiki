@@ -314,7 +314,7 @@ Morda stran s tem imenom še ni bila ustvarjena. Če je tako, jo lahko ustvarite
 
 Kadar gre za nedavno spremenjeno stran, jo poskusite minuto ali dve pozneje ponovno poiskati. Morda pa ste sledili zastareli povezavi na primerjavo ali zgodovino izbrisane strani.
 
-Kadar to ni tako, ste morda odkrili hrošč v programju. Prosimo, obvestite katerega izmed [[{{MediaWiki:grouppage-sysop}}|administratorjev]] in pri tem navedite spletni naslov.',
+Kadar to ni tako, ste morda odkrili hrošč v programju. Prosimo, obvestite katerega izmed [[{{MediaWiki:Grouppage-sysop}}|administratorjev]] in pri tem navedite spletni naslov.',
 'readonly_lag'         => 'Podatkovna zbirka se je samodejno zaklenila, dokler se podrejeni strežniki ne uskladijo z glavnim.',
 'internalerror'        => 'Notranja napaka',
 'filecopyerror'        => 'Datoteke »$1« ni mogoče prepisati v »$2«.',
@@ -336,7 +336,7 @@ Iskanje: $2',
 'viewsource'           => 'Izvorno besedilo',
 'viewsourcefor'        => 'za $1',
 'protectedinterface'   => 'Prikazana stran vsebuje besedilo ali drug element uporabniškega vmesnika programja. Zaradi preprečevanja zlorabe je zaščitena.',
-'editinginterface'     => "'''Opozorilo:''' Urejate stran, ki vsebuje besedilo ali drug element uporabniškega vmesnika programja. Spremembe te strani bodo vplivale na podobo uporabniškega vmesnika. To stran lahko urejajo le [[{{MediaWiki:grouppage-sysop}}|administratorji]]. Prosimo, da pri spremembah upoštevate soglasje občestva.",
+'editinginterface'     => "'''Opozorilo:''' Urejate stran, ki vsebuje besedilo ali drug element uporabniškega vmesnika programja. Spremembe te strani bodo vplivale na podobo uporabniškega vmesnika. To stran lahko urejajo le [[{{MediaWiki:Grouppage-sysop}}|administratorji]]. Prosimo, da pri spremembah upoštevate soglasje občestva.",
 'sqlhidden'            => '(SQL-poizvedovanje je skrito)',
 
 # Login and logout pages
@@ -455,7 +455,7 @@ možnosti se e-pošte ne bo pošiljalo.',
 'blockedtitle'              => 'Uporabnik je blokiran.',
 'blockedtext'               => "Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je $1 onemogočil(-a).
 Vzrok:<br />''$2''<br />O blokiranju se lahko pogovorite z $1 ali katerim drugim
-[[{{MediaWiki:grouppage-sysop}}|administratorjem]].
+[[{{MediaWiki:Grouppage-sysop}}|administratorjem]].
 
 Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v nastavitvah vpisali in potrdili svoj elektronski naslov. 
 
@@ -478,7 +478,7 @@ Vaš IP-naslov je $3. Prosimo, vključite ga v vse morebitne poizvedbe.",
 'newarticle'                => '(Nov)',
 'newarticletext'            => "Sledili ste povezavi na stran, ki še ne obstaja.
 Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
-(za več informacij glej [[{{MediaWiki:helppage}}|pomoč]]).
+(za več informacij glej [[{{MediaWiki:Helppage}}|pomoč]]).
 Če ste sem prišli po pomoti, v svojem brskalniku kliknite gumb ''Nazaj''.",
 'anontalkpagetext'          => "---- ''To je pogovorna stran za nepodpisanega uporabnika, ki še ni ustvaril računa ali, ki ga ne uporablja. Zaradi tega moramo uporabiti števčen IP address za njegovo/njeno ugotavljanje istovetnosti. Takšen IP naslov si lahko deli več uporabnikov. Če ste nepodpisan uporabnik in če menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:Userlogin|ustvarite račun ali pa se vpišite]], da preprečite naslednje zmede z drugimi nepodpisanimi uporabniki.''",
 'noarticletext'             => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite].',
@@ -592,7 +592,7 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 
 # Search results
 'searchresults'         => 'Izid iskanja',
-'searchresulttext'      => 'Za več sporočil o iskanju v {{GRAMMAR:dajalnik|{{SITENAME}}}} glej [[{{MediaWiki:helppage}}|Iščem v {{GRAMMAR:dajalnik|{{SITENAME}}}}]].',
+'searchresulttext'      => 'Za več sporočil o iskanju v {{GRAMMAR:dajalnik|{{SITENAME}}}} glej [[{{MediaWiki:Helppage}}|Iščem v {{GRAMMAR:dajalnik|{{SITENAME}}}}]].',
 'searchsubtitleinvalid' => 'Za povpraševanje "$1"',
 'badquery'              => 'Napačno oblikovana iskalna poizvedba',
 'badquerytext'          => 'Vaš iskalni niz žal ni bilo mogoče obdelati. Nekaj nasvetov:
@@ -1000,7 +1000,7 @@ Za spremembo nastavitev spiska nadzorov obiščite
 {{fullurl:Special:Watchlist/edit}}
 
 Povratna sporočila in pomoč:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Briši stran',
@@ -1013,7 +1013,7 @@ Povratna sporočila in pomoč:
 'deletesub'                   => '(Brišem »$1«)',
 'historywarning'              => 'OPOZORILO: stran, ki jo želite izbrisati, ima zgodovino:',
 'confirmdeletetext'           => "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino. 
-Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:policy-url}}|pravilih]].",
+Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 'actioncomplete'              => 'Poseg je končan',
 'deletedtext'                 => "»'''$1'''« je bila izbrisana. 
 Za zapise nedavnih brisanj glej $2.",
@@ -1061,7 +1061,7 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'undeletepagetext'       => 'Naslednje strani so izbrisane, vendar so še vedno v arhivu in jih lahko obnovite. Arhiv je treba občasno počistiti.',
 'undeleteextrahelp'      => "Da bi obnovili celotno stran z vso njeno zgodovino, pustite vsa potrditvena polja prazna in kliknite '''''Obnovi'''''. Če želite obnoviti le določene redakcije strani, pred klikom gumba '''''Obnovi''''' označite ustrezna potrditvena polja. Klik gumba '''''Ponastavi''''' bo izpraznil polje za vnos razloga in vsa potrditvena polja.
 
-Prosimo, ravnajte se po [[{{MediaWiki:policy-url}}|pravilih obnove strani]] in navedite ustrezen razlog.",
+Prosimo, ravnajte se po [[{{MediaWiki:Policy-url}}|pravilih obnove strani]] in navedite ustrezen razlog.",
 'undeleterevisions'      => '{{plural:$1|Arhivirana je|Arhivirani sta|Arhivirane so|Arhiviranih je|Arhiviranih ni}} $1 {{plural:$1|redakcija|redakciji|redakcije|redakcij|redakcij}}',
 'undeletehistory'        => 'Z obnovo strani se bodo po privzetem obnovile tudi vse pripadajoče redakcije. Če se želite temu izogniti, označite le želene.
 
@@ -1111,7 +1111,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 
 # Block/unblock
 'blockip'                     => 'Blokiranje IP-naslova ali uporabniškega imena',
-'blockiptext'                 => "Naslednji obrazec vam omogoča, da določenemu IP-naslovu ali uporabniškemu imenu preprečite urejanje. To storimo le zaradi zaščite pred nepotrebnim uničevanjem in po [[{{MediaWiki:policy-url}}|pravilih]]. Vnesite tudi razlog, ''na primer'' seznam strani, ki jih je uporabnik po nepotrebnem kvaril.",
+'blockiptext'                 => "Naslednji obrazec vam omogoča, da določenemu IP-naslovu ali uporabniškemu imenu preprečite urejanje. To storimo le zaradi zaščite pred nepotrebnim uničevanjem in po [[{{MediaWiki:Policy-url}}|pravilih]]. Vnesite tudi razlog, ''na primer'' seznam strani, ki jih je uporabnik po nepotrebnem kvaril.",
 'ipaddress'                   => 'IP-naslov',
 'ipadressorusername'          => 'IP-naslov ali uporabniško ime',
 'ipbexpiry'                   => 'Pretek',
@@ -1191,8 +1191,8 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'newtitle'                => 'Na naslov',
 'movepagebtn'             => 'Prestavi stran',
 'pagemovedsub'            => 'Uspešno prestavljeno',
-'articleexists'           => "'''Stran ni bilo mogoče prestaviti!''' Izbrano ime je že zasedeno ali pa ni veljavno. Prosimo, izberite drugo ime ali za pomoč prosite katerega izmed [[{{MediaWiki:grouppage-sysop}}|administratorjev]].",
-'talkexists'              => 'Sama stran je bila uspešno prestavljena, pripadajoča pogovorna stran pa ne, ker že obstaja na novem naslovu. Prosimo, združite ju ročno. Če tega ne morete storiti, prosite za pomoč katerega izmed [[{{MediaWiki:grouppage-sysop}}|administratorjev]], nikakor pa tega NE počnite z izrezanjem in prilepljenjem vsebine.',
+'articleexists'           => "'''Stran ni bilo mogoče prestaviti!''' Izbrano ime je že zasedeno ali pa ni veljavno. Prosimo, izberite drugo ime ali za pomoč prosite katerega izmed [[{{MediaWiki:Grouppage-sysop}}|administratorjev]].",
+'talkexists'              => 'Sama stran je bila uspešno prestavljena, pripadajoča pogovorna stran pa ne, ker že obstaja na novem naslovu. Prosimo, združite ju ročno. Če tega ne morete storiti, prosite za pomoč katerega izmed [[{{MediaWiki:Grouppage-sysop}}|administratorjev]], nikakor pa tega NE počnite z izrezanjem in prilepljenjem vsebine.',
 'movedto'                 => 'prestavljeno na',
 'movetalk'                => 'Če je mogoče, prestavi tudi pogovorno stran.',
 'talkpagemoved'           => 'Prestavljena je tudi pripadajoča pogovorna stran.',
@@ -1228,7 +1228,7 @@ Ciljna stran »[[$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za
 'allmessagesname'           => 'Ime',
 'allmessagesdefault'        => 'Prednastavljeno besedilo',
 'allmessagescurrent'        => 'Trenutno besedilo',
-'allmessagestext'           => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila. Urejajo jih lahko [[{{MediaWiki:grouppage-sysop}}|administratorji]] in drugi sodelavci z vzdrževalnimi pravicami.',
+'allmessagestext'           => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila. Urejajo jih lahko [[{{MediaWiki:Grouppage-sysop}}|administratorji]] in drugi sodelavci z vzdrževalnimi pravicami.',
 'allmessagesnotsupportedUI' => "Vašega trenutnega jezika vmesnika ('''$1''') [[Special:Allmessages]] spletišča ne podpirajo.",
 'allmessagesnotsupportedDB' => 'Ker je wgUseDatabaseMessages izključeno, Special:Allmessages ni podprto.',
 'allmessagesfilter'         => 'Filter pogostih izrazov:',

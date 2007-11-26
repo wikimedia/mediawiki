@@ -841,7 +841,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'confirmdelete'      => 'Khẳng định xóa',
 'deletesub'          => '(Xóa  "$1")',
 'historywarning'     => '<b>Chú ý</b>: trang bạn sắp xóa đã có lịch sử:',
-'confirmdeletetext'  => 'Bạn sắp xóa hẳn một trang hoặc hình cùng với tất cả lịch sử của nó khỏi cơ sở dữ liệu. Xin khẳng định bạn hiểu rõ hậu quả có thể xảy ra, và bạn thực hiện đúng [[{{MediaWiki:policy-url}}|quy định]].',
+'confirmdeletetext'  => 'Bạn sắp xóa hẳn một trang hoặc hình cùng với tất cả lịch sử của nó khỏi cơ sở dữ liệu. Xin khẳng định bạn hiểu rõ hậu quả có thể xảy ra, và bạn thực hiện đúng [[{{MediaWiki:Policy-url}}|quy định]].',
 'actioncomplete'     => 'Xong',
 'deletedtext'        => '"$1" đã được xóa. Xem danh sách các xóa bỏ gần nhất tại $2.',
 'deletedarticle'     => 'đã xóa "$1"',

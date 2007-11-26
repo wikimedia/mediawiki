@@ -313,7 +313,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'accmailtitle'     => 'Password mandade.',
 'accmailtext'      => 'La password par "$1" e je stade mandade a $2.',
 'newarticle'       => '(Gnûf)',
-'newarticletext'   => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
+'newarticletext'   => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'noarticletext'    => '(Par cumò nol è nuie in cheste pagjine)',
 'updated'          => '(Inzornât)',
 'previewnote'      => 'Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!',
@@ -346,7 +346,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 
 # Search results
 'searchresults'         => 'Risultâts de ricercje',
-'searchresulttext'      => 'Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Pal test "[[:$1]]"',
 'searchsubtitleinvalid' => 'Pal test "$1"',
 'matchtotals'           => 'La ricercje "$1" e à cjatât $2 titui di pagjinis e il test di $3 pagjinis.',

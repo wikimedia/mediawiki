@@ -499,7 +499,7 @@ O bloqueo foi realizado por $1. A razón que deu foi \'\'$2\'\'.
 * Pretendeuse bloquear a: $7
 
 Pode contactar con $1 ou con calquera outro 
-[[{{MediaWiki:grouppage-sysop}}|administrador]] para discutir este bloqueo.
+[[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
 Non pode empregar "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.
 O seu enderezo IP actual é $3 e o ID do bloqueo é nº $5. Por favor inclúa eses datos nas consultas que faga.',
@@ -513,7 +513,7 @@ A razón que deu foi a seguinte:
 * Caducidade do bloqueo: $6 
 
 Pode contactar con $1 ou con calquera outro 
-[[{{MediaWiki:grouppage-sysop}}|administrador]] para discutir este bloqueo.
+[[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
 Teña en conta que non pode empregar "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]].
 
@@ -538,7 +538,7 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'newarticle'                => '(Novo)',
 'newarticletext'            => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo
-(vexa a [[{{MediaWiki:helppage}}|páxina de axuda]] para máis información).
+(vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
 Se chegou aquí por erro, simplemente prema no botón '''para tras''' do seu navegador.",
 'anontalkpagetext'          => "---- ''Esta é a páxina de discusión dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:Userlogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'             => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
@@ -713,7 +713,7 @@ Outros administradores deste wiki poderán acceder aínda ao contido oculto e po
 
 # Search results
 'searchresults'         => 'Resultados da procura',
-'searchresulttext'      => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "A súa busca de '''[[:$1]]'''",
 'searchsubtitleinvalid' => "A súa busca de '''$1'''",
 'noexactmatch'          => "'''Non hai ningunha páxina titulada \"\$1\".''' Pode [[:\$1|creala]].",
@@ -1294,7 +1294,7 @@ Feedback e axuda:
 'confirmdelete'               => 'Confirmar borrado',
 'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Atención: A páxina que está a borrar ten un historial:',
-'confirmdeletetext'           => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos. Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras da [[{{MediaWiki:policy-url}}]].',
+'confirmdeletetext'           => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos. Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras da [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'A acción foi completada',
 'deletedtext'                 => '"$1" foi borrado. 
 En $2 pode ver unha listaxe dos borrados recentes.',
@@ -1448,7 +1448,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Bloqueo de usuario',
-'blockiptext'                 => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear a un usuario específico. Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:policy-url}}|política e normas]] vixentes. Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
+'blockiptext'                 => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear a un usuario específico. Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes. Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
 'ipaddress'                   => 'Enderezo IP/nome de usuario',
 'ipadressorusername'          => 'Enderezo IP ou nome do usuario:',
 'ipbexpiry'                   => 'Duración:',
@@ -1609,7 +1609,7 @@ O artigo de destino "[[$1]]" xa existe. Quéreo eliminar para facer sitio para m
 
 Para exportar páxinas, insira os títulos na caixa de texto que está máis abaixo, poñendo un título por liña, e se quere seleccione a versión actual e todas as versións vellas, coas liñas do historial da páxina, ou só a versión actual con información sobre a última edición.
 
-No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]], para a páxina "[[{{MediaWiki:mainpage}}]]".',
+No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]], para a páxina "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluír só a revisión actual, non o historial completo',
 'exportnohistory'   => "---- 
 '''Aviso:''' Foi desactivada a exportación do historial completo das páxinas con este formulario debido a razóns relacionadas co rendemento do servidor.",

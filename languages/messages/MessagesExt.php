@@ -470,7 +470,7 @@ pol ca $1 oras.',
 * Fecha en qu´el tarugu prencipia: \$8
 * Fecha en qu´el tarugu acabiha: \$6
 
-Pueis contatal con \$1 u con otru [[{{MediaWiki:grouppage-sysop}}|duendi]] pa chalral al tentu el tarugu.
+Pueis contatal con \$1 u con otru [[{{MediaWiki:Grouppage-sysop}}|duendi]] pa chalral al tentu el tarugu.
 Si nu as especificau ena tu cuenta d´usuáriu una direción d´email, nu te sedrá posibri gastal el botón \"Envial un email a esti usuáriu\" (amás, tendrás qu´asperal a qu´el tarugu acabihi).
 \$3 es la tu direción IP atual, i el ID el tarugu es #\$5. Pol favol, incluyi angún/dambus dos datus en cualisquiel consurta que hagas.",
 'autoblockedtext'          => "La tu direción IP á siu atarugá autumáticamenti ebiu a qu'estaba siendu gastá pol otru usuáriu, qu'á siu atarugau pol $1 cola siguienti razón:
@@ -481,7 +481,7 @@ Si nu as especificau ena tu cuenta d´usuáriu una direción d´email, nu te sed
 * Fecha en qu'el tarugu acabiha: $6
 
 Pueis ponelti en contatu con $1 u otru
-[[{{MediaWiki:grouppage-sysop}}|alministraol]] pa chalral al tentu el tarugu.
+[[{{MediaWiki:Grouppage-sysop}}|alministraol]] pa chalral al tentu el tarugu.
 
 La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 'blockednoreason'          => "nu s'an dau razonis",
@@ -506,7 +506,7 @@ muestra embahu:",
 'newarticle'               => '(Nuevu)',
 'newarticletext'           => "Esti artículu entovía nu desisti.
 Si quieis creal esti articulu, escrebi nel cuairu d´embahu
-(si t´es mestel, mira la [[{{MediaWiki:helppage}}|páhina d´ayua]]).
+(si t´es mestel, mira la [[{{MediaWiki:Helppage}}|páhina d´ayua]]).
 Si nu quieis creal esti artículu, solu tiinis que pursal nel botón \"'''p´atrás'''\" el tu escrucaol.",
 'anontalkpagetext'         => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á creau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'an derihiu a tí con cosas que nu vienin a cuentu, pol favol [[Special:Userlogin|crea una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
 'noarticletext'            => 'Entovia nu ai dengún testu escrebiu nesta páhina, pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu el artículu]] n´otras páhinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta].',
@@ -673,7 +673,7 @@ El restu e duendis d'esti güiqui sí tendrán premisu pa visoreal el caltiniu a
 
 # Search results
 'searchresults'         => 'Landeal resurtaus',
-'searchresulttext'      => 'Pa mas enhormación al tentu landeal en {{SITENAME}}, vaiti a [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Pa mas enhormación al tentu landeal en {{SITENAME}}, vaiti a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Landeasti '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Landeasti '''$1'''",
 'noexactmatch'          => "'''Nu desisti denguna páhina e nombri \"\$1\".''' Pueis [[:\$1|creala tú]].",
@@ -1202,7 +1202,7 @@ Pa hazel chambus ena tu lista e seguimientu, vesita
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Ayua la Güiquipeya:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Esborral páhina',
@@ -1216,7 +1216,7 @@ Ayua la Güiquipeya:
 'historywarning'              => 'Avisu: La páhina que vas a esborral tieni un estorial:',
 'confirmdeletetext'           => "Vas a esborral una páhina/imahin i el su estorial de horma permanenti.
 Pol favol, confirma que realmenti quieis hazel esu, qu'entiendis las consecuencias, i que lo hazis dalcuerdu cola
-[[{{MediaWiki:policy-url}}]].",
+[[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Ación acabihá',
 'deletedtext'                 => 'S\'á esborrau "$1" corretamenti.
 Consurta $2 pa vel los úrtimus esborraus.',
