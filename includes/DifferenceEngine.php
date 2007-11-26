@@ -1648,7 +1648,7 @@ class DiffFormatter
 	}
 
 	function _start_block($header) {
-		echo $header;
+		echo $header . "\n";
 	}
 
 	function _end_block() {
