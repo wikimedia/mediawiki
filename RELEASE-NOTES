@@ -193,7 +193,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Make sure that the correct log entries are shown on Special:Userrights even
   for users with special characters in their names
 * The number of watching users in watchlists was always reported as 1
-  
+* namespaceDupes.php no longer dies when coming across an illegal title
+
+
 == Parser changes in 1.12 ==
 
 The parser pass order has changed from
