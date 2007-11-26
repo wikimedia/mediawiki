@@ -175,6 +175,16 @@ class NamespaceConflictChecker {
 
 	function reportConflict( $row, $suffix ) {
 		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
+		if( !$newTitle ) {
+			// Title is also an illegal title...
+			// For the moment we'll let these slide to cleanupTitles or whoever.
+			printf( "... %d (0,\"%s\")\n",
+				$row->id,
+				$row->oldtitle );
+			echo "...  *** cannot resolve automatically; illegal title ***\n";
+			return false;
+		}
+		
 		printf( "... %d (0,\"%s\") -> (%d,\"%s\") [[%s]]\n",
 			$row->id,
 			$row->oldtitle,
