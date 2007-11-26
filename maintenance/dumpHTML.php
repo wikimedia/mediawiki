@@ -4,10 +4,8 @@
  * @addtogroup Maintenance
  */
 
-function ShowUsage() {
-echo <<<END
+$usage = <<<ENDS
 Usage:
-php dumpHTML.php --help
 php dumpHTML.php [options...]
 
 	--help               show this message
@@ -31,8 +29,7 @@ php dumpHTML.php [options...]
 	--compress           generate compressed version of the html pages
 	--udp-profile <N>    profile 1/N rendering operations using ProfilerSimpleUDP
 
-END;
-}
+ENDS;
 
 $optionsWithArgs = array( 's', 'd', 'e', 'k', 'checkpoint', 'slice', 'udp-profile' );
 $options = array( 'help' );
@@ -58,8 +55,8 @@ require_once( "dumpHTML.inc" );
 error_reporting( E_ALL & (~E_NOTICE) );
 
 if( isset( $options['help'] ) ) {
-	ShowUsage();
-	exit();
+	echo $usage;
+	exit;
 }
 
 if ( !empty( $options['s'] ) ) {
