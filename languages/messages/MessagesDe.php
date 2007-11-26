@@ -414,7 +414,7 @@ $messages = array(
 'page-rss-feed'           => 'RSS-Feed für „$1“',
 'page-atom-feed'          => 'Atom-Feed für „$1“',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Seite',
 'nstab-user'      => 'Benutzerseite',
 'nstab-media'     => 'Media',
@@ -845,6 +845,29 @@ Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile
 'oversightlog'    => 'Oversight-Logbuch',
 'overlogpagetext' => 'Das ist das Logbuch der Löschungen und Sperren, die vor Administratoren versteckt sind.',
 
+# History merging
+'mergehistory'         => 'Versionsgeschichten vereinen',
+'mergehistory-header'  => "Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zieleite vereinen.
+Stelle dadurch sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
+
+'''Als Minumum muss die aktuelle Version der Ursprungsseite erhalten bleiben.'''",
+'mergehistory-box'     => 'Versionsgeschichten zweier Seiten vereinen',
+'mergehistory-from'    => 'Ursprungsseite:',
+'mergehistory-into'    => 'Zielseite:',
+'mergehistory-list'    => 'Versionen, die vereinigt werden können',
+'mergehistory-merge'   => 'Die folgenden Versionen von „[[:$1]]“ können nach „[[:$2]]“ übertragen werden. Markiere die Version, bis zu der (einschließlich) die Versionen werden sollen. Bitte beachte, dass die Nutzung der Navigationslinks die Auswahl zurücksetzt.',
+'mergehistory-go'      => 'Zeige Versionen, die vereinigt werden können',
+'mergehistory-submit'  => 'Vereinige Versionen',
+'mergehistory-empty'   => 'Es können keine Versionen vereinigt werden',
+'mergehistory-success' => '{{PLURAL:$3|1 Version|$3 Versionen}} von „[[:$1]]“ erfolgreich nach „[[:$2]]“ vereinigt.',
+'mergehistory-fail'    => 'Versionsvereinigung nicht möglich, bitte prüfe die Seite und die Zeitangaben.',
+
+# Merge log
+'mergelog'           => 'Vereinigungs-Logbuch',
+'pagemerge-logentry' => 'vereinigte [[$1]] in [[$2]] (Versionen bis $3)',
+'revertmerge'        => 'rückgängig Vereinigung',
+'mergelogpagetext'   => 'Dies ist das Logbuch der vereinigten Versionsgeschichten.',
+
 # Diffs
 'history-title'             => 'Versionsgeschichte von „$1“',
 'difference'                => '(Unterschied zwischen Versionen)',
@@ -1198,6 +1221,10 @@ Bitte gebe der Datei einen Namen, der den Inhalt besser beschreibt.',
 'unusedtemplatestext'     => '',
 'unusedtemplateswlh'      => 'Andere Links',
 
+# Random page
+'randompage'         => 'Zufällige Seite',
+'randompage-nopages' => 'In diesem Namensraum sind keine Seiten vorhanden.',
+
 # Random redirect
 'randomredirect'         => 'Zufällige Weiterleitung',
 'randomredirect-nopages' => 'In diesem Namensraum sind keine Weiterleitungen vorhanden.',
@@ -1286,8 +1313,6 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'allpages-summary'                => "Diese Spezialseite listet den Seitenbestand von {{SITENAME}} von A bis Z auf. Sortiert wird alphabetisch, erst Zahlen, dann Großbuchstaben, Kleinbuchstaben und schließlich Sonderzeichen. ''A&nbsp;10'' findet sich vor ''AZ'', der ''Aal'' ist jedoch noch dahinter eingeordnet.",
 'prefixindex'                     => 'Alle Seiten (mit Präfix)',
 'prefixindex-summary'             => 'Diese Spezialseite zeigt alle Seiten, die mit der eingegebenen Zeichenfolge („Präfix“) beginnen. Die Ausgabe kann auf einen Namensraum eingeschränkt werden.',
-'randompage'                      => 'Zufällige Seite',
-'randompage-nopages'              => 'In diesem Namensraum sind keine Seiten vorhanden.',
 'shortpages'                      => 'Kurze Seiten',
 'shortpages-summary'              => 'Diese Liste zeigt die kürzesten Seiten im Hauptnamensraum an. Gezählt werden die Zeichen des Textes wie er im Bearbeitungsfenster dargestellt wird, also in Wiki-Syntax und ohne die Inhalte eingebundener Vorlagen. Grundlage der Zählung ist der UTF-8-kodierte Text, nach dem beispielsweise deutsche Umlaute als zwei Zeichen gelten.',
 'longpages'                       => 'Lange Seiten',
@@ -1476,6 +1501,13 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'deletionlog'                 => 'Lösch-Logbuch',
 'reverted'                    => 'Auf eine alte Version zurückgesetzt',
 'deletecomment'               => 'Grund der Löschung',
+'deleteotherreason'           => 'Anderer/ergänzender Grund:',
+'deletereasonotherlist'       => 'Anderer Grund',
+'deletereason-dropdown'       => '
+* Allgemeine Löschgründe
+** Wunsch des Autors
+** Urheberrechtsverletzung
+** Vandalismus',
 'rollback'                    => 'Zurücksetzen der Änderungen',
 'rollback_short'              => 'Zurücksetzen',
 'rollbacklink'                => 'Zurücksetzen',
@@ -2404,8 +2436,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} entfernt:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Beobachtungsliste: Änderungen',
-'watchlisttools-edit'  => 'normal bearbeiten',
-'watchlisttools-raw'   => 'Listenformat bearbeiten (Import/Export)',
+'watchlisttools-view' => 'Beobachtungsliste: Änderungen',
+'watchlisttools-edit' => 'normal bearbeiten',
+'watchlisttools-raw'  => 'Listenformat bearbeiten (Import/Export)',
 
 );
