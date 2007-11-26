@@ -133,7 +133,7 @@ class EmailUserForm {
 </tr>
 </table>
 <span id='wpTextLabel'><label for=\"wpText\">{$emm}:</label><br /></span>
-<textarea name=\"wpText\" rows='20' cols='80' wrap='virtual' style=\"width: 100%;\">" . htmlspecialchars( $this->text ) .
+<textarea id=\"wpTextbox1\" name=\"wpText\" rows='20' cols='80' wrap='virtual' style=\"width: 100%;\">" . htmlspecialchars( $this->text ) .
 "</textarea>
 " . wfCheckLabel( $emc, 'wpCCMe', 'wpCCMe', $wgUser->getBoolOption( 'ccmeonemails' ) ) . "<br />
 <input type='submit' name=\"wpSend\" value=\"{$ems}\" />
@@ -192,4 +192,3 @@ class EmailUserForm {
 		$wgOut->returnToMain( false, $user->getUserPage() );
 	}
 }
-
