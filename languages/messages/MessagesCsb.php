@@ -333,7 +333,7 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 'accmailtitle'          => 'Parola wësłónô.',
 'accmailtext'           => 'Parola dlô "$1" je wësłónô do $2.',
 'newarticletext'        => "Môsz przëszłi z lënkù do starnë jaka jesz nie òbstoji.
-Bë ùsôdzëc artikel, naczni pisac w kastce niżi (òb. [[{{MediaWiki:helppage}}|starnã pòmòcë]]
+Bë ùsôdzëc artikel, naczni pisac w kastce niżi (òb. [[{{MediaWiki:Helppage}}|starnã pòmòcë]]
 dlô wicy wëdowiédzë).
 Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '''nazôd'''.",
 'anontalkpagetext'      => "----''To je starna dyskùsëji anonimòwiégò brëkòwnika, chtëren nie zrobił jesz kònta dlô se, abò gò nie brëkùje. Takô adresa IP, mòże bëc brëkòwónô òb wiele lëdzy. Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[{{ns:Special}}:Userlogin|zrobi sobie nowé kònto]] abò zalogùje sã, bë niechac zmiłczi z jinëma anonimòwima brëkòwnikama.''",
@@ -418,7 +418,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 
 # Recent changes
 'recentchanges'                  => 'Slédné edicëje',
-'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
+'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:Faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
 'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
 'rcnotefrom'                     => 'Niżi są zmianë òd <b>$2</b> (pòkazóné do <b>$1</b>).',
 'rclistfrom'                     => 'Pòkażë nowé zmianë òd $1',

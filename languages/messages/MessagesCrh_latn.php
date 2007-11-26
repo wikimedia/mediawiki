@@ -6,7 +6,7 @@
  * @author Alessandro
  */
 
-$fallback8bitEncoding = 'windows-1254';	
+$fallback8bitEncoding = 'windows-1254';
 
 $separatorTransformTable = array(','     => '.', '.'     => ',' );
 
@@ -31,7 +31,7 @@ $namespaceNames = array(
     NS_CATEGORY_TALK             => 'Kategoriya_muzakeresi',
 );
 
-# Aliases to cyril namespaces 
+# Aliases to cyril namespaces
 $namespaceAliases = array(
 	"Медиа"                  => NS_MEDIA,
 	"Махсус"                 => NS_SPECIAL,
@@ -352,12 +352,12 @@ Malümat bazasını kilitlegen öperatornıñ açıqlaması: $1',
 # Login and logout pages
 'logouttitle'                => 'Oturımnı qapat',
 'logouttext'                 => 'Oturımnı qapattıñız.
-Şimdi kimligiñizni belgilemeksizniñ {{SITENAME}} saytını qullanmağa devam ete bilirsiñiz, 
-ya da yañıdan oturım aça bilirsiñiz (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). 
-Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken 
+Şimdi kimligiñizni belgilemeksizniñ {{SITENAME}} saytını qullanmağa devam ete bilirsiñiz,
+ya da yañıdan oturım aça bilirsiñiz (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen).
+Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken
 kibi körünip olur.',
-'welcomecreation'            => '== Hoş keldiñiz, $1! == 
-Esabıñız açıldı. 
+'welcomecreation'            => '== Hoş keldiñiz, $1! ==
+Esabıñız açıldı.
 Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:special}}:Preferences|deñiştirmege]] unutmañız.',
 'loginpagetitle'             => 'Sistemağa özüñizni tanıtıñ',
 'yourname'                   => 'Qullanıcı adıñız',
@@ -404,7 +404,7 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'passwordtooshort'           => 'Paroliñiz pek qısqa. Eñ az $1 ariften ve/â da raqamdan ibaret olmalı.',
 'mailmypassword'             => 'Yañı parol yiber',
 'passwordremindertitle'      => '{{grammar:genitive|{{SITENAME}}}} qullanıcınıñ parol hatırlatuvı',
-'passwordremindertext'       => 'Birev (er alda bu sizsiñiz) $1 IP adresinden yañı qullanıcı {{grammar:genitive|{{SITENAME}}}} ($4) parolini talap etti. 
+'passwordremindertext'       => 'Birev (er alda bu sizsiñiz) $1 IP adresinden yañı qullanıcı {{grammar:genitive|{{SITENAME}}}} ($4) parolini talap etti.
 $2 qullanıcısı içün parol <code>$3</code> olaraq deñiştirildi.
 Yañı parol <code>$3</code>.
 Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz bunı diqqatqa almayıp eski paroliñizni qullana bilesiñiz.',
@@ -471,13 +471,13 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'accmailtitle'              => 'Parol yollandı',
 'accmailtext'               => '$1 içün parol mında yollandı: $2.',
 'newarticle'                => '(Yañı)',
-'newarticletext'            => "Siz bu bağlantınen şimdilik yoq olğan maqlege avuştıñız. Yañı bir saife yaratmaq içün aşağıda 
-bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [[{{ns:help}}:Ârdım|malümat saifesine]] 
+'newarticletext'            => "Siz bu bağlantınen şimdilik yoq olğan maqlege avuştıñız. Yañı bir saife yaratmaq içün aşağıda
+bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [[{{ns:help}}:Ârdım|malümat saifesine]]
 baqıñız). Bu saifege tesadufen avuşqan olsañız, brauzeriñizdeki '''keri''' dögmesine basıñız.",
-'anontalkpagetext'          => "----'' Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını 
-açmağan anonim qullanıcığa mensüptir. İdentefikatsiya içün IP adres işletile. Eger siz anonim 
-qullanıcı olsañız ve sizge kelgen beyanlarnı yañlıştan kelgenini belleseñiz (bir IP adresten 
-bir qaç qullanıcı faydalanabileler), lütfen artıq bunıñ kibi qarışıqlıq olmasın 
+'anontalkpagetext'          => "----'' Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını
+açmağan anonim qullanıcığa mensüptir. İdentefikatsiya içün IP adres işletile. Eger siz anonim
+qullanıcı olsañız ve sizge kelgen beyanlarnı yañlıştan kelgenini belleseñiz (bir IP adresten
+bir qaç qullanıcı faydalanabileler), lütfen artıq bunıñ kibi qarışıqlıq olmasın
 dep [[Slujebnaya:Userlogin|oturım açıñız]].''",
 'noarticletext'             => 'Bu saife boştır. Bu serlevanı diger saifelerde [[{{ns:special}}:Search/{{PAGENAME}}|qıdırabilesiñiz]] ya da bu saifeni siz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazabilesiñiz].',
 'clearyourcache'            => "'''İhtar:''' Ayarlarıñıznı (nastroykalarıñıznı) saqlağandan soñ, brauzeriñizniñ keşini de temizlemek kereksiñiz: '''Mozilla / Firefox / Safari:''' ''Shift'' basılı ekende saifeni yañıdan yükleyerek ya da ''Ctrl-Shift-R'' yaparaq (Apple Mac içün ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Tek seifeni yañıdan yükle klavişasına basaraq.",
@@ -489,9 +489,9 @@ dep [[Slujebnaya:Userlogin|oturım açıñız]].''",
 'note'                      => '<strong>İhtar:</strong>',
 'previewnote'               => 'Bu ög baquvdır, metin alâ daa saqlanmağan!',
 'previewconflict'           => 'Bu ög baquv yuqarı tarir penceresindeki metinniñ saqlanuvdan soñ olacaq körünişini aks ete.',
-'session_fail_preview'      => '<strong> Server siz yapqan deñiştirmelerni sessiya identefikatorı 
-coyulğanı sebebinden saqlap olamadı. Bu vaqtınca problemadır. Lütfen tekrar saqlap baqıñız. 
-Bundan da soñ olıp çıqmasa, malümat lokal faylğa saqlañız da brauzeriñizni bir qapatıp 
+'session_fail_preview'      => '<strong> Server siz yapqan deñiştirmelerni sessiya identefikatorı
+coyulğanı sebebinden saqlap olamadı. Bu vaqtınca problemadır. Lütfen tekrar saqlap baqıñız.
+Bundan da soñ olıp çıqmasa, malümat lokal faylğa saqlañız da brauzeriñizni bir qapatıp
 açıñız.</strong>',
 'session_fail_preview_html' => '<strong>Afu etiñiz! HTML sessiyanıñ malümatları ğayıp olğanı sebebinden siziñ deñiştirmeleriñizni qabul etmege imkân yoqtır.</strong>',
 'editing'                   => '"$1" saifesini deñiştirmektesiñiz',
@@ -504,7 +504,7 @@ Yuqarıdaki yazı saifeniñ şu anki alını köstermekte.
 Siziñ deñişiklikleriñiz altqa kösterildi. Soñki deñişikleriñizni yazınıñ içine eklemek kerek olacaqsıñız. "Saifeni saqla"ğa basqanda <b>tek</b> yuqarıdaki yazı saqlanacaqtır. <br />',
 'yourtext'                  => 'Siziñ metniñiz',
 'storedversion'             => 'Saqlanğan metin',
-'editingold'                => '<strong>DİQQAT: Saifeniñ eski bir versiyasında deñişiklik yapmaqtasıñız. 
+'editingold'                => '<strong>DİQQAT: Saifeniñ eski bir versiyasında deñişiklik yapmaqtasıñız.
 Saqlağanıñızda bu tarihlı versiyadan künümizge qadar olğan deñişiklikler yoq olacaqtır.</strong>',
 'yourdiff'                  => 'Qarşılaştırma',
 'copyrightwarning'          => "<strong>Lütfen diqqat:</strong> {{SITENAME}} saytına qoşulğan bütün isseler <i>$2</i>
@@ -679,17 +679,17 @@ $2 yollanmalarnı cedvelle &nbsp; Qıdırılacaq: $3 $9',
 'uploadedfiles'               => 'Yüklengen fayllar',
 'ignorewarning'               => 'Tenbini ignor etip faylnı yükle.',
 'ignorewarnings'              => 'Tenbini ignor et',
-'illegalfilename'             => '"$1" faylınıñ isiminde serleva içün yasaqlı işaretler mevcüt. 
+'illegalfilename'             => '"$1" faylınıñ isiminde serleva içün yasaqlı işaretler mevcüt.
 Lütfen fayl isimini deñiştirip yañıdan yüklep baqıñız.',
 'badfilename'                 => 'Fayl isimi $1 olaraq deñiştirildi.',
 'largefileserver'             => 'Bu faylnıñ uzunlığı serverde izin berilgenden büyükçedir.',
-'emptyfile'                   => 'İhtimal ki, yüklengen fayl boş. İhtimallı sebep - fayl adlandıruv 
+'emptyfile'                   => 'İhtimal ki, yüklengen fayl boş. İhtimallı sebep - fayl adlandıruv
 hatasıdır. Lütfen tamam bu faylnı yüklemege isteycek ekeniñizni teşkeriñiz.',
-'fileexists'                  => 'Bu isimde bir fayl mevcüttir. Lütfen, eger siz deñiştirmekten emin 
+'fileexists'                  => 'Bu isimde bir fayl mevcüttir. Lütfen, eger siz deñiştirmekten emin
 olmasañız başta $1 faylına köz taşlañız.',
-'fileexists-forbidden'        => 'Bu isimde bir fayl mevcüttir. Lütfen keri qaytıñız, fayl isimini 
+'fileexists-forbidden'        => 'Bu isimde bir fayl mevcüttir. Lütfen keri qaytıñız, fayl isimini
 deñiştirip yañıdan yükleñiz. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Bu isimde fayllar umumiy tutulğan yerinde bir fayl mevcüttir. 
+'fileexists-shared-forbidden' => 'Bu isimde fayllar umumiy tutulğan yerinde bir fayl mevcüttir.
 Lütfen keri qaytıñız, fayl isimini deñiştirip yañıdan yükleñiz. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Yüklenüv becerildi',
 'uploadwarning'               => 'Tenbi',
@@ -1012,7 +1012,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 
 # Block/unblock
 'blockip'            => 'Bu IP adresinden irişimni ban et',
-'blockiptext'        => 'Aşağıdaki formanı qullanaraq belli bir IP-niñ ya da qullanıcınıñ irişimini ban ete bilirsiñiz. Bu tek vandalizmni ban etmek içün ve [[{{MediaWiki:policy-url}}|qaidelerge]] uyğun olaraq yapılmalı. Aşağığa mıtlaqa ban etüv ile bağlı bir açıqlama yazıñız. (meselâ: Şu saifelerde vandalizm yaptı).',
+'blockiptext'        => 'Aşağıdaki formanı qullanaraq belli bir IP-niñ ya da qullanıcınıñ irişimini ban ete bilirsiñiz. Bu tek vandalizmni ban etmek içün ve [[{{MediaWiki:Policy-url}}|qaidelerge]] uyğun olaraq yapılmalı. Aşağığa mıtlaqa ban etüv ile bağlı bir açıqlama yazıñız. (meselâ: Şu saifelerde vandalizm yaptı).',
 'ipaddress'          => 'IP adresi',
 'ipadressorusername' => 'IP adresi ya da qullanıcı adı',
 'ipbexpiry'          => 'Bitiş müddeti',
@@ -1297,7 +1297,7 @@ Lütfen bularnı qolnen birleştiriñiz.'''",
 'confirmemail'            => 'E-mail adresini tasdıqla',
 'confirmemail_text'       => 'Viki-niñ e-mail funktsiyalarını qullanmazdan evel e-mail adresiñizniñ
 tasdıqlanması kerek. Adresiñizge tasdıq e-mail-i yollamaq içün aşağıdaki
-dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen 
+dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen
 irişe bilecek, tasdıq kodu olğan bir bağlantı olacaq.',
 'confirmemail_send'       => 'Tasdıq kodunı yolla',
 'confirmemail_sent'       => 'Tasdıq e-mail-i yollandı.',
@@ -1308,12 +1308,12 @@ irişe bilecek, tasdıq kodu olğan bir bağlantı olacaq.',
 'confirmemail_loggedin'   => 'E-mail adresiñiz tasdıqlandı.',
 'confirmemail_error'      => 'Tasdıqıñız bilinmegen bir hata sebebinden qayd etilmedi.',
 'confirmemail_subject'    => '{{SITENAME}} e-mail adres tasdıqı.',
-'confirmemail_body'       => '$1 internet adresinden yapılğan irişim ile {{SITENAME}} saytında 
-bu e-mail adresi ile bağlanğan $2 qullanıcı esabı 
-açıldı.  
+'confirmemail_body'       => '$1 internet adresinden yapılğan irişim ile {{SITENAME}} saytında
+bu e-mail adresi ile bağlanğan $2 qullanıcı esabı
+açıldı.
 
 Bu e-mail adresiniñ bahsı keçken qullanıcı esabına ait olğanını
-tasdıqlamaq ve {{SITENAME}} saytındaki e-mail funktsiyalarını aktiv alğa 
+tasdıqlamaq ve {{SITENAME}} saytındaki e-mail funktsiyalarını aktiv alğa
 ketirmek içün aşağıdaki bağlantını basıñız.
 
 $3
@@ -1324,7 +1324,7 @@ bir şeyiñiz yoq. Bu tasdıq kodu $4 tarinına qadar keçerli olacaq.',
 # Delete conflict
 'deletedwhileediting' => 'Tenbi: Bu saife siz deñişiklik yapmağa başlağandan soñ yoq etildi!',
 'confirmrecreate'     => "Bu saifeni [[User:$1|$1]] ([[User talk:$1|muzakere]]) qullanıcısı siz saifede deñişiklik yaparken silgendir, sebebi:
-:''$2'' 
+:''$2''
 Saifeni yañıdan açmağa isteseñiz, lütfen tasdıqlañız.",
 'recreate'            => 'Saifeni yañıdan aç',
 

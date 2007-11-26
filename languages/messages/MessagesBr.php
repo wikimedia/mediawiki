@@ -521,7 +521,7 @@ Gant $1 eo bet graet. Setu an abeg : ''$2''.
 * Stanket betek : $6
 * Pad ar stankadenn : $7
 
-Gallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{MediaWiki:grouppage-sysop}}|verourien]] all evit eskemm ganto war se. N'hallit implijout an arc'hwel 'kas ur postel d'an implijer-mañ' nemet ma'z eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù kont]] ha ma n'oc'h ket bet stanket. $3 eo ho chomlec'h IP, ha #$5 eo niverenn an identelezh stanket. Merkit anezho en ho koulennoù bep tro.",
+Gallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{MediaWiki:Grouppage-sysop}}|verourien]] all evit eskemm ganto war se. N'hallit implijout an arc'hwel 'kas ur postel d'an implijer-mañ' nemet ma'z eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù kont]] ha ma n'oc'h ket bet stanket. $3 eo ho chomlec'h IP, ha #$5 eo niverenn an identelezh stanket. Merkit anezho en ho koulennoù bep tro.",
 'autoblockedtext'           => "Stanket eo bet ho chomlec'h IP ent emgefreek rak implijet e veze gant un implijer all bet stanket gant \$1.
 Setu aze an abeg :
 
@@ -531,7 +531,7 @@ Setu aze an abeg :
 * Termen ar stankadenn : \$6
 
 Gallout a rit mont e darempred gant \$1 pe gant unan eus ar
-[[{{MediaWiki:grouppage-sysop}}|verourien]] all ma kavit abeg er stankadenn.
+[[{{MediaWiki:Grouppage-sysop}}|verourien]] all ma kavit abeg er stankadenn.
 
 Notennit mat ne c'hallot implijout an dibarzh \"kas ur postel d'an implijer\" nemet ma'z eus bet merket ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù implijer]] ha ma n'eo ket bet stanket ivez.
 
@@ -722,7 +722,7 @@ Gouest e vo ar verourien all da dapout krog en testennoù kuzhet ha da ziziverka
 
 # Search results
 'searchresults'         => "Disoc'h ar c'hlask",
-'searchresulttext'      => "Evit kaout muioc'h a ditouroù diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[{{MediaWiki:helppage}}|{{int:help}}]].",
+'searchresulttext'      => "Evit kaout muioc'h a ditouroù diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'        => 'Evit ar goulenn "[[:$1]]"',
 'searchsubtitleinvalid' => 'Evit ar goulenn "$1"',
 'noexactmatch'          => "'''N'eus pajenn ebet anvet \"\$1\".''' Gallout a rit [[:\$1|krouiñ ar bajenn]].",
@@ -1287,7 +1287,7 @@ Nemet e yafec\'h da welet ar bajenn end-eeun, ne vo kemenn all ebet ma vez degas
 A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{ns:Special}}:Watchlist/edit}} 
 
 Evezhiadennoù ha skoazell pelloc\'h : 
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Diverkañ ur bajenn',
@@ -1300,7 +1300,7 @@ Evezhiadennoù ha skoazell pelloc\'h :
 'deletesub'                   => '(O tiverkañ "$1")',
 'historywarning'              => "Diwallit: War-nes diverkañ ur bajenn ganti un istor emaoc'h :",
 'confirmdeletetext'           => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
-Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:policy-url}}]].",
+Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Diverkadenn kaset da benn',
 'deletedtext'                 => '"Diverket eo bet $1".
 Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
@@ -1452,7 +1452,7 @@ $1',
 # Block/unblock
 'blockip'                     => "Stankañ ur chomlec'h IP",
 'blockiptext'                 => "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP pe un implijer bennak.
-Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:policy-url}}|erbedadennoù ha reolennoù da heuliañ]].
+Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:Policy-url}}|erbedadennoù ha reolennoù da heuliañ]].
 Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou outo).",
 'ipaddress'                   => "Chomlec'h IP",
 'ipadressorusername'          => "Chomlec'h IP pe anv implijer",

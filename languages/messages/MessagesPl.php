@@ -592,7 +592,7 @@ Blokada została nałożona przez $1. Podany powód to: \'\'$2\'\'.
 * Wygaśnięcie blokady: $6
 * Cel blokady: $7
 
-W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:grouppage-sysop}}|administratorem]].
+W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
 Nie możesz użyć funkcji "Wyślij e-mail do tego użytkownika" jeśli nie masz podanego poprawnego adresu e-mail w swoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została ci zablokowana.
 Twój obecny adres IP to $3 a numer identyfikacyjny blokady to #$5. Prosimy o podanie jednego lub obu tych numerów przy wyjaśnianiu tej blokady.',
 'autoblockedtext'           => 'Twój adres IP został zablokowany automatycznie, gdyż należy do użytkownika zablokowanego przez $1.
@@ -604,7 +604,7 @@ Przyczyna blokady:
 * blokada wygasa $6
 
 Możesz skontaktować się z użytkownikiem $1 lub jednym z pozostałych
-[[{{MediaWiki:grouppage-sysop}}|administratorów]] i zapytać o przyczynę blokady.
+[[{{MediaWiki:Grouppage-sysop}}|administratorów]] i zapytać o przyczynę blokady.
 
 Nie możesz korzystać z opcji "Wyślij e-mail do tego użytkownika", chyba że podałeś własny adres e-mail w [[Special:Preferences|preferencjach]] i nie została Ci odebrana możliwość wysyłania wiadomości.
 
@@ -787,7 +787,7 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 
 # Search results
 'searchresults'         => 'Wyniki wyszukiwania',
-'searchresulttext'      => 'Aby dowiedzieć się więcej o przeszukiwaniu serwisu {{SITENAME}}, zobacz [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Aby dowiedzieć się więcej o przeszukiwaniu serwisu {{SITENAME}}, zobacz [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Wyniki dla zapytania "[[:$1]]"',
 'searchsubtitleinvalid' => 'Dla zapytania "$1"',
 'noexactmatch'          => 'Nie ma stron zatytułowanych "$1". Możesz [[:$1|utworzyć tę stronę]] lub spróbować pełnego przeszukiwania.',
@@ -1329,7 +1329,7 @@ W celu zmiany ustawień swojej listy obserwowanych odwiedź
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Pomoc:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Usuń stronę',
@@ -1341,7 +1341,7 @@ Pomoc:
 'confirmdelete'               => 'Potwierdź usunięcie',
 'deletesub'                   => '(Usuwanie "$1")',
 'historywarning'              => 'Uwaga! Strona, którą chcesz skasować ma starsze wersje:',
-'confirmdeletetext'           => 'Zamierzasz trwale usunąć stronę lub plik z bazy danych razem z dotyczącą ich historią. Potwierdź, proszę, swoje zamiary, tzn., że rozumiesz konsekwencje, i że robisz to w zgodzie z [[{{MediaWiki:policy-url}}|zasadami]].',
+'confirmdeletetext'           => 'Zamierzasz trwale usunąć stronę lub plik z bazy danych razem z dotyczącą ich historią. Potwierdź, proszę, swoje zamiary, tzn., że rozumiesz konsekwencje, i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'              => 'Operacja wykonana',
 'deletedtext'                 => 'Usunięto "$1". Rejestr ostatnio dokonanych kasowań możesz obejrzeć tutaj: $2.',
 'deletedarticle'              => 'usunięto "[[$1]]"',
@@ -1485,7 +1485,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Zablokuj użytkownika',
-'blockiptext'                 => 'Użyj poniższego formularza, aby zablokować prawo zapisu spod określonego adresu IP. Powinno się to robić jedynie po to, by zapobiec wandalizmowi, a zarazem w zgodzie z [[{{MediaWiki:policy-url}}|zasadami]]. Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).',
+'blockiptext'                 => 'Użyj poniższego formularza, aby zablokować prawo zapisu spod określonego adresu IP. Powinno się to robić jedynie po to, by zapobiec wandalizmowi, a zarazem w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]]. Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).',
 'ipaddress'                   => 'Adres IP',
 'ipadressorusername'          => 'Adres IP lub nazwa użytkownika',
 'ipbexpiry'                   => 'Czas blokady',

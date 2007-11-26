@@ -292,7 +292,7 @@ e-postadres opjûn hawwe in jo [[{{ns:special}}:Preferences|ynstellings]].",
 'newarticle'           => '(Nij)',
 'newarticletext'       => "Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
 Om sels tekst te meistjsen kinne jo dy gewoan yntype in dit bewurkingsfjild
-([[{{MediaWiki:helppage}}|Mear ynformaasje oer bewurkjen]].)
+([[{{MediaWiki:Helppage}}|Mear ynformaasje oer bewurkjen]].)
 Oars kinne jo tebek mei de tebek-knop fan jo blêdzjer.",
 'anontalkpagetext'     => "---- ''Dit is de oerlisside fan in unbekinde brûker; in brûker
 dy't sich net oanmeld hat. Om't der gjin namme is wurd it Ynternet-adres brûkt om
@@ -614,7 +614,7 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 'confirmdeletetext' => 'Jo binne dwaande mei it foar altyd wiskjen fan in side
 of ôfbyld, tegearre mei alle skiednis, út de databank.
 Befêstigje dat jo dat wier dwaan wolle. Befêstigje dat dat is wat jo witte wat it gefolch
-is en dat jo dit dogge neffens de [[{{MediaWiki:policy-url}}]].',
+is en dat jo dit dogge neffens de [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Dien',
 'deletedtext'       => '"$1" is wiske.
 Sjoch "$2" foar in list fan wat resint wiske is.',
@@ -669,7 +669,7 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 'blockip'            => 'Slut brûker út',
 'blockiptext'        => "Brûk dizze fjilden om in brûker fan skriuwtagong út te sluten.
 Dit soe allinnich omwillens fan fandalisme dwaan wurde moatte, sa't de
-[[{{MediaWiki:policy-url}}|útslut-rie]] it oanjout.
+[[{{MediaWiki:Policy-url}}|útslut-rie]] it oanjout.
 Meld de krekte reden! Begelyk, neam de siden dy't oantaaste waarden.",
 'ipaddress'          => 'Brûkernamme of Ynternet-adres',
 'ipbreason'          => 'Reden',

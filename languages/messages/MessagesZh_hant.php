@@ -527,7 +527,7 @@ $2',
 * 這次查封到期的時間是：$6
 * 對於被查封者：$7
 
-你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
+你可以聯絡$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論這次查封。
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 你目前的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
@@ -539,7 +539,7 @@ $2',
 * 這次查封的開始時間是：$8
 * 這次查封的到期時間是：$6
 
-你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
+你可以聯絡$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論這次查封。
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 您的查封ID是 #$5。 請你在所有查詢中註明這個查封ID。",
@@ -751,7 +751,7 @@ $2',
 
 # Search results
 'searchresults'         => '搜索結果',
-'searchresulttext'      => '有關搜索{{SITENAME}}的更多詳情,參見[[{{MediaWiki:helppage}}|{{int:help}}]]。',
+'searchresulttext'      => '有關搜索{{SITENAME}}的更多詳情,參見[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => '查詢"[[:$1]]"',
 'searchsubtitleinvalid' => '查詢"$1"',
 'noexactmatch'          => "'''沒找到標題為\"\$1\"的頁面。''' 您可以[[:\$1|創建此頁面]]。",
@@ -1314,7 +1314,7 @@ $NEWPAGE
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 回饋和進一步的幫助:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => '刪除頁面',
@@ -1327,7 +1327,7 @@ $NEWPAGE
 'deletesub'                   => '（正在刪除「$1」）',
 'historywarning'              => '警告: 您將要刪除的頁內含有歷史',
 'confirmdeletetext'           => '您即將從資料庫中永遠刪除一個頁面或圖像以及其歷史。
-請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:policy-url}}]]。',
+請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
 'deletedtext'                 => '「$1」已經被刪除。
 最近刪除的紀錄請參見$2。',
@@ -1485,7 +1485,7 @@ $1',
 # Block/unblock
 'blockip'                     => '查封IP地址',
 'blockiptext'                 => '用下面的表單來禁止來自某一特定IP地址的修改許可權。
-只有在為防止破壞，及符合[[{{MediaWiki:policy-url}}|守則]]的情況下才可採取此行動。
+只有在為防止破壞，及符合[[{{MediaWiki:Policy-url}}|守則]]的情況下才可採取此行動。
 請在下面輸入一個具體的理由（例如引述一個被破壞的頁面）。',
 'ipaddress'                   => 'IP地址:',
 'ipadressorusername'          => 'IP地址或用戶名:',

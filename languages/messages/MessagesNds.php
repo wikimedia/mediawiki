@@ -483,7 +483,7 @@ As Grund is angeven:
 
 :$2
 
-De Duer steiht in’t [[Special:Log/block|Logbook]]. Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{MediaWiki:grouppage-sysop}}|Administraters]]. Geev bi Fragen jümmer ok dien IP-Adress ($3) oder de ID vun dien Block (#$5) mit an.',
+De Duer steiht in’t [[Special:Log/block|Logbook]]. Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{MediaWiki:Grouppage-sysop}}|Administraters]]. Geev bi Fragen jümmer ok dien IP-Adress ($3) oder de ID vun dien Block (#$5) mit an.',
 'whitelistedittitle'       => 'de Siet to ännern is dat nödig anmellt to wesen',
 'whitelistedittext'        => 'Du musst di $1, dat du Sieden ännern kannst.',
 'whitelistreadtitle'       => 'üm to Lesen is dat neudig anmellt to ween',
@@ -621,7 +621,7 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 
 # Search results
 'searchresults'         => 'Söökresultaten',
-'searchresulttext'      => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:helppage}}|{{SITENAME}} dörsöken]].',
+'searchresulttext'      => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:Helppage}}|{{SITENAME}} dörsöken]].',
 'searchsubtitle'        => 'För de Söökanfraag „[[:$1]]“',
 'searchsubtitleinvalid' => 'För de Söökanfraag „$1“',
 'noexactmatch'          => 'Dor existeert kene Siet mit dissen Naam. Versöök de Vulltextsöök oder legg de Siet [[:$1|nieg]] an.',
@@ -1099,7 +1099,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'deletesub'                   => '(Smiet „$1“ weg)',
 'historywarning'              => 'Wohrschau: De Siet, de du bi büst to löschen, hett en Versionshistorie:',
 'confirmdeletetext'           => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
-Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:policy-url}}|Leidlienen]] hannelst.',
+Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]] hannelst.',
 'actioncomplete'              => 'Akschoon trech',
 'deletedtext'                 => 'De Artikel „$1“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
 'deletedarticle'              => '„$1“ wegsmeten',
@@ -1185,7 +1185,7 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 # Block/unblock
 'blockip'                  => 'IP-Adress blocken',
 'blockiptext'              => 'Bruuk dat Formular, ene IP-Adress to blocken.
-Dit schall blots maakt warrn, Vandalismus to vermasseln, aver jümmer in Övereenstimmen mit uns [[{{MediaWiki:policy-url}}|Leidlienen]].
+Dit schall blots maakt warrn, Vandalismus to vermasseln, aver jümmer in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]].
 Ok den Grund för dat Blocken indregen.',
 'ipaddress'                => 'IP-Adress',
 'ipadressorusername'       => 'IP-Adress oder Brukernaam:',

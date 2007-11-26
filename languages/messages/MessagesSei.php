@@ -469,7 +469,7 @@ Block zo expondal $1. Rasonna zo coccebj: ''$2''.
 * Xanzo block zo: $6
 * Jonzicuatl blockam zo: $7
 
-Me contactam $1 jöx pac [[{{MediaWiki:grouppage-sysop}}|sysop]] discussom iti block zo.
+Me contactam $1 jöx pac [[{{MediaWiki:Grouppage-sysop}}|sysop]] discussom iti block zo.
 Me nenusor e-iitom päzxo hab' adressade e-iitom validom coccebj [[Special:Preferences|mequáatlaác]] ö'me neblockomde e-iitom.
 Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querinám iti.",
 'autoblockedtext'           => "Menadressade IP coccebj blocköx auto. Zo coccebj usadad diijömde caitom miii, jan coccebj blocköxde $1.
@@ -480,7 +480,7 @@ Rasonna zo coccebj:
 * Start block zo: $8
 * Xanzo block zo: $6
 
-Me contactam $1 jöx pac [[{{MediaWiki:grouppage-sysop}}|sysop]] discussom iti block zo.
+Me contactam $1 jöx pac [[{{MediaWiki:Grouppage-sysop}}|sysop]] discussom iti block zo.
 
 Me nenusor e-iitom päzxo hab' adressade e-iitom validom coccebj [[Special:Preferences|mequáatlaác]] ö'me neblockomde e-iitom.
 
@@ -505,7 +505,7 @@ Me IDde block coccebj $5. Includam 1 jöx 2 pac querinám iti.",
 'newarticle'                => '(Quiih)',
 'newarticletext'            => 'Meclickom linkamde páhina tazo necoccebj zo.
 Huants createnom jan páhina, startom type mii box !-cmaa iti
-([[{{MediaWiki:helppage}}|páhinade helpom]] zo viside plus informacion).
+([[{{MediaWiki:Helppage}}|páhinade helpom]] zo viside plus informacion).
 Me coccebj römjasi poop, clickom meback-buttonde browser coccebj perfectua.',
 'anontalkpagetext'          => "----''Jan coccebj czaxö zode caitomde IDde adressade IP. Isój necoccebj caápo. Jan coccebj rae'de usadadde adressade IP numerical identificacion 'prenisój. Plusöxde caitom pos-coccebj jan adressade IP. Me pos-coccebj anonimo ö commentua irrevelantua coccebj directomde me poop, [[Special:Userlogin|caápo-jande]] exitom confucion diijömde IP-caitóm mii.''",
 'noarticletext'             => 'Jan páhina necoccebj textua zo, me pos-coccebj [[Special:Search/{{PAGENAME}}|yahöx jan páhina]] diijömde páhinám iti jöx [{{fullurl:{{FULLPAGENAME}}|action=edit}} ticpatlöx jan páhina].',
@@ -632,7 +632,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 
 # Search results
 'searchresults'         => 'Resuluámde yahöx',
-'searchresulttext'      => 'Plusöxde informaciónde yahöx {{SITENAME}} iti, jumpöx [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Plusöxde informaciónde yahöx {{SITENAME}} iti, jumpöx [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Me yahöx '''[[:$1]]''' iti",
 'searchsubtitleinvalid' => "Me yahöx '''$1''' iti",
 'noexactmatch'          => "'''Páhina zo \"\$1\" coccebj ne'dáár.''' Mecoccebj [[:\$1|hunpáhinámom]].",

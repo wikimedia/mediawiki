@@ -607,7 +607,7 @@ Sekatan ini dilakukan oleh $1 dengan sebab \'\'$2\'\'.
 * Tamat: $6
 * Pengguna yang disekat: $7
 
-Sila hubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pentadbir]] yang lain untuk untuk berbincang
+Sila hubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] yang lain untuk untuk berbincang
 mengenai sekatan ini. Anda tidak boleh menggunakan ciri "e-melkan pengguna ini" kecuali
 sekiranya anda telah menetapkan alamat e-mel yang sah dalam [[Special:Preferences|keutamaan]] anda dan anda tidak disekat daripada menggunakannya.
 Alamat IP semasa anda ialah $3, dan ID sekatan ialah #$5. Sila sertakan salah satu atau kedua-duanya sekali dalam pertanyaan nanti.',
@@ -620,7 +620,7 @@ Berikut ialah sebab yang dinyatakan:
 * Tamat: $6
 
 Anda boleh menghubungi $1 atau
-[[{{MediaWiki:grouppage-sysop}}|pentadbir]] lain untuk membincangkan sekatan ini.
+[[{{MediaWiki:Grouppage-sysop}}|pentadbir]] lain untuk membincangkan sekatan ini.
 
 Sila ambil perhatian bahawa anda tidak boleh menggunakan ciri "e-melkan pengguna ini" melainkan anda mempunyai alamat e-mel yang sah
 dalam [[Special:Preferences|laman keutamaan]] dan anda tidak disekat daripada menggunakannya.
@@ -647,7 +647,7 @@ ditunjukkan di bawah:",
 'newarticle'                => '(Baru)',
 'newarticletext'            => "Anda telah mengikuti pautan ke laman yang belum wujud.
 Untuk mencipta laman ini, sila taip dalam kotak di bawah
-(lihat [[{{MediaWiki:helppage}}|laman bantuan]] untuk maklumat lanjut).
+(lihat [[{{MediaWiki:Helppage}}|laman bantuan]] untuk maklumat lanjut).
 Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pelayar anda.",
 'anontalkpagetext'          => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk. Kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna. Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujui kepada anda, sila [[Special:Userlogin|buka akaun baru atau log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
 'noarticletext'             => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
@@ -826,7 +826,7 @@ yang terlindung daripada penyelia. Lihat [[Special:Ipblocklist|senarai sekatan I
 
 # Search results
 'searchresults'         => 'Keputusan carian',
-'searchresulttext'      => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Anda mencari "[[$1]]"',
 'searchsubtitleinvalid' => 'Anda mencari "[[$1]]"',
 'noexactmatch'          => "'''Tiada laman bertajuk \"\$1\".''' Anda boleh [[:\$1|mencipta laman ini]].",
@@ -1383,7 +1383,7 @@ Untuk mengubah tetapan senarai pantau anda, sila kunjungi
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Maklum balas dan bantuan:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Hapus laman',
@@ -1399,7 +1399,7 @@ Maklum balas dan bantuan:
 berserta semua sejarahnya daripada pangkalan data secara kekal.
 Sila sahkan bahawa anda memang hendak berbuat demikian, anda faham akan
 akibatnya, dan perbuatan anda mematuhi
-[[{{MediaWiki:policy-url}}]].',
+[[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Tindakan berjaya',
 'deletedtext'                 => '"$1" telah dihapuskan.
 Sila lihat $2 untuk rekod penghapusan terkini.',
@@ -1565,7 +1565,7 @@ $1',
 'blockiptext'                 => 'Gunakan borang di bawah untuk menyekat
 penyuntingan daripada alamat IP atau pengguna tertentu.
 Tindakan ini perlu dilakukan untuk menentang vandalisme sahaja dan selaras
-dengan [[{{MediaWiki:policy-url}}|dasar {{SITENAME}}]].
+dengan [[{{MediaWiki:Policy-url}}|dasar {{SITENAME}}]].
 Sila masukkan sebab sekatan di bawah (umpamannya, sebutkan laman yang telah
 dirosakkan).',
 'ipaddress'                   => 'Alamat IP:',
@@ -1736,7 +1736,7 @@ Untuk mengeksport laman, masukkan tajuk dalam kotak teks di bawah (satu tajuk
 bagi setiap baris) dan pilih sama ada anda mahukan semua versi dan catatan
 sejarah atau hanya versi semasa berserta maklumat mengenai suntingan terakhir.
 
-Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:Special}}:Eksport/{{MediaWiki:mainpage}}]] untuk laman "[[{{MediaWiki:mainpage}}]]".',
+Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:Special}}:Eksport/{{MediaWiki:Mainpage}}]] untuk laman "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Hanya eksport semakan semasa, bukan keseluruhan sejarah.',
 'exportnohistory'   => "----
 '''Catatan:''' Ciri eksport sejarah penuh laman melalui borang ini telah dimatikan atas sebab-sebab prestasi.",

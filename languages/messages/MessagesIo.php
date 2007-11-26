@@ -298,7 +298,7 @@ Voluntez enirar altrafoye pos recevar ol.',
 'newarticle'         => '(nova)',
 'newarticletext'     => "Vu sequis ligilo a pagino qua ne existas ankore.
 Por krear ica pagino, voluntez startar skribar en la infra buxo.
-(regardez la [[{{MediaWiki:helppage}}|helpo]] por plusa informo).
+(regardez la [[{{MediaWiki:Helppage}}|helpo]] por plusa informo).
 Se vu esas hike erore, kliktez sur la butono por retrovenar en vua ''browser''.",
 'noarticletext'      => 'Nuntempe ne esas texto en ica pagino. Vu povas [[Special:Search/{{PAGENAME}}|serchar ica titulo]] en altra pagini o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino].',
 'usercsspreview'     => "'''Memorez ke vu nur previdas vua uzanto-css. Ol ne registragesis ankore!'''",
@@ -346,7 +346,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 
 # Search results
 'searchresults'     => 'Rezultaji dil sercho',
-'searchresulttext'  => 'Por plusa informo pri quale serchar en {{SITENAME}}, videz [[{{MediaWiki:helppage}}|help]].',
+'searchresulttext'  => 'Por plusa informo pri quale serchar en {{SITENAME}}, videz [[{{MediaWiki:Helppage}}|help]].',
 'titlematches'      => 'Koincidi de titulo di artiklo',
 'notitlematches'    => 'No esas koincidi en la tituli dil artikli',
 'textmatches'       => 'Koincidi de texto di artiklo',

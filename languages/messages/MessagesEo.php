@@ -476,7 +476,7 @@ ne estas permesate uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
 'blockedtext'              => "<big>'''Via konto aŭ IP-adreso estis forbarita'''</big> fare de $1.
 Kialo estas ''$2''.
 
-Vi rajtas kontakti $1 aŭ alian [[{{MediaWiki:grouppage-sysop}}|administranton]] por pridiskuti la forbaradon.
+Vi rajtas kontakti $1 aŭ alian [[{{MediaWiki:Grouppage-sysop}}|administranton]] por pridiskuti la forbaradon.
 Vi ne povas uzi la 'retpoŝtan' funkcion, escepte se vi indikis validan retpoŝtan adreson en viaj [[Special:Preferences|kontaj agordoj]] kaj vi ne estas blokita uzi ĝin.
 Via IP-adreso estas $3 kaj la ID de la forbarado ests $5. Bonvolu mencii jenajn indikojn en ĉiu plendo:
 * IP-adreso: $3
@@ -503,7 +503,7 @@ montrata malsupre:",
 'accmailtitle'             => 'Pasvorto sendita.',
 'accmailtext'              => "La pasvorto por '$1' estis sendita al  $2.",
 'newarticle'               => '(Nova)',
-'newarticletext'           => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
+'newarticletext'           => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:Helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
 'anontalkpagetext'         => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran IP-adreso por identigi lin. la sama IP-adreso povas estis samtempte uzata de pluraj uzantoj. Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton aŭ ensaluti]].''",
 'noarticletext'            => '(La paĝo nun estas malplena. Se vi ĵus kreis tiun ĉi paĝon klaku [{{fullurl:{{FULLPAGENAME}}|action=purge}} ĉi tien].)',
 'clearyourcache'           => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
@@ -608,7 +608,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
 
 # Search results
 'searchresults'         => 'Serĉrezultoj',
-'searchresulttext'      => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[{{MediaWiki:helppage}}|serĉi en {{SITENAME}}]].',
+'searchresulttext'      => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[{{MediaWiki:Helppage}}|serĉi en {{SITENAME}}]].',
 'searchsubtitle'        => 'Serĉmendo "[[$1]]"',
 'searchsubtitleinvalid' => 'Serĉmendo "$1"',
 'noexactmatch'          => '<b>Ne estas paĝo titolita "$1".</b> Vi povas [[:$1|krei la paĝon]].',
@@ -1045,7 +1045,7 @@ Por ŝanĝi la elektojn de via atentaro, bv viziti
 {{fullurl:Special:Watchlist/edit}}
 
 Reagoj kaj plia helpo :
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Forigu paĝon',
@@ -1057,7 +1057,7 @@ Reagoj kaj plia helpo :
 'confirmdelete'               => 'Konfirmu forigadon',
 'deletesub'                   => '(Forigas "$1")',
 'historywarning'              => 'Averto: la forigota paĝo havas historion:',
-'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:policy-url}}|regulojn pri forigado]].',
+'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'              => 'Ago farita',
 'deletedtext'                 => '"$1" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
@@ -1161,7 +1161,7 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 
 # Block/unblock
 'blockip'              => 'Forbaru uzanton/IP-adreson',
-'blockiptext'          => "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[{{MediaWiki:policy-url}}|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
+'blockiptext'          => "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[{{MediaWiki:Policy-url}}|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
 'ipaddress'            => 'IP-adreso/nomo',
 'ipadressorusername'   => 'IP adreso aŭ uzantonomo',
 'ipbexpiry'            => 'Blokdaŭro',

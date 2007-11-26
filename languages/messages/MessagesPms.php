@@ -325,7 +325,7 @@ L'aministrator che a l'ha blocala a l'ha lassà sto messagi-sì:
 <p>:$1",
 'missingarticle'       => "La base dat a l'ha pa trovà ël test ëd la pàgina \"\$1\", che però a l'avrìa pro dovù trové.<br />
 Sòn a l'é pa n'eror dla base dat, ma a l'ha l'ària dë esse na gran-a dël programa.<br />
-Për piasì, che a-j segnala sossì a n'[[{{MediaWiki:policy-url}}|aministrator]] dël sistema, specificand tìtol dla pàgina e ora dl'assident.",
+Për piasì, che a-j segnala sossì a n'[[{{MediaWiki:Policy-url}}|aministrator]] dël sistema, specificand tìtol dla pàgina e ora dl'assident.",
 'readonly_lag'         => "La base dat a l'é staita blocà n'automàtich antramentr che che le màchine dël circuito secondari (slave) as buto an pari con cole dël prinsipal (master)",
 'internalerror'        => 'Eror intern',
 'internalerror_info'   => 'Eror antern: $1',
@@ -498,7 +498,7 @@ Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
 * Blocà a parte dal: \$8
 * Fin al: \$6<br />
 * As veul blochesse: \$7
-A peul butesse an contact con \$1 ò pura n'àotr [[{{MediaWiki:grouppage-sysop}}|aministrator]] për discute ëd sò blocagi.
+A peul butesse an contact con \$1 ò pura n'àotr [[{{MediaWiki:Grouppage-sysop}}|aministrator]] për discute ëd sò blocagi.
 Ch'a ten-a present ch'a podrà dovré la fonsion \"mandeje un messagi ëd pòsta a l'utent\" mach s'a l'ha specificà n'adrëssa ëd pòsta vàlida ant 
 [[Special:Preferences|sò gust]] e se sta fonsion a l'é nen ëstàita blocà 'cò chila. 
 Soa adrëssa IP corenta a l'é \$3, e l'identificativ dël blocagi a l'é #\$5. Për piasì, ch'a-j buta tut e doj ant soe comunicassion ant sta question-sì.",
@@ -508,7 +508,7 @@ La rason butà për ël blòch a l'é:''\$2''
 * A va a la fin dël: \$6
 
 A peul contaté \$1 ò pura n'àotr dj'
-[[{{MediaWiki:grouppage-sysop}}|aministrator]] për discute d'ës blòch.
+[[{{MediaWiki:Grouppage-sysop}}|aministrator]] për discute d'ës blòch.
 
 Ch'a varda mach ch'a peul nen dovré l'opsion ëd \"mandeje un messagi a l'utent\" se a l'ha nen n'adrëssa ëd pòsta eletrònica registra e verificà ant [[Special:Preferences|sò gust]].
 Sò nùmer ëd blòch a l'é \$5. Për piasì, ës nùmer-sì ch'a lo buta sempe an tute le comunicassion andova ch'as parla ëd sò blòch.",
@@ -717,7 +717,7 @@ na restrission adissional da j'operator dël sit.",
 
 # Search results
 'searchresults'         => "Arsultà dl'arserca",
-'searchresulttext'      => "Per avej pì d'anformassion ant sl'arserca interna ëd {{SITENAME}}, che a varda [[{{MediaWiki:helppage}}|Arserca ant la {{SITENAME}}]].",
+'searchresulttext'      => "Per avej pì d'anformassion ant sl'arserca interna ëd {{SITENAME}}, che a varda [[{{MediaWiki:Helppage}}|Arserca ant la {{SITENAME}}]].",
 'searchsubtitle'        => 'Domanda "[[:$1]]"',
 'searchsubtitleinvalid' => 'Domanda "$1"',
 'noexactmatch'          => "'''La pàgina \"\$1\" a-i é pa.''' As peul [[:\$1|creéla d'amblé]].",
@@ -882,7 +882,7 @@ për podej carié dj'archivi.",
 'upload_directory_read_only'  => 'Ël programa webserver a-i la fa nen a scrive ansima a la diretriss ëd càrich ($1).',
 'uploaderror'                 => 'Eror dëmentré che as cariava',
 'uploadtext'                  => "'''DOSMAN!''' Anans che carié dla ròba ansima a {{SITENAME}}, che a sia motobin sigur d'avej bin lesù e capì 
-[[{{MediaWiki:policy-url}}|ël regolament ëd {{SITENAME}} ansima al dovré dle figure]].
+[[{{MediaWiki:Policy-url}}|ël regolament ëd {{SITENAME}} ansima al dovré dle figure]].
 
 Për vardé ò pura sërché figure già carià ant sla {{SITENAME}}, che a vada ant sla [[Special:Imagelist|lista dle figure]].
 Lòn che as caria e së scancela a resta marcà ant ël [[Special:Log/upload|registr dij càrich]].
@@ -1307,7 +1307,7 @@ Për cangé ij setagi ëd lòn che as ten sot euj che a vada ansima a
 {{fullurl:Special:Watchlist/edit}}
 
 Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Scancela pàgina',
@@ -1320,7 +1320,7 @@ Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
 'deletesub'                   => '(Scancelament ëd "$1")',
 'historywarning'              => "Avis: la pàgina che a l'é antramentr che a scancela a l'ha na stòria:",
 'confirmdeletetext'           => "A sta për scancelé d'autut da 'nt la base dat na pàgina ò pura na figura, ansema a tuta soa cronologìa.<p>
-Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont ëd le conseguense ëd lòn che a fa, e che sòn a resta an pien an régola con lòn che a l'é stabilì ant la [[{{MediaWiki:policy-url}}]].",
+Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont ëd le conseguense ëd lòn che a fa, e che sòn a resta an pien an régola con lòn che a l'é stabilì ant la [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Travaj fait e finì',
 'deletedtext'                 => 'La pàgina "$1" a l\'é staita scancelà.
 Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
@@ -1475,7 +1475,7 @@ $1",
 # Block/unblock
 'blockip'                     => "Blochè n'adrëssa IP",
 'blockiptext'                 => "Che a dòvra ël mòdulo ëd domanda 'd blocagi ambelessì sota për bloché l'acess con drit dë scritura da na chèich adrëssa IP.<br />
-Ës blocagi-sì as dev dovresse MACH për evité dij comportament vandàlich, ën strèita osservansa ëd tùit ij prinsipi dla [[{{MediaWiki:policy-url}}|polìtica ëd {{SITENAME}}]].<br />
+Ës blocagi-sì as dev dovresse MACH për evité dij comportament vandàlich, ën strèita osservansa ëd tùit ij prinsipi dla [[{{MediaWiki:Policy-url}}|polìtica ëd {{SITENAME}}]].<br />
 Ël blocagi a peul nen ën gnun-a manera esse dovrà për dle question d'ideologìa.
 
 Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà (pr'esempi, che a buta ij tìtoj ëd pàgine che a l'abio già patì dj'at vandàlich da cost'adrëssa IP-sì).",

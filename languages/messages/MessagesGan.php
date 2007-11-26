@@ -451,7 +451,7 @@ $2',
 * 箇回封鎖嗰到期時間係：$6 
 * 對於拕查封嗰人：$7 
 
-倷聯繫得正$1或別嗰[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論箇回封鎖。除非倷到倷嗰[[Special:Preferences|帳號參數設置]]裡度設正嘞有效嗰email，伓然嗰話倷係用伓正「email到箇隻用戶」嗰功能。設正嘞有效嗰email後，箇隻功能係伓會拕封到嗰。倷嗰IP地址係$3，許拕封到嗰ID係 #$5。請倷到全部嗰查詢裡度注明箇隻地址同／或查封ID。",
+倷聯繫得正$1或別嗰[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論箇回封鎖。除非倷到倷嗰[[Special:Preferences|帳號參數設置]]裡度設正嘞有效嗰email，伓然嗰話倷係用伓正「email到箇隻用戶」嗰功能。設正嘞有效嗰email後，箇隻功能係伓會拕封到嗰。倷嗰IP地址係$3，許拕封到嗰ID係 #$5。請倷到全部嗰查詢裡度注明箇隻地址同／或查封ID。",
 'autoblockedtext'           => '因為別嗰人用過倷嗰IP地址，佢拕自動鎖到嘞。封佢嗰人係$1.
 下首係封鎖嗰理由:
 
@@ -460,7 +460,7 @@ $2',
 * 封鎖開始: $8
 * 封鎖過期: $6
 
-倷聯繫得正$1或別嗰[[{{MediaWiki:grouppage-sysop}}|管理員]]去談下箇回封鎖。
+倷聯繫得正$1或別嗰[[{{MediaWiki:Grouppage-sysop}}|管理員]]去談下箇回封鎖。
 
 注意嗰係話伓定倷冇"e-mail箇隻用戶"功能，因為倷還冇到[[Special:Preferences|用戶設置]]有隻註冊email地址，更加倷冇因為用佢拕封過。
 
@@ -638,7 +638,7 @@ $2',
 
 # Search results
 'searchresults'         => '尋到嗰結果',
-'searchresulttext'      => '有關嗰{{SITENAME}}嗰更多資料,請參看[[{{MediaWiki:helppage}}|{{int:help}}]]。',
+'searchresulttext'      => '有關嗰{{SITENAME}}嗰更多資料,請參看[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "用'''[[:$1]]'''",
 'searchsubtitleinvalid' => "用'''$1'''尋",
 'noexactmatch'          => "'''冇找到係標題\"\$1\"嗰頁面。''' 倷可以[[:\$1|新開箇隻頁面]]。",
@@ -1157,7 +1157,7 @@ $NEWPAGE
 
 {{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{fullurl:{{ns:special}}:Watchlist/edit}} 
 
-回饋同到別嗰説明: {{fullurl:{{MediaWiki:helppage}}}}',
+回饋同到別嗰説明: {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => '刪卟頁面',
@@ -1169,7 +1169,7 @@ $NEWPAGE
 'confirmdelete'               => '確認刪除',
 'deletesub'                   => '("$1"刪除中)',
 'historywarning'              => '警告: 倷要刪卟嗰頁面含到歷史版',
-'confirmdeletetext'           => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，還曉得佢嗰後果，更加不能違反[[{{MediaWiki:policy-url}}]]。',
+'confirmdeletetext'           => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，還曉得佢嗰後果，更加不能違反[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '扤正嘞',
 'deletedtext'                 => '"$1"刪卟嘞。最晏嗰刪除記錄請望$2。',
 'deletedarticle'              => '"[[$1]]"刪卟嘞',
@@ -1313,7 +1313,7 @@ $NEWPAGE
 
 # Block/unblock
 'blockip'                     => '封到IP地址',
-'blockiptext'                 => '用下底嗰表格去阻止某一IP嗰修改許可權。除非倷係為到怕佢亂扤，接到非要符合[[{{MediaWiki:policy-url}}|守則]]嗰條件下才能噉做。請到下底話隻確切原因（比如引用一隻拕破壞嗰頁面）。',
+'blockiptext'                 => '用下底嗰表格去阻止某一IP嗰修改許可權。除非倷係為到怕佢亂扤，接到非要符合[[{{MediaWiki:Policy-url}}|守則]]嗰條件下才能噉做。請到下底話隻確切原因（比如引用一隻拕破壞嗰頁面）。',
 'ipaddress'                   => 'IP地址:',
 'ipadressorusername'          => 'IP地址或用戶名:',
 'ipbexpiry'                   => '期限:',

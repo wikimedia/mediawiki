@@ -576,7 +576,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto ze zmylkom wutwo
 
 Podata přičina je: $2.
 
-Ty móhł wužiwarja $1 abo jednoho z druhich [[{{MediaWiki:grouppage-sysop}}|administratorow]] kontaktować, zo by wo blokowanju diskutował.
+Ty móhł wužiwarja $1 abo jednoho z druhich [[{{MediaWiki:Grouppage-sysop}}|administratorow]] kontaktować, zo by wo blokowanju diskutował.
 
 Njemóžeš \'e-mejlowe funkcije\' wužiwać, chibazo sy płaćiwu e-mejlowu adresu w swojich [[{{ns:special}}:Preferences|kontowych nastajenjach]] zapodał. Twoja tuchwilna IP-adresa je $3 a blokowa ID je #$5. Prošu podaj jedyn z njeju abo wobaj we swojich naprašowanjach.
 
@@ -600,7 +600,7 @@ wobdźěłowanje a wutworjenje stronow w {{SITENAME}} pak je znjemóžnjene.
 Jeli widźiš tut zdźělenku, hačrunjež sy jenož čitać chcył, sy (čerwjeny) wotkaz na hišće njeeksistowacy nastawk slědował.</p>
 
 
-Móžeš administratora $1 abo jednoho z druhich [[{{MediaWiki:grouppage-sysop}}|administratorow]] kontaktować, zo by z nim wo blokowanju diskutował.
+Móžeš administratora $1 abo jednoho z druhich [[{{MediaWiki:Grouppage-sysop}}|administratorow]] kontaktować, zo by z nim wo blokowanju diskutował.
 
 <div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
 \'\'\'Prošu podaj slědowace daty w kóždym naprašowanju:\'\'\'
@@ -630,7 +630,7 @@ Móžeš administratora $1 abo jednoho z druhich [[{{MediaWiki:grouppage-sysop}}
 'accmailtitle'              => 'Hesło bu pósłane.',
 'accmailtext'               => 'Hesło za wužiwarja [[{{ns:user}}:$1]] bu na adresu $2 pósłane.',
 'newarticle'                => '(Nowy nastawk)',
-'newarticletext'            => 'Sy wotkaz k stronje slědował, kotraž hišće njeeksistuje. Zo by stronu wutworił, wupjelń tekstowe polo deleka (hlej [[{{MediaWiki:helppage}}|stronu pomocy]] za wjace informacijow). Jeli sy zmylnje tu, klikń na tłóčku <b>Wróćo</b> swojeho wobhladowaka.',
+'newarticletext'            => 'Sy wotkaz k stronje slědował, kotraž hišće njeeksistuje. Zo by stronu wutworił, wupjelń tekstowe polo deleka (hlej [[{{MediaWiki:Helppage}}|stronu pomocy]] za wjace informacijow). Jeli sy zmylnje tu, klikń na tłóčku <b>Wróćo</b> swojeho wobhladowaka.',
 'anontalkpagetext'          => '----
 <i>To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[{{ns:special}}:Userlogin|wutwor konto abo přizjew so]], zo by přichodnu šmjatańcu wobešoł.</i>',
 'noarticletext'             => 'Tuchwilu tuta strona žadyn tekst njewobsahuje, móžeš jeje titul w druhich stronach [[{{ns:special}}:Search/{{PAGENAME}}|pytać]] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} stronu wutworić].',
@@ -792,7 +792,7 @@ Druzy administratorojo w tutym wikiju móža schowany tekst dale čitać a jón 
 
 # Search results
 'searchresults'         => 'Pytanske wuslědki',
-'searchresulttext'      => 'Za wjace informacijow wo přepytowanju {{GRAMMAR:genitiw|{{SITENAME}}}}, hlej [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Za wjace informacijow wo přepytowanju {{GRAMMAR:genitiw|{{SITENAME}}}}, hlej [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Sy naprašowanje za „[[:$1|$1]]“ stajił.',
 'searchsubtitleinvalid' => 'Sy naprašowanje za „$1“ stajił.',
 'noexactmatch'          => '<b>Strona „$1” njeeksistuje.</b>
@@ -1398,7 +1398,7 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 'deletesub'                   => '(strona „$1” so wušmórnje)',
 'historywarning'              => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
 'confirmdeletetext'           => 'Sy so rozsudźił stronu abo dataju hromadźe ze jeje stawiznami z datoweje banki wotstronić. Prošu wobkruć, zo to maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo 
-[[{{MediaWiki:policy-url}}|prawidłam tutoho wikija]] činiš.',
+[[{{MediaWiki:Policy-url}}|prawidłam tutoho wikija]] činiš.',
 'actioncomplete'              => 'Dokónčene',
 'deletedtext'                 => 'Strona „$1” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
 'deletedarticle'              => 'je stronu [[$1]] wušmórnył.',
@@ -1543,7 +1543,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Wužiwarja zablokować',
-'blockiptext'                 => 'Wužij formular deleka, zo by pisanski přistup za podatu IP-adresu abo wužiwarske mjeno blokował. To měło so jenož stać, zo by wandalizmej zadźěwało a woptpowědujo [[{{MediaWiki:policy-url}}|prawidłam]]. Zapodaj deleka přičinu (na př. citujo wosebite strony, kotrež běchu z woporom wandalizma).',
+'blockiptext'                 => 'Wužij formular deleka, zo by pisanski přistup za podatu IP-adresu abo wužiwarske mjeno blokował. To měło so jenož stać, zo by wandalizmej zadźěwało a woptpowědujo [[{{MediaWiki:Policy-url}}|prawidłam]]. Zapodaj deleka přičinu (na př. citujo wosebite strony, kotrež běchu z woporom wandalizma).',
 'ipaddress'                   => 'IP-adresa',
 'ipadressorusername'          => 'IP-adresa abo wužiwarske mjeno',
 'ipbexpiry'                   => 'Spadnjenje',

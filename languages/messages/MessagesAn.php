@@ -348,7 +348,7 @@ Consulta: $2',
 'actionthrottledtext'  => 'Como mida anti-spam, bi ha un limite en o numero de begadas que puede fer ista aizión en un curto espazio de tiempo, y ha blincato iste limite. Aspere bels menutos y prebe de fer-lo nuebament.',
 'protectedpagetext'    => 'Ista pachina ha estato bloquiata y no se puede editar.',
 'viewsourcetext'       => "Puede beyer y copiar o codigo fuent d'ista pachina:",
-'protectedinterface'   => "Ista pachina furne o testo d'a interfaz ta o software. Ye protexita ta pribar o bandalismo. Si creye que bi ha bella error, contaute con un [[{{MediaWiki:grouppage-sysop}}|Almenistrador]].",
+'protectedinterface'   => "Ista pachina furne o testo d'a interfaz ta o software. Ye protexita ta pribar o bandalismo. Si creye que bi ha bella error, contaute con un [[{{MediaWiki:Grouppage-sysop}}|Almenistrador]].",
 'editinginterface'     => "'''Pare cuenta:''' Ye editando una pachina emplegata ta furnir o testo d'a interfaz de {{SITENAME}}. Os cambeos en ista pachina tendrán efeuto en l'aparenzia d'a interfaz ta os atros usuarios.",
 'sqlhidden'            => '(Consulta SQL amagata)',
 'cascadeprotected'     => 'Ista pachina ye protexita y no se puede editar porque ye encluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que son protexitas con a opzión de "cascada": $2',
@@ -498,7 +498,7 @@ O bloqueyo fue feito por \$1. A razón data ye ''\$2''.
 * Fin d'o bloqueyo: \$6
 * Indentificazión bloquiata: \$7
 
-Puede contautar con \$1 u con atro [[{{MediaWiki:grouppage-sysop}}|almenistrador]] ta letigar sobre o bloqueyo.
+Puede contautar con \$1 u con atro [[{{MediaWiki:Grouppage-sysop}}|almenistrador]] ta letigar sobre o bloqueyo.
 
 No puede fer serbir o binclo \"nimbiar correu electronico ta iste usuario\" si no ha rechistrato una adreza apropiata de correu electronico en as suyas [[Special:Preferences|preferenzias]]. A suya adreza IP autual ye \$3, y o identificador d'o bloqueyo ye #\$5. Por fabor encluiga belún u os dos datos cuan faga cualsiquier consulta.",
 'autoblockedtext'          => "A suya adreza IP fue bloquiata automaticament porque l'eba feito serbir un atro usuario bloquiato por \$1.
@@ -512,7 +512,7 @@ A razón d'o bloqueyo ye ista:
 * Fin d'o bloqueyo: \$6
 
 
-Puede contautar con \$1 u con atro d'os [[{{MediaWiki:grouppage-sysop}}|almenistradors]] ta litigar sobre o bloqueyo.
+Puede contautar con \$1 u con atro d'os [[{{MediaWiki:Grouppage-sysop}}|almenistradors]] ta litigar sobre o bloqueyo.
 
 Pare cuenta que no puede emplegar a funzión \"Nimbiar correu electronico ta iste usuario\" si no tiene una adreza de correu electronico lechitima rechistrada en as suyas [[Special:Preferences|preferenzias d'usuario]] u si li ha estato biedata ista funzión.
 
@@ -538,7 +538,7 @@ O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos dato
 'newarticle'               => '(Nuebo)',
 'newarticletext'           => "Ha siguito un binclo á una pachina que encara no esiste.
 Ta creyar a pachina, prenzipie á escribir en a caxa d'abaxo
-(mire-se l'[[{{MediaWiki:helppage}}|aduya]] ta más informazión).
+(mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más informazión).
 Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga.",
 'noarticletext'            => 'Por agora no bi ha testo en ista pachina. Puede [[Special:Search/{{PAGENAME}}|mirar o títol]] en atras pachinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} prenzipiar á escribir en ista pachina].',
 'previewnote'              => "<strong>Pare cuenta que isto sólo ye que l'ambiesta prebia d'a pachina; os cambeos encara no han estato alzatos!</strong>",

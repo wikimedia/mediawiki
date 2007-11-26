@@ -672,7 +672,7 @@ Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;už
 * Zablokování vyprší: $6
 * Určeno k blokování: $7 
 
-Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:grouppage-sysop}}|správce]].
+Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu a&nbsp;pokud Vám byla tato možnost zakázána.
 Vaše IP adresa je '''$3''' a&nbsp;identifikační číslo bloku je '''$5'''; tyto údaje budete muset uvést ve všech žádostech o&nbsp;odblokování.",
 'autoblockedtext'           => 'Vaše IP adresa byla automaticky zablokována, protože byla používána jiným uživatelem, kterého zablokoval $1.
@@ -684,7 +684,7 @@ Udaný důvod:
 * Zablokováno: $8
 * Zablokování vyprší: $6
 
-Můžete kontaktovat správce $1 nebo některého z dalších [[{{MediaWiki:grouppage-sysop}}|správců]] pro diskuzi o Vašem zablokování.
+Můžete kontaktovat správce $1 nebo některého z dalších [[{{MediaWiki:Grouppage-sysop}}|správců]] pro diskuzi o Vašem zablokování.
 
 Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete použít, pokud nemáte zadaný platný email ve svém [[Special:Preferences|nastavení]] a nebylo vám zablokováno jeho užívání.
 
@@ -709,7 +709,7 @@ Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete
 'accmailtext'               => 'Heslo pro „$1“ bylo odesláno na $2.',
 'newarticle'                => '(Nový)',
 'newarticletext'            => "Následovali jste odkaz na stránku, která dosud neexistuje.
-Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:helppage}}|nápovědě]].
+Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].
 Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'anontalkpagetext'          => "---- ''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. Musíme proto použít číselnou IP adresu k jeho identifikaci. Taková IP adresa může být sdílena několika uživateli. Pokud jste anonymní uživatel a cítíte, že jsou Vám adresovány irrelevantní komentáře, prosím [[Special:Userlogin|vytvořte si účet nebo se přihlaste]] a tím se vyhnete budoucí záměně s jinými anonymními uživateli.''",
 'noarticletext'             => 'Tato stránka zatím neobsahuje žádný text, můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit].',
@@ -872,7 +872,7 @@ pokud to provozovatel serveru nezakázal.',
 
 # Search results
 'searchresults'         => 'Výsledky hledání',
-'searchresulttext'      => 'Pro více informací o tom, jak hledat na {{grammar:6sg|{{SITENAME}}}}, se podívejte do [[{{MediaWiki:helppage}}|nápovědy]].',
+'searchresulttext'      => 'Pro více informací o tom, jak hledat na {{grammar:6sg|{{SITENAME}}}}, se podívejte do [[{{MediaWiki:Helppage}}|nápovědy]].',
 'searchsubtitle'        => 'Hledáno „[[:$1]]“',
 'searchsubtitleinvalid' => 'Hledáno „$1“',
 'noexactmatch'          => "'''Neexistuje žádná stránka s názvem \"\$1\".''' Můžete ji však [[:\$1|vytvořit]].",
@@ -1430,7 +1430,7 @@ Pro změnu nastavení navštivte
 {{fullurl:Special:Watchlist/edit}}
 
 Rady a kontakt:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Smazat stránku',
@@ -1442,7 +1442,7 @@ Rady a kontakt:
 'confirmdelete'               => 'Potvrdit smazání',
 'deletesub'                   => '(Maže se „$1“)',
 'historywarning'              => 'Varování: Stránka, jíž chcete smazat, má historii:',
-'confirmdeletetext'           => 'Chystáte se trvale smazat z databáze stránku nebo obrázek s celou jeho historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:policy-url}}|pravidly]].',
+'confirmdeletetext'           => 'Chystáte se trvale smazat z databáze stránku nebo obrázek s celou jeho historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'actioncomplete'              => 'Provedeno',
 'deletedtext'                 => 'Stránka nebo soubor „$1“ byla smazána.
 $2 zaznamenává poslední smazání.',
@@ -1588,7 +1588,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Zablokovat uživatele',
-'blockiptext'                 => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména. Toto by mělo být používáno jen v souladu s [[{{MediaWiki:policy-url}}|pravidly]]. Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny). Pro odblokování se podívejte na [[Special:Ipblocklist|seznam blokovaných IP adres]].',
+'blockiptext'                 => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména. Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]]. Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny). Pro odblokování se podívejte na [[Special:Ipblocklist|seznam blokovaných IP adres]].',
 'ipaddress'                   => 'IP adresa',
 'ipadressorusername'          => 'IP adresa nebo uživatelské jméno',
 'ipbexpiry'                   => 'Čas vypršení',

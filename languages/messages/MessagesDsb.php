@@ -321,7 +321,7 @@ Administrator, kenž jo ju zacynił, jo pódał toś tu pśicynu: $1',
 
 Take zwětšego se stawa pśez zestarjony wótkaz na wulašowany abo pśesunjony bok.
 
-Njejo-lic tak, sy snano zmólku w softwarje namakał. Pšosym zdźěl to [[{{MediaWiki:grouppage-sysop}}|administratoroju]] a pódaj wužyty URL.',
+Njejo-lic tak, sy snano zmólku w softwarje namakał. Pšosym zdźěl to [[{{MediaWiki:Grouppage-sysop}}|administratoroju]] a pódaj wužyty URL.',
 'readonly_lag'         => 'Datowa banka jo awtomatiski se zacyniła, aby wótwisne serwery se mógli z głownym serwerom wurownowaś.',
 'internalerror'        => 'Interna zmólka',
 'internalerror_info'   => 'Interna zmólka: $1',
@@ -499,7 +499,7 @@ Zablokěrował(a) $1. Pśicyna: ''$2''.
 * Kóńc blokěrowanja: $6
 * Wótmyslenje blokěrowanja: $7
 
-Móžoš wužywarja $1 abo [[{{MediaWiki:grouppage-sysop}}|administratora]] kontaktěrowaś, aby wó blokěrowanju diskutěrował.
+Móžoš wužywarja $1 abo [[{{MediaWiki:Grouppage-sysop}}|administratora]] kontaktěrowaś, aby wó blokěrowanju diskutěrował.
 Njamóžoš e-mail wótpósłaś nježlic až njezapódajoš płaśecu adresu na boku
 [[Special:Preferences|account preferences]] a nježlic blokěrowanje se njezwignjo. 
 Twója IP-adresa jo $3, a ID blokěrowanja jo #$5. Pšosym pódaj ju w diskusiji.",
@@ -511,7 +511,7 @@ Pśicyna:
 * Zachopjeńk blokěrowanja: $8
 * Kóńc blokěrowanja: $6
 
-Ty móžoš wužywarja $1 abo [[{{MediaWiki:grouppage-sysop}}|administrator]] kontaktěrowaś, aby wó blokaźe diskutěrował.
+Ty móžoš wužywarja $1 abo [[{{MediaWiki:Grouppage-sysop}}|administrator]] kontaktěrowaś, aby wó blokaźe diskutěrował.
 
 Njamóžoš e-mail wótpósłaś nježlic až njezapódajoš płaśecu adresu na boku [[Special:Preferences|user preferences]] a nježlic až se blokěrowanje njezwignjo.
 
@@ -536,7 +536,7 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'accmailtext'               => 'Šćitne gronidło za wužywarja [[{{ns:user}}:$1]] jo na adresu $2 se wótpósłało.',
 'newarticle'                => '(Nowy nastawk)',
 'newarticletext'            => 'Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
-Aby bok wutwórił, ga napiš do kašćika spózy. (Dokradnjejše informacije pód: [[{{MediaWiki:helppage}}|help page]].',
+Aby bok wutwórił, ga napiš do kašćika spózy. (Dokradnjejše informacije pód: [[{{MediaWiki:Helppage}}|help page]].',
 'anontalkpagetext'          => "---- ''Toś ten bok słužy za diskusiju z anonymnym wužywarjom, kótaryž njejo dotychměst žedno wužywarske konto załožył, abo swójo konto njewužywa. Togodla dejmy jogo numerisku ip-adresu wužywaś, aby jogo identificěrowali. Taka ip-adresa móžo wót wšakich wužywarjow se wužywaś. Jolic sy anonymny wužywaŕ a se mysliš, až su se njerelewantne komentary na tebje měrili, pšosym [[Special:Userlogin|załož konto abo pśizjaw se]], až njeby wěcej k takim zamólenjam došło.",
 'noarticletext'             => 'Dotychměst njewopśimjejo toś ten bok hyšći žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|za napismom togo boka pytaś]] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś].',
 'clearyourcache'            => "'''Pokazka:''' Pó składowanju jo móžno, až dejš cache swójogo browsera wuprozdniś, aby změny wiźeł.
@@ -703,7 +703,7 @@ Dalšne administratory toś teje wiki mógu ale pśecej hyšći schowane wopśim
 
 # Search results
 'searchresults'         => 'Wuslědki pytanja',
-'searchresulttext'      => 'Za wěcej informacijow wó pśepytowanju {{GRAMMAR:genitiw|{{SITENAME}}}} glědaj [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Za wěcej informacijow wó pśepytowanju {{GRAMMAR:genitiw|{{SITENAME}}}} glědaj [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Ty sy pytał „[[:$1]]“.',
 'searchsubtitleinvalid' => 'Ty sy pytał „$1“.',
 'noexactmatch'          => "'''Bok z napismom „$1“ njeeksistěrujo.'''
@@ -1319,7 +1319,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'confirmdelete'               => 'wulašowanje wobkšuśiś',
 'deletesub'                   => '(„$1“ se wulašujo)',
 'historywarning'              => 'Glědaj! Bok, kótaryž coš wulašowaś, ma stawizny:',
-'confirmdeletetext'           => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:policy-url}}|směrnicach]].',
+'confirmdeletetext'           => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
 'actioncomplete'              => 'Akcija jo se wugbała.',
 'deletedtext'                 => '„$1“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
 'deletedarticle'              => 'wulašowane "[[$1]]"',
@@ -1468,7 +1468,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'wužywarja blokěrowaś',
-'blockiptext'                 => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
+'blockiptext'                 => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:Policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
 'ipaddress'                   => 'IP-adresa',
 'ipadressorusername'          => 'IP-adresa abo wužywarske mě',
 'ipbexpiry'                   => 'Cas blokěrowanja:',
@@ -1606,7 +1606,7 @@ Bok „[[$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten 
 
 Za eksportěrowanje bokow zapódaj nadpisma do dołojcnego tekstowogo póla, jadno nadpismo na smužku, a wuzwól nowe a stare wersije z wótkazami stawiznow boka abo jano aktualnu wersiju z informacijami wó slědnjej změnje.
 
-W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] za bok "[[{{MediaWiki:mainpage}}]]".',
+W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]] za bok "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Jano aktualne wersije, bźez stawiznow',
 'exportnohistory'   => "----
 '''Pokazka:''' Eksportěrowanje cełych stawiznow bokow pśez toś ten formular njejo dla performancowych pśicyn tuchylu móžne.",

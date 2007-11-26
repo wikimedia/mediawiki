@@ -715,7 +715,7 @@ Jou Beooboachtengslieste
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Hälpe tou ju Benutsenge rakt 
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Siede läskje',
@@ -727,7 +727,7 @@ Hälpe tou ju Benutsenge rakt
 'confirmdelete'               => 'Läskenge bestäätigje',
 'deletesub'                   => '(Läskje "$1")',
 'historywarning'              => 'WOARSCHAUENGE: Ju Siede, ju du läskje moatest, häd ne Versionsgeschichte: &nbsp;',
-'confirmdeletetext'           => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:policy-url}}]] honnelje.',
+'confirmdeletetext'           => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:Policy-url}}]] honnelje.',
 'deletedtext'                 => '"$1" wuude läsked. 
 In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'deletedarticle'              => '"$1" wuude läsked',

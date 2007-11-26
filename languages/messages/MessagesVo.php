@@ -329,7 +329,7 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 
 Blokam at pejenükon fa $1. Kod binon ''$2''.
 
-Kanol penön ele $1, u [[{{MediaWiki:grouppage-sysop}}|guvanes]], ad bespikön blokami.
+Kanol penön ele $1, u [[{{MediaWiki:Grouppage-sysop}}|guvanes]], ad bespikön blokami.
 Kanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöföl patuvon in [[Special:Preferences|buükams kala]] olik. Ladet-IP nuik ola binon $3. Mäniotolös oni pö säks valik.",
 'whitelistacctitle'        => 'No dalol jafön kali',
 'confirmedittitle'         => 'Fümedam me pot leäktronik zesüdon ad redakön',
@@ -339,7 +339,7 @@ Kanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöfö
 'accmailtext'              => 'Letavöd pro "$1" pasedon lü $2.',
 'newarticle'               => '(Nulik)',
 'newarticletext'           => "Esökol yümi lü pad, kel no nog dabinon.
-Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:helppage}}|yufapadi]] tefü nüns tefik votik).
+Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:Helppage}}|yufapadi]] tefü nüns tefik votik).
 If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'anontalkpagetext'         => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:Userlogin|jafolös, begö! kali u nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
 'noarticletext'            => 'Atimo no dabinon vödem su pad at. Kanol [[{{ns:special}}:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
@@ -403,7 +403,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 
 # Search results
 'searchresults'         => 'Sukaseks',
-'searchresulttext'      => 'Ad lärnön mödikumosi dö suks in {{SITENAME}}, logolös [[{{MediaWiki:helppage}}|Suks in {{SITENAME}}]].',
+'searchresulttext'      => 'Ad lärnön mödikumosi dö suks in {{SITENAME}}, logolös [[{{MediaWiki:Helppage}}|Suks in {{SITENAME}}]].',
 'searchsubtitle'        => "Esukol padi: '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Esukol padi: '''$1'''",
 'noexactmatch'          => "'''No dabinon pad tiädü \"\$1\".''' Kanol [[:\$1|jafön oni]].",
@@ -719,7 +719,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'confirmdelete'               => 'Fümedolös moükami',
 'deletesub'                   => '(Moükölo padi: "$1")',
 'historywarning'              => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
-'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:policy-url}}]].',
+'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Peledunon',
 'deletedtext'                 => 'Pad: "$1" pemoükon;
 $2 jonon moükamis nulik.',
@@ -802,7 +802,7 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 
 # Block/unblock
 'blockip'                  => 'Blokön gebani',
-'blockiptext'              => 'Gebolös padi at ad blokön redakamagitäti gebananema u ladeta-IP semikas. Atos söton padunön teiko ad vitön vandalimi, e bai [[{{MediaWiki:policy-url}}|dunalesets {{SITENAME}}]]. Penolös dono kodi patik pro blokam (a. s., mäniotolös padis pedobüköl).',
+'blockiptext'              => 'Gebolös padi at ad blokön redakamagitäti gebananema u ladeta-IP semikas. Atos söton padunön teiko ad vitön vandalimi, e bai [[{{MediaWiki:Policy-url}}|dunalesets {{SITENAME}}]]. Penolös dono kodi patik pro blokam (a. s., mäniotolös padis pedobüköl).',
 'ipaddress'                => 'Ladet-IP',
 'ipadressorusername'       => 'Ladet-IP u gebananem',
 'ipbexpiry'                => 'Dü',

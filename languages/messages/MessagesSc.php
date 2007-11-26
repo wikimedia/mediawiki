@@ -215,7 +215,7 @@ La motivazione del blocco è la seguente:
 
 ''$2''
 
-Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:grouppage-sysop}}|administrators]] per discutere del blocco.",
+Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:Grouppage-sysop}}|administrators]] per discutere del blocco.",
 'newarticle'      => '(Nuovo)',
 'newarticletext'  => 'Scrivi qui il tuo testo.',
 'noarticletext'   => "(L'articolo è vuoto, potresti gentilmente iniziare l'articolo oppure richiedere la cancellazione di questa pagina)",
@@ -259,7 +259,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.',
 
 # Search results
 'searchresults'         => 'Risultato della ricerca',
-'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:helppage}}|Ricerca in {{SITENAME}}]].',
+'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].',
 'searchsubtitle'        => 'Richiesta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Richiesta "$1"',
 'titlematches'          => 'Nei titoli degli articoli',
@@ -461,7 +461,7 @@ Se in seguito vorrai togliere questo articolo dalla tua lista di osservati speci
 'deletesub'         => '(Cancellazione di "$1")',
 'confirmdeletetext' => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia.
 Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella
-[[{{MediaWiki:policy-url}}]].',
+[[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Azione completata',
 'deletedtext'       => 'La pagina "$1" è stata cancellata.
 Vedi $2 per un elenco delle pagine cancellate di recente.',
@@ -502,7 +502,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 
 # Block/unblock
 'blockip'            => 'Blocca indirizzo IP',
-'blockiptext'        => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP. Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{MediaWiki:policy-url}}|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
+'blockiptext'        => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP. Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
 'ipaddress'          => 'Indirizzo IP (IP Address)',
 'ipbreason'          => 'Motivazione',

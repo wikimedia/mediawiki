@@ -439,7 +439,7 @@ Dipeungpeuk ku \$1. Alesanana:''\$2''.
 
 dipeungpeuk kadaluarsa dina: \$6
 
-Anjeun bisa nepungan \$1 atawa salasahiji [[{{MediaWiki:grouppage-sysop}}|kuncén]] séjén pikeun nyawalakeun hal ieu.
+Anjeun bisa nepungan \$1 atawa salasahiji [[{{MediaWiki:Grouppage-sysop}}|kuncén]] séjén pikeun nyawalakeun hal ieu.
 
 '''<u>Catet</u>''': yén anjeun teu bisa maké fungsi \"surélékan pamaké ieu\" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
 
@@ -450,7 +450,7 @@ Alamat IP anjeun \$3 jeung ID na \$5, lampirkeun informasi ieu dina unggal ''que
 
 Kadaluwarsa peungpeuk: $6
 
-Anjeun bisa nepungan $1 atawa [[{{MediaWiki:grouppage-sysop}}|kuncé]] lianna pikeun ngabadamikeun ieu peungpeukan.
+Anjeun bisa nepungan $1 atawa [[{{MediaWiki:Grouppage-sysop}}|kuncé]] lianna pikeun ngabadamikeun ieu peungpeukan.
 
 Catet yén anjeun moal bisa migunakeun fitur "surélékan ieu pamaké" mun alamat surélék anu didaptarkeun dina [[Special:Preferences|préferénsi pamaké]]na teu sah, sarta teu dipeungpeuk tina migunakeun ieu fitur.
 
@@ -475,7 +475,7 @@ ID peungpeukan anjeun $5. Mangga sebatkeun éta ID dina pamundut-pamundut anjeun
 'newarticle'                => '(Anyar)',
 'newarticletext'            => "Anjeun geus nuturkeun tumbu ka kaca nu can aya.
 Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap
-(tempo [[{{MediaWiki:helppage}}|kaca pitulung]] pikeun leuwih écés).
+(tempo [[{{MediaWiki:Helppage}}|kaca pitulung]] pikeun leuwih écés).
 Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.",
 'anontalkpagetext'          => "----''Ieu mangrupa kaca sawala pikeun pamaké anonim nu can (henteu) nyieun rekening, kusabab kitu alamat IP dipaké dina hal ieu pikeun nyirikeun anjeunna. Alamat IP ieu bisa dipaké ku sababaraha urang. Mun anjeun salasahiji pamaké anonim sarta ngarasa aya koméntar nu teu pakait geus ditujukeun ka anjeun, leuwih hadé [[Special:Userlogin|nyieun rekening atawa asup log]] sangkan teu pahili jeung pamaké anonim séjén.''",
 'noarticletext'             => 'Kiwari can aya téks na kaca ieu. Mun anjeun geus kungsi nyieun kaca ieu, coba fungsi [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit].',
@@ -605,7 +605,7 @@ Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina
 
 # Search results
 'searchresults'         => 'Hasil néangan',
-'searchresulttext'      => 'Pikeun iber nu leuwih lengkep ngeunaan nyaksrak di {{SITENAME}}, buka [[{{MediaWiki:helppage}}|Nyaksrak {{SITENAME}}]].',
+'searchresulttext'      => 'Pikeun iber nu leuwih lengkep ngeunaan nyaksrak di {{SITENAME}}, buka [[{{MediaWiki:Helppage}}|Nyaksrak {{SITENAME}}]].',
 'searchsubtitle'        => 'Pikeun pamundut "[[:$1]]"',
 'searchsubtitleinvalid' => 'Pikeun pamundut "$1"',
 'titlematches'          => 'Judul artikel nu cocog',
@@ -737,7 +737,7 @@ $2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
 'uploadnologin'               => 'Can asup log',
 'uploadnologintext'           => 'Anjeun kudu [[Special:Userlogin|asup log]] pikeun ngamuat koropak.',
 'uploaderror'                 => 'Kasalahan muat',
-'uploadtext'                  => "<strong>HEUP!</strong> Méméh anjeun ngamuat di dieu, pastikeun yén anjeun geus maca sarta tumut ka [[{{MediaWiki:policy-url}}|kawijakan maké gambar]].
+'uploadtext'                  => "<strong>HEUP!</strong> Méméh anjeun ngamuat di dieu, pastikeun yén anjeun geus maca sarta tumut ka [[{{MediaWiki:Policy-url}}|kawijakan maké gambar]].
 
 Mun geus aya koropak na wiki nu ngaranna sarua jeung nu disebutkeun ku anjeun, koropak nu geus lila bakal diganti otomatis. Mangka, iwal ti pikeun ngaropéa hiji koropak, tangtu leuwih hadé mun anjeun mariksa heula bisi koropak nu sarupa geus aya.
 
@@ -1045,7 +1045,7 @@ Mun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun.
 Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Husus:Watchlist|edit=yes}}
 
 Asupan jeung bantuan salajengna:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Hapus kaca',
@@ -1057,7 +1057,7 @@ Asupan jeung bantuan salajengna:
 'confirmdelete'               => 'Konfirmasi ngahapus',
 'deletesub'                   => '(Ngahapus "$1")',
 'historywarning'              => 'Perhatosan: Kaca nu rék dihapus mibanda',
-'confirmdeletetext'           => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:policy-url}}|kawijakan {{SITENAME}}]].',
+'confirmdeletetext'           => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
 'actioncomplete'              => 'Peta geus réngsé',
 'deletedtext'                 => '"$1" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
 'deletedarticle'              => 'ngahapus "$1"',
@@ -1104,7 +1104,7 @@ Asupan jeung bantuan salajengna:
 'undeletepagetext'       => 'Kaca di handap ieu geus dihapus tapi masih kénéh aya na arsip sarta bisa disimpen deui. Arsip aya kalana dibersihan.',
 'undeleterevisions'      => '$1 révisi diarsipkeun',
 'undeletehistory'        => 'Mun anjeun nyimpen deui kacana, sadaya révisi bakal disimpen deui dina jujutan. Mun aya kaca anyar nu ngaranna sarua dijieun deui satutasna dihapus, révisi nu disimpen tadi bakal némbongan salaku jujutan nu ti heula, sarta révisi kiwari kaca nu hirup moal otomatis kaganti.',
-'undeletehistorynoadmin' => 'Artikel ieu geus dihapus. Alesanana bisa dibaca dina katrangan di handap, katut saha waé nu geus ngédit ieu artikel saméméh dihapus. Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku [[{{MediaWiki:grouppage-sysop}}|kuncén]].',
+'undeletehistorynoadmin' => 'Artikel ieu geus dihapus. Alesanana bisa dibaca dina katrangan di handap, katut saha waé nu geus ngédit ieu artikel saméméh dihapus. Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku [[{{MediaWiki:Grouppage-sysop}}|kuncén]].',
 'undeletebtn'            => 'Simpen deui!',
 'undeletedarticle'       => 'disimpen "$1"',
 'undeletedrevisions'     => '$1 révisi disimpen deui',
@@ -1152,7 +1152,7 @@ Asupan jeung bantuan salajengna:
 
 # Block/unblock
 'blockip'                     => 'Peungpeuk pamaké',
-'blockiptext'                 => 'Paké formulir di handap pikeun meungpeuk aksés nulis ti alamat IP atawa ngaran pamaké husus. Ieu sakuduna ditujukeun pikeun nyegah vandalisme, sarta saluyu jeung [[{{MediaWiki:policy-url}}|kawijakan]]. Eusi alesan nu jéntré (misal, ngarujuk kaca tinangtu nu geus diruksak).',
+'blockiptext'                 => 'Paké formulir di handap pikeun meungpeuk aksés nulis ti alamat IP atawa ngaran pamaké husus. Ieu sakuduna ditujukeun pikeun nyegah vandalisme, sarta saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan]]. Eusi alesan nu jéntré (misal, ngarujuk kaca tinangtu nu geus diruksak).',
 'ipaddress'                   => 'Alamat IP/ngaran pamaké',
 'ipadressorusername'          => 'Alamat IP atawa ngaran pamaké',
 'ipbexpiry'                   => 'Kadaluarsa',

@@ -230,7 +230,7 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'loginreqpagetext'     => 'Ti stos $1 per vesair autras paginas.',
 'accmailtitle'         => 'Il pled-clav è vegnì tramess.',
 'accmailtext'          => 'Il pled-clav da "$1" è vegnì tramess a $2.',
-'newarticletext'       => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:helppage}}|la pagina d'agid]] per s'infurmar).",
+'newarticletext'       => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
 'anontalkpagetext'     => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
 'noarticletext'        => "(Quest artitgel cuntign anc nagin text. Sche ti vuls, pos ti scriver in artitgel davart quest tema. Clicca ''editar'' ed entschaiva.)",
 'clearyourcache'       => "'''Remartga''' Svida il chache da tes browser suenter avair arcunà, per vesair las midadas: '''Mozilla/Firefox:''' ''Shift-Strg-R'', '''Internet Explorer''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''⌘-R'', '''Konqueror:''' ''Strg-R''.",
@@ -483,7 +483,7 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 'confirmdelete'               => 'Confermar il stidar',
 'deletesub'                   => '(Stidar "$1")',
 'confirmdeletetext'           => 'Ti es vidlonder da stidar permanentamain in artitgel u in maletg e tut las versiuns pli veglias ord la datoteca. <br /> 
-Conferma per plaschair che ti ta es conscient da las consequenzas e che ti ageschas tenor las [[{{MediaWiki:policy-url}}|directivas da {{SITENAME}}]].',
+Conferma per plaschair che ti ta es conscient da las consequenzas e che ti ageschas tenor las [[{{MediaWiki:Policy-url}}|directivas da {{SITENAME}}]].',
 'actioncomplete'              => "L' acziun è terminada.",
 'deletedtext'                 => '"$1" è vegnì stidà.
 Sin $2 chattas ti ina glista dals davos artitgels stidads.',

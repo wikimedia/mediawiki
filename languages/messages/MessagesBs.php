@@ -294,7 +294,7 @@ Ovo je obično izazvano praćenjem zastarijelog "razl" ili veze ka istoriji
 stranice koja je obrisana.
 
 Ako ovo nije slučaj, možda ste pronašli grešku u softveru.
-Molimo Vas da prijaviti ovo jednom od [[{{MediaWiki:grouppage-sysop}}|administratora]], zajedno sa URL-om.',
+Molimo Vas da prijaviti ovo jednom od [[{{MediaWiki:Grouppage-sysop}}|administratora]], zajedno sa URL-om.',
 'internalerror'        => 'Interna greška',
 'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
 'filerenameerror'      => 'Ne može se promjeniti ime fajla "$1" to "$2".',
@@ -406,7 +406,7 @@ Molimo Vas da se prijavite pošto je primite.',
 'anoneditwarning'          => 'Niste prijavljeni. Vaša IP adresa će biti zapisana.',
 'blockedtitle'             => 'Korisnik je blokiran',
 'blockedtext'              => "Vaše korisničko ime ili IP adresa je blokirana od strane $1.
-Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog [[{{MediaWiki:grouppage-sysop}}|administratora]] da biste razgovarili o blokadi.",
+Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] da biste razgovarili o blokadi.",
 'whitelistedittitle'       => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistedittext'        => 'Morate da se [[Special:Userlogin|prijavite]] da bi ste uređivali stranice.',
 'whitelistreadtitle'       => 'Obavezno je prijavljivanje za čitanje',
@@ -419,7 +419,7 @@ Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog 
 'newarticle'               => '(Novi)',
 /*'newarticletext'           => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} nema stranicu {{PAGENAME}}.'''
 * Da započnete stranicu, koristite prostor ispod i kad završite, pritisnite \"Sačuvaj\".  Vaše izmjene će odmah biti vidljive.
-* Ako ste novi na prjektu {{SITENAME}}, molimo Vas da pogledate [[{{MediaWiki:helppage}}|pomoćnu stranicu]], ili koristite [[Project:Igralište|igralište]] za eksperimentaciju.
+* Ako ste novi na prjektu {{SITENAME}}, molimo Vas da pogledate [[{{MediaWiki:Helppage}}|pomoćnu stranicu]], ili koristite [[Project:Igralište|igralište]] za eksperimentaciju.
 </div>",*/
 'anontalkpagetext'         => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.  Zbog toga moramo da koristimo brojčanu IP adresu kako bismo odentifikovali njega ili nju.  Takvu adresu može dijeliti više korisnika.  Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[Special:Userlogin|napravite nalog ili se prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.''",
 'noarticletext'            => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} još nema ovaj članak.'''
@@ -496,7 +496,7 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 
 # Search results
 'searchresults'         => 'Rezultati pretrage',
-'searchresulttext'      => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Tražili ste [[:$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',
 'searchsubtitleinvalid' => 'Tražili ste $1',
 'badquery'              => 'Loše oblikovan upit za pretragu',
@@ -505,7 +505,7 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 i tekst $3 članaka.',
 'noexactmatch'          => "Nema stranice sa takvim imenom.
 
-Možete '''[[:$1|da napravite članak sa tim naslovom]]''' ili [[{{MediaWiki:helppage}}|da stavite zahtjev za ovaj članak]] ili [[Special:Allpages/$1|potražite na drugim stranicama]].
+Možete '''[[:$1|da napravite članak sa tim naslovom]]''' ili [[{{MediaWiki:Helppage}}|da stavite zahtjev za ovaj članak]] ili [[Special:Allpages/$1|potražite na drugim stranicama]].
 
 ::*'''''<u>Opomena: Nemojte da kopirate materijale za koje nemate dozvolu!</u>'''''",
 'titlematches'          => 'Naslov članka odgovara',
@@ -794,7 +794,7 @@ Da promjenite podešavanja vezana za spisak praćenenih članaka posjetite
 {{fullurl:Special:Watchlist|edit=yes}}
 
 Fidbek i dalja pomoć:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Obrišite stranicu',
@@ -809,7 +809,7 @@ Fidbek i dalja pomoć:
 ili sliku zajedno sa svom njenom istorijom iz baze.
 Molimo Vas da potvrdite da namjeravate da uradite ovo, da razumijete
 poslijedice, i da ovo radite u skladu sa
-[[{{MediaWiki:policy-url}}|pravilima]] {{SITENAME}}.',
+[[{{MediaWiki:Policy-url}}|pravilima]] {{SITENAME}}.',
 'actioncomplete'              => 'Akcija završena',
 'deletedtext'                 => 'Članak "$1" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
@@ -878,7 +878,7 @@ na kome bi se izvela ova funkcija.',
 
 # Block/unblock
 'blockip'              => 'Blokiraj korisnika',
-'blockiptext'          => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:policy-url}}|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
+'blockiptext'          => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
 'ipaddress'            => 'IP adresa/korisničko ime',
 'ipbexpiry'            => 'Trajanje',
 'ipbreason'            => 'Razlog',

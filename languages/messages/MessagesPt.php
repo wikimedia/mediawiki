@@ -533,7 +533,7 @@ O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
 * Expiração do bloqueio: $6
 * Destino do bloqueio: $7
 
-Você pode contactar $1 ou outro [[{{MediaWiki:grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
+Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
 Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[{{ns:special}}:Preferences|preferências de utilizador]] e se tiver sido bloqueado de utilizar tal recurso.
 
@@ -546,7 +546,7 @@ O motivo apresentado foi:
 * Início do bloqueio: $8
 * Expiração do bloqueio: $6
 
-Você pode contactar $1 ou outro [[{{MediaWiki:grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
+Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
 Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[{{ns:special}}:Preferences|preferências de utilizador]] e se tiver sido bloqueado de utilizar tal recurso.
 
@@ -571,7 +571,7 @@ Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de e
 'newarticle'                => '(Novo)',
 'newarticletext'            => "Você seguiu um link para uma página que ainda não existe. 
 Para criá-la, escreva o seu conteúdo na caixa abaixo
-(veja a [[{{MediaWiki:helppage}}|página de ajuda]] para mais detalhes).
+(veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back'') do seu navegador.",
 'anontalkpagetext'          => "----
 ''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza, de modo a que temos que utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser partilhado por vários utilizadores. Se é um utilizador anónimo e sente que comentários irrelevantes foram direccionados a você, por favor [[{{ns:special}}:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
@@ -748,7 +748,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 
 # Search results
 'searchresults'         => 'Resultados de pesquisa',
-'searchresulttext'      => 'Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{MediaWiki:helppage}}|{{int:help}}]].',
+'searchresulttext'      => 'Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Você pesquisou por "[[:$1]]"',
 'searchsubtitleinvalid' => 'Você pesquisou por "$1"',
 'noexactmatch'          => "'''Não existe uma página com o título \"\$1\".''' Você pode [[:\$1|criar tal página]].",
@@ -1281,7 +1281,7 @@ Para alterar as suas preferências da lista de artigos vigiados, visite
 {{fullurl:Special:Watchlist/edit}}
 
 Contacto e assistência
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Eliminar página',
@@ -1294,7 +1294,7 @@ Contacto e assistência
 'deletesub'                   => '(Eliminando "$1")',
 'historywarning'              => 'Aviso: A página que está prestes a eliminar possui um histórico:',
 'confirmdeletetext'           => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
-Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:policy-url}}|políticas]] do projecto.',
+Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
 'actioncomplete'              => 'Acção completada',
 'deletedtext'                 => '"$1" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.',
@@ -1445,7 +1445,7 @@ $1',
 # Block/unblock
 'blockip'                     => 'Bloquear utilizador',
 'blockiptext'                 => 'Utilize o formulário abaixo para bloquear o acesso à escrita de um endereço específico de IP ou nome de utilizador.
-Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWiki:policy-url}}|política]]. Preencha com um motivo específico a seguir (por exemplo, citando páginas que sofreram vandalismo).',
+Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWiki:Policy-url}}|política]]. Preencha com um motivo específico a seguir (por exemplo, citando páginas que sofreram vandalismo).',
 'ipaddress'                   => 'Endereço de IP:',
 'ipadressorusername'          => 'Endereço de IP ou nome de utilizador:',
 'ipbexpiry'                   => 'Expiração:',

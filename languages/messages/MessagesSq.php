@@ -1054,7 +1054,7 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 'confirmdelete'               => 'Konfirmoni grisjen',
 'deletesub'                   => '(Duke grisur "$1")',
 'historywarning'              => 'Kujdes: Faqja që jeni bërë gati për të grisur ka histori:',
-'confirmdeletetext'           => "Jeni duke grisur '''përfundimisht''' një faqe ose një skedë me tër historinë e saj nga regjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[{{MediaWiki:policy-url}}]].",
+'confirmdeletetext'           => "Jeni duke grisur '''përfundimisht''' një faqe ose një skedë me tër historinë e saj nga regjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Veprim i mbaruar',
 'deletedtext'                 => '"$1" është grisur nga regjistri. Shikoni $2 për një pasqyrë të grisjeve së fundmi.',
 'deletedarticle'              => 'grisi "$1"',
@@ -1173,7 +1173,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 # Block/unblock
 'blockip'                     => 'Blloko përdorues',
 'blockiptext'                 => 'Përdorni formularin e mëposhtëm për të hequr lejen e shkrimit për një përdorues ose IP-ë specifike.
-Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{MediaWiki:policy-url}}|rregullat e {{SITENAME}}-s]].
+Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{MediaWiki:Policy-url}}|rregullat e {{SITENAME}}-s]].
 Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u vandalizuan).',
 'ipaddress'                   => 'IP Adresë/përdorues',
 'ipadressorusername'          => 'Adresë IP ose emër përdoruesi',

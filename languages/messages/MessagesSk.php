@@ -628,7 +628,7 @@ Zablokoval vás správca $1. Udáva tento dôvod:<br />\'\'$2\'\'
 * Kto mal byť zablokovaný: $7
 
 Môžete kontaktovať $1 alebo s jedného z ďalších 
-[[{{MediaWiki:grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
+[[{{MediaWiki:Grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
 
 Uvedomte si, že nemôžete použiť funkciu "Pošli e-mail používateľovi", pokiaľ nemáte registrovanú platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]].
 
@@ -642,7 +642,7 @@ Udaný dôvod zablokovania:
 * Blokovanie vyprší: $6
 
 Ak sa potrebujete informovať o blokovaní, môžete kontaktovať $1 alebo niektorého iného
-[[{{MediaWiki:grouppage-sysop}}|správcu]].
+[[{{MediaWiki:Grouppage-sysop}}|správcu]].
 
 Pozn.: Nemôžete použiť funkciu "Poslať email tomuto používateľovi", ak ste si vo svojich
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
@@ -669,7 +669,7 @@ ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach
 'newarticle'                => '(Nový)',
 'newarticletext'            => "Sledovali ste odkaz na stránku, ktorá zatiaľ neexistuje.
 Stránku vytvoríte tak, že začnete písať do dolného poľa a potom stlačíte tlačidlo „Uložiť stránku“.
-(Viac informácií nájdete na stránkach [[{{MediaWiki:helppage}}|Pomocníka]]).
+(Viac informácií nájdete na stránkach [[{{MediaWiki:Helppage}}|Pomocníka]]).
 Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom prehliadači.",
 'anontalkpagetext'          => "<br />
 ----
@@ -1426,7 +1426,7 @@ Zmeniť nastavenia vašich sledovaných stránok môžete na
 {{fullurl:Special:Watchlist/edit}}
 
 Návrhy a ďalšia pomoc:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Zmazať stránku',
@@ -1438,7 +1438,7 @@ Návrhy a ďalšia pomoc:
 'confirmdelete'               => 'Potvrdiť zmazanie',
 'deletesub'                   => '(Mažem "$1")',
 'historywarning'              => 'POZOR: Stránka, ktorú chcete zmazať má históriu:',
-'confirmdeletetext'           => 'Idete trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
+'confirmdeletetext'           => 'Idete trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
 'actioncomplete'              => 'Úloha bola dokončená',
 'deletedtext'                 => '"$1" bol zmazaný.
 Na $2 nájdete zoznam posledných zmazaní.',
@@ -1601,7 +1601,7 @@ $1',
 # Block/unblock
 'blockip'                     => 'Zablokovať používateľa',
 'blockiptext'                 => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
-Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
+Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
 Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktoré padli za obeť vandalizmu).',
 'ipaddress'                   => 'IP adresa',
 'ipadressorusername'          => 'IP adresa/meno používateľa',

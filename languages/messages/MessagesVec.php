@@ -308,7 +308,7 @@ Per favore, fai subito un log in non appena la ricevi.',
 'missingcommenttext'       => 'Please enter a comment below.',
 'blockedtitle'             => "Stò nome utente corrisponde purtroppo a n'Utente che xè stà disabilità a ła modifica de łe voçi.",
 'blockedtext'              => "Sto nome utente o indirizso IP i xè stà blocai da $1.
-La motivazsion del bloco xè ła seguente:<br />:''$2''<br />Se te lo desideri, te podi contatare $1 o un altro [[{{MediaWiki:grouppage-sysop}}|aministrador]] par discutere de el blocco.
+La motivazsion del bloco xè ła seguente:<br />:''$2''<br />Se te lo desideri, te podi contatare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|aministrador]] par discutere de el blocco.
 
 Si noti che ła funzsion 'Scrivi a l'utente' non xè attiva se non xè stà registrà un indiriszo e-mail vałido ne łe proprie [[Special:Preferences|preferenzse]].
 
@@ -331,7 +331,7 @@ Specificare l'indirizso IP coinvolto ($3) in qualsiasi richiesta de chiarimenti.
 'newarticle'               => '(Novo)',
 'newarticletext'           => "El cołegamento appena seguio corisponde a na paxèna non ancora esistente.
 Se te desideri creare ła paxèna ora, basta comiçciare a scrivere el testo ne ła caseła qui sotto
-(fare riferimento a łe [[{{MediaWiki:helppage}}|paxène de aiuto]] par majori informazsion).
+(fare riferimento a łe [[{{MediaWiki:Helppage}}|paxène de aiuto]] par majori informazsion).
 Se el cołegamento xè stà seguio par eror, xè suficiente far clic sul botòn '''Indrio''' del proprio browser.",
 'anontalkpagetext'         => "----
 
@@ -405,7 +405,7 @@ Verifica ła URL usà par açedere a sta paxèna.',
 
 # Search results
 'searchresults'     => 'Risultato della ricerca',
-'searchresulttext'  => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:helppage}}|Ricerca in {{SITENAME}}]].',
+'searchresulttext'  => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].',
 'badquery'          => 'Richiesta non xè posta bén',
 'badquerytext'      => 'La to richiesta non ła pode esser processà. Questo podria dipendare da l\'aver zsercà na paroła in manco de tre carateri. Oppure te podarezsi aver scritto małe ła richiesta, par esempio "pesce and and azzurro". Per favore, riproa.',
 'matchtotals'       => 'La ricerca per l\'esprezsion "$1" gà trovà<br />$2 riscontri nei titołi de le voci e<br />$3 riscontri ne i testi de le voci.',
@@ -732,7 +732,7 @@ Par riscontri e ulteriore assistenzsa:
 'historywarning'              => 'Atenzsion: La paxèna che te stè par scancełar gà na cronołogia:',
 'confirmdeletetext'           => "Te stè par scancełar permanentemente da el database na paxèna o na imagine, insieme a tuta la so cronołogia.
 Par cortesia, conferma che l'è to intenzsion proçedere a tałe scancełazsion, conferma che te ghè piena consapevołezsa de łe conseguenzse de la to azsion, e conferma che la to azsion l'è pienamente ottemperante a łe regołe stabilíe ne ła
-[[{{MediaWiki:policy-url}}]].",
+[[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Azsión completà',
 'deletedtext'                 => 'La paxèna "$1" l\'è stà scancełà. Varda $2 par un ełenco de łe paxène scancełae de reçente.',
 'deletedarticle'              => 'Scancełà "$1"',
@@ -804,7 +804,7 @@ Consultare el [[Special:Log/delete|log delle scancełazsioni]] par vardare łe s
 
 # Block/unblock
 'blockip'            => 'Blocca indirizso IP',
-'blockiptext'        => "Usare el moduło sottostante par bloccare l'accesso in scrittura ad uno speçifico utente o indirizso IP. El bloco dev'essere operà par prevegnere ati de vandalismo e in stretta osservanzsa de ła [[{{MediaWiki:policy-url}}|policy de {{SITENAME}}]]. Speçificare in dettałio el motivo de el bloco nel campo seguente (ad es. indicando i titołi de łe paxène oggeto de vandalismo).",
+'blockiptext'        => "Usare el moduło sottostante par bloccare l'accesso in scrittura ad uno speçifico utente o indirizso IP. El bloco dev'essere operà par prevegnere ati de vandalismo e in stretta osservanzsa de ła [[{{MediaWiki:Policy-url}}|policy de {{SITENAME}}]]. Speçificare in dettałio el motivo de el bloco nel campo seguente (ad es. indicando i titołi de łe paxène oggeto de vandalismo).",
 'ipaddress'          => 'Indiriszo IP (IP Address)',
 'ipadressorusername' => 'Indiriszo IP o nome utente',
 'ipbexpiry'          => 'Scadenzsa',

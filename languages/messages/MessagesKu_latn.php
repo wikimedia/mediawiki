@@ -474,7 +474,7 @@ Astengkirinê te ji $1 hate çêkirin. Sedemê astengkirinê te ev e: ''$2''.
 * Xelasbûnê astengkirinê: $6
 * Astengkirinê ji van ra: $7
 
-Tu dikarî bi $1 ya [[{{MediaWiki:grouppage-sysop}}|koordînatorekî]] din ra ji astengkirinê te ra dengkê. Tu nikanê 'Ji vê/î bikarhênerê/î re e-name bişîne' bikarwîne eger te di [[Special:Preferences|tercihên xwe]] da adrêsê e-nameyekê nenivîsandîye ya tu ji vê fonksîyonê ra jî hatîyê astengkirin.
+Tu dikarî bi $1 ya [[{{MediaWiki:Grouppage-sysop}}|koordînatorekî]] din ra ji astengkirinê te ra dengkê. Tu nikanê 'Ji vê/î bikarhênerê/î re e-name bişîne' bikarwîne eger te di [[Special:Preferences|tercihên xwe]] da adrêsê e-nameyekê nenivîsandîye ya tu ji vê fonksîyonê ra jî hatîyê astengkirin.
 
 IP'yê te yê niha $3 ye, û ID'ya astengkirinê te #$5 e. Xêra xwe yek ji van nimran têke peyamê xwe.",
 'whitelistedittitle'     => 'Ji bo guherandinê vê gotarê tu gireke xwe qeydbikê.',
@@ -488,7 +488,7 @@ IP'yê te yê niha $3 ye, û ID'ya astengkirinê te #$5 e. Xêra xwe yek ji van 
 'accmailtext'            => "Şîfreya '$1' hat şandin ji $2 re.",
 'newarticle'             => '(Nû)',
 'newarticletext'         => "Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. '''Wêrek be''', biceribîne!<br />
-Ji bo alîkarî binêre: [[{{MediaWiki:helppage}}|Alîkarî]].<br />
+Ji bo alîkarî binêre: [[{{MediaWiki:Helppage}}|Alîkarî]].<br />
 Eger tu bi şaştî hatî, bizivire rûpela berê.",
 'anontalkpagetext'       => "----
 ''Ev rûpela guftûgo ye ji bo bikarhênerên nediyarkirî ku hîn hesabekî xwe çênekirine an jî bikarnaînin. Ji ber vê yekê divê em wan bi navnîşana IP ya hejmarî nîşan bikin. Navnîşaneke IP dikare ji aliyê gelek kesan ve were bikaranîn. Heger tu bikarhênerekî nediyarkirî bî û bawerdikî ku nirxandinên bê peywend di der barê te de hatine kirin ji kerema xwe re [[Special:Userlogin|hesabekî xwe veke an jî têkeve]] da ku tu xwe ji tevlîheviyên bi bikarhênerên din re biparêzî.''",
@@ -595,7 +595,7 @@ hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list o
 
 # Search results
 'searchresults'         => 'Encamên lêgerînê',
-'searchresulttext'      => 'Ji bo zêdetir agahî der barê lêgerînê di {{SITENAME}} de, binêre [[{{MediaWiki:helppage}}|Searching {{SITENAME}}]].',
+'searchresulttext'      => 'Ji bo zêdetir agahî der barê lêgerînê di {{SITENAME}} de, binêre [[{{MediaWiki:Helppage}}|Searching {{SITENAME}}]].',
 'searchsubtitle'        => 'Ji bo query "[[:$1]]"',
 'searchsubtitleinvalid' => 'Ji bo query "$1"',
 'noexactmatch'          => "'''Rûpeleke bi navê \"\$1\" tune.''' Tu dikarî [[:\$1|vê rûpelê biafirînî]]",
@@ -930,7 +930,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 {{fullurl:{{ns:special}}:Watchlist/edit}} seke.
 
 "Feedback" û alîkarîyê din:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Rûpelê jê bibe',
@@ -1018,7 +1018,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 # Block/unblock
 'blockip'                => 'Bikarhêner asteng bike',
 'blockiptext'            => 'Ji bo astengkirina nivîsandinê ji navnîşaneke IP an bi navekî bikarhêner, vê formê bikarbîne.
-Ev bes gireke were bikaranîn ji bo vandalîzmê biskinîne (bi vê [[{{MediaWiki:policy-url}}|qebûlkirinê]]). 
+Ev bes gireke were bikaranîn ji bo vandalîzmê biskinîne (bi vê [[{{MediaWiki:Policy-url}}|qebûlkirinê]]). 
 
 Sedemekê binivîse!',
 'ipaddress'              => "adresê IP'yekê",

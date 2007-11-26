@@ -781,7 +781,7 @@ De blokkade is uitgevoerd door $1. De opgegeven reden is ''$2''.
 * Einde blokkade: $6
 * Bedoeld te blokkeren: $7
 
-U kunt contact opnemen met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]] om te blokkade te bespreken.
+U kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om te blokkade te bespreken.
 U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres heeft opgegeven in uw 
 [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
@@ -793,7 +793,7 @@ De opgegeven reden is:
 * Aanvang blokkade: $8
 * Einde blokkade: $6
 
-U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres heeft opgegeven in uw [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
+U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres heeft opgegeven in uw [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'blockednoreason'           => 'geen reden opgegeven',
 'blockedoriginalsource'     => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'         => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
@@ -994,7 +994,7 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 
 # Search results
 'searchresults'         => 'Zoekresultaten',
-'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:helppage}}|Zoeken op {{SITENAME}}]].',
+'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|Zoeken op {{SITENAME}}]].',
 'searchsubtitle'        => "U zocht naar '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
 'noexactmatch'          => "'''Er bestaat geen pagina met onderwerp  $1.''' U kunt deze [[:$1|aanmaken]].",
@@ -1556,7 +1556,7 @@ U kunt uw volglijstinstellingen wijzigen op:
 {{fullurl:Special:Watchlist/edit}}
 
 Feedback en andere assistentie:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Deze pagina verwijderen',
@@ -1715,7 +1715,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Gebruiker blokkeren',
-'blockiptext'                 => "Gebruik het onderstaande formulier om schrijftoegang voor een gebruiker of IP-adres in te trekken. Doe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[{{MediaWiki:policy-url}}|beleid]].
+'blockiptext'                 => "Gebruik het onderstaande formulier om schrijftoegang voor een gebruiker of IP-adres in te trekken. Doe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[{{MediaWiki:Policy-url}}|beleid]].
 Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipaddress'                   => 'IP-adres',
 'ipadressorusername'          => 'IP-adres of gebruikersnaam',

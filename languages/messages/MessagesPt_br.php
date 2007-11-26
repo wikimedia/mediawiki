@@ -578,7 +578,7 @@ Se você quiser remover futuramente o artigo da sua lista de artigos vigiados, c
 'deletesub'         => '(Apagando "$1")',
 'historywarning'    => 'Atenção: A página que você quer deletar tem um histórico:',
 'confirmdeletetext' => 'Você está  prestes a deletar permanentemente uma página ou imagem junto com todo seu histórico do banco de dados.
-Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{MediaWiki:policy-url}}|Política da {{SITENAME}}]].',
+Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{MediaWiki:Policy-url}}|Política da {{SITENAME}}]].',
 'actioncomplete'    => 'Ação efetuada com sucesso',
 'deletedtext'       => '"$1" foi deletada.
 Veja $2 para um registro de deleções recentes.',

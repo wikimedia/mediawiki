@@ -452,7 +452,7 @@ Pärast parooli saamist logige palun sisse.',
 'blockedtitle'             => 'Kasutaja on blokeeritud',
 'blockedtext'              => "Teie kasutajanime või IP-aadressi blokeeris $1.
 Tema põhjendus on järgmine:<br />''$2''<p>Küsimuse arutamiseks võite pöörduda $1 või mõne teise
-[[{{MediaWiki:grouppage-sysop}}|administraatori]] poole.
+[[{{MediaWiki:Grouppage-sysop}}|administraatori]] poole.
 
 Pange tähele, et Te ei saa sellele kasutajale teadet saata, kui Te pole registreerinud oma [[Special:Eelistused|eelistuste lehel]] kehtivat e-posti aadressi.
 
@@ -471,7 +471,7 @@ Teie IP on $3. Lisage see aadress kõigile järelpärimistele, mida kavatsete te
 'newarticle'               => '(Uus)',
 'newarticletext'           => "Seda lehekülge veel ei ole.
 Lehekülje loomiseks hakake kirjutama all olevasse tekstikasti
-(lisainfo saamiseks vaadake [[{{MediaWiki:helppage}}|juhendit]]).
+(lisainfo saamiseks vaadake [[{{MediaWiki:Helppage}}|juhendit]]).
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule või lingile ''tühista''.",
 'anontalkpagetext'         => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema IP-aadressi. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[Special:Userlogin|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.''",
 'noarticletext'            => "<div style=\"border: 1px solid #ccc; padding: 7px; background-color: #fff; color: #000\">
@@ -682,7 +682,7 @@ Valimata jäetud gruppe ei muudeta. Grupi valikut saab tühistada CTRL + parem k
 'uploadnologintext'    => 'Kui Te soovite faile üles laadida, peate [[Special:Userlogin|sisse logima]].',
 'uploaderror'          => 'Faili laadimine ebaõnnestus',
 'uploadtext'           => '<strong>STOPP!</strong> Enne kui sooritad üleslaadimise,
-peaksid tagama, et see järgib siinset [[{{MediaWiki:policy-url}}|piltide kasutamise korda]].
+peaksid tagama, et see järgib siinset [[{{MediaWiki:Policy-url}}|piltide kasutamise korda]].
 
 Et näha või leida eelnevalt üleslaetud pilte,
 mine vaata [[Special:Imagelist|piltide nimekirja]].
@@ -917,7 +917,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'confirmdelete'               => 'Kinnita kustutamine',
 'deletesub'                   => '(Kustutan "$1")',
 'historywarning'              => 'Hoiatus: leheküljel, mida tahate kustutada, on ajalugu:&nbsp;',
-'confirmdeletetext'           => 'Sa oled andmebaasist jäädavalt kustutamas lehte või pilti koos kogu tema ajalooga. Palun kinnita, et sa tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:policy-url}}|sisekorraga]].',
+'confirmdeletetext'           => 'Sa oled andmebaasist jäädavalt kustutamas lehte või pilti koos kogu tema ajalooga. Palun kinnita, et sa tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:Policy-url}}|sisekorraga]].',
 'actioncomplete'              => 'Toiming sooritatud',
 'deletedtext'                 => '"$1" on kustutatud. $2 lehel on nimekiri viimastest kustutatud lehekülgedest.',
 'deletedarticle'              => '"$1" kustutatud',
@@ -1002,7 +1002,7 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 # Block/unblock
 'blockip'            => 'Blokeeri IP-aadress',
 'blockiptext'        => "See vorm on kirjutamisõiguste blokeerimiseks konkreetselt IP-aadressilt.
-'''Seda tohib teha ainult vandalismi vältimiseks ning kooskõlas [[{{MediaWiki:policy-url}}|{{SITENAME}} sisekorraga]]'''.
+'''Seda tohib teha ainult vandalismi vältimiseks ning kooskõlas [[{{MediaWiki:Policy-url}}|{{SITENAME}} sisekorraga]]'''.
 Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited konkreetsetele lehekülgedele, mida rikuti.",
 'ipaddress'          => 'IP-aadress',
 'ipadressorusername' => 'IP-aadress või kasutajanimi',
