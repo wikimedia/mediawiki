@@ -92,7 +92,7 @@ $messages = array(
 'tog-editondblclick'          => '双击时编辑页面 (JavaScript)',
 'tog-editsection'             => '允许通过点击[编辑]链接编辑段落',
 'tog-editsectiononrightclick' => '允许右击标题编辑段落 (JavaScript)',
-'tog-showtoc'                 => '显示目录 (针对一页超过3个标题的文章)',
+'tog-showtoc'                 => '显示目录 (针对一页超过3个标题的页面)',
 'tog-rememberpassword'        => '在这部电脑上记住我的密码',
 'tog-editwidth'               => '编辑框具有最大宽度',
 'tog-watchcreations'          => '将我创建的页面添加到我的监视列表',
@@ -119,7 +119,7 @@ $messages = array(
 'tog-watchlisthideminor'      => '在监视列表中隐藏微小更改',
 'tog-nolangconversion'        => '不进行用字转换',
 'tog-ccmeonemails'            => '把我发送给其他用户的邮件同时发送副本给我自己',
-'tog-diffonly'                => '在比较两个修订版本差异时不显示文章内容',
+'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
 
 'underline-always'  => '总是使用',
 'underline-never'   => '从不使用',
@@ -182,10 +182,10 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => '页面分类',
 'pagecategories'        => '$1个分类',
-'category_header'       => '"$1"分类中的文章',
+'category_header'       => '"$1"分类中的页面',
 'subcategories'         => '亚类',
 'category-media-header' => '"$1"分类中的媒体',
-'category-empty'        => "''这个分类中尚未包含任何文章或媒体。''",
+'category-empty'        => "''这个分类中尚未包含任何页面或媒体。''",
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
@@ -197,7 +197,7 @@ $messages = array(
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
 
 'about'          => '关于',
-'article'        => '文章',
+'article'        => '页面',
 'newwindow'      => '(在新窗口中打开)',
 'cancel'         => '取消',
 'qbfind'         => '查找',
@@ -247,7 +247,7 @@ $messages = array(
 'specialpage'       => '特殊页面',
 'personaltools'     => '个人工具',
 'postcomment'       => '发表评论',
-'articlepage'       => '查看文章',
+'articlepage'       => '查看页面',
 'talk'              => '讨论',
 'views'             => '查看',
 'toolbox'           => '工具箱',
@@ -327,7 +327,7 @@ $messages = array(
 'page-atom-feed'          => '“$1”的Atom订阅',
 
 # Short words for each namespace, by default used in the 'page' tab in monobook
-'nstab-main'      => '文章',
+'nstab-main'      => '页面',
 'nstab-user'      => '用户页面',
 'nstab-media'     => '媒体页面',
 'nstab-special'   => '特殊页面',
@@ -400,6 +400,8 @@ MySQL返回错误“$3: $4”。',
 查询: $2',
 'viewsource'           => '源码',
 'viewsourcefor'        => '对$1的源码',
+'actionthrottled'      => '动作已压制',
+'actionthrottledtext'  => "基于反垃圾的考量，您现在于这段短时间之中限制去作这一个动作，而您已经超过这个上限。请在数分钟后再尝试。",
 'protectedpagetext'    => '该页面已被锁定以防止编辑。',
 'viewsourcetext'       => '您可以查看并复制此页面的源码:',
 'protectedinterface'   => '该页提供了软件的界面文本，它已被锁定以防止随意的修改。',
@@ -484,6 +486,10 @@ $2',
 'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
 'accountcreated'             => '已建立账户',
 'accountcreatedtext'         => '$1的账户已经被创建。',
+'createaccount-title'        => '在{{SITENAME}}中创建新账户',
+'createaccount-text'         => '有人 ($1) 在{{SITENAME}}中为 $2 创建了一个新账户($4)。 "$2" 的密码是 "$3" 。您应该立即登入并更改密码。
+
+如果该账户创建错误的话，您可以忽略此信息。',
 'loginlanguagelabel'         => '语言: $1',
 
 # Password reset dialog
@@ -512,7 +518,9 @@ $2',
 'math_tip'        => '插入数学公式 (LaTeX)',
 'nowiki_sample'   => '在此插入非格式文本',
 'nowiki_tip'      => '插入非格式文本',
+'image_sample'    => 'Example.jpg',
 'image_tip'       => '嵌入图像',
+'media_sample'    => 'Example.ogg',
 'media_tip'       => '媒体文件链接',
 'sig_tip'         => '带有时间的签名',
 'hr_tip'          => '水平线 (小心使用)',
@@ -559,6 +567,7 @@ $2',
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
 您的查封ID是 #$5。 请你在所有查询中注明这个查封ID。",
+'blockednoreason'           => '无给出原因',
 'blockedoriginalsource'     => "以下是'''$1'''的源码:",
 'blockededitsource'         => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'        => '登录后才可编辑',
@@ -611,7 +620,7 @@ $2',
 <b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
 'yourtext'                  => '您的文字',
 'storedversion'             => '已保存版本',
-'nonunicodebrowser'         => '<strong>警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑文章: 非ASCII字符将以十六进制编码方式出现在编辑框中。</strong>',
+'nonunicodebrowser'         => '<strong>警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。</strong>',
 'editingold'                => '<strong>警告：你正在编辑的是本页的旧版本。
 如果你保存它的话，在本版本之后的任何修改都会丢失。</strong>',
 'yourdiff'                  => '差异',
@@ -734,6 +743,29 @@ $2',
 'oversightlog'    => '监督记录',
 'overlogpagetext' => '下面是一个最近删除以及由操作员封锁牵涉到的内容列表。参看下面的[[Special:Ipblocklist|IP封锁列表]]去查看现时进行的封锁。',
 
+# History merging
+'mergehistory'          => '合并页面历史',
+'mergehistory-header'   => "这一页可以讲您合并一个来源页面的历史到另一个新页面中。
+请确认这次更改会继续保留该页面先前的历史版本。
+
+'''最少该来源页面的现时修订必定会保持。'''",
+'mergehistory-box'      => '合并两个页面的修订:',
+'mergehistory-from'     => '来源页面:',
+'mergehistory-into'     => '目的页面:',
+'mergehistory-list'     => '可以合并的编辑历史',
+'mergehistory-merge'    => '以下[[:$1]]的修订可以合并到[[:$2]]。用该选项按钮列去合并只有在指定时间以前所创建的修订。要留意的是使用导航链接便会重设这一栏。',
+'mergehistory-go'       => '显示可以合并的编辑',
+'mergehistory-submit'   => '合并修订',
+'mergehistory-empty'    => '没有修订可以合并',
+'mergehistory-success'  => '[[:$1]]的$3次修订已经成功地合并到[[:$2]]。',
+'mergehistory-fail'     => '不可以进行历史合并，请重新检查该页面以及时间参数。',
+
+# Merge log
+'mergelog'              => '合并日志',
+'pagemerge-logentry'    => '已合并[[$1]]到[[$2]] (修订截至$3)',
+'revertmerge'           => '解除合并',
+'mergelogpagetext'      => '以下是一个最近由一个页面的修订历史合并到另一个页面的列表。',
+
 # Diffs
 'history-title'             => '“$1”的修订历史',
 'difference'                => '(修订版本间差异)',
@@ -752,10 +784,10 @@ $2',
 'searchsubtitle'        => "搜索'''[[:$1]]'''",
 'searchsubtitleinvalid' => "搜索'''$1'''",
 'noexactmatch'          => "'''没找到标题为\"\$1\"的页面。''' 您可以[[:\$1|创建此页面]]。",
-'titlematches'          => '文章题目相符',
-'notitlematches'        => '没有找到匹配文章题目',
-'textmatches'           => '文章内容相符',
-'notextmatches'         => '没有文章内容匹配',
+'titlematches'          => '页面题目相符',
+'notitlematches'        => '没有找到匹配页面题目',
+'textmatches'           => '页面内容相符',
+'notextmatches'         => '没有页面内容匹配',
 'prevn'                 => '前$1个',
 'nextn'                 => '后$1个',
 'viewprevnext'          => '查看 ($1) ($2) ($3)',
@@ -813,7 +845,7 @@ $2',
 'resultsperpage'           => '每页显示链接数',
 'contextlines'             => '每链显示行数:',
 'contextchars'             => '每行显示字数:',
-'stub-threshold'           => '<a href="#" class="stub">短文章链接</a>格式门槛值:',
+'stub-threshold'           => '<a href="#" class="stub">短页面链接</a>格式门槛值 (字节):',
 'recentchangesdays'        => '最近更改中的显示日数:',
 'recentchangescount'       => '最近更改中的编辑数:',
 'savedprefs'               => '您的个人参数设置已经保存。',
@@ -913,7 +945,7 @@ $2',
 可以进入[[Special:Imagelist|图像列表]]，
 上传和删除将在[[Special:Log/upload|上传日志]]中记录。
 
-要在文章中加入图像，使用以下形式的连接:
+要在页面中加入图像，使用以下形式的连接:
 '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''，
 '''<nowiki>[[{{ns:image}}:file.png|替换文字]]</nowiki>''' 或
 '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
@@ -1115,7 +1147,7 @@ Template:消除歧義',
 'withoutinterwiki'        => '未有语言链接的页面',
 'withoutinterwiki-header' => '以下的页面是未有语言链接到其它语言版本:',
 
-'fewestrevisions' => '最少修订的文章',
+'fewestrevisions' => '最少修订的页面',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1字节',
@@ -1126,7 +1158,7 @@ Template:消除歧義',
 'nviews'                  => '$1次浏览',
 'specialpage-empty'       => '这个报告的结果为空。',
 'lonelypages'             => '孤立页面',
-'lonelypagestext'         => '以下页面没有链接这个wiki中的其它页面。',
+'lonelypagestext'         => '以下页面尚未被这个wiki中的其它页面链接。',
 'uncategorizedpages'      => '未归类页面',
 'uncategorizedcategories' => '未归类分类',
 'uncategorizedimages'     => '未归类图像',
@@ -1139,15 +1171,15 @@ Template:消除歧義',
 'mostlinked'              => '最多链接页面',
 'mostlinkedcategories'    => '最多链接分类',
 'mostlinkedtemplates'     => '最多链接模版',
-'mostcategories'          => '最多分类文章',
+'mostcategories'          => '最多分类页面',
 'mostimages'              => '最多链接图像',
-'mostrevisions'           => '最多修订文章',
+'mostrevisions'           => '最多修订页面',
 'allpages'                => '所有页面',
 'prefixindex'             => '前缀索引',
 'shortpages'              => '短页面',
 'longpages'               => '长页面',
 'deadendpages'            => '断链页面',
-'deadendpagestext'        => '以下页面没有被链接到这个wiki中的其它页面:',
+'deadendpagestext'        => '以下页面没有链接到这个wiki中的其它页面。',
 'protectedpages'          => '已保护页面',
 'protectedpagestext'      => '以下页面已经被保护以防止移移或编辑',
 'protectedpagesempty'     => '在这些参数下没有页面正在保护。',
@@ -1163,7 +1195,7 @@ Template:消除歧義',
 'move'                    => '移动',
 'movethispage'            => '移动此页',
 'unusedimagestext'        => '<p>请注意其它网站可能直接通过 URL 链接此图像，所以这里列出的图像有可能依然被使用。</p>',
-'unusedcategoriestext'    => '虽然没有被其它文章或者分类所采用，但列表中的分类页依然存在。',
+'unusedcategoriestext'    => '虽然没有被其它页面或者分类所采用，但列表中的分类页依然存在。',
 'notargettitle'           => '无目标',
 'notargettext'            => '您还没有指定一个目标页面或用户以进行此项操作。',
 
@@ -1196,7 +1228,7 @@ Template:消除歧義',
 'nextpage'          => '下一页($1)',
 'prevpage'          => '上一页($1)',
 'allpagesfrom'      => '显示从此处开始的页面:',
-'allarticles'       => '所有文章',
+'allarticles'       => '所有页面',
 'allinnamespace'    => '所有页面(属于$1名字空间)',
 'allnotinnamespace' => '所有页面(不属于$1名字空间)',
 'allpagesprev'      => '前',
@@ -1255,7 +1287,7 @@ Template:消除歧義',
 'watchthispage'        => '监视此页',
 'unwatch'              => '取消监视',
 'unwatchthispage'      => '停止监视',
-'notanarticle'         => '不是文章',
+'notanarticle'         => '不是页面',
 'watchnochange'        => '在显示的时间段内您所监视的页面没有更改。',
 'watchlist-details'    => '$1个页面(不含讨论页)被监视',
 'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
@@ -1333,6 +1365,13 @@ $NEWPAGE
 'deletionlog'                 => '删除日志',
 'reverted'                    => '恢复到早期版本',
 'deletecomment'               => '删除原因',
+'deleteotherreason'           => '其它／附加的理由:',
+'deletereasonotherlist'       => '其它理由',
+'deletereason-dropdown'       => '
+*常用删除理由
+** 作者请求
+** 侵犯版权
+** 破坏',
 'rollback'                    => '恢复编辑',
 'rollback_short'              => '恢复',
 'rollbacklink'                => '恢复',
@@ -1398,12 +1437,12 @@ $NEWPAGE
 'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。点击 '''''重设''''' 将清除评论内容及所有复选框。",
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
-如果本页删除后有一个同名的新页面建立，
-被恢复的版本将会称为较新的历史，而新页面的当前版本将无法被自动复原。',
+如果本页删除后有一个同名的新页面建立，被恢复的版本将会称为较新的历史。同时请留意在文件修订中的限制会在恢复时遗失。',
 'undeleterevdel'               => '如果把最新修订部份删除，反删除便无法进行。如果遇到这种情况，您必须反选或反隐藏最新已删除的修订。对于您没有权限去查看的修订是无法恢复的。',
-'undeletehistorynoadmin'       => '这个文章已被删除。删除原因显示在下方编辑摘要中，被删除前的所有修订文本连同删除前贡献用户的细节信息只对管理员可见。',
+'undeletehistorynoadmin'       => '这个页面已被删除。删除原因显示在下方编辑摘要中，被删除前的所有修订文本连同删除前贡献用户的细节信息只对管理员可见。',
 'undelete-revision'            => '删除$1时由$3（在$2）所编写的修订版本:',
 'undeleterevision-missing'     => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
+'undelete-nodiff'              => '找不到先前的修订版本。',
 'undeletebtn'                  => '恢复',
 'undeletereset'                => '重设',
 'undeletecomment'              => '评论:',
@@ -1544,10 +1583,12 @@ $1',
 'range_block_disabled'        => '只有管理员才能创建禁止查封的范围。',
 'ipb_expiry_invalid'          => '无效的终止时间。',
 'ipb_already_blocked'         => '已经封锁"$1"',
-'ipb_cant_unblock'            => '错误: 没有发现 Block ID $1。该 IP 可能已经被解封。',
+'ipb_cant_unblock'            => '错误: 找不到查封ID$1。可能已经解除封禁。',
+'ipb_blocked_as_range'        => '错误: 该IP $1 无直接查封，不可以解除封禁。但是它是在 $2 的查封范围之内，该段范围是可以解除封禁的。',
 'ip_range_invalid'            => '无效的IP范围。\n',
 'blockme'                     => '禁封我',
 'proxyblocker'                => '代理封锁器',
+'proxyblocker-disabled'       => '这个功能已经禁用。',
 'proxyblockreason'            => '您的IP地址是一个开放的代理，它已经被封锁。请联系您的因特网服务提供商或技术支持者并告知告知他们该严重的安全问题。',
 'proxyblocksuccess'           => '完成。\n',
 'sorbsreason'                 => '您的IP地址被 DNSBL 列为属于开放代理服务器。',
@@ -1620,7 +1661,7 @@ $1',
 'delete_and_move'         => '删除并移动',
 'delete_and_move_text'    => '==需要删除==
 	
-目标文章"[[$1]]"已经存在。你确认需要删除原页面并以进行移动吗？',
+目标页面"[[$1]]"已经存在。你确认需要删除原页面并以进行移动吗？',
 'delete_and_move_confirm' => '是的，删除此页面',
 'delete_and_move_reason'  => '删除以便移动',
 'selfmove'                => '原始标题和目标标题相同，不能移动一个页面到它自身。',
@@ -1786,7 +1827,7 @@ $1',
 'spamprotectiontext'     => '您要保存的页面被广告过滤器阻止。这可能是由于一个到外部站点的链接引起的。',
 'spamprotectionmatch'    => '以下是触发广告过滤器的文本: $1',
 'subcategorycount'       => '在这个分类中有$1个亚类。',
-'categoryarticlecount'   => '在这个分类中有$1篇文章。',
+'categoryarticlecount'   => '在这个分类中有$1个页面。',
 'category-media-count'   => '在这个分类中有$1个文件。',
 'listingcontinuesabbrev' => '续',
 'spambot_username'       => 'MediaWiki 广告清除',
@@ -1795,10 +1836,10 @@ $1',
 
 # Info page
 'infosubtitle'   => '页面信息',
-'numedits'       => '编辑数 (文章): $1',
+'numedits'       => '编辑数 (页面): $1',
 'numtalkedits'   => '编辑数 (讨论页): $1',
 'numwatchers'    => '监视者数目: $1',
-'numauthors'     => '作者数量 (文章): $1',
+'numauthors'     => '作者数量 (页面): $1',
 'numtalkauthors' => '作者数量 (讨论页): $1',
 
 # Math options
@@ -1811,7 +1852,7 @@ $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => '标记为已检查',
-'markaspatrolledtext'                 => '标记此文章为已检查',
+'markaspatrolledtext'                 => '标记此页面为已检查',
 'markedaspatrolled'                   => '标记为已检查',
 'markedaspatrolledtext'               => '选定的版本已被标记为已检查.',
 'rcpatroldisabled'                    => '最新更改检查被关闭',
@@ -1861,7 +1902,7 @@ $1',
 'bad_image_list' => '请根据以下的格式去编写:
 
 只有列示项目（以 * 开头的项目）会被考虑。第一个连结一定要连接去坏图像中。
-然后在同一行的连结会考虑作例外，即是幅图像可以在哪一篇文章中同时显示。',
+然后在同一行的连结会考虑作例外，即是幅图像可以在哪一个页面中同时显示。',
 
 /*
 Short names for language variants used for language conversion links.
@@ -2191,7 +2232,7 @@ $3
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
-此文章的引用:<br />
+此页面的引用:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1删除])',
@@ -2211,9 +2252,9 @@ $1
 'confirm_purge_button' => '确定',
 
 # AJAX search
-'searchcontaining' => "搜索包含''$1''的文章。",
-'searchnamed'      => "搜索名为''$1''的文章。",
-'articletitles'    => '文章以"$1"开头',
+'searchcontaining' => "搜索包含''$1''的页面。",
+'searchnamed'      => "搜索名为''$1''的页面。",
+'articletitles'    => '页面以"$1"开头',
 'hideresults'      => '隐藏结果',
 
 # Multipage image navigation
