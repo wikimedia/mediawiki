@@ -205,7 +205,6 @@ class NamespaceConflictChecker {
 	}
 
 	function resolveConflictOn( $row, $table ) {
-		$fname = 'NamespaceConflictChecker::resolveConflictOn';
 		echo "... resolving on $table... ";
 		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
 		$this->db->update( $table,
@@ -217,7 +216,7 @@ class NamespaceConflictChecker {
 				"{$table}_namespace" => 0,
 				"{$table}_title"     => $row->oldtitle,
 			),
-			$fname );
+			__METHOD__ );
 		echo "ok.\n";
 		return true;
 	}
