@@ -45,7 +45,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$fld_comment = false, $fld_user = false, $fld_content = false;
 
 	public function execute() {
-		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $diffto = $difftoprev = null;
+		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $diffto = $difftoprev = $diffformat = null;
 		extract($this->extractRequestParams());
 
 		// If any of those parameters are used, work in 'enumeration' mode.
@@ -87,7 +87,17 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_size = $this->addFieldsIf('rev_len', isset ($prop['size']));
 
 		if($diffto || $difftoprev)
-			$this->formatter = new DiffFormatter;
+			switch($diffformat)
+			{
+				case 'traditional':
+					$this->formatter = new DiffFormatter;
+					break;
+				case 'unified':
+					$this->formatter = new UnifiedDiffFormatter;
+					break;
+				case 'array':
+					$this->formatter = new ArrayDiffFormatter; 
+			}
 		if($diffto)
 		{
 			global $wgContLang;
@@ -252,7 +262,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$newText = explode("\n", $wgContLang->segmentForDiff($revtext));
 				$diff = new Diff($oldText, $newText);
 				$r['from'] = $previousRevID;
-				ApiResult::setContent($r, $wgContLang->unsegmentForDiff($this->formatter->format($diff)));
+				$formatted = $this->formatter->format($diff);
+				if(!is_array($formatted))
+					ApiResult::setContent($r, $wgContLang->unsegmentForDiff($this->formatter->format($diff)));
+				else
+				{
+					$r['differences'] = $formatted;
+					$this->getResult()->setIndexedTagName($r['differences'], 'diff');
+				} 
 				$this->diffArr[$revid] = $r;
 								
 				$previousRevID = $revid;
@@ -390,6 +407,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => 'integer'
 			),
 			'difftoprev' => false,
+			'diffformat' => array(
+				ApiBase :: PARAM_TYPE => array(
+					'traditional',
+					'unified',
+					'array',
+				),
+				ApiBase ::PARAM_DFLT => 'unified'
+			)
 		);
 	}
 
@@ -407,6 +432,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'expandtemplates' => 'expand templates in revision content',
 			'diffto' => 'Revision number to compare all revisions with',
 			'difftoprev' => 'Diff each revision to the previous one (enum)',
+			'diffformat' => 'Format to use for diffs',
 		);
 	}
 

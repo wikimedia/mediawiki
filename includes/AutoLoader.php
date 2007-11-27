@@ -57,6 +57,8 @@ function __autoload($className) {
 		'Diff' => 'includes/DifferenceEngine.php',
 		'MappedDiff' => 'includes/DifferenceEngine.php',
 		'DiffFormatter' => 'includes/DifferenceEngine.php',
+		'UnifiedDiffFormatter' => 'includes/DifferenceEngine.php',
+		'ArrayDiffFormatter' => 'includes/DifferenceEngine.php',
 		'DjVuImage' => 'includes/DjVuImage.php',
 		'_HWLDF_WordAccumulator' => 'includes/DifferenceEngine.php',
 		'WordLevelDiff' => 'includes/DifferenceEngine.php',

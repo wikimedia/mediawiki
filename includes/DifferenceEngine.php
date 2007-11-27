@@ -1677,6 +1677,84 @@ class DiffFormatter
 	}
 }
 
+/**
+ * A formatter that outputs unified diffs
+ * @addtogroup DifferenceEngine
+ */
+
+class UnifiedDiffFormatter extends DiffFormatter
+{
+	var $leading_context_lines = 2;
+	var $trailing_context_lines = 2;
+	
+	function _added($lines) {
+		$this->_lines($lines, '+');
+	}
+	function _deleted($lines) {
+		$this->_lines($lines, '-');
+	}
+	function _changed($orig, $closing) {
+		$this->_deleted($orig);
+		$this->_added($closing);
+	}
+	function _block_header($xbeg, $xlen, $ybeg, $ylen) {
+		return "@@ -$xbeg,$xlen +$ybeg,$ylen @@";
+	}
+}
+
+/**
+ * A pseudo-formatter that just passes along the Diff::$edits array
+ * @addtogroup DifferenceEngine
+ */
+class ArrayDiffFormatter extends DiffFormatter
+{
+	function format($diff)
+	{
+		$oldline = 1;
+		$newline = 1;
+		$retval = array();
+		foreach($diff->edits as $edit)
+			switch($edit->type)
+			{
+				case 'add':
+					foreach($edit->closing as $l)
+					{
+						$retval[] = array(
+							'action' => 'add',
+							'new'=> $l,
+							'newline' => $newline++
+						);
+					}
+					break;
+				case 'delete':
+					foreach($edit->orig as $l)
+					{
+						$retval[] = array(
+							'action' => 'delete',
+							'old' => $l,
+							'oldline' => $oldline++,
+						);
+					}
+					break;
+				case 'change':
+					foreach($edit->orig as $i => $l)
+					{
+						$retval[] = array(
+							'action' => 'change',
+							'old' => $l,
+							'new' => $edit->closing[$i],
+							'oldline' => $oldline++,
+							'newline' => $newline++,
+						);
+					}
+					break;
+				case 'copy':
+					$oldline += count($edit->orig);
+					$newline += count($edit->orig);
+			}
+		return $retval;
+	}			
+}
 
 /**
  *	Additions by Axel Boldt follow, partly taken from diff.php, phpwiki-1.3.3
