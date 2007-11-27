@@ -40,6 +40,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function requestExtraData($pageSet) {
+		$pageSet->requestField('page_restrictions');
 		$pageSet->requestField('page_is_redirect');
 		$pageSet->requestField('page_is_new');
 		$pageSet->requestField('page_counter');
@@ -70,6 +71,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$titles = $pageSet->getGoodTitles();
 		$result = $this->getResult();
 
+		$pageRestrictions = $pageSet->getCustomField('page_restrictions');
 		$pageIsRedir = $pageSet->getCustomField('page_is_redirect');
 		$pageIsNew = $pageSet->getCustomField('page_is_new');
 		$pageCounter = $pageSet->getCustomField('page_counter');
@@ -125,7 +127,36 @@ class ApiQueryInfo extends ApiQueryBase {
 					$pageInfo['protection'] = $protections[$pageid];
 					$result->setIndexedTagName($pageInfo['protection'], 'pr');
 				} else {
-					$pageInfo['protection'] = array();
+					# Also check old restrictions
+					if( $pageRestrictions[$pageid] ) {
+						foreach( explode( ':', trim( $pageRestrictions[$pageid] ) ) as $restrict ) {
+							$temp = explode( '=', trim( $restrict ) );
+							if(count($temp) == 1) {
+								// old old format should be treated as edit/move restriction
+								$restriction = trim( $temp[0] );
+								$pageInfo['protection'][] = array(
+									'type' => 'edit',
+									'level' => $restriction,
+									'expiry' => 'infinity',
+								);
+								$pageInfo['protection'][] = array(
+									'type' => 'move',
+									'level' => $restriction,
+									'expiry' => 'infinity',
+								);
+							} else {
+								$restriction = trim( $temp[1] );
+								$pageInfo['protection'][] = array(
+									'type' => $temp[0],
+									'level' => $restriction,
+									'expiry' => 'infinity',
+								);
+							}
+						}
+						$result->setIndexedTagName($pageInfo['protection'], 'pr');
+					} else {
+						$pageInfo['protection'] = array();
+					}
 				}
 			}
 
