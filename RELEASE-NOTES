@@ -297,6 +297,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Outputting list of all user preferences rather than having to request them by 
   name
 * (bug 11206) api.php should honor maxlag
+* Added diff generation to prop=revisions
 
 === Languages updated in 1.12 ===
 
