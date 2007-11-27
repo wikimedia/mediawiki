@@ -217,7 +217,7 @@ $messages = array(
 'viewdeleted'             => 'Logedön $1i?',
 'restorelink'             => '{{PLURAL:$1|redakama bal|redakamas $1}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Yeged',
 'nstab-user'      => 'Gebanapad',
 'nstab-media'     => 'Nünamakanädapad',
@@ -552,6 +552,9 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 'unusedtemplatestext' => 'Pad at jonon padis valik in nemaspad "samafomot", kels no paninükons in pad votik. Kontrololös, va dabinons yüms votik lü samafomots at büä omoükol onis.',
 'unusedtemplateswlh'  => 'yüms votik',
 
+# Random page
+'randompage' => 'Pad fädik',
+
 # Random redirect
 'randomredirect' => 'Lüodüköm fädik',
 
@@ -610,7 +613,6 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'
 'mostrevisions'           => 'Yegeds suvüno perevidöls',
 'allpages'                => 'Pads valik',
 'prefixindex'             => 'Lised ma foyümots',
-'randompage'              => 'Pad fädik',
 'shortpages'              => 'Pads brefik',
 'longpages'               => 'Pads lunik',
 'deadendpages'            => 'Pads nen yüms lü votiks',

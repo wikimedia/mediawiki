@@ -169,7 +169,7 @@ $messages = array(
 'category-media-header' => '"$1" kategoriyasindag\'ı media',
 'category-empty'        => "''Bul kategoriyada ha'zir hesh bet yamasa media joq''",
 
-'linkprefix'   => '/^(.*?)([a-zıA-Zİ\x80-\xff]+)$/sD',
+'linkprefix'   => '/^(.*?)([a-zıA-Zİ\x80-\xff]+)$/sDu',
 'mainpagetext' => "<big>'''MediaWiki tabıslı ornatıldı.'''</big>",
 
 'about'          => 'Proyekt haqqında',

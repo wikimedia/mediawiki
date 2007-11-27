@@ -980,6 +980,28 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 'oversightlog'    => 'Oversightlogboek',
 'overlogpagetext' => 'Hier onder is een lijst met de meest recente verwijderingen en blokkeringen met betrekking tot informatie die niet zichtbaar is voor admins. Zie de [[Special:Ipblocklist|Lijst van geblokkeerde gebruikers en IP-adressen]] voor een lijst van de blokkades en verbanningen die nu gelden.',
 
+# History merging
+'mergehistory'         => "Geschiedenis van pagina's samenvoegen",
+'mergehistory-header'  => "Deze pagina laat u toe om versies van de geschiedenis van een bronpagina naar een nieuwere pagina samen te voegen.
+Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal behouden.
+
+'''Tenminste de huidige versie van de bronpagina moet overblijven.'''",
+'mergehistory-box'     => "Versies van twee pagina's samenvoegen:",
+'mergehistory-from'    => 'Bronpagina:',
+'mergehistory-into'    => 'Bestemmingspagina:',
+'mergehistory-list'    => 'Samenvoegbare bewerkingsgeschiedenis',
+'mergehistory-go'      => 'Samenvoegbare bewerkingen tonen',
+'mergehistory-submit'  => 'Versies samevoegen',
+'mergehistory-empty'   => 'Geen enkele versies kunnen samengevoegd worden',
+'mergehistory-success' => '$3 versies van [[:$1|$1]] succesvol samengevoegd naar [[:$2|$2]].',
+'mergehistory-fail'    => 'Kan geen geschiedenis samenvoegen, gelieve opnieuw de pagina- en tijdparameters te controleren.',
+
+# Merge log
+'mergelog'           => 'Samenvoegingslogboek',
+'pagemerge-logentry' => 'voegde [[$1]] naar [[$2]] samen (versies tot en met $3)',
+'revertmerge'        => 'Samenvoeging ongedaan maken',
+'mergelogpagetext'   => 'Hieronder ziet u een lijst van recente samenvoegingen van een paginageschiedenis naar een andere.',
+
 # Diffs
 'history-title'             => 'Geschiedenis van "$1"',
 'difference'                => '(Verschil tussen bewerkingen)',
@@ -1577,6 +1599,12 @@ Feedback en andere assistentie:
 'deletionlog'                 => "Logboek verwijderde pagina's",
 'reverted'                    => 'Eerdere versie hersteld',
 'deletecomment'               => 'Reden voor verwijderen',
+'deleteotherreason'           => 'Andere/eventuele reden:',
+'deletereasonotherlist'       => 'Andere reden',
+'deletereason-dropdown'       => '*Veelvoorkomende verwijderingsredenen
+** Op aanvraag van auteur
+** Schending van auteursrechten
+** Vandalisme',
 'rollback'                    => 'Wijzigingen ongedaan maken',
 'rollback_short'              => 'Terugdraaien',
 'rollbacklink'                => 'terugdraaien',

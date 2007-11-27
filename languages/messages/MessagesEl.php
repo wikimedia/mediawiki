@@ -266,7 +266,7 @@ $messages = array(
 
 'underline-always'  => 'Πάντα',
 'underline-never'   => 'Ποτέ',
-'underline-default' => 'Όπως ορίζεται από το browser σας.',
+'underline-default' => 'Όπως ορίζεται από τη μηχανή αναζήτησης (browser) σας.',
 
 'skinpreview' => '(προεπισκόπηση)',
 

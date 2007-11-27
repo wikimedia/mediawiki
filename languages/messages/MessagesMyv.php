@@ -174,12 +174,26 @@ $messages = array(
 'projectpage'       => 'Ваномонзо проектенть лопанть',
 'imagepage'         => 'Ваномонзо артовкс-фотокувтнень лопанть',
 'mediawikipage'     => 'Невтемензе сёрма паргонть лопанть',
+'templatepage'      => 'Ванномс лопапарцунонь лопанть',
+'viewhelppage'      => 'Ванномс лезкслопанть',
+'categorypage'      => 'Ванномс категориянь лопанть',
+'viewtalkpage'      => 'Ванномс мезде молить кортнемат',
 'otherlanguages'    => 'Лия кельсэ',
+'redirectedfrom'    => '(Ютавтозь $1 вельде)',
+'redirectpagesub'   => 'Лиясто ютавтозь лопа',
+'lastmodifiedat'    => 'Те лопанть меельседе витнезь-петнезь $2, $1.', # $1 date, $2 time
+'jumpto'            => 'Тёкадемс тей:',
 'jumptosearch'      => 'вешнеме',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'portal' => 'Велень-сядонь вальма',
+'aboutsite'         => '{{SITENAME}} ланга',
+'currentevents'     => 'Мезе ней моли',
+'currentevents-url' => 'Мезе ней моли',
+'edithelp'          => 'Витнемань-петнемань лезкс',
+'mainpage'          => 'Прякслопа',
+'portal'            => 'Велень-сядонь вальма',
 
+'ok'                  => 'Маштови',
 'newmessageslink'     => 'Од нурька сёрмадт',
 'newmessagesdifflink' => 'меельсе полавтома',
 'editsection'         => 'витнемс-петнемс',
@@ -190,19 +204,23 @@ $messages = array(
 'hidetoc'             => 'кекшемс',
 'feedlinks'           => 'Максовкс:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Лопа',
 'nstab-user'     => 'Совицянь лопась',
 'nstab-media'    => 'Кулянь пачтямо керькстнэнь лопась',
 'nstab-special'  => 'Башка тев',
 'nstab-project'  => 'Проектэнь лопа',
+'nstab-image'    => 'Файла',
+'nstab-template' => 'Лопапарцун',
 'nstab-category' => 'Категория',
 
 # Main script and global functions
 'nosuchspecialpage' => 'Истямо башка лопа арась',
 
 # General errors
-'error' => 'Ильведькс',
+'error'         => 'Ильведькс',
+'badtitle'      => 'Амаштовикс конякс',
+'viewsourcefor' => ' $1 -нь юртозо',
 
 # Login and logout pages
 'yourname'           => 'Совицянь лем:',
@@ -224,6 +242,7 @@ $messages = array(
 'yourlanguage'       => 'Кель:',
 'yournick'           => 'Путонь леметь:',
 'email'              => 'Е-сёрма',
+'mailmypassword'     => 'Е-сёрмань салавань вал',
 'loginlanguagelabel' => 'Кель: $1',
 
 # Password reset dialog
@@ -231,16 +250,22 @@ $messages = array(
 'resetpass_header' => 'Аравтомс од салавань валот',
 
 # Edit page toolbar
-'bold_sample'   => 'Эчке текст',
-'bold_tip'      => 'Эчке текст',
-'italic_sample' => 'Комавтонь текст',
-'italic_tip'    => 'Комавтонь текст',
-'link_sample'   => 'Сюлмавомапень конякс',
-'link_tip'      => 'Потмоёндонь сюлмавомапе',
-'image_sample'  => 'Саемга.jpg',
-'media_sample'  => 'Саемга.ogg',
+'bold_sample'     => 'Эчке текст',
+'bold_tip'        => 'Эчке текст',
+'italic_sample'   => 'Комавтонь текст',
+'italic_tip'      => 'Комавтонь текст',
+'link_sample'     => 'Сюлмавомапень конякс',
+'link_tip'        => 'Потмоёндонь сюлмавомапе',
+'headline_sample' => 'Конякссонть текстэсь',
+'headline_tip'    => 'Омбоце эскельксэнь конякс',
+'math_sample'     => 'Совавтомс тезэнь хвормула',
+'math_tip'        => 'Математикань хвормула (LaTeX)',
+'nowiki_sample'   => 'Совавтомс хворматтомо текст тезэнь',
+'image_sample'    => 'Саемга.jpg',
+'media_sample'    => 'Саемга.ogg',
 
 # Edit pages
+'minoredit'       => 'Те апокшкэ витнема-петнема',
 'watchthis'       => 'Ваномс те лопанть мельга',
 'savearticle'     => 'Ванстомс лопанть',
 'preview'         => 'Васнянь невтевкс',
@@ -248,19 +273,34 @@ $messages = array(
 'showlivepreview' => 'Эряй васнянь невтевкс',
 'showdiff'        => 'Невтемс мезе полавтовсь',
 'newarticle'      => '(Од)',
+'editing'         => 'Витнят-петнят $1',
 
 # History pages
-'cur'          => 'неень',
-'next'         => 'сыця',
-'last'         => 'меельсе',
-'orig'         => 'одксонь',
-'page_first'   => 'васенце',
-'page_last'    => 'меельсе',
-'deletedrev'   => '[нардазь]',
-'historyempty' => '(чаво)',
+'currentrev'          => 'Тевате лиякстомтома',
+'revision-info'       => '$1 -нь лиякстомтома, конань теизе $2',
+'previousrevision'    => '←Седе икелень лиякстомтома',
+'currentrevisionlink' => 'Тевате лиякстомтома',
+'cur'                 => 'неень',
+'next'                => 'сыця',
+'last'                => 'меельсе',
+'orig'                => 'одксонь',
+'page_first'          => 'васенце',
+'page_last'           => 'меельсе',
+'deletedrev'          => '[нардазь]',
+'histfirst'           => 'Васенце',
+'histlast'            => 'Меельсе',
+'historyempty'        => '(чаво)',
 
 # Revision deletion
 'rev-delundel' => 'невтемс/кекшемс',
+
+# Diffs
+'editundo' => 'Велявтомс мекев мезе витнинь-петнинь',
+
+# Search results
+'noexactmatch' => "'''\"\$1\" конякс марто лопа арась.''' Мелеть ули, [[:\$1|теика те лопанть]].",
+'viewprevnext' => 'Ванномс ($1) ($2) ($3)',
+'powersearch'  => 'Вешнемс',
 
 # Preferences page
 'qbsettings-fixedleft'     => 'Керш ёндо кирдезь',
@@ -278,6 +318,124 @@ $messages = array(
 'localtime'                => 'Тескэнь шкась',
 
 # Recent changes
-'rcshowhidemine' => '$1 мезе мон витнинь-петнинь',
+'recentchanges'   => 'Чыяконь полавтнемат-лиякстомтомат',
+'rcshowhideminor' => '$1 апокшкэ витнемат-петнемат',
+'rcshowhideanons' => '$1 лемтеме совицят',
+'rcshowhidemine'  => '$1 мезе мон витнинь-петнинь',
+'rclinks'         => 'Невтемс меельсе $1 полавтнемат меельсе $2 чинь перть<br />$3',
+'hide'            => 'Кекшемс',
+'show'            => 'Невтемс',
+
+# Recent changes linked
+'recentchangeslinked-title' => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
+
+# Image list
+'imagelist'         => 'Файлат-мезть',
+'filehist'          => 'Файланть эрямопингезэ',
+'filehist-user'     => 'Совиця',
+'filehist-filesize' => 'Файланть покшолмазо',
+'imagelinks'        => 'Сюлмавомапеть',
+'linkstoimage'      => 'Те файлантень сюлмазь вана истят сюлмавомапеть:',
+
+# Random page
+'randompage' => 'Кодамо понгсь лопа',
+
+# Statistics
+'statistics' => 'Статистикат',
+
+# Miscellaneous special pages
+'lonelypages'        => 'Лопаурозкэть',
+'uncategorizedpages' => 'Категориявтомо лопат',
+'unusedcategories'   => 'Тевс апак нолда категорият',
+'unusedimages'       => 'Тевс апак нолда файлат',
+'mostcategories'     => 'Весемеде ламо категория марто лопат',
+'allpages'           => 'Весе лопат',
+'shortpages'         => 'Нурькине лопат',
+'longpages'          => 'Кувака лопат',
+'listusers'          => 'Совицят-кить',
+'specialpages'       => 'Башка тевень лопат',
+'newpages'           => 'Од лопат',
+'ancientpages'       => 'Весемеде умонь лопат',
+'movethispage'       => 'Ютавтомс те лопанть лияв',
+
+# Book sources
+'booksources' => 'Кинигань лисьмапрят',
+
+'version' => 'Версия',
+
+# Special:Log
+'specialloguserlabel'  => 'Совиця:',
+'speciallogtitlelabel' => 'Конякс:',
+
+# Special:Allpages
+'allarticles' => 'Весе сёрмадовкст',
+
+# E-mail user
+'emailuser' => 'Те совицянтень кучомс е-сёрма',
+
+# Watchlist
+'watchlist'            => 'Мезе мельга мон ванстнян',
+'mywatchlist'          => 'Мезе мельга мон ванстнян',
+'watch'                => 'Ванстнемс',
+'watchthispage'        => 'Ванстнемс те лопа мельга',
+'unwatch'              => 'А ванстнемс тень мельга',
+'wlshowlast'           => 'Невтемс мельсе $1 цяст $2 чить $3',
+'watchlist-hide-bots'  => 'Кекшэмс мезе ботось витнесь-петнесь',
+'watchlist-hide-own'   => 'Кекшэмс мезе мон витнинь-петнинь',
+'watchlist-hide-minor' => 'Кекшэмс апокшкэ витнемат-петнемат',
+
+# Undelete
+'undeletebtn' => 'Велявтомс мекев сенень, мезе ульнесь витнемадо-петнемадо икеле',
+
+'sp-contributions-older'    => 'Седе икелень $1',
+'sp-contributions-username' => 'IP сёрмапарго эли совицянь лем:',
+'sp-contributions-submit'   => 'Вешнемс',
+
+# What links here
+'whatlinkshere'       => 'Мезе тезэнь сюлмави',
+'whatlinkshere-title' => 'Лопат конат сюлмазь $1 марто',
+'whatlinkshere-links' => '← сюлмавомапеть',
+
+# Block/unblock
+'contribslink' => 'лездыцят кить',
+
+# Move page
+'1movedto2' => '[[$1]] ютавтозь тей [[$2]]',
+
+# Thumbnails
+'thumbnail-more' => 'Покшолгавтомс',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'       => 'Совицянь лопам',
+'tooltip-pt-mytalk'         => 'Кортнемалопам',
+'tooltip-pt-mycontris'      => 'Мезесэ мон лездынь',
+'tooltip-pt-login'          => 'Совавтовлить эсь прят тезэнь, арась мелеть, иля.',
+'tooltip-pt-logout'         => 'Лисемс',
+'tooltip-ca-edit'           => 'Те лопаськак витневи-петневи. Ансяк, ванстомадо икеле яла васнянь невтевкс повнэнть лепштика.',
+'tooltip-ca-protect'        => 'Аравтомс те лопанть прянь ванстомас',
+'tooltip-ca-delete'         => 'Нардамс те лопанть, илязо улеяк',
+'tooltip-ca-move'           => 'Ютавтык те лопанть лияв',
+'tooltip-search'            => 'Вешнемс вана тестэ {{SITENAME}}',
+'tooltip-n-mainpage'        => 'Совака прякслопантень',
+'tooltip-n-recentchanges'   => 'Викисэ мезе чияк полавтовсь-лиякстомтовсь.',
+'tooltip-n-randompage'      => 'Макста ловномс кодамо понгсь лопа',
+'tooltip-n-help'            => 'Превс путыть косо.',
+'tooltip-n-sitesupport'     => 'Макста миненек нежедематарка',
+'tooltip-t-whatlinkshere'   => 'Викинь весе лопатне, конат тезэнь сюлмазь',
+'tooltip-t-emailuser'       => 'Те совицянтень кучомс е-сёрма',
+'tooltip-t-specialpages'    => 'Башка тевень лопатне мельга-мельцек',
+'tooltip-ca-nstab-user'     => 'Ваномс совицянь лопанть',
+'tooltip-ca-nstab-template' => 'Ванномс лопапарцунонть',
+'tooltip-ca-nstab-help'     => 'Ванномс лездамонь лопанть',
+'tooltip-save'              => 'Ванстомс мезе лиякстомтыть',
+'tooltip-diff'              => 'Невтемс мейсэ лиякстомтыть текстэнть.',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'весе',
+'namespacesall' => 'весе',
+'monthsall'     => 'весе',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Ваномс ды витнемс-петнемс мезе мельга ванстнят',
 
 );

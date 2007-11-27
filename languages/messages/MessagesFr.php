@@ -1728,7 +1728,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'categoryarticlecount'   => 'Il y a {{PLURAL:$1|un article|$1 articles}} dans cette catégorie.',
 'category-media-count'   => 'Il y a {{plural:$1|un fichier|$1 fichiers}} multimédia dans cette catégorie.',
 'listingcontinuesabbrev' => '(suite)',
-'spambot_username'       => 'Nettoyage de spam MediaWiki',
+'spambot_username'       => 'Nettoyage de pourriels par MediaWiki',
 'spam_reverting'         => 'Restauration de la dernière version ne contenant pas de lien vers $1',
 'spam_blanking'          => 'Toutes les versions contenant des liens vers $1 sont blanchies',
 

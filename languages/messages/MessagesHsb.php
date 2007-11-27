@@ -778,6 +778,29 @@ Druzy administratorojo w tutym wikiju móža schowany tekst dale čitać a jón 
 'oversightlog'    => 'Protokol funkcije Oversight',
 'overlogpagetext' => 'To je protokol wušmórnjenjow a zablokowanjow, kiž su před administratorami schowane.',
 
+# History merging
+'mergehistory'         => 'Stawizny stronow zjednoćić',
+'mergehistory-header'  => "Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
+Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
+
+'''Znajmjeńša aktualna wersija žórłoweje strony dyrbi so zachować.'''",
+'mergehistory-box'     => 'Wersije dweju stronow zjednoćić:',
+'mergehistory-from'    => 'Žórłowa strona:',
+'mergehistory-into'    => 'Cilowa strona:',
+'mergehistory-list'    => 'Zjednoćujomne wersijowe stawizny',
+'mergehistory-merge'   => 'Slědowace wersije wot [[:$1|$1]] hodźa so z [[:$2|$2]] zjednoćić. Wužij špaltu z opciskimi tłóčatkami, zo by jenož te wersije zjednoćił, kotrež su so w podatym času a bo před nim wutworili. Wobkedźbuj, zo wužiwanje nawigaciskich wotkazow budźe tutu špaltu wróćo stajeć.',
+'mergehistory-go'      => 'Zjednoćujomne změny pokazać',
+'mergehistory-submit'  => 'Wersije zjednoćić',
+'mergehistory-empty'   => 'Njehodźa so žane wersije zjednoćeć',
+'mergehistory-success' => '$3 wersije wot [[:$1|$1]] wuspěšnje z [[:$2|$2]] zjednoćene.',
+'mergehistory-fail'    => 'Njeje móžno zjednócenje stawiznow přewjesć, prošu přepruwuj stronu a časowe parametry.',
+
+# Merge log
+'mergelog'           => 'Protokol zjednoćenja',
+'pagemerge-logentry' => '[[$1]] z [[$2]] zjednoćeny (do $3 {{PLURAL:$3|wersije|wersijow|wersijow|wersijow}})',
+'revertmerge'        => 'Zjednoćenje cofnyć',
+'mergelogpagetext'   => 'Deleka je lisćina najaktualnišich zjednoćenjow stawiznow dweju stronow.',
+
 # Diffs
 'history-title'             => 'Stawizny wersijow strony „$1“',
 'difference'                => '(rozdźěl mjez wersijomaj)',
@@ -1407,6 +1430,12 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 'deletionlog'                 => 'Protokol wušmórnjenjow',
 'reverted'                    => 'Na staršu wersiju cofnjene',
 'deletecomment'               => 'Přičina wušmórnjenja',
+'deleteotherreason'           => 'Druha/přidatna přičina:',
+'deletereasonotherlist'       => 'Druha přičina',
+'deletereason-dropdown'       => '*Zwučene přičiny za wušmórnjenje
+** Požadanje awtora
+** Zranjenje copyrighta
+** Wandalizm',
 'rollback'                    => 'Změny cofnyć',
 'rollback_short'              => 'Cofnyć',
 'rollbacklink'                => 'Cofnyć',

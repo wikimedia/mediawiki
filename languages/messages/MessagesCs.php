@@ -858,6 +858,24 @@ pokud to provozovatel serveru nezakázal.',
 'oversightlog'    => 'Kniha dohledu',
 'overlogpagetext' => 'Níže je seznam posledních smazání a blokování s obsah skrytým pro správce. Přehled současných blokování je na [[Special:Ipblocklist|Seznamu probíhajících zablokování]].',
 
+# History merging
+'mergehistory'        => 'Slučování historií stránek',
+'mergehistory-header' => "Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
+Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii.
+
+'''Minimálně aktuální verze zdrojové stránky musí zůstat na svém místě.'''",
+'mergehistory-box'    => 'Sloučení verzí dvou stránek:',
+'mergehistory-from'   => 'Původní stránka:',
+'mergehistory-into'   => 'Cílová stránka:',
+'mergehistory-list'   => 'Historie slučitelných editací',
+'mergehistory-merge'  => 'Následující verze stránky [[:$1|$1]] lze sloučit do stránky [[:$2|$2]]. Přepínačem vyberete verzi, která určí, že pouze tato a starší editace budou sloučeny. Použitím navigačních odkazů se tento výběr zruší.',
+'mergehistory-go'     => 'Zobrazit slučitelné editace',
+'mergehistory-submit' => 'Sloučit verze',
+'mergehistory-empty'  => 'Nelze sloučit žádnou verzi',
+
+# Merge log
+'mergelog' => 'Kniha slučování',
+
 # Diffs
 'history-title'             => 'Historie verzí stránky „$1“',
 'difference'                => '(Rozdíly mezi verzemi)',
@@ -1254,7 +1272,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'nlinks'                  => '$1 {{plural:$1|odkaz|odkazy|odkazů}}',
 'nmembers'                => '$1 {{plural:$1|stránka|stránky|stránek}}',
 'nrevisions'              => '$1 {{plural:$1|revize|revize|revizí}}',
-'nviews'                  => '$1 zobrazení',
+'nviews'                  => '$1 {{PLURAL:$1|zobrazení|zobrazení|zobrazení}}',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí stránky',
 'lonelypagestext'         => 'Na následující stránky na této wiki neodkazuje žádná jiná stránka.',

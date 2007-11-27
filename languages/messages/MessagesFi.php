@@ -789,6 +789,13 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'oversightlog'    => 'Tietosuojaloki',
 'overlogpagetext' => 'Alla on lista viimeaikaisista poistoista ja estoista liittyen ylläpitäjiltä piilotettuun sisältöön. [[Special:Ipblocklist|Estolistalla]] on luettelo voimassa olevista estoista.',
 
+# History merging
+'mergehistory-submit' => 'Yhdistä versiot',
+
+# Merge log
+'mergelog'         => 'Yhdistämisloki',
+'mergelogpagetext' => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
+
 # Diffs
 'history-title'             => 'Sivun $1 muutoshistoria',
 'difference'                => 'Versioiden väliset erot',
@@ -1363,6 +1370,12 @@ Palaute ja lisäapu osoitteessa:
 'deletionlog'                 => 'poistoloki',
 'reverted'                    => 'Palautettu aikaisempaan versioon',
 'deletecomment'               => 'Poistamisen syy',
+'deleteotherreason'           => 'Muu/lisäsyy:',
+'deletereasonotherlist'       => 'Muu syy',
+'deletereason-dropdown'       => '*Yleiset poistosyyt
+** Lisääjän pyyntö
+** Tekijänoikeusrikkomus
+** Roskaa',
 'rollback'                    => 'palauta aiempaan versioon',
 'rollback_short'              => 'Palautus',
 'rollbacklink'                => 'palauta',

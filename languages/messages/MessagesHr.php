@@ -740,6 +740,31 @@ postavili dodatna ograničenja.',
 'overlogpagetext' => 'Slijedi popis posljednjih brisanja stranica i blokiranja koja uključuju sadržaj sakriven od Administratora.
 Vidi [[Special:Ipblocklist|IP popis blokiranja]] za popis trenutno blokiranih IP adresa.',
 
+# History merging
+'mergehistory'         => 'Spoji povijesti starih izmjena stranice',
+'mergehistory-header'  => "Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.
+Budite sigurni da ta promjena čuva kontinuitet stranice.
+
+'''Najmanje posljednja promjena početne stranice mora biti zadržana.'''",
+'mergehistory-box'     => 'Spoji povijesti starih izmjena dvije stranice:',
+'mergehistory-from'    => 'Izvorna stranica:',
+'mergehistory-into'    => 'Ciljna stranica:',
+'mergehistory-list'    => 'Spojiva povijest uređivanja',
+'mergehistory-merge'   => 'Slijedeće promjene stranice [[:$1|$1]] mogu biti spojene u [[:$2|$2]].
+Rabite kolonu s radio gumbima za spajanje samo određenih promjena.
+Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
+'mergehistory-go'      => 'Pokaži spojivu povijest uređivanja',
+'mergehistory-submit'  => 'Spoji povijesti uređivanja stranica',
+'mergehistory-empty'   => 'Nema spojivih promjena (spajanje nije moguće)',
+'mergehistory-success' => '$3 promjene stranice [[:$1|$1]] uspješno spojene u povijest stranice [[:$2|$2]].',
+'mergehistory-fail'    => 'Nemoguće spojiti povijest stranica, molimo provjerite stranice i vremenske parametre.',
+
+# Merge log
+'mergelog'           => 'Evidencija spajanja povijesti stranica',
+'pagemerge-logentry' => 'spojeno [[$1]] u [[$2]] (promjene do $3)',
+'revertmerge'        => 'Razdvoji',
+'mergelogpagetext'   => 'Slijedi popis posljednjih spajanja povijesti stranica.',
+
 # Diffs
 'history-title'             => 'Povijest izmjena stranice "$1"',
 'difference'                => '(Usporedba među inačicama)',
@@ -1112,7 +1137,7 @@ Duljina [http://meta.wikimedia.org/wiki/Help:Job_queue zadataka za izvršavanje]
 'disambiguationspage'  => 'Predložak:Razdvojba',
 'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''. Umjesto toga bi trebale povezivati na prikladnu temu. <br />Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:disambiguationspage]]",
 
-'doubleredirects'     => 'Dvostruko preusmjeravanje',
+'doubleredirects'     => 'Dvostruka preusmjeravanja',
 'doubleredirectstext' => '<b>Pozor:</b>ovaj popis može sadržavati nepravilne članove. To obično znači
 da postoji dodatan tekst u poveznici prve naredbe \#REDIRECT.<br />
 Svaki red sadrži poveznice na prvo i drugo preusmjeravanje, te te prvu liniju teksta drugog preusmjeravanja
@@ -1347,6 +1372,12 @@ Sva vremena su prema poslužiteljevom vremenu (UTC).',
 'deletionlog'                 => 'evidencija brisanja',
 'reverted'                    => 'Vraćeno na prijašnju inačicu',
 'deletecomment'               => 'Razlog za brisanje',
+'deleteotherreason'           => 'Drugi/dodatni razlog:',
+'deletereasonotherlist'       => 'Drugi razlog',
+'deletereason-dropdown'       => '*Razlozi brisanja stranica
+** Zahtjev autora
+** Kršenje autorskih prava
+** Vandalizam',
 'rollback'                    => 'Ukloni posljednju promjenu',
 'rollback_short'              => 'Ukloni',
 'rollbacklink'                => 'ukloni',

@@ -173,8 +173,8 @@ $messages = array(
 'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'       => 'Páginas na categoria "$1"',
 'subcategories'         => 'Subcategorias',
-'category-media-header' => 'Multimídia na categoria "$1"',
-'category-empty'        => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimídia.''",
+'category-media-header' => 'Multimédia na categoria "$1"',
+'category-empty'        => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
 
 'mainpagetext'      => "<big>'''MediaWiki instalado com sucesso.'''</big>",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações acerca de como utilizar o software wiki.
@@ -613,9 +613,9 @@ Você terá que mesclar suas modificações no texto existente.
 desactualizada desta página.
 Se salvá-la, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>',
 'yourdiff'                  => 'Diferenças',
-'copyrightwarning'          => 'Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se você não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
-Você está, ao mesmo tempo, garantindo a nós que isto é algo escrito por você mesmo ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre.
-<strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
+'copyrightwarning'          => 'Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
+Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.
+<strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
 'copyrightwarning2'         => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, garantindo a nós que isto é algo escrito por você mesmo ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
@@ -733,6 +733,10 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 # Oversight log
 'oversightlog'    => 'Registo de edições ocultadas',
 'overlogpagetext' => 'É exibida a seguir uma listagem das deleções e bloqueios mais recentes envolvendo conteúdos ocultados por {{int:group-sysop}}. Veja a [[{{ns:special}}:Ipblocklist|lista de bloqueios]] para os bloqueios e banimentos atualmente vigentes.',
+
+# History merging
+'mergehistory-box'     => 'Fundir revisões de duas páginas:',
+'mergehistory-success' => '$3 revisões de [[:$1|$1]] fundidas em [[:$2|$2]] com sucesso.',
 
 # Diffs
 'history-title'             => 'Histórico de edições de "$1"',
@@ -1511,6 +1515,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipb_already_blocked'         => '"$1" já encontra-se bloqueado',
 'ipb_cant_unblock'            => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'ip_range_invalid'            => 'Gama de IPs inválida.',
+'blockme'                     => 'Bloquear-me',
 'proxyblocker'                => 'Bloqueador de proxy',
 'proxyblocker-disabled'       => 'Esta função está desabilitada.',
 'proxyblockreason'            => 'O seu endereço de IP foi bloqueado por ser um proxy público. Por favor contacte o seu fornecedor do serviço de Internet ou o apoio técnico e informe-os deste problema de segurança grave.',
@@ -1874,6 +1879,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-exposurebiasvalue'           => 'Polarização de exposição',
 'exif-maxaperturevalue'            => 'Abertura máxima',
 'exif-subjectdistance'             => 'Distância do sujeito',
+'exif-meteringmode'                => 'Modo de medição',
 'exif-lightsource'                 => 'Fonte de luz',
 'exif-focallength'                 => 'Comprimento de foco da lente',
 'exif-subjectarea'                 => 'Área de sujeito',
@@ -1886,6 +1892,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-cfapattern'                  => 'padrão CFA',
 'exif-exposuremode'                => 'Modo de exposição',
 'exif-digitalzoomratio'            => 'Proporção de zoom digital',
+'exif-focallengthin35mmfilm'       => 'Distância focal em filme de 35 mm',
 'exif-scenecapturetype'            => 'Tipo de captura de cena',
 'exif-gaincontrol'                 => 'Controlo de cena',
 'exif-contrast'                    => 'Contraste',
@@ -1932,6 +1939,10 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-componentsconfiguration-0' => 'não existe',
 
 'exif-exposureprogram-0' => 'Não definido',
+'exif-exposureprogram-2' => 'Programa normal',
+'exif-exposureprogram-3' => 'Prioridade de abertura',
+'exif-exposureprogram-4' => 'Prioridade de obturador',
+'exif-exposureprogram-5' => 'Programa criativo (com tendência para profundidade de campo)',
 'exif-exposureprogram-6' => 'Programa de movimento (tende a velocidade de disparo mais rápida)',
 'exif-exposureprogram-7' => 'Modo de retrato (para fotos em <i>closeup</i> com o fundo fora de foco)',
 'exif-exposureprogram-8' => 'Modo de paisagem (para fotos de paisagem com o fundo em foco)',

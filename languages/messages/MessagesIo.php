@@ -8,6 +8,7 @@
  * @author G - ג
  * @author SPQRobin
  * @author Malafaya
+ * @author Lakaoso
  */
 
 $namespaceNames = array(
@@ -32,6 +33,9 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-rememberpassword' => 'Memorez mea pas-vorto en ica komputoro',
+
 'underline-always' => 'Sempre',
 'underline-never'  => 'Nulatempe',
 
@@ -97,28 +101,33 @@ $messages = array(
 
 'about'          => 'Pri',
 'article'        => 'artiklo',
+'newwindow'      => '(aparos en nova panelo)',
 'cancel'         => 'Anular',
+'qbfind'         => 'Trovez',
 'qbedit'         => 'Editar',
 'qbpageoptions'  => 'Ica pagino',
 'qbmyoptions'    => 'Mea pagini',
 'qbspecialpages' => 'Specala pagini',
 'moredotdotdot'  => 'Plus...',
 'mypage'         => 'Mea pagino',
-'mytalk'         => 'Mea debato',
+'mytalk'         => 'Mea diskuti',
 'anontalk'       => 'Debatar pri ica IP',
 'navigation'     => 'Navigado',
 
 'errorpagetitle'    => 'Eroro',
 'returnto'          => 'Retrovenar a la pagino di $1.',
+'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Helpo',
-'search'            => 'Serchar',
-'searchbutton'      => 'Serchar',
+'search'            => 'Serchez',
+'searchbutton'      => 'Serchez',
 'go'                => 'Irar',
-'searcharticle'     => 'Irar',
+'searcharticle'     => 'Irez',
 'history'           => 'Paginala historio',
 'history_short'     => 'Versionaro',
 'printableversion'  => 'Imprimebla versiono',
-'edit'              => 'Editar',
+'permalink'         => 'Permananta ligilo',
+'print'             => 'Imprimar',
+'edit'              => 'Chanjez',
 'editthispage'      => 'Redaktar ca pagino',
 'delete'            => 'Efacar',
 'deletethispage'    => 'Efacar ica pagino',
@@ -129,12 +138,13 @@ $messages = array(
 'unprotectthispage' => 'Desprotektar ica pagino',
 'newpage'           => 'Nova pagino',
 'talkpage'          => 'Debatar pri ca pagino',
-'talkpagelinktext'  => 'Debato',
+'talkpagelinktext'  => 'Diskutez',
 'specialpage'       => 'Specala pagino',
 'personaltools'     => 'Personala utensili',
 'postcomment'       => 'Skribar komento',
 'articlepage'       => 'Regardar artiklo',
-'talk'              => 'Debato',
+'talk'              => 'Diskuto',
+'views'             => 'Nombro di vizitinti',
 'toolbox'           => 'Utensili',
 'userpage'          => 'Vidar pagino di uzanto',
 'imagepage'         => 'Vidar pagino di imajo',
@@ -143,15 +153,19 @@ $messages = array(
 'redirectedfrom'    => '(Ridirektita de $1)',
 'viewcount'         => 'Ica pagino acesita {{PLURAL:$1|1 foyo|$1 foyi}}.',
 'protectedpage'     => 'Protektita pagino',
+'jumpto'            => 'Irez ad:',
+'jumptonavigation'  => 'pilotado',
+'jumptosearch'      => 'serchez',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Pri {{SITENAME}}',
 'aboutpage'         => 'Project:Pri',
 'bugreports'        => 'Informi de erori',
 'copyright'         => 'La kontenajo esas disponebla sub $1.',
-'currentevents'     => 'Aktualeso',
-'currentevents-url' => 'Aktualeso',
+'currentevents'     => 'Aktualaji',
+'currentevents-url' => 'Aktualaji',
 'disclaimers'       => 'Legala averto',
+'disclaimerpage'    => 'Projeto:Generala des-agnosko',
 'edithelp'          => 'Helpo editante',
 'edithelppage'      => 'Help:Editante pagini',
 'faqpage'           => 'Project:FAQ',
@@ -159,18 +173,22 @@ $messages = array(
 'mainpage'          => 'Frontispico',
 'portal'            => 'Komuneso-portalo',
 'portal-url'        => 'Project:Komuneso-portalo',
+'privacy'           => 'Sistemo di agado pri privateso',
+'privacypage'       => 'Projeto:Sistemo di agado pri privateso',
 'sitesupport'       => 'Donacaji',
 'sitesupport-url'   => 'Project:Donacaji',
 
 'retrievedfrom'      => 'Obtenita de "$1"',
 'youhavenewmessages' => 'Vu havas $1 ($2).',
 'newmessageslink'    => 'nova mesaji',
-'editsection'        => 'editar',
+'editsection'        => 'chanjez',
 'editold'            => 'redaktar',
+'editsectionhint'    => 'Chanjez segmento: $1',
 'toc'                => 'Indexo',
 'showtoc'            => 'montrar',
 'hidetoc'            => 'celar',
 'thisisdeleted'      => 'Ka vidar o restaurar $1?',
+'viewdeleted'        => 'Vidar $1?',
 'restorelink'        => '{{PLURAL:$1|1 redakto efacita|$1 redakti efacita}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -191,30 +209,32 @@ $messages = array(
 A list of valid special pages can be found at [[Special:Specialpages]].<!-- please translate -->",
 
 # General errors
-'error'           => 'Eroro',
-'databaseerror'   => 'Datumarala eroro',
-'noconnect'       => 'Pardonez! La wiki havas ula teknikala desfacilaji ed ne povas konektar kun la datumaro. <br />
+'error'              => 'Eroro',
+'databaseerror'      => 'Datumarala eroro',
+'noconnect'          => 'Pardonez! La wiki havas ula teknikala desfacilaji ed ne povas konektar kun la datumaro. <br />
 $1',
-'nodb'            => 'Onu ne povas selektar datumaro $1',
-'cachederror'     => "Co esas kopiuro registragita ye la ''cache'' di la solicitita pagino, ed ol povus ne esar aktuala.",
-'readonly'        => 'Datumaro esas blokusita',
-'enterlockreason' => 'Explikez la motivo por la blokusado, inkluzante 
+'nodb'               => 'Onu ne povas selektar datumaro $1',
+'cachederror'        => "Co esas kopiuro registragita ye la ''cache'' di la solicitita pagino, ed ol povus ne esar aktuala.",
+'readonly'           => 'Datumaro esas blokusita',
+'enterlockreason'    => 'Explikez la motivo por la blokusado, inkluzante 
 evaluo pri kande eventos la desblokuso',
-'internalerror'   => 'Interna eroro',
-'filecopyerror'   => 'Onu ne povis kopiar la arkivo "$1" a "$2".',
-'filerenameerror' => 'Onu ne povas rinomizar la arkivo "$1" ad "$2".',
-'filedeleteerror' => 'Onu ne povis efacar la arkivo "$1".',
-'filenotfound'    => 'Onu ne povas trovar la arkivo "$1".',
-'unexpected'      => 'Nevartita valoro: "$1"="$2".',
-'formerror'       => 'Eroro: Onu ne povis sendar la kontenajo di la formularo',
-'badarticleerror' => 'Ica ago ne povas facesar en ca pagino.',
-'cannotdelete'    => 'Ne esas posibla efacar la pagino od imajo specigata. (Ol povus efacesir da ulu.)',
-'badtitle'        => 'Nekorekta titulo',
-'badtitletext'    => 'La solicitita pagino esas nevalida, vakua od esas
+'internalerror'      => 'Interna eroro',
+'internalerror_info' => 'Interna eroro: $1',
+'filecopyerror'      => 'Onu ne povis kopiar la arkivo "$1" a "$2".',
+'filerenameerror'    => 'Onu ne povas rinomizar la arkivo "$1" ad "$2".',
+'filedeleteerror'    => 'Onu ne povis efacar la arkivo "$1".',
+'filenotfound'       => 'Onu ne povas trovar la arkivo "$1".',
+'unexpected'         => 'Nevartita valoro: "$1"="$2".',
+'formerror'          => 'Eroro: Onu ne povis sendar la kontenajo di la formularo',
+'badarticleerror'    => 'Ica ago ne povas facesar en ca pagino.',
+'cannotdelete'       => 'Ne esas posibla efacar la pagino od imajo specigata. (Ol povus efacesir da ulu.)',
+'badtitle'           => 'Nekorekta titulo',
+'badtitletext'       => 'La solicitita pagino esas nevalida, vakua od esas
 nekorekta interlinguale od interwikale ligilo.',
-'perfdisabled'    => 'Pardonez! Ica traito desaktivigesis temporale pro olu lentigas la datumaro til facar {{SITENAME}} neuzebla.',
-'perfcached'      => 'La sequanta datumi esas kashizita* e li povus ne aktualigesar nuntempe.',
-'viewsource'      => 'Vidar *font-kodo',
+'perfdisabled'       => 'Pardonez! Ica traito desaktivigesis temporale pro olu lentigas la datumaro til facar {{SITENAME}} neuzebla.',
+'perfcached'         => 'La sequanta datumi esas kashizita* e li povus ne aktualigesar nuntempe.',
+'viewsource'         => 'Vidar *font-kodo',
+'viewsourcefor'      => 'de $1',
 
 # Login and logout pages
 'logouttitle'                => 'Ekiro',
@@ -226,14 +246,16 @@ Voluntez, ne obliviez chanjor vua preferaji.',
 'yourname'                   => 'Vua uzantonomo:',
 'yourpassword'               => 'Vua kontrolajo:',
 'yourpasswordagain'          => 'Riskribez la pasovorto:',
-'remembermypassword'         => 'Memorez mea kontrolajo inter sesioni.',
+'remembermypassword'         => 'Memorez mea kontrolajo inter sesioni',
 'loginproblem'               => '<b>Esis problemo kun vua eniro.</b><br />Probez altrafoye!',
 'login'                      => 'Enirar',
 'loginprompt'                => "Vu mustas permisar ''cookies'' por enirar a {{SITENAME}}.",
 'userlogin'                  => 'Enirar',
 'logout'                     => 'Ekirar',
-'userlogout'                 => 'Ekirar',
+'userlogout'                 => 'Ekirez',
 'notloggedin'                => 'Sesiono ne esas iniciata',
+'nologin'                    => 'Ka vu ne havas konto? $1.',
+'nologinlink'                => 'Kreez konto',
 'createaccount'              => 'Krear nova konto',
 'gotaccountlink'             => 'Enirar',
 'createaccountmail'          => 'per e-posto',
@@ -270,20 +292,25 @@ Voluntez enirar altrafoye pos recevar ol.',
 'extlink_tip'     => 'Extera ligilo (memorez adjuntar la prefixo "http://")',
 'headline_sample' => 'Texto dil titulo',
 'headline_tip'    => 'Titulo di duesma nivelo',
+'math_sample'     => 'Insertez formulo hike',
+'math_tip'        => 'Formulo matematika (LaTeX)',
 'nowiki_sample'   => 'Insertar senformizita texto hike',
+'nowiki_tip'      => 'Ignorez formatigo wikial',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Imajo enkorpigita',
 'media_sample'    => 'Exemplo.ogg',
+'sig_tip'         => "Vua signaturo kun 'timestamp'",
 'hr_tip'          => 'Horizontala lineo (ne trouzez ol)',
 
 # Edit pages
 'summary'            => 'Rezumo',
 'subject'            => 'Temo / Titulo',
 'minoredit'          => 'Ico esas mikra chanjo',
-'watchthis'          => 'Surveyar ica artiklo',
+'watchthis'          => 'Surveyez ica artiklo',
 'savearticle'        => 'Registragar pagino',
 'preview'            => 'Previdar',
 'showpreview'        => 'Previdar',
+'showdiff'           => 'Montrez chanji',
 'blockedtitle'       => 'La uzanto esas blokusita',
 'whitelistedittitle' => 'On mustas enskribar por redaktar',
 'whitelistedittext'  => 'Vu mustas $1 por redaktar pagini.',
@@ -317,6 +344,7 @@ Se vu esas hike erore, kliktez sur la butono por retrovenar en vua ''browser''."
 Se vu ne deziras ke altri modifikez vua artikli od oli distributesez libere, lore voluntez ne skribar oli hike.<br />
 Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesis de libera fonto.
 <strong>NE SENDEZ ARTIKLI KUN ''COPYRIGHT'' SEN PERMISO!</strong>",
+'template-protected' => '(protektita)',
 
 # History pages
 'revhistory'      => 'Antea versioni',
@@ -333,6 +361,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 :nuna = diferi kun l' aktuala versiono, 
 :lasta = diferi kun l' antea versiono, 
 :m = mikra edito.",
+'historyempty'    => '(vakua)',
 
 # Revision deletion
 'rev-delundel' => 'montrar/celar',
@@ -343,10 +372,12 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'lineno'                  => 'Lineo $1:',
 'editcurrent'             => 'Redaktar nuna versiono di ca pagino',
 'compareselectedversions' => 'Komparar selektita versioni',
+'editundo'                => 'des-facez',
 
 # Search results
 'searchresults'     => 'Rezultaji dil sercho',
 'searchresulttext'  => 'Por plusa informo pri quale serchar en {{SITENAME}}, videz [[{{MediaWiki:Helppage}}|help]].',
+'noexactmatch'      => "'''Es nula pagino titulizita \"\$1\".''' Vu darfas [[:\$1|krear ica pagino]].",
 'titlematches'      => 'Koincidi de titulo di artiklo',
 'notitlematches'    => 'No esas koincidi en la tituli dil artikli',
 'textmatches'       => 'Koincidi de texto di artiklo',
@@ -357,7 +388,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'showingresults'    => "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
 'showingresultsnum' => "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
 'nonefound'         => 'La nesucesoza sercho ofte produktesas pro serchar vorti tro komuna quale "havar" e "di", qui ne esas indexizita, o pro serchar plu kam un vorto (En la rezulto aparos nur la pagini qui kontenas omna vorti serchata).',
-'powersearch'       => 'Serchar',
+'powersearch'       => 'Serchez',
 'powersearchtext'   => 'Serchar en nomari: <br> $1<br> $2 ridirektili-listo <br> Serchar $3 $9',
 'searchdisabled'    => 'La sercho en la kompleta texto desaktivigesis temporale pro superkargo dil servanto. Ni esperas riaktivigar ol pos facar ula proxima aktualigi. Dum ica tempo, vu povas serchar per Google.',
 
@@ -373,6 +404,8 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'skin'               => 'Pelo',
 'math'               => 'Quale montrar la formuli',
 'dateformat'         => 'Formo di dato',
+'datedefault'        => 'Sen prefero',
+'datetime'           => 'Dato e tempo',
 'math_bad_tmpdir'    => 'Onu ne povas skribar o krear la tempala matematikala arkivaro',
 'math_bad_output'    => 'Onu ne povas skribar o krear la arkivaro por la matematiko',
 'prefs-personal'     => 'Personala informo',
@@ -444,19 +477,24 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploaddisabled'    => 'Pardonez, la adkargo esas desaktiva.',
 
 # Image list
-'imagelist'      => 'Listo di imaji',
-'imagelisttext'  => "Infre esas listo di '''$1''' {{PLURAL:$1|imajo|imaji}} rangizita $2.",
-'getimagelist'   => 'obtenante la listo di imaji',
-'ilsubmit'       => 'Serchar',
-'showlast'       => 'Montrar la lasta $1 imaji klasifikata $2.',
-'byname'         => 'per nomo',
-'bydate'         => 'per dato',
-'bysize'         => 'per grandeso',
-'imgdelete'      => 'efac',
-'imgdesc'        => 'desk',
-'imagelinks'     => 'Ligilo al imajo',
-'linkstoimage'   => 'Ca pagini ligas al imajo:',
-'nolinkstoimage' => 'Nula pagino ligas a ca pagino.',
+'imagelist'         => 'Listo di imaji',
+'imagelisttext'     => "Infre esas listo di '''$1''' {{PLURAL:$1|imajo|imaji}} rangizita $2.",
+'getimagelist'      => 'obtenante la listo di imaji',
+'ilsubmit'          => 'Serchar',
+'showlast'          => 'Montrar la lasta $1 imaji klasifikata $2.',
+'byname'            => 'per nomo',
+'bydate'            => 'per dato',
+'bysize'            => 'per grandeso',
+'imgdelete'         => 'efac',
+'imgdesc'           => 'desk',
+'filehist'          => 'Historio dil arkivo',
+'filehist-help'     => 'Klikez sur la dato/horo por vidar arkivo quale ol aparis ye ta tempo.',
+'filehist-datetime' => 'Dato/Horo',
+'filehist-user'     => 'Uzero',
+'filehist-filesize' => 'Grandeso dil arkivo',
+'imagelinks'        => 'Ligilo al imajo',
+'linkstoimage'      => 'Ca pagini ligas al imajo:',
+'nolinkstoimage'    => 'Nula pagino ligas a ca pagino.',
 
 # Random page
 'randompage' => 'Pagino hazarde',
@@ -491,7 +529,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'newpages'         => 'Nova pagini',
 'ancientpages'     => 'Maxim anciena artikli',
 'intl'             => 'Interlinguala ligili',
-'move'             => 'Movar',
+'move'             => 'Movez',
 'movethispage'     => 'Rinomizar ica pagino',
 'unusedimagestext' => '<p>Voluntez egardez ke altra ret-situi quale altra enciklopedii povus ligar a imajo per direta URL, e do ol povus esar enlistizita hike malgre olu havas aktiva uzo.</p>',
 'notargettitle'    => 'Ne esas vakua pagino',
@@ -504,7 +542,12 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'version'        => 'Versiono',
 
 # Special:Allpages
-'nextpage' => 'Sequanta pagino ($1)',
+'nextpage'          => 'Sequanta pagino ($1)',
+'allarticles'       => 'Omna pagini',
+'allinnamespace'    => 'Omna pagini (nomaro $1)',
+'allnotinnamespace' => 'Omna pagini (ne in nomaro $1)',
+'allpagessubmit'    => 'Irez',
+'allpages-bad-ns'   => '{{SITENAME}} ne havas nomaro "$1".',
 
 # E-mail user
 'mailnologin'     => 'Ne sendar adreso',
@@ -523,6 +566,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 
 # Watchlist
 'watchlist'          => 'Mea surveyaji',
+'mywatchlist'        => 'Mea surveyaji',
 'nowatchlist'        => 'Vu ne havas objekti en vua listo di surveyaji.',
 'watchnologin'       => 'Vu ne startis sesiono',
 'watchnologintext'   => 'Vu mustas [[Special:Userlogin|enirir]] por modifikar vua surveyaji.',
@@ -580,30 +624,37 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'restriction-edit' => 'Redaktar',
 
 # Undelete
-'undelete'          => 'Restaurar efacita artiklo',
-'undeletepage'      => 'Vidar e restaurar efacita pagini',
-'undeletepagetext'  => 'La sequanta pagini efacesis ma li ankore esas en la arkivo ed esas restaurebla. La arkivo povas netigesar periodale.',
-'undeleterevisions' => '$1 {{PLURAL:$1|revizo|revizi}} konservita',
-'undeletebtn'       => 'Restaurar',
-'undeletedarticle'  => 'Restaurita "$1"',
+'undelete'               => 'Restaurar efacita artiklo',
+'undeletepage'           => 'Vidar e restaurar efacita pagini',
+'undeletepagetext'       => 'La sequanta pagini efacesis ma li ankore esas en la arkivo ed esas restaurebla. La arkivo povas netigesar periodale.',
+'undeleterevisions'      => '$1 {{PLURAL:$1|revizo|revizi}} konservita',
+'undeletebtn'            => 'Restaurar',
+'undeletedarticle'       => 'Restaurita "$1"',
+'undelete-search-submit' => 'Serchar',
 
 # Namespace form on various pages
+'namespace'      => 'Nomaro:',
 'blanknamespace' => '(Chefa)',
 
 # Contributions
 'contributions' => 'Kontributadi dil uzanto',
 'mycontris'     => 'Mea adportado',
+'contribsub2'   => 'Pro $1 ($2)',
 'nocontribs'    => 'Ne trovesis chanji qui fitez ita kriterii.',
 'ucnote'        => 'Sube esas la lasta <b>$1</b> chanji da ca uzanto dum la lasta <b>$2</b> dii.',
 'uclinks'       => 'Vidar la lasta $1 chanji; vidar la lasta $2 dii.',
 'uctop'         => ' (lasta modifiko)',
 
+'sp-contributions-newest' => 'Maxim nova',
+'sp-contributions-oldest' => 'Maxim anciena',
+
 # What links here
-'whatlinkshere' => 'Quo ligas hike',
-'linklistsub'   => '(Listo di ligili)',
-'linkshere'     => "Ca pagini esas ligilizita ad '''[[:$1]]''':",
-'nolinkshere'   => "Nula pagino ligas ad '''[[:$1]]'''.",
-'isredirect'    => 'ridirektanta pagino',
+'whatlinkshere'       => 'Quo ligas hike',
+'whatlinkshere-title' => 'Pagini qui ligas ad $1',
+'linklistsub'         => '(Listo di ligili)',
+'linkshere'           => "Ca pagini esas ligilizita ad '''[[:$1]]''':",
+'nolinkshere'         => "Nula pagino ligas ad '''[[:$1]]'''.",
+'isredirect'          => 'ridirektanta pagino',
 
 # Block/unblock
 'blockip'            => 'Blokusado di IP-adresi',
@@ -622,7 +673,7 @@ Videz [[Special:Ipblocklist|IP-blokuslisto]] por revizor blokusadi.',
 'blocklistline'      => '$1, $2 blokusas $3 (expiras $4)',
 'blocklink'          => 'blokusar',
 'unblocklink'        => 'Desblokusar',
-'contribslink'       => 'kontributadi',
+'contribslink'       => 'kontributaji',
 'autoblocker'        => 'Autoblokusita nam vu havas la sama IP-adreso kam "[[User:$1|$1]]". Motivo: "$2"',
 'blocklogentry'      => 'Vu blokusis "[[$1]]" dum periodo de "$2"',
 'unblocklogentry'    => 'Desblokusita "$1"',
@@ -677,8 +728,9 @@ Voluntez selektar altra nomo.',
 'allmessagestext' => 'Ico esas listo de omna sistemo-mesaji disponebla en la MediaWiki: namespace.',
 
 # Thumbnails
-'thumbnail-more' => 'Grandigar',
-'missingimage'   => '<b>Mankas imajo</b><br /><i>$1</i>',
+'thumbnail-more'  => 'Grandigez',
+'missingimage'    => '<b>Mankas imajo</b><br /><i>$1</i>',
+'thumbnail_error' => 'Ne sucesas krear thumbnail: $1',
 
 # Special:Import
 'import'                => 'Importacar pagini',
@@ -689,10 +741,31 @@ Voluntez selektar altra nomo.',
 'importhistoryconflict' => 'Existas versionaro konfliktiva (Ica pagino povus importacesir antee)',
 
 # Tooltip help for the actions
-'tooltip-search'                  => 'Serchar en {{SITENAME}}',
+'tooltip-pt-userpage'             => 'Mea uzanto-pagino',
+'tooltip-pt-mytalk'               => 'Mea diskuto-pagino',
+'tooltip-pt-preferences'          => 'Mea preferaji',
+'tooltip-pt-watchlist'            => 'Listo di pagini quin vu kontrolas',
+'tooltip-pt-mycontris'            => 'Listo di mea kontributaji',
+'tooltip-pt-login'                => 'Vu darfas enirar uzante vua pas-vorto, ma lo ne esas preskriptata.',
+'tooltip-pt-logout'               => 'Ekirez',
+'tooltip-ca-talk'                 => 'Diskuto pri la pagino di kontenajo',
+'tooltip-ca-edit'                 => 'Vu darfas chanjar ta pagino. Voluntez pre-vidar chanji ante rezervar oli.',
+'tooltip-ca-move'                 => 'Movez pagino',
+'tooltip-search'                  => 'Serchez en {{SITENAME}}',
+'tooltip-n-mainpage'              => 'Vizitez la Frontispico',
+'tooltip-n-portal'                => 'Pri la projeto, quon vu facus, ube trovus utilaji',
+'tooltip-n-recentchanges'         => 'Listo di recenta chanji en la wiki.',
+'tooltip-n-randompage'            => 'Adkargez pagino hazarde',
+'tooltip-n-help'                  => 'La loko por trovar ulo.',
+'tooltip-t-whatlinkshere'         => 'Montrez omna wiki pagini qui ligas ad hike',
+'tooltip-t-contributions'         => 'Videz kontributaji di ta uzero',
+'tooltip-t-upload'                => 'Adkargez imaji o son-arkivi',
+'tooltip-t-specialpages'          => 'Montrez listo di omna specala pagini',
+'tooltip-ca-nstab-user'           => 'Videz la pagino dil uzero',
 'tooltip-minoredit'               => 'Reperar ica chanjo kom mikra',
-'tooltip-save'                    => 'Registragar vua chanji',
+'tooltip-save'                    => 'Registrigez chanji',
 'tooltip-preview'                 => 'Previdar vua chanji. Voluntez uzor ico ante registragar!',
+'tooltip-diff'                    => 'Montrez la chanji a la texto quin vu facis',
 'tooltip-compareselectedversions' => 'Vidar la diferaji inter la du selektita versioni di ca pagino.',
 'tooltip-watch'                   => 'Adjuntar ica pagino a vua listo di surveyaji',
 'tooltip-upload'                  => 'Adkargar imaji od altra arkivi',
@@ -711,7 +784,41 @@ Voluntez selektar altra nomo.',
 'spamprotectiontitle' => 'Filtrilo kontre spamo',
 'subcategorycount'    => 'Esas {{PLURAL:$1|1 subkategorio|$1 subkategorii}} en ica kategorio.',
 
+# EXIF tags
+'exif-exposuretime-format' => '$1 sek ($2)',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometri per horo',
+'exif-gpsspeed-m' => 'Milii per horo',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'omna',
+'imagelistall'     => 'omna',
+'watchlistall2'    => 'omna',
+'namespacesall'    => 'omna',
+'monthsall'        => 'omna',
+
+# E-mail address confirmation
+'confirmemail_needlogin' => 'Vu mustas $1 pro konfirmar vua adreso di e-posto.',
+
+# Multipage image navigation
+'imgmultipageprev' => '← antea pagino',
+'imgmultipagenext' => 'sequanta pagino →',
+'imgmultigo'       => 'Irez!',
+
 # Table pager
+'ascending_abbrev'         => 'aces',
+'descending_abbrev'        => 'decen',
+'table_pager_next'         => 'Sequanta pagino',
+'table_pager_prev'         => 'Antea pagino',
+'table_pager_first'        => 'Unesma pagino',
+'table_pager_last'         => 'Lasta pagino',
 'table_pager_limit_submit' => 'Irar',
+
+# Auto-summaries
+'autosumm-new' => 'Nova pagino: $1',
+
+# Watchlist editor
+'watchlistedit-raw-titles' => 'Tituli:',
 
 );
