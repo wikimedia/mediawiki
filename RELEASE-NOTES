@@ -194,7 +194,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for users with special characters in their names
 * The number of watching users in watchlists was always reported as 1
 * namespaceDupes.php no longer dies when coming across an illegal title
-
+* Make API check for restrictions in the old format too.
 
 == Parser changes in 1.12 ==
 
