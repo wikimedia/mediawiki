@@ -1,10 +1,13 @@
 <?php
-/** Français Cadien
- * This is the Winaray localisation file
+/** Français cadien (Français cadien)
+ *
+ * @addtogroup Language
  *
  * @author RoyAlcatraz, JeanVoisin (September 2007)
- * 
- * @addtogroup Language
+ * @author RoyAlcatraz
+ * @author JeanVoisin
+ * @author Siebrand
+ * @author Nike
  */
 
 $messages = array(
@@ -195,25 +198,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => "Qui c'est {{SITENAME}}?",
-'aboutpage'         => '{{ns:project}}:Info',
+'aboutpage'         => 'Project:Info',
 'bugreports'        => "Rapport d'erreurs",
-'bugreportspage'    => "{{ns:project}}:Rapport d'erreurs",
+'bugreportspage'    => "Project:Rapport d'erreurs",
 'copyright'         => 'Les matières sont avalable en accord avec $1',
 'copyrightpagename' => '{{SITENAME}} Protection de Droits',
 'copyrightpage'     => '{{ns:project}}:Protection de Droits',
 'currentevents'     => 'Événements',
 'currentevents-url' => 'Événements',
 'disclaimers'       => 'Avertissements',
-'disclaimerpage'    => '{{ns:project}}:Avertissements ordinaires',
+'disclaimerpage'    => 'Project:Avertissements ordinaires',
 'edithelp'          => 'Aide',
 'edithelppage'      => '{{ns:help}}:Comment changer une page',
 'faq'               => 'Questions Communes',
 'faqpage'           => '{{ns:project}}:Questions Communes',
 'helppage'          => '{{ns:help}}:Aide',
 'mainpage'          => 'Page Principale',
-'policy-url'        => '{{ns:project}}:Régulations',
+'policy-url'        => 'Project:Régulations',
 'portal'            => 'Communauté',
-'portal-url'        => '{{ns:project}}:Communauté',
+'portal-url'        => 'Project:Communauté',
 'privacy'           => 'Régulations des affaires privées',
 'privacypage'       => '{{ns:project}}:Régulations des affaires privées',
 'sitesupport'       => "Donner de l'argent",
@@ -245,7 +248,7 @@ $messages = array(
 'feedlinks'               => 'Distribution RSS:',
 'feed-invalid'            => 'Mauvaise qualité de distribution RSS.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => 'Useur',
 'nstab-media'    => 'Média',
 'nstab-special'  => 'Espécial',

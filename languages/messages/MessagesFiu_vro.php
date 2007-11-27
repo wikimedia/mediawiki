@@ -8,6 +8,7 @@
  * @author Nike
  * @author Võrok
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $fallback = 'et';
@@ -249,7 +250,7 @@ $messages = array(
 'faqpage'           => '{{ns:Special}}:KKK',
 'helppage'          => '{{ns:Help}}:Oppus',
 'mainpage'          => 'Pääleht',
-'policy-url'        => '{{ns:project}}:Säädüseq',
+'policy-url'        => 'Project:Säädüseq',
 'portal'            => 'Arotusõtarõ',
 'portal-url'        => '{{ns:Special}}:Arotusõtarõ',
 'privacy'           => 'Eräteedüse kaitsminõ',

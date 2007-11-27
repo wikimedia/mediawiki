@@ -6,6 +6,7 @@
  * @author 80686
  * @author G - ג
  * @author Helix84
+ * @author Siebrand
  */
 
 $fallback = 'de';
@@ -153,7 +154,7 @@ $messages = array(
 'currentevents'     => 'Aktuelli Mäldige',
 'currentevents-url' => 'Aktuelli Termin',
 'disclaimers'       => 'Impressum',
-'disclaimerpage'    => '{{ns:project}}:Impressum',
+'disclaimerpage'    => 'Project:Impressum',
 'edithelp'          => 'Ratschläg fiers Bearbeite',
 'edithelppage'      => 'Project:Ändere',
 'faqpage'           => 'Project:FAQ',
@@ -185,7 +186,7 @@ $messages = array(
 'viewdeleted'             => '$1 onluege?',
 'restorelink'             => '{{PLURAL:$1|glöschti Änderig|$1 glöschti Ändrige}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'Benutzersyte',
 'nstab-project'   => 'Projektsyte',
 'nstab-image'     => 'Bildli',
@@ -528,6 +529,9 @@ go direkt e Gleich uff d Datei z'mache.",
 # List redirects
 'listredirects' => 'Lischte vo Wyterleitige (Redirects)',
 
+# Random page
+'randompage' => 'Zuefalls-Artikel',
+
 # Statistics
 'sitestats'     => 'Statistik',
 'userstats'     => 'Benützer-Statistik',
@@ -567,7 +571,6 @@ Zuer Ziit stöhn '''$7''' Arbete zuem mache aa.",
 'mostlinked'              => 'Meistverlinke Seiten',
 'allpages'                => 'alli Sytene',
 'prefixindex'             => 'Alli Artikle (mit Präfix)',
-'randompage'              => 'Zuefalls-Artikel',
 'shortpages'              => 'Churzi Artikel',
 'longpages'               => 'Langi Artikel',
 'deadendpages'            => 'Artikel ohni Links («Sackgasse»)',

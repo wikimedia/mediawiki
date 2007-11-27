@@ -7,6 +7,7 @@
  * @author Michawiki
  * @author G - ג
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'de';
@@ -297,9 +298,9 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'aboutpage'         => '{{ns:project}}:Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'aboutpage'         => 'Project:Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'bugreports'        => 'Zmylkowe wopisanja',
-'bugreportspage'    => '{{ns:project}}:Zmylkowe wopisanja',
+'bugreportspage'    => 'Project:Zmylkowe wopisanja',
 'copyright'         => 'Wobsah steji pod $1.',
 'copyrightpagename' => '{{SITENAME}} awtorske prawa',
 'copyrightpage'     => '{{ns:project}}:Awtorske prawa',
@@ -313,7 +314,7 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:Husto stajene prašenja (FAQ)',
 'helppage'          => '{{ns:project}}:Pomoc',
 'mainpage'          => 'Hłowna strona',
-'policy-url'        => '{{ns:project}}:Směrnicy',
+'policy-url'        => 'Project:Směrnicy',
 'portal'            => 'Portal {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'privacy'           => 'Škit datow',
 'privacypage'       => '{{ns:project}}:Škit datow',

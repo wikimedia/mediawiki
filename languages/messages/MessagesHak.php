@@ -5,6 +5,7 @@
  *
  * @author Hakka
  * @author Nike
+ * @author Siebrand
  */
 
 $messages = array(
@@ -198,25 +199,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Yû-kôan {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Kôan-yî',
+'aboutpage'         => 'Project:Kôan-yî',
 'bugreports'        => 'Chho-ngu po-ko',
-'bugreportspage'    => '{{ns:project}}:Chho-ngu po-ko',
+'bugreportspage'    => 'Project:Chho-ngu po-ko',
 'copyright'         => 'Pún-chham ke chhiòn-phu vùn-pún nui-yùng chhai $1 chṳ̂ thiàu-khóan hâ thì-kiûng.',
 'copyrightpagename' => '{{SITENAME}} pán-khièn',
 'copyrightpage'     => '{{ns:project}}:Pán-khièn sin-sit',
 'currentevents'     => 'Hien-sṳ̀ sṳ-khien',
 'currentevents-url' => 'Hien-sṳ̀ sṳ-khien',
 'disclaimers'       => 'Miên-chit sâng-mìn',
-'disclaimerpage'    => '{{ns:project}}:Yit-pân ke miên-chit sâng-mìn',
+'disclaimerpage'    => 'Project:Yit-pân ke miên-chit sâng-mìn',
 'edithelp'          => 'Phiên-siá pông-chhu',
 'edithelppage'      => '{{ns:project}}:Phiên-cho hong-mien',
 'faq'               => 'Sòng-kien mun-thì kié-tap',
 'faqpage'           => '{{ns:project}}:Sòng-kien mun-thì kié-tap',
 'helppage'          => '{{ns:project}}:Pông-chhu',
 'mainpage'          => 'Thèu-chông',
-'policy-url'        => '{{ns:project}}:Fông-chṳ̂m',
+'policy-url'        => 'Project:Fông-chṳ̂m',
 'portal'            => 'Sa-khî',
-'portal-url'        => '{{ns:project}}:Sa-khî',
+'portal-url'        => 'Project:Sa-khî',
 'privacy'           => 'Yún-sṳ̂ chṳn-chhet',
 'privacypage'       => '{{ns:project}}:Yún-sṳ̂ chṳn-chhet',
 'sitesupport'       => 'Chan-chhu',

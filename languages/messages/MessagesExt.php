@@ -197,9 +197,9 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Al tentu {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Enhormación',
+'aboutpage'         => 'Project:Enhormación',
 'bugreports'        => 'Enhormis de marrus',
-'bugreportspage'    => '{{ns:project}}:Enhormis de marrus',
+'bugreportspage'    => 'Project:Enhormis de marrus',
 'copyright'         => 'Continiu disponibri bahu $1.',
 'copyrightpagename' => 'Copyright de {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyright',
@@ -212,9 +212,9 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:FAQ',
 'helppage'          => '{{ns:help}}:Continius',
 'mainpage'          => 'Páhina prencipal',
-'policy-url'        => '{{ns:project}}:Pulítica',
+'policy-url'        => 'Project:Pulítica',
 'portal'            => 'Puertal la comuniá',
-'portal-url'        => '{{ns:project}}:Puertal la Comuniá',
+'portal-url'        => 'Project:Puertal la Comuniá',
 'privacy'           => 'Pulítica',
 'privacypage'       => '{{ns:project}}:Pulítica e privaciá',
 'sitesupport'       => 'Donacionis',
@@ -320,6 +320,7 @@ Pol favol, enhorma d'estu a un duendi u a un alministraol, incluyendu la direci�
 'wrong_wfQuery_params' => 'Parametrus a wfQuery()<br /> Hunción: $1<br /> Pregunta: $2 encorretus',
 'viewsource'           => 'Vel coigu huenti',
 'viewsourcefor'        => 'pa $1',
+'actionthrottledtext'  => 'Cumu miia pa prevenil el spam, solu pueis hazel esta ación un limitau númeru e vezis nun cortu praçu e tiempu, i as pasau esti límiti. Pol favol, enténtalu otra vezi endrentu angunus minutus.',
 'protectedpagetext'    => 'Esta páhina s´alcuentra atarugá a nuevas eicionis.',
 'viewsourcetext'       => 'Pueis vel i copial el cóigu huenti desta páhina:',
 'protectedinterface'   => "Esta páhina proporciona el testu la entrihazi el software, razón pola que s'alcuentra atarugá.",
@@ -411,6 +412,11 @@ pol ca $1 oras.',
 'invalidemailaddress'        => 'Nu es posibri acetal la tu direción email ebiu a que paci tenel un hormatu nu premitiu. Pol favol, escrebi una direción con un hormatu premitiu, u eha en brancu esti campu.',
 'accountcreated'             => 'Cuenta creá',
 'accountcreatedtext'         => 'La cuenta d´usuáriu pa $1 á siu creá.',
+'createaccount-title'        => 'Creaeru e cuentas de {{SITENAME}}',
+'createaccount-text'         => 'Alguien ($1) á creau una cuenta pa $2 en {{SITENAME}}
+($4). La consínia pa "$2" es "$3". Eberias entral ena tu cuenta i chambal la tu consínia.
+
+Si s\'á creau la cuenta ebiu a angún marru, inora esti mensahi.',
 'loginlanguagelabel'         => 'Palra: $1',
 
 # Password reset dialog
@@ -658,6 +664,11 @@ El restu e duendis d'esti güiqui sí tendrán premisu pa visoreal el caltiniu a
 # Oversight log
 'oversightlog'    => 'Rustrihu e descúdius',
 'overlogpagetext' => 'Embahu se muestra una lista al tentu los úrtimus esborraus i tarugus relacionaus con continius açonchaus de los duendis. Consurta la [[Special:Ipblocklist|lista d´IP atarugás]] pa vel una lista colos úrtimus tarugus.',
+
+# History merging
+'mergehistory'      => 'Estorial las páhinas emelhenti',
+'mergehistory-from' => 'Páhina e cóigu huenti:',
+'mergehistory-into' => 'Páhina e destinu:',
 
 # Diffs
 'history-title'             => 'Estorial de revisionis de "$1"',
@@ -1226,6 +1237,8 @@ Consurta $2 pa vel los úrtimus esborraus.',
 'deletionlog'                 => 'rustrihu d´esborrau',
 'reverted'                    => 'Revertiu a la úrtima revisión',
 'deletecomment'               => 'Razón el esborrau',
+'deleteotherreason'           => 'Otras razonis:',
+'deletereasonotherlist'       => 'Otra razón',
 'rollback'                    => 'Revertil eicionis',
 'rollback_short'              => 'Revertil',
 'rollbacklink'                => 'revertil',
@@ -1618,6 +1631,7 @@ Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 
 # Patrol log
 'patrol-log-page' => 'Rustrihu e revisionis',
+'patrol-log-line' => '$1 está aseñalau $2 patrullau $3',
 'patrol-log-auto' => '(autumáticu)',
 
 # Image deletion
@@ -1667,6 +1681,7 @@ $1',
 'exif-imagewidth'              => 'Anchón',
 'exif-imagelength'             => 'Artura',
 'exif-orientation'             => 'Orientación',
+'exif-samplesperpixel'         => 'Númeru e componentis',
 'exif-ycbcrpositioning'        => 'Posicionamientus Y i C',
 'exif-xresolution'             => 'Resolución orizontal',
 'exif-yresolution'             => 'Resolución vertical',
@@ -1691,15 +1706,27 @@ $1',
 'exif-brightnessvalue'         => 'Brillu',
 'exif-filesource'              => 'Coigu el archivu',
 'exif-contrast'                => 'Contrasti',
+'exif-gpslatituderef'          => 'Latitú Norti u Sul',
 'exif-gpslatitude'             => 'Latitú',
+'exif-gpslongituderef'         => 'Lonhitú Esti u Oesti',
+'exif-gpslongitude'            => 'Lonhitú',
 'exif-gpsaltituderef'          => 'Artitú e referéncia',
 'exif-gpsaltitude'             => 'Artitú',
 'exif-gpssatellites'           => 'Satélitis gastaus pala miia',
+'exif-gpsstatus'               => 'Estau el recetol',
+'exif-gpsmeasuremode'          => 'Mó e miia',
+'exif-gpsdop'                  => 'Precisión de miia',
 'exif-gpsspeedref'             => 'Uniá e velociá',
+'exif-gpsspeed'                => 'Velociá el recetol GPS',
 'exif-gpstrack'                => 'Direción el movimientu',
 'exif-gpsimgdirection'         => 'Direción la imahin',
+'exif-gpsdestlatitude'         => 'Latitú el destinu',
+'exif-gpsdestlongitude'        => 'Lonhitú el destinu',
 'exif-gpsdestdistanceref'      => 'Longol al destinu',
 'exif-gpsdestdistance'         => 'Longol al destinu',
+'exif-gpsdatestamp'            => 'Fecha el GPS',
+
+'exif-unknowndate' => 'Fecha andarria',
 
 'exif-orientation-3' => 'Repiau 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-6' => 'Repiau 90° CW', # 0th row: right; 0th column: top
@@ -1713,14 +1740,16 @@ $1',
 'exif-subjectdistance-value' => '$1 metrus',
 
 'exif-meteringmode-0'   => 'Andarriu',
+'exif-meteringmode-4'   => 'MurtiSpot',
 'exif-meteringmode-6'   => 'Parcial',
 'exif-meteringmode-255' => 'Otru',
 
-'exif-lightsource-0'  => 'Andarriu',
-'exif-lightsource-1'  => 'Lus el dia',
-'exif-lightsource-2'  => 'Fluorescenti',
-'exif-lightsource-9'  => 'Güen tiempu',
-'exif-lightsource-10' => 'Tiempu nubrau',
+'exif-lightsource-0'   => 'Andarriu',
+'exif-lightsource-1'   => 'Lus el dia',
+'exif-lightsource-2'   => 'Fluorescenti',
+'exif-lightsource-9'   => 'Güen tiempu',
+'exif-lightsource-10'  => 'Tiempu nubrau',
+'exif-lightsource-255' => 'Otra huenti e lús',
 
 'exif-focalplaneresolutionunit-2' => 'purgás',
 
@@ -1743,6 +1772,9 @@ $1',
 
 'exif-contrast-1' => 'Suavi',
 'exif-contrast-2' => 'Duru',
+
+'exif-saturation-1' => 'Poca saturación',
+'exif-saturation-2' => 'Mucha saturación',
 
 'exif-sharpness-1' => 'Suavi',
 'exif-sharpness-2' => 'Dura',
