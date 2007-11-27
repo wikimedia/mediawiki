@@ -4541,7 +4541,7 @@ class Parser
 				$pdbk = $pdbks[$key];
 				$searchkey = "<!--LINK $key-->";
 				$title = $this->mLinkHolders['titles'][$key];
-				if ( !isset( $colours[$pdbk] ) ) {
+				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] == 'new' ) {
 					$linkCache->addBadLinkObj( $title );
 					$colours[$pdbk] = 'new';
 					$this->mOutput->addLink( $title, 0 );
