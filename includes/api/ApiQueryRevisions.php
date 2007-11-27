@@ -258,10 +258,15 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$previousRevID = $revid;
 				$oldText = $newText;
 			}
-			// Now that $this->diffArr is filled with diffprev elements, add them to the result
-			foreach($data['query']['pages'][$pageID]['revisions'] as &$rev)
-				if(isset($diffArr[$rev['revid']]))
-					$rev['difftoprev'] = $diffArr[$rev['revid']];
+
+			# Populate the query result with the contents of $diffArr.
+			$knownrevs = array_keys($diffArr);
+			$i = count($knownrevs) - 1;
+			foreach($data['query']['pages'][$pageID]['revisions'] as &$rev) {
+				if ( $i >= 0 && isset ( $diffArr[$knownrevs[$i]] ) )
+					$rev['difftoprev'] = $diffArr[$knownrevs[$i]];
+				$i --;
+			}
 		}
 		
 		// Ensure that all revisions are shown as '<rev>' elements
