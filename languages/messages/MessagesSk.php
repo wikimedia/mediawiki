@@ -1830,7 +1830,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'import-logentry-upload'           => 'importovaný $1 pomocou nahrania súboru',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
 'import-logentry-interwiki'        => 'Transwiki import $1 úspešný',
-'import-logentry-interwiki-detail' => '$1 revízií z $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revízia|revízie|revízií}} z $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Moja používateľská stránka',

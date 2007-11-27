@@ -6,6 +6,7 @@
  * @author Fulup
  * @author G - ג
  * @author Nike
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -1579,8 +1580,8 @@ Dibabit unan all mar plij.",
 'movetalk'                => 'Adenvel ivez ar bajenn "gaozeal", mar bez ret.',
 'talkpagemoved'           => "Dilec'hiet eo bet ivez ar bajenn gaozeal stag.",
 'talkpagenotmoved'        => "<strong>N'eo ket bet</strong> dilec'hiet ar bajenn gaozeal stag.",
-'1movedto2'               => '$1 adkaset war-du $2',
-'1movedto2_redir'         => '$1 adkaset war-du $2 (adkas)',
+'1movedto2'               => '[[$1]] adkaset war-du [[$2]]',
+'1movedto2_redir'         => '[[$1]] adkaset war-du [[$2]] (adkas)',
 'movelogpage'             => 'Roll an adkasoù',
 'movelogpagetext'         => 'Setu roll ar pajennoù bet savet un adkas evito.',
 'movereason'              => 'Abeg an adkas',

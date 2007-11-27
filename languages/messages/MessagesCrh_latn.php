@@ -1,9 +1,10 @@
 <?php
-/** ‪Crimean Tatar (Latin)‬ (‪Qırımtatarca (Latin)‬)
+/** ‪Qırımtatarca (Latin)‬ (‪Qırımtatarca (Latin)‬)
  *
  * @addtogroup Language
  *
  * @author Alessandro
+ * @author AlefZet
  */
 
 $fallback8bitEncoding = 'windows-1254';
@@ -114,7 +115,7 @@ $messages = array(
 'tog-editondblclick'          => 'Saifeni çift basaraq deñiştirmege başla (JavaScript)',
 'tog-editsection'             => 'Bölümlerni [deñiştir] bağlantılarnı ile deñiştirme aqqı ber',
 'tog-editsectiononrightclick' => 'Bölüm serlevasına oñ basaraq bölümde deñişiklikke izin ber.(JavaScript)',
-'tog-showtoc'                 => 'İçindekiler tablosını yap<br />(3 daneden ziyade serlevası olğan saifeler içün)',
+'tog-showtoc'                 => 'İçindekiler tablosını yap (3 daneden ziyade serlevası olğan saifeler içün)',
 'tog-rememberpassword'        => 'Parolni hatırla',
 'tog-editwidth'               => 'Yazuv fezası tam kenişlikte olsun',
 'tog-watchcreations'          => 'Yaratqan saifelerimni közetüv cedvelime ekle',
@@ -189,7 +190,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Saife kategoriyaları',
-'pagecategories'        => 'Saife {{PLURAL:$1|kategoriyası|kategoriyaları}}',
+'pagecategories'        => '{{PLURAL:$1|Saife kategoriyası|Saife kategoriyaları}}',
 'category_header'       => '"$1" kategoriyasındaki saifeler',
 'subcategories'         => 'Alt kategoriyalar',
 'category-media-header' => '"$1" kategoriyasındaki media faylları',
@@ -263,28 +264,28 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} aqqında',
-'aboutpage'         => 'Project:Aqqında',
+'aboutpage'         => '{{ns:project}}:Aqqında',
 'bugreports'        => 'Hata raportları',
-'bugreportspage'    => 'Project:Hata raportları',
+'bugreportspage'    => '{{ns:project}}:Hata raportları',
 'copyright'         => 'Malümat $1 binaen keçile bile.',
 'copyrightpagename' => '{{SITENAME}} müellif aqları',
 'copyrightpage'     => 'Project:Muellif aqları',
 'currentevents'     => 'Ağımdaki vaqialar',
 'currentevents-url' => 'Ağımdaki vaqialar',
 'disclaimers'       => 'Cevapkârlıqnı qabul etmeyim',
-'disclaimerpage'    => 'Project:Umumiy_Malümat_Muqavelesi',
+'disclaimerpage'    => '{{ns:project}}:Umumiy Malümat Muqavelesi',
 'edithelp'          => 'Nasıl deñiştirilir?',
-'edithelppage'      => 'Yardım:Saife nasıl deñiştirilir',
+'edithelppage'      => '{{ns:help}}:Saife nasıl deñiştirilir',
 'faq'               => 'Sıq berilgen sualler',
-'faqpage'           => 'Project:Sıq berilgen sualler',
-'helppage'          => 'Yardım:İçindekiler',
+'faqpage'           => '{{ns:project}}:Sıq berilgen sualler',
+'helppage'          => '{{ns:help}}:İçindekiler',
 'mainpage'          => 'Baş Saife',
 'portal'            => 'Toplulıq portalı',
-'portal-url'        => 'Project:Toplulıq portalı',
+'portal-url'        => '{{ns:project}}:Toplulıq portalı',
 'privacy'           => 'Gizlilik esası',
-'privacypage'       => 'Project:Gizlilik_esası',
+'privacypage'       => '{{ns:project}}:Gizlilik esası',
 'sitesupport'       => 'Bağışlar',
-'sitesupport-url'   => 'Project:Bağış',
+'sitesupport-url'   => '{{ns:project}}:Bağış',
 
 'badaccess' => 'İzin hatası',
 
@@ -292,7 +293,7 @@ $messages = array(
 
 'ok'                      => 'Ok',
 'retrievedfrom'           => '"$1"\'dan alındı',
-'youhavenewmessages'      => 'Yañı <u>$1</u> bar. ($2)',
+'youhavenewmessages'      => 'Yañı $1 bar. ($2)',
 'newmessageslink'         => 'beyanatıñız',
 'newmessagesdifflink'     => 'Bir evelki versiyağa köre eklengen yazı farqı',
 'youhavenewmessagesmulti' => '$1-de yañı beyanatıñız bar.',
@@ -307,7 +308,7 @@ $messages = array(
 'restorelink'             => 'yoq etilgen {{PLURAL:$1|1|$1}} deñişikligi',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Maqale',
+'nstab-main'      => 'Saife',
 'nstab-user'      => 'Qullanıcı saifesi',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Mahsus',
@@ -320,9 +321,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchspecialpage' => 'Bu isimde bir mahsus saife yoq',
-'nospecialpagetext' => "'''<big>Tapılmağan bir mahsus saifege kirdiñiz.</big>'''
+'nospecialpagetext' => "<big>'''Tapılmağan bir mahsus saifege kirdiñiz.'''</big>
 
-Bar olğan bütün mahsus saifelerni [[Special:Specialpages]] saifesinde körip olursıñız.",
+Bar olğan bütün mahsus saifelerni [[{{ns:special}}:Specialpages]] saifesinde körip olursıñız.",
 
 # General errors
 'error'            => 'Hata',
@@ -334,7 +335,7 @@ Bu bir içki hatası ola bile.
 MySQL\'niñ raport etkeni hata "<tt>$3: $4</tt>".',
 'cachederror'      => 'Aşağıdaki, siz istegen saifeniñ keşirlengen köpiyasıdır ve eskirgen ola bile.',
 'readonly'         => 'Malümat bazası kilitlendi',
-'readonlytext'     => 'Malümat bazası adiy baqım/âñıdan tamir etüv (restavratsiya) çalışmaları sebebinden, muvaqqat kiriş ve deñişiklik yapmağa qapatıldı. Qısqa müddet soñ normalge dönecektir.
+'readonlytext'     => 'Malümat bazası adiy baqım/yañıdan tamir etüv (restavratsiya) çalışmaları sebebinden, muvaqqat kiriş ve deñişiklik yapmağa qapatıldı. Qısqa müddet soñ normalge dönecektir.
 
 Malümat bazasını kilitlegen öperatornıñ açıqlaması: $1',
 'internalerror'    => 'İçki hata',
@@ -395,9 +396,9 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'nocookieslogin'             => '{{SITENAME}} "cookies" qullanmaqta. Sizde bu funktsiya qapalı vaziyettedir. "Cookies" funktsiyasını açıp tekrar tırışıp baqıñız.',
 'noname'                     => 'Qullanıcı adını belgilemediñiz.',
 'loginsuccesstitle'          => 'Kiriş yapıldı',
-'loginsuccess'               => '$1 adınen çalışa bilesiñiz.',
-'nosuchuser'                 => '$1 adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñ ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
-'nosuchusershort'            => '$1 adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
+'loginsuccess'               => "'''$1 adınen {{SITENAME}} çalışa bilesiñiz.'''",
+'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñ ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
+'nosuchusershort'            => '"$1" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirgen/Belgilegen paroliñiz yañlıştır.',
 'wrongpasswordempty'         => 'Boş parol kirmeñiz/belgilemeñiz.',
@@ -495,7 +496,7 @@ Bundan da soñ olıp çıqmasa, malümat lokal faylğa saqlañız da brauzeriñi
 açıñız.</strong>',
 'session_fail_preview_html' => '<strong>Afu etiñiz! HTML sessiyanıñ malümatları ğayıp olğanı sebebinden siziñ deñiştirmeleriñizni qabul etmege imkân yoqtır.</strong>',
 'editing'                   => '"$1" saifesini deñiştirmektesiñiz',
-'editinguser'               => '"$1" saifesini deñiştirmektesiñiz',
+'editinguser'               => '<b>$1</b> qullanıcını deñiştirmektesiñiz',
 'editingsection'            => '"$1" saifesinde bölüm deñiştirmektesiñiz',
 'editingcomment'            => '$1 saifesine beyanat eklemektesiñiz.',
 'editconflict'              => 'Deñişiklik zıt ketüvi: $1',
@@ -558,9 +559,9 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 
 # Search results
 'searchresults'    => 'Qıdıruv neticeleri',
-'searchresulttext' => '{{SITENAME}} içinde qıdıruv yapmaq hususında malümat almaq içün [[Project:Qıdıruv|"{{SITENAME}} içinde qıdıruv"]] saifesine baqa bilirsiñiz.',
-'searchsubtitle'   => 'Qıdırılğan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
-'noexactmatch'     => "'''\"\$1\" serlevalı bir saife tapılamadı.''' Bu maqaleniñ yazılmasınıñ siz [[:\$1|başlata bilirsiñiz]].",
+'searchresulttext' => '{{SITENAME}} içinde qıdıruv yapmaq hususında malümat almaq içün [[{{MediaWiki:Helppage}}|{{int:help}}]] saifesine baqa bilirsiñiz.',
+'searchsubtitle'   => "Qıdırılğan: '''[[:$1]]'''",
+'noexactmatch'     => "'''\"\$1\" serlevalı bir saife tapılamadı.''' Bu saifeniñ yazılmasınıñ siz [[:\$1|başlata bilirsiñiz]].",
 'titlematches'     => 'Maqale adı bir kele',
 'notitlematches'   => 'İç bir serlevada tapılamadı',
 'textmatches'      => 'Saife metni bir kele',
@@ -569,9 +570,7 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'nextn'            => 'soñraki $1',
 'viewprevnext'     => '($1) ($2) ($3).',
 'powersearch'      => 'Qıdır',
-'powersearchtext'  => 'Qıdıruv yapılacaq fezalarnı seçiñiz :<br />
-$1<br />
-$2 yollanmalarnı cedvelle &nbsp; Qıdırılacaq: $3 $9',
+'powersearchtext'  => 'Qıdıruv yapılacaq fezalarnı seçiñiz:<br />$1<br />$2 yollanmalarnı cedvelle<br />Qıdırılacaq: $3 $9',
 'searchdisabled'   => '{{SITENAME}} saytında qıdıruv yapma vaqtınca toqtatıldı. Bu arada Google qullanaraq {{SITENAME}} içinde qıdıruv yapa bilirsiñiz. Qıdıruv saytlarında indekslemeleriniñ biraz eski qalğan ola bilecegini köz ögüne alıñız.',
 
 # Preferences page
@@ -632,14 +631,14 @@ $2 yollanmalarnı cedvelle &nbsp; Qıdırılacaq: $3 $9',
 'group-sysop-member'      => 'Administrator',
 'group-bureaucrat-member' => 'Bürokrat',
 
-'grouppage-bot'        => 'Project:Botlar',
-'grouppage-sysop'      => 'Project:Administratorlar',
-'grouppage-bureaucrat' => 'Project:Administratorlar#Bürokratlar',
+'grouppage-bot'        => '{{ns:project}}:Botlar',
+'grouppage-sysop'      => '{{ns:project}}:Administratorlar',
+'grouppage-bureaucrat' => '{{ns:project}}:Bürokratlar',
 
 # Recent changes
 'recentchanges'     => 'Soñki deñişiklikler',
 'recentchangestext' => 'Yapılğan eñ soñki deñişikliklerni bu saifeden közetiñiz.',
-'rcnote'            => '$3 (UTC) tarihında soñki <strong>{{PLURAL:$2|1|$2}}</strong> künde yapılğan <strong>{{PLURAL:$1|1|$1}}</strong> deñişiklik:',
+'rcnote'            => "$3 (UTC) tarihında soñki {{PLURAL:$2|künde|'''$2''' künde}} yapılğan '''{{PLURAL:$1|1|$1}}''' deñişiklik:",
 'rcnotefrom'        => '<b>$2</b> tarihından itibaren yapılğan deñişiklikler aşağıdadır (eñ fazla <b>$1</b> dane maqale kösterilmekte).',
 'rclistfrom'        => '$1 tarihından berli yapılğan deñişikliklerni köster',
 'rcshowhideminor'   => 'kiçik deñişikliklerni $1',
@@ -653,7 +652,7 @@ $2 yollanmalarnı cedvelle &nbsp; Qıdırılacaq: $3 $9',
 'hist'              => 'keçmiş',
 'hide'              => 'gizle',
 'show'              => 'köster',
-'minoreditletter'   => 'K',
+'minoreditletter'   => 'k',
 'newpageletter'     => 'Y',
 
 # Recent changes linked
@@ -770,7 +769,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'userstatstext' => "Şu ande '''{{PLURAL:$1|1|$1}}''' registrirlengen qullanıcımız bar. Bunlardan '''{{PLURAL:$2|1|$2}}''' (ya da '''$4%''') danesi - $5.",
 
 'disambiguations'     => 'Çoq manalı terminler saifeleri',
-'disambiguationspage' => 'Şablon:Çoq manalı',
+'disambiguationspage' => '{{ns:template}}:disambig',
 
 'doubleredirects'     => 'Yollamağa olğan yollamalar',
 'doubleredirectstext' => 'Er satırda, ekinci yollama metniniñ ilk satırınıñ (umumen ekinci yollamanıñ da işaret etmek kerek olğanı "asıl" maqsatnıñ) yanında ilk ve ekinci yollamağa bağlantılar bar.',
@@ -872,7 +871,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'watchnologin'         => 'Oturım açmaq kerek',
 'watchnologintext'     => 'Öz közetüv cedveliñizni deñiştirmek içün [[Special:Userlogin|oturım açıñız]]',
 'addedwatch'           => 'Közetüv cedveline kirsetmek',
-'addedwatchtext'       => '"[[:$1]]" saifesi [[{{ns:special}}:Watchlist|kozetüv cevdeliñizge]] kirsetildi. Bu saifedeki ve onıñnen bağlı saifelerdeki olacaq deñişiklikler bu cedvelde belgilenecek, em de olar közge çarpması içün [[{{ns:special}}:Recentchanges|âñı deñişiklik cedveli]] bulunğan saifede qalın olaraq kösterilir.
+'addedwatchtext'       => '"[[:$1]]" saifesi [[{{ns:special}}:Watchlist|kozetüv cevdeliñizge]] kirsetildi. Bu saifedeki ve onıñnen bağlı saifelerdeki olacaq deñişiklikler bu cedvelde belgilenecek, em de olar közge çarpması içün [[{{ns:special}}:Recentchanges|yañı deñişiklik cedveli]] bulunğan saifede qalın olaraq kösterilir.
 
 Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz de, saifeniñ yuqarısındaki sol tarafta "közetme" dögmesine basıñız.',
 'removedwatch'         => 'Közetüv cedvelinden yoq et',
@@ -889,7 +888,7 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'watchmethod-list'     => 'közetüv cedvelindeki saifeler teşkerile',
 'watchlistcontains'    => 'Siziñ közetüv cedveliñizde {{PLURAL:$1|1|$1}} saife mevcüttir.',
 'iteminvalidname'      => '"$1" saifesi munasebetinen problema olıp çıqtı, elverişli olmağan isimdir…',
-'wlnote'               => 'Aşağıda soñki <strong>{{PLURAL:$2|1|$2}}</strong> saat içinde yapılğan soñki {{PLURAL:$1|1|$1}} deñişiklik kösterile.',
+'wlnote'               => "Aşağıda soñki {{PLURAL:$2|saat|'''$2''' saat}} içinde yapılğan soñki {{PLURAL:$1|deñişiklik|'''$1''' deñişiklik}} kösterile.",
 'wlshowlast'           => 'Soñki $2 kün $1 saat içün $3 köster',
 
 'enotif_mailer'      => '{{SITENAME}} poçta vastasınen haber bergen hızmet',
@@ -938,7 +937,7 @@ Lütfen neticelerini añlağanıñıznı, [[Special:Whatlinkshere/{{FULLPAGENAME
 'actioncomplete'              => 'İşlem tamamlandı.',
 'deletedtext'                 => '"$1" yoq etildi.
 yaqın zamanda yoq etilgenlerni körmek içün: $2.',
-'deletedarticle'              => '"$1" yoq etildi',
+'deletedarticle'              => '"[[$1]]" yoq etildi',
 'dellogpage'                  => 'Yoq etüv jurnalları',
 'dellogpagetext'              => 'Aşağıdaki cedvel soñki yoq etüv jurnallarıdır.',
 'deletionlog'                 => 'yoq etüv jurnalları',
@@ -981,7 +980,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 'undeletebtn'        => 'Keri ketir!',
 'undeletereset'      => 'Vazgeç',
 'undeletecomment'    => 'Neden:',
-'undeletedarticle'   => '"$1" keri ketirildi.',
+'undeletedarticle'   => '"[[$1]]" keri ketirildi.',
 'undeletedrevisions' => 'Toplam {{PLURAL:$1|1 qayd|$1 qayd}} keri ketirildi.',
 
 # Namespace form on various pages
@@ -1087,8 +1086,8 @@ Lütfen bularnı qolnen birleştiriñiz.'''",
 'delete_and_move'         => 'Yoq et ve adını deñiştir',
 'delete_and_move_text'    => '==Yoq etmek lâzimdir==
 
-[[$1|"$1"]] maqalesi endi mevcüt. Adını deñiştirebilmek içün onı yoq etmege isteysiñizmi?',
-'delete_and_move_confirm' => 'Ebet,bu saifeni yoq et',
+"[[$1]]" saifesi endi mevcüt. Adını deñiştirebilmek içün onı yoq etmege isteysiñizmi?',
+'delete_and_move_confirm' => 'Ebet, bu saifeni yoq et',
 'delete_and_move_reason'  => 'İsim deñiştire bilmek içün yoq etildi',
 'selfmove'                => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki asıl ile yañı adları bir kele.',
 'immobile_namespace'      => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki yañı ya da eksi adında rezerv etilgen yardımcı söz bardır.',
