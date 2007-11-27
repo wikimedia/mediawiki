@@ -66,12 +66,12 @@ $messages = array(
 'mainpage'   => 'Тĕп страницă',
 
 'aboutsite'      => '{{SITENAME}} çинчен',
-'aboutpage'      => '{{ns:project}}:çинчен',
+'aboutpage'      => 'Project:çинчен',
 'help'           => 'Пулăшу',
-'helppage'       => '{{ns:project}}:Пулăшу',
+'helppage'       => 'Help:Пулăшу',
 'sitesupport'    => 'Пожертвованисем',
 'edithelp'       => 'Улшăнусене кĕртме пулăшакан пулăшу',
-'edithelppage'   => '{{ns:project}}:Улшăнусене кĕртме пулăшакан пулăшу',
+'edithelppage'   => 'Help:Улшăнусене кĕртме пулăшакан пулăшу',
 'qbspecialpages' => 'Ятарлӑ страницӑсем',
 
 'currentevents'     => 'Хыпарсем',

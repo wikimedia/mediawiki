@@ -38,7 +38,7 @@ $messages = array(
 'navigation'     => 'Huarahi',
 
 'currentevents'     => 'Kōrero',
-'currentevents-url' => 'Project:Kōrero',
+'currentevents-url' => 'Kōrero',
 
 'search'           => 'Rapua',
 'go'               => 'Haere',

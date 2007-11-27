@@ -67,14 +67,14 @@ $messages = array(
 'protectedpage'     => 'सुरक्षित पृष्ठ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutpage'      => '{{ns:project}}:माहितीपृष्ठ',
+'aboutpage'      => 'Project:माहितीपृष्ठ',
 'bugreports'     => 'दोष अहवाल',
-'bugreportspage' => '{{ns:project}}:दोष अहवाल',
+'bugreportspage' => 'Project:दोष अहवाल',
 'edithelp'       => 'संपादन साहाय्य',
-'edithelppage'   => '{{ns:project}} संपादन:साहाय्य',
+'edithelppage'   => 'Help:साहाय्य',
 'faq'            => 'नेहमीची प्रश्नावली',
-'faqpage'        => '{{ns:project}}:प्रश्नावली',
-'helppage'       => '{{ns:project}}:साहाय्य पृष्ठ',
+'faqpage'        => 'Project:प्रश्नावली',
+'helppage'       => 'Help:साहाय्य पृष्ठ',
 'mainpage'       => 'मुखपृष्ठ',
 
 'ok'              => 'ठीक',

@@ -116,15 +116,15 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'A proposito di {{SITENAME}}',
-'aboutpage'      => '{{ns:project}}:About',
+'aboutpage'      => 'Project:About',
 'bugreports'     => 'Segnalazioni di malfunzionamento',
-'bugreportspage' => '{{ns:project}}:Malfunzionamenti',
-'copyrightpage'  => '{{ns:project}}:Copyrights',
+'bugreportspage' => 'Project:Malfunzionamenti',
+'copyrightpage'  => 'Project:Copyrights',
 'currentevents'  => 'Attualità',
 'edithelp'       => 'Guida per la modifica o la scrittura di un articolo',
-'edithelppage'   => '{{ns:project}}:Come_scrivere_un_articolo',
-'faqpage'        => '{{ns:project}}:FAQ',
-'helppage'       => '{{ns:project}}:Aiuto',
+'edithelppage'   => 'Help:Come_scrivere_un_articolo',
+'faqpage'        => 'Project:FAQ',
+'helppage'       => 'Help:Aiuto',
 'mainpage'       => 'Pàggina principali',
 
 'retrievedfrom' => 'Ricavato da  "$1"',

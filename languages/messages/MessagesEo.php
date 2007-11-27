@@ -228,14 +228,14 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Pri {{SITENAME}}',
-'aboutpage'         => '{{SITENAME}}:Enkonduko',
+'aboutpage'         => 'Project:Enkonduko',
 'bugreports'        => 'Raportu cimojn',
 'bugreportspage'    => 'Project:Raportu cimojn',
 'copyright'         => 'La enhavo estas havebla sub $1.',
 'copyrightpagename' => 'permesilo **** GFDL **** uzata por la {{SITENAME}}',
 'copyrightpage'     => 'Project:Kopirajto',
 'currentevents'     => 'Aktualaĵoj',
-'currentevents-url' => 'Project:Aktualaĵoj',
+'currentevents-url' => 'Aktualaĵoj',
 'disclaimers'       => 'Malgarantio',
 'disclaimerpage'    => 'Project:Malgarantia paĝo',
 'edithelp'          => 'Helpo pri redaktado',

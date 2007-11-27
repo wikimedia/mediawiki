@@ -159,15 +159,15 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Oer de {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Ynfo',
+'aboutpage'         => 'Project:Ynfo',
 'bugreports'        => 'Brekmelding',
-'bugreportspage'    => '{{ns:project}}:Brekmelding',
+'bugreportspage'    => 'Project:Brekmelding',
 'copyrightpagename' => '{{SITENAME}} auteursrjocht',
-'copyrightpage'     => '{{ns:project}}:Auteursrjocht',
+'copyrightpage'     => 'Project:Auteursrjocht',
 'currentevents'     => 'Hjoeddeis',
 'edithelp'          => 'Siden bewurkje',
-'edithelppage'      => '{{ns:project}}:Bewurk-rie',
-'helppage'          => '{{ns:project}}:Help',
+'edithelppage'      => 'Help:Bewurk-rie',
+'helppage'          => 'Help:Help',
 'mainpage'          => 'Haadside',
 
 'ok'            => 'Goed',

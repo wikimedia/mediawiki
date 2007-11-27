@@ -112,11 +112,11 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'     => 'ກ່ຽວກັບ {{SITENAME}}',
-'aboutpage'     => '{{ns:project}}:ກ່ຽວກັບ',
+'aboutpage'     => 'Project:ກ່ຽວກັບ',
 'copyright'     => 'ເນື້ອໃນ ສະໜອງໃຫ້ ພາຍໃຕ້ $1.',
-'copyrightpage' => '{{ns:project}}:ລິຂະສິດ',
-'edithelppage'  => '{{ns:project}}:ການດັດແກ້',
-'helppage'      => '{{ns:project}}:ເນື້ອໃນ',
+'copyrightpage' => 'Project:ລິຂະສິດ',
+'edithelppage'  => 'Help:ການດັດແກ້',
+'helppage'      => 'Help:ເນື້ອໃນ',
 'mainpage'      => 'ໜ້າຫຼັກ',
 'sitesupport'   => 'ບໍລິຈາກ',
 
