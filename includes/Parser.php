@@ -4216,6 +4216,7 @@ class Parser
 		$this->setOutputType( OT_MSG );
 		$this->clearState();
 		$text = $this->replaceVariables( $text );
+		$text = $this->mStripState->unstripBoth( $text );
 
 		$executing = false;
 		wfProfileOut($fname);
