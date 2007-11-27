@@ -6,6 +6,7 @@
  * @author Atabek
  * @author Jiemurat
  * @author AlefZet
+ * @author Siebrand
  */
 
 $fallback = 'kk-tr';
@@ -246,22 +247,22 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} haqqında',
-'aboutpage'         => '{{ns:project}}:Proyekt haqqında',
+'aboutpage'         => 'Project:Proyekt haqqında',
 'bugreports'        => 'Qatelik esabatları',
-'bugreportspage'    => '{{ns:project}}:Qatelik esabatları',
+'bugreportspage'    => 'Project:Qatelik esabatları',
 'copyrightpagename' => "{{SITENAME}} proyektinin' avtorlıq huquqları",
 'copyrightpage'     => '{{ns:project}}:Avtorlıq huquqları',
 'currentevents'     => "Ha'zirgi ha'diyseler",
 'currentevents-url' => "Ha'zirgi ha'diyseler",
 'disclaimers'       => 'Juwapkershilikten bas tartıw',
-'disclaimerpage'    => '{{ns:project}}:Juwapkershilikten bas tartıw',
+'disclaimerpage'    => 'Project:Juwapkershilikten bas tartıw',
 'edithelp'          => "O'zgertiw anıqlaması",
 'edithelppage'      => "{{ns:help}}:O'zgertiw",
 'helppage'          => '{{ns:help}}:Mazmunı',
 'mainpage'          => 'Bas bet',
-'policy-url'        => "{{ns:project}}:Qag'ıydalar",
+'policy-url'        => "Project:Qag'ıydalar",
 'portal'            => "Ja'miyet portalı",
-'portal-url'        => "{{ns:project}}:Ja'miyet Portalı",
+'portal-url'        => "Project:Ja'miyet Portalı",
 'privacy'           => "Konfidentsiallıq qag'ıydası",
 'privacypage'       => "{{ns:project}}:Konfidentsiallıq qag'ıydası",
 'sitesupport'       => "Ja'rdem berıw",

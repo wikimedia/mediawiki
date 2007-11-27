@@ -7,6 +7,7 @@
  * @author Nike
  * @author Teak
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -215,16 +216,16 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Awal ɣef {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Awal ɣef...',
+'aboutpage'         => 'Project:Awal ɣef...',
 'bugreports'        => "In'aɣ ibugiyen (bug)",
-'bugreportspage'    => "{{ns:project}}:In'aɣ ibugiyen",
+'bugreportspage'    => "Project:In'aɣ ibugiyen",
 'copyright'         => 'Tzemreḍ ad twaliḍ ayen yella deg $1.',
 'copyrightpagename' => 'Copyright n {{SITENAME}}',
 'copyrightpage'     => 'Asenfar:Copyrights',
 'currentevents'     => 'Isallen',
 'currentevents-url' => 'Isallen',
 'disclaimers'       => 'Iɣtalen',
-'disclaimerpage'    => '{{ns:project}}:Iɣtalen',
+'disclaimerpage'    => 'Project:Iɣtalen',
 'edithelp'          => 'Tallat deg ubeddel',
 'edithelppage'      => '{{ns:help}}:Abeddel',
 'faq'               => 'Isteqsiyen',
@@ -232,7 +233,7 @@ $messages = array(
 'helppage'          => '{{ns:help}}:Agbur',
 'mainpage'          => 'Asebter amenzawi',
 'portal'            => 'Awwur n timetti',
-'portal-url'        => '{{ns:project}}:Awwur n timetti',
+'portal-url'        => 'Project:Awwur n timetti',
 'privacy'           => 'Tudert tusligt',
 'privacypage'       => '{{ns:project}}:Tudert tusligt',
 'sitesupport'       => 'Efk-aɣ idrimen',
@@ -264,7 +265,7 @@ $messages = array(
 'feedlinks'               => 'Asuddem:',
 'feed-invalid'            => 'Anaw n usuddem mačči ṣaḥiḥ.',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Amagrad',
 'nstab-user'      => 'Asebter n wemseqdac',
 'nstab-media'     => 'Asebter n media',
@@ -919,7 +920,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'unusedtemplatestext' => 'Asebter-agi yesɛa umuɣ n akk isebtar n isem n taɣult s yisem "talɣa" iwumi ulac-iten deg ḥedd asebter. Ur tettuḍ ara ad tessenqdeḍ isebtar n talɣa wiyaḍ qbel ad temḥuḍ.',
 'unusedtemplateswlh'  => 'izdayen wiyaḍ',
 
-# Random pages
+# Random page
 'randompage'         => 'Asebter menwala',
 'randompage-nopages' => 'Ulac isebtar deg isem n taɣult agi.',
 

@@ -497,25 +497,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Over {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Info',
+'aboutpage'         => 'Project:Info',
 'bugreports'        => 'Foutrapporten',
-'bugreportspage'    => '{{ns:project}}:Foutrapporten',
+'bugreportspage'    => 'Project:Foutrapporten',
 'copyright'         => 'Inhoud is beschikbaar onder de $1.',
 'copyrightpagename' => '{{SITENAME}} auteursrechten',
 'copyrightpage'     => '{{ns:project}}:Auteursrechten',
 'currentevents'     => 'In het nieuws',
 'currentevents-url' => '{{ns:project}}:In het nieuws',
 'disclaimers'       => 'Voorbehoud',
-'disclaimerpage'    => '{{ns:project}}:Algemeen voorbehoud',
+'disclaimerpage'    => 'Project:Algemeen voorbehoud',
 'edithelp'          => 'Hulp bij bewerken',
 'edithelppage'      => '{{ns:help}}:Bewerken',
 'faq'               => 'FAQ (veelgestelde vragen)',
 'faqpage'           => '{{ns:project}}:Veelgestelde vragen',
 'helppage'          => '{{ns:help}}:Inhoud',
 'mainpage'          => 'Hoofdpagina',
-'policy-url'        => '{{ns:project}}:Beleid',
+'policy-url'        => 'Project:Beleid',
 'portal'            => 'Gebruikersportaal',
-'portal-url'        => '{{ns:project}}:Gebruikersportaal',
+'portal-url'        => 'Project:Gebruikersportaal',
 'privacy'           => 'Privacybeleid',
 'privacypage'       => '{{ns:project}}:Privacybeleid',
 'sitesupport'       => 'Financieel bijdragen',
@@ -817,6 +817,7 @@ U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-syso
 Gebruik te knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
 'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[{{ns:special}}:Userlogin|maak dan een gebruikersnaam aan of meld u aan]].''",
 'noarticletext'             => 'Deze pagina bevat geen tekst. U kunt [[{{ns:special}}:Search/{{FULLPAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
+'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Gelieve te controleren of u deze pagina wel wil aanmaken/bewerken.',
 'clearyourcache'            => '\'\'\'Let op!\'\'\' Leeg uw cache nadat u de wijzigingen heeft opgeslagen.
 
 {| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"

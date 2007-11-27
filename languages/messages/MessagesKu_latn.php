@@ -6,6 +6,7 @@
  * @author Bangin
  * @author Nike
  * @author SieBot
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -221,25 +222,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Der barê {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Der barê',
+'aboutpage'         => 'Project:Der barê',
 'bugreports'        => 'Raporên çewtiyan',
-'bugreportspage'    => '{{ns:project}}:Raporên çewtiyan',
+'bugreportspage'    => 'Project:Raporên çewtiyan',
 'copyright'         => 'Ji bo naverokê $1 derbas dibe.',
 'copyrightpagename' => 'Mafên nivîsanê',
 'copyrightpage'     => '{{ns:project}}:Mafên nivîsanê',
 'currentevents'     => 'Bûyerên rojane',
 'currentevents-url' => 'Bûyerên rojane',
 'disclaimers'       => 'Ferexetname',
-'disclaimerpage'    => '{{ns:project}}:Ferexetname',
+'disclaimerpage'    => 'Project:Ferexetname',
 'edithelp'          => 'Alîkarî ji bo guherandin',
 'edithelppage'      => '{{ns:help}}:Rûpeleke çawa biguherînim',
 'faq'               => 'Pirs û Bersîv (FAQ)',
 'faqpage'           => '{{ns:project}}:Pirs û Bersîv',
 'helppage'          => '{{ns:help}}:Alîkarî',
 'mainpage'          => 'Destpêk',
-'policy-url'        => '{{ns:project}}:Qebûlkirin',
+'policy-url'        => 'Project:Qebûlkirin',
 'portal'            => 'Portala komê',
-'portal-url'        => '{{ns:project}}:Portala komê',
+'portal-url'        => 'Project:Portala komê',
 'privacy'           => "Parastinê data'yan",
 'privacypage'       => "{{ns:project}}:Parastinê data'yan",
 'sitesupport'       => 'Ji bo Weqfa Wikimedia Beş',

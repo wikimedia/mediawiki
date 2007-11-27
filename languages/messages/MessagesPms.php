@@ -244,7 +244,7 @@ dj'artìcol ancó pa scrit",
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Project:Agiut',
 'mainpage'          => 'Intrada',
-'policy-url'        => '{{ns:Project}}:Deuit',
+'policy-url'        => 'Project:Deuit',
 'portal'            => 'Piòla',
 'portal-url'        => 'Project:Piòla',
 'privacy'           => 'Polìtica ëd confindensialità',
@@ -283,7 +283,7 @@ dj'artìcol ancó pa scrit",
 'page-rss-feed'           => 'Emission RSS "$1"',
 'page-atom-feed'          => 'Emission Atom "$1"',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artìcol',
 'nstab-user'      => "Pàgina dl'utent",
 'nstab-media'     => 'Pàgina multimedial',
@@ -1075,6 +1075,10 @@ PICT # vàire marche diferente
 'unusedtemplatestext' => "Sta pàgina-sì a la smon tuti jë stamp (pàgine dlë spassi nominal Stamp) che a son pa dovrà andrinta a gnun-a pàgina. Mej verifiché che në stamp a-j serva nen a dj'àutri stamp (che dle vire në stamp gròss a l'é fait ëd vàire cit sotastamp), anans che fé che ranchelo via.",
 'unusedtemplateswlh'  => 'àutre anliure',
 
+# Random page
+'randompage'         => 'Na pàgina qualsëssìa',
+'randompage-nopages' => 'A-i é pa gnun-a pàgina an stë spassi nominal-sì.',
+
 # Random redirect
 'randomredirect'         => 'Na ridiression qualsëssìa',
 'randomredirect-nopages' => 'A-i é pa gnun-a ridiression ant stë spassi nominal-sì.',
@@ -1142,8 +1146,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'mostrevisions'           => 'Artìcoj pì modificà',
 'allpages'                => 'Tute le pàgine',
 'prefixindex'             => 'Ìndess për inissiaj',
-'randompage'              => 'Na pàgina qualsëssìa',
-'randompage-nopages'      => 'A-i é pa gnun-a pàgina an stë spassi nominal-sì.',
 'shortpages'              => 'Pàgine curte',
 'longpages'               => 'Pàgine longhe',
 'deadendpages'            => 'Pàgine che a men-o da gnun-a part',
@@ -1547,9 +1549,9 @@ coj che sio ij blocagi ativ al dì d'ancheuj.",
 'range_block_disabled'        => "La possibilità che n'aministrator a fasa dij blocagi a ragg a l'é disabilità.",
 'ipb_expiry_invalid'          => 'Temp dë scadensa nen bon.',
 'ipb_already_blocked'         => 'L\'utent "$1" a l\'è già blocà',
+'ipb_cant_unblock'            => 'Eror: As treuva nen ël blòch con identificativ $1. A peul esse che a sia un blòch già gavà via.',
 'ip_range_invalid'            => 'Nùmer IP nen bon.',
 'proxyblocker'                => "Bloché j'arpetitor (Proxy) doèrt",
-'ipb_cant_unblock'            => 'Eror: As treuva nen ël blòch con identificativ $1. A peul esse che a sia un blòch già gavà via.',
 'proxyblockreason'            => "Soa adrëssa IP a l'é staita bloca përchè a l'é cola ëd n'arpetitor (proxy) doèrt. Për piasì che a contata al sò fornitor ëd conession e che a lo anforma. As trata d'un problema ëd siguressa motobin serio.",
 'proxyblocksuccess'           => 'Bele fait.',
 'sorbsreason'                 => "Soa adrëssa IP a l'é listà coma arpetitor doèrt (open proxy) ansima a DNSBL.",
@@ -2293,11 +2295,8 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'watchlisttools-edit' => "Vardé e modifiché la lista ëd lòn ch'as ten sot euj",
 'watchlisttools-raw'  => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
 
-# Unknown messages
+# Iranian month names
 'iranian-calendar-m1'  => 'Prim mèis Jalāli',
-'iranian-calendar-m10' => "Mèis Jalāli ch'a fa des",
-'iranian-calendar-m11' => "Mèis Jalāli ch'a fa óndes",
-'iranian-calendar-m12' => "Meis Jalāli ch'a fa dódes",
 'iranian-calendar-m2'  => 'Scond mèis Jalāli',
 'iranian-calendar-m3'  => 'Tèrs mèis Jalāli',
 'iranian-calendar-m4'  => 'Quart mèis Jalāli',
@@ -2306,5 +2305,8 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'iranian-calendar-m7'  => "Mèis Jalāli ch'a fa set",
 'iranian-calendar-m8'  => "Mèis Jalāli ch'a fa eut",
 'iranian-calendar-m9'  => "Mèis Jalāli ch'a fa neuv",
+'iranian-calendar-m10' => "Mèis Jalāli ch'a fa des",
+'iranian-calendar-m11' => "Mèis Jalāli ch'a fa óndes",
+'iranian-calendar-m12' => "Meis Jalāli ch'a fa dódes",
 
 );

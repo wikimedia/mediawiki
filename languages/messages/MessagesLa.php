@@ -310,7 +310,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'De {{grammar:ablative|{{SITENAME}}}}',
-'aboutpage'         => '{{ns:project}}:De {{grammar:ablative|{{SITENAME}}}}',
+'aboutpage'         => 'Project:De {{grammar:ablative|{{SITENAME}}}}',
 'bugreports'        => 'Renuntiare errores',
 'bugreportspage'    => 'Project:Renuntiare errores',
 'copyright'         => 'Res ad manum sub $1.',

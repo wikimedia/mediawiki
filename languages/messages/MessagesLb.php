@@ -5,6 +5,7 @@
  *
  * @author SPQRobin
  * @author G - ג
+ * @author Siebrand
  */
 
 $fallback = 'de';
@@ -41,7 +42,7 @@ $messages = array(
 'currentevents-url' => '{{ns:project}}:Aktualitéit',
 'mainpage'          => 'Haaptsäit',
 'portal'            => 'Kommunautéit',
-'portal-url'        => '{{ns:project}}:Kommunautéit',
+'portal-url'        => 'Project:Kommunautéit',
 'sitesupport'       => 'Donatiounen',
 'sitesupport-url'   => '{{ns:project}}:En Don maachen',
 
@@ -90,11 +91,13 @@ $messages = array(
 'savefile'        => 'Fichier späicheren',
 'watchthisupload' => 'Dës Säit verfollegen',
 
+# Random page
+'randompage' => 'Zoufallssäit',
+
 # Miscellaneous special pages
 'nlinks'            => '$1 {{PLURAL:$1|Link|Linken}}',
 'popularpages'      => 'Populär Säiten',
 'allpages'          => 'All Säiten',
-'randompage'        => 'Zoufallssäit',
 'specialpages'      => 'Spezialsäiten',
 'newpages-username' => 'Benotzernumm:',
 'move'              => 'Réckelen',
