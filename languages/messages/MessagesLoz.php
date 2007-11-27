@@ -6,6 +6,7 @@
  * @author SF-Language
  * @author Litingatinga Silozi
  * @author Ooswesthoesbes
+ * @author Siebrand
  */
 
 $messages = array(
@@ -14,10 +15,12 @@ $messages = array(
 'tog-justify'        => 'Singanyekile silamina',
 'tog-numberheadings' => 'Auto-palo mukunguna',
 'tog-showtoolbar'    => "Kamukile hloli ye ng'i toolbar (bulukezi JavaScript)",
+'tog-nocache'        => 'Amutembwe petulo kahili',
 'tog-uselivepreview' => 'Sebelize live PendiBe (bulukezi JavaScript) (yem nca)',
 
-'underline-always' => 'Xet',
-'underline-never'  => 'Yexet',
+'underline-always'  => 'Xet',
+'underline-never'   => 'Yexet',
+'underline-default' => 'Pokuhe',
 
 'skinpreview' => '(PendiBe)',
 
@@ -154,7 +157,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => "Ngesi ye ng'i atulile {{SITENAME}}",
-'aboutpage'         => "{{ns:project}}:Ngesi ye ng'i atulile",
+'aboutpage'         => "Project:Ngesi ye ng'i atulile",
 'copyrightpagename' => "{{SITENAME}} copyright ng'i",
 'copyrightpage'     => "{{ns:project}}:Copyright ng'i",
 'currentevents'     => 'Muembatami',
@@ -167,9 +170,9 @@ $messages = array(
 'faqpage'           => 'Project:Alabile',
 'helppage'          => '{{ns:help}}:Buinaneli di petulo',
 'mainpage'          => 'Petulo yem efro',
-'policy-url'        => '{{ns:project}}:Busize',
+'policy-url'        => 'Project:Busize',
 'portal'            => 'Petulo Bulili',
-'portal-url'        => '{{ns:project}}:Petulo Bulili',
+'portal-url'        => 'Project:Petulo Bulili',
 'privacy'           => 'Busize likunutu',
 'privacypage'       => '{{ns:project}}:Busize likunutu',
 'sitesupport'       => 'Adonetarina',
@@ -190,7 +193,7 @@ $messages = array(
 'hidetoc'                 => 'cwankekile',
 'viewdeleted'             => 'Kamukile $1?',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Petulo',
 'nstab-user'      => 'Sebelu petulo',
 'nstab-media'     => 'Media',
@@ -321,6 +324,9 @@ $messages = array(
 # List redirects
 'listredirects' => 'Mukoloko di petulo abezi',
 
+# Random page
+'randompage' => 'Petulo fona',
+
 # Random redirect
 'randomredirect' => 'Petulo abezi fona',
 
@@ -333,7 +339,6 @@ $messages = array(
 'ncategories'       => '$1 {{PLURAL:$1|kattegori|kattegorina}}',
 'nviews'            => '$1 {{PLURAL:$1|kamukile|kamukile}}',
 'prefixindex'       => 'Petulo bye abuce pelifikise',
-'randompage'        => 'Petulo fona',
 'shortpages'        => 'Mukoloko di kuswani petulo',
 'longpages'         => 'Mukoloko di petulo–amuha',
 'listusers'         => 'Mukoloko di sebelu',

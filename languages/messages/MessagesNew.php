@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -60,7 +61,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'mainpage'   => 'मू पौ',
 'portal'     => 'सामाजिक दबु',
-'portal-url' => '{{ns:project}}:सामाजिक दबु',
+'portal-url' => 'Project:सामाजिक दबु',
 'privacy'    => 'दुबिस्ता नियम',
 
 'ok'              => 'ज्यु',
@@ -90,12 +91,14 @@ $messages = array(
 # Upload
 'upload' => 'फाइल अपलोड',
 
+# Random page
+'randompage' => 'छगु च्वसुइ येंकादिसं',
+
 # Statistics
 'statistics' => 'तथ्यांक',
 
 # Miscellaneous special pages
 'allpages'          => 'सकल पौत',
-'randompage'        => 'छगु च्वसुइ येंकादिसं',
 'specialpages'      => 'विषेश पौत:',
 'newpages-username' => 'छ्येलेमि नां:',
 

@@ -9,6 +9,7 @@
  * @author Горан Анђелковић
  * @author Spacebirdy
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -260,22 +261,22 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'A prepaus de {{SITENAME}}',
-'aboutpage'         => '{{ns:4}}:A prepaus',
+'aboutpage'         => 'Project:A prepaus',
 'bugreports'        => "Rapòrt d'errors",
-'bugreportspage'    => "{{ns:project}}:Rapòrt d'errors",
+'bugreportspage'    => "Project:Rapòrt d'errors",
 'copyright'         => 'Lo contengut es disponible segon los tèrmes de la licéncia $1.',
 'copyrightpagename' => 'licéncia {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Actualitats',
 'currentevents-url' => 'Project:Actualitats',
 'disclaimers'       => 'Avertiments',
-'disclaimerpage'    => '{{ns:4}}:Avertiments generals',
+'disclaimerpage'    => 'Project:Avertiments generals',
 'edithelp'          => 'Ajuda',
 'edithelppage'      => '{{ns:project}}:Cossí editar una pagina',
 'helppage'          => '{{ns:project}}:Ajuda',
 'mainpage'          => 'Acuèlh',
 'portal'            => 'Comunautat',
-'portal-url'        => '{{ns:4}}:Acuèlh',
+'portal-url'        => 'Project:Acuèlh',
 'privacy'           => 'Politica de confidencialitat',
 'privacypage'       => 'meta:Confidencialitat',
 'sitesupport'       => 'Participar en fasent un don',
@@ -312,7 +313,7 @@ $messages = array(
 'page-rss-feed'           => 'Flus RSS de "$1"',
 'page-atom-feed'          => 'Flus Atom de "$1"',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
 'nstab-user'      => "Pagina d'utilizaire",
 'nstab-media'     => 'Pagina de mèdia',
@@ -570,7 +571,7 @@ La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament
 'readonlywarning'           => "<strong>AVERTIMENT : '''aquesta pagina es <span style=\"color:red\">protegida</span> <u>temporàriament</u> e <u>automaticament</u> per mantenença.'''<br />Doncas poiretz pas i salvagardar vòstras modificacions ara. Podètz copiar lo tèxt dins un fichièr e lo salvagardar per mai tard.</strong>",
 'protectedpagewarning'      => "<strong>ATENCION : Aquesta pagina es protegida. Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Asseguratz-vos que seguissètz las directivas concernent las paginas protegidas.</strong>",
 'semiprotectedpagewarning'  => "'''Nòta:''' Aquesta pagina es estada blocada, pòt èsser editada pas que pels utiliaires enregistats.",
-'cascadeprotectedwarning'   => '<strong>ATENCION : Aquesta pagina es estada protegida de biais que sols los [[{{MediaWiki:Grouppage-sysop}}|administrators]] pòscan l’editar. Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins una pagina protegida amb la « proteccion en cascada » activada.</strong>',
+'cascadeprotectedwarning'   => '<strong>ATENCION : Aquesta pagina es estada protegida de biais que sols los [[{{MediaWiki:grouppage-sysop}}|administrators]] pòscan l’editar. Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins una pagina protegida amb la « proteccion en cascada » activada.</strong>',
 'templatesused'             => 'Modèls utilizats sus aquesta pagina :',
 'templatesusedpreview'      => 'Modèls utilizats dins aquesta previsualizacion :',
 'templatesusedsection'      => 'Modèls utilizats dins aquesta seccion :',
@@ -992,7 +993,7 @@ L'ora indicada es la del serveire (UTC).",
 'unusedtemplatestext' => 'Aquesta pagina lista totas las paginas de l’espaci de noms « Modèl » que son incluses dins cap autra pagina. Doblidetz pas de verificar se i a pas d’autre ligam vèrs los modèls abans de los suprimir.',
 'unusedtemplateswlh'  => 'autres ligams',
 
-# Random pages
+# Random page
 'randompage'         => "Una pagina a l'azard",
 'randompage-nopages' => 'I a pas cap de pagina dins aqueste espaci de nom.',
 

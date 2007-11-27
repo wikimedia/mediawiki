@@ -13,6 +13,7 @@
  * @author 555
  * @author Malafaya
  * @author G - ג
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -264,7 +265,7 @@ $messages = array(
 'bugreports'        => 'Relatar bugs',
 'bugreportspage'    => '{{ns:project}}:Relatos_de_bugs',
 'copyright'         => 'Conteúdo disponível sob $1.',
-'copyrightpagename' => 'Direitos autorais da {{SITENAME}}',
+'copyrightpagename' => 'Direitos de autor de {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Direitos_de_autor',
 'currentevents'     => 'Eventos actuais',
 'currentevents-url' => 'Eventos actuais',
@@ -617,8 +618,8 @@ Se salvá-la, todas as mudanças feitas a partir desta revisão serão perdidas.
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
 'copyrightwarning2'         => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
-Você está, ao mesmo tempo, garantindo a nós que isto é algo escrito por você mesmo ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
-<strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
+Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
+<strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
 'longpagewarning'           => '<strong>AVISO: Esta página possui $1 kilobytes; alguns 
 navegadores possuem problemas em editar páginas maiores que 32kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
@@ -732,7 +733,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 
 # Oversight log
 'oversightlog'    => 'Registo de edições ocultadas',
-'overlogpagetext' => 'É exibida a seguir uma listagem das deleções e bloqueios mais recentes envolvendo conteúdos ocultados por {{int:group-sysop}}. Veja a [[{{ns:special}}:Ipblocklist|lista de bloqueios]] para os bloqueios e banimentos atualmente vigentes.',
+'overlogpagetext' => 'É exibida a seguir uma listagem das deleções e bloqueios mais recentes envolvendo conteúdos ocultados por Administradores. Veja a [[{{ns:special}}:Ipblocklist|lista de bloqueios]] para os bloqueios e banimentos atualmente vigentes.',
 
 # History merging
 'mergehistory-box'     => 'Fundir revisões de duas páginas:',
@@ -918,7 +919,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Descrição do ficheiro',
 'fileuploadsummary'           => 'Sumário:',
-'filestatus'                  => 'Estado de direitos autorais',
+'filestatus'                  => 'Estado de direitos de autor',
 'filesource'                  => 'Fonte',
 'uploadedfiles'               => 'Ficheiros carregados',
 'ignorewarning'               => 'Ignorar aviso e salvar de qualquer forma.',
@@ -1422,8 +1423,8 @@ $1',
 
 'sp-contributions-newest'      => 'Mais recente',
 'sp-contributions-oldest'      => 'Mais antigo',
-'sp-contributions-newer'       => 'Novo $1',
-'sp-contributions-older'       => 'Antigo $1',
+'sp-contributions-newer'       => '$1 mais recentes',
+'sp-contributions-older'       => '$1 mais antigas',
 'sp-contributions-newbies'     => 'Pesquisar apenas nas contribuições de contas recentes',
 'sp-contributions-newbies-sub' => 'Para contas novas',
 'sp-contributions-blocklog'    => 'Registo de bloqueios',
