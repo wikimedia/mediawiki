@@ -1,15 +1,15 @@
 <?php
-/**
- * Vlax Romany (Romani)
+/** Romani (Romani)
  *
  * @addtogroup Language
  *
  * @author Niklas Laxström
+ * @author G - ג
+ * @author Desiphral
+ * @author Siebrand
+ * @author Nike
  */
 
-/**
- * Use Romanian as default instead of English
- */
 $fallback = 'ro';
 
 $namespaceNames = array(
@@ -127,7 +127,7 @@ $messages = array(
 'currentevents'     => 'Nevimata',
 'currentevents-url' => '{{ns:project}}:Nevimata',
 'disclaimers'       => 'Termenurya',
-'disclaimerpage'    => '{{ns:project}}:Termenurya',
+'disclaimerpage'    => 'Project:Termenurya',
 'edithelp'          => 'Editisaripnasko zhutipen',
 'edithelppage'      => 'Project:Sar te editisares ek patrin',
 'helppage'          => '{{ns:help}}:Zhutipen',
@@ -145,7 +145,7 @@ $messages = array(
 'showtoc'         => 'dikh',
 'hidetoc'         => 'garav',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Lekh',
 'nstab-user'      => 'Jeneski patrin',
 'nstab-media'     => 'Mediya patrin',
@@ -360,6 +360,9 @@ Kana avilyan kathe doshatar, ja palpale.',
 'unusedtemplates'    => 'Bilabyarde sikavne',
 'unusedtemplateswlh' => 'aver phandimata',
 
+# Random page
+'randompage' => 'Ekh patrin savigodi',
+
 # Statistics
 'statistics'    => 'Beshimata',
 'sitestats'     => 'Site-ske beshimata',
@@ -369,7 +372,6 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 # Miscellaneous special pages
 'wantedpages'  => 'Kamle pajine',
 'allpages'     => 'Savore patrya',
-'randompage'   => 'Ekh patrin savigodi',
 'shortpages'   => 'Xarne patrya',
 'deadendpages' => 'Biphandimatenge patrya',
 'listusers'    => 'Jenengo patrinipen',

@@ -9,6 +9,7 @@
  * @author Soroush
  * @author G - ג
  * @author FrancisTyers
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -100,13 +101,13 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'     => 'Дар бораи {{SITENAME}}',
-'aboutpage'     => '{{ns:project}}:Дар бораи',
+'aboutpage'     => 'Project:Дар бораи',
 'currentevents' => 'Вокеаҳои кунунӣ',
 'mainpage'      => 'Саҳифаи Аслӣ',
 'portal'        => 'Вуруди корбарон',
 'sitesupport'   => 'Кӯмаки молӣ',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Мақола',
 'nstab-user'     => 'Саҳифаи корбар',
 'nstab-template' => 'Шаблон',
@@ -143,9 +144,11 @@ $messages = array(
 'ilsubmit'       => 'Ҷустуҷӯи',
 'imagelist_user' => 'Корбар',
 
+# Random page
+'randompage' => 'Саҳифаҳои тасодуфӣ',
+
 # Miscellaneous special pages
 'allpages'     => 'Ҳамаи саҳифаҳо',
-'randompage'   => 'Саҳифаҳои тасодуфӣ',
 'specialpages' => 'Саҳифаҳои вижа',
 'ancientpages' => 'Саҳифаҳои кӯҳнатарин',
 'move'         => 'Кӯчонидан',

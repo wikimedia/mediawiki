@@ -6,6 +6,7 @@
  * @author Maartenvdbent
  * @author Nike
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $fallback = 'de';
@@ -125,9 +126,11 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategorien',
+'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'       => 'Artikkel in de Kategorie "$1"',
 'subcategories'         => 'Unnerkategorien',
 'category-media-header' => 'Media in Kategorie "$1"',
+'category-empty'        => "''Disse Kategorie is loos.''",
 
 'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',
 'mainpagedocfooter' => 'Sjuch ju [http://meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [http://meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
@@ -139,6 +142,7 @@ $messages = array(
 'qbfind'         => 'Fiende',
 'qbbrowse'       => 'Bleederje',
 'qbedit'         => 'Annerje',
+'qbpageoptions'  => 'Disse Siede',
 'qbmyoptions'    => 'Mien Sieden',
 'qbspecialpages' => 'Spezialsieden',
 'moredotdotdot'  => 'Moor …',
@@ -153,6 +157,7 @@ $messages = array(
 'help'              => 'Hälpe',
 'search'            => 'Säike',
 'searchbutton'      => 'Säike',
+'go'                => 'Uutfiere',
 'searcharticle'     => 'Siede',
 'history'           => 'Versione',
 'history_short'     => 'Geschichte',
@@ -193,7 +198,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Uur {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Uur_{{SITENAME}}',
+'aboutpage'         => 'Project:Uur_{{SITENAME}}',
 'bugreports'        => 'Kontakt',
 'copyright'         => 'Inhoold is ferföichboar unner de $1.',
 'copyrightpagename' => '{{SITENAME}} Uurheebergjuchte',
@@ -209,11 +214,13 @@ $messages = array(
 'helppage'          => '{{ns:project}}:Hälpe',
 'mainpage'          => 'Haudsiede',
 'portal'            => '{{SITENAME}}-Portoal',
-'portal-url'        => '{{ns:project}}:Portoal',
+'portal-url'        => 'Project:Portoal',
 'privacy'           => 'Doatenschuts',
 'privacypage'       => '{{ns:project}}:Doatenschuts',
 'sitesupport'       => 'Spenden',
 'sitesupport-url'   => '{{ns:project}}:Spenden',
+
+'badaccess' => 'Neen uträkkende Gjuchte',
 
 'versionrequired'     => 'Version $1 fon MediaWiki is nöödich',
 'versionrequiredtext' => 'Version $1 fon MediaWiki is nöödich uum disse Siede tou nutsjen. Sjuch ju [[{{ns:special}}:Version|Versionssiede]]',
@@ -480,6 +487,9 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 # Revision feed
 'history-feed-item-nocomment' => '$1 uum $2', # user at time
 
+# Revision deletion
+'revisiondelete' => 'Versione läskje/wier häärstaale',
+
 # Diffs
 'history-title'             => 'Versionsgeschichte fon "$1"',
 'difference'                => '(Unnerschied twiske Versionen)',
@@ -716,8 +726,9 @@ Deerfon {{PLURAL:$2|häd|hääbe}} '''$2''' Benutser (=$4 %) $5-Rechte.",
 Fäärelaitengen buute dän Fäärelaitenge-Ferwies noch wiedere Text mäd uur Ferwiesen änthaalt. Doo
 Lääste schällen dan wächhoald wäide.',
 
-'brokenredirects'     => 'Ferkierde Truchferwiese',
-'brokenredirectstext' => 'Disse Truchferwiese laitje tou nit existierjende Artikkel:',
+'brokenredirects'        => 'Ferkierde Truchferwiese',
+'brokenredirectstext'    => 'Disse Truchferwiese laitje tou nit existierjende Artikkel:',
+'brokenredirects-delete' => '(läskje)',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|Byte|Bytes}}',
@@ -906,6 +917,11 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'protect-default'             => 'Aal (Standoard)',
 'protect-level-autoconfirmed' => 'Speerenge foar nit registrierde Benutsere',
 'protect-level-sysop'         => 'Bloot Administration',
+'pagesize'                    => '(Bytes)',
+
+# Restrictions (nouns)
+'restriction-edit' => 'beoarbaidje',
+'restriction-move' => 'ferschäuwen',
 
 # Undelete
 'undelete'                 => 'Läskede Siede wier häärstaale',
@@ -914,11 +930,14 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'undeletepagetext'         => 'Do foulgjende Sieden wuuden läsked, man sunt altied noch spiekerd un konnen fon Administratore wier häärstoald wäide:',
 'undeleterevisions'        => '{{PLURAL:$1|1 Version|$1 Versione}} archivierd',
 'undeletehistory'          => 'Wan Jie disse Siede wier häärstaale, wäide uk aal oolde Versione wier häärstoald. Wan siet ju Läskenge aan näien Artikkel mäd dän sälge Noome moaked wuude, wäide do wier häärstoalde Versione as oolde Versione fon dissen Artikkel ferschiene.',
+'undelete-revision'        => 'Läskede Versione fon $1 - $2, $3:',
 'undeletebtn'              => 'Wier häärstaale',
+'undeletereset'            => 'Oubreeke',
 'undeletecomment'          => 'Gruund:',
 'undeletedarticle'         => 'häd "[[$1]]" wier häärstoald',
 'undeletedrevisions'       => '{{PLURAL:$1|1 Version wuude|$1 Versione wuuden}} wier häärstoald',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 Version|$1 Versione}} un {{PLURAL:$2|1 Doatäi|$2 Doatäi}} wuuden wier häärstoald',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 Version|$1 Versione}} un {{PLURAL:$2|1 Doatäi|$2 Doatäie}} wuuden wier häärstoald',
+'undeletedfiles'           => '{{PLURAL:$1|1 Doatäie wuude|$1 Doatäie wuuden}} wier häärstoald',
 'undelete-search-submit'   => 'Säike',
 
 # Namespace form on various pages
@@ -929,16 +948,20 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 # Contributions
 'contributions' => 'Benutserbiedraage',
 'mycontris'     => 'Oaine Biedraage',
+'contribsub2'   => 'Foar $1 ($2)',
 'nocontribs'    => 'Deer wuuden neen Annerengen foar disse Kriterien fuunen.',
 'uclinks'       => 'Wies do lääste $1 Biedraage fon dän Benutser in do lääste $2 Deege.',
 'uctop'         => ' (aktuäl)',
 
-'sp-contributions-newer'  => 'Näiere $1',
-'sp-contributions-older'  => 'Allere $1',
-'sp-contributions-submit' => 'Säike',
+'sp-contributions-newer'    => 'Näiere $1',
+'sp-contributions-older'    => 'Allere $1',
+'sp-contributions-username' => 'IP-Adrässe af Benutsernoome:',
+'sp-contributions-submit'   => 'Säike',
 
 # What links here
 'whatlinkshere'       => 'Links ap disse Siede',
+'whatlinkshere-title' => 'Sieden, do ap "$1" linken',
+'whatlinkshere-page'  => 'Siede:',
 'linklistsub'         => '(Linklieste)',
 'linkshere'           => "Do foulgjende Sieden ferwiese hierhäär:  '''[[:$1]]''': <br /><small>(Moonige Sieden wäide eventuell moorfooldich liested, konnen in säildene Falle oawers uk miste. Dät kumt fon oolde Failere in dän Software häär, man schoadet fääre niks.)</small>",
 'nolinkshere'         => "Naan Artikkel ferwiest hierhäär: '''[[:$1]]'''.",
@@ -961,10 +984,13 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'blockipsuccesssub'           => 'Blokkoade geloangen',
 'blockipsuccesstext'          => 'Ju IP-Adrässe [[Special:Contributions/$1|$1]] wuude blokkierd.
 <br />[[Special:Ipblocklist|Lieste fon Blokkoaden]].',
+'ipb-unblock-addr'            => '"$1" fräireeke',
+'ipb-unblock'                 => 'IP-Adrässe/Benutser fräireeke',
 'unblockip'                   => 'IP-Adrässe fräireeke',
 'unblockiptext'               => 'Benutsje dät Formular, uum ne blokkierde IP-Adrässe fräitoureeken.',
 'ipusubmit'                   => 'Disse Adrässe fräireeke',
 'ipblocklist'                 => 'Lieste fon blokkierde IP-Adrässen',
+'ipblocklist-submit'          => 'Säike',
 'blocklistline'               => '$1, $2 blokkierde $3 ($4)',
 'blocklink'                   => 'blokkierje',
 'unblocklink'                 => 'fräireeke',
@@ -1071,7 +1097,12 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'tooltip-pt-logout'               => 'Oumäldje',
 'tooltip-ca-move'                 => 'Disse Siede ferschäuwen',
 'tooltip-search'                  => '{{SITENAME}} truchsäike',
+'tooltip-n-recentchanges'         => 'Lieste fon ju Lääste Annerengen in {{SITENAME}}.',
 'tooltip-n-randompage'            => 'Toufällige Siede',
+'tooltip-n-help'                  => 'Hälpesiede anwiese',
+'tooltip-t-whatlinkshere'         => 'Lieste fon aal Sieden, do ap disse Siede linken',
+'tooltip-t-upload'                => 'Doatäie hoochleede',
+'tooltip-t-specialpages'          => 'Lieste fon aal Spezialsieden',
 'tooltip-ca-nstab-user'           => 'Benutsersiede anwiese',
 'tooltip-ca-nstab-project'        => 'Projektsiede anwiese',
 'tooltip-ca-nstab-help'           => 'Hälpesiede anwiese',

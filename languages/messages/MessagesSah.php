@@ -202,23 +202,23 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} туһунан',
-'aboutpage'         => '{{ns:project}} туһунан',
+'aboutpage'         => 'Project туһунан',
 'bugreports'        => 'Сыыһалар тустарынан хобо',
-'bugreportspage'    => '{{ns:project}}:сыыһаларын туһунан хобо',
+'bugreportspage'    => 'Project:сыыһаларын туһунан хобо',
 'copyright'         => 'Маны туһанары $1 көҥүллүүр.',
 'copyrightpagename' => '{{SITENAME}} бас билиитэ',
 'copyrightpage'     => '{{ns:project}}:бас билиитэ',
 'currentevents'     => 'Оҥоһулла турар дьайыылар',
 'currentevents-url' => 'Оҥоһулла турааччылар',
 'disclaimers'       => 'Бүк охсунуу',
-'disclaimerpage'    => '{{ns:project}}:Бүк охсунуу',
+'disclaimerpage'    => 'Project:Бүк охсунуу',
 'edithelp'          => 'Уларытааччыларга көмө',
 'edithelppage'      => '{{ns:help}}:Уларытарга көмө',
 'helppage'          => '{{ns:project}}:Көмө',
 'mainpage'          => 'Сүрүн сирэй',
-'policy-url'        => '{{ns:project}}:Сиэрэ',
+'policy-url'        => 'Project:Сиэрэ',
 'portal'            => 'Түмсүү сирэ',
-'portal-url'        => '{{ns:project}}:Кистээһин сиэрэ',
+'portal-url'        => 'Project:Кистээһин сиэрэ',
 'privacy'           => 'Кистээһин сиэрэ',
 'privacypage'       => '{{ns:project}}:Кистээһин сиэрэ',
 'sitesupport'       => 'Бу сири өйөө',
@@ -254,7 +254,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS биэрии',
 'page-atom-feed'          => '"$1" Atom биэрии',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Ыстатыйа',
 'nstab-user'      => 'Кыттааччы',
 'nstab-media'     => 'Мэлдьимиэдийэ',
@@ -992,7 +992,7 @@ PICT # misc.
 'unusedtemplatestext' => 'Манна атын сирэйдэр ахсааннарыгар киирбэтэтх "Халыыптарга" сыһыаннаах сирэйдэр көстөллөр. Соторгор атын билэлэртэн сигэммэтэхтэрин көр.',
 'unusedtemplateswlh'  => 'атын ыйынньыктар',
 
-# Random pages
+# Random page
 'randompage'         => 'Үлүбээй сирэй',
 'randompage-nopages' => 'Майгынныыр ааттаах сирэйдэр суохтар.',
 

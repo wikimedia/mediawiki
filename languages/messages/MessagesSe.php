@@ -185,20 +185,20 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Dieđut {{GRAMMAR:elative|{{SITENAME}}}}',
-'aboutpage'         => '{{ns:project}}:Dieđut',
+'aboutpage'         => 'Project:Dieđut',
 'bugreports'        => 'Váttisvuođat ja buorridanevttohusat',
-'bugreportspage'    => '{{ns:project}}:Váttisvuođat ja buorridanevttohusat',
+'bugreportspage'    => 'Project:Váttisvuođat ja buorridanevttohusat',
 'copyright'         => 'Sisdoalu sáhttá geavahit liseanssain $1.',
 'currentevents'     => 'Áigeguovdil',
 'currentevents-url' => '{{ns:project}}:Áigeguovdil',
 'disclaimers'       => 'Friijavuohta vástideamis',
-'disclaimerpage'    => '{{ns:project}}:Friijavuohta vástideamis',
+'disclaimerpage'    => 'Project:Friijavuohta vástideamis',
 'edithelp'          => 'Rievdadanrávvagat',
 'edithelppage'      => '{{ns:help}}:Mo rievdadit siidduid',
 'helppage'          => '{{ns:help}}:Rávvagat',
 'mainpage'          => 'Váldosiidu',
 'portal'            => 'Gáffestohpu',
-'portal-url'        => '{{ns:project}}:Gáffestohpu',
+'portal-url'        => 'Project:Gáffestohpu',
 'sitesupport'       => 'Skeaŋkkat',
 'sitesupport-url'   => '{{ns:project}}:Skeaŋkkat',
 
@@ -220,7 +220,7 @@ $messages = array(
 'viewdeleted'             => 'Čájet $1?',
 'restorelink'             => '{{PLURAL:$1|okta sihkojuvvon rievdadus|$1 sihkojuvvon rievdadusa}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Siidu',
 'nstab-user'      => 'Geavaheaddjisiidu',
 'nstab-media'     => 'Media',
@@ -734,6 +734,10 @@ $1 | $2',
 'unusedtemplatestext' => 'Dás lea listu mállevuođuin, mat eai leat geavahuvvon ovttage siiddus. Muite dárkistit leago mállevuođđu das fuolatkeahttá anus.',
 'unusedtemplateswlh'  => 'eará liŋkkat',
 
+# Random page
+'randompage'         => 'Summal siidu',
+'randompage-nopages' => 'Dán nammagomuvuođas eai leat siiddut.',
+
 # Random redirect
 'randomredirect'         => 'Summal ođđasitstivren',
 'randomredirect-nopages' => 'Dán nammagomuvuođas eai leat ođđasitstivremat.',
@@ -785,8 +789,6 @@ $1 | $2',
 'mostimages'              => 'Govat, maidda lea čujuhuvvon dávjemus',
 'mostrevisions'           => 'Siiddut, mat leat rievdáduvvon eanemustá',
 'allpages'                => 'Buot siiddut',
-'randompage'              => 'Summal siidu',
-'randompage-nopages'      => 'Dán nammagomuvuođas eai leat siiddut.',
 'shortpages'              => 'Oanehis siiddut',
 'longpages'               => 'Guhkes siiddut',
 'deadendpages'            => 'Siiddut, main eai leat liŋkkat',

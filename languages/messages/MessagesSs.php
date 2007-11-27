@@ -5,6 +5,7 @@
  *
  * @author MF-Warburg
  * @author Jatrobat
+ * @author Siebrand
  */
 
 $messages = array(
@@ -37,7 +38,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'portal'     => 'Likhefi leinthanethi',
-'portal-url' => '{{ns:project}}:Likhefi leinthanethi',
+'portal-url' => 'Project:Likhefi leinthanethi',
 
 'editsection' => 'kúhlela',
 'editold'     => 'kúhlela',

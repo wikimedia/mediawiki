@@ -7,6 +7,7 @@
  * @author Niklas Laxström
  * @author G - ג
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'it';
@@ -294,21 +295,21 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Àutri nformazzioni su {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Àutri nformazzioni',
+'aboutpage'         => 'Project:Àutri nformazzioni',
 'bugreports'        => 'Malifunziunamenti',
-'bugreportspage'    => '{{ns:project}}:Malifunziunamenti',
+'bugreportspage'    => 'Project:Malifunziunamenti',
 'copyright'         => 'Lu cuntinutu è utilizzàbbili secunnu la $1.',
 'copyrightpagename' => 'Lu copyright supra {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Nutizzî',
 'currentevents-url' => '{{ns:project}}:Nutizzî',
 'disclaimers'       => 'Avvirtenzi',
-'disclaimerpage'    => '{{ns:project}}:Avvirtenzi ginirali',
+'disclaimerpage'    => 'Project:Avvirtenzi ginirali',
 'edithelppage'      => '{{ns:help}}:Canciamentu',
 'helppage'          => '{{ns:help}}:Cuntinuti',
 'mainpage'          => 'Pàggina principali',
 'portal'            => 'Porta dâ cumunitati',
-'portal-url'        => '{{ns:project}}:Porta dâ cumunitati',
+'portal-url'        => 'Project:Porta dâ cumunitati',
 'privacy'           => 'Pulìtica supra la privacy',
 'privacypage'       => '{{ns:project}}:Pulìtica rilativa â privacy',
 'sitesupport'       => 'Dunazzioni',
@@ -339,7 +340,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|nu canciamentu annullatu|$1 canciamenti annullati}}',
 'feed-invalid'            => 'Mudalitati di suttascrizzioni dû feed nun vàlida.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'artìculu',
 'nstab-user'      => "Pàggina d'utenti",
 'nstab-media'     => 'File multimidiali',
@@ -1033,6 +1034,10 @@ PICT # arcuni
 'unusedtemplatestext' => 'Nta sta pàggina vèninu alincati tutti li template (pàggini dû namespace Template) ca nun sunnu nclusi n nudda pàggina. Prima di cancillàrili è appurtunu virificari ca li sìnguli template nun hannu àutri culligamenti trasenti.',
 'unusedtemplateswlh'  => 'àutri liami',
 
+# Random page
+'randompage'         => 'Na pàggina ammuzzu',
+'randompage-nopages' => 'Nudda pàggina ntô namespace silizziunatu.',
+
 # Random redirect
 'randomredirect'         => 'Un redirect a muzzu',
 'randomredirect-nopages' => 'Nuddu rinnirizzamentu ntô namespace silizziunatu.',
@@ -1093,8 +1098,6 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'mostrevisions'           => 'Artìculi urdinati secunnu chiddi chi hannu cchiù canciamenti',
 'allpages'                => 'Tutti li paggini',
 'prefixindex'             => 'Ìnnici secunnu un prifissu',
-'randompage'              => 'Na pàggina ammuzzu',
-'randompage-nopages'      => 'Nudda pàggina ntô namespace silizziunatu.',
 'shortpages'              => 'Artìculi urdinati secunnu la lunchizza (li cchiù curti prima)',
 'longpages'               => 'Artìculi urdinati secunnu la lunchizza (li cchiù lonchi prima)',
 'deadendpages'            => 'Pàggini senza nisciuta',

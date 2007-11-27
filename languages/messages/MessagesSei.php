@@ -6,6 +6,7 @@
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
  * @author Teak
+ * @author Siebrand
  */
 
 $messages = array(
@@ -193,25 +194,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} mii',
-'aboutpage'         => '{{ns:project}}:Miilà',
+'aboutpage'         => 'Project:Miilà',
 'bugreports'        => 'Iitómde bug',
-'bugreportspage'    => '{{ns:project}}:Iitómde bug',
+'bugreportspage'    => 'Project:Iitómde bug',
 'copyright'         => 'Contentua coitáamb $1 tan.',
 'copyrightpagename' => 'Copyright {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyrightám',
 'currentevents'     => 'Hualtezxes',
 'currentevents-url' => '{{ns:project}}:Hualtezxes',
 'disclaimers'       => 'Isój cacóomx',
-'disclaimerpage'    => '{{ns:project}}:Isoj cacóomx geniiraloj',
+'disclaimerpage'    => 'Project:Isoj cacóomx geniiraloj',
 'edithelp'          => 'Help ticpatlöx',
 'edithelppage'      => '{{ns:help}}:Ticpatlöx',
 'faq'               => 'Cocmíiit cmaa',
 'faqpage'           => '{{ns:project}}:Cocmíiit cmaa',
 'helppage'          => '{{ns:help}}:Caálixötöj',
 'mainpage'          => 'Caálixötöj',
-'policy-url'        => '{{ns:project}}:Cáyun',
+'policy-url'        => 'Project:Cáyun',
 'portal'            => 'Portalde ctám',
-'portal-url'        => '{{ns:project}}:Portalde ctám',
+'portal-url'        => 'Project:Portalde ctám',
 'privacy'           => 'Cáyunde privacy',
 'privacypage'       => '{{ns:project}}:Cáyunde privacy',
 'sitesupport'       => 'Donación',
@@ -248,7 +249,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" Fiiytde RSS',
 'page-atom-feed'          => '"$1" Fiiytde Atom',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Páhina',
 'nstab-user'      => 'Caitom páhina',
 'nstab-media'     => 'Media páhina',
@@ -837,6 +838,10 @@ Informacion: (curt) = quiíxde vercion currentua,
 # Unused templates
 'unusedtemplateswlh' => 'diijömde linkám',
 
+# Random page
+'randompage'         => 'Páhina cáulituniit',
+'randompage-nopages' => 'Zo necoccebj páhinám jan ipartuatl iti.',
+
 # Random redirect
 'randomredirect'         => 'Meniitomöx cáulituniit',
 'randomredirect-nopages' => 'Zo necoccebj meniitomöx jan ipartuatl iti.',
@@ -862,8 +867,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'nviews'              => '$1 {{PLURAL:$1|cohuatl|cohuátl}}',
 'allpages'            => 'Jöxde páhinám',
 'prefixindex'         => 'Indexde prefix',
-'randompage'          => 'Páhina cáulituniit',
-'randompage-nopages'  => 'Zo necoccebj páhinám jan ipartuatl iti.',
 'shortpages'          => 'Páhinám diibajlipám',
 'longpages'           => 'Páhinám bajlipám',
 'deadendpages'        => 'Páhinám huiquiix',

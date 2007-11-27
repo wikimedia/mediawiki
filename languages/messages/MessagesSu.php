@@ -202,7 +202,7 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:NLD',
 'helppage'          => '{{ns:project}}:Pitulung',
 'mainpage'          => 'Tepas',
-'policy-url'        => '{{ns:project}}:Kawijakan',
+'policy-url'        => 'Project:Kawijakan',
 'portal'            => 'Panglawungan',
 'portal-url'        => '{{ns:project}}: Panglawungan',
 'privacy'           => 'Kawijakan privasi',
@@ -236,7 +236,7 @@ $messages = array(
 'restorelink'             => '$1 éditan dihapus',
 'feed-invalid'            => 'Tipe paménta asupan henteu pas.',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'Kaca pamaké',
 'nstab-media'     => 'Média',
 'nstab-special'   => 'Husus',
@@ -840,7 +840,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'unusedtemplates'    => 'Citakan nu teu kapaké',
 'unusedtemplateswlh' => 'tumbu lianna',
 
-# Random pages
+# Random page
 'randompage' => 'Kaca acak',
 
 # Random redirect

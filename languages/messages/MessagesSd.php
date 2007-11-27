@@ -1,10 +1,11 @@
 <?php
-/** Sindhi language file ( सिनधि )
-  *
-  * @addtogroup Language
-  *
-  * @author SPQRobin
-  */
+/** Sindhi (سنڌي)
+ *
+ * @addtogroup Language
+ *
+ * @author SPQRobin
+ * @author Siebrand
+ */
 
 $rtl = true;
 
@@ -36,7 +37,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} بابت',
-'aboutpage'         => '{{ns:project}}:بابت',
+'aboutpage'         => 'Project:بابت',
 'copyright'         => 'سمورو مواد $1 تحت ميسر ڪجي ٿو',
 'currentevents'     => 'ھاڻوڪا واقعا',
 'currentevents-url' => '{{ns:project}}:اعداد',
