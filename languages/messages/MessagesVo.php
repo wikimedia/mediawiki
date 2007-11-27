@@ -7,6 +7,7 @@
  * @author Smeira
  * @author Nike
  * @author Malafaya
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -194,7 +195,7 @@ $messages = array(
 'helppage'          => '{{ns:help}}:Ninäd',
 'mainpage'          => 'Cifapad',
 'portal'            => 'Komotanefaleyan',
-'portal-url'        => '{{ns:project}}:Komotanefaleyan',
+'portal-url'        => 'Project:Komotanefaleyan',
 'privacy'           => 'Dunamod demü soelöf',
 'privacypage'       => '{{ns:project}}:Dunamod_demü_soelöf',
 'sitesupport'       => 'Födagivots',

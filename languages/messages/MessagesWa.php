@@ -245,9 +245,9 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Åd fwait di {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Åd fwait',
+'aboutpage'         => 'Project:Åd fwait',
 'bugreports'        => 'Rapoirts di bugs',
-'bugreportspage'    => '{{ns:project}}:Rapoirts di bugs',
+'bugreportspage'    => 'Project:Rapoirts di bugs',
 'copyright'         => "Li contnou est dizo l' $1.",
 'copyrightpagename' => 'Abondroets {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Abondroets',
@@ -258,7 +258,7 @@ $messages = array(
 'helppage'          => '{{ns:help}}:Aidance',
 'mainpage'          => 'Mwaisse pådje',
 'portal'            => 'Inte di nozôtes',
-'portal-url'        => '{{ns:project}}:Inte di nozôtes',
+'portal-url'        => 'Project:Inte di nozôtes',
 'sitesupport'       => 'Ecwårlaedje',
 'sitesupport-url'   => '{{ns:project}}:Ecwårlaedje',
 
@@ -285,7 +285,7 @@ $messages = array(
 'feedlinks'               => 'Sindicåcion:',
 'feed-invalid'            => 'Sôre di sindicåcion nén valide.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Årtike',
 'nstab-user'      => "Pådje di l' uzeu",
 'nstab-media'     => 'Media',
@@ -883,6 +883,9 @@ ou co po les sons
 'unusedtemplatestext' => "Cisse pådje ci mostere totes les pådjes di modele (espåce di lomaedje «{{ns:template}}») ki n' sont nén eployîs dins ene ôte pådje. Rimimbrez vs di verifyî s' i n' a nén des ôtes loyéns divant delzès disfacer.",
 'unusedtemplateswlh'  => 'ôtes loyéns',
 
+# Random page
+'randompage' => "Årtike a l' astcheyance",
+
 # Random redirect
 'randomredirect' => "Redjiblaedje a l' astcheyance",
 
@@ -941,7 +944,6 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'mostrevisions'           => "Årtikes avou l' pus di candjmints",
 'allpages'                => 'Totes les pådjes',
 'prefixindex'             => 'Indecse pa betchete',
-'randompage'              => "Årtike a l' astcheyance",
 'shortpages'              => 'Coûtès pådjes',
 'longpages'               => 'Longowès pådjes',
 'deadendpages'            => 'Pådjes sins nou loyén wiki',
