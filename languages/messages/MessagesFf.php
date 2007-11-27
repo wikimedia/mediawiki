@@ -23,11 +23,11 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'     => 'Tawtoraɗi',
-'currentevents-url' => '{{ns:project}}:Tawtoraɗi',
+'currentevents-url' => 'Tawtoraɗi',
 'mainpage'          => 'Hello jaɓɓorgo',
 'portal'            => 'Jaɓɓogol renndo',
 'sitesupport'       => 'Dokkal',
-'sitesupport-url'   => '{{ns:project}}:Dokkal',
+'sitesupport-url'   => 'Project:Dokkal',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Winndannde',

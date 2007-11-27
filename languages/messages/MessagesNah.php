@@ -55,7 +55,7 @@ $messages = array(
 'edithelp'    => 'Patlaliztechcopa tēpalēhuiliztli',
 'mainpage'    => 'Calīxatl',
 'portal'      => 'Calīxcuātl tocalpōl',
-'portal-url'  => 'Calīxcuātl tocalpōl',
+'portal-url'  => 'Project:Calīxcuātl tocalpōl',
 'privacy'     => 'Tlahcuilōlli piyaliznahuatīlli',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook

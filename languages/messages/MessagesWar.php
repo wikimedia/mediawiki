@@ -123,9 +123,9 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Mahitungod han {{SITENAME}}',
 'currentevents'     => 'Mga panhitabo',
-'currentevents-url' => 'Project:Mga panhitabo',
+'currentevents-url' => 'Mga panhitabo',
 'disclaimers'       => 'Mga Disclaimer',
-'helppage'          => '{{ns:help}}:Sulod',
+'helppage'          => 'Help:Sulod',
 'mainpage'          => 'Syahan nga Pakli',
 'portal'            => 'Ganghaan han Komunidad',
 'portal-url'        => 'Project:Ganghaan han Komunidad',
