@@ -13,6 +13,7 @@
  * @author Vriullop
  * @author Pérez
  * @author Juanpabl
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -699,7 +700,7 @@ A més a més, en enviar el vostre text, doneu fe què tot és sota la vostra au
 'readonlywarning'           => '<strong>ADVERTÈNCIA: La base de dades està tancada per manteniment
 i no podeu desar les vostres contribucions en aquests moments. podeu retallar i enganxar el codi
 en un fitxer de text i desar-lo més tard.</strong>',
-'protectedpagewarning'      => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[{{MediaWiki:grouppage-sysop}}|administradors]].</strong>',
+'protectedpagewarning'      => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[{{MediaWiki:Grouppage-sysop}}|administradors]].</strong>',
 'semiprotectedpagewarning'  => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
 'cascadeprotectedwarning'   => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden editar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
 'templatesused'             => 'Aquesta pàgina fa servir les següents plantilles:',

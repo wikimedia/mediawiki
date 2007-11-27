@@ -7,8 +7,6 @@
  * @author Steven*fung
  * @author Siebrand Mazeland
  * @author Niklas Laxström
- * @author Siebrand
- * @author Nike
  */
 
 $namespaceNames = array(

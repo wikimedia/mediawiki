@@ -7,6 +7,7 @@
  * @author G - ג
  * @author Nike
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -264,7 +265,7 @@ $messages = array(
 'faqpage'           => '{{ns:4}}:FAG',
 'helppage'          => '{{ns:4}}:Skoazell',
 'mainpage'          => 'Degemer',
-'policy-url'        => '{{ns:project}}:Reolennoù',
+'policy-url'        => 'Project:Reolennoù',
 'portal'            => 'Porched ar gumuniezh',
 'portal-url'        => '{{ns:4}}:Degemer',
 'privacy'           => 'Reolennoù prevezded',

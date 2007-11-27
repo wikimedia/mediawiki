@@ -225,25 +225,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} বৃত্তান্ত',
-'aboutpage'         => '{{ns:project}}:বৃত্তান্ত',
+'aboutpage'         => 'Project:বৃত্তান্ত',
 'bugreports'        => 'ত্রুটি বিবরণী',
-'bugreportspage'    => '{{ns:project}}:ত্রুটি বিবরণী',
+'bugreportspage'    => 'Project:ত্রুটি বিবরণী',
 'copyright'         => '$1 এর আওতায় প্রাপ্য।',
 'copyrightpagename' => '{{SITENAME}} কপিরাইট',
 'copyrightpage'     => '{{ns:project}}:কপিরাইটসমূহ',
 'currentevents'     => 'সমসাময়িক ঘটনা',
 'currentevents-url' => 'সমসাময়িক ঘটনাসমূহ',
 'disclaimers'       => 'দাবিত্যাগ',
-'disclaimerpage'    => '{{ns:project}}:সাধারণ দাবিত্যাগ',
+'disclaimerpage'    => 'Project:সাধারণ দাবিত্যাগ',
 'edithelp'          => 'সম্পাদনা সহায়িকা',
 'edithelppage'      => '{{ns:project}}:কিভাবে একটি পাতা সম্পাদনা করবেন',
 'faq'               => 'সম্ভাব্য প্রশ্নসমূহ',
 'faqpage'           => '{{ns:project}}:সম্ভাব্য প্রশ্নসমূহ',
 'helppage'          => '{{ns:project}}:সহায়িকা',
 'mainpage'          => 'প্রধান পাতা',
-'policy-url'        => '{{ns:project}}:নীতি',
+'policy-url'        => 'Project:নীতি',
 'portal'            => 'সম্প্রদায়ের প্রবেশদ্বার',
-'portal-url'        => '{{ns:project}}:সম্প্রদায়ের প্রবেশদ্বার',
+'portal-url'        => 'Project:সম্প্রদায়ের প্রবেশদ্বার',
 'privacy'           => 'গোপনীয়তার নীতি',
 'privacypage'       => '{{ns:project}}:গোপনীয়তার নীতি',
 'sitesupport'       => 'দান করুন',
@@ -269,7 +269,7 @@ $messages = array(
 'hidetoc'                 => 'আড়ালে রাখো',
 'restorelink'             => '{{PLURAL:$1|একটি মুছে ফেলা সম্পাদনা|$1 মুছে ফেলা সম্পাদনাসমূহ}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'নিবন্ধ',
 'nstab-user'      => 'ব্যবহারকারীর পাতা',
 'nstab-media'     => 'মিডিয়া পাতা',
@@ -689,6 +689,9 @@ $1',
 # MIME search
 'download' => 'ডাউনলোড',
 
+# Random page
+'randompage' => 'অজানা যেকোনো পাতা',
+
 # Statistics
 'statistics'             => 'পরিসংখ্যান',
 'sitestats'              => 'সাইট পরিসংখ্যান',
@@ -722,7 +725,6 @@ $1',
 'mostcategories'          => 'সবচেয়ে বেশী বিষয়শ্রেণী-সমৃদ্ধ নিবন্ধসমূহ',
 'mostrevisions'           => 'সবচেয়ে বেশী বার সম্পাদিত নিবন্ধসমূহ',
 'allpages'                => 'সব পাতা',
-'randompage'              => 'অজানা যেকোনো পাতা',
 'shortpages'              => 'সংক্ষিপ্ত পাতাসমূহ',
 'longpages'               => 'দীর্ঘ পাতাসমূহ',
 'deadendpages'            => 'যেসব পাতা থেকে কোনো সংযোগ নেই',

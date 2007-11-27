@@ -1,11 +1,13 @@
 <?php
-/** Bishnupriya Manipuri (বিষ্ণুপ্রিয়া মণিপুরী)
+/** Bishnupriya (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
  *
  * @addtogroup Language
  *
  * @author Uttam Singha, Dec 2006
+ * @author Usingha
+ * @author Siebrand
  */
- 
+
 $digitTransformTable = array(
 	'0' => '০',
 	'1' => '১',
@@ -241,14 +243,14 @@ $messages = array(
 'currentevents'     => 'হাদি এহানর ঘটনা',
 'currentevents-url' => 'হাদি এহানর ঘটনাহানি',
 'disclaimers'       => 'দাবি বেলানি',
-'disclaimerpage'    => '{{ns:project}}:ইজ্জু দাবি বেলানি',
+'disclaimerpage'    => 'Project:ইজ্জু দাবি বেলানি',
 'edithelp'          => 'পতানি পাংলাক',
 'edithelppage'      => '{{ns:project}}:কিসাদে_পাতা_আহান_পতানি',
 'faq'               => 'আঙলাক',
 'faqpage'           => '{{ns:project}}:আঙলাক',
 'helppage'          => '{{ns:project}}:পাংলাক',
 'mainpage'          => 'পয়লা পাতা',
-'policy-url'        => '{{ns:project}}:নীতিহান',
+'policy-url'        => 'Project:নীতিহান',
 'portal'            => 'শিংলুপ',
 'portal-url'        => '{{ns:project}}:শিংলুপ',
 'privacy'           => 'লুকরানির নীতিহান',
@@ -271,7 +273,7 @@ $messages = array(
 'showtoc'         => 'ফংকর',
 'hidetoc'         => 'মেথেল আরুম কর',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'নিবন্ধ',
 'nstab-user'      => 'আতাকুরার পাতা',
 'nstab-special'   => 'বিশেষ',
@@ -379,13 +381,15 @@ $messages = array(
 'bysize'     => 'আকারহানর সিজিলন',
 'imagelinks' => 'জুরিসিতা',
 
+# Random page
+'randompage' => 'খাংদা পাতা',
+
 'brokenredirects' => 'বারো-নির্দেশ কামনাকরের',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 বাইট',
 'ncategories'  => '$1 {{PLURAL:$1|থাক|থাকহানি}}',
 'allpages'     => 'হাবি পাতাহানি',
-'randompage'   => 'খাংদা পাতা',
 'specialpages' => 'বিশেষ পাতাহানি',
 'ancientpages' => 'পুরানা পাতাহানি',
 'move'         => 'থেইকরানি',

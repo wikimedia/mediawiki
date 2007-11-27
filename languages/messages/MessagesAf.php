@@ -211,7 +211,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Inligting oor {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Omtrent',
+'aboutpage'         => 'Project:Omtrent',
 'bugreports'        => 'Foutrapporte',
 'bugreportspage'    => '{{ns:4}}:FoutRapporte',
 'copyright'         => 'Teks is beskikbaar onderhewig aan $1.',
@@ -227,9 +227,9 @@ $messages = array(
 'faqpage'           => '{{ns:4}}:GewildeVrae',
 'helppage'          => '{{ns:help}}:Hulp',
 'mainpage'          => 'Tuisblad',
-'policy-url'        => '{{ns:project}}:Policy',
+'policy-url'        => 'Project:Policy',
 'portal'            => 'Gebruikersportaal',
-'portal-url'        => '{{ns:project}}:Gebruikersportaal',
+'portal-url'        => 'Project:Gebruikersportaal',
 'privacy'           => 'Privaatheidsbeleid',
 'privacypage'       => 'Project:Privaatheidsbeleid',
 'sitesupport'       => 'Skenkings',

@@ -10,6 +10,7 @@
  * @author G - ג
  * @author Nike
  * @author Consta
+ * @author Siebrand
  */
 
 /**
@@ -408,7 +409,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Σχετικά με τον ιστότοπο {{SITENAME}}',
-'aboutpage'         => '{{ns:4}}:Σχετικά',
+'aboutpage'         => 'Project:Σχετικά',
 'bugreports'        => 'Αναφορές σφαλμάτων',
 'bugreportspage'    => '{{ns:4}}:Αναφορά_σφάλματος',
 'copyright'         => 'Το περιεχόμενο είναι διαθέσιμο σύμφωνα με την $1.',
