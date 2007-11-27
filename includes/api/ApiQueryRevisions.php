@@ -253,19 +253,21 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$diff = new Diff($oldText, $newText);
 				$r['from'] = $previousRevID;
 				ApiResult::setContent($r, $wgContLang->unsegmentForDiff($this->formatter->format($diff)));
-				$diffArr[$revid] = $r;
+				$this->diffArr[$revid] = $r;
 								
 				$previousRevID = $revid;
 				$oldText = $newText;
 			}
 
-			# Populate the query result with the contents of $diffArr.
-			$knownrevs = array_keys($diffArr);
-			$i = count($knownrevs) - 1;
-			foreach($data['query']['pages'][$pageID]['revisions'] as &$rev) {
-				if ( $i >= 0 && isset ( $diffArr[$knownrevs[$i]] ) )
-					$rev['difftoprev'] = $diffArr[$knownrevs[$i]];
-				$i --;
+			if ( $this->diffArr ) {
+				# Populate the query result with the contents of $this->diffArr.
+				$knownrevs = array_keys($this->diffArr);
+				$i = count($knownrevs) - 1;
+				foreach($data['query']['pages'][$pageID]['revisions'] as &$rev) {
+					if ( $i >= 0 && isset ( $this->diffArr[$knownrevs[$i]] ) )
+						$rev['difftoprev'] = $this->diffArr[$knownrevs[$i]];
+					$i --;
+				}
 			}
 		}
 		
