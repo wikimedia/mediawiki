@@ -692,6 +692,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'newarticletext'            => 'Hier den Text der neuen Seite eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
 'anontalkpagetext'          => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren.''",
 'noarticletext'             => '(Diese Seite enthält momentan noch keinen Text)',
+'userpage-userdoesnotexist' => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'clearyourcache'            => "'''Hinweis:''' Leere nach dem Speichern den Browser-Cache, um die Änderungen zu sehen: '''Mozilla/Firefox:''' ''Shift-Strg-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''⌘-R'', '''Konqueror:''' ''Strg-R''.",
 'usercssjsyoucanpreview'    => '<strong>Tipp:</strong> Benutze den Vorschau-Button, um dein neues css/js vor dem Speichern zu testen.',
 'usercsspreview'            => "== Vorschau Ihres Benutzer-CSS ==

@@ -623,17 +623,29 @@ class EditPage {
 	 */
 	private function showIntro() {
 		global $wgOut, $wgUser;
-		if( $this->suppressIntro ) return;
+		if( $this->suppressIntro )
+			return;
+
+		# Show a warning message when someone creates/edits a user (talk) page but the user does not exists
+		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
+			$id = User::idFromName( $this->mTitle->getBaseText() );
+			$ip = User::isIP( $this->mTitle->getBaseText() );
+
+			if ( $id == 0 && !$ip ) {
+				$wgOut->addWikiText( '<div class="mw-userpage-userdoesnotexist error">' . wfMsg( 'userpage-userdoesnotexist', $this->mTitle->getBaseText() ) . '</div>' );
+			}
+		}
+
 		if( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
 			if( $wgUser->isLoggedIn() ) {
-				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
+				$wgOut->addWikiText( '<div class="mw-newarticletext">' . wfMsg( 'newarticletext' ) . '</div>' );
 			} else {
-				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
+				$wgOut->addWikiText( '<div class="mw-newarticletextanon">' . wfMsg( 'newarticletextanon' ) . '</div>' );
 			}
 			$this->showDeletionLog( $wgOut );
 		}
 	}
-	
+
 	/**
 	 * Attempt to show a custom editing introduction, if supplied
 	 *
