@@ -245,16 +245,16 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Ynglŷn â {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Ynglŷn â {{SITENAME}}',
+'aboutpage'         => 'Project:Ynglŷn â {{SITENAME}}',
 'bugreports'        => 'Adroddiadau diffygion',
-'bugreportspage'    => '{{ns:project}}:Adroddiadau diffygion',
+'bugreportspage'    => 'Project:Adroddiadau diffygion',
 'copyright'         => "Mae'r cynnwys ar gael o dan $1.",
 'copyrightpagename' => 'Hawlfraint {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Hawlfraint',
 'currentevents'     => 'Digwyddiadau presennol',
 'currentevents-url' => 'Materion cyfoes',
 'disclaimers'       => 'Gwadiadau',
-'disclaimerpage'    => '{{ns:project}}:Gwadiad Cyffredinol',
+'disclaimerpage'    => 'Project:Gwadiad Cyffredinol',
 'edithelp'          => 'Help gyda golygu',
 'edithelppage'      => '{{ns:project}}:Golygu',
 'faq'               => 'Cwestiynau cyffredin',
@@ -291,7 +291,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'restorelink'             => '$1 golygiadau wedi eu dileuo',
 'feedlinks'               => 'Porthiant:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Erthygl',
 'nstab-user'      => 'Tudalen defnyddiwr',
 'nstab-media'     => 'Tudalen cyfrwng',
@@ -880,6 +880,9 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 # List redirects
 'listredirects' => "Rhestru'r ail-gyfeiriadau",
 
+# Random page
+'randompage' => 'Erthygl hapgyrch',
+
 # Random redirect
 'randomredirect' => 'Tudalen ailgyfeirio ar hap',
 
@@ -939,7 +942,6 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'mostrevisions'           => "Erthyglau gyda'r nifer mwyaf o ddiwygiadau",
 'allpages'                => 'Pob tudalen',
 'prefixindex'             => 'Mynegai rhagddodiad',
-'randompage'              => 'Erthygl hapgyrch',
 'shortpages'              => 'Erthyglau byr',
 'longpages'               => 'Erthyglau hir',
 'deadendpages'            => 'Tudalennau heb gysylltiadau ynddynt',

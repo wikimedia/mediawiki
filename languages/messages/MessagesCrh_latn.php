@@ -5,6 +5,7 @@
  *
  * @author Alessandro
  * @author AlefZet
+ * @author Siebrand
  */
 
 $fallback8bitEncoding = 'windows-1254';
@@ -105,7 +106,7 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bağlantılarnıñ altını sız',
-'tog-highlightbroken'         => 'Boş bağlantılarnı <a href="" class="new">bu şekilde</a> (alternativ: bu şekilde<a href="" class="internal">?</a>) köster.',
+'tog-highlightbroken'         => 'Boş bağlantılarnı <a href="" class="new">bu şekilde</a> (alternativ: <a href="" class="internal">bu şekilde</a>) köster.',
 'tog-justify'                 => 'Paragraf eki yaqqa yaslayaraq tiz',
 'tog-hideminor'               => 'Kiçik deñişikliklerni "Soñki deñişiklikler" saifesinde gizle',
 'tog-extendwatchlist'         => 'Kelişken közetüv cedveli',
@@ -115,13 +116,13 @@ $messages = array(
 'tog-editondblclick'          => 'Saifeni çift basaraq deñiştirmege başla (JavaScript)',
 'tog-editsection'             => 'Bölümlerni [deñiştir] bağlantılarnı ile deñiştirme aqqı ber',
 'tog-editsectiononrightclick' => 'Bölüm serlevasına oñ basaraq bölümde deñişiklikke izin ber.(JavaScript)',
-'tog-showtoc'                 => 'İçindekiler tablosını yap (3 daneden ziyade serlevası olğan saifeler içün)',
+'tog-showtoc'                 => 'Münderice cedveli köster (3 daneden ziyade serlevası olğan saifeler içün)',
 'tog-rememberpassword'        => 'Parolni hatırla',
 'tog-editwidth'               => 'Yazuv fezası tam kenişlikte olsun',
 'tog-watchcreations'          => 'Yaratqan saifelerimni közetüv cedvelime ekle',
 'tog-watchdefault'            => 'Deñişiklik yapılğan saifeni közetüv cedveline ekle',
 'tog-minordefault'            => "Deñişiklikni 'kiçik deñişiklik' olaraq seçili ketir",
-'tog-previewontop'            => 'Og baquvnı yazuv fezanıñ üstünde köster',
+'tog-previewontop'            => 'Ög baquvnı yazuv fezanıñ üstünde köster',
 'tog-previewonfirst'          => 'Deñiştirmede ög baquvnı köster',
 'tog-nocache'                 => 'Saifelerni hatırlama',
 'tog-enotifwatchlistpages'    => 'Saife deñişikliklerinde maña e-mail yolla',
@@ -136,6 +137,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'Deñişiklik qısqa tarifini boş taşlağanda meni tenbile',
 'tog-watchlisthideown'        => 'Közetüv cedvelimden menim deñişikliklerimni gizle',
 'tog-watchlisthidebots'       => 'Közetüv cedvelimden bot deñişikliklerini gizle',
+'tog-watchlisthideminor'      => 'Közetüv cedvelimden kiçik deñişikliklerni gizle',
 
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
@@ -190,7 +192,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Saife kategoriyaları',
-'pagecategories'        => '{{PLURAL:$1|Saife kategoriyası|Saife kategoriyaları}}',
+'pagecategories'        => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
 'category_header'       => '"$1" kategoriyasındaki saifeler',
 'subcategories'         => 'Alt kategoriyalar',
 'category-media-header' => '"$1" kategoriyasındaki media faylları',
@@ -200,7 +202,7 @@ $messages = array(
 'mainpagetext' => "<big>'''Mediaviki muvafaqiyetnen quruldı.'''</big>",
 
 'about'          => 'Aqqında',
-'article'        => 'Maqale',
+'article'        => 'Saife',
 'newwindow'      => '(yañı bir pencerede açılır)',
 'cancel'         => 'Lâğu',
 'qbfind'         => 'Tap',
@@ -264,24 +266,24 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} aqqında',
-'aboutpage'         => '{{ns:project}}:Aqqında',
-'bugreports'        => 'Hata raportları',
-'bugreportspage'    => '{{ns:project}}:Hata raportları',
+'aboutpage'         => 'Project:Aqqında',
+'bugreports'        => 'Hatalar aqqında eabatlar',
+'bugreportspage'    => 'Project:Hatalar aqqında esabatlar',
 'copyright'         => 'Malümat $1 binaen keçile bile.',
 'copyrightpagename' => '{{SITENAME}} müellif aqları',
 'copyrightpage'     => 'Project:Muellif aqları',
 'currentevents'     => 'Ağımdaki vaqialar',
 'currentevents-url' => 'Ağımdaki vaqialar',
 'disclaimers'       => 'Cevapkârlıqnı qabul etmeyim',
-'disclaimerpage'    => '{{ns:project}}:Umumiy Malümat Muqavelesi',
+'disclaimerpage'    => 'Project:Umumiy Malümat Muqavelesi',
 'edithelp'          => 'Nasıl deñiştirilir?',
 'edithelppage'      => '{{ns:help}}:Saife nasıl deñiştirilir',
 'faq'               => 'Sıq berilgen sualler',
 'faqpage'           => '{{ns:project}}:Sıq berilgen sualler',
-'helppage'          => '{{ns:help}}:İçindekiler',
+'helppage'          => '{{ns:help}}:Münderice',
 'mainpage'          => 'Baş Saife',
 'portal'            => 'Toplulıq portalı',
-'portal-url'        => '{{ns:project}}:Toplulıq portalı',
+'portal-url'        => 'Project:Toplulıq portalı',
 'privacy'           => 'Gizlilik esası',
 'privacypage'       => '{{ns:project}}:Gizlilik esası',
 'sitesupport'       => 'Bağışlar',
@@ -326,29 +328,30 @@ $messages = array(
 Bar olğan bütün mahsus saifelerni [[{{ns:special}}:Specialpages]] saifesinde körip olursıñız.",
 
 # General errors
-'error'            => 'Hata',
-'databaseerror'    => 'Malümat bazasınıñ hatası',
-'dberrortext'      => 'Malümat bazasınıñ hatası.
+'error'              => 'Hata',
+'databaseerror'      => 'Malümat bazasınıñ hatası',
+'dberrortext'        => 'Malümat bazasına hata oldı.
 Bu bir içki hatası ola bile.
 "<tt>$2</tt>" funktsiyasından deñengen soñki sorğulama:
 <blockquote><tt>$1</tt></blockquote>.
-MySQL\'niñ raport etkeni hata "<tt>$3: $4</tt>".',
-'cachederror'      => 'Aşağıdaki, siz istegen saifeniñ keşirlengen köpiyasıdır ve eskirgen ola bile.',
-'readonly'         => 'Malümat bazası kilitlendi',
-'readonlytext'     => 'Malümat bazası adiy baqım/yañıdan tamir etüv (restavratsiya) çalışmaları sebebinden, muvaqqat kiriş ve deñişiklik yapmağa qapatıldı. Qısqa müddet soñ normalge dönecektir.
+MySQL-niñ esabat etkeni hata "<tt>$3: $4</tt>".',
+'cachederror'        => 'Aşağıdaki, siz istegen saifeniñ keşirlengen köpiyasıdır ve eskirgen ola bile.',
+'readonly'           => 'Malümat bazası kilitlendi',
+'readonlytext'       => 'Malümat bazası adiy baqım/yañıdan tamir etüv (restavratsiya) çalışmaları sebebinden, muvaqqat kiriş ve deñişiklik yapmağa qapatıldı. Qısqa müddet soñ normalge dönecektir.
 
-Malümat bazasını kilitlegen öperatornıñ açıqlaması: $1',
-'internalerror'    => 'İçki hata',
-'unexpected'       => 'beklenmegen deger: "$1"="$2".',
-'badarticleerror'  => 'Siz yapmağa istegen işlev keçersizdir.',
-'cannotdelete'     => 'Belgilengen saife ya da körüniş yoq etilip olamadı. (başqa bir qullanıcı tarafından yoq etilgen ola bilir).',
-'badtitle'         => 'Keçersiz serleva',
-'perfdisabled'     => 'Afu etiñiz! Bu hususiyet, malümat bazasını qullanılamaycaq derecede yavaşlatqanı içün, muvaqqat qullanımdan çıqarıldı.',
-'perfcached'       => 'Malümatlar daa evelceden azırlanğan ola bilir. Bu sebepten eskirgen ola bilir!',
-'perfcachedts'     => 'Aşağıda saqlanğan malümat bulunmaqta, soñki yañaruv zamanı: $1.',
-'viewsource'       => 'HTML kodunı köster',
-'viewsourcefor'    => '$1 içün',
-'editinginterface' => "'''Tenbi''': Mediaviki sistema beyanatılı bir saifeni deñiştirmektesiñiz. Bu saifedeki deñişiklikler qullanıcı interfeys körünişini diger qullanıcılar içün de deñiştirecektir.",
+Malümat bazasını kilitlegen operatornıñ açıqlaması: $1',
+'internalerror'      => 'İçki hata',
+'internalerror_info' => 'İçki hata: $1',
+'unexpected'         => 'beklenmegen deger: "$1"="$2".',
+'badarticleerror'    => 'Siz yapmağa istegen işlev keçersizdir.',
+'cannotdelete'       => 'Belgilengen saife ya da körüniş yoq etilip olamadı. (başqa bir qullanıcı tarafından yoq etilgen ola bilir).',
+'badtitle'           => 'Keçersiz serleva',
+'perfdisabled'       => 'Afu etiñiz! Bu hususiyet, malümat bazasını qullanılamaycaq derecede yavaşlatqanı içün, muvaqqat qullanımdan çıqarıldı.',
+'perfcached'         => 'Malümatlar daa evelceden azırlanğan ola bilir. Bu sebepten eskirgen ola bilir!',
+'perfcachedts'       => 'Aşağıda saqlanğan malümat bulunmaqta, soñki yañaruv zamanı: $1.',
+'viewsource'         => 'HTML kodunı köster',
+'viewsourcefor'      => '$1 içün',
+'editinginterface'   => "'''Tenbi''': Mediaviki sistema beyanatılı bir saifeni deñiştirmektesiñiz. Bu saifedeki deñişiklikler qullanıcı interfeys körünişini diger qullanıcılar içün de deñiştirecektir.",
 
 # Login and logout pages
 'logouttitle'                => 'Oturımnı qapat',
@@ -396,13 +399,13 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'nocookieslogin'             => '{{SITENAME}} "cookies" qullanmaqta. Sizde bu funktsiya qapalı vaziyettedir. "Cookies" funktsiyasını açıp tekrar tırışıp baqıñız.',
 'noname'                     => 'Qullanıcı adını belgilemediñiz.',
 'loginsuccesstitle'          => 'Kiriş yapıldı',
-'loginsuccess'               => "'''$1 adınen {{SITENAME}} çalışa bilesiñiz.'''",
+'loginsuccess'               => "'''$1 adınen {{SITENAME}} saytında çalışa bilesiñiz.'''",
 'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñ ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
 'nosuchusershort'            => '"$1" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirgen/Belgilegen paroliñiz yañlıştır.',
 'wrongpasswordempty'         => 'Boş parol kirmeñiz/belgilemeñiz.',
-'passwordtooshort'           => 'Paroliñiz pek qısqa. Eñ az $1 ariften ve/â da raqamdan ibaret olmalı.',
+'passwordtooshort'           => 'Paroliñiz pek qısqa. Eñ az $1 ariften ve/ya da raqamdan ibaret olmalı.',
 'mailmypassword'             => 'Yañı parol yiber',
 'passwordremindertitle'      => '{{grammar:genitive|{{SITENAME}}}} qullanıcınıñ parol hatırlatuvı',
 'passwordremindertext'       => 'Birev (er alda bu sizsiñiz) $1 IP adresinden yañı qullanıcı {{grammar:genitive|{{SITENAME}}}} ($4) parolini talap etti.
@@ -472,15 +475,13 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'accmailtitle'              => 'Parol yollandı',
 'accmailtext'               => '$1 içün parol mında yollandı: $2.',
 'newarticle'                => '(Yañı)',
-'newarticletext'            => "Siz bu bağlantınen şimdilik yoq olğan maqlege avuştıñız. Yañı bir saife yaratmaq içün aşağıda
-bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [[{{ns:help}}:Ârdım|malümat saifesine]]
-baqıñız). Bu saifege tesadufen avuşqan olsañız, brauzeriñizdeki '''keri''' dögmesine basıñız.",
+'newarticletext'            => "Siz bu bağlantınen şimdilik yoq olğan saifege avuştıñız. Yañı bir saife yaratmaq içün aşağıda bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [[{{MediaWiki:Helppage}}|yardım saifesine]] baqıñız). Bu saifege tesadüfen avuşqan olsañız, brauzeriñizdeki '''keri''' dögmesine basıñız.",
 'anontalkpagetext'          => "----'' Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını
 açmağan anonim qullanıcığa mensüptir. İdentefikatsiya içün IP adres işletile. Eger siz anonim
 qullanıcı olsañız ve sizge kelgen beyanlarnı yañlıştan kelgenini belleseñiz (bir IP adresten
 bir qaç qullanıcı faydalanabileler), lütfen artıq bunıñ kibi qarışıqlıq olmasın
 dep [[Slujebnaya:Userlogin|oturım açıñız]].''",
-'noarticletext'             => 'Bu saife boştır. Bu serlevanı diger saifelerde [[{{ns:special}}:Search/{{PAGENAME}}|qıdırabilesiñiz]] ya da bu saifeni siz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazabilesiñiz].',
+'noarticletext'             => 'Bu saife boştır. Bu serlevanı başqa saifelerde [[{{ns:special}}:Search/{{PAGENAME}}|qıdıra bilesiñiz]] ya da bu saifeni özüñiz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yaza bilesiñiz].',
 'clearyourcache'            => "'''İhtar:''' Ayarlarıñıznı (nastroykalarıñıznı) saqlağandan soñ, brauzeriñizniñ keşini de temizlemek kereksiñiz: '''Mozilla / Firefox / Safari:''' ''Shift'' basılı ekende saifeni yañıdan yükleyerek ya da ''Ctrl-Shift-R'' yaparaq (Apple Mac içün ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Tek seifeni yañıdan yükle klavişasına basaraq.",
 'usercssjsyoucanpreview'    => "<strong>Tevsiye:</strong> Saifeni saqlamazdan evel <font style=\"border: 1px solid #0; background: #EEEEEE; padding : 2px\">'''ög baquvnı köster'''</font>'ge basaraq yapqan yañı saifeñizni közden keçiriñiz.",
 'usercsspreview'            => "'''Tek test etesiñiz ya da ög baquv köresiñiz - qullanıcı CSS faylı şimdilik saqlanmadı.'''",
@@ -514,7 +515,7 @@ Qoşqan isseñizniñ başqa insanlar tarafından acımasızca deñiştirilmesini
 Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına, ya da cemaatqa açıq bir menbadan ya da başqa bir azat menbadan köpirlengenine garantiya bergen olasıñız.<br />
 <strong><center>MUELLİF AQQI İLE QORÇALANĞAN İÇ BİR ÇALIŞMANI MINDA EKLEMEÑİZ!</center></strong>",
 'longpagewarning'           => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir; bazı brauzerler deñişiklik yapqan vaqıtta 32kb ve üstü büyükliklerde problemalar yaşay bilir. Saifeni bölümlerge ayırmağa tırışıñız.</strong>',
-'readonlywarning'           => '<strong>DİQQAT: Baqım sebebi ile malümat bazası şu ande kilitlidir. Bu sebepten deñişiklikleriñiz şu ande saqlanamamaqta. Yazğanlarıñıznı başqa bir editorge alıp saqlay bilir ve daa soñ tekrar mında ketirip saqlay bilirsiñiz</strong>',
+'readonlywarning'           => '<strong>DİQQAT: Baqım sebebi ile malümat bazası şu ande kilitlidir. Bu sebepten deñişiklikleriñiz şu ande saqlanamamaqta. Yazğanlarıñıznı başqa bir editor programmasına alıp saqlay bilir ve daa soñ tekrar mında ketirip saqlay bilirsiñiz</strong>',
 'protectedpagewarning'      => 'TENBİ: Bu saife qorçalav altına alınğandır ve yalıñız administrator olğanlar tarafından deñiştirile bilir. Bu saifeni deñiştirgen vaqıtta lütfen [[Project:Qorçalav altına alınğan saife|qorçalavlı saife qaidelerini]] işletiñiz.',
 'semiprotectedpagewarning'  => "'''Tenbi''': Bu saife tek registrirlengen qullanıcı olğanlar tarafından deñiştirile bilir.",
 'templatesused'             => 'Bu saifede qullanılğan şablonlar:',
@@ -533,8 +534,8 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'next'                => 'soñraki',
 'last'                => 'soñki',
 'orig'                => 'asıl',
-'histlegend'          => '(farq)  = ağımdaki versiya ile aradaki farq,
-(soñki)  = evelki versiya ile aradaki farq, K= kiçik deñişiklik',
+'histlegend'          => "(farq) = ağımdaki versiya ile aradaki farq,
+(soñki) = evelki versiya ile aradaki farq, '''k''' = kiçik deñişiklik",
 'deletedrev'          => '[yoq etildi]',
 'histfirst'           => 'Eñ eski',
 'histlast'            => 'Eñ yañı',
@@ -559,9 +560,9 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 
 # Search results
 'searchresults'    => 'Qıdıruv neticeleri',
-'searchresulttext' => '{{SITENAME}} içinde qıdıruv yapmaq hususında malümat almaq içün [[{{MediaWiki:Helppage}}|{{int:help}}]] saifesine baqa bilirsiñiz.',
+'searchresulttext' => '{{SITENAME}} içinde qıdıruv yapmaq hususında malümat almaq içün [[{{MediaWiki:Helppage}}|{{int:help}}]] saifesine baqa bilesiñiz.',
 'searchsubtitle'   => "Qıdırılğan: '''[[:$1]]'''",
-'noexactmatch'     => "'''\"\$1\" serlevalı bir saife tapılamadı.''' Bu saifeniñ yazılmasınıñ siz [[:\$1|başlata bilirsiñiz]].",
+'noexactmatch'     => "'''\"\$1\" serlevalı bir saife tapılamadı.''' Bu saifeniñ yazılmasını siz [[:\$1|başlata bilesiñiz]].",
 'titlematches'     => 'Maqale adı bir kele',
 'notitlematches'   => 'İç bir serlevada tapılamadı',
 'textmatches'      => 'Saife metni bir kele',
@@ -575,6 +576,8 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 
 # Preferences page
 'preferences'           => 'Ayarlar (nastroykalar)',
+'mypreferences'         => 'Ayarlarım',
+'prefs-edits'           => 'Yapqan deñişiklik sayısı:',
 'prefsnologin'          => 'Oturım açıq degil',
 'qbsettings'            => 'Vızlı irişi sutun ayarları (nastroykaları)',
 'changepassword'        => 'Parol deñiştir',
@@ -589,9 +592,9 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'prefs-watchlist'       => 'Közetüv cedveli',
 'prefs-watchlist-days'  => 'Közetüv cedvelinde kösterilecek kün sayısı:',
 'prefs-watchlist-edits' => 'Kenişletilgen közetüv cedvelinde kösterilecek deñişiklik sayısı:',
-'prefs-misc'            => 'Diger ayarlar (nastroykalar)',
+'prefs-misc'            => 'Diger ayarlar',
 'saveprefs'             => 'Deñişikliklerni saqla',
-'resetprefs'            => 'Ayarlarnı (Nastroykalarnı) ilk turuşına ketir',
+'resetprefs'            => 'Ayarlarnı ilk turuşına ketir',
 'oldpassword'           => 'Eski parol',
 'newpassword'           => 'Yañı parol',
 'retypenew'             => 'Yañı parolnen tekrar kiriñiz',
@@ -602,6 +605,7 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'resultsperpage'        => 'Saifede kösterilecek tapılğan maqale sayısı',
 'contextlines'          => 'Tapılğan maqale içün ayrılğan satır sayısı',
 'contextchars'          => 'Satırdaki arif sayısı',
+'recentchangesdays'     => 'Soñki deñişiklikler saifesinde kösterilecek kün sayısı:',
 'recentchangescount'    => 'Soñki deñişiklikler saifesindeki maqale sayısı',
 'savedprefs'            => 'Ayarlar (nastroykalar) saqlandı.',
 'timezonelegend'        => 'Saat quşağı',
@@ -700,7 +704,7 @@ Lütfen keri qaytıñız, fayl isimini deñiştirip yañıdan yükleñiz. [[Imag
 'uploadcorrupt'               => 'Bu fayl ya zararlandı, ya da yañlış rasşireniyeli. Lütfen faylnı teşkerip yañıdan yüklep baqıñız.',
 'uploadvirus'                 => 'Bu fayl viruslıdır! $1 baqıñız',
 'sourcefilename'              => 'Yüklemek istegeniñiz fayl',
-'destfilename'                => '{{SITENAME}} saytındaki fayl adı',
+'destfilename'                => 'Faylnıñ istenilgen adı',
 'watchthisupload'             => 'Bu faylnı közetüv cedveline kirset',
 'filewasdeleted'              => 'Bu isimde bir fayl mevcüt edi, amma yoq etilgen edi. Lütfen tekrar yüklemeden evel $1 teşkeriñiz.',
 
@@ -864,7 +868,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 
 # Watchlist
 'watchlist'            => 'Közetüv cedveli',
-'mywatchlist'          => 'Közetüv cedveli',
+'mywatchlist'          => 'Közetüv cedvelim',
 'watchlistfor'         => "('''$1'''degen qullanıcınıñ)",
 'nowatchlist'          => 'Siziñ közetüv cedveliñiz boştır.',
 'watchlistanontext'    => 'Közetüv cedvelini baqmaq ya da tarir  etmek içün $1 borclusıñız.',
@@ -986,7 +990,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 # Namespace form on various pages
 'namespace'      => 'İsim fezası:',
 'invert'         => 'Seçili harıçındakilerni köster',
-'blanknamespace' => '(Baş)',
+'blanknamespace' => '(Esas)',
 
 # Contributions
 'contributions' => 'Qullanıcınıñ isseleri',
@@ -1018,7 +1022,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 'ipbreason'          => 'Sebep',
 'ipbsubmit'          => 'Bu qullanıcını ban et',
 'ipbother'           => 'Farqlı zaman',
-'ipboptions'         => '15 daqqa:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 afta:1 week,1 ay:1 month,muddetsiz:infinite',
+'ipboptions'         => '2 saat:2 hours,1 kün:1 day,3 kün:3 days,1 afta:1 week,2 afta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,müddetsiz:infinite',
 'ipbotheroption'     => 'farqlı',
 'badipaddress'       => 'Keçersiz IP adresi',
 'blockipsuccesssub'  => 'IP adresni ban etüv işlevi muvafaqiyetli oldı',
@@ -1286,9 +1290,9 @@ Lütfen bularnı qolnen birleştiriñiz.'''",
 'edit-externally-help' => 'Daa fazla malümat içün metadaki [http://meta.wikimedia.org/wiki/Help:External_editors] (İnglizce) saifesine baqa bilesiñiz.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Episini köster',
+'recentchangesall' => 'episini',
 'imagelistall'     => 'Cümlesi',
-'watchlistall2'    => 'Episini köster',
+'watchlistall2'    => 'episini',
 'namespacesall'    => 'Epsi',
 'monthsall'        => 'Episi',
 

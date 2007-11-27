@@ -6,6 +6,7 @@
  * @author SPQRobin
  * @author Svetko
  * @author Nike
+ * @author Siebrand
  */
 
 $separatorTransformTable = array(
@@ -144,13 +145,13 @@ $messages = array(
 'currentevents' => 'Текѫща събыти',
 'mainpage'      => 'Главьна страница',
 'portal'        => 'Обьщины съвѣтъ',
-'portal-url'    => '{{ns:project}}:Обьщени съвѣтъ',
+'portal-url'    => 'Project:Обьщени съвѣтъ',
 'sitesupport'   => 'Дани',
 
 'editsection' => 'исправи',
 'editold'     => 'исправи',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'статї',
 'nstab-user'     => 'польѕеватель',
 'nstab-special'  => 'Нарочьна',
@@ -213,6 +214,9 @@ $messages = array(
 # File deletion
 'filedelete-submit' => 'ничьжи',
 
+# Random page
+'randompage' => 'Люба страница',
+
 # Statistics
 'statistics'    => 'Статїстїка',
 'sitestats'     => '{{SITENAME}} статїстїка',
@@ -221,7 +225,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'allpages'          => 'Вьсѩ страницѧ',
-'randompage'        => 'Люба страница',
 'specialpages'      => 'Нарочьны страницѧ',
 'newpages'          => 'Новы статїѩ',
 'newpages-username' => 'Польѕевател имѧ:',

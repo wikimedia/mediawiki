@@ -201,14 +201,14 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'       => 'Ò {{SITENAME}}',
-'aboutpage'       => '{{ns:project}}:Ò_{{SITENAME}}',
+'aboutpage'       => 'Project:Ò_{{SITENAME}}',
 'copyright'       => 'Zamkłosc hewòtny starnë je ùżëczónô wedle reglów $1.',
 'disclaimers'     => 'Prawné zastrzedżi',
-'disclaimerpage'  => '{{ns:project}}:General_disclaimer',
+'disclaimerpage'  => 'Project:General_disclaimer',
 'edithelp'        => 'Pòmòc do edicëji',
 'mainpage'        => 'Przédnô starna',
 'portal'          => 'Pòrtal wëcmaniznë',
-'portal-url'      => '{{ns:project}}:Pòrtal wëcmaniznë',
+'portal-url'      => 'Project:Pòrtal wëcmaniznë',
 'sitesupport-url' => '{{ns:project}}:Wspiarcé dlô starnë',
 
 'badaccess' => 'Procëmprawne ùdowierzenie',
@@ -227,7 +227,7 @@ $messages = array(
 'hidetoc'                 => 'zatacë',
 'viewdeleted'             => 'Òbaczë $1',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
 'nstab-user'      => 'Starna brëkòwnika',
 'nstab-special'   => 'Specjalnô',
@@ -418,7 +418,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 
 # Recent changes
 'recentchanges'                  => 'Slédné edicëje',
-'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:Faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
+'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
 'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
 'rcnotefrom'                     => 'Niżi są zmianë òd <b>$2</b> (pòkazóné do <b>$1</b>).',
 'rclistfrom'                     => 'Pòkażë nowé zmianë òd $1',
@@ -472,7 +472,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'nolinkstoimage' => 'Niżódnô starna nie òdwòłëje sã do negò lopka.',
 'imagelist_user' => 'Brëkòwnik',
 
-# Random pages
+# Random page
 'randompage' => 'Kawlowô starna',
 
 # Statistics

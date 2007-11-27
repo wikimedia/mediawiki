@@ -1,9 +1,10 @@
 <?php
-/** Boarisch (Boarisch)
+/** Bavarian (Boarisch)
  *
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $fallback = 'de';
@@ -22,13 +23,13 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Üba {{SITENAME}}',
-'aboutpage' => '{{ns:project}}:Üba_{{SITENAME}}',
+'aboutpage' => 'Project:Üba_{{SITENAME}}',
 'mainpage'  => 'Hauptsaitn',
 
 'youhavenewmessagesmulti' => 'Sie ham neie Nachrichten: $1',
 
 # General errors
-'filedeleteerror' => 'De Datei $1 håt net glöscht wern kinna.',
+'filedeleteerror' => 'De Datei „$1“ håt net glöscht wern kinna.',
 
 # Login and logout pages
 'yourname'                   => 'Benutzernam:',

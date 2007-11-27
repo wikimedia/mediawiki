@@ -13,6 +13,7 @@
  * @author Agurzil
  * @author G - ג
  * @author Chaos
+ * @author Siebrand
  */
 
 $linkPrefixExtension = true;
@@ -494,25 +495,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'حول {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:حول',
+'aboutpage'         => 'Project:حول',
 'bugreports'        => 'بلاغ الأخطاء',
-'bugreportspage'    => '{{ns:project}}:بلاغ أخطاء',
+'bugreportspage'    => 'Project:بلاغ أخطاء',
 'copyright'         => 'المحتوى متوفر تحت $1.',
 'copyrightpagename' => 'حقوق النسخ في {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:حقوق النسخ',
 'currentevents'     => 'الأحداث الجارية',
 'currentevents-url' => 'الأحداث الجارية',
 'disclaimers'       => 'عدم مسؤولية',
-'disclaimerpage'    => '{{ns:project}}:عدم مسؤولية عام',
+'disclaimerpage'    => 'Project:عدم مسؤولية عام',
 'edithelp'          => 'مساعدة التحرير',
 'edithelppage'      => '{{ns:help}}:تحرير',
 'faq'               => 'الأسئلة الأكثر تكرارا',
 'faqpage'           => '{{ns:project}}:أسئلة متكررة',
 'helppage'          => '{{ns:help}}:محتويات',
 'mainpage'          => 'الصفحة الرئيسية',
-'policy-url'        => '{{ns:project}}:سياسة',
+'policy-url'        => 'Project:سياسة',
 'portal'            => 'بوابة المجتمع',
-'portal-url'        => '{{ns:project}}:بوابة المجتمع',
+'portal-url'        => 'Project:بوابة المجتمع',
 'privacy'           => 'سياسة الخصوصية',
 'privacypage'       => '{{ns:project}}:سياسة الخصوصية',
 'sitesupport'       => 'التبرعات',
@@ -825,6 +826,7 @@ $1 ساعة.',
 إذا كانت زيارتك لهذه الصفحة بالخطأ، اضغط على زر ''رجوع'' في متصفح الإنترنت لديك.",
 'anontalkpagetext'          => "----''هذه صفحة نقاش لمستخدم مجهول لم يقم بإنشاء حساب بعد أو لا يستعمل ذلك الحساب. لذا فيجب علينا استعمال رقم الأيبي للتعرف عليه/عليها. مثل هذا العنوان يمكن أن يشترك فيه عدة مستخدمين. لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:Userlogin|أنشيء حسابا أو سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
 'noarticletext'             => 'لا يوجد حاليا أي نص في هذه الصفحة، يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى or [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة].',
+'userpage-userdoesnotexist' => 'حساب المستخدم "$1" غير مسجل. من فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.',
 'clearyourcache'            => "ملاحظة: قم بإعادة تحميل الصفحة لرؤية التغييرات. إذا لم تظهر التغييرات بعد إعادة التحميل، قد يكون متصفح الإنترنت الذي تستخدمه يقوم بعرض نسخة مخزنة سابقا. لتجنب عرض هذه النسخة، قد يلزم أن تقوم بأحد هذه الخطوات:
 * في متصفح '''موزيلا''' أو '''فايرفوكس''' أو '''سفاري''' اضغظ على ''مفتاح Shift'' أثناء قيامك بضغط زر إعادة التحميل (''Refresh'') أو اضغط ''Ctrl-Shift-R'' (''Cmd-Shift-R'' في حاسب أبل).
 * في متصفح '''إنترنت إكسبلورر''' اضغط على مفتاح ''Ctrl'' أثناء قيامك بالنقر على زر إعادة التحميل (''Refresh'') أو اضغط ''Ctrl-F5''.

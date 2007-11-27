@@ -8,6 +8,7 @@
  * @author Nike
  * @author G - ג
  * @author Võrok
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -265,7 +266,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'currentevents'     => 'Sündmused maailmas',
 'currentevents-url' => 'Sündmused maailmas',
 'disclaimers'       => 'Hoiatused',
-'disclaimerpage'    => '{{ns:project}}:Hoiatused',
+'disclaimerpage'    => 'Project:Hoiatused',
 'edithelp'          => 'Redigeerimisjuhend',
 'edithelppage'      => '{{ns:Project}}:Kuidas_lehte_redigeerida',
 'faq'               => 'KKK',

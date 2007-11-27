@@ -4,9 +4,8 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Siebrand
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -124,7 +123,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Ymbe {{SITENAME}}n',
-'aboutpage'         => '{{ns:project}}:Ymbe',
+'aboutpage'         => 'Project:Ymbe',
 'copyright'         => 'Innung biþ gefunden under $1.',
 'currentevents'     => 'Efenealde belimpas',
 'currentevents-url' => '{{ns:project}}:Efenealde belimpas',
@@ -133,7 +132,7 @@ $messages = array(
 'helppage'          => '{{ns:help}}:Innung',
 'mainpage'          => 'Hēafodsīde',
 'portal'            => 'Gemǣnscipe Ingang',
-'portal-url'        => '{{ns:project}}:Gemǣnscipe Ingang',
+'portal-url'        => 'Project:Gemǣnscipe Ingang',
 'sitesupport'       => 'Gieldgiefa',
 
 'versionrequired' => 'Fadunge $1 þæs MediaWicis nēodaþ',
@@ -148,7 +147,7 @@ $messages = array(
 'hidetoc'                 => 'hȳdan',
 'feedlinks'               => 'Flōd:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Gewrit',
 'nstab-user'     => 'Brūcendtramet',
 'nstab-special'  => 'Syndrig',
@@ -355,6 +354,9 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 # Unused templates
 'unusedtemplateswlh' => 'ōðere bendas',
 
+# Random page
+'randompage' => 'Hlīetlic tramet',
+
 # Statistics
 'userstatstext' => "Þǣr sind '''$1''' genemnode brūcend, þāra þe
 '''$2''' (oþþe '''$4%''') sind bewitend (sēo $3).",
@@ -378,7 +380,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'wantedcategories'  => 'Gewilnode floccas',
 'wantedpages'       => 'Gewilnode trametas',
 'allpages'          => 'Trametas',
-'randompage'        => 'Hlīetlic tramet',
 'shortpages'        => 'Scorte trametas',
 'longpages'         => 'Lange trametas',
 'specialpages'      => 'Syndrige trametas',
