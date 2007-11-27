@@ -2,8 +2,10 @@
 /** Somali (Soomaaliga)
  *
  * @addtogroup Language
- * @author Niklas Laxström
- * Translators: Mimursal
+ *
+ * @author Mimursal
+ * @author Nike
+ * @author Siebrand
  */
 
 $messages = array(
@@ -165,7 +167,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Warbixinta {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Warbixin',
+'aboutpage'         => 'Project:Warbixin',
 'copyright'         => 'Qoraalka wuxuu ku salaysanyahay $1.',
 'currentevents'     => 'Dhacdooyinka cusub',
 'currentevents-url' => 'Maxaa cusub',
@@ -176,7 +178,7 @@ $messages = array(
 'helppage'          => '{{ns:help}}:Caawinaad',
 'mainpage'          => 'Bogga Hore',
 'portal'            => 'Bortaalka jaaliyada',
-'portal-url'        => '{{ns:project}}:Bortaalka jaaliyada',
+'portal-url'        => 'Project:Bortaalka jaaliyada',
 'sitesupport'       => 'Tabarucid',
 
 'badaccess' => 'Qalad dhinaca idanka',
@@ -194,7 +196,7 @@ $messages = array(
 'viewdeleted'             => 'Fiiri $1?',
 'feedlinks'               => 'Quudinta wararka:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Maqaal',
 'nstab-user'      => 'Bogga isticmaalaha',
 'nstab-special'   => 'Khaas',
@@ -379,6 +381,9 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'bysize'           => 'hab kala weynaan',
 'shareduploadwiki' => 'Fadlan meeshaa $1 ka fiiri warbixin dheeraad ah.',
 
+# Random page
+'randompage' => 'Ku nasiibso bog',
+
 'brokenredirects-edit'   => '(wax ka bedel)',
 'brokenredirects-delete' => '(tirtir)',
 
@@ -386,7 +391,6 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'lonelypages'       => 'Boggaga agoonta ah',
 'popularpages'      => 'Boggaga caanka ah',
 'allpages'          => 'Dhamaan boggaga',
-'randompage'        => 'Ku nasiibso bog',
 'shortpages'        => 'Boggaga gaagaaban',
 'longpages'         => 'Boggaga dhaadheer',
 'deadendpages'      => 'Boggaga aanan la daba joogin',

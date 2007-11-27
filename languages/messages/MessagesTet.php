@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author MF-Warburg
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -168,11 +169,11 @@ $messages = array(
 'currentevents'     => 'Mamosuk atuál sira',
 'currentevents-url' => '{{ns:project}}:Mamosuk atuál sira',
 'disclaimers'       => 'Avisu legál',
-'disclaimerpage'    => '{{ns:project}}:Avisu legál',
+'disclaimerpage'    => 'Project:Avisu legál',
 'edithelppage'      => '{{ns:help}}:Edita',
 'mainpage'          => 'Pájina Mahuluk',
 'portal'            => 'Portál komunidade nian',
-'portal-url'        => '{{ns:project}}:Portál komunidade nian',
+'portal-url'        => 'Project:Portál komunidade nian',
 'privacy'           => 'Polítika privasidade nian',
 'privacypage'       => '{{ns:project}}:Polítika privasidade nian',
 'sitesupport'       => 'Fó donativu ida',

@@ -5,6 +5,7 @@
  *
  * @author SPQRobin
  * @author G - ג
+ * @author Siebrand
  */
 
 $messages = array(
@@ -94,7 +95,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Surda {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Surda',
+'aboutpage'         => 'Project:Surda',
 'copyright'         => 'Cuntegn disponibel sut $1.',
 'copyrightpagename' => '{{ns:project}}:Resguardar_dretgs_d_autur',
 'copyrightpage'     => '{{ns:project}}:Resguardar_dretgs_d_autur',
@@ -107,7 +108,7 @@ $messages = array(
 'helppage'          => '{{ns:help}}:Cuntegn',
 'mainpage'          => 'Pagina principala',
 'portal'            => 'Portal da {{SITENAME}}',
-'portal-url'        => '{{ns:project}}:Portal da {{SITENAME}}',
+'portal-url'        => 'Project:Portal da {{SITENAME}}',
 'privacy'           => 'Protecziun da datas',
 'privacypage'       => '{{ns:project}}:Protecziun_da_datas',
 'sitesupport'       => 'Donaziuns',
@@ -126,7 +127,7 @@ $messages = array(
 'showtoc'                 => 'mussar',
 'hidetoc'                 => 'zuppar',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artitgel',
 'nstab-user'      => 'Pagina dal utilisader',
 'nstab-special'   => 'Spezial',
@@ -370,6 +371,9 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 # List redirects
 'listredirects' => 'Glista cun tut ils redirects (Weiterleitung)',
 
+# Random page
+'randompage' => 'Artitgel casual',
+
 # Statistics
 'statistics'    => 'Statisticas',
 'sitestats'     => 'Statisticas da {{SITENAME}}',
@@ -406,7 +410,6 @@ La lunghezza da la [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]: ''
 'mostcategories'     => "Artitgels ch'èn en las pli biaras chategorias",
 'mostrevisions'      => 'Artitgels cun las pli biaras revisiuns',
 'allpages'           => 'tut ils *** artitgels',
-'randompage'         => 'Artitgel casual',
 'longpages'          => 'Artitgels lungs',
 'deadendpages'       => 'artitgels senza links interns che mainan anavant',
 'specialpages'       => 'Paginas spezialas',

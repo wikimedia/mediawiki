@@ -140,7 +140,7 @@ $messages = array(
 'edithelppage'      => '{{ns:help}}:Pagbabago',
 'helppage'          => '{{ns:help}}:Nilalaman',
 'mainpage'          => 'Unang Pahina',
-'policy-url'        => '{{ns:project}}:Patakaran',
+'policy-url'        => 'Project:Patakaran',
 'portal'            => 'Puntahan ng pamayanan',
 'portal-url'        => 'Project:Puntahan ng pamayanan',
 'privacy'           => 'Patakaran sa paglilihim',
@@ -165,7 +165,7 @@ $messages = array(
 'hidetoc'                 => 'itago',
 'restorelink'             => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulo',
 'nstab-user'      => 'Pahina ng tagagamit',
 'nstab-media'     => 'Pahina ng midya',
@@ -244,7 +244,7 @@ pinapakita sa ibaba:",
 upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
 
-# Random pages
+# Random page
 'randompage' => 'Random na pahina',
 
 # Statistics
