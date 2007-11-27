@@ -1,8 +1,15 @@
 <?php
 /** Yiddish (ייִדיש)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Yidel
+ * @author Siebrand
+ * @author G - ג
+ * @author Teak
+ * @author Nike
+ */
+
 $fallback = 'he';
 
 $namespaceNames = array(
@@ -238,25 +245,25 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'איבער {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:איבער',
+'aboutpage'         => 'Project:איבער',
 'bugreports'        => 'באג באריכטען',
-'bugreportspage'    => '{{ns:project}}:באג באריכטן',
+'bugreportspage'    => 'Project:באג באריכטן',
 'copyright'         => 'אינהאַלט איז עוועיליבל אונטער $1.',
 'copyrightpagename' => 'קאפירעכטן פון {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:קאפירעכטן',
 'currentevents'     => 'אקטועלע געשענישען',
 'currentevents-url' => '{{ns:project}}:אקטועלע געשענישען',
 'disclaimers'       => 'געזעצליכע אויפקלערונג',
-'disclaimerpage'    => '{{ns:project}}:געזעצליכע אויפקלערונג',
+'disclaimerpage'    => 'Project:געזעצליכע אויפקלערונג',
 'edithelp'          => 'הילף וויאזוי צו ענדערן',
 'edithelppage'      => '{{ns:help}}:ענדערן',
 'faq'               => 'מערסטע געפרעגטע פראגעס',
 'faqpage'           => '{{ns:project}}:מערסטע געפרעגט פראגעס',
 'helppage'          => 'Help:אינהאַלט',
 'mainpage'          => 'הויפט זייט',
-'policy-url'        => '{{ns:project}}:פאליסי',
+'policy-url'        => 'Project:פאליסי',
 'portal'            => 'קהילה פארטל',
-'portal-url'        => '{{ns:project}}:בית מדרש',
+'portal-url'        => 'Project:בית מדרש',
 'privacy'           => 'פריוואטקייט פאליסי',
 'privacypage'       => '{{ns:project}}:פריוואטקייט פאליסי',
 'sitesupport'       => 'ביישטייערונגן',
@@ -291,7 +298,7 @@ $messages = array(
 'feed-atom'               => 'אטאם',
 'feed-rss'                => 'אר.עס.עס.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'אַרטיקל',
 'nstab-user'      => 'באַנוצער בלאט',
 'nstab-media'     => 'מעדיע בלאט',
@@ -762,7 +769,7 @@ Legend: (cur) = difference with current version,
 'hide'              => 'באַהאַלטן',
 'show'              => 'ווייז',
 'newpageletter'     => 'נ',
-'newsectionsummary' => '/* $1 */ נייער אפטיילונג',
+'newsectionsummary' => 'נייער אפטיילונג:',
 
 # Recent changes linked
 'recentchangeslinked' => 'פֿאַרבונדענע ענדערונגען',
@@ -788,6 +795,9 @@ Legend: (cur) = difference with current version,
 
 # MIME search
 'download' => 'אראפלאדירן',
+
+# Random page
+'randompage' => 'צופֿעליגער אַרטיקל',
 
 # Statistics
 'statistics'    => 'סטאַטיסטיק',
@@ -820,7 +830,6 @@ Legend: (cur) = difference with current version,
 'mostcategories'    => 'אַרטיקלען מיט די מערקסטע קאַטעגאָריעס',
 'mostrevisions'     => 'אַרטיקלען מיט די מערקסטע באַאַרבעטונגען',
 'allpages'          => 'אלע בלעטער',
-'randompage'        => 'צופֿעליגער אַרטיקל',
 'deadendpages'      => 'דעד-ענד בלעטער',
 'deadendpagestext'  => 'די פאלגענדע בלעטער לינקן נישט צו אנדערע בלעטער אין דעם וויקי.',
 'specialpages'      => 'ספּעציעלע זײטן',
@@ -1024,9 +1033,9 @@ $NEWPAGE
 'range_block_disabled'     => 'די סיסאפ מעגליכקייט צו בלאקירן רענזש בלאקס איז אומ-ערמעגליכט.',
 'ipb_expiry_invalid'       => 'אפלויפונג צייט אומ-געזעליך.',
 'ipb_already_blocked'      => '"$1" איז שוין בלאקירט',
+'ipb_cant_unblock'         => "פעילער: בלאק איי.די. $1 געפינט זיך נישט. ס'מעגליך שוין באפרייט געווארן.",
 'ip_range_invalid'         => 'רעינזש IP אומ-ריכטיגע.',
 'proxyblocker'             => 'פראקסי בלאקער',
-'ipb_cant_unblock'         => "פעילער: בלאק איי.די. $1 געפינט זיך נישט. ס'מעגליך שוין באפרייט געווארן.",
 'proxyblockreason'         => 'אייער איי.פי. אדרעס איז געווארן געבלאקט צוליב דעם ווייל דאס איז א אפענער פראקסי. ביטע פארבינדט זיך מיט אייער אינטערנעט סערוויס פראוויידער אדער טעקס סאפארט צו אינפארמירן זיי איבער דעם ערענסטן זיכערהייט פראבלעם.',
 
 # Developer tools
@@ -1138,15 +1147,13 @@ $NEWPAGE
 'tooltip-ca-nstab-template'     => 'זעהט די מוסטער',
 'tooltip-ca-nstab-help'         => 'זעהט די הילף בלעטער',
 'tooltip-ca-nstab-category'     => 'זעהט די קאטעגאריע בלאט',
-'tooltip-diff'                  => 'Show which changes you made to the text.',
 
 # Stylesheets
 'common.css'   => '/* CSS געשריבן דא וועט אפילירן און באיינפלוסן אלע סקינס */',
 'monobook.css' => '/* סטייל דא געלייגט וועט באיינפלוסן די בעקגראונד Monobook בלויז */',
 
 # Scripts
-'common.js'   => '/* אלע סקריפטן פון JavaScript דא געשריבן וועט לויפן פאר אלע באנוצער ווען זיי וועלן לאדירן דעם בלאט */',
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+'common.js' => '/* אלע סקריפטן פון JavaScript דא געשריבן וועט לויפן פאר אלע באנוצער ווען זיי וועלן לאדירן דעם בלאט */',
 
 # Attribution
 'anonymous'        => 'אנינאנימעס באנוצער(ס) פון {{SITENAME}}',
@@ -1191,6 +1198,7 @@ $NEWPAGE
 'exif-exposurebiasvalue'        => 'עקספאוזשער בייעס',
 'exif-flash'                    => 'פלעש',
 'exif-focallength'              => 'לענס פאוקאל לענג',
+'exif-focallength-format'       => '$1 מ"מ',
 'exif-flashenergy'              => 'פלעש ענערגיע',
 'exif-focalplanexresolution'    => 'פאקאל פלעין עקס רעזאלוציע',
 'exif-focalplaneresolutionunit' => 'פאקאל פלעין רעזאלוציע מאס',
