@@ -267,6 +267,10 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 }
 
 function rcFilterByCategories ( &$rows , $categories , $any ) {
+	if( empty( $categories ) ) {
+		return;
+	}
+	
 	# Filter categories
 	$cats = array () ;
 	foreach ( $categories AS $cat ) {
@@ -279,7 +283,7 @@ function rcFilterByCategories ( &$rows , $categories , $any ) {
 	$articles = array () ;
 	$a2r = array () ;
 	foreach ( $rows AS $k => $r ) {
-		$nt = Title::newFromText ( $r->rc_title , $r->rc_namespace ) ;
+		$nt = Title::makeTitle( $r->rc_title , $r->rc_namespace );
 		$id = $nt->getArticleID() ;
 		if ( $id == 0 ) continue ; # Page might have been deleted...
 		if ( !in_array ( $id , $articles ) ) {
