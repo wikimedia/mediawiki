@@ -300,6 +300,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
   name
 * (bug 11206) api.php should honor maxlag
 * Added diff generation to prop=revisions
+* Added support for traditional, unified and array diffs to prop=revisions
 
 === Languages updated in 1.12 ===
 
