@@ -5,6 +5,7 @@
  *
  * @author Symane
  * @author Nike
+ * @author Siebrand
  */
 
 $messages = array(
@@ -199,24 +200,24 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '關於 {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:關於',
+'aboutpage'         => 'Project:關於',
 'bugreports'        => '報告錯誤',
-'bugreportspage'    => '{{ns:project}}:錯報報告',
+'bugreportspage'    => 'Project:錯報報告',
 'copyright'         => '箇版嗰內容係根據$1嗰條款發佈。',
 'copyrightpagename' => '{{SITENAME}} 版權',
 'copyrightpage'     => '{{ns:project}}:版權資訊',
 'currentevents'     => '新出嗰事',
 'currentevents-url' => '{{ns:project}}:新出嗰事',
 'disclaimers'       => '免責聲明',
-'disclaimerpage'    => '{{ns:project}}:免責聲明',
+'disclaimerpage'    => 'Project:免責聲明',
 'edithelp'          => '編寫幫助',
 'edithelppage'      => '{{ns:help}}:啷編寫文章',
 'faq'               => 'FAQ',
 'helppage'          => '{{ns:help}}:説明',
 'mainpage'          => '封面',
-'policy-url'        => '{{ns:project}}:政策',
+'policy-url'        => 'Project:政策',
 'portal'            => '社區',
-'portal-url'        => '{{ns:project}}:社區',
+'portal-url'        => 'Project:社區',
 'privacy'           => '隱私政策',
 'privacypage'       => '{{ns:project}}:隱私政策',
 'sitesupport'       => '贊助',
@@ -248,7 +249,7 @@ $messages = array(
 'feedlinks'               => '鎖定:',
 'feed-invalid'            => '冇用嗰鎖定類型。',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文章',
 'nstab-user'      => '用戶頁',
 'nstab-media'     => '媒體頁',
@@ -573,7 +574,7 @@ $2',
 'orig'                => '起先',
 'page_first'          => '最早',
 'page_last'           => '最晏',
-'histlegend'          => '差異選擇: 標到伓同版本嗰單選鍵，接到按⽴上嗰按鈕做比較。<br /> 
+'histlegend'          => '差異選擇: 標到伓同版本嗰單選鍵，接到按𢽴上嗰按鈕做比較。<br /> 
 說明: (眼下) 指同目前版本嗰比較，(之前) 指同之前修改版本嗰比較，細 = 細修改。',
 'deletedrev'          => '[拕刪除]',
 'histfirst'           => '最早版本',
@@ -945,6 +946,10 @@ $2',
 'unusedtemplatestext' => '箇隻頁面列出模板空間名下底冇拕別嗰頁面使用嗰頁面。刪掉箇兮模板前請檢查別嗰連到箇隻模板嗰頁面。',
 'unusedtemplateswlh'  => '別嗰連結',
 
+# Random page
+'randompage'         => '隨機文章',
+'randompage-nopages' => '箇隻名字空間冇嗰頁面。',
+
 # Random redirect
 'randomredirect'         => '隨機重定向頁面',
 'randomredirect-nopages' => '箇隻名字空間冇重定向頁面。',
@@ -1009,8 +1014,6 @@ $2',
 'mostrevisions'           => '最常改動嗰文章',
 'allpages'                => '所有嗰頁面',
 'prefixindex'             => '首碼索引',
-'randompage'              => '隨機文章',
-'randompage-nopages'      => '箇隻名字空間冇嗰頁面。',
 'shortpages'              => '短文章',
 'longpages'               => '長文章',
 'deadendpages'            => '脫接頁面',
@@ -1378,9 +1381,9 @@ $NEWPAGE
 'range_block_disabled'        => '就管理員建得正禁止封鎖嗰範圍。',
 'ipb_expiry_invalid'          => '冇用嗰結束時間。',
 'ipb_already_blocked'         => '鎖到嘞"$1"',
+'ipb_cant_unblock'            => '錯誤: 冇發現Block ID $1。箇隻IP話伓定拕解封嘍。',
 'ip_range_invalid'            => '冇用嗰IP範圍。',
 'proxyblocker'                => '代理封鎖器',
-'ipb_cant_unblock'            => '錯誤: 冇發現Block ID $1。箇隻IP話伓定拕解封嘍。',
 'proxyblockreason'            => '倷嗰IP係一隻公開嗰代理，佢拕封到嘞。請聯絡倷嗰Internet服務提供商或技術幫助再告誦佢俚箇隻嚴重嗰安全問題。',
 'proxyblocksuccess'           => '抚正囉。',
 'sorbsreason'                 => '倷嗰IP拕 DNSBL 歸到公開代理服務器。',

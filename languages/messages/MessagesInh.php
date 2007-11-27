@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Tagir
+ * @author Siebrand
  */
 
 $fallback = 'ru';
@@ -187,9 +188,9 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Описани {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:Описани',
+'aboutpage'         => 'Project:Описани',
 'bugreports'        => 'Гiалата хоам',
-'bugreportspage'    => '{{ns:project}}:Гiалата хоам',
+'bugreportspage'    => 'Project:Гiалата хоам',
 'currentevents'     => 'Хьанзар доалара хамаж',
 'currentevents-url' => '{{ns:project}}:Хьанзар доалара хама',
 'edithelp'          => 'Хувцамаш йие гIо',
@@ -198,9 +199,9 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:КХХ (Каста Хоатташ доа Хамаж)',
 'helppage'          => '{{ns:help}}:Хьехар',
 'mainpage'          => 'Кертера оагIув',
-'policy-url'        => '{{ns:project}}:Бокъонаш',
+'policy-url'        => 'Project:Бокъонаш',
 'portal'            => 'Гiоз',
-'portal-url'        => '{{ns:project}}:ГIоз',
+'portal-url'        => 'Project:ГIоз',
 'privacy'           => 'Конфиденциальности бокъонаш',
 'privacypage'       => '{{ns:project}}:Конфиденциальности бокъона',
 'sitesupport'       => 'СагIа',

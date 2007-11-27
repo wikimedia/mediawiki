@@ -7,6 +7,7 @@
  * @author Teak
  * @author Togaed
  * @author G - ג
+ * @author Siebrand
  */
 
 $separatorTransformTable = array(
@@ -466,23 +467,23 @@ $messages = array(
 'aboutsite'         => '{{grammar:genitive|{{SITENAME}}}} մասին',
 'aboutpage'         => '{{ns:project}}:Էությունը',
 'bugreports'        => 'Սխալի զեկուցում',
-'bugreportspage'    => '{{ns:project}}Սխալների զեկուցում',
+'bugreportspage'    => 'ProjectՍխալների զեկուցում',
 'copyright'         => 'Կայքի բովանդակությունը գտնվում է «$1» լիցենզիայի տակ։',
 'copyrightpagename' => '{{SITENAME}} հեղինակային իրավունքները',
 'copyrightpage'     => '{{ns:project}}:Հեղինակային իրավունքներ',
 'currentevents'     => 'Ընթացիկ իրադարձություններ',
 'currentevents-url' => '{{ns:project}}:Ընթացիկ իրադարձություններ',
 'disclaimers'       => 'Ազատում պատասխանատվությունից',
-'disclaimerpage'    => '{{ns:project}}:Ազատում պատասխանատվությունից',
+'disclaimerpage'    => 'Project:Ազատում պատասխանատվությունից',
 'edithelp'          => 'Խմբագրման ուղեցույց',
 'edithelppage'      => '{{ns:help}}:Խմբագրում',
 'faq'               => 'ՀՏՀ',
 'faqpage'           => '{{ns:project}}:ՀՏՀ',
 'helppage'          => '{{ns:project}}:Գլխացանկ',
 'mainpage'          => 'Գլխավոր Էջ',
-'policy-url'        => '{{ns:project}}:Կանոնակարգ',
+'policy-url'        => 'Project:Կանոնակարգ',
 'portal'            => 'Խորհրդարան',
-'portal-url'        => '{{ns:project}}:Խորհրդարան',
+'portal-url'        => 'Project:Խորհրդարան',
 'privacy'           => 'Գաղտնիության քաղաքականություն',
 'privacypage'       => '{{ns:project}}:Գաղտնիության քաղաքականություն',
 'sitesupport'       => 'Դրամական նվիրատվություն',
@@ -520,7 +521,7 @@ $messages = array(
 'page-rss-feed'           => '«$1» RSS Սնուցում',
 'page-atom-feed'          => '«$1» Atom Սնուցում',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Հոդված',
 'nstab-user'      => 'Մասնակցի էջ',
 'nstab-media'     => 'Մեդիա էջ',
@@ -1258,6 +1259,10 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'unusedtemplatestext' => 'Այս էջում բերված են կաղապարների անվանատարածքի բոլոր էջերը, որոնք ընդգրկված չեն այլ էջերում։ Ջնջելուց առաջ չմոռանաք ստուգել այլ հղումները կաղապարներին։',
 'unusedtemplateswlh'  => 'այլ հղումներ',
 
+# Random page
+'randompage'         => 'Պատահական էջ',
+'randompage-nopages' => 'Այս անվանատարածքում էջեր չկան։',
+
 # Random redirect
 'randomredirect'         => 'Պատահական վերահղում',
 'randomredirect-nopages' => 'Այս անվանատարածքում վերահղումներ չկան։',
@@ -1323,8 +1328,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'mostrevisions'           => 'Ամենաշատ վերափոխումներով հոդվածներ',
 'allpages'                => 'Բոլոր էջերը',
 'prefixindex'             => 'Բոլոր էջերը ըստ սկզբնատառի',
-'randompage'              => 'Պատահական էջ',
-'randompage-nopages'      => 'Այս անվանատարածքում էջեր չկան։',
 'shortpages'              => 'Կարճ էջեր',
 'longpages'               => 'Երկար էջեր',
 'deadendpages'            => 'Հղումներ չպարունակող էջեր',
@@ -1714,9 +1717,9 @@ $1',
 'range_block_disabled'        => 'Ադմինիստրատորների կողմից լայնույթի արգելափակման հնարավորությունը անջատված է։',
 'ipb_expiry_invalid'          => 'Մարման ժամկետը անթույլատրելի է',
 'ipb_already_blocked'         => '«$1» մասնակիցը արդեն արգելափակված է',
+'ipb_cant_unblock'            => 'Սխալ. «$1» իդենտիֆիկատորով արգելափակում չի գտնվել։ Հնարավոր է այն արդեն անարգելվել է։',
 'ip_range_invalid'            => 'IP-հասցեների անթույլատրելի լայնույթ։',
 'proxyblocker'                => 'Փոխանորդի արգելափակում',
-'ipb_cant_unblock'            => 'Սխալ. «$1» իդենտիֆիկատորով արգելափակում չի գտնվել։ Հնարավոր է այն արդեն անարգելվել է։',
 'proxyblockreason'            => 'Ձեր IP-հասցեն արգելափակվել է, քանի որ այն ազատ օգտագործման փոխանորդ է։ Խնդրում ենք կապնվել ձեր ցանցային կամ տեխնիկական ծառայության տրամադրողի հետ և տեղեկացնել այս լուրջ անվտանգության խնդրի մասին։',
 'proxyblocksuccess'           => 'Արված է։',
 'sorbsreason'                 => 'Ձեր IP-հասցեն հաշվված է որպես ազատ օգտագործման փոխանորդ DNSBL ցանկում։',

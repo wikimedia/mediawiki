@@ -6,6 +6,7 @@
  * @author ChrisPtDe
  * @author G - ג
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'fr';
@@ -255,16 +256,16 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'A propôs de {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:A propôs',
+'aboutpage'         => 'Project:A propôs',
 'bugreports'        => 'Rapôrt d’èrrors',
-'bugreportspage'    => '{{ns:project}}:Rapôrt d’èrrors',
+'bugreportspage'    => 'Project:Rapôrt d’èrrors',
 'copyright'         => 'Lo contegnu est disponiblo d’aprés los tèrmos de la licence $1.',
 'copyrightpagename' => 'licence {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Novèles',
 'currentevents-url' => 'Portâl:Novèles',
 'disclaimers'       => 'Avèrtissements',
-'disclaimerpage'    => '{{ns:project}}:Avèrtissements g·ènèrals',
+'disclaimerpage'    => 'Project:Avèrtissements g·ènèrals',
 'edithelp'          => 'Éde',
 'edithelppage'      => '{{ns:help}}:Coment èditar/modifiar una pâge',
 'faqpage'           => '{{ns:help}}:FAQ',
@@ -272,7 +273,7 @@ $messages = array(
 'mainpage'          => 'Reçua',
 'policy-url'        => 'Project:Policy',
 'portal'            => 'Comunôtât',
-'portal-url'        => '{{ns:project}}:Reçua',
+'portal-url'        => 'Project:Reçua',
 'privacy'           => 'Politica de confidencialitât',
 'privacypage'       => '{{ns:project}}:Politique de confidentialité',
 'sitesupport'       => 'Fâre un don',

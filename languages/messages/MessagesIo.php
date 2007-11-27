@@ -431,6 +431,11 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'guesstimezone'      => 'Obtenar la kloko dil &quot;browser&quot;',
 'defaultns'          => 'Serchar en la spaco-nomi omise:',
 
+# Groups
+'group-all' => '(omna)',
+
+'grouppage-sysop' => '{{ns:project}}:Administranti',
+
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|chanjo|chanji}}',
 'recentchanges'     => 'Recenta chanji',

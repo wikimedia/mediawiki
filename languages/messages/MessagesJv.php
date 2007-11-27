@@ -4,10 +4,13 @@
  * @addtogroup Language
  *
  * @author Niklas Laxström
- *
+ * @author G - ג
+ * @author Helix84
+ * @author Siebrand
  * @copyright Copyright © 2006, Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
+
 $fallback = 'id';
 
 $namespaceNames = array(
@@ -106,6 +109,7 @@ $messages = array(
 'history'          => 'Sejarah Kaca',
 'history_short'    => 'Sejarah Kaca',
 'printableversion' => 'Versi Cithak',
+'edit'             => 'Sunting',
 'editthispage'     => 'Sunting kaca iki',
 'delete'           => 'Ilangana',
 'deletethispage'   => 'Busak kaca iki',
@@ -128,9 +132,10 @@ $messages = array(
 'aboutsite'         => 'Prakawis {{SITENAME}}',
 'aboutpage'         => 'Project:Prakawis',
 'bugreports'        => 'Laporan kasalahan',
+'bugreportspage'    => 'Project:Bug reports',
 'copyright'         => 'Kabèh teks kasedyaaké ing ngisoré $1.',
-'currentevents'     => 'Warta wigati',
-'currentevents-url' => 'Warta wigati',
+'currentevents'     => 'Warta Wigati',
+'currentevents-url' => 'Project:Warta Wigati',
 'disclaimers'       => 'Panyangkalan',
 'edithelp'          => 'Pitulung panyuntingan',
 'mainpage'          => 'Kaca Utama',
@@ -143,14 +148,15 @@ $messages = array(
 'badaccess-group2' => 'Pratingkah ingkang panjenengan suwun dipun-watesi kanggé pangguna ing kelompok $1.',
 'badaccess-groups' => 'Pratingkah panjenengan dipun-watesi tumrap panganggé ing kelompokipun $1.',
 
-'retrievedfrom'       => 'Sumber artikel iki saka kaca situs web: "$1"',
-'youhavenewmessages'  => 'Panjenengan gadhah $1 ($2).',
-'newmessageslink'     => 'warta enggal',
-'newmessagesdifflink' => 'mirsani bédanipun saking revisi sadèrèngipun',
-'toc'                 => 'Bab lan Paragraf',
-'hidetoc'             => 'delikna',
+'retrievedfrom'           => 'Sumber artikel iki saka kaca situs web: "$1"',
+'youhavenewmessages'      => 'Panjenengan gadhah $1 ($2).',
+'newmessageslink'         => 'warta enggal',
+'newmessagesdifflink'     => 'mirsani bédanipun saking revisi sadèrèngipun',
+'youhavenewmessagesmulti' => 'Panjenengan angsal pesen-pesen ènggal $1',
+'toc'                     => 'Bab lan Paragraf',
+'hidetoc'                 => 'delikna',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'Kaca panganggo',
 'nstab-mediawiki' => 'Pariwara',
 
@@ -170,7 +176,6 @@ $messages = array(
 'yourpassword'               => 'tembung sandhi',
 'remembermypassword'         => 'Éling tembung sandhi',
 'loginproblem'               => '<strong>Ana masalah ing proses mlebu log panjenengan.</strong><br />Sumangga nyoba manèh!',
-'alreadyloggedin'            => '<strong>Penganggé $1, panjenengan sejatosipun sampun mlebet!</strong><br />',
 'login'                      => 'Mlebu',
 'loginprompt'                => "Panjenengan kudu ngaktifaké ''cookies'' supaya bisa mlebu (log in) ing {{SITENAME}}.",
 'userlogin'                  => 'Mlebu log / gawé rékening (akun)',
@@ -195,6 +200,7 @@ $messages = array(
 'acct_creation_throttle_hit' => 'Nuwun sèwu, panjenengan sampun damel akun $1. Panjenengan mboten saged damel malih.',
 'accountcreated'             => 'Akun sampun kacipta.',
 'accountcreatedtext'         => 'Akun kanggé $1 sampun kacipta.',
+'loginlanguagelabel'         => 'Basa: $1',
 
 # Edit page toolbar
 'bold_sample' => 'Seratan puniki bakal dipun-cithak kandel',
@@ -250,7 +256,6 @@ Panjenengan ugi janji menawi punapa-punapa ingkang kaserat ing ngriki, karyanipu
 # Search results
 'searchresults'     => 'Pituwas pamadosan',
 'searchsubtitle'    => "Panjengan madosi '''[[:$1]]'''",
-'badquery'          => 'Format panjaluk pamadosan panjenengan klentu',
 'showingresults'    => 'Ing ngandhap punika dipuntuduhaken <strong>$1</strong> kasil, wiwitanipun saking #<strong>$2</strong>.',
 'showingresultsnum' => 'Ing ngandhap punika dipuntuduhaken <strong>$3</strong> kasil, wiwitanipun saking #<strong>$2</strong>.',
 'powersearch'       => 'Golek',
@@ -274,7 +279,7 @@ Panjenengan ugi janji menawi punapa-punapa ingkang kaserat ing ngriki, karyanipu
 'rightsnone' => '(mboten wonten)',
 
 # Recent changes
-'recentchanges'   => 'Owah-owahan',
+'recentchanges'   => 'Pangowahan pungkasan',
 'rcnote'          => 'Ing ngisor iki kapacak owahan-owahan <strong>$1</strong> pungkasan ing  <strong>$2</strong> dina pungkasan iki $3.',
 'rcnotefrom'      => 'Ing ngisor iki owah-owahan wiwit <strong>$2</strong> (kapacak nganti <strong>$1</strong> owah-owahan).',
 'rclistfrom'      => 'Saiki nuduhaké owah-owahan wiwit tanggal $1',
@@ -307,18 +312,27 @@ Panjenengan ugi janji menawi punapa-punapa ingkang kaserat ing ngriki, karyanipu
 'byname'               => 'miturut jeneng',
 'bydate'               => 'miturut tanggal',
 'bysize'               => 'miturut ukuran',
-'deleteimg'            => 'bsk',
 'imagelist_search_for' => 'Golèk jeneng berkas:',
 
 # MIME search
 'download' => 'undhuh',
 
+# Random page
+'randompage' => 'Sembarang Kaca',
+
 # Statistics
 'userstats'     => 'Statistik panganggé',
 'sitestatstext' => "Sapunika wonten '''\$1''' kaca total ing ''database''. Ing punika kalebet kaca-kaca \"talk\", prakawis {{SITENAME}}, artikel \"stub\" (rintisan), kaca pangalih (''redirect''), kaliyan kaca-kaca ingkang sanès kaca isi.
+
 Sasanèsipun punika, wonten '''\$2''' kaca ingkang mbokmenawi sah.
+
+'''\$8''' files have been uploaded.
+
 Sampun naté wonten '''\$3''' kaca dipun tontonaken kaliyan '''\$4''' kaca naté dipun sunting sasampunipun wiki punika dipun adegaken.
-Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' tayangan per suntingan.",
+
+Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' tayangan per suntingan.
+
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
 'userstatstext' => "Wonten '''$1''' panganggé ingkang sampun ndaftar. '''$2''' (utawi '''$4%''') antawisipun punika $5.",
 
 'disambiguations' => 'Kaca disambiguasi',
@@ -330,7 +344,6 @@ Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' 
 'lonelypages'         => 'Kaca tanpa dijagani',
 'allpages'            => 'Kabèh kaca',
 'prefixindex'         => 'Indeks awalan',
-'randompage'          => 'Sembarang Kaca',
 'deadendpages'        => 'Kaca-kaca buntu (tanpa pranala)',
 'deadendpagestext'    => 'kaca-kaca punika mboten gadhah pranala dumugi pundi mawon wonten ing wiki puniki..',
 'protectedpagesempty' => 'Saat ini tidak ada halaman yang sedang dilindungi.',
@@ -342,6 +355,7 @@ Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' 
 
 'categoriespagetext' => 'Kategori-kategori punika wonten ing wiki.',
 'alphaindexline'     => '$1 tumuju $2',
+'version'            => 'Versi',
 
 # Special:Allpages
 'allpagesfrom'      => 'Kaca-kaca kawiwitan kanthi:',
@@ -358,11 +372,12 @@ Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' 
 'mailnologintext' => 'Panjenengan kudu [[{{ns:special}}:Userlogin|mlebu log]] lan kagungan alamat e-mail sing sah ing [[{{ns:special}}:Preferences|preféèrensi]] yèn kersa ngirim layang e-mail kanggo panganggo liya.',
 
 # Watchlist
-'watchnologin'       => 'Durung mlebu log',
-'watchnologintext'   => 'Panjenengan kudu [[{{ns:special}}:Userlogin|mlebu log]] kanggo ngowahi daftar artikel pilihan.',
-'addedwatch'         => 'Sampun katambahaken wonten ing daftar artikel pilihan.',
-'watch'              => 'tutana',
-'watchthispage'      => 'Periksa kaca iki',
+'watchlist'        => 'Daftar artikel pilihan',
+'watchnologin'     => 'Durung mlebu log',
+'watchnologintext' => 'Panjenengan kudu [[{{ns:special}}:Userlogin|mlebu log]] kanggo ngowahi daftar artikel pilihan.',
+'addedwatch'       => 'Sampun katambahaken wonten ing daftar artikel pilihan.',
+'watch'            => 'tutana',
+'watchthispage'    => 'Periksa kaca iki',
 
 'changed' => 'kaubah',
 'created' => 'kadamel',
@@ -397,10 +412,10 @@ Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' 
 # Contributions
 'contributions' => 'Sumbangan panganggo',
 'mycontris'     => 'Kontribusiku',
-'contribsub2'    => 'Kagem $1 ($2)',
+'contribsub2'   => 'Kagem $1 ($2)',
 
 # What links here
-'whatlinkshere' => 'Pranala menyang kaca iki',
+'whatlinkshere' => 'Pranala kaca iki',
 
 # Block/unblock
 'badipaddress'       => 'Alamat IP klèntu',
@@ -428,13 +443,12 @@ the list of currently operational bans and blocks.',
 'delete_and_move_confirm' => 'Ya, busak kaca iku.',
 
 # Namespace 8 related
-'allmessages'               => 'Kabeh Laporan',
-'allmessagesname'           => 'Asma (jeneng)',
-'allmessagescurrent'        => 'Teks saiki',
-'allmessagestext'           => 'Punika pesen-pesen saking sistem ingkang kacawisaken wonten ing  MediaWiki namespace.',
-'allmessagesnotsupportedUI' => 'Basa tampilan panjenengan saiki, <strong>$1</strong> mboten kareksa dèning {{ns:special}}:AllMessages ing situs punika.',
-'allmessagesfilter'         => 'Saringan jeneng pesen:',
-'allmessagesmodified'       => 'Namung tampilanipun ingkang owah',
+'allmessages'         => 'Kabeh Laporan',
+'allmessagesname'     => 'Asma (jeneng)',
+'allmessagescurrent'  => 'Teks saiki',
+'allmessagestext'     => 'Punika pesen-pesen saking sistem ingkang kacawisaken wonten ing  MediaWiki namespace.',
+'allmessagesfilter'   => 'Saringan jeneng pesen:',
+'allmessagesmodified' => 'Namung tampilanipun ingkang owah',
 
 # Attribution
 'anonymous'        => 'Panganggé {{SITENAME}} ingkang mboten kinawruhan.',
@@ -461,11 +475,8 @@ the list of currently operational bans and blocks.',
 
 $1",
 
-'youhavenewmessagesmulti' => 'Panjenengan angsal pesen-pesen ènggal $1',
-
+# AJAX search
 'articletitles' => "Artikel ingkang dipun-wiwiti nganggé ''$1''",
-
-'loginlanguagelabel' => 'Basa: $1',
 
 # Multipage image navigation
 'imgmultigo' => 'Golèk!',
@@ -475,9 +486,7 @@ $1",
 'table_pager_limit_submit' => 'Golèk',
 
 # Auto-summaries
-'autoredircomment' => 'Kaalihaken tumuju [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Kaalihaken tumuju [[$1]]',
 'autosumm-new'     => 'Kaca énggal: $1',
 
 );
-
-

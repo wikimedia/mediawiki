@@ -703,6 +703,17 @@ D’autres administrateurs sur ce wiki pourront toujours accéder au contenu cac
 'overlogpagetext' => 'la liste ci-dessous montre les suppressions et blocages récents dont le contenu est masqué même pour les administrateurs.
 Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
 
+# History merging
+'mergehistory'        => "Fusion des historiques d'une page",
+'mergehistory-header' => "Cette page vous permet de fusionner les révisions de l'historique d'une page d'origine vers une nouvelle.
+Assurez vous que ce changement puisse conserver la continuité de l'historique.
+
+'''Enfin, la version en cours doit être conservée.'''",
+'mergehistory-box'    => 'Fusionner les versions de deux pages :',
+'mergehistory-from'   => "Page d'origine :",
+'mergehistory-into'   => 'Page de destination :',
+'mergehistory-list'   => 'Édition des historiques fusionnables',
+
 # Diffs
 'history-title'             => 'Historique des versions de « $1 »',
 'difference'                => '(Différences entre les versions)',
