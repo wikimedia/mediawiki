@@ -490,6 +490,7 @@ $wgMessageStructure = array(
 		'anontalkpagetext',
 		'noarticletext',
 		'noarticletextanon',
+		'userpage-userdoesnotexist',
 		'clearyourcache',
 		'usercssjsyoucanpreview',
 		'usercsspreview',
