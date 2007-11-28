@@ -1,6 +1,5 @@
 <?php
 /** Kinaray-a
- * This is the Kinaray-a localisation file
  *
  * @author RonaldPanaligan, Harvzsf (September 2007)
  * 

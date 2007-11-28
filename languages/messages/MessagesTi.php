@@ -1,9 +1,8 @@
 <?php
 /** Tigrinya (ትግርኛ)
  *
- * Translators: Blake
- *
  * @addtogroup Language
+ * @author Blake
  * @author Niklas Laxström
  */
 

@@ -1,11 +1,11 @@
 <?php
 /** Brazilian Portugese (Portuguêsi do Brasil)
-  * @addtogroup Language
-  */
-#
-# This translation was made by Yves Marques Junqueira
-# and Rodrigo Calanca Nishino from Portuguese Wikipedia
-#
+ *
+ * @addtogroup Language
+ *
+ * @author Yves Marques Junqueira
+ * @author Rodrigo Calanca Nishino
+ */
 
 $fallback = 'pt';
 
@@ -281,7 +281,7 @@ O motivo é:<br />''$2''<p>Você pode contactar $1 ou outro
 'accmailtext'          => "A senha de '$1' foi enviada para $2.",
 'newarticle'           => '(Novo)',
 'newarticletext'       => "Você seguiu um link para um artigo que não existe.
-Para criá-lo, começe escrevendo na caixa abaixo 
+Para criá-lo, começe escrevendo na caixa abaixo
 (veja [[{{ns:4}}:Ajuda|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext'     => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.''",

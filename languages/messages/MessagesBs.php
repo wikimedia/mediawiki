@@ -1,4 +1,8 @@
 <?php
+/**
+ *
+ * @addtogroup Language
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Medija',

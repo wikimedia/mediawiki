@@ -3,7 +3,7 @@
  * Ewe (Eʋegbe)
  *
  * @addtogroup Language
- * Translators (from Betawiki):
+ *
  * @author Natsubee
  */
 

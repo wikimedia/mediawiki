@@ -1,11 +1,15 @@
 <?php
 /** Punjabi (Gurmukhi)
-  * @addtogroup Language
-  */
-# This file is dual-licensed under GFDL and GPL.
-#
-# See: http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
-# and http://bugzilla.wikimedia.org/show_bug.cgi?id=11145
+ * @addtogroup Language
+ *
+ * @author Sukh
+ * @author Ævar Arnfjörð Bjarmason
+ * @author AS Alam
+ * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
+ * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=11145
+ */
 
 $skinNames = array(
 	'standard'    => 'ਕਲਾਸਿਕ',

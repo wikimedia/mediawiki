@@ -3,18 +3,9 @@
  *
  * @addtogroup Language
  *
+ * @author XJamRastafire
+ * @author romanm
  */
-
-#
-# Revision/
-# Inačica 1.00.00 XJamRastafire 2003-07-08 |NOT COMPLETE
-#         1.00.10 XJamRastafire 2003-11-03 |NOT COMPLETE
-# ______________________________________________________
-#         1.00.20 XJamRastafire 2003-11-05 |    COMPLETE
-#         1.00.30 romanm        2003-11-07 |    minor changes
-#         1.00.31 romanm        2003-11-11 |    merged incorrectly broken lines
-#         1.00.32 romanm        2003-11-19 |    merged incorrectly broken lines
-#         1.00.40 romanm        2003-11-21 |    fixed Google search
 
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',

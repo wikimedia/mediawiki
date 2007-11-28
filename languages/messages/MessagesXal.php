@@ -1,8 +1,8 @@
 <?php
-/**
-  * @addtogroup Language
-  */
-# Kalmyk stub localization;
+/** Kalmyk
+ *
+ * @addtogroup Language
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Аһар',

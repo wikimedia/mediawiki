@@ -2,9 +2,8 @@
 /** Bislama
  *
  * @addtogroup Language
- * Translators (from Betawiki):
  * @author Ushanka
- */
+*/
 
 $messages = array(
 'underline-always' => 'Oltaem',

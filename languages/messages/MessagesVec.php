@@ -3,6 +3,7 @@
   *
   * @addtogroup Language
   */
+
 $fallback = 'it';
 
 $namespaceNames = array(		
@@ -1299,5 +1300,3 @@ $1',
 'autoredircomment' => 'Redirect a ła paxèna [[$1]]', # This should be changed to the new naming convention, but existed beforehand
 
 );
-
-
