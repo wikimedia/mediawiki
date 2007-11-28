@@ -780,6 +780,9 @@ Lääste schällen dan wächhoald wäide.',
 'notargettitle'           => 'Naan Artikkel anroat',
 'notargettext'            => 'Du hääst nit anroat, ap wäkke Siede disse Funktion anwoand wäide schäl.',
 
+# Book sources
+'booksources' => 'ISBN-Säike',
+
 'categoriespagetext' => 'Do foulgjende Kategorien existierje in de Wiki.',
 'data'               => 'Failer in dän Doatenboank',
 'userrights'         => 'Benutsergjuchteferwaltenge',
@@ -851,6 +854,12 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'iteminvalidname'      => "Problem mäd dän Iendraach '$1', ungultige Noome...",
 'wlnote'               => "Hier {{PLURAL:$1|foulget do lääste Annerenge|foulgje do lääste '''$1''' Annerengen}} fon do lääste {{PLURAL:$2|Uur|'''$2''' Uuren}}.",
 'wlshowlast'           => 'Wies do lääste $1 Uuren, $2 Deege, of $3 (in do lääste 30 Deege).',
+'watchlist-show-bots'  => 'Bot-Annerengen ienbländje',
+'watchlist-hide-bots'  => 'Bot-Annerengen ferbierge',
+'watchlist-show-own'   => 'oaine Annerengen ienbländje',
+'watchlist-hide-own'   => 'oaine Annerengen ferbierge',
+'watchlist-show-minor' => 'litje Annerengen ienbländje',
+'watchlist-hide-minor' => 'litje Annerengen ferbierge',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Beooboachtje …',
@@ -1106,6 +1115,8 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'tooltip-pt-preferences'          => 'Oaine Ienstaalengen',
 'tooltip-pt-mycontris'            => 'Lieste fon oaine Biedraage',
 'tooltip-pt-logout'               => 'Oumäldje',
+'tooltip-ca-protect'              => 'Disse Siede schutsje',
+'tooltip-ca-delete'               => 'Disse Siede läskje',
 'tooltip-ca-move'                 => 'Disse Siede ferschäuwen',
 'tooltip-search'                  => '{{SITENAME}} truchsäike',
 'tooltip-n-mainpage'              => 'Haudsiede anwiese',
@@ -1117,7 +1128,10 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'tooltip-t-specialpages'          => 'Lieste fon aal Spezialsieden',
 'tooltip-ca-nstab-user'           => 'Benutsersiede anwiese',
 'tooltip-ca-nstab-project'        => 'Projektsiede anwiese',
+'tooltip-ca-nstab-image'          => 'Bieldesiede anwiese',
+'tooltip-ca-nstab-template'       => 'Foarloage anwiese',
 'tooltip-ca-nstab-help'           => 'Hälpesiede anwiese',
+'tooltip-ca-nstab-category'       => 'Kategoriesiede anwiese',
 'tooltip-minoredit'               => 'Disse Annerenge as littek markierje.',
 'tooltip-save'                    => 'Annerengen spiekerje',
 'tooltip-preview'                 => 'Foarschau fon do Annerengen an disse Siede. Jädden foar dät Spiekerjen benutsje!',

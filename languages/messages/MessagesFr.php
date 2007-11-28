@@ -270,7 +270,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:Avertissements généraux',
 'edithelp'          => 'Aide',
 'edithelppage'      => 'Help:Comment modifier une page',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Aide',
 'mainpage'          => 'Accueil',
 'policy-url'        => 'Project:policy',
@@ -566,6 +565,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
 'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
+'userpage-userdoesnotexist' => "Le compte utilisateur « $1 » n'est pas enregistré. Indiquez si vous voulez créer ou éditer cette page.",
 'clearyourcache'            => "'''Note :''' Après avoir sauvegardé la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'    => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
 'usercsspreview'            => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille CSS et qu’elle n’a pas encore été enregistrée !'''",
@@ -704,15 +704,27 @@ D’autres administrateurs sur ce wiki pourront toujours accéder au contenu cac
 Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
 
 # History merging
-'mergehistory'        => "Fusion des historiques d'une page",
-'mergehistory-header' => "Cette page vous permet de fusionner les révisions de l'historique d'une page d'origine vers une nouvelle.
+'mergehistory'         => "Fusion des historiques d'une page",
+'mergehistory-header'  => "Cette page vous permet de fusionner les révisions de l'historique d'une page d'origine vers une nouvelle.
 Assurez vous que ce changement puisse conserver la continuité de l'historique.
 
 '''Enfin, la version en cours doit être conservée.'''",
-'mergehistory-box'    => 'Fusionner les versions de deux pages :',
-'mergehistory-from'   => "Page d'origine :",
-'mergehistory-into'   => 'Page de destination :',
-'mergehistory-list'   => 'Édition des historiques fusionnables',
+'mergehistory-box'     => 'Fusionner les versions de deux pages :',
+'mergehistory-from'    => "Page d'origine :",
+'mergehistory-into'    => 'Page de destination :',
+'mergehistory-list'    => 'Édition des historiques fusionnables',
+'mergehistory-merge'   => "Les versions suivantes de [[:$1]] peuvent être fusionnées avec [[:$2]]. Utilisez le bouton radio  de la colonne pour fusionner uniquement les versions créées du début jusqu'à la date indiquée. Notez bien que l'utilisation des liens de navigation réinitialisera la colonne.",
+'mergehistory-go'      => 'Voir les éditions fusionnables',
+'mergehistory-submit'  => 'Fusionner les révisions',
+'mergehistory-empty'   => 'Aucune révision ne peut être fusionnée',
+'mergehistory-success' => '$3 {{PLURAL:$3|revision|révisions}} de [[:$1]] {{PLURAL:$3|fusionnée|fusionnées}} avec succès avec [[:$2]].',
+'mergehistory-fail'    => 'Impossible de procéder à la fusion des historiques. Resélectionner la page ainsi que les paramètres de date.',
+
+# Merge log
+'mergelog'           => 'Journal des fusions',
+'pagemerge-logentry' => "[[$1]] fusionnée avec [[$2]] (révisions jusqu'au $3)",
+'revertmerge'        => 'Séparer',
+'mergelogpagetext'   => "Voici, ci-dessous, la liste des fusions les plus récentes de l'historique d'une page avec une autre.",
 
 # Diffs
 'history-title'             => 'Historique des versions de « $1 »',
@@ -1288,6 +1300,12 @@ L’heure indiquée est celle du serveur (UTC).',
 'deletionlog'                 => 'journal',
 'reverted'                    => 'Rétablissement de la version précédente',
 'deletecomment'               => 'Motif de la suppression',
+'deleteotherreason'           => 'Motifs supplémentaires ou autres :',
+'deletereasonotherlist'       => 'Autre motif',
+'deletereason-dropdown'       => "*Motifs de suppression les plus courants
+** Demande de l'auteur
+** Violation des droits d'auteur
+** Vandalisme",
 'rollback'                    => 'révoquer modifications',
 'rollback_short'              => 'Révoquer',
 'rollbacklink'                => 'révoquer',
