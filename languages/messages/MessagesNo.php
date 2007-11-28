@@ -888,9 +888,9 @@ Mangler kjørbar texvc; vennligst se math/README for å konfigurerer.',
 'group-bureaucrat-member'    => 'byråkrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Autobekreftede brukere',
-'grouppage-bot'           => 'Project:Roboter',
-'grouppage-sysop'         => 'Project:Administratorer',
-'grouppage-bureaucrat'    => 'Project:Byråkrater',
+'grouppage-bot'           => '{{ns:project}}:Roboter',
+'grouppage-sysop'         => '{{ns:project}}:Administratorer',
+'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
 
 # User rights log
 'rightslog'      => 'Rettighetslogg',

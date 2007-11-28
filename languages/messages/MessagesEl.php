@@ -988,7 +988,7 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Αυτοεπιβεβαιωμένοι χρήστες',
 'grouppage-bot'           => '{{ns:project}}:Bots',
-'grouppage-sysop'         => 'Project:Διαχειριστές',
+'grouppage-sysop'         => '{{ns:project}}:Διαχειριστές',
 'grouppage-bureaucrat'    => '{{ns:project}}:Γραφειοκράτες',
 
 # User rights log

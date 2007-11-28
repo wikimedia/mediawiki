@@ -1000,9 +1000,9 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'group-bureaucrat-member'    => 'Byrokrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Schválení uživatelé',
-'grouppage-bot'           => '{{ns:Project}}:Boti',
-'grouppage-sysop'         => '{{ns:Project}}:Správci',
-'grouppage-bureaucrat'    => '{{ns:Project}}:Byrokraté',
+'grouppage-bot'           => '{{ns:project}}:Boti',
+'grouppage-sysop'         => '{{ns:project}}:Správci',
+'grouppage-bureaucrat'    => '{{ns:project}}:Byrokraté',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',

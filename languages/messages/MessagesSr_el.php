@@ -896,9 +896,9 @@ Neodabrane grupe neće biti promenjene. Možete da deselektujete grupu koristeć
 'group-sysop-member'      => 'administrator',
 'group-bureaucrat-member' => 'birokrata',
 
-'grouppage-bot'        => 'Project:Botovi',
-'grouppage-sysop'      => 'Project:Spisak administratora',
-'grouppage-bureaucrat' => 'Project:Birokrate',
+'grouppage-bot'        => '{{ns:project}}:Botovi',
+'grouppage-sysop'      => '{{ns:project}}:Spisak administratora',
+'grouppage-bureaucrat' => '{{ns:project}}:Birokrate',
 
 # User rights log
 'rightslog'      => 'istorija korisničkih prava',

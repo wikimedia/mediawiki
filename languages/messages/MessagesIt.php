@@ -896,9 +896,9 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'group-bureaucrat-member'    => 'Burocrate',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autoconvalidati',
-'grouppage-bot'           => 'Project:Bot',
-'grouppage-sysop'         => 'Project:Amministratori',
-'grouppage-bureaucrat'    => 'Project:Burocrati',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Amministratori',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burocrati',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',

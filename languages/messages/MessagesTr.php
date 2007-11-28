@@ -599,8 +599,8 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'group-sysop-member'      => 'Yönetici',
 'group-bureaucrat-member' => 'Bürokrat',
 
-'grouppage-bot'        => 'Project:Botlar',
-'grouppage-sysop'      => 'Project:Yöneticiler',
+'grouppage-bot'        => '{{ns:project}}:Botlar',
+'grouppage-sysop'      => '{{ns:project}}:Yöneticiler',
 'grouppage-bureaucrat' => '{{ns:project}}:Bürokratlar',
 
 # Recent changes

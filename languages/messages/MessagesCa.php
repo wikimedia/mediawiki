@@ -926,9 +926,9 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'group-bureaucrat-member'    => 'buròcrata',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
-'grouppage-bot'           => 'Project:Bots',
-'grouppage-sysop'         => 'Project:Administradors',
-'grouppage-bureaucrat'    => 'Project:Buròcrates',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Administradors',
+'grouppage-bureaucrat'    => '{{ns:project}}:Buròcrates',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",

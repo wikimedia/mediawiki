@@ -733,9 +733,9 @@ $1',
 'group-sysop-member'      => 'Администратор',
 'group-bureaucrat-member' => 'Бирократ',
 
-'grouppage-bot'        => 'Project:Ботови',
-'grouppage-sysop'      => 'Project:Администратори',
-'grouppage-bureaucrat' => 'Project:Бирократи',
+'grouppage-bot'        => '{{ns:project}}:Ботови',
+'grouppage-sysop'      => '{{ns:project}}:Администратори',
+'grouppage-bureaucrat' => '{{ns:project}}:Бирократи',
 
 # User rights log
 'rightslog'      => 'Историја на корисничките права',

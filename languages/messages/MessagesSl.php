@@ -687,9 +687,9 @@ Neoznačene skupine ne bodo spremenjene. Skupino lahko odznačite z levim klikom
 'group-sysop-member'      => 'Administrator',
 'group-bureaucrat-member' => 'Birokrat',
 
-'grouppage-bot'        => 'Project:Boti',
-'grouppage-sysop'      => 'Project:Administratorji',
-'grouppage-bureaucrat' => 'Project:Birokrati',
+'grouppage-bot'        => '{{ns:project}}:Boti',
+'grouppage-sysop'      => '{{ns:project}}:Administratorji',
+'grouppage-bureaucrat' => '{{ns:project}}:Birokrati',
 
 # User rights log
 'rightslog'      => 'Dnevnik_uporabniških_pravic',
