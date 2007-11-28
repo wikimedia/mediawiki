@@ -1,7 +1,9 @@
 <?php
-/**
- * Chuvash stub localization; default to Russian instead of English.
+/** Chuvash
+ *
+ * @addtogroup Language
  */
+
 $fallback = 'ru';
 $linkPrefixExtension = true;
 

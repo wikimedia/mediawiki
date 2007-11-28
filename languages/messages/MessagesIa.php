@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  */
+
 $skinNames = array(
 	'cologneblue' => 'Blau Colonia',
 );
@@ -28,7 +29,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Discussion_Categoria'
 );
 $linkTrail = "/^([a-z]+)(.*)\$/sD";
-
 
 $messages = array(
 # User preference toggles
@@ -718,5 +718,3 @@ nove titulo. Per favor fusiona los manualmente.',
 'mw_math_mathml' => 'MathML',
 
 );
-
-

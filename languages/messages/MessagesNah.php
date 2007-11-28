@@ -1,14 +1,14 @@
 <?php
 /** Nahuatl
-  *
-  * @addtogroup Language
-  *
-  * @author Rob Church <robchur@gmail.com>
-  * @author Fluence
-  *
-  * @copyright Copyright © 2006-2007, Rob Church, Fluence
-  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
- */
+ *
+ * @addtogroup Language
+ *
+ * @author Rob Church <robchur@gmail.com>
+ * @author Fluence
+ *
+ * @copyright Copyright © 2006-2007, Rob Church, Fluence
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+*/
 
 # Per conversation with a user in IRC, we inherit from Spanish and work from there
 # Nahuatl was the language of the Aztecs, and a modern speaker is most likely to

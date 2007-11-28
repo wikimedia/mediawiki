@@ -1,12 +1,10 @@
 <?php
 /** Aromanian (Armãneashce)
  *
- * Translators: Hakka (with the help of a native speaker Dumitrachi T. Fundu)
- *
  * @addtogroup Language
  * @author Niklas Laxström
+ * @author Hakka (with the help of a native speaker Dumitrachi T. Fundu)
  */
-
 
 $messages = array(
 # Dates

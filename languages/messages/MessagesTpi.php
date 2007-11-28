@@ -2,10 +2,8 @@
 /** Tok Pisin
  *
  * @addtogroup Language
- * Translators:
- * @author Wantok
  *
- * ---
+ * @author Wantok
  * @author Niklas Laxström
  */
 

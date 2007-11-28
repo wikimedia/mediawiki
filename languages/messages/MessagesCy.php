@@ -9,8 +9,6 @@
  * @author Siebrand
  */
 
-/* Cymraeg - Welsh */
-
 $namespaceNames = array(
 	NS_MEDIA          => "Media",
 	NS_SPECIAL        => "Arbennig",

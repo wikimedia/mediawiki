@@ -6,7 +6,6 @@
 
 $fallback = 'ru';
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Ярҙамсы',

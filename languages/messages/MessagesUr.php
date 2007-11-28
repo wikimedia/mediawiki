@@ -1,4 +1,8 @@
 <?php
+/**
+ *
+ * @addtogroup Language
+ */
 
 $rtl = true;
 $defaultUserOptionOverrides = array(

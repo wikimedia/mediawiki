@@ -6,8 +6,6 @@
  * @author MF-Warburg
  */
 
-
-
 $messages = array(
 # Dates
 'january'   => 'Genver',

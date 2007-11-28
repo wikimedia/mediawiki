@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  */
+ 
 $fallback = 'ru';
 
 $skinNames = array(
