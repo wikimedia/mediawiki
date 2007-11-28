@@ -168,7 +168,6 @@ $messages = array(
 'disclaimerpage'    => 'Projeto:Generala des-agnosko',
 'edithelp'          => 'Helpo editante',
 'edithelppage'      => 'Help:Editante pagini',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Helpo',
 'mainpage'          => 'Frontispico',
 'portal'            => 'Komuneso-portalo',

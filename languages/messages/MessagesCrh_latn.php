@@ -244,6 +244,7 @@ $messages = array(
 'unprotectthispage' => 'Saife qorçalavını çıqar',
 'newpage'           => 'Yañı saife',
 'talkpage'          => 'Saifeni muzakere et',
+'talkpagelinktext'  => 'Muzakere',
 'specialpage'       => 'Mahsus Saife',
 'personaltools'     => 'Şahsiy aletler',
 'postcomment'       => 'Tefsir ekle',
