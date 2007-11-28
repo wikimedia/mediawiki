@@ -251,7 +251,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'bugreportspage'    => 'Project:Poruke_o_programskim_greškama',
 'copyright'         => 'Sadržaji se koriste u skladu s $1.',
 'copyrightpagename' => 'Autorska prava na projektu {{SITENAME}}',
-'copyrightpage'     => 'Project:Autorska prava',
+'copyrightpage'     => '{{ns:project}}:Autorska prava',
 'currentevents'     => 'Aktualno',
 'currentevents-url' => 'Novosti',
 'disclaimers'       => 'Odricanje od odgovornosti',

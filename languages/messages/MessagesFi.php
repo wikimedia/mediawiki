@@ -370,7 +370,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'bugreportspage'    => 'Project:Ongelmat ja parannusehdotukset',
 'copyright'         => 'Sisältö on käytettävissä lisenssillä $1.',
 'copyrightpagename' => '{{SITENAME}} ja tekijänoikeudet',
-'copyrightpage'     => 'Project:Tekijänoikeudet',
+'copyrightpage'     => '{{ns:project}}:Tekijänoikeudet',
 'currentevents'     => 'Ajankohtaista',
 'currentevents-url' => 'Ajankohtaista',
 'disclaimers'       => 'Vastuuvapaus',

@@ -250,7 +250,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'bugreportspage'    => 'Project:Adroddiadau diffygion',
 'copyright'         => "Mae'r cynnwys ar gael o dan $1.",
 'copyrightpagename' => 'Hawlfraint {{SITENAME}}',
-'copyrightpage'     => 'Project:Hawlfraint',
+'copyrightpage'     => '{{ns:project}}:Hawlfraint',
 'currentevents'     => 'Digwyddiadau presennol',
 'currentevents-url' => 'Materion cyfoes',
 'disclaimers'       => 'Gwadiadau',

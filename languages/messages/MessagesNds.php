@@ -267,7 +267,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'bugreportspage'    => 'Project:Kontakt',
 'copyright'         => 'Inholt is verfögbor ünner de $1.',
 'copyrightpagename' => '{{SITENAME}} Copyright',
-'copyrightpage'     => 'Project:Lizenz',
+'copyrightpage'     => '{{ns:project}}:Lizenz',
 'currentevents'     => 'Aktuell Schehn',
 'currentevents-url' => 'Aktuell Schehn',
 'disclaimers'       => 'Lizenzbestimmen',
