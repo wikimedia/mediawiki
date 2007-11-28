@@ -250,7 +250,7 @@ class PreferencesForm {
 				wfMsg( 'badsiglength', $wgLang->formatNum( $wgMaxSigChars ) ) );
 			return;
 		} elseif( $this->mToggles['fancysig'] ) {
-			if( Parser::validateSig( $this->mNick ) !== false ) {
+			if( $wgParser->validateSig( $this->mNick ) !== false ) {
 				$this->mNick = $wgParser->cleanSig( $this->mNick );
 			} else {
 				$this->mainPrefsForm( 'error', wfMsg( 'badsig' ) );
