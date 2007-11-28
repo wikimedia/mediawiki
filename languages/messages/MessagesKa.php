@@ -767,9 +767,9 @@ $1 საათში.',
 'group-sysop-member'         => 'ადმინისტრატორი',
 'group-bureaucrat-member'    => 'ბიუროკრატი',
 
-'grouppage-bot'        => 'ვიკიპედია:რობოტები',
-'grouppage-sysop'      => 'ვიკიპედია:ადმინისტრატორები',
-'grouppage-bureaucrat' => 'ვიკიპედია:ბიუროკრატები',
+'grouppage-bot'        => '{{ns:project}}:რობოტები',
+'grouppage-sysop'      => '{{ns:project}}:ადმინისტრატორები',
+'grouppage-bureaucrat' => '{{ns:project}}:ბიუროკრატები',
 
 # User rights log
 'rightsnone' => '(არცერთი)',

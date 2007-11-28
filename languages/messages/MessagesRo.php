@@ -769,9 +769,9 @@ Căutări după $3 $9',
 'group-sysop-member'      => 'Administrator',
 'group-bureaucrat-member' => 'Birocrat',
 
-'grouppage-bot'        => 'Project:Boţi',
-'grouppage-sysop'      => 'Project:Administratori',
-'grouppage-bureaucrat' => 'Project:Birocraţi',
+'grouppage-bot'        => '{{ns:project}}:Boţi',
+'grouppage-sysop'      => '{{ns:project}}:Administratori',
+'grouppage-bureaucrat' => '{{ns:project}}:Birocraţi',
 
 # User rights log
 'rightslog'      => 'Raportul drepturilor de utilizator',

@@ -713,9 +713,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'group-sysop-member'      => '관리자',
 'group-bureaucrat-member' => '뷰로크랫',
 
-'grouppage-bot'        => 'Project:봇',
-'grouppage-sysop'      => 'Project:관리자',
-'grouppage-bureaucrat' => 'Project:뷰로크랫',
+'grouppage-bot'        => '{{ns:project}}:봇',
+'grouppage-sysop'      => '{{ns:project}}:관리자',
+'grouppage-bureaucrat' => '{{ns:project}}:뷰로크랫',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',

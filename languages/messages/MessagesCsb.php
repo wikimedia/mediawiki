@@ -414,7 +414,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'defaultns'             => 'Domëslno przeszëkùjë nôslédné rëmnotë mionów:',
 'files'                 => 'Lopczi',
 
-'grouppage-sysop' => 'Project:Administratorzë',
+'grouppage-sysop' => '{{ns:project}}:Administratorzë',
 
 # Recent changes
 'recentchanges'                  => 'Slédné edicëje',

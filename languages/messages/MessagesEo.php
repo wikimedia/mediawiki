@@ -712,9 +712,9 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'group-sysop-member'      => 'Sisopo',
 'group-bureaucrat-member' => 'Burokrato',
 
-'grouppage-bot'        => 'Project:Robotoj',
-'grouppage-sysop'      => 'Project:Administrantoj',
-'grouppage-bureaucrat' => 'Project:Burokratoj',
+'grouppage-bot'        => '{{ns:project}}:Robotoj',
+'grouppage-sysop'      => '{{ns:project}}:Administrantoj',
+'grouppage-bureaucrat' => '{{ns:project}}:Burokratoj',
 
 # User rights log
 'rightslogtext'  => 'Ĉi tio estas loglibro pri la ŝanĝoj de uzantorajtoj.',

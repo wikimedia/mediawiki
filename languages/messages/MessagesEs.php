@@ -789,9 +789,9 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'group-sysop-member'      => 'Administrador',
 'group-bureaucrat-member' => 'Burócrata',
 
-'grouppage-bot'        => 'Project:Bot',
+'grouppage-bot'        => '{{ns:project}}:Bot',
 'grouppage-sysop'      => '{{ns:project}}:Administradores',
-'grouppage-bureaucrat' => 'Project:Burócratas',
+'grouppage-bureaucrat' => '{{ns:project}}:Burócratas',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',

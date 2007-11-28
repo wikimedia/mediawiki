@@ -911,9 +911,9 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'group-bureaucrat-member'    => 'Byråkrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
-'grouppage-bot'           => 'Project:Robotar',
-'grouppage-sysop'         => 'Project:Administratörer',
-'grouppage-bureaucrat'    => 'Project:Byråkrater',
+'grouppage-bot'           => '{{ns:project}}:Robotar',
+'grouppage-sysop'         => '{{ns:project}}:Administratörer',
+'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',

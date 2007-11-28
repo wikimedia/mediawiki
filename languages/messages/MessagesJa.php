@@ -802,9 +802,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'group-sysop-member'      => '{{int:group-sysop}}',
 'group-bureaucrat-member' => '{{int:group-bureaucrat}}',
 
-'grouppage-bot'        => 'Project:{{int:group-bot}}',
-'grouppage-sysop'      => 'Project:{{int:group-sysop}}',
-'grouppage-bureaucrat' => 'Project:{{int:group-bureaucrat}}',
+'grouppage-bot'        => '{{ns:project}}:{{int:group-bot}}',
+'grouppage-sysop'      => '{{ns:project}}:{{int:group-sysop}}',
+'grouppage-bureaucrat' => '{{ns:project}}:{{int:group-bureaucrat}}',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',

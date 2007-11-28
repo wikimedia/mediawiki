@@ -965,9 +965,9 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 'group-bureaucrat-member'    => 'Byrokrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Zaregistrovaní používatelia',
-'grouppage-bot'           => 'Project:Boti',
-'grouppage-sysop'         => 'Project:Správcovia',
-'grouppage-bureaucrat'    => 'Project:Byrokrati',
+'grouppage-bot'           => '{{ns:project}}:Boti',
+'grouppage-sysop'         => '{{ns:project}}:Správcovia',
+'grouppage-bureaucrat'    => '{{ns:project}}:Byrokrati',
 
 # User rights log
 'rightslog'      => 'Záznam užívateľských práv',

@@ -947,9 +947,9 @@ ID ваше блокаде је $5. Молимо вас наведите ова�
 'group-sysop-member'      => 'Администратор',
 'group-bureaucrat-member' => 'Бирократа',
 
-'grouppage-bot'        => 'Project:Ботови',
-'grouppage-sysop'      => 'Project:Администратори',
-'grouppage-bureaucrat' => 'Project:Бирократе',
+'grouppage-bot'        => '{{ns:project}}:Ботови',
+'grouppage-sysop'      => '{{ns:project}}:Администратори',
+'grouppage-bureaucrat' => '{{ns:project}}:Бирократе',
 
 # User rights log
 'rightslog'      => 'Историја корисничких права',

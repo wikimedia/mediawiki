@@ -734,9 +734,9 @@ Les groupes nén tchoezis èn seront nén candjîs. Vos ploz distchoezi on group
 'group-sysop-member'      => 'manaedjeu',
 'group-bureaucrat-member' => 'mwaisse-manaedjeu',
 
-'grouppage-bot'        => 'Project:Robots',
-'grouppage-sysop'      => 'Project:Manaedjeus',
-'grouppage-bureaucrat' => 'Project:Mwaisse-manaedjeus',
+'grouppage-bot'        => '{{ns:project}}:Robots',
+'grouppage-sysop'      => '{{ns:project}}:Manaedjeus',
+'grouppage-bureaucrat' => '{{ns:project}}:Mwaisse-manaedjeus',
 
 # User rights log
 'rightslog'      => 'Djournå des droets des uzeus',
