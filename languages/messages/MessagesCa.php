@@ -554,6 +554,11 @@ Inicieu una sessió després que la rebeu.',
 Introduïu una adreça amb un format adequat o bé buideu el camp.",
 'accountcreated'             => "S'ha creat el compte",
 'accountcreatedtext'         => "S'ha creat el compte d'usuari de $1.",
+'createaccount-title'        => "Creació d'un compte a {{SITENAME}}",
+'createaccount-text'         => 'Algú ($1) ha creat un compte d\'usuari anomenat $2 al projecte {{SITENAME}}
+($4). La contrasenya per a l\'usuari "$2" és "$3". Hauríeu d\'accedir al compte i canviar-vos aquesta contrasenya quan abans millor.
+
+Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement ignoreu el missatge.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -711,6 +716,7 @@ en un fitxer de text i desar-lo més tard.</strong>',
 'nocreatetitle'             => "S'ha limitat la creació de pàgines",
 'nocreatetext'              => "Està restringida la possibilitat de crear noves pàgines.
 Podeu editar les planes ja existents o bé [[Special:Userlogin|entrar en un compte d'usuari]].",
+'permissionserrorstext'     => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'recreate-deleted-warn'     => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
@@ -1010,6 +1016,10 @@ Totes les hores són les del servidor (UTC).",
 'destfilename'                => 'Nom del fitxer de destinació',
 'watchthisupload'             => 'Vigila aquesta pàgina',
 'filewasdeleted'              => "Prèviament es va carregar un fitxer d'aquest nom i després va ser esborrat. Hauríeu de verificar $1 abans de procedir a carregar-lo una altra vegada.",
+'upload-wasdeleted'           => "'''Atenció: Esteu carregant un fitxer que ha estat prèviament esborrat.'''
+
+Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer, perquè potser també acaba eliminat.
+A continuació teniu el registre d'esborrament per a que pugeu comprovar els motius que van portar a la seva eliminació:",
 
 'upload-proto-error'      => 'El protocol és incorrecte',
 'upload-proto-error-text' => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',
@@ -1359,6 +1369,10 @@ Mostra $2 per a un registre dels esborrats més recents.',
 'deletionlog'                 => "Registre d'esborrats",
 'reverted'                    => 'Invertit amb una revisió anterior',
 'deletecomment'               => 'Motiu per a ser esborrat',
+'deletereason-dropdown'       => "*Motius freqüents d'esborrat
+** Demanada per l'autor
+** Violació del copyright
+** Vandalisme",
 'rollback'                    => 'Reverteix edicions',
 'rollback_short'              => 'Revoca',
 'rollbacklink'                => 'Reverteix',
@@ -1534,6 +1548,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'blockipsuccesssub'           => "S'ha blocat amb èxit",
 'blockipsuccesstext'          => 'L\'usuari "[[Special:Contributions/$1|$1]]" ha estat blocat.
 <br />Vegeu la [[Special:Ipblocklist|llista d\'IP blocades]] per revisar els bloquejos.',
+'ipb-edit-dropdown'           => 'Edita les raons per a blocar',
 'ipb-unblock-addr'            => 'Desbloca $1',
 'ipb-unblock'                 => 'Desbloca un usuari o una adreça IP',
 'ipb-blocklist-addr'          => 'Llista els bloquejos existents per $1',
@@ -1574,7 +1589,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'ipb_already_blocked'         => '«$1» ja és blocat',
 'ipb_cant_unblock'            => "Errada: No s'ha trobat el núm. ID de bloqueig $1. És possible que ja se'n haguera desblocat.",
 'ip_range_invalid'            => 'Rang de IP no vàlid.',
-'blockme'                     => "Bloqueja'm",
+'blockme'                     => "Bloca'm",
 'proxyblocker'                => 'Blocatge de proxy',
 'proxyblocker-disabled'       => "S'ha inhabilitat la funció.",
 'proxyblockreason'            => "La vostra adreça IP ha estat bloquejada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
