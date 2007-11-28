@@ -650,7 +650,7 @@ XHTML id names.
 'bugreportspage'    => 'Project:Bug reports',
 'copyright'         => 'Content is available under $1.',
 'copyrightpagename' => '{{SITENAME}} copyright',
-'copyrightpage'     => 'Project:Copyrights',
+'copyrightpage'     => '{{ns:project}}:Copyrights',
 'currentevents'     => 'Current events',
 'currentevents-url' => 'Current events',
 'disclaimers'       => 'Disclaimers',
