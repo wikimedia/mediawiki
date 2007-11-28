@@ -63,7 +63,7 @@ class LanguageHe extends Language {
 
 		if ( $count == '1' ) {
 			return $forms[0];
-		} elseif ( $count == '2' && $w3 ) {
+		} elseif ( $count == '2' && isset($forms[2]) ) {
 			return $forms[2];
 		} else {
 			return $forms[1];
