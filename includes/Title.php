@@ -2635,9 +2635,15 @@ class Title {
 	 * @return bool
 	 */
 	public function isAlwaysKnown() {
+		// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
+		// the full l10n of that language to be loaded. That takes much memory and
+		// isn't needed. So we strip the language part away.
+		// Also, extension messages which are not loaded, are shown as red, because
+		// we don't call MessageCache::loadAllMessages.
+		list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
 		return $this->isExternal()
 			|| ( $this->mNamespace == NS_MAIN && $this->mDbkeyform == '' )
-			|| ( $this->mNamespace == NS_MEDIAWIKI && wfMsgWeirdKey( $this->mDbkeyform ) );
+			|| ( $this->mNamespace == NS_MEDIAWIKI && wfMsgWeirdKey( $basename ) );
 	}
 
 	/**
