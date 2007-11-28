@@ -184,7 +184,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Tefü {{SITENAME}}',
-'aboutpage'         => 'Portal:Tefü',
+'aboutpage'         => 'Project:Tefü',
 'copyright'         => 'Ninäd gebidon ma el $1.',
 'copyrightpagename' => 'Kopiedagität {{SITENAME}}a',
 'currentevents'     => 'Jenots nuik',
@@ -197,7 +197,7 @@ $messages = array(
 'portal'            => 'Komotanefaleyan',
 'portal-url'        => 'Project:Komotanefaleyan',
 'privacy'           => 'Dunamod demü soelöf',
-'privacypage'       => 'Portal:Dunamod_demü_soelöf',
+'privacypage'       => 'Project:Dunamod_demü_soelöf',
 'sitesupport'       => 'Födagivots',
 
 'badaccess-group0' => 'No pedälol ad ledunön atosi, kelosi ebegol.',

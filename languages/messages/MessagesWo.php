@@ -209,7 +209,7 @@ $messages = array(
 'portal'            => 'Askan',
 'portal-url'        => 'Project:Xët wu njëkk',
 'sitesupport'       => 'Joxe ag ndimbal',
-'sitesupport-url'   => 'Portal:Joxe ag ndimbal',
+'sitesupport-url'   => 'Project:Joxe ag ndimbal',
 
 'badaccess'        => 'Njuumte ci ndigël gi',
 'badaccess-group0' => 'Amoo ay sañ-sañ yu doy ngir man a def li nga bëgg a def.',
