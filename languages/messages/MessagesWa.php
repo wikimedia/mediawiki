@@ -250,7 +250,7 @@ $messages = array(
 'bugreportspage'    => 'Project:Rapoirts di bugs',
 'copyright'         => "Li contnou est dizo l' $1.",
 'copyrightpagename' => 'Abondroets {{SITENAME}}',
-'copyrightpage'     => 'Portal:Abondroets',
+'copyrightpage'     => 'Project:Abondroets',
 'currentevents'     => 'Actouwålités',
 'currentevents-url' => 'Actouwålités',
 'edithelp'          => 'Aidance',
@@ -260,7 +260,7 @@ $messages = array(
 'portal'            => 'Inte di nozôtes',
 'portal-url'        => 'Project:Inte di nozôtes',
 'sitesupport'       => 'Ecwårlaedje',
-'sitesupport-url'   => 'Portal:Ecwårlaedje',
+'sitesupport-url'   => 'Project:Ecwårlaedje',
 
 'badaccess' => "Åk n' a nén stî avou les permissions",
 
