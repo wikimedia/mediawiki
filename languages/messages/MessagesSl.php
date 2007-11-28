@@ -237,7 +237,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'bugreportspage'    => 'Project:Poročila o hroščih',
 'copyright'         => 'Besedilo je na razpolago pod pogoji $1.',
 'copyrightpagename' => 'Avtorske pravice {{GRAMMAR:rodilnik|{{SITENAME}}}}',
-'copyrightpage'     => 'Project:Avtorske pravice {{GRAMMAR:rodilnik|{{SITENAME}}}}',
+'copyrightpage'     => '{{ns:project}}:Avtorske pravice {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'currentevents'     => 'Trenutni dogodki',
 'currentevents-url' => 'Trenutni dogodki',
 'disclaimers'       => 'Zanikanja odgovornosti',

@@ -326,7 +326,7 @@ I seguenti collegamenti sono in lingua inglese:
 'bugreportspage'    => 'Project:Malfunzionamenti',
 'copyright'         => "Contenuti soggetti a licenza d'uso $1.",
 'copyrightpagename' => 'Il copyright su {{SITENAME}}',
-'copyrightpage'     => 'Project:Copyright',
+'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Attualità',
 'currentevents-url' => 'Attualità',
 'disclaimers'       => 'Avvertenze',

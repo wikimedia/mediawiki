@@ -262,7 +262,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'bugreportspage'    => 'Project:Teated_programmivigadest',
 'copyright'         => 'Kogu tekst on kasutatav litsentsi $1 tingimustel.',
 'copyrightpagename' => '{{SITENAME}} ja autoriõigused',
-'copyrightpage'     => 'Project:Autoriõigused',
+'copyrightpage'     => '{{ns:project}}:Autoriõigused',
 'currentevents'     => 'Sündmused maailmas',
 'currentevents-url' => 'Sündmused maailmas',
 'disclaimers'       => 'Hoiatused',

@@ -243,7 +243,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'bugreportspage'    => 'Project:Fabht-thuairiscí',
 'copyright'         => 'Tá an t-ábhar le fáil faoin $1.',
 'copyrightpagename' => 'Cóipcheart {{GRAMMAR:genitive|{{SITENAME}}}}',
-'copyrightpage'     => 'Project:Cóipchearta',
+'copyrightpage'     => '{{ns:project}}:Cóipchearta',
 'currentevents'     => 'Cursaí reatha',
 'currentevents-url' => 'Cursaí reatha',
 'disclaimers'       => 'Séanadh',

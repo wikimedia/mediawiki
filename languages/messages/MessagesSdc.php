@@ -206,7 +206,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'bugreportspage'    => 'Project:Maiffunzionamenti',
 'copyright'         => "Cuntinuddi suggetti a licèntzia d'usu $1.",
 'copyrightpagename' => 'Lu copyright i {{SITENAME}}',
-'copyrightpage'     => 'Project:Copyright',
+'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Attuarità',
 'currentevents-url' => 'Attuarità',
 'disclaimers'       => 'Avvirthènzi',
