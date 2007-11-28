@@ -232,7 +232,7 @@ $messages = array(
 'bugreports'        => 'Raportu cimojn',
 'bugreportspage'    => 'Project:Raportu cimojn',
 'copyright'         => 'La enhavo estas havebla sub $1.',
-'copyrightpagename' => 'permesilo **** GFDL **** uzata por la {{SITENAME}}',
+'copyrightpagename' => 'permesilo uzata por la {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Kopirajto',
 'currentevents'     => 'Aktualaĵoj',
 'currentevents-url' => 'Aktualaĵoj',
@@ -278,7 +278,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}',
 'feedlinks'               => 'Nutro:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikolo',
 'nstab-user'      => 'Paĝo de uzanto',
 'nstab-media'     => 'Media paĝo',
@@ -847,6 +847,10 @@ aŭ por sono
 'unusedtemplatestext' => 'Ĉi paĝo listigas ĉiujn paĝojn en la nomspaco "Ŝablono" kiuj ne estas enmetitaj en alia paĝo. Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'unusedtemplateswlh'  => 'aliaj ligiloj',
 
+# Random page
+'randompage'         => 'Hazarda paĝo',
+'randompage-nopages' => 'Ne ekzistas paĝoj en ĉi tiu nomspaco.',
+
 # Random redirect
 'randomredirect' => 'Hazarda alidirekto',
 
@@ -903,8 +907,6 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'mostrevisions'           => 'Artikoloj kun la plej multaj revizioj',
 'allpages'                => 'Ĉiuj paĝoj',
 'prefixindex'             => 'Indeksa prefikso',
-'randompage'              => 'Hazarda paĝo',
-'randompage-nopages'      => 'Ne ekzistas paĝoj en ĉi tiu nomspaco.',
 'shortpages'              => 'Paĝetoj',
 'longpages'               => 'Paĝegoj',
 'deadendpages'            => 'Seneliraj paĝoj',

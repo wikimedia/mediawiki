@@ -571,7 +571,7 @@ La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament
 'readonlywarning'           => "<strong>AVERTIMENT : '''aquesta pagina es <span style=\"color:red\">protegida</span> <u>temporàriament</u> e <u>automaticament</u> per mantenença.'''<br />Doncas poiretz pas i salvagardar vòstras modificacions ara. Podètz copiar lo tèxt dins un fichièr e lo salvagardar per mai tard.</strong>",
 'protectedpagewarning'      => "<strong>ATENCION : Aquesta pagina es protegida. Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Asseguratz-vos que seguissètz las directivas concernent las paginas protegidas.</strong>",
 'semiprotectedpagewarning'  => "'''Nòta:''' Aquesta pagina es estada blocada, pòt èsser editada pas que pels utiliaires enregistats.",
-'cascadeprotectedwarning'   => '<strong>ATENCION : Aquesta pagina es estada protegida de biais que sols los [[{{MediaWiki:grouppage-sysop}}|administrators]] pòscan l’editar. Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins una pagina protegida amb la « proteccion en cascada » activada.</strong>',
+'cascadeprotectedwarning'   => '<strong>ATENCION : Aquesta pagina es estada protegida de biais que sols los [[{{MediaWiki:Grouppage-sysop}}|administrators]] pòscan l’editar. Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins una pagina protegida amb la « proteccion en cascada » activada.</strong>',
 'templatesused'             => 'Modèls utilizats sus aquesta pagina :',
 'templatesusedpreview'      => 'Modèls utilizats dins aquesta previsualizacion :',
 'templatesusedsection'      => 'Modèls utilizats dins aquesta seccion :',

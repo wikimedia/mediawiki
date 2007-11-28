@@ -343,7 +343,6 @@ $messages = array(
 'bugreportspage'    => "Project:Informes d'errors",
 'copyright'         => "El contingut és disponible sota els termes d'una llicència $1",
 'copyrightpagename' => '{{SITENAME}}, tots els drets reservats',
-'copyrightpage'     => '{{ns:project}}:Copyrights',
 'currentevents'     => 'Actualitat',
 'currentevents-url' => 'Actualitat',
 'disclaimers'       => 'Avís general',
@@ -926,7 +925,6 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'group-bureaucrat-member'    => 'buròcrata',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradors',
 'grouppage-bureaucrat'    => '{{ns:project}}:Buròcrates',
 

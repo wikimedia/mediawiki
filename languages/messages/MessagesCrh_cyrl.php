@@ -243,6 +243,7 @@ $messages = array(
 'unprotectthispage' => 'Саифе къорчалавыны чыкъар',
 'newpage'           => 'Янъы саифе',
 'talkpage'          => 'Саифени музакере эт',
+'talkpagelinktext'  => 'Музакере',
 'specialpage'       => 'Махсус Саифе',
 'personaltools'     => 'Шахсий алетлер',
 'postcomment'       => 'Тефсир экле',

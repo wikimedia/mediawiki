@@ -231,7 +231,6 @@ $messages = array(
 'bugreportspage'    => "Project:Informe d'errors",
 'copyright'         => 'O conteniu ye disponible baxo a lizenzia $1.',
 'copyrightpagename' => "Dreitos d'autor de {{SITENAME}}",
-'copyrightpage'     => '{{ns:project}}:Copyrights',
 'currentevents'     => 'Autualidat',
 'currentevents-url' => 'Autualidat',
 'disclaimers'       => 'Abiso legal',
