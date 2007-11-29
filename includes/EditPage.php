@@ -628,11 +628,13 @@ class EditPage {
 
 		# Show a warning message when someone creates/edits a user (talk) page but the user does not exists
 		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
-			$id = User::idFromName( $this->mTitle->getBaseText() );
-			$ip = User::isIP( $this->mTitle->getBaseText() );
+			$parts = explode( '/', $this->mTitle->getText(), 2 );
+			$username = $parts[0];
+			$id = User::idFromName( $username );
+			$ip = User::isIP( $username );
 
 			if ( $id == 0 && !$ip ) {
-				$wgOut->addWikiText( '<div class="mw-userpage-userdoesnotexist error">' . wfMsg( 'userpage-userdoesnotexist', $this->mTitle->getBaseText() ) . '</div>' );
+				$wgOut->addWikiText( '<div class="mw-userpage-userdoesnotexist error">' . wfMsg( 'userpage-userdoesnotexist', $username ) . '</div>' );
 			}
 		}
 
