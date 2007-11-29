@@ -303,6 +303,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added support for traditional, unified and array diffs to prop=revisions
 * Make prop=info check for restrictions in the old format too.
 * Add apihighlimits permission, default for sysops and bots
+* Add limit=max to use maximal limit
 
 === Languages updated in 1.12 ===
 

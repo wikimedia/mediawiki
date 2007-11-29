@@ -410,7 +410,13 @@ abstract class ApiBase {
 						if ($multi)
 							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $encParamName");
 						$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : 0;
-						$value = intval($value);
+						if( $value == 'max' ) {
+							$value = $this->getMain()->canApiHighLimits() ? $paramSettings[self :: PARAM_MAX2] : $paramSettings[self :: PARAM_MAX];
+							$this->getResult()->addValue( 'limits', 'limit', $value );
+						}
+						else {
+							$value = intval($value);
+						}
 						$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
 						break;
 					case 'boolean' :
@@ -485,7 +491,7 @@ abstract class ApiBase {
 		// Optimization: do not check user's bot status unless really needed -- skips db query
 		// assumes $botMax >= $max
 		if (!is_null($max) && $value > $max) {
-			if (!is_null($botMax) && ($this->getMain()->canApiHighLimits())) {
+			if (!is_null($botMax) && $this->getMain()->canApiHighLimits()) {
 				if ($value > $botMax) {
 					$this->dieUsage($this->encodeParamName($paramName) . " may not be over $botMax (set to $value) for bots or sysops", $paramName);
 				}
