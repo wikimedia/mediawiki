@@ -261,6 +261,7 @@ $messages = array(
 'article'        => 'Artikel',
 'newwindow'      => '(åbner i et nyt vindue)',
 'cancel'         => 'Afbryd',
+'qbfind'         => 'Søg',
 'qbbrowse'       => 'Gennemse',
 'qbedit'         => 'Redigér',
 'qbpageoptions'  => 'Indstillinger for side',
@@ -273,6 +274,9 @@ $messages = array(
 'anontalk'       => 'Diskussionsside for denne IP-adresse',
 'navigation'     => 'Navigation',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'    => 'Fejl',
 'returnto'          => 'Tilbage til $1.',
 'tagline'           => 'Fra {{SITENAME}}',
@@ -284,6 +288,7 @@ $messages = array(
 'history'           => 'Historik',
 'history_short'     => 'Historik',
 'updatedmarker'     => '(ændret)',
+'info_short'        => 'Information',
 'printableversion'  => 'Udskriftsvenlig udgave',
 'permalink'         => 'Permanent henvisning',
 'print'             => 'Udskriv',
@@ -360,6 +365,7 @@ $messages = array(
 'versionrequired'     => 'Kræver version $1 af MediaWiki',
 'versionrequiredtext' => 'Version $1 af MediaWiki er påkrævet, for at bruge denne side. Se [[{{ns:special}}:Version|Versionssiden]]',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Hentet fra "$1"',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nye beskeder',
@@ -374,6 +380,7 @@ $messages = array(
 'thisisdeleted'           => 'Se eller gendan $1?',
 'viewdeleted'             => 'Vise $1?',
 'restorelink'             => '{{PLURAL:$1|en slettet ændring|$1 slettede ændringer}}',
+'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ugyldig abonnementstype.',
 'site-rss-feed'           => '$1 RSS-feed',
 'site-atom-feed'          => '$1 Atom-feed',
@@ -444,6 +451,7 @@ Hvis det ikke er tilfældet, har du måske fundet en fejl i programmet. Meld det
 Funktion: $1<br />
 Forespørgsel: $2',
 'viewsource'           => 'Vis kilden',
+'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Begrænsning af handling',
 'actionthrottledtext'  => 'For at modvirke spam, er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Vær venlig at forsøge igen om et par minutter.',
 'protectedpagetext'    => 'Denne side er skrivebeskyttet.',
@@ -495,6 +503,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'yournick'                   => 'Dit kaldenavn (til signaturer)',
 'badsig'                     => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
 'badsiglength'               => 'Underskriften er for lang. Den må højst indeholde $1 tegn.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => '* <strong>Dit rigtige navn</strong> (valgfrit): Hvis du vælger at oplyse dit navn vil dette blive brugt til at tilskrive dig dit arbejde.',
 'loginerror'                 => 'Fejl med at logge på',
 'prefs-help-email'           => '** <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, 
@@ -641,6 +650,7 @@ Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
 'newarticletext'            => "'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{MediaWiki:Helppage}}|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen.",
 'anontalkpagetext'          => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske IP-adresse til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Special:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
 'noarticletext'             => "'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen.",
+'userpage-userdoesnotexist' => 'Brugerkontoen "$1" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
 'clearyourcache'            => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla / Firefox / Safari''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'' (Mac: ''cmd-shift-r''); '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''; '''Konqueror''': klik på ''reload'' eller tryk på ''F5''",
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
 'usercsspreview'            => "'''Husk at du kun tester/forhåndsviser dit eget css, den er ikke gemt endnu!'''",
@@ -789,6 +799,29 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'oversightlog'    => 'Oversight-logbog',
 'overlogpagetext' => 'Dette er logbogen med sletninger og spærringer, som er skjult for administratorerne.',
 
+# History merging
+'mergehistory'          => 'Sammenflet sidehistorikker',
+'mergehistory-header'   => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side. 
+Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
+
+'''Bevar som minimum den nuværende udgave af kildesiden.'''",
+'mergehistory-box'      => 'Sammenflet versioner af to sider:',
+'mergehistory-from'     => 'Kildeside:',
+'mergehistory-into'     => 'Destinationsside:',
+'mergehistory-list'     => 'Sammenflettelig revisioner',
+'mergehistory-merge'    => 'Nedenstående udgave af [[:$1]] kan sammenflettes med [[:$2]]. Vælg én version nedfor for at sammenflette denne og alle tidligere versioner. Bemærk at navigation i historikken nulstiller valget.',
+'mergehistory-go'       => 'Vis sammenflettelige versioner',
+'mergehistory-submit'   => 'Sammenflet versioner',
+'mergehistory-empty'    => 'Der findes ingen sammenflettelige udgaver',
+'mergehistory-success'  => '$3 {{PLURAL:$3|version|versioner}} af [[:$1]] blev flettet sammen med [[:$2]].',
+'mergehistory-fail'     => 'Sammenfletningen kunne ikke gennemføres. Vær venlig at kontrollere sidenavne og tidsafgrænsning.',
+
+# Merge log
+'mergelog'              => 'Sammenfletningslog',
+'pagemerge-logentry'    => 'flettede [[$1]] ind i [[$2]] (revisioner indtil $3)',
+'revertmerge'           => 'Gendan sammenfletning',
+'mergelogpagetext'      => 'Nedenfor vises en liste med de nyeste sammenfletninger af en sides historik i en anden.',
+
 # Diffs
 'history-title'             => 'Revisionshistorik for "$1"',
 'difference'                => '(Forskelle mellem versioner)',
@@ -901,15 +934,18 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 # Groups
 'group'               => 'Gruppe:',
 'group-autoconfirmed' => 'Registrerede brugere',
+'group-bot'           => 'Robotter',
 'group-sysop'         => 'Administratorer',
 'group-bureaucrat'    => 'Bureaukrater',
 'group-all'           => '(alle)',
 
 'group-autoconfirmed-member' => 'Registreret bruger',
+'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bureaukrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Registrerede brugere',
+'grouppage-bot'           => '{{ns:project}}:Robotter',
 'grouppage-sysop'         => '{{ns:project}}:Administratorer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaukrater',
 
@@ -928,6 +964,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'rcnotefrom'                        => 'Nedenfor ses ændringerne fra <b>$2</b> til <b>$1</b> vist.',
 'rclistfrom'                        => 'Vis nye ændringer startende fra $1',
 'rcshowhideminor'                   => '$1 mindre ændringer',
+'rcshowhidebots'                    => '$1 robotter',
 'rcshowhideliu'                     => '$1 registrerede brugere',
 'rcshowhideanons'                   => '$1 anonyme brugere',
 'rcshowhidepatr'                    => '$1 kontrollerede ændringer',
@@ -937,6 +974,8 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'hist'                              => 'historik',
 'hide'                              => 'skjul',
 'show'                              => 'vis',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|overvåget bruger|overvågede brugere}}]',
 'rc_categories'                     => 'Kun sider fra kategorierne (adskilt med „|“):',
@@ -1301,12 +1340,14 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'emailpage'       => 'E-mail bruger',
 'emailpagetext'   => 'Hvis denne bruger har sat en gyldig e-mail-adresse i sine brugerindstillinger, så vil formularen herunder sende en enkelt besked. Den e-mailadresse, du har sat i dine brugerindstillinger, vil dukke op i "Fra" feltet på denne mail, så modtageren er i stand til at svare.',
 'usermailererror' => 'E-mail-modulet returnerede en fejl:',
+'defemailsubject' => 'W-mail fra {{SITENAME}}',
 'noemailtitle'    => 'Ingen e-mail-adresse',
 'noemailtext'     => 'Denne bruger har ikke angivet en gyldig e-mail-adresse, eller har valgt ikke at modtage e-mail fra andre brugere.',
 'emailfrom'       => 'Fra',
 'emailto'         => 'Til',
 'emailsubject'    => 'Emne',
 'emailmessage'    => 'Besked',
+'emailsend'       => 'Send',
 'emailccme'       => 'Send en kopi af denne E-mail til mig',
 'emailccsubject'  => 'Kopi sendes til $1: $2',
 'emailsent'       => 'E-mail sendt',
@@ -1315,6 +1356,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 # Watchlist
 'watchlist'            => 'Overvågningsliste',
 'mywatchlist'          => 'Overvågningsliste',
+'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext'    => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
 'watchnologin'         => 'Ikke logget på',
@@ -1401,6 +1443,13 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'deletionlog'                 => 'sletningslog',
 'reverted'                    => 'Gendannet en tidligere version',
 'deletecomment'               => 'Begrundelse for sletning',
+'deleteotherreason'           => 'Anden/uddybende begrundelse:',
+'deletereasonotherlist'       => 'Anden begrundelse',
+'deletereason-dropdown'       => '
+*Hyppige sletningsårsager
+** Efter forfatters ønske
+** Overtrædelse af ophavsret
+** Hærværk',
 'rollback'                    => 'Fjern redigeringer',
 'rollback_short'              => 'Fjern redigering',
 'rollbacklink'                => 'fjern redigering',
@@ -1440,6 +1489,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'restriction-level'           => 'Beskyttelseshøjde',
 'minimum-size'                => 'Mindste størrelse',
 'maximum-size'                => 'Største størrelse',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'ændre',
@@ -1506,9 +1556,11 @@ $1',
 # Contributions
 'contributions' => 'Brugerbidrag',
 'mycontris'     => 'Mine bidrag',
+'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Ingen ændringer er fundet som opfylder disse kriterier.',
 'ucnote'        => 'Herunder er denne brugers sidste <b>$1</b> ændringer i de sidste <b>$2</b> dage.',
 'uclinks'       => 'Vis de sidste $1 ændringer; vis de sidste $2 dage.',
+'uctop'         => ' (top)',
 'month'         => 'Måned:',
 'year'          => 'År:',
 
@@ -1712,12 +1764,14 @@ Artiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads til f
 'thumbnail_dest_directory' => 'Kataloget kan ikke oprettes.',
 
 # Special:Import
-'import'                     => 'Importere sider',
+'import'                     => 'Importer sider',
+'importinterwiki'            => 'Importer sider fra en anden wiki',
 'import-interwiki-text'      => 'Vælg en Wiki og en side til importen.
 Datoen i den pågældende version og forfatterne ændres ikke.
 Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-loggen]].',
-'import-interwiki-history'   => 'Importere alle versioner af denne side',
-'import-interwiki-namespace' => 'Importere  siderne i navnerummet:',
+'import-interwiki-history'   => 'Importer alle versioner af denne side',
+'import-interwiki-submit'    => 'Importer',
+'import-interwiki-namespace' => 'Importer  siderne i navnerummet:',
 'importtext'                 => "Eksportér filen fra kilde-wiki'en ved hjælp af værktøjet Special:Export, gem den på din harddisk og læg den op her.",
 'importstart'                => 'Importere sider …',
 'import-revision-count'      => '– {{PLURAL:$1|1 version|$1 versioner}}',
@@ -1914,6 +1968,7 @@ $1',
 Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvisning på en linje er til det uønskede billede. Efterfølgende links på samme linjer er undtagelser, dvs. sider hvor billedet må optræde.',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Denne fil indeholder yderligere informationer, der som regel stammer fra digitalkameraet eller den brugte scanner. Ved en efterfølgende bearbejdning kan nogle data være ændret.',
 'metadata-expand'   => 'Vis udvidede data',
 'metadata-collapse' => 'Skjul udvidede data',
@@ -2050,12 +2105,13 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 'exif-unknowndate' => 'Ukendt dato',
 
-'exif-orientation-2' => 'Horizontalt drejet', # 0th row: top; 0th column: right
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Horisontalt spejlet', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Drejet 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Drejet vertikalt', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Drejet 90° mod uret og vendt vertijalt', # 0th row: left; 0th column: top
+'exif-orientation-4' => 'Vertikalt spejlet', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Drejet 90° mod uret og spejlet vertikalt', # 0th row: left; 0th column: top
 'exif-orientation-6' => 'Drejet 90° med uret', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Drejet 90° med uret og vendt vertikalt', # 0th row: right; 0th column: bottom
+'exif-orientation-7' => 'Drejet 90° med uret og spejlet vertikalt', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Drejet 90° mod uret', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'Grovformat',
@@ -2109,6 +2165,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-sensingmethod-3' => 'To-chip-farvesensor',
 'exif-sensingmethod-4' => 'Tre-chip-farvesensor',
 'exif-sensingmethod-5' => 'Farvesekventiel områdesensor',
+'exif-sensingmethod-7' => 'Triliniær sensor',
 'exif-sensingmethod-8' => 'Farvesekventiel liniarsensor',
 
 'exif-scenetype-1' => 'Normal',
@@ -2123,19 +2180,26 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-whitebalance-0' => 'Automatisk',
 'exif-whitebalance-1' => 'Manuel',
 
+'exif-scenecapturetype-0' => 'Normal',
 'exif-scenecapturetype-1' => 'Landskab',
 'exif-scenecapturetype-2' => 'Portræt',
 'exif-scenecapturetype-3' => 'Natscene',
 
 'exif-gaincontrol-0' => 'Ingen',
 'exif-gaincontrol-1' => 'Ringe',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Svag',
 'exif-contrast-2' => 'Stærk',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Ringe',
 'exif-saturation-2' => 'Høj',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Ringe',
 'exif-sharpness-2' => 'Stærk',
 
@@ -2219,6 +2283,7 @@ Trackbacks for denne side:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1 löschen])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback blev slettet.',
 
 # Delete conflict
