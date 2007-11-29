@@ -196,7 +196,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for users with special characters in their names
 * The number of watching users in watchlists was always reported as 1
 * namespaceDupes.php no longer dies when coming across an illegal title
-* Make API check for restrictions in the old format too.
 * (bug 12143) Do not show a link to patrol new pages for non existent pages
 
 == Parser changes in 1.12 ==
@@ -302,6 +301,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11206) api.php should honor maxlag
 * Added diff generation to prop=revisions
 * Added support for traditional, unified and array diffs to prop=revisions
+* Make prop=info check for restrictions in the old format too.
+* Add apihighlimits permission, default for sysops and bots
 
 === Languages updated in 1.12 ===
 

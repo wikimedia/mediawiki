@@ -1072,6 +1072,7 @@ $wgGroupPermissions['bot'  ]['autoconfirmed']   = true;
 $wgGroupPermissions['bot'  ]['nominornewtalk']  = true;
 $wgGroupPermissions['bot'  ]['autopatrol']      = true;
 $wgGroupPermissions['bot'  ]['suppressredirect'] = true;
+$wgGroupPermissions['bot'  ]['apihighlimits']   = true;
 
 // Most extra permission abilities go to this group
 $wgGroupPermissions['sysop']['block']           = true;
@@ -1099,6 +1100,7 @@ $wgGroupPermissions['sysop']['ipblock-exempt']	= true;
 $wgGroupPermissions['sysop']['blockemail']      = true;
 $wgGroupPermissions['sysop']['markbotedits']	= true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
+$wgGroupPermissions['sysop']['apihighlimits']   = true;
 #$wgGroupPermissions['sysop']['mergehistory']    = true;
 
 // Permission to change users' group assignments

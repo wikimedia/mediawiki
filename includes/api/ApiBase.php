@@ -485,7 +485,7 @@ abstract class ApiBase {
 		// Optimization: do not check user's bot status unless really needed -- skips db query
 		// assumes $botMax >= $max
 		if (!is_null($max) && $value > $max) {
-			if (!is_null($botMax) && ($this->getMain()->isBot() || $this->getMain()->isSysop())) {
+			if (!is_null($botMax) && ($this->getMain()->canApiHighLimits())) {
 				if ($value > $botMax) {
 					$this->dieUsage($this->encodeParamName($paramName) . " may not be over $botMax (set to $value) for bots or sysops", $paramName);
 				}
