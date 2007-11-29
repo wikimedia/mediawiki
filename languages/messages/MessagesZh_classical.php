@@ -9,7 +9,7 @@
 $skinNames = array(
         'standard' => '經典',
         'nostalgia' => '懷古',
-        'cologneblue' => '古龍水藍',
+        'cologneblue' => '馨藍',
         'monobook' => '單書',
         'myskin' => '吾風',
         'chick' => '窈窕'
@@ -501,6 +501,7 @@ $2',
 誤入者，返前即可。',
 'anontalkpagetext'          => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:Userlogin|登簿]]遠之。",
 'noarticletext'             => '此頁無文。子可 [[{{ns:special}}:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
+'userpage-userdoesnotexist' => '"$1"之簿未增也。請建纂本頁前查之。',
 'clearyourcache'            => "'''註：'''重取頁面，文方新焉。
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-Shift-R''（Apple Mac為''Cmd-Shift-R''）。
 '''IE:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。
@@ -964,9 +965,9 @@ $2',
 'booksources-go'            => '往',
 'booksources-text'          => '有賈售新舊書，或有助焉。茲列如下：',
 'categoriespagetext'        => 'wiki有門如下：',
-'data'                      => 'Data',
-'userrights'                => 'User rights management',
-'groups'                    => 'User groups',
+'data'                      => '訊',
+'userrights'                => '齋權管',
+'groups'                    => '齋組',
 'alphaindexline' => '自$1至$2',
 'version' => '版',
 
@@ -1332,66 +1333,120 @@ $NEWPAGE
 'proxyblocksuccess'           => '成矣。',
 
 # Developer tools
-'lockdb'              => '鎖庫藏',
-'unlockdb'            => '解庫藏',
-'lockconfirm'         => '篤欲鎖之',
-'unlockconfirm'       => '篤欲解之',
-'lockbtn'             => '鎖',
-'unlockbtn'           => '解',
-'lockdbsuccesssub'    => '庫藏鎖矣',
-'unlockdbsuccesssub'  => '庫藏解矣',
-'lockdbsuccesstext'   => '庫藏鎖矣。<br />檢修畢務[[Special:Unlockdb|解之]]。',
-'unlockdbsuccesstext' => '庫藏解矣',
-'databasenotlocked'   => '庫藏未鎖',
+'lockdb'              => '閉庫',
+'unlockdb'            => '開庫',
+'lockdbtext'          => '夫閉庫者，止撰編、凍簿註、休令哨、謝問庫也。篤欲行，事畢開之。',
+'unlockdbtext'        => '夫開庫者，迎撰編、任註簿、喜令哨、隨問庫也；慎篤之。',
+'lockconfirm'         => '篤閉之。',
+'unlockconfirm'       => '篤開之。',
+'lockbtn'             => '閉庫',
+'unlockbtn'           => '開庫',
+'locknoconfirm'       => '未篤焉。',
+'lockdbsuccesssub'    => '庫已閉',
+'unlockdbsuccesssub'  => '庫已開',
+'lockdbsuccesstext'   => '庫閉矣。<br />檢畢切[[Special:Unlockdb|開之]]。',
+'unlockdbsuccesstext' => '庫開矣',
+'lockfilenotwritable' => '未准更鎖庫檔。欲開閉之，網頁伺服須得更也。',
+'databasenotlocked'   => '庫未閉焉。',
 
 # Move page
 'movepage'         => '遷文',
-'movearticle'      => '遷此文:',
+'movepagetext'     => "函下遷文，誌隨新往、舊題作渡、取佐不移。保佐正，防窮、斷渡。
+
+囑之者，新題若非空、渡、缺誌，則舊'''不遷'''焉。存頁勿覆，而誤遷可悔也。
+
+<b>警示</b>
+膾炙遷焉，禍生不測；戒慎行之。",
+'movearticle'      => '遷文：',
 'movenologin'      => '未登簿',
 'movenologintext'  => '遷文須[[Special:Userlogin|登簿]]。',
-'movenotallowed'   => '爾無遷頁之權也。',
-'newtitle'         => '至新題:',
-'move-watch'       => '哨',
-'movepagebtn'      => '遷此頁',
-'pagemovedsub'     => '成',
-'movepage-moved'   => "<big>'''「$1」遷「$2」矣'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => '此頁復存，或名謬焉。請更之。',
+'movenotallowed'   => '無准遷文也。',
+'newtitle'         => '至新題：',
+'move-watch'       => '派哨',
+'movepagebtn'      => '遷文',
+'pagemovedsub'     => '遷成矣',
+'movepage-moved'   => "<big>'''「$1」已遷至「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'    => '此題早存，或名謬焉；請更之。',
+'talkexists'       => "'''文遷成而議未移，蓋早存也；請併之。'''",
 'movedto'          => '遷至',
-'movetalk'         => '並遷其議',
+'movetalk'         => '議並遷',
 'talkpagemoved'    => '議並遷矣。',
-'talkpagenotmoved' => '遷議有<strong>變</strong>。',
-'1movedto2'        => '[[$1]]遷[[$2]]矣',
-'1movedto2_redir'  => '[[$1]]遷[[$2]]矣',
+'talkpagenotmoved' => '遷議<strong>不成</strong>。',
+'1movedto2'        => '[[$1]]遷至[[$2]]',
+'1movedto2_redir'  => '[[$1]]遷至[[$2]]為渡',
 'movelogpage'      => '誌遷',
-'movelogpagetext'  => '有遷如下：',
+'movelogpagetext'  => '頁遷如下：',
 'movereason'       => '因',
 'revertmove'       => '還',
-'delete_and_move'  => '合刪遷',
+'delete_and_move'  => '刪遷',
+'delete_and_move_text'    => '==准刪==
+
+往遷"[[$1]]"存，刪之以替乎？',
+'delete_and_move_confirm' => '刪之',
+'delete_and_move_reason'  => '為遷而刪之',
+'selfmove'                => "鄉遷同源，如未移也。",
+'immobile_namespace'      => '鄉遷其一，名冊特異，不可遷也。',
 
 # Export
-'export-download' => '供存文',
+'export'            => '出匯',
+'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]]匯"[[{{MediaWiki:mainpage}}]]"。',
+'exportcuronly'     => '獨匯今審',
+'exportnohistory'   => "----
+'''囑記，'''封匯全誌，因累甚也。",
+'export-submit'     => '出匯',
+'export-addcattext' => '索門擇題：',
+'export-addcat'     => '增',
+'export-download' => '備檔以載',
 
 # Namespace 8 related
-'allmessages'         => '官訊',
-'allmessagesname'     => '名',
-'allmessagesdefault'  => '予定文',
+'allmessages'         => '官話',
+'allmessagesname'     => '話',
+'allmessagesdefault'  => '慣文',
 'allmessagescurrent'  => '今文',
-'allmessagestext'     => '此為MediaWiki領域處所含之系統訊息一覽。',
-'allmessagesfilter'   => '濾訊名：',
-'allmessagesmodified' => '見曾易',
+'allmessagestext'     => '此列MediaWiki官話。',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''閉庫，'''{{ns:special}}:Allmessages'''",
+'allmessagesfilter'   => '含辭：',
+'allmessagesmodified' => '見易',
 
 # Thumbnails
-'thumbnail-more' => '張',
-'missingimage'   => '<b>喪圖</b><br /><i>$1</i>',
-'filemissing'    => '檔喪矣。',
+'thumbnail-more'           => '展',
+'missingimage'             => '<b>喪圖</b><br /><i>$1</i>',
+'filemissing'              => '喪檔',
+'thumbnail_error'          => '縮圖$1有誤',
+'djvu_page_error'          => 'DjVu page out of range',
+'djvu_no_xml'              => 'Unable to fetch XML for DjVu file',
+'thumbnail_invalid_params' => '縮圖參數不合',
+'thumbnail_dest_directory' => '縮圖匣未可造',
 
 # Special:Import
-'import-interwiki-submit' => '匯入',
-'importstart'             => '匯入…',
-'import-revision-count'   => '有審$1',
-'importnopages'           => '無可匯。',
-'importfailed'            => '匯入有變：$1',
-'importsuccess'           => '匯入成矣！',
+'import'                     => '圖入匯',
+'importinterwiki'            => '維基互匯',
+'import-interwiki-text'      => "欲入匯，擇維基、揀題文，審時、纂者隨記也。互匯錄於[[Special:Log/import|誌入]]。",
+'import-interwiki-history'   => '審、誌同匯',
+'import-interwiki-submit'    => '入匯',
+'import-interwiki-namespace' => '入名冊：',
+'importtext'                 => '請[[Special:Export出匯]]儲之，再入匯於此。',
+'importstart'                => '入匯…',
+'import-revision-count'      => '有審$1',
+'importnopages'              => '無可匯。',
+'importunknownsource'        => '入類不明',
+'importcantopen'             => "入未可啟",
+'importbadinterwiki'         => '維基內鏈壞',
+'importnotext'               => '空檔或無文',
+'importfailed'               => '入匯有變：$1',
+'importsuccess'              => '入匯成矣！',
+'importhistoryconflict'      => '舊審沖，疑早存焉',
+'importnosources'            => '互匯而未定入源，審、誌不予直進。',
+'importnofile'               => '無匯入也。',
+'importuploaderror'          => '檔未入匯，疑幅越焉。',
+
+# Import log
+'importlogpage'                    => '誌入',
+'importlogpagetext'                => '秩入匯自他山之審。',
+'import-logentry-upload'           => '[[$1]]上傳而匯',
+'import-logentry-upload-detail'    => '有審$1',
+'import-logentry-interwiki'        => '互匯$1',
+'import-logentry-interwiki-detail' => '$2來$1審',
 
 # Import log
 'import-logentry-upload-detail'    => '有審$1',
@@ -1399,7 +1454,7 @@ $NEWPAGE
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => '述平生、紹身家、銘字號',
-'tooltip-pt-anonuserpage'         => '君IP之舍',
+'tooltip-pt-anonuserpage'         => "君IP之舍",
 'tooltip-pt-mytalk'               => '與眾論、往魚雁、湧文滔',
 'tooltip-pt-anontalk'             => '此IP所修之議',
 'tooltip-pt-preferences'          => '更符驛、排版式、投所好',
@@ -1419,7 +1474,7 @@ $NEWPAGE
 'tooltip-ca-move'                 => '安居所，嚮正道',
 'tooltip-ca-watch'                => '哨此報',
 'tooltip-ca-unwatch'              => '撤此哨',
-'tooltip-search'                  => '索站之，籲自曉',
+'tooltip-search'                  => '索大典，籲自曉',
 'tooltip-search-go'               => '確合契，躍步到',
 'tooltip-search-fulltext'         => '尋通篇，列倣傚',
 'tooltip-p-logo'                  => '返卷首，訪露朝',
@@ -1432,9 +1487,27 @@ $NEWPAGE
 'tooltip-n-sitesupport'           => '濟資財、施續命、傳美皓',
 'tooltip-t-whatlinkshere'         => '何美餚，佐此料',
 'tooltip-t-recentchangeslinked'   => '足義友，借鏡照',
+'tooltip-feed-rss'                => '本卷之RSS源',
+'tooltip-feed-atom'               => '本卷之Atom源',
+'tooltip-t-contributions'         => '同肩戰，苦功高',
+'tooltip-t-emailuser'             => '言未猶，書信捎',
+'tooltip-t-upload'                => '貢彩圖、獻樂謠',
+'tooltip-t-specialpages'          => '奇怪求，特查找',
+'tooltip-t-print'                 => '備印墨，整版貌',
+'tooltip-t-permalink'             => '鏈緊焊，橋吊牢',
+'tooltip-ca-nstab-main'           => '閱文稿',
+'tooltip-ca-nstab-user'           => '返齋寮',
+'tooltip-ca-nstab-media'          => '聽媒紹',
+'tooltip-ca-nstab-special'        => "特查報，謝纂校",
+'tooltip-ca-nstab-project'        => '探爐灶',
+'tooltip-ca-nstab-image'          => '觀揮毫',
+'tooltip-ca-nstab-mediawiki'      => '聞官耗',
+'tooltip-ca-nstab-template'       => '尋模造',
+'tooltip-ca-nstab-help'           => '助拳腳',
+'tooltip-ca-nstab-category'       => '入門道',
 'tooltip-minoredit'               => '正小錯，謙註校',
 'tooltip-save'                    => '葺修畢，儲之窖',
-'tooltip-preview'                 => '篤存儲，先覽貌',
+'tooltip-preview'                 => '篤存儲，先草稿',
 'tooltip-diff'                    => '留筆過，觀入刀',
 'tooltip-compareselectedversions' => '揀二審，辨毀造',
 'tooltip-watch'                   => '哨此報',
@@ -1442,16 +1515,27 @@ $NEWPAGE
 'tooltip-upload'                  => '獻品備，伐步跑',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}無簿',
-'siteuser'         => '{{SITENAME}}有簿$1',
-'lastmodifiedatby' => '是頁由$3近易於$1 $2。', # $1 date, $2 time, $3 user
+'anonymous'        => '{{SITENAME}}無簿者',
+'siteuser'         => '{{SITENAME}}有簿者$1',
+'lastmodifiedatby' => '$1$2，$3新易此頁。', # $1 date, $2 time, $3 user
 'and'              => '與',
 'othercontribs'    => '$1主撰',
-'others'           => '它',
-'siteusers'        => '{{SITENAME}}有簿$1',
+'others'           => '他',
+'siteusers'        => '{{SITENAME}}有簿者$1',
+'creditspage'      => '頁贊',
+'nocredits'        => '本頁未有贊信也。',
 
 # Spam protection
+'spamprotectiontitle'    => '防賈濫',
+'spamprotectiontext'     => '外鏈疑賈，存頁止焉。',
+'spamprotectionmatch'    => '憑如下：$1',
+'subcategorycount'       => '門有戶$1。',
+'categoryarticlecount'   => '門有文$1。',
+'category-media-count'   => '門有檔$1。',
 'listingcontinuesabbrev' => '續',
+'spambot_username'       => 'MediaWiki清濫',
+'spam_reverting'         => '還新審之無鏈$1者。',
+'spam_blanking'          => '審皆鏈$1，遂令白頁。',
 
 # Info page
 'infosubtitle'   => '頁註',
@@ -1461,62 +1545,78 @@ $NEWPAGE
 'numauthors'     => '編者$1',
 'numtalkauthors' => '議者$1',
 
+# Math options
+'mw_math_png'    => '屢作PNG',
+'mw_math_simple' => '易為則作HTML，否則PNG',
+'mw_math_html'   => '堪為則作HTML，否則PNG',
+'mw_math_source' => 'TeX依舊，純文覽器適也。',
+'mw_math_modern' => '今之覽器此薦。',
+'mw_math_mathml' => '實驗者，堪為則作MathML。',
+
 # Patrolling
-'markaspatrolleddiff'        => '派哨',
-'markaspatrolledtext'        => '派哨',
-'markedaspatrolled'          => '派哨',
-'markedaspatrolledtext'      => '此審哨矣',
-'rcpatroldisabled'           => '不哨近易',
-'markedaspatrollederror'     => '哨有誤',
-'markedaspatrollederrortext' => '揀之以哨',
+'markaspatrolleddiff'                 => '派哨',
+'markaspatrolledtext'                 => '哨此報',
+'markedaspatrolled'                   => '派哨',
+'markedaspatrolledtext'               => '此審哨矣。',
+'rcpatroldisabled'                    => '不哨近易',
+'rcpatroldisabledtext'                => '近易之哨，未准行也。',
+'markedaspatrollederror'              => '哨有誤',
+'markedaspatrollederrortext'          => '揀一以哨。',
+'markedaspatrollederror-noautopatrol' => '己易不可哨。',
+
+# Patrol log
+'patrol-log-page'   => '誌哨',
+'patrol-log-line'   => '令哨$2之$1$3',
+'patrol-log-auto'   => '（自行）',
+'patrol-log-diff'   => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',
 'filedeleteerror-short'           => '刪檔有誤：$1',
-'filedeleteerror-long'            => '刪檔有誤：
-
-$1',
-'filedelete-missing'              => '"$1"無以復，蓋因本無之。',
-'filedelete-old-unregistered'     => '"$1"古矣，無尋焉。',
-'filedelete-current-unregistered' => '"$1"無尋焉。',
-'filedelete-archive-read-only'    => '"$1"之目，莫之能書。',
+'filedeleteerror-long'            => '刪檔有誤：\n\n$1\n',
+'filedelete-missing'              => '"$1"不存，無可刪也。',
+'filedelete-old-unregistered'     => '庫無舊審"$1"。',
+'filedelete-current-unregistered' => '庫無"$1"也。',
+'filedelete-archive-read-only'    => '"$1"存匣，未准更之。',
 
 # Browsing diffs
 'previousdiff' => '←前辨',
 'nextdiff'     => '後辨→',
 
 # Media information
-'widthheight'     => '長$1寬$2',
-'widthheightpage' => '長$1寬$2，頁$3',
-'svg-long-desc'        => '（SVG檔，表長$1寬$2像素，檔積：$3）',
+'mediawarning'         => "'''警'''日：此檔疑惡，行之恐諜也。<hr />",
+'imagemaxsize'         => '述圖頁惟列：',
+'thumbsize'            => '縮圖幅',
+'widthheight'          => '$1矩$2',
+'widthheightpage'      => '$1矩$2，共$3頁',
+'svg-long-desc'        => '（SVG檔，貌有像素$1矩$2，幅$3）',
+'show-big-image'       => '全幅',
+'show-big-image-thumb' => '<small>縮圖幅有像素$1矩$2</small>',
 
 # Special:Newimages
-'newimages'    => '新圖廊',
+'newimages'    => '新圖之廊',
 'showhidebots' => '（$1僕）',
-'noimages'     => '無',
+'noimages'     => '無可見。',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'video-dims'     => '$1，長$2寬$3',
+'video-dims'     => '$1，$2矩$3',
 
 # Bad image list
-'bad_image_list' => '根式篡:
+'bad_image_list' => '僅取表件，冠「*」者也。格式如下：
 
-列示項（以 * 始）以慮也。首鏈必連壞圖也。
-然，同行之鏈慮作例外，即圖可於文中示也。',
+單列數鏈，首通壞圖；而後所鏈之文，允圖見於其內。',
 
 # Metadata
-'metadata'          => '衍義',
-'metadata-help'     => '斯檔也，所有之訊，蓋由數碼相機、掃描器之物所加，以數碼之。
-
-倘嘗易之，衍義之果，或有異也。',
-'metadata-expand'   => '示其詳',
-'metadata-collapse' => '藏其詳',
-'metadata-fields'   => '在EXIF衍義表毀時，兹列之訊，無有不示，他者則藏。
-* 相機製造商
-* 相機型號
-* 本之時日
-* 曝光時間
-* 光圈(F值)
+'metadata'          => '補註',
+'metadata-help'     => '此檔補註，製者所添，如相機、掃描之器；後若更檔，補註不誠也。',
+'metadata-expand'   => '見詳',
+'metadata-collapse' => '藏詳',
+'metadata-fields'   => '若藏詳，此下EXIF補註方現，否則藏焉。
+* 出廠
+* 型號
+* 當攝
+* 曝光
+* 光圈
 * 焦距',
 
 # EXIF tags
@@ -1625,7 +1725,7 @@ $1',
 'watchlistedit-noitems'        => '哨無題也。',
 'watchlistedit-normal-title'   => '治哨站',
 'watchlistedit-normal-legend'  => '撤之',
-'watchlistedit-normal-explain' => '盡列有哨。欲撤題，揀之再擊。亦[[Special:Watchlist/raw|治源哨]]或[[Special:Watchlist/clear|清哨]]也。',
+'watchlistedit-normal-explain' => '盡列有哨。欲撤題，揀之再擊。亦[[Special:Watchlist/raw|治源哨]]也。',
 'watchlistedit-normal-submit'  => '撤題',
 'watchlistedit-normal-done'    => '$1題之哨已撤：',
 'watchlistedit-raw-title'      => '治源哨',
