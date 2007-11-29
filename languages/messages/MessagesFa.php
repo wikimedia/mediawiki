@@ -2364,7 +2364,13 @@ $3
 'scarytranscludetoolong'  => 'نشانی اینترنتی مورد نظر (URL) بیش از اندازه بلند بود',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 حذف])',
+'trackbackbox'      => '<div id="mw_trackbacks">
+بازتاب این صفحه در وب‌نوشت‌ها:<br />
+$1
+</div>',
+'trackbackremove'   => ' ([$1 حذف])',
+'trackbacklink'     => 'بازتاب',
+'trackbackdeleteok' => 'بازتاب صفحه با موفقیت حذف شد.',
 
 # Delete conflict
 'deletedwhileediting' => 'هشدار: این صفحه پس از اینکه شما آغاز به ویرایش‌اش کرده‌اید، حذف شده است.',
