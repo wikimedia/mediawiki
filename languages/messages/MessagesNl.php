@@ -991,7 +991,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'mergehistory-from'    => 'Bronpagina:',
 'mergehistory-into'    => 'Bestemmingspagina:',
 'mergehistory-list'    => 'Samenvoegbare bewerkingsgeschiedenis',
-'mergehistory-merge'   => 'De volgende versies van [[:$1]] kunnen samengevoegd worden naar [[:$2]]. Gebruik de kolom met ronde knop om alleen de versies gemaakt op en voor de aangegeven tijd samen te voegen. Let op dat het gebruiken van de navigatielinks deze kolom zal herinstellen.',
+'mergehistory-merge'   => 'De volgende versies van [[:$1]] kunnen samengevoegd worden naar [[:$2]]. Gebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de aangegeven tijd samen te voegen. Let op dat het gebruiken van de navigatielinks deze kolom zal herinstellen.',
 'mergehistory-go'      => 'Samenvoegbare bewerkingen tonen',
 'mergehistory-submit'  => 'Versies samenvoegen',
 'mergehistory-empty'   => 'Geen enkele versies kunnen samengevoegd worden',
@@ -1126,6 +1126,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'group-bureaucrat-member'    => 'Bureaucraat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Beheerders',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucraten',
 
