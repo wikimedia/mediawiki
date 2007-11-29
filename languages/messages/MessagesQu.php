@@ -535,6 +535,7 @@ Hark'ay huchhaykiqa $5 nisqam. Mañakuspaykiqa chay huchhata willay.",
 'newarticletext'            => "Manaraq kachkaq p'anqatam llamk'apuchkanki. Musuq p'anqata kamariyta munaspaykiqa, qillqarillay. Astawan ñawiriyta munaspaykiqa, [[{{MediaWiki:Helppage}}|yanapana p'anqata]] qhaway. Mana munaspaykitaq, ñawpaq p'anqaman ripuy.",
 'anontalkpagetext'          => "---- ''Kayqa huk sutinnaq icha mana sutinta llamk'achiq ruraqpa rimanakuyninmi. IP huchhantam hallch'asunchik payta sutinchanapaq. Achka ruraqkunam huklla IP huchhanta llamk'achiyta atin. Sutinnaq ruraq kaspaykiqa, mana qampa rurasqaykimanta willamusqakunata rikuspaykiqa, ama hina kaspa [[Special:Userlogin|ruraqpa sutiykita kamariy icha yaykuy]] huk sutinnaq ruraqkunawan ama pantasqa kanaykipaq.''",
 'noarticletext'             => "Kay p'anqaqa ch'usaqmi. Kaytam rurayta atinkiman: {{PAGENAME}} nisqata [[Special:Search/{{PAGENAME}}|huk qillqakunapi maskay]] icha [{{fullurl:{{FULLPAGENAME}}|action=edit}} musuq qillqata qallariy].",
+'userpage-userdoesnotexist' => '"$1" sutiyuq ruraqpa rakiqunanqa manam kanchu. Ama hina kaspa, llanchikuy kay p\'anqata kamarinaykimanta.',
 'clearyourcache'            => "'''Paqtataq:''' Willañiqita waqaycharquspaykiqa, wamp'unaykip ''cache'' nisqa pakasqa waqaychananta ch'usaqchanaykichá atinman hukchasqaykikunata rikunaykipaq:
 *'''Mozilla:'''  ''ctrl-shift-r'',
 *'''Internet Explorer:''' ''ctrl-f5'',
@@ -601,20 +602,23 @@ Kaymi kay p'anqamanta qulluy hallch'a:",
 
 # "Undo" feature
 'undo-success' => 'Rurasqata kutichiyta atinkim. Manaraq kutichispaykiqa, kay qatiq wakichayta qhawariy rikunaykipaq chiqapta munasqaykichu manallachu, chaymantataq waqaychay kutichinapaq.',
-'undo-failure' => 'No se puede deshacer la edición ya que otro usuario ha realizado una edición intermedia.',
+'undo-failure' => "Manam atinichu llamk'apusqata kutichiyta, huk ruraqtaq musuqta llamk'apurquptinñam.",
 'undo-summary' => '[[Special:Contributions/$2|$2]]-pa $1 hukchasqanta kutichisqa ([[User talk:$2|rimay]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Manam atinichu rakiqunata kichayta',
+'cantcreateaccount-text' => "Kay IP tiyaymanta (<b>$1</b>) rakiquna kichariyqa [[User:$3|$3]]-pa hark'asqanmi.
+
+$3-qa nirqan kayraykum: ''$2''",
 
 # History pages
 'revhistory'          => "Mawk'a llamk'apusqakuna",
-'viewpagelogs'        => 'Ver los registros de esta página',
-'nohistory'           => 'No hay un historial de ediciones para esta página.',
+'viewpagelogs'        => "Kay p'anqamanta hallch'akunata qhaway",
+'nohistory'           => "Kay p'anqamantaqa manam llamk'apuy wiñay kawsay kanchu.",
 'revnotfound'         => "Llamk'apusqaqa manam tarisqachu",
 'revnotfoundtext'     => "Mañakusqayki llamk'apusqaqa manam tarisqachu.
 Ama hina kaspa, kay p'anqap URL nisqa tiyayninta k'uskiriy.",
-'loadhist'            => 'Recuperando el historial de la página',
+'loadhist'            => "P'anqamanta wiñay kawsayta chaskichkaspa",
 'currentrev'          => 'Kunan hukchasqa',
 'revisionasof'        => "$1-pa llamk'apusqan",
 'revision-info'       => "Kayqa p'anqap mawk'a llamk'apusqa kasqanmi, $1 p'unchawpi $2-pa rurasqan",
@@ -624,6 +628,7 @@ Ama hina kaspa, kay p'anqap URL nisqa tiyayninta k'uskiriy.",
 'cur'                 => 'kunan',
 'next'                => 'qat',
 'last'                => 'ñawpaq',
+'orig'                => 'qall',
 'page_first'          => 'ñawpaqkuna',
 'page_last'           => 'qhipaqkuna',
 'histlegend'          => "Sut'ichana: (kunan) = p'anqap kunan kachkayninwan huk kaykuna,
@@ -636,35 +641,34 @@ Ama hina kaspa, kay p'anqap URL nisqa tiyayninta k'uskiriy.",
 # Revision feed
 'history-feed-title'          => 'Hukchasqakunap wiñay kawsaynin',
 'history-feed-description'    => "Kay p'anqata hukchasqakunap wiñay kawsaynin",
-'history-feed-item-nocomment' => '$1 en $2', # user at time
-'history-feed-empty'          => 'La página solicitada no existe.
-Puede haber sido borrada del wiki o renombrada.
-Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
+'history-feed-item-nocomment' => '$1, $2-pi', # user at time
+'history-feed-empty'          => "Mañakusqayki p'anqaqa manam kanchu.
+Wikimanta qullusqachá icha astasqachá.
+Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 
 # Revision deletion
 'rev-deleted-comment'         => '(qullusqa rimapuy)',
 'rev-deleted-user'            => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'           => "(qullusqa hallch'a)",
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Esta revisión de la página ha sido eliminada de los archivos públicos.
-puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de borrado].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Esta revisión de la página ha sido eliminada de los archivos públicos.
-Como administrador de este wiki puedes verla;
-puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de borrado].
-</div>',
+'rev-deleted-text-permission' => "<div class=\"mw-warning plainlinks\">
+P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
+Astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch'apichá].
+</div>",
+'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
+P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
+Kay wikipi kamachiq kaspaykim rikuyta atinkim;
+astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch'apichá].
+</div>",
 'rev-delundel'                => 'rikuchiy/pakay',
 'revisiondelete'              => "Mawk'a llamk'apusqakunata qulluy/paqarichiy",
-'revdelete-nooldid-title'     => 'No hay revisión destino',
-'revdelete-nooldid-text'      => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
-'revdelete-selected'          => '{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Seleccionado un evento|Seleccionados $2 eventos}} de registro para '''$1:'''",
-'revdelete-text'              => 'Las revisiones borradas aún aparecerán en el historial de la página,
-pero sus contenidos no serán accesibles al público.
+'revdelete-nooldid-title'     => "Taripana llamk'apusqaqa manam kanchu",
+'revdelete-nooldid-text'      => "Manam taripana llamk'apusqata akllarqunkichu imawanchus kay ruranata aknachanaykipaq.",
+'revdelete-selected'          => "{{PLURAL:$2|Akllasqa llamk'apusqa|Akllasqa llamk'apusqakuna}} [[:$1]]-manta:",
+'logdelete-selected'          => "{{PLURAL:$2|Huk akllasqa tukusqa|$2 akllasqa tukusqakuna}} hallch'api '''$1'''-paq:",
+'revdelete-text'              => "Qullusqa llamk'apusqakunaqa p'anqap wiñay kawsayninpi paqarinqaraqmi, samiqnintaq manam uyanalla qhawanapaqchu.
 
-Otros administradores de este wiki aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos los operadores del sitio establezcan una restricción adicional.',
-'revdelete-legend'            => 'Establecer restricciones de revisión:',
+Kay wikipi huk kamachiqkunaqa p'anqap pakasqa samiqninta qhawaspa qullusqa kaymanta kutichiyta atinkuraqmi kay kaqlla uyapuratam llamk'achispa, kay wikip kamariqninkuna mana huk saywachanakunata tiyachiptinqa.",
+'revdelete-legend'            => "Llamk'apuypaq saywachanakunata tiyachiy:",
 'revdelete-hide-text'         => 'Qhawana qillqata pakay',
 'revdelete-hide-name'         => 'Rurayta paqtaytapas pakay',
 'revdelete-hide-comment'      => "Llamk'apuymanta willapuyta pakay",

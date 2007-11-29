@@ -65,6 +65,9 @@ $messages = array(
 'tog-externaldiff'            => 'Extern Diff-Program as Standoard benutsje',
 'tog-showjumplinks'           => '"Wikselje tou"-Links muugelk moakje',
 'tog-uselivepreview'          => 'Live-Foarschau nutsje (JavaScript) (experimentell)',
+'tog-watchlisthideown'        => 'Oaine Biedraage in ju Beooboachtengslieste ferbierge',
+'tog-watchlisthidebots'       => 'Bot-Biedraage in ju Beooboachtengslieste ferbierge',
+'tog-watchlisthideminor'      => 'Litje Biedraage in ju Beooboachtengslieste ferbierge',
 
 'underline-always'  => 'Altied',
 'underline-never'   => 'sieläärge nit',
@@ -152,6 +155,9 @@ $messages = array(
 'anontalk'       => 'Diskussionssiede foar dissen IP',
 'navigation'     => 'Navigation',
 
+# Metadata in edit box
+'metadata_help' => 'Metadoatäie:',
+
 'errorpagetitle'    => 'Failer',
 'returnto'          => 'Tourääch tou Siede $1.',
 'tagline'           => 'Uut {{SITENAME}}',
@@ -178,6 +184,7 @@ $messages = array(
 'unprotect'         => 'Fräiroat',
 'unprotectthispage' => 'Schuts aphieuwje',
 'newpage'           => 'Näie Siede',
+'talkpage'          => 'Diskussion',
 'talkpagelinktext'  => 'Diskussion',
 'specialpage'       => 'Spezioalsiede',
 'personaltools'     => 'Persöönelke Reewen',
@@ -190,6 +197,7 @@ $messages = array(
 'projectpage'       => 'Meta-Text',
 'imagepage'         => 'Bieldesiede',
 'templatepage'      => 'Foarloagensiede anwiese',
+'viewhelppage'      => 'Hälpesiede anwiese',
 'categorypage'      => 'Kategoriesiede anwiese',
 'viewtalkpage'      => 'Diskussion',
 'otherlanguages'    => 'Uur Sproaken',
@@ -216,6 +224,7 @@ $messages = array(
 'edithelp'          => 'Beoarbaidengshälpe',
 'edithelppage'      => 'Help:Beoarbaidengshälpe',
 'faq'               => 'Oafte stoalde Froagen',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hälpe',
 'mainpage'          => 'Haudsiede',
 'portal'            => '{{SITENAME}}-Portoal',
@@ -307,6 +316,7 @@ Funktion: $1<br />
 Oufroage: $2',
 'viewsource'           => 'Wältext betrachtje',
 'viewsourcefor'        => 'foar $1',
+'viewsourcetext'       => 'Wältext fon disse Siede:',
 'sqlhidden'            => '(SQL-Oufroage ferbierged)',
 
 # Login and logout pages
@@ -347,6 +357,7 @@ Dien Benutserkonto wuude mäd Ärfoulch iengjucht. Ferjeet nit, dien Ienstaaleng
 'prefs-help-realname'        => 'Optional. Foar dät anärkaanende Naamen fon dien Noome in Touhoopehong mäd dien Biedraagen.',
 'loginerror'                 => 'Failer bie ju Anmäldenge',
 'prefs-help-email'           => 'Optional. Moaket uur Benutsere muugelk, uur Email Kontakt mäd die aptouniemen, sunner dät du dien Indentität eepenlääse hougest.',
+'prefs-help-email-required'  => 'N gultige Email-Adrässe is nöödich.',
 'nocookiesnew'               => 'Dien Benutsertougong wuude kloor moaked, man du bäst nit anmälded. {{SITENAME}} benutset Cookies toun Anmäldjen fon do Benutsere. Du hääst in dien Browser-Ienstaalengen Cookies deaktivierd. Uum dien näie Benutsertougong tou bruuken, läit jädden dien Browser Cookies foar {{SITENAME}} annieme un mäldje die dan mäd dien juust iengjuchten Benutsernoome un Paaswoud an.',
 'nocookieslogin'             => '{{SITENAME}} benutset Cookies toun Anmäldjen fon dän Benutser. Du hääst in dien Browser-Ienstaalengen Cookies deaktivierd, jädden aktivierje do un fersäik et fonnäien.',
 'noname'                     => 'Du moast n Benutsernoome anreeke.',
@@ -373,7 +384,12 @@ Mail-Fersoand un Ämpfang foar do foulgjende Funktionen muugelk.',
 'noemailprefs'               => '<strong>Du hääst neen Email-Adrässe anroat</strong>, do foulgjende Funktione sunt deeruum apstuuns nit muugelk.',
 'emailconfirmlink'           => 'Bestäätigje Jou Email-Adrässe',
 'invalidemailaddress'        => 'Ju Email-Adresse wuude nit akzeptierd deeruum dät ju n ungultich Formoat (eventuäl ungultige Teekene) tou hääben schient. Reek jädden ne korrekte Adrässe ien of moakje dät Fäild loos.',
+'accountcreated'             => 'Benutserkonto näi anlaid',
+'createaccount-title'        => 'Benutserkonto anlääse foar {{SITENAME}}',
 'loginlanguagelabel'         => 'Sproake: $1',
+
+# Password reset dialog
+'resetpass_header' => 'Paaswoud touräächsätte',
 
 # Edit page toolbar
 'bold_sample'     => 'Fatte Text',
@@ -469,6 +485,7 @@ Jie fersicherje hiermäd uk, dät Jie dän Biedraach sälwen ferfoated hääbe b
 
 # History pages
 'revhistory'          => 'Fröiere Versione',
+'viewpagelogs'        => 'Logbouke foar disse Siede anwiese',
 'nohistory'           => 'Dät rakt neen fröiere Versione fon dissen Artikkel.',
 'revnotfound'         => 'Disse Version wuude nit fuunen.',
 'revnotfoundtext'     => 'Ju soachte Version fon dissen Artikkel kuude nit fuunen wäide. Uurpröiwe jädden ju URL fon disse Siede.',
@@ -494,10 +511,13 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'historyempty'        => '(loos)',
 
 # Revision feed
+'history-feed-title'          => 'Versionsgeschichte',
 'history-feed-item-nocomment' => '$1 uum $2', # user at time
 
 # Revision deletion
+'rev-delundel'   => 'wiese/ferbierge',
 'revisiondelete' => 'Versione läskje/wier häärstaale',
+'revdelete-log'  => 'Kommentoar/Gruund:',
 
 # Diffs
 'history-title'             => 'Versionsgeschichte fon "$1"',
@@ -532,7 +552,9 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'prefsnologin'          => 'Nit anmälded',
 'prefsnologintext'      => 'Du moast [[Special:Userlogin|anmälded]] weese, uum dien Ienstaalengen tou annerjen.',
 'prefsreset'            => 'Ienstaalengen wuuden ap Standoard touräächsät.',
+'qbsettings-none'       => 'Naan',
 'changepassword'        => 'Paaswoud annerje',
+'skin'                  => 'Skin',
 'math'                  => 'TeX',
 'dateformat'            => 'Doatumsformoat',
 'datedefault'           => 'Neen Preferenz',
@@ -548,6 +570,7 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'math_notexvc'          => 'Dät texvc-Program kon nit fuunen wäide. Beoachte jädden math/README.',
 'prefs-personal'        => 'Benutserdoaten',
 'prefs-rc'              => 'Bekoandreekenge fon "Lääste Annerengen"',
+'prefs-watchlist'       => 'Beooboachtengslieste',
 'prefs-misc'            => 'Ferscheedene Ienstaalengen',
 'saveprefs'             => 'Ienstaalengen spiekerje',
 'resetprefs'            => 'Ienstaalengen touräächsätte',
@@ -571,6 +594,7 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'guesstimezone'         => 'Ienföigje uut dän Browser',
 'allowemail'            => 'Emails fon uur Benutsere kriegen',
 'defaultns'             => 'In disse Noomensruume schäl standoardmäitich soacht wäide:',
+'default'               => 'Standoardienstaalenge',
 'files'                 => 'Doatäie',
 
 # User rights
@@ -585,9 +609,20 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 
 # Groups
 'group'            => 'Gruppe:',
+'group-bot'        => 'Bots',
+'group-sysop'      => 'Administratore',
 'group-bureaucrat' => 'Bürokraten',
+'group-all'        => '(aal)',
 
-'group-bureaucrat-member' => 'Bürokrat',
+'group-autoconfirmed-member' => 'Bestäätigede Benutser',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Administrator',
+'group-bureaucrat-member'    => 'Bürokrat',
+
+'grouppage-autoconfirmed' => '{{ns:project}}:Bestäätigede Benutser',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Administratore',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
 # User rights log
 'rightslogtext' => 'Dit is dät Logbouk fon do Annerengen fon do Benutsergjuchte.',
@@ -602,6 +637,7 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'rcshowhidebots'                    => 'Bots $1',
 'rcshowhideliu'                     => 'Anmäldede Benutser $1',
 'rcshowhideanons'                   => 'Anonyme Benutser $1',
+'rcshowhidepatr'                    => 'Pröiwede Annerengen $1',
 'rcshowhidemine'                    => 'Oaine Biedraage $1',
 'rclinks'                           => 'Wiese do lääste $1 Annerengen; wiese do lääste $2 Deege.<br />$3',
 'diff'                              => 'Unnerschied',
@@ -612,7 +648,9 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'newpageletter'                     => 'Näi',
 'boteditletter'                     => 'B',
 'number_of_watching_users_pageview' => '[$1 beooboachtjende {{PLURAL:$1|Benutser|Benutsere}}]',
+'rc_categories_any'                 => 'Aal',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'newsectionsummary'                 => 'Näie Apsats /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked' => 'Annerengen an ferlinkede Sieden',
@@ -670,6 +708,7 @@ uurschrieuwen. Unner $1 koast du die bewisje, of du dät wuddelk wolt.",
 'sourcefilename'              => 'Wäldoatäi',
 'watchthisupload'             => 'Disse Siede beooboachtje',
 
+'license'   => 'Lizenz',
 'nolicense' => 'naan Foaruutwoal',
 
 # Image list
@@ -682,7 +721,12 @@ uurschrieuwen. Unner $1 koast du die bewisje, of du dät wuddelk wolt.",
 'bydate'                    => 'ätter Doatum',
 'bysize'                    => 'ätter Grööte',
 'imgdelete'                 => 'Läskje',
+'imgdesc'                   => 'Beschrieuwenge',
+'imgfile'                   => 'Doatäi',
 'filehist'                  => 'Doatäiversione',
+'filehist-deleteall'        => 'Aal do Versione läskje',
+'filehist-deleteone'        => 'Disse Version läskje',
+'filehist-revert'           => 'touräächsätte',
 'filehist-current'          => 'aktuäl',
 'filehist-datetime'         => 'Version fon',
 'filehist-user'             => 'Benutser',
@@ -699,10 +743,24 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'shareduploadwiki-linktext' => 'Doatäi-Beschrieuwengssiede',
 'noimage-linktext'          => 'hoochleede',
 'uploadnewversion-linktext' => 'Ne näie Version fon disse Doatäi hoochleede',
+'imagelist_date'            => 'Doatum',
+'imagelist_name'            => 'Noome',
+'imagelist_user'            => 'Benutser',
+'imagelist_size'            => 'Grööte',
 'imagelist_description'     => 'Beschrieuwenge',
 
 # File reversion
+'filerevert'         => 'Touräächsätte fon "$1"',
+'filerevert-legend'  => 'Doatäi touräächsätte',
 'filerevert-comment' => 'Kommentoar:',
+'filerevert-submit'  => 'Touräächsätte',
+
+# File deletion
+'filedelete'         => 'Läskje "$1"',
+'filedelete-legend'  => 'Läskje Doatäi',
+'filedelete-comment' => 'Gruund:',
+'filedelete-submit'  => 'Läskje',
+'filedelete-success' => "'''\"\$1\"''' wuude läsked.",
 
 # MIME search
 'mimesearch' => 'Säike ätter MIME-Typ',
@@ -800,6 +858,7 @@ Lääste schällen dan wächhoald wäide.',
 
 # Special:Allpages
 'nextpage'          => 'Naiste Siede ($1)',
+'prevpage'          => 'Foarige Siede ($1)',
 'allpagesfrom'      => 'Sieden wiese fon:',
 'allarticles'       => 'Aal do Artikkele',
 'allinnamespace'    => 'Aal Sieden in $1 Noomenruum',
@@ -971,6 +1030,7 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'uclinks'       => 'Wies do lääste $1 Biedraage fon dän Benutser in do lääste $2 Deege.',
 'uctop'         => ' (aktuäl)',
 'month'         => 'un Mound:',
+'year'          => 'bit Jier:',
 
 'sp-contributions-newer'    => 'Näiere $1',
 'sp-contributions-older'    => 'Allere $1',
@@ -1109,6 +1169,9 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'importnofile'          => 'Deer is neen Importdoatäi hoochleeden wuuden.',
 'importuploaderror'     => 'Dät Hoochleeden fon ju Importdoatäi glipte (sluuch fail). Fielicht is ju Doatäi gratter as toulät.',
 
+# Import log
+'importlogpage' => 'Import-Logbouk',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Oaine Benutsersiede',
 'tooltip-pt-mytalk'               => 'Oaine Diskussionssiede',
@@ -1118,6 +1181,7 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 'tooltip-ca-protect'              => 'Disse Siede schutsje',
 'tooltip-ca-delete'               => 'Disse Siede läskje',
 'tooltip-ca-move'                 => 'Disse Siede ferschäuwen',
+'tooltip-ca-watch'                => 'Disse Siede an dien Beoobachtengslieste touföigje',
 'tooltip-search'                  => '{{SITENAME}} truchsäike',
 'tooltip-n-mainpage'              => 'Haudsiede anwiese',
 'tooltip-n-recentchanges'         => 'Lieste fon ju Lääste Annerengen in {{SITENAME}}.',
@@ -1439,5 +1503,10 @@ $1',
 
 # AJAX search
 'hideresults' => 'ferbierge',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Beooboachtengslieste: Annerengen',
+'watchlisttools-edit' => 'normoal beoarbaidje',
+'watchlisttools-raw'  => 'Liestenformoat beoarbaidje (Import/Export)',
 
 );

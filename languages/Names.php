@@ -53,7 +53,7 @@
 	'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ',		# Cree
 	'crh' => 'Qırımtatarca',   # Crimean Tatar
 	'crh-latn' => "\xE2\x80\xAAQırımtatarca (Latin)\xE2\x80\xAC",       # Crimean Tatar (Latin)
-	'crh-cyrl' => "\xE2\x80\xAAQırımtatarca (Kiril)\xE2\x80\xAC",       # Crimean Tatar (Cyrillic)
+	'crh-cyrl' => "\xE2\x80\xAAКъырымтатарджа (Кирилл)",       # Crimean Tatar (Cyrillic)
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
 	'cu' => 'Словѣньскъ', 	# Old Church Slavonic (ancient language)

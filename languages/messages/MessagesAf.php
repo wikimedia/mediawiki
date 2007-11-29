@@ -582,8 +582,19 @@ om voorkeure te spesifiseer.',
 'editusergroup' => 'Wysig gebruikersgroepe',
 
 # Groups
-'group'     => 'Groep:',
-'group-all' => '(alle)',
+'group'            => 'Groep:',
+'group-bot'        => 'Robotte',
+'group-sysop'      => 'Administrateurs',
+'group-bureaucrat' => 'Burokrate',
+'group-all'        => '(alle)',
+
+'group-bot-member'        => 'Robot',
+'group-sysop-member'      => 'Administrateur',
+'group-bureaucrat-member' => 'Burokraat',
+
+'grouppage-bot'        => '{{ns:project}}:Robotte',
+'grouppage-sysop'      => '{{ns:project}}:Administrateurs',
+'grouppage-bureaucrat' => '{{ns:project}}:Burokrate',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|wysiging|wysigings}}',
@@ -779,6 +790,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'booksources-search-legend' => 'Soek vir boekbronne',
 
 'categoriespagetext' => 'Die volgende kategorieë bestaan op die wiki.',
+'groups'             => 'Gebruikersgroepe',
 'alphaindexline'     => '$1 tot $2',
 'version'            => 'Weergawe',
 
@@ -1052,7 +1064,8 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'thumbnail-more' => 'Vergroot',
 
 # Special:Import
-'import' => 'Voer bladsye in',
+'import'       => 'Voer bladsye in',
+'importfailed' => 'Intrek onsuksesvol: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'My gebruikerbladsy',
@@ -1151,12 +1164,53 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'noimages'  => 'Niks te sien nie.',
 
 # EXIF tags
-'exif-artist'     => 'Bewerker',
-'exif-colorspace' => 'Kleurruimte',
+'exif-imagewidth'          => 'Breedte',
+'exif-imagelength'         => 'Hoogte',
+'exif-artist'              => 'Bewerker',
+'exif-colorspace'          => 'Kleurruimte',
+'exif-exposuretime'        => 'Beligtingstyd',
+'exif-exposuretime-format' => '$1 sek ($2)',
+'exif-fnumber'             => 'F-getal',
+'exif-filesource'          => 'Lêerbron',
+'exif-gpsversionid'        => 'GPS-merkerweergawe',
+'exif-gpslatituderef'      => 'Noorder- of suiderbreedte',
+'exif-gpslatitude'         => 'Breedtegraad',
+'exif-gpslongituderef'     => 'Ooster- of westerlengte',
+'exif-gpslongitude'        => 'Lengtegraad',
+'exif-gpsaltitude'         => 'Hoogte',
+'exif-gpstimestamp'        => 'GPS-tyd (atoomhorlosie)',
+'exif-gpsspeed'            => 'Snelheid van GPS-ontvanger',
 
 'exif-componentsconfiguration-0' => 'bestaan nie',
 
+'exif-subjectdistance-value' => '$1 meter',
+
+'exif-meteringmode-0' => 'Onbekend',
+
+'exif-lightsource-0'  => 'Onbekend',
+'exif-lightsource-1'  => 'Sonlig',
+'exif-lightsource-2'  => 'Fluoresserend',
+'exif-lightsource-4'  => 'Flits',
 'exif-lightsource-10' => 'Bewolkte weer',
+'exif-lightsource-11' => 'Skaduwee',
+
+'exif-focalplaneresolutionunit-2' => 'duim',
+
+'exif-scenecapturetype-1' => 'Landskap',
+'exif-scenecapturetype-2' => 'Portret',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Noorderbreedte',
+'exif-gpslatitude-s' => 'Suiderbreedte',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Oosterlengte',
+'exif-gpslongitude-w' => 'Westerlengte',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometer per huur',
+'exif-gpsspeed-m' => 'Myl per huur',
+'exif-gpsspeed-n' => 'Knope',
 
 # External editor support
 'edit-externally'      => "Wysig hierdie lêer met 'n eksterne program",
