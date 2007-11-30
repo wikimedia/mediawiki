@@ -685,7 +685,7 @@ class Parser
 	 * @static
 	 */
 	function internalTidy( $text ) {
-		global $wgTidyConf, $IP;
+		global $wgTidyConf, $IP, $wgDebugTidy;
 		$fname = 'Parser::internalTidy';
 		wfProfileIn( $fname );
 
@@ -699,6 +699,12 @@ class Parser
 		} else {
 			$cleansource = tidy_get_output( $tidy );
 		}
+		if ( $wgDebugTidy && $tidy->getStatus() > 0 ) {
+			$cleansource .= "<!--\nTidy reports:\n" . 
+				str_replace( '-->', '--&gt;', $tidy->errorBuffer ) . 
+				"\n-->";
+		}
+
 		wfProfileOut( $fname );
 		return $cleansource;
 	}
@@ -4956,7 +4962,7 @@ class Parser
 					$curIndex++;
 				}
 				if ( $mode == 'replace' ) {
-					$outText .= $frame->expand( $node );
+					$outText .= $frame->expand( $node, 0, PPFrame::RECOVER_ORIG );
 				}
 				$node = $node->nextSibling;
 			}
@@ -4984,7 +4990,7 @@ class Parser
 				}
 			}
 			if ( $mode == 'get' ) {
-				$outText .= $frame->expand( $node );
+				$outText .= $frame->expand( $node, 0, PPFrame::RECOVER_ORIG );
 			}
 			$node = $node->nextSibling;
 		} while ( $node );
@@ -4996,7 +5002,7 @@ class Parser
 			// stripped by the editor, so we need both newlines to restore the paragraph gap
 			$outText .= $newText . "\n\n";
 			while ( $node ) {
-				$outText .= $frame->expand( $node );
+				$outText .= $frame->expand( $node, 0, PPFrame::RECOVER_ORIG );
 				$node = $node->nextSibling;
 			}
 		}
@@ -5218,6 +5224,7 @@ class PPFrame {
 
 	const NO_ARGS = 1;
 	const NO_TEMPLATES = 2;
+	const RECOVER_ORIG = 3;
 
 	/**
 	 * Construct a new preprocessor frame.
