@@ -497,7 +497,7 @@ class ApiMain extends ApiBase {
 	}
 	
 	public function canApiHighLimits() {
-		if (!is_null ($this->mCanApiHighLimits)) {
+		if (!isset($this->mCanApiHighLimits)) {
 			global $wgUser;
 			$this->mCanApiHighLimits = $wgUser->isAllowed('apihighlimits');
 		}
