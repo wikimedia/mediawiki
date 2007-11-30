@@ -546,10 +546,12 @@ function wfMsgWikiHtml( $key ) {
  * @param array $options Processing rules:
  *  <i>parse</i>: parses wikitext to html
  *  <i>parseinline</i>: parses wikitext to html and removes the surrounding p's added by parser or tidy
- *  <i>escape</i>: filters message trough htmlspecialchars
+ *  <i>escape</i>: filters message through htmlspecialchars
+ *  <i>escapenoentities</i>: same, but allows entity references like &nbsp; through
  *  <i>replaceafter</i>: parameters are substituted after parsing or escaping
  *  <i>parsemag</i>: transform the message using magic phrases
  *  <i>content</i>: fetch message for content language instead of interface
+ * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  */
 function wfMsgExt( $key, $options ) {
 	global $wgOut, $wgParser;
@@ -590,6 +592,8 @@ function wfMsgExt( $key, $options ) {
 
 	if ( in_array('escape', $options) ) {
 		$string = htmlspecialchars ( $string );
+	} elseif ( in_array( 'escapenoentities', $options ) ) {
+		$string = str_replace( '&amp;', '&', htmlspecialchars( $string ) );
 	}
 
 	if( in_array('replaceafter', $options) ) {
