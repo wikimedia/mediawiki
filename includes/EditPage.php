@@ -1497,6 +1497,7 @@ END
 
 			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
 			$parserOptions->setTidy(true);
+			$parserOptions->enableLimitReport();
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
 					$this->mTitle, $parserOptions );
 

@@ -2496,6 +2496,7 @@ class Article {
 		$edit->pst = $this->preSaveTransform( $text );
 		$options = new ParserOptions;
 		$options->setTidy( true );
+		$options->enableLimitReport();
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $options, true, true, $revid );
 		$edit->oldText = $this->getContent();
 		$this->mPreparedEdit = $edit;
