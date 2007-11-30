@@ -593,6 +593,7 @@ class Parser
 	function insertStripItem( $text ) {
 		static $n = 0;
 		$rnd = "{$this->mUniqPrefix}-item-$n-{$this->mMarkerSuffix}";
+		++$n;
 		$this->mStripState->general->setPair( $rnd, $text );
 		return $rnd;
 	}
