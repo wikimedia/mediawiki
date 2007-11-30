@@ -3147,9 +3147,11 @@ class Article {
 
 		$popts = $wgOut->parserOptions();
 		$popts->setTidy(true);
+		$popts->enableLimitReport();
 		$parserOutput = $wgParser->parse( $text, $this->mTitle,
 			$popts, true, true, $this->getRevIdFetched() );
 		$popts->setTidy(false);
+		$popts->enableLimitReport( false );
 		if ( $cache && $this && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache =& ParserCache::singleton();
 			$parserCache->save( $parserOutput, $this, $wgUser );
