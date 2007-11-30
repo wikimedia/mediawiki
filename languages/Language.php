@@ -1983,12 +1983,6 @@ class Language {
 			$memcKey = wfMemcKey('localisation', $code );
 			$cache = $wgMemc->get( $memcKey );
 			if ( $cache ) {
-				# Check file modification times
-				foreach ( $cache['deps'] as $file => $mtime ) {
-					if ( !file_exists( $file ) || filemtime( $file ) > $mtime ) {
-						break;
-					}
-				}
 				if ( self::isLocalisationOutOfDate( $cache ) ) {
 					$wgMemc->delete( $memcKey );
 					$cache = false;
