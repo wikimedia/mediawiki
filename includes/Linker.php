@@ -368,7 +368,7 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		$this->makeColouredLinkObj( $nt, 'stub', $text, $query, $trail, $prefix );
+		return $this->makeColouredLinkObj( $nt, 'stub', $text, $query, $trail, $prefix );
 	}
 
 	/**
