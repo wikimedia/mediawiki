@@ -14,7 +14,6 @@ class Parser_OldPP
 	# Flags for Parser::setFunctionHook
 	# Also available as global constants from Defines.php
 	const SFH_NO_HASH = 1;
-	const SFH_OBJECT_ARGS = 2;
 
 	# Constants needed for external link processing
 	# Everything except bracket, space, or control characters
