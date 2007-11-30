@@ -757,13 +757,13 @@ string &$error: output: HTML error to show if upload canceled by returning false
 'UploadComplete': Upon completion of a file upload
 $image: Image object representing the file that was uploaded
 
-'UserCan': To interrupt/advise the "user can do X to Y article" check.
+'userCan': To interrupt/advise the "user can do X to Y article" check.
 	If you want to display an error message, try getUserPermissionsErrors.
 $title: Title object being checked against
 $user : Current user object
 $action: Action being checked
 $result: Pointer to result returned if hook returns false. If null is returned,
- UserCan checks are continued by internal code.
+ userCan checks are continued by internal code.
 
 'UserCreateForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
