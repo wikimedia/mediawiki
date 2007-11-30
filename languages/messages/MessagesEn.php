@@ -858,7 +858,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'wrongpasswordempty'         => 'Password entered was blank. Please try again.',
 'passwordtooshort'           => 'Your password is invalid or too short. It must have at least $1 characters and be different from your username.',
 'mailmypassword'             => 'E-mail password',
-'passwordremindertitle'      => 'Password reminder from {{SITENAME}}',
+'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
 'passwordremindertext'       => 'Someone (probably you, from IP address $1)
 requested that we send you a new password for {{SITENAME}} ($4).
 The password for user "$2" is now "$3".
