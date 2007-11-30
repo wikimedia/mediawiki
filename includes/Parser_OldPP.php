@@ -331,14 +331,14 @@ class Parser_OldPP
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
 
 		# Information on include size limits, for the benefit of users who try to skirt them
-		if ( max( $this->mIncludeSizes ) > 1000 ) {
+		if ( $this->mOptions->getEnableLimitReport() ) {
 			$max = $this->mOptions->getMaxIncludeSize();
-			$text .= "<!-- \n" .
-				"Pre-expand include size: {$this->mIncludeSizes['pre-expand']} bytes\n" .
-				"Post-expand include size: {$this->mIncludeSizes['post-expand']} bytes\n" .
-				"Template argument size: {$this->mIncludeSizes['arg']} bytes\n" .
-				"Maximum: $max bytes\n" .
-				"-->\n";
+			$limitReport = 
+				"Pre-expand include size: {$this->mIncludeSizes['pre-expand']}/$max bytes\n" .
+				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
+				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n";
+			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
+			$text .= "<!-- \n$limitReport-->\n";
 		}
 		$this->mOutput->setText( $text );
 		$this->mRevisionId = $oldRevisionId;

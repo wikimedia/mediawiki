@@ -24,6 +24,7 @@ class ParserOptions
 	var $mMaxPPNodeCount;            # Maximum number of nodes touched by PPFrame::expand()
 	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
 	var $mTemplateCallback;          # Callback for template fetching
+	var $mEnableLimitReport;         # Enable limit report in an HTML comment on output
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
 
@@ -41,6 +42,7 @@ class ParserOptions
 	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
 	function getRemoveComments()                { return $this->mRemoveComments; }
 	function getTemplateCallback()              { return $this->mTemplateCallback; }
+	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 
 	function getSkin() {
 		if ( !isset( $this->mSkin ) ) {
@@ -72,6 +74,7 @@ class ParserOptions
 	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
 	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
 	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
+	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
 
 	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
@@ -121,6 +124,7 @@ class ParserOptions
 		$this->mMaxPPNodeCount = $wgMaxPPNodeCount;
 		$this->mRemoveComments = true;
 		$this->mTemplateCallback = array( 'Parser', 'statelessFetchTemplate' );
+		$this->mEnableLimitReport = false;
 		wfProfileOut( $fname );
 	}
 }
