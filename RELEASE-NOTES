@@ -201,6 +201,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The number of watching users in watchlists was always reported as 1
 * namespaceDupes.php no longer dies when coming across an illegal title
 * (bug 12143) Do not show a link to patrol new pages for non existent pages
+* (bug 12166) Fix XHTML validity for Special:Emailuser
 
 == Parser changes in 1.12 ==
 
