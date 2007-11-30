@@ -1991,7 +1991,7 @@ class Language {
 				if ( self::isLocalisationOutOfDate( $cache ) ) {
 					$wgMemc->delete( $memcKey );
 					$cache = false;
-					wfDebug( "Language::loadLocalisation(): localisation cache for $code had expired due to update of $file\n" );
+					wfDebug( "Language::loadLocalisation(): localisation cache for $code had expired\n" );
 				} else {
 					self::$mLocalisationCache[$code] = $cache;
 					wfDebug( "Language::loadLocalisation(): got localisation for $code from cache\n" );
