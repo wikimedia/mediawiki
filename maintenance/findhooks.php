@@ -45,8 +45,8 @@ function getHooksFromDoc() {
 function getHooksFromFile( $file ) {
 	$content = file_get_contents( $file );
 	$m = array();
-	preg_match_all( "/wfRunHooks\(\s*\'(.*?)\'/", $content, $m);
-	return $m[1];
+	preg_match_all( '/wfRunHooks\(\s*([\'"])(.*?)\1/', $content, $m);
+	return $m[2];
 }
 
 /**
