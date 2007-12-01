@@ -78,6 +78,7 @@ class ApiParse extends ApiBase {
 	}
 	
 	private function formatLangLinks( $links ) {
+		$result = array();
 		foreach( $links as $link ) {
 			$entry = array();
 			$bits = split( ':', $link, 2 );
@@ -89,6 +90,7 @@ class ApiParse extends ApiBase {
 	}
 	
 	private function formatCategoryLinks( $links ) {
+		$result = array();
 		foreach( $links as $link => $sortkey ) {
 			$entry = array();
 			$entry['sortkey'] = $sortkey;
@@ -99,7 +101,7 @@ class ApiParse extends ApiBase {
 	}
 	
 	private function formatLinks( $links ) {
-		global $wgContLang;
+		$result = array();
 		foreach( $links as $ns => $nslinks ) {
 			foreach( $nslinks as $title => $id ) {
 				$entry = array();
@@ -115,7 +117,8 @@ class ApiParse extends ApiBase {
 	
 	private function setIndexedTagNames( &$array, $mapping ) {
 		foreach( $mapping as $key => $name ) {
-			$this->getResult()->setIndexedTagName( $array[$key], $name );
+			if( isset( $array[$key] ) )
+				$this->getResult()->setIndexedTagName( $array[$key], $name );
 		}
 	}
 
