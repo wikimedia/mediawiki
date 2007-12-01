@@ -1188,6 +1188,13 @@ class Title {
 			}
 		}
 
+		if ($action == 'protect')
+		{
+			if ($this->getUserPermissionsErrors('edit', $user) != array()) {
+				$errors[] = array( 'protect-cantedit' ); // If they can't edit, they shouldn't protect.
+			}
+		}
+
 		if( $action == 'create' ) {
 			if( (  $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
 				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
@@ -1195,9 +1202,9 @@ class Title {
 			}
 		} elseif( $action == 'move' && !( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
 			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
-        } else if ( !$user->isAllowed( $action ) ) {
+       		} else if ( !$user->isAllowed( $action ) ) {
 			$return = null;
-		    $groups = array();
+			$groups = array();
 			global $wgGroupPermissions;
 		        foreach( $wgGroupPermissions as $key => $value ) {
 		            if( isset( $value[$action] ) && $value[$action] == true ) {
