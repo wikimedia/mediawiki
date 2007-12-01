@@ -39,7 +39,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Iwwer {{SITENAME}}',
 'currentevents'     => 'Aktualitéit',
-'currentevents-url' => 'Aktualitéit',
+'currentevents-url' => 'Project:Aktualitéit',
 'mainpage'          => 'Haaptsäit',
 'portal'            => 'Kommunautéit',
 'portal-url'        => 'Project:Kommunautéit',

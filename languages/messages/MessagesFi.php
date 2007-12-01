@@ -372,7 +372,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'copyrightpagename' => '{{SITENAME}} ja tekijänoikeudet',
 'copyrightpage'     => '{{ns:project}}:Tekijänoikeudet',
 'currentevents'     => 'Ajankohtaista',
-'currentevents-url' => 'Ajankohtaista',
+'currentevents-url' => 'Project:Ajankohtaista',
 'disclaimers'       => 'Vastuuvapaus',
 'disclaimerpage'    => 'Project:Vastuuvapaus',
 'edithelp'          => 'Muokkausohjeet',

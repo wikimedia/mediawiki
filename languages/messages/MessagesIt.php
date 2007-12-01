@@ -328,7 +328,7 @@ I seguenti collegamenti sono in lingua inglese:
 'copyrightpagename' => 'Il copyright su {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Attualità',
-'currentevents-url' => 'Attualità',
+'currentevents-url' => 'Project:Attualità',
 'disclaimers'       => 'Avvertenze',
 'disclaimerpage'    => 'Project:Avvertenze generali',
 'edithelp'          => 'Guida',

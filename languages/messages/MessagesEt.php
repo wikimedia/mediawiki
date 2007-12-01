@@ -264,7 +264,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'copyrightpagename' => '{{SITENAME}} ja autoriõigused',
 'copyrightpage'     => '{{ns:project}}:Autoriõigused',
 'currentevents'     => 'Sündmused maailmas',
-'currentevents-url' => 'Sündmused maailmas',
+'currentevents-url' => 'Project:Sündmused maailmas',
 'disclaimers'       => 'Hoiatused',
 'disclaimerpage'    => 'Project:Hoiatused',
 'edithelp'          => 'Redigeerimisjuhend',

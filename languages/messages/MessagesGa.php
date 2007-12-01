@@ -245,7 +245,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'copyrightpagename' => 'Cóipcheart {{GRAMMAR:genitive|{{SITENAME}}}}',
 'copyrightpage'     => '{{ns:project}}:Cóipchearta',
 'currentevents'     => 'Cursaí reatha',
-'currentevents-url' => 'Cursaí reatha',
+'currentevents-url' => 'Project:Cursaí reatha',
 'disclaimers'       => 'Séanadh',
 'disclaimerpage'    => 'Project:Séanadh_ginearálta',
 'edithelp'          => 'Cabhair eagarthóireachta',

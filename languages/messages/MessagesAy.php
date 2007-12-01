@@ -32,7 +32,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'     => 'Jichha pacha',
-'currentevents-url' => 'Jichha pacha',
+'currentevents-url' => 'Project:Jichha pacha',
 'mainpage'          => 'Nayriri Uñstawi',
 'portal'            => 'Jayma punku',
 'portal-url'        => 'Project:Jayma punku',

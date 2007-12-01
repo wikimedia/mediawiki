@@ -250,7 +250,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'copyrightpagename' => 'Hawlfraint {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Hawlfraint',
 'currentevents'     => 'Digwyddiadau presennol',
-'currentevents-url' => 'Materion cyfoes',
+'currentevents-url' => 'Project:Materion cyfoes',
 'disclaimers'       => 'Gwadiadau',
 'disclaimerpage'    => 'Project:Gwadiad Cyffredinol',
 'edithelp'          => 'Help gyda golygu',

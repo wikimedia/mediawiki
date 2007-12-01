@@ -208,7 +208,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'copyrightpagename' => 'Lu copyright i {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Attuarità',
-'currentevents-url' => 'Attuarità',
+'currentevents-url' => 'Project:Attuarità',
 'disclaimers'       => 'Avvirthènzi',
 'disclaimerpage'    => 'Project:Avvirthènzi ginarari',
 'edithelp'          => 'Ghia',

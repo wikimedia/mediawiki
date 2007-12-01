@@ -77,7 +77,7 @@ $messages = array(
 'qbspecialpages' => 'Ятарлӑ страницӑсем',
 
 'currentevents'     => 'Хыпарсем',
-'currentevents-url' => 'Хыпарсем',
+'currentevents-url' => 'Project:Хыпарсем',
 
 'search'           => 'Шырасси',
 'searchbutton'     => 'Шырасси',

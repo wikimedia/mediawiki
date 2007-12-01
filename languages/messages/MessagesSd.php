@@ -40,7 +40,7 @@ $messages = array(
 'aboutpage'         => 'Project:بابت',
 'copyright'         => 'سمورو مواد $1 تحت ميسر ڪجي ٿو',
 'currentevents'     => 'ھاڻوڪا واقعا',
-'currentevents-url' => 'اعداد',
+'currentevents-url' => 'Project:اعداد',
 'mainpage'          => 'مُک صفحو',
 
 # General errors
