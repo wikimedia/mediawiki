@@ -317,6 +317,9 @@ class ApiMain extends ApiBase {
 
 			if ($this->mPrinter->getNeedsRawData())
 				$this->getResult()->setRawMode();
+
+			if( $this->mAction == 'help' )
+				$this->mPrinter->setHelp();
 		}
 
 		// Execute

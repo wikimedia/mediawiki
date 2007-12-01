@@ -35,7 +35,7 @@ if (!defined('MEDIAWIKI')) {
  */
 abstract class ApiFormatBase extends ApiBase {
 
-	private $mIsHtml, $mFormat, $mUnescapeAmps;
+	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
 
 	/**
 	* Create a new instance of the formatter.
@@ -170,6 +170,13 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	}
 
 	/**
+	* Says pretty-printer that it should use *bold* and $italics$ formatting
+	*/
+	public function setHelp( $help = true ) {
+		$this->mHelp = true;
+	}
+	
+	/**
 	* Prety-print various elements in HTML format, such as xml tags and URLs.
 	* This method also replaces any '<' with &lt;
 	*/
@@ -184,10 +191,12 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		$text = ereg_replace("($protos)://[^ \\'\"()<\n]+", '<a href="\\0">\\0</a>', $text);
 		// identify requests to api.php
 		$text = ereg_replace("api\\.php\\?[^ \\()<\n\t]+", '<a href="\\0">\\0</a>', $text);
-		// make strings inside * bold
-		$text = ereg_replace("\\*[^<>\n]+\\*", '<b>\\0</b>', $text);
-		// make strings inside $ italic
-		$text = ereg_replace("\\$[^<>\n]+\\$", '<b><i>\\0</i></b>', $text);
+		if( $this->mHelp ) {
+			// make strings inside * bold
+			$text = ereg_replace("\\*[^<>\n]+\\*", '<b>\\0</b>', $text);
+			// make strings inside $ italic
+			$text = ereg_replace("\\$[^<>\n]+\\$", '<b><i>\\0</i></b>', $text);
+		}
 		
 		/* Temporary fix for bad links in help messages. As a special case,
 		 * XML-escaped metachars are de-escaped one level in the help message
