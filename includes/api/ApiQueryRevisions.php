@@ -344,6 +344,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$title = Title::newFromID($row->rev_page);
 		
 		if($this->tok_rollback) {
+			global $wgUser;
 			$vals['rollbacktoken'] = $wgUser->editToken(array($title->getPrefixedText(), $row->rev_user_text));
 		}
 		
