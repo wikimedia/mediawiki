@@ -7,6 +7,7 @@
  * @author G - ג
  * @author Helix84
  * @author Mikel
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -195,6 +196,21 @@ $messages = array(
 'toolbox'           => 'Ferramientes',
 'userpage'          => "Ver páxina d'usuariu",
 
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite' => 'Tocante a {{SITENAME}}',
+
+# Login and logout pages
+'acct_creation_throttle_hit' => 'Yá creasti $1 cuentes. Nun pues abrir más.',
+'accountcreated'             => 'Cuenta creada',
+'accountcreatedtext'         => "La cuenta d'usuariu de $1 ta creada.",
+
+# Edit pages
+'accmailtitle' => 'Clave unviada.',
+'accmailtext'  => 'La clave de "$1" foi unviada a $2.',
+
+# Preferences page
+'allowemail' => 'Dexar a los otros usuarios mandate correos',
+
 # Statistics
 'sitestatstext' => "Hai un total de '''\$1''' páxines na base de datos.  Incluye páxines de \"discusión\" , páxines sobre {{SITENAME}}, \"entamos\" mínimos, redireiciones y otres que nun puen contar como páxines.  Ensin estes, hai '''\$2''' páxines que son artículos llexítimos.
 
@@ -204,7 +220,43 @@ Hubo un total de '''\$3''' páxines visitaes y '''\$4''' ediciones dende que la 
 
 The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
 
+# Miscellaneous special pages
+'allpages' => 'Toles páxines',
+
+# Special:Log
+'all-logs-page' => 'Tolos rexistros',
+'alllogstext'   => "Visualización combinada de tolos rexistros disponibles de {{SITENAME}}. Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usuariu o la páxina afectada.",
+
+# Special:Allpages
+'allpagesfrom'      => "Amosar páxines qu'entamen por:",
+'allarticles'       => 'Toles páxines',
+'allinnamespace'    => 'Toles páxines (espaciu de nome $1)',
+'allnotinnamespace' => 'Toles páxines (sacantes les del espaciu de nomes $1)',
+'allpagesnext'      => 'Siguientes',
+'allpagesbadtitle'  => "El títulu dau a esta páxina nun yera válidu o tenía un prefixu d'enlla inter-llingua o inter-wiki. Pue contener ún o más carauteres que nun se puen usar nos títulos.",
+'allpages-bad-ns'   => '{{SITENAME}} nun tien l\'espaciu de nomes "$1".',
+
+# Watchlist
+'addedwatch'     => 'Añadío a la llista de vixilancia',
+'addedwatchtext' => 'Añadióse la páxina "[[:$1]]" a la to [[Special:Watchlist|llista de vixilancia]]. Los cambeos nesta páxina y la so páxina de discusión asociada van salite en negrina na llista de [[Special:Recentchanges|cambeos recientes]] pa que seya más fácil de vela.
+
+Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixilar" nel menú llateral.',
+
+# Delete/protect/revert
+'actioncomplete' => 'Aición completada',
+
+# Move page
+'1movedto2'       => '[[$1]] treslladáu a [[$2]]',
+'1movedto2_redir' => '[[$1]] treslladáu a [[$2]] sobre una redireición',
+
 # Namespace 8 related
-'allmessages' => 'Tolos mensaxes del sistema',
+'allmessages'               => 'Tolos mensaxes del sistema',
+'allmessagesname'           => 'Nome',
+'allmessagesdefault'        => 'Testu por defeutu',
+'allmessagescurrent'        => 'Testu actual',
+'allmessagestext'           => 'Esta ye una llista de tolos mensaxes disponibles nel sistema de MediaWiki.',
+'allmessagesnotsupportedDB' => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
+'allmessagesfilter'         => 'Filtru pal nome del mensax:',
+'allmessagesmodified'       => 'Amosar solo modificaos',
 
 );

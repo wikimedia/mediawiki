@@ -245,14 +245,12 @@ $messages = array(
 'bugreportspage'    => 'Project:Informes de error',
 'copyright'         => 'El contenido está disponible bajo los términos de la <i>$1</i>',
 'copyrightpagename' => 'Copyright de {{SITENAME}}',
-'copyrightpage'     => '{{ns:project}}:Copyrights',
 'currentevents'     => 'Actualidad',
 'currentevents-url' => 'Actualidad',
 'disclaimers'       => 'Aviso legal',
 'disclaimerpage'    => 'Project:Limitación general de responsabilidad',
 'edithelp'          => 'Ayuda de edición',
 'edithelppage'      => 'Help:Cómo se edita una página',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Ayuda',
 'mainpage'          => 'Portada',
 'policy-url'        => 'Project:Políticas',
@@ -944,7 +942,9 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 
 # File deletion
 'filedelete'            => 'Borrar $1',
+'filedelete-legend'     => 'Borrar archivo',
 'filedelete-intro'      => "Estás borrando '''[[Media:$1|$1]]'''.",
+'filedelete-comment'    => 'Motivo:',
 'filedelete-submit'     => 'Borrar',
 'filedelete-success'    => "'''$1''' ha sido borrado.",
 'filedelete-nofile-old' => "No existe una versión guardada de '''$1''' con los atributos especificados.",
@@ -1219,6 +1219,11 @@ Véase $2 para un registro de los borrados recientes.',
 'deletionlog'                 => 'registro de borrados',
 'reverted'                    => 'Recuperar una revisión anterior',
 'deletecomment'               => 'Motivo del borrado',
+'deletereasonotherlist'       => 'Otra razón',
+'deletereason-dropdown'       => '*Razones comunes de borrado
+** A petición del mismo autor
+** Violación de copyright
+** Vandalismo',
 'rollback'                    => 'Revertir ediciones',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'Revertir',

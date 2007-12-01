@@ -339,6 +339,7 @@ $messages = array(
 'actionthrottled'      => "Ha'reket toqtatıldı",
 'protectedpagetext'    => "Bul bet o'zgertiwdin' aldın alıw ushın qulplang'an.",
 'viewsourcetext'       => "Bul bettin' deregin qarawın'ızg'a ha'mde ko'shirip alıwın'ızg'a boladı:",
+'editinginterface'     => "'''Esletpe:''' Siz ishinde MediaWiki sistema xabarı bar bolg'an betti o'zgertip atırsız. Bul bettin' o'zgeriwi basqa paydalanıwshılardın' sırtqı interfeisine ta'sir etedi.",
 'namespaceprotected'   => "'''$1''' isimler ko'pligindegi betlerdi o'zgertiwge ruxsatın'ız joq.",
 'ns-specialprotected'  => '"{{ns:special}}:" isimler ko\'pligindegi betler o\'zgertilmeydi',
 
@@ -383,7 +384,7 @@ $messages = array(
 'wrongpassword'             => "Qate parol kiritlgen. Qaytadan kiritin'.",
 'wrongpasswordempty'        => "Parol kiritilmegen. Qaytadan ha'reket etin'.",
 'mailmypassword'            => "Paroldi e-mailg'a jiberiw",
-'passwordremindertitle'     => "{{SITENAME}} proyekti parolinin' eskertiwi",
+'passwordremindertitle'     => '{{SITENAME}} ushın taza waqtınsha parol',
 'noemail'                   => '"$1" paydalanıwshının\' e-mailı joq.',
 'mailerror'                 => 'Xat jiberiwde qatelik juz berdi: $1',
 'emailauthenticated'        => "Sizin' e-mail adresin'iz tastıyıqlandı: $1.",
@@ -651,7 +652,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Byurokrat',
 
-'grouppage-autoconfirmed' => "{{ns:project}}:O'zi tastıyıqlang'anlar",
+'grouppage-autoconfirmed' => "{{ns:project}}:O'zi tastıyıqlang'an paydalanıwshılar",
 'grouppage-bot'           => '{{ns:project}}:Botlar',
 'grouppage-sysop'         => '{{ns:project}}:Administratorlar',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byurokratlar',
@@ -1163,8 +1164,8 @@ Basqa bloklawlar ushın [[{{ns:special}}:Ipblocklist|IP bloklaw dizimin]] ko'rip
 'allmessagesname'     => 'Atama',
 'allmessagesdefault'  => 'Defolt tekst',
 'allmessagescurrent'  => "Ha'zirgi tekst",
-'allmessagestext'     => "Bul {{ns:mediawiki}} isimler ko'pligindegi qatınawlı ha'mme sistema xabar dizimi.",
-'allmessagesfilter'   => "Xabar atamasın su'zgilew:",
+'allmessagestext'     => "Bul {{ns:mediawiki}} isimler ko'pligindegi bar bolg'an sistema xabarları dizimi.",
+'allmessagesfilter'   => 'Xabar atamasın filtrlew:',
 'allmessagesmodified' => "Tek o'zgertilgenlerdi ko'rset",
 
 # Thumbnails
@@ -1206,7 +1207,7 @@ Basqa bloklawlar ushın [[{{ns:special}}:Ipblocklist|IP bloklaw dizimin]] ko'rip
 'tooltip-ca-history'              => "Bul bettin' aqırg'ı nusqaları.",
 'tooltip-ca-protect'              => "Bul betti qorg'aw",
 'tooltip-ca-delete'               => "Bul betti o'shiriw",
-'tooltip-ca-undelete'             => "Bul bettin' o'shiriw aldındag'ı bolg'an o'zgertiwlerin qaytarıw",
+'tooltip-ca-undelete'             => "Bul bettin' o'shiriwden aldın bolg'an o'zgertiwlerin qaytarıw",
 'tooltip-ca-move'                 => "Bul betti ko'shiriw",
 'tooltip-ca-watch'                => "Bul betti menin' baqlaw dizimime qosiw",
 'tooltip-ca-unwatch'              => "Bul betti menin' baqlaw dizimimnen alıp tasla",
@@ -1233,7 +1234,7 @@ Basqa bloklawlar ushın [[{{ns:special}}:Ipblocklist|IP bloklaw dizimin]] ko'rip
 'tooltip-ca-nstab-main'           => "Mag'lıwmat betin ko'riw",
 'tooltip-ca-nstab-user'           => "Paydalanıwshı betin ko'riw",
 'tooltip-ca-nstab-media'          => "Media betin ko'riw",
-'tooltip-ca-nstab-special'        => "Bul arnawlı bet, bettin' o'zi o'zgertilmeydi.",
+'tooltip-ca-nstab-special'        => "Bul arnawlı bet, onı o'zgerte almaysız.",
 'tooltip-ca-nstab-project'        => "Proyekt betin ko'riw",
 'tooltip-ca-nstab-image'          => "Su'wret betin ko'riw",
 'tooltip-ca-nstab-mediawiki'      => "Sistema xabarın ko'riw",
@@ -1294,7 +1295,7 @@ Basqa bloklawlar ushın [[{{ns:special}}:Ipblocklist|IP bloklaw dizimin]] ko'rip
 # Special:Newimages
 'newimages'    => 'Taza fayllar galereyasi',
 'showhidebots' => '(botlardı $1)',
-'noimages'     => "Ko'retin hesh qanday joq.",
+'noimages'     => "Ko'riwge su'wret joq.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'   => '$1, $2 × $3',

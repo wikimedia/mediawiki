@@ -19,6 +19,8 @@ $messages = array(
 'tog-showtoc'          => 'Ipakita ang tala ng nilalaman (para sa mga pahinang may higit sa 3 pamagat)',
 'tog-rememberpassword' => 'Tandaan ang paglagda ko sa kompyuter na ito',
 'tog-fancysig'         => 'Hilaw na lagda (walang automatikong pagkawing)',
+'tog-externaleditor'   => 'Gumamit ng panlabas na editor nang nakatakda',
+'tog-uselivepreview'   => 'Gamitin ang buhay na pribyu (JavaScript) (Eksperimental)',
 
 'underline-default' => 'Tinakda ng pambasa-basa',
 
@@ -150,7 +152,7 @@ $messages = array(
 
 'badaccess'        => 'Kamalian sa pahintulot',
 'badaccess-group0' => 'Hindi ka pinahintulutan na isagawa ang gawang hiniling mo.',
-'badaccess-group1' => 'Ang gawang hiniling mo ay natatakdaan lamang sa mga tagagamit sa pangkat $1.',
+'badaccess-group1' => 'Ang gawang hiniling mo ay natatakdaan lamang sa mga manggagamit sa pangkat $1.',
 
 'versionrequired'     => 'Kinakailangan ang bersyong $1 ng MediaWiki',
 'versionrequiredtext' => 'Kinakailangan ang bersyong $1 ng MediaWiki upang magamit ang pahinang ito. Tingnan ang [[Special:Version|pahina ng bersyon]].',
@@ -167,7 +169,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulo',
-'nstab-user'      => 'Pahina ng tagagamit',
+'nstab-user'      => 'Pahina ng manggagamit',
 'nstab-media'     => 'Pahina ng midya',
 'nstab-special'   => 'Natatangi',
 'nstab-project'   => 'Pahina ng proyekto',
@@ -191,9 +193,12 @@ $messages = array(
 'viewsourcefor'        => 'para sa $1',
 'protectedpagetext'    => 'Kinandado ang pahinang ito upang maihadlang ang pagbabago',
 'viewsourcetext'       => 'Maaari mong tingnan at kopyahin ang pinagmulan ng pahinang ito:',
-'customcssjsprotected' => 'Wala kang pahintulot na baguhin ang pahinang ito, dahil naglalaman ito ng mga kagustuhang pansarili ng ibang tagagamit.',
+'customcssjsprotected' => 'Wala kang pahintulot na baguhin ang pahinang ito, dahil naglalaman ito ng mga kagustuhang pansarili ng ibang manggagamit.',
 
 # Login and logout pages
+'welcomecreation'       => '== Maligayang pagdating, $1! ==
+
+Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan sa {{SITENAME}}.',
 'yourname'              => 'Bansag (username):',
 'yourpassword'          => 'Hudyat (password):',
 'remembermypassword'    => 'Tandaan ang hudyat sa kompyuter na ito',
@@ -259,7 +264,7 @@ upang makapagkarga ng talaksan.',
 'shortpages'         => 'Mga maiikling pahina',
 'longpages'          => 'Mga mahahabang pahina',
 'specialpages'       => 'Mga natatanging pahina',
-'spheading'          => 'Mga natatanging pahina para sa lahat ng tagagamit',
+'spheading'          => 'Mga natatanging pahina para sa lahat ng manggagamit',
 'restrictedpheading' => 'Mga natatakdaang natatanging pahina',
 'move'               => 'Ilipat',
 'movethispage'       => 'Ilipat itong pahina',
@@ -270,7 +275,7 @@ upang makapagkarga ng talaksan.',
 'watchthispage' => 'Bantayan itong pahina',
 
 # Contributions
-'contributions' => 'Mga ambag ng tagagamit',
+'contributions' => 'Mga ambag ng manggagamit',
 'mycontris'     => 'Aking mga ginawa',
 'contribsub2'   => 'Para kay $1 ($2)',
 
@@ -290,16 +295,16 @@ upang makapagkarga ng talaksan.',
 ** Ugaling nananakot/pagligalig
 ** Pagmamalabis ng maramihang kuwenta
 ** Hindi kanais-nais na bansag',
-'ipbanononly'        => "Harangin ang mga 'di-kilalang tagagamit lamang",
+'ipbanononly'        => "Harangin ang mga 'di-kilalang manggagamit lamang",
 'ipbcreateaccount'   => 'Hadlangan ang paglikha ng kuwenta',
-'ipbemailban'        => 'Hadlangan ang tagagamit sa pagpapadala ng e-liham',
-'ipbenableautoblock' => 'Automatikong harangin and huling direksyong IP na ginamit ng tagagamit na ito, at anumang sumusunod pang mga IP na masusubukan nilang bago mula roon',
-'ipbsubmit'          => 'Harangin itong tagagamit',
+'ipbemailban'        => 'Hadlangan ang manggagamit sa pagpapadala ng e-liham',
+'ipbenableautoblock' => 'Automatikong harangin and huling direksyong IP na ginamit ng manggagamit na ito, at anumang sumusunod pang mga IP na masusubukan nilang bago mula roon',
+'ipbsubmit'          => 'Harangin itong manggagamit',
 'ipbother'           => 'Ibang oras:',
 'ipboptions'         => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 
 # Move page
-'movenologintext' => 'Kailangang ikaw ay isang naka-rehistrong tagagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
+'movenologintext' => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
 'movenotallowed'  => 'Wala kang permisong maglipat ng pahina sa wiking ito.',
 'newtitle'        => 'Sa bagong pamagat:',
 'movepage-moved'  => '<big>\'\'\'Ang "$1" ay inilipat sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -321,16 +326,24 @@ Pumili muli ng ibang pangalan.',
 'allmessagesdefault' => 'Tinakdang teksto',
 'allmessagescurrent' => 'Kasalukuyang teksto',
 
+# Thumbnails
+'thumbnail-more' => 'Palakihin',
+'filemissing'    => 'Nawawala ang talaksan',
+
 # Special:Import
 'import'                  => 'Mag-angkat ng pahina',
 'import-interwiki-submit' => 'Mag-angkat',
+'importstart'             => 'Inaangkat ang mga pahina...',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'    => 'Aking pahina ng tagagamit',
+'tooltip-pt-userpage'    => 'Aking pahina ng manggagamit',
 'tooltip-pt-mytalk'      => 'Aking pahinang usapan',
 'tooltip-pt-preferences' => 'Aking mga kagustuhan',
 
 # Delete conflict
 'deletedwhileediting' => 'Babala: Nabura na ang pahinang ito pagkatapos mong magsimulang magbago!',
+
+# Auto-summaries
+'autoredircomment' => 'Ikinakarga sa [[$1]]',
 
 );

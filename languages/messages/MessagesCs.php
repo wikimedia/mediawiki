@@ -580,7 +580,7 @@ Zkuste to znovu!',
 'wrongpasswordempty'         => 'Zadané heslo bylo prázdné. Zkuste to znovu.',
 'passwordtooshort'           => 'Vaše heslo je příliš krátké. Musí obsahovat nejméně $1 {{plural:$1|znak|znaky|znaků}} a nesmí být stejné jako uživatelské jméno.',
 'mailmypassword'             => 'Poslat e-mailem dočasné heslo',
-'passwordremindertitle'      => 'Připomenutí ztraceného hesla z {{grammar:2sg|{{SITENAME}}}}',
+'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
 'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) žádal, abychom Vám poslali nové heslo pro přihlášení do {{SITENAME}} ($4).
 
  Heslo pro uživatele "$2" je nyní "$3". Doporučujeme přihlásit se nyní a změnit heslo.
@@ -713,6 +713,7 @@ Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlač�
 Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'anontalkpagetext'          => "---- ''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. Musíme proto použít číselnou IP adresu k jeho identifikaci. Taková IP adresa může být sdílena několika uživateli. Pokud jste anonymní uživatel a cítíte, že jsou Vám adresovány irrelevantní komentáře, prosím [[Special:Userlogin|vytvořte si účet nebo se přihlaste]] a tím se vyhnete budoucí záměně s jinými anonymními uživateli.''",
 'noarticletext'             => 'Tato stránka zatím neobsahuje žádný text, můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit].',
+'userpage-userdoesnotexist' => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'clearyourcache'            => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
 'usercssjsyoucanpreview'    => '<strong>Tip:</strong> Použijte tlačítko „Ukázat náhled“ k testování vašeho nového css/js před uložením.',
 'usercsspreview'            => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského css, neboť ještě nebylo uloženo!'''",
@@ -1272,7 +1273,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'nlinks'                  => '$1 {{plural:$1|odkaz|odkazy|odkazů}}',
 'nmembers'                => '$1 {{plural:$1|stránka|stránky|stránek}}',
 'nrevisions'              => '$1 {{plural:$1|revize|revize|revizí}}',
-'nviews'                  => '$1 {{PLURAL:$1|zobrazení|zobrazení|zobrazení}}',
+'nviews'                  => '$1 zobrazení',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí stránky',
 'lonelypagestext'         => 'Na následující stránky na této wiki neodkazuje žádná jiná stránka.',
@@ -1470,6 +1471,12 @@ $2 zaznamenává poslední smazání.',
 'deletionlog'                 => 'Kniha smazaných stránek',
 'reverted'                    => 'Obnovení předchozí verze',
 'deletecomment'               => 'Důvod smazání',
+'deleteotherreason'           => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
+'deletereasonotherlist'       => 'Jiný důvod',
+'deletereason-dropdown'       => '*Obvyklé důvody smazání
+** Na žádost autora
+** Porušení autorských práv
+** Vandalismus',
 'rollback'                    => 'Vrátit zpět editace',
 'rollback_short'              => 'Vrátit zpět',
 'rollbacklink'                => 'vrácení zpět',

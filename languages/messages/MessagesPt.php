@@ -307,6 +307,8 @@ $messages = array(
 'viewdeleted'             => 'Ver $1?',
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feed-invalid'            => 'Tipo de subscrição feed inválido.',
+'site-rss-feed'           => 'Feed RSS $1',
+'site-atom-feed'          => 'Feed Atom $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artigo',
@@ -1502,6 +1504,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipblocklist-no-results'      => 'O endereço de IP ou nome de utilizador procurado não se encontra bloqueado.',
 'blocklink'                   => 'bloquear',
 'unblocklink'                 => 'desbloquear',
+'contribslink'                => 'contribs',
 'autoblocker'                 => 'Você foi automaticamente bloqueado, pois partilha um endereço de IP com "$1". O motivo apresentado foi: "$2".',
 'blocklogpage'                => 'Registo de bloqueio',
 'blocklogentry'               => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',

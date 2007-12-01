@@ -209,7 +209,7 @@ $messages = array(
 'category-media-header' => '"$1" kategoriyasındaki media faylları',
 'category-empty'        => "''İşbu kategoriyada iç bir saife ya da media fayl yoq.''",
 
-'linkprefix'   => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜ«„]+)$/sDu',
+'linkprefix'   => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
 'mainpagetext' => "<big>'''MediaWiki muvafaqiyetnen quruldı.'''</big>",
 
 'about'          => 'Aqqında',
@@ -325,7 +325,7 @@ $messages = array(
 'editsection'             => 'deñiştir',
 'editold'                 => 'deñiştir',
 'editsectionhint'         => 'Deñiştirilgen bölüm: $1',
-'toc'                     => 'Mevzu serlevaları',
+'toc'                     => 'Bölüm serlevaları',
 'showtoc'                 => 'köster',
 'hidetoc'                 => 'gizle',
 'thisisdeleted'           => '$1 körmege ya da keri ketirmege isteysiñizmi?',
@@ -576,7 +576,7 @@ Saqlağanıñızda bu tarihlı versiyadan künümizge qadar olğan deñişiklikl
 muqavelesi dairesindedir (tafsilât içün $1'ğa baqıñız).
 Qoşqan isseñizniñ başqa insanlar tarafından acımasızca deñiştirilmesini ya da azat tarzda ve sıñırsızca başqa yerlerge dağıtılmasını istemeseñiz, isse qoşmañız.<br />
 Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına, ya da cemaatqa açıq bir menbadan ya da başqa bir azat menbadan köpirlengenine garantiya bergen olasıñız.<br />
-<strong><center>MUELLİF AQQI İLE QORÇALANĞAN İÇ BİR ÇALIŞMANI MINDA EKLEMEÑİZ!</center></strong>",
+<strong><center>MÜELLİF AQQI İLE QORÇALANĞAN İÇ BİR METİNNİ MINDA EKLEMEÑİZ!</center></strong>",
 'copyrightwarning2'         => '<strong>Lütfen diqqat:</strong> {{SITENAME}} saytına siz qoşqan bütün isseler başqa bir qullanıcı tarafından deñiştirile ya da yoq etile bilir. Qoşqan isseñizniñ başqa insanlar tarafından acımasızca deñiştirilmesini ya da azat tarzda ve sıñırsızca başqa yerlerge dağıtılmasını istemeseñiz, isse qoşmañız.<br />
 Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına, ya da cemaatqa açıq bir menbadan ya da başqa bir azat menbadan köpirlengenine garantiya bergen olasıñız ($1 baqıñız).
 <strong>MÜELLİF AQQI İLE QORÇALANĞAN İÇ BİR METİNNİ MINDA EKLEMEÑİZ!</strong>',
@@ -673,7 +673,7 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'prefs-watchlist-edits' => 'Kenişletilgen közetüv cedvelinde kösterilecek deñişiklik sayısı:',
 'prefs-misc'            => 'Diger ayarlar',
 'saveprefs'             => 'Deñişikliklerni saqla',
-'resetprefs'            => 'Ayarlarnı ilk turuşına ketir',
+'resetprefs'            => 'Ayarlarnı ilk alına ketir',
 'oldpassword'           => 'Eski parol',
 'newpassword'           => 'Yañı parol',
 'retypenew'             => 'Yañı parolnen tekrar kiriñiz',
@@ -686,7 +686,7 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'contextchars'          => 'Satırdaki arif sayısı',
 'recentchangesdays'     => 'Soñki deñişiklikler saifesinde kösterilecek kün sayısı:',
 'recentchangescount'    => 'Soñki deñişiklikler saifesindeki saife sayısı',
-'savedprefs'            => 'Ayarlar (nastroykalar) saqlandı.',
+'savedprefs'            => 'Ayarlarıñız saqlandı.',
 'timezonelegend'        => 'Saat quşağı',
 'timezonetext'          => 'Viki serveri (UTC/GMT) ile arañızdaki saat farqı. (Ukraina ve Türkiye içün +02:00)',
 'localtime'             => 'Şu an siziñ saatıñız',
@@ -1002,7 +1002,7 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'unwatchthispage'      => 'Saife közetmekni toqtat',
 'notanarticle'         => 'Malümat saifesi degil',
 'watchnochange'        => 'Kösterilgen zaman aralığında közetüv cedveliñizdeki saifelerniñ iç biri deñiştirilmegen.',
-'watchlist-details'    => 'Muzakere saifesini esapqa almayıp, közetüv cedvelinde {{PLURAL:$1|1|$1}} saife bar.',
+'watchlist-details'    => 'Muzakere saifelerini esapqa almayıp, közetüv cedvelinde {{PLURAL:$1|1|$1}} saife bar.',
 'wlheader-enotif'      => '* E-mail ile haber berüv açıldı.',
 'wlheader-showupdated' => "* Soñki ziyaretiñizden soñraki saife deñişiklikleri '''qalın''' olaraq kösterildi.",
 'watchmethod-recent'   => 'soñki deñişiklikler arasında közetken saifeleriñiz qıdırıla',
