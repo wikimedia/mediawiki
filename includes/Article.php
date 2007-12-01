@@ -2098,7 +2098,7 @@ class Article {
 			<td>
 				$mDeletereasonother
 			</td>
-			<td align='right'>
+			<td align='left'>
 				<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"1\" />
 			</td>
 		</tr>
