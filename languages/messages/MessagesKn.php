@@ -667,6 +667,33 @@ $1',
 'nextdiff'     => 'ಮುಂದಿನ ವ್ಯತ್ಯಾಸ',
 
 # 'all' in various places, this might be different for inflected languages
-'namespacesall' => 'ಎಲ್ಲಾ',
+'recentchangesall' => 'ಎಲ್ಲಾ',
+'imagelistall'     => 'ಎಲ್ಲಾ',
+'watchlistall2'    => 'ಎಲ್ಲಾ',
+'namespacesall'    => 'ಎಲ್ಲಾ',
+'monthsall'        => 'ಎಲ್ಲಾ',
+
+# E-mail address confirmation
+'confirmemail' => 'ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಖಾತ್ರಿ ಮಾಡಿ',
+
+# Delete conflict
+'deletedwhileediting' => 'ಸೂಚನೆ: ನೀವು ಸಂಪಾದನೆ ಪ್ರಾರಂಭಿಸಿದ ನಂತರ ಈ ಪುಟವನ್ನು ಅಳಿಸಲಾಗಿದೆ!',
+
+# Multipage image navigation
+'imgmultipageprev' => '← ಹಿಂದಿನ ಪುಟ',
+'imgmultipagenext' => 'ಮುಂದಿನ ಪುಟ →',
+
+# Table pager
+'table_pager_next'  => 'ಮುಂದಿನ ಪುಟ',
+'table_pager_prev'  => 'ಹಿಂದಿನ ಪುಟ',
+'table_pager_first' => 'ಮೊದಲ ಪುಟ',
+'table_pager_last'  => 'ಕೊನೆಯ ಪುಟ',
+
+# Auto-summaries
+'autosumm-blank' => 'ಪುಟದಲ್ಲಿರುವ ಎಲ್ಲಾ ಮಾಹಿತಿಯನ್ನೂ ತಗೆಯುತ್ತಿರುವೆ',
+'autosumm-new'   => 'ಹೊಸ ಪುಟ: $1',
+
+# Watchlist editor
+'watchlistedit-noitems' => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೂ ಪುಟಗಳಿಲ್ಲ.',
 
 );

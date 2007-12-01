@@ -508,6 +508,7 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'deletedrev'          => '[läsked]',
 'histfirst'           => 'Ooldste',
 'histlast'            => 'Näiste',
+'historysize'         => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
 'historyempty'        => '(loos)',
 
 # Revision feed

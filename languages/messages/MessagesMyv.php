@@ -6,6 +6,7 @@
  * @author Erzianj jurnalist
  * @author Botuzhaleny-sodamo
  * @author MF-Warburg
+ * @author Tupikovs
  */
 
 $messages = array(
@@ -187,11 +188,15 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} ланга',
+'aboutpage'         => 'Проектесь:Эстедендэ',
 'currentevents'     => 'Мезе ней моли',
 'currentevents-url' => 'Мезе ней моли',
+'disclaimers'       => 'Видечинь кортамотьне',
 'edithelp'          => 'Витнемань-петнемань лезкс',
 'mainpage'          => 'Прякслопа',
 'portal'            => 'Велень-сядонь вальма',
+'privacy'           => 'Салавачинь полициясь',
+'privacypage'       => 'Проектесь:Салавачинь политикась',
 
 'ok'                  => 'Маштови',
 'newmessageslink'     => 'Од нурька сёрмадт',
@@ -299,6 +304,7 @@ $messages = array(
 
 # Search results
 'noexactmatch' => "'''\"\$1\" конякс марто лопа арась.''' Мелеть ули, [[:\$1|теика те лопанть]].",
+'nextn'        => 'сы $1',
 'viewprevnext' => 'Ванномс ($1) ($2) ($3)',
 'powersearch'  => 'Вешнемс',
 
@@ -329,6 +335,9 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked-title' => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
 
+# Upload
+'upload' => 'Ёкстамонзо файланть',
+
 # Image list
 'imagelist'         => 'Файлат-мезть',
 'filehist'          => 'Файланть эрямопингезэ',
@@ -336,6 +345,8 @@ $messages = array(
 'filehist-filesize' => 'Файланть покшолмазо',
 'imagelinks'        => 'Сюлмавомапеть',
 'linkstoimage'      => 'Те файлантень сюлмазь вана истят сюлмавомапеть:',
+'imagelist_date'    => 'Чи',
+'imagelist_name'    => 'Лем',
 
 # Random page
 'randompage' => 'Кодамо понгсь лопа',
@@ -361,7 +372,8 @@ $messages = array(
 # Book sources
 'booksources' => 'Кинигань лисьмапрят',
 
-'version' => 'Версия',
+'alphaindexline' => '1 $-сь  2 $-те',
+'version'        => 'Версия',
 
 # Special:Log
 'specialloguserlabel'  => 'Совиця:',
@@ -429,6 +441,9 @@ $messages = array(
 'tooltip-ca-nstab-help'     => 'Ванномс лездамонь лопанть',
 'tooltip-save'              => 'Ванстомс мезе лиякстомтыть',
 'tooltip-diff'              => 'Невтемс мейсэ лиякстомтыть текстэнть.',
+
+# Attribution
+'and' => 'ды',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'весе',

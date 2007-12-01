@@ -382,7 +382,7 @@ $messages = array(
 'page-rss-feed'           => '«$1» RSS-føde',
 'page-atom-feed'          => '«$1» Atom-føde',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikkel',
 'nstab-user'      => 'Brukerside',
 'nstab-media'     => 'Mediaside',
@@ -531,6 +531,10 @@ Dersom noen andre gjorde denne forespørselen eller om du kom på passordet og i
 'invalidemailaddress'        => 'E-postadressa kan ikke aksepteres, fordi den er ugyldig formatert. Skriv inn en fungerende e-postadresse eller tøm feltet.',
 'accountcreated'             => 'Brukerkonto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
+'createaccount-title'        => 'Kontoopretting på {{SITENAME}}',
+'createaccount-text'         => 'Noen ($1) opprettet en konto for $2 på {{SITENAME}} ($4). Passordet for «$2» er «$3». Du burde logge inn og endre passordet nå.
+
+Du kan ignorere denne beskjeden dersom kontoen feilaktig ble opprettet.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -602,6 +606,7 @@ Du kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administ
 Merk at du ikke kan bruke «E-post til denne brukeren»-funksjonen med mindre du har registrert en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].
 
 Din blokkerings-ID er $5. Vennligst inkluder denne ID-en i din forespørsel.",
+'blockednoreason'           => 'ingen grunn gitt',
 'blockedoriginalsource'     => "Kilden til '''$1''' vises nedenfor:",
 'blockededitsource'         => "Teksten i '''dine endringer''' på '''$1''' vises nedenfor:",
 'whitelistedittitle'        => 'Innlogging kreves for å redigere',
@@ -624,6 +629,7 @@ Din blokkerings-ID er $5. Vennligst inkluder denne ID-en i din forespørsel.",
 'anontalkpagetext'          => "----
 ''Dette er en diskusjonsside for en anonym bruker som ikke har opprettet konto eller ikke er logget inn. Vi er derfor nødt til å bruke den numeriske IP-adressa til å identifisere ham eller henne. En IP-adresse kan være delt mellom flere brukere. Hvis du er en anonym bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Special:Userlogin|logg på]] så vi unngår framtidige forvekslinger med andre anonyme brukere.''",
 'noarticletext'             => 'Det er ikke noe tekst på denne siden. Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigere siden].',
+'userpage-userdoesnotexist' => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
 'clearyourcache'            => "'''NB:''' Etter å ha lagret må du tømme nettleserens mellomlager («cache») for å kunne se endringene: '''Mozilla/Safari/Konqueror:''' hold nede ''Shift'' mens du klikker på ''Reload'' (eller trykk ''Ctrl-Shift-R''), '''IE:''' trykk ''Ctrl-F5'', '''Opera:''' trykk ''F5''.",
 'usercssjsyoucanpreview'    => '<strong>Tips:</strong> Bruk «Forhåndsvisning»-knappen for å teste din nye CSS/JS før du lagrer.',
 'usercsspreview'            => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
@@ -764,6 +770,28 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 # Oversight log
 'oversightlog'    => 'Overoppsynslogg',
 'overlogpagetext' => 'Under er en liste over de nyligste slettinger og blokkeringer som involverer innhold skjult for administratorer. Se [[Special:Ipblocklist|IP-blokkeringslista]] for nåværende bannlysninger og blokkeringer.',
+
+# History merging
+'mergehistory'         => 'Flett sidehistorikker',
+'mergehistory-header'  => "Denne siden lar deg flette historikken til to sider. Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.
+
+'''I hvert fall den siste revisjonen til kildesiden må forbli.'''",
+'mergehistory-box'     => 'Flett historikken til to sider:',
+'mergehistory-from'    => 'Kildeside:',
+'mergehistory-into'    => 'Målside:',
+'mergehistory-list'    => 'Flettbar redigeringshistorikk',
+'mergehistory-merge'   => 'Følgende revisjoner av [[:$1]] kan flettes til [[:$2]]. Du kan velge å flette kun de revisjonene som kom før tidspunktet gitt i tabellen. Merk at bruk av navigasjonslenkene vil resette denne kolonnen.',
+'mergehistory-go'      => 'Vis flettbare redigeringer',
+'mergehistory-submit'  => 'Flett revisjoner',
+'mergehistory-empty'   => 'Ingen revisjoner kan flettes',
+'mergehistory-success' => '$3 revisjoner av [[:$1]] ble flettet til [[:$2]].',
+'mergehistory-fail'    => 'Kunne ikke utføre historikkfletting; vennligst sjekk siden og tidsparameterne igjen.',
+
+# Merge log
+'mergelog'           => 'Flettingslogg',
+'pagemerge-logentry' => 'flettet [[$1]] til [[$2]] (revisjoner fram til $3)',
+'revertmerge'        => 'Omgjør fletting',
+'mergelogpagetext'   => 'Nedenfor er en liste over de nyligste flettingene av sidehistorikker.',
 
 # Diffs
 'history-title'             => 'Revisjonshistorikk for «$1»',
@@ -1110,6 +1138,10 @@ PICT # div.
 'unusedtemplatestext' => 'Denne siden lister opp alle sider i malnavnerommet som ikke er inkludert på en annen side. Husk å sjekke for andre slags lenker til malen før du sletter den.',
 'unusedtemplateswlh'  => 'andre lenker',
 
+# Random page
+'randompage'         => 'Tilfeldig side',
+'randompage-nopages' => 'Det er ingen sider i dette navnerommet.',
+
 # Random redirect
 'randomredirect'         => 'Tilfeldig omdirigering',
 'randomredirect-nopages' => 'Det er ingen omdirigeringer i dette navnerommet.',
@@ -1172,8 +1204,6 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'mostrevisions'           => 'Artikler med flest revisjoner',
 'allpages'                => 'Alle sider',
 'prefixindex'             => 'Prefiksindeks',
-'randompage'              => 'Tilfeldig side',
-'randompage-nopages'      => 'Det er ingen sider i dette navnerommet.',
 'shortpages'              => 'Korte sider',
 'longpages'               => 'Lange sider',
 'deadendpages'            => 'Blindveisider',
@@ -1352,6 +1382,12 @@ Tilbakemeldinger og videre assistanse:
 'deletionlog'                 => 'slettingslogg',
 'reverted'                    => 'Gjenopprettet en tidligere versjon',
 'deletecomment'               => 'Begrunnelse for sletting',
+'deleteotherreason'           => 'Annen grunn:',
+'deletereasonotherlist'       => 'Annen grunn',
+'deletereason-dropdown'       => '* Vanlige grunner for sletting
+** På forfatters etterspørsel
+** Opphavsrettsbrudd
+** Hærverk',
 'rollback'                    => 'Fjern redigeringer',
 'rollback_short'              => 'Tilbakestill',
 'rollbacklink'                => 'tilbakestill',

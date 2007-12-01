@@ -67,21 +67,22 @@ $messages = array(
 'tog-underline'               => 'Падкрэсліваць спасылкі:',
 'tog-highlightbroken'         => 'Афармляць зламаныя спасылкі <a href="" class="new">такім чынам</a> (іначай: такім чынам<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Разганяць абзацы',
-'tog-hideminor'               => 'Не паказваць дробных правак у Апошніх зменах',
-'tog-usenewrc'                => 'Удасканаленыя {{:{{ns:MediaWiki}}:Recentchanges/be}} (Яваскрыпт)',
+'tog-hideminor'               => 'Не паказваць дробных правак',
+'tog-extendwatchlist'         => 'Паказваць усе дарэчныя змяненні, рассоўваючы межы паказу',
+'tog-usenewrc'                => 'Паказваць удасканалены выгляд (Яваскрыпт)',
 'tog-numberheadings'          => 'Аўта-нумараваць падзагалоўкі',
-'tog-showtoolbar'             => 'Паказваць стужку рэдактара (ЯваСкрыпт)',
-'tog-editondblclick'          => 'Правіць старонкі пасля падвойнага пстрыкання (JavaScript)',
-'tog-editsection'             => 'Уключы праўку раздзелаў праз спасылкі [правіць]',
-'tog-editsectiononrightclick' => 'Уключы праўку раздзелаў правым клікам па загалоўку раздзела (JavaScript)',
-'tog-showtoc'                 => 'Паказваць змест (для старонак, дзе больш за 3 загалоўкі)',
+'tog-showtoolbar'             => 'Паказваць рэдактарскую стужку (Яваскрыпт)',
+'tog-editondblclick'          => 'Праўка старонак па падвойным пстрыку (Яваскрыпт)',
+'tog-editsection'             => 'Праўка падраздзелаў праз спасылкі "[правіць]"',
+'tog-editsectiononrightclick' => 'Праўка падраздзелаў па правым пстрыку на загалоўку (Яваскрыпт)',
+'tog-showtoc'                 => 'Паказваць змест (для старонак, дзе больш за 3 падзагалоўкі)',
 'tog-rememberpassword'        => 'Памятаць ад сеансу да сеансу',
 'tog-editwidth'               => 'Шырокае рэдактарскае поле',
 'tog-watchcreations'          => 'Старонкі, створаныя мной, дадаюцца да назіранага',
 'tog-watchdefault'            => 'Старонкі, праўленыя мной, дадаюцца да назіранага',
 'tog-watchmoves'              => 'Старонкі, перанесеныя мной, дадаюцца да назіранага',
 'tog-watchdeletion'           => 'Старонкі, сцёртыя мной, дадаюцца да назіранага',
-'tog-minordefault'            => "Кожная праўка пачынаецца як ''дробная''",
+'tog-minordefault'            => 'Пачынаць кожную праўку як дробную',
 'tog-previewontop'            => 'Папярэдні паказ — над рэдактарскім полем',
 'tog-previewonfirst'          => 'Папярэдні паказ пры першай праўцы',
 'tog-nocache'                 => 'Не дазваляць кэшу старонак',
@@ -97,7 +98,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Не паказваць у назіраным дробных правак',
 'tog-nolangconversion'        => 'Выключыць пераўтварэнні варыянтаў',
 'tog-ccmeonemails'            => 'Слаць мне копіі маіх лістоў',
-'tog-diffonly'                => 'Без паказу рэшты старонкі пад розніцай',
+'tog-diffonly'                => 'Не паказваць рэшты старонкі пад розніцай',
 
 'underline-always'  => 'Заўсёды',
 'underline-never'   => 'Ніколі',
@@ -208,6 +209,7 @@ $messages = array(
 'deletethispage'    => 'Сцерці гэту старонку',
 'undelete_short'    => 'Аднавіць {{PLURAL:$1|адну праўку|$1 правак}}',
 'protect'           => 'Ахова',
+'protect_change'    => 'правіць ахову',
 'protectthispage'   => 'Пачаць ахоўваць гэтую старонку',
 'unprotect'         => 'зняць ахову',
 'unprotectthispage' => 'Зняць ахову з гэтай старонкі',
@@ -249,7 +251,7 @@ $messages = array(
 'currentevents'     => 'Актуальныя падзеі',
 'currentevents-url' => 'Актуальныя падзеі',
 'disclaimers'       => 'Адмовы ад адказнасці',
-'edithelp'          => 'Даведка рэдагавальнага акна',
+'edithelp'          => 'Даведка рэдактарскага акна',
 'faq'               => 'ЧАПЫ',
 'faqpage'           => 'Project:ЧАПЫ',
 'helppage'          => 'Help:Змест',
@@ -281,6 +283,7 @@ $messages = array(
 'toc'                     => 'Змест',
 'showtoc'                 => 'паказаць',
 'hidetoc'                 => 'не паказваць',
+'thisisdeleted'           => 'Паказаць ці аднавіць $1?',
 'viewdeleted'             => 'Ці паказаць $1?',
 'restorelink'             => '{{PLURAL:$1|адна сцёртая праўка|$1 сцёртых правак}}',
 'feedlinks'               => 'Струмень:',
@@ -288,6 +291,7 @@ $messages = array(
 'site-rss-feed'           => '$1 струмень RSS',
 'site-atom-feed'          => '$1 струмень Atom',
 'page-rss-feed'           => '"$1" струмень RSS',
+'page-atom-feed'          => '"$1" струмень Atom',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Артыкул',
@@ -303,6 +307,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Няма такога дзеяння',
+'nosuchactiontext'  => 'Невядомае ў гэтай віксе апісанае ў URL дзеянне (action)',
 'nosuchspecialpage' => 'Няма такой адмысловай старонкі',
 
 # General errors
@@ -321,6 +326,8 @@ $messages = array(
 "$1"
 з абсягу функцыі "$2".
 Памылка, вернутая з MySQL "$3: $4"',
+'noconnect'            => 'Прабачце! Вікі-сервер зараз мае тэхнічныя праблемы, і не можа дасягнуць свайго сервера баз даных.<br />
+$1',
 'nodb'                 => 'Немагчыма выбраць базу звестак $1',
 'laggedslavemode'      => 'Увага: Старонка можа не ўтрымліваць апошніх зменаў.',
 'readonly'             => 'База звестак заблакаваная',
@@ -346,10 +353,21 @@ $messages = array(
 Зварот: $2',
 'viewsource'           => 'Паказаць выточны тэкст',
 'viewsourcefor'        => 'для $1',
+'actionthrottled'      => 'Дзеянне прыгашана',
+'actionthrottledtext'  => 'Дзеля абароны ад спаму, вам не дазваляецца выконваць гэтае дзеянне занадта часта за пэўны адрэзак часу, і вы гэты ліміт перасягнулі. Паспрабуйце ізноў праз некалькі мінут.',
+'protectedpagetext'    => 'Старонка ахоўваецца, каб нельга было яе правіць.',
 'viewsourcetext'       => 'Можна бачыць і капіраваць крынічны тэкст гэтай старонкі:',
+'protectedinterface'   => 'Старонка ахоўваецца, таму што ўваходзіць у склад інтэрфейсу гэтай праграмы.',
 'editinginterface'     => "'''Увага:''' Вы мяняеце старонку, якая ўжываецца, каб паказваць інтэрфейсны тэкст гэтага праграмнага забеспячэння. Праўкі, зробленыя тут, зменяць выгляд інтэрфейсу для ўсіх удзельнікаў.",
+'sqlhidden'            => '(зварот SQL не паказаны)',
+'cascadeprotected'     => 'Старонка знаходзіцца пад аховай ад правак, таму што яна ўлучана ў наступн{{PLURAL:$1|ую старонку|ыя старонкі}}, якія ахоўваюцца з магчымасцю "каскаднага распаўсюджвання" аховы:
+$2',
+'namespaceprotected'   => "Вам не дазволена правіць старонкі ў прасторы назваў '''$1'''.",
+'customcssjsprotected' => 'Вам не дазволена правіць гэтую старонку, таму што яна ўтрымлівае асабістыя настаўленні іншага ўдзельніка.',
+'ns-specialprotected'  => 'Не дазволена правіць старонкі ў прасторы назваў {{ns:special}}.',
 
 # Login and logout pages
+'logouttitle'                => 'Выхад з сістэмы',
 'logouttext'                 => '<strong>Вы выйшлі з сістэмы.</strong><br />
 Можна працягваць працу ананімна, або можна ўвайсці ізноў, пад тым самым, ці пад іншым удзельніцкім імем. Заўважце, што некаторыя старонкі могуць паказвацца так, быццам вы яшчэ не выйшлі; у такім разе трэба ачысціць кэш вашага браўзера.',
 'welcomecreation'            => '== Вітаем, $1! == Ваш  рахунак быў створаны. Не забудзьцеся дапасаваць свае настаўленні ў {{SITENAME}}.',
@@ -486,10 +504,17 @@ $messages = array(
 'usercssjsyoucanpreview' => "<strong>Наменка:</strong> Пакарыстайцеся кнопкай \"''{{:{{ns:mediawiki}}:showpreview}}''\", каб выпрабаваць новы код CSS/JS, ''перш'' чым яго запісваць.",
 'note'                   => '<strong>Заўвага:</strong>',
 'previewnote'            => '<strong>Гэта папярэдні паказ; праўкі яшчэ не замацаваныя!</strong>',
+'previewconflict'        => 'Гэта папярэдні паказ магчымага выніку замацоўвання актуальнага стану крынічнага тэксту ў верхнім тэкставым полі.',
+'session_fail_preview'   => '<strong>Прабачце! Не ўдалося апрацаваць вашую праўку, таму што сервер не атрымаў поўных звестак аб вашым сеансе.
+Паспрабуйце, калі ласка, ізноў. Калі памылка не знікае, паспрабуйце выйсці з сістэмы і зайсці ізноў.</strong>',
 'editing'                => 'Правім: $1',
 'editingsection'         => 'Правім $1 (раздзел)',
 'editingcomment'         => 'Правім: $1 (каментар)',
 'editconflict'           => 'Канфлікт правак: $1',
+'explainconflict'        => 'Нехта іншы змяніў старонку пасля таго, як вы пачалі з ёй працу.
+Верхняе тэкставае поле паказвае актуальны крынічны тэкст старонкі.
+Вашыя праўкі паказаныя ў ніжнім тэкставым полі, і вам трэба далучыць іх да актуальнага крынічнага тэксту.
+<b>Толькі</b> тэкст у верхнім полі будзе замацаваны, калі націснуць "{{:{{ns:mediawiki}}:savearticle/be}}".<br />',
 'yourtext'               => 'Свой тэкст',
 'storedversion'          => 'Захаваная версія',
 'editingold'             => "<strong>УВАГА: Вы правіце такую версію артыкула, якая не з'яўляецца актуальнай.
@@ -523,6 +548,7 @@ $messages = array(
 # History pages
 'revhistory'          => 'Гісторыя версій',
 'viewpagelogs'        => 'Паказаць журналы для гэтай старонкі',
+'nohistory'           => 'Старонка не мае гісторыі правак.',
 'revnotfound'         => 'Версія не знойдзена',
 'revnotfoundtext'     => 'Не ўдалося знайсці ранейшую версію гэтага артыкула, па якую вы звярталіся.
 Праверце URL, праз які вы спрабавалі адкрыць старонку.',
@@ -543,6 +569,8 @@ $messages = array(
 'deletedrev'          => '[сцёртая]',
 'histfirst'           => 'Самае старое',
 'histlast'            => 'Самае новае',
+'historysize'         => '({{PLURAL:$1|1 байт|$1 байтаў}})',
+'historyempty'        => '(пуста)',
 
 # Revision feed
 'history-feed-title'          => 'Гісторыя версій',
@@ -601,18 +629,21 @@ $messages = array(
 'prefs-personal'        => 'Удзельнік',
 'prefs-rc'              => '{{:{{ns:MediaWiki}}:Recentchanges/be}}',
 'prefs-watchlist'       => 'Спіс назіранага',
-'prefs-watchlist-days'  => 'Кольк. дзён для паказу ў назіраным:',
-'prefs-watchlist-edits' => 'Кольк. правак для паказу ў пашыраным відзе назіранага:',
+'prefs-watchlist-days'  => 'За колькі дзён паказваць змяненні ў назіраным:',
+'prefs-watchlist-edits' => 'Колькасць правак для паказу ў разгорнутым выглядзе:',
 'prefs-misc'            => 'Рознае',
 'saveprefs'             => 'Запісаць',
 'resetprefs'            => 'Да пачатковых',
 'oldpassword'           => 'Стары пароль:',
 'newpassword'           => 'Новы пароль:',
 'retypenew'             => 'Новы пароль паўторна:',
-'textboxsize'           => 'Праўка',
+'textboxsize'           => 'Праца',
 'rows'                  => 'Радкі:',
 'columns'               => 'Калонкі:',
-'searchresultshead'     => 'Знайсці',
+'searchresultshead'     => 'Пошук',
+'resultsperpage'        => 'Вынікаў на старонку:',
+'contextlines'          => 'Радкоў на вынік:',
+'contextchars'          => 'Кантэксту на радок:',
 'stub-threshold'        => 'Парог для паказу спасылкі <a href="#" class="stub">як на пачатковы артыкул</a> (у байтах):',
 'recentchangesdays'     => 'За колькі дзён паказваць {{lc:{{:{{ns:mediawiki}}:recentchanges/be}}}}:',
 'recentchangescount'    => 'Макс. колькасць правак для паказу:',
@@ -1081,11 +1112,18 @@ $messages = array(
 # Move page
 'movepage'                => 'Перанесці старонку',
 'movearticle'             => 'Перанесці старонку',
+'movenologin'             => 'Не зроблены ўваход у сістэму',
+'movenologintext'         => 'Вы павінны быць зарэгістраваным удзельнікам, і [[Special:Userlogin|ўвайсці ў сістэму]], каб пераносіць старонкі.',
+'movenotallowed'          => 'Вам не дазволена пераносіць старонак на гэтай віксе.',
+'newtitle'                => 'Пад новую назву:',
 'move-watch'              => 'Назіраць за старонкай',
 'movepagebtn'             => 'Перанесці старонку',
+'pagemovedsub'            => 'Паспяховы перанос',
+'movepage-moved'          => '<big>\'\'\'"$1" перанесена ў "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Старонка з такой назвай ужо існуе, або
 вамі выбрана недапушчальнае імя.
 Выберыце іншае імя.',
+'talkexists'              => "'''Старонка была паспяхова перанесена, але не ўдалося перанесці яе старонку размовы, таму што размова пад новай назвай ужо існуе. Вам давядзецца аб'яднаць размоўныя старонкі самастойна.'''",
 'movedto'                 => 'перанесена ў',
 'movetalk'                => 'Перанесці таксама старонку размовы.',
 'talkpagemoved'           => 'Адпаведная старонка размовы была перанесеная таксама.',
@@ -1102,6 +1140,7 @@ $messages = array(
 Ужо існуе артыкул з мэтавай назвай "[[$1]]". Дык ці жадаеце сцерці яго, каб зрабіць месца для пераносу?',
 'delete_and_move_confirm' => 'Так, сцерці старонку',
 'delete_and_move_reason'  => 'Сцёрта, каб зрабіць месца для пераносу',
+'selfmove'                => 'Назвы вытока і мэты такія самыя; нельга пераносіць старонку саму на сябе.',
 'immobile_namespace'      => 'Мэтавая назва належыць да спецыяльнага тыпу; у гэтую прастору назваў немагчыма пераносіць старонкі.',
 
 # Export
@@ -1150,22 +1189,30 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Свая старонка',
+'tooltip-pt-anonuserpage'         => 'Старонка ўдзельніка для таго IP, з якога вы зараз працуеце',
 'tooltip-pt-mytalk'               => 'Свае размовы',
+'tooltip-pt-anontalk'             => 'Размовы аб праўках, зробленых з гэтага адрасу IP',
 'tooltip-pt-preferences'          => 'Свае настáўленні',
 'tooltip-pt-watchlist'            => 'Пералік старонак, за змяненнямі ў якіх вы сочыце',
 'tooltip-pt-mycontris'            => 'Пералік уласных укладаў',
 'tooltip-pt-login'                => 'Уваходзіць у сістэму неабавязкова, але вас вельмі запрашаюць гэтак зрабіць.',
+'tooltip-pt-anonlogin'            => 'Вас запрашаюць уваходзіць у сістэму, хоць гэта і не абавязкова.',
 'tooltip-pt-logout'               => 'Выйсці з сістэмы',
 'tooltip-ca-talk'                 => 'Размовы пра змест гэтай старонкі',
 'tooltip-ca-edit'                 => 'Старонку можна правіць; ужывайце папярэдні паказ перад замацоўваннем.',
 'tooltip-ca-addsection'           => 'Дадаць заўвагу да гэтай размовы.',
 'tooltip-ca-viewsource'           => 'Гэтая старонка ахоўваецца, але можна паглядзець яе крынічны тэкст.',
+'tooltip-ca-history'              => 'Ранейшыя версіі гэтай старонкі.',
 'tooltip-ca-protect'              => 'Паставіць ахову на старонку',
 'tooltip-ca-delete'               => 'Сцерці гэтую старонку',
+'tooltip-ca-undelete'             => 'Аднавіць праўкі, зробленыя на гэтай старонцы перад тым, як яна была сцёрта',
 'tooltip-ca-move'                 => 'Перанесці гэтую старонку пад іншую назву',
 'tooltip-ca-watch'                => 'Дадаць гэтую старонку да свайго спісу назіраных старонак',
 'tooltip-ca-unwatch'              => 'Выняць гэтую старонку з вашага спісу назіранага',
 'tooltip-search'                  => 'Знайсці ў {{SITENAME}}',
+'tooltip-search-go'               => 'Перайсці да старонкі з дакладна такой назвай, калі такая наогул існуе',
+'tooltip-search-fulltext'         => 'Знайсці гэты тэкст у тэкстах старонак',
+'tooltip-p-logo'                  => 'Першая старонка',
 'tooltip-n-mainpage'              => 'Адкрыць Першую старонку',
 'tooltip-n-portal'                => 'Аб гэтым праекце, чым можна заняцца, дзе што шукаць',
 'tooltip-n-currentevents'         => 'Атрымаць інфармацыю пра актуальныя падзеі',
@@ -1174,14 +1221,22 @@ $messages = array(
 'tooltip-n-help'                  => 'Дзе можна атрымаць тлумачэнні.',
 'tooltip-n-sitesupport'           => 'Падтрымайце нас',
 'tooltip-t-whatlinkshere'         => 'Спіс вікі-старонак, што спасылаюцца сюды',
+'tooltip-t-recentchangeslinked'   => 'Нядаўнія мены ў старонках, на якія спасылаецца гэтая старонка',
 'tooltip-feed-rss'                => 'RSS-струмень гэтай старонкі',
+'tooltip-feed-atom'               => 'Струмень навін Atom для гэтай старонкі',
 'tooltip-t-contributions'         => 'Паказаць пералік укладаў гэтага ўдзельніка',
 'tooltip-t-emailuser'             => 'Адаслаць удзельніку ліст эл.пошты',
 'tooltip-t-upload'                => 'Укласці выяву або мультымедыйны файл',
 'tooltip-t-specialpages'          => 'Пералік усіх адмысловых старонак',
+'tooltip-t-print'                 => 'Друкавальная версія гэтай старонкі',
+'tooltip-t-permalink'             => 'Нязменная спасылка на гэтую версію старонкі',
+'tooltip-ca-nstab-main'           => 'Паказаць уласна змест старонкі',
 'tooltip-ca-nstab-user'           => 'Паказаць уласную старонку ўдзельніка',
+'tooltip-ca-nstab-media'          => 'Паказаць старонку мультымедыйнага зместу',
+'tooltip-ca-nstab-special'        => 'Гэта адмысловая старонка, і правіць яе нельга',
 'tooltip-ca-nstab-project'        => 'Паказаць старонку праекта',
 'tooltip-ca-nstab-image'          => 'Паказаць старонку выявы (файла)',
+'tooltip-ca-nstab-mediawiki'      => 'Паказаць інтэрфейсны тэкст',
 'tooltip-ca-nstab-template'       => 'Паказаць шаблон',
 'tooltip-ca-nstab-help'           => 'Паказаць старонку даведкі',
 'tooltip-ca-nstab-category'       => 'Паказаць старонку катэгорыі',
@@ -1191,6 +1246,8 @@ $messages = array(
 'tooltip-diff'                    => 'Паказаць, што вы мяняеце ў тэксце.',
 'tooltip-compareselectedversions' => 'Паказаць розніцу паміж дзвюмя азначанымі версіямі гэтай старонкі.',
 'tooltip-watch'                   => 'Дапісаць старонку да спісу назіранага',
+'tooltip-recreate'                => 'Аднавіць старонку, хоць яна і была сцёрта',
+'tooltip-upload'                  => 'Пачаць укладанне',
 
 # Attribution
 'anonymous'        => 'Ананімныя ўдзельнікі і ўдзельніцы {{GRAMMAR:родны|{{SITENAME}}}}',
@@ -1219,19 +1276,27 @@ $messages = array(
 'mw_math_png'    => 'Заўсёды вырабляць PNG',
 'mw_math_simple' => 'HTML калі вельмі простае, іначай PNG',
 'mw_math_html'   => 'HTML калі магчыма, іначай PNG',
-'mw_math_source' => 'Пакідаць у выглядзе TeX (для тэкставых гледачоў)',
-'mw_math_modern' => 'Рэкамендуецца сучасным гледачам',
+'mw_math_source' => 'Пакідаць у выглядзе TeX (для тэкставых браўзераў)',
+'mw_math_modern' => 'Рэкамендуецца для сучасных браўзераў',
 'mw_math_mathml' => 'MathML калі магчыма (эксперыментальнае)',
 
 # Image deletion
-'deletedrevision'       => 'Сцёрта старая версія $1',
-'filedeleteerror-short' => 'Памылка пры сціранні файла: $1',
+'deletedrevision'                 => 'Сцёрта старая версія $1',
+'filedeleteerror-short'           => 'Памылка пры сціранні файла: $1',
+'filedeleteerror-long'            => 'Памылкі пры спробе сцірання файла:
+
+$1',
+'filedelete-missing'              => 'Не быў сцёрты азначаны файл "$1", таму што не быў знойдзены.',
+'filedelete-old-unregistered'     => 'Не знойдзена ў базе даных азначаная версія файла "$1".',
+'filedelete-current-unregistered' => 'Не знойдзены ў базе даных азначаны файл "$1".',
+'filedelete-archive-read-only'    => 'Немагчыма для веб-сервера запісаць у архіўны каталог "$1".',
 
 # Browsing diffs
 'previousdiff' => '← Да папярэдн. праўкі',
 'nextdiff'     => 'Да наступн. праўкі →',
 
 # Media information
+'mediawarning'         => "'''Асцярожна''': У гэтым файле можа быць зламысны код, выкананне якога можа знебяспечыць вашую сістэму.<hr />",
 'imagemaxsize'         => 'Абмежаваныя памеры выяваў на адпаведных тлумачальных старонках:',
 'thumbsize'            => 'Памеры драбніцы:',
 'widthheightpage'      => '$1×$2, $3 старонак',
@@ -1269,7 +1334,16 @@ $messages = array(
 # EXIF tags
 'exif-imagewidth'            => 'Шырыня',
 'exif-imagelength'           => 'Вышыня',
+'exif-bitspersample'         => 'Бітаў на кампанент',
+'exif-compression'           => 'Схема сціскання',
 'exif-orientation'           => 'Арыентацыя',
+'exif-samplesperpixel'       => 'Кампанентаў на піксель',
+'exif-xresolution'           => 'Гарызантальнае разрозненне',
+'exif-yresolution'           => 'Вертыкальнае разрозненне',
+'exif-resolutionunit'        => 'Адзінка вымярэння разрозненняў X і Y',
+'exif-stripoffsets'          => 'Водступ палосаў выявы',
+'exif-rowsperstrip'          => 'Радкоў на паласу',
+'exif-stripbytecounts'       => 'Байтаў на сціснутую паласу',
 'exif-datetime'              => 'Дата і час змянення файла',
 'exif-artist'                => 'Аўтар',
 'exif-exifversion'           => 'Версія Exif',
@@ -1325,6 +1399,8 @@ $messages = array(
 'exif-contrast-2' => 'Высокі',
 
 'exif-saturation-0' => 'Звычайна',
+'exif-saturation-1' => 'Слабая насычанасць',
+'exif-saturation-2' => 'Моцная насычанасць',
 
 'exif-sharpness-0' => 'Звычайны',
 'exif-sharpness-1' => 'Мяккі',
@@ -1332,6 +1408,28 @@ $messages = array(
 
 'exif-subjectdistancerange-0' => 'Невядома',
 'exif-subjectdistancerange-1' => 'Макрас',
+'exif-subjectdistancerange-2' => 'Від зблізу',
+'exif-subjectdistancerange-3' => 'Від зводдаль',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'паўночная шырата',
+'exif-gpslatitude-s' => 'паўднёвая шырата',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'усходняя даўгата',
+'exif-gpslongitude-w' => 'заходняя даўгата',
+
+'exif-gpsmeasuremode-2' => '2-вымернае вымярэнне',
+'exif-gpsmeasuremode-3' => '3-вымернае вымярэнне',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'кіламетраў за гадзіну',
+'exif-gpsspeed-m' => 'міляў за гадзіну',
+'exif-gpsspeed-n' => 'вузлоў',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'сапраўдны азімут',
+'exif-gpsdirection-m' => 'магнітны азімут',
 
 # External editor support
 'edit-externally'      => 'Правіць файл у вонкавай праграме',
@@ -1385,6 +1483,8 @@ $1',
 'imgmultigotopre'  => 'Ісці на старонку',
 
 # Table pager
+'ascending_abbrev'         => 'да больш.',
+'descending_abbrev'        => 'да менш.',
 'table_pager_next'         => 'Наступная старонка',
 'table_pager_prev'         => 'Папярэдняя старонка',
 'table_pager_first'        => 'Першая старонка',

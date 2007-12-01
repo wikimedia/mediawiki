@@ -729,6 +729,7 @@ Voluntez selektar altra nomo.',
 
 # Namespace 8 related
 'allmessages'     => 'Omna sistemo-mesaji',
+'allmessagesname' => 'Nomo',
 'allmessagestext' => 'Ico esas listo de omna sistemo-mesaji disponebla en la MediaWiki: namespace.',
 
 # Thumbnails
@@ -785,8 +786,9 @@ Voluntez selektar altra nomo.',
 'siteusers'     => 'Uzanti che {{SITENAME}} $1',
 
 # Spam protection
-'spamprotectiontitle' => 'Filtrilo kontre spamo',
-'subcategorycount'    => 'Esas {{PLURAL:$1|1 subkategorio|$1 subkategorii}} en ica kategorio.',
+'spamprotectiontitle'  => 'Filtrilo kontre spamo',
+'subcategorycount'     => 'Esas {{PLURAL:$1|1 subkategorio|$1 subkategorii}} en ica kategorio.',
+'categoryarticlecount' => 'Esas {{PLURAL:$1|una pagino|$1 pagini}} en ica kategorio.',
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 sek ($2)',
