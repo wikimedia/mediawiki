@@ -1578,6 +1578,7 @@ $NEWPAGE
 'protect-summary-cascade'     => 'آبشاری',
 'protect-expiring'            => 'زمان سرآمدن $1 (UTC)',
 'protect-cascade'             => 'محافظت آبشاری - از همهٔ صفحه‌هایی که در این صفحه آمده‌اند نیز محافظت می‌شود.',
+'protect-cantedit'            => 'شما نمی‌تواند وضعیت حفاظت این صفحه را تغییر دهید، چون اجازه ویرایش آن را ندارید.',
 'restriction-type'            => 'دسترسی',
 'restriction-level'           => 'سطح محدودیت',
 'minimum-size'                => 'حداقل اندازه',
