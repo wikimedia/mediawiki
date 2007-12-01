@@ -675,7 +675,7 @@ your old password.
 'summary'                   => 'خلاصه',
 'subject'                   => 'موضوع/عنوان',
 'minoredit'                 => 'این ویرایش جزئی است',
-'watchthis'                 => 'پی‌گیری این مقاله',
+'watchthis'                 => 'پی‌گیری این صفحه',
 'savearticle'               => 'صفحه ذخیره شود',
 'preview'                   => 'پیش‌نمایش',
 'showpreview'               => 'پیش‌نمایش',
