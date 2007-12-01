@@ -28,6 +28,7 @@ class ProtectionForm {
 	var $mReason = '';
 	var $mCascade = false;
 	var $mExpiry = null;
+	var $mPermErrors = array();
 
 	function __construct( &$article ) {
 		global $wgRequest, $wgUser;
@@ -56,7 +57,7 @@ class ProtectionForm {
 		}
 
 		// The form will be available in read-only to show levels.
-		$this->disabled = !$wgUser->isAllowed( 'protect' ) || wfReadOnly() || $wgUser->isBlocked();
+		$this->disabled = ($this->mPermErrors = $this->mTitle->getUserPermissionsErrors('protect',$wgUser)) != array();
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
@@ -125,22 +126,11 @@ class ProtectionForm {
 		# Show an appropriate message if the user isn't allowed or able to change
 		# the protection settings at this time
 		if( $this->disabled ) {
-			if( $wgUser->isAllowed( 'protect' ) ) {
-				if( $wgUser->isBlocked() ) {
-					# Blocked
-					$message = 'protect-locked-blocked';
-				} else {
-					# Database lock
-					$message = 'protect-locked-dblock';
-				}
-			} else {
-				# Permission error
-				$message = 'protect-locked-access';
-			}
+			$message = $wgOut->formatPermissionsErrorMessage( $this->mPermErrors );
 		} else {
-			$message = 'protect-text';
+			$message = wfMsg( 'protect-text', wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
 		}
-		$wgOut->addWikiText( wfMsg( $message, wfEscapeWikiText( $this->mTitle->getPrefixedText() ) ) );
+		$wgOut->addWikiText( $message );
 
 		$wgOut->addHTML( $this->buildForm() );
 
