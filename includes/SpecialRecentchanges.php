@@ -172,13 +172,9 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	while( $row = $dbr->fetchObject( $res ) ){
 		$rows[] = $row;
 		if ( !$feedFormat ) {
-			// User page link
-			$title = Title::makeTitleSafe( NS_USER, $row->rc_user_text );
-			$batch->addObj( $title );
-
-			// User talk
-			$title = Title::makeTitleSafe( NS_USER_TALK, $row->rc_user_text );
-			$batch->addObj( $title );
+			// User page and talk links
+			$batch->add( NS_USER, $row->rc_user_text  );
+			$batch->add( NS_USER_TALK, $row->rc_user_text  );
 		}
 
 	}
@@ -231,6 +227,10 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 		$s = $list->beginRecentChangesList();
 		$counter = 1;
+
+		$showWatcherCount = $wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' );
+		$watcherCache = array();
+
 		foreach( $rows as $obj ){
 			if( $limit == 0) {
 				break;
@@ -249,13 +249,20 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 					$rc->notificationtimestamp = false;
 				}
 
-				if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
-					$sql3 = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_title='" . $dbr->strencode($obj->rc_title) ."' AND wl_namespace=$obj->rc_namespace" ;
-					$res3 = $dbr->query( $sql3, 'wfSpecialRecentChanges');
-					$x = $dbr->fetchObject( $res3 );
-					$rc->numberofWatchingusers = $x->n;
-				} else {
-					$rc->numberofWatchingusers = 0;
+				$rc->numberofWatchingusers = 0; // Default
+				if ($showWatcherCount && $obj->rc_namespace >= 0) {
+					if (!isset($watcherCache[$obj->rc_namespace][$obj->rc_title])) {
+						$sql3 =
+							'SELECT COUNT(*) AS n ' .
+							"FROM $watchlist " .
+							"WHERE wl_title='{$dbr->strencode($obj->rc_title)}' " .
+							"AND wl_namespace=$obj->rc_namespace" ;
+						$res3 = $dbr->query( $sql3, __METHOD__ . '-watchers');
+						$x = $dbr->fetchObject( $res3 );
+						$watcherCache[$obj->rc_namespace][$obj->rc_title] = $x->n;
+						$dbr->freeResult( $res3 );
+					}
+					$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
 				}
 				$s .= $list->recentChangesLine( $rc, !empty( $obj->wl_user ) );
 				--$limit;
