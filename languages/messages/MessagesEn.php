@@ -1393,6 +1393,8 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'recentchangeslinked-title' => 'Changes related to $1',
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary'  => "This special page lists the last changes on pages who are linked. Pages on your watchlist are '''bold'''.",
+'recentchangeslinked-feed-entry' => 'User $1 edited $2',
+'recentchangeslinked-feed-entry-comment' => 'User $1 edited $2 ($3)',
 
 # Upload
 'upload'                      => 'Upload file',
