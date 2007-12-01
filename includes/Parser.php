@@ -4148,18 +4148,27 @@ class Parser
 	 * @return string Signature text
 	 */
 	function cleanSig( $text, $parsing = false ) {
-		global $wgTitle;
-		$this->startExternalParse( $wgTitle, new ParserOptions(), $parsing ? OT_WIKI : OT_MSG );
+		if ( !$parsing ) {
+			global $wgTitle;
+			$this->startExternalParse( $wgTitle, new ParserOptions(), OT_MSG );
+		}
 
+		# FIXME: regex doesn't respect extension tags or nowiki
+		#  => Move this logic to braceSubstitution()
 		$substWord = MagicWord::get( 'subst' );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
 		$substText = '{{' . $substWord->getSynonym( 0 );
 
 		$text = preg_replace( $substRegex, $substText, $text );
 		$text = $this->cleanSigInSig( $text );
-		$text = $this->replaceVariables( $text );
+		$dom = $this->preprocessToDom( $text );
+		$frame = new PPFrame( $this );
+		$text = $frame->expand( $dom->documentElement );
 
-		$this->clearState();
+		if ( !$parsing ) {
+			$text = $this->mStripState->unstripBoth( $text );
+		}
+
 		return $text;
 	}
 
