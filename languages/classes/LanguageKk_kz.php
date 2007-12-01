@@ -253,6 +253,14 @@ class LanguageKk_kz extends Language {
 		return $word;
 	}
 
+	function ucfirst ( $string ) {
+		if ( $string[0] == 'i' ) {
+			return 'İ' . substr( $string, 1 );
+		} else {
+			return parent::ucfirst( $string );
+		}
+	}
+
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
 	 */
@@ -264,5 +272,6 @@ class LanguageKk_kz extends Language {
 		}
 	}
 }
+
 
 
