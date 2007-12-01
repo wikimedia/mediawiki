@@ -45,14 +45,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$fld_comment = false, $fld_user = false, $fld_content = false;
 
 	public function execute() {
-		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $diffto = $difftoprev = $diffformat = null;
+		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $diffto = $difftoprev = $diffformat = $token = null;
 		extract($this->extractRequestParams());
 
 		// If any of those parameters are used, work in 'enumeration' mode.
 		// Enum mode can only be used when exactly one page is provided.
 		// Enumerating revisions on multiple pages make it extremely 
 		// difficult to manage continuations and require additional SQL indexes  
-		$enumRevMode = (!is_null($user) || !is_null($excludeuser) || !is_null($limit) || !is_null($startid) || !is_null($endid) || $dir === 'newer' || !is_null($start) || !is_null($end) | !$difftoprev);
+		$enumRevMode = (!is_null($user) || !is_null($excludeuser) || !is_null($limit) || !is_null($startid) || !is_null($endid) || $dir === 'newer' || !is_null($start) || !is_null($end) | $difftoprev);
 		
 
 		$pageSet = $this->getPageSet();
@@ -85,10 +85,16 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
 		$this->fld_comment = $this->addFieldsIf('rev_comment', isset ($prop['comment']));
 		$this->fld_size = $this->addFieldsIf('rev_len', isset ($prop['size']));
+		if(!is_null($token))
+		{
+			$this->tok_rollback = $this->getTokenFlag($token, 'rollback');
+		}
 
 		if($diffto || $difftoprev)
 			switch($diffformat)
 			{
+				// To add your own formatter, create a subclass of DiffFormatter
+				// in DifferenceEngine.php, then add it here
 				case 'traditional':
 					$this->formatter = new DiffFormatter;
 					break;
@@ -96,7 +102,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$this->formatter = new UnifiedDiffFormatter;
 					break;
 				case 'array':
-					$this->formatter = new ArrayDiffFormatter; 
+					$this->formatter = new ArrayDiffFormatter;
+					break;
 			}
 		if($diffto)
 		{
@@ -125,6 +132,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addFields('rev_user_text');
 			$this->fld_user = true;
 		}
+		else if($this->tok_rollback)
+			$this->addFields('rev_user_text');
+		
 		if (isset ($prop['content']) || !is_null($diffto) || $difftoprev) {
 
 			// For each page we will request, the user must have read rights for that page
@@ -330,12 +340,19 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['comment'] = $row->rev_comment;
 		}
 		
+		if($this->tok_rollback || ($this->fld_content && $this->expandTemplates))
+			$title = Title::newFromID($row->rev_page);
+		
+		if($this->tok_rollback) {
+			$vals['rollbacktoken'] = $wgUser->editToken(array($title->getPrefixedText(), $row->rev_user_text));
+		}
+		
 		if ($this->fld_content || $this->diffto || $this->difftoprev)
 			$text = Revision :: getRevisionText($row);
 		if ($this->fld_content) {
 			if ($this->expandTemplates) {
 				global $wgParser;
-				$text = $wgParser->preprocess( $text, Title::newFromID($row->rev_page), new ParserOptions() );
+				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
 			ApiResult :: setContent($vals, $text);
 		}
@@ -420,8 +437,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'unified',
 					'array',
 				),
-				ApiBase ::PARAM_DFLT => 'unified'
-			)
+				ApiBase :: PARAM_DFLT => 'unified'
+			),
+			'token' => array(
+				ApiBase :: PARAM_TYPE => array(
+					'rollback'
+				),
+				ApiBase :: PARAM_ISMULTI => true
+			),
 		);
 	}
 
@@ -440,6 +463,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'diffto' => 'Revision number to compare all revisions with',
 			'difftoprev' => 'Diff each revision to the previous one (enum)',
 			'diffformat' => 'Format to use for diffs',
+			'token' => 'Which tokens to obtain for each revision',
 		);
 	}
 
