@@ -201,7 +201,7 @@ $magicWords = array(
 	'filepath'               => array( 0,    'FILEPATH:', 'ПУТЬ_К_ФАЙЛУ:'),
 );
 
-$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
+$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
