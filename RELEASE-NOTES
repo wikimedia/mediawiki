@@ -310,6 +310,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Make prop=info check for restrictions in the old format too.
 * Add apihighlimits permission, default for sysops and bots
 * Add limit=max to use maximal limit
+* Add action=parse to render parser output. Use it instead of action=render which is deprecated.
 
 === Languages updated in 1.12 ===
 
