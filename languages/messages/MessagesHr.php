@@ -253,7 +253,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'copyrightpagename' => 'Autorska prava na projektu {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Autorska prava',
 'currentevents'     => 'Aktualno',
-'currentevents-url' => 'Novosti',
+'currentevents-url' => 'Project:Novosti',
 'disclaimers'       => 'Odricanje od odgovornosti',
 'disclaimerpage'    => 'Project:General_disclaimer',
 'edithelp'          => 'Kako uređivati stranicu',

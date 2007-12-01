@@ -60,7 +60,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'     => 'ܓܕ̈ܫܐ ܗܫܝܐ',
-'currentevents-url' => 'ܓܕ̈ܫܐ ܗܫܝܐ',
+'currentevents-url' => 'Project:ܓܕ̈ܫܐ ܗܫܝܐ',
 'mainpage'          => 'ܦܐܬܐ ܪܫܝܬܐ',
 'portal'            => 'ܬܪܥܐ ܕܟܢܫܐ',
 'portal-url'        => 'Project:ܬܪܥܐ ܕܟܢܫܐ',

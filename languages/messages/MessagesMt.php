@@ -17,7 +17,7 @@ $messages = array(
 'navigation'      => 'Navigazzjoni',
 
 'currentevents'     => 'Ġrajjiet kurrenti',
-'currentevents-url' => 'Ġrajjiet kurrenti',
+'currentevents-url' => 'Project:Ġrajjiet kurrenti',
 
 'disclaimers'      => 'Ċaħdiet',
 'search'           => 'Fittex',

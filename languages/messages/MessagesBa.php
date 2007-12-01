@@ -52,7 +52,7 @@ $messages = array(
 'navigation'      => 'Төп йүнәлештәр',
 
 'currentevents'     => 'Ағымдағы ваҡиғалар',
-'currentevents-url' => 'Ағымдағы ваҡиғалар',
+'currentevents-url' => 'Project:Ағымдағы ваҡиғалар',
 
 'disclaimers'      => 'Яуаплылыҡтан баш тартыу',
 'disclaimerpage'   => 'Project:Яуаплылыҡтан баш тартыу',

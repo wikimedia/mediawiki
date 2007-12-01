@@ -230,7 +230,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'copyrightpagename' => 'Avtorske pravice {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'copyrightpage'     => '{{ns:project}}:Avtorske pravice {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'currentevents'     => 'Trenutni dogodki',
-'currentevents-url' => 'Trenutni dogodki',
+'currentevents-url' => 'Project:Trenutni dogodki',
 'disclaimers'       => 'Zanikanja odgovornosti',
 'disclaimerpage'    => 'Project:Splošno_zanikanje_odgovornosti',
 'edithelp'          => 'Pomoč pri urejanju',

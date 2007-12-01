@@ -269,7 +269,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'copyrightpagename' => '{{SITENAME}} Copyright',
 'copyrightpage'     => '{{ns:project}}:Lizenz',
 'currentevents'     => 'Aktuell Schehn',
-'currentevents-url' => 'Aktuell Schehn',
+'currentevents-url' => 'Project:Aktuell Schehn',
 'disclaimers'       => 'Lizenzbestimmen',
 'disclaimerpage'    => 'Project:Lizenzbestimmen',
 'edithelp'          => 'Bearbeidenshülp',

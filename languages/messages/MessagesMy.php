@@ -63,7 +63,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'     => 'လက်​ရှိ​လုပ်​ငန်း​များ​',
-'currentevents-url' => 'လက်​ရှိ​လုပ်​ငန်း​များ​',
+'currentevents-url' => 'Project:လက်​ရှိ​လုပ်​ငန်း​များ​',
 'disclaimers'       => 'သ​တိ​ပေး​ချက်​များ​',
 'edithelp'          => 'ပြင်​ဆင်​ခြင်း​အ​ကူ​အ​ညီ​',
 'mainpage'          => 'ဗ​ဟို​စာ​မျက်​နှာ​',

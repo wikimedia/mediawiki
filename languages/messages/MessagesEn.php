@@ -652,7 +652,7 @@ XHTML id names.
 'copyrightpagename' => '{{SITENAME}} copyright',
 'copyrightpage'     => '{{ns:project}}:Copyrights',
 'currentevents'     => 'Current events',
-'currentevents-url' => 'Current events',
+'currentevents-url' => 'Project:Current events',
 'disclaimers'       => 'Disclaimers',
 'disclaimerpage'    => 'Project:General disclaimer',
 'edithelp'          => 'Editing help',
