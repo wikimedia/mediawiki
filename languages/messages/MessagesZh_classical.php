@@ -510,7 +510,7 @@ $2',
 'usercssjsyoucanpreview'    => '<strong>訣：</strong>CSS/JS應先預覽而後存。',
 'usercsspreview'            => "'''預覽CSS，尚未儲焉。'''",
 'userjspreview'             => "'''預覽JavaScript，尚未儲焉。'''",
-'userinvalidcssjstitle'     => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如User:Foo/monobook.css 而非User:Foo/Monobook.css",
+'userinvalidcssjstitle'     => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如{{ns:user}}:Foo/monobook.css 而非{{ns:user}}:Foo/Monobook.css",
 'updated'                   => '（新）',
 'note'                      => '<strong>註</strong>',
 'previewnote'               => '<strong>此乃預覽，尚未儲焉。</strong>',
@@ -1287,7 +1287,7 @@ $NEWPAGE
 'ipbhidename'          => '簿名、IP址隱乎誌禁、表禁、點簿。',
 'badipaddress'         => 'IP不格',
 'blockipsuccesssub'    => '禁焉',
-'blockipsuccesstext'   => '[[{{ns:Special}}:Contributions/$1|$1]]禁焉。表禁<br />見[[{{ns:Special}}:Ipblocklist|此]]。',
+'blockipsuccesstext'   => '[[{{ns:special}}:Contributions/$1|$1]]禁焉。表禁<br />見[[{{ns:special}}:Ipblocklist|此]]。',
 'ipb-edit-dropdown'    => '改證',
 'ipb-unblock-addr'     => '赦$1',
 'ipb-unblock'          => '赦簿、址',
@@ -1390,7 +1390,7 @@ $NEWPAGE
 
 # Export
 'export'            => '出匯',
-'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]]匯"[[{{MediaWiki:mainpage}}]]"。',
+'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:special}}:Export/{{MediaWiki:mainpage}}]]匯"[[{{MediaWiki:mainpage}}]]"。',
 'exportcuronly'     => '獨匯今審',
 'exportnohistory'   => "----
 '''囑記，'''封匯全誌，因累甚也。",

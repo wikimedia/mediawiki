@@ -454,7 +454,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'showpreview'            => 'Xem thử',
 'showdiff'               => 'Xem thay đổi',
 'blockedtitle'           => 'Thành viên bị chặn',
-'blockedtext'            => 'Bạn bị chặn bởi $1 vì:<br />$2<p>Bạn có thể liên hệ với $1 hoặc các [[{{ns:4}}:Người quản lý|người quản lý]] khác để thảo luận.',
+'blockedtext'            => 'Bạn bị chặn bởi $1 vì:<br />$2<p>Bạn có thể liên hệ với $1 hoặc các [[{{ns:project}}:Người quản lý|người quản lý]] khác để thảo luận.',
 'whitelistedittitle'     => 'Cần đăng nhập để sửa bài',
 'whitelistedittext'      => 'Bạn cần [[Đặc_biệt:Userlogin|đăng nhập]] để viết bài.',
 'whitelistreadtitle'     => 'Cần đăng nhập để đọc bài',
@@ -487,12 +487,12 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'nonunicodebrowser'      => '<strong>CHU Y: Trinh duyet cua ban khong ho tro Unicode, xin sua lai truoc khi viet bai.</strong><strong>WARNING: Your browser is not unicode compliant, please change it before editing an article.</strong>',
 'editingold'             => '<strong>Chú ý: bạn đang sửa một phiên bản cũ. Nếu bạn lưu, các sửa đổi trên phiên bản mới hơn sẽ mất.</strong>',
 'yourdiff'               => 'Khác',
-'copyrightwarning2'      => '*Xin dùng [[{{ns:4}}:Chỗ thử|chỗ thử soạn thảo]] nếu bạn chỉ muốn thử nghiệm.
+'copyrightwarning2'      => '*Xin dùng [[{{ns:project}}:Chỗ thử|chỗ thử soạn thảo]] nếu bạn chỉ muốn thử nghiệm.
 *Xin đọc thêm hướng dẫn về [[Trợ giúp:Soạn thảo|soạn thảo]] và [[Trợ giúp:Viết bài mới|viết bài mới]].
 *Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br /><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>',
 'longpagewarning'        => '<strong>Chú ý : Trang này dài $1 kb; nhiều trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>',
 'readonlywarning'        => '<strong>Chú ý : trang này bị khóa để bảo trì. Bạn chỉ có thể sao nội dung để sửa đổi trên máy cá nhân.</strong>',
-'protectedpagewarning'   => '<strong>Chú ý : trang này bị khóa. Chỉ có quản lý viên mới sửa được. Chú ý tuân thủ [[{{ns:4}}:Trang_bị_khóa|quy định về trang bị khóa]].</strong>',
+'protectedpagewarning'   => '<strong>Chú ý : trang này bị khóa. Chỉ có quản lý viên mới sửa được. Chú ý tuân thủ [[{{ns:project}}:Trang_bị_khóa|quy định về trang bị khóa]].</strong>',
 'templatesused'          => 'Các tiêu bản dùng trong trang này',
 'permissionserrors'      => 'Không có quyền thực hiện',
 
@@ -530,7 +530,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 
 # Search results
 'searchresults'         => 'Kết quả tìm',
-'searchresulttext'      => 'Xem thêm [[{{ns:4}}:Tìm_kiếm|hướng dẫn tìm kiếm {{SITENAME}}]].',
+'searchresulttext'      => 'Xem thêm [[{{ns:project}}:Tìm_kiếm|hướng dẫn tìm kiếm {{SITENAME}}]].',
 'searchsubtitle'        => 'Cho truy vấn "[[:$1]]"',
 'searchsubtitleinvalid' => 'Cho truy vấn "$1"',
 'noexactmatch'          => 'Không có trang tên như này, xin thử công cụ tìm.',
@@ -617,7 +617,7 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9',
 
 # Recent changes
 'recentchanges'                     => 'Thay đổi gần đây',
-'recentchangestext'                 => '[[{{ns:4}}:Chào mừng người mới đến|Chào mừng]] bạn! Trang này dùng để theo dõi các thay đổi gần đây trên {{SITENAME}}.',
+'recentchangestext'                 => '[[{{ns:project}}:Chào mừng người mới đến|Chào mừng]] bạn! Trang này dùng để theo dõi các thay đổi gần đây trên {{SITENAME}}.',
 'rcnote'                            => '<strong>$1</strong> thay đổi của <strong>$2</strong> ngày qua.',
 'rcnotefrom'                        => 'Thay đổi từ <strong>$2</strong> (<b>$1</b> tối đa).',
 'rclistfrom'                        => 'Xem thay đổi từ $1.',
@@ -645,13 +645,13 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9',
 'uploadtext'                 => 'Trước khi truyền hình lên:
 *Kiểm tra hình ảnh đã tải lên trước đây tại [[Đặc_biệt:Imagelist|danh sách những hình đã tải lên]].
 Khi truyền hình lên:
-*Tuân thủ [[{{ns:4}}:Quy định về hình ảnh|quy định về sử dụng hình ảnh]].
-*Ghi rõ thẻ quyền. Ví dụ {{<nowiki>PD</nowiki>}} hay {{<nowiki>GFDL</nowiki>}},... Xem thêm [[{{ns:4}}:Thẻ quyền cho hình ảnh|thẻ quyền cho hình ảnh]].
+*Tuân thủ [[{{ns:project}}:Quy định về hình ảnh|quy định về sử dụng hình ảnh]].
+*Ghi rõ thẻ quyền. Ví dụ {{<nowiki>PD</nowiki>}} hay {{<nowiki>GFDL</nowiki>}},... Xem thêm [[{{ns:project}}:Thẻ quyền cho hình ảnh|thẻ quyền cho hình ảnh]].
 *Dùng định dạng JPEG cho ảnh chụp, PNG cho hình vẽ, và OGG cho âm thanh hay video.
 *Ghi tóm lược về hình ảnh giúp người khác có thể dùng lại hình của bạn.
 Sau khi truyền hình lên:
-*Thông tin tải lên và xóa bỏ được ghi trong [[{{ns:4}}:Nhật trình tải lên|nhật trình tải lên]].
-*Để cho hình vào bài, xem [[{{ns:4}}:Cú pháp hình ảnh|cú pháp hình ảnh]].
+*Thông tin tải lên và xóa bỏ được ghi trong [[{{ns:project}}:Nhật trình tải lên|nhật trình tải lên]].
+*Để cho hình vào bài, xem [[{{ns:project}}:Cú pháp hình ảnh|cú pháp hình ảnh]].
 *Người khác có thể sửa hoặc xóa những thông tin bạn tải lên, và bạn có thể bị cấm tải lên nếu lạm dụng hệ thống.',
 'uploadlog'                  => 'Nhật trình tải lên',
 'uploadlogpage'              => 'Nhật_trình_tải_lên',
@@ -702,15 +702,15 @@ Sau khi truyền hình lên:
 'statistics'    => 'Thống kê',
 'sitestats'     => 'Thống kê',
 'userstats'     => 'Thống kê thành viên',
-'sitestatstext' => '<p style="font-size: 125%; margin-bottom: 0px">Hiện đang có <b>$2</b> [[{{ns:4}}:Bài bách khoa là gì?|bài viết]].</p>
+'sitestatstext' => '<p style="font-size: 125%; margin-bottom: 0px">Hiện đang có <b>$2</b> [[{{ns:project}}:Bài bách khoa là gì?|bài viết]].</p>
 
-Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo luận]], các trang giới thiệu {{SITENAME}}, các [[{{ns:4}}:Trang_đổi_hướng|trang đổi hướng]], và các trang không được coi là có nội dung (ví dụ: không liên kết đến trang khác). Khi tính các trang đó vào, có <b>$1</b> trang.
+Con số này không bao gồm các trang [[{{ns:project}}:Trang_thảo_luận|thảo luận]], các trang giới thiệu {{SITENAME}}, các [[{{ns:project}}:Trang_đổi_hướng|trang đổi hướng]], và các trang không được coi là có nội dung (ví dụ: không liên kết đến trang khác). Khi tính các trang đó vào, có <b>$1</b> trang.
 
 Đã có tổng cộng <b>$3</b> lần xem, và <b>$4</b> lần sửa kể từ khi dự án này được thiết lập. Trung bình có <b>$5</b> lần sửa cho mỗi trang, và <b>$6</b> lần xem cho mỗi sửa đổi.',
-'userstatstext' => 'Có <b>$1</b> thành viên đã đăng ký, trong đó có <b>$2</b> là [[{{ns:4}}:Người quản lý|người quản lý]].',
+'userstatstext' => 'Có <b>$1</b> thành viên đã đăng ký, trong đó có <b>$2</b> là [[{{ns:project}}:Người quản lý|người quản lý]].',
 
 'disambiguations'     => 'Trang định hướng',
-'disambiguationspage' => '{{ns:4}}:Trang_định_hướng',
+'disambiguationspage' => '{{ns:project}}:Trang_định_hướng',
 
 'doubleredirects'     => 'Đổi hướng kép',
 'doubleredirectstext' => 'Mỗi hàng có chứa các liên kết đến trang chuyển hướng thứ nhất và thứ hai, cũng như dòng đầu tiên của nội dung trang chuyển hướng thứ hai, thường chỉ tới trang đích "thực sự", là nơi mà trang chuyển hướng đầu tiên phải trỏ đến.',
@@ -860,7 +860,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'revertpage'         => 'đã hủy sửa đổi của $2, quay về phiên bản của $1',
 'sessionfailure'     => 'Có thể có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy tải lại trang và thử lại.',
 'protectlogpage'     => 'Nhật trình khóa',
-'protectlogtext'     => 'Danh sách khóa/mở (xem [[{{ns:4}}:Các trang bị khóa|các trang bị khóa]]).',
+'protectlogtext'     => 'Danh sách khóa/mở (xem [[{{ns:project}}:Các trang bị khóa|các trang bị khóa]]).',
 'protectedarticle'   => 'đã khóa $1',
 'unprotectedarticle' => 'đã mở $1',
 'protectsub'         => '(Khóa "$1")',
@@ -902,7 +902,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 # Block/unblock
 'blockip'                     => 'Cấm thành viên',
 'blockiptext'                 => 'Mẫu dưới để cấm một địa chỉ IP hoặc một tài khoản.
-Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và phải tuân theo [[{{ns:4}}:Quy_định|quy_định]]. Xin cho biết lý do cấm.',
+Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và phải tuân theo [[{{ns:project}}:Quy_định|quy_định]]. Xin cho biết lý do cấm.',
 'ipaddress'                   => 'Địa chỉ IP/tên tài khoản',
 'ipadressorusername'          => 'Địa chỉ IP hay tên thành viên',
 'ipbexpiry'                   => 'Thời hạn',
@@ -1009,7 +1009,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'allmessagesdefault'        => 'Nội dung mặc định',
 'allmessagescurrent'        => 'Nội dung hiện thời',
 'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki: .',
-'allmessagesnotsupportedDB' => 'Đặc_biệt:AllMessages không được hỗ trợ vì wgUseDatabaseMessages bị tắt.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages không được hỗ trợ vì wgUseDatabaseMessages bị tắt.',
 
 # Thumbnails
 'thumbnail-more' => 'Phóng lớn',

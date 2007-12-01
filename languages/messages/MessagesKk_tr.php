@@ -889,7 +889,7 @@ tömende körsetiledi:",
 'whitelistacctitle'         => 'Tirkelwiñizge ruqsat berilmegen',
 'whitelistacctext'          => 'Osı wïkïde tirkelwge üşin [[{{ns:special}}:Userlogin|kirwiñiz]] kerek jäne janasımdı ruqsattarıñız bolw kerek.',
 'confirmedittitle'          => 'E-poşta jaýın rastaw xatı qaýta öñdelwi kerek',
-'confirmedittext'           => 'Betterdi öñdew üşin aldın ala E-poşta jaýıñızdı rastawıñız kerek. Jaýıñızdı [[{{ns:Special}}:Preferences|qatıswşı baptawı]] arqılı qoýıñız da jaramdılığın teksertkiñiz.',
+'confirmedittext'           => 'Betterdi öñdew üşin aldın ala E-poşta jaýıñızdı rastawıñız kerek. Jaýıñızdı [[{{ns:special}}:Preferences|qatıswşı baptawı]] arqılı qoýıñız da jaramdılığın teksertkiñiz.',
 'nosuchsectiontitle'        => 'Bundaý bölim joq',
 'nosuchsectiontext'         => 'Joq bölimdi öñdewdi talap etipsiz. Mında $1 degen bölim joq eken, öñdewleriñizdi saqtaw üşin orın joq.',
 'loginreqtitle'             => 'Kirwiñiz kerek',
@@ -1460,7 +1460,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'statistics-mostpopular' => 'Eñ köp qaralğan better',
 
 'disambiguations'      => 'Aýrıqtı better',
-'disambiguationspage'  => '{{ns:template}}:Disambig',
+'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi. Bunıñ ornına belgili taqırıpqa siltewi kerek.<br />Eger [[{{ns:mediawiki}}:disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdatwlar',

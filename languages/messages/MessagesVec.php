@@ -514,9 +514,9 @@ par fare el upload de files.',
 'uploadtext'                  => "Usa el moduło sotostante par caricare i novi file. Par vixualixare o riçercare i file xà caricai, consulta el [[Special:Imagelist|log de i file caricai]]. Caricamenti e scancełazsioni de file i xè registrai ne el [[Special:Log/upload|log de i upload]].
 
 Par inserire un'imagine in na paxèna, fare un cołegamento de sto tipo:
-'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:file.jpg]]</nowiki>''' o
-'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:file.png|testo alternativo]]</nowiki>'''; usare inveçe
-'''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:file.ogg]]</nowiki>''' par cołegare diretamente gli altri tipi de file.",
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>''' o
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png|testo alternativo]]</nowiki>'''; usare inveçe
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>''' par cołegare diretamente gli altri tipi de file.",
 'uploadlog'                   => 'File caricai',
 'uploadlogpage'               => 'Log dei file caricai',
 'uploadlogpagetext'           => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
@@ -895,7 +895,7 @@ La voçe specificà come destinazsion "[[$1]]" l\'esiste già. Vóto scancełarl
 'allmessagescurrent'        => "Testo come che el xe 'deso",
 'allmessagestext'           => "Sta quà l'è na lista de tutti i messaggi disponibili nel namespace MediaWiki:",
 'allmessagesnotsupportedUI' => "El linguaggio che te ghè scelto ('''$1''') non l'è mia supportà da '''Special:Allmessages''' in sto sito.",
-'allmessagesnotsupportedDB' => "'''Special:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
 'allmessagesfilter'         => 'Filto su i messaj:',
 'allmessagesmodified'       => 'Mostra soło quełi modefegà.',
 

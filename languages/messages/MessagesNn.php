@@ -483,11 +483,11 @@ Ver merksam på at du ikkje kan bruke «send e-post åt brukar»-funksjonen så 
 
 IP-adressa di er $3. Legg henne ved eventuelle førespurnader.",
 'whitelistedittitle'     => 'Du lyt logge inn for å gjera endringar',
-'whitelistedittext'      => 'Du lyt [[{{ns:-1}}:Userlogin|logge inn]] for å endre sider.',
+'whitelistedittext'      => 'Du lyt [[{{ns:special}}:Userlogin|logge inn]] for å endre sider.',
 'whitelistreadtitle'     => 'Du lyt logge inn for å lesa',
-'whitelistreadtext'      => 'Du lyt [[{{ns:-1}}:Userlogin|logge inn]] for å lesa sider.',
+'whitelistreadtext'      => 'Du lyt [[{{ns:special}}:Userlogin|logge inn]] for å lesa sider.',
 'whitelistacctitle'      => 'Du har ikkje løyve til å laga brukarkonto',
-'whitelistacctext'       => 'For å laga brukarkontoar på denne wikien lyt du [[{{ns:-1}}:Userlogin|logge inn]] og ha rett type tilgang',
+'whitelistacctext'       => 'For å laga brukarkontoar på denne wikien lyt du [[{{ns:special}}:Userlogin|logge inn]] og ha rett type tilgang',
 'loginreqtitle'          => 'Innlogging trengst',
 'loginreqlink'           => 'logge inn',
 'loginreqpagetext'       => 'Du lyt $1 for å lesa andre sider.',
@@ -499,7 +499,7 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.",
 * Om du er ny her er det tilrådd å sjå på [[Project:Retningsliner|retningsliner]] og [[Help:Innhald|hjelp]] først.
 * Om du lagrar ei testside, vil du ikkje kunne slette ho sjølv. Ver difor venleg og bruk [[Project:Sandkasse|sandkassa]] til å eksperimentere.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
-'anontalkpagetext'       => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[{{ns:-1}}:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
+'anontalkpagetext'       => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[{{ns:special}}:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext'          => "'''Sida «{{PAGENAME}}» finst ikkje på {{SITENAME}} enno.'''
 * Klikk på '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} endre]''' for å opprette sida.",
 'clearyourcache'         => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren omgår mellomlageret sitt for at endringane skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -683,7 +683,7 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'uploaderror'                => 'Feil under opplasting av fil',
 'uploadtext'                 => "Dette er sida til å laste opp filer. Nyleg opplasta filer finn du på [[Special:Imagelist|filsida]]. Opplastingar og slettingar [[Special:Log|blir loggført]].
 
-* For å bruke eit bilete på ei side, skriv inn ei lenkje av dette slaget: <tt><nowiki>[[{{ns:6}}:Eksempelbilete.jpg]]</nowiki></tt> eller <tt><nowiki>[[{{ns:6}}:Eksempelbilete.png|bilettekst]]</nowiki></tt>, eller <tt><nowiki>[[{{ns:-2}}:Eksempelfil.ogg]]</nowiki></tt> for lydar og andre filer. For å leggje inn eit bilete som miniatyr, skriv <tt><nowiki>[[{{ns:6}}:Eksempelbilete.jpg|mini|Bilettekst]]</nowiki></tt>. Sjå [[Help:Biletsyntaks|biletesyntaks-hjelp]] for meir informasjon.
+* For å bruke eit bilete på ei side, skriv inn ei lenkje av dette slaget: <tt><nowiki>[[{{ns:image}}:Eksempelbilete.jpg]]</nowiki></tt> eller <tt><nowiki>[[{{ns:image}}:Eksempelbilete.png|bilettekst]]</nowiki></tt>, eller <tt><nowiki>[[{{ns:media}}:Eksempelfil.ogg]]</nowiki></tt> for lydar og andre filer. For å leggje inn eit bilete som miniatyr, skriv <tt><nowiki>[[{{ns:image}}:Eksempelbilete.jpg|mini|Bilettekst]]</nowiki></tt>. Sjå [[Help:Biletsyntaks|biletesyntaks-hjelp]] for meir informasjon.
 * Om du lastar opp ei fil med same namn som ei eksisterande fil vil du bli beden om å stadfeste, og den eksisterande fila vil ikkje bli sletta.
 
 Sjå [[Help:Laste opp fil|hjelp for filopplasting]] for meir informasjon om korleis dette skjemaet verkar og korleis ein bruker filer på wikisider.
@@ -897,7 +897,7 @@ For hjelp og meir informasjon:
 'deletepage'         => 'Slett side',
 'confirm'            => 'Stadfest',
 'excontent'          => 'innhaldet var: «$1»',
-'excontentauthor'    => 'innhaldet var: «$1» (og den einaste bidragsytaren var «[[{{ns:2}}:$2|$2]]»)',
+'excontentauthor'    => 'innhaldet var: «$1» (og den einaste bidragsytaren var «[[{{ns:user}}:$2|$2]]»)',
 'exbeforeblank'      => 'innhaldet før sida vart tømd var: «$1»',
 'exblank'            => 'sida var tom',
 'confirmdelete'      => 'Stadfest sletting',
@@ -918,14 +918,14 @@ For hjelp og meir informasjon:
 'rollbacklink'       => 'rull attende',
 'rollbackfailed'     => 'Kunne ikkje rulle attende',
 'cantrollback'       => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
-'alreadyrolled'      => 'Kan ikkje rulle attende den siste endringa av [[:$1]] gjort av [[{{ns:2}}:$2|$2]] ([[{{ns:3}}:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa.
+'alreadyrolled'      => 'Kan ikkje rulle attende den siste endringa av [[:$1]] gjort av [[User:$2|$2]] ([[User talk:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa.
 
-Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusjon]]).',
+Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]).',
 'editcomment'        => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Attenderulla endring gjort av [[{{ns:2}}:$2|$2]] til tidlegare versjon endra av [[{{ns:2}}:$1|$1]]',
+'revertpage'         => 'Attenderulla endring gjort av [[{{ns:user}}:$2|$2]] til tidlegare versjon endra av [[{{ns:user}}:$1|$1]]',
 'sessionfailure'     => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'     => 'Vernelogg',
-'protectlogtext'     => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. Sjå [[{{ns:4}}:Verna side]] for meir info.',
+'protectlogtext'     => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. Sjå [[{{ns:project}}:Verna side]] for meir info.',
 'protectedarticle'   => 'verna «[[$1]]»',
 'unprotectedarticle' => 'fjerna vern av «[[$1]]»',
 'protectsub'         => '(Vernar «$1»)',
@@ -992,11 +992,11 @@ For informasjon om korleis ein kan blokkere seriar av IP-adresser, sjå [http://
 'blocklink'                   => 'blokker',
 'unblocklink'                 => 'opphev blokkering',
 'contribslink'                => 'bidrag',
-'autoblocker'                 => 'Automatisk blokkert fordi du deler IP-adresse med [[{{ns:2}}:$1|$1]]. Grunngjeving gjeve for blokkeringa av $1 var: «$2».',
+'autoblocker'                 => 'Automatisk blokkert fordi du deler IP-adresse med [[{{ns:user}}:$1|$1]]. Grunngjeving gjeve for blokkeringa av $1 var: «$2».',
 'blocklogpage'                => 'Blokkeringslogg',
 'blocklogentry'               => 'Blokkerte «[[$1]]» med opphørstid $2',
-'blocklogtext'                => 'Dette er ein logg over blokkeringar og oppheving av blokkeringar gjorde av [[{{ns:4}}:Administratorar|administratorar]].
-IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:-1}}:Ipblocklist|blokkeringslista]] for alle aktive blokkeringar.',
+'blocklogtext'                => 'Dette er ein logg over blokkeringar og oppheving av blokkeringar gjorde av [[{{ns:project}}:Administratorar|administratorar]].
+IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:special}}:Ipblocklist|blokkeringslista]] for alle aktive blokkeringar.',
 'unblocklogentry'             => 'oppheva blokkering av «$1»',
 'range_block_disabled'        => 'Funksjonen for blokkering av IP-adresse-seriar er deaktivert på tenaren.',
 'ipb_expiry_invalid'          => 'Ugyldig opphørstid.',
@@ -1034,7 +1034,7 @@ Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den 
 *Ei diskusjonsside som ikkje er tom allereie finst under det nye namnet, eller
 *Du fjernar merkinga i boksen nedanfor.
 
-I desse falla lyt du flytte eller flette saman sida manuelt. Om det ikkje er mogleg for deg å gjera dette kan du kontakte ein [[{{ns:4}}:Administratorar|administrator]], men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på endringshistorikken.",
+I desse falla lyt du flytte eller flette saman sida manuelt. Om det ikkje er mogleg for deg å gjera dette kan du kontakte ein [[{{ns:project}}:Administratorar|administrator]], men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på endringshistorikken.",
 'movearticle'            => 'Flytt side',
 'movenologin'            => 'Ikkje innlogga',
 'movenologintext'        => 'Du lyt vera registrert brukar og vera [[Special:Userlogin|innlogga]] for å flytte ei side.',
@@ -1067,7 +1067,7 @@ Målsida «[[$1]]» finst allereie. Vil du slette ho for å gje rom for flytting
 
 For å eksportere sider, skriv tittelen i tekstboksen nedanfor, ein tittel per line, og vel om du vil ha med alle versjonane eller berre siste versjon.
 
-Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{ns:Special}}:Export/MediaWiki]] for [[MediaWiki]] sida.',
+Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{ns:special}}:Export/MediaWiki]] for [[MediaWiki]] sida.',
 'exportcuronly' => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
 
 # Namespace 8 related
@@ -1076,8 +1076,8 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Noverande tekst',
 'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.',
-'allmessagesnotsupportedUI' => 'Det gjeldande språket for grensesnittet <b>$1</b>, støttar ikkje {{ns:-1}}:Allmessages.',
-'allmessagesnotsupportedDB' => '{{ns:-1}}:Allmessages er ikkje støtta fordi "wgUseDatabaseMessages" ikkje er aktivert på tenaren.',
+'allmessagesnotsupportedUI' => 'Det gjeldande språket for grensesnittet <b>$1</b>, støttar ikkje {{ns:special}}:Allmessages.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages er ikkje støtta fordi "wgUseDatabaseMessages" ikkje er aktivert på tenaren.',
 
 # Thumbnails
 'thumbnail-more' => 'Forstørr',
@@ -1088,7 +1088,7 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 'import'                => 'Importer sider',
 'importinterwiki'       => 'Transwikiimport',
 'importtext'            => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
-For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
+For å eksportere bruker du [[{{ns:special}}:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
 'importfailed'          => 'Importeringa var mislukka: $1',
 'importnotext'          => 'Tom eller ingen tekst',
 'importsuccess'         => 'Importeringa er ferdig!',

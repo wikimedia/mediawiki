@@ -834,9 +834,9 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'upload_directory_read_only'  => '($1) директорияҕа сиэрбэр билэни суруйар кыаҕа суох.',
 'uploaderror'                 => 'Билэ суруллубата',
 'uploadtext'                  => "Бу форманы туһанан сиэрбэргэ билэлэри суруйуоххун сөп. Урут суруллубут билэлэри көрөргө манна тиий: [[Special:Imagelist|ойуулар испииһэктэрэ]].<br /> Билэлэри суруйуу уонна сотуу устуоруйата [[Special:Log|манна]] көстөр. Ойууну ыстатыйаҕа киллэрэргэ маннык суруйуллар:
-*'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>''' 
-*'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|thumb|хос быһаарыы]]</nowiki>'''
-*'''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>''' - миэдьийэ билэтигэр ыйынньык холобура",
+*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''' 
+*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|thumb|хос быһаарыы]]</nowiki>'''
+*'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' - миэдьийэ билэтигэр ыйынньык холобура",
 'uploadlog'                   => 'уларытыы устуоруйата',
 'uploadlogpage'               => 'Уларытыы устуоруйата',
 'uploadlogpagetext'           => 'Манна бүтэһик уларытыылар исппиһэктэрэ көстөр (UTC).',
@@ -1422,7 +1422,7 @@ $1',
 'ipbhidename'                 => 'Кыттааччы аатын/IP-тын бобуу сурунаалыгар, бобуллубуттар уонна кытааччылар уопсай испииһэктэригэр көрдөрүмэ',
 'badipaddress'                => 'IP аадырыһа сыыһа',
 'blockipsuccesssub'           => 'Тохтотулунна',
-'blockipsuccesstext'          => '[[{{ns:Special}}:Contributions/$1|«$1»]] бобуллубут/тохтотуллубут. 
+'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|«$1»]] бобуллубут/тохтотуллубут. 
 <br />[[{{ns:special}}:Ipblocklist|Бобуллубут IP-лар испииһэктэрин]] көр.',
 'ipb-edit-dropdown'           => 'Бобуу биричиинэтин уларыт',
 'ipb-unblock-addr'            => '$1 бобуутун суох гын',
@@ -1560,7 +1560,7 @@ $1',
 Онтон тал: ыстатыйалар историяларын барытын көһөрөҕүн дуу, кэлиҥҥи торумнарын эрэ дуу. 
 
 Экспорт анал аадырыһын туһанан сирэй бүтэһик торумун көһөрүөххэ эмиэ сөп. 
-Холобур, [[{{MediaWiki:Mainpage}}]] сирэйи маннык: [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]].',
+Холобур, [[{{MediaWiki:Mainpage}}]] сирэйи маннык: [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Бүтэһик торуму эрэ киллэр, уларытыы толору историята наадата суох',
 'exportnohistory'   => "----
 '''Биллэрии:''' Сирэй толору историятын таһаары кыах тиийбэтинэн араарыллыбыт.",

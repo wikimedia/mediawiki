@@ -480,7 +480,7 @@ Adresa e IP-së që keni është $3. Jepni këtë adresë në çdo ankesë.',
 'usercssjsyoucanpreview'   => "<strong>Këshillë:</strong> Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
 'usercsspreview'           => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj CSS, ajo nuk është ruajtur akoma!'''",
 'userjspreview'            => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript, ajo nuk është ruajtur akoma!'''",
-'userinvalidcssjstitle'    => "'''Kujdes:''' Nuk ka pamje të quajtur \"\$1\". Vini re se faqet .css dhe .js përdorin titull me gërma të vogla, p.sh. Përdoruesi:Foo/monobook.css, jo Përdoruesi:Foo/Monobook.css.",
+'userinvalidcssjstitle'    => "'''Kujdes:''' Nuk ka pamje të quajtur \"\$1\". Vini re se faqet .css dhe .js përdorin titull me gërma të vogla, p.sh. {{ns:user}}:Foo/monobook.css, jo {{ns:user}}:Foo/Monobook.css.",
 'updated'                  => '(E ndryshuar)',
 'note'                     => '<strong>Shënim:</strong>',
 'previewnote'              => 'Kini kujdes se kjo është vetëm një parapamje, nuk është ruajtur akoma!',
@@ -753,10 +753,10 @@ Dhëniet dhe grisjet janë të regjistruara në [[Special:Log|faqen e regjistrav
 Përdorni formularin e më poshtëm për të dhënë skeda të figurave të reja për tu përdorur në ilustrimet e artikujve. Për shumicën e shfletuesve, do të shihni një buton \"Browse...\", i cili do të hapi dialogun standard të skedave të sistemit operativ që përdorni. 
 
 Për të vendosur një figurë në një artikull, përdorni lidhjen sipas formës
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Skeda.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Skeda.png|tekst përshkrues]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skeda.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skeda.png|tekst përshkrues]]</nowiki>'''
 ose të tjerë
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Skeda.ogg]]</nowiki>'''.
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skeda.ogg]]</nowiki>'''.
 
 Përdorni stampa tek përshkrimi për të cilësuar licencën e duhur.",
 'uploadlog'                   => 'regjistër dhënjesh',
@@ -1313,7 +1313,6 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'allmessagesdefault'        => 'Teksti i parazgjedhur',
 'allmessagescurrent'        => 'Teksti i tanishëshm',
 'allmessagestext'           => 'Kjo është një listë e të gjitha faqeve në hapësirën MediaWiki:',
-'allmessagesnotsupportedDB' => 'special:Allmessages not supported because wgUseDatabaseMessages is off.',
 'allmessagesfilter'         => 'Veço me shprehje të rregullta:',
 'allmessagesmodified'       => 'Trego vetëm të ndryshuarat',
 

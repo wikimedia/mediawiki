@@ -580,7 +580,7 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'usercssjsyoucanpreview'    => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye css/js devant que l’enregistrar.",
 'usercsspreview'            => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye css et qu’el at p’oncor étâ enregistrâ !'''",
 'userjspreview'             => "'''Rapelâd-vos que vos éte aprés visualisar ou èprovar voutron code JavaScript et qu’il at p’oncor étâ enregistrâ !'''",
-'userinvalidcssjstitle'     => "'''Atencion :''' ègziste pas de stilo « $1 ». Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres aprés lo nom d’utilisator et la bârra de fraccion /.<br />D’ense, Utilisator:Foo/monobook.css est valido, pendent que Utilisator:Foo/Monobook.css serat una fôlye de stilo envalida.",
+'userinvalidcssjstitle'     => "'''Atencion :''' ègziste pas de stilo « $1 ». Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres aprés lo nom d’utilisator et la bârra de fraccion /.<br />D’ense, {{ns:user}}:Foo/monobook.css est valido, pendent que {{ns:user}}:Foo/Monobook.css serat una fôlye de stilo envalida.",
 'updated'                   => '(Betâ a jorn)',
 'note'                      => '<strong>Nota :</strong>',
 'previewnote'               => '<strong>Atencion, ceti tèxte est ren qu’una prèvisualisacion et at p’oncor étâ sôvâ !</strong>',
@@ -1643,7 +1643,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 'allmessagesdefault'        => 'Mèssâjo per dèfôt',
 'allmessagescurrent'        => 'Mèssâjo d’ora',
 'allmessagestext'           => 'Cen est la lista de tôs los mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.',
-'allmessagesnotsupportedDB' => '<b>Special:Allmessages</b> est pas disponiblo perce que <b>$wgUseDatabaseMessages</b> est dèsactivâ.',
+'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' est pas disponiblo perce que \'\'\'$wgUseDatabaseMessages\'\'\' est dèsactivâ.',
 'allmessagesfilter'         => 'Filtro d’èxprèssion racionâla :',
 'allmessagesmodified'       => 'Afichiér ren que les modificacions',
 

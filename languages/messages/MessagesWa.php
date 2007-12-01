@@ -1313,7 +1313,7 @@ Dins ç' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[Special:Export/{{
 'allmessagesdefault'        => 'Tecse prémetou',
 'allmessagescurrent'        => 'Tecse pol moumint',
 'allmessagestext'           => "Çouchal est ene djivêye di tos les messaedjes k' i gn a dins l' espåce di lomaedje ''MediaWiki:''",
-'allmessagesnotsupportedDB' => "'''Special:AllMessages''' n' est nén sopoirté paski '''\$wgUseDatabaseMessages''' est dismetou.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' n' est nén sopoirté paski '''\$wgUseDatabaseMessages''' est dismetou.",
 'allmessagesfilter'         => 'Erîlêye ratourneure pol passete:',
 'allmessagesmodified'       => 'Seulmint les cis candjîs',
 
