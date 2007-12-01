@@ -311,7 +311,6 @@ $messages = array(
 'category-media-header' => 'Файлы в категории «$1»',
 'category-empty'        => "''Эта категория в данный момент пуста.''",
 
-'linkprefix'        => '/^(.*?)(„|«)$/sD',
 'mainpagetext'      => '<big>Вики-движок «MediaWiki» успешно установлен.</big>',
 'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 руководстве пользователя].
 
