@@ -481,8 +481,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	protected function getExamples() {
 		return array (
-			'Get data with content for the last revision of the "Main Page":',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvprop=timestamp|user|comment|content',
+			'Get data with content for the last revision of titles "API" and "Main Page":',
+			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&rvprop=timestamp|user|comment|content',
 			'Get last 5 revisions of the "Main Page":',
 			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment',
 			'Get first 5 revisions of the "Main Page":',
