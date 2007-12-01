@@ -345,9 +345,9 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'uploadtext'        => 'Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:Imagelist|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
 
 Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals suandants cumonds: 
-* <nowiki>[[{{ns:6}}:file.png|text alternativ]]</nowiki>
-* <nowiki>[[{{ns:6}}:file.jpg|left|thumb|200px|Descripziun dal maletg]]</nowiki>
-* <nowiki>[[{{ns:-2}}:file.ogg]]</nowiki><br><br>',
+* <nowiki>[[{{ns:image}}:file.png|text alternativ]]</nowiki>
+* <nowiki>[[{{ns:image}}:file.jpg|left|thumb|200px|Descripziun dal maletg]]</nowiki>
+* <nowiki>[[{{ns:media}}:file.ogg]]</nowiki><br><br>',
 'filedesc'          => 'Resumaziun',
 'fileuploadsummary' => 'Resumaziun:',
 'ignorewarnings'    => 'Ignorar tut ils avertiments (Warnung)',

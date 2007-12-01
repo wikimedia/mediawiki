@@ -486,7 +486,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'usercssjsyoucanpreview'    => "<strong>Laguntza:</strong> Zure CSS/JS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
 'usercsspreview'            => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala, oraindik ez dela gorde!'''",
 'userjspreview'             => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala, oraindik ez da gorde!'''",
-'userinvalidcssjstitle'     => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, Lankide:Adibide/monobook.css, eta ez Lankide:Adibide/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, {{ns:user}}:Adibide/monobook.css, eta ez {{ns:user}}:Adibide/Monobook.css.",
 'updated'                   => '(Eguneratua)',
 'note'                      => '<strong>Oharra:</strong>',
 'previewnote'               => '<strong>Gogoratu hau aurreikusketa bat dela, beraz gorde egin beharko duzu!</strong>',
@@ -1193,7 +1193,7 @@ $1',
 'ipbotheroption'              => 'beste bat',
 'badipaddress'                => 'Baliogabeko IP helbidea',
 'blockipsuccesssub'           => 'Blokeoa burutu da',
-'blockipsuccesstext'          => '[[{{ns:Special}}:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio. Ikus [[{{ns:Special}}:Ipblocklist|IP blokeoen zerrenda]] blokeoak aztertzeko.',
+'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio. Ikus [[{{ns:special}}:Ipblocklist|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'unblockip'                   => 'Erabiltzailea desblokeatu',
 'unblockiptext'               => 'Erabili beheko formularioa lehenago blokeatutako IP helbide edo erabiltzaile baten idazketa baimenak leheneratzeko.',
 'ipusubmit'                   => 'Helbide hau desblokeatu',
@@ -1292,7 +1292,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 
 Orrialdeak esportatzeko zehaztu hauen izenburuak beheko koadroan, izenburu bat lerroko, eta aukeratu zein bertsio esportatu nahi dituzun.
 
-Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Export/{{int:mainpage}}]] {{int:mainpage}} orrialdearentzako.',
+Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Export/{{int:mainpage}}]] {{int:mainpage}} orrialdearentzako.',
 'exportcuronly'   => 'Oraingo berrikuspena bakarrik hartu, ez historia guztia',
 'exportnohistory' => "----
 '''Oharra:''' Formulario honen bitartez orrialdeen historia osoak esportatzeko aukera ezgaitu egin da, errendimendua dela-eta.",
@@ -1304,7 +1304,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 'allmessagesdefault'        => 'Testu lehenetsia',
 'allmessagescurrent'        => 'Oraingo testua',
 'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda:',
-'allmessagesnotsupportedDB' => "Ezin da '''Special:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
+'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
 'allmessagesfilter'         => 'Mezu izenaren iragazkia:',
 'allmessagesmodified'       => 'Aldatutakoak bakarrik erakutsi',
 

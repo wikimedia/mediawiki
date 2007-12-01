@@ -1611,7 +1611,7 @@ O artigo de destino "[[$1]]" xa existe. Quéreo eliminar para facer sitio para m
 
 Para exportar páxinas, insira os títulos na caixa de texto que está máis abaixo, poñendo un título por liña, e se quere seleccione a versión actual e todas as versións vellas, coas liñas do historial da páxina, ou só a versión actual con información sobre a última edición.
 
-No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]], para a páxina "[[{{MediaWiki:Mainpage}}]]".',
+No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]], para a páxina "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluír só a revisión actual, non o historial completo',
 'exportnohistory'   => "---- 
 '''Aviso:''' Foi desactivada a exportación do historial completo das páxinas con este formulario debido a razóns relacionadas co rendemento do servidor.",

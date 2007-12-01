@@ -1559,7 +1559,7 @@ $NEWPAGE
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
 'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。',
-'allmessagesnotsupportedDB' => 'wgUseDatabaseMessages が無効のため、[[Special:Allmessages]] はサポートされません。',
+'allmessagesnotsupportedDB' => 'wgUseDatabaseMessages が無効のため、[[{{ns:special}}:Allmessages]] はサポートされません。',
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
 'allmessagesmodified'       => '条件に当てはまるものを表示',
 

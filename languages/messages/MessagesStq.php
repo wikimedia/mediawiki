@@ -450,7 +450,7 @@ Ju Duur fon ju Speerenge fint sik in $4. Deer IP-Adrässen bie fuul Providere dy
 Mechanismen fon dän Server kon dät uk ne Wiele duurje, bit eene oolde Doatäi truch ne Näie ärsät wäd.",
 'userjspreview'            => "== Foarschau fon dien Benutser-CSS ==
 '''Beoachtje:''' Ätter dät Spiekerjen moast du dien Browser kweede, ju näie Version tou leeden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userinvalidcssjstitle'    => "'''Woarschauenge:''' Deer existiert neen Skin \"\$1\". Betoank jädden, dät benutserspezifiske .css- un .js-Sieden män n Littek-Bouksteeuwe anfange mouten, also t.B. ''Benutser:Mustermann/monobook.css'', nit ''Benutser:Mustermann/Monobook.css''.",
+'userinvalidcssjstitle'    => "'''Woarschauenge:''' Deer existiert neen Skin \"\$1\". Betoank jädden, dät benutserspezifiske .css- un .js-Sieden män n Littek-Bouksteeuwe anfange mouten, also t.B. ''{{ns:user}}:Mustermann/monobook.css'', nit ''{{ns:user}}:Mustermann/Monobook.css''.",
 'updated'                  => '(Annerd)',
 'note'                     => '<strong>Waiwiesenge:</strong>',
 'previewnote'              => 'Dit is man ne Foarschau, die Artikkel wuude noch nit spiekerd!',

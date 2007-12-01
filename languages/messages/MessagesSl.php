@@ -477,7 +477,7 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'usercssjsyoucanpreview'    => "<strong>Nasvet:</strong> Za preizkušanje svojega novega CSS/JS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
 'usercsspreview'            => "'''OPOZORILO: svoj uporabniški CSS le predogledujete in ga še niste shranili!'''",
 'userjspreview'             => "'''Svoj uporabniški Javascript le predogledujete in še ni shranjen!'''",
-'userinvalidcssjstitle'     => "'''Opozorilo:''' koža »$1« ne obstaja. Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. User:Blabla/monobook.css namesto User:Blabla/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Opozorilo:''' koža »$1« ne obstaja. Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. {{ns:user}}:Blabla/monobook.css namesto {{ns:user}}:Blabla/Monobook.css.",
 'updated'                   => '(Posodobljeno)',
 'note'                      => '<strong>Opomba:</strong>',
 'previewnote'               => '<strong>Stran le predogledujete in še ni shranjena!</strong>',
@@ -1221,7 +1221,7 @@ Ciljna stran »[[$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za
 'allmessagescurrent'        => 'Trenutno besedilo',
 'allmessagestext'           => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila. Urejajo jih lahko [[{{MediaWiki:Grouppage-sysop}}|administratorji]] in drugi sodelavci z vzdrževalnimi pravicami.',
 'allmessagesnotsupportedUI' => "Vašega trenutnega jezika vmesnika ('''$1''') [[Special:Allmessages]] spletišča ne podpirajo.",
-'allmessagesnotsupportedDB' => 'Ker je wgUseDatabaseMessages izključeno, Special:Allmessages ni podprto.',
+'allmessagesnotsupportedDB' => 'Ker je wgUseDatabaseMessages izključeno, {{ns:special}}:Allmessages ni podprto.',
 'allmessagesfilter'         => 'Filter pogostih izrazov:',
 'allmessagesmodified'       => 'Prikaži le spremenjeno',
 

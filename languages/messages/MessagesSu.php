@@ -310,7 +310,7 @@ Mun lain kitu masalahna, jigana anjeun geus manggihan kutu na ''software''na. Ma
 'cascadeprotected'     => 'Kaca ieu geus dikonci ti éditan alatan disartakeun di {{PLURAL:$1|kaca|kaca-kaca}} katut anu geus dikonci kalawan pilihan "runtun": $2',
 'namespaceprotected'   => "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",
 'customcssjsprotected' => 'Anjeun teu ngabogaan hak ngédit kaca ieu, alatan ngandung pangaturan pribadi pamaké séjén.',
-'ns-specialprotected'  => 'Kaca dina ngaranspasi husus teu bisa di édit.',
+'ns-specialprotected'  => 'Kaca dina ngaranspasi {{ns:special}} teu bisa di édit.',
 
 # Login and logout pages
 'logouttitle'                => 'Kaluar log pamaké',
@@ -1283,7 +1283,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'allmessagesdefault'        => 'Téks ti dituna',
 'allmessagescurrent'        => 'Téks kiwari',
 'allmessagestext'           => 'Ieu mangrupa daptar talatah sistim nu aya na spasi ngaran MediaWiki:.',
-'allmessagesnotsupportedDB' => 'Special:AllMessages teu dirojong sabab wgUseDatabaseMessages pareum.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages teu dirojong sabab wgUseDatabaseMessages pareum.',
 'allmessagesfilter'         => 'Saringan ngaran talatah:',
 'allmessagesmodified'       => 'Témbongkeun ukur nu robah',
 

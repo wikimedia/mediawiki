@@ -410,7 +410,7 @@ Query: $2',
 $2',
 'namespaceprotected'   => "Non hai lu pirmissu pi canciari li pàggini ntô namespace '''$1'''.",
 'customcssjsprotected' => "Non hai lu pirmissu di canciari chista pàggina, picchì cunteni li mpostazzioni pirsonali di n'àutru utenti.",
-'ns-specialprotected'  => 'Li pàggini ntô namespace  {{ns:special}} non ponnu èssiri canciati.',
+'ns-specialprotected'  => 'Li pàggini ntô namespace {{ns:special}} non ponnu èssiri canciati.',
 
 # Login and logout pages
 'logouttitle'                => 'Logout utenti',
@@ -872,10 +872,10 @@ Lu motivu è ''$2''",
 'uploadtext'                  => "Usa lu modulu ccà sutta pi carricari novi file. Pi vìdiri o cercari li file già carricati, talìa lu [[Special:Imagelist|log dî file carricati]]. Carricamenti e cancillazioni di file sugnu riggistrati nto [[Special:Log/upload|log de li upload]].
 
 Pi nziriri na mmàggini nte na pàggina, fari nu liami accussì:
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|testu alternativu]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|testu alternativu]]</nowiki>'''
 usari mmeci
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
 pi culligari direttamenti l'àutri tipi di file.",
 'uploadlog'                   => 'File carricati',
 'uploadlogpage'               => 'File carricati',
@@ -1427,8 +1427,8 @@ $1',
 'ipbhidename'                 => "Ammuccia lu nomu utenti o lu nnirizzu IP dô log dî blocchi, di l'alencu dî blocchi attivi e di l'alencu utenti.",
 'badipaddress'                => 'Ndirizzu IP nun vàlidu.',
 'blockipsuccesssub'           => 'Bloccu esiquitu',
-'blockipsuccesstext'          => "[[{{ns:Special}}:Contributions/$1|$1]] fu bluccatu.
-<br />Pi maggiuri nfurmazzioni, talìa la [[{{ns:Special}}:Ipblocklist|lista di l'IP bluccati]] .",
+'blockipsuccesstext'          => "[[{{ns:special}}:Contributions/$1|$1]] fu bluccatu.
+<br />Pi maggiuri nfurmazzioni, talìa la [[{{ns:special}}:Ipblocklist|lista di l'IP bluccati]] .",
 'ipb-edit-dropdown'           => 'Mutivi pô bloccu',
 'ipb-unblock'                 => "Sblocca n'utenti o nu ndirizzu IP",
 'ipb-blocklist-addr'          => 'Alenca li blocchi attivi pi $1',
@@ -1532,11 +1532,11 @@ La pàggina di distinazzioni "[[$1]]" asisti già. S\'addisìa cancillàrila pi 
 
 # Export
 'export'            => 'Esporta pàggini',
-'exporttext'        => "È pussìbbili espurtari lu testu e la cronoluggìa dî canciamenti di na pàggina o d'un gruppu di pàggini n furmatu XML pi mpurtàrili n àutri siti ca utilìzzanu lu software MediaWiki, attraversu la pàggina [[{{ns:Special}}:Import|d'importu]].
+'exporttext'        => "È pussìbbili espurtari lu testu e la cronoluggìa dî canciamenti di na pàggina o d'un gruppu di pàggini n furmatu XML pi mpurtàrili n àutri siti ca utilìzzanu lu software MediaWiki, attraversu la pàggina [[{{ns:special}}:Import|d'importu]].
 
 P'espurtari li pàggini innicari li tìtuli ntâ casella di testu suttastanti, unu pi riga, e spicificari siddu s'addisìa attèniri la virsioni currenti e tutti li virsioni pricidenti, cu li dati dâ cronoluggìa dâ pàggina, oppuru surtantu l'ùrtima virsioni e li dati currispunnenti a l'ùrtimu canciamentu. 
 
-Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] p'espurtari \"[[{{Mediawiki:mainpage}}]]\".",
+Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] p'espurtari \"[[{{Mediawiki:mainpage}}]]\".",
 'exportcuronly'     => 'Ncludi sulu la rivisioni attuali, nun la ntera cronoluggìa',
 'exportnohistory'   => "---- '''Nota:''' l'espurtazzioni dâ ntera cronoluggìa dî pàggini attraversu sta nterfaccia hà stata disattivata pi mutivi ligati a li pristazzioni dû sistema.",
 'export-submit'     => 'Espurtazzioni',

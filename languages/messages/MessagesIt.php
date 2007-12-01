@@ -590,7 +590,7 @@ Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2
 
 Se lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per discutere del blocco.
 
-Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[{{ns:Special}}:Preferences|preferenze]].
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[{{ns:special}}:Preferences|preferenze]].
 
 Si prega di specificare l'indirizzo IP attuale ($3) o il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
 'autoblockedtext'           => "Questo indirizzo IP è stato bloccato automaticamente perché condiviso con un altro utente, a sua volta bloccato da $1.
@@ -634,7 +634,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'usercssjsyoucanpreview'    => "<strong>Suggerimento:</strong> si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
 'usercsspreview'            => "'''Questa è solo un'anteprima del proprio CSS personale; le modifiche non sono ancora state salvate!'''",
 'userjspreview'             => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
-'userinvalidcssjstitle'     => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:User}}:Esempio/monobook.css e non {{ns:User}}:Esempio/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/monobook.css e non {{ns:user}}:Esempio/Monobook.css.",
 'updated'                   => '(Aggiornato)',
 'note'                      => '<strong>NOTA:</strong>',
 'previewnote'               => 'Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!',
@@ -947,10 +947,10 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti e cancellazioni di file sono registrati nel [[Special:Log/upload|log degli upload]].
 
 Per inserire un'immagine in una pagina, fare un collegamento di questo tipo:
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|testo alternativo]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|testo alternativo]]</nowiki>'''
 usare invece
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
 per collegare direttamente gli altri tipi di file.",
 'uploadlog'                   => 'File caricati',
 'uploadlogpage'               => 'Log dei file caricati',
@@ -1648,7 +1648,7 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[Spec
 'allmessagesdefault'        => 'Testo predefinito',
 'allmessagescurrent'        => 'Testo attuale',
 'allmessagestext'           => 'Questa è la lista di tutti i messaggi di sistema disponibili nel namespace MediaWiki:',
-'allmessagesnotsupportedDB' => "'''Special:Allmessages''' non è supportato perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' non è supportato perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
 'allmessagesfilter'         => 'Filtro sui messaggi:',
 'allmessagesmodified'       => 'Mostra solo quelli modificati',
 

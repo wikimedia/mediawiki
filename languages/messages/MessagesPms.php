@@ -1652,7 +1652,7 @@ Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré
 'allmessagesdefault'        => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 'allmessagescurrent'        => 'Test corent',
 'allmessagestext'           => "Costa-sì a l'é na lista ëd tùit ij messagi ëd sistema ant lë spassi nominal MediaWiki:",
-'allmessagesnotsupportedDB' => 'Special:Allmessages a travaja nen përchè a-i é ël component wgUseDatabaseMessages frëmm.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages a travaja nen përchè a-i é ël component wgUseDatabaseMessages frëmm.',
 'allmessagesfilter'         => 'Seletor dël nòm dël messagi:',
 'allmessagesmodified'       => "Most-me mach lòn che a l'é modificasse",
 

@@ -270,7 +270,7 @@ Por favor, reconecte-se ao recebê-lo.',
 'blockedtitle'         => 'Usuário está bloqueado',
 'blockedtext'          => "Seu nome de usuário ou numero de IP foi bloqueado por $1.
 O motivo é:<br />''$2''<p>Você pode contactar $1 ou outro
-[[{{ns:4}}:administradores|administrador]] para discutir sobre o bloqueio.",
+[[{{ns:project}}:administradores|administrador]] para discutir sobre o bloqueio.",
 'whitelistedittitle'   => 'Login necessário para edição',
 'whitelistedittext'    => 'Você precisa se [[Especial:Userlogin|logar]] para editar artigos.',
 'whitelistreadtitle'   => 'Login necessário para leitura',
@@ -282,7 +282,7 @@ O motivo é:<br />''$2''<p>Você pode contactar $1 ou outro
 'newarticle'           => '(Novo)',
 'newarticletext'       => "Você seguiu um link para um artigo que não existe.
 Para criá-lo, começe escrevendo na caixa abaixo
-(veja [[{{ns:4}}:Ajuda|a página de ajuda]] para mais informações).
+(veja [[{{ns:project}}:Ajuda|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext'     => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.''",
 'noarticletext'        => '(Não há atualmente nenhum texto nesta página)',
@@ -404,14 +404,14 @@ para definir suas preferências.',
 # Recent changes
 'recentchanges'     => 'Mudanças Recentes',
 'recentchangestext' => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.
-[[{{ns:4}}:Bem Vindo,_novatos|Bem Vindo, novatos]]!
-Por favor, dê uma olhada nestas páginas: [[{{ns:4}}:FAQ|FAQ da {{SITENAME}}]],
-[[{{ns:4}}:Políticas e Normas| Política da {{SITENAME}}]]
-(especialmente [[{{ns:4}}:Convenções de nomenclatura|convenções de nomenclatura]],
-[[{{ns:4}}:Ponto de vista neutro|Ponto de vista neutro]]),
-e [[{{ns:4}}:Most common {{SITENAME}} faux pas|most common {{SITENAME}} faux pas]].
+[[{{ns:project}}:Bem Vindo,_novatos|Bem Vindo, novatos]]!
+Por favor, dê uma olhada nestas páginas: [[{{ns:project}}:FAQ|FAQ da {{SITENAME}}]],
+[[{{ns:project}}:Políticas e Normas| Política da {{SITENAME}}]]
+(especialmente [[{{ns:project}}:Convenções de nomenclatura|convenções de nomenclatura]],
+[[{{ns:project}}:Ponto de vista neutro|Ponto de vista neutro]]),
+e [[{{ns:project}}:Most common {{SITENAME}} faux pas|most common {{SITENAME}} faux pas]].
 
-Se você quer ver a {{SITENAME}} crescer, é muito importante que você não adicione material restrito por outras [[{{ns:4}}:Copyrights|copyrights]].
+Se você quer ver a {{SITENAME}} crescer, é muito importante que você não adicione material restrito por outras [[{{ns:project}}:Copyrights|copyrights]].
 Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos, por avor, não faça isso.',
 'rcnote'            => 'Abaixo estão as últimas <strong>$1</strong> alterações nos últimos <strong>$2</strong> dias.',
 'rcnotefrom'        => 'Abaixo estão as mudanças desde <b>$2</b> (até <b>$1</b> mostradas).',
@@ -486,7 +486,7 @@ O que nos leva a aproximadamente <b>$5</b> edições por página, e <b>$6</b> vi
 Destes, <b>$2</b> são administradores (veja $3).',
 
 'disambiguations'     => 'Páginas de desambiguamento',
-'disambiguationspage' => '{{ns:4}}:Links_para_desambiguar_páginas',
+'disambiguationspage' => '{{ns:project}}:Links_para_desambiguar_páginas',
 
 'doubleredirects'     => 'Double Redirects',
 'doubleredirectstext' => '<b>Atenção:</b> Esta lista pode conter positivos falsos. O que usualmente significa que há texto adicional com links depois do primeiro #REDIRECT.<br />

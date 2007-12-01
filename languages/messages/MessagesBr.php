@@ -563,7 +563,7 @@ Notennit mat ne c'hallot implijout an dibarzh \"kas ur postel d'an implijer\" ne
 'usercssjsyoucanpreview'    => "'''Tun:''' grit gant ar bouton '''Rakwelet''' evit testiñ ho follenn css/js nevez a-raok enrollañ anezhi.",
 'usercsspreview'            => "'''Dalc'hit soñj emaoc'h o rakwelet ho follenn css deoc'h ha n'eo ket bet enrollet c'hoazh!'''",
 'userjspreview'             => "'''Dalc'hit soñj emaoc'h o rakwelet pe o testiñ ho kod javascript deoc'h ha n'eo ket bet enrollet c'hoazh!'''",
-'userinvalidcssjstitle'     => "'''Diwallit:''' N'eus tamm gwiskadur \"\$1\" ebet. Ho pez soñj e vez implijet lizherennoù bihan goude an anv implijer hag ar veskell / gant ar pajennoù personel dezho un astenn .css ha .js; da skouer eo mat ar follenn stil Implijer:Foo/monobook.css ha faziek an hini implijer:Foo/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Diwallit:''' N'eus tamm gwiskadur \"\$1\" ebet. Ho pez soñj e vez implijet lizherennoù bihan goude an anv implijer hag ar veskell / gant ar pajennoù personel dezho un astenn .css ha .js; da skouer eo mat ar follenn stil {{ns:user}}:Foo/monobook.css ha faziek an hini {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Hizivaet)',
 'note'                      => '<strong>Notenn :</strong>',
 'previewnote'               => "<strong>Diwallit mat, n'eo homañ nemet ur rakweladenn, n'eo ket enrollet an destenn c'hoazh!</strong>",
@@ -1084,7 +1084,7 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'statistics-mostpopular' => 'Pajennoù muiañ sellet',
 
 'disambiguations'      => 'Pajennoù digejañ',
-'disambiguationspage'  => '{{ns:4}}:Liammoù_ouzh_ar_pajennoù_disheñvelaat',
+'disambiguationspage'  => 'Project:Liammoù_ouzh_ar_pajennoù_disheñvelaat',
 'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn digejañ'''. Padal e tlefent kas war-eeun d'an danvez anezho.<br />Sellet e vez ouzh ur bajenn evel ur bajenn digejañ m'eo liammet adal $1.<br />Ne gemerer ket e kont al liammoù adal <em>esaouennoù anv</em> all.",
 
 'doubleredirects'     => 'Adkasoù doubl',
@@ -1286,7 +1286,7 @@ Nemet e yafec\'h da welet ar bajenn end-eeun, ne vo kemenn all ebet ma vez degas
             Ho reizhiad kemenn {{SITENAME}} muiañ karet 
 
 -- 
-A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{ns:Special}}:Watchlist/edit}} 
+A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{ns:special}}:Watchlist/edit}} 
 
 Evezhiadennoù ha skoazell pelloc\'h : 
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1613,7 +1613,7 @@ Savet eo ar pennad tal \"[[\$1]]\" c'hoazh. Diverkañ anezhañ a fell deoc'h obe
 'allmessagesdefault'        => 'Testenn dre ziouer',
 'allmessagescurrent'        => 'Testenn zo bremañ',
 'allmessagestext'           => "Setu roll an holl gemennadennoù a c'haller kaout e bed MediaWiki",
-'allmessagesnotsupportedDB' => "N'haller ket kaout Special:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.",
+'allmessagesnotsupportedDB' => "N'haller ket kaout {{ns:special}}:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.",
 'allmessagesfilter'         => 'Sil anv kemennadenn :',
 'allmessagesmodified'       => 'Diskouez ar re bet kemmet hepken',
 

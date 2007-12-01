@@ -435,9 +435,9 @@ $2 Liste redirezions &nbsp; Cîr $3 $9',
 'uploadtext'         => "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:Imagelist|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
 
 Par includi une figure intune pagjine, dopre un leam inte form
-'''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:file.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:file.png|alt text]]</nowiki>''' or
-'''<nowiki>[[</nowiki>{{ns:-2}}<nowiki>:file.ogg]]</nowiki>''' par un leam diret al file.",
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png|alt text]]</nowiki>''' or
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>''' par un leam diret al file.",
 'uploadlog'          => 'regjistri cjamâts sù',
 'uploadlogpagetext'  => 'Ca sot e je une liste dai file cjamâts su di recent.',
 'filename'           => 'Non dal file',

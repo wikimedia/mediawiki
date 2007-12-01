@@ -468,10 +468,10 @@ $1',
 అప్‌లోడులు, తొలగింపులు [[Special:Log/upload|అప్‌లోడు దినచర్య]]లొ నమోదవుతాయి.
 
 బొమ్మను ఏదైనా పేజీలో చేర్చడానికి, 
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|ప్రత్యామ్న్యయ పాఠ్యం]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|ప్రత్యామ్న్యయ పాఠ్యం]]</nowiki>'''
 అని లింకు చెయ్యవచ్చు. లేదా
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
 అని రాసి సరాసరి బొమ్మ ఫైలుకే లింకు ఇవ్వవచ్చు.",
 'uploadlogpage'               => 'అప్‌లోడ్ దినచర్య',
 'uploadlogpagetext'           => 'ఇటీవల జరిగిన ఫైలు అప్‌లోడుల జాబితా ఇది.',

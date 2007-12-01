@@ -503,7 +503,7 @@ $1',
 'usercssjsyoucanpreview'    => '<strong>Совет:</strong> Користете го копчето Прегледај за да го испробате новиот CSS/JS код пред зачувувањето.',
 'usercsspreview'            => "'''Запомнете дека ова е само преглед на вашиот CSS код, и дека страницата сеуште не е зачувана!'''",
 'userjspreview'             => "'''Запомнете дека ова е само преглед на вашиот JavaScript код, и страницата сеуште не е зачувана!'''",
-'userinvalidcssjstitle'     => "'''Предупредување:''' Нема маска \"\$1\". Запамтете дека сопствените .css и .js страници имаат имиња со мали букви, пр. Корисник:Некој/monobook.css наместо Корисник:Некој/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Предупредување:''' Нема маска \"\$1\". Запамтете дека сопствените .css и .js страници имаат имиња со мали букви, пр. {{ns:user}}:Некој/monobook.css наместо {{ns:user}}:Некој/Monobook.css.",
 'updated'                   => '(Освежено)',
 'note'                      => '<strong>Забелешка:</strong>',
 'previewnote'               => 'Запомнете дека ова е само преглед, и страницата сеуште не е зачувана!',
@@ -780,10 +780,10 @@ $1',
 'uploaderror'                 => 'Грешка во подигнувањето',
 'uploadtext'                  => "Користете го долниот формулар за да подигнете нови датотеки, а за да гледате или пребарувате претходно подигнати слики одете на [[Special:Imagelist|листата на подигнати датотеки]], подигнувањата и бришењата се истотака запишани во [[Special:Log|дневникот на проектот]]. Исто така мора да го штиклирате полето дека не прекршувате некои авторски права со подигнувањето на датотеката. Притиснете го копчето \"Подигни датотека\"  за да го завршите подигнувањето. За да внесете слика во страница, користете врска во обликот
 
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|alt text]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>'''
 или за директно поврзување со датотеката
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''",
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''",
 'uploadlog'                   => 'дневник на подигнувањата',
 'uploadlogpage'               => 'Дневник на подигнувањата',
 'uploadlogpagetext'           => 'Подолу е листа на најновите подигнувања на датотеки.',
@@ -1295,7 +1295,7 @@ $NEWPAGE
 'allmessagesdefault'        => 'Текст по основно',
 'allmessagescurrent'        => 'Сегашен текст',
 'allmessagestext'           => 'Ова е листа на сите системски пораки досапни во МедијаВики: именскиот простор.',
-'allmessagesnotsupportedDB' => 'Special:AllMessages не е поддржан бидејќи wgUseDatabaseMessages е исклучен.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages не е поддржан бидејќи wgUseDatabaseMessages е исклучен.',
 'allmessagesfilter'         => 'Филтер за регуларни изрази:',
 'allmessagesmodified'       => 'Прикажи само изменети',
 

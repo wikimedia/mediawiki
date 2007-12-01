@@ -665,7 +665,7 @@ Si sou ací per error simplement cliqueu el botó \"enrere\" del vostre navegado
 'usercssjsyoucanpreview'    => '<strong>Consell:</strong> Utilitzeu el botó «Mostra previsualització» per probar el vostre nou CSS/JS abans de desar-lo.',
 'usercsspreview'            => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari i que encara no s'ha desat!'''",
 'userjspreview'             => "'''Recordeu que només estau provant/previsualitzant el vostre JavaScript, encara no ho heu desat!'''",
-'userinvalidcssjstitle'     => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, Usuari:NOM/monobook.css no és el mateix que Usuari:NOM/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/monobook.css no és el mateix que {{ns:user}}:NOM/Monobook.css.",
 'updated'                   => '(Actualitzat)',
 'note'                      => '<strong>Nota:</strong>',
 'previewnote'               => "<strong>Adoneu-vos que això només és una vista prèvia, els canvis dels quals encara no s'han alçat!</strong>",
@@ -1693,7 +1693,7 @@ L\'article de destí, "[[$1]]", ja existeix. Voleu esborrar-lo per fer lloc per 
 
 Per a exportar pàgines, escrigueu els títols que dessitgeu a la caixa de text de davall, un títol per línia, i seleccioneu si desitgeu o no la versió actual amb totes les versions prèvies, amb la pàgina d'historial, o tan sols la pàgina actual amb la informació de la darrera modificació.
 
-En el darrer cas podeu fer servir un enllaç, com ara [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] per a la pàgina {{Mediawiki:mainpage}}.",
+En el darrer cas podeu fer servir un enllaç, com ara [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] per a la pàgina {{Mediawiki:mainpage}}.",
 'exportcuronly'     => "Exporta únicament la versió actual en voltes de l'historial sencer",
 'exportnohistory'   => "----
 '''Nota:''' s'ha deshabilitat l'exportació sencera d'historial de pàgines mitjançant aquest formulari a causa de problemes de rendiment del servidor.",

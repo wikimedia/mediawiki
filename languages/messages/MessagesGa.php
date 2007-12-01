@@ -950,7 +950,7 @@ d'athúsáid duine eile eagrán níos luaí cheana féin.
 'revertpage'         => "D'athúsáideadh an athrú seo caite le $1",
 'protectlogpage'     => 'Cuntas_cosanta',
 'protectlogtext'     => 'Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
-Féach ar [[{{ns:4}}:Leathanach glasáilte]] chun a thuilleadh eolais a fháil.',
+Féach ar [[{{ns:project}}:Leathanach glasáilte]] chun a thuilleadh eolais a fháil.',
 'protectedarticle'   => 'glasáladh "[[$1]]"',
 'unprotectedarticle' => 'díghlasáladh "[[$1]]"',
 'protectsub'         => '(Ag glasáil "$1")',
@@ -1136,7 +1136,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 # Namespace 8 related
 'allmessages'               => 'Teachtaireachtaí córais',
 'allmessagestext'           => 'Liosta is ea seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki: .',
-'allmessagesnotsupportedDB' => 'Níl aon tacaíocht anseo do Speisialta:AllMessages dá bharr
+'allmessagesnotsupportedDB' => 'Níl aon tacaíocht anseo do {{ns:special}}:AllMessages dá bharr
 go bhfuil wgUseDatabaseMessages druidte.',
 
 # Thumbnails

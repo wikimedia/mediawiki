@@ -514,7 +514,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 It tal fan behearders dêrfan is: <b>$2</b>.',
 
 'disambiguations'      => 'Trochverwizings',
-'disambiguationspage'  => '{{ns:project}}:trochferwizing',
+'disambiguationspage'  => 'Project:trochferwizing',
 'disambiguations-text' => 'Dizze siden binne keppele fia in
 [[MediaWiki:disambiguationspage]].
 Se soenen mei de side sels keppele wurde moatte.<br />

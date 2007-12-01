@@ -590,10 +590,10 @@ Ieteicamie formāti ir:
 * OGG - ja tas ir skaņas fails.
 
 Lūdzu, pārliecinies, ka faila nosaukums ir pietiekami aprakstošs, lai izvairītos no neskaidrībām. Lai attēlu pēc tam ievietotu kādā lapā, izmanto šādi noformētu linkus:
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Fails.jpg|paskaidrojošs teksts]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Fails.png|paskaidrojošs teksts]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fails.jpg|paskaidrojošs teksts]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fails.png|paskaidrojošs teksts]]</nowiki>'''
 vai skaņām
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Fails.ogg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fails.ogg]]</nowiki>'''
 
 Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos failus citi var mainīt vai dzēst, ja uzskata, ka tas nāktu par labu šim projektam, kā arī atceries, ka tev var tikt liegta augšupielādes iespēja, ja tu šo sistēmu.",
 'uploadlog'            => 'augšupielādes reģistrs',
@@ -933,7 +933,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'allmessagesdefault'        => 'Sākotnējais teksts',
 'allmessagescurrent'        => 'Pašreizējais teksts',
 'allmessagestext'           => "Šajā lapā ir visu \"'''Mediawiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.",
-'allmessagesnotsupportedDB' => 'special:Allmessages not supported because wgUseDatabaseMessages is off.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
 'thumbnail-more' => 'Palielināt',

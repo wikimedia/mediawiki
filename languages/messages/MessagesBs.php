@@ -986,8 +986,8 @@ ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji
 
 # Namespace 8 related
 'allmessages'               => 'Sistemske poruke',
-'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:8}} imenskom prostoru.',
-'allmessagesnotsupportedDB' => '[[Special:Allmessages|sistemske poruke]] nisu podržane zato što je <i>wgUseDatabaseMessages</i> isključen.',
+'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:mediawiki}} imenskom prostoru.',
+'allmessagesnotsupportedDB' => '[[{{ns:special}}:Allmessages|sistemske poruke]] nisu podržane zato što je <i>wgUseDatabaseMessages</i> isključen.',
 
 # Thumbnails
 'thumbnail-more' => 'uvećajte',

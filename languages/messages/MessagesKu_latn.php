@@ -685,10 +685,10 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an faylê di gotarê de bikar bihîne:
 
-* '''<nowiki>[[{{ns:Image}}:File.jpg]]</nowiki>'''
-* '''<nowiki>[[{{ns:Image}}:File.png|alt text]]</nowiki>'''
+* '''<nowiki>[[{{ns:image}}:File.jpg]]</nowiki>'''
+* '''<nowiki>[[{{ns:image}}:File.png|alt text]]</nowiki>'''
 anjî ji bo faylên dengî
-* '''<nowiki>[[{{ns:Media}}:File.ogg]]</nowiki>'''",
+* '''<nowiki>[[{{ns:media}}:File.ogg]]</nowiki>'''",
 'uploadlogpage'        => 'Înformasyon li ser barkirinê',
 'filename'             => 'Navê dosyayê',
 'filedesc'             => 'Kurte',
@@ -1106,7 +1106,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'allmessagesname'           => 'Nav',
 'allmessagescurrent'        => 'Texta niha',
 'allmessagestext'           => 'Ev lîsteya hemû mesajên di namespace a MediaWiki: de ye.',
-'allmessagesnotsupportedDB' => "'''Special:Allmessages''' cannot be used because '''\$wgUseDatabaseMessages''' is switched off.",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cannot be used because '''\$wgUseDatabaseMessages''' is switched off.",
 
 # Thumbnails
 'thumbnail-more' => 'Mezin bike',

@@ -431,7 +431,7 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 'uploadnologin'               => 'Nae loggit in',
 'uploadnologintext'           => 'Ye maun be [[Special:Userlogin|loggit in]] til uplaid files.',
 'uploaderror'                 => 'Uplaid error',
-'uploadtext'                  => "Uise the form ablo tae uplaid new files; tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imagelist|leet o uplaidit files]]; uplaids an deletions is recordit in the [[Special:Log|project log]]. Ye maun forbye tick the kist affirmin that ye arna brakkin onie copyrichts bi uplaidin the file. Dab the \"Uplaid\" button tae feinish the uplaid. Tae pit the eimage intae a page, uise an airtin i the form '''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''', '''<nowiki>[[{{ns:6}}:file.png|alt text]]</nowiki>''' or '''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>''' for pyntin strecht tae the file",
+'uploadtext'                  => "Uise the form ablo tae uplaid new files; tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imagelist|leet o uplaidit files]]; uplaids an deletions is recordit in the [[Special:Log|project log]]. Ye maun forbye tick the kist affirmin that ye arna brakkin onie copyrichts bi uplaidin the file. Dab the \"Uplaid\" button tae feinish the uplaid. Tae pit the eimage intae a page, uise an airtin i the form '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>''', '''<nowiki>[[{{ns:image}}:file.png|alt text]]</nowiki>''' or '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>''' for pyntin strecht tae the file",
 'uploadlog'                   => 'uplaid log',
 'uploadlogpage'               => 'Uplaid log',
 'uploadlogpagetext'           => 'Ablo is a leet o the maist recent file uplaids.',
@@ -739,7 +739,7 @@ The destination airticle "[[$1]]" aareadies exists. Div ye want tae delete it fo
 
 Tae export airticle pages, enter the teitles in the text box ablo, ae teitle tae ilka line, an wale whither ye want the current version alang wi aa auld versions, wi the page history lines, or the current version juist, wi wittins anent the last edit.
 
-In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]] for the airticle "[[{{MediaWiki:Mainpage}}]]".',
+In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for the airticle "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly' => 'Include juist the current revision, no the fou history',
 
 # Namespace 8 related

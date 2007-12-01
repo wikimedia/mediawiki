@@ -629,7 +629,7 @@ Metmaacher_CSS mäht, et es noch nit jesechert!</b>',
 Metmaacher_Java_Skripp mäht, et es noch nit jesechert!</b>',
 'userinvalidcssjstitle'     => '<strong>Opjepass:</strong> Et jitt kein Ussinn met däm Name: „<strong>$1</strong>“ - 
 denk dran, dat ene Metmaacher eije Dateie för et Ussinn han kann, un dat die met kleine Buchstave 
-aanfange dun, alsu etwa: {{ns:User}}:Name/monobook.css, un {{ns:User}}:Name/monobook.js heiße.',
+aanfange dun, alsu etwa: {{ns:user}}:Name/monobook.css, un {{ns:user}}:Name/monobook.js heiße.',
 'updated'                   => '(Aanjepack)',
 'note'                      => '<strong>Opjepass:</strong>',
 'previewnote'               => '<strong>Hee kütt nor de Vör-Aansich - Ding Änderunge sin noch nit jesechert!</strong>',
@@ -959,12 +959,12 @@ Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 kanns dann Ding Werk tirek enbinge, en dä Aate:<ul style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; list-style-type:none\"><li style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''[[{{ns:Image}}:'''''Beldche'''''.jpg]]'''</code></li><li
+list-style-type:none\"><code>'''[[{{ns:image}}:'''''Beldche'''''.jpg]]'''</code></li><li
 style=\"list-style:none outside none; list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''[[{{ns:Image}}:'''''Esu süht dat us'''''.png | '''''ene Tex, dä die
+list-style-type:none\"><code>'''[[{{ns:image}}:'''''Esu süht dat us'''''.png | '''''ene Tex, dä die
 Brausere zeije, die kein Belder künne''''']]'''</code></li><li style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''[[{{ns:Media}}:'''''Su hürt sich dat aan'''''.ogg]]'''</code></li></ul>
+list-style-type:none\"><code>'''[[{{ns:media}}:'''''Su hürt sich dat aan'''''.ogg]]'''</code></li></ul>
 Usführlich met alle Möchlichkeite fings de dat bei de Hölp.
 Wann De jetz entschlosse bes, dat De et hee huhlade wells:
 * Aanluure, wat mer hee en de {{SITENAME}} ald han, kanns De en uns [[Special:Imagelist|Belder Liss]].
@@ -998,8 +998,8 @@ huhlade wells.',
 'fileexists'                  => 'Et jitt ald en Datei met däm Name. Wann De op „<span style="padding:2px; 
 background-color:#ddd; color:black">Datei avspeichere</span>“ klicks, weed se ersetz. Bes esu jod  un luur Der $1 
 aan, wann De nit 100% secher bes.',
-'fileexists-forbidden'        => 'Et jitt ald en Datei met däm Name. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:Image}}:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Et jitt ald en Datei met däm Name em jemeinsame Speicher. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:Image}}:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Et jitt ald en Datei met däm Name. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:image}}:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Et jitt ald en Datei met däm Name em jemeinsame Speicher. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Et Huhlade hät jeflupp',
 'uploadwarning'               => 'Warnung beim Huhlade',
 'savefile'                    => 'Datei avspeichere',
@@ -1557,7 +1557,7 @@ Dat ka'mer en en ander Wiki
 * Schriev de Titele vun dä Sigge en dat Feld för Tex enzejevve, unge, eine Titel en jede Reih.
 * Dann dun onoch ussöke, ov De all de vörherije Versione vun dä Sigge han wells, oder nor de aktuelle met dä 
 Informatione vun de letzte Änderung. (En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, 
-zom Beispill „[[{{ns:Special}}:Export/{{int:mainpage}}]]“ för de Sigg „[[{{int:mainpage}}]]“ ze exporteere)
+zom Beispill „[[{{ns:special}}:Export/{{int:mainpage}}]]“ för de Sigg „[[{{int:mainpage}}]]“ ze exporteere)
 
 Denk dran, datte dat Zeuch em Unicode Format avspeichere muss,
 wann De jet domet aanfange künne wells.",
@@ -1573,7 +1573,7 @@ zo jroße Lass för dä Sörver.',
 'allmessagesdefault'        => 'Dä standaadmäßije Tex',
 'allmessagescurrent'        => 'Esu es dä Tex jetz',
 'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki:“',
-'allmessagesnotsupportedDB' => '<strong>Dat wor nix!</strong> Mer künne „Special:Allmessages“ nit zeije, <code>wgUseDatabaseMessages</code> es usjeschalt!',
+'allmessagesnotsupportedDB' => '<strong>Dat wor nix!</strong> Mer künne „{{ns:special}}:Allmessages“ nit zeije, <code>wgUseDatabaseMessages</code> es usjeschalt!',
 'allmessagesfilter'         => 'Fingk dat Stöck hee em Name:',
 'allmessagesmodified'       => 'Dun nor de Veränderte aanzeije',
 

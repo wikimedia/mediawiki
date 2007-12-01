@@ -537,7 +537,7 @@ Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cual
 'usercssjsyoucanpreview'    => '<strong>Consejo:</strong> Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.',
 'usercsspreview'            => "'''¡Recuerde que sólo está previsualizando su css de usuario y aún no se ha grabado!'''",
 'userjspreview'             => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
-'userinvalidcssjstitle'     => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. Usuario:Foo/monobook.css en vez de  Usuario:Foo/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Actualizado)',
 'note'                      => '<strong>Nota:</strong>',
 'previewnote'               => '¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!',
@@ -1520,7 +1520,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
 'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:',
-'allmessagesnotsupportedDB' => 'Special:AllMessages no está disponible porque wgUseDatabaseMessages está deshabilitado.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages no está disponible porque wgUseDatabaseMessages está deshabilitado.',
 'allmessagesfilter'         => 'Filtrar por nombre del mensaje:',
 'allmessagesmodified'       => 'Mostrar sólo los modificados',
 

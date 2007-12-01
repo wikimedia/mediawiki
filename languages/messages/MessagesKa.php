@@ -907,13 +907,6 @@ $1 საათში.',
 'imagelinks'                => 'ბმულები',
 'linkstoimage'              => 'მომდევნო გვერდები ებმის ამ ფაილს:',
 'nolinkstoimage'            => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
-'sharedupload'              => "<br clear=both>
-{| align=center border=0 cellpadding=3 cellspacing=3 style=\"border: solid #aaa 1px; background: #f9f9f9; font-size: 100%;\"
-|- 
-| [[Image:Commons-logo.svg|20px|Wikimedia Commons Logo]]
-|align=center |ეს ფაილი მდებარეობს [[Commons:Main Page|Wikimedia Commons]] სერვერზე.<br>იხილეთ მისი '''[[Commons:Image:{{PAGENAME}}|აღწერის გვერდი]]''' <!--on the Commons-->იქვე ლიცენზიაზე ინფორმაციისთვის. 
-|}
-<br>",
 'shareduploadwiki'          => 'გთხოვთ, იხილოთ $1 შემდგომი ინფორმაციის მისაღებად.',
 'shareduploadwiki-linktext' => 'ფაილის აღწერის გვერდი',
 'noimage'                   => 'ამ სახელის მქონე ფაილი არ არსებობს, თქვენ შეგიძლიათ $1.',
@@ -1324,8 +1317,8 @@ $NEWPAGE
 'ipbotherreason'           => 'სხვა/დამატებითი მიზეზი:',
 'badipaddress'             => 'არასწორი IP მისამართი',
 'blockipsuccesssub'        => 'ბლოკირება შესრულებულია',
-'blockipsuccesstext'       => '[[{{ns:Special}}:Contributions/$1|$1]] ბლოკირებულ იქნა.
-<br />იხილეთ [[{{ns:Special}}:Ipblocklist|ბლოკირებული IP მისამართების სია]].',
+'blockipsuccesstext'       => '[[{{ns:special}}:Contributions/$1|$1]] ბლოკირებულ იქნა.
+<br />იხილეთ [[{{ns:special}}:Ipblocklist|ბლოკირებული IP მისამართების სია]].',
 'ipb-edit-dropdown'        => 'დაბლოკვის მიზეზების რედაქტირება',
 'ipb-unblock-addr'         => 'ბლოკის მოხსნა $1',
 'ipb-unblock'              => 'მომხმარებლის სახელზე ან IP მისამართზე ბლოკის მოხსნა',
@@ -1423,7 +1416,7 @@ $NEWPAGE
 'allmessagesdefault'        => 'სტანდარტული ტექსტი',
 'allmessagescurrent'        => 'მიმდინარე ტექსტი',
 'allmessagestext'           => 'ეს არის სახელთა სივრცე მედიავიკიში არსებული სისტემური შეტყობინებების ჩამონათვალი.',
-'allmessagesnotsupportedDB' => 'სპეციალური:AllMessages-ის უზრუნველყოფა არ ხდება, ვინაიდან wgUseDatabaseMessages გამორთულია.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages-ის უზრუნველყოფა არ ხდება, ვინაიდან wgUseDatabaseMessages გამორთულია.',
 'allmessagesfilter'         => 'შეტყობინების სახელის გაფილტვრა:',
 'allmessagesmodified'       => 'აჩვენე მხოლოდ შეცვლილი',
 

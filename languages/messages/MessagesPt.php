@@ -1054,7 +1054,7 @@ Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-
 
 # Unused templates
 'unusedtemplates'     => 'Predefinições não utilizadas',
-'unusedtemplatestext' => 'Esta página lista todas as páginas no espaço nominal {{ns:10}} que não estão incluídas numa outra página. Lembre-se de verificar por outras ligações para as predefinições antes de as apagar.',
+'unusedtemplatestext' => 'Esta página lista todas as páginas no espaço nominal {{ns:template}} que não estão incluídas numa outra página. Lembre-se de verificar por outras ligações para as predefinições antes de as apagar.',
 'unusedtemplateswlh'  => 'outras ligações',
 
 # Random page
@@ -1478,7 +1478,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbhidename'                 => 'Ocultar utilizador/IP do registo de bloqueios, lista de bloqueios e lista de utilizadores',
 'badipaddress'                => 'Endereço de IP inválido',
 'blockipsuccesssub'           => 'Bloqueio bem sucedido',
-'blockipsuccesstext'          => '[[{{ns:Special}}:Contributions/$1|$1]] foi bloqueado.<br />Consulte a [[Special:Ipblocklist|lista de IPs bloqueados]] para rever os bloqueios.',
+'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] foi bloqueado.<br />Consulte a [[Special:Ipblocklist|lista de IPs bloqueados]] para rever os bloqueios.',
 'ipb-edit-dropdown'           => 'Editar motivos de bloqueio',
 'ipb-unblock-addr'            => 'Desbloquear $1',
 'ipb-unblock'                 => 'Desbloquear um utilizador ou endereço de IP',
@@ -1597,7 +1597,7 @@ A página de destino ("[[$1]]") já existe. Deseja eliminá-la de modo a poder m
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo, um título por linha, e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
 
-Se desejar, pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] para a [[{{Mediawiki:mainpage}}]].',
+Se desejar, pode utilizar uma ligação, por exemplo [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] para a [[{{Mediawiki:mainpage}}]].',
 'exportcuronly'     => 'Incluir apenas a revisão actual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada devido a motivos de performance.",
@@ -1611,7 +1611,7 @@ Se desejar, pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{M
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Texto padrão',
 'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta é uma lista de todas mensagens de sistema disponíveis no espaço nominal {{ns:8}}:.',
+'allmessagestext'           => 'Esta é uma lista de todas mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}:.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages não pode ser utilizado devido ao wgUseDatabaseMessages estar desligado.',
 'allmessagesfilter'         => 'Filtro de nome de mensagem:',
 'allmessagesmodified'       => 'Mostrar apenas modificados',
