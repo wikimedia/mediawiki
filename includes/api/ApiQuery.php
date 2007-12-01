@@ -76,6 +76,7 @@ class ApiQuery extends ApiBase {
 	private $mQueryMetaModules = array (
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
+		'allmessages' => 'ApiQueryAllmessages',
 	);
 
 	private $mSlaveDB = null;
