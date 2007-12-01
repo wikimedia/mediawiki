@@ -173,8 +173,8 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$rows[] = $row;
 		if ( !$feedFormat ) {
 			// User page and talk links
-			$batch->add( NS_USER, $row->rc_user_text  );
-			$batch->add( NS_USER_TALK, $row->rc_user_text  );
+			$batch->add( NS_USER, str_replace( ' ', '_', $row->rc_user_text ) );
+			$batch->add( NS_USER_TALK, str_replace( ' ', '_', $row->rc_user_text ) );
 		}
 
 	}
