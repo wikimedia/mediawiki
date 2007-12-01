@@ -523,7 +523,7 @@ $2',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
 'passwordtooshort'           => '你嘅密碼唔啱或者太短。佢最少要有$1個半形字元，同埋要唔同你嘅用戶名。',
 'mailmypassword'             => '寄返個密碼畀我',
-'passwordremindertitle'      => '{{SITENAME}}嘅密碼提醒',
+'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
 請求我哋傳送個$4嘅 {{SITENAME}} 新登入密碼畀你。
 而家用戶 "$2" 嘅新密碼係 "$3"。
