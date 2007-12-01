@@ -346,7 +346,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$newText = explode("\n", $wgContLang->segmentForDiff($text));
 			$diff = new Diff($this->diffOldText, $newText);
 			$vals['diffto']['from'] = $this->diffto;
-			ApiResult::setContent($vals['diffto'], $wgContLang->unsegmentForDiff($this->formatter->format($diff)));
+			$arraydiff = $this->formatter instanceof ArrayDiffFormatter;
+			if( $arraydiff ) {
+				$changes = $wgContLang->unsegmentForDiff($this->formatter->format($diff));
+				$this->getResult()->setIndexedTagName( $changes, 'change' );
+				$vals['diffto'] = $changes;
+			} else {
+				ApiResult::setContent($vals['diffto'], $wgContLang->unsegmentForDiff($this->formatter->format($diff)));
+			}
 		}
 		if($this->difftoprev)
 			// Cache the revision's content for later use
