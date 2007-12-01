@@ -255,7 +255,6 @@ $messages = array(
 'versionrequired'     => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq",
 'versionrequiredtext' => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq. Astawan willasunaykipaqqa, [[Special:Version]] nisqapi qhaway",
 
-'pagetitle'               => '$1 - Wikipidiya',
 'retrievedfrom'           => '"$1" p\'anqamanta chaskisqa (Qhichwa / Quechua)',
 'youhavenewmessages'      => '$1(ni)ykim kachkan ($2).',
 'newmessageslink'         => 'Musuq willay',
@@ -361,9 +360,6 @@ $2",
 'logouttitle'                => "Llamk'apuy tiyaypa puchukaynin",
 'logouttext'                 => "<strong>Llamk'apuy tiyayniykiqa puchukasqañam.</strong><br />
 Sutinnaq kaspaykipas {{SITENAME}}pi wamp'uytam atinki. Mana hinataq munaspaykiqa, musuqmanta yaykuy ñawpaq icha huk sutiwan. Huk p'anqakunaqa kaqllam rikch'akunqa, ''cache'' nisqa pakasqa hallch'ata mana ch'usaqchaptiykiqa.",
-'welcomecreation'            => '== Allin hamusqayki, $1! ==
-
-Rakiqunaykiqa kichasqañam. Wikipidiyapaq [[Special:Preferences|allinkachinaykita]] kutikuytaqa ama qunqaychu.',
 'loginpagetitle'             => 'Yaykuy',
 'yourname'                   => 'Ruraq sutiyki',
 'yourpassword'               => 'Yaykuna rimayki',
@@ -1387,9 +1383,6 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 
 # Block/unblock
 'blockip'                     => "Ruraqta hark'ay",
-'blockiptext'                 => "Kay qatiq hunt'ana p'anqata llamk'achiy huk IP-niyuqmanta icha ruraqpa sutinmanta llamk'apuyta hark'anapaq.
-Chayqa [[Wikipidiya:Wandalismu|wandalismu]]ta hark'anapaq chaylla, [[Wikipidiya:Kawpay|{{SITENAME}}p kawpaykunallakamam]].
-Hark'asqaykip hamuntapas sut'ichay (ahinataq, sapaq p'anqapi wandaluchaspa hukchasqakunamanta willaspa).",
 'ipaddress'                   => 'IP huchha',
 'ipadressorusername'          => 'IP huchha icha ruraqpa sutin',
 'ipbexpiry'                   => "Hark'ay kaykama:",
@@ -1668,7 +1661,6 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'notacceptable'     => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
 
 # Attribution
-'anonymous'        => 'Wikipidiyap sutinnaq ruraqninkuna',
 'siteuser'         => '{{SITENAME}}-pa $1 sutiyuq ruraqnin',
 'lastmodifiedatby' => "Kay p'anqaqa $2, $1 qhipaq kutitam $3-pa hukchasqan karqan.", # $1 date, $2 time, $3 user
 'and'              => '-wan',
