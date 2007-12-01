@@ -1481,6 +1481,7 @@ wiki: $PAGEEDITOR_WIKI
 'protect-summary-cascade'     => '連串保護',
 'protect-expiring'            => '響 $1 (UTC) 到期',
 'protect-cascade'             => '保護包含響呢一版嘅頁面 (連串保護)',
+'protect-cantedit'            => '你唔可以改呢版嘅保護等級，因為你無權限去編輯佢。',
 'restriction-type'            => '許可:',
 'restriction-level'           => '限制等級:',
 'minimum-size'                => '最小大細',

@@ -1414,6 +1414,7 @@ $NEWPAGE
 'protect-summary-cascade'     => '联锁',
 'protect-expiring'            => '终止于 $1 (UTC)',
 'protect-cascade'             => '保护本页中包含的页面 (连锁保护)',
+'protect-cantedit'            => '您无法更改这个页面的保护等级，因为您没有权限去编辑它。',
 'restriction-type'            => '权限:',
 'restriction-level'           => '限制级别:',
 'minimum-size'                => '最小大小',

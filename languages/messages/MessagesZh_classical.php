@@ -3,7 +3,7 @@
  *
  * @addtogroup Language
  *
- * Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=30887
+ * Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */
 
 $skinNames = array(
@@ -1161,6 +1161,7 @@ $NEWPAGE
 'protect-summary-cascade'     => '迭緘',
 'protect-expiring'            => '$1（UTC）屆',
 'protect-cascade'             => '援引緘，牽迭',
+'protect-cantedit'            => '汝無動頁之護也，因汝無權篡之矣。',
 'restriction-type'            => '准',
 'restriction-level'           => '緘捆',
 'minimum-size'                => '幅越',
