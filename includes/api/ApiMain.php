@@ -325,9 +325,6 @@ class ApiMain extends ApiBase {
 
 			if ($this->mPrinter->getNeedsRawData())
 				$this->getResult()->setRawMode();
-
-			if( $this->mAction == 'help' )
-				$this->mPrinter->setHelp();
 		}
 
 		// Execute
@@ -439,6 +436,9 @@ class ApiMain extends ApiBase {
 	 * Override the parent to generate help messages for all available modules.
 	 */
 	public function makeHelpMsg() {
+		global $wgEnableWriteAPI;
+
+		$this->mPrinter->setHelp();
 
 		// Use parent to make default message for the main module
 		$msg = parent :: makeHelpMsg();
@@ -447,6 +447,8 @@ class ApiMain extends ApiBase {
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
 		foreach( $this->mModules as $moduleName => $unused ) {
 			$module = new $this->mModules[$moduleName] ($this, $moduleName);
+			if( !$wgEnableWriteAPI && $module->isEditMode() )
+				continue;
 			$msg .= self::makeHelpMsgHeader($module, 'action');
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)

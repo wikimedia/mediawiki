@@ -522,6 +522,13 @@ abstract class ApiBase {
 		return true;
 	}
 
+	/**
+	 * Indicates if this module requires edit mode
+	 */
+	public function isEditMode() {
+		return false;
+	}
+
 
 	/**
 	 * Profiling: total module execution time
