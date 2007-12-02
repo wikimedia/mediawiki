@@ -38,7 +38,7 @@ class ApiProtect extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->requestWriteMode();
+		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 		
 		$titleObj = NULL;

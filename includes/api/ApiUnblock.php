@@ -39,7 +39,7 @@ class ApiUnblock extends ApiBase {
 	public function execute() {
 		global $wgUser;
 		$this->requestWriteMode();
-		$params = $this->extractRequestParams();
+		$params = $this->getMain()->extractRequestParams();
 
 		if($params['gettoken'])
 		{
