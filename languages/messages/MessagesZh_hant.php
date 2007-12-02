@@ -898,10 +898,12 @@ $2',
 'newsectionsummary'                 => '/* $1 */ 新段落',
 
 # Recent changes linked
-'recentchangeslinked'          => '鏈出更改',
-'recentchangeslinked-title'    => '對於$1有關的鏈出更改',
-'recentchangeslinked-noresult' => '在這一段時間中連結的頁面並無更改。',
-'recentchangeslinked-summary'  => "這一個特殊頁面列示這一頁鏈出頁面的最近更改。在您監視列表中的頁面會以'''粗體'''表示。",
+'recentchangeslinked'                    => '鏈出更改',
+'recentchangeslinked-title'              => '對於$1有關的鏈出更改',
+'recentchangeslinked-noresult'           => '在這一段時間中連結的頁面並無更改。',
+'recentchangeslinked-summary'            => "這一個特殊頁面列示這一頁鏈出頁面的最近更改。在您監視列表中的頁面會以'''粗體'''表示。",
+'recentchangeslinked-feed-entry'         => '用戶$1已經編輯$2',
+'recentchangeslinked-feed-entry-comment' => '用戶$1已經編輯$2 ($3)',
 
 # Upload
 'upload'                      => '上傳檔案',
