@@ -4,10 +4,10 @@
  * @addtogroup Language
  *
  * @author AlimanRuna
- * @author G - ג
  * @author Siebrand
  * @author Nike
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $fallback = 'es';
@@ -1749,12 +1749,12 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'metadata-expand'   => 'Aswan sapaqlla willakunata rikuchiy',
 'metadata-collapse' => 'Sapaqlla willakunata pakay',
 'metadata-fields'   => "Kay willaypi rikuchisqa EXIF metadatapaq k'itichakunaqa rikcha p'anqapim ch'aqtasqa kanqa, metadata tawla mana rikch'akuptinpas. Huk k'itikunaqa kikinmantam pakasqa kanqa. 
-* Ruraq
-* Kayma
-* Paqarisqap p'unchawnin pachanpas
-* Kachasqap pachan
-* f huchha
-* Nina chawpip karu kaynin",
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Suni kay',

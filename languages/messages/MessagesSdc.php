@@ -213,8 +213,10 @@ Li sighenti cullegamenti so in linga ingrese:
 'disclaimerpage'    => 'Project:Avvirthènzi ginarari',
 'edithelp'          => 'Ghia',
 'edithelppage'      => 'Help:Mudìfigga',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Indizi',
 'mainpage'          => 'Pàgina prinzipari',
+'policy-url'        => 'Project:Policy',
 'portal'            => 'Purthari comuniddai',
 'portal-url'        => 'Project:Purthari comuniddai',
 'privacy'           => 'Infuimmazioni i la riseivvaddèzia',
@@ -324,6 +326,7 @@ funzioni: $1<br />
 Query: $2',
 'viewsource'           => 'Vèdi càntaru',
 'viewsourcefor'        => 'di $1',
+'actionthrottled'      => 'Azioni limitadda',
 'protectedpagetext'    => 'Chistha pàgina è isthadda prutiggidda pa impidinni la mudìfigga.',
 'viewsourcetext'       => 'È pussìbiri visuarizzà e cupià lu còdizi càntaru di chistha pàgina:',
 'protectedinterface'   => "Chistha pàgina cuntini un'erementu chi fazzi parthi di l'interfàccia utenti di lu software; è dunca prutiggidda pa evità pussìbiri abusi.",
@@ -847,6 +850,10 @@ pà culligà direttamenti li althri tipi di file.",
 'watchlist'            => 'Abbaidaddi ippiziari',
 'mywatchlist'          => 'Abbaidaddi ippiziari',
 'watchlistfor'         => "(pa '''$1''')",
+'nowatchlist'          => "La listha di l'abbaidaddi ippiziari è biodda.",
+'watchlistanontext'    => "Pa visuarizzà e mudìfiggà l'erencu di l'abbaidaddi ippiziari è nezzessariu $1.",
+'watchnologin'         => 'Intradda nò effettuadda',
+'addedwatch'           => "Pàgina aggiunta a la listha di l'abbaidaddi ippiziari",
 'addedwatchtext'       => "La pàgina  \"[[:\$1]]\" è isthadda aggiunta a la propria [[Special:Watchlist|listha di l'abbaidaddi ippiziari]]. D'abà innanzi, tutti li mudìfigghi arriggaddi a la pàgina e a la sóia dischussioni sarani erencaddi in chidda listha; lu tìturu di la pàgina apparirà in '''grasseddu''' i la pàgina
 di li [[Special:Recentchanges|ulthimi mudìfigghi]] pa rindiru più visìbiri.
 
@@ -860,7 +867,10 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'notanarticle'         => 'Chistha pàgina nò è una bozi',
 'watchnochange'        => 'Nisciuna di li pàgini abbaidaddi è isthadda mudìfiggadda i lu perìodu cunsidaraddu.',
 'watchlist-details'    => 'La listha di li abbaidaddi ippiziari cuntini {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.',
+'wlheader-enotif'      => '* La nutìfica via postha erettrònica è attiba.',
 'wlheader-showupdated' => "* Li pàgini chi sò isthaddi mudìfiggaddi daboi l'ulthima vìsita sò evidenziaddi in '''grasseddu'''",
+'watchmethod-recent'   => "cuntrollu di li mudìfigghi rizzenti pa l'abbaidaddi ippiziari",
+'watchmethod-list'     => "cuntrollu di l'abbaidaddi ippiziari pa mudìfigghi rizzenti",
 'watchlistcontains'    => 'La listha di li abbaidaddi ippiziari cuntini {{PLURAL:$1|una pàgina|$1 pàgini}}.',
 'wlshowlast'           => 'Musthra li ulthimi $1 ori $2 dì $3',
 'watchlist-show-bots'  => 'Musthra li mudìfigghi di li bot',
@@ -1081,10 +1091,11 @@ $1',
 'hideresults'      => 'Cua li risulthaddi',
 
 # Multipage image navigation
-'imgmultipageprev' => '← pàgina prizzidenti',
-'imgmultipagenext' => 'pàgina sighenti →',
-'imgmultigo'       => 'Vai',
-'imgmultigotopre'  => 'Vai a la pàgina',
+'imgmultipageprev'   => '← pàgina prizzidenti',
+'imgmultipagenext'   => 'pàgina sighenti →',
+'imgmultigo'         => 'Vai',
+'imgmultigotopre'    => 'Vai a la pàgina',
+'imgmultiparseerror' => "Lu file immagina è ibbagliaddu o danniggiaddu, {{SITENAME}} nò è bonu à prisintà l'erencu di li pàgini.",
 
 # Table pager
 'ascending_abbrev'         => 'crisc',
@@ -1098,14 +1109,34 @@ $1',
 'table_pager_empty'        => 'Nisciun risulthaddu',
 
 # Auto-summaries
+'autosumm-blank'   => 'Pàgina cumpretamenti ibbiuddadda',
+'autosumm-replace' => "Pàgina susthituidda cun '$1'",
 'autoredircomment' => 'Rinviu à la pàgina [[$1]]',
 'autosumm-new'     => 'Nóba pàgina: $1',
 
+# Live preview
+'livepreview-loading' => 'Carrigghendi…',
+'livepreview-ready'   => 'Carrigghendi… Prontu!',
+'livepreview-failed'  => "Errori i la funzioni Live preview. Usà l'antiprimma standard.",
+'livepreview-error'   => 'Impussìbiri effettuà lu cullegamentu: $1 "$2". Usà l\'antiprimma standard.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Li mudìfigghi arriggaddi i li ulthimi $1 sigundi pudiani nò apparì in chistha listha.',
+
 # Watchlist editor
-'watchlistedit-numitems'     => "La listha di l'abbaidaddi ippiziari cunteni {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.",
-'watchlistedit-normal-title' => 'Mudìfigga abbaidaddi ippiziari',
-'watchlistedit-raw-titles'   => 'Pàgini:',
-'watchlistedit-raw-submit'   => 'Aggiorna la listha',
+'watchlistedit-numitems'      => "La listha di l'abbaidaddi ippiziari cunteni {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.",
+'watchlistedit-noitems'       => "La listha di l'abbaidaddi ippiziari è biodda.",
+'watchlistedit-normal-title'  => 'Mudìfigga abbaidaddi ippiziari',
+'watchlistedit-normal-legend' => "Eliminiazioni di pàgini da l'abbaidaddi ippiziari",
+'watchlistedit-normal-submit' => 'Elimina pàgini',
+'watchlistedit-normal-done'   => "Da la listha di l'abbaidaddi ippiziari {{PLURAL:$1|è isthadda eliminadda una pàgina|so isthaddi eliminaddi $1 pàgini}}:",
+'watchlistedit-raw-title'     => "Mudìfigga l'abbaidaddi ippiziari in fuimmaddu testhu",
+'watchlistedit-raw-legend'    => 'Mudìfigga testhuari abbaidaddi ippiziari',
+'watchlistedit-raw-titles'    => 'Pàgini:',
+'watchlistedit-raw-submit'    => 'Aggiorna la listha',
+'watchlistedit-raw-done'      => "La listha di l'abbaidaddi ippiziari è isthadda aggiornadda.",
+'watchlistedit-raw-added'     => '{{PLURAL:$1|È isthadda aggiunta una pàgina|Sò isthaddi aggiunti $1 pàgini}}:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|È isthadda eliminadda una pàgina|Sò isthaddi eliminaddi $1 pàgini}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Visuarizza li mudìfigghi attinenti',

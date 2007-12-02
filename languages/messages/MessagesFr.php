@@ -8,7 +8,6 @@
  * @author Korg
  * @author JeanVoisin
  * @author Cedric31
- * @author G - ג
  * @author Urhixidur
  * @author Sherbrooke
  * @author Siebrand
@@ -16,6 +15,7 @@
  * @author Горан Анђелковић
  * @author Grondin
  * @author Nike
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -894,10 +894,12 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'newsectionsummary'                 => '/* $1 */ nouvelle section',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Suivi des liens',
-'recentchangeslinked-title'    => 'Suivi des liens associés à $1',
-'recentchangeslinked-noresult' => 'Aucun changement sur les pages liées pendant la période choisie.',
-'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
+'recentchangeslinked'                    => 'Suivi des liens',
+'recentchangeslinked-title'              => 'Suivi des liens associés à $1',
+'recentchangeslinked-noresult'           => 'Aucun changement sur les pages liées pendant la période choisie.',
+'recentchangeslinked-summary'            => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
+'recentchangeslinked-feed-entry'         => "L'utilisateur $1 a édité $2",
+'recentchangeslinked-feed-entry-comment' => "L'Utilisateur $1 a édité $2 ($3)",
 
 # Upload
 'upload'                      => 'Importer le fichier',
@@ -1640,7 +1642,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'allmessagesdefault'        => 'Message par défaut',
 'allmessagescurrent'        => 'Message actuel',
 'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki',
-'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' n’est pas disponible car \'\'\'$wgUseDatabaseMessages\'\'\' est désactivé.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' n’est pas disponible car '''\$wgUseDatabaseMessages''' est désactivé.",
 'allmessagesfilter'         => 'Filtre d’expression rationnelle :',
 'allmessagesmodified'       => 'N’afficher que les modifications',
 

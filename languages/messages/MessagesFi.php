@@ -5,7 +5,8 @@
  *
  * @author Crt
  * @author Nike
- * @author G - ג
+ * @author Cimon Avaro
+ * @author לערי ריינהארט
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -653,7 +654,7 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'noarticletext'             => "<big>'''{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.'''</big>
 * Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''
 * Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].",
-'userpage-userdoesnotexist' => 'Käyttäjätunnusta "$1" ei ole rekisteröity. Varmista haluatko todella luoda/muokata tätä sivua.',
+'userpage-userdoesnotexist' => 'Käyttäjätunnusta $1 ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
 'clearyourcache'            => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
 *'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
 *'''IE:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''
@@ -792,8 +793,14 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 
 # History merging
 'mergehistory'        => 'Yhdistä sivuhistoriat',
+'mergehistory-header' => "Tämä sivu mahdollistaa sivun muokkaushistoriassa olevien revisioiden yhdistämisen uudemman sivun muokkaushistoriaan. Varmista että tämän muutoksen tehdessäsi säilytät jatkumon sivun revisioiden historiassa.
+
+'''Vähintäänkin lähtösivun nykyinen revisio täytyy sisällyttää kohdesivun historiaan.'''",
+'mergehistory-box'    => 'Yhdistä kahden sivun muokkaushistoria:',
 'mergehistory-from'   => 'Lähdesivu',
 'mergehistory-into'   => 'Kohdesivu',
+'mergehistory-list'   => 'Yhdistettävissä oleva muokkaushistoriat',
+'mergehistory-go'     => 'Näytä yhdistettävissä olevat muokkausversiot',
 'mergehistory-submit' => 'Yhdistä versiot',
 
 # Merge log
