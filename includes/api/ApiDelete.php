@@ -137,6 +137,10 @@ class ApiDelete extends ApiBase {
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
 
+	public function isEditMode() {
+		return true;
+	}
+	
 	protected function getAllowedParams() {
 		return array (
 			'title' => null,
