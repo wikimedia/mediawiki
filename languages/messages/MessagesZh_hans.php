@@ -927,10 +927,12 @@ $2',
 'newsectionsummary'                 => '/* $1 */ 新段落',
 
 # Recent changes linked
-'recentchangeslinked'          => '链出更改',
-'recentchangeslinked-title'    => '对于$1有关的链出更改',
-'recentchangeslinked-noresult' => '在这一段时间中连结的页面并无更改。',
-'recentchangeslinked-summary'  => "这一个特殊页面列示这一页链出页面的最近更改。在您监视列表中的页面会以'''粗体'''表示。",
+'recentchangeslinked'                    => '链出更改',
+'recentchangeslinked-title'              => '对于$1有关的链出更改',
+'recentchangeslinked-noresult'           => '在这一段时间中连结的页面并无更改。',
+'recentchangeslinked-summary'            => "这一个特殊页面列示这一页链出页面的最近更改。在您监视列表中的页面会以'''粗体'''表示。",
+'recentchangeslinked-feed-entry'         => '用户$1已经编辑$2',
+'recentchangeslinked-feed-entry-comment' => '用户$1已经编辑$2 ($3)',
 
 # Upload
 'upload'                      => '上传文件',

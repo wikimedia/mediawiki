@@ -768,11 +768,12 @@ $2',
 'newsectionsummary'                 => '/* $1 */ 新節',
 
 # Recent changes linked
-'recentchangeslinked'          => '援引',
-'recentchangeslinked-title'    => '$1援引近易',
-'recentchangeslinked-noresult' => '限期內無近易。',
-'recentchangeslinked-summary'  => "援引近易如下，有哨者'''粗體'''。",
-
+'recentchangeslinked'                    => '援引',
+'recentchangeslinked-title'              => '$1援引近易',
+'recentchangeslinked-noresult'           => '限期內無近易。',
+'recentchangeslinked-summary'            => "援引近易如下，有哨者'''粗體'''。",
+'recentchangeslinked-feed-entry'         => '簿$1已纂$2也',
+'recentchangeslinked-feed-entry-comment' => '簿$1已纂$2也 ($3)',
 
 # Upload
 'upload'                     => '進獻',
@@ -1161,7 +1162,7 @@ $NEWPAGE
 'protect-summary-cascade'     => '迭緘',
 'protect-expiring'            => '$1（UTC）屆',
 'protect-cascade'             => '援引緘，牽迭',
-'protect-cantedit'            => '汝無動頁之護也，因汝無權篡之矣。',
+'protect-cantedit'            => '汝無動頁之護也，因汝無權纂之矣。',
 'restriction-type'            => '准',
 'restriction-level'           => '緘捆',
 'minimum-size'                => '幅越',
