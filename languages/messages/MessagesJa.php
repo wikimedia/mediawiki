@@ -1769,11 +1769,13 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-cn' => '簡体（中国）',
-'variantname-zh-tw' => '正字（台湾）',
-'variantname-zh-hk' => '正字（香港）',
-'variantname-zh-sg' => '簡体（シンガポール）',
-'variantname-zh'    => '無変換',
+'variantname-zh-hans' => '簡体',
+'variantname-zh-hant' => '正字',
+'variantname-zh-cn'   => '簡体（中国）',
+'variantname-zh-tw'   => '正字（台湾）',
+'variantname-zh-hk'   => '正字（香港）',
+'variantname-zh-sg'   => '簡体（シンガポール）',
+'variantname-zh'      => '無変換',
 
 # Metadata
 'metadata'          => 'メタデータ',

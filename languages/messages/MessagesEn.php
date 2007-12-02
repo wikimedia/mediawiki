@@ -2541,11 +2541,13 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-cn' => 'cn', # only translate this message to other languages if you have to change it
-'variantname-zh-tw' => 'tw', # only translate this message to other languages if you have to change it
-'variantname-zh-hk' => 'hk', # only translate this message to other languages if you have to change it
-'variantname-zh-sg' => 'sg', # only translate this message to other languages if you have to change it
-'variantname-zh'    => 'zh', # only translate this message to other languages if you have to change it
+'variantname-zh-hans' => 'hans', # only translate this message to other languages if you have to change it
+'variantname-zh-hant' => 'hant', # only translate this message to other languages if you have to change it
+'variantname-zh-cn'   => 'cn', # only translate this message to other languages if you have to change it
+'variantname-zh-tw'   => 'tw', # only translate this message to other languages if you have to change it
+'variantname-zh-hk'   => 'hk', # only translate this message to other languages if you have to change it
+'variantname-zh-sg'   => 'sg', # only translate this message to other languages if you have to change it
+'variantname-zh'      => 'zh', # only translate this message to other languages if you have to change it
 
 # Variants for Serbian language
 'variantname-sr-ec' => 'sr-ec', # only translate this message to other languages if you have to change it

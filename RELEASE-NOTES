@@ -203,6 +203,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12143) Do not show a link to patrol new pages for non existent pages
 * (bug 12166) Fix XHTML validity for Special:Emailuser
 * (bug 11346) Users who cannot edit a page can now no longer unprotect it.
+* (bug 451) Add a generic Traditional / Simplified Chinese conversion table, 
+  instead of a Traditional conversion with Taiwan variant, and a Simplified 
+  conversion with China variant.
 
 == Parser changes in 1.12 ==
 
