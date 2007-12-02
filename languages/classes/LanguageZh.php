@@ -9,18 +9,22 @@ class ZhConverter extends LanguageConverter {
 	function loadDefaultTables() {
 		require( dirname(__FILE__)."/../../includes/ZhConversion.php" );
 		$this->mTables = array(
-			'zh-cn' => new ReplacementArray( $zh2CN ),
-			'zh-tw' => new ReplacementArray( $zh2TW ),
-			'zh-sg' => new ReplacementArray( array_merge($zh2CN, $zh2SG) ),
-			'zh-hk' => new ReplacementArray( array_merge($zh2TW, $zh2HK) ),
-			'zh' => new ReplacementArray
+			'zh-hans' => new ReplacementArray( $zh2Hans ),
+			'zh-hant' => new ReplacementArray( $zh2Hant ),
+			'zh-cn'   => new ReplacementArray( array_merge($zh2Hans, $zh2CN) ),
+			'zh-tw'   => new ReplacementArray( array_merge($zh2Hans, $zh2TW) ),
+			'zh-sg'   => new ReplacementArray( array_merge($zh2Hans, $zh2SG) ),
+			'zh-hk'   => new ReplacementArray( array_merge($zh2Hant, $zh2HK) ),
+			'zh'      => new ReplacementArray
 		);
 	}
 
 	function postLoadTables() {
-		$this->mTables['zh-sg']->merge( $this->mTables['zh-cn'] );
-		$this->mTables['zh-hk']->merge( $this->mTables['zh-tw'] );
-    }
+		$this->mTables['zh-cn']->merge( $this->mTables['zh-hans'] );
+		$this->mTables['zh-tw']->merge( $this->mTables['zh-hant'] );
+		$this->mTables['zh-sg']->merge( $this->mTables['zh-hans'] );
+		$this->mTables['zh-hk']->merge( $this->mTables['zh-hant'] );
+	}
 
 	/* there shouldn't be any latin text in Chinese conversion, so no need
 	   to mark anything.
@@ -31,13 +35,13 @@ class ZhConverter extends LanguageConverter {
 	}
 
 	function convertCategoryKey( $key ) {
-		return $this->autoConvert( $key, 'zh-cn' );
+		return $this->autoConvert( $key, 'zh' );
 	}
 }
 
 
 /* class that handles both Traditional and Simplified Chinese
-   right now it only distinguish zh_cn, zh_tw, zh_sg and zh_hk.
+   right now it only distinguish zh_hans, zh_hant, zh_cn, zh_tw, zh_sg and zh_hk.
 */
 class LanguageZh extends LanguageZh_hans {
 
@@ -45,13 +49,15 @@ class LanguageZh extends LanguageZh_hans {
 		global $wgHooks;
 		parent::__construct();
 
-		$variants = array('zh', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk');
+		$variants = array('zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk');
 		$variantfallbacks = array(
-			'zh'    => 'zh-cn',
-			'zh-cn' => 'zh-sg',
-			'zh-sg' => 'zh-cn',
-			'zh-tw' => 'zh-hk',
-			'zh-hk' => 'zh-tw'
+			'zh'      => 'zh-hans',
+			'zh-hans' => 'zh-cn',
+			'zh-hant' => 'zh-tw',
+			'zh-cn'   => 'zh-hans',
+			'zh-sg'   => 'zh-hans',
+			'zh-tw'   => 'zh-hant',
+			'zh-hk'   => 'zh-hant'
 		);
 
 		$this->mConverter = new ZhConverter( $this, 'zh', $variants, $variantfallbacks );
@@ -84,12 +90,12 @@ class LanguageZh extends LanguageZh_hans {
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 				"' ' .\"$1\"", $string);
 
-        //always convert to zh-cn before indexing. it should be
-		//better to use zh-cn for search, since conversion from
+        //always convert to zh-hans before indexing. it should be
+		//better to use zh-hans for search, since conversion from
 		//Traditional to Simplified is less ambiguous than the
 		//other way around
 
-		$t = $this->mConverter->autoConvert($t, 'zh-cn');
+		$t = $this->mConverter->autoConvert($t, 'zh-hans');
 		$t = parent::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;

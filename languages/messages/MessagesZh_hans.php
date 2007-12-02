@@ -1914,11 +1914,13 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-cn' => '大陆简体',
-'variantname-zh-tw' => '台湾繁体',
-'variantname-zh-hk' => '香港繁体',
-'variantname-zh-sg' => '新加坡简体',
-'variantname-zh'    => '不转换',
+'variantname-zh-hans' => '简体',
+'variantname-zh-hant' => '繁体',
+'variantname-zh-cn'   => '大陆简体',
+'variantname-zh-tw'   => '台湾正体',
+'variantname-zh-hk'   => '香港繁体',
+'variantname-zh-sg'   => '新加坡简体',
+'variantname-zh'      => '不转换',
 
 # Metadata
 'metadata'          => '元数据',

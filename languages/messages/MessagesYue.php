@@ -264,7 +264,7 @@ $messages = array(
 'qbspecialpages' => '特別頁',
 'moredotdotdot'  => '更多...',
 'mypage'         => '我嘅頁',
-'mytalk'         => '我嘅對話',
+'mytalk'         => '我嘅討論',
 'anontalk'       => '同呢個 IP 傾偈',
 'navigation'     => '導航',
 
@@ -1981,11 +1981,13 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-cn' => '簡體（中國大陸）',
-'variantname-zh-tw' => '正體（台灣）',
-'variantname-zh-hk' => '繁體（香港）',
-'variantname-zh-sg' => '簡體（新加坡）',
-'variantname-zh'    => '無變換',
+'variantname-zh-hans' => '簡體',
+'variantname-zh-hant' => '繁體',
+'variantname-zh-cn'   => '簡體（中國大陸）',
+'variantname-zh-tw'   => '正體（台灣）',
+'variantname-zh-hk'   => '繁體（香港）',
+'variantname-zh-sg'   => '簡體（新加坡）',
+'variantname-zh'      => '無變換',
 
 # Variants for Serbian language
 'variantname-sr-ec' => '斯拉夫易卡語',
