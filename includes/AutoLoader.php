@@ -344,6 +344,18 @@ function __autoload($className) {
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
 		'ApiRender' => 'includes/api/ApiRender.php',
 		'ApiResult' => 'includes/api/ApiResult.php',
+
+		# apiedit branch
+		'ApiBlock' => 'includes/api/ApiBlock.php',
+		'ApiChangeRights' => 'includes/api/ApiChangeRights.php',
+		'ApiDelete' => 'includes/api/ApiDelete.php',
+		'ApiMove' => 'includes/api/ApiMove.php',
+		'ApiProtect' => 'includes/api/ApiProtect.php',
+		'ApiQueryBlocks' => 'includes/api/ApiQueryBlocks.php',
+		'ApiQueryDeletedrevs' => 'includes/api/ApiQueryDeletedrevs.php',
+		'ApiRollback' => 'includes/api/ApiRollback.php',
+		'ApiUnblock' => 'includes/api/ApiUnblock.php',
+		'ApiUndelete' => 'includes/api/ApiUndelete.php'
 	);
 	
 	wfProfileIn( __METHOD__ );
