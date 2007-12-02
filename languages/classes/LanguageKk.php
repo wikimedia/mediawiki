@@ -225,19 +225,49 @@ class LanguageKk extends LanguageKk_kz {
 		$fname="LanguageKk::convertGrammar";
 		wfProfileIn( $fname );
 
-		//always convert to kk-kz before convertGrammar
-		$w1 = $word;
-		$word = $this->mConverter->autoConvert( $word, 'kk-kz' );
-		$w2 = $word;
-		$word = parent::convertGrammar( $word, $case );
-		//restore encoding
-		if( $w1 != $w2 ) {
-			$word = $this->mConverter->translate( $word, 'kk-tr' );
+		switch ( $this->getPreferredVariant() ) {
+			case 'kk-cn':
+				$word = parent::convertGrammar( $word, $case, $variant='kk-cn' );
+				break;
+			case 'kk-tr':
+				$word = parent::convertGrammar( $word, $case, $variant='kk-tr' );
+				break;
+			case 'kk-kz':
+			case 'kk':
+				$word = parent::convertGrammar( $word, $case, $variant='kk-kz' );
+				break;
+			default: #do nothing
 		}
+
 		wfProfileOut( $fname );
 		return $word;
 	}
 
-}
+	/*
+	 * It fixes issue ucfirst with transforming 'i' to 'İ'
+	 * 
+	 */
+	function ucfirst ( $string ) {
+		if ( $this->getPreferredVariant() == 'kk-tr' && $string[0] == 'i' ) {
+			$string = 'İ' . substr( $string, 1 );
+		} else {
+			$string = parent::ucfirst( $string );
+		}
+		return $string;
+	}
 
+	/*
+	 * It fixes issue for lcfirst with transforming 'I' to 'ı'
+	 * 
+	 */
+	function lcfirst ( $string ) {
+		if ( $this->getPreferredVariant() == 'kk-tr' && $string[0] == 'I' ) {
+			$string = 'ı' . substr( $string, 1 );
+		} else {
+			$string = parent::lcfirst( $string );
+		}
+		return $string;
+	}
+
+}
 
