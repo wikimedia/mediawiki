@@ -160,7 +160,7 @@ class ApiMain extends ApiBase {
 	public function requestWriteMode() {
 		if (!$this->mEnableWrite)
 			$this->dieUsage('Editing of this site is disabled. Make sure the $wgEnableWriteAPI=true; ' .
-			'statement is included in the site\'s LocalSettings.php file', 'readonly');
+			'statement is included in the site\'s LocalSettings.php file', 'noapiwrite');
 	}
 
 	/**
