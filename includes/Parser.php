@@ -5331,7 +5331,7 @@ class PPFrame {
 				$title = $titles->item( 0 );
 				$parts = $xpath->query( 'part', $root );
 				if ( $flags & self::NO_ARGS || $this->parser->ot['msg'] ) {
-					$s = '{{{' . $this->implode( '|', $flags, $title, $parts ) . '}}}';
+					$s = '{{{' . $this->implodeWithFlags( '|', $flags, $title, $parts ) . '}}}';
 				} else {
 					$params = array( 'title' => $title, 'parts' => $parts, 'text' => 'FIXME' );
 					$s = $this->parser->argSubstitution( $params, $this );
@@ -5362,21 +5362,7 @@ class PPFrame {
 					$serial = count( $this->parser->mHeadings ) - 1;
 					$marker = "{$this->parser->mUniqPrefix}-h-$serial-{$this->parser->mMarkerSuffix}";
 					$count = $root->getAttribute( 'level' );
-
-					// FIXME: bug-for-bug with old parser
-					// Lose whitespace for no apparent reason
-					// Remove this after differential testing is done
-					if ( true ) {
-						// Good version
-						$s = substr( $s, 0, $count ) . $marker . substr( $s, $count );
-					} else {
-						// Bad version
-						if ( preg_match( '/^(={1,6})(.*?)(={1,6})\s*?$/', $s, $m ) ) {
-							if ( $m[2] != '' ) {
-								$s = $m[1] . $marker . $m[2] . $m[3];
-							}
-						}
-					}
+					$s = substr( $s, 0, $count ) . $marker . substr( $s, $count );
 					$this->parser->mStripState->general->setPair( $marker, '' );
 				}
 			} else {
@@ -5421,6 +5407,22 @@ class PPFrame {
 		$args = func_get_args();
 		$args = array_merge( array_slice( $args, 0, 1 ), array( 0 ), array_slice( $args, 1 ) );
 		return call_user_func_array( array( $this, 'implodeWithFlags' ), $args );
+	}
+
+	/**
+	 * Split an <arg> or <template> node into a three-element array: 
+	 *    DOMNode name, string index and DOMNode value
+	 */
+	function splitBraceNode( $node ) {
+		$xpath = new DOMXPath( $arg->ownerDocument );
+		$names = $xpath->query( 'name', $node );
+		$values = $xpath->query( 'value', $node );
+		if ( !$names->length || !$values->length ) {
+			throw new MWException( 'Invalid brace node passed to ' . __METHOD__ );
+		}
+		$name = $names->item( 0 );
+		$index = $name->getAttribute( 'index' );
+		return array( $name, $index, $values->item( 0 ) );
 	}
 
 	function __toString() {
