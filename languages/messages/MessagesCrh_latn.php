@@ -1128,7 +1128,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 
 # Contributions
 'contributions' => 'Qullanıcınıñ isseleri',
-'mycontris'     => 'İsselerim',
+'mycontris'     => 'isselerim',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Bu kriteriylerge uyğan deñişiklik tapılamadı',
 'uctop'         => '(soñki)',

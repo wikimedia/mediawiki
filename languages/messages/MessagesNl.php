@@ -11,8 +11,8 @@
  * @author Troefkaart
  * @author Galwaygirl
  * @author Effeietsanders
- * @author G - ג
  * @author Nike
+ * @author לערי ריינהארט
  */
 
 /**
@@ -1359,7 +1359,7 @@ PICT # overig
 
 # Random redirect
 'randomredirect'         => 'Willekeurige doorverwijzing',
-'randomredirect-nopages' => 'Er zijn geen redirects in deze naamruimte.',
+'randomredirect-nopages' => 'Er zijn geen doorverwijzingen in deze naamruimte.',
 
 # Statistics
 'statistics'             => 'Statistieken',
@@ -1631,9 +1631,9 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'protect_expiry_invalid'      => 'De aangegeven duur is ongeldig.',
 'protect_expiry_old'          => 'Verloopsdatum is in het verleden.',
 'unprotectsub'                => '(Beveiliging "$1" opgeheven)',
-'protect-unchain'             => 'Maak hernoemen mogelijk',
+'protect-unchain'             => 'Hernoemen mogelijk maken',
 'protect-text'                => 'Hier kunt u het beveiligingsniveau voor de pagina <strong>$1</strong> bekijken en wijzigen.',
-'protect-locked-blocked'      => 'U kan het beveiligingsniveau niet wijzigen terwijl u geblokkeerd bent.
+'protect-locked-blocked'      => 'U kunt het beveiligingsniveau niet wijzigen terwijl u geblokkeerd bent.
 Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:',
 'protect-locked-dblock'       => 'Het beveiligingsniveau kan niet worden gewijzigd omdat de database gesloten is.
 Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:',
@@ -1647,7 +1647,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'protect-summary-cascade'     => 'cascade',
 'protect-expiring'            => 'verloopt op $1',
 'protect-cascade'             => "Cascadebeveiliging - beveilig alle pagina's en sjablonen die in deze pagina opgenomen zijn (let op; dit kan grote gevolgen hebben).",
-'protect-cantedit'            => 'U kan het beveiligingsniveau van deze pagina niet wijzigen, omdat u geen rechten hebt om het te bewerken.',
+'protect-cantedit'            => 'U kunt het beveiligingsniveau van deze pagina niet wijzigen, omdat u geen rechten hebt om het te bewerken.',
 'restriction-type'            => 'Rechten:',
 'restriction-level'           => 'Beperkingsniveau:',
 'minimum-size'                => 'Min. grootte',
@@ -1664,9 +1664,9 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'restriction-level-all'           => 'elk niveau',
 
 # Undelete
-'undelete'                     => "Toon verwijderde pagina's",
+'undelete'                     => "Verwijderde pagina's bekijken",
 'undeletepage'                 => "Verwijderde pagina's tonen en terugplaatsen",
-'viewdeletedpage'              => "Toon verwijderde pagina's",
+'viewdeletedpage'              => "Verwijderde pagina's bekijken",
 'undeletepagetext'             => "Hieronder staan pagina's die zijn verwijderd en vanuit het archief teruggeplaatst kunnen worden.",
 'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''. Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''. Als u op '''''Herinstellen''''' klikt wordt het toelichtingsveld leeggemaakt en worden alle versies gedeselecteerd.",
 'undeleterevisions'            => '$1 versi{{PLURAL:$1|e|es}} gearchiveerd',
@@ -1688,9 +1688,9 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 
 In het [[{{ns:special}}:Log/delete|logboek verwijderde pagina's]] staan recente verwijderingen en herstelhandelingen.",
 'undelete-header'              => "Zie [[{{ns:special}}:Log/delete|het logboek verwijderde pagina's]] voor recent verwijderde pagina's.",
-'undelete-search-box'          => "Doorzoek verwijderde pagina's",
-'undelete-search-prefix'       => "Toon pagina's die beginnen met:",
-'undelete-search-submit'       => 'Zoek',
+'undelete-search-box'          => "Verwijderde pagina's doorzoeken",
+'undelete-search-prefix'       => "Pagina's tonen die beginnen met:",
+'undelete-search-submit'       => 'Zoeken',
 'undelete-no-results'          => "Geen pagina's gevonden in het archief met verwijderde pagina's.",
 'undelete-filename-mismatch'   => 'Bestandsversie van tijdstip $1 kon niet hersteld worden: bestandsnaam klopte niet',
 'undelete-bad-store-key'       => 'Bestandsversie van tijdstip $1 kon niet hersteld worden: het bestand miste al voordat het werd verwijderd.',
@@ -1738,7 +1738,7 @@ $1',
 'linkshere'           => "De volgende pagina's verwijzen naar '''[[:$1]]''':",
 'nolinkshere'         => "Geen enkele pagina verwijst naar '''[[:$1]]'''.",
 'nolinkshere-ns'      => "Geen enkele pagina linkt naar '''[[:$1]]''' in de gekozen naamruimte.",
-'isredirect'          => 'redirectpagina',
+'isredirect'          => 'doorverwijspagina',
 'istemplate'          => 'ingevoegd als sjabloon',
 'whatlinkshere-prev'  => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|volgende|volgende $1}}',

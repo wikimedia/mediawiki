@@ -4,9 +4,9 @@
  * @addtogroup Language
  *
  * @author Jon Harald Søby
- * @author G - ג
  * @author Nike
  * @author Teak
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -447,6 +447,8 @@ Funksjon: $1<br />
 Spørring: $2',
 'viewsource'           => 'Vis kildekode',
 'viewsourcefor'        => 'for $1',
+'actionthrottled'      => 'Handlingsgrense overskredet',
+'actionthrottledtext'  => 'For å beskytte mot spam, kan du ikke utføre denne handlingen for mange ganger i løpet av et kort tidssrom, og du har overskredet denne grensen. Prøv igjen om noen minutter.',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',
 'viewsourcetext'       => 'Du kan se og kopiere kilden til denne siden:',
 'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
@@ -954,10 +956,12 @@ Mangler kjørbar texvc; vennligst se math/README for å konfigurerer.',
 'newsectionsummary'                 => '/* $1 */ ny seksjon',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Relaterte endringer',
-'recentchangeslinked-title'    => 'Endringer relatert til $1',
-'recentchangeslinked-noresult' => 'Ingen endringer på lenkede sider i den gitte perioden.',
-'recentchangeslinked-summary'  => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som lenkes til fra denne. Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
+'recentchangeslinked'                    => 'Relaterte endringer',
+'recentchangeslinked-title'              => 'Endringer relatert til $1',
+'recentchangeslinked-noresult'           => 'Ingen endringer på lenkede sider i den gitte perioden.',
+'recentchangeslinked-summary'            => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som lenkes til fra denne. Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
+'recentchangeslinked-feed-entry'         => 'Brukeren $1 redigerte $2',
+'recentchangeslinked-feed-entry-comment' => 'Brukeren $1 redigerte $2 ($3)',
 
 # Upload
 'upload'                      => 'Last opp fil',
@@ -1423,6 +1427,7 @@ Tilbakemeldinger og videre assistanse:
 'protect-summary-cascade'     => 'dypbeskyttelse',
 'protect-expiring'            => 'utgår $1 (UTC)',
 'protect-cascade'             => 'Dypbeskyttelse – beskytter alle sider som er inkludert på denne siden.',
+'protect-cantedit'            => 'Du kan ikke endre beskyttelsesnivået til denne siden fordi du ikke har tillatelse til å redigere den.',
 'restriction-type'            => 'Tillatelse',
 'restriction-level'           => 'Restriksjonsnivå',
 'minimum-size'                => 'Minimumstørrelse (byte)',
@@ -1591,6 +1596,7 @@ $1',
 'ipb_expiry_invalid'          => 'Ugyldig utløpstid.',
 'ipb_already_blocked'         => '«$1» er allerede blokkert',
 'ipb_cant_unblock'            => 'Feil: Blokk-ID $1 ikke funnet. Kan ha blitt avblokkert allerede.',
+'ipb_blocked_as_range'        => 'Feil: IP-en $1 er ikke blokkert direkte, og kan ikke avblokkeres. Den er imidlertid blokkert som del av blokkeringa av IP-rangen $2, som kan avblokkeres.',
 'ip_range_invalid'            => 'Ugyldig IP-rad.',
 'blockme'                     => 'Blokkert meg',
 'proxyblocker'                => 'Proxyblokker',
@@ -2091,6 +2097,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 'exif-gpslongitude-w' => 'Vestlig lengdegrad',
 
 'exif-gpsstatus-a' => 'Måling pågår',
+'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
 'exif-gpsmeasuremode-2' => 'todimensjonell måling',
 'exif-gpsmeasuremode-3' => 'tredimensjonell måling',

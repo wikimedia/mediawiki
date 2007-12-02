@@ -4,10 +4,10 @@
  * @addtogroup Language
  *
  * @author Fulup
- * @author G - ג
  * @author Nike
  * @author SPQRobin
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -385,7 +385,7 @@ Goulenn : $2",
 'logouttitle'                => 'Dilugañ',
 'logouttext'                 => "Diluget oc'h bremañ.
 Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe en em lugañ en-dro gant un anv all mar fell deoc'h.",
-'welcomecreation'            => '<h2>Degemer mat, $1!</h2>
+'welcomecreation'            => '== Degemer mat, $1! ==
 
 Krouet eo bet ho kont implijer.
 Na zisoñjit ket da bersonelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndibaboù.',
@@ -865,6 +865,8 @@ Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ
 'hide'                              => 'kuzhat',
 'show'                              => 'diskouez',
 'minoreditletter'                   => 'D',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 den o lenn]',
 'rc_categories'                     => 'Bevenn ar rummadoù (dispartiañ gant "|")',
 'rc_categories_any'                 => 'An holl',
@@ -1227,10 +1229,10 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'watchnologintext'     => "Ret eo deoc'h bezañ [[Special:Userlogin|luget]]
 evit kemmañ ho roll.",
 'addedwatch'           => "Ouzhpennet d'ar roll",
-'addedwatchtext'       => '<p>Ouzh ho [[Special:Watchlis|rollad evezhiañ]] eo bet ouzhpennet ar bajenn "$1".
-Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet amañ hag e teuio ar bajenn <b>e tev</b> er [[Special:Recentchanges|roll kemmoù diwezhañ]] evit bezañ gwelet aesoc\'h ganeoc\'h.</p>
+'addedwatchtext'       => 'Ouzh ho [[Special:Watchlist|rollad evezhiañ]] eo bet ouzhpennet ar bajenn "[[:$1]]".
+Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet amañ hag e teuio ar bajenn <b>e tev</b> er [[Special:Recentchanges|roll kemmoù diwezhañ]] evit bezañ gwelet aesoc\'h ganeoc\'h.
 
-<p>Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da evezhiañ" er framm merdeiñ.</p>',
+Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da evezhiañ" er framm merdeiñ.',
 'removedwatch'         => 'Lamet a-ziwar ar rollad evezhiañ',
 'removedwatchtext'     => 'Lamet eo bet ar bajenn « $1 » a-ziwar ho rollad evezhiañ.',
 'watch'                => 'Evezhiañ',

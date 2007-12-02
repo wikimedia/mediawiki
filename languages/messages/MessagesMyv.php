@@ -7,6 +7,7 @@
  * @author Botuzhaleny-sodamo
  * @author MF-Warburg
  * @author Tupikovs
+ * @author Sura
  */
 
 $messages = array(
@@ -313,6 +314,7 @@ $messages = array(
 'qbsettings-fixedright'    => 'Вить ёндо кирдезь',
 'qbsettings-floatingleft'  => 'Керш ёнга уи',
 'qbsettings-floatingright' => 'Вить ёнга уи',
+'datetime'                 => 'Чи ды шка',
 'prefs-watchlist'          => 'Ванома лемрисьме',
 'prefs-misc'               => 'Минеть-сюнот',
 'saveprefs'                => 'Ванстомс',
@@ -322,6 +324,7 @@ $messages = array(
 'retypenew'                => 'Сёрмадык омбоцеде салавань валот:',
 'textboxsize'              => 'Витнема-петнема',
 'localtime'                => 'Тескэнь шкась',
+'servertime'               => 'Серверэнь шка',
 
 # Recent changes
 'recentchanges'   => 'Чыяконь полавтнемат-лиякстомтомат',
@@ -336,11 +339,14 @@ $messages = array(
 'recentchangeslinked-title' => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
 
 # Upload
-'upload' => 'Ёкстамонзо файланть',
+'upload'   => 'Ёкстамонзо файланть',
+'filename' => 'Файлонь лем',
 
 # Image list
 'imagelist'         => 'Файлат-мезть',
+'imgfile'           => 'файл',
 'filehist'          => 'Файланть эрямопингезэ',
+'filehist-datetime' => 'Чи/Шка',
 'filehist-user'     => 'Совиця',
 'filehist-filesize' => 'Файланть покшолмазо',
 'imagelinks'        => 'Сюлмавомапеть',

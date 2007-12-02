@@ -8,12 +8,12 @@
  * @author Martorell
  * @author Iradigalesc
  * @author Pasqual (ca)
- * @author G - ג
  * @author Nike
  * @author Vriullop
  * @author Pérez
  * @author Juanpabl
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(

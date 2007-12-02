@@ -53,7 +53,7 @@
 	'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ',		# Cree
 	'crh' => 'Qırımtatarca',   # Crimean Tatar
 	'crh-latn' => "\xE2\x80\xAAQırımtatarca (Latin)\xE2\x80\xAC",       # Crimean Tatar (Latin)
-	'crh-cyrl' => "\xE2\x80\xAAКъырымтатарджа (Кирилл)",       # Crimean Tatar (Cyrillic)
+	'crh-cyrl' => "\xE2\x80\xAAКъырымтатарджа (Кирилл)\xE2\x80\xAC",       # Crimean Tatar (Cyrillic)
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
 	'cu' => 'Словѣньскъ', 	# Old Church Slavonic (ancient language)
@@ -64,6 +64,7 @@
 	'diq' => 'Zazaki',		# Zazaki
 	'dk' => 'Dansk', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
+	'dum' => 'Middelnederlands', # Middle Dutch
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
 	'ee' => 'Eʋegbe',	# Ewe

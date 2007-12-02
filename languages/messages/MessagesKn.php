@@ -4,13 +4,13 @@
  * @addtogroup Language
  *
  * @author Mana
- * @author G - ג
  * @author Shushruth
  * @author HPN
  * @author Nike
  * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
  * @author Ashwath Mattur <ashwatham@gmail.com> http://en.wikipedia.org/wiki/User:Ashwatham
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -275,6 +275,9 @@ $1',
 'nosuchuser'                 => '"$1" ಹೆಸರಿನ ಯಾವ ಸದಸ್ಯರೂ ಇಲ್ಲ.
 ಕಾಗುಣಿತವನ್ನು ಪರೀಕ್ಷಿಸಿ, ಅಥವಾ ಕೆಳಗಿನ ಫಾರ್ಮ್ ಅನ್ನು ಉಪಯೋಗಿಸಿ ಹೊಸ ಸದಸ್ಯತ್ವವನ್ನು ಸೃಷ್ಟಿಸಿ.',
 'mailmypassword'             => 'ಹೊಸ ಪ್ರವೇಶ ಪದವನ್ನು ಇ-ಅಂಚೆ ಮೂಲಕ ಕಳುಹಿಸಿ',
+'noemail'                    => 'ಸದಸ್ಯ "$1" ಅವರ ಹೆಸರಿನಲ್ಲಿ ಯಾವ ಇ-ಅಂಚೆ ವಿಳಾಸವೂ ದಾಖಲಾಗಿಲ್ಲ.',
+'passwordsent'               => '"$1" ಅವರ ಹೆಸರಿನಲ್ಲಿ ನೋಂದಾಯಿತವಾದ ಇ-ಅಂಚೆ ವಿಳಾಸಕ್ಕೆ ಹೊಸ ಪ್ರವೇಶಪದವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ. 
+ಅದನ್ನು ಪಡೆದ ಮೇಲೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.',
 'acct_creation_throttle_hit' => 'ಕ್ಷಮಿಸಿ, ನೀವಾಗಲೇ $1 ಖಾತೆಗಳನ್ನು ತೆರೆದಿದ್ದೀರಿ. ಇನ್ನು ಖಾತೆಗಳನ್ನು ತೆರೆಯಲಾಗುವುದಿಲ್ಲ.',
 'loginlanguagelabel'         => 'ಭಾಷೆ: $1',
 
@@ -524,6 +527,8 @@ $1',
 'nextpage'       => 'ಮುಂದಿನ ಪುಟ ($1)',
 'prevpage'       => 'ಹಿಂದಿನ ಪುಟ ($1)',
 'allarticles'    => 'ಎಲ್ಲ ಲೇಖನಗಳು',
+'allpagesprev'   => 'ಹಿಂದಕ್ಕೆ',
+'allpagesnext'   => 'ಮುಂದಕ್ಕೆ',
 'allpagessubmit' => 'ಹೋಗು',
 
 # E-mail user
@@ -536,7 +541,7 @@ $1',
 'emailmessage'    => 'ಸಂದೇಶ',
 'emailsend'       => 'ಕಳುಹಿಸಿ',
 'emailsent'       => 'ಇ-ಅಂಚೆ ಕಳುಹಿಸಲಾಯಿತು',
-'emailsenttext'   => 'ನಿಮಗೆ ವಿ-ಅಂಚೆ ಕಳಿಸಲಾಗಿದೆ.',
+'emailsenttext'   => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ಕಳುಹಿಸಲಾಗಿದೆ.',
 
 # Watchlist
 'watchlist'            => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
@@ -565,7 +570,7 @@ $1',
 'exblank'           => 'ಪುಟ ಖಾಲಿ ಇತ್ತು',
 'confirmdelete'     => 'ಅಳಿಸುವಿಕೆ ಧೃಡಪಡಿಸು',
 'deletesub'         => '("$1" ಅನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ)',
-'confirmdeletetext' => 'ಪುಟ ಅಥವಾ ಚಿತ್ರ ಮತ್ತು ಅದರ ಸಂಪೂರ್ಣ ಇತಿಹಾಸವನ್ನು ನೀವು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತಿದ್ದೀರಿ. ಇದನ್ನು ನೀವು ಮಾಡಬಯಸುವಿರಿ, ಇದರ ಪರಿಣಾಮಗಳನ್ನು ಬಲ್ಲಿರಿ, ಮತ್ತು [[{{MediaWiki:Policy-url}}]] ನ ಅನುಸಾರ ಇದನ್ನು ಮಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ದೃಢಪಡಿಸಿ.',
+'confirmdeletetext' => 'ಪುಟ ಅಥವಾ ಚಿತ್ರ ಮತ್ತು ಅದರ ಸಂಪೂರ್ಣ ಇತಿಹಾಸವನ್ನು ನೀವು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತಿದ್ದೀರಿ. ಇದನ್ನು ನೀವು ಮಾಡಬಯಸುವಿರಿ, ಇದರ ಪರಿಣಾಮಗಳನ್ನು ಬಲ್ಲಿರಿ, ಮತ್ತು [[{{MediaWiki:Policy-url}}]] ಅನುಸಾರ ಇದನ್ನು ಮಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ದೃಢಪಡಿಸಿ.',
 'actioncomplete'    => 'ಕಾರ್ಯ ಸಂಪೂರ್ಣ',
 'deletedtext'       => '"$1" ಅನ್ನು ಅಳಿಸಲಾಯಿತು.
 ಇತ್ತೀಚೆಗಿನ ಅಳಿಸುವಿಕೆಗಳ ಪಟ್ಟಿಗಾಗಿ $2 ಅನ್ನು ನೋಡಿ.',
@@ -574,7 +579,7 @@ $1',
 'deletecomment'     => 'ಅಳಿಸುವುದರ ಕಾರಣ',
 'protectlogpage'    => 'ಸಂರಕ್ಷಣೆ ದಿನಚರಿ',
 'confirmprotect'    => 'ಸಂರಕ್ಷಣೆ ಧೃಡಪಡಿಸಿ',
-'protectcomment'    => 'ಸ೦ರಕ್ಷಿಸಲು ಕಾರಣ',
+'protectcomment'    => 'ಸಂರಕ್ಷಿಸಲು ಕಾರಣ:',
 
 # Namespace form on various pages
 'blanknamespace' => '(ಮುಖ್ಯ)',

@@ -8,9 +8,9 @@
  * @author SpeedyGonsales
  * @author Treecko
  * @author Luka Krstulovic
- * @author G - ג
  * @author Nike
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -259,7 +259,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'edithelp'          => 'Kako uređivati stranicu',
 'edithelppage'      => 'Help:Kako_uređivati_stranicu',
 'faq'               => 'Najčešća pitanja',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Pomoć',
 'mainpage'          => 'Glavna stranica',
 'policy-url'        => 'Project:Pravila',
@@ -318,7 +317,9 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'nosuchactiontext'  => 'Navedeni URL označava
 nepostojeću naredbu',
 'nosuchspecialpage' => 'Posebna stranica ne postoji',
-'nospecialpagetext' => 'Takva posebna stranica ne postoji.',
+'nospecialpagetext' => "<big>'''Takva posebna stranica ne postoji.'''</big>
+
+Za popis svih posebnih stranica posjetite [[Special:Specialpages|ovdje]].",
 
 # General errors
 'error'                => 'Greška',
@@ -569,7 +570,7 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'nosuchsectiontitle'        => 'Odlomak ne postoji',
 'nosuchsectiontext'         => 'Pokušali ste uređivati odlomak koji ne postoji (moguće je nedavno obrisan). Pošto odlomak $1 ne postoji, nije moguće snimiti vaše promjene.',
 'loginreqtitle'             => 'Nužna prijava',
-'loginreqlink'              => 'prijava',
+'loginreqlink'              => 'prijavite se',
 'loginreqpagetext'          => 'Morate se $1 da biste vidjeli ostale stranice.',
 'accmailtitle'              => 'Lozinka poslana.',
 'accmailtext'               => "Lozinka za suradnika '$1' poslana je na adresu $2.",
@@ -930,10 +931,12 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'newsectionsummary'                 => '/* $1 */ Novi odlomak',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Povezane stranice',
-'recentchangeslinked-title'    => 'Povezane promjene sa $1',
-'recentchangeslinked-noresult' => 'Nema promjena na povezanim stranicama u zadanom periodu.',
-'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem popisu praćenja su '''podebljane'''.",
+'recentchangeslinked'                    => 'Povezane stranice',
+'recentchangeslinked-title'              => 'Povezane promjene sa $1',
+'recentchangeslinked-noresult'           => 'Nema promjena na povezanim stranicama u zadanom periodu.',
+'recentchangeslinked-summary'            => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem popisu praćenja su '''podebljane'''.",
+'recentchangeslinked-feed-entry'         => 'Uređivanje suradnika $1 je: $2',
+'recentchangeslinked-feed-entry-comment' => 'Uređivanje suradnika $1 je: $2 ($3)',
 
 # Upload
 'upload'                      => 'Postavi datoteku',
@@ -1279,7 +1282,7 @@ E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatel
 'mywatchlist'          => 'Moj popis praćenja',
 'watchlistfor'         => "(suradnika '''$1''')",
 'nowatchlist'          => 'Na vašem popisu praćenja nema nijednog članka.',
-'watchlistanontext'    => 'Molimo Vas $1 da bi vidjeli ili uređivali vaš popis praćenih stranica.',
+'watchlistanontext'    => 'Molimo Vas $1 kako bi mogli vidjeti ili uređivati vaš popis praćenih stranica.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:Userlogin|prijavljeni]]
 za promjene u popisu praćenja.',
@@ -1424,6 +1427,7 @@ Slijede trenutne postavke stranice <strong>$1</strong>:',
 'protect-summary-cascade'     => 'prenosiva zaštita',
 'protect-expiring'            => 'istječe $1 (UTC)',
 'protect-cascade'             => 'Prenosiva zaštita - zaštiti sve stranice koje su uključene u ovu.',
+'protect-cantedit'            => 'Ne možete mijenjati razinu zaštite ove stranice, jer nemate prava uređivati ju.',
 'restriction-type'            => 'Dozvola:',
 'restriction-level'           => 'Nivo ograničenja:',
 'minimum-size'                => 'Najmanja veličina',

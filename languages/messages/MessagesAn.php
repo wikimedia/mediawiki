@@ -9,6 +9,7 @@
  * @author Willtron
  * @author Nike
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'es';
@@ -594,6 +595,7 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'nocreatetitle'             => "S'ha restrinxito a creyazión de pachinas",
 'nocreatetext'              => 'Iste wiki ha limitato a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
 'nocreate-loggedin'         => 'No tiene premisos ta creyar nuebas pachinas en ista wiki.',
+'permissionserrors'         => 'Errors de premisos',
 'permissionserrorstext'     => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',
 'recreate-deleted-warn'     => "'''Pare cuenta: ye creyando una pachina que ya ha estato borrata denantes.'''
 
@@ -618,6 +620,7 @@ A razón endicata por $3 ye ''$2''",
 'revnotfound'         => 'Bersión no trobata',
 'revnotfoundtext'     => "No se pudo trobar a bersión antiga d'a pachina demandata.
 Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
+'loadhist'            => "Recuperando o istorial d'a pachina",
 'currentrev'          => 'Bersión autual',
 'revisionasof'        => "Bersión d'o $1",
 'revision-info'       => "Bersión d'o $1 feita por $2",
@@ -627,15 +630,67 @@ Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
 'cur'                 => 'aut',
 'next'                => 'siguient',
 'last'                => 'zag',
+'orig'                => 'orich',
 'page_first'          => 'primeras',
 'page_last'           => 'zagueras',
 'histlegend'          => 'Leyenda: (aut) = esferenzias con a bersión autual,
 (ant) = diferenzias con a bersión anterior, m = edizión menor',
+'deletedrev'          => '[borrato]',
 'histfirst'           => 'Primeras contrebuzions',
 'histlast'            => 'Zagueras',
+'historyempty'        => '(buedo)',
 
 # Revision feed
+'history-feed-title'          => 'Istorial de bersions',
+'history-feed-description'    => "Istorial de bersions d'ista pachina en o wiki",
 'history-feed-item-nocomment' => '$1 en $2', # user at time
+'history-feed-empty'          => "A pachina demandata no esiste.
+Puede que aiga estato borrata d'o wiki u renombrata.
+Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
+
+# Revision deletion
+'rev-deleted-comment'         => "(s'ha sacato iste comentario)",
+'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
+'rev-deleted-event'           => "(s'ha sacata ista dentrada)",
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Ista bersión d\'a pachina ye sacata d\'os archibos publicos. 
+Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rechistro de borrau].
+</div>',
+'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
+Ista bersión d'a pachina ye sacata d'os archibos publicos. 
+Puede beyer-la porque ye almenistrador/a d'iste wiki; 
+puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rechistro de borrau].
+</div>",
+'rev-delundel'                => 'amostrar/amagar',
+'revisiondelete'              => 'Borrar/esfer borrau de bersions',
+'revdelete-nooldid-title'     => 'No ha espezificato una bersión de destino',
+'revdelete-nooldid-text'      => 'No ha espezificato una bersión u bersions ta aplicar ista funzión sobre ellas.',
+'revdelete-selected'          => '{{PLURAL:$2|Bersión trigata|Bersions trigatas}} de [[:$1]]:',
+'logdelete-selected'          => "{{PLURAL:$2|Aizión d'o rechistro trigata|$2 aizions d'o rechistro trigatas}} ta '''$1:'''",
+'revdelete-text'              => "As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.
+
+Atros almenistradors d'iste wiki encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
+'revdelete-legend'            => 'Definir restrizions de bersión:',
+'revdelete-hide-text'         => "Amagar o testo d'a bersión",
+'revdelete-hide-name'         => 'Amagar aizión y obchetibo',
+'revdelete-hide-comment'      => "Amagar comentario d'edizión",
+'revdelete-hide-user'         => "Amagar o nombre/l'adreza IP d'o editor",
+'revdelete-hide-restricted'   => "Aplicar istas restrizions á os almenistradors igual como á la resta d'usuarios",
+'revdelete-suppress'          => "Sacar os datos d'os almenistradors igual como os d'a resta d'usuarios",
+'revdelete-hide-image'        => "Amagar o conteniu de l'archibo",
+'revdelete-unsuppress'        => "Sacar restrizions d'as bersions restauradas",
+'revdelete-log'               => "Comentario d'o rechistro:",
+'revdelete-submit'            => 'Aplicar á la bersión trigata',
+'revdelete-logentry'          => "S'ha cambiato a bisibilidat d'a bersión de [[$1]]",
+'logdelete-logentry'          => "S'ha cambiato a bisibilidat d'escaizimientos de [[$1]]",
+'revdelete-logaction'         => '$1 {{PLURAL:$1|bersión|bersions}} en modo $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|escaizimiento|escaizimientos}} en [[$3]] {{PLURAL:$1|cambiato|cambiatos}} ta o modo $2',
+'revdelete-success'           => "S'ha cambiato correutament a bisibilidat d'as bersions.",
+'logdelete-success'           => "S'ha cambiato correutament a bisibilidat d'os escaizimientos.",
+
+# Oversight log
+'oversightlog'    => "Rechistro d'escudios",
+'overlogpagetext' => "Contino s'amuestra una lista de borraus y bloqueos más rezients relatibos á contenius amagatos d'os almenistradors d'o sistema. Consulte a [[Special:Ipblocklist|lista d'adrezas IP bloquiatas]] ta beyer una lista d'os bloqueos autuals.",
 
 # Diffs
 'history-title'           => 'Istorial de bersions de "$1"',

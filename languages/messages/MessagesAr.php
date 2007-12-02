@@ -11,9 +11,9 @@
  * @author Mimouni
  * @author Tarawneh
  * @author Agurzil
- * @author G - ג
  * @author Chaos
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $linkPrefixExtension = true;
@@ -1171,10 +1171,12 @@ $1 ساعة.',
 'newsectionsummary'                 => '/* $1 */ قسم جديد',
 
 # Recent changes linked
-'recentchangeslinked'          => 'تغييرات ذات علاقة',
-'recentchangeslinked-title'    => 'التغييرات المرتبطة ب$1',
-'recentchangeslinked-noresult' => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
-'recentchangeslinked-summary'  => "هذه الصفحة الخاصة تعرض آخر التغييرات في الصفحات الموصولة. الصفحات في قائمة مراقبتك معروضة '''بخط عريض'''.",
+'recentchangeslinked'                    => 'تغييرات ذات علاقة',
+'recentchangeslinked-title'              => 'التغييرات المرتبطة ب$1',
+'recentchangeslinked-noresult'           => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
+'recentchangeslinked-summary'            => "هذه الصفحة الخاصة تعرض آخر التغييرات في الصفحات الموصولة. الصفحات في قائمة مراقبتك معروضة '''بخط عريض'''.",
+'recentchangeslinked-feed-entry'         => 'المستخدم $1 عدل $2',
+'recentchangeslinked-feed-entry-comment' => 'المستخدم $1 عدل $2 ($3)',
 
 # Upload
 'upload'                      => 'رفع ملف',
@@ -1662,6 +1664,7 @@ $NEWPAGE
 'protect-summary-cascade'     => 'مضمنة',
 'protect-expiring'            => 'تنتهي في $1 (UTC)',
 'protect-cascade'             => 'احم الصفحات المضمنة في هذه الصفحة (حماية مضمنة)',
+'protect-cantedit'            => 'لا يمكنك تغيير مستويات الحماية لهذه الصفحة، لأنك لا تمتلك الصلاحية لتعديلها.',
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى الضوابط:',
 'minimum-size'                => 'الحجم الأدنى',

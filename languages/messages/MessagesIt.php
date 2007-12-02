@@ -4,7 +4,6 @@
  * @addtogroup Language
  *
  * @author BrokenArrow
- * @author G - ג
  * @author Gianfranco
  * @author Felis
  * @author Broc
@@ -16,6 +15,7 @@
  * @author Martorell
  * @author Cryptex
  * @author SabineCretella
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -333,10 +333,8 @@ I seguenti collegamenti sono in lingua inglese:
 'disclaimerpage'    => 'Project:Avvertenze generali',
 'edithelp'          => 'Guida',
 'edithelppage'      => 'Help:Modifica',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Indice',
 'mainpage'          => 'Pagina principale',
-'policy-url'        => 'Project:Policy',
 'portal'            => 'Portale comunità',
 'portal-url'        => 'Project:Portale comunità',
 'privacy'           => 'Informazioni sulla privacy',
@@ -368,8 +366,12 @@ I seguenti collegamenti sono in lingua inglese:
 'viewdeleted'             => 'Vedi $1?',
 'restorelink'             => '{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}',
 'feed-invalid'            => 'Modalità di sottoscrizione del feed non valida.',
+'site-rss-feed'           => 'Feed RSS di $1',
+'site-atom-feed'          => 'Feed Atom di $1',
+'page-rss-feed'           => 'Feed RSS per "$1"',
+'page-atom-feed'          => 'Feed Atom per "$1"',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Voce',
 'nstab-user'      => 'Utente',
 'nstab-media'     => 'File multimediale',
@@ -439,6 +441,8 @@ Funzione: $1<br />
 Query: $2',
 'viewsource'           => 'Vedi sorgente',
 'viewsourcefor'        => 'di $1',
+'actionthrottled'      => 'Azione ritardata',
+'actionthrottledtext'  => "Come misura di sicurezza contro lo spam, l'esecuzione di alcune azioni è limitata a un numero massimo di volte in un determinato periodo di tempo, limite che in questo caso è stato superato. Si prega di riprovare tra qualche minuto.",
 'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica.',
 'viewsourcetext'       => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
@@ -494,6 +498,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'prefs-help-realname'        => '* Nome vero (opzionale): se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.',
 'loginerror'                 => "Errore nell'accesso",
 'prefs-help-email'           => '* Indirizzo e-mail (opzionale): Consente agli utenti di essere contattati attraverso la propria pagina utente o la relativa pagina di discussione, senza dover rivelare la propria identità.',
+'prefs-help-email-required'  => 'Indirizzo e-mail necessario.',
 'nocookiesnew'               => "Il nome utente per l'accesso è stato creato, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin'             => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
 'noname'                     => 'Il nome utente indicato non è valido.',
@@ -528,6 +533,11 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'invalidemailaddress'        => "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",
 'accountcreated'             => 'Accesso creato',
 'accountcreatedtext'         => "È stato creato un accesso per l'utente $1.",
+'createaccount-title'        => 'Creazione di un accesso a {{SITENAME}}',
+'createaccount-text'         => 'Qualcuno ($1) ha creato un accesso a {{SITENAME}} a nome di $2
+($4). La password per l\'utente "$2" è impostata a "$3". È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
+
+Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
@@ -606,6 +616,7 @@ La motivazione del blocco è la seguente:
 Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].
 
 Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
+'blockednoreason'           => 'nessuna motivazione indicata',
 'blockedoriginalsource'     => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
 'blockededitsource'         => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
 'whitelistedittitle'        => 'Accesso necessario per la modifica delle pagine',
@@ -630,6 +641,7 @@ Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella 
 Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
 'anontalkpagetext'          => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:Userlogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
 'noarticletext'             => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora].',
+'userpage-userdoesnotexist' => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
 'clearyourcache'            => "'''Nota:''' dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti. Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-Maiusc-R'' (''Cmd-Maiusc-R'' su Mac); per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''; per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''.",
 'usercssjsyoucanpreview'    => "<strong>Suggerimento:</strong> si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
 'usercsspreview'            => "'''Questa è solo un'anteprima del proprio CSS personale; le modifiche non sono ancora state salvate!'''",
@@ -776,6 +788,28 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 # Oversight log
 'oversightlog'    => 'Registro azioni di oversight',
 'overlogpagetext' => "Qui di seguito viene presentata una lista delle cancellazioni e dei blocchi che riguardano contenuti oscurati agli amministratori. Consultare l'[[Special:Ipblocklist|elenco IP bloccati]] per l'elenco dei blocchi e dei bandi al momento operativi.",
+
+# History merging
+'mergehistory'         => 'Unione cronologie',
+'mergehistory-header'  => "Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente. È necessario accertarsi che la continuità storica della pagina non venga alterata.
+
+'''È obbligatorio mantenere almeno la versione corrente della pagina di origine.'''",
+'mergehistory-box'     => 'Unisci la cronologia di due pagine:',
+'mergehistory-from'    => 'Pagina di origine:',
+'mergehistory-into'    => 'Pagina di destinazione:',
+'mergehistory-list'    => "Cronologia cui è applicabile l'unione",
+'mergehistory-merge'   => 'È possibile unire le revisioni di [[:$1]] indicate di seguito alla cronologia di [[:$2]]. Usare la colonna con i pulsanti di opzione per unire tutte le revisioni fino alla data e ora indicate. Si noti che se vengono usati i pulsanti di navigazione, la colonna con i pulsanti di opzione viene azzerata.',
+'mergehistory-go'      => 'Mostra le modifiche che possono essere unite',
+'mergehistory-submit'  => 'Unisci le revisioni',
+'mergehistory-empty'   => 'Nessuna revisione da unire',
+'mergehistory-success' => '$3 revisioni di [[:$1]] sono state unite alla cronologia di [[:$2]].',
+'mergehistory-fail'    => 'Impossibile unire le cronologie. Verificare la pagina e i parametri temporali.',
+
+# Merge log
+'mergelog'           => 'Log delle unioni',
+'pagemerge-logentry' => 'ha unito [[$1]] a [[$2]] (revisioni fino a $3)',
+'revertmerge'        => 'Annulla unioni',
+'mergelogpagetext'   => "Qui di seguito viene presentata una lista delle ultime operazioni di unione della cronologia di una pagina in un'altra.",
 
 # Diffs
 'history-title'             => 'Cronologia delle modifiche di "$1"',
@@ -930,10 +964,12 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'newsectionsummary'                 => '/* $1 */ nuova sezione',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Modifiche correlate',
-'recentchangeslinked-title'    => 'Modifiche correlate a $1',
-'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
-'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
+'recentchangeslinked'                    => 'Modifiche correlate',
+'recentchangeslinked-title'              => 'Modifiche correlate a $1',
+'recentchangeslinked-noresult'           => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
+'recentchangeslinked-summary'            => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
+'recentchangeslinked-feed-entry'         => "L'utente $1 ha modificato $2",
+'recentchangeslinked-feed-entry-comment' => "L'utente $1 ha modificato $2 ($3)",
 
 # Upload
 'upload'                      => 'Carica un file',
@@ -1115,6 +1151,10 @@ PICT # misc.
 'unusedtemplatestext' => 'In questa pagina vengono elencati tutti i template (pagine del namespace Template) che non sono inclusi in nessuna pagina. Prima di cancellarli è opportuno verificare che i singoli template non abbiano altri collegamenti entranti.',
 'unusedtemplateswlh'  => 'altri collegamenti',
 
+# Random page
+'randompage'         => 'Una pagina a caso',
+'randompage-nopages' => 'Nessuna pagina nel namespace selezionato.',
+
 # Random redirect
 'randomredirect'         => 'Un redirect a caso',
 'randomredirect-nopages' => 'Nessun redirect nel namespace selezionato.',
@@ -1179,8 +1219,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'mostrevisions'           => 'Voci con più revisioni',
 'allpages'                => 'Tutte le pagine',
 'prefixindex'             => 'Indice delle voci per lettere iniziali',
-'randompage'              => 'Una pagina a caso',
-'randompage-nopages'      => 'Nessuna pagina nel namespace selezionato.',
 'shortpages'              => 'Pagine più corte',
 'longpages'               => 'Pagine più lunghe',
 'deadendpages'            => 'Pagine senza uscita',
@@ -1360,6 +1398,12 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'deletionlog'                 => 'Log delle cancellazioni',
 'reverted'                    => 'Ripristinata la versione precedente',
 'deletecomment'               => 'Motivo della cancellazione',
+'deleteotherreason'           => 'Altra motivazione o motivazione aggiuntiva:',
+'deletereasonotherlist'       => 'Altra motivazione',
+'deletereason-dropdown'       => "*Motivazioni più comuni per la cancellazione
+** Richiesta dell'autore
+** Violazione di copyright
+** Vandalismo",
 'rollback'                    => 'Annulla le modifiche',
 'rollbackfailed'              => 'Rollback non riuscito',
 'cantrollback'                => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
@@ -1397,6 +1441,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'protect-summary-cascade'     => 'ricorsiva',
 'protect-expiring'            => 'scadenza: $1 (UTC)',
 'protect-cascade'             => 'Protezione ricorsiva (estende la protezione a tutte le pagine incluse in questa).',
+'protect-cantedit'            => 'Non è possibile modificare i livelli di protezione per la pagina in quanto non si dispone dei permessi necessari per modificare la pagina stessa.',
 'restriction-type'            => 'Permesso',
 'restriction-level'           => 'Livello di restrizione',
 'minimum-size'                => 'Dimensione minima (in byte)',
@@ -1424,7 +1469,9 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'undeletehistorynoadmin'       => 'La pagina è stata cancellata. Il motivo della cancellazione è indicato di seguito, assieme ai dati degli utenti che avevano modificato la pagina prima della cancellazione. Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.',
 'undelete-revision'            => 'Revisione cancellata della pagina $1, inserita il $2 da $3:',
 'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
+'undelete-nodiff'              => 'Non è stata trovata nessuna revisione precedente.',
 'undeletebtn'                  => 'Ripristina',
+'undeletereset'                => 'Reimposta',
 'undeletecomment'              => 'Commento:',
 'undeletedarticle'             => 'ha recuperato "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
@@ -1479,6 +1526,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Puntano qui',
 'whatlinkshere-title' => 'Pagine che puntano a $1',
+'whatlinkshere-page'  => 'Pagina:',
 'linklistsub'         => '(Lista dei collegamenti)',
 'linkshere'           => "Le seguenti pagine contengono dei collegamenti a '''[[:$1]]''':",
 'nolinkshere'         => "Nessuna pagina contiene collegamenti che puntano a '''[[:$1]]'''.",
@@ -1557,9 +1605,12 @@ $1',
 'range_block_disabled'        => 'La possibilità di bloccare intervalli di indirizzi IP non è attiva al momento.',
 'ipb_expiry_invalid'          => 'Durata o scadenza del blocco non valida.',
 'ipb_already_blocked'         => 'L\'utente "$1" è già bloccato',
-'ip_range_invalid'            => 'Intervallo di indirizzi IP non valido.',
-'proxyblocker'                => 'Blocco dei proxy aperti',
 'ipb_cant_unblock'            => 'Errore: Impossibile trovare il blocco con ID $1. Il blocco potrebbe essere già stato rimosso.',
+'ipb_blocked_as_range'        => "Errore: L'indirizzo IP $1 non è soggetto a blocco individuale e non può essere sbloccato. Il blocco è invece attivo a livello dell'intervallo $2, che può essere sbloccato.",
+'ip_range_invalid'            => 'Intervallo di indirizzi IP non valido.',
+'blockme'                     => 'Bloccami',
+'proxyblocker'                => 'Blocco dei proxy aperti',
+'proxyblocker-disabled'       => 'Questa funzione non è attiva.',
 'proxyblockreason'            => 'Questo indirizzo IP è stato bloccato perché risulta essere un proxy aperto. Si prega di contattare il proprio fornitore di accesso a Internet o il supporto tecnico e informarli di questo grave problema di sicurezza.',
 'proxyblocksuccess'           => 'Blocco eseguito.',
 'sorbsreason'                 => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL.',
