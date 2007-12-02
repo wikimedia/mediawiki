@@ -1,4 +1,3 @@
-
 function considerChangingExpiryFocus() {
 	if (!document.getElementById) {
 		return;
@@ -31,26 +30,23 @@ function updateBlockOptions() {
 	var isEmpty = addy.match(/^\s*$/);
 	var isIp = addy.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7})(\/\d+)?$/);
 
-	/*
-	var anonymousCheck = document.getElementById('wpAnonOnly');
-	anonymousCheck.disabled = !isIp && !isEmpty;
-
-	var autoblockCheck = document.getElementById('wpEnableAutoblock');
-	autoblockCheck.disabled = isIp && !isEmpty;
-
-	var emailblockCheck = document.getElementById('wpEmailBan');
-	emailblockCheck.disabled = isIp && !isEmpty;
-	*/
-
 	var anonymousRow = document.getElementById('wpAnonOnlyRow');
-	anonymousRow.style.display = (!isIp && !isEmpty) ? 'none' : '';
+	if( anonymousRow ) {
+		anonymousRow.style.display = (!isIp && !isEmpty) ? 'none' : '';
+	}
 
 	var autoblockRow = document.getElementById('wpEnableAutoblockRow');
-	autoblockRow.style.display = isIp && !isEmpty ? 'none' : '';
+	if( autoblockRow ) {
+		autoblockRow.style.display = isIp && !isEmpty ? 'none' : '';
+	}
 
 	var emailblockRow = document.getElementById('wpEnableEmailBan');
-	emailblockRow.style.display = isIp && !isEmpty ? 'none' : '';
+	if( emailblockRow ) {
+		emailblockRow.style.display = isIp && !isEmpty ? 'none' : '';
+	}
 	
-	var emailblockRow = document.getElementById('wpEnableHideUser');
-	emailblockRow.style.display = isIp && !isEmpty ? 'none' : '';
+	var hideuserRow = document.getElementById('wpEnableHideUser');
+	if( hideuserRow ) {
+		hideuserRow.style.display = isIp && !isEmpty ? 'none' : '';
+	}
 }
