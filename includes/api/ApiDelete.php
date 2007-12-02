@@ -84,8 +84,8 @@ class ApiDelete extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->requestWriteMode();
-		$params = $this->getMain()->extractRequestParams();
+		$this->getMain()->requestWriteMode();
+		$params = $this->extractRequestParams();
 		
 		$titleObj = NULL;
 		if(!isset($params['title']))
