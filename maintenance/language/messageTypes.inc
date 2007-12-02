@@ -158,6 +158,8 @@ $wgOptionalMessages = array(
 	'unusedtemplates-summary',
 	'fewestrevisions-summary',
 	'withoutinterwiki-summary',
+	'variantname-zh-hans',
+	'variantname-zh-hant',
 	'variantname-zh-cn',
 	'variantname-zh-tw',
 	'variantname-zh-hk',
