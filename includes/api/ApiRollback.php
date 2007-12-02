@@ -38,8 +38,8 @@ class ApiRollback extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->requestWriteMode();
-		$params = $this->getMain()->extractRequestParams();
+		$this->getMain()->equestWriteMode();
+		$params = $this->extractRequestParams();
 		
 		$titleObj = NULL;
 		if(!isset($params['title']))

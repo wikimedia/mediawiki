@@ -39,8 +39,8 @@ class ApiMove extends ApiBase {
 	
 	public function execute() {
 		global $wgUser;
-		$this->requestWriteMode();
-		$params = $this->getMain()->extractRequestParams();
+		$this->getMain()->requestWriteMode();
+		$params = $this->extractRequestParams();
 		if(is_null($params['reason']))
 				$params['reason'] = '';
 		
