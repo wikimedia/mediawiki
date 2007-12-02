@@ -86,7 +86,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show a warning message when creating/editing a user (talk) page but the user
   does not exists
 * (bug 8396) Ignore out-of-date serialised message caches
-* (bug 943) RSS feed for Recentchangeslinked
 
 === Bug fixes in 1.12 ===
 
@@ -306,8 +305,6 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Outputting list of all user preferences rather than having to request them by 
   name
 * (bug 11206) api.php should honor maxlag
-* Added diff generation to prop=revisions
-* Added support for traditional, unified and array diffs to prop=revisions
 * Make prop=info check for restrictions in the old format too.
 * Add apihighlimits permission, default for sysops and bots
 * Add limit=max to use maximal limit
