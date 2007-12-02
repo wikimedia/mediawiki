@@ -44,13 +44,18 @@ class LanguageZh extends LanguageZh_hans {
 	function __construct() {
 		global $wgHooks;
 		parent::__construct();
-		$this->mConverter = new ZhConverter($this, 'zh',
-                                            array('zh', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'),
-											array('zh'=>'zh-cn',
-												  'zh-cn'=>'zh-sg',
-												  'zh-sg'=>'zh-cn',
-												  'zh-tw'=>'zh-hk',
-												  'zh-hk'=>'zh-tw'));
+
+		$variants = array('zh', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk');
+		$variantfallbacks = array(
+			'zh'    => 'zh-cn',
+			'zh-cn' => 'zh-sg',
+			'zh-sg' => 'zh-cn',
+			'zh-tw' => 'zh-hk',
+			'zh-hk' => 'zh-tw'
+		);
+
+		$this->mConverter = new ZhConverter( $this, 'zh', $variants, $variantfallbacks );
+
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 

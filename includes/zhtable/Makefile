@@ -11,7 +11,12 @@ SED = LANG=zh_CN.UTF8 sed
 DIFF = LANG=zh_CN.UTF8 diff
 CC ?= gcc
 
-#installation directory
+SF_MIRROR = easynews
+SCIM_TABLES_VER = 0.5.7
+SCIM_PINYIN_VER = 0.5.91
+LIBTABE_VER = 0.2.3
+
+# Installation directory
 INSTDIR = /usr/local/share/zhdaemons/
 
 all: ZhConversion.php tradphrases.notsure simpphrases.notsure wordlist toCN.dict toTW.dict toHK.dict toSG.dict
@@ -21,16 +26,16 @@ Unihan.txt:
 	unzip -q Unihan.zip
 
 EZ.txt.in:
-	wget -nc http://easynews.dl.sourceforge.net/sourceforge/scim/scim-tables-0.5.1.tar.gz
-	tar -xzf scim-tables-0.5.1.tar.gz -O scim-tables-0.5.1/zh/EZ.txt.in > EZ.txt.in
+	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/scim/scim-tables-$(SCIM_TABLES_VER).tar.gz
+	tar -xzf scim-tables-$(SCIM_TABLES_VER).tar.gz -O scim-tables-$(SCIM_TABLES_VER)/tables/zh/EZ-Big.txt.in > EZ.txt.in
 
 phrase_lib.txt:
-	wget -nc http://easynews.dl.sourceforge.net/sourceforge/scim/scim-pinyin-0.5.0.tar.gz
-	tar -xzf scim-pinyin-0.5.0.tar.gz -O scim-pinyin-0.5.0/data/phrase_lib.txt > phrase_lib.txt
+	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/scim/scim-pinyin-$(SCIM_PINYIN_VER).tar.gz
+	tar -xzf scim-pinyin-$(SCIM_PINYIN_VER).tar.gz -O scim-pinyin-$(SCIM_PINYIN_VER)/data/phrase_lib.txt > phrase_lib.txt
 
 tsi.src:
-	wget -nc http://unc.dl.sourceforge.net/sourceforge/libtabe/libtabe-0.2.3.tgz	
-	tar -xzf libtabe-0.2.3.tgz -O libtabe/tsi-src/tsi.src > tsi.src
+	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/libtabe/libtabe-$(LIBTABE_VER).tgz	
+	tar -xzf libtabe-$(LIBTABE_VER).tgz -O libtabe/tsi-src/tsi.src > tsi.src
 
 wordlist: phrase_lib.txt EZ.txt.in tsi.src
 	iconv -c -f big5 -t utf8 tsi.src | $(SED) 's/# //g' | $(SED) 's/[ ][0-9].*//' > wordlist
@@ -215,36 +220,27 @@ toSG.dict: toSG.manual
 ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.phrases.t toHK.manual toSG.manual
 	printf '<?php\n/**\n * Simplified/Traditional Chinese conversion tables\n' > ZhConversion.php
 	printf ' *\n * Automatically generated using code and data in includes/zhtable/\n' >> ZhConversion.php
-	printf ' * Do not modify directly! \n *\n * @package MediaWiki\n*/\n\n' >> ZhConversion.php
+	printf ' * Do not modify directly!\n */\n\n' >> ZhConversion.php
 	printf '$$zh2TW=array(\n' >> ZhConversion.php
 	cat simp2trad1to1.t >> ZhConversion.php
 	echo >> ZhConversion.php
 	cat simp2trad.phrases.t >> ZhConversion.php
-	echo >> ZhConversion.php
 	echo ');' >> ZhConversion.php
-	echo >> ZhConversion.php
 	echo >> ZhConversion.php
 	printf '$$zh2CN=array(\n' >> ZhConversion.php
 	cat trad2simp1to1.t >> ZhConversion.php
 	echo >> ZhConversion.php
 	cat trad2simp.phrases.t >> ZhConversion.php
-	echo >> ZhConversion.php
-	printf ');' >> ZhConversion.php
-	echo >> ZhConversion.php
+	echo ');' >> ZhConversion.php
 	echo >> ZhConversion.php
 	printf '$$zh2HK=array(\n' >> ZhConversion.php
 	$(SED) 's/\(.*\)\t\(.*\)/"\1" => "\2",/' toHK.manual >> ZhConversion.php
-	echo >> ZhConversion.php
-	printf ');' >> ZhConversion.php
-	echo >> ZhConversion.php
+	echo ');' >> ZhConversion.php
 	echo >> ZhConversion.php
 	printf '$$zh2SG=array(\n' >> ZhConversion.php
 	$(SED) 's/\(.*\)\t\(.*\)/"\1" => "\2",/' toSG.manual >> ZhConversion.php
 	echo >> ZhConversion.php
 	printf ');' >> ZhConversion.php
-	echo >> ZhConversion.php
-	printf '?>' >> ZhConversion.php
-
 
 clean: cleantmp cleandl
 
@@ -262,7 +258,7 @@ cleantmp:
 cleandl:
 	rm -f \
 		Unihan.zip \
-		scim-tables-0.5.1.tar.gz \
-		scim-pinyin-0.5.0.tar.gz \
-		libtabe-0.2.3.tgz
+		scim-tables-$(SCIM_TABLES_VER).tar.gz \
+		scim-pinyin-$(SCIM_PINYIN_VER).tar.gz \
+		libtabe-$(LIBTABE_VER).tgz
 
