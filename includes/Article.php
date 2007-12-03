@@ -1923,11 +1923,15 @@ class Article {
 	 */
 	function delete() {
 		global $wgUser, $wgOut, $wgRequest;
+
 		$confirm = $wgRequest->wasPosted() &&
-			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
-		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
+				$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
+		
+		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
 		$this->DeleteReason = $wgRequest->getText( 'wpReason' );
+		
 		$reason = $this->DeleteReasonList;
+		
 		if ( $reason != 'other' && $this->DeleteReason != '') {
 			// Entry from drop down menu + additional comment
 			$reason .= ': ' . $this->DeleteReason;
