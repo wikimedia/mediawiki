@@ -316,7 +316,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Add rvtoken=rollback to prop=revisions
 * Add meta=allmessages to get messages from site's messages cache.
 * Use bold and italics highlighting only in API help
-* Added action={block,changerights,delete,move,protect,rollback,unblock,undelete} and list={blocks,deletedrevs}\
+* Added action={block,changerights,delete,move,protect,rollback,unblock,undelete} and list={blocks,deletedrevs}
+* Fixed sessionid attribute in action=login
 
 === Languages updated in 1.12 ===
 
