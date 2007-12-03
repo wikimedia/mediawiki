@@ -1203,8 +1203,8 @@ Make sure that this change will maintain historical page continuity.
 'mergehistory-empty'    => 'No revisions can be merged',
 'mergehistory-success'  => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
 'mergehistory-fail'     => 'Unable to perform history merge, please recheck the page and time parameters.',
-'mergehistory-no-source' => 'Source page $1 does not exists.',
-'mergehistory-no-destination' => 'Destination page $1 does not exists.',
+'mergehistory-no-source' => 'Source page $1 does not exist.',
+'mergehistory-no-destination' => 'Destination page $1 does not exist.',
 'mergehistory-invalid-source' => 'Source page must be a valid title.',
 'mergehistory-invalid-destination' => 'Destination page must be a valid title.',
 
