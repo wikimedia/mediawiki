@@ -419,6 +419,7 @@ $specialPageAliases = array(
 	'Search'                    => array( 'Search' ),
 	'Resetpass'                 => array( 'Resetpass' ),
 	'Withoutinterwiki'          => array( 'Withoutinterwiki' ),
+	'MergeHistory'              => array( 'MergeHistory' ),
 );
 
 /**

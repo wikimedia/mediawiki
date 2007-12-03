@@ -132,6 +132,7 @@ $specialPageAliases = array(
         'Listbots'                  => array( 'Bots' ),
         'Search'                    => array( 'Suche' ),
         'Withoutinterwiki'          => array( 'Fehlende_Interwikis' ),
+        'MergeHistory'              => array( 'Versionsgeschichte_vereinen' ),
 );
 
 $datePreferences = array(
