@@ -5,9 +5,9 @@
  *
  * @author Dundak
  * @author Michawiki
- * @author G - ג
  * @author Nike
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'de';
@@ -635,6 +635,7 @@ Móžeš administratora $1 abo jednoho z druhich [[{{MediaWiki:Grouppage-sysop}}
 'anontalkpagetext'          => '----
 <i>To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[{{ns:special}}:Userlogin|wutwor konto abo přizjew so]], zo by přichodnu šmjatańcu wobešoł.</i>',
 'noarticletext'             => 'Tuchwilu tuta strona žadyn tekst njewobsahuje, móžeš jeje titul w druhich stronach [[{{ns:special}}:Search/{{PAGENAME}}|pytać]] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} stronu wutworić].',
+'userpage-userdoesnotexist' => 'Wužiwarske konto „$1“ njeje zregistrowane. Prošu pruwuj, hač chceš tutu stronu woprawdźe wutworić/wobdźěłać.',
 'clearyourcache'            => '<b>Kedźbu:</b> Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, <b>Mozilla/Firefox/Safari:</b> tłóč na <i>Umsch</i> kliknjo na <i>Znowa</i> abo tłóč <i>Strg-Umsch-R</i> (<i>Cmd-Shift-R</i> na Apple Mac); <b>IE:</b> tłóč <i>Strg</i> kliknjo na symbol <i>Aktualisieren</i> abo tłóč <i>Strg-F5</i>; <b>Konqueror:</b>: Klikń jenož na tłóčatko <i>Erneut laden</i> abo tłoč  <i>F5</i>; Wužiwarjo <b>Opery</b> móža swój pufrowak dospołnje  w <i>Tools→Preferences</i> wuprózdnić.',
 'usercssjsyoucanpreview'    => '<strong>Pokiw:</strong> Wužij tłóčku „Přehlad”, zo by swój nowy css/js do składowanja testował.',
 'usercsspreview'            => "== Přehlad twojeho wosobinskeho CSS ==
@@ -780,21 +781,25 @@ Druzy administratorojo w tutym wikiju móža schowany tekst dale čitać a jón 
 'overlogpagetext' => 'To je protokol wušmórnjenjow a zablokowanjow, kiž su před administratorami schowane.',
 
 # History merging
-'mergehistory'         => 'Stawizny stronow zjednoćić',
-'mergehistory-header'  => "Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
+'mergehistory'                     => 'Stawizny stronow zjednoćić',
+'mergehistory-header'              => "Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
 Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
 
 '''Znajmjeńša aktualna wersija žórłoweje strony dyrbi so zachować.'''",
-'mergehistory-box'     => 'Wersije dweju stronow zjednoćić:',
-'mergehistory-from'    => 'Žórłowa strona:',
-'mergehistory-into'    => 'Cilowa strona:',
-'mergehistory-list'    => 'Zjednoćujomne wersijowe stawizny',
-'mergehistory-merge'   => 'Slědowace wersije wot [[:$1|$1]] hodźa so z [[:$2|$2]] zjednoćić. Wužij špaltu z opciskimi tłóčatkami, zo by jenož te wersije zjednoćił, kotrež su so w podatym času a bo před nim wutworili. Wobkedźbuj, zo wužiwanje nawigaciskich wotkazow budźe tutu špaltu wróćo stajeć.',
-'mergehistory-go'      => 'Zjednoćujomne změny pokazać',
-'mergehistory-submit'  => 'Wersije zjednoćić',
-'mergehistory-empty'   => 'Njehodźa so žane wersije zjednoćeć',
-'mergehistory-success' => '$3 wersije wot [[:$1|$1]] wuspěšnje z [[:$2|$2]] zjednoćene.',
-'mergehistory-fail'    => 'Njeje móžno zjednócenje stawiznow přewjesć, prošu přepruwuj stronu a časowe parametry.',
+'mergehistory-box'                 => 'Wersije dweju stronow zjednoćić:',
+'mergehistory-from'                => 'Žórłowa strona:',
+'mergehistory-into'                => 'Cilowa strona:',
+'mergehistory-list'                => 'Zjednoćujomne wersijowe stawizny',
+'mergehistory-merge'               => 'Slědowace wersije wot [[:$1|$1]] hodźa so z [[:$2|$2]] zjednoćić. Wužij špaltu z opciskimi tłóčatkami, zo by jenož te wersije zjednoćił, kotrež su so w podatym času a bo před nim wutworili. Wobkedźbuj, zo wužiwanje nawigaciskich wotkazow budźe tutu špaltu wróćo stajeć.',
+'mergehistory-go'                  => 'Zjednoćujomne změny pokazać',
+'mergehistory-submit'              => 'Wersije zjednoćić',
+'mergehistory-empty'               => 'Njehodźa so žane wersije zjednoćeć',
+'mergehistory-success'             => '$3 wersije wot [[:$1|$1]] wuspěšnje z [[:$2|$2]] zjednoćene.',
+'mergehistory-fail'                => 'Njeje móžno zjednócenje stawiznow přewjesć, prošu přepruwuj stronu a časowe parametry.',
+'mergehistory-no-source'           => 'Žórłowa strona $1 njeeksistuje.',
+'mergehistory-no-destination'      => 'Cilowa strona $1 njeeksistuje.',
+'mergehistory-invalid-source'      => 'Žórłowa strona dyrbi płaćiwy titul być.',
+'mergehistory-invalid-destination' => 'Cilowa strona dyrbi płaćiwy titul być.',
 
 # Merge log
 'mergelog'           => 'Protokol zjednoćenja',
@@ -962,10 +967,12 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'newsectionsummary'                 => 'nowy wotrězk: /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Změny zwjazanych stron',
-'recentchangeslinked-title'    => 'Změny na stronach, kotrež su z „$1“ wotkazane',
-'recentchangeslinked-noresult' => 'Njejsu změny zwajzanych stron we wubranej dobje.',
-'recentchangeslinked-summary'  => "Tuta specialna strona naliči poslednje změny zwjazanych stronow. Strony z twojich wobkedźbowankow so '''tučnje''' jewja.",
+'recentchangeslinked'                    => 'Změny zwjazanych stron',
+'recentchangeslinked-title'              => 'Změny na stronach, kotrež su z „$1“ wotkazane',
+'recentchangeslinked-noresult'           => 'Njejsu změny zwajzanych stron we wubranej dobje.',
+'recentchangeslinked-summary'            => "Tuta specialna strona naliči poslednje změny zwjazanych stronow. Strony z twojich wobkedźbowankow so '''tučnje''' jewja.",
+'recentchangeslinked-feed-entry'         => 'Wužiwar $1 je $2 wobdźěłał',
+'recentchangeslinked-feed-entry-comment' => 'Wužiwar $1 je $2 ($3) wobdźěłał',
 
 # Upload
 'upload'                      => 'Dataju nahrać',
@@ -1474,6 +1481,7 @@ Poslednja změna běše wot wužiwarja [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}
 'protect-summary-cascade'     => 'kaskadowacy',
 'protect-expiring'            => 'spadnje $1 (UTC)',
 'protect-cascade'             => 'Kaskadowacy škit – wšě w tutej stronje zapřijate strony so škituja.',
+'protect-cantedit'            => 'Njemóžeš škitowe runiny tuteje strony změnić, dokelž nimaš dowolnosć, zo by ju wobdźěłał.',
 'restriction-type'            => 'Škitowy status',
 'restriction-level'           => 'Runina škita:',
 'minimum-size'                => 'Minimalna wulkosć:',

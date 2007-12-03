@@ -259,6 +259,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'edithelp'          => 'Kako uređivati stranicu',
 'edithelppage'      => 'Help:Kako_uređivati_stranicu',
 'faq'               => 'Najčešća pitanja',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Pomoć',
 'mainpage'          => 'Glavna stranica',
 'policy-url'        => 'Project:Pravila',
@@ -743,23 +744,27 @@ postavili dodatna ograničenja.',
 Vidi [[Special:Ipblocklist|IP popis blokiranja]] za popis trenutno blokiranih IP adresa.',
 
 # History merging
-'mergehistory'         => 'Spoji povijesti starih izmjena stranice',
-'mergehistory-header'  => "Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.
+'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
+'mergehistory-header'              => "Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.
 Budite sigurni da ta promjena čuva kontinuitet stranice.
 
 '''Najmanje posljednja promjena početne stranice mora biti zadržana.'''",
-'mergehistory-box'     => 'Spoji povijesti starih izmjena dvije stranice:',
-'mergehistory-from'    => 'Izvorna stranica:',
-'mergehistory-into'    => 'Ciljna stranica:',
-'mergehistory-list'    => 'Spojiva povijest uređivanja',
-'mergehistory-merge'   => 'Slijedeće promjene stranice [[:$1|$1]] mogu biti spojene u [[:$2|$2]].
+'mergehistory-box'                 => 'Spoji povijesti starih izmjena dvije stranice:',
+'mergehistory-from'                => 'Izvorna stranica:',
+'mergehistory-into'                => 'Ciljna stranica:',
+'mergehistory-list'                => 'Spojiva povijest uređivanja',
+'mergehistory-merge'               => 'Slijedeće promjene stranice [[:$1|$1]] mogu biti spojene u [[:$2|$2]].
 Rabite kolonu s radio gumbima za spajanje samo određenih promjena.
 Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
-'mergehistory-go'      => 'Pokaži spojivu povijest uređivanja',
-'mergehistory-submit'  => 'Spoji povijesti uređivanja stranica',
-'mergehistory-empty'   => 'Nema spojivih promjena (spajanje nije moguće)',
-'mergehistory-success' => '$3 promjene stranice [[:$1|$1]] uspješno spojene u povijest stranice [[:$2|$2]].',
-'mergehistory-fail'    => 'Nemoguće spojiti povijest stranica, molimo provjerite stranice i vremenske parametre.',
+'mergehistory-go'                  => 'Pokaži spojivu povijest uređivanja',
+'mergehistory-submit'              => 'Spoji povijesti uređivanja stranica',
+'mergehistory-empty'               => 'Nema spojivih promjena (spajanje nije moguće)',
+'mergehistory-success'             => '$3 promjene stranice [[:$1|$1]] uspješno spojene u povijest stranice [[:$2|$2]].',
+'mergehistory-fail'                => 'Nemoguće spojiti povijest stranica, molimo provjerite stranice i vremenske parametre.',
+'mergehistory-no-source'           => 'Izvorna stranica $1 ne postoji.',
+'mergehistory-no-destination'      => 'Ciljna stranica $1 ne postoji.',
+'mergehistory-invalid-source'      => 'Izvorna stranica mora imati valjani naziv.',
+'mergehistory-invalid-destination' => 'Ciljna stranica mora imati valjani naziv.',
 
 # Merge log
 'mergelog'           => 'Evidencija spajanja povijesti stranica',

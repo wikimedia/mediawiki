@@ -711,21 +711,25 @@ D’autres administrateurs sur ce wiki pourront toujours accéder au contenu cac
 Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
 
 # History merging
-'mergehistory'         => "Fusion des historiques d'une page",
-'mergehistory-header'  => "Cette page vous permet de fusionner les révisions de l'historique d'une page d'origine vers une nouvelle.
+'mergehistory'                     => "Fusion des historiques d'une page",
+'mergehistory-header'              => "Cette page vous permet de fusionner les révisions de l'historique d'une page d'origine vers une nouvelle.
 Assurez vous que ce changement puisse conserver la continuité de l'historique.
 
 '''Enfin, la version en cours doit être conservée.'''",
-'mergehistory-box'     => 'Fusionner les versions de deux pages :',
-'mergehistory-from'    => "Page d'origine :",
-'mergehistory-into'    => 'Page de destination :',
-'mergehistory-list'    => 'Édition des historiques fusionnables',
-'mergehistory-merge'   => "Les versions suivantes de [[:$1]] peuvent être fusionnées avec [[:$2]]. Utilisez le bouton radio  de la colonne pour fusionner uniquement les versions créées du début jusqu'à la date indiquée. Notez bien que l'utilisation des liens de navigation réinitialisera la colonne.",
-'mergehistory-go'      => 'Voir les éditions fusionnables',
-'mergehistory-submit'  => 'Fusionner les révisions',
-'mergehistory-empty'   => 'Aucune révision ne peut être fusionnée',
-'mergehistory-success' => '$3 {{PLURAL:$3|revision|révisions}} de [[:$1]] {{PLURAL:$3|fusionnée|fusionnées}} avec succès avec [[:$2]].',
-'mergehistory-fail'    => 'Impossible de procéder à la fusion des historiques. Resélectionner la page ainsi que les paramètres de date.',
+'mergehistory-box'                 => 'Fusionner les versions de deux pages :',
+'mergehistory-from'                => "Page d'origine :",
+'mergehistory-into'                => 'Page de destination :',
+'mergehistory-list'                => 'Édition des historiques fusionnables',
+'mergehistory-merge'               => "Les versions suivantes de [[:$1]] peuvent être fusionnées avec [[:$2]]. Utilisez le bouton radio  de la colonne pour fusionner uniquement les versions créées du début jusqu'à la date indiquée. Notez bien que l'utilisation des liens de navigation réinitialisera la colonne.",
+'mergehistory-go'                  => 'Voir les éditions fusionnables',
+'mergehistory-submit'              => 'Fusionner les révisions',
+'mergehistory-empty'               => 'Aucune révision ne peut être fusionnée',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revision|révisions}} de [[:$1]] {{PLURAL:$3|fusionnée|fusionnées}} avec succès avec [[:$2]].',
+'mergehistory-fail'                => 'Impossible de procéder à la fusion des historiques. Resélectionner la page ainsi que les paramètres de date.',
+'mergehistory-no-source'           => "La page d'origine $1 n’existe pas.",
+'mergehistory-no-destination'      => 'La page de destination $1 n’existe pas.',
+'mergehistory-invalid-source'      => 'La page d’origine doit avoir un titre valide.',
+'mergehistory-invalid-destination' => 'La page de destination doit avoir un titre valide.',
 
 # Merge log
 'mergelog'           => 'Journal des fusions',

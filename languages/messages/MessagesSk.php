@@ -10,10 +10,10 @@
  * @author Maros
  * @author Helix84
  * @author Robbot
- * @author G - ג
  * @author Nike
  * @author SPQRobin
  * @author Michawiki
+ * @author לערי ריינהארט
  */
 
 $datePreferences = array(
@@ -471,6 +471,8 @@ Funkcia: $1<br />
 Požiadavka: $2',
 'viewsource'           => 'Zobraz zdroj',
 'viewsourcefor'        => '$1',
+'actionthrottled'      => 'Činnosť bola spomalená',
+'actionthrottledtext'  => 'Ako opatrenie proti spamu je počet vykonaní tejto činnosti za určitý čas obmedzený. Tento limit ste prekročili. Prosím, skúste to znova o niekoľko minút.',
 'protectedpagetext'    => 'Táto stránka bola zamknutá aby sa zamedzilo úpravám.',
 'viewsourcetext'       => 'Môžete si zobraziť a kopírovať zdroj tejto stránky:',
 'protectedinterface'   => 'Táto stránka poskytuje text používateľského rozhrania a je zamknutá, aby sa predišlo jej zneužitiu.',
@@ -540,7 +542,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'wrongpasswordempty'         => 'Zadané heslo bolo prázdne. Skúste prosím znova.',
 'passwordtooshort'           => 'Vaše heslo je príliš krátke. Musí mať dĺžku aspoň $1 znakov.',
 'mailmypassword'             => 'Pošlite mi e-mailom dočasné heslo',
-'passwordremindertitle'      => 'Oznámenie o hesle z {{GRAMMAR:genitív|{{SITENAME}}}}',
+'passwordremindertitle'      => 'Nové dočasné heslo pre {{GRAMMAR:akuzatív|{{SITENAME}}}}',
 'passwordremindertext'       => 'Niekto (pravdepodobne vy, z IP adresy $1)
 požiadal, aby sme vám zaslali nové prihlasovacie heslo do {{GRAMMAR:genitív|{{SITENAME}}}} ($4).
 Heslo pre používateľa "$2" je teraz "$3".
@@ -567,6 +569,11 @@ nástroje nebudú prístupné.',
 'invalidemailaddress'        => 'E-mailovú adresu nemožno akceptovať, pretože sa zdá, že má neplatný formát. Zadajte dobre naformátovanú adresu alebo nechajte príslušné políčko prázdne.',
 'accountcreated'             => 'Účet vytvorený',
 'accountcreatedtext'         => 'Používateľský účet pre $1 bol vytvorený.',
+'createaccount-title'        => 'Vytvorenie účtu na {{GRAMMAR:lokál|{{SITENAME}}}}',
+'createaccount-text'         => 'Niekto ($1) vytvoril účet pre $2 na {{GRAMMAR:lokál|{{SITENAME}}}}
+($4). Heslo pre „2“ je „$3“. Mali by ste sa prihlásiť a svoje heslo teraz zmeniť.
+
+Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 
 # Password reset dialog
@@ -675,6 +682,7 @@ Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom
 ----
 ''Toto je diskusná stránka anonymného používateľa, ktorý nemá vytvorené svoje konto alebo ho nepoužíva. Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, že takúto IP adresu používajú viacerí používatelia. Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevantné diskusné príspevky, zriaďte si konto alebo sa prihláste ([[Special:Userlogin|Zriadenie konta alebo prihlásenie]]), aby sa zamedzilo budúcim zámenám s inými anonymnými používateľmi''",
 'noarticletext'             => 'Na tejto stránke sa momentálne nenachádza žiadny text. Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
+'userpage-userdoesnotexist' => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
 'clearyourcache'            => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kiknite na ''Reload'' alebo stlačte ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Apple Mac); '''IE:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''; '''Konqueror:''': jednoducho kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; Používatelia '''Opery''' možno budú musieť úplne vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''.",
 'usercssjsyoucanpreview'    => '<strong>Tip:</strong> Váš nový CSS/JS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.',
 'usercsspreview'            => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
@@ -840,6 +848,33 @@ nie sú stanovené ďalšie obmedzenia.',
 'oversightlog'    => 'Záznam Dozoru',
 'overlogpagetext' => 'Nižšie sa nachádza zoznam posledných mazaní a blokovaní vrátane obsahu skrytého správcom.
 Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
+
+# History merging
+'mergehistory'                     => 'Zlúčiť histórie stránok',
+'mergehistory-header'              => "Táto stránka vám umožňuje zlúčiť histórie revízií zo zdrojovej stránky do novšej stránky.
+Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
+
+'''Aspoň aktuálna revízia zdrojovej stránky musí zostať.'''",
+'mergehistory-box'                 => 'Zlúčiť revízie dvoch stránok:',
+'mergehistory-from'                => 'Zdrojová stránka:',
+'mergehistory-into'                => 'Cieľová stránka:',
+'mergehistory-list'                => 'Zlúčiteľná história úprav',
+'mergehistory-merge'               => 'Nasledovné revízie [[:$1]] je možné zlúčiť do [[:$2]]. Použite stĺpec s výberovými políčkami ak chcete zlúčiť iba revízie vytvorené pred určitým časom (vrátane). Majte na pamäti, že použitím navigačných odkazov zrušíte zmeny vykonané v tomto stĺpci.',
+'mergehistory-go'                  => 'Zobraziť zlúčiteľné úpravy',
+'mergehistory-submit'              => 'Zlúčiť revízie',
+'mergehistory-empty'               => 'Žiadne revízie nie je možné zlúčiť',
+'mergehistory-success'             => '$3 revízií z [[:$1]] bolo úspešne zlúčených do [[:$2]].',
+'mergehistory-fail'                => 'Nepodarilo sa vykonať zlúčenie histórií. Prosím, skontrolujte parametre stránka a časy.',
+'mergehistory-no-source'           => 'Zdrojová stránka $1 neexistuje.',
+'mergehistory-no-destination'      => 'Cieľová stránka $1 neexistuje.',
+'mergehistory-invalid-source'      => 'Zdrojová stránka musí byť platný názov.',
+'mergehistory-invalid-destination' => 'Cieľová stránka musí byť platný názov.',
+
+# Merge log
+'mergelog'           => 'Záznam zlúčení',
+'pagemerge-logentry' => 'zlúčil [[$1]] do [[$2]] (revízie do $3)',
+'revertmerge'        => 'Vrátiť zlúčenie',
+'mergelogpagetext'   => 'Dolu je zoznam posledných zlúčení jednej histórie revízií stránky do druhej.',
 
 # Diffs
 'history-title'             => 'História revízií „$1“',
@@ -1007,10 +1042,12 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'newsectionsummary'                 => '/* $1 */ nová sekcia',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Súvisiace úpravy',
-'recentchangeslinked-title'    => 'Zmeny týkajúce sa $1',
-'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
-'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
+'recentchangeslinked'                    => 'Súvisiace úpravy',
+'recentchangeslinked-title'              => 'Zmeny týkajúce sa $1',
+'recentchangeslinked-noresult'           => 'V zadanom období neboli odkazované stránky zmenené.',
+'recentchangeslinked-summary'            => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
+'recentchangeslinked-feed-entry'         => 'Používateľ $1 upravil $2',
+'recentchangeslinked-feed-entry-comment' => 'Používateľ $1 upravil $2 ($3)',
 
 # Upload
 'upload'                      => 'Nahrať súbor',
@@ -1451,6 +1488,12 @@ Všetky zobrazené časy sú časy na serveri (UTC).
 'deletionlog'                 => 'záznam zmazaní',
 'reverted'                    => 'Obnovené na skoršiu verziu',
 'deletecomment'               => 'Dôvod na zmazanie',
+'deleteotherreason'           => 'Iný/ďalší dôvod:',
+'deletereasonotherlist'       => 'Iný dôvod',
+'deletereason-dropdown'       => '*Bežné dôvody zmazania
+** Na žiadosť autora
+** Porušenie autorských práv
+** Vandalizmus',
 'rollback'                    => 'Rollback úprav',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',
@@ -1494,6 +1537,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'protect-summary-cascade'     => 'kaskáda',
 'protect-expiring'            => 'vyprší o $1 (UTC)',
 'protect-cascade'             => 'Kaskádové zamknutie - chrániť všetky stránky použité na tejto stránke.',
+'protect-cantedit'            => 'Nemôžete zmeniť úrovne ochrany tejto stránky, pretože nemáte oprávnenie ju upravovať.',
 'restriction-type'            => 'Povolenie',
 'restriction-level'           => 'Úroveň obmedzenia',
 'minimum-size'                => 'Minimálna veľkosť (v bajtoch)',
@@ -1672,6 +1716,7 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'ipb_expiry_invalid'          => 'Neplatný čas ukončenia.',
 'ipb_already_blocked'         => '"$1" je už zablokovaný',
 'ipb_cant_unblock'            => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
+'ipb_blocked_as_range'        => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',
 'ip_range_invalid'            => 'Neplatný IP rozsah.',
 'blockme'                     => 'Zablokuj ma',
 'proxyblocker'                => 'Blokovač proxy',

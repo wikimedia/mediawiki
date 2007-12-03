@@ -982,21 +982,25 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 'overlogpagetext' => 'Hier onder is een lijst met de meest recente verwijderingen en blokkeringen met betrekking tot informatie die niet zichtbaar is voor admins. Zie de [[Special:Ipblocklist|Lijst van geblokkeerde gebruikers en IP-adressen]] voor een lijst van de blokkades en verbanningen die nu gelden.',
 
 # History merging
-'mergehistory'         => "Geschiedenis van pagina's samenvoegen",
-'mergehistory-header'  => "Deze pagina laat u toe om versies van de geschiedenis van een bronpagina naar een nieuwere pagina samen te voegen.
+'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
+'mergehistory-header'              => "Deze pagina laat u toe om versies van de geschiedenis van een bronpagina naar een nieuwere pagina samen te voegen.
 Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal behouden.
 
 '''Tenminste de huidige versie van de bronpagina moet overblijven.'''",
-'mergehistory-box'     => "Versies van twee pagina's samenvoegen:",
-'mergehistory-from'    => 'Bronpagina:',
-'mergehistory-into'    => 'Bestemmingspagina:',
-'mergehistory-list'    => 'Samenvoegbare bewerkingsgeschiedenis',
-'mergehistory-merge'   => 'De volgende versies van [[:$1]] kunnen samengevoegd worden naar [[:$2]]. Gebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de aangegeven tijd samen te voegen. Let op dat het gebruiken van de navigatielinks deze kolom zal herinstellen.',
-'mergehistory-go'      => 'Samenvoegbare bewerkingen tonen',
-'mergehistory-submit'  => 'Versies samenvoegen',
-'mergehistory-empty'   => 'Geen enkele versies kunnen samengevoegd worden',
-'mergehistory-success' => '$3 versies van [[:$1|$1]] succesvol samengevoegd naar [[:$2|$2]].',
-'mergehistory-fail'    => 'Kan geen geschiedenis samenvoegen, gelieve opnieuw de pagina- en tijdparameters te controleren.',
+'mergehistory-box'                 => "Versies van twee pagina's samenvoegen:",
+'mergehistory-from'                => 'Bronpagina:',
+'mergehistory-into'                => 'Bestemmingspagina:',
+'mergehistory-list'                => 'Samenvoegbare bewerkingsgeschiedenis',
+'mergehistory-merge'               => 'De volgende versies van [[:$1]] kunnen samengevoegd worden naar [[:$2]]. Gebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de aangegeven tijd samen te voegen. Let op dat het gebruiken van de navigatielinks deze kolom zal herinstellen.',
+'mergehistory-go'                  => 'Samenvoegbare bewerkingen tonen',
+'mergehistory-submit'              => 'Versies samenvoegen',
+'mergehistory-empty'               => 'Geen enkele versies kunnen samengevoegd worden',
+'mergehistory-success'             => '$3 versies van [[:$1|$1]] succesvol samengevoegd naar [[:$2|$2]].',
+'mergehistory-fail'                => 'Kan geen geschiedenis samenvoegen, gelieve opnieuw de pagina- en tijdparameters te controleren.',
+'mergehistory-no-source'           => 'Bronpagina $1 bestaat niet.',
+'mergehistory-no-destination'      => 'Bestemmingspagina $1 bestaat niet.',
+'mergehistory-invalid-source'      => 'De bronpagina moet een geldige titel zijn.',
+'mergehistory-invalid-destination' => 'De bestemmingspagina moet een geldige titel zijn.',
 
 # Merge log
 'mergelog'           => 'Samenvoegingslogboek',
@@ -1164,10 +1168,12 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'newsectionsummary'                 => '/* $1 */ nieuwe subkop',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Verwante wijzigingen',
-'recentchangeslinked-title'    => 'Wijzigingen verwant aan $1',
-'recentchangeslinked-noresult' => "Er zijn geen bewerkingen in de gegeven periode geweest op de pagina's die vanaf hier gelinkt worden.",
-'recentchangeslinked-summary'  => "Deze speciale pagina toont de laatste bewerkingen op pagina's die gelinkt worden vanaf deze pagina. Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
+'recentchangeslinked'                    => 'Verwante wijzigingen',
+'recentchangeslinked-title'              => 'Wijzigingen verwant aan $1',
+'recentchangeslinked-noresult'           => "Er zijn geen bewerkingen in de gegeven periode geweest op de pagina's die vanaf hier gelinkt worden.",
+'recentchangeslinked-summary'            => "Deze speciale pagina toont de laatste bewerkingen op pagina's die gelinkt worden vanaf deze pagina. Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
+'recentchangeslinked-feed-entry'         => 'Gebruiker $1 bewerkte $2',
+'recentchangeslinked-feed-entry-comment' => 'Gebruiker $1 bewerkte $2 ($3)',
 
 # Upload
 'upload'                      => 'Bestand uploaden',

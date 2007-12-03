@@ -156,6 +156,7 @@ $messages = array(
 'disclaimers'       => '免责声明',
 'disclaimerpage'    => 'Project:免责声明',
 'edithelp'          => '编辑帮助',
+'edithelppage'      => 'Help:如何编辑页面',
 'helppage'          => 'Help:目录',
 'mainpage'          => '封面',
 'portal'            => '社区门荡',
@@ -305,6 +306,7 @@ $messages = array(
 # Diffs
 'editcurrent'             => '编辑该只页面个当前版本',
 'compareselectedversions' => '比较选中个版本',
+'editundo'                => '撤销',
 
 # Search results
 'searchresults'         => '搜索结果',
@@ -347,6 +349,8 @@ $messages = array(
 
 # User rights
 'userrights-user-editname' => '输入用户名:',
+
+'grouppage-sysop' => '{{ns:project}}:管理员',
 
 # Recent changes
 'recentchanges'     => '近段辰光个改动',
@@ -408,6 +412,7 @@ $messages = array(
 'imgdelete'                 => '删',
 'imgdesc'                   => '描述页',
 'imgfile'                   => '源文件',
+'filehist'                  => '文物历史',
 'imagelinks'                => '链接',
 'nolinkstoimage'            => '呒拨页面链接到该只文件。',
 'shareduploadwiki-linktext' => '文件描述页面',
@@ -535,8 +540,9 @@ $messages = array(
 'viewdeletedpage' => '望望删脱个页面',
 
 # Namespace form on various pages
-'namespace' => '名字空间:',
-'invert'    => '反选择',
+'namespace'      => '名字空间:',
+'invert'         => '反选择',
+'blanknamespace' => '（主）',
 
 # Contributions
 'contributions' => '用户贡献',
@@ -590,6 +596,7 @@ $messages = array(
 'movelogpage'             => '捅荡记录',
 'movelogpagetext'         => '下底是拨拉捅荡个页面列表。',
 'movereason'              => '理由:',
+'revertmove'              => '恢复',
 'delete_and_move'         => '删脱搭仔捅荡',
 'delete_and_move_confirm' => '对哉，删脱该只页面',
 
@@ -626,7 +633,11 @@ $messages = array(
 'tooltip-search'             => '搜寻{{SITENAME}}',
 'tooltip-p-logo'             => '封面',
 'tooltip-n-mainpage'         => '进入封面',
+'tooltip-n-portal'           => '关于本计划，可以做什么，应该如何做',
+'tooltip-n-recentchanges'    => '列出近段辰光个改动',
+'tooltip-n-help'             => '寻求帮助',
 'tooltip-n-sitesupport'      => '支持倪',
+'tooltip-t-whatlinkshere'    => '列出所有与此页相链个页面',
 'tooltip-t-emailuser'        => '发封信拨该个用户',
 'tooltip-t-upload'           => '上载图像或媒体文物',
 'tooltip-t-specialpages'     => '亨白浪当个特殊页面列表',
