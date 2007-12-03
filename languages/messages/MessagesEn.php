@@ -1205,7 +1205,6 @@ Make sure that this change will maintain historical page continuity.
 'mergehistory-invalid-source' => 'Source page must be a valid title.',
 'mergehistory-invalid-destination' => 'Destination page must be a valid title.',
 
-
 # Merge log
 'mergelog'              => 'Merge log',
 'pagemerge-logentry'    => 'merged [[$1]] into [[$2]] (revisions up to $3)',

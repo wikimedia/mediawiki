@@ -627,6 +627,10 @@ $wgMessageStructure = array(
 		'mergehistory-empty',
 		'mergehistory-success',
 		'mergehistory-fail',
+		'mergehistory-no-source',
+		'mergehistory-no-destination',
+		'mergehistory-invalid-source',
+		'mergehistory-invalid-destination',
 	),
 	'mergelog' => array(
 		'mergelog',
