@@ -231,6 +231,7 @@ $specialPageAliases = array(
 	'Specialpages'              => array( 'דפים_מיוחדים' ),
 	'Contributions'             => array( 'תרומות', 'תרומות_המשתמש' ),
 	'Emailuser'                 => array( 'שליחת_דואר_למשתמש' ),
+	'Confirmemail'              => array( 'אימות כתובת דואר' ),
 	'Whatlinkshere'             => array( 'דפים_המקושרים_לכאן' ),
 	'Recentchangeslinked'       => array( 'שינויים_בדפים_המקושרים' ),
 	'Movepage'                  => array( 'העברת_דף', 'העברה' ),
@@ -1153,12 +1154,10 @@ $2',
 'newsectionsummary'                 => '/* $1 */ פסקה חדשה',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'שינויים בדפים המקושרים',
-'recentchangeslinked-title'              => 'שינויים בדפים המקושרים לדף $1',
-'recentchangeslinked-noresult'           => 'לא היו שינויים בדפים המקושרים בתקופה זו.',
-'recentchangeslinked-summary'            => "בדף זה רשומים השינויים האחרונים בדפים המקושרים. דפים המופיעים ברשימת המעקב שלכם מופיעים ב'''הדגשה'''.",
-'recentchangeslinked-feed-entry'         => 'המשתמש $1 ערך את $2',
-'recentchangeslinked-feed-entry-comment' => 'המשתמש $1 ערך את $2 ($3)',
+'recentchangeslinked'          => 'שינויים בדפים המקושרים',
+'recentchangeslinked-title'    => 'שינויים בדפים המקושרים לדף $1',
+'recentchangeslinked-noresult' => 'לא היו שינויים בדפים המקושרים בתקופה זו.',
+'recentchangeslinked-summary'  => "בדף זה רשומים השינויים האחרונים בדפים המקושרים. דפים המופיעים ברשימת המעקב שלכם מופיעים ב'''הדגשה'''.",
 
 # Upload
 'upload'                      => 'העלאת קובץ לשרת',
