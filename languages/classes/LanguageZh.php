@@ -12,7 +12,7 @@ class ZhConverter extends LanguageConverter {
 			'zh-hans' => new ReplacementArray( $zh2Hans ),
 			'zh-hant' => new ReplacementArray( $zh2Hant ),
 			'zh-cn'   => new ReplacementArray( array_merge($zh2Hans, $zh2CN) ),
-			'zh-tw'   => new ReplacementArray( array_merge($zh2Hans, $zh2TW) ),
+			'zh-tw'   => new ReplacementArray( array_merge($zh2Hant, $zh2TW) ),
 			'zh-sg'   => new ReplacementArray( array_merge($zh2Hans, $zh2SG) ),
 			'zh-hk'   => new ReplacementArray( array_merge($zh2Hant, $zh2HK) ),
 			'zh'      => new ReplacementArray
