@@ -307,7 +307,7 @@ $messages = array(
 'page-rss-feed'           => '「$1」的RSS訂閱',
 'page-atom-feed'          => '「$1」的Atom訂閱',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '頁面',
 'nstab-user'      => '用戶頁面',
 'nstab-media'     => '媒體頁面',
@@ -380,7 +380,7 @@ MySQL返回錯誤「$3: $4」。',
 'viewsource'           => '原始碼',
 'viewsourcefor'        => '$1的原始碼',
 'actionthrottled'      => '動作已壓制',
-'actionthrottledtext'  => "基於反垃圾的考量，您現在於這段短時間之中限制去作這一個動作，而您已經超過這個上限。請在數分鐘後再嘗試。",
+'actionthrottledtext'  => '基於反垃圾的考量，您現在於這段短時間之中限制去作這一個動作，而您已經超過這個上限。請在數分鐘後再嘗試。',
 'protectedpagetext'    => '該頁面已被鎖定以防止編輯。',
 'viewsourcetext'       => '你可以檢視並複製本頁面的原始碼。',
 'protectedinterface'   => '該頁提供了軟體的介面文字，它已被鎖定以防止隨意的修改。',
@@ -716,30 +716,34 @@ $2',
 'overlogpagetext' => '下面是一個最近刪除以及由操作員封鎖牽涉到的內容列表。參看下面的[[Special:Ipblocklist|IP封鎖列表]]去查看現時進行的封鎖。',
 
 # History merging
-'mergehistory'          => '合併頁面歷史',
-'mergehistory-header'   => "這一頁可以講您合併一個來源頁面的歷史到另一個新頁面中。
+'mergehistory'                     => '合併頁面歷史',
+'mergehistory-header'              => "這一頁可以講您合併一個來源頁面的歷史到另一個新頁面中。
 請確認這次更改會繼續保留該頁面先前的歷史版本。
 
 '''最少該來源頁面的現時修訂必定會保持。'''",
-'mergehistory-box'      => '合併兩個頁面的修訂:',
-'mergehistory-from'     => '來源頁面:',
-'mergehistory-into'     => '目的頁面:',
-'mergehistory-list'     => '可以合併的編輯歷史',
-'mergehistory-merge'    => '以下[[:$1]]的修訂可以合併到[[:$2]]。用該選項按鈕欄去合併只有在指定時間以前所創建的修訂。要留意的是使用導航連結便會重設這一欄。',
-'mergehistory-go'       => '顯示可以合併的編輯',
-'mergehistory-submit'   => '合併修訂',
-'mergehistory-empty'    => '沒有修訂可以合併',
-'mergehistory-success'  => '[[:$1]]的$3次修訂已經成功地合併到[[:$2]]。',
-'mergehistory-fail'     => '不可以進行歷史合併，請重新檢查該頁面以及時間參數。',
+'mergehistory-box'                 => '合併兩個頁面的修訂:',
+'mergehistory-from'                => '來源頁面:',
+'mergehistory-into'                => '目的頁面:',
+'mergehistory-list'                => '可以合併的編輯歷史',
+'mergehistory-merge'               => '以下[[:$1]]的修訂可以合併到[[:$2]]。用該選項按鈕欄去合併只有在指定時間以前所創建的修訂。要留意的是使用導航連結便會重設這一欄。',
+'mergehistory-go'                  => '顯示可以合併的編輯',
+'mergehistory-submit'              => '合併修訂',
+'mergehistory-empty'               => '沒有修訂可以合併',
+'mergehistory-success'             => '[[:$1]]的$3次修訂已經成功地合併到[[:$2]]。',
+'mergehistory-fail'                => '不可以進行歷史合併，請重新檢查該頁面以及時間參數。',
+'mergehistory-no-source'           => '來源頁面$1不存在。',
+'mergehistory-no-destination'      => '目的頁面$1不存在。',
+'mergehistory-invalid-source'      => '來源頁面必須是一個有效的標題。',
+'mergehistory-invalid-destination' => '目的頁面必須是一個有效的標題。',
 
 # Merge log
-'mergelog'              => '合併日誌',
-'pagemerge-logentry'    => '已合併[[$1]]到[[$2]] (修訂截至$3)',
-'revertmerge'           => '解除合併',
-'mergelogpagetext'      => '以下是一個最近由一個頁面的修訂歷史合併到另一個頁面的列表。',
+'mergelog'           => '合併日誌',
+'pagemerge-logentry' => '已合併[[$1]]到[[$2]] (修訂截至$3)',
+'revertmerge'        => '解除合併',
+'mergelogpagetext'   => '以下是一個最近由一個頁面的修訂歷史合併到另一個頁面的列表。',
 
 # Diffs
-'history-title'                => '「$1」的修訂歷史',
+'history-title'             => '「$1」的修訂歷史',
 'difference'                => '(修訂版本間差異)',
 'loadingrev'                => '載入修訂版本比較',
 'lineno'                    => '第$1行：',
@@ -1049,11 +1053,11 @@ $2',
 'filedelete'             => '刪除$1',
 'filedelete-legend'      => '刪除檔案',
 'filedelete-intro'       => "您現正刪除'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'   => "<span class=\"plainlinks\">你現正刪除'''[[Media:$1|$1]]'''於[$4 $2 $3]的版本。</span>",
+'filedelete-intro-old'   => '<span class="plainlinks">你現正刪除\'\'\'[[Media:$1|$1]]\'\'\'於[$4 $2 $3]的版本。</span>',
 'filedelete-comment'     => '註解:',
 'filedelete-submit'      => '刪除',
 'filedelete-success'     => "'''$1'''已經刪除。",
-'filedelete-success-old' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。</span>",
+'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 的版本已經刪除。</span>',
 'filedelete-nofile'      => "'''$1'''在這個網站中不存在。",
 'filedelete-nofile-old'  => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
 'filedelete-iscurrent'   => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
@@ -1087,16 +1091,16 @@ $2',
 'statistics'             => '統計',
 'sitestats'              => '{{SITENAME}}統計數據',
 'userstats'              => '用戶統計',
-'sitestatstext'          => "資料庫中共有'''$1'''頁頁面。
+'sitestatstext'          => "資料庫中共有'''\$1'''頁頁面。
 其中包括對話頁、關於{{SITENAME}}的頁面、最少量的\"stub\"頁、重定向的頁面，
-以及未達到頁面質量的頁面。除此之外還有'''$2'''頁可能是合乎標準的頁面。
+以及未達到頁面質量的頁面。除此之外還有'''\$2'''頁可能是合乎標準的頁面。
 
-'''$8'''個檔案已被上傳。
+'''\$8'''個檔案已被上傳。
 
-從{{SITENAME}}設定以來，全網站共有頁面瀏覽'''$3'''次，頁面編輯'''$4'''次。
-即每頁平均編輯'''$5'''次，各次編輯後頁面的每個版本平均瀏覽'''$6'''次。
+從{{SITENAME}}設定以來，全網站共有頁面瀏覽'''\$3'''次，頁面編輯'''\$4'''次。
+即每頁平均編輯'''\$5'''次，各次編輯後頁面的每個版本平均瀏覽'''\$6'''次。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue 工作隊列]的長度是'''$7'''。",
+[http://meta.wikimedia.org/wiki/Help:Job_queue 工作隊列]的長度是'''\$7'''。",
 'userstatstext'          => "網站有'''$1'''位註冊[[Special:Listusers|用戶]]，其中
 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '被查閱次數最多的頁面',
@@ -1563,7 +1567,6 @@ $1',
 'blockme'                     => '查封我',
 'proxyblocker'                => '代理封鎖器',
 'proxyblocker-disabled'       => '這個功能已經停用。',
-'ipb_cant_unblock'            => '錯誤: 找不到查封ID$1。可能已經解除封禁。',
 'proxyblockreason'            => '您的IP位址是一個開放的代理，它已經被封鎖。請聯繫您的網際網路服務提供商或技術支援者並告知告知他們該嚴重的安全問題。',
 'proxyblocksuccess'           => '完成。\n',
 'sorbsreason'                 => '您的IP位址被 DNSBL列為屬於開放代理服務器.',
@@ -2261,7 +2264,7 @@ $1
 'autosumm-new'     => '新頁面: $1',
 
 # Size units
-'size-bytes'     => '$1 位元組',
+'size-bytes' => '$1 位元組',
 
 # Live preview
 'livepreview-loading' => '正在載入…',
@@ -2291,8 +2294,8 @@ $1
 'watchlistedit-raw-removed'    => '已經移除了$1個標題:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => '檢視有關更改',
-'watchlisttools-edit'  => '檢視並編輯監視列表',
-'watchlisttools-raw'   => '編輯原始監視列表',
+'watchlisttools-view' => '檢視有關更改',
+'watchlisttools-edit' => '檢視並編輯監視列表',
+'watchlisttools-raw'  => '編輯原始監視列表',
 
 );

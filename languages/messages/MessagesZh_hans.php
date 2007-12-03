@@ -326,7 +326,7 @@ $messages = array(
 'page-rss-feed'           => '“$1”的RSS订阅',
 'page-atom-feed'          => '“$1”的Atom订阅',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '页面',
 'nstab-user'      => '用户页面',
 'nstab-media'     => '媒体页面',
@@ -401,7 +401,7 @@ MySQL返回错误“$3: $4”。',
 'viewsource'           => '源码',
 'viewsourcefor'        => '对$1的源码',
 'actionthrottled'      => '动作已压制',
-'actionthrottledtext'  => "基于反垃圾的考量，您现在于这段短时间之中限制去作这一个动作，而您已经超过这个上限。请在数分钟后再尝试。",
+'actionthrottledtext'  => '基于反垃圾的考量，您现在于这段短时间之中限制去作这一个动作，而您已经超过这个上限。请在数分钟后再尝试。',
 'protectedpagetext'    => '该页面已被锁定以防止编辑。',
 'viewsourcetext'       => '您可以查看并复制此页面的源码:',
 'protectedinterface'   => '该页提供了软件的界面文本，它已被锁定以防止随意的修改。',
@@ -745,27 +745,31 @@ $2',
 'overlogpagetext' => '下面是一个最近删除以及由操作员封锁牵涉到的内容列表。参看下面的[[Special:Ipblocklist|IP封锁列表]]去查看现时进行的封锁。',
 
 # History merging
-'mergehistory'          => '合并页面历史',
-'mergehistory-header'   => "这一页可以讲您合并一个来源页面的历史到另一个新页面中。
+'mergehistory'                     => '合并页面历史',
+'mergehistory-header'              => "这一页可以讲您合并一个来源页面的历史到另一个新页面中。
 请确认这次更改会继续保留该页面先前的历史版本。
 
 '''最少该来源页面的现时修订必定会保持。'''",
-'mergehistory-box'      => '合并两个页面的修订:',
-'mergehistory-from'     => '来源页面:',
-'mergehistory-into'     => '目的页面:',
-'mergehistory-list'     => '可以合并的编辑历史',
-'mergehistory-merge'    => '以下[[:$1]]的修订可以合并到[[:$2]]。用该选项按钮列去合并只有在指定时间以前所创建的修订。要留意的是使用导航链接便会重设这一栏。',
-'mergehistory-go'       => '显示可以合并的编辑',
-'mergehistory-submit'   => '合并修订',
-'mergehistory-empty'    => '没有修订可以合并',
-'mergehistory-success'  => '[[:$1]]的$3次修订已经成功地合并到[[:$2]]。',
-'mergehistory-fail'     => '不可以进行历史合并，请重新检查该页面以及时间参数。',
+'mergehistory-box'                 => '合并两个页面的修订:',
+'mergehistory-from'                => '来源页面:',
+'mergehistory-into'                => '目的页面:',
+'mergehistory-list'                => '可以合并的编辑历史',
+'mergehistory-merge'               => '以下[[:$1]]的修订可以合并到[[:$2]]。用该选项按钮列去合并只有在指定时间以前所创建的修订。要留意的是使用导航链接便会重设这一栏。',
+'mergehistory-go'                  => '显示可以合并的编辑',
+'mergehistory-submit'              => '合并修订',
+'mergehistory-empty'               => '没有修订可以合并',
+'mergehistory-success'             => '[[:$1]]的$3次修订已经成功地合并到[[:$2]]。',
+'mergehistory-fail'                => '不可以进行历史合并，请重新检查该页面以及时间参数。',
+'mergehistory-no-source'           => '来源页面$1不存在。',
+'mergehistory-no-destination'      => '目的页面$1不存在。',
+'mergehistory-invalid-source'      => '来源页面必须是一个有效的标题。',
+'mergehistory-invalid-destination' => '目的页面必须是一个有效的标题。',
 
 # Merge log
-'mergelog'              => '合并日志',
-'pagemerge-logentry'    => '已合并[[$1]]到[[$2]] (修订截至$3)',
-'revertmerge'           => '解除合并',
-'mergelogpagetext'      => '以下是一个最近由一个页面的修订历史合并到另一个页面的列表。',
+'mergelog'           => '合并日志',
+'pagemerge-logentry' => '已合并[[$1]]到[[$2]] (修订截至$3)',
+'revertmerge'        => '解除合并',
+'mergelogpagetext'   => '以下是一个最近由一个页面的修订历史合并到另一个页面的列表。',
 
 # Diffs
 'history-title'             => '“$1”的修订历史',
@@ -1103,7 +1107,7 @@ $2',
 'unusedtemplatestext' => '此页面列出模板名字空间下所有未被其它页面使用的页面。请在删除这些模板前检查其它链入该模板的页面。',
 'unusedtemplateswlh'  => '其它链接',
 
-# Random pages
+# Random page
 'randompage'         => '随机页面',
 'randompage-nopages' => '在这个名字空间中没有页面。',
 
