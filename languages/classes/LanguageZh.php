@@ -52,12 +52,12 @@ class LanguageZh extends LanguageZh_hans {
 		$variants = array('zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk');
 		$variantfallbacks = array(
 			'zh'      => 'zh-hans',
-			'zh-hans' => 'zh-cn',
-			'zh-hant' => 'zh-tw',
+			'zh-hans' => 'zh',
+			'zh-hant' => 'zh',
 			'zh-cn'   => 'zh-hans',
 			'zh-sg'   => 'zh-hans',
 			'zh-tw'   => 'zh-hant',
-			'zh-hk'   => 'zh-hant'
+			'zh-hk'   => 'zh-hant',
 		);
 
 		$this->mConverter = new ZhConverter( $this, 'zh', $variants, $variantfallbacks );
