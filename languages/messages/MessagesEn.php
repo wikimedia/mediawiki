@@ -414,6 +414,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Mytalk' ),
 	'Mycontributions'           => array( 'Mycontributions' ),
 	'Listadmins'                => array( 'Listadmins' ),
+	'Listbots'                  => array( 'Listbots' ),
 	'Popularpages'              => array( 'Popularpages' ),
 	'Search'                    => array( 'Search' ),
 	'Resetpass'                 => array( 'Resetpass' ),
