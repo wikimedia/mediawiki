@@ -103,6 +103,7 @@ $specialPageAliases = array(
         'Specialpages'              => array( 'Spezialseiten' ),
         'Contributions'             => array( 'Beiträge' ),
         'Emailuser'                 => array( 'E-Mail' ),
+	'Confirmemail'              => array( 'E-Mail_bestätigen' ),
         'Whatlinkshere'             => array( 'Linkliste', 'Verweisliste' ),
         'Recentchangeslinked'       => array( 'Änderungen_an_verlinkten_Seiten' ),
         'Movepage'                  => array( 'Verschieben' ),
@@ -1041,12 +1042,10 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'newsectionsummary'                 => 'Neuer Abschnitt /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'Änderungen an verlinkten Seiten',
-'recentchangeslinked-title'              => 'Änderungen an Seiten, die von „$1“ verlinkt sind',
-'recentchangeslinked-noresult'           => 'Im ausgewählten Zeitraum wurden an den verlinkten Seiten keine Änderungen vorgenommen.',
-'recentchangeslinked-summary'            => "Diese Spezialseite listet die letzten Änderungen der verlinkten Seiten auf. Seiten auf deiner Beobachtungsliste sind '''fett''' geschrieben.",
-'recentchangeslinked-feed-entry'         => 'Benutzer $1 bearbeitete $2',
-'recentchangeslinked-feed-entry-comment' => 'Benutzer $1 bearbeitete $2 ($3)',
+'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
+'recentchangeslinked-title'    => 'Änderungen an Seiten, die von „$1“ verlinkt sind',
+'recentchangeslinked-noresult' => 'Im ausgewählten Zeitraum wurden an den verlinkten Seiten keine Änderungen vorgenommen.',
+'recentchangeslinked-summary'  => "Diese Spezialseite listet die letzten Änderungen der verlinkten Seiten auf. Seiten auf deiner Beobachtungsliste sind '''fett''' geschrieben.",
 
 # Upload
 'upload'                      => 'Hochladen',

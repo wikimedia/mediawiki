@@ -388,6 +388,7 @@ $specialPageAliases = array(
 	'Specialpages'              => array( 'Specialpages' ),
 	'Contributions'             => array( 'Contributions' ),
 	'Emailuser'                 => array( 'Emailuser' ),
+	'Confirmemail'              => array( 'Confirmemail' ),
 	'Whatlinkshere'             => array( 'Whatlinkshere' ),
 	'Recentchangeslinked'       => array( 'Recentchangeslinked' ),
 	'Movepage'                  => array( 'Movepage' ),
