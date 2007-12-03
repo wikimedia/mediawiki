@@ -129,6 +129,7 @@ $specialPageAliases = array(
         'Mytalk'                    => array( 'Meine_Diskussionsseite' ),
         'Mycontributions'           => array( 'Meine_Beiträge' ),
         'Listadmins'                => array( 'Administratoren' ),
+        'Listbots'                  => array( 'Bots' ),
         'Search'                    => array( 'Suche' ),
         'Withoutinterwiki'          => array( 'Fehlende_Interwikis' ),
 );
@@ -575,10 +576,9 @@ Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werd
 'accountcreated'             => 'Benutzerkonto erstellt',
 'accountcreatedtext'         => 'Das Benutzerkonto $1 wurde eingerichtet.',
 'createaccount-title'        => 'Erstellung eines Benutzerkontos für {{SITENAME}}',
-'createaccount-text'         => 'Jemand ($1) hat ein Benutzerkonto "$2" auf {{SITENAME}}.
-($4) erstellt. Das Passwort for "$2" ist "$3". Du solltest dich nun anmelden und dein Passwort ändern.
+'createaccount-text'         => 'Jemand ($1) hat für dich ein Benutzerkonto "$2" auf {{SITENAME}} ($4) erstellt. Das Passwort für "$2" ist "$3". Du solltest dich nun anmelden und dein Passwort ändern.
 
-Du kannst diese Nachricht ignorieren, falls das Benutzerkonto durch einen Fehler angelegt wurde.',
+Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.',
 'loginlanguagelabel'         => 'Sprache: $1',
 
 # Password reset dialog
@@ -847,21 +847,25 @@ Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile
 'overlogpagetext' => 'Das ist das Logbuch der Löschungen und Sperren, die vor Administratoren versteckt sind.',
 
 # History merging
-'mergehistory'         => 'Versionsgeschichten vereinen',
-'mergehistory-header'  => "Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zieleite vereinen.
+'mergehistory'                     => 'Versionsgeschichten vereinen',
+'mergehistory-header'              => "Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zieleite vereinen.
 Stelle dadurch sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
 
 '''Als Minumum muss die aktuelle Version der Ursprungsseite erhalten bleiben.'''",
-'mergehistory-box'     => 'Versionsgeschichten zweier Seiten vereinen',
-'mergehistory-from'    => 'Ursprungsseite:',
-'mergehistory-into'    => 'Zielseite:',
-'mergehistory-list'    => 'Versionen, die vereinigt werden können',
-'mergehistory-merge'   => 'Die folgenden Versionen von „[[:$1]]“ können nach „[[:$2]]“ übertragen werden. Markiere die Version, bis zu der (einschließlich) die Versionen werden sollen. Bitte beachte, dass die Nutzung der Navigationslinks die Auswahl zurücksetzt.',
-'mergehistory-go'      => 'Zeige Versionen, die vereinigt werden können',
-'mergehistory-submit'  => 'Vereinige Versionen',
-'mergehistory-empty'   => 'Es können keine Versionen vereinigt werden',
-'mergehistory-success' => '{{PLURAL:$3|1 Version|$3 Versionen}} von „[[:$1]]“ erfolgreich nach „[[:$2]]“ vereinigt.',
-'mergehistory-fail'    => 'Versionsvereinigung nicht möglich, bitte prüfe die Seite und die Zeitangaben.',
+'mergehistory-box'                 => 'Versionsgeschichten zweier Seiten vereinen',
+'mergehistory-from'                => 'Ursprungsseite:',
+'mergehistory-into'                => 'Zielseite:',
+'mergehistory-list'                => 'Versionen, die vereinigt werden können',
+'mergehistory-merge'               => 'Die folgenden Versionen von „[[:$1]]“ können nach „[[:$2]]“ übertragen werden. Markiere die Version, bis zu der (einschließlich) die Versionen werden sollen. Bitte beachte, dass die Nutzung der Navigationslinks die Auswahl zurücksetzt.',
+'mergehistory-go'                  => 'Zeige Versionen, die vereinigt werden können',
+'mergehistory-submit'              => 'Vereinige Versionen',
+'mergehistory-empty'               => 'Es können keine Versionen vereinigt werden',
+'mergehistory-success'             => '{{PLURAL:$3|1 Version|$3 Versionen}} von „[[:$1]]“ erfolgreich nach „[[:$2]]“ vereinigt.',
+'mergehistory-fail'                => 'Versionsvereinigung nicht möglich, bitte prüfe die Seite und die Zeitangaben.',
+'mergehistory-no-source'           => 'Ursprungsseite „$1“ ist nicht vorhanden.',
+'mergehistory-no-destination'      => 'Zielseite „$1“ ist nicht vorhanden.',
+'mergehistory-invalid-source'      => 'Ursprungsseite muss ein gültiger Seitenname sein.',
+'mergehistory-invalid-destination' => 'Zielseite muss ein gültiger Seitenname sein.',
 
 # Merge log
 'mergelog'           => 'Vereinigungs-Logbuch',
@@ -1036,10 +1040,12 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'newsectionsummary'                 => 'Neuer Abschnitt /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
-'recentchangeslinked-title'    => 'Änderungen an Seiten, die von „$1“ verlinkt sind',
-'recentchangeslinked-noresult' => 'Im ausgewählten Zeitraum wurden an den verlinkten Seiten keine Änderungen vorgenommen.',
-'recentchangeslinked-summary'  => "Diese Spezialseite listet die letzten Änderungen der verlinkten Seiten auf. Seiten auf deiner Beobachtungsliste sind '''fett''' geschrieben.",
+'recentchangeslinked'                    => 'Änderungen an verlinkten Seiten',
+'recentchangeslinked-title'              => 'Änderungen an Seiten, die von „$1“ verlinkt sind',
+'recentchangeslinked-noresult'           => 'Im ausgewählten Zeitraum wurden an den verlinkten Seiten keine Änderungen vorgenommen.',
+'recentchangeslinked-summary'            => "Diese Spezialseite listet die letzten Änderungen der verlinkten Seiten auf. Seiten auf deiner Beobachtungsliste sind '''fett''' geschrieben.",
+'recentchangeslinked-feed-entry'         => 'Benutzer $1 bearbeitete $2',
+'recentchangeslinked-feed-entry-comment' => 'Benutzer $1 bearbeitete $2 ($3)',
 
 # Upload
 'upload'                      => 'Hochladen',
@@ -1548,6 +1554,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'protect-summary-cascade'     => 'kaskadierend',
 'protect-expiring'            => 'bis $1 (UTC)',
 'protect-cascade'             => 'Kaskadierende Sperre – alle in diese Seite eingebundenen Vorlagen werden ebenfalls gesperrt.',
+'protect-cantedit'            => 'Du kannst die Sperre dieser Seite nicht ändern, da du keine Berechtigung zum Bearbeiten der Seite hast.',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöhe',
 'minimum-size'                => 'Mindestgröße:',
