@@ -412,7 +412,7 @@ Twójo wužywarske konto jo se zarědowało. Njezabydni, swóje {{SITENAME}} nas
 'wrongpasswordempty'         => 'Šćitne gronidło jo było prozne. Pšosym zapódaj jo hyšći raz.',
 'passwordtooshort'           => 'Twójo šćitne gronidło njejo korektne abo pśeliž krotke. Wóno dej nanejmjenjej $1 pismikow wopśimjeś a njesmějo se z wužywarskim mjenim makaś.',
 'mailmypassword'             => 'Šćitne gronidło pśipósłaś',
-'passwordremindertitle'      => 'Šćitne gronidło z {{GRAMMAR:genitiw|{{SITENAME}}}}',
+'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
 'passwordremindertext'       => 'Něchten (nejskerjej ty z adresy $1) jo se wupšosył, aby jomu se pśipósłało nowe šćitne gronidło za bok{{SITENAME}} ($4). Šćitne gronidło za wužywarja "$2" jo něnto "$3". 
 Ty móžoš se něnto pśizjawiś a swójo šćitne gronidło pśeměniś. 
 
@@ -689,6 +689,12 @@ Dalšne administratory toś teje wiki mógu ale pśecej hyšći schowane wopśim
 'oversightlog'    => 'Pśeglědowa log-lisćina',
 'overlogpagetext' => 'Dołojce jo wiźeś lisćina nejnowšych wulašowanjow a zakazow, kótarež su teke za administratory schowane. Glědaj na [[Special:Ipblocklist|zakazowu lisćinu]], aby wiźeł aktualne zakaze.',
 
+# History merging
+'mergehistory'      => 'Zwězaś stawizny bokow',
+'mergehistory-box'  => 'Zwězaś wersjiowu toś teju bokowo:',
+'mergehistory-from' => 'Žrědłowy bok:',
+'mergehistory-into' => 'Celowy bok:',
+
 # Diffs
 'history-title'             => 'Stawizny wersijow wót „$1“',
 'difference'                => '(rozdźěle mjazy wersijoma/wersijami)',
@@ -852,10 +858,12 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'newsectionsummary'                 => 'Nowy wótrězk /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Aktualne změny',
-'recentchangeslinked-title'    => 'Změny na bokach, kótarež su z „$1“ zalinkowane',
-'recentchangeslinked-noresult' => 'Zalinkowane boki njejsu we wuzwólonem casu se změnili.',
-'recentchangeslinked-summary'  => "Toś ten specialny bok pódajo slědne změny zalinkowanych bokow. Boki z twójich wobglědowankow su '''tucnje''' pisane.",
+'recentchangeslinked'                    => 'Změny w zwězanych bokach',
+'recentchangeslinked-title'              => 'Změny na bokach, kótarež su z „$1“ zalinkowane',
+'recentchangeslinked-noresult'           => 'Zalinkowane boki njejsu we wuzwólonem casu se změnili.',
+'recentchangeslinked-summary'            => "Toś ten specialny bok pódajo slědne změny zalinkowanych bokow. Boki z twójich wobglědowankow su '''tucnje''' pisane.",
+'recentchangeslinked-feed-entry'         => 'Wužywar $1 jo $2 wobźěłał',
+'recentchangeslinked-feed-entry-comment' => 'Wužywar $1 jo $2 ($3) wobźěłał',
 
 # Upload
 'upload'                      => 'Dataju pósłaś',
@@ -1328,6 +1336,8 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'deletionlog'                 => 'log-lisćina wulašowanjow',
 'reverted'                    => 'Nawrośone na staršu wersiju',
 'deletecomment'               => 'Pśicyna wulašowanja',
+'deleteotherreason'           => 'Druga/pśidatna pśicyna:',
+'deletereasonotherlist'       => 'Druga pśicyna',
 'rollback'                    => 'Wobźěłanja slědk wześ',
 'rollback_short'              => 'anulěrowaś',
 'rollbacklink'                => 'anulěrowaś',

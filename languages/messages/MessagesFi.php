@@ -793,14 +793,15 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 
 # History merging
 'mergehistory'        => 'Yhdistä sivuhistoriat',
-'mergehistory-header' => "Tämä sivu mahdollistaa sivun muokkaushistoriassa olevien revisioiden yhdistämisen uudemman sivun muokkaushistoriaan. Varmista että tämän muutoksen tehdessäsi säilytät jatkumon sivun revisioiden historiassa.
+'mergehistory-header' => "Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
+Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa mennä ristikkäin.
 
-'''Vähintäänkin lähtösivun nykyinen revisio täytyy sisällyttää kohdesivun historiaan.'''",
-'mergehistory-box'    => 'Yhdistä kahden sivun muokkaushistoria:',
+'''Ainakin lähdesivun uusin versio säilytetään lähdesivun historiassa.'''",
+'mergehistory-box'    => 'Yhdistä kahden sivun muutoshistoria',
 'mergehistory-from'   => 'Lähdesivu',
 'mergehistory-into'   => 'Kohdesivu',
-'mergehistory-list'   => 'Yhdistettävissä oleva muokkaushistoriat',
-'mergehistory-go'     => 'Näytä yhdistettävissä olevat muokkausversiot',
+'mergehistory-list'   => 'Liitettävissä olevat muutokset',
+'mergehistory-go'     => 'Etsi muutokset',
 'mergehistory-submit' => 'Yhdistä versiot',
 
 # Merge log
