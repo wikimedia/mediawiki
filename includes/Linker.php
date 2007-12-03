@@ -1197,9 +1197,9 @@ class Linker {
 
 		// The two hooks have slightly different interfaces . . .
 		if( $hook == 'EditSectionLink' ) {
-			wfRunHooks( $hook, array( &$this, $nt, $section, $hint, $url, &$result ) );
+			wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $hint, $url, &$result ) );
 		} elseif( $hook == 'EditSectionLinkForOther' ) {
-			wfRunHooks( $hook, array( &$this, $nt, $section, $url, &$result ) );
+			wfRunHooks( 'EditSectionLinkForOther', array( &$this, $nt, $section, $url, &$result ) );
 		}
 		
 		// For reverse compatibility, add the brackets *after* the hook is run,
