@@ -252,15 +252,14 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 				$rc->numberofWatchingusers = 0; // Default
 				if ($showWatcherCount && $obj->rc_namespace >= 0) {
 					if (!isset($watcherCache[$obj->rc_namespace][$obj->rc_title])) {
-						$sql3 =
-							'SELECT COUNT(*) AS n ' .
-							"FROM $watchlist " .
-							"WHERE wl_title='{$dbr->strencode($obj->rc_title)}' " .
-							"AND wl_namespace=$obj->rc_namespace" ;
-						$res3 = $dbr->query( $sql3, __METHOD__ . '-watchers');
-						$x = $dbr->fetchObject( $res3 );
-						$watcherCache[$obj->rc_namespace][$obj->rc_title] = $x->n;
-						$dbr->freeResult( $res3 );
+						$watcherCache[$obj->rc_namespace][$obj->rc_title] =
+						 	$dbr->selectField( 'watchlist',
+								'COUNT(*)',
+								array(
+									'wl_namespace' => $obj->rc_namespace,
+									'wl_title' => $obj->rc_title,
+								),
+								__METHOD__ . '-watchers' );
 					}
 					$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
 				}

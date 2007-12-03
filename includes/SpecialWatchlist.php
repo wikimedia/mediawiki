@@ -87,14 +87,11 @@ function wfSpecialWatchlist( $par ) {
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 	list( $page, $watchlist, $recentchanges ) = $dbr->tableNamesN( 'page', 'watchlist', 'recentchanges' );
 
-	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
-	$res = $dbr->query( $sql, $fname );
-	$s = $dbr->fetchObject( $res );
-
-#	Patch *** A1 *** (see A2 below)
-#	adjust for page X, talk:page X, which are both stored separately, but treated together
-	$nitems = floor($s->n / 2);
-#	$nitems = $s->n;
+	$watchlistCount = $dbr->selectField( 'watchlist', 'COUNT(*)',
+		array( 'wl_user' => $uid ), __METHOD__ );
+	// Adjust for page X, talk:page X, which are both stored separately,
+	// but treated together
+	$nitems = floor($watchlistCount / 2);
 
 	if( is_null($days) || !is_numeric($days) ) {
 		$big = 1000; /* The magical big */
@@ -294,10 +291,13 @@ function wfSpecialWatchlist( $par ) {
 		}
 
 		if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
-			$sql3 = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_title='" .$dbr->strencode($obj->rc_title). "' AND wl_namespace='{$obj->rc_namespace}'" ;
-			$res3 = $dbr->query( $sql3, $fname );
-			$x = $dbr->fetchObject( $res3 );
-			$rc->numberofWatchingusers = $x->n;
+			$rc->numberofWatchingusers = $dbr->selectField( 'watchlist',
+				'COUNT(*)',
+				array(
+					'wl_namespace' => $obj->rc_namespace,
+					'wl_title' => $obj->rc_title,
+				),
+				__METHOD__ );
 		} else {
 			$rc->numberofWatchingusers = 0;
 		}
