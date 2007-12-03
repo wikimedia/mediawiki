@@ -20,6 +20,9 @@ class LanguageConverter {
 	var $mMarkup;
 	var $mFlags;
 	var $mUcfirst = false;
+
+	const CACHE_VERSION_KEY = 'VERSION 3';
+
 	/**
      * Constructor
 	 *
@@ -615,7 +618,7 @@ class LanguageConverter {
 			$this->mTables = $wgMemc->get( $this->mCacheKey );
 			wfProfileOut( __METHOD__.'-cache' );
 		}
-		if ( !$this->mTables || !isset( $this->mTables['VERSION 2'] ) ) {
+		if ( !$this->mTables || !isset( $this->mTables[self::CACHE_VERSION_KEY] ) ) {
 			wfProfileIn( __METHOD__.'-recache' );
 			// not in cache, or we need a fresh reload.
 			// we will first load the default tables
@@ -627,7 +630,7 @@ class LanguageConverter {
 			}
 
 			$this->postLoadTables();
-			$this->mTables['VERSION 2'] = true;
+			$this->mTables[self::CACHE_VERSION_KEY] = true;
 
 			if($this->lockCache()) {
 				$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
