@@ -1499,11 +1499,11 @@ END;
 		# If it's present, the link points to this page, otherwise
 		# it points to the talk page
 		if( $wgTitle->isTalkPage() ) {
-			$title =& $wgTitle;
+			$title = $wgTitle;
 		} elseif( $wgOut->showNewSectionLink() ) {
-			$title =& $wgTitle;
+			$title = $wgTitle;
 		} else {
-			$title =& $wgTitle->getTalkPage();
+			$title = $wgTitle->getTalkPage();
 		}
 		
 		return $this->makeKnownLinkObj( $title, wfMsg( 'postcomment' ), 'action=edit&section=new' );
