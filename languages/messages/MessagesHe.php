@@ -262,6 +262,7 @@ $specialPageAliases = array(
 	'Search'                    => array( 'חיפוש' ),
 	'Resetpass'                 => array( 'איפוס_סיסמה' ),
 	'Withoutinterwiki'          => array( 'דפים_ללא_קישורי_שפה' ),
+	'MergeHistory'              => array( 'מיזוג_גרסאות' ),
 );
 
 $namespaceNames = array(
