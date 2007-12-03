@@ -2088,7 +2088,7 @@ class Article {
 		$wgOut->addHTML( "
 <form id='deleteconfirm' method='post' action=\"{$formaction}\">
 	<table border='0'>
-		<tr>
+		<tr id=\"wpDeleteReasonListRow\" name=\"wpDeleteReasonListRow\">
 			<td align='right'>
 				$delcom:
 			</td>
@@ -2098,7 +2098,7 @@ class Article {
 				</select>
 			</td>
 		</tr>
-		<tr>
+		<tr id=\"wpDeleteReasonRow\" name=\"wpDeleteReasonRow\">
 			<td>
 				$mDeletereasonother
 			</td>
