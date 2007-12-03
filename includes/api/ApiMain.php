@@ -57,6 +57,12 @@ class ApiMain extends ApiBase {
 		'expandtemplates' => 'ApiExpandTemplates',
 		'render' => 'ApiRender',
 		'parse' => 'ApiParse',
+		'opensearch' => 'ApiOpenSearch',
+		'feedwatchlist' => 'ApiFeedWatchlist',
+		'help' => 'ApiHelp',
+	);
+	
+	private static $WriteModules = array (
 		'rollback' => 'ApiRollback',
 		'delete' => 'ApiDelete',
 		'undelete' => 'ApiUndelete',
@@ -64,10 +70,7 @@ class ApiMain extends ApiBase {
 		'block' => 'ApiBlock',
 		'unblock' => 'ApiUnblock',
 		'changerights' => 'ApiChangeRights',
-		'move' => 'ApiMove',
-		'opensearch' => 'ApiOpenSearch',
-		'feedwatchlist' => 'ApiFeedWatchlist',
-		'help' => 'ApiHelp',
+		'move' => 'ApiMove'
 	);
 
 	/**
@@ -117,8 +120,10 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		global $wgAPIModules; // extension modules
+		global $wgAPIModules, $wgEnableWriteAPI; // extension modules
 		$this->mModules = $wgAPIModules + self :: $Modules;
+		if($wgEnableWriteAPI)
+			$this->mModules += self::$WriteModules;
 
 		$this->mModuleNames = array_keys($this->mModules); // todo: optimize
 		$this->mFormats = self :: $Formats;
@@ -436,8 +441,7 @@ class ApiMain extends ApiBase {
 	 * Override the parent to generate help messages for all available modules.
 	 */
 	public function makeHelpMsg() {
-		global $wgEnableWriteAPI;
-
+		
 		$this->mPrinter->setHelp();
 
 		// Use parent to make default message for the main module
@@ -447,8 +451,6 @@ class ApiMain extends ApiBase {
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
 		foreach( $this->mModules as $moduleName => $unused ) {
 			$module = new $this->mModules[$moduleName] ($this, $moduleName);
-			if( !$wgEnableWriteAPI && $module->isEditMode() )
-				continue;
 			$msg .= self::makeHelpMsgHeader($module, 'action');
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)

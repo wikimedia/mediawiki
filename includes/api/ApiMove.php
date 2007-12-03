@@ -140,10 +140,6 @@ class ApiMove extends ApiBase {
 		$dbw->commit(); // Make sure all changes are really written to the DB
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
-
-	public function isEditMode() {
-		return true;
-	}
 	
 	protected function getAllowedParams() {
 		return array (
