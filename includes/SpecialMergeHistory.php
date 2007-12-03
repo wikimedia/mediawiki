@@ -32,6 +32,7 @@ class MergehistoryForm {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mTarget = $request->getVal( 'target' );
 		$this->mDest = $request->getVal( 'dest' );
+		$this->mSubmitted = $request->getBool( 'submitted' );
 		
 		$this->mTargetID = intval( $request->getVal( 'targetID' ) );
 		$this->mDestID = intval( $request->getVal( 'destID' ) );
@@ -40,17 +41,13 @@ class MergehistoryForm {
 		
 		$this->mMerge = $request->wasPosted() && $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		// target page
-		if( $this->mTarget !== "" ) {
+		if( $this->mSubmitted ) {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
-		} else {
-			$this->mTargetObj = NULL;
-		}
-		# Destination
-		if( $this->mDest !== "" ) {
 			$this->mDestObj = Title::newFromURL( $this->mDest );
 		} else {
-			$this->mDestObj = NULL;
-		}		
+			$this->mTargetObj = null;
+			$this->mDestObj = null;
+		}
 		
 		$this->preCacheMessages();
 	}
@@ -74,12 +71,38 @@ class MergehistoryForm {
 		if( $this->mTargetID && $this->mDestID && $this->mAction=="submit" && $this->mMerge ) {
 			return $this->merge();
 		}
-		
-		if( is_object($this->mTargetObj) && is_object($this->mDestObj) ) {
-			return $this->showHistory();
+
+		if ( !$this->mSubmitted ) {
+			$this->showMergeForm();
+			return;
 		}
-		
-		return $this->showMergeForm();
+
+		$errors = array();
+		if ( !$this->mTargetObj instanceof Title ) {
+			$errors[] = wfMsgExt( 'mergehistory-invalid-source', array( 'parse' ) );
+		} elseif( !$this->mTargetObj->exists() ) {
+			$errors[] = wfMsgExt( 'mergehistory-no-source', array( 'parse' ),
+				wfEscapeWikiText( $this->mTargetObj->getPrefixedText() )
+			);
+		}
+
+		if ( !$this->mDestObj instanceof Title) {
+			$errors[] = wfMsgExt( 'mergehistory-invalid-destination', array( 'parse' ) );
+		} elseif( !$this->mDestObj->exists() ) {
+			$errors[] = wfMsgExt( 'mergehistory-no-destination', array( 'parse' ),
+				wfEscapeWikiText( $this->mDestObj->getPrefixedText() )
+			);
+		}
+
+		// TODO: warn about target = dest?
+
+		if ( count( $errors ) ) {
+			$this->showMergeForm();
+			$wgOut->addHTML( implode( "\n", $errors ) );
+		} else {
+			$this->showHistory();
+		}
+
 	}
 
 	function showMergeForm() {
@@ -96,12 +119,13 @@ class MergehistoryForm {
 				wfMsg( 'mergehistory-box' ) ) .
 			Xml::hidden( 'title',
 				SpecialPage::getTitleFor( 'Mergehistory' )->getPrefixedDbKey() ) .
+			Xml::hidden( 'submitted', '1' ) . 
 			Xml::openElement( 'table' ) .
 			"<tr>
-				<td>".Xml::Label( wfMsg( 'mergehistory-from' ), 'target' )."</td>
+				<td>".Xml::label( wfMsg( 'mergehistory-from' ), 'target' )."</td>
 				<td>".Xml::input( 'target', 30, $this->mTarget, array('id'=>'target') )."</td>
 			</tr><tr>
-				<td>".Xml::Label( wfMsg( 'mergehistory-into' ), 'dest' )."</td>
+				<td>".Xml::label( wfMsg( 'mergehistory-into' ), 'dest' )."</td>
 				<td>".Xml::input( 'dest', 30, $this->mDest, array('id'=>'dest') )."</td>
 			</tr><tr><td>" .
 			Xml::submitButton( wfMsg( 'mergehistory-go' ) ) .
@@ -117,9 +141,9 @@ class MergehistoryForm {
 		$this->sk = $wgUser->getSkin();
 		
 		$wgOut->setPagetitle( wfMsg( "mergehistory" ) );
-		
+
 		$this->showMergeForm();
-		
+
 		# List all stored revisions
 		$revisions = new MergeHistoryPager( $this, array(), $this->mTargetObj, $this->mDestObj );
 		$haveRevisions = $revisions && $revisions->getNumRows() > 0;
@@ -210,7 +234,7 @@ class MergehistoryForm {
 		$checkBox = wfRadio( "mergepoint", $ts, false );
 		
 		$pageLink = $this->sk->makeKnownLinkObj( $rev->getTitle(), 
-			$wgLang->timeanddate( $ts ), 'oldid=' . $rev->getID() );
+			htmlspecialchars( $wgLang->timeanddate( $ts ) ), 'oldid=' . $rev->getID() );
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
 		}
@@ -285,7 +309,7 @@ class MergehistoryForm {
 		$maxtimestamp = ($lasttime < $maxtimestamp) ? $lasttime : $maxtimestamp;
 		// $this->mTimestamp must be less than $maxtimestamp
 		if( $this->mTimestamp >= $maxtimestamp ) {
-			$wgOut->addHtml( wfMsg('mergehistory-fail') );
+			$wgOut->addWikiText( wfMsg('mergehistory-fail') );
 			return false;
 		}
 		# Update the revisions
@@ -304,7 +328,7 @@ class MergehistoryForm {
 			__METHOD__ );
 		# Check if this did anything
 		if( !$count = $dbw->affectedRows() ) {
-			$wgOut->addHtml( wfMsg('mergehistory-fail') );
+			$wgOut->addWikiText( wfMsg('mergehistory-fail') );
 			return false;
 		}
 		# Update our logs
