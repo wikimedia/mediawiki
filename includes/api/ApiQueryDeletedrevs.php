@@ -48,7 +48,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		global $wgUser;
 		// Before doing anything at all, let's check permissions
 		if(!$wgUser->isAllowed('deletedhistory'))
-			$this->dieUsage('You don\'t have permission to view deleted revisions', 'permissiondenied');
+			$this->dieUsage('You don\'t have permission to view deleted revisions information', 'permissiondenied');
 
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
@@ -88,6 +88,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$userMax = 50;
 			$botMax = 200;
 			$this->validateLimit('limit', $params['limit'], 1, $userMax, $botMax);
+
+			// And also stricter restrictions
+			if(!$wgUser->isAllowed('delete')) {
+				$this->dieUsage('You don\'t have permission to view deleted revisions content', 'permissiondeniedcontent');
+			}
 		}
 		if($fld_token)
 			// Undelete tokens are identical for all pages, so we cache one here
