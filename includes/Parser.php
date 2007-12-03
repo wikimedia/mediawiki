@@ -255,6 +255,15 @@ class Parser
 	 * @public
 	 */
 	function uniqPrefix() {
+		if( !isset( $this->mUniqPrefix ) ) {
+			// @fixme this is probably *horribly wrong*
+			// LanguageConverter seems to want $wgParser's uniqPrefix, however
+			// if this is called for a parser cache hit, the parser may not
+			// have ever been initialized in the first place.
+			// Not really sure what the heck is supposed to be going on here.
+			return '';
+			//throw new MWException( "Accessing uninitialized mUniqPrefix" );
+		}
 		return $this->mUniqPrefix;
 	}
 
