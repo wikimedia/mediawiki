@@ -20,7 +20,7 @@ $separatorTransformTable = array(
 );
 
 $fallback8bitEncoding = 'windows-1251';
-$linkPrefixExtension = true;
+$linkPrefixExtension = false;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
