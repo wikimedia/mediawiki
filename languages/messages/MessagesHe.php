@@ -429,7 +429,7 @@ $messages = array(
 'go'                => 'הצגה',
 'searcharticle'     => 'לדף',
 'history'           => 'היסטוריית הדף',
-'history_short'     => 'היסטוריה',
+'history_short'     => 'היסטוריית הדף',
 'updatedmarker'     => 'עודכן מאז ביקורך האחרון',
 'info_short'        => 'מידע',
 'printableversion'  => 'גרסת הדפסה',
@@ -1556,7 +1556,7 @@ $NEWPAGE
 {{fullurl:Project:עזרה}}',
 
 # Delete/protect/revert
-'deletepage'                  => 'מחיקת דף',
+'deletepage'                  => 'מחיקה',
 'confirm'                     => 'אישור',
 'excontent'                   => 'תוכן היה: "$1"',
 'excontentauthor'             => "תוכן היה: '$1' והתורם היחיד היה [[Special:Contributions/$2|$2]]",
