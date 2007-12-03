@@ -152,7 +152,6 @@ $GROUPBY
 	$s = $list->beginRecentChangesList();
 	$count = $dbr->numRows( $res );
 
-	$rchanges = array();
 	if ( $count ) {
 		$counter = 1;
 		while ( $limit ) {
@@ -163,7 +162,6 @@ $GROUPBY
 			$rc->counter = $counter++;
 			$s .= $list->recentChangesLine( $rc , !empty( $obj->wl_user) );
 			--$limit;
-			$rchanges[] = $rc;
 		}
 	} else {
 		$wgOut->addWikiText( wfMsg('recentchangeslinked-noresult') );
@@ -172,35 +170,6 @@ $GROUPBY
 
 	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
-
-	global $wgSitename, $wgFeedClasses, $wgTitle, $wgContLanguageCode;
-	$feedFormat = $wgRequest->getVal( 'feed' );
-	if( $feedFormat && isset( $wgFeedClasses[$feedFormat] ) ) {
-		$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchangeslinked-title', $nt->getPrefixedText() ) . ' [' . $wgContLanguageCode . ']';
-		$feed = new $wgFeedClasses[$feedFormat]( $feedTitle,
-			htmlspecialchars( wfMsgForContent('recentchangeslinked') ), $wgTitle->getFullUrl() );
-		
-		$feedItems = array();
-		foreach( $rchanges as $rc ) {
-			$title = $rc->getTitle();
-			$titleStr = $title->getFullText();
-			$titleUrl = $title->getFullUrl();
-			$timestamp = $rc->getAttribute('rc_timestamp');
-			$user = $rc->getAttribute('rc_user_text');
-			$comment = $rc->getAttribute('rc_comment');
-			$message = ( $comment ? 'recentchangeslinked-feed-entry-comment' : 'recentchangeslinked-feed-entry' );
-			$content = wfMsgHtml( $message, $user, $titleStr, $comment );
-			
-			$feedItems[] = new FeedItem( $titleStr, $content, $titleUrl, $timestamp, $user );
-		}
-		
-		$wgOut->disable();
-		$feed->outHeader();
-		foreach( $feedItems as &$item ) {
-			$feed->outItem( $item );
-		}
-		$feed->outFooter();
-	}
 }
 
 

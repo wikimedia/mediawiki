@@ -809,8 +809,6 @@ $wgMessageStructure = array(
 		'recentchangeslinked-title',
 		'recentchangeslinked-noresult',
 		'recentchangeslinked-summary',
-		'recentchangeslinked-feed-entry',
-		'recentchangeslinked-feed-entry-comment',
 	),
 	'upload' => array(
 		'upload',
