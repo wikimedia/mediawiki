@@ -206,6 +206,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 451) Add a generic Traditional / Simplified Chinese conversion table, 
   instead of a Traditional conversion with Taiwan variant, and a Simplified 
   conversion with China variant.
+* (bug 12178) Fix wpReason parameter to action=delete, again.
 
 == Parser changes in 1.12 ==
 
