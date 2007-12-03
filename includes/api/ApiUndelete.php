@@ -88,10 +88,6 @@ class ApiUndelete extends ApiBase {
 		$info['reason'] = $retval[2];
 		$this->getResult()->addValue(null, $this->getModuleName(), $info);
 	}
-
-	public function isEditMode() {
-		return true;
-	}
 	
 	protected function getAllowedParams() {
 		return array (
