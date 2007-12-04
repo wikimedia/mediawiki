@@ -776,8 +776,6 @@ $2',
 'recentchangeslinked-title'              => '$1援引近易',
 'recentchangeslinked-noresult'           => '限期內無近易。',
 'recentchangeslinked-summary'            => "援引近易如下，有哨者'''粗體'''。",
-'recentchangeslinked-feed-entry'         => '簿$1已纂$2也',
-'recentchangeslinked-feed-entry-comment' => '簿$1已纂$2也 ($3)',
 
 # Upload
 'upload'                     => '進獻',
