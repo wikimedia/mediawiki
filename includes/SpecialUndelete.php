@@ -102,14 +102,16 @@ class PageArchive {
 			'ar_title' => $this->title->getDBkey() );
 		if ( $startTime && is_numeric($startTime) )
 			$whereClause[] = "ar_timestamp < $startTime";
-	
+
+		$optionsClause = array( 'ORDER BY' => 'ar_timestamp DESC' );
+		if ( $limit > 0 ) $optionsClause['LIMIT'] = intval($limit);
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'archive',
 			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment', 'ar_len' ),
 			$whereClause,
 			'PageArchive::listRevisions',
-			array( 'ORDER BY' => 'ar_timestamp DESC',
-	   				'LIMIT'   => intval($limit) ) );
+			$optionsClause ) ;
 		$ret = $dbr->resultObject( $res );
 		return $ret;
 	}
@@ -855,6 +857,8 @@ class UndeleteForm {
 		$tmpLimit = (is_null($tmpLimit))? 5001 : $tmpLimit + 1;
 		$revisions = $archive->listRevisions( $wgRequest->getVal ( 'offset' ),
 			$tmpLimit );
+		if ( $tmpLimit < 1 ) $tmpLimit = $revisions->numRows() + 1;
+
 		$files = $archive->listFiles();
 
 		$haveRevisions = $revisions && $revisions->numRows() > 0;
@@ -871,10 +875,13 @@ class UndeleteForm {
 				$offset = 0;
 
 			$titleObj = SpecialPage::getTitleFor ( 'Undelete' );
-			$tmplink = $sk->makeKnownLinkObj ( $titleObj, wfMsg( 'undelete-next-revs', 5000 ), 
+			$nextLink = $sk->makeKnownLinkObj ( $titleObj, wfMsg( 'undelete-next-revs', 5000 ), 
 				"target={$this->mTarget}&limit=5000&offset=$offset" );
+
+			$allLink = $sk->makeKnownLinkObj ( $titleObj, wfMsg( 'undelete-show-all' ), 
+				"target={$this->mTarget}&limit=-1&offset=0" );
 	
-			$wgOut->addHTML ( wfMsg ( 'undelete-more-revs', $tmpLimit - 1, $tmplink ) );
+			$wgOut->addHTML ( wfMsg ( 'undelete-more-revs', $tmpLimit - 1, $nextLink, $allLink ) );
 			$hasMore = true;
 		}
 		# Batch existence check on user and talk pages

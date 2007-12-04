@@ -2007,8 +2007,10 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'undelete-error-short'     => 'Error undeleting file: $1',
 'undelete-error-long'      => "Errors were encountered while undeleting the file:\n\n$1",
 'undelete-more-revs'       => '<b><font style="color: red">WARNING!</font> This page has more deleted revisions than are displayed here.</b><br />
-$1 revisions are displayed below. You may select revisions from this list or select none to restore all revisions (including those not displayed). ($2)',
+$1 revisions are displayed below. You may select revisions from this list or select none to restore all revisions (including those not displayed).<br />
+($2) ($3)',
 'undelete-next-revs'       => 'View next $1 revisions',
+'undelete-show-all'        => 'Show all revisions',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',

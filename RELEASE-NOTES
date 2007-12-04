@@ -90,6 +90,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Only show most recent 5000 revisions on Special:Undelete by default. Accept
   limit and offset parameters. Undelete with no revisions selected still
   undeletes all revisions, regardless of how many are displayed.
+* Add "show all" option to Special:Undelete when some revisions are excluded,
+  despite that showing all revisions may fail less than gracefully.
 
 === Bug fixes in 1.12 ===
 
