@@ -876,7 +876,7 @@ Stelle dadurch sicher, dass die Versionsgeschichte eines Artikel historisch korr
 
 # Diffs
 'history-title'             => 'Versionsgeschichte von „$1“',
-'difference-title'          => 'Versionsunterschied: „$1“',
+'difference'                => '(Unterschied zwischen Versionen)',
 'lineno'                    => 'Zeile $1:',
 'compareselectedversions'   => 'Gewählte Versionen vergleichen',
 'editundo'                  => 'rückgängig',
@@ -1035,7 +1035,6 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'newsectionsummary'                 => 'Neuer Abschnitt /* $1 */',
-'difference'                        => '(Unterschied zwischen Versionen)',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',

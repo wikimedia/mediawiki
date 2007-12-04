@@ -72,10 +72,6 @@ class DifferenceEngine {
 		$this->mRefreshCache = $refreshCache;
 	}
 
-	/**
-	 * Show difference between revisions
-	 * @param $diffOnly bool show the difference only, no preview
-	 */
 	function showDiffPage( $diffOnly = false ) {
 		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
@@ -130,7 +126,6 @@ CONTROL;
 		# a diff between a version V and its previous version V' AND the version V
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldid === false ) {
-			$wgOut->setPageTitle( wfMsg( 'difference-title', $this->mTitle->getPrefixedText() ) );
 			$this->showFirstRevision();
 			$this->renderNewRevision();  // should we respect $diffOnly here or not?
 			wfProfileOut( $fname );
@@ -142,10 +137,11 @@ CONTROL;
 		$oldTitle = $this->mOldPage->getPrefixedText();
 		$newTitle = $this->mNewPage->getPrefixedText();
 		if( $oldTitle == $newTitle ) {
-			$wgOut->setPageTitle( wfMsg( 'difference-title', $newTitle ) );
+			$wgOut->setPageTitle( $newTitle );
 		} else {
-			$wgOut->setPageTitle( wfMsg( 'difference-title', $oldTitle . ', ' . $newTitle ) );
+			$wgOut->setPageTitle( $oldTitle . ', ' . $newTitle );
 		}
+		$wgOut->setSubtitle( wfMsg( 'difference' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
@@ -370,6 +366,7 @@ CONTROL;
 
 		$wgOut->addHTML( $header );
 
+		$wgOut->setSubtitle( wfMsg( 'difference' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		wfProfileOut( $fname );
@@ -2015,3 +2012,6 @@ class TableDiffFormatter extends DiffFormatter
 		wfProfileOut( $fname );
 	}
 }
+
+
+
