@@ -775,7 +775,6 @@ Zu Deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorh
 Grund der Sperre: ''$2''",
 
 # History pages
-'revhistory'          => 'Frühere Versionen',
 'viewpagelogs'        => 'Logbücher für diese Seite anzeigen',
 'nohistory'           => 'Es gibt keine früheren Versionen dieser Seite.',
 'revnotfound'         => 'Diese Version wurde nicht gefunden.',

@@ -70,9 +70,7 @@ class PageHistory {
 
 		$logPage = SpecialPage::getTitleFor( 'Log' );
 		$logLink = $this->mSkin->makeKnownLinkObj( $logPage, wfMsgHtml( 'viewpagelogs' ), 'page=' . $this->mTitle->getPrefixedUrl() );
-
-		$subtitle = wfMsgHtml( 'revhistory' ) . '<br />' . $logLink;
-		$wgOut->setSubtitle( $subtitle );
+		$wgOut->setSubtitle( $logLink );
 
 		$feedType = $wgRequest->getVal( 'feed' );
 		if( $feedType ) {
@@ -89,7 +87,6 @@ class PageHistory {
 			return;
 		}
 
-		
 		/*
 		 * "go=first" means to jump to the last (earliest) history page.
 		 * This is deprecated, it no longer appears in the user interface
@@ -99,7 +96,7 @@ class PageHistory {
 			$wgOut->redirect( $wgTitle->getLocalURL( "action=history&limit={$limit}&dir=prev" ) );
 			return;
 		}
-		
+
 		wfRunHooks( 'PageHistoryBeforeList', array( &$this->mArticle ) );
 
 		/** 
