@@ -545,7 +545,6 @@ $wgMessageStructure = array(
 		'cantcreateaccount-text',
 	),
 	'history' => array(
-		'revhistory',
 		'viewpagelogs',
 		'nohistory',
 		'revnotfound',
