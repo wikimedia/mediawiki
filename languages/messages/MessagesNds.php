@@ -1119,7 +1119,7 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 De letzte Ännern is vun [[User:$3|$3]]
 ([[User talk:$3|Diskuschoon]])',
 'editcomment'                 => "De Ännerkommentar weer: ''$1''.", # only shown if there is an edit comment
-'revertpage'                  => 'Ännern vun [[Special:Contributions/$2|$2]] rut un de Version vun [[{{ns:user}}:$1]] wedderhaalt',
+'revertpage'                  => 'Ännern vun [[Special:Contributions/$2|$2]] rut un de Version vun [[User:$1]] wedderhaalt',
 'rollback-success'            => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
 'protectlogpage'              => 'Sietenschuul-Logbook',
 'protectlogtext'              => 'Dit is en List vun de blockten Sieten. Kiek [[Special:Protectedpages|Schulte Sieten]] för mehr Informatschonen.',

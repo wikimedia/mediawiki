@@ -1267,11 +1267,11 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'rollbackfailed'              => 'Vraćanje nije uspelo',
 'cantrollback'                => 'Ne mogu da vratim izmenu; poslednji autor je ujedno i jedini.',
 'alreadyrolled'               => 'Ne mogu da vratim poslednju izmenu [[:$1]]
-od korisnika [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|razgovor]]); neko drugi je već izmenio ili vratio članak.
+od korisnika [[User:$2|$2]] ([[User_talk:$2|razgovor]]); neko drugi je već izmenio ili vratio članak.
 
-Poslednju izmenu je napravio korisnik [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|razgovor]]).',
+Poslednju izmenu je napravio korisnik [[User:$3|$3]] ([[User_talk:$3|razgovor]]).',
 'editcomment'                 => 'Komentar izmene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Vraćene izmene od [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|razgovor]]) na poslednju izmenu od korisnika [[{{ns:user}}:$1|$1]]',
+'revertpage'                  => 'Vraćene izmene od [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|razgovor]]) na poslednju izmenu od korisnika [[User:$1|$1]]',
 'sessionfailure'              => 'Izgleda da postoji problem sa vašom seansom prijave;
 ova akcija je prekinuta kao predostrožnost protiv preotimanja seansi.
 Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda pokušajte ponovo.',
@@ -1378,9 +1378,9 @@ stranice su vandalizovane).',
 'unblockiptext'               => 'Upotrebite donji upitnik da biste vratili pravo pisanja
 ranije blokiranoj IP adresi ili korisničkom imenu.',
 'ipusubmit'                   => 'Odblokiraj ovu adresu',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] je odblokiran',
+'unblocked'                   => '[[User:$1|$1]] je odblokiran',
 'ipblocklist'                 => 'Spisak blokiranih IP adresa i korisnika',
-'blocklistline'               => '$1, $2 blokirao korisnika [[{{ns:user}}:$3|$3]], (ističe $4)',
+'blocklistline'               => '$1, $2 blokirao korisnika [[User:$3|$3]], (ističe $4)',
 'infiniteblock'               => 'beskonačan',
 'expiringblock'               => 'ističe $1',
 'anononlyblock'               => 'samo anonimni',
@@ -1389,7 +1389,7 @@ ranije blokiranoj IP adresi ili korisničkom imenu.',
 'blocklink'                   => 'blokiraj',
 'unblocklink'                 => 'odblokiraj',
 'contribslink'                => 'prilozi',
-'autoblocker'                 => 'Automatski ste blokirani jer je vašu IP adresu skoro koristio "[[{{ns:user}}:$1|$1]]". Razlog za blokiranje korisnika $1 je: "\'\'\'$2\'\'\'".',
+'autoblocker'                 => 'Automatski ste blokirani jer je vašu IP adresu skoro koristio "[[User:$1|$1]]". Razlog za blokiranje korisnika $1 je: "\'\'\'$2\'\'\'".',
 'blocklogpage'                => 'istorija blokiranja',
 'blocklogentry'               => 'je blokirao "[[$1]]" sa vremenom isticanja blokade od $2',
 'blocklogtext'                => 'Ovo je istorija blokiranja i odblokiranja korisnika. Automatski
@@ -1999,7 +1999,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Upozorenje: Ova strana je obrisana pošto ste počeli uređivanje!',
-'confirmrecreate'     => "Korisnik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|razgovor]]) je obrisao ovaj članak pošto ste počeli uređivanje sa razlogom:
+'confirmrecreate'     => "Korisnik [[User:$1|$1]] ([[User_talk:$1|razgovor]]) je obrisao ovaj članak pošto ste počeli uređivanje sa razlogom:
 : ''$2''
 Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'recreate'            => 'Ponovo napravi',

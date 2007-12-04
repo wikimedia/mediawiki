@@ -980,7 +980,7 @@ Qolaýlı bolwı üşin bul bettiñ joyw jwrnalı keltirilgen:",
 # "Undo" feature
 'undo-success' => 'Bul tüzetw joqqa şığarılwı mümkin. Talabıñızdı bilip turıp aldın ala tömendegi salıstırwdı tekserip şığıñız da, tüzetwdiñ joqqa şığarwın bitirw üşin tömendegi özgeristerdi saqtañız.',
 'undo-failure' => 'Bul tüzetw joqqa şığarılmaýdı, sebebi arada qaqtığıs jasaýtın tüzetwler bar.',
-'undo-summary' => '[[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) istegen $1 nusqasın joqqa şığardı',
+'undo-summary' => '[[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|talqılawı]]) istegen $1 nusqasın joqqa şığardı',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Tirkelgi jaratılmadı',
@@ -1714,12 +1714,12 @@ Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
 'rollbacklink'                => 'keri qaýtarw',
 'rollbackfailed'              => 'Keri qaýtarw sätsiz bitti',
 'cantrollback'                => 'Tüzetw qaýtarılmaýdı; bul bettiñ awtorı tek soñğı ülesker bolğan.',
-'alreadyrolled'               => '[[:$1]] betiniñ [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]])
+'alreadyrolled'               => '[[:$1]] betiniñ [[User:$2|$2]] ([[User_talk:$2|talqılawı]])
 soñğı tüzetwi keri qaýtarılmadı; basqa birew betti aldaqaşan öñdegen ne qaýtarğan.
 
-Soñğı öñdewdi [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.',
+Soñğı öñdewdi [[User:$3|$3]] ([[User_talk:$3|talqılawı]]) istegen.',
 'editcomment'                 => 'Bolğan tüzetw mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => '[[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) tüzetwlerinen qaýtarğan; [[{{ns:user}}:$1|$1]] soñğı nusqasına özgertti.',
+'revertpage'                  => '[[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|talqılawı]]) tüzetwlerinen qaýtarğan; [[User:$1|$1]] soñğı nusqasına özgertti.',
 'rollback-success'            => '$1 tüzetwlerinen qaýtarğan; $2 soñğı nusqasına özgertti.',
 'sessionfailure'              => 'Kirw sessïyasında şataq bolğan sïyaqtı;
 sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.
@@ -1903,7 +1903,7 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'unblockip'                   => 'Qatıswşını buğattamaw',
 'unblockiptext'               => 'Tömendegi pişindi aldındağı IP jaýımen ne atawımen buğattalğan qatıswşığa jazw qatınawın qalpına keltiriwi üşin qoldanıñız.',
 'ipusubmit'                   => 'Osı jaýdı buğattamaw',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] buğattawı öşirildi',
+'unblocked'                   => '[[User:$1|$1]] buğattawı öşirildi',
 'unblocked-id'                => '$1 degen buğattaw alastaldı',
 'ipblocklist'                 => 'Buğattalğan qatıswşı / IP jaý tizimi',
 'ipblocklist-legend'          => 'Buğattalğan qatıswşını tabw',
@@ -1921,7 +1921,7 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'blocklink'                   => 'buğattaw',
 'unblocklink'                 => 'buğattamaw',
 'contribslink'                => 'ülesi',
-'autoblocker'                 => 'IP jaýıñızdı jwıqta «[[{{ns:user}}:1|$1]]» paýdalanğan, sondıqtan özdiktik buğattalğan. $1 buğattawı üşin keltirilgen sebebi: «$2».',
+'autoblocker'                 => 'IP jaýıñızdı jwıqta «[[User:1|$1]]» paýdalanğan, sondıqtan özdiktik buğattalğan. $1 buğattawı üşin keltirilgen sebebi: «$2».',
 'blocklogpage'                => 'Buğattaw_jwrnalı',
 'blocklogentry'               => '[[$1]] degendi $2 merzimge buğattadı $3',
 'blocklogtext'                => 'Bul qatıswşılardı buğattaw/buğattamaw äreketteriniñ jwrnalı. Özdiktik
@@ -2609,7 +2609,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Nazar salıñız: Bul betti öñdewiñizdi bastağanda, osı bet joýıldı!',
-'confirmrecreate'     => "Bul betti öñdewiñizdi bastağanda [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|talqılawı]]) osı betti joýdı, keltirgen sebebi:
+'confirmrecreate'     => "Bul betti öñdewiñizdi bastağanda [[User:$1|$1]] ([[User_talk:$1|talqılawı]]) osı betti joýdı, keltirgen sebebi:
 : ''$2''
 Osı betti şınınan qaýta bastawın quptañız.",
 'recreate'            => 'Qaýta bastaw',

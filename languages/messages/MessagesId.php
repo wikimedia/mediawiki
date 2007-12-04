@@ -1455,9 +1455,9 @@ Umpan balik dan bantuan lanjutan:
 'rollbacklink'                => 'kembalikan',
 'rollbackfailed'              => 'Pengembalian gagal dilakukan',
 'cantrollback'                => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
-'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Pembicaraan]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Pembicaraan]]).',
+'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[User:$2|$2]] ([[User_talk:$2|Pembicaraan]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[User:$3|$3]] ([[User_talk:$3|Pembicaraan]]).',
 'editcomment'                 => 'Komentar penyuntingan adalah: "<em>$1</em>".', # only shown if there is an edit comment
-'revertpage'                  => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Pembicaraan]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]',
+'revertpage'                  => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Pembicaraan]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]',
 'rollback-success'            => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
 'sessionfailure'              => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 'protectlogpage'              => 'Log perlindungan',
@@ -2262,7 +2262,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Perhatian: Halaman ini telah dihapus setelah Anda mulai melakukan penyuntingan!',
-'confirmrecreate'     => "Pengguna [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Pembicaraan]]) telah menghapus halaman selagi Anda mulai melakukan penyuntingan dengan alasan:
+'confirmrecreate'     => "Pengguna [[User:$1|$1]] ([[User_talk:$1|Pembicaraan]]) telah menghapus halaman selagi Anda mulai melakukan penyuntingan dengan alasan:
 : ''$2''
 Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'recreate'            => 'Buat ulang',

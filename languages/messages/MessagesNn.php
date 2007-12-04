@@ -897,7 +897,7 @@ For hjelp og meir informasjon:
 'deletepage'         => 'Slett side',
 'confirm'            => 'Stadfest',
 'excontent'          => 'innhaldet var: «$1»',
-'excontentauthor'    => 'innhaldet var: «$1» (og den einaste bidragsytaren var «[[{{ns:user}}:$2|$2]]»)',
+'excontentauthor'    => 'innhaldet var: «$1» (og den einaste bidragsytaren var «[[User:$2|$2]]»)',
 'exbeforeblank'      => 'innhaldet før sida vart tømd var: «$1»',
 'exblank'            => 'sida var tom',
 'confirmdelete'      => 'Stadfest sletting',
@@ -922,7 +922,7 @@ For hjelp og meir informasjon:
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]).',
 'editcomment'        => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Attenderulla endring gjort av [[{{ns:user}}:$2|$2]] til tidlegare versjon endra av [[{{ns:user}}:$1|$1]]',
+'revertpage'         => 'Attenderulla endring gjort av [[User:$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]',
 'sessionfailure'     => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'     => 'Vernelogg',
 'protectlogtext'     => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. Sjå [[{{ns:project}}:Verna side]] for meir info.',
@@ -992,7 +992,7 @@ For informasjon om korleis ein kan blokkere seriar av IP-adresser, sjå [http://
 'blocklink'                   => 'blokker',
 'unblocklink'                 => 'opphev blokkering',
 'contribslink'                => 'bidrag',
-'autoblocker'                 => 'Automatisk blokkert fordi du deler IP-adresse med [[{{ns:user}}:$1|$1]]. Grunngjeving gjeve for blokkeringa av $1 var: «$2».',
+'autoblocker'                 => 'Automatisk blokkert fordi du deler IP-adresse med [[User:$1|$1]]. Grunngjeving gjeve for blokkeringa av $1 var: «$2».',
 'blocklogpage'                => 'Blokkeringslogg',
 'blocklogentry'               => 'Blokkerte «[[$1]]» med opphørstid $2',
 'blocklogtext'                => 'Dette er ein logg over blokkeringar og oppheving av blokkeringar gjorde av [[{{ns:project}}:Administratorar|administratorar]].

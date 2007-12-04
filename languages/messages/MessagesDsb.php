@@ -533,7 +533,7 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'loginreqlink'              => 'se pśizjawiś',
 'loginreqpagetext'          => 'Dejš se $1, aby mógł boki pšawje cytaś.',
 'accmailtitle'              => 'Šćitne gronidło jo se wótpósłało.',
-'accmailtext'               => 'Šćitne gronidło za wužywarja [[{{ns:user}}:$1]] jo na adresu $2 se wótpósłało.',
+'accmailtext'               => 'Šćitne gronidło za wužywarja [[User:$1]] jo na adresu $2 se wótpósłało.',
 'newarticle'                => '(Nowy nastawk)',
 'newarticletext'            => 'Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
 Aby bok wutwórił, ga napiš do kašćika spózy. (Dokradnjejše informacije pód: [[{{MediaWiki:Helppage}}|help page]].',
@@ -1343,10 +1343,10 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'rollbacklink'                => 'anulěrowaś',
 'rollbackfailed'              => 'Slědkwześe njejo se raźiło.',
 'cantrollback'                => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
-'alreadyrolled'               => "Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$2|diskusija]], 
-[[{{ns:special}}:Contributions/$2|pśinoski]])</span> slědk wześ, dokulaž jo mjaztym drugi wužywaŕ nastawk pśeměnił.<br />Slědnu změnu jo wugbał [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$3|diskusija]])</span>.",
+'alreadyrolled'               => "Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] <span style='font-size: smaller'>([[User_talk:$2|diskusija]], 
+[[{{ns:special}}:Contributions/$2|pśinoski]])</span> slědk wześ, dokulaž jo mjaztym drugi wužywaŕ nastawk pśeměnił.<br />Slědnu změnu jo wugbał [[User:$3|$3]] <span style='font-size: smaller'>([[User_talk:$3|diskusija]])</span>.",
 'editcomment'                 => 'Komentar ku slědnej změnje jo był: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Změny wót [[{{ns:user}}:$2|$2]] ([[{{ns:special}}:Contributions/$2|pśinoski]]) su se slědk wzeli a slědna wersija wót $1 jo se nawrośiła.',
+'revertpage'                  => 'Změny wót [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|pśinoski]]) su se slědk wzeli a slědna wersija wót $1 jo se nawrośiła.',
 'rollback-success'            => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
 'sessionfailure'              => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
 Wěstoty dla jo akcija se pśetergnuła, aby se zadorało wopacnemu pśirědowanjoju twójeje změny drugemu wužywarjeju.
@@ -2162,7 +2162,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Warnowanje: Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś.',
-'confirmrecreate'     => 'Wužywaŕ [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna: : <i>$2</i> 
+'confirmrecreate'     => 'Wužywaŕ [[User:$1|$1]] ([[User_talk:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna: : <i>$2</i> 
 Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.',
 'recreate'            => 'Wótnowótki wutwóriś',
 

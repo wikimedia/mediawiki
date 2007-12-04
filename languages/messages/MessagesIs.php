@@ -746,7 +746,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 # "Undo" feature
 'undo-success' => 'Breytingin hefur verið tekin tilbaka. Vinsamlegast staðfestu og vistaðu svo.',
 'undo-failure' => 'Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.',
-'undo-summary' => 'Tek aftur breytingu $1 frá [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Spjall]])',
+'undo-summary' => 'Tek aftur breytingu $1 frá [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Spjall]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ekki hægt að búa til aðgang',
@@ -1301,10 +1301,10 @@ sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 'rollbackfailed'              => 'Mistókst að taka aftur',
 'cantrollback'                => 'Ekki hægt að taka aftur breytingu, síðasti höfundur er eini höfundur þessarar síðu.',
 'alreadyrolled'               => 'Ekki var hægt að taka síðustu breytingu [[:$1]] 
-eftir [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|spjall]]) til baka; eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
+eftir [[User:$2|$2]] ([[User_talk:$2|spjall]]) til baka; eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
-Síðasta breyting er frá [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Spjall]]).',
-'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]',
+Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
+'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]',
 'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Þetta er skrá yfir verndunar- og afverndunaraðgerðir. Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
@@ -1455,7 +1455,7 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'blocklink'                   => 'banna',
 'unblocklink'                 => 'afbanna',
 'contribslink'                => 'framlög',
-'autoblocker'                 => 'Vistfang þitt er bannað vegna þess að það hefur nýlega verið notað af „[[{{ns:user}}:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
+'autoblocker'                 => 'Vistfang þitt er bannað vegna þess að það hefur nýlega verið notað af „[[User:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
 'blocklogpage'                => 'Bönnunarskrá',
 'blocklogentry'               => 'bannaði „[[$1]]“; rennur út eftir: $2 $3',
 'blocklogtext'                => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi. Vistföng sem sett hafa verið í bann sjálfvirkt birtast ekki hér. Sjá [[{{ns:special}}:Ipblocklist|ítarlegri lista]] fyrir öll núgildandi bönn.',
@@ -1790,7 +1790,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Viðvörun: Þessari síðu var eytt á meðan þú varst að breyta henni!',
-'confirmrecreate'     => "Notandi [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|spjall]]) eyddi þessari síðu eftir að þú fórst að breyta henni út af: ''$2''
+'confirmrecreate'     => "Notandi [[User:$1|$1]] ([[User_talk:$1|spjall]]) eyddi þessari síðu eftir að þú fórst að breyta henni út af: ''$2''
 Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'recreate'            => 'Endurvekja',
 

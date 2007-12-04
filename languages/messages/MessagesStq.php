@@ -1045,7 +1045,7 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'rollbackfailed'              => 'Touräächsätten misglukked',
 'cantrollback'                => 'Disse Annerenge kon nit touräächstoald wäide; deer et naan fröieren Autor rakt.',
 'editcomment'                 => 'Ju Annerengskommentoar waas: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Annerengen fon [[{{ns:user}}:$2|$2]] ([[{{ns:special}}:Contributions/$2|Biedraage]]) tounichte moaked un lääste Version fon $1 wierhäärstoald',
+'revertpage'                  => 'Annerengen fon [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|Biedraage]]) tounichte moaked un lääste Version fon $1 wierhäärstoald',
 'sessionfailure'              => 'Dät roat n Problem mäd ju Uurdreegenge fon dien Benutserdoaten. Disse Aktion wuude deeruum sicherheidshoolwe oubreeken, uum ne falske Touoardnenge fon dien Annerengen tou n uur Benutser tou ferhinnerjen. Gung jädden tourääch un fersäik dän Foargong fonnäien uuttoufieren.',
 'protectlogpage'              => 'Siedenschuts-Logbouk',
 'protectlogtext'              => 'Dit is ne Lieste fon do blokkierde Sieden. Sjuch [[{{ns:special}}:Protectedpages|Schutsede Siede]] foar moor Informatione.',

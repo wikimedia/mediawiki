@@ -1298,7 +1298,7 @@ Retôrn et assistance :
 'deletepage'                  => 'Suprimar una pâge',
 'confirm'                     => 'Confirmar',
 'excontent'                   => 'contegnent « $1 »',
-'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor en ére « [[{{ns:user_talk}}:$2|$2]] » ([[Special:Contributions/$2|Contribucions]])',
+'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor en ére « [[User_talk:$2|$2]] » ([[Special:Contributions/$2|Contribucions]])',
 'exbeforeblank'               => 'Contegnéve devant blanchiment : $1',
 'exblank'                     => 'pâge voueda',
 'confirmdelete'               => 'Confirmar la suprèssion',

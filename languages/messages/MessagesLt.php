@@ -656,7 +656,7 @@ Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
 # "Undo" feature
 'undo-success' => 'Keitimas gali būti atšauktas. Prašome patikrinti palyginimą, esantį žemiau, kad patvirtintumėte, kad jūs tai ir norite padaryti, ir tada išsaugokite pakeitimus, esančius žemiau, kad užbaigtumėte keitimo atšaukimą.',
 'undo-failure' => 'Keitimas negali būti atšauktas dėl konfliktuojančių tarpinių keitimų.',
-'undo-summary' => 'Atšaukti [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Aptarimas]]) versiją $1',
+'undo-summary' => 'Atšaukti [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Aptarimas]]) versiją $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Paskyrų kūrimas negalimas',
@@ -1373,11 +1373,11 @@ Paskutinių šalinimų istorija - $2.',
 'rollbacklink'                => 'atmesti',
 'rollbackfailed'              => 'Atmetimas nepavyko',
 'cantrollback'                => 'Negalima atmesti redagavimo; paskutinis keitęs naudotojas yra šio puslapio autorius.',
-'alreadyrolled'               => 'Nepavyko atmesti paskutinio [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Aptarimas]]) daryto puslapio [[:$1]] keitimo; kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
+'alreadyrolled'               => 'Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User_talk:$2|Aptarimas]]) daryto puslapio [[:$1]] keitimo; kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
 
-Paskutimas keitimas darytas naudotojo [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Aptarimas]]).',
+Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User_talk:$3|Aptarimas]]).',
 'editcomment'                 => 'Redagavimo komentaras: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Atmestas [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[{{ns:user}}:$1|$1]] versija',
+'revertpage'                  => 'Atmestas [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[User:$1|$1]] versija',
 'rollback-success'            => 'Atmesti $1 keitimai; grąžinta į paskutinę $2 versiją.',
 'sessionfailure'              => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
 Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
@@ -1552,7 +1552,7 @@ $1',
 'unblockiptext'               => 'Naudokite šią formą, kad atkurtumėte rašymo teises
 ankščiau užblokuotam IP adresui ar naudotojui.',
 'ipusubmit'                   => 'Atblokuoti šį adresą',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] buvo atblokuotas',
+'unblocked'                   => '[[User:$1|$1]] buvo atblokuotas',
 'unblocked-id'                => 'Blokavimas $1 buvo pašalintas',
 'ipblocklist'                 => 'Blokuotų IP adresų bei naudotojų sąrašas',
 'ipblocklist-legend'          => 'Rasti užblokuotą naudotoją',
@@ -1570,7 +1570,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'blocklink'                   => 'blokuoti',
 'unblocklink'                 => 'atblokuoti',
 'contribslink'                => 'įnašas',
-'autoblocker'                 => 'Jūs buvote automatiškai užblokuotas, nes jūsų IP neseniai naudojo „[[{{ns:user}}:$1|$1]]“. Duota priežastis naudotojo $1 užblokavimui: „$2“.',
+'autoblocker'                 => 'Jūs buvote automatiškai užblokuotas, nes jūsų IP neseniai naudojo „[[User:$1|$1]]“. Duota priežastis naudotojo $1 užblokavimui: „$2“.',
 'blocklogpage'                => 'Blokavimų istorija',
 'blocklogentry'               => 'blokavo [[$1]], blokavimo laikas - $2 $3',
 'blocklogtext'                => 'Čia yra naudotojų blokavimo ir atblokavimo sąrašas. Automatiškai blokuoti IP adresai nėra išvardinti. Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[{{ns:special}}:Ipblocklist|IP blokavimų istoriją]].',
@@ -2244,7 +2244,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Dėmesio: Šis puslapis ištrintas po to, kai pradėjote redaguoti!',
-'confirmrecreate'     => "Naudotojas [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
+'confirmrecreate'     => "Naudotojas [[User:$1|$1]] ([[User_talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
 : ''$2''
 Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'recreate'            => 'Atkurti',

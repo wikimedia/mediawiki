@@ -1355,9 +1355,9 @@ Pomoc:
 'rollbacklink'                => 'cofnij',
 'rollbackfailed'              => 'Nie udało się cofnąć zmiany',
 'cantrollback'                => 'Nie można cofnąć edycji; jest tylko jedna wersja tej strony.',
-'alreadyrolled'               => 'Nie można cofnąć ostatniej zmiany strony [[:$1|$1]], której autorem jest [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Dyskusja]]). Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony. Autorem ostatniej zmiany jest teraz [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Dyskusja]]).',
+'alreadyrolled'               => 'Nie można cofnąć ostatniej zmiany strony [[:$1|$1]], której autorem jest [[User:$2|$2]] ([[User_talk:$2|Dyskusja]]). Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony. Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User_talk:$3|Dyskusja]]).',
 'editcomment'                 => 'Opisano ją następująco: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wycofano edycję użytkownika [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|dyskusja]]). Autor przywróconej wersji to [[{{ns:user}}:$1|$1]].',
+'revertpage'                  => 'Wycofano edycję użytkownika [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
 'rollback-success'            => 'Wycofano edycje użytkownika $1; powrócono do ostatniej wersji autorstwa $2.',
 'sessionfailure'              => 'Błąd weryfikacji sesji. Twoje polecenie zostało anulowane, aby uniknąć przechwycenia sesji.
 
@@ -1522,7 +1522,7 @@ $1',
 'unblockip'                   => 'Odblokuj użytkownika',
 'unblockiptext'               => 'Użyj poniższego formularza by przywrócić prawa zapisu dla poprzednio zablokowanego użytkownika lub adresu IP.',
 'ipusubmit'                   => 'Odblokuj użytkownika',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] został odblokowany.',
+'unblocked'                   => '[[User:$1|$1]] został odblokowany.',
 'unblocked-id'                => 'Blokada $1 została zdjęta',
 'ipblocklist'                 => 'Lista zablokowanych użytkowników i adresów IP',
 'ipblocklist-legend'          => 'Znajdź zablokowanego użytkownika',
@@ -1540,7 +1540,7 @@ $1',
 'blocklink'                   => 'zablokuj',
 'unblocklink'                 => 'odblokuj',
 'contribslink'                => 'wkład',
-'autoblocker'                 => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik "[[{{ns:user}}:$1|$1]]". Powód blokady założonej na konto $1: "$2"',
+'autoblocker'                 => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik "[[User:$1|$1]]". Powód blokady założonej na konto $1: "$2"',
 'blocklogpage'                => 'Zablokowani',
 'blocklogentry'               => 'zablokowano "[[$1]]", czas blokady: $2 $3',
 'blocklogtext'                => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP. Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny. By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:Ipblocklist|zablokowanych adresów i użytkowników]].',
@@ -2147,7 +2147,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Uwaga: Ta strona została usunięta po tym, jak rozpoczęłeś jej edycję!',
-'confirmrecreate'     => 'Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia: : <b>$2</b> Potwierdź chęć odtworzenia tego artykułu.',
+'confirmrecreate'     => 'Użytkownik [[User:$1|$1]] ([[User_talk:$1|Dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia: : <b>$2</b> Potwierdź chęć odtworzenia tego artykułu.',
 'recreate'            => 'Odtwórz',
 
 # HTML dump

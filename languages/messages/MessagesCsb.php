@@ -591,9 +591,9 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'rollback'           => 'Copnij edicëjã',
 'rollbacklink'       => 'copnij',
 'rollbackfailed'     => 'Nie szło copnąc zmianë',
-'alreadyrolled'      => 'Nie jidze copnąc slédnej zmianë starnë [[$1]], chtërnej ùsôdzcą je [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Diskùsëjô]]). Chtos jiny ju editowôł starnã abò copnął zmianë.
+'alreadyrolled'      => 'Nie jidze copnąc slédnej zmianë starnë [[$1]], chtërnej ùsôdzcą je [[User:$2|$2]] ([[User_talk:$2|Diskùsëjô]]). Chtos jiny ju editowôł starnã abò copnął zmianë.
 
-Ùsôdzcą slédnej zmianë je terô [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Diskùsëjô]]).',
+Ùsôdzcą slédnej zmianë je terô [[User:$3|$3]] ([[User_talk:$3|Diskùsëjô]]).',
 'protectedarticle'   => 'zazychrowónô [[$1]]',
 'unprotectedarticle' => 'òdzychrowóny [[$1]]',
 'confirmprotect'     => 'Pòcwierdzë zazychrowanié',
@@ -640,7 +640,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'blocklistline'      => '$1, $2 zascëgôł $3 ($4)',
 'blocklink'          => 'zascëgôj',
 'contribslink'       => 'wkłôd',
-'autoblocker'        => 'Zablokòwóno ce aùtomatnie, ga brëkùjesz ti sami adresë IP co brëkòwnik "[[{{ns:user}}:$1|$1]]". Przëczënô blokòwóniô $1 to: "\'\'\'$2\'\'\'".',
+'autoblocker'        => 'Zablokòwóno ce aùtomatnie, ga brëkùjesz ti sami adresë IP co brëkòwnik "[[User:$1|$1]]". Przëczënô blokòwóniô $1 to: "\'\'\'$2\'\'\'".',
 'proxyblocksuccess'  => 'Fertich.',
 
 # Developer tools
