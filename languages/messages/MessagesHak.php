@@ -1211,7 +1211,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'unblockip'                   => 'Kié-chhù kim-fûng IP thi-tiám',
 'unblockiptext'               => 'Yung ha-mien ke péu-tân lòi fî-fu̍k siên-chhièn pûn kim-fûng ke IP thi-tiám ke siá-sû-khièn.',
 'ipusubmit'                   => 'Kié-chhù kim-fûng',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]]-ke fûng-kim yí-kîn kié-chhù',
+'unblocked'                   => '[[User:$1|$1]]-ke fûng-kim yí-kîn kié-chhù',
 'unblocked-id'                => 'Fûng-kim $1 yí-kîn pûn yì-chhù',
 'ipblocklist'                 => 'Pûn fûng IP thi-tiám lie̍t-péu',
 'ipblocklist-submit'          => 'Chhìm-cháu',

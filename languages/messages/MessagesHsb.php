@@ -629,7 +629,7 @@ Móžeš administratora $1 abo jednoho z druhich [[{{MediaWiki:Grouppage-sysop}}
 'loginreqlink'              => 'přizjewić',
 'loginreqpagetext'          => 'Dyrbiš so $1, zo by strony čitać móhł.',
 'accmailtitle'              => 'Hesło bu pósłane.',
-'accmailtext'               => 'Hesło za wužiwarja [[{{ns:user}}:$1]] bu na adresu $2 pósłane.',
+'accmailtext'               => 'Hesło za wužiwarja [[User:$1]] bu na adresu $2 pósłane.',
 'newarticle'                => '(Nowy nastawk)',
 'newarticletext'            => 'Sy wotkaz k stronje slědował, kotraž hišće njeeksistuje. Zo by stronu wutworił, wupjelń tekstowe polo deleka (hlej [[{{MediaWiki:Helppage}}|stronu pomocy]] za wjace informacijow). Jeli sy zmylnje tu, klikń na tłóčku <b>Wróćo</b> swojeho wobhladowaka.',
 'anontalkpagetext'          => '----
@@ -701,7 +701,7 @@ Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmó
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',
 'undo-failure' => '<span class="error">Wobdźěłanje njehodźeše so wotstronić, dokelž wotpowědny wotrězk bu mjeztym změnjeny.</span>',
-'undo-summary' => 'Wersija $1 wužiwarja [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|diskusija]]) bu wotstronjena.',
+'undo-summary' => 'Wersija $1 wužiwarja [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|diskusija]]) bu wotstronjena.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Wužiwarske konto njeda so wutworić.',
@@ -1422,7 +1422,7 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 'deletepage'                  => 'Stronu wušmórnyć',
 'confirm'                     => 'Wobkrućić',
 'excontent'                   => "wobsah běše: '$1'",
-'excontentauthor'             => "wobsah bě: '$1' (jenički wobdźěłowar bě [[{{ns:user}}:$2|$2]] - [[{{ns:user_talk}}:$2|diskusija]])",
+'excontentauthor'             => "wobsah bě: '$1' (jenički wobdźěłowar bě [[User:$2|$2]] - [[User_talk:$2|diskusija]])",
 'exbeforeblank'               => "wobsah do wuprózdnjenja běše: '$1'",
 'exblank'                     => 'strona běše prózdna',
 'confirmdelete'               => 'Wušmórnjenje wobkrućić',
@@ -1449,11 +1449,11 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 'rollbacklink'                => 'Cofnyć',
 'rollbackfailed'              => 'Cofnjenje njeporadźiło',
 'cantrollback'                => 'Njemóžno změnu cofnyć; strona nima druhich awtorow.',
-'alreadyrolled'               => 'Njemóžno poslednu změnu wot [[:$1]] wužiwarja [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|diskusija]]) cofnyć; něchtó druhi je stronu hižo wobdźěłał abo změnu cofnył.
+'alreadyrolled'               => 'Njemóžno poslednu změnu wot [[:$1]] wužiwarja [[User:$2|$2]] ([[User_talk:$2|diskusija]]) cofnyć; něchtó druhi je stronu hižo wobdźěłał abo změnu cofnył.
 
-Poslednja změna běše wot wužiwarja [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|diskusija]]).',
+Poslednja změna běše wot wužiwarja [[User:$3|$3]] ([[User_talk:$3|diskusija]]).',
 'editcomment'                 => 'Komentar wobdźěłanja běše: „<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Změny wužiwarja [[{{ns:user}}:$2|$2]] ([[{{ns:special}}:Contributions/$2|přinoški]]) cofnjene, nawróćene k poslednjej wersiji wužiwarja [[{{ns:user}}:$1|$1]]',
+'revertpage'                  => 'Změny wužiwarja [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|přinoški]]) cofnjene, nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]',
 'rollback-success'            => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
 'sessionfailure'              => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
 'protectlogpage'              => 'Protokol škita',
@@ -1618,7 +1618,7 @@ $1',
 'unblockip'                   => 'Zablokowanje zběhnyć',
 'unblockiptext'               => 'Wužij formular deleka, zo by blokowanje IP-adresy abo wužiwarskeho mjena zběhnył.',
 'ipusubmit'                   => 'Zablokowanje zběhnyć',
-'unblocked'                   => 'Blokowanje wužiwarja [[{{ns:user}}:$1|$1]] zběhnjene',
+'unblocked'                   => 'Blokowanje wužiwarja [[User:$1|$1]] zběhnjene',
 'unblocked-id'                => 'Blokowanje ID $1 bu zběhnjene.',
 'ipblocklist'                 => 'Lisćina zablokowanych IP-adresow a wužiwarskich mjenow',
 'ipblocklist-legend'          => 'Pytanje za zablokowanym wužiwarjom',
@@ -1637,7 +1637,7 @@ $1',
 'blocklink'                   => 'zablokować',
 'unblocklink'                 => 'blokowanje zběhnyć',
 'contribslink'                => 'přinoški',
-'autoblocker'                 => 'Awtomatiske blokowanje, dokelž twoja IP-adresa bu njedawno wot wužiwarja „[[{{ns:user}}:$1|$1]]” wužita. Přičina, podata přez blokowaceho administratora $1 je: „<b>$2</b>”.',
+'autoblocker'                 => 'Awtomatiske blokowanje, dokelž twoja IP-adresa bu njedawno wot wužiwarja „[[User:$1|$1]]” wužita. Přičina, podata přez blokowaceho administratora $1 je: „<b>$2</b>”.',
 'blocklogpage'                => 'Protokol zablokowanjow',
 'blocklogentry'               => 'je wužiwarja [[$1]] zablokował z časom spadnjenja $2 $3',
 'blocklogtext'                => 'To je protokol blokowanja a wotblokowanja wužiwarjow. Awtomatisce blokowane IP-adresy so njenaličuja. Hlej [[{{ns:special}}:Ipblocklist|lisćinu zablokowanych IP-adresow]] za přehlad tuchwilnych blokowanjow.',
@@ -2267,7 +2267,7 @@ $1</div>',
 
 # Delete conflict
 'deletedwhileediting' => '<b>Kedźbu:</b> Strona bu wušmórnjena po tym zo sy započał ju wobdźěłać!',
-'confirmrecreate'     => 'Wužiwar [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|diskusija]]) je stronu wušmórnył po tym zo sy započał ju wobdźěłać z přičinu:
+'confirmrecreate'     => 'Wužiwar [[User:$1|$1]] ([[User_talk:$1|diskusija]]) je stronu wušmórnył po tym zo sy započał ju wobdźěłać z přičinu:
 : <i>$2</i>
 Prošu wobkruć, zo chceš ju woprawdźe znowa wutworić.',
 'recreate'            => 'Znowa wutworić',

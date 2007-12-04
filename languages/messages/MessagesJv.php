@@ -397,7 +397,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'deletecomment'   => 'Alesan dipun-busak',
 'rollback'        => 'Mangsulaken suntingan',
 'rollbacklink'    => 'balèaké',
-'revertpage'      => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[{{ns:user}}:$1|$1]]',
+'revertpage'      => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]',
 'sessionfailure'  => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
 
 # Restrictions (nouns)
