@@ -231,6 +231,8 @@ $messages = array(
 'aug'           => 'aug',
 'sep'           => 'szep',
 'oct'           => 'Okt',
+'nov'           => 'nov',
+'dec'           => 'dec',
 
 # Bits of text used by many pages
 'categories'            => 'Kategóriák',
@@ -372,6 +374,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|egy|$1}} törölt szerkesztés',
 'feedlinks'               => 'Hírcsatorna:',
 'feed-invalid'            => 'Érvénytelen a figyelt hírcsatorna típusa.',
+'site-rss-feed'           => '$1 RSS csatorna',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Cikk',
@@ -734,7 +737,6 @@ Ezen lap törlésnaplóját a kényelem kedvéért alább találod:",
 :''$2''",
 
 # History pages
-'revhistory'          => 'Változások története',
 'viewpagelogs'        => 'A lap naplóinak megtekintése',
 'nohistory'           => 'Ennek a lapnak nincs szerkesztési története.',
 'revnotfound'         => 'A változat nem található',
@@ -816,17 +818,21 @@ vissza tudja ugyanezen a kezelőfelületen keresztül állítani, ha nincs megad
 'overlogpagetext' => 'Az alábbiakban látható a rendszerfelelősök elől elrejtett legutóbbi törlések listája.
  A jelenleg érvényben lévő kitiltásokat és blokkolásokat lásd az [[Special:Ipblocklist|IP blokkolási listában]].',
 
+# History merging
+'mergehistory'      => 'Laptörténetek egyesítése',
+'mergehistory-box'  => 'Két oldal változatainak egyesítése:',
+'mergehistory-from' => 'Forrásoldal:',
+'mergehistory-into' => 'Céloldal:',
+'mergehistory-list' => 'Egyesíthető laptörténet',
+'mergehistory-go'   => 'Egyesíthető szerkesztések mutatása',
+
 # Diffs
-'history-title'             => 'A(z) „$1” laptörténete',
-'difference'                => '(Változatok közti eltérés)',
-'loadingrev'                => 'változat betöltése a különbségképzéshez',
-'lineno'                    => '$1. sor:',
-'editcurrent'               => 'A lap aktuális változatának szerkesztése',
-'selectnewerversionfordiff' => 'Válaszd ki az újabb verziót az összehasonlításhoz',
-'selectolderversionfordiff' => 'Válaszd ki a régebbi verziót az összehasonlításhoz',
-'compareselectedversions'   => 'A kiválasztott verziók összehasonlítása',
-'editundo'                  => 'visszavonás',
-'diff-multi'                => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nem látható)',
+'history-title'           => 'A(z) „$1” laptörténete',
+'difference'              => '(Változatok közti eltérés)',
+'lineno'                  => '$1. sor:',
+'compareselectedversions' => 'A kiválasztott verziók összehasonlítása',
+'editundo'                => 'visszavonás',
+'diff-multi'              => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nem látható)',
 
 # Search results
 'searchresults'         => 'A keresés eredménye',

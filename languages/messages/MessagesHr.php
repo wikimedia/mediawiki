@@ -660,7 +660,6 @@ Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno b
 Razlog koji je dao/la $3 je ''$2''",
 
 # History pages
-'revhistory'          => 'Stare izmjene',
 'viewpagelogs'        => 'Vidi evidencije za ovu stranicu',
 'nohistory'           => 'Ova stranica nema starijih izmjena.',
 'revnotfound'         => 'Stara izmjena nije nađena.',
@@ -773,16 +772,12 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'mergelogpagetext'   => 'Slijedi popis posljednjih spajanja povijesti stranica.',
 
 # Diffs
-'history-title'             => 'Povijest izmjena stranice "$1"',
-'difference'                => '(Usporedba među inačicama)',
-'loadingrev'                => 'učitavam inačicu za usporedbu',
-'lineno'                    => 'Redak $1:',
-'editcurrent'               => 'Uredi trenutnu inačicu ove stranice',
-'selectnewerversionfordiff' => 'Izaberi noviju inačicu za usporedbu',
-'selectolderversionfordiff' => 'Izaberi stariju inačicu za usporedbu',
-'compareselectedversions'   => 'Usporedi odabrane inačice',
-'editundo'                  => 'ukloni ovu izmjenu',
-'diff-multi'                => '({{plural:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
+'history-title'           => 'Povijest izmjena stranice "$1"',
+'difference'              => '(Usporedba među inačicama)',
+'lineno'                  => 'Redak $1:',
+'compareselectedversions' => 'Usporedi odabrane inačice',
+'editundo'                => 'ukloni ovu izmjenu',
+'diff-multi'              => '({{plural:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
 
 # Search results
 'searchresults'         => 'Rezultati pretrage',
@@ -936,12 +931,10 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'newsectionsummary'                 => '/* $1 */ Novi odlomak',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'Povezane stranice',
-'recentchangeslinked-title'              => 'Povezane promjene sa $1',
-'recentchangeslinked-noresult'           => 'Nema promjena na povezanim stranicama u zadanom periodu.',
-'recentchangeslinked-summary'            => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem popisu praćenja su '''podebljane'''.",
-'recentchangeslinked-feed-entry'         => 'Uređivanje suradnika $1 je: $2',
-'recentchangeslinked-feed-entry-comment' => 'Uređivanje suradnika $1 je: $2 ($3)',
+'recentchangeslinked'          => 'Povezane stranice',
+'recentchangeslinked-title'    => 'Povezane promjene sa $1',
+'recentchangeslinked-noresult' => 'Nema promjena na povezanim stranicama u zadanom periodu.',
+'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem popisu praćenja su '''podebljane'''.",
 
 # Upload
 'upload'                      => 'Postavi datoteku',

@@ -9,7 +9,7 @@
  * @author Lameiro
  * @author Siebrand
  * @author Nike
- * @author G - ג
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -197,6 +197,7 @@ $messages = array(
 'unprotectthispage' => 'Desprotexer esta páxina',
 'newpage'           => 'Páxina nova',
 'talkpage'          => 'Discutir sobre esta páxina',
+'talkpagelinktext'  => 'Conversa',
 'specialpage'       => 'Páxina especial',
 'personaltools'     => 'Ferramentas persoais',
 'postcomment'       => 'Engadir un comentario',
@@ -402,6 +403,7 @@ Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas 
 'prefs-help-realname'        => '* Nome real (opcional): se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'loginerror'                 => 'Erro ao entrar ao sistema',
 'prefs-help-email'           => '*Correo electrónico (opcional): Permite que outras persoas entren en contacto con vostede sen que revele a súa identidade.',
+'prefs-help-email-required'  => 'O enderezo de correo electrónico é requerido.',
 'nocookiesnew'               => 'A conta de usuario foi creada, pero non está rexistrado. {{SITENAME}} usa cookies para o rexistro. Vostede ten deshabilitadas as cookies. Por favor, habilíteas, e logo rexístrese co seu novo nome de usuario e contrasinal.',
 'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios. Vostede ten as cookies deshabilitadas. Por favor, habilíteas e ténteo de novo.',
 'noname'                     => 'Non especificou un nome de usuario válido.',
@@ -619,7 +621,6 @@ Velaquí o rexistro de eliminación desta páxina, por se quere consultalo:",
 A razón dada por $3 foi ''$2''",
 
 # History pages
-'revhistory'          => 'Historial de revisións',
 'viewpagelogs'        => 'Ver rexistros (logs) para esta páxina',
 'nohistory'           => 'Non existe un historial de edicións para esta páxina.',
 'revnotfound'         => 'A revisión non foi atopada',
@@ -700,16 +701,12 @@ Outros administradores deste wiki poderán acceder aínda ao contido oculto e po
 'overlogpagetext' => 'Abaixo aparece unha listaxe coas eliminacións e bloqueos máis recentes relacionados con contido agochado para os administradores. Vexa [[Special:Ipblocklist|Listaxe de bloqueos de IP]] para unha listaxe das prohibicións e bloqueos que teñen efecto neste momento.',
 
 # Diffs
-'history-title'             => 'Historial das revisións de "$1"',
-'difference'                => '(Diferenzas entre revisións)',
-'loadingrev'                => 'cargando revisión para cambios',
-'lineno'                    => 'Liña $1:',
-'editcurrent'               => 'Editar a versión actual desta páxina',
-'selectnewerversionfordiff' => 'Seleccione unha versión máis nova para a comparación',
-'selectolderversionfordiff' => 'Seleccione unha versión máis vella para a comparación',
-'compareselectedversions'   => 'Comparar as versións seleccionadas',
-'editundo'                  => 'desfacer',
-'diff-multi'                => '(Non se {{PLURAL:$1|mostra unha revisión do historial|mostran $1 revisións do historial}}).',
+'history-title'           => 'Historial das revisións de "$1"',
+'difference'              => '(Diferenzas entre revisións)',
+'lineno'                  => 'Liña $1:',
+'compareselectedversions' => 'Comparar as versións seleccionadas',
+'editundo'                => 'desfacer',
+'diff-multi'              => '(Non se {{PLURAL:$1|mostra unha revisión do historial|mostran $1 revisións do historial}}).',
 
 # Search results
 'searchresults'         => 'Resultados da procura',
@@ -827,7 +824,6 @@ e a do servidor (UTC).',
 'group-bureaucrat-member'    => 'Burócrata',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuario auto-confirmado',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
 

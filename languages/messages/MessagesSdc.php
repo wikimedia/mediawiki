@@ -499,7 +499,6 @@ S'azzirthà chi sia avveru opporthunu continuà a mudìfiggà chistha pàgina. L
 La rasgioni frunidda da $3 è ''$2''",
 
 # History pages
-'revhistory'          => 'Cronologia di li versioni di chistha pàgina.',
 'viewpagelogs'        => 'Visuarizza li rigisthri reratibi a chistha pàgina.',
 'nohistory'           => 'Cronologia di li versioni di chistha pàgina nò riperìbiri.',
 'revnotfound'         => 'Versioni nò acciappadda',
@@ -1048,6 +1047,14 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'newimages'    => 'Galleria di li file nobi',
 'showhidebots' => '($1 li bot)',
 'noimages'     => "Nò v'è nudda da vidé.",
+
+# EXIF tags
+'exif-imagewidth'                => 'Larghèzia',
+'exif-imagelength'               => 'Althèzia',
+'exif-bitspersample'             => 'Bit pa campioni',
+'exif-compression'               => 'Tipu di cumprissioni',
+'exif-photometricinterpretation' => 'Sthruttura di li pixel',
+'exif-orientation'               => 'Orientamentu',
 
 'exif-lightsource-20' => 'Illuminanti D55',
 'exif-lightsource-21' => 'Illuminanti D65',

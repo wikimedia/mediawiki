@@ -9,10 +9,10 @@
  * @author Cessator
  * @author S.Örvarr.S
  * @author Spacebirdy
- * @author G - ג
  * @author Nike
  * @author Siebrand
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -541,7 +541,7 @@ Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Pre
 'yourdomainname'             => 'Þitt lén:',
 'loginproblem'               => '<b>Það kom upp villa í innskráningunni.</b><br />Reyndu aftur!',
 'login'                      => 'Innskrá',
-'loginprompt'                => 'Þú verður að leyfa HTTP-kökur til þess að geta skráð þig inn á {{SITENAME}}.',
+'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta skráð þig inn á {{SITENAME}}.',
 'userlogin'                  => 'Innskrá / Búa til aðgang',
 'logout'                     => 'Útskráning',
 'userlogout'                 => 'Útskrá',
@@ -568,7 +568,7 @@ Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Pre
 'loginerror'                 => 'Innskráningarvilla',
 'prefs-help-email'           => 'Tölvupóstur (valfrjálst). Gerir öðrum kleift að hafa samband við þig á notandasíðunni þinni eða spjallinu þínu án þess að þú þurfir að gefa upp persónlegar upplýsingar.',
 'prefs-help-email-required'  => 'Þörf er á netfangi.',
-'nocookieslogin'             => "{{SITENAME}} notar kökur (enska: ''cookies'') til innskráningar. Vafrinn þinn er ekki að taka á móti þeim sem gerir það ókleyft að innskrá þig. Vinsamlegast kveiktu móttöku kakna í vafranum þínum til að geta skráð þig inn.",
+'nocookieslogin'             => '{{SITENAME}} notar vefkökur til innskráningar. Vafrinn þinn er ekki að taka á móti þeim sem gerir það ókleyft að innskrá þig. Vinsamlegast virkjaðu móttöku kakna í vafranum þínum til að geta skráð þig inn.',
 'noname'                     => 'Ógilt notandanafn.',
 'loginsuccesstitle'          => 'Innskráning tókst',
 'loginsuccess'               => 'Þú ert nú innskráð(ur) á {{SITENAME}} sem „[[Notandi:$1|$1]]“.',
@@ -755,7 +755,6 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 Ástæðan sem $3 gaf fyrir því er ''$2''",
 
 # History pages
-'revhistory'          => 'Útgáfusaga',
 'viewpagelogs'        => 'Sýna aðgerðir varðandi þessa síðu',
 'nohistory'           => 'Þessi síða hefur enga breytingaskrá.',
 'revnotfound'         => 'Breyting ekki fundin',
@@ -800,14 +799,11 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-log'          => 'Athugasemd atburðaskráar:',
 
 # Diffs
-'history-title'             => 'Breytingaskrá fyrir "$1"',
-'difference'                => '(Munur milli útgáfa)',
-'lineno'                    => 'Lína $1:',
-'editcurrent'               => 'Breyta núverandi útgáfu þessarar síðu',
-'selectnewerversionfordiff' => 'Velja nýrri útgáfu til samanburðar',
-'selectolderversionfordiff' => 'Velja eldri útgáfu til samanburðar',
-'compareselectedversions'   => 'Bera saman valdar útgáfur',
-'editundo'                  => 'Taka aftur þessa breytingu',
+'history-title'           => 'Breytingaskrá fyrir "$1"',
+'difference'              => '(Munur milli útgáfa)',
+'lineno'                  => 'Lína $1:',
+'compareselectedversions' => 'Bera saman valdar útgáfur',
+'editundo'                => 'Taka aftur þessa breytingu',
 
 # Search results
 'searchresults'         => 'Leitarniðurstöður',
@@ -1294,6 +1290,7 @@ sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 'deletionlog'                 => 'eyðingaskrá',
 'reverted'                    => 'Breytt aftur til fyrri útgáfu',
 'deletecomment'               => 'Ástæða',
+'deleteotherreason'           => 'Aðrar/fleiri ástæður:',
 'deletereasonotherlist'       => 'Önnur ástæða',
 'rollback'                    => 'Taka aftur breytingar',
 'rollback_short'              => 'Taka aftur',
@@ -1304,7 +1301,7 @@ sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 eftir [[User:$2|$2]] ([[User_talk:$2|spjall]]) til baka; eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
-'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]',
+'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]',
 'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Þetta er skrá yfir verndunar- og afverndunaraðgerðir. Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
@@ -1455,7 +1452,7 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'blocklink'                   => 'banna',
 'unblocklink'                 => 'afbanna',
 'contribslink'                => 'framlög',
-'autoblocker'                 => 'Vistfang þitt er bannað vegna þess að það hefur nýlega verið notað af „[[User:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
+'autoblocker'                 => 'Vistfang þitt er bannað vegna þess að það hefur nýlega verið notað af „[[{{ns:user}}:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
 'blocklogpage'                => 'Bönnunarskrá',
 'blocklogentry'               => 'bannaði „[[$1]]“; rennur út eftir: $2 $3',
 'blocklogtext'                => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi. Vistföng sem sett hafa verið í bann sjálfvirkt birtast ekki hér. Sjá [[{{ns:special}}:Ipblocklist|ítarlegri lista]] fyrir öll núgildandi bönn.',
@@ -1756,8 +1753,19 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 # E-mail address confirmation
 'confirmemail'            => 'Staðfesta netfang',
 'confirmemail_noemail'    => 'Þú hefur ekki gefið upp gilt netfang í [[{{ns:special}}:Preferences|notandastillingum]] þínum.',
+'confirmemail_text'       => 'Þú þarft að staðfesta netfangið þitt á þessu wiki-verkefni 
+áður en að þú gegur nýtt þér eiginleika tengda netfanginu. Smelltu á hnappinn að neðan til að fá staðfestingarpóst sendan á netfangið. Pósturinn mun innihalda tengil með kóða í sér; opnaðu tengilinn 
+í vafranum til að staðfesta að netfangið sé rétt.',
+'confirmemail_pending'    => '<div class="error">
+Þú hefur nú þegar fengið staðfestingarpóst sendann; ef það er stutt síðan
+þú bjóst til aðganginn þinn, væri ráð að býða í nokkrar mínútur eftir póstinum
+áður en að þú byður um að fá nýjan kóða sendann.
+</div>',
 'confirmemail_send'       => 'Senda staðfestingarkóða með tölvupósti',
 'confirmemail_sent'       => 'Staðfestingartölvupóstur sendur.',
+'confirmemail_oncreate'   => 'Staðfestingarkóði hefur verði sendur á netfangið.
+Þennan kóða þarf ekki að staðfesta til að skrá sig inn, en þú munt þurfa gefa hann upp áður
+en opnað verður fyrir valmöguleika tengda netfanginu á þessu wiki-verkefni.',
 'confirmemail_sendfailed' => 'Gat ekki sent staðfestingarkóða. Athugaðu hvort netfangið sé rétt.
 
 Póstþjónninn gaf eftirfarandi skilaboð: $1',
@@ -1790,7 +1798,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Viðvörun: Þessari síðu var eytt á meðan þú varst að breyta henni!',
-'confirmrecreate'     => "Notandi [[User:$1|$1]] ([[User_talk:$1|spjall]]) eyddi þessari síðu eftir að þú fórst að breyta henni út af: ''$2''
+'confirmrecreate'     => "Notandi [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|spjall]]) eyddi þessari síðu eftir að þú fórst að breyta henni út af: ''$2''
 Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'recreate'            => 'Endurvekja',
 

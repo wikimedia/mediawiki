@@ -4,11 +4,11 @@
  * @addtogroup Language
  *
  * @author Spacebirdy
- * @author G - ג
  * @author S.Örvarr.S
  * @author Nike
  * @author SPQRobin
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -131,6 +131,8 @@ $messages = array(
 'tog-fancysig'                => 'Rá undirskrift (uttan sjálvvirkandi slóð)',
 'tog-externaleditor'          => 'Nýt útvortis ritil sum fyrimynd',
 'tog-externaldiff'            => 'Nýt útvortis diff sum fyrimynd',
+'tog-showjumplinks'           => 'Ger "far til"-tilgongd virkna',
+'tog-forceeditsummary'        => 'Gev mær boð, um eg ikki havi skrivað ein samandrátt um mína rætting',
 'tog-watchlisthideown'        => 'Fjal mínar rættingar frá eftirliti',
 'tog-watchlisthidebots'       => 'Fjal bot rættingar frá eftirliti',
 'tog-watchlisthideminor'      => 'Fjal minni rættingar frá eftirliti',
@@ -468,7 +470,6 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'template-protected'       => '(friðað)',
 
 # History pages
-'revhistory'          => 'Endurskoðanar søga',
 'viewpagelogs'        => 'Sí logg fyri hesa grein',
 'nohistory'           => 'Eingin broytisøga er til hesa síðuna.',
 'loadhist'            => 'Lesur síðusøgu',

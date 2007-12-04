@@ -14,6 +14,7 @@
  * @author SPQRobin
  * @author Michawiki
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $datePreferences = array(
@@ -766,7 +767,6 @@ Odkaz na záznam zmazaní:",
 Dôvod, ktorý $3 uviedol, je ''$2''",
 
 # History pages
-'revhistory'          => 'História úprav',
 'viewpagelogs'        => 'Zobraziť záznamy pre túto stránku',
 'nohistory'           => 'Pre túto stránku neexistuje história.',
 'revnotfound'         => 'Predošlá verzia nebola nájdená',
@@ -877,16 +877,12 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'mergelogpagetext'   => 'Dolu je zoznam posledných zlúčení jednej histórie revízií stránky do druhej.',
 
 # Diffs
-'history-title'             => 'História revízií „$1“',
-'difference'                => '(Rozdiel medzi revíziami)',
-'loadingrev'                => 'Sťahujem verzie, na zobrazenie rozdielov',
-'lineno'                    => 'Riadok $1:',
-'editcurrent'               => 'Upraviť aktuálnu verziu tejto stránky',
-'selectnewerversionfordiff' => 'Vybrať na porovnanie novšiu verziu',
-'selectolderversionfordiff' => 'Vybrať na porovnanie staršiu verziu',
-'compareselectedversions'   => 'Porovnať označené verzie',
-'editundo'                  => 'vrátiť',
-'diff-multi'                => '{{plural:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
+'history-title'           => 'História revízií „$1“',
+'difference'              => '(Rozdiel medzi revíziami)',
+'lineno'                  => 'Riadok $1:',
+'compareselectedversions' => 'Porovnať označené verzie',
+'editundo'                => 'vrátiť',
+'diff-multi'              => '{{plural:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
 
 # Search results
 'searchresults'         => 'Výsledky vyhľadávania',
@@ -1042,12 +1038,10 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'newsectionsummary'                 => '/* $1 */ nová sekcia',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'Súvisiace úpravy',
-'recentchangeslinked-title'              => 'Zmeny týkajúce sa $1',
-'recentchangeslinked-noresult'           => 'V zadanom období neboli odkazované stránky zmenené.',
-'recentchangeslinked-summary'            => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
-'recentchangeslinked-feed-entry'         => 'Používateľ $1 upravil $2',
-'recentchangeslinked-feed-entry-comment' => 'Používateľ $1 upravil $2 ($3)',
+'recentchangeslinked'          => 'Súvisiace úpravy',
+'recentchangeslinked-title'    => 'Zmeny týkajúce sa $1',
+'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
+'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
 
 # Upload
 'upload'                      => 'Nahrať súbor',

@@ -7,6 +7,7 @@
  * @author Nike
  * @author Teak
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -701,7 +702,6 @@ Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. 
 Grunnen som ble oppgitt av $3 er ''$2''",
 
 # History pages
-'revhistory'          => 'Historikk',
 'viewpagelogs'        => 'Vis logger for denne siden',
 'nohistory'           => 'Denne siden har ingen historikk.',
 'revnotfound'         => 'Versjonen er ikke funnet',
@@ -796,16 +796,12 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'mergelogpagetext'   => 'Nedenfor er en liste over de nyligste flettingene av sidehistorikker.',
 
 # Diffs
-'history-title'             => 'Revisjonshistorikk for «$1»',
-'difference'                => '(Forskjeller mellom versjoner)',
-'loadingrev'                => 'laster revisjon for å se forskjeller',
-'lineno'                    => 'Linje $1:',
-'editcurrent'               => 'Rediger nåværende versjon av denne siden',
-'selectnewerversionfordiff' => 'Velg en nyere versjon for sammenligning',
-'selectolderversionfordiff' => 'Velg en eldre versjon for sammenligning',
-'compareselectedversions'   => 'Sammenlign valgte versjoner',
-'editundo'                  => 'omgjør',
-'diff-multi'                => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} ikke vist.)',
+'history-title'           => 'Revisjonshistorikk for «$1»',
+'difference'              => '(Forskjeller mellom versjoner)',
+'lineno'                  => 'Linje $1:',
+'compareselectedversions' => 'Sammenlign valgte versjoner',
+'editundo'                => 'omgjør',
+'diff-multi'              => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} ikke vist.)',
 
 # Search results
 'searchresults'         => 'Søkeresultater',
@@ -956,12 +952,10 @@ Mangler kjørbar texvc; vennligst se math/README for å konfigurerer.',
 'newsectionsummary'                 => '/* $1 */ ny seksjon',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'Relaterte endringer',
-'recentchangeslinked-title'              => 'Endringer relatert til $1',
-'recentchangeslinked-noresult'           => 'Ingen endringer på lenkede sider i den gitte perioden.',
-'recentchangeslinked-summary'            => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som lenkes til fra denne. Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
-'recentchangeslinked-feed-entry'         => 'Brukeren $1 redigerte $2',
-'recentchangeslinked-feed-entry-comment' => 'Brukeren $1 redigerte $2 ($3)',
+'recentchangeslinked'          => 'Relaterte endringer',
+'recentchangeslinked-title'    => 'Endringer relatert til $1',
+'recentchangeslinked-noresult' => 'Ingen endringer på lenkede sider i den gitte perioden.',
+'recentchangeslinked-summary'  => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som lenkes til fra denne. Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
 
 # Upload
 'upload'                      => 'Last opp fil',
@@ -1389,7 +1383,7 @@ Tilbakemeldinger og videre assistanse:
 'deleteotherreason'           => 'Annen grunn:',
 'deletereasonotherlist'       => 'Annen grunn',
 'deletereason-dropdown'       => '* Vanlige grunner for sletting
-** På forfatters etterspørsel
+** På forfatters forespørsel
 ** Opphavsrettsbrudd
 ** Hærverk',
 'rollback'                    => 'Fjern redigeringer',
