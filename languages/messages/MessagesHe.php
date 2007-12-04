@@ -991,16 +991,12 @@ $2',
 'mergelogpagetext'   => 'זוהי רשימה של המיזוגים האחרונים של גרסאות מדף אחד לתוך דף שני.',
 
 # Diffs
-'history-title'             => 'היסטוריית הגרסאות של $1',
-'difference-title'          => 'הבדלים בין גרסאות של $1',
-'loadingrev'                => 'טוען את הגרסה להשוואה',
-'lineno'                    => 'שורה $1:',
-'editcurrent'               => 'עריכת גרסה נוכחית של הדף',
-'selectnewerversionfordiff' => 'בחירת גרסה חדשה יותר להשוואה',
-'selectolderversionfordiff' => 'בחירת גרסה ישנה יותר להשוואה',
-'compareselectedversions'   => 'השוואת הגרסאות שנבחרו',
-'editundo'                  => 'ביטול',
-'diff-multi'                => '({{plural:$1|גרסת ביניים אחת אינה מוצגת|$1 גרסאות ביניים אינן מוצגות}}.)',
+'history-title'           => 'היסטוריית הגרסאות של $1',
+'difference-title'        => 'הבדלים בין גרסאות של $1',
+'lineno'                  => 'שורה $1:',
+'compareselectedversions' => 'השוואת הגרסאות שנבחרו',
+'editundo'                => 'ביטול',
+'diff-multi'              => '({{plural:$1|גרסת ביניים אחת אינה מוצגת|$1 גרסאות ביניים אינן מוצגות}}.)',
 
 # Search results
 'searchresults'         => 'תוצאות החיפוש',
