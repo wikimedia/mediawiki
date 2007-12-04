@@ -640,7 +640,7 @@ $wgMessageStructure = array(
 	),
 	'diffs' => array(
 		'history-title',
-		'difference',
+		'difference-title',
 		'loadingrev',
 		'lineno',
 		'editcurrent',
@@ -803,6 +803,7 @@ $wgMessageStructure = array(
 		'rc_categories_any',
 		'rc-change-size',
 		'newsectionsummary',
+		'difference',
 	),
 	'recentchangeslinked' => array(
 		'recentchangeslinked',
