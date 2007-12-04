@@ -211,7 +211,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Graceful behavior for updateRestrictions.php if a page already has records
   in the page_restrictions matching its old page_restrictions field.
   May help with odd upgrade issues or race condition.
-
+* (bug 11993) Remove contentsub "revision history"
 
 == Parser changes in 1.12 ==
 

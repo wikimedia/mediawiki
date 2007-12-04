@@ -1102,7 +1102,6 @@ The deletion log for this page is provided here for convenience:",
 The reason given by $3 is ''$2''",
 
 # History pages
-'revhistory'            => 'Revision history',
 'viewpagelogs'          => 'View logs for this page',
 'nohistory'             => 'There is no edit history for this page.',
 'revnotfound'           => 'Revision not found',
