@@ -91,6 +91,11 @@ class ApiLogin extends ApiBase {
 			'wpRemember' => ''
 		));
 
+		// Init session if necessary
+		if( session_id() == '' ) {
+			wfSetupSession();
+		}
+
 		$loginForm = new LoginForm($params);
 		switch ($loginForm->authenticateUserData()) {
 			case LoginForm :: SUCCESS :
