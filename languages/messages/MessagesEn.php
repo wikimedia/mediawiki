@@ -1215,7 +1215,7 @@ Make sure that this change will maintain historical page continuity.
 
 # Diffs
 'history-title'             => 'Revision history of "$1"',
-'difference-title'          => 'Difference between revisions of "$1"',
+'difference'                => '(Difference between revisions)',
 'lineno'                    => 'Line $1:',
 'compareselectedversions'   => 'Compare selected versions',
 'editundo'                  => 'undo',
@@ -1389,7 +1389,6 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'rc_categories_any'                 => 'Any',
 'rc-change-size'                    => '$1', # only translate this message to other languages if you have to change it
 'newsectionsummary'                 => '/* $1 */ new section',
-'difference'                        => '(Difference between revisions)',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',

@@ -86,7 +86,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show a warning message when creating/editing a user (talk) page but the user
   does not exists
 * (bug 8396) Ignore out-of-date serialised message caches
-* Add descriptive <title> to revision difference page
 * (bug 12195) Undeleting pages now requires 'undelete' permission
 
 === Bug fixes in 1.12 ===
