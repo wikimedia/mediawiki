@@ -5,10 +5,6 @@
  *
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
- * @author G - ג
- * @author Siebrand
- * @author Wegge
- * @author Lhademmor
  */
 
 $namespaceNames = array(
@@ -726,7 +722,6 @@ denne side er vist nedenfor:",
 'cantcreateaccount-text' => "Oprettelsen af en brugerkonto fra IP-adressen <b>$1</b> er spærret af [[User:$3|$3]]. Årsagen til blokeringen er angivet som ''$2''",
 
 # History pages
-'revhistory'          => 'Versionshistorik',
 'viewpagelogs'        => 'Vis loglister for denne side',
 'nohistory'           => 'Der er ingen versionshistorik for denne side.',
 'revnotfound'         => 'Versionen er ikke fundet',
@@ -815,6 +810,10 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'mergehistory-empty'    => 'Der findes ingen sammenflettelige udgaver',
 'mergehistory-success'  => '$3 {{PLURAL:$3|version|versioner}} af [[:$1]] blev flettet sammen med [[:$2]].',
 'mergehistory-fail'     => 'Sammenfletningen kunne ikke gennemføres. Vær venlig at kontrollere sidenavne og tidsafgrænsning.',
+'mergehistory-no-source' => 'Kildesiden $1 findes ikke.',
+'mergehistory-no-destination' => 'Destinationssiden $1 findes ikke.',
+'mergehistory-invalid-source' => 'Angiv et gyldigt sidenavn som kildeside.',
+'mergehistory-invalid-destination' => 'Angiv et gyldigt sidenavn som destinationsside.',
 
 # Merge log
 'mergelog'              => 'Sammenfletningslog',
@@ -824,12 +823,8 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 
 # Diffs
 'history-title'             => 'Revisionshistorik for "$1"',
-'difference'                => '(Forskelle mellem versioner)',
-'loadingrev'                => 'indlæser version for at se forskelle',
+'difference-title'          => 'Forskelle mellem versioner af $1',
 'lineno'                    => 'Linje $1:',
-'editcurrent'               => 'Redigér den nuværende version af denne side',
-'selectnewerversionfordiff' => 'Vælg en nyere version til sammenligning',
-'selectolderversionfordiff' => 'Vælg en ældre version til sammenligning',
 'compareselectedversions'   => 'Sammenlign valgte versioner',
 'editundo'                  => 'annuller',
 'diff-multi'                => "<span style='font-size: smaller'>(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)</span>",
@@ -982,6 +977,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'newsectionsummary'                 => '/* $1 */ nyt afsnit',
+'difference'                => '(Forskelle mellem versioner)',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterede ændringer',
@@ -1485,6 +1481,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'protect-summary-cascade'     => 'nedarvende',
 'protect-expiring'            => 'til $1 (UTC)',
 'protect-cascade'             => 'Nedarvende spærring – alle skabeloner, som er indbundet i denne side spærres også.',
+'protect-cantedit'	      => 'Du kan ikke ændre beskyttelsesniveau for denne side, da du ikke kan redigere fden.',
 'restriction-type'            => 'Beskyttelsesstatus',
 'restriction-level'           => 'Beskyttelseshøjde',
 'minimum-size'                => 'Mindste størrelse',
