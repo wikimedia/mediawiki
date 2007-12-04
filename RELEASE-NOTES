@@ -87,6 +87,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   does not exists
 * (bug 8396) Ignore out-of-date serialised message caches
 * (bug 12195) Undeleting pages now requires 'undelete' permission
+* Only show most recent 5000 revisions on Special:Undelete by default. Accept
+  limit and offset parameters. Undelete with no revisions selected still
+  undeletes all revisions, regardless of how many are displayed.
 
 === Bug fixes in 1.12 ===
 
