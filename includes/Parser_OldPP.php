@@ -3848,8 +3848,13 @@ class Parser_OldPP
 		$nickname = $this->cleanSigInSig( $nickname );
 
 		# If we're still here, make it a link to the user page
-		$userpage = $user->getUserPage();
-		return( '[[' . $userpage->getPrefixedText() . '|' . wfEscapeWikiText( $nickname ) . ']]' );
+		$userText = wfEscapeWikiText( $username );
+		$nickText = wfEscapeWikiText( $nickname );
+		if ( $user->isAnon() )  {
+			return wfMsgExt( 'signature-anon', array( 'content', 'parsemag' ), $userText, $nickText );
+		} else {
+			return wfMsgExt( 'signature', array( 'content', 'parsemag' ), $userText, $nickText );
+		}
 	}
 
 	/**
