@@ -501,7 +501,7 @@ Qolaylıq ushın to'mende o'shiriw jurnalı keltirilgen:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akkaunt jaratılmadı',
-'cantcreateaccount-text' => "[[{{ns:user}}:$3|$3]] usı IP adresten (<b>$1</b>) akkaunt jaratıwın blokladı.
+'cantcreateaccount-text' => "[[User:$3|$3]] usı IP adresten (<b>$1</b>) akkaunt jaratıwın blokladı.
 
 $3 keltirilgen sebebi: ''$2''",
 

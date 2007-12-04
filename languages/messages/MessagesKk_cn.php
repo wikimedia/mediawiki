@@ -992,7 +992,7 @@ $2',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'تٸركەلگٸ جاراتىلمادى',
-'cantcreateaccount-text' => "بۇل IP جايدان (<b>$1</b>) تٸركەلۋٸن [[{{ns:user}}:$3|$3]] بۇعاتتاعان.
+'cantcreateaccount-text' => "بۇل IP جايدان (<b>$1</b>) تٸركەلۋٸن [[User:$3|$3]] بۇعاتتاعان.
 
 $3 كەلتٸرٸلگەن سەبەبٸ: ''$2''",
 

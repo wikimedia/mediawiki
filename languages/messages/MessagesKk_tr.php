@@ -984,7 +984,7 @@ Qolaýlı bolwı üşin bul bettiñ joyw jwrnalı keltirilgen:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Tirkelgi jaratılmadı',
-'cantcreateaccount-text' => "Bul IP jaýdan (<b>$1</b>) tirkelwin [[{{ns:user}}:$3|$3]] buğattağan.
+'cantcreateaccount-text' => "Bul IP jaýdan (<b>$1</b>) tirkelwin [[User:$3|$3]] buğattağan.
 
 $3 keltirilgen sebebi: ''$2''",
 

@@ -983,7 +983,7 @@ $2',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Тіркелгі жаратылмады',
-'cantcreateaccount-text' => "Бұл IP жайдан (<b>$1</b>) тіркелуін [[{{ns:user}}:$3|$3]] бұғаттаған.
+'cantcreateaccount-text' => "Бұл IP жайдан (<b>$1</b>) тіркелуін [[User:$3|$3]] бұғаттаған.
 
 $3 келтірілген себебі: ''$2''",
 
