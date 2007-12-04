@@ -100,7 +100,7 @@ class PageArchive {
 	function listRevisions( $startTime, $limit ) {
 		$whereClause = array( 'ar_namespace' => $this->title->getNamespace(),
 			'ar_title' => $this->title->getDBkey() );
-		if ( $startTime )
+		if ( $startTime && is_numeric($startTime) )
 			$whereClause[] = "ar_timestamp < $startTime";
 	
 		$dbr = wfGetDB( DB_SLAVE );
