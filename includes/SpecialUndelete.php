@@ -862,13 +862,17 @@ class UndeleteForm {
 
 		$hasMore = false;
 		if ( $revisions && $revisions->numRows() >= $tmpLimit ) {
-			$revisions->seek ( $revisions->numRows() - 2 );
-			$tmp = $revisions->fetchObject();
-			$revisions->rewind ( );
+			if ( $revisions->numRows() >= 2 ) {
+				$revisions->seek ( $revisions->numRows() - 2 );
+				$tmp = $revisions->fetchObject();
+				$revisions->rewind ( );
+				$offset = $tmp->ar_timestamp;
+			} else
+				$offset = 0;
 
 			$titleObj = SpecialPage::getTitleFor ( 'Undelete' );
 			$tmplink = $sk->makeKnownLinkObj ( $titleObj, wfMsg( 'undelete-next-revs', 5000 ), 
-				"target={$this->mTarget}&limit=5000&offset={$tmp->ar_timestamp}" );
+				"target={$this->mTarget}&limit=5000&offset=$offset" );
 	
 			$wgOut->addHTML ( wfMsg ( 'undelete-more-revs', $tmpLimit - 1, $tmplink ) );
 			$hasMore = true;
