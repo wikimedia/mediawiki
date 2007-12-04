@@ -1008,8 +1008,6 @@ $2',
 'recentchangeslinked-title'              => '對$1有關嘅更改',
 'recentchangeslinked-noresult'           => '響呢一段時間內連結頁並無更改。',
 'recentchangeslinked-summary'            => "呢一個特別頁列示咗呢一版連出去嘅頁面嘅最近更改。響你嘅監視清單度嘅頁面會以'''粗體'''表示。",
-'recentchangeslinked-feed-entry'         => '用戶$1編輯咗$2',
-'recentchangeslinked-feed-entry-comment' => '用戶$1編輯咗$2 ($3)',
 
 # Upload
 'upload'                      => '上載檔案',
