@@ -39,7 +39,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'dr');
 	}
 
-	private function execute() {
+	public function execute() {
 
 		global $wgUser;
 		// Before doing anything at all, let's check permissions
