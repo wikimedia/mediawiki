@@ -326,14 +326,19 @@ class PageHistory {
 		}
 	}
 
-	/** @todo document */
+	/**
+	 * Create radio buttons for page history
+	 *
+	 * @param object $rev Revision
+	 * @param bool $firstInList Is this version the first one?
+	 * @param int $counter A counter of what row number we're at, counted from the top row = 1.
+	 * @return string HTML output for the radio buttons
+	 */
 	function diffButtons( $rev, $firstInList, $counter ) {
 		if( $this->linesonpage > 1) {
 			$radio = array(
 				'type'  => 'radio',
 				'value' => $rev->getId(),
-# do we really need to flood this on every item?
-#				'title' => wfMsgHtml( 'selectolderversionfordiff' )
 			);
 
 			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
@@ -342,7 +347,7 @@ class PageHistory {
 
 			/** @todo: move title texts to javascript */
 			if ( $firstInList ) {
-				$first = wfElement( 'input', array_merge(
+				$first = Xml::element( 'input', array_merge(
 					$radio,
 					array(
 						'style' => 'visibility:hidden',
@@ -354,13 +359,13 @@ class PageHistory {
 				} else {
 					$checkmark = array();
 				}
-				$first = wfElement( 'input', array_merge(
+				$first = Xml::element( 'input', array_merge(
 					$radio,
 					$checkmark,
 					array( 'name'  => 'oldid' ) ) );
 				$checkmark = array();
 			}
-			$second = wfElement( 'input', array_merge(
+			$second = Xml::element( 'input', array_merge(
 				$radio,
 				$checkmark,
 				array( 'name'  => 'diff' ) ) );

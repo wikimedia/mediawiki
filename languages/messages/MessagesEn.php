@@ -1216,11 +1216,7 @@ Make sure that this change will maintain historical page continuity.
 # Diffs
 'history-title'             => 'Revision history of "$1"',
 'difference-title'          => 'Difference between revisions of "$1"',
-'loadingrev'                => 'loading revision for diff',
 'lineno'                    => 'Line $1:',
-'editcurrent'               => 'Edit the current version of this page',
-'selectnewerversionfordiff' => 'Select a newer version for comparison',
-'selectolderversionfordiff' => 'Select an older version for comparison',
 'compareselectedversions'   => 'Compare selected versions',
 'editundo'                  => 'undo',
 'diff-multi'                => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
