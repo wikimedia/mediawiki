@@ -1085,6 +1085,7 @@ $wgGroupPermissions['sysop']['block']           = true;
 $wgGroupPermissions['sysop']['createaccount']   = true;
 $wgGroupPermissions['sysop']['delete']          = true;
 $wgGroupPermissions['sysop']['deletedhistory'] 	= true; // can view deleted history entries, but not see or restore the text
+$wgGroupPermissions['sysop']['undelete']	= true;
 $wgGroupPermissions['sysop']['editinterface']   = true;
 $wgGroupPermissions['sysop']['editusercssjs']   = true;
 $wgGroupPermissions['sysop']['import']          = true;
