@@ -917,6 +917,11 @@ your old password.
 'mergehistory-empty'   => 'هیچ‌یک از نسخه‌ها قابل ادغام نیستند',
 'mergehistory-success' => '$3 نسخه از [[:$1]] با [[:$2]] ادغام شد.',
 'mergehistory-fail'    => 'ادغام تاریخچه ممکن نیست، لطفاً گزینه‌های صفحه و زمان را بازبینی کنید.',
+'mergehistory-no-source' => 'صفحهٔ مبدا $1 وجود ندارد.',
+'mergehistory-no-destination' => 'صفحهٔ مقصد $1 وجود ندارد.',
+'mergehistory-invalid-source' => 'صفحهٔ مبدا باید عنوان قابل قبولی داشته باشد.',
+'mergehistory-invalid-destination' => 'صفحهٔ مقصد باید عنوان قابل قبولی داشته باشد.',
+
 
 # Merge log
 'mergelog'           => 'سیاهه ادغام',
