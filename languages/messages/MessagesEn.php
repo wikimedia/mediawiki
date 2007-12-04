@@ -3090,7 +3090,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'Elul', # only translate this message to other languages if you have to change it
 
 # Signatures
-'signature' => '[[User:$1|$2]]', # don't translate or duplicate this message to other languages
+'signature' => '[[{{ns:user}}:$1|$2]]', # don't translate or duplicate this message to other languages
 'signature-anon' => '[[{{#special:Contributions}}/$1|$2]]', # don't translate or duplicate this message to other languages
 
 );
