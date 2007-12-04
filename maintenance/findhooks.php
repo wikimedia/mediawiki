@@ -7,6 +7,8 @@
  * - hooks names in hooks.txt are at the beginning of a line and single quoted.
  * - hooks names in code are the first parameter of wfRunHooks.
  *
+ * Any instance of wfRunHooks that doesn't meet these parameters will be noted.
+ *
  * @addtogroup Maintenance
  *
  * @author Ashar Voultoiz <hashar@altern.org>
@@ -38,7 +40,7 @@ function getHooksFromDoc() {
 }
 
 /**
- * Get hooks from a php file
+ * Get hooks from a PHP file
  * @param $file Full filename to the PHP file.
  * @return array of hooks found.
  */
@@ -68,6 +70,37 @@ function getHooksFromPath( $path ) {
 }
 
 /**
+ * Get bad hooks (where the hook name could not be determined) from a PHP file
+ * @param $file Full filename to the PHP file.
+ * @return array of bad wfRunHooks() lines
+ */
+function getBadHooksFromFile( $file ) {
+	$content = file_get_contents( $file );
+	$m = array();
+	# We want to skip the "function wfRunHooks()" one.  :)
+	preg_match_all( '/(?<!function )wfRunHooks\(\s*[^\s\'"].*/', $content, $m);
+	return $m[0];
+}
+
+/**
+ * Get bad hooks from the source code.
+ * @param $path Directory where the include files can be found
+ * @return array of bad wfRunHooks() lines
+ */
+function getBadHooksFromPath( $path ) {
+	$hooks = array();
+	if( $dh = opendir($path) ) {
+		while(($file = readdir($dh)) !== false) {
+			if( filetype($path.$file) == 'file' ) {
+				$hooks = array_merge( $hooks, getBadHooksFromFile($path.$file) );
+			}
+		}
+		closedir($dh);
+	}
+	return $hooks;
+}
+
+/**
  * Nicely output the array
  * @param $msg A message to show before the value
  * @param $arr An array
@@ -83,6 +116,7 @@ function printArray( $msg, $arr, $sort = true ) {
 
 $documented = getHooksFromDoc($doc);
 $potential = getHooksFromPath($pathinc);
+$bad = getBadHooksFromPath($pathinc);
 
 $todo = array_diff($potential, $documented);
 $deprecated = array_diff($documented, $potential);
@@ -90,5 +124,6 @@ $deprecated = array_diff($documented, $potential);
 // let's show the results:
 printArray('undocumented', $todo );
 printArray('not found', $deprecated );
+printArray('unclear hook calls', $bad );
 
 
