@@ -929,7 +929,6 @@ your old password.
 
 # Diffs
 'history-title'           => 'تاریخچه ویرایش‌های «$1»',
-'difference-title'        => 'تفاوت بین نسخه‌های «$1»',
 'lineno'                  => 'سطر $1:',
 'compareselectedversions' => 'مقایسهٔ نسخه‌های انتخاب‌شده',
 'editundo'                => 'خنثی‌سازی',
