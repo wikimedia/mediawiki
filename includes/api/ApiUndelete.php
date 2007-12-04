@@ -47,7 +47,7 @@ class ApiUndelete extends ApiBase {
 		if(!isset($params['token']))
 			$this->dieUsage('The token parameter must be set', 'notoken');
 
-		if(!$wgUser->isAllowed('delete'))
+		if(!$wgUser->isAllowed('undelete'))
 			$this->dieUsage('You don\'t have permission to restore deleted revisions', 'permissiondenied');
 		if($wgUser->isBlocked())
 			$this->dieUsage('You have been blocked from editing', 'blocked');
