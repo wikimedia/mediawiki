@@ -889,7 +889,6 @@ $2',
 'cantcreateaccount-text' => 'אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה על־ידי [[User:$3|$3]]. הסיבה שניתנה על־ידי $3 היא "$2".',
 
 # History pages
-'revhistory'          => 'היסטוריית שינויים',
 'viewpagelogs'        => 'הצגת יומנים עבור דף זה',
 'nohistory'           => 'אין היסטוריית שינויים עבור דף זה.',
 'revnotfound'         => 'גרסה זו לא נמצאה',
@@ -993,7 +992,7 @@ $2',
 
 # Diffs
 'history-title'             => 'היסטוריית הגרסאות של $1',
-'difference'                => '(הבדלים בין גרסאות)',
+'difference-title'          => 'הבדלים בין גרסאות של $1',
 'loadingrev'                => 'טוען את הגרסה להשוואה',
 'lineno'                    => 'שורה $1:',
 'editcurrent'               => 'עריכת גרסה נוכחית של הדף',
@@ -1152,6 +1151,7 @@ $2',
 'rc_categories'                     => 'הגבל לקטגוריות (הפרד עם "|")',
 'rc_categories_any'                 => 'הכול',
 'newsectionsummary'                 => '/* $1 */ פסקה חדשה',
+'difference'                        => '(הבדלים בין גרסאות)',
 
 # Recent changes linked
 'recentchangeslinked'          => 'שינויים בדפים המקושרים',
