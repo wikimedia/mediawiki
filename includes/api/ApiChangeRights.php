@@ -41,7 +41,7 @@ class ApiChangeRights extends ApiBase {
 		$this->getMain()->requestWriteMode();
 		
 		if(wfReadOnly())
-				$this->dieUsage('The wiki is in read-only mode', 'readonly');
+			$this->dieUsage('The wiki is in read-only mode', 'readonly');
 		$params = $this->extractRequestParams();
 
 		$ur = new UserrightsForm($wgRequest);
