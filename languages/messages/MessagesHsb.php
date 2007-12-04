@@ -710,7 +710,6 @@ Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmó
 Přičina za blokowanje, podata wot $3: ''$2''",
 
 # History pages
-'revhistory'          => 'stawizny',
 'viewpagelogs'        => 'protokole tuteje strony pokazać',
 'nohistory'           => 'Njeje žanych staršich wersijow strony.',
 'revnotfound'         => 'Njebě móžno, požadanu wersiju namakać',
@@ -794,7 +793,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
 'mergehistory-go'                  => 'Zjednoćujomne změny pokazać',
 'mergehistory-submit'              => 'Wersije zjednoćić',
 'mergehistory-empty'               => 'Njehodźa so žane wersije zjednoćeć',
-'mergehistory-success'             => '$3 wersije wot [[:$1|$1]] wuspěšnje z [[:$2|$2]] zjednoćene.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wot [[:$1]] wuspěšnje z [[:$2]] zjednoćene.',
 'mergehistory-fail'                => 'Njeje móžno zjednócenje stawiznow přewjesć, prošu přepruwuj stronu a časowe parametry.',
 'mergehistory-no-source'           => 'Žórłowa strona $1 njeeksistuje.',
 'mergehistory-no-destination'      => 'Cilowa strona $1 njeeksistuje.',
@@ -808,16 +807,12 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
 'mergelogpagetext'   => 'Deleka je lisćina najaktualnišich zjednoćenjow stawiznow dweju stronow.',
 
 # Diffs
-'history-title'             => 'Stawizny wersijow strony „$1“',
-'difference'                => '(rozdźěl mjez wersijomaj)',
-'loadingrev'                => 'začitanje wersijow za diff',
-'lineno'                    => 'Rjadka $1:',
-'editcurrent'               => 'Tuchwilnu wersiju strony wobdźěłać',
-'selectnewerversionfordiff' => 'Nowšu wersiju za přirunanje wubrać',
-'selectolderversionfordiff' => 'Staršu wersiju za přirunanje wubrać',
-'compareselectedversions'   => 'Wubranej wersiji přirunać',
-'editundo'                  => 'cofnyć',
-'diff-multi'                => '<small>(Přirunanje wersijow zapřija {{PLURAL:$1|jednu mjez nimaj ležacu wersiju|dwě mjez nimaj ležacej wersiji|$1 mjez nimaj ležace wersije|$1 mjez nimaj ležacych wersijow}}.)</small>',
+'history-title'           => 'Stawizny wersijow strony „$1“',
+'difference'              => '(rozdźěl mjez wersijomaj)',
+'lineno'                  => 'Rjadka $1:',
+'compareselectedversions' => 'Wubranej wersiji přirunać',
+'editundo'                => 'cofnyć',
+'diff-multi'              => '<small>(Přirunanje wersijow zapřija {{PLURAL:$1|jednu mjez nimaj ležacu wersiju|dwě mjez nimaj ležacej wersiji|$1 mjez nimaj ležace wersije|$1 mjez nimaj ležacych wersijow}}.)</small>',
 
 # Search results
 'searchresults'         => 'Pytanske wuslědki',
@@ -967,12 +962,10 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'newsectionsummary'                 => 'nowy wotrězk: /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'Změny zwjazanych stron',
-'recentchangeslinked-title'              => 'Změny na stronach, kotrež su z „$1“ wotkazane',
-'recentchangeslinked-noresult'           => 'Njejsu změny zwajzanych stron we wubranej dobje.',
-'recentchangeslinked-summary'            => "Tuta specialna strona naliči poslednje změny zwjazanych stronow. Strony z twojich wobkedźbowankow so '''tučnje''' jewja.",
-'recentchangeslinked-feed-entry'         => 'Wužiwar $1 je $2 wobdźěłał',
-'recentchangeslinked-feed-entry-comment' => 'Wužiwar $1 je $2 ($3) wobdźěłał',
+'recentchangeslinked'          => 'Změny zwjazanych stron',
+'recentchangeslinked-title'    => 'Změny na stronach, kotrež su z „$1“ wotkazane',
+'recentchangeslinked-noresult' => 'Njejsu změny zwajzanych stron we wubranej dobje.',
+'recentchangeslinked-summary'  => "Tuta specialna strona naliči poslednje změny zwjazanych stronow. Strony z twojich wobkedźbowankow so '''tučnje''' jewja.",
 
 # Upload
 'upload'                      => 'Dataju nahrać',

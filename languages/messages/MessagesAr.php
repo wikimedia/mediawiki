@@ -907,7 +907,6 @@ $1 ساعة.',
 السبب المعطى بواسطة $3 هو ''$2''",
 
 # History pages
-'revhistory'          => 'تاريخ التغييرات',
 'viewpagelogs'        => 'عرض السجلات لهذه الصفحة',
 'nohistory'           => 'لا يوجد تاريخ للتعديلات لهذه الصفحة.',
 'revnotfound'         => 'النسخة غير موجودة',
@@ -987,22 +986,26 @@ $1 ساعة.',
 'overlogpagetext' => 'بالأسفل قائمة بأحدث عمليات الحذف والمنع المتضمنة محتويات تم إخفائها عن الإداريين. انظر [[Special:Ipblocklist|قائمة منع عناوين الأيبي]] لترى حالات المنع والطرد الحالية.',
 
 # History merging
-'mergehistory'         => 'دمج تواريخ الصفحة',
-'mergehistory-header'  => "هذه الصفحة تسمح لك بدمج نسخ تاريخ صفحة ما إلى صفحة أخرى.
+'mergehistory'                     => 'دمج تواريخ الصفحة',
+'mergehistory-header'              => "هذه الصفحة تسمح لك بدمج نسخ تاريخ صفحة ما إلى صفحة أخرى.
 تأكد من أن هذا التغيير سيحافظ على استمرار تاريخ الصفحة.
 
 '''على الأقل النسخة الحالية من الصفحة المصدر يجب أن تبقى.'''",
-'mergehistory-box'     => 'دمج نسخ الصفحتين:',
-'mergehistory-from'    => 'الصفحة المصدر:',
-'mergehistory-into'    => 'الصفحة الهدف:',
-'mergehistory-list'    => 'تاريخ التعديل القابل للدمج',
-'mergehistory-merge'   => 'النسخ التالية من [[:$1|$1]] يمكن دمجها إلى [[:$2|$2]]. استخدم عامود الصناديق لدمج النسخ التي تم إنشاؤها في وقبل الوقت المحدد. لاحظ أن استخدام 
+'mergehistory-box'                 => 'دمج نسخ الصفحتين:',
+'mergehistory-from'                => 'الصفحة المصدر:',
+'mergehistory-into'                => 'الصفحة الهدف:',
+'mergehistory-list'                => 'تاريخ التعديل القابل للدمج',
+'mergehistory-merge'               => 'النسخ التالية من [[:$1|$1]] يمكن دمجها إلى [[:$2|$2]]. استخدم عامود الصناديق لدمج النسخ التي تم إنشاؤها في وقبل الوقت المحدد. لاحظ أن استخدام 
 وصلات التصفح سيعيد ضبط هذا العامود.',
-'mergehistory-go'      => 'عرض التعديلات القابلة للدمج',
-'mergehistory-submit'  => 'دمج النسخ',
-'mergehistory-empty'   => 'لا توجد نسخ يمكن دمجها',
-'mergehistory-success' => '$3 نسخة من [[:$1|$1]] تم دمجها بنجاح إلى [[:$2|$2]].',
-'mergehistory-fail'    => 'غير قادر على عمل دمج التاريخ، من فضلك أعد التحقق من محددات الصفحة والزمن.',
+'mergehistory-go'                  => 'عرض التعديلات القابلة للدمج',
+'mergehistory-submit'              => 'دمج النسخ',
+'mergehistory-empty'               => 'لا توجد نسخ يمكن دمجها',
+'mergehistory-success'             => '$3 نسخة من [[:$1|$1]] تم دمجها بنجاح إلى [[:$2|$2]].',
+'mergehistory-fail'                => 'غير قادر على عمل دمج التاريخ، من فضلك أعد التحقق من محددات الصفحة والزمن.',
+'mergehistory-no-source'           => 'الصفحة المصدر $1 غير موجودة.',
+'mergehistory-no-destination'      => 'الصفحة الهدف $1 غير موجودة.',
+'mergehistory-invalid-source'      => 'الصفحة المصدر يجب أن تكون عنوانا صحيحا.',
+'mergehistory-invalid-destination' => 'الصفحة الهدف يجب أن تكون عنوانا صحيحا.',
 
 # Merge log
 'mergelog'           => 'سجل الدمج',
@@ -1011,16 +1014,12 @@ $1 ساعة.',
 'mergelogpagetext'   => 'بالأسفل قائمة بأحدث عمليات الدمج لتاريخ صفحة ما إلى أخرى.',
 
 # Diffs
-'history-title'             => 'تاريخ مراجعة "$1"',
-'difference'                => '(الفرق بين النسخ)',
-'loadingrev'                => 'تحميل النسخة للمقارنة',
-'lineno'                    => 'سطر $1:',
-'editcurrent'               => 'حرر النسخة الحالية من هذه الصفحة',
-'selectnewerversionfordiff' => 'اختر نسخة أحدث للمقارنة',
-'selectolderversionfordiff' => 'اختر نسخة أقدم للمقارنة',
-'compareselectedversions'   => 'قارن بين النسختين المختارتين',
-'editundo'                  => 'رجوع',
-'diff-multi'                => '({{PLURAL:$1|نسخة واحدة متوسطة|$1 نسخة متوسطة}} غير معروضة.)',
+'history-title'           => 'تاريخ مراجعة "$1"',
+'difference'              => '(الفرق بين النسخ)',
+'lineno'                  => 'سطر $1:',
+'compareselectedversions' => 'قارن بين النسختين المختارتين',
+'editundo'                => 'رجوع',
+'diff-multi'              => '({{PLURAL:$1|نسخة واحدة متوسطة|$1 نسخة متوسطة}} غير معروضة.)',
 
 # Search results
 'searchresults'         => 'نتائج البحث',
@@ -1171,12 +1170,10 @@ $1 ساعة.',
 'newsectionsummary'                 => '/* $1 */ قسم جديد',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'تغييرات ذات علاقة',
-'recentchangeslinked-title'              => 'التغييرات المرتبطة ب$1',
-'recentchangeslinked-noresult'           => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
-'recentchangeslinked-summary'            => "هذه الصفحة الخاصة تعرض آخر التغييرات في الصفحات الموصولة. الصفحات في قائمة مراقبتك معروضة '''بخط عريض'''.",
-'recentchangeslinked-feed-entry'         => 'المستخدم $1 عدل $2',
-'recentchangeslinked-feed-entry-comment' => 'المستخدم $1 عدل $2 ($3)',
+'recentchangeslinked'          => 'تغييرات ذات علاقة',
+'recentchangeslinked-title'    => 'التغييرات المرتبطة ب$1',
+'recentchangeslinked-noresult' => 'لم تحدث تعديلات في الصفحات التي لها وصلات هنا خلال الفترة المحددة.',
+'recentchangeslinked-summary'  => "هذه الصفحة الخاصة تعرض آخر التغييرات في الصفحات الموصولة. الصفحات في قائمة مراقبتك معروضة '''بخط عريض'''.",
 
 # Upload
 'upload'                      => 'رفع ملف',

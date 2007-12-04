@@ -7,12 +7,12 @@
  * @author Habjchen
  * @author Gangleri
  * @author Jon Harald Søby
- * @author G - ג
  * @author Siebrand
  * @author Nike
  * @author Steinninn
  * @author Lejonel
  * @author Habj
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -284,9 +284,6 @@ $messages = array(
 'anontalk'       => 'Diskussionssidan för denna IP-adress',
 'navigation'     => 'Navigering',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fel',
 'returnto'          => 'Tillbaka till $1.',
 'tagline'           => '{{SITENAME}}',
@@ -355,10 +352,8 @@ $messages = array(
 'edithelp'          => 'Redigeringshjälp',
 'edithelppage'      => 'Help:Hur man redigerar en sida',
 'faq'               => 'FAQ',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Innehåll',
 'mainpage'          => 'Huvudsida',
-'policy-url'        => 'Project:Policy',
 'portal'            => 'Deltagarportalen',
 'portal-url'        => 'Project:Deltagarportalen',
 'privacy'           => 'Integritetspolicy',
@@ -401,7 +396,6 @@ $messages = array(
 'nstab-main'      => 'Sida',
 'nstab-user'      => 'Användarsida',
 'nstab-media'     => 'Media',
-'nstab-special'   => 'Special',
 'nstab-project'   => 'Projektsida',
 'nstab-image'     => 'Bild',
 'nstab-mediawiki' => 'Systemmeddelande',
@@ -414,7 +408,9 @@ $messages = array(
 'nosuchactiontext'  => 'Den funktion som angivits i URL:en kan inte
 hittas av programvaran',
 'nosuchspecialpage' => 'Någon sådan specialsida finns inte',
-'nospecialpagetext' => 'Du har begärt en specialsida som {{SITENAME}}s programvara inte kan hitta. I [[Special:Specialpages|listan över specialsidor]] kan du se vilka specialsidor som finns.',
+'nospecialpagetext' => "<big>'''Du har begärt en specialsida som inte finns.'''</big>
+
+I [[Special:Specialpages|listan över specialsidor]] kan du se vilka specialsidor som finns.",
 
 # General errors
 'error'                => 'Fel',
@@ -460,6 +456,8 @@ felaktigt länkad till.',
 'wrong_wfQuery_params' => 'Felaktiga parametrar för wfQuery()<br /> Funktion: $1<br /> Förfrågan: $2',
 'viewsource'           => 'Visa wikitext',
 'viewsourcefor'        => 'för $1',
+'actionthrottled'      => 'Åtgärden stoppades',
+'actionthrottledtext'  => 'Som skydd mot spam, finns det en begränsning av hur många gånger du kan utföra den här åtgärden under en viss tid. Du har överskridit den gränsen. Försök igen om några minuter.',
 'protectedpagetext'    => 'Den här sidan har skrivskyddats för att förhindra redigering.',
 'viewsourcetext'       => 'Du kan se och kopiera sidans wikikod:',
 'protectedinterface'   => 'Denna sida innehåller text för mjukvarans gränssnitt, och är skrivskyddad för att förebygga missbruk.',
@@ -544,6 +542,11 @@ Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt ga
 'invalidemailaddress'        => 'Denna e-postadressen kan inte godtas då formatet verkar vara felaktigt. Skriv in en adress på korrekt format, eller töm fältet.',
 'accountcreated'             => 'Användarkontot har skapats',
 'accountcreatedtext'         => 'Användarkontot $1 har skapats.',
+'createaccount-title'        => 'Konto skapat för {{SITENAME}}',
+'createaccount-text'         => 'Någon ($1) har skapat ett konto åt $2 på {{SITENAME}}
+($4). Lösenordet för "$2" är "$3". Du bör nu logga in och byta lösenord.
+
+Om detta konto skapades av misstag, så kan du ignorera det här meddelandet.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -620,6 +623,7 @@ Du kan kontakta $1 eller någon annan [[{{MediaWiki:Grouppage-sysop}}|administra
 Observera att du inte kan använda dig av funktionen "skicka e-post till användare" om du inte har registrerat en giltig e-postadress i [[Special:Preferences|dina inställningar]] eller om du har blivit blockerad från att skicka e-post.
 
 Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar som du gör i ärendet.',
+'blockednoreason'           => 'ingen motivering angavs',
 'blockedoriginalsource'     => "Källkoden för '''$1''' visas nedan:",
 'blockededitsource'         => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
 'whitelistedittitle'        => 'Redigering kräver inloggning',
@@ -646,6 +650,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 *Det kan också hända att artikeln har raderats. Se då i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].<br />
 ----<br />
 *Om du har skapat artikeln under de senaste minuterna kan du ändå få upp denna sida ifall {{SITENAME}}s cache inte hunnit uppdateras. Vänligen vänta då en liten stund och se om artikeln syns senare innan du försöker skapa den igen.</div>",
+'userpage-userdoesnotexist' => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'            => "'''Obs:''' Sedan du sparat sidan, måste du tömma din webbläsares cache för att se ändringarna. '''Mozilla/Safari/Firefox:''' håll ner ''skift'' och klicka på ''reload'' eller tryck ''ctrl-shift-r'', (cmd-shift-R på mac:ar); '''Internet Explorer:'''  håll ner ctr och klicka på \"Refresh\" eller tryck ''ctrl-f5'', '''Konqueror:''': klicka helt enkelt på \"Reload\" eller F5; '''Opera:''' tryck ''F5''",
 'usercssjsyoucanpreview'    => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
 'usercsspreview'            => "'''Observera att du bara förhandsgranskar din användar-css - den har inte sparats än.'''",
@@ -718,7 +723,6 @@ Raderingsloggen för sidan innehåller följande:",
 Anledningen till blockeringen var "$2".',
 
 # History pages
-'revhistory'          => 'Versionshistorik',
 'viewpagelogs'        => 'Visa loggar för denna sida',
 'nohistory'           => 'Den här sidan har ingen versionshistorik.',
 'revnotfound'         => 'Versionen hittades inte',
@@ -788,17 +792,39 @@ Andra administratörer på denna wiki kommer fortfarande att kunna läsa det dol
 'oversightlog'    => 'Översynslogg',
 'overlogpagetext' => 'Här nedanför finns en lista över de senaste raderingarna och blockeringarna av innehåll som är gömt för administratörer. Se [[Special:Ipblocklist|listan över blockerade IP]] för en lista över nu gällande blockeringar.',
 
+# History merging
+'mergehistory'                     => 'Sammanfoga sidhistoriker',
+'mergehistory-header'              => "Med den här specialsidan kan du infoga versioner av en sida i en nyare sidas historik. Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.
+
+'''Åtminstone den nuvarande versionen av källsidan måste finnas kvar.'''",
+'mergehistory-box'                 => 'Sammanfoga versioner av följande två sidor:',
+'mergehistory-from'                => 'Källsida:',
+'mergehistory-into'                => 'Målsida:',
+'mergehistory-list'                => 'Sidhistorik som kan sammanfogas',
+'mergehistory-merge'               => 'Följande versioner av [[:$1]] kan infogas i [[:$2]]. Med hjälp av alternativknapparna för varje version kan du välja att endast infoga versioner fram till en viss tidpunkt. Notera att om du använder navigationslänkarna så avmarkeras alla alternativknappar.',
+'mergehistory-go'                  => 'Visa versioner som kan infogas',
+'mergehistory-submit'              => 'Sammanfoga',
+'mergehistory-empty'               => 'Inga versioner av sidorna kan sammanfogas',
+'mergehistory-success'             => '{{PLURAL:$3|En version|$3 versioner}} av [[:$1]] har infogats i [[:$2]].',
+'mergehistory-fail'                => 'Historikerna kunde inte sammanfogas, kontrollera de sidor och den sidversion som du valt.',
+'mergehistory-no-source'           => 'Källsidan $1 finns inte.',
+'mergehistory-no-destination'      => 'Målsidan $1 finns inte.',
+'mergehistory-invalid-source'      => 'Källsidan måste vara en giltig sidtitel.',
+'mergehistory-invalid-destination' => 'Målsidan måste vara en giltig sidtitel.',
+
+# Merge log
+'mergelog'           => 'Sammanfogningslogg',
+'pagemerge-logentry' => 'infogade [[$1]] i [[$2]] (versioner t.o.m. $3)',
+'revertmerge'        => 'Återställ infogning',
+'mergelogpagetext'   => 'Detta är en lista över de senaste sammansfogningarna av sidhistoriker.',
+
 # Diffs
-'history-title'             => 'Versionshistorik för "$1"',
-'difference'                => '(Skillnad mellan versioner)',
-'loadingrev'                => 'läser version för att se skillnad',
-'lineno'                    => 'Rad $1:',
-'editcurrent'               => 'Redigera sidans nuvarande version',
-'selectnewerversionfordiff' => 'Välj en nyare version för jämförelse',
-'selectolderversionfordiff' => 'Välj en äldre version för jämförelse',
-'compareselectedversions'   => 'Jämför angivna versioner',
-'editundo'                  => 'ogör',
-'diff-multi'                => '({{plural:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
+'history-title'           => 'Versionshistorik för "$1"',
+'difference'              => '(Skillnad mellan versioner)',
+'lineno'                  => 'Rad $1:',
+'compareselectedversions' => 'Jämför angivna versioner',
+'editundo'                => 'ogör',
+'diff-multi'              => '({{plural:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
 
 # Search results
 'searchresults'         => 'Sökresultat',
@@ -1373,10 +1399,10 @@ Feedback och hjälp:
 'confirmdelete'               => 'Bekräfta borttagning',
 'deletesub'                   => '(Tar bort "$1")',
 'historywarning'              => 'Varning: Sidan du håller på att radera har en historik:',
-'confirmdeletetext'           => 'Du håller på att permanent ta bort en sida,
-eller bild med all dess historik, från databasen.
+'confirmdeletetext'           => 'Du håller på att permanent ta bort en sida
+eller bild med all dess historik från databasen.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser
-detta leder till, och att det följer {{SITENAME}}s allmänna riktlinjer.',
+detta leder till, och att det följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'              => 'Genomfört',
 'deletedtext'                 => '"$1" har tagits bort. 
 Se $2 för noteringar om de senaste raderingarna.',
@@ -1386,6 +1412,12 @@ Se $2 för noteringar om de senaste raderingarna.',
 'deletionlog'                 => 'raderingslogg',
 'reverted'                    => 'Återgått till tidigare version',
 'deletecomment'               => 'Anledning till borttagning',
+'deleteotherreason'           => 'Annan/ytterligare anledning:',
+'deletereasonotherlist'       => 'Annan anledning',
+'deletereason-dropdown'       => '*Vanliga anledningar till radering
+** Författarens begäran
+** Upphovsrättsbrott
+** Vandalism',
 'rollback'                    => 'Rulla tillbaka ändringar',
 'rollback_short'              => 'Återställning',
 'rollbacklink'                => 'rulla tillbaka',
@@ -1426,6 +1458,7 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'protect-summary-cascade'     => 'kaskaderande',
 'protect-expiring'            => 'upphör den $1 (UTC)',
 'protect-cascade'             => 'Kaskaderande skydd - skydda samtidigt alla sidor som inkluderas på den här sidan.',
+'protect-cantedit'            => 'Du kan inte ändra skyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
 'restriction-type'            => 'Typ av skydd',
 'restriction-level'           => 'Skyddsnivå',
 'minimum-size'                => 'Minsta storlek',
@@ -1552,9 +1585,8 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'ipbhidename'                 => 'Dölj användarnamnet/IP-adressen från blockeringsloggen och listorna över blockerade användare och användare',
 'badipaddress'                => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'           => 'Blockeringen är utförd',
-'blockipsuccesstext'          => 'IP-adressen "$1" har blockerats.<br /><br />
-Lämna gärna besked om detta på [[User talk:$1|användarens diskussionssida]]. För att se alla blockeringar som ligger just nu, gå till [[Special:Ipblocklist|listan över blockeringar]].<br /><br />
-En logg över blockeringar och borttagningar av blockeringar finns på [[Special:Log/Block]].',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] har blockerats.
+<br />För att se alla aktuella blockeringar, gå till [[Special:Ipblocklist|listan över blockeringar]].',
 'ipb-edit-dropdown'           => 'Redigera blockeringsanledningar',
 'ipb-unblock-addr'            => 'Ta bort blockering av $1',
 'ipb-unblock'                 => 'Ta bort blockering av en användare eller IP-adress',
@@ -1594,6 +1626,7 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'ipb_expiry_invalid'          => 'Förfallotiden ogiltig',
 'ipb_already_blocked'         => '"$1" är redan blockerad',
 'ipb_cant_unblock'            => 'Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.',
+'ipb_blocked_as_range'        => 'Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.',
 'ip_range_invalid'            => 'Ogiltigt IP-intervall.',
 'blockme'                     => 'Blockera mig',
 'proxyblocker'                => 'Proxy-block',
@@ -2064,7 +2097,6 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-meteringmode-0'   => 'Okänd',
 'exif-meteringmode-1'   => 'Medelvärde',
 'exif-meteringmode-2'   => 'Centrumviktat medelvärde',
-'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Multispot',
 'exif-meteringmode-5'   => 'Mönster',
 'exif-meteringmode-6'   => 'Partiell',
@@ -2110,7 +2142,6 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-whitebalance-0' => 'Automatisk vitbalans',
 'exif-whitebalance-1' => 'Manuell vitbalans',
 
-'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Porträtt',
 'exif-scenecapturetype-3' => 'Nattfotografering',

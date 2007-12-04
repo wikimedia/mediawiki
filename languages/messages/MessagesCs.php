@@ -387,7 +387,7 @@ $messages = array(
 'jumptosearch'      => 'hledání',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'O {{grammar:6sg|{{SITENAME}}}}',
+'aboutsite'         => 'O&nbsp;{{grammar:6sg|{{SITENAME}}}}',
 'aboutpage'         => 'Project:{{SITENAME}}',
 'bugreports'        => 'Hlášení chyb',
 'bugreportspage'    => 'Project:Chyby',
@@ -711,7 +711,7 @@ Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete
 'newarticletext'            => "Následovali jste odkaz na stránku, která dosud neexistuje.
 Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].
 Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
-'anontalkpagetext'          => "---- ''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. Musíme proto použít číselnou IP adresu k jeho identifikaci. Taková IP adresa může být sdílena několika uživateli. Pokud jste anonymní uživatel a cítíte, že jsou Vám adresovány irrelevantní komentáře, prosím [[Special:Userlogin|vytvořte si účet nebo se přihlaste]] a tím se vyhnete budoucí záměně s jinými anonymními uživateli.''",
+'anontalkpagetext'          => "---- ''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. Musíme proto použít číselnou IP adresu k&nbsp;jeho identifikaci. Taková IP adresa může být sdílena několika uživateli. Pokud jste anonymní uživatel a&nbsp;máte za to, že jsou vám adresovány irelevantní komentáře, prosíme, [[Special:Userlogin|vytvořte si účet nebo se přihlaste]], abyste se tím vyhnul(a) budoucí záměně s&nbsp;jinými anonymními uživateli.''",
 'noarticletext'             => 'Tato stránka zatím neobsahuje žádný text, můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit].',
 'userpage-userdoesnotexist' => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'clearyourcache'            => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
@@ -781,7 +781,6 @@ Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
 $3 uvádí toto zdůvodnění: ''$2''",
 
 # History pages
-'revhistory'          => 'Historie editací',
 'viewpagelogs'        => 'Zobrazit protokolovací záznamy k této stránce',
 'nohistory'           => 'O této stránce neexistuje historie editací.',
 'revnotfound'         => 'Verze nenalezena',
@@ -860,34 +859,36 @@ pokud to provozovatel serveru nezakázal.',
 'overlogpagetext' => 'Níže je seznam posledních smazání a blokování s obsah skrytým pro správce. Přehled současných blokování je na [[Special:Ipblocklist|Seznamu probíhajících zablokování]].',
 
 # History merging
-'mergehistory'        => 'Slučování historií stránek',
-'mergehistory-header' => "Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
+'mergehistory'                     => 'Slučování historií stránek',
+'mergehistory-header'              => "Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
 Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii.
 
 '''Minimálně aktuální verze zdrojové stránky musí zůstat na svém místě.'''",
-'mergehistory-box'    => 'Sloučení verzí dvou stránek:',
-'mergehistory-from'   => 'Původní stránka:',
-'mergehistory-into'   => 'Cílová stránka:',
-'mergehistory-list'   => 'Historie slučitelných editací',
-'mergehistory-merge'  => 'Následující verze stránky [[:$1|$1]] lze sloučit do stránky [[:$2|$2]]. Přepínačem vyberete verzi, která určí, že pouze tato a starší editace budou sloučeny. Použitím navigačních odkazů se tento výběr zruší.',
-'mergehistory-go'     => 'Zobrazit slučitelné editace',
-'mergehistory-submit' => 'Sloučit verze',
-'mergehistory-empty'  => 'Nelze sloučit žádnou verzi',
+'mergehistory-box'                 => 'Sloučení verzí dvou stránek:',
+'mergehistory-from'                => 'Původní stránka:',
+'mergehistory-into'                => 'Cílová stránka:',
+'mergehistory-list'                => 'Historie slučitelných editací',
+'mergehistory-merge'               => 'Následující verze stránky [[:$1|$1]] lze sloučit do stránky [[:$2|$2]]. Přepínačem vyberete verzi, která určí, že pouze tato a starší editace budou sloučeny. Použitím navigačních odkazů se tento výběr zruší.',
+'mergehistory-go'                  => 'Zobrazit slučitelné editace',
+'mergehistory-submit'              => 'Sloučit verze',
+'mergehistory-empty'               => 'Nelze sloučit žádnou verzi',
+'mergehistory-fail'                => 'Sloučení historií nelze provést. Překontrolujte zadané stránky a jejich historii.',
+'mergehistory-no-source'           => 'Zdrojová stránka $1 neexistuje.',
+'mergehistory-no-destination'      => 'Cílová stránka $1 neexistuje.',
+'mergehistory-invalid-source'      => 'Zdrojová stránka musí mít platný název.',
+'mergehistory-invalid-destination' => 'Cílová stránka musí mít platný název.',
 
 # Merge log
-'mergelog' => 'Kniha slučování',
+'mergelog'    => 'Kniha slučování',
+'revertmerge' => 'Zrušit sloučení',
 
 # Diffs
-'history-title'             => 'Historie verzí stránky „$1“',
-'difference'                => '(Rozdíly mezi verzemi)',
-'loadingrev'                => 'načítají se verze pro zjištění rozdílů',
-'lineno'                    => 'Řádka $1:',
-'editcurrent'               => 'Editovat aktuální verzi této stránky',
-'selectnewerversionfordiff' => 'Vyberte novější verzi pro porovnání',
-'selectolderversionfordiff' => 'Vyberte starší verzi pro porovnání',
-'compareselectedversions'   => 'Porovnat vybrané verze',
-'editundo'                  => 'zrušit editaci',
-'diff-multi'                => '({{plural:$1|Není zobrazena jedna mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}}.)',
+'history-title'           => 'Historie verzí stránky „$1“',
+'difference'              => '(Rozdíly mezi verzemi)',
+'lineno'                  => 'Řádka $1:',
+'compareselectedversions' => 'Porovnat vybrané verze',
+'editundo'                => 'zrušit editaci',
+'diff-multi'              => '({{plural:$1|Není zobrazena jedna mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}}.)',
 
 # Search results
 'searchresults'         => 'Výsledky hledání',
@@ -1516,6 +1517,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-summary-cascade'     => 'kaskádový',
 'protect-expiring'            => 'vyprší $1 (UTC)',
 'protect-cascade'             => 'Kaskádní zámek - zamkne všechny stránky vložené do této stránky.',
+'protect-cantedit'            => 'Nemůžete měnit nastavení zámků této stránky, protože nemáte povoleno tuto stránku editovat.',
 'restriction-type'            => 'Povolení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',

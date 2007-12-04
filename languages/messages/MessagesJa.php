@@ -7,12 +7,12 @@
  * @author Marine-Blue
  * @author Broad-Sky
  * @author Kahusi
- * @author G - ג
  * @author Nike
  * @author Siebrand
  * @author Hatukanezumi
  * @author SPQRobin
  * @author Emk
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -253,7 +253,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:免責事項',
 'edithelp'          => '編集の仕方',
 'edithelppage'      => 'Help:編集の仕方',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:目次',
 'mainpage'          => 'メインページ',
 'policy-url'        => 'Project:方針',
@@ -262,7 +261,6 @@ $messages = array(
 'privacy'           => 'プライバシー・ポリシー',
 'privacypage'       => 'Project:プライバシー・ポリシー',
 'sitesupport'       => '寄付',
-'sitesupport-url'   => 'Project:Site support',
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
@@ -611,7 +609,6 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 ブロック理由: ''$2''",
 
 # History pages
-'revhistory'          => '変更履歴',
 'viewpagelogs'        => 'このページに関するログを見る',
 'nohistory'           => 'このページには変更履歴がありません。',
 'revnotfound'         => '要求された版が見つかりません。',
@@ -682,17 +679,34 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'oversightlog'    => '版隠蔽ログ',
 'overlogpagetext' => '以下は{{int:group-sysop}}が最近隠蔽した版削除およびブロックの記録です。現時点で有効な投稿ブロックは[[Special:Ipblocklist|{{int:ipblocklist}}]]をご覧ください。',
 
+# History merging
+'mergehistory'         => 'ページの統合履歴',
+'mergehistory-header'  => "ページの履歴を他のページの履歴と統合しようとしています。
+この変更によりページの履歴は連続したひとつの履歴とものになることを確認してください。
+
+'''統合を行った場合でも統合元ページの履歴は完全に消えません。少なくとも最新版の履歴は残ります。'''",
+'mergehistory-box'     => '統合する2ページの過去の版:',
+'mergehistory-from'    => '統合元となるページ:',
+'mergehistory-into'    => '統合先のページ:',
+'mergehistory-list'    => '編集履歴を統合できます',
+'mergehistory-merge'   => '[[:$2]] へ統合可能な [[:$1]] の履歴を以下に表示しています。ラジオボタンで版を選択してから統合操作を行うと指定した時間までの版が自動的に統合されます。また、ナビゲーションリンクを使うことでフォームをリセットできます。',
+'mergehistory-go'      => '統合可能な版の表示',
+'mergehistory-submit'  => '統合する版',
+'mergehistory-empty'   => '統合できる過去の版がありません',
+'mergehistory-success' => '[[:$1]] の過去版 $3 を [[:$2]] へ統合しました。',
+'mergehistory-fail'    => '履歴の統合を行うことが出来ません。統合を行うページと過去の版を再確認してください。',
+
+# Merge log
+'mergelog'         => '統合記録',
+'mergelogpagetext' => '以下に履歴統合の記録を示しています。',
+
 # Diffs
-'history-title'             => '$1 の変更履歴',
-'difference'                => '版間での差分',
-'loadingrev'                => '差分をとるために古い版を読み込んでいます',
-'lineno'                    => '$1 行',
-'editcurrent'               => 'このページの最新版を編集',
-'selectnewerversionfordiff' => '比較する新しい版を選択',
-'selectolderversionfordiff' => '比較する古い版を選択',
-'compareselectedversions'   => '選択した版同士を比較',
-'editundo'                  => '取り消し',
-'diff-multi'                => '（間の $1 版分が非表示です）',
+'history-title'           => '$1 の変更履歴',
+'difference'              => '版間での差分',
+'lineno'                  => '$1 行',
+'compareselectedversions' => '選択した版同士を比較',
+'editundo'                => '取り消し',
+'diff-multi'              => '（間の $1 版分が非表示です）',
 
 # Search results
 'searchresults'         => '検索結果',
