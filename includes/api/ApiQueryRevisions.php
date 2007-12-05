@@ -119,8 +119,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->expandTemplates = $expandtemplates;
 		}
 
-		$userMax = ($this->fld_content ? 50 : 500);
-		$botMax = ($this->fld_content ? 200 : 10000);
+		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
+		$botMax  = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
 
 		if ($enumRevMode) {
 
