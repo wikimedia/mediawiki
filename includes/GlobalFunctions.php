@@ -1976,13 +1976,19 @@ function wfMakeUrlIndex( $url ) {
 	// Reverse the labels in the hostname, convert to lower case
 	// For emails reverse domainpart only
 	if ( $bits['scheme'] == 'mailto' ) {
-		$mailparts = explode( '@', $bits['host'] );
-		$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
+		$mailparts = explode( '@', $bits['host'], 2 );
+		if ( count($mailparts) === 2 ) {
+			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
+		} else {
+			// No domain specified, don't mangle it
+			$domainpart = '';
+		}
 		$reversedHost = $domainpart . '@' . $mailparts[0];
 	} else {
 		$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
 	}
 	// Add an extra dot to the end
+	// Why? Is it in wrong place in mailto links?
 	if ( substr( $reversedHost, -1, 1 ) !== '.' ) {
 		$reversedHost .= '.';
 	}
