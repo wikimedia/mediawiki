@@ -669,7 +669,6 @@ $2',
 当中被$3封禁的原因是''$2''",
 
 # History pages
-'revhistory'          => '修订历史',
 'viewpagelogs'        => '查看此页面的日志',
 'nohistory'           => '此页没有修订记录。',
 'revnotfound'         => '没有找到修订记录',
@@ -774,11 +773,7 @@ $2',
 # Diffs
 'history-title'             => '“$1”的修订历史',
 'difference'                => '(修订版本间差异)',
-'loadingrev'                => '载入修订版本比较',
 'lineno'                    => '第$1行:',
-'editcurrent'               => '编辑此页的当前修订版本',
-'selectnewerversionfordiff' => '选择更新的版本作比较',
-'selectolderversionfordiff' => '选择更老的版本作比较',
 'compareselectedversions'   => '比较选定的版本',
 'editundo'                  => '撤销',
 'diff-multi'                => '($1个中途的修订版本没有显示。)',
@@ -1473,6 +1468,11 @@ $NEWPAGE
 'undelete-error-long'          => '当进行反删除文件时遇到错误:
 
 $1',
+'undelete-more-revs'           => '\'\'\'<span style="color: red;">警告！</span>这个页面有比在此显示更多已删除的修订版本。\'\'\'<br />
+$1次修订版本在下面显示。您可以在这个列表中选取所需要的修订版本，又或者不作选择去恢复所有的修订版本（同时包括没有在此显示的）。<br />
+($2) ($3)',
+'undelete-next-revs'           => '查看后$1次的修订',
+'undelete-show-all'            => '查看所有的修订',
 
 # Namespace form on various pages
 'namespace'      => '名字空间:',

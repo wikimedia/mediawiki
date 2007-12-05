@@ -735,7 +735,6 @@ $2',
 當中俾$3封鎖嘅原因係''$2''",
 
 # History pages
-'revhistory'          => '修改歷程',
 'viewpagelogs'        => '睇呢頁嘅日誌',
 'nohistory'           => '呢版冇歷史。',
 'revnotfound'         => '搵唔到歷史',
@@ -846,11 +845,7 @@ $2',
 # Diffs
 'history-title'             => '"$1"嘅修訂歷史',
 'difference'                => '（修訂之間嘅差異）',
-'loadingrev'                => '載入緊修訂嘅差異',
 'lineno'                    => '第$1行：',
-'editcurrent'               => '編輯呢一頁嘅現時版本',
-'selectnewerversionfordiff' => '選擇一個新啲嘅版本做個比較',
-'selectolderversionfordiff' => '選擇一個舊啲嘅版本做個比較',
 'compareselectedversions'   => '比較被選嘅版本',
 'editundo'                  => '復原',
 'diff-multi'                => '(當中有$1次嘅修訂唔會顯示。)',
@@ -1544,6 +1539,11 @@ wiki: $PAGEEDITOR_WIKI
 'undelete-error-long'          => '當反刪除緊個檔案嗰陣遇到錯誤:
 
 $1',
+'undelete-more-revs'           => '\'\'\'<span style="color: red;">警告！</span>呢一版有比響呢度顯示更多刪除咗嘅修訂。\'\'\'<br />
+$1次修訂響下面顯示。你可以響呢個表度揀所需要嘅修訂，又或者唔揀去恢復全部嘅修訂（包括埋無響度顯示嘅）。<br />
+($2) ($3)',
+'undelete-next-revs'           => '睇吓後$1次嘅修訂',
+'undelete-show-all'            => '睇吓全部嘅修訂',
 
 # Namespace form on various pages
 'namespace'      => '空間名：',
