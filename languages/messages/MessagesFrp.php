@@ -727,10 +727,15 @@ Consultâd la [[Special:Ipblocklist|lista des comptos blocâs]] por la lista des
 
 # History merging
 'mergehistory'                     => 'Fusion des historicos d’una pâge',
+'mergehistory-header'              => "Ceta pâge vos pèrmèt de fusionar les vèrsions de l’historico d’una pâge d’origina vers una novèla.
+Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’historico.
+
+'''Enfin, la vèrsion corenta dêt étre consèrvâ.'''",
 'mergehistory-box'                 => 'Fusionar les vèrsions de doves pâges :',
 'mergehistory-from'                => 'Pâge d’origina :',
 'mergehistory-into'                => 'Pâge de dèstinacion :',
 'mergehistory-list'                => 'Èdicion des historicos fusionâblos',
+'mergehistory-merge'               => 'Les vèrsions siuventes de [[:$1]] pôvont étre fusionâs avouéc [[:$2]]. Utilisâd lo boton de chouèx de la colona por fusionar ren que les vèrsions crèâs du comencement tant qu’a la dâta endicâ. Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar la colona.',
 'mergehistory-go'                  => 'Vêre les èdicions fusionâbles',
 'mergehistory-submit'              => 'Fusionar les vèrsions',
 'mergehistory-empty'               => 'Niona vèrsion pôt étre fusionâ',

@@ -592,7 +592,6 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'template-semiprotected'    => '(qısmen qorçalav altında)',
 
 # History pages
-'revhistory'          => 'Keçmiş versiyalar',
 'viewpagelogs'        => 'Bu saifeniñ jurnallarını köster',
 'nohistory'           => 'Bu saifeniñ keçmiş versiyası yoq.',
 'revnotfound'         => 'Versiya tapılmadı',
@@ -628,9 +627,9 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'revdelete-submit'          => 'Saylanğan versiyağa işlet',
 
 # Diffs
+'history-title'           => '"$1" saifesiniñ deñişiklik tarihı',
 'difference'              => '(Versiyalar arası farqlar)',
 'lineno'                  => '$1 satır:',
-'editcurrent'             => 'Saifeniñ şu anki versiyasını deñiştir',
 'compareselectedversions' => 'Saylanğan versiyalarnı qarşılaştır',
 'editundo'                => 'lâğu et',
 
@@ -1132,14 +1131,19 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Bu kriteriylerge uyğan deñişiklik tapılamadı',
 'uctop'         => '(soñki)',
+'month'         => 'Bu ay (ve ondan erte):',
+'year'          => 'Bu sene (ve ondan erte):',
 
 'sp-contributions-newest'      => 'Eñ yañı',
 'sp-contributions-oldest'      => 'Eñ eski',
 'sp-contributions-newer'       => 'Soñraki $1',
 'sp-contributions-older'       => 'Evelki $1',
+'sp-contributions-newbies'     => 'Tek yañı qullanıcılarnıñ isselerini köster',
 'sp-contributions-newbies-sub' => 'Yañı qullanıcılar içün',
 'sp-contributions-blocklog'    => 'Blok etüv jurnalı',
+'sp-contributions-search'      => 'İsseler qıdıruv',
 'sp-contributions-username'    => 'IP adresi ya da qullanıcı adı:',
+'sp-contributions-submit'      => 'Qıdır',
 
 # What links here
 'whatlinkshere'       => 'Saifege bağlantılar',

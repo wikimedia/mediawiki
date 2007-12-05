@@ -6,12 +6,13 @@
  * @author Emily
  * @author KlaudiuMihaila
  * @author Laurap
- * @author G - ג
  * @author SCriBu
  * @author Nike
  * @author Gangleri
  * @author Siebrand
  * @author Teak
+ * @author לערי ריינהארט
+ * @author Meno25
  */
 
 $skinNames = array(
@@ -302,7 +303,7 @@ pe titlul secţiunii (JavaScript)',
 'feedlinks'               => 'Întreţinere:',
 'feed-invalid'            => 'Tip de abonament invalid',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articol',
 'nstab-user'      => 'Pagină de utilizator',
 'nstab-media'     => 'Pagină Media',
@@ -593,7 +594,6 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 'cantcreateaccounttitle' => 'Crearea contului nu poate fi realizată',
 
 # History pages
-'revhistory'          => 'Istoria versiunilor',
 'viewpagelogs'        => 'Vezi rapoartele pentru această pagină',
 'nohistory'           => 'Nu există istoric pentru această pagină.',
 'revnotfound'         => 'Versiunea nu a fost găsită',
@@ -654,15 +654,11 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'revdelete-logentry'          => 'vizibilitatea reviziei pentru [[$1]] a fost modificată',
 
 # Diffs
-'difference'                => '(Diferenţa dintre versiuni)',
-'loadingrev'                => 'se încarcă diferenţa dintre versiuni',
-'lineno'                    => 'Linia $1:',
-'editcurrent'               => 'Modificarea versiunii curente a acestei pagini',
-'selectnewerversionfordiff' => 'Selectează versiunea mai nouă pentru comparare',
-'selectolderversionfordiff' => 'Selectează o versiune mai veche pentru comparaţie',
-'compareselectedversions'   => 'Compară versiunile selectate',
-'editundo'                  => 'anulează',
-'diff-multi'                => '({{plural:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
+'difference'              => '(Diferenţa dintre versiuni)',
+'lineno'                  => 'Linia $1:',
+'compareselectedversions' => 'Compară versiunile selectate',
+'editundo'                => 'anulează',
+'diff-multi'              => '({{plural:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
 
 # Search results
 'searchresults'         => 'Rezultatele căutării',
@@ -819,7 +815,7 @@ $3',
 'uploadnologintext'           => 'Trebuie să fiţi [[Special:Userlogin|autentificat]] pentru a putea trimite fişiere.',
 'upload_directory_read_only'  => 'Directorul de trimitere ($1) nu are drepturi de scriere de către server.',
 'uploaderror'                 => 'Eroare la trimitere fişier',
-'uploadtext'                  => "<strong>STOP!</strong> Înainte de a trimite un fişier aici, te rugăm să citeşti şi să respecţi [[{{MediaWiki:Policy-url}}|politica de utilizare a imaginilor]].<br />
+'uploadtext'                  => "<strong>STOP!</strong> Înainte de a trimite un fişier aici, te rugăm să citeşti şi să respecţi [[{{MediaWiki:policy-url}}|politica de utilizare a imaginilor]].<br />
 Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:Imagelist|lista de imagini]]. Fişierele noi şi cele şterse sunt contorizate pe pagina [[Special:Log/upload|raport de trimiteri]].<br />
 Foloseşte formularul de mai jos pentru a trimite imagini noi pe care le vei putea folosi pentru a ilustra articolele. În majoritatea browserelor vei vedea un buton \"Răsfoire...\" (sau \"Browse...\") care va deschide fereastra standard dialog a sistemului tău de operare pentru alegerea de fişiere. Când alegei un fişier în acest fel, caseta de dialog se va completa cu calea locală către acesta. Este de asemenea necesar să bifezi căsuţa asociată textului în care confirmi că nu violezi nici un drept de autor trimiţând această imagine. În final, apasă pe butonul \"Trimite\" pentru a trimite efectiv fişierul. Această operaţiune poate dura, mai ales dacă ai o legătură lentă la Internet.<br />
 Formatele preferate sunt JPEG pentru imagini fotografice, PNG pentru desene şi alte imagini cu contururi clare şi OGG pentru fişiere de sunet. Te rugăm să foloseşti nume explicite pentru fişiere ca să eviţi confuziile. Pentru a include o imagine într-un articol, foloseşte o legătură de forma<br />
@@ -948,6 +944,10 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'unusedtemplatestext' => 'Lista de mai jos cuprinde toate formatele care nu sînt incluse în nici o altă pagină. Înainte de a le şterge asiguraţi-vă că într-adevăr nu există legături dinspre alte pagini.',
 'unusedtemplateswlh'  => 'alte legături',
 
+# Random page
+'randompage'         => 'Pagină aleatorie',
+'randompage-nopages' => 'Nu există pagini în acest spaţiu de nume.',
+
 # Random redirect
 'randomredirect'         => 'Redirecţionare aleatorie',
 'randomredirect-nopages' => 'Nu există redirecţionări în acest spaţiu de nume.',
@@ -1011,8 +1011,6 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'mostrevisions'           => 'Articole cu cele mai multe revizuiri',
 'allpages'                => 'Toate paginile',
 'prefixindex'             => 'Afişare articole începând de la',
-'randompage'              => 'Pagină aleatorie',
-'randompage-nopages'      => 'Nu există pagini în acest spaţiu de nume.',
 'shortpages'              => 'Pagini scurte',
 'longpages'               => 'Pagini lungi',
 'deadendpages'            => 'Pagini fără legături',
@@ -1202,7 +1200,7 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'protectexpiry'               => 'Expirare',
 'unprotectsub'                => '(Deprotejând "$1")',
 'protect-unchain'             => 'Deblochează permisiunile de mutare',
-'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong>$1</strong>. Asigură-te că acţionezi în conformitate cu [[{{MediaWiki:Policy-url}}|politica proiectului]].',
+'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong>$1</strong>.',
 'protect-default'             => '(standard)',
 'protect-fallback'            => 'Cere permisiunea "$1"',
 'protect-level-autoconfirmed' => 'Blochează utilizatorii neînregistraţi',
@@ -1350,9 +1348,9 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'range_block_disabled'        => 'Abilitatea dezvoltatorilor de a bloca serii de adrese este dezactivată.',
 'ipb_expiry_invalid'          => 'Dată de expirare invalidă.',
 'ipb_already_blocked'         => '"$1" este deja blocat',
+'ipb_cant_unblock'            => 'Eroare: nu găsesc identificatorul $1. Probabil a fost deja deblocat.',
 'ip_range_invalid'            => 'Serie IP invalidă.',
 'proxyblocker'                => 'Blocaj de proxy',
-'ipb_cant_unblock'            => 'Eroare: nu găsesc identificatorul $1. Probabil a fost deja deblocat.',
 'proxyblockreason'            => 'Adresa ta IP a fost blocată pentru că este un proxy deschis. Te rog, contactează provider-ul tău de servicii Internet sau tehnicieni IT şi informează-i asupra acestei probleme serioase de securitate.',
 'proxyblocksuccess'           => 'Realizat.',
 'sorbsreason'                 => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',

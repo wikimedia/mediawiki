@@ -309,6 +309,9 @@ $messages = array(
 'nosuchaction'      => 'Няма такога дзеяння',
 'nosuchactiontext'  => 'Невядомае ў гэтай віксе апісанае ў URL дзеянне (action)',
 'nosuchspecialpage' => 'Няма такой адмысловай старонкі',
+'nospecialpagetext' => "<big>'''Вы звярнуліся па няправільную адмысловую старонку.'''</big>
+
+Пералік правільных адмысловых старонак ёсць на [[{{ns:Special}}:Specialpages]].",
 
 # General errors
 'error'                => 'Памылка',
@@ -329,6 +332,7 @@ $messages = array(
 'noconnect'            => 'Прабачце! Вікі-сервер зараз мае тэхнічныя праблемы, і не можа дасягнуць свайго сервера баз даных.<br />
 $1',
 'nodb'                 => 'Немагчыма выбраць базу звестак $1',
+'cachederror'          => 'Гэта кэшавая копія патрэбнай старонкі і можа не паказваць яе актуальнага стану.',
 'laggedslavemode'      => 'Увага: Старонка можа не ўтрымліваць апошніх зменаў.',
 'readonly'             => 'База звестак заблакаваная',
 'internalerror'        => 'Унутраная памылка',
@@ -507,6 +511,9 @@ $2',
 'whitelistacctitle'      => 'Вам не дазволена ствараць рахункаў',
 'whitelistacctext'       => 'Каб мець дазвол на стварэнне рахункаў у гэтай Вікі вам трэба [[Special:Userlogin|ўвайсці ў сістэму]] і мець неабходныя паўнамоцтвы.',
 'confirmedittitle'       => 'Для рэдагавання патрабуецца пацверджаны адрас эл.пошты',
+'confirmedittext'        => 'Вам трэба пацвердзіць свой адрас эл.пошты перад тым, як правіць старонкі. Вызначце і пацвердзіце адрас ў сваіх [[{{ns:Special}}:Preferences|настáўленнях]].',
+'nosuchsectiontitle'     => 'Няма такога падраздзелу',
+'nosuchsectiontext'      => 'Вы спрабавалі правіць падраздзел, якога тут няма. А калі няма падраздзелу $1, то няма і месца, куды запісаць вашую праўку.',
 'loginreqtitle'          => 'Патрабуецца ўваход у сістэму',
 'loginreqlink'           => 'ўвайсці',
 'loginreqpagetext'       => 'Вы павінны $1, каб праглядаць іншыя старонкі.',
@@ -553,13 +560,22 @@ $2',
 'nocreatetitle'          => 'Стварэнне старонак абмежавана',
 'nocreatetext'           => 'На гэтай пляцоўцы абмежаваныя магчымасці стварэння новых старонак.
 Вы можаце папрацаваць з існуючай старонкай, або [[Special:Userlogin|увайсці ў сістэму ці завесці сабе рахунак]].',
+'permissionserrorstext'  => 'Вам не дазволена гэтага рабіць, з наступн{{PLURAL:$1|ай прычыны|ых прычын}}:',
 'recreate-deleted-warn'  => "'''Увага: Вы аднаўляеце старонку, якая раней была сцёрта.'''
 
 Трэба падумаць, ці варта далей працаваць з гэтай старонкай.
 Вось журнал сціранняў для гэтай старонкі:",
 
+# "Undo" feature
+'undo-success' => 'Праўку можна адкаціць, але праверце папярэдні паказ, што ніжэй, каб упэўніцца ў адпаведнасці будучых змяненняў, і толькі тады запішыце іх, каб завершыць адкат праўкі.',
+'undo-failure' => 'Немагчыма адкаціць праўку, таму што перашкаджаюць праўкі, што былі перад ёй.',
+'undo-summary' => 'Адкат версіі $1 аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]])',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Немагчыма стварыць рахунак',
+'cantcreateaccount-text' => "Стварэнне рахункаў было забаронена для гэтага адрасу IP (<b>$1</b>).
+
+Забарона зроблена ўдзельнікам [[User:$3|$3]], з такім тлумачэннем: ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Паказаць журналы для гэтай старонкі',
@@ -593,9 +609,33 @@ $2',
 'history-feed-item-nocomment' => '$1 на $2', # user at time
 
 # Revision deletion
-'rev-deleted-user'     => '(удзельнік выдалены)',
-'rev-delundel'         => 'паказаць/схаваць',
-'revdelete-hide-image' => 'Схаваць змест файла',
+'rev-deleted-user'            => '(удзельнік выдалены)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Гэтая версія старонкі была сцёртая з публічных архіваў.
+Магчыма, падрабязнасці пра гэта ёсць у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў].
+</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Гэтая версія старонкі была сцёртая з публічных архіваў.
+Як адміністратар на гэтай пляцоўцы, вы яе можаце бачыць;
+магчыма, падрабязнасці пра гэта ёсць у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў].
+</div>',
+'rev-delundel'                => 'паказаць/схаваць',
+'revisiondelete'              => 'Сцерці/аднавіць версіі',
+'revdelete-nooldid-title'     => 'Няма мэтавай версіі',
+'revdelete-nooldid-text'      => 'Не выбрана мэтавая версія або версіі, патрэбныя дзеля выканання гэтай функцыі.',
+'revdelete-selected'          => "{{PLURAL:$2|Выбраная версія|Выбраныя версіі}} '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Выбраны запіс|Выбраныя запісы}} журналу для '''$1:'''",
+'revdelete-text'              => 'Сцёртыя версіі і падзеі і надалей будуць паказвацца ў гісторыі старонкі і ў журналах,
+але часткі іх зместу не будуць даступныя для публікі.
+
+Іншыя адміністратары на гэтай Вікі змогуць бачыць схаваны змест і змогуць аднавіць яго праз гэты самы інтэрфейс, калі не будзе ўведзена дадатковых абмежаванняў.',
+'revdelete-hide-text'         => 'Не паказваць тэкст версіі',
+'revdelete-hide-image'        => 'Схаваць змест файла',
+'revdelete-unsuppress'        => 'Зняць абмежаванні на адноўленыя версіі',
+'revdelete-submit'            => 'Зрабіць для выбранай версіі',
+'revdelete-logentry'          => 'зменена бачнасць версіі [[$1]]',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|версія|версій}} зменены на лад $2',
+'revdelete-success'           => 'Паспяхова настаўлена бачнасць версіі.',
 
 # Diffs
 'history-title'           => 'Гісторыя версій "$1"',
@@ -607,9 +647,14 @@ $2',
 
 # Search results
 'searchresults'         => 'Вынікі пошуку',
+'searchresulttext'      => 'Больш падрабязна пра пошук на {{SITENAME}}: [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Вы шукалі '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Вы шукалі '''$1'''",
 'noexactmatch'          => "'''Няма старонкі з назвай \"\$1\".''' Вы можаце яе [[:\$1|стварыць]].",
+'titlematches'          => 'Знойдзена ў назвах',
+'notitlematches'        => 'Нічога не знойдзена ў назвах',
+'textmatches'           => 'Знойдзена ў тэкстах',
+'notextmatches'         => 'Нічога не знойдзена ў тэкстах старонак',
 'prevn'                 => 'папярэдн. $1',
 'nextn'                 => 'наступ. $1',
 'viewprevnext'          => 'Гл. ($1) ($2) ($3).',
@@ -725,6 +770,7 @@ $2',
 'newpageletter'                     => 'Н',
 'boteditletter'                     => 'р',
 'number_of_watching_users_pageview' => '[$1 назіральнік/аў]',
+'newsectionsummary'                 => '/* $1 */ новы падраздзел',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Звязаныя праўкі',
@@ -762,12 +808,17 @@ $2',
 'illegalfilename'             => 'У назве файла «$1» ёсць такія знакі, якія не дазваляюцца ў назвах старонак. Калі ласка, паспрабуйце ўкласці файл ізноў, але пад іншай назвай.',
 'badfilename'                 => 'Назва файла зменена на "$1".',
 'filetype-badmime'            => 'Не дазваляецца ўкладанне файлаў з тыпам MIME "$1".',
+'filetype-badtype'            => "'''\".\$1\"''' гэта непажаданы тут тып файла
+: Пералік дазволеных тыпаў файлаў: \$2",
+'filetype-missing'            => 'Назва файла без суфіксу (напрыклад, ".jpg").',
+'large-file'                  => 'Рэкамендуецца, каб файлы былі не большыя за $1; гэты файл ёміць $2.',
 'emptyfile'                   => 'Здаецца, што файл, укладзены вамі, пусты. Магчыма, здарылася памылка ў назве файла? Праверце, ці вы сапраўды хацелі ўкласці менавіта гэты файл.',
 'fileexists'                  => 'Ужо існуе файл з такою назвай, праверце $1, калі не ўпэўнены, што жадаеце мяняць яго змесціва.',
 'fileexists-extension'        => 'Ужо ёсць файл з падобнай назвай:<br />
 Назва ўкладанага файла: <strong><tt>$1</tt></strong><br />
 Назва наяўнага файла: <strong><tt>$2</tt></strong><br />
 Выберыце іншую назву.',
+'fileexists-thumb'            => "<center>'''Існая тут выява'''</center>",
 'fileexists-thumbnail-yes'    => 'Файл падобны на выяву скарочанага памеру <i>(драбніца)</i>. Праверце файл <strong><tt>$1</tt></strong>.<br />
 Калі правераны файл мае змест і памеры, аднолькавыя з гэтым, то дадатковае ўкладанне драбніцы непатрэбнае.',
 'file-thumbnail-no'           => 'Назва файла пачынаецца з <strong><tt>$1</tt></strong>. Так можа называцца выява скарочанага памеру <i>(драбніца)</i>.
@@ -1258,6 +1309,7 @@ $2',
 'import-interwiki-submit'    => 'Імпартаваць',
 'import-interwiki-namespace' => 'Перанесці старонкі ў прастору назваў:',
 'importstart'                => 'Імпартаванне старонак...',
+'import-revision-count'      => '$1 {{PLURAL:$1|версія|версій}}',
 'importfailed'               => 'Не ўдалося імпартаваць: $1',
 'importcantopen'             => 'Немагчыма адкрыць файл імпарту',
 'importbadinterwiki'         => 'Кепская спасылка interwiki',
@@ -1265,7 +1317,8 @@ $2',
 'importsuccess'              => 'Імпартаванне скончана!',
 
 # Import log
-'importlogpage' => 'Журнал імпартаванняў',
+'importlogpage'                 => 'Журнал імпартаванняў',
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|версія|версій}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Свая старонка',
@@ -1340,11 +1393,16 @@ $2',
 'creditspage'      => 'Аўтарства старонкі',
 
 # Spam protection
+'spamprotectiontitle'    => 'Фільтр спаму',
+'spamprotectiontext'     => 'Спроба запісаць старонку была запынена фільтрам спаму. Магчымая прычына — спасылка на пэўны вонкавы адрас Сеціва.',
+'spamprotectionmatch'    => 'Фільтр спаму зрэагаваў на гэты тэкст: $1',
 'subcategorycount'       => 'У гэтай катэгорыі $1 {{PLURAL:$1|падкатэгорыя|падкатэгорыі|падкатэгорый}}.',
 'categoryarticlecount'   => 'У гэтай катэгорыі $1 {{PLURAL:$1|артыкул|артыкулы|артыкулаў}}.',
 'category-media-count'   => 'У гэтай катэгорыі $1 {{PLURAL:$1|файл|файлы|файлаў}}.',
 'listingcontinuesabbrev' => 'працяг',
+'spambot_username'       => 'Чыстка спаму MediaWiki',
 'spam_reverting'         => 'Вяртаемся да апошняй версіі без спасылак на $1',
+'spam_blanking'          => 'Усе версіі ўтрымлівалі спасылкі на $1, чысцім',
 
 # Info page
 'numedits'       => 'Кольк. правак (тэксту): $1',
@@ -1413,42 +1471,66 @@ $1',
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'            => 'Шырыня',
-'exif-imagelength'           => 'Вышыня',
-'exif-bitspersample'         => 'Бітаў на кампанент',
-'exif-compression'           => 'Схема сціскання',
-'exif-orientation'           => 'Арыентацыя',
-'exif-samplesperpixel'       => 'Кампанентаў на піксель',
-'exif-xresolution'           => 'Гарызантальнае разрозненне',
-'exif-yresolution'           => 'Вертыкальнае разрозненне',
-'exif-resolutionunit'        => 'Адзінка вымярэння разрозненняў X і Y',
-'exif-stripoffsets'          => 'Водступ палосаў выявы',
-'exif-rowsperstrip'          => 'Радкоў на паласу',
-'exif-stripbytecounts'       => 'Байтаў на сціснутую паласу',
-'exif-datetime'              => 'Дата і час змянення файла',
-'exif-artist'                => 'Аўтар',
-'exif-exifversion'           => 'Версія Exif',
-'exif-flashpixversion'       => 'Падтрымліваецца версія Flashpix',
-'exif-datetimeoriginal'      => 'Дата і час стварэння дадзеных',
-'exif-datetimedigitized'     => 'Дата і час лічбавання',
-'exif-exposuretime'          => 'Час вытрымкі',
-'exif-exposuretime-format'   => '$1 сек ($2)',
-'exif-aperturevalue'         => 'Апертура',
-'exif-brightnessvalue'       => 'Яркасць',
-'exif-lightsource'           => 'Крыніца святла',
-'exif-flash'                 => 'Сполах',
-'exif-focallength'           => 'Фокусная адлегласць лінзы',
-'exif-focallength-format'    => '$1 мм',
-'exif-flashenergy'           => 'Энергія сполаху',
-'exif-filesource'            => 'Крыніца файла',
-'exif-exposuremode'          => 'Рэжым вытрымкі',
-'exif-focallengthin35mmfilm' => 'Фокусная адлегласць 35 мм плёнкі',
-'exif-contrast'              => 'Кантраст',
-'exif-gpsaltitude'           => 'Вышыня',
-'exif-gpsareainformation'    => 'Назва мясцовасці GPS',
-'exif-gpsdatestamp'          => 'Дата GPS',
+'exif-imagewidth'                  => 'Шырыня',
+'exif-imagelength'                 => 'Вышыня',
+'exif-bitspersample'               => 'Бітаў на кампанент',
+'exif-compression'                 => 'Схема сціскання',
+'exif-orientation'                 => 'Арыентацыя',
+'exif-samplesperpixel'             => 'Кампанентаў на піксель',
+'exif-xresolution'                 => 'Гарызантальнае разрозненне',
+'exif-yresolution'                 => 'Вертыкальнае разрозненне',
+'exif-resolutionunit'              => 'Адзінка вымярэння разрозненняў X і Y',
+'exif-stripoffsets'                => 'Водступ палосаў выявы',
+'exif-rowsperstrip'                => 'Радкоў на паласу',
+'exif-stripbytecounts'             => 'Байтаў на сціснутую паласу',
+'exif-jpeginterchangeformat'       => 'Водступ пачатку даных JPEG (SOI)',
+'exif-jpeginterchangeformatlength' => 'байтаў даных JPEG',
+'exif-datetime'                    => 'Дата і час змянення файла',
+'exif-imagedescription'            => 'Назва выявы',
+'exif-make'                        => 'Марка апарата',
+'exif-model'                       => 'Мадэль апарата',
+'exif-software'                    => 'Выкарыстаная праграма',
+'exif-artist'                      => 'Аўтар',
+'exif-copyright'                   => 'Уласнік аўтарскіх правоў',
+'exif-exifversion'                 => 'Версія Exif',
+'exif-flashpixversion'             => 'Падтрымліваецца версія Flashpix',
+'exif-colorspace'                  => 'Каляровая прастора',
+'exif-datetimeoriginal'            => 'Дата і час стварэння дадзеных',
+'exif-datetimedigitized'           => 'Дата і час лічбавання',
+'exif-exposuretime'                => 'Час вытрымкі',
+'exif-exposuretime-format'         => '$1 сек ($2)',
+'exif-aperturevalue'               => 'Апертура',
+'exif-brightnessvalue'             => 'Яркасць',
+'exif-lightsource'                 => 'Крыніца святла',
+'exif-flash'                       => 'Сполах',
+'exif-focallength'                 => 'Фокусная адлегласць лінзы',
+'exif-focallength-format'          => '$1 мм',
+'exif-flashenergy'                 => 'Энергія сполаху',
+'exif-filesource'                  => 'Крыніца файла',
+'exif-exposuremode'                => 'Рэжым вытрымкі',
+'exif-whitebalance'                => 'Баланс белага',
+'exif-focallengthin35mmfilm'       => 'Фокусная адлегласць 35 мм плёнкі',
+'exif-contrast'                    => 'Кантраст',
+'exif-gpsaltitude'                 => 'Вышыня',
+'exif-gpsareainformation'          => 'Назва мясцовасці GPS',
+'exif-gpsdatestamp'                => 'Дата GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'Нясціснута',
+
+'exif-unknowndate' => 'Невядомая дата',
 
 'exif-orientation-1' => 'Звычайна', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Адлюстравана злева ўправа', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Павернута на 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Адлюстравана зверху ўніз', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Павернута на 90° супраць гадзінніка і адлюстравана зверху ўніз', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Павернута на 90° па гадзінніку', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Павернута на 90° па гадзінніку і адлюстравана зверху ўніз', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Павернута на 90° супраць гадзінніка', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'чанкавы фармат',
+'exif-planarconfiguration-2' => 'планарны фармат',
 
 'exif-exposureprogram-0' => 'Не вызначана',
 'exif-exposureprogram-1' => 'Самастойна',
@@ -1483,6 +1565,9 @@ $1',
 
 'exif-exposuremode-0' => 'Аўта-вытрымка',
 'exif-exposuremode-1' => 'Самастойная вытрымка',
+
+'exif-whitebalance-0' => 'Аўтаматычны баланс белага',
+'exif-whitebalance-1' => 'Ручны баланс белага',
 
 'exif-scenecapturetype-0' => 'Стандартна',
 'exif-scenecapturetype-1' => 'Альбом',
@@ -1614,8 +1699,8 @@ $1',
 'autosumm-new'     => 'Новая старонка: $1',
 
 # Live preview
-'livepreview-loading' => 'Загрузка…',
-'livepreview-ready'   => 'Загрузка… Зроблена!',
+'livepreview-loading' => 'Счытваем…',
+'livepreview-ready'   => 'Счытваем… Зроблена!',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Мены, навейшыя за $1 секунд, могуць тут не паказвацца.',
