@@ -83,8 +83,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// This also means stricter limits and stricter restrictions
 			if(!$wgUser->isAllowed('undelete'))
 				$this->dieUsage('You don\'t have permission to view deleted revision content', 'permissiondenied');
-			$userMax = 50;
-			$botMax = 200;
+			$userMax = ApiBase :: LIMIT_SML1;
+			$botMax  = ApiBase :: LIMIT_SML2;
 			$this->validateLimit('limit', $params['limit'], 1, $userMax, $botMax);
 		}
 		if($fld_token)
