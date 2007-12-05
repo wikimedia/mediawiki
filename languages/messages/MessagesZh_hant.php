@@ -640,7 +640,6 @@ $2',
 當中被$3封禁的原因是''$2''",
 
 # History pages
-'revhistory'          => '修訂歷史',
 'viewpagelogs'        => '查詢這個頁面的日誌',
 'nohistory'           => '沒有本頁的修訂記錄。',
 'revnotfound'         => '沒有找到修訂記錄',
@@ -745,11 +744,7 @@ $2',
 # Diffs
 'history-title'             => '「$1」的修訂歷史',
 'difference'                => '(修訂版本間差異)',
-'loadingrev'                => '載入修訂版本比較',
 'lineno'                    => '第$1行：',
-'editcurrent'               => '編輯本頁的當前修訂版本',
-'selectnewerversionfordiff' => '選擇更新的版本作比較',
-'selectolderversionfordiff' => '選擇更老的版本作比較',
 'compareselectedversions'   => '比較選定的版本',
 'editundo'                  => '撤銷',
 'diff-multi'                => '($1個中途的修訂版本沒有顯示。)',
@@ -1444,6 +1439,11 @@ $NEWPAGE
 'undelete-error-long'          => '當進行反刪除檔案時遇到錯誤:
 
 $1',
+'undelete-more-revs'           => '\'\'\'<span style="color: red;">警告！</span>這個頁面有比在此顯示更多已刪除的修訂版本。\'\'\'<br />
+$1次修訂版本在下面顯示。您可以在這個列表中選取所需要的修訂版本，又或者不作選擇去恢復所有的修訂版本（同時包括沒有在此顯示的）。<br />
+($2) ($3)',
+'undelete-next-revs'           => '檢視後$1次的修訂',
+'undelete-show-all'            => '檢視所有的修訂',
 
 # Namespace form on various pages
 'namespace'      => '名字空間:',

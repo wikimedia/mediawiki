@@ -555,7 +555,6 @@ $2',
 'cantcreateaccount-text' => "[[User:$3|S3]]因''$2''故，封子IP <b>$1</b>。",
 
 # History pages
-'revhistory'          => '誌審',
 'viewpagelogs'        => '覽誌',
 'nohistory'           => '此題無誌',
 'revnotfound'         => '查無審',
@@ -642,11 +641,7 @@ $2',
 # Diffs
 'history-title'             => '$1之誌',
 'difference'                => '（辨異）',
-'loadingrev'                => '取審…',
 'lineno'                    => '列$1：',
-'editcurrent'               => '纂今審',
-'selectnewerversionfordiff' => '擇一新',
-'selectolderversionfordiff' => '擇一舊',
 'compareselectedversions'   => '辨二擇',
 'editundo'                  => '悔',
 
@@ -1201,6 +1196,11 @@ $NEWPAGE
 'undelete-missing-filearchive' => '$1無尋，或已還矣。',
 'undelete-error-short'         => '$1欲還而有誤也。',
 'undelete-error-long'          => '還檔有誤。欲還者：\n\n$1\n',
+'undelete-more-revs'           => '\'\'\'<span style="color: red;">警！</span>本頁有比此示多刪之審也。\'\'\'<br />
+$1審列示如下。爾可擇需審，或無擇以復全審（包無示之審）。<br />
+($2) ($3)',
+'undelete-next-revs'           => '閱後$1審',
+'undelete-show-all'            => '閱全審',
 
 # Namespace form on various pages
 'namespace'      => '名冊：',
