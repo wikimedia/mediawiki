@@ -97,21 +97,14 @@ class PageArchive {
 	 *
 	 * @return ResultWrapper
 	 */
-	function listRevisions( $startTime, $limit ) {
-		$whereClause = array( 'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey() );
-		if ( $startTime && is_numeric($startTime) )
-			$whereClause[] = "ar_timestamp < $startTime";
-
-		$optionsClause = array( 'ORDER BY' => 'ar_timestamp DESC' );
-		if ( $limit > 0 ) $optionsClause['LIMIT'] = intval($limit);
-
+	function listRevisions() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'archive',
 			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment', 'ar_len' ),
-			$whereClause,
+			array( 'ar_namespace' => $this->title->getNamespace(),
+			       'ar_title' => $this->title->getDBkey() ),
 			'PageArchive::listRevisions',
-			$optionsClause ) ;
+			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
 		$ret = $dbr->resultObject( $res );
 		return $ret;
 	}
@@ -829,7 +822,7 @@ class UndeleteForm {
 	}
 
 	/* private */ function showHistory() {
-		global $wgLang, $wgContLang, $wgUser, $wgOut, $wgRequest;
+		global $wgLang, $wgContLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 		if ( $this->mAllowed ) {
@@ -853,37 +846,12 @@ class UndeleteForm {
 		}
 
 		# List all stored revisions
-		$tmpLimit = $wgRequest->getIntOrNull ( 'limit' );
-		$tmpLimit = (is_null($tmpLimit))? 5001 : $tmpLimit + 1;
-		$revisions = $archive->listRevisions( $wgRequest->getVal ( 'offset' ),
-			$tmpLimit );
-		if ( $tmpLimit < 1 ) $tmpLimit = $revisions->numRows() + 1;
-
+		$revisions = $archive->listRevisions();
 		$files = $archive->listFiles();
 
 		$haveRevisions = $revisions && $revisions->numRows() > 0;
 		$haveFiles = $files && $files->numRows() > 0;
 
-		$hasMore = false;
-		if ( $revisions && $revisions->numRows() >= $tmpLimit ) {
-			if ( $revisions->numRows() >= 2 ) {
-				$revisions->seek ( $revisions->numRows() - 2 );
-				$tmp = $revisions->fetchObject();
-				$revisions->rewind ( );
-				$offset = $tmp->ar_timestamp;
-			} else
-				$offset = 0;
-
-			$titleObj = SpecialPage::getTitleFor ( 'Undelete' );
-			$nextLink = $sk->makeKnownLinkObj ( $titleObj, wfMsg( 'undelete-next-revs', 5000 ), 
-				"target={$this->mTarget}&limit=5000&offset=$offset" );
-
-			$allLink = $sk->makeKnownLinkObj ( $titleObj, wfMsg( 'undelete-show-all' ), 
-				"target={$this->mTarget}&limit=-1&offset=0" );
-	
-			$wgOut->addHTML ( wfMsg ( 'undelete-more-revs', $tmpLimit - 1, $nextLink, $allLink ) );
-			$hasMore = true;
-		}
 		# Batch existence check on user and talk pages
 		if( $haveRevisions ) {
 			$batch = new LinkBatch();
@@ -967,17 +935,16 @@ class UndeleteForm {
 			$target = urlencode( $this->mTarget );
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->getEarliestTime( $this->mTargetObj );
-
-			if ( $hasMore ) $remaining --;
-
-			while( ( $row = $revisions->fetchObject() ) && $remaining-- ) {
+			
+			while( $row = $revisions->fetchObject() ) {
+				$remaining--;
 				$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 				if ( $this->mAllowed ) {
 					$checkBox = Xml::check( "ts$ts" );
 					$pageLink = $sk->makeKnownLinkObj( $titleObj,
 						$wgLang->timeanddate( $ts, true ),
 						"target=$target&timestamp=$ts" );
-					if( ($remaining > 0 || $hasMore ) ||
+					if( ($remaining > 0) ||
 							($earliestLiveTime && $ts > $earliestLiveTime ) ) {
 						$diffLink = '(' .
 							$sk->makeKnownLinkObj( $titleObj,
