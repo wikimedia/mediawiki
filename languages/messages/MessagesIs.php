@@ -1656,7 +1656,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 
 # Spam protection
 'subcategorycount'       => 'Það {{PLURAL:$1|er einn undirflokkur|eru $1 undirflokkar}} í þessum flokki.',
-'categoryarticlecount'   => 'Það {{PLURAL:$1|er 1 grein|eru $1 greinar}} í þessum flokki.',
+'categoryarticlecount'   => 'Það {{PLURAL:$1|er 1 síða|eru $1 síður}} í þessum flokki.',
 'category-media-count'   => 'Það {{PLURAL:$1|er ein skrá|eru $1 skrár}} í þessum flokki.',
 'listingcontinuesabbrev' => 'frh.',
 

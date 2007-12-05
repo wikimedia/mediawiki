@@ -32,6 +32,7 @@ $messages = array(
 'searchbutton'  => 'Εύρον',
 'go'            => 'Δέβα',
 'searcharticle' => 'Δέβα',
+'jumptosearch'  => 'εύρον',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user' => 'Σελίδα χρήστες',
