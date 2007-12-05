@@ -328,6 +328,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Use bold and italics highlighting only in API help
 * Added action={block,changerights,delete,move,protect,rollback,unblock,undelete} and list={blocks,deletedrevs}
 * Fixed sessionid attribute in action=login
+* Standardized limits. Revisions and Deletedrevisions formerly using 200 / 10000, 
+  now 500 / 5000, in line with other modules.
 
 === Languages updated in 1.12 ===
 
