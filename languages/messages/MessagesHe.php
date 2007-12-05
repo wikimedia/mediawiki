@@ -992,7 +992,7 @@ $2',
 
 # Diffs
 'history-title'           => 'היסטוריית הגרסאות של $1',
-'difference-title'        => 'הבדלים בין גרסאות של $1',
+'difference'              => '(הבדלים בין גרסאות)',
 'lineno'                  => 'שורה $1:',
 'compareselectedversions' => 'השוואת הגרסאות שנבחרו',
 'editundo'                => 'ביטול',
@@ -1147,7 +1147,6 @@ $2',
 'rc_categories'                     => 'הגבל לקטגוריות (הפרד עם "|")',
 'rc_categories_any'                 => 'הכול',
 'newsectionsummary'                 => '/* $1 */ פסקה חדשה',
-'difference'                        => '(הבדלים בין גרסאות)',
 
 # Recent changes linked
 'recentchangeslinked'          => 'שינויים בדפים המקושרים',
