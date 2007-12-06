@@ -223,7 +223,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   scripts, making for cleaner reporting during batch jobs. PHP errors will also
   be redirected in most cases on PHP 5.2.4 and later, switching 'display_errors'
   to 'stderr' at runtime.
-
+* (bug 12148) Text highlight wasn't applied to cleanly deleted and added
+  lines in diff output
 
 == Parser changes in 1.12 ==
 
