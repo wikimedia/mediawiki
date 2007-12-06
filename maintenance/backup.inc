@@ -170,7 +170,8 @@ class BackupDumper {
 	function dump( $history, $text = MW_EXPORT_TEXT ) {
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
-		ini_set( 'display_errors', false );
+		if( ini_get( 'display_errors' ) )
+			ini_set( 'display_errors', 'stderr' );
 
 		$this->initProgress( $history );
 

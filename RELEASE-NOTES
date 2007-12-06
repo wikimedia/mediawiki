@@ -219,6 +219,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11993) Remove contentsub "revision history"
 * (bug 11952) Ensure we quote_ident() all schema names as needed
    inside of the DatabasePostgres.php file.
+* (bug 12184) Exceptions now sent to stderr instead of stdout for command-line
+  scripts, making for cleaner reporting during batch jobs. PHP errors will also
+  be redirected in most cases on PHP 5.2.4 and later, switching 'display_errors'
+  to 'stderr' at runtime.
+
 
 == Parser changes in 1.12 ==
 

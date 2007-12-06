@@ -216,6 +216,20 @@ if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
 
 ini_set( 'memory_limit', -1 );
 
+if( version_compare( phpversion(), '5.2.4' ) >= 0 ) {
+	// Send PHP warnings and errors to stderr instead of stdout.
+	// This aids in diagnosing problems, while keeping messages
+	// out of redirected output.
+	if( ini_get( 'display_errors' ) ) {
+		ini_set( 'display_errors', 'stderr' );
+	}
+	
+	// Don't touch the setting on earlier versions of PHP,
+	// as setting it would disable output if you'd wanted it.
+	
+	// Note that exceptions are also sent to stderr when
+	// command-line mode is on, regardless of PHP version.
+}
 $wgShowSQLErrors = true;
 
 require_once( "$IP/includes/Setup.php" );
