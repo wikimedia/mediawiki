@@ -25,6 +25,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * MediaWiki now checks if serialized files are out of date. New configuration
   variable $wgCheckSerialized can be set to false to enable old behavior (i.e.
   to not check and assume they are always up to date)
+* The rollback permission is now assigned by default to all logged-in users. It
+  can also now be rate-limited using the normal mechanism.
 
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
