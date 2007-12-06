@@ -230,7 +230,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('yue','http://zh-yue.wikipedia.org/wiki/$1',1),
 ('za','http://za.wikipedia.org/wiki/$1',1),
 ('zh-cfr','http://zh-min-nan.wikipedia.org/wiki/$1',1),
-('zh-classical','http://pam.wikipedia.org/wiki/$1',1),
+('zh-classical','http://zh-classical.wikipedia.org/wiki/$1',1),
 ('zh-cn','http://zh.wikipedia.org/wiki/$1',1),
 ('zh','http://zh.wikipedia.org/wiki/$1',1),
 ('zh-min-nan','http://zh-min-nan.wikipedia.org/wiki/$1',1),
