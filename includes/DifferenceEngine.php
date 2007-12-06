@@ -707,7 +707,7 @@ CONTROL;
 			$this->mOldPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
 			
 			$this->mOldtitle = "<a href='$oldLink'>{$this->mOldPagetitle}</a>"
-				. "(<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+				. " (<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
 			// Add an "undo" link
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undoafter=' . $this->mOldid . '&undo=' . $this->mNewid);
 			if ( $this->mNewRev->userCan(Revision::DELETED_TEXT) )
