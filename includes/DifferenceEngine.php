@@ -1970,13 +1970,15 @@ class TableDiffFormatter extends DiffFormatter
 	function _added( $lines ) {
 		foreach ($lines as $line) {
 			echo '<tr>' . $this->emptyLine() .
-				$this->addedLine( htmlspecialchars ( $line ) ) . "</tr>\n";
+				$this->addedLine( '<ins class="diffchange">' .
+					htmlspecialchars ( $line ) . '</ins>' ) . "</tr>\n";
 		}
 	}
 
 	function _deleted($lines) {
 		foreach ($lines as $line) {
-			echo '<tr>' . $this->deletedLine( htmlspecialchars ( $line ) ) .
+			echo '<tr>' . $this->deletedLine( '<del class="diffchange">' .
+				htmlspecialchars ( $line ) . '</del>' ) .
 			  $this->emptyLine() . "</tr>\n";
 		}
 	}
