@@ -216,6 +216,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   in the page_restrictions matching its old page_restrictions field.
   May help with odd upgrade issues or race condition.
 * (bug 11993) Remove contentsub "revision history"
+* (bug 11952) Ensure we quote_ident() all schema names as needed
+   inside of the DatabasePostgres.php file.
 
 == Parser changes in 1.12 ==
 

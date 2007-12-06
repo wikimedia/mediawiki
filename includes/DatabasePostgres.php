@@ -329,8 +329,9 @@ class DatabasePostgres extends Database {
 			## Let's check all four, just to be safe
 			error_reporting( 0 );
 			$ts2tables = array('cfg','cfgmap','dict','parser');
+			$safetsschema = $this->quote_ident($wgDBts2schema);
 			foreach ( $ts2tables AS $tname ) {
-				$SQL = "SELECT count(*) FROM $wgDBts2schema.pg_ts_$tname";
+				$SQL = "SELECT count(*) FROM $safetsschema.pg_ts_$tname";
 				$res = $this->doQuery($SQL);
 				if (!$res) {
 					print "<b>FAILED</b> to access pg_ts_$tname. Make sure that the user ".
@@ -338,7 +339,7 @@ class DatabasePostgres extends Database {
 					dieout("</ul>");
 				}
 			}
-			$SQL = "SELECT ts_name FROM $wgDBts2schema.pg_ts_cfg WHERE locale = '$ctype'";
+			$SQL = "SELECT ts_name FROM $safetsschema.pg_ts_cfg WHERE locale = '$ctype'";
 			$SQL .= " ORDER BY CASE WHEN ts_name <> 'default' THEN 1 ELSE 0 END";
 			$res = $this->doQuery($SQL);
 			error_reporting( E_ALL );
@@ -366,7 +367,7 @@ class DatabasePostgres extends Database {
 				}
 			}
 			if ($resetlocale) {
-				$SQL = "UPDATE $wgDBts2schema.pg_ts_cfg SET locale = '$ctype' WHERE ts_name = 'default'";
+				$SQL = "UPDATE $safetsschema.pg_ts_cfg SET locale = '$ctype' WHERE ts_name = 'default'";
 				$res = $this->doQuery($SQL);
 				if (!$res) {
 					print "<b>FAILED</b>. ";
@@ -377,7 +378,7 @@ class DatabasePostgres extends Database {
 			}
 
 			## Final test: try out a simple tsearch2 query
-			$SQL = "SELECT $wgDBts2schema.to_tsvector('default','MediaWiki tsearch2 testing')";
+			$SQL = "SELECT $safetsschema.to_tsvector('default','MediaWiki tsearch2 testing')";
 			$res = $this->doQuery($SQL);
 			if (!$res) {
 				print "<b>FAILED</b>. Specifically, \"$SQL\" did not work.</li>";
@@ -417,7 +418,8 @@ class DatabasePostgres extends Database {
 			if (!$result) {
 				print "<li>Creating schema <b>$wgDBmwschema</b> ...";
 				error_reporting( 0 );
-				$result = $this->doQuery("CREATE SCHEMA $wgDBmwschema");
+				$safeschema = $this->quote_ident($wgDBmwschema);
+				$result = $this->doQuery("CREATE SCHEMA $safeschema");
 				error_reporting( E_ALL );
 				if (!$result) {
 					print "<b>FAILED</b>. The user \"$wgDBuser\" must be able to access the schema. ".
@@ -503,7 +505,9 @@ class DatabasePostgres extends Database {
 			&& preg_match( '/^\w+$/', $wgDBmwschema )
 			&& preg_match( '/^\w+$/', $wgDBts2schema )
 		) {
-			$this->doQuery("SET search_path = $wgDBmwschema, $wgDBts2schema, public");
+			$safeschema = $this->quote_ident($wgDBmwschema);
+			$safeschema2 = $this->quote_ident($wgDBts2schema);
+			$this->doQuery("SET search_path = $safeschema, $wgDBts2schema, public");
 		}
 
 		return $this->mConn;
@@ -1100,10 +1104,11 @@ END;
 		## Make sure that we can write to the correct schema
 		## If not, Postgres will happily and silently go to the next search_path item
 		$ctest = "mw_test_table";
+		$safeschema = $this->quote_ident($wgDBmwschema);
 		if ($this->tableExists($ctest, $wgDBmwschema)) {
-			$this->doQuery("DROP TABLE $wgDBmwschema.$ctest");
+			$this->doQuery("DROP TABLE $safeschema.$ctest");
 		}
-		$SQL = "CREATE TABLE $wgDBmwschema.$ctest(a int)";
+		$SQL = "CREATE TABLE $safeschema.$ctest(a int)";
 		$olde = error_reporting( 0 );
 		$res = $this->doQuery($SQL);
 		error_reporting( $olde );
@@ -1111,7 +1116,7 @@ END;
 			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"$wgDBmwschema\"</li>\n";
 			dieout("</ul>");
 		}
-		$this->doQuery("DROP TABLE $wgDBmwschema.mw_test_table");
+		$this->doQuery("DROP TABLE $safeschema.mw_test_table");
 
 		dbsource( "../maintenance/postgres/tables.sql", $this);
 
