@@ -1096,6 +1096,7 @@ $wgGroupPermissions['sysop']['patrol']          = true;
 $wgGroupPermissions['sysop']['autopatrol']      = true;
 $wgGroupPermissions['sysop']['protect']         = true;
 $wgGroupPermissions['sysop']['proxyunbannable'] = true;
+$wgGroupPermissions['sysop']['rollback']        = true;
 $wgGroupPermissions['sysop']['trackback']       = true;
 $wgGroupPermissions['sysop']['upload']          = true;
 $wgGroupPermissions['sysop']['reupload']        = true;
