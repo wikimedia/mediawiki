@@ -90,6 +90,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8396) Ignore out-of-date serialised message caches
 * (bug 12195) Undeleting pages now requires 'undelete' permission
 * (bug 11810) Localize displayed semicolons
+* New configuration variable $wgExtraLanguageNames
 
 === Bug fixes in 1.12 ===
 

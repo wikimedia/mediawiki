@@ -729,6 +729,8 @@ $wgInterwikiMagic = true;
 /** Hide interlanguage links from the sidebar */
 $wgHideInterlanguageLinks = false;
 
+/** List of language names or overrides for default names in Names.php */
+$wgExtraLanguageNames = array();
 
 /** We speak UTF-8 all the time now, unless some oddities happen */
 $wgInputEncoding  = 'UTF-8';
