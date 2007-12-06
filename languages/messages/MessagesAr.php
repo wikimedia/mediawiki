@@ -2513,6 +2513,9 @@ $1',
 'articletitles'    => "الصفحات التي تبدأ ب''$1''",
 'hideresults'      => 'إخفاء النتائج',
 
+# Separators for various lists
+'semicolon-separator' => '؛',
+
 # Multipage image navigation
 'imgmultipageprev'   => '← الصفحة السابقة',
 'imgmultipagenext'   => 'الصفحة التالية →',

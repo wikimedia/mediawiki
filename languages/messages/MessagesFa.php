@@ -2394,6 +2394,9 @@ $1',
 'articletitles'    => "مقاله‌هایی که با ''$1'' آغاز می‌شوند.",
 'hideresults'      => 'نهفتن نتایج',
 
+# Separators for various lists
+'semicolon-separator' => '؛',
+
 # Multipage image navigation
 'imgmultipageprev'   => '&rarr; صفحهٔ پیشین',
 'imgmultipagenext'   => 'صفحهٔ بعد &larr;',

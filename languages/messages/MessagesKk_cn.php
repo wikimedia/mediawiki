@@ -2639,6 +2639,9 @@ $1',
 'articletitles'    => "''$1'' دەپ باستالعان بەتتەردٸ",
 'hideresults'      => 'نٵتيجەلەردٸ جاسىر',
 
+# Separators for various lists
+'semicolon-separator' => '؛',
+
 # Multipage image navigation
 'imgmultipageprev'   => '← الدىڭعى بەتكە',
 'imgmultipagenext'   => 'كەلەسٸ بەتكە →',
