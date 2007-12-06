@@ -349,9 +349,10 @@ class Language {
 	 * If $customisedOnly is true, only returns codes with a messages file
 	 */
 	public static function getLanguageNames( $customisedOnly = false ) {
-		global $wgLanguageNames;
+		global $wgLanguageNames, $wgExtraLanguageNames;
+		$allNames = $wgExtraLanguageNames + $wgLanguageNames;
 		if ( !$customisedOnly ) {
-			return $wgLanguageNames;
+			return $allNames;
 		}
 		
 		global $IP;
@@ -361,8 +362,8 @@ class Language {
 			$m = array();
 			if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $file, $m ) ) {
 				$code = str_replace( '_', '-', strtolower( $m[1] ) );
-				if ( isset( $wgLanguageNames[$code] ) ) {
-					$names[$code] = $wgLanguageNames[$code];
+				if ( isset( $allNames[$code] ) ) {
+					$names[$code] = $allNames[$code];
 				}
 			}
 		}
@@ -389,11 +390,11 @@ class Language {
 	}
 
 	function getLanguageName( $code ) {
-		global $wgLanguageNames;
-		if ( ! array_key_exists( $code, $wgLanguageNames ) ) {
+		$names = self::getLanguageNames();
+		if ( !array_key_exists( $code, $names ) ) {
 			return '';
 		}
-		return $wgLanguageNames[$code];
+		return $names[$code];
 	}
 
 	function getMonthName( $key ) {
