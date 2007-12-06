@@ -225,6 +225,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to 'stderr' at runtime.
 * (bug 12148) Text highlight wasn't applied to cleanly deleted and added
   lines in diff output
+* (bug 10166) Fix a PHP warning in Language::getMagic
 
 == Parser changes in 1.12 ==
 
