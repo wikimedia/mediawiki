@@ -513,6 +513,9 @@ class Language {
 	 *    xjn  n (month number) in Hebrew calendar
 	 *    xjY  Y (full year) in Hebrew calendar
 	 *
+	 *    xkY  Y (full year) in Thai solar calendar. Months and days are
+	 *                       identical to the Gregorian calendar
+	 *
 	 * Characters enclosed in double quotes will be considered literal (with
 	 * the quotes themselves removed). Unmatched quotes will be considered
 	 * literal quotes. Example:
@@ -539,6 +542,7 @@ class Language {
 		$rawToggle = false;
 		$iranian = false;
 		$hebrew = false;
+		$thai = false;
 		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$num = false;
 			$code = $format[$p];
@@ -546,7 +550,7 @@ class Language {
 				$code .= $format[++$p];
 			}
 
-			if ( ( $code === 'xi' || $code == 'xj' ) && $p < strlen( $format ) - 1 ) {
+			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' ) && $p < strlen( $format ) - 1 ) {
 				$code .= $format[++$p];
 			}
 
@@ -658,6 +662,10 @@ class Language {
 				case 'xjY':
 					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
 					$num = $hebrew[0];
+					break;
+				case 'xkY':
+					if ( !$thai ) $thai = self::tsToThai( $ts );
+					$num = $thai[0];
 					break;
 				case 'y':
 					$num = substr( $ts, 2, 2 );
@@ -912,6 +920,27 @@ class Language {
 
 		return array( $hebrewYear, $month, $day );
 	}
+
+	/**
+	 * Algorithm to convert Gregorian dates to Thai solar dates.
+	 *
+	 * Link: http://en.wikipedia.org/wiki/Thai_solar_calendar
+	 *
+	 * @param string $ts 14-character timestamp
+	 * @return array converted year, month, day
+	 */
+	private static function tsToThai( $ts ) {
+		$gy = substr( $ts, 0, 4 );
+		$gm = substr( $ts, 4, 2 );
+		$gd = substr( $ts, 6, 2 );
+
+		# Add 543 years to the Gregorian calendar
+		# Months and days are identical
+		$gy_thai = $gy + 543;
+
+		return array( $gy_thai, $gm, $gd );
+	}
+
 
 	/**
 	 * Based on Carl Friedrich Gauss algorithm for finding Easter date.
