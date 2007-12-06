@@ -94,7 +94,7 @@ class MWException extends Exception
 
 	/** Print the exception report using text */
 	function reportText() {
-		echo $this->getText();
+		fwrite( STDERR, $this->getText() );
 	}
 
 	/* Output a report about the exception and takes care of formatting.
@@ -200,7 +200,7 @@ function wfReportException( Exception $e ) {
 			 $e2->__toString() . "\n";
 
 			 if ( !empty( $GLOBALS['wgCommandLineMode'] ) ) {
-				 echo $message;
+				 fwrite( STDERR, $message );
 			 } else {
 				 echo nl2br( htmlspecialchars( $message ) ). "\n";
 			 }
