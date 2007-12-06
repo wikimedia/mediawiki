@@ -2187,8 +2187,9 @@ $wgMessageStructure = array(
 		'articletitles',
 		'hideresults',
 	),
-	'catseparator' => array(
+	'separators' => array(
 		'catseparator',
+		'semicolon-separator',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',
@@ -2465,7 +2466,7 @@ Variants for Chinese language",
 	'htmldump'            => 'HTML dump',
 	'purge'               => 'action=purge',
 	'search2'             => 'AJAX search',
-	'catseparator'        => 'Separator for categories in page lists',
+	'separators'          => 'Separators for various lists',
 	'imgmulti'            => 'Multipage image navigation',
 	'tablepager'          => 'Table pager',
 	'autosumm'            => 'Auto-summaries',

@@ -2950,8 +2950,9 @@ $1',
 'articletitles'    => "Pages starting with ''$1''",
 'hideresults'      => 'Hide results',
 
-# Separator for categories in page lists
-'catseparator' => '|', # don't translate or duplicate this message to other languages
+# Separators for various lists
+'catseparator'        => '|', # don't translate or duplicate this message to other languages
+'semicolon-separator' => ';', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev'   => '← previous page',

@@ -31,4 +31,7 @@ $messages = array(
 'tog-editondblclick'  => 'په‌ڕه‌كان به‌ دوو كرته‌ بكه‌وه‌ بۆ كارتیاكردن (JavaScript)',
 'tog-editsection'     => 'به‌سته‌ر بۆ كۆپله‌كان بۆ ده‌ستكاریی كردن نیشانبده‌',
 
+# Separators for various lists
+'semicolon-separator' => '؛',
+
 );
