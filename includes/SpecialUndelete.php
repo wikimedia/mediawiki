@@ -432,6 +432,7 @@ class PageArchive {
 				'ar_minor_edit',
 				'ar_flags',
 				'ar_text_id',
+				'ar_page_id',
 				'ar_len' ),
 			/* WHERE */ array(
 				'ar_namespace' => $this->title->getNamespace(),
@@ -476,6 +477,8 @@ class PageArchive {
 				) );
 			$revision->insertOn( $dbw );
 			$restored++;
+			
+			wfRunHooks( 'ArticleRevisionUndeleted', array( &$this->title, $revision, $row->ar_page_id ) );
 		}
 		// Was anything restored at all?
 		if($restored == 0)
