@@ -1645,6 +1645,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'nmembers'                        => '$1 {{PLURAL:$1|member|members}}',
 'nrevisions'                      => '$1 {{PLURAL:$1|revision|revisions}}',
 'nviews'                          => '$1 {{PLURAL:$1|view|views}}',
+'pager-newer-n'                   => '{{PLURAL:$1|1 newer|$1 newer}}',
+'pager-older-n'                   => '{{PLURAL:$1|1 older|$1 older}}',
 'specialpage-empty'               => 'There are no results for this report.',
 'lonelypages'                     => 'Orphaned pages',
 'lonelypages-summary'             => '', # only translate this message to other languages if you have to change it
