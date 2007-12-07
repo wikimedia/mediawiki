@@ -2364,7 +2364,11 @@ class Article {
 			$summary = wfMsgForContent( 'revertpage', $target->getUserText(), $from );
 
 		# Save
-		$flags = EDIT_UPDATE | EDIT_MINOR;
+		$flags = EDIT_UPDATE;
+
+		if ($wgUser->isAllowed('minoredit'))
+			$flags |= EDIT_MINOR;
+
 		if( $bot )
 			$flags |= EDIT_FORCE_BOT;
 		$this->doEdit( $target->getText(), $summary, $flags );
