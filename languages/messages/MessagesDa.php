@@ -823,7 +823,6 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 
 # Diffs
 'history-title'             => 'Revisionshistorik for "$1"',
-'difference-title'          => 'Forskelle mellem versioner af $1',
 'lineno'                    => 'Linje $1:',
 'compareselectedversions'   => 'Sammenlign valgte versioner',
 'editundo'                  => 'annuller',
@@ -1284,6 +1283,8 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'unusedcategoriestext'            => 'Denne specialside viser alle kategorier, som ikke selv er henført til en kategori.',
 'notargettitle'                   => 'Sideangivelse mangler',
 'notargettext'                    => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
+'pager-newer-n'                   => '{{PLURAL:$1|1 nyere|$1 nyere}}',
+'pager-older-n'                   => '{{PLURAL:$1|1 ældre|$1 ældre}}',
 
 # Book sources
 'booksources'               => 'Bogkilder',
