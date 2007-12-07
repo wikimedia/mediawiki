@@ -325,6 +325,11 @@ $moveonly: boolean whether it was for move only or not
 'ArticlePurge': before executing "&action=purge" 
 $article: article (object) to purge
 
+'ArticleRevisionUndeleted' after an article revision is restored
+$title: the article title
+$revision: the revision
+$oldPageID: the page ID of the revision when archived (may be null)
+
 'ArticleRollbackComplete': after an article rollback is completed
 $article: the article that was edited
 $user: the user who did the rollback
