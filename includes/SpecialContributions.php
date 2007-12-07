@@ -4,7 +4,7 @@
  * @addtogroup SpecialPage
  */
 
-class ContribsPager extends IndexPager {
+class ContribsPager extends ReverseChronologicalPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;
 	var $namespace = '', $mDb;
@@ -108,26 +108,6 @@ class ContribsPager extends IndexPager {
 
 	function getEndBody() {
 		return "</ul>\n";
-	}
-
-	function getNavigationBar() {
-		if ( isset( $this->mNavigationBar ) ) {
-			return $this->mNavigationBar;
-		}
-		$linkTexts = array(
-			'prev' => wfMsgHtml( "sp-contributions-newer", $this->mLimit ),
-			'next' => wfMsgHtml( 'sp-contributions-older', $this->mLimit ),
-			'first' => wfMsgHtml('sp-contributions-newest'),
-			'last' => wfMsgHtml( 'sp-contributions-oldest' )
-		);
-
-		$pagingLinks = $this->getPagingLinks( $linkTexts );
-		$limitLinks = $this->getLimitLinks();
-		$limits = implode( ' | ', $limitLinks );
-		
-		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " . 
-			wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
-		return $this->mNavigationBar;
 	}
 
 	/**
