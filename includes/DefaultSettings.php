@@ -1065,7 +1065,6 @@ $wgGroupPermissions['user' ]['reupload']        = true;
 $wgGroupPermissions['user' ]['reupload-shared'] = true;
 $wgGroupPermissions['user' ]['minoredit']       = true;
 $wgGroupPermissions['user' ]['purge']           = true; // can use ?action=purge without clicking "ok"
-$wgGroupPermissions['user' ]['rollback']        = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
