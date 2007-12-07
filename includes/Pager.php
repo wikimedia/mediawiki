@@ -457,9 +457,10 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
+		$nicenumber = $wgLang->formatNum( $this->mLimit );
 		$linkTexts = array(
-			'prev' => wfMsgHtml( 'prevn', $wgLang->formatNum( $this->mLimit ) ),
-			'next' => wfMsgHtml( 'nextn', $wgLang->formatNum( $this->mLimit ) ),
+			'prev' => wfMsgExt( 'pager-newer-n', array( 'parsemag' ), $nicenumber ),
+			'next' => wfMsgExt( 'pager-older-n', array( 'parsemag' ), $nicenumber ),
 			'first' => wfMsgHtml( 'histlast' ),
 			'last' => wfMsgHtml( 'histfirst' )
 		);
