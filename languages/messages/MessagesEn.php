@@ -205,7 +205,7 @@ $bookstoreList = array(
  * Magic words
  * Customisable syntax for wikitext and elsewhere.
  *
- * IDs must be valid identifiers, they can't contain hyphens. 
+ * IDs must be valid identifiers, they can't contain hyphens.
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -561,7 +561,8 @@ XHTML id names.
 'category_header'       => 'Pages in category "$1"',
 'subcategories'         => 'Subcategories',
 'category-media-header' => 'Media in category "$1"',
-'category-empty' => "''This category currently contains no pages or media.''",
+'category-empty'        => "''This category currently contains no pages or media.''",
+
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
@@ -681,36 +682,36 @@ XHTML id names.
 'versionrequired'     => 'Version $1 of MediaWiki required',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version|version page]].',
 
-'ok'                      => 'OK',
-'sitetitle'               => '{{SITENAME}}', # don't translate or duplicate this message to other languages
-'pagetitle'               => '$1 - {{SITENAME}}',
-'sitesubtitle'            => '', # don't translate or duplicate this message to other languages
-'retrievedfrom'           => 'Retrieved from "$1"',
-'youhavenewmessages'      => 'You have $1 ($2).',
-'newmessageslink'         => 'new messages',
-'newmessagesdifflink'     => 'last change',
-'youhavenewmessagesmulti' => 'You have new messages on $1',
-'newtalkseperator'        => ',_', # don't translate or duplicate this message to other languages
-'editsection'             => 'edit',
-'editsection-brackets'    => '[$1]', # only translate this message to other languages if you have to change it
-'editold'                 => 'edit',
-'editsectionhint'         => 'Edit section: $1',
-'toc'                     => 'Contents',
-'showtoc'                 => 'show',
-'hidetoc'                 => 'hide',
-'thisisdeleted'           => 'View or restore $1?',
-'viewdeleted'             => 'View $1?',
-'restorelink'             => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
-'feedlinks'               => 'Feed:',
-'feed-invalid'            => 'Invalid subscription feed type.',
-'site-rss-feed'           => '$1 RSS Feed',
-'site-atom-feed'          => '$1 Atom Feed',
-'page-rss-feed'           => '"$1" RSS Feed',
-'page-atom-feed'          => '"$1" Atom Feed',
-'feed-atom'               => 'Atom', # only translate this message to other languages if you have to change it
-'feed-rss'                => 'RSS', # only translate this message to other languages if you have to change it
-'sitenotice'              => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
-'anonnotice'              => '-', # don't translate or duplicate this message to other languages
+'ok'                           => 'OK',
+'sitetitle'                    => '{{SITENAME}}', # don't translate or duplicate this message to other languages
+'pagetitle'                    => '$1 - {{SITENAME}}', # only translate this message to other languages if you have to change it
+'sitesubtitle'                 => '', # don't translate or duplicate this message to other languages
+'retrievedfrom'                => 'Retrieved from "$1"',
+'youhavenewmessages'           => 'You have $1 ($2).',
+'newmessageslink'              => 'new messages',
+'newmessagesdifflink'          => 'last change',
+'youhavenewmessagesmulti'      => 'You have new messages on $1',
+'newtalkseperator'             => ',_', # don't translate or duplicate this message to other languages
+'editsection'                  => 'edit',
+'editsection-brackets'         => '[$1]', # only translate this message to other languages if you have to change it
+'editold'                      => 'edit',
+'editsectionhint'              => 'Edit section: $1',
+'toc'                          => 'Contents',
+'showtoc'                      => 'show',
+'hidetoc'                      => 'hide',
+'thisisdeleted'                => 'View or restore $1?',
+'viewdeleted'                  => 'View $1?',
+'restorelink'                  => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
+'feedlinks'                    => 'Feed:',
+'feed-invalid'                 => 'Invalid subscription feed type.',
+'site-rss-feed'                => '$1 RSS Feed',
+'site-atom-feed'               => '$1 Atom Feed',
+'page-rss-feed'                => '"$1" RSS Feed',
+'page-atom-feed'               => '"$1" Atom Feed',
+'feed-atom'                    => 'Atom', # only translate this message to other languages if you have to change it
+'feed-rss'                     => 'RSS', # only translate this message to other languages if you have to change it
+'sitenotice'                   => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
+'anonnotice'                   => '-', # don't translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # don't translate or duplicate this message to other languages
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -768,7 +769,7 @@ If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.',
 'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
 'internalerror'        => 'Internal error',
-'internalerror_info'   => 'Internal error: $1', 
+'internalerror_info'   => 'Internal error: $1',
 'filecopyerror'        => 'Could not copy file "$1" to "$2".',
 'filerenameerror'      => 'Could not rename file "$1" to "$2".',
 'filedeleteerror'      => 'Could not delete file "$1".',
@@ -791,17 +792,17 @@ Query: $2',
 'viewsource'           => 'View source',
 'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Action Throttled',
-'actionthrottledtext'  => "As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit. Please try again in a few minutes.",
+'actionthrottledtext'  => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit. Please try again in a few minutes.',
 'protectedpagetext'    => 'This page has been locked to prevent editing.',
 'viewsourcetext'       => 'You can view and copy the source of this page:',
 'protectedinterface'   => 'This page provides interface text for the software, and is locked to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users.",
 'sqlhidden'            => '(SQL query hidden)',
-'cascadeprotected'     => "This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the \"cascading\" option turned on:
-$2",
+'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the "cascading" option turned on:
+$2',
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
-'ns-specialprotected'  => "Pages in the {{ns:special}} namespace cannot be edited.",
+'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannot be edited.',
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
@@ -989,7 +990,7 @@ registered in your [[Special:Preferences|user preferences]] and you have not bee
 
 Your block ID is $5. Please include this ID in any queries you make.',
 'blockednoreason'           => 'no reason given',
-'blockedoriginalsource'     => "The source of '''$1''' is 
+'blockedoriginalsource'     => "The source of '''$1''' is
 shown below:",
 'blockededitsource'         => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle'        => 'Login required to edit',
@@ -1034,8 +1035,8 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 ''Because this wiki has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
 <strong>If this is a legitimate edit attempt, please try again. If it still doesn't work, try logging out and logging back in.</strong>",
-'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters 
-in the edit token. The edit has been rejected to prevent corruption of the page text. 
+'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters
+in the edit token. The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editing $1',
 'editinguser'               => 'Editing user <b>$1</b>',
@@ -1082,9 +1083,9 @@ the text into a text file and save it for later.</strong>',
 'nocreatetitle'             => 'Page creation limited',
 'nocreatetext'              => 'This site has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
-'nocreate-loggedin'	    => 'You do not have permission to create new pages on this wiki.',
-'permissionserrors'	    => "Permissions Errors",
-'permissionserrorstext'	    => "You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:",
+'nocreate-loggedin'         => 'You do not have permission to create new pages on this wiki.',
+'permissionserrors'         => 'Permissions Errors',
+'permissionserrorstext'     => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
 'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.'''
 
 You should consider whether it is appropriate to continue editing this page.
@@ -1187,39 +1188,39 @@ undelete it again through this same interface, unless additional restrictions ar
 hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
-'mergehistory'          => 'Merge page histories',
-'mergehistory-header'   => "This page lets you merge revisions of the history of one source page into a newer page.
+'mergehistory'                     => 'Merge page histories',
+'mergehistory-header'              => "This page lets you merge revisions of the history of one source page into a newer page.
 Make sure that this change will maintain historical page continuity.
 
 '''At least the current revision of the source page must remain.'''",
-'mergehistory-box'      => 'Merge revisions of two pages:',
-'mergehistory-from'     => 'Source page:',
-'mergehistory-into'     => 'Destination page:',
-'mergehistory-list'     => 'Mergeable edit history',
-'mergehistory-merge'    => 'The following revisions of [[:$1]] can be merged into [[:$2]]. Use the radio button column to merge in only the revisions created at and before the specified time. Note that using the navigation links will reset this column.',
-'mergehistory-go'       => 'Show mergeable edits',
-'mergehistory-submit'   => 'Merge revisions',
-'mergehistory-empty'    => 'No revisions can be merged',
-'mergehistory-success'  => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
-'mergehistory-fail'     => 'Unable to perform history merge, please recheck the page and time parameters.',
-'mergehistory-no-source' => 'Source page $1 does not exist.',
-'mergehistory-no-destination' => 'Destination page $1 does not exist.',
-'mergehistory-invalid-source' => 'Source page must be a valid title.',
+'mergehistory-box'                 => 'Merge revisions of two pages:',
+'mergehistory-from'                => 'Source page:',
+'mergehistory-into'                => 'Destination page:',
+'mergehistory-list'                => 'Mergeable edit history',
+'mergehistory-merge'               => 'The following revisions of [[:$1]] can be merged into [[:$2]]. Use the radio button column to merge in only the revisions created at and before the specified time. Note that using the navigation links will reset this column.',
+'mergehistory-go'                  => 'Show mergeable edits',
+'mergehistory-submit'              => 'Merge revisions',
+'mergehistory-empty'               => 'No revisions can be merged',
+'mergehistory-success'             => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
+'mergehistory-fail'                => 'Unable to perform history merge, please recheck the page and time parameters.',
+'mergehistory-no-source'           => 'Source page $1 does not exist.',
+'mergehistory-no-destination'      => 'Destination page $1 does not exist.',
+'mergehistory-invalid-source'      => 'Source page must be a valid title.',
 'mergehistory-invalid-destination' => 'Destination page must be a valid title.',
 
 # Merge log
-'mergelog'              => 'Merge log',
-'pagemerge-logentry'    => 'merged [[$1]] into [[$2]] (revisions up to $3)',
-'revertmerge'           => 'Unmerge',
-'mergelogpagetext'      => 'Below is a list of the most recent merges of one page history into another.',
+'mergelog'           => 'Merge log',
+'pagemerge-logentry' => 'merged [[$1]] into [[$2]] (revisions up to $3)',
+'revertmerge'        => 'Unmerge',
+'mergelogpagetext'   => 'Below is a list of the most recent merges of one page history into another.',
 
 # Diffs
-'history-title'             => 'Revision history of "$1"',
-'difference'                => '(Difference between revisions)',
-'lineno'                    => 'Line $1:',
-'compareselectedversions'   => 'Compare selected versions',
-'editundo'                  => 'undo',
-'diff-multi'                => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
+'history-title'           => 'Revision history of "$1"',
+'difference'              => '(Difference between revisions)',
+'lineno'                  => 'Line $1:',
+'compareselectedversions' => 'Compare selected versions',
+'editundo'                => 'undo',
+'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
 
 # Search results
 'searchresults'         => 'Search results',
@@ -1262,7 +1263,7 @@ containing all of the search terms will appear in the result).",
 'preferences'              => 'Preferences',
 'preferences-summary'      => '', # only translate this message to other languages if you have to change it
 'mypreferences'            => 'My preferences',
-'prefs-edits' => 'Number of edits:',
+'prefs-edits'              => 'Number of edits:',
 'prefsnologin'             => 'Not logged in',
 'prefsnologintext'         => 'You must be [[Special:Userlogin|logged in]] to set user preferences.',
 'prefsreset'               => 'Preferences have been reset from storage.',
@@ -1392,7 +1393,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
-'recentchangeslinked-title' => 'Changes related to $1',
+'recentchangeslinked-title'    => 'Changes related to $1',
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary'  => "This special page lists the last changes on pages who are linked. Pages on your watchlist are '''bold'''.",
 
@@ -1463,9 +1464,9 @@ If you have this image in full resolution upload this one, otherwise change the 
 
 You should consider whether it is appropriate to continue uploading this file.
 The deletion log for this file is provided here for convenience:",
-'filename-bad-prefix'             => 'The name of the file you are uploading begins with <strong>"$1"</strong>, which is a non-descriptive name typically assigned automatically by digital cameras. Please choose a more descriptive name for your file.',
-'filename-prefix-blacklist'        => ' #<!-- leave this line exactly as it is --> <pre>
-# Syntax is as follows: 
+'filename-bad-prefix'         => 'The name of the file you are uploading begins with <strong>"$1"</strong>, which is a non-descriptive name typically assigned automatically by digital cameras. Please choose a more descriptive name for your file.',
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# Syntax is as follows:
 #   * Everything from a "#" character to the end of the line is a comment
 #   * Every non-blank line is a prefix for typical file names assigned automatically by digital cameras
 CIMG # Casio
@@ -1544,11 +1545,11 @@ PICT # misc.
 'filerevert'                => 'Revert $1',
 'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
-'filerevert-intro'          => "<span class=\"plainlinks\">You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].</span>",
+'filerevert-intro'          => '<span class="plainlinks">You are reverting \'\'\'[[Media:$1|$1]]\'\'\' to the [$4 version as of $3, $2].</span>',
 'filerevert-comment'        => 'Comment:',
 'filerevert-defaultcomment' => 'Reverted to version as of $2, $1',
 'filerevert-submit'         => 'Revert',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' has been reverted to the [$4 version as of $3, $2].</span>",
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' has been reverted to the [$4 version as of $3, $2].</span>',
 'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
@@ -1556,11 +1557,11 @@ PICT # misc.
 'filedelete-backlink'    => '← $1', # only translate this message to other languages if you have to change it
 'filedelete-legend'      => 'Delete file',
 'filedelete-intro'       => "You are deleting '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => "<span class=\"plainlinks\">You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].</span>",
+'filedelete-intro-old'   => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
 'filedelete-comment'     => 'Comment:',
 'filedelete-submit'      => 'Delete',
 'filedelete-success'     => "'''$1''' has been deleted.",
-'filedelete-success-old' => "<span class=\"plainlinks\">The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.</span>",
+'filedelete-success-old' => '<span class="plainlinks">The version of \'\'\'[[Media:$1|$1]]\'\'\' as of $3, $2 has been deleted.</span>',
 'filedelete-nofile'      => "'''$1''' does not exist on this site.",
 'filedelete-nofile-old'  => "There is no archived version of '''$1''' with the specified attributes.",
 'filedelete-iscurrent'   => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
@@ -1586,31 +1587,31 @@ PICT # misc.
 'unusedtemplateswlh'      => 'other links',
 
 # Random page
-'randompage'                      => 'Random page',
-'randompage-nopages'              => 'There are no pages in this namespace.',
-'randompage-url'                  => 'Special:Random', # don't translate or duplicate this message to other languages
+'randompage'         => 'Random page',
+'randompage-nopages' => 'There are no pages in this namespace.',
+'randompage-url'     => 'Special:Random', # don't translate or duplicate this message to other languages
 
 # Random redirect
-'randomredirect'                  => 'Random redirect',
-'randomredirect-nopages'          => 'There are no redirects in this namespace.',
+'randomredirect'         => 'Random redirect',
+'randomredirect-nopages' => 'There are no redirects in this namespace.',
 
 # Statistics
 'statistics'             => 'Statistics',
 'sitestats'              => '{{SITENAME}} statistics',
 'userstats'              => 'User statistics',
-'sitestatstext'          => "There {{PLURAL:$1|is '''1''' page|are '''$1''' total pages}} in the database.
+'sitestatstext'          => "There {{PLURAL:\$1|is '''1''' page|are '''\$1''' total pages}} in the database.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
 pages, redirects, and others that probably don't qualify as content pages.
-Excluding those, there {{PLURAL:$2|is '''1''' page that is a|are '''$2''' pages that are}} probably legitimate
-content {{PLURAL:$2|page|pages}}.
+Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' pages that are}} probably legitimate
+content {{PLURAL:\$2|page|pages}}.
 
-'''$8''' {{PLURAL:$8|file has|files have}} been uploaded.
+'''\$8''' {{PLURAL:\$8|file has|files have}} been uploaded.
 
-There have been a total of '''$3''' {{PLURAL:\$3|page view|page views}}, and '''$4''' {{PLURAL:$4|page edit|page edits}}
+There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}}
 since {{SITENAME}} was setup.
-That comes to '''$5''' average edits per page, and '''$6''' views per edit.
+That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
 'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which
 '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'Most viewed pages',
@@ -1645,8 +1646,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'nmembers'                        => '$1 {{PLURAL:$1|member|members}}',
 'nrevisions'                      => '$1 {{PLURAL:$1|revision|revisions}}',
 'nviews'                          => '$1 {{PLURAL:$1|view|views}}',
-'pager-newer-n'                   => '{{PLURAL:$1|1 newer|$1 newer}}',
-'pager-older-n'                   => '{{PLURAL:$1|1 older|$1 older}}',
 'specialpage-empty'               => 'There are no results for this report.',
 'lonelypages'                     => 'Orphaned pages',
 'lonelypages-summary'             => '', # only translate this message to other languages if you have to change it
@@ -1715,6 +1714,8 @@ in active use.</p>',
 'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
+'pager-newer-n'                   => '{{PLURAL:$1|1 newer|$1 newer}}',
+'pager-older-n'                   => '{{PLURAL:$1|1 older|$1 older}}',
 
 # Book sources
 'booksources'               => 'Book sources',
@@ -1848,7 +1849,7 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'enotif_lastdiff'              => 'See $1 to view this change.',
 'enotif_anon_editor'           => 'anonymous user $1',
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
-	
+
 
 The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
 
@@ -1913,7 +1914,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); changed back to last version by [[User:$1|$1]]',
-'rollback-success' => 'Reverted edits by $1; changed back to last version by $2.',
+'rollback-success'            => 'Reverted edits by $1; changed back to last version by $2.',
 'sessionfailure'              => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
@@ -1939,13 +1940,13 @@ Here are the current settings for the page <strong>$1</strong>:',
 Here are the current settings for the page <strong>$1</strong>:',
 'protect-cascadeon'           => "This page is currently protected because it is included in the following {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on. You can change this page's protection level, but it will not affect the cascading protection.",
 'protect-default'             => '(default)',
-'protect-fallback' => 'Require "$1" permission',
+'protect-fallback'            => 'Require "$1" permission',
 'protect-level-autoconfirmed' => 'Block unregistered users',
 'protect-level-sysop'         => 'Sysops only',
 'protect-summary-cascade'     => 'cascading',
 'protect-expiring'            => 'expires $1 (UTC)',
 'protect-cascade'             => 'Protect pages included in this page (cascading protection)',
-'protect-cantedit'	      => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
+'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',
@@ -1962,52 +1963,53 @@ Here are the current settings for the page <strong>$1</strong>:',
 'restriction-level-all'           => 'any level',
 
 # Undelete
-'undelete'                 => 'View deleted pages',
-'undeletepage'             => 'View and restore deleted pages',
-'viewdeletedpage'          => 'View deleted pages',
-'undeletepagetext'         => 'The following pages have been deleted but are still in the archive and
+'undelete'                     => 'View deleted pages',
+'undeletepage'                 => 'View and restore deleted pages',
+'viewdeletedpage'              => 'View deleted pages',
+'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and
 can be restored. The archive may be periodically cleaned out.',
-'undeleteextrahelp'        => "To restore the entire page, leave all checkboxes deselected and
+'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and
 click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the
 revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the
 comment field and all checkboxes.",
-'undeleterevisions'        => '$1 {{PLURAL:$1|revision|revisions}} archived',
-'undeletehistory'          => 'If you restore the page, all revisions will be restored to the history.
+'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisions}} archived',
+'undeletehistory'              => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored
 revisions will appear in the prior history. Also note that restrictions on file revisions are lost upon restoration',
-'undeleterevdel'           => "Undeletion will not be performed if it will result in the top page revision being
+'undeleterevdel'               => "Undeletion will not be performed if it will result in the top page revision being
 partially deleted. In such cases, you must uncheck or unhide the newest deleted revisions. Revisions of files
 that you don't have permission to view will not be restored.",
-'undeletehistorynoadmin'   => 'This page has been deleted. The reason for deletion is
+'undeletehistorynoadmin'       => 'This page has been deleted. The reason for deletion is
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
-'undelete-revision' => 'Deleted revision of $1 (as of $2) by $3:',
-'undeleterevision-missing' => 'Invalid or missing revision. You may have a bad link, or the
+'undelete-revision'            => 'Deleted revision of $1 (as of $2) by $3:',
+'undeleterevision-missing'     => 'Invalid or missing revision. You may have a bad link, or the
 revision may have been restored or removed from the archive.',
-'undelete-nodiff'          => 'No previous revision found.',
-'undeletebtn'              => 'Restore',
-'undeletereset'            => 'Reset',
-'undeletecomment'          => 'Comment:',
-'undeletedarticle'         => 'restored "[[$1]]"',
-'undeletedrevisions'       => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 revision|$1 revisions}} and {{PLURAL:$2|1 file|$2 files}} restored',
-'undeletedfiles'           => '{{PLURAL:$1|1 file|$1 files}} restored',
-'cannotundelete'           => 'Undelete failed; someone else may have undeleted the page first.',
-'undeletedpage'            => "<big>'''$1 has been restored'''</big>
+'undelete-nodiff'              => 'No previous revision found.',
+'undeletebtn'                  => 'Restore',
+'undeletereset'                => 'Reset',
+'undeletecomment'              => 'Comment:',
+'undeletedarticle'             => 'restored "[[$1]]"',
+'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} and {{PLURAL:$2|1 file|$2 files}} restored',
+'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restored',
+'cannotundelete'               => 'Undelete failed; someone else may have undeleted the page first.',
+'undeletedpage'                => "<big>'''$1 has been restored'''</big>
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
-'undelete-header'          => 'See [[Special:Log/delete|the deletion log]] for recently deleted pages.',
-'undelete-search-box'      => 'Search deleted pages',
-'undelete-search-prefix'   => 'Show pages starting with:',
-'undelete-search-submit'   => 'Search',
-'undelete-no-results'      => 'No matching pages found in the deletion archive.',
-'undelete-filename-mismatch' => 'Cannot undelete file revision with timestamp $1: filename mismatch',
-'undelete-bad-store-key'   => 'Cannot undelete file revision with timestamp $1: file was missing before deletion.',
-'undelete-cleanup-error'   => 'Error deleting unused archive file "$1".',
-'undelete-missing-filearchive' => 'Unable to restore file archive ID $1 because it isn\'t in the database. ' .
-	'It may have already been undeleted.',
-'undelete-error-short'     => 'Error undeleting file: $1',
-'undelete-error-long'      => "Errors were encountered while undeleting the file:\n\n$1",
+'undelete-header'              => 'See [[Special:Log/delete|the deletion log]] for recently deleted pages.',
+'undelete-search-box'          => 'Search deleted pages',
+'undelete-search-prefix'       => 'Show pages starting with:',
+'undelete-search-submit'       => 'Search',
+'undelete-no-results'          => 'No matching pages found in the deletion archive.',
+'undelete-filename-mismatch'   => 'Cannot undelete file revision with timestamp $1: filename mismatch',
+'undelete-bad-store-key'       => 'Cannot undelete file revision with timestamp $1: file was missing before deletion.',
+'undelete-cleanup-error'       => 'Error deleting unused archive file "$1".',
+'undelete-missing-filearchive' => "Unable to restore file archive ID $1 because it isn't in the database. It may have already been undeleted.",
+'undelete-error-short'         => 'Error undeleting file: $1',
+'undelete-error-long'          => 'Errors were encountered while undeleting the file:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -2045,8 +2047,8 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'whatlinkshere'         => 'What links here',
 'whatlinkshere-title'   => 'Pages that link to $1',
 'whatlinkshere-summary' => '', # only translate this message to other languages if you have to change it
-'whatlinkshere-barrow'  => '&lt;', # only translate this message to other languages if you have to change it
 'whatlinkshere-page'    => 'Page:',
+'whatlinkshere-barrow'  => '&lt;', # only translate this message to other languages if you have to change it
 'linklistsub'           => '(List of links)',
 'linkshere'             => "The following pages link to '''[[:$1]]''':",
 'nolinkshere'           => "No pages link to '''[[:$1]]'''.",
@@ -2494,13 +2496,15 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'patrol-log-diff'   => 'r$1', # only translate this message to other languages if you have to change it
 
 # Image deletion
-'deletedrevision' => 'Deleted old revision $1',
-'filedeleteerror-short' => "Error deleting file: $1",
-'filedeleteerror-long' => "Errors were encountered while deleting the file:\n\n$1",
-'filedelete-missing' => 'The file "$1" cannot be deleted, because it doesn\'t exist.',
-'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
+'deletedrevision'                 => 'Deleted old revision $1',
+'filedeleteerror-short'           => 'Error deleting file: $1',
+'filedeleteerror-long'            => 'Errors were encountered while deleting the file:
+
+$1',
+'filedelete-missing'              => 'The file "$1" cannot be deleted, because it doesn\'t exist.',
+'filedelete-old-unregistered'     => 'The specified file revision "$1" is not in the database.',
 'filedelete-current-unregistered' => 'The specified file "$1" is not in the database.',
-'filedelete-archive-read-only' => 'The archive directory "$1" is not writable by the webserver.',
+'filedelete-archive-read-only'    => 'The archive directory "$1" is not writable by the webserver.',
 
 # Browsing diffs
 'previousdiff' => '← Previous diff',
@@ -3043,9 +3047,9 @@ $1',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'View relevant changes',
-'watchlisttools-edit'  => 'View and edit watchlist',
-'watchlisttools-raw'   => 'Edit raw watchlist',
+'watchlisttools-view' => 'View relevant changes',
+'watchlisttools-edit' => 'View and edit watchlist',
+'watchlisttools-raw'  => 'Edit raw watchlist',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'Farvardin', # only translate this message to other languages if you have to change it
@@ -3092,7 +3096,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'Elul', # only translate this message to other languages if you have to change it
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]]', # don't translate or duplicate this message to other languages
+'signature'      => '[[{{ns:user}}:$1|$2]]', # don't translate or duplicate this message to other languages
 'signature-anon' => '[[{{#special:Contributions}}/$1|$2]]', # don't translate or duplicate this message to other languages
 
 );
