@@ -2182,6 +2182,12 @@ class Title {
 			return 'protectedpage';
 		}
 
+		global $wgUser;
+		$err = null;
+		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err ) ) ) {
+			return 'hookaborted';
+		}
+
 		# The move is allowed only if (1) the target doesn't exist, or
 		# (2) the target is a redirect to the source, and has no history
 		# (so we can undo bad moves right after they're done).

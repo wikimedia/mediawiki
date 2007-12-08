@@ -245,6 +245,12 @@ $password: the password being submitted, not yet checked for validity
           default is LoginForm::ABORTED. Note that the client may be using
           a machine API rather than the HTML user interface.
 
+'AbortMove': allows to abort moving an article (title)
+$old: old title
+$nt: new title
+$user: user who is doing the move
+$err: error message
+
 'AbortNewAccount': Return false to cancel account creation.
 $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
