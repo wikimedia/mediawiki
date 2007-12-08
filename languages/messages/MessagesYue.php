@@ -1263,6 +1263,8 @@ Template:搞清楚',
 'unusedcategoriestext'    => '呢啲類存在，但入面冇嘢亦都冇分類。',
 'notargettitle'           => '冇目標',
 'notargettext'            => '你冇指定到呢個功能要用喺嘅對象頁面或用戶。',
+'pager-newer-n'           => '新$1次',
+'pager-older-n'           => '舊$1次',
 
 # Book sources
 'booksources'               => '書籍來源',
@@ -1539,11 +1541,6 @@ wiki: $PAGEEDITOR_WIKI
 'undelete-error-long'          => '當反刪除緊個檔案嗰陣遇到錯誤:
 
 $1',
-'undelete-more-revs'           => '\'\'\'<span style="color: red;">警告！</span>呢一版有比響呢度顯示更多刪除咗嘅修訂。\'\'\'<br />
-$1次修訂響下面顯示。你可以響呢個表度揀所需要嘅修訂，又或者唔揀去恢復全部嘅修訂（包括埋無響度顯示嘅）。<br />
-($2) ($3)',
-'undelete-next-revs'           => '睇吓後$1次嘅修訂',
-'undelete-show-all'            => '睇吓全部嘅修訂',
 
 # Namespace form on various pages
 'namespace'      => '空間名：',
@@ -1561,10 +1558,6 @@ $1次修訂響下面顯示。你可以響呢個表度揀所需要嘅修訂，又
 'month'         => '由呢個月 (同更早):',
 'year'          => '由呢一年 (同更早):',
 
-'sp-contributions-newest'      => '最新',
-'sp-contributions-oldest'      => '最舊',
-'sp-contributions-newer'       => '較新嘅$1次',
-'sp-contributions-older'       => '較舊嘅$1次',
 'sp-contributions-newbies'     => '只顯示新戶口嘅貢獻',
 'sp-contributions-newbies-sub' => '新戶口嘅貢獻',
 'sp-contributions-blocklog'    => '封鎖日誌',
