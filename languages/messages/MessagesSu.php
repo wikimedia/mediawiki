@@ -6,8 +6,8 @@
  * @author Kandar
  * @author Irwangatot
  * @author Nike
- * @author G - ג
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'id';
@@ -82,12 +82,15 @@ $messages = array(
 'skinpreview' => '(Pramidang)',
 
 # Dates
+'sunday'        => 'Minggu',
 'monday'        => 'Senén',
 'tuesday'       => 'Salasa',
 'wednesday'     => 'Rebo',
 'thursday'      => 'Kemis',
 'friday'        => 'Jumaah',
 'saturday'      => 'Saptu',
+'sun'           => 'Min',
+'mon'           => 'Sen',
 'tue'           => 'Sal',
 'wed'           => 'Reb',
 'thu'           => 'Kem',
@@ -534,7 +537,6 @@ Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti doma
 'cantcreateaccounttitle' => 'Rekening teu bisa dijieun',
 
 # History pages
-'revhistory'          => 'Jujutan révisi',
 'viewpagelogs'        => 'Tempo log kaca ieu',
 'nohistory'           => 'Teu aya jujutan édit pikeun kaca ieu.',
 'revnotfound'         => 'Révisi teu kapanggih',
@@ -593,15 +595,11 @@ Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina
 'oversightlog' => 'Log pangawas',
 
 # Diffs
-'difference'                => '(Béda antarrévisi)',
-'loadingrev'                => 'ngamuat béda révisi',
-'lineno'                    => 'Baris ka-$1:',
-'editcurrent'               => 'Édit vérsi kiwari kaca ieu',
-'selectnewerversionfordiff' => 'Pilih vérsi nu leuwih anyar pikeun babandingan',
-'selectolderversionfordiff' => 'Pilih vérsi nu leuwih heubeul pikeun babandingan',
-'compareselectedversions'   => 'Bandingkeun vérsi nu dipilih',
-'editundo'                  => 'bolaykeun',
-'diff-multi'                => '({{PLURAL:$1|Hiji|$1}} révisi antara teu ditembongkeun.)',
+'difference'              => '(Béda antarrévisi)',
+'lineno'                  => 'Baris ka-$1:',
+'compareselectedversions' => 'Bandingkeun vérsi nu dipilih',
+'editundo'                => 'bolaykeun',
+'diff-multi'              => '({{PLURAL:$1|Hiji|$1}} révisi antara teu ditembongkeun.)',
 
 # Search results
 'searchresults'         => 'Hasil néangan',
@@ -1125,10 +1123,6 @@ Asupan jeung bantuan salajengna:
 'uclinks'       => 'Témbongkeun $1 parobahan ahir; témbongkeun $2 poé ahir.',
 'uctop'         => ' (tempo)',
 
-'sp-contributions-newest'      => 'Panganyarna',
-'sp-contributions-oldest'      => 'Pangheubeulna',
-'sp-contributions-newer'       => 'Leuwih anyar $1',
-'sp-contributions-older'       => 'Leuwih heubeul $1',
 'sp-contributions-newbies'     => 'Témbongkeun kontribusi ti rekening anyar',
 'sp-contributions-newbies-sub' => 'Pikeun rekening anyar',
 'sp-contributions-blocklog'    => 'Log peungpeuk',

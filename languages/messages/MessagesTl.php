@@ -6,7 +6,7 @@
  * @author Sky Harbor
  * @author Gangleri
  * @author Siebrand
- * @author G - ג
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -18,6 +18,7 @@ $messages = array(
 'tog-numberheadings'   => 'Automatikong bilangin ang mga pamagat',
 'tog-showtoc'          => 'Ipakita ang tala ng nilalaman (para sa mga pahinang may higit sa 3 pamagat)',
 'tog-rememberpassword' => 'Tandaan ang paglagda ko sa kompyuter na ito',
+'tog-minordefault'     => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
 'tog-fancysig'         => 'Hilaw na lagda (walang automatikong pagkawing)',
 'tog-externaleditor'   => 'Gumamit ng panlabas na editor nang nakatakda',
 'tog-uselivepreview'   => 'Gamitin ang buhay na pribyu (JavaScript) (Eksperimental)',
@@ -196,20 +197,37 @@ $messages = array(
 'customcssjsprotected' => 'Wala kang pahintulot na baguhin ang pahinang ito, dahil naglalaman ito ng mga kagustuhang pansarili ng ibang manggagamit.',
 
 # Login and logout pages
-'welcomecreation'       => '== Maligayang pagdating, $1! ==
+'welcomecreation'           => '== Maligayang pagdating, $1! ==
 
 Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan sa {{SITENAME}}.',
-'yourname'              => 'Bansag (username):',
-'yourpassword'          => 'Hudyat (password):',
-'remembermypassword'    => 'Tandaan ang hudyat sa kompyuter na ito',
-'userlogin'             => 'Lumikha ng account / mag-log-in',
-'userlogout'            => 'Mag-log-out',
-'yourlanguage'          => 'Wika:',
-'loginerror'            => 'Kamalian sa paglagda',
-'loginsuccesstitle'     => 'Matagumpay ang paglagda',
-'loginsuccess'          => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
-'nosuchusershort'       => 'Walang tagagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
-'passwordremindertitle' => 'Paalaala sa hudyat mula sa {{SITENAME}}',
+'loginpagetitle'            => 'Paglagda ng manggagamit',
+'yourname'                  => 'Bansag (username):',
+'yourpassword'              => 'Hudyat (password):',
+'remembermypassword'        => 'Tandaan ang hudyat sa kompyuter na ito',
+'yourdomainname'            => 'Iyong dominyo:',
+'loginproblem'              => '<b>Nagkaroon ng problema sa iyong paglagda.</b><br />Subukan po muli!',
+'login'                     => 'Lumagda',
+'userlogin'                 => 'Lumagda / lumikha ng kuwenta',
+'logout'                    => 'Umalis sa paglagda',
+'userlogout'                => 'Umalis sa paglagda',
+'notloggedin'               => 'Hindi nakalagda',
+'nologin'                   => 'Wala kang panlagda? $1.',
+'nologinlink'               => 'Lumikha ng kuwenta',
+'createaccount'             => 'Lumikha ng kuwenta',
+'gotaccount'                => 'May kuwenta ka na? $1.',
+'gotaccountlink'            => 'Lumagda',
+'badretype'                 => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
+'username'                  => 'Bansag:',
+'uid'                       => 'Bilang ng manggagamit:',
+'yourrealname'              => 'Tunay na pangalan:',
+'yourlanguage'              => 'Wika:',
+'yournick'                  => 'Palayaw:',
+'loginerror'                => 'Kamalian sa paglagda',
+'prefs-help-email-required' => 'Kinakailangan ang direksyong e-liham.',
+'loginsuccesstitle'         => 'Matagumpay ang paglagda',
+'loginsuccess'              => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
+'nosuchusershort'           => 'Walang manggagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
+'passwordremindertitle'     => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
 
 # Edit pages
 'summary'                => 'Buod',
@@ -240,8 +258,8 @@ pinapakita sa ibaba:",
 'recentchangeslinked' => 'Mga kaugnay na binago',
 
 # Upload
-'upload'            => 'Magkarga ng talaksan (file)',
-'uploadbtn'         => 'Magkarga ng talaksan (file)',
+'upload'            => 'Magkarga ng talaksan',
+'uploadbtn'         => 'Magkarga ng talaksan',
 'reupload'          => 'Magkarga muli',
 'reuploaddesc'      => 'Bumalik sa pormularyo ng pagkarga',
 'uploadnologin'     => 'Hindi nakalagda',
@@ -250,13 +268,13 @@ upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
 
 # Random page
-'randompage' => 'Random na pahina',
+'randompage' => 'Pahinang walang-pili',
 
 # Statistics
 'statistics' => 'Mga estadistika',
 'sitestats'  => 'Mga estadistika ng {{SITENAME}}',
 
-'brokenredirects' => 'Mga sirang redireksyon',
+'brokenredirects' => 'Mga sirang pangkarga',
 
 # Miscellaneous special pages
 'lonelypages'        => 'Mga inulilang pahina',
@@ -304,24 +322,29 @@ upang makapagkarga ng talaksan.',
 'ipboptions'         => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 
 # Move page
-'movenologintext' => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
-'movenotallowed'  => 'Wala kang permisong maglipat ng pahina sa wiking ito.',
-'newtitle'        => 'Sa bagong pamagat:',
-'movepage-moved'  => '<big>\'\'\'Ang "$1" ay inilipat sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'   => 'May umiiral nang pahinang may ganitong pangalan, o ang
+'movenologintext'         => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
+'movenotallowed'          => 'Wala kang permisong maglipat ng pahina sa wiking ito.',
+'newtitle'                => 'Sa bagong pamagat:',
+'move-watch'              => 'Bantayan itong pahina',
+'movepage-moved'          => '<big>\'\'\'Ang "$1" ay inilipat sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'May umiiral nang pahinang may ganitong pangalan, o ang
 pangalang pinili mo ay hindi mabisa.
 Pumili muli ng ibang pangalan.',
-'movedto'         => 'inilipat sa',
-'movetalk'        => 'Ilipat ang kaugnay na pahinang usapan',
-'1movedto2'       => 'Ang [[$1]] ay inilipat sa [[$2]]',
-'1movedto2_redir' => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng pagkarga',
+'movedto'                 => 'inilipat sa',
+'movetalk'                => 'Ilipat ang kaugnay na pahinang usapan',
+'talkpagemoved'           => 'Inilipat rin ang kaugnay na pahinang usapan.',
+'talkpagenotmoved'        => '<strong>Hindi</strong> inilipat ang kaugnay na pahinang usapan.',
+'1movedto2'               => 'Ang [[$1]] ay inilipat sa [[$2]]',
+'1movedto2_redir'         => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng pangkarga',
+'movereason'              => 'Dahilan:',
+'delete_and_move_confirm' => 'Oo, burahin ang pahina',
 
 # Export
 'export'        => 'Magluwas ng pahina',
 'export-submit' => 'Magluwas',
 
 # Namespace 8 related
-'allmessages'        => 'Lahat ng mensahe',
+'allmessages'        => 'Mga mensaheng pansistema',
 'allmessagesname'    => 'Pangalan',
 'allmessagesdefault' => 'Tinakdang teksto',
 'allmessagescurrent' => 'Kasalukuyang teksto',

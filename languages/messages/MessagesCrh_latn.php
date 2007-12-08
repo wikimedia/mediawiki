@@ -1,5 +1,5 @@
 <?php
-/** ‪Qırımtatarca (Latin)‬ (‪Qırımtatarca (Latin)‬)
+/** Crimean Turkish (Latin) (Qırımtatarca (Latin))
  *
  * @addtogroup Language
  *
@@ -960,7 +960,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'allnotinnamespace' => 'Bütün saifeler ($1 isim fezasında olmağanlar)',
 'allpagesprev'      => 'Evelki',
 'allpagesnext'      => 'Soñraki',
-'allpagessubmit'    => 'Ketir',
+'allpagessubmit'    => 'Köster',
 'allpagesprefix'    => 'Yazğan ariflernen başlağan saifelerni köster:',
 
 # E-mail user
@@ -1134,10 +1134,6 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 'month'         => 'Bu ay (ve ondan erte):',
 'year'          => 'Bu sene (ve ondan erte):',
 
-'sp-contributions-newest'      => 'Eñ yañı',
-'sp-contributions-oldest'      => 'Eñ eski',
-'sp-contributions-newer'       => 'Soñraki $1',
-'sp-contributions-older'       => 'Evelki $1',
 'sp-contributions-newbies'     => 'Tek yañı qullanıcılarnıñ isselerini köster',
 'sp-contributions-newbies-sub' => 'Yañı qullanıcılar içün',
 'sp-contributions-blocklog'    => 'Blok etüv jurnalı',

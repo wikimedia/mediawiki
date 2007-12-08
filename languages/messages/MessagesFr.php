@@ -641,7 +641,6 @@ Demandez-vous s’il est réellement approprié de la recréer en vous référan
 La raison donnée par $3 était ''$2''.",
 
 # History pages
-'revhistory'          => 'Historique de la page et liste des auteurs.',
 'viewpagelogs'        => 'Voir le journal de cette page',
 'nohistory'           => 'Il n’existe pas d’historique pour cette page.',
 'revnotfound'         => 'Version introuvable',
@@ -738,16 +737,12 @@ Assurez vous que ce changement puisse conserver la continuité de l'historique.
 'mergelogpagetext'   => "Voici, ci-dessous, la liste des fusions les plus récentes de l'historique d'une page avec une autre.",
 
 # Diffs
-'history-title'             => 'Historique des versions de « $1 »',
-'difference'                => '(Différences entre les versions)',
-'loadingrev'                => 'chargement de l’ancienne version pour comparaison',
-'lineno'                    => 'Ligne $1 :',
-'editcurrent'               => 'Modifier la version actuelle de cette page',
-'selectnewerversionfordiff' => 'Choisir une version plus récente',
-'selectolderversionfordiff' => 'Choisir une version plus ancienne',
-'compareselectedversions'   => 'Comparer les versions sélectionnées',
-'editundo'                  => 'défaire',
-'diff-multi'                => '({{plural:$1|Une révision intermédiaire masquée|$1 révisions intermédiaires masquées}})',
+'history-title'           => 'Historique des versions de « $1 »',
+'difference'              => '(Différences entre les versions)',
+'lineno'                  => 'Ligne $1 :',
+'compareselectedversions' => 'Comparer les versions sélectionnées',
+'editundo'                => 'défaire',
+'diff-multi'              => '({{plural:$1|Une révision intermédiaire masquée|$1 révisions intermédiaires masquées}})',
 
 # Search results
 'searchresults'         => 'Résultats de la recherche',
@@ -898,12 +893,10 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'newsectionsummary'                 => '/* $1 */ nouvelle section',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'Suivi des liens',
-'recentchangeslinked-title'              => 'Suivi des liens associés à $1',
-'recentchangeslinked-noresult'           => 'Aucun changement sur les pages liées pendant la période choisie.',
-'recentchangeslinked-summary'            => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
-'recentchangeslinked-feed-entry'         => "L'utilisateur $1 a édité $2",
-'recentchangeslinked-feed-entry-comment' => "L'Utilisateur $1 a édité $2 ($3)",
+'recentchangeslinked'          => 'Suivi des liens',
+'recentchangeslinked-title'    => 'Suivi des liens associés à $1',
+'recentchangeslinked-noresult' => 'Aucun changement sur les pages liées pendant la période choisie.',
+'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
 
 # Upload
 'upload'                      => 'Importer le fichier',
@@ -1444,10 +1437,6 @@ $1',
 'month'         => 'À partir du mois (et précédents) :',
 'year'          => 'À partir de l’année (et précédentes) :',
 
-'sp-contributions-newest'      => 'Dernières contributions',
-'sp-contributions-oldest'      => 'Premières contributions',
-'sp-contributions-newer'       => '$1 précédentes',
-'sp-contributions-older'       => '$1 suivantes',
 'sp-contributions-newbies'     => 'Ne montrer que les contributions des nouveaux utilisateurs',
 'sp-contributions-newbies-sub' => 'Liste des contributions des nouveaux utilisateurs. Les pages qui ont été supprimées ne sont pas affichées.',
 'sp-contributions-blocklog'    => 'Journal des blocages',

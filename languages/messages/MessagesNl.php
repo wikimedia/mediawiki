@@ -13,6 +13,7 @@
  * @author Effeietsanders
  * @author Nike
  * @author לערי ריינהארט
+ * @author Erwin85
  */
 
 /**
@@ -1446,6 +1447,8 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'unusedcategoriestext'    => 'Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.',
 'notargettitle'           => 'Geen doelpagina',
 'notargettext'            => 'U heeft niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
+'pager-newer-n'           => '{{PLURAL:$1|nieuwere 1|nieuwere $1}}',
+'pager-older-n'           => '{{PLURAL:$1|oudere 1|oudere $1}}',
 
 # Book sources
 'booksources'               => 'Boekinformatie',
@@ -1482,7 +1485,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'allpagesnext'      => 'Volgende',
 'allpagessubmit'    => 'OK',
 'allpagesprefix'    => "Pagina's tonen die beginnen met:",
-'allpagesbadtitle'  => 'De opgegeven paginanaam is ongeldig of had een intertaal of interwiki voorvoegsel. Mogelijk bevatte de naam karakters die niet gebruikt mogen worden in paginanamen.',
+'allpagesbadtitle'  => 'De opgegeven paginanaam is ongeldig of had een intertaal- of interwikivoorvoegsel. Mogelijk bevatte de naam karakters die niet gebruikt mogen worden in paginanamen.',
 'allpages-bad-ns'   => '{{SITENAME}} heeft geen naamruimte "$1".',
 
 # Special:Listusers
@@ -1719,10 +1722,6 @@ $1',
 'month'         => 'Van maand (en eerder):',
 'year'          => 'Van jaar (en eerder):',
 
-'sp-contributions-newest'      => 'Nieuwste',
-'sp-contributions-oldest'      => 'Oudste',
-'sp-contributions-newer'       => '$1 nieuwere',
-'sp-contributions-older'       => '$1 oudere',
 'sp-contributions-newbies'     => 'Alleen de bijdragen van nieuwe gebruikers tonen',
 'sp-contributions-newbies-sub' => 'Voor nieuwelingen',
 'sp-contributions-blocklog'    => 'Blokkeerlogboek',
