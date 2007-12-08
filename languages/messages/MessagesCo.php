@@ -112,7 +112,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'À prupositu di {{SITENAME}}',
 'aboutpage'         => 'Project:À prupositu',
-'copyright'         => 'U cuntenutu hè dispunibile sottu a <a class="internal" href="http://co.wikipedia.org/wiki/Wikipedia:Testu_di_a_Licenza_di_Documentazione_Libera_GNU" title="Wikipedia:Testu di a Licenza di Documentazione Libera GNU">Licenza di Documentazione Libera GNU</a>.<br/>',
 'currentevents'     => 'Ultimi evenimenti',
 'currentevents-url' => 'Project:Ultimi evenimenti',
 'disclaimers'       => 'Avertimenti',
@@ -242,7 +241,6 @@ $messages = array(
 
 # Recent changes
 'recentchanges'                  => 'Ultimi cambiamenti',
-'recentchanges-feed-description' => "Fighjulate quì l'ultimi cambiamenti in wikipedia in lingua corsa.",
 'rcnotefrom'                     => "Quì sò discritti i cambiamenti dipoi <b>$2</b> (sin'à <b>$1</b>).",
 'rclistfrom'                     => 'Mustrà i cambiamenti dipoi $1',
 'rcshowhideminor'                => '$1 i cambiamenti minori',
