@@ -183,14 +183,8 @@ $GROUPBY
 			htmlspecialchars( wfMsgForContent('recentchangeslinked') ), $wgTitle->getFullUrl() );
 		
 		require_once( "SpecialRecentchanges.php" );
-		rcDoOutputFeed( $rchanges, $feed );
-		
 		$wgOut->disable();
-		$feed->outHeader();
-		foreach( $feedItems as &$item ) {
-			$feed->outItem( $item );
-		}
-		$feed->outFooter();
+		rcDoOutputFeed( $rchanges, $feed );
 	}
 }
 
