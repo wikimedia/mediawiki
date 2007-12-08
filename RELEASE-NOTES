@@ -92,6 +92,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12195) Undeleting pages now requires 'undelete' permission
 * (bug 11810) Localize displayed semicolons
 * (bug 11657) Support for Thai solar calendar
+* (bug 943) RSS feed for Recentchangeslinked
 
 === Bug fixes in 1.12 ===
 

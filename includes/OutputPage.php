@@ -23,6 +23,7 @@ class OutputPage {
 	var $mIsArticleRelated;
 	protected $mParserOptions; // lazy initialised, use parserOptions()
 	var $mShowFeedLinks = false;
+	var $mFeedLinksAppendQuery = false;
 	var $mEnableClientCache = true;
 	var $mArticleBodyOnly = false;
 	
@@ -232,6 +233,8 @@ class OutputPage {
 	public function isPrintable() { return $this->mPrintable; }
 	public function setSyndicated( $show = true ) { $this->mShowFeedLinks = $show; }
 	public function isSyndicated() { return $this->mShowFeedLinks; }
+	public function setFeedAppendQuery( $val ) { $this->mFeedLinksAppendQuery = $val; }
+	public function getFeedAppendQuery() { return $this->mFeedLinksAppendQuery; }
 	public function setOnloadHandler( $js ) { $this->mOnloadHandler = $js; }
 	public function getOnloadHandler() { return $this->mOnloadHandler; }
 	public function disable() { $this->mDoNothing = true; }
@@ -1286,20 +1289,24 @@ class OutputPage {
 		}
 		
 		if( $this->isSyndicated() ) {
-			# FIXME: centralize the mime-type and name information in Feed.php
 			# Use the page name for the title (accessed through $wgTitle since
 			# there's no other way).  In principle, this could lead to issues
 			# with having the same name for different feeds corresponding to
 			# the same page, but we can't avoid that at this low a level.
-			global $wgTitle;
-			$ret .= $this->feedLink(
-				'rss',
-				$wgRequest->appendQuery( 'feed=rss' ),
-				wfMsg( 'page-rss-feed', $wgTitle->getPrefixedText() ) );
-			$ret .= $this->feedLink(
-				'atom',
-				$wgRequest->appendQuery( 'feed=atom' ),
-				wfMsg( 'page-atom-feed', $wgTitle->getPrefixedText() ) );
+			global $wgTitle, $wgFeedClasses;
+			
+			if( is_string( $this->getFeedAppendQuery() ) ) {
+				$appendQuery = "&" . $this->getFeedAppendQuery();
+			} else {
+				$appendQuery = "";
+			}
+
+			foreach( $wgFeedClasses as $format => $class ) {
+				$ret .= $this->feedLink(
+					$format,
+					$wgRequest->appendQuery( "feed=rss{$appendQuery}" ),
+					wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) );
+			}
 		}
 
 		# Recent changes feed should appear on every page

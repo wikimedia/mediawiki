@@ -226,9 +226,14 @@ class SkinTemplate extends Skin {
 				} else if ( $format == "rss" ) {
 					$linktext = wfMsg( 'feed-rss' );
 				}
+				if( is_string( $wgOut->getFeedAppendQuery() ) ) {
+					$appendQuery = "&" . $wgOut->getFeedAppendQuery();
+				} else {
+					$appendQuery = "";
+				}
 				$feeds[$format] = array(
 					'text' => $linktext,
-					'href' => $wgRequest->appendQuery( "feed=$format" )
+					'href' => $wgRequest->appendQuery( "feed={$format}{$appendQuery}" )
 				);
 			}
 			$tpl->setRef( 'feeds', $feeds );
