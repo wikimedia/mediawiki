@@ -1170,6 +1170,8 @@ Template:消除歧義',
 'unusedcategoriestext'    => '雖然沒有被其它頁面或者分類所採用，但列表中的分類頁依然存在。',
 'notargettitle'           => '無目標',
 'notargettext'            => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
+'pager-newer-n'           => '新$1次',
+'pager-older-n'           => '舊$1次',
 
 # Book sources
 'booksources'               => '網路書源',
@@ -1439,11 +1441,6 @@ $NEWPAGE
 'undelete-error-long'          => '當進行反刪除檔案時遇到錯誤:
 
 $1',
-'undelete-more-revs'           => '\'\'\'<span style="color: red;">警告！</span>這個頁面有比在此顯示更多已刪除的修訂版本。\'\'\'<br />
-$1次修訂版本在下面顯示。您可以在這個列表中選取所需要的修訂版本，又或者不作選擇去恢復所有的修訂版本（同時包括沒有在此顯示的）。<br />
-($2) ($3)',
-'undelete-next-revs'           => '檢視後$1次的修訂',
-'undelete-show-all'            => '檢視所有的修訂',
 
 # Namespace form on various pages
 'namespace'      => '名字空間:',
@@ -1461,10 +1458,6 @@ $1次修訂版本在下面顯示。您可以在這個列表中選取所需要的
 'month'         => '從該月份 (或更早):',
 'year'          => '從該年份 (或更早):',
 
-'sp-contributions-newest'      => '最新',
-'sp-contributions-oldest'      => '最舊',
-'sp-contributions-newer'       => '前$1次',
-'sp-contributions-older'       => '後$1次',
 'sp-contributions-newbies'     => '只顯示新建立之用戶的貢獻',
 'sp-contributions-newbies-sub' => '新手',
 'sp-contributions-blocklog'    => '封禁記錄',

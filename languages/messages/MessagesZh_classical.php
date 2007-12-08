@@ -956,6 +956,8 @@ $2',
 'unusedcategoriestext'    => '以下空門，無依可活。',
 'notargettitle'           => '落靶',
 'notargettext'            => '簿、頁未定，無可為之。',
+'pager-newer-n'           => '新$1次',
+'pager-older-n'           => '陳$1次',
 
 # Book sources
 'booksources'               => '書海',
@@ -1196,11 +1198,6 @@ $NEWPAGE
 'undelete-missing-filearchive' => '$1無尋，或已還矣。',
 'undelete-error-short'         => '$1欲還而有誤也。',
 'undelete-error-long'          => '還檔有誤。欲還者：\n\n$1\n',
-'undelete-more-revs'           => '\'\'\'<span style="color: red;">警！</span>本頁有比此示多刪之審也。\'\'\'<br />
-$1審列示如下。爾可擇需審，或無擇以復全審（包無示之審）。<br />
-($2) ($3)',
-'undelete-next-revs'           => '閱後$1審',
-'undelete-show-all'            => '閱全審',
 
 # Namespace form on various pages
 'namespace'      => '名冊：',
@@ -1218,10 +1215,6 @@ $1審列示如下。爾可擇需審，或無擇以復全審（包無示之審）
 'month'         => '且不越',
 'year'          => '年不越',
 
-'sp-contributions-newest'      => '末',
-'sp-contributions-oldest'      => '初',
-'sp-contributions-newer'       => '後$1',
-'sp-contributions-older'       => '前$1',
 'sp-contributions-newbies'     => '惟列新進',
 'sp-contributions-newbies-sub' => '予新進',
 'sp-contributions-blocklog'    => '誌禁',
