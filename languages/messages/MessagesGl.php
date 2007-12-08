@@ -351,6 +351,8 @@ Función: $1<br />
 Procura: $2',
 'viewsource'           => 'Ver código fonte',
 'viewsourcefor'        => 'de $1',
+'actionthrottled'      => 'Acción Ocasional',
+'actionthrottledtext'  => 'Como unha medida de loita contra o spam, limítase a realización desta acción moitas veces nun corto espazo de tempo, e que superaron este límite. Ténteo de novo nuns minutos.',
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
 'protectedinterface'   => 'Esta páxina fornece o texto da interface para a o software e está protexida para evitar o abuso.',
@@ -440,6 +442,12 @@ $1 horas.',
 'invalidemailaddress'        => 'Non se pode aceptar o enderezo de correo electrónico porque parece ter un formato incorrecto. Introduza un enderezo cun formato válido ou limpe ese campo.',
 'accountcreated'             => 'Conta creada',
 'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
+'createaccount-title'        => 'Creación da conta para {{SITENAME}}',
+'createaccount-text'         => 'Alguen ($1) creou unha conta de $2 sobre ((SITENAME))
+($ 4). O contrasinal para "$2" é "$3". Debe acceder e mudar o contrasinal
+agora.
+
+Pode facer caso omiso desta mensaxe, si se creou esta conta por erro.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
@@ -520,6 +528,7 @@ Pode contactar con $1 ou con calquera outro
 Teña en conta que non pode empregar "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]].
 
 O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
+'blockednoreason'           => 'ningunha razón foi dada',
 'blockedoriginalsource'     => "O código fonte de '''$1''' móstrase a continuación:",
 'blockededitsource'         => "O texto das '''súas edicións''' en '''$1''' móstrase a continuación:",
 'whitelistedittitle'        => 'Cómpre rexistrarse para poder editar',
@@ -544,6 +553,7 @@ Para crear a páxina, comece a escribir na caixa de embaixo
 Se chegou aquí por erro, simplemente prema no botón '''para tras''' do seu navegador.",
 'anontalkpagetext'          => "---- ''Esta é a páxina de discusión dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:Userlogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'             => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
+'userpage-userdoesnotexist' => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'            => "'''Nota:''' Despois de gravar, cómpre limpar a memoria ''caché'' do seu navegador para ver os cambios: '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (\"Cmd-Maiúsculas-R\" nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que clica en \"Refrescar\" ou prema \"Ctrl-F5\"; , '''Opera:''' prema ''F5''. '''Konqueror:''': simplemente prema no botón \"Recargar\" ou prema \"F5\"; os usuarios de '''Opera''' pode que teñan que limpar completamente a caché en '''Ferramentas→Preferencias'''.",
 'usercssjsyoucanpreview'    => "<strong>Nota:</strong> Use o botón de 'Vista previa' para verificar o novo css/js antes de gardalo.",
 'usercsspreview'            => "'''Lembre que só está avaliando o uso do css, non foi aínda gardado!'''",
@@ -699,6 +709,13 @@ Outros administradores deste wiki poderán acceder aínda ao contido oculto e po
 # Oversight log
 'oversightlog'    => 'Rexistro de edicións ocultadas',
 'overlogpagetext' => 'Abaixo aparece unha listaxe coas eliminacións e bloqueos máis recentes relacionados con contido agochado para os administradores. Vexa [[Special:Ipblocklist|Listaxe de bloqueos de IP]] para unha listaxe das prohibicións e bloqueos que teñen efecto neste momento.',
+
+# History merging
+'mergehistory'        => 'Fusionar historiais das páxinas',
+'mergehistory-header' => "Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.
+Asegúrese de que esta modificación da páxina mantén a continuidade histórica.
+
+'' 'Polo menos a actual revisión da orixe da páxina debe permanecer.'''",
 
 # Diffs
 'history-title'           => 'Historial das revisións de "$1"',
@@ -1418,10 +1435,6 @@ $1',
 'month'         => 'Desde o mes (e anteriores):',
 'year'          => 'Desde o ano (e anteriores):',
 
-'sp-contributions-newest'      => 'Primeiras',
-'sp-contributions-oldest'      => 'Últimas',
-'sp-contributions-newer'       => 'Anteriores $1',
-'sp-contributions-older'       => 'Seguintes $1',
 'sp-contributions-newbies'     => 'Só mostrar as contribucións das contas de usuario novas',
 'sp-contributions-newbies-sub' => 'Contribucións dos novos usuarios',
 'sp-contributions-blocklog'    => 'Rexistro de bloqueos',

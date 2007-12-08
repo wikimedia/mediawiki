@@ -550,11 +550,6 @@ $messages = array(
 'mycontris'     => '我个贡献',
 'uctop'         => '(顶浪)',
 
-'sp-contributions-newest' => '顶新个',
-'sp-contributions-oldest' => '顶旧个',
-'sp-contributions-newer'  => '新点个$1',
-'sp-contributions-older'  => '旧点个$1',
-
 # What links here
 'whatlinkshere' => '链进来点啥',
 'nolinkshere'   => "呒拨页面链接到 '''[[:$1]]'''。",
@@ -718,5 +713,6 @@ Variants for Chinese language
 
 # Auto-summaries
 'autoredircomment' => '重定向到 [[$1]]',
+'autosumm-new'     => '新页面：$1',
 
 );

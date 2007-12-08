@@ -1,5 +1,5 @@
 <?php
-/** ‪Къырымтатарджа (Кирилл)‬ (‪Къырымтатарджа (Кирилл)‬)
+/** Crimean Turkish (Cyrillic) (Qırımtatarca (Cyrillic))
  *
  * @addtogroup Language
  *
@@ -962,7 +962,7 @@ $1<br />$2 ёлланмаларны джедвелле<br />Къыдырылад
 'allnotinnamespace' => 'Бутюн саифелер ($1 исим фезасында олмагъанлар)',
 'allpagesprev'      => 'Эвельки',
 'allpagesnext'      => 'Сонъраки',
-'allpagessubmit'    => 'Кетир',
+'allpagessubmit'    => 'Косьтер',
 'allpagesprefix'    => 'Язгъан арифлернен башлагъан саифелерни косьтер:',
 
 # E-mail user
@@ -1136,10 +1136,6 @@ e-mail: $PAGEEDITOR_EMAIL
 'month'         => 'Бу ай (ве ондан эрте):',
 'year'          => 'Бу сене (ве ондан эрте):',
 
-'sp-contributions-newest'      => 'Энъ янъы',
-'sp-contributions-oldest'      => 'Энъ эски',
-'sp-contributions-newer'       => 'Сонъраки $1',
-'sp-contributions-older'       => 'Эвельки $1',
 'sp-contributions-newbies'     => 'Тек янъы къулланыджыларнынъ исселерини косьтер',
 'sp-contributions-newbies-sub' => 'Янъы къулланыджылар ичюн',
 'sp-contributions-blocklog'    => 'Блок этюв журналы',

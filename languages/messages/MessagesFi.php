@@ -486,7 +486,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 $2',
 'namespaceprotected'   => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",
 'customcssjsprotected' => 'Sinulla ei ole oikeuksia muuttaa toisten käyttäjien henkilökohtaisia asetuksia.',
-'ns-specialprotected'  => '{{ns:special}} ei voi muokata.',
+'ns-specialprotected'  => 'Toimintosivuja ei voi muokata.',
 
 # Login and logout pages
 'logouttitle'                => 'Uloskirjautuminen',
@@ -721,7 +721,6 @@ Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistori
 Käyttäjän $3 antama syy on ''$2''",
 
 # History pages
-'revhistory'          => 'Muutoshistoria',
 'viewpagelogs'        => 'Näytä tämän sivun lokit',
 'nohistory'           => 'Tällä sivulla ei ole muutoshistoriaa.',
 'revnotfound'         => 'Versiota ei löydy',
@@ -792,33 +791,39 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'overlogpagetext' => 'Alla on lista viimeaikaisista poistoista ja estoista liittyen ylläpitäjiltä piilotettuun sisältöön. [[Special:Ipblocklist|Estolistalla]] on luettelo voimassa olevista estoista.',
 
 # History merging
-'mergehistory'        => 'Yhdistä sivuhistoriat',
-'mergehistory-header' => "Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
+'mergehistory'                     => 'Yhdistä sivuhistoriat',
+'mergehistory-header'              => "Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
 Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa mennä ristikkäin.
 
 '''Ainakin lähdesivun uusin versio säilytetään lähdesivun historiassa.'''",
-'mergehistory-box'    => 'Yhdistä kahden sivun muutoshistoria',
-'mergehistory-from'   => 'Lähdesivu',
-'mergehistory-into'   => 'Kohdesivu',
-'mergehistory-list'   => 'Liitettävissä olevat muutokset',
-'mergehistory-go'     => 'Etsi muutokset',
-'mergehistory-submit' => 'Yhdistä versiot',
+'mergehistory-box'                 => 'Yhdistä kahden sivun muutoshistoria',
+'mergehistory-from'                => 'Lähdesivu',
+'mergehistory-into'                => 'Kohdesivu',
+'mergehistory-list'                => 'Liitettävissä olevat muutokset',
+'mergehistory-merge'               => 'Seuraavat sivun [[:$1]] muutokset voidaan liittää sivun [[:$2]] muutoshistoriaan. Voit valita version, jota myöhempiä muutoksia ei liitetä. Selainlinkkien käyttäminen kadottaa tämän valinnan.',
+'mergehistory-go'                  => 'Etsi muutokset',
+'mergehistory-submit'              => 'Yhdistä versiot',
+'mergehistory-empty'               => 'Ei liitettäviä muutoksia.',
+'mergehistory-success'             => '{{PLURAL:$3|Yksi versio|$3 versiota}} sivusta [[:$1]] liitettiin sivuun [[:$2]].',
+'mergehistory-fail'                => 'Muutoshistorian liittäminen epäonnistui. Tarkista määritellyt sivut ja versiot.',
+'mergehistory-no-source'           => 'Lähdesivua $1 ei ole olemassa.',
+'mergehistory-no-destination'      => 'Kohdesivua $1 ei ole olemassa.',
+'mergehistory-invalid-source'      => 'Lähdesivun pitää olla kelvollinen sivunnimi.',
+'mergehistory-invalid-destination' => 'Kohdesivulla pitää olla kelvollinen nimi.',
 
 # Merge log
-'mergelog'         => 'Yhdistämisloki',
-'mergelogpagetext' => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
+'mergelog'           => 'Yhdistämisloki',
+'pagemerge-logentry' => 'liitti sivun [[$1]] sivuun [[$2]] (muokkaukseen $3 asti)',
+'revertmerge'        => 'Kumoa yhdistäminen',
+'mergelogpagetext'   => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
 
 # Diffs
-'history-title'             => 'Sivun $1 muutoshistoria',
-'difference'                => 'Versioiden väliset erot',
-'loadingrev'                => 'Ladataan versiota vertailua varten',
-'lineno'                    => 'Rivi $1:',
-'editcurrent'               => 'Muokkaa tämän sivun uusinta versiota',
-'selectnewerversionfordiff' => 'Valitse uudempi versio vertailuun',
-'selectolderversionfordiff' => 'Valitse vanhempi versio vertailuun',
-'compareselectedversions'   => 'Vertaile valittuja versioita',
-'editundo'                  => 'kumoa',
-'diff-multi'                => '(Versioiden välissä {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta}}.)',
+'history-title'           => 'Sivun $1 muutoshistoria',
+'difference'              => 'Versioiden väliset erot',
+'lineno'                  => 'Rivi $1:',
+'compareselectedversions' => 'Vertaile valittuja versioita',
+'editundo'                => 'kumoa',
+'diff-multi'              => '(Versioiden välissä {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta}}.)',
 
 # Search results
 'searchresults'         => 'Hakutulokset',
@@ -1218,7 +1223,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'restrictedpheading'      => 'Rajoitetut toimintosivut',
 'rclsub'                  => 'Sivut, joihin linkki sivulta $1',
 'newpages'                => 'Uudet sivut',
-'newpages-username'       => 'Käyttäjätunnus:',
+'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
 'intl'                    => 'Kieltenväliset linkit',
 'move'                    => 'Siirrä',
@@ -1423,6 +1428,7 @@ Palaute ja lisäapu osoitteessa:
 'protect-summary-cascade'     => 'laajennettu',
 'protect-expiring'            => 'vanhenee $1',
 'protect-cascade'             => 'Laajenna suojaus koskemaan kaikkia tähän sivuun sisällytettyjä sivuja.',
+'protect-cantedit'            => 'Et voi muuttaa sivun suojaustasoa, koska sinulla ei ole oikeutta muokata sivua.',
 'restriction-type'            => 'Rajoitus',
 'restriction-level'           => 'Suojaus',
 'minimum-size'                => 'Vähimmäiskoko',
@@ -1492,10 +1498,6 @@ $1',
 'month'         => 'Kuukausi',
 'year'          => 'Vuosi',
 
-'sp-contributions-newest'      => 'Uusimmat',
-'sp-contributions-oldest'      => 'Vanhimmat',
-'sp-contributions-newer'       => '← $1 uudempaa',
-'sp-contributions-older'       => '$1 vanhempaa →',
 'sp-contributions-newbies'     => 'Näytä uusien tulokkaiden muutokset',
 'sp-contributions-newbies-sub' => 'Uusien tulokkaiden muokkaukset',
 'sp-contributions-blocklog'    => 'estot',

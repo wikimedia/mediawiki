@@ -5,7 +5,6 @@
  *
  * @author SPQRobin
  * @author Juanpabl
- * @author G - ג
  * @author Willtron
  * @author Nike
  * @author Siebrand
@@ -232,6 +231,7 @@ $messages = array(
 'bugreportspage'    => "Project:Informe d'errors",
 'copyright'         => 'O conteniu ye disponible baxo a lizenzia $1.',
 'copyrightpagename' => "Dreitos d'autor de {{SITENAME}}",
+'copyrightpage'     => "{{ns:project}}:Dreitos d'autor",
 'currentevents'     => 'Autualidat',
 'currentevents-url' => 'Project:Autualidat',
 'disclaimers'       => 'Abiso legal',
@@ -614,7 +614,6 @@ Puede consultar o rechistro de borraus que s'amuestra a continuazión:",
 A razón endicata por $3 ye ''$2''",
 
 # History pages
-'revhistory'          => 'Istorial de bersions',
 'viewpagelogs'        => "Beyer os rechistros d'ista pachina",
 'nohistory'           => "Ista pachina no tiene un istorial d'edizions.",
 'revnotfound'         => 'Bersión no trobata',
@@ -692,6 +691,33 @@ Atros almenistradors d'iste wiki encara podrán azeder t'o contineiu amagato y p
 'oversightlog'    => "Rechistro d'escudios",
 'overlogpagetext' => "Contino s'amuestra una lista de borraus y bloqueos más rezients relatibos á contenius amagatos d'os almenistradors d'o sistema. Consulte a [[Special:Ipblocklist|lista d'adrezas IP bloquiatas]] ta beyer una lista d'os bloqueos autuals.",
 
+# History merging
+'mergehistory'                     => 'Aunir istorials',
+'mergehistory-header'              => "Ista pachina li premite aunir bersions d'o istorial d'una pachina d'orichen con una nueba pachina.
+Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.
+
+'''Como menimo abría de remanir a bersión autual d'a pachina d'orichen.'''",
+'mergehistory-box'                 => 'Aunir as bersions de dos pachinas:',
+'mergehistory-from'                => "Pachina d'orichen:",
+'mergehistory-into'                => 'Pachina de destino:',
+'mergehistory-list'                => "Istorial d'edizions aunible",
+'mergehistory-merge'               => "As siguients bersions de [[:$1]] pueden aunir-se con [[:$2]]. Faiga serbir a columna de botons de radio ta aunir nomás as bersions creyadas antis d'un tiempo espezificato. Pare cuenta que si emplega os binclos de nabegazión meterá os botons en o suyo estau orichinal.",
+'mergehistory-go'                  => 'Amostrar edizions aunibles',
+'mergehistory-submit'              => 'Aunir bersions',
+'mergehistory-empty'               => 'No puede aunir-se garra rebisión',
+'mergehistory-success'             => '$3 {{PLURAL:$3|rebisión|rebisions}} de [[:$1]] {{PLURAL:$3|aunita|aunitas}} correutament con [[:$2]].',
+'mergehistory-fail'                => "No s'ha puesto aunir os dos istorials, por fabor comprebe a pachina y os parametros de tiempo.",
+'mergehistory-no-source'           => "A pachina d'orichen $1 no esiste.",
+'mergehistory-no-destination'      => 'A pachina de destino $1 no esiste.',
+'mergehistory-invalid-source'      => "A pachina d'orichen ha de tener un títol correuto.",
+'mergehistory-invalid-destination' => 'A pachina de destino ha de tener un títol correuto.',
+
+# Merge log
+'mergelog'           => "Rechistro d'unions",
+'pagemerge-logentry' => "s'ha aunito [[$1]] con [[$2]] (rebisions dica $3)",
+'revertmerge'        => 'Esfer a unión',
+'mergelogpagetext'   => "Contino s'amuestra una lista d'as pachinas más rezients que os suyos istorials s'han aunito con o d'atra pachina.",
+
 # Diffs
 'history-title'           => 'Istorial de bersions de "$1"',
 'difference'              => '(Esferenzias entre bersions)',
@@ -701,22 +727,52 @@ Atros almenistradors d'iste wiki encara podrán azeder t'o contineiu amagato y p
 'diff-multi'              => "(S'ha amagato {{plural:$1|una edizión entremeya|$1 edizions entremeyas}}.)",
 
 # Search results
-'searchresults' => 'Resultaus de mirar',
-'noexactmatch'  => "'''No esiste garra pachina tetulata \"\$1\".''' Puede aduyar [[:\$1|creyando-la]].",
-'prevn'         => 'anteriors $1',
-'nextn'         => 'siguiens $1',
-'viewprevnext'  => 'Beyer ($1) ($2) ($3)',
-'powersearch'   => 'Mirar-lo',
+'searchresults'         => 'Resultaus de mirar',
+'searchresulttext'      => "Ta más informazión sobre cómo mirar pachinas en {{SITENAME}}, consulte l'[[{{MediaWiki:Helppage}}|{{int:help}}]].",
+'searchsubtitle'        => "Ha mirato '''[[:$1]]'''",
+'searchsubtitleinvalid' => 'Ha mirato "$1"',
+'noexactmatch'          => "'''No esiste garra pachina tetulata \"\$1\".''' Puede aduyar [[:\$1|creyando-la]].",
+'titlematches'          => 'Consonanzias de títols de pachina',
+'notitlematches'        => "No bi ha garra consonanzia en os títols d'as pachinas",
+'textmatches'           => "Consonanzias en o testo d'as pachinas",
+'notextmatches'         => "No bi ha garra consonanzia en os testos d'as pachinas",
+'prevn'                 => 'anteriors $1',
+'nextn'                 => 'siguiens $1',
+'viewprevnext'          => 'Beyer ($1) ($2) ($3)',
+'showingresults'        => "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prenzipiando por o numero '''$2'''.",
+'showingresultsnum'     => "Contino se bi {{PLURAL:$3|amuestra '''1''' resultau|amuestran os '''$3''' resultaus}} prenzipiando por o numero '''$2'''.",
+'nonefound'             => "'''Pare cuenta''': Os fallos en mirar pachinas son causatos á ormino por prebar de mirar parabras masiau comuns como \"a\" u \"de\", que no i son en o endize, u por escribir más d'una parabra ta mirar (sólo surten en o resultau as pachinas que contiengan todas as parabras).",
+'powersearch'           => 'Mirar-lo',
+'powersearchtext'       => 'Mirar en o espazio de nombres:<br />
+$1<br />
+$2 Fer lista de reendrezeras <br />
+Mirar $3 $9',
+'searchdisabled'        => 'A busca en {{SITENAME}} ye temporalment desautibata. Entremistanto, puede mirar en {{SITENAME}} fendo serbir buscadors esternos, pero pare cuenta que os suyos endizes de {{SITENAME}} puede no estar autualizatos.',
 
 # Preferences page
-'preferences'       => 'Preferenzias',
-'mypreferences'     => 'As mías preferenzias',
-'prefsnologintext'  => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] y aber enzetau una sesión ta cambear as preferenzias d'usuario.",
-'prefs-rc'          => 'Zaguers cambeos',
-'prefs-watchlist'   => 'Lista de seguimiento',
-'saveprefs'         => 'Alzar preferenzias',
-'retypenew'         => 'Torne á escribir a nueba parabra de paso:',
-'searchresultshead' => 'Mirar',
+'preferences'              => 'Preferenzias',
+'mypreferences'            => 'As mías preferenzias',
+'prefs-edits'              => "Numero d'edizions:",
+'prefsnologin'             => 'No ye identificato',
+'prefsnologintext'         => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] y aber enzetau una sesión ta cambear as preferenzias d'usuario.",
+'prefsreset'               => "S'ha tornato as preferenzias t'as suyas baluras almadazenatas.",
+'qbsettings'               => 'Preferenzias de "Quickbar"',
+'qbsettings-none'          => 'Denguna',
+'qbsettings-fixedleft'     => 'Fixa á la zurda',
+'qbsettings-fixedright'    => 'Fixa á la dreita',
+'qbsettings-floatingleft'  => 'Flotant á la zurda',
+'qbsettings-floatingright' => 'Flotant á la dreita',
+'changepassword'           => 'Cambiar a parabra de paso',
+'skin'                     => 'Aparenzia',
+'math'                     => 'Esprisions matematicas',
+'dateformat'               => 'Formato de calendata',
+'datedefault'              => 'Sin de preferenzias',
+'datetime'                 => 'Calendata y ora',
+'prefs-rc'                 => 'Zaguers cambeos',
+'prefs-watchlist'          => 'Lista de seguimiento',
+'saveprefs'                => 'Alzar preferenzias',
+'retypenew'                => 'Torne á escribir a nueba parabra de paso:',
+'searchresultshead'        => 'Mirar',
 
 'grouppage-sysop' => '{{ns:project}}:Almenistradors',
 
@@ -924,12 +980,6 @@ PICT # misz.
 'month'         => 'Dende o mes (y anteriors):',
 'year'          => "Dende l'año (y anteriors):",
 
-'sp-contributions-newest'      => 'Zagueras',
-'sp-contributions-oldest'      => 'Primeras',
-'sp-contributions-newer'       => '← $1 posteriors
-
-== Testo de tetular ==',
-'sp-contributions-older'       => '$1 anteriors →',
 'sp-contributions-newbies'     => "Amostrar nomás as contrebuzions d'os usuarios nuebos",
 'sp-contributions-newbies-sub' => 'Por usuarios nuebos',
 'sp-contributions-blocklog'    => 'Rechistro de bloqueyos',
