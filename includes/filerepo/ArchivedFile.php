@@ -160,14 +160,31 @@ class ArchivedFile
 		return $this->title;
 	}
 
+	/**
+	 * Return the file name
+	 */	
+	public function getName() { 
+		return $this->name;
+	}
+
 	public function getID() { 
 		$this->load();
 		return $this->id;
 	}
 	
+	/**
+	 * Return the FileStore key
+	 */	
 	public function getKey() { 
 		$this->load();
 		return $this->key;
+	}
+	
+	/**
+	 * Return the FileStore storage group
+	 */	
+	public function getGroup() {
+		return $file->group;
 	}
 
 	/**
@@ -201,6 +218,15 @@ class ArchivedFile
 	public function getSize() {
 		$this->load();
 		return $this->size;
+	}
+	
+	/**
+	 * Return the bits of the image file, in bytes
+	 * @public
+	 */
+	public function getBits() {
+		$this->load();
+		return $this->bits;
 	}
 	
 	/**
