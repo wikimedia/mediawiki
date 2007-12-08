@@ -1335,10 +1335,6 @@ $wgMessageStructure = array(
 		'year',
 	),
 	'sp-contributions' => array(
-		'sp-contributions-newest',
-		'sp-contributions-oldest',
-		'sp-contributions-newer',
-		'sp-contributions-older',
 		'sp-contributions-newbies',
 		'sp-contributions-newbies-sub',
 		'sp-contributions-blocklog',
