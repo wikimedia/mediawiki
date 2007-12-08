@@ -65,7 +65,7 @@ class MovePageForm {
 		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
-	function showForm( $err ) {
+	function showForm( $err, $hookErr = '' ) {
 		global $wgOut, $wgUser, $wgContLang;
 		
 		$start = $wgContLang->isRTL() ? 'right' : 'left';
@@ -135,7 +135,13 @@ class MovePageForm {
 
 		if ( $err != '' ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$wgOut->addWikiText( '<p class="error">' . wfMsg($err) . "</p>\n" );
+			$errMsg = "";
+			if( $err == 'hookaborted' ) {
+				$errMsg = $hookErr;
+			} else {
+				$errMsg = '<p class="error">' . wfMsgWikiHtml( $err ) . "</p>\n";
+			}
+			$wgOut->addHTML( $errMsg );
 		}
 
 		$moveTalkChecked = $this->moveTalk ? ' checked="checked"' : '';
@@ -213,6 +219,12 @@ class MovePageForm {
 		# don't allow moving to pages with # in
 		if ( !$nt || $nt->getFragment() != '' ) {
 			$this->showForm( 'badtitletext' );
+			return;
+		}
+
+		$hookErr = null;
+		if( !wfRunHooks( 'AbortMove', array( $ot, $nt, $wgUser, &$hookErr ) ) ) {
+			$this->showForm( 'hookaborted', $hookErr );
 			return;
 		}
 
