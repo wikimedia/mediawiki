@@ -251,12 +251,16 @@ $messages = array(
 'rev-delundel' => 'kamukile/cwankekile',
 
 # Diffs
-'lineno'   => 'Lani $1:',
-'editundo' => "afi hloli ye ng'i",
+'lineno'                  => 'Lani $1:',
+'compareselectedversions' => 'Bapisize',
+'editundo'                => "afi hloli ye ng'i",
 
 # Search results
-'viewprevnext' => 'Kamukile ($1) ($2) ($3)',
-'powersearch'  => 'Fatukile',
+'searchresults' => 'Fatukile kamukile',
+'prevn'         => 'kona $1',
+'nextn'         => 'lila $1',
+'viewprevnext'  => 'Kamukile ($1) ($2) ($3)',
+'powersearch'   => 'Fatukile',
 
 # Preferences page
 'preferences'       => 'Petohoni di sebelu',
@@ -265,12 +269,18 @@ $messages = array(
 'prefs-rc'          => 'Petuho nca',
 'prefs-watchlist'   => 'Mukoloko di kentezi',
 'saveprefs'         => 'Bulukezi',
+'resetprefs'        => 'Lisetize',
+'textboxsize'       => "Hloli ye ng'i",
 'searchresultshead' => 'Fatukile',
+'resultsperpage'    => 'Hit di petulo:',
+'contextlines'      => 'Lani di hit:',
+'timezoneoffset'    => 'Ufiseti¹',
 'files'             => 'Imegini',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|petuho|petuho}}',
 'recentchanges'     => 'Petuho nca',
+'rcshowhidebots'    => '$1 roboti',
 'diff'              => 'petuho',
 'hist'              => 'bundau',
 'hide'              => 'Cwankekile',
@@ -296,9 +306,12 @@ $messages = array(
 
 'upload-file-error' => 'Interni bufosi',
 
+'license-nopreview' => '(PendiBe di nupdeti)',
+
 # Image list
 'imagelist'        => 'Mukoloko di imegina',
 'ilsubmit'         => 'Fatukile',
+'imgdelete'        => 'afi',
 'imgfile'          => 'imegi',
 'filehist'         => 'Imegi bundau',
 'filehist-user'    => 'Sebelu',
@@ -313,6 +326,7 @@ $messages = array(
 # File deletion
 'filedelete'         => 'Afi kulobala $1',
 'filedelete-legend'  => 'Afi kulobala imegi',
+'filedelete-intro'   => "Sa afi kulobala '''[[Media:$1|$1]]'''.",
 'filedelete-comment' => 'Lyangutukezi:',
 'filedelete-submit'  => 'Afi kulobala',
 'filedelete-success' => "'''$1''' sa afi kulobala.",
@@ -330,6 +344,11 @@ $messages = array(
 # Random redirect
 'randomredirect' => 'Petulo abezi fona',
 
+# Statistics
+'statistics' => 'Mukoloko di kamukile',
+'sitestats'  => 'Mukoloko di kamukile di {{SITENAME}}',
+'userstats'  => 'Mukoloko di kamukile di sebelu',
+
 'doubleredirects' => 'Petulo abezi sa dužemi',
 
 'brokenredirects-edit'   => "(hloli ye ng'i)",
@@ -337,10 +356,13 @@ $messages = array(
 
 # Miscellaneous special pages
 'ncategories'       => '$1 {{PLURAL:$1|kattegori|kattegorina}}',
+'nlinks'            => "$1 {{PLURAL:$1|ling'ki|ling'ki}}",
 'nviews'            => '$1 {{PLURAL:$1|kamukile|kamukile}}',
+'allpages'          => 'Mukoloko di petulo',
 'prefixindex'       => 'Petulo bye abuce pelifikise',
 'shortpages'        => 'Mukoloko di kuswani petulo',
 'longpages'         => 'Mukoloko di petulo–amuha',
+'deadendpages'      => "Mukoloko di petulo-ni ling'ki",
 'listusers'         => 'Mukoloko di sebelu',
 'specialpages'      => 'Petulo zwenti',
 'newpages'          => 'Nca petulo',
@@ -351,23 +373,34 @@ $messages = array(
 # Book sources
 'booksources-go' => 'Afi',
 
-'data' => 'Datani',
+'data'           => 'Datani',
+'alphaindexline' => '$1 di $2',
 
 # Special:Log
 'specialloguserlabel' => 'Sebelu:',
 'log-search-submit'   => 'Afi',
 
 # Special:Allpages
+'nextpage'       => 'Lila petulo ($1)',
+'prevpage'       => 'Kona petulo ($1)',
+'allarticles'    => 'Mukoloko di petulo',
+'allpagesprev'   => 'Kona',
+'allpagesnext'   => 'Lila',
 'allpagessubmit' => 'Afi',
+'allpagesprefix' => 'Kamukile petulo di pifeto di:',
 
 # Special:Listusers
+'listusersfrom'    => 'Kamukile sebelu di:',
 'listusers-submit' => 'Kamukile',
 
 # E-mail user
 'emailuser'    => 'Imeli bye sebelu',
 'emailpage'    => 'Imeli sebelu',
+'emailfrom'    => 'Poti',
+'emailto'      => 'Atipo',
 'emailsubject' => 'Lyangutukezi',
 'emailmessage' => 'Mulumiwa',
+'emailsend'    => 'Afi',
 
 # Watchlist
 'watchlist'       => 'Zwa mukoloko di kentezi',
@@ -384,13 +417,24 @@ $messages = array(
 
 'enotif_newpagetext'           => 'Bye sa nca petulo.',
 'enotif_impersonal_salutation' => '{{SITENAME}} sebelu',
+'changed'                      => 'petuhoni',
 
 # Delete/protect/revert
 'deletepage'      => 'Afi kulobala petulo',
+'confirm'         => 'Afi pe',
 'excontent'       => "Petulo sa ng'i: '$1'",
 'excontentauthor' => "Petulo sa ng'i: '$1' (sebelu sa ng'i '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'   => "Petulo sa ng'i blanco: '$1'",
+'exblank'         => 'petulo sa blanco',
+'confirmdelete'   => 'Afi kulobala pe',
 'deletesub'       => '(Afi kulobala "$1")',
+'historywarning'  => 'Petulo, sa afi kulobala, sa bundau di sebelu:',
+'actioncomplete'  => 'Sa afi',
 'deletedarticle'  => 'sa afi kulobala "[[$1]]"',
+'rollback'        => "Afi hlolina ye ng'i lila",
+'rollback_short'  => "Afi hloli ye ng'i lila",
+'rollbacklink'    => "afi hloli ye ng'i lila",
+'rollbackfailed'  => "Bufosi dafi hloli ye ng'i lila",
 'protectcomment'  => 'Lyangutukezi:',
 
 # Restrictions (nouns)
@@ -400,19 +444,26 @@ $messages = array(
 # Undelete
 'undelete'               => 'Kamukile afi kulobala petulo',
 'viewdeletedpage'        => 'Kamukile afi kulobala petulo',
+'undeletereset'          => 'Lisetize',
 'undeletecomment'        => 'Lyangutukezi:',
 'undelete-search-box'    => 'Fatukile afi kulobala petulo',
+'undelete-search-prefix' => 'Kamukile petulo di:',
 'undelete-search-submit' => 'Fatukile',
 
 # Namespace form on various pages
-'namespace' => 'Fatukile efro:',
-'invert'    => "Fatukile efro ye ng'i",
+'namespace'      => 'Fatukile efro:',
+'invert'         => "Fatukile efro ye ng'i",
+'blanknamespace' => '(Yem efro)',
 
 # Contributions
-'contribsub2' => 'Di $1 ($2)',
-'uctop'       => " (nca ng'i)",
+'contributions' => 'Afina di sebelu',
+'mycontris'     => 'Zwa afina',
+'contribsub2'   => 'Di $1 ($2)',
+'uctop'         => " (nca ng'i)",
 
+'sp-contributions-newbies'     => 'Kamukile afina di sebelu nca',
 'sp-contributions-newbies-sub' => 'Di nca sebelu',
+'sp-contributions-search'      => 'Fatukile di afina',
 'sp-contributions-submit'      => 'Fatukile',
 
 'sp-newimages-showfrom' => 'Kamukile nca imegi di $1',
@@ -427,6 +478,8 @@ $messages = array(
 'nolinkshere-ns'      => "0 petulo ling'ki di '''[[:$1]]''' bye sa di bye fatukile efro.",
 'isredirect'          => 'petulo abezi',
 'istemplate'          => "yang'idole",
+'whatlinkshere-prev'  => '{{PLURAL:$1|kona|kona $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|lila|lila $1}}',
 'whatlinkshere-links' => "? ling'ki",
 
 # Block/unblock
@@ -434,20 +487,37 @@ $messages = array(
 'proxyblocksuccess'  => 'Afi.',
 
 # Move page
-'movepage'        => 'Nyanganyisize petulo',
-'movearticle'     => 'Nyanganyisize petulo:',
-'move-watch'      => 'Kentezi bye petulo',
-'movepagebtn'     => 'Nyanganyisize petulo',
-'movedto'         => 'nyanganyisize di',
-'1movedto2'       => '[[$1]] nyanganyisize di [[$2]]',
-'1movedto2_redir' => '[[$1]] nyanganyisize di [[$2]] alo petulo abezi',
-'delete_and_move' => 'Afi kulobala alo-di nyanganyisize',
+'movepage'         => 'Nyanganyisize petulo',
+'movearticle'      => 'Nyanganyisize petulo:',
+'newtitle'         => 'Di nca petulo:',
+'move-watch'       => 'Kentezi bye petulo',
+'movepagebtn'      => 'Nyanganyisize petulo',
+'pagemovedsub'     => 'Nyanganyisize sa afi.',
+'movepage-moved'   => '<big>\'\'\'"$1" sa nyanganyisize di "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'          => 'nyanganyisize di',
+'movetalk'         => 'Nyanganyisize petulo di bulelezi',
+'talkpagemoved'    => 'Petulo di bulelezi sa nyanganyisize.',
+'talkpagenotmoved' => 'Petulo di bulelezi <strong>nisa</strong> nyanganyisize.',
+'1movedto2'        => '[[$1]] nyanganyisize di [[$2]]',
+'1movedto2_redir'  => '[[$1]] nyanganyisize di [[$2]] alo petulo abezi',
+'delete_and_move'  => 'Afi kulobala alo-di nyanganyisize',
+
+# Export
+'export'        => 'Petulo export',
+'export-submit' => 'Petulo export',
+
+# Special:Import
+'import'                  => 'Petulo import',
+'import-interwiki-submit' => 'Petulo import',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'        => 'Zwa sebelu petulo',
+'tooltip-pt-anonuserpage'    => "Petulo di sebelu di IP, sa hloli ye ng'i.",
 'tooltip-pt-mytalk'          => 'Zwa bulelezi petulo',
 'tooltip-pt-preferences'     => 'Zwa petohoni di sebelu',
+'tooltip-pt-mycontris'       => 'Mukoloko di zwa afina',
 'tooltip-pt-logout'          => 'Ile',
+'tooltip-ca-history'         => 'Petuho kona, bundau, di petulo.',
 'tooltip-ca-delete'          => 'Afi kulobala bye petulo',
 'tooltip-ca-move'            => 'Nyanganyisize bye petulo',
 'tooltip-search'             => 'Fatukile {{SITENAME}}',

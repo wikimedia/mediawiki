@@ -1317,6 +1317,8 @@ Aktuální délka fronty údržby je '''$7'''.",
 'unusedcategoriestext'    => 'Následující stránky kategorií existují, avšak žádná stránka ani jiná kategorie je nepoužívá.',
 'notargettitle'           => 'Bez cílové stránky',
 'notargettext'            => 'Této funkci musíte určit cílovou stránku nebo uživatele.',
+'pager-newer-n'           => '{{PLURAL:$1|1 novější|$1 novější|$1 novějších}}',
+'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 starší|$1 starších}}',
 
 # Book sources
 'booksources'               => 'Zdroje knih',

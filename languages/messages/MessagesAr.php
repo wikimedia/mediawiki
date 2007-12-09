@@ -1452,6 +1452,8 @@ PICT # misc.
 'notargettitle'           => 'لا هدف',
 'notargettext'            => 'لم تحدد الصفحة او المستخدم المستهدف
 لعمل هذه الخاصية.',
+'pager-newer-n'           => '{{PLURAL:$1|أجدد 1|أجدد $1}}',
+'pager-older-n'           => '{{PLURAL:$1|أقدم 1|أقدم $1}}',
 
 # Book sources
 'booksources'               => 'مصادر كتاب',
@@ -1733,10 +1735,6 @@ $1',
 'month'         => 'من شهر (وأقدم):',
 'year'          => 'من سنة (وأقدم):',
 
-'sp-contributions-newest'      => 'آخر',
-'sp-contributions-oldest'      => 'أول',
-'sp-contributions-newer'       => '$1 التالية',
-'sp-contributions-older'       => '$1 السابقة',
 'sp-contributions-newbies'     => 'عرض مساهمات الحسابات الجديدة فقط',
 'sp-contributions-newbies-sub' => 'للحسابات الجديدة',
 'sp-contributions-blocklog'    => 'سجل المنع',
