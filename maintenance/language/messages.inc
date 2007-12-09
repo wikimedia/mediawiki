@@ -1803,7 +1803,7 @@ $wgMessageStructure = array(
 		'variantname-kk-kz',
 		'variantname-kk-tr',
 		'variantname-kk-cn',
-		'variantname-kk-cyrl'
+		'variantname-kk-cyrl',
 		'variantname-kk-latn',
 		'variantname-kk-arab',
 		'variantname-kk',
