@@ -293,8 +293,8 @@ class MovePageForm {
 		$talkmoved = $wgRequest->getVal( 'talkmoved' );
 		$oldUrl = $old->getFullUrl( 'redirect=no' );
 		$newUrl = $new->getFullURl();
-		$oldText = $old->getPrefixedText();
-		$newText = $new->getPrefixedText();
+		$oldText = wfEscapeWikiText( $old->getPrefixedText() );
+		$newText = wfEscapeWikiText( $new->getPrefixedText() );
 		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
 		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
 

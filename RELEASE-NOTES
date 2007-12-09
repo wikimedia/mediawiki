@@ -229,6 +229,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   lines in diff output
 * (bug 10166) Fix a PHP warning in Language::getMagic
 * Only mark rollback edits as minor if the user can normally mark edits as minor.
+* Escape page names in the move successful page (e.g. for pages with two
+  apostrophes).
 
 == Parser changes in 1.12 ==
 
