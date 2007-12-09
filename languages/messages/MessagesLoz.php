@@ -149,7 +149,7 @@ $messages = array(
 'otherlanguages'    => 'Silozi kibuzi',
 'redirectedfrom'    => '(Petulo abezi di $1)',
 'redirectpagesub'   => 'Petulo abezi',
-'viewcount'         => 'Bye petulo sa akusi {{PLURAL:$1|1×|$1×}}.',
+'viewcount'         => 'Bye petulo sa akusi {{PLURAL:$1|1Ã—|$1Ã—}}.',
 'protectedpage'     => 'Petulo bukelezi',
 'jumpto'            => 'Yezi:',
 'jumptonavigation'  => 'muya',
@@ -274,7 +274,7 @@ $messages = array(
 'searchresultshead' => 'Fatukile',
 'resultsperpage'    => 'Hit di petulo:',
 'contextlines'      => 'Lani di hit:',
-'timezoneoffset'    => 'Ufiseti¹',
+'timezoneoffset'    => 'UfisetiÂ¹',
 'files'             => 'Imegini',
 
 # Recent changes
@@ -349,7 +349,7 @@ $messages = array(
 'sitestats'  => 'Mukoloko di kamukile di {{SITENAME}}',
 'userstats'  => 'Mukoloko di kamukile di sebelu',
 
-'doubleredirects' => 'Petulo abezi sa duemi',
+'doubleredirects' => 'Petulo abezi sa duÅ¾emi',
 
 'brokenredirects-edit'   => "(hloli ye ng'i)",
 'brokenredirects-delete' => '(afi kulobala)',
@@ -361,7 +361,7 @@ $messages = array(
 'allpages'          => 'Mukoloko di petulo',
 'prefixindex'       => 'Petulo bye abuce pelifikise',
 'shortpages'        => 'Mukoloko di kuswani petulo',
-'longpages'         => 'Mukoloko di petulo–amuha',
+'longpages'         => 'Mukoloko di petuloâ€“amuha',
 'deadendpages'      => "Mukoloko di petulo-ni ling'ki",
 'listusers'         => 'Mukoloko di sebelu',
 'specialpages'      => 'Petulo zwenti',
@@ -480,7 +480,7 @@ $messages = array(
 'istemplate'          => "yang'idole",
 'whatlinkshere-prev'  => '{{PLURAL:$1|kona|kona $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|lila|lila $1}}',
-'whatlinkshere-links' => "? ling'ki",
+'whatlinkshere-links' => "â† ling'ki",
 
 # Block/unblock
 'ipblocklist-submit' => 'Fatukile',
