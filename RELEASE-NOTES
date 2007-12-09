@@ -232,6 +232,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Escape page names in the move successful page (e.g. for pages with two
   apostrophes).
 * (bug 12145) Add localized names of kk-variants
+* (bug 12259) Localize the numbers in deleted pages on the sysop view
 
 == Parser changes in 1.12 ==
 
