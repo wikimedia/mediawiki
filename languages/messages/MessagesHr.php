@@ -1206,6 +1206,8 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'unusedcategoriestext'    => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.',
 'notargettitle'           => 'Nema odredišta',
 'notargettext'            => 'Niste naveli ciljnu stranicu ili suradnika za izvršavanje ove funkcije.',
+'pager-newer-n'           => '{{PLURAL:$1|novija $1|novije $1|novijih $1}}',
+'pager-older-n'           => '{{PLURAL:$1|starija $1|starije $1|starijih $1}}',
 
 # Book sources
 'booksources'               => 'Pretraživanje po ISBN-u',
@@ -1500,10 +1502,6 @@ $1',
 'month'         => 'Od mjeseca (i ranije):',
 'year'          => 'Od godine (i ranije):',
 
-'sp-contributions-newest'      => 'Najnovije',
-'sp-contributions-oldest'      => 'Najstarije',
-'sp-contributions-newer'       => '$1 novijih',
-'sp-contributions-older'       => '$1 starijih',
 'sp-contributions-newbies'     => 'Prikaži samo doprinose novih suradnika',
 'sp-contributions-newbies-sub' => 'Za nove suradnike',
 'sp-contributions-blocklog'    => 'Evidencija blokiranja',

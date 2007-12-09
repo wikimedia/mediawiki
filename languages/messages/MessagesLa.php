@@ -595,7 +595,6 @@ Considera paginam in partes minores frangere.',
 Ille hanc causam dedit: ''$2''",
 
 # History pages
-'revhistory'          => 'Historia formarum',
 'viewpagelogs'        => 'Vide acta huius paginae',
 'nohistory'           => 'Huic paginae non est historia.',
 'revnotfound'         => 'Emendatio non inventa',
@@ -632,8 +631,6 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 # Diffs
 'history-title'           => 'Historia paginae "$1"',
 'difference'              => '(Dissimilitudo inter emendationes)',
-'loadingrev'              => 'Onerans emendationem pro diss',
-'editcurrent'             => 'Recensere formam recentissimam huius paginae',
 'compareselectedversions' => 'Conferre versiones selectas',
 'editundo'                => 'abrogare',
 
@@ -938,6 +935,8 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'movethispage'            => 'Movere hanc paginam',
 'notargettitle'           => 'Nullus scopus',
 'notargettext'            => 'Paginam aut usorem non notavisti.',
+'pager-newer-n'           => '{{PLURAL:$1|novior 1|noviores $1}}',
+'pager-older-n'           => '{{PLURAL:$1|senior 1|seniores $1}}',
 
 # Book sources
 'booksources'    => 'Librorum fontes',
@@ -1126,8 +1125,6 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'month'         => 'Ab mense (et prior):',
 'year'          => 'Ab anno (et prior):',
 
-'sp-contributions-newest'      => 'Novissimus',
-'sp-contributions-oldest'      => 'Veterrimus',
 'sp-contributions-newbies'     => 'Monstrare solum conlationes rationum novarum',
 'sp-contributions-newbies-sub' => 'Conlationes rationum novarum',
 'sp-contributions-blocklog'    => 'Acta obstructionum',

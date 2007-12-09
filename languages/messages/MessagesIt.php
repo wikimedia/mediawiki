@@ -712,7 +712,6 @@ L'elenco delle relative cancellazioni viene riportato di seguito per comodità:"
 La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 
 # History pages
-'revhistory'          => 'Cronologia delle versioni di questa pagina.',
 'viewpagelogs'        => 'Visualizza i log relativi a questa pagina.',
 'nohistory'           => 'Cronologia delle versioni di questa pagina non reperibile.',
 'revnotfound'         => 'Versione non trovata',
@@ -790,20 +789,24 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'overlogpagetext' => "Qui di seguito viene presentata una lista delle cancellazioni e dei blocchi che riguardano contenuti oscurati agli amministratori. Consultare l'[[Special:Ipblocklist|elenco IP bloccati]] per l'elenco dei blocchi e dei bandi al momento operativi.",
 
 # History merging
-'mergehistory'         => 'Unione cronologie',
-'mergehistory-header'  => "Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente. È necessario accertarsi che la continuità storica della pagina non venga alterata.
+'mergehistory'                     => 'Unione cronologie',
+'mergehistory-header'              => "Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente. È necessario accertarsi che la continuità storica della pagina non venga alterata.
 
 '''È obbligatorio mantenere almeno la versione corrente della pagina di origine.'''",
-'mergehistory-box'     => 'Unisci la cronologia di due pagine:',
-'mergehistory-from'    => 'Pagina di origine:',
-'mergehistory-into'    => 'Pagina di destinazione:',
-'mergehistory-list'    => "Cronologia cui è applicabile l'unione",
-'mergehistory-merge'   => 'È possibile unire le revisioni di [[:$1]] indicate di seguito alla cronologia di [[:$2]]. Usare la colonna con i pulsanti di opzione per unire tutte le revisioni fino alla data e ora indicate. Si noti che se vengono usati i pulsanti di navigazione, la colonna con i pulsanti di opzione viene azzerata.',
-'mergehistory-go'      => 'Mostra le modifiche che possono essere unite',
-'mergehistory-submit'  => 'Unisci le revisioni',
-'mergehistory-empty'   => 'Nessuna revisione da unire',
-'mergehistory-success' => '$3 revisioni di [[:$1]] sono state unite alla cronologia di [[:$2]].',
-'mergehistory-fail'    => 'Impossibile unire le cronologie. Verificare la pagina e i parametri temporali.',
+'mergehistory-box'                 => 'Unisci la cronologia di due pagine:',
+'mergehistory-from'                => 'Pagina di origine:',
+'mergehistory-into'                => 'Pagina di destinazione:',
+'mergehistory-list'                => "Cronologia cui è applicabile l'unione",
+'mergehistory-merge'               => 'È possibile unire le revisioni di [[:$1]] indicate di seguito alla cronologia di [[:$2]]. Usare la colonna con i pulsanti di opzione per unire tutte le revisioni fino alla data e ora indicate. Si noti che se vengono usati i pulsanti di navigazione, la colonna con i pulsanti di opzione viene azzerata.',
+'mergehistory-go'                  => 'Mostra le modifiche che possono essere unite',
+'mergehistory-submit'              => 'Unisci le revisioni',
+'mergehistory-empty'               => 'Nessuna revisione da unire',
+'mergehistory-success'             => '$3 revisioni di [[:$1]] sono state unite alla cronologia di [[:$2]].',
+'mergehistory-fail'                => 'Impossibile unire le cronologie. Verificare la pagina e i parametri temporali.',
+'mergehistory-no-source'           => 'La pagina di origine $1 non esiste.',
+'mergehistory-no-destination'      => 'La pagina di destinazione $1 non esiste.',
+'mergehistory-invalid-source'      => 'La pagina di origine deve avere un titolo corretto.',
+'mergehistory-invalid-destination' => 'La pagina di destinazione deve avere un titolo corretto.',
 
 # Merge log
 'mergelog'           => 'Log delle unioni',
@@ -812,16 +815,12 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'mergelogpagetext'   => "Qui di seguito viene presentata una lista delle ultime operazioni di unione della cronologia di una pagina in un'altra.",
 
 # Diffs
-'history-title'             => 'Cronologia delle modifiche di "$1"',
-'difference'                => '(Differenze fra le revisioni)',
-'loadingrev'                => 'caricamento revisione per differenze',
-'lineno'                    => 'Riga $1:',
-'editcurrent'               => 'Modifica la versione corrente di questa pagina',
-'selectnewerversionfordiff' => 'Seleziona una versione più recente per il confronto',
-'selectolderversionfordiff' => 'Seleziona una versione meno recente per il confronto',
-'compareselectedversions'   => 'Confronta le versioni selezionate',
-'editundo'                  => 'annulla',
-'diff-multi'                => '({{plural:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)',
+'history-title'           => 'Cronologia delle modifiche di "$1"',
+'difference'              => '(Differenze fra le revisioni)',
+'lineno'                  => 'Riga $1:',
+'compareselectedversions' => 'Confronta le versioni selezionate',
+'editundo'                => 'annulla',
+'diff-multi'              => '({{plural:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)',
 
 # Search results
 'searchresults'         => 'Risultati della ricerca',
@@ -964,12 +963,10 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'newsectionsummary'                 => '/* $1 */ nuova sezione',
 
 # Recent changes linked
-'recentchangeslinked'                    => 'Modifiche correlate',
-'recentchangeslinked-title'              => 'Modifiche correlate a $1',
-'recentchangeslinked-noresult'           => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
-'recentchangeslinked-summary'            => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
-'recentchangeslinked-feed-entry'         => "L'utente $1 ha modificato $2",
-'recentchangeslinked-feed-entry-comment' => "L'utente $1 ha modificato $2 ($3)",
+'recentchangeslinked'          => 'Modifiche correlate',
+'recentchangeslinked-title'    => 'Modifiche correlate a $1',
+'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
+'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
 
 # Upload
 'upload'                      => 'Carica un file',
@@ -1241,6 +1238,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'unusedcategoriestext'    => 'Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
+'pager-newer-n'           => '{{PLURAL:$1|1 più recente|$1 più recenti}}',
+'pager-older-n'           => '{{PLURAL:$1|1 meno recente|$1 meno recenti}}',
 
 # Book sources
 'booksources'               => 'Fonti librarie',
@@ -1510,10 +1509,6 @@ $1',
 'month'         => 'A partire dal mese (e precedenti):',
 'year'          => "A partire dall'anno (e precedenti):",
 
-'sp-contributions-newest'      => 'Ultimi',
-'sp-contributions-oldest'      => 'Primi',
-'sp-contributions-newer'       => '$1 più recenti',
-'sp-contributions-older'       => '$1 meno recenti',
 'sp-contributions-newbies'     => 'Mostra solo i contributi dei nuovi utenti',
 'sp-contributions-newbies-sub' => 'Per i nuovi utenti',
 'sp-contributions-blocklog'    => 'Blocchi',
@@ -1689,7 +1684,7 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[Spec
 'exportnohistory'   => "----
 '''Nota:''' l'esportazione dell'intera cronologia delle pagine attraverso questa interfaccia è stata disattivata per motivi legati alle prestazioni del sistema.",
 'export-submit'     => 'Esporta',
-'export-addcattext' => 'Aggungi pagine dalla categoria:',
+'export-addcattext' => 'Aggiungi pagine dalla categoria:',
 'export-addcat'     => 'Aggiungi',
 'export-download'   => 'Richiedi il salvataggio come file',
 

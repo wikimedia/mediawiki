@@ -52,6 +52,7 @@ $messages = array(
 'tog-underline'            => 'ಲಿಂಕುಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ',
 'tog-hideminor'            => 'ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸಿ',
 'tog-extendwatchlist'      => 'ಸಂಬಂಧಿತ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳನ್ನು ತೋರುವಂತೆ ಪಟ್ಟಿಯನ್ನು ವಿಸ್ತರಿಸಿ',
+'tog-rememberpassword'     => 'ಈ ಗಣಕಯಂತ್ರದಲ್ಲಿ ನನ್ನ ಲಾಗಿನ್ ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊ',
 'tog-watchcreations'       => 'ನಾನು ಪ್ರಾರಂಭಿಸುವ ಲೇಖನಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
 'tog-watchdefault'         => 'ನಾನು ಸಂಪಾದಿಸುವ ಪುಟಗಳನ್ನು ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
 'tog-watchdeletion'        => 'ನಾನು ಅಳಿಸುವ ಪುಟಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸು',
@@ -124,10 +125,17 @@ $messages = array(
 'categories'      => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
 'pagecategories'  => '{{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
 'category_header' => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
-'subcategories'   => 'ಉಪವಿಭಾಗಗಳು',
+'subcategories'   => 'ಉಪವರ್ಗಗಳು',
 'category-empty'  => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
 
-'mainpagetext' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
+'mainpagetext'      => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
+'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [http://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.
+
+== ಪ್ರಾರಂಭಿಸುವುದು ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
 'about'          => 'ನಮ್ಮ ಬಗ್ಗೆ',
 'article'        => 'ಲೇಖನ ಪುಟ',
@@ -154,6 +162,7 @@ $messages = array(
 'searcharticle'     => 'ಹೋಗು',
 'history'           => 'ಪುಟದ ಚರಿತ್ರೆ',
 'history_short'     => 'ಇತಿಹಾಸ',
+'updatedmarker'     => 'ನನ್ನ ಕೊನೆಯ ವೀಕ್ಷಣೆಯ ನಂತರ ಬದಲಾಗಿರುವವು',
 'info_short'        => 'ಮಾಹಿತಿ',
 'printableversion'  => 'ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ',
 'permalink'         => 'ಸ್ಥಿರ ಸಂಪರ್ಕ',
@@ -162,6 +171,7 @@ $messages = array(
 'delete'            => 'ಅಳಿಸಿ',
 'deletethispage'    => 'ಈ ಪುಟವನ್ನು ಅಳಿಸಿ',
 'protect'           => 'ಸಂರಕ್ಷಿಸು',
+'protect_change'    => 'ಸಂರಕ್ಷಣೆಯನ್ನು ಬದಲಾಯಿಸಿ',
 'protectthispage'   => 'ಈ ಪುಟವನ್ನು ಸಂರಕ್ಷಿಸಿ',
 'unprotect'         => 'ಸಂರಕ್ಷಣೆ ತೆಗೆ',
 'unprotectthispage' => 'ಈ ಪುಟದ ಸಂರಕ್ಷಣೆಯನ್ನು ತಗೆಯಿರಿ',

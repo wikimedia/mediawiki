@@ -3,11 +3,11 @@
  *
  * @addtogroup Language
  *
- * @author G - ג
  * @author Smeira
  * @author Nike
  * @author Malafaya
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -376,7 +376,6 @@ Jenotalised moükama pada at pajonon is as yuf.",
 'cantcreateaccounttitle' => 'Kal no kanon pajafön',
 
 # History pages
-'revhistory'   => 'Revidajenotem',
 'viewpagelogs' => 'Jonön jenotalisedis pada at',
 'cur'          => 'nuik',
 'next'         => 'sököl',
@@ -732,6 +731,10 @@ $2 jonon moükamis nulik.',
 'deletionlog'                 => 'jenotalised moükamas',
 'reverted'                    => 'Pegeükon ad revid büik',
 'deletecomment'               => 'Kod moükama',
+'deletereason-dropdown'       => '*Common delete reasons
+** Beg lautana
+** Copyright violation
+** Vandalism',
 'rollback'                    => 'Sädunön redakamis',
 'rollback_short'              => 'Sädunön',
 'rollbacklink'                => 'sädunön',
@@ -783,10 +786,6 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 'contribsub2'   => 'Tefü $1 ($2)',
 'nocontribs'    => 'Votükams nonik petuvons me paramets at.',
 
-'sp-contributions-newest'      => 'Lätikün',
-'sp-contributions-oldest'      => 'Büikün',
-'sp-contributions-newer'       => 'Lätiks $1',
-'sp-contributions-older'       => 'Büiks $1',
 'sp-contributions-newbies'     => 'Jonolöd te keblünotis kalas nulik',
 'sp-contributions-newbies-sub' => 'Tefü kals nulik',
 'sp-contributions-blocklog'    => 'Jenotalised blokamas',

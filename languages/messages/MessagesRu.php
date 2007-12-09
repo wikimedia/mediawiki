@@ -1,18 +1,22 @@
 <?php
-/** Russian (русский язык)
-  *
-  * Based on MessagesEn.php revision 27343, (2007-11-09)
-  * and ru.wikipedia MediaWiki namespace (2007-11-09)
-  *
-  * Maintainer: Alexander Sigachov (alexander.sigachov@gmail.com)
-  * 
-  * Изменения сделанные в этом файле будут потеряны при обновлении MediaWiki.
-  *
-  * Если необходимо внести изменения в перевод отдельных строк интерфейса,
-  * сделайте это посредством редактирования страниц вида «MediaWiki:*».
-  * Их список можно найти на странице «Special:Allmessages».
-  *
-  */
+/** Russian (Русский)
+ *
+ * @addtogroup Language
+ *
+ * @author Alexander Sigachov (alexander.sigachov@gmail.com)
+ * @author לערי ריינהארט
+ * @author SPQRobin
+ * @author HalanTul
+ */
+
+/*
+ * Изменения сделанные в этом файле будут потеряны при обновлении MediaWiki.
+ *
+ * Если необходимо внести изменения в перевод отдельных строк интерфейса,
+ * сделайте это посредством редактирования страниц вида «MediaWiki:*».
+ * Их список можно найти на странице «Special:Allmessages».
+ */
+
 
 $separatorTransformTable = array(
 	',' => "\xc2\xa0", # nbsp
@@ -427,7 +431,6 @@ $messages = array(
 'versionrequired'     => 'Требуется MediaWiki версии $1',
 'versionrequiredtext' => 'Для работы с этой страницей требуется MediaWiki версии $1. См. [[{{ns:special}}:Version|информацию о версиях используемого ПО]].',
 
-'ok'                      => 'OK',
 'pagetitle'               => '$1 — {{SITENAME}}',
 'retrievedfrom'           => 'Получено с $1',
 'youhavenewmessages'      => 'Вы получили $1 ($2).',
@@ -450,7 +453,7 @@ $messages = array(
 'page-rss-feed'           => '«$1» - RSS лента',
 'page-atom-feed'          => '«$1» - Atom лента',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Статья',
 'nstab-user'      => 'Участник',
 'nstab-media'     => 'Мультимедиа',
@@ -644,9 +647,7 @@ $2',
 'math_tip'        => 'Математическая формула (формат LaTeX)',
 'nowiki_sample'   => 'Вставляйте сюда неотформатированный текст.',
 'nowiki_tip'      => 'Игнорировать вики-форматирование',
-'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Встроенное изображение',
-'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Ссылка на медиа-файл',
 'sig_tip'         => 'Ваша подпись и момент времени',
 'hr_tip'          => 'Горизонтальная линия (не используйте часто)',
@@ -693,6 +694,7 @@ $2',
 Обратите внимание, что вы не сможете отправить письмо администратору, если вы не зарегистрированы в проекте и не подтвердили свой адрес электронной почты в [[{{ns:special}}:Preferences|личных настройках]], а также если вам было запрещено отправлять письма при блокировке.
 
 Ваш идентификатор блокировки — #$5. Пожалуйста, указывайте его в своих запросах.',
+'blockednoreason'           => 'причина не указана',
 'blockedoriginalsource'     => 'Ниже показан текст страницы «$1».',
 'blockededitsource'         => "Ниже показан текст '''ваших изменений''' страницы «$1».",
 'whitelistedittitle'        => 'Для изменения требуется авторизация',
@@ -794,7 +796,6 @@ $2',
 $3 указал следующую причину: ''$2''",
 
 # History pages
-'revhistory'          => 'Журнал изменений',
 'viewpagelogs'        => 'Показать журналы для этой страницы',
 'nohistory'           => 'Для этой страницы журнал изменений отсутствует.',
 'revnotfound'         => 'Версия не найдена',
@@ -874,16 +875,12 @@ $3 указал следующую причину: ''$2''",
 'overlogpagetext' => 'Ниже представлен список последних удалений и блокировок, затрагивающих материалы скрытые от администраторов. Просмотреть список действующих блокировок можно на [[Special:Ipblocklist|соответствующей странице]].',
 
 # Diffs
-'history-title'             => '$1 — история изменений',
-'difference'                => '(Различия между версиями)',
-'loadingrev'                => 'загрузка версии для различения',
-'lineno'                    => 'Строка $1:',
-'editcurrent'               => 'Редактировать текущую версию данной страницы',
-'selectnewerversionfordiff' => 'Выберите новую версию для сравнения',
-'selectolderversionfordiff' => 'Выберите старую версию для сравнения',
-'compareselectedversions'   => 'Сравнить выбранные версии',
-'editundo'                  => 'отменить',
-'diff-multi'                => '({{PLURAL:$1|$1 промежуточная версия не показана|$1 промежуточные версии не показаны|$1 промежуточных версий не показаны.}})',
+'history-title'           => '$1 — история изменений',
+'difference'              => '(Различия между версиями)',
+'lineno'                  => 'Строка $1:',
+'compareselectedversions' => 'Сравнить выбранные версии',
+'editundo'                => 'отменить',
+'diff-multi'              => '({{PLURAL:$1|$1 промежуточная версия не показана|$1 промежуточные версии не показаны|$1 промежуточных версий не показаны.}})',
 
 # Search results
 'searchresults'         => 'Результаты поиска',
@@ -1111,7 +1108,7 @@ $3 указал следующую причину: ''$2''",
 
 Проверьте, действительно ли вам нужно загружать этот файл.
 Ниже приведён журнал удалений:",
-'filename-bad-prefix'             => 'Имя загружаемого файла начинается с <strong>«$1»</strong> и вероятно является шаблонным именем, которое цифровая фотокамера даёт снимкам. Пожалуйста, выберите имя лучше описывающее содержание файла.',
+'filename-bad-prefix'         => 'Имя загружаемого файла начинается с <strong>«$1»</strong> и вероятно является шаблонным именем, которое цифровая фотокамера даёт снимкам. Пожалуйста, выберите имя лучше описывающее содержание файла.',
 
 'upload-proto-error'      => 'Неправильный протокол',
 'upload-proto-error-text' => 'Для удалённой загрузки требуется адрес, начинающийся с <code>http://</code> или <code>ftp://</code>.',
@@ -1211,9 +1208,12 @@ $3 указал следующую причину: ''$2''",
 'unusedtemplatestext' => 'На этой странице перечислены все страницы пространства имён «Шаблоны», которые не включены в другие страницы. Не забывайте проверить отсутствие других ссылок на шаблон, перед его удалением.',
 'unusedtemplateswlh'  => 'другие ссылки',
 
-# Random pages
-'randompage'                      => 'Случайная страница',
-'randompage-nopages'              => 'В данном пространстве имён отсутствуют страницы.',
+# Random page
+'randompage'         => 'Случайная статья',
+'randompage-nopages' => 'В данном пространстве имён отсутствуют страницы.',
+
+# Random redirect
+'randomredirect' => 'Случайное перенаправление',
 
 # Statistics
 'statistics'             => 'Статистика',
@@ -1352,7 +1352,6 @@ $3 указал следующую причину: ''$2''",
 'emailpagetext'   => 'Если этот участник указал действительный адрес электронной почты в своих настройках, то, заполнив форму ниже, можно отправить ему сообщение.
 Электронный адрес, который вы указали в своих настройках, будет указан в поле «От кого» письма, поэтому получатель будет иметь возможность ответить.',
 'usermailererror' => 'При отправке сообщения электронной почты произошла ошибка:',
-'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Адрес электронной почты отсутствует',
 'noemailtext'     => 'Этот участник не указал действительный адрес электронной почты или указал, что не желает получать письма от других участников.',
 'emailfrom'       => 'От кого',
@@ -1460,6 +1459,8 @@ $NEWPAGE
 'deletionlog'                 => 'список удалений',
 'reverted'                    => 'Откачено к ранней версии',
 'deletecomment'               => 'Причина удаления',
+'deleteotherreason'           => 'Другая причина/дополнение:',
+'deletereasonotherlist'       => 'Другая причина',
 'rollback'                    => 'Откатить изменения',
 'rollback_short'              => 'Откат',
 'rollbacklink'                => 'откатить',
@@ -1551,7 +1552,9 @@ $NEWPAGE
 'undelete-cleanup-error'       => 'Ошибка удаления неиспользуемого архивного файла «$1».',
 'undelete-missing-filearchive' => 'Невозможно восстановить файл с архивным идентификатором $1, так как он отсутствует в базе данных. Возможно, файл уже был восстановлен.',
 'undelete-error-short'         => 'Ошибка восстановления файла: $1',
-'undelete-error-long'          => "Во время восстановления файла возникли ошибки:\n\n$1",
+'undelete-error-long'          => 'Во время восстановления файла возникли ошибки:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Пространство имён:',
@@ -1569,10 +1572,6 @@ $NEWPAGE
 'month'         => 'За год (и ранее):',
 'year'          => 'За месяц (и ранее):',
 
-'sp-contributions-newest'      => 'Новейшие',
-'sp-contributions-oldest'      => 'Старейшие',
-'sp-contributions-newer'       => 'Более новые $1',
-'sp-contributions-older'       => 'Более старые $1',
 'sp-contributions-newbies'     => 'Показать только вклад, сделанный с новых учётных записей',
 'sp-contributions-newbies-sub' => 'С новых учётных записей',
 'sp-contributions-blocklog'    => 'Журнал блокировок',
@@ -1969,7 +1968,9 @@ The wiki server can't provide data in a format your client can read.",
 # Image deletion
 'deletedrevision'                 => 'Удалена старая версия $1',
 'filedeleteerror-short'           => 'Ошибка удаления файла: $1',
-'filedeleteerror-long'            => "Во время удаления файла возникли ошибки:\n\n$1",
+'filedeleteerror-long'            => 'Во время удаления файла возникли ошибки:
+
+$1',
 'filedelete-missing'              => 'Файл «$1» не может быть удалён, так как его не существует.',
 'filedelete-old-unregistered'     => 'Указанной версии файла «$1» не существует в базе данных.',
 'filedelete-current-unregistered' => 'Указанного файла «$1» не существует в базе данных.',
@@ -2334,7 +2335,6 @@ Trackback для этой статьи:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 удалить])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback был удалён.',
 
 # Delete conflict
@@ -2350,10 +2350,9 @@ $1
 'redirectingto' => 'Перенаправление на страницу [[$1]]…',
 
 # action=purge
-'confirm_purge'        => 'Очистить кеш этой страницы?
+'confirm_purge' => 'Очистить кеш этой страницы?
 
 $1',
-'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => 'Поиск статей, содержащих «$1».',
@@ -2423,21 +2422,22 @@ $1',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|$1 запись была удалена|$1 записи были удалены|$1 записей были удалены}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Изменения на страницах из списка',
-'watchlisttools-edit'  => 'Смотреть/править список',
-'watchlisttools-raw'   => 'Править как текст',
+'watchlisttools-view' => 'Изменения на страницах из списка',
+'watchlisttools-edit' => 'Смотреть/править список',
+'watchlisttools-raw'  => 'Править как текст',
 
 # Iranian month names
-'iranian-calendar-m1'  => 'Фарвардин', 
-'iranian-calendar-m2'  => 'Ордибехешт', 
-'iranian-calendar-m3'  => 'Хордад', 
-'iranian-calendar-m4'  => 'Тир', 
-'iranian-calendar-m5'  => 'Мордад', 
-'iranian-calendar-m6'  => 'Шахривар', 
-'iranian-calendar-m7'  => 'Мехр', 
-'iranian-calendar-m8'  => 'Абан', 
-'iranian-calendar-m9'  => 'Азар', 
+'iranian-calendar-m1'  => 'Фарвардин',
+'iranian-calendar-m2'  => 'Ордибехешт',
+'iranian-calendar-m3'  => 'Хордад',
+'iranian-calendar-m4'  => 'Тир',
+'iranian-calendar-m5'  => 'Мордад',
+'iranian-calendar-m6'  => 'Шахривар',
+'iranian-calendar-m7'  => 'Мехр',
+'iranian-calendar-m8'  => 'Абан',
+'iranian-calendar-m9'  => 'Азар',
 'iranian-calendar-m10' => 'Дей',
 'iranian-calendar-m11' => 'Бахман',
-'iranian-calendar-m12' => 'Эсфанд', 
+'iranian-calendar-m12' => 'Эсфанд',
+
 );

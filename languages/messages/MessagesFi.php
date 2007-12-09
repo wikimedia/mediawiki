@@ -808,7 +808,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergehistory-fail'                => 'Muutoshistorian liittäminen epäonnistui. Tarkista määritellyt sivut ja versiot.',
 'mergehistory-no-source'           => 'Lähdesivua $1 ei ole olemassa.',
 'mergehistory-no-destination'      => 'Kohdesivua $1 ei ole olemassa.',
-'mergehistory-invalid-source'      => 'Lähdesivun pitää olla kelvollinen sivunnimi.',
+'mergehistory-invalid-source'      => 'Lähdesivulla pitää olla kelvollinen nimi.',
 'mergehistory-invalid-destination' => 'Kohdesivulla pitää olla kelvollinen nimi.',
 
 # Merge log
