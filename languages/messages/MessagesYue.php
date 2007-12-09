@@ -1992,10 +1992,9 @@ Variants for Chinese language
 'variantname-sr'    => '無變換',
 
 # Variants for Kazakh language
-'variantname-kk-tr' => '哈薩克拉丁文',
-'variantname-kk-kz' => '哈薩克西里爾字',
-'variantname-kk-cn' => '哈薩克阿剌伯文',
-'variantname-kk'    => 'disable',
+'variantname-kk-latn' => '哈薩克拉丁文',
+'variantname-kk-cyrl' => '哈薩克西里爾字',
+'variantname-kk-arab' => '哈薩克阿剌伯文',
 
 # Variants for Kurdish language
 'variantname-ku-arab' => '庫爾德阿剌伯文',

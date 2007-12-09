@@ -21,7 +21,7 @@ class LanguageConverter {
 	var $mFlags;
 	var $mUcfirst = false;
 
-	const CACHE_VERSION_KEY = 'VERSION 3';
+	const CACHE_VERSION_KEY = 'VERSION 4';
 
 	/**
      * Constructor

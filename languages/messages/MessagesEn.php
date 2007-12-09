@@ -2559,10 +2559,13 @@ Variants for Chinese language
 'variantname-sr'    => 'sr', # only translate this message to other languages if you have to change it
 
 # Variants for Kazakh language
-'variantname-kk-tr' => 'kk-tr', # only translate this message to other languages if you have to change it
-'variantname-kk-kz' => 'kk-kz', # only translate this message to other languages if you have to change it
-'variantname-kk-cn' => 'kk-cn', # only translate this message to other languages if you have to change it
-'variantname-kk'    => 'kk', # only translate this message to other languages if you have to change it
+'variantname-kk-kz'   => 'kk-kz', # only translate this message to other languages if you have to change it
+'variantname-kk-tr'   => 'kk-tr', # only translate this message to other languages if you have to change it
+'variantname-kk-cn'   => 'kk-cn', # only translate this message to other languages if you have to change it
+'variantname-kk-cyrl' => 'kk-cyrl', # only translate this message to other languages if you have to change it
+'variantname-kk-latn' => 'kk-latn', # only translate this message to other languages if you have to change it
+'variantname-kk-arab' => 'kk-arab', # only translate this message to other languages if you have to change it
+'variantname-kk'      => 'kk', # only translate this message to other languages if you have to change it
 
 # Variants for Kurdish language
 'variantname-ku-arab' => 'ku-Arab', # only translate this message to other languages if you have to change it

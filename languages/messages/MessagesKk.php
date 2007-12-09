@@ -5,6 +5,8 @@
   * @addtogroup Language
   */
 
+# Stub message file for converter code "kk"
+
 $fallback = 'kk-kz';
 
 $linkTrail = '/^([a-zäçéğıïñöşüýа-яёәғіқңөұүһاٵبۆگعدەجزيكقلمنڭوٶپرستۋۇٷفحھچشىٸʺʹ“»]+)(.*)$/sDu';
@@ -13,40 +15,32 @@ $messages = array(
 'linkprefix' => '/^(.*?)([a-zäçéğıïñöşüýа-яёәіңғүұқөһA-ZÄÇÉĞİÏÑÖŞÜÝА-ЯЁӘІҢҒҮҰҚӨҺاٵبۆگعدەجزيكقلمنڭوٶپرستۋۇٷفحھچشىٸʺʹ«„]+)$/sDu',
 
 # Stylesheets
-'common.css'   => ' /*
-  * Мындағы CSS барлық безендіру мәнеріндерде қолданылады
-  * Mındağı CSS barlıq bezendirw mänerinderde qoldanıladı
-  * مىنداعى CSS بارلىق بەزەندٸرۋ مٵنەرٸندەردە قولدانىلادى
-  */',
-'monobook.css' => ' /*
-  * Мындағы CSS «Дара кітап» (monobook) безендіру мәнерін пайдаланушыларға ықпал етеді
-  * Mındağı CSS «Dara kitap» (monobook) bezendirw mänerin paýdalanwşılarğa ıqpal etedi
-  * مىنداعى CSS «دارا كٸتاپ» (monobook) بەزەندٸرۋ مٵنەرٸن پايدالانۋشىلارعا ىقپال ەتەدٸ
-  */',
+'common.css'   => ' /* Мындағы CSS барлық безендіру мәнеріндерде қолданылады */',
+'monobook.css' => ' /* Мындағы CSS «Дара кітап» (monobook) безендіру мәнерін пайдаланушыларға ықпал етеді */',
 
 # Scripts
-'common.js'   => ' /*
-  * Мындағы JavaScript әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі.
-  * Mındağı JavaScript ärqaýsı bet qaralğanda barlıq paýdalanwşılarğa jükteledi.
-  * مىنداعى JavaScript ٵرقايسى بەت قارالعاندا بارلىق پايدالانۋشىلارعا جٷكتەلەدٸ.
-  */
+'common.js'   => ' /* Мындағы JavaScript әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі. */
+
 /* Workaround for language variants */
 var languagevariant;
-var direction; 
+var direction;
 switch(wgUserLanguage){
-    case "kk": 
+    case "kk":
          languagevariant = "kk";
          direction = "ltr";
          break;
-    case "kk-kz": 
+    case "kk-kz":
+    case "kk-cyrl": 
          languagevariant = "kk-Cyrl";
          direction = "ltr";
          break;
-    case "kk-tr": 
+    case "kk-tr":
+    case "kk-latn":
          languagevariant = "kk-Latn";
          direction = "ltr";
          break;
-    case "kk-cn": 
+    case "kk-cn":
+    case "kk-arab":
          // workaround for RTL ([[bugzilla:6756]]) and for [[bugzilla:02020]] & [[bugzilla:04295]]
          languagevariant = "kk-Arab";
          direction = "rtl";
@@ -95,16 +89,20 @@ var htmlE=document.documentElement;
 htmlE.setAttribute("lang",languagevariant);
 htmlE.setAttribute("xml:lang",languagevariant);
 htmlE.setAttribute("dir",direction);',
-'monobook.js' => ' /*
-  * Тыйылған; орнына [[{{ns:mediawiki}}:common.js]] қолданыңыз
-  * Tıýılğan; ornına [[{{ns:mediawiki}}:common.js]] qoldanıñız
-  * تىيىلعان; ورنىنا [[{{ns:mediawiki}}:common.js]] قولدانىڭىز 
-  */',
+'monobook.js' => ' /* Тыйылған; орнына [[{{ns:mediawiki}}:common.js]] қолданыңыз */',
 
+/*
+ * Short names for language variants used for language conversion links. 
+ * To disable showing a particular link, set it to 'disable', e.g. 
+ * 'variantname-kk-cn' => 'disable', 
+ */
 # Variants for Kazakh language
-'variantname-kk-tr' => 'Latın',
-'variantname-kk-kz' => 'Кирил',
-'variantname-kk-cn' => 'توتە',
+'variantname-kk-kz' => 'disable', # Қазақстан
+'variantname-kk-tr' => 'disable', # Türkïya
+'variantname-kk-cn' => 'disable', # جۇنگو
+'variantname-kk-cyrl' => 'Кирил',
+'variantname-kk-latn' => 'Latın',
+'variantname-kk-arab' => 'توتە',
 'variantname-kk'    => 'disable',
 
 );
