@@ -5,10 +5,10 @@
  *
  * @author Albonio
  * @author Artomo
- * @author G - ג
  * @author SPQRobin
  * @author Malafaya
  * @author Lakaoso
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -34,10 +34,18 @@ $namespaceNames = array(
 
 $messages = array(
 # User preference toggles
+'tog-underline'        => 'Sub-strekizez ligili:',
+'tog-justify'          => 'Adjustigez paragrafi',
+'tog-hideminor'        => 'Celez mikra redaktaji de recenta chanji',
+'tog-showtoolbar'      => 'Montrez redaktilo (bezonas JavaScript)',
+'tog-editondblclick'   => 'Redaktez pagini kande on klikus dufoye (bezonas JavaScript)',
 'tog-rememberpassword' => 'Memorez mea pas-vorto en ica komputoro',
+'tog-editwidth'        => 'Redakto-spaco havas ampla larjeso',
 
 'underline-always' => 'Sempre',
 'underline-never'  => 'Nulatempe',
+
+'skinpreview' => '(Pre-videz)',
 
 # Dates
 'sunday'        => 'sundio',
@@ -96,6 +104,7 @@ $messages = array(
 'pagecategories'  => '{{PLURAL:$1|Kategorio|Kategorii}}',
 'category_header' => 'Artikli en kategorio "$1"',
 'subcategories'   => 'Subkategorii',
+'category-empty'  => "''Nuntempe existas nula pagini en ita kategorio.''",
 
 'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
 
@@ -111,7 +120,7 @@ $messages = array(
 'moredotdotdot'  => 'Plus...',
 'mypage'         => 'Mea pagino',
 'mytalk'         => 'Mea diskuti',
-'anontalk'       => 'Debatar pri ica IP',
+'anontalk'       => 'Diskuto relatant ad ica IP',
 'navigation'     => 'Navigado',
 
 'errorpagetitle'    => 'Eroro',
@@ -124,6 +133,7 @@ $messages = array(
 'searcharticle'     => 'Irez',
 'history'           => 'Paginala historio',
 'history_short'     => 'Versionaro',
+'info_short'        => 'Informajo',
 'printableversion'  => 'Imprimebla versiono',
 'permalink'         => 'Permananta ligilo',
 'print'             => 'Imprimar',
@@ -141,7 +151,7 @@ $messages = array(
 'talkpagelinktext'  => 'Diskutez',
 'specialpage'       => 'Specala pagino',
 'personaltools'     => 'Personala utensili',
-'postcomment'       => 'Skribar komento',
+'postcomment'       => 'komentez',
 'articlepage'       => 'Regardar artiklo',
 'talk'              => 'Diskuto',
 'views'             => 'Nombro di vizitinti',
@@ -346,7 +356,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'template-protected' => '(protektita)',
 
 # History pages
-'revhistory'      => 'Antea versioni',
 'nohistory'       => 'Ne esas redakto-historio por ica pagino.',
 'revnotfound'     => 'Versiono ne trovita',
 'revnotfoundtext' => "L' anciena versiono di la pagino, quan vu demandis, ne povis trovesar. <br>Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
@@ -367,9 +376,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 
 # Diffs
 'difference'              => '(Diferi inter versioni)',
-'loadingrev'              => 'rekuperante versiono por dif',
 'lineno'                  => 'Lineo $1:',
-'editcurrent'             => 'Redaktar nuna versiono di ca pagino',
 'compareselectedversions' => 'Komparar selektita versioni',
 'editundo'                => 'des-facez',
 
@@ -648,9 +655,6 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'ucnote'        => 'Sube esas la lasta <b>$1</b> chanji da ca uzanto dum la lasta <b>$2</b> dii.',
 'uclinks'       => 'Vidar la lasta $1 chanji; vidar la lasta $2 dii.',
 'uctop'         => ' (lasta modifiko)',
-
-'sp-contributions-newest' => 'Maxim nova',
-'sp-contributions-oldest' => 'Maxim anciena',
 
 # What links here
 'whatlinkshere'       => 'Quo ligas hike',

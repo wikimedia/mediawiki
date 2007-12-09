@@ -8,6 +8,7 @@
  * @author Nike
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Mssetiadi
  */
 
 $fallback = 'id';
@@ -94,9 +95,13 @@ $messages = array(
 'tue'           => 'Sal',
 'wed'           => 'Reb',
 'thu'           => 'Kem',
+'fri'           => 'Jum',
 'sat'           => 'Sap',
+'january'       => 'Januari',
 'february'      => 'Pébruari',
+'march'         => 'Maret',
 'may_long'      => 'Méi',
+'june'          => 'Juni',
 'september'     => 'Séptémber',
 'november'      => 'Nopémber',
 'december'      => 'Désémber',
@@ -129,7 +134,7 @@ $messages = array(
 'qbbrowse'       => 'Sungsi',
 'qbedit'         => 'Édit',
 'qbpageoptions'  => 'Kaca ieu',
-'qbpageinfo'     => 'Kontéx',
+'qbpageinfo'     => 'Kontéks',
 'qbmyoptions'    => 'Kaca kuring',
 'qbspecialpages' => 'Kaca husus',
 'moredotdotdot'  => 'Deui...',
@@ -158,7 +163,7 @@ $messages = array(
 'deletethispage'    => 'Hapus kaca ieu',
 'undelete_short'    => 'Bolaykeun ngahapus $1 éditan',
 'protect'           => 'Konci',
-'protect_change'    => 'rubah ngonci',
+'protect_change'    => 'robah konci',
 'protectthispage'   => 'Konci kaca ieu',
 'unprotect'         => 'Buka konci',
 'unprotectthispage' => 'Buka konci kaca ieu',
@@ -178,7 +183,7 @@ $messages = array(
 'mediawikipage'     => 'Témbongkeun kaca talatah',
 'templatepage'      => 'Témbongkeun kaca citakan',
 'viewhelppage'      => 'Témbongkeun kaca pitulung',
-'categorypage'      => 'Témpo kaca kategori',
+'categorypage'      => 'Tempo kaca kategori',
 'viewtalkpage'      => 'Témbongkeun sawala',
 'otherlanguages'    => 'Basa séjén',
 'redirectedfrom'    => '(Dialihkeun ti $1)',
@@ -289,7 +294,7 @@ Mun lain kitu masalahna, jigana anjeun geus manggihan kutu na ''software''na. Ma
 'filecopyerror'        => 'Teu bisa nyalin koropak "$1" ka "$2".',
 'filerenameerror'      => 'Teu bisa ngaganti ngaran koropak "$1" jadi "$2".',
 'filedeleteerror'      => 'Teu bisa ngahapus koropak "$1".',
-'directorycreateerror' => 'Henteu bisa nyieun direktori "$1".',
+'directorycreateerror' => 'Henteu bisa nyieun diréktori "$1".',
 'filenotfound'         => 'Teu bisa manggihan koropak "$1".',
 'fileexistserror'      => 'Henteu bisa muatkeun koropak "$1": gambar geus aya',
 'unexpected'           => 'Peunteun di luar hontalan: "$1"="$2".',
@@ -356,6 +361,7 @@ Rekening anjeun geus dijieun. Tong hilap ngarobih préferénsi {{SITENAME}} anje
 'prefs-help-realname'        => '* Ngaran asli (pilihan): mun anjeun milih ngeusian, bakal dipaké pikeun nandaan kontribusi anjeun.',
 'loginerror'                 => 'Kasalahan asup log',
 'prefs-help-email'           => '* Surélék (pilihan): batur bisa ngontak anjeun tina kaca pamaké atawa obrolanana tanpa kudu nyebutkeun idéntitas anjeun.',
+'prefs-help-email-required'  => 'Alamat surélék dibutuhkeun.',
 'nocookiesnew'               => "Rekening pamaké geus dijieun, tapi anjeun can asup log. {{SITENAME}} maké ''cookies'' pikeun ngasupkeun log pamaké. Anjeun boga ''cookies'' nu ditumpurkeun. Mangga fungsikeun, teras asup log migunakeun ngaran pamaké sarta sandi nu anyar.",
 'nocookieslogin'             => "{{SITENAME}} migunakeun ''cookies'' pikeun ngasupkeun pamaké kana log. Anjeun boga ''cookies'' nu ditumpurkeun. Mangga pungsikeun sarta cobian deui.",
 'noname'                     => 'Anjeun teu nuliskeun ngaran pamaké nu sah.',
@@ -385,6 +391,7 @@ is not allowed to use the password recovery function to prevent abuse.',
 'invalidemailaddress'        => 'Alamat surélék teu bisa ditarima sabab formatna salah. Mangga lebetkeun alamat nu formatna bener atawa kosongkeun.',
 'accountcreated'             => 'Rekening ngeus di jieun.',
 'accountcreatedtext'         => 'Rekening pamaké pikeun $1 geus dijieun.',
+'createaccount-title'        => 'Nyieun rekening keur {{SITENAME}}',
 'loginlanguagelabel'         => 'Basa: $1',
 
 # Password reset dialog
@@ -458,6 +465,7 @@ Anjeun bisa nepungan $1 atawa [[{{MediaWiki:Grouppage-sysop}}|kuncé]] lianna pi
 Catet yén anjeun moal bisa migunakeun fitur "surélékan ieu pamaké" mun alamat surélék anu didaptarkeun dina [[Special:Preferences|préferénsi pamaké]]na teu sah, sarta teu dipeungpeuk tina migunakeun ieu fitur.
 
 ID peungpeukan anjeun $5. Mangga sebatkeun éta ID dina pamundut-pamundut anjeun.',
+'blockednoreason'           => 'taya alesan',
 'blockedoriginalsource'     => "Sumber '''$1''' dipidangkeun di handap ieu:",
 'blockededitsource'         => "Tulisan '''éditan anjeun''' dina '''$1''' dipidangkeun di handap ieu:",
 'whitelistedittitle'        => 'Perlu asup log sangkan bisa ngédit',
@@ -482,6 +490,7 @@ Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap
 Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.",
 'anontalkpagetext'          => "----''Ieu mangrupa kaca sawala pikeun pamaké anonim nu can (henteu) nyieun rekening, kusabab kitu alamat IP dipaké dina hal ieu pikeun nyirikeun anjeunna. Alamat IP ieu bisa dipaké ku sababaraha urang. Mun anjeun salasahiji pamaké anonim sarta ngarasa aya koméntar nu teu pakait geus ditujukeun ka anjeun, leuwih hadé [[Special:Userlogin|nyieun rekening atawa asup log]] sangkan teu pahili jeung pamaké anonim séjén.''",
 'noarticletext'             => 'Kiwari can aya téks na kaca ieu. Mun anjeun geus kungsi nyieun kaca ieu, coba fungsi [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit].',
+'userpage-userdoesnotexist' => 'Rekening pamaké "$1" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
 'clearyourcache'            => "'''Catetan:''' Sanggeus nyimpen, anjeun perlu ngosongkeun sindangan panyungsi anjeun pikeun nempo parobahanana:
 '''Mozilla/Safari/Konqueror:''' pencét & tahan ''Shift'' bari ngaklik ''Reload'' (atawa pencét ''Ctrl-Shift-R''), '''IE:''' pencét ''Ctrl-F5'', '''Opera:''' pencét ''F5''.",
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Paké tombol 'Témbongkeun pramidang' pikeun nyoba css/js anyar anjeun méméh nyimpen.",
@@ -498,6 +507,7 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.
 ''Kusabab ieu wiki ngawenangkeun dipakéna HTML atah, pramidangna disumputkeun pikeun nyegah panarajang JavaScript.''
 
 <strong>Mun ieu éditan bener, mangga cobian deui. Mun tetep teu metu, cobi kaluar log heula, lajeng lebet deui.</strong>",
+'token_suffix_mismatch'     => '<strong>Éditan anjeun ditolak sabab aplikasi klien Anjeun ngarobah karakter tanda baca dina éditan. Éditan kasebut ditolak keur nyegah kasalahan dina artikel téks. Hal ieu kadang-kadang kajadian lamun Anjeun maké proksi anonim basis web nu masalah.</strong>',
 'editing'                   => 'Ngédit $1',
 'editinguser'               => 'Ngédit $1',
 'editingsection'            => 'Ngédit $1 (bagian)',
@@ -521,7 +531,7 @@ Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti doma
 'protectedpagewarning'      => '<strong>PERHATOSAN: Kaca ieu dikonci sahingga ngan bisa dirobah ku pamaké nu statusna kuncén.</strong>',
 'semiprotectedpagewarning'  => "'''Perhatoskeun''': ieu kaca dikonci sahingga ukur bisa dirobah ku pamaké nu geus asup log.",
 'cascadeprotectedwarning'   => "'''Awas''': ieu kaca dikonci sahingga ukur bisa dirobah ku kuncén, sabab kaasup {{PLURAL:$1|kaca|kaca}} dina panyalindungan-ngaruntuy di handap ieu:",
-'templatesused'             => 'Citaka nu dipaké na kaca ieu:',
+'templatesused'             => 'Citakan nu dipaké na kaca ieu:',
 'templatesusedpreview'      => 'Citakan nu dipaké dina ieu pramidang:',
 'templatesusedsection'      => 'Citakan nu dipaké dina ieu bab:',
 'template-protected'        => '(dikunci)',
