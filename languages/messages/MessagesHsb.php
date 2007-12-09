@@ -1272,6 +1272,8 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'unusedcategoriestext'            => 'Slědowace kategorije eksistuja, hačrunjež žana druha strona abo kategorija je njewužiwa.',
 'notargettitle'                   => 'Žadyn cil',
 'notargettext'                    => 'Njejsy cilowu stronu abo wužiwarja podał, zo by funkciju wuwjesć móhł.',
+'pager-newer-n'                   => '{{PLURAL:$1|nowši 1|nowšej $1|nowše $1|nowšich $1}}',
+'pager-older-n'                   => '{{PLURAL:$1|starši 1|staršej $1|starše $1|staršich $1}}',
 
 # Book sources
 'booksources'               => 'Pytanje po ISBN',
@@ -1544,10 +1546,6 @@ $1',
 'month'         => 'wot měsaca (a do toho):',
 'year'          => 'wot lěta (a do toho):',
 
-'sp-contributions-newest'      => 'najnowše',
-'sp-contributions-oldest'      => 'najstarše',
-'sp-contributions-newer'       => 'nowše $1',
-'sp-contributions-older'       => 'starše $1',
 'sp-contributions-newbies'     => 'jenož přinoški nowačkow pokazać',
 'sp-contributions-newbies-sub' => 'Za nowačkow',
 'sp-contributions-blocklog'    => 'protokol zablokowanjow',
