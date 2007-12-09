@@ -121,14 +121,13 @@ function rebuildRecentChangesTablePass3()
 
 		print( "Flagging bot account edits...\n" );
 
-		# Find all users in RC that are bots
-		$sql = "SELECT DISTINCT rc_user FROM $recentchanges " .
-			"LEFT JOIN $usergroups ON rc_user=ug_user " . 
+		# Find all users that are bots
+		$sql = "SELECT DISTINCT ug_user FROM $usergroups " .
 			"WHERE ug_group IN($botwhere)";
 		$res = $dbw->query( $sql, DB_MASTER );
 
 		while( $obj = $dbw->fetchObject( $res ) ) {
-			$botusers[] = $obj->rc_user;
+			$botusers[] = $obj->ug_user;
 		}
 		# Fill in the rc_bot field
 		if( !empty($botusers) ) {
@@ -146,13 +145,12 @@ function rebuildRecentChangesTablePass3()
 		print( "Flagging auto-patrolled edits...\n" );
 
 		# Find all users in RC with autopatrol rights
-		$sql = "SELECT DISTINCT rc_user FROM $recentchanges " .
-			"LEFT JOIN $usergroups ON rc_user=ug_user " . 
+		$sql = "SELECT DISTINCT ug_user FROM $usergroups " .
 			"WHERE ug_group IN($patrolwhere)";
 		$res = $dbw->query( $sql, DB_MASTER );
 
 		while( $obj = $dbw->fetchObject( $res ) ) {
-			$patrolusers[] = $obj->rc_user;
+			$patrolusers[] = $obj->ug_user;
 		}
 		
 		# Fill in the rc_patrolled field
