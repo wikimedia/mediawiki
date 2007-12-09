@@ -369,7 +369,7 @@ $1',
 'viewsource'           => '覽源',
 'viewsourcefor'        => '$1',
 'protectedinterface'   => '此頁司版，緘之以遠濫。',
-'editinginterface'     => "'''警示：'''此頁司版，一髮牽身，惠慎之。",
+'editinginterface'     => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[http://translatewiki.net/wiki/Translating:Intro Betawiki]也，為MediaWiki軟件本地化之計劃也。",
 'sqlhidden'            => '(SQL隱然)',
 'cascadeprotected'     => '此頁"迭緘"矣。$1頁牽連如下：
 $2',

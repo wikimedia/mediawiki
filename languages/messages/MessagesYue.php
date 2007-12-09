@@ -459,7 +459,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'protectedpagetext'    => '呢一頁已經鎖咗唔畀改。',
 'viewsourcetext'       => '你可以睇吓或者複製呢一頁嘅原始碼：',
 'protectedinterface'   => '呢一頁提供軟件嘅介面文字，呢一頁已經鎖上以預防濫用。',
-'editinginterface'     => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。",
+'editinginterface'     => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。要翻譯，請考慮利用[http://translatewiki.net/wiki/Translating:Intro Betawiki]，一個用來為MediaWiki軟件本地化嘅計劃。",
 'sqlhidden'            => '(SQL 查詢隱藏)',
 'cascadeprotected'     => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：
 $2',
@@ -1748,7 +1748,7 @@ $1',
 'export-submit'     => '倒出/導出/匯出',
 'export-addcattext' => '由分類度加入頁面：',
 'export-addcat'     => '加入',
-'export-download'   => '提供一個檔案去另存',
+'export-download'   => '另存做檔案',
 
 # Namespace 8 related
 'allmessages'               => '系統信息',
