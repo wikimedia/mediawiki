@@ -392,7 +392,7 @@ $messages = array(
 'tog-minordefault'            => 'Ädepkiden barlıq tüzetwlerdi şağın dep belgile',
 'tog-previewontop'            => 'Qarap şığw awmağı öñdew awmağı aldında',
 'tog-previewonfirst'          => 'Birinşi öñdegende qarap şığw',
-'tog-nocache'                 => 'Bet qosalqı qaltasın öşir',
+'tog-nocache'                 => 'Betti qosalqı qaltada saqtawdı öşir',
 'tog-enotifwatchlistpages'    => 'Baqılanğan bet özgergende mağan xat jiber',
 'tog-enotifusertalkpages'     => 'Talqılawım özgergende mağan xat jiber',
 'tog-enotifminoredits'        => 'Şağın tüzetw twralı da mağan xat jiber',
@@ -699,7 +699,7 @@ Suranım: $2',
 'protectedpagetext'    => 'Öñdewdi qaqpaýlaw üşin bul bet qulıptalınğan.',
 'viewsourcetext'       => 'Bul bettiñ qaýnarın qarawıñızğa jäne köşirip alwñızğa boladı:',
 'protectedinterface'   => 'Bul bet bağdarlamanıñ tildesw mätinin jetistiredi, sondıqtan qïyanattı qaqpaýlaw üşin özgertwi qulıptalğan.',
-'editinginterface'     => "'''Nazar salıñız:''' Bağdarlamağa tildesw mätinin jetistiretin betin öñdep jatırsız. Bul bettiñ özgertwi basqa qatıswşılarğa paýdalanwşılıq tildeswi qalaý körinetine äser etedi.",
+'editinginterface'     => "'''Nazar salıñız:''' Bağdarlamağa tildesw mätinin jetistiretin betin öñdep jatırsız. Bul bettiñ özgertwi basqa qatıswşılarğa paýdalanwşılıq tildeswi qalaý körinetine äser etedi. Awdarw üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.net/wiki/Translating:Intro Betawiki] jobası paýdalanwı jan-jağın qarañız.",
 'sqlhidden'            => '(SQL suranımı jasırılğan)',
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi kelesi «bawlı qorğawı» qosılğan {{PLURAL:$1|betke|betterge}} kiriktirilgen:
 
@@ -925,8 +925,8 @@ Qaýta baýqap köriñiz. Eger bul äli istemese, şığwdı jäne qaýta kirwdi
 ''Osı wïkïde qam HTML qosılğan, JavaScript şabwıldardan qorğanw üşin aldın ala qarap şığw jasırılğan.''
 
 <strong>Eger bul öñdew adal talap bolsa, qaýta baýqap köriñiz. Eger bul äli istemese, şığwdı jäne qaýta kirwdi baýqap köriñiz.</strong>",
-'token_suffix_mismatch'     => '<strong>Öñdewiñiz qabıldanbadı, sebebi qoldanğan bağdarlamañız mätindegi 
-emle nışandarın keskilep tastadı. Bet mätini bülinbew üşin tüzetwiñiz qabıldanbaýdı. 
+'token_suffix_mismatch'     => '<strong>Tüzetwiñiz taýdırıldı, sebebi tutınğışıñız öñdew nışanında 
+emle tañbaların keskilep tastadı. Bet mätini bülinbew üşin tüzetwiñiz taýdırıladı.
 Bul ğalamtorğa negizdelingen qate tolğan tirkelwi joq proksï-serverdi paýdalanğan bolwı mümkin.</strong>',
 'editing'                   => 'Öñdelwde: $1',
 'editinguser'               => 'Öñdelwde: <b>$1</b> degen qatıswşı',
@@ -1194,7 +1194,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'files'                    => 'Faýldar',
 
 # User rights
-'userrights-lookup-user'      => 'Qatıswşı toptarın meñgerw',
+'userrights-lookup-user'      => 'Qatıswşı toptarın rettew',
 'userrights-user-editname'    => 'Qatıswşı atın engiziñiz:',
 'editusergroup'               => 'Qatıswşı toptarın öñdew',
 'userrights-editusergroup'    => 'Qatıswşı toptarın öñdew',
@@ -1541,7 +1541,7 @@ Bul toraptarda izdelgen kitaptar twralı bılaýğı aqparat bolwğa mümkin.',
 
 'categoriespagetext' => 'Osında wïkïdegi barlıq sanattarınıñ tizimi berilip tur.',
 'data'               => 'Derekter',
-'userrights'         => 'Qatıswşılar quqıqtarın meñgerw',
+'userrights'         => 'Qatıswşılar quqıqtarın rettew',
 'groups'             => 'Qatıswşı toptarı',
 'alphaindexline'     => '$1 — $2',
 'version'            => 'Jüýe nusqası',
@@ -1626,7 +1626,7 @@ Osı betti soñınan baqılaw tizimnen alastağıñız kelse «Baqılamaw» para
 'unwatch'              => 'Baqılamaw',
 'unwatchthispage'      => 'Baqılawdı toqtatw',
 'notanarticle'         => 'Mağlumat beti emes',
-'watchnochange'        => 'Körsetilgen merzimde eşbir baqılanğan dana öñdelgen joq.',
+'watchnochange'        => 'Körsetilgen merzimde eş baqılanğan dana öñdelgen joq.',
 'watchlist-details'    => 'Talqılaw betterin sanamağanda {{PLURAL:$1|1|$1}} bet baqlanğan.',
 'wlheader-enotif'      => '* Eskertw xat jiberwi qosılğan.',
 'wlheader-showupdated' => "* Soñğı kelip-ketwiñizden beri özgertilgen betterdi '''jwan''' qaripimen körset",
@@ -2042,7 +2042,7 @@ Soñğı jağdaýda siltemeni de, mısalı «{{{{ns:mediawiki}}:Mainpage}}» bet
 'export-submit'     => 'Sırtqa ber',
 'export-addcattext' => 'Mına sanattağı betterdi üstew:',
 'export-addcat'     => 'Üste',
-'export-download'   => 'Faýl etip saqtawdı usınw',
+'export-download'   => 'Faýl türinde saqtaw',
 
 # Namespace 8 related
 'allmessages'               => 'Jüýe xabarları',
@@ -2161,7 +2161,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 # Metadata
 'nodublincore'      => 'Bul serverde «Dublin Core RDF» türi qosımşa derekteri öşirilgen.',
 'nocreativecommons' => 'Bul serverde «Creative Commons RDF» türi qosımşa derekteri öşirilgen.',
-'notacceptable'     => 'Osı wïkï server «paýdalanwşı äreketkişiñiz» oqï alatın pişimi bar derekterdi jibere almaýdı.',
+'notacceptable'     => 'Tutınğışıñız oqıp alw üşin pişimdelingen derekterdi osı wïkï server jetistire almaýdı.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} tirkelgisiz qatıswşı(ları)',

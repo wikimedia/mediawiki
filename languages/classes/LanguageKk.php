@@ -280,7 +280,8 @@ class LanguageKk extends LanguageKk_cyrl {
 			case 'kk':
 				$word = parent::convertGrammar( $word, $case, $variant='kk-cyrl' );
 				break;
-			default: #do nothing
+			default:
+				$word = parent::convertGrammar( $word, $case, $variant='kk-cyrl' );
 		}
 
 		wfProfileOut( $fname );
