@@ -1004,71 +1004,71 @@ class OutputPage {
 	}
 
 	/**
-	 * @todo document
-	 * @param bool  $protected Is the reason the page can't be reached because it's protected?
-	 * @param mixed $source
-	 * @param bool $protected, page is protected?
-	 * @param array $reason, array of arrays( msg, args )
+	 * Display a page stating that the Wiki is in read-only mode,
+	 * and optionally show the source of the page that the user
+	 * was trying to edit.  Should only be called (for this
+	 * purpose) after wfReadOnly() has returned true.
+	 *
+	 * For historical reasons, this function is _also_ used to
+	 * show the error message when a user tries to edit a page
+	 * they are not allowed to edit.  (Unless it's because they're
+	 * blocked, then we show blockedPage() instead.)  In this
+	 * case, the second parameter should be set to true and a list
+	 * of reasons supplied as the third parameter.
+	 *
+	 * @todo Needs to be split into multiple functions.
+	 *
+	 * @param string $source    Source code to show (or null).
+	 * @param bool   $protected Is this a permissions error?
+	 * @param array  $reasons   List of reasons for this error, as returned by Title::getUserPermissionsErrors().
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
 		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
-		$skin = $wgUser->getSkin();
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		
+		// If no reason is given, just supply a default "I can't let you do
+		// that, Dave" message.  Should only occur if called by legacy code.
+		if ( $protected && empty($reasons) ) {
+			$reasons[] = array( 'badaccess-group0' );
+		}
+
 		if ( !empty($reasons) ) {
+			// Permissions error
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
-
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons ) );
-		} else if( $protected ) {
-			$this->setPageTitle( wfMsg( 'viewsource' ) );
-			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
-			list( $cascadeSources, /* $restrictions */ ) = $wgTitle->getCascadeProtectionSources();
-
-			// Show an appropriate explanation depending upon the reason
-			// for the protection...all of these should be moved to the
-			// callers
-			if( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
-				// User isn't allowed to edit the interface
-				$this->addWikiText( wfMsg( 'protectedinterface' ) );
-			} elseif( $cascadeSources && ( $count = count( $cascadeSources ) ) > 0 ) {
-				// Cascading protection
-					$titles = '';
-					foreach( $cascadeSources as $title )
-						$titles .= "* [[:" . $title->getPrefixedText()  . "]]\n";
-					$this->addWikiText( wfMsgExt( 'cascadeprotected', 'parsemag', $count, "\n{$titles}" ) );
-			} elseif( !$wgTitle->isProtected( 'edit' ) && $wgTitle->isNamespaceProtected() ) {
-				// Namespace protection
-				$ns = $wgTitle->getNamespace() == NS_MAIN
-					? wfMsg( 'nstab-main' )
-					: $wgTitle->getNsText();
-				$this->addWikiText( wfMsg( 'namespaceprotected', $ns ) );
-			} else {
-				// Standard protection
-				$this->addWikiText( wfMsg( 'protectedpagetext' ) );
-			}
 		} else {
+			// Wiki is read only
 			$this->setPageTitle( wfMsg( 'readonly' ) );
 			if ( $wgReadOnly ) {
 				$reason = $wgReadOnly;
 			} else {
+				// Should not happen, user should have called wfReadOnly() first
 				$reason = file_get_contents( $wgReadOnlyFile );
 			}
 			$this->addWikiText( wfMsg( 'readonlytext', $reason ) );
 		}
 
+		// Show source, if supplied
 		if( is_string( $source ) ) {
 			$this->addWikiText( wfMsg( 'viewsourcetext' ) );
-			$rows = $wgUser->getIntOption( 'rows' );
-			$cols = $wgUser->getIntOption( 'cols' );
-			$text = "\n<textarea name='wpTextbox1' id='wpTextbox1' cols='$cols' rows='$rows' readonly='readonly'>" .
-				htmlspecialchars( $source ) . "\n</textarea>";
+			$text = wfOpenElement( 'textarea',
+						array( 'id'   => 'wpTextbox1',
+						       'name' => 'wpTextbox1',
+						       'cols' => $wgUser->getOption( 'cols' ),
+						       'rows' => $wgUser->getOption( 'rows' ),
+						       'readonly' => 'readonly' ) );
+			$text .= htmlspecialchars( $source );
+			$text .= wfCloseElement( 'textarea' );
 			$this->addHTML( $text );
+
+			// Show templates used by this article
+			$skin = $wgUser->getSkin();
+			$article = new Article( $wgTitle );
+			$this->addHTML( $skin->formatTemplates( $article->getUsedTemplates() ) );
 		}
-		$article = new Article( $wgTitle );
-		$this->addHTML( $skin->formatTemplates( $article->getUsedTemplates() ) );
 
 		$this->returnToMain( false, $wgTitle );
 	}
