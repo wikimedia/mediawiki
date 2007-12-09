@@ -1817,7 +1817,7 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'unwatch'              => 'Unwatch',
 'unwatchthispage'      => 'Stop watching',
 'notanarticle'         => 'Not a content page',
-'watchnochange'        => 'None of your watched items was edited in the time period displayed.',
+'watchnochange'        => 'None of your watched items were edited in the time period displayed.',
 'watchlist-details'    => '{{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages.',
 'wlheader-enotif'      => '* E-mail notification is enabled.',
 'wlheader-showupdated' => "* Pages which have been changed since you last visited them are shown in '''bold'''",
@@ -2243,7 +2243,7 @@ In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{Media
 'export-submit'     => 'Export',
 'export-addcattext' => 'Add pages from category:',
 'export-addcat'     => 'Add',
-'export-download'   => 'Offer to save as a file',
+'export-download'   => 'Save as file',
 
 # Namespace 8 related
 'allmessages'               => 'System messages',
@@ -2565,8 +2565,8 @@ Variants for Chinese language
 'variantname-kk'    => 'kk', # only translate this message to other languages if you have to change it
 
 # Variants for Kurdish language
-'variantname-ku-arab' => 'ku-arab', # only translate this message to other languages if you have to change it
-'variantname-ku-latn' => 'ku-latn', # only translate this message to other languages if you have to change it
+'variantname-ku-arab' => 'ku-Arab', # only translate this message to other languages if you have to change it
+'variantname-ku-latn' => 'ku-Latn', # only translate this message to other languages if you have to change it
 'variantname-ku'      => 'ku', # only translate this message to other languages if you have to change it
 
 # Metadata
