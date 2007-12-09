@@ -2985,8 +2985,16 @@ class Parser
 		wfProfileOut( __METHOD__.'-makexml' );
 		wfProfileIn( __METHOD__.'-loadXML' );
 		$dom = new DOMDocument;
-		if ( !$dom->loadXML( $topAccum ) ) {
-			throw new MWException( __METHOD__.' generated invalid XML' );
+		wfSuppressWarnings();
+		$result = $dom->loadXML( $topAccum );
+		wfRestoreWarnings();
+		if ( !$result ) {
+			// Try running the XML through UtfNormal to get rid of invalid characters
+			$topAccum = UtfNormal::cleanUp( $topAccum );
+			$result = $dom->loadXML( $topAccum );
+			if ( !$result ) {
+				throw new MWException( __METHOD__.' generated invalid XML' );
+			}
 		}
 		wfProfileOut( __METHOD__.'-loadXML' );
 		wfProfileOut( __METHOD__ );
@@ -5423,7 +5431,7 @@ class PPFrame {
 	 *    DOMNode name, string index and DOMNode value
 	 */
 	function splitBraceNode( $node ) {
-		$xpath = new DOMXPath( $arg->ownerDocument );
+		$xpath = new DOMXPath( $node->ownerDocument );
 		$names = $xpath->query( 'name', $node );
 		$values = $xpath->query( 'value', $node );
 		if ( !$names->length || !$values->length ) {
