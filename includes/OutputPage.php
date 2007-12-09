@@ -1024,6 +1024,7 @@ class OutputPage {
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
 		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
+		$skin = $wgUser->getSkin();
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
