@@ -185,6 +185,7 @@ $messages = array(
 'versionrequiredtext' => "Presiza MediaWiki versaun $1 ba uza pájina ne'e. Haree [[Special:Version|pájina versaun]].",
 
 'ok'                      => 'OK',
+'retrievedfrom'           => 'Husi "$1"',
 'youhavenewmessages'      => 'Ó iha $1 ($2).',
 'newmessageslink'         => 'mensajen foun',
 'youhavenewmessagesmulti' => 'Ó iha mensajen foun sira iha $1',
@@ -261,9 +262,6 @@ $messages = array(
 'revisiondelete'      => 'Halakon/restaurar versaun',
 'revdelete-hide-user' => "Subar naran edita-na'in/IP",
 
-# Diffs
-'editcurrent' => "Edita versaun atuál pájina ne'e nian",
-
 # Search results
 'powersearch' => 'Buka',
 
@@ -274,10 +272,12 @@ $messages = array(
 'searchresultshead' => 'Buka',
 
 # User rights
-'userrights-user-editname' => "Hakerek naran uza-na'in ida-nian:",
-'editusergroup'            => "Filak lubu uza-na'in",
-'userrights-editusergroup' => "Filak lubu uza-na'in",
-'userrights-groupsmember'  => 'Membru iha:',
+'userrights-lookup-user'    => "Filak lubu uza-na'in",
+'userrights-user-editname'  => "Hakerek naran uza-na'in ida-nian:",
+'editusergroup'             => "Filak lubu uza-na'in",
+'userrights-editusergroup'  => "Filak lubu uza-na'in",
+'userrights-groupsmember'   => 'Membru iha:',
+'userrights-available-none' => "Ó la bele filak lubu uza-na'in.",
 
 # Groups
 'group'            => 'Lubu:',
@@ -295,7 +295,8 @@ $messages = array(
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrata sira',
 
 # User rights log
-'rightsnone' => '(mamuk)',
+'rightslogtext' => "Ne'e lista ba filak lubu uza-na'in.",
+'rightsnone'    => '(mamuk)',
 
 # Recent changes
 'recentchanges'   => 'Mudansa foufoun sira',
@@ -391,6 +392,10 @@ $messages = array(
 
 # Delete/protect/revert
 'deletepage'          => 'Halakon pájina',
+'excontent'           => "testu iha pájina: '$1'",
+'excontentauthor'     => "testu iha pájina: '$1' (no ema ida de'it ne'ebé kontribui '[[Special:Contributions/$2|$2]]')",
+'exblank'             => 'pájina mamuk',
+'deletesub'           => '(Halakon "$1")',
 'deletedarticle'      => 'halakon "[[$1]]"',
 'dellogpage'          => 'Lista halakon',
 'deletionlog'         => 'lista halakon',
@@ -412,10 +417,6 @@ $messages = array(
 # Contributions
 'contributions' => "Kontribuisaun uza-na'in",
 
-'sp-contributions-newest'   => 'Foun liu hotu',
-'sp-contributions-oldest'   => 'Tuan liu hotu',
-'sp-contributions-newer'    => 'Foun liu $1',
-'sp-contributions-older'    => 'Tuan liu $1',
 'sp-contributions-newbies'  => "Hatudu de'it kontribuisaun uza-na'in foun sira-nia",
 'sp-contributions-search'   => 'Buka kontribuisaun',
 'sp-contributions-username' => "Diresaun IP ka naran uza-na'in:",
@@ -456,6 +457,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-search'          => 'Buka iha {{SITENAME}}',
 'tooltip-n-mainpage'      => 'Vizita Pájina Mahuluk',
+'tooltip-n-recentchanges' => "Lista mudansa foufoun sira iha wiki ne'e.",
 'tooltip-t-contributions' => "Haree lista kontribuisaun uza-na'in ne'e nian",
 'tooltip-t-specialpages'  => 'Lista pájina espesiál hotu nian',
 

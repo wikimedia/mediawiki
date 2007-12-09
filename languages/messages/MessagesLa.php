@@ -388,7 +388,7 @@ $1',
 'protectedpagetext'   => 'Haec pagina protecta est, ut emendationes prohibeantur.',
 'viewsourcetext'      => 'Fontem videas et exscribeas:',
 'protectedinterface'  => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
-'editinginterface'    => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient.",
+'editinginterface'    => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Translating:Intro Betawiki].",
 'ns-specialprotected' => 'Paginae in spatio nominali "{{ns:special}}" recenseri non possunt.',
 
 # Login and logout pages
@@ -704,6 +704,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'files'                    => 'Fasciculi',
 
 # User rights
+'editusergroup'               => 'Greges usorum recensere',
 'userrights-available-add'    => 'Potes usores addere ad $1.',
 'userrights-available-remove' => 'Potes usores removere ex $1.',
 

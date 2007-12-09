@@ -666,8 +666,10 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'revdelete-logentry'          => 'vizibilitatea reviziei pentru [[$1]] a fost modificată',
 
 # History merging
-'mergehistory-from' => 'Pagina sursă:',
-'mergehistory-into' => 'Pagina destinaţie:',
+'mergehistory-from'           => 'Pagina sursă:',
+'mergehistory-into'           => 'Pagina destinaţie:',
+'mergehistory-no-source'      => 'Pagina sursă $1 nu există.',
+'mergehistory-no-destination' => 'Pagina de destinaţie $1 nu există.',
 
 # Diffs
 'history-title'           => 'Istoria reviziilor pentru "$1"',
@@ -760,27 +762,30 @@ Căutări după $3 $9',
 'files'                   => 'Fişiere',
 
 # User rights
-'userrights-lookup-user'     => 'Administrare grupuri de utilizatori',
-'userrights-user-editname'   => 'Introdu un nume de utilizator:',
-'editusergroup'              => 'Modificare grup de utilizatori',
-'userrights-editusergroup'   => 'Modifică grupul de utilizatori',
-'saveusergroups'             => 'Salvează grupul de utilizatori',
-'userrights-groupsmember'    => 'Membru al:',
-'userrights-groupsavailable' => 'Grupuri disponibile:',
-'userrights-groupshelp'      => 'Selectează grupurile din care doreşti ca utilizatorul să fie şters sau în care doreşti să fie adăugat. Grupurile deselectate nu se vor modifica. Poţi deselecta un grup cu CTRL + Clic stânga',
-'userrights-reason'          => 'Motivul schimbării:',
-'userrights-available-add'   => 'Poţi adăuga utilizatorii la $1.',
+'userrights-lookup-user'      => 'Administrare grupuri de utilizatori',
+'userrights-user-editname'    => 'Introdu un nume de utilizator:',
+'editusergroup'               => 'Modificare grup de utilizatori',
+'userrights-editusergroup'    => 'Modifică grupul de utilizatori',
+'saveusergroups'              => 'Salvează grupul de utilizatori',
+'userrights-groupsmember'     => 'Membru al:',
+'userrights-groupsavailable'  => 'Grupuri disponibile:',
+'userrights-groupshelp'       => 'Selectează grupurile din care doreşti ca utilizatorul să fie şters sau în care doreşti să fie adăugat. Grupurile deselectate nu se vor modifica. Poţi deselecta un grup cu CTRL + Clic stânga',
+'userrights-reason'           => 'Motivul schimbării:',
+'userrights-available-add'    => 'Poţi adăuga utilizatorii la $1.',
+'userrights-available-remove' => 'Poţi muta utilizatorii din $1.',
 
 # Groups
-'group'            => 'Grup:',
-'group-bot'        => 'Roboţi',
-'group-sysop'      => 'Administratori',
-'group-bureaucrat' => 'Birocraţi:',
-'group-all'        => '(toţi)',
+'group'               => 'Grup:',
+'group-autoconfirmed' => 'Utilizatori autoconfirmaţi',
+'group-bot'           => 'Roboţi',
+'group-sysop'         => 'Administratori',
+'group-bureaucrat'    => 'Birocraţi:',
+'group-all'           => '(toţi)',
 
-'group-bot-member'        => 'Robot',
-'group-sysop-member'      => 'Administrator',
-'group-bureaucrat-member' => 'Birocrat',
+'group-autoconfirmed-member' => 'Utilizator autoconfirmat',
+'group-bot-member'           => 'Robot',
+'group-sysop-member'         => 'Administrator',
+'group-bureaucrat-member'    => 'Birocrat',
 
 'grouppage-bot'        => '{{ns:project}}:Boţi',
 'grouppage-sysop'      => '{{ns:project}}:Administratori',
@@ -1200,6 +1205,11 @@ Asistenţă şi suport:
 'deletionlog'                 => 'raportul de ştergeri',
 'reverted'                    => 'Revenire la o versiune mai veche',
 'deletecomment'               => 'Motiv pentru ştergere',
+'deletereasonotherlist'       => 'Alt motiv',
+'deletereason-dropdown'       => '*Motive uzuale
+** Cererea autorului
+** Violare drepturi de autor
+** Vandalism',
 'rollback'                    => 'Editări de revenire',
 'rollback_short'              => 'Revenire',
 'rollbacklink'                => 'revenire',
@@ -1221,6 +1231,8 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'confirmprotect'              => 'Confirmă protejare',
 'protectcomment'              => 'Motiv pentru protejare',
 'protectexpiry'               => 'Expirare',
+'protect_expiry_invalid'      => 'Timpul de expirare este nevalid.',
+'protect_expiry_old'          => 'Timpul de expirare este în trecut.',
 'unprotectsub'                => '(Deprotejând "$1")',
 'protect-unchain'             => 'Deblochează permisiunile de mutare',
 'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong>$1</strong>.',
@@ -1232,6 +1244,7 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'protect-expiring'            => 'expiră $1 (UTC)',
 'protect-cascade'             => 'Protejare în cascadă - toate paginile incluse în această pagină vor fi protejate.',
 'restriction-type'            => 'Permisiune:',
+'restriction-level'           => 'Nivel de restricţie:',
 'minimum-size'                => 'Mărime minimă',
 'maximum-size'                => 'Mărime maximă',
 'pagesize'                    => '(octeţi)',
@@ -1255,6 +1268,7 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'undeletehistory'          => 'Dacă recuperaţi pagina, toate versiunile asociate vor fi adăugate retroactiv în istorie. Dacă o pagină nouă cu acelaşi nume a fost creată de la momentul ştergerii acesteia, versiunile recuperate vor apărea în istoria paginii, iar versiunea curentă a paginii nu va fi înlocuită automat de către versiunea recuperată.',
 'undeletehistorynoadmin'   => 'Acest articol a fost şters. Motivul ştergerii apare mai jos, alături de detaliile utilzatorilor care au editat această pagină înainte de ştergere. Textul prorpiu-zis al reviziilor şterse este disponibil doar administratorilor.',
 'undelete-revision'        => 'Şters revizia $1 din $2:',
+'undelete-nodiff'          => 'Nu s-a găsit vreo revizie anterioară.',
 'undeletebtn'              => 'Recuperează',
 'undeletereset'            => 'Resetează',
 'undeletecomment'          => 'Comentariu:',
@@ -1266,9 +1280,13 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'undeletedpage'            => "<big>'''$1 a fost recuperat'''</big>
 
 Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ştergerile şi recuperările recente.",
+'undelete-header'          => 'Vezi [[Special:Log/delete|logul de ştergere]] pentru paginile şterse recent.',
 'undelete-search-box'      => 'Caută pagini şterse',
 'undelete-search-prefix'   => 'Arată paginile care încep cu:',
 'undelete-search-submit'   => 'Caută',
+'undelete-error-long'      => 'S-au găsit erori la ştergerea fişierului:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Spaţiul:',
@@ -1283,6 +1301,7 @@ Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ş
 'ucnote'        => 'Mai jos se află ultimele <b>$1</b> modificări ale utilizatorului din ultimele <b>$2</b> zile.',
 'uclinks'       => 'Vezi ultimele $1 modificări; vezi ultimele $2 zile.',
 'uctop'         => ' (sus)',
+'month'         => 'Din luna (şi dinainte):',
 
 'sp-contributions-newbies'     => 'Arată doar contribuţiile conturilor noi',
 'sp-contributions-newbies-sub' => 'Pentru începători',
@@ -1296,6 +1315,7 @@ Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ş
 # What links here
 'whatlinkshere'       => 'Ce se leagă aici',
 'whatlinkshere-title' => 'Pagini care se leagă de $1',
+'whatlinkshere-page'  => 'Pagina:',
 'linklistsub'         => '(Lista de legături)',
 'linkshere'           => "Următoarele pagini conţin legături către '''[[:$1]]''':",
 'nolinkshere'         => "Nici o pagină nu se leagă la '''[[:$1]]'''.",
@@ -1356,6 +1376,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'noautoblockblock'            => 'autoblocare dezactivată',
 'createaccountblock'          => 'crearea de conturi blocată',
 'emailblock'                  => 'e-mail blocat',
+'ipblocklist-empty'           => 'Lista blocărilor este goală.',
 'blocklink'                   => 'blochează',
 'unblocklink'                 => 'deblochează',
 'contribslink'                => 'contribuţii',
@@ -1374,6 +1395,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'ipb_cant_unblock'            => 'Eroare: nu găsesc identificatorul $1. Probabil a fost deja deblocat.',
 'ip_range_invalid'            => 'Serie IP invalidă.',
 'proxyblocker'                => 'Blocaj de proxy',
+'proxyblocker-disabled'       => 'Această funcţie este dezactivată.',
 'proxyblockreason'            => 'Adresa ta IP a fost blocată pentru că este un proxy deschis. Te rog, contactează provider-ul tău de servicii Internet sau tehnicieni IT şi informează-i asupra acestei probleme serioase de securitate.',
 'proxyblocksuccess'           => 'Realizat.',
 'sorbsreason'                 => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
