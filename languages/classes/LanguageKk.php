@@ -6,7 +6,7 @@
   */
 
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );
-require_once( dirname(__FILE__).'/LanguageKk_kz.php' );
+require_once( dirname(__FILE__).'/LanguageKk_cyrl.php' );
 
 class KkConverter extends LanguageConverter {
 	var $mLatinToCyrillic = array(
@@ -92,13 +92,47 @@ class KkConverter extends LanguageConverter {
 		';' => '؛'
 	);
 
+	var $mLatinToArabic = array(
+		'la' => 'لا',  'lA' => 'لا',  'LA' => 'لا',  'La' => 'لا',
+
+		'a' => 'ا',  'ä' => 'ٵ',  'b' => 'ب',  'v' => 'ۆ',  'g' => 'گ',  'ğ' => 'ع',
+		'd' => 'د',  'e' => 'ە',  'yo' => 'يو', 'j' => 'ج',  'z' => 'ز',  'ï' => 'ي',
+		'ý' => 'ي',  'k' => 'ك',  'q' => 'ق',  'l' => 'ل',  'm' => 'م',  'n' => 'ن',
+		'ñ' => 'ڭ',  'o' => 'و',  'ö' => 'ٶ',  'p' => 'پ',  'r' => 'ر',  's' => 'س',
+		't' => 'ت',  'w' => 'ۋ',  'u' => 'ۇ',  'ü' => 'ٷ',  'f' => 'ف',  'x' => 'ح',
+		'h' => 'ھ',  'c' => 'تس',  'ç' => 'چ',  'ş' => 'ش',  'şş' => 'شش', '″' => 'ي',
+		'ı' => 'ى',  '′' => 'ي',  'i' => 'ٸ',  'é' => 'ە',
+
+		'A' => 'ا',  'Ä' => 'ٵ',  'B' => 'ب',  'V' => 'ۆ',  'G' => 'گ',  'Ğ' => 'ع',
+		'D' => 'د',  'E' => 'ە',  'YO' => 'يو',  'J' => 'ج',  'Z' => 'ز',  'Ï' => 'ي',
+		'Ý' => 'ي',  'K' => 'ك',  'Q' => 'ق',  'L' => 'ل',  'M' => 'م',  'N' => 'ن',
+		'Ñ' => 'ڭ',  'O' => 'و',  'Ö' => 'ٶ',  'P' => 'پ',  'R' => 'ر',  'S' => 'س',
+		'T' => 'ت',  'W' => 'ۋ',  'U' => 'ۇ',  'Ü' => 'ٷ',  'F' => 'ف',  'X' => 'ح',
+		'H' => 'ھ',  'C' => 'تس',  'Ç' => 'چ',  'Ş' => 'ش',  'ŞŞ' => 'شش', '″' => 'ي',
+		'I' => 'ى',  '′' => 'ي',  'İ' => 'ٸ',  'É' => 'ە',
+
+		'?' => '؟',
+		'%' => '٪',
+		',' => '،',
+		';' => '؛'
+	);
+
 	function loadDefaultTables() {
 		$this->mTables = array(
+			'kk-cyrl' => new ReplacementArray( $this->mLatinToCyrillic ),
+			'kk-latn' => new ReplacementArray( $this->mCyrillicToLatin ),
+			'kk-arab' => new ReplacementArray( array_merge($this->mCyrillicToArabic, $this->mLatinToArabic) ),
 			'kk-kz' => new ReplacementArray( $this->mLatinToCyrillic ),
 			'kk-tr' => new ReplacementArray( $this->mCyrillicToLatin ),
-			'kk-cn' => new ReplacementArray( $this->mCyrillicToArabic ),
+			'kk-cn' => new ReplacementArray( array_merge($this->mCyrillicToArabic, $this->mLatinToArabic) ),
 			'kk'    => new ReplacementArray()
 		);
+	}
+
+	function postLoadTables() {
+		$this->mTables['kk-kz']->merge( $this->mTables['kk-cyrl'] );
+		$this->mTables['kk-tr']->merge( $this->mTables['kk-latn'] );
+		$this->mTables['kk-cn']->merge( $this->mTables['kk-arab'] );
 	}
 
 	/* rules should be defined as -{ekavian | iyekavian-} -or-
@@ -203,21 +237,28 @@ class KkConverter extends LanguageConverter {
 
 }
 
-class LanguageKk extends LanguageKk_kz {
+/* class that handles Cyrillic, Latin and Arabic scripts for Kazakh
+   right now it only distinguish kk_cyrl, kk_latn, kk_arab, kk_kz, kk_tr and kk_cn.
+*/
+class LanguageKk extends LanguageKk_cyrl {
 
 	function __construct() {
 		global $wgHooks;
 		parent::__construct();
 
-		$variants = array( 'kk', 'kk-kz', 'kk-tr', 'kk-cn' );
+		$variants = array( 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' );
 		$variantfallbacks = array(
-			'kk'    => 'kk-kz',
-			'kk-kz' => 'kk',
-			'kk-tr' => 'kk',
-			'kk-cn' => 'kk'
+			'kk'		=> 'kk-kz',
+			'kk-cyrl'	=> 'kk',
+			'kk-latn'	=> 'kk',
+			'kk-arab'	=> 'kk',
+			'kk-kz'		=> 'kk-cyrl',
+			'kk-tr'		=> 'kk-latn',
+			'kk-cn'		=> 'kk-arab'
 		);
 
 		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );
+
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 
@@ -227,14 +268,17 @@ class LanguageKk extends LanguageKk_kz {
 
 		switch ( $this->getPreferredVariant() ) {
 			case 'kk-cn':
-				$word = parent::convertGrammar( $word, $case, $variant='kk-cn' );
+			case 'kk-arab':
+				$word = parent::convertGrammar( $word, $case, $variant='kk-arab' );
 				break;
 			case 'kk-tr':
-				$word = parent::convertGrammar( $word, $case, $variant='kk-tr' );
+			case 'kk-latn':
+				$word = parent::convertGrammar( $word, $case, $variant='kk-latn' );
 				break;
 			case 'kk-kz':
+			case 'kk-cyrl':
 			case 'kk':
-				$word = parent::convertGrammar( $word, $case, $variant='kk-kz' );
+				$word = parent::convertGrammar( $word, $case, $variant='kk-cyrl' );
 				break;
 			default: #do nothing
 		}
@@ -248,7 +292,7 @@ class LanguageKk extends LanguageKk_kz {
 	 * 
 	 */
 	function ucfirst ( $string ) {
-		if ( $this->getPreferredVariant() == 'kk-tr' && $string[0] == 'i' ) {
+		if ( ($this->getPreferredVariant() == 'kk-tr' || $this->getPreferredVariant() == 'kk-latn') && $string[0] == 'i' ) {
 			$string = 'İ' . substr( $string, 1 );
 		} else {
 			$string = parent::ucfirst( $string );
@@ -261,7 +305,7 @@ class LanguageKk extends LanguageKk_kz {
 	 * 
 	 */
 	function lcfirst ( $string ) {
-		if ( $this->getPreferredVariant() == 'kk-tr' && $string[0] == 'I' ) {
+		if ( ($this->getPreferredVariant() == 'kk-tr' || $this->getPreferredVariant() == 'kk-latn') && $string[0] == 'I' ) {
 			$string = 'ı' . substr( $string, 1 );
 		} else {
 			$string = parent::lcfirst( $string );
@@ -270,4 +314,5 @@ class LanguageKk extends LanguageKk_kz {
 	}
 
 }
+
 

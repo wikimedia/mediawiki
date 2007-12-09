@@ -231,6 +231,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Only mark rollback edits as minor if the user can normally mark edits as minor.
 * Escape page names in the move successful page (e.g. for pages with two
   apostrophes).
+* (bug 12145) Add localized names of kk-variants
 
 == Parser changes in 1.12 ==
 
@@ -427,6 +428,12 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Kara-Kalpak (kaa)
 * Kabyle (kab)
 * Kazakh (kk)
+* Kazakh Arabic (kk-arab) (new)
+* Kazakh (China) (kk-cn)
+* Kazakh Cyrillic (kk-cyrl) (new)
+* Kazakh (Kazakhstan) (kk-kz)
+* Kazakh Latin (kk-latn) (new)
+* Kazakh (Turkey) (kk-tr)
 * Kannada (kn)
 * Korean (ko)
 * Kölsch (ksh)
