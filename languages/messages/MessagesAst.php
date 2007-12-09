@@ -4,7 +4,6 @@
  * @addtogroup Language
  *
  * @author Esbardu
- * @author G - ג
  * @author Helix84
  * @author Mikel
  * @author SPQRobin
