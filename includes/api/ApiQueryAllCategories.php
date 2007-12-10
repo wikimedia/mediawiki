@@ -78,11 +78,12 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			}
 			
 			// Normalize titles
+			$titleObj = Title::makeTitle(NS_CATEGORY, $row->cl_to);
 			if(!is_null($resultPageSet))
-				$titleObj = Title::newFromText('Category:' . $row->cl_to);
+				$pages[] = $titleObj->getPrefixedText();
 			else
-				$titleObj = Title::newFromText($row->cl_to);
-			$pages[] = $titleObj->getPrefixedText();
+				// Don't show "Category:" everywhere in non-generator mode
+				$pages[] = $titleObj->getText();
 		}
 		$db->freeResult($res);
 
@@ -100,10 +101,10 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			'from' => null,
 			'prefix' => null,
 			'dir' => array(
-				ApiBase :: PARAM_DFLT => 'AtoZ',
+				ApiBase :: PARAM_DFLT => 'ascending',
 				ApiBase :: PARAM_TYPE => array(
-					'AtoZ',
-					'ZtoA'
+					'ascending',
+					'descending'
 				),
 			),
 			'limit' => array (

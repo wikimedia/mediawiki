@@ -186,10 +186,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
 			),
 			'dir' => array (
-				ApiBase :: PARAM_DFLT => 'AtoZ',
+				ApiBase :: PARAM_DFLT => 'ascending',
 				ApiBase :: PARAM_TYPE => array (
-					'AtoZ',
-					'ZtoA'
+					'ascending',
+					'descending'
 				)
 			)
 		);
