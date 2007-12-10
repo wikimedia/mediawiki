@@ -66,6 +66,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			$tok_protect = $this->getTokenFlag($token, 'protect');
 			$tok_move = $this->getTokenFlag($token, 'move');
 		}
+		else
+			// Fix E_NOTICEs about unset variables
+			$token = $tok_edit = $tok_delete = $tok_protect = $tok_move = null;
 		
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodTitles();
