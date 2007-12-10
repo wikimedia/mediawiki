@@ -20,7 +20,8 @@ class ParserOutput
 		$mNewSection,       # Show a new section link?
 		$mNoGallery,        # No gallery on category page? (__NOGALLERY__)
 		$mHeadItems,        # Items to put in the <head> section
-		$mOutputHooks;      # Hook tags as per $wgParserOutputHooks
+		$mOutputHooks,      # Hook tags as per $wgParserOutputHooks
+		$mWarnings;         # Warning text to be returned to the user. Wikitext formatted.
 	
 	/**
 	 * Overridden title for display
@@ -46,6 +47,7 @@ class ParserOutput
 		$this->mHeadItems = array();
 		$this->mTemplateIds = array();
 		$this->mOutputHooks = array();
+		$this->mWarnings = array();
 	}
 
 	function getText()                   { return $this->mText; }
@@ -61,6 +63,7 @@ class ParserOutput
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getSubtitle()               { return $this->mSubtitle; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
+	function getWarnings()               { return isset( $this->mWarnings ) ? $this->mWarnings : array(); }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -73,6 +76,7 @@ class ParserOutput
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
 	function addExternalLink( $url )     { $this->mExternalLinks[$url] = 1; }
+	function addWarning( $s )            { $this->mWarnings[] = $s; }
 
 	function addOutputHook( $hook, $data = false ) { 
 		$this->mOutputHooks[] = array( $hook, $data );
