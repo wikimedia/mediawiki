@@ -30,6 +30,7 @@ class OutputPage {
 	var $mNewSectionLink = false;
 	var $mNoGallery = false;
 	var $mPageTitleActionText = '';
+	var $mParseWarnings = array();
 
 	/**
 	 * Constructor
@@ -379,6 +380,7 @@ class OutputPage {
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->addKeywords( $parserOutput );
+		$this->mParseWarnings = $parserOutput->getWarnings();
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
 		}
@@ -1385,5 +1387,5 @@ class OutputPage {
 			$this->addHtml( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
 		}
 	}
-	
+
 }

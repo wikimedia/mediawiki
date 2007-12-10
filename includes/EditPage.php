@@ -1448,17 +1448,12 @@ END
 
 		if ( $this->mTriedSave && !$this->mTokenOk ) {
 			if ( $this->mTokenOkExceptSuffix ) {
-				$msg = 'token_suffix_mismatch';
+				$note = wfMsg( 'token_suffix_mismatch' );
 			} else {
-				$msg = 'session_fail_preview';
+				$note = wfMsg( 'session_fail_preview' );
 			}
 		} else {
-			$msg = 'previewnote';
-		}
-		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
-			"<div class='previewnote'>" . $wgOut->parse( wfMsg( $msg ) ) . "</div>\n";
-		if ( $this->isConflict ) {
-			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
+			$note = wfMsg( 'previewnote' );
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
@@ -1484,8 +1479,7 @@ END
 			$parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $previewtext , $this->mTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
-			wfProfileOut( $fname );
-			return $previewhead;
+			$previewHTML = '';
 		} else {
 			$toparse = $this->textbox1;
 
@@ -1511,9 +1505,19 @@ END
 				foreach ( array_keys( $template ) as $dbk)
 					$this->mPreviewTemplates[] = Title::makeTitle($ns, $dbk);
 
-			wfProfileOut( $fname );
-			return $previewhead . $previewHTML;
+			if ( count( $parserOutput->getWarnings() ) ) {
+				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+			}
 		}
+
+		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
+			"<div class='previewnote'>" . $wgOut->parse( $note ) . "</div>\n";
+		if ( $this->isConflict ) {
+			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
+		}
+
+		wfProfileOut( $fname );
+		return $previewhead . $previewHTML;
 	}
 
 	/**

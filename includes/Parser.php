@@ -5248,6 +5248,7 @@ class StripState {
  */
 class PPFrame {
 	var $parser, $title;
+	var $titleCache;
 
 	const NO_ARGS = 1;
 	const NO_TEMPLATES = 2;
@@ -5261,6 +5262,7 @@ class PPFrame {
 	function __construct( $parser ) {
 		$this->parser = $parser;
 		$this->title = $parser->mTitle;
+		$this->titleCache = array( $this->title->getPrefixedDBkey() );
 	}
 
 	/**
@@ -5445,19 +5447,30 @@ class PPFrame {
 	function __toString() {
 		return 'frame{}';
 	}
+
+	function getPDBK( $level = false ) {
+		if ( $level === false ) {
+			return $this->title->getPrefixedDBkey();
+		} else {
+			return isset( $this->titleCache[$level] ) ? $this->titleCache[$level] : false;
+		}
+	}
 }
 
 /**
  * Expansion frame with template arguments
  */
 class PPTemplateFrame extends PPFrame {
-	public $parser, $args, $parent, $serial;
+	var $parser, $args, $parent;
+	var $titleCache;
 
 	function __construct( $parser, $parent = false, $args = array(), $title = false ) {
 		$this->parser = $parser;
 		$this->parent = $parent;
 		$this->args = $args;
 		$this->title = $title;
+		$this->titleCache = $parent->titleCache;
+		$this->titleCache[] = $title->getPrefixedDBkey();
 	}
 
 	function __toString() {
