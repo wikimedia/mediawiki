@@ -5089,10 +5089,10 @@ For notes on 1.3.x and older releases, see HISTORY.
 === Online documentation ===
 
 Documentation for both end-users and site administrators is currently being
-built up on Meta-Wikipedia, and is covered under the GNU Free Documentation
+built up on MediaWiki.org, and is covered under the GNU Free Documentation
 License:
 
-  http://meta.wikipedia.org/wiki/Help:Contents
+  http://www.mediawiki.org/
 
 
 === Mailing list ===
@@ -5100,10 +5100,10 @@ License:
 A MediaWiki-l mailing list has been set up distinct from the Wikipedia
 wikitech-l list:
 
-  http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
+  http://lists.wikimedia.org/mailman/listinfo/mediawiki-l
 
 A low-traffic announcements-only list is also available:
-  http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
+  http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
 
 It's highly recommended that you sign up for one of these lists if you're
 going to run a public MediaWiki, so you can be notified of security fixes.

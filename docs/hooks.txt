@@ -480,22 +480,6 @@ $newRev: Revision object of the "new" revision
 $article: article (object) being viewed
 $oldid: oldid (int) being viewed
 
-'EditPage::attemptSave': called before an article is
-saved, that is before insertNewArticle() is called
-&$editpage_Obj: the current EditPage object
-
-'EditPage::showEditForm:initial': before showing the edit form
-$editor: EditPage instance (object)
-
-'EditFormPreloadText': Allows population of the edit form when creating new pages
-&$text: Text to preload with
-&$title: Title object representing the page being created
-
-'EditPage::showEditForm:fields': allows injection of form field into edit form
-&$editor: the EditPage instance for reference
-&$out: an OutputPage instance to write to
-return value is ignored (should always return true)
-
 'EditFilter': Perform checks on an edit
 $editor: Edit form (see includes/EditPage.php)
 $text: Contents of the edit box
@@ -506,6 +490,22 @@ $section: Section being edited
 $editor: EditPage instance (object)
 $text: content of the edit box
 $error: error message to return
+
+'EditFormPreloadText': Allows population of the edit form when creating new pages
+&$text: Text to preload with
+&$title: Title object representing the page being created
+
+'EditPage::attemptSave': called before an article is
+saved, that is before insertNewArticle() is called
+&$editpage_Obj: the current EditPage object
+
+'EditPage::showEditForm:fields': allows injection of form field into edit form
+&$editor: the EditPage instance for reference
+&$out: an OutputPage instance to write to
+return value is ignored (should always return true)
+
+'EditPage::showEditForm:initial': before showing the edit form
+$editor: EditPage instance (object)
 
 Return false to halt editing; you'll need to handle error messages, etc. yourself.
 Alternatively, modifying $error and returning true will cause the contents of $error
@@ -557,6 +557,11 @@ $file : Image object representing the file that was uploaded
 'GetBlockedStatus': after loading blocking status of an user from the database
 $user: user (object) being checked
 
+'GetFullURL': modify fully-qualified URLs used in redirects/export/offsite data
+$title: Title object of page
+$url: string value as output (out parameter, can modify)
+$query: query options passed to Title::getFullURL()
+
 'GetInternalURL': modify fully-qualified URLs used for squid cache purging
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
@@ -570,11 +575,6 @@ $linkcolour_ids: array of prefixed DB keys of the pages linked to, indexed by pa
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getLocalURL()
-
-'GetFullURL': modify fully-qualified URLs used in redirects/export/offsite data
-$title: Title object of page
-$url: string value as output (out parameter, can modify)
-$query: query options passed to Title::getFullURL()
 
 'getUserPermissionsErrors': Add a permissions error when permissions errors are checked for.
 	Use instead of userCan for most cases. Return false if the user can't do it,
@@ -614,6 +614,14 @@ $addr: The e-mail address entered by the user
 $password: The password entered by the user
 &$result: Set this and return false to override the internal checks
 $user: User the password is being validated for
+
+'LanguageGetMagic': Use this to define synonyms of magic words depending of the language
+$magicExtensions: associative array of magic words synonyms
+$lang: laguage code (string)
+
+'LanguageGetSpecialPageAliases': Use to define aliases of special pages names depending of the language
+$specialPageAliases: associative array of magic words synonyms
+$lang: laguage code (string)
 
 'LinksUpdateConstructed': At the end of LinksUpdate() is contruction.
 &$linksUpdate: the LinkUpdate object
@@ -686,6 +694,9 @@ $request: $wgRequest
 'MessagesPreLoad': When loading a message from the database
 $title: title of the message (string)
 $message: value (string), change it to the message you want to define
+
+'MonoBookTemplateToolboxEnd': Called by Monobook skin after toolbox links have been rendered (useful for adding more)
+$tools: array of tools
 
 'OutputPageBeforeHTML': a page has been processed by the parser and
 the resulting HTML is about to be displayed.  
