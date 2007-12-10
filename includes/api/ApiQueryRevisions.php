@@ -85,6 +85,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
 		$this->fld_comment = $this->addFieldsIf('rev_comment', isset ($prop['comment']));
 		$this->fld_size = $this->addFieldsIf('rev_len', isset ($prop['size']));
+		$this->tok_rollback = false; // Prevent PHP undefined property notice
 		if(!is_null($token))
 		{
 			$this->tok_rollback = $this->getTokenFlag($token, 'rollback');
