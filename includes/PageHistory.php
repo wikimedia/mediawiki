@@ -114,7 +114,11 @@ class PageHistory {
 		wfProfileOut( $fname );
 	}
 
-	/** @todo document */
+	/**
+	 * Creates begin of history list with a submit button
+	 *
+	 * @return string HTML output
+	 */
 	function beginHistoryList() {
 		global $wgTitle;
 		$this->lastdate = '';
@@ -140,7 +144,11 @@ class PageHistory {
 		return $s;
 	}
 
-	/** @todo document */
+	/**
+	 * Creates end of history list with a submit button
+	 *
+	 * @return string HTML output
+	 */
 	function endHistoryList() {
 		$s = '</ul>';
 		$s .= $this->submitButton( array( 'id' => 'historysubmit' ) );
@@ -148,18 +156,24 @@ class PageHistory {
 		return $s;
 	}
 
-	/** @todo document */
+	/**
+	 * Creates a submit button
+	 *
+	 * @param array $bits optional CSS ID
+	 * @return string HTML output for the submit button
+	 */
 	function submitButton( $bits = array() ) {
-		return ( $this->linesonpage > 0 )
-			? wfElement( 'input', array_merge( $bits,
-				array(
+		# Disable submit button if history has 1 revision only
+		if ( $this->linesonpage == 1 ) {
+			$bits = $bits + array( 'disabled' => 'disabled' );
+		}
+		return Xml::submitButton( wfMsg( 'compareselectedversions' ),
+				$bits + array(
 					'class'     => 'historysubmit',
-					'type'      => 'submit',
 					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ).' ['.wfMsg( 'accesskey-compareselectedversions' ).']',
-					'value'     => wfMsg( 'compareselectedversions' ),
-				) ) )
-			: '';
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					)
+				);
 	}
 
 	/**
