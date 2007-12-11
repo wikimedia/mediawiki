@@ -646,6 +646,7 @@ $2',
 'namespaceprotected'   => "אינכם מורשים לערוך דפים במרחב השם '''$1'''.",
 'customcssjsprotected' => 'אינכם מורשים לערוך דף זה, כיוון שהוא כולל את ההגדרות האישיות של משתמש אחר.',
 'ns-specialprotected'  => 'לא ניתן לערוך דפים מיוחדים.',
+'titleprotected'       => 'לא ניתן ליצור דף זה, כיוון שהמשתמש [[User:$1|$1]] הגן עליו מפני יצירה בנימוק "$2".',
 
 # Login and logout pages
 'logouttitle'                => 'יציאה מהחשבון',
@@ -1629,8 +1630,9 @@ $NEWPAGE
 'pagesize'                    => '(בבתים)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'עריכה',
-'restriction-move' => 'העברה',
+'restriction-edit'   => 'עריכה',
+'restriction-move'   => 'העברה',
+'restriction-create' => 'יצירה',
 
 # Restriction levels
 'restriction-level-sysop'         => 'הגנה מלאה',

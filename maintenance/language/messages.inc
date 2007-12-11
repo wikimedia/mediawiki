@@ -336,6 +336,7 @@ $wgMessageStructure = array(
 		'namespaceprotected',
 		'customcssjsprotected',
 		'ns-specialprotected',
+		'titleprotected',
 	),
 	'login' => array(
 		'logouttitle',
@@ -1278,6 +1279,7 @@ $wgMessageStructure = array(
 	'restrictions' => array(
 		'restriction-edit',
 		'restriction-move',
+		'restriction-create',
 	),
 	'restriction-levels' => array(
 		'restriction-level-sysop',
