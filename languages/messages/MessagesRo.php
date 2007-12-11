@@ -2029,8 +2029,13 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'livepreview-ready'   => 'Încărcare… Gata!',
 
 # Watchlist editor
-'watchlistedit-normal-title' => 'Editează lista de urmărire',
-'watchlistedit-raw-titles'   => 'Titluri:',
+'watchlistedit-normal-title'  => 'Editează lista de urmărire',
+'watchlistedit-normal-legend' => 'Şterge titluri din lista de urmărire',
+'watchlistedit-normal-submit' => 'Şterge Titluri',
+'watchlistedit-normal-done'   => '{{PLURAL:$1|1 titlu a fost şters|$1 titluri au fost şterse}} din lista de urmărire:',
+'watchlistedit-raw-titles'    => 'Titluri:',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|1 titlu a fost adăugat|$1 titluri au fost adăugate}}:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 titlu a fost şters|$1 titluri au fost şterse}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vizualizează schimbările relevante',

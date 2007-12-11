@@ -419,7 +419,7 @@ Verifique a sintaxe ou use o formulario que aparece a continuación para crear u
 'wrongpasswordempty'         => 'O contrasinal estaba en branco. Por favor, ténteo de novo.',
 'passwordtooshort'           => 'O seu contrasinal é demasiado curto. Debe conter como mínimo $1 caracteres e ten que ser diferente do nome de usuario.',
 'mailmypassword'             => 'Envíeme un contrasinal novo',
-'passwordremindertitle'      => 'Recordatorio do contrasinal de {{SITENAME}}',
+'passwordremindertitle'      => 'Novo contrasinal temporal para {{SITENAME}}',
 'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1)
 pediu que lle enviásemos un novo contrasinal para entrar en {{SITENAME}} ($4).
 O contrasinal de "$2" é agora "$3".
@@ -711,11 +711,31 @@ Outros administradores deste wiki poderán acceder aínda ao contido oculto e po
 'overlogpagetext' => 'Abaixo aparece unha listaxe coas eliminacións e bloqueos máis recentes relacionados con contido agochado para os administradores. Vexa [[Special:Ipblocklist|Listaxe de bloqueos de IP]] para unha listaxe das prohibicións e bloqueos que teñen efecto neste momento.',
 
 # History merging
-'mergehistory'        => 'Fusionar historiais das páxinas',
-'mergehistory-header' => "Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.
+'mergehistory'                     => 'Fusionar historiais das páxinas',
+'mergehistory-header'              => "Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.
 Asegúrese de que esta modificación da páxina mantén a continuidade histórica.
 
 '' 'Polo menos a actual revisión da orixe da páxina debe permanecer.'''",
+'mergehistory-box'                 => 'Fusionar as revisións de dúas páxinas:',
+'mergehistory-from'                => 'Páxina de orixe:',
+'mergehistory-into'                => 'Páxina de destino:',
+'mergehistory-list'                => 'Historial de edicións fusionábeis',
+'mergehistory-merge'               => 'As revisións seguintes de [[:$1]] pódense fusionar con [[:$2]]. Use a columna de botóns de selección para fusionar só as revisións creadasen e antes da hora indicada. Teña en conta que se usa as ligazóns de navegación a columna limparase.',
+'mergehistory-go'                  => 'Amosar edicións fusionábeis',
+'mergehistory-submit'              => 'Fusionar revisións',
+'mergehistory-empty'               => 'Non hai revisións que se podan fusionar',
+'mergehistory-success'             => 'Fusionáronse sen problemas $3 revisións de [[:$1]] con [[:$2]].',
+'mergehistory-fail'                => 'Non se puido fusionar o historial; comprobe outra vez os parámetros de páxina e hora.',
+'mergehistory-no-source'           => 'Non existe a páxina de orixe $1.',
+'mergehistory-no-destination'      => 'Non existe a páxina de destino $1.',
+'mergehistory-invalid-source'      => 'A páxina de orixe ten que ter un título válido.',
+'mergehistory-invalid-destination' => 'A páxina de destino ten que ter un título válido.',
+
+# Merge log
+'mergelog'           => 'Rexistro de fusións',
+'pagemerge-logentry' => 'fusionouse [[$1]] con [[$2]] (revisións até $3)',
+'revertmerge'        => 'Desfacer a fusión',
+'mergelogpagetext'   => 'A continuación hai unha listaxe das fusións máis recentes do historial dunha páxina co doutra.',
 
 # Diffs
 'history-title'           => 'Historial das revisións de "$1"',
@@ -798,6 +818,7 @@ Procurar $3 $9',
 'resultsperpage'           => 'Cantidade de peticións a amosar por páxina:',
 'contextlines'             => 'Cantidade de liñas a amosar por resultado:',
 'contextchars'             => 'Caracteres de contexto por liña:',
+'stub-threshold'           => 'Umbral para o formatado de <a href="#" class="stub">ligazón de bosquexo</a> (bytes):',
 'recentchangesdays'        => 'Número de días para mostrar nos cambios recentes:',
 'recentchangescount'       => 'Número de edicións para mostrar nos cambios recentes:',
 'savedprefs'               => 'As súas preferencias foron gardadas.',
@@ -841,6 +862,7 @@ e a do servidor (UTC).',
 'group-bureaucrat-member'    => 'Burócrata',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuario auto-confirmado',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
 
@@ -872,7 +894,7 @@ e a do servidor (UTC).',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 usuario(s) vixiando]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} vixiando]',
 'rc_categories'                     => 'Límite para categorías (separado con "|")',
 'rc_categories_any'                 => 'Calquera',
 'newsectionsummary'                 => 'Nova sección: /* $1 */',
@@ -1158,6 +1180,8 @@ Cada fileira contén ligazóns cara á primeira e segunda redirección, e tamén
 'notargettitle'           => 'Sen obxectivo',
 'notargettext'            => 'Non especificou a páxina ou o usuario no cal
 facer esta función.',
+'pager-newer-n'           => '{{PLURAL:$1|1 máis recente|$1 máis recentes}}',
+'pager-older-n'           => '{{PLURAL:$1|1 máis vella|$1 máis vellas}}',
 
 # Book sources
 'booksources'               => 'Fontes dos libros',
@@ -1319,6 +1343,12 @@ En $2 pode ver unha listaxe dos borrados recentes.',
 'deletionlog'                 => 'rexistro de borrado',
 'reverted'                    => 'Devolto a unha versión anterior',
 'deletecomment'               => 'Razón para o borrado',
+'deleteotherreason'           => 'Outros/Máis motivos:',
+'deletereasonotherlist'       => 'Outro motivo',
+'deletereason-dropdown'       => '*Motivos frecuentes para eliminar
+** Petición do autor
+** Violación de copyright
+** Vandalismo',
 'rollback'                    => 'Desfacer edicións',
 'rollback_short'              => 'Desfacer',
 'rollbacklink'                => 'desfacer',
@@ -1359,6 +1389,7 @@ Eis a configuración actual da páxina <strong>$1</strong>:',
 'protect-summary-cascade'     => 'protección en serie',
 'protect-expiring'            => 'remata $1 (UTC)',
 'protect-cascade'             => 'Protección en serie - protexe tamén as páxinas incluídas nesta páxina.',
+'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten permiso para editala.',
 'restriction-type'            => 'Permiso',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo (bytes)',
@@ -1394,6 +1425,7 @@ Non se restaurarán as revisións dos ficheiros sobre os que non ten permiso par
 'undeletehistorynoadmin'       => 'Este artigo foi eliminado. O motivo da eliminación consta no resumo de embaixo, xuntos cos detalles dos usuarios que editaron esta páxina antes da súa eliminación. O das revisións eliminadas só está á disposición dos administradores.',
 'undelete-revision'            => 'Revisión de $1 eliminada (en $2) por $3:',
 'undeleterevision-missing'     => 'Revisión non válida ou inexistente. Pode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.',
+'undelete-nodiff'              => 'Non se atopou ningunha revisión anterior.',
 'undeletebtn'                  => 'Restaurar',
 'undeletereset'                => 'Borrar',
 'undeletecomment'              => 'Comentario:',
@@ -1447,6 +1479,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Páxinas que ligan con esta',
 'whatlinkshere-title' => 'Páxinas que ligan con $1',
+'whatlinkshere-page'  => 'Páxina:',
 'linklistsub'         => '(Lista de ligazóns)',
 'linkshere'           => "As seguintes páxinas ligan con '''[[:$1]]''':",
 'nolinkshere'         => "Ningunha páxina liga con '''[[:$1]]'''.",
@@ -1527,8 +1560,11 @@ a un enderezo IP ou usuario que estea bloqueado.',
 'ipb_expiry_invalid'          => 'Tempo de duración non válido.',
 'ipb_already_blocked'         => '"$1" xa está bloqueado',
 'ipb_cant_unblock'            => 'Erro: Non se atopa o Block ID $1. Posiblemente xa foi desbloqueado.',
+'ipb_blocked_as_range'        => 'Erro: O enderezo IP $1 non está bloqueado directamente e non se pode desbloquear. Porén, está bloqueado por estar no rango $2, que si se pode desbloquear.',
 'ip_range_invalid'            => 'Rango IP non válido.',
+'blockme'                     => 'Bloquearme',
 'proxyblocker'                => 'Bloqueador de proxy',
+'proxyblocker-disabled'       => 'Esta función está desactivada.',
 'proxyblockreason'            => 'O seu enderezo de IP foi bloqueado porque é un proxy aberto. Por favor contacte co seu fornecedor de acceso a internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
 'proxyblocksuccess'           => 'Feito.',
 'sorbsreason'                 => "O seu enderezo IP está rexistrado na listaxe DNSBL como un ''proxy'' aberto.",
@@ -1939,6 +1975,7 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-whitebalance'                => 'Balance de brancos',
 'exif-digitalzoomratio'            => 'Valor do zoom dixital',
 'exif-focallengthin35mmfilm'       => 'Lonxitude focal na película de 35 mm',
+'exif-scenecapturetype'            => 'Tipo de captura da escena',
 'exif-gaincontrol'                 => 'Control de escena',
 'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturación',

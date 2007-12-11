@@ -774,20 +774,24 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'overlogpagetext' => 'Under er en liste over de nyligste slettinger og blokkeringer som involverer innhold skjult for administratorer. Se [[Special:Ipblocklist|IP-blokkeringslista]] for nåværende bannlysninger og blokkeringer.',
 
 # History merging
-'mergehistory'         => 'Flett sidehistorikker',
-'mergehistory-header'  => "Denne siden lar deg flette historikken til to sider. Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.
+'mergehistory'                     => 'Flett sidehistorikker',
+'mergehistory-header'              => "Denne siden lar deg flette historikken til to sider. Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.
 
 '''I hvert fall den siste revisjonen til kildesiden må forbli.'''",
-'mergehistory-box'     => 'Flett historikken til to sider:',
-'mergehistory-from'    => 'Kildeside:',
-'mergehistory-into'    => 'Målside:',
-'mergehistory-list'    => 'Flettbar redigeringshistorikk',
-'mergehistory-merge'   => 'Følgende revisjoner av [[:$1]] kan flettes til [[:$2]]. Du kan velge å flette kun de revisjonene som kom før tidspunktet gitt i tabellen. Merk at bruk av navigasjonslenkene vil resette denne kolonnen.',
-'mergehistory-go'      => 'Vis flettbare redigeringer',
-'mergehistory-submit'  => 'Flett revisjoner',
-'mergehistory-empty'   => 'Ingen revisjoner kan flettes',
-'mergehistory-success' => '$3 revisjoner av [[:$1]] ble flettet til [[:$2]].',
-'mergehistory-fail'    => 'Kunne ikke utføre historikkfletting; vennligst sjekk siden og tidsparameterne igjen.',
+'mergehistory-box'                 => 'Flett historikken til to sider:',
+'mergehistory-from'                => 'Kildeside:',
+'mergehistory-into'                => 'Målside:',
+'mergehistory-list'                => 'Flettbar redigeringshistorikk',
+'mergehistory-merge'               => 'Følgende revisjoner av [[:$1]] kan flettes til [[:$2]]. Du kan velge å flette kun de revisjonene som kom før tidspunktet gitt i tabellen. Merk at bruk av navigasjonslenkene vil resette denne kolonnen.',
+'mergehistory-go'                  => 'Vis flettbare redigeringer',
+'mergehistory-submit'              => 'Flett revisjoner',
+'mergehistory-empty'               => 'Ingen revisjoner kan flettes',
+'mergehistory-success'             => '$3 revisjoner av [[:$1]] ble flettet til [[:$2]].',
+'mergehistory-fail'                => 'Kunne ikke utføre historikkfletting; vennligst sjekk siden og tidsparameterne igjen.',
+'mergehistory-no-source'           => 'Kildesiden $1 finnes ikke.',
+'mergehistory-no-destination'      => 'Målsiden $1 finnes ikke.',
+'mergehistory-invalid-source'      => 'Kildesiden må ha en gyldig tittel.',
+'mergehistory-invalid-destination' => 'Målsiden må ha en gyldig tittel.',
 
 # Merge log
 'mergelog'           => 'Flettingslogg',
@@ -1224,6 +1228,8 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'unusedcategoriestext'    => 'Følgende kategorier eksisterer, men det er ingen sider i dem.',
 'notargettitle'           => 'Intet mål',
 'notargettext'            => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
+'pager-newer-n'           => 'nyere $1',
+'pager-older-n'           => 'eldre $1',
 
 # Book sources
 'booksources'               => 'Bokkilder',
@@ -1495,10 +1501,6 @@ $1',
 'month'         => 'Måned:',
 'year'          => 'År:',
 
-'sp-contributions-newest'      => 'Nyeste',
-'sp-contributions-oldest'      => 'Eldste',
-'sp-contributions-newer'       => '$1 nyere',
-'sp-contributions-older'       => '$1 eldre',
 'sp-contributions-newbies'     => 'Vis kun bidrag fra nye kontoer',
 'sp-contributions-newbies-sub' => 'For nybegynnere',
 'sp-contributions-blocklog'    => 'Blokkeringslogg',
@@ -1906,10 +1908,6 @@ $1',
 'bad_image_list' => 'Formatet er slik:
 
 Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en linje må være en lenke til et dårlig bilde. Alle andre linker på samme linje anses å være unntak, altså artikler hvor bildet er tillat brukt.',
-
-# Variants for Kurdish language
-'variantname-ku-arab' => 'ku-Arab',
-'variantname-ku-latn' => 'ku-Latn',
 
 # Metadata
 'metadata'          => 'Metadata',

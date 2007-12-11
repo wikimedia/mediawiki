@@ -1169,6 +1169,8 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modific
 'unusedcategoriestext'    => 'Les catègories siuventes ègzistont mas nion articllo ou ben niona catègorie les utilise.',
 'notargettitle'           => 'Pas de ciba',
 'notargettext'            => 'Endicâd una pâge ciba ou ben un utilisator ciba.',
+'pager-newer-n'           => '{{PLURAL:$1|1 ples novél|$1 ples novéls}}',
+'pager-older-n'           => '{{PLURAL:$1|1 ples viely|$1 ples vielys}}',
 
 # Book sources
 'booksources'               => 'Ôvres de rèference',
@@ -1458,10 +1460,6 @@ $1',
 'month'         => 'Dês lo mês (et prècèdents) :',
 'year'          => 'Dês l’an (et prècèdents) :',
 
-'sp-contributions-newest'      => 'Dèrriéres contribucions',
-'sp-contributions-oldest'      => 'Premiéres contribucions',
-'sp-contributions-newer'       => '$1 prècèdentes',
-'sp-contributions-older'       => '$1 siuventes',
 'sp-contributions-newbies'     => 'Montrar ren que les contribucions des novéls utilisators',
 'sp-contributions-newbies-sub' => 'Lista de les contribucions des novéls utilisators. Les pâges qu’ont étâ suprimâs sont pas afichiês.',
 'sp-contributions-blocklog'    => 'Jornal des blocâjos',
