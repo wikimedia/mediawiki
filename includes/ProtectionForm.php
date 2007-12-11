@@ -372,7 +372,7 @@ class ProtectionForm {
 			}
 		}
 		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
-		$script .= 'protectInitialize("mwProtectSet","' . wfEscapeJsString( wfMsg( 'protect-unchain' ) ) . '")';
+		$script .= 'protectInitialize("mwProtectSet","' . wfEscapeJsString( wfMsg( 'protect-unchain' ) ) . '","' . count($this->mApplicableTypes) . '")';
 		return '<script type="text/javascript">' . $script . '</script>';
 	}
 
