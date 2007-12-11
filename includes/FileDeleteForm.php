@@ -85,6 +85,7 @@ class FileDeleteForm {
 			if( !$status->isGood() )
 				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
 			if( $status->ok ) {
+				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 				$wgOut->addHtml( $this->prepareMessage( 'filedelete-success' ) );
 				// Return to the main page if we just deleted all versions of the
 				// file, otherwise go back to the description page
