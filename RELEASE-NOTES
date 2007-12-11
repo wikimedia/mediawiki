@@ -235,6 +235,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12145) Add localized names of kk-variants
 * (bug 12259) Localize the numbers in deleted pages on the sysop view
 * Set proper page title for successful file deletion
+* (bug 11221) Do not show 'Compare selected versions' button for a history page
+  with one revision only
 
 == Parser changes in 1.12 ==
 
