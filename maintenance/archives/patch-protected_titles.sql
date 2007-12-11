@@ -1,5 +1,5 @@
 -- Protected titles - nonexistent pages that have been protected
-CREATE TABLE /*$wgDBPrefix*/protected_titles (
+CREATE TABLE /*$wgDBprefix*/protected_titles (
   pt_namespace int(11) NOT NULL,
   pt_title varchar(255) NOT NULL,
   pt_by int(10) unsigned NOT NULL,
