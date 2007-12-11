@@ -745,24 +745,24 @@ o nun quier recibir correos d'otros usuarios.",
 'watchlist'            => 'La mio páxina de vixilancia',
 'mywatchlist'          => 'La mio páxina de vixilancia',
 'watchlistfor'         => "(pa '''$1''')",
-'nowatchlist'          => 'La tu llista de vixilancia ta vacía.',
-'watchnologin'         => 'Ensin entrar',
+'nowatchlist'          => 'La to llista de vixilancia ta vacia.',
+'watchnologin'         => 'Non identificáu',
 'watchnologintext'     => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder camudar la to llista de vixilancia.',
-'addedwatch'           => 'Añadío a la llista de vixilancia',
+'addedwatch'           => 'Añadida a la llista de vixilancia',
 'addedwatchtext'       => 'Añadióse la páxina "[[:$1]]" a la to [[Special:Watchlist|llista de vixilancia]]. Los cambeos nesta páxina y la so páxina de discusión asociada van salite en negrina na llista de [[Special:Recentchanges|cambeos recientes]] pa que seya más fácil de vela.
 
 Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixilar" nel menú llateral.',
-'removedwatch'         => 'Quitar de la llista de vixilancia',
-'removedwatchtext'     => 'Quitose la páxina "[[:$1]]" de la to llista de vixilancia.',
+'removedwatch'         => 'Eliminada de la llista de vixilancia',
+'removedwatchtext'     => 'Quitóse la páxina "[[:$1]]" de la to llista de vixilancia.',
 'watch'                => 'Vixilar',
 'watchthispage'        => 'Vixilar esta páxina',
-'unwatch'              => 'dexar de vixilar',
+'unwatch'              => 'Dexar de vixilar',
 'notanarticle'         => 'Nun ye un artículu',
-'watchnochange'        => 'Nenguna de les tus páxines vixilaes foi editada nel periodu elexíu.',
+'watchnochange'        => 'Nenguna de les tos páxines vixilaes foi editada nel periodu escoyíu.',
 'watchlistcontains'    => 'La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.',
-'wlshowlast'           => 'Asoleyar les últimes $1 hores $2 díes $3',
+'wlshowlast'           => 'Amosar les últimes $1 hores $2 díes $3',
 'watchlist-hide-bots'  => 'Esconder ediciones de bots',
-'watchlist-hide-own'   => 'Esconder les mis ediciones',
+'watchlist-hide-own'   => 'Esconder les mios ediciones',
 'watchlist-hide-minor' => 'Esconder ediciones menores',
 
 'enotif_reset'       => 'Marcar toles páxines visitaes',
@@ -776,43 +776,48 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'excontent'                   => "el conteníu yera: '$1'",
 'excontentauthor'             => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "el conteníu enantes de dexar en blanco yera: '$1'",
-'exblank'                     => 'la páxina taba vacía',
+'exblank'                     => 'la páxina taba vacia',
 'confirmdelete'               => 'Confirmar el borráu',
 'deletesub'                   => '(Borrando "$1")',
-'historywarning'              => 'AVISU: La páxina que vas borrar tien un historial:',
-'confirmdeletetext'           => "Tas a puntu de borrar pa siempre de la base de datos una páxina o imaxe arriendes del so historial.
-Por favor, confirma que ye lo que quies facer, qu'entiendes les consecuencies, y que lo tas faciendo acordies coles [[{{MediaWiki:Policy-url}}|polítiques]].",
+'historywarning'              => 'Avisu: La páxina que vas borrar tien historial:',
+'confirmdeletetext'           => "Tas a piques de borrar dafechu una páxina
+o imaxe arriendes del so historial. Por favor,
+confirma que ye lo que quies facer, qu'entiendes
+les consecuencies, y que lo tas faciendo acordies
+coles [[{{MediaWiki:Policy-url}}|polítiques]].",
 'actioncomplete'              => 'Aición completada',
-'deletedtext'                 => '"$1" foi borráu.
-Mira\'l $2 pa una llista de les últimes coses borraes.',
-'deletedarticle'              => 'Borró "[[$1]]"',
+'deletedtext'                 => 'Borróse "$1".
+Mira en $2 la llista de les últimes páxines borraes.',
+'deletedarticle'              => 'borró "[[$1]]"',
 'dellogpage'                  => 'Rexistru de borraos',
-'dellogpagetext'              => 'Abaxo tán los artículos borraos más recientemente.',
+'dellogpagetext'              => 'Abaxo tán los artículos borraos más recién.',
 'deletionlog'                 => 'rexistru de borraos',
 'deletecomment'               => 'Razón pa borrar',
-'rollback_short'              => 'Desaniciar',
-'rollbacklink'                => 'Desaniciar',
+'rollback_short'              => 'Revertir',
+'rollbacklink'                => 'revertir',
 'cantrollback'                => "Nun se pue revertir la edición; el postrer collaborador ye l'únicu autor d'esta páxina.",
-'alreadyrolled'               => 'Nun se pue desaniciar la postrer edición de [[:$1]]
-fecha por [[User:$2|$2]] ([[User talk:$2|discusión]]); dalguién más yá editó o revirtió la páxina.
+'alreadyrolled'               => 'Nun se pue revertir la postrer edición de [[:$1]]
+fecha por [[User:$2|$2]] ([[User talk:$2|discusión]]); daquién más yá editó o revirtió la páxina.
 
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
-'editcomment'                 => 'El resume de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'                 => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusión]]) hasta la versión de [[User:$1|$1]]',
-'sessionfailure'              => 'Paez qu\'hai un problema cola tu sesión; por precaución cancelose l\'acción que pidiste. Da-y al botón de "Atrás" nel navegador y vuelve a intentalu.',
-'protectlogpage'              => 'Rexistru de protecciones',
-'protectlogtext'              => 'Esti ye un rexistru de les páxines protexíes y desprotexíes. Consulta la [[Special:Protectedpages|llista de páxines protexíes]] pa ver les proteiciones actives actualmente.',
+'sessionfailure'              => 'Paez qu\'hai un problema cola to sesión; por precaución
+cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
+navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
+'protectlogpage'              => 'Rexistru de proteiciones',
+'protectlogtext'              => 'Esti ye un rexistru de les páxines protexíes y desprotexíes. Consulta la [[Special:Protectedpages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
 'protectedarticle'            => 'protexó $1',
-'unprotectedarticle'          => 'desprotexió "[[$1]]"',
+'unprotectedarticle'          => 'desprotexó "[[$1]]"',
 'protectsub'                  => '(Protexendo "$1")',
-'confirmprotect'              => 'Confirma proteición',
-'protectcomment'              => 'Razón pa protexer',
-'unprotectsub'                => '(Desprotexiendo "$1")',
-'protect-unchain'             => 'Camudar los permisos pa tresllados',
-'protect-text'                => 'Equí pues ver y camudar el nivel de protección de <strong>$1</strong>.',
+'confirmprotect'              => 'Confirmar proteición',
+'protectcomment'              => 'Comentariu:',
+'unprotectsub'                => '(Desprotexendo "$1")',
+'protect-unchain'             => 'Camudar los permisos pa tresllaos',
+'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong>$1</strong>.',
 'protect-default'             => '(por defeutu)',
-'protect-level-autoconfirmed' => 'Bloquear usuarios ensin rexistrar',
-'protect-level-sysop'         => 'Sólu alministradores',
+'protect-level-autoconfirmed' => 'Bloquiar usuarios non rexistraos',
+'protect-level-sysop'         => 'Namái alministradores',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Editar',
@@ -821,23 +826,32 @@ La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).'
 # Undelete
 'undelete'                 => 'Ver páxines borraes',
 'undeletepage'             => 'Ver y restaurar páxines borraes',
-'undeletepagetext'         => "Les siguientes páxines foron borraes pero inda tan nel archivu y puen ser restauraes. L'archivu pue ser purgáu periódicamente.",
-'undeleteextrahelp'        => "Pa restaurar tola páxina, deseleiciona toles casielles y calca en '''''Restaurar'''''. Pa realizar una restauración selectiva, seleiciona les casielles de la revisión que se quier restaura y calca en '''''Restaurar'''''. Calcando en '''''Llimpiar''''' quedarán vacios el campu de comentarios y toles casielles.",
-'undeleterevisions'        => '$1 {{PLURAL:$1|revision|revisiones}} archivaes',
-'undeletehistory'          => 'Si restaures la páxina, restauraránse toles revisiones del historial. Si foi creada una páxina col mesmu nome dende que fuera borrada, les revisiones restauraes van apaecer nel historial anterior, y la revisión actual de la páxina activa nun sedrá sustituyida automáticamente.',
-'undeletehistorynoadmin'   => "Esti artículu foi borráu. La razón de borralu amuésase nel resumen d'embaxo, amás de detalles de los usuarios qu'editaron esta páxina enantes de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái pa los alministradores.",
+'undeletepagetext'         => "Les siguientes páxines foron borraes pero tovía tán nel archivu y puen
+ser restauraes. L'archivu pue ser purgáu periódicamente.",
+'undeleteextrahelp'        => "Pa restaurar tola páxina, deseleiciona toles caxelles y calca en
+'''''Restaurar'''''. Pa realizar una restauración selectiva, seleiciona les caxelles de la revisión
+que quies restaurar y calca en '''''Restaurar'''''. Calcando en '''''Llimpiar''''' quedarán vacios
+el campu de comentarios y toles caxelles.",
+'undeleterevisions'        => '$1 {{PLURAL:$1|revisión archivada|revisiones archivaes}}',
+'undeletehistory'          => 'Si restaures la páxina, restauraránse toles revisiones al historial.
+Si se creó una páxina col mesmu nome dende que foi borrada, les revisiones
+restauraes van apaecer nel historial anterior. Date cuenta tamién de que les restricciones del archivu de revisiones
+perderánse depués de la restauración',
+'undeletehistorynoadmin'   => "Esta páxina foi borrada. La razón del borráu amuésase
+nel resumen d'embaxo, amás de detalles de los usuarios qu'editaron esta páxina enantes
+de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái pa los alministradores.",
 'undeletebtn'              => 'Restaurar',
 'undeletereset'            => 'Llimpiar',
 'undeletecomment'          => 'Comentariu:',
 'undeletedarticle'         => 'restauróse "[[$1]]"',
-'undeletedrevisions'       => '{{PLURAL:$1|1 revision|$1 revisiones}} restauraes',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 revision|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
-'undeletedfiles'           => '{{PLURAL:$1|1 archivu|$1 archivos}} restauraos',
+'undeletedrevisions'       => '{{PLURAL:$1|1 revisión restaurada|$1 revisiones restauraes}}',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
+'undeletedfiles'           => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',
 'cannotundelete'           => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
 
 # Namespace form on various pages
 'namespace'      => 'Espaciu de nomes:',
-'invert'         => 'Invertir seleción',
+'invert'         => 'Invertir seleición',
 'blanknamespace' => '(Principal)',
 
 # Contributions
@@ -846,25 +860,25 @@ La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).'
 'contribsub2'   => 'De $1 ($2)',
 'nocontribs'    => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
 'uclinks'       => 'Ver los caberos $1 cambeos; ver los caberos $2 díes.',
-'uctop'         => ' (últimu cambeu)',
+'uctop'         => ' (últimu cambéu)',
 
 'sp-contributions-blocklog' => 'Rexistru de bloqueos',
 
 # What links here
 'whatlinkshere' => "Lo qu'enllaza equí",
 'linklistsub'   => "(Llista d'enllaces)",
-'linkshere'     => "Les páxines siguientes enllacien en '''[[:$1]]''':",
-'nolinkshere'   => "Nenguna páxina enllaza en '''[[:$1]]'''.",
-'isredirect'    => 'Redireicionar páxina',
+'linkshere'     => "Les páxines siguientes enllacien a '''[[:$1]]''':",
+'nolinkshere'   => "Nenguna páxina enllaza a '''[[:$1]]'''.",
+'isredirect'    => 'páxina redirixida',
 
 # Block/unblock
 'blockip'                     => 'Bloquiar usuariu',
-'blockiptext'                 => "Usa'l siguiente formulariu pa bloquear el permisu d'escritura a una IP o a un usuariu concretu.
+'blockiptext'                 => "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.
 Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da una razón específica (como por exemplu citar páxines que fueron vandalizaes).",
-'ipaddress'                   => 'Dirección IP',
-'ipadressorusername'          => "Dirección IP o nome d'usuariu",
-'ipbexpiry'                   => 'Tiempu',
-'ipbreason'                   => 'Razón',
+'ipaddress'                   => 'Dirección IP:',
+'ipadressorusername'          => "Dirección IP o nome d'usuariu:",
+'ipbexpiry'                   => 'Caducidá:',
+'ipbreason'                   => 'Razón:',
 'ipbreasonotherlist'          => 'Otra razón',
 'ipbreason-dropdown'          => "*Razones comunes de bloquéu
 ** Enxertamientu d'información falso
@@ -874,39 +888,39 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 ** Comportamientu intimidatoriu o d'acosu
 ** Abusu de cuentes múltiples
 ** Nome d'usuariu inaceutable",
-'ipbanononly'                 => 'Bloquear namái usuarios anónimos',
+'ipbanononly'                 => 'Bloquiar namái usuarios anónimos',
 'ipbcreateaccount'            => 'Evitar creación de cuentes',
-'ipbenableautoblock'          => "Bloquiar automáticamente la cabera direición IP usada por esti usuariu y toles IP posteriores dende les que s'intente editar",
-'ipbsubmit'                   => 'Bloquear esti usuariu',
-'ipbother'                    => 'Otru periodu',
-'ipboptions'                  => '15 minutos:15 minutes,1 hora:1 hour,2 hores:2 hours,1 día:1 day,2 díes:2 days,1 selmana:1 week,1 mes:1 month,pa siempre:infinite',
+'ipbenableautoblock'          => "Bloquiar automáticamente la cabera direición IP usada por esti usuariu y toles IP posteriores dende les qu'intente editar",
+'ipbsubmit'                   => 'Bloquiar esti usuariu',
+'ipbother'                    => 'Otru periodu:',
+'ipboptions'                  => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite',
 'ipbotheroption'              => 'otru',
-'ipbotherreason'              => 'Otra razón/razón adicional',
+'ipbotherreason'              => 'Otra razón/razón adicional:',
 'badipaddress'                => 'IP non válida',
 'blockipsuccesssub'           => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'          => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
 <br />Mira na [[Special:Ipblocklist|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
-'unblockip'                   => 'Desbloquear usuariu',
-'ipusubmit'                   => 'Desbloquear esta dirección',
-'unblocked'                   => '[[User:$1|$1]] foi desbloqueáu',
-'ipblocklist'                 => "Llista de direcciones IP y nomes d'usuarios bloqueaos",
+'unblockip'                   => 'Desbloquiar usuariu',
+'ipusubmit'                   => 'Desbloquiar esta direición',
+'unblocked'                   => '[[User:$1|$1]] foi desbloquiáu',
+'ipblocklist'                 => "Llista de direiciones IP y nomes d'usuarios bloquiaos",
 'blocklistline'               => '$1, $2 bloquió a $3 ($4)',
 'infiniteblock'               => 'pa siempre',
-'expiringblock'               => 'hasta $1',
+'expiringblock'               => "caduca'l $1",
 'anononlyblock'               => 'namái anón.',
 'noautoblockblock'            => 'bloquéu automáticu desactiváu',
-'createaccountblock'          => 'bloqueada creación de cuentes',
+'createaccountblock'          => 'bloquiada la creación de cuentes',
 'emailblock'                  => 'corréu electrónicu bloquiáu',
 'blocklink'                   => 'bloquiar',
-'unblocklink'                 => 'desbloquear',
+'unblocklink'                 => 'desbloquiar',
 'contribslink'                => 'contribuciones',
 'autoblocker'                 => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[Usuariu:$1|$1]]". La razón del bloquéu de $1 ye: "$2"',
 'blocklogpage'                => 'Rexistru de bloqueos',
-'blocklogentry'               => '"[[$1]]" $3 foi bloquiáu $2',
+'blocklogentry'               => 'bloquiáu [[$1]] con una caducidá de $2 $3',
 'blocklogtext'                => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios. Les direcciones IP
 bloquiaes automáticamente nun salen equí. Pa ver los bloqueos qu'hai agora mesmo, 
 mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
-'unblocklogentry'             => '$1 desbloqueáu',
+'unblocklogentry'             => 'desbloquió $1',
 'block-log-flags-anononly'    => 'namái usuarios anónimos',
 'block-log-flags-nocreate'    => 'creación de cuentes deshabilitada',
 'block-log-flags-noautoblock' => 'bloquéu automáticu deshabilitáu',

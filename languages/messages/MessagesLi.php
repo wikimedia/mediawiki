@@ -5,11 +5,12 @@
  *
  * @author Ooswesthoesbes
  * @author Cicero
- * @author G - ג
  * @author Siebrand
  * @author SPQRobin
  * @author Jon Harald Søby
  * @author Nike
+ * @author לערי ריינהארט
+ * @author Tibor
  */
 
 $fallback = 'nl';
@@ -214,7 +215,7 @@ $messages = array(
 'copyrightpagename' => '{{SITENAME}} auteursrechte',
 'copyrightpage'     => '{{ns:project}}:Auteursrechte',
 'currentevents'     => "In 't nuujs",
-'currentevents-url' => 'Project:In \'t nuujs',
+'currentevents-url' => "Project:In 't nuujs",
 'disclaimers'       => 'Aafwiezinge aansjprakelikheid',
 'disclaimerpage'    => 'Project:Algemein aafwiezing aansjprakelikheid',
 'edithelp'          => 'Hulp bie bewirke',
@@ -537,15 +538,14 @@ Euverwaeg of 't terech is detse wiejer wèrks aan dees pazjena. Veur dien gemaak
 De door $3 opgegaeve reje is ''$2''",
 
 # History pages
-'revhistory'          => 'Bewirkingshistorie',
 'viewpagelogs'        => 'Logbeuk veur dees pazjena tune',
 'nohistory'           => 'Dees pazjena is nog neet bewirk.',
 'revnotfound'         => 'Wieziging neet gevonge',
 'revnotfoundtext'     => 'De opgevraogde aw versie van dees pazjena is verzjwónde. Kontroleer estebleef de URL dieste gebroek höbs óm nao dees pazjena te gaon.',
 'loadhist'            => "Bezig met 't laje van de pazjenahistorie",
 'currentrev'          => 'Hujige versie',
-'revisionasof'        => 'Revizie van $1',
-'revision-info'       => 'Revizie van $1 door $2',
+'revisionasof'        => 'Versie op $1',
+'revision-info'       => 'Versie op $1 door $2',
 'previousrevision'    => '← Awwer versie',
 'nextrevision'        => 'Nuujere versie→',
 'currentrevisionlink' => 'zuug hujige versie',
@@ -611,16 +611,12 @@ Anger beheerders van deze wiki kinne de verborge inhoud benäöjere en de verwie
 'overlogpagetext' => "Hiej onher is 'ne lies mit de meist recente verwiederinge en blokkeringe mit betrekking tot informatie dae neet zichbaar is veur admins. Zee de [[Special:Ipblocklist|Lies van geblokkeerde gebroekers en IP-adresse]] veur 'ne lies van de blokkades en verbanninge die noe gelje.",
 
 # Diffs
-'history-title'             => 'Gesjiedenis van "$1"',
-'difference'                => '(Versjil tösje bewirkinge)',
-'loadingrev'                => "bezig mit 't laje van de pazjenaversie",
-'lineno'                    => 'Tekslien $1:',
-'editcurrent'               => 'De hujige versie van dees pazjena bewirke.',
-'selectnewerversionfordiff' => "Kees 'n nuuiere versie om te vergelieke",
-'selectolderversionfordiff' => "Kees 'n auwere versie om te vergelieke",
-'compareselectedversions'   => 'Vergeliek geselecteerde versies',
-'editundo'                  => 'ongedaon make',
-'diff-multi'                => '({{plural:$1|éin tusseligkede versie wörd|$1 tusseligkede versies waere}} neet getuund)',
+'history-title'           => 'Gesjiedenis van "$1"',
+'difference'              => '(Versjil tösje bewirkinge)',
+'lineno'                  => 'Tekslien $1:',
+'compareselectedversions' => 'Vergeliek geselecteerde versies',
+'editundo'                => 'ongedaon make',
+'diff-multi'              => '({{plural:$1|éin tusseligkede versie wörd|$1 tusseligkede versies waere}} neet getuund)',
 
 # Search results
 'searchresults'         => 'Zeukresultate',
@@ -728,7 +724,6 @@ Neet geselecteerde gruup waere neet gewiezig. Deselecteer \'ne groep mit "Ctrl +
 'group-autoconfirmed-member' => 'Geregistreerde gebroeker',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebroekers',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrate',
 
 # User rights log
@@ -1280,10 +1275,6 @@ $1",
 'month'         => 'Van maondj (en irder):',
 'year'          => 'Van jaor (en irder):',
 
-'sp-contributions-newest'      => 'Nuujste',
-'sp-contributions-oldest'      => 'Aajste',
-'sp-contributions-newer'       => '$1 nuujere',
-'sp-contributions-older'       => '$1 aajere',
 'sp-contributions-newbies'     => 'Tuun allein de bijdrages van nuuje gebroekers',
 'sp-contributions-newbies-sub' => 'Veur nuujelinge',
 'sp-contributions-blocklog'    => 'Blokkeerlogbook',
@@ -1759,14 +1750,14 @@ Probeer normaal veurvertuun.',
 'watchlistedit-raw-legend'     => 'Ruwe volglies bewèrke',
 'watchlistedit-raw-explain'    => "Hiej onger staon pazjena's op diene volglies. Doe kins de lies bewèrke door pazjena's te verwiedere en toe te voege. Eine pazjena per regel. Esse klaor bös, klik dan op 'Volglies biewerke'. Doe kins ouch [[{{ns:special}}:Watchlist/edit|'t standaard bewerkingssjerm gebroeke]].",
 'watchlistedit-raw-titles'     => "Pazjena's:",
-'watchlistedit-raw-submit'     => 'Volglies biewerke',
-'watchlistedit-raw-done'       => 'Diene volglies is geüpdate.',
+'watchlistedit-raw-submit'     => 'Volglies biewirke',
+'watchlistedit-raw-done'       => 'Dien volglies is biegewirk.',
 'watchlistedit-raw-added'      => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} toegevoeg:",
-'watchlistedit-raw-removed'    => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} verwiederd:",
+'watchlistedit-raw-removed'    => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} eweggesjaf:",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Volglies bekieke',
-'watchlisttools-edit' => 'Volglies bekieke en bewerke',
-'watchlisttools-raw'  => 'Ruwe volglies bewerke',
+'watchlisttools-edit' => 'Volglies bekieke en bewirke',
+'watchlisttools-raw'  => 'Roew volglies bewirke',
 
 );

@@ -1731,6 +1731,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 
 # Stylesheets
 'common.css'   => '/** CSS an disse Steede wirket sik ap aal Skins uut */',
+'monobook.css' => '/* Littikschrieuwen nit twinge */',
 
 # Scripts
 'common.js'   => '/* Älk JavaScript hier wäd foar aal Benutsere foar älke Siede leeden. */',

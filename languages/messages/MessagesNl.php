@@ -587,6 +587,7 @@ $2",
 'namespaceprotected'   => "U heeft geen rechten om pagina's in de naamruimte '''$1''' te bewerken.",
 'customcssjsprotected' => 'U kunt deze pagina niet bewerken omdat die persoonlijke instellingen van een andere gebruiker bevat.',
 'ns-specialprotected'  => 'Pagina\'s in de naamruimte "{{ns:special}}" kunnen niet bewerkt worden.',
+'titleprotected'       => 'Het aanmaken van deze pagina is beveiligd door [[User:$1|$1]]. De gegeven reden is <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Gebruiker afmelden',
@@ -1605,8 +1606,9 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Bewerken',
-'restriction-move' => 'Hernoemen',
+'restriction-edit'   => 'Bewerken',
+'restriction-move'   => 'Hernoemen',
+'restriction-create' => 'Aanmaken',
 
 # Restriction levels
 'restriction-level-sysop'         => 'volledig beveiligd',
