@@ -5,7 +5,7 @@
  * @param String tableId Identifier of the table containing UI bits
  * @param String labelText Text to use for the checkbox label
  */
-function protectInitialize( tableId, labelText ) {
+function protectInitialize( tableId, labelText, types ) {
 	if( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) )
 		return false;
 		
@@ -20,28 +20,42 @@ function protectInitialize( tableId, labelText ) {
 	row.appendChild( document.createElement( 'td' ) );
 	var col = document.createElement( 'td' );
 	row.appendChild( col );
-	
-	var check = document.createElement( 'input' );
-	check.id = 'mwProtectUnchained';
-	check.type = 'checkbox';
-	col.appendChild( check );
-	addClickHandler( check, protectChainUpdate );
+	// If there is only one protection type, there is nothing to chain
+	if( types > 1 ) {
+		var check = document.createElement( 'input' );
+		check.id = 'mwProtectUnchained';
+		check.type = 'checkbox';
+		col.appendChild( check );
+		addClickHandler( check, protectChainUpdate );
 
-	col.appendChild( document.createTextNode( ' ' ) );
-	var label = document.createElement( 'label' );
-	label.setAttribute( 'for', 'mwProtectUnchained' );
-	label.appendChild( document.createTextNode( labelText ) );
-	col.appendChild( label );
+		col.appendChild( document.createTextNode( ' ' ) );
+		var label = document.createElement( 'label' );
+		label.setAttribute( 'for', 'mwProtectUnchained' );
+		label.appendChild( document.createTextNode( labelText ) );
+		col.appendChild( label );
 
-	check.checked = !protectAllMatch();
-	protectEnable( check.checked );
+		check.checked = !protectAllMatch();
+		protectEnable( check.checked );
+	}
 	
-	allowCascade();
+	setCascadeCheckbox();
 	
 	return true;
 }
 
-function allowCascade() {
+/**
+* Determine if, given the cascadeable protection levels
+* and what is currently selected, if the cascade box 
+* can be checked
+*
+* @return boolean
+*
+*/
+function setCascadeCheckbox() {
+	// For non-existent titles, there is no cascade option
+	if( !document.getElementById( 'mwProtect-cascade' ) ) {
+		return false;
+	}
 	var lists = protectSelectors();
 	for( var i = 0; i < lists.length; i++ ) {
 		if( lists[i].selectedIndex > -1 ) {
@@ -58,6 +72,13 @@ function allowCascade() {
 	return true;
 }
 
+/**
+* Is this protection level cascadeable?
+* @param String level
+*
+* @return boolean
+*
+*/
 function isCascadeableLevel( level ) { 	 
 	for (var k = 0; k < wgCascadeableLevels.length; k++) { 	 
 		if ( wgCascadeableLevels[k] == level ) { 	 
@@ -76,7 +97,7 @@ function isCascadeableLevel( level ) {
 function protectLevelsUpdate(source) {
 	if( !protectUnchained() )
 		protectUpdateAll( source.selectedIndex );
-	allowCascade();
+	setCascadeCheckbox();
 }
 
 /**
@@ -90,7 +111,7 @@ function protectChainUpdate() {
 		protectChain();
 		protectEnable( false );
 	}
-	allowCascade();
+	setCascadeCheckbox();
 }
 
 /**
