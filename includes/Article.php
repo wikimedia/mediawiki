@@ -2093,7 +2093,7 @@ class Article {
 				$delcom:
 			</td>
 			<td align='left'>
-				<select tabindex='2' id='wpDeleteReasonList' name=\"wpDeleteReasonList\">
+				<select tabindex='1' id='wpDeleteReasonList' name=\"wpDeleteReasonList\">
 					$deleteReasonList
 				</select>
 			</td>
@@ -2103,7 +2103,7 @@ class Article {
 				$mDeletereasonother
 			</td>
 			<td align='left'>
-				<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"1\" />
+				<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"2\" />
 			</td>
 		</tr>
 		<tr>
