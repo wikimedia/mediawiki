@@ -540,6 +540,7 @@ $2',
 'namespaceprotected'   => "شما اجازهٔ ویرایش صفحه‌های فضای نام '''$1''' را ندارید.",
 'customcssjsprotected' => 'شما اجازهٔ ویرایش این صفحه را ندارید، چرا که حاوی تنظیم‌های شخصی یک کاربر دیگر است.',
 'ns-specialprotected'  => 'صفحه‌های فضای نام {{ns:special}} غیر قابل ویرایش هستند.',
+'titleprotected'       => 'از ایجاد صفحه‌ای با این عنوان توسط [[User:$1|$1]] جلوگیری شده‌است. دلیل ذکر شده از این قرار است: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'خروج کاربر از سیستم',
@@ -1588,8 +1589,9 @@ $NEWPAGE
 'pagesize'                    => '(بایت)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'ویرایش',
-'restriction-move' => 'انتقال',
+'restriction-edit'   => 'ویرایش',
+'restriction-move'   => 'انتقال',
+'restriction-create' => 'ایجاد',
 
 # Restriction levels
 'restriction-level-sysop'         => 'کامل‌حفاظت‌شده',
