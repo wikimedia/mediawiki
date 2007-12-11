@@ -796,7 +796,7 @@ Query: $2',
 'protectedpagetext'    => 'This page has been locked to prevent editing.',
 'viewsourcetext'       => 'You can view and copy the source of this page:',
 'protectedinterface'   => 'This page provides interface text for the software, and is locked to prevent abuse.',
-'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users. For translations, please consider using [http://translatewiki.net/wiki/Translating:Intro Betawiki], the MediaWiki localisation project.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users. For translations, please consider using [http://translatewiki.net/wiki/Translating:Intro Betawiki], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the "cascading" option turned on:
 $2',
@@ -1955,8 +1955,8 @@ Here are the current settings for the page <strong>$1</strong>:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Edit',
-'restriction-move' => 'Move',
+'restriction-edit'   => 'Edit',
+'restriction-move'   => 'Move',
 'restriction-create' => 'Create',
 
 # Restriction levels
