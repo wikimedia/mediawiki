@@ -5262,7 +5262,7 @@ class PPFrame {
 	function __construct( $parser ) {
 		$this->parser = $parser;
 		$this->title = $parser->mTitle;
-		$this->titleCache = array( $this->title->getPrefixedDBkey() );
+		$this->titleCache = array( $this->title ? $this->title->getPrefixedDBkey() : false );
 	}
 
 	/**
@@ -5470,7 +5470,7 @@ class PPTemplateFrame extends PPFrame {
 		$this->args = $args;
 		$this->title = $title;
 		$this->titleCache = $parent->titleCache;
-		$this->titleCache[] = $title->getPrefixedDBkey();
+		$this->titleCache[] = $title ? $title->getPrefixedDBkey() : false;
 	}
 
 	function __toString() {
