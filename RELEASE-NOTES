@@ -234,6 +234,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   apostrophes).
 * (bug 12145) Add localized names of kk-variants
 * (bug 12259) Localize the numbers in deleted pages on the sysop view
+* Set proper page title for successful file deletion
 
 == Parser changes in 1.12 ==
 
