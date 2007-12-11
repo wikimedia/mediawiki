@@ -803,6 +803,7 @@ $2',
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannot be edited.',
+'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]]. The reason given is <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
@@ -1956,6 +1957,7 @@ Here are the current settings for the page <strong>$1</strong>:',
 # Restrictions (nouns)
 'restriction-edit' => 'Edit',
 'restriction-move' => 'Move',
+'restriction-create' => 'Create',
 
 # Restriction levels
 'restriction-level-sysop'         => 'full protected',

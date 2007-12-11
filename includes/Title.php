@@ -1195,6 +1195,22 @@ class Title {
 			}
 		}
 
+
+		if ($action == 'create') {			
+			$title_protection = $this->getTitleProtection();
+
+			if (is_array($title_protection)) {
+				extract($title_protection);
+
+				if ($pt_create_perm == 'sysop')
+					$pt_create_perm = 'protect';
+
+				if ($pt_create_perm == '' || !$user->isAllowed($pt_create_perm)) {
+					$errors[] = array ( 'titleprotected', User::whoIs($pt_by), $pt_reason );
+				}
+			}
+		}
+
 		if( $action == 'create' ) {
 			if( (  $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
 				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
@@ -1233,6 +1249,77 @@ class Title {
 
 		wfProfileOut( $fname );
 		return $errors;
+	}
+
+	/**
+	 * Is this title subject to title protection?
+	 * @return array An associative array representing any existent title protection.
+	 */
+	public function getTitleProtection() {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$res = $dbr->select( 'protected_titles', '*', 
+			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBKey()) );
+
+		if ($row = $dbr->fetchRow( $res )) {
+			return $row;
+		} else {
+			return false;
+		}
+	}
+
+	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
+		global $wgGroupPermissions,$wgUser,$wgContLang;
+
+		if ($create_perm == implode(',',$this->getRestrictions('create'))
+			&& $expiry == $this->mRestrictionsExpiry) {
+			// No change
+			return true;
+		}
+
+		list ($namespace, $title) = array( $this->getNamespace(), $this->getDBKey() );
+
+		$dbw = wfGetDB( DB_MASTER );
+
+		$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
+
+		$expiry_description = '';
+		if ( $encodedExpiry != 'infinity' ) {
+			$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) ).')';
+		}
+
+		# Update protection table
+		if ($create_perm != '' ) {
+			$dbw->replace( 'protected_titles', array(array('pt_namespace', 'pt_title')),
+				array( 'pt_namespace' => $namespace, 'pt_title' => $title
+					, 'pt_create_perm' => $create_perm
+					, 'pt_timestamp' => Block::encodeExpiry(wfTimestampNow(), $dbw)
+					, 'pt_expiry' => $encodedExpiry
+					, 'pt_by' => $wgUser->getId(), 'pt_reason' => $reason ), __METHOD__  );
+		} else {
+			$dbw->delete( 'protected_titles', array( 'pt_namespace' => $namespace,
+				'pt_title' => $title ), __METHOD__ );
+		}
+		# Update the protection log
+		$log = new LogPage( 'protect' );
+
+		if( $create_perm ) {
+			$log->addEntry( $this->mRestrictions['create'] ? 'modify' : 'protect', $this, trim( $reason . " [create=$create_perm] $expiry_description" ) );
+		} else {
+			$log->addEntry( 'unprotect', $this, $reason );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Remove any title protection (due to page existing
+	 */
+	public function deleteTitleProtection() {
+		$dbw = wfGetDB( DB_MASTER );
+
+		$dbw->delete( 'protected_titles', 
+			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBKey()), __METHOD__ );
 	}
 
 	/**
@@ -1612,12 +1699,32 @@ class Title {
 
 	public function loadRestrictions( $oldFashionedRestrictions = NULL ) {
 		if( !$this->mRestrictionsLoaded ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			if ($this->exists()) {
+				$dbr = wfGetDB( DB_SLAVE );
 
-			$res = $dbr->select( 'page_restrictions', '*',
-				array ( 'pr_page' => $this->getArticleId() ), __METHOD__ );
+				$res = $dbr->select( 'page_restrictions', '*',
+					array ( 'pr_page' => $this->getArticleId() ), __METHOD__ );
 
-			$this->loadRestrictionsFromRow( $res, $oldFashionedRestrictions );
+				$this->loadRestrictionsFromRow( $res, $oldFashionedRestrictions );
+			} else {
+				$title_protection = $this->getTitleProtection();
+
+				if (is_array($title_protection)) {
+					extract($title_protection);
+
+					$now = wfTimestampNow();
+					$expiry = Block::decodeExpiry($pt_expiry);
+
+					if (!$expiry || $expiry > $now) {
+						// Apply the restrictions
+						$this->mRestrictionsExpiry = $expiry;
+						$this->mRestrictions['create'] = explode(',', trim($pt_create_perm) );
+					} else { // Get rid of the old restrictions
+						Title::purgeExpiredRestrictions();
+					}
+				}
+				$this->mRestrictionsLoaded = true;
+			}
 		}
 	}
 
@@ -1629,6 +1736,10 @@ class Title {
 		$dbw->delete( 'page_restrictions',
 			array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
 			__METHOD__ );
+
+		$dbw->delete( 'protected_titles',
+			array( 'pt_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
+			__METHOD__ );
 	}
 
 	/**
@@ -1638,16 +1749,12 @@ class Title {
 	 * @return array the array of groups allowed to edit this article
 	 */
 	public function getRestrictions( $action ) {
-		if( $this->exists() ) {
-			if( !$this->mRestrictionsLoaded ) {
-				$this->loadRestrictions();
-			}
-			return isset( $this->mRestrictions[$action] )
-					? $this->mRestrictions[$action]
-					: array();
-		} else {
-			return array();
+		if( !$this->mRestrictionsLoaded ) {
+			$this->loadRestrictions();
 		}
+		return isset( $this->mRestrictions[$action] )
+				? $this->mRestrictions[$action]
+				: array();
 	}
 
 	/**
@@ -2795,5 +2902,3 @@ class Title {
 	}
 	
 }
-
-

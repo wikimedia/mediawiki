@@ -2898,6 +2898,7 @@ class Article {
 
 		$title->touchLinks();
 		$title->purgeSquid();
+		$title->deleteTitleProtection();
 	}
 
 	static function onArticleDelete( $title ) {

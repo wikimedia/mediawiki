@@ -38,6 +38,7 @@ $wgNewTables = array(
 	array( 'filearchive',   'patch-filearchive.sql' ),
 	array( 'querycachetwo',	'patch-querycachetwo.sql' ),
 	array( 'redirect', 'patch-redirect.sql' ),
+	array( 'protected_titles', 'patch-protected_titles.sql' ),
 );
 
 $wgNewFields = array(

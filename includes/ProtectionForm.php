@@ -29,17 +29,19 @@ class ProtectionForm {
 	var $mCascade = false;
 	var $mExpiry = null;
 	var $mPermErrors = array();
+	var $mApplicableTypes = array();
 
 	function __construct( &$article ) {
 		global $wgRequest, $wgUser;
 		global $wgRestrictionTypes, $wgRestrictionLevels;
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
+		$this->mApplicableTypes = $this->mTitle->exists() ? $wgRestrictionTypes : array('create');
 
 		if( $this->mTitle ) {
 			$this->mTitle->loadRestrictions();
 
-			foreach( $wgRestrictionTypes as $action ) {
+			foreach( $this->mApplicableTypes as $action ) {
 				// Fixme: this form currently requires individual selections,
 				// but the db allows multiples separated by commas.
 				$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
@@ -67,7 +69,7 @@ class ProtectionForm {
 			$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
 			$this->mExpiry = $wgRequest->getText( 'mwProtect-expiry' );
 
-			foreach( $wgRestrictionTypes as $action ) {
+			foreach( $this->mApplicableTypes as $action ) {
 				$val = $wgRequest->getVal( "mwProtect-level-$action" );
 				if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
 					$this->mRestrictions[$action] = $val;
@@ -95,7 +97,6 @@ class ProtectionForm {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		if( is_null( $this->mTitle ) ||
-			!$this->mTitle->exists() ||
 			$this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			$wgOut->showFatalError( wfMsg( 'badarticleerror' ) );
 			return;
@@ -185,7 +186,12 @@ class ProtectionForm {
 			!(isset($wgGroupPermissions[$edit_restriction]['protect']) && $wgGroupPermissions[$edit_restriction]['protect'] ) )
 			$this->mCascade = false;
 
-		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade, $expiry );
+		if ($this->mTitle->exists()) {
+			$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade, $expiry );
+		} else {
+			$ok = $this->mTitle->updateTitleProtection( $this->mRestrictions['create'], $this->mReason, $expiry );
+		}
+
 		if( !$ok ) {
 			throw new FatalError( "Unknown error at restriction save time." );
 		}
@@ -222,6 +228,7 @@ class ProtectionForm {
 		$out .= "<table id='mwProtectSet'>";
 		$out .= "<tbody>";
 		$out .= "<tr>\n";
+
 		foreach( $this->mRestrictions as $action => $required ) {
 			/* Not all languages have V_x <-> N_x relation */
 			$out .= "<th>" . wfMsgHtml( 'restriction-' . $action ) . "</th>\n";
@@ -244,7 +251,7 @@ class ProtectionForm {
 		$out .= "<tbody>\n";
 
 		global $wgEnableCascadingProtection;
-		if( $wgEnableCascadingProtection )
+		if( $wgEnableCascadingProtection && $this->mTitle->exists() )
 			$out .= '<tr><td></td><td>' . $this->buildCascadeInput() . "</td></tr>\n";
 
 		$out .= $this->buildExpiryInput();
