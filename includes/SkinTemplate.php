@@ -718,6 +718,22 @@ class SkinTemplate extends Skin {
 					'href' => $this->mTitle->getLocalUrl( 'action=history')
 				);
 
+				if($wgUser->isAllowed('delete')){
+					$content_actions['delete'] = array(
+						'class' => ($action == 'delete') ? 'selected' : false,
+						'text' => wfMsg('delete'),
+						'href' => $this->mTitle->getLocalUrl( 'action=delete' )
+					);
+				}
+				if ( $this->mTitle->quickUserCan( 'move' ) ) {
+					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $this->thispage );
+					$content_actions['move'] = array(
+						'class' => $this->mTitle->isSpecial( 'Movepage' ) ? 'selected' : false,
+						'text' => wfMsg('move'),
+						'href' => $moveTitle->getLocalUrl()
+					);
+				}
+
 				if ( $this->mTitle->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
 					if(!$this->mTitle->isProtected()){
 						$content_actions['protect'] = array(
@@ -734,21 +750,6 @@ class SkinTemplate extends Skin {
 						);
 					}
 				}
-				if($wgUser->isAllowed('delete')){
-					$content_actions['delete'] = array(
-						'class' => ($action == 'delete') ? 'selected' : false,
-						'text' => wfMsg('delete'),
-						'href' => $this->mTitle->getLocalUrl( 'action=delete' )
-					);
-				}
-				if ( $this->mTitle->quickUserCan( 'move' ) ) {
-					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $this->thispage );
-					$content_actions['move'] = array(
-						'class' => $this->mTitle->isSpecial( 'Movepage' ) ? 'selected' : false,
-						'text' => wfMsg('move'),
-						'href' => $moveTitle->getLocalUrl()
-					);
-				}
 			} else {
 				//article doesn't exist or is deleted
 				if( $wgUser->isAllowed( 'delete' ) ) {
@@ -762,7 +763,25 @@ class SkinTemplate extends Skin {
 						);
 					}
 				}
+
+				if ( $this->mTitle->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
+					if(!is_array($this->mTitle->getTitleProtection())){
+						$content_actions['protect'] = array(
+							'class' => ($action == 'protect') ? 'selected' : false,
+							'text' => wfMsg('protect'),
+							'href' => $this->mTitle->getLocalUrl( 'action=protect' )
+						);
+
+					} else {
+						$content_actions['unprotect'] = array(
+							'class' => ($action == 'unprotect') ? 'selected' : false,
+							'text' => wfMsg('unprotect'),
+							'href' => $this->mTitle->getLocalUrl( 'action=unprotect' )
+						);
+					}
+				}
 			}
+
 			wfProfileOut( "$fname-live" );
 
 			if( $this->loggedin ) {

@@ -94,6 +94,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11657) Support for Thai solar calendar
 * (bug 943) RSS feed for Recentchangeslinked
 * Introduced AbortMove hook
+* (bug 2919) Protection of nonexistent pages with regular protection interface.
 
 === Bug fixes in 1.12 ===
 
