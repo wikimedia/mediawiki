@@ -245,6 +245,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	protected function getParamDescription() {
 		return array (
+			'prop' => 'Which properties to get',
 			'type' => 'Filter log entries to only this type(s)',
 			'start' => 'The timestamp to start enumerating from.',
 			'end' => 'The timestamp to end enumerating.',
