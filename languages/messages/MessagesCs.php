@@ -525,6 +525,7 @@ $2',
 'namespaceprotected'   => "Nemáte povoleno editovat stránky ve jmenném prostoru '''$1'''.",
 'customcssjsprotected' => 'Nemáte povoleno editovat tuto stránku, protože obsahuje osobní nastavení jiného uživatele.',
 'ns-specialprotected'  => 'Stránky ve jmenném prostoru {{ns:special}} nelze editovat.',
+'titleprotected'       => 'Stránku s tímto názvem nelze založit, protože název zamknul uživatel [[User:$1|$1]] s odůvodněním: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Na shledanou!',
@@ -1527,8 +1528,9 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'pagesize'                    => '(bajtů)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'editace',
-'restriction-move' => 'přesun',
+'restriction-edit'   => 'editace',
+'restriction-move'   => 'přesun',
+'restriction-create' => 'vytvoření',
 
 # Restriction levels
 'restriction-level-sysop'         => 'zamčeno',

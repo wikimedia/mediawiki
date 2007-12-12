@@ -868,6 +868,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} bexilando]',
 'rc_categories'                     => 'Limite d\'as categorías (deseparatas por "|")',
 'rc_categories_any'                 => 'Todas',
+'newsectionsummary'                 => 'Nueba sezión: /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambeos en pachinas relazionadas',
@@ -876,12 +877,60 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'recentchangeslinked-summary'  => "Ista pachina espezial amuestra os zaguers cambeos en as pachinas binculatas. As pachinas d'a suya lista de seguimiento son en  '''negreta'''.",
 
 # Upload
-'upload'                    => 'Cargar archibo',
-'uploadbtn'                 => 'Cargar un archibo',
-'uploadnologintext'         => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] ta cargar archibos.",
-'uploadlogpage'             => "Rechistro de cargas d'archibos",
-'uploadedimage'             => '«[[$1]]» cargato.',
-'filename-prefix-blacklist' => ' #<!-- dixe ista linia esautament igual como ye --> <pre>
+'upload'                      => 'Cargar archibo',
+'uploadbtn'                   => 'Cargar un archibo',
+'reupload'                    => 'Cargar un atra begada',
+'reuploaddesc'                => "Tornar ta o formulario de carga d'archibos.",
+'uploadnologin'               => 'No ha enzetato una sesión',
+'uploadnologintext'           => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] ta cargar archibos.",
+'upload_directory_read_only'  => "O serbidor web no puede escribir en o direutorio de carga d'archibos ($1).",
+'uploaderror'                 => "S'ha produzito una error en cargar l'archibo",
+'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos; ta beyer u mirar imáchens cargatas prebiament baiga t'a [[Special:Imagelist|lista d'archibos cargatos]]. As cargas y borraus d'archibos tamién son rechistratos en o [[Special:Log/upload|rechistro de cargas]].
+
+Ta encluyir a imachen en una pachina, emplegue un binclo d'una d'istas trazas '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|testo alternatibo]]</nowiki>''' u
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.",
+'uploadlog'                   => 'rechistro de cargas',
+'uploadlogpage'               => "Rechistro de cargas d'archibos",
+'uploadlogpagetext'           => "Contino ye una lista d'os zaguers archibos cargatos.",
+'filename'                    => "Nombre de l'archibo",
+'filedesc'                    => 'Resumen',
+'fileuploadsummary'           => 'Resumen:',
+'filestatus'                  => "Situazión d'os dreitos d'autor (copyright)",
+'filesource'                  => 'Fuent',
+'uploadedfiles'               => 'Archibos cargatos',
+'ignorewarning'               => "Inorar l'abiso y alzar l'archibo en cualsiquier caso.",
+'ignorewarnings'              => 'Inorar cualsiquier abiso',
+'minlength1'                  => "Os nombres d'archibo han de tener á lo menos una letra.",
+'illegalfilename'             => "O nombre d'archivo «$1» contiene caráuters no premititos en títols de pachinas. Por fabor, cambee o nombre de l'archibo y mire de tornar á cargarlo.",
+'badfilename'                 => 'O nombre d\'a imachen s\'ha cambiato por "$1".',
+'filetype-badmime'            => 'No se premite cargar archibos de tipo MIME "$1".',
+'filetype-badtype'            => "'''\".\$1\"''' ye una mena d'archibo no premitita. Lista de clases d'archibo premititas: \$2",
+'filetype-missing'            => 'L\'archibo no tiene garra estensión (como ".jpg").',
+'large-file'                  => 'Se consella que os archibos no sigan mayors de $1; iste archbo este archivo ocupa $2.',
+'largefileserver'             => "A grandaria d'iste archibo ye mayor d'a que a confegurazión d'iste serbidor premite.",
+'emptyfile'                   => "Parixe que l'archibo que se miraba de cargar ye buedo; por fabor, comprebe que ixe ye reyalment l'archibo que quereba cargar.",
+'fileexists'                  => "Ya bi ha un archibo con ixe nombre. Por fabor, Por favor mire-se l'archibo esistent $1 si no ye seguro de querer sustituyir-lo.
+
+
+'''Nota:''' Si sustituye finalment l'archibo, le caldrá esbiellar a caché d'o suyo nabegador ta beyer os cambeos:
+*'''Mozilla''' / '''Firefox''': Prete o botón '''Recargar''' (o '''ctrl-r''')
+*'''Internet Explorer''' / '''Opera''': '''ctrl-f5'''
+*'''Safari''': '''cmd-r'''
+*'''Konqueror''': '''ctrl-r''",
+'fileexists-extension'        => "Ya bi ha un archibo con un nombre parexiu:<br />
+Nombre de l'archibo que ye cargando: <strong><tt>$1</tt></strong><br />
+Nombre de l'archibo ya esistent: <strong><tt>$2</tt></strong><br />
+Por fabor, trigue un nombre diferent.",
+'fileexists-thumb'            => "<center>'''Imachen esistent'''</center>",
+'fileexists-thumbnail-yes'    => "Parixe que l'archibo ye una imachen prou chicota <i>(miniatura)</i>. Comprebe por fabor l'archibo <strong><tt>$1</tt></strong>.<br />
+Si l'archibo comprebato ye a mesma imachen en tamaño orichinal no cal cargar una nueba miniatura.",
+'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
+Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nombre del archivo.',
+'fileexists-forbidden'        => "Ya bi ha un archibo con iste nombre. Por fabor, cambee o nombre de l'archibo y torne á cargar-lo. [[Image:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Ya bi ha un archibo con ixe nombre en o repositorio compartito; por fabor, torne t'a pachina anterior y cargue o suyo archibo con atro nombre. [[Image:$1|thumb|center|$1]]",
+'successfulupload'            => 'Cargata correutament',
+'uploadedimage'               => '«[[$1]]» cargato.',
+'filename-prefix-blacklist'   => ' #<!-- dixe ista linia esautament igual como ye --> <pre>
 # A sintacsis ye asinas: 
 #   * Tot o que prenzipia por un caráuter "#" dica la fin d\'a linia ye un comentario
 #   * As atras linias tienen os prefixos que claban automaticament as camaras dichitals

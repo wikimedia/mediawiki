@@ -437,6 +437,7 @@ $2',
 'namespaceprotected'   => "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",
 'customcssjsprotected' => 'Nimaš prawo, zo by tutu stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.',
 'ns-specialprotected'  => 'Strony w mjenowym rumje {{ns:special}} njedadźa so wobdźěłać.',
+'titleprotected'       => 'Tutón titul bu přećiwo wutworjenju přez [[User:$1|$1]] škitany. Podata přičina je <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Wotzjewjenje',
@@ -1484,8 +1485,9 @@ Poslednja změna běše wot wužiwarja [[User:$3|$3]] ([[User_talk:$3|diskusija]
 'pagesize'                    => '(bajtow)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'wobdźěłać',
-'restriction-move' => 'přesunyć',
+'restriction-edit'   => 'wobdźěłać',
+'restriction-move'   => 'přesunyć',
+'restriction-create' => 'Wutworić',
 
 # Restriction levels
 'restriction-level-sysop'         => 'dospołnje škitany',

@@ -55,6 +55,7 @@ $messages = array(
 'tog-rememberpassword'     => 'ಈ ಗಣಕಯಂತ್ರದಲ್ಲಿ ನನ್ನ ಲಾಗಿನ್ ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊ',
 'tog-watchcreations'       => 'ನಾನು ಪ್ರಾರಂಭಿಸುವ ಲೇಖನಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
 'tog-watchdefault'         => 'ನಾನು ಸಂಪಾದಿಸುವ ಪುಟಗಳನ್ನು ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
+'tog-watchmoves'           => 'ನಾನು ಸ್ಥಳಾಂತರಿಸುವ ಪುಟಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
 'tog-watchdeletion'        => 'ನಾನು ಅಳಿಸುವ ಪುಟಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸು',
 'tog-previewonfirst'       => 'ಮೊದಲ ಬದಲಾವಣೆಯ ನಂತರ ಮುನ್ನೋಟವನ್ನು ತೋರಿಸು',
 'tog-enotifwatchlistpages' => 'ನನ್ನ ವೀಕ್ಷಣೆಯಲ್ಲಿರುವ ಪುಟವು ಬದಲಾದಾಗ ನನಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸು',
@@ -68,6 +69,8 @@ $messages = array(
 
 'underline-always' => 'ಯಾವಾಗಲೂ',
 'underline-never'  => 'ಎಂದಿಗೂ ಇಲ್ಲ',
+
+'skinpreview' => '(ಮುನ್ನೋಟ)',
 
 # Dates
 'sunday'        => 'ಭಾನುವಾರ',
@@ -265,6 +268,9 @@ $1',
 
 # Login and logout pages
 'logouttitle'                => 'ಸದಸ್ಯ ಲಾಗೌಟ್',
+'welcomecreation'            => '== ಸುಸ್ವಾಗತ, $1! ==
+
+ನಿಮ್ಮ ಅಕೌಂಟನ್ನು ಸೃಷ್ಟಿಸಲಾಗಿದೆ. ನಿಮ್ಮ {{SITENAME}} ಇಚ್ಛೆಗಳನ್ನು ಬದಲಾಯಿಸುವುದನ್ನು ಮರೆಯಬೇಡಿ.',
 'yourname'                   => 'ನಿಮ್ಮ ಬಳಕೆಯ ಹೆಸರು',
 'yourpassword'               => 'ನಿಮ್ಮ ಪ್ರವೇಶಪದ',
 'yourpasswordagain'          => 'ಪ್ರವೇಶ ಪದ ಮತ್ತೊಮ್ಮೆ ಟೈಪ್ ಮಾಡಿ',
@@ -280,6 +286,8 @@ $1',
 'createaccountmail'          => 'ಇ-ಅಂಚೆಯ ಮೂಲಕ',
 'badretype'                  => 'ನೀವು ಕೊಟ್ಟ ಪ್ರವೇಶಪದಗಳು ಬೇರೆಬೇರೆಯಾಗಿವೆ.',
 'userexists'                 => 'ನೀವು ನೀಡಿದ ಸದಸ್ಯರ ಹೆಸರು ಆಗಲೆ ಬಳಕೆಯಲ್ಲಿದೆ. ದಯವಿಟ್ಟು ಬೇರೊಂದು ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.',
+'yourrealname'               => 'ನಿಜ ಹೆಸರು:',
+'yourlanguage'               => 'ಭಾಷೆ:',
 'loginerror'                 => 'ಲಾಗಿನ್ ದೋಷ',
 'loginsuccesstitle'          => 'ಲಾಗಿನ್ ಯಶಸ್ವಿ',
 'loginsuccess'               => 'ನೀವು ಈಗ "$1" ಆಗಿ ವಿಕಿಪೀಡಿಯಕ್ಕೆ ಲಾಗಿನ್ ಆಗಿದ್ದೀರಿ.',
@@ -295,6 +303,7 @@ $1',
 # Edit page toolbar
 'bold_sample'     => 'ದಪ್ಪಗಿನ ಅಚ್ಚು',
 'bold_tip'        => 'ದಪ್ಪಗಿನ ಅಚ್ಚು',
+'italic_sample'   => 'ಓರೆ ಅಕ್ಷರಗಳು',
 'link_sample'     => 'ಸಂಪರ್ಕದ ಹೆಸರು',
 'link_tip'        => 'ಆಂತರಿಕ ಸಂಪರ್ಕ',
 'headline_sample' => 'ಶಿರೋಲೇಖ',
@@ -422,6 +431,7 @@ $1',
 'recentchanges'                     => 'ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳು',
 'recentchangestext'                 => 'ವಿಕಿಗೆ ಮಾಡಲ್ಪಟ್ಟ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಪುಟದಲ್ಲಿ ನೀವು ಕಾಣಬಹುದು.',
 'rcnote'                            => 'ಕೊನೆಯ <strong>$2</strong> ದಿನಗಳಲ್ಲಿ ಮಾಡಿದ <strong>$1</strong> ಬದಲಾವಣೆಗಳು ಕೆಳಗಿನಂತಿವೆ.',
+'rcnotefrom'                        => '<b>$2</b> ಇಂದ ಆಗಿರುವ ಬದಲಾವಣೆಗಳು ಕೆಳಗಿವೆ (ಕೊನೆಯ <b>$1</b>ರವರೆಗೆ ತೋರಿಸಲಾಗಿದೆ).',
 'rclistfrom'                        => '$1 ಇಂದ ಪ್ರಾರಂಭಿಸಿ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ',
 'rcshowhideminor'                   => 'ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು $1',
 'rcshowhidebots'                    => 'ಬಾಟ್‍ಗಳನ್ನು $1',
@@ -437,7 +447,8 @@ $1',
 'number_of_watching_users_pageview' => '[$1 ವೀಕ್ಷಿಸುತ್ತಿರುವ {{PLURAL:$1|ಸದಸ್ಯ|ಸದಸ್ಯರು}}]',
 
 # Recent changes linked
-'recentchangeslinked' => 'ಸಂಬಂಧಪಟ್ಟ ಬದಲಾವಣೆಗಳು',
+'recentchangeslinked'          => 'ಸಂಬಂಧಪಟ್ಟ ಬದಲಾವಣೆಗಳು',
+'recentchangeslinked-noresult' => 'ಸೂಚಿತ ಕಾಲದಲ್ಲಿ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಪುಟಗಳಲ್ಲಿ ಯಾವ ಬದಲಾವಣೆಗಳೂ ಇಲ್ಲ.',
 
 # Upload
 'upload'          => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
@@ -685,6 +696,9 @@ $1',
 # Namespace 8 related
 'allmessages'         => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
 'allmessagesmodified' => 'ಬದಲಾವಣೆ ಮಾಡಿದ್ದನ್ನು ಮಾತ್ರ ತೋರಿಸು',
+
+# Thumbnails
+'thumbnail-more' => 'ದೊಡ್ಡದಾಗಿಸು',
 
 # Special:Import
 'import'             => 'ಪುಟಗಳನ್ನು ಅಮದು ಮಾಡಿ',
