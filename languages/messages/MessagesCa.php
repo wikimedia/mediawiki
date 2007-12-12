@@ -1186,7 +1186,6 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'specialpages'            => 'Pàgines especials',
 'spheading'               => 'Pàgines especials',
 'restrictedpheading'      => 'Pàgines especials restringides',
-'rclsub'                  => '(a pàgines enllaçades des de "$1")',
 'newpages'                => 'Pàgines noves',
 'newpages-username'       => "Nom d'usuari:",
 'ancientpages'            => 'Pàgines més antigues',
@@ -1741,9 +1740,9 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'importlogpage'                    => "Registre d'importació",
 'importlogpagetext'                => "Importacions administratives de pàgines amb l'historial des d'altres wikis.",
 'import-logentry-upload'           => "s'ha importat [[$1]] per càrrega de fitxers",
-'import-logentry-upload-detail'    => '$1 revisió/ons',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisió|revisions}}',
 'import-logentry-interwiki'        => "s'ha importat $1 via interwiki",
-'import-logentry-interwiki-detail' => '$1 revisió/ons de $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisió|revisions}} de $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La vostra pàgina d'usuari.",

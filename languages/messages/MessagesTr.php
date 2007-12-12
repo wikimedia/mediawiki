@@ -5,12 +5,12 @@
  *
  * @author Uğur Başak
  * @author Dbl2010
- * @author G - ג
  * @author Katpatuka
  * @author SPQRobin
  * @author Siebrand
  * @author Nike
  * @author Jon Harald Søby
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -413,7 +413,7 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 
 Sizi engelleyen yönetici: $1. Engelleme sebebi: \'\'$2\'\'.
 
-Belirtilen sebeb göre engellenmenizin uygun olmadığını düşünüyorsanız, $1 ile ya da başka bir [[{{ns:project}}:Yöneticiler|yönetici]] ile bu durumu görüşebilirsiniz.
+Belirtilen sebeb göre engellenmenizin uygun olmadığını düşünüyorsanız, $1 ile ya da başka bir [[{{MediaWiki:Grouppage-sysop}}|yönetici]] ile bu durumu görüşebilirsiniz.
 
 Eğer [[Special:Preferences|tercihler]] kısmında geçerli bir e-posta adresi girmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamazsınız.
 
@@ -475,7 +475,6 @@ Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalam
 'cantcreateaccounttitle' => 'Hesap oluşturulamıyor',
 
 # History pages
-'revhistory'          => 'Sürüm geçmişi',
 'viewpagelogs'        => 'Bu sayfa ile ilgili kayıtları göster',
 'nohistory'           => 'Bu sayfanın geçmiş sürümü yok.',
 'revnotfound'         => 'Sürüm bulunmadı',
@@ -514,13 +513,12 @@ Tanımlar: (güncel) = güncel sürümle aradaki fark,
 # Diffs
 'difference'              => '(Sürümler arası farklar)',
 'lineno'                  => '$1. satır:',
-'editcurrent'             => 'Sayfanın şu anki sürümünü değiştir',
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
 'editundo'                => 'geriye al',
 
 # Search results
 'searchresults'         => 'Arama sonuçları',
-'searchresulttext'      => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[Project:Arama|"{{SITENAME}} içinde arama"]] sayfasına bakabilirsiniz.',
+'searchresulttext'      => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
 'searchsubtitle'        => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
 'searchsubtitleinvalid' => 'Aranan: "$1"',
 'noexactmatch'          => "Başlığı bu olan bir madde bulunamadı. Bu maddenin yazılmasını [[:$1|'''siz başlatabilirsiniz''']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.",
@@ -641,10 +639,10 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 yüklenenler ve silinmişler [[Special:Log/upload|yükleme kaydı sayfasında da]] görülebilir.
 
 Sayfaya resim koymak için;
-*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Örnek.jpg]]</nowiki>'''
-*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Örnek.png|açıklama]]</nowiki>'''
+*'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Örnek.jpg]]</nowiki>'''
+*'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Örnek.png|açıklama]]</nowiki>'''
 veya doğrudan bağlantı için
-*'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Örnek.ogg]]</nowiki>'''",
+*'''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Örnek.ogg]]</nowiki>'''",
 'uploadlog'                   => 'yükleme kaydı',
 'uploadlogpage'               => 'Dosya yükleme kayıtları',
 'uploadlogpagetext'           => 'Aşağıda en son eklenen dosyaların bir listesi bulunmaktadır.',
@@ -775,7 +773,6 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'specialpages'            => 'Özel sayfalar',
 'spheading'               => 'Tüm kullanıcıları ilgilendirebilecek özel sayfalar',
 'restrictedpheading'      => 'Yöneticilerin yetkileri ile ilgili özel sayfalar',
-'rclsub'                  => '("$1" sayfasına bağlanan sayfalarda)',
 'newpages'                => 'Yeni sayfalar',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
 'ancientpages-summary'    => 'En son değişiklik yapıldığından bu yana en fazla zaman geçmiş, geliştirilmesi unutulmuş sayfaların listesi.',
@@ -974,10 +971,6 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'nocontribs'    => 'Bu kriterlere uyan değişiklik bulunamadı',
 'uctop'         => '(son)',
 
-'sp-contributions-newest'      => 'En yeni',
-'sp-contributions-oldest'      => 'En eski',
-'sp-contributions-newer'       => 'Sonraki $1',
-'sp-contributions-older'       => 'Önceki $1',
 'sp-contributions-newbies-sub' => 'Yeni kullanıcılar için',
 
 # What links here

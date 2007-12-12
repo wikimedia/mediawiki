@@ -4,6 +4,11 @@
  * @addtogroup Language
  *
  * @author Niklas Laxström
+ * @author Yyy
+ * @author Knakts
+ * @author לערי ריינהארט
+ * @author Nike
+ * @author Siebrand
  *
  * @copyright Copyright © 2006, Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -222,7 +227,7 @@ $messages = array(
 'restorelink'         => '$1 dzēstās versijas',
 'feedlinks'           => 'Barotne:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Raksts',
 'nstab-user'      => 'Lietotāja lapa',
 'nstab-media'     => 'Multivides lapa',
@@ -429,7 +434,6 @@ Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis
 'templatesused'            => '<br />Šajā lapā izmantotās veidnes:',
 
 # History pages
-'revhistory'          => 'Versiju hronoloģija',
 'nohistory'           => 'Šai lapai nav pieejama versiju hronoloģija.',
 'revnotfound'         => 'Versija nav atrasta',
 'revnotfoundtext'     => 'Meklētā vecā lapas versija netika atrasta. Lūdzu pārbaudi lietoto URL.',
@@ -461,16 +465,13 @@ m = maznozīmīgs labojums.',
 'rev-delundel'        => 'rādīt/slēpt',
 
 # Diffs
-'difference'                => '(Atšķirības starp versijām)',
-'loadingrev'                => 'ielādē atšķirību versiju',
-'lineno'                    => '$1. rindiņa:',
-'editcurrent'               => 'Izmainīt šīs lapas pašreizējo versiju',
-'selectolderversionfordiff' => 'Izvēlies vecāku versiju, ar kuru salīdzināt',
-'compareselectedversions'   => 'Salīdzināt izvēlētās versijas',
+'difference'              => '(Atšķirības starp versijām)',
+'lineno'                  => '$1. rindiņa:',
+'compareselectedversions' => 'Salīdzināt izvēlētās versijas',
 
 # Search results
 'searchresults'         => 'Meklēšanas rezultāti',
-'searchresulttext'      => 'Lai iegūtu vairāk informācijas par meklēšanu {{grammar:akuzatīvs|{{SITENAME}}}}, skat. [[Project:Searching|{{grammar:ģenitīvs|{{SITENAME}}}} meklēšana]].',
+'searchresulttext'      => 'Lai iegūtu vairāk informācijas par meklēšanu {{grammar:akuzatīvs|{{SITENAME}}}}, skat. [[{{MediaWiki:Helppage}}|{{grammar:ģenitīvs|{{SITENAME}}}} meklēšana]].',
 'searchsubtitle'        => 'Pieprasījums: [[$1]] [[Special:Allpages/$1|&#x5B;Indekss&#x5D;]]',
 'searchsubtitleinvalid' => 'Pieprasījums: $1',
 'noexactmatch'          => "'''Lapas ar nosaukumu \"\$1\" šeit nav.''' Tu vari to [[:\$1|izveidot]].",
@@ -653,6 +654,9 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'unusedtemplatestext' => 'Šajā lapā ir uzskaitītas visas veidnes, kas nav iekļautas nevienā citā lapā. Pirms dzēšanas jāpārbauda citu veidu saites.',
 'unusedtemplateswlh'  => 'citas saites',
 
+# Random page
+'randompage' => 'Nejauša lapa',
+
 # Statistics
 'statistics'    => 'Statistika',
 'sitestats'     => '{{grammar:ģenitīvs|{{SITENAME}}}} statistika',
@@ -698,7 +702,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'mostrevisions'           => 'Raksti, kuriem ir visvairāk iepriekšēju versiju',
 'allpages'                => 'Visas lapas',
 'prefixindex'             => 'Meklēt pēc virsraksta pirmajiem burtiem',
-'randompage'              => 'Nejauša lapa',
 'shortpages'              => 'Īsākās lapas',
 'longpages'               => 'Garākās lapas',
 'deadendpages'            => 'Lapas bez izejošām saitēm',
@@ -706,7 +709,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'specialpages'            => 'Īpašās lapas',
 'spheading'               => 'Visiem lietotājiem pieejamās īpašās lapas',
 'restrictedpheading'      => 'Ierobežotās īpašās lapas',
-'rclsub'                  => '(lapās, kurās ir norādes uz "$1")',
 'newpages'                => 'Jaunas lapas',
 'ancientpages'            => 'Senākās lapas',
 'move'                    => 'Pārvietot',
@@ -840,10 +842,6 @@ Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās
 'nocontribs'    => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.',
 'uctop'         => '(pēdējā izmaiņa)',
 
-'sp-contributions-newest'   => 'jaunākās',
-'sp-contributions-oldest'   => 'senākās',
-'sp-contributions-newer'    => 'jaunākas $1',
-'sp-contributions-older'    => 'senākas $1',
 'sp-contributions-username' => 'IP adrese vai lietotāja vārds:',
 
 'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1',
@@ -900,7 +898,7 @@ Tev ir jāpārliecinās, vai saites vēl aizvien ved tur, kur tās ir paredzēta
 <b>BRĪDINĀJUMS!</b>
 Populārām lapām tā var būt krasa un negaidīta pārmaiņa; pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas.",
 'movepagetalktext' => "Saistītā diskusiju lapa, ja tāda eksistē, tiks automātiski pārvietota, '''izņemot gadījumus, kad''':
-*tu pārvieto lapu uz citu palīglapu (piemēram, [[Project talk:{{SITENAME}}]] uz [[Project:{{SITENAME}}]]),
+*tu pārvieto lapu uz citu palīglapu,
 *ar jauno nosaukumu jau eksistē diskusiju lapa, vai arī
 *atzīmēsi zemāk atrodamo lauciņu.
 

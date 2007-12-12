@@ -5,7 +5,7 @@
  *
  * @author Srtxg
  * @author Siebrand
- * @author G - ג
+ * @author לערי ריינהארט
  */
 
 $fallback = 'fr';
@@ -193,7 +193,7 @@ $messages = array(
 'navigation'     => 'Naiviaedje',
 
 # Metadata in edit box
-'metadata_help' => 'Meta-dnêyes (loukîz [[Project:Meta-dnêyes]] po pus di racsegnes)',
+'metadata_help' => 'Meta-dnêyes :',
 
 'errorpagetitle'    => 'Aroke',
 'returnto'          => 'Rivni al pådje «$1».',
@@ -464,7 +464,7 @@ Divant d' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instru
 'blockedtitle'              => "L' uzeu est bloké",
 'blockedtext'               => "Vosse no d' uzeu ou voste adresse IP a stî blokêye pa $1.
 Li råjhon dnêye est:<br />''$2''<p>Vos ploz contacter $1 oudonbén onk des
-[[Project:Manaedjeus|manaedjeus]] po discuter do blocaedje.
+[[{{MediaWiki:Grouppage-sysop}}|manaedjeus]] po discuter do blocaedje.
 
 Notez ki vos n' poloz nén eployî l' fonccion «emiler a l' uzeu» a moens ki vos åyîz ene adresse emile valide dins vos [[Special:Preferences|preferinces]].
 
@@ -563,7 +563,6 @@ Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî 
 'nocreatetext'              => "Cisse waibe ci a limité l' possibilité d' ahiver des novelès pådjes. Vos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:Userlogin|vos elodjî ou ahiver on conte d' uzeu]].",
 
 # History pages
-'revhistory'          => 'Istwere des modêyes',
 'viewpagelogs'        => 'Vey les djournås po cisse pådje ci',
 'nohistory'           => "I n' a pont d' istwere des modêyes po cisse pådje chal.",
 'revnotfound'         => 'Modêye nén trovêye',
@@ -624,18 +623,14 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evenmint|evenmints}} po [[$3]] metou e môde $2',
 
 # Diffs
-'difference'                => '(Diferinces inte les modêyes)',
-'loadingrev'                => 'tcherdjaedje del modêye po les diferinces',
-'lineno'                    => 'Roye $1:',
-'editcurrent'               => 'Candjî li modêye do moumint di cisse pådje chal',
-'selectnewerversionfordiff' => 'Tchoezi ene nouve modêye po comparer',
-'selectolderversionfordiff' => 'Tchoezi ene modêye pus viye po comparer',
-'compareselectedversions'   => 'Comparer les modêyes tchoezeyes',
-'editundo'                  => 'disfé',
+'difference'              => '(Diferinces inte les modêyes)',
+'lineno'                  => 'Roye $1:',
+'compareselectedversions' => 'Comparer les modêyes tchoezeyes',
+'editundo'                => 'disfé',
 
 # Search results
 'searchresults'         => 'Rizultats do cweraedje',
-'searchresulttext'      => 'Po pus di racsegnes sol manire di fé des cweraedjes so {{SITENAME}}, loukîz [[Project:Cweraedje|Cweraedje so {{SITENAME}}]].',
+'searchresulttext'      => 'Po pus di racsegnes sol manire di fé des cweraedjes so {{SITENAME}}, loukîz [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Pol cweraedje «[[$1]]»',
 'searchsubtitleinvalid' => 'Pol cweraedje «$1»',
 'noexactmatch'          => "'''I n' a nole pådje avou l' tite «$1».''' Vos poloz [[:$1|ahiver cisse pådje la]].",
@@ -952,7 +947,6 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'specialpages'            => 'Pådjes sipeciåles',
 'spheading'               => 'Pådjes sipeciåles po tos ls uzeus',
 'restrictedpheading'      => 'Pådjes sipeciåles po les manaedjeus',
-'rclsub'                  => '(ezès pådjes ki «$1» a-st on loyén dzeu)',
 'newpages'                => 'Novelès pådjes',
 'ancientpages'            => 'Viyès pådjes',
 'intl'                    => 'Loyéns eterlingaedjes',
@@ -1093,7 +1087,7 @@ Po pus d\' aidance:
 pådje ou ene imådje, avou tote si istwere.
 Acertinez s' i vs plait ki c' est bén çoula ki vos vloz fé,
 ki vos comprindoz les consecwinces, et ki vos fjhoz çoula
-tot [[Project:Rîles a shure|shuvant les rîles]].",
+tot [[{{MediaWiki:Policy-url}}|shuvant les rîles]].",
 'actioncomplete'              => 'Fwait',
 'deletedtext'                 => 'Li pådje «$1» a stî disfacêye. Loukîz li $2 po ene
 djivêye des dierins disfaçaedjes.',
@@ -1173,10 +1167,6 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 'ucnote'        => "Chal pa dzo les <b>$1</b> dierins candjmints di l' uzeu so les <b>$2</b> dierins djoûs.",
 'uclinks'       => 'Vey les $1 dierins candjmints; vey les $2 dierins djoûs.',
 
-'sp-contributions-newest' => 'Dierins ovraedjes',
-'sp-contributions-oldest' => 'Prumîs ovraedjes',
-'sp-contributions-newer'  => '$1 di dvant',
-'sp-contributions-older'  => '$1 shuvants',
 'sp-contributions-submit' => 'Cweri',
 
 'sp-newimages-showfrom' => 'Mostrer les nouvès imådjes a pårti do $1',
@@ -1194,7 +1184,7 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 l' accès e scrijhaedje d' èn uzeu dné ou a pårt d' ene
 adresse IP dnêye. Çouci èn doet esse fwait ki po-z arester les
 vandales, et çoula doet esse fwait tot shuvant les
-[[Project:Rîles a shure|rîles di {{SITENAME}}]].
+[[{{MediaWiki:Policy-url}}|rîles]].
 Dinez ene råjhon do blocaedje (eg: dijhoz les pådjes k' ont
 stî vandalijheyes).",
 'ipaddress'                   => "Adresse IP/no d' uzeu",

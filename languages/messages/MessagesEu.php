@@ -4,8 +4,9 @@
  * @addtogroup Language
  *
  * @author SPQRobin
- * @author G - ג
  * @author Helix84
+ * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -517,7 +518,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'longpagewarning'           => '<strong>OHARRA: Orrialde honek $1 kilobyteko tamaina du; nabigatzaile batzuek arazoak izan litzakete 32kb-tik gorako testuekin. Mesedez, saiatu orrialdea atal txikiagoetan banatzen.</strong>',
 'longpageerror'             => '<strong>ERROREA: Bidali duzun testuak $1 kilobyteko luzera du, eta $2 kilobyteko maximoa baino luzeagoa da. Ezin da gorde.</strong>',
 'readonlywarning'           => '<strong>OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.</strong>',
-'protectedpagewarning'      => '<strong>OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete. Ikusi [[Project:Babestutako orria|Babestutako Orria]].</strong>',
+'protectedpagewarning'      => '<strong>OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete.</strong>',
 'semiprotectedpagewarning'  => '<strong>Oharra: Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.</strong>',
 'templatesused'             => 'Orrialde honetan erabiltzen diren txantiloiak:',
 'templatesusedpreview'      => 'Aurreikuspen honetan erabiltzen diren txantiloiak:',
@@ -540,7 +541,6 @@ Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
 'cantcreateaccounttitle' => 'Ezin izan da kontua sortu',
 
 # History pages
-'revhistory'          => 'Berrikuspenen historiala',
 'viewpagelogs'        => 'Orrialde honen erregistroak ikusi',
 'nohistory'           => 'Orrialde honek ez dauka aldaketa historiarik.',
 'revnotfound'         => 'Ezin izan da berrikuspena aurkitu',
@@ -598,20 +598,16 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
 
 # Diffs
-'history-title'             => '"$1" orrialdearen historia laburpena',
-'difference'                => '(Bertsioen arteko ezberdintasunak)',
-'loadingrev'                => 'diff-entzako berrikuspena eskuratzen',
-'lineno'                    => '$1. lerroa:',
-'editcurrent'               => 'Orrialdearen oraingo bertsioa aldatu',
-'selectnewerversionfordiff' => 'Hautatu bertsio berriago bat konparaketa egiteko',
-'selectolderversionfordiff' => 'Hautatu bertsio zaharrago bat konparaketa egiteko',
-'compareselectedversions'   => 'Hautatutako bertsioak alderatu',
-'editundo'                  => 'desegin',
-'diff-multi'                => '({{PLURAL:$1|Ez da tarteko berrikuspen 1|Ez dira tarteko $1 berrikuspen}} erakusten.)',
+'history-title'           => '"$1" orrialdearen historia laburpena',
+'difference'              => '(Bertsioen arteko ezberdintasunak)',
+'lineno'                  => '$1. lerroa:',
+'compareselectedversions' => 'Hautatutako bertsioak alderatu',
+'editundo'                => 'desegin',
+'diff-multi'              => '({{PLURAL:$1|Ez da tarteko berrikuspen 1|Ez dira tarteko $1 berrikuspen}} erakusten.)',
 
 # Search results
 'searchresults'         => 'Bilaketaren emaitzak',
-'searchresulttext'      => '{{SITENAME}}(e)n bilaketak egiteko informazio gehiagorako, ikus [[Project:Bilaketa|{{SITENAME}}(e)n bilatzen]].',
+'searchresulttext'      => '{{SITENAME}}(e)n bilaketak egiteko informazio gehiagorako, ikus [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "'''[[:$1]]''' bilatu duzu",
 'searchsubtitleinvalid' => "'''$1''' bilatu duzu",
 'noexactmatch'          => "'''Ez dago \"\$1\" izenburua duen orrialderik.''' [[:\$1|Orrialde hau]] sortu dezakezu.",
@@ -923,7 +919,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'specialpages'            => 'Aparteko orrialdeak',
 'spheading'               => 'Erabiltzaile guztientzako aparteko orrialdeak',
 'restrictedpheading'      => 'Mugatutako aparteko orrialdeak',
-'rclsub'                  => '("$1"(e)tik lotutako orrialdeetara)',
 'newpages'                => 'Orrialde berriak',
 'newpages-username'       => 'Erabiltzaile izena:',
 'ancientpages'            => 'Orrialde zaharrenak',
@@ -1152,10 +1147,6 @@ $1',
 'month'         => 'Hilabetea (eta lehenagokoak):',
 'year'          => 'Urtea (eta lehenagokoak):',
 
-'sp-contributions-newest'      => 'Berriena',
-'sp-contributions-oldest'      => 'Zaharrena',
-'sp-contributions-newer'       => '$1 berriago',
-'sp-contributions-older'       => '$1 zaharrago',
 'sp-contributions-newbies'     => 'Soilik kontu berrien ekarpenak erakutsi',
 'sp-contributions-newbies-sub' => 'Hasiberrientzako',
 'sp-contributions-blocklog'    => 'Blokeaketa erregistroa',

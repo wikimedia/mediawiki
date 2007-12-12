@@ -5,7 +5,6 @@
  *
  * @author Icvav
  * @author Platonides
- * @author G - ג
  * @author Sanbec
  * @author Lin linao
  * @author Alhen
@@ -15,6 +14,8 @@
  * @author Alpertron
  * @author Better
  * @author Nike
+ * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -592,7 +593,6 @@ Consulte a continuación el registro de borrados:",
 'cantcreateaccounttitle' => 'No se puede crear la cuenta',
 
 # History pages
-'revhistory'          => 'Historial de revisiones',
 'viewpagelogs'        => 'Ver los registros de esta página',
 'nohistory'           => 'No hay un historial de ediciones para esta página.',
 'revnotfound'         => 'Revisión no encontrada',
@@ -671,16 +671,12 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'overlogpagetext' => 'A continuación se muestra una lista de los borrados y bloqueos más recientes relacionados con contenidos ocultos de los operadores del sistema. Consulte la [[Special:Ipblocklist|lista de IPs bloqueadas]] para ver una lista de los bloqueos actuales.',
 
 # Diffs
-'history-title'             => 'Historial de revisiones para "$1"',
-'difference'                => '(Diferencias entre revisiones)',
-'loadingrev'                => 'recuperando revisión para diff',
-'lineno'                    => 'Línea $1:',
-'editcurrent'               => 'Edite la versión actual de esta página',
-'selectnewerversionfordiff' => 'Seleccione una versión más reciente para comparar',
-'selectolderversionfordiff' => 'Seleccione una versión más antigua para comparar',
-'compareselectedversions'   => 'Comparar versiones seleccionadas',
-'editundo'                  => 'deshacer',
-'diff-multi'                => '({{plural:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
+'history-title'           => 'Historial de revisiones para "$1"',
+'difference'              => '(Diferencias entre revisiones)',
+'lineno'                  => 'Línea $1:',
+'compareselectedversions' => 'Comparar versiones seleccionadas',
+'editundo'                => 'deshacer',
+'diff-multi'              => '({{plural:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 
 # Search results
 'searchresults'         => 'Resultados de la búsqueda',
@@ -1047,7 +1043,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'specialpages'            => 'Páginas especiales',
 'spheading'               => 'Páginas especiales',
 'restrictedpheading'      => 'Páginas especiales restringidas',
-'rclsub'                  => '(a páginas enlazadas desde "$1")',
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
 'ancientpages'            => 'Artículos más antiguos',
@@ -1209,7 +1204,7 @@ Cambie las opciones de su lista de seguimiento en:
 en forma permanente,
 así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
-consecuencias, y que lo estás haciendo de acuerdo con [[Project:Políticas]].',
+consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}}|Políticas]].',
 'actioncomplete'              => 'Acción completa',
 'deletedtext'                 => '"$1" ha sido borrado.
 Véase $2 para un registro de los borrados recientes.',
@@ -1323,10 +1318,6 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'month'         => 'Desde el mes (y anterior):',
 'year'          => 'Desde el año (y anterior):',
 
-'sp-contributions-newest'      => 'Últimas',
-'sp-contributions-oldest'      => 'Primeras',
-'sp-contributions-newer'       => '← $1 posteriores',
-'sp-contributions-older'       => '$1 previas →',
 'sp-contributions-newbies'     => 'Mostrar solo las contribuciones de usuarios nuevos',
 'sp-contributions-newbies-sub' => 'Para nuevos',
 'sp-contributions-blocklog'    => 'Registro de bloqueos',
@@ -1354,7 +1345,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'blockiptext'                 => 'Usa el formulario siguiente para bloquear el
 acceso de escritura desde una dirección IP específica o un nombre de usuario.
 Esto debería hacerse sólo para prevenir vandalismos, y de
-acuerdo a las [[Project:Políticas|políticas de {{SITENAME}}]].
+acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].
 Explica la razón específica del bloqueo (por ejemplo, citando
 las páginas en particular que han sido objeto de vandalismo).',
 'ipaddress'                   => 'Dirección IP',

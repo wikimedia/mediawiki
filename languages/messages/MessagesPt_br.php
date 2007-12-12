@@ -1,10 +1,12 @@
 <?php
-/** Brazilian Portugese (Portuguêsi do Brasil)
+/** Brazilian Portuguese (Português do Brasil)
  *
  * @addtogroup Language
  *
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
+ * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'pt';
@@ -34,7 +36,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Categoria_Discussão'
 );
 $linkTrail = "/^([a-z]+)(.*)\$/sD";
-
 
 $messages = array(
 # User preference toggles
@@ -76,24 +77,18 @@ $messages = array(
 'october'   => 'Outubro',
 'november'  => 'Novembro',
 'december'  => 'Dezembro',
-'jan'       => 'Jan',
 'feb'       => 'Fev',
-'mar'       => 'Mar',
 'apr'       => 'Abr',
 'may'       => 'Mai',
-'jun'       => 'Jun',
-'jul'       => 'Jul',
 'aug'       => 'Ago',
 'sep'       => 'Set',
 'oct'       => 'Out',
-'nov'       => 'Nov',
 'dec'       => 'Dez',
 
 # Bits of text used by many pages
 'categories'      => 'Page categories',
 'pagecategories'  => 'Page categories',
 'category_header' => 'Articles in category "$1"',
-'subcategories'   => 'Subcategories',
 
 'mainpagetext' => 'Software Wiki instalado com sucesso.',
 
@@ -117,13 +112,13 @@ $messages = array(
 'searcharticle'     => 'Vai',
 'history'           => 'Histórico',
 'printableversion'  => 'Versão para impressão',
+'edit'              => 'Editar',
 'editthispage'      => 'Editar esta página',
 'deletethispage'    => 'Apagar esta página',
 'protectthispage'   => 'Proteger esta página',
 'unprotectthispage' => 'Desproteger esta página',
 'newpage'           => 'Nova página',
 'talkpage'          => 'Discutir esta página',
-'postcomment'       => 'Post a comment',
 'articlepage'       => 'Ver atigo',
 'userpage'          => 'Ver página de usuário',
 'projectpage'       => 'Ver meta página',
@@ -141,16 +136,12 @@ $messages = array(
 'bugreports'        => "Reportagem de 'bugs'",
 'bugreportspage'    => 'Project:Reportag_Bug',
 'copyrightpagename' => 'Direitos Autorais da {{SITENAME}}',
-'copyrightpage'     => '{{ns:project}}:Copyrights',
 'currentevents'     => 'Eventos atuais',
 'edithelp'          => 'Ajuda de edição',
 'edithelppage'      => 'Help:Como_editar_uma_página',
-'faq'               => 'FAQ',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Ajuda',
 'mainpage'          => 'Página principal',
 
-'ok'              => 'OK',
 'retrievedfrom'   => 'Retirado de  "$1"',
 'newmessageslink' => 'novas mensagens',
 'editsection'     => 'editar',
@@ -229,7 +220,6 @@ Não se esqueça de personalizar suas preferências na {{SITENAME}}.',
 'yourpasswordagain'     => 'Redigite sua senha',
 'remembermypassword'    => 'Lembrar de minha senha em outras sessões.',
 'loginproblem'          => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
-'alreadyloggedin'       => '<strong>Utilizador $1, você já está autenticado!</strong><br />',
 'login'                 => 'Entrar',
 'userlogin'             => 'Entrar',
 'logout'                => 'Sair',
@@ -270,7 +260,7 @@ Por favor, reconecte-se ao recebê-lo.',
 'blockedtitle'         => 'Usuário está bloqueado',
 'blockedtext'          => "Seu nome de usuário ou numero de IP foi bloqueado por $1.
 O motivo é:<br />''$2''<p>Você pode contactar $1 ou outro
-[[{{ns:project}}:administradores|administrador]] para discutir sobre o bloqueio.",
+[[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.",
 'whitelistedittitle'   => 'Login necessário para edição',
 'whitelistedittext'    => 'Você precisa se [[Especial:Userlogin|logar]] para editar artigos.',
 'whitelistreadtitle'   => 'Login necessário para leitura',
@@ -282,7 +272,7 @@ O motivo é:<br />''$2''<p>Você pode contactar $1 ou outro
 'newarticle'           => '(Novo)',
 'newarticletext'       => "Você seguiu um link para um artigo que não existe.
 Para criá-lo, começe escrevendo na caixa abaixo
-(veja [[{{ns:project}}:Ajuda|a página de ajuda]] para mais informações).
+(veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext'     => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.''",
 'noarticletext'        => '(Não há atualmente nenhum texto nesta página)',
@@ -309,10 +299,9 @@ Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão per
 Por favor considere quebrar a página em sessões menores.</strong>',
 'readonlywarning'      => '<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.
 No momento não é possível salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo ao wiki mais tarde.</strong>',
-'protectedpagewarning' => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop podem editar esta página pois ela foi bloqueada. Certifique-se de que você está seguindo o [[Project:Guia_de_páginas_protegidas|guia de páginas protegidas]].</strong>',
+'protectedpagewarning' => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop podem editar esta página pois ela foi bloqueada.</strong>',
 
 # History pages
-'revhistory'      => 'Histórico de revisões',
 'nohistory'       => 'Não há histórico de revisões para esta página.',
 'revnotfound'     => 'Revisão não encontrada',
 'revnotfoundtext' => 'A antiga revisão da página que você está procurando não pode ser encontrada.
@@ -323,28 +312,18 @@ Por favor verifique a URL que você usou para acessar esta página.',
 'cur'             => 'atu',
 'next'            => 'prox',
 'last'            => 'ult',
-'orig'            => 'orig',
 'histlegend'      => 'Legenda: (atu) = diferenças da versão atual,
 (ult) = diferença da versão precedente, M = edição minoritária',
 
 # Diffs
-'difference'  => 'Diferença entre revisões)',
-'loadingrev'  => 'carregando a busca por diferenças',
-'lineno'      => 'Linha $1:',
-'editcurrent' => 'Editar a versão atual desta página',
+'difference' => 'Diferença entre revisões)',
+'lineno'     => 'Linha $1:',
 
 # Search results
 'searchresults'         => 'Buscar resultados',
-'searchresulttext'      => 'Para mais informações sobre busca na {{SITENAME}}, veja [[Project:Procurando|Busca na {{SITENAME}}]].',
+'searchresulttext'      => 'Para mais informações sobre busca na {{SITENAME}}, veja [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Para pedido de busca "[[:$1]]"',
 'searchsubtitleinvalid' => 'Para pedido de busca "$1"',
-'badquery'              => 'Linha de busca incorretamente formada',
-'badquerytext'          => 'Nós não pudemos processar seu pedido de busca.
-Isto acoenteceu provavelmente porque você tentou procurar uma palavra de menos que três letras, coisa que o software ainda não consegue realizar. Isto também pode ter ocorrido porque você digitou incorretamente a expressão, por
-exemplo: "peixes <strong>and and</strong> scales".
-Por favor realize ouro pedido de busca.',
-'matchtotals'           => 'A pesquisa "$1" resultou $2 títulos de artigos
-e $3 artigos com o texto procurado.',
 'noexactmatch'          => "'''Não existe uma página com o título \"\$1\".''' Você pode [[:\$1|criar tal página]].",
 'titlematches'          => 'Resultados nos títulos dos artigos',
 'notitlematches'        => 'Sem resultados nos títulos dos artigos',
@@ -362,7 +341,6 @@ que não são indexadas, ou pela especificação de mais de um termo (somente as
 Procurar nos namespaces :<br />
 $1<br />
 $2 Lista redireciona &nbsp; Procura por $3 $9',
-'blanknamespace'        => '(Principal)',
 
 # Preferences page
 'preferences'           => 'Preferências',
@@ -403,26 +381,15 @@ para definir suas preferências.',
 
 # Recent changes
 'recentchanges'     => 'Mudanças Recentes',
-'recentchangestext' => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.
-[[{{ns:project}}:Bem Vindo,_novatos|Bem Vindo, novatos]]!
-Por favor, dê uma olhada nestas páginas: [[{{ns:project}}:FAQ|FAQ da {{SITENAME}}]],
-[[{{ns:project}}:Políticas e Normas| Política da {{SITENAME}}]]
-(especialmente [[{{ns:project}}:Convenções de nomenclatura|convenções de nomenclatura]],
-[[{{ns:project}}:Ponto de vista neutro|Ponto de vista neutro]]),
-e [[{{ns:project}}:Most common {{SITENAME}} faux pas|most common {{SITENAME}} faux pas]].
-
-Se você quer ver a {{SITENAME}} crescer, é muito importante que você não adicione material restrito por outras [[{{ns:project}}:Copyrights|copyrights]].
-Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos, por avor, não faça isso.',
+'recentchangestext' => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
 'rcnote'            => 'Abaixo estão as últimas <strong>$1</strong> alterações nos últimos <strong>$2</strong> dias.',
 'rcnotefrom'        => 'Abaixo estão as mudanças desde <b>$2</b> (até <b>$1</b> mostradas).',
 'rclistfrom'        => 'Mostrar as novas alterações a partir de $1',
 'rclinks'           => 'Mostrar as últimas $1 mudanças nos últimos $2 dias; $3 edições minoritárias',
 'diff'              => 'dif',
-'hist'              => 'hist',
 'hide'              => 'esconde',
 'show'              => 'mostra',
 'minoreditletter'   => 'M',
-'newpageletter'     => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Páginas relacionadas',
@@ -450,27 +417,20 @@ Todas as datas mostradas são do servidor (UTC).',
 'uploadedimage'     => '"[[$1]]" carregado',
 
 # Image list
-'imagelist'           => 'Lista de Imagens',
-'imagelisttext'       => 'A seguir uma lista de $1 imagens organizadas $2.',
-'getimagelist'        => 'buscando lista de imagens',
-'ilsubmit'            => 'Procura',
-'showlast'            => 'Mostrar as  $1 imagens organizadas $2.',
-'byname'              => 'por nome',
-'bydate'              => 'por data',
-'bysize'              => 'por tamanho',
-'imgdelete'           => 'del',
-'imgdesc'             => 'desc',
-'imglegend'           => 'Legenda: (desc) = mostrar/editar descrição de imagem.',
-'imghistory'          => 'Histórico das imagens',
-'revertimg'           => 'rev',
-'deleteimg'           => 'del',
-'deleteimgcompletely' => 'del',
-'imghistlegend'       => 'Legenda: (cur) = esta é a imagem atual, (del) = deletar
-esta versão antiga, (rev) = reverter para esta versão antiga.
-<br /><i>Clique em data para ver das imagens carregadas nesta data</i>.',
-'imagelinks'          => 'Links das imagens',
-'linkstoimage'        => 'As páginas seguintes apontam para esta imagem:',
-'nolinkstoimage'      => 'Nenhuma página aponta para esta imagem.',
+'imagelist'      => 'Lista de Imagens',
+'imagelisttext'  => 'A seguir uma lista de $1 imagens organizadas $2.',
+'getimagelist'   => 'buscando lista de imagens',
+'ilsubmit'       => 'Procura',
+'showlast'       => 'Mostrar as  $1 imagens organizadas $2.',
+'byname'         => 'por nome',
+'bydate'         => 'por data',
+'bysize'         => 'por tamanho',
+'imagelinks'     => 'Links das imagens',
+'linkstoimage'   => 'As páginas seguintes apontam para esta imagem:',
+'nolinkstoimage' => 'Nenhuma página aponta para esta imagem.',
+
+# Random page
+'randompage' => 'Página aleatória',
 
 # Statistics
 'statistics'    => 'Estatísticas',
@@ -504,19 +464,19 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 'popularpages'     => 'Páginas populares',
 'wantedpages'      => 'Páginas procuradas',
 'allpages'         => 'Todas as páginas',
-'randompage'       => 'Página aleatória',
 'shortpages'       => 'Páginas Curtas',
 'longpages'        => 'Paginas Longas',
 'listusers'        => 'Lista de Usuários',
 'specialpages'     => 'Páginas especiais',
 'spheading'        => 'Páginas especiais para todos os usuários',
-'rclsub'           => '(para páginas linkadas de "$1")',
 'newpages'         => 'Páginas novas',
 'ancientpages'     => 'Artigos mais antigos',
 'intl'             => 'Links interlínguas',
 'movethispage'     => 'Mover esta página',
 'unusedimagestext' => '<p>Por favor note que outros websites como
 as Wikipédias internacionais podem apontar para uma imagem com uma URL direta, e por isto pode estar aparecendo aqui mesmo estando em uso ativo.',
+'notargettitle'    => 'Sem alvo',
+'notargettext'     => 'Você não especificou um alvo ou usuário para performar esta função.',
 
 # Book sources
 'booksources' => 'Fontes de livros',
@@ -589,7 +549,6 @@ Todos os horários mostrados estão no horário do servidor (UTC).',
 'deletionlog'       => 'registro de deleções',
 'reverted'          => 'Revertido para versão mais nova',
 'deletecomment'     => 'Motivo da deleção',
-'imagereverted'     => 'Reversão para versão mais atual efetuada com sucesso.',
 'rollback'          => 'Voltar edições',
 'rollbacklink'      => 'voltar',
 'rollbackfailed'    => 'A reversão falhou',
@@ -611,6 +570,9 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 'undeletebtn'       => 'Restaurar!',
 'undeletedarticle'  => ' "$1" restaurado',
 
+# Namespace form on various pages
+'blanknamespace' => '(Principal)',
+
 # Contributions
 'contributions' => 'Contribuições de usuários',
 'mycontris'     => 'Minhas contribuições',
@@ -622,8 +584,6 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 
 # What links here
 'whatlinkshere' => 'Artigos Relacionado',
-'notargettitle' => 'Sem alvo',
-'notargettext'  => 'Você não especificou um alvo ou usuário para performar esta função.',
 'linklistsub'   => '(Lista de links)',
 'linkshere'     => 'Os seguintes artigos contém links que apontam para cá:',
 'isredirect'    => 'página de redirecionamento',
@@ -644,7 +604,6 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 'blocklistline'      => '$1, $2 bloqueado $3 ($4)',
 'blocklink'          => 'bloquear',
 'unblocklink'        => 'desbloquear',
-'contribslink'       => 'contribs',
 
 # Developer tools
 'lockdb'              => 'Trancar Banco de Dados',
@@ -705,5 +664,3 @@ Por favor, escolha outro nome.',
 'mw_math_mathml' => 'MathML',
 
 );
-
-

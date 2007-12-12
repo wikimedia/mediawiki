@@ -362,6 +362,7 @@ Procura: $2',
 'namespaceprotected'   => "Non dispón de permisos para modificar páxinas no espazo de nomes '''$1'''.",
 'customcssjsprotected' => 'Non dispón de permisos para modificar esta páxina, dado que contén a configuración persoal doutro usuario.',
 'ns-specialprotected'  => 'Non se poden editar as páxinas no espazo de nomes {{ns:special}}.',
+'titleprotected'       => 'Este título foi protexido da creación polo [[Usuario:$1|$1]]. A razón dada é <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Saída de usuario a anónimo',
@@ -1168,7 +1169,6 @@ Cada fileira contén ligazóns cara á primeira e segunda redirección, e tamén
 'specialpages'            => 'Páxinas especiais',
 'spheading'               => 'Páxinas especiais para todos os usuarios',
 'restrictedpheading'      => 'Páxinas especiais restrinxidas',
-'rclsub'                  => '(para páxinas enlazadas dende "$1")',
 'newpages'                => 'Páxinas novas',
 'newpages-username'       => 'Nome de usuario:',
 'ancientpages'            => 'Artigos máis antigos',
@@ -1397,8 +1397,9 @@ Eis a configuración actual da páxina <strong>$1</strong>:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Editar',
-'restriction-move' => 'Mover',
+'restriction-edit'   => 'Editar',
+'restriction-move'   => 'Mover',
+'restriction-create' => 'Crear',
 
 # Restriction levels
 'restriction-level-sysop'         => 'protección completa',
@@ -1907,6 +1908,8 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-orientation'                 => 'Orientación',
 'exif-samplesperpixel'             => 'Número de compoñentes',
 'exif-planarconfiguration'         => 'Disposición dos datos',
+'exif-ycbcrsubsampling'            => 'Razón de submostraxe de Y a C',
+'exif-ycbcrpositioning'            => 'Posicionamentos Y e C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
 'exif-resolutionunit'              => 'Unidade de resolución X e Y',
@@ -1917,6 +1920,7 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-jpeginterchangeformatlength' => 'Bytes de datos JPEG',
 'exif-transferfunction'            => 'Función de transferencia',
 'exif-whitepoint'                  => 'Coordenadas cromáticas de referencia do branco',
+'exif-primarychromaticities'       => 'Cromacidades primarias',
 'exif-ycbcrcoefficients'           => 'Coeficientes da matriz de transformación do espazo de cores',
 'exif-referenceblackwhite'         => 'Par de valores de referencia branco e negro',
 'exif-datetime'                    => 'Data e hora de modificación do ficheiro',
@@ -2076,6 +2080,9 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-focalplaneresolutionunit-2' => 'polgadas',
 
 'exif-sensingmethod-1' => 'Sen definir',
+'exif-sensingmethod-2' => 'Sensor da área de cor dun chip',
+'exif-sensingmethod-3' => 'Sensor da área de cor de dous chips',
+'exif-sensingmethod-4' => 'Sensor da área de cor de tres chips',
 'exif-sensingmethod-5' => 'Sensor secuencial da área de cor',
 'exif-sensingmethod-7' => 'Sensor trilineal',
 'exif-sensingmethod-8' => 'Sensor secuencial da liña de cor',

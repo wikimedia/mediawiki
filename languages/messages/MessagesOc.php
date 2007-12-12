@@ -5,11 +5,11 @@
  *
  * @author Cedric31
  * @author Nike
- * @author G - ג
  * @author Горан Анђелковић
  * @author Spacebirdy
  * @author SPQRobin
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -210,6 +210,7 @@ $messages = array(
 'metadata_help' => 'Metadonadas:',
 
 'returnto'          => 'Tornar a la pagina $1.',
+'tagline'           => 'Un article de {{SITENAME}}.',
 'help'              => 'Ajuda',
 'search'            => 'Recercar',
 'searchbutton'      => 'Recercar',
@@ -379,6 +380,8 @@ Foncion : $1<br />
 Requèsta : $2',
 'viewsource'           => 'Veire lo tèxt font',
 'viewsourcefor'        => 'per $1',
+'actionthrottled'      => 'Accion limitada',
+'actionthrottledtext'  => "Per luchar contra lo spam, l’utilizacion d'aquesta accion es limitada a un cèrt nombre de còps dins una sosta pro corta. S'avèra qu'avètz depassat aquesta limita. Ensajatz tornamai dins qualques minutas.",
 'protectedpagetext'    => 'Aquesta pagina es estada protegida per empachar sa modificacion.',
 'viewsourcetext'       => 'Podètz veire e copiar son còde font :',
 'protectedinterface'   => 'Aquesta pagina fornís de tèxt d’interfàcia pel logicial e es protegida per evitar los abuses.',
@@ -388,6 +391,7 @@ Requèsta : $2',
 'namespaceprotected'   => "Avètz pas la permission de modificar las paginas de l’espaci de noms « '''$1''' ».",
 'customcssjsprotected' => "Avètz pas la permission d'editar aquesta pagina perque conten de preferéncias d’autres utilizaires.",
 'ns-specialprotected'  => 'Las paginas dins l’espaci de noms « {{ns:special}} » pòdon pas èsser modificadas',
+'titleprotected'       => 'Aqueste títol es estat protegit a la creacion per [[User:$1|$1]]. Lo motiu avançat es <i>« $2 »</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Desconnexion',
@@ -464,6 +468,8 @@ Abans qu’un autre corrièr sià mandat a aqueste compte, devretz seguir las in
 'invalidemailaddress'        => 'Aquesta adreça de corrièr electronic pòt pas èsser acceptada perque sembla aver un format invalid. Entratz una adreça valida o daissatz aqueste camp void.',
 'accountcreated'             => 'Compte creat.',
 'accountcreatedtext'         => "Lo compte d'utilizaire de $1 es estat creat.",
+'createaccount-title'        => "Creacion d'un compte per {{SITENAME}}",
+'createaccount-text'         => "Qualqu'un ($1) a creat un compte per $2 sus {{SITENAME}} ($4). Lo senhal per « $2 » es « $3 ». Deuriatz dobir una session e cambiar tre ara aqueste senhal. Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'loginlanguagelabel'         => 'Lenga: $1',
 
 # Password reset dialog
@@ -519,8 +525,9 @@ Abans qu’un autre corrièr sià mandat a aqueste compte, devretz seguir las in
 'blockedtext'               => "<big>'''Vòstre compte d'utilizaire o vòstra adreça IP son estadas blocadas'''</big> per $1 per la rason seguenta :<br />$2<p> Podètz contactar $1 o un autre [[{{MediaWiki:Grouppage-sysop}}|administrator]] per ne discutir.
 Vòstra adreça IP actuala es $3, e lo blocatge d'adreça IP es #$5. Inclusissètz caduna d'aquestas entre-senha dins vòstra requèsta.",
 'autoblockedtext'           => 'Vòstra adreça IP es estada blocada automaticament perque es estada utilizada per un autre utilizaire, ele-meteis blocat per $1. La rason balhada es : :\'\'$2\'\' Expiracion del blocatge : $6 Podètz contactar $1 o un dels autres [[{{MediaWiki:Grouppage-sysop}}|administrators]] per discutir d\'aqueste blocatge. Notatz que podètz pas utilizar la foncion "Mandar un messatge a aqueste utilizaire" a mens qu’aguessetz balhat una adreça e-mail valida dins vòstras [[Special:Preferences|preferéncias]]. Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
-'blockedoriginalsource'     => "Lo còde font de '''$1''' es indicat çai jos :",
-'blockededitsource'         => "Lo tèxt de '''vòstras edicions''' sus '''$1''' es afichat çai jos :",
+'blockednoreason'           => 'Cap de rason balhada',
+'blockedoriginalsource'     => "Lo còde font de '''$1''' es indicat çaijós :",
+'blockededitsource'         => "Lo tèxt de '''vòstras edicions''' sus '''$1''' es afichat çaijós :",
 'whitelistedittitle'        => 'Enregistrament necessari per modificar lo contengut',
 'whitelistedittext'         => 'Devètz vos $1 per editar las paginas.',
 'whitelistreadtitle'        => 'Enregistrament necessari per legir lo contengut',
@@ -540,6 +547,7 @@ Vòstra adreça IP actuala es $3, e lo blocatge d'adreça IP es #$5. Inclusissè
 'newarticletext'            => 'Picatz aicí lo tèxt de vòstre article.',
 'anontalkpagetext'          => "---- ''Aquò es la pagina de discussion per un utilizaire anonim qu'a pas encara creat un compte o que l'utiliza pas. Per aqueste rason, devem utilizar l'adreça IP numerica per l'identificar. Una adreça d'aqueste tope pòt èsser pertejada entre mantun utilizaires. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:Userlogin|crear un compte o vos connectar]] per evitar tota confusion venenta.",
 'noarticletext'             => "Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[{{ns:special}}:Search/{{PAGENAME}}|lançar una recèrca sul títol d'aquesta pagina]] o [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} modificar aquesta pagina].",
+'userpage-userdoesnotexist' => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'clearyourcache'            => 'Nòta : Aprèp aver salvagardat, devètz forçar lo recargament de la pagina per veire los cambiaments : Mozilla / Konqueror / Firefox : ctrl-shift-r, IE / Opera : ctrl-f5, Safari : cmd-r.',
 'usercssjsyoucanpreview'    => "'''Astúcia :''' utilisatz lo boton '''Previsualisacion''' per testar vòstra fuèlha novèla css/js abans de l'enregistrar.<br />Per importar vòstra fuèlha monobook dempuèi una URL, utilisatz ''@import url (VÒSTRA_URL_AICÍ&action=raw&ctype=text/css)''",
 'usercsspreview'            => "'''Remembratz-vos que sètz a previsualizar vòstra pròpria fuèlha CSS e qu’es pas encara estada enregistrada !'''",
@@ -598,7 +606,6 @@ Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referiss
 La rason donada per $3 èra ''$2''.",
 
 # History pages
-'revhistory'          => 'Versions precedentas',
 'viewpagelogs'        => "Vejatz lo jornal d'aquesta pagina",
 'nohistory'           => "Existís pas d'istoric per aquesta pagina.",
 'revnotfound'         => 'Version introbabla',
@@ -666,17 +673,39 @@ D’autres administrators sus aqueste wiki poiràn totjorn accedir al contengut 
 'oversightlog'    => 'Jornal oversight',
 'overlogpagetext' => 'la lista çai jos mòstra las supressions e blocatges recents que lo contengut es amagat quitament pels administrators. Consultatz la [[Special:Ipblocklist|lista dels comptes blocats]] per la lista dels blocatges en cors.',
 
+# History merging
+'mergehistory'                     => "Fusion dels istorics d'una pagina",
+'mergehistory-header'              => "Aquesta pagina vos permet de fusionar las revisions de l'istoric d'una pagina d'origina vèrs una novèla. Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istoric. 
+
+'''Enfin, la version en cors deu èsser conservada.'''",
+'mergehistory-box'                 => 'Fusionar las versions de doas paginas :',
+'mergehistory-from'                => "Pagina d'origina :",
+'mergehistory-into'                => 'Pagina de destinacion :',
+'mergehistory-list'                => 'Edicion dels istorics fusionables',
+'mergehistory-merge'               => "Las versions seguentas de [[:$1]] pòdon èsser fusionadas amb [[:$2]]. Utilizatz lo boton ràdio de la colomna per fusionar unicament las versions creadas del començament fins a la data indicada. Notatz plan que l'utilizacion dels ligams de navigacion reïnicializarà la colomna.",
+'mergehistory-go'                  => 'Veire las edicions fusionablas',
+'mergehistory-submit'              => 'Fusionar las revisions',
+'mergehistory-empty'               => 'Cap de revision pòt pas èsser fusionada',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revision|revisions}} de [[:$1]] {{PLURAL:$3|fusionada|fusionadas}} amb succès amb [[:$2]].',
+'mergehistory-fail'                => 'Impossible de procedir a la fusion dels istorics. Seleccionatz  tornamai la pagina e mai los paramètres de data.',
+'mergehistory-no-source'           => "La pagina d'origina $1 existís pas.",
+'mergehistory-no-destination'      => 'La pagina de destinacion $1 existís pas.',
+'mergehistory-invalid-source'      => 'La pagina d’origina deu aver un títol valid.',
+'mergehistory-invalid-destination' => 'La pagina de destinacion deu aver un títol valid.',
+
+# Merge log
+'mergelog'           => 'Jornal de las fusions',
+'pagemerge-logentry' => '[[$1]] fusionada amb [[$2]] (revisions fins al $3)',
+'revertmerge'        => 'Separar',
+'mergelogpagetext'   => "Vaquí, çaijós, la lista de las fusions las mai recentas de l'istoric d'una pagina amb una autra.",
+
 # Diffs
-'history-title'             => 'Istoric de las versions de « $1 »',
-'difference'                => '(Diferéncias entre las versions)',
-'loadingrev'                => 'cargament de la version anciana per comparason',
-'lineno'                    => 'Linha $1:',
-'editcurrent'               => "Modificar la version actuala d'aquesta pagina",
-'selectnewerversionfordiff' => 'Causir una version mai recenta',
-'selectolderversionfordiff' => 'Causir una version mai anciana',
-'compareselectedversions'   => 'Comparar las versions seleccionadas',
-'editundo'                  => 'desfar',
-'diff-multi'                => '({{plural:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
+'history-title'           => 'Istoric de las versions de « $1 »',
+'difference'              => '(Diferéncias entre las versions)',
+'lineno'                  => 'Linha $1:',
+'compareselectedversions' => 'Comparar las versions seleccionadas',
+'editundo'                => 'desfar',
+'diff-multi'              => '({{plural:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
 
 # Search results
 'searchresults'         => 'Resultat de la recèrca',
@@ -1070,7 +1099,6 @@ Demest eles, <b>$2</b> (o '''$4%''') {{PLURAL:$2|a|an}} l'estatut d'administrato
 'specialpages'            => 'Paginas especialas',
 'spheading'               => 'Paginas especialas',
 'restrictedpheading'      => 'Paginas especialas reservadas',
-'rclsub'                  => '(de las paginas ligadas a "$1")',
 'newpages'                => 'Paginas novèlas',
 'newpages-username'       => 'Utilizaire :',
 'ancientpages'            => 'Articles mai ancians',
@@ -1357,10 +1385,6 @@ $1",
 'month'         => 'A partir del mes (e precedents) :',
 'year'          => 'A partir de l’annada (e precedentas) :',
 
-'sp-contributions-newest'      => 'Darrièras contribucions',
-'sp-contributions-oldest'      => 'Primièras contribucions',
-'sp-contributions-newer'       => '$1 precedents',
-'sp-contributions-older'       => '$1 seguents',
 'sp-contributions-newbies'     => 'Mostrar pas que las contribucions dels utilizaires novèls',
 'sp-contributions-newbies-sub' => 'Lista de las contribucions dels utilizaires novèls. Las paginas que son estadas suprimidas son pas afichadas.',
 'sp-contributions-blocklog'    => 'Jornal dels blocatges',
@@ -1554,7 +1578,7 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special
 'allmessagesdefault'        => 'Messatge per defaut',
 'allmessagescurrent'        => 'Messatge actual',
 'allmessagestext'           => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki',
-'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' es pas disponible perque \'\'\'$wgUseDatabaseMessages\'\'\' es desactivat.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' es pas disponible perque '''\$wgUseDatabaseMessages''' es desactivat.",
 'allmessagesfilter'         => 'Filtre d’expression racionala :',
 'allmessagesmodified'       => 'Afichar pas que las modificacions',
 

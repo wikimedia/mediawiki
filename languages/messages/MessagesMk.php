@@ -5,10 +5,10 @@
  *
  * @author FlavrSavr
  * @author Misos
- * @author G - ג
  * @author SPQRobin
  * @author Siebrand
  * @author Jon Harald Søby
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -307,7 +307,7 @@ $messages = array(
 'feedlinks'               => 'Фид:',
 'feed-invalid'            => 'Лош тип на фид пријава',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Статија',
 'nstab-user'      => 'Корисник',
 'nstab-media'     => 'Медија',
@@ -548,7 +548,7 @@ $1',
 'readonlywarning'           => '<strong>ПРЕДУПРЕДУВАЊЕ: Базата е заклучена заради одржување, 
 па нема да можете да ги зачувате вашите промени сега. Пробајте да го зачувате 
 текстот локално и да го пратите подоцна.</strong>',
-'protectedpagewarning'      => 'ПРЕДУПРЕДУВАЊЕ: Оваа страница е заклучена па само корисници со администраторски привилегии може да ја менуваат. Прочитајте го *** [[Project:Protected page guidelines|упатството за заштитени страници]].',
+'protectedpagewarning'      => '<strong>ПРЕДУПРЕДУВАЊЕ: Оваа страница е заклучена па само корисници со администраторски привилегии може да ја менуваат.</strong>',
 'semiprotectedpagewarning'  => "'''Забелешка:''' Оваа страница е заклучена и само регистрирани корисници може да ја уредуваат.",
 'templatesused'             => 'Шаблони користени на оваа страница:',
 'edittools'                 => '<!-- Овој текст ќе се прикаже под формите за уредување и подигнување датотеки. -->',
@@ -560,7 +560,6 @@ $1',
 'cantcreateaccounttitle' => 'Неможам да направам сметка',
 
 # History pages
-'revhistory'          => 'Историја на верзиите',
 'viewpagelogs'        => 'Види ја историјата за оваа страница',
 'nohistory'           => 'Не постои историја на верзии за оваа страница.',
 'revnotfound'         => 'Верзијата не е пронајдена',
@@ -624,13 +623,9 @@ $1',
 'revdelete-logentry'          => 'променет приказ на верзија за [[$1]]',
 
 # Diffs
-'difference'                => '(Разлика меѓу верзии)',
-'loadingrev'                => 'се вчитуваат верзиите за функцијата <em>разл</em>',
-'lineno'                    => 'Линија $1:',
-'editcurrent'               => 'Промени ја моментална верзија на оваа страница',
-'selectnewerversionfordiff' => 'Изберете понова верзија за споредба',
-'selectolderversionfordiff' => 'Изберете постара верзија за споредба',
-'compareselectedversions'   => 'Споредете ги избраните верзии',
+'difference'              => '(Разлика меѓу верзии)',
+'lineno'                  => 'Линија $1:',
+'compareselectedversions' => 'Споредете ги избраните верзии',
 
 # Search results
 'searchresults'         => 'Резултати од пребарувањето',
@@ -866,7 +861,7 @@ $1',
 'unusedtemplatestext' => 'Оваа страница ги прикажува сите страници во шаблонскиот именски простор кои не се вклучени во некоја друга страница. Не заборавајте да ги проверите другите врски во шаблоните пред да ги избришете.',
 'unusedtemplateswlh'  => 'други врски',
 
-# Random pages
+# Random page
 'randompage' => 'Случајна страница',
 
 # Random redirect
@@ -931,7 +926,6 @@ $1',
 'specialpages'            => 'Специјални страници',
 'spheading'               => 'Специјални страници за сите корисници',
 'restrictedpheading'      => 'Специјални страници со ограничен пристап',
-'rclsub'                  => '(до страници поврзани од "$1")',
 'newpages'                => 'Нови страници',
 'newpages-username'       => 'Корисничко име:',
 'ancientpages'            => 'Најстари статии',
@@ -1096,8 +1090,7 @@ $NEWPAGE
 'protectcomment'              => 'Причина за заштитување',
 'unprotectsub'                => '(Отстранување на заштитата на "$1")',
 'protect-unchain'             => 'Отклучи ја можноста за преместување',
-'protect-text'                => 'Овде можете да го погледнете или смените нивото на заштита за страницата <strong>$1</strong>.
-Ве молиме прво прочитајте ги *** [[Project:Protected page|упатствата]].',
+'protect-text'                => 'Овде можете да го погледнете или смените нивото на заштита за страницата <strong>$1</strong>.',
 'protect-default'             => '(по основно)',
 'protect-level-autoconfirmed' => 'Блокирај ги нерегистрираните корисници',
 'protect-level-sysop'         => 'Само администратори',
@@ -1150,10 +1143,6 @@ $NEWPAGE
 'uclinks'       => 'Гледај ги последните $1 промени; гледај ги последните $2 дена.',
 'uctop'         => ' (врв)',
 
-'sp-contributions-newest'      => 'Најнови',
-'sp-contributions-oldest'      => 'Најстари',
-'sp-contributions-newer'       => 'Нови $1',
-'sp-contributions-older'       => 'Стари $1',
 'sp-contributions-newbies-sub' => 'За новајлии',
 
 'sp-newimages-showfrom' => 'Прикажи ги новите слики почнувајќи од $1',
