@@ -9,6 +9,7 @@ $checkBlacklist = array(
 'my'           => array( 'chars' ),  // Uses a lot zwnj
 'tet'          => array( 'plural' ),
 'th'           => array( 'plural' ),
+'wuu'          => array( 'plural' ),
 'yue'          => array( 'plural' ),
 'zh'           => array( 'plural' ),
 'zh-classical' => array( 'plural' ),
