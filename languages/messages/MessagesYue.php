@@ -466,6 +466,7 @@ $2',
 'namespaceprotected'   => "你無權編輯響'''$1'''空間名裏面嘅呢一版。",
 'customcssjsprotected' => '你無權編輯呢一版，因為佢包含咗另一位用戶嘅個人設定。',
 'ns-specialprotected'  => '響{{ns:special}}空間名嘅版係唔可以編輯嘅。',
+'titleprotected'       => '呢個標題已經俾[[User:$1|$1]]保護咗防止去開。原因係<i>$2</i>。',
 
 # Login and logout pages
 'logouttitle'                => '用戶登出',
@@ -1490,8 +1491,9 @@ wiki: $PAGEEDITOR_WIKI
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => '編輯',
-'restriction-move' => '移動',
+'restriction-edit'   => '編輯',
+'restriction-move'   => '移動',
+'restriction-create' => '建立',
 
 # Restriction levels
 'restriction-level-sysop'         => '全保護',

@@ -412,6 +412,7 @@ $2',
 'namespaceprotected'   => "您并没有权限编辑'''$1'''名字空间内的页面。",
 'customcssjsprotected' => '您并无权限去编辑这个页面，因为它包含了另一位用户的个人设定。',
 'ns-specialprotected'  => '在特殊名字空间中的页面是不可以编辑的。',
+'titleprotected'       => '这个标题已经被[[User:$1|$1]]保护以防止创建。理由是<i>$2</i>。',
 
 # Login and logout pages
 'logouttitle'                => '退出',
@@ -1423,8 +1424,9 @@ $NEWPAGE
 'pagesize'                    => '(字节)',
 
 # Restrictions (nouns)
-'restriction-edit' => '编辑',
-'restriction-move' => '移动',
+'restriction-edit'   => '编辑',
+'restriction-move'   => '移动',
+'restriction-create' => '创建',
 
 # Restriction levels
 'restriction-level-sysop'         => '全保护',
