@@ -1,10 +1,13 @@
 <?php
-/** Telugu (Telugu)
-  *
-  * @addtogroup Language
-  *
-  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  */
+/** Telugu (తెలుగు)
+ *
+ * @addtogroup Language
+ *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Sunil Mohan
+ * @author לערי ריינהארט
+ * @author Siebrand
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'మీడియా',
@@ -115,7 +118,7 @@ $messages = array(
 'dec'       => 'డిసెంబర్‌',
 
 # Bits of text used by many pages
-'categories'      => 'వర్గాలు',
+'categories'      => '{{PLURAL:$1|వర్గం|వర్గాలు}}',
 'pagecategories'  => '{{PLURAL:$1|వర్గం|వర్గాలు}}',
 'category_header' => '"$1" వర్గంలో వ్యాసాలు',
 'subcategories'   => 'ఉపవర్గములు',
@@ -173,7 +176,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} గురించి',
 'aboutpage'         => 'Project:గురించి',
-'bugreportspage'    => 'Project:Bug reports',
 'copyright'         => 'విషయ సంగ్రహం $1  కి లోబడి లభ్యం.',
 'copyrightpagename' => '{{SITENAME}} ప్రచురణ హక్కు',
 'copyrightpage'     => '{{ns:project}}:ప్రచురణ హక్కులు',
@@ -185,12 +187,10 @@ $messages = array(
 'mainpage'          => 'మొదటి పేజీ',
 'portal'            => 'సముదాయ పందిరి',
 'sitesupport'       => 'విరాళములు',
-'sitesupport-url'   => 'Project:Site support',
 
 'badaccess' => 'అనుమతి లోపం',
 
 'ok'                  => 'సరే',
-'pagetitle'           => '$1 - {{SITENAME}}',
 'youhavenewmessages'  => 'మీకు $1 ఉన్నాయి ($2).',
 'newmessageslink'     => 'కొత్త సందేశాలు',
 'newmessagesdifflink' => 'క్రితం సంచికతో గల తేడాలు',
@@ -200,7 +200,7 @@ $messages = array(
 'thisisdeleted'       => '$1ను చూస్తారా, పునస్స్థాపిస్తారా?',
 'restorelink'         => '{{PLURAL:$1|ఒక్క తొలగించబడిన మార్పు|$1 తొలగించబడిన మార్పులు}}',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'వ్యాసము',
 'nstab-user'      => 'సభ్యుని పేజీ',
 'nstab-media'     => 'మాధ్యమం',
@@ -217,7 +217,7 @@ $messages = array(
 
 # General errors
 'error'           => 'లోపం',
-'noconnect'       => 'సారీ! సాంకేతిక ఇబ్బందుల వలన డాటాబేసు సర్వరును సంప్రదించలేక పోతున్నాం.<br />
+'noconnect'       => 'క్షమించండి! సాంకేతిక ఇబ్బందుల వలన డాటాబేసు సర్వరును సంప్రదించలేక పోతున్నాం.<br />
 $1',
 'cachederror'     => 'కింది పీజీ ముందే సేకరించి పెట్టుకున్నది, కాబట్టి తాజా మార్పులు దీనిలో లేకపోవచ్చు.',
 'laggedslavemode' => 'హెచ్చరిక: పేజీలో ఇటీవల జరిగిన మార్పులు ఉండకపోవచ్చు.',
@@ -233,6 +233,7 @@ $1',
 'unexpected'      => 'అనుకోని విలువ: "$1"="$2".',
 'badarticleerror' => 'ఈ పేజీపై ఈ పని చేయడం కుదరదు.',
 'cannotdelete'    => 'అడిగిన పేజీ లేదా ఫైలును తీసివేయటం కుదరలేదు. (ఇప్పటికే ఎవరైనా తీసివేసి ఉండవచ్చు)',
+'badtitle'        => 'తప్పు శీర్షిక',
 'perfdisabled'    => 'క్షమించండి! ఈ అంశంవలన డేటాబేసు బాగా స్లో అయిపోయి, ఎవరూ వికీని వాడుకోలేరు. కాబట్టి, ప్రస్తుతానికి ఈ అంశాన్ని అందుబాటులో లేకుండా చేస్తున్నాం.',
 'perfcached'      => 'కింది డేటా ముందే సేకరించి పెట్టుకున్నది. కాబట్టి తాజా డేటాతో పోలిస్తే తేడాలుండవచ్చు.',
 'viewsource'      => 'మూలాన్ని చూపించు',
@@ -292,11 +293,15 @@ $1',
 అది అందిన తర్వాత దయచేసి మరలా లాగిన్‌ అవ్వండి.',
 'eauthentsent'               => 'ఇచ్చిన ఈ-మెయిల్ అడ్రసుకు ధృవీకరణ మెయిల్ వెళ్ళింది.
 మరిన్ని మెయిళ్ళు పంపే ముందు, మీరు ఆ మెయిల్‌లో సూచించినట్లుగా ఈ చిరునామా మీదేననిి ధృవీకరించండి.',
+'mailerror'                  => 'మెయిల్ పంపించడంలో లోపం: $1',
 'acct_creation_throttle_hit' => 'క్షమించండి, మీరిప్పటికే $1 అకౌంట్లు సృష్టించారు. ఇహ కుదరదు.',
 'emailauthenticated'         => 'మీ ఈ-మెయిల్ చిరునామా $1న ధృవీకరింపబడింది.',
-'emailnotauthenticated'      => 'మీ ఈ-మెయిల్‌ చిరునామా ధృవీకరణ ఇంకా కాలేదు. కింద ఇచ్చిన వాటికి సంబంధించి ఈ-మెయిల్‌ పంపబడదు.',
+'emailnotauthenticated'      => 'మీ ఈ-మెయిల్‌ చిరునామా <strong>ధృవీకరణ ఇంకా కాలేదు</strong>. కింద ఇచ్చిన వాటికి సంబంధించి ఈ-మెయిల్‌ పంపబడదు.',
 'noemailprefs'               => 'కింది అంశాలు పని చెయ్యటానికి ఈ-మెయిల్‌ చిరునామాను నమొదుచయ్యండి.',
 'emailconfirmlink'           => 'మీ ఈ-మెయిల్ చిరునామాను ధృవీకరించండి',
+'accountcreated'             => 'అకౌంటు సృష్టించబడింది',
+'accountcreatedtext'         => '$1 గారికి సభ్యుని అకౌంటు సృస్టించబడింది.',
+'loginlanguagelabel'         => 'భాష: $1',
 
 # Edit page toolbar
 'extlink_tip' => 'బయటి లింకు (దాని ముందు http:// ఇవ్వటం మరువకండి)',
@@ -353,12 +358,11 @@ $1',
 'copyrightwarning'         => '{{SITENAME}}కు సమర్పించే అన్ని రచనలూ $2కు లోబడి ప్రచురింపబడినట్లుగా భావించబడతాయి (వివరాలకు $1 చూడండి). మీ రచనలను ఎవ్వరూ మార్చ రాదనీ లెదా వేరే ఎవ్వరూ వాడుకో రాదని మీరు భావిస్తే, ఇక్కడ ప్రచురించకండి.<br /> మీ స్వీయ రచనను గాని, సార్వజనీనమైన రచననుగాని, ఇతర ఉచిత వనరుల నుండి సేకరించిన రచననుగాని మాత్రమే ప్రచురిస్తున్నానని కూడా మీరు ప్రమాణం చేస్తున్నారు. <strong>కాపీహక్కులుగల రచనను తగిన అనుమతి లేకుండా సమర్పించకండి!</strong>',
 'longpagewarning'          => '<strong>హెచ్చరిక: ఈ పేజీ సైజు $1  కిలోబైట్లు ఉంది; 32kb కంటే పెద్ద పేజీల తోటి కొన్ని బ్రౌజర్లు ఇబ్బంది పడతాయి. పేజీని చిన్న పేజీలుగా విడగొట్టడానికి అవకాశం ఉందేమో చూడండి. </strong>',
 'readonlywarning'          => '<strong>హెచ్చరిక: నిర్వహణ కొరకు డేటాబేసు లాకు చెయ్యబడింది కాబట్టి, మీ మార్పులు, చేర్పులను ఇప్పుడు భద్రపరచలేరు. మీ మార్పులను ఒక టెక్స్టు ఫైలులోకి కాపీ చేసి, భద్రపరచుకొని, తరువాత సమర్పించండి.</strong>',
-'protectedpagewarning'     => '<strong>హెచ్చరిక: ఈ పేజీ సంరక్షించబడినది, నిర్వాహకులు మాత్రమే మార్చగలరు. మీరు [[Project:Protected page guidelines|రక్షిత పేజీ మార్గదర్శకాలను]] పాటిస్తున్నారని నిర్ధారించుకోండి.</strong>',
+'protectedpagewarning'     => '<strong>హెచ్చరిక: ఈ పేజీ సంరక్షించబడినది, నిర్వాహకులు మాత్రమే మార్చగలరు. మీరు *** రక్షిత పేజీ మార్గదర్శకాలను పాటిస్తున్నారని నిర్ధారించుకోండి.</strong>',
 'semiprotectedpagewarning' => "'''గమనిక:''' నమోదయిన సభ్యులు మాత్రమే మార్పులు చెయ్యగలిగేలా ఈ పేజీ లాకు చెయ్యబడింది.",
 'templatesused'            => 'ఈ పేజీలో వాడిన మూసలు:',
 
 # History pages
-'revhistory'          => 'సంచికల చరిత్ర',
 'nohistory'           => 'ఈ పేజీకి మార్పుల చరిత్ర లేదు.',
 'revnotfound'         => 'సంచిక కనబడలేదు',
 'currentrev'          => 'ప్రస్తుతపు సంచిక',
@@ -376,16 +380,15 @@ $1',
 'histlast'            => 'చిట్టచివరి',
 
 # Diffs
-'difference'                => '(సంచికల మధ్య తేడా)',
-'editcurrent'               => 'ఈ పేజీ యొక్క ప్రస్తుతపు సంచికను సరిదిద్దండి',
-'selectnewerversionfordiff' => 'పోల్చేందుకు ఒక కొత్త సంచికను ఎంచుకోండి',
-'selectolderversionfordiff' => 'పోల్చేందుకు ఒక పాత సంచికను ఎంచుకోండి',
-'compareselectedversions'   => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',
+'difference'              => '(సంచికల మధ్య తేడా)',
+'compareselectedversions' => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',
 
 # Search results
 'searchresults'     => 'అన్వేషణ ఫలితాలు',
-'searchresulttext'  => '{{SITENAME}}లో అన్వేషించే విషయమై మరింత సమాచారం కొరకు [[Project:Searching|{{SITENAME}}లో అన్వేషణ]] చూడండి.',
+'searchresulttext'  => '{{SITENAME}}లో అన్వేషించే విషయమై మరింత సమాచారం కొరకు [[{{MediaWiki:Helppage}}|{{int:help}}]] చూడండి.',
+'noexactmatch'      => "'''\"\$1\" శీర్షికతొ పేజీలేమీలేవు.''' మీరు ఈ శీర్షికతొ పేజీని [[:\$1|సృష్టించవచ్చు]].",
 'titlematches'      => 'వ్యాస శీర్షిక సరిపోయింది',
+'textmatches'       => 'పేజిలోని పాఠం సరిపోలింది',
 'prevn'             => 'క్రితం $1',
 'nextn'             => 'తరువాతి $1',
 'showingresults'    => '#<b>$2</b> తో మొదలుకొని, <b>$1</b> వరకు ఫలితాలు కింద ఉన్నాయి.',
@@ -468,10 +471,10 @@ $1',
 అప్‌లోడులు, తొలగింపులు [[Special:Log/upload|అప్‌లోడు దినచర్య]]లొ నమోదవుతాయి.
 
 బొమ్మను ఏదైనా పేజీలో చేర్చడానికి, 
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|ప్రత్యామ్న్యయ పాఠ్యం]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|ప్రత్యామ్న్యయ పాఠ్యం]]</nowiki>'''
 అని లింకు చెయ్యవచ్చు. లేదా
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
 అని రాసి సరాసరి బొమ్మ ఫైలుకే లింకు ఇవ్వవచ్చు.",
 'uploadlogpage'               => 'అప్‌లోడ్ దినచర్య',
 'uploadlogpagetext'           => 'ఇటీవల జరిగిన ఫైలు అప్‌లోడుల జాబితా ఇది.',
@@ -520,6 +523,9 @@ $1',
 # Unused templates
 'unusedtemplates' => 'వాడని మూసలు',
 
+# Random page
+'randompage' => 'యాధృచ్ఛిక పేజీ',
+
 # Statistics
 'statistics'    => 'గణాంకాలు',
 'sitestats'     => '{{SITENAME}} గణాంకాలు',
@@ -547,7 +553,8 @@ $1',
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|బైటు|బైట్లు}}',
 'ncategories'             => '$1 {{PLURAL:$1|వర్గం|వర్గాలు}}',
-'nlinks'                  => '$1 {{PLURAL:$1|లింకు|లింకులు}}',
+'nlinks'                  => '{{FORMATNUM|$1}} {{PLURAL:$1|లింకు|లింకులు}}',
+'nmembers'                => '{{PLURAL:$1|ఒక సభ్యుడు|$1 సభ్యులు}}',
 'nrevisions'              => '{{PLURAL:$1|ఒక సంచిక|$1 సంచికలు}}',
 'nviews'                  => '$1 {{PLURAL:$1|దర్శనము|దర్శనలు}}',
 'lonelypages'             => 'అనాధ పేజీలు',
@@ -563,7 +570,6 @@ $1',
 'mostimages'              => 'అధిక లింకులు గల బొమ్మలు',
 'mostrevisions'           => 'అధిక సంచికలు గల వ్యాసాలు',
 'allpages'                => 'అన్ని పేజీలు',
-'randompage'              => 'యాధృచ్ఛిక పేజీ',
 'shortpages'              => 'చిన్న పేజీలు',
 'longpages'               => 'పొడవు పేజీలు',
 'deadendpages'            => 'అగాధ (డెడ్ఎండ్) పేజీలు',
@@ -571,7 +577,6 @@ $1',
 'specialpages'            => 'ప్రత్యేక పేజీలు',
 'spheading'               => 'సభ్యులందరి ప్రత్యేక పేజీలు',
 'restrictedpheading'      => 'నియంత్రిత ప్రత్యేక పేజీలు',
-'rclsub'                  => '("$1" నుండి లింకున్న పేజీలకు)',
 'newpages'                => 'కొత్త పేజీలు',
 'ancientpages'            => 'పాత పేజీలు',
 'move'                    => 'తరలించు',
@@ -592,6 +597,7 @@ $1',
 # Special:Log
 'log'         => 'దినచర్య పేజీలు',
 'alllogstext' => 'అప్‌లోడు, తొలగింపు, సంరక్షణ, నిరోధం, నిర్వహణల లాగ్ ఇది. ప్రత్యేకించి ఒక లాగ్ రకాన్ని గానీ, ఓ సభ్యుని పేరు గానీ, ఓ పేజీని గాని ఎంచుకుని సంబంధిత లాగ్‌ను మాత్రమే చూడవచ్చు కూడా.',
+'logempty'    => 'దినచర్యలో సరిపోలిన అంశాలు లేవు.',
 
 # Special:Allpages
 'nextpage'          => 'తరువాతి పేజీ ($1)',
@@ -604,6 +610,7 @@ $1',
 'allpagessubmit'    => 'వెళ్లు',
 
 # E-mail user
+'mailnologin'     => 'పంపించవలసిన చిరునామా లేదు',
 'mailnologintext' => 'ఇతరులకు ఈ-మెయిల్‌ పంపించాలంటే, మీరు [[Special:Userlogin|లాగిన్‌]] అయి ఉండాలి, మరియు మీ [[Special:Preferences|అభిరుచుల]]లో సరైన ఈ-మెయిల్‌ చిరునామా ఇచ్చి ఉండాలి.',
 'emailuser'       => 'ఈ సభ్యునికి ఈ-మెయిల్‌ పంపు',
 'emailpage'       => 'సభ్యునికి ఈ-మెయిల్ పంపు',
@@ -663,7 +670,7 @@ $1',
 'confirmdelete'     => 'తొలగింపును ధృవీకరించండి',
 'deletesub'         => '("$1" తొలగింపబడుతుంది)',
 'historywarning'    => 'హెచ్చరిక: మీరు తొలగించబోయే పేజీకి చరిత్ర ఉంది:',
-'confirmdeletetext' => 'మీరో పేజీనో, బొమ్మనో శాశ్వతంగా డేటాబేసు నుండి తీసెయ్యబోతున్నారు. మీరు చెయ్యదలచింది ఇదేననీ, దీని పర్యవసానాలు మీకు తెలుసనీ, దీన్ని [[Project::Policy|నిభందనల]] ప్రకారమే చేస్తున్నారనీ నిర్ధారించుకోండి.',
+'confirmdeletetext' => 'మీరో పేజీనో, బొమ్మనో శాశ్వతంగా డేటాబేసు నుండి తీసెయ్యబోతున్నారు. మీరు చెయ్యదలచింది ఇదేననీ, దీని పర్యవసానాలు మీకు తెలుసనీ, దీన్ని [[{{MediaWiki:Policy-url}}|నిభందనల]] ప్రకారమే చేస్తున్నారనీ నిర్ధారించుకోండి.',
 'actioncomplete'    => 'పని పూర్తయింది',
 'deletedtext'       => '"$1" తుడిచివేయబడింది. ఇటీవలి తుడిచివేతలకు సంబంధించిన నివేదిక కొరకు $2 చూడండి.',
 'deletedarticle'    => '"$1" తుడిచివేయబడినది',
@@ -672,7 +679,7 @@ $1',
 'deletionlog'       => 'తొలగింపు దినచర్య పేజి',
 'deletecomment'     => 'తుడిచివేతకు కారణము',
 'cantrollback'      => 'రచనను వెనక్కి తీసుకువెళ్ళలేము; ఈ పేజీకి ఇదొక్కటే రచన.',
-'alreadyrolled'     => '[[:$1]]లో [[User:$2|$2]] ([[User talk:$2|చర్చ]]) చేసిన చివరి మార్పును రోల్‌బాక్ చెయ్యలేము; మరెవరో ఆ పేజీని రోల్‌బాక్ చేసారు, లేదా మార్చారు. 
+'alreadyrolled'     => '[[$1]]లో [[User:$2|$2]] ([[User talk:$2|చర్చ]]) చేసిన చివరి మార్పును రోల్‌బాక్ చెయ్యలేము; మరెవరో ఆ పేజీని రోల్‌బాక్ చేసారు, లేదా మార్చారు. 
 
 చివరి మార్పులు చేసినవారు: [[User:$3|$3]] ([[User talk:$3|చర్చ]]).',
 'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|చర్చ]]) చేసిన మార్పులను [[User:$1|$1]] వైనక్కు తేసుకువెళ్ళారు',
@@ -706,13 +713,9 @@ $1',
 'ucnote'        => 'గత <b>$2</b> రోజులలో సభ్యుడు చేసిన చివరి <b>$1</b> మార్పులు కింద ఉన్నాయి.',
 'uclinks'       => 'చివరి $1 మార్పులు చూపించు; గత $2 రోజుల మార్పులు చూపించు.',
 
-'sp-contributions-newest' => 'అన్నిటికంటే కొత్తవి',
-'sp-contributions-oldest' => 'అన్నిటికంటే పాతవి',
-'sp-contributions-newer'  => 'కొత్త $1',
-'sp-contributions-older'  => 'పాత $1',
-
 # What links here
 'whatlinkshere' => 'ఇక్కడికి లింకు చేస్తున్న పేజీలు',
+'linklistsub'   => '(లింకుల జాబితా)',
 'linkshere'     => 'కింది పేజీలలో ఇక్కడికి లింకులు ఉన్నాయి:',
 'nolinkshere'   => 'ఇక్కడికి ఏ పేజీ నుండీ లింకు లేదు.',
 'isredirect'    => 'దారిమార్పు పేజీ',
@@ -811,7 +814,7 @@ $1',
 'importfailed' => 'దిగుమతి కాలేదు: $1',
 
 # Tooltip help for the actions
-'tooltip-diff'     => 'పాఠానికి మీరు చేసిన మార్పులను చూపుంచు.',
+'tooltip-diff'     => 'పాఠానికి మీరు చేసిన మార్పులను చూపుంచు. [alt-v]',
 'tooltip-recreate' => 'పేజీ తుడిచివేయబడ్డాకానీ మళ్ళీ సృష్టించు',
 
 # Attribution
@@ -846,7 +849,7 @@ $1',
 'markedaspatrolledtext' => 'ఎంచుకున్న సంచిక పరీక్షించబడినట్లుగా గుర్తింపబడింది.',
 
 # Image deletion
-'deletedrevision' => 'పాత సంచిక $1 తొలగించబడినది',
+'deletedrevision' => 'పాత సంచిక $1 తొలగించబడినది.',
 
 # Browsing diffs
 'previousdiff' => '← మునుపటి తేడా',
@@ -917,5 +920,8 @@ $1',
 
 # AJAX search
 'articletitles' => "''$1''తొ మొదలయ్యే వ్యాసాలు",
+
+# Auto-summaries
+'autoredircomment' => '[[$1]]కు మళ్ళించబడుతుంది',
 
 );

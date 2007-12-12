@@ -400,7 +400,7 @@ $messages = array(
 'nstab-image'     => 'Bild',
 'nstab-mediawiki' => 'Systemmeddelande',
 'nstab-template'  => 'Mall',
-'nstab-help'      => 'Hjälp',
+'nstab-help'      => 'Hjälpsida',
 'nstab-category'  => 'Kategori',
 
 # Main script and global functions
@@ -1237,7 +1237,6 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'specialpages'            => 'Specialsidor',
 'spheading'               => 'Specialsidor för alla användare',
 'restrictedpheading'      => 'Specialsidor med begränsad åtkomst',
-'rclsub'                  => '(som "$1" länkar till)',
 'newpages'                => 'Nya sidor',
 'newpages-username'       => 'Användare:',
 'ancientpages'            => 'Äldsta sidorna',
@@ -1249,6 +1248,8 @@ med en direkt URL, och kan därför bli listade här trots att de används konti
 'unusedcategoriestext'    => 'Följande kategorier finns men innehåller inga sidor eller underkategorier.',
 'notargettitle'           => 'Inget mål',
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
+'pager-newer-n'           => '$1 nyare',
+'pager-older-n'           => '$1 äldre',
 
 # Book sources
 'booksources'               => 'Bokkällor',
@@ -1530,10 +1531,6 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'month'         => 'Månad:',
 'year'          => 'År:',
 
-'sp-contributions-newest'      => 'Nyaste',
-'sp-contributions-oldest'      => 'Äldsta',
-'sp-contributions-newer'       => '$1 nyare',
-'sp-contributions-older'       => '$1 äldre',
 'sp-contributions-newbies'     => 'Visa endast bidrag från nya konton',
 'sp-contributions-newbies-sub' => 'För nybörjare',
 'sp-contributions-blocklog'    => 'Blockeringslogg',

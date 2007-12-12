@@ -1024,7 +1024,6 @@ PICT # misz.
 'listusers'               => "Lista d'usuarios",
 'specialpages'            => 'Pachinas espezials',
 'restrictedpheading'      => 'Pachinas espezials restrinxitas',
-'rclsub'                  => '(enta pachinas enlazadas dende "$1")',
 'newpages'                => 'Pachinas nuebas',
 'ancientpages'            => 'Pachinas más biellas',
 'move'                    => 'Tresladar',
@@ -1251,6 +1250,10 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'watchlistall2' => 'toz',
 'namespacesall' => 'todo',
 'monthsall'     => '(toz)',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => "Talment no s'amuestren en ista lista as edizions feitas en os zaguers $1 segundos.",
+'lag-warn-high'   => "Por o retardo d'o serbido d'a base de datos, talment no s'amuestren en ista lista as edizions feitas en os zaguers $1 segundos.",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Amostrar cambeos',

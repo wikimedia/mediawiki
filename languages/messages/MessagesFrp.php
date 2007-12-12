@@ -1158,7 +1158,6 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modific
 'specialpages'            => 'Pâges spèciâles',
 'spheading'               => 'Pâges spèciâles',
 'restrictedpheading'      => 'Pâges spèciâles resèrvâs',
-'rclsub'                  => '(de les pâges liyês a « $1 »)',
 'newpages'                => 'Novèles pâges',
 'newpages-username'       => 'Utilisator :',
 'ancientpages'            => 'Articllos los muens dèrriérement modifiâs',
@@ -1394,8 +1393,9 @@ Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 'pagesize'                    => '(octèts)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Modificacion',
-'restriction-move' => 'Renomâjo',
+'restriction-edit'   => 'Modificacion',
+'restriction-move'   => 'Renomâjo',
+'restriction-create' => 'Crèar',
 
 # Restriction levels
 'restriction-level-sysop'         => 'Protèccion complèta',

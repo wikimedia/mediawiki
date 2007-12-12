@@ -1,7 +1,12 @@
 <?php
-/**
-  * @addtogroup Language
-  */
+/** latinica (latinica)
+ *
+ * @addtogroup Language
+ *
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Red Baron
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => "Medija",
@@ -200,7 +205,6 @@ $magicWords = array(
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podvuci veze',
@@ -328,7 +332,7 @@ $messages = array(
 'navigation'     => 'Navigacija',
 
 # Metadata in edit box
-'metadata_help' => 'Metapodaci (vidi [[Project:Metapodaci]] za objašnjenje):',
+'metadata_help' => 'Metapodaci:',
 
 'errorpagetitle'    => 'Greška',
 'returnto'          => 'Povratak na $1.',
@@ -416,7 +420,6 @@ $messages = array(
 'versionrequiredtext' => 'Verzija $1 MedijaVikija je potrebna da bi se koristila ova strana. Pogledajte [[{{ns:special}}:Version|verziju]]',
 
 'ok'                      => 'da',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Dobavljeno iz "$1"',
 'youhavenewmessages'      => 'Imate $1 ($2).',
 'newmessageslink'         => 'novih poruka',
@@ -434,7 +437,7 @@ $messages = array(
 'feedlinks'               => 'Fid:',
 'feed-invalid'            => 'Loš tip fida prijave.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',
 'nstab-user'      => 'Korisnička strana',
 'nstab-media'     => 'Medij',
@@ -485,7 +488,7 @@ Ovo je obično izazvano praćenjem zastarele "razl" veze ili veze ka istoriji
 stranice koja je obrisana.
 
 Ako ovo nije slučaj, možda ste pronašli grešku u softveru.
-Molimo vas prijavite ovo jednom od [[Project:Administratori|administratora]], zajedno sa URL-om.',
+Molimo vas prijavite ovo jednom od administratora, zajedno sa URL-om.',
 'readonly_lag'         => 'Baza podataka je automatski zaključana dok slejv serveri ne sustignu master',
 'internalerror'        => 'Interna greška',
 'filecopyerror'        => 'Ne mogu da iskopiram fajl "$1" na "$2".',
@@ -630,7 +633,7 @@ Molimo prijavite se pošto je primite.',
 
 Blokirao vas je korisnik \$1. Razlog za blokiranje je ''\$2''.
 
-Možete kontaktirati korisnika \$1 ili nekog drugog [[{{ns:project}}:Administratori|administratora]] kako biste razgovarali o blokadi. Ne možete da koristite opciju \"Pošalji e-poštu ovom korisniku\" ukoliko nemate valjanu adresu e-pošte navedenu u vašim [[Special:Preferences|podešavanjima]]. Vaša trenutna IP adresa je \$3. Molimo uključite ovo u svaki vaš zahtev.",
+Možete kontaktirati korisnika \$1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] kako biste razgovarali o blokadi. Ne možete da koristite opciju \"Pošalji e-poštu ovom korisniku\" ukoliko nemate valjanu adresu e-pošte navedenu u vašim [[Special:Preferences|podešavanjima]]. Vaša trenutna IP adresa je \$3. Molimo uključite ovo u svaki vaš zahtev.",
 'blockedoriginalsource'     => "Izvor '''$1''' je prikazan ispod:",
 'blockededitsource'         => "Tekst '''vaših izmena''' za '''$1''' je prikazan ispod:",
 'whitelistedittitle'        => 'Obavezno je prijavljivanje za uređivanje',
@@ -707,11 +710,8 @@ da pratite [[{{ns:project}}:Pravila o zaštiti stranica|pravila o zaštiti stran
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne može da se napravi nalog',
-'cantcreateaccounttext'  => 'Pravljenje naloga sa ove IP adrese (<b>$1</b>) je blokirano.
-Ovo je verovatno zbog učestalog vandalizma iz vaše škole ili Internet servis provajdera.',
 
 # History pages
-'revhistory'          => 'Istorija izmena',
 'viewpagelogs'        => 'Pogledaj protokole za ovu stranu',
 'nohistory'           => 'Ne postoji istorija izmena za ovu stranicu.',
 'revnotfound'         => 'Revizija nije pronađena',
@@ -727,7 +727,6 @@ Molimo vas da proverite URL koji ste upotrebili da biste pristupili ovoj stranic
 'cur'                 => 'tren',
 'next'                => 'sled',
 'last'                => 'posl',
-'orig'                => 'orig',
 'histlegend'          => 'Odabiranje razlika: odaberite kutijice revizija za upoređivanje i pritisnite enter ili dugme na dnu.<br />
 Objašnjenje: (tren) = razlika sa trenutnom verzijom,
 (posl) = razlika sa prethodnom verzijom, M = mala izmena',
@@ -774,28 +773,15 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'revdelete-logentry'          => 'promenjen prikaz revizije za [[$1]]',
 
 # Diffs
-'difference'                => '(Razlika između revizija)',
-'loadingrev'                => 'učitavam reviziju za razliku',
-'lineno'                    => 'Linija $1:',
-'editcurrent'               => 'Izmeni trenutnu verziju ove stranice',
-'selectnewerversionfordiff' => 'Izaberi noviju verziju za upoređivanje',
-'selectolderversionfordiff' => 'Izaberi stariju verziju za upoređivanje',
-'compareselectedversions'   => 'Uporedi označene verzije',
+'difference'              => '(Razlika između revizija)',
+'lineno'                  => 'Linija $1:',
+'compareselectedversions' => 'Uporedi označene verzije',
 
 # Search results
 'searchresults'         => 'Rezultati pretrage',
 'searchresulttext'      => 'Za više informacija o pretraživanju sajta {{SITENAME}}, pogledajte [[{{ns:project}}:Pretraživanje|Pretraživanje sajta {{SITENAME}}]].',
 'searchsubtitle'        => "Tražili ste '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Tražili ste '''$1'''",
-'badquery'              => 'Loše oblikovan upit za pretragu',
-'badquerytext'          => 'Nismo mogli da obradimo vaš upit.
-Ovo je verovatno zbog toga što ste pokušali da tražite
-reč kraću od tri slova, što trenutno nije podržano.
-Takođe je moguće da ste pogrešno ukucali izraz, na
-primer "riba ima ima krljušti".
-Molimo vas pokušajte nekim drugim upitom.',
-'matchtotals'           => 'Upit "$1" je nađen u $2 naslova članaka
-i tekst $3 članaka.',
 'noexactmatch'          => 'Ne postoji stranica sa naslovom "$1". Možete [[$1|napraviti ovu stranicu]].',
 'titlematches'          => 'Naslov stranice odgovara',
 'notitlematches'        => 'Nijedan naslov stranice ne odgovara',
@@ -813,7 +799,6 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'powersearch'           => 'Traži',
 'powersearchtext'       => 'Pretraga u imenskim prostorima:<br />$1<br />$2 Izlistaj preusmerenja<br />Traži $3 $9',
 'searchdisabled'        => 'Pretraga za sajt {{SITENAME}} je onemogućena. U međuvremenu, možete koristiti Gugl pretragu. Imajte na umu da indeksi Gugla za sajt {{SITENAME}} mogu biti zastareli.',
-'blanknamespace'        => '(Glavno)',
 
 # Preferences page
 'preferences'              => 'Podešavanja',
@@ -923,9 +908,6 @@ Neodabrane grupe neće biti promenjene. Možete da deselektujete grupu koristeć
 'hist'                              => 'ist',
 'hide'                              => 'sakrij',
 'show'                              => 'pokaži',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 korisnik/a koji nadgleda/ju]',
 'rc_categories'                     => 'Ograniči na kategorije (razdvoji sa "|")',
 'rc_categories_any'                 => 'Bilo koji',
@@ -1043,6 +1025,9 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 'unusedtemplatestext' => 'Ova strana navodi sve stranice u imenskom prostoru šablona koje nisu uključene ni na jednoj drugoj strani. Ne zaboravite da proverite ostale veze ka šablonima pre nego što ih obrišete.',
 'unusedtemplateswlh'  => 'ostale veze',
 
+# Random page
+'randompage' => 'Slučajna stranica',
+
 # Random redirect
 'randomredirect' => 'Slučajno preusmerenje',
 
@@ -1093,7 +1078,6 @@ Dužina reda za poslove iznosi '''$7'''",
 'mostrevisions'           => 'Članci sa najviše revizija',
 'allpages'                => 'Sve stranice',
 'prefixindex'             => 'Spisak prefiksa',
-'randompage'              => 'Slučajna stranica',
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Dugačke stranice',
 'deadendpages'            => 'Stranice bez internih veza',
@@ -1102,7 +1086,6 @@ Dužina reda za poslove iznosi '''$7'''",
 'specialpages'            => 'Posebne stranice',
 'spheading'               => 'Posebne stranice za sve korisnike',
 'restrictedpheading'      => 'Zaštićene posebne stranice',
-'rclsub'                  => '(na stranice povezane od "$1")',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Korisničko ime:',
 'ancientpages'            => 'Najstariji članci',
@@ -1113,6 +1096,9 @@ Dužina reda za poslove iznosi '''$7'''",
 mogu povezivati na sliku direktnim URL-om, i tako mogu još uvek biti prikazani ovde uprkos
 aktivnoj upotrebi.',
 'unusedcategoriestext'    => 'Naredne strane kategorija postoje iako ih ni jedan drugi članak ili kategorija ne koriste.',
+'notargettitle'           => 'Nema cilja',
+'notargettext'            => 'Niste naveli ciljnu stranicu ili korisnika
+na kome bi se izvela ova funkcija.',
 
 # Book sources
 'booksources' => 'Štampani izvori',
@@ -1203,7 +1189,6 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska nadgledanja, kliknite 
 'iteminvalidname'      => "Problem sa stavkom '$1', neispravno ime...",
 'wlnote'               => 'Ispod je poslednjih $1 izmena u poslednjih <b>$2</b> sati.',
 'wlshowlast'           => 'Prikaži poslednjih $1 sati $2 dana $3',
-'wlsaved'              => 'Ovo je sačuvana verzija vašeg spiska nadgledanja.',
 
 'enotif_mailer'      => '{{SITENAME}} pošta obaveštenja',
 'enotif_reset'       => 'Označi sve strane kao posećene',
@@ -1251,7 +1236,7 @@ Fidbek i dalja pomoć:
 ili sliku zajedno sa njenom istorijom iz baze podataka.
 Molimo vas potvrdite da nameravate da uradite ovo, da razumete
 posledice, i da ovo radite u skladu sa
-[[{{ns:project}}:Pravila i smernice|pravilima]].',
+[[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Akcija završena',
 'deletedtext'                 => 'Članak "$1" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
@@ -1320,8 +1305,9 @@ neće biti automatski zamenjena.',
 Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih brisanja i vraćanja.",
 
 # Namespace form on various pages
-'namespace' => 'Imenski prostor:',
-'invert'    => 'Obrni selekciju',
+'namespace'      => 'Imenski prostor:',
+'invert'         => 'Obrni selekciju',
+'blanknamespace' => '(Glavno)',
 
 # Contributions
 'contributions' => 'Prilozi korisnika',
@@ -1332,19 +1318,12 @@ Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih
 'uclinks'       => 'Gledaj poslednjih $1 promena; gledaj poslednjih $2 dana.',
 'uctop'         => ' (vrh)',
 
-'sp-contributions-newest'      => 'Najnovijih',
-'sp-contributions-oldest'      => 'Najstarijih',
-'sp-contributions-newer'       => 'Novijih $1',
-'sp-contributions-older'       => 'Starijih $1',
 'sp-contributions-newbies-sub' => 'Za novajlije',
 
 'sp-newimages-showfrom' => 'Prikaži nove slike počevši od $1',
 
 # What links here
 'whatlinkshere' => 'Šta je povezano ovde',
-'notargettitle' => 'Nema cilja',
-'notargettext'  => 'Niste naveli ciljnu stranicu ili korisnika
-na kome bi se izvela ova funkcija.',
 'linklistsub'   => '(spisak veza)',
 'linkshere'     => 'Sledeće stranice su povezane ovde:',
 'nolinkshere'   => 'Ni jedna stranica nije povezana ovde.',
@@ -1356,7 +1335,7 @@ na kome bi se izvela ova funkcija.',
 'blockiptext'                 => 'Upotrebite donji upitnik da biste uklonili pravo pisanja
 sa određene IP adrese ili korisničkog imena.
 Ovo bi trebalo da bude urađeno samo da bi se sprečio vandalizam, i u skladu
-sa [[{{ns:project}}:Politika|politikom]].
+sa [[{{MediaWiki:Policy-url}}|politikom]].
 Unesite konkretan razlog ispod (na primer, navodeći koje
 stranice su vandalizovane).',
 'ipaddress'                   => 'IP adresa',
@@ -1398,9 +1377,9 @@ blokirane IP adrese nisu navedene. Pogledajte [[{{ns:special}}:Ipblocklist|spisa
 'range_block_disabled'        => 'Administratorska mogućnost da blokira blokove IP adresa je isključena.',
 'ipb_expiry_invalid'          => 'Pogrešno vreme trajanja.',
 'ipb_already_blocked'         => '"$1" je već blokiran',
+'ipb_cant_unblock'            => 'Greška: ID bloka $1 nije nađen. Moguće je da je već odblokiran.',
 'ip_range_invalid'            => 'Netačan blok IP adresa.',
 'proxyblocker'                => 'Bloker proksija',
-'ipb_cant_unblock'            => 'Greška: ID bloka $1 nije nađen. Moguće je da je već odblokiran.',
 'proxyblockreason'            => 'Vaša IP adresa je blokirana jer je ona otvoreni proksi. Molimo kontaktirajte vašeg Internet servis provajdera ili tehničku podršku i obavestite ih o ovom ozbiljnom sigurnosnom problemu.',
 'proxyblocksuccess'           => 'Urađeno.',
 'sorbsreason'                 => 'Vaša IP adresa je na spisku kao otvoren proksi na DNSBL.',
@@ -1607,9 +1586,6 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 # Stylesheets
 'common.css'   => '/** CSS stavljen ovde će se odnositi na sve kože */',
 'monobook.css' => '/* CSS stavljen ovde će se odnositi na korisnike Monobuk kože */',
-
-# Scripts
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metapodaci onemogućeni za ovaj server.',

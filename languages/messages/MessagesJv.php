@@ -4,9 +4,9 @@
  * @addtogroup Language
  *
  * @author Niklas Laxström
- * @author G - ג
  * @author Helix84
  * @author Siebrand
+ * @author לערי ריינהארט
  * @copyright Copyright © 2006, Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
@@ -132,7 +132,6 @@ $messages = array(
 'aboutsite'         => 'Prakawis {{SITENAME}}',
 'aboutpage'         => 'Project:Prakawis',
 'bugreports'        => 'Laporan kasalahan',
-'bugreportspage'    => 'Project:Bug reports',
 'copyright'         => 'Kabèh teks kasedyaaké ing ngisoré $1.',
 'currentevents'     => 'Warta Wigati',
 'currentevents-url' => 'Project:Warta Wigati',
@@ -217,8 +216,8 @@ $messages = array(
 'blockedtitle'          => 'Panganggem (anggota) punika dipun-blok.',
 'blockedtext'           => 'Asma panjenengan utawi alamat IP-nipun sampun dipun-blok dening  $1.
 Alesanipun:<br />\'\'$2\'\'<p>Panjengengan saged ngubungi $1 utawi salah satunggalipun saking
-[[Project:Administrators|pengurus]] kanggé ngrembag prakawis blok punika.
-Cathetan bilih panjenengan mboten kepareng nganggé fitur "ngirim layang elektronik panganggé punika" kejawi panjenengan sampun validasi layak elektronik ing [[{{ns:special}}:Preferences|preferensiku]].
+[[{{MediaWiki:Grouppage-sysop}}|pengurus]] kanggé ngrembag prakawis blok punika.
+Cathetan bilih panjenengan mboten kepareng nganggé fitur "ngirim layang elektronik panganggé punika" kejawi panjenengan sampun validasi layak elektronik ing [[Special:Preferences|preferensiku]].
 Alamat IP panjenengan inggih punika $3. Dipun-aturi nglebetaken alamat punika ing sedanten pitakènan ingkang dipun-ajoaken.',
 'blockedoriginalsource' => "Isi sumber saking '''$1''' kapacak kados ing ngandhap punika:",
 'blockededitsource'     => "Teks '''suntingan panjenengan''' ing '''$1''' kapacak kados ing ngandhap punika:",
@@ -231,7 +230,7 @@ Alamat IP panjenengan inggih punika $3. Dipun-aturi nglebetaken alamat punika in
 'newarticle'            => '(Anyar)',
 'newarticletext'        => "Katonane panjenengan ngetutake pranala artikel sing durung ana.
 Manawa arep manulis artikel iki, manggaa. (Tontonen
-[[{{ns:project}}:Help|Pitulung]] kanggo informasi sabanjure).
+[[{{MediaWiki:Helppage}}|Pitulung]] kanggo informasi sabanjure).
 Yen ora sengaja tekan kene, bisa ngeklik pencetan '''back''' wae.",
 'previewnote'           => 'Mugi dipun gatekaken menawi punika namung pratilik kemawon, dereng dipun simpen!',
 'session_fail_preview'  => '<strong>Nuwun sèwu, suntingan panjenengan ora bisa diolah amarga dhata sèsi kabusak. Coba kirim dhata manèh. Yèn tetep ora bisa, coba log metua lan mlebu log manèh.</strong>',

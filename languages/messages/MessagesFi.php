@@ -487,6 +487,7 @@ $2',
 'namespaceprotected'   => "Et voi muokata sivuja nimiavaruudessa '''$1'''.",
 'customcssjsprotected' => 'Sinulla ei ole oikeuksia muuttaa toisten käyttäjien henkilökohtaisia asetuksia.',
 'ns-specialprotected'  => 'Toimintosivuja ei voi muokata.',
+'titleprotected'       => 'Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Uloskirjautuminen',
@@ -1221,7 +1222,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'specialpages'            => 'Toimintosivut',
 'spheading'               => 'Toimintosivut',
 'restrictedpheading'      => 'Rajoitetut toimintosivut',
-'rclsub'                  => 'Sivut, joihin linkki sivulta $1',
 'newpages'                => 'Uudet sivut',
 'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
@@ -1232,6 +1232,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'unusedcategoriestext'    => 'Nämä luokat ovat olemassa, mutta niitä ei käytetä.',
 'notargettitle'           => 'Ei kohdetta',
 'notargettext'            => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
+'pager-newer-n'           => '← {{PLURAL:$1|1 uudempi|$1 uudempaa}}',
+'pager-older-n'           => '{{PLURAL:$1|1 vanhempi|$1 vanhempaa}} →',
 
 # Book sources
 'booksources'               => 'Kirjalähteet',
@@ -1436,8 +1438,9 @@ Palaute ja lisäapu osoitteessa:
 'pagesize'                    => 'tavua',
 
 # Restrictions (nouns)
-'restriction-edit' => 'muokkaus',
-'restriction-move' => 'siirto',
+'restriction-edit'   => 'muokkaus',
+'restriction-move'   => 'siirto',
+'restriction-create' => 'luonti',
 
 # Restriction levels
 'restriction-level-sysop'         => 'täysin suojattu',

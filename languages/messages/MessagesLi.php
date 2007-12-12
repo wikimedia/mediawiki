@@ -65,10 +65,10 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Links ongersjtreipe',
-'tog-highlightbroken'         => 'Formatteer gebraoke links <a href="" class="new">op dees meneer</a> (angesj: zoe<a href="" class="internal">?</a>).',
-'tog-justify'                 => 'Paragrafe oetvulle',
-'tog-hideminor'               => 'Verbèrg klein bewirking bie recènte verangeringe',
+'tog-underline'               => 'Links óngersjtriepe',
+'tog-highlightbroken'         => 'Formatteer gebraoke links <a href="" class="new">op dees meneer</a> (angers: zoe<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Paragrafe oetvölle',
+'tog-hideminor'               => 'Versjtaek klein bewirkinge bie lètste verangeringe',
 'tog-extendwatchlist'         => 'Oetgebreide volglies',
 'tog-usenewrc'                => 'Oetgebreide recènte vervangeringe (neet vuur alle browsers)',
 'tog-numberheadings'          => 'Köpkes automatisch nummere',
@@ -438,7 +438,7 @@ e-mail óntvange veur alle volgende toepassinge.',
 'summary-preview'           => 'Naokieke samevatting',
 'subject-preview'           => 'Naokieke ongerwerp/kop',
 'blockedtitle'              => 'Gebroeker is geblokkeerd',
-'blockedtext'               => 'Diene gebroekersnaam of IP-adres is geblokkeerd door $1. De opgegaeve raeje:<br />$2<br />De kins veur euverlik kontak opnumme mit de [[Project:Systeemwèrkers|systeemwèrkers]].
+'blockedtext'               => 'Diene gebroekersnaam of IP-adres is geblokkeerd door $1. De opgegaeve raeje:<br />$2<br />De kins veur euverlik kontak opnumme mit de [[{{MediaWiki:Grouppage-sysop}}|systeemwèrkers]].
 
 Your IP address is $3. Please include this address in any queries you make.',
 'autoblockedtext'           => "Dien IP-adres is automatisch geblokkeerd omdet 't gebroek is door 'ne gebroeker, dae is geblokkeerd door $1.
@@ -1001,7 +1001,6 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'specialpages'            => "Speciaal pazjena's",
 'spheading'               => "Speciaal pazjena's",
 'restrictedpheading'      => "Speciale pagina's met bepèrkte toegank",
-'rclsub'                  => '(van pazjena\'s woe "$1" heen verwiest)',
 'newpages'                => "Nuuj pazjena's",
 'newpages-username'       => 'Gebroekersnaam:',
 'ancientpages'            => 'Artikele die lank neet bewèrk zeen',
@@ -1382,7 +1381,6 @@ Zuug de [[Special:Ipblocklist|lies van geblokkeerde IP-adresse]].',
 'movepage'                => 'Verplaats pazjena',
 'movepagetext'            => "Mit 't óngersjtaond formuleer kans te 'n pazjena verplaatse. De historie van de ouw pazjena zal nao de nuuj mitgaon. De ouwe titel zal automatisch 'ne redirect nao de nuuj pazjena waere. Doe kans 'n pazjena allein verplaatse, es gein pazjena besjteit mit de nuje naam, of es op die pazjena allein 'ne redirect zónger historie sjteit.",
 'movepagetalktext'        => "De biebehurende euverlikpazjena weurt ouch verplaats, mer '''neet''' in de volgende gevalle:
-* es de pazjena nao 'n anger [[Project:Naamruumde|naamruumde]] verplaats weurt
 * es al 'n euverlikpazjena besjteit ónger de angere naam
 * es doe 't óngersjtaond vekske neet aanvinks",
 'movearticle'             => 'Verplaats pazjena',

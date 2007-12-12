@@ -4,9 +4,9 @@
  * @addtogroup Language
  *
  * @author 80686
- * @author G - ג
  * @author Helix84
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'de';
@@ -157,7 +157,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:Impressum',
 'edithelp'          => 'Ratschläg fiers Bearbeite',
 'edithelppage'      => 'Help:Ändere',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hilf',
 'mainpage'          => 'Houptsyte',
 'policy-url'        => 'Project:Leitlinien',
@@ -391,13 +390,12 @@ Alli nöiere Versione wärden überschribe, we du uf «Syte spychere» drücksch
 Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Quälle kopiert hen, wo Public Domain odr sunscht frei isch (lueg $1 für Details).
 <strong>SETZE SI DO OHNI ERLAUBNIS CHEINI URHEBERRÄCHTLICH GSCHÜTZTI WÄRK INE!</strong>',
 'longpagewarning'          => '<span style="color:#ff0000">WARNIG:</span> Die Syten isch $1KB groß; elteri Browser chönnte Problem ha, Sytene z bearbeite wo gröser sy als 32KB. Überleg bitte, öb du Abschnitte vo dere Syte zu eigete Sytene chönntsch usboue.',
-'protectedpagewarning'     => '<span style="color:#ff0000">WARNIG:</span> Die Syten isch gsperrt worde, so das se nume Benutzer mit Sysop-Rechten chöi verändere. Bitte häb di a d [[Project:Geschützte Seiten|Regle für gschützti Syte]].',
+'protectedpagewarning'     => '<strong>WARNIG: Die Syten isch gsperrt worde, so das se nume Benutzer mit Sysop-Rechten chöi verändere.</strong>',
 'semiprotectedpagewarning' => "'''''Halbsperrung''': Diese Seite kann von angemeldeten Benutzern bearbeitet werden. Für nicht angemeldete oder gerade eben erst angemeldete Benutzer ist der Schreibzugang gesperrt.''",
 'templatesused'            => 'Selli Vorlage wärde in sellem Artikel bruucht:',
 'edittools'                => '<!-- Selle Text wird untr em "ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
 
 # History pages
-'revhistory'          => 'Früecheri Versione',
 'currentrev'          => 'Itzigi Version',
 'revisionasof'        => 'Version vo $1',
 'previousrevision'    => '← Vorderi Version',
@@ -679,7 +677,7 @@ Im $2 het’s e Lischte vo de letschte Löschige.',
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
 'revertpage'        => 'Rückgängig gmacht zuer letschte Änderig vo $1',
-'protectlogtext'    => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.',
+'protectlogtext'    => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:Protectedpages|Geschützte Seiten]] für mehr Informationen.',
 'protectcomment'    => 'Grund der Sperrung',
 
 # Undelete

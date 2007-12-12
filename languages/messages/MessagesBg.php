@@ -1311,7 +1311,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'specialpages'            => 'Специални страници',
 'spheading'               => 'Специални страници за всички потребители',
 'restrictedpheading'      => 'Специални страници с ограничен достъп',
-'rclsub'                  => '(на страници, сочени от „$1“)',
 'newpages'                => 'Нови страници',
 'newpages-username'       => 'Потребител:',
 'ancientpages'            => 'Стари страници',
@@ -1534,8 +1533,9 @@ $NEWPAGE
 'pagesize'                    => '(байта)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Редактиране',
-'restriction-move' => 'Преместване',
+'restriction-edit'   => 'Редактиране',
+'restriction-move'   => 'Преместване',
+'restriction-create' => 'Създаване',
 
 # Restriction levels
 'restriction-level-sysop'         => 'пълна защита',

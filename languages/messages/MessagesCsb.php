@@ -4,9 +4,9 @@
  * @addtogroup Language
  *
  * @author Warszk
- * @author G - ג
  * @author Siebrand
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -321,7 +321,7 @@ $messages = array(
 'showdiff'              => 'Pòkażë zmianë',
 'anoneditwarning'       => "'''Bôczë:''' Të nie je wlogòwóny. Twòjô adresa IP mdze zapisónô w historëji edicëji ti starnë.",
 'blockedtitle'          => 'Brëkòwnik je zascëgóny',
-'blockedtext'           => "Twòje kònto abò ë IP-adresa òstałë zascëgòwóné przez $1. Pòdónô przëczëna to:<br />''$2''.<br />Bë zgwësnic sprawã zablokòwaniô mòżesz skòntaktowac sã z $1 abò jińszim [[{{ns:project}}:Administratorzë|administratorã]].
+'blockedtext'           => "Twòje kònto abò ë IP-adresa òstałë zascëgòwóné przez $1. Pòdónô przëczëna to:<br />''$2''.<br />Bë zgwësnic sprawã zablokòwaniô mòżesz skòntaktowac sã z $1 abò jińszim [[{{MediaWiki:Grouppage-sysop}}|administratorã]].
 
 Boczë, że të nie mòżesz stądka sélac e-mailów, jeżlë nié môsz jesz zaregisterowóné e-mailowé adresë w [[Special:Preferences|nastôwach]].
 
@@ -361,7 +361,6 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 # Diffs
 'difference'              => '(różnice midzë wersëjama)',
 'lineno'                  => 'Lëniô $1:',
-'editcurrent'             => 'Editëjë aktualną wersëjã ny starnë',
 'compareselectedversions' => 'Przërównôj wëbróné wersëje',
 
 # Search results
@@ -418,7 +417,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 
 # Recent changes
 'recentchanges'                  => 'Slédné edicëje',
-'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
+'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.',
 'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
 'rcnotefrom'                     => 'Niżi są zmianë òd <b>$2</b> (pòkazóné do <b>$1</b>).',
 'rclistfrom'                     => 'Pòkażë nowé zmianë òd $1',
@@ -616,10 +615,6 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'month'         => 'Òd miesąca (ë wczasni):',
 'year'          => 'Òd rokù (ë wczasni):',
 
-'sp-contributions-newest'   => 'Nônowszi',
-'sp-contributions-oldest'   => 'Nôstôrszi',
-'sp-contributions-newer'    => 'Nowszé $1',
-'sp-contributions-older'    => 'Stôrszé $1',
 'sp-contributions-newbies'  => 'Pòkażë edicëjã blós nowich brëkòwników',
 'sp-contributions-search'   => 'Szëkba za edicëjama',
 'sp-contributions-username' => 'Adresa IP abò miono brëkòwnika:',
@@ -632,7 +627,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 
 # Block/unblock
 'blockip'            => 'Zascëgôj IP-adresã',
-'blockiptext'        => 'Brëkùje formùlarza niżi abë zascëgòwac prawò zapisënkù spòd gwësny adresë IP. To robi sã blós dlôte abë zascëgnąc wandalëznom, a bëc w zgòdze ze [[{{ns:project}}:Wskôzë|wskôzama]]. Pòdôj przëczënã (np. dając miona starn, na chtërnëch dopùszczono sã wandalëzny).',
+'blockiptext'        => 'Brëkùje formùlarza niżi abë zascëgòwac prawò zapisënkù spòd gwësny adresë IP. To robi sã blós dlôte abë zascëgnąc wandalëznom, a bëc w zgòdze ze [[{{MediaWiki:Policy-url}}|wskôzama]]. Pòdôj przëczënã (np. dając miona starn, na chtërnëch dopùszczono sã wandalëzny).',
 'ipbreason'          => 'Przëczëna',
 'badipaddress'       => 'IP-adresa nie je richtich pòdónô.',
 'blockipsuccesssub'  => 'Zascëgónié dało sã',

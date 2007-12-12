@@ -2,6 +2,12 @@
 /** Irish (Gaeilge)
  *
  * @addtogroup Language
+ *
+ * @author Kwekubo
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author Alison
+ * @author Helix84
  */
 
 $skinNames = array(
@@ -274,7 +280,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'restorelink'   => '$1 athruithe scriosaithe',
 'feedlinks'     => 'Fotha:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Alt',
 'nstab-user'      => 'Lch úsáideora',
 'nstab-media'     => 'Lch meáin',
@@ -521,13 +527,9 @@ Más féidir, giotaigh an leathanach i gcodanna níos bige.',
 'readonlywarning'        => "AIRE: Glasáladh an bunachar sonraí, agus mar sin
 ní féidir leat do chuid athruithe a shábháil díreach anois. B'fhéidir gur mhaith leat an téacs a ghearr is
 ghreamú i gcomhad téacs agus é a úsáid níos déanaí.",
-'protectedpagewarning'   => 'AIRE: Glasáladh an leathanach seo, agus ní féidir le duine ar bith é a athrú
-ach amhaín na húsáideoirí le pribhléidí oibreora córais. Bí cinnte go leanann tú na
-[[Project:Treoirlínte_do_leathanaigh_glasáilte|treoirlínte do leathanaigh
-glasáilte]].',
+'protectedpagewarning'   => '<strong>AIRE: Glasáladh an leathanach seo, agus ní féidir le duine ar bith é a athrú ach amhaín na húsáideoirí le pribhléidí oibreora córais. Bí cinnte go leanann tú na treoirlínte do leathanaigh glasáilte.</strong>',
 
 # History pages
-'revhistory'          => 'Stáir athraithe',
 'nohistory'           => 'Níl aon stáir athraithe ag an leathanach seo.',
 'revnotfound'         => 'Ní bhfuarthas an athrú',
 'revnotfoundtext'     => "Ní bhfuarthas seaneagrán an leathanaigh a d'iarr tú ar.
@@ -549,13 +551,9 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'histlast'            => 'An ceann is déanaí',
 
 # Diffs
-'difference'                => '(Difríochtaí idir leaganacha)',
-'loadingrev'                => 'ag lódáil leagan don difríocht',
-'lineno'                    => 'Líne $1:',
-'editcurrent'               => 'Athraigh leagan láithreach an leathanaigh seo',
-'selectnewerversionfordiff' => 'Roghnaigh leagan níos nuaí mar chomparáid',
-'selectolderversionfordiff' => 'Roghnaigh leagan níos sine mar chomparáid',
-'compareselectedversions'   => 'Cuir na leagain roghnaithe i gcomparáid',
+'difference'              => '(Difríochtaí idir leaganacha)',
+'lineno'                  => 'Líne $1:',
+'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
 
 # Search results
 'searchresults'         => 'Torthaí an chuardaigh',
@@ -747,6 +745,9 @@ uaslódáil é arís, le do thoil.',
 'noimage'                   => 'Níl aon chomhad ann leis an ainm seo, ba féidir leat [$1 é a uaslódáil]',
 'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
 
+# Random page
+'randompage' => 'Leathanach fánach',
+
 # Statistics
 'statistics'    => 'Staidreamh',
 'sitestats'     => 'Staidreamh do {{SITENAME}}',
@@ -788,14 +789,12 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'popularpages'         => 'Leathanaigh coitianta',
 'wantedpages'          => 'Leathanaigh de dhíth',
 'allpages'             => 'Na leathanaigh go léir',
-'randompage'           => 'Leathanach fánach',
 'shortpages'           => 'Leathanaigh gearra',
 'longpages'            => 'Leathanaigh fada',
 'deadendpages'         => 'Leathanaigh caocha',
 'listusers'            => 'Liosta úsáideoirí',
 'specialpages'         => 'Leathanaigh speisialta',
 'spheading'            => 'Leathanaigh speisialta do gach úsáideoir',
-'rclsub'               => '(go leathanaigh nasctha ó "$1")',
 'newpages'             => 'Leathanaigh nua',
 'ancientpages'         => 'Na leathanaigh is sine',
 'intl'                 => 'Naisc idirtheangacha',
@@ -807,6 +806,9 @@ agus mar sin bheadh siad ar an liosta seo fós cé go bhfuil siad
 in úsáid faoi láthair.',
 'unusedcategoriestext' => 'Tá na leathanaigh catagóire seo a leanas ann, cé nach úsáidtear
 iad in aon alt eile nó in aon chatagóir eile.',
+'notargettitle'        => 'Níl aon cuspóir ann',
+'notargettext'         => 'Níor thug tú leathanach nó úsáideoir sprice
+chun an gníomh seo a dhéanamh ar.',
 
 # Book sources
 'booksources' => 'Leabharfhoinsí',
@@ -950,7 +952,7 @@ d'athúsáid duine eile eagrán níos luaí cheana féin.
 'revertpage'         => "D'athúsáideadh an athrú seo caite le $1",
 'protectlogpage'     => 'Cuntas_cosanta',
 'protectlogtext'     => 'Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
-Féach ar [[{{ns:project}}:Leathanach glasáilte]] chun a thuilleadh eolais a fháil.',
+Féach ar [[Special:Protectedpages|Leathanach glasáilte]] chun a thuilleadh eolais a fháil.',
 'protectedarticle'   => 'glasáladh "[[$1]]"',
 'unprotectedarticle' => 'díghlasáladh "[[$1]]"',
 'protectsub'         => '(Ag glasáil "$1")',
@@ -993,9 +995,6 @@ seo caite.',
 
 # What links here
 'whatlinkshere' => 'Naisc don leathanch seo',
-'notargettitle' => 'Níl aon cuspóir ann',
-'notargettext'  => 'Níor thug tú leathanach nó úsáideoir sprice
-chun an gníomh seo a dhéanamh ar.',
 'linklistsub'   => '(Liosta nasc)',
 'linkshere'     => 'Nascaíonn na leathanaigh seo a leanas chuig an leathanach seo:',
 'nolinkshere'   => 'Ní nascaíonn aon leathanach chuig an leathanach seo.',
