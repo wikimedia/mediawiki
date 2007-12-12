@@ -1075,7 +1075,6 @@ $wgMessageStructure = array(
 		'specialpages-summary',
 		'spheading',
 		'restrictedpheading',
-		'rclsub',
 		'newpages',
 		'newpages-summary',
 		'newpages-username',

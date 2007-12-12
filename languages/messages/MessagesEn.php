@@ -1700,7 +1700,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'specialpages-summary'            => '', # only translate this message to other languages if you have to change it
 'spheading'                       => 'Special pages for all users',
 'restrictedpheading'              => 'Restricted special pages',
-'rclsub'                          => '(to pages linked from "$1")',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # only translate this message to other languages if you have to change it
 'newpages-username'               => 'Username:',
