@@ -386,13 +386,14 @@ Requête : $2',
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de l’article pour pouvoir travailler dessus :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
-'editinginterface'     => "'''Attention :''' vous éditez une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs.",
+'editinginterface'     => "'''Attention :''' vous êtes en train d’éditez une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet Mediawiki d'internationalisation des messages [http://translatewiki.net/wiki/Translating:Intro Betawiki].",
 'sqlhidden'            => '(Requête SQL cachée)',
 'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée{{PLURAL:$1||s}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected'   => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
 'customcssjsprotected' => "Vous n’avez pas la permission d'éditer cette page parce qu’elle contient des préférences d’autres utilisateurs.",
 'ns-specialprotected'  => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
+'titleprotected'       => 'Ce titre a été protégé à la création par [[User:$1|$1]]. Le motif avancé est <i>« $2 »</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Déconnexion',
@@ -1374,8 +1375,9 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'pagesize'                    => '(octets)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Modification',
-'restriction-move' => 'Renommage',
+'restriction-edit'   => 'Modification',
+'restriction-move'   => 'Renommage',
+'restriction-create' => 'Créer',
 
 # Restriction levels
 'restriction-level-sysop'         => 'Protection complète',
