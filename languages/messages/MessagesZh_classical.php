@@ -376,6 +376,7 @@ $2',
 'namespaceprotected'   => "子權未逮，莫能纂'''$1'''。",
 'customcssjsprotected' => '牽他人，子權未逮，莫能纂之。',
 'ns-specialprotected'  => '{{ns:special}}禁纂也。',
+'titleprotected'       => '緘焉自[[User:$1|$1]]防建也。因<i>$2</i>也。',
 
 # Login and logout pages
 'logouttitle'                => '去簿',

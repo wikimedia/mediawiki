@@ -391,6 +391,7 @@ $2',
 'namespaceprotected'   => "您並沒有權限編輯'''$1'''名字空間的頁面。",
 'customcssjsprotected' => '您並無許可權去編輯這個頁面，因為它包含了另一位用戶的個人設定。',
 'ns-specialprotected'  => '在{{ns:special}}名字空間中的頁面是不可以編輯的。',
+'titleprotected'       => '這個標題已經被[[User:$1|$1]]保護以防止建立。理由是<i>$2</i>。',
 
 # Login and logout pages
 'logouttitle'                => '用戶退出',
@@ -1396,8 +1397,9 @@ $NEWPAGE
 'pagesize'                    => '(位元組)',
 
 # Restrictions (nouns)
-'restriction-edit' => '編輯',
-'restriction-move' => '移動',
+'restriction-edit'   => '編輯',
+'restriction-move'   => '移動',
+'restriction-create' => '建立',
 
 # Restriction levels
 'restriction-level-sysop'         => '全保護',
