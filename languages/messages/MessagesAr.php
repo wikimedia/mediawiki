@@ -638,6 +638,7 @@ $2',
 'namespaceprotected'   => "لا تمتلك الصلاحية لتعديل الصفحات في نطاق '''$1'''.",
 'customcssjsprotected' => 'لا تمتلك الصلاحية لتعديل هذه الصفحة، لأنها تحتوي على الإعدادات الشخصية لمستخدم آخر.',
 'ns-specialprotected'  => 'الصفحات في النطاق {{ns:special}} لا يمكن تعديلها.',
+'titleprotected'       => 'هذا العنوان تمت حمايته من الإنشاء بواسطة [[User:$1|$1]]. السبب المعطى هو <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'خروج المستخدم',
@@ -1671,8 +1672,9 @@ $NEWPAGE
 'pagesize'                    => '(بايت)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'تعديل',
-'restriction-move' => 'نقل',
+'restriction-edit'   => 'تعديل',
+'restriction-move'   => 'نقل',
+'restriction-create' => 'إنشاء',
 
 # Restriction levels
 'restriction-level-sysop'         => 'حماية كاملة',
