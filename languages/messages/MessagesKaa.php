@@ -9,7 +9,7 @@
  * @author Siebrand
  */
 
-$fallback = 'kk-tr';
+$fallback = 'kk-latn';
 
 $separatorTransformTable = array(
 	',' => "\xc2\xa0",
