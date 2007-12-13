@@ -237,6 +237,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Set proper page title for successful file deletion
 * (bug 11221) Do not show 'Compare selected versions' button for a history page
   with one revision only
+* (bug 12267) Set the default date format to Thai solar calender for the Thai language
 
 == Parser changes in 1.12 ==
 
@@ -493,6 +494,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Teluga (te)
 * Tetun (tet) (new)
 * Tajik (tg)
+* Thai (th)
 * Tagalog (tl) (new)
 * Turkish (tr)
 * Tuvinian (tyv)
