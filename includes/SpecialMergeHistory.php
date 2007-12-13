@@ -37,6 +37,9 @@ class MergehistoryForm {
 		$this->mTargetID = intval( $request->getVal( 'targetID' ) );
 		$this->mDestID = intval( $request->getVal( 'destID' ) );
 		$this->mTimestamp = $request->getVal( 'mergepoint' );
+		if( !preg_match("/[0-9]{14}/",$this->mTimestamp) ) {
+			$this->mTimestamp = '';
+		}
 		$this->mComment = $request->getText( 'wpComment' );
 		
 		$this->mMerge = $request->wasPosted() && $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
@@ -120,6 +123,7 @@ class MergehistoryForm {
 			Xml::hidden( 'title',
 				SpecialPage::getTitleFor( 'Mergehistory' )->getPrefixedDbKey() ) .
 			Xml::hidden( 'submitted', '1' ) . 
+			Xml::hidden( 'mergepoint', $this->mTimestamp ) . 
 			Xml::openElement( 'table' ) .
 			"<tr>
 				<td>".Xml::label( wfMsg( 'mergehistory-from' ), 'target' )."</td>
@@ -286,6 +290,8 @@ class MergehistoryForm {
 		$destTitle = Title::newFromID( $this->mDestID );
 		if( is_null($targetTitle) || is_null($destTitle) )
 			return false; // validate these
+		if( $targetTitle->getArticleID() == $destTitle->getArticleId() )
+			return false;
 		# Verify that this timestamp is valid
 		# Must be older than the destination page
 		$dbw = wfGetDB( DB_MASTER );
