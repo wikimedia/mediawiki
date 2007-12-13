@@ -1229,6 +1229,7 @@ Make sure that this change will maintain historical page continuity.
 'searchsubtitle'        => "You searched for '''[[:$1]]'''",
 'searchsubtitleinvalid' => "You searched for '''$1'''",
 'noexactmatch'          => "'''There is no page titled \"\$1\".''' You can [[:\$1|create this page]].",
+'noexactmatch-nocreate' => "'''There is no page titled \"\$1\".'''",
 'titlematches'          => 'Page title matches',
 'notitlematches'        => 'No page title matches',
 'textmatches'           => 'Page text matches',

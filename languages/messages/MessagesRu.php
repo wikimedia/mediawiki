@@ -891,6 +891,7 @@ $3 указал следующую причину: ''$2''",
 
 <span style="display: block; margin: 1.5em 2em">
 <strong>[[:$1|Создать страницу]]</strong></span>',
+'noexactmatch-nocreate' => 'Страницы с названием «$1» не существует.',
 'titlematches'          => 'Совпадения в названиях статей',
 'notitlematches'        => 'Нет совпадений в названиях статей',
 'textmatches'           => 'Совпадения в текстах статей',
