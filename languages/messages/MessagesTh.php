@@ -77,6 +77,14 @@ $dateFormats = array(
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
+/**
+ * The date format to use for generated dates in the user interface.
+ * This may be one of the above date preferences, or the special value
+ * "dmy or mdy", which uses mdy if $wgAmericanDates is true, and dmy
+ * if $wgAmericanDates is false.
+ */
+$defaultDateFormat = 'thai';
+
 $linkTrail = '/^([a-z]+)(.*)\$/sD';
 
 $messages = array(
@@ -2185,3 +2193,4 @@ $1',
 'watchlisttools-raw'   => 'แก้ไขรายการเฝ้าดูทั้งหมด',
 
 );
+
