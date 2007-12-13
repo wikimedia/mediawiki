@@ -1122,8 +1122,8 @@ $NEWPAGE
 'cantrollback'                => '退修不成，作者獨也。',
 'alreadyrolled'               => '[[User:$2|$2]]（[[User talk:$2|議]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]]）',
 'editcomment'                 => '贊曰"<i>$1</i>"', # only shown if there is an edit comment
-'revertpage'                  => '退[[Special:Contributions/$2|$2]]（[[User talk:$2|議]]）作，返[[User:$1|$1]]末審',
-'rollback-success'            => '退[[User:$2|$2]]（[[User talk:$2|議]]）作，返[[User:$1|$1]]末審',
+'revertpage'                  => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]），復為[[User:$1|$1]]之本耳',
+'rollback-success'            => '去$1之作，復為$2之本耳。',
 'sessionfailure'              => '登簿有變。為防盜簿，返前重取再為之。',
 'protectlogpage'              => '誌緘',
 'protectlogtext'              => '誌緘如下；近緘見[[Special:Protectedpages|此]] 。',
