@@ -103,7 +103,11 @@ class SpecialSearch {
 				return;
 			} 
 		}
-		$wgOut->addWikiText( wfMsg( 'noexactmatch', wfEscapeWikiText( $term ) ) );
+		if( $t->quickUserCan( 'create' ) && $t->quickUserCan( 'edit' ) ) {
+			$wgOut->addWikiText( wfMsg( 'noexactmatch', wfEscapeWikiText( $term ) ) );
+		} else {
+			$wgOut->addWikiText( wfMsg( 'noexactmatch-nocreate', wfEscapeWikiText( $term ) ) );
+		}
 
 		return $this->showResults( $term );
 	}
