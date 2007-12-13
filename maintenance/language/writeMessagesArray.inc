@@ -58,8 +58,14 @@ public static function writeMessagesToFile( $messages, $code, $write, $listUnkno
  * @return Array of the PHP text and the sorted messages array.
  */
 public static function writeMessagesArray( $messages, $ignoredComments = false ) {
-	#$wgMessageStructure, $wgBlockComments;
+	# $wgMessageStructure, $wgBlockComments, $wgMessageComments;
 	require( dirname( __FILE__ ) . '/messages.inc' );
+	# $wgIgnoredMessages, $wgOptionalMessages;
+	require( dirname( __FILE__ ) . '/messageTypes.inc' );
+
+	if (!$ignoredComments) {
+		$wgOptionalMessages = $wgIgnoredMessages = array();
+	}
 
 	# Sort messages to blocks
 	$sortedMessages['unknown'] = $messages;
@@ -81,32 +87,76 @@ public static function writeMessagesArray( $messages, $ignoredComments = false )
 			continue;
 		}
 
+		$comments = self::makeComments( array_keys($messages), $wgMessageComments,
+			$wgIgnoredMessages, $wgOptionalMessages
+		);
+
 		# Write the block
-		$messagesText .= self::writeMessagesBlock( $block, $wgBlockComments[$block], $messages, $ignoredComments );
+		$messagesText .= self::writeMessagesBlock( $wgBlockComments[$block], $messages, $comments );
 	}
+
+	// Write the unknown messages, alphabetically sorted.
+	// Of course, we don't have any comments for them, because the are unknown.
 	ksort( $sortedMessages['unknown'] );
-	$messagesText .= self::writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments ); # Write the unknown messages, alphabetically sorted
+	$messagesText .= self::writeMessagesBlock( 'Unknown messages', $sortedMessages['unknown'] );
 	$messagesText .= ");
 ";
 
 	return array( $messagesText, $sortedMessages );
 }
 
+static $optionalComment = 'only translate this message to other languages if you have to change it';
+static $ignoredComment = 'don\'t translate or duplicate this message to other languages';
+
+/**
+ * Generates an array of comments for messages.
+ *
+ * @param $messages Key of messages.
+ * @param $comments Comments for messages, indexed by key.
+ * @param $ignored List of ingored message keys.
+ * @param $optional List of optional message keys.
+ */
+public static function makeComments( $messages, $comments, $ignored, $optional ) {
+	// Comment collector
+	$commentArray = array();
+
+	// List of keys only
+	foreach ( $messages as $key ) {
+		$commentsForKey = array();
+
+		// Add descriptive comment for this message if there is one
+		if ( array_key_exists( $key, $comments ) ) {
+			$commentsForKey[] = $comments[$key];
+		}
+
+		// For translator information only
+		if ( in_array( $key, $ignored ) ) {
+			$commentsForKey[] = self::$ignoredComment;
+		} elseif ( in_array( $key, $optional ) ) {
+			$commentsForKey[] = self::$optionalComment;
+		}
+
+		// Formet them nicely and add to array
+		if ( count($commentsForKey) ) {
+			$commentArray[$key] = ' # ' . implode( '; ', $commentsForKey );
+		}
+	}
+
+	return $commentArray;
+}
+
 /**
  * Write a block of messages to PHP.
  *
- * @param $name The block name.
- * @param $comment The block comment.
+ * @param $blockComment The comment of whole block.
  * @param $messages The block messages.
- * @param $ignoredComments Show comments about ignored and optional messages? (For English.)
+ * @param $messageComments Optional comments for messages in this block.
+ * @param $prefix Prefix for every line, for indenting purposes.
  *
  * @return The block, formatted in PHP.
  */
-public static function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
-	# $wgMessageComments
-	require( dirname( __FILE__ ) . '/messages.inc' );
-	# $wgIgnoredMessages, $wgOptionalMessages;
-	require( dirname( __FILE__ ) . '/messageTypes.inc' );
+public static function writeMessagesBlock( $blockComment, $messages,
+	$messageComments = array(), $prefix = '' ) {
 
 	$blockText = '';
 
@@ -116,13 +166,13 @@ public static function writeMessagesBlock( $name, $comment, $messages, $ignoredC
 	}
 
 	# Format the block comment (if exists); check for multiple lines comments
-	if ( !empty( $comment ) ) {
-		if ( strpos( $comment, "\n" ) === false ) {
-			$blockText .= "# $comment
+	if ( !empty( $blockComment ) ) {
+		if ( strpos( $blockComment, "\n" ) === false ) {
+			$blockText .= "$prefix# $blockComment
 ";
 		} else {
-			$blockText .= "/*
-$comment
+			$blockText .= "$prefix/*
+$blockComment
 */
 ";
 		}
@@ -134,7 +184,7 @@ $comment
 	# Format the messages
 	foreach( $messages as $key => $value ) {
 		# Add the key name
-		$blockText .= "'$key'";
+		$blockText .= "$prefix'$key'";
 
 		# Add the appropriate block whitespace
 		$blockText .= str_repeat( ' ', $maxKeyLength - strlen( $key ) );
@@ -158,25 +208,9 @@ $comment
 		# Comma
 		$blockText .= ',';
 
-		$ignoredComment = "don't translate or duplicate this message to other languages";
-		$optionalComment = "only translate this message to other languages if you have to change it";
-		$showIgnoredOrOptionalComment = in_array( $key, $wgIgnoredMessages ) || in_array( $key, $wgOptionalMessages );
-		if ( $ignoredComments ) {
-			if ( array_key_exists( $key, $wgMessageComments ) ) {
-				$blockText .= ' # ' . $wgMessageComments[$key];
-				if ( $showIgnoredOrOptionalComment ) {
-					$blockText .= '; ';
-				}
-			} elseif ( $showIgnoredOrOptionalComment ) {
-				$blockText .= ' # ';
-			}
-			if ( in_array( $key, $wgIgnoredMessages ) ) {
-				$blockText .= $ignoredComment;
-			} elseif ( in_array( $key, $wgOptionalMessages ) ) {
-				$blockText .= $optionalComment;
-			}
-		} elseif ( array_key_exists( $key, $wgMessageComments ) ) {
-			$blockText .= ' # ' . $wgMessageComments[$key];
+		# Add comments, if there is any
+		if ( array_key_exists( $key, $messageComments ) ) {
+			$blockText .= $messageComments[$key];
 		}
 
 		# Newline
