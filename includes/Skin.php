@@ -127,7 +127,7 @@ class Skin extends Linker {
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
 				$className = 'SkinMonobook';
-				require_once( "{$wgStyleDirectory}/Standard.php" );
+				require_once( "{$wgStyleDirectory}/MonoBook.php" );
 			}
 		}
 		$skin = new $className;
