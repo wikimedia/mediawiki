@@ -856,7 +856,8 @@ $2',
 'searchresulttext'      => '有關搵{{SITENAME}}嘅更多資料請參考[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "你利用'''[[:$1]]'''搵",
 'searchsubtitleinvalid' => "你利用'''$1'''搵",
-'noexactmatch'          => "'''標題為\"\$1\"嘅頁面重未有人開。''' 你可以而家[[:\$1|開呢個新頁]]。",
+'noexactmatch'          => "'''搵唔到到標題為\"\$1\"嘅頁面。''' 你可以而家[[:\$1|開呢個新頁]]。",
+'noexactmatch-nocreate' => "'''搵唔到到標題為\"\$1\"嘅頁面。'''",
 'titlematches'          => '頁面標題符合',
 'notitlematches'        => '冇頁面嘅標題符合',
 'textmatches'           => '頁面文字符合',
@@ -1439,11 +1440,11 @@ wiki: $PAGEEDITOR_WIKI
 ** 作者請求
 ** 侵犯版權
 ** 破壞',
-'rollback'                    => '還原修改',
-'rollback_short'              => '還原',
-'rollbacklink'                => '還原',
-'rollbackfailed'              => '還原失敗',
-'cantrollback'                => '還原唔到；上一位貢獻者係唯一修改過呢版嘅人。',
+'rollback'                    => '反轉修改',
+'rollback_short'              => '反轉',
+'rollbacklink'                => '反轉',
+'rollbackfailed'              => '反轉唔到',
+'cantrollback'                => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
 'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[:$1]]嘅最後編輯；
 有人已經修改過或者反轉咗呢個頁面。
 
