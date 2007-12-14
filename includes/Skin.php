@@ -16,10 +16,6 @@ class Skin extends Linker {
 	/**#@+
 	 * @private
 	 */
-	var $lastdate, $lastline;
-	var $rc_cache ; # Cache for Enhanced Recent Changes
-	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
-	var $rcMoveIndex;
 	var $mWatchLinkNum = 0; // Appended to end of watch link id's
 	/**#@-*/
 	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
@@ -97,8 +93,7 @@ class Skin extends Linker {
 		if( isset( $skinNames[$key] ) ) {
 			return $key;
 		} else {
-			// The old built-in skin
-			return 'standard';
+			return 'monobook';
 		}
 	}
 
@@ -115,23 +110,25 @@ class Skin extends Linker {
 
 		$skinNames = Skin::getSkinNames();
 		$skinName = $skinNames[$key];
+		$className = 'Skin'.ucfirst($key);
 
 		# Grab the skin class and initialise it.
-		// Preload base classes to work around APC/PHP5 bug
-		$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
-		if( file_exists( $deps ) ) include_once( $deps );
-		require_once( "{$wgStyleDirectory}/{$skinName}.php" );
+		if ( !class_exists( $className ) ) {
+			// Preload base classes to work around APC/PHP5 bug
+			$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
+			if( file_exists( $deps ) ) include_once( $deps );
+			require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 
-		# Check if we got if not failback to default skin
-		$className = 'Skin'.$skinName;
-		if( !class_exists( $className ) ) {
-			# DO NOT die if the class isn't found. This breaks maintenance
-			# scripts and can cause a user account to be unrecoverable
-			# except by SQL manipulation if a previously valid skin name
-			# is no longer valid.
-			wfDebug( "Skin class does not exist: $className\n" );
-			$className = 'SkinStandard';
-			require_once( "{$wgStyleDirectory}/Standard.php" );
+			# Check if we got if not failback to default skin
+			if( !class_exists( $className ) ) {
+				# DO NOT die if the class isn't found. This breaks maintenance
+				# scripts and can cause a user account to be unrecoverable
+				# except by SQL manipulation if a previously valid skin name
+				# is no longer valid.
+				wfDebug( "Skin class does not exist: $className\n" );
+				$className = 'SkinMonobook';
+				require_once( "{$wgStyleDirectory}/Standard.php" );
+			}
 		}
 		$skin = new $className;
 		return $skin;
