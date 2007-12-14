@@ -468,6 +468,7 @@ $2',
 'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namrymden '''$1'''.",
 'customcssjsprotected' => 'Du har inte behörighet att redigera den här sidan eftersom den innehåller en annan användares personliga inställningar.',
 'ns-specialprotected'  => 'Sidor i namnrymden {{ns:special}} kan inte redigeras.',
+'titleprotected'       => 'Den här sidtiteln har skyddats från att skapas. [[User:$1|$1]] skyddade sidan med motiveringen <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Användarutloggning',
@@ -832,6 +833,7 @@ Andra administratörer på denna wiki kommer fortfarande att kunna läsa det dol
 'searchsubtitle'        => 'Du sökte efter [[:$1]]',
 'searchsubtitleinvalid' => 'För sökbegreppet $1',
 'noexactmatch'          => "'''Det finns ingen sida med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
+'noexactmatch-nocreate' => "'''Det finns ingen sida med titeln \"\$1\".'''",
 'titlematches'          => 'Träffar i sidtitlar',
 'notitlematches'        => 'Det finns ingen sida vars titel överensstämmer med sökordet.',
 'textmatches'           => 'Sidor som innehåller sökordet:',
@@ -1467,8 +1469,9 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Redigering av sidan',
-'restriction-move' => 'Flytt av sidan',
+'restriction-edit'   => 'Redigering av sidan',
+'restriction-move'   => 'Flytt av sidan',
+'restriction-create' => 'Skapande av sidan',
 
 # Restriction levels
 'restriction-level-sysop'         => 'helt låst',

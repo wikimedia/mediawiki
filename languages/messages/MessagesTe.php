@@ -7,6 +7,7 @@
  * @author Sunil Mohan
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -553,7 +554,7 @@ $1',
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|బైటు|బైట్లు}}',
 'ncategories'             => '$1 {{PLURAL:$1|వర్గం|వర్గాలు}}',
-'nlinks'                  => '{{FORMATNUM|$1}} {{PLURAL:$1|లింకు|లింకులు}}',
+'nlinks'                  => '$1 {{PLURAL:$1|లింకు|లింకులు}}',
 'nmembers'                => '{{PLURAL:$1|ఒక సభ్యుడు|$1 సభ్యులు}}',
 'nrevisions'              => '{{PLURAL:$1|ఒక సంచిక|$1 సంచికలు}}',
 'nviews'                  => '$1 {{PLURAL:$1|దర్శనము|దర్శనలు}}',

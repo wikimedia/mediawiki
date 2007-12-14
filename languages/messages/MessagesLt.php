@@ -3,6 +3,8 @@
  *
  * @addtogroup Language
  *
+ * @author לערי ריינהארט
+ * @author Vpovilaitis
  */
 
 $namespaceNames = array(
@@ -282,7 +284,6 @@ $messages = array(
 'versionrequiredtext' => 'Reikalinga $1 MediaWiki versija, kad pamatytumėte šį puslapį. Žiūrėkite [[{{ns:special}}:Version|versijos puslapį]].',
 
 'ok'                      => 'Gerai',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Gauta iš „$1“',
 'youhavenewmessages'      => 'Jūs turite $1 ($2).',
 'newmessageslink'         => 'naujų žinučių',
@@ -665,7 +666,6 @@ Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
 $3 nurodyta priežastis yra ''$2''",
 
 # History pages
-'revhistory'          => 'Versijų istorija',
 'viewpagelogs'        => 'Rodyti šio puslapio specialiuosius veiksmus',
 'nohistory'           => 'Šis puslapis neturi keitimų istorijos.',
 'revnotfound'         => 'Versija nerasta',
@@ -680,7 +680,6 @@ $3 nurodyta priežastis yra ''$2''",
 'cur'                 => 'dab',
 'next'                => 'kitas',
 'last'                => 'pask',
-'orig'                => 'orig',
 'page_first'          => 'pirm',
 'page_last'           => 'pask',
 'histlegend'          => "Skirtumai tarp versijų: pažymėkite lyginamas versijas ir spustelkite ''Enter'' klavišą arba mygtuką apačioje.<br />
@@ -743,20 +742,22 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'overlogpagetext' => 'Žemiau yra paskutinių trynimų ir blokavimų, įskaitant turinio slėpimą nuo administratorių, sąrašas. [[{{ns:special}}:Ipblocklist|IP blokavimų istorijoje]] rasite šiuo metu veikiančių draudimų ir blokavimų sąrašą.',
 
 # History merging
-'mergehistory'         => 'Sujungti puslapių istorijas',
-'mergehistory-header'  => "Šis puslapis leidžia jus prijungti vieno pirminio puslapio istorijos versijas į naujesnį puslapį. Įsitikinkite, kad šis pakeitimas palaikys istorinį puslapio tęstinumą.
+'mergehistory'                => 'Sujungti puslapių istorijas',
+'mergehistory-header'         => "Šis puslapis leidžia jus prijungti vieno pirminio puslapio istorijos versijas į naujesnį puslapį. Įsitikinkite, kad šis pakeitimas palaikys istorinį puslapio tęstinumą.
 
 '''Turi likti bent dabartinė pirminio puslapio versija.'''",
-'mergehistory-box'     => 'Sujungti dviejų puslapių versijas:',
-'mergehistory-from'    => 'Pirminis puslapis:',
-'mergehistory-into'    => 'Paskirties puslapis:',
-'mergehistory-list'    => 'Sujungiamos keitimų istorijos',
-'mergehistory-merge'   => 'Šios [[:$1]] versijos gali būti sujungtos į [[:$2]]. Naudokite akučių stulpelį, kad sujungtumėte tik tas versijas, kurios sukurtos tuo ar ankstesniu laiku. Pastaba: panaudojus navigacines nuorodas, šis stulpelis bus grąžintas į pradinę būseną.',
-'mergehistory-go'      => 'Rodyti sujungiamus keitimus',
-'mergehistory-submit'  => 'Sujungti versijas',
-'mergehistory-empty'   => 'Versijos negali būti sujungtos',
-'mergehistory-success' => '$3 [[:$1]] {{PLURAL:$3|versija|versijos|versijų}} sėkmingai sujungta su [[:$2]].',
-'mergehistory-fail'    => 'Nepavyksta atlikti istorijų sujungimo, prašome patikrinti puslapio ir laiko parametrus.',
+'mergehistory-box'            => 'Sujungti dviejų puslapių versijas:',
+'mergehistory-from'           => 'Pirminis puslapis:',
+'mergehistory-into'           => 'Paskirties puslapis:',
+'mergehistory-list'           => 'Sujungiamos keitimų istorijos',
+'mergehistory-merge'          => 'Šios [[:$1]] versijos gali būti sujungtos į [[:$2]]. Naudokite akučių stulpelį, kad sujungtumėte tik tas versijas, kurios sukurtos tuo ar ankstesniu laiku. Pastaba: panaudojus navigacines nuorodas, šis stulpelis bus grąžintas į pradinę būseną.',
+'mergehistory-go'             => 'Rodyti sujungiamus keitimus',
+'mergehistory-submit'         => 'Sujungti versijas',
+'mergehistory-empty'          => 'Versijos negali būti sujungtos',
+'mergehistory-success'        => '$3 [[:$1]] {{PLURAL:$3|versija|versijos|versijų}} sėkmingai sujungta su [[:$2]].',
+'mergehistory-fail'           => 'Nepavyksta atlikti istorijų sujungimo, prašome patikrinti puslapio ir laiko parametrus.',
+'mergehistory-no-source'      => 'Šaltinio puslapis $1 neegzistuoja.',
+'mergehistory-no-destination' => 'Rezultato puslapis $1 neegzistuoja.',
 
 # Merge log
 'mergelog'           => 'Sujungimų istorija',
@@ -765,23 +766,20 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'mergelogpagetext'   => 'Žemiau yra paskiausių vieno su kitu puslapių sujungimų sąrašas.',
 
 # Diffs
-'history-title'             => '„$1“ versijų istorija',
-'difference'                => '(Skirtumai tarp versijų)',
-'loadingrev'                => 'įkeliama versija palyginimui',
-'lineno'                    => 'Eilutė $1:',
-'editcurrent'               => 'Redaguoti dabartinę puslapio versiją',
-'selectnewerversionfordiff' => 'Pasirinkite naujesnę versiją palyginimui',
-'selectolderversionfordiff' => 'Pasirinkite senesnę versiją palyginimui',
-'compareselectedversions'   => 'Palyginti pasirinktas versijas',
-'editundo'                  => 'atšaukti',
-'diff-multi'                => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
+'history-title'           => '„$1“ versijų istorija',
+'difference'              => '(Skirtumai tarp versijų)',
+'lineno'                  => 'Eilutė $1:',
+'compareselectedversions' => 'Palyginti pasirinktas versijas',
+'editundo'                => 'atšaukti',
+'diff-multi'              => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
 
 # Search results
 'searchresults'         => 'Paieškos rezultatai',
 'searchresulttext'      => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Ieškoma „[[:$1]]“',
-'searchsubtitleinvalid' => 'Ieškoma „$1“',
+'searchsubtitleinvalid' => 'Ieškoma "$1"',
 'noexactmatch'          => "'''Nėra jokio puslapio, pavadinto „$1“.''' Jūs galite [[:$1|sukurti šį puslapį]].",
+'noexactmatch-nocreate' => "'''Nėra puslapio su pavadinimu \"\$1\".'''",
 'titlematches'          => 'Puslapių pavadinimų atitikmenys',
 'notitlematches'        => 'Jokių pavadinimo atitikmenų',
 'textmatches'           => 'Puslapio turinio atitikmenys',
@@ -919,7 +917,6 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'hide'                              => 'Slėpti',
 'show'                              => 'Rodyti',
 'minoreditletter'                   => 'S',
-'newpageletter'                     => 'N',
 'boteditletter'                     => 'R',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|stebintis naudotojas|stebintys naudotojai|stebinčių naudotojų}}]',
 'rc_categories'                     => 'Rodyti tik šias kategorijas (atskirkite naudodami „|“)',
@@ -1180,7 +1177,6 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'specialpages'            => 'Specialieji puslapiai',
 'spheading'               => 'Specialieji puslapiai visiems naudotojams',
 'restrictedpheading'      => 'Apribotieji specialieji puslapiai',
-'rclsub'                  => '(puslapiuose, pasiekiamuose iš „$1“)',
 'newpages'                => 'Naujausi puslapiai',
 'newpages-username'       => 'Naudotojo vardas:',
 'ancientpages'            => 'Seniausi puslapiai',
@@ -1416,8 +1412,9 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'pagesize'                    => '(baitais)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Redagavimas',
-'restriction-move' => 'Pervardinimas',
+'restriction-edit'   => 'Redagavimas',
+'restriction-move'   => 'Pervardinimas',
+'restriction-create' => 'Sukurti',
 
 # Restriction levels
 'restriction-level-sysop'         => 'pilnai apsaugota',
@@ -1484,10 +1481,6 @@ $1',
 'month'         => 'Nuo mėnesio (ir anksčiau):',
 'year'          => 'Nuo metų (ir anksčiau):',
 
-'sp-contributions-newest'      => 'Naujausi',
-'sp-contributions-oldest'      => 'Seniausi',
-'sp-contributions-newer'       => '$1 naujesnių',
-'sp-contributions-older'       => '$1 senesnių',
 'sp-contributions-newbies'     => 'Rodyti tik naujų paskyrų įnašus',
 'sp-contributions-newbies-sub' => 'Naujoms paskyroms',
 'sp-contributions-blocklog'    => 'Blokavimų istorija',
@@ -1697,7 +1690,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{ns:special}}:
 'export-download'   => 'Siūlyti išsaugoti kaip failą',
 
 # Namespace 8 related
-'allmessages'               => 'Sisteminių tekstų sąrašas',
+'allmessages'               => 'Visi sistemos tekstai bei pranešimai',
 'allmessagesname'           => 'Pavadinimas',
 'allmessagesdefault'        => 'Pradinis tekstas',
 'allmessagescurrent'        => 'Dabartinis tekstas',
@@ -2157,7 +2150,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t.y. pusla
 'exif-sharpness-2' => 'Didelis',
 
 'exif-subjectdistancerange-0' => 'Nežinomas',
-'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Artimas vaizdas',
 'exif-subjectdistancerange-3' => 'Tolimas vaizdas',
 
@@ -2239,7 +2231,6 @@ Trackback šiam puslapiui:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Trinti])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback buvo sėkmingai ištrintas.',
 
 # Delete conflict
@@ -2289,7 +2280,6 @@ $1',
 'autosumm-new'     => 'Naujas puslapis: $1',
 
 # Size units
-'size-bytes'     => '$1 B',
 'size-kilobytes' => '$1 KiB',
 'size-megabytes' => '$1 MiB',
 'size-gigabytes' => '$1 GiB',
