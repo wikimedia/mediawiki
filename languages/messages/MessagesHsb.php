@@ -823,6 +823,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.
 'noexactmatch'          => '<b>Strona „$1” njeeksistuje.</b>
 
 Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|stronu wutworić]].',
+'noexactmatch-nocreate' => "'''Njeje strona z titulom \"\$1\".'''",
 'titlematches'          => 'Strony z wotpowědowacym titulom',
 'notitlematches'        => 'Žane strony z wotpowědowacym titulom',
 'textmatches'           => 'Strony z wotpowědowacym tekstom',
@@ -1260,7 +1261,6 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'specialpages-summary'            => 'Tuta strona naliči wšě specialne strony. Specialne strony so awtomatisce wutworjeja a njehodźa so wobdźěłać.',
 'spheading'                       => 'Specialne strony za wšěch wužiwarjow',
 'restrictedpheading'              => 'Specialne strony za administratorow',
-'rclsub'                          => '(k stronam, na kotrež strona „$1” pokazuje)',
 'newpages'                        => 'Nowe strony',
 'newpages-summary'                => 'Tuta specialna strona naliči wšě nowe strony poslednich 30 dnjow. Wuslědki móža so na mjenowe rumy, wužiwarske mjena abo woboje wobmjezować.',
 'newpages-username'               => 'Wužiwarske mjeno:',

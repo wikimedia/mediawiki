@@ -1157,8 +1157,8 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'unusedcategoriestext'    => 'Les catégories suivantes existent mais aucun article ou catégorie ne les utilisent.',
 'notargettitle'           => 'Pas de cible',
 'notargettext'            => 'Indiquez une page cible ou un utilisateur cible.',
-'pager-newer-n'           => '{{PLURAL:$1|1 plus récent|$1 plus récents}}',
-'pager-older-n'           => '{{PLURAL:$1|1 plus ancien|$1 plus anciens}}',
+'pager-newer-n'           => '{{PLURAL:$1|1 plus récente|$1 plus récentes}}',
+'pager-older-n'           => '{{PLURAL:$1|1 plus ancienne|$1 plus anciennes}}',
 
 # Book sources
 'booksources'               => 'Ouvrages de référence',

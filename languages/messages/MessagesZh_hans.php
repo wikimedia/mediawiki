@@ -519,9 +519,7 @@ $2',
 'math_tip'        => '插入数学公式 (LaTeX)',
 'nowiki_sample'   => '在此插入非格式文本',
 'nowiki_tip'      => '插入非格式文本',
-'image_sample'    => 'Example.jpg',
 'image_tip'       => '嵌入图像',
-'media_sample'    => 'Example.ogg',
 'media_tip'       => '媒体文件链接',
 'sig_tip'         => '带有时间的签名',
 'hr_tip'          => '水平线 (小心使用)',
@@ -772,12 +770,12 @@ $2',
 'mergelogpagetext'   => '以下是一个最近由一个页面的修订历史合并到另一个页面的列表。',
 
 # Diffs
-'history-title'             => '“$1”的修订历史',
-'difference'                => '(修订版本间差异)',
-'lineno'                    => '第$1行:',
-'compareselectedversions'   => '比较选定的版本',
-'editundo'                  => '撤销',
-'diff-multi'                => '($1个中途的修订版本没有显示。)',
+'history-title'           => '“$1”的修订历史',
+'difference'              => '(修订版本间差异)',
+'lineno'                  => '第$1行:',
+'compareselectedversions' => '比较选定的版本',
+'editundo'                => '撤销',
+'diff-multi'              => '($1个中途的修订版本没有显示。)',
 
 # Search results
 'searchresults'         => '搜索结果',
@@ -928,10 +926,10 @@ $2',
 'newsectionsummary'                 => '/* $1 */ 新段落',
 
 # Recent changes linked
-'recentchangeslinked'                    => '链出更改',
-'recentchangeslinked-title'              => '对于$1有关的链出更改',
-'recentchangeslinked-noresult'           => '在这一段时间中连结的页面并无更改。',
-'recentchangeslinked-summary'            => "这一个特殊页面列示这一页链出页面的最近更改。在您监视列表中的页面会以'''粗体'''表示。",
+'recentchangeslinked'          => '链出更改',
+'recentchangeslinked-title'    => '对于$1有关的链出更改',
+'recentchangeslinked-noresult' => '在这一段时间中连结的页面并无更改。',
+'recentchangeslinked-summary'  => "这一个特殊页面列示这一页链出页面的最近更改。在您监视列表中的页面会以'''粗体'''表示。",
 
 # Upload
 'upload'                      => '上传文件',
@@ -1309,8 +1307,8 @@ Template:消除歧義',
 'watchlist-hide-minor' => '隐藏小编辑',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => '监视...',
-'unwatching' => '解除监视...',
+'watching'   => '监视……',
+'unwatching' => '解除监视……',
 
 'enotif_mailer'                => '{{SITENAME}}邮件通知器',
 'enotif_reset'                 => '将所有页面标为已读',

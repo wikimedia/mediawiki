@@ -836,7 +836,7 @@ groot, wat groter is dan het maximum van $2 kilobyte. Opslaan is niet mogelijk.<
 U kunt reeds bestaande pagina's wijzigen, of u kunt [[{{ns:special}}:Userlogin|zich aanmelden of een gebruiker aanmaken]].",
 'nocreate-loggedin'         => "U kunt geen nieuwe pagina's maken op deze wiki.",
 'permissionserrors'         => 'Fouten in rechten',
-'permissionserrorstext'     => 'U heeft geen rechten om dat te doen om de volgende {{PLURAL:$1|reden|redenen}}:',
+'permissionserrorstext'     => 'U heeft geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
 'recreate-deleted-warn'     => "'''Waarschuwing: U bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
 
 Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak staat hieronder het logboek verwijderde pagina's voor deze pagina:",
@@ -971,6 +971,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'searchsubtitle'        => "U zocht naar '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
 'noexactmatch'          => "'''Er bestaat geen pagina met onderwerp  $1.''' U kunt deze [[:$1|aanmaken]].",
+'noexactmatch-nocreate' => "'''Er bestaat geen pagina met onderwerp  $1.'''",
 'titlematches'          => 'Overeenkomst met onderwerp',
 'notitlematches'        => 'Geen resultaten gevonden',
 'textmatches'           => 'Overeenkomst met inhoud',

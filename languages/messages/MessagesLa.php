@@ -390,6 +390,7 @@ $1',
 'protectedinterface'  => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
 'editinginterface'    => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Translating:Intro Betawiki].",
 'ns-specialprotected' => 'Paginae in spatio nominali "{{ns:special}}" recenseri non possunt.',
+'titleprotected'      => 'Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur. Ratio data est <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Conventum concludere',
@@ -640,6 +641,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'searchsubtitle'        => "Pro investigatione '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Pro investigatione "$1"',
 'noexactmatch'          => "'''Nulla pagina cum titulo \"\$1\" exacto existit.''' Potes [[:\$1|eam creare]].",
+'noexactmatch-nocreate' => "'''Nulla pagina cum titulo \"\$1\" exacto existit.'''",
 'titlematches'          => 'Exaequata indicibus rerum',
 'notitlematches'        => 'Nulla exaequata',
 'prevn'                 => '$1 superiores',
@@ -927,7 +929,6 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'specialpages'            => 'Paginae speciales',
 'spheading'               => 'Paginae speciales',
 'restrictedpheading'      => 'Paginae speciales propriae',
-'rclsub'                  => '(Paginis nexis ex "$1")',
 'newpages'                => 'Paginae novae',
 'newpages-username'       => 'Nomen usoris:',
 'ancientpages'            => 'Paginae veterrimae',
@@ -1084,8 +1085,9 @@ Vide $2 pro indice deletionum recentum.',
 'pagesize'                  => '(octeti)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Recensio',
-'restriction-move' => 'Motio',
+'restriction-edit'   => 'Recensio',
+'restriction-move'   => 'Motio',
+'restriction-create' => 'Creatio',
 
 # Restriction levels
 'restriction-level-sysop'         => 'protecta',

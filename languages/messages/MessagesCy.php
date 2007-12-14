@@ -263,7 +263,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'portal'            => 'Porth y Gymuned',
 'portal-url'        => 'Project:Porth y Gymuned',
 'privacy'           => 'Polisi preifatrwydd',
-'sitesupport'       => 'Rhoddion',
+'sitesupport'       => 'Rhoi',
 
 'badaccess'        => 'Gwall caniatâd',
 'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y ceisiasoch amdani.',
@@ -953,7 +953,6 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'specialpages'            => 'Erthyglau arbennig',
 'spheading'               => 'Erthyglau arbennig',
 'restrictedpheading'      => 'Tudalennau arbennig cyfyngedig',
-'rclsub'                  => '(i erthyglau cysyllt oddiwrth "$1")',
 'newpages'                => 'Erthyglau newydd',
 'newpages-username'       => 'Enw defnyddiwr:',
 'ancientpages'            => 'Erthyglau hynaf',
@@ -1344,9 +1343,11 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'allmessagesmodified'       => 'Dangos y rhai a ddiwygiwyd yn unig',
 
 # Thumbnails
-'thumbnail-more' => 'Helaethwch',
-'missingimage'   => '<b>Delwedd ar goll</b><br /><i>$1</i>',
-'filemissing'    => 'Ffeil yn eisiau',
+'thumbnail-more'  => 'Helaethwch',
+'missingimage'    => '<b>Delwedd ar goll</b><br /><i>$1</i>',
+'filemissing'     => 'Ffeil yn eisiau',
+'djvu_page_error' => 'Y dudalen DjVu allan o amrediad',
+'djvu_no_xml'     => 'Ddim yn gallu mofyn XML ar gyfer ffeil DjVu',
 
 # Special:Import
 'import'                => 'Mewnforio tudalennau',

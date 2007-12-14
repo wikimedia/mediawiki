@@ -1088,7 +1088,7 @@ Demest eles, <b>$2</b> (o '''$4%''') {{PLURAL:$2|a|an}} l'estatut d'administrato
 'mostrevisions'           => 'Articles mai modificats',
 'allpages'                => 'Totas las paginas',
 'prefixindex'             => 'Totas las paginas per primièras letras',
-'shortpages'              => 'Articles corts',
+'shortpages'              => 'Articles brèus',
 'longpages'               => 'Articles longs',
 'deadendpages'            => "Paginas sul camin d'enlòc",
 'deadendpagestext'        => 'Las paginas seguentas contenon pas cap de ligam vèrs d’autras paginas del wiki.',
@@ -2053,6 +2053,7 @@ Solament las linhas començant per * son presas en compte. Lo primièr ligam de 
 'imagelistall'     => 'totes',
 'watchlistall2'    => 'tot',
 'namespacesall'    => 'Totes',
+'monthsall'        => 'totes',
 
 # E-mail address confirmation
 'confirmemail'            => "Confirmar l'adreça de corrièr electronic",
