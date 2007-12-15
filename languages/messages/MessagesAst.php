@@ -65,10 +65,13 @@ $messages = array(
 'tog-externaldiff'            => "Usar ''diff'' esternu por defeutu",
 'tog-showjumplinks'           => 'Activar los enllaces d\'accesibilidá "saltar a"',
 'tog-uselivepreview'          => 'Usar vista previa en direutu (JavaScript) (en pruebes)',
+'tog-forceeditsummary'        => "Avisame cuando grabe col resume d'edición en blanco",
 'tog-watchlisthideown'        => 'Esconder les mios ediciones na llista de vixilancia',
 'tog-watchlisthidebots'       => 'Esconder les ediciones de bots na llista de vixilancia',
 'tog-watchlisthideminor'      => 'Esconder les ediciones menores na llista de vixilancia',
+'tog-nolangconversion'        => 'Deshabilitar la conversión de variantes de llingua',
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
+'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
@@ -133,7 +136,7 @@ $messages = array(
 'pagecategories'        => '{{PLURAL:$1|Categoría|Categoríes}}',
 'category_header'       => 'Páxines na categoría "$1"',
 'subcategories'         => 'Subcategoríes',
-'category-media-header' => 'Ficheros multimedia na categoría "$1"',
+'category-media-header' => 'Archivos multimedia na categoría "$1"',
 'category-empty'        => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
 
 'mainpagetext'      => "<big>'''MediaWiki instalóse correchamente.'''</big>",
@@ -160,6 +163,9 @@ $messages = array(
 'mytalk'         => 'La mio páxina de discusión',
 'anontalk'       => 'Discusión pa esta IP',
 'navigation'     => 'Navegación',
+
+# Metadata in edit box
+'metadata_help' => 'Metadatos:',
 
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Vuelve a $1.',
@@ -195,6 +201,11 @@ $messages = array(
 'views'             => 'Vistes',
 'toolbox'           => 'Ferramientes',
 'userpage'          => "Ver páxina d'usuariu",
+'projectpage'       => 'Ver la páxina de proyeutu',
+'imagepage'         => "Ver la páxina d'imaxe",
+'mediawikipage'     => 'Ver la páxina de mensaxe',
+'templatepage'      => 'Ver la páxina de plantía',
+'viewhelppage'      => "Ver la páxina d'aida",
 'categorypage'      => 'Ver páxina de categoríes',
 'viewtalkpage'      => 'Ver discusión',
 'otherlanguages'    => 'Otres llingües',
@@ -254,6 +265,7 @@ $messages = array(
 'site-rss-feed'           => 'Canal RSS $1',
 'site-atom-feed'          => 'Canal Atom $1',
 'page-rss-feed'           => 'Canal RSS "$1"',
+'page-atom-feed'          => 'Canal Atom "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Páxina',

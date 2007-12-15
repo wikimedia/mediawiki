@@ -309,8 +309,8 @@ A base de datos retornó a error "<tt>$3: $4</tt>".',
 'noconnect'            => "A wiki tiene agora bellas dificultaz tecnicas, y no se podió contautar con o serbidor d'a base de datos. <br />
 $1",
 'nodb'                 => 'No se podió trigar a base de datos $1',
-'cachederror'          => "Ista ye una copia en caché d'a pachina demandata, y puestar que no siga autualizata.",
-'laggedslavemode'      => "Pare cuenta: podrían faltar as zagueras autualizazions d'ista pachina.",
+'cachederror'          => "Ista ye una copia en caché d'a pachina demandata, y puestar que no siga esbiellata.",
+'laggedslavemode'      => "Pare cuenta: podrían faltar as zagueras edizions d'ista pachina.",
 'readonly'             => 'Base de datos bloquiata',
 'enterlockreason'      => "Esplique a causa d'o bloqueyo, encluyendo una estimazión de cuán se produzirá o desbloqueyo",
 'readonlytext'         => "A base de datos de {{SITENAME}} ye bloquiata temporalment, probablement por mantenimiento rutinario, dimpués d'ixo tornará á la normalidat.
@@ -371,7 +371,7 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'yourpasswordagain'          => 'Torne á escribir a parabra de paso:',
 'remembermypassword'         => "Remerar datos d'usuario entre sesions.",
 'yourdomainname'             => 'Dominio:',
-'externaldberror'            => "Bi abió una error d'autenticazión esterna d'a base de datos u bien no tiene premisos ta autualizar a suya cuenta esterna.",
+'externaldberror'            => "Bi abió una error d'autenticazión esterna d'a base de datos u bien no tiene premisos ta esbiellar a suya cuenta esterna.",
 'loginproblem'               => '<b>Escaizió un problema con a suya autenticazión.</b><br />¡Prebe unatra begada!',
 'login'                      => 'Enzetar sesión',
 'loginprompt'                => 'Ha de autibar as <i>cookies</i> en o nabegador ta rechistrar-se en {{SITENAME}}.',
@@ -554,7 +554,7 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 'usercsspreview'            => "'''Remere que sólo ye prebisualizando o suyo css d'usuario y encara no ye grabato!'''",
 'userjspreview'             => "'''Remere que sólo ye prebisualizando o suyo javascript d'usuario y encara no ye grabato!'''",
 'userinvalidcssjstitle'     => "'''Pare cuenta:''' No bi ha garra aparenzia clamata \"\$1\". Remere que as pachinas presonalizatas .css y .js tienen un títol en minusclas, p.e. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(Autualizato)',
+'updated'                   => '(Esbiellato)',
 'note'                      => '<strong>Nota:</strong>',
 'previewnote'               => "<strong>Pare cuenta que isto sólo ye que l'ambiesta prebia d'a pachina; os cambeos encara no han estato alzatos!</strong>",
 'previewconflict'           => "L'ambiesta prebia li amostrará l'aparenzia d'o testo dimpués d'alzar os cambeos.",
@@ -749,7 +749,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.
 $1<br />
 $2 Fer lista de reendrezeras <br />
 Mirar $3 $9',
-'searchdisabled'        => 'A busca en {{SITENAME}} ye temporalment desautibata. Entremistanto, puede mirar en {{SITENAME}} fendo serbir buscadors esternos, pero pare cuenta que os suyos endizes de {{SITENAME}} puede no estar autualizatos.',
+'searchdisabled'        => 'A busca en {{SITENAME}} ye temporalment desautibata. Entremistanto, puede mirar en {{SITENAME}} fendo serbir buscadors esternos, pero pare cuenta que os suyos endizes de {{SITENAME}} puede no estar esbiellatos.',
 
 # Preferences page
 'preferences'              => 'Preferenzias',
@@ -854,7 +854,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'recentchanges'                     => 'Zaguers cambeos',
 'recentchangestext'                 => "Siga os cambeos más rezients d'a wiki en ista pachina.",
 'recentchanges-feed-description'    => "Seguir en ista canal de notizias os cambeos más rezients d'o wiki.",
-'rcnote'                            => "Más t'abaxo {{PLURAL:$1|s'amuestra o unico cambeo feito|s'amuestran os '''$1''' zaguers cambeos feitos}} en {{PLURAL:$2|o zaguer día|os zaguers '''$2''' días}}, {{PLURAL:$1|autualizato|autualizatos}} a $3.",
+'rcnote'                            => "Contino {{PLURAL:$1|s'amuestra o unico cambeo feito|s'amuestran os '''$1''' zaguers cambeos feitos}} en {{PLURAL:$2|o zaguer día|os zaguers '''$2''' días}}, dica as $3.",
 'rcnotefrom'                        => "Contino s'amuestran os cambeos dende <b>$2</b> (dica <b>$1</b>).",
 'rclistfrom'                        => 'Mostrar nuebos cambeos dende $1',
 'rcshowhideminor'                   => '$1 edizions menors',
@@ -1299,9 +1299,31 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'namespacesall' => 'todo',
 'monthsall'     => '(toz)',
 
+# Live preview
+'livepreview-loading' => 'Cargando…',
+'livepreview-ready'   => 'Cargando… ya!',
+'livepreview-error'   => 'No s\'ha puesto coneutar: $1 "$2". Prebe con l\'ambiesta prebia normal.',
+
 # Friendlier slave lag warnings
 'lag-warn-normal' => "Talment no s'amuestren en ista lista as edizions feitas en os zaguers $1 segundos.",
 'lag-warn-high'   => "Por o retardo d'o serbido d'a base de datos, talment no s'amuestren en ista lista as edizions feitas en os zaguers $1 segundos.",
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'A suya lista de seguimiento tiene {{PLURAL:$1|una pachina |$1 pachinas}}, sin contar-ie as pachinas de descusión.',
+'watchlistedit-noitems'        => 'A suya lista de seguimiento ye bueda.',
+'watchlistedit-normal-title'   => 'Editar a lista de seguimiento',
+'watchlistedit-normal-legend'  => "Borrar títols d'a lista de seguimiento",
+'watchlistedit-normal-explain' => "As pachinas d'a suya lista de seguimiento s'amuestran contino. Ta sacar-ne una pachina, marque o cuatrón que ye a o canto d'a pachina, y punche con a rateta en ''Borrar pachinas''. Tamién puede [[Special:Watchlist/raw|editar dreitament o testo d'a pachina]] u [[Special:Watchlist/clear|borrar-lo tot]].",
+'watchlistedit-normal-submit'  => 'Borrar pachinas',
+'watchlistedit-normal-done'    => "{{PLURAL:$1|S'ha borrato 1 pachina|s'han borratas $1 pachinas}} d'a suya lista de seguimiento:",
+'watchlistedit-raw-title'      => 'Editar a lista de seguimiento en formato testo',
+'watchlistedit-raw-legend'     => 'Editar a lista de seguimiento en formato testo',
+'watchlistedit-raw-explain'    => "Contino s'amuestran as pachinas d'a suya lista de seguimiento. Puede editar ista lista adibiendo u borrando líneas d'a lista; una pachina por linia. Cuan remate, punche ''esbiellar lista de seguimiento''. Tamién puede fer serbir o [[Especial:Watchlist/edit|editor estándar]].",
+'watchlistedit-raw-titles'     => 'Pachinas:',
+'watchlistedit-raw-submit'     => 'Esbiellar lista de seguimiento',
+'watchlistedit-raw-done'       => "S'ha esbiellato a suya lista de seguimiento.",
+'watchlistedit-raw-added'      => "{{PLURAL:$1|S'ha esbiellato una pachina|S'ha esbiellato $1 pachinas}}:",
+'watchlistedit-raw-removed'    => "{{PLURAL:$1|S'ha borrato una pachina|S'ha borrato $1 pachinas}}:",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Amostrar cambeos',

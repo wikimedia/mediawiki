@@ -227,7 +227,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'toolbox'           => 'Blwch offer',
 'userpage'          => 'Gwyliwch tudalen defnyddiwr',
 'projectpage'       => 'Gwyliwch tudalen meta',
-'imagepage'         => 'Gwyliwch tudalen llun',
+'imagepage'         => 'Gweld tudalen y llun',
 'viewhelppage'      => 'Dangos y dudalen gymorth',
 'categorypage'      => 'Dangos tudalen gategori',
 'viewtalkpage'      => 'Gwyliwch sgwrs',
@@ -457,6 +457,7 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'math_tip'        => 'Fformwla mathemategol (LaTeX)',
 'nowiki_sample'   => 'Mewnosodwch testun di-fformatedig yma',
 'nowiki_tip'      => 'Anwybyddwch fformatiaeth wiki',
+'image_sample'    => 'Enghraifft.jpg',
 'image_tip'       => 'Delwedd mewnosodol',
 'media_sample'    => 'Example.mp3',
 'media_tip'       => 'Cyswllt ffeil media',
@@ -816,15 +817,15 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 
 # Image list
 'imagelist'                 => "Rhestr o'r holl ffeiliau",
-'imagelisttext'             => 'Isod mae rhestr o $1 delweddau wedi trefnu $2.',
+'imagelisttext'             => "Isod mae rhestr o $1 o ddelweddau wedi'u trefnu $2.",
 'getimagelist'              => "wrthi'n cywain y rhestr ffeiliau",
 'ilsubmit'                  => 'Chwilio',
 'showlast'                  => 'Dangos y $1 delweddau olaf wedi trefnu $2.',
 'byname'                    => 'yn ôl enw',
 'bydate'                    => 'yn ôl dyddiad',
 'bysize'                    => 'yn ôl maint',
-'imgdelete'                 => 'difl',
-'imgdesc'                   => 'disg',
+'imgdelete'                 => 'dileu',
+'imgdesc'                   => 'disg.',
 'imgfile'                   => 'ffeil',
 'filehist'                  => 'Hanes y ffeil',
 'filehist-help'             => 'Cliciwch ar ddyddiad/amser i weld y ffeil fel ag yr oedd bryd hynny.',
@@ -1315,7 +1316,7 @@ Mae'r erthygl \"[[\$1]]\" yn bodoli'n barod. Ydych chi am ddileu'r erthygl er mw
 'delete_and_move_confirm' => "Ie, dileu'r dudalen",
 'delete_and_move_reason'  => "Wedi'i dileu er mwyn symud tudalen arall yn ei lle.",
 'selfmove'                => "Rydych chi'n ceisio symud tudalen dros ben ei hunan, sy'n amhosib.",
-'immobile_namespace'      => "Mae teitl y cyrchfan yn arbennig; ni ellir symud tudalennau i'r parth hwnnw.",
+'immobile_namespace'      => "Mae teitl y dudalen gwreiddiol neu'r cyrchfan yn arbennig; ni ellir symud tudalennau i'r parth hwnnw nag oddi wrtho.",
 
 # Export
 'export'            => 'Allforio tudalennau',
@@ -1539,6 +1540,9 @@ $1",
 
 # AJAX search
 'articletitles' => "Erthyglau'n dechrau gyda: ''$1''",
+
+# Multipage image navigation
+'imgmultiparseerror' => "Mae'n ymddangos bod y ffeil delwedd wedi'i lygru neu ei fod yn anghywir, felly nid yw {{SITENAME}} yn gallu mofyn rhestr tudalennau.",
 
 # Table pager
 'ascending_abbrev'  => 'esgynnol',

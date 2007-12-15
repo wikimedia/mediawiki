@@ -4,8 +4,9 @@
  * @addtogroup Language
  *
  * @author SPQRobin
- * @author G - ג
  * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Kaffi
  */
 
 $fallback = 'de';
@@ -13,6 +14,7 @@ $fallback = 'de';
 $messages = array(
 # Dates
 'monday' => 'Méindeg',
+'friday' => 'Freideg',
 
 'newwindow'  => '(geet an enger neier Fënster op)',
 'mypage'     => 'meng Säit',

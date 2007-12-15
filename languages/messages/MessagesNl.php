@@ -14,6 +14,7 @@
  * @author Nike
  * @author לערי ריינהארט
  * @author Erwin85
+ * @author Annabel
  */
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
@@ -310,13 +311,13 @@ $messages = array(
 'thursday'      => 'donderdag',
 'friday'        => 'vrijdag',
 'saturday'      => 'zaterdag',
-'sun'           => 'zon',
-'mon'           => 'maa',
-'tue'           => 'din',
-'wed'           => 'woe',
-'thu'           => 'don',
-'fri'           => 'vrij',
-'sat'           => 'zat',
+'sun'           => 'zo',
+'mon'           => 'ma',
+'tue'           => 'di',
+'wed'           => 'wo',
+'thu'           => 'do',
+'fri'           => 'vr',
+'sat'           => 'za',
 'january'       => 'januari',
 'february'      => 'februari',
 'march'         => 'maart',
@@ -382,7 +383,7 @@ $messages = array(
 'qbpageinfo'     => 'Pagina-informatie',
 'qbmyoptions'    => 'Mijn opties',
 'qbspecialpages' => 'Speciale pagina’s',
-'moredotdotdot'  => 'Meer…',
+'moredotdotdot'  => 'Meer …',
 'mypage'         => 'Mijn gebruikerspagina',
 'mytalk'         => 'Mijn overleg',
 'anontalk'       => 'Overlegpagina voor dit IP-adres',
@@ -668,7 +669,7 @@ Meld u a.u.b. aan nadat u het heeft ontvangen.',
 'accountcreatedtext'         => 'De gebruiker $1 is aangemaakt.',
 'createaccount-title'        => 'Gebruikers aanmaken voor {{SITENAME}}',
 'createaccount-text'         => 'Iemand ($1) heeft een gebruiker voor $2 aangemaakt op {{SITENAME}}
-($4). Het wachtwoord voor "$2" is "$3". Meldt u zich nu aan en wijzig uw wachtwoord.
+($4). Het wachtwoord voor "$2" is "$3". Meld u aan en wijzig uw wachtwoord.
 
 Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'loginlanguagelabel'         => 'Taal: $1',
@@ -679,7 +680,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'resetpass_text'          => '<!-- Voeg hier tekst toe -->',
 'resetpass_header'        => 'Wachtwoord herinstellen',
 'resetpass_submit'        => 'Wachtwoord instellen en aanmelden',
-'resetpass_success'       => 'Uw wachtwoord is gewijzigd. Bezig met aanmelden...',
+'resetpass_success'       => 'Uw wachtwoord is gewijzigd. Bezig met aanmelden ...',
 'resetpass_bad_temporary' => 'Ongeldig tijdelijk wachtwoord. U heeft uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
 'resetpass_forbidden'     => 'Wachtwoorden kunnen op deze wiki niet gewijzigd worden',
 'resetpass_missing'       => 'U heeft geen wachtwoord ingegeven.',
@@ -790,12 +791,12 @@ Gebruik te knop '''vorige''' in uw browser als u hier per ongeluk terecht bent g
 'previewnote'               => '<strong>Let op: dit is een controlepagina; uw tekst is niet opgeslagen!</strong>',
 'previewconflict'           => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview'      => '<strong>Sorry! Uw bewerking is niet verwerkt omdat sessiegegevens verloren zijn gegaan.
-Probeer het opnieuw. Als het dan nog niet lukt, meldt u dan af en weer aan.</strong>',
+Probeer het opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>',
 'session_fail_preview_html' => "<strong>Sorry! Uw bewerking is niet verwerkt omdat sessiegegevens verloren zijn gegaan.</strong>
 
 ''Omdat in deze wiki ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''
 
-<strong>Als dit een legitieme bewerking is, probeer het dan opnieuw. Als het dan nog niet lukt, meldt u dan af en weer aan.</strong>",
+<strong>Als dit een legitieme bewerking is, probeer het dan opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>",
 'token_suffix_mismatch'     => '<strong>Uw bewerking is geweigerd omdat uw client de leestekens in het bewerkingstoken onjuist heeft behandeld. De bewerking is geweigerd om verminking van de paginatekst te voorkomen. Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten bevat.</strong>',
 'editing'                   => 'Bezig met bewerken van $1',
 'editinguser'               => 'Bezig met bewerken van $1',
@@ -970,8 +971,8 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "U zocht naar '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
-'noexactmatch'          => "'''Er bestaat geen pagina met onderwerp  $1.''' U kunt deze [[:$1|aanmaken]].",
-'noexactmatch-nocreate' => "'''Er bestaat geen pagina met onderwerp  $1.'''",
+'noexactmatch'          => "'''Er bestaat geen pagina genaamd \"\$1\".''' U kunt deze [[:\$1|aanmaken]].",
+'noexactmatch-nocreate' => "'''Er bestaat geen pagina genaamd \"\$1\".'''",
 'titlematches'          => 'Overeenkomst met onderwerp',
 'notitlematches'        => 'Geen resultaten gevonden',
 'textmatches'           => 'Overeenkomst met inhoud',
@@ -991,8 +992,8 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'mypreferences'            => 'Mijn voorkeuren',
 'prefs-edits'              => 'Aantal bewerkingen:',
 'prefsnologin'             => 'Niet aangemeld',
-'prefsnologintext'         => 'U dient [[Special:Userlogin|aangemeld]] te zijn om uw voorkeuren te kunnen instellen.',
-'prefsreset'               => 'Standaardvoorkeuren hersteld.',
+'prefsnologintext'         => 'U moet [[Special:Userlogin|aangemeld]] zijn om uw voorkeuren te kunnen instellen.',
+'prefsreset'               => 'Standaardvoorkeuren zijn hersteld.',
 'qbsettings'               => 'Menubalk',
 'qbsettings-none'          => 'Uitgeschakeld',
 'qbsettings-fixedleft'     => 'Links vast',
@@ -1125,7 +1126,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'reupload'                    => 'Opnieuw uploaden',
 'reuploaddesc'                => 'Terug naar het uploadformulier.',
 'uploadnologin'               => 'Niet aangemeld',
-'uploadnologintext'           => 'U dient [[Special:Userlogin|aangemeld]] te zijn
+'uploadnologintext'           => 'U moet [[Special:Userlogin|aangemeld]] zijn
 om bestanden te uploaden.',
 'upload_directory_read_only'  => 'De webserver kan niet schrijven in de uploadmap ($1).',
 'uploaderror'                 => 'Uploadfout',
@@ -1441,7 +1442,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 # E-mail user
 'mailnologin'     => 'Geen verzendadres beschikbaar',
-'mailnologintext' => 'U dient [[Special:Userlogin|aangemeld]] te zijn en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]] te vermelden om andere gebruikers te mailen.',
+'mailnologintext' => 'U moet [[Special:Userlogin|aangemeld]] zijn en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]] vermelden om andere gebruikers te mailen.',
 'emailuser'       => 'Deze gebruiker e-mailen',
 'emailpage'       => 'Gebruiker e-mailen',
 'emailpagetext'   => 'Als deze gebruiker een geldig e-mailadres heeft opgegeven dan kunt u via dit formulier een bericht verzenden. Het e-mailadres dat u heeft opgegeven bij uw voorkeuren wordt als afzender gebruikt.',
@@ -1486,7 +1487,7 @@ Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"
 'watchmethod-recent'   => "controleer recente wijzigingen op pagina's op volglijst",
 'watchmethod-list'     => "controleer pagina's op volglijst op wijzigingen",
 'watchlistcontains'    => "Er {{PLURAL:$1|staat 1 pagina|staan $1 pagina's}} op uw volglijst.",
-'iteminvalidname'      => "Probleem met object '$1', ongeldige naam...",
+'iteminvalidname'      => "Probleem met object '$1', ongeldige naam ...",
 'wlnote'               => 'Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}}.',
 'wlshowlast'           => 'Laatste $1 uur, $2 dagen tonen ($3)',
 'watchlist-show-bots'  => 'Botbewerkingen tonen',
@@ -1497,8 +1498,8 @@ Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"
 'watchlist-hide-minor' => 'Kleine bewerkingen verbergen',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => 'Bezig met plaatsen op volglijst...',
-'unwatching' => 'Bezig met verwijderen van volglijst...',
+'watching'   => 'Bezig met plaatsen op volglijst ...',
+'unwatching' => 'Bezig met verwijderen van volglijst ...',
 
 'enotif_mailer'                => '{{SITENAME}} waarschuwingssysteem',
 'enotif_reset'                 => "Alle pagina's markeren als bezocht",
@@ -1882,7 +1883,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'import-interwiki-submit'    => 'Importeren',
 'import-interwiki-namespace' => 'Pagina in de volgende naamruimte plaatsen:',
 'importtext'                 => 'Gebruik de functie Special:Export in de wiki waar de informatie vandaan komt, sla de uitvoer op uw eigen systeem op, en voeg die daarna hier toe.',
-'importstart'                => "Pagina's aan het importeren...",
+'importstart'                => "Pagina's aan het importeren ...",
 'import-revision-count'      => '$1 {{PLURAL:$1|versie|versies}}',
 'importnopages'              => "Geen pagina's te importeren.",
 'importfailed'               => 'Import is mislukt: $1',
@@ -2401,7 +2402,7 @@ Bevestig alstublieft dat u de pagina opnieuw wilt aanmaken.",
 'recreate'            => 'Opnieuw aanmaken',
 
 # HTML dump
-'redirectingto' => 'Aan het doorverwijzen naar [[$1]]...',
+'redirectingto' => 'Aan het doorverwijzen naar [[$1]] ...',
 
 # action=purge
 'confirm_purge'        => 'De cache van deze pagina legen?
