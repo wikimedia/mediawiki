@@ -940,9 +940,9 @@ You may ignore this message, if this account was created in error.',
 'math_tip'        => 'Mathematical formula (LaTeX)',
 'nowiki_sample'   => 'Insert non-formatted text here',
 'nowiki_tip'      => 'Ignore wiki formatting',
-'image_sample'    => 'Example.jpg',
+'image_sample'    => 'Example.jpg', # only translate this message to other languages if you have to change it
 'image_tip'       => 'Embedded image',
-'media_sample'    => 'Example.ogg',
+'media_sample'    => 'Example.ogg', # only translate this message to other languages if you have to change it
 'media_tip'       => 'Media file link',
 'sig_tip'         => 'Your signature with timestamp',
 'hr_tip'          => 'Horizontal line (use sparingly)',
