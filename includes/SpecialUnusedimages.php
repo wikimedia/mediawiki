@@ -44,7 +44,7 @@ class UnusedimagesPage extends ImageQueryPage {
 	}
 
 	function getPageHeader() {
-		return wfMsg( "unusedimagestext" );
+		return wfMsgExt( 'unusedimagestext', array( 'parse') );
 	}
 
 }
