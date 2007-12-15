@@ -112,6 +112,7 @@ class SpecialPage
 		'Ancientpages'              => array( 'SpecialPage', 'Ancientpages' ),
 		'Deadendpages'              => array( 'SpecialPage', 'Deadendpages' ),
 		'Protectedpages'            => array( 'SpecialPage', 'Protectedpages' ),
+		'Protectedtitles'	    => array( 'SpecialPage', 'Protectedtitles' ),
 		'Allpages'                  => array( 'IncludableSpecialPage', 'Allpages' ),
 		'Prefixindex'               => array( 'IncludableSpecialPage', 'Prefixindex' ) ,
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
