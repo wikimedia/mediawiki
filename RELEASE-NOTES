@@ -241,6 +241,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   language
 * (bug 10184) Extensions' stylesheets and scripts should be loaded before
   user-customized ones (like Common.css, Common.js)
+* (bug 12283) Special:Newpages forgets parameters
+* (bug 12031) All namespaces doesn't work in Special:Newpages
 
 == Parser changes in 1.12 ==
 

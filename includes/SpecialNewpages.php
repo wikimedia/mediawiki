@@ -4,26 +4,107 @@
  * @addtogroup SpecialPage
  */
 
+
+/**
+ * Start point
+ */
+function wfSpecialNewPages( $par, $specialPage ) {
+	$page = new NewPagesPage( $specialPage );
+	$page->execute( $par );
+}
+
 /**
  * implements Special:Newpages
  * @addtogroup SpecialPage
  */
 class NewPagesPage extends QueryPage {
 
-	var $namespace;
-	var $username;
-	var $hideliu;
-	var $hidepatrolled;
-	var $hidebots;
-	var $defaults;
-		
-	function NewPagesPage( $namespace=NS_MAIN, $username='', $hideliu=false, $hidepatrolled=false, $hidebots=false, $defaults=array()) {
-		$this->namespace = $namespace;
-		$this->username = $username;
-		$this->hideliu = $hideliu;
-		$this->hidepatrolled = $hidepatrolled;
-		$this->hidebots = $hidebots;
-		$this->defaults = $defaults;
+	protected $options = array();
+	protected $nondefaults = array();
+	protected $specialPage;
+
+	public function __construct( $specialPage ) {
+		$this->specialPage = $specialPage;
+	}
+
+	public function execute( $par ) {
+		global $wgRequest, $wgLang;
+
+		$shownavigation = !$this->specialPage->including();
+
+		$defaults = array(
+			/* bool */ 'hideliu' => false,
+			/* bool */ 'hidepatrolled' => false,
+			/* bool */ 'hidebots' => false,
+			/* text */ 'namespace' => "0",
+			/* text */ 'username' => '',
+			/* int  */ 'offset' => 0,
+			/* int  */ 'limit' => 50,
+		);
+
+		$options = $defaults; 
+
+		if ( $par ) {
+			$bits = preg_split( '/\s*,\s*/', trim( $par ) );
+			foreach ( $bits as $bit ) {
+				if ( 'shownav' == $bit )
+					$shownavigation = true;
+				if ( 'hideliu' === $bit )
+					$options['hideliu'] = true;
+				if ( 'hidepatrolled' == $bit )
+					$options['hidepatrolled'] = true;
+				if ( 'hidebots' == $bit )
+					$options['hidebots'] = true;
+				if ( is_numeric( $bit ) )
+					$options['limit'] = intval( $bit );
+
+				$m = array();
+				if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) )
+					$options['limit'] = intval($m[1]);
+				if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )
+					$options['offset'] = intval($m[1]);
+				if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
+					$ns = $wgLang->getNsIndex( $m[1] );
+					if( $ns !== false ) {
+						$options['namespace'] = $ns;
+					}
+				}
+			}
+		}
+
+		// Override all values from requests, if specified
+		foreach ( $defaults as $v => $t ) {
+			if ( is_bool($t) ) {
+				$options[$v] = $wgRequest->getBool( $v, $options[$v] );
+			} elseif( is_int($t) ) {
+				$options[$v] = $wgRequest->getInt( $v, $options[$v] );
+			} elseif( is_string($t) ) {
+				$options[$v] = $wgRequest->getText( $v, $options[$v] );
+			}
+		}
+
+		$nondefaults = array();
+		foreach ( $options as $v => $t ) {
+			if ( $v === 'offset' ) continue; # Reset offset if parameters change
+			wfAppendToArrayIfNotDefault( $v, $t, $defaults, $nondefaults );
+		}
+
+		# bind to class
+		$this->options = $options;
+		$this->nondefaults = $nondefaults;
+
+		if ( !$this->doFeed( $wgRequest->getVal( 'feed' ), $options['limit'] ) ) {
+			$this->doQuery( $options['offset'], $options['limit'], $shownavigation );
+		}
+	}
+
+	function linkParameters() {
+		$nondefaults = $this->nondefaults;
+		// QueryPage seems to handle limit and offset itself
+		if ( isset( $nondefaults['limit'] ) ) {
+			unset($nondefaults['limit']);
+		}
+		return $nondefaults;
 	}
 
 	function getName() {
@@ -35,29 +116,26 @@ class NewPagesPage extends QueryPage {
 		return false;
 	}
 
-	function makeUserWhere( &$dbo ) {
+	function makeUserWhere( $db ) {
 		global $wgGroupPermissions;
-		$where = '';
-		if ($this->hidepatrolled) 
-			$where .= ' AND rc_patrolled = 0';
-		if ($this->hidebots)
-			$where .= ' AND rc_bot = 0';
-		if ($wgGroupPermissions['*']['createpage'] == true && $this->hideliu) {
-			$where .= ' AND rc_user = 0';	
+		$conds = array();
+		if ($this->options['hidepatrolled']) {
+			$conds['rc_patrolled'] = 0;
+		}
+		if ($this->options['hidebots']) {
+			$conds['rc_bot'] = 0;
+		}
+		if ($wgGroupPermissions['*']['createpage'] == true && $this->options['hideliu']) {
+			$conds['rc_user'] = 0;
 		} else {
-			$title = Title::makeTitleSafe( NS_USER, $this->username );
+			$title = Title::makeTitleSafe( NS_USER, $this->options['username'] );
 			if( $title ) {
-				$where .= ' AND rc_user_text = ' . $dbo->addQuotes( $title->getText() );
+				$conds['rc_user_text'] = $title->getText();
 			}
 		}
-		return $where;
+		return $conds;
 	}
 
-	private function makeNamespaceWhere() {
-		return $this->namespace !== 'all'
-			? ' AND rc_namespace = ' . intval( $this->namespace )
-			: '';
-	}
 
 	function getSQL() {
 		global $wgUser, $wgUseNPPatrol, $wgUseRCPatrol;
@@ -65,8 +143,14 @@ class NewPagesPage extends QueryPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $recentchanges, $page ) = $dbr->tableNamesN( 'recentchanges', 'page' );
 
-		$nsfilter = $this->makeNamespaceWhere();
-		$uwhere = $this->makeUserWhere( $dbr );
+		$conds = array();
+		$conds['rc_new'] = 1;
+		if ( $this->options['namespace'] !== 'all' ) {
+			$conds['rc_namespace'] = intval( $this->options['namespace'] );
+		}
+		$conds['page_is_redirect'] = 0;
+		$conds += $this->makeUserWhere( $dbr );
+		$condstext = $dbr->makeList( $conds, LIST_AND );
 
 		# FIXME: text will break with compression
 		return
@@ -85,23 +169,20 @@ class NewPagesPage extends QueryPage {
 				page_len as length,
 				page_latest as rev_id
 			FROM $recentchanges,$page
-			WHERE rc_cur_id=page_id AND rc_new=1
-			{$nsfilter}
-			AND page_is_redirect = 0
-			{$uwhere}";
+			WHERE rc_cur_id=page_id AND $condstext";
 	}
 	
-	function preprocessResults( &$dbo, &$res ) {
+	function preprocessResults( $db, $res ) {
 		# Do a batch existence check on the user and talk pages
 		$linkBatch = new LinkBatch();
-		while( $row = $dbo->fetchObject( $res ) ) {
-			$linkBatch->addObj( Title::makeTitleSafe( NS_USER, $row->user_text ) );
-			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_text ) );
+		while( $row = $db->fetchObject( $res ) ) {
+			$linkBatch->add( NS_USER, $row->user_text );
+			$linkBatch->add( NS_USER_TALK, $row->user_text );
 		}
 		$linkBatch->execute();
 		# Seek to start
-		if( $dbo->numRows( $res ) > 0 )
-			$dbo->dataSeek( $res, 0 );
+		if( $db->numRows( $res ) > 0 )
+			$db->dataSeek( $res, 0 );
 	}
 
 	/**
@@ -158,34 +239,42 @@ class NewPagesPage extends QueryPage {
 	 */	
 	function getPageHeader() {
 		global $wgScript, $wgContLang, $wgGroupPermissions, $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
+		$sk = $wgUser->getSkin();
 		$align = $wgContLang->isRTL() ? 'left' : 'right';
 		$self = SpecialPage::getTitleFor( $this->getName() );
 
 		// show/hide links
-		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
+		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ));
 
-		$nondefaults = array();
-		wfAppendToArrayIfNotDefault( 'hidepatrolled', $this->hidepatrolled, $this->defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'hideliu', $this->hideliu, $this->defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'hidebots', $this->hidebots, $this->defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'namespace', $this->namespace, $this->defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'limit', $this->limit , $this->defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'offset', $this->offset , $this->defaults, $nondefaults);
-		wfAppendToArrayIfNotDefault( 'username', $this->username , $this->defaults, $nondefaults);
-		
-		$liuLink =  $wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( 'Newpages' ),
-			htmlspecialchars( $showhide[1-$this->hideliu] ), wfArrayToCGI( array( 'hideliu' => 1-$this->hideliu ),  $nondefaults ) );
-		$patrLink =  $wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( 'Newpages' ),
-			htmlspecialchars( $showhide[1-$this->hidepatrolled] ), wfArrayToCGI( array( 'hidepatrolled' => 1-$this->hidepatrolled ),  $nondefaults ) );
-		$botsLink =  $wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( 'Newpages' ),
-			htmlspecialchars( $showhide[1-$this->hidebots] ), wfArrayToCGI( array( 'hidebots' => 1-$this->hidebots ),  $nondefaults ) );
+		$hidelinks = array();
+
+		if ( $wgGroupPermissions['*']['createpage'] === true ) {
+			$hidelinks['hideliu'] = 'rcshowhideliu';
+		}
+		if ( $wgUseNPPatrol || $wgUseRCPatrol ) {
+			$hidelinks['hidepatrolled'] = 'rcshowhidepatr';
+		}
+		$hidelinks['hidebots'] = 'rcshowhidebots';
+
 		$links = array();
-		if( $wgGroupPermissions['*']['createpage'] == true )
-			$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
-		if( $wgUseNPPatrol || $wgUseRCPatrol )
-			$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
-		$links[] = wfMsgHtml( 'rcshowhidebots', $botsLink );
+		foreach ( $hidelinks as $key => $msg ) {
+			$reversed = 1-$this->options[$key];
+			$link = $sk->makeKnownLinkObj( $self, $showhide[$reversed],
+				wfArrayToCGI( array( $key => $reversed ), $this->nondefaults )
+			);
+			$links[$key] = wfMsgHtml( $msg, $link );
+		}
+
 		$hl = implode( ' | ', $links );
+
+		// Store query values in hidden fields so that form submission doesn't lose them
+		$hidden = array();
+		foreach ( $this->nondefaults as $key => $value ) {
+			if ( $key === 'namespace' ) continue;
+			if ( $key === 'username' ) continue;
+			$hidden[] = Xml::hidden( $key, $value );
+		}
+		$hidden = implode( "\n", $hidden );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
@@ -195,105 +284,27 @@ class NewPagesPage extends QueryPage {
 					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 				"</td>
 				<td>" .
-					Xml::namespaceSelector( intval( $this->namespace ), 'all' ) .
+					Xml::namespaceSelector( $this->options['namespace'], 'all' ) .
 				"</td>
 			</tr>
-<tr>
+			<tr>
 				<td align=\"$align\">" .
 					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
 				"</td>
 				<td>" .
-					Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) .
+					Xml::input( 'username', 30, $this->options['username'], array( 'id' => 'mw-np-username' ) ) .
 				"</td>
-			</tr><tr><td></td><td>" . $hl . "</td></tr>
+			</tr>
 			<tr> <td></td>
 				<td>" .
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
 				"</td>
 			</tr>" .
+			"<tr><td></td><td>" . $hl . "</td></tr>" .
 			Xml::closeElement( 'table' ) .
-			Xml::hidden( 'offset', $this->offset ) .
-			Xml::hidden( 'limit', $this->limit ) .
+			$hidden .
 			Xml::closeElement( 'form' );
 		return $form;
 	}
 	
-	/**
-	 * Link parameters
-	 *
-	 * @return array
-	 */
-	function linkParameters() {
-		return( array( 'namespace' => $this->namespace, 'username' => $this->username, 'hideliu' => $this->hideliu, 'hidepatrolled' => $this->hidepatrolled ) );
-	}
-	
-}
-
-/**
- * constructor
- */
-function wfSpecialNewpages($par, $specialPage) {
-	global $wgRequest, $wgContLang;
-
-
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$defaults = array(
-		/* bool */ 'hideliu' => false,  
-		/* bool */ 'hidepatrolled' => false,
-		/* bool */ 'hidebots' => false,
-		/* text */ 'namespace' => NS_MAIN,
-		/* text */ 'username' => '',
-		/* int  */ 'offset' => $offset,
-		/* int  */ 'limit' => $limit,
-);
-
-	extract($defaults);
-
-	if ( $par ) {
-		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
-		foreach ( $bits as $bit ) {
-			if ( 'shownav' == $bit )
-				$shownavigation = true;
-			if ( 'hideliu' == $bit )
-				$hideliu = true;
-			if ( 'hidepatrolled' == $bit )
-				$hidepatrolled = true;
-			if ( 'hidebots' == $bit )
-				$hidebots = true;
-			if ( is_numeric( $bit ) )
-				$limit = $bit;
-
-			$m = array();
-			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) )
-				$limit = intval($m[1]);
-			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )
-				$offset = intval($m[1]);
-			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
-				$ns = $wgContLang->getNsIndex( $m[1] );
-				if( $ns !== false ) {
-					$namespace = $ns;
-				}
-			}
-		}
-	} else {
-		if( $ns = $wgRequest->getInt( 'namespace', NS_MAIN ) )
-			$namespace = $ns;
-		if( $un = $wgRequest->getText( 'username' ) )
-			$username = $un;
-		if( $hliu = $wgRequest->getBool( 'hideliu' ) )
-			$hideliu = $hliu;
-		if( $hpatrolled = $wgRequest->getBool( 'hidepatrolled' ) )
-			$hidepatrolled = $hpatrolled;
-		if( $hbots =  $wgRequest->getBool( 'hidebots' ) )
-			$hidebots = $hbots;
-	}
-	
-	if ( ! isset( $shownavigation ) )
-		$shownavigation = ! $specialPage->including();
-
-	$npp = new NewPagesPage( $namespace, $username, $hideliu, $hidepatrolled, $hidebots, $defaults );
-
-	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ), $limit ) )
-		$npp->doQuery( $offset, $limit, $shownavigation );
 }
