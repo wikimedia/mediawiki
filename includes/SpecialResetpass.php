@@ -25,7 +25,7 @@ class PasswordResetForm extends SpecialPage {
 	/**
 	 * Main execution point
 	 */
-	function execute( $par='' ) {
+	function execute( $par ) {
 		global $wgUser, $wgAuth, $wgOut, $wgRequest;
 		
 		if( !$wgAuth->allowPasswordChange() ) {
