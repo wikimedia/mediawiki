@@ -2051,7 +2051,7 @@ $1',
 'whatlinkshere-title'   => 'Pages that link to $1',
 'whatlinkshere-summary' => '', # only translate this message to other languages if you have to change it
 'whatlinkshere-page'    => 'Page:',
-'whatlinkshere-barrow'  => '&lt;', # only translate this message to other languages if you have to change it
+'whatlinkshere-barrow'  => '>', # only translate this message to other languages if you have to change it
 'linklistsub'           => '(List of links)',
 'linkshere'             => "The following pages link to '''[[:$1]]''':",
 'nolinkshere'           => "No pages link to '''[[:$1]]'''.",

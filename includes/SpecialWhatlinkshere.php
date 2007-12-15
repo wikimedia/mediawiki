@@ -60,7 +60,7 @@ class WhatLinksHerePage {
 		$wgOut->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'linklistsub' ) );
 
-		$wgOut->addHTML( wfMsg( 'whatlinkshere-barrow' ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
+		$wgOut->addHTML( wfMsgExt( 'whatlinkshere-barrow', array( 'escapenoentities') ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
 
 		$this->showIndirectLinks( 0, $this->target, $this->limit, $this->from, $this->back );
 	}
@@ -194,11 +194,7 @@ class WhatLinksHerePage {
 		if ( $level == 0 ) {
 			$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
 			$wgOut->addWikiText( wfMsg( 'linkshere', $this->target->getPrefixedText() ) );
-		}
-		$isredir = wfMsg( 'isredirect' );
-		$istemplate = wfMsg( 'istemplate' );
 
-		if( $level == 0 ) {
 			$prevnext = $this->getPrevNext( $limit, $prevId, $nextId, $options['namespace'] );
 			$wgOut->addHTML( $prevnext );
 		}
@@ -219,14 +215,14 @@ class WhatLinksHerePage {
 			// Display properties (redirect or template)
 			$props = array();
 			if ( $row->page_is_redirect ) {
-				$props[] = $isredir;
+				$props[] = wfMsgHtml( 'isredirect' );
 			}
 			if ( $row->is_template ) {
-				$props[] = $istemplate;
+				$props[] = wfMsgHtml( 'istemplate' );
 			}
 			if ( count( $props ) ) {
-				// FIXME? Cultural assumption, hard-coded punctuation
-				$wgOut->addHTML( ' (' . implode( ', ', $props ) . ') ' );
+				$list = implode( wfMsgHtml( 'semicolon-separator' ), $props );
+				$wgOut->addHTML( " ($list) " );
 			}
 
 			# Space for utilities links, with a what-links-here link provided
@@ -235,7 +231,7 @@ class WhatLinksHerePage {
 				wfMsgHtml( 'whatlinkshere-links' ),
 				'target=' . $nt->getPrefixedUrl()
 			);
-			$wgOut->addHtml( ' <span class="mw-whatlinkshere-tools">(' . $wlh . ')</span>' );			
+			$wgOut->addHtml( ' <span class="mw-whatlinkshere-tools">(' . $wlh . ')</span>' );
 			
 			if ( $row->page_is_redirect ) {
 				if ( $level < 2 ) {
@@ -282,7 +278,7 @@ class WhatLinksHerePage {
 		  $this->numLink( 250, $prevId ) . ' | ' .
 		  $this->numLink( 500, $prevId );
 
-		return wfMsg( 'viewprevnext', $prevLink, $nextLink, $nums );
+		return wfMsgHtml( 'viewprevnext', $prevLink, $nextLink, $nums );
 	}
 
 	function numLink( $limit, $from, $ns = null ) {
