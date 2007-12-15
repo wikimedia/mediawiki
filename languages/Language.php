@@ -509,6 +509,7 @@ class Language {
 	 *
 	 *    xjj  j (day number) in Hebrew calendar
 	 *    xjF  F (month name) in Hebrew calendar
+	 *    xjt  t (days in month) in Hebrew calendar
 	 *    xjx  xg (genitive month name) in Hebrew calendar
 	 *    xjn  n (month number) in Hebrew calendar
 	 *    xjY  Y (full year) in Hebrew calendar
@@ -647,6 +648,10 @@ class Language {
 				case 't':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
 					$num = gmdate( 't', $unix );
+					break;
+				case 'xjt':
+					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+					$num = $hebrew[3];
 					break;
 				case 'L':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
@@ -829,27 +834,27 @@ class Language {
 		# Month number when March = 1, February = 12
 		$month -= 2;
 		if( $month <= 0 ) {
-			# January of February
+			# January or February
 			$month += 12;
 			$year--;
 		}
 
 		# Days since 1 March - calculating 30 days a month,
 		# and then adding the missing number of days
-		$day += intval( 7 * $month / 12 + 30 * ( $month - 1 ) );
+		$dayOfYear = $day + intval( 7 * $month / 12 + 30 * ( $month - 1 ) );
 		# Calculate Hebrew year for days after 1 Nisan
 		$hebrewYear = $year + 3760;
 		# Passover date for this year (as days since 1 March)
 		$passover = self::passoverDate( $hebrewYear );
-		if( $day <= $passover - 15 ) {
+		if( $dayOfYear <= $passover - 15 ) {
 			# Day is before 1 Nisan (passover is 15 Nisan) - it is the previous year
 			# Next year's passover (as days since 1 March)
 			$anchor = $passover;
 			# Add days since previous year's 1 March
-			$day += 365;
+			$dayOfYear += 365;
 			if( ( $year % 400 == 0 ) || ( $year % 100 != 0 && $year % 4 == 0 ) ) {
 				# Leap year
-				$day++;
+				$dayOfYear++;
 			}
 			# Previous year
 			$year--;
@@ -862,7 +867,7 @@ class Language {
 		}
 
 		# Days since 1 Nisan
-		$day -= $passover - 15;
+		$dayOfYear -= $passover - 15;
 		# Difference between this year's passover date by gregorian calendar,
 		# and the next year's one + 12 days. This should be 1 days for a regular year,
 		# but 0 for incomplete one, 2 for complete, and those + 30 days of Adar I
@@ -874,15 +879,22 @@ class Language {
 			$anchor++;
 		}
 
+		# Check the year pattern
+		# 0 means an incomplete year, 1 means a regular year, 2 means a complete year
+		# This is mod 30, to work on both leap years (which add 30 days of Adar I)
+		# and non-leap years
+		$yearPattern = $anchor % 30;
+
 		# Calculate day in the month from number of days sine 1 Nisan
-		# Don't check Adar - if the day is not in adar, we will stop before;
-		# if it is in adar, we will use it to check if it is Adar I or Adar II
+		# Don't check Adar - if the day is not in Adar, we will stop before;
+		# if it is in Adar, we will use it to check if it is Adar I or Adar II
+		$day = $dayOfYear;
 		for( $month = 0; $month < 11; $month++ ) {
 			# Calculate days in this month
-			if( $month == 7 && $anchor % 30 == 2 ) {
+			if( $month == 7 && $yearPattern == 2 ) {
 				# Cheshvan in a complete year (otherwise as the rule below)
 				$days = 30;
-			} else if( $month == 8 && $anchor % 30 == 0 ) {
+			} else if( $month == 8 && $yearPattern == 0 ) {
 				# Kislev in an incomplete year (otherwise as the rule below)
 				$days = 29;
 			} else {
@@ -905,42 +917,29 @@ class Language {
 		# Recalculate month number so that we start from Tishrei
 		$month = ( $month + 6 ) % 12 + 1;
 
-		# Fix Adar
-		if( $month == 6 && $anchor >= 30 ) {
-			# This *is* adar, and this year is leap
-			if( $day > 30 ) {
-				# Adar II
-				$month = 14;
-				$day -= 30;
+		# Get Adar type and number of days
+		if( $month == 6 ) {
+			# Adar
+			if( $anchor >= 30 ) {
+				# Leap year - check type and set number of days
+				if( $day > 30 ) {
+					# Adar II - 29 days
+					$month = 14;
+					$day -= 30;
+					$days = 29;
+				} else {
+					# Adar I - 30 days
+					$month = 13;
+					$days = 30;
+				}
 			} else {
-				# Adar I
-				$month = 13;
+				# Non-leap year - just set number of days (29)
+				$days = 29;
 			}
 		}
 
-		return array( $hebrewYear, $month, $day );
+		return array( $hebrewYear, $month, $day, $days );
 	}
-
-	/**
-	 * Algorithm to convert Gregorian dates to Thai solar dates.
-	 *
-	 * Link: http://en.wikipedia.org/wiki/Thai_solar_calendar
-	 *
-	 * @param string $ts 14-character timestamp
-	 * @return array converted year, month, day
-	 */
-	private static function tsToThai( $ts ) {
-		$gy = substr( $ts, 0, 4 );
-		$gm = substr( $ts, 4, 2 );
-		$gd = substr( $ts, 6, 2 );
-
-		# Add 543 years to the Gregorian calendar
-		# Months and days are identical
-		$gy_thai = $gy + 543;
-
-		return array( $gy_thai, $gm, $gd );
-	}
-
 
 	/**
 	 * Based on Carl Friedrich Gauss algorithm for finding Easter date.
@@ -971,6 +970,27 @@ class Language {
 		$Mar += intval( ( $year - 3760 ) / 100 ) - intval( ( $year - 3760 ) / 400 ) - 2;
 		return $Mar;
 	}
+
+	/**
+	 * Algorithm to convert Gregorian dates to Thai solar dates.
+	 *
+	 * Link: http://en.wikipedia.org/wiki/Thai_solar_calendar
+	 *
+	 * @param string $ts 14-character timestamp
+	 * @return array converted year, month, day
+	 */
+	private static function tsToThai( $ts ) {
+		$gy = substr( $ts, 0, 4 );
+		$gm = substr( $ts, 4, 2 );
+		$gd = substr( $ts, 6, 2 );
+
+		# Add 543 years to the Gregorian calendar
+		# Months and days are identical
+		$gy_thai = $gy + 543;
+
+		return array( $gy_thai, $gm, $gd );
+	}
+
 
 	/**
 	 * Roman number formatting up to 3000
