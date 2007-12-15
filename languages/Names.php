@@ -41,7 +41,7 @@
 	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Buginese
 	'bxr' => 'Буряад',	# Buryat (Russia)
 	'ca' => 'Català',	# Catalan
-	'cbk-zam' => 'Zamboangueño',	# Zamboanga Chavacano
+	'cbk-zam' => 'Chavacano de Zamboanga',	# Zamboanga Chavacano
 	'cdo' => 'Mìng-dĕ̤ng-ngṳ̄',	# Min Dong
 	'ce' => 'Нохчийн',	# Chechen
 	'ceb' => 'Cebuano',     # Cebuano
