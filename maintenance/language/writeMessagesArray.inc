@@ -136,7 +136,7 @@ public static function makeComments( $messages, $comments, $ignored, $optional )
 			$commentsForKey[] = self::$optionalComment;
 		}
 
-		// Formet them nicely and add to array
+		// Format one or more comments nicely and store in array
 		if ( count($commentsForKey) ) {
 			$commentArray[$key] = ' # ' . implode( '; ', $commentsForKey );
 		}
