@@ -119,7 +119,9 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategori',
+'pagecategories'        => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'       => 'Artikel-artikel na kategori "$1"',
+'subcategories'         => 'Subkategori',
 'category-media-header' => 'Média dina kategori "$1"',
 'category-empty'        => "''Kategori ieu, ayeuna teu ngabogaan artikel atawa gambar.''",
 
@@ -160,6 +162,7 @@ $messages = array(
 'print'             => 'Citak',
 'edit'              => 'Édit',
 'editthispage'      => 'Édit kaca ieu',
+'delete'            => 'Hapus',
 'deletethispage'    => 'Hapus kaca ieu',
 'undelete_short'    => 'Bolaykeun ngahapus $1 éditan',
 'protect'           => 'Konci',
@@ -245,6 +248,7 @@ $messages = array(
 'feed-invalid'            => 'Tipe paménta asupan henteu pas.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'Artikel',
 'nstab-user'      => 'Kaca pamaké',
 'nstab-media'     => 'Média',
 'nstab-special'   => 'Husus',
@@ -567,6 +571,7 @@ Please check the URL you used to access this page.',
 'histlegend'          => 'Pilihan béda: tandaan wadah buleud vérsina pikeun ngabandingkeun sarta pencét énter atawa tombol di handap.<br />
 Katerangan: (kiw) = bédana jeung vérsi kiwari,
 (ahir) = bédana jeung vérsi nu harita, m = éditan minor.',
+'deletedrev'          => '[dihapus]',
 'histfirst'           => 'Pangheubeulna',
 'histlast'            => 'Pangahirna',
 
@@ -600,9 +605,16 @@ Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina
 'revdelete-hide-image'        => 'Sumputkeun eusi gambar',
 'revdelete-log'               => 'Koméntar log:',
 'revdelete-submit'            => 'Terapkeun kana révisi nu dipilih',
+'revdelete-logentry'          => 'robah tampilan révisi pikeun [[$1]]',
 
 # Oversight log
 'oversightlog' => 'Log pangawas',
+
+# History merging
+'mergehistory-from'      => 'Kaca asal :',
+'mergehistory-into'      => 'Kaca tujuan:',
+'mergehistory-success'   => '$3 révisi tina [[:$1]] parantos digabung ka [[:$2]].',
+'mergehistory-no-source' => 'Sumber kaca $1 teu aya.',
 
 # Diffs
 'difference'              => '(Béda antarrévisi)',
@@ -693,17 +705,27 @@ $2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
 'userrights-groupsmember'     => 'Anggota ti:',
 'userrights-groupsavailable'  => 'Gorombolan nu aya:',
 'userrights-reason'           => 'Alesan ngarobah :',
+'userrights-available-none'   => 'Anjeun teu bisa ngaganti kaangotaan jumplukan.',
 'userrights-available-add'    => 'Anjeun bisa ngasupkeun pamaké ka $1.',
 'userrights-available-remove' => 'Anjeun bisa ngaluarkeun pamaké ti $1.',
 
 # Groups
-'group'       => 'Gorombolan:',
-'group-sysop' => 'Kuncén',
-'group-all'   => '(sadayana)',
+'group'               => 'Gorombolan:',
+'group-autoconfirmed' => 'Pamaké anu otomatis dikonfirmasi',
+'group-bot'           => 'Bot',
+'group-sysop'         => 'Kuncén',
+'group-bureaucrat'    => 'Birokrat',
+'group-all'           => '(sadayana)',
 
-'group-sysop-member' => 'Kuncén',
+'group-autoconfirmed-member' => 'Pamaké anu otomatis dikonfirmasi',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Kuncén',
+'group-bureaucrat-member'    => 'Birokrat',
 
-'grouppage-sysop' => '{{ns:project}}:Kuncén',
+'grouppage-autoconfirmed' => '{{ns:project}}:Pamaké anu otomatis dikonfirmasi',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Kuncén',
+'grouppage-bureaucrat'    => '{{ns:project}}:Birokrat',
 
 # User rights log
 'rightslog'      => 'Log hak pamaké',
@@ -715,10 +737,12 @@ $2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
 'nchanges'                          => '$1 parobahan',
 'recentchanges'                     => 'Nu anyar robah',
 'recentchangestext'                 => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
+'recentchanges-feed-description'    => 'Manggihan parobahan panganyarna dina wiki di asupan ieu.',
 'rcnote'                            => "Di handap ieu '''$1''' parobahan ahir na '''$2''' poé ieu tina $3.",
 'rcnotefrom'                        => 'Di handap ieu parobahan saprak <b>$2</b> (nu ditémbongkeun nepi ka <b>$1</b>).',
 'rclistfrom'                        => 'Témbongkeun nu anyar robah nepi ka $1',
 'rcshowhideminor'                   => '$1 éditan minor',
+'rcshowhidebots'                    => '$1 bot',
 'rcshowhideliu'                     => '$1 pamaké nu asup log',
 'rcshowhideanons'                   => '$1 pamaké anonim',
 'rcshowhidepatr'                    => '$1 éditan kapatroli',
@@ -762,6 +786,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'filename'                    => 'Ngaran koropak',
 'filedesc'                    => 'Ringkesna',
 'fileuploadsummary'           => 'Ringkesan:',
+'filesource'                  => 'Sumber',
 'uploadedfiles'               => 'Koropak nu geus dimuat',
 'ignorewarning'               => 'Ulah diwaro, simpen baé koropakna.',
 'illegalfilename'             => 'Ngaran koropak "$1" ngandung aksara nu teu diwenangkeun pikeun judul kaca. Mangga gentos ngaranna tur cobi muatkeun deui.',
@@ -917,7 +942,6 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'specialpages'            => 'Kaca husus',
 'spheading'               => 'Kaca husus pikeun sadaya pamaké',
 'restrictedpheading'      => 'Kaca husus nu diwates',
-'rclsub'                  => '(ka kaca nu numbu ti "$1")',
 'newpages'                => 'Kaca anyar',
 'newpages-username'       => 'Landihan:',
 'ancientpages'            => 'Kaca pangheubeulna',
@@ -1437,6 +1461,12 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 # Special:Newimages
 'newimages' => 'Galeri gambar anyar',
 'noimages'  => 'Taya nanaon.',
+
+# Bad image list
+'bad_image_list' => 'Formatnya minangka katut:
+
+Ngan butir daptar (jajar anu dimimitian jeung tanda *) anu diitung. Tumbu kahiji dina hiji jajar kudu tumbu ka koropak anu goréng.
+Tumbu-tumbu saterusna dina jajar anu sarua dianggap minangka kajaba, nyaéta artikel anu bisa mintonkeun koropak kasebut.',
 
 # Metadata
 'metadata-help' => 'Ieu koropak ngandung émbaran tambahan, nu sigana asalna tina kaméra digital atawa paminday nu dipaké pikeun ngadigitalkeunana. Mun ieu koropak geus dirobah tina bentuk aslina, datana bisa jadi teu bener.',

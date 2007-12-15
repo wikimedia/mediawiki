@@ -2422,4 +2422,9 @@ $1',
 'hebrew-calendar-m11-gen' => 'avu',
 'hebrew-calendar-m12-gen' => 'elulu',
 
+# Unknown messages
+'protectedtitles'      => 'Zamčené názvy stránek',
+'protectedtitlesempty' => 'S těmito parametry nejsou zamčeny žádné názvy.',
+'protectedtitlestext'  => 'Následující názvy jsou zamčeny a nelze na nich zakládat stránky',
+
 );

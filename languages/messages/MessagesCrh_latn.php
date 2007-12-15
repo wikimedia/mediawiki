@@ -6,6 +6,7 @@
  * @author Alessandro
  * @author AlefZet
  * @author Siebrand
+ * @author Nike
  */
 
 $fallback8bitEncoding = 'windows-1254';
@@ -542,9 +543,7 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'math_tip'        => 'Riyaziy (matematik) formula (LaTeX formatında)',
 'nowiki_sample'   => 'Serbest format metiniñizni mında yazıñız.',
 'nowiki_tip'      => 'viki format etüvini ignor et',
-'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Resim ekleme',
-'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Media faylına bağlantı',
 'sig_tip'         => 'İmzañız ve tarih',
 'hr_tip'          => 'Gorizontal sızıq (pek sıq qullanmañız)',
@@ -1601,9 +1600,10 @@ Lütfen bularnı qolnen birleştiriñiz.'''",
 'hours-abbrev'   => 'saat',
 
 # Bad image list
-'bad_image_list' => "!! Mında [[Project:Vandalizm|vandalizm]] yapıp sıq-sıq qullanğan resimler eklene bile. Eklegenden soñ bu resimler bir saife içine qullanğan vaqıtta ''inline'' olaraq kösterilmeycek.
+'bad_image_list' => 'Format böyle olmalı:
 
-;Şu şekilden eklene:<nowiki>* [[:Resim:Misal.jpg]]</nowiki>",
+Er satır * simvolınen başlamalı. Satırnıñ birinci bağlantısı eklemege yasaqlanğan resimge bağlanmalı.
+Şu satırda ilerideki bağlantılar istisna olurlar, yani şu maqalelerde işbu resim qullanmaq mümkün.',
 
 # Metadata
 'metadata'          => 'Resim detalleri',

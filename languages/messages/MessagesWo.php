@@ -23,7 +23,7 @@ $messages = array(
 'tog-editsection'             => 'Soppi ab xaaj jaare ko cib lëkkalekaay [Soppi]',
 'tog-editsectiononrightclick' => 'Soppi ab xaaj cib cuqub ndeyjoor ci kojam  (JavaScript)',
 'tog-showtoc'                 => 'Wone tëralinu ne-ne yi (ngir xët yi ëpp 3 xaaj)',
-'tog-rememberpassword'        => 'Fattaliku sama baatu duggu(cookie)',
+'tog-rememberpassword'        => 'Fattaliku sama baatujàll(cookie)',
 'tog-editwidth'               => 'Wone palanteeru coppite gi ci yaatuwaay bépp',
 'tog-watchcreations'          => 'Yokk ci sama limu toppte xët yi may sos',
 'tog-watchdefault'            => 'Yokk ci sama limu toppte xët yi may soppi',
@@ -121,7 +121,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Limu waxtaan ci liy-génn ci MediaWiki]',
 
-'about'          => 'Maanaam',
+'about'          => 'Ci mbirim',
 'article'        => 'Jukki',
 'newwindow'      => '(Day ubbeeku ci beneen palanteer)',
 'cancel'         => 'Neenal',
@@ -205,7 +205,6 @@ $messages = array(
 'edithelppage'      => 'Help:Nooy soppee aw xët',
 'helppage'          => 'Help:Ndimbal',
 'mainpage'          => 'Xët wu njëkk',
-'policy-url'        => 'Project:Policy',
 'portal'            => 'Askan',
 'portal-url'        => 'Project:Xët wu njëkk',
 'sitesupport'       => 'Joxe ag ndimbal',
@@ -226,7 +225,7 @@ $messages = array(
 'editsection'             => 'Soppi',
 'editold'                 => 'Soppi',
 'editsectionhint'         => 'Soppi bii xaaj : $1',
-'toc'                     => 'Tër',
+'toc'                     => 'Tëralin',
 'showtoc'                 => 'Wone',
 'hidetoc'                 => 'Nëbb',
 'thisisdeleted'           => 'Da ngaa bëgg a wone walla loppanti $1 ?',
@@ -257,23 +256,28 @@ $messages = array(
 'nospecialpagetext' => 'Da nga laaj aw xët wu solowu wu wiki gi xamul. Ab limu xët yu solowu yépp ma nees na koo gis ci [[{{ns:special}}:Specialpages]]',
 
 # General errors
-'error'              => 'Njuumte',
-'noconnect'          => 'Jéggalu! ngir ay tolof-tolofi xarala, fi mu ne nii duggu gi jappandiwul. <br />
+'error'                => 'Njuumte',
+'noconnect'            => 'Jéggalu! ngir ay tolof-tolofi xarala, fi mu ne nii duggu gi jàppandiwul. <br />
 $1',
-'laggedslavemode'    => 'Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def',
-'enterlockreason'    => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',
-'readonlytext'       => 'Les ajouts et mises à jour sur la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
+'laggedslavemode'      => 'Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def',
+'enterlockreason'      => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',
+'readonlytext'         => 'Les ajouts et mises à jour sur la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
 L’administrateur ayant verrouillé la base de données a donné l’explication suivante :$1',
-'internalerror'      => 'Njuumte gu biir',
-'internalerror_info' => 'Njuumte gu biir : $1',
-'filecopyerror'      => 'Duppig dencukaay bii di « $1 » jëm « $2 » antuwul.',
-'badarticleerror'    => 'Gii jëf defuwul ci mii xët.',
-'cannotdelete'       => 'nekkuwul dindi xët mi wala file bi nga joxoñ. (xayna dindi gi amna keneen ku ko def ba noppi.)',
-'badtitle'           => 'Koj gu baaxul',
-'badtitletext'       => 'Koju xët gi nga laaj baaxul, amul dara wala  day di koju diggantey-lakk wala diggantey-mebet yu seen lëkkaloo baaxul. Xayna tamit dafa am benn wala araf yu bari yu ñu manu ta jëfëndikoo ci koj.',
-'viewsource'         => 'Xool cosaanam',
-'viewsourcefor'      => 'ngir $1',
-'viewsourcetext'     => 'mën ngaa gis te jël li nekk ci gii jukki ngir mën cee ligey :',
+'internalerror'        => 'Njuumte gu biir',
+'internalerror_info'   => 'Njuumte gu biir : $1',
+'filecopyerror'        => 'Duppig dencukaay bii di « $1 » jëm « $2 » antuwul.',
+'filerenameerror'      => 'Tuddewaatug « $1 » niki « $2 » antuwul.',
+'filedeleteerror'      => 'Farug dencukaay bii di « $1 » antuwul.',
+'directorycreateerror' => 'Sosug wayndare bii di « $1 » antuwul.',
+'filenotfound'         => 'Gisug dencukaay bii di « $1 » antuwul.',
+'fileexistserror'      => 'Mbind mi ci wii wayndare « $1 » antuwul : dencukaay bi am na ba noppi',
+'badarticleerror'      => 'Gii jëf defuwul ci wii xët.',
+'cannotdelete'         => 'Farug xët walla dencukaay bi nga joxoñ antuwul. (xayna far gi am na keneen ku ko def ba noppi.)',
+'badtitle'             => 'Bopp bu baaxul',
+'badtitletext'         => 'Boppu xët wi nga laaj baaxul, amul dara walla  day di boppu diggantey-làkk walla diggantey-sémb yu seen lëkkaloo baaxul. Xayna it dafa am benn walla ay araf yu ñu manuta jëfandikoo ci bopp.',
+'viewsource'           => 'Xool gongikuwaayam',
+'viewsourcefor'        => 'ngir $1',
+'viewsourcetext'       => 'mën ngaa gis te jël li nekk ci gii jukki ngir mën cee ligey :',
 
 # Login and logout pages
 'logouttitle'                => 'Gennu',

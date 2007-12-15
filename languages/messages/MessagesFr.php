@@ -16,6 +16,7 @@
  * @author Grondin
  * @author Nike
  * @author לערי ריינהארט
+ * @author Dereckson
  */
 
 $skinNames = array(
@@ -196,7 +197,7 @@ $messages = array(
 'qbpageinfo'     => 'Page d’information',
 'qbmyoptions'    => 'Mes options',
 'qbspecialpages' => 'Pages spéciales',
-'moredotdotdot'  => 'Et plus...',
+'moredotdotdot'  => 'Et plus …',
 'mypage'         => 'Page perso',
 'mytalk'         => 'Page de discussion',
 'anontalk'       => 'Discussion avec cette adresse IP',
@@ -751,6 +752,7 @@ Assurez vous que ce changement puisse conserver la continuité de l'historique.
 'searchsubtitle'        => 'Vous avez recherché « [[:$1]] »',
 'searchsubtitleinvalid' => 'Vous avez recherché « $1 »',
 'noexactmatch'          => "'''Aucune page intitulée « $1 » n’existe.''' Vous pouvez [[:$1|créer cet article]].",
+'noexactmatch-nocreate' => "'''Il n'existe aucune page intitulée « $1 ».'''",
 'titlematches'          => 'Correspondances dans les titres d’articles',
 'notitlematches'        => 'Aucun titre d’article ne correspond à la recherche.',
 'textmatches'           => 'Correspondances dans le texte d’articles',
@@ -2218,8 +2220,8 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'size-gigabytes' => '$1 Go',
 
 # Live preview
-'livepreview-loading' => 'Chargement…',
-'livepreview-ready'   => 'Chargement… terminé !',
+'livepreview-loading' => 'Chargement …',
+'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',
 'livepreview-error'   => 'Impossible de se connecter : $1 "$2"

@@ -222,7 +222,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}}manta',
-'aboutpage'         => 'Project:manta',
+'aboutpage'         => 'Project:{{SITENAME}}manta',
 'bugreports'        => "Llamp'u kaqpi pantasqamanta willaykuna",
 'bugreportspage'    => 'Project:Pantasqamanta willaykuna',
 'copyright'         => "Ch'aqtasqakunataqa llamk'achinkiman <i>$1</i> nisqap ruraq hayñinkama",
@@ -470,7 +470,6 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'nowiki_tip'      => 'Wiki sumaqchayta qhawarpariy',
 'image_sample'    => 'Qhawarichiy.jpg',
 'image_tip'       => "Ch'aqtasqa rikcha",
-'media_sample'    => 'Example.ogg',
 'media_tip'       => "Multimidya willañiqiman t'inki",
 'sig_tip'         => "Sutiykita, p'unchawta, pachatapas silq'umuy",
 'hr_tip'          => "Siriq siq'i (ama nisyutachu llamk'apuy)",
@@ -572,10 +571,10 @@ Kunanqa rurasqaykikunata musuq qillqaman ch'aqtanaykim tiyan.
 'editingold'                => "<strong>Paqtataq: Kay p'anqap mawk'a hukchasqantam llamk'apuchkanki. Waqaychaptiykiqa, chaymanta aswan musuq hukchasqankuna chinkanqam.</strong>",
 'yourdiff'                  => 'Hukchasqaykikuna',
 'copyrightwarning'          => "Lliw {{SITENAME}}paq llamk'apuykunaqa $2 nisqawanmi uyaychasqa kanqa ($1 p'anqata qhaway). Llamk'asqaykikunata huk runakunap allinchayninta qispilla mast'ariyninta mana munaptiykiqa, ama kayman qillqamuychu.<br />
-Takyachiwachkankim: Kayqa ñuqap qillqasqaymi icha qispi pukyumanta iskaychamusqaymi, nispa.
+Takyachichkankim: Kayqa ñuqap qillqasqaymi icha qispi pukyumanta iskaychamusqaymi, nispa.
 <br /><strong>Mana saqillasqa kaspaykiqa, ama qillqarimuychu iskaychay hayñi ''(copyright)'' nisqayuq qillqakunata iskaychamuspa!</strong>",
 'copyrightwarning2'         => "Lliw {{SITENAME}}paq llamk'apuykunaqa huk ruraqkunap llamk'apunallanmi, hukchanallanmi icha qullunallanmi. Llamk'asqaykikunata huk runakunap allinchayninta qispilla mast'ariyninta mana munaptiykiqa, ama kayman qillqamuychu.<br />
-Takyachiwachkankim: Kayqa ñuqap qillqasqaymi, ñuqamanmi kapuwan icha qispi pukyumanta iskaychamusqaymi, nispa ($1 p'anqata qhaway).
+Takyachichkankim: Kayqa ñuqap qillqasqaymi, ñuqamanmi kapuwan icha qispi pukyumanta iskaychamusqaymi, nispa ($1 p'anqata qhaway).
 <br /><strong>Mana saqillasqa kaspaykiqa, ama qillqarimuychu iskaychay hayñi ''(copyright)'' nisqayuq qillqakunata iskaychamuspa!</strong>",
 'longpagewarning'           => "<strong>Paqtataq: Kay p'anqaqa $1 kB hatunmi; huk wamp'unakunaqa sasachakunmanchá 32 kB-manta aswan hatun willañiqita llamk'apuspa.
 Ama hina kaspa, hamut'ariy kay p'anqata rakiyta.</strong>",

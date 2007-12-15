@@ -742,22 +742,24 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'overlogpagetext' => 'Žemiau yra paskutinių trynimų ir blokavimų, įskaitant turinio slėpimą nuo administratorių, sąrašas. [[{{ns:special}}:Ipblocklist|IP blokavimų istorijoje]] rasite šiuo metu veikiančių draudimų ir blokavimų sąrašą.',
 
 # History merging
-'mergehistory'                => 'Sujungti puslapių istorijas',
-'mergehistory-header'         => "Šis puslapis leidžia jus prijungti vieno pirminio puslapio istorijos versijas į naujesnį puslapį. Įsitikinkite, kad šis pakeitimas palaikys istorinį puslapio tęstinumą.
+'mergehistory'                     => 'Sujungti puslapių istorijas',
+'mergehistory-header'              => "Šis puslapis leidžia jus prijungti vieno pirminio puslapio istorijos versijas į naujesnį puslapį. Įsitikinkite, kad šis pakeitimas palaikys istorinį puslapio tęstinumą.
 
 '''Turi likti bent dabartinė pirminio puslapio versija.'''",
-'mergehistory-box'            => 'Sujungti dviejų puslapių versijas:',
-'mergehistory-from'           => 'Pirminis puslapis:',
-'mergehistory-into'           => 'Paskirties puslapis:',
-'mergehistory-list'           => 'Sujungiamos keitimų istorijos',
-'mergehistory-merge'          => 'Šios [[:$1]] versijos gali būti sujungtos į [[:$2]]. Naudokite akučių stulpelį, kad sujungtumėte tik tas versijas, kurios sukurtos tuo ar ankstesniu laiku. Pastaba: panaudojus navigacines nuorodas, šis stulpelis bus grąžintas į pradinę būseną.',
-'mergehistory-go'             => 'Rodyti sujungiamus keitimus',
-'mergehistory-submit'         => 'Sujungti versijas',
-'mergehistory-empty'          => 'Versijos negali būti sujungtos',
-'mergehistory-success'        => '$3 [[:$1]] {{PLURAL:$3|versija|versijos|versijų}} sėkmingai sujungta su [[:$2]].',
-'mergehistory-fail'           => 'Nepavyksta atlikti istorijų sujungimo, prašome patikrinti puslapio ir laiko parametrus.',
-'mergehistory-no-source'      => 'Šaltinio puslapis $1 neegzistuoja.',
-'mergehistory-no-destination' => 'Rezultato puslapis $1 neegzistuoja.',
+'mergehistory-box'                 => 'Sujungti dviejų puslapių versijas:',
+'mergehistory-from'                => 'Pirminis puslapis:',
+'mergehistory-into'                => 'Paskirties puslapis:',
+'mergehistory-list'                => 'Sujungiamos keitimų istorijos',
+'mergehistory-merge'               => 'Šios [[:$1]] versijos gali būti sujungtos į [[:$2]]. Naudokite akučių stulpelį, kad sujungtumėte tik tas versijas, kurios sukurtos tuo ar ankstesniu laiku. Pastaba: panaudojus navigacines nuorodas, šis stulpelis bus grąžintas į pradinę būseną.',
+'mergehistory-go'                  => 'Rodyti sujungiamus keitimus',
+'mergehistory-submit'              => 'Sujungti versijas',
+'mergehistory-empty'               => 'Versijos negali būti sujungtos',
+'mergehistory-success'             => '$3 [[:$1]] {{PLURAL:$3|versija|versijos|versijų}} sėkmingai sujungta su [[:$2]].',
+'mergehistory-fail'                => 'Nepavyksta atlikti istorijų sujungimo, prašome patikrinti puslapio ir laiko parametrus.',
+'mergehistory-no-source'           => 'Šaltinio puslapis $1 neegzistuoja.',
+'mergehistory-no-destination'      => 'Rezultato puslapis $1 neegzistuoja.',
+'mergehistory-invalid-source'      => 'Pradinis puslapis turi turėti teisingą pavadinimą.',
+'mergehistory-invalid-destination' => 'Rezultato puslapis turi turėti teisingą pavadinimą.',
 
 # Merge log
 'mergelog'           => 'Sujungimų istorija',
@@ -2150,6 +2152,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t.y. pusla
 'exif-sharpness-2' => 'Didelis',
 
 'exif-subjectdistancerange-0' => 'Nežinomas',
+'exif-subjectdistancerange-1' => 'Makrokomanda',
 'exif-subjectdistancerange-2' => 'Artimas vaizdas',
 'exif-subjectdistancerange-3' => 'Tolimas vaizdas',
 
@@ -2231,6 +2234,7 @@ Trackback šiam puslapiui:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Trinti])',
+'trackbacklink'     => 'Atsukti atgal',
 'trackbackdeleteok' => 'Trackback buvo sėkmingai ištrintas.',
 
 # Delete conflict

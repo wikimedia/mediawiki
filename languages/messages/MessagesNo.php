@@ -8,6 +8,7 @@
  * @author Teak
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -460,6 +461,7 @@ $2',
 'namespaceprotected'   => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",
 'customcssjsprotected' => 'Du har ikke tillatelse til å redigere denne siden, fordi den inneholder en annen brukers personlige innstillinger.',
 'ns-specialprotected'  => 'Sier i navnerommet {{ns:special}} kan ikke redigeres.',
+'titleprotected'       => 'Denne tittelen har blitt låst for oppretting av [[User:$1|$1]]. Den oppgitte grunnen er <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
@@ -516,10 +518,10 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'wrongpasswordempty'         => 'Du oppga ikke noe passord. Prøv igjen.',
 'passwordtooshort'           => 'Passordet ditt er for kort. Det må ha minst $1 tegn.',
 'mailmypassword'             => 'Send nytt passord.',
-'passwordremindertitle'      => 'Nytt passord fra {{SITENAME}}',
+'passwordremindertitle'      => 'Nytt midlertidig passord fra {{SITENAME}}',
 'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressa $1) ba oss sende deg et nytt passord til {{SITENAME}} ($4). Passordet for kontoen «$2» er nå «$3». Du burde logge inn og endre pasordet nå.
 
-Dersom noen andre gjorde denne forespørselen eller om du kom på passordet og ikke lenger ønsker å endre det, kan du ignorere denne beskjeden og fortsette å bruke det gamle passordet.',
+Dersom denne forespørselen ble utført av noen andre, eller om du kom på passordet og ikke lenger ønsker å endre det, kan du ignorere denne beskjeden og fortsette å bruke det gamle passordet.',
 'noemail'                    => 'Det er ikke registrert noen e-postadresse for brukeren «$1».',
 'passwordsent'               => 'Et nytt passord har blitt send til e-postadressa registrert på bruker «$1». Logg inn når du har mottatt det nye passordet.',
 'blocked-mailpassword'       => 'IP-adressa di er blokkert fra å redigere, og kan følgelig ikke bruke denne funksjonen, for å forhindre misbruk.',
@@ -717,8 +719,8 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'next'                => 'neste',
 'last'                => 'forrige',
 'orig'                => 'original',
-'page_first'          => 'først',
-'page_last'           => 'sist',
+'page_first'          => 'første',
+'page_last'           => 'siste',
 'histlegend'          => 'Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, M = mindre endring.',
 'deletedrev'          => '[slettet]',
 'histfirst'           => 'Første',
@@ -813,6 +815,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'searchsubtitle'        => 'Du søkte på «[[$1]]».',
 'searchsubtitleinvalid' => 'For forespørsel "$1"',
 'noexactmatch'          => "'''Det er ingen side med tittelen «$1».''' Du kan [[:$1|opprette siden]].",
+'noexactmatch-nocreate' => "'''Det er ingen side med tittelen «$1».'''",
 'titlematches'          => 'Artikkeltitler med treff på forespørselen',
 'notitlematches'        => 'Ingen artikkeltitler hadde treff på forespørselen',
 'textmatches'           => 'Artikkeltekster med treff på forespørselen',
@@ -854,9 +857,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'math_image_error'         => 'PNG-konversjon mislyktes',
 'math_bad_tmpdir'          => 'Kan ikke skrive til eller opprette midlertidig mappe',
 'math_bad_output'          => 'Kan ikke skrive til eller opprette resultatmappe',
-'math_notexvc'             => 'Missing texvc executable; please see math/README to configure.
-
-Mangler kjørbar texvc; vennligst se math/README for å konfigurerer.',
+'math_notexvc'             => 'Mangler kjørbar texvc; vennligst se math/README for å konfigurerer.',
 'prefs-personal'           => 'Brukerdata',
 'prefs-rc'                 => 'Siste endringer',
 'prefs-watchlist'          => 'Overvåkningsliste',
@@ -950,7 +951,7 @@ Mangler kjørbar texvc; vennligst se math/README for å konfigurerer.',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 overvåkende {{plural:$1|bruker|brukere}}]',
+'number_of_watching_users_pageview' => '[$1 overvåkende {{PLURAL:$1|bruker|brukere}}]',
 'rc_categories'                     => 'Begrens til kategorier (skilletegn: «|»)',
 'rc_categories_any'                 => 'Alle',
 'newsectionsummary'                 => '/* $1 */ ny seksjon',
@@ -1217,7 +1218,6 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'specialpages'            => 'Spesialsider',
 'spheading'               => 'Spesialsider for alle brukere',
 'restrictedpheading'      => 'Spesialsider for administratorer',
-'rclsub'                  => '(til sider med lenke fra «$1»)',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',
@@ -1435,8 +1435,9 @@ Tilbakemeldinger og videre assistanse:
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Redigering',
-'restriction-move' => 'Flytting',
+'restriction-edit'   => 'Redigering',
+'restriction-move'   => 'Flytting',
+'restriction-create' => 'Opprett',
 
 # Restriction levels
 'restriction-level-sysop'         => 'fullstendig låst',
