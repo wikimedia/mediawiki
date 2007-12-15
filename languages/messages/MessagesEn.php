@@ -2213,6 +2213,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 'articleexists'           => 'A page of that name already exists, or the
 name you have chosen is not valid.
 Please choose another name.',
+'cantmove-titleprotected' => 'You cannot move a page to this location, because the new title has been protected from creation',
 'talkexists'              => "'''The page itself was moved successfully, but the talk page could not be moved because one already exists at the new title. Please merge them manually.'''",
 'movedto'                 => 'moved to',
 'movetalk'                => 'Move associated talk page',

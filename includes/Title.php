@@ -2303,6 +2303,11 @@ class Title {
 			if ( ! $this->isValidMoveTarget( $nt ) ) {
 				return 'articleexists';
 			}
+		} else {
+			$tp = $nt->getTitleProtection();
+			if (!$wgUser->isAllowed($tp['pt_create_perm'])) {
+				return 'cantmove-titleprotected';
+			}
 		}
 		return true;
 	}
