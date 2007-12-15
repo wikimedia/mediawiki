@@ -1,3 +1,9 @@
 /* KHTML fix stylesheet */
 /* work around the horizontal scrollbars */
 #column-content { margin-left: 0; }
+
+/* Edit section links */
+.editsection {
+	margin-top: 0;
+}
+

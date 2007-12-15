@@ -23,6 +23,7 @@ div#mw-js-message {
 .editsection {
 	float: right;
 	margin-left: 5px;
+	margin-top:-1.2em;
 }
 
 /**
