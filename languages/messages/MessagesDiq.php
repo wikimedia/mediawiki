@@ -6,6 +6,8 @@
  * @author SPQRobin
  */
 
+$fallback = 'tr';
+
 $messages = array(
 # User preference toggles
 'tog-showtoc' => 'Bımocne table of contents (for pages with more than 3 headings)',
