@@ -78,6 +78,8 @@ class MovePageForm {
 			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 			return;
 		}
+		$sk = $wgUser->getSkin();
+		$oldTitleLink = $sk->makeLinkObj( $ot );
 		$oldTitle = $ot->getPrefixedText();
 
 		$encOldTitle = htmlspecialchars( $oldTitle );
@@ -151,7 +153,7 @@ class MovePageForm {
 	<table border='0'>
 		<tr>
 			<td align='$end'>{$movearticle}</td>
-			<td align='$start'><strong>{$oldTitle}</strong></td>
+			<td align='$start'><strong>{$oldTitleLink}</strong></td>
 		</tr>
 		<tr>
 			<td align='$end'><label for='wpNewTitle'>{$newtitle}</label></td>

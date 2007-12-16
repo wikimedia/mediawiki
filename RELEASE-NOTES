@@ -98,6 +98,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Upload now lists permitted/prohibited file extensions.
 * Split ambiguous filetype-badtype message into two new messages,
   filetype-unwanted-type and filetype-banned-type.
+* Added link to the old title in Special:Movepage
 
 === Bug fixes in 1.12 ===
 
