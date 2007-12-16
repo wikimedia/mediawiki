@@ -41,6 +41,11 @@ if( is_array( $wgExtraNamespaces ) ) {
  * Users and translators should not change them
  *
  */
+
+/*
+WARNING: The statement below may fail on some versions of PHP: see bug 12294
+*/
+
 class Namespace {
 
 	/**
