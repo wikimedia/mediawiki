@@ -38,6 +38,7 @@
 	'bpy' => 'ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী',	# Bishnupriya Manipuri
 	'br' => 'Brezhoneg',	# Breton
 	'bs' => 'Bosanski',		# Bosnian
+	'bto' => 'Iriga Bicolano',		# Iriga Bicolano/Rinconada Bikol
 	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Buginese
 	'bxr' => 'Буряад',	# Buryat (Russia)
 	'ca' => 'Català',	# Catalan
@@ -157,6 +158,7 @@
 	'lad' => 'Ladino',	# Ladino
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
 	'lbe' => 'Лакку',	# Lak
+	'lez' => 'Лезги',	# Lezgi
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
 	'lij' => 'Líguru',	# Ligurian
@@ -169,6 +171,7 @@
 	'lv' => 'Latviešu',	# Latvian
 	'lzz' => 'Lazuri Nena',	#Laz
 	'map-bms' => 'Basa Banyumasan', # Banyumasan 
+	'mdf' => 'мокшень кяль',		# Moksha
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
 	'mi' => 'Māori',	# Maori
@@ -193,12 +196,14 @@
 	'ne' => 'नेपाली',	# Nepali
 	'new' => 'नेपाल भाषा',		# Newar / Nepal Bhasa
 	'ng' => 'Oshiwambo',		# Ndonga
+	'niu' => 'Niuē',	# Niuean
 	'nl' => 'Nederlands',	# Dutch
 	'nn' => "\xE2\x80\xAANorsk (nynorsk)\xE2\x80\xAC"	,	# Norwegian (Nynorsk)
 	'no' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian
 	'non' => 'Norrǿna',		# Old Norse
 	'nov' => 'Novial',		# Novial
 	'nrm' => 'Nouormand',	# Norman
+	'nso' => 'Sesotho sa Leboa',	# Northern Sotho
 	'nv' => 'Diné bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'Occitan',		# Occitan
@@ -210,9 +215,12 @@
 	'pam' => 'Kapampangan',   # Pampanga
 	'pap' => 'Papiamentu',	# Papiamentu
 	'pdc' => 'Deitsch', 	# Pennsylvania German
+	'pdt' => 'Plautdietsch', 	# Plautdietsch/Mennonite Low German
+	'pfl' => 'Pfälzisch', 	# Palatinate German
 	'pi' => 'पािऴ',	# Pali
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'Polski',		# Polish
+	'plm' => 'Palembang',		# Palembang
 	'pms' => 'Piemontèis', 	# Piedmontese
 	'pnt' => 'Ποντιακά', 	# Pontic, aka Pontic Greek
 	'ps' => 'پښتو',	# Pashto
@@ -244,6 +252,7 @@
 	'sk' => 'Slovenčina',	# Slovak
 	'sl' => 'Slovenščina',	# Slovenian
 	'sm' => 'Gagana Samoa',	# Samoan
+	'sma' => 'Lullisámegiella',	# Southern Sami
 	'sn' => 'chiShona',		# Shona
 	'so' => 'Soomaaliga',	# Somali
 	'sq' => 'Shqip',		# Albanian
@@ -279,6 +288,7 @@
 	'tw' => 'Twi',			# Twi, (FIXME!)
 	'ty' => 'Reo Mā`ohi',	# Tahitian
 	'tyv' => 'Тыва дыл',	# Tyvan
+	'tzm' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ',	# (Central Morocco) Tamazight
 	'udm' => 'Удмурт',	# Udmurt
 	'ug' => 'Uyghurche‎ / ئۇيغۇرچە',	# Uyghur
 	'uk' => 'Українська',	# Ukrainian
