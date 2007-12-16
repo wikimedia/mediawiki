@@ -1076,8 +1076,6 @@ Všetky uvedené časy sú časy na serveri (UTC).',
 'illegalfilename'             => 'Názov súboru "$1" obsahuje znaky, ktoré nie sú povolené v názvoch stránok. Prosím premenujte súbor a skúste ho nahrať znovu.',
 'badfilename'                 => 'Meno obrázka bolo zmenené na "$1".',
 'filetype-badmime'            => 'Nie je povolené nahrávať súbory s MIME typom "$1".',
-'filetype-badtype'            => "'''\".\$1\"''' je neželaný typ súboru
-: Zoznam povolených typov súborov: \$2",
 'filetype-missing'            => 'Súbor nemá príponu (ako ".jpg").',
 'large-file'                  => 'Odporúča sa aby veľkosť súborov neprekračovala $1; tento súbor má $2.',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',

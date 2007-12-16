@@ -321,7 +321,16 @@ class UploadForm {
 
 			case self::FILETYPE_BADTYPE:
 				$finalExt = $details['finalExt'];
-				$this->uploadError( wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ) );
+				$this->uploadError( 
+					wfMsgExt( 'filetype-banned-type',
+						array( 'parseinline' ),
+						htmlspecialchars( $finalExt ),
+						implode(
+							wfMsgExt( 'filetype-separator', array( 'escapenoentities' ) ),
+							$wgFileExtensions
+						)
+					)
+				);
 				break;
 
 			case self::VERIFICATION_ERROR:
@@ -493,9 +502,16 @@ class UploadForm {
 
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
-				if ( ! $this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
-					$warning .= '<li>'.wfMsgExt( 'filetype-badtype', array ( 'parseinline' ),
-						htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ).'</li>';
+				if ( !$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
+					$warning .= '<li>' .
+					wfMsgExt( 'filetype-unwanted-type',
+						array( 'parseinline' ),
+						htmlspecialchars( $finalExt ),
+						implode(
+							wfMsgExt( 'filetype-separator', array( 'escapenoentities' ) ),
+							$wgFileExtensions
+						)
+					) . '</li>';
 				}
 			}
 
@@ -933,9 +949,12 @@ wgAjaxLicensePreview = {$alp};
 		}
 
 		$cols = intval($wgUser->getOption( 'cols' ));
-		$ew = $wgUser->getOption( 'editwidth' );
-		if ( $ew ) $ew = " style=\"width:100%\"";
-		else $ew = '';
+
+		if( $wgUser->getOption( 'editwidth' ) ) {
+			$width = " style=\"width:100%\"";
+		} else {
+			$width = '';
+		}
 
 		if ( '' != $msg ) {
 			$sub = wfMsgHtml( 'uploaderror' );
@@ -944,7 +963,33 @@ wgAjaxLicensePreview = {$alp};
 		}
 		$wgOut->addHTML( '<div id="uploadtext">' );
 		$wgOut->addWikiText( wfMsgNoTrans( 'uploadtext', $this->mDesiredDestName ) );
-		$wgOut->addHTML( '</div>' );
+		$wgOut->addHTML( "</div>\n" );
+
+		# Print a list of allowed file extensions, if so configured.  We ignore
+		# MIME type here, it's incomprehensible to most people and too long.
+		global $wgCheckFileExtensions, $wgStrictFileExtensions,
+		$wgFileExtensions, $wgFileBlacklist;
+		if( $wgCheckFileExtensions ) {
+			$delim = wfMsgExt( 'filetype-separator', array( 'escapenoentities' ) );
+			if( $wgStrictFileExtensions ) {
+				# Everything not permitted is banned
+				$wgOut->addHTML(
+					'<div id="mw-upload-permitted">' .
+					wfMsgWikiHtml( 'upload-permitted', implode( $wgFileExtensions, $delim ) ) .
+					"</div>\n"
+				);
+			} else {
+				# We have to list both preferred and prohibited
+				$wgOut->addHTML(
+					'<div id="mw-upload-preferred">' .
+					wfMsgWikiHtml( 'upload-preferred', implode( $wgFileExtensions, $delim ) ) .
+					"</div>\n" .
+					'<div id="mw-upload-prohibited">' .
+					wfMsgWikiHtml( 'upload-prohibited', implode( $wgFileBlacklist, $delim ) ) .
+					"</div>\n"
+				);
+			}
+		}
 
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );
 		$destfilename = wfMsgHtml( 'destfilename' );
@@ -1029,7 +1074,7 @@ wgAjaxLicensePreview = {$alp};
 			<td align='$align1'><label for='wpUploadDescription'>{$summary}</label></td>
 			<td align='$align2'>
 				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' 
-					cols='{$cols}'{$ew}>$encComment</textarea>
+					cols='{$cols}'{$width}>$encComment</textarea>
 	   {$this->uploadFormTextAfterSummary}
 			</td>
 		</tr>

@@ -931,8 +931,6 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'illegalfilename'             => 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le copier à nouveau.',
 'badfilename'                 => 'L’image a été renommée « $1 ».',
 'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être importés.',
-'filetype-badtype'            => "'''« .$1 »''' est un type de fichier non désiré
-: Liste des types de fichiers autorisés : $2",
 'filetype-missing'            => 'Le fichier n’a aucune extension (comme « .jpg » par exemple).',
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',

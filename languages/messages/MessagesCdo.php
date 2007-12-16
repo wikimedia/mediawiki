@@ -453,8 +453,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'uploadedfiles'     => 'Siông-duòng ùng-giông',
 'ignorewarning'     => 'Mò̤ sê̤ṳ gīng-gó̤ bō̤-còng ùng-giông.',
 'ignorewarnings'    => 'Mò̤ sê̤ṳ gīng-gó̤',
-'filetype-badtype'  => "'''\".\$1\"''' sê mâ̤-sāi siông-diòng gì ùng-giông lôi-hìng
-: Â̤-sāi siông-diòng gì ùng-giông lôi-hìng ô: \$2",
 'fileexists'        => 'Ī-gĭng ô siŏh bĭk dè̤ng miàng ùng-giông, nṳ̄ nâ mâ̤ káuk-dêng nṳ̄ sê-ng-sê dŏng-cĭng páh-sáung gāi-biéng ĭ, chiāng giēng-chă $1.',
 'successfulupload'  => 'Siông-diòng sìng-gŭng',
 'uploadwarning'     => 'Siông-duòng gīng-gó̤',

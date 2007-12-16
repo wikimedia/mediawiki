@@ -1154,8 +1154,6 @@ De laatste link is bedoeld voor mediabestanden.",
 'illegalfilename'             => 'De bestandsnaam "$1" bevat ongeldige karakters. Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
 'badfilename'                 => 'De naam van het bestand is gewijzigd in "$1".',
 'filetype-badmime'            => 'Het is niet toegestaan om bestanden van MIME-type "$1" te uploaden.',
-'filetype-badtype'            => "'''\".\$1\"''' is een ongewenst bestandsformaat
-:Een lijst met toegestane bestandsformaten: \$2",
 'filetype-missing'            => 'Dit bestand heeft geen extensie (zoals ".jpg").',
 'large-file'                  => 'Aanbeveling: maak bestanden niet groter dan $1, dit bestand is $2.',
 'largefileserver'             => 'Het bestand is groter dan de instelling van de server toestaat.',

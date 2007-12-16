@@ -1000,8 +1000,6 @@ per collegare direttamente gli altri tipi di file.",
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
 'badfilename'                 => 'Il nome del file è stato convertito in "$1".',
 'filetype-badmime'            => 'Non è consentito caricare file di tipo MIME "$1".',
-'filetype-badtype'            => "Non è consentito caricare file di tipo '''\".\$1\"'''
-: Elenco dei tipi di file consentiti: \$2",
 'filetype-missing'            => 'Il file è privo di estensione (ad es. ".jpg").',
 'large-file'                  => 'Si raccomanda di non superare le dimensioni di $1 per ciascun file; questo file è grande $2.',
 'largefileserver'             => 'Il file supera le dimensioni consentite dalla configurazione del server.',

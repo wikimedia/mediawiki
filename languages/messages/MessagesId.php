@@ -1049,8 +1049,6 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'illegalfilename'             => 'Nama berkas "$1" mengandung aksara yang tidak diperbolehkan ada dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
 'badfilename'                 => 'Nama berkas telah diubah menjadi "$1".',
 'filetype-badmime'            => 'Berkas dengan tipe MIME "$1" tidak diperkenankan untuk dimuat.',
-'filetype-badtype'            => "'''\".\$1\"''' adalah tipe berkas yang tak diperkenankan.
-: Daftar tipe berkas yang diperkenankan: \$2",
 'filetype-missing'            => 'Berkas tak memiliki ekstensi (misalnya ".jpg").',
 'large-file'                  => 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita.',
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',

@@ -936,8 +936,6 @@ $2',
 'illegalfilename'             => '檔案名"$1"包含有頁面標題所禁止的字符。請改名後重新上傳。',
 'badfilename'                 => '檔案名已被改為"$1"。',
 'filetype-badmime'            => 'MIME類別"$1"不是容許的檔案格式。',
-'filetype-badtype'            => "'''\".\$1\"'''是不容許的檔案類型
-: 以下是容許的檔案類型: \$2",
 'filetype-missing'            => '該檔案名稱並沒有副檔名 (像 ".jpg")。',
 'large-file'                  => '建議檔案大小不能超過 $1；本檔案大小為 $2。',
 'largefileserver'             => '這個檔案的大小比伺服器配置允許的大小還要大。',

@@ -1034,8 +1034,6 @@ $2',
 'illegalfilename'             => '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'                 => '檔名已經更改成「$1」。',
 'filetype-badmime'            => '「$1」嘅MIME類型檔案係唔容許上載嘅。',
-'filetype-badtype'            => "'''「.$1」'''係一種唔需要嘅檔案類型
-: 以下係容許嘅檔案類型： $2",
 'filetype-missing'            => '個檔名並冇副檔名（好以「.jpg」）。',
 'large-file'                  => '建議檔案嘅大細唔好大過$1 bytes，呢個檔案有$2 bytes',
 'largefileserver'             => '呢個檔案超過咗伺服器設定允許嘅大細。',

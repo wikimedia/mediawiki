@@ -770,8 +770,6 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
 'illegalfilename'             => 'Mae\'r enw ffeil "$1" yn cynnwys nodau sydd wedi\'u gwahardd mewn teitlau tudalennau. Ail-enwch y ffeil ac uwchlwythwch hi eto os gwelwch yn dda.',
 'badfilename'                 => 'Mae enw\'r ffeil wedi\'i newid i "$1".',
 'filetype-badmime'            => "Ni chaniateir uwchlwytho ffeiliau o'r math MIME '$1'.",
-'filetype-badtype'            => "Ni ellir defnyddio'r math '''\".\$1\"''' o ffeil
-: Rhestr o'r mathau o ffeiliau a ganiateir: \$2",
 'filetype-missing'            => "Nid oes gan y ffeil hon estyniad (megis '.jpg').",
 'large-file'                  => "Argymhellir na ddylai ffeil fod yn fwy na $1. Mae'r ffeil hwn yn $2 o faint.",
 'largefileserver'             => "Mae'r ffeil yn fwy na'r hyn mae'r gweinydd yn ei ganiatau.",

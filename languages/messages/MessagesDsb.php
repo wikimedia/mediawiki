@@ -903,8 +903,6 @@ Pšosym mysli na to, až mógu druge wužywarje twóje dataje wulašowaś a změ
 'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška. Pšosym pśemjeni dataju a wopytaj ju wótnowotki uploadowaś.',
 'badfilename'                 => 'Mě dataje jo se změniło na „$1“.',
 'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se uploadowaś.',
-'filetype-badtype'            => "'''„.$1“''' jo njewitany datajowy format.
-: dowólone su: $2",
 'filetype-missing'            => 'Dataja njama žedno rozšyrjenje (na pś. „.jpg“).',
 'large-file'                  => 'Pó móžnosći njedejała dataja wětša byś ako $1. Toś ta dataja jo $2 wjelika.',
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',

@@ -861,8 +861,6 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'illegalfilename'             => 'Numele fişierului "$1" conţine caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiţi fişierul şi încercaţi să îl încărcaţi din nou.',
 'badfilename'                 => 'Numele imaginii a fost schimbat; noul nume este "[[:$1]]".',
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
-'filetype-badtype'            => "'''\".\$1\"''' este un tip de fişier neacceptat.
-: Lista tipurilor de fişiere permise: \$2",
 'filetype-missing'            => 'Fişierul nu are extensie (precum ".jpg").',
 'large-file'                  => 'Este recomandat ca fişierele să nu fie mai mari de $1; acest fişier are $2.',
 'largefileserver'             => 'Fişierul este mai mare decât este configurat serverul să permită.',

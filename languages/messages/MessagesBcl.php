@@ -888,8 +888,6 @@ Kun boot mong ikaag an ladawan sa páhina, gamiton tabî an takod arog kan
 'illegalfilename'             => "An ''filename'' na \"\$1\" igwang mga ''character'' na dai pwede sa mga titulo nin páhina. Tâwan tabî nin bâgong pangaran an ''file'' asin probaran na ikarga giraray.",
 'badfilename'                 => "Rinibayan an ''filename'' nin \"\$1\".",
 'filetype-badmime'            => "Dai pigtotogotan na ikarga an mga ''file'' na MIME na \"\$1\" tipo.",
-'filetype-badtype'            => "An'''\".\$1\"''' sarong bawal na tipo nin ''file''
-: Lista kan mga pigtotogotan na tipo nin ''file'': \$2",
 'filetype-missing'            => "Mayong ekstensyón an ''file'' (arog kan \".jpg\").",
 'large-file'                  => "Pigrerekomendár na dapat an mga ''file'' bakong mas dakula sa $1; $2 an sokol kaining ''file''.",
 'largefileserver'             => "Mas dakula an ''file'' sa pigtotogotan na sokol kan ''server''.",

@@ -95,6 +95,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 943) RSS feed for Recentchangeslinked
 * Introduced AbortMove hook
 * (bug 2919) Protection of nonexistent pages with regular protection interface.
+* Special:Upload now lists permitted/prohibited file extensions.
+* Split ambiguous filetype-badtype message into two new messages,
+  filetype-unwanted-type and filetype-banned-type.
 
 === Bug fixes in 1.12 ===
 

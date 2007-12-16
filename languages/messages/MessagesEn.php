@@ -1416,6 +1416,9 @@ To include the image in a page, use a link in the form
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
+'upload-permitted'            => 'Permitted file types: $1.',
+'upload-preferred'            => 'Preferred file types: $1.',
+'upload-prohibited'           => 'Prohibited file types: $1.',
 'uploadlog'                   => 'upload log',
 'uploadlogpage'               => 'Upload log',
 'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.',
@@ -1431,8 +1434,8 @@ To include the image in a page, use a link in the form
 'illegalfilename'             => 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',
 'badfilename'                 => 'File name has been changed to "$1".',
 'filetype-badmime'            => 'Files of the MIME type "$1" are not allowed to be uploaded.',
-'filetype-badtype'            => "'''\".\$1\"''' is an unwanted file type
-: List of allowed file types: \$2",
+'filetype-unwanted-type'      => "'''\".\$1\"''' is an unwanted file type.  Preferred file types are \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' is not a permitted file type.  Permitted file types are \$2.",
 'filetype-missing'            => 'The file has no extension (like ".jpg").',
 'large-file'                  => 'It is recommended that files are no larger than $1; this file is $2.',
 'largefileserver'             => 'This file is bigger than the server is configured to allow.',
@@ -2964,8 +2967,9 @@ $1',
 'hideresults'      => 'Hide results',
 
 # Separators for various lists
-'catseparator'        => '|', # don't translate or duplicate this message to other languages
-'semicolon-separator' => ';', # only translate this message to other languages if you have to change it
+'catseparator'          => '|', # don't translate or duplicate this message to other languages
+'semicolon-separator'   => ';', # only translate this message to other languages if you have to change it
+'filetype-separator'    => ', ', # only translate this message to other languages if you have to change it 
 
 # Multipage image navigation
 'imgmultipageprev'   => '← previous page',

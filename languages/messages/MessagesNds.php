@@ -803,8 +803,6 @@ Alle Tieden sünd UTC.",
 'illegalfilename'            => 'In den Dateinaam „$1“ snd Teken in, de nich de Naams vun Sieden nich verlööft sünd. Söök di en annern Naam ut un denn versöök de Datei noch wedder hoochtoladen.',
 'badfilename'                => 'De Bildnaam is na „$1“ ännert worrn.',
 'filetype-badmime'           => 'Datein vun den MIME-Typ „$1“ dröfft nich hoochlaadt warrn.',
-'filetype-badtype'           => "'''„.$1“''' is en Dateityp, de nich hoochlaadt warrn dröff.
-: Dateitypen, de hoochlaadt warrn dröfft: $2",
 'filetype-missing'           => 'Disse Datei hett keen Ennen (so as „.jpg“).',
 'emptyfile'                  => 'De hoochladene Datei is leddig. De Grund kann en Tippfehler in de Dateinaam ween. Kontrolleer, of du de Datei redig hoochladen wullst.',
 'fileexists'                 => 'En Datei mit dissen Naam existeert al, prööv $1, wenn du di nich seker büst of du dat ännern wullst.',

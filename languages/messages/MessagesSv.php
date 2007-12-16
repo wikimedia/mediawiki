@@ -1011,8 +1011,6 @@ $3',
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
-'filetype-badtype'            => "'''\".\$1\"''' är en icke önskvärd filtyp
-: Följande filtyper är tillåtna: \$2",
 'filetype-missing'            => 'Filen saknar ett filnamnsändelse (som ".jpg").',
 'large-file'                  => 'Filer bör inte vara större än $1 bytes, denna är $2 bytes',
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',

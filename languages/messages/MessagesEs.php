@@ -848,7 +848,6 @@ Para incluir la imágen en una página, usa un enlace en el formulario '''<nowik
 'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a "$1".',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
-'filetype-badtype'            => "'''\".\$1\"''' es un tipo de archivo no permitido. Lista de tipos permitidos: \$2",
 'filetype-missing'            => 'El archivo no tiene extensión (como ".jpg").',
 'large-file'                  => 'Se recomienda que los archivos no sean mayores de de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',

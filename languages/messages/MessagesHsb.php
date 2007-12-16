@@ -1001,8 +1001,6 @@ abo zo by so direktnje z dataju zwjazało
 'illegalfilename'             => 'Mjeno dataje „$1” wobsahuje znamješka, kotrež w titlach stronow dowolene njejsu. Prošu přemjenuj dataju a spytaj ju znowa nahrać.',
 'badfilename'                 => 'Mjeno dataje bu do „$1” změnjene.',
 'filetype-badmime'            => 'Dataje družiny MIME „$1” njesmědźa so składować.',
-'filetype-badtype'            => "'''„.$1“''' njeje dowoleny datajowy format.
-: Dowolene su: $2",
 'filetype-missing'            => 'Dataja nima kóncowku (na přikład „.jpg“).',
 'large-file'                  => 'Doporuča so, zo dataje wjetše hač $1 njejsu; tuta dataja ma $2.',
 'largefileserver'             => 'Dataja je wjetša hač serwer dowoluje.',

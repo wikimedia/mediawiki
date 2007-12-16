@@ -862,8 +862,6 @@ Helüteedüstü puhul: <b>[[media:teedüstü.ogg]]</b>.
 'illegalfilename'             => 'Teedüstü nimen "$1" om lehenime jaos lubamaldaq märke. Vaihtaq teedüstü nimme ja prooviq taa vahtsõst üles laatiq.',
 'badfilename'                 => 'Teedüstü nimi om ärq muudõt. Vahtsõnõ nimi om "$1".',
 'filetype-badmime'            => 'Teedüstüid, mink MIME-tüüp om "$1" tohe-i üles laatiq.',
-'filetype-badtype'            => "'''\".\$1\"''' olõ-i soovitõt teedüstütüüp.
-Lubaduq teedüstütüübiq ommaq: \$2",
 'filetype-missing'            => 'Teedüstül olõ-i laendust (nt ".jpg").',
 'large-file'                  => 'Teedüstüq tohe-i ollaq suurõmbaq, ku $1, a taa teedüstü om $2.',
 'largefileserver'             => 'Teedüstü om suurõmb ku server lupa.',

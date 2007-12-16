@@ -895,8 +895,6 @@ L'ora indicada es la del serveire (UTC).",
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo renomenar e de lo copiar tornarmai.',
 'badfilename'                 => 'Imatge es estat torni nom "$1".',
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
-'filetype-badtype'            => "'''« .$1 »''' es un tipe de fichièr non desirat 
-: Lista dels tipes de fichièrs autorizats : $2",
 'filetype-missing'            => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
 'large-file'                  => 'Los fichièrs importats deurián pas èsser mai gros que $1 ; aqueste fichièr fa $2.',
 'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximom autorizat.",

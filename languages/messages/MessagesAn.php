@@ -906,7 +906,6 @@ Ta encluyir a imachen en una pachina, emplegue un binclo d'una d'istas trazas ''
 'illegalfilename'             => "O nombre d'archivo «$1» contiene caráuters no premititos en títols de pachinas. Por fabor, cambee o nombre de l'archibo y mire de tornar á cargarlo.",
 'badfilename'                 => 'O nombre d\'a imachen s\'ha cambiato por "$1".',
 'filetype-badmime'            => 'No se premite cargar archibos de tipo MIME "$1".',
-'filetype-badtype'            => "'''\".\$1\"''' ye una mena d'archibo no premitita. Lista de clases d'archibo premititas: \$2",
 'filetype-missing'            => 'L\'archibo no tiene garra estensión (como ".jpg").',
 'large-file'                  => 'Se consella que os archibos no sigan mayors de $1; iste archbo este archivo ocupa $2.',
 'largefileserver'             => "A grandaria d'iste archibo ye mayor d'a que a confegurazión d'iste serbidor premite.",

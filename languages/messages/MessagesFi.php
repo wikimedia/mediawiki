@@ -1010,8 +1010,6 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'illegalfilename'             => "Tiedoston nimessä '''$1''' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä lähettämistä uudelleen.",
 'badfilename'                 => 'Tiedoston nimi vaihdettiin: $1.',
 'filetype-badmime'            => 'Tiedostot, joiden MIME-tyyppi on <tt>$1</tt> ei voi lähettää.',
-'filetype-badtype'            => '”<tt>.$1</tt>” ei ole suositeltava tiedostomuoto.
-: Sallitut tiedostomuodot: $2',
 'filetype-missing'            => 'Tiedostolta puuttuu tiedostopääte – esimerkiksi <tt>.jpg</tt>.',
 'large-file'                  => 'Tiedostojen enimmäiskoko on $1. Lähettämäsi tiedoston koko on $2.',
 'largefileserver'             => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',

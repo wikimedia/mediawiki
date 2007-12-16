@@ -993,8 +993,6 @@ For å lenke direkte til bildet, skriv:
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
-'filetype-badtype'            => "'''«.$1»''' er en uønsket filtype
-: Liste over tillatte filtyper: $2",
 'filetype-missing'            => 'Filen har ingen endelsen (som «.jpg»).',
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
 'largefileserver'             => 'Denne fila er større enn det tjeneren er konfigurert til å tillate.',

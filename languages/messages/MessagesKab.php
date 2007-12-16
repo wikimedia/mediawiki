@@ -824,8 +824,6 @@ Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
 'illegalfilename'             => 'Isem n ufaylu "$1" yesɛa isekkilen ur tettalaseḍ ara a ten-tesseqdceḍ deg yizwal n isebtar. G leɛnayek beddel isem n ufaylu u azen-it tikkelt nniḍen.',
 'badfilename'                 => 'Isem ufaylu yettubeddel ar "$1".',
 'filetype-badmime'            => 'Ur tettalaseḍ ara ad tazneḍ ufayluwen n anaw n MIME "$1".',
-'filetype-badtype'            => "Ur neqbil ara ufayluwen n anwan am '''\".\$1\"'''
-: Umuɣ n inawen i neqbel: \$2",
 'filetype-missing'            => 'Afaylu ur yesɛi ara taseggiwit (am ".jpg").',
 'large-file'                  => 'Ilaq tiddi n ufayluwen ur tettili kter n $1; tiddi n ufaylu-agi $2.',
 'largefileserver'             => 'Afaylu meqqer aṭṭas, server ur t-yeqbil ara.',

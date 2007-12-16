@@ -936,8 +936,6 @@ Para incluir unha imaxe na páxina, use unha ligazón do seguinte xeito:
 'illegalfilename'             => 'O nome de ficheiro "$1" contén caracteres que non están permitidos nos títulos das páxinas. Por favor cambie o nome do ficheiro e tente cargalo outra vez.',
 'badfilename'                 => 'O nome desta imaxe cambiouse a "$1".',
 'filetype-badmime'            => 'Non se permite enviar ficheiros de tipo MIME "$1".',
-'filetype-badtype'            => "'''\".\$1\"''' é un tipo de ficheiro que non se admite
-: Listaxe de tipos de ficheiro permitidos: \$2",
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
 'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere $1; este ficheiro ocupa $2.',
 'largefileserver'             => 'Este ficheiro é de maior tamaño que o permitido pola configuración do servidor.',
