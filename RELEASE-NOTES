@@ -99,6 +99,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Split ambiguous filetype-badtype message into two new messages,
   filetype-unwanted-type and filetype-banned-type.
 * Added link to the old title in Special:Movepage
+* On Special:Movepage, errors are now more noticeable.
 
 === Bug fixes in 1.12 ===
 
