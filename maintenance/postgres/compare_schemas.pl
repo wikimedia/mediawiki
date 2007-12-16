@@ -130,6 +130,45 @@ sub parse_sql {
 
 } ## end of parse_sql
 
+## Read in the parser test information
+my $parsefile = '../parserTests.inc';
+open my $pfh, '<', $parsefile or die qq{Could not open "$parsefile": $!\n};
+my $stat = 0;
+my %ptable;
+while (<$pfh>) {
+	if (!$stat) {
+		if (/function listTables/) {
+			$stat = 1;
+		}
+		next;
+	}
+	$ptable{$1}=2 while /'(\w+)'/g;
+	last if /;/;
+}
+close $pfh;
+
+my $OK_NOT_IN_PTABLE = '
+filearchive
+logging
+profiling
+querycache_info
+trackbacks
+transcache
+user_newtalk
+';
+
+## Make sure all tables in main tables.sql are accounted for int the parsertest.
+for my $table (sort keys %{$old{'../tables.sql'}}) {
+	$ptable{$table}++;
+	next if $ptable{$table} > 2;
+	next if $OK_NOT_IN_PTABLE =~ /\b$table\b/;
+	print qq{Table "$table" is in the schema, but not used inside of parserTest.inc\n};
+}
+## Any that are used in ptables but no longer exist in the schema?
+for my $table (sort grep { $ptable{$_} == 2 } keys %ptable) {
+	print qq{Table "$table" ($ptable{$table}) used in parserTest.inc, but not found in schema\n};
+}
+
 for my $oldfile (@old) {
 
 ## Begin non-standard indent
