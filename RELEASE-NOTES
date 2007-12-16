@@ -360,6 +360,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Standardized limits. Revisions and Deletedrevisions formerly using 200 / 10000, 
   now 500 / 5000, in line with other modules.
 * Added list=allcategories module
+* (bug 12321) API list=blocks reveals private data
 
 === Languages updated in 1.12 ===
 
