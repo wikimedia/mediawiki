@@ -23,7 +23,6 @@ function Searching_Go()
 function Search_Typing() {
 	started=true;
 	typing=true;
-	window.status = "Waiting until you're done typing...";
 	setTimeout("Search_doneTyping()", 500);
 
 	// I believe these are needed by IE for when the users press return?

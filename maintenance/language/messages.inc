@@ -2198,6 +2198,7 @@ $wgMessageStructure = array(
 		'searchnamed',
 		'articletitles',
 		'hideresults',
+		'useajaxsearch',
 	),
 	'separators' => array(
 		'catseparator',
