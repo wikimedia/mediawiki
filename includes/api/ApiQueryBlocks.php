@@ -112,15 +112,13 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$block = array();
 			if($fld_id)
 				$block['id'] = $row->ipb_id;
-			if($fld_user)
+			if($fld_user && !$row->ipb_auto)
 			{
 				$block['user'] = $row->ipb_address;
-				$block['userid'] = $row->ipb_user;
 			}
 			if($fld_by)
 			{
 				$block['by'] = $row->user_name;
-				$block['byuserid'] = $row->ipb_by;
 			}
 			if($fld_timestamp)
 				$block['timestamp'] = wfTimestamp(TS_ISO_8601, $row->ipb_timestamp);
