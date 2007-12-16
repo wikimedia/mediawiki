@@ -296,6 +296,7 @@
 	'wuu' => '吴语',		# Wu
 	'xal' => 'Хальмг',		# Kalmyk
 	'xh' => 'isiXhosa',		# Xhosan
+	'ydd' => 'מיזרח־ייִדיש', # Eastern Yiddish
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
 	'yue' => '粵語', 	# Cantonese -- (bug 8217) yue instead of zh-yue, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=y
