@@ -382,6 +382,7 @@ Goulenn : $2",
 'namespaceprotected'   => "N'oc'h ket aotreet da zegas kemmoù e pajennoù an esaouenn anv '''$1'''.",
 'customcssjsprotected' => "N'oc'h ket aotreet da zegas kemmoù war ar bajenn-mañ rak kavout a reer enni arventennoù personel un implijer all.",
 'ns-specialprotected'  => "N'haller ket kemmañ ar pajennoù en esaouenn anv {{ns:special}}.",
+'titleprotected'       => "Gwarezet eo bet an titl-mañ p'eo bet krouet gant [[User:$1|$1]]. Setu amañ perak <i>$2</i>.",
 
 # Login and logout pages
 'logouttitle'                => 'Dilugañ',
@@ -760,6 +761,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.
 'searchsubtitle'        => 'Evit ar goulenn "[[:$1]]"',
 'searchsubtitleinvalid' => 'Evit ar goulenn "$1"',
 'noexactmatch'          => "'''N'eus pajenn ebet anvet \"\$1\".''' Gallout a rit [[:\$1|krouiñ ar bajenn]].",
+'noexactmatch-nocreate' => "'''N'eus pajenn ebet anvet \"\$1\".'''",
 'titlematches'          => 'Klotadurioù gant an titloù',
 'notitlematches'        => "N'emañ ar ger(ioù) goulennet e titl pennad ebet",
 'textmatches'           => 'Klotadurioù en testennoù',
@@ -927,6 +929,9 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.jpg]]</nowiki>''' pe
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.png|testenn all]]</nowiki>''' pe
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:anv_ar_restr.ogg]]</nowiki>''' evit ar sonioù.",
+'upload-permitted'            => 'Seurtoù restroù aotreet : $1.',
+'upload-preferred'            => 'Seurtoù restroù gwellañ : $1.',
+'upload-prohibited'           => 'Seurtoù restroù berzet : $1.',
 'uploadlog'                   => 'marilh ar pajennoù enporzhiet',
 'uploadlogpage'               => 'Marilh ar pajennoù enporzhiet',
 'uploadlogpagetext'           => 'Setu marilh ar restroù diwezhañ bet karget war ar servijer.',
@@ -942,6 +947,8 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'illegalfilename'             => "Lakaet ez eus bet er restr « $1 » arouezennoù n'int ket aotreet evit titl ur bajenn. Mar plij, adanvit ar restr hag adkasit anezhi.",
 'badfilename'                 => 'Anvet eo bet ar skeudenn « $1 ».',
 'filetype-badmime'            => 'N\'eo ket aotreet pellgargañ ar restroù a seurt MIME "$1".',
+'filetype-unwanted-type'      => "'''Eus ar seurt restroù n'int ket c'hoantaet eo \".\$1\"'''.  Ar re a zere ar gwellañ zo eus ar seurt \$2.",
+'filetype-banned-type'        => "'''N'eo ket \".\$1\"''' eus ar seurt restroù aotreet.  \$2 eo ar seurt restroù degemeret.",
 'filetype-missing'            => 'N\'eus astenn ebet stag ouzh ar restr (evel ".jpg").',
 'large-file'                  => "Erbediñ a reer ne vefe ket brasoc'h ar restroù eget $1; $2 eo ment ar restr-mañ.",
 'largefileserver'             => "Brasoc'h eo ar restr-mañ eget ar pezh a c'hall ar servijer aotren.",
@@ -1167,11 +1174,13 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'protectedpages'          => 'Pajennoù gwarezet',
 'protectedpagestext'      => "Gwarezet eo ar pajennoù da-heul; n'haller na degas kemmoù enno nag o dilec'hiañ",
 'protectedpagesempty'     => "N'eus pajenn gwarezet ebet gant an arventennoù-mañ evit poent.",
+'protectedtitles'         => 'Titloù gwarezet',
+'protectedtitlestext'     => "An titloù da-heul zo bet gwarezet p'int bet krouet",
+'protectedtitlesempty'    => "N'eus bet gwarezet titl ebet dezhañ an arventennoù-se evit poent.",
 'listusers'               => 'Roll an implijerien',
 'specialpages'            => 'Pajennoù dibar',
 'spheading'               => 'Pajennoù dibar',
 'restrictedpheading'      => 'Pajennoù dibar miret-strizh',
-'rclsub'                  => '(eus ar pajennoù liammet ouzh "$1")',
 'newpages'                => 'Pajennoù nevez',
 'newpages-username'       => 'Anv implijer :',
 'ancientpages'            => 'Pennadoù koshañ',
@@ -1403,8 +1412,9 @@ Setu an doare a-vremañ evit ar bajenn-mañ <strong>$1</strong>:",
 'pagesize'                    => '(okted)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Kemmañ',
-'restriction-move' => 'Adenvel',
+'restriction-edit'   => 'Kemmañ',
+'restriction-move'   => 'Adenvel',
+'restriction-create' => 'Krouiñ',
 
 # Restriction levels
 'restriction-level-sysop'         => 'Gwarez klok',
@@ -1618,6 +1628,7 @@ En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma kari
 'movepage-moved'          => '<big>\'\'\'Adkaset eo bet "$1" da "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Ur pennad gantañ an anv-se zo dija pe n'eo ket reizh an titl hoc'h eus dibabet.
 Dibabit unan all mar plij.",
+'cantmove-titleprotected' => "N'hallit ket dilec'hiañ ur bajenn d'al lec'h-mañ rak gwarezet eo bet an titl nevez p'eo bet krouet.",
 'talkexists'              => "Dilec'hiet mat eo bet ar bajenn hec'h-unan met chomet eo ar bajenn gaozeal rak unan all a oa dija gant an anv nevez-se. Kendeuzit anezho c'hwi hoc'h-unan mar plij.",
 'movedto'                 => 'adanvet e',
 'movetalk'                => 'Adenvel ivez ar bajenn "gaozeal", mar bez ret.',
@@ -2207,6 +2218,7 @@ $1',
 'searchnamed'      => "Klask ar pennadoù anvet ''$1''.",
 'articletitles'    => "Pennadoù a grog gant ''$1''",
 'hideresults'      => "Kuzhat an disoc'hoù",
+'useajaxsearch'    => 'Grit gant ar klask AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; pajenn gent',

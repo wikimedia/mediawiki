@@ -674,9 +674,10 @@ $1',
 'contribsub2'   => '$1 ($2) ಗೆ',
 'uctop'         => ' (ಮೇಲಕ್ಕೆ)',
 
-'sp-contributions-newbies' => 'ಹೊಸ ಖಾತೆಗಳ ಕಾಣಿಕೆಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸು',
-'sp-contributions-search'  => 'ಸಂಪಾದನೆಗಳನ್ನು ಹುಡುಕು',
-'sp-contributions-submit'  => 'ಹುಡುಕು',
+'sp-contributions-newbies'     => 'ಹೊಸ ಖಾತೆಗಳ ಕಾಣಿಕೆಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸು',
+'sp-contributions-newbies-sub' => 'ಹೊಸ ಖಾತೆಗಳಿಗೆ',
+'sp-contributions-search'      => 'ಸಂಪಾದನೆಗಳನ್ನು ಹುಡುಕು',
+'sp-contributions-submit'      => 'ಹುಡುಕು',
 
 # What links here
 'whatlinkshere'       => 'ಇಲ್ಲಿಗೆ ಯಾವ ಸಂಪರ್ಕ ಕೂಡುತ್ತದೆ',

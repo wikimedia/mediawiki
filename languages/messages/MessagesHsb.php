@@ -986,6 +986,9 @@ Zo by so wobraz do strony zapřijał, wužij wotkaz we formje
 
 abo zo by so direktnje z dataju zwjazało
 * <b><nowiki>[[{{ns:media}}:Dataja.ogg]]</nowiki></b>',
+'upload-permitted'            => 'Dowolene datajowe typy: $1.',
+'upload-preferred'            => 'Preferowane datajowe typy: $1.',
+'upload-prohibited'           => 'Zakazane datajowe typy: $1.',
 'uploadlog'                   => 'Protokol nahraćow',
 'uploadlogpage'               => 'Protokol nahraćow',
 'uploadlogpagetext'           => 'Deleka je lisćina naposledk nahratych datajow.',
@@ -1001,6 +1004,8 @@ abo zo by so direktnje z dataju zwjazało
 'illegalfilename'             => 'Mjeno dataje „$1” wobsahuje znamješka, kotrež w titlach stronow dowolene njejsu. Prošu přemjenuj dataju a spytaj ju znowa nahrać.',
 'badfilename'                 => 'Mjeno dataje bu do „$1” změnjene.',
 'filetype-badmime'            => 'Dataje družiny MIME „$1” njesmědźa so składować.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' je njepožadany datajowy typ. Preferowane datajowe sypy su \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' njeje dowoleny datajowy typ. Dowolene datajowe typy su \$2.",
 'filetype-missing'            => 'Dataja nima kóncowku (na přikład „.jpg“).',
 'large-file'                  => 'Doporuča so, zo dataje wjetše hač $1 njejsu; tuta dataja ma $2.',
 'largefileserver'             => 'Dataja je wjetša hač serwer dowoluje.',
@@ -1695,6 +1700,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'pagemovedsub'            => 'Přesunjenje wuspěšne',
 'movepage-moved'          => "<big>'''Strona „$1“ bu k nowemu titlej „$2“ přesunjena.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',
+'cantmove-titleprotected' => 'Njemóžeš stronu do tutoho městna přesunyć, dokelž nowy titul bu přećiwo wutworjenju škitany',
 'talkexists'              => 'Strona sama bu z wuspěchom přesunjena, diskusijna strona pak njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změš jeju manuelnje.',
 'movedto'                 => 'přesunjena do hesła',
 'movetalk'                => 'Přisłušnu diskusijnu stronu tohorunja přesunyć',
@@ -2278,6 +2284,7 @@ Prošu wobkruć, zo chceš ju woprawdźe znowa wutworić.',
 'searchnamed'      => 'Strony pytać, w kotrychž titlach so <i>$1</i> jewi.',
 'articletitles'    => 'Strony pytać, kotrež so z <i>$1</i> započinaja',
 'hideresults'      => 'Wuslědki schować',
+'useajaxsearch'    => 'Pytanje AJAX wužiwać',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← předchadna strona',

@@ -804,6 +804,24 @@ Altres administradors d'aquest web basat en wiki encara podrien accedir al conti
 # Oversight log
 'oversightlog' => "Registre d'oversight",
 
+# History merging
+'mergehistory'                     => 'Fusiona els historials de les pàgines',
+'mergehistory-box'                 => 'Fusiona les revisions de dues pàgines:',
+'mergehistory-from'                => "Pàgina d'origen:",
+'mergehistory-into'                => 'Pàgina de destinació:',
+'mergehistory-go'                  => 'Mostra les edicions que es poden fusionar',
+'mergehistory-submit'              => 'Fusiona les revisions',
+'mergehistory-empty'               => 'No pot fusionar-se cap revisió',
+'mergehistory-fail'                => "No s'ha pogut realitzar la fusió de l'historial, comproveu la pàgina i els paràmetres horaris.",
+'mergehistory-no-source'           => "La pàgina d'origen $1 no existeix.",
+'mergehistory-no-destination'      => 'La pàgina de destinació $1 no existeix.',
+'mergehistory-invalid-source'      => "La pàgina d'origen ha de tenir un títol vàlid.",
+'mergehistory-invalid-destination' => 'La pàgina de destinació ha de tenir un títol vàlid.',
+
+# Merge log
+'mergelog'    => 'Fusiona el registre',
+'revertmerge' => 'Desfusiona',
+
 # Diffs
 'history-title'           => 'Historial de versions de «$1»',
 'difference'              => '(Diferència entre revisions)',
@@ -818,6 +836,7 @@ Altres administradors d'aquest web basat en wiki encara podrien accedir al conti
 'searchsubtitle'        => "Heu cercat '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Per consulta "$1"',
 'noexactmatch'          => "'''No hi ha cap pàgina anomenada «$1».''' Si voleu, podeu ajudar [[:$1|creant-la]].",
+'noexactmatch-nocreate' => "'''No hi ha cap pàgina amb títol «$1».'''",
 'titlematches'          => "Coincidències de títol d'article",
 'notitlematches'        => "No hi ha coincidències de títol d'article",
 'textmatches'           => "Coincidències de text d'article",
@@ -956,6 +975,7 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Un usuari vigila|$1 usuaris vigilen}} aquesta pàgina]',
 'rc_categories'                     => 'Limita a les categories (separades amb "|")',
 'rc_categories_any'                 => 'Qualsevol',
+'newsectionsummary'                 => '/* $1 */ secció nova',
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",
@@ -979,6 +999,9 @@ Per a incloure una imatge en un article, feu un enllaç de la forma
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.jpg]]</nowiki>''';
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.png|alt text]]</nowiki>'''; o per a sons
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitxer.ogg]]</nowiki>''' per a enllaçar-ho directament al fitxer.",
+'upload-permitted'            => 'Tipus de fitxer permesos: $1.',
+'upload-preferred'            => 'Tipus de fitxer preferits: $1.',
+'upload-prohibited'           => 'Tipus de fitxer prohibits: $1.',
 'uploadlog'                   => 'registre de càrregues',
 'uploadlogpage'               => 'Registre de càrregues',
 'uploadlogpagetext'           => "A sota hi ha un llistat dels fitxers que s'han pujat més recentment.
@@ -991,8 +1014,11 @@ Totes les hores són les del servidor (UTC).",
 'uploadedfiles'               => 'Fitxers carregats',
 'ignorewarning'               => 'Ignora qualsevol avís i desa el fitxer igualment.',
 'ignorewarnings'              => 'Ignora qualsevol avís',
+'minlength1'                  => "Els noms de fitxer han de ser de com a mínim d'una lletra.",
 'illegalfilename'             => "El nom de l'arxiu “$1” conté caràcters que no estan permesos en els títols de pàgines. Si us plau canvieu el nom a l'arxiu i torneu a carregar-lo.",
 'badfilename'                 => 'El nom de la imatge s\'ha canviat a "$1".',
+'filetype-badmime'            => 'Els fitxers del tipus MIME «$1» no poden penjar-se.',
+'filetype-missing'            => 'El fitxer no té extensió (com ara «.jpg»).',
 'large-file'                  => 'Els fitxers importants no haurien de ser més grans de $1; aquest fitxer ocupa $2.',
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => "L'arxiu que heu carregat sembla estar buit. Això por ser degut a un mal caràcter en el nom de l'arxiu. Si us plau reviseu si realment voleu carregar aquest arxiu.",
@@ -1075,8 +1101,11 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'imagelist_search_for'      => "Cerca un nom d'imatge:",
 
 # File reversion
-'filerevert'        => 'Reverteix $1',
-'filerevert-legend' => 'Reverteix el fitxer',
+'filerevert'            => 'Reverteix $1',
+'filerevert-legend'     => 'Reverteix el fitxer',
+'filerevert-comment'    => 'Comentari:',
+'filerevert-submit'     => 'Reverteix',
+'filerevert-badversion' => "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",
 
 # File deletion
 'filedelete'         => 'Suprimeix $1',
@@ -1101,10 +1130,12 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'unusedtemplateswlh'  => 'altres enllaços',
 
 # Random page
-'randompage' => "Pàgina a l'atzar",
+'randompage'         => "Pàgina a l'atzar",
+'randompage-nopages' => "No hi ha cap pàgina en l'espai de noms.",
 
 # Random redirect
-'randomredirect' => "Redirecció a l'atzar",
+'randomredirect'         => "Redirecció a l'atzar",
+'randomredirect-nopages' => "No hi ha cap redirecció a l'espai de noms.",
 
 # Statistics
 'statistics'             => 'Estadístiques',
@@ -1182,6 +1213,9 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'protectedpages'          => 'Pàgines protegides',
 'protectedpagestext'      => 'Aquestes pàgines estan protegides contra la seva lliure edició o el seu reanomenament:',
 'protectedpagesempty'     => 'No hi ha cap pàgina protegida per ara',
+'protectedtitles'         => 'Títols protegits',
+'protectedtitlestext'     => 'Els títols següents estan protegits de crear-se',
+'protectedtitlesempty'    => 'No hi ha cap títol protegit actualment amb aquests paràmetres.',
 'listusers'               => "Llistat d'usuaris",
 'specialpages'            => 'Pàgines especials',
 'spheading'               => 'Pàgines especials',
@@ -1220,6 +1254,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador. 
 Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usuari, o la pàgina afectada.",
 'logempty'             => 'No hi ha cap coincidència en el registre.',
+'log-title-wildcard'   => 'Cerca els títols que comencin amb aquest text',
 
 # Special:Allpages
 'nextpage'          => 'Següent pàgina ($1)',
@@ -1319,6 +1354,8 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'created'            => 'publicat',
 'enotif_subject'     => '$PAGEEDITOR ha $CHANGEDORCREATED la pàgina $PAGETITLE en {{SITENAME}}',
 'enotif_lastvisited' => "Vegeu $1 per a tots els canvis que s'han fet des de la teua darrera visita.",
+'enotif_lastdiff'    => 'Consulteu $1 per a visualitzar aquest canvi.',
+'enotif_anon_editor' => 'usuari anònim $1',
 'enotif_body'        => 'Benvolgut $WATCHINGUSERNAME,
 
 La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATE per $PAGEEDITOR, vegeu $PAGETITLE_URL per la versió actual.
@@ -1364,6 +1401,8 @@ Mostra $2 per a un registre dels esborrats més recents.',
 'deletionlog'                 => "Registre d'esborrats",
 'reverted'                    => 'Invertit amb una revisió anterior',
 'deletecomment'               => 'Motiu per a ser esborrat',
+'deleteotherreason'           => 'Motius diferents o addicionals:',
+'deletereasonotherlist'       => 'Altres motius',
 'deletereason-dropdown'       => "*Motius freqüents d'esborrat
 ** Demanada per l'autor
 ** Violació del copyright
@@ -1418,8 +1457,9 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Edita',
-'restriction-move' => 'Reanomena',
+'restriction-edit'   => 'Edita',
+'restriction-move'   => 'Reanomena',
+'restriction-create' => 'Crea',
 
 # Restriction levels
 'restriction-level-sysop'         => 'protegida',
@@ -1448,6 +1488,7 @@ abans de la seua eliminació. El text de les revisions eliminades només és acc
 'undelete-revision'        => "S'ha eliminat la revisió de $1 de $2 (per $3):",
 'undeleterevision-missing' => "La revisió no és vàlida o hi manca. Podeu tenir-hi un mal enllaç, o bé
 pot haver-se restaurat o eliminat de l'arxiu.",
+'undelete-nodiff'          => "No s'ha trobat cap revisió anterior.",
 'undeletebtn'              => 'Restaura!',
 'undeletereset'            => 'Reinicia',
 'undeletecomment'          => 'Comentari:',
@@ -2244,6 +2285,7 @@ $1",
 'searchnamed'      => "Cerca els articles que s'anomenin ''$1''.",
 'articletitles'    => "Articles que comencen amb ''$1''",
 'hideresults'      => 'Amaga els resultats',
+'useajaxsearch'    => 'Utilitza la cerca en AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; pàgina prèvia',

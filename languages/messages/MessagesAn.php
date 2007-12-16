@@ -891,6 +891,9 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 
 Ta encluyir a imachen en una pachina, emplegue un binclo d'una d'istas trazas '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|testo alternatibo]]</nowiki>''' u
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.",
+'upload-permitted'            => "Tipos d'archibo premititos: $1.",
+'upload-preferred'            => "Tipos d'archibo preferitos: $1.",
+'upload-prohibited'           => "Tipos d'archibo biedatos: $1.",
 'uploadlog'                   => 'rechistro de cargas',
 'uploadlogpage'               => "Rechistro de cargas d'archibos",
 'uploadlogpagetext'           => "Contino ye una lista d'os zaguers archibos cargatos.",

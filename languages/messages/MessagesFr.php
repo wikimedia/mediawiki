@@ -916,6 +916,9 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 <b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.jpg]]</nowiki></b>,
 <b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.png|texte alternatif]]</nowiki></b> or
 <b><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></b> pour lier directement vers le fichier.',
+'upload-permitted'            => 'Formats de fichiers autorisés : $1.',
+'upload-preferred'            => 'Formats de fichiers préférés : $1.',
+'upload-prohibited'           => 'Formats de fichiers interdits : $1.',
 'uploadlog'                   => 'Historique des importations',
 'uploadlogpage'               => 'Historique des importations de fichiers multimédia',
 'uploadlogpagetext'           => 'Voici la liste des derniers fichiers copiés sur le serveur.',
@@ -931,6 +934,8 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'illegalfilename'             => 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le copier à nouveau.',
 'badfilename'                 => 'L’image a été renommée « $1 ».',
 'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être importés.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' est d'un format non désiré.  Ceux qui sont préférés sont \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' est dans un format non admis.  Ceux qui sont acceptés sont \$2.",
 'filetype-missing'            => 'Le fichier n’a aucune extension (comme « .jpg » par exemple).',
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
@@ -1600,6 +1605,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez celles-ci si nécessaire.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
+'cantmove-titleprotected' => "Vous n'avez pas la possibilité de déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.",
 'talkexists'              => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',
 'movedto'                 => 'renommé en',
 'movetalk'                => 'Renommer aussi la page de discussion associée',
@@ -2189,6 +2195,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'searchnamed'      => 'Chercher les articles nommés « $1 ».',
 'articletitles'    => 'Articles commençant par « $1 »',
 'hideresults'      => 'Cacher les résultats',
+'useajaxsearch'    => 'Utiliser la recherche AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← page précédente',

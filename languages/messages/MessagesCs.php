@@ -1079,6 +1079,9 @@ Uvědomte si laskavě, že stejně jako u ostatních wikistránek mohou
 ostatní uživatelé vámi nahraný soubor smazat či upravit, pokud to
 uznají za vhodné; pokud budete tuto funkci zneužívat, může být
 váš uživatelský účet zablokován.',
+'upload-permitted'            => 'Povolené formáty souborů: $1.',
+'upload-preferred'            => 'Upřednostňované formáty souborů: $1.',
+'upload-prohibited'           => 'Zakázané formáty souborů: $1.',
 'uploadlog'                   => 'kniha nahrávek',
 'uploadlogpage'               => 'Kniha nahrávek',
 'uploadlogpagetext'           => 'Níže najdete seznam nejnovějších souborů.',
@@ -1094,6 +1097,8 @@ váš uživatelský účet zablokován.',
 'illegalfilename'             => 'Název souboru "$1" obsahuje znaky, které nejsou povoleny v názvech stránek. Prosím přejmenujte soubor a zkuste jej nahrát znovu.',
 'badfilename'                 => 'Jméno souboru bylo změněno na „$1“.',
 'filetype-badmime'            => 'Není povoleno načítat soubory MIME typu „$1“.',
+'filetype-unwanted-type'      => "'''„.$1“''' je nežádoucí formát souborů. Upřednostňované formáty souborů jsou $2.",
+'filetype-banned-type'        => "'''„.$1“''' je nedovolený formát souborů. Povolené formáty souborů jsou $2.",
 'filetype-missing'            => 'Soubor nemá příponu (např. ".jpg").',
 'large-file'                  => 'Doporučuje se, aby délka souboru nepřesahovala $1, tento soubor má $2.',
 'largefileserver'             => 'Velikost tohoto souboru překračuje limit nastavený na serveru.',
@@ -1727,6 +1732,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'pagemovedsub'            => 'Úspěšně přesunuto',
 'movepage-moved'          => "<big>'''Stránka „$1“ byla přesunuta na „$2“.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
+'cantmove-titleprotected' => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'              => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
 'movedto'                 => 'přesunuto na',
 'movetalk'                => 'Přesunout také diskusní stránku, existuje-li.',
