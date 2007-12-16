@@ -1253,7 +1253,8 @@ class Title {
 
 	/**
 	 * Is this title subject to title protection?
-	 * @return array An associative array representing any existent title protection.
+	 * @return mixed An associative array representing any existent title
+	 *   protection, or false if there's none.
 	 */
 	public function getTitleProtection() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -2305,7 +2306,7 @@ class Title {
 			}
 		} else {
 			$tp = $nt->getTitleProtection();
-			if (!$wgUser->isAllowed($tp['pt_create_perm'])) {
+			if ( $tp and !$wgUser->isAllowed( $tp['pt_create_perm'] ) ) {
 				return 'cantmove-titleprotected';
 			}
 		}
