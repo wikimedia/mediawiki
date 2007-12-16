@@ -1446,6 +1446,13 @@ div#searchTarget ul li:before {
 	content: "\00BB \0020";
 }
 
+div#searchTargetHide {
+	float:right;
+	border:solid 1px black;
+	background:gainsboro;
+	padding:2px;
+}
+
 div.multipageimagenavbox {
    border: solid 1px silver;
    padding: 4px;
