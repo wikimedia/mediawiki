@@ -1,5 +1,5 @@
 <?php
-/** Estremeñu (Estremeñu)
+/** Extremaduran (Estremeñu)
  *
  * @addtogroup Language
  *
@@ -209,6 +209,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Arrayu heneral de responsabiliá',
 'edithelp'          => 'Ayua d´eición',
 'edithelppage'      => 'Help:Eitandu',
+'faqpage'           => 'Proyeutu:FAQ',
 'helppage'          => 'Help:Continius',
 'mainpage'          => 'Páhina prencipal',
 'policy-url'        => 'Project:Pulítica',
@@ -330,6 +331,7 @@ $2',
 'namespaceprotected'   => "Nu tiinis premisu pa eital páhinas nel \"espaciu e nombris\" '''\$1'''.",
 'customcssjsprotected' => 'Nu tiinis premisu pa eital esta páhina ebiu a que contieni la configuración presonal d´otru usuáriu.',
 'ns-specialprotected'  => 'Nu se puein eital las páhinas el {{ns:special}} "espaciu e nombris".',
+'titleprotected'       => 'Esti entítulu á siu atarugau pol [[User:$1|$1]]. La razón es la siguienti: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Salil',
@@ -589,7 +591,6 @@ Velaquí el rustrihu d´esborrau:",
 La razón dá pol $3 es ''$2''",
 
 # History pages
-'revhistory'          => 'Estorial de revisionis',
 'viewpagelogs'        => 'Vel los rustrihus d´esta páhina',
 'nohistory'           => 'Nu ai dengún estorial d´eicionis pa esta páhina.',
 'revnotfound'         => 'Revisión nu alcuentrá',
@@ -611,6 +612,7 @@ La razón dá pol $3 es ''$2''",
 'deletedrev'          => '[esborrau]',
 'histfirst'           => 'Mas recienti',
 'histlast'            => 'Mas antigu',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 byts}})',
 'historyempty'        => '(vaciu)',
 
 # Revision feed
@@ -684,16 +686,12 @@ El restu e duendis d'esti güiqui sí tendrán premisu pa visoreal el caltiniu a
 'mergelogpagetext'   => "Embahu se muestra una lista colas úrtimas uñificacionis d'estorialis.",
 
 # Diffs
-'history-title'             => 'Estorial de revisionis de "$1"',
-'difference'                => '(Deferéncias entri las revisionis)',
-'loadingrev'                => 'cargandu revisión pa def',
-'lineno'                    => 'Línia $1:',
-'editcurrent'               => 'Eital la velsión atual d´esta páhina',
-'selectnewerversionfordiff' => 'Selecional una velsión mas recienti pa comparal',
-'selectolderversionfordiff' => 'Selecional una velsión mas antigua pa comparal',
-'compareselectedversions'   => 'Comparal velsionis aseñalás',
-'editundo'                  => 'eshazel',
-'diff-multi'                => '(Nu se {{PLURAL:$1|muestra una revisión entelmeya|muestran $1 revisionis entelmeyas}}.)',
+'history-title'           => 'Estorial de revisionis de "$1"',
+'difference'              => '(Deferéncias entri las revisionis)',
+'lineno'                  => 'Línia $1:',
+'compareselectedversions' => 'Comparal velsionis aseñalás',
+'editundo'                => 'eshazel',
+'diff-multi'              => '(Nu se {{PLURAL:$1|muestra una revisión entelmeya|muestran $1 revisionis entelmeyas}}.)',
 
 # Search results
 'searchresults'         => 'Landeal resurtaus',
@@ -701,6 +699,7 @@ El restu e duendis d'esti güiqui sí tendrán premisu pa visoreal el caltiniu a
 'searchsubtitle'        => "Landeasti '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Landeasti '''$1'''",
 'noexactmatch'          => "'''Nu desisti denguna páhina e nombri \"\$1\".''' Pueis [[:\$1|creala tú]].",
+'noexactmatch-nocreate' => "'''Nu desisti denguna páhina con el nombri \"\$1\".'''",
 'titlematches'          => 'Conciéncias con el entítulu el artículu',
 'notitlematches'        => 'Nu ai artículus llamaus asina',
 'textmatches'           => 'Conciéncias con el testu el artículu',
@@ -1072,11 +1071,11 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'protectedpages'          => 'Páhinas protehias',
 'protectedpagestext'      => 'Las siguientis páhinas nu se puein ni movel ni eital (están protehias)',
 'protectedpagesempty'     => 'Nu desisti denguna páhina protehia con estus parámetrus.',
+'protectedtitles'         => 'Entítulus protehius',
 'listusers'               => 'Lista d´usuárius',
 'specialpages'            => 'Páhinas especialis',
 'spheading'               => 'Páhinas especialis pa tolos usuárius',
 'restrictedpheading'      => 'Páhinas especialis restrinhias',
-'rclsub'                  => '(a páhinas atihás endi "$1")',
 'newpages'                => 'Nuevas páhinas',
 'newpages-username'       => 'Nombri d´usuáriu:',
 'ancientpages'            => 'Páhinas mas antiguas',
@@ -1085,6 +1084,8 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'movethispage'            => 'Movel esta páhina',
 'unusedcategoriestext'    => "Las siguientis categorias desistin, inque nu s'alcuentra denguna páhina/categoria en ellas.",
 'notargettitle'           => 'Dengún ohetivu',
+'pager-newer-n'           => '{{PLURAL:$1|1 mas recienti|$1 mas recientis}}',
+'pager-older-n'           => '{{PLURAL:$1|1 mas antigu|$1 mas antigus}}',
 
 # Book sources
 'booksources'               => 'Huentis de librus',
@@ -1293,8 +1294,9 @@ Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
 'maximum-size'                => 'Grandol mái.',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Eital',
-'restriction-move' => 'Movel',
+'restriction-edit'   => 'Eital',
+'restriction-move'   => 'Movel',
+'restriction-create' => 'Crial',
 
 # Restriction levels
 'restriction-level-sysop'         => 'totalmenti protehia',
@@ -1347,10 +1349,6 @@ $1',
 'month'         => 'Mes:',
 'year'          => 'Añu:',
 
-'sp-contributions-newest'      => 'Mas recienti',
-'sp-contributions-oldest'      => 'Mas antigu',
-'sp-contributions-newer'       => '$1 mas recientis',
-'sp-contributions-older'       => '$1 mas antigus',
 'sp-contributions-newbies'     => 'Solu muestral los endirguis de cuentas nuevas',
 'sp-contributions-newbies-sub' => 'Pa nuevas cuentas',
 'sp-contributions-blocklog'    => 'Rustrihu e tarugus',

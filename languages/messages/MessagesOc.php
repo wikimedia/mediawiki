@@ -274,6 +274,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Avertiments generals',
 'edithelp'          => 'Ajuda',
 'edithelppage'      => 'Help:Cossí editar una pagina',
+'faq'               => 'FdeQ',
 'helppage'          => 'Help:Ajuda',
 'mainpage'          => 'Acuèlh',
 'portal'            => 'Comunautat',

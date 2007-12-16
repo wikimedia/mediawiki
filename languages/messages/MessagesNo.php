@@ -461,7 +461,9 @@ $2',
 'namespaceprotected'   => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",
 'customcssjsprotected' => 'Du har ikke tillatelse til å redigere denne siden, fordi den inneholder en annen brukers personlige innstillinger.',
 'ns-specialprotected'  => 'Sier i navnerommet {{ns:special}} kan ikke redigeres.',
-'titleprotected'       => 'Denne tittelen har blitt låst for oppretting av [[User:$1|$1]]. Den oppgitte grunnen er <i>$2</i>.',
+'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]]. The reason given is <i>$2</i>.
+
+Denne tittelen har blitt låst for oppretting av [[User:$1|$1]]. Den oppgitte grunnen er <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
@@ -1212,6 +1214,9 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'protectedpages'          => 'Låste sider',
 'protectedpagestext'      => 'Følgende sider er låst for flytting eller redigering',
 'protectedpagesempty'     => 'Ingen sider er for øyeblikket låst med disse paramterne.',
+'protectedtitles'         => 'Beskyttede titler',
+'protectedtitlestext'     => 'Følgende titler er beskyttet fra opprettelse',
+'protectedtitlesempty'    => 'Ingen titler beskyttes med disse parameterne for øyeblikket.',
 'listusers'               => 'Brukerliste',
 'specialpages'            => 'Spesialsider',
 'spheading'               => 'Spesialsider for alle brukere',

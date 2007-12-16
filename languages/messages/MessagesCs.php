@@ -771,7 +771,7 @@ Ujistěte se, že je vhodné pokračovat v editaci stránky.
 Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
 
 # "Undo" feature
-'undo-success' => 'Editace byla zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
+'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
 'undo-failure' => 'Editace nemohla být zrušena kvůli konfliktu mezilehlých editací.',
 'undo-summary' => 'Zrušena verze $1 od uživatele [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuse]])',
 
@@ -1302,6 +1302,9 @@ Aktuální délka fronty údržby je '''$7'''.",
 'protectedpages'          => 'Zamčené stránky',
 'protectedpagestext'      => 'Následující stránky jsou zamčeny nebo polozamčeny pro editaci nebo přesun:',
 'protectedpagesempty'     => 'Žádná stránka není zamčena s těmito parametry.',
+'protectedtitles'         => 'Zamčené názvy stránek',
+'protectedtitlestext'     => 'Následující názvy jsou zamčeny a nelze na nich zakládat stránky',
+'protectedtitlesempty'    => 'S těmito parametry nejsou zamčeny žádné názvy.',
 'listusers'               => 'Uživatelé',
 'specialpages'            => 'Speciální stránky',
 'spheading'               => 'Speciální stránky pro všechny uživatele',
@@ -2419,10 +2422,5 @@ $1',
 'hebrew-calendar-m10-gen' => 'tamuzu',
 'hebrew-calendar-m11-gen' => 'avu',
 'hebrew-calendar-m12-gen' => 'elulu',
-
-# Unknown messages
-'protectedtitles'      => 'Zamčené názvy stránek',
-'protectedtitlesempty' => 'S těmito parametry nejsou zamčeny žádné názvy.',
-'protectedtitlestext'  => 'Následující názvy jsou zamčeny a nelze na nich zakládat stránky',
 
 );

@@ -238,7 +238,7 @@ $messages = array(
 'userexists'                 => '输入个用户名已经拨人注脱哉。请再选个两样个用户名。',
 'youremail'                  => '电子邮件:',
 'username'                   => '用户名:',
-'uid'                        => '用户名:',
+'uid'                        => '用户号：',
 'yourrealname'               => '真实姓名:',
 'yourlanguage'               => '语言:',
 'yournick'                   => '绰号:',
@@ -254,16 +254,19 @@ $messages = array(
 'emailauthenticated'         => '倷个电子邮箱地址勒拉 $1 验证过哉。',
 'accountcreated'             => '户头开好哉',
 'accountcreatedtext'         => '$1 个户头已经建立哉。',
+'loginlanguagelabel'         => '语言：$1',
 
 # Edit page toolbar
-'bold_sample'   => '黑体文本',
-'bold_tip'      => '黑体文本',
-'italic_sample' => '斜体文字',
-'italic_tip'    => '斜体文字',
-'link_tip'      => '内部链接',
-'headline_tip'  => '2级标题文字',
-'image_tip'     => '嵌入图片',
-'sig_tip'       => '倷个签名搭仔辰光记录',
+'bold_sample'    => '黑体文本',
+'bold_tip'       => '黑体文本',
+'italic_sample'  => '斜体文字',
+'italic_tip'     => '斜体文字',
+'link_sample'    => '链接标题',
+'link_tip'       => '内部链接',
+'extlink_sample' => 'http://www.example.com 链接标题',
+'headline_tip'   => '2级标题文字',
+'image_tip'      => '嵌入图片',
+'sig_tip'        => '倷个签名搭仔辰光记录',
 
 # Edit pages
 'summary'            => '总结',
@@ -544,12 +547,14 @@ $messages = array(
 # Watchlist
 'watchlist'            => '监控列表',
 'mywatchlist'          => '我个监控列表',
+'watchlistfor'         => "（'''$1'''个监控列表）",
 'nowatchlist'          => '倷个监控列表是空个。',
 'watchnologin'         => '朆登录',
 'addedwatch'           => '加到监控列表哉',
 'addedwatchtext'       => "该个页面 \"[[:\$1]]\" 已经加到侬个[[Special:Watchlist|监控列表]]哉。
 将来对该页面个改动搭仔搭界个讲张页个改动会列表垃该面，并且页面会垃拉[[Special:Recentchanges|近段辰光个改变列表]]里向显示成功'''黑体'''，实梗好外加便当拿渠拣出来。假使侬歇仔两日又想拿箇个页面登侬个监控列表里向拿脱个说法，垃侧条里向点击“弗要监控。",
 'removedwatch'         => '登监控列表里向拿脱哉',
+'removedwatchtext'     => '"[[:$1]]"已经从你个监控列表移除。',
 'watch'                => '监控',
 'watchthispage'        => '监控该只页面',
 'unwatch'              => '覅监控',
@@ -607,7 +612,11 @@ $messages = array(
 # Contributions
 'contributions' => '用户贡献',
 'mycontris'     => '我个贡献',
+'contribsub2'   => '$1个贡献（$2）',
 'uctop'         => '(顶浪)',
+
+'sp-contributions-blocklog' => '查封记录',
+'sp-contributions-username' => 'IP地址或用户名：',
 
 # What links here
 'whatlinkshere' => '链进来点啥',
@@ -615,15 +624,20 @@ $messages = array(
 'isredirect'    => '重定向页面',
 
 # Block/unblock
-'ipaddress'         => 'IP 地址:',
-'ipbreason'         => '理由:',
-'ipbsubmit'         => '封杀该个用户',
-'badipaddress'      => '无效 IP 地址',
-'blocklink'         => '封禁',
-'contribslink'      => '贡献',
-'blocklogpage'      => '封禁日志',
-'blocklogtext'      => '该个是用户封禁搭仔解禁操作个记录。自动封禁个IP地址弗会列勒该答。到[[Special:Ipblocklist|IP 封禁列表]]去看当前生效个封禁列表。',
-'proxyblocksuccess' => '好哉。',
+'blockip'            => '查封用户',
+'ipaddress'          => 'IP 地址:',
+'ipadressorusername' => 'IP地址或用户名：',
+'ipbreason'          => '理由:',
+'ipbreasonotherlist' => '其它原因',
+'ipbsubmit'          => '封杀该个用户',
+'ipbother'           => '其它时间：',
+'badipaddress'       => '无效 IP 地址',
+'infiniteblock'      => '永远',
+'blocklink'          => '封禁',
+'contribslink'       => '贡献',
+'blocklogpage'       => '封禁日志',
+'blocklogtext'       => '该个是用户封禁搭仔解禁操作个记录。自动封禁个IP地址弗会列勒该答。到[[Special:Ipblocklist|IP 封禁列表]]去看当前生效个封禁列表。',
+'proxyblocksuccess'  => '好哉。',
 
 # Move page
 'movepage'                => '页面捅荡',
@@ -716,6 +730,9 @@ $messages = array(
 'anonymous' => '{{SITENAME}}浪个匿名用户',
 'and'       => '搭仔',
 
+# Patrol log
+'patrol-log-auto' => '（自动）',
+
 # Image deletion
 'deletedrevision' => '拨删脱个旧修订 $1',
 
@@ -735,6 +752,14 @@ Variants for Chinese language
 
 'exif-componentsconfiguration-0' => '弗存在',
 
+'exif-subjectdistance-value' => '$1米',
+
+'exif-contrast-2' => '高',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => '公里每小时',
+'exif-gpsspeed-m' => '英里每小时',
+
 # External editor support
 'edit-externally' => '用外部应用程序来编辑该只文件',
 
@@ -743,6 +768,7 @@ Variants for Chinese language
 'imagelistall'     => '所有',
 'watchlistall2'    => '全部',
 'namespacesall'    => '全部',
+'monthsall'        => '全',
 
 # E-mail address confirmation
 'confirmemail'          => '确认电子邮件地址',
@@ -755,6 +781,9 @@ Variants for Chinese language
 
 # Delete conflict
 'confirmrecreate' => "用户[[User:$1|$1]] ([[User talk:$1|讲张]])勒拉倷开始编辑该页面之后拿俚删脱，理由是： : ''$2'' 请拿定章程，倷阿是真个要重建该页面。",
+
+# action=purge
+'confirm_purge_button' => '确定',
 
 # AJAX search
 'searchcontaining' => "搜寻里向有 ''$1'' 个页面。",
@@ -773,5 +802,8 @@ Variants for Chinese language
 # Auto-summaries
 'autoredircomment' => '重定向到 [[$1]]',
 'autosumm-new'     => '新页面：$1',
+
+# Watchlist editor
+'watchlistedit-normal-title' => '编辑监控列表',
 
 );

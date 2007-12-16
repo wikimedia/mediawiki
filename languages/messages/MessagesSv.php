@@ -1233,6 +1233,8 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'protectedpages'          => 'Skyddade sidor',
 'protectedpagestext'      => 'Följande sidor är skyddade mot redigering eller flyttning.',
 'protectedpagesempty'     => 'Inga sidor är skyddade under de villkoren.',
+'protectedtitles'         => 'Skyddade titlar',
+'protectedtitlesempty'    => 'Just nu finns inga skyddade sidtitlar med de parametrarna.',
 'listusers'               => 'Användarlista',
 'specialpages'            => 'Specialsidor',
 'spheading'               => 'Specialsidor för alla användare',

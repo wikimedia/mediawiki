@@ -971,10 +971,12 @@ PICT # misz.
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se podió aczeder dica la URL',
+'upload-curl-error6-text'  => 'No se podió plegar dica a URL. Por fabor, comprebe que a URL sía correuta y o sitio web sía funzionando.',
 'upload-curl-error28'      => "Tiempo d'aspera sobrexito",
 'upload-curl-error28-text' => "O tiempo de respuesta d'a pachina ye masiau gran. Por fabor, comprebe si o serbidor ye funzionando, aspere bel tiempo y mire de tornar á fer-lo.  Talment deseye prebar de nuebo cuan o rete tienga menos carga.",
 
 'license'            => 'Lizenzia',
+'nolicense'          => "No s'en ha trigato garra",
 'license-nopreview'  => '(Ambiesta prebia no disponible)',
 'upload_source_url'  => ' (una URL correuta y publicament aczesible)',
 'upload_source_file' => ' (un archibo en o suyo ordenador)',
@@ -1006,12 +1008,45 @@ PICT # misz.
 'linkstoimage'              => 'Istas son as pachinas que tienen binclos con ista imachen:',
 'nolinkstoimage'            => 'Denguna pachina tiene un binclo con ista imachen.',
 'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos.',
+'shareduploadwiki'          => 'Ta más informazión, consulte $1.',
+'shareduploadwiki-linktext' => "pachina de descripzión de l'archibo",
 'noimage'                   => 'No bi ha garra archibo con ixe nombre, pero puede $1.',
 'noimage-linktext'          => 'cargar-lo',
 'uploadnewversion-linktext' => "Cargar una nueba bersión d'ista archibo",
+'imagelist_date'            => 'Calendata',
+'imagelist_name'            => 'Nombre',
+'imagelist_user'            => 'Usuario',
+'imagelist_size'            => 'Grandaria (bytes)',
+'imagelist_description'     => 'Descripzión',
+'imagelist_search_for'      => "Mirar por nombre d'a imachen:",
+
+# File reversion
+'filerevert'                => 'Rebertir $1',
+'filerevert-legend'         => 'Rebertir fichero',
+'filerevert-intro'          => '<span class="plainlinks">Ye rebertindo \'\'\'[[Media:$1|$1]]\'\'\' á la [$4 bersion de $3, $2].</span>',
+'filerevert-comment'        => 'Comentario:',
+'filerevert-defaultcomment' => 'Rebertito á la bersión de $2, $1',
+'filerevert-submit'         => 'Rebertir',
+'filerevert-success'        => '<span class="plainlinks">S\'ha rebertito \'\'\'[[Media:$1|$1]]\'\'\' á la [$4 bersión de $3, $2].</span>',
+'filerevert-badversion'     => "No bi ha garra bersión antiga d'o archibo con ixa calendata y ora.",
+
+# File deletion
+'filedelete'             => 'Borrar $1',
+'filedelete-legend'      => 'Borrar archibo',
+'filedelete-intro'       => "Ye borrando '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Ye borrando a bersión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
+'filedelete-comment'     => 'Causa:',
+'filedelete-submit'      => 'Borrar',
+'filedelete-success'     => "S'ha borrato '''$1'''.",
+'filedelete-success-old' => "<span class=\"plainlinks\">S'ha borrato a bersión de '''[[Media:\$1|\$1]]''' de \$3, \$2.</span>",
+'filedelete-nofile'      => "'''$1''' no esiste en iste sitio.",
+'filedelete-nofile-old'  => "No bi ha garra bersión alzata de '''$1''' con ixos atributos.",
+'filedelete-iscurrent'   => "Ye prebando de borrar a bersión más rezient d'iste archibo. Por fabor, torne en primeras ta una bersión anterior.",
 
 # MIME search
-'mimesearch' => 'Mirar por tipo MIME',
+'mimesearch'         => 'Mirar por tipo MIME',
+'mimesearch-summary' => 'Ista pachina premite filtrar archibos seguntes o suyo tipo MIME. Escribir: tipodeconteniu/subtipo, por exemplo <tt>image/jpeg</tt>.',
+'mimetype'           => 'Tipo MIME:',
 
 # Unwatched pages
 'unwatchedpages' => 'Pachinas sin bexilar',
