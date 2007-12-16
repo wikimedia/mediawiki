@@ -155,8 +155,8 @@
 	'ky' => 'Кыргызча',	# Kirghiz
 	'la' => 'Latina',		# Latin
 	'lad' => 'Ladino',	# Ladino
-	'lbe' => 'Лакку',	# Lak
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
+	'lbe' => 'Лакку',	# Lak
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
 	'lij' => 'Líguru',	# Ligurian
@@ -172,7 +172,6 @@
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
 	'mi' => 'Māori',	# Maori
-	'minnan' => 'Bân-lâm-gú', # Min-nan (also zh-min-nan)
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
 	'mn' => 'Монгол',	# Mongoloian
@@ -180,7 +179,7 @@
 	'mr' => 'मराठी',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'Malti',	# Maltese
-	'mus' => 'Muscogee',	# Creek, should possibly be Muskogee
+	'mus' => 'Mvskoke',	# Creek/Muscogee
 	'my' => 'Myanmasa',		# Burmese
 	'myv' => 'эрзянь кель',         # Erzya
 	'mzn' => 'مَزِروني',		# Mazandarin
@@ -237,7 +236,7 @@
 	'sdc' => 'Sassarese',	# Sassarese
 	'se' => 'Sámegiella',	# Northern Sami
 	'sei' => 'Cmique Itom',	# Seri
-	'sg' => 'Sängö',		# Sango, possible alternative is Sangho
+	'sg' => 'Sängö',		# Sango/Sangho
 	'sh' => 'Srpskohrvatski / Српскохрватски', # Serbocroatian
 	'shi' => 'Tašlḥiyt',    # Tachelhit
 	'si' => 'සිංහල',	# Sinhalese
@@ -303,7 +302,6 @@
 	'za' => '(Cuengh)',		# Zhuang
 	'zea' => 'Zeêuws',	# Zealandic
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
-	'zh-cfr' => '閩南語', 					# Min-nan alias (site is at minnan)
 	'zh-classical' => '古文 / 文言文',			# Classical Chinese/Literary Chinese
 	'zh-cn' => "\xE2\x80\xAA中文(中国大陆)\xE2\x80\xAC",	# Chinese (PRC)
 	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Chinese written using the Simplified Chinese script
