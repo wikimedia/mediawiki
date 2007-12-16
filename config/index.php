@@ -839,6 +839,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$errs["RootPW"] = "and password";
 					continue;
 				}
+				$wgDatabase->initial_setup($conf->RootPW, 'postgres');
 			}
 			echo( "<li>Attempting to connect to database \"$wgDBname\" as \"$wgDBuser\"..." );
 			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
@@ -847,6 +848,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			} else {
 				$myver = $wgDatabase->getServerVersion();
 			}
+			$wgDatabase->initial_setup('', $wgDBname);
 		}
 
 		if ( !$wgDatabase->isOpen() ) {
