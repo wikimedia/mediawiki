@@ -141,7 +141,7 @@ class MovePageForm {
 			if( $err == 'hookaborted' ) {
 				$errMsg = $hookErr;
 			} else {
-				$errMsg = '<p class="error">' . wfMsgWikiHtml( $err ) . "</p>\n";
+				$errMsg = '<p><strong class="error">' . wfMsgWikiHtml( $err ) . "</strong></p>\n";
 			}
 			$wgOut->addHTML( $errMsg );
 		}
