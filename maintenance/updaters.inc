@@ -1325,6 +1325,7 @@ function do_postgres_updates() {
 		array("querycachetwo",     "patch-querycachetwo.sql"),
 		array("page_restrictions", "patch-page_restrictions.sql"),
 		array("profiling",         "patch-profiling.sql"),
+		array("protected_titles",  "patch-protected_titles.sql"),
 		array("redirect",          "patch-redirect.sql"),
 	);
 
