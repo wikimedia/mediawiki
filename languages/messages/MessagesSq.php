@@ -6,6 +6,7 @@
  * @author Dori
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Ergon
  */
 
 $skinNames = array(
@@ -101,37 +102,56 @@ $messages = array(
 'skinpreview' => '(Parapamje)',
 
 # Dates
-'sunday'    => 'E diel',
-'monday'    => 'E hënë',
-'tuesday'   => 'E martë',
-'wednesday' => 'E mërkurë',
-'thursday'  => 'E enjte',
-'friday'    => 'E premte',
-'saturday'  => 'E shtunë',
-'january'   => 'Janar',
-'february'  => 'Shkurt',
-'march'     => 'Mars',
-'april'     => 'Prill',
-'may_long'  => 'Maj',
-'june'      => 'Qershor',
-'july'      => 'Korrik',
-'august'    => 'Gusht',
-'september' => 'Shtator',
-'october'   => 'Tetor',
-'november'  => 'Nëntor',
-'december'  => 'Dhjetor',
-'jan'       => 'Jan',
-'feb'       => 'Shk',
-'mar'       => 'Mar',
-'apr'       => 'Pri',
-'may'       => 'Maj',
-'jun'       => 'Qer',
-'jul'       => 'Kor',
-'aug'       => 'Gus',
-'sep'       => 'Sht',
-'oct'       => 'Tet',
-'nov'       => 'Nën',
-'dec'       => 'Dhj',
+'sunday'        => 'E diel',
+'monday'        => 'E hënë',
+'tuesday'       => 'E martë',
+'wednesday'     => 'E mërkurë',
+'thursday'      => 'E enjte',
+'friday'        => 'E premte',
+'saturday'      => 'E shtunë',
+'sun'           => 'Hën',
+'mon'           => 'Hën',
+'tue'           => 'Mar',
+'wed'           => 'Mër',
+'thu'           => 'Enj',
+'fri'           => 'Pre',
+'sat'           => 'Sht',
+'january'       => 'Janar',
+'february'      => 'Shkurt',
+'march'         => 'Mars',
+'april'         => 'Prill',
+'may_long'      => 'Maj',
+'june'          => 'Qershor',
+'july'          => 'Korrik',
+'august'        => 'Gusht',
+'september'     => 'Shtator',
+'october'       => 'Tetor',
+'november'      => 'Nëntor',
+'december'      => 'Dhjetor',
+'january-gen'   => 'Janar',
+'february-gen'  => 'Shkurt',
+'march-gen'     => 'Mars',
+'april-gen'     => 'Prill',
+'may-gen'       => 'Maj',
+'june-gen'      => 'Qershor',
+'july-gen'      => 'Korrik',
+'august-gen'    => 'Gusht',
+'september-gen' => 'Shtator',
+'october-gen'   => 'Tetor',
+'november-gen'  => 'Nëntor',
+'december-gen'  => 'Dhjetor',
+'jan'           => 'Jan',
+'feb'           => 'Shk',
+'mar'           => 'Mar',
+'apr'           => 'Pri',
+'may'           => 'Maj',
+'jun'           => 'Qer',
+'jul'           => 'Kor',
+'aug'           => 'Gus',
+'sep'           => 'Sht',
+'oct'           => 'Tet',
+'nov'           => 'Nën',
+'dec'           => 'Dhj',
 
 # Bits of text used by many pages
 'categories'            => 'Kategori',
@@ -139,6 +159,7 @@ $messages = array(
 'category_header'       => 'Artikuj në kategorinë "$1"',
 'subcategories'         => 'Nën-kategori',
 'category-media-header' => 'Skeda në kategori "$1"',
+'category-empty'        => "''Kjo kategori aktualisht nuk përmban asnjë faqe apo media.''",
 
 'mainpagetext'      => 'Wiki software u instalua me sukses.',
 'mainpagedocfooter' => 'Ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
@@ -728,7 +749,8 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'rc_categories_any'                 => 'Të gjitha',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ndryshimet fqinje',
+'recentchangeslinked'       => 'Ndryshimet fqinje',
+'recentchangeslinked-title' => 'Ndryshimet në lidhje me $1',
 
 # Upload
 'upload'                      => 'Ngarkoni skeda',
@@ -739,7 +761,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'uploadnologintext'           => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të dhënë skeda.',
 'upload_directory_read_only'  => 'Skedari i ngarkimit ($1) nuk mund të shkruhet nga shërbyesi.',
 'uploaderror'                 => 'Gabim dhënie',
-'uploadtext'                  => "'''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni [[Project:Rregullat e përdorimit të figurave|Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
+'uploadtext'                  => " '''NDALO!''' Përpara se të jepni këtu skedë, lexoni dhe ndiqni [[Project:Rregullat e përdorimit të figurave|Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skeda për të cilat autori (ose ju) nuk ka dhënë të drejtë për përdorim nën licencat e përdorura nga {{SITENAME}}.
 
 Për të parë ose për të kërkuar figurat e dhëna më parë,
 shkoni tek [[Special:Imagelist|lista e figurave të dhëna]].
@@ -802,6 +824,8 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'imgdelete'                 => 'gris',
 'imgdesc'                   => 'për',
 'imgfile'                   => 'skeda',
+'filehist-datetime'         => 'Data/Ora',
+'filehist-dimensions'       => 'Dimensionet',
 'imagelinks'                => 'Lidhje skedash',
 'linkstoimage'              => 'Këto faqe lidhen tek kjo skedë:',
 'nolinkstoimage'            => 'Asnjë faqe nuk lidhet tek kjo skedë.',
@@ -1155,6 +1179,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 
 # What links here
 'whatlinkshere'       => 'Lidhjet këtu',
+'whatlinkshere-title' => 'Faqe që lidhin me $1',
 'linklistsub'         => '(Listë lidhjesh)',
 'linkshere'           => 'Faqet e mëposhtme lidhen këtu:',
 'nolinkshere'         => 'Asnjë faqe nuk lidhet këtu.',
@@ -1381,6 +1406,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-minoredit'               => 'Shënoje këtë redaktim të vogël',
 'tooltip-save'                    => 'Kryej ndryshimet',
 'tooltip-preview'                 => 'Shiko parapamjen e ndryshimeve, përdoreni këtë para se të kryeni ndryshimet!',
+'tooltip-diff'                    => 'Trego ndryshimet që Ju i keni bërë tekstit.',
 'tooltip-compareselectedversions' => 'Shikoni krahasimin midis dy versioneve të zgjedhura të kësaj faqeje.',
 'tooltip-watch'                   => 'Mbikqyre këtë faqe',
 
@@ -1448,9 +1474,10 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'nextdiff'     => 'Ndryshimi më pas →',
 
 # Media information
-'mediawarning' => "'''Kujdes''': Kjo skedë mund të ketë përmbajtje të dëmshme, duke e përdorur sistemi juaj mund të rrezikohet.<hr />",
-'imagemaxsize' => 'Kufizo pamjen e figurave në faqet përshkruese në rezolucionin:',
-'thumbsize'    => 'Madhësia fotove përmbledhëse:',
+'mediawarning'   => "'''Kujdes''': Kjo skedë mund të ketë përmbajtje të dëmshme, duke e përdorur sistemi juaj mund të rrezikohet.<hr />",
+'imagemaxsize'   => 'Kufizo pamjen e figurave në faqet përshkruese në rezolucionin:',
+'thumbsize'      => 'Madhësia fotove përmbledhëse:',
+'show-big-image' => 'Rezolucion i plotë',
 
 # Special:Newimages
 'newimages'    => 'Galeria e figurave të reja',
@@ -1599,6 +1626,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'imagelistall'     => 'të gjitha',
 'watchlistall2'    => 'të gjitha',
 'namespacesall'    => 'të gjitha',
+'monthsall'        => 'të gjitha',
 
 # E-mail address confirmation
 'confirmemail'            => 'Vërtetoni adresën tuaj',

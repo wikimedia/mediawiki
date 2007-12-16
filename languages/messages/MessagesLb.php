@@ -12,10 +12,20 @@
 $fallback = 'de';
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Linken ënnersträichen:',
+'tog-highlightbroken' => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
+'tog-justify'         => "Ränner vun Text riten (''justify'')",
+'tog-hideminor'       => 'Verstopp mineur Ännerungen an de rezenten Ännerungen',
+'tog-extendwatchlist' => 'Suivis-Lëscht op all Ännerungen ausbreeden',
+'tog-usenewrc'        => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
+'tog-numberheadings'  => 'Iwwerschrëften automatesch numeréieren',
+
 # Dates
 'monday' => 'Méindeg',
 'friday' => 'Freideg',
 
+'about'      => 'A propos',
 'newwindow'  => '(geet an enger neier Fënster op)',
 'mypage'     => 'meng Säit',
 'mytalk'     => 'meng Diskussioun',
@@ -40,6 +50,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Iwwer {{SITENAME}}',
+'aboutpage'         => 'Project:A propos_{{SITENAME}}',
 'currentevents'     => 'Aktualitéit',
 'currentevents-url' => 'Project:Aktualitéit',
 'mainpage'          => 'Haaptsäit',
@@ -57,16 +68,20 @@ $messages = array(
 'viewsource' => 'Source kucken',
 
 # Login and logout pages
-'yourdomainname' => 'Ären Domain',
-'userlogin'      => 'Aloggen',
-'userlogout'     => 'Ausloggen',
-'accountcreated' => 'De Kont gouf geschaf',
+'yourdomainname'             => 'Ären Domain',
+'userlogin'                  => 'Aloggen',
+'userlogout'                 => 'Ausloggen',
+'acct_creation_throttle_hit' => 'Dir hutt schon $1 Konten. Dir kënnt keng weider kreéieren.',
+'accountcreated'             => 'De Kont gouf geschaf',
+'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 
 # Edit pages
-'minoredit'   => 'Mineur Ännerung',
-'watchthis'   => 'Dës Säit verfollegen',
-'savearticle' => 'Säit späicheren',
-'showdiff'    => 'Weis Ännerungen',
+'minoredit'    => 'Mineur Ännerung',
+'watchthis'    => 'Dës Säit verfollegen',
+'savearticle'  => 'Säit späicheren',
+'showdiff'     => 'Weis Ännerungen',
+'accmailtitle' => 'Passwuert gouf geschéckt.',
+'accmailtext'  => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
 
 # History pages
 'nextrevision' => 'Méi rezent Ännerung→',
@@ -119,12 +134,13 @@ $messages = array(
 'emailuser' => 'Dësem Benotzer eng Email schécken',
 
 # Watchlist
-'watchlist'     => 'Meng Suivi-Lëscht',
-'mywatchlist'   => 'Meng Suivi-Lëscht',
-'addedwatch'    => "An d'Suivilëscht derbäigesat.",
-'watch'         => 'Verfollegen',
-'watchthispage' => 'Dës Säit verfollegen',
-'unwatch'       => 'Net méi verfollegen',
+'watchlist'      => 'Meng Suivi-Lëscht',
+'mywatchlist'    => 'Meng Suivi-Lëscht',
+'addedwatch'     => "An d'Suivilëscht derbäigesat.",
+'addedwatchtext' => "D'Säit \"\$1\" gouf bei är [[Special:Watchlist|Suivi-Lëscht]] bäigefügt. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit gin hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:Recentchanges|rezenten Ännerungen]] aus fir se méi schnell erëmzefannen. <p>Wann dir dës Säit nëmmi verfollege wëllt, klickt op \"Nëmmi verfollegen\" op der Säit.",
+'watch'          => 'Verfollegen',
+'watchthispage'  => 'Dës Säit verfollegen',
+'unwatch'        => 'Net méi verfollegen',
 
 # Delete/protect/revert
 'actioncomplete' => 'Aktioun ofgeschloss',
@@ -151,10 +167,11 @@ $messages = array(
 'blockip' => 'Benotzer blockéieren',
 
 # Move page
-'movepage'   => 'Säit réckelen',
-'newtitle'   => 'Op neien Titel:',
-'move-watch' => 'Dës Säit verfollegen',
-'1movedto2'  => '[[$1]] gouf op [[$2]] geréckelt',
+'movepage'        => 'Säit réckelen',
+'newtitle'        => 'Op neien Titel:',
+'move-watch'      => 'Dës Säit verfollegen',
+'1movedto2'       => '[[$1]] gouf op [[$2]] geréckelt',
+'1movedto2_redir' => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 
 # Namespace 8 related
 'allmessages' => 'All Systemmessagen',
