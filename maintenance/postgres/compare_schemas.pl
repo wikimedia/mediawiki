@@ -278,6 +278,8 @@ page_restrictions tinyblob       TEXT # CSV string
 pf_server         varchar(30)    TEXT
 pr_level          varbinary(60)  TEXT
 pr_type           varbinary(60)  TEXT
+pt_create_perm    varbinary(60)  TEXT
+pt_reason         tinyblob       TEXT
 qc_type           varbinary(32)  TEXT
 qcc_type          varbinary(32)  TEXT
 qci_type          varbinary(32)  TEXT
@@ -321,6 +323,7 @@ job_namespace  int SMALLINT
 log_namespace  int SMALLINT
 page_namespace int SMALLINT
 pl_namespace   int SMALLINT
+pt_namespace   int SMALLINT
 qc_namespace   int SMALLINT
 rc_namespace   int SMALLINT
 rd_namespace   int SMALLINT
