@@ -186,7 +186,9 @@ $messages = array(
 'editthispage'      => 'Editar esta páxina',
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar esta páxina',
+'undelete_short'    => 'Restaurar {{PLURAL:$1|una edición|$1 ediciones}}',
 'protect'           => 'Protexer',
+'protect_change'    => 'camudar proteición',
 'protectthispage'   => 'Protexer esta páxina',
 'unprotect'         => 'Desprotexer',
 'unprotectthispage' => 'Desprotexer esta páxina',
@@ -248,6 +250,9 @@ $messages = array(
 'badaccess-group2' => "L'aición solicitada ta llimitada a usuarios d'ún de los grupos $1.",
 'badaccess-groups' => "L'aición solicitada ta llimitada a usuarios d'ún de los grupos $1.",
 
+'versionrequired'     => 'Necesítase la versión $1 de MediaWiki',
+'versionrequiredtext' => 'Necesítase la versión $1 de MediaWiki pa usar esta páxina. Ver la [[Special:Version|páxina de versión]].',
+
 'retrievedfrom'           => 'Obtenío de "$1"',
 'youhavenewmessages'      => 'Tienes $1 ($2).',
 'newmessageslink'         => 'mensaxes nuevos',
@@ -270,6 +275,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Páxina',
 'nstab-user'      => "Páxina d'usuariu",
+'nstab-media'     => "Páxina d'archivu multimedia",
 'nstab-special'   => 'Especial',
 'nstab-project'   => 'Páxina de proyeutu',
 'nstab-image'     => 'Imaxe',
@@ -280,12 +286,15 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Nun esiste esa aición',
+'nosuchactiontext'  => "L'aición especificada pola URL nun ye
+reconocida pola wiki",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
 'nospecialpagetext' => "<big>'''Pidisti una páxina especial non válida.'''</big>
 
 Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages]].",
 
 # General errors
+'error'                => 'Error',
 'databaseerror'        => 'Error na base de datos',
 'dberrortext'          => 'Hebo un error de sintaxis nuna consulta de la base de datos.
 Esti error pue debese a un fallu del software.
@@ -300,8 +309,10 @@ dende la función "$2".
 MySQL retornó l\'error "$3: $4"',
 'noconnect'            => '¡Sentímoslo muncho! La wiki ta sufriendo delles dificultaes téuniques y nun pue contautar col servidor de la base de datos. <br />
 $1',
+'nodb'                 => 'Nun se pudo seleicionar la base de datos $1',
 'cachederror'          => 'Esta ye una copia sacada del caché de la páxina solicitada y pue nun tar actualizada.',
 'laggedslavemode'      => 'Avisu: Esta páxina pue que nun tenga actualizaciones recientes.',
+'readonly'             => 'Base de datos protexida',
 'enterlockreason'      => 'Introduz una razón pa la proteición, amiestando una estimación de cuándo va ser llevantada esta',
 'internalerror'        => 'Error internu',
 'internalerror_info'   => 'Error internu: $1',
@@ -310,6 +321,8 @@ $1',
 'filedeleteerror'      => 'Nun se pudo borrar l\'archivu "$1".',
 'directorycreateerror' => 'Nun se pudo crear el direutoriu "$1".',
 'filenotfound'         => 'Nun se pudo atopar l\'archivu "$1".',
+'unexpected'           => 'Valor inesperáu: "$1"="$2".',
+'formerror'            => 'Error: nun se pudo unviar el formulariu',
 'badarticleerror'      => 'Esta aición nun pue facese nesta páxina',
 'cannotdelete'         => 'Nun se pudo borrar la páxina o imaxe seleicionada (seique daquién yá la borrara).',
 'badtitle'             => 'Títulu incorreutu',
@@ -318,10 +331,12 @@ $1',
 'perfcachedts'         => "Los siguientes datos tán na caché y actualizáronse la última vegada'l $1.",
 'viewsource'           => 'Ver códigu fonte',
 'viewsourcefor'        => 'pa $1',
+'protectedpagetext'    => 'Esta páxina foi protexida pa evitar la so edición.',
 'viewsourcetext'       => "Pues ver y copiar el códigu fonte d'esta páxina:",
 'protectedinterface'   => "Esta páxina proporciona testu d'interfaz a l'aplicación y ta protexida pa evitar el so abusu.",
 'editinginterface'     => "'''Avisu:''' Tas editando una páxina usada pa proporcionar testu d'interfaz a l'aplicación. Los cambeos nesta páxina va afeuta-yos l'apariencia de la interfaz a otros usuarios.",
 'cascadeprotected'     => 'Esta páxina ta protexida d\'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción "en cascada":',
+'namespaceprotected'   => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
 'customcssjsprotected' => "Nun tienes permisu pa editar esta páxina porque contién preferencies personales d'otru usuariu.",
 
 # Login and logout pages
@@ -350,6 +365,7 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'gotaccountlink'             => '¡Identifícate!',
 'createaccountmail'          => 'per e-mail',
 'badretype'                  => "Les claves qu'escribisti nun concuayen.",
+'userexists'                 => "El nome d'usuariu conseñáu yá esiste. Por favor escueyi un nome diferente.",
 'youremail'                  => 'Corréu electrónicu:',
 'username'                   => "Nome d'usuariu:",
 'uid'                        => "Númberu d'usuariu:",
@@ -370,11 +386,13 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'wrongpasswordempty'         => 'La clave taba en blanco. Inténtalo otra vuelta.',
 'passwordtooshort'           => "La to clave nun ye válida o ye demasiao curtia. Ha tener a lo menos $1 carauteres y ser distinta del to nome d'usuariu.",
 'mailmypassword'             => 'Unviame per corréu la clave',
+'passwordremindertitle'      => 'Nueva clave provisional pa {{SITENAME}}',
 'noemail'                    => 'L\'usuariu "$1" nun tien puesta dirección de corréu.',
 'blocked-mailpassword'       => 'La edición ta bloquiada dende la to direición IP, y por tanto
 nun se pue usar la función de recuperación de clave pa evitar abusos.',
 'eauthentsent'               => "Unvióse una confirmación de corréu electrónicu a la direición indicada.
 Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucciones del corréu electrónicu, pa confirmar que la cuenta ye de to.",
+'mailerror'                  => "Error unviando'l corréu: $1",
 'acct_creation_throttle_hit' => 'Yá creasti $1 cuentes. Nun pues abrir más.',
 'emailauthenticated'         => 'La to dirección de corréu confirmóse a les $1.',
 'emailnotauthenticated'      => 'La to dirección de corréu nun ta comprobada. Hasta que se faiga, les siguientes funciones nun tarán disponibles.',
@@ -434,9 +452,12 @@ La to direición IP actual ye $3, y el númberu d'identificación del bloquéu y
 'blockededitsource'        => "El testu de '''les tos ediciones''' en '''$1''' amuésense equí:",
 'whitelistedittitle'       => 'Ye necesario tar identificáu pa poder editar',
 'whitelistedittext'        => 'Tienes que $1 pa editar páxines.',
+'whitelistreadtitle'       => 'Necesítase identificación pa lleer',
+'whitelistreadtext'        => "Tienes que t'[[Special:Userlogin|identificar]] pa lleer páxines.",
 'whitelistacctitle'        => 'Nun tienes permisu pa crear una cuenta',
 'confirmedittitle'         => 'Requerida la confirmación de corréu electrónicu pa editar',
 'confirmedittext'          => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
+'loginreqtitle'            => 'Identificación Requerida',
 'accmailtitle'             => 'Clave unviada.',
 'accmailtext'              => 'La clave de "$1" foi unviada a $2.',
 'newarticle'               => '(Nuevu)',
@@ -464,6 +485,8 @@ Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao.
 <strong>¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!</strong>",
 'longpagewarning'          => '<strong>AVISU: Esta páxina tien más de $1 quilobytes; dellos navegadores puen tener problemes editando páxines de 32 ó más kb. Habríes dixebrar la páxina en seiciones más pequeñes.</strong>',
+'longpageerror'            => "<strong>ERROR: El testu qu'unviasti tien $1 quilobytes, que ye
+más que'l máximu de $2 quilobytes. Nun pue ser grabáu.</strong>",
 'readonlywarning'          => '<strong>AVISU: La base de datos ta protexida por mantenimientu,
 polo que nun vas poder grabar les tos ediciones nestos momentos. Seique habríes copiar
 el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
@@ -472,11 +495,15 @@ el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
 'cascadeprotectedwarning'  => "'''Avisu:''' Esta páxina ta protexida pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
 'templatesused'            => 'Plantíes usaes nesta páxina:',
 'templatesusedpreview'     => 'Plantíes usaes nesta previsualización:',
+'templatesusedsection'     => 'Plantíes usaes nesta seición:',
 'template-protected'       => '(protexida)',
 'template-semiprotected'   => '(semi-protexida)',
 'nocreatetitle'            => 'Creación de páxines limitada',
 'nocreatetext'             => 'Esti sitiu tien restrinxida la capacidá de crear páxines nueves.
 Pues volver atrás y editar una páxina esistente, o bien [[Special:Userlogin|identificate o crear una cuenta]].',
+'nocreate-loggedin'        => 'Nun tienes permisu pa crear páxines nueves nesta wiki.',
+'permissionserrors'        => 'Errores de Permisos',
+'permissionserrorstext'    => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pola siguiente razón|poles siguientes razones}}:',
 'recreate-deleted-warn'    => "'''Avisu: Tas volviendo a crear una páxina que foi borrada anteriormente.'''
 
 Habríes considerar si ye afechisco siguir editando esta páxina.
@@ -491,6 +518,7 @@ La razón dada por $3 ye ''$2''",
 # History pages
 'viewpagelogs'        => "Ver rexistros d'esta páxina",
 'nohistory'           => "Nun hay historial d'ediciones pa esta páxina.",
+'revnotfound'         => 'Revisión non atopada',
 'currentrev'          => 'Revisión actual',
 'revisionasof'        => 'Revisión de $1',
 'revision-info'       => 'Revisión a fecha de $1; $2',
@@ -508,9 +536,14 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'deletedrev'          => '[borráu]',
 'histfirst'           => 'Primera',
 'histlast'            => 'Cabera',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 en $2', # user at time
+
+# Revision deletion
+'rev-delundel'   => 'amosar/esconder',
+'revisiondelete' => 'Borrar/restaurar revisiones',
 
 # Diffs
 'history-title'           => 'Historial de revisiones de "$1"',
@@ -537,6 +570,7 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'preferences'           => 'Preferencies',
 'mypreferences'         => 'Les mios preferencies',
 'prefs-edits'           => "Númberu d'ediciones:",
+'prefsnologin'          => 'Non identificáu',
 'prefsnologintext'      => 'Necesites tar [[Special:Userlogin|identificáu]] pa poder camudar les preferencies.',
 'changepassword'        => 'Camudar clave',
 'skin'                  => 'Apariencia',
@@ -579,14 +613,18 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'files'                 => 'Archivos',
 
 # User rights
-'editusergroup' => "Modificar grupos d'usuarios",
+'editusergroup'              => "Modificar grupos d'usuarios",
+'userrights-groupsmember'    => 'Miembru de:',
+'userrights-groupsavailable' => 'Grupos disponibles:',
 
 # Groups
 'group'            => 'Grupu:',
+'group-bot'        => 'Bots',
 'group-sysop'      => 'Alministradores',
 'group-bureaucrat' => 'Burócrates',
 'group-all'        => '(toos)',
 
+'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Alministrador',
 'group-bureaucrat-member' => 'Burócrata',
 
@@ -597,6 +635,7 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 # User rights log
 'rightslog'     => "Rexistru de perfil d'usuariu",
 'rightslogtext' => "Esti ye un rexistru de los cambeos de los perfiles d'usuariu.",
+'rightsnone'    => '(nengún)',
 
 # Recent changes
 'nchanges'                       => '{{PLURAL:$1|un cambéu|$1 cambeos}}',
@@ -619,6 +658,7 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
+'newsectionsummary'              => '/* $1 */ nueva seición',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambeos rellacionaos',
@@ -634,20 +674,32 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'uploaderror'       => 'Error de xubida',
 'uploadlog'         => 'rexistru de xubíes',
 'uploadlogpage'     => 'Rexistru de xubíes',
+'filename'          => "Nome d'archivu",
 'filedesc'          => 'Resume',
 'fileuploadsummary' => 'Resume:',
 'filesource'        => 'Fonte',
 'uploadedfiles'     => 'Archivos xubíos',
+'ignorewarning'     => "Inorar l'avisu y grabar l'archivu de toes formes.",
+'ignorewarnings'    => 'Inorar tolos avisos',
+'minlength1'        => "Los nomes d'archivu han tener a lo menos una lletra.",
 'badfilename'       => 'Nome de la imaxe camudáu a "$1".',
+'filetype-missing'  => 'L\'archivu nun tien estensión (como ".jpg").',
+'large-file'        => 'Encamiéntase a que los archivos nun pasen de $1; esti archivu tien $2.',
 'largefileserver'   => 'Esti archivu ye mayor de lo que permite la configuración del servidor.',
 'emptyfile'         => "L'archivu que xubisti paez tar vaciu. Esto podría ser pola mor d'un enquivocu nel nome l'archivu. Por favor, camienta si daveres quies xubir esti archivu.",
 'successfulupload'  => 'Xubida correuta',
+'savefile'          => 'Grabar archivu',
 'uploadedimage'     => 'Xubíu "[[$1]]"',
 'sourcefilename'    => "Nome d'orixe",
 'destfilename'      => 'Nome de destín',
 'watchthisupload'   => 'Vixilar esta páxina',
 
-'nolicense' => 'Nenguna seleicionada',
+'upload-proto-error' => 'Protocolu incorreutu',
+'upload-file-error'  => 'Error internu',
+
+'nolicense'          => 'Nenguna seleicionada',
+'license-nopreview'  => '(Previsualización non disponible)',
+'upload_source_file' => ' (un archivu del to ordenador)',
 
 # Image list
 'imagelist'                 => "Llista d'imáxenes",
@@ -674,7 +726,12 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'uploadnewversion-linktext' => "Xubir una nueva versión d'esta imaxe",
 'imagelist_date'            => 'Fecha',
 'imagelist_name'            => 'Nome',
+'imagelist_user'            => 'Usuariu',
+'imagelist_size'            => 'Tamañu',
 'imagelist_description'     => 'Descripción',
+
+# File reversion
+'filerevert-comment' => 'Comentariu:',
 
 # MIME search
 'mimesearch' => 'Busca MIME',

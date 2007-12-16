@@ -1238,6 +1238,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'articleexists'           => "'''Non licet hanc paginam movere:''' pagina cum hoc nomine iam est, aut invalidum est nomen electum. 
 
 Quaesumus, nomen alterum elege aut opem pete [[{{MediaWiki:Grouppage-sysop}}|magistratum]].",
+'cantmove-titleprotected' => 'Tibi non licet paginam ad hunc titulum movere, quia hic titulus protectus est ne creetur',
 'talkexists'              => "'''Pagina prospere mota est, sed pagina disputationis not moveri potuit quia iam est pagina disputationis sub titulo novo. Disputationes recensendo iunge.'''",
 'movedto'                 => 'mota ad',
 'movetalk'                => 'Movere etiam paginam disputationis',

@@ -714,6 +714,7 @@ D’autres administrators sus aqueste wiki poiràn totjorn accedir al contengut 
 'searchsubtitle'        => 'Per la requèsta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Per la requèsta "$1"',
 'noexactmatch'          => 'Cap de pagina amb lo títol "$1" existís pas, ensajatz amb la recèrca complèta. Si que non, podètz [[:$1|crear aquesta pagina]]',
+'noexactmatch-nocreate' => "'''I a pas de pagina intitolada \"\$1\".'''",
 'titlematches'          => 'Correspondéncias dins los títols',
 'notitlematches'        => "Cap de títol d'article conten pas lo(s) mot(s) demandat(s)",
 'textmatches'           => 'Correspondéncias dins los tèxtes',
@@ -880,6 +881,9 @@ Per inclure un imatge dins una pagina, utilizatz un dels modèls seguents:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' o
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' per un ligam dirèct vèrs lo fichièr.",
+'upload-permitted'            => 'Formats de fichièrs autorizats : $1.',
+'upload-preferred'            => 'Formats de fichièrs preferits : $1.',
+'upload-prohibited'           => 'Formats de fichièrs interdiches : $1.',
 'uploadlog'                   => 'Jornals dels telecargaments (uploads)',
 'uploadlogpage'               => 'Istoric de las importacions de fichièrs multimèdia',
 'uploadlogpagetext'           => "Vaquí la lista dels darrièrs fichièrs copiats sul serveire.
@@ -896,6 +900,8 @@ L'ora indicada es la del serveire (UTC).",
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo renomenar e de lo copiar tornarmai.',
 'badfilename'                 => 'Imatge es estat torni nom "$1".',
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
+'filetype-unwanted-type'      => '".$1" es d\'un format pas desirat. Los que son preferits son $2.',
+'filetype-banned-type'        => "'''\".\$1\"''' es dins un format pas admes.  Los que son acceptats son \$2.",
 'filetype-missing'            => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
 'large-file'                  => 'Los fichièrs importats deurián pas èsser mai gros que $1 ; aqueste fichièr fa $2.',
 'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximom autorizat.",
@@ -1094,6 +1100,9 @@ Demest eles, <b>$2</b> (o '''$4%''') {{PLURAL:$2|a|an}} l'estatut d'administrato
 'protectedpages'          => 'Paginas protegidas',
 'protectedpagestext'      => 'Las paginas seguentas son protegidas contra las modificacions e/o lo renomenatge :',
 'protectedpagesempty'     => 'Cap de pagina es pas protegida actualament.',
+'protectedtitles'         => 'Títols protegits',
+'protectedtitlestext'     => 'Los títols seguents son protegits a la creacion',
+'protectedtitlesempty'    => 'Cap de títol es pas actualament protegit amb aquestes paramètres.',
 'listusers'               => 'Lista dels participants',
 'specialpages'            => 'Paginas especialas',
 'spheading'               => 'Paginas especialas',
@@ -1108,6 +1117,8 @@ Demest eles, <b>$2</b> (o '''$4%''') {{PLURAL:$2|a|an}} l'estatut d'administrato
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
 'notargettitle'           => 'Pas de cibla',
 'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
+'pager-newer-n'           => '{{PLURAL:$1|1 mai recenta|$1 mai recentas}}',
+'pager-older-n'           => '{{PLURAL:$1|1 mai anciana|$1 mai ancianas}}',
 
 # Book sources
 'booksources'               => 'Obratges de referéncia',
@@ -1274,6 +1285,12 @@ L'ora indicada es la del serveire (UTC).
 'deletionlog'                 => 'traça dels escafaments',
 'reverted'                    => 'Restabliment de la version precedenta',
 'deletecomment'               => 'Motiu de la supression',
+'deleteotherreason'           => 'Motius suplementaris o autres :',
+'deletereasonotherlist'       => 'Autre motiu',
+'deletereason-dropdown'       => "*Motius de supression mai corrents
+** Demanda de l'autor
+** Violacion dels dreches d'autor
+** Vandalisme",
 'rollback'                    => 'revocar las modificacions',
 'rollback_short'              => 'Revocar',
 'rollbacklink'                => 'revocar',
@@ -1314,14 +1331,16 @@ Clicatz sus « Precedent » e recargatz la pagina d’ont venètz, puèi ensajat
 'protect-summary-cascade'     => 'proteccion en cascada',
 'protect-expiring'            => 'expira lo $1',
 'protect-cascade'             => 'Proteccion en cascada - Protegís totas las paginas inclusas dins aquesta.',
+'protect-cantedit'            => "Podètz pas modificar los nivèls de proteccion d'aquesta pagina perque avètz pas la permission de l'editar.",
 'restriction-level'           => 'Nivèl de restriccion',
 'minimum-size'                => 'Talha minimom (octets)',
 'maximum-size'                => 'Talha maximala',
 'pagesize'                    => '(octets)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Modificacion',
-'restriction-move' => 'Renomenatge',
+'restriction-edit'   => 'Modificacion',
+'restriction-move'   => 'Renomenatge',
+'restriction-create' => 'Crear',
 
 # Restriction levels
 'restriction-level-sysop'         => 'Proteccion complèta',
@@ -1343,6 +1362,7 @@ las revisions restablidas apareisseràn dins l'istoric anterior e la version cor
 'undeletehistorynoadmin'       => "Aqueste article es estat suprimit. Lo motiu de la supression es indicat dins lo resumit çai jos, amb los detalhs dels utilizaires que l’an modificat abans sa supression. Lo contengut d'aquestas versions es pas accessible qu’als administrators.",
 'undelete-revision'            => 'Version suprimida de $1, lo $2 :',
 'undeleterevision-missing'     => 'Version invalida o mancanta. Benlèu avètz un ligam marrit, o la version es estada restablida o suprimida de l’archiu.',
+'undelete-nodiff'              => 'Pas de revision precedenta trobada.',
 'undeletebtn'                  => 'Restablir !',
 'undeletereset'                => 'Reinicializar',
 'undeletecomment'              => 'Comentari:',
@@ -1479,7 +1499,9 @@ a partir d'una adreça IP precedentament blocada.",
 'ipb_expiry_invalid'          => 'Temps d’expiracion invalid.',
 'ipb_already_blocked'         => '« $1 » ja es blocat',
 'ipb_cant_unblock'            => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
+'ipb_blocked_as_range'        => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquala pòt èsser deblocada.",
 'ip_range_invalid'            => 'Blòt IP incorrècte.',
+'blockme'                     => 'Blocatz-me',
 'proxyblocker'                => 'Blocaire de proxy',
 'proxyblocker-disabled'       => 'Aquesta foncion es desactivada.',
 'proxyblockreason'            => "Vòstra ip es estada blocada perque s’agís d’un proxy dobert. Mercé de contactar vòstre fornidor d’accès internet o vòstre supòrt tecnic e de l’informar d'aqueste problèma de seguretat.",
@@ -1534,6 +1556,7 @@ en tant qu'utilizaire enregistrat.",
 'movepage-moved'          => 'La pagina « $1 » <small>([[Special:Whatlinkshere/$3|ligams]])</small> es estada renomenada en « $2 » <small>([[Special:Whatlinkshere/$4|ligams]])</small>. Verificatz qu’existís pas cap de redireccion dobla, e corregissetz-las se mestièr fa.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Existís ja un article portant aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
+'cantmove-titleprotected' => 'Avètz pas la possibilitat de desplaçar una pagina vèrs aqueste emplaçament perque lo títol es estat protegit a la creacion.',
 'talkexists'              => "La pagina ela-meteissa es estada desplaçada amb succès, mas
 la pagina de discussion a pas pogut èsser desplaçada perque n'existissiá ja una
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
@@ -1682,6 +1705,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-compareselectedversions' => "Afichar las diferéncias entre doas versions d'aquesta pagina",
 'tooltip-watch'                   => 'Ajustar aquesta pagina a vòstra lista de seguit',
 'tooltip-recreate'                => 'Recrear la pagina, quitament se es estada escafada',
+'tooltip-upload'                  => 'Amodar l’impòrt',
 
 # Stylesheets
 'common.css'   => '/** Lo CSS plaçat aicí serà aplicat a totas las aparéncias. */',

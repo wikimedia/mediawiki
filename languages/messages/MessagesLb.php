@@ -7,6 +7,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Kaffi
+ * @author Robby
  */
 
 $fallback = 'de';
@@ -21,9 +22,15 @@ $messages = array(
 'tog-usenewrc'        => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
 'tog-numberheadings'  => 'Iwwerschrëften automatesch numeréieren',
 
+'underline-always' => 'ëmmer',
+
 # Dates
+'sunday' => 'Sonndeg',
 'monday' => 'Méindeg',
 'friday' => 'Freideg',
+
+# Bits of text used by many pages
+'categories' => 'Kategorien',
 
 'about'      => 'A propos',
 'newwindow'  => '(geet an enger neier Fënster op)',
@@ -76,12 +83,13 @@ $messages = array(
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 
 # Edit pages
-'minoredit'    => 'Mineur Ännerung',
-'watchthis'    => 'Dës Säit verfollegen',
-'savearticle'  => 'Säit späicheren',
-'showdiff'     => 'Weis Ännerungen',
-'accmailtitle' => 'Passwuert gouf geschéckt.',
-'accmailtext'  => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
+'minoredit'     => 'Mineur Ännerung',
+'watchthis'     => 'Dës Säit verfollegen',
+'savearticle'   => 'Säit späicheren',
+'showdiff'      => 'Weis Ännerungen',
+'accmailtitle'  => 'Passwuert gouf geschéckt.',
+'accmailtext'   => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
+'storedversion' => 'Gespäichert Versioun',
 
 # History pages
 'nextrevision' => 'Méi rezent Ännerung→',
@@ -95,6 +103,7 @@ $messages = array(
 'mypreferences' => 'Meng Preferenzen',
 'saveprefs'     => 'Späicheren',
 'newpassword'   => 'Neit Passwuert:',
+'allowemail'    => 'Emaile vun anere Benotzer kréien.',
 
 # Recent changes
 'recentchanges' => 'Rezent Ännerungen',
@@ -111,12 +120,26 @@ $messages = array(
 # Random page
 'randompage' => 'Zoufallssäit',
 
+# Statistics
+'sitestatstext' => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Artikel|Artikelen}} an der Datebank.
+Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Artikelen, Redirecten an anerer déi eventuell net als Artikele gezielt kënne ginn.
+
+Déi ausgeschloss ginn et {{PLURAL:\$2|Artikel den|Artikelen déi}} als Artikel betruecht {{PLURAL:\$2|ka|kënne}} ginn. 
+
+Am ganzen {{PLURAL:\$8|gouf '''1''' Fichier|goufen '''\$8''' Fichieren}} eropgelueden.
+
+Am ganze gouf '''\$3''' {{PLURAL:\$3|Artikeloffro|Artikeloffroen}} ann '''\$4''' {{PLURAL:\$4|Artikelbearbechtung|Artikelbearbechtungen}} zënter datt {{SITENAME}} ageriicht gouf.
+Doraus ergi sech '''\$5''' Bearbechtungen pro Artikel an '''\$6''' Artikeloffroen pro Bearbechtung.
+
+Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''\$7'''",
+
 # Miscellaneous special pages
 'nlinks'            => '$1 {{PLURAL:$1|Link|Linken}}',
 'popularpages'      => 'Populär Säiten',
 'allpages'          => 'All Säiten',
 'specialpages'      => 'Spezialsäiten',
 'newpages-username' => 'Benotzernumm:',
+'ancientpages'      => 'Al Säiten',
 'move'              => 'Réckelen',
 
 'alphaindexline' => '$1 bis $2',
@@ -124,14 +147,27 @@ $messages = array(
 
 # Special:Log
 'all-logs-page' => "All d'Logbicher",
+'alllogstext'   => 'Dëst ass eng kombinéiert Lëscht vu [[Special:Log/block|Benotzerblockaden-]], [[Special:Log/protect|Säiteschutz-]], [[Special:Log/rights|Bürokraten-]], [[Special:Log/delete|Läsch-]], [[Special:Log/upload|Datei-]], [[Special:Log/move|Réckelen-]], [[Special:Log/newusers|Neiumellungs-]] a [[Special:Log/renameuser|Benotzerännerungs-]]Logbicher.',
+'logempty'      => 'Näischt fonnt.',
 
 # Special:Allpages
-'nextpage'       => 'Nächst Säit ($1)',
-'allarticles'    => "All d'Artikelen",
-'allinnamespace' => "All d'Säiten ($1 Nummraum)",
+'nextpage'          => 'Nächst Säit ($1)',
+'prevpage'          => 'Virescht Säit ($1)',
+'allpagesfrom'      => 'Säite weisen, ugefaange mat:',
+'allarticles'       => "All d'Artikelen",
+'allinnamespace'    => "All d'Säiten ($1 Nummraum)",
+'allnotinnamespace' => "All d'Säiten (net am $1 Nummraum)",
+'allpagesprev'      => 'Virescht',
+'allpagesnext'      => 'Nächst',
+'allpagessubmit'    => 'Lass',
+'allpagesprefix'    => 'Säite mat Präfix weisen:',
+'allpagesbadtitle'  => 'Den Titel vun dëser Säit ass net valabel oder hat en Interwiki-Prefix. Et ka sinn datt een oder méi Zeechen drasinn, déi net an Titele benotzt kënne ginn.',
+'allpages-bad-ns'   => 'De Nummraum „$1“ gëtt et net op {{SITENAME}}.',
 
 # E-mail user
-'emailuser' => 'Dësem Benotzer eng Email schécken',
+'emailuser'       => 'Dësem Benotzer eng Email schécken',
+'defemailsubject' => '{{SITENAME}}-E-Mail',
+'noemailtitle'    => 'Keng E-Mail-Adress',
 
 # Watchlist
 'watchlist'      => 'Meng Suivi-Lëscht',
@@ -144,6 +180,7 @@ $messages = array(
 
 # Delete/protect/revert
 'actioncomplete' => 'Aktioun ofgeschloss',
+'alreadyrolled'  => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
 
 # Undelete
 'undelete' => 'Geläschte Säit restauréieren',
@@ -174,7 +211,14 @@ $messages = array(
 '1movedto2_redir' => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 
 # Namespace 8 related
-'allmessages' => 'All Systemmessagen',
+'allmessages'               => 'All Systemmessagen',
+'allmessagesname'           => 'Numm',
+'allmessagesdefault'        => 'Standardtext',
+'allmessagescurrent'        => 'Aktuellen Text',
+'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:namespace''', déi vun der MediaWiki-Software benotzt ginn. Si kënnen nëmme vun [[Wikipedia:Administrators|Administratore]] geännert ginn.",
+'allmessagesnotsupportedDB' => "'''Special:AllMessages''' gëtt den Ament net ënnertstëtzt well d'Datebank ''offline'' ass.",
+'allmessagesfilter'         => 'Noriichtennummfilter:',
+'allmessagesmodified'       => 'Nëmme geännert uweisen',
 
 # Browsing diffs
 'nextdiff' => 'Nächsten Ënnerscheed →',

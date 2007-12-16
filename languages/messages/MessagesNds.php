@@ -4,9 +4,10 @@
  * @addtogroup Language
  *
  * @author Slomox
- * @author G - ג
  * @author Nike
  * @author SPQRobin
+ * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $fallback = 'de';
@@ -306,7 +307,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'viewdeleted'             => '$1 ankieken?',
 'restorelink'             => '$1 löscht Bearbeidensvörgäng',
 
-# Short words for each namespace, by default used in the 'page' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
 'nstab-user'      => 'Siet vun den Bruker',
 'nstab-media'     => 'Media',
@@ -560,7 +561,6 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 'cantcreateaccounttitle' => 'Brukerkonto kann nich anleggt warrn',
 
 # History pages
-'revhistory'          => 'Fröhere Versionen',
 'viewpagelogs'        => 'Logbook för disse Siet',
 'nohistory'           => 'Disse Siet hett keen Vörgeschicht.',
 'revnotfound'         => 'Kene fröheren Versionen funnen',
@@ -610,21 +610,17 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-log'           => 'Kommentar:',
 
 # Diffs
-'difference'                => '(Ünnerscheed twischen de Versionen)',
-'loadingrev'                => 'laad Versionen üm Ünnerscheden to wiesen',
-'lineno'                    => 'Reeg $1:',
-'editcurrent'               => 'Aktuelle Version vun disse Siet ännern',
-'selectnewerversionfordiff' => 'En niegere Version för en Vergliek utwählen',
-'selectolderversionfordiff' => 'En öllere Version för en Vergliek utwählen',
-'compareselectedversions'   => 'Ünnerscheed twischen den utwählten Versionen wiesen',
-'editundo'                  => 'rutnehmen',
+'difference'              => '(Ünnerscheed twischen de Versionen)',
+'lineno'                  => 'Reeg $1:',
+'compareselectedversions' => 'Ünnerscheed twischen den utwählten Versionen wiesen',
+'editundo'                => 'rutnehmen',
 
 # Search results
 'searchresults'         => 'Söökresultaten',
 'searchresulttext'      => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:Helppage}}|{{SITENAME}} dörsöken]].',
 'searchsubtitle'        => 'För de Söökanfraag „[[:$1]]“',
 'searchsubtitleinvalid' => 'För de Söökanfraag „$1“',
-'noexactmatch'          => 'Dor existeert kene Siet mit dissen Naam. Versöök de Vulltextsöök oder legg de Siet [[:$1|nieg]] an.',
+'noexactmatch'          => 'Gifft kene Siet mit dissen Naam. Bruuk de Vulltextsöök oder legg de Siet [[:$1|nee]] an.',
 'titlematches'          => 'Övereenstimmen mit Överschriften',
 'notitlematches'        => 'Kene Övereenstimmen',
 'textmatches'           => 'Övereenstimmen mit Texten',
@@ -890,7 +886,7 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 # Unused templates
 'unusedtemplates' => 'Nich bruukte Vörlagen',
 
-# Random pages
+# Random page
 'randompage'         => 'Tofällige Siet',
 'randompage-nopages' => 'Gifft kene Sieden in dissen Naamruum.',
 
@@ -971,7 +967,6 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'specialpages'            => 'Sünnerliche Sieden',
 'spheading'               => 'Spezialsieden för all Brukers',
 'restrictedpheading'      => 'Spezialsieden mit inschränkt Togang',
-'rclsub'                  => '(op Artikel vun „$1“)',
 'newpages'                => 'Ne’e Sieden',
 'newpages-username'       => 'Brukernaam:',
 'ancientpages'            => 'Öllste Sieden',

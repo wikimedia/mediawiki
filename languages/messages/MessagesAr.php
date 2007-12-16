@@ -14,6 +14,7 @@
  * @author Chaos
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $linkPrefixExtension = true;
@@ -1190,6 +1191,9 @@ $1 ساعة.',
 *'''<nowiki>[[{{ns:image}}:ملف.jpg]]</nowiki>'''،
 *'''<nowiki>[[{{ns:image}}:ملف.png|alt text]]</nowiki>''' أو
 *'''<nowiki>[[{{ns:media}}:ملف.ogg]]</nowiki>''' للوصل للملف مباشرة.",
+'upload-permitted'            => 'أنواع الملفات المسموحة: $1.',
+'upload-preferred'            => 'أنواع الملفات المفضلة: $1.',
+'upload-prohibited'           => 'أنواع الملفات الممنوعة: $1.',
 'uploadlog'                   => 'سجل الرفع',
 'uploadlogpage'               => 'سجل الرفع',
 'uploadlogpagetext'           => 'في الأسفل قائمة بأحدث عمليات رفع الملفات.',
@@ -1205,6 +1209,8 @@ $1 ساعة.',
 'illegalfilename'             => 'يحتوي اسم الملف $1 على رموز غير مقبولة. أعد تسمية الملف من فضلك و قم برفعه مرة أخرى.',
 'badfilename'                 => 'تم تغيير اسم الملف إلى "$1".',
 'filetype-badmime'            => 'من غير المسموح به رفع ملفات من النوع "$1".',
+'filetype-unwanted-type'      => "'''\".\$1\"''' نوع ملف غير مرغوب فيه.  أنواع الملفات المفضلة هي \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' ليس نوع ملف مسموحا به.  أنواع الملفات المسموح بها هي \$2.",
 'filetype-missing'            => 'الملف بدون امتداد (مثل ".jpg").',
 'large-file'                  => 'ينصح ألا تكون الملفات أكبر من $1؛ هذا الملف حجمه $2.',
 'largefileserver'             => 'حجم هذا الملف أكبر من المسموح به على هذا الخادم.',
@@ -1746,19 +1752,18 @@ $1',
 'sp-newimages-showfrom' => 'أظهر الصور الجديدة بدءا من $1',
 
 # What links here
-'whatlinkshere'        => 'ماذا يصل هنا',
-'whatlinkshere-title'  => 'الصفحات التي تصل إلى $1',
-'whatlinkshere-page'   => 'الصفحة:',
-'whatlinkshere-barrow' => '&lt;',
-'linklistsub'          => '(قائمة الوصلات)',
-'linkshere'            => "الصفحات التالية تحتوي على وصلة إلى '''[[:$1]]''':",
-'nolinkshere'          => "لا توجد صفحات تصل إلى '''[[:$1]]'''.",
-'nolinkshere-ns'       => "لا تصل أي صفحة إلى '''[[:$1]]''' في النطاق المختار.",
-'isredirect'           => 'صفحة تحويل',
-'istemplate'           => 'مضمن',
-'whatlinkshere-prev'   => '{{PLURAL:$1|السابق|الـ $1 السابقة}}',
-'whatlinkshere-next'   => '{{PLURAL:$1|القادمة|الـ $1 القادمة}}',
-'whatlinkshere-links'  => '← وصلات',
+'whatlinkshere'       => 'ماذا يصل هنا',
+'whatlinkshere-title' => 'الصفحات التي تصل إلى $1',
+'whatlinkshere-page'  => 'الصفحة:',
+'linklistsub'         => '(قائمة الوصلات)',
+'linkshere'           => "الصفحات التالية تحتوي على وصلة إلى '''[[:$1]]''':",
+'nolinkshere'         => "لا توجد صفحات تصل إلى '''[[:$1]]'''.",
+'nolinkshere-ns'      => "لا تصل أي صفحة إلى '''[[:$1]]''' في النطاق المختار.",
+'isredirect'          => 'صفحة تحويل',
+'istemplate'          => 'مضمن',
+'whatlinkshere-prev'  => '{{PLURAL:$1|السابق|الـ $1 السابقة}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|القادمة|الـ $1 القادمة}}',
+'whatlinkshere-links' => '← وصلات',
 
 # Block/unblock
 'blockip'                     => 'منع مستخدم',
@@ -1892,6 +1897,7 @@ $1',
 'articleexists'           => 'توجد صفحة بهذا الاسم،
 أو أن الاسم الذي تم اختياره غير صالح.
 يرجى اختيار اسم آخر.',
+'cantmove-titleprotected' => 'أنت لا يمكنك نقل صفحة إلى هذا الموقع، لأن العنوان الجديد تمت حمايته ضد الإنشاء',
 'talkexists'              => "'''تم نقل الصفحة بنجاح، لكن لم
 يتم نقل صفحة النقاش المرافقة، بسبب وجود صفحة نقاش
 مسبقا تحت العنوان الجديد.
@@ -2515,6 +2521,7 @@ $1',
 
 # Separators for various lists
 'semicolon-separator' => '؛',
+'filetype-separator'  => '،',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← الصفحة السابقة',
@@ -2626,14 +2633,5 @@ $1',
 'hebrew-calendar-m10-gen' => 'تموز',
 'hebrew-calendar-m11-gen' => 'آف',
 'hebrew-calendar-m12-gen' => 'أيلول',
-
-# Unknown messages
-'cantmove-titleprotected' => 'أنت لا يمكنك نقل صفحة إلى هذا الموقع، لأن العنوان الجديد تمت حمايته ضد الإنشاء',
-'filetype-banned-type'    => "'''\".\$1\"''' ليس نوع ملف مسموحا به.  أنواع الملفات المسموح بها هي \$2.",
-'filetype-separator'      => '،',
-'filetype-unwanted-type'  => "'''\".\$1\"''' نوع ملف غير مرغوب فيه.  أنواع الملفات المفضلة هي \$2.",
-'upload-permitted'        => 'أنواع الملفات المسموحة: $1.',
-'upload-preferred'        => 'أنواع الملفات المفضلة: $1.',
-'upload-prohibited'       => 'أنواع الملفات الممنوعة: $1.',
 
 );
