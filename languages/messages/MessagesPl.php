@@ -959,8 +959,6 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'illegalfilename'             => 'Nazwa pliku ("$1") zawiera znaki niedozwolone w tytułach stron. Proszę zmienić nazwę pliku i przesłać go ponownie.',
 'badfilename'                 => 'Nazwa pliku została zmieniona na "$1".',
 'filetype-badmime'            => 'Przesyłanie plików z typem MIME "$1" jest niedozwolone.',
-'filetype-badtype'            => "'''\".\$1\"''' nie jest zalecanym formatem pliku.
-: Lista dozwolonych formatów: \$2",
 'filetype-missing'            => 'Plik nie ma rozszerzenia (np. ".jpg").',
 'large-file'                  => 'Zalecane jest aby rozmiar pliku z obrazkiem nie był większy niż $1 bajtów. Ten plik ma rozmiar $2 bajtów.',
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',

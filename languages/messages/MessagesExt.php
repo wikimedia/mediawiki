@@ -871,7 +871,6 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 'illegalfilename'             => 'El nombri "$1" tiini carateris que nu están premitius enus entítulus de páhinas. Pol favol, ponli otru nombri al archivu i preba a empuntalu e nuevu.',
 'badfilename'                 => 'S´á chambau el nombri el archivu a "$1".',
 'filetype-badmime'            => 'Nu está premitiu empuntal los archivus MIME type "$1".',
-'filetype-badtype'            => "'''\".\$1\"''' es un archivu nu premitiu. Lista d´archivus premitius: \$2",
 'filetype-missing'            => 'El archivu nu tiini estensión (cumu ".jpg").',
 'large-file'                  => 'Es recomendabri que los archivus nu seyan mayoris de $1; esti archivu ocupa $2.',
 'largefileserver'             => 'Esti archivu es mas grandi que lo premitiu pol el sirviol.',

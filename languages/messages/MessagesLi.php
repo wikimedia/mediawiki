@@ -792,8 +792,6 @@ of veur mediabesjtande:
 'illegalfilename'             => 'De bestandjsnaam "$1" bevat ongeldige karakters. Gaef \'t bestandj \'ne angere naam, en probeer \'t dan opnuuj te uploade.',
 'badfilename'                 => 'De naom van \'t besjtand is verangerd in "$1".',
 'filetype-badmime'            => '\'t Is neet toegestaon om bestenj van MIME type "$1" te uploade.',
-'filetype-badtype'            => "'''\".\$1\"''' is 'n ongewins bestandjsformaat
-:'ne Lies mit toegestaone bestandjsformate: \$2",
 'filetype-missing'            => 'Dit bestandj haet gein extensie (wie ".jpg").',
 'large-file'                  => 'Aanbeveling: maak bestenj neet groter dan $1, dit bestand is $2.',
 'largefileserver'             => "'t Bestandj is groter dan de instelling van de server toestuit.",

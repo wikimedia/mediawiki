@@ -752,8 +752,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'illegalfilename'             => 'Tóng-on miàng "$1" pâu-hàm yû hong-mien phêu-thì só kim-chṳ́ ke sṳ-fù. Chhiáng kói-miàng-heu chhùng-sîn song-chhòn.',
 'badfilename'                 => 'Tóng-on miàng yí-kîn pûn-ngìn kói-cho "$1"。',
 'filetype-badmime'            => 'MIME lui-phe̍t "$1" put-he yùng-hí ke tóng-on kak-sṳt.',
-'filetype-badtype'            => "'''\".\$1\"''' he-feu yùng-hí ke tóng-on lui-hìn
-:Yî-ha he yùng-hí ke tóng-on lui-hìn: \$2",
 'filetype-missing'            => 'Ke tóng-on miàng-chhṳ̂n pin mò-yû fu tóng-miàng (hiong ".jpg").',
 'large-file'                  => 'Kien-ngi tóng-on thai-séu put-nèn chhêu-ko $1; pún tóng-on thai-séu he $2.',
 'largefileserver'             => 'Liá-ke tóng-on ke thai-séu fu̍k-chhiùng-hi fûn-phi yún-chún ke thai-séu hàn-yeu thai.',

@@ -898,8 +898,6 @@ Saifede resim qullanmaq içün böyle şekilli bağlantılar qullanıñız '''<n
 Lütfen fayl isimini deñiştirip yañıdan yüklep baqıñız.',
 'badfilename'                 => 'Fayl isimi $1 olaraq deñiştirildi.',
 'filetype-badmime'            => '"$1" MIME çeşitindeki fayllar yükleme yasaqlıdır.',
-'filetype-badtype'            => "'''\".\$1\"''' izin berilmegen bir fayl çeşiti
-: İzin berilgen fayl çeşitleriniñ cedveli: \$2",
 'filetype-missing'            => 'Faylnıñ iç bir uzantısı yoq (meselâ ".jpg", ".gif" ve ilh.).',
 'large-file'                  => 'Büyükligi $1 bayttan ziyade ibaret olmağan resimler qullanuv tevsiye etile (bu faylnıñ büyükligi $2 bayt).',
 'largefileserver'             => 'Bu faylnıñ uzunlığı serverde izin berilgenden büyükçedir.',
