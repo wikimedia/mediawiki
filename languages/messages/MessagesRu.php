@@ -2358,6 +2358,7 @@ $1',
 'searchnamed'      => 'Поиск статей с названием $1.',
 'articletitles'    => 'Статьи, начинающиеся с «$1»',
 'hideresults'      => 'Скрыть результаты',
+'useajaxsearch'    => 'Использовать AJAX-поиск',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← предыдущая страница',

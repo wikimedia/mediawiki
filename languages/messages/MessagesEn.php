@@ -2965,6 +2965,7 @@ $1',
 'searchnamed'      => "Search for pages named ''$1''.",
 'articletitles'    => "Pages starting with ''$1''",
 'hideresults'      => 'Hide results',
+'useajaxsearch'    => 'Use AJAX search',
 
 # Separators for various lists
 'catseparator'          => '|', # don't translate or duplicate this message to other languages
