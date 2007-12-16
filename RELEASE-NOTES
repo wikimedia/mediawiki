@@ -361,6 +361,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
   now 500 / 5000, in line with other modules.
 * Added list=allcategories module
 * (bug 12321) API list=blocks reveals private data
+* Fix output of wfSajaxSearch
 
 === Languages updated in 1.12 ===
 

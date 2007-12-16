@@ -79,6 +79,7 @@ function wfSajaxSearch( $term ) {
 
 	$l = new Linker;
 
+	$term = trim( $term );
 	$term = str_replace( ' ', '_', $wgContLang->ucfirst( 
 			$wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) )
 		) );
@@ -113,18 +114,19 @@ function wfSajaxSearch( $term ) {
 	$subtitlemsg = ( Title::newFromText($term) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
 	$subtitle = $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) ); #FIXME: parser is missing mTitle !
 
-	$term = urlencode( $term );
+	$term_url = urlencode( $term );
+	$term_diplay = htmlspecialchars( str_replace( '_', ' ', $term ) );
 	$html = '<div style="float:right; border:solid 1px black;background:gainsboro;padding:2px;"><a onclick="Searching_Hide_Results();">'
-		. wfMsg( 'hideresults' ) . '</a></div>'
-		. '<h1 class="firstHeading">'.wfMsg('search')
+		. wfMsgHtml( 'hideresults' ) . '</a></div>'
+		. '<h1 class="firstHeading">'.wfMsgHtml('search')
 		. '</h1><div id="contentSub">'. $subtitle . '</div><ul><li>'
 		. $l->makeKnownLink( $wgContLang->specialPage( 'Search' ),
-					wfMsg( 'searchcontaining', $term ),
-					"search=$term&fulltext=Search" )
+					wfMsgHtml( 'searchcontaining', $term_diplay ),
+					"search={$term_url}&fulltext=Search" )
 		. '</li><li>' . $l->makeKnownLink( $wgContLang->specialPage( 'Search' ),
-					wfMsg( 'searchnamed', $term ) ,
-					"search=$term&go=Go" )
-		. "</li></ul><h2>" . wfMsg( 'articletitles', $term ) . "</h2>"
+					wfMsgHtml( 'searchnamed', $term_diplay ) ,
+					"search={$term_url}&go=Go" )
+		. "</li></ul><h2>" . wfMsgHtml( 'articletitles', $term_diplay ) . "</h2>"
 		. '<ul>' .$r .'</ul>'.$more;
 
 	$response = new AjaxResponse( $html );
