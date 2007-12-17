@@ -909,6 +909,8 @@ Ta encluyir a imachen en una pachina, emplegue un binclo d'una d'istas trazas ''
 'illegalfilename'             => "O nombre d'archivo «$1» contiene caráuters no premititos en títols de pachinas. Por fabor, cambee o nombre de l'archibo y mire de tornar á cargarlo.",
 'badfilename'                 => 'O nombre d\'a imachen s\'ha cambiato por "$1".',
 'filetype-badmime'            => 'No se premite cargar archibos de tipo MIME "$1".',
+'filetype-unwanted-type'      => "Os '''\".\$1\"''' son un tipo d'archibo no deseyato.  Se prefieren os archibos de tipo \$2.",
+'filetype-banned-type'        => "No se premiten os archibos de tipo '''\".\$1\"'''. Os tipos que se premiten son \$2.",
 'filetype-missing'            => 'L\'archibo no tiene garra estensión (como ".jpg").',
 'large-file'                  => 'Se consella que os archibos no sigan mayors de $1; iste archbo este archivo ocupa $2.',
 'largefileserver'             => "A grandaria d'iste archibo ye mayor d'a que a confegurazión d'iste serbidor premite.",
@@ -1050,6 +1052,7 @@ PICT # misz.
 'mimesearch'         => 'Mirar por tipo MIME',
 'mimesearch-summary' => 'Ista pachina premite filtrar archibos seguntes o suyo tipo MIME. Escribir: tipodeconteniu/subtipo, por exemplo <tt>image/jpeg</tt>.',
 'mimetype'           => 'Tipo MIME:',
+'download'           => 'escargar',
 
 # Unwatched pages
 'unwatchedpages' => 'Pachinas sin bexilar',
@@ -1058,22 +1061,42 @@ PICT # misz.
 'listredirects' => 'Lista de reendrezeras',
 
 # Unused templates
-'unusedtemplates' => 'Plantillas sin de uso',
+'unusedtemplates'     => 'Plantillas sin de uso',
+'unusedtemplatestext' => "En ista pachina se fa una lista de todas as pachinas en o espazio de nombres de plantillas que no s'encluyen en denguna atra pachina. Alcuerde-se de mirar as pachinas que tiengan binclos con una plantilla antis de borrar-la.",
+'unusedtemplateswlh'  => 'atros binclos',
 
 # Random page
-'randompage' => "Una pachina á l'azar",
+'randompage'         => "Una pachina á l'azar",
+'randompage-nopages' => 'No bi ha garra pachina en iste espazio de nombres.',
 
 # Random redirect
-'randomredirect' => 'Ir-ie á una adreza cualsiquiera',
+'randomredirect'         => 'Ir-ie á una adreza cualsiquiera',
+'randomredirect-nopages' => 'No bi ha garra reendrezera en iste espazio de nombres.',
 
 # Statistics
-'statistics' => 'Estadisticas',
-'sitestats'  => "Estadisticas d'a {{SITENAME}}",
-'userstats'  => "Estadisticas d'usuario",
+'statistics'             => 'Estadisticas',
+'sitestats'              => "Estadisticas d'a {{SITENAME}}",
+'userstats'              => "Estadisticas d'usuario",
+'sitestatstext'          => "Bi ha un total de {{PLURAL:$1|'''1''' pachina|'''$1''' pachinas}} en a base de datos.
+Isto encluye pachinas de descusión, pachinas sobre {{SITENAME}}, borradors menimos, reendrezeras y atras que probablement no puedan estar consideratas pachinas de contenius.
+Sacando ixas pachinas, bi ha prebablement {{PLURAL:$2|1 pachina|'''$2''' pachinas}} de conteniu lechitimo.
 
-'disambiguations' => 'Pachinas de desambigazión',
+Bi ha '''$8''' {{PLURAL:$8|archibo alzato|archivos alzatos}} en o serbidor.
 
-'doubleredirects' => 'Reendrezeras dobles',
+Dende a debantadera d'o wiki bi ha abito un total de '''$3''' {{PLURAL:$3|besitas|besitas}} y '''$4''' {{PLURAL:$4|edizión de pachina|edizions de pachinas}}.
+Isto resulta en una meya de '''$5''' {{PLURAL:$5|edizión|edizions}} por pachina y '''$6''' {{PLURAL:$6|besita|besitas}} por edizión.
+
+A longaria d'a [http://meta.wikimedia.org/wiki/Help:Job_queue coda de quefers] ye de '''$7'''",
+'userstatstext'          => "Bi ha {{PLURAL:$1|'''1''' usuario rechistrato|'''$1''' usuarios rechistratos}},
+d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
+'statistics-mostpopular' => 'Pachinas más bistas',
+
+'disambiguations'      => 'Pachinas de desambigazión',
+'disambiguationspage'  => 'Template:Desambigazión',
+'disambiguations-text' => "As siguients pachinas tienen binclos con una '''pachina de desambigazión'''. Ixos binclos abrían de ir millor t'a pachina espezifica apropiada.<br />Una pachina se considera pachina de desambigazión si fa serbir una plantilla probenient de  [[MediaWiki:disambiguationspage]].",
+
+'doubleredirects'     => 'Reendrezeras dobles',
+'doubleredirectstext' => "En ista pachina s'amuestran as pachinas que son reendrezatas enta atras reendrezeras.  Cada ringlera contiene o binclo t'a primer y segunda reendrezeras, y tamién o destino d'a segunda reendrezera, que ye á sobent a pachina \"reyal\" á la que a primer pachina abría d'endrezar.",
 
 'brokenredirects' => 'Reendrezeras crebatas',
 

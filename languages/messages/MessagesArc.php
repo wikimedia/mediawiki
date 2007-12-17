@@ -7,6 +7,7 @@
  * @author The Thadman
  * @author Siebrand
  * @author SPQRobin
+ * @author 334a
  */
 
 $rtl = true;
@@ -31,6 +32,7 @@ $messages = array(
 'apr'         => 'ܢܝܣܢ',
 'jul'         => 'ܬܡܘܙ',
 'aug'         => 'ܐܒ',
+'sep'         => 'ܐܝܠܘܠ',
 'dec'         => 'ܟܢܘܢ ܐ',
 
 'article'        => 'ܡܐܡܪܐ',
