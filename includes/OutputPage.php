@@ -1345,7 +1345,7 @@ class OutputPage {
 	 * for when rate limiting has triggered.
 	 */
 	public function rateLimited() {
-		global $wgOut;
+		global $wgOut, $wgTitle;
 
 		$this->setPageTitle(wfMsg('actionthrottled'));
 		$this->setRobotPolicy( 'noindex,follow' );
