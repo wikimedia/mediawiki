@@ -491,7 +491,7 @@ class LoginForm {
 		global $wgOut;
 		$wgOut->addWikiText( "<div class=\"errorbox\">$error</div>" );
 		$reset = new PasswordResetForm( $this->mName, $this->mPassword );
-		$reset->execute();
+		$reset->execute( null );
 	}
 
 	/**
