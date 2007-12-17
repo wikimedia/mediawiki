@@ -306,7 +306,7 @@ class PreferencesForm {
 		if( $wgEnableEmail ) {
 			$newadr = $this->mUserEmail;
 			$oldadr = $wgUser->getEmail();
-			if( ($newadr != '') && (strtolower($newadr) != strtolower($oldadr)) ) {
+			if( ($newadr != '') && ($newadr != $oldadr) ) {
 				# the user has supplied a new email address on the login page
 				if( $wgUser->isValidEmailAddr( $newadr ) ) {
 					$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
