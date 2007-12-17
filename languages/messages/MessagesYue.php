@@ -2355,6 +2355,7 @@ $1',
 'searchnamed'      => "搵個名係''$1''嘅版。",
 'articletitles'    => "以''$1''開頭嘅版",
 'hideresults'      => '收埋結果',
+'useajaxsearch'    => '用AJAX來搵嘢',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← 上一版',
