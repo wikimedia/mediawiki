@@ -248,6 +248,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   user-customized ones (like Common.css, Common.js)
 * (bug 12283) Special:Newpages forgets parameters
 * (bug 12031) All namespaces doesn't work in Special:Newpages
+* Email addresses are now not considered case-sensitive in detecting if
+  a user has changed their email address.
 
 == Parser changes in 1.12 ==
 
