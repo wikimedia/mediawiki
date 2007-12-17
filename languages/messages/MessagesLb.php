@@ -21,21 +21,48 @@ $messages = array(
 'tog-extendwatchlist' => 'Suivis-Lëscht op all Ännerungen ausbreeden',
 'tog-usenewrc'        => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
 'tog-numberheadings'  => 'Iwwerschrëften automatesch numeréieren',
+'tog-fancysig'        => 'Ënnerschrëft ouni automatesche Link op déi eege Benotzersäit',
+'tog-ccmeonemails'    => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 
 'underline-always' => 'ëmmer',
 
 # Dates
-'sunday' => 'Sonndeg',
-'monday' => 'Méindeg',
-'friday' => 'Freideg',
+'sunday'    => 'Sonndeg',
+'monday'    => 'Méindeg',
+'friday'    => 'Freideg',
+'january'   => 'Januar',
+'february'  => 'Februar',
+'march'     => 'Mäerz',
+'april'     => 'Abrëll',
+'may_long'  => 'Mee',
+'june'      => 'Juni',
+'july'      => 'Juli',
+'august'    => 'August',
+'september' => 'September',
+'october'   => 'Oktober',
+'november'  => 'November',
+'jan'       => 'Jan.',
+'feb'       => 'Feb.',
+'mar'       => 'Mäe.',
+'apr'       => 'Abr.',
+'may'       => 'Mee',
+'jun'       => 'Jun.',
+'jul'       => 'Jul.',
+'aug'       => 'Aug.',
+'sep'       => 'Sep.',
+'oct'       => 'Okt.',
+'nov'       => 'Nov.',
+'dec'       => 'Dez.',
 
 # Bits of text used by many pages
 'categories' => 'Kategorien',
 
 'about'      => 'A propos',
+'article'    => 'Artikel',
 'newwindow'  => '(geet an enger neier Fënster op)',
 'mypage'     => 'meng Säit',
 'mytalk'     => 'meng Diskussioun',
+'anontalk'   => 'Diskussioun fir dës IP Adress',
 'navigation' => 'Navigatioun',
 
 'help'             => 'Hëllef',
@@ -51,6 +78,7 @@ $messages = array(
 'unprotect'        => 'Deprotegéieren',
 'newpage'          => 'Nei Säit',
 'personaltools'    => 'Perséinlech Tools',
+'articlepage'      => 'Artikel',
 'talk'             => 'Diskussioun',
 'toolbox'          => 'Geschirkëscht',
 'otherlanguages'   => 'Aner Sproochen',
@@ -65,6 +93,9 @@ $messages = array(
 'portal-url'        => 'Project:Kommunautéit',
 'sitesupport'       => 'Donatiounen',
 'sitesupport-url'   => 'Project:En Don maachen',
+
+'badaccess'        => 'Net genuch Rechter',
+'badaccess-group0' => 'Dir hutt net déi néideg Rechter fir dës Aktioun duerchzeféieren.',
 
 'newmessageslink' => 'nei Messagen',
 'showtoc'         => 'weis',
@@ -83,13 +114,16 @@ $messages = array(
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 
 # Edit pages
-'minoredit'     => 'Mineur Ännerung',
-'watchthis'     => 'Dës Säit verfollegen',
-'savearticle'   => 'Säit späicheren',
-'showdiff'      => 'Weis Ännerungen',
-'accmailtitle'  => 'Passwuert gouf geschéckt.',
-'accmailtext'   => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
-'storedversion' => 'Gespäichert Versioun',
+'minoredit'        => 'Mineur Ännerung',
+'watchthis'        => 'Dës Säit verfollegen',
+'savearticle'      => 'Säit späicheren',
+'showdiff'         => 'Weis Ännerungen',
+'anoneditwarning'  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm är IP Adress am Historique vun dëser Säit gespäichert.',
+'autoblockedtext'  => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Dir kënnt d\'Säit weiderhi liesen,</b> nëmmen d\'Méiglechkeet, se ze änneren oder soss Säiten op der {{SITENAME}} unzeleeën oder ze änneren, gouf gespaart. Wann der dësen Text hei gesitt, obwuel der just liese wollt, hutt der op e roude Link geklickt gehat, deen op eng Säit verknëppt, déi et nach net gëtt.</p> Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer dës Spär ze diskutéieren. <div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"> \'\'\'Gitt dofir w.e.gl. dës Donnéeën un:\'\'\' *Administrateur dee gespaart huet: $1 *Grond fir d\'Spär: $2 *Ufank vun der Spär: $8 *Enn: $6 *IP-Adress: $3 *Spär-ID: #$5 </div>',
+'accmailtitle'     => 'Passwuert gouf geschéckt.',
+'accmailtext'      => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
+'anontalkpagetext' => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mer d'[[IP Adress]] benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt gin. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
+'storedversion'    => 'Gespäichert Versioun',
 
 # History pages
 'nextrevision' => 'Méi rezent Ännerung→',
@@ -201,12 +235,15 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'whatlinkshere' => 'Linken op dës Säit',
 
 # Block/unblock
-'blockip' => 'Benotzer blockéieren',
+'blockip'       => 'Benotzer blockéieren',
+'anononlyblock' => 'nëmmen anonym Benotzer',
+'autoblocker'   => 'Dir sidd autoblockéiert well dir eng IP Adress mam "$1" deelt. Grond "$2".',
 
 # Move page
 'movepage'        => 'Säit réckelen',
 'newtitle'        => 'Op neien Titel:',
 'move-watch'      => 'Dës Säit verfollegen',
+'articleexists'   => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
 '1movedto2'       => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir' => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 
@@ -220,14 +257,20 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'allmessagesfilter'         => 'Noriichtennummfilter:',
 'allmessagesmodified'       => 'Nëmme geännert uweisen',
 
+# Attribution
+'anonymous' => 'Anonym(e) Benotzer op {{SITENAME}}',
+
 # Browsing diffs
 'nextdiff' => 'Nächsten Ënnerscheed →',
 
 # AJAX search
 'searchcontaining' => "No Artikelen siche mat ''$1''.",
+'articletitles'    => "Artikelen ugefaange mat ''$1''",
 
 # Auto-summaries
+'autosumm-blank'   => 'All Inhalt vun der Säit gëtt geläscht',
 'autosumm-replace' => "Säit gëtt ersat duerch '$1'",
+'autoredircomment' => 'Virugeleet op [[$1]]',
 'autosumm-new'     => 'Nei Säit: $1',
 
 );

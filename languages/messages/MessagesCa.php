@@ -1230,6 +1230,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'unusedcategoriestext'    => 'Les pàgines de categoria següents existeixen encara que cap altre article o categoria les utilitza.',
 'notargettitle'           => 'No hi ha pàgina en blanc',
 'notargettext'            => 'No heu especificat a quina pàgina dur a terme aquesta funció.',
+'pager-newer-n'           => '{{PLURAL:$1|1 más rezient|$1 más rezients}}',
 
 # Book sources
 'booksources'               => 'Obres de referència',
@@ -1575,7 +1576,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipbenableautoblock'          => "Bloca l'adreça IP d'aquest usuari, i totes les subseqüents adreces des de les quals intenti registrar-se",
 'ipbsubmit'                   => 'Bloqueja aquesta adreça',
 'ipbother'                    => 'Un altre termini',
-'ipboptions'                  => '2 hores:2 hours,1 dia:1 day,3 dies:3 days,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite',
+'ipboptions'                  => '2 hores:2 hours,1 dia:1 day,3 dies:3 days,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'un altre',
 'ipbotherreason'              => 'Altres motius o addicionals:',
 'ipbhidename'                 => "Amaga el nom d'usuari / IP del registre de bloquejos, activa la llista de bloqueig i d'usuaris",

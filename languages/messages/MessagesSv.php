@@ -13,6 +13,7 @@
  * @author Lejonel
  * @author Habj
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -473,7 +474,9 @@ $2',
 # Login and logout pages
 'logouttitle'                => 'Användarutloggning',
 'logouttext'                 => 'Du är nu utloggad från ditt användarkonto.',
-'welcomecreation'            => '<h2>Välkommen, $1!</h2><p>Ditt konto har skapats. Glöm inte att justera dina inställningar.',
+'welcomecreation'            => '== Välkommen, $1! ==
+
+Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'loginpagetitle'             => 'Användarinloggning',
 'yourname'                   => 'Ditt användarnamn',
 'yourpassword'               => 'Ditt lösenord',
@@ -1584,7 +1587,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'ipbenableautoblock'          => 'Blockera automatiskt IP-adresser som användaren försöker redigera ifrån',
 'ipbsubmit'                   => 'Blockera IP-adressen/användaren',
 'ipbother'                    => 'Annan tidsperiod',
-'ipboptions'                  => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
+'ipboptions'                  => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'annan tidsperiod',
 'ipbotherreason'              => 'Annan/ytterligare anledning',
 'ipbhidename'                 => 'Dölj användarnamnet/IP-adressen från blockeringsloggen och listorna över blockerade användare och användare',
