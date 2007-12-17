@@ -97,6 +97,7 @@ $specialPageAliases = array(
 	'Ancientpages'              => array( 'Älteste_Seiten' ),
 	'Deadendpages'              => array( 'Sackgassenseiten' ),
 	'Protectedpages'            => array( 'Geschützte_Seiten' ),
+	'Protectedtitles'           => array( 'Gesperrte_Titel' ),
 	'Allpages'                  => array( 'Alle_Seiten' ),
 	'Prefixindex'               => array( 'Präfixindex' ) ,
 	'Ipblocklist'               => array( 'Gesperrte_IPs' ),
@@ -498,6 +499,7 @@ $2',
 'namespaceprotected'   => "Du hast keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
 'customcssjsprotected' => 'Du bist nicht berechtigt diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 'ns-specialprotected'  => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
+'titleprotected'       => 'Eine Seite mit diesem Namen kann nicht angelegt werden. Die Sperre wurde durch [[{{ns:user}}:$1]] mit der Begründung <i>$2</i> eingerichtet.',
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -895,6 +897,7 @@ Versuche es über die Volltextsuche.
 Alternativ kannst du auch den [[Special:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
 
 Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ verfassen.",
+'noexactmatch-nocreate' => "'''Es existiert keine Seite mit dem Titel „$1“.'''",
 'titlematches'          => 'Übereinstimmungen mit Seitentiteln',
 'notitlematches'        => 'Keine Übereinstimmungen mit Seitentiteln',
 'textmatches'           => 'Übereinstimmungen mit Inhalten',
@@ -1069,6 +1072,9 @@ Um '''Mediendateien''' einzubinden, verwende zum Beispiel:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:Datei.ogg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer deine Dateien löschen oder verändern können.",
+'upload-permitted'            => 'Erlaubte Dateitypen: $1.',
+'upload-preferred'            => 'Bevorzugte Dateitypen: $1.',
+'upload-prohibited'           => 'Nicht erlaubte Dateitypen: $1.',
 'uploadlog'                   => 'Datei-Logbuch',
 'uploadlogpage'               => 'Datei-Logbuch',
 'uploadlogpagetext'           => 'Dies ist das Logbuch der hochgeladenen Dateien, siehe auch [[{{ns:special}}:Newimages]].',
@@ -1326,13 +1332,16 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'protectedpages-summary'          => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
 'protectedpagestext'              => '',
 'protectedpagesempty'             => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
+'protectedtitles'                 => 'Gesperrte Titel',
+'protectedtitles-summary'         => 'Die folgenden Titel wurden zur Neuerstellung gesperrt.',
+'protectedtitlestext'             => '',
+'protectedtitlesempty'            => 'Zur Zeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'                       => 'Benutzerverzeichnis',
 'listusers-summary'               => "Diese Spezialseite listet alle registrierten Benutzer auf; die Gesamtzahl kann [[Special:Statistics|hier]] eingesehen werden. Über das Auswahlfeld ''Gruppe'' lässt sich die Abfrage auf bestimmte Benutzergruppen einschränken.",
 'specialpages'                    => 'Spezialseiten',
 'specialpages-summary'            => 'Diese Seite bietet einen Überblick aller Spezialseiten. Diese werden automatisch generiert und können nicht bearbeitet werden.',
 'spheading'                       => 'Spezialseiten für alle Benutzer',
 'restrictedpheading'              => 'Spezialseiten für Administratoren',
-'rclsub'                          => '(auf Seiten von „$1“)',
 'newpages'                        => 'Neue Seiten',
 'newpages-summary'                => 'Diese Spezialseite listet alle neu erstellten Seiten der letzten 30 Tage auf. Die Ausgabe kann auf einen Namensraum und/oder Benutzernamen eingeschränkt werden.',
 'newpages-username'               => 'Benutzername:',
@@ -1559,8 +1568,9 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'pagesize'                    => '(Bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'bearbeiten',
-'restriction-move' => 'verschieben',
+'restriction-edit'   => 'bearbeiten',
+'restriction-move'   => 'verschieben',
+'restriction-create' => 'erstellen',
 
 # Restriction levels
 'restriction-level-sysop'         => 'geschützt (nur Administratoren)',
@@ -1777,6 +1787,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'pagemovedsub'            => 'Verschiebung erfolgreich',
 'movepage-moved'          => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
+'cantmove-titleprotected' => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'              => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
 'movedto'                 => 'verschoben nach',
 'movetalk'                => 'Die Diskussionsseite mitverschieben, wenn möglich.',
@@ -2380,6 +2391,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'searchnamed'      => "Suche nach Seiten, deren Name ''$1'' enthält.",
 'articletitles'    => "Seiten, die mit ''$1'' beginnen",
 'hideresults'      => 'Verbergen',
+'useajaxsearch'    => 'Benutze AJAX-unterstützte Suche',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← vorige Seite',
@@ -2421,8 +2433,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlistedit-normal-title'   => 'Beobachtungsliste bearbeiten',
 'watchlistedit-normal-legend'  => 'Einträge von der Beobachtungsliste entfernen',
 'watchlistedit-normal-explain' => 'Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen
-	und klicke auf „Einträge entfernen“. Du kannst deine Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]]
-	oder sie [[Special:Watchlist/clear|komplett löschen]].',
+	und klicke auf „Einträge entfernen“. Du kannst deine Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
 'watchlistedit-normal-submit'  => 'Einträge entfernen',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} von deiner Beobachtungsliste entfernt:',
 'watchlistedit-raw-title'      => 'Beobachtungsliste im Listenformat bearbeiten',
