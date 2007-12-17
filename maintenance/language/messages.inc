@@ -2510,5 +2510,6 @@ $wgMessageComments = array(
 	'exif-orientation-6'          => '0th row: right; 0th column: top',
 	'exif-orientation-7'          => '0th row: right; 0th column: bottom',
 	'exif-orientation-8'          => '0th row: left; 0th column: bottom',
-	'movepage-moved'              => 'The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.'
+	'movepage-moved'              => 'The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.',
+	'ipboptions'                  => 'display1:time1,display2:time2,...',
 );
