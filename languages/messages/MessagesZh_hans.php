@@ -2264,6 +2264,7 @@ $1
 'searchnamed'      => "搜索名为''$1''的页面。",
 'articletitles'    => '页面以"$1"开头',
 'hideresults'      => '隐藏结果',
+'useajaxsearch'    => '使用AJAX搜索',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← 上一页',

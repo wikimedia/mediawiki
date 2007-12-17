@@ -2235,6 +2235,7 @@ $1
 'searchnamed'      => "搜索名稱為''$1''的頁面。",
 'articletitles'    => '頁面以"$1"開頭',
 'hideresults'      => '隱藏結果',
+'useajaxsearch'    => '使用AJAX搜索',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← 上一頁',

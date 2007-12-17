@@ -1668,6 +1668,7 @@ $1',
 'searchnamed'      => "尋文名''$1''.",
 'articletitles'    => "文首為''$1''",
 'hideresults'      => '藏',
+'useajaxsearch'    => '用AJAX尋之',
 
 # Multipage image navigation
 'imgmultipageprev'   => '←前頁',
