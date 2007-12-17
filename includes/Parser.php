@@ -2693,18 +2693,18 @@ class Parser
 					$endpos = strpos( $text, '-->', $i + 4 );
 					if ( $endpos === false ) {
 						// Unclosed comment in input, runs to end
-						$accum .= htmlspecialchars( substr( $text, $i ) );
+						$inner = substr( $text, $i );
 						if ( $this->ot['html'] ) {
 							// Close it so later stripping can remove it
-							$accum .= htmlspecialchars( '-->' );
+							$inner .= '-->';
 						}
+						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
 						$i = strlen( $text );
-						continue;
+					} else {
+						$inner = substr( $text, $i, $endpos - $i + 3 );
+						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
+						$i = $endpos + 3;
 					}
-					$accum .= htmlspecialchars( substr( $text, $i, $endpos - $i + 3 ) );
-					#$inner = substr( $text, $i + 4, $endpos - $i - 4 );
-					#$accum .= '<ext><name>!--</name><inner>' . htmlspecialchars( $inner ) . '</inner></ext>';
-					$i = $endpos + 3;
 					continue;
 				}
 				$name = $matches[1];
@@ -3045,6 +3045,12 @@ class Parser
 			$frame = new PPFrame( $this );
 		} elseif ( !( $frame instanceof PPFrame ) ) {
 			throw new MWException( __METHOD__ . ' called using the old argument format' );
+		}
+
+		# Remove comments
+		# This could theoretically be merged into preprocessToDom()
+		if ( $this->ot['html'] || ( $this->ot['pre'] && $this->mOptions->getRemoveComments() ) ) {
+			$text = Sanitizer::removeHTMLcomments( $text );
 		}
 
 		$dom = $this->preprocessToDom( $text );
@@ -3439,6 +3445,12 @@ class Parser
 			$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
 		}
 
+		# Remove comments
+		# This could theoretically be merged into preprocessToDom()
+		if ( $this->ot['html'] || ( $this->ot['pre'] && $this->mOptions->getRemoveComments() ) ) {
+			$text = Sanitizer::removeHTMLcomments( $text );
+		}
+
 		$dom = $this->preprocessToDom( $text );
 
 		$this->mTplDomCache[ $titleText ] = $dom;
@@ -3626,9 +3638,6 @@ class Parser
 		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $n++) . $this->mMarkerSuffix;
 		
 		if ( $this->ot['html'] ) {
-			if ( $name == '!--' ) {
-				return '';
-			}
 			$name = strtolower( $name );
 
 			$params = Sanitizer::decodeTagAttributes( $attrText );
@@ -3659,15 +3668,11 @@ class Parser
 					}
 			}
 		} else {
-			if ( $name == '!--' ) {
-				$output = '<!--' . $content . '-->';
+			if ( $content === null ) {
+				$output = "<$name$attrText/>";
 			} else {
-				if ( $content === null ) {
-					$output = "<$name$attrText/>";
-				} else {
-					$close = is_null( $params['close'] ) ? '' : $frame->expand( $params['close'] );
-					$output = "<$name$attrText>$content$close";
-				}
+				$close = is_null( $params['close'] ) ? '' : $frame->expand( $params['close'] );
+				$output = "<$name$attrText>$content$close";
 			}
 		}
 
@@ -4961,7 +4966,9 @@ class Parser
 	 *                for "replace", the whole page with the section replaced.
 	 */
 	private function extractSections( $text, $section, $mode, $newText='' ) {
+		global $wgTitle;
 		$this->clearState();
+		$this->mTitle = $wgTitle; // not generally used but removes an ugly failure mode
 		$this->mOptions = new ParserOptions;
 		$this->setOutputType( OT_WIKI );
 		$curIndex = 0;
@@ -5179,6 +5186,7 @@ class Parser
 	function srvus( $text ) {
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
+		$text = Sanitizer::removeHTMLtags( $text );
 		return $text;
 	}
 }
@@ -5252,6 +5260,8 @@ class PPFrame {
 
 	const NO_ARGS = 1;
 	const NO_TEMPLATES = 2;
+	const STRIP_COMMENTS = 4;
+
 	const RECOVER_ORIG = 3;
 
 	/**
@@ -5287,7 +5297,7 @@ class PPFrame {
 					$name = $nameNodes->item( 0 )->attributes->getNamedItem( 'index' )->textContent;
 				} else {
 					// Named parameter
-					$name = $this->expand( $nameNodes->item( 0 ) );
+					$name = $this->expand( $nameNodes->item( 0 ), PPFrame::STRIP_COMMENTS );
 				}
 
 				$value = $xpath->query( 'value', $arg );
@@ -5354,6 +5364,13 @@ class PPFrame {
 				} else {
 					$params = array( 'title' => $title, 'parts' => $parts, 'text' => 'FIXME' );
 					$s = $this->parser->argSubstitution( $params, $this );
+				}
+			} elseif ( $root->nodeName == 'comment' ) {
+				# HTML-style comment
+				if ( $flags & self::STRIP_COMMENTS ) {
+					$s = '';
+				} else {
+					$s = $root->textContent;
 				}
 			} elseif ( $root->nodeName == 'ext' ) {
 				# Extension tag

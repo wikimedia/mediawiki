@@ -33,6 +33,18 @@ Main Page
 blah blah
 !! endarticle
 
+!!article 
+Template:Foo
+!!text
+FOO
+!!endarticle
+
+!! article 
+Template:Blank
+!! text
+!! endarticle
+
+
 ###
 ### Basic tests
 ###
@@ -278,6 +290,26 @@ Comment semantics: unclosed comment at end
 
 !! end
 
+!! test
+Comment in template title
+!! input
+{{f<!---->oo}}
+!! result
+<p>FOO
+</p>
+!! end
+
+!! test
+Comment on its own line post-expand
+!! input
+a
+{{blank}}<!---->
+b
+!! result
+<p>a
+</p><p>b
+</p>
+!! end
 
 ###
 ### Preformatted text
