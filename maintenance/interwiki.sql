@@ -154,7 +154,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('wikicities','http://www.wikicities.com/index.php/$1',0),
 ('wikif1','http://www.wikif1.org/$1',0),
 ('wikihow','http://www.wikihow.com/$1',0),
-('wikinfo','http://www.wikinfo.org/wiki.php?title=$1',0),
+('wikinfo','http://www.wikinfo.org/index.php/$1',0),
 ('wikimedia','http://wikimediafoundation.org/wiki/$1',0),
 ('wikiquote','http://en.wikiquote.org/wiki/$1',1),
 ('wikinews','http://en.wikinews.org/wiki/$1',1),
