@@ -71,6 +71,7 @@ function addWiki( $lang, $site, $dbName )
 		}
 	}
 
+	global $wgTitle, $wgArticle;
 	$wgTitle = Title::newMainPage();
 	$wgArticle = new Article( $wgTitle );
 	$ucsite = ucfirst( $site );

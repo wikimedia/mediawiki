@@ -23,7 +23,7 @@ class LanguageKk_cyrl extends Language {
 	}
 
 	function convertGrammarKk_cyrl( $word, $case ) {
-
+		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['kk-kz'][$case][$word] ) ) {
 			return $wgGrammarForms['kk-kz'][$case][$word];
 		}
