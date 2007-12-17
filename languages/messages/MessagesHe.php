@@ -2457,6 +2457,7 @@ $1',
 'searchnamed'      => "חיפוש דפים בשם '''$1'''.",
 'articletitles'    => "חיפוש דפים המתחילים עם '''$1'''",
 'hideresults'      => 'הסתרת התוצאות',
+'useajaxsearch'    => 'שימוש בחיפוש AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&rarr; לדף הקודם',
