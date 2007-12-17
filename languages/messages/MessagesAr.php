@@ -1791,7 +1791,7 @@ $1',
 'ipbenableautoblock'          => 'تلقائيا امنع آخر عنوان أيبي تم استعماله بواسطة هذا المستخدم، وأي عناوين أيبي أخرى يحاول التحرير من خلالها',
 'ipbsubmit'                   => 'امنع هذا المستخدم',
 'ipbother'                    => 'وقت آخر:',
-'ipboptions'                  => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite',
+'ipboptions'                  => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'غير ذلك',
 'ipbotherreason'              => 'سبب إضافي:',
 'ipbhidename'                 => 'إخفاء اسم/عنوان المستخدم من سجل المنع وقائمة المنع الحالي وقائمة المستخدمين',
@@ -2518,6 +2518,7 @@ $1',
 'searchnamed'      => "ابحث عن الصفحات المعنونة ''$1''.",
 'articletitles'    => "الصفحات التي تبدأ ب''$1''",
 'hideresults'      => 'إخفاء النتائج',
+'useajaxsearch'    => 'استخدم بحث أجاكس',
 
 # Separators for various lists
 'semicolon-separator' => '؛',
