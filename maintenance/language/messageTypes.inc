@@ -265,7 +265,7 @@ $wgOptionalMessages = array(
 	'hebrew-calendar-m11-gen',
 	'hebrew-calendar-m12-gen',
 	'semicolon-separator',
-	'filetype-separator',
+	'comma-separator',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

@@ -2203,7 +2203,7 @@ $wgMessageStructure = array(
 	'separators' => array(
 		'catseparator',
 		'semicolon-separator',
-		'filetype-separator',
+		'comma-separator',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',

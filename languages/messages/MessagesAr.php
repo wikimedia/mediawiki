@@ -2522,7 +2522,7 @@ $1',
 
 # Separators for various lists
 'semicolon-separator' => '؛',
-'filetype-separator'  => '،',
+'comma-separator'     => '،',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← الصفحة السابقة',
