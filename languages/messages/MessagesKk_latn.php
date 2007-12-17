@@ -1296,6 +1296,8 @@ Swretti betke kiriktirwge, faýlğa twra siltew üşin mına pişindegi siltemen
 'illegalfilename'             => '«$1» faýl atawında bet atawlarında ruqsat etilmegen nışandar bar. Faýldı qaýta atañız da bunı jwktedi qaýta baýqap köriñiz.',
 'badfilename'                 => 'Faýldıñ atı «$1» bop özgertildi.',
 'filetype-badmime'            => '«$1» degen MIME türi bar faýldardı qotarwğa ruqsat etilmeýdi.',
+'filetype-badtype'            => "'''«.$1»''' degen kütilmegen faýl türi
+: Rüqsat etilgen faýl tür tizimi: $2",
 'filetype-missing'            => 'Bul faýldıñ («.jpg» sïyaqtı) keñeýtimi joq.',
 'large-file'                  => 'Faýldı $1 mölşerden aspawına tırısıñız; bul faýl mölşeri — $2.',
 'largefileserver'             => 'Osı faýldıñ mölşeri serverdiñ qalawınan asıp ketken.',

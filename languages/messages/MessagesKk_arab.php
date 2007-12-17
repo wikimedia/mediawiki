@@ -15,9 +15,22 @@
 $fallback = 'kk-cyrl';
 $rtl = true;
 
+$digitTransformTable = array(
+	'0' => '۰', # &#x06f0;
+	'1' => '۱', # &#x06f1;
+	'2' => '۲', # &#x06f2;
+	'3' => '۳', # &#x06f3;
+	'4' => '۴', # &#x06f4;
+	'5' => '۵', # &#x06f5;
+	'6' => '۶', # &#x06f6;
+	'7' => '۷', # &#x06f7;
+	'8' => '۸', # &#x06f8;
+	'9' => '۹', # &#x06f9;
+);
+
 $separatorTransformTable = array(
-	',' => "\xc2\xa0",
-	'.' => ',',
+	',' => '٬', # &#x066c;
+	'.' => '٫', # &#x066b; 
 );
 
 $defaultUserOptionOverrides = array(
@@ -129,29 +142,30 @@ $datePreferenceMigrationMap = array(
 );
 
 $dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'xg j, Y "ج."',
-	'mdy both' => 'H:i, xg j, Y "ج."',
+	## Please be cautious not to delete the invisible RLM from the beginning of the strings.
+	'mdy time' => '‏H:i',
+	'mdy date' => '‏xg j، Y "ج."',
+	'mdy both' => '‏H:i، xg j، Y "ج."',
 
-	'dmy time' => 'H:i',
-	'dmy date' => 'j F, Y "ج."',
-	'dmy both' => 'H:i, j F, Y "ج."',
+	'dmy time' => '‏H:i',
+	'dmy date' => '‏j F, Y "ج."',
+	'dmy both' => '‏H:i، j F، Y "ج."',
 
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y "ج." xg j',
-	'ymd both' => 'H:i, Y "ج." xg j',
+	'ymd time' => '‏H:i',
+	'ymd date' => '‏Y "ج." xg j',
+	'ymd both' => '‏H:i، Y "ج." xg j',
 
 	'yyyy-mm-dd time' => 'xnH:xni:xns',
 	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
 	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
 
-	'persian time' => 'H:i',
-	'persian date' => 'xij xiF xiY', 
-	'persian both' => 'xij xiF xiY, H:i',
-	
-	'hebrew time' => 'H:i',
-	'hebrew date' => 'xij xjF xjY',
-	'hebrew both' => 'H:i, xij xjF xjY',
+	'persian time' => '‏H:i',
+	'persian date' => '‏xij xiF xiY', 
+	'persian both' => '‏xij xiF xiY, H:i',
+
+	'hebrew time' => '‏H:i',
+	'hebrew date' => '‏xij xjF xjY',
+	'hebrew both' => '‏H:i, xij xjF xjY',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -1304,6 +1318,8 @@ $3 كەلتٸرٸلگەن سەبەبٸ: ''$2''",
 'illegalfilename'             => '«$1» فايل اتاۋىندا بەت اتاۋلارىندا رۇقسات ەتٸلمەگەن نىشاندار بار. فايلدى قايتا اتاڭىز دا بۇنى جۋكتەدٸ قايتا بايقاپ كٶرٸڭٸز.',
 'badfilename'                 => 'فايلدىڭ اتى «$1» بوپ ٶزگەرتٸلدٸ.',
 'filetype-badmime'            => '«$1» دەگەن MIME تٷرٸ بار فايلداردى قوتارۋعا رۇقسات ەتٸلمەيدٸ.',
+'filetype-badtype'            => "'''«.$1»''' دەگەن كٷتٸلمەگەن فايل تٷرٸ
+: رٷقسات ەتٸلگەن فايل تٷر تٸزٸمٸ: $2",
 'filetype-missing'            => 'بۇل فايلدىڭ («.jpg» سيياقتى) كەڭەيتٸمٸ جوق.',
 'large-file'                  => 'فايلدى $1 مٶلشەردەن اسپاۋىنا تىرىسىڭىز; بۇل فايل مٶلشەرٸ — $2.',
 'largefileserver'             => 'وسى فايلدىڭ مٶلشەرٸ سەرۆەردٸڭ قالاۋىنان اسىپ كەتكەن.',
