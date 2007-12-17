@@ -326,7 +326,7 @@ class UploadForm {
 						array( 'parseinline' ),
 						htmlspecialchars( $finalExt ),
 						implode(
-							wfMsgExt( 'filetype-separator', array( 'escapenoentities' ) ),
+							wfMsgExt( 'comma-separator', array( 'escapenoentities' ) ),
 							$wgFileExtensions
 						)
 					)
@@ -508,7 +508,7 @@ class UploadForm {
 						array( 'parseinline' ),
 						htmlspecialchars( $finalExt ),
 						implode(
-							wfMsgExt( 'filetype-separator', array( 'escapenoentities' ) ),
+							wfMsgExt( 'comma-separator', array( 'escapenoentities' ) ),
 							$wgFileExtensions
 						)
 					) . '</li>';
@@ -970,7 +970,7 @@ wgAjaxLicensePreview = {$alp};
 		global $wgCheckFileExtensions, $wgStrictFileExtensions,
 		$wgFileExtensions, $wgFileBlacklist;
 		if( $wgCheckFileExtensions ) {
-			$delim = wfMsgExt( 'filetype-separator', array( 'escapenoentities' ) );
+			$delim = wfMsgExt( 'comma-separator', array( 'escapenoentities' ) );
 			if( $wgStrictFileExtensions ) {
 				# Everything not permitted is banned
 				$wgOut->addHTML(

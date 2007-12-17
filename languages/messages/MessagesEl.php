@@ -2359,9 +2359,6 @@ $1',
 'articletitles'    => "Άρθρα που αρχίζουν από ''$1''",
 'hideresults'      => 'Απόκρυψη αποτελεσμάτων',
 
-# Separators for various lists
-'filetype-separator' => ',',
-
 # Multipage image navigation
 'imgmultipageprev'   => '← προηγούμενη σελίδα',
 'imgmultipagenext'   => 'επόμενη σελίδα →',

@@ -2970,7 +2970,7 @@ $1',
 # Separators for various lists
 'catseparator'          => '|', # don't translate or duplicate this message to other languages
 'semicolon-separator'   => ';', # only translate this message to other languages if you have to change it
-'filetype-separator'    => ', ', # only translate this message to other languages if you have to change it 
+'comma-separator'       => ', ', # only translate this message to other languages if you have to change it 
 
 # Multipage image navigation
 'imgmultipageprev'   => '← previous page',
