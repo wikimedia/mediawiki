@@ -4918,6 +4918,7 @@ class Parser_OldPP
 	 */
 	function srvus( $text ) {
 		$text = $this->strip( $text, $this->mStripState );
+		$text = Sanitizer::removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text );
 		$text = preg_replace( '/<!--MWTEMPLATESECTION.*?-->/', '', $text );
 		$text = $this->mStripState->unstripBoth( $text );
