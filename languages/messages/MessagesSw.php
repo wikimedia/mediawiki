@@ -163,7 +163,6 @@ Tafadhali fikiria kuhusu kukata ukurasa kwa vipande vifupi.</strong>',
 
 # Upload
 'upload'        => 'Pakia faili',
-'uploadtext'    => '-',
 'filedesc'      => 'Muhtasari',
 'ignorewarning' => 'Hifadhi bila kujali maonyo yoyote.',
 
