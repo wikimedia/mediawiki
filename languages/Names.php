@@ -177,15 +177,15 @@
 	'mi' => 'Māori',	# Maori
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
-	'mn' => 'Монгол',	# Mongoloian
+	'mn' => 'Монгол',	# Mongolian, Peripheral
 	'mo' => 'Молдовеняскэ',	# Moldovan
 	'mr' => 'मराठी',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'Malti',	# Maltese
-	'mus' => 'Mvskoke',	# Creek/Muscogee
+	'mus' => 'Mvskoke',	# Muskogee/Creek
 	'my' => 'Myanmasa',		# Burmese
 	'myv' => 'эрзянь кель',         # Erzya
-	'mzn' => 'مَزِروني',		# Mazandarin
+	'mzn' => 'مَزِروني',		# Mazanderani
 	'na' => 'Ekakairũ Naoero',		# Nauruan
 	'nah' => 'Nahuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
 	'nan' => 'Bân-lâm-gú', # Min-nan -- (bug 8217) nan instead of zh-min-nan, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
@@ -222,14 +222,14 @@
 	'pl' => 'Polski',		# Polish
 	'plm' => 'Palembang',		# Palembang
 	'pms' => 'Piemontèis', 	# Piedmontese
-	'pnt' => 'Ποντιακά', 	# Pontic, aka Pontic Greek
-	'ps' => 'پښتو',	# Pashto
+	'pnt' => 'Ποντιακά', 	# Pontic/Pontic Greek
+	'ps' => 'پښتو',	# Pashto, Northern/Paktu/Pakhtu/Pakhtoo/Afghan/Pakhto/Pashtu/Pushto/Yusufzai Pashto
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
 	'qu' => 'Runa Simi',	# Quechua
 	'rm' => 'Rumantsch',	# Raeto-Romance
 	'rmy' => 'Romani',	# Vlax Romany
-	'rn' => 'Kirundi',		# Kirundi
+	'rn' => 'Kirundi',		# Rundi/Kirundi/Urundi
 	'ro' => 'Română',	# Romanian
 	'roa-rup' => 'Armãneashce', # Aromanian
 	'roa-tara' => 'Tarandíne',	# Tarantino
@@ -270,7 +270,7 @@
 	'ta' => 'தமிழ்',	# Tamil
 	'te' => 'తెలుగు',	# Telugu
 	'tet' => 'Tetun',	# Tetun
-	'tg' => 'Тоҷикӣ',	# Tajik
+	'tg' => 'Тоҷикӣ',	# Tajiki
 	'th' => 'ไทย',	# Thai
 	'ti' => 'ትግርኛ',		# Tigrinya
 	'tk' => 'Türkmen',	# Turkmen
@@ -303,14 +303,14 @@
 	'war' => 'Winaray', # Waray-Waray
 	'wo' => 'Wolof',		# Wolof
 	'wuu' => '吴语',		# Wu
-	'xal' => 'Хальмг',		# Kalmyk
+	'xal' => 'Хальмг',		# Kalmyk-Oirat (Kalmuk, Kalmuck, Kalmack, Qalmaq, Kalmytskii Jazyk, Khal:mag, Oirat, Volga Oirat, European Oirat, Western Mongolian)
 	'xh' => 'isiXhosa',		# Xhosan
 	'ydd' => 'מיזרח־ייִדיש', # Eastern Yiddish
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
 	'yue' => '粵語', 	# Cantonese -- (bug 8217) yue instead of zh-yue, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=y
 	'za' => '(Cuengh)',		# Zhuang
-	'zea' => 'Zeêuws',	# Zealandic
+	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
 	'zh-classical' => '古文 / 文言文',			# Classical Chinese/Literary Chinese
 	'zh-cn' => "\xE2\x80\xAA中文(中国大陆)\xE2\x80\xAC",	# Chinese (PRC)
