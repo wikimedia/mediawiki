@@ -13,6 +13,7 @@
  * @author SPQRobin
  * @author Emk
  * @author לערי ריינהארט
+ * @author Kkkdc
  */
 
 $skinNames = array(
@@ -363,7 +364,7 @@ $1',
 'viewsourcetext'       => '以下にソースを表示しています:',
 'protectedinterface'   => 'このページはソフトウェアのインターフェースに使用されるテキストが保存されており、問題回避のために保護されています。',
 'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者に影響します。",
-'sqlhidden'            => '（SQLクエリー非表示）',
+'sqlhidden'            => '（SQLクエリ非表示）',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。
 $2',
 'namespaceprotected'   => "'''$1''' 名前空間に属するページを編集する権限がありません。",
@@ -1436,7 +1437,7 @@ $NEWPAGE
 'ipbenableautoblock'          => 'この利用者が最後に使用したIPアドレスを自動的にブロック（ブロック後に使用したIPアドレスも含む）',
 'ipbsubmit'                   => '投稿ブロックする',
 'ipbother'                    => '期間 (その他のとき)',
-'ipboptions'                  => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1ヶ月:1 month,3ヶ月:3 months,6ヶ月:6 months,1年:1 year,無期限:infinite',
+'ipboptions'                  => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1ヶ月:1 month,3ヶ月:3 months,6ヶ月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'その他',
 'ipbotherreason'              => '理由（その他/追加）',
 'ipbhidename'                 => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',

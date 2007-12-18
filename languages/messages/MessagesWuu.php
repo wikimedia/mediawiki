@@ -172,6 +172,7 @@ $messages = array(
 'sitesupport'       => '捐款',
 'sitesupport-url'   => 'Project:捐款',
 
+'ok'                      => '确定',
 'retrievedfrom'           => '取自“$1”',
 'youhavenewmessages'      => '侬有$1（$2）。',
 'newmessageslink'         => '新信息',
@@ -207,9 +208,11 @@ $messages = array(
 
 # General errors
 'error'           => '错误',
+'filedeleteerror' => '覅能删除文物“$1”。',
 'filenotfound'    => '寻弗着文件 "$1"。',
 'badtitle'        => '该只标题弗来三',
 'viewsource'      => '源码',
+'viewsourcefor'   => '$1个源码',
 'actionthrottled' => '动作已压制',
 
 # Login and logout pages
@@ -248,6 +251,7 @@ $messages = array(
 'prefs-help-email'           => '电子邮箱是备选的，让别人家好通过倷个用户页或者用户讲张页面联系着倷，用弗着暴露倷个身份。',
 'loginsuccesstitle'          => '登录成功',
 'loginsuccess'               => "'''倷现在以 \"\$1\" 个身份登录到{{SITENAME}}。 '''",
+'nouserspecified'            => '侬必须选个用户名。',
 'wrongpassword'              => '密码弗对嗄。请倷再试试看。',
 'mailmypassword'             => '电子邮件发送密码',
 'acct_creation_throttle_hit' => '对覅起，侬经建了$1个账号。侬覅能再建了。',
@@ -265,6 +269,7 @@ $messages = array(
 'link_tip'       => '内部链接',
 'extlink_sample' => 'http://www.example.com 链接标题',
 'headline_tip'   => '2级标题文字',
+'math_sample'    => '往该里加数学公式',
 'image_tip'      => '嵌入图片',
 'sig_tip'        => '倷个签名搭仔辰光记录',
 
@@ -278,6 +283,7 @@ $messages = array(
 'showdiff'           => '显示改动',
 'anoneditwarning'    => "'''警告：''' 倷朆登录。倷个IP地址会拨记录勒该页面个编辑历史里向。",
 'blockednoreason'    => '无给出原因',
+'whitelistedittext'  => '侬必须$1才能编辑。',
 'loginreqtitle'      => '必须登录',
 'loginreqlink'       => '登录',
 'accmailtitle'       => '密码已发送哉。',
@@ -368,15 +374,18 @@ $messages = array(
 'userrights-user-editname' => '输入用户名:',
 
 # Groups
-'group-bot'   => '机器人',
-'group-sysop' => '管理员',
-'group-all'   => '（全）',
+'group-bot'        => '机器人',
+'group-sysop'      => '管理员',
+'group-bureaucrat' => '行政员',
+'group-all'        => '（全）',
 
-'group-bot-member'   => '机器人',
-'group-sysop-member' => '管理员',
+'group-bot-member'        => '机器人',
+'group-sysop-member'      => '管理员',
+'group-bureaucrat-member' => '行政员',
 
-'grouppage-bot'   => '{{ns:project}}:机器人',
-'grouppage-sysop' => '{{ns:project}}:管理员',
+'grouppage-bot'        => '{{ns:project}}:机器人',
+'grouppage-sysop'      => '{{ns:project}}:管理员',
+'grouppage-bureaucrat' => '{{ns:project}}:行政员',
 
 # User rights log
 'rightsnone' => '（呒）',
@@ -502,6 +511,8 @@ $messages = array(
 'allpages'             => '全部页面',
 'shortpages'           => '短页面',
 'longpages'            => '长页面',
+'protectedpages'       => '已保护页面',
+'protectedtitles'      => '已保护个标题',
 'listusers'            => '用户列表',
 'specialpages'         => '特殊页面',
 'newpages'             => '新页面',
@@ -524,6 +535,7 @@ $messages = array(
 
 # Special:Allpages
 'nextpage'          => '下页 ($1)',
+'prevpage'          => '上一页（$1）',
 'allpagesfrom'      => '显示个页面开始于:',
 'allarticles'       => '所有页面',
 'allinnamespace'    => '所有页面 ($1 名字空间)',
@@ -538,8 +550,10 @@ $messages = array(
 
 # E-mail user
 'emailuser'     => '发E-mail拨该个用户',
+'emailfrom'     => '从',
 'emailto'       => '发拨',
 'emailsubject'  => '主题',
+'emailmessage'  => '信息',
 'emailsend'     => '发罢',
 'emailsent'     => '电子邮件发出去哉',
 'emailsenttext' => '倷个电子邮件讯息已经拨发送哉。',
@@ -580,6 +594,7 @@ $messages = array(
 'deletepage'      => '删脱页面',
 'confirm'         => '确认',
 'confirmdelete'   => '确认删除',
+'deletesub'       => '（正在删除“$1”）',
 'historywarning'  => '警告：倷要删脱个该只页面有历史：',
 'actioncomplete'  => '操作完成哉',
 'deletedarticle'  => '"[[$1]]" 已经删脱哉',
