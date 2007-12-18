@@ -250,6 +250,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12031) All namespaces doesn't work in Special:Newpages
 * (bug 585) Only create searchindex replica table for parser tests if db is MySQL
 * Allow --record option if parserTests.php to work when using Postgres
+* (bug 12296) Simplify cache epoch in default LocalSettings.php
+
 
 == Parser changes in 1.12 ==
 
