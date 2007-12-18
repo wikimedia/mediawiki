@@ -1670,6 +1670,9 @@ $1',
 'hideresults'      => '藏',
 'useajaxsearch'    => '用AJAX尋之',
 
+# Separators for various lists
+'comma-separator'       => '、',
+
 # Multipage image navigation
 'imgmultipageprev'   => '←前頁',
 'imgmultipagenext'   => '次頁→',
