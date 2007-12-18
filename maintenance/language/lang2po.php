@@ -138,7 +138,7 @@ $langTool = new languages();
 foreach ( $langTool->getLanguages() as $langcode) {
 	echo "Loading messages for $langcode:\n";
 	if( ! generatePo($langcode, $langTool->getMessages($langcode) ) ) {
-		echo "ERROR: Failed to wrote file.\n";
+		echo "ERROR: Failed to write file.\n";
 	} else {
 		echo "Applying template:";
 		applyPot($langcode);
