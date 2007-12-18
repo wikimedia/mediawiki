@@ -798,6 +798,18 @@ class DatabasePostgres extends Database {
 	}
 
 	/**
+	 * Return the current value of a sequence. Assumes it has ben nextval'ed in this session.
+	 */
+	function currentSequenceValue( $seqName ) {
+		$safeseq = preg_replace( "/'/", "''", $seqName );
+		$res = $this->query( "SELECT currval('$safeseq')" );
+		$row = $this->fetchRow( $res );
+		$currval = $row[0];
+		$this->freeResult( $res );
+		return $currval;
+	}
+
+	/**
 	 * Postgres does not have a "USE INDEX" clause, so return an empty string
 	 */
 	function useIndexClause( $index ) {
