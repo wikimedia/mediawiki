@@ -29,7 +29,11 @@ $messages = array(
 # Dates
 'sunday'    => 'Sonndeg',
 'monday'    => 'Méindeg',
+'tuesday'   => 'Dënschdeg',
+'wednesday' => 'Mëttwoch',
+'thursday'  => 'Donneschdeg',
 'friday'    => 'Freideg',
+'saturday'  => 'Samsdeg',
 'january'   => 'Januar',
 'february'  => 'Februar',
 'march'     => 'Mäerz',
@@ -55,18 +59,22 @@ $messages = array(
 'dec'       => 'Dez.',
 
 # Bits of text used by many pages
-'categories' => 'Kategorien',
+'categories'     => 'Kategorien',
+'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorien}}',
 
-'about'      => 'A propos',
-'article'    => 'Artikel',
-'newwindow'  => '(geet an enger neier Fënster op)',
-'mypage'     => 'meng Säit',
-'mytalk'     => 'meng Diskussioun',
-'anontalk'   => 'Diskussioun fir dës IP Adress',
-'navigation' => 'Navigatioun',
+'about'         => 'A propos',
+'article'       => 'Artikel',
+'newwindow'     => '(geet an enger neier Fënster op)',
+'moredotdotdot' => 'Méi …',
+'mypage'        => 'meng Säit',
+'mytalk'        => 'meng Diskussioun',
+'anontalk'      => 'Diskussioun fir dës IP Adress',
+'navigation'    => 'Navigatioun',
 
+'errorpagetitle'   => 'Feeler',
 'help'             => 'Hëllef',
 'search'           => 'Sichen',
+'searchbutton'     => 'Sichen',
 'go'               => 'Lass',
 'history'          => 'Historique vun der Säit',
 'history_short'    => 'Historique',
@@ -77,6 +85,7 @@ $messages = array(
 'protect'          => 'Protegéieren',
 'unprotect'        => 'Deprotegéieren',
 'newpage'          => 'Nei Säit',
+'talkpagelinktext' => 'Diskussioun',
 'personaltools'    => 'Perséinlech Tools',
 'articlepage'      => 'Artikel',
 'talk'             => 'Diskussioun',
@@ -101,14 +110,23 @@ $messages = array(
 'showtoc'         => 'weis',
 'hidetoc'         => 'verstoppen',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user'     => 'Benotzersäit',
+'nstab-special'  => 'Spezialsäit',
+'nstab-template' => 'Schabloun',
+'nstab-category' => 'Kategorie',
+
 # General errors
+'error'      => 'Feeler',
 'badtitle'   => 'Schlechten Titel',
 'viewsource' => 'Source kucken',
 
 # Login and logout pages
+'yourpassword'               => 'Passwuert:',
 'yourdomainname'             => 'Ären Domain',
 'userlogin'                  => 'Aloggen',
 'userlogout'                 => 'Ausloggen',
+'email'                      => 'E-Mail',
 'acct_creation_throttle_hit' => 'Dir hutt schon $1 Konten. Dir kënnt keng weider kreéieren.',
 'accountcreated'             => 'De Kont gouf geschaf',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
@@ -119,11 +137,28 @@ $messages = array(
 'savearticle'      => 'Säit späicheren',
 'showdiff'         => 'Weis Ännerungen',
 'anoneditwarning'  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm är IP Adress am Historique vun dëser Säit gespäichert.',
-'autoblockedtext'  => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Dir kënnt d\'Säit weiderhi liesen,</b> nëmmen d\'Méiglechkeet, se ze änneren oder soss Säiten op der {{SITENAME}} unzeleeën oder ze änneren, gouf gespaart. Wann der dësen Text hei gesitt, obwuel der just liese wollt, hutt der op e roude Link geklickt gehat, deen op eng Säit verknëppt, déi et nach net gëtt.</p> Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer dës Spär ze diskutéieren. <div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"> \'\'\'Gitt dofir w.e.gl. dës Donnéeën un:\'\'\' *Administrateur dee gespaart huet: $1 *Grond fir d\'Spär: $2 *Ufank vun der Spär: $8 *Enn: $6 *IP-Adress: $3 *Spär-ID: #$5 </div>',
+'blockedtitle'     => 'Benotzer ass gespärt',
+'autoblockedtext'  => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
+
+\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) 
+
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Dir kënnt d\'Säit weiderhi liesen,</b> nëmmen d\'Méiglechkeet, se ze änneren oder soss Säiten op der {{SITENAME}} unzeleeën oder ze änneren, gouf gespaart.
+Wann der dësen Text gesitt, obwuel der just liese wollt, hutt der op e roude Link geklickt gehat, deen op eng Säit verknëppt, déi et nach net gëtt.</p> 
+
+Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer dës Spär ze diskutéieren.
+
+<div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"> \'\'\'Gitt dofir w.e.gl. dës Donnéeën un:\'\'\'
+*Administrateur dee gespaart huet: $1 
+*Grond fir d\'Spär: $2 
+*Ufank vun der Spär: $8 
+*Enn: $6 
+*IP-Adress: $3 
+*Spär-ID: #$5 </div>',
 'accmailtitle'     => 'Passwuert gouf geschéckt.',
 'accmailtext'      => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
 'anontalkpagetext' => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mer d'[[IP Adress]] benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt gin. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
 'storedversion'    => 'Gespäichert Versioun',
+'templatesused'    => 'Schablounen déi an dësem Artikel gebraucht ginn:',
 
 # History pages
 'nextrevision' => 'Méi rezent Ännerung→',
@@ -262,6 +297,11 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # Browsing diffs
 'nextdiff' => 'Nächsten Ënnerscheed →',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'all',
+'imagelistall'     => 'all',
+'watchlistall2'    => 'all',
 
 # AJAX search
 'searchcontaining' => "No Artikelen siche mat ''$1''.",

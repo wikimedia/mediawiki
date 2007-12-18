@@ -5,6 +5,7 @@
  *
  * @author לערי ריינהארט
  * @author Vpovilaitis
+ * @author Matasg
  */
 
 $namespaceNames = array(
@@ -289,7 +290,7 @@ $messages = array(
 'newmessageslink'         => 'naujų žinučių',
 'newmessagesdifflink'     => 'paskutinis pakeitimas',
 'youhavenewmessagesmulti' => 'Turite naujų žinučių $1',
-'editsection'             => 'taisyti',
+'editsection'             => 'redaguoti',
 'editold'                 => 'taisyti',
 'editsectionhint'         => 'Redaguoti skyrelį: $1',
 'toc'                     => 'Turinys',
@@ -1528,7 +1529,7 @@ $1',
 'ipbenableautoblock'          => 'Automatiškai blokuoti šio naudotojo paskiausiai naudotą IP adresą, bei bet kokius vėlesnius IP adresus, iš kurių jie mėgina redaguoti',
 'ipbsubmit'                   => 'Blokuoti šį naudotoją',
 'ipbother'                    => 'Kitoks laikas',
-'ipboptions'                  => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite',
+'ipboptions'                  => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'kita',
 'ipbotherreason'              => 'Kita/papildoma priežastis',
 'ipbhidename'                 => 'Slėpti naudotojo vardą/IP adresą iš blokavimų istorijos, aktyvių blokavimų sąrašo ir naudotojų sąrašo',

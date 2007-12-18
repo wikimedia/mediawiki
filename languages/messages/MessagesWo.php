@@ -277,7 +277,10 @@ L’administrateur ayant verrouillé la base de données a donné l’explicatio
 'badtitletext'         => 'Boppu xët wi nga laaj baaxul, amul dara walla  day di boppu diggantey-làkk walla diggantey-sémb yu seen lëkkaloo baaxul. Xayna it dafa am benn walla ay araf yu ñu manuta jëfandikoo ci bopp.',
 'viewsource'           => 'Xool gongikuwaayam',
 'viewsourcefor'        => 'ngir $1',
-'viewsourcetext'       => 'mën ngaa gis te jël li nekk ci gii jukki ngir mën cee ligey :',
+'actionthrottled'      => 'Jêf ju digal',
+'actionthrottledtext'  => 'Ngir xeex spam yi, jëf ji nga namm a def dañ kaa digal ci yoon yoo ko man ci benn diir bu gatt. Te mel na ne romb nga boobu dig. Jéemaatal fii aki simili.',
+'protectedpagetext'    => 'Wii xêt dañ kaa aar ngir bañ ag coppiteem.',
+'viewsourcetext'       => 'Man ngaa xool te duppi li nekk ci bii jukki ngir man cee liggéey :',
 
 # Login and logout pages
 'logouttitle'                => 'Gennu',
