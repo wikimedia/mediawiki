@@ -1672,8 +1672,7 @@ if ( \$wgCommandLineMode ) {
 
 # When you make changes to this configuration file, this will make
 # sure that cached pages are cleared.
-\$configdate = gmdate( 'YmdHis', @filemtime( __FILE__ ) );
-\$wgCacheEpoch = max( \$wgCacheEpoch, \$configdate );
+\$wgCacheEpoch = max( \$wgCacheEpoch, gmdate( 'YmdHis', @filemtime( __FILE__ ) ) );
 	"; ## End of setting the $localsettings string
 
 	// Keep things in Unix line endings internally;
