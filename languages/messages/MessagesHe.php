@@ -1750,7 +1750,7 @@ $1',
 'ipbenableautoblock'          => 'חסימה גם של כתובת ה־IP שלו וכל כתובת IP אחרת שישתמש בה',
 'ipbsubmit'                   => 'חסימה',
 'ipbother'                    => 'זמן אחר:',
-'ipboptions'                  => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite',
+'ipboptions'                  => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'אחר',
 'ipbotherreason'              => 'סיבה אחרת/נוספת:',
 'ipbhidename'                 => 'הסתר את שם המשתמש או כתובת ה־IP מיומן החסימות, רשימת המשתמשים החסומים ורשימת המשתמשים',
