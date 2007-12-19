@@ -25,6 +25,7 @@ $messages = array(
 'tog-ccmeonemails'    => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 
 'underline-always' => 'ëmmer',
+'underline-never'  => 'ni',
 
 # Dates
 'sunday'    => 'Sonndeg',
@@ -66,15 +67,16 @@ $messages = array(
 'subcategories'   => 'Ënnerkategorien',
 'category-empty'  => "''An dëser Kategorie gëtt et am Ament nach keng Artikelen oder Medien''",
 
-'about'         => 'A propos',
-'article'       => 'Artikel',
-'newwindow'     => '(geet an enger neier Fënster op)',
-'cancel'        => 'Zeréck',
-'moredotdotdot' => 'Méi …',
-'mypage'        => 'meng Säit',
-'mytalk'        => 'meng Diskussioun',
-'anontalk'      => 'Diskussioun fir dës IP Adress',
-'navigation'    => 'Navigatioun',
+'about'          => 'A propos',
+'article'        => 'Artikel',
+'newwindow'      => '(geet an enger neier Fënster op)',
+'cancel'         => 'Zeréck',
+'qbspecialpages' => 'Spezialsäiten',
+'moredotdotdot'  => 'Méi …',
+'mypage'         => 'meng Säit',
+'mytalk'         => 'meng Diskussioun',
+'anontalk'       => 'Diskussioun fir dës IP Adress',
+'navigation'     => 'Navigatioun',
 
 'errorpagetitle'   => 'Feeler',
 'returnto'         => 'Zréck op $1.',
@@ -82,22 +84,26 @@ $messages = array(
 'search'           => 'Sichen',
 'searchbutton'     => 'Sichen',
 'go'               => 'Lass',
+'searcharticle'    => 'Lass',
 'history'          => 'Historique vun der Säit',
 'history_short'    => 'Historique',
 'info_short'       => 'Informatioun',
 'printableversion' => 'Printversioun',
 'permalink'        => 'Zitéierfäege Link',
+'print'            => 'Drécken',
 'edit'             => 'Änneren',
 'delete'           => 'Läschen',
 'protect'          => 'Protegéieren',
 'unprotect'        => 'Deprotegéieren',
 'newpage'          => 'Nei Säit',
 'talkpagelinktext' => 'Diskussioun',
+'specialpage'      => 'Spezialsäit',
 'personaltools'    => 'Perséinlech Tools',
 'articlepage'      => 'Artikel',
 'talk'             => 'Diskussioun',
 'toolbox'          => 'Geschirkëscht',
 'otherlanguages'   => 'Aner Sproochen',
+'jumptonavigation' => 'Navigatioun',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Iwwer {{SITENAME}}',
@@ -131,6 +137,12 @@ $messages = array(
 'nstab-template' => 'Schabloun',
 'nstab-category' => 'Kategorie',
 
+# Main script and global functions
+'nosuchspecialpage' => 'Spezialsäit gëtt et net',
+'nospecialpagetext' => "<big>'''Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.'''</big>
+
+All Spezialsäiten déi et gëtt sinn op der [[{{ns:special}}:Specialpages|Lescht vun de Spezialsäiten]] ze fannen.",
+
 # General errors
 'error'           => 'Feeler',
 'cachederror'     => 'Folgend Säit ass eng Kopie aus dem Cache an net onbedéngt aktuell.',
@@ -156,7 +168,11 @@ $messages = array(
 'badsiglength'               => 'De gewielten Numm ass ze laang; e muss manner wéi $1 Zeechen hunn.',
 'email'                      => 'E-Mail',
 'nouserspecified'            => 'Gitt w.e.g. e Benotzernumm un.',
+'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkonto',
+'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Dir hutt schon $1 Konten. Dir kënnt keng weider kreéieren.',
+'emailauthenticated'         => 'Äer E-Mail-Adress gouf confirméiert: $1.',
+'emailconfirmlink'           => 'Confirméiert äer E-Mail-Adress w.e.g..',
 'accountcreated'             => 'De Kont gouf geschaf',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 'loginlanguagelabel'         => 'Sprooch: $1',
@@ -166,11 +182,16 @@ $messages = array(
 'bold_tip'    => 'Fettgedréckten Text',
 
 # Edit pages
+'summary'          => 'Résumé',
 'minoredit'        => 'Mineur Ännerung',
 'watchthis'        => 'Dës Säit verfollegen',
 'savearticle'      => 'Säit späicheren',
+'preview'          => 'Kucken ouni ofzespäicheren',
+'showpreview'      => 'Kucken ouni ofzespäicheren',
+'showlivepreview'  => 'Live-Kucken ouni ofzespäicheren',
 'showdiff'         => 'Weis Ännerungen',
 'anoneditwarning'  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm är IP Adress am Historique vun dëser Säit gespäichert.',
+'summary-preview'  => 'Résumé kucken ouni ofzespäicheren',
 'blockedtitle'     => 'Benotzer ass gespärt',
 'blockedtext'      => "Äre Benotzernumm oder är IP Adress gouf vum \$1 blockéiert. De Grond dofir ass deen heiten:<br />''\$2''<p>Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[Wikipedia:Administrators|Administratoren]] fir de Blockage ze beschwätzen. Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng valid Email Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är IP Adress ass \$3. Schreift dës w.e.g. bei all Fro dobäi.",
 'autoblockedtext'  => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
@@ -193,6 +214,20 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'accmailtext'      => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
 'anontalkpagetext' => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mer d'[[IP Adress]] benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt gin. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
 'clearyourcache'   => "'''Opgepasst:''' Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn: '''Mozilla/Firefox:''' klickt ''reload'' (oder ''ctrl-R''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'editing'          => 'Ännere vun $1',
+'editinguser'      => 'Ännere vum Benotzer <b>$1</b>',
+'editingsection'   => 'Ännere vun $1 (Abschnitt)',
+'editingcomment'   => 'Ännere vun $1 (Bemierkung)',
+'editconflict'     => 'Ännerungskonflikt: $1',
+'explainconflict'  => 'Een anere Benotzer huet un dëser Säit geschafft, während Dir amgaange waart, se ze änneren.
+
+Dat iewegt Textfeld weist Iech den aktuellen Text.
+
+Är Ännerunge gesitt Dir am ënneschten Textfeld.
+
+Dir musst Är Ännerungen an dat iewegt Textfeld androen.
+
+<b>Nëmmen</b> den Text aus dem iewegten Textfeld gëtt gehale wann Dir op "Säit späicheren" klickt. <br />',
 'yourtext'         => 'Ären Text',
 'storedversion'    => 'Gespäichert Versioun',
 'yourdiff'         => 'Ënnerscheeder',

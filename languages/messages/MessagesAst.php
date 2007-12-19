@@ -354,6 +354,7 @@ Función: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver códigu fonte',
 'viewsourcefor'        => 'pa $1',
+'actionthrottled'      => 'Aición llimitada',
 'actionthrottledtext'  => "Como midida anti-spam, nun pues facer esta aición munches vegaes en pocu tiempu, y trespasasti esi llímite. Por favor inténtalo de nuevo dientro d'unos minutos.",
 'protectedpagetext'    => 'Esta páxina foi protexida pa evitar la so edición.',
 'viewsourcetext'       => "Pues ver y copiar el códigu fonte d'esta páxina:",
@@ -424,16 +425,33 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'passwordtooshort'           => "La to clave nun ye válida o ye demasiao curtia. Ha tener a lo menos $1 carauteres y ser distinta del to nome d'usuariu.",
 'mailmypassword'             => 'Unviame per corréu la clave',
 'passwordremindertitle'      => 'Nueva clave provisional pa {{SITENAME}}',
+'passwordremindertext'       => 'Daquién (seique tu, dende la direición IP $1)
+solicitó que se t\'unviara una clave nueva pa {{SITENAME}} ($4).
+La clave pal usuariu "$2" ye agora "$3".
+Habríes identificate y camudar la to clave agora.
+
+Si daquién más fexo esta solicitú o si recuerdes la to clave y
+nun quies volver a camudala, pues inorar esti mensaxe y siguir
+usando la to clave vieya.',
 'noemail'                    => 'L\'usuariu "$1" nun tien puesta dirección de corréu.',
+'passwordsent'               => 'Unvióse una clave nueva a la direición de corréu
+rexistrada pa "$1".
+Por favor identifícate de nuevo depués de recibila.',
 'blocked-mailpassword'       => 'La edición ta bloquiada dende la to direición IP, y por tanto
 nun se pue usar la función de recuperación de clave pa evitar abusos.',
 'eauthentsent'               => "Unvióse una confirmación de corréu electrónicu a la direición indicada.
 Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucciones del corréu electrónicu, pa confirmar que la cuenta ye de to.",
+'throttled-mailpassword'     => "Yá s'unvió un recordatoriu de la clave nes caberes $1
+hores. Pa evitar l'abusu, namás sedrá unviáu un recordatoriu
+cada $1 hores.",
 'mailerror'                  => "Error unviando'l corréu: $1",
 'acct_creation_throttle_hit' => 'Yá creasti $1 cuentes. Nun pues abrir más.',
 'emailauthenticated'         => 'La to dirección de corréu confirmóse a les $1.',
 'emailnotauthenticated'      => 'La to dirección de corréu nun ta comprobada. Hasta que se faiga, les siguientes funciones nun tarán disponibles.',
+'noemailprefs'               => "Especifica una direición de corréu pa qu'estes funcionalidaes furrulen.",
 'emailconfirmlink'           => 'Confirmar la dirección de corréu',
+'invalidemailaddress'        => "La direición de corréu nun se pue aceutar yá que paez tener un formatu
+non válidu. Por favor escribi una direición con formatu afayadizu o dexa vaciu'l campu.",
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => "La cuenta d'usuariu de $1 ta creada.",
 'createaccount-title'        => 'Creación de cuenta pa {{SITENAME}}',
@@ -444,8 +462,14 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'loginlanguagelabel'         => 'Llingua: $1',
 
 # Password reset dialog
-'resetpass_success'   => '¡La to clave cambióse correutamente! Agora identificándote...',
-'resetpass_forbidden' => 'Les claves nun se puen camudar nesta wiki',
+'resetpass'               => "Restablecer la clave d'usuariu",
+'resetpass_announce'      => "Identificástiti con una clave temporal unviada per corréu. P'acabar d'identificate has escribir equí una clave nueva:",
+'resetpass_header'        => 'Restablecer contraseña',
+'resetpass_submit'        => 'Camudar clave y identificase',
+'resetpass_success'       => '¡La to clave cambióse correutamente! Agora identificándote...',
+'resetpass_bad_temporary' => 'Clave temporal non válida. Seique yá camudaras correutamente la clave o solicitaras una nueva clave temporal.',
+'resetpass_forbidden'     => 'Les claves nun se puen camudar nesta wiki',
+'resetpass_missing'       => 'Nun hai datos en formulariu.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testu en negrina',
@@ -477,8 +501,11 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'savearticle'               => 'Grabar páxina',
 'preview'                   => 'Previsualizar',
 'showpreview'               => 'Amosar previsualización',
+'showlivepreview'           => 'Vista rápida',
 'showdiff'                  => 'Amosar cambeos',
 'anoneditwarning'           => "'''Avisu:''' Nun tas identificáu. La to IP va quedar grabada nel historial d'edición d'esta páxina.",
+'missingsummary'            => "'''Recordatoriu:''' Nun escribisti un resume d'edición. Si vuelves a calcar en Guardar, la to edición sedrá guardada ensin nengún resume.",
+'missingcommenttext'        => 'Por favor, escribi un comentariu embaxo.',
 'summary-preview'           => 'Previsualización del resume',
 'blockedtitle'              => "L'usuariu ta bloquiáu",
 'blockedtext'               => "<big>'''El to nome d'usuariu o la direición IP foi bloquiáu.'''</big>
@@ -501,9 +528,11 @@ La to direición IP actual ye $3, y el númberu d'identificación del bloquéu y
 'whitelistreadtitle'        => 'Necesítase identificación pa lleer',
 'whitelistreadtext'         => "Tienes que t'[[Special:Userlogin|identificar]] pa lleer páxines.",
 'whitelistacctitle'         => 'Nun tienes permisu pa crear una cuenta',
+'whitelistacctext'          => 'Pa poder crear cuentes nesta wiki has tar [[Special:Userlogin|identificáu]] y tener los permisos afayadizos.',
 'confirmedittitle'          => 'Requerida la confirmación de corréu electrónicu pa editar',
 'confirmedittext'           => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
 'nosuchsectiontitle'        => 'Nun esiste tala seición',
+'nosuchsectiontext'         => 'Intentasti editar una seición que nun esiste.  Como nun hai seición $1, nun hai sitiu pa guardar la to edición.',
 'loginreqtitle'             => 'Identificación Requerida',
 'loginreqlink'              => 'identificase',
 'loginreqpagetext'          => 'Has $1 pa ver otres páxines.',

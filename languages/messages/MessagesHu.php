@@ -6,6 +6,7 @@
  * @author Bdanee
  * @author Bdamokos
  * @author Tgr
+ * @author Siebrand
  */
 
 $namespaceNames = array(

@@ -7,6 +7,7 @@
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author HalanTul
+ * @author Illusion
  */
 
 /*
@@ -16,7 +17,6 @@
  * сделайте это посредством редактирования страниц вида «MediaWiki:*».
  * Их список можно найти на странице «Special:Allmessages».
  */
-
 
 $separatorTransformTable = array(
 	',' => "\xc2\xa0", # nbsp
@@ -1029,7 +1029,7 @@ $3 указал следующую причину: ''$2''",
 'minoreditletter'                   => 'м',
 'newpageletter'                     => 'Н',
 'boteditletter'                     => 'б',
-'number_of_watching_users_pageview' => '[$1 наблюдающих пользователя]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|наблюдающий пользователь|наблюдающих пользователя|наблюдающих пользователей}}]',
 'rc_categories'                     => 'Только из категорий (разделитель «|»)',
 'rc_categories_any'                 => 'Любой',
 'newsectionsummary'                 => '/* $1 */ Новая тема',
@@ -1285,7 +1285,6 @@ $3 указал следующую причину: ''$2''",
 'specialpages'            => 'Спецстраницы',
 'spheading'               => 'Служебные страницы',
 'restrictedpheading'      => 'Служебные страницы с ограниченным доступом',
-'rclsub'                  => '(на страницах, ссылки на которые есть на странице «$1»)',
 'newpages'                => 'Новые статьи',
 'newpages-username'       => 'Участник:',
 'ancientpages'            => 'Статьи по дате последнего редактирования',
@@ -1620,7 +1619,7 @@ $1',
 'ipbenableautoblock'          => 'Автоматически блокировать использованные участником IP-адреса',
 'ipbsubmit'                   => 'Заблокировать этот адрес/участника',
 'ipbother'                    => 'Другое время:',
-'ipboptions'                  => '15 минут:15 minutes,2 часа:2 hours,6 часов:6 hours,12 часов:12 hours,1 день:1 day,3 дня:3 days,1 неделю:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite',
+'ipboptions'                  => '15 минут:15 minutes,2 часа:2 hours,6 часов:6 hours,12 часов:12 hours,1 день:1 day,3 дня:3 days,1 неделю:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'иное',
 'ipbotherreason'              => 'Другая или дополнительная причина:',
 'ipbhidename'                 => 'Скрыть имя участника или IP-адрес из журнала блокировок, списка заблокированных и общего списка участников.',
@@ -1817,9 +1816,9 @@ IP-адреса.',
 'importlogpage'                    => 'Журнал импорта',
 'importlogpagetext'                => 'Импортирование администраторами страниц с историей изменений из других вики.',
 'import-logentry-upload'           => '«[[$1]]» — импорт из файла',
-'import-logentry-upload-detail'    => '$1 версий',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|версия|версии|версий}}',
 'import-logentry-interwiki'        => '«$1» — межвики импорт',
-'import-logentry-interwiki-detail' => '$1 версий из $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|версия|версии|версий}} из $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Моя страница участника',

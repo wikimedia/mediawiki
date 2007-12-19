@@ -1117,6 +1117,7 @@ $1 ساعة.',
 'userrights-available-none'   => 'لا يمكنك تعديل مجموعات المستخدم.',
 'userrights-available-add'    => 'يمكنك إضافة المستخدمين ل $1.',
 'userrights-available-remove' => 'يمكنك إزالة المستخدمين من $1.',
+'userrights-no-interwiki'     => 'أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.',
 
 # Groups
 'group'               => 'المجموعة:',
