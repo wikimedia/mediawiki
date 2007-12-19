@@ -145,6 +145,7 @@
 	'kn' => 'ಕನ್ನಡ',	# Kannada
 	'ko' => '한국어',	# Korean
 	'kr' => 'Kanuri',		# Kanuri, Central
+	'kri' => 'Krio', # Krio
 	'krj' => 'Kinaray-a', # Kinaray-a
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
 	'ksh' => 'Ripoarisch', 	# Ripuarian 
