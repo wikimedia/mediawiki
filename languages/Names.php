@@ -302,7 +302,7 @@
 	'wa' => 'Walon',		# Walloon
 	'war' => 'Winaray', # Waray-Waray
 	'wo' => 'Wolof',		# Wolof
-	'wuu' => '吴语',		# Wu
+	'wuu' => '吴语',		# Wu Chinese
 	'xal' => 'Хальмг',		# Kalmyk-Oirat (Kalmuk, Kalmuck, Kalmack, Qalmaq, Kalmytskii Jazyk, Khal:mag, Oirat, Volga Oirat, European Oirat, Western Mongolian)
 	'xh' => 'isiXhosa',		# Xhosan
 	'ydd' => 'מיזרח־ייִדיש', # Eastern Yiddish
