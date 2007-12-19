@@ -668,16 +668,20 @@ El restu e duendis d'esti güiqui sí tendrán premisu pa visoreal el caltiniu a
 'overlogpagetext' => 'Embahu se muestra una lista al tentu los úrtimus esborraus i tarugus relacionaus con continius açonchaus de los duendis. Consurta la [[Special:Ipblocklist|lista d´IP atarugás]] pa vel una lista colos úrtimus tarugus.',
 
 # History merging
-'mergehistory'         => 'Uñifical el estorial las páhinas',
-'mergehistory-box'     => 'Uñifical las revisionis las dos páhinas:',
-'mergehistory-from'    => 'Páhina e cóigu huenti:',
-'mergehistory-into'    => 'Páhina e destinu:',
-'mergehistory-list'    => "Estorial d'eicionis uñificabri",
-'mergehistory-go'      => 'Muestral eicionis uñificabris',
-'mergehistory-submit'  => 'Uñifical revisionis',
-'mergehistory-empty'   => 'Nu es posibri uñifical denguna revisión',
-'mergehistory-success' => "S'án uñificau $3 revisionis de [[:$1]] en [[:$2]].",
-'mergehistory-fail'    => 'Nu es posibri uñifical los estorialis. Pol favol, compreba la páhina i los parámetrus de tiempu.',
+'mergehistory'                     => 'Uñifical el estorial las páhinas',
+'mergehistory-box'                 => 'Uñifical las revisionis las dos páhinas:',
+'mergehistory-from'                => 'Páhina e cóigu huenti:',
+'mergehistory-into'                => 'Páhina e destinu:',
+'mergehistory-list'                => "Estorial d'eicionis uñificabri",
+'mergehistory-go'                  => 'Muestral eicionis uñificabris',
+'mergehistory-submit'              => 'Uñifical revisionis',
+'mergehistory-empty'               => 'Nu es posibri uñifical denguna revisión',
+'mergehistory-success'             => "S'án uñificau $3 revisionis de [[:$1]] en [[:$2]].",
+'mergehistory-fail'                => 'Nu es posibri uñifical los estorialis. Pol favol, compreba la páhina i los parámetrus de tiempu.',
+'mergehistory-no-source'           => 'La páhina huenti $1 nu desisti.',
+'mergehistory-no-destination'      => 'La páhina e destinu $1 nu desisti.',
+'mergehistory-invalid-source'      => 'La páhina huenti ebi tenel un entítulu premitiu.',
+'mergehistory-invalid-destination' => 'La páhina e destinu ebi tenel un entítulu premitiu.',
 
 # Merge log
 'mergelog'           => 'Rustrihu e fusionis',
@@ -787,6 +791,7 @@ El restu e duendis d'esti güiqui sí tendrán premisu pa visoreal el caltiniu a
 'userrights-available-none'   => 'Nu pueis chambal los miembrus el alabán.',
 'userrights-available-add'    => 'Pueis añiil usuárius a $1.',
 'userrights-available-remove' => 'Pueis esborral usuárius de $1.',
+'userrights-no-interwiki'     => 'Nu tienis premisu pa eital los derechus los usuárius en otras güiquis.',
 
 # Groups
 'group'               => 'Alabán:',
@@ -855,6 +860,9 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' u
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' p'atihal diretamenti al archivu.",
+'upload-permitted'            => "Crasis d'archivus premitias: $1.",
+'upload-preferred'            => "Crasis d'archivus preferias: $1.",
+'upload-prohibited'           => "Crasis d'archivus atarugás: $1.",
 'uploadlog'                   => "rustrihu d'empuntu",
 'uploadlogpage'               => "Rustrihu d'empuntu",
 'uploadlogpagetext'           => 'Embahu ai una lista e los úrtimus empuntus d´archivus.',
@@ -870,6 +878,8 @@ P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 'illegalfilename'             => 'El nombri "$1" tiini carateris que nu están premitius enus entítulus de páhinas. Pol favol, ponli otru nombri al archivu i preba a empuntalu e nuevu.',
 'badfilename'                 => 'S´á chambau el nombri el archivu a "$1".',
 'filetype-badmime'            => 'Nu está premitiu empuntal los archivus MIME type "$1".',
+'filetype-unwanted-type'      => "'''\".\$1\"''' es una crasi d'archivu nu deseá.  Las crasis d'archivus preferias son \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' es una crasi d'archivu nu premitia.  Las crasis d'archivus premitias son \$2.",
 'filetype-missing'            => 'El archivu nu tiini estensión (cumu ".jpg").',
 'large-file'                  => 'Es recomendabri que los archivus nu seyan mayoris de $1; esti archivu ocupa $2.',
 'largefileserver'             => 'Esti archivu es mas grandi que lo premitiu pol el sirviol.',
@@ -972,14 +982,15 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'filerevert-success'        => '<span class="plainlinks">S\'á revertiu \'\'\'[[Media:$1|$1]]\'\'\' a [$4 velsión de $3, $2].</span>',
 
 # File deletion
-'filedelete'           => 'Esborral $1',
-'filedelete-legend'    => 'Esborral archivu',
-'filedelete-intro'     => "Estás esborrandu '''[[Media:$1|$1]]'''.",
-'filedelete-comment'   => 'Comentáriu:',
-'filedelete-submit'    => 'Esborral',
-'filedelete-success'   => "S´á esborrau '''$1'''.",
-'filedelete-nofile'    => "Nu desisti '''$1''' nesti lugal.",
-'filedelete-iscurrent' => "Vas a esborral la úrtima velsión d'esti archivu. Pol favol enantis revierti a una velsión anteriol.",
+'filedelete'            => 'Esborral $1',
+'filedelete-legend'     => 'Esborral archivu',
+'filedelete-intro'      => "Estás esborrandu '''[[Media:$1|$1]]'''.",
+'filedelete-comment'    => 'Comentáriu:',
+'filedelete-submit'     => 'Esborral',
+'filedelete-success'    => "S´á esborrau '''$1'''.",
+'filedelete-nofile'     => "Nu desisti '''$1''' nesti lugal.",
+'filedelete-nofile-old' => "Nu desisti una velsión archivá e '''$1''' con esas caraterísticas.",
+'filedelete-iscurrent'  => "Vas a esborral la úrtima velsión d'esti archivu. Pol favol enantis revierti a una velsión anteriol.",
 
 # MIME search
 'mimesearch' => 'Landeu MIME',
@@ -1072,6 +1083,7 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'protectedpagestext'      => 'Las siguientis páhinas nu se puein ni movel ni eital (están protehias)',
 'protectedpagesempty'     => 'Nu desisti denguna páhina protehia con estus parámetrus.',
 'protectedtitles'         => 'Entítulus protehius',
+'protectedtitlesempty'    => 'Ogañu nu desistin entítulus protehius con estus parámetrus.',
 'listusers'               => 'Lista d´usuárius',
 'specialpages'            => 'Páhinas especialis',
 'spheading'               => 'Páhinas especialis pa tolos usuárius',
@@ -1374,6 +1386,9 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Atarugal usuáriu',
+'blockiptext'                 => "Gasta el hormuláriu d'embahu p'atarugal el acesu duna IP u dun usuáriu.
+Estu solu ebi hazelsi pa evital el vandalismu, i dalcuerdu cola [[{{MediaWiki:Policy-url}}|póliça]].
+Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan siu vandalizás pol esti usuáriu).",
 'ipaddress'                   => 'Direción IP:',
 'ipadressorusername'          => 'IP u nombri d´usuáriu:',
 'ipbexpiry'                   => 'Acabiha:',
@@ -1388,10 +1403,12 @@ $1',
 ** Abusal con varias cuentas
 ** Nombris d´usuárius enacetabris',
 'ipbanononly'                 => 'Atarugal sólu a los usuárius anónimus',
+'ipbcreateaccount'            => 'Atarugal el creaeru e cuentas',
+'ipbemailban'                 => 'Atarugal al usuáriu envial emails',
 'ipbenableautoblock'          => "Atarugal autumáticamenti la direción IP gastá pol esti usuáriu, i cualisquiel IP posteriol endi la cual trati d'eital",
 'ipbsubmit'                   => 'Atarugal a esti usuáriu',
 'ipbother'                    => 'Otra ora:',
-'ipboptions'                  => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite',
+'ipboptions'                  => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'otru',
 'ipbotherreason'              => 'Anguna otra razón?:',
 'ipbhidename'                 => 'Açonchal nombri d´usuáriu/IP nel "rustrihu e tarugus", "lista e tarugus ativus" i "lista d´usuárius"',
@@ -1572,6 +1589,7 @@ Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 'tooltip-ca-history'              => 'Velsionis anterioris d´esta páhina.',
 'tooltip-ca-protect'              => 'Protehel esta páhina',
 'tooltip-ca-delete'               => 'Esborral esta páhina',
+'tooltip-ca-undelete'             => 'Arrecuperal las eicionis hechas nesta páhina enantis de que huera esborrá',
 'tooltip-ca-move'                 => 'Movel esta páhina',
 'tooltip-ca-watch'                => 'Añiil esta páhina a la tu lista e seguimientu',
 'tooltip-ca-unwatch'              => 'Esborral esta páhina e la tu lista e seguimientu',
@@ -1625,6 +1643,7 @@ Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 'others'           => 'otrus',
 'siteusers'        => '{{SITENAME}} usuáriu/s $1',
 'creditspage'      => 'Créitus la páhina',
+'nocredits'        => 'Nu ai créitus disponibris pa esta páhina.',
 
 # Spam protection
 'spamprotectiontitle'    => 'Filtru e proteción anti-Spam',
@@ -1740,8 +1759,11 @@ $1',
 'exif-scenetype'               => "Crasi d'escena",
 'exif-exposuremode'            => "Mó d'esposición",
 'exif-whitebalance'            => 'Balanci e brancu',
+'exif-digitalzoomratio'        => 'Ratiu el zoom dehital',
+'exif-focallengthin35mmfilm'   => 'Longol focal en carreti e 35 mm',
 'exif-gaincontrol'             => 'Control la escena',
 'exif-contrast'                => 'Contrasti',
+'exif-saturation'              => 'Saturáncia',
 'exif-gpslatituderef'          => 'Latitú Norti u Sul',
 'exif-gpslatitude'             => 'Latitú',
 'exif-gpslongituderef'         => 'Lonhitú Esti u Oesti',
@@ -1763,6 +1785,9 @@ $1',
 'exif-gpsdestdistanceref'      => 'Longol al destinu',
 'exif-gpsdestdistance'         => 'Longol al destinu',
 'exif-gpsdatestamp'            => 'Fecha el GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'Descomprimiu',
 
 'exif-unknowndate' => 'Fecha andarria',
 
@@ -1835,6 +1860,7 @@ $1',
 'exif-sharpness-2' => 'Dura',
 
 'exif-subjectdistancerange-0' => 'Andarriu',
+'exif-subjectdistancerange-1' => 'Macru',
 'exif-subjectdistancerange-2' => 'Afechal vista',
 'exif-subjectdistancerange-3' => 'Vista endi largu',
 
@@ -1887,6 +1913,7 @@ correu enantis de solicital otru coigu.
 'confirmemail_success'   => 'Ya s´á confirmau la tu direción d´email. Ya pueis entral ena tu cuenta i embailti cola Güiqui.',
 'confirmemail_loggedin'  => 'Ya s´á confirmau la tu direción d´email.',
 'confirmemail_error'     => 'Marru al emburacal la tu confirmación.',
+'confirmemail_subject'   => 'Confirmaeru e direción de correu e {{SITENAME}}',
 'confirmemail_body'      => 'Yeu!
 
 Alguien, seguramenti tú, á rustriu la cuenta "$2" endi la direción 

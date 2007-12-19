@@ -4,9 +4,21 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Singularity
+ * @author Siebrand
  */
 
 $messages = array(
+# User preference toggles
+'tog-underline'        => 'Kahalalo i nā loulou:',
+'tog-justify'          => 'Ho‘okaulihi i nā paukū',
+'tog-rememberpassword' => 'Ho‘omana‘o i ko‘u hua‘ōlelo huna i loko o kēia kamepuila',
+
+'underline-always' => 'Mau',
+'underline-never'  => '‘A‘ole loa',
+
+'skinpreview' => '(Nāmua)',
+
 # Dates
 'sunday'       => 'Lāpule',
 'monday'       => "Pō'akahi",
@@ -31,12 +43,25 @@ $messages = array(
 'june-gen'     => 'Iuna',
 'august-gen'   => "'Aukake",
 'november-gen' => 'Novemapa',
+'jan'          => 'Ian',
+'feb'          => 'Pep',
+'mar'          => 'Mal',
+'apr'          => 'Ape',
 'may'          => 'Mei',
+'jun'          => 'Iun',
+'jul'          => 'Iul',
+'aug'          => 'Auk',
+'sep'          => 'Kep',
+'oct'          => 'Oka',
+'nov'          => 'Now',
+'dec'          => 'Kek',
 
 # Bits of text used by many pages
-'categories'      => 'Nā mahele',
-'category_header' => 'Nā mo‘olelo ma ka mahele "$1"',
-'category-empty'  => "''‘A‘ohe mau mo‘olelo kēia mahele.''",
+'categories'            => 'Nā mahele',
+'pagecategories'        => '{{PLURAL:$1|Mahele|Nā mahele}}',
+'category_header'       => 'Nā mo‘olelo maloko o ka mahele "$1"',
+'category-media-header' => 'Nā pāpaho maloko o ka mahele "$1"',
+'category-empty'        => "''‘A‘ohe mau mo‘olelo kēia mahele.''",
 
 'cancel'     => 'Ho‘ōki',
 'qbedit'     => "E ho'opololei",

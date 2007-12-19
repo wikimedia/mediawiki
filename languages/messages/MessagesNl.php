@@ -1062,6 +1062,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'userrights-available-none'   => 'U mag geen gebruikersrechten veranderen.',
 'userrights-available-add'    => 'U kan gebruikers toevoegen aan $1.',
 'userrights-available-remove' => 'U kan gebruikers verwijderen uit $1.',
+'userrights-no-interwiki'     => "U heeft geen rechten om gebruikersrechten op andere wiki's te bewerken.",
 
 # Groups
 'group'               => 'Groep:',
