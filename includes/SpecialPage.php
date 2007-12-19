@@ -135,7 +135,7 @@ class SpecialPage
 		'Import'                    => array( 'SpecialPage', 'Import', 'import' ),
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
 		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
-		'Userrights'                => array( 'SpecialPage', 'Userrights', 'userrights' ),
+		'Userrights'                => array( 'SpecialPage', 'Userrights' ),
 		'MIMEsearch'                => array( 'SpecialPage', 'MIMEsearch' ),
 		'Unwatchedpages'            => array( 'SpecialPage', 'Unwatchedpages', 'unwatchedpages' ),
 		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
