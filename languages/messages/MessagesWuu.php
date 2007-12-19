@@ -1,10 +1,12 @@
 <?php
-/** Wu (吴语)
+/** Wu Chinese (吴语)
  *
  * @addtogroup Language
  *
  * @author O
  */
+
+$fallback = 'zh-hans';
 
 $messages = array(
 # User preference toggles
