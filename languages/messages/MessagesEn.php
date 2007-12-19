@@ -1339,7 +1339,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-available-add'    => 'You can add users to $1.',
 'userrights-available-remove' => 'You can remove users from $1.',
 'userrights-no-interwiki'     => 'You do not have permission to edit user rights on other wikis.',
-'userrights-nodatabase'       => 'Database $1 is not exist or is not local.',
+'userrights-nodatabase'       => 'Database $1 does not exist or is not local.',
 
 # Groups
 'group'               => 'Group:',
@@ -1701,10 +1701,10 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'protectedpages-summary'          => '', # only translate this message to other languages if you have to change it
 'protectedpagestext'              => 'The following pages are protected from moving or editing',
 'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
-'protectedtitles'                  => 'Protected titles',
-'protectedtitles-summary'          => '', # only translate this message to other languages if you have to change it
-'protectedtitlestext'              => 'The following titles are protected from creation',
-'protectedtitlesempty'             => 'No titles are currently protected with these parameters.',
+'protectedtitles'                 => 'Protected titles',
+'protectedtitles-summary'         => '', # only translate this message to other languages if you have to change it
+'protectedtitlestext'             => 'The following titles are protected from creation',
+'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # only translate this message to other languages if you have to change it
 'specialpages'                    => 'Special pages',
@@ -2095,7 +2095,7 @@ pages that were vandalized).',
 'ipbenableautoblock'          => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
 'ipbsubmit'                   => 'Block this user',
 'ipbother'                    => 'Other time:',
-'ipboptions'                  => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
+'ipboptions'                  => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'other',
 'ipbotherreason'              => 'Other/additional reason:',
 'ipbhidename'                 => 'Hide username/IP from the block log, active block list and user list',
@@ -2970,9 +2970,9 @@ $1',
 'useajaxsearch'    => 'Use AJAX search',
 
 # Separators for various lists
-'catseparator'          => '|', # don't translate or duplicate this message to other languages
-'semicolon-separator'   => ';', # only translate this message to other languages if you have to change it
-'comma-separator'       => ', ', # only translate this message to other languages if you have to change it 
+'catseparator'        => '|', # don't translate or duplicate this message to other languages
+'semicolon-separator' => ';', # only translate this message to other languages if you have to change it
+'comma-separator'     => ', ', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev'   => '← previous page',
