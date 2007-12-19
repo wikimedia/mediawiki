@@ -25,9 +25,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * MediaWiki now checks if serialized files are out of date. New configuration
   variable $wgCheckSerialized can be set to false to enable old behavior (i.e.
   to not check and assume they are always up to date)
-* The rollback permission is now assigned by default to all logged-in users. It
-  can also now be rate-limited using the normal mechanism.
+* The rollback permission is now be rate-limited using the normal mechanism.
 * New configuration variable $wgExtraLanguageNames
+* Behaviour of $wgAddGroups and $wgRemoveGroups changed. New behaviour:
+* * Granting the userrights privilege allows arbitrary changing of rights.
+* * Without the userrights privilege, a user will be able to add and/or
+     remove the groups specified in $wgAddGroups and $wgRemoveGroups for
+     any groups they are in.
+* New permission userrights-interwiki for changing user rights on foreign wikis.
 
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
@@ -100,6 +105,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   filetype-unwanted-type and filetype-banned-type.
 * Added link to the old title in Special:Movepage
 * On Special:Movepage, errors are now more noticeable.
+* It is now possible to change rights on other local wikis without the MakeSysop
+   extension
 
 === Bug fixes in 1.12 ===
 
