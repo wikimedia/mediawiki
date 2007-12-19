@@ -210,7 +210,7 @@ $messages = array(
 
 # General errors
 'error'           => '错误',
-'filedeleteerror' => '覅能删除文物“$1”。',
+'filedeleteerror' => '呒能删除文物“$1”。',
 'filenotfound'    => '寻弗着文件 "$1"。',
 'badtitle'        => '该只标题弗来三',
 'viewsource'      => '源码',
@@ -256,7 +256,7 @@ $messages = array(
 'nouserspecified'            => '侬必须选个用户名。',
 'wrongpassword'              => '密码弗对嗄。请倷再试试看。',
 'mailmypassword'             => '电子邮件发送密码',
-'acct_creation_throttle_hit' => '对覅起，侬经建了$1个账号。侬覅能再建了。',
+'acct_creation_throttle_hit' => '对覅起，侬经建了$1个账号。侬呒能再建了。',
 'emailauthenticated'         => '倷个电子邮箱地址勒拉 $1 验证过哉。',
 'accountcreated'             => '户头开好哉',
 'accountcreatedtext'         => '$1 个户头已经建立哉。',
@@ -754,7 +754,8 @@ $messages = array(
 'deletedrevision' => '拨删脱个旧修订 $1',
 
 # Special:Newimages
-'newimages' => '新文件陈列室',
+'newimages'    => '新文件陈列室',
+'showhidebots' => '（$1机器人）',
 
 /*
 Short names for language variants used for language conversion links.
@@ -796,6 +797,9 @@ Variants for Chinese language
 'confirmemail_loggedin' => '倷个电子邮件地址已经拨确认哉。',
 'confirmemail_subject'  => '{{SITENAME}}电子邮件地址确认',
 
+# Scary transclusion
+'scarytranscludetoolong' => '[对呒起，URL太长了]',
+
 # Delete conflict
 'confirmrecreate' => "用户[[User:$1|$1]] ([[User talk:$1|讲张]])勒拉倷开始编辑该页面之后拿俚删脱，理由是： : ''$2'' 请拿定章程，倷阿是真个要重建该页面。",
 
@@ -806,6 +810,10 @@ Variants for Chinese language
 'searchcontaining' => "搜寻里向有 ''$1'' 个页面。",
 'articletitles'    => "以 ''$1'' 开头个页面",
 'hideresults'      => '囥脱结果',
+
+# Multipage image navigation
+'imgmultipageprev' => '← 上一页',
+'imgmultipagenext' => '下一页 →',
 
 # Table pager
 'ascending_abbrev'  => '升序',

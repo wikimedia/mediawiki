@@ -1334,7 +1334,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 'disambiguations'      => "Doorverwijspagina's",
 'disambiguationspage'  => 'Template:Doorverwijspagina',
-'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''. Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen. <br />Een pagina wordt gezien als dooverwijspagina als er een sjabloon op staat dat gelinkt is vanaf [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''. Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen. <br />Een pagina wordt gezien als dooverwijspagina als er een sjabloon op staat dat gelinkt is vanaf [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Dubbele doorverwijzingen',
 'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's. Elke rij bevat links naar de eerste en de tweede doorverwijspagina en een link naar de doelpagina van de tweede doorverwijspagina. Meestal is de laatste pagina het eigenlijke doel.",
@@ -1723,7 +1723,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbenableautoblock'          => 'Automatisch de IP-adressen van deze gebruiker blokkeren',
 'ipbsubmit'                   => 'Deze gebruiker blokkeren',
 'ipbother'                    => 'Andere duur',
-'ipboptions'                  => '15 minuten:15 min,1 uur:1 hour,2 uur:2 hours,6 uur:6 hours,12 uur:12 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbeperkt:infinite',
+'ipboptions'                  => '15 minuten:15 min,1 uur:1 hour,2 uur:2 hours,6 uur:6 hours,12 uur:12 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbeperkt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ander verloop',
 'ipbotherreason'              => 'Andere/eventuele reden:',
 'ipbhidename'                 => 'Gebruikersnaam/IP van het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
