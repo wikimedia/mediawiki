@@ -1338,6 +1338,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-available-none'   => 'You may not alter group membership.',
 'userrights-available-add'    => 'You can add users to $1.',
 'userrights-available-remove' => 'You can remove users from $1.',
+'userrights-no-interwiki'     => 'You do not have permission to edit user rights on other wikis.',
 
 # Groups
 'group'               => 'Group:',
