@@ -448,6 +448,17 @@ class UserrightsForm extends HTMLForm {
 	function changeableGroups() {
 		global $wgUser;
 
+		if( $wgUser->isAllowed( 'userrights' ) ) {
+			// This group gives the right to modify everything (reverse-
+			// compatibility with old "userrights lets you change
+			// everything")
+			return array(
+				'add' => User::getAllGroups(),
+				'remove' => User::getAllGroups()
+			);
+		}
+
+		// Okay, it's not so simple, we will have to go through the arrays
 		$groups = array( 'add' => array(), 'remove' => array() );
 		$addergroups = $wgUser->getEffectiveGroups();
 
@@ -466,21 +477,10 @@ class UserrightsForm extends HTMLForm {
 	 *
 	 * @param String $group The group to check for whether it can add/remove
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) )
-	 */	
+	 */
 	private function changeableByGroup( $group ) {
-		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups;
-	
-		if( $wgGroupPermissions[$group]['userrights'] == true ) {
-			// This group gives the right to modify everything (reverse-
-			// compatibility with old "userrights lets you change
-			// everything")
-			return array(
-				'add' => User::getAllGroups(),
-				'remove' => User::getAllGroups()
-			);
-		}
-		
-		// Okay, it's not so simple, we have to go through the arrays
+		global $wgAddGroups, $wgRemoveGroups;
+
 		$groups = array( 'add' => array(), 'remove' => array() );
 		if( empty($wgAddGroups[$group]) ) {
 			// Don't add anything to $groups
