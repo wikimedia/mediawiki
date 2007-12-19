@@ -392,6 +392,7 @@ $2',
 'namespaceprotected'   => "Вам не дазволена правіць старонкі ў прасторы назваў '''$1'''.",
 'customcssjsprotected' => 'Вам не дазволена правіць гэтую старонку, таму што яна ўтрымлівае асабістыя настаўленні іншага ўдзельніка.',
 'ns-specialprotected'  => 'Не дазволена правіць старонкі ў прасторы назваў {{ns:special}}.',
+'titleprotected'       => 'Назва засцерагаецца ад стварэння; ахова пастаўлена ўдзельнікам: [[User:$1|$1]]. Тлумачэнне пастаноўкі пад ахову: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Выхад з сістэмы',
@@ -711,6 +712,7 @@ $2',
 'revdelete-logentry'          => 'зменена бачнасць версіі [[$1]]',
 'logdelete-logentry'          => 'зменена бачнасць падзеі* [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|версія|версій}} зменены на лад $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|падзея|падзей}} над [[$3]] пераведзены ў рэжым $2',
 'revdelete-success'           => 'Паспяхова настаўлена бачнасць версіі.',
 
 # Diffs
@@ -727,6 +729,7 @@ $2',
 'searchsubtitle'        => "Вы шукалі '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Вы шукалі '''$1'''",
 'noexactmatch'          => "'''Няма старонкі з назвай \"\$1\".''' Вы можаце яе [[:\$1|стварыць]].",
+'noexactmatch-nocreate' => "'''Няма старонкі з назвай \"\$1\".'''",
 'titlematches'          => 'Знойдзена ў назвах',
 'notitlematches'        => 'Нічога не знойдзена ў назвах',
 'textmatches'           => 'Знойдзена ў тэкстах',
@@ -876,6 +879,9 @@ $2',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|альтэрн. тэкст]]</nowiki>''' or
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''', каб спаслацца наўпрост на файл.",
+'upload-permitted'            => 'Дазволеныя тыпы файлаў: $1.',
+'upload-preferred'            => 'Больш прыймальныя тыпы файлаў: $1.',
+'upload-prohibited'           => 'Забароненыя тыпы файлаў: $1.',
 'uploadlog'                   => 'журнал укладанняў',
 'uploadlogpage'               => 'Журнал укладанняў',
 'uploadlogpagetext'           => 'Ніжэй паказаны спіс нядаўна ўкладзеных файлаў.',
@@ -917,6 +923,7 @@ $2',
 'uploadscripted'              => 'У файле ўтрымліваецца код HTML або Яваскрыпту, які можа быць памылкова апрацаваны браўзерам.',
 'uploadcorrupt'               => 'Файл пашкоджаны або названы з неадпаведным суфіксам. Праверце файл і ўкладзіце яго нанова.',
 'uploadvirus'                 => 'Файл утрымлівае вірус! Падрабязнасці: $1',
+'sourcefilename'              => 'Назва вытокавага файла',
 'destfilename'                => 'Назва мэтавага файла',
 'watchthisupload'             => 'Назіраць за гэтай старонкай',
 'filewasdeleted'              => 'Файл з такою назвай быў раней укладзены сюды, а потым сцёрты. Варта паглядзець у $1 перад тым, як укладаць яго нанова.',
@@ -1497,8 +1504,9 @@ $NEWPAGE
 'importsuccess'              => 'Імпартаванне скончана!',
 
 # Import log
-'importlogpage'                 => 'Журнал імпартаванняў',
-'import-logentry-upload-detail' => '$1 {{PLURAL:$1|версія|версій}}',
+'importlogpage'                    => 'Журнал імпартаванняў',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|версія|версій}}',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|версія|версій}} з $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Свая старонка',
@@ -1561,6 +1569,17 @@ $NEWPAGE
 'tooltip-watch'                   => 'Дапісаць старонку да спісу назіранага',
 'tooltip-recreate'                => 'Аднавіць старонку, хоць яна і была сцёрта',
 'tooltip-upload'                  => 'Пачаць укладанне',
+
+# Stylesheets
+'common.css'   => '/** CSS, упісаны сюды, будзе дзейнічаць на карыстальнікаў усіх світаў */',
+'monobook.css' => '/* CSS, упісаны сюды, будзе дзейнічаць на браўзер кожнага чытача з актыўнай світай Monobook */',
+
+# Scripts
+'common.js'   => '/* Яваскрыпт, упісаны сюды, будзе выконвацца для кожнага чытача, на кожным счытванні старонкі. */',
+'monobook.js' => '/* Састарэлае; заменена на [[MediaWiki:common.js]] */',
+
+# Metadata
+'nodublincore' => 'Метаданыя ў схеме Dublin Core RDF на гэтым серверы не дазволены.',
 
 # Attribution
 'anonymous'        => 'Ананімныя ўдзельнікі і ўдзельніцы {{GRAMMAR:родны|{{SITENAME}}}}',
@@ -1856,6 +1875,7 @@ $1',
 'searchnamed'      => "Знайсці артыкулы з назвай ''$1''.",
 'articletitles'    => "Артыкулы, чые назвы пачынаюцца з ''$1''",
 'hideresults'      => 'Не паказваць вынікаў',
+'useajaxsearch'    => 'Пошук праз AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',

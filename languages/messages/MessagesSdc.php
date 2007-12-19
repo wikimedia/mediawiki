@@ -656,8 +656,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'viewprevnext'          => 'Vèdi ($1) ($2) ($3).',
 'showingresults'        => "Accó {{PLURAL:$1|màssimu '''1''' risulthaddu|màssimu li '''$1''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
 'showingresultsnum'     => "Accó {{PLURAL:$3|'''1''' risulthaddu |li '''$3''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
-'powersearch'           => 'Zircha',
-'powersearchtext'       => 'Zircha i li sighenti namespaces:<br />$1<br />$2 Musthra i rinvii <br />Critéri pa zirchà: $3 $9',
+'powersearch'           => 'Zercha',
+'powersearchtext'       => "Zercha i' li sighenti namespaces:<br />$1<br />$2 Musthra i rinvii <br />Critéri pa zirchà: $3 $9",
 
 # Preferences page
 'preferences'           => 'Prifirenzi',
@@ -692,7 +692,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'textboxsize'           => 'Casella di mudìfigga',
 'rows'                  => 'Righi:',
 'columns'               => 'Curonni:',
-'searchresultshead'     => 'Zircha',
+'searchresultshead'     => 'Zercha',
 'resultsperpage'        => 'Nùmaru di risulthaddi pa pàgina:',
 'contextlines'          => 'Righi di testhu pa dugnunu risulthaddu:',
 'contextchars'          => 'Nùmaru di caràtteri di cuntesthu:',
@@ -707,7 +707,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'servertime'            => 'Ora di lu server',
 'guesstimezone'         => "Usa l'ora di lu tóiu nabiggadori",
 'allowemail'            => 'Cunsinti lu rizzibimentu di postha erettrònica da althri utenti (1)',
-'defaultns'             => 'Namespace pridifiniddi pa la zircha:',
+'defaultns'             => 'Namespace pridifiniddi pa zirchà:',
 'default'               => 'pridifiniddu',
 'files'                 => 'File',
 
@@ -836,7 +836,7 @@ pà culligà direttamenti l'althri tipi di file.",
 'imagelist'                 => 'Listha di li file',
 'imagelisttext'             => "Inogghi una listha di '''$1''' {{PLURAL:$1|file|file}} ordhinaddi pa $2.",
 'getimagelist'              => 'carriggamentu listha file',
-'ilsubmit'                  => 'Zircha',
+'ilsubmit'                  => 'Zercha',
 'showlast'                  => 'Musthra li ulthimi $1 file ordhinaddi pà $2.',
 'byname'                    => 'innòmu',
 'bydate'                    => 'data',
@@ -844,8 +844,8 @@ pà culligà direttamenti l'althri tipi di file.",
 'imgdelete'                 => 'canz',
 'imgdesc'                   => "pàgina di l'immàgina",
 'filehist'                  => 'Cronologia di lu file',
-'filehist-deleteall'        => 'canzilla tuttu',
-'filehist-deleteone'        => 'canzilla chistha versioni',
+'filehist-deleteall'        => 'canzella tuttu',
+'filehist-deleteone'        => 'canzella chistha versioni',
 'filehist-revert'           => 'turra che primma',
 'filehist-current'          => 'currenti',
 'filehist-datetime'         => 'Data/Ora',
@@ -862,7 +862,7 @@ pà culligà direttamenti l'althri tipi di file.",
 'imagelist_user'            => 'Utenti',
 'imagelist_size'            => 'Misuri in byte',
 'imagelist_description'     => 'Deschrizioni',
-'imagelist_search_for'      => 'Zircha immàgini pà innòmu:',
+'imagelist_search_for'      => 'Zercha immàgini pa innòmu:',
 
 # File reversion
 'filerevert'                => 'Turra che primma $1',
@@ -872,17 +872,17 @@ pà culligà direttamenti l'althri tipi di file.",
 'filerevert-submit'         => 'Turra che primma',
 
 # File deletion
-'filedelete'         => 'Canzilla $1',
-'filedelete-legend'  => 'Canzilla lu file',
+'filedelete'         => 'Canzella $1',
+'filedelete-legend'  => 'Canzella lu file',
 'filedelete-intro'   => "N'isthai canzillendi '''[[Media:$1|$1]]'''.",
 'filedelete-comment' => 'Mutibazioni:',
-'filedelete-submit'  => 'Canzilla',
+'filedelete-submit'  => 'Canzella',
 'filedelete-success' => "Lu file '''$1''' è isthaddu canzilladdu.",
 'filedelete-nofile'  => 'I chistu situ nò esisthi un file $1.',
 
 # MIME search
-'mimesearch'         => 'Zircha sigundu a lu tipu MIME',
-'mimesearch-summary' => 'Chistha pàgina cunsinti di filthrà li file sigundu a lu tipu MIME. Insirì li paràuri zirchadi cumenti tipu/sottutipu e.g. <tt>image/jpeg</tt>.',
+'mimesearch'         => 'Zercha sigundu a lu tipu MIME',
+'mimesearch-summary' => 'Chistha pàgina cunsinti di filthrà li file sigundu lu tipu MIME. Insirì li paràuri zirchaddi cumenti tipu/sottutipu e.g. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Tipu MIME:',
 'download'           => 'ischarriggamentu',
 
@@ -917,7 +917,7 @@ pà culligà direttamenti l'althri tipi di file.",
 
 'brokenredirects'        => 'Rinvii ibbagliaddi',
 'brokenredirects-edit'   => '(mudifigga)',
-'brokenredirects-delete' => '(canzilla)',
+'brokenredirects-delete' => '(canzella)',
 
 'withoutinterwiki'        => "Pàgini chena cullegamenti p'althri linghi",
 'withoutinterwiki-header' => 'Li sighenti pàgini so chena cullegamenti a versioni in althri linghi (interwiki):',
@@ -972,7 +972,7 @@ pà culligà direttamenti l'althri tipi di file.",
 
 # Book sources
 'booksources'               => 'Rifirimenti di libri',
-'booksources-search-legend' => 'Zircha rifirimenti di libri',
+'booksources-search-legend' => 'Zercha rifirimenti di libri',
 'booksources-go'            => 'Vai',
 
 'data'           => 'Dati',
@@ -986,11 +986,11 @@ pà culligà direttamenti l'althri tipi di file.",
 'speciallogtitlelabel' => 'Tìturu:',
 'log'                  => 'Rigisthri',
 'all-logs-page'        => 'Tutti li rigisthri',
-'log-search-legend'    => "Zircha i' li rigisthri",
+'log-search-legend'    => "Zercha i' li rigisthri",
 'log-search-submit'    => 'Vai',
 'alllogstext'          => "Prisintazioni unifiggadda di li rigisthri reratibi a li operazioni di carriggamentu, canzilladdura, prutizioni, broccu e amministhrazioni di lu situ. Ribbendi li appósiddi campi si pò limità la visuarizzazioni a un'ippizzificu rigisthru, nommu utenti o pàgina.",
-'logempty'             => 'Lu rigisthru nò cunteni erementi curripundenti a la zircha.',
-'log-title-wildcard'   => "Zircha li tìturi ch'ischuminzani cun",
+'logempty'             => 'Lu rigisthru nò cunteni erementi curripundenti.',
+'log-title-wildcard'   => "Zercha li tìturi ch'ischuminzani cun",
 
 # Special:Allpages
 'nextpage'          => 'Pàgini sighenti ($1)',
@@ -1081,7 +1081,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'enotif_anon_editor'           => 'utenti anònimu $1',
 
 # Delete/protect/revert
-'deletepage'                  => 'Canzilla pàgina',
+'deletepage'                  => 'Canzella pàgina',
 'confirm'                     => 'Cunfèimma',
 'excontent'                   => "lu cuntinuddu era : '$1'",
 'excontentauthor'             => "lu cuntinuddu era: '$1' (e lu soru cuntributori era '[[Special:Contributions/$2|$2]]')",
@@ -1211,7 +1211,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'ipblocklist'             => 'Listha di li utenti e indirizzi IP broccaddi',
 'ipblocklist-legend'      => "Acciappa un'utenti broccaddu",
 'ipblocklist-username'    => 'Innommu utenti o indirizzu IP:',
-'ipblocklist-submit'      => 'Zircha',
+'ipblocklist-submit'      => 'Zercha',
 'blocklistline'           => '$1, $2 à broccaddu $3 ($4)',
 'infiniteblock'           => 'chena ischadènzia',
 'expiringblock'           => "finz'a lu $1",
@@ -1260,7 +1260,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'movelogpage'             => 'Ippusthamenti',
 'movereason'              => 'Mutibu',
 'revertmove'              => 'turra che primma',
-'delete_and_move'         => 'Canzilla e ippustha',
+'delete_and_move'         => 'Canzella e ippustha',
 'delete_and_move_confirm' => 'Emmo, sobbraischribì la pàgini',
 'delete_and_move_reason'  => "Canzilladda pa rindì pussìbiri l'ippusthamentu",
 
@@ -1315,7 +1315,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'tooltip-ca-addsection'         => 'Aggiungi un cummentu a chista dischussioni',
 'tooltip-ca-history'            => 'Versioni prizzidenti di chistha pàgina',
 'tooltip-ca-protect'            => 'Prutiggi chistha pàgina',
-'tooltip-ca-delete'             => 'Canzilla chistha pàgina',
+'tooltip-ca-delete'             => 'Canzella chistha pàgina',
 'tooltip-ca-move'               => 'Ippustha chistha pàgina (ciamba tìturu)',
 'tooltip-ca-unwatch'            => "Elimina chistha pàgina da la tóia listha d'abbaidaddi ippiziari",
 'tooltip-search'                => 'Zercha di dentru a {{SITENAME}}',
@@ -1460,6 +1460,10 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-n' => 'Nodi',
 
+# External editor support
+'edit-externally'      => 'Mudìfigga chistu file usendi un prugramma esthernu',
+'edit-externally-help' => "Pa maggiori infuimmazioni cunsultha l'[http://meta.wikimedia.org/wiki/Help:External_editors isthruzioni] (in ingresu).",
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutti',
 'imagelistall'     => 'tutti',
@@ -1468,17 +1472,28 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'monthsall'        => 'tutti',
 
 # E-mail address confirmation
-'confirmemail'           => 'Cunfèimma indirizzu di postha erettrònica',
-'confirmemail_noemail'   => "Nò è isthaddu indicaddu un'indirizzu postha erettrònica vàriddu i' li pròpri [[Special:Preferences|prifirenzi]].",
-'confirmemail_send'      => 'Invia un còdizi di cunfèimma via postha erettrònica.',
-'confirmemail_sent'      => 'Imbasciadda di postha erettrònica di cunfèimma inviaddu.',
-'confirmemail_needlogin' => 'È nezzessàriu $1 pa cunfèimmà lu propriu indirizzu di postha erettrònica.',
-'confirmemail_success'   => "L'indirizzu di postha erettrònica è cunfèimmaddu. Abà è pussìbiri eseguì l'intradda e si godì lu situ.",
-'confirmemail_loggedin'  => "L'indirizzu di postha erettrònica è isthaddu cunfèimmaddu.",
-'confirmemail_subject'   => "{{SITENAME}}: prigonta di cunfèimma di l'indirizzu di postha erettrònica",
+'confirmemail'            => 'Cunfèimma indirizzu di postha erettrònica',
+'confirmemail_noemail'    => "Nò è isthaddu indicaddu un'indirizzu postha erettrònica vàriddu i' li pròpri [[Special:Preferences|prifirenzi]].",
+'confirmemail_text'       => "Chisthu situ dumanda la verifigga di l'indirizzu di postha erettrònica primma di pudé l'usà. Incalchà lu buttoni in giossu pa invià una prigonta di cunfèimma a lu propriu indirizzu; i' l'imbasciadda è prisenti un cullegamentu chi cunteni un còdizi. Visità lu cullegamentu cu' lu proprio nabiggadori pa cunfèimmà chi l'indirizzu è vàriddu.",
+'confirmemail_pending'    => '<div class="error">
+Un còdizi di cunfèimma è già isthaddu inviaddu pa postha erettrònica; si la registhrazioni è isthadda cridda da poggu, è nezzessariu aisittà l\'arribu di lu còdizi pa calchi minutu primma di dumandanni unu nobu.
+</div>',
+'confirmemail_send'       => 'Invia un còdizi di cunfèimma via postha erettrònica.',
+'confirmemail_sent'       => 'Imbasciadda di postha erettrònica di cunfèimma inviaddu.',
+'confirmemail_sendfailed' => "Impussìbiri invià l'imbasciadda di postha erettrònica di cunfèimma. Verifiggà chi l'indirizzu nò aggia caràtteri nò vàriddi.
+
+Imbasciadda d'errori: $1",
+'confirmemail_invalid'    => 'Còdizi di cunfèimma nò vàriddu. Lu còdizi pudaria assé ischaduddu.',
+'confirmemail_needlogin'  => 'È nezzessàriu $1 pa cunfèimmà lu propriu indirizzu di postha erettrònica.',
+'confirmemail_success'    => "L'indirizzu di postha erettrònica è cunfèimmaddu. Abà è pussìbiri eseguì l'intradda e si godì lu situ.",
+'confirmemail_loggedin'   => "L'indirizzu di postha erettrònica è isthaddu cunfèimmaddu.",
+'confirmemail_error'      => 'Errori i lu saivvamentu di la cunfèimma.',
+'confirmemail_subject'    => "{{SITENAME}}: prigonta di cunfèimma di l'indirizzu di postha erettrònica",
 
 # Scary transclusion
-'scarytranscludetoolong' => '[Errori: URL troppu longu]',
+'scarytranscludedisabled' => "[L'incrusioni di pàgini tra siti wiki nò è attiba]",
+'scarytranscludefailed'   => '[Errori: Impussìbiri uttinì lu mudellu $1]',
+'scarytranscludetoolong'  => '[Errori: URL troppu longu]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -1490,7 +1505,8 @@ $1
 'trackbackdeleteok' => 'Infuimmazioni di tracciamentu eliminaddi.',
 
 # Delete conflict
-'recreate' => 'Ricria',
+'deletedwhileediting' => "Attinzioni: Chistha pàgina è isthadda canzilladda daboi ch'ài ischuminzaddu a mudìfiggarla!",
+'recreate'            => 'Ricria',
 
 # HTML dump
 'redirectingto' => 'Rinviu a [[$1]]...',

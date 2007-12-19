@@ -45,6 +45,7 @@ $messages = array(
 'september' => 'September',
 'october'   => 'Oktober',
 'november'  => 'November',
+'december'  => 'Dezember',
 'jan'       => 'Jan.',
 'feb'       => 'Feb.',
 'mar'       => 'Mäe.',
@@ -59,12 +60,16 @@ $messages = array(
 'dec'       => 'Dez.',
 
 # Bits of text used by many pages
-'categories'     => 'Kategorien',
-'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'categories'      => 'Kategorien',
+'pagecategories'  => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'category_header' => 'Artikelen an der Kategorie "$1"',
+'subcategories'   => 'Ënnerkategorien',
+'category-empty'  => "''An dëser Kategorie gëtt et am Ament nach keng Artikelen oder Medien''",
 
 'about'         => 'A propos',
 'article'       => 'Artikel',
 'newwindow'     => '(geet an enger neier Fënster op)',
+'cancel'        => 'Zeréck',
 'moredotdotdot' => 'Méi …',
 'mypage'        => 'meng Säit',
 'mytalk'        => 'meng Diskussioun',
@@ -72,12 +77,14 @@ $messages = array(
 'navigation'    => 'Navigatioun',
 
 'errorpagetitle'   => 'Feeler',
+'returnto'         => 'Zréck op $1.',
 'help'             => 'Hëllef',
 'search'           => 'Sichen',
 'searchbutton'     => 'Sichen',
 'go'               => 'Lass',
 'history'          => 'Historique vun der Säit',
 'history_short'    => 'Historique',
+'info_short'       => 'Informatioun',
 'printableversion' => 'Printversioun',
 'permalink'        => 'Zitéierfäege Link',
 'edit'             => 'Änneren',
@@ -95,6 +102,11 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Iwwer {{SITENAME}}',
 'aboutpage'         => 'Project:A propos_{{SITENAME}}',
+'bugreports'        => 'Feelermeldungen',
+'bugreportspage'    => 'Project:Feelermeldungen',
+'copyright'         => 'Inhalt ass zur Verfügung gestallt ënnert der $1.<br />',
+'copyrightpagename' => '{{SITENAME}} Copyright',
+'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Aktualitéit',
 'currentevents-url' => 'Project:Aktualitéit',
 'mainpage'          => 'Haaptsäit',
@@ -105,6 +117,9 @@ $messages = array(
 
 'badaccess'        => 'Net genuch Rechter',
 'badaccess-group0' => 'Dir hutt net déi néideg Rechter fir dës Aktioun duerchzeféieren.',
+'badaccess-group1' => "D'Aktioun déi dir gewielt hutt, kann nëmme vu Benotzer aus de Gruppen $1 duerchgefouert ginn.",
+'badaccess-group2' => "D'Aktioun déi dir gewielt hutt, kann nëmme vu Benotzer aus enger vun den $1 Gruppen duerchgefouert ginn.",
+'badaccess-groups' => "D'Aktioun déi dir gewielt hutt, kann nëmme vu Benotzer aus de Gruppen $1 duerchgefouert ginn.",
 
 'newmessageslink' => 'nei Messagen',
 'showtoc'         => 'weis',
@@ -117,19 +132,38 @@ $messages = array(
 'nstab-category' => 'Kategorie',
 
 # General errors
-'error'      => 'Feeler',
-'badtitle'   => 'Schlechten Titel',
-'viewsource' => 'Source kucken',
+'error'           => 'Feeler',
+'cachederror'     => 'Folgend Säit ass eng Kopie aus dem Cache an net onbedéngt aktuell.',
+'badarticleerror' => 'Dës Aktioun kann net op dëser Säit duerchgefouert ginn.',
+'cannotdelete'    => "D'Bild oder d'Säit kann net geläscht ginn (ass waarscheinlech schonns vun engem Anere geläscht ginn).",
+'badtitle'        => 'Schlechten Titel',
+'badtitletext'    => 'De gewënschten Titel ass invalid, eidel, oder een net korrekten Interwiki Link.',
+'viewsource'      => 'Source kucken',
 
 # Login and logout pages
+'yourname'                   => 'Benotzernumm:',
 'yourpassword'               => 'Passwuert:',
 'yourdomainname'             => 'Ären Domain',
 'userlogin'                  => 'Aloggen',
 'userlogout'                 => 'Ausloggen',
+'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
+'youremail'                  => 'E-Mail-Adress:',
+'username'                   => 'Benotzernumm:',
+'uid'                        => 'Benotzer-Nummer:',
+'yourrealname'               => 'Richtege Numm:',
+'yourlanguage'               => 'Sprooch:',
+'badsig'                     => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
+'badsiglength'               => 'De gewielten Numm ass ze laang; e muss manner wéi $1 Zeechen hunn.',
 'email'                      => 'E-Mail',
+'nouserspecified'            => 'Gitt w.e.g. e Benotzernumm un.',
 'acct_creation_throttle_hit' => 'Dir hutt schon $1 Konten. Dir kënnt keng weider kreéieren.',
 'accountcreated'             => 'De Kont gouf geschaf',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
+'loginlanguagelabel'         => 'Sprooch: $1',
+
+# Edit page toolbar
+'bold_sample' => 'Fettgedréckten Text',
+'bold_tip'    => 'Fettgedréckten Text',
 
 # Edit pages
 'minoredit'        => 'Mineur Ännerung',
@@ -138,6 +172,7 @@ $messages = array(
 'showdiff'         => 'Weis Ännerungen',
 'anoneditwarning'  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm är IP Adress am Historique vun dëser Säit gespäichert.',
 'blockedtitle'     => 'Benotzer ass gespärt',
+'blockedtext'      => "Äre Benotzernumm oder är IP Adress gouf vum \$1 blockéiert. De Grond dofir ass deen heiten:<br />''\$2''<p>Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[Wikipedia:Administrators|Administratoren]] fir de Blockage ze beschwätzen. Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng valid Email Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är IP Adress ass \$3. Schreift dës w.e.g. bei all Fro dobäi.",
 'autoblockedtext'  => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
 
 \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) 
@@ -157,22 +192,39 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'accmailtitle'     => 'Passwuert gouf geschéckt.',
 'accmailtext'      => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
 'anontalkpagetext' => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mer d'[[IP Adress]] benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt gin. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
+'clearyourcache'   => "'''Opgepasst:''' Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn: '''Mozilla/Firefox:''' klickt ''reload'' (oder ''ctrl-R''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'yourtext'         => 'Ären Text',
 'storedversion'    => 'Gespäichert Versioun',
+'yourdiff'         => 'Ënnerscheeder',
 'templatesused'    => 'Schablounen déi an dësem Artikel gebraucht ginn:',
 
+# Account creation failure
+'cantcreateaccount-text' => 'Dës IP Adress (<b>$1</b>) gouf vum [[User:$3|$3]] blokéiert fir Benotzer-Konten op der lëtzebuergescher Wikipedia opzemaachen. De Benotzer $3 huet "$2" als Ursaach uginn.',
+
 # History pages
+'currentrev'   => 'Aktuell Versioun',
 'nextrevision' => 'Méi rezent Ännerung→',
 'next'         => 'nächst',
+'deletedrev'   => '[geläscht]',
+'historyempty' => '(eidel)',
+
+# Diffs
+'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
 
 # Search results
 'nextn' => 'nächst $1',
 
 # Preferences page
-'preferences'   => 'Preferenzen',
-'mypreferences' => 'Meng Preferenzen',
-'saveprefs'     => 'Späicheren',
-'newpassword'   => 'Neit Passwuert:',
-'allowemail'    => 'Emaile vun anere Benotzer kréien.',
+'preferences'     => 'Preferenzen',
+'mypreferences'   => 'Meng Preferenzen',
+'qbsettings-none' => 'Keen',
+'changepassword'  => 'Passwuert änneren',
+'saveprefs'       => 'Späicheren',
+'newpassword'     => 'Neit Passwuert:',
+'columns'         => 'Kolonnen',
+'contextlines'    => 'Zuel vun de Linnen:',
+'contextchars'    => 'Kontextcharactère pro Linn:',
+'allowemail'      => 'Emaile vun anere Benotzer kréien.',
 
 # Recent changes
 'recentchanges' => 'Rezent Ännerungen',
@@ -183,13 +235,24 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 
 # Upload
 'upload'          => 'Eroplueden',
+'badfilename'     => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
 'savefile'        => 'Fichier späicheren',
 'watchthisupload' => 'Dës Säit verfollegen',
+
+# Image list
+'byname' => 'no Numm',
+'bydate' => 'no Datum',
+'bysize' => 'no Gréisst',
+
+# Unused templates
+'unusedtemplateswlh' => 'Aner Linken',
 
 # Random page
 'randompage' => 'Zoufallssäit',
 
 # Statistics
+'statistics'    => 'Statistik',
+'userstats'     => 'Benotzerstatistik',
 'sitestatstext' => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Artikel|Artikelen}} an der Datebank.
 Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Artikelen, Redirecten an anerer déi eventuell net als Artikele gezielt kënne ginn.
 
@@ -202,6 +265,10 @@ Doraus ergi sech '''\$5''' Bearbechtungen pro Artikel an '''\$6''' Artikeloffroe
 
 Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''\$7'''",
 
+'brokenredirects'        => 'Futtise Redirect',
+'brokenredirectstext'    => 'Folgend Redirects linken op Säiten déi et net gëtt.',
+'brokenredirects-delete' => '(läschen)',
+
 # Miscellaneous special pages
 'nlinks'            => '$1 {{PLURAL:$1|Link|Linken}}',
 'popularpages'      => 'Populär Säiten',
@@ -211,8 +278,12 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'ancientpages'      => 'Al Säiten',
 'move'              => 'Réckelen',
 
-'alphaindexline' => '$1 bis $2',
-'version'        => 'Versioun',
+# Book sources
+'booksources' => 'Bicherressourcen',
+
+'categoriespagetext' => 'Et existéiere folgend Kategorien op {{SITENAME}}:',
+'alphaindexline'     => '$1 bis $2',
+'version'            => 'Versioun',
 
 # Special:Log
 'all-logs-page' => "All d'Logbicher",
@@ -235,6 +306,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # E-mail user
 'emailuser'       => 'Dësem Benotzer eng Email schécken',
+'emailpage'       => 'E-Mail un de Benotzer',
 'defemailsubject' => '{{SITENAME}}-E-Mail',
 'noemailtitle'    => 'Keng E-Mail-Adress',
 
@@ -247,15 +319,23 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'watchthispage'  => 'Dës Säit verfollegen',
 'unwatch'        => 'Net méi verfollegen',
 
+'changed' => 'geännert',
+
 # Delete/protect/revert
-'actioncomplete' => 'Aktioun ofgeschloss',
-'alreadyrolled'  => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
+'confirm'           => 'Konfirméieren',
+'confirmdelete'     => "Konfirméiert d'Läschen",
+'confirmdeletetext' => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[Wikipedia:Administrators#Konsequenze vun engem Muechtmëssbrauch|Wikipediaregele]] geschitt.",
+'actioncomplete'    => 'Aktioun ofgeschloss',
+'cantrollback'      => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
+'alreadyrolled'     => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
+'confirmprotect'    => "Konfirméiert d'Protectioun",
 
 # Undelete
 'undelete' => 'Geläschte Säit restauréieren',
 
 # Namespace form on various pages
-'namespace' => 'Nummraum:',
+'namespace'      => 'Nummraum:',
+'blanknamespace' => '(Haapt)',
 
 # Contributions
 'contributions' => 'Kontributiounen',
@@ -270,9 +350,21 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'whatlinkshere' => 'Linken op dës Säit',
 
 # Block/unblock
-'blockip'       => 'Benotzer blockéieren',
-'anononlyblock' => 'nëmmen anonym Benotzer',
-'autoblocker'   => 'Dir sidd autoblockéiert well dir eng IP Adress mam "$1" deelt. Grond "$2".',
+'blockip'                     => 'Benotzer blockéieren',
+'blockiptext'                 => 'Benotzt dës Form fir eng spezifesch IP Adress oder e Benotzernumm ze blockéieren. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat der [[Wikipedia:Vandalismus|Wikipedia Policy]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
+'badipaddress'                => "D'IP-Adress huet dat falscht Format.",
+'blockipsuccesssub'           => 'Blockage erfollegräich',
+'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf blockéiert. <br />Kuckt d'[[Special:Ipblocklist|IP block list]] fir all Blockage ze gesin.",
+'blocklistline'               => '$1, $2 blockéiert $3 (gülteg bis $4)',
+'anononlyblock'               => 'nëmmen anonym Benotzer',
+'blocklink'                   => 'blockéier',
+'contribslink'                => 'Kontributiounen',
+'autoblocker'                 => 'Dir sidd autoblockéiert well dir eng IP Adress mam "$1" deelt. Grond "$2".',
+'blocklogpage'                => 'Block Log',
+'blocklogentry'               => '"[[$1]]" blockéiert, gülteg bis $2',
+'blocklogtext'                => "Dëst ass e Log vu Blockéieren an Deblockéieren. Automatesch blockéiert IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:Ipblocklist|IP block list]] fir déi aktuell Blockagen.",
+'block-log-flags-anononly'    => 'Nëmmen anonym Benotzer',
+'block-log-flags-noautoblock' => 'Autoblock deaktivéiert',
 
 # Move page
 'movepage'        => 'Säit réckelen',
@@ -295,6 +387,10 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 # Attribution
 'anonymous' => 'Anonym(e) Benotzer op {{SITENAME}}',
 
+# Spam protection
+'categoryarticlecount' => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Artikel|ginn et bis ewell $1 Artikelen}}.',
+'category-media-count' => 'Et {{PLURAL:$1|gëtt eng Datei|ginn $1 Dateien}} an dëser Kategorie',
+
 # Browsing diffs
 'nextdiff' => 'Nächsten Ënnerscheed →',
 
@@ -302,6 +398,22 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'recentchangesall' => 'all',
 'imagelistall'     => 'all',
 'watchlistall2'    => 'all',
+
+# E-mail address confirmation
+'confirmemail'            => 'Email-Adress bestätegen',
+'confirmemail_text'       => "Ier der d'Email-Funktioune vun der {{SITENAME}} notze kënnt musst der als éischt är Email-Adress bestätegen. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-Email op déi Adress ze schécken déi der uginn hutt. An deer Email steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
+'confirmemail_send'       => 'Confirmatiouns-Email schécken',
+'confirmemail_sent'       => 'Confirmatiouns-Email gouf geschéckt.',
+'confirmemail_sendfailed' => "D'Confirmatiouns-Email konnt net verschéckt ginn. Iwwerpréift w.e.g. är Adress op keng ongëlteg Zeechen dran enthale sinn.",
+'confirmemail_invalid'    => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",
+'confirmemail_success'    => 'Är Email Address gouf konfirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéiren.',
+'confirmemail_loggedin'   => 'Är Email-Adress gouf elo confirméiert.',
+'confirmemail_error'      => 'Et ass eppes falsch gelaf bäim Späichere vun ärer Confirmatioun.',
+'confirmemail_subject'    => '{{SITENAME}} Email-Adress-Confirmatioun',
+'confirmemail_body'       => 'E User, waarscheinlech där selwer, huet mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach. Fir ze bestätegen, datt dee Kont iech wierklech gehéiert a fir d\'Email-Funktiounen um Site {{SITENAME}} z\'aktivéieren, maacht w.e.g. de folgende Link an ärem Browser op: $3 Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De Confirmatiounscode gëtt den $4 ongëlteg.',
+
+# Delete conflict
+'confirmrecreate' => "De Benotzer [[User:$1|$1]] ([[User talk:$1|Diskussioun]]) huet dësen Artikel geläscht, nodeems datt där ugefaangen hutt drun ze schaffen. D'Begrënnung war: ''$2'' Bestätegt w.e.g., datt där dësen Artikel wierklich erëm nei opmaache wëllt.",
 
 # AJAX search
 'searchcontaining' => "No Artikelen siche mat ''$1''.",

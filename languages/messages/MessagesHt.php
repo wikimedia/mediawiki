@@ -1,8 +1,9 @@
 <?php
-/** Haitian Creole (Kreyòl ayisyen)
+/** Haitian (Kreyòl ayisyen)
  *
  * @addtogroup Language
  *
+ * @author Masterches
  */
 
 $fallback = 'fr';
@@ -31,6 +32,10 @@ $namespaceNames = array(
 $linkTrail = '/^([a-zàèòÀÈÒ]+)(.*)$/sDu';
 
 $messages = array(
+# User preference toggles
+'tog-underline'      => 'Souliyen lyen yo :',
+'tog-watchcreations' => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
+
 # Dates
 'sunday'        => 'dimanch',
 'monday'        => 'lendi',
