@@ -229,7 +229,6 @@ hō‘ike ‘ia i lalo:",
 'ipbreason'     => 'Ke kumu',
 'ipbsubmit'     => 'E ke‘a i kēia mea ho‘ohana',
 'ipbother'      => 'ʻĒ aʻe manawa:',
-'ipboptions'    => '‘elua hours:‘elua hola,‘ekahi lā:‘ekahi lā,‘ekolu lā:‘ekolu lā,‘ekahi pule:‘ekahi pule,‘elua pule:‘elua pule,‘ekahi mahina:‘ekahi mahina,‘ekolu mahina:‘ekolu mahina,‘eono mahina:‘eono mahina,‘ekahi makahiki:‘ekahi makahiki,palena ‘ole:palena ‘ole', # display1:time1,display2:time2,...
 'badipaddress'  => 'Mana ‘ole ka wahi noho IP',
 'anononlyblock' => '‘A‘ohe i hō‘ike‘ia ka inoa wale nō',
 'blocklink'     => 'e keʻa',
