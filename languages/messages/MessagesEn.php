@@ -1339,6 +1339,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-available-add'    => 'You can add users to $1.',
 'userrights-available-remove' => 'You can remove users from $1.',
 'userrights-no-interwiki'     => 'You do not have permission to edit user rights on other wikis.',
+'userrights-nodatabase'       => 'Database $1 is not exist or is not local.',
 
 # Groups
 'group'               => 'Group:',

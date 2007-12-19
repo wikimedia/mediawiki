@@ -78,52 +78,37 @@ class UserrightsForm extends HTMLForm {
 	 */
 	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '') {
 		$split = $this->splitUsername( $username );
-		if( WikiError::isError( $split ) ) {
-			$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $split->getMessage() ) );
+		if( !$split ) {
 			return;
 		}
-
 		list( $database, $name ) = $split;
-		$this->db =& $this->getDB( $database );
-		$userid = $this->getUserId( $database, $name );
 
-		if( $userid == 0) {
-			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
-			return;
-		}
-
-		global $wgUser;
-		if ($database != '' && !$wgUser->isAllowed('userrights-interwiki')) {
-			$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
-			return;
-		}
-
-		$oldGroups = $this->getUserGroups( $database, $userid );
+		$oldGroups = $this->getUserGroups();
 		$newGroups = $oldGroups;
-		// remove then add groups		
+		// remove then add groups
 		if(isset($removegroup)) {
 			$newGroups = array_diff($newGroups, $removegroup);
 			foreach( $removegroup as $group ) {
-				$this->removeUserGroup( $database, $userid, $group );
+				$this->removeUserGroup( $group );
 			}
 		}
 		if(isset($addgroup)) {
 			$newGroups = array_merge($newGroups, $addgroup);
 			foreach( $addgroup as $group ) {
-				$this->addUserGroup( $database, $userid, $group );
+				$this->addUserGroup( $group );
 			}
 		}
 		$newGroups = array_unique( $newGroups );
 
 		// Ensure that caches are cleared
-		$this->touchUser( $database, $userid );
+		$this->touchUser( $database );
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
 		wfRunHooks( 'UserRights', array( &$u, $addgroup, $removegroup ) );
 
 		$log = new LogPage( 'rights' );
-		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $username ), $this->mReason, array( $this->makeGroupNameList( $oldGroups ),
+		$log->addEntry( 'rights', Title::makeTitleSafe( NS_USER, $username ), $this->mReason, array( $this->makeGroupNameList( $oldGroups ),
 			$this->makeGroupNameList( $newGroups ) ) );
 	}
 
@@ -132,52 +117,66 @@ class UserrightsForm extends HTMLForm {
 	 * @param string $username Name of the user.
 	 */
 	function editUserGroupsForm($username) {
-		global $wgOut, $wgUser;
-		
+		global $wgOut;
+
 		$split = $this->splitUsername( $username );
-		if( WikiError::isError( $split ) ) {
-			$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $split->getMessage() ) );
+		if( !$split ) {
 			return;
 		}
-
 		list( $database, $name ) = $split;
-		$this->db =& $this->getDB( $database );
-		$userid = $this->getUserId( $database, $name );
 
-		if( $name == '' ) {
-			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
-			return;
-		} elseif( $userid == 0) {
-			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
-			return;
-		}
-
-		global $wgUser;
-		if ($database != '' && !$wgUser->isAllowed('userrights-interwiki')) {
-			$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
-			return;
-		}
-
-		$groups = $this->getUserGroups( $database, $userid );
+		$groups = $this->getUserGroups();
 		
 		$this->showEditUserGroupsForm( $username, $groups );
 
-		if ($database == '') {
+		if ($database == '' && $username{0} != '#') {
 			$this->showLogFragment( User::newFromName($username), $wgOut );
 		}
 	}
 
 	function splitUsername( $username ) {
+		global $wgOut, $wgUser, $wgLocalDatabases;
+
 		$parts = explode( '@', $username );
 		if( count( $parts ) < 2 ) {
-			return array( '', $username );
+			$name = $username;
+			$database = '';
+		} else {
+			list( $name, $database ) = $parts;
 		}
-		list( $name, $database ) = $parts;
 
-		global $wgLocalDatabases;
-		return array_search( $database, $wgLocalDatabases ) !== false
-			? array( $database, $name )
-			: new WikiError( 'Bogus database suffix "' . wfEscapeWikiText( $database ) . '"' );
+		if( $database != '' && !in_array( $database, $wgLocalDatabases ) ) {
+			$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $database ) );
+			return;
+		}
+
+		if( $name == '' ) {
+			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
+			return;
+		}
+
+		if( $name{0} != '#' ) {
+			# Avoid normalization when the input is a user ID
+			$name = User::getCanonicalName( $name );
+			if( !$name ) {
+				$wgOut->addWikiText( wfMsg( 'noname' ) );
+				return;
+			}
+		}
+		$this->db =& $this->getDB( $database );
+		$this->userid = $this->getUserId( $name );
+
+		if( $this->userid == 0 ) {
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
+			return;
+		}
+
+		if( $database != '' && !$wgUser->isAllowed('userrights-interwiki') ) {
+			$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
+			return;
+		}
+
+		return array( $database, $name );
 	}
 
 	/**
@@ -208,7 +207,7 @@ class UserrightsForm extends HTMLForm {
 		return $wgDBserver;
 	}
 
-	function getUserId( $database, $name ) {
+	function getUserId( $name ) {
 		if( $name === '' )
 			return 0;
 		return ( $name{0} == "#" )
@@ -216,14 +215,14 @@ class UserrightsForm extends HTMLForm {
 			: IntVal( $this->db->selectField( 'user',
 				'user_id',
 				array( 'user_name' => $name ),
-				'MakesysopStewardForm::getUserId' ) );
+				__METHOD__ ) );
 	}
 
-	function getUserGroups( $database, $userid ) {
+	function getUserGroups() {
 		$res = $this->db->select( 'user_groups',
 			array( 'ug_group' ),
-			array( 'ug_user' => $userid ),
-			'MakesysopStewardForm::getUserGroups' );
+			array( 'ug_user' => $this->userid ),
+			__METHOD__ );
 		$groups = array();
 		while( $row = $this->db->fetchObject( $res ) ) {
 			$groups[] = $row->ug_group;
@@ -231,36 +230,36 @@ class UserrightsForm extends HTMLForm {
 		return $groups;
 	}
 
-	function addUserGroup( $database, $userid, $group ) {
+	function addUserGroup( $group ) {
 		$this->db->insert( 'user_groups',
 			array(
-				'ug_user' => $userid,
+				'ug_user' => $this->userid,
 				'ug_group' => $group,
 			),
-			'MakesysopStewardForm::addUserGroup',
+			__METHOD__,
 			array( 'IGNORE' ) );
 	}
 
-	function removeUserGroup( $database, $userid, $group ) {
+	function removeUserGroup( $group ) {
 		$this->db->delete( 'user_groups',
 			array(
-				'ug_user' => $userid,
+				'ug_user' => $this->userid,
 				'ug_group' => $group,
 			),
-			'MakesysopStewardForm::addUserGroup' );
+			__METHOD__ );
 	}
 
-	function touchUser( $database, $userid ) {
+	function touchUser( $database ) {
 		$this->db->update( 'user',
 			array( 'user_touched' => $this->db->timestamp() ),
-			array( 'user_id' => $userid ),
-			'MakesysopStewardForm::touchUser' );
+			array( 'user_id' => $this->userid ),
+			__METHOD__ );
 		
 		global $wgMemc;
 		if ( function_exists( 'wfForeignMemcKey' ) ) {
-			$key = wfForeignMemcKey( $database, false, 'user', 'id', $userid );
+			$key = wfForeignMemcKey( $database, false, 'user', 'id', $this->userid );
 		} else {
-			$key = "$database:user:id:$userid";
+			$key = "$database:user:id:" . $this->userid;
 		}
 		$wgMemc->delete( $key );
 	}
@@ -452,9 +451,11 @@ class UserrightsForm extends HTMLForm {
 			// This group gives the right to modify everything (reverse-
 			// compatibility with old "userrights lets you change
 			// everything")
+			// Using array_merge to make the groups reindexed
+			$all = array_merge( User::getAllGroups() );
 			return array(
-				'add' => User::getAllGroups(),
-				'remove' => User::getAllGroups()
+				'add' => $all,
+				'remove' => $all
 			);
 		}
 
