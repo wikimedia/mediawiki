@@ -744,6 +744,7 @@ $wgMessageStructure = array(
 		'userrights-available-add',
 		'userrights-available-remove',
 		'userrights-no-interwiki',
+		'userrights-nodatabase',
 	),
 	'group' => array(
 		'group',

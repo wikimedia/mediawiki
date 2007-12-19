@@ -1099,6 +1099,7 @@ $2',
 'userrights-available-add'    => 'באפשרותכם להוסיף משתמשים לקבוצות $1.',
 'userrights-available-remove' => 'באפשרותכם להסיר משתמשים מהקבוצות $1.',
 'userrights-no-interwiki'     => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
+'userrights-nodatabase'       => 'מסד הנתונים $1 אינו קיים או אינו מקומי.',
 
 # Groups
 'group'               => 'קבוצה:',
