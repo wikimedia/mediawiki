@@ -216,6 +216,8 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		}
 
 		// And now for the content
+		$wgOut->setSyndicated( true );
+		
 		$list = ChangesList::newFromUser( $wgUser );
 		
 		if ( $wgAllowCategorizedRecentChanges ) {

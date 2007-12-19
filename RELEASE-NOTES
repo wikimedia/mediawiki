@@ -252,6 +252,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow --record option if parserTests.php to work when using Postgres
 * (bug 12296) Simplify cache epoch in default LocalSettings.php
 * (bug 12346) XML fix when body double-click and click handlers are present
+* Fix regression -- missing feed links in sidebar on Special:Recentchanges
 
 
 == Parser changes in 1.12 ==
