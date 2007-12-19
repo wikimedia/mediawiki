@@ -1098,6 +1098,7 @@ $2',
 'userrights-available-none'   => 'אינכם יכולים לשנות את ההשתייכות לקבוצות.',
 'userrights-available-add'    => 'באפשרותכם להוסיף משתמשים לקבוצות $1.',
 'userrights-available-remove' => 'באפשרותכם להסיר משתמשים מהקבוצות $1.',
+'userrights-no-interwiki'     => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
 
 # Groups
 'group'               => 'קבוצה:',
