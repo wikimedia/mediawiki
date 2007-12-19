@@ -1085,11 +1085,11 @@ $2',
 'files'                    => 'קבצים',
 
 # User rights
-'userrights-lookup-user'      => 'נהלו קבוצות משתמש',
-'userrights-user-editname'    => 'הכניסו שם משתמש:',
-'editusergroup'               => 'ערכו קבוצות משתמשים',
-'userrights-editusergroup'    => 'ערכו קבוצות משתמש',
-'saveusergroups'              => 'שמור קבוצות משתמש',
+'userrights-lookup-user'      => 'ניהול קבוצות משתמש',
+'userrights-user-editname'    => 'שם משתמש:',
+'editusergroup'               => 'עריכת קבוצות משתמשים',
+'userrights-editusergroup'    => 'עריכת קבוצות משתמש',
+'saveusergroups'              => 'שמירת קבוצות משתמש',
 'userrights-groupsmember'     => 'חבר בקבוצות:',
 'userrights-groupsavailable'  => 'קבוצות זמינות:',
 'userrights-groupshelp'       => 'אנא בחרו קבוצות שברצונכם שהמשתמש יתווסף אליהן או יוסר מהן.
