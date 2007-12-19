@@ -910,7 +910,7 @@ $2',
 'statistics-mostpopular' => '燴炙',
 
 'disambiguations'      => '釋義',
-'disambiguations-text' => '頁下引MediaWiki:disambiguationspage模，求釋義，宜正題之。',
+'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',
 
 'doubleredirects'     => '窮渡',
 'doubleredirectstext' => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。',
