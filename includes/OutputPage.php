@@ -1307,7 +1307,7 @@ class OutputPage {
 			foreach( $wgFeedClasses as $format => $class ) {
 				$ret .= $this->feedLink(
 					$format,
-					$wgRequest->appendQuery( "feed=rss{$appendQuery}" ),
+					$wgRequest->appendQuery( "feed=$format{$appendQuery}" ),
 					wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) );
 			}
 		}
