@@ -6,6 +6,13 @@
  * @addtogroup Maintenance
  */
 
+/** Public entry; more passes might come in! :) */
+function rebuildRecentChangesTable() {
+	rebuildRecentChangesTablePass1();
+	rebuildRecentChangesTablePass2();
+	rebuildRecentChangesTablePass3();
+}
+
 /** */
 function rebuildRecentChangesTablePass1()
 {
