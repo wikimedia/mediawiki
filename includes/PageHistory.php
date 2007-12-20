@@ -164,16 +164,17 @@ class PageHistory {
 	 */
 	function submitButton( $bits = array() ) {
 		# Disable submit button if history has 1 revision only
-		if ( $this->linesonpage == 1 ) {
-			$bits = $bits + array( 'disabled' => 'disabled' );
-		}
-		return Xml::submitButton( wfMsg( 'compareselectedversions' ),
+		if ( $this->linesonpage > 1 ) {
+			return Xml::submitButton( wfMsg( 'compareselectedversions' ),
 				$bits + array(
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 					)
 				);
+		} else {
+			return '';
+		}
 	}
 
 	/**
