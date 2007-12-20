@@ -143,7 +143,7 @@ while (<$pfh>) {
 		next;
 	}
 	$ptable{$1}=2 while /'(\w+)'/g;
-	last if /;/;
+	last if /\);/;
 }
 close $pfh;
 
@@ -152,6 +152,7 @@ filearchive
 logging
 profiling
 querycache_info
+searchindex
 trackbacks
 transcache
 user_newtalk
