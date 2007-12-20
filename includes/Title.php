@@ -2382,6 +2382,12 @@ class Title {
 		}
 		if( $u )
 			$u->doUpdate();
+		# Update message catch for interface messages
+		if( $nt->getNamespace() == NS_MEDIAWIKI ) {
+			global $wgMessageCache;
+			$newarticle = new Article( $nt );
+			$wgMessageCache->replace( $nt->getDBkey(), $newarticle->getContent() );
+		}
 		
 		global $wgUser;
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
