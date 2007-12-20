@@ -989,6 +989,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'userrights-available-add'    => 'Du darst Benutzer den Grupppen $1 hinzufügen.',
 'userrights-available-remove' => 'Du darst Benutzer aus den Grupppen $1 entfernen.',
 'userrights-no-interwiki'     => 'Du hast keine Berechtigung, die Benutzerrechte in anderen Wikis zu ändern.',
+'userrights-nodatabase'       => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1091,6 +1092,8 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 'illegalfilename'             => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benenne die Datei um und versuche sie erneut hochzuladen.',
 'badfilename'                 => 'Der Dateiname wurde in „$1“ geändert.',
 'filetype-badmime'            => 'Dateien mit dem MIME-Typ „$1“ dürfen nicht hochgeladen werden.',
+'filetype-unwanted-type'      => "'''„.$1“''' ist ein unerwünschtes Dateiformat. Erlaubt sind: $2.",
+'filetype-banned-type'        => "'''„.$1“''' ist ein nicht erlaubtes Dateiformat. Erlaubt sind: $2.",
 'filetype-missing'            => 'Die hochzuladende Datei hat keine Erweiterung (z. B. „.jpg“).',
 'large-file'                  => 'Die Dateigröße sollte nach Möglichkeit $1 nicht überschreiten. Diese Datei ist $2 groß.',
 'largefileserver'             => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
@@ -1692,7 +1695,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbenableautoblock'          => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht',
 'ipbsubmit'                   => 'IP-Adresse/Benutzer sperren',
 'ipbother'                    => 'Andere Dauer (englisch):',
-'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:infinite',
+'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Andere Dauer',
 'ipbotherreason'              => 'Andere/ergänzende Begründung:',
 'ipbhidename'                 => 'Benutzername/IP-Adresse im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
