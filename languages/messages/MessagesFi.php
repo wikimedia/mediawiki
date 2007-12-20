@@ -923,6 +923,8 @@ $1 | $2',
 'userrights-available-none'   => 'Et voi muuttaa ryhmäjäsenyyksiä.',
 'userrights-available-add'    => 'Voit lisätä käyttäjiä ryhmiin $1.',
 'userrights-available-remove' => 'Voit poistaa käyttäjiä ryhmistä $1.',
+'userrights-no-interwiki'     => 'Sinulla ei ole lupaa muokata käyttöoikeuksia muissa wikeissä.',
+'userrights-nodatabase'       => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
 
 # Groups
 'group'               => 'Ryhmä',
@@ -1554,7 +1556,7 @@ $1',
 'ipbenableautoblock'          => 'Estä viimeisin IP-osoite, josta käyttäjä on muokannut, sekä ne osoitteet, joista hän jatkossa yrittää muokata.',
 'ipbsubmit'                   => 'Estä',
 'ipbother'                    => 'Vapaamuotoinen kesto',
-'ipboptions'                  => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite',
+'ipboptions'                  => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Muu kesto',
 'ipbotherreason'              => 'Muu syy',
 'ipbhidename'                 => 'Piilota IP-osoite tai tunnus estolokista, muokkausestolistasta ja käyttäjälistasta',
@@ -2227,6 +2229,7 @@ $1',
 'searchnamed'      => 'Etsi artikkeleita, joiden nimi on ”$1”.',
 'articletitles'    => 'Artikkelit, jotka alkavat merkkijonolla ”$1”',
 'hideresults'      => 'Piilota tulokset',
+'useajaxsearch'    => 'Käytä AJAX-hakua',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← edellinen sivu',

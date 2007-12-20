@@ -286,7 +286,7 @@ $messages = array(
 'updatedmarker'     => 'az utolsó látogatásom óta frissítették',
 'info_short'        => 'Információ',
 'printableversion'  => 'Nyomtatható változat',
-'permalink'         => 'Állandó hivatkozás',
+'permalink'         => 'Link erre a változatra',
 'print'             => 'Nyomtatás',
 'edit'              => 'Szerkesztés',
 'editthispage'      => 'Lap szerkesztése',
@@ -510,7 +510,7 @@ A fiókodat létrehoztuk. Ne felejtsd el módosítani a személyes {{SITENAME}} 
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'A valódi név elhagyható, de ha úgy döntesz, hogy megadod, akkor ez kerül felhasználásra a munkád szerzőjének megjelölésére.',
 'loginerror'                 => 'Belépési hiba',
-'prefs-help-email'           => '1 E-mail cím (nem kötelező megadni): Lehetővé teszi, hogy más szerkesztők kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
+'prefs-help-email'           => '¹ E-mail cím (nem kötelező megadni): Lehetővé teszi, hogy más szerkesztők kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
 'prefs-help-email-required'  => 'E-mail cím szükséges.',
 'nocookiesnew'               => 'A felhasználói azonosító létrejött, de nem léptél be. A wiki cookie-kat („süti”) használ a felhasználók azonosítására, és lehetséges, hogy te ezeket letiltottad. Kérjük, hogy engedélyezd a cookie-kat, majd lépj be azonosítóddal és jelszavaddal.',
 'nocookieslogin'             => 'A wiki cookie-kat („süti”) használ az azonosításhoz, de te ezeket letiltottad. Engedélyezd őket, majd próbálkozz ismét.',
@@ -522,7 +522,7 @@ A fiókodat létrehoztuk. Ne felejtsd el módosítani a személyes {{SITENAME}} 
 'nouserspecified'            => 'Meg kell adnod a felhasználónevet.',
 'wrongpassword'              => 'A megadott jelszó hibás. Próbáld meg újra.',
 'wrongpasswordempty'         => 'Nem adtad meg a jelszót. Próbáld meg újra.',
-'passwordtooshort'           => 'Az általad megadott jelszó hibás vagy túl rövid. Legalább $1 karakterből kell állnia, és a felhasználónévtől eltérőnek kell lennie.',
+'passwordtooshort'           => 'Túl rövid a jelszavad. Legalább $1 karakterből kell állnia, és nem egyezhet meg a felhasználói névvel.',
 'mailmypassword'             => 'Jelszó küldése e-mailben',
 'passwordremindertitle'      => '{{SITENAME}} jelszó emlékeztető',
 'passwordremindertext'       => 'Valaki (vélhetően te, a $1 IP-címről)
@@ -1267,8 +1267,8 @@ ellenére, hogy aktívan használják.</p>',
 'unusedcategoriestext'    => 'A következő kategóriákban egyetlen szócikk, illetve alkategória sem szerepel.',
 'notargettitle'           => 'Nincs cél',
 'notargettext'            => 'Nem adtál meg lapot vagy usert keresési célpontnak.',
-'pager-newer-n'           => '$1 újabb',
-'pager-older-n'           => '$1 korábbi',
+'pager-newer-n'           => '{{PLURAL:$1|1 újabb|$1 újabb}}',
+'pager-older-n'           => '{{PLURAL:$1|1 régebbi|$1 régebbi}}',
 
 # Book sources
 'booksources'               => 'Könyvforrások',
@@ -1727,7 +1727,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'newtitle'                => 'Az új cím:',
 'move-watch'              => 'Figyeld a lapot',
 'movepagebtn'             => 'Lap átnevezése',
-'pagemovedsub'            => 'Az áthelyezés sikerült',
+'pagemovedsub'            => 'Átnevezés sikeres',
 'movepage-moved'          => "<big>'''A(z) „$1” lapot sikeresen átmozgattad a(z) „$2” névre.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
