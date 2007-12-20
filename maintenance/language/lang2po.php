@@ -7,6 +7,8 @@
  *   - fix escaping of \
  */
 
+$optionsWithArgs[] = 'lang';
+
 /** This is a command line script */
 require_once(dirname(__FILE__).'/../commandLine.inc');
 require_once(dirname(__FILE__).'/languages.inc');
@@ -73,7 +75,7 @@ function generatePo($langcode, $messages) {
 	$data = poHeader();
 
 	// Generate .po entries
-	foreach($messages as $identifier => $content) {
+	foreach($messages['all'] as $identifier => $content) {
 		$data .= "msgid \"$identifier\"\n";
 
 		// Escape backslashes
@@ -134,8 +136,14 @@ echo "done.\n";
 
 $langTool = new languages();
 
+if( $options['lang'] === ALL_LANGUAGES ) {
+	$codes = $langTool->getLanguages();
+} else {
+	$codes = array( $options['lang'] );
+}
+
 // Do all languages
-foreach ( $langTool->getLanguages() as $langcode) {
+foreach ( $codes as $langcode) {
 	echo "Loading messages for $langcode:\n";
 	if( ! generatePo($langcode, $langTool->getMessages($langcode) ) ) {
 		echo "ERROR: Failed to write file.\n";
