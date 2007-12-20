@@ -14,6 +14,7 @@
  * @author Habj
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Max sonnelid
  */
 
 $skinNames = array(
@@ -397,6 +398,7 @@ $messages = array(
 'nstab-main'      => 'Sida',
 'nstab-user'      => 'Användarsida',
 'nstab-media'     => 'Media',
+'nstab-special'   => 'Special',
 'nstab-project'   => 'Projektsida',
 'nstab-image'     => 'Bild',
 'nstab-mediawiki' => 'Systemmeddelande',
@@ -1242,6 +1244,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'protectedpagestext'      => 'Följande sidor är skyddade mot redigering eller flyttning.',
 'protectedpagesempty'     => 'Inga sidor är skyddade under de villkoren.',
 'protectedtitles'         => 'Skyddade titlar',
+'protectedtitlestext'     => 'Följande artikelnamn är spärrande för skapande',
 'protectedtitlesempty'    => 'Just nu finns inga skyddade sidtitlar med de parametrarna.',
 'listusers'               => 'Användarlista',
 'specialpages'            => 'Specialsidor',
@@ -2267,6 +2270,7 @@ $1',
 'searchnamed'      => "Leta efter sidor som heter ''$1''.",
 'articletitles'    => "Sidor som börjar med ''$1''",
 'hideresults'      => 'Göm resultat',
+'useajaxsearch'    => 'Använd AJAX sökning',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; föregående sida',

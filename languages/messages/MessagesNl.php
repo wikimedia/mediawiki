@@ -1062,7 +1062,8 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'userrights-available-none'   => 'U mag geen gebruikersrechten veranderen.',
 'userrights-available-add'    => 'U kan gebruikers toevoegen aan $1.',
 'userrights-available-remove' => 'U kan gebruikers verwijderen uit $1.',
-'userrights-no-interwiki'     => "U heeft geen rechten om gebruikersrechten op andere wiki's te bewerken.",
+'userrights-no-interwiki'     => "U heeft geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
+'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen lokale database.',
 
 # Groups
 'group'               => 'Groep:',
@@ -1461,8 +1462,8 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'emailto'         => 'Aan',
 'emailsubject'    => 'Onderwerp',
 'emailmessage'    => 'Bericht',
-'emailsend'       => 'Verstuur',
-'emailccme'       => 'Stuur een kopie van dit bericht naar mijn e-mailadres.',
+'emailsend'       => 'Versturen',
+'emailccme'       => 'Een kopie van dit bericht naar mijn e-mailadres sturen.',
 'emailccsubject'  => 'Kopie van uw bericht aan $1: $2',
 'emailsent'       => 'E-mail verzonden',
 'emailsenttext'   => 'Uw e-mail is verzonden.',

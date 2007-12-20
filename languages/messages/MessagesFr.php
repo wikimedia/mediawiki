@@ -843,6 +843,8 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-available-none'   => 'Vous ne pouvez pas changer l’appartenance aux différents groupes.',
 'userrights-available-add'    => 'Vous pouvez ajouter des utilisateurs à $1.',
 'userrights-available-remove' => 'Vous pouvez enlever des utilisateurs de $1.',
+'userrights-no-interwiki'     => "Vous n'êtes pas habilité pour modifier les droits des utilisateurs sur d'autres wikis.",
+'userrights-nodatabase'       => "La base de donnée « $1 » n'existe pas ou n'est pas en local.",
 
 # Groups
 'group'               => 'Groupe :',
@@ -1498,7 +1500,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipbenableautoblock'          => 'Bloquer automatiquement les adresses IP utilisées par cet utilisateur',
 'ipbsubmit'                   => 'Bloquer cet utilisateur',
 'ipbother'                    => 'Autre durée',
-'ipboptions'                  => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite',
+'ipboptions'                  => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'autre',
 'ipbotherreason'              => 'Motif différent ou supplémentaire',
 'ipbhidename'                 => 'Masquer le nom d’utilisateur ou l’IP du log de blocage, de la liste des blocages actifs et de la liste des utilisateurs',

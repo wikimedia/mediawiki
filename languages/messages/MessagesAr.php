@@ -1118,6 +1118,7 @@ $1 ساعة.',
 'userrights-available-add'    => 'يمكنك إضافة المستخدمين ل $1.',
 'userrights-available-remove' => 'يمكنك إزالة المستخدمين من $1.',
 'userrights-no-interwiki'     => 'أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.',
+'userrights-nodatabase'       => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
 
 # Groups
 'group'               => 'المجموعة:',

@@ -826,6 +826,8 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'userrights-available-none'   => "No puede cambiar a pertenenzia á las collas d'usuarios.",
 'userrights-available-add'    => 'Puede adibir usuarios ta $1.',
 'userrights-available-remove' => 'Puede sacar usuarios de $1.',
+'userrights-no-interwiki'     => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
+'userrights-nodatabase'       => 'A base de datos $1 no esiste u no ye local.',
 
 # Groups
 'group'               => 'Colla:',
@@ -1159,6 +1161,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'unusedcategoriestext'    => 'As siguients categoría son creyatas, pero no bi ha garra articlo u categoría que las faiga serbir.',
 'notargettitle'           => 'No bi ha garra pachina de destino',
 'notargettext'            => 'No ha espezificato en que pachina quiere aplicar ista funzión.',
+'pager-newer-n'           => '{{PLURAL:$1|1 más rezient|$1 más rezients}}',
 'pager-older-n'           => '{{PLURAL:$1|1 más antiga|$1 más antigas}}',
 
 # Book sources
@@ -1181,33 +1184,83 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'all-logs-page'        => 'Toz os rechistros',
 'log-search-legend'    => 'Mirar rechistros',
 'log-search-submit'    => 'Ir-ie',
+'alllogstext'          => "Presentazión conchunta de toz os rechistros de  {{SITENAME}}.
+Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a pachina afeutata.",
+'logempty'             => 'No bi ha garra elemento en o rechistro con ixas carauteristicas.',
+'log-title-wildcard'   => 'Mirar títols que prenzipien con iste testo',
 
 # Special:Allpages
-'nextpage'       => 'Siguient pachina ($1)',
-'prevpage'       => 'Pachina anterior ($1)',
-'allpagesfrom'   => 'Amostrar pachinas que prenzipien por:',
-'allarticles'    => 'Toz os articlos',
-'allinnamespace' => 'Todas as pachinas (espazio $1)',
-'allpagessubmit' => 'Amostrar',
-'allpagesprefix' => 'Amostrar pachinas con o prefixo:',
+'nextpage'          => 'Siguient pachina ($1)',
+'prevpage'          => 'Pachina anterior ($1)',
+'allpagesfrom'      => 'Amostrar pachinas que prenzipien por:',
+'allarticles'       => 'Toz os articlos',
+'allinnamespace'    => 'Todas as pachinas (espazio $1)',
+'allnotinnamespace' => "Todas as pachinas (fueras d'o espazio de nombres $1)",
+'allpagesprev'      => 'Anterior',
+'allpagesnext'      => 'Siguient',
+'allpagessubmit'    => 'Amostrar',
+'allpagesprefix'    => 'Amostrar pachinas con o prefixo:',
+'allpagesbadtitle'  => 'O títol yera incorreuto u teneba un prefixo de binclo inter-luenga u inter-wiki. Puede contener uno u más caráuters que no se pueden emplegar en títols.',
+'allpages-bad-ns'   => '{{SITENAME}} no tiene o espazio de nombres "$1".',
+
+# Special:Listusers
+'listusersfrom'      => 'Amostrar usuarios que o nombre suyo prenzipie por:',
+'listusers-submit'   => 'Amostrar',
+'listusers-noresult' => "No s'ha trobato ixe usuario.",
 
 # E-mail user
-'emailuser' => 'Nimbiar un correu electronico ta iste usuario',
+'mailnologin'     => "No nimbiar l'adreza",
+'mailnologintext' => "Ha d'aber [[Special:Userlogin|enzetato una sesión]] y tener una adreza eleutronica correuta en as suyas [[Special:Preferences|preferenzias]] ta nimbiar un correu eletronico ta atros usuarios.",
+'emailuser'       => 'Nimbiar un correu electronico ta iste usuario',
+'emailpage'       => "Nimbiar correu ta l'usuario",
+'emailpagetext'   => "Si iste usuario ese rechistrato una adreza eletronica correuta en as suyas preferenzias d'usuario, iste formulario sirbe ta nimbiar-le un mensache.
+L'adreza eletronica que endicó en as suyas preferenzias d'usuario amanixerá en o campo 'remitent' ta que o destinatario pueda responder-le.",
+'usermailererror' => "L'ocheto de correu retornó una error:",
+'defemailsubject' => 'Correu de {{SITENAME}}',
+'noemailtitle'    => 'No bi ha garra adreza de correu eletronico',
+'noemailtext'     => "Iste usuario no ha espezificato una adreza correuta de correu electronico, u ha eslexito no recullir correu eletronico d'atros usuarios.",
+'emailfrom'       => 'De',
+'emailto'         => 'Ta',
+'emailsubject'    => 'Afer',
+'emailmessage'    => 'Mensache',
+'emailsend'       => 'Nimbiar',
+'emailccme'       => "Nimbiar-me una copia d'o mío mensache.",
+'emailccsubject'  => "Copia d'o suyo mensache ta $1: $2",
+'emailsent'       => 'Mensache de correu nimbiato',
+'emailsenttext'   => "S'ha nimbiato o suyo correu.",
 
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
 'mywatchlist'          => 'A mía lista de seguimiento',
 'watchlistfor'         => "(ta '''$1''')",
 'nowatchlist'          => 'No tiens denguna pachina en a lista de seguimiento.',
+'watchlistanontext'    => "Ha de $1 ta beyer u editar as dentradas d'a suya lista de seguimiento.",
+'watchnologin'         => 'No ha enzetato a sesión',
+'watchnologintext'     => "Ha d'[[Special:Userlogin|enzetar una sesión]] ta cambiar a suya lista de seguimiento.",
 'addedwatch'           => 'Adibiu á la suya lista de seguimiento',
+'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:Recentchanges|lista de cambeos rezients]] ta fer-la más fázil de deteutar. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de bexilar\" en o menú.",
+'removedwatch'         => "Borrata d'a lista de seguimiento",
+'removedwatchtext'     => 'A pachina "[[:$1]]" ha estato borrata d\'a suya lista de seguimiento.',
 'watch'                => 'Bexilar',
 'watchthispage'        => 'Bexilar ista pachina',
 'unwatch'              => 'Dixar de bexilar',
 'unwatchthispage'      => 'Dixar de bexilar',
+'notanarticle'         => 'No ye una pachina de conteniu',
+'watchnochange'        => "Dengún d'os articlos d'a suya lista de seguimiento no s'ha editoato en o periodo de tiempo amostrato.",
 'watchlist-details'    => '{{PLURAL:$1|$1 pachina|$1 pachinas}} bexiladas (sin contar-ie as pachinas de descusión).',
+'wlheader-enotif'      => '* A notificazión por correu eletronico ye autibata',
+'wlheader-showupdated' => "* Las pachinas cambiadas dende a suya zaguer besita s'amuestran en '''negreta'''",
+'watchmethod-recent'   => 'Mirando pachinas bexilatas en os zaguers cambeos',
+'watchmethod-list'     => 'mirando edizions rezients en as pachinas bexilatas',
+'watchlistcontains'    => 'A suya lista de seguimiento tiene $1 pachinas.',
+'iteminvalidname'      => "Bi ha un problema con l'articlo '$1', o nombre ye incorreuto...",
+'wlnote'               => 'Contino se i amuestran os zaguers $1 cambios en as zagueras <b>$2</b> oras.',
 'wlshowlast'           => 'Amostrar as zagueras $1 horas, $2 días u $3',
+'watchlist-show-bots'  => 'Amostrar as edizions feitas por bots',
 'watchlist-hide-bots'  => 'Amagar as edizions de bots',
+'watchlist-show-own'   => 'Amostrar as mías edizions',
 'watchlist-hide-own'   => 'Amagar as mías edizions',
+'watchlist-show-minor' => 'Amostrar as edizions menors',
 'watchlist-hide-minor' => 'Amagar edizions menors',
 
 # Displayed when you click the "watch" button and it's in the process of watching
@@ -1215,13 +1268,44 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'unwatching' => 'Deixar de bexilar...',
 
 # Delete/protect/revert
-'historywarning' => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
-'actioncomplete' => 'Aizión rematada',
-'deletedarticle' => 'borrato "$1"',
-'dellogpage'     => 'Rechistro de borraus',
-'rollbacklink'   => 'Esfer',
-'protectlogpage' => 'Protezions de pachinas',
-'protectcomment' => 'Razón ta protexer:',
+'deletepage'                  => 'Borrar ista pachina',
+'confirmdelete'               => 'Confirmar o borrau',
+'deletesub'                   => '(Borrando "$1")',
+'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
+'confirmdeletetext'           => "Ye á punto de borrar ta cutio d'a base de datos
+una pachina u imachen, con tot o suyo istorial.
+Por fabor, confirme que reyalment quiere fer ixo, que acata
+as consecuenzias, y que lo ye fendo d'alcuerdo con as 
+[[{{MediaWiki:Policy-url}}|Politicas]] d'o wiki.",
+'actioncomplete'              => 'Aizión rematada',
+'deletedtext'                 => '"$1" ha estato borrato.
+Se beiga en $2 un rechistro d\'os borraus rezients.',
+'deletedarticle'              => 'borrato "$1"',
+'dellogpage'                  => 'Rechistro de borraus',
+'deletecomment'               => "Razón d'o borrau",
+'deleteotherreason'           => 'Otras/Más razons:',
+'deletereasonotherlist'       => 'Otra razón',
+'rollbacklink'                => 'Esfer',
+'protectlogpage'              => 'Protezions de pachinas',
+'confirmprotect'              => 'Confirmar protezión',
+'protectcomment'              => 'Razón ta protexer:',
+'protectexpiry'               => 'Calendata de caduzidat:',
+'protect_expiry_invalid'      => 'Tiempo de caduzidat incorreuto.',
+'protect_expiry_old'          => 'O tiempo de caduzidat ye una calendata ya pasata.',
+'protect-unchain'             => 'Confegurar premisos ta treslaus',
+'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong>$1</strong>.",
+'protect-locked-access'       => "A suya cuenta no tiene premiso ta cambiar os libels de protezión d'as pachinas. Aquí bi son as propiedaz autuals d'a pachina <strong>$1</strong>:",
+'protect-cascadeon'           => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
+'protect-default'             => '(por defeuto)',
+'protect-fallback'            => 'Amenista o premiso "$1"',
+'protect-level-autoconfirmed' => 'Bloquiar usuarios no rechistratos',
+'protect-level-sysop'         => 'Sólo almenistradors',
+'protect-summary-cascade'     => 'en cascada',
+'protect-expiring'            => 'caduca o $1 (UTC)',
+'protect-cascade'             => 'Protezión en cascada - protexer todas as pachinas encluyidas en ista.',
+'protect-cantedit'            => "No puede cambiar os libels de protezión d'ista pachina, porque no tiene premiso ta editar-la.",
+'restriction-type'            => 'Premiso:',
+'restriction-level'           => 'Libel de restrizión:',
 
 # Undelete
 'undeletepagetext' => "As pachinas siguiens han siu borradas, pero encara son en l'archibo y podría estar restauradas. El archibo se borra periodicamén.",
@@ -1270,19 +1354,49 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'blocklogentry' => "S'ha bloquiato á [[$1]] con una durada de $2 $3",
 
 # Move page
-'movearticle'     => 'Tresladar pachina:',
-'movepagebtn'     => 'Tresladar pachina',
-'movepage-moved'  => '<big>\'\'\'"$1" ha estato tresladato á "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'1movedto2'       => '[[$1]] tresladada á [[$2]]',
-'1movedto2_redir' => '[[$1]] tresladada á [[$2]] sobre una reendrezera',
-'movelogpage'     => 'Rechistro de treslatos',
-'revertmove'      => 'esfer',
+'movepage'         => 'Tresladar página',
+'movepagetext'     => "Si fa serbir o formulario siguient se cambeará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
+O títol anterior se tornará en una reendrezera ta o nuebo títol.
+Os binclos ta o títol antigo d'a pachina no se cambearán. Asegure-se de no deixar reendrezeras dobles u crebatas.
+Ye a suya responsabilidat d'asegurar-se que os binclos continan endrezando t'an que abrían de fer-lo.
+
+Remere que a pachina '''no''' se renombrará si ya esiste una pachina con o nuebo títol, si no ye que estase una pachina bueda u una ''reendrezera'' sin istorial.
+
+Isto senifica que podrá tresladar una pachina á lo suyo títol orichinal si ha feito una error, pero no podrá escribir denzima d'una pachina ya esistent.
+
+<b>¡PARE CUENTA!</b>
+Iste puede estar un cambio drastico e inasperato ta una pachina popular;
+por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión
+antis de seguir entadebant.",
+'movepagetalktext' => "A pachina de descusión asoziata, si esistise, será tresladata automaticament '''de no estar que:''' 
+*A pachina se treslade entre espazios de nombres diferents,
+*Ya esista una pachina de descusión no bueda con o nombre nuebo, u
+*Aiga desautibato a opzión \"Tresladar tamién a pachina de descusión\".
+
+En istos casos, abrá de tresladar manualment o conteniu d'a pachina de descusión.",
+'movearticle'      => 'Tresladar pachina:',
+'newtitle'         => 'Ta o nuebo títol',
+'move-watch'       => 'Bexilar iste articlo',
+'movepagebtn'      => 'Tresladar pachina',
+'pagemovedsub'     => 'Treslado feito correutament',
+'movepage-moved'   => '<big>\'\'\'"$1" ha estato tresladato á "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'    => 'Ya bi ha una pachina con ixe nombre u o nombre ha trigato no ye balido. Por fabor eslixa un atro nombre.',
+'talkexists'       => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
+'movedto'          => 'tresladato ta',
+'movetalk'         => 'Tresladar a pachina de descusión asoziata.',
+'talkpagemoved'    => 'A pachina de descusión correspondient tamién estió tresladata.',
+'talkpagenotmoved' => 'A pachina de descusión correspondient <strong>no</strong> estió tresladata.',
+'1movedto2'        => '[[$1]] tresladada á [[$2]]',
+'1movedto2_redir'  => '[[$1]] tresladada á [[$2]] sobre una reendrezera',
+'movelogpage'      => 'Rechistro de treslatos',
+'movereason'       => 'Razón:',
+'revertmove'       => 'esfer',
 
 # Export
 'export' => 'Esportar as pachinas',
 
 # Namespace 8 related
-'allmessages'        => "Toz os mensaches d'o sistema",
+'allmessages'        => "Mensaches d'o sistema",
 'allmessagesname'    => 'Nombre',
 'allmessagesdefault' => 'Testo por defeuto',
 'allmessagescurrent' => 'Testo autual',

@@ -882,6 +882,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'userrights-available-add'    => 'Možete dodavati suradnike grupi $1.',
 'userrights-available-remove' => 'Možete uklanjati suradnike iz grupe $1.',
 'userrights-no-interwiki'     => 'Nemate prava da uređujete prava suradnika na drugim wikijima.',
+'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalno dostupna.',
 
 # Groups
 'group'               => 'Grupa:',
