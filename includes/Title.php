@@ -2382,7 +2382,7 @@ class Title {
 		}
 		if( $u )
 			$u->doUpdate();
-		# Update message catch for interface messages
+		# Update message cache for interface messages
 		if( $nt->getNamespace() == NS_MEDIAWIKI ) {
 			global $wgMessageCache;
 			$newarticle = new Article( $nt );
