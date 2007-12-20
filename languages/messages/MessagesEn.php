@@ -493,7 +493,7 @@ XHTML id names.
 'tog-watchlisthideown'        => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots'       => 'Hide bot edits from the watchlist',
 'tog-watchlisthideminor'      => 'Hide minor edits from the watchlist',
-'tog-nolangconversion'        => 'Disable variants conversion',
+'tog-nolangconversion'        => 'Disable variants conversion', # only translate this message to other languages if you have to change it
 'tog-ccmeonemails'            => 'Send me copies of emails I send to other users',
 'tog-diffonly'                => "Don't show page content below diffs",
 
@@ -843,7 +843,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'uid'                        => 'User ID:',
 'yourrealname'               => 'Real name:',
 'yourlanguage'               => 'Language:',
-'yourvariant'                => 'Variant',
+'yourvariant'                => 'Variant', # only translate this message to other languages if you have to change it
 'yournick'                   => 'Nickname:',
 'badsig'                     => 'Invalid raw signature; check HTML tags.',
 'badsiglength'               => 'Nickname too long; must be under $1 characters.',
@@ -2434,12 +2434,12 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-upload'                  => 'Start upload',
 
 # Stylesheets
-'common.css'   => '/** CSS placed here will be applied to all skins */',
-'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
+'common.css'   => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it
+'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */', # only translate this message to other languages if you have to change it
 
 # Scripts
-'common.js'   => '/* Any JavaScript here will be loaded for all users on every page load. */',
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+'common.js'   => '/* Any JavaScript here will be loaded for all users on every page load. */', # only translate this message to other languages if you have to change it
+'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */', # only translate this message to other languages if you have to change it
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata disabled for this server.',
