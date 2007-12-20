@@ -15,6 +15,9 @@ class KuConverter extends LanguageConverter {
 		'م' => 'm', 'ن' => 'n', 'پ' => 'p', 'ق' => 'q', 'ر' => 'r', 'س' => 's', 'ش' => 'ş',
 		'ت' => 't', 'ڤ' => 'v', 'خ' => 'x', 'غ' => 'x', 'ز' => 'z', 
 
+// ک و => ku -- ist richtig
+//  و ك=> ku -- ist auch richtig
+
 		/* Doppel- und Halbvokale */
 		'ڵ' => 'll', #ll
 		'ڕ'  => 'rr', #rr
@@ -34,6 +37,18 @@ class KuConverter extends LanguageConverter {
 		'،'  => ',', 
 		'ع'  => '\'', # ayn
 		'؟'  => '?',
+
+		# digits
+		'٠' => '0', # &#x0660;
+		'١' => '1', # &#x0661;
+		'٢' => '2', # &#x0662;
+		'٣' => '3', # &#x0663;
+		'٤' => '4', # &#x0664;
+		'٥' => '5', # &#x0665;
+		'٦' => '6', # &#x0666;
+		'٧' => '7', # &#x0667;
+		'٨' => '8', # &#x0668;
+		'٩' => '9', # &#x0669;
 	);
 
 	var $mLatinToArabic = array(
@@ -95,7 +110,20 @@ class KuConverter extends LanguageConverter {
 		# eyn erstmal deaktivieren, einfache Anführungsstriche sind einfach zu häufig, um sie als eyn zu interpretieren
 		# '\'' => 'ع', 
 
-	);
+/*		# deactivated for now, breaks links i.e. in header of Special:Recentchanges :-(
+		# digits
+		'0' => '٠', # &#x0660;
+		'1' => '١', # &#x0661;
+		'2' => '٢', # &#x0662;
+		'3' => '٣', # &#x0663;
+		'4' => '٤', # &#x0664;
+		'5' => '٥', # &#x0665;
+		'6' => '٦', # &#x0666;
+		'7' => '٧', # &#x0667;
+		'8' => '٨', # &#x0668;
+		'9' => '٩', # &#x0669;
+*/
+		);
 
 	function loadDefaultTables() {
 		$this->mTables = array(
@@ -236,5 +264,3 @@ class LanguageKu extends LanguageKu_ku {
 	}
 */
 }
-
-
