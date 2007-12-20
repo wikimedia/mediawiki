@@ -831,124 +831,141 @@ class Language {
 		$month = substr( $ts, 4, 2 );
 		$day = substr( $ts, 6, 2 );
 
-		# Month number when March = 1, February = 12
-		$month -= 2;
-		if( $month <= 0 ) {
-			# January or February
-			$month += 12;
-			$year--;
+		# Calculate Hebrew year
+		$hebrewYear = $year + 3760;
+
+		# Month number when September = 1, August = 12
+		$month += 4;
+		if( $month > 12 ) {
+			# Next year
+			$month -= 12;
+			$year++;
+			$hebrewYear++;
 		}
 
-		# Days since 1 March - calculating 30 days a month,
-		# and then adding the missing number of days
-		$dayOfYear = $day + intval( 7 * $month / 12 + 30 * ( $month - 1 ) );
-		# Calculate Hebrew year for days after 1 Nisan
-		$hebrewYear = $year + 3760;
-		# Passover date for this year (as days since 1 March)
-		$passover = self::passoverDate( $hebrewYear );
-		if( $dayOfYear <= $passover - 15 ) {
-			# Day is before 1 Nisan (passover is 15 Nisan) - it is the previous year
-			# Next year's passover (as days since 1 March)
-			$anchor = $passover;
-			# Add days since previous year's 1 March
+		# Calculate day of year from 1 September
+		$dayOfYear = $day;
+		for( $i = 1; $i < $month; $i++ ) {
+			if( $i == 6 ) {
+				# February
+				$dayOfYear += 28;
+				# Check if the year is leap
+				if( $year % 400 == 0 || ( $year % 4 == 0 && $year % 100 > 0 ) ) {
+					$dayOfYear++;
+				}
+			} elseif( $i == 8 || $i == 10 || $i == 1 || $i == 3 ) {
+				$dayOfYear += 30;
+			} else {
+				$dayOfYear += 31;
+			}
+		}
+
+		# Calculate the start of the Hebrew year
+		$start = self::hebrewYearStart( $hebrewYear );
+
+		# Calculate next year's start
+		if( $dayOfYear <= $start ) {
+			# Day is before the start of the year - it is the previous year
+			# Next year's start
+			$nextStart = $start;
+			# Previous year
+			$year--;
+			$hebrewYear--;
+			# Add days since previous year's 1 September
 			$dayOfYear += 365;
 			if( ( $year % 400 == 0 ) || ( $year % 100 != 0 && $year % 4 == 0 ) ) {
 				# Leap year
 				$dayOfYear++;
 			}
-			# Previous year
-			$year--;
-			$hebrewYear--;
-			# Passover date for the new year (as days since 1 March)
-			$passover = self::passoverDate( $hebrewYear );
+			# Start of the new (previous) year
+			$start = self::hebrewYearStart( $hebrewYear );
 		} else {
-			# Next year's passover (as days since 1 March)
-			$anchor = self::passoverDate( $hebrewYear + 1 );
+			# Next year's start
+			$nextStart = self::hebrewYearStart( $hebrewYear + 1 );
 		}
 
-		# Days since 1 Nisan
-		$dayOfYear -= $passover - 15;
-		# Difference between this year's passover date by gregorian calendar,
-		# and the next year's one + 12 days. This should be 1 days for a regular year,
-		# but 0 for incomplete one, 2 for complete, and those + 30 days of Adar I
-		# for a leap year.
-		$anchor -= $passover - 12;
-		$nextYear = $year + 1;
-		if( ( $nextYear % 400 == 0 ) || ( $nextYear % 100 != 0 && $nextYear % 4 == 0 ) ) {
-			# Next year is a leap year - difference is growing
-			$anchor++;
+		# Calculate Hebrew day of year
+		$hebrewDayOfYear = $dayOfYear - $start;
+
+		# Difference between year's days
+		$diff = $nextStart - $start;
+		# Add 12 (or 13 for leap years) days to ignore the difference between
+		# Hebrew and Gregorian year (353 at least vs. 365/6) - now the
+		# difference is only about the year type
+		if( ( $year % 400 == 0 ) || ( $year % 100 != 0 && $year % 4 == 0 ) ) {
+			$diff += 13;
+		} else {
+			$diff += 12;
 		}
 
-		# Check the year pattern
+		# Check the year pattern, and is leap year
 		# 0 means an incomplete year, 1 means a regular year, 2 means a complete year
 		# This is mod 30, to work on both leap years (which add 30 days of Adar I)
 		# and non-leap years
-		$yearPattern = $anchor % 30;
+		$yearPattern = $diff % 30;
+		# Check if leap year
+		$isLeap = $diff >= 30;
 
-		# Calculate day in the month from number of days sine 1 Nisan
+		# Calculate day in the month from number of day in the Hebrew year
 		# Don't check Adar - if the day is not in Adar, we will stop before;
 		# if it is in Adar, we will use it to check if it is Adar I or Adar II
-		$day = $dayOfYear;
-		for( $month = 0; $month < 11; $month++ ) {
+		$hebrewDay = $hebrewDayOfYear;
+		$hebrewMonth = 1;
+		$days = 0;
+		while( $hebrewMonth <= 12 ) {
 			# Calculate days in this month
-			if( $month == 7 && $yearPattern == 2 ) {
+			if( $isLeap && $hebrewMonth == 6 ) {
+				# Adar in a leap year
+				if( $isLeap ) {
+					# Leap year - has Adar I, with 30 days, and Adar II, with 29 days
+					$days = 30;
+					if( $hebrewDay <= $days ) {
+						# Day in Adar I
+						$hebrewMonth = 13;
+					} else {
+						# Subtract the days of Adar I
+						$hebrewDay -= $days;
+						# Try Adar II
+						$days = 29;
+						if( $hebrewDay <= $days ) {
+							# Day in Adar II
+							$hebrewMonth = 14;
+						}
+					}
+				}
+			} elseif( $hebrewMonth == 2 && $yearPattern == 2 ) {
 				# Cheshvan in a complete year (otherwise as the rule below)
 				$days = 30;
-			} else if( $month == 8 && $yearPattern == 0 ) {
+			} elseif( $hebrewMonth == 3 && $yearPattern == 0 ) {
 				# Kislev in an incomplete year (otherwise as the rule below)
 				$days = 29;
 			} else {
-				# Even months have 30 days, odd have 29
-				$days = 30 - $month % 2;
+				# Odd months have 30 days, even have 29
+				$days = 30 - ( $hebrewMonth - 1 ) % 2;
 			}
-			if( $day <= $days ) {
-				# In this month
+			if( $hebrewDay <= $days ) {
+				# In the current month
 				break;
-			}
-			# Try in next months
-			$day -= $days;
-		}
-
-		# Now we move to a year from Tishrei
-		if( $month >= 6 ) {
-			# After Tishrei, use next year
-			$hebrewYear++;
-		}
-		# Recalculate month number so that we start from Tishrei
-		$month = ( $month + 6 ) % 12 + 1;
-
-		# Get Adar type and number of days
-		if( $month == 6 ) {
-			# Adar
-			if( $anchor >= 30 ) {
-				# Leap year - check type and set number of days
-				if( $day > 30 ) {
-					# Adar II - 29 days
-					$month = 14;
-					$day -= 30;
-					$days = 29;
-				} else {
-					# Adar I - 30 days
-					$month = 13;
-					$days = 30;
-				}
 			} else {
-				# Non-leap year - just set number of days (29)
-				$days = 29;
+				# Subtract the days of the current month
+				$hebrewDay -= $days;
+				# Try in the next month
+				$hebrewMonth++;
 			}
 		}
 
-		return array( $hebrewYear, $month, $day, $days );
+		return array( $hebrewYear, $hebrewMonth, $hebrewDay, $days );
 	}
 
 	/**
+	 * This calculates the Hebrew year start, as days since 1 September.
 	 * Based on Carl Friedrich Gauss algorithm for finding Easter date.
 	 * Used for Hebrew date.
 	 */
-	private static function passoverDate( $year ) {
-		$a = intval( ( 12 * $year + 17 ) % 19 );
-		$b = intval( $year % 4 );
-		$m = 32.044093161144 + 1.5542417966212 * $a +  $b / 4.0 - 0.0031777940220923 * $year;
+	private static function hebrewYearStart( $year ) {
+		$a = intval( ( 12 * ( $year - 1 ) + 17 ) % 19 );
+		$b = intval( ( $year - 1 ) % 4 );
+		$m = 32.044093161144 + 1.5542417966212 * $a +  $b / 4.0 - 0.0031777940220923 * ( $year - 1 );
 		if( $m < 0 ) {
 			$m--;
 		}
@@ -958,7 +975,7 @@ class Language {
 		}
 		$m -= $Mar;
 
-		$c = intval( ( $Mar + 3 * $year + 5 * $b + 5 ) % 7);
+		$c = intval( ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7);
 		if( $c == 0 && $a > 11 && $m >= 0.89772376543210 ) {
 			$Mar++;
 		} else if( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
@@ -967,7 +984,7 @@ class Language {
 			$Mar++;
 		}
 
-		$Mar += intval( ( $year - 3760 ) / 100 ) - intval( ( $year - 3760 ) / 400 ) - 2;
+		$Mar += intval( ( $year - 3761 ) / 100 ) - intval( ( $year - 3761 ) / 400 ) - 24;
 		return $Mar;
 	}
 
