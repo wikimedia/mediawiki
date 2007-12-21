@@ -118,12 +118,14 @@
 	'ig' => 'Igbo',			# Igbo
 	'ii' => 'ꆇꉙ',	# Sichuan Yi
 	'ik' => 'Iñupiak',	# Inupiak (Inupiatun, Northwest Alaska / Inupiatun, North Alaskan)
+	'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ',	# Inuktitut, Eastern Canadian/Eastern Canadian "Eskimo"/"Eastern Arctic Eskimo"/Inuit (Unified Canadian Aboriginal Syllabics)
+	'ike-latn' => 'inuktitut',	# Inuktitut, Eastern Canadian (Latin script)
 	'ilo' => 'Ilokano',	# Ilokano
 	'inh' => 'ГІалгІай Ğalğaj',    # Ingush
 	'io' => 'Ido',			# Ido
 	'is' => 'Íslenska',	# Icelandic
 	'it' => 'Italiano',		# Italian
-	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut
+	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut (macro language - do no localise, see ike/ikt - falls back to ike-cans)
 	'ja' => '日本語',	# Japanese
 	'jbo' => 'Lojban',		# Lojban
 	'jv' => 'Basa Jawa',	# Javanese
@@ -140,7 +142,7 @@
 	'kk-cn' => "\xE2\x80\xABقازاقشا (جۇنگو)\xE2\x80\xAC",	# Kazakh (China)
 	'kk-kz' => "\xE2\x80\xAAҚазақша (Қазақстан)\xE2\x80\xAC",	# Kazakh (Kazakhstan)
 	'kk-tr' => "\xE2\x80\xAAQazaqşa (Türkïya)\xE2\x80\xAC",	# Kazakh (Turkey)
-	'kl' => 'Kalaallisut',	# Greenlandic
+	'kl' => 'Kalaallisut',	# Inuktitut, Greenlandic/Greenlandic/Kalaallisut (kal)
 	'km' => 'ភាសាខ្មែរ',	# Khmer, Central
 	'kn' => 'ಕನ್ನಡ',	# Kannada
 	'ko' => '한국어',	# Korean
@@ -199,7 +201,7 @@
 	'ng' => 'Oshiwambo',		# Ndonga
 	'niu' => 'Niuē',	# Niuean
 	'nl' => 'Nederlands',	# Dutch
-	'nn' => "\xE2\x80\xAANorsk (nynorsk)\xE2\x80\xAC"	,	# Norwegian (Nynorsk)
+	'nn' => "\xE2\x80\xAANorsk (nynorsk)\xE2\x80\xAC",	# Norwegian (Nynorsk)
 	'no' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian
 	'non' => 'Norrǿna',		# Old Norse
 	'nov' => 'Novial',		# Novial
