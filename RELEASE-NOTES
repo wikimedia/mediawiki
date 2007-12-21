@@ -260,6 +260,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12296) Simplify cache epoch in default LocalSettings.php
 * (bug 12346) XML fix when body double-click and click handlers are present
 * Fix regression -- missing feed links in sidebar on Special:Recentchanges
+* (bug 12371) Handle more namespace case variants in namespaceDupes.php
 
 
 == Parser changes in 1.12 ==
