@@ -75,14 +75,29 @@ class NamespaceConflictChecker {
 			$spaces[$name] = $ns;
 		}
 		
-		if( !$wgCapitalLinks ) {
-			// We'll need to check for lowercase keys as well,
-			// since we're doing case-sensitive searches in the db.
-			foreach( $spaces as $name => $ns ) {
-				$lcname = $wgContLang->lcfirst( $name );
-				$spaces[$lcname] = $ns;
+		// We'll need to check for lowercase keys as well,
+		// since we're doing case-sensitive searches in the db.
+		foreach( $spaces as $name => $ns ) {
+			$moreNames = array();
+			$moreNames[] = $wgContLang->uc( $name );
+			$moreNames[] = $wgContLang->ucfirst( $wgContLang->lc( $name ) );
+			$moreNames[] = $wgContLang->ucwords( $name );
+			$moreNames[] = $wgContLang->ucwords( $wgContLang->lc( $name ) );
+			$moreNames[] = $wgContLang->ucwordbreaks( $name );
+			$moreNames[] = $wgContLang->ucwordbreaks( $wgContLang->lc( $name ) );
+			if( !$wgCapitalLinks ) {
+				foreach( $moreNames as $altName ) {
+					$moreNames[] = $wgContLang->lcfirst( $altName );
+				}
+				$moreNames[] = $wgContLang->lcfirst( $name );
+			}
+			foreach( array_unique( $moreNames ) as $altName ) {
+				if( $altName !== $name ) {
+					$spaces[$altName] = $ns;
+				}
 			}
 		}
+		
 		ksort( $spaces );
 		asort( $spaces );
 		
