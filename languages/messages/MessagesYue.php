@@ -946,6 +946,8 @@ $2',
 'userrights-available-none'   => '你唔可以改組成員。',
 'userrights-available-add'    => '你可以加入用戶到$1。',
 'userrights-available-remove' => '你可以響$1度拎走用戶。',
+'userrights-no-interwiki'     => '你並無權限去編輯響其它wiki嘅用戶權限。',
+'userrights-nodatabase'       => '資料庫$1唔存在或者唔係本地嘅。',
 
 # Groups
 'group'               => '組：',

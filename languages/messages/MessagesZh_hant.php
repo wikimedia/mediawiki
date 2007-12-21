@@ -844,6 +844,8 @@ $2',
 'userrights-available-none'   => '您不可以更改組別成員。',
 'userrights-available-add'    => '您可以加入用戶到$1。',
 'userrights-available-remove' => '您可以從$1中移除用戶。',
+'userrights-no-interwiki'     => '您並沒有權限去編輯在其它wiki上的用戶權限。',
+'userrights-nodatabase'       => '資料庫$1不存在或並非為本地的。',
 
 # Groups
 'group'               => '群組:',

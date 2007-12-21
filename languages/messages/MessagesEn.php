@@ -843,7 +843,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'uid'                        => 'User ID:',
 'yourrealname'               => 'Real name:',
 'yourlanguage'               => 'Language:',
-'yourvariant'                => 'Variant', # only translate this message to other languages if you have to change it
+'yourvariant'                => 'Variant:', # only translate this message to other languages if you have to change it
 'yournick'                   => 'Nickname:',
 'badsig'                     => 'Invalid raw signature; check HTML tags.',
 'badsiglength'               => 'Nickname too long; must be under $1 characters.',

@@ -873,6 +873,8 @@ $2',
 'userrights-available-none'   => '您不可以更改组别成员。',
 'userrights-available-add'    => '您可以加入用户到$1。',
 'userrights-available-remove' => '您可以从$1中移除用户。',
+'userrights-no-interwiki'     => '您并没有权限去编辑在其它wiki上的用户权限。',
+'userrights-nodatabase'       => '数据库$1不存在或并非为本地的。',
 
 # Groups
 'group'               => '群组:',
