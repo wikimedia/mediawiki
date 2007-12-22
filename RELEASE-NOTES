@@ -262,6 +262,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression -- missing feed links in sidebar on Special:Recentchanges
 * (bug 12371) Handle more namespace case variants in namespaceDupes.php
 * (bug 12380) Bot-friendly EditPage::spamPage
+* (bug 8066) Spaces can't be entered in special page aliases
 
 == Parser changes in 1.12 ==
 
