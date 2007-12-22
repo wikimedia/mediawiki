@@ -83,6 +83,15 @@ class NewPagesPage extends QueryPage {
 			}
 		}
 
+		// Validate limit and offset params
+		if ( $options['limit'] <= 0 ) {
+			$options['limit'] = $defaults['limit'];
+		}
+
+		if ( $options['offset'] < 0 ) {
+			$options['offset'] = $defaults['offset'];
+		}
+
 		$nondefaults = array();
 		foreach ( $options as $v => $t ) {
 			if ( $v === 'offset' ) continue; # Reset offset if parameters change
