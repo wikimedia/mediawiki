@@ -15,22 +15,9 @@
 $fallback = 'kk-cyrl';
 $rtl = true;
 
-$digitTransformTable = array(
-	'0' => '۰', # &#x06f0;
-	'1' => '۱', # &#x06f1;
-	'2' => '۲', # &#x06f2;
-	'3' => '۳', # &#x06f3;
-	'4' => '۴', # &#x06f4;
-	'5' => '۵', # &#x06f5;
-	'6' => '۶', # &#x06f6;
-	'7' => '۷', # &#x06f7;
-	'8' => '۸', # &#x06f8;
-	'9' => '۹', # &#x06f9;
-);
-
 $separatorTransformTable = array(
-	',' => '٬', # &#x066c;
-	'.' => '٫', # &#x066b; 
+	',' => "\xc2\xa0",
+	'.' => ',',
 );
 
 $defaultUserOptionOverrides = array(
@@ -142,30 +129,29 @@ $datePreferenceMigrationMap = array(
 );
 
 $dateFormats = array(
-	## Please be cautious not to delete the invisible RLM from the beginning of the strings.
-	'mdy time' => '‏H:i',
-	'mdy date' => '‏xg j، Y "ج."',
-	'mdy both' => '‏H:i، xg j، Y "ج."',
+	'mdy time' => 'H:i',
+	'mdy date' => 'xg j, Y "ج."',
+	'mdy both' => 'H:i, xg j, Y "ج."',
 
-	'dmy time' => '‏H:i',
-	'dmy date' => '‏j F, Y "ج."',
-	'dmy both' => '‏H:i، j F، Y "ج."',
+	'dmy time' => 'H:i',
+	'dmy date' => 'j F, Y "ج."',
+	'dmy both' => 'H:i, j F, Y "ج."',
 
-	'ymd time' => '‏H:i',
-	'ymd date' => '‏Y "ج." xg j',
-	'ymd both' => '‏H:i، Y "ج." xg j',
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y "ج." xg j',
+	'ymd both' => 'H:i, Y "ج." xg j',
 
 	'yyyy-mm-dd time' => 'xnH:xni:xns',
 	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
 	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
 
-	'persian time' => '‏H:i',
-	'persian date' => '‏xij xiF xiY', 
-	'persian both' => '‏xij xiF xiY, H:i',
-
-	'hebrew time' => '‏H:i',
-	'hebrew date' => '‏xij xjF xjY',
-	'hebrew both' => '‏H:i, xij xjF xjY',
+	'persian time' => 'H:i',
+	'persian date' => 'xij xiF xiY', 
+	'persian both' => 'xij xiF xiY, H:i',
+	
+	'hebrew time' => 'H:i',
+	'hebrew date' => 'xij xjF xjY',
+	'hebrew both' => 'H:i, xij xjF xjY',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -768,7 +754,7 @@ $2',
 'uid'                        => 'قاتىسۋشى تەڭدەستٸرۋٸڭٸز:',
 'yourrealname'               => 'شىن اتىڭىز:',
 'yourlanguage'               => 'تٸلٸڭٸز:',
-'yourvariant'                => 'تٷرٸ',
+'yourvariant'                => 'نۇسقاڭىز:',
 'yournick'                   => 'لاقاپ اتىڭىز:',
 'badsig'                     => 'قام قولتاڭباڭىز جارامسىز; HTML بەلگٸشەلەرٸن تەكسەرٸڭٸز.',
 'badsiglength'               => 'لاقاپ اتىڭىز تىم ۇزىن; $1 نىشاننان اسپاۋى كەرەك.',
@@ -1229,6 +1215,8 @@ $3 كەلتٸرٸلگەن سەبەبٸ: ''$2''",
 'userrights-available-none'   => 'توپ مٷشەلٸگٸن ٶزگەرتە المايسىز.',
 'userrights-available-add'    => 'قاتىسۋشىلاردى $1 توبىنا ٷستەي الاسىز.',
 'userrights-available-remove' => 'قاتىسۋشىلاردى $1 توبىنان الاستاي الاسىز.',
+'userrights-no-interwiki'     => 'باسقا ۋيكيلەردەگٸ پايدالانۋشى قۇقىقتارىن ٶڭدەۋگە رۇقساتىڭىز جوق.',
+'userrights-nodatabase'       => '$1 دەرەكقورى جوق نە جەرگٸلٸكتٸ ەمەس.',
 
 # Groups
 'group'               => 'توپ:',
@@ -1305,7 +1293,7 @@ $3 كەلتٸرٸلگەن سەبەبٸ: ''$2''",
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''.",
 'upload-permitted'            => 'رۇقسات بەرٸگەن فايل تٷرلەرٸ: $1.',
 'upload-preferred'            => 'ۇنامدى فايل تٷرلەرٸ $1.',
-'upload-prohibited'           => 'رۇقسات بەرٸلمەگەن فايل تٷرلەرٸ: $1.',
+'upload-prohibited'           => 'ۇقسات بەرٸلمەگەن فايل تٷرلەرٸ: $1.',
 'uploadlog'                   => 'قوتارۋ جۋرنالى',
 'uploadlogpage'               => 'قوتارۋ جۋرنالى',
 'uploadlogpagetext'           => 'تٶمەندە جۋىقتاعى قوتارىلعان فايل تٸزٸمٸ.',
@@ -1486,7 +1474,7 @@ $3 كەلتٸرٸلگەن سەبەبٸ: ''$2''",
 
 'disambiguations'      => 'ايرىقتى بەتتەر',
 'disambiguationspage'  => 'Template:disambig',
-'disambiguations-text' => "كەلەسٸ بەتتەر '''ايرىقتى بەتكە''' سٸلتەيدٸ. بۇنىڭ ورنىنا بەلگٸلٸ تاقىرىپقا سٸلتەۋٸ كەرەك.<br />ەگەر [[{{ns:mediawiki}}:disambiguationspage]] تٸزٸمٸندەگٸ ٷلگٸ قولدانىلسا, بەت ايرىقتى دەپ سانالادى.",
+'disambiguations-text' => "كەلەسٸ بەتتەر '''ايرىقتى بەتكە''' سٸلتەيدٸ. بۇنىڭ ورنىنا بەلگٸلٸ تاقىرىپقا سٸلتەۋٸ كەرەك.<br />ەگەر [[{{ns:mediawiki}}:Disambiguationspage]] تٸزٸمٸندەگٸ ٷلگٸ قولدانىلسا, بەت ايرىقتى دەپ سانالادى.",
 
 'doubleredirects'     => 'شىنجىرلى ايداتۋلار',
 'doubleredirectstext' => 'بۇل بەتتە باسقا ايداتۋ بەتتەرگە سٸلتەيتٸن بەتتەر تٸزٸمٸ بەرٸلەدٸ. ٵربٸر جولاقتا بٸرٸنشٸ جٵنە ەكٸنشٸ ايداتۋعا سٸلتەمەلەر بار, سونىمەن بٸرگە ەكٸنشٸ ايداتۋ نىساناسى بار, ٵدەتتە بۇل بٸرٸنشٸ ايداتۋ باعىتتايتىن «شىن» نىسانا بەت اتاۋى بولۋى كەرەك.',
@@ -1909,7 +1897,7 @@ $NEWPAGE
 'ipbenableautoblock'          => 'بۇل قاتىسۋشى سوڭعى قولدانعان IP جايى, جٵنە كەيٸن ٶڭدەۋگە بايقاپ كٶرگەن ٵرقايسى IP جايلارى ٶزدٸكتٸك بۇعاتتالسىن',
 'ipbsubmit'                   => 'قاتىسۋشىنى بۇعاتتا',
 'ipbother'                    => 'باسقا مەرزٸمٸ:',
-'ipboptions'                  => '2 ساعات:2 hours,1 كٷن:1 day,3 كٷن:3 days,1 اپتا:1 week,2 اپتا:2 weeks,1 اي:1 month,3 اي:3 months,6 اي:6 months,1 جىل:1 year,مٵنگٸ:infinite',
+'ipboptions'                  => '2 ساعات:2 hours,1 كٷن:1 day,3 كٷن:3 days,1 اپتا:1 week,2 اپتا:2 weeks,1 اي:1 month,3 اي:3 months,6 اي:6 months,1 جىل:1 year,مٵنگٸ:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'باسقا',
 'ipbotherreason'              => 'باسقا/قوسىمشا سەبەپ:',
 'ipbhidename'                 => 'بۇعاتتاۋ جۋرنالىنداعى, بەلسەندٸ بۇعاتتاۋ تٸزٸمٸندەگٸ, قاتىسۋشى تٸزٸمٸننەگٸ اتى/IP جاسىرىلسىن',
@@ -2644,8 +2632,8 @@ $1',
 'useajaxsearch'    => 'AJAX قولدانىپ ٸزدەۋ',
 
 # Separators for various lists
-'semicolon-separator'   => '؛',
-'comma-separator'       => ' ،',
+'semicolon-separator' => ';',
+'filetype-separator'  => ',&#20;',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← الدىڭعى بەتكە',

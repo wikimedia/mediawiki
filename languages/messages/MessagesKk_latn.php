@@ -746,7 +746,7 @@ Tirkelgiñiz jaratıldı. {{SITENAME}} baptawıñızdı qalawıñızben özgertw
 'uid'                        => 'Qatıswşı teñdestirwiñiz:',
 'yourrealname'               => 'Şın atıñız:',
 'yourlanguage'               => 'Tiliñiz:',
-'yourvariant'                => 'Türi',
+'yourvariant'                => 'Nusqañız:',
 'yournick'                   => 'Laqap atıñız:',
 'badsig'                     => 'Qam qoltañbañız jaramsız; HTML belgişelerin tekseriñiz.',
 'badsiglength'               => 'Laqap atıñız tım uzın; $1 nışannan aspawı kerek.',
@@ -1207,6 +1207,8 @@ Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ bölektewin CTRL + So
 'userrights-available-none'   => 'Top müşeligin özgerte almaýsız.',
 'userrights-available-add'    => 'Qatıswşılardı $1 tobına üsteý alasız.',
 'userrights-available-remove' => 'Qatıswşılardı $1 tobınan alastaý alasız.',
+'userrights-no-interwiki'     => 'Basqa wïkïlerdegi paýdalanwşı quqıqtarın öñdewge ruqsatıñız joq.',
+'userrights-nodatabase'       => '$1 derekqorı joq ne jergilikti emes.',
 
 # Groups
 'group'               => 'Top:',
@@ -1283,7 +1285,7 @@ Swretti betke kiriktirwge, faýlğa twra siltew üşin mına pişindegi siltemen
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''.",
 'upload-permitted'            => 'Ruqsat berigen faýl türleri: $1.',
 'upload-preferred'            => 'Unamdı faýl türleri $1.',
-'upload-prohibited'           => 'Ruqsat berilmegen faýl türleri: $1.',
+'upload-prohibited'           => 'uqsat berilmegen faýl türleri: $1.',
 'uploadlog'                   => 'qotarw jwrnalı',
 'uploadlogpage'               => 'Qotarw jwrnalı',
 'uploadlogpagetext'           => 'Tömende jwıqtağı qotarılğan faýl tizimi.',
@@ -1464,7 +1466,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 
 'disambiguations'      => 'Aýrıqtı better',
 'disambiguationspage'  => 'Template:disambig',
-'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi. Bunıñ ornına belgili taqırıpqa siltewi kerek.<br />Eger [[{{ns:mediawiki}}:disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
+'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi. Bunıñ ornına belgili taqırıpqa siltewi kerek.<br />Eger [[{{ns:mediawiki}}:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdatwlar',
 'doubleredirectstext' => 'Bul bette basqa aýdatw betterge silteýtin better tizimi beriledi. Ärbir jolaqta birinşi jäne ekinşi aýdatwğa siltemeler bar, sonımen birge ekinşi aýdatw nısanası bar, ädette bul birinşi aýdatw bağıttaýtın «şın» nısana bet atawı bolwı kerek.',
@@ -1887,7 +1889,7 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipbenableautoblock'          => 'Bul qatıswşı soñğı qoldanğan IP jaýı, jäne keýin öñdewge baýqap körgen ärqaýsı IP jaýları özdiktik buğattalsın',
 'ipbsubmit'                   => 'Qatıswşını buğatta',
 'ipbother'                    => 'Basqa merzimi:',
-'ipboptions'                  => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite',
+'ipboptions'                  => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'basqa',
 'ipbotherreason'              => 'Basqa/qosımşa sebep:',
 'ipbhidename'                 => 'Buğattaw jwrnalındağı, belsendi buğattaw tizimindegi, qatıswşı tiziminnegi atı/IP jasırılsın',
@@ -2622,8 +2624,8 @@ $1',
 'useajaxsearch'    => 'AJAX qoldanıp izdew',
 
 # Separators for various lists
-'semicolon-separator'   => ';',
-'comma-separator'       => ', ',
+'semicolon-separator' => ';',
+'filetype-separator'  => '&#20;,',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← aldıñğı betke',
