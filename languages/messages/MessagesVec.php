@@ -1,7 +1,14 @@
 <?php
-/** Venitian ( Vèneto )
+/** Venitian (Vèneto)
  *
  * @addtogroup Language
+ *
+ * @author Nick1915
+ * @author BrokenArrow
+ * @author לערי ריינהארט
+ * @author Nike
+ * @author Jon Harald Søby
+ * @author Siebrand
  */
 
 $fallback = 'it';
@@ -30,19 +37,19 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sottolinea links',
-'tog-highlightbroken'         => 'Evidenzsia i links che i punta a <br />arthicołi ancora da scrivere',
+'tog-highlightbroken'         => 'Evidenzsia i links che i punta a arthicołi ancora da scrivere',
 'tog-justify'                 => 'Paragrafo: giustificato',
-'tog-hideminor'               => 'Nascondi le modifiche minori<br />nella pagina "Modifiche recenti"',
-'tog-numberheadings'          => 'Auto-numerazione dei<br />titoli di paragrafo',
-'tog-editondblclick'          => "Doppio click per modificare l'articolo<br />(richiede JavaScript)",
+'tog-hideminor'               => 'Nascondi le modifiche minori nella pagina "Modifiche recenti"',
+'tog-numberheadings'          => 'Auto-numerazione dei titoli di paragrafo',
+'tog-editondblclick'          => "Doppio click per modificare l'articolo (richiede JavaScript)",
 'tog-editsection'             => 'Modifega de łe sezsioni tramite el cołegamento [modifica]',
 'tog-editsectiononrightclick' => 'Modifega de łe sezsion tramite clic destro sul titoło (richiede JavaScript)',
 'tog-showtoc'                 => "Mostra l'indexe par łe paxène con pì de 3 sezsion",
-'tog-rememberpassword'        => 'Ricorda la password<br />(non limitare a una sessione<br />- richiede uso di cookies)',
-'tog-editwidth'               => 'Casella di edizione ampliata<br />alla massima larghezza',
+'tog-rememberpassword'        => 'Ricorda la password (non limitare a una sessione - richiede uso di cookies)',
+'tog-editwidth'               => 'Casella di edizione ampliata alla massima larghezza',
 'tog-watchcreations'          => 'Xonta łe paxène creae a i osservati speciałi',
 'tog-watchdefault'            => 'Xonta łe paxène modifegae a i osservati speciałi',
-'tog-minordefault'            => 'Indica ogni modifica come minore<br />(solo come predefinito)',
+'tog-minordefault'            => 'Indica ogni modifica come minore (solo come predefinito)',
 'tog-watchlisthideown'        => 'Scondi łe me modifeghe ne i osservati speciałi',
 'tog-watchlisthidebots'       => 'Scondi le modifighe de i bot ne i oservati speciałi',
 
@@ -68,11 +75,15 @@ $messages = array(
 'november'  => 'Novenbre',
 'december'  => 'Diçenbre',
 'jan'       => 'Gen',
+'feb'       => 'Feb',
+'mar'       => 'Mar',
+'apr'       => 'Apr',
 'may'       => 'Mag',
 'jul'       => 'Lug',
 'aug'       => 'Ago',
 'sep'       => 'Set',
 'oct'       => 'Oto',
+'nov'       => 'Nov',
 'dec'       => 'Diç',
 
 # Bits of text used by many pages
@@ -80,14 +91,7 @@ $messages = array(
 'pagecategories'  => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header' => 'Voçi n\'te ła categoria "$1"',
 
-'mainpagetext'      => "'''MediaWiki xè stà instałà con sucesso.'''",
-'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
-
-== Getting started ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+'mainpagetext' => "'''MediaWiki xè stà instałà con sucesso.'''",
 
 'about'          => 'Se parla de',
 'article'        => 'Voçe',
@@ -484,9 +488,7 @@ Par inserire un'imagine in na paxèna, fare un cołegamento de sto tipo:
 'uploadlog'                   => 'File caricai',
 'uploadlogpage'               => 'Log dei file caricai',
 'uploadlogpagetext'           => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
-Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
-<ul>
-</ul>',
+Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'filedesc'                    => 'Oggetto',
 'fileuploadsummary'           => 'Sommario:',
 'filestatus'                  => 'Stato del copyright',
@@ -578,7 +580,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne '''{{FORMATNUM|
 'newpages'                => 'Paxène nove',
 'ancientpages'            => 'Paxène pì vece',
 'intl'                    => 'Link a altri linguaggi',
-'unusedimagestext'        => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui, essendo inutilizzate in questa versione di {{SITENAME}}, anche essendo magari in uso altrove.',
+'unusedimagestext'        => 'Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui, essendo inutilizzate in questa versione di {{SITENAME}}, anche essendo magari in uso altrove.',
 'unusedcategoriestext'    => 'Le paxène de łe categorie indicae de seguito łe xè stà creae ma non contegne nessuna paxèna né sotocategoria.',
 'notargettext'            => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 
@@ -884,7 +886,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'tooltip-ca-move'                 => 'Sposta sta paxèna a un altro titoło',
 'tooltip-ca-watch'                => 'Xonta sta paxèna a l',
 'tooltip-ca-unwatch'              => 'Cava sta paxèna da l',
-'tooltip-search'                  => 'Zserca in {{SITENAME}} [alt-f]',
+'tooltip-search'                  => 'Zserca in {{SITENAME}}',
 'tooltip-p-logo'                  => 'Paxèna prinzsipałe',
 'tooltip-n-mainpage'              => 'Visita la Paxèna prinzsipałe',
 'tooltip-n-portal'                => 'Descrizsion del projeto, cosa te podi far, e dove trovar le robe',
@@ -895,8 +897,6 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'tooltip-n-sitesupport'           => 'Iútane',
 'tooltip-t-whatlinkshere'         => 'Lista de tute le paxène che le porta a sta',
 'tooltip-t-recentchangeslinked'   => 'Lista de le ultime modifiche a le paxène linkae da sta quà.',
-'tooltip-feed-rss'                => 'RSS feed for this page',
-'tooltip-feed-atom'               => 'Atom feed for this page',
 'tooltip-t-contributions'         => 'Lista de i contributi de sto utente',
 'tooltip-t-emailuser'             => 'Manda n',
 'tooltip-t-upload'                => 'Meti imagini o file multimediałi su {{SITENAME}}',
@@ -911,11 +911,11 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'tooltip-ca-nstab-template'       => 'Varda el template',
 'tooltip-ca-nstab-help'           => 'Varda la paxèna de aiuto',
 'tooltip-ca-nstab-category'       => 'Varda la paxèna de la categoria',
-'tooltip-minoredit'               => 'Segnała come modifega minore [alt-i]',
-'tooltip-save'                    => 'Salva łe modifeghe [alt-s]',
-'tooltip-preview'                 => 'Anteprima de łe modifeghe (consilià, prima de salvare!) [alt-p]',
-'tooltip-diff'                    => 'Varda łe modifeghe apportae al testo. [alt-d]',
-'tooltip-compareselectedversions' => 'Varda łe diferenzse tra łe do verzsion selezsionà de sta paxèna. [alt-v]',
+'tooltip-minoredit'               => 'Segnała come modifega minore',
+'tooltip-save'                    => 'Salva łe modifeghe',
+'tooltip-preview'                 => 'Anteprima de łe modifeghe (consilià, prima de salvare!)',
+'tooltip-diff'                    => 'Varda łe modifeghe apportae al testo',
+'tooltip-compareselectedversions' => 'Varda łe diferenzse tra łe do verzsion selezsionà de sta paxèna.',
 'tooltip-recreate'                => 'Ricrea ła paxèna anca se xè stà scancełà',
 
 # Metadata
@@ -927,7 +927,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'creditspage'      => 'Crediti de ła paxèna',
 
 # Spam protection
-'subcategorycount'     => 'Sta categoria contegne {{PLURAL:$1|na sotocategoria| {{FORMATNUM|$1}} sotocategorie}}.',
+'subcategorycount'     => 'Sta categoria contegne {{PLURAL:$1|na sotocategoria|$1 sotocategorie}}.',
 'categoryarticlecount' => 'Ghè $1 voçi in sta categoria.',
 'spam_blanking'        => 'Paxèna svodà, tute łe verzsion contegneva cołegamenti a $1',
 

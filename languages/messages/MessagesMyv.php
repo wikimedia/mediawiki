@@ -194,6 +194,7 @@ $messages = array(
 'currentevents-url' => 'Project:Мезе ней моли',
 'disclaimers'       => 'Видечинь кортамотьне',
 'edithelp'          => 'Витнемань-петнемань лезкс',
+'helppage'          => 'Лезкс',
 'mainpage'          => 'Прякслопа',
 'portal'            => 'Велень-сядонь вальма',
 'privacy'           => 'Салавачинь полициясь',
@@ -218,6 +219,7 @@ $messages = array(
 'nstab-project'  => 'Проектэнь лопа',
 'nstab-image'    => 'Файла',
 'nstab-template' => 'Лопапарцун',
+'nstab-help'     => 'Лезкс лопа',
 'nstab-category' => 'Категория',
 
 # Main script and global functions
@@ -405,7 +407,6 @@ $messages = array(
 # Undelete
 'undeletebtn' => 'Велявтомс мекев сенень, мезе ульнесь витнемадо-петнемадо икеле',
 
-'sp-contributions-older'    => 'Седе икелень $1',
 'sp-contributions-username' => 'IP сёрмапарго эли совицянь лем:',
 'sp-contributions-submit'   => 'Вешнемс',
 

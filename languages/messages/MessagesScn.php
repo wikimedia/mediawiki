@@ -5,9 +5,8 @@
  *
  * @author Tonyfroio
  * @author Niklas Laxström
- * @author G - ג
- * @author Nike
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'it';
@@ -1755,7 +1754,13 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'metadata-help'     => 'Stu file cunteni nfurmazzioni agghiuntivi, prubbabbirmenti junti dâ fotucàmira o dû scanner usati pi criàrila o diggitalizzàrila. Siddu lu file hà statu canciatu, arcuni dittagghi putìssiru nun currispùnniri â rialitati.',
 'metadata-expand'   => 'Ammustra dittagghi',
 'metadata-collapse' => 'Ammuccia dittagghi',
-'metadata-fields'   => "Li campi rilativi a li metadati EXIF alincati 'n stu missaggiu vèninu ammustrati supra la pàggina dâ mmàggini quannu la tabbella dî metadati è prisintata ntâ forma brivi. Pi mpustazzioni pridifinita, l'àutri campi vèninu ammucciati. * make * model * datetimeoriginal * exposuretime * fnumber * focallength", # Do not translate list items
+'metadata-fields'   => "Li campi rilativi a li metadati EXIF alincati 'n stu missaggiu vèninu ammustrati supra la pàggina dâ mmàggini quannu la tabbella dî metadati è prisintata ntâ forma brivi. Pi mpustazzioni pridifinita, l'àutri campi vèninu ammucciati.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghizza',
