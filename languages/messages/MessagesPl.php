@@ -5,9 +5,10 @@
  *
  * @author Derbeth
  * @author Wpedzich
- * @author G - ג
  * @author Stv
  * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -329,7 +330,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Informacje_prawne',
 'edithelp'          => 'Pomoc w edycji',
 'edithelppage'      => 'Help:Jak edytować stronę',
-'faqpage'           => 'Project:FAQ',
+'faq'               => 'FAQ',
 'helppage'          => 'Help:Pomoc',
 'mainpage'          => 'Strona główna',
 'policy-url'        => 'Project:Zasady',
@@ -349,6 +350,7 @@ $messages = array(
 'versionrequired'     => 'Wymagana MediaWiki w wersji $1',
 'versionrequiredtext' => 'Wymagane jest MediaWiki w wersji $1 aby skorzystać z tej strony. Zobacz [[Special:Version]]',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Źródło: "$1"',
 'youhavenewmessages'      => 'Masz $1 ($2).',
 'newmessageslink'         => 'nowe wiadomości',
@@ -490,6 +492,7 @@ Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:specia
 'yournick'                   => 'Twój podpis',
 'badsig'                     => 'Błędny podpis, sprawdź tagi HTML.',
 'badsiglength'               => 'Nazwa użytkownika jest zbyt długa. Maksymalna jej długość to $1 znaków.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => '* Imię i nazwisko (opcjonalnie): jeśli zdecydujesz się je podać, zostaną użyte, aby zapewnić Twojej pracy atrybucję.',
 'loginerror'                 => 'Błąd logowania',
 'prefs-help-email'           => '* E-mail (opcjonalnie): Podanie e-maila pozwala innym skontaktować się z tobą za pośrednictwem twojej strony użytkownika
@@ -879,6 +882,7 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'group-bureaucrat' => 'Biurokraci',
 'group-all'        => '(wszyscy)',
 
+'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Administrator',
 'group-bureaucrat-member' => 'Biurokrata',
 
@@ -908,9 +912,12 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'rcshowhidemine'                    => '$1 moje edycje',
 'rclinks'                           => 'Wyświetl ostatnie $1 zmian w ciągu ostatnich $2 dni.<br />$3',
 'diff'                              => 'różn',
+'hist'                              => 'hist',
 'hide'                              => 'ukryj',
 'show'                              => 'pokaż',
 'minoreditletter'                   => 'd',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|obserwujący użytkownik|obserwujących użytkowników}}/s]',
 'rc_categories'                     => 'Ogranicz do kategorii (oddzielaj za pomocą "|")',
 'rc_categories_any'                 => 'Wszystkie',
@@ -1845,12 +1852,12 @@ Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwag
 'metadata-expand'   => 'Pokaż szczegóły',
 'metadata-collapse' => 'Ukryj szczegóły',
 'metadata-fields'   => 'Wymienione poniżej pola EXIF zostaną wymienione na stronie grafiki. Pozostałe pola zostaną domyślnie ukryte.
-* producent aparatu
-* model aparatu
-* data i czas utworzenia
-* czas ekspozycji
-* wartość przesłony
-* długość ogniskowej', # Do not translate list items
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Szerokość',
@@ -2123,6 +2130,7 @@ Sygnały Trackback dla tego artykułu:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Usuń])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback został usunięty.',
 
 # Delete conflict
