@@ -215,7 +215,6 @@ $messages = array(
 'undo-summary' => 'አንድ ለውጥ ከ[[Special:Contributions/$2|$2]] ([[User talk:$2|ውይይት]]) ገለበጠ',
 
 # History pages
-'revhistory'          => 'የገጽ ታሪክ',
 'viewpagelogs'        => 'መዝገቦች ለዚሁ ገጽ',
 'currentrev'          => 'የአሁኑ እትም',
 'revisionasof'        => 'እትም በ$1',
@@ -431,7 +430,6 @@ $messages = array(
 'listusers'               => 'አባላት',
 'specialpages'            => 'ልዩ ገጾች',
 'spheading'               => 'ለሰው ሁሉ የሚጠቅሙ ልዩ ገጾች',
-'rclsub'                  => '(ከ«$1» ለተያያዙ ጽሑፎች)',
 'newpages'                => 'አዳዲስ መጣጥፎች',
 'newpages-username'       => 'በአቅራቢው፦',
 'ancientpages'            => 'የቈዩ ፅሑፎች (በተለወጠበት ሰአት)',
@@ -563,10 +561,6 @@ $messages = array(
 'month'         => 'እስከዚህ ወር ድረስ፦',
 'year'          => 'እስከዚህ አመት (እ.ኤ.አ.) ድረስ፡-',
 
-'sp-contributions-newest'      => 'ኋለኞች',
-'sp-contributions-oldest'      => 'ቀድመኞች',
-'sp-contributions-newer'       => 'ፊተኛ $1',
-'sp-contributions-older'       => 'ቀጥሎ $1',
 'sp-contributions-newbies'     => 'የአዳዲስ ተጠቃሚዎች አስተዋጽዖ ብቻ እዚህ ይታይ',
 'sp-contributions-newbies-sub' => '(ለአዳዲስ ተጠቃሚዎች)',
 'sp-contributions-blocklog'    => 'የማገጃ መዝገብ',

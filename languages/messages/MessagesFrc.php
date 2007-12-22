@@ -1,14 +1,15 @@
 <?php
-/** Français cadien (Français cadien)
+/** Cajun French (Français cadien)
  *
  * @addtogroup Language
  *
- * @author RoyAlcatraz, JeanVoisin (September 2007)
  * @author RoyAlcatraz
  * @author JeanVoisin
  * @author Siebrand
  * @author Nike
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -363,7 +364,7 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'uid'                        => "Numéro d'useur:",
 'yourrealname'               => 'Vrai nom:',
 'yourlanguage'               => 'Langue:',
-'yourvariant'                => 'Différent',
+'yourvariant'                => 'Différent:',
 'yournick'                   => "'Tit nom:",
 'badsig'                     => 'Votre signature brute est pas bonne.  Regardez-voir les tags HTML.',
 'badsiglength'               => "Votre 'tit nom est trop long.  Il faut que ça soye moins que $1 caractères.",
@@ -557,7 +558,6 @@ Les notes d'ôtage pour cette page sont données ici pour vous aider:",
 'cantcreateaccounttitle' => 'Impossible de créer le compte',
 
 # History pages
-'revhistory'          => 'Détails des changements',
 'viewpagelogs'        => 'Voir les notes pour cette page',
 'nohistory'           => 'Y a pas de changements pour cette page.',
 'revnotfound'         => 'Changement pas trouvé',
@@ -628,15 +628,11 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'overlogpagetext' => 'Cette liste ici montre les ôtages et les blocages avec du texte caché des administrateurs.  Lire la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages courants.',
 
 # Diffs
-'difference'                => '(Différences entre les versions)',
-'loadingrev'                => "Import de l'ancienne version pour comparer",
-'lineno'                    => 'Ligne $1:',
-'editcurrent'               => 'Changer la version courante de cette page',
-'selectnewerversionfordiff' => 'Choisir une plus nouvelle version pour comparer',
-'selectolderversionfordiff' => 'Choisir une plus vieille version pour comparer',
-'compareselectedversions'   => 'Comparer les versions choisies',
-'editundo'                  => 'renverser',
-'diff-multi'                => '({{PLURAL:$1|Un changement moyen caché|$1 changements moyens cachés}})',
+'difference'              => '(Différences entre les versions)',
+'lineno'                  => 'Ligne $1:',
+'compareselectedversions' => 'Comparer les versions choisies',
+'editundo'                => 'renverser',
+'diff-multi'              => '({{PLURAL:$1|Un changement moyen caché|$1 changements moyens cachés}})',
 
 # Search results
 'searchresults'    => 'Résultats de la charche',

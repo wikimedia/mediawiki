@@ -1,5 +1,5 @@
 <?php
-/** ‪Kurdî (latînî)‬ (‪Kurdî (latînî)‬)
+/** Kurdish (Latin) (Kurdî / كوردی (Latin))
  *
  * @addtogroup Language
  *
@@ -270,12 +270,7 @@ $messages = array(
 'thisisdeleted'           => '$1 lêsekê ya dîsa çêkê?',
 'viewdeleted'             => 'Li $1 seke?',
 'restorelink'             => '{{PLURAL:$1|guherandinekî|$1 guherandinên}} jêbirî',
-'feedlinks'               => 'Feed:',
 'feed-invalid'            => "Feed'ekî neserrast.",
-'site-rss-feed'           => '$1 RSS Feed',
-'site-atom-feed'          => '$1 Atom Feed',
-'page-rss-feed'           => '"$1" RSS Feed',
-'page-atom-feed'          => '"$1" Atom Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Gotar',
@@ -395,7 +390,7 @@ Hesaba te hat afirandin. Tu dikarî niha tercîhên xwe eyar bikî.',
 'uid'                        => "ID'ya bikarhêner:",
 'yourrealname'               => 'Navê te yê rastî*',
 'yourlanguage'               => 'Ziman',
-'yourvariant'                => 'Varîyant',
+'yourvariant'                => 'Varîyant:',
 'yournick'                   => 'Leqeba te (ji bo îmza)',
 'badsig'                     => 'Nivîsandinê îmzê ne baş e; xêra xwe nivîsandina HTML seke, ku şaşbûn hene ya na.',
 'badsiglength'               => 'Navî te zêde dirêj e; ew gireke di bin $1 nîşanan da be.',
@@ -545,7 +540,6 @@ Zanibe ku nuhçêkirinê vê rûpelê hêja ye ya na.
 Sedemê qedexekirinê ji $3 ev e: ''$2''",
 
 # History pages
-'revhistory'          => 'Dîroka revîzyonan',
 'viewpagelogs'        => 'Înformasîyonan li ser vê rûpelê seke',
 'nohistory'           => 'Ew rûpel dîroka guherandinê tune.',
 'revnotfound'         => 'Revîzyon nehat dîtin',
@@ -997,10 +991,6 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'month'         => 'Ji mihê (û zûtir):',
 'year'          => 'Ji salê (û zûtir):',
 
-'sp-contributions-newest'      => 'Nûtirîn',
-'sp-contributions-oldest'      => 'Kevintirîn',
-'sp-contributions-newer'       => '$1 yên nûtir',
-'sp-contributions-older'       => '$1 yên kevintir',
 'sp-contributions-newbies'     => 'Bes beşdarîyên bikarhênerê nû pêşêkê',
 'sp-contributions-newbies-sub' => 'Ji bikarhênerên nû re',
 'sp-contributions-blocklog'    => 'Înformasyon li ser astengkirinê',
@@ -1042,7 +1032,7 @@ Sedemekê binivîse!',
 'ipbenableautoblock'     => "Otomatîk IP'yên niha û yên nuh yê vê bikarhênerê astengbike.",
 'ipbsubmit'              => 'Vê bikarhêner asteng bike',
 'ipbother'               => 'demekî din',
-'ipboptions'             => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite',
+'ipboptions'             => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'         => 'yên din',
 'ipbotherreason'         => 'Sedemekî din',
 'ipbhidename'            => 'Navî bikarhêner / adresê IP ji "pirtûkê" astengkirinê, lîsteya astengkirinên nuh û lîsteya bikarhêneran veşêre',

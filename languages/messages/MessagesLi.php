@@ -1313,7 +1313,7 @@ $1",
 'ipbenableautoblock'          => 'Automatisch de IP-adresse van deze gebroeker blokkere',
 'ipbsubmit'                   => 'Blokkeer dit IP-adres',
 'ipbother'                    => 'Anger verloup',
-'ipboptions'                  => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite',
+'ipboptions'                  => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'anger verloup',
 'ipbotherreason'              => 'Angere/eventuele rejer:',
 'ipbhidename'                 => "Verberg gebroekersnaam/IP van 't blokkeerlogbook, de actieve blokkeerlies en de gebroekerslies",
@@ -1598,7 +1598,7 @@ Alle volgende links die op dezelfde regel staon, waere behanjeld es oetzönjerin
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-bitspersample'            => 'Bits per componènt',
@@ -1739,7 +1739,7 @@ Probeer normaal veurvertuin.',
 'watchlistedit-noitems'        => "Dao sjtaon gein pazjena's op dien volglies.",
 'watchlistedit-normal-title'   => 'Volglies bewirke',
 'watchlistedit-normal-legend'  => "Pazjena's ewegsjaffe van dien volglies",
-'watchlistedit-normal-explain' => "Pazjena's op dien volglies waere hiejónger getuind. Klik op 't veerkentje d'rnaeve óm 'ne pazjena eweg te sjaffe. Klik daonao op 'Pazjena's ewegsjaffe'. Doe kins ouch [[{{ns:special}}:Watchlist/raw|de roew lies bewirke]], of [[{{ns:special}}:Watchlist/clear|alle pazjena's ewegsjaffe]].",
+'watchlistedit-normal-explain' => "Pazjena's op dien volglies waere hiejónger getuind. Klik op 't veerkentje d'rnaeve óm 'ne pazjena eweg te sjaffe. Klik daonao op 'Pazjena's ewegsjaffe'. Doe kins ouch [[{{ns:special}}:Watchlist/raw|de roew lies bewirke]].",
 'watchlistedit-normal-submit'  => "Pazjena's ewegsjaffe",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} eweggesjaf van dien volglies:",
 'watchlistedit-raw-title'      => 'Roew volglies bewirke',

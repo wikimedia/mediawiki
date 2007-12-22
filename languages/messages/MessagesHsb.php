@@ -475,7 +475,7 @@ Prošu spytaj hišće raz!',
 'uid'                        => 'ID wužiwarja:',
 'yourrealname'               => 'Woprawdźite mjeno *',
 'yourlanguage'               => 'Rěč:',
-'yourvariant'                => 'Warianta',
+'yourvariant'                => 'Warianta:',
 'yournick'                   => 'Přimjeno:',
 'badsig'                     => 'Njepłaćiwa signatura, prošu HTML přepruwować.',
 'badsiglength'               => 'Podpis smě maksimalnje $1 znamješkow dołhi być.',
@@ -912,6 +912,8 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'userrights-available-none'   => 'Njesměš wužiwarske prawa změnić.',
 'userrights-available-add'    => 'Směš wužiwarjow k skupinam $1 přidać.',
 'userrights-available-remove' => 'Směš wužiwarjow ze skupinow $1 wotstronić.',
+'userrights-no-interwiki'     => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
+'userrights-nodatabase'       => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1601,7 +1603,7 @@ $1',
 'ipbenableautoblock'          => 'IP-adresy blokować kiž buchu přez tutoho wužiwarja hižo wužiwane kaž tež naslědne adresy, z kotrychž so wobdźěłanje pospytuje',
 'ipbsubmit'                   => 'Wužiwarja zablokować',
 'ipbother'                    => 'Druha doba',
-'ipboptions'                  => '1 hodźinu:1 hour,2 hodźinje:2 hours, 6 hodźiny:6 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:indefinite',
+'ipboptions'                  => '1 hodźinu:1 hour,2 hodźinje:2 hours, 6 hodźiny:6 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:indefinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'druha doba (jendźelsce)',
 'ipbotherreason'              => 'Druha/přidatna přičina:',
 'ipbhidename'                 => 'Wužiwarske mjeno/IP-adresu w protokolu zablokowanjow, w lisćinje aktiwnych zablokowanjow a w zapisu wužiwarjow schować.',
@@ -1970,7 +1972,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šěrokosć',
@@ -2212,6 +2214,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsmeasuremode-3' => 'třidimensionalne měrjenje',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mila/h',
 'exif-gpsspeed-n' => 'Suki',
 
@@ -2330,8 +2333,7 @@ Spytaj normalny přehlad.',
 'watchlistedit-noitems'        => 'Twoje wobkedźbowanki su prózdne.',
 'watchlistedit-normal-title'   => 'Wobkedźbowanki wobdźěłać',
 'watchlistedit-normal-legend'  => 'Zapiski z wobkedźbowankow wotstronić',
-'watchlistedit-normal-explain' => 'Tu su zapiski z twojich wobkedźbowankow. Zo by zapiski wušmórnył, markěruj kašćiki pódla zapiskow a klikń na „Zapiski wušmórnyć“. Móžeš tež swoje wobkedźbowanki [[{{ns:special}}:Watchlist/raw|w lisćinowym formaće wobdźěłać]]
-	abo je [[{{ns:special}}:Watchlist/clear|dospołnje wušmórnyć]].',
+'watchlistedit-normal-explain' => 'Tu su zapiski z twojich wobkedźbowankow. Zo by zapiski wušmórnył, markěruj kašćiki pódla zapiskow a klikń na „Zapiski wušmórnyć“. Móžeš tež swoje wobkedźbowanki [[Special:Watchlist/raw|w lisćinowym formaće wobdźěłać]].',
 'watchlistedit-normal-submit'  => 'Zapiski wotstronić',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 zapisk bu|$1 zapiskaj buštej|$1 zapiski buchu|$1 zapiskow  buchu}} z twojich wobkedźbowankow {{PLURAL:$1|wotstronjeny|wotstronjenej|wotstronjene|wotstronjene}}:',
 'watchlistedit-raw-title'      => 'Wobkedźbowanki w lisćinowym formaće wobdźěłać',

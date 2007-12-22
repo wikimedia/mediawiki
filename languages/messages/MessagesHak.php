@@ -1,5 +1,5 @@
 <?php
-/** Hak-kâ-fa (Hak-kâ-fa)
+/** Hakka (Hak-kâ-fa)
  *
  * @addtogroup Language
  *
@@ -232,7 +232,6 @@ $messages = array(
 'versionrequired'     => 'Sî-yeu MediaWiki $1-pán',
 'versionrequiredtext' => 'Sî-yeu pán-pún $1-ke MediaWiki chhòi-nèn sṳ́-yung chhṳ́-chông. Chhâm-cheu [[Special:Version|Pán-pún]].',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'Chhí-chhṳ "$1"',
 'youhavenewmessages'      => 'Ngì yû $1（$2）。',
 'newmessageslink'         => 'Sîn sin-sit',
@@ -408,9 +407,7 @@ Ngì khó-yî ki-siu̍k yî ngia̍k-miàng fông-sṳt sṳ́-yung {{SITENAME}},
 'math_tip'        => 'Chhap-ngi̍p sṳ-ho̍k kûng-sṳt (LaTeX)',
 'nowiki_sample'   => 'Chhai-chhṳ́ chhap-ngi̍p fui kak-sṳt vùn-sṳ',
 'nowiki_tip'      => 'Chhap-ngi̍p fui kak-sṳt vùn-sṳ',
-'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Chhṳ̀m-ngi̍ thù-hiong',
-'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Kî-thí tóng-on lièn-kiet',
 'sig_tip'         => 'Tai yû sṳ̀-kiên ke chhiâm-miàng',
 'hr_tip'          => 'Súi-phiàng sien  (séu-sîm sṳ́-yung)',
@@ -508,7 +505,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'cantcreateaccounttitle' => 'Mò-fap chhóng-li̍p chong-ho',
 
 # History pages
-'revhistory'          => 'Siû-thin li̍t-sṳ́',
 'viewpagelogs'        => 'Chhà-khon liá-ke vùn-chông ke ngit-ki.',
 'nohistory'           => 'Mò-yû pún-chông ke siû-thin ki-liu̍k.',
 'revnotfound'         => 'Mò-yû chhìm-cháu to siû-thin ki-liu̍k',
@@ -575,15 +571,11 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'overlogpagetext' => 'Ha-mien he yit-ke chui-khiûn chhù-hi yî-khi̍p chhâu-chok-yèn fûng-só khiên-sa̍p-to ke nui-yùng lie̍t-péu. Chhâm-siòng ha-mien ke [[Special:Ipblocklist|IP fûng-só lie̍t-péu]] chhà-khon hien-chhai chin-hàng ke fûng-só.',
 
 # Diffs
-'difference'                => '(Siû-thin pán-pún-kiên ke chhâ-yi)',
-'loadingrev'                => 'Chai-ngi̍p siû-thin pán-pún pí-káu',
-'lineno'                    => 'Thi $1-hàng：',
-'editcurrent'               => 'Phiên-cho pún-chông ke tông-chhièn siû-thin pán-pún',
-'selectnewerversionfordiff' => 'Sién-chet kiên-sîn ke pán-pún chok-vì pí-káu',
-'selectolderversionfordiff' => 'Sién-chet kiên-ló ke pán-pún chok-vì pí-káu',
-'compareselectedversions'   => 'Pí-káu sién-thin ke pán-pún',
-'editundo'                  => 'Chhat-sêu',
-'diff-multi'                => '($1-ke chûng-thù ke siû-thin pán-pún mò-yû hién-sṳ.)',
+'difference'              => '(Siû-thin pán-pún-kiên ke chhâ-yi)',
+'lineno'                  => 'Thi $1-hàng：',
+'compareselectedversions' => 'Pí-káu sién-thin ke pán-pún',
+'editundo'                => 'Chhat-sêu',
+'diff-multi'              => '($1-ke chûng-thù ke siû-thin pán-pún mò-yû hién-sṳ.)',
 
 # Search results
 'searchresults'         => 'Chhìm-cháu kiet-kó',
@@ -916,7 +908,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'specialpages'            => 'Thi̍t-sû hong-mien',
 'spheading'               => 'Só-yû yung-fu ke thi̍t-sû vùn-chông',
 'restrictedpheading'      => 'Chô-su han-chṳ ke thi̍t-sû vùn-chông',
-'rclsub'                  => '（chhiùng "$1" lièn-chhut ke vùn-chông）',
 'newpages'                => 'Chui-sîn ke vùn-chông',
 'newpages-username'       => 'Yung-fu-miàng:',
 'ancientpages'            => 'Chui-khiu ke hong-mien',
@@ -938,7 +929,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'data'               => 'Chṳ̂-liau',
 'userrights'         => 'Yung-fu khièn-han kón-lî',
 'groups'             => 'Yung-fu khiùn-chû',
-'alphaindexline'     => '$1 to $2',
 'version'            => 'Pán-pún',
 
 # Special:Log
@@ -1149,10 +1139,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'uclinks'       => 'Chhâm-siòng chui-heu $1-chhṳ siû-kói: chhâm-sûn chui-heu $2-thiên.',
 'uctop'         => '(Chui-sîn siû-thin)',
 
-'sp-contributions-newest'      => 'Chui-sîn',
-'sp-contributions-oldest'      => 'Chui-khiu',
-'sp-contributions-newer'       => 'Chhièn $1-chhṳ',
-'sp-contributions-older'       => 'Older $1',
 'sp-contributions-newbies'     => 'Chak hién-sṳ sîn kien-li̍p chṳ̂ yung-fu ke kung-hien',
 'sp-contributions-newbies-sub' => 'Sîn-sú',
 'sp-contributions-blocklog'    => 'Fûng-kim ki-liu̍k',
@@ -1194,7 +1180,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'ipbenableautoblock'          => 'Chhṳ-thung chhà-fûng ke-yung-fu sṳ́-yung-ko ke IP thi-tiám',
 'ipbsubmit'                   => 'Chhà-fûng ke-yung-fu',
 'ipbother'                    => 'Khì-thâ sṳ̀-kiên:',
-'ipboptions'                  => '2 séu-sṳ̀:2 séu-sṳ̀, 1 thiên:1 thiên, 3 thiên:3 thiên, 1 chû:1 chû, 2 chû:2 chû, 1-ke ngie̍t:1-ke ngie̍t, 3-ke ngie̍t:3-ke ngie̍t, 6-ke ngie̍t:6-ke ngie̍t, 1-ngièn:1-ngièn, yún-kiú :yún-kiú',
+'ipboptions'                  => '2 séu-sṳ̀:2 séu-sṳ̀, 1 thiên:1 thiên, 3 thiên:3 thiên, 1 chû:1 chû, 2 chû:2 chû, 1-ke ngie̍t:1-ke ngie̍t, 3-ke ngie̍t:3-ke ngie̍t, 6-ke ngie̍t:6-ke ngie̍t, 1-ngièn:1-ngièn, yún-kiú :yún-kiú', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'khì-thâ',
 'ipbotherreason'              => 'Khì-thâ lî-yù:',
 'ipbhidename'                 => 'Chhai chhà-fûng ngit-ki, fa̍t-chhiok chhà-fûng lie̍t-péu yî-khi̍p yung-fu lie̍t-péu chûng yún-chhòng yung-fu-miàng/IP',
@@ -1520,7 +1506,7 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # External editor support
 'edit-externally'      => 'Yung ngoi-phu chhàng-sṳt phiên-siá chhṳ́ tóng-on',

@@ -68,7 +68,6 @@ $messages = array(
 'thursday'  => 'Durschdi',
 'friday'    => 'Fridi',
 'saturday'  => 'Somschdi',
-'sun'       => 'Sun',
 'mon'       => 'Män',
 'tue'       => 'Zischdig',
 'wed'       => 'Mittwuch',
@@ -278,7 +277,7 @@ Vergis nid, dyni [[Special:Preferences|Ystelligen]] aazpasse.',
 'username'                   => 'Benutzernome:',
 'yourrealname'               => 'Ihre Name*',
 'yourlanguage'               => 'Sproch:',
-'yourvariant'                => 'Variante',
+'yourvariant'                => 'Variante:',
 'yournick'                   => 'Spitzname (zuem Untrschriibe):',
 'badsig'                     => 'Dr Syntax vun de Signatur isch ungültig; luege uffs HTML.',
 'email'                      => 'E-Bost',
@@ -554,7 +553,6 @@ Zuer Ziit stöhn '''$7''' Arbete zuem mache aa.",
 'brokenredirectstext' => "Di folgende Wyterleitige füered zu Artikel wo's gar nid git.",
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|Kategori|Kategorie}}',
 'nlinks'                  => '$1 {{PLURAL:$1|Gleich|Gleicher}}',
 'nmembers'                => '$1 {{PLURAL:$1|Syte|Sytene}}',
@@ -705,7 +703,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 # Block/unblock
 'blockip'         => 'Benutzer bzw. IP blockyre',
 'ipbsubmit'       => 'Adresse blockieren',
-'ipboptions'      => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Für immer:infinite',
+'ipboptions'      => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Für immer:infinite', # display1:time1,display2:time2,...
 'ipblocklist'     => 'Lischte vo blockierte IP-Adresse',
 'blocklistline'   => '$1, $2 het $3 ($4) gschperrt',
 'blocklink'       => 'spärre',
@@ -745,7 +743,6 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 
 # Namespace 8 related
 'allmessages'               => 'Systemnochrichte',
-'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Standard-Tekscht',
 'allmessagescurrent'        => 'jetzige Tekscht',
 'allmessagestext'           => 'Sell isch e Lischte vo alle mögliche Systemnochrichte ussem MediaWiki Namensruum.',

@@ -1000,18 +1000,15 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 # Groups
 'group'               => 'Ομάδα:',
 'group-autoconfirmed' => 'Αυτοεπιβεβαιωμένοι χρήστες',
-'group-bot'           => 'Bots',
 'group-sysop'         => 'Διαχειριστές',
 'group-bureaucrat'    => 'Γραφειοκράτες',
 'group-all'           => '(όλοι)',
 
 'group-autoconfirmed-member' => 'Αυτοεπιβεβαιωμένος χρήστης',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Διαχειριστής συστήματος (Sysop)',
 'group-bureaucrat-member'    => 'Γραφειοκράτης',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Αυτοεπιβεβαιωμένοι χρήστες',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Διαχειριστές',
 'grouppage-bureaucrat'    => '{{ns:project}}:Γραφειοκράτες',
 
@@ -1030,7 +1027,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'rcnotefrom'                        => 'Ακολουθούν οι αλλαγές από <b>$2</b> (εμφάνιση <b>$1</b> αλλαγών max).',
 'rclistfrom'                        => 'Εμφάνιση νέων αλλαγών αρχίζοντας από $1',
 'rcshowhideminor'                   => '$1 μικρής σημασίας επεξεργασιών',
-'rcshowhidebots'                    => '$1 bots',
 'rcshowhideliu'                     => '$1 συνδεδεμένων χρηστών',
 'rcshowhideanons'                   => '$1 ανωνύμων χρηστών',
 'rcshowhidepatr'                    => '$1 επεξεργασιών υπό περιπολία',
@@ -1042,7 +1038,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'show'                              => 'εμφάνιση',
 'minoreditletter'                   => 'μ',
 'newpageletter'                     => 'Ν',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 χρήστης (-ες) που παρακολουθούν]',
 'rc_categories'                     => 'Περιόρισε στις κατηγορίες (διαχωρίστε τις με "|")',
 'rc_categories_any'                 => 'Οποιαδήποτε',
@@ -2005,9 +2000,8 @@ $1',
 'show-big-image-thumb' => '<small>Μέγεθος αυτής της προεπισκόπησης: $1 × $2 εικονοστοιχεία</small>',
 
 # Special:Newimages
-'newimages'    => 'Πινακοθήκη νέων εικόνων',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Δεν υπάρχουν εικόνες.',
+'newimages' => 'Πινακοθήκη νέων εικόνων',
+'noimages'  => 'Δεν υπάρχουν εικόνες.',
 
 # Bad image list
 'bad_image_list' => 'Η σύνταξη είναι ως εξής:
@@ -2028,7 +2022,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -2254,7 +2248,6 @@ $1',
 'exif-sharpness-2' => 'Σκληρή',
 
 'exif-subjectdistancerange-0' => 'Άγνωστη',
-'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Κοντινή λήψη',
 'exif-subjectdistancerange-3' => 'Μακρίνή λήψη',
 
@@ -2401,9 +2394,7 @@ $1',
 'watchlistedit-noitems'        => 'Η λίστα παρακολούθησης σας δεν περιέχει καμιά εγγραφή.',
 'watchlistedit-normal-title'   => 'Επεξεργασία λίστας παρακολούθησης',
 'watchlistedit-normal-legend'  => 'Αφαίρεση σελίδων από τη λίστα παρακολούθησης',
-'watchlistedit-normal-explain' => 'Οι σελίδες στη λίστα παρακολούθησής σας φαίνονται παρακάτω. Για να αφαιρέσετε μια σελίδα σημειώστε 
-	το κουτάκι δίπλα από τον τίτλο και κάντε κλικ στο Αφαίρεση Σελίδων. Μπορείτε επίσης να [[Special:Watchlist/raw|επεξεργαστείτε την πηγαία λίστα]],
-	ή [[Special:Watchlist/clear|να αφαιρέσετε όλες τις σελίδες]].',
+'watchlistedit-normal-explain' => 'Οι σελίδες στη λίστα παρακολούθησής σας φαίνονται παρακάτω. Για να αφαιρέσετε μια σελίδα σημειώστε το κουτάκι δίπλα από τον τίτλο και κάντε κλικ στο Αφαίρεση Σελίδων. Μπορείτε επίσης να [[Special:Watchlist/raw|επεξεργαστείτε την πηγαία λίστα]].',
 'watchlistedit-normal-submit'  => 'Αφαίρεση Σελίδων',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 τίτλος|$1 τίτλοι}} αφαιρέθηκαν από τη λίστα παρακολούθησής σας:',
 'watchlistedit-raw-title'      => 'Επεξεργασία πηγαίας λίστας παρακολούθησης',

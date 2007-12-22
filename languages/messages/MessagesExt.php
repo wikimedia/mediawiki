@@ -97,15 +97,12 @@ $messages = array(
 'december-gen'  => 'Diciembri',
 'jan'           => 'Ene',
 'feb'           => 'Heb',
-'mar'           => 'Mar',
 'apr'           => 'Abr',
-'may'           => 'May',
 'jun'           => 'Hún',
 'jul'           => 'Húl',
 'aug'           => 'Ago',
 'sep'           => 'Set',
 'oct'           => 'Otu',
-'nov'           => 'Nov',
 'dec'           => 'Dic',
 
 # Bits of text used by many pages
@@ -367,7 +364,7 @@ Ya está creá la tu cuenta. Recuerda chambal la tus preferéncias al tentu la {
 'uid'                        => 'ID d´usuáriu:',
 'yourrealname'               => 'Nombri verdaeru:',
 'yourlanguage'               => 'Palra:',
-'yourvariant'                => 'Varianti',
+'yourvariant'                => 'Varianti:',
 'yournick'                   => 'Moti:',
 'badsig'                     => 'Nu se premiti esa firma; compreba las etiquetas HTML.',
 'badsiglength'               => 'El tu moti es mu largu; ebi tenel menus de $1 carautéris.',
@@ -1724,7 +1721,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'              => 'Anchón',
@@ -1996,9 +1993,7 @@ $1',
 'watchlistedit-noitems'        => 'Nu ai entítulus ena tu lista e seguimientu.',
 'watchlistedit-normal-title'   => 'Eital la lista e seguimientu',
 'watchlistedit-normal-legend'  => 'Esborral entítulus de la lista e seguimientu',
-'watchlistedit-normal-explain' => 'Los entítulus de la tu lista e seguimientu se muestran embahu. Pa esborral un entítulu, 
-	seleciona el cuairu d´al lau i pursa sobri "Esborral entítulus". Tamién pueis [[Special:Watchlist/raw|eital la lista]],
-	u [[Special:Watchlist/clear|esborral tolos entítulus]].',
+'watchlistedit-normal-explain' => 'Los entítulus de la tu lista e seguimientu se muestran embahu. Pa esborral un entítulu, seleciona el cuairu d´al lau i pursa sobri "Esborral entítulus". Tamién pueis [[Special:Watchlist/raw|eital la lista]].',
 'watchlistedit-normal-submit'  => 'Esborral entítulus',
 'watchlistedit-normal-done'    => 'As esborrau {{PLURAL:$1|1 entítulu e|$1 entítulus de}} la tu lista e seguimientu:',
 'watchlistedit-raw-title'      => 'Eital lista e seguimientu',

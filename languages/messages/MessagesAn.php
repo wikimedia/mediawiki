@@ -171,7 +171,6 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
-'errorpagetitle'    => 'Error',
 'returnto'          => 'Tornar ta $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Aduya',
@@ -392,7 +391,7 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'uid'                        => "ID d'usuario:",
 'yourrealname'               => 'O suyo nombre reyal:',
 'yourlanguage'               => 'Luenga:',
-'yourvariant'                => 'Modalidat linguistica',
+'yourvariant'                => 'Modalidat linguistica:',
 'yournick'                   => 'A suya embotada (ta siñar):',
 'badsig'                     => 'A suya siñadura no ye premitida; comprebe as etiquetas HTML emplegadas.',
 'badsiglength'               => 'Embotada masiau larga; no abría de tener más de $1 caráuters.',
@@ -484,7 +483,7 @@ Si ista cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'preview'                   => 'Bisualizazión prebia',
 'showpreview'               => 'Bisualizazión prebia',
 'showlivepreview'           => 'Ambiesta prebia rapeda',
-'showdiff'                  => 'Mostrar cambeos',
+'showdiff'                  => 'Amostrar cambeos',
 'anoneditwarning'           => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en o istorial d'a pachina.",
 'missingsummary'            => "'''Pare cuenta:''' No ha escrito garra resumen d'edizión. Si fa clic nuebament en «{{MediaWiki:Savearticle}}» a suya edizión se grabará sin resumen.",
 'missingcommenttext'        => 'Por fabor, escriba o testo astí baxo.',
@@ -841,7 +840,6 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'group-bureaucrat-member'    => 'Burocrata',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmatos',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Almenistradors',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocratas',
 
@@ -858,7 +856,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'recentchanges-feed-description'    => "Seguir en ista canal de notizias os cambeos más rezients d'o wiki.",
 'rcnote'                            => "Contino {{PLURAL:$1|s'amuestra o unico cambeo feito|s'amuestran os '''$1''' zaguers cambeos feitos}} en {{PLURAL:$2|o zaguer día|os zaguers '''$2''' días}}, dica as $3.",
 'rcnotefrom'                        => "Contino s'amuestran os cambeos dende <b>$2</b> (dica <b>$1</b>).",
-'rclistfrom'                        => 'Mostrar nuebos cambeos dende $1',
+'rclistfrom'                        => 'Amostrar cambeos rezients dende $1',
 'rcshowhideminor'                   => '$1 edizions menors',
 'rcshowhideliu'                     => '$1 usuarios rechistraus',
 'rcshowhideanons'                   => '$1 usuarios anonimos',
@@ -868,7 +866,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'diff'                              => 'esf',
 'hist'                              => 'ist',
 'hide'                              => 'amagar',
-'show'                              => 'Mostrar',
+'show'                              => 'amostrar',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} bexilando]',
 'rc_categories'                     => 'Limite d\'as categorías (deseparatas por "|")',
 'rc_categories_any'                 => 'Todas',
@@ -998,7 +996,6 @@ PICT # misz.
 'bydate'                    => 'por a calendata',
 'bysize'                    => 'por a grandaria',
 'imgdelete'                 => 'borr',
-'imgdesc'                   => 'desc',
 'imgfile'                   => 'archibo',
 'filehist'                  => "Istorial de l'archibo",
 'filehist-help'             => "Punche en una calendata/ora ta beyer l'archibo como amanixeba por ixas engüeltas.",
@@ -1008,7 +1005,6 @@ PICT # misz.
 'filehist-current'          => 'autual',
 'filehist-datetime'         => 'Calendata/Ora',
 'filehist-user'             => 'Usuario',
-'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => "Grandaria d'o fichero",
 'filehist-comment'          => 'Comentario',
 'imagelinks'                => 'Binclos ta la imachen',
@@ -1111,7 +1107,6 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'fewestrevisions' => 'Articlos con menos edizions',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categorías}}',
 'nlinks'                  => '$1 {{PLURAL:$1|binclo|binclos}}',
 'nmembers'                => '$1 {{PLURAL:$1|miembro|miembros}}',
@@ -1267,8 +1262,46 @@ L'adreza eletronica que endicó en as suyas preferenzias d'usuario amanixerá en
 'watching'   => 'Bexilando...',
 'unwatching' => 'Deixar de bexilar...',
 
+'enotif_mailer'                => 'Sistema de notificazión por correu de {{SITENAME}}',
+'enotif_reset'                 => 'Marcar todas as pachinas como besitatas',
+'enotif_newpagetext'           => 'Ista ye una nueba pachina.',
+'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
+'changed'                      => 'editata',
+'created'                      => 'creyata',
+'enotif_subject'               => 'A pachina $PAGETITLE de {{SITENAME}} ha estato $CHANGEDORCREATED por $PAGEEDITOR',
+'enotif_lastvisited'           => 'Baiga ta $1 ta beyer toz os cambeos dende a suya zaguer besita.',
+'enotif_lastdiff'              => 'Baiga ta $1 ta beyer iste cambeo.',
+'enotif_anon_editor'           => 'usuario anonimo $1',
+'enotif_body'                  => 'Quiesto/a $WATCHINGUSERNAME,
+
+A pachina «$PAGETITLE» de {{SITENAME}} 
+ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATE.
+Puede trobar a bersión autual en {{fullurl:$PAGETITLE_RAWURL}}
+
+$NEWPAGE
+
+O resumen d\'a edizión ye: $PAGESUMMARY $PAGEMINOREDIT
+
+Ta comunicar-se con l\'usuario:
+por correu: {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
+en o wiki: {{fullurl:User:$PAGEEDITOR_RAWURL}}
+
+Ta recullir nuebas notificazions de cambios d\'ista pachina abrá de besitar-la nuebament.
+Tamién puede cambiar, en a su lista de seguimiento, as opzions de notificazión d\'as pachinas que bexila.
+
+Atentament,
+ O sistema de notificazión de {{SITENAME}}.
+
+--
+Ta cambiar as opzions d\'a suya lista de seguimiento en:
+{{fullurl:Special:Watchlist|edit=yes}}
+
+Ta obtenir más informazión y aduya:
+{{fullurl:{{MediaWiki:Helppage}}}}',
+
 # Delete/protect/revert
 'deletepage'                  => 'Borrar ista pachina',
+'confirm'                     => 'Confirmar',
 'confirmdelete'               => 'Confirmar o borrau',
 'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
@@ -1491,7 +1524,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-gpstimestamp' => 'Tiempo GPS (reloch atomico)',
@@ -1519,7 +1552,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'watchlistedit-noitems'        => 'A suya lista de seguimiento ye bueda.',
 'watchlistedit-normal-title'   => 'Editar a lista de seguimiento',
 'watchlistedit-normal-legend'  => "Borrar títols d'a lista de seguimiento",
-'watchlistedit-normal-explain' => "As pachinas d'a suya lista de seguimiento s'amuestran contino. Ta sacar-ne una pachina, marque o cuatrón que ye a o canto d'a pachina, y punche con a rateta en ''Borrar pachinas''. Tamién puede [[Special:Watchlist/raw|editar dreitament o testo d'a pachina]] u [[Special:Watchlist/clear|borrar-lo tot]].",
+'watchlistedit-normal-explain' => "As pachinas d'a suya lista de seguimiento s'amuestran contino. Ta sacar-ne una pachina, marque o cuatrón que ye a o canto d'a pachina, y punche con a rateta en ''Borrar pachinas''. Tamién puede [[Special:Watchlist/raw|editar dreitament o testo d'a pachina]].",
 'watchlistedit-normal-submit'  => 'Borrar pachinas',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|S'ha borrato 1 pachina|s'han borratas $1 pachinas}} d'a suya lista de seguimiento:",
 'watchlistedit-raw-title'      => 'Editar a lista de seguimiento en formato testo',

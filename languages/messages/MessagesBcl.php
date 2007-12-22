@@ -277,7 +277,7 @@ $messages = array(
 'page-atom-feed'          => '"$1" Hungit na Atomo',
 'feed-atom'               => 'Atomo',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulo',
 'nstab-user'      => 'Páhina kan parágamit',
 'nstab-media'     => 'Páhina kan media',
@@ -397,7 +397,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'uid'                        => 'ID kan parágamit:',
 'yourrealname'               => 'Totoong pangaran:',
 'yourlanguage'               => 'Tataramon:',
-'yourvariant'                => 'Bariante',
+'yourvariant'                => 'Bariante:',
 'yournick'                   => 'Gahâ:',
 'badsig'                     => 'Dai pwede an bâgong pirmang ini; isúsog an mga HTML na takód.',
 'badsiglength'               => "Halabâon an gahâ; kaipuhan dai mababâ sa $1 na mga ''character''.",
@@ -617,7 +617,6 @@ Pwede kang bumalik dangan maghirá nin presenteng páhina, o [[Special:Userlogin
 ''$2'' an rasón na pigtao ni $3",
 
 # History pages
-'revhistory'          => 'Historya kan pagpakarhay',
 'viewpagelogs'        => 'Hilingón an mga historial kaining páhina',
 'nohistory'           => 'Mayong paghirá nin historya sa páhinang ini.',
 'revnotfound'         => 'Dai nahanap an pagpakarhay',
@@ -698,16 +697,12 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 Hilingon tabî an [[Special:Ipblocklist|lista nin binagat na IP]] para sa lista kan mga presenteng pagbawal asin pagbagat.',
 
 # Diffs
-'history-title'             => 'Historial kan pagriribay kan "$1"',
-'difference'                => '(Kaibhán kan mga pagpakarhay)',
-'loadingrev'                => 'Pigkakargá an pagkakaráy para sa diff',
-'lineno'                    => 'Linya $1:',
-'editcurrent'               => 'Hirahón an presenteng bersión kaining páhina',
-'selectnewerversionfordiff' => 'Pilîon an mas bâgong bersyon para sa pagkokomparar',
-'selectolderversionfordiff' => 'Pilîon an mas lumang bersyon para sa pagkokomparar',
-'compareselectedversions'   => 'Ikomparar an mga piniling bersyon',
-'editundo'                  => 'ibalik',
-'diff-multi'                => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} dai ipinahihiling.)',
+'history-title'           => 'Historial kan pagriribay kan "$1"',
+'difference'              => '(Kaibhán kan mga pagpakarhay)',
+'lineno'                  => 'Linya $1:',
+'compareselectedversions' => 'Ikomparar an mga piniling bersyon',
+'editundo'                => 'ibalik',
+'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} dai ipinahihiling.)',
 
 # Search results
 'searchresults'         => 'Hanapon an mga resulta',
@@ -814,7 +809,6 @@ Dai babâgohon an mga grupong dai pigpili. Pwede mong bawîon an pagpili sa pagp
 
 'group-autoconfirmed-member' => 'Enseguidang nakonpirmar na parágamit',
 'group-sysop-member'         => 'Opsys',
-'group-bureaucrat-member'    => 'Bureaucrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Mga enseguidang nakonpirmar na parágamit',
 'grouppage-bot'           => '{{ns:project}}:Mga bot',
@@ -1021,6 +1015,10 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'unusedtemplatestext' => 'Piglilista kaining páhina an gabos na mga páhina sa templatong ngaran-espacio na dai nakakaag sa ibang páhina. Giromdomon tabî na sosogon an ibang mga takod sa mga templato bâgo parâon iyan.',
 'unusedtemplateswlh'  => 'ibang mga takod',
 
+# Random page
+'randompage'         => 'Random na páhina',
+'randompage-nopages' => 'Mayong páhina an ngaran-espacio.',
+
 # Random redirect
 'randomredirect'         => 'Random na pagredirekta',
 'randomredirect-nopages' => 'Mayong paglikay (redirects) didgi sa ngaran-espacio.',
@@ -1089,8 +1087,6 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'mostrevisions'           => 'Mga atrikulo na igwang pinakadakol na pagpakarhay',
 'allpages'                => 'Gabos na pahina',
 'prefixindex'             => 'Indice nin prefiho',
-'randompage'              => 'Random na páhina',
-'randompage-nopages'      => 'Mayong páhina an ngaran-espacio.',
 'shortpages'              => 'Mga halîpot na pahina',
 'longpages'               => 'Mga halabang pahina',
 'deadendpages'            => 'Mga páhinang mayong paluwasan',
@@ -1102,7 +1098,6 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'specialpages'            => 'Mga espesyal na páhina',
 'spheading'               => 'Mga espesyal na páhina para sa gabos na parágamit',
 'restrictedpheading'      => 'Mga espesyal na páhinang may restriksyón',
-'rclsub'                  => '(sa mga páhina poon sa "$1")',
 'newpages'                => 'Mga bâgong páhina',
 'newpages-username'       => 'Pangaran kan parágamit:',
 'ancientpages'            => 'Mga pinakalumang páhina',
@@ -1394,10 +1389,6 @@ $1",
 'month'         => 'Poon bulan (asin mas amay):',
 'year'          => 'Poon taon (asin mas amay):',
 
-'sp-contributions-newest'      => 'Pinakabâgo',
-'sp-contributions-oldest'      => 'Pinakalumà',
-'sp-contributions-newer'       => 'Mas bâgo $1',
-'sp-contributions-older'       => 'Mas lumâ $1',
 'sp-contributions-newbies'     => 'Ipahiling an mga kontribusión kan mga bagong kuenta sana',
 'sp-contributions-newbies-sub' => 'Para sa mga bâgong accounts',
 'sp-contributions-blocklog'    => 'Bagáton an historial',
@@ -1444,7 +1435,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipbenableautoblock'          => 'Enseguidang bagaton an huring direccion nin  IP na ginamit kaining paragamit, asin kon ano pang ibang IP na proprobaran nindang gamiton',
 'ipbsubmit'                   => 'Bagáton ining parágamit',
 'ipbother'                    => 'Ibang oras:',
-'ipboptions'                  => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daing kasagkoran:infinite',
+'ipboptions'                  => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daing kasagkoran:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'iba',
 'ipbotherreason'              => 'Iba/dugang na rasón:',
 'ipbhidename'                 => 'Itago an ngaran in paragamit/IP para dai mahiling sa historial nin pagbagat, nakaandar na lista nin binagat asin lista nin paragamit',
@@ -1959,8 +1950,7 @@ $1',
 'watchlistedit-noitems'        => 'Mayong mga titulo an pigbabantayan mo.',
 'watchlistedit-normal-title'   => 'Hirahón an pigbabantayan',
 'watchlistedit-normal-legend'  => 'Halîon an mga titulo sa pigbabantayan',
-'watchlistedit-normal-explain' => 'Mahihiling sa babâ an mga titulo na nasa lista nin mga pigbabantayan mo. Tangarig maghalî nin titulo, markahan an kahon sa gilid kaini, buda pindoton an Tangkason an mga Titulo. Pwede mo man na [[Special:Watchlist/raw|hirahón an bâgong lista]],
-	o [[Special:Watchlist/clear|halîon an gabos na mga titulo]].',
+'watchlistedit-normal-explain' => 'Mahihiling sa babâ an mga titulo na nasa lista nin mga pigbabantayan mo. Tangarig maghalî nin titulo, markahan an kahon sa gilid kaini, buda pindoton an Tangkason an mga Titulo. Pwede mo man na [[Special:Watchlist/raw|hirahón an bâgong lista]].',
 'watchlistedit-normal-submit'  => 'Tangkason an mga Titulo',
 'watchlistedit-normal-done'    => 'Pigtangkas an {{PLURAL:$1|1 an titulo|$1 mga titulo}} sa saimong pigbabantayan:',
 'watchlistedit-raw-title'      => 'Hirahón an bâgong pigbabantayan',

@@ -157,9 +157,6 @@ $messages = array(
 'anontalk'       => 'Diskùsëjô dlô ti IP-adresë',
 'navigation'     => 'Nawigacëjô',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'   => 'Brida',
 'returnto'         => 'Wôrcë sã do starnë: $1.',
 'tagline'          => 'Z {{SITENAME}}',
@@ -286,7 +283,7 @@ $messages = array(
 'uid'                        => 'ID brëkòwnika:',
 'yourrealname'               => 'Twòje jistné miono*',
 'yourlanguage'               => 'Twój jãzëk:',
-'yourvariant'                => 'Wariant',
+'yourvariant'                => 'Wariant:',
 'yournick'                   => 'Przezwëstkò (nick):',
 'badsig'                     => 'Òchëbny pòdpisënk, sprôwdzë tadżi HTML.',
 'badsiglength'               => 'To miono je za dłudżé. Mô bëc mni jakno $1 céchów.',

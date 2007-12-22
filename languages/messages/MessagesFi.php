@@ -397,9 +397,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'badaccess-groups' => 'Pyytämäsi toiminto on rajoitettu ryhmien $1 henkilöille.',
 
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',
-'versionrequiredtext' => 'MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
+'versionrequiredtext' => 'MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]].',
 
-'ok'                      => 'OK',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Haettu osoitteesta $1',
 'youhavenewmessages'      => 'Sinulle on $1 ($2).',
@@ -971,7 +970,6 @@ $1 | $2',
 'show'                              => 'näytä',
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'U',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|tarkkaileva käyttäjä|tarkkailevaa käyttäjää}}]',
 'rc_categories'                     => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'                 => 'Mikä tahansa',
@@ -1252,7 +1250,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 
 'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
-'data'               => 'Data',
 'userrights'         => 'Käyttöoikeuksien hallinta',
 'groups'             => 'Ryhmät',
 'alphaindexline'     => '$1…$2',
@@ -1906,7 +1903,7 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Leveys',
@@ -2203,7 +2200,6 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
 'trackbackremove'   => ' ([$1 poista])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback poistettiin.',
 
 # Delete conflict

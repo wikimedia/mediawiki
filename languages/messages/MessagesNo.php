@@ -271,9 +271,6 @@ $messages = array(
 'anontalk'       => 'Brukerdiskusjon for denne IP-adressa',
 'navigation'     => 'Navigasjon',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Feil',
 'returnto'          => 'Tilbake til $1.',
 'tagline'           => 'Fra {{SITENAME}}',
@@ -362,7 +359,6 @@ $messages = array(
 'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',
 'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version]]',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'Hentet fra «$1»',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nye meldinger',
@@ -448,7 +444,6 @@ til siden.',
 Funksjon: $1<br />
 Spørring: $2',
 'viewsource'           => 'Vis kildekode',
-'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Handlingsgrense overskredet',
 'actionthrottledtext'  => 'For å beskytte mot spam, kan du ikke utføre denne handlingen for mange ganger i løpet av et kort tidssrom, og du har overskredet denne grensen. Prøv igjen om noen minutter.',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',
@@ -499,7 +494,6 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'uid'                        => 'Bruker-ID:',
 'yourrealname'               => 'Virkelig navn *',
 'yourlanguage'               => 'Språk:',
-'yourvariant'                => 'Variant',
 'yournick'                   => 'Signatur',
 'badsig'                     => 'Ugyldig råsignatur; sjekk HTML-tagger.',
 'badsiglength'               => 'Brukernavn for langt; må være kortere enn $1 tegn.',
@@ -598,7 +592,9 @@ Du kan ignorere denne beskjeden dersom kontoen feilaktig ble opprettet.',
 
 Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 
-Blokkeringen utgår: $6
+* Blokkeringen begynte: $8
+* Blokkeringen utgår: $6
+* Blokkering ment på: $7
 
 Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen. Du kan ikke bruke «E-post til denne brukeren-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]]. Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5. Vennligst inkluder begge disse ved henvendelser.",
 'autoblockedtext'           => "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.
@@ -606,7 +602,8 @@ Den oppgitte grunnen var:
 
 :'''$2'''
 
-Blokken utgår: $6
+* Blokkeringen begynte: $8
+* Blokkringen utgår: $6
 
 Du kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administratorene]] for å diskutere blokkeringen.
 
@@ -825,8 +822,8 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'prevn'                 => 'forrige $1',
 'nextn'                 => 'neste $1',
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
-'showingresults'        => 'Nedenfor vises opptil <b>$1</b> resultater som starter med nummer <b>$2</b>.',
-'showingresultsnum'     => "Nedenfor vises '''$3''' resultater som starter med nummer '''$2'''.",
+'showingresults'        => "Nedenfor vises opptil {{PLURAL:$1|'''ett''' resultat|'''$1''' resultater}} fra og med nummer <b>$2</b>.",
+'showingresultsnum'     => "Nedenfor vises {{PLURAL:$3|'''ett''' resultat|'''$3''' resultater}} fra og med nummer '''$2'''.",
 'nonefound'             => "'''Merk:''' Søk uten resultat skyldes ofte at man søker etter alminnelige ord som «i» eller «på», som ikke er indeksert, eller ved å spesifisere mer enn et søkeord (da kun sider som inneholder alle søkeordene blir funnet).",
 'powersearch'           => 'Søk',
 'powersearchtext'       => 'Søk i navnerom:<br />$1<br />$2 List opp omdirigeringer<br />Søk etter $3 $9',
@@ -907,6 +904,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'userrights-available-add'    => 'Du kan legge til brukere i $1.',
 'userrights-available-remove' => 'Du kan fjerne brukere fra $1.',
 'userrights-no-interwiki'     => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
+'userrights-nodatabase'       => 'Databasen $1 finnes ikke, eller er ikke lokal.',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -937,7 +935,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'recentchanges'                     => 'Siste endringer',
 'recentchangestext'                 => 'Vis de siste endringene til denne siden',
 'recentchanges-feed-description'    => 'Følg med på siste endringer i denne wikien med denne feed-en.',
-'rcnote'                            => 'Nedenfor vises de siste <strong>$1</strong> endringene de siste <strong>$2</strong> dagene, fra $3.',
+'rcnote'                            => "Nedenfor vises {{PLURAL:$1|én endring|de siste '''$1''' endringene}} fra de siste <strong>$2</strong> dagene, per $3.",
 'rcnotefrom'                        => 'Nedenfor er endringene fra <strong>$2</strong> til <strong>$1</strong> vist.',
 'rclistfrom'                        => 'Vis nye endringer med start fra $1',
 'rcshowhideminor'                   => '$1 mindre endringer',
@@ -947,13 +945,8 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'rcshowhidepatr'                    => '$1 godkjente endringer',
 'rcshowhidemine'                    => '$1 mine endringer',
 'rclinks'                           => 'Vis siste $1 endringer i de siste $2 dagene<br />$3',
-'diff'                              => 'diff',
-'hist'                              => 'hist',
 'hide'                              => 'skjul',
 'show'                              => 'vis',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 overvåkende {{PLURAL:$1|bruker|brukere}}]',
 'rc_categories'                     => 'Begrens til kategorier (skilletegn: «|»)',
 'rc_categories_any'                 => 'Alle',
@@ -1070,7 +1063,7 @@ PICT # div.
 
 # Image list
 'imagelist'                 => 'Bildeliste',
-'imagelisttext'             => 'Her er ei liste med <strong>$1</strong> filer sortert <strong>$2</strong>.',
+'imagelisttext'             => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
 'getimagelist'              => 'henter filliste',
 'ilsubmit'                  => 'Søk',
 'showlast'                  => 'Vis de siste $1 filene sortert $2.',
@@ -1159,11 +1152,11 @@ PICT # div.
 'statistics'             => 'Statistikk',
 'sitestats'              => '{{SITENAME}}-statistikk',
 'userstats'              => 'Brukerstatistikk',
-'sitestatstext'          => "Det er til sammen '''$1''' sider i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, små stubbsider, omdirigeringer, og annet som antagligvis ikke gjelder som ordentlig innhold. Om man ikke regner med disse, er det '''$2''' sider som sannsynligvis er ordentlige innholdssider.
+'sitestatstext'          => "Det er til sammen {{PLURAL:$1|'''én''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, små stubbsider, omdirigeringer, og annet som antagligvis ikke gjelder som ordentlig innhold. Om man ikke regner med disse, er det {{PLURAL:$2|'''én''' side|'''$2''' sider}} som sannsynligvis er ordentlige innholdssider.
 
 '''$8''' filer har blitt lastet opp.
 
-Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wikien ble satt opp. Det blir i snitt '''$5''' redigeringer per side, og '''$6''' visninger per redigering.
+Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}}, og {{PLURAL:$4|'''én''' redigering|'''$4''' redigeringer}} siden wikien ble satt opp. Det blir i snitt '''$5''' redigeringer per side, og '''$6''' visninger per redigering.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Arbeidskøen] er på '''$7'''.",
 'userstatstext'          => "Det er {{PLURAL:$1|'''én''' registrert bruker|'''$1''' registrerte brukere}}, hvorav '''$2''' (eller '''$4&nbsp;%''') har $5rettigheter.",
@@ -1297,7 +1290,6 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'emailto'         => 'Til',
 'emailsubject'    => 'Emne',
 'emailmessage'    => 'Beskjed',
-'emailsend'       => 'Send',
 'emailccme'       => 'Send meg en kopi av beskjeden min.',
 'emailccsubject'  => 'Kopi av din beskjed til $1: $2',
 'emailsent'       => 'E-post sendt',
@@ -1306,7 +1298,6 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 # Watchlist
 'watchlist'            => 'Overvåkningsliste',
 'mywatchlist'          => 'Overvåkningsliste',
-'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ingenting i overvåkningslista.',
 'watchlistanontext'    => 'Vennligst $1 for å vise eller redigere sider på overvåkningslista di.',
 'watchnologin'         => 'Ikke logget inn',
@@ -1467,7 +1458,7 @@ dukke opp i den tidligere historikken, og den nyeste revisjonen vil forbli
 på siden.',
 'undeleterevdel'               => 'Gjenoppretting kan ikke utføres dersom det resulterer i at den øverste revisjonen blir delvis slettet. I slike tilfeller må du fjerne merkingen av den nyeste slettede revisjonen. Revisjoner av filer som du ikke har tilgang til vil ikke gjenopprettes.',
 'undeletehistorynoadmin'       => 'Denne artikkelen har blitt slettet. Grunnen for slettingen vises i oppsummeringen nedenfor, sammen med detaljer om brukerne som redigerte siden før den ble slettet. Teksten i disse slettede revisjonene er kun tilgjengelig for administratorer.',
-'undelete-revision'            => 'Slettet revisjon av $1 fra $2:',
+'undelete-revision'            => 'Slettet revisjon av $1 av $3 (fra $2):',
 'undeleterevision-missing'     => 'Ugyldig eller manglende revisjon. Du kan ha en ødelagt lenke, eller revisjonen har blitt fjernet fra arkivet.',
 'undelete-nodiff'              => 'Ingen tidligere revisjoner funnet.',
 'undeletebtn'                  => 'Gjenopprett',
@@ -1503,7 +1494,6 @@ $1',
 # Contributions
 'contributions' => 'Bidrag',
 'mycontris'     => 'Mine bidrag',
-'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Ingen endringer er funnet som passer disse kriteriene.',
 'ucnote'        => 'Her er denne brukerens siste <b>$1</b> endringer i de siste <b>$2</b> dagene.',
 'uclinks'       => 'Vis de siste $1 endringene; vis de siste $2 dagene.',
@@ -1921,7 +1911,6 @@ $1',
 Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en linje må være en lenke til et dårlig bilde. Alle andre linker på samme linje anses å være unntak, altså artikler hvor bildet er tillat brukt.',
 
 # Metadata
-'metadata'          => 'Metadata',
 'metadata-help'     => 'Denne fila inneholder tilleggsinformasjon, antagligvis fra digitalkameraet eller skanneren brukt til å lage eller digitalisere det. Hvis fila har blitt forandret fra utgangspunktet, kan enkelte detaljer kanskje være unøyaktige.',
 'metadata-expand'   => 'Vis detaljer',
 'metadata-collapse' => 'Skjul detaljer',
@@ -1931,7 +1920,7 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bredde',
@@ -2058,7 +2047,6 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 
 'exif-unknowndate' => 'Ukjent dato',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Snudd horisontalt', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotert 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Snudd vertikalt', # 0th row: bottom; 0th column: left
@@ -2089,7 +2077,6 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 'exif-meteringmode-0'   => 'Ukjent',
 'exif-meteringmode-1'   => 'Gjennomsnitt',
 'exif-meteringmode-2'   => 'Sentrumsveid gjennomsnitt',
-'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Multispot',
 'exif-meteringmode-5'   => 'Mønster',
 'exif-meteringmode-6'   => 'Delvis',
@@ -2135,7 +2122,6 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 'exif-whitebalance-0' => 'Automatisk hvitbalanse',
 'exif-whitebalance-1' => 'Manuell hvitbalanse',
 
-'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Portrett',
 'exif-scenecapturetype-3' => 'Nattscene',
@@ -2146,17 +2132,12 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 'exif-gaincontrol-3' => 'Senkning av lavnivåforsterkning',
 'exif-gaincontrol-4' => 'Senkning av høynivåforsterkning',
 
-'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Myk',
-'exif-contrast-2' => 'Hard',
 
-'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Lav metningsgrad',
 'exif-saturation-2' => 'Høy metningsgrad',
 
-'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Myk',
-'exif-sharpness-2' => 'Hard',
 
 'exif-subjectdistancerange-0' => 'Ukjent',
 'exif-subjectdistancerange-1' => 'Makro',
@@ -2243,8 +2224,7 @@ $1
 'redirectingto' => 'Omdirigerer til [[$1]]…',
 
 # action=purge
-'confirm_purge'        => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
-'confirm_purge_button' => 'OK',
+'confirm_purge' => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
 
 # AJAX search
 'searchcontaining' => "Søk etter artikler som inneholder ''$1''.",
@@ -2293,7 +2273,7 @@ Prøv vanlig forhåndsvisning.',
 'watchlistedit-noitems'        => 'Overvåkningslista di inneholder ingen titler.',
 'watchlistedit-normal-title'   => 'Rediger overvåkningsliste',
 'watchlistedit-normal-legend'  => 'Fjern titler fra overvåkninglista',
-'watchlistedit-normal-explain' => 'Titler på overvåkningslista di vises nedenunder. For å fjerne en tittel, merk av boksen ved siden av den og klikk Fjern titler. Du kan også [[Special:Watchlist/raw|redigere den rå overvåkningslista]] eller [[Special:Watchlist/clear|fjerne alle titler]].',
+'watchlistedit-normal-explain' => 'Titler på overvåkningslista di vises nedenunder. For å fjerne en tittel, merk av boksen ved siden av den og klikk Fjern titler. Du kan også [[Special:Watchlist/raw|redigere den rå overvåkningslista]].',
 'watchlistedit-normal-submit'  => 'Fjern titler',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Én tittel|$1 titler}} ble fjernet fra overvåkningslisten din:',
 'watchlistedit-raw-title'      => 'Rediger rå overvåkningsliste',

@@ -42,10 +42,7 @@ $messages = array(
 'may_long'  => 'Mee',
 'june'      => 'Juni',
 'july'      => 'Juli',
-'august'    => 'August',
-'september' => 'September',
 'october'   => 'Oktober',
-'november'  => 'November',
 'december'  => 'Dezember',
 'jan'       => 'Jan.',
 'feb'       => 'Feb.',
@@ -279,7 +276,6 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 # Recent changes
 'recentchanges' => 'Rezent Ännerungen',
 'diff'          => 'Ënnerscheed',
-'newpageletter' => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Ännerungen op verlinkte Säiten',
@@ -466,11 +462,6 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # Browsing diffs
 'nextdiff' => 'Nächsten Ënnerscheed →',
-
-# 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'all',
-'imagelistall'     => 'all',
-'watchlistall2'    => 'all',
 
 # E-mail address confirmation
 'confirmemail'            => 'Email-Adress bestätegen',

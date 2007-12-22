@@ -389,9 +389,6 @@ $messages = array(
 'anontalk'       => 'Overlegpagina voor dit IP-adres',
 'navigation'     => 'Navigatie',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Terug naar $1.',
 'tagline'           => 'Uit {{SITENAME}}',
@@ -480,7 +477,6 @@ $messages = array(
 'versionrequired'     => 'Versie $1 van MediaWiki is vereist',
 'versionrequiredtext' => 'Versie $1 van MediaWiki is vereist om deze pagina te gebruiken. Meer info is beschikbaar op de pagina [[Special:Version|softwareversie]].',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'Teruggeplaatst van "$1"',
 'youhavenewmessages'      => 'U heeft $1 ($2).',
 'newmessageslink'         => 'nieuwe berichten',
@@ -495,7 +491,6 @@ $messages = array(
 'thisisdeleted'           => '$1 tonen of terugplaatsen?',
 'viewdeleted'             => '$1 tonen?',
 'restorelink'             => '$1 verwijderde {{PLURAL:$1|versie|versies}}',
-'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Feedtype wordt niet ondersteund.',
 'site-rss-feed'           => '$1 RSS-feed',
 'site-atom-feed'          => '$1 Atom-feed',
@@ -628,7 +623,6 @@ Uw account is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te pa
 'yournick'                   => 'Tekst voor ondertekening:',
 'badsig'                     => 'Ongeldige ondertekening; controleer de HTML-tags.',
 'badsiglength'               => 'Bijnaam is te lang; het moet onder $1 karakters zijn.',
-'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Echte naam is optioneel, als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 'loginerror'                 => 'Aanmeldfout',
 'prefs-help-email'           => 'E-mailadres is optioneel, maar stelt anderen in staat contact met u op te nemen via uw gebruikers- of overlegpagina zonder dat u uw identiteit prijsgeeft.',
@@ -868,7 +862,6 @@ De door $3 opgegeven reden is ''$2''",
 'cur'                 => 'huidig',
 'next'                => 'volgende',
 'last'                => 'vorige',
-'orig'                => 'orig',
 'page_first'          => 'eerste',
 'page_last'           => 'laatste',
 'histlegend'          => 'Selectie voor diff: selecteer de te vergelijken versies en toets ENTER of de knop onderaan.<br />
@@ -876,7 +869,6 @@ Verklaring afkortingen: (huidig) = verschil met huidige versie, (vorige) = versc
 'deletedrev'          => '[verwijderd]',
 'histfirst'           => 'Oudste',
 'histlast'            => 'Nieuwste',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(leeg)',
 
 # Revision feed
@@ -1068,18 +1060,15 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 # Groups
 'group'               => 'Groep:',
 'group-autoconfirmed' => 'Geregistreerde gebruikers',
-'group-bot'           => 'Bots',
 'group-sysop'         => 'Beheerders',
 'group-bureaucrat'    => 'Bureaucraten',
 'group-all'           => '(alles)',
 
 'group-autoconfirmed-member' => 'Geregistreerde gebruiker',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Beheerder',
 'group-bureaucrat-member'    => 'Bureaucraat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Beheerders',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucraten',
 
@@ -1109,8 +1098,6 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'hide'                              => 'verbergen',
 'show'                              => 'tonen',
 'minoreditletter'                   => 'k',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|keer|keer}} op een volglijst]',
 'rc_categories'                     => 'Beperken tot categorieën (scheiden met een "|")',
 'rc_categories_any'                 => 'Elke',
@@ -1352,7 +1339,6 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'fewestrevisions' => "Pagina's met de minste bewerkingen",
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categorie|categorieën}}',
 'nlinks'                  => '$1 {{PLURAL:$1|verwijzing|verwijzingen}}',
 'nmembers'                => '$1 {{PLURAL:$1|item|items}}',
@@ -1455,7 +1441,6 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'emailpage'       => 'Gebruiker e-mailen',
 'emailpagetext'   => 'Als deze gebruiker een geldig e-mailadres heeft opgegeven, dan kan u via dit formulier een bericht verzenden. Het e-mailadres dat u heeft opgegeven bij uw voorkeuren wordt als afzender gebruikt.',
 'usermailererror' => 'Foutmelding bij het verzenden:',
-'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Van deze gebruiker is geen e-mailadres bekend',
 'noemailtext'     => 'Deze gebruiker heeft geen e-mailadres opgegeven of wil geen e-mail ontvangen van andere gebruikers.',
 'emailfrom'       => 'Van',
@@ -1612,7 +1597,6 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'restriction-level'           => 'Beperkingsniveau:',
 'minimum-size'                => 'Min. grootte',
 'maximum-size'                => 'Max. grootte',
-'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Bewerken',
@@ -2089,7 +2073,6 @@ Alleen regels in een lijst (regels die beginnen met *) worden verwerkt. De eerst
 Alle volgende links die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop de afbeelding in te tekst is opgenomen.",
 
 # Metadata
-'metadata'          => 'Metadata',
 'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand is aangepast, dan komen details mogelijk niet overeen met de gewijzigde afbeelding.',
 'metadata-expand'   => 'Uitgebreide gegevens tonen',
 'metadata-collapse' => 'Uitgebreide gegevens verbergen',
@@ -2099,12 +2082,11 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breedte',
 'exif-imagelength'                 => 'Hoogte',
-'exif-bitspersample'               => 'Bits per component',
 'exif-compression'                 => 'Compressieschema',
 'exif-photometricinterpretation'   => 'Pixelcompositie',
 'exif-orientation'                 => 'Oriëntatie',
@@ -2148,7 +2130,6 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'exif-subsectimeoriginal'          => 'Subseconden tijdstip datageneratie',
 'exif-subsectimedigitized'         => 'Subseconden tijdstip digitalisatie',
 'exif-exposuretime'                => 'Belichtingstijd',
-'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => 'F-getal',
 'exif-exposureprogram'             => 'Belichtingsprogramma',
 'exif-spectralsensitivity'         => 'Spectrale gevoeligheid',
@@ -2183,7 +2164,6 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'exif-focallengthin35mmfilm'       => 'Brandpuntsafstand (35mm-equivalent)',
 'exif-scenecapturetype'            => 'Soort opname',
 'exif-gaincontrol'                 => 'Piekbeheersing',
-'exif-contrast'                    => 'Contrast',
 'exif-saturation'                  => 'Verzadiging',
 'exif-sharpness'                   => 'Scherpte',
 'exif-devicesettingdescription'    => 'Omschrijving apparaatinstellingen',
@@ -2257,7 +2237,6 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'exif-meteringmode-0'   => 'Onbekend',
 'exif-meteringmode-1'   => 'Gemiddeld',
 'exif-meteringmode-2'   => 'Centrumgewogen',
-'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Multi-spot',
 'exif-meteringmode-5'   => 'Multi-segment (patroon)',
 'exif-meteringmode-6'   => 'Deelmeting',
@@ -2316,7 +2295,6 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 
 'exif-contrast-0' => 'Normaal',
 'exif-contrast-1' => 'Zacht',
-'exif-contrast-2' => 'Hard',
 
 'exif-saturation-0' => 'Normaal',
 'exif-saturation-1' => 'Laag',
@@ -2324,10 +2302,8 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 
 'exif-sharpness-0' => 'Normaal',
 'exif-sharpness-1' => 'Zacht',
-'exif-sharpness-2' => 'Hard',
 
 'exif-subjectdistancerange-0' => 'Onbekend',
-'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Dichtbij',
 'exif-subjectdistancerange-3' => 'Ver weg',
 
@@ -2401,7 +2377,6 @@ Trackbacks voor deze pagina:<br />
 $1
 </div>",
 'trackbackremove'   => ' ([$1 Verwijderen])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'De trackback is verwijderd.',
 
 # Delete conflict
@@ -2415,10 +2390,9 @@ Bevestig alstublieft dat u de pagina opnieuw wilt aanmaken.",
 'redirectingto' => 'Aan het doorverwijzen naar [[$1]] ...',
 
 # action=purge
-'confirm_purge'        => 'De cache van deze pagina legen?
+'confirm_purge' => 'De cache van deze pagina legen?
 
 $1',
-'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Zoeken naar pagina's die ''$1'' bevatten.",

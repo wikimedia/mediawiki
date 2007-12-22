@@ -1462,7 +1462,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipbenableautoblock'          => "Kay ruraqpa llamk'achisqan IP huchhata kikinmanta hark'ay, hinallataq ima qatiqlla llamk'achisqan IP huchhatapas",
 'ipbsubmit'                   => "Kay ruraqta hark'ay",
 'ipbother'                    => 'Huk puchukana pacha:',
-'ipboptions'                  => "2 ura:2 hours,1 p'unchaw:1 day,3 p'unchaw:3 days,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,Wiña-wiñaypaq:infinite",
+'ipboptions'                  => "2 ura:2 hours,1 p'unchaw:1 day,3 p'unchaw:3 days,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,Wiña-wiñaypaq:infinite", # display1:time1,display2:time2,...
 'ipbotheroption'              => 'huk',
 'ipbotherreason'              => 'Huk imarayku:',
 'ipbhidename'                 => "Ruraqta/IP-ta pakay: hark'ay hallch'api, kunan hark'asqakunapi ruraqkunapipas",
@@ -1820,7 +1820,6 @@ Sutisuyu imakunallam (* sananchawan qallariq siq'ikunapi) hamut'arisqa. Siq'ipi 
 Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi rikchayuq p'anqakunam.",
 
 # Metadata
-'metadata'          => 'Metadata',
 'metadata-help'     => "Kay willañiqipiqa aswan sapaqlla willaymi, iliktruniku rikchahap'inawanchá, iskanirwanchá icha rikcharurana wakichiwanchá yapasqa. Willañiqi chaymantapacha hukchasqa kaptinqa, huk sapaq samiqninkuna chinkasqachá.",
 'metadata-expand'   => 'Aswan sapaqlla willakunata rikuchiy',
 'metadata-collapse' => 'Sapaqlla willakunata pakay',
@@ -1830,7 +1829,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Suni kay',
@@ -2199,7 +2198,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'watchlistedit-noitems'        => "Manam ima p'anqatapas watiqachkankichu.",
 'watchlistedit-normal-title'   => "Watiqana sutisuyuta llamk'apuy",
 'watchlistedit-normal-legend'  => "P'anqa sutikunata watiqana sutisuyumanta qichuy",
-'watchlistedit-normal-explain' => "Kay qatiqpiqa watiqana sutisuyuykipi p'anqa sutikunatam rikunki. P'anqa sutita qichunaykipaqqa chay sutip kinrayninpi kaq k'itichata ñit'iywan sananchaspa ''P'anqa sutita qichuy'' nisqata ñit'iy. [[Special:Watchlist/raw|Chawa watiqana sutisuyuta llamk'apuy]] icha [[Special:Watchlist/clear|Watiqana sutisuyuta ch'usaqchay]] nisqata ñit'iytapas atinkim.",
+'watchlistedit-normal-explain' => "Kay qatiqpiqa watiqana sutisuyuykipi p'anqa sutikunatam rikunki. P'anqa sutita qichunaykipaqqa chay sutip kinrayninpi kaq k'itichata ñit'iywan sananchaspa ''P'anqa sutita qichuy'' nisqata ñit'iy. [[Special:Watchlist/raw|Chawa watiqana sutisuyuta llamk'apuy]] nisqata ñit'iytapas atinkim.",
 'watchlistedit-normal-submit'  => "P'anqa sutikunata qichuy",
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
 'watchlistedit-raw-title'      => "Chawa watiqana sutisuyuta llamk'apuy",

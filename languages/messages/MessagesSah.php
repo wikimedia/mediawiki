@@ -368,7 +368,7 @@ MySQL маннык сыыһаны төнүннэрдэ "$3: $4"',
 'uid'                        => 'Кыттааччы ID-та:',
 'yourrealname'               => 'Докумуонунан аатыҥ:',
 'yourlanguage'               => 'Омугуҥ тыла:',
-'yourvariant'                => 'Барыйаан',
+'yourvariant'                => 'Барыйаан:',
 'yournick'                   => 'Хос аатыҥ:',
 'badsig'                     => 'Сыыһа илии баттааһын; HTML тиэгтэрин көр.',
 'badsiglength'               => 'Наһаа уһун илии баттааһын, $1 - мантан ордук буолуо суохтаах.',
@@ -1431,7 +1431,7 @@ $1',
 'ipbenableautoblock'          => 'Кыттааччы туһаммыт IP-аадырыстарын боборго',
 'ipbsubmit'                   => 'Бу кыттааччыны тохтот',
 'ipbother'                    => 'Атын кэм:',
-'ipboptions'                  => '2 чаас:2 hours,1 күн:1 day,3 күн:3 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 week,1 ый:1 month,3 ый:3 month,6 ый:6 month,1 сыл:1 month,больдьоҕо суох:infinite',
+'ipboptions'                  => '2 чаас:2 hours,1 күн:1 day,3 күн:3 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 week,1 ый:1 month,3 ый:3 month,6 ый:6 month,1 сыл:1 month,больдьоҕо суох:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'атын',
 'ipbotherreason'              => 'Атын/эбии биричиинэлэр:',
 'ipbhidename'                 => 'Кыттааччы аатын/IP-тын бобуу сурунаалыгар, бобуллубуттар уонна кытааччылар уопсай испииһэктэригэр көрдөрүмэ',
@@ -1820,7 +1820,7 @@ $1',
 * datetimeoriginal 
 * exposuretime 
 * fnumber 
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Кэтитэ',
@@ -2192,8 +2192,7 @@ $1',
 'watchlistedit-normal-title'   => 'Кэтэбил испииһэгин уларытыы',
 'watchlistedit-normal-legend'  => 'Кэтэбил испииһэгиттэн пууннары суох гыныы',
 'watchlistedit-normal-explain' => 'Манна кэтиир сирэйдэриҥ испииһэгэ көстөр. Биири эмит сотоору гынар буоллаххына аттыгар баар квадратикка бэлиэтэ туруор, 
-онтон "Пууннары сот" тимэҕи баттаа. Өссө манна [[Special:Watchlist/raw|«сиикэй» испииһэги уларытыаххын]] сөп, 
-эбэтэр [[Special:Watchlist/clear|испииһэги бүтүннүү сотуоххун]] сөп.',
+онтон "Пууннары сот" тимэҕи баттаа. Өссө манна [[Special:Watchlist/raw|«сиикэй» испииһэги уларытыаххын]] сөп.',
 'watchlistedit-normal-submit'  => 'Пууннары сот',
 'watchlistedit-normal-done'    => '$1 пуун эн кэтээн көрүүҥ испииһэгиттэн сотулунна:',
 'watchlistedit-raw-title'      => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
