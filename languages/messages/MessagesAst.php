@@ -168,7 +168,6 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
-'errorpagetitle'    => 'Error',
 'returnto'          => 'Vuelve a $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Ayuda',
@@ -235,7 +234,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:Llimitación xeneral de responsabilidá',
 'edithelp'          => "Aida d'edición",
 'edithelppage'      => 'Help:Edición de páxines',
-'faq'               => 'FAQ',
 'faqpage'           => 'Project:Entrugues más frecuentes',
 'helppage'          => 'Help:Conteníos',
 'mainpage'          => 'Portada',
@@ -300,7 +298,6 @@ reconocida pola wiki",
 Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages]].",
 
 # General errors
-'error'                => 'Error',
 'databaseerror'        => 'Error na base de datos',
 'dberrortext'          => 'Hebo un error de sintaxis nuna consulta de la base de datos.
 Esti error pue debese a un fallu del software.
@@ -403,7 +400,7 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'uid'                        => "Númberu d'usuariu:",
 'yourrealname'               => 'Nome real:',
 'yourlanguage'               => 'Idioma de los menús:',
-'yourvariant'                => 'Variante llingüística',
+'yourvariant'                => 'Variante llingüística:',
 'yournick'                   => 'Nomatu:',
 'badsig'                     => 'Firma cruda non válida; comprueba les etiquetes HTML.',
 'badsiglength'               => 'Nomatu demasiao llargu; ha tener menos de $1 carauteres.',
@@ -618,7 +615,6 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'deletedrev'          => '[borráu]',
 'histfirst'           => 'Primera',
 'histlast'            => 'Cabera',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(vaciu)',
 
 # Revision feed
@@ -731,16 +727,13 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 
 # Groups
 'group'            => 'Grupu:',
-'group-bot'        => 'Bots',
 'group-sysop'      => 'Alministradores',
 'group-bureaucrat' => 'Burócrates',
 'group-all'        => '(toos)',
 
-'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Alministrador',
 'group-bureaucrat-member' => 'Burócrata',
 
-'grouppage-bot'        => '{{ns:project}}:Bots',
 'grouppage-sysop'      => '{{ns:project}}:Alministradores',
 'grouppage-bureaucrat' => '{{ns:project}}:Burócrates',
 
@@ -757,19 +750,14 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'rcnotefrom'                     => 'Abaxo tán los cambeos dende <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom'                     => 'Amosar los cambeos recientes dende $1',
 'rcshowhideminor'                => '$1 ediciones menores',
-'rcshowhidebots'                 => '$1 bots',
 'rcshowhideliu'                  => '$1 usuarios rexistraos',
 'rcshowhideanons'                => '$1 usuarios anónimos',
 'rcshowhidepatr'                 => '$1 ediciones patrullaes',
 'rcshowhidemine'                 => '$1 les mios ediciones',
 'rclinks'                        => 'Amosar los caberos $1 cambeos nos caberos $2 díes <br />$3',
 'diff'                           => 'dif',
-'hist'                           => 'hist',
 'hide'                           => 'Esconder',
 'show'                           => 'Amosar',
-'minoreditletter'                => 'm',
-'newpageletter'                  => 'N',
-'boteditletter'                  => 'b',
 'newsectionsummary'              => '/* $1 */ nueva seición',
 
 # Recent changes linked
@@ -906,7 +894,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'fewestrevisions' => "Páxines col menor númberu d'ediciones",
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categoríes}}',
 'nlinks'                  => '$1 {{PLURAL:$1|enllaz|enllaces}}',
 'nmembers'                => '$1 {{PLURAL:$1|miembru|miembros}}',
@@ -1090,7 +1077,6 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protect-default'             => '(por defeutu)',
 'protect-level-autoconfirmed' => 'Bloquiar usuarios non rexistraos',
 'protect-level-sysop'         => 'Namái alministradores',
-'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Editar',
@@ -1372,10 +1358,9 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'nocredits'        => 'Nun hai disponible información de creitos pa esta páxina.',
 
 # Spam protection
-'subcategorycount'       => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
-'categoryarticlecount'   => 'Hai {{PLURAL:$1|una páxina|$1 páxines}} nesta categoría.',
-'category-media-count'   => 'Hai {{PLURAL:$1|un archivu|$1 archivos}} nesta categoría.',
-'listingcontinuesabbrev' => 'cont.',
+'subcategorycount'     => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
+'categoryarticlecount' => 'Hai {{PLURAL:$1|una páxina|$1 páxines}} nesta categoría.',
+'category-media-count' => 'Hai {{PLURAL:$1|un archivu|$1 archivos}} nesta categoría.',
 
 # Info page
 'numedits' => "Númberu d'ediciones (páxina): $1",
@@ -1409,8 +1394,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'show-big-image-thumb' => "<small>Tamañu d'esta previsualización: $1 × $2 píxeles</small>",
 
 # Special:Newimages
-'newimages'    => "Galería d'imáxenes nueves",
-'showhidebots' => '($1 bots)',
+'newimages' => "Galería d'imáxenes nueves",
 
 # Bad image list
 'bad_image_list' => "El formatu ye'l que sigue:
@@ -1431,7 +1415,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'             => 'Anchor',
@@ -1463,7 +1447,6 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-scenecapturetype-2' => 'Retratu',
 'exif-scenecapturetype-3' => 'Escena nocherniega',
 
-'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Suave',
 'exif-contrast-2' => 'Fuerte',
 
@@ -1527,8 +1510,6 @@ $1",
 'articletitles' => "Páxines qu'emprimen por ''$1''",
 
 # Table pager
-'ascending_abbrev'  => 'asc',
-'descending_abbrev' => 'desc',
 'table_pager_first' => 'Primer páxina',
 'table_pager_last'  => 'Postrer páxina',
 

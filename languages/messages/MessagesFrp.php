@@ -431,7 +431,7 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'uid'                        => 'Numerô d’utilisator :',
 'yourrealname'               => 'Veré nom :',
 'yourlanguage'               => 'Lengoua de l’entèrface :',
-'yourvariant'                => 'Varianta',
+'yourvariant'                => 'Varianta:',
 'yournick'                   => 'Signatura por les discussions :',
 'badsig'                     => 'Signatura bruta fôssa ; controlâd voutres balises HTML.',
 'badsiglength'               => 'Voutra signatura est trop longe : la talye la ples hôta est de $1 caractèros.',
@@ -1507,7 +1507,7 @@ Balyéd ce-desot una rêson cllâra (per ègzemplo en endiquent les pâges qu’
 'ipbenableautoblock'          => 'Blocar ôtomaticament les adrèces IP utilisâs per ceti utilisator',
 'ipbsubmit'                   => 'Blocar ceti utilisator',
 'ipbother'                    => 'Ôtra durâ :',
-'ipboptions'                  => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite',
+'ipboptions'                  => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ôtra',
 'ipbotherreason'              => 'Rêson difèrenta ou suplèmentèra :',
 'ipbhidename'                 => 'Mâscar lo nom d’utilisator ou l’IP de l’historico des blocâjos, de la lista des blocâjos actifs et de la lista des utilisators',
@@ -1892,7 +1892,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largior',
@@ -2264,7 +2264,7 @@ $1',
 'watchlistedit-noitems'        => 'Voutra lista de siuvu contint gins de pâge.',
 'watchlistedit-normal-title'   => 'Modificacion de la lista de siuvu',
 'watchlistedit-normal-legend'  => 'Enlevar des pâges de la lista de siuvu',
-'watchlistedit-normal-explain' => 'Les pâges de voutra lista de siuvu sont visibles ce-desot, cllassiês per èspâço de nom. Por enlevar una pâge (et sa pâge de discussion) de la lista, sèlèccionâd la câsa a coutâ et pués clicâd sur lo boton d’avâl. Vos pouede asse-ben [[Special:Watchlist/raw|la modifiar en fôrma bruta]] ou ben [[Special:Watchlist/clear|la vouedar tot a fêt]].',
+'watchlistedit-normal-explain' => 'Les pâges de voutra lista de siuvu sont visibles ce-desot, cllassiês per èspâço de nom. Por enlevar una pâge (et sa pâge de discussion) de la lista, sèlèccionâd la câsa a coutâ et pués clicâd sur lo boton d’avâl. Vos pouede asse-ben [[Special:Watchlist/raw|la modifiar en fôrma bruta]].',
 'watchlistedit-normal-submit'  => 'Enlevar les pâges sèlèccionâs',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Yona pâge at étâ enlevâ|$1 pâges ont étâ enlevâs}} de voutra lista de siuvu :',
 'watchlistedit-raw-title'      => 'Modificacion de la lista de siuvu (fôrma bruta)',

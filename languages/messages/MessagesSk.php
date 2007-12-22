@@ -377,7 +377,6 @@ $messages = array(
 'versionrequired'     => 'Požadovaná verzia MediaWiki $1',
 'versionrequiredtext' => 'Na použitie tejto stránky je požadovaná verzia MediaWiki $1. Pozri [[Special:Version]]',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'Zdroj: „$1“',
 'youhavenewmessages'      => 'Máte $1 ($2).',
 'newmessageslink'         => 'nové správy',
@@ -522,11 +521,10 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'uid'                        => 'ID používateľa:',
 'yourrealname'               => 'Skutočné meno *:',
 'yourlanguage'               => 'Jazyk:',
-'yourvariant'                => 'Variant jazyka',
+'yourvariant'                => 'Variant jazyka:',
 'yournick'                   => 'Prezývka:',
 'badsig'                     => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML tagy.',
 'badsiglength'               => 'Používateľské meno je príliš dlhé; musí mať menej ako $1 znakov.',
-'email'                      => 'E-mail',
 'prefs-help-realname'        => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie vašej práce.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
 'prefs-help-email'           => '² E-mail (nepovinné): Umožní iným ľuďom kontaktovať vás pomocou odkazu z vašej používateľskej a diskusnej stránky (bez potreby uverejňovania vašej e-mailovej adresy) a môže naň byť poslané nové heslo ak zabudnete pôvodné.',
@@ -991,7 +989,6 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 'group-all'           => '(všetci)',
 
 'group-autoconfirmed-member' => 'zaregistrovaný používateľ',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Správca',
 'group-bureaucrat-member'    => 'Byrokrat',
 
@@ -1030,8 +1027,6 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'hide'                              => 'skryť',
 'show'                              => 'zobraziť',
 'minoreditletter'                   => 'D',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|sledujúci používateľ|sledujúci používatelia|sledujúcich používateľov}}]',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte znakom „|“)',
 'rc_categories_any'                 => 'akékoľvek',
@@ -1486,8 +1481,6 @@ Všetky zobrazené časy sú časy na serveri (UTC).
 ** Porušenie autorských práv
 ** Vandalizmus',
 'rollback'                    => 'Rollback úprav',
-'rollback_short'              => 'Rollback',
-'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback neúspešný',
 'cantrollback'                => 'Nemôžem úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
 'alreadyrolled'               => 'Nemôžem vrátiť späť poslednú úpravu [[$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]); niekto iný buď upravoval stránku, alebo už vrátil späť.
@@ -1566,7 +1559,6 @@ ktoré nemáte povolenie prehliadať sa neobnovia.',
 'undeleterevision-missing'     => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
 'undelete-nodiff'              => 'Nebola nájdená žiadna predošlá revízia.',
 'undeletebtn'                  => 'Obnoviť!',
-'undeletereset'                => 'Reset',
 'undeletecomment'              => 'Komentár:',
 'undeletedarticle'             => 'obnovený „[[$1]]“',
 'undeletedrevisions'           => '{{PLURAL:$1|jedna verzia bola obnovená|$1 verzie boli obnovené|$1 verzií bolo obnovených}}',
@@ -1618,7 +1610,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Odkazy na túto stránku',
 'whatlinkshere-title' => 'Stránky odkazujúce na $1',
-'whatlinkshere-page'  => 'Page:',
 'linklistsub'         => '(Zoznam odkazov)',
 'linkshere'           => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
 'nolinkshere'         => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
@@ -1653,7 +1644,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbenableautoblock'          => 'Automaticky blokovať poslednú IP adresu, ktorú tento používateľ použil, a všetky ďalšie adresy, z ktorých sa pokúsi upravovať.',
 'ipbsubmit'                   => 'Zablokovať tohto používateľa',
 'ipbother'                    => 'Iný čas',
-'ipboptions'                  => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite',
+'ipboptions'                  => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'iný čas',
 'ipbotherreason'              => 'Iný/ďalší dôvod',
 'ipbhidename'                 => 'Skryť používateľa/IP zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
@@ -1807,7 +1798,6 @@ Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvo
 V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediawiki:Mainpage}}]] pre stránku {{Mediawiki:Mainpage}}.',
 'exportcuronly'     => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
 'exportnohistory'   => '----',
-'export-submit'     => 'Export',
 'export-addcattext' => 'Pridať stránky z kategórie:',
 'export-addcat'     => 'Pridať',
 'export-download'   => 'Ponúknuť uloženie ako súbor',
@@ -1834,7 +1824,6 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 
 # Special:Import
 'import'                     => 'Import stránok',
-'importinterwiki'            => 'Transwiki import',
 'import-interwiki-text'      => 'Zvoľte wiki a názov stránky, ktorá sa má importovať.
 Dátumy revízií a mená používateľov budú zachované.
 Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname importov]].',
@@ -2044,7 +2033,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šírka',
@@ -2356,7 +2345,6 @@ Trackback pre túto stránku:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Zmazať])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback úspešne zmazaný.',
 
 # Delete conflict
@@ -2370,10 +2358,9 @@ Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 'redirectingto' => 'Presmerovanie na [[$1]]...',
 
 # action=purge
-'confirm_purge'        => 'Vyčistiť cache pamäť tejto stránky?
+'confirm_purge' => 'Vyčistiť cache pamäť tejto stránky?
 
 $1',
-'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Hľadať stránky obsahujúce ''$1''.",
@@ -2422,10 +2409,7 @@ Skúste obyčajný náhľad.',
 'watchlistedit-noitems'        => 'Váš zoznam sledovaných stránok obsahuje žiadne stránky.',
 'watchlistedit-normal-title'   => 'Upraviť zoznam sledovaných stránok',
 'watchlistedit-normal-legend'  => 'Odstrániť všetky stránky zo zoznamu sledovaných stránok',
-'watchlistedit-normal-explain' => 'Nižšie sú zobrazené stránky z vášho zoznamu sledovaných stránok.
-	Ak chcete odstrániť položku, začiarknite políčko vedľa nej a kliknite na Odstrániť položky.
-	Tiež môžete [[Special:Watchlist/raw|upravovať nespracovaný zoznam]],
-	alebo [[Special:Watchlist/clear|odstrániť všetky položky]].',
+'watchlistedit-normal-explain' => 'Nižšie sú zobrazené stránky z vášho zoznamu sledovaných stránok. Ak chcete odstrániť položku, začiarknite políčko vedľa nej a kliknite na Odstrániť položky. Tiež môžete [[Special:Watchlist/raw|upravovať nespracovaný zoznam]].',
 'watchlistedit-normal-submit'  => 'Odstrániť položky',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|jedna položka bola odstránená|$1 položky boli odstránené|$1 položiek bolo odstránených}} z vášho zoznamu sledovaných stránok:',
 'watchlistedit-raw-title'      => 'Upravovať nespracovaný zoznam sledovaných stránok',

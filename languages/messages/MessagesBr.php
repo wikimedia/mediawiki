@@ -419,7 +419,7 @@ Na zisoñjit ket personelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndib
 'uid'                        => 'Niv. identelezh an implijer :',
 'yourrealname'               => 'Anv gwir*',
 'yourlanguage'               => 'Yezh an etrefas&nbsp;',
-'yourvariant'                => 'Adstumm',
+'yourvariant'                => 'Adstumm:',
 'yournick'                   => "Sinadur evit ar c'haozeadennoù (gant ~~~)",
 'badsig'                     => 'Direizh eo ho sinadur kriz; gwiriit ho palizennoù HTML.',
 'badsiglength'               => 'Lesanv re hir ; dindan $1 arouezenn dre ret.',
@@ -855,6 +855,8 @@ Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ
 'userrights-available-none'   => "N'hallit ket cheñch roll perzhidi ar strollad",
 'userrights-available-add'    => 'Gallout a rit ouzhpennañ implijerien da $1.',
 'userrights-available-remove' => 'Gallout a rit tennañ implijerien diouzh $1.',
+'userrights-no-interwiki'     => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
+'userrights-nodatabase'       => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
 
 # Groups
 'group'               => 'Strollad :',
@@ -865,7 +867,6 @@ Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ
 'group-all'           => '(pep tra)',
 
 'group-autoconfirmed-member' => 'Implijer bet kadarnaet ent emgefre',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Merour',
 'group-bureaucrat-member'    => 'Penn-bras',
 
@@ -900,8 +901,6 @@ Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ
 'hide'                              => 'kuzhat',
 'show'                              => 'diskouez',
 'minoreditletter'                   => 'D',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|implijer o heuliañ|implijer}} o heuliañ]',
 'rc_categories'                     => 'Bevenn ar rummadoù (dispartiañ gant "|")',
 'rc_categories_any'                 => 'An holl',
@@ -1524,7 +1523,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipbenableautoblock'          => "Stankañ war-eeun ar chomlec'h IP diwezhañ implijet gant an den-mañ hag an holl chomlec'hioù en deus klasket degas kemmoù drezo war-lerc'h",
 'ipbsubmit'                   => "Stankañ ouzh ar chomlec'h-mañ",
 'ipbother'                    => 'Prantad all',
-'ipboptions'                  => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite',
+'ipboptions'                  => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'prantad all',
 'ipbotherreason'              => 'Abeg all/ouzhpenn',
 'ipbhidename'                 => 'Kuzhat an anv implijer pe IP ar marilh stankañ, diouzh roll ar stankadennoù red hag ar roll implijerien',
@@ -1892,7 +1891,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Led',
@@ -2048,7 +2047,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-meteringmode-0'   => 'Dianav',
 'exif-meteringmode-1'   => 'Keitat',
 'exif-meteringmode-2'   => 'Muzul kreiz keitat',
-'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Liesspot',
 'exif-meteringmode-5'   => 'Patrom',
 'exif-meteringmode-6'   => 'Darnek',
@@ -2094,7 +2092,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-whitebalance-0' => 'Mentel ar gwennoù emgefre',
 'exif-whitebalance-1' => 'Mentel ar gwennoù dre zorn',
 
-'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Gweledva',
 'exif-scenecapturetype-2' => 'Poltred',
 'exif-scenecapturetype-3' => 'Arvest noz',
@@ -2261,8 +2258,7 @@ Klaskit rakwelet er mod boutin.',
 'watchlistedit-noitems'        => "N'eus pajenn ebet war ho roll evezhiañ.",
 'watchlistedit-normal-title'   => 'Kemmañ ar roll evezhiañ',
 'watchlistedit-normal-legend'  => 'Tennañ ar pajennoù a-ziwar ho roll evezhiañ',
-'watchlistedit-normal-explain' => 'Dindan emañ diskouezet ar pajennoù zo war ho roll evezhiañ. Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war Tennañ ar pajennoù. Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]],
-	pe da [[Special:Watchlist/clear|dennañ an holl bajennoù]].',
+'watchlistedit-normal-explain' => 'Dindan emañ diskouezet ar pajennoù zo war ho roll evezhiañ. Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war Tennañ ar pajennoù. Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]].',
 'watchlistedit-normal-submit'  => 'Tennañ ar pajennoù',
 'watchlistedit-normal-done'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ :',
 'watchlistedit-raw-title'      => 'Kemmañ ar roll evezhiañ (mod diginkl)',

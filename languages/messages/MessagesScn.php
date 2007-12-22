@@ -641,7 +641,6 @@ L'alencu dî relativi cancillaziuni veni riportatu ccà pi comodità:",
 Lu motivu è ''$2''",
 
 # History pages
-'revhistory'          => 'Lista dî canciamenti',
 'viewpagelogs'        => 'Vidi li log rilativi a sta pàggina',
 'nohistory'           => 'Cronoluggìa dî virsioni di sta pàggina nun ripirìbbili.',
 'revnotfound'         => 'Virsioni nun attruvata',
@@ -704,15 +703,11 @@ Lu motivu è ''$2''",
 'overlogpagetext' => "Ccà sutta veni prisentata na lista dê cancillazioni e dî blocchi ca riguardanu cuntinuti oscurati a l'amministratura. Conzurtari l'[[Special:Ipblocklist|alencu IP bluccati]] pi l'alencu dî blocchi e dî banni attuarmenti operativi.",
 
 # Diffs
-'history-title'             => 'Crunoluggìa dî canciamenti di "$1"',
-'difference'                => '(Diffirenzi tra li rivisioni)',
-'loadingrev'                => 'carricamentu rivisioni pi diffirenzi',
-'lineno'                    => 'Lìnia $1:',
-'editcurrent'               => 'Cancia la virsioni currenti di sta pàggina',
-'selectnewerversionfordiff' => 'Silizziona na virsioni cchiù ricenti pi lu cunfrontu',
-'selectolderversionfordiff' => 'Silizziona na virsioni menu ricenti pi lu cunfrontu',
-'compareselectedversions'   => 'Fari lu paraguni',
-'diff-multi'                => '({{PLURAL:$1|Na rivisioni ntermedia nun ammustrata|$1 rivisioni ntermedi nun ammustrati}}.)',
+'history-title'           => 'Crunoluggìa dî canciamenti di "$1"',
+'difference'              => '(Diffirenzi tra li rivisioni)',
+'lineno'                  => 'Lìnia $1:',
+'compareselectedversions' => 'Fari lu paraguni',
+'diff-multi'              => '({{PLURAL:$1|Na rivisioni ntermedia nun ammustrata|$1 rivisioni ntermedi nun ammustrati}}.)',
 
 # Search results
 'searchresults'         => 'Risurtati dâ circata',
@@ -1110,7 +1105,6 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'specialpages-summary'    => "Sta pàggina cunteni un alencu di ''pàggini spiciali'' ginirati automaticamenti dû software e ca nun ponnu èssiri canciati.",
 'spheading'               => 'Pàggini spiciali pi tutti',
 'restrictedpheading'      => "Pàggini spiciali pi l'amministratura",
-'rclsub'                  => '(a li pàggini culligati a "$1")',
 'newpages'                => 'pàggini cchiù ricenti',
 'newpages-username'       => 'Utenti:',
 'ancientpages'            => 'pàggini cchiù vecchi',
@@ -1374,9 +1368,6 @@ $1',
 'month'         => 'A pàrtiri dô mese (e pricidenti):',
 'year'          => "A pàrtiri di l'annu (e pricidenti):",
 
-'sp-contributions-newest'      => 'Ùrtimi',
-'sp-contributions-newer'       => '$1 cchiù ricenti',
-'sp-contributions-older'       => '$1 menu ricenti',
 'sp-contributions-newbies'     => "Ammustra sulu li cuntribbuti di l'utenti novi",
 'sp-contributions-newbies-sub' => 'Pi li utenti novi',
 'sp-contributions-blocklog'    => 'log dî blocchi',
@@ -1420,7 +1411,7 @@ $1',
 'ipbenableautoblock'          => "Blocca automaticamenti l'ùrtimu ndirizzu IP usatu di l'utenti e li succissivi cu cui vèninu tintati canciamenti",
 'ipbsubmit'                   => "Blocca st'utenti",
 'ipbother'                    => 'Durata nun n alencu',
-'ipboptions'                  => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite',
+'ipboptions'                  => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'àutru',
 'ipbotherreason'              => 'Àutri mutivi/dittagghi:',
 'ipbhidename'                 => "Ammuccia lu nomu utenti o lu nnirizzu IP dô log dî blocchi, di l'alencu dî blocchi attivi e di l'alencu utenti.",
@@ -1764,7 +1755,7 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'metadata-help'     => 'Stu file cunteni nfurmazzioni agghiuntivi, prubbabbirmenti junti dâ fotucàmira o dû scanner usati pi criàrila o diggitalizzàrila. Siddu lu file hà statu canciatu, arcuni dittagghi putìssiru nun currispùnniri â rialitati.',
 'metadata-expand'   => 'Ammustra dittagghi',
 'metadata-collapse' => 'Ammuccia dittagghi',
-'metadata-fields'   => "Li campi rilativi a li metadati EXIF alincati 'n stu missaggiu vèninu ammustrati supra la pàggina dâ mmàggini quannu la tabbella dî metadati è prisintata ntâ forma brivi. Pi mpustazzioni pridifinita, l'àutri campi vèninu ammucciati. * make * model * datetimeoriginal * exposuretime * fnumber * focallength",
+'metadata-fields'   => "Li campi rilativi a li metadati EXIF alincati 'n stu missaggiu vèninu ammustrati supra la pàggina dâ mmàggini quannu la tabbella dî metadati è prisintata ntâ forma brivi. Pi mpustazzioni pridifinita, l'àutri campi vèninu ammucciati. * make * model * datetimeoriginal * exposuretime * fnumber * focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghizza',
@@ -2101,7 +2092,7 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'watchlistedit-noitems'        => 'La lista dê pàggini taliati è vacanti.',
 'watchlistedit-normal-title'   => 'Cancia pàggini taliati',
 'watchlistedit-normal-legend'  => 'Eliminazzioni di pàggini dâ lista dê pàggini taliati',
-'watchlistedit-normal-explain' => "Ccà sutta sugnu alincati tutti li pàggine taliati. Pi eliminari una o cchiù pàggini dâ lista, silizziunari li casiddi accantu e fari clic supra lu buttuni 'Elìmina pàggini' 'n fundu all'alencu. Accura ca è puru possibbili [[Special:Watchlist/raw|canciari la lista 'n forma testuali]] o [[Special:Watchlist/clear|svacantarila cumplitamenti]].",
+'watchlistedit-normal-explain' => "Ccà sutta sugnu alincati tutti li pàggine taliati. Pi eliminari una o cchiù pàggini dâ lista, silizziunari li casiddi accantu e fari clic supra lu buttuni 'Elìmina pàggini' 'n fundu all'alencu. Accura ca è puru possibbili [[Special:Watchlist/raw|canciari la lista 'n forma testuali]].",
 'watchlistedit-normal-submit'  => 'Elìmina pàggini',
 'watchlistedit-normal-done'    => 'Dâ lista dê pàggini taliati hà{{PLURAL:$1|&nbsp;stata eliminata na pàggina|nnu stati eliminati $1 pàggini}}:',
 'watchlistedit-raw-title'      => "Cancia li pàggini taliati 'n forma testuali",

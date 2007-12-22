@@ -201,7 +201,6 @@ $messages = array(
 'mypage'         => 'Page perso',
 'mytalk'         => 'Page de discussion',
 'anontalk'       => 'Discussion avec cette adresse IP',
-'navigation'     => 'Navigation',
 
 # Metadata in edit box
 'metadata_help' => 'Métadonnées :',
@@ -238,7 +237,6 @@ $messages = array(
 'personaltools'     => 'Outils personnels',
 'postcomment'       => 'Ajouter un commentaire',
 'articlepage'       => 'Voir l’article',
-'talk'              => 'Discussion',
 'views'             => 'Affichages',
 'toolbox'           => 'Boîte à outils',
 'userpage'          => 'Page utilisateur',
@@ -273,8 +271,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:Avertissements généraux',
 'edithelp'          => 'Aide',
 'edithelppage'      => 'Help:Comment modifier une page',
-'faq'               => 'FAQ',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Aide',
 'mainpage'          => 'Accueil',
 'policy-url'        => 'Project:policy',
@@ -294,7 +290,6 @@ $messages = array(
 'versionrequired'     => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version]]',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'Récupérée de « $1 »',
 'youhavenewmessages'      => 'Vous avez $1 ($2).',
 'newmessageslink'         => 'des nouveaux messages',
@@ -317,16 +312,15 @@ $messages = array(
 'page-atom-feed'          => 'Flux Atom de "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Article',
-'nstab-user'      => 'Page utilisateur',
-'nstab-media'     => 'Média',
-'nstab-special'   => 'Spécial',
-'nstab-project'   => 'À propos',
-'nstab-image'     => 'Fichier',
-'nstab-mediawiki' => 'Message',
-'nstab-template'  => 'Modèle',
-'nstab-help'      => 'Aide',
-'nstab-category'  => 'Catégorie',
+'nstab-main'     => 'Article',
+'nstab-user'     => 'Page utilisateur',
+'nstab-media'    => 'Média',
+'nstab-special'  => 'Spécial',
+'nstab-project'  => 'À propos',
+'nstab-image'    => 'Fichier',
+'nstab-template' => 'Modèle',
+'nstab-help'     => 'Aide',
+'nstab-category' => 'Catégorie',
 
 # Main script and global functions
 'nosuchaction'      => 'Action inconnue',
@@ -657,7 +651,6 @@ La raison donnée par $3 était ''$2''.",
 'cur'                 => 'actu',
 'next'                => 'suiv',
 'last'                => 'diff',
-'orig'                => 'orig',
 'page_first'          => 'prem',
 'page_last'           => 'dern',
 'histlegend'          => 'Légende : ({{MediaWiki:Cur}}) = différence avec la version actuelle, ({{MediaWiki:Last}}) = différence avec la version précédente, <b>m</b> = modification mineure',
@@ -849,18 +842,15 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 # Groups
 'group'               => 'Groupe :',
 'group-autoconfirmed' => 'Utilisateurs enregistrés',
-'group-bot'           => 'Bots',
 'group-sysop'         => 'Administrateurs',
 'group-bureaucrat'    => 'Bureaucrates',
 'group-all'           => 'Tous',
 
 'group-autoconfirmed-member' => 'Utilisateur enregistré',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrateur',
 'group-bureaucrat-member'    => 'Bureaucrate',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilisateurs enregistrés',
-'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administrateurs',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrates',
 
@@ -885,13 +875,8 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'rcshowhidepatr'                    => '$1 éditions surveillées',
 'rcshowhidemine'                    => '$1 mes contributions',
 'rclinks'                           => 'Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours<br />$3.',
-'diff'                              => 'diff',
-'hist'                              => 'hist',
 'hide'                              => 'masquer',
 'show'                              => 'afficher',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utilisateur suivant|utilisateurs suivants}}]',
 'rc_categories'                     => 'Limite des catégories (séparation avec « | »)',
 'rc_categories_any'                 => 'Toutes',
@@ -928,7 +913,6 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
 'filestatus'                  => "Statut du droit d'auteur",
-'filesource'                  => 'Source',
 'uploadedfiles'               => 'Fichiers copiés',
 'ignorewarning'               => 'Ignorer l’avertissement et sauvegarder le fichier.',
 'ignorewarnings'              => 'Ignorer les avertissements lors de l’import',
@@ -995,7 +979,7 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 
 # Image list
 'imagelist'                 => 'Liste des images',
-'imagelisttext'             => "Voici une liste de '''$1''' {{plural:$1|fichier|fichiers}} classées $2.",
+'imagelisttext'             => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
 'getimagelist'              => 'Récupération de la liste des images',
 'ilsubmit'                  => 'Chercher',
 'showlast'                  => 'Afficher les $1 dernières images classées $2.',
@@ -1013,7 +997,6 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'filehist-current'          => 'actuel',
 'filehist-datetime'         => 'Date et heure',
 'filehist-user'             => 'Utilisateur',
-'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Taille du fichier',
 'filehist-comment'          => 'Commentaire',
 'imagelinks'                => 'Pages contenant l’image',
@@ -1025,11 +1008,9 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'noimage'                   => 'Aucun fichier possèdant ce nom n’existe, vous pouvez $1.',
 'noimage-linktext'          => 'en importer un',
 'uploadnewversion-linktext' => 'Copier une nouvelle version de ce fichier',
-'imagelist_date'            => 'Date',
 'imagelist_name'            => 'Nom',
 'imagelist_user'            => 'Utilisateur',
 'imagelist_size'            => 'Octets',
-'imagelist_description'     => 'Description',
 'imagelist_search_for'      => 'Recherche pour l’image nommée :',
 
 # File reversion
@@ -1181,7 +1162,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'userrights'         => 'Gestion des droits utilisateur',
 'groups'             => 'Groupes utilisateurs',
 'alphaindexline'     => '$1 à $2',
-'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Utilisateur :',
@@ -1468,7 +1448,6 @@ $1',
 'nolinkshere'         => 'Aucune page ne contient de lien vers <b>[[:$1]]</b>.',
 'nolinkshere-ns'      => "Aucune page ne contient de lien vers '''[[:$1]]''' dans l’espace de nom choisi.",
 'isredirect'          => 'page de redirection',
-'istemplate'          => 'inclusion',
 'whatlinkshere-prev'  => '{{PLURAL:$1|précédent|$1 précédents}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|suivant|$1 suivants}}',
 'whatlinkshere-links' => '← liens',
@@ -1844,7 +1823,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 <hr />',
 'imagemaxsize'         => 'Format maximal pour les images dans les pages de description d’images :',
 'thumbsize'            => 'Taille de la miniature :',
-'widthheightpage'      => '$1×$2, $3 pages',
 'file-info'            => 'Taille du fichier : $1, type MIME : $2',
 'file-info-size'       => '($1 × $2 pixels, taille du fichier : $3, type MIME : $4)',
 'file-nohires'         => '<small>Pas de plus haute résolution disponible.</small>',
@@ -1853,9 +1831,8 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Galerie des nouveaux fichiers',
-'showhidebots' => '($1 bots)',
-'noimages'     => 'Aucune image à afficher.',
+'newimages' => 'Galerie des nouveaux fichiers',
+'noimages'  => 'Aucune image à afficher.',
 
 # Bad image list
 'bad_image_list' => "Le format est le suivant :
@@ -1874,7 +1851,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largeur',
@@ -1882,7 +1859,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-bitspersample'               => 'Bits par échantillon',
 'exif-compression'                 => 'Type de compression',
 'exif-photometricinterpretation'   => 'Modèle colorimétrique',
-'exif-orientation'                 => 'Orientation',
 'exif-samplesperpixel'             => 'Composantes par pixel',
 'exif-planarconfiguration'         => 'Arrangement des données',
 'exif-ycbcrsubsampling'            => 'Taux d’échantillonnage des composantes de la chrominance',
@@ -1923,7 +1899,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-subsectimeoriginal'          => 'Date de la prise originelle',
 'exif-subsectimedigitized'         => 'Date de la numérisation',
 'exif-exposuretime'                => 'Temps d’exposition',
-'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => 'Nombre f',
 'exif-exposureprogram'             => 'Programme d’exposition',
 'exif-spectralsensitivity'         => 'Sensitivité spectrale',
@@ -1937,7 +1912,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-subjectdistance'             => 'Distance du sujet',
 'exif-meteringmode'                => 'Mode de mesure',
 'exif-lightsource'                 => 'Source de lumière',
-'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Longueur focale',
 'exif-subjectarea'                 => 'Emplacement du sujet',
 'exif-flashenergy'                 => 'Énergie du flash',
@@ -1959,18 +1933,14 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-scenecapturetype'            => 'Type de capture de la scène',
 'exif-gaincontrol'                 => 'Contrôle de luminosité',
 'exif-contrast'                    => 'Contraste',
-'exif-saturation'                  => 'Saturation',
 'exif-sharpness'                   => 'Netteté',
 'exif-devicesettingdescription'    => 'Description de la configuration du dispositif',
 'exif-subjectdistancerange'        => 'Distance du sujet',
 'exif-imageuniqueid'               => 'Identifiant unique de l’image',
 'exif-gpsversionid'                => 'Version du tag GPS',
 'exif-gpslatituderef'              => 'Référence pour la latitude',
-'exif-gpslatitude'                 => 'Latitude',
 'exif-gpslongituderef'             => 'Référence pour la longitude',
-'exif-gpslongitude'                => 'Longitude',
 'exif-gpsaltituderef'              => 'Référence d’altitude',
-'exif-gpsaltitude'                 => 'Altitude',
 'exif-gpstimestamp'                => 'Heure GPS (horloge atomique)',
 'exif-gpssatellites'               => 'Satellites utilisés pour la mesure',
 'exif-gpsstatus'                   => 'Statut récepteur',
@@ -2032,17 +2002,13 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-meteringmode-0'   => 'Inconnu',
 'exif-meteringmode-1'   => 'Moyenne',
 'exif-meteringmode-2'   => 'Mesure centrale moyenne',
-'exif-meteringmode-3'   => 'Spot',
-'exif-meteringmode-4'   => 'MultiSpot',
 'exif-meteringmode-5'   => 'Palette',
 'exif-meteringmode-6'   => 'Partiel',
 'exif-meteringmode-255' => 'Autre',
 
 'exif-lightsource-0'   => 'Inconnue',
 'exif-lightsource-1'   => 'Lumière du jour',
-'exif-lightsource-2'   => 'Fluorescent',
 'exif-lightsource-3'   => 'Tungstène (lumière incandescente)',
-'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Temps clair',
 'exif-lightsource-10'  => 'Temps nuageux',
 'exif-lightsource-11'  => 'Ombre',
@@ -2080,9 +2046,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-whitebalance-0' => 'Automatique',
 'exif-whitebalance-1' => 'Manuelle',
 
-'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Paysage',
-'exif-scenecapturetype-2' => 'Portrait',
 'exif-scenecapturetype-3' => 'Scène de nuit',
 
 'exif-gaincontrol-0' => 'Aucun',
@@ -2091,7 +2055,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gaincontrol-3' => 'Réduction faible de l’acquisition',
 'exif-gaincontrol-4' => 'Réduction forte de l’acquisition',
 
-'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Faible',
 'exif-contrast-2' => 'Fort',
 
@@ -2104,7 +2067,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-sharpness-2' => 'Dure',
 
 'exif-subjectdistancerange-0' => 'Inconnue',
-'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Rapproché',
 'exif-subjectdistancerange-3' => 'Distant',
 

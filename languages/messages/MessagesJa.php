@@ -1805,7 +1805,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => '画像の幅',

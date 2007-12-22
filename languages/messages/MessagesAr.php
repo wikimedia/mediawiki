@@ -675,7 +675,7 @@ $2',
 'uid'                        => 'رقم المستخدم:',
 'yourrealname'               => 'الاسم الحقيقي:',
 'yourlanguage'               => 'اللغة:',
-'yourvariant'                => 'اللهجة',
+'yourvariant'                => 'اللهجة:',
 'yournick'                   => 'اللقب:',
 'badsig'                     => 'توقيع خام غير صحيح؛ تحقق من وسوم الHTML.',
 'badsiglength'               => 'التوقيع طويل جدا؛ يجب أن يكون أقل من $1 حرف.',
@@ -2177,7 +2177,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'العرض',
@@ -2574,8 +2574,8 @@ $1',
 'watchlistedit-noitems'        => 'قائمة مراقبتك لا تحتوي على أية عناوين.',
 'watchlistedit-normal-title'   => 'تعديل قائمة المراقبة',
 'watchlistedit-normal-legend'  => 'أزل عناوين من قائمة المراقبة',
-'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل. لإزالة عنوان، علم على الصندوق بجانبه، و اضغط إزالة العناوين. يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة مباشرة]]،
-	أو [[Special:Watchlist/clear|إزالة كل العناوين]].',
+'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل. لإزالة عنوان، اضغط على
+	الصندوق بجواره، واضغط إزالة العناوين. يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
 'watchlistedit-normal-submit'  => 'إزالة العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته من قائمة مراقبتك:',
 'watchlistedit-raw-title'      => 'عدل قائمة المراقبة الخام',

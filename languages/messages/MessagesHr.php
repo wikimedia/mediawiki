@@ -260,7 +260,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'edithelp'          => 'Kako uređivati stranicu',
 'edithelppage'      => 'Help:Kako_uređivati_stranicu',
 'faq'               => 'Najčešća pitanja',
-'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Pomoć',
 'mainpage'          => 'Glavna stranica',
 'policy-url'        => 'Project:Pravila',
@@ -426,7 +425,7 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'uid'                        => 'Suradnički ID-broj:',
 'yourrealname'               => 'Pravo ime (nije obvezno)*',
 'yourlanguage'               => 'Jezik:',
-'yourvariant'                => 'Inačica',
+'yourvariant'                => 'Inačica:',
 'yournick'                   => 'Vaš nadimak (za potpisivanje)',
 'badsig'                     => 'Kôd vašeg potpisa nije valjan; provjerite HTML tagove.',
 'badsiglength'               => 'Suradničko ime je predugo; može imati maksimalno $1 znakova.',
@@ -740,7 +739,6 @@ postavili dodatna ograničenja.',
 'logdelete-success'           => 'Vidljivost uređivanja uspješno postavljena.',
 
 # Oversight log
-'oversightlog'    => 'Oversight log',
 'overlogpagetext' => 'Slijedi popis posljednjih brisanja stranica i blokiranja koja uključuju sadržaj sakriven od Administratora.
 Vidi [[Special:Ipblocklist|IP popis blokiranja]] za popis trenutno blokiranih IP adresa.',
 
@@ -893,7 +891,6 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'group-all'           => '(svi)',
 
 'group-autoconfirmed-member' => 'Suradnik prijavljen duže od 4 dana',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Birokrat',
 
@@ -927,9 +924,6 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'hist'                              => 'pov',
 'hide'                              => 'sakrij',
 'show'                              => 'prikaži',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|suradnik|suradnika|suradnika}} prati ovu stranicu]',
 'rc_categories'                     => 'Ograniči na kategorije (odvojene znakom  "|")',
 'rc_categories_any'                 => 'Sve',
@@ -1949,7 +1943,7 @@ Svaka slijedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2261,7 +2255,6 @@ Valjanost ovog potvrdnog koda istječe $4.',
 $1
 </div>",
 'trackbackremove'   => ' ([$1 izbrisati])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback izbrisan.',
 
 # Delete conflict
@@ -2326,10 +2319,7 @@ $1',
 'watchlistedit-noitems'        => 'Vaš popis praćenja je prazan.',
 'watchlistedit-normal-title'   => 'Uredi popis praćenih stranica',
 'watchlistedit-normal-legend'  => 'Ukloni stranice iz popisa praćenja',
-'watchlistedit-normal-explain' => "Prikazane su stranice na vašem popisu praćenja. Da uklonite neku s popisa praćenja, označite kućicu kraj nje,
-i kliknite na gumb '''Ukloni stranice''' na dnu ove stranice.
-Možete također [[Special:Watchlist/raw|uređivati ovaj popis u okviru za uređivanje]],
-ili [[Special:Watchlist/clear|obrisati cijeli popis]].",
+'watchlistedit-normal-explain' => "Prikazane su stranice na vašem popisu praćenja. Da uklonite neku s popisa praćenja, označite kućicu kraj nje, i kliknite na gumb '''Ukloni stranice''' na dnu ove stranice. Možete također [[Special:Watchlist/raw|uređivati ovaj popis u okviru za uređivanje]].",
 'watchlistedit-normal-submit'  => 'Ukloni stranice',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 stranica je uklonjena|$1 stranice su uklonjene}} iz vašeg popisa praćenja. Slijedi popis uklonjenih:',
 'watchlistedit-raw-title'      => 'Uredi praćene stranice u okviru za uređivanje',

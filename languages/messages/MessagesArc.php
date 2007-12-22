@@ -133,12 +133,19 @@ $messages = array(
 'yourlanguage' => ':ܠܫܢܐ',
 
 # Edit pages
-'savearticle'  => 'ܚܡܝ ܦܐܬܐ',
+'savearticle'  => 'ܫܚܠܦ ܕܦܐ',
+'showdiff'     => 'ܚܘܝ ܫܘ̈ܚܠܦܐ',
 'loginreqlink' => 'ܥܘܠ',
+'newarticle'   => '(ܚܕܬܐ)',
+'yourtext'     => 'ܟܬܒܝ̈ܟ',
+
+# History pages
+'historyempty' => '(ܣܦܝܩܐ)',
 
 # Preferences page
-'mypreferences' => 'ܦܪܝܫܘܬܝ',
-'prefs-rc'      => 'ܫܚ̈ܠܦܬܐ ܚܕܬܬܐ',
+'mypreferences' => 'ܦܪ̈ܝܫܘܬܝ',
+'math'          => 'ܡܬܡܐܛܝܩܘܬܐ',
+'prefs-rc'      => 'ܫܘ̈ܚ̈ܠܦܐ ܚܕ̈ܬܐ',
 'saveprefs'     => 'ܚܡܝ',
 
 # Recent changes

@@ -125,7 +125,6 @@ dj'artìcol ancó pa scrit",
 'december-gen'  => 'Dzémber',
 'jan'           => 'Gen',
 'feb'           => 'Fër',
-'mar'           => 'Mar',
 'apr'           => 'Avr',
 'may'           => 'Mag',
 'jun'           => 'Giu',
@@ -133,7 +132,6 @@ dj'artìcol ancó pa scrit",
 'aug'           => 'Aos',
 'sep'           => 'Ste',
 'oct'           => 'Oto',
-'nov'           => 'Nov',
 'dec'           => 'Dze',
 
 # Bits of text used by many pages
@@ -205,7 +203,6 @@ dj'artìcol ancó pa scrit",
 'personaltools'     => 'Utiss personaj',
 'postcomment'       => 'Gionta un coment',
 'articlepage'       => "Che a varda l'articol",
-'talk'              => 'Discussion',
 'views'             => 'vìsite',
 'toolbox'           => 'utiss',
 'userpage'          => 'Che a varda la pàgina Utent',
@@ -240,7 +237,6 @@ dj'artìcol ancó pa scrit",
 'disclaimerpage'    => 'Project:Avertense generaj',
 'edithelp'          => 'Manual dë spiegassion',
 'edithelppage'      => "Help:Coma scrive n'artìcol",
-'faq'               => 'FAQ',
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Agiut',
 'mainpage'          => 'Intrada',
@@ -287,7 +283,6 @@ dj'artìcol ancó pa scrit",
 'nstab-main'      => 'Artìcol',
 'nstab-user'      => "Pàgina dl'utent",
 'nstab-media'     => 'Pàgina multimedial',
-'nstab-special'   => 'Special',
 'nstab-project'   => 'Pàgina ëd servissi',
 'nstab-image'     => 'Figura',
 'nstab-mediawiki' => 'Messagi',
@@ -394,7 +389,6 @@ Për son i-j ciamoma dë sërn-se në stranòm diferent.",
 'uid'                        => "ID dl'utent:",
 'yourrealname'               => 'Nòm vèir *',
 'yourlanguage'               => 'Lenga:',
-'yourvariant'                => 'Variant',
 'yournick'                   => 'Sò stranòm (për firmé)',
 'badsig'                     => "Soa forma a l'é nen giusta, che a controla le istrussion HTML.",
 'badsiglength'               => 'Stranòm esagerà longh; a dev esse pì curt che $1 caràter.',
@@ -620,7 +614,6 @@ Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina
 La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 
 # History pages
-'revhistory'          => 'Stòria dle version dë sta pàgina-sì.',
 'viewpagelogs'        => 'Smon ij registr dë sta pàgina-sì',
 'nohistory'           => "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",
 'revnotfound'         => 'Version nen trovà',
@@ -636,7 +629,6 @@ Che as controla për piasì l'adrëssa (URL) che a l'ha dovrà për rivé a sta 
 'cur'                 => 'cor',
 'next'                => 'anans',
 'last'                => 'andaré',
-'orig'                => 'orig',
 'page_first'          => 'prima',
 'page_last'           => 'ùltima',
 'histlegend'          => 'Confront antra version diferente: che as selession-a le casele dle version che a veul e peui che a sgnaca ël boton për anandié ël process.<br />
@@ -704,16 +696,12 @@ na restrission adissional da j'operator dël sit.",
 'overlogpagetext' => "Ambelessì sota a-i é na lista djë scancelament e blòch pì davsin ant ël temp, ch'a toco contnù ch'a resta scondù a j'aministrator. Ch'a varda la [[Special:Ipblocklist|lista dj'IP blocà]] për vëdde ij blòch ch'a stan travajand.",
 
 # Diffs
-'history-title'             => 'Cronologìa dle modìfiche ëd "$1"',
-'difference'                => '(Diferense antra revision)',
-'loadingrev'                => 'i soma antramentr che i carioma la revision për diferensa',
-'lineno'                    => 'Riga $1:',
-'editcurrent'               => 'Modìfica la version corenta dë sta pàgina-sì',
-'selectnewerversionfordiff' => 'Selession-a na version pì neuva për fé paragon',
-'selectolderversionfordiff' => 'Selession-a na version pì veja për fé paragon',
-'compareselectedversions'   => 'Paragon-a le version selessionà',
-'editundo'                  => "buta 'me ch'a l'era",
-'diff-multi'                => '({{plural:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
+'history-title'           => 'Cronologìa dle modìfiche ëd "$1"',
+'difference'              => '(Diferense antra revision)',
+'lineno'                  => 'Riga $1:',
+'compareselectedversions' => 'Paragon-a le version selessionà',
+'editundo'                => "buta 'me ch'a l'era",
+'diff-multi'              => '({{plural:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
 
 # Search results
 'searchresults'         => "Arsultà dl'arserca",
@@ -858,8 +846,6 @@ Le partìe nen selessionà a saran nen tocà. Për deselessioné na partìa a ve
 'hide'                              => 'stërma',
 'show'                              => 'smon',
 'minoreditletter'                   => 'c',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 utent che as ten-o sossì sot euj]',
 'rc_categories'                     => 'Limité a le categorìe (che a jë scriva separand-je antra lor con un "|")',
 'rc_categories_any'                 => 'Qualsëssìa',
@@ -1118,7 +1104,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'fewestrevisions' => 'Artìcoj con manch ëd modìfiche',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categorìa|categorìe}}',
 'nlinks'                  => '$1 {{PLURAL:$1|anliura|anliure}}',
 'nmembers'                => '$1 {{PLURAL:$1|element|element}}',
@@ -1155,7 +1140,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'specialpages'            => 'Pàgine Speciaj',
 'spheading'               => 'Pàgine Speciaj',
 'restrictedpheading'      => 'Pàgine speciaj riservà',
-'rclsub'                  => '(pàgine che a l\'han n\'anliura che a riva da "$1")',
 'newpages'                => 'Pàgine neuve',
 'newpages-username'       => 'Stranòm:',
 'ancientpages'            => 'Le pàgine pì veje',
@@ -1178,7 +1162,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'userrights'         => "Gestion dij drit dj'utent",
 'groups'             => "Partìe d'utent",
 'alphaindexline'     => '$1 a $2',
-'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Utent:',
@@ -1445,10 +1428,6 @@ $1",
 'month'         => 'Mèis:',
 'year'          => 'Ann:',
 
-'sp-contributions-newest'      => "J'ùltim",
-'sp-contributions-oldest'      => 'Ij prim',
-'sp-contributions-newer'       => '$1 andaré',
-'sp-contributions-older'       => '$1 anans',
 'sp-contributions-newbies'     => 'Smon mach ël travaj dij cont neuv',
 'sp-contributions-newbies-sub' => "Për j'utent neuv",
 'sp-contributions-blocklog'    => "Fërma l'agiornament dij registr",
@@ -1467,7 +1446,6 @@ $1",
 'nolinkshere'         => "A-i é pa gnun-a pàgina che a l'abia dj'anliure che a men-o a '''[[:$1]]'''.",
 'nolinkshere-ns'      => "An stë spassi nominal-sì a-i è pa gnun-a pagina con dj'anliure ch'a men-o a '''[[:$1]]'''.",
 'isredirect'          => 'ridiression',
-'istemplate'          => 'inclusion',
 'whatlinkshere-prev'  => "{{PLURAL:$1|d'un andré|andré ëd $1}}",
 'whatlinkshere-next'  => "{{PLURAL:$1|d'un anans|anans ëd $1}}",
 'whatlinkshere-links' => '← anliure',
@@ -1498,7 +1476,7 @@ Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà
 'ipbenableautoblock'          => "Blòca an automàtich la [[dariera]] adrëssa IP dovrà da l'utent e tute cole dont peuj cheidun as preuva a fé dle modìfiche",
 'ipbsubmit'                   => "Bloca st'adrëssa IP-sì",
 'ipbother'                    => "N'àutra durà",
-'ipboptions'                  => "2 ore:2 ore,1 dì:1 dì,3 dì:3 dì,na sman-a:na sman-a,2 sman-e:2 sman-e,1 mèis:1 mèis,3 mèis:3 mèis,6 mèis:6 mèis,n'ann:n'ann,për sempe:për sempe",
+'ipboptions'                  => "2 ore:2 ore,1 dì:1 dì,3 dì:3 dì,na sman-a:na sman-a,2 sman-e:2 sman-e,1 mèis:1 mèis,3 mèis:3 mèis,6 mèis:6 mèis,n'ann:n'ann,për sempe:për sempe", # display1:time1,display2:time2,...
 'ipbotheroption'              => "d'àutr",
 'ipbotherreason'              => 'Àotri motiv/spiegon',
 'ipbhidename'                 => "Stërma lë stranòm/IP da 'nt ël registr dij blòch, da col dij blòch ativ e da 'nt la lista dj'utent",
@@ -1877,7 +1855,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghëssa',
@@ -1926,7 +1904,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-subsectimeoriginal'          => 'Data e ora ëd creassion, con frassion ëd second',
 'exif-subsectimedigitized'         => 'Data e ora ëd digitalisassion, con frassion ëd second',
 'exif-exposuretime'                => "Temp d'esposission",
-'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => "Nùmer d'F",
 'exif-exposureprogram'             => "Programa d'esposission",
 'exif-spectralsensitivity'         => 'Sensibilità dë spetro',
@@ -1940,7 +1917,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-subjectdistance'             => 'Distansa dël soget',
 'exif-meteringmode'                => "Càlcol dl'espossision",
 'exif-lightsource'                 => "Sorgiss d'anluminassion",
-'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Lunghëssa focal dle lent',
 'exif-subjectarea'                 => "Spassi d'anquadratura dël soget",
 'exif-flashenergy'                 => 'Potensa dël flash',
@@ -1961,7 +1937,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-focallengthin35mmfilm'       => 'Lunghëssa focal an film da 35 mm',
 'exif-scenecapturetype'            => 'Sistema ëd campionament',
 'exif-gaincontrol'                 => 'Contròl ëd sienari',
-'exif-contrast'                    => 'Contrast',
 'exif-saturation'                  => 'Saturassion',
 'exif-sharpness'                   => 'Definission dij bòrd',
 'exif-devicesettingdescription'    => "Nòm dla configurassion dl'aparechiatura",
@@ -2004,7 +1979,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 
 'exif-unknowndate' => 'Data nen conossùa',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Specolar', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Arvirà ëd 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Arvirà dzorsuta', # 0th row: bottom; 0th column: left
@@ -2024,7 +1998,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-componentsconfiguration-0' => 'a esist pa',
 
 'exif-exposureprogram-0' => 'Nen definì',
-'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => 'Priorità ëd temp',
 'exif-exposureprogram-4' => 'Priorità ëd diaframa',
@@ -2048,7 +2021,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-lightsource-1'   => 'Lus dël dì',
 'exif-lightsource-2'   => 'Fluoressenta',
 'exif-lightsource-3'   => 'Lus al tungsten (a incandessensa)',
-'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Temp bel',
 'exif-lightsource-10'  => 'Temp an-nivolà',
 'exif-lightsource-11'  => 'Ombra',
@@ -2099,20 +2071,16 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-gaincontrol-3' => 'Bassé ij contrast bass',
 'exif-gaincontrol-4' => 'Bassé ij contrast fòrt',
 
-'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'dosman',
 'exif-contrast-2' => 'contrastà fòrt',
 
-'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Saturassion bassa',
 'exif-saturation-2' => 'Saturassion àuta',
 
-'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'dossa',
 'exif-sharpness-2' => 'contrastà',
 
 'exif-subjectdistancerange-0' => 'Nen specificà',
-'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Prim pian',
 'exif-subjectdistancerange-3' => 'Anquadratura a soget lontan',
 
@@ -2272,9 +2240,7 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'watchlistedit-noitems'        => "A-i é pa gnun tìtol ch'as ten-a sot euj.",
 'watchlistedit-normal-title'   => "Modifiché la lista ëd lòn ch'as ten sot euj",
 'watchlistedit-normal-legend'  => "Gavé via ij tìtoj da 'nt la lista ëd lòn ch'as ten sot euj",
-'watchlistedit-normal-explain' => "Ij tìtoj ch'a l'é dapress a ten-se sot euj a son ambelessì sota. Për gavene via un ch'a-i fasa la crosëtta
-	ant la casela ch'a l'ha aranda, e peuj ch'ai bata ansima a \"Gavé via ij titoj\". As peul ëdcò [[Special:Watchlist/raw|modifiché la lista ampressa]],
-	ò pura [[Special:Watchlist/clear|gavé via tut ij tìtoj]].",
+'watchlistedit-normal-explain' => "Ij tìtoj ch'a l'é dapress a ten-se sot euj a son ambelessì sota. Për gavene via un ch'a-i fasa la crosëtta ant la casela ch'a l'ha aranda, e peuj ch'ai bata ansima a \"Gavé via ij titoj\". As peul ëdcò [[Special:Watchlist/raw|modifiché la lista ampressa]].",
 'watchlistedit-normal-submit'  => 'Gavé via ij tìtoj',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 tìtol a l'é|$1 tìtoj a son}} stait gavà via da 'nt la lista ëd lòn ch'as ten sot euj:",
 'watchlistedit-raw-title'      => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",

@@ -1,11 +1,12 @@
 <?php
-/**
- * Ewe (Eʋegbe)
+/** Ewe (Eʋegbe)
  *
  * @addtogroup Language
  *
  * @author Natsubee
  */
+
+
 
 $messages = array(
 # Dates
@@ -22,5 +23,11 @@ $messages = array(
 'november'  => 'Adeɛmekpɔxe',
 'december'  => 'Dzome',
 'may'       => 'Damɛ',
+
+'qbmyoptions'    => 'Nyeƒe axawo',
+'qbspecialpages' => 'Axa tɔxewo',
+'navigation'     => 'Mɔtabiala',
+
+'errorpagetitle' => 'Vodada',
 
 );

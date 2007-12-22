@@ -145,9 +145,6 @@ $messages = array(
 'anontalk'       => "Bu IP'nin mesajları",
 'navigation'     => 'Sitede yol bulma',
 
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
-
 'errorpagetitle'    => 'Hata',
 'returnto'          => '$1.',
 'tagline'           => '{{SITENAME}} sitesinden',
@@ -336,7 +333,7 @@ Kullanıcı adınız Türkçe karakter, boşluk '''içerebilir'''. Kullanıcı a
 'uid'                        => 'Kayıt numarası:',
 'yourrealname'               => 'Gerçek isminiz *',
 'yourlanguage'               => 'Arayüz dili',
-'yourvariant'                => 'Sizce',
+'yourvariant'                => 'Sizce:',
 'yournick'                   => 'İmzalarda gözükmesini istediğiniz isim',
 'badsig'                     => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
 'email'                      => 'E-posta',
@@ -521,7 +518,7 @@ Tanımlar: (güncel) = güncel sürümle aradaki fark,
 'searchresulttext'      => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
 'searchsubtitle'        => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
 'searchsubtitleinvalid' => 'Aranan: "$1"',
-'noexactmatch'          => "Başlığı bu olan bir madde bulunamadı. Bu maddenin yazılmasını [[:$1|'''siz başlatabilirsiniz''']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.",
+'noexactmatch'          => " Başlığı bu olan bir madde bulunamadı. Bu maddenin yazılmasını [[:$1|'''siz başlatabilirsiniz''']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.",
 'titlematches'          => 'Madde adı eşleşiyor',
 'notitlematches'        => 'Hiçbir başlıkta bulunamadı',
 'textmatches'           => 'Sayfa metni eşleşiyor',
@@ -991,7 +988,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'ipbreason'          => 'Sebep',
 'ipbsubmit'          => 'Bu kullanıcıyı engelle',
 'ipbother'           => 'Farklı zaman',
-'ipboptions'         => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite',
+'ipboptions'         => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'farklı',
 'badipaddress'       => 'Geçersiz IP adresi',
 'blockipsuccesssub'  => 'IP adresi engelleme işlemi başarılı oldu',

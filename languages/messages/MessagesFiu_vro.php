@@ -402,7 +402,7 @@ Võit ilma nimeldä edesi toimõndaq vai minnäq sisse tõõsõ nimega.',
 'uid'                        => 'Pruukjanummõr:',
 'yourrealname'               => 'Peris nimi *',
 'yourlanguage'               => 'Pruukjapalgõ kiil:',
-'yourvariant'                => 'Keelevariant',
+'yourvariant'                => 'Keelevariant:',
 'yournick'                   => 'Suq kutsmisnimi (alakirotamisõs)',
 'badsig'                     => 'Seo alakirotus olõ-i masva.',
 'badsiglength'               => "Alakirotus om pall'o pikk – tohe-i ollaq rohkõmb ku $1 märki.",
@@ -600,7 +600,6 @@ Kas tahat taad lehte tõtõstõ toimõndaq? Kaeq ka sissekirotust seo lehe ärqk
 $3 kirjäpant põhjus: ''$2''",
 
 # History pages
-'revhistory'          => 'Toimõndamislugu',
 'viewpagelogs'        => 'Kaeq seo lehe muutmisnimekirjä.',
 'nohistory'           => 'Seo leheküle pääl ei olõq vanõmbit kujjõ.',
 'revnotfound'         => 'Es lövväq kujjo',
@@ -673,16 +672,12 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'overlogpagetext' => 'Tan om nimekiri vahtsõmbist kistutuisist ja kinniqpidämiisist, miä pututasõq kõrraldajidõ iist käkitüt sissu. Kaeq [[Special:Ipblocklist|puutridõ võrgoaadrõssidõ kinniqpidämisnimekirjä]], et nätäq, määntseq kinniqpidämiseq ommaq parhillaq jovvun.',
 
 # Diffs
-'history-title'             => '"$1" muutmiisi nimekiri',
-'difference'                => '(Kujjõ lahkominegiq)',
-'loadingrev'                => 'Kujo laatminõ lahkominekide näütämise lehe jaos',
-'lineno'                    => 'Rida $1:',
-'editcurrent'               => 'Toimõndaq taa leheküle viimäst kujjo',
-'selectnewerversionfordiff' => 'Valiq võrdõlõmisõs vahtsõmb kujo',
-'selectolderversionfordiff' => 'Valiq võrdõlõmisõs vanõmb kujo',
-'compareselectedversions'   => 'Võrdõlõq valituid kujjõ',
-'editundo'                  => 'võtaq tagasi',
-'diff-multi'                => '(Kujjõ vaihõl {{plural:$1|üts näütämäldä muutminõ|$1 näütämäldä muutmist}}.)',
+'history-title'           => '"$1" muutmiisi nimekiri',
+'difference'              => '(Kujjõ lahkominegiq)',
+'lineno'                  => 'Rida $1:',
+'compareselectedversions' => 'Võrdõlõq valituid kujjõ',
+'editundo'                => 'võtaq tagasi',
+'diff-multi'              => '(Kujjõ vaihõl {{plural:$1|üts näütämäldä muutminõ|$1 näütämäldä muutmist}}.)',
 
 # Search results
 'searchresults'         => 'Otsmisõ tulõmusõq',
@@ -1056,7 +1051,6 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'specialpages'            => 'Tallitusleheküleq',
 'spheading'               => 'Tallitusleheküleq',
 'restrictedpheading'      => 'Piiredüq tallitusleheküleq',
-'rclsub'                  => '(lehekülil, kohe leht "$1" näütäs)',
 'newpages'                => 'Vahtsõq leheküleq',
 'newpages-username'       => 'Pruukjanimi:',
 'ancientpages'            => 'Kõgõ vanõmbaq leheküleq',
@@ -1315,10 +1309,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'month'         => 'Alostõn kuust (ja varrampa):',
 'year'          => 'Alostõn aastagast (ja varrampa):',
 
-'sp-contributions-newest'      => 'Kõgõ vahtsõmbaq',
-'sp-contributions-oldest'      => 'Kõgõ vanõmbaq',
-'sp-contributions-newer'       => '← $1 vahtsõmbat',
-'sp-contributions-older'       => '$1 vanõmbat →',
 'sp-contributions-newbies'     => 'Näütäq õnnõ vahtsidõ pruukjidõ toimõnduisi',
 'sp-contributions-newbies-sub' => 'Vahtsidõ pruukjidõ toimõndusõq',
 'sp-contributions-blocklog'    => 'Kinniqpidämisnimekiri',
@@ -1363,7 +1353,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ipbenableautoblock'          => 'Piäq kinniq viimäne puutri võrgoaadrõs, kost pruukja om toimõnduisi tennüq, ja edespiten aadrõsiq, kost tä viil pruuv toimõnduisi tetäq.',
 'ipbsubmit'                   => 'Piäq taa aadrõs kinniq',
 'ipbother'                    => 'Muu tähtaig',
-'ipboptions'                  => '15 minotit:15 minutes,1 päiv:1 day,3 päivä:3 days,1 nätäl:1 week,2 nädälit:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aastak:1 year,igävene:infinite',
+'ipboptions'                  => '15 minotit:15 minutes,1 päiv:1 day,3 päivä:3 days,1 nätäl:1 week,2 nädälit:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aastak:1 year,igävene:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Muu tähtaig',
 'ipbotherreason'              => 'Muu põhjus',
 'ipbhidename'                 => 'Käkiq pruukjanimi vai puutri võrgoaadrõs ärq kinniqpidämis-, toimõndus-, ja pruukjanimekiräst',
@@ -1697,7 +1687,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lakjus',

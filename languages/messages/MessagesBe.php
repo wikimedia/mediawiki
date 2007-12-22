@@ -1667,7 +1667,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырыня',
@@ -1915,7 +1915,7 @@ $1',
 'watchlistedit-noitems'        => 'Нічога не назіраецца.',
 'watchlistedit-normal-title'   => 'Спіс назіранага',
 'watchlistedit-normal-legend'  => 'Выйманне складнікаў з назіранага',
-'watchlistedit-normal-explain' => 'Назвы старонак, што ў спісе назіранага, паказаныя ніжэй. Каб выняць складнік, адзначце так-бокс побач з ім, тады націсніце "{{:{{ns:mediawiki}}:watchlistedit-normal-submit/be}}". Таксама можна правіць спіс назіранага [[Special:Watchlist/raw|без афармлення]], або [[Special:Watchlist/clear|ачысціць яго цалкам]].',
+'watchlistedit-normal-explain' => 'Назвы старонак, што ў спісе назіранага, паказаныя ніжэй. Каб выняць складнік, адзначце так-бокс побач з ім, тады націсніце "Выняць складнікі". Таксама можна правіць спіс назіранага [[Special:Watchlist/raw|без афармлення]].',
 'watchlistedit-normal-submit'  => 'Выняць складнікі',
 'watchlistedit-normal-done'    => 'З назіранага выняты{{PLURAL:$1| 1 складнік|я $1 складнікаў}}:',
 'watchlistedit-raw-title'      => 'Нефарматаваны спіс назіранага',

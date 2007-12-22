@@ -1225,7 +1225,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'specialpages'            => 'Pagine speciali',
 'spheading'               => 'Pagine speciali non riservate',
 'restrictedpheading'      => 'Pagine speciali riservate',
-'rclsub'                  => '(alle pagine collegate a "$1")',
 'newpages'                => 'Pagine più recenti',
 'newpages-username'       => 'Nome utente:',
 'ancientpages'            => 'Pagine meno recenti',
@@ -1552,7 +1551,7 @@ $1',
 'ipbenableautoblock'          => "Blocca automaticamente l'ultimo indirizzo IP usato dall'utente e i successivi con cui vengono  tentate modifiche",
 'ipbsubmit'                   => "Blocca l'utente",
 'ipbother'                    => 'Durata non in elenco:',
-'ipboptions'                  => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite',
+'ipboptions'                  => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'altro',
 'ipbotherreason'              => 'Altri motivi/dettagli:',
 'ipbhidename'                 => "Nascondi il nome utente o l'indirizzo IP dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
@@ -1917,7 +1916,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength",
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghezza',
@@ -2294,7 +2293,7 @@ Usare l\'anteprima standard.',
 'watchlistedit-noitems'        => 'La lista degli osservati speciali è vuota.',
 'watchlistedit-normal-title'   => 'Modifica osservati speciali',
 'watchlistedit-normal-legend'  => 'Eliminazione di pagine dagli osservati speciali',
-'watchlistedit-normal-explain' => "Di seguito sono elencate tutte le pagine osservate. Per rimuovere una o più pagine dalla lista, selezionare le caselle relative e fare clic sul pulsante 'Elimina pagine' in fondo all'elenco. Si noti che è anche possibile [[Special:Watchlist/raw|modificare la lista in formato testuale]] oppure [[Special:Watchlist/clear|svuotarla completamente]].",
+'watchlistedit-normal-explain' => "Di seguito sono elencate tutte le pagine osservate. Per rimuovere una o più pagine dalla lista, selezionare le caselle relative e fare clic sul pulsante 'Elimina pagine' in fondo all'elenco. Si noti che è anche possibile [[Special:Watchlist/raw|modificare la lista in formato testuale]].",
 'watchlistedit-normal-submit'  => 'Elimina pagine',
 'watchlistedit-normal-done'    => 'Dalla lista degli osservati speciali {{PLURAL:$1|è stata eliminata una pagina|sono state eliminate $1 pagine}}:',
 'watchlistedit-raw-title'      => 'Modifica degli osservati speciali in forma testuale',

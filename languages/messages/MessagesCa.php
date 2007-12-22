@@ -508,7 +508,7 @@ S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
 'uid'                        => "Identificador d'usuari:",
 'yourrealname'               => 'Nom real *',
 'yourlanguage'               => 'Llengua:',
-'yourvariant'                => 'Variant lingüística',
+'yourvariant'                => 'Variant lingüística:',
 'yournick'                   => 'Àlies (nom que es mostrarà):',
 'badsig'                     => 'La signatura que heu inserit no és vàlida; verifiqueu les etiquetes HTML que heu emprat.',
 'badsiglength'               => 'Nom massa llarg; el màxim són $1 caràcters.',
@@ -1081,7 +1081,6 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Data/hora',
 'filehist-user'             => 'Usuari',
-'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Mida del fitxer',
 'filehist-comment'          => 'Comentari',
 'imagelinks'                => 'Enllaços a la imatge',
@@ -1455,7 +1454,6 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'restriction-level'           => 'Nivell de restricció:',
 'minimum-size'                => 'Mida mínima',
 'maximum-size'                => 'Mida màxima',
-'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Edita',
@@ -1961,7 +1959,7 @@ La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgin
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Amplada',
@@ -2102,7 +2100,6 @@ La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgin
 'exif-componentsconfiguration-0' => 'no existeix',
 
 'exif-exposureprogram-0' => 'No definit',
-'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => "amb prioritat d'obertura",
 'exif-exposureprogram-4' => "amb prioritat de velocitat d'obturació",

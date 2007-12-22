@@ -1,5 +1,5 @@
 <?php
-/** 贛語/Gön-gnŷ (贛語/Gön-gnŷ)
+/** Gan (贛語)
  *
  * @addtogroup Language
  *
@@ -212,7 +212,6 @@ $messages = array(
 'disclaimerpage'    => 'Project:免責聲明',
 'edithelp'          => '編寫幫助',
 'edithelppage'      => 'Help:啷編寫文章',
-'faq'               => 'FAQ',
 'helppage'          => 'Help:説明',
 'mainpage'          => '封面',
 'policy-url'        => 'Project:政策',
@@ -556,7 +555,6 @@ $2',
 'cantcreateaccount-text' => 'IP 位址伓能 (<b>$1</b>) 新開帳戶。箇可能係因為經常有來自倷嗰學堂或網絡供應商 (ISP)故意嗰破壞扤得。',
 
 # History pages
-'revhistory'          => '修訂歷史',
 'viewpagelogs'        => '眵吖箇頁嗰日誌',
 'nohistory'           => '箇頁冇修改歷史。',
 'revnotfound'         => '冇尋到修改歷史',
@@ -626,16 +624,12 @@ $2',
 'overlogpagetext' => '下底係隻最近刪除同到由操作員封鎖牽涉到嗰內容列表。眵吖底下嗰[[Special:Ipblocklist|IP封鎖列表]]去查看眼下嗰封鎖。',
 
 # Diffs
-'history-title'             => '歷史版本嗰 "$1"',
-'difference'                => '(修改之間差異)',
-'loadingrev'                => '搦到修改版本嗰比較',
-'lineno'                    => '第$1行:',
-'editcurrent'               => '編輯箇頁嗰目前版本',
-'selectnewerversionfordiff' => '揀新嗰版本做隻比較',
-'selectolderversionfordiff' => '揀老嗰版本做隻比較',
-'compareselectedversions'   => '比較揀正嗰版本',
-'editundo'                  => '還原',
-'diff-multi'                => '($1回半中間嗰改動伓會顯示。)',
+'history-title'           => '歷史版本嗰 "$1"',
+'difference'              => '(修改之間差異)',
+'lineno'                  => '第$1行:',
+'compareselectedversions' => '比較揀正嗰版本',
+'editundo'                => '還原',
+'diff-multi'              => '($1回半中間嗰改動伓會顯示。)',
 
 # Search results
 'searchresults'         => '尋到嗰結果',
@@ -1024,7 +1018,6 @@ $2',
 'specialpages'            => '特殊頁',
 'spheading'               => '所有用戶嗰特殊頁',
 'restrictedpheading'      => '拕限制嗰特殊頁',
-'rclsub'                  => '(從"$1"連出嗰頁面)',
 'newpages'                => '新頁面',
 'newpages-username'       => '用戶名:',
 'ancientpages'            => '老早嗰頁面',
@@ -1286,10 +1279,6 @@ $NEWPAGE
 'month'         => '從箇月 (或更早):',
 'year'          => '從箇年 (或更早):',
 
-'sp-contributions-newest'      => '最新',
-'sp-contributions-oldest'      => '最舊',
-'sp-contributions-newer'       => '先$1回',
-'sp-contributions-older'       => '末$1回',
 'sp-contributions-newbies'     => '單顯到新用戶嗰貢獻',
 'sp-contributions-newbies-sub' => '新用戶嗰貢獻',
 'sp-contributions-blocklog'    => '封鎖記錄',
@@ -1335,7 +1324,7 @@ $NEWPAGE
 'ipbenableautoblock'          => '自動封鎖箇隻用戶最晏嗰IP，同後來佢編寫用過嗰地址',
 'ipbsubmit'                   => '封鎖箇隻地址',
 'ipbother'                    => '別嗰時間:',
-'ipboptions'                  => '兩個鍾頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,一世:infinite',
+'ipboptions'                  => '兩個鍾頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,一世:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '別嗰',
 'ipbotherreason'              => '別嗰／附加原因:',
 'ipbhidename'                 => '封鎖日誌、活躍封鎖列表同用戶列表裡頭弆到用戶名／IP',
@@ -1686,7 +1675,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => '闊',

@@ -990,6 +990,8 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'userrights-available-none'   => 'Nemůžete měnit zařazení do skupin.',
 'userrights-available-add'    => 'Můžete uživatele přidat do skupiny $1.',
 'userrights-available-remove' => 'Můžete odebrat uživatele ze skupiny $1.',
+'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
+'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1641,7 +1643,7 @@ $1',
 'ipbenableautoblock'          => 'Automaticky blokovat IP adresy používané tímto uživatelem',
 'ipbsubmit'                   => 'Zablokovat',
 'ipbother'                    => 'Jiný čas vypršení',
-'ipboptions'                  => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite',
+'ipboptions'                  => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'jiný',
 'ipbotherreason'              => 'Jiný nebo další důvod:',
 'ipbhidename'                 => 'Skrýt uživatelské jméno nebo IP v knize zablokování a seznamu probíhajících bloků',
@@ -1993,7 +1995,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šířka',
@@ -2328,6 +2330,7 @@ $1',
 'searchnamed'      => "Hledat stránky pojmenované ''$1''.",
 'articletitles'    => "Stránky začínající ''$1''",
 'hideresults'      => 'Skrýt výsledky',
+'useajaxsearch'    => 'Použít při hledání AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← předchozí stránka',
@@ -2371,7 +2374,7 @@ $1',
 'watchlistedit-noitems'        => 'Váš seznam sledovaných stránek neobsahuje žádnou položku.',
 'watchlistedit-normal-title'   => 'Editace seznamu sledovaných stránek',
 'watchlistedit-normal-legend'  => 'Odstranění položek ze seznamu sledovaných stránek',
-'watchlistedit-normal-explain' => 'Položky vašeho seznamu sledovaných stránek jsou zobrazeny níže. Ty, které chcete ze seznamu odstranit, označte zaškrtnutím a poté stiskněte tlačítko Odstranit položky. Editovat seznam sledovaných stránek můžete také [[Special:Watchlist/raw|v textové podobě]], případně můžete [[Special:Watchlist/clear|odstranit všechny položky seznamu]].',
+'watchlistedit-normal-explain' => 'Položky vašeho seznamu sledovaných stránek jsou zobrazeny níže. Ty, které chcete ze seznamu odstranit, označte zaškrtnutím a poté stiskněte tlačítko Odstranit položky. Editovat seznam sledovaných stránek můžete také [[Special:Watchlist/raw|v textové podobě]].',
 'watchlistedit-normal-submit'  => 'Odstranit položky',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Byla odstraněna 1 položka|Byly odstraněny $1 položky|Bylo odstraněno $1 položek}} z Vašeho seznamu sledovaných stránek:',
 'watchlistedit-raw-title'      => 'Textový režim editace seznamu',

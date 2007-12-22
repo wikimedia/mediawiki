@@ -1,5 +1,5 @@
 <?php
-/** Tok Pisin
+/** Tok Pisin (Tok Pisin)
  *
  * @addtogroup Language
  *
@@ -96,7 +96,7 @@ $messages = array(
 'sitesupport'       => 'Givim moni',
 'sitesupport-url'   => 'Project:Givim moni',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Stori',
 'nstab-user'      => 'Pes bilong yusa',
 'nstab-media'     => 'Media pes',
@@ -146,6 +146,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 # Upload
 'upload' => 'Salim media fail',
 
+# Random page
+'randompage' => 'Soim wanpela pes',
+
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|grup|grup}}',
 'nmembers'                => '$1 {{PLURAL:$1|memba|memba}}',
@@ -162,7 +165,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'mostlinkedtemplates'     => 'Ol templet igat planti link i kam long ol',
 'mostcategories'          => 'Ol pes bilong buk istap insait long planti grup',
 'allpages'                => 'Olgeta pes',
-'randompage'              => 'Soim wanpela pes',
 'specialpages'            => 'Ol sipesol pes',
 'move'                    => 'Surikim',
 'movethispage'            => 'Surikim dispela pes',
@@ -233,10 +235,7 @@ Yu mas painim narapela nem.',
 'watchlistedit-noitems'        => 'Nogat wanpela samting long lukautbuk bilong yu.',
 'watchlistedit-normal-title'   => 'Senisim lukautbuk',
 'watchlistedit-normal-legend'  => 'Rausim ol samting long lukautbuk',
-'watchlistedit-normal-explain' => 'Ananit yu lukim ol samting long lukautbuk. Long rausim wanpela samting, 
-	makim liklik boxis long sait bilong en,
-	na paitim "Rausim ol samting".  Na tu yu inap [[Special:Watchlist/raw|senisim lukautbuk long wanpela bokis]],
-	o [[Special:Watchlist/clear|rausim olgeta samting long lukautbuk]].',
+'watchlistedit-normal-explain' => 'Ananit yu lukim ol samting long lukautbuk. Long rausim wanpela samting, makim liklik boxis long sait bilong en, na paitim "Rausim ol samting".  Na tu yu inap [[Special:Watchlist/raw|senisim lukautbuk long wanpela bokis]].',
 'watchlistedit-normal-submit'  => 'Rausim ol samting',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Wanpela|$1}} samting i raus pinis long lukautbuk bilong yu:',
 'watchlistedit-raw-title'      => 'Senisim lukautbuk long wanpela bokis',
@@ -252,8 +251,8 @@ Yu mas painim narapela nem.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Wanpela|$1}} samting i raus pinis:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Lukim ol senis',
-'watchlisttools-edit'  => 'Lukim na senisim lukautbuk',
-'watchlisttools-raw'   => 'Senisim lukautbuk insait long wanpela bokis',
+'watchlisttools-view' => 'Lukim ol senis',
+'watchlisttools-edit' => 'Lukim na senisim lukautbuk',
+'watchlisttools-raw'  => 'Senisim lukautbuk insait long wanpela bokis',
 
 );

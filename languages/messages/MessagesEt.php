@@ -533,7 +533,6 @@ Kaaluge, kas lehe uuesti loomine on kohane.
 Lehe eelnevad kustutamised:",
 
 # History pages
-'revhistory'          => 'Redigeerimislugu',
 'viewpagelogs'        => 'Vaata selle lehe logisid',
 'nohistory'           => 'Sellel leheküljel ei ole eelmisi redaktsioone.',
 'revnotfound'         => 'Redaktsiooni ei leitud',
@@ -560,13 +559,9 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'historyempty'        => '(tühi)',
 
 # Diffs
-'difference'                => '(Erinevused redaktsioonide vahel)',
-'loadingrev'                => 'Redaktsiooni laadimine erinevustelehekülje jaoks',
-'lineno'                    => 'Rida $1:',
-'editcurrent'               => 'Redigeeri selle lehekülje viimast redaktsiooni',
-'selectnewerversionfordiff' => 'Vali uuem versioon, et võrrelda',
-'selectolderversionfordiff' => 'Vali vanem versioon, et võrrelda',
-'compareselectedversions'   => 'Võrdle valitud redaktsioone',
+'difference'              => '(Erinevused redaktsioonide vahel)',
+'lineno'                  => 'Rida $1:',
+'compareselectedversions' => 'Võrdle valitud redaktsioone',
 
 # Search results
 'searchresults'         => 'Otsingu tulemused',
@@ -853,7 +848,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'specialpages'            => 'Erileheküljed',
 'spheading'               => 'Erileheküljed',
 'restrictedpheading'      => 'Piirangutega erileheküljed',
-'rclsub'                  => '(lehekülgedel, millele "$1" viitab)',
 'newpages'                => 'Uued leheküljed',
 'ancientpages'            => 'Kõige vanemad artiklid',
 'intl'                    => 'Keeltevahelised lingid',
@@ -1019,11 +1013,6 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'uclinks'       => 'Näita viimast $1 muudatust; viimase $2 päeva jooksul.',
 'uctop'         => ' (üles)',
 
-'sp-contributions-newest' => 'Uusimad',
-'sp-contributions-oldest' => 'Vanimad',
-'sp-contributions-newer'  => '$1 uuemat',
-'sp-contributions-older'  => '$1 vanemat',
-
 'sp-newimages-showfrom' => 'Näita uusi pilte alates $1',
 
 # What links here
@@ -1046,7 +1035,7 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'ipbreasonotherlist' => 'Muul põhjusel',
 'ipbsubmit'          => 'Blokeeri see aadress',
 'ipbother'           => 'Muu tähtaeg',
-'ipboptions'         => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite',
+'ipboptions'         => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'muu tähtaeg',
 'ipbotherreason'     => 'Muu/täiendav põhjus:',
 'badipaddress'       => 'The IP address is badly formed.',
@@ -1283,7 +1272,7 @@ Kui see *ei* ole sinu loodud konto, siis ära kliki lingil. Kinnituskood aegub $
 'watchlistedit-numitems'       => 'Teie jälgimisloendis on {{PLURAL:$1|1 leht|$1 lehte}}, ilma arutelulehtedeta.',
 'watchlistedit-normal-title'   => 'Jälgimisloendi redigeerimine',
 'watchlistedit-normal-legend'  => 'Jälgimisloendist lehtede eemaldamine',
-'watchlistedit-normal-explain' => "Siin on lehed, mis on teie jälgimisloendis.Et lehti eemaldada, tehke vastavatesse kastidesse linnukesed ja vajutage nuppu '''Eemalda valitud lehed'''. Te võite ka [[Special:Watchlist/raw|redigeerida lähtefaili]] või [[Special:Watchlist/clear|eemaldada kõik lehed]].",
+'watchlistedit-normal-explain' => "Siin on lehed, mis on teie jälgimisloendis.Et lehti eemaldada, tehke vastavatesse kastidesse linnukesed ja vajutage nuppu '''Eemalda valitud lehed'''. Te võite ka [[Special:Watchlist/raw|redigeerida lähtefaili]].",
 'watchlistedit-normal-submit'  => 'Eemalda valitud lehed',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 leht|Järgmised $1 lehte}} on Teie jälgimisloendist eemaldatud:',
 'watchlistedit-raw-done'       => 'Teie jälgimisloend on uuendatud.',

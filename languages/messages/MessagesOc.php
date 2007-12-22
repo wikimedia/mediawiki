@@ -426,7 +426,7 @@ Doblidetz pas de personalizar vòstre {{SITENAME}} en consultant la pagina Prefe
 'uid'                        => 'Numèro d’utilizaire :',
 'yourrealname'               => 'Nom vertadièr *',
 'yourlanguage'               => 'Lenga:',
-'yourvariant'                => 'Varianta',
+'yourvariant'                => 'Varianta:',
 'yournick'                   => 'Mon escais (per las signaturas)',
 'badsig'                     => 'Signatura bruta incorrècta ; Verificatz vòstras balisas HTML.',
 'badsiglength'               => 'Vòstra signatura es tròp longa : la talha maximala es de $1 caractèrs.',
@@ -1823,7 +1823,7 @@ Solament las linhas començant per * son presas en compte. Lo primièr ligam de 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largor',
@@ -2189,7 +2189,7 @@ Ensajatz la previsualizacion normala.',
 'watchlistedit-noitems'        => 'Vòstra lista de seguit conten pas cap de pagina.',
 'watchlistedit-normal-title'   => 'Modificacion de la lista de seguit',
 'watchlistedit-normal-legend'  => 'Levar de paginas de la lista de seguit',
-'watchlistedit-normal-explain' => 'Las paginas de vòstra lista de seguit son visiblas çaijos, classadas per espaci de noms. Per levar una pagina (e sa pagina de discussion) de la lista, seleccionatz la casa al costat puèi clicatz sul boton en bas. Tanben podètz [[Special:Watchlist/raw|la modificar en mòde brut]] o [[Special:Watchlist/clear|la voidar entièrament]].',
+'watchlistedit-normal-explain' => 'Las paginas de vòstra lista de seguit son visiblas çaijos, classadas per espaci de noms. Per levar una pagina (e sa pagina de discussion) de la lista, seleccionatz la casa al costat puèi clicatz sul boton en bas. Tanben podètz [[Special:Watchlist/raw|la modificar en mòde brut]].',
 'watchlistedit-normal-submit'  => 'Levar las paginas seleccionadas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} de vòstra lista de seguit :',
 'watchlistedit-raw-title'      => 'Modificacion de la lista de seguit (mòde brut)',
