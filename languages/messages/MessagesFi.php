@@ -125,11 +125,12 @@ $specialPageAliases = array(
 	'Deadendpages'              => array( 'Linkittömät_sivut' ),
 	'Protectedpages'            => array( 'Suojatut_sivut' ),
 	'Allpages'                  => array( 'Kaikki_sivut' ),
-	'Prefixindex'               => array( 'Etuliiteluettelo' ) ,
+	'Prefixindex'               => array( 'Etuliiteluettelo' ),
 	'Ipblocklist'               => array( 'Muokkausestot' ),
 	'Specialpages'              => array( 'Toimintosivut' ),
 	'Contributions'             => array( 'Muokkaukset' ),
 	'Emailuser'                 => array( 'Lähetä_sähköpostia' ),
+	'Confirmemail'              => array( 'Varmista_sähköpostiosoite' ),
 	'Whatlinkshere'             => array( 'Tänne_viittaavat_sivut' ),
 	'Recentchangeslinked'       => array( 'Linkitetyt_muutokset' ),
 	'Movepage'                  => array( 'Siirrä_sivu' ),
@@ -156,10 +157,12 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Oma_keskustelu' ),
 	'Mycontributions'           => array( 'Omat_muokkaukset' ),
 	'Listadmins'                => array( 'Ylläpitäjät' ),
+	'Listbots'                  => array( 'Botit' ),
 	'Popularpages'              => array( 'Suositut_sivut' ),
 	'Search'                    => array( 'Haku' ),
 	'Resetpass'                 => array( 'Alusta_salasana' ),
 	'Withoutinterwiki'          => array( 'Kielilinkittömät_sivut' ),
+	'MergeHistory'              => array( 'Liitä_muutoshistoria' ),
 );
 
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
