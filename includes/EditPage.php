@@ -1592,9 +1592,11 @@ END
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
+		$wgOut->addHtml( '<div id="spamprotected">' );
 		$wgOut->addWikiText( wfMsg( 'spamprotectiontext' ) );
 		if ( $match )
-			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
+			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch',wfEscapeWikiText( $match ) ) );
+		$wgOut->addHtml( '</div>' );
 
 		$wgOut->returnToMain( false, $wgTitle );
 	}
