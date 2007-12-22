@@ -2134,6 +2134,13 @@ class Language {
 
 		# Replace spaces with underscores in namespace names
 		$cache['namespaceNames'] = str_replace( ' ', '_', $cache['namespaceNames'] );
+
+		# And do the same for specialpage aliases. $page is an array.
+		foreach ( $cache['specialPageAliases'] as &$page ) {
+			$page = str_replace( ' ', '_', $page );
+		}
+		# Decouple the reference to prevent accidental damage
+		unset($page);
 		
 		# Save to both caches
 		self::$mLocalisationCache[$code] = $cache;
