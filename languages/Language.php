@@ -1808,7 +1808,7 @@ class Language {
 	 * @param array $forms Array of forms given to convertPlural
 	 * @return array Padded array of forms or an exception if not an array
 	 */
-	protected function preConvertPlural( Array $forms, $count ) {
+	protected function preConvertPlural( /* Array */ $forms, $count ) {
 		while ( count($forms) < $count ) {
 			$forms[] = $forms[count($forms)-1];
 		}
