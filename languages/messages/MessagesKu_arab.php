@@ -9,6 +9,59 @@
 
 $fallback = 'ku-latn';
 
+$rtl = true;
+
+$digitTransformTable = array(
+	'0' => '۰', # &#x06f0;
+	'1' => '۱', # &#x06f1;
+	'2' => '۲', # &#x06f2;
+	'3' => '۳', # &#x06f3;
+	'4' => '۴', # &#x06f4;
+	'5' => '۵', # &#x06f5;
+	'6' => '۶', # &#x06f6;
+	'7' => '۷', # &#x06f7;
+	'8' => '۸', # &#x06f8;
+	'9' => '۹', # &#x06f9;
+);
+
+$separatorTransformTable = array(
+	',' => '٬', # &#x066c;
+	'.' => '٫', # &#x066b; 
+);
+
+$defaultUserOptionOverrides = array(
+	# Swap sidebar to right side by default
+	'quickbar' => 2,
+	# Underlines seriously harm legibility. Force off:
+	'underline' => 0,
+);
+
+$extraUserToggles = array(
+	'nolangconversion'
+);
+
+$fallback8bitEncoding = 'windows-1256';
+
+$namespaceAliases = array(
+	# Aliases to ku-latn namespaces
+	'Medya'            => NS_MEDIA,
+	'Taybet'           => NS_SPECIAL,
+	'Nîqaş'            => NS_TALK,
+	'Bikarhêner'       => NS_USER,
+	'Bikarhêner_nîqaş' => NS_USER_TALK,
+	'$1_nîqaş'         => NS_PROJECT_TALK,
+	'Wêne'             => NS_IMAGE,
+	'Wêne_nîqaş'       => NS_IMAGE_TALK,
+	'MediaWiki'        => NS_MEDIAWIKI,
+	'MediaWiki_nîqaş'  => NS_MEDIAWIKI_TALK,
+	'Şablon'           => NS_TEMPLATE,
+	'Şablon_nîqaş'     => NS_TEMPLATE_TALK,
+	'Alîkarî'          => NS_HELP,
+	'Alîkarî_nîqaş'    => NS_HELP_TALK,
+	'Kategorî'         => NS_CATEGORY,
+	'Kategorî_nîqaş'   => NS_CATEGORY_TALK,
+);
+
 $skinNames = array(
 'standard'    => 'كلاسیك',
 'nostalgia'   => 'قاوه‌یی',
@@ -335,7 +388,8 @@ $messages = array(
 'tooltip-pt-userpage' => 'په‌ڕه‌ی تایبه‌تی خۆم',
 
 # Separators for various lists
-'semicolon-separator' => '؛',
+'semicolon-separator'   => '؛',
+'filetype-separator'    => ' ،',
 'comma-separator'     => '،',
 
 # Live preview
