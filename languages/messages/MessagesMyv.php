@@ -302,15 +302,19 @@ $messages = array(
 'media_sample'    => 'Саемга.ogg',
 
 # Edit pages
-'minoredit'       => 'Те апокшкэ витнема-петнема',
-'watchthis'       => 'Ваномс те лопанть мельга',
-'savearticle'     => 'Ванстомс лопанть',
-'preview'         => 'Васнянь невтевкс',
-'showpreview'     => 'Максомс васнянь невтевкс',
-'showlivepreview' => 'Эряй васнянь невтевкс',
-'showdiff'        => 'Невтемс мезе полавтовсь',
-'newarticle'      => '(Од)',
-'editing'         => 'Витнят-петнят $1',
+'minoredit'          => 'Те апокшкэ витнема-петнема',
+'watchthis'          => 'Ваномс те лопанть мельга',
+'savearticle'        => 'Ванстомс лопанть',
+'preview'            => 'Васнянь невтевкс',
+'showpreview'        => 'Максомс васнянь невтевкс',
+'showlivepreview'    => 'Эряй васнянь невтевкс',
+'showdiff'           => 'Невтемс мезе полавтовсь',
+'nosuchsectiontitle' => 'Истямо явкс арась',
+'loginreqtitle'      => 'Совамс эряви',
+'loginreqlink'       => 'совамс',
+'accmailtitle'       => 'Салавань вал кучозь.',
+'newarticle'         => '(Од)',
+'editing'            => 'Витнят-петнят $1',
 
 # History pages
 'currentrev'          => 'Тевате лиякстомтома',
@@ -329,23 +333,35 @@ $messages = array(
 'historyempty'        => '(чаво)',
 
 # Revision deletion
-'rev-delundel' => 'невтемс/кекшемс',
+'rev-delundel'  => 'невтемс/кекшемс',
+'revdelete-log' => 'Логто ёвтнема:',
+
+# Merge log
+'mergelog'    => 'Вейтьсэндямс логонть',
+'revertmerge' => 'Явомс логонть мекев, кода ульнесь вейтьсэндямодо икеле',
 
 # Diffs
 'editundo' => 'Велявтомс мекев мезе витнинь-петнинь',
 
 # Search results
-'noexactmatch' => "'''\"\$1\" конякс марто лопа арась.''' Мелеть ули, [[:\$1|теика те лопанть]].",
-'nextn'        => 'сы $1',
-'viewprevnext' => 'Ванномс ($1) ($2) ($3)',
-'powersearch'  => 'Вешнемс',
+'searchsubtitle'        => "Вешнить '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Вешнить '''$1'''",
+'noexactmatch'          => "'''\"\$1\" конякс марто лопа арась.''' Мелеть ули, [[:\$1|теика те лопанть]].",
+'noexactmatch-nocreate' => "'''\"\$1\" лемсэ лопа арась.'''",
+'prevn'                 => 'седе икелень $1',
+'nextn'                 => 'сы $1',
+'viewprevnext'          => 'Ванномс ($1) ($2) ($3)',
+'powersearch'           => 'Вешнемс',
 
 # Preferences page
 'qbsettings-fixedleft'     => 'Керш ёндо кирдезь',
 'qbsettings-fixedright'    => 'Вить ёндо кирдезь',
 'qbsettings-floatingleft'  => 'Керш ёнга уи',
 'qbsettings-floatingright' => 'Вить ёнга уи',
+'math'                     => 'Математика',
 'datetime'                 => 'Чи ды шка',
+'prefs-personal'           => 'Совицядо',
+'prefs-rc'                 => 'Чиень полавтнемат',
 'prefs-watchlist'          => 'Ванома лемрисьме',
 'prefs-misc'               => 'Минеть-сюнот',
 'saveprefs'                => 'Ванстомс',
@@ -433,8 +449,16 @@ $messages = array(
 'watchlist-hide-own'   => 'Кекшэмс мезе мон витнинь-петнинь',
 'watchlist-hide-minor' => 'Кекшэмс апокшкэ витнемат-петнемат',
 
+'enotif_anon_editor' => 'лемтеме совиця $1',
+
+# Delete/protect/revert
+'confirm' => 'Кемекстамс',
+
 # Undelete
-'undeletebtn' => 'Велявтомс мекев сенень, мезе ульнесь витнемадо-петнемадо икеле',
+'undeletebtn'            => 'Велявтомс мекев сенень, мезе ульнесь витнемадо-петнемадо икеле',
+'undeletecomment'        => 'Арсемат - мельть:',
+'undelete-search-prefix' => 'Невтемс лопат тестэ саезь:',
+'undelete-search-submit' => 'Вешнемс',
 
 'sp-contributions-username' => 'IP сёрмапарго эли совицянь лем:',
 'sp-contributions-submit'   => 'Вешнемс',

@@ -309,14 +309,24 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 # Preferences page
 'preferences'        => 'Preferenzen',
 'mypreferences'      => 'Meng Preferenzen',
+'prefs-edits'        => 'Zuel vun den Ännerungen:',
+'prefsnologin'       => 'Net ugemeld',
 'qbsettings-none'    => 'Keen',
 'changepassword'     => 'Passwuert änneren',
 'dateformat'         => 'Datumsformat',
 'datedefault'        => 'Egal (Standard)',
 'datetime'           => 'Datum an Auerzäit',
+'math_unknown_error' => 'Onbekannte Feeler',
+'math_lexing_error'  => "'Lexing'-Feeler",
+'math_syntax_error'  => 'Syntaxfeeler',
+'prefs-personal'     => 'Benotzerprofil',
+'prefs-rc'           => 'Rezent Ännerungen',
 'prefs-watchlist'    => 'Suivi-Lëscht',
 'saveprefs'          => 'Späicheren',
+'oldpassword'        => 'Aalt Passwuert:',
 'newpassword'        => 'Neit Passwuert:',
+'retypenew'          => 'Neit Passwuert (nachemol):',
+'textboxsize'        => 'Änneren',
 'columns'            => 'Kolonnen',
 'contextlines'       => 'Zuel vun de Linnen:',
 'contextchars'       => 'Kontextcharactère pro Linn:',
@@ -333,26 +343,42 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 # User rights
 'editusergroup' => 'Benotzergruppen änneren',
 
+'group-bot-member'        => 'Bot',
+'group-sysop-member'      => 'Administrateur',
+'group-bureaucrat-member' => 'Bürokrat',
+
+'grouppage-bot'   => '{{ns:project}}:Botten',
+'grouppage-sysop' => '{{ns:project}}:Administrateuren',
+
 # Recent changes
-'recentchanges' => 'Rezent Ännerungen',
-'diff'          => 'Ënnerscheed',
-'newpageletter' => 'N',
+'recentchanges'   => 'Rezent Ännerungen',
+'rcshowhideminor' => 'Kleng Ännerungen $1',
+'rcshowhidebots'  => 'Botten $1',
+'rcshowhideliu'   => 'Ugemellte Benotzer $1',
+'rcshowhidemine'  => 'Meng Ännerungen $1',
+'diff'            => 'Ënnerscheed',
+'newpageletter'   => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Ännerungen op verlinkte Säiten',
 
 # Upload
-'upload'          => 'Eroplueden',
-'badfilename'     => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
-'emptyfile'       => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
-'savefile'        => 'Fichier späicheren',
-'destfilename'    => 'Numm op der Wiki',
-'watchthisupload' => 'Dës Säit verfollegen',
+'upload'            => 'Eroplueden',
+'filedesc'          => 'Résumé',
+'fileuploadsummary' => 'Résumé/Quell:',
+'badfilename'       => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
+'emptyfile'         => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
+'savefile'          => 'Fichier späicheren',
+'destfilename'      => 'Numm op der Wiki',
+'watchthisupload'   => 'Dës Säit verfollegen',
 
 # Image list
-'byname' => 'no Numm',
-'bydate' => 'no Datum',
-'bysize' => 'no Gréisst',
+'byname'           => 'no Numm',
+'bydate'           => 'no Datum',
+'bysize'           => 'no Gréisst',
+'filehist-comment' => 'Bemierkung',
+'imagelist_name'   => 'Numm',
+'imagelist_user'   => 'Benotzer',
 
 # MIME search
 'download' => 'eroflueden',
