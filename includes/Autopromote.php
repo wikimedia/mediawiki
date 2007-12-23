@@ -4,21 +4,43 @@
  * This class checks if user can get extra rights
  * because of conditions specified in $wgAutopromote
  */
-class Autopromote {	
-	public static function autopromoteUser( $user ) {
+class Autopromote {
+	/**
+	 * Get the groups for the given user based on $wgAutopromote.
+	 *
+	 * @param User $user The user to get the groups for
+	 * @return array Array of groups to promote to.
+	 */
+	public static function getAutopromoteGroups( User $user ) {
 		global $wgAutopromote;
 		$promote = array();
 		foreach( $wgAutopromote as $group => $cond ) {
 			if( self::recCheckCondition( $cond, $user ) )
 				$promote[] = $group;
 		}
-		return $promote;
+		return array_unique( $promote );
 	}
 
-	//@private
-	static function recCheckCondition( $cond, $user ) {
+	/**
+	 * Recursively check a condition.  Conditions are in the form
+	 *   array( '&' or '|' or '^', cond1, cond2, ... )
+	 * where cond1, cond2, ... are themselves conditions; *OR*
+	 *   APCOND_EMAILCONFIRMED, *OR*
+	 *   array( APCOND_EMAILCONFIRMED ), *OR*
+	 *   array( APCOND_EDITCOUNT, number of edits ), *OR*
+	 *   array( APCOND_AGE, seconds since registration ), *OR*
+	 *   similar constructs defined by extensions.
+	 * This function evaluates the former type recursively, and passes off to
+	 * self::checkCondition for evaluation of the latter type.
+	 *
+	 * @param mixed $cond A condition, possibly containing other conditions
+	 * @param User  $user The user to check the conditions against
+	 * @return bool Whether the condition is true
+	 */
+	private static function recCheckCondition( $cond, User $user ) {
 		$validOps = array( '&', '|', '^' );
-		if( is_array( $cond ) && count( $cond ) > 0 && in_array( $cond[0], $validOps ) ) {
+		if( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
+			# Recursive condition
 			if( $cond[0] == '&' ) {
 				foreach( array_slice( $cond, 1 ) as $subcond )
 					if( !self::recCheckCondition( $subcond, $user ) )
@@ -30,23 +52,41 @@ class Autopromote {
 						return true;
 				return false;
 			} elseif( $cond[0] == '^' ) {
-				if( count( $cond ) < 3 )
-					return false;
-				return self::recCheckCondition( $cond[1], $user )
-					xor self::recCheckCondition( $cond[2], $user );
+				$res = null;
+				foreach( array_slice( $cond, 1 ) as $subcond ) {
+					if( is_null( $res ) )
+						$res = self::recCheckCondition( $subcond, $user );
+					else
+						$res = ($res xor self::recCheckCondition( $subcond, $user ));
+				}
+				return $res;
 			}
 		}
+		# If we got here, the array presumably does not contain other condi-
+		# tions; it's not recursive.  Pass it off to self::checkCondition.
 		if( !is_array( $cond ) )
 			$cond = array( $cond );
 		return self::checkCondition( $cond, $user );
 	}
 
-	static function checkCondition( $cond, $user ) {
+	/**
+	 * As recCheckCondition, but *not* recursive.  The only valid conditions
+	 * are those whose first element is APCOND_EMAILCONFIRMED/APCOND_EDITCOUNT/
+	 * APCOND_AGE.  Other types will throw an exception if no extension evalu-
+	 * ates them.
+	 *
+	 * @param array $cond A condition, which must not contain other conditions
+	 * @param User  $user The user to check the condition against
+	 * @return bool Whether the condition is true for the user
+	 */
+	private static function checkCondition( $cond, User $user ) {
 		if( count( $cond ) < 1 )
 			return false;
 		switch( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
 				if( User::isValidEmailAddr( $user->getEmail() ) ) {
+					# FIXME: EMAILCONFIRMED is always true if
+					# wgEmailAuthentication if false, this is confusing.
 					global $wgEmailAuthentication;
 					if( $wgEmailAuthentication ) {
 						return $user->getEmailAuthenticationTimestamp() ? true : false;
@@ -56,15 +96,17 @@ class Autopromote {
 				}
 				return false;
 			case APCOND_EDITCOUNT:
-				return $user->getEditCount() > $cond[1];
+				return $user->getEditCount() >= $cond[1];
 			case APCOND_AGE:
 				$age = time() - wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
 				return $age >= $cond[1];
-			case APCOND_INGROUPS:
 			default:
-				$result = false;
+				$result = null;
 				wfRunHooks( 'AutopromoteCondition', array( $cond[0], array_slice( $cond, 1 ), $user, &$result ) );
-				return $result;
+				if( $result === null ) {
+					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );
+				}
+				return $result ? true : false;
 		}
 	}
 }

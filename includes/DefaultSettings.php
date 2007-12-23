@@ -1189,7 +1189,18 @@ $wgAutoConfirmCount = 0;
 //$wgAutoConfirmCount = 50;
 
 /**
- * Automatically promote user flags to users that matchs some conditions
+ * Automatically add a usergroup to any user who matches certain conditions.
+ * The format is
+ *   array( '&' or '|' or '^', cond1, cond2, ... )
+ * where cond1, cond2, ... are themselves conditions; *OR*
+ *   APCOND_EMAILCONFIRMED, *OR*
+ *   array( APCOND_EMAILCONFIRMED ), *OR*
+ *   array( APCOND_EDITCOUNT, number of edits ), *OR*
+ *   array( APCOND_AGE, seconds since registration ), *OR*
+ *   similar constructs defined by extensions.
+ *
+ * Note that EMAILCONFIRMED will always be true if $wgEmailAuthentication is
+ * off!
  */
 $wgAutopromote = array(
 	'autoconfirmed' => array( '&',

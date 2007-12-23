@@ -277,7 +277,8 @@ define( 'SFH_OBJECT_ARGS', 2 );
 # Flags for Parser::replaceLinkHolders
 define( 'RLH_FOR_UPDATE', 1 );
 
-#Autopromote conditions
+# Autopromote conditions (must be here and not in Autopromote.php, so that
+# they're loaded for DefaultSettings.php before AutoLoader.php)
 define( 'APCOND_EDITCOUNT', 1 );
 define( 'APCOND_AGE', 2 );
 define( 'APCOND_EMAILCONFIRMED', 3 );

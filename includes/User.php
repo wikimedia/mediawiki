@@ -1652,10 +1652,10 @@ class User {
 			if( $this->mId ) {
 				$this->mEffectiveGroups[] = 'user';
 
-				$this->mEffectiveGroups = array_merge(
+				$this->mEffectiveGroups = array_unique( array_merge(
 					$this->mEffectiveGroups,
-					Autopromote::autopromoteUser( $this )
-				);
+					Autopromote::getAutopromoteGroups( $this )
+				) );
 
 				# Hook for additional groups
 				wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
