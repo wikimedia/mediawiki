@@ -111,28 +111,31 @@ hr {
 	margin: .2em 0 .2em 0;
 }
 
-.mw-h1, .mw-h2, .mw-h3, .mw-h4, .mw-h5, .mw-h6 {
+h1, h2, h3, h4, h5, h6 {
 	color: black;
 	background: none;
+	font-weight: normal;
 	margin: 0;
 	padding-top: .5em;
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
 }
-h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
-	display: inline;
-}
 h1 { font-size: 188%; }
+h1 .editsection { font-size: 53%; }
 h2 { font-size: 150%; }
+h2 .editsection { font-size: 67%; }
 h3, h4, h5, h6 {
 	border-bottom: none;
 	font-weight: bold;
 }
 h3 { font-size: 132%; }
+h3 .editsection { font-size: 76%; font-weight: normal; }
 h4 { font-size: 116%; }
+h4 .editsection { font-size: 86%; font-weight: normal; }
 h5 { font-size: 100%; }
+h5 .editsection { font-weight: normal; }
 h6 { font-size: 80%;  }
+h6 .editsection { font-size: 125%; font-weight: normal; }
 
 ul {
 	line-height: 1.5em;

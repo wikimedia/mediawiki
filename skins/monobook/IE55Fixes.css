@@ -83,9 +83,3 @@ body { font-size: xx-small; }
 #editform {
 	width: 100%;
 }
-
-
-/* IE 5, 5.5, 6 ignore the space in between the header and the link.  We can
- * fix this with a margin for 5.5 and 6, but 5 ignores margins on inline
- * elements, so that looks a little uglier. */
-.editsection { margin-left: 0.3em; }

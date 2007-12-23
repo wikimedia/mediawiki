@@ -19,6 +19,12 @@ div#mw-js-message {
 	background-color: #fcfcfc;
 }
 
+/* Edit section links */
+.editsection {
+	float: right;
+	margin-left: 5px;
+}
+
 /**
  * File histories
  */
