@@ -106,7 +106,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added link to the old title in Special:Movepage
 * On Special:Movepage, errors are now more noticeable.
 * It is now possible to change rights on other local wikis without the MakeSysop
-   extension
+  extension
+* Add HTML ID's mw-read-only-warning and mw-anon-edit-warning to warnings when
+  editing to allow CSS styling.
 
 === Bug fixes in 1.12 ===
 

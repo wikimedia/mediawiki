@@ -1056,9 +1056,9 @@ class EditPage {
 		}
 
 		if( wfReadOnly() ) {
-			$wgOut->addWikiText( wfMsg( 'readonlywarning' ) );
+			$wgOut->addWikiText( '<div id="mw-read-only-warning">'.wfMsg( 'readonlywarning' ).'</div>' );
 		} elseif( $wgUser->isAnon() && $this->formtype != 'preview' ) {
-			$wgOut->addWikiText( wfMsg( 'anoneditwarning' ) );
+			$wgOut->addWikiText( '<div id="mw-anon-edit-warning">'.wfMsg( 'anoneditwarning' ).'</div>' );
 		} else {
 			if( $this->isCssJsSubpage && $this->formtype != 'preview' ) {
 				# Check the skin exists
