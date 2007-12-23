@@ -1199,8 +1199,8 @@ $wgAutoConfirmCount = 0;
  *   array( APCOND_AGE, seconds since registration ), *OR*
  *   similar constructs defined by extensions.
  *
- * Note that EMAILCONFIRMED will always be true if $wgEmailAuthentication is
- * off!
+ * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
+ * user who has provided an e-mail address.
  */
 $wgAutopromote = array(
 	'autoconfirmed' => array( '&',
