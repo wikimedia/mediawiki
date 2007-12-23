@@ -1651,23 +1651,12 @@ class User {
 			$this->mEffectiveGroups[] = '*';
 			if( $this->mId ) {
 				$this->mEffectiveGroups[] = 'user';
-				
-				global $wgAutoConfirmAge, $wgAutoConfirmCount;
 
-				$accountAge = time() - wfTimestampOrNull( TS_UNIX, $this->mRegistration );
-				if( $accountAge >= $wgAutoConfirmAge && $this->getEditCount() >= $wgAutoConfirmCount ) {
-					$this->mEffectiveGroups[] = 'autoconfirmed';
-				}
-				# Implicit group for users whose email addresses are confirmed
-				global $wgEmailAuthentication;
-				if( self::isValidEmailAddr( $this->mEmail ) ) {
-					if( $wgEmailAuthentication ) {
-						if( $this->mEmailAuthenticated )
-							$this->mEffectiveGroups[] = 'emailconfirmed';
-					} else {
-						$this->mEffectiveGroups[] = 'emailconfirmed';
-					}
-				}
+				$this->mEffectiveGroups = array_merge(
+					$this->mEffectiveGroups,
+					Autopromote::autopromoteUser( $this )
+				);
+
 				# Hook for additional groups
 				wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
 			}
@@ -2595,11 +2584,9 @@ class User {
 	 * @return array
 	 */
 	public static function getImplicitGroups() {
-		static $groups = null;
-		if( !is_array( $groups ) ) {
-			$groups = array( '*', 'user', 'autoconfirmed', 'emailconfirmed' );
-			wfRunHooks( 'UserGetImplicitGroups', array( &$groups ) );
-		}
+		global $wgImplicitGroups;
+		$groups = $wgImplicitGroups;
+		wfRunHooks( 'UserGetImplicitGroups', array( &$groups ) );	#deprecated, use $wgImplictGroups instead
 		return $groups;
 	}
 

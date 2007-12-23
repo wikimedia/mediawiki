@@ -277,3 +277,7 @@ define( 'SFH_OBJECT_ARGS', 2 );
 # Flags for Parser::replaceLinkHolders
 define( 'RLH_FOR_UPDATE', 1 );
 
+#Autopromote conditions
+define( 'APCOND_EDITCOUNT', 1 );
+define( 'APCOND_AGE', 2 );
+define( 'APCOND_EMAILCONFIRMED', 3 );

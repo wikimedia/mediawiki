@@ -17,6 +17,7 @@ function __autoload($className) {
 		'AlphabeticPager' => 'includes/Pager.php',
 		'Article' => 'includes/Article.php',
 		'AuthPlugin' => 'includes/AuthPlugin.php',
+		'Autopromote' => 'includes/Autopromote.php',
 		'BagOStuff' => 'includes/BagOStuff.php',
 		'HashBagOStuff' => 'includes/BagOStuff.php',
 		'SqlBagOStuff' => 'includes/BagOStuff.php',
