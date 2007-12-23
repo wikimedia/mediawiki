@@ -85,8 +85,6 @@ class Autopromote {
 		switch( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
 				if( User::isValidEmailAddr( $user->getEmail() ) ) {
-					# FIXME: EMAILCONFIRMED is always true if
-					# wgEmailAuthentication if false, this is confusing.
 					global $wgEmailAuthentication;
 					if( $wgEmailAuthentication ) {
 						return $user->getEmailAuthenticationTimestamp() ? true : false;
