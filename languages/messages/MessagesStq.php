@@ -82,39 +82,56 @@ $messages = array(
 'skinpreview' => '(Foarschau)',
 
 # Dates
-'sunday'       => 'Sundai',
-'monday'       => 'Moundai',
-'tuesday'      => 'Täisdai',
-'wednesday'    => 'Midwiek',
-'thursday'     => 'Tuunsdai',
-'friday'       => 'Fräindai',
-'saturday'     => 'Snäiwende',
-'mon'          => 'Mou',
-'tue'          => 'Täi',
-'wed'          => 'Mid',
-'thu'          => 'Tuu',
-'fri'          => 'Frä',
-'sat'          => 'Snä',
-'january'      => 'Januoar',
-'february'     => 'Februoar',
-'march'        => 'Meerte',
-'may_long'     => 'Moai',
-'june'         => 'Juni',
-'july'         => 'Juli',
-'october'      => 'Oktober',
-'december'     => 'Dezember',
-'january-gen'  => 'Januoar',
-'february-gen' => 'Februoar',
-'march-gen'    => 'Meerte',
-'may-gen'      => 'Moai',
-'june-gen'     => 'Juni',
-'july-gen'     => 'Juli',
-'october-gen'  => 'Oktober',
-'december-gen' => 'Dezember',
-'mar'          => 'Mee',
-'may'          => 'Moa',
-'oct'          => 'Okt',
-'dec'          => 'Dez',
+'sunday'        => 'Sundai',
+'monday'        => 'Moundai',
+'tuesday'       => 'Täisdai',
+'wednesday'     => 'Midwiek',
+'thursday'      => 'Tuunsdai',
+'friday'        => 'Fräindai',
+'saturday'      => 'Snäiwende',
+'sun'           => 'Sun',
+'mon'           => 'Mou',
+'tue'           => 'Täi',
+'wed'           => 'Mid',
+'thu'           => 'Tuu',
+'fri'           => 'Frä',
+'sat'           => 'Snä',
+'january'       => 'Januoar',
+'february'      => 'Februoar',
+'march'         => 'Meerte',
+'april'         => 'April',
+'may_long'      => 'Moai',
+'june'          => 'Juni',
+'july'          => 'Juli',
+'august'        => 'August',
+'september'     => 'September',
+'october'       => 'Oktober',
+'november'      => 'November',
+'december'      => 'Dezember',
+'january-gen'   => 'Januoar',
+'february-gen'  => 'Februoar',
+'march-gen'     => 'Meerte',
+'april-gen'     => 'April',
+'may-gen'       => 'Moai',
+'june-gen'      => 'Juni',
+'july-gen'      => 'Juli',
+'august-gen'    => 'August',
+'september-gen' => 'September',
+'october-gen'   => 'Oktober',
+'november-gen'  => 'November',
+'december-gen'  => 'Dezember',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mee',
+'apr'           => 'Apr',
+'may'           => 'Moa',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
+'aug'           => 'Aug',
+'sep'           => 'Sep',
+'oct'           => 'Okt',
+'nov'           => 'Nov',
+'dec'           => 'Dez',
 
 # Bits of text used by many pages
 'categories'            => 'Kategorien',
@@ -142,6 +159,7 @@ $messages = array(
 'mypage'         => 'Oaine Siede',
 'mytalk'         => 'Oaine Diskussion',
 'anontalk'       => 'Diskussionssiede foar dissen IP',
+'navigation'     => 'Navigation',
 
 # Metadata in edit box
 'metadata_help' => 'Metadoatäie:',
@@ -157,6 +175,7 @@ $messages = array(
 'history'           => 'Versione',
 'history_short'     => 'Geschichte',
 'updatedmarker'     => '(annerd)',
+'info_short'        => 'Information',
 'printableversion'  => 'Drukversion',
 'permalink'         => 'Permanentlink',
 'print'             => 'drukke',
@@ -213,6 +232,7 @@ $messages = array(
 'edithelp'          => 'Beoarbaidengshälpe',
 'edithelppage'      => 'Help:Beoarbaidengshälpe',
 'faq'               => 'Oafte stoalde Froagen',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hälpe',
 'mainpage'          => 'Haudsiede',
 'policy-url'        => 'Projekt:Laitlienjen',
@@ -247,6 +267,7 @@ $messages = array(
 'thisisdeleted'           => '$1 ankiekje of wier häärstaale?',
 'viewdeleted'             => '$1 anwiese?',
 'restorelink'             => '{{PLURAL:$1|1 läskede Beoarbaidengsfoargang|$1 läskede Beoarbaidengsfoargange}}',
+'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ungultigen Abonnement-Typ.',
 'site-rss-feed'           => '$1 RSS-Feed',
 'site-atom-feed'          => '$1 Atom-Feed',
@@ -329,6 +350,7 @@ $2',
 'namespaceprotected'   => "Du hääst neen Begjuchtigenge, ju Siede in dän '''$1'''-Noomensruum tou beoarbaidjen.",
 'customcssjsprotected' => 'Du bäst nit begjuchtiged disse Siede tou beoarbaidjen, deer ju tou do persöönelke Ienstaalengen fon n uur Benutser heert.',
 'ns-specialprotected'  => 'Sieden in dän {{ns:special}}-Noomensruum konnen nit beoarbaided wäide.',
+'titleprotected'       => 'Ne Siede mäd dissen Noome kon nit moaked wäide. Ju Speere wuude truch [[{{ns:user}}:$1]] mäd ju Begruundenge <i>$2</i> ienroat.',
 
 # Login and logout pages
 'logouttitle'                => 'Benutser-Oumäldenge',
@@ -717,6 +739,7 @@ Fersäik et uur ju Fultextsäike.
 Alternativ koast du uk dän [[Special:Allpages|alphabetisken Index]] ätter äänelke Begriepe truchsäike.
 
 Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ ferfoatje.",
+'noexactmatch-nocreate' => "'''Der bestoant neen Siede mäd dän Tittel „$1“.'''",
 'titlematches'          => 'Uureenstämmengen mäd Uurschrifte',
 'notitlematches'        => 'Neen Uureenstimmengen',
 'textmatches'           => 'Uureenstämmengen mäd Texte',
@@ -745,6 +768,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'qbsettings-floatingleft'  => 'Links, swieuwjend',
 'qbsettings-floatingright' => 'Gjuchts, swieuwjend',
 'changepassword'           => 'Paaswoud annerje',
+'skin'                     => 'Skin',
 'math'                     => 'TeX',
 'dateformat'               => 'Doatumsformoat',
 'datedefault'              => 'Neen Preferenz',
@@ -804,19 +828,24 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'userrights-available-none'   => 'Du duurst neen Benutsergjuchte ferannerje.',
 'userrights-available-add'    => 'Du duurst Benutsere an do Grupppen $1 touföigje.',
 'userrights-available-remove' => 'Du duurst Benutsere ut do Grupppen $1 wächhoalje.',
+'userrights-no-interwiki'     => 'Du hääst neen Begjuchtigenge, do Benutsergjuchte in uur Wikis tou annerjen.',
+'userrights-nodatabase'       => 'Ju Doatenboank $1 is nit deer of nit lokoal.',
 
 # Groups
 'group'               => 'Gruppe:',
 'group-autoconfirmed' => 'Bestäätigede Benutsere',
+'group-bot'           => 'Bots',
 'group-sysop'         => 'Administratore',
 'group-bureaucrat'    => 'Bürokraten',
 'group-all'           => '(aal)',
 
 'group-autoconfirmed-member' => 'Bestäätigede Benutser',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bürokrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestäätigede Benutser',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administratore',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
@@ -884,6 +913,9 @@ Uum ne Medium in n Artikkel tou ferweenden, schrieuwe Jie an ju Steede fon de Me
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:Doatäi.ogg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Jädden beoachtje Jie, dät, juust as bie do Artikkele, uur Benutsere hiere Doatäie läskje of annerje konnen.",
+'upload-permitted'            => 'Ferlööwede Doatäitypen: $1.',
+'upload-preferred'            => 'Ljoost antouweenden Doatäitypen: $1.',
+'upload-prohibited'           => 'Nit ferlööwede Doatäitypen: $1.',
 'uploadlog'                   => 'Doatäi-Logbouk',
 'uploadlogpage'               => 'Doatäi-Logbouk',
 'uploadlogpagetext'           => 'Hier is ju Lieste fon do lääste hoochleedene Doatäie, sjuch uk [[{{ns:special}}:Newimages]].',
@@ -899,6 +931,8 @@ Jädden beoachtje Jie, dät, juust as bie do Artikkele, uur Benutsere hiere Doat
 'illegalfilename'             => 'Die Doatäinoome "$1" änthaalt ap minste een nit toulät Teeken. Benaam jädden ju Doatäi uum un fersäik, hier fon näien hoochtouleeden.',
 'badfilename'                 => 'Die Datäi-Noome is automatisk annerd tou "$1".',
 'filetype-badmime'            => 'Doatäie mäd dän MIME-Typ „$1“ duuren nit hoochleeden wäide.',
+'filetype-unwanted-type'      => "'''„.$1“''' is n nit wonsked Doateiformoat. Ferlööwed sunt: $2.",
+'filetype-banned-type'        => "'''„.$1“''' is n nit ferlööwed Doatäiformoat. Ferlööwed sunt: $2.",
 'filetype-missing'            => 'Ju hoochtouleedende Doatäi häd neen Fergratterenge (t. B. „.jpg“).',
 'large-file'                  => 'Jädden neen Bielde uur $1 hoochleede; disse Doatäi is $2 groot.',
 'largefileserver'             => 'Disse Doatäi is tou groot, deer die Server so konfigurierd is, dät Doatäien bloot bit tou ne bestimde Grööte apzeptierd wäide.',
@@ -1118,6 +1152,9 @@ Lääste schällen dan wächhoald wäide.',
 'protectedpages'          => 'Schutsede Sieden',
 'protectedpagestext'      => 'Do foulgjende Sieden sunt beschutsed juun Ferschuuwen of Beoarbaidjen',
 'protectedpagesempty'     => 'Apstuuns sunt neen Sieden mäd disse Parametere schutsed.',
+'protectedtitles'         => 'Speerde Tittele',
+'protectedtitlestext'     => 'Do foulgjende Sieden sunt speerd uum näi tou moakjen',
+'protectedtitlesempty'    => 'Apstuuns sunt mäd do ounroate Parametere neen Sieden speerd uum näi tou moakjen.',
 'listusers'               => 'Benutser-Lieste',
 'specialpages'            => 'Spezioalsieden',
 'spheading'               => 'Spezioalsieden foar alle Benutsere',
@@ -1146,6 +1183,7 @@ Lääste schällen dan wächhoald wäide.',
 'userrights'         => 'Benutsergjuchteferwaltenge',
 'groups'             => 'Benutsergruppen',
 'alphaindexline'     => '$1 bit $2',
+'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Benutser:',
@@ -1344,8 +1382,9 @@ Annerengen an disse Siede foarnuumen häd.<br />Ju lääste Annerenge stamt fon 
 'pagesize'                    => '(Bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'beoarbaidje',
-'restriction-move' => 'ferschäuwen',
+'restriction-edit'   => 'beoarbaidje',
+'restriction-move'   => 'ferschäuwen',
+'restriction-create' => 'moakje',
 
 # Restriction levels
 'restriction-level-sysop'         => 'schutsed (bloot Administratore)',
@@ -1555,6 +1594,7 @@ In disse Falle moast du ju Siede, wan wonsked, fon Hounde ferschuuwe. Jädden d�
 'movepage-moved'          => "<big>'''Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Dät rakt al n Siede mäd disse Noome, of uurs is die Noome dän du anroat hääst, nit toulät.
 Fersäik jädden n uur Noome.',
+'cantmove-titleprotected' => 'Ju Ferschuuwenge kon nit truchfierd wäide, deeruum dät die Sieltittel speerd is uum tou moakjen.',
 'talkexists'              => 'Ju Siede sälwen wuude mäd Ärfoulch ferschäuwen, man ju Diskussionssiede nit, deer al een mäd dän näie Tittel bestoant. Glieke jädden do Inhoolde fon Hounde ou.',
 'movedto'                 => 'ferschäuwen ätter',
 'movetalk'                => 'Ju Diskussionssiede mee ferschuuwe, wan muugelk.',
@@ -1613,6 +1653,7 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 Do Versionsdoaten un Benutsernoomen blieuwe deerbie beheelden.
 Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]] protokollierd.',
 'import-interwiki-history'   => 'Importier aal Versione fon disse Siede',
+'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Importier ju Siede in dän Noomensruum:',
 'importtext'                 => 'Exportiere ju Siede fon dän Wälwiki middels [[{{ns:special}}:Export]] un leede ju Doatäi dan uur disse Siede wier hooch.',
 'importstart'                => 'Sieden importierje …',
@@ -2006,7 +2047,9 @@ Deerap foulgjende Siedenferbiendengen in jusälge Riege definierje Uutnoamen, in
 'exif-sensingmethod-2' => 'Een-Chip-Faawesensor',
 'exif-sensingmethod-3' => 'Twoo-Chip-Faawesensor',
 'exif-sensingmethod-4' => 'Trjoo-Chip-Faawesensor',
+'exif-sensingmethod-5' => 'Color sequential area sensor',
 'exif-sensingmethod-7' => 'Trilinearen Sensor',
+'exif-sensingmethod-8' => 'Color sequential linear sensor',
 
 'exif-scenetype-1' => 'Normoal',
 
@@ -2022,10 +2065,14 @@ Deerap foulgjende Siedenferbiendengen in jusälge Riege definierje Uutnoamen, in
 
 'exif-scenecapturetype-0' => 'Standoard',
 'exif-scenecapturetype-1' => 'Londskup',
+'exif-scenecapturetype-2' => 'Portrait',
 'exif-scenecapturetype-3' => 'Noachtszene',
 
 'exif-gaincontrol-0' => 'Neen',
 'exif-gaincontrol-1' => 'Min',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
 
 'exif-contrast-0' => 'Normoal',
 'exif-contrast-1' => 'Swäk',
@@ -2053,6 +2100,7 @@ Deerap foulgjende Siedenferbiendengen in jusälge Riege definierje Uutnoamen, in
 'exif-gpslongitude-w' => 'wäästelke Laangte',
 
 'exif-gpsstatus-a' => 'Meetenge lapt',
+'exif-gpsstatus-v' => 'Measurement interoperability',
 
 'exif-gpsmeasuremode-2' => '2-dimensionoale Meetenge',
 'exif-gpsmeasuremode-3' => '3-dimensionoale Meetenge',
@@ -2123,6 +2171,7 @@ Trackbacks foar dissen Artikkel:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1 läskje])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback wuude mäd Ärfoulch läsked.',
 
 # Delete conflict
@@ -2137,15 +2186,17 @@ Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 'redirectingto' => 'Fäärelaited ätter [[$1]]',
 
 # action=purge
-'confirm_purge' => 'Dän Cache fon disse Siede loosmoakje?
+'confirm_purge'        => 'Dän Cache fon disse Siede loosmoakje?
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Säik ätter Sieden, in do ''$1'' foarkumt.",
 'searchnamed'      => "Säik ätter Sieden, wierfon die Noome ''$1'' änthaalt.",
 'articletitles'    => "Sieden, do der mäd ''$1'' ounfange",
 'hideresults'      => 'ferbierge',
+'useajaxsearch'    => 'Benutsje AJAX-unnerstutsede Säike',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← foarige Siede',

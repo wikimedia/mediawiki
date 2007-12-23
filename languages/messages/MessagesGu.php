@@ -3,7 +3,9 @@
  *
  * @addtogroup Language
  *
-
+ * @author לערי ריינהארט
+ * @author Aksi great
+ * @author SPQRobin
  */
 
 $digitTransformTable = array(
@@ -117,12 +119,13 @@ $messages = array(
 'portal'            => 'સમાજ મુખપૃષ્ઠ',
 'sitesupport'       => 'દાન',
 
-'ok'              => 'મંજૂર',
-'newmessageslink' => 'નવા સંદેશો',
-'editsection'     => 'ફેરફાર કરો',
-'editold'         => 'ફેરફાર કરો',
-'hidetoc'         => 'છુપાવો',
-'viewdeleted'     => '$1 તપાસવી છે?',
+'ok'                  => 'મંજૂર',
+'newmessageslink'     => 'નવા સંદેશો',
+'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
+'editsection'         => 'ફેરફાર કરો',
+'editold'             => 'ફેરફાર કરો',
+'hidetoc'             => 'છુપાવો',
+'viewdeleted'         => '$1 તપાસવી છે?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'લેખ',
@@ -138,10 +141,11 @@ $messages = array(
 'viewsourcefor' => '$1ને માટે',
 
 # Login and logout pages
-'createaccount'  => 'ખાતું સર્જન કરવું',
-'yourrealname'   => 'સાચું નામ:',
-'yourlanguage'   => 'ભાષા',
-'accountcreated' => 'સર્જન કરેલું ખાતું',
+'createaccount'   => 'ખાતું સર્જન કરવું',
+'yourrealname'    => 'સાચું નામ:',
+'yourlanguage'    => 'ભાષા',
+'nosuchusershort' => '"$1" નામનું કોઈ નથી. તમારી જોડણી તપાસ કરો.',
+'accountcreated'  => 'સર્જન કરેલું ખાતું',
 
 # Edit pages
 'summary'           => 'સારાંશ',
@@ -192,8 +196,6 @@ $messages = array(
 
 # Recent changes
 'recentchanges'   => 'હાલ માં થયેલા ફેરફાર',
-'rcnote'          => "નીચે {{PLURAL:$1|'''૧''' ફેરફાર|'''$1''' છેલ્લાં ફેરફારો}} '''$2''' દિવસથી $3એ છે.",
-'rcnotefrom'      => 'નીચે <b>$2</b>થી ફેરફારો છે (<b>$1</b>સુધી દેખાય છે).',
 'rclistfrom'      => '$1થી નવા ફેરફારો બતાવવા',
 'rcshowhideminor' => 'નાના ફેરફારો $1',
 'rcshowhidebots'  => 'બૉટો $1',
@@ -228,6 +230,7 @@ $messages = array(
 # Miscellaneous special pages
 'nmembers'          => '$1 {{PLURAL:$1|સદસ્ય|સદસ્યો}}',
 'specialpage-empty' => 'આ પાનું ખાલી છે.',
+'lonelypages'       => 'અનાથ પાના',
 'allpages'          => 'બદ્ધા પાના',
 'shortpages'        => 'નાનાં પાનાં',
 'specialpages'      => 'ખાસ પાનાં',
@@ -263,11 +266,14 @@ $messages = array(
 'emailsend'    => 'મોકલવું',
 
 # Watchlist
-'watchlist'         => 'મારી ધ્યાનસૂચી',
-'mywatchlist'       => 'મારી ધ્યાનસૂચી',
-'watchlistfor'      => "('''$1'''ને માટે)",
-'watch'             => 'ધ્યાન માં રાખો',
-'watchlistcontains' => 'તમારી ધ્યાનસૂચીમાં $1 {{PLURAL:$1|પાનું|પાનાં}} છે.',
+'watchlist'            => 'મારી ધ્યાનસૂચી',
+'mywatchlist'          => 'મારી ધ્યાનસૂચી',
+'watchlistfor'         => "('''$1'''ને માટે)",
+'watch'                => 'ધ્યાન માં રાખો',
+'watchlistcontains'    => 'તમારી ધ્યાનસૂચીમાં $1 {{PLURAL:$1|પાનું|પાનાં}} છે.',
+'watchlist-hide-bots'  => 'બૉટના ફેરફાર સંતાડો',
+'watchlist-hide-own'   => 'મારા ફેરફાર સંતાડો',
+'watchlist-hide-minor' => 'નાના ફેરફાર સંતાડો',
 
 'enotif_newpagetext' => 'આ નવું પાનું છે.',
 'changed'            => 'બદલાયેલું',
@@ -317,10 +323,15 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-mytalk'      => 'મારી ચર્ચાનું પાનું',
 'tooltip-pt-preferences' => 'મારી પસંદ',
+'tooltip-ca-protect'     => 'આ પાનું સુરક્ષિત કરો',
+'tooltip-ca-delete'      => 'આ પાનું હટાવો',
+'tooltip-ca-watch'       => 'આ પાનું તમારી ધ્યાનસૂચીમા ઉમેરો',
+'tooltip-ca-unwatch'     => 'આ પાનું તમારી ધ્યાનસૂચીમાથી કાઢી નાખો',
 'tooltip-search'         => '{{SITENAME}} શોધો',
 'tooltip-p-logo'         => 'મુખપૃષ્ઠ',
 'tooltip-n-mainpage'     => 'મુખપૃષ્ઠ પર જાઓ',
 'tooltip-n-sitesupport'  => 'અમારું સમર્થન રકજો',
+'tooltip-t-specialpages' => 'ખાસ પાનાંઓની સૂચિ',
 
 # Attribution
 'and' => 'અને',
@@ -362,6 +373,7 @@ $messages = array(
 'imagelistall'     => 'બધા',
 'watchlistall2'    => 'બધા',
 'namespacesall'    => 'બધા',
+'monthsall'        => 'બધા',
 
 # action=purge
 'confirm_purge_button' => 'મંજૂર',
@@ -380,5 +392,8 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-new' => 'નવું પાનું : $1',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'ધ્યાનસૂચી જુઓ અને બદલો',
 
 );

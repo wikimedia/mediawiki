@@ -7,6 +7,7 @@
  * @author Nike
  * @author Cimon Avaro
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -358,8 +359,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'categorypage'      => 'Näytä luokkasivu',
 'viewtalkpage'      => 'Näytä keskustelusivu',
 'otherlanguages'    => 'Muilla kielillä',
-'redirectedfrom'    => 'Uudelleenohjattu sivulta $1',
-'redirectpagesub'   => 'Uudelleenohjaussivu',
+'redirectedfrom'    => 'Ohjattu sivulta $1',
+'redirectpagesub'   => 'Ohjaussivu',
 'lastmodifiedat'    => 'Sivua on viimeksi muutettu $1 kello $2.', # $1 date, $2 time
 'viewcount'         => 'Tämä sivu on näytetty {{PLURAL:$1|yhden kerran|$1 kertaa}}.',
 'protectedpage'     => 'Suojattu sivu',
@@ -402,6 +403,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]].',
 
+'ok'                      => 'OK',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Haettu osoitteesta $1',
 'youhavenewmessages'      => 'Sinulle on $1 ($2).',
@@ -848,7 +850,7 @@ $1 | $2',
 'showingresultsnum'     => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
 'nonefound'             => "'''Huomautus''': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten ''on'' ja ''ei'', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.",
 'powersearch'           => 'Etsi',
-'powersearchtext'       => 'Hae nimiavaruuksista: $1<br /><br />$2 Luettele uudelleenohjaukset<br /><br />$3 $9',
+'powersearchtext'       => 'Hae nimiavaruuksista: $1<br /><br />$2 Luettele ohjaukset<br /><br />$3 $9',
 'searchdisabled'        => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 
 # Preferences page
@@ -973,6 +975,7 @@ $1 | $2',
 'show'                              => 'näytä',
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'U',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|tarkkaileva käyttäjä|tarkkailevaa käyttäjää}}]',
 'rc_categories'                     => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'                 => 'Mikä tahansa',
@@ -1145,7 +1148,7 @@ Harkitse, onko asianmukaista jatkaa tämän tiedoston tallentamista. Kyseisen ti
 'unwatchedpages' => 'Tarkkailemattomat sivut',
 
 # List redirects
-'listredirects' => 'Uudelleenohjaukset',
+'listredirects' => 'Ohjaussivut',
 
 # Unused templates
 'unusedtemplates'     => 'Käyttämättömät mallineet',
@@ -1157,14 +1160,14 @@ Harkitse, onko asianmukaista jatkaa tämän tiedoston tallentamista. Kyseisen ti
 'randompage-nopages' => 'Tässä nimiavaruudessa ei ole sivuja.',
 
 # Random redirect
-'randomredirect'         => 'Satunnainen uudelleenohjaus',
-'randomredirect-nopages' => 'Tässä nimiavaruudessa ei ole uudelleenohjauksia.',
+'randomredirect'         => 'Satunnainen ohjaussivu',
+'randomredirect-nopages' => 'Tässä nimiavaruudessa ei ole ohjaussivuja.',
 
 # Statistics
 'statistics'             => 'Tilastot',
 'sitestats'              => 'Sivuston tilastot',
 'userstats'              => 'Käyttäjätilastot',
-'sitestatstext'          => "Tietokannassa on {{PLURAL:$1|yksi sivu|yhteensä $1 sivua}}. Tähän on laskettu mukaan keskustelusivut, {{GRAMMAR:genitive|{{SITENAME}}}} projektisivut, hyvin lyhyet sivut, uudelleenohjaukset sekä muita sivuja, joita ei voi pitää kunnollisina sivuina. Nämä pois lukien tietokannassa on '''$2''' {{PLURAL:$2|sivu|sivua}}.
+'sitestatstext'          => "Tietokannassa on {{PLURAL:$1|yksi sivu|yhteensä $1 sivua}}. Tähän on laskettu mukaan keskustelusivut, {{GRAMMAR:genitive|{{SITENAME}}}} projektisivut, hyvin lyhyet sivut, ohjaussivut sekä muita sivuja, joita ei voi pitää kunnollisina sivuina. Nämä pois lukien tietokannassa on '''$2''' {{PLURAL:$2|sivu|sivua}}.
 
 {{GRAMMAR:illative|{{SITENAME}}}} on tallennettu '''$8''' {{PLURAL:$8|tiedosto|tiedostoa}}.
 
@@ -1178,11 +1181,11 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'disambiguationspage'  => 'Project:Linkkejä täsmennyssivuihin',
 'disambiguations-text' => 'Seuraavat artikkelit linkittävät <i>täsmennyssivuun</i>. Täsmennyssivun sijaan niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan täsmennyssivuna jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:disambiguationspage]].',
 
-'doubleredirects'     => 'Kaksinkertaiset uudelleenohjaukset',
-'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECTin jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.',
+'doubleredirects'     => 'Kaksinkertaiset ohjaukset',
+'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT- tai #OHJAUS-komennon jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.',
 
-'brokenredirects'        => 'Virheelliset uudelleenohjaukset',
-'brokenredirectstext'    => 'Seuraavat uudelleenohjaukset on linkitetty artikkeleihin, joita ei ole olemassa.',
+'brokenredirects'        => 'Virheelliset ohjaukset',
+'brokenredirectstext'    => 'Seuraavat ohjaukset on osoittavat sivuihin, joita ei ole olemassa.',
 'brokenredirects-edit'   => '(muokkaa)',
 'brokenredirects-delete' => '(poista)',
 
@@ -1253,6 +1256,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 
 'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
+'data'               => 'Data',
 'userrights'         => 'Käyttöoikeuksien hallinta',
 'groups'             => 'Ryhmät',
 'alphaindexline'     => '$1…$2',
@@ -1527,7 +1531,7 @@ $1',
 'linkshere'           => 'Seuraavilta sivuilta on linkki sivulle <strong>[[:$1]]</strong>:',
 'nolinkshere'         => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä.',
 'nolinkshere-ns'      => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä valitussa nimiavaruudessa.',
-'isredirect'          => 'uudelleenohjaussivu',
+'isredirect'          => 'ohjaussivu',
 'istemplate'          => 'sisällytetty mallineeseen',
 'whatlinkshere-prev'  => '← {{PLURAL:$1|edellinen sivu|$1 edellistä sivua}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|seuraava sivu|$1 seuraavaa sivua}} →',
@@ -1631,7 +1635,7 @@ $1',
 
 # Move page
 'movepage'                => 'Siirrä sivu',
-'movepagetext'            => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee uudelleenohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten uudelleenohjausten varalta. '''Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.'''<br />Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai uudelleenohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].",
+'movepagetext'            => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten ohjausten varalta. '''Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.'''<br />Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai ohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].",
 'movepagetalktext'        => "Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, '''paitsi jos''':
 *Siirrät sivua nimiavaruudesta toiseen
 *Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
@@ -1655,7 +1659,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'talkpagemoved'           => 'Myös sivun keskustelusivu siirrettiin.',
 'talkpagenotmoved'        => "Sivun keskustelusivua '''ei''' siirretty.",
 '1movedto2'               => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
-'1movedto2_redir'         => 'siirsi sivun ”$1” uudelleenohjauksen ”$2” päälle',
+'1movedto2_redir'         => 'siirsi sivun ”$1” ohjauksen ”$2” päälle',
 'movelogpage'             => 'Siirtoloki',
 'movelogpagetext'         => 'Tämä on loki siirretyistä sivuista.',
 'movereason'              => 'Syy',
@@ -2203,6 +2207,7 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
 'trackbackremove'   => ' ([$1 poista])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback poistettiin.',
 
 # Delete conflict
@@ -2215,7 +2220,7 @@ Ole hyvä ja varmista, että haluat luoda sivun uudelleen.",
 'unit-pixel' => ' px',
 
 # HTML dump
-'redirectingto' => 'Uudelleenohjataan sivulle [[$1]]...',
+'redirectingto' => 'Ohjataan sivulle [[$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Poistetaanko tämän sivun välimuistikopiot?
@@ -2251,7 +2256,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ak: Sivu tyhjennettiin',
 'autosumm-replace' => 'Ak: Sivun sisältö korvattiin sisällöllä ”$1”',
-'autoredircomment' => 'Ak: Uudelleenohjaus sivulle [[$1]]',
+'autoredircomment' => 'Ak: Ohjaus sivulle [[$1]]',
 'autosumm-new'     => 'Ak: Uusi sivu: $1',
 
 # Size units

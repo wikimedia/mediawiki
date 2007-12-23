@@ -73,6 +73,7 @@ $messages = array(
 'search'           => 'Huli',
 'searchbutton'     => 'Huli',
 'go'               => 'E huli',
+'searcharticle'    => 'Hele',
 'history_short'    => "He aha i ho'ololi 'ia ai",
 'printableversion' => "Ke 'ano hiki ke pa'i",
 'permalink'        => "Ka loulou pa'a",

@@ -5,11 +5,13 @@
  *
  * @author SPQRobin
  * @author לערי ריינהארט
+ * @author Tauʻolunga
  */
 
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Ngaahi fehokotaki ʻoku laineʻi ʻi lalo:',
+'tog-rememberpassword'   => 'Manatuʻi ʻeku kau-ki-ai ʻi he komipiuta ʻeni',
 'tog-watchcreations'     => 'Tānaki ngaahi peesi ʻoku fakatupu ʻe au ki he hokohoko leʻo',
 'tog-watchdefault'       => 'Tānaki ngaahi peesi ʻoku fatu ʻe au ki he hokohoko leʻo',
 'tog-fancysig'           => 'Fakamoʻoniʻi tula pē (taʻefehokotaki fakamīsini)',
@@ -17,6 +19,7 @@ $messages = array(
 'tog-watchlisthideown'   => 'Toi ʻeku ngaahi fatu mei he hokohoko leʻo',
 'tog-watchlisthidebots'  => 'Toi fatu fakamīsini mei he hokohoko leʻo',
 'tog-watchlisthideminor' => 'Toi ha ngaahi fatu siʻisiʻi mei he hokohoko leʻo',
+'tog-diffonly'           => 'ʻOua ʻe ʻasi ha kakano peesi ʻi lalo ngaahi liliu',
 
 'underline-always'  => 'Taimi kotoa',
 'underline-never'   => 'ʻIkai teitei',

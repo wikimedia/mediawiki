@@ -171,6 +171,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
+'errorpagetitle'    => 'Error',
 'returnto'          => 'Tornar ta $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Aduya',
@@ -840,6 +841,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'group-bureaucrat-member'    => 'Burocrata',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmatos',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Almenistradors',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocratas',
 
@@ -996,6 +998,7 @@ PICT # misz.
 'bydate'                    => 'por a calendata',
 'bysize'                    => 'por a grandaria',
 'imgdelete'                 => 'borr',
+'imgdesc'                   => 'desc',
 'imgfile'                   => 'archibo',
 'filehist'                  => "Istorial de l'archibo",
 'filehist-help'             => "Punche en una calendata/ora ta beyer l'archibo como amanixeba por ixas engüeltas.",
@@ -1005,6 +1008,7 @@ PICT # misz.
 'filehist-current'          => 'autual',
 'filehist-datetime'         => 'Calendata/Ora',
 'filehist-user'             => 'Usuario',
+'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => "Grandaria d'o fichero",
 'filehist-comment'          => 'Comentario',
 'imagelinks'                => 'Binclos ta la imachen',
@@ -1107,6 +1111,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'fewestrevisions' => 'Articlos con menos edizions',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categorías}}',
 'nlinks'                  => '$1 {{PLURAL:$1|binclo|binclos}}',
 'nmembers'                => '$1 {{PLURAL:$1|miembro|miembros}}',
@@ -1302,6 +1307,10 @@ Ta obtenir más informazión y aduya:
 # Delete/protect/revert
 'deletepage'                  => 'Borrar ista pachina',
 'confirm'                     => 'Confirmar',
+'excontent'                   => "O conteniu yera: '$1'",
+'excontentauthor'             => "O conteniu yera: '$1' (y o suyo unico autor '$2')",
+'exbeforeblank'               => "O conteniu antis de blanquiar yera: '$1'",
+'exblank'                     => 'a pachina yera bueda',
 'confirmdelete'               => 'Confirmar o borrau',
 'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
@@ -1315,18 +1324,45 @@ as consecuenzias, y que lo ye fendo d'alcuerdo con as
 Se beiga en $2 un rechistro d\'os borraus rezients.',
 'deletedarticle'              => 'borrato "$1"',
 'dellogpage'                  => 'Rechistro de borraus',
+'dellogpagetext'              => "Contino se i amuestra una lista d'os borraus más rezients.",
+'deletionlog'                 => 'rechistro de borraus',
+'reverted'                    => 'Tornato ta una bersión anterior',
 'deletecomment'               => "Razón d'o borrau",
 'deleteotherreason'           => 'Otras/Más razons:',
 'deletereasonotherlist'       => 'Otra razón',
+'deletereason-dropdown'       => "*Razons comuns de borrau
+** Á demanda d'o mesmo autor
+** trencadura de copyright
+** Bandalismo",
+'rollback'                    => 'Esfer edizions',
+'rollback_short'              => 'Esfer',
 'rollbacklink'                => 'Esfer',
+'rollbackfailed'              => "No s'ha puesto esfer",
+'cantrollback'                => "No se pueden esfer as edizions; o zaguer colaborador ye o unico autor d'iste articlo.",
+'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[$1]] por [[User:$2|$2]] ([[User talk:$2|descusión]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. A zaguer edizión estió feita por [[User:$3|$3]] ([[User talk:$3|descusión]]).',
+'editcomment'                 => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'                  => "Esfeitas as zagueras edizions reyalizatas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); s'ha retornato t'a zaguera edizión de [[User:$1|$1]]",
+'rollback-success'            => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
+'sessionfailure'              => 'Pareix que bi ha un problema con a suya sesión;
+s\'ha canzelato ista aizión como mida de precura contra secuestros de sesión.
+Por fabor, prete "Entazaga" en o suyo nabegador ta cargar a pachina d\'a que benió, y torne á prebar alabez.',
 'protectlogpage'              => 'Protezions de pachinas',
+'protectlogtext'              => 'Contino se i amuestra una lista de protezions y esprotezions de pachinas. Se beiga [[Special:Protectedpages|lista de pachinas protexitas]] ta más informazión.',
+'protectedarticle'            => 'protexita [[$1]]',
+'modifiedarticleprotection'   => 's\'ha cambiato o libel de protezión de "[[$1]]"',
+'unprotectedarticle'          => 'esprotexita [[$1]]',
+'protectsub'                  => '(Protexendo "$1")',
 'confirmprotect'              => 'Confirmar protezión',
 'protectcomment'              => 'Razón ta protexer:',
 'protectexpiry'               => 'Calendata de caduzidat:',
 'protect_expiry_invalid'      => 'Tiempo de caduzidat incorreuto.',
 'protect_expiry_old'          => 'O tiempo de caduzidat ye una calendata ya pasata.',
+'unprotectsub'                => '(Esprotexendo "$1")',
 'protect-unchain'             => 'Confegurar premisos ta treslaus',
 'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong>$1</strong>.",
+'protect-locked-blocked'      => "No puede cambiar os libels de protezión mientres ye bloquiato. Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
+'protect-locked-dblock'       => "Os libels de protezión no se pueden cambiar por un bloqueo autibo d'a base de datos.
+Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'protect-locked-access'       => "A suya cuenta no tiene premiso ta cambiar os libels de protezión d'as pachinas. Aquí bi son as propiedaz autuals d'a pachina <strong>$1</strong>:",
 'protect-cascadeon'           => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default'             => '(por defeuto)',
@@ -1339,10 +1375,29 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'protect-cantedit'            => "No puede cambiar os libels de protezión d'ista pachina, porque no tiene premiso ta editar-la.",
 'restriction-type'            => 'Premiso:',
 'restriction-level'           => 'Libel de restrizión:',
+'minimum-size'                => 'Grandaria menima',
+'maximum-size'                => 'Grandaria maisima',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Editar',
+'restriction-move'   => 'Tresladar',
+'restriction-create' => 'Creyar',
+
+# Restriction levels
+'restriction-level-sysop'         => 'protexita de tot',
+'restriction-level-autoconfirmed' => 'semiprotexita',
+'restriction-level-all'           => 'cualsiquier libel',
 
 # Undelete
-'undeletepagetext' => "As pachinas siguiens han siu borradas, pero encara son en l'archibo y podría estar restauradas. El archibo se borra periodicamén.",
-'undeletebtn'      => 'Restaurar!',
+'undelete'          => 'Beyer pachinas borratas',
+'undeletepage'      => 'Beyer y restaurar pachinas borratas',
+'viewdeletedpage'   => 'Beyer pachinas borratas',
+'undeletepagetext'  => "As pachinas siguiens han siu borradas, pero encara son en l'archibo y podría estar restauradas. El archibo se borra periodicamén.",
+'undeleteextrahelp' => "Ta restaurar a pachina antera con todas as bersions, deixe todas as caixetas sin marcar y prete '''Restaurar!'''. Ta restaurar sólo belunas d'as bersions, marque as caixetas correspondients á las bersions que quiere restaurar. Punchando '''''Deselezionar todas''''' se borrará o comentario y s'esmarcarán as caixetas.",
+'undeleterevisions' => '$1 {{PLURAL:$1|bersión|bersions}} archibatas',
+'undelete-revision' => "S'ha borrato a bersión de $1 de $2 (por $3):",
+'undeletebtn'       => 'Restaurar!',
+'undeletereset'     => 'deselezionar todas',
 
 # Namespace form on various pages
 'namespace'      => 'Espazio de nombres:',

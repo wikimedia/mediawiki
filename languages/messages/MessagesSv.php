@@ -297,6 +297,7 @@ $messages = array(
 'history'           => 'Versionshistorik',
 'history_short'     => 'Historik',
 'updatedmarker'     => 'uppdaterad sedan senaste besöket',
+'info_short'        => 'Information',
 'printableversion'  => 'Utskriftsvänlig version',
 'permalink'         => 'Permanent länk',
 'print'             => 'Skriv ut',
@@ -352,6 +353,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Allmänt förbehåll',
 'edithelp'          => 'Redigeringshjälp',
 'edithelppage'      => 'Help:Hur man redigerar en sida',
+'faq'               => 'FAQ',
 'helppage'          => 'Help:Innehåll',
 'mainpage'          => 'Huvudsida',
 'portal'            => 'Deltagarportalen',
@@ -370,6 +372,7 @@ $messages = array(
 'versionrequired'     => 'Version $1 av MediaWiki krävs',
 'versionrequiredtext' => 'För att kunna använda den här sidan, behövs version $1 av MediaWiki. Se [[Special:Version]].',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Den här sidan är hämtad från $1',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nya meddelanden',
@@ -395,6 +398,7 @@ $messages = array(
 'nstab-main'      => 'Sida',
 'nstab-user'      => 'Användarsida',
 'nstab-media'     => 'Media',
+'nstab-special'   => 'Special',
 'nstab-project'   => 'Projektsida',
 'nstab-image'     => 'Bild',
 'nstab-mediawiki' => 'Systemmeddelande',
@@ -971,6 +975,9 @@ $3',
 'hist'                              => 'historik',
 'hide'                              => 'Göm',
 'show'                              => 'Visa',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 användare bevakar]',
 'rc_categories'                     => 'Begränsa till följande kategorier (separera med "|")',
 'rc_categories_any'                 => 'Vilken som helst',
@@ -1204,6 +1211,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'fewestrevisions' => 'Sidor med minst antal ändringar',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 byte',
 'ncategories'             => '$1 {{PLURAL:$1|kategori|kategorier}}',
 'nlinks'                  => '$1 {{PLURAL:$1|länk|länkar}}',
 'nmembers'                => '$1 {{PLURAL:$1|medlem|medlemmar}}',
@@ -1264,9 +1272,11 @@ med en direkt URL, och kan därför bli listade här trots att de används konti
 'booksources-text'          => 'Nedan följer en lista över länkar till webbplatser som säljer nya och begagnade böcker, och som kanske har ytterligare information om de böcker du söker.',
 
 'categoriespagetext' => 'Följande kategorier finns på {{SITENAME}}.',
+'data'               => 'Data',
 'userrights'         => 'Användarrättigheter',
 'groups'             => 'Användargrupper',
 'alphaindexline'     => '$1 till $2',
+'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Användare:',
@@ -1933,6 +1943,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 Övriga länkar på en rad anger undantag, d.v.s. sidor där bilden tillåts användas.',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Det här filen innehåller extrainformation som troligen lades till när bilden togs av en digitalkamera eller när det digitaliserades av en scanner. Om filen har modifierats kan det hända att vissa detaljer inte överensstämmer med den modifierade bilden.',
 'metadata-expand'   => 'Visa utökade detaljer',
 'metadata-collapse' => 'Dölj utökade detaljer',
@@ -2070,6 +2081,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 
 'exif-unknowndate' => 'Okänt datum',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Spegelvänd horisontellt', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Roterad 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Spegelvänd vertikalt', # 0th row: bottom; 0th column: left
@@ -2153,12 +2165,15 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-gaincontrol-3' => 'Sänkning av lågnivåförstärkning',
 'exif-gaincontrol-4' => 'Sänkning av högnivåförstärkning',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Mjuk',
 'exif-contrast-2' => 'Skarp',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Låg mättnadsgrad',
 'exif-saturation-2' => 'Hög mättnadsgrad',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Mjuk',
 'exif-sharpness-2' => 'Hård',
 
@@ -2232,6 +2247,7 @@ Om det *inte* är du som registrerat kontot, följ inte länken. Efter $4 kommer
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks"> Till denna sida finns följande trackback:<br /> $1 </div>',
 'trackbackremove'   => '([$1 Ta bort])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback har tagits bort.',
 
 # Delete conflict
@@ -2245,9 +2261,10 @@ Bekräfta att du verkligen vill återskapa sidan.",
 'redirectingto' => 'Omdirigerar till [[:$1|$1]]...',
 
 # action=purge
-'confirm_purge' => 'Rensa denna sidas cache?
+'confirm_purge'        => 'Rensa denna sidas cache?
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Leta efter sidor som innehåller ''$1''.",
