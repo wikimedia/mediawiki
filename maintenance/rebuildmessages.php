@@ -11,5 +11,7 @@ if( $wgLocalDatabases ) {
 foreach( $databases as $db ) {
 	echo "Deleting message cache for {$db}... ";
 	$wgMessageCache->mMemc->delete( "{$db}:messages" );
-	echo "Deleted";
+	if( $wgEnableSidebarCache )
+		$wgMessageCache->mMemc->delete( "{$db}:sidebar" );
+	echo "Deleted\n";
 }
