@@ -1127,6 +1127,12 @@ $wgGroupPermissions['bureaucrat']['userrights'] = true;
  */
 # $wgGroupPermissions['developer']['siteadmin'] = true;
 
+
+/**
+ * Implicit groups, aren't shown on Special:Listusers or somewhere else
+ */
+$wgImplicitGroups = array( '*', 'user', 'autoconfirmed', 'emailconfirmed' );
+
 /**
  * Set of available actions that can be restricted via action=protect
  * You probably shouldn't change this.
@@ -1181,6 +1187,17 @@ $wgAutoConfirmAge = 0;
 # Passing both this AND the time requirement is needed
 $wgAutoConfirmCount = 0;
 //$wgAutoConfirmCount = 50;
+
+/**
+ * Automatically promote user flags to users that matchs some conditions
+ */
+$wgAutopromote = array(
+	'autoconfirmed' => array( '&',
+		array( APCOND_EDITCOUNT, &$wgAutoConfirmCount ),
+		array( APCOND_AGE, &$wgAutoConfirmAge ),
+	),
+	'emailconfirmed' => APCOND_EMAILCONFIRMED,
+);
 
 /**
  * These settings can be used to give finer control over who can assign which

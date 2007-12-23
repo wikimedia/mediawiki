@@ -33,6 +33,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
      remove the groups specified in $wgAddGroups and $wgRemoveGroups for
      any groups they are in.
 * New permission userrights-interwiki for changing user rights on foreign wikis.
+* $wgImplictGroups for groups that are hidden from Special:Listusers, etc.
+* $wgAutopromote: automatically promote user flags when user matches
+  criterias
 
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
