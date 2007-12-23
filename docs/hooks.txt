@@ -397,6 +397,12 @@ Gives a chance for an extension to set it programattically to a variable class.
 'AutoAuthenticate': called to authenticate users on external/environmental means
 $user: writes user object to this parameter
 
+'AutopromoteCondition': check autopromote condition for user.
+$type: condition type
+$args: arguments
+$user: user
+$result: result of checking autopromote condition
+
 'BadImage': When checking against the bad image list
 $name: Image name being checked
 &$bad: Whether or not the image is "bad"

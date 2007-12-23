@@ -63,7 +63,7 @@ class Autopromote {
 			case APCOND_INGROUPS:
 			default:
 				$result = false;
-				wfRunHooks( 'AutopromoteCondition', array( $cond[0], array_slice( $cond, 1 ), &$result ) );
+				wfRunHooks( 'AutopromoteCondition', array( $cond[0], array_slice( $cond, 1 ), $user, &$result ) );
 				return $result;
 		}
 	}
