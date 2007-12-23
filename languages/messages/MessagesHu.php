@@ -293,7 +293,7 @@ $messages = array(
 'delete'            => 'Törlés',
 'deletethispage'    => 'Lap törlése',
 'undelete_short'    => '$1 szerkesztés visszavonása',
-'protect'           => 'Védelem',
+'protect'           => 'Lapvédelem',
 'protect_change'    => 'védelem módosítása',
 'protectthispage'   => 'Lap védelme',
 'unprotect'         => 'Védelem ki',
@@ -346,8 +346,8 @@ $messages = array(
 'policy-url'        => 'Project:Nyilatkozat',
 'portal'            => 'Közösségi portál',
 'portal-url'        => 'Project:Közösségi portál',
-'privacy'           => 'Adatvédelmi nyilatkozat',
-'privacypage'       => 'Project:Adatvédelmi nyilatkozat',
+'privacy'           => 'Adatvédelmi irányelvek',
+'privacypage'       => 'Project:Adatvédelmi irányelvek',
 'sitesupport'       => 'Adományok',
 'sitesupport-url'   => 'Project:Webhely támogatása',
 
@@ -456,7 +456,7 @@ Query: $2',
 'viewsourcefor'        => '$1 változata',
 'protectedpagetext'    => 'Ezt a lapot a szerkesztések megakadályozása érdekében zároltuk. Módosításokat a vitalapon javasolhatsz, a védelem feloldását az adminisztrátorok üzenőfalán kérheted .',
 'viewsourcetext'       => 'A lap forrását megtekintheted és másolhatod:',
-'protectedinterface'   => 'Ez a lap a honlap kezelőfelületéhez szolgáltat szöveget a szoftver számára, és a visszaélések elkerülése végett zárolt. A vitalapon javasolhatsz módosításokat.',
+'protectedinterface'   => 'Ez a lap a honlap felületéhez szolgáltat szöveget a szoftver számára, és a visszaélések elkerülése végett le van zárva. A vitalapon javasolhatsz módosításokat.',
 'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felhasználói felületét befolyásolja. A lap átírásával megváltoztatod a megjelenését más felhasználók számára. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Translating:Intro Betawikit].",
 'sqlhidden'            => '(SQL lekérdezés rejtett)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelem alatt áll, mert a következő {{PLURAL:$1|page|pages}} oldalak között található, melyek a "lépcsőzetes" lehetőség bekapcsolásával védettek:
@@ -508,7 +508,7 @@ A fiókodat létrehoztuk. Ne felejtsd el módosítani a személyes {{SITENAME}} 
 'badsig'                     => 'Rossz aláírás; ellenőrizd a HTML-formázást.',
 'badsiglength'               => 'Túl hosszú a beceneved; $1 karakternél kevesebbnek kell lennie.',
 'email'                      => 'E-mail',
-'prefs-help-realname'        => 'A valódi név elhagyható, de ha úgy döntesz, hogy megadod, akkor ez kerül felhasználásra a munkád szerzőjének megjelölésére.',
+'prefs-help-realname'        => '* Igazi neved (nem kötelező): ha úgy döntesz, hogy megadod, ez lesz használva a munkád szerzőjének megjelölésére.',
 'loginerror'                 => 'Belépési hiba',
 'prefs-help-email'           => '¹ E-mail cím (nem kötelező megadni): Lehetővé teszi, hogy más szerkesztők kapcsolatba lépjenek veled a felhasználói vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
 'prefs-help-email-required'  => 'E-mail cím szükséges.',
@@ -666,7 +666,7 @@ gombját.",
 'userinvalidcssjstitle'     => "'''Figyelem:''' Nincs „$1” nevű felszín. Lehet, hogy nagy kezdőbetűt használtál olyan helyen, ahol nem kellene? A felületekhez tartozó .css/.js oldalak kisbetűvel kezdődnek. (Például ''{{ns:user}}:Gipsz Jakab/monobook.css'' és nem ''{{ns:user}}:Gipsz Jakab/Monobook.css''.)",
 'updated'                   => '(Frissítve)',
 'note'                      => '<strong>Megjegyzés:</strong>',
-'previewnote'               => '<strong>Ez csak egy előnézet, a változtatásokat még nem mentetted!</strong>',
+'previewnote'               => '<strong>Ne feledd, hogy ez csak előnézet, a munkád még nincs elmentve!</strong>',
 'previewconflict'           => 'Ez az előnézet a felső szerkesztőablakban levő szövegnek megfelelő képet mutatja, ahogy a mentés után kinézne.',
 'session_fail_preview'      => '<strong>Sajnos nem tudtuk feldolgozni a szerkesztésedet, mert elveszett a session adat. Kérjük próbálkozz újra! Amennyiben továbbra sem sikerül, próbálj meg kijelentkezni, majd ismét bejelentkezni!</strong>',
 'session_fail_preview_html' => "<strong>Elnézést! A munkamenet adatainak megsemmisülése miatt nem tudtuk feldolgozni a szerkesztésedet.</strong>
@@ -749,7 +749,7 @@ Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy e
 'currentrev'          => 'Aktuális változat',
 'revisionasof'        => '$1 változat',
 'revision-info'       => '$2 $1 kori változata',
-'previousrevision'    => '‹Régebbi változat',
+'previousrevision'    => '←Régebbi változat',
 'nextrevision'        => 'Újabb változat→',
 'currentrevisionlink' => 'legfrissebb változat',
 'cur'                 => 'akt',
@@ -905,7 +905,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'math_bad_output'          => 'Nem írható vagy nem hozható létre a matematikai kimeneti könyvtár',
 'math_notexvc'             => 'HIányzó texvc végrehajtható fájl; a beállítást lásd a math/README fájlban.',
 'prefs-personal'           => 'Felhasználói adatok',
-'prefs-rc'                 => 'Legutóbbi változtatások',
+'prefs-rc'                 => 'Friss változtatások',
 'prefs-watchlist'          => 'Figyelőlista',
 'prefs-watchlist-days'     => 'A figyelőlistában mutatott napok száma:',
 'prefs-watchlist-edits'    => 'A kiterjesztett figyelőlistán mutatott szerkesztések száma:',
@@ -1248,9 +1248,9 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue feladat várólista] hossza '''
 'longpages'               => 'Hosszú lapok',
 'deadendpages'            => 'Zsákutcalapok',
 'deadendpagestext'        => 'Az itt található lapok nem kapcsolódnak hivatkozásokkal ezen wiki más oldalaihoz.',
-'protectedpages'          => 'Védett oldalak',
-'protectedpagestext'      => 'A következő oldalak áthelyezés vagy szerkesztés ellen védettek',
-'protectedpagesempty'     => 'Jelenleg nincsenek az ezekkel a paraméterekkel védett oldalak.',
+'protectedpages'          => 'Védett lapok',
+'protectedpagestext'      => 'A következő lapok átnevezés vagy szerkesztés ellen védettek',
+'protectedpagesempty'     => 'Jelenleg nincsenek ilyen paraméterekkel védett lapok.',
 'listusers'               => 'Felhasználók',
 'specialpages'            => 'Speciális lapok',
 'spheading'               => 'Speciális lapok',
@@ -1964,7 +1964,7 @@ $1',
 'filedelete-archive-read-only'    => 'A(z) "$1" archív könyvtár a webkiszolgáló által nem írható.',
 
 # Browsing diffs
-'previousdiff' => '‹ Előző változtatások',
+'previousdiff' => '← Előző változtatások',
 'nextdiff'     => 'Következő változtatások →',
 
 # Media information
@@ -2003,7 +2003,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Szélesség',

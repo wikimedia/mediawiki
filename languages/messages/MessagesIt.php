@@ -16,6 +16,7 @@
  * @author Cryptex
  * @author SabineCretella
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -453,6 +454,7 @@ $2',
 'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
 'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica della pagina, in quanto contiene le impostazioni personali di un altro utente.',
 'ns-specialprotected'  => 'Non è possibile modificare le pagine del namespace {{ns:special}}.',
+'titleprotected'       => 'La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]]. La motivazione è la seguente: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Logout utente',
@@ -828,6 +830,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'searchsubtitle'        => "Ricerca di '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Ricerca di '''$1'''",
 'noexactmatch'          => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
+'noexactmatch-nocreate' => "'''La pagina con titolo \"\$1\" non esiste.'''",
 'titlematches'          => 'Corrispondenze nel titolo delle pagine',
 'notitlematches'        => 'Nessuna corrispondenza nei titoli delle pagine',
 'textmatches'           => 'Corrispondenze nel testo delle pagine',
@@ -915,6 +918,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-available-none'   => "Non è consentito modificare l'appartenenza ai gruppi.",
 'userrights-available-add'    => 'È possibile associare utenti al gruppo $1.',
 'userrights-available-remove' => 'È possibile rimuovere utenti dal gruppo $1.',
+'userrights-no-interwiki'     => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
+'userrights-nodatabase'       => 'Il database $1 non esiste o non è un database locale.',
 
 # Groups
 'group'               => 'Gruppo:',
@@ -985,6 +990,9 @@ Per inserire un'immagine in una pagina, fare un collegamento di questo tipo:
 usare invece
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
 per collegare direttamente gli altri tipi di file.",
+'upload-permitted'            => 'Tipi di file consentiti: $1.',
+'upload-preferred'            => 'Tipi di file consigliati: $1.',
+'upload-prohibited'           => 'Tipi di file non consentiti: $1.',
 'uploadlog'                   => 'File caricati',
 'uploadlogpage'               => 'Log dei file caricati',
 'uploadlogpagetext'           => 'Elenco degli ultimi file caricati sul server di {{SITENAME}}.',
@@ -1000,6 +1008,8 @@ per collegare direttamente gli altri tipi di file.",
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
 'badfilename'                 => 'Il nome del file è stato convertito in "$1".',
 'filetype-badmime'            => 'Non è consentito caricare file di tipo MIME "$1".',
+'filetype-unwanted-type'      => "Caricare file di tipo '''\".\$1\"''' è sconsigliato. I tipi di file consigliati sono \$2.",
+'filetype-banned-type'        => "Caricare file di tipo '''\".\$1\"''' non è consentito. I tipi di file consentiti sono \$2.",
 'filetype-missing'            => 'Il file è privo di estensione (ad es. ".jpg").',
 'large-file'                  => 'Si raccomanda di non superare le dimensioni di $1 per ciascun file; questo file è grande $2.',
 'largefileserver'             => 'Il file supera le dimensioni consentite dalla configurazione del server.',
@@ -1221,6 +1231,9 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'protectedpages'          => 'Pagine protette',
 'protectedpagestext'      => 'Di seguito viene presentato un elenco di pagine protette, di cui è impedita la modifica o lo spostamento',
 'protectedpagesempty'     => 'Al momento non vi sono pagine protette',
+'protectedtitles'         => 'Titoli protetti',
+'protectedtitlestext'     => 'Non è possibile creare pagine con i titoli elencati di seguito',
+'protectedtitlesempty'    => 'Al momento non esistono titoli protetti con i parametri specificati.',
 'listusers'               => 'Elenco degli utenti',
 'specialpages'            => 'Pagine speciali',
 'spheading'               => 'Pagine speciali non riservate',
@@ -1445,8 +1458,9 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Modifica',
-'restriction-move' => 'Spostamento',
+'restriction-edit'   => 'Modifica',
+'restriction-move'   => 'Spostamento',
+'restriction-create' => 'Creazione',
 
 # Restriction levels
 'restriction-level-sysop'         => 'protetta',
@@ -1650,6 +1664,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'pagemovedsub'            => 'Spostamento effettuato con successo',
 'movepage-moved'          => '<big>\'\'\'"$1" è stata spostata al titolo "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Una pagina con questo nome esiste già, oppure il nome scelto non è valido. Scegliere un altro titolo.',
+'cantmove-titleprotected' => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
 'talkexists'              => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
 'movedto'                 => 'spostata a',
 'movetalk'                => 'Sposta anche la pagina di discussione.',
@@ -2248,6 +2263,7 @@ $1',
 'searchnamed'      => "Ricerca delle voci con titolo ''$1''.",
 'articletitles'    => "Ricerca delle voci che iniziano con ''$1''",
 'hideresults'      => 'Nascondi i risultati',
+'useajaxsearch'    => 'Usa la ricerca AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← pagina precedente',

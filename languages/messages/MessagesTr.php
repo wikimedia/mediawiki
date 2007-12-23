@@ -11,6 +11,7 @@
  * @author Nike
  * @author Jon Harald Søby
  * @author לערי ריינהארט
+ * @author Myildirim2007
  */
 
 $namespaceNames = array(
@@ -74,6 +75,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'İzleme listemden benim değişikliklerimi gizle',
 'tog-watchlisthidebots'       => 'İzleme listemden bot değişikliklerini gizle',
 'tog-watchlisthideminor'      => 'İzleme listemden küçük değişiklikleri gizle',
+'tog-ccmeonemails'            => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
@@ -144,6 +146,9 @@ $messages = array(
 'mytalk'         => 'Mesaj Sayfam',
 'anontalk'       => "Bu IP'nin mesajları",
 'navigation'     => 'Sitede yol bulma',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Hata',
 'returnto'          => '$1.',
