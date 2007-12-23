@@ -268,6 +268,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12371) Handle more namespace case variants in namespaceDupes.php
 * (bug 12380) Bot-friendly EditPage::spamPage
 * (bug 8066) Spaces can't be entered in special page aliases
+* (bug 10837) Interface "variant" overruling "language" preference
 
 == Parser changes in 1.12 ==
 
