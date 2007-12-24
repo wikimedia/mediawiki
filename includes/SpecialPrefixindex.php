@@ -40,11 +40,11 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
  * @addtogroup SpecialPage
  */
 class SpecialPrefixindex extends SpecialAllpages {
-	var $maxPerPage=960;
-	var $topLevelMax=50;
-	var $name='Prefixindex';
-	# Determines, which message describes the input field 'nsfrom', used in function namespaceForm (see superclass SpecialAllpages)
-	var $nsfromMsg='allpagesprefix';
+	// Inherit $magPerPage
+
+	// Define other properties
+	protected $name = 'Prefixindex';
+	protected $nsfromMsg = 'allpagesprefix';
 
 /**
  * @param integer $namespace (Default NS_MAIN)
