@@ -91,16 +91,13 @@ class StubUserLang extends StubObject {
 		global $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
 		$code = $wgRequest->getVal('uselang', $wgUser->getOption('language') );
 
-		// IF the content language has variants...
-		if ( $wgContLang->hasVariants() ) {
-			// AND IF the current interface language is the same as content language
-			if ( $code === $wgContLanguageCode ) {
-				// THEN use preferred variant as interface language.
-				// Happens when anonymous users or logged in users with default language
-				// setting selects a variant conversion.
-				$code = $wgContLang->getPreferredVariant();
-			}
-		}
+		// if variant is explicitely selected, use it instead the one from wgUser
+		// see bug #7605
+		if($wgContLang->hasVariants()){
+			$variant = $wgContLang->getPreferredVariant();
+			if($variant != $wgContLanguageCode)
+				$code = $variant;
+		}	 
 
 		# Validate $code
 		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) ) {
