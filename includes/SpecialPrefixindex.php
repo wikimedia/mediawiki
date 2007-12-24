@@ -40,7 +40,7 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
  * @addtogroup SpecialPage
  */
 class SpecialPrefixindex extends SpecialAllpages {
-	// Inherit $magPerPage
+	// Inherit $maxPerPage
 
 	// Define other properties
 	protected $name = 'Prefixindex';
