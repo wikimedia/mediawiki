@@ -266,6 +266,7 @@ class KkConverter extends LanguageConverter {
 
 		$matches = preg_split( '/' . $varsfix . '[^' . $letters . ']+/u', $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 		$mstart = 0;
+		$ret = '';
 		foreach( $matches as $m ) {
 			$ret .= substr( $text, $mstart, $m[1]-$mstart );
 			$ret .= $this->regsConverter( $m[0], $toVariant );
@@ -333,13 +334,13 @@ class LanguageKk extends LanguageKk_cyrl {
 
 		$variants = array( 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' );
 		$variantfallbacks = array(
-			'kk'		=> 'kk-kz',
-			'kk-cyrl'	=> 'kk',
-			'kk-latn'	=> 'kk',
-			'kk-arab'	=> 'kk',
-			'kk-kz'		=> 'kk-cyrl',
-			'kk-tr'		=> 'kk-latn',
-			'kk-cn'		=> 'kk-arab'
+			'kk'      => 'kk-kz',
+			'kk-cyrl' => 'kk',
+			'kk-latn' => 'kk',
+			'kk-arab' => 'kk',
+			'kk-kz'   => 'kk-cyrl',
+			'kk-tr'   => 'kk-latn',
+			'kk-cn'   => 'kk-arab'
 		);
 
 		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );
