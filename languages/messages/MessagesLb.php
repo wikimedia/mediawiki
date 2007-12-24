@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Kaffi
  * @author Robby
+ * @author Nike
  */
 
 $fallback = 'de';
@@ -289,7 +290,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'last'                => 'lescht',
 'orig'                => 'Original',
 'page_first'          => 'éischt',
-'histlegend'          => "Fir d'Ännerungen unzeweisen: Klickt déi zwou Versiounen un déi verglach solle ginn.<br/> 
+'histlegend'          => "Fir d'Ännerungen unzeweisen: Klickt déi zwou Versiounen un déi verglach solle ginn.<br /> 
 *(aktuell) = Ënnerscheed mat der aktueller Versioun,
 *(lescht) = Ënnerscheed mat der aler Versioun, M = Kleng Ännerung.",
 'deletedrev'          => '[geläscht]',
@@ -553,7 +554,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # Export
 'export'        => 'Säiten exportéieren',
-'exporttext'    => "Dir kënnt den Text an den Historique vun enger bestëmmter Säit, oder engem Set vu Säiten, an XML agepak, exportéieren. An Zukunft kann dat dann an eng aner Wiki mat MediaWiki Software agedroë ginn, mee dat gëtt mat der aktueller Versioun nach net ënnerstëtzt. Fir en Artikel z'exportéieren, gitt den Titel an d'Textkëscht heidrënner an, een Titel pro Linn, a wielt aus op Dir nëmmen déi aktuell Versioun oder all Versioune mam ganzen Historique exportéiere wëllt. Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link benotze wéi z.B [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] fir d'[[{{Mediawiki:mainpage}}]].",
+'exporttext'    => "Dir kënnt den Text an den Historique vun enger bestëmmter Säit, oder engem Set vu Säiten, an XML agepak, exportéieren. An Zukunft kann dat dann an eng aner Wiki mat MediaWiki Software agedroë ginn, mee dat gëtt mat der aktueller Versioun nach net ënnerstëtzt. Fir en Artikel z'exportéieren, gitt den Titel an d'Textkëscht heidrënner an, een Titel pro Linn, a wielt aus op Dir nëmmen déi aktuell Versioun oder all Versioune mam ganzen Historique exportéiere wëllt. Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link benotze wéi z.B [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] fir d'[[{{Mediawiki:Mainpage}}]].",
 'exportcuronly' => 'Nëmmen déi aktuell Versioun exportéieren an net de ganzen Historique',
 'export-submit' => 'Exportéieren',
 'export-addcat' => 'Derbäisetzen',

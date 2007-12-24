@@ -423,7 +423,7 @@ Funktsiya: $1<br />
 İstintaq: $2',
 'viewsource'           => 'HTML kodunı köster',
 'viewsourcefor'        => '$1 içün',
-'actionthrottled'      => 'Areket Toqtaldı',
+'actionthrottled'      => 'Areket toqtaldı',
 'actionthrottledtext'  => 'Spamğa qarşı küreş sebebinden bu areketni az vaqıt içinde çoq kere tekrarlap olamaysıñız. Mümkün olğan qarardan ziyade areket yaptıñız. Bir qaç daqqadan soñ tekrarlap baqıñız.',
 'protectedpagetext'    => 'Bu saifeni kimse deñiştirmesin dep o blok etildi.',
 'viewsourcetext'       => 'Saifeniñ kodunı közden keçirip kopirley bilesiñiz:',
@@ -476,6 +476,7 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'yournick'                   => 'Siziñ lağabıñız (imzalarda kösterilecektir):',
 'badsig'                     => 'Yañlış imza. HTML tegleriniñ doğrulığını baqıñız.',
 'badsiglength'               => 'Qarardan ziyade uzun lağaptır, $1-den ziyade simvoldan ibaret olması mümkün degil.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Adıñız (mecburiy degildir): Eger belgileseñiz, saifelerdeki deñişikliklerin kimniñ yapqanını köstermek içün qullanılacaqtır.',
 'loginerror'                 => 'Qullanıcı tanıma hatası',
 'prefs-help-email'           => '*E-mail (mecburiy degildir) başqa qullanıcılarnıñ siznen bağ tutmalarını mümkün qıla. E-mail adresiñiz başqa qullanıcılarğa kösterilmeycek.',
@@ -853,6 +854,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'show'                              => 'köster',
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'Y',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|qullanıcı|qullanıcı}} közete]',
 'rc_categories'                     => 'Tek kategoriyalardan ("|" ile ayırıla)',
 'rc_categories_any'                 => 'Er angi',
@@ -1144,6 +1146,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'emailpagetext'   => 'İşbu qullanıcı öz ayarlarında (nastroykalarında) mevcüt olğan elektron poçta adresini yazğan olsa, aşağıdaki formanı toldurıp oña beyan yollap olursıñız.
 Öz ayarlarıñızda yazğan elektron adresiñiz mektüpniñ "Kimden" yazısı yerine yazılacaq, bunıñ içün mektüp alıcı da sizge cevap olaraq mektüp yollap olur.',
 'usermailererror' => 'Elektron poçta beyanı yollanğan vaqıtta hata olıp çıqtı',
+'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Elektron poçta adresi yoqtır',
 'noemailtext'     => 'Bu qullanıcı ya mevcüt olğan elektron poçta adresini yazmağan, ya da başqa qullanıcılardan mektüp aluvdan vazgeçken.',
 'emailfrom'       => 'Kimden',
@@ -1719,6 +1722,7 @@ Bu saife içün trackback:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 yoq et])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback muvafaqiyetnen yoq etildi.',
 
 # Delete conflict

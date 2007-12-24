@@ -6,6 +6,7 @@
  * @author לערי ריינהארט
  * @author Vpovilaitis
  * @author Matasg
+ * @author Pdxx
  */
 
 $namespaceNames = array(
@@ -1174,6 +1175,7 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'protectedpages'          => 'Apsaugoti puslapiai',
 'protectedpagestext'      => 'Šie puslapiai yra apsaugoti nuo perkėlimo ar redagavimo',
 'protectedpagesempty'     => 'Šiuo metu nėra apsaugotas joks failas su šiais parametrais.',
+'protectedtitles'         => 'Apsaugoti pavadinimai',
 'listusers'               => 'Naudotojų sąrašas',
 'specialpages'            => 'Specialieji puslapiai',
 'spheading'               => 'Specialieji puslapiai visiems naudotojams',
@@ -1922,7 +1924,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t.y. pusla
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Plotis',

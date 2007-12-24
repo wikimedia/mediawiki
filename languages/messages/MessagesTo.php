@@ -247,7 +247,7 @@ Kuo fakatupu hoʻo tohi kau-ki-ai. ʻOua ʻe ngalo ke liliu hoʻo faʻiteliha {{
 'yourpasswordagain'          => 'Toe ʻai leatapu',
 'remembermypassword'         => 'Manatuʻi au',
 'yourdomainname'             => 'ho ngāueʻanga',
-'loginproblem'               => '<b>Naʻe ʻi ai ha meʻafihi mo hoʻo kau-ki-ai.</b><br/>Toe feinga.',
+'loginproblem'               => '<b>Naʻe ʻi ai ha meʻafihi mo hoʻo kau-ki-ai.</b><br />Toe feinga.',
 'login'                      => 'Kau ki ai',
 'loginprompt'                => 'ʻOku pau te ke fakamafeia ʻa e ngaahi foʻi keke kapau te ke fie kau-ki-ai ki he {{SITENAME}}.',
 'userlogin'                  => 'Kau ki ai',

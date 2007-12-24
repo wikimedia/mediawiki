@@ -9,6 +9,7 @@
  * @author Alison
  * @author Helix84
  * @author SPQRobin
+ * @author Nike
  */
 
 $skinNames = array(
@@ -705,7 +706,7 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 'rcshowhideanons'                   => '$1 úsáideoirí gan ainm',
 'rcshowhidepatr'                    => '$1 athruithe faoi phatról',
 'rcshowhidemine'                    => '$1 mo chuid athruithe',
-'rclinks'                           => 'Taispeáin na $1 athruithe is déanaí sna $2 laethanta seo caite; $3 mionathruithe',
+'rclinks'                           => 'Taispeáin na $1 athruithe is déanaí sna $2 laethanta seo caite<br />$3 mionathruithe',
 'diff'                              => 'difr',
 'hist'                              => 'stáir',
 'hide'                              => 'Folaigh',
@@ -724,7 +725,7 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 'uploadnologin'     => 'Nil tú logáilte isteach',
 'uploadnologintext' => 'Ní mór duit [[Special:Userlogin|logáil isteach]] chun comhaid a huaslódáil.',
 'uploaderror'       => 'Earráid uaslódála',
-'uploadtext'        => "!! '''STOP!''' Sul má dhéanann tú uaslódáil anseo,
+'uploadtext'        => "'''STOP!''' Sul má dhéanann tú uaslódáil anseo,
 bí cinnte an [[{{MediaWiki:Policy-url}}|polasaí úsáide íomhá]] atá ag {{SITENAME}} a léamh agus géilleadh dó.
 
 Má tá comhad ann cheana leis an ainm céanna atá tú ag tabhairt don chomhad nua, cuirfear an comhad nua
@@ -1161,7 +1162,7 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 
 # Move page
 'movepage'               => 'Athainmnigh an leathanach',
-'movepagetext'           => "!! Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid
+'movepagetext'           => " Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid
 stair go léir chuig an teideal nua.
 Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua.
 Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá

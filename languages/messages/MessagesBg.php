@@ -8,6 +8,8 @@
  * @author Helix84
  * @author Spiritia
  * @author BloodIce
+ * @author Borislav
+ * @author Siebrand
  */
 
 $fallback8bitEncoding = 'windows-1251';
@@ -2278,6 +2280,9 @@ $1',
 'articletitles'    => "Страници, започващи с ''$1''",
 'hideresults'      => 'Скриване на резултатите',
 'useajaxsearch'    => 'Използване на AJAX-търсене',
+
+# Separators for various lists
+'comma-separator' => ',&nbsp;',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← предишна страница',
