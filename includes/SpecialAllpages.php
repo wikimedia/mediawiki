@@ -38,11 +38,21 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
  * @addtogroup SpecialPage
  */
 class SpecialAllpages {
-	var $maxPerPage=960;
-	var $topLevelMax=50;
-	var $name='Allpages';
-	# Determines, which message describes the input field 'nsfrom' (->SpecialPrefixindex.php)
-	var $nsfromMsg='allpagesfrom';
+	/**
+	 * Maximum number of pages to show on single subpage.
+	 */
+	protected $maxPerPage = 960;
+
+	/**
+	 * Name of this special page. Used to make title objects that reference back
+	 * to this page.
+	 */
+	protected $name = 'Allpages';
+
+	/**
+	 * Determines, which message describes the input field 'nsfrom'.
+	 */
+	protected $nsfromMsg = 'allpagesfrom';
 
 /**
  * HTML for the top form
