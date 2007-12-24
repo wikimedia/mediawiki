@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author Teak
  * @author Antofa
+ * @author Nike
  */
 
 $messages = array(
@@ -1007,7 +1008,7 @@ pà culligà direttamenti l'althri tipi di file.",
 
 'disambiguations'      => 'Pàgini cu lu matessi innòmmu',
 'disambiguationspage'  => 'Template:Matessi innòmmu',
-'disambiguations-text' => "Li pàgini i' la sighenti listha cuntènani cullegamenti a '''pàgini cu' lu matessi innòmmu''' e nò a la rasgiòni a chi dubaristhia fà rifirimentu.<br />So cunsidaraddi pàgini cu lu matessi innòmmu tutti chissi chi cuntènini li mudelli erencaddi in [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "Li pàgini i' la sighenti listha cuntènani cullegamenti a '''pàgini cu' lu matessi innòmmu''' e nò a la rasgiòni a chi dubaristhia fà rifirimentu.<br />So cunsidaraddi pàgini cu lu matessi innòmmu tutti chissi chi cuntènini li mudelli erencaddi in [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Rinvii doppi',
 
@@ -1336,19 +1337,24 @@ $1",
 'ipbanononly'                 => 'Brocca soru utenti anònimi',
 'ipbcreateaccount'            => "Impidisci la criazioni d'althri registhrazioni",
 'ipbemailban'                 => "Impidisci a l'utenti l'inviu di postha erettrònica",
+'ipbenableautoblock'          => "Brocca automatiggamenti l'ulthimu indirizzu IP usaddu da l'utenti e l'althri chi zerchani di fà mudìfigghi",
 'ipbsubmit'                   => "Brocca l'utenti",
 'ipbother'                    => 'Duradda nò in erencu:',
 'ipboptions'                  => '2 ori:2 hours,1 dì:1 day,3 dì:3 days,1 chedda:1 week,2 cheddi:2 weeks,1 mesi:1 month,3 mesi:3 months,6 mesi:6 months,1 anni:1 year,infiniddu:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'althru',
 'ipbotherreason'              => 'Althri dettàgli/rasgioni aggiuntiba:',
+'ipbhidename'                 => "Cua l'innòmu utenti o l'indirizzu IP da lu rigisthru di li brocchi, da l'erencu di li brocci attibi e da l'erencu utenti.",
 'badipaddress'                => 'Indirizzu IP invàriddu',
 'blockipsuccesssub'           => 'Broccu eseguiddu',
+'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] è isthaddu broccaddu.
+<br />Cunsulthà la [[Special:Ipblocklist|listha di l'IP broccaddi]] pa vidé i brocchi attibi.",
 'ipb-edit-dropdown'           => 'Mutibi pa lu broccu',
 'ipb-unblock-addr'            => 'Ibbrucca $1',
 'ipb-unblock'                 => "Ibbrucca un'utenti o un'indirizzu IP",
 'ipb-blocklist-addr'          => 'Erenca i brocchi attibi pa $1',
 'ipb-blocklist'               => 'Erenca i brocchi attibi',
 'unblockip'                   => "Ibbrucca l'utenti",
+'unblockiptext'               => "Usà lu mòdulu in giossu pa turrà l'intradda i'ischrittura a un'utenti o indirizzu IP broccaddu.",
 'ipusubmit'                   => "Ibbrucca chisth'indirizzu",
 'unblocked'                   => "L'utenti [[User:$1|$1]] è isthaddu ibbruccaddu",
 'unblocked-id'                => 'Lu broccu $1 è isthaddu buggaddu',
@@ -1368,6 +1374,7 @@ $1",
 'blocklink'                   => 'brocca',
 'unblocklink'                 => 'ibbrucca',
 'contribslink'                => 'cuntributi',
+'autoblocker'                 => "Broccaddu automatiggamenti parchí l'indirizzu IP è cundibisu cu' l'utenti \"[[User:\$1|\$1]]\". Lu broccu di l'utenti \$1 è isthaddu impusthaddu pa lu sighenti mutibu: \"'''\$2'''\".",
 'blocklogpage'                => 'Brocchi',
 'blocklogentry'               => "à broccaddu [[$1]] cu' l'ischadènzia $2 $3",
 'unblocklogentry'             => 'à ibbruccaddu $1',

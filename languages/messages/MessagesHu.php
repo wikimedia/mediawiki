@@ -7,6 +7,7 @@
  * @author Bdamokos
  * @author Tgr
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -483,7 +484,7 @@ A fiókodat létrehoztuk. Ne felejtsd el módosítani a személyes {{SITENAME}} 
 'remembermypassword'         => 'Emlékezzen rám ezen a számítógépen',
 'yourdomainname'             => 'A domained:',
 'externaldberror'            => 'Vagy külső adatbázis hitelesítési hiba történt, vagy a külső fiókod frissítése a számodra nem engedélyezett.',
-'loginproblem'               => '<b>Valami probléma van a belépéseddel.</b><br/>Kérlek, próbáld ismét!',
+'loginproblem'               => '<b>Valami probléma van a belépéseddel.</b><br />Kérlek, próbáld ismét!',
 'login'                      => 'Belépés',
 'loginprompt'                => 'Engedélyezned kell a cookie-kat, hogy bejelentkezhess a {{grammar:be|{{SITENAME}}}}.',
 'userlogin'                  => 'Belépés / fiók létrehozása',

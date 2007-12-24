@@ -1,5 +1,5 @@
 <?php
-/** Wu Chinese (吴语)
+/** Wu (吴语)
  *
  * @addtogroup Language
  *
@@ -98,6 +98,7 @@ $messages = array(
 'qbfind'         => '查找',
 'qbedit'         => '编辑',
 'qbpageoptions'  => '页面选项',
+'qbmyoptions'    => '我个选项',
 'qbspecialpages' => '特殊页面',
 'moredotdotdot'  => '还有...',
 'mypage'         => '我个页面',
@@ -148,6 +149,7 @@ $messages = array(
 'categorypage'      => '查看分类页面',
 'viewtalkpage'      => '查看讨论页',
 'otherlanguages'    => '别样闲话版本',
+'redirectedfrom'    => '（重定向自$1）',
 'redirectpagesub'   => '重定向页面',
 'protectedpage'     => '拨保护个页面',
 'jumpto'            => '跳到：',

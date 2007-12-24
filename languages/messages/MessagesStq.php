@@ -1383,7 +1383,7 @@ Annerengen an disse Siede foarnuumen häd.<br />Ju lääste Annerenge stamt fon 
 
 # Restrictions (nouns)
 'restriction-edit'   => 'beoarbaidje',
-'restriction-move'   => 'ferschäuwen',
+'restriction-move'   => 'ferschuuwe',
 'restriction-create' => 'moakje',
 
 # Restriction levels
@@ -1575,7 +1575,7 @@ Reek dän Gruund foar ju Speere oun.',
 'databasenotlocked'   => 'Ju Doatenboank is nit speerd.',
 
 # Move page
-'movepage'                => 'Siede ferschäuwen',
+'movepage'                => 'Siede ferschuuwe',
 'movepagetext'            => 'Mäd dissen Formular koast du ne Siede touhoope mäd aal Versione tou n uur Noome ferschuuwe. Foar dän oolde Noome wäd ne Fäärelaitenge tou dän Näie iengjucht. Ferwiese ap dän oolde Noome wäide nit annerd.',
 'movepagetalktext'        => "Ju touheerige Diskussionssiede wäd, sofier deer, mee ferschäuwen, '''of dät moast weese''' 
 * du ferschufst ju Siede in n uur [[Wikipedia:Noomensruum|Noomensruum]] 
@@ -1589,7 +1589,7 @@ In disse Falle moast du ju Siede, wan wonsked, fon Hounde ferschuuwe. Jädden d�
 'movenotallowed'          => 'Du hääst in dissen Wiki neen Begjuchtigenge, Sieden tou ferschuuwen.',
 'newtitle'                => 'Tou dän näie Tittel:',
 'move-watch'              => 'Disse Siede beooboachtje',
-'movepagebtn'             => 'Siede ferschäuwen',
+'movepagebtn'             => 'Siede ferschuuwe',
 'pagemovedsub'            => 'Ferschuuwenge mäd Ärfoulch',
 'movepage-moved'          => "<big>'''Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Dät rakt al n Siede mäd disse Noome, of uurs is die Noome dän du anroat hääst, nit toulät.
@@ -1602,7 +1602,7 @@ Fersäik jädden n uur Noome.',
 'talkpagenotmoved'        => 'Ju Diskussions-Siede wuude <strong>nit</strong> ferschäuwen.',
 '1movedto2'               => 'häd "[[$1]]" ätter "[[$2]]" ferschäuwen',
 '1movedto2_redir'         => 'häd „[[$1]]“ ätter „[[$2]]“ ferschäuwen un deerbie ne Fääreleedenge uurschrieuwen',
-'movelogpage'             => 'Ferschäuwengs-Logbouk',
+'movelogpage'             => 'Ferschuuwengs-Logbouk',
 'movelogpagetext'         => 'Dit is ne Lieste fon aal ferschäuwene Sieden.',
 'movereason'              => 'Kuute Begründenge:',
 'revertmove'              => 'tourääch ferschuuwe',
@@ -1697,7 +1697,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'tooltip-ca-protect'              => 'Disse Siede schutsje',
 'tooltip-ca-delete'               => 'Disse Siede läskje',
 'tooltip-ca-undelete'             => 'Iendraage wier moakje, eer disse Siede läsked wuude',
-'tooltip-ca-move'                 => 'Disse Siede ferschäuwen',
+'tooltip-ca-move'                 => 'Disse Siede ferschuuwe',
 'tooltip-ca-watch'                => 'Disse Siede an dien Beoobachtengslieste touföigje',
 'tooltip-ca-unwatch'              => 'Disse Siede fon ju persöönelke Beooboachtengslieste wächhoalje',
 'tooltip-search'                  => '{{SITENAME}} truchsäike',

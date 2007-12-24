@@ -121,6 +121,8 @@ $messages = array(
 'november-gen'  => 'Novembro',
 'december-gen'  => 'Decembro',
 'jan'           => 'Xan',
+'feb'           => 'Feb',
+'mar'           => 'Mar',
 'apr'           => 'Abr',
 'may'           => 'Mai',
 'jun'           => 'Xuñ',
@@ -128,6 +130,8 @@ $messages = array(
 'aug'           => 'Ago',
 'sep'           => 'Set',
 'oct'           => 'Out',
+'nov'           => 'Nov',
+'dec'           => 'Dec',
 
 # Bits of text used by many pages
 'categories'            => 'Categorías',
@@ -347,7 +351,7 @@ Función: $1<br />
 Procura: $2',
 'viewsource'           => 'Ver código fonte',
 'viewsourcefor'        => 'de $1',
-'actionthrottled'      => 'Acción Ocasional',
+'actionthrottled'      => 'Acción ocasional',
 'actionthrottledtext'  => 'Como unha medida de loita contra o spam, limítase a realización desta acción moitas veces nun corto espazo de tempo, e que superaron este límite. Ténteo de novo nuns minutos.',
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
@@ -849,15 +853,18 @@ e a do servidor (UTC).',
 # Groups
 'group'               => 'Grupo:',
 'group-autoconfirmed' => 'Usuarios auto-confirmados',
+'group-bot'           => 'Bots',
 'group-sysop'         => 'Administradores',
 'group-bureaucrat'    => 'Burócratas',
 'group-all'           => '(todos)',
 
 'group-autoconfirmed-member' => 'Usuario auto-confirmado',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrador',
 'group-bureaucrat-member'    => 'Burócrata',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuario auto-confirmado',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
 
@@ -876,14 +883,19 @@ e a do servidor (UTC).',
 'rcnotefrom'                        => 'Abaixo amósanse os cambios desde <b>$2</b> (móstranse ata <b>$1</b>).',
 'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
 'rcshowhideminor'                   => '$1 edicións pequenas',
+'rcshowhidebots'                    => '$1 bots',
 'rcshowhideliu'                     => '$1 usuarios rexistrados',
 'rcshowhideanons'                   => '$1 usuarios anónimos',
 'rcshowhidepatr'                    => '$1 edicións revisadas',
 'rcshowhidemine'                    => '$1 edicións propias',
 'rclinks'                           => 'Mostrar os últimos $1 cambios dos últimos $2 días.<br /> $3',
 'diff'                              => 'dif',
+'hist'                              => 'hist',
 'hide'                              => 'Agochar',
 'show'                              => 'Mostrar',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} vixiando]',
 'rc_categories'                     => 'Límite para categorías (separado con "|")',
 'rc_categories_any'                 => 'Calquera',
@@ -1009,6 +1021,7 @@ PICT # misc.
 'bydate'                    => 'por data',
 'bysize'                    => 'por tamaño',
 'imgdelete'                 => 'borrar',
+'imgdesc'                   => 'desc',
 'imgfile'                   => 'ficheiro',
 'filehist'                  => 'Historial do ficheiro',
 'filehist-help'             => 'Calque nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
@@ -1123,6 +1136,7 @@ Cada fileira contén ligazóns cara á primeira e segunda redirección, e tamén
 'fewestrevisions' => 'Artigos con menos revisións',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categorías}}',
 'nlinks'                  => '$1 {{PLURAL:$1|ligazón|ligazóns}}',
 'nmembers'                => '$1 {{PLURAL:$1|páxina|páxinas}}',
@@ -1387,6 +1401,7 @@ Eis a configuración actual da páxina <strong>$1</strong>:',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo (bytes)',
 'maximum-size'                => 'Tamaño máximo',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Editar',
@@ -1798,15 +1813,16 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 
 # Spam protection
-'spamprotectiontitle'  => 'Filtro de protección de correo electrónico non solicitado (spam)',
-'spamprotectiontext'   => "A páxina que quixo gardar foi bloqueada polo filtro ''antispam''. Isto probabelmente se deba a unha ligazón cara a un sitio externo.",
-'spamprotectionmatch'  => 'O seguinte texto foi o que activou o noso filtro de correo electrónico non solicitado (spam): $1',
-'subcategorycount'     => 'Hai {{PLURAL:$1|unha subcategoría|$1 subcategorías}} desta categoría.',
-'categoryarticlecount' => 'Hai {{PLURAL:$1|un artigo|$1 artigos}} nesta sección desta categoría.',
-'category-media-count' => 'Hai {{PLURAL:$1|un ficheiro|$1 ficheiros}} nesta categoría.',
-'spambot_username'     => 'MediaWiki limpeza de spam',
-'spam_reverting'       => 'Revertida á última edición sen ligazóns a $1',
-'spam_blanking'        => 'Limpáronse todas as revisións con ligazóns a $1',
+'spamprotectiontitle'    => 'Filtro de protección de correo electrónico non solicitado (spam)',
+'spamprotectiontext'     => "A páxina que quixo gardar foi bloqueada polo filtro ''antispam''. Isto probabelmente se deba a unha ligazón cara a un sitio externo.",
+'spamprotectionmatch'    => 'O seguinte texto foi o que activou o noso filtro de correo electrónico non solicitado (spam): $1',
+'subcategorycount'       => 'Hai {{PLURAL:$1|unha subcategoría|$1 subcategorías}} desta categoría.',
+'categoryarticlecount'   => 'Hai {{PLURAL:$1|un artigo|$1 artigos}} nesta sección desta categoría.',
+'category-media-count'   => 'Hai {{PLURAL:$1|un ficheiro|$1 ficheiros}} nesta categoría.',
+'listingcontinuesabbrev' => 'cont.',
+'spambot_username'       => 'MediaWiki limpeza de spam',
+'spam_reverting'         => 'Revertida á última edición sen ligazóns a $1',
+'spam_blanking'          => 'Limpáronse todas as revisións con ligazóns a $1',
 
 # Info page
 'infosubtitle'   => 'Información da páxina',
@@ -1869,8 +1885,9 @@ $1',
 'show-big-image-thumb' => '<small>Tamaño desta presentación da imaxe: $1 × $2 píxeles</small>',
 
 # Special:Newimages
-'newimages' => 'Galería de imaxes novas',
-'noimages'  => 'Non hai imaxes para ver.',
+'newimages'    => 'Galería de imaxes novas',
+'showhidebots' => '($1 bots)',
+'noimages'     => 'Non hai imaxes para ver.',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -1951,6 +1968,7 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-subjectdistance'             => 'Distancia do suxeito',
 'exif-meteringmode'                => 'Modo de medida da exposición',
 'exif-lightsource'                 => 'Fonte da luz',
+'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Lonxitude focal',
 'exif-subjectarea'                 => 'Área do suxeito',
 'exif-flashenergy'                 => 'Enerxía do flash',
@@ -1979,9 +1997,11 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-imageuniqueid'               => 'ID única da imaxe',
 'exif-gpsversionid'                => 'Versión da etiqueta GPS',
 'exif-gpslatituderef'              => 'Latitude norte ou sur',
+'exif-gpslatitude'                 => 'Latitude',
 'exif-gpslongituderef'             => 'Lonxitude leste ou oeste',
 'exif-gpslongitude'                => 'Lonxitude',
 'exif-gpsaltituderef'              => 'Referencia da altitude',
+'exif-gpsaltitude'                 => 'Altitude',
 'exif-gpstimestamp'                => 'Hora GPS (reloxio atómico)',
 'exif-gpssatellites'               => 'Satélites utilizados para a medida',
 'exif-gpsstatus'                   => 'Estado do receptor',
@@ -2012,6 +2032,7 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 
 'exif-unknowndate' => 'Data descoñecida',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Volteada horizontalmente', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotada 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Volteada verticalmente', # 0th row: bottom; 0th column: left
@@ -2026,6 +2047,7 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-componentsconfiguration-0' => 'non hai',
 
 'exif-exposureprogram-0' => 'Sen definir',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => 'Prioridade da apertura',
 'exif-exposureprogram-4' => 'Prioridade da obturación',
@@ -2049,6 +2071,7 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-lightsource-1'   => 'Luz do día',
 'exif-lightsource-2'   => 'Fluorescente',
 'exif-lightsource-3'   => 'Tungsteno (luz incandescente)',
+'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Bo tempo',
 'exif-lightsource-10'  => 'Tempo anubrado',
 'exif-lightsource-11'  => 'Sombra',
@@ -2095,16 +2118,20 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'exif-gaincontrol-3' => 'Baixa ganancia inferior',
 'exif-gaincontrol-4' => 'Alta ganancia inferior',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Suave',
 'exif-contrast-2' => 'Forte',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Saturación baixa',
 'exif-saturation-2' => 'Saturación alta',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Suave',
 'exif-sharpness-2' => 'Forte',
 
 'exif-subjectdistancerange-0' => 'Descoñecida',
+'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Primeiro plano',
 'exif-subjectdistancerange-3' => 'Paisaxe',
 
@@ -2180,6 +2207,7 @@ Trackbacks para este artigo:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Borrar])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Eliminouse o trackback sen problemas.',
 
 # Delete conflict
@@ -2213,6 +2241,8 @@ $1',
 'imgmultiparseerror' => 'Parece que o ficheiro da imaxe está corrompido ou é incorrecto, polo que {{SITENAME}} non pode recuperar unha listaxe de páxinas.',
 
 # Table pager
+'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'desc',
 'table_pager_next'         => 'Páxina seguinte',
 'table_pager_prev'         => 'Páxina anterior',
 'table_pager_first'        => 'Primeira páxina',
