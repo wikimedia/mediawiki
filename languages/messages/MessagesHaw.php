@@ -82,21 +82,26 @@ $messages = array(
 'deletethispage'   => 'E kāpae i kēia mo‘olelo',
 'protect'          => "E ho'omalu",
 'unprotect'        => 'E wehe ho‘omalu',
+'talkpagelinktext' => 'Kūkākūkā',
 'talk'             => 'Kūkākūkā',
 'otherlanguages'   => "Ma nā leo 'ē a'e",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'     => 'E pili ana iā {{SITENAME}}',
 'currentevents' => 'Ka nū hou',
+'disclaimers'   => 'Nā a‘o ‘ana laulā',
 'mainpage'      => 'Ka papa kinohi',
 'portal'        => 'Ka hui kaiaulu',
 'portal-url'    => 'Project:Ka hui kaiaulu',
+'privacy'       => 'Palapala pilikino',
 'sitesupport'   => 'E lūlū mai',
 
 'badaccess' => 'Hewa ‘ae',
 
 'editsection' => "E ho'opololei",
 'editold'     => "E ho'opololei",
+'showtoc'     => 'hō‘ike',
+'hidetoc'     => 'hūnā',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Mea',
@@ -155,9 +160,13 @@ hō‘ike ‘ia i lalo:",
 'anontalkpagetext'      => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:Userlogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
 
 # History pages
+'cur'          => 'hou',
 'deletedrev'   => '[ua kāpae ‘ia]',
 'historysize'  => '({{PLURAL:$1|1 ‘ai|$1 ‘ai}})',
 'historyempty' => '(‘ole)',
+
+# Diffs
+'editundo' => 'wehe',
 
 # Search results
 'powersearch' => 'Huli',
@@ -178,9 +187,10 @@ hō‘ike ‘ia i lalo:",
 'group-bureaucrat-member' => 'Kuhina',
 
 # Recent changes
-'recentchanges' => 'Nā loli hou',
-'diff'          => '‘oko‘a',
-'hist'          => 'loli',
+'recentchanges'   => 'Nā loli hou',
+'diff'            => '‘oko‘a',
+'hist'            => 'loli',
+'minoreditletter' => 'iki',
 
 # Recent changes linked
 'recentchangeslinked' => "Nā loli hou 'ālike",
@@ -201,6 +211,7 @@ hō‘ike ‘ia i lalo:",
 'brokenredirects-delete' => '(e kāpae)',
 
 # Miscellaneous special pages
+'nbytes'            => '$1 {{PLURAL:$1|‘ai|‘ai}}',
 'allpages'          => 'Nā ‘ao‘ao loa apau',
 'specialpages'      => 'Nā papa nui',
 'newpages'          => 'Nā ‘ao‘ao hou',
@@ -230,6 +241,10 @@ hō‘ike ‘ia i lalo:",
 'watchthispage' => 'E nānā pono i kēia mea',
 'unwatch'       => 'E wehe kia‘i',
 
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Ke kia‘i nei...',
+'unwatching' => 'Ke wehe-kia‘i nei...',
+
 'changed' => 'ua loli ‘ia',
 
 # Delete/protect/revert
@@ -255,6 +270,7 @@ hō‘ike ‘ia i lalo:",
 'ipbreason'     => 'Ke kumu',
 'ipbsubmit'     => 'E ke‘a i kēia mea ho‘ohana',
 'ipbother'      => 'ʻĒ aʻe manawa:',
+'ipboptions'    => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'badipaddress'  => 'Mana ‘ole ka wahi noho IP',
 'anononlyblock' => '‘A‘ohe i hō‘ike‘ia ka inoa wale nō',
 'blocklink'     => 'e keʻa',
@@ -273,6 +289,9 @@ hō‘ike ‘ia i lalo:",
 'allmessagesname'    => 'Inoa',
 'allmessagesdefault' => 'Kikokikona pa‘amau',
 'allmessagescurrent' => 'Kikokikona i kēia manawa',
+
+# Thumbnails
+'thumbnail-more' => 'ho‘onui',
 
 # Attribution
 'and' => 'a me',

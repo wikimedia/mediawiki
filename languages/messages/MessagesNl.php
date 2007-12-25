@@ -2012,7 +2012,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'subcategorycount'       => 'Er {{PLURAL:$1|is 1 ondercategorie|zijn $1 ondercategorieën}} binnen deze categorie.',
 'categoryarticlecount'   => "Er {{PLURAL:$1|bevindt zich 1 pagina|bevinden zich $1 pagina's}} in deze categorie.",
 'category-media-count'   => 'Er {{PLURAL:$1|staat één bestand|staan $1 bestanden}} in deze categorie.',
-'listingcontinuesabbrev' => ' meer',
+'listingcontinuesabbrev' => 'meer',
 'spambot_username'       => 'MediaWiki opschoning spam',
 'spam_reverting'         => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
 'spam_blanking'          => 'Alle wijzigingen met een link naar $1 worden verwijderd',

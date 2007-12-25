@@ -48,6 +48,13 @@ $messages = array(
 'thursday'  => 'Donneschdeg',
 'friday'    => 'Freideg',
 'saturday'  => 'Samsdeg',
+'sun'       => 'Son',
+'mon'       => 'Méi',
+'tue'       => 'Dën',
+'wed'       => 'Mët',
+'thu'       => 'Don',
+'fri'       => 'Fre',
+'sat'       => 'Sam',
 'january'   => 'Januar',
 'february'  => 'Februar',
 'march'     => 'Mäerz',
@@ -84,6 +91,7 @@ $messages = array(
 'article'        => 'Artikel',
 'newwindow'      => '(geet an enger neier Fënster op)',
 'cancel'         => 'Zeréck',
+'qbfind'         => 'Fannen',
 'qbspecialpages' => 'Spezialsäiten',
 'moredotdotdot'  => 'Méi …',
 'mypage'         => 'meng Säit',
@@ -93,6 +101,7 @@ $messages = array(
 
 'errorpagetitle'   => 'Feeler',
 'returnto'         => 'Zréck op $1.',
+'tagline'          => 'Vu {{SITENAME}}',
 'help'             => 'Hëllef',
 'search'           => 'Sichen',
 'searchbutton'     => 'Volltext-Sich',
@@ -111,6 +120,7 @@ $messages = array(
 'protect'          => 'Protegéieren',
 'unprotect'        => 'Deprotegéieren',
 'newpage'          => 'Nei Säit',
+'talkpage'         => 'Diskussioun',
 'talkpagelinktext' => 'Diskussioun',
 'specialpage'      => 'Spezialsäit',
 'personaltools'    => 'Perséinlech Tools',
@@ -149,6 +159,7 @@ $messages = array(
 'newmessageslink' => 'nei Messagen',
 'editsection'     => 'änneren',
 'editold'         => 'änneren',
+'editsectionhint' => 'Abschnitt veränneren: $1',
 'toc'             => 'Inhaltsverzeechnis',
 'showtoc'         => 'weis',
 'hidetoc'         => 'verstoppen',
@@ -190,9 +201,13 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'yourname'                   => 'Benotzernumm:',
 'yourpassword'               => 'Passwuert:',
 'yourdomainname'             => 'Ären Domain',
+'login'                      => 'Umellen',
 'userlogin'                  => 'Aloggen',
+'logout'                     => 'Ofmellen',
 'userlogout'                 => 'Ausloggen',
+'notloggedin'                => 'Net ugemellt',
 'createaccount'              => 'Neie Kont opmaachen',
+'gotaccountlink'             => 'Umellen',
 'createaccountmail'          => 'Via Email',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
 'youremail'                  => 'E-Mail-Adress:',
@@ -205,6 +220,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'email'                      => 'E-Mail',
 'nouserspecified'            => 'Gitt w.e.g. e Benotzernumm un.',
 'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkonto',
+'noemail'                    => 'De Benotzer „$1“ huet keng E-Mail-Adress uginn.',
 'eauthentsent'               => "Eng Confirmatiouns-Email gouf un déi uginnen Adress geschéckt.<br>Ier iergend eng Email vun anere Benotzer op dee Kont geschéckt ka ginn, muss der als éischt d'Instructiounen an der Confirmatiouns-Email befollegen, fir ze bestätegen datt de Kont wierklech ären eegenen ass.",
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Dir hutt schon $1 Konten. Dir kënnt keng weider kreéieren.',
@@ -254,6 +270,7 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'loginreqlink'       => 'umellen',
 'accmailtitle'       => 'Passwuert gouf geschéckt.',
 'accmailtext'        => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
+'newarticle'         => '(Nei)',
 'anontalkpagetext'   => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mer d'[[IP Adress]] benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt gin. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
 'clearyourcache'     => "'''Opgepasst:''' Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn: '''Mozilla/Firefox:''' klickt ''reload'' (oder ''ctrl-R''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
 'editing'            => 'Ännere vun $1',
@@ -276,6 +293,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'yourdiff'           => 'Ënnerscheeder',
 'copyrightwarning2'  => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Matschaffer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br /> Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnlecher Ressource kopéiert hutt. (cf. $1 fir méi Detailler). <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!</strong>',
 'templatesused'      => 'Schablounen déi an dësem Artikel gebraucht ginn:',
+'template-protected' => '(schreiwgeschützt)',
 'nocreate-loggedin'  => 'Dir hutt keng Berechtigung fir nei Säiten an dëser Wiki anzuleeën.',
 
 # Account creation failure
@@ -301,11 +319,14 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 
 # Diffs
 'difference'              => '(Ennerscheed tëscht Versiounen)',
+'lineno'                  => 'Linn $1:',
 'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
+'editundo'                => 'zréck',
 'diff-multi'              => '({{PLURAL:$1|Eng Tëscheversioun gëtt net|$1 Tëscheversioune ginn net}} gewisen.',
 
 # Search results
-'nextn' => 'nächst $1',
+'nextn'       => 'nächst $1',
+'powersearch' => 'Sichen',
 
 # Preferences page
 'preferences'        => 'Preferenzen',
@@ -342,7 +363,12 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'default'            => 'Standard',
 
 # User rights
-'editusergroup' => 'Benotzergruppen änneren',
+'editusergroup'           => 'Benotzergruppen änneren',
+'userrights-groupsmember' => 'Member vun:',
+
+# Groups
+'group-sysop'      => 'Administrateuren',
+'group-bureaucrat' => 'Bürokraten',
 
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Administrateur',
@@ -351,13 +377,21 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'grouppage-bot'   => '{{ns:project}}:Botten',
 'grouppage-sysop' => '{{ns:project}}:Administrateuren',
 
+# User rights log
+'rightsnone' => '(keen)',
+
 # Recent changes
 'recentchanges'   => 'Rezent Ännerungen',
 'rcshowhideminor' => 'Kleng Ännerungen $1',
 'rcshowhidebots'  => 'Botten $1',
 'rcshowhideliu'   => 'Ugemellte Benotzer $1',
+'rcshowhideanons' => 'Anonym Benotzer $1',
 'rcshowhidemine'  => 'Meng Ännerungen $1',
+'rclinks'         => 'Weis déi lescht $1 Ännerungen vun de leschten $2 Deeg.<br />$3',
 'diff'            => 'Ënnerscheed',
+'hide'            => 'verstoppen',
+'show'            => 'weisen',
+'minoreditletter' => 'k',
 'newpageletter'   => 'N',
 
 # Recent changes linked
@@ -374,21 +408,30 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'watchthisupload'   => 'Dës Säit verfollegen',
 
 # Image list
-'byname'           => 'no Numm',
-'bydate'           => 'no Datum',
-'bysize'           => 'no Gréisst',
-'filehist-comment' => 'Bemierkung',
-'imagelist_name'   => 'Numm',
-'imagelist_user'   => 'Benotzer',
+'byname'                => 'no Numm',
+'bydate'                => 'no Datum',
+'bysize'                => 'no Gréisst',
+'filehist-current'      => 'aktuell',
+'filehist-datetime'     => 'Versioun vum',
+'filehist-user'         => 'Benotzer',
+'filehist-comment'      => 'Bemierkung',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Numm',
+'imagelist_user'        => 'Benotzer',
+'imagelist_description' => 'Beschreiwung',
 
 # MIME search
 'download' => 'eroflueden',
 
 # Unused templates
+'unusedtemplates'    => 'Onbenotzte Schablounen',
 'unusedtemplateswlh' => 'Aner Linken',
 
 # Random page
 'randompage' => 'Zoufallssäit',
+
+# Random redirect
+'randomredirect' => 'Zoufälleg Weiderleedung',
 
 # Statistics
 'statistics'    => 'Statistik',
@@ -413,19 +456,35 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 'brokenredirects'        => 'Futtise Redirect',
 'brokenredirectstext'    => 'Folgend Redirects linken op Säiten déi et net gëtt.',
+'brokenredirects-edit'   => '(änneren)',
 'brokenredirects-delete' => '(läschen)',
 
+'withoutinterwiki' => 'Säiten ouni Interwiki-Linken',
+
 # Miscellaneous special pages
-'nlinks'            => '$1 {{PLURAL:$1|Link|Linken}}',
-'lonelypages'       => 'Weesesäiten',
-'popularpages'      => 'Populär Säiten',
-'allpages'          => 'All Säiten',
-'deadendpages'      => 'Sakgaasse-Säiten',
-'deadendpagestext'  => 'Dës Säite si mat kenger anerer Säit vun der Wiki verlinkt.',
-'specialpages'      => 'Spezialsäiten',
-'newpages-username' => 'Benotzernumm:',
-'ancientpages'      => 'Al Säiten',
-'move'              => 'Réckelen',
+'nbytes'                  => '$1 {{PLURAL:$1|Byte|Byten}}',
+'nlinks'                  => '$1 {{PLURAL:$1|Link|Linken}}',
+'lonelypages'             => 'Weesesäiten',
+'uncategorizedcategories' => 'Kategorien ouni Kategorie',
+'uncategorizedimages'     => 'Biller ouni Kategorie',
+'uncategorizedtemplates'  => 'Schablounen ouni Kategorie',
+'unusedcategories'        => 'Onbenotzt Kategorien',
+'unusedimages'            => 'Unbenotzt Biller',
+'popularpages'            => 'Populär Säiten',
+'wantedcategories'        => 'Gewënschte Kategorien',
+'wantedpages'             => 'Gewënschte Säiten',
+'mostrevisions'           => 'Säite mat de meeschten Versiounen',
+'allpages'                => 'All Säiten',
+'shortpages'              => 'Kuurz Säiten',
+'longpages'               => 'Laang Säiten',
+'deadendpages'            => 'Sakgaasse-Säiten',
+'deadendpagestext'        => 'Dës Säite si mat kenger anerer Säit vun der Wiki verlinkt.',
+'specialpages'            => 'Spezialsäiten',
+'newpages'                => 'Nei Säiten',
+'newpages-username'       => 'Benotzernumm:',
+'ancientpages'            => 'Al Säiten',
+'move'                    => 'Réckelen',
+'movethispage'            => 'Dës Säit réckelen',
 
 # Book sources
 'booksources' => 'Bicherressourcen',
@@ -435,9 +494,11 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'version'            => 'Versioun',
 
 # Special:Log
-'all-logs-page' => "All d'Logbicher",
-'alllogstext'   => 'Dëst ass eng kombinéiert Lëscht vu [[Special:Log/block|Benotzerblockaden-]], [[Special:Log/protect|Säiteschutz-]], [[Special:Log/rights|Bürokraten-]], [[Special:Log/delete|Läsch-]], [[Special:Log/upload|Datei-]], [[Special:Log/move|Réckelen-]], [[Special:Log/newusers|Neiumellungs-]] a [[Special:Log/renameuser|Benotzerännerungs-]]Logbicher.',
-'logempty'      => 'Näischt fonnt.',
+'specialloguserlabel'  => 'Benotzer:',
+'speciallogtitlelabel' => 'Titel:',
+'all-logs-page'        => "All d'Logbicher",
+'alllogstext'          => 'Dëst ass eng kombinéiert Lëscht vu [[Special:Log/block|Benotzerblockaden-]], [[Special:Log/protect|Säiteschutz-]], [[Special:Log/rights|Bürokraten-]], [[Special:Log/delete|Läsch-]], [[Special:Log/upload|Datei-]], [[Special:Log/move|Réckelen-]], [[Special:Log/newusers|Neiumellungs-]] a [[Special:Log/renameuser|Benotzerännerungs-]]Logbicher.',
+'logempty'             => 'Näischt fonnt.',
 
 # Special:Allpages
 'nextpage'          => 'Nächst Säit ($1)',
@@ -469,39 +530,41 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'emailsenttext'   => 'Är Email gouf fortgeschéckt.',
 
 # Watchlist
-'watchlist'      => 'Meng Suivi-Lëscht',
-'mywatchlist'    => 'Meng Suivi-Lëscht',
-'addedwatch'     => "An d'Suivilëscht derbäigesat.",
-'addedwatchtext' => "D'Säit \"\$1\" gouf bei är [[Special:Watchlist|Suivi-Lëscht]] bäigefügt. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit gin hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:Recentchanges|rezenten Ännerungen]] aus fir se méi schnell erëmzefannen. <p>Wann dir dës Säit nëmmi verfollege wëllt, klickt op \"Nëmmi verfollegen\" op der Säit.",
-'watch'          => 'Verfollegen',
-'watchthispage'  => 'Dës Säit verfollegen',
-'unwatch'        => 'Net méi verfollegen',
+'watchlist'            => 'Meng Suivi-Lëscht',
+'mywatchlist'          => 'Meng Suivi-Lëscht',
+'addedwatch'           => "An d'Suivilëscht derbäigesat.",
+'addedwatchtext'       => "D'Säit \"\$1\" gouf bei är [[Special:Watchlist|Suivi-Lëscht]] bäigefügt. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit gin hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:Recentchanges|rezenten Ännerungen]] aus fir se méi schnell erëmzefannen. <p>Wann dir dës Säit nëmmi verfollege wëllt, klickt op \"Nëmmi verfollegen\" op der Säit.",
+'watch'                => 'Verfollegen',
+'watchthispage'        => 'Dës Säit verfollegen',
+'unwatch'              => 'Net méi verfollegen',
+'watchlist-hide-minor' => 'kleng Ännerungen verstoppen',
 
 'enotif_newpagetext' => 'Dëst ass eng nei Säit.',
 'changed'            => 'geännert',
 'enotif_anon_editor' => 'Anonyme Benotzer $1',
 
 # Delete/protect/revert
-'deletepage'        => 'Läschungssäit',
-'confirm'           => 'Konfirméieren',
-'excontent'         => 'Inhalt wor:',
-'excontentauthor'   => "Am Artikel stung: '$1' (An als eenzegen dru geschriwwen hat den '$2')",
-'exbeforeblank'     => 'Den Inhalt virum Läsche wor:',
-'exblank'           => "D'Säit wor eidel",
-'confirmdelete'     => "Konfirméiert d'Läschen",
-'deletesub'         => '("$1" gëtt geläscht)',
-'confirmdeletetext' => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[Wikipedia:Administrators#Konsequenze vun engem Muechtmëssbrauch|Wikipediaregele]] geschitt.",
-'actioncomplete'    => 'Aktioun ofgeschloss',
-'deletedtext'       => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vu rezent geläschte Säiten.',
-'deletedarticle'    => '"$1" gouf geläscht',
-'dellogpage'        => 'Läschungslog',
-'dellogpagetext'    => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server (UTC).',
-'deletionlog'       => 'Läschungslog',
-'deletecomment'     => "Grond fir d'Läschen",
-'cantrollback'      => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
-'alreadyrolled'     => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
-'editcomment'       => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
-'confirmprotect'    => "Konfirméiert d'Protectioun",
+'deletepage'          => 'Läschungssäit',
+'confirm'             => 'Konfirméieren',
+'excontent'           => 'Inhalt wor:',
+'excontentauthor'     => "Am Artikel stung: '$1' (An als eenzegen dru geschriwwen hat den '$2')",
+'exbeforeblank'       => 'Den Inhalt virum Läsche wor:',
+'exblank'             => "D'Säit wor eidel",
+'confirmdelete'       => "Konfirméiert d'Läschen",
+'deletesub'           => '("$1" gëtt geläscht)',
+'confirmdeletetext'   => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[Wikipedia:Administrators#Konsequenze vun engem Muechtmëssbrauch|Wikipediaregele]] geschitt.",
+'actioncomplete'      => 'Aktioun ofgeschloss',
+'deletedtext'         => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vu rezent geläschte Säiten.',
+'deletedarticle'      => '"$1" gouf geläscht',
+'dellogpage'          => 'Läschungslog',
+'dellogpagetext'      => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server (UTC).',
+'deletionlog'         => 'Läschungslog',
+'deletecomment'       => "Grond fir d'Läschen",
+'cantrollback'        => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
+'alreadyrolled'       => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
+'editcomment'         => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
+'confirmprotect'      => "Konfirméiert d'Protectioun",
+'protect-level-sysop' => 'Nëmmen Administrateuren',
 
 # Undelete
 'undelete' => 'Geläschte Säit restauréieren',
@@ -520,7 +583,8 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'sp-contributions-submit'   => 'Sichen',
 
 # What links here
-'whatlinkshere' => 'Linken op dës Säit',
+'whatlinkshere'       => 'Linken op dës Säit',
+'whatlinkshere-links' => '← Linken',
 
 # Block/unblock
 'blockip'                     => 'Benotzer blockéieren',
@@ -542,9 +606,13 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # Move page
 'movepage'                => 'Säit réckelen',
+'movearticle'             => 'Säit réckelen:',
 'newtitle'                => 'Op neien Titel:',
 'move-watch'              => 'Dës Säit verfollegen',
+'movepagebtn'             => 'Säit réckelen',
+'pagemovedsub'            => 'Mat Succès geréckelt',
 'articleexists'           => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
+'movedto'                 => 'geréckelt op',
 '1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir'         => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 'delete_and_move'         => 'Läschen a réckelen',
@@ -569,6 +637,20 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'allmessagesfilter'         => 'Noriichtennummfilter:',
 'allmessagesmodified'       => 'Nëmme geännert uweisen',
 
+# Thumbnails
+'thumbnail-more' => 'vergréisseren',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'    => 'Meng Benotzersäit',
+'tooltip-pt-mytalk'      => 'Meng Diskussioun',
+'tooltip-pt-preferences' => 'Meng Preferenzen',
+'tooltip-ca-move'        => 'Dës Säit réckelen',
+'tooltip-n-sitesupport'  => 'Ënnerstetzt eis',
+'tooltip-t-emailuser'    => 'Dësem Benotzer eng E-Mail schécken',
+'tooltip-ca-nstab-user'  => 'Benutzersäit weisen',
+'tooltip-ca-nstab-help'  => 'Hëllefesäiten uweisen',
+'tooltip-save'           => 'Ännerungen späicheren',
+
 # Attribution
 'anonymous'   => 'Anonym(e) Benotzer op {{SITENAME}}',
 'creditspage' => 'Quellen',
@@ -591,6 +673,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'recentchangesall' => 'all',
 'imagelistall'     => 'all',
 'watchlistall2'    => 'all',
+'namespacesall'    => 'all',
 
 # E-mail address confirmation
 'confirmemail'            => 'Email-Adress bestätegen',

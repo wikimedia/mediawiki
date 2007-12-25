@@ -8,6 +8,7 @@
  * @author Mikel
  * @author SPQRobin
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -168,6 +169,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
+'errorpagetitle'    => 'Error',
 'returnto'          => 'Vuelve a $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Ayuda',
@@ -234,6 +236,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Llimitación xeneral de responsabilidá',
 'edithelp'          => "Aida d'edición",
 'edithelppage'      => 'Help:Edición de páxines',
+'faq'               => 'FAQ',
 'faqpage'           => 'Project:Entrugues más frecuentes',
 'helppage'          => 'Help:Conteníos',
 'mainpage'          => 'Portada',
@@ -298,6 +301,7 @@ reconocida pola wiki",
 Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages]].",
 
 # General errors
+'error'                => 'Error',
 'databaseerror'        => 'Error na base de datos',
 'dberrortext'          => 'Hebo un error de sintaxis nuna consulta de la base de datos.
 Esti error pue debese a un fallu del software.
@@ -615,6 +619,7 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'deletedrev'          => '[borráu]',
 'histfirst'           => 'Primera',
 'histlast'            => 'Cabera',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(vaciu)',
 
 # Revision feed
@@ -722,18 +727,22 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'saveusergroups'              => "Guardar los grupos d'usuariu",
 'userrights-groupsmember'     => 'Miembru de:',
 'userrights-groupsavailable'  => 'Grupos disponibles:',
+'userrights-reason'           => 'Motivu del cambéu:',
 'userrights-available-add'    => 'Pues añader usuarios a $1.',
 'userrights-available-remove' => 'Pues eliminar usuarios de $1.',
 
 # Groups
 'group'            => 'Grupu:',
+'group-bot'        => 'Bots',
 'group-sysop'      => 'Alministradores',
 'group-bureaucrat' => 'Burócrates',
 'group-all'        => '(toos)',
 
+'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Alministrador',
 'group-bureaucrat-member' => 'Burócrata',
 
+'grouppage-bot'        => '{{ns:project}}:Bots',
 'grouppage-sysop'      => '{{ns:project}}:Alministradores',
 'grouppage-bureaucrat' => '{{ns:project}}:Burócrates',
 
@@ -750,14 +759,19 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'rcnotefrom'                     => 'Abaxo tán los cambeos dende <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom'                     => 'Amosar los cambeos recientes dende $1',
 'rcshowhideminor'                => '$1 ediciones menores',
+'rcshowhidebots'                 => '$1 bots',
 'rcshowhideliu'                  => '$1 usuarios rexistraos',
 'rcshowhideanons'                => '$1 usuarios anónimos',
 'rcshowhidepatr'                 => '$1 ediciones patrullaes',
 'rcshowhidemine'                 => '$1 les mios ediciones',
 'rclinks'                        => 'Amosar los caberos $1 cambeos nos caberos $2 díes <br />$3',
 'diff'                           => 'dif',
+'hist'                           => 'hist',
 'hide'                           => 'Esconder',
 'show'                           => 'Amosar',
+'minoreditletter'                => 'm',
+'newpageletter'                  => 'N',
+'boteditletter'                  => 'b',
 'newsectionsummary'              => '/* $1 */ nueva seición',
 
 # Recent changes linked
@@ -767,36 +781,46 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'recentchangeslinked-summary'  => "Esta páxina especial llista los caberos cambeos nes páxines enllacies. Les páxines de la to llista de vixilancia tán en '''negrina'''.",
 
 # Upload
-'upload'            => 'Xubir imaxe',
-'uploadbtn'         => 'Xubir',
-'uploadnologin'     => 'Nun tas identificáu',
-'uploadnologintext' => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder xubir archivos.',
-'uploaderror'       => 'Error de xubida',
-'uploadlog'         => 'rexistru de xubíes',
-'uploadlogpage'     => 'Rexistru de xubíes',
-'filename'          => "Nome d'archivu",
-'filedesc'          => 'Resume',
-'fileuploadsummary' => 'Resume:',
-'filesource'        => 'Fonte',
-'uploadedfiles'     => 'Archivos xubíos',
-'ignorewarning'     => "Inorar l'avisu y grabar l'archivu de toes formes.",
-'ignorewarnings'    => 'Inorar tolos avisos',
-'minlength1'        => "Los nomes d'archivu han tener a lo menos una lletra.",
-'badfilename'       => 'Nome de la imaxe camudáu a "$1".',
-'filetype-missing'  => 'L\'archivu nun tien estensión (como ".jpg").',
-'large-file'        => 'Encamiéntase a que los archivos nun pasen de $1; esti archivu tien $2.',
-'largefileserver'   => 'Esti archivu ye mayor de lo que permite la configuración del servidor.',
-'emptyfile'         => "L'archivu que xubisti paez tar vaciu. Esto podría ser pola mor d'un enquivocu nel nome l'archivu. Por favor, camienta si daveres quies xubir esti archivu.",
-'successfulupload'  => 'Xubida correuta',
-'savefile'          => 'Grabar archivu',
-'uploadedimage'     => 'Xubíu "[[$1]]"',
-'uploadvirus'       => "¡L'archivu tien un virus! Detalles: $1",
-'sourcefilename'    => "Nome d'orixe",
-'destfilename'      => 'Nome de destín',
-'watchthisupload'   => 'Vixilar esta páxina',
+'upload'               => 'Xubir imaxe',
+'uploadbtn'            => 'Xubir',
+'reupload'             => 'Volver a xubir',
+'uploadnologin'        => 'Nun tas identificáu',
+'uploadnologintext'    => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder xubir archivos.',
+'uploaderror'          => 'Error de xubida',
+'upload-permitted'     => "Menes d'archivu permitíes: $1.",
+'upload-preferred'     => "Menes d'archivu preferíes: $1.",
+'upload-prohibited'    => "Menes d'archivu prohibíes: $1.",
+'uploadlog'            => 'rexistru de xubíes',
+'uploadlogpage'        => 'Rexistru de xubíes',
+'filename'             => "Nome d'archivu",
+'filedesc'             => 'Resume',
+'fileuploadsummary'    => 'Resume:',
+'filesource'           => 'Fonte',
+'uploadedfiles'        => 'Archivos xubíos',
+'ignorewarning'        => "Inorar l'avisu y grabar l'archivu de toes formes.",
+'ignorewarnings'       => 'Inorar tolos avisos',
+'minlength1'           => "Los nomes d'archivu han tener a lo menos una lletra.",
+'illegalfilename'      => 'El nome d\'archivu "$1" contién carauteres non permitíos en títulos de páxina. Por favor renoma l\'archivu y xúbilu otra vuelta.',
+'badfilename'          => 'Nome de la imaxe camudáu a "$1".',
+'filetype-missing'     => 'L\'archivu nun tien estensión (como ".jpg").',
+'large-file'           => 'Encamiéntase a que los archivos nun pasen de $1; esti archivu tien $2.',
+'largefileserver'      => 'Esti archivu ye mayor de lo que permite la configuración del servidor.',
+'emptyfile'            => "L'archivu que xubisti paez tar vaciu. Esto podría ser pola mor d'un enquivocu nel nome l'archivu. Por favor, camienta si daveres quies xubir esti archivu.",
+'fileexists'           => 'Yá esiste un archivu con esti nome, por favor comprueba <strong><tt>$1</tt></strong> si nun tas seguru de quere camudalu.',
+'fileexists-forbidden' => 'Yá esiste un archivu con esti nome; por favor vuelve atrás y xubi esti archivu con otru nome. [[Image:$1|thumb|center|$1]]',
+'successfulupload'     => 'Xubida correuta',
+'savefile'             => 'Grabar archivu',
+'uploadedimage'        => 'Xubíu "[[$1]]"',
+'overwroteimage'       => 'xubida una versión nueva de "[[$1]]"',
+'uploaddisabled'       => 'Deshabilitaes les xubíes',
+'uploadvirus'          => "¡L'archivu tien un virus! Detalles: $1",
+'sourcefilename'       => "Nome d'orixe",
+'destfilename'         => 'Nome de destín',
+'watchthisupload'      => 'Vixilar esta páxina',
 
 'upload-proto-error' => 'Protocolu incorreutu',
 'upload-file-error'  => 'Error internu',
+'upload-misc-error'  => 'Error de xubida desconocíu',
 
 'nolicense'          => 'Nenguna seleicionada',
 'license-nopreview'  => '(Previsualización non disponible)',
@@ -810,8 +834,12 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'byname'                    => 'por nome',
 'bydate'                    => 'por fecha',
 'bysize'                    => 'por tamañu',
+'imgdelete'                 => 'borr',
+'imgdesc'                   => 'desc',
+'imgfile'                   => 'archivu',
 'filehist'                  => 'Historial del archivu',
 'filehist-help'             => "Calca nuna fecha/hora pa ver l'archivu como taba daquélla.",
+'filehist-revert'           => 'revertir',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Fecha/Hora',
 'filehist-user'             => 'Usuariu',
@@ -832,6 +860,8 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'imagelist_description'     => 'Descripción',
 
 # File reversion
+'filerevert'         => 'Revertir $1',
+'filerevert-legend'  => 'Revertir archivu',
 'filerevert-comment' => 'Comentariu:',
 'filerevert-submit'  => 'Revertir',
 
@@ -841,6 +871,8 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'filedelete-intro'   => "Tas borrando '''[[Media:$1|$1]]'''.",
 'filedelete-comment' => 'Comentariu:',
 'filedelete-submit'  => 'Borrar',
+'filedelete-success' => "'''$1''' foi borráu.",
+'filedelete-nofile'  => "'''$1''' nun esiste nesti sitiu.",
 
 # MIME search
 'mimesearch' => 'Busca MIME',
@@ -853,7 +885,8 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'listredirects' => 'Llista de redireiciones',
 
 # Unused templates
-'unusedtemplates' => 'Plantíes ensin usu',
+'unusedtemplates'    => 'Plantíes ensin usu',
+'unusedtemplateswlh' => 'otros enllaces',
 
 # Random page
 'randompage' => 'Páxina al debalu',
@@ -894,10 +927,12 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'fewestrevisions' => "Páxines col menor númberu d'ediciones",
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categoríes}}',
 'nlinks'                  => '$1 {{PLURAL:$1|enllaz|enllaces}}',
 'nmembers'                => '$1 {{PLURAL:$1|miembru|miembros}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisión|revisiones}}',
+'nviews'                  => '$1 {{PLURAL:$1|vista|vistes}}',
 'lonelypages'             => 'Páxines güérfanes',
 'uncategorizedpages'      => 'Páxines non categorizaes',
 'uncategorizedcategories' => 'Categoríes non categorizaes',
@@ -905,6 +940,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'uncategorizedtemplates'  => 'Plantíes non categorizaes',
 'unusedcategories'        => 'Categoríes non usaes',
 'unusedimages'            => 'Imáxenes non usaes',
+'popularpages'            => 'Páxines populares',
 'wantedcategories'        => 'Categoríes buscaes',
 'wantedpages'             => 'Páxines buscaes',
 'mostlinked'              => 'Páxines más enllaciaes',
@@ -920,6 +956,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'deadendpages'            => 'Páxines ensin salida',
 'deadendpagestext'        => "Les páxines siguientes nun enllacien a páxina dala d'esta wiki.",
 'protectedpages'          => 'Páxines protexíes',
+'protectedtitles'         => 'Títulos protexíos',
 'listusers'               => "Llista d'usuarios",
 'specialpages'            => 'Páxines especiales',
 'spheading'               => 'Páxines especiales pa tolos usuarios',
@@ -968,8 +1005,9 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'allpages-bad-ns'   => '{{SITENAME}} nun tien l\'espaciu de nomes "$1".',
 
 # Special:Listusers
-'listusersfrom'    => 'Amosar usuarios emprimando dende:',
-'listusers-submit' => 'Amosar',
+'listusersfrom'      => 'Amosar usuarios emprimando dende:',
+'listusers-submit'   => 'Amosar',
+'listusers-noresult' => "Nun s'atoparon usuarios.",
 
 # E-mail user
 'emailuser'       => 'Manda-y un email a esti usuariu',
@@ -1007,6 +1045,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'notanarticle'         => 'Nun ye un artículu',
 'watchnochange'        => 'Nenguna de les tos páxines vixilaes foi editada nel periodu escoyíu.',
 'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxines}} vixilaes ensin cuntar les páxines de discusión.',
+'wlheader-showupdated' => "* Les páxines camudaes dende la to última visita amuésense en '''negrina'''",
 'watchlistcontains'    => 'La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.',
 'wlshowlast'           => 'Amosar les últimes $1 hores $2 díes $3',
 'watchlist-show-bots'  => 'Amosar ediciones de bot',
@@ -1050,6 +1089,7 @@ Mira en $2 la llista de les últimes páxines borraes.',
 'dellogpagetext'              => 'Abaxo tán los artículos borraos más recién.',
 'deletionlog'                 => 'rexistru de borraos',
 'deletecomment'               => 'Razón pa borrar',
+'deleteotherreason'           => 'Otra razón/razón adicional:',
 'deletereasonotherlist'       => 'Otra razón',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'revertir',
@@ -1071,12 +1111,27 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'confirmprotect'              => 'Confirmar proteición',
 'protectcomment'              => 'Comentariu:',
 'protectexpiry'               => 'Caduca:',
+'protect_expiry_invalid'      => 'Caducidá non válida.',
+'protect_expiry_old'          => 'La fecha de caducidá ta pasada.',
 'unprotectsub'                => '(Desprotexendo "$1")',
 'protect-unchain'             => 'Camudar los permisos pa tresllaos',
 'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong>$1</strong>.',
+'protect-locked-access'       => 'La to cuenta nun tien permisu pa camudar los niveles de proteición de páxina.
+Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
+'protect-cascadeon'           => "Esta páxina ta protexida nestos momentos porque ta inxerida {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada. Pues camudar el nivel de proteición d'esta páxina, pero nun va afeutar a la proteición en cascada.",
 'protect-default'             => '(por defeutu)',
+'protect-fallback'            => 'Requier el permisu "$1"',
 'protect-level-autoconfirmed' => 'Bloquiar usuarios non rexistraos',
 'protect-level-sysop'         => 'Namái alministradores',
+'protect-summary-cascade'     => 'en cascada',
+'protect-expiring'            => "caduca'l $1 (UTC)",
+'protect-cascade'             => 'Páxines protexíes inxeríes nesta páxina (proteición en cascada)',
+'protect-cantedit'            => "Nun pues camudar los niveles de proteición d'esta páxina porque nun tienes permisu pa editala.",
+'restriction-type'            => 'Permisu:',
+'restriction-level'           => 'Nivel de restricción:',
+'minimum-size'                => 'Tamañu mínimu',
+'maximum-size'                => 'Tamañu másimu',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Editar',
@@ -1108,7 +1163,10 @@ de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái 
 'undeletedrevisions-files' => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
 'undeletedfiles'           => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',
 'cannotundelete'           => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
+'undelete-search-box'      => 'Buscar páxines borraes',
+'undelete-search-prefix'   => "Amosar páxines qu'empecipien por:",
 'undelete-search-submit'   => 'Buscar',
+'undelete-error-short'     => "Error al restaurar l'archivu: $1",
 
 # Namespace form on various pages
 'namespace'      => 'Espaciu de nomes:',
@@ -1174,10 +1232,12 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'blockipsuccesssub'           => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'          => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
 <br />Mira na [[Special:Ipblocklist|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
+'ipb-unblock-addr'            => 'Desbloquiar $1',
 'unblockip'                   => 'Desbloquiar usuariu',
 'ipusubmit'                   => 'Desbloquiar esta direición',
 'unblocked'                   => '[[User:$1|$1]] foi desbloquiáu',
 'ipblocklist'                 => "Llista de direiciones IP y nomes d'usuarios bloquiaos",
+'ipblocklist-username'        => "Nome d'usuariu o direición IP:",
 'ipblocklist-submit'          => 'Buscar',
 'blocklistline'               => '$1, $2 bloquió a $3 ($4)',
 'infiniteblock'               => 'pa siempre',
@@ -1186,6 +1246,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'noautoblockblock'            => 'bloquéu automáticu desactiváu',
 'createaccountblock'          => 'bloquiada la creación de cuentes',
 'emailblock'                  => 'corréu electrónicu bloquiáu',
+'ipblocklist-empty'           => 'La llista de bloqueos ta vacia.',
 'blocklink'                   => 'bloquiar',
 'unblocklink'                 => 'desbloquiar',
 'contribslink'                => 'contribuciones',
@@ -1210,9 +1271,14 @@ mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 'sorbs_create_account_reason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada nesti sitiu. Nun pues crear una cuenta',
 
 # Developer tools
-'lockconfirm'       => 'Si, quiero protexer daveres la base de datos.',
-'lockbtn'           => 'Protexer la base de datos',
-'databasenotlocked' => 'La base de datos nun ta bloquiada.',
+'lockdb'              => 'Protexer la base de datos',
+'unlockdb'            => 'Desprotexer la base de datos',
+'lockconfirm'         => 'Si, quiero protexer daveres la base de datos.',
+'unlockconfirm'       => 'Sí, quiero desprotexer daveres la base de datos.',
+'lockbtn'             => 'Protexer la base de datos',
+'unlockbtn'           => 'Desprotexer la base de datos',
+'unlockdbsuccesstext' => 'La base de datos foi desprotexida.',
+'databasenotlocked'   => 'La base de datos nun ta bloquiada.',
 
 # Move page
 'movepage'                => 'Treslladar páxina',
@@ -1241,12 +1307,14 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'movearticle'             => 'Treslladar la páxina:',
 'movenologin'             => 'Non identificáu',
 'movenologintext'         => 'Tienes que ser un usuariu rexistráu y tar [[Special:Userlogin|identificáu]] pa treslladar una páxina.',
+'movenotallowed'          => 'Nun tienes permisu pa mover páxines nesta wiki.',
 'newtitle'                => 'Al títulu nuevu:',
 'move-watch'              => 'Vixilar esta páxina',
 'movepagebtn'             => 'Treslladar la páxina',
 'pagemovedsub'            => 'Treslláu correctu',
 'movepage-moved'          => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
+'talkexists'              => "'''La páxina treslladóse correutamente, pero non la so páxina de discusión porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
 'movedto'                 => 'treslladáu a',
 'movetalk'                => 'Mover la páxina de discusión asociada',
 'talkpagemoved'           => 'La páxina de discusión correspondiente tamién foi treslladada.',
@@ -1300,9 +1368,12 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 # Special:Import
 'import'                  => 'Importar páxines',
 'import-interwiki-submit' => 'Importar',
+'import-revision-count'   => '$1 {{PLURAL:$1|revisión|revisiones}}',
+'importnotext'            => 'Vaciu o ensin testu',
 
 # Import log
-'importlogpage' => "Rexistru d'importaciones",
+'importlogpage'                 => "Rexistru d'importaciones",
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|revisión|revisiones}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La mio páxina d'usuariu",
@@ -1322,6 +1393,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'tooltip-ca-watch'                => 'Añade esta páxina a la to llista de vixilancia',
 'tooltip-ca-unwatch'              => 'Elimina esta páxina de la to llista de vixilancia',
 'tooltip-search'                  => 'Busca en {{SITENAME}}',
+'tooltip-p-logo'                  => 'Portada',
 'tooltip-n-mainpage'              => 'Visita a la Portada',
 'tooltip-n-portal'                => 'Tocante al proyeutu, qué facer, ú atopar coses',
 'tooltip-n-currentevents'         => 'Información sobre los asocedíos actuales',
@@ -1358,9 +1430,10 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'nocredits'        => 'Nun hai disponible información de creitos pa esta páxina.',
 
 # Spam protection
-'subcategorycount'     => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
-'categoryarticlecount' => 'Hai {{PLURAL:$1|una páxina|$1 páxines}} nesta categoría.',
-'category-media-count' => 'Hai {{PLURAL:$1|un archivu|$1 archivos}} nesta categoría.',
+'subcategorycount'       => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
+'categoryarticlecount'   => 'Hai {{PLURAL:$1|una páxina|$1 páxines}} nesta categoría.',
+'category-media-count'   => 'Hai {{PLURAL:$1|un archivu|$1 archivos}} nesta categoría.',
+'listingcontinuesabbrev' => 'cont.',
 
 # Info page
 'numedits' => "Númberu d'ediciones (páxina): $1",
@@ -1394,7 +1467,8 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'show-big-image-thumb' => "<small>Tamañu d'esta previsualización: $1 × $2 píxeles</small>",
 
 # Special:Newimages
-'newimages' => "Galería d'imáxenes nueves",
+'newimages'    => "Galería d'imáxenes nueves",
+'showhidebots' => '($1 bots)',
 
 # Bad image list
 'bad_image_list' => "El formatu ye'l que sigue:
@@ -1447,6 +1521,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-scenecapturetype-2' => 'Retratu',
 'exif-scenecapturetype-3' => 'Escena nocherniega',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Suave',
 'exif-contrast-2' => 'Fuerte',
 
@@ -1510,6 +1585,8 @@ $1",
 'articletitles' => "Páxines qu'emprimen por ''$1''",
 
 # Table pager
+'ascending_abbrev'  => 'asc',
+'descending_abbrev' => 'desc',
 'table_pager_first' => 'Primer páxina',
 'table_pager_last'  => 'Postrer páxina',
 

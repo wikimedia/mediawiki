@@ -22,6 +22,7 @@ $messages = array(
 'tog-rememberpassword'    => 'Tandaan ang paglagda ko sa kompyuter na ito',
 'tog-editwidth'           => 'May buong kalaparan ang kahon ng pagbabago',
 'tog-minordefault'        => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
+'tog-previewontop'        => 'Ipakita ang pribyu bago ang kahon ng pagbabago',
 'tog-previewonfirst'      => 'Ipakita ang pribyu sa unang pagbabago',
 'tog-nocache'             => 'Salantain ang pagbaon ng pahina',
 'tog-shownumberswatching' => 'Ipakita ang bilang ng mga bumabantay na manggagamit',
@@ -94,6 +95,7 @@ $messages = array(
 
 'mainpagetext' => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
 
+'article'        => 'Pahina ng nilalaman',
 'cancel'         => 'Ikansela',
 'qbfind'         => 'Hanapin',
 'qbbrowse'       => 'Basa-basahin',
@@ -278,12 +280,30 @@ pinapakita sa ibaba:",
 upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
 
+# Image list
+'nolinkstoimage' => 'Walang pahing tumuturo sa talaksang ito.',
+
+# File deletion
+'filedelete'         => 'Burahin ang $1',
+'filedelete-legend'  => 'Burahin ang talaksan',
+'filedelete-intro'   => "Binubura mo ang '''[[Media:$1|$1]]'''.",
+'filedelete-comment' => 'Komento:',
+'filedelete-submit'  => 'Burahin',
+'filedelete-success' => "Binura na ang '''$1'''.",
+'filedelete-nofile'  => "Hindi umiiral ang '''$1''' sa sayt na ito.",
+
 # Random page
 'randompage' => 'Pahinang walang-pili',
+
+# Random redirect
+'randomredirect' => 'Pagkargang walang-pili',
 
 # Statistics
 'statistics' => 'Mga estadistika',
 'sitestats'  => 'Mga estadistika ng {{SITENAME}}',
+'userstats'  => 'Mga estadistika sa mga manggagamit',
+
+'disambiguations' => 'Mga pahina ng paglilinaw',
 
 'brokenredirects' => 'Mga sirang pangkarga',
 
@@ -330,7 +350,7 @@ upang makapagkarga ng talaksan.',
 'ipbenableautoblock' => 'Automatikong harangin and huling direksyong IP na ginamit ng manggagamit na ito, at anumang sumusunod pang mga IP na masusubukan nilang bago mula roon',
 'ipbsubmit'          => 'Harangin itong manggagamit',
 'ipbother'           => 'Ibang oras:',
-'ipboptions'         => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
+'ipboptions'         => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite', # display1:time1,display2:time2,...
 
 # Move page
 'movenologintext'         => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
@@ -373,6 +393,11 @@ Pumili muli ng ibang pangalan.',
 'tooltip-pt-userpage'    => 'Aking pahina ng manggagamit',
 'tooltip-pt-mytalk'      => 'Aking pahinang usapan',
 'tooltip-pt-preferences' => 'Aking mga kagustuhan',
+
+# Media information
+'file-nohires'         => '<small>Walang makuhang mas mataas na resolusyon.</small>',
+'show-big-image'       => 'Buong resolusyon',
+'show-big-image-thumb' => '<small>Laki ng itong pribyu: $1 × $2 piksel</small>',
 
 # Delete conflict
 'deletedwhileediting' => 'Babala: Nabura na ang pahinang ito pagkatapos mong magsimulang magbago!',

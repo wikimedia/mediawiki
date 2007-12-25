@@ -5,6 +5,7 @@
  *
  * @author Gutsul (Gutsul.ua at Google Mail)
  * @author Ahonc
+ * @author Dubyk
  */
 
 /*
@@ -416,6 +417,7 @@ $messages = array(
 'versionrequired'     => 'Потрібна MediaWiki версії $1',
 'versionrequiredtext' => 'Для роботи з цією сторінкою потрібна MediaWiki версій $1. Див. [[{{ns:special}}:Version]].',
 
+'ok'                      => 'Гаразд',
 'pagetitle'               => '$1 — {{SITENAME}}',
 'retrievedfrom'           => 'Отримано з $1',
 'youhavenewmessages'      => 'Ви отримали $1 ($2).',
@@ -1053,6 +1055,8 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'imgdelete'                 => 'вилуч.',
 'imgdesc'                   => 'опис',
 'imgfile'                   => 'файл',
+'filehist-user'             => 'Користувач',
+'filehist-comment'          => 'Коментар',
 'imagelinks'                => 'Посилання',
 'linkstoimage'              => 'Ось статті, що посилаються на даний файл:',
 'nolinkstoimage'            => 'Статті, що посилаються на дане зображення, відсутні.',
@@ -1589,6 +1593,9 @@ $NEWPAGE
 'import-logentry-interwiki-detail' => '$1 версій з $2',
 
 # Tooltip help for the actions
+'tooltip-pt-mytalk'               => 'Моя сторінка для обговорень',
+'tooltip-ca-delete'               => 'Вилучити цю сторінку',
+'tooltip-ca-move'                 => 'Перемістити цю сторінку',
 'tooltip-search'                  => 'Шукати',
 'tooltip-minoredit'               => 'Відмінити це редагування як незначне',
 'tooltip-save'                    => 'зберегти ваші редагування',
