@@ -6,6 +6,7 @@
  * @author Natsubee
  * @author Siebrand
  * @author Paa.kwesi
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -33,15 +34,25 @@ $messages = array(
 'november'  => 'Obubuo',
 'december'  => 'Ɔpenimma',
 
-'search'        => 'Hwehwɛ',
-'searchbutton'  => 'Hwehwɛ',
-'go'            => 'Kɔ',
-'searcharticle' => 'Kɔ',
+'search'           => 'Hwehwɛ',
+'searchbutton'     => 'Hwehwɛ',
+'go'               => 'Kɔ',
+'searcharticle'    => 'Kɔ',
+'history_short'    => 'Beeme',
+'talkpagelinktext' => 'Kasa',
+'talk'             => 'Kasa',
+'jumptosearch'     => 'hwehwɛ',
 
 # Search results
 'powersearch' => 'Hwehwɛ',
 
 # Preferences page
 'searchresultshead' => 'Hwehwɛ',
+
+# Recent changes
+'hist' => 'beeme',
+
+# Watchlist
+'watch' => 'Hwɛ',
 
 );
