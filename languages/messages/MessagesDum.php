@@ -6,6 +6,8 @@
  * @author Ooswesthoesbes
  */
 
+$fallback = 'nl';
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Onderstreept doirgeevingen:',
