@@ -84,6 +84,7 @@ $messages = array(
 'mytalk'        => 'મારી ચર્ચા',
 'navigation'    => 'પ્રદક્ષિણા',
 
+'tagline'          => '{{SITENAME}} થી',
 'help'             => 'મદદ',
 'search'           => 'શોધો',
 'searchbutton'     => 'શોધો',
@@ -102,7 +103,7 @@ $messages = array(
 'talkpagelinktext' => 'ચર્ચા કરવી',
 'specialpage'      => 'ખાસ પાનુ',
 'talk'             => 'ચર્ચા',
-'toolbox'          => 'હથિયારની પેટી',
+'toolbox'          => 'ઓજારની પેટી',
 'viewtalkpage'     => 'ચર્ચા જોવી',
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
 'lastmodifiedat'   => 'આ પાનાં છેલ્લો ફેરફાર $2 વાગ્યા $1એ થયો.', # $1 date, $2 time
@@ -120,10 +121,12 @@ $messages = array(
 'sitesupport'       => 'દાન',
 
 'ok'                  => 'મંજૂર',
+'retrievedfrom'       => '"$1" થી લીધેલું',
 'newmessageslink'     => 'નવા સંદેશો',
 'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
 'editsection'         => 'ફેરફાર કરો',
 'editold'             => 'ફેરફાર કરો',
+'showtoc'             => 'દેખાડો',
 'hidetoc'             => 'છુપાવો',
 'viewdeleted'         => '$1 તપાસવી છે?',
 
@@ -210,7 +213,7 @@ $messages = array(
 'boteditletter'   => 'બૉટ',
 
 # Recent changes linked
-'recentchangeslinked' => 'આની સાથે જોડાયેલા ફેરફાર',
+'recentchangeslinked' => 'આ પાનાથી જોડાયેલા ફેરફાર',
 
 # Upload
 'upload' => 'ફાઇલ ચડાવો',
@@ -293,6 +296,9 @@ $messages = array(
 # Namespace form on various pages
 'blanknamespace' => '(મુખ્ય)',
 
+# Contributions
+'mycontris' => 'મારું યોગદાન',
+
 'sp-contributions-submit' => 'શોધો',
 
 # What links here
@@ -306,6 +312,7 @@ $messages = array(
 'ipbotheroption'     => 'બીજું',
 'ipblocklist-submit' => 'શોધો',
 'anononlyblock'      => 'માત્ર અનામી',
+'contribslink'       => 'યોગદાન',
 
 # Move page
 '1movedto2'               => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
@@ -321,17 +328,18 @@ $messages = array(
 'allmessagescurrent' => 'વર્તમાન દસ્તાવેજ',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'      => 'મારી ચર્ચાનું પાનું',
-'tooltip-pt-preferences' => 'મારી પસંદ',
-'tooltip-ca-protect'     => 'આ પાનું સુરક્ષિત કરો',
-'tooltip-ca-delete'      => 'આ પાનું હટાવો',
-'tooltip-ca-watch'       => 'આ પાનું તમારી ધ્યાનસૂચીમા ઉમેરો',
-'tooltip-ca-unwatch'     => 'આ પાનું તમારી ધ્યાનસૂચીમાથી કાઢી નાખો',
-'tooltip-search'         => '{{SITENAME}} શોધો',
-'tooltip-p-logo'         => 'મુખપૃષ્ઠ',
-'tooltip-n-mainpage'     => 'મુખપૃષ્ઠ પર જાઓ',
-'tooltip-n-sitesupport'  => 'અમારું સમર્થન રકજો',
-'tooltip-t-specialpages' => 'ખાસ પાનાંઓની સૂચિ',
+'tooltip-pt-mytalk'       => 'મારી ચર્ચાનું પાનું',
+'tooltip-pt-preferences'  => 'મારી પસંદ',
+'tooltip-ca-protect'      => 'આ પાનું સુરક્ષિત કરો',
+'tooltip-ca-delete'       => 'આ પાનું હટાવો',
+'tooltip-ca-watch'        => 'આ પાનું તમારી ધ્યાનસૂચીમા ઉમેરો',
+'tooltip-ca-unwatch'      => 'આ પાનું તમારી ધ્યાનસૂચીમાથી કાઢી નાખો',
+'tooltip-search'          => '{{SITENAME}} શોધો',
+'tooltip-p-logo'          => 'મુખપૃષ્ઠ',
+'tooltip-n-mainpage'      => 'મુખપૃષ્ઠ પર જાઓ',
+'tooltip-n-recentchanges' => 'વિકિ માં હાલમા થયેલા ફેરફારો ની સૂચિ.',
+'tooltip-n-sitesupport'   => 'અમારું સમર્થન કરો',
+'tooltip-t-specialpages'  => 'ખાસ પાનાંઓની સૂચિ',
 
 # Attribution
 'and' => 'અને',

@@ -276,7 +276,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Hiba',
 'returnto'          => 'Vissza a $1 cikkhez.',
-'tagline'           => 'A {{SITENAME}}ből',
+'tagline'           => 'A {{SITENAME}} wikiből',
 'help'              => 'Segítség',
 'search'            => 'Keresés',
 'searchbutton'      => 'Keresés',

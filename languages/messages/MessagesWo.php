@@ -350,7 +350,7 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'noemail'                    => 'Bii jëfandikukat « $1 » amufi benn màkkaanub m-bataaxal.',
 'passwordsent'               => 'Ab baatujàll bu bees yónnee nañ ko ci màkkaanub m-bataaxal bu jëfandikukat bii di « $1 ». Jéemal a duggaat soo ko jotee.',
 'blocked-mailpassword'       => 'Ngir faggandiku ci yaq gi, ku ñu téye sa màkkaanu IP ba doo man a soppi dara, doo man a yónneelu baatujàll bu bees.',
-'eauthentsent'               => 'Yónnee nañ la ab m-bataaxalu dëggal ci màkkaanub m-bataaxal bi nga joxe. Balaa ñuy yónnee beneen m-bataaxal ci bii màkkaama, fawwu nga topp tektal yiñ la jox ngir dëggal ni yaa moom bii màkkaama.',
+'eauthentsent'               => 'Yónnee nañ la ab m-bataaxalub dëggal ci màkkaanub m-bataaxal bi nga joxe. Balaa ñuy yónnee beneen m-bataaxal ci bii màkkaan, fawwu nga topp tektal yiñ la jox ngir dëggal ni yaa moom bii màkkaan.',
 'throttled-mailpassword'     => "Ab bataaxal bu la'y fattali sa baatu duggu yònnee nañ la ko ci diiru $1 waxtu yu mujju. Ngir moytu ay say-sayee, benn bataaxalu fattali rek lañ lay yònnee ci diiru $1 waxtu.",
 'acct_creation_throttle_hit' => 'Jeggalu, bindu nga $1 yoon. manoo binduwaat',
 'accountcreated'             => 'léegi bindu nga.',

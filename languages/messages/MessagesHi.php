@@ -6,6 +6,7 @@
  * @author לערי ריינהארט
  * @author Sunil Mohan
  * @author Nike
+ * @author Aksi great
  */
 
 $namespaceNames = array(
@@ -104,6 +105,7 @@ $messages = array(
 'unprotectthispage' => 'इस पृष्ठ को असुरक्षित करें',
 'newpage'           => 'नया पृष्ठ',
 'talkpage'          => 'इस पृष्ठ के बारे में बात करें',
+'personaltools'     => 'પોતાનાં ઓજાર',
 'articlepage'       => 'लेख देखें',
 'talk'              => 'संवाद',
 'toolbox'           => 'औज़ार-सन्दूक',

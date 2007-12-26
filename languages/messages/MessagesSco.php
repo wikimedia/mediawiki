@@ -310,11 +310,25 @@ $1",
 'perfdisabled'         => 'Sorry! This featur haes been temporarily disabled sith it slaws the database doun tae the pynt that naebodie can uise the wiki.',
 'perfcached'           => 'The follaeing data is cached an michtna be richt up tae date:',
 'perfcachedts'         => 'The followin data is cached, an wis hindermaist chynged $1.',
+'querypage-no-updates' => 'Updates for this page ar disablit at the meenit. Data here wilnae be refreshit at the meenit.',
+'wrong_wfQuery_params' => 'Wrang parameters tae wfQuery()<br />
+Exerce: $1<br />
+Aks: $2',
 'viewsource'           => 'View soorce',
+'viewsourcefor'        => 'for $1',
+'actionthrottled'      => 'Action devalit',
+'actionthrottledtext'  => 'As an anti-spam meisur, ye ar limitit frae daein this action ower mony times in a ower short tid, an ye hae exceedit this limit. Please try again in a wee.',
+'protectedpagetext'    => "Sairy, this page haes been '''lockit''' tae hinder vandalism.",
 'viewsourcetext'       => 'Ye can leuk at an copy the soorce o this page:',
+'protectedinterface'   => 'Sairy, but this page provides interface text for the saftware, an is lockit to hinder abuise.',
 'editinginterface'     => "'''Warnin:''' Ye'r editin a page that's uised tae provide interface text for the saftware. Chynges tae this page will affect the appearance o the uiser interface for ither uisers.",
+'sqlhidden'            => '(SQL query hidden)',
+'cascadeprotected'     => 'This page haes been protectit fra editin, acause it is includit in the followin {{PLURAL:$1|page|pages}}, that are protectit wi the "cascading" option turnit on:
+$2',
 'namespaceprotected'   => "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "Ye dinna hae permeession tae edit this page, sin it hauds anither uiser's personal settins.",
+'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannae be editit.',
+'titleprotected'       => 'This teetle haes been protectit frae bein makkit by [[User:$1|$1]]. The grunds for this are: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Uiser logoot',
@@ -323,9 +337,12 @@ $1",
 'loginpagetitle'             => 'Uiser login',
 'yourname'                   => 'Yer uiser name',
 'yourpassword'               => 'Yer password',
+'yourpasswordagain'          => 'Retype passwaird:',
 'remembermypassword'         => 'Mynd ma password across sessions.',
+'yourdomainname'             => 'Yer domain:',
 'externaldberror'            => "Aither the wis an external authenteication database mishanter, or ye'r no alloued tae update yer external accoont.",
 'loginproblem'               => '<b>Thare haes been a problem wi yer login.</b><br />Hae anither shot!',
+'login'                      => 'Log in',
 'loginprompt'                => 'Ye maun hae cookies enabled tae log in tae {{SITENAME}}.',
 'userlogin'                  => 'Mak an accoont or log in',
 'logout'                     => 'Log oot',
@@ -335,19 +352,24 @@ $1",
 'nologinlink'                => 'Mak an accoont',
 'createaccount'              => 'Mak new accoont',
 'gotaccount'                 => 'Got an accoont afore? $1.',
+'gotaccountlink'             => 'Log in',
 'createaccountmail'          => 'bi email',
 'badretype'                  => 'The passwords ye entered disna match.',
 'userexists'                 => 'The uiser name ye entered is aareadies in uiss. Please chuise a different name.',
 'youremail'                  => 'Yer email:',
 'username'                   => 'Uisername:',
+'uid'                        => 'Uiser ID:',
 'yourrealname'               => 'Yer real name:',
 'yourlanguage'               => 'Interface leid:',
 'yourvariant'                => 'Leid variant',
 'yournick'                   => 'Yer byname:',
 'badsig'                     => 'Raw signature nae guid; check HTML tags.',
+'badsiglength'               => 'Yer nickname is ower lang; it haes tae be unner $1 leeters.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Rael name is optional an gin ye chuise tae provide it this will be uised tae gie ye attreibution for yer wark.',
 'loginerror'                 => 'Login mishanter',
 'prefs-help-email'           => 'Email is optional, an lats ithers contact ye throu yer uiser or uiser_collogue page athoot you haein tae reveal yer identity.',
+'prefs-help-email-required'  => 'Yer e-mail address is needit.',
 'nocookiesnew'               => "The uiser accoont wis creatit, but ye'r no loggit in. {{SITENAME}} uises cookies tae log uisers in. Ye hae cookies disabled. Please enable them, than log in wi yer new uisername and password.",
 'nocookieslogin'             => '{{SITENAME}} uises cookies tae log in uisers. Ye hae cookies disabled. Please enable thaim an gie it anither shot.',
 'noname'                     => "Ye hivna specifee'd a valid uisername.",
@@ -355,9 +377,11 @@ $1",
 'loginsuccess'               => 'Ye\'re nou loggit in tae {{SITENAME}} as "$1".',
 'nosuchuser'                 => 'The\'r nae sic uiser as "$1". Check yer spellin, or uise the form ablo tae mak a new uiser accoont.',
 'nosuchusershort'            => 'The\'r nae sic uiser as "$1". Check yer spellin.',
+'nouserspecified'            => 'Ye hae tae merk up a uisername.',
 'wrongpassword'              => 'The password ye entered is wrang. Please gie it anither shot.',
 'wrongpasswordempty'         => 'The password ye entered is blank. Please gie it anither shot.',
 'passwordtooshort'           => 'Yer password is ower short. It maun hae at laest $1 characters.',
+'mailmypassword'             => 'E-mail passwaird',
 'passwordremindertitle'      => 'Password reminder frae {{SITENAME}}',
 'passwordremindertext'       => 'Somebodie (maist likely you, frae IP address $1)
 requestit that we send ye a new {{SITENAME}} login password ($4).
@@ -374,23 +398,51 @@ canna uise the password recovery function, for tae prevent abuiss.',
 'eauthentsent'               => "A confirmation email haes been sent tae the specifee'd email address.
 Afore onie ither mail is sent tae the accoont, ye'll hae tae follae the guidance in the email,
 tae confirm that ye ar aucht the accoont.",
+'throttled-mailpassword'     => "A passwaird minder haes been sent already, in the
+hindermaist $1 hoors. To hinder abuise, only ''ane'' passwaird minder will be gettin sent in
+$1 hoors.",
 'mailerror'                  => 'Error sendin mail: $1',
 'acct_creation_throttle_hit' => "Sorry, but ye'v aaraedies made $1 accoonts. Ye canna mak onie mair.",
+'emailauthenticated'         => 'Yer e-mail address wis checkit on $1.',
+'emailnotauthenticated'      => 'Yer e-mail address hasnae been checkit! Nae e-mail
+will be sent for ony o the followin featurs.',
 'noemailprefs'               => "Nae email address haes been specifee'd, the follaein featurs willna wirk.",
+'emailconfirmlink'           => 'Check yer e-mail address',
 'invalidemailaddress'        => 'The email address canna be acceptit syne it seems tae be formattit wrang. 
 Please enter a weel-formattit address or mak that field tuim.',
 'accountcreated'             => 'Accoont creatit',
 'accountcreatedtext'         => 'The uiser accoont for $1 haes bin creatit.',
+'createaccount-title'        => 'Accoont makin for {{SITENAME}}',
+'createaccount-text'         => 'A body ($1) makit an accoont for $2 on {{SITENAME}}
+($4). The passwaird for "$2" is "$3". Ye should log in an chynge yer passwaird
+nou.
+
+Ye can sling a deifie on this message, if this accoont wis creatit by mistak.',
+'loginlanguagelabel'         => 'Leid: $1',
+
+# Password reset dialog
+'resetpass'               => 'Set yer accoont passwaird again',
+'resetpass_announce'      => 'Ye loggit in wi a short term e-mailed code. To be duin logging in, ye hae tae mak a new passwaird here:',
+'resetpass_header'        => 'Reset passwaird',
+'resetpass_submit'        => 'Mak passwaird an log in',
+'resetpass_success'       => 'Yer passwaird chynge wis braw! Nou loggin ye in...',
+'resetpass_bad_temporary' => 'Yer short term passwaird wisnae habile. Ye micht hae already chynged yer passwaird or requestit a new short term passwaird.',
+'resetpass_forbidden'     => 'Passwairds cannae be chynged on this wiki',
+'resetpass_missing'       => 'Nae form data!',
 
 # Edit page toolbar
 'bold_sample'     => 'Bauld text',
 'bold_tip'        => 'Bauld text',
+'italic_sample'   => 'Italic text',
+'italic_tip'      => 'Italic text',
 'link_sample'     => 'Airtin teitle',
 'link_tip'        => 'Internal airtin',
 'extlink_sample'  => 'http://www.exemplar.com airtin teitle',
 'extlink_tip'     => 'Airtin tae an outby steid (mynd the http:// prefix)',
 'headline_sample' => 'Heidline text',
 'headline_tip'    => 'Level 2 heidline',
+'math_sample'     => 'Pit yer formula here',
+'math_tip'        => 'Mathematical formula (LaTeX)',
 'nowiki_sample'   => 'Insert non-formattit text here',
 'nowiki_tip'      => 'Ignore wiki formattin',
 'image_sample'    => 'Exemplar.jpg',
@@ -401,15 +453,21 @@ Please enter a weel-formattit address or mak that field tuim.',
 'hr_tip'          => 'Horizontal line (dinna ower uise)',
 
 # Edit pages
+'summary'                => 'Ootline',
+'subject'                => 'Subject/headline',
 'minoredit'              => 'This is a smaa edit',
+'watchthis'              => 'Leuk ower this page',
 'savearticle'            => 'Hain page',
 'preview'                => 'Scance',
 'showpreview'            => 'Scance ower',
+'showlivepreview'        => 'Live leuk ower',
 'showdiff'               => 'Shaw chynges',
 'anoneditwarning'        => "Ye arna loggit in. Yer IP address will be recordit in this page's edit history.",
 'missingsummary'         => "'''Mynd:''' Ye hivna gien an edit summary. Gin ye dab on Hain again, yer edit will be haint athoot ane.",
 'missingcommenttext'     => 'Please enter a comment ablo.',
 'missingcommentheader'   => "'''Mynd:''' Ye hivna gien a subject/heidline for this comment. Gin ye dab on Hain again, yer edit will be haint athoot ane.",
+'summary-preview'        => 'Ootline leuk ower',
+'subject-preview'        => 'Subject/headline leuk ower',
 'blockedtitle'           => 'Uiser is blockit',
 'blockedtext'            => '<big>\'\'\'Yer uisername or IP address haes been blockit.\'\'\'</big>
 
@@ -422,11 +480,38 @@ The block was made bi $1. The raeson gien is \'\'$2\'\'.
 Ye can contact $1 or ane o the ither [[{{MediaWiki:Grouppage-sysop}}|administrators]] tae discuss the block.
 Mynd that ye canna uise the "email this uiser" featur unless ye hae a valid email address registert in yer [[Special:Preferences|uiser preferences]] an ye hae not been blocked from using it.
 Yer IP address is $3, and the block ID is #$5. Please include this address in onie queries ye mak.',
+'autoblockedtext'        => 'Sairy, but yer IP address haes been blockit by the seestem acause it wis uised by an ither uiser, that wis blockit by $1.
+The grunds for this were:
+
+:\'\'$2\'\'
+
+* Stairt o block: $8
+* End o block: $6
+
+Ye may contact $1 or ane o the ither
+[[{{MediaWiki:Grouppage-sysop}}|sysops]] tae argie the block.
+
+Please jot that ye cannae uise the "e-mail this uiser" featur unless ye hae a habile e-mail address
+registerit in yer [[Special:Preferences|uiser preferences]] an ye hinna been blockit frae uisin it.
+
+Yer block ID is $5. Please include this ID in ony argies ye mak.',
+'blockednoreason'        => 'nae grunds put',
 'blockedoriginalsource'  => "The soorce o '''$1''' is shawn ablo:",
 'blockededitsource'      => "The text o '''your edits''' tae '''$1''' is shawn ablo:",
+'whitelistedittitle'     => 'Login needit tae edit',
+'whitelistedittext'      => 'Ye hae tae $1 tae edit pages.',
+'whitelistreadtitle'     => 'Login requirit tae leuk at this',
+'whitelistreadtext'      => 'Ye hae tae [[Special:Userlogin|login]] tae leuk at pages.',
+'whitelistacctitle'      => 'Ye arnae alloued tae mak an accoont',
+'whitelistacctext'       => 'Tae be alloued tae mak accoonts in this wiki ye hae tae [[Special:Userlogin|log in]] an hae the richt leave.',
 'confirmedittitle'       => 'E-mail confirmation needit for tae edit',
 'confirmedittext'        => 'Ye maun confirm yer e-mail address afore editin pages. Please set an validate yer e-mail address throu yer [[Special:Preferences|uiser settins]].',
+'nosuchsectiontitle'     => 'There isnae a section wi that teetle',
+'nosuchsectiontext'      => "Yer tryin tae edit a section that isnae there.  Acause there isnae a section $1, there's naegate to sauf yer edit.",
+'loginreqtitle'          => 'Login Requirit!',
+'loginreqlink'           => 'log in',
 'loginreqpagetext'       => 'Ye maun $1 tae view ither pages.',
+'accmailtitle'           => 'Passwaird sent.',
 'accmailtext'            => "The Password for '$1' haes been sent tae $2.",
 'newarticletext'         => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[{{MediaWiki:Helppage}}|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
 'anontalkpagetext'       => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical IP address tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:Userlogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
