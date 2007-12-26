@@ -844,7 +844,7 @@ U kan reeds bestaande pagina's wijzigen, of u kan [[{{ns:special}}:Userlogin|zic
 'permissionserrorstext'     => 'U heeft geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
 'recreate-deleted-warn'     => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
 
-Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak staat hieronder het logboek verwijderde pagina's voor deze pagina:",
+Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak staat hieronder het verwijderingslogboek voor deze pagina:",
 
 # "Undo" feature
 'undo-success' => 'Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt. Controleer voor het opslaan of het resultaat gewenst is.',
@@ -896,13 +896,13 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-user'            => '(gebruiker verwijderd)',
 'rev-deleted-event'           => '(actie verwijderd)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-De geschiedenis van deze pagina is verwijderd uit de publieke archieven.
-Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek verwijderde pagina\'s].
+Deze bewerking van de pagina is verwijderd uit de publieke archieven.
+Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} verwijderingslogboek].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-De geschiedenis van deze pagina is verwijderd uit de publieke archieven.
+Deze bewerking van de pagina is verwijderd uit de publieke archieven.
 Als beheerder van deze site kan u deze zien;
-er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek verwijderde pagina\'s].
+er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} verwijderingslogboek].
 </div>',
 'rev-delundel'                => 'tonen/verbergen',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
@@ -920,7 +920,7 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 'revdelete-hide-user'         => 'Gebruikersnaam/IP van de gebruiker verbergen',
 'revdelete-hide-restricted'   => 'Deze beperkingen toepassen op zowel beheerders als anderen',
 'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
-'revdelete-hide-image'        => 'Verberg bestandsinhoud',
+'revdelete-hide-image'        => 'Bestandsinhoud verbergen',
 'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
 'revdelete-log'               => 'Opmerking in logboek:',
 'revdelete-submit'            => 'Toepassen op de geselecteerde bewerking',
@@ -1015,7 +1015,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'math_unknown_function'    => 'onbekende functie',
 'math_lexing_error'        => 'lexicografische fout',
 'math_syntax_error'        => 'syntactische fout',
-'math_image_error'         => 'PNG-conversie is mislukt. Ga na of latex, dvips en gs correct geïnstalleerd zijn en converteer nogmaals',
+'math_image_error'         => 'PNG-omzetting is mislukt. Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'math_bad_tmpdir'          => 'De map voor tijdelijke bestanden voor wiskundige formules bestaat niet of kan niet gemaakt worden',
 'math_bad_output'          => 'De map voor bestanden met wiskundige formules bestaat niet of kan niet gemaakt worden.',
 'math_notexvc'             => 'Kan het programma texvc niet vinden; stel alles in volgens de beschrijving in math/README.',
@@ -1107,7 +1107,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'rcshowhideanons'                   => 'anonieme gebruikers $1',
 'rcshowhidepatr'                    => 'gecontroleerde bewerkingen $1',
 'rcshowhidemine'                    => 'mijn bewerkingen $1',
-'rclinks'                           => 'Toon de $1 laatste wijzigingen in de laatste $2 dagen<br />$3',
+'rclinks'                           => 'De $1 laatste wijzigingen tonen in de laatste $2 dagen<br />$3',
 'diff'                              => 'wijz',
 'hist'                              => 'gesch',
 'hide'                              => 'verbergen',
@@ -1157,7 +1157,7 @@ De laatste link is bedoeld voor mediabestanden.",
 'filestatus'                  => 'Auteursrechtensituatie',
 'filesource'                  => 'Bron',
 'uploadedfiles'               => 'Geüploade bestanden',
-'ignorewarning'               => 'Negeer deze waarschuwing en sla het bestand toch op.',
+'ignorewarning'               => 'Deze waarschuwing negeren en het bestand toch opslaan.',
 'ignorewarnings'              => 'Alle waarschuwingen negeren',
 'minlength1'                  => 'Bestandsnamen moeten minstens één letter bevatten.',
 'illegalfilename'             => 'De bestandsnaam "$1" bevat ongeldige karakters. Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
@@ -1459,7 +1459,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'emailpage'       => 'Gebruiker e-mailen',
 'emailpagetext'   => 'Als deze gebruiker een geldig e-mailadres heeft opgegeven, dan kan u via dit formulier een bericht verzenden. Het e-mailadres dat u heeft opgegeven bij uw voorkeuren wordt als afzender gebruikt.',
 'usermailererror' => 'Foutmelding bij het verzenden:',
-'defemailsubject' => '{{SITENAME}} e-mail',
+'defemailsubject' => 'E-mail van {{SITENAME}}',
 'noemailtitle'    => 'Van deze gebruiker is geen e-mailadres bekend',
 'noemailtext'     => 'Deze gebruiker heeft geen e-mailadres opgegeven of wil geen e-mail ontvangen van andere gebruikers.',
 'emailfrom'       => 'Van',
@@ -1560,9 +1560,9 @@ Feedback en andere assistentie:
 'actioncomplete'              => 'Handeling voltooid',
 'deletedtext'                 => '"$1" is verwijderd. Zie $2 voor een overzicht van recente verwijderingen.',
 'deletedarticle'              => 'verwijderde "[[$1]]"',
-'dellogpage'                  => "Logboek verwijderde pagina's",
+'dellogpage'                  => 'Verwijderingslogboek',
 'dellogpagetext'              => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
-'deletionlog'                 => "Logboek verwijderde pagina's",
+'deletionlog'                 => 'Verwijderingslogboek',
 'reverted'                    => 'Eerdere versie hersteld',
 'deletecomment'               => 'Reden voor verwijderen',
 'deleteotherreason'           => 'Andere/eventuele reden:',
@@ -1583,7 +1583,7 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'revertpage'                  => 'Wijzigingen door [[Special:Contributions/$2|$2]] hersteld tot de laatste versie door [[User:$1|$1]].',
 'rollback-success'            => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
 'sessionfailure'              => 'Er lijkt een probleem te zijn met uw aanmeldsessie. Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie). Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
-'protectlogpage'              => "Logboek beveiligde pagina's",
+'protectlogpage'              => 'Beveiligingslogboek',
 'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn, of waarvan de beveiliging is opgeheven. Zie de [[{{ns:special}}:Protectedpages|lijst met beveiligde pagina's]] voor all huidige beveiligde pagina's.",
 'protectedarticle'            => '"[[$1]]" beveiligd',
 'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
@@ -1652,8 +1652,8 @@ Als er al een nieuwe pagina met dezelfde naam is aangemaakt, worden deze versies
 'cannotundelete'               => 'Verwijderen mislukt. Misschien heeft een andere gebruiker de pagina al verwijderd.',
 'undeletedpage'                => "<big>'''$1 is teruggeplaatst'''</big>
 
-In het [[{{ns:special}}:Log/delete|logboek verwijderde pagina's]] staan recente verwijderingen en herstelhandelingen.",
-'undelete-header'              => "Zie [[{{ns:special}}:Log/delete|het logboek verwijderde pagina's]] voor recent verwijderde pagina's.",
+In het [[{{ns:special}}:Log/delete|verwijderingslogboek]] staan recente verwijderingen en herstelhandelingen.",
+'undelete-header'              => "Zie het [[{{ns:special}}:Log/delete|verwijderingslogboek]] voor recent verwijderde pagina's.",
 'undelete-search-box'          => "Verwijderde pagina's doorzoeken",
 'undelete-search-prefix'       => "Pagina's tonen die beginnen met:",
 'undelete-search-submit'       => 'Zoeken',
@@ -2370,11 +2370,11 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'monthsall'        => 'alle',
 
 # E-mail address confirmation
-'confirmemail'            => 'Bevestig e-mailadres',
+'confirmemail'            => 'E-mailadres bevestigen',
 'confirmemail_noemail'    => 'U heeft geen geldig e-mailadres ingegeven in uw [[{{ns:special}}:Preferences|gebruikersvoorkeuren]].',
 'confirmemail_text'       => 'Deze wiki vereist de bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kan gebruiken. Klik op de onderstaande knop om een bevestigingsbericht te ontvangen. Dit bericht bevat een link met een code. Open die link om uw e-mailadres te bevestigen.',
 'confirmemail_pending'    => '<div class="error">Er is al een bevestigingsbericht aan u verzonden. Als u recentelijk uw gebruiker heeft aangemaakt, wacht dan een paar minuten totdat die aankomt voordat u opnieuw een e-mail laat sturen.</div>',
-'confirmemail_send'       => 'Verzend een bevestigingscode',
+'confirmemail_send'       => 'Een bevestigingscode verzenden',
 'confirmemail_sent'       => 'Bevestigingscode verzonden.',
 'confirmemail_oncreate'   => 'Er is een bevestigingscode is naar uw e-mailadres verzonden. Deze code is niet nodig om u aan te melden, maar u dient deze wel te bevestigen voordat u de e-mailmogelijkheden van deze wiki kan gebruiken.',
 'confirmemail_sendfailed' => 'Het was niet mogelijk een bevestigingscode te verzenden. Controleer het adres op ongeldige tekens.
@@ -2395,7 +2395,7 @@ $3
 Als u zichzelf *niet* heeft aangemeld, open deze link dan niet. De bevestigingscode verloopt  op $4.',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Interwikitransclusie is uitgeschakeld]',
+'scarytranscludedisabled' => '[Interwiki-invoeging van sjablonen is uitgeschakeld]',
 'scarytranscludefailed'   => '[Sjabloon $1 kon niet opgehaald worden; sorry]',
 'scarytranscludetoolong'  => '[URL is te lang; sorry]',
 

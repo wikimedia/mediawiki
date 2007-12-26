@@ -69,6 +69,7 @@ $messages = array(
 'anontalk'   => 'Ke kūkākūkā no kēia IP',
 'navigation' => 'Ka papa huli mea',
 
+'tagline'          => 'Mai {{SITENAME}}',
 'help'             => 'Kōkua',
 'search'           => 'Huli',
 'searchbutton'     => 'Huli',
@@ -85,6 +86,8 @@ $messages = array(
 'talkpagelinktext' => 'Kūkākūkā',
 'talk'             => 'Kūkākūkā',
 'otherlanguages'   => "Ma nā leo 'ē a'e",
+'jumptonavigation' => 'ho‘okele',
+'jumptosearch'     => 'huli',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'     => 'E pili ana iā {{SITENAME}}',
@@ -161,11 +164,13 @@ hō‘ike ‘ia i lalo:",
 
 # History pages
 'cur'          => 'hou',
+'last'         => 'hope',
 'deletedrev'   => '[ua kāpae ‘ia]',
 'historysize'  => '({{PLURAL:$1|1 ‘ai|$1 ‘ai}})',
 'historyempty' => '(‘ole)',
 
 # Diffs
+'lineno'   => 'Laina $1:',
 'editundo' => 'wehe',
 
 # Search results
@@ -191,6 +196,7 @@ hō‘ike ‘ia i lalo:",
 'diff'            => '‘oko‘a',
 'hist'            => 'loli',
 'minoreditletter' => 'iki',
+'boteditletter'   => 'lopako',
 
 # Recent changes linked
 'recentchangeslinked' => "Nā loli hou 'ālike",
@@ -202,7 +208,8 @@ hō‘ike ‘ia i lalo:",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
 # Image list
-'ilsubmit' => 'Huli',
+'ilsubmit'   => 'Huli',
+'imagelinks' => 'Nā loulou',
 
 # Random page
 'randompage' => 'He mo‘olelo kaulele',
@@ -257,6 +264,9 @@ hō‘ike ‘ia i lalo:",
 'restriction-edit' => "E ho'opololei",
 'restriction-move' => "E ho'ololi i ka inoa",
 
+# Namespace form on various pages
+'blanknamespace' => '(‘Ano nui)',
+
 # Contributions
 'contributions' => 'Nā ha‘awina o kēia mea ho‘ohana',
 'mycontris'     => "He aha ka'u i lūlū ai",
@@ -274,6 +284,7 @@ hō‘ike ‘ia i lalo:",
 'badipaddress'  => 'Mana ‘ole ka wahi noho IP',
 'anononlyblock' => '‘A‘ohe i hō‘ike‘ia ka inoa wale nō',
 'blocklink'     => 'e keʻa',
+'contribslink'  => 'nā ha‘awina',
 'blockme'       => 'E ke‘a ia‘u',
 
 # Move page
@@ -292,6 +303,12 @@ hō‘ike ‘ia i lalo:",
 
 # Thumbnails
 'thumbnail-more' => 'ho‘onui',
+
+# Tooltip help for the actions
+'tooltip-search'         => 'Huli {{SITENAME}}',
+'tooltip-n-mainpage'     => 'Hele i ka papa kinohi',
+'tooltip-n-sitesupport'  => 'Kāko‘o mai',
+'tooltip-t-specialpages' => 'Helu o nā papa nui apau',
 
 # Attribution
 'and' => 'a me',
