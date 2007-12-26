@@ -144,6 +144,9 @@ $messages = array(
 'viewsourcefor' => '$1ને માટે',
 
 # Login and logout pages
+'userlogin'       => 'Log in / નવું ખાતું ખોલો',
+'nologin'         => 'શું તમારી પાસે ખાતું નથી? $1.',
+'nologinlink'     => 'ખાતું ખોલો',
 'createaccount'   => 'ખાતું સર્જન કરવું',
 'yourrealname'    => 'સાચું નામ:',
 'yourlanguage'    => 'ભાષા',
@@ -273,6 +276,7 @@ $messages = array(
 'mywatchlist'          => 'મારી ધ્યાનસૂચી',
 'watchlistfor'         => "('''$1'''ને માટે)",
 'watch'                => 'ધ્યાન માં રાખો',
+'watchlist-details'    => 'ચર્ચા વાળા પાના ન ગણતા {{PLURAL:$1|$1 પાનું|$1 પાનાં}} ધ્યાનસૂચી મા છે.',
 'watchlistcontains'    => 'તમારી ધ્યાનસૂચીમાં $1 {{PLURAL:$1|પાનું|પાનાં}} છે.',
 'watchlist-hide-bots'  => 'બૉટના ફેરફાર સંતાડો',
 'watchlist-hide-own'   => 'મારા ફેરફાર સંતાડો',

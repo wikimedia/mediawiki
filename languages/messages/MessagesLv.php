@@ -9,7 +9,9 @@
  * @author לערי ריינהארט
  * @author Nike
  * @author Siebrand
- *
+ */
+
+/*
  * @copyright Copyright © 2006, Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
@@ -847,12 +849,14 @@ Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās
 'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1',
 
 # What links here
-'whatlinkshere' => 'Norādes uz šo rakstu',
-'linklistsub'   => '(Saišu uzskaitījums)',
-'linkshere'     => 'Šajās lapās ir norādes uz šo lapu:',
-'nolinkshere'   => 'Nevienā lapā nav norāžu uz šo lapu.',
-'isredirect'    => 'pāradresācijas lapa',
-'istemplate'    => 'izsaukts',
+'whatlinkshere'      => 'Norādes uz šo rakstu',
+'linklistsub'        => '(Saišu uzskaitījums)',
+'linkshere'          => 'Šajās lapās ir norādes uz šo lapu:',
+'nolinkshere'        => 'Nevienā lapā nav norāžu uz šo lapu.',
+'isredirect'         => 'pāradresācijas lapa',
+'istemplate'         => 'izsaukts',
+'whatlinkshere-prev' => '{{PLURAL:$1|iepriekšējo|iepriekšējos $1}}',
+'whatlinkshere-next' => '{{PLURAL:$1|nākamo|nākamos $1}}',
 
 # Block/unblock
 'blockip'            => 'Bloķēt lietotāju',
@@ -870,7 +874,7 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 ** Ievieto nesakarīgus simbolus sakopojumus',
 'ipbsubmit'          => 'Bloķēt šo lietotāju',
 'ipbother'           => 'Cits laiks',
-'ipboptions'         => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite',
+'ipboptions'         => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'cits',
 'badipaddress'       => 'Nederīga IP adrese',
 'blockipsuccesssub'  => 'Nobloķēts veiksmīgi',

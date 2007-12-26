@@ -299,7 +299,7 @@ $messages = array(
 'aboutpage'         => 'Project:Aqqında',
 'bugreports'        => 'Hatalar aqqında esabatlar',
 'bugreportspage'    => 'Project:Hatalar aqqında esabatlar',
-'copyright'         => 'Malümat $1 binaen keçile bile.',
+'copyright'         => 'Malümat $1 binaen keçilip ola.',
 'copyrightpagename' => '{{SITENAME}} müellif aqları',
 'copyrightpage'     => '{{ns:project}}:Müellif aqları',
 'currentevents'     => 'Ağımdaki vaqialar',
@@ -451,7 +451,7 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'yourpasswordagain'          => 'Parolni yañıdan yaz',
 'remembermypassword'         => 'Bu kompyuterde meni hatırla',
 'yourdomainname'             => 'Domen adıñız',
-'externaldberror'            => 'Sistemağa tanıtılğanda bir hata oldı. Bu tış esabıñızğa deñişiklik yapmağa aqqıñız olmayuvından meydanğa kele bile.',
+'externaldberror'            => 'Sistemağa tanıtılğanda bir hata oldı. Bu tış esabıñızğa deñişiklik yapmağa aqqıñız olmayuvından meydanğa kelip ola.',
 'loginproblem'               => '<b>Oturımıñız açılğanda problema çıqtı.</b><br />Bir daa etiñiz!',
 'login'                      => 'Sistemağa kir',
 'loginprompt'                => 'Oturım açmaq içün "cookies"ge izin bermelisiñiz.',
@@ -485,8 +485,8 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'nocookieslogin'             => '{{SITENAME}} "cookies" qullanmaqta. Sizde bu funktsiya qapalı vaziyettedir. "Cookies" funktsiyasını açıp tekrar tırışıp baqıñız.',
 'noname'                     => 'Qullanıcı adını belgilemediñiz.',
 'loginsuccesstitle'          => 'Kiriş yapıldı',
-'loginsuccess'               => "'''$1 adınen {{SITENAME}} saytında çalışa bilesiñiz.'''",
-'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñ ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
+'loginsuccess'               => "'''$1 adınen {{SITENAME}} saytında çalışıp olasıñız.'''",
+'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñiz ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
 'nosuchusershort'            => '"$1" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirgen/Belgilegen paroliñiz yañlıştır.',
@@ -1270,7 +1270,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 'confirmprotect'              => 'Qorçalavnı tasdıqla',
 'protectcomment'              => 'Qorçalav altına aluv sebebi',
 'unprotectsub'                => '(qorçalav çıqarılır "$1")',
-'protect-text'                => '[[$1]] saifesiniñ qorçalav seviyesini mından köre bilir ve deñiştire bilesiñiz. Lütfen [[Project:Qorçalav politikası|qorçalav politikasına]] uyğun areket etkeniñizden emin oluñız.',
+'protect-text'                => '<strong>[[$1]]</strong> saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.',
 'protect-default'             => '(standart)',
 'protect-level-autoconfirmed' => 'registrirlenmegen deñiştirmesin',
 'protect-level-sysop'         => 'tek administratorlar',
@@ -1340,7 +1340,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 
 # Block/unblock
 'blockip'                 => 'Bu IP adresinden irişimni ban et',
-'blockiptext'             => 'Aşağıdaki formanı qullanaraq belli bir IP-niñ ya da qullanıcınıñ irişimini ban ete bilirsiñiz. Bu tek vandalizmni ban etmek içün ve [[{{MediaWiki:Policy-url}}|qaidelerge]] uyğun olaraq yapılmalı. Aşağığa mıtlaqa ban etüv ile bağlı bir açıqlama yazıñız. (meselâ: Şu saifelerde vandalizm yaptı).',
+'blockiptext'             => 'Aşağıdaki formanı qullanaraq belli bir IP adresiniñ ya da qullanıcınıñ irişimini ban etip olasıñız. Bu tek vandalizmni ban etmek içün ve [[{{MediaWiki:Policy-url}}|qaidelerge]] uyğun olaraq yapılmalı. Aşağığa mıtlaqa ban etüv ile bağlı bir açıqlama yazıñız. (meselâ: Şu saifelerde vandalizm yaptı).',
 'ipaddress'               => 'IP adresi',
 'ipadressorusername'      => 'IP adresi ya da qullanıcı adı',
 'ipbexpiry'               => 'Bitiş müddeti',
@@ -1366,7 +1366,7 @@ Daa fazla malümat içün [[Project:Qorçalav altına alınğan saife]] saifesin
 'autoblocker'             => 'Avtomatik olaraq ban ettiñiz çünki yaqın zamanda IP adresiñiz "[[User:$1|$1]]" qullanıcısı tarafından qullanıldı. $1 isimli qullanıcınıñ ban etilüvi içün berilgen sebep: "\'\'\'$2\'\'\'"',
 'blocklogpage'            => 'İrişim ban etüv jurnalları',
 'blocklogentry'           => '"[[$1]]" irişimi $2 $3 toqtatıldı. Sebep',
-'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ya da ban etüv çıqaruv jurnalları cedvellenmekte. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Şu ande irişimi toqtatılğan qullanıcılarnı [[Special:Ipblocklist|IP ban etüv cedveli]] saifesinden köre bilirsiñiz.',
+'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ya da ban etüv çıqaruv jurnalları cedvellenmekte. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Al-azırda irişimi toqtatılğan qullanıcılarnı [[Special:Ipblocklist|IP ban etüv cedveli]] saifesinden körip olasıñız.',
 'unblocklogentry'         => '$1 qullanıcınıñ ban etüvi çıqarıldı',
 'block-log-flags-noemail' => 'e-mail blok etildi',
 'ipb_expiry_invalid'      => 'Keçersiz bitiş zamanı.',
@@ -1387,7 +1387,7 @@ Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
 Yañı isimde bir isim zaten mevcüt olsa, isim deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yöneltici ya da boş olsa isim deñişikligi mümkün olacaqtır. Bu demek ki, saife isimini yañlıştan deñiştirgen olsañız deminki isimini keri qaytarabilesiñiz, amma mevcüt olğan saifeni tesadufen yoq etalmaysıñız.
 
 '''TENBİ!'''
-İsim deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep olabilir. Lütfen deñişiklikni yapmadan evel olabileceklerni köz ögüne alıñız.",
+İsim deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen deñişiklikni yapmadan evel olabileceklerni köz ögüne alıñız.",
 'movepagetalktext'        => "Qoşulğan muzakere saifesiniñ de (mevcüt olsa)
 isimi avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
@@ -1397,7 +1397,7 @@ isimi avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege mecbur olursıñız.",
 'movearticle'             => 'Eski isim',
 'movenologin'             => 'Oturım açmadıñız',
-'movenologintext'         => 'Saifeniñ adını deñiştirebilmek içün [[Special:Userlogin|oturım açıñız]].',
+'movenologintext'         => 'Saifeniñ adını deñiştirip olmaq içün [[Special:Userlogin|oturım açıñız]].',
 'newtitle'                => 'Yañı isim',
 'move-watch'              => 'Bu saifeni közet',
 'movepagebtn'             => 'İsimini deñiştir',
@@ -1463,7 +1463,7 @@ Lütfen bularnı qolnen birleştiriñiz.'''",
 'tooltip-ca-talk'                 => 'Saifedeki malümat ile bağlı zan belgile',
 'tooltip-ca-edit'                 => 'Bu saifeni deñiştire bilesiñiz. Saqlamazdan evel ög baquv yapmağa unutmañız.',
 'tooltip-ca-addsection'           => 'Bu muzakerege tefsir ekleñiz.',
-'tooltip-ca-viewsource'           => 'Bu saife qorçalav altında. Menba kodunı tek köre bilirsiñiz. Deñiştirip olamazsıñız.',
+'tooltip-ca-viewsource'           => 'Bu saife qorçalav altında. Menba kodunı tek körip olasıñız, deñiştirip olamaysıñız.',
 'tooltip-ca-history'              => 'Bu saifeniñ keçmiş versiyaları.',
 'tooltip-ca-protect'              => 'Bu saifeni qorçala',
 'tooltip-ca-delete'               => 'Saifeni yoq et',
@@ -1570,7 +1570,7 @@ Lütfen bularnı qolnen birleştiriñiz.'''",
 'nextdiff'     => 'Soñraki versiyanen aradaki farq →',
 
 # Media information
-'mediawarning'         => "'''DİQQAT!''': Bu faylda yaman maqsatlı (virus kibi) qısım buluna bilir ve öperatsion sistemañızğa zarar ketire bilir.
+'mediawarning'         => "'''DİQQAT!''': Bu faylda yaman maqsatlı (virus kibi) qısım bulunıp ola ve operatsion sistemañızğa zarar ketirip olur.
 <hr />",
 'imagemaxsize'         => 'Resim açıqlamalar saifelerindeki resimniñ eñ büyük büyükligi:',
 'thumbsize'            => 'Kiçik büyüklik:',
@@ -1786,7 +1786,7 @@ $1',
 'watchlistedit-noitems'        => 'Közetüv cedveliñizde iç bir saife yoq.',
 'watchlistedit-normal-title'   => 'Közetüv ceveliñizni deñiştirmektesiñiz',
 'watchlistedit-normal-legend'  => 'Közetüv cedvelinden saife yoq etilüvi',
-'watchlistedit-normal-explain' => 'Közetüv cedveliñizdeki saifeler aşağıda bulunmaqtadır. Saife közetüv cedvelinden yoq etmek içün onı belgilep "Saylanğan saifelerni közetüv cedvelinden yoq et" yazısına basıñız. Közetüv cedveliñizni [[Special:Watchlist/raw|metin olaraq da deñiştire]] ya da ondan [[Special:Watchlist/clear|butün saifelerni yoq ete]] bilirsiñiz.',
+'watchlistedit-normal-explain' => 'Közetüv cedveliñizdeki saifeler aşağıda bulunmaqtadır. Saife közetüv cedvelinden yoq etmek içün onı belgilep "Saylanğan saifelerni közetüv cedvelinden yoq et" yazısına basıñız. Közetüv cedveliñizni [[Special:Watchlist/raw|metin olaraq da deñiştirip]] olasıñız.',
 'watchlistedit-normal-submit'  => 'Saylanğan saifelerni közetüv cevelinden yoq et',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 saife|$1 saife}} közetüv cedveliñizden yoq etildi:',
 'watchlistedit-raw-title'      => 'Közetüv ceveliñizni deñiştirmektesiñiz',
