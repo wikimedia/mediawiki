@@ -585,6 +585,10 @@ updates.
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
 new database fields are filled with data.
 
+If upgrading from before 1.11, and you are using a wiki as a commons repository, 
+make sure that it is updated as well. Otherwise, errors may arise due to 
+database schema changes.
+
 If you are upgrading from MediaWiki 1.4.x or earlier, some major database
 changes are made, and there is a slightly higher chance that things could
 break. Don't forget to always back up your database before upgrading!
