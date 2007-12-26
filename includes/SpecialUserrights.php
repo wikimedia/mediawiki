@@ -42,6 +42,19 @@ class UserrightsForm extends HTMLForm {
 	 * Depending on the submit button used, call a form or a save function.
 	 */
 	function execute() {
+		// If the visitor doesn't have permissions to assign or remove
+		// any groups, it's a bit silly to give them the user search prompt.
+		$available = $this->changeableGroups();
+		if( empty( $available['add'] ) && empty( $available['remove'] ) ) {
+			// fixme... there may be intermediate groups we can mention.
+			global $wgOut, $wgUser;
+			$wgOut->showPermissionsErrorPage( array(
+				$wgUser->isAnon()
+					? 'userrights-nologin'
+					: 'userrights-notallowed' ) );
+			return;
+		}
+		
 		// show the general form
 		$this->switchForm();
 		if( $this->mPosted ) {
