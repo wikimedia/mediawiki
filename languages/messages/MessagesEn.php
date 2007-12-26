@@ -1340,6 +1340,8 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-available-remove' => 'You can remove users from $1.',
 'userrights-no-interwiki'     => 'You do not have permission to edit user rights on other wikis.',
 'userrights-nodatabase'       => 'Database $1 does not exist or is not local.',
+'userrights-nologin'          => 'You must [[Special:Userlogin|log in]] with an administrator account to assign user rights.',
+'userrights-notallowed'       => 'Your account does not have permission to assign user rights.',
 
 # Groups
 'group'               => 'Group:',
