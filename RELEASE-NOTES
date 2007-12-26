@@ -383,6 +383,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added list=allcategories module
 * (bug 12321) API list=blocks reveals private data
 * Fix output of wfSajaxSearch
+* (bug 12413) meta=userinfo missing <query> tag
 
 === Languages updated in 1.12 ===
 
