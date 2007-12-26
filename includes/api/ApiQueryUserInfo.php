@@ -75,7 +75,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			}
 		}
 		
-		$result->addValue(null, $this->getModuleName(), $vals);
+		$result->addValue("query", $this->getModuleName(), $vals);
 	}
 
 	protected function getAllowedParams() {
