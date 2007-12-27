@@ -918,7 +918,7 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'shortpages'              => 'Paginae breves',
 'longpages'               => 'Paginae longae',
 'deadendpages'            => 'Paginae sine nexu',
-'deadendpagestext'        => 'Paginae hae sequentes non nectunt ad alias paginas ullas.',
+'deadendpagestext'        => 'Paginae hae sequentes non nectunt ad alias paginas ullas in {{grammar:ablative|{{SITENAME}}}}.',
 'protectedpages'          => 'Paginae protectae',
 'protectedpagestext'      => 'Paginae sequentes protectae sunt a movendo ac recensendo',
 'protectedtitles'         => 'Tituli protecti',
@@ -1045,8 +1045,8 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'confirmdelete'             => 'Adfirmare deletionem',
 'deletesub'                 => '(Deletio de "$1")',
 'historywarning'            => 'Monitio: Pagina quam delere vis historiam habet:',
-'confirmdeletetext'         => 'Paginam vel fasciculum cum tota historia eius perpetuo delebis ex base datorum.
-Adfirma quaesumus te paginam vel fasciculum re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:Policy-url}}]] congruere.',
+'confirmdeletetext'         => 'Paginam cum tota historia eius delebis ex base datorum.
+Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:Policy-url}}|consilio]] congruere.',
 'actioncomplete'            => 'Actum perfectum',
 'deletedtext'               => '"$1" deletum est.
 Vide $2 pro indice deletionum recentum.',

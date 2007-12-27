@@ -206,6 +206,7 @@ $messages = array(
 'nstab-main'     => 'Säit',
 'nstab-user'     => 'Benotzersäit',
 'nstab-special'  => 'Spezialsäit',
+'nstab-image'    => 'Fichier',
 'nstab-template' => 'Schabloun',
 'nstab-help'     => 'Hëllef-Säit',
 'nstab-category' => 'Kategorie',
@@ -308,11 +309,11 @@ Dëse Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
 * Ënn vun der Spär: \$6
 * Spär betrefft: \$7
  
-Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[Wikipedia:Administrators|Administrateuren]] fir d'Spär ze beschwätzen.
+Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateuren]] fir d'Spär ze beschwetzen.
 
 Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. 
 
-Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gèlteg Email Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
+Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gülteg Email Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
 'autoblockedtext'      => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
 
 \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) 
@@ -358,7 +359,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'templatesused'        => 'Schablounen déi an dësem Artikel gebraucht ginn:',
 'templatesusedsection' => 'Schablounen déi an dësem Abschnitt benotzt ginn:',
 'template-protected'   => '(schreiwgeschützt)',
-'nocreate-loggedin'    => 'Dir hutt keng Berechtigung fir nei Säiten an dëser Wiki anzuleeën.',
+'nocreate-loggedin'    => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
 
 # Account creation failure
 'cantcreateaccount-text' => 'Dës IP Adress (<b>$1</b>) gouf vum [[User:$3|$3]] blokéiert fir Benotzer-Konten op der lëtzebuergescher Wikipedia opzemaachen. De Benotzer $3 huet "$2" als Ursaach uginn.',
@@ -474,7 +475,8 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'rc_categories_any' => 'All',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ännerungen op verlinkte Säiten',
+'recentchangeslinked'       => 'Ännerungen op verlinkte Säiten',
+'recentchangeslinked-title' => 'Ännerungen op Säiten, déi vun "$1" verlinkt sinn',
 
 # Upload
 'upload'            => 'Eroplueden',
@@ -501,6 +503,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'filehist-current'      => 'aktuell',
 'filehist-datetime'     => 'Versioun vum',
 'filehist-user'         => 'Benotzer',
+'filehist-dimensions'   => 'Dimesiounen',
 'filehist-filesize'     => 'Gréisst vum Fichier',
 'filehist-comment'      => 'Bemierkung',
 'imagelist_date'        => 'Datum',
@@ -580,7 +583,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'shortpages'              => 'Kuurz Säiten',
 'longpages'               => 'Laang Säiten',
 'deadendpages'            => 'Sakgaasse-Säiten',
-'deadendpagestext'        => 'Dës Säite si mat kenger anerer Säit vun der Wiki verlinkt.',
+'deadendpagestext'        => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
 'specialpages'            => 'Spezialsäiten',
 'newpages'                => 'Nei Säiten',
 'newpages-username'       => 'Benotzernumm:',
@@ -660,7 +663,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'exblank'               => "D'Säit wor eidel",
 'confirmdelete'         => "Konfirméiert d'Läschen",
 'deletesub'             => '("$1" gëtt geläscht)',
-'confirmdeletetext'     => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[Wikipedia:Administrators#Konsequenze vun engem Muechtmëssbrauch|Wikipediaregele]] geschitt.",
+'confirmdeletetext'     => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",
 'actioncomplete'        => 'Aktioun ofgeschloss',
 'deletedtext'           => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vu rezent geläschte Säiten.',
 'deletedarticle'        => '"$1" gouf geläscht',
@@ -778,22 +781,27 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'importlogpage' => 'Import-Logbuch',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'    => 'Meng Benotzersäit',
-'tooltip-pt-mytalk'      => 'Meng Diskussioun',
-'tooltip-pt-preferences' => 'Meng Preferenzen',
-'tooltip-pt-logout'      => 'Ofmellen',
-'tooltip-ca-delete'      => 'Dës Säit läschen',
-'tooltip-ca-move'        => 'Dës Säit réckelen',
-'tooltip-ca-watch'       => 'Dës Säit op är Suivi-Lëscht bäisetzen',
-'tooltip-search'         => 'Op {{SITENAME}} sichen',
-'tooltip-n-mainpage'     => "Besicht d'Haaptsäit",
-'tooltip-n-sitesupport'  => 'Ënnerstetzt eis',
-'tooltip-t-emailuser'    => 'Dësem Benotzer eng E-Mail schécken',
-'tooltip-t-specialpages' => 'Lëscht vun alle Spezialsäiten',
-'tooltip-ca-nstab-user'  => 'Benutzersäit weisen',
-'tooltip-ca-nstab-help'  => 'Hëllefesäiten uweisen',
-'tooltip-minoredit'      => 'Dës Ännerung als kleng markéieren.',
-'tooltip-save'           => 'Ännerungen späicheren',
+'tooltip-pt-userpage'     => 'Meng Benotzersäit',
+'tooltip-pt-mytalk'       => 'Meng Diskussioun',
+'tooltip-pt-preferences'  => 'Meng Preferenzen',
+'tooltip-pt-login'        => 'Sech unzemellen gëtt gäre gesinn, Dir musst et awer net maachen.',
+'tooltip-pt-logout'       => 'Ofmellen',
+'tooltip-ca-talk'         => 'Diskussioun iwwert de Säiteninhalt',
+'tooltip-ca-delete'       => 'Dës Säit läschen',
+'tooltip-ca-move'         => 'Dës Säit réckelen',
+'tooltip-ca-watch'        => 'Dës Säit op är Suivi-Lëscht bäisetzen',
+'tooltip-search'          => 'Op {{SITENAME}} sichen',
+'tooltip-n-mainpage'      => "Besicht d'Haaptsäit",
+'tooltip-n-recentchanges' => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',
+'tooltip-n-help'          => 'Hëllefsäiten uweisen.',
+'tooltip-n-sitesupport'   => 'Ënnerstetzt eis',
+'tooltip-t-whatlinkshere' => 'Lëscht vun alle Säiten, déi heihi linken',
+'tooltip-t-emailuser'     => 'Dësem Benotzer eng E-Mail schécken',
+'tooltip-t-specialpages'  => 'Lëscht vun alle Spezialsäiten',
+'tooltip-ca-nstab-user'   => 'Benutzersäit weisen',
+'tooltip-ca-nstab-help'   => 'Hëllefesäiten uweisen',
+'tooltip-minoredit'       => 'Dës Ännerung als kleng markéieren.',
+'tooltip-save'            => 'Ännerungen späicheren',
 
 # Attribution
 'anonymous'   => 'Anonym(e) Benotzer op {{SITENAME}}',
@@ -808,6 +816,9 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # Browsing diffs
 'nextdiff' => 'Nächsten Ënnerscheed →',
+
+# Media information
+'show-big-image' => 'Versioun an enger méi héijer Opléisung',
 
 # Metadata
 'metadata' => 'Metadaten',

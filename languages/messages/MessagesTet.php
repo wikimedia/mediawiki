@@ -225,6 +225,8 @@ $messages = array(
 'resetpass_text' => "<!-- Hakerek testu iha ne'e -->",
 
 # Edit page toolbar
+'link_tip'     => 'Ligasaun ba laran',
+'extlink_tip'  => "Ligasaun ba li'ur (tau tan http://)",
 'image_sample' => 'Ezemplu.jpg',
 'media_sample' => 'Ezemplu.ogg',
 
@@ -233,6 +235,7 @@ $messages = array(
 'watchthis'         => "Hateke pájina ne'e",
 'anoneditwarning'   => 'Ó lá\'os "log-in" iha momentu.',
 'blockedtitle'      => "Uza-na'in nablokeiu",
+'newarticle'        => '(Foun)',
 'noarticletext'     => "Iha momentu lá'os testu iha pájina ne'e, bele [[Special:Search/{{PAGENAME}}|buka naran pájina nian]] iha pájina seluk ka [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita pájina ne'e].",
 'editing'           => 'Edita $1',
 'editingcomment'    => 'Edita $1 (komentáriu)',
@@ -322,7 +325,10 @@ $messages = array(
 'ilsubmit'           => 'Buka',
 'filehist-deleteall' => 'halakon hotu',
 'filehist-deleteone' => "halakon ne'e",
+'filehist-current'   => 'atuál',
+'filehist-datetime'  => 'Loron/Tempu',
 'filehist-user'      => "Uza-na'in",
+'filehist-comment'   => 'Komentáriu',
 'imagelist_name'     => 'Naran',
 'imagelist_user'     => "Uza-na'in",
 
@@ -344,6 +350,7 @@ $messages = array(
 'brokenredirects-delete' => '(halakon)',
 
 # Miscellaneous special pages
+'nmembers'          => '$1 membru',
 'allpages'          => 'Pájina hotu',
 'listusers'         => "Lista uza-na'in",
 'specialpages'      => 'Pájina espesiál sira',
@@ -432,6 +439,7 @@ $messages = array(
 
 # Block/unblock
 'blockip'                 => "Blokeiu uza-na'in",
+'ipboptions'              => '2 hours:2 hours,1 loron:1 day,3 Loron:3 days,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'seluk',
 'ipblocklist-username'    => "Naran uza-na'in ka IP:",
 'ipblocklist-submit'      => 'Buka',
@@ -455,11 +463,16 @@ $messages = array(
 'allmessagescurrent' => 'Testu atuál',
 
 # Tooltip help for the actions
+'tooltip-ca-protect'      => "Proteje pájina ne'e",
+'tooltip-ca-delete'       => "Halakon pájina ne'e",
+'tooltip-ca-move'         => "Buka pájina ne'e",
 'tooltip-search'          => 'Buka iha {{SITENAME}}',
 'tooltip-n-mainpage'      => 'Vizita Pájina Mahuluk',
 'tooltip-n-recentchanges' => "Lista mudansa foufoun sira iha wiki ne'e.",
+'tooltip-n-randompage'    => 'Hola pájina ruma',
 'tooltip-t-contributions' => "Haree lista kontribuisaun uza-na'in ne'e nian",
 'tooltip-t-specialpages'  => 'Lista pájina espesiál hotu nian',
+'tooltip-ca-nstab-user'   => "Haree pájina uza-na'in",
 
 # Browsing diffs
 'previousdiff' => '←Diferensa molok',

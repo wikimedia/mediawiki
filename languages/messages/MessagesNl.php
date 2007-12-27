@@ -1068,8 +1068,8 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'userrights-available-remove' => 'U kan gebruikers verwijderen uit $1.',
 'userrights-no-interwiki'     => "U heeft geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen plaatselijke database.',
-'userrights-nologin'          => 'U moet zich [[Special:Userlogin|aanmelden]] met een gebruiker die beheerder is om gebruikersrechten toe te wijzen.',
-'userrights-notallowed'       => 'Uw gebruiker heeft geen rechten om gebruikersrechten toe te wijzen.',
+'userrights-nologin'          => 'U moet zich [[Special:Userlogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
+'userrights-notallowed'       => 'U heeft geen rechten om gebruikersrechten toe te wijzen.',
 
 # Groups
 'group'               => 'Groep:',
@@ -1250,8 +1250,8 @@ PICT # overig
 'imgfile'                   => 'bestand',
 'filehist'                  => 'Bestandsgeschiedenis',
 'filehist-help'             => 'Klik op een datum/tijd om het bestand te zien zoals het destijds was.',
-'filehist-deleteall'        => 'verwijder alles',
-'filehist-deleteone'        => 'verwijder deze',
+'filehist-deleteall'        => 'alles verwijderen',
+'filehist-deleteone'        => 'dit verwijderen',
 'filehist-revert'           => 'terugdraaien',
 'filehist-current'          => 'huidig',
 'filehist-datetime'         => 'Datum/tijd',

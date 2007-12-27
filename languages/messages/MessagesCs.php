@@ -762,7 +762,7 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 'nocreatetitle'             => 'Vytváření nových stránek je omezeno',
 'nocreatetext'              => 'Na tomto serveru je možnost vytváření nových stránek omezena.
 Můžete se vrátit a editovat již existující stránku, nebo [[Special:Userlogin|se přihlásit či se registrovat]].',
-'nocreate-loggedin'         => 'Nemáte povoleno zakládat nové stránky na této wiki.',
+'nocreate-loggedin'         => 'Nemáte povoleno zakládat nové stránky na {{grammar:6sg|{{SITENAME}}}}.',
 'permissionserrors'         => 'Chyba v povolení',
 'permissionserrorstext'     => 'Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:',
 'recreate-deleted-warn'     => "'''Pozor: Pokoušíte se založit stránku, která již byla smazána.'''
@@ -992,6 +992,8 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'userrights-available-remove' => 'Můžete odebrat uživatele ze skupiny $1.',
 'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
+'userrights-nologin'          => 'Musíte se [[Special:Userlogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
+'userrights-notallowed'       => 'Tento účet nemá povoleno měnit uživatelská práva.',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1727,7 +1729,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'movearticle'             => 'Přesunout stránku',
 'movenologin'             => 'Nejste přihlášen(a)!',
 'movenologintext'         => 'Pro přesouvání stránek se musíte [[Special:Userlogin|přihlásit]].',
-'movenotallowed'          => 'Nemáte oprávnění k přesunu stránek na této wiki.',
+'movenotallowed'          => 'Nemáte oprávnění k přesunu stránek na {{grammar:6sg|{{SITENAME}}}}.',
 'newtitle'                => 'Na nový název',
 'move-watch'              => 'Sledovat tuto stránku',
 'movepagebtn'             => 'Přesunout stránku',

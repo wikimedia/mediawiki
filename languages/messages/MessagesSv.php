@@ -356,6 +356,7 @@ $messages = array(
 'faq'               => 'FAQ',
 'helppage'          => 'Help:Innehåll',
 'mainpage'          => 'Huvudsida',
+'policy-url'        => 'Project:Riktlinjer',
 'portal'            => 'Deltagarportalen',
 'portal-url'        => 'Project:Deltagarportalen',
 'privacy'           => 'Integritetspolicy',
@@ -636,7 +637,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'whitelistreadtitle'        => 'Läsning kräver inloggning',
 'whitelistreadtext'         => 'För att kunna läsa sidor, måste du [[Special:Userlogin|logga in]].',
 'whitelistacctitle'         => 'Du kan inte skapa konton',
-'whitelistacctext'          => 'För att kunna skapa konton på denna wiki måste du vara [[Special:Userlogin|inloggad]] och ha rätt behörighet.',
+'whitelistacctext'          => 'För att kunna skapa konton på {{SITENAME}} måste du vara [[Special:Userlogin|inloggad]] och ha rätt behörighet.',
 'confirmedittitle'          => 'E-postbekräftelse krävs för redigering',
 'confirmedittext'           => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
 'nosuchsectiontitle'        => 'Avsnittet finns inte',
@@ -670,7 +671,9 @@ så som det kommer att se ut om du väljer att spara.',
 'session_fail_preview'      => '<strong>Databasen kunde inte bearbeta redigeringen på grund av ett bortfall av sessionsdata. Försök igen; om det fortfarande inte fungerar, prova att öppna om redigeringssidan, logga ut och logga in igen eller vänta ett tag på att felet fixas.</strong>',
 'session_fail_preview_html' => "<strong>Beklagar! Vi kunde inte databehandla din redigering på grund av att sessionens data gått förlorad.</strong>
 
-''Eftersom denna wiki har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd med syfte att förhindra JavaScript-attacker.''",
+''Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtergärd med syfte att förhindra JavaScript-attacker.''
+
+<strong>Om det är ett rättmätig redigerings försök, så pröva igen. Om det ändå inte funkar, pröva att logga ut och logga tillbaka in igen.</strong>",
 'token_suffix_mismatch'     => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
 i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
@@ -930,6 +933,8 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'userrights-available-remove' => 'Du kan ta bort användare från $1.',
 'userrights-no-interwiki'     => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'       => 'Databasen $1 finns inte eller så är den inte lokal.',
+'userrights-nologin'          => 'Du måste [[Special:Userlogin|logga in]] med en administratörs konto för att överlåta användar-rättigheter.',
+'userrights-notallowed'       => 'Ditt konto har inte tillåtelse till att överlåta användar-rättigheter.',
 
 # Groups
 'group'               => 'Grupp:',
@@ -2110,6 +2115,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'exif-meteringmode-0'   => 'Okänd',
 'exif-meteringmode-1'   => 'Medelvärde',
 'exif-meteringmode-2'   => 'Centrumviktat medelvärde',
+'exif-meteringmode-3'   => 'Identifiera',
 'exif-meteringmode-4'   => 'Multispot',
 'exif-meteringmode-5'   => 'Mönster',
 'exif-meteringmode-6'   => 'Partiell',
