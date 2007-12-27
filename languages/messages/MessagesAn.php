@@ -450,7 +450,7 @@ Si ista cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'resetpass_submit'        => 'Cambiar a parabra de paso e identificar-se',
 'resetpass_success'       => 'A suya parabra de paso ya ye cambiata. Agora ya puede dentrar-ie...',
 'resetpass_bad_temporary' => "Parabra de paso temporal incorreuta. Puede estar que ya aiga cambiato a suya parabra de paso u que aiga demadato o nimbío d'una atra.",
-'resetpass_forbidden'     => 'En ista wiki no se pueden cambiar as parabras de paso',
+'resetpass_forbidden'     => 'No se pueden cambiar as parabras de paso en {{SITENAME}}',
 'resetpass_missing'       => 'No ha escrito datos en o formulario.',
 
 # Edit page toolbar
@@ -527,7 +527,7 @@ O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos dato
 'whitelistreadtitle'        => "Cal que s'identifique y que enzete una sesión ta poder leyer",
 'whitelistreadtext'         => 'Ha de [[Special:Userlogin|identificar-se]] ta leyer as pachinas.',
 'whitelistacctitle'         => 'No tiene premiso ta creyar una cuenta',
-'whitelistacctext'          => 'Ta que pueda creyar cuentas en iste wiki li cal [[Special:Userlogin|enzetar una sesión]] y tener os premisos apropiatos.',
+'whitelistacctext'          => 'Ta poder creyar cuentas en {{SITENAME}} li cal [[Special:Userlogin|enzetar una sesión]] y tener os premisos apropiatos.',
 'confirmedittitle'          => 'Cal que confirme a suya adreza electronica ta poder editar',
 'confirmedittext'           => "Ha de confirmar a suya adreza electronica antis de poder editar pachinas. Por fabor, establa y confirme una adreza  electronica a trabiés d'as suyas [[Special:Preferences|preferenzias d'usuario]].",
 'nosuchsectiontitle'        => 'No esiste ixa sezión',
@@ -561,9 +561,9 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 'session_fail_preview'      => "<strong>Ya lo sentimos, pero no podiemos alzar a suya edizión por una perda d'os datos de sesion. Por fabor, prebe de fer-lo una atra bez, y si encara no funziona, salga d'a sesión y torne á identificar-se.</strong>",
 'session_fail_preview_html' => "<strong>Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han acazegatos.</strong>
 
-''Como iste wiki tiene l'HTML puro autibato, s'ha amagato l'ambiesta prebia ta aprebenir ataques en JavaScript.''
+''Como  {{SITENAME}} tiene l'HTML puro autibato, s'ha amagato l'ambiesta prebia ta aprebenir ataques en JavaScript.''
 
-<strong>Si ista ye una prebatina lechitima d'edizión, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe-se de zarrar a sesión y i dentre identificando-se de nuebas.</strong>",
+<strong>Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe-se de zarrar a sesión y i dentre identificando-se de nuebas.</strong>",
 'token_suffix_mismatch'     => "<strong>S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.</strong>",
 'editing'                   => 'Editando $1',
 'editinguser'               => 'Editando $1',
@@ -595,7 +595,7 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'edittools'                 => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 'nocreatetitle'             => "S'ha restrinxito a creyazión de pachinas",
 'nocreatetext'              => 'Iste wiki ha limitato a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
-'nocreate-loggedin'         => 'No tiene premisos ta creyar nuebas pachinas en ista wiki.',
+'nocreate-loggedin'         => 'No tiene premisos ta creyar nuebas pachinas en {{SITENAME}}.',
 'permissionserrors'         => 'Errors de premisos',
 'permissionserrorstext'     => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',
 'recreate-deleted-warn'     => "'''Pare cuenta: ye creyando una pachina que ya ha estato borrata denantes.'''
@@ -669,7 +669,7 @@ puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}
 'logdelete-selected'          => "{{PLURAL:$2|Aizión d'o rechistro trigata|$2 aizions d'o rechistro trigatas}} ta '''$1:'''",
 'revdelete-text'              => "As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.
 
-Atros almenistradors d'iste wiki encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
+Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
 'revdelete-legend'            => 'Definir restrizions de bersión:',
 'revdelete-hide-text'         => "Amagar o testo d'a bersión",
 'revdelete-hide-name'         => 'Amagar aizión y obchetibo',
@@ -944,7 +944,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadedimage'               => '«[[$1]]» cargato.',
 'overwroteimage'              => 's\'ha cargato una nueba bersión de "[[$1]]"',
 'uploaddisabled'              => "A carga d'archibos ye desautibata",
-'uploaddisabledtext'          => 'No ye posible cargar archibos en ista wiki.',
+'uploaddisabledtext'          => 'No ye posible cargar archibos en {{SITENAME}}.',
 'uploadscripted'              => 'Iste archibo contiene codigo de script u HTML que puede estar interpretado incorreutament por un nabegador.',
 'uploadcorrupt'               => "Iste archibo ye corrompito u tiene una estensión incorreuta. Por fabor, comprebe l'archibo y cargue-lo una atra begada.",
 'uploadvirus'                 => 'Iste archibo tiene un birus! Detalles: $1',
@@ -1121,7 +1121,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'nviews'                  => '$1 {{PLURAL:$1|besita|besitas}}',
 'specialpage-empty'       => 'Ista pachina ye bueda.',
 'lonelypages'             => 'Pachinas popiellas',
-'lonelypagestext'         => "Garra pachina d'iste wiki tiene binclos t'as pachinas que se listan contino.",
+'lonelypagestext'         => "Garra pachina de {{SITENAME}} wiki tiene binclos t'as pachinas que se listan contino.",
 'uncategorizedpages'      => 'Pachinas sin categorizar',
 'uncategorizedcategories' => 'Categorías sin categorizar',
 'uncategorizedimages'     => 'Imachens sin categorizar',
@@ -1142,7 +1142,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'shortpages'              => 'Pachinas más curtas',
 'longpages'               => 'Pachinas más largas',
 'deadendpages'            => 'Pachinas sin salida',
-'deadendpagestext'        => "As siguients pachinas no tienen binclos ta denguna atra pachina d'iste wiki.",
+'deadendpagestext'        => 'As siguients pachinas no tienen binclos ta denguna atra pachina de {{SITENAME}}.',
 'protectedpages'          => 'Pachinas protexitas',
 'protectedpagestext'      => 'As siguients pachinas son protechitas contra edizions u treslaus',
 'protectedpagesempty'     => 'En iste inte no bi ha garra pachina protechita con ixos parametros.',
@@ -1592,7 +1592,7 @@ En istos casos, abrá de tresladar manualment o conteniu d'a pachina de descusi�
 'movearticle'             => 'Tresladar pachina:',
 'movenologin'             => 'No ha enzetato sesión',
 'movenologintext'         => 'Amenista estar un usuario rechistrato y [[Special:Userlogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
-'movenotallowed'          => 'No tiene premisos ta tresladar pachinas en iste wiki.',
+'movenotallowed'          => 'No tiene premisos ta tresladar pachinas en {{SITENAME}}.',
 'newtitle'                => 'Ta o nuebo títol',
 'move-watch'              => 'Bexilar iste articlo',
 'movepagebtn'             => 'Tresladar pachina',
