@@ -1729,6 +1729,7 @@ class User {
 	 * Returns true if the user is not an anonymous visitor.
 	 *
 	 * @return bool
+	 * @fixme "special-case optimization" may fail for an object referring to a user that doesn't exist in the system.
 	 */
 	function isLoggedIn() {
 		if( $this->mId === null and $this->mName !== null ) {
