@@ -73,7 +73,7 @@ class UserRightsProxy {
 				return wfGetDB( DB_MASTER );
 			} else {
 				global $wgDBuser, $wgDBpassword;
-				$server = $this->getMaster( $database );
+				$server = self::getMaster( $database );
 				return new Database( $server, $wgDBuser, $wgDBpassword, $database );
 			}
 		}
@@ -83,7 +83,7 @@ class UserRightsProxy {
 	/**
 	 * Return the master server to connect to for the requested database.
 	 */
-	private function getMaster( $database ) {
+	private static function getMaster( $database ) {
 		global $wgDBserver, $wgAlternateMaster;
 		if( isset( $wgAlternateMaster[$database] ) ) {
 			return $wgAlternateMaster[$database];
