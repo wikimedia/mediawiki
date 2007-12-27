@@ -221,7 +221,6 @@ $messages = array(
 'bugreportspage'    => "Project:In'aɣ ibugiyen",
 'copyright'         => 'Tzemreḍ ad twaliḍ ayen yella deg $1.',
 'copyrightpagename' => 'Copyright n {{SITENAME}}',
-'copyrightpage'     => '{{ns:project}}:Copyrights',
 'currentevents'     => 'Isallen',
 'currentevents-url' => 'Project:Isallen',
 'disclaimers'       => 'Iɣtalen',

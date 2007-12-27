@@ -5,9 +5,9 @@
  *
  * @author Krice from Tyvanet.com
  * @author Sborsody
- * @author G - ג
  * @author friends at tyvawiki.org
  * @author Nike
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -310,14 +310,13 @@ $1',
 'newarticle'         => '(Чаа)',
 'editing'            => '$1 деп арынны өскертип турар',
 'editinguser'        => '<b>$1</b> деп ажыглакчыны өскертип турар',
-'editingsection'     => '$1 деп бөлгүмнү өскертип турар',
+'editingsection'     => '$1 деп арынның бөлгүмүн өскертип турар',
 'editingcomment'     => '$1 (комментарий) өскертип турар',
 'yourtext'           => 'Силерниң сөзүглелиңер',
 'yourdiff'           => 'Ылгалдар',
 'template-protected' => '(камгалаан)',
 
 # History pages
-'revhistory'          => 'Үндүрериниң төөгүзү',
 'nohistory'           => 'Бо арынның өскерлиишкин төөгүзү чок.',
 'currentrev'          => 'Амгы үе үндүрери',
 'previousrevision'    => '←Артык эрги үндүрери',
@@ -584,10 +583,6 @@ $1',
 'mycontris'     => 'Мээң деткимчемнерим',
 'uctop'         => ' (баш)',
 
-'sp-contributions-newest'   => 'Эң чаа',
-'sp-contributions-oldest'   => 'Эң эрги',
-'sp-contributions-newer'    => 'Артык чаа $1',
-'sp-contributions-older'    => 'Артык эрги $1',
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң деткимчемнерин көргүзер',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',
 'sp-contributions-submit'   => 'Дилээр',

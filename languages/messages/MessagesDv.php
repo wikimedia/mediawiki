@@ -6,11 +6,16 @@
  * @author MF-Warburg
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Glacious
  */
 
 $rtl = true;
 
 $messages = array(
+# User preference toggles
+'tog-hideminor'    => 'ކުޑަ ކުޑަ އުނި އިތުރުތައް ފަހު ބަދަލު އިން ފޮރުއްވަވާ',
+'tog-ccmeonemails' => 'އަޅުގަނޑު އެހެން މެމްބަރުންނަށް ފޮނުވާ އީމެއިލްގެ ނަކަލެއް އަޅުގަނޑަށް ފޮނުވާ',
+
 'underline-always' => 'އަބަދުވެސް',
 'underline-never'  => 'ހަމަހިލާ ނޫން',
 
@@ -35,18 +40,25 @@ $messages = array(
 'november'  => 'ނޮވެމްބަރު',
 'december'  => 'ޑިސެމްބަރު',
 'may'       => 'މެއި',
+'sep'       => 'ސެޕްޓެމްބަރ',
+'oct'       => 'އޮކްޓޯބަރ',
+'nov'       => 'ނޮވެމްބަރ',
+'dec'       => 'ޑިސެމްބަރ',
 
 # Bits of text used by many pages
 'categories'      => 'ގިސްމުތައް',
 'category_header' => 'ގިސްމު "$1" ގައިވާ މަޒުމޫނުތައް',
 'subcategories'   => 'ކުދިގިސްމުތައް',
+'category-empty'  => "''މި ގިސްމުގައި އެއްވެއސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
 
 'about'         => 'ތާރަފު',
 'article'       => 'ފިހުރިސްތު ޞަފްޙާ',
 'newwindow'     => '(އާ ވިންޑޯ އެއް ހުޅުވޭނެއެވެ)',
 'cancel'        => 'މަންސޫހު',
+'qbfind'        => 'ހޯއްދަވާ',
 'qbedit'        => 'އުނިއިތުރުގެންނަވާ',
 'qbpageoptions' => 'މި ޞަފްޙާ',
+'qbmyoptions'   => 'މަގޭ ސަފްހާ ތައް',
 'mytalk'        => 'މަގޭ ވާހަކަ',
 'navigation'    => 'ސަމުގާ',
 

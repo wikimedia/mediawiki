@@ -9,6 +9,7 @@
  * @author לערי ריינהארט
  * @author Nike
  * @author Siebrand
+ * @author SPQRobin
  */
 
 /*
@@ -793,6 +794,7 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'deletesub'          => '(Dzēst "$1")',
 'historywarning'     => 'Brīdinājums: Tu dzēsīsi lapu, kurai ir saglabātas iepriekšējas versijas.',
 'confirmdeletetext'  => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[Project:Vadlīnijas|vadlīnijām]].',
+'actioncomplete'     => 'Darbība pabeigta',
 'deletedtext'        => 'Lapa "$1" ir izdzēsta.
 Šeit var apskatīties pēdējos izdzēstos: "$2".',
 'deletedarticle'     => 'izdzēsu "$1"',
@@ -849,14 +851,15 @@ Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās
 'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1',
 
 # What links here
-'whatlinkshere'      => 'Norādes uz šo rakstu',
-'linklistsub'        => '(Saišu uzskaitījums)',
-'linkshere'          => 'Šajās lapās ir norādes uz šo lapu:',
-'nolinkshere'        => 'Nevienā lapā nav norāžu uz šo lapu.',
-'isredirect'         => 'pāradresācijas lapa',
-'istemplate'         => 'izsaukts',
-'whatlinkshere-prev' => '{{PLURAL:$1|iepriekšējo|iepriekšējos $1}}',
-'whatlinkshere-next' => '{{PLURAL:$1|nākamo|nākamos $1}}',
+'whatlinkshere'       => 'Norādes uz šo rakstu',
+'linklistsub'         => '(Saišu uzskaitījums)',
+'linkshere'           => 'Šajās lapās ir norādes uz šo lapu:',
+'nolinkshere'         => 'Nevienā lapā nav norāžu uz šo lapu.',
+'isredirect'          => 'pāradresācijas lapa',
+'istemplate'          => 'izsaukts',
+'whatlinkshere-prev'  => '{{PLURAL:$1|iepriekšējo|iepriekšējos $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|nākamo|nākamos $1}}',
+'whatlinkshere-links' => '← saites',
 
 # Block/unblock
 'blockip'            => 'Bloķēt lietotāju',
@@ -914,6 +917,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'move-watch'       => 'Uzraudzīt šo lapu',
 'movepagebtn'      => 'Pārvietot lapu',
 'pagemovedsub'     => 'Pārvietošana notikusi veiksmīgi',
+'movepage-moved'   => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'movedto'          => 'pārvietota uz',
 'movetalk'         => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
