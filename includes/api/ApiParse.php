@@ -63,6 +63,7 @@ class ApiParse extends ApiBase {
 			'templates' => $this->formatLinks( $p_result->getTemplates() ),
 			'images' => array_keys( $p_result->getImages() ),
 			'externallinks' => array_keys( $p_result->getExternalLinks() ),
+			'sections' => $p_result->getSections(),
 		);
 		$result_mapping = array(
 			'langlinks' => 'll',
@@ -71,6 +72,7 @@ class ApiParse extends ApiBase {
 			'templates' => 'tl',
 			'images' => 'img',
 			'externallinks' => 'el',
+			'sections' => 's',
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->setContent( $result_array['text'], $p_result->getText() );

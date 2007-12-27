@@ -111,6 +111,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   extension
 * Add HTML ID's mw-read-only-warning and mw-anon-edit-warning to warnings when
   editing to allow CSS styling.
+* Parser now returns list of sections
 
 === Bug fixes in 1.12 ===
 
@@ -385,6 +386,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 12321) API list=blocks reveals private data
 * Fix output of wfSajaxSearch
 * (bug 12413) meta=userinfo missing <query> tag
+* Add list of sections to action=parse output
 
 === Languages updated in 1.12 ===
 

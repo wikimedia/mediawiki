@@ -21,7 +21,8 @@ class ParserOutput
 		$mNoGallery,        # No gallery on category page? (__NOGALLERY__)
 		$mHeadItems,        # Items to put in the <head> section
 		$mOutputHooks,      # Hook tags as per $wgParserOutputHooks
-		$mWarnings;         # Warning text to be returned to the user. Wikitext formatted.
+		$mWarnings,         # Warning text to be returned to the user. Wikitext formatted.
+		$mSections;         # Table of contents
 	
 	/**
 	 * Overridden title for display
@@ -38,6 +39,7 @@ class ParserOutput
 		$this->mCacheTime = '';
 		$this->mVersion = Parser::VERSION;
 		$this->mTitleText = $titletext;
+		$this->mSections = '';
 		$this->mLinks = array();
 		$this->mTemplates = array();
 		$this->mImages = array();
@@ -56,6 +58,7 @@ class ParserOutput
 	function &getCategories()            { return $this->mCategories; }
 	function getCacheTime()              { return $this->mCacheTime; }
 	function getTitleText()              { return $this->mTitleText; }
+	function getSections()               { return $this->mSections; }
 	function &getLinks()                 { return $this->mLinks; }
 	function &getTemplates()             { return $this->mTemplates; }
 	function &getImages()                { return $this->mImages; }
@@ -71,7 +74,8 @@ class ParserOutput
 	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategories, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
-	function setTitleText( $t )          { return wfSetVar($this->mTitleText, $t); }
+	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
+	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }

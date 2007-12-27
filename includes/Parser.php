@@ -48,7 +48,7 @@ class Parser
 	 * changes in an incompatible way, so the parser cache
 	 * can automatically discard old data.
 	 */
-	const VERSION = '1.6.2';
+	const VERSION = '1.6.3';
 
 	# Flags for Parser::setFunctionHook
 	# Also available as global constants from Defines.php
@@ -3816,6 +3816,7 @@ class Parser
 		$prevtoclevel = 0;
 		$markerRegex = "{$this->mUniqPrefix}-h-(\d+)-{$this->mMarkerSuffix}";
 		$baseTitleText = $this->mTitle->getPrefixedDBkey();
+		$tocraw = array();
 
 		foreach( $matches[3] as $headline ) {
 			$isTemplate = false;
@@ -3949,6 +3950,7 @@ class Parser
 			}
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
+				$tocraw[] = array( 'toclevel' => $toclevel, 'level' => $level, 'line' => $tocline, 'number' => $numbering );
 			}
 			# give headline the correct <h#> tag
 			if( $showEditLink && $sectionIndex !== false ) {
@@ -3963,6 +3965,8 @@ class Parser
 
 			$headlineCount++;
 		}
+
+		$this->mOutput->setSections( $tocraw );
 
 		# Never ever show TOC if no headers
 		if( $numVisible < 1 ) {
