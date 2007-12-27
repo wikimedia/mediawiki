@@ -844,6 +844,8 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-available-remove' => 'Vous pouvez enlever des utilisateurs de $1.',
 'userrights-no-interwiki'     => "Vous n'êtes pas habilité pour modifier les droits des utilisateurs sur d'autres wikis.",
 'userrights-nodatabase'       => "La base de donnée « $1 » n'existe pas ou n'est pas en local.",
+'userrights-nologin'          => "Vous devez vous [[Special:Userlogin|connecter]] avec un compte administrateur pour donner les droits d'utilisateur.",
+'userrights-notallowed'       => "Votre compte n'est pas habilité pour donner des droits d'utilisateur.",
 
 # Groups
 'group'               => 'Groupe :',

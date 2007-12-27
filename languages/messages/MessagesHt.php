@@ -34,6 +34,7 @@ $linkTrail = '/^([a-zàèòÀÈÒ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'      => 'Souliyen lyen yo :',
+'tog-justify'        => 'Aliyen paragraf yo',
 'tog-watchcreations' => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
 
 # Dates
@@ -87,5 +88,10 @@ $messages = array(
 'oct'           => 'okt',
 'nov'           => 'nov',
 'dec'           => 'des',
+
+# Bits of text used by many pages
+'subcategories' => 'Pitit kategori yo',
+
+'errorpagetitle' => 'Erè',
 
 );

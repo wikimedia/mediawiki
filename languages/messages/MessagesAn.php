@@ -578,7 +578,7 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 'yourdiff'                  => 'Esferenzias',
 'copyrightwarning'          => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} se consideran feitas publicas baxo a lizenzia $2 (beyer detalles en $1). Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong><br />",
-'copyrightwarning2'         => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} puede estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
+'copyrightwarning2'         => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong>",
 'longpagewarning'           => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32KB o más.
 Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más chicoz.</strong>',
@@ -1548,9 +1548,27 @@ as pachinas que s'han bandalizatas).",
 'sorbsreason'                 => 'A suya adreza IP ye en a lista de proxies ubiertos en DNSBL.',
 'sorbs_create_account_reason' => 'A suya adreza IP ye en a lista de proxies ubiertos en DNSBL. No puede creyar una cuenta',
 
+# Developer tools
+'lockdb'              => 'Trancar a base de datos',
+'unlockdb'            => 'Estrancar a base de datos',
+'lockdbtext'          => "Trancando a base de datos pribará á toz os usuarios d'editar pachinas, cambiar as preferenzias, cambiar as listas de seguimiento y cualsiquier atra funzión que ameniste fer cambios en a base de datos. Por fabor, confirme que isto ye mesmament o que se mira de fer y que estrancará a base de datos malas que aiga rematato con a faina de mantenimiento.",
+'unlockdbtext'        => "Estrancando a base de datos premitirá á toz os usuarios d'editar pachinas, cambiar as preferenzias y as listas de seguimiento, y cualsiquier atra funzión que ameniste cambiar a base de datos. Por fabor, confirme que isto ye mesmament o que se mira de fer.",
+'lockconfirm'         => 'Sí, de berdat quiero trancar a base de datos.',
+'unlockconfirm'       => 'Sí, de berdat quiero estrancar a base de datos.',
+'lockbtn'             => 'Trancar a base de datos',
+'unlockbtn'           => 'Estrancar a base de datos',
+'locknoconfirm'       => 'No ha siñalato a caixeta de confirmazión.',
+'lockdbsuccesssub'    => "A base de datos s'ha trancato correutament",
+'unlockdbsuccesssub'  => "A base de datos s'ha estrancato correutament",
+'lockdbsuccesstext'   => "A base de datos de {{SITENAME}} ye trancata.
+<br />Alcuerde-se-ne d'estrancar a base de datos dimpués de rematar as fainas de mantenimiento.",
+'unlockdbsuccesstext' => "S'ha estrancato a base de datos de {{SITENAME}}.",
+'lockfilenotwritable' => "O rechistro de trancamientos d'a base de datos no tiene premiso d'escritura. Ta trancar u estrancar a base de datos, iste archibo ha de tener premisos d'escritura en o serbidor web.",
+'databasenotlocked'   => 'A base de datos no ye trancata.',
+
 # Move page
-'movepage'         => 'Tresladar página',
-'movepagetext'     => "Si fa serbir o formulario siguient se cambeará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
+'movepage'                => 'Tresladar página',
+'movepagetext'            => "Si fa serbir o formulario siguient se cambeará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.
 Os binclos ta o títol antigo d'a pachina no se cambearán. Asegure-se de no deixar reendrezeras dobles u crebatas.
 Ye a suya responsabilidat d'asegurar-se que os binclos continan endrezando t'an que abrían de fer-lo.
@@ -1563,43 +1581,73 @@ Isto senifica que podrá tresladar una pachina á lo suyo títol orichinal si ha
 Iste puede estar un cambio drastico e inasperato ta una pachina popular;
 por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión
 antis de seguir entadebant.",
-'movepagetalktext' => "A pachina de descusión asoziata, si esistise, será tresladata automaticament '''de no estar que:''' 
+'movepagetalktext'        => "A pachina de descusión asoziata, si esistise, será tresladata automaticament '''de no estar que:''' 
 *A pachina se treslade entre espazios de nombres diferents,
 *Ya esista una pachina de descusión no bueda con o nombre nuebo, u
 *Aiga desautibato a opzión \"Tresladar tamién a pachina de descusión\".
 
 En istos casos, abrá de tresladar manualment o conteniu d'a pachina de descusión.",
-'movearticle'      => 'Tresladar pachina:',
-'newtitle'         => 'Ta o nuebo títol',
-'move-watch'       => 'Bexilar iste articlo',
-'movepagebtn'      => 'Tresladar pachina',
-'pagemovedsub'     => 'Treslado feito correutament',
-'movepage-moved'   => '<big>\'\'\'"$1" ha estato tresladato á "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => 'Ya bi ha una pachina con ixe nombre u o nombre ha trigato no ye balido. Por fabor eslixa un atro nombre.',
-'talkexists'       => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
-'movedto'          => 'tresladato ta',
-'movetalk'         => 'Tresladar a pachina de descusión asoziata.',
-'talkpagemoved'    => 'A pachina de descusión correspondient tamién estió tresladata.',
-'talkpagenotmoved' => 'A pachina de descusión correspondient <strong>no</strong> estió tresladata.',
-'1movedto2'        => '[[$1]] tresladada á [[$2]]',
-'1movedto2_redir'  => '[[$1]] tresladada á [[$2]] sobre una reendrezera',
-'movelogpage'      => 'Rechistro de treslatos',
-'movereason'       => 'Razón:',
-'revertmove'       => 'esfer',
+'movearticle'             => 'Tresladar pachina:',
+'movenologin'             => 'No ha enzetato sesión',
+'movenologintext'         => 'Amenista estar un usuario rechistrato y [[Special:Userlogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
+'movenotallowed'          => 'No tiene premisos ta tresladar pachinas en iste wiki.',
+'newtitle'                => 'Ta o nuebo títol',
+'move-watch'              => 'Bexilar iste articlo',
+'movepagebtn'             => 'Tresladar pachina',
+'pagemovedsub'            => 'Treslado feito correutament',
+'movepage-moved'          => '<big>\'\'\'"$1" ha estato tresladato á "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Ya bi ha una pachina con ixe nombre u o nombre ha trigato no ye balido. Por fabor eslixa un atro nombre.',
+'cantmove-titleprotected' => 'No puede tresladar una pachina ta íste títol porque o nuebo títol ye protexito y no puede estar creyato',
+'talkexists'              => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
+'movedto'                 => 'tresladato ta',
+'movetalk'                => 'Tresladar a pachina de descusión asoziata.',
+'talkpagemoved'           => 'A pachina de descusión correspondient tamién estió tresladata.',
+'talkpagenotmoved'        => 'A pachina de descusión correspondient <strong>no</strong> estió tresladata.',
+'1movedto2'               => '[[$1]] tresladada á [[$2]]',
+'1movedto2_redir'         => '[[$1]] tresladada á [[$2]] sobre una reendrezera',
+'movelogpage'             => 'Rechistro de treslatos',
+'movelogpagetext'         => 'Contino se i amuestra una lista de pachinas tresladatas.',
+'movereason'              => 'Razón:',
+'revertmove'              => 'esfer',
+'delete_and_move'         => 'Borrar y tresladar',
+'delete_and_move_text'    => '==S\'amenista borrar a pachina==
+
+A pachina de destino ("[[$1]]") ya esiste. Quiere borrar-la ta premitir o treslau?',
+'delete_and_move_confirm' => 'Sí, borrar a pachina',
+'delete_and_move_reason'  => 'Borrata ta premitir o treslau',
+'selfmove'                => "Os títols d'orichen y destino son os mesmos. No se puede tresladar una pachina ta ella mesma.",
+'immobile_namespace'      => "O títol de destino ye d'una mena espezial. No se puede tresladar pachinas ta iste espazio de nombres.",
 
 # Export
-'export' => 'Esportar as pachinas',
+'export'            => 'Esportar as pachinas',
+'exporttext'        => "Puede esportar o testo y l'istorial d'edizions d'una pachina u conchunto de pachinas ta un testo XML. Iste testo XML puede importar-se ta atro wiki que faiga serbir MediaWiki á trabiés d'a [[Special:Import|pachina d'importazión]].
+
+Ta esportar pachinas, escriba os títols en a caixa de testo que bi ha más ta baixo, metendo un títol en cada linia, y eslixa si quiere esportar a bersión autual con as bersions anteriors y as lineas de l'istorial u nomás a bersión autual con a informazión sobre a zaguer edizión.
+
+En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{{Mediawiki:Mainpage}}]] t'a pachina {{Mediawiki:Mainpage}}.",
+'exportcuronly'     => "Encluye nomás a bersión autual, no l'istorial de bersions completo.",
+'exportnohistory'   => "----
+'''Nota:''' A esportazión de istorials de pachinas á trabiés d'iste formulario ye desautibata por problemas en o rendimiento d'o serbidor.",
+'export-submit'     => 'Esportar',
+'export-addcattext' => 'Adibir pachinas dende a categoría:',
+'export-addcat'     => 'Adibir',
+'export-download'   => 'Alzar como un archibo',
 
 # Namespace 8 related
-'allmessages'        => "Mensaches d'o sistema",
-'allmessagesname'    => 'Nombre',
-'allmessagesdefault' => 'Testo por defeuto',
-'allmessagescurrent' => 'Testo autual',
-'allmessagestext'    => 'Ista ye una lista de toz os mensaches disposables en o espazio de nombres MediaWiki.',
+'allmessages'               => "Mensaches d'o sistema",
+'allmessagesname'           => 'Nombre',
+'allmessagesdefault'        => 'Testo por defeuto',
+'allmessagescurrent'        => 'Testo autual',
+'allmessagestext'           => 'Ista ye una lista de toz os mensaches disposables en o espazio de nombres MediaWiki.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages no ye disponible porque wgUseDatabaseMessages ye desautibato.',
+'allmessagesfilter'         => "Filtrar por a etiqueta d'os mensaches:",
+'allmessagesmodified'       => 'Amostrar nomás os mensaches cambiatos',
 
 # Thumbnails
 'thumbnail-more'  => 'Fer más gran',
 'thumbnail_error' => "S'ha produzito una error en creyar a miniatura: $1",
+'djvu_page_error' => "Página DjVu difuera d'o rango",
+'djvu_no_xml'     => "No s'ha puesto replegar o XML ta l'archibo DjVu",
 
 # Import log
 'importlogpage' => "Rechistro d'importazions",
@@ -1699,6 +1747,12 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'watchlistall2' => 'toz',
 'namespacesall' => 'todo',
 'monthsall'     => '(toz)',
+
+# Auto-summaries
+'autosumm-blank'   => 'Pachina blanquiata',
+'autosumm-replace' => 'O conteniu d\'a pachina s\'ha cambiato por "$1"',
+'autoredircomment' => 'Reendrezando ta [[$1]]',
+'autosumm-new'     => 'Pachina nueba: $1',
 
 # Live preview
 'livepreview-loading' => 'Cargando…',
