@@ -102,7 +102,7 @@ class ProtectedTitlesForm {
 			Xml::element( 'legend', array(), wfMsg( 'protectedtitles' ) ) .
 			Xml::hidden( 'title', $special ) . "&nbsp;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
-			$this->getLevelMenu( $level ) . "<br/>\n" .
+			// $this->getLevelMenu( $level ) . "<br/>\n" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
