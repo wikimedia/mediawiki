@@ -208,7 +208,7 @@ class UserrightsForm extends HTMLForm {
 			$user = UserRightsProxy::newFromName( $database, $name );
 		}
 		
-		if( !$user || $user->getId() == 0 ) {
+		if( !$user || $user->isAnon() ) {
 			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
 			return null;
 		}
