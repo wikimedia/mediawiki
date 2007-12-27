@@ -1895,11 +1895,8 @@ Feedback and further assistance:
 'confirmdelete'               => 'Confirm delete',
 'deletesub'                   => '(Deleting "$1")',
 'historywarning'              => 'Warning: The page you are about to delete has a history:',
-'confirmdeletetext'           => 'You are about to permanently delete a page
-or image along with all of its history from the database.
-Please confirm that you intend to do this, that you understand the
-consequences, and that you are doing this in accordance with
-[[{{MediaWiki:Policy-url}}]].',
+'confirmdeletetext'           => 'You are about to delete a page along with all of its history from the database.
+Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'actioncomplete'              => 'Action complete',
 'deletedtext'                 => '"$1" has been deleted.
 See $2 for a record of recent deletions.',
@@ -2600,7 +2597,7 @@ is collapsed. Others will be hidden by default.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Width',
