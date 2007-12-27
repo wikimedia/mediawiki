@@ -15,6 +15,20 @@ define( 'KK_L_LC', 'aäbcçdeéfgğhıiïjklmnñoöpqrsştuüvwxyýz' ); # Kazak
 define( 'KK_A', 'اٵبۆگعدەجزيكقلمنڭوٶپرستۋۇٷفحھچشىٸ' ); # Kazakh Arabic
 
 class KkConverter extends LanguageConverter {
+	
+	function __construct($langobj, $maincode,
+								$variants=array(),
+								$variantfallbacks=array(),
+								$markup=array(),
+								$flags = array()) {
+		parent::__construct( $langobj, $maincode,
+			$variants, $variantfallbacks, $markup, $flags );
+		
+		// No point delaying this since they're in code.
+		// Waiting until loadDefaultTables() means they never get loaded
+		// when the tables themselves are loaded from cache.
+		$this->loadRegs();
+	}
 
 	function loadDefaultTables() {
 		// require( dirname(__FILE__)."/../../includes/KkConversion.php" );
@@ -36,8 +50,6 @@ class KkConverter extends LanguageConverter {
 			'kk-cn'		=> new ReplacementArray( array_merge($kk2Arab, $kk2CN) ),
 			'kk'		=> new ReplacementArray()
 		);
-
-		self::loadRegs();
 	}
 
 	function postLoadTables() {
