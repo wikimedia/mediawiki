@@ -686,7 +686,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'resetpass_submit'        => 'Wachtwoord instellen en aanmelden',
 'resetpass_success'       => 'Uw wachtwoord is gewijzigd. Bezig met aanmelden ...',
 'resetpass_bad_temporary' => 'Ongeldig tijdelijk wachtwoord. U heeft uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
-'resetpass_forbidden'     => 'Wachtwoorden kunnen op deze wiki niet gewijzigd worden',
+'resetpass_forbidden'     => 'Wachtwoorden kunnen op {{SITENAME}} niet gewijzigd worden',
 'resetpass_missing'       => 'U heeft geen wachtwoord ingegeven.',
 
 # Edit page toolbar
@@ -757,7 +757,7 @@ U kan deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-sysop
 'whitelistreadtitle'        => 'Voor leestoegang is aanmelden verplicht',
 'whitelistreadtext'         => "[[{{ns:special}}:Userlogin|Meld u aan]] voor leestoegang tot pagina's.",
 'whitelistacctitle'         => 'Het aanmaken van nieuwe gebruikers is niet toegestaan',
-'whitelistacctext'          => 'U dient [[{{ns:special}}:Userlogin|aangemeld]] te zijn en de juiste rechten te hebben om gebruikers aan te maken in deze Wiki.',
+'whitelistacctext'          => 'U dient [[Special:Userlogin|aangemeld]] te zijn en de juiste rechten te hebben om gebruikers aan te maken in {{SITENAME}}.',
 'confirmedittitle'          => 'E-mailbevestiging is verplicht voordat u kan bewerken',
 'confirmedittext'           => 'U moet uw e-mailadres bevestigen voor u kan bewerken. Voer uw e-mailadres in en bevestig het via [[{{ns:special}}:Preferences|uw voorkeuren]].',
 'nosuchsectiontitle'        => 'Deze subkop bestaat niet',
@@ -794,11 +794,11 @@ Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent g
 'note'                      => '<strong>Opmerking:</strong>',
 'previewnote'               => '<strong>Let op: dit is een controlepagina; uw tekst is niet opgeslagen!</strong>',
 'previewconflict'           => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
-'session_fail_preview'      => '<strong>Sorry! Uw bewerking is niet verwerkt, omdat sessiegegevens verloren zijn gegaan.
+'session_fail_preview'      => '<strong>Sorry! Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>',
 'session_fail_preview_html' => "<strong>Sorry! Uw bewerking is niet verwerkt, omdat sessiegegevens verloren zijn gegaan.</strong>
 
-''Omdat in deze wiki ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''
+''Omdat in {{SITENAME}} ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''
 
 <strong>Als dit een legitieme bewerking is, probeer het dan opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>",
 'token_suffix_mismatch'     => '<strong>Uw bewerking is geweigerd omdat uw client de leestekens in het bewerkingstoken onjuist heeft behandeld. De bewerking is geweigerd om verminking van de paginatekst te voorkomen. Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten bevat.</strong>',
@@ -839,7 +839,7 @@ groot, wat groter is dan het maximum van $2 kilobyte. Opslaan is niet mogelijk.<
 'nocreatetitle'             => "Het aanmaken van pagina's is beperkt",
 'nocreatetext'              => "Deze website heeft de mogelijkheid om nieuwe pagina's te maken beperkt.
 U kan reeds bestaande pagina's wijzigen, of u kan [[{{ns:special}}:Userlogin|zich aanmelden of een gebruiker aanmaken]].",
-'nocreate-loggedin'         => "U kan geen nieuwe pagina's maken op deze wiki.",
+'nocreate-loggedin'         => "U kan geen nieuwe pagina's maken op {{SITENAME}}.",
 'permissionserrors'         => 'Fouten in rechten',
 'permissionserrorstext'     => 'U heeft geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
 'recreate-deleted-warn'     => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
@@ -912,7 +912,7 @@ er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGE
 'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde logboekactie|Geselecteerde logboekacties}} voor '''$1:'''",
 'revdelete-text'              => 'Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
 
-Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er toegevoegde beperkingen gelden die zijn ingesteld door de systeembeheerder.',
+Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er toegevoegde beperkingen gelden die zijn ingesteld door de systeembeheerder.',
 'revdelete-legend'            => 'Versiebeperkingen instellen',
 'revdelete-hide-text'         => 'De bewerkte tekst verbergen',
 'revdelete-hide-name'         => 'Actie en doel verbergen',
@@ -1068,6 +1068,8 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'userrights-available-remove' => 'U kan gebruikers verwijderen uit $1.',
 'userrights-no-interwiki'     => "U heeft geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen plaatselijke database.',
+'userrights-nologin'          => 'U moet zich [[Special:Userlogin|aanmelden]] met een gebruiker die beheerder is om gebruikersrechten toe te wijzen.',
+'userrights-notallowed'       => 'Uw gebruiker heeft geen rechten om gebruikersrechten toe te wijzen.',
 
 # Groups
 'group'               => 'Groep:',
@@ -1187,7 +1189,7 @@ Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte i
 'uploadedimage'               => 'heeft "[[$1]]" geüpload',
 'overwroteimage'              => 'heeft een nieuwe versie van "[[$1]]" toegevoegd',
 'uploaddisabled'              => 'Uploaden is uitgeschakeld',
-'uploaddisabledtext'          => 'Het uploaden van bestanden is uitgeschakeld op deze wiki.',
+'uploaddisabledtext'          => 'Het uploaden van bestanden is uitgeschakeld op {{SITENAME}}.',
 'uploadscripted'              => 'Dit bestand bevat HTML- of scriptcode die foutief door uw browser kan worden weergegeven.',
 'uploadcorrupt'               => 'Het bestand is corrupt of heeft een onjuiste extensie. Controleer het bestand en upload het opnieuw.',
 'uploadvirus'                 => 'Het bestand bevat een virus! Details: $1',
@@ -1364,7 +1366,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'nviews'                  => '{{PLURAL:$1|1 keer|$1 keer}} bekeken',
 'specialpage-empty'       => 'Deze pagina is leeg.',
 'lonelypages'             => "Weespagina's",
-'lonelypagestext'         => "Naar de onderstaande pagina's wordt vanuit deze wiki niet verwezen.",
+'lonelypagestext'         => "Naar de onderstaande pagina's wordt vanuit {{SITENAME}} niet verwezen.",
 'uncategorizedpages'      => "Niet-gecategoriseerde pagina's",
 'uncategorizedcategories' => 'Niet-gecategoriseerde categorieën',
 'uncategorizedimages'     => 'Niet-gecategoriseerde afbeeldingen',
@@ -1556,7 +1558,7 @@ Feedback en andere assistentie:
 'confirmdelete'               => 'Bevestig verwijdering',
 'deletesub'                   => '("$1" aan het verwijderen)',
 'historywarning'              => 'Waarschuwing: de pagina die u wilt verwijderen heeft meerdere versies:',
-'confirmdeletetext'           => 'U staat op het punt een pagina of bestand voorgoed te verwijderen, inclusief de geschiedenis. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat uw verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
+'confirmdeletetext'           => 'U staat op het punt een pagina te verwijderen, inclusief de geschiedenis. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat uw verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
 'actioncomplete'              => 'Handeling voltooid',
 'deletedtext'                 => '"$1" is verwijderd. Zie $2 voor een overzicht van recente verwijderingen.',
 'deletedarticle'              => 'verwijderde "[[$1]]"',
@@ -1824,7 +1826,7 @@ Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen heb
 'movearticle'             => 'Hernoemen van pagina',
 'movenologin'             => 'Niet aangemeld',
 'movenologintext'         => 'U moet [[{{ns:special}}:Userlogin|aangemeld]] zijn om een pagina te hernoemen.',
-'movenotallowed'          => "U kan geen pagina's hernoemen op deze wiki.",
+'movenotallowed'          => "U kan geen pagina's hernoemen op {{SITENAME}}.",
 'newtitle'                => 'Naar de nieuwe paginanaam',
 'move-watch'              => 'Deze pagina volgen',
 'movepagebtn'             => 'Pagina hernoemen',
