@@ -90,191 +90,130 @@ class UserrightsForm extends HTMLForm {
 	 *
 	 */
 	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '') {
-		$split = $this->splitUsername( $username );
-		if( !$split ) {
+		$user = $this->fetchUser( $username );
+		if( !$user ) {
 			return;
 		}
-		list( $database, $name ) = $split;
 
-		$oldGroups = $this->getUserGroups();
+		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 		// remove then add groups
 		if(isset($removegroup)) {
 			$newGroups = array_diff($newGroups, $removegroup);
 			foreach( $removegroup as $group ) {
-				$this->removeUserGroup( $group );
+				$user->removeGroup( $group );
 			}
 		}
 		if(isset($addgroup)) {
 			$newGroups = array_merge($newGroups, $addgroup);
 			foreach( $addgroup as $group ) {
-				$this->addUserGroup( $group );
+				$user->addGroup( $group );
 			}
 		}
 		$newGroups = array_unique( $newGroups );
 
 		// Ensure that caches are cleared
-		$this->touchUser( $database );
+		$user->invalidateCache();
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
-		wfRunHooks( 'UserRights', array( &$u, $addgroup, $removegroup ) );
+		if( $user instanceof User ) {
+			// hmmm
+			wfRunHooks( 'UserRights', array( &$user, $addgroup, $removegroup ) );
+		}
 
 		$log = new LogPage( 'rights' );
-		$log->addEntry( 'rights', Title::makeTitleSafe( NS_USER, $username ), $this->mReason, array( $this->makeGroupNameList( $oldGroups ),
-			$this->makeGroupNameList( $newGroups ) ) );
+		$log->addEntry( 'rights',
+			$user->getUserPage(),
+			$this->mReason,
+			array(
+				$this->makeGroupNameList( $oldGroups ),
+				$this->makeGroupNameList( $newGroups ) ) );
 	}
 
 	/**
 	 * Edit user groups membership
 	 * @param string $username Name of the user.
 	 */
-	function editUserGroupsForm($username) {
+	function editUserGroupsForm( $username ) {
 		global $wgOut;
 
-		$split = $this->splitUsername( $username );
-		if( !$split ) {
+		$user = $this->fetchUser( $username );
+		if( !$user ) {
 			return;
 		}
-		list( $database, $name ) = $split;
 
-		$groups = $this->getUserGroups();
+		$groups = $user->getGroups();
 		
-		$this->showEditUserGroupsForm( $username, $groups );
+		$this->showEditUserGroupsForm( $user, $groups );
 
-		if ($database == '' && $username{0} != '#') {
-			$this->showLogFragment( User::newFromName($username), $wgOut );
-		}
+		// This isn't really ideal logging behavior,
+		// but let's not hide the interwiki logs if
+		// we're using them as is.
+		$this->showLogFragment( $user, $wgOut );
 	}
 
-	function splitUsername( $username ) {
-		global $wgOut, $wgUser, $wgLocalDatabases;
+	/**
+	 * Normalize the input username, which may be local or remote, and
+	 * return a user (or proxy) object for manipulating it.
+	 *
+	 * Side effects: error output for invalid access
+	 * @return mixed User, UserRightsProxy, or null
+	 */
+	function fetchUser( $username ) {
+		global $wgOut, $wgUser;
 
 		$parts = explode( '@', $username );
 		if( count( $parts ) < 2 ) {
-			$name = $username;
+			$name = trim( $username );
 			$database = '';
 		} else {
-			list( $name, $database ) = $parts;
-		}
+			list( $name, $database ) = array_map( 'trim', $parts );
 
-		if( $database != '' && !in_array( $database, $wgLocalDatabases ) ) {
-			$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $database ) );
-			return;
-		}
-
-		if( $name == '' ) {
-			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
-			return;
-		}
-
-		if( $name{0} != '#' ) {
-			# Avoid normalization when the input is a user ID
-			$name = User::getCanonicalName( $name );
-			if( !$name ) {
-				$wgOut->addWikiText( wfMsg( 'noname' ) );
-				return;
+			if( !$wgUser->isAllowed( 'userrights-interwiki' ) ) {
+				$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
+				return null;
+			}
+			if( !UserRightsProxy::validDatabase( $database ) ) {
+				$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $database ) );
+				return null;
 			}
 		}
-		$this->db =& $this->getDB( $database );
-		$this->userid = $this->getUserId( $name );
-
-		if( $this->userid == 0 ) {
-			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
-			return;
-		}
-
-		if( $database != '' && !$wgUser->isAllowed('userrights-interwiki') ) {
-			$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
-			return;
-		}
-
-		return array( $database, $name );
-	}
-
-	/**
-	 * Open a database connection to work on for the requested user.
-	 * This may be a new connection to another database for remote users.
-	 * @param string $database
-	 * @return Database
-	 */
-	function &getDB( $database ) {
-		if( $database == '' ) {
-			$db =& wfGetDB( DB_MASTER );
-		} else {
-			global $wgDBuser, $wgDBpassword;
-			$server = $this->getMaster( $database );
-			$db = new Database( $server, $wgDBuser, $wgDBpassword, $database );
-		}
-		return $db;
-	}
-	
-	/**
-	 * Return the master server to connect to for the requested database.
-	 */
-	function getMaster( $database ) {
-		global $wgDBserver, $wgAlternateMaster;
-		if( isset( $wgAlternateMaster[$database] ) ) {
-			return $wgAlternateMaster[$database];
-		}
-		return $wgDBserver;
-	}
-
-	function getUserId( $name ) {
-		if( $name === '' )
-			return 0;
-		return ( $name{0} == "#" )
-			? IntVal( substr( $name, 1 ) )
-			: IntVal( $this->db->selectField( 'user',
-				'user_id',
-				array( 'user_name' => $name ),
-				__METHOD__ ) );
-	}
-
-	function getUserGroups() {
-		$res = $this->db->select( 'user_groups',
-			array( 'ug_group' ),
-			array( 'ug_user' => $this->userid ),
-			__METHOD__ );
-		$groups = array();
-		while( $row = $this->db->fetchObject( $res ) ) {
-			$groups[] = $row->ug_group;
-		}
-		return $groups;
-	}
-
-	function addUserGroup( $group ) {
-		$this->db->insert( 'user_groups',
-			array(
-				'ug_user' => $this->userid,
-				'ug_group' => $group,
-			),
-			__METHOD__,
-			array( 'IGNORE' ) );
-	}
-
-	function removeUserGroup( $group ) {
-		$this->db->delete( 'user_groups',
-			array(
-				'ug_user' => $this->userid,
-				'ug_group' => $group,
-			),
-			__METHOD__ );
-	}
-
-	function touchUser( $database ) {
-		$this->db->update( 'user',
-			array( 'user_touched' => $this->db->timestamp() ),
-			array( 'user_id' => $this->userid ),
-			__METHOD__ );
 		
-		global $wgMemc;
-		if ( function_exists( 'wfForeignMemcKey' ) ) {
-			$key = wfForeignMemcKey( $database, false, 'user', 'id', $this->userid );
-		} else {
-			$key = "$database:user:id:" . $this->userid;
+		if( $name == '' ) {
+			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
+			return false;
 		}
-		$wgMemc->delete( $key );
+		
+		if( $name{0} == '#' ) {
+			// Numeric ID can be specified...
+			// We'll do a lookup for the name internally.
+			$id = intval( substr( $name, 1 ) );
+			
+			if( $database == '' ) {
+				$name = User::whoIs( $id );
+			} else {
+				$name = UserRightsProxy::whoIs( $database, $id );
+			}
+			
+			if( !$name ) {
+				$wgOut->addWikiText( wfMsg( 'noname' ) );
+				return null;
+			}
+		}
+		
+		if( $database == '' ) {
+			$user = User::newFromName( $name );
+		} else {
+			$user = UserRightsProxy::newFromName( $database, $name );
+		}
+		
+		if( !$user || $user->isAnon() ) {
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
+			return null;
+		}
+		
+		return $user;
 	}
 
 	function makeGroupNameList( $ids ) {
@@ -316,21 +255,22 @@ class UserrightsForm extends HTMLForm {
 	 * Show the form to edit group memberships.
 	 *
 	 * @todo make all CSS-y and semantic
-	 * @param $username  String: Name of user you're editing
+	 * @param $user      User or UserRightsProxy you're editing
 	 * @param $groups    Array:  Array of groups the user is in
 	 */
-	protected function showEditUserGroupsForm( $username, $groups ) {
+	protected function showEditUserGroupsForm( $user, $groups ) {
 		global $wgOut, $wgUser;
 		
 		list( $addable, $removable ) = $this->splitGroups( $groups );
 
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
-			Xml::hidden( 'user-editname', $username ) .
-			Xml::hidden( 'wpEditToken', $wgUser->editToken( $username ) ) .
+			Xml::hidden( 'user-editname', $user->getName() ) .
+			Xml::hidden( 'wpEditToken', $wgUser->editToken( $user->getName() ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
-			$wgOut->parse( wfMsg( 'editinguser', $username ) ) .
+			wfMsgExt( 'editinguser', array( 'parse' ),
+				wfEscapeWikiText( $user->getName() ) ) .
 			$this->explainRights() .
 			"<table border='0'>
 			<tr>

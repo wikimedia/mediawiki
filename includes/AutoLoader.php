@@ -247,6 +247,7 @@ function __autoload($className) {
 		'StringUtils' => 'includes/StringUtils.php',
 		'Title' => 'includes/Title.php',
 		'User' => 'includes/User.php',
+		'UserRightsProxy' => 'includes/UserRightsProxy.php',
 		'MailAddress' => 'includes/UserMailer.php',
 		'EmailNotification' => 'includes/UserMailer.php',
 		'UserMailer' => 'includes/UserMailer.php',
