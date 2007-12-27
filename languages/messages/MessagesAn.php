@@ -828,6 +828,8 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'userrights-available-remove' => 'Puede sacar usuarios de $1.',
 'userrights-no-interwiki'     => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
 'userrights-nodatabase'       => 'A base de datos $1 no esiste u no ye local.',
+'userrights-nologin'          => "Ha d'[[Special:Userlogin|enzetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
+'userrights-notallowed'       => "A suya cuenta no tiene premisos ta dar dreitos d'usuario.",
 
 # Groups
 'group'               => 'Colla:',
@@ -1314,11 +1316,11 @@ Ta obtenir más informazión y aduya:
 'confirmdelete'               => 'Confirmar o borrau',
 'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
-'confirmdeletetext'           => "Ye á punto de borrar ta cutio d'a base de datos
-una pachina u imachen, con tot o suyo istorial.
-Por fabor, confirme que reyalment quiere fer ixo, que acata
-as consecuenzias, y que lo ye fendo d'alcuerdo con as 
-[[{{MediaWiki:Policy-url}}|Politicas]] d'o wiki.",
+'confirmdeletetext'           => "Ye á punto de borrar d'a base de datos
+una pachina con tot o suyo istorial.
+Por fabor, confirme que reyalment ye mirando de fer ixo, que acata
+as consecuenzias, y que lo fa d'alcuerdo con as 
+[[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'              => 'Aizión rematada',
 'deletedtext'                 => '"$1" ha estato borrato.
 Se beiga en $2 un rechistro d\'os borraus rezients.',
@@ -1644,16 +1646,47 @@ En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{
 'allmessagesmodified'       => 'Amostrar nomás os mensaches cambiatos',
 
 # Thumbnails
-'thumbnail-more'  => 'Fer más gran',
-'thumbnail_error' => "S'ha produzito una error en creyar a miniatura: $1",
-'djvu_page_error' => "Página DjVu difuera d'o rango",
-'djvu_no_xml'     => "No s'ha puesto replegar o XML ta l'archibo DjVu",
+'thumbnail-more'           => 'Fer más gran',
+'thumbnail_error'          => "S'ha produzito una error en creyar a miniatura: $1",
+'djvu_page_error'          => "Página DjVu difuera d'o rango",
+'djvu_no_xml'              => "No s'ha puesto replegar o XML ta l'archibo DjVu",
+'thumbnail_invalid_params' => "Os parametros d'as miniatura no son correutos",
+'thumbnail_dest_directory' => "No s'ha puesto creyar o direutorio de destino",
+
+# Special:Import
+'import'                     => 'Importar pachinas',
+'importinterwiki'            => 'Importazión interwiki',
+'import-interwiki-text'      => "Trigue un wiki y un títol de pachina ta importar.
+As calendatas d'as bersions y os nombres d'editors se mantendrán.
+Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistro d'importazions]].",
+'import-interwiki-history'   => "Copiar todas as bersions de l'istorial d'ista pachina",
+'import-interwiki-submit'    => 'Importar',
+'import-interwiki-namespace' => "Transferir pachinas t'o espazio de nombres:",
+'importtext'                 => "Por fabor, esporte l'archibo dende o wiki d'orichen fendo serbir a ferramienta Special:Export, alze-lo en o suyo ordenador y cargue-lo aquí.",
+'importstart'                => 'Importando pachinas...',
+'import-revision-count'      => '$1 {{PLURAL:$1|bersión|bersions}}',
+'importnopages'              => 'No bi ha garra pachina ta importar.',
+'importfailed'               => 'Ha fallato a importazión: $1',
+'importunknownsource'        => "O tipo de fuent d'a importazión ye esconoixito",
+'importcantopen'             => "No s'ha puesto importar iste archibo",
+'importbadinterwiki'         => 'Binclo interwiki incorreuto',
+'importnotext'               => 'Buendo y sin de testo',
+'importsuccess'              => "S'ha feito a importazión correutament!",
+'importnosources'            => "No bi ha fuents d'importazión interwiki y no ye premitito cargar o istorial dreitament.",
+'importnofile'               => "No s'ha cargato os archibos d'importazión.",
+'importuploaderror'          => "Ha fallato a carga de l'archibo d'importazión. Talment l'archibo ye mayor que a grandaria maisima de carga premitita.",
 
 # Import log
-'importlogpage' => "Rechistro d'importazions",
+'importlogpage'                    => "Rechistro d'importazions",
+'importlogpagetext'                => 'Importazions almenistratibas de pachinas con istorial dende atros wikis.',
+'import-logentry-upload'           => 'importata [[$1]] cargando un archibo',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|bersión|bersions}}',
+'import-logentry-interwiki'        => 'Importata $1 entre wikis',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|bersión|bersions}} dende $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "A mía pachina d'usuario",
+'tooltip-pt-anonuserpage'         => "A pachina d'usuario de l'adreza IP dende a que ye editando",
 'tooltip-pt-mytalk'               => 'A mía pachina de descusión',
 'tooltip-pt-preferences'          => 'As mías preferenzias',
 'tooltip-pt-watchlist'            => 'A lista de pachinas en que ha estato bexilando os cambeos',
