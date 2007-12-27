@@ -267,12 +267,14 @@ class PageHistory {
 					. '</span>';
 			}
 
-			$undolink = $this->mSkin->makeKnownLinkObj(
-				$this->mTitle,
-				wfMsgHtml( 'editundo' ),
-				'action=edit&undoafter=' . $next->rev_id . '&undo=' . $rev->getId()
-			);
-			$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
+			if( $this->mTitle->quickUserCan( 'edit' ) ) {
+				$undolink = $this->mSkin->makeKnownLinkObj(
+					$this->mTitle,
+					wfMsgHtml( 'editundo' ),
+					'action=edit&undoafter=' . $next->rev_id . '&undo=' . $rev->getId()
+				);
+				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
+			}
 		}
 		
 		if( $tools ) {
