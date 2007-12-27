@@ -7,7 +7,10 @@
  * @author Alno
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Nike
  */
+
+$fallback = 'fr';
 
 $messages = array(
 # User preference toggles
@@ -711,13 +714,12 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'watchnologin'         => 'Tsy tafiditra',
 'watchnologintext'     => 'Mila [[Special:Userlogin|miditra/misoratra anarana]] aloha ianao vao afaka manova ny lisitry ny pejy arahinao maso.',
 'addedwatch'           => "Tafiditra amin'ny lisitry ny pejy arahi-maso akaiky",
-'addedwatchtext'       => "
-Tafiditra anatin'ny lisitry ny [[Special:Watchlist|PejyArahiMaso]]-nao ny pejy \"\$1\".
+'addedwatchtext'       => "Tafiditra anatin'ny lisitry ny [[Special:Watchlist|PejyArahiMaso]]-nao ny pejy \"\$1\".
 Ny fanovana hisy amin'io pejy io sy ny pejin-dresaka miaraka aminy dia hiseho ao,
 ary rehefa miseho ao amin'ny [[Special:Recentchanges|lisitry ny takelaka vao niova]] io pejy io dia hatao ''matavy'' mba
 hahamora ny fahitana azy.
 
-<p>Aoriana, raha irinao ny hanaisotra azy ao amin'ny PejyArahiMaso-nao, dia tsindrio ilay hoe \"Unwatch\" etsy amin'ny sisiny esty.",
+Aoriana, raha irinao ny hanaisotra azy ao amin'ny PejyArahiMaso-nao, dia tsindrio ilay hoe \"Unwatch\" etsy amin'ny sisiny esty.",
 'removedwatch'         => "Voaaisotra tao amin'ny lisitry ny pejy arahi-maso",
 'removedwatchtext'     => 'Voaaisotra tao amin\'ny lisitry ny pejy arahi-maso-nao ny pejy "[[:$1]]".',
 'watch'                => 'Fanaraha-maso',
@@ -759,10 +761,10 @@ Azonao atao koa ny manajanona ny fampahafantarana anao aloha na misy manova aza 
 
 --
 Raha hanova ny fandehan\'ny momba ny lisitry ny pejy arahi-maso, jereo
-{{SERVER}}{{localurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Hevitrao sy fanampiana:
-{{SERVER}}{{localurl:{{MediaWiki:Helppage}}}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Fafao ny pejy',
@@ -853,7 +855,7 @@ Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
 'ipbreason'                   => 'Antony',
 'ipbsubmit'                   => 'Sakano',
 'ipbother'                    => 'Hafa',
-'ipboptions'                  => '2 ora:2 ora,1 andro:1 andro,3 andro:3 andro,1 herinandro:1 herinandro,2 herinandro:2 herinandro,1 volana:1 volana,3 volana:3 volana,6 volana:6 volana,1 taona:1 taona,mandrakizay:mandrakizay', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'hafa',
 'badipaddress'                => 'Tsy mety ny adiresy IP (invalid)',
 'blockipsuccesssub'           => 'Vita soa aman-tsara ny sakana',
