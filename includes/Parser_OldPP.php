@@ -3520,7 +3520,7 @@ class Parser_OldPP
 		$prevlevel = 0;
 		$toclevel = 0;
 		$prevtoclevel = 0;
-		$rawtoc = array();
+		$tocraw = array();
 
 		foreach( $matches[3] as $headline ) {
 			$istemplate = 0;
