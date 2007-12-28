@@ -23,14 +23,14 @@ class NewPagesPage extends QueryPage {
 	protected $nondefaults = array();
 	protected $specialPage;
 
-	public function __construct( $specialPage ) {
+	public function __construct( $specialPage=null ) {
 		$this->specialPage = $specialPage;
 	}
 
 	public function execute( $par ) {
 		global $wgRequest, $wgLang;
 
-		$shownavigation = !$this->specialPage->including();
+		$shownavigation = is_object( $this->specialPage ) && !$this->specialPage->including();
 
 		$defaults = array(
 			/* bool */ 'hideliu' => false,
