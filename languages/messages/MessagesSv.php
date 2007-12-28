@@ -711,7 +711,7 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'edittools'                 => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
 'nocreatetitle'             => 'Skapande av sidor begränsat',
 'nocreatetext'              => 'Denna wiki har begränsat möjligheterna att skapa nya sidor. Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skapa ett användarkonto]].',
-'nocreate-loggedin'         => 'Du har inte behörighet att skapa nya sidor på den här wikin.',
+'nocreate-loggedin'         => 'Du har inte behörighet att skapa nya sidor på {{SITENAME}}.',
 'permissionserrors'         => 'Behörighetsfel',
 'permissionserrorstext'     => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
 'recreate-deleted-warn'     => "'''Varning: Den sida du skapar har tidigare raderats.'''
@@ -775,9 +775,9 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'revdelete-nooldid-text'      => 'Du angav inte vilken eller vilka versioner du vill utföra funktionen på.',
 'revdelete-selected'          => "{{PLURAL:$2|Vald version|Valda versioner}} av '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Vald loggåtgärd|valda loggåtgärder}} för '''$1:'''",
-'revdelete-text'              => 'Borttagna versioner kommer fortfarande att synas i historiken, men deras innehåll kommer ej att vara tillgängligt för allmänheten.
+'revdelete-text'              => 'Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.
 
-Andra administratörer på denna wiki kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte en ytterligare begränsningar finns.',
+Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte en ytterligare begränsningar finns.',
 'revdelete-legend'            => 'Ange begränsningar för version:',
 'revdelete-hide-text'         => 'Dölj versionstext',
 'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
@@ -1419,10 +1419,8 @@ Feedback och hjälp:
 'confirmdelete'               => 'Bekräfta borttagning',
 'deletesub'                   => '(Tar bort "$1")',
 'historywarning'              => 'Varning: Sidan du håller på att radera har en historik:',
-'confirmdeletetext'           => 'Du håller på att permanent ta bort en sida
-eller bild med all dess historik från databasen.
-Bekräfta att du förstår vad du håller på med och vilka konsekvenser
-detta leder till, och att det följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
+'confirmdeletetext'           => 'Du håller på att permanent ta bort en sida med all dess historik från databasen.
+Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'              => 'Genomfört',
 'deletedtext'                 => '"$1" har tagits bort. 
 Se $2 för noteringar om de senaste raderingarna.',

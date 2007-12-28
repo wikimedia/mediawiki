@@ -1691,6 +1691,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-pt-userpage'             => "A mía pachina d'usuario",
 'tooltip-pt-anonuserpage'         => "A pachina d'usuario de l'adreza IP dende a que ye editando",
 'tooltip-pt-mytalk'               => 'A mía pachina de descusión',
+'tooltip-pt-anontalk'             => 'Descusión sobre edizions feitas dende ista adreza IP',
 'tooltip-pt-preferences'          => 'As mías preferenzias',
 'tooltip-pt-watchlist'            => 'A lista de pachinas en que ha estato bexilando os cambeos',
 'tooltip-pt-mycontris'            => "Lista d'as mías contribuzions",
@@ -1747,9 +1748,21 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-recreate'                => 'Recreya una pachina mesmo si ya ha estato borrata dinantes',
 'tooltip-upload'                  => 'Prenzipia a carga',
 
+# Metadata
+'nodublincore'      => 'Metadatos Dublin Core RDF desautibatos en iste serbidor.',
+'nocreativecommons' => 'Metadatos Creative Commons RDF desautibatos en iste serbidor.',
+'notacceptable'     => 'O serbidor wiki no puede ufrir os datos en un formato que o suyo client (nabegador) pueda leyer.',
+
 # Attribution
-'and'    => 'y',
-'others' => 'atros',
+'anonymous'        => 'Usuario(s) anonimo(s) de {{SITENAME}}',
+'siteuser'         => 'Usuario $1 de {{SITENAME}}',
+'lastmodifiedatby' => 'Ista pachina estió modificata por zaguer begada á $2, $1 por $3.', # $1 date, $2 time, $3 user
+'and'              => 'y',
+'othercontribs'    => 'Basato en o treballo de $1.',
+'others'           => 'atros',
+'siteusers'        => 'Usuario(s) $1 de {{SITENAME}}',
+'creditspage'      => "Creditos d'a pachina",
+'nocredits'        => 'No bi ha informazión de creditos ta ista pachina.',
 
 # Spam protection
 'subcategorycount'     => 'Bi ha {{PLURAL:$1|una subcategoría|$1 subcategorías}} en ista categoría.',

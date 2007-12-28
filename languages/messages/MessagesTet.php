@@ -241,7 +241,7 @@ $messages = array(
 'editingcomment'    => 'Edita $1 (komentáriu)',
 'yourtext'          => 'Ó-nia testu',
 'yourdiff'          => 'Diferensa sira',
-'nocreate-loggedin' => "Ó la iha kuana kria pájina foun iha wiki ne'e.",
+'nocreate-loggedin' => 'Ó la iha kuana kria pájina foun iha {{SITENAME}}.',
 
 # Account creation failure
 'cantcreateaccounttitle' => "La bele registrar uza-na'in",
@@ -266,6 +266,8 @@ $messages = array(
 'revdelete-hide-user' => "Subar naran edita-na'in/IP",
 
 # Search results
+'prevn'       => 'molok $1',
+'nextn'       => 'oinmai $1',
 'powersearch' => 'Buka',
 
 # Preferences page
@@ -350,8 +352,10 @@ $messages = array(
 'brokenredirects-delete' => '(halakon)',
 
 # Miscellaneous special pages
+'nlinks'            => '$1 ligasaun',
 'nmembers'          => '$1 membru',
 'allpages'          => 'Pájina hotu',
+'longpages'         => 'Pájina naruk',
 'listusers'         => "Lista uza-na'in",
 'specialpages'      => 'Pájina espesiál sira',
 'newpages'          => 'Pájina foun',
@@ -423,6 +427,7 @@ $messages = array(
 
 # Contributions
 'contributions' => "Kontribuisaun uza-na'in",
+'mycontris'     => "Ha'u-nia kontribuisaun",
 
 'sp-contributions-newbies'  => "Hatudu de'it kontribuisaun uza-na'in foun sira-nia",
 'sp-contributions-search'   => 'Buka kontribuisaun',
@@ -431,6 +436,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => "Artigu sira ne'ebé bá iha ne'e",
+'whatlinkshere-title' => "Pájina sira ne'ebé bá $1",
 'whatlinkshere-page'  => 'Pájina:',
 'linkshere'           => "Pájina sira ne'e link ba '''[[:$1]]''':",
 'whatlinkshere-prev'  => '{{PLURAL:$1|oinmai|oinmai $1}}',
