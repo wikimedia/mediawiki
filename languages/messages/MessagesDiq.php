@@ -4,11 +4,19 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Mirzali
  */
 
 $messages = array(
 # User preference toggles
-'tog-showtoc' => 'Bımocne table of contents (for pages with more than 3 headings)',
+'tog-underline'       => 'Bınê gırêyan de xete bıonce:',
+'tog-highlightbroken' => 'Gırêyanê thalan <a href="" class="new">wına</a> (alternative: wına<a href="" class="internal">?</a>) bımocne.',
+'tog-justify'         => 'Nuşte be rêza serraşte',
+'tog-hideminor'       => 'Vurnayışanê senıkan bınımne',
+'tog-extendwatchlist' => 'Lista seyr-kerdışia awankerdiye',
+'tog-usenewrc'        => "Lista vurnayışanê peyênana awankerdiye (''JavaScript'' lazımo)",
+'tog-numberheadings'  => 'Rêzanê seri xoser numra ke',
+'tog-showtoc'         => 'Bımocne table of contents (for pages with more than 3 headings)',
 
 # Dates
 'sunday'        => 'Yewşeme',

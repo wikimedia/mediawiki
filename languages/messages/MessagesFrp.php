@@ -396,6 +396,7 @@ $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de modifiar les pâges de l’èspâço de nom « '''$1''' ».",
 'customcssjsprotected' => 'Vos avéd pas la pèrmission d’èditar ceta pâge perce que contint des prèferences d’ôtros utilisators.',
 'ns-specialprotected'  => 'Les pâges dens l’èspâço de nom {{ns:special}} pôvont pas étre modifiâs.',
+'titleprotected'       => 'Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]]. La rêson avanciê est <i>« $2 »</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Dèconèccion',
@@ -489,7 +490,7 @@ Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',
 'resetpass_submit'        => 'Changiér lo mot de pâssa et s’enregistrar',
 'resetpass_success'       => 'Voutron mot de pâssa at étâ changiê avouéc reusséta ! Enregistrament en cors...',
 'resetpass_bad_temporary' => 'Mot de pâssa temporèro envalido. Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta, ou ben demandâ un novél mot de pâssa temporèro.',
-'resetpass_forbidden'     => 'Los mots de pâssa pôvont pas étre changiês sur ceti vouiqui',
+'resetpass_forbidden'     => 'Los mots de pâssa pôvont pas étre changiês dessus {{SITENAME}}.',
 'resetpass_missing'       => 'Niona balyê entrâ.',
 
 # Edit page toolbar
@@ -560,7 +561,7 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'whitelistreadtitle'        => 'Enregistrament nècèssèro por liére lo contegnu',
 'whitelistreadtext'         => 'Vos dête étre [[Special:Userlogin|conèctâ]] por liére lo contegnu.',
 'whitelistacctitle'         => 'Vos éte pas ôtorisâ a crèar un compto.',
-'whitelistacctext'          => 'Por povêr crèar un compto sur ceti vouiqui, vos dête étre [[Special:Userlogin|conèctâ]] et avêr les pèrmissions que vont avouéc.',
+'whitelistacctext'          => 'Por povêr crèar un compto dessus {{SITENAME}}, vos dête étre [[Special:Userlogin|conèctâ]] et avêr les pèrmissions que vont avouéc.',
 'confirmedittitle'          => 'Validacion de l’adrèce de mèl nècèssèra por modifiar lo contegnu',
 'confirmedittext'           => 'Vos dête confirmar voutra adrèce de mèl devant que modifiar {{SITENAME}}. Volyéd entrar et validar voutra adrèce èlèctronica avouéc la pâge [[Special:Preferences|prèferences]].',
 'nosuchsectiontitle'        => 'Sèccion manquenta',
@@ -587,7 +588,7 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'session_fail_preview'      => '<strong>Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion. Volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.</strong>',
 'session_fail_preview_html' => "<strong>Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion.</strong>
 
-''L’HTML bruto étent activâ sur ceti vouiqui, la prèvisualisacion at étâ mâscâ por prèvegnir una ataca per JavaScript.''
+''L’HTML bruto étent activâ dessus {{SITENAME}}, la prèvisualisacion at étâ mâscâ por prèvegnir una ataca per JavaScript.''
 
 <strong>Se la tentativa de modificacion ére lèg·itima, volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.</strong>",
 'token_suffix_mismatch'     => '<strong>Voutra èdicion at pas étâ accèptâ perce que voutron navigator at mècllo los caractèros de ponctuacion dens l’identifiant d’èdicion. L’èdicion at étâ refusâ por empachiér la corrupcion du tèxte de l’articllo. Ceti problèmo arreve quand vos utilisâd un proxy anonimo avouéc problèmo.</strong>',
@@ -626,7 +627,7 @@ Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.<
 'edittools'                 => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes de modificacion ou d’impôrt de fichiér. -->',
 'nocreatetitle'             => 'Crèacion de pâge limitâ',
 'nocreatetext'              => 'Ceti seto at rètrent la possibilitât de crèar de novèles pâges. Vos pouede tornar arriér et modifiar una pâge ègzistenta, vos [[Special:Userlogin|conèctar ou crèar un compto]].',
-'nocreate-loggedin'         => 'Vos avéd pas la pèrmission de crèar de novèles pâges sur ceti vouiqui.',
+'nocreate-loggedin'         => 'Vos avéd pas la pèrmission de crèar de novèles pâges dessus {{SITENAME}}.',
 'permissionserrors'         => 'Èrror de pèrmissions',
 'permissionserrorstext'     => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|la rêson siuventa|les rêsons siuventes}} :',
 'recreate-deleted-warn'     => "'''Atencion : vos éte aprés recrèar una pâge qu’at étâ prècèdament suprimâ.'''
@@ -697,10 +698,10 @@ pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE
 'revdelete-nooldid-text'      => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes por utilisar cela fonccion.',
 'revdelete-selected'          => "{{PLURAL:$2|Vèrsion sèlèccionâ|Vèrsions sèlèccionâs}} de '''$1''' :",
 'logdelete-selected'          => "{{PLURAL:$2|Èvènement de jornal sèlèccionâ|Èvènements de jornal sèlèccionâs}} por '''$1''' :",
-'revdelete-text'              => 'Les vèrsions suprimâs aparêtront adés dens l’historico de l’articllo,
+'revdelete-text'              => 'Les vèrsions et los èvènements suprimâs aparêtront adés dens l’historico de l’articllo et los jornals,
 mas lor contegnu tèxtuèl serat pas accèssiblo u publico.
 
-D’ôtros administrators sur ceti vouiqui porront tojorn arrevar u contegnu cachiê et lo tornar rèstorar
+D’ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo tornar rèstorar
 a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèra seye betâ en place per los opèrators du seto.',
 'revdelete-legend'            => 'Betar en place des rèstriccions de vèrsion :',
 'revdelete-hide-text'         => 'Mâscar lo tèxte de la vèrsion',
@@ -766,6 +767,7 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'searchsubtitle'        => "Vos éd rechèrchiê « '''[[:$1]]''' »",
 'searchsubtitleinvalid' => "Vos éd rechèrchiê « '''$1''' »",
 'noexactmatch'          => "'''Niona pâge avouéc lo titro « $1 » ègziste pas.''' Vos pouede [[:$1|crèar cél articllo]].",
+'noexactmatch-nocreate' => "'''Ègziste gins de pâge avouéc lo titro « $1 ».'''",
 'titlematches'          => 'Corrèspondances dens los titros d’articllos',
 'notitlematches'        => 'Nion titro d’articllo corrèspond pas a la rechèrche.',
 'textmatches'           => 'Corrèspondances dens lo tèxte d’articllos',

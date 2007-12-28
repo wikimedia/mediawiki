@@ -96,6 +96,7 @@ $messages = array(
 'talkpagelinktext' => 'Kūkākūkā',
 'talk'             => 'Kūkākūkā',
 'otherlanguages'   => "Ma nā leo 'ē a'e",
+'jumpto'           => 'Lele i:',
 'jumptonavigation' => 'ho‘okele ‘ana',
 'jumptosearch'     => 'huli',
 
@@ -188,6 +189,8 @@ hō‘ike ‘ia i lalo:",
 'accmailtitle'          => 'Ua ho‘ouna ‘ia ka hua‘ōlelo huna',
 'newarticle'            => '(Hou)',
 'anontalkpagetext'      => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:Userlogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
+'yourdiff'              => 'Nā mea ‘oko‘a',
+'protectedpagewarning'  => '<strong>A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā "kahu" ke ho‘opololei wale nō.</strong>',
 'template-protected'    => '(ho‘omalu ‘ia)',
 
 # History pages
