@@ -94,24 +94,27 @@ class UserrightsForm extends HTMLForm {
 		if( !$user ) {
 			return;
 		}
+		
+		// Validate input set...
+		$changeable = $this->changeableGroups();
+		$removegroup = array_unique(
+			array_intersect( (array)$removegroup, $changeable['remove'] ) );
+		$addgroup = array_unique(
+			array_intersect( (array)$addgroup, $changeable['add'] ) );
 
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 		// remove then add groups
-		if(isset($removegroup)) {
+		if( $removegroup ) {
 			$newGroups = array_diff($newGroups, $removegroup);
 			foreach( $removegroup as $group ) {
-				if( $this->canRemove( $group ) ) {
-					$user->removeGroup( $group );
-				}
+				$user->removeGroup( $group );
 			}
 		}
-		if(isset($addgroup)) {
+		if( $addgroup ) {
 			$newGroups = array_merge($newGroups, $addgroup);
 			foreach( $addgroup as $group ) {
-				if( $this->canAdd( $group ) ) {
-					$user->addGroup( $group );
-				}
+				$user->addGroup( $group );
 			}
 		}
 		$newGroups = array_unique( $newGroups );
