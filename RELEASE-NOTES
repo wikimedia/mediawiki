@@ -269,6 +269,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12380) Bot-friendly EditPage::spamPage
 * (bug 8066) Spaces can't be entered in special page aliases
 * Hide undo link if user can't edit article
+* (bug 12416) Fix password setting for createAndPromote.php
+
 
 == Parser changes in 1.12 ==
 

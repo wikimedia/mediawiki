@@ -38,7 +38,7 @@ if( !is_object( $user ) ) {
 # Insert the account into the database
 $user->addToDatabase();
 $user->setPassword( $password );
-$user->setToken();
+$user->saveSettings();
 
 # Promote user
 $user->addGroup( 'sysop' );
