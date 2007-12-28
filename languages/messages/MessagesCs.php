@@ -458,7 +458,9 @@ $messages = array(
 'nosuchaction'      => 'Neznámý úkon',
 'nosuchactiontext'  => 'Tato wiki nezná činnost (action) uvedenou v URL.',
 'nosuchspecialpage' => 'Neexistující speciální stránka',
-'nospecialpagetext' => 'Žádaná speciální stránka na této wiki neexistuje.',
+'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
+
+Seznam existujících speciálních stránek vizte na [[Special:Specialpages]].",
 
 # General errors
 'error'                => 'Chyba',
@@ -619,7 +621,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'resetpass_submit'        => 'Nastavit heslo a přihlásit se',
 'resetpass_success'       => 'Vaše heslo bylo úspěšně změněno. Probíhá přihlašování…',
 'resetpass_bad_temporary' => 'Neplatné dočasné heslo. Možná již bylo heslo úspěšně změněno nebo někdo znovu požádal o nové dočasné heslo.',
-'resetpass_forbidden'     => 'Na této wiki heslo nelze změnit.',
+'resetpass_forbidden'     => 'Na {{grammar:6sg|{{SITENAME}}}} heslo nelze změnit.',
 'resetpass_missing'       => 'Ve formuláři nejsou žádná data.',
 
 # Edit page toolbar
@@ -698,7 +700,7 @@ Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete
 'whitelistreadtitle'        => 'Vyžadováno přihlášení',
 'whitelistreadtext'         => 'Musíte se [[Special:Userlogin|přihlásit]], abyste mohli číst stránky.',
 'whitelistacctitle'         => 'Není vám dovoleno vytvářet uživatelské účty',
-'whitelistacctext'          => 'Abyste na této wiki mohl(a) vytvářet uživatelské účty, musíte se [[Special:Userlogin|přihlásit]] a mít příslušná oprávnění.',
+'whitelistacctext'          => 'Abyste na {{grammar:6sg|{{SITENAME}}}} mohl(a) vytvářet uživatelské účty, musíte se [[Special:Userlogin|přihlásit]] a mít příslušná oprávnění.',
 'confirmedittitle'          => 'Vyžadováno e-mailové potvrzení',
 'confirmedittext'           => 'Pro editaci stránek je vyžadováno potvrzení vaší e-mailové adresy. Na stránce [[Special:Preferences|nastavení]] zadejte a nechte potvrdit svou e-mailovou adresu.',
 'nosuchsectiontitle'        => 'Neexistující sekce',
@@ -727,9 +729,9 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'session_fail_preview'      => '<strong>Omlouváme se, ale váš požadavek se nepodařilo zpracovat. Zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>',
 'session_fail_preview_html' => "<strong>Omlouváme se, ale váš požadavek se nepodařilo zpracovat.</strong>
 
-''Jelikož tato wiki má povoleno libovolné HTML, není zobrazen náhled jako prevence proti útokům JavaScriptem.''
+''Jelikož {{SITENAME}} má povoleno libovolné HTML, není zobrazen náhled jako prevence proti útokům JavaScriptem.''
 
-Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.",
+<strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>",
 'token_suffix_mismatch'     => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu. Editace byla odmítnuta, aby se zabránilo poškození textu stránky. 
 Toto se může někdy stát pokud používáte chybující webový anonymizér.</strong>',
 'editing'                   => 'Editace stránky $1',
@@ -833,9 +835,9 @@ podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page=
 'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
 'revdelete-selected'          => "{{plural:$2|Zvolená|Zvolené|Zvolené}} revize stránky '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Vybraná protokolovaná událost|Vybrané protokolované události|Vybrané protokolované události}} pro '''$1:'''",
-'revdelete-text'              => 'Smazané revize budou nadále zobrazeny v historii stránky, ale jejich text nebude veřejně dostupný.
+'revdelete-text'              => 'Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.
 
-Ostatní správci této wiki si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
+Ostatní správci {{grammar:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
 pokud to provozovatel serveru nezakázal.',
 'revdelete-legend'            => 'Nastavit omezení k revizi:',
 'revdelete-hide-text'         => 'Skrýt text revize',
@@ -1125,7 +1127,7 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 'uploadedimage'               => 'načítá „[[$1]]“',
 'overwroteimage'              => 'načtena nová verze "[[$1]]"',
 'uploaddisabled'              => 'Načítání souborů vypnuto.',
-'uploaddisabledtext'          => 'Promiňte, ale načítání souborů je na této wiki vypnuto.',
+'uploaddisabledtext'          => 'Promiňte, ale načítání souborů je na {{grammar:6sg|{{SITENAME}}}} vypnuto.',
 'uploadscripted'              => 'Tento soubor obsahuje HTML nebo kód skriptu, který by mohl být prohlížečem chybně interpretován.',
 'uploadcorrupt'               => 'Soubor je poškozen nebo nemá správnou příponu. Zkontrolujte prosím soubor a zkuste ho načíst znovu.',
 'uploadvirus'                 => 'Tento soubor obsahuje virus! Podrobnosti: $1',
@@ -1286,7 +1288,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'nviews'                  => '$1 zobrazení',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí stránky',
-'lonelypagestext'         => 'Na následující stránky na této wiki neodkazuje žádná jiná stránka.',
+'lonelypagestext'         => 'Na následující stránky na {{grammar:6sg|{{SITENAME}}}} neodkazuje žádná jiná stránka.',
 'uncategorizedpages'      => 'Nekategorizované stránky',
 'uncategorizedcategories' => 'Nekategorizované kategorie',
 'uncategorizedimages'     => 'Nekategorizované soubory',
@@ -1307,7 +1309,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'shortpages'              => 'Nejkratší stránky',
 'longpages'               => 'Nejdelší stránky',
 'deadendpages'            => 'Slepé stránky',
-'deadendpagestext'        => 'Následující stránky neodkazují na žádnou jinou stránku této wiki.',
+'deadendpagestext'        => 'Následující stránky neodkazují na žádnou jinou stránku {{grammar:2sg|{{SITENAME}}}}.',
 'protectedpages'          => 'Zamčené stránky',
 'protectedpagestext'      => 'Následující stránky jsou zamčeny nebo polozamčeny pro editaci nebo přesun:',
 'protectedpagesempty'     => 'Žádná stránka není zamčena s těmito parametry.',
