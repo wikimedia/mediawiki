@@ -101,13 +101,17 @@ class UserrightsForm extends HTMLForm {
 		if(isset($removegroup)) {
 			$newGroups = array_diff($newGroups, $removegroup);
 			foreach( $removegroup as $group ) {
-				$user->removeGroup( $group );
+				if( $this->canRemove( $group ) ) {
+					$user->removeGroup( $group );
+				}
 			}
 		}
 		if(isset($addgroup)) {
 			$newGroups = array_merge($newGroups, $addgroup);
 			foreach( $addgroup as $group ) {
-				$user->addGroup( $group );
+				if( $this->canAdd( $group ) ) {
+					$user->addGroup( $group );
+				}
 			}
 		}
 		$newGroups = array_unique( $newGroups );
