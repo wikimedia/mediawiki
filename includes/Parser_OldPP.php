@@ -9,7 +9,7 @@ class Parser_OldPP
 	 * changes in an incompatible way, so the parser cache
 	 * can automatically discard old data.
 	 */
-	const VERSION = '1.6.2';
+	const VERSION = '1.6.4';
 
 	# Flags for Parser::setFunctionHook
 	# Also available as global constants from Defines.php
@@ -3520,6 +3520,7 @@ class Parser_OldPP
 		$prevlevel = 0;
 		$toclevel = 0;
 		$prevtoclevel = 0;
+		$rawtoc = array();
 
 		foreach( $matches[3] as $headline ) {
 			$istemplate = 0;
@@ -3653,6 +3654,7 @@ class Parser_OldPP
 			}
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
+				$tocraw[] = array( 'toclevel' => $toclevel, 'level' => $level, 'line' => $tocline, 'number' => $numbering );
 			}
 			# give headline the correct <h#> tag
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
@@ -3669,6 +3671,8 @@ class Parser_OldPP
 			if( !$istemplate )
 				$sectionCount++;
 		}
+
+		$this->mOutput->setSections( $tocraw );
 
 		# Never ever show TOC if no headers
 		if( $numVisible < 1 ) {
