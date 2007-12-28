@@ -727,6 +727,8 @@ $2',
 'userrights-available-remove' => '爾可自$1減簿也。',
 'userrights-no-interwiki'     => '爾無權改他山wiki之簿權也。',
 'userrights-nodatabase'       => '資料庫$1無存或卝本地也。',
+'userrights-nologin'          => '爾以有秩乲簿[[Special:Userlogin|登]]後以定簿之權也。',
+'userrights-notallowed'       => '爾之簿無權定簿之權也。',
 
 # Groups
 'group'               => '社:',
@@ -1113,7 +1115,7 @@ $NEWPAGE
 'confirmdelete'               => '准刪',
 'deletesub'                   => '（刪"$1"…）',
 'historywarning'              => '警示，此頁有誌：',
-'confirmdeletetext'           => '欲久刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
+'confirmdeletetext'           => '欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
 'actioncomplete'              => '成矣',
 'deletedtext'                 => '"$1"刪矣，見誌刪於$2。',
 'deletedarticle'              => '刪焉"[[$1]]"',
@@ -1605,14 +1607,20 @@ $NEWPAGE
 'metadata-expand'   => '見詳',
 'metadata-collapse' => '藏詳',
 'metadata-fields'   => '若藏詳，此下EXIF補註方現，否則藏焉。
-* 出廠
-* 型號
-* 當攝
-* 曝光
-* 光圈
-* 焦距',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
+'exif-make'              => '出廠',
+'exif-model'             => '型號',
+'exif-datetimeoriginal'  => '當攝',
+'exif-exposuretime'      => '曝光',
+'exif-fnumber'           => '光圈',
+'exif-focallength'       => '焦距',
 'exif-imagewidth'        => '寬',
 'exif-imagelength'       => '長',
 'exif-datetime'          => '文檔修訂之日期時辰',

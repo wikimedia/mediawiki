@@ -564,7 +564,7 @@ $2',
 'resetpass_submit'        => '設定密碼同登入',
 'resetpass_success'       => '你嘅密碼已經成功咁更改！而家幫你登入緊...',
 'resetpass_bad_temporary' => '唔啱嘅臨時密碼。你可能已經成功咁更改你嘅密碼，又或者重新請求過一個新嘅臨時密碼。',
-'resetpass_forbidden'     => '響呢個wiki度唔可以更改密碼',
+'resetpass_forbidden'     => '響{{SITENAME}}度唔可以更改密碼',
 'resetpass_missing'       => '響資料度搵唔到嘢。',
 
 # Edit page toolbar
@@ -639,7 +639,7 @@ $2',
 'whitelistreadtitle'        => '登入咗至睇到',
 'whitelistreadtext'         => '你需要[[Special:Userlogin|登入]]先可以去睇呢頁。',
 'whitelistacctitle'         => '你唔可以開一個新戶口',
-'whitelistacctext'          => '要喺呢個 wiki 開戶口，你要[[Special:Userlogin|登入]]同提供適當嘅許可。',
+'whitelistacctext'          => '要喺{{SITENAME}}開戶口，你要[[Special:Userlogin|登入]]同提供適當嘅許可。',
 'confirmedittitle'          => '要用電郵確定咗先可以改',
 'confirmedittext'           => '你個電郵地址要確定咗先可以編輯。唔該先去[[Special:Preferences|喜好設定]]填咗電郵地址，並做埋確認手續。',
 'nosuchsectiontitle'        => '無呢個小節',
@@ -670,7 +670,7 @@ $2',
 請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。</strong>',
 'session_fail_preview_html' => "<strong>對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。</strong>
 
-''由於哩個 wiki 已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
+''由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
 
 <strong>如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先登出然後再登入。</strong>",
 'token_suffix_mismatch'     => '<strong>因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。 
@@ -714,7 +714,7 @@ $2',
 'nocreatetitle'             => '頁面建立被限制',
 'nocreatetext'              => '呢個網站已經限制咗起新版嘅能力。
 你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:Userlogin|登入或開個新戶口]]。',
-'nocreate-loggedin'         => '你響呢個wiki度並無許可權去開新版。',
+'nocreate-loggedin'         => '你響{{SITENAME}}度並無許可權去開新版。',
 'permissionserrors'         => '權限錯誤',
 'permissionserrorstext'     => '根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做呢樣嘢:',
 'recreate-deleted-warn'     => "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''
@@ -790,7 +790,7 @@ $2',
 'revdelete-text'              => '刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，
 但係佢哋嘅文字內容係唔可以供公眾瀏覽。
 
-其他喺呢一個wiki嘅管理員仍然可以睇已經隱藏咗嘅內容，
+其他喺{{SITENAME}}嘅管理員仍然可以睇已經隱藏咗嘅內容，
 同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。',
 'revdelete-legend'            => '設定修訂限制：',
 'revdelete-hide-text'         => '隱藏修訂嘅文字',
@@ -948,6 +948,8 @@ $2',
 'userrights-available-remove' => '你可以響$1度拎走用戶。',
 'userrights-no-interwiki'     => '你並無權限去編輯響其它wiki嘅用戶權限。',
 'userrights-nodatabase'       => '資料庫$1唔存在或者唔係本地嘅。',
+'userrights-nologin'          => '你一定要以操作員戶口[[Special:Userlogin|登入]]咗之後先可以指定用戶權限。',
+'userrights-notallowed'       => '你嘅戶口無權限去指定用戶權限。',
 
 # Groups
 'group'               => '組：',
@@ -1063,7 +1065,7 @@ $2',
 'uploadedimage'               => '上載咗"[[$1]]"',
 'overwroteimage'              => '已經上載咗"[[$1]]"嘅新版本',
 'uploaddisabled'              => '上載已停用',
-'uploaddisabledtext'          => '呢個 wiki 嘅檔案上載已經停用。',
+'uploaddisabledtext'          => '{{SITENAME}}嘅檔案上載已經停用。',
 'uploadscripted'              => '呢個檔案包含可能會誤被瀏覽器解釋執行嘅 HTML 或 script 代碼。',
 'uploadcorrupt'               => '呢個檔案已損壞或係用咗錯誤嘅副檔名。請檢查吓個檔案，然後再試下上載多次。',
 'uploadvirus'                 => '呢個檔案有病毒！詳情：$1',
@@ -1228,7 +1230,7 @@ Template:搞清楚',
 'nviews'                  => '$1 次瀏覽',
 'specialpage-empty'       => '呢個報告嘅結果係空嘅。',
 'lonelypages'             => '孤立咗嘅頁面',
-'lonelypagestext'         => '以下嘅面頁係響呢個wiki度未有連結到其它頁面。',
+'lonelypagestext'         => '以下嘅面頁係響{{SITENAME}}度未有連結到其它頁面。',
 'uncategorizedpages'      => '未有分類嘅頁面',
 'uncategorizedcategories' => '未有分類嘅分類',
 'uncategorizedimages'     => '未有分類嘅圖像',
@@ -1249,7 +1251,7 @@ Template:搞清楚',
 'shortpages'              => '短頁',
 'longpages'               => '長頁',
 'deadendpages'            => '掘頭頁',
-'deadendpagestext'        => '呢啲頁無連到呢個wiki內嘅任何一頁。',
+'deadendpagestext'        => '呢啲頁無連到{{SITENAME}}內嘅任何一頁。',
 'protectedpages'          => '保護頁',
 'protectedpagestext'      => '以下嘅頁面係受保頁面，唔能夠移動或編輯',
 'protectedpagesempty'     => '響呢啲參數度，現時無頁面響度保護緊。',
@@ -1428,7 +1430,7 @@ wiki: $PAGEEDITOR_WIKI
 'confirmdelete'               => '確認刪除',
 'deletesub'                   => '("$1"刪除中)',
 'historywarning'              => '警告：你要刪除嘅頁面有歷史版本：',
-'confirmdeletetext'           => '你準備從資料庫度徹底刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
+'confirmdeletetext'           => '你準備從資料庫度刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
 請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
 'deletedtext'                 => '"$1"已經刪除。
@@ -1713,7 +1715,7 @@ $1',
 'movearticle'             => '搬頁:',
 'movenologin'             => '未登入',
 'movenologintext'         => '你要係註冊用戶而且要[[Special:Userlogin|登入]]咗先可以搬頁',
-'movenotallowed'          => '你響呢個wiki度並無權限去搬版。',
+'movenotallowed'          => '你響{{SITENAME}}度並無權限去搬版。',
 'newtitle'                => '到新標題:',
 'move-watch'              => '睇實呢一版',
 'movepagebtn'             => '搬頁',
@@ -2017,12 +2019,12 @@ Variants for Chinese language
 'metadata-collapse' => '收埋詳細資料',
 'metadata-fields'   => '響呢個信息列出嘅 EXIF 元數據項目會喺圖像頁中包含起嚟，
 而且個元數據表除咗喺下面列出嘅項目之外，其它嘅項目預設會被隱藏。
-* 相機廠商 (make)
-* 相機型號 (model)
-* 原創日期時間 (datetimeoriginal)
-* 曝光長度 (exposuretime)
-* F 值 (fnumber)
-* 鏡頭焦距 (focallength)',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => '闊',
