@@ -270,6 +270,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8066) Spaces can't be entered in special page aliases
 * Hide undo link if user can't edit article
 * (bug 12416) Fix password setting for createAndPromote.php
+* (bug 3097) Inconsistently usable titles containing HTML character entities
+  are now forbidden. A run of cleanupTitles.php will fix up existing pages.
 
 
 == Parser changes in 1.12 ==
