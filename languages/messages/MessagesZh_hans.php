@@ -501,7 +501,7 @@ $2',
 'resetpass_submit'        => '设定密码并登录',
 'resetpass_success'       => '您的密码已经被成功更改！现在正为您登录...',
 'resetpass_bad_temporary' => '无效的临时密码。您可能已成功地更改了您的密码，或者需要请求一个新的临时密码。',
-'resetpass_forbidden'     => '无法在此 wiki 上更改密码',
+'resetpass_forbidden'     => '无法在{{SITENAME}}上更改密码',
 'resetpass_missing'       => '无表单数据。',
 
 # Edit page toolbar
@@ -574,7 +574,7 @@ $2',
 'whitelistreadtitle'        => '登录后才可阅读',
 'whitelistreadtext'         => '您必须先[[Special:Userlogin|登录]]才可阅读页面。',
 'whitelistacctitle'         => '您被禁止建立账户',
-'whitelistacctext'          => '在本Wiki中建立账户您必须先[[Special:Userlogin|登录]]并拥有相关权限。',
+'whitelistacctext'          => '在{{SITENAME}}中建立账户您必须先[[Special:Userlogin|登录]]并拥有相关权限。',
 'confirmedittitle'          => '邮件确认后才可编辑',
 'confirmedittext'           => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
 'nosuchsectiontitle'        => '没有这个段落',
@@ -603,7 +603,7 @@ $2',
 'session_fail_preview'      => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请登出后重新登陆。</strong>',
 'session_fail_preview_html' => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
 
-''由于此 wiki 允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
+''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
 <strong>如果这是一次合法的编辑，请重新进行尝试。如果还不行，请退出并重新登录。</strong>",
 'token_suffix_mismatch'     => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
@@ -648,7 +648,7 @@ $2',
 'edittools'                 => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'             => '创建页面受限',
 'nocreatetext'              => '此网站限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
-'nocreate-loggedin'         => '您在这个wiki中并无权限去创建新页面。',
+'nocreate-loggedin'         => '您在{{SITENAME}}中并无权限去创建新页面。',
 'permissionserrors'         => '权限错误',
 'permissionserrorstext'     => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作:',
 'recreate-deleted-warn'     => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
@@ -719,7 +719,7 @@ $2',
 'logdelete-selected'          => "选取'''$1'''的$2个日志项目:",
 'revdelete-text'              => '删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。
 
-在此站点的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。',
+在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。',
 'revdelete-legend'            => '设置修订限制:',
 'revdelete-hide-text'         => '隐藏修订文本',
 'revdelete-hide-name'         => '隐藏动作和目标',
@@ -875,6 +875,8 @@ $2',
 'userrights-available-remove' => '您可以从$1中移除用户。',
 'userrights-no-interwiki'     => '您并没有权限去编辑在其它wiki上的用户权限。',
 'userrights-nodatabase'       => '数据库$1不存在或并非为本地的。',
+'userrights-nologin'          => '您必须要以操作员帐户[[Special:Userlogin|登入]]之后才可以指定用户权限。',
+'userrights-notallowed'       => '您的帐户无权限去指定用户权限。',
 
 # Groups
 'group'               => '群组:',
@@ -993,7 +995,7 @@ $2',
 'uploadedimage'               => '已上载"[[$1]]"',
 'overwroteimage'              => '已经上载"[[$1]]"的新版本',
 'uploaddisabled'              => '无法上传',
-'uploaddisabledtext'          => '文件上传在此网站不可用。',
+'uploaddisabledtext'          => '文件上传在{{SITENAME}}不可用。',
 'uploadscripted'              => '该文件包含可能被网络浏览器错误解释的 HTML 或脚本代码。',
 'uploadcorrupt'               => '该文件包含或具有一个不正确的扩展名。请检查此文件并重新上传。',
 'uploadvirus'                 => '该文件包含有病毒！详情: $1',
@@ -1163,7 +1165,7 @@ Template:消除歧義',
 'nviews'                  => '$1次浏览',
 'specialpage-empty'       => '这个报告的结果为空。',
 'lonelypages'             => '孤立页面',
-'lonelypagestext'         => '以下页面尚未被这个wiki中的其它页面链接。',
+'lonelypagestext'         => '以下页面尚未被{{SITENAME}}中的其它页面链接。',
 'uncategorizedpages'      => '未归类页面',
 'uncategorizedcategories' => '未归类分类',
 'uncategorizedimages'     => '未归类图像',
@@ -1184,7 +1186,7 @@ Template:消除歧義',
 'shortpages'              => '短页面',
 'longpages'               => '长页面',
 'deadendpages'            => '断链页面',
-'deadendpagestext'        => '以下页面没有链接到这个wiki中的其它页面。',
+'deadendpagestext'        => '以下页面没有链接到{{SITENAME}}中的其它页面。',
 'protectedpages'          => '已保护页面',
 'protectedpagestext'      => '以下页面已经被保护以防止移移或编辑',
 'protectedpagesempty'     => '在这些参数下没有页面正在保护。',
@@ -1363,7 +1365,7 @@ $NEWPAGE
 'confirmdelete'               => '确认删除',
 'deletesub'                   => '(正在删除"$1")',
 'historywarning'              => '警告: 您将要删除的页内含有历史',
-'confirmdeletetext'           => '您即将从数据库中永远删除一个页面或图像以及其历史。
+'confirmdeletetext'           => '您即将从数据库中删除一个页面或图像以及其历史。
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
 'deletedtext'                 => '"$1"已经被删除。
@@ -1646,7 +1648,7 @@ $1',
 'movenologin'             => '未登录',
 'movenologintext'         => '您必须是一名登记用户并且[[Special:Userlogin|登录]]
 后才可移动一个页面。',
-'movenotallowed'          => '您在这个wiki中度并没有权限去移动页面。',
+'movenotallowed'          => '您在{{SITENAME}}中度并没有权限去移动页面。',
 'newtitle'                => '新标题:',
 'move-watch'              => '监视此页',
 'movepagebtn'             => '移动页面',
@@ -1935,12 +1937,12 @@ Variants for Chinese language
 'metadata-collapse' => '隐藏详细资料',
 'metadata-fields'   => '在本信息中所列出的 EXIF 元数据域将包含在图片显示页面, 
 当元数据表损坏时只显示以下信息，其他的元数据默认为隐藏。
-* 相机制造商
-* 相机型号
-* 原始日期时间
-* 曝光时间
-* 光圈(F值)
-* 焦距',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => '宽度',

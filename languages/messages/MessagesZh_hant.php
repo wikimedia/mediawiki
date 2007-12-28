@@ -478,7 +478,7 @@ $2',
 'resetpass_submit'        => '設定密碼並登入',
 'resetpass_success'       => '您的密碼已經被成功更改﹗現下正為您登入...',
 'resetpass_bad_temporary' => '無效的臨時密碼。您可能已成功地更改了您的密碼，或者需要請求一個新的臨時密碼。',
-'resetpass_forbidden'     => '無法在此 wiki 上更改密碼',
+'resetpass_forbidden'     => '無法在{{SITENAME}}上更改密碼',
 'resetpass_missing'       => '無表單資料。',
 
 # Edit page toolbar
@@ -550,7 +550,7 @@ $2',
 'whitelistreadtitle'        => '登入後才可閱讀',
 'whitelistreadtext'         => '您必須先[[Special:Userlogin|登入]]才可閱讀頁面。',
 'whitelistacctitle'         => '您被禁止建立帳號',
-'whitelistacctext'          => '在本Wiki中建立帳號您必須先[[Special:Userlogin|登入]]並擁有相關許可權。',
+'whitelistacctext'          => '在{{SITENAME}}中建立帳號您必須先[[Special:Userlogin|登入]]並擁有相關許可權。',
 'confirmedittitle'          => '郵件確認後才可編輯',
 'confirmedittext'           => '在編輯此頁之前您必須確認您的郵箱位址。請透過[[Special:Preferences|參數設定]]設定並驗証您的郵箱位址。',
 'nosuchsectiontitle'        => '沒有這個段落',
@@ -577,7 +577,11 @@ $2',
 'previewnote'               => '請記住這只是預覽，內容還未保存！',
 'previewconflict'           => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
 'session_fail_preview'      => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。</strong>',
-'session_fail_preview_html' => '<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong><strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>',
+'session_fail_preview_html' => '<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
+
+\'\'由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。\'\'
+
+<strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>',
 'token_suffix_mismatch'     => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                   => '正在編輯$1',
@@ -619,7 +623,7 @@ $2',
 'edittools'                 => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
 'nocreatetitle'             => '創建頁面受限',
 'nocreatetext'              => '此網站限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
-'nocreate-loggedin'         => '您在這個wiki中並無許可權去創建新頁面。',
+'nocreate-loggedin'         => '您在{{SITENAME}}中並無許可權去創建新頁面。',
 'permissionserrors'         => '權限錯誤',
 'permissionserrorstext'     => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
 'recreate-deleted-warn'     => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
@@ -690,7 +694,7 @@ $2',
 'logdelete-selected'          => "選取'''$1'''的$2個日誌項目:",
 'revdelete-text'              => '刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。
 
-在此網站的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。',
+在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。',
 'revdelete-legend'            => '設定修訂限制:',
 'revdelete-hide-text'         => '隱藏修訂文字',
 'revdelete-hide-name'         => '隱藏動作和目標',
@@ -846,6 +850,8 @@ $2',
 'userrights-available-remove' => '您可以從$1中移除用戶。',
 'userrights-no-interwiki'     => '您並沒有權限去編輯在其它wiki上的用戶權限。',
 'userrights-nodatabase'       => '資料庫$1不存在或並非為本地的。',
+'userrights-nologin'          => '您必須要以操作員帳戶[[Special:Userlogin|登入]]之後才可以指定用戶權限。',
+'userrights-notallowed'       => '您的帳戶無權限去指定用戶權限。',
 
 # Groups
 'group'               => '群組:',
@@ -965,7 +971,7 @@ $2',
 'uploadedimage'               => '已上載"[[$1]]"',
 'overwroteimage'              => '已經上載"[[$1]]"的新版本',
 'uploaddisabled'              => '無法上傳',
-'uploaddisabledtext'          => '檔案上傳在此網站不可用。',
+'uploaddisabledtext'          => '檔案上傳在{{SITENAME}}不可用。',
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
 'uploadcorrupt'               => '該檔案包含或具有一個不正確的擴展名。請檢查此檔案並重新上傳。',
 'uploadvirus'                 => '該檔案包含有病毒！詳情: $1',
@@ -1135,7 +1141,7 @@ Template:消除歧義',
 'nviews'                  => '$1次瀏覽',
 'specialpage-empty'       => '這個報告的結果為空。',
 'lonelypages'             => '孤立頁面',
-'lonelypagestext'         => '以下頁面尚未被這個wiki中的其它頁面連結。',
+'lonelypagestext'         => '以下頁面尚未被{{SITENAME}}中的其它頁面連結。',
 'uncategorizedpages'      => '待分類頁面',
 'uncategorizedcategories' => '待分類類別',
 'uncategorizedimages'     => '待分類圖片',
@@ -1156,7 +1162,7 @@ Template:消除歧義',
 'shortpages'              => '短頁面',
 'longpages'               => '長頁面',
 'deadendpages'            => '斷鏈頁面',
-'deadendpagestext'        => '以下頁面沒有連結到這個wiki中的其它頁面。',
+'deadendpagestext'        => '以下頁面沒有連結到{{SITENAME}}中的其它頁面。',
 'protectedpages'          => '已保護頁面',
 'protectedpagestext'      => '以下頁面已經被保護以防止移動或編輯',
 'protectedpagesempty'     => '在這些參數下沒有頁面正在保護。',
@@ -1335,7 +1341,7 @@ $NEWPAGE
 'confirmdelete'               => '確認刪除',
 'deletesub'                   => '（正在刪除「$1」）',
 'historywarning'              => '警告: 您將要刪除的頁內含有歷史',
-'confirmdeletetext'           => '您即將從資料庫中永遠刪除一個頁面或圖像以及其歷史。
+'confirmdeletetext'           => '您即將從資料庫中刪除一個頁面或圖像以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
 'deletedtext'                 => '「$1」已經被刪除。
@@ -1617,7 +1623,7 @@ $1',
 'movenologin'             => '未登入',
 'movenologintext'         => '您必須是一名登記用戶並且[[Special:Userlogin|登入]]
 後才可移動一個頁面。',
-'movenotallowed'          => '您在這個wiki中度並沒有許可權去移動頁面。',
+'movenotallowed'          => '您在{{SITENAME}}中度並沒有許可權去移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '監視此頁',
 'movepagebtn'             => '移動頁面',
@@ -1906,12 +1912,12 @@ Variants for Chinese language
 'metadata-collapse' => '隱藏詳細資料',
 'metadata-fields'   => '在本訊息中所列出的 EXIF 元數據域將包含在圖片顯示頁面, 
 當元數據表損壞時只顯示以下訊息，其他的元數據預設為隱藏。
-* 相機製造商
-* 相機型號
-* 原始日期時間
-* 曝光時間
-* 光圈(F值)
-* 焦距',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => '寬度',
