@@ -39,7 +39,7 @@ class ParserOutput
 		$this->mCacheTime = '';
 		$this->mVersion = Parser::VERSION;
 		$this->mTitleText = $titletext;
-		$this->mSections = '';
+		$this->mSections = array();
 		$this->mLinks = array();
 		$this->mTemplates = array();
 		$this->mImages = array();

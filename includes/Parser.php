@@ -48,7 +48,7 @@ class Parser
 	 * changes in an incompatible way, so the parser cache
 	 * can automatically discard old data.
 	 */
-	const VERSION = '1.6.3';
+	const VERSION = '1.6.4';
 
 	# Flags for Parser::setFunctionHook
 	# Also available as global constants from Defines.php
