@@ -1099,7 +1099,6 @@ class Article {
 		if ($isRedirect || is_null($lastRevIsRedirect) || $lastRevIsRedirect !== $isRedirect) {
 
 			$imageResult = true;	//Result of imageredirects handling
-			file_put_contents( "C:\\err.txt", strval( $this->mTitle->getNamespace() == NS_IMAGE ) );
 			if( $this->mTitle->getNamespace() == NS_IMAGE ) {
 				wfProfileIn( __METHOD__ . "-img" );
 
