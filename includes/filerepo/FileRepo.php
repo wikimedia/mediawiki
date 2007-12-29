@@ -90,11 +90,13 @@ abstract class FileRepo {
 			return false;
 		}
 		if ( $img->exists() && ( !$time || $img->getTimestamp() <= $time ) ) {
+			$img->setRedirectedFrom( $redirected );
 			return $img;
 		}
 		# Now try an old version of the file
 		$img = $this->newFile( $title, $time );
 		if ( $img->exists() ) {
+			$img->setRedirectedFrom( $redirected );
 			return $img;
 		}
 

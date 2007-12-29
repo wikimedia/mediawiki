@@ -2263,6 +2263,7 @@ class Article {
 			$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
 			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ) );
+			$dbw->delete( 'imageredirects', array( 'ir_from' => $t ) );
 		}
 
 		# If using cleanup triggers, we can skip some manual deletes
