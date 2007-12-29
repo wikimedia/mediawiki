@@ -44,10 +44,6 @@ class ApiOpenSearch extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$search = $params['search'];
-		$limit = intval( $params['limit'] );
-		if( $limit < 1 || $limit > 100 ) {
-			$limit = 10;
-		}
 
 		// Open search results may be stored for a very long time
 		$this->getMain()->setCacheMaxAge(1200);
@@ -61,7 +57,7 @@ class ApiOpenSearch extends ApiBase {
 			'action' => 'query',
 			'list' => 'allpages',
 			'apnamespace' => $title->getNamespace(),
-			'aplimit' => $limit,
+			'aplimit' => $params['limit'],
 			'apprefix' => $title->getDBkey()
 		));
 
@@ -89,14 +85,20 @@ class ApiOpenSearch extends ApiBase {
 	protected function getAllowedParams() {
 		return array (
 			'search' => null,
-			'limit' => 10
+			'limit' => array (
+				ApiBase :: PARAM_DFLT => 10,
+				ApiBase :: PARAM_TYPE => 'limit',
+				ApiBase :: PARAM_MIN => 1,
+				ApiBase :: PARAM_MAX => 100,
+				ApiBase :: PARAM_MAX2 => 100
+			)
 		);
 	}
 
 	protected function getParamDescription() {
 		return array (
 			'search' => 'Search string',
-			'limit' => 'Optional limit (default 10)'
+			'limit' => 'Maximum amount of results to return'
 		);
 	}
 
