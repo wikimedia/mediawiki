@@ -532,6 +532,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'saveusergroups'             => 'Benotzergruppe späicheren',
 'userrights-groupsmember'    => 'Member vun:',
 'userrights-groupsavailable' => "Et ginn d'Gruppen:",
+'userrights-reason'          => 'Grond:',
 'userrights-available-add'   => "Dir kënnt Benotzer an d'Grupppen $1 derbäisetzen.",
 
 # Groups
@@ -594,7 +595,11 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'watchthisupload'     => 'Dës Säit verfollegen',
 'filename-bad-prefix' => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
-'upload-file-error' => 'Interne Feeler',
+'upload-proto-error' => 'Falsche Protokoll',
+'upload-file-error'  => 'Interne Feeler',
+'upload-misc-error'  => 'Onbekannte Feeler beim Eroplueden',
+
+'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Image list
 'getimagelist'              => 'Billerlëscht gëtt opgestallt',
@@ -864,6 +869,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'ipblocklist-username'        => 'Benotzernumm oder IP-Adress:',
 'ipblocklist-submit'          => 'Sichen',
 'blocklistline'               => '$1, $2 blockéiert $3 (gülteg bis $4)',
+'infiniteblock'               => 'onbegrenzt',
 'anononlyblock'               => 'nëmmen anonym Benotzer',
 'createaccountblock'          => 'Opmaache vu Benotzerkonte gespaart',
 'emailblock'                  => 'E-Maile schécke gespaart',
@@ -924,6 +930,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'import-interwiki-submit' => 'Import',
 'importstart'             => 'Importéier Säiten …',
 'import-revision-count'   => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
+'importunknownsource'     => 'Onbekannt Importquell',
 'importbadinterwiki'      => 'Falschen Interwiki-Link',
 
 # Import log
@@ -979,24 +986,33 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'nextdiff' => 'Nächsten Ënnerscheed →',
 
 # Media information
-'file-info'      => '(Dateigréisst: $1, MIME-Typ: $2)',
-'file-info-size' => '($1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4)',
-'file-nohires'   => '<small>Et gëtt keng méi eng héich Opléisung.</small>',
-'show-big-image' => 'Versioun an enger méi héijer Opléisung',
+'widthheightpage' => '$1×$2, $3 Säiten',
+'file-info'       => '(Dateigréisst: $1, MIME-Typ: $2)',
+'file-info-size'  => '($1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4)',
+'file-nohires'    => '<small>Et gëtt keng méi eng héich Opléisung.</small>',
+'show-big-image'  => 'Versioun an enger méi héijer Opléisung',
 
 # Metadata
 'metadata' => 'Metadaten',
 
 # EXIF tags
+'exif-imagelength'                 => 'Längt',
+'exif-bitspersample'               => 'Biten pro Farfkomponent',
+'exif-photometricinterpretation'   => 'Pixelzesummesetzung',
 'exif-samplesperpixel'             => 'Zuel vun de Komponenten',
 'exif-ycbcrpositioning'            => 'Y an C Positionéirung',
 'exif-xresolution'                 => 'Horizontal Opléisung',
 'exif-yresolution'                 => 'Vertikal Opléisung',
+'exif-resolutionunit'              => 'Moosseenheet vun der Opléisung',
 'exif-jpeginterchangeformatlength' => 'Gréisst vun de JPEG-Daten a Byten',
 'exif-whitepoint'                  => 'Manuell mat Miessung',
+'exif-referenceblackwhite'         => 'Schwoarz/Wäiss-Referenzpunkten',
 'exif-make'                        => 'Fabrikant',
+'exif-copyright'                   => "Droits d'auteur",
+'exif-exifversion'                 => 'Exif-Versioun',
 'exif-subsectime'                  => 'Späicherzäitpunkt (1/100 s)',
 'exif-subsectimedigitized'         => 'Digitaliséirungszäitpunkt (1/100 s)',
+'exif-exposuretime-format'         => '$1 Sekonnen ($2)',
 'exif-fnumber'                     => 'Blend',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlechkeet (ISO)',
 'exif-lightsource'                 => 'Liichtquell',
@@ -1004,16 +1020,36 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'exif-focallength'                 => 'Brennwäit',
 'exif-focalplanexresolution'       => 'Sensoropléisung horizontal',
 'exif-focalplaneyresolution'       => 'Sensoropléisung vertikal',
+'exif-focalplaneresolutionunit'    => 'Eenheet vun der Sensoropléisung',
+'exif-subjectlocation'             => 'Motivstanduert',
 'exif-whitebalance'                => 'Wäissofgläich',
 'exif-focallengthin35mmfilm'       => 'Brennwäit (Klengbildäquivalent)',
 'exif-scenecapturetype'            => 'Opnameaart',
+'exif-gaincontrol'                 => 'Verstäerkung',
+'exif-gpstimestamp'                => 'GPS-Zäit',
+'exif-gpsdestlatituderef'          => "Referenz fir d'Breet",
+'exif-gpsdestlongituderef'         => "Referenz fir d'Längt",
+'exif-gpsdestdistance'             => 'Motivdistanz',
+'exif-gpsdatestamp'                => 'GPS-Datum',
+
+'exif-unknowndate' => 'Onbekannten Datum',
 
 'exif-meteringmode-0' => 'Onbekannt',
 'exif-meteringmode-1' => 'Duerchschnëttlech',
 
+'exif-sensingmethod-2' => 'Een-Chip-Farfsensor',
+'exif-sensingmethod-3' => 'Zwee-Chip-Farfsensor',
+'exif-sensingmethod-4' => 'Dräi-Chip-Farfsensor',
+'exif-sensingmethod-7' => 'Trilineare Sensor',
+
 'exif-whitebalance-0' => 'Automatesche Wäissofgläich',
 
 'exif-scenecapturetype-3' => 'Nuetszeen',
+
+'exif-saturation-2' => 'Héich',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-n' => 'Kniet',
 
 # External editor support
 'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',
@@ -1028,7 +1064,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # E-mail address confirmation
 'confirmemail'            => 'Email-Adress bestätegen',
-'confirmemail_text'       => "Ier der d'Email-Funktioune vun der {{SITENAME}} notze kënnt musst der als éischt är Email-Adress bestätegen. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-Email op déi Adress ze schécken déi der uginn hutt. An deer Email steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
+'confirmemail_text'       => "Ier der d'Email-Funktioune vun der {{SITENAME}} notze kënnt musst der als éischt är Email-Adress bestätegen. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-Email op déi Adress ze schécken déi der uginn hutt. An däer Email steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
 'confirmemail_send'       => 'Confirmatiouns-Email schécken',
 'confirmemail_sent'       => 'Confirmatiouns-Email gouf geschéckt.',
 'confirmemail_sendfailed' => "D'Confirmatiouns-Email konnt net verschéckt ginn. Iwwerpréift w.e.g. är Adress op keng ongëlteg Zeechen dran enthale sinn.
@@ -1054,6 +1090,10 @@ Feelermeldung vum Mailserver: $1",
 # Multipage image navigation
 'imgmultigotopre' => "Géi op d'Säit",
 
+# Table pager
+'ascending_abbrev'  => 'erop',
+'descending_abbrev' => 'erof',
+
 # Auto-summaries
 'autosumm-blank'   => 'All Inhalt vun der Säit gëtt geläscht',
 'autosumm-replace' => "Säit gëtt ersat duerch '$1'",
@@ -1063,5 +1103,8 @@ Feelermeldung vum Mailserver: $1",
 # Live preview
 'livepreview-loading' => 'Lueden …',
 'livepreview-ready'   => 'Lueden … Fäerdeg!',
+
+# Watchlist editor
+'watchlistedit-raw-done' => 'Är Suivi-Lëscht gouf gespäichert.',
 
 );

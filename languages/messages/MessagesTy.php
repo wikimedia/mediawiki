@@ -70,10 +70,14 @@ $messages = array(
 'editold'             => 'fa’ahuru ’ē',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Parau pāpa’i',
-'nstab-image'    => 'Hōho’a',
-'nstab-help'     => 'Tauturu',
-'nstab-category' => 'Huru',
+'nstab-main'      => 'Parau pāpa’i',
+'nstab-user'      => 'Ta’ata',
+'nstab-special'   => 'Ta’a ’ē',
+'nstab-image'     => 'Hōho’a',
+'nstab-mediawiki' => 'Poro’i',
+'nstab-template'  => 'Hōho’a fāito',
+'nstab-help'      => 'Tauturu',
+'nstab-category'  => 'Huru',
 
 # Login and logout pages
 'email' => '’Imere',
