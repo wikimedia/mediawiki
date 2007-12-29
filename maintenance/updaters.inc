@@ -23,22 +23,23 @@ $wgRenamedTables = array(
 
 $wgNewTables = array(
 #            table          patch file (in maintenance/archives)
-	array( 'hitcounter',    'patch-hitcounter.sql' ),
-	array( 'querycache',    'patch-querycache.sql' ),
-	array( 'objectcache',   'patch-objectcache.sql' ),
-	array( 'categorylinks', 'patch-categorylinks.sql' ),
-	array( 'logging',       'patch-logging.sql' ),
-	array( 'user_newtalk',  'patch-usernewtalk2.sql' ),
-	array( 'transcache',	'patch-transcache.sql' ),
-	array( 'trackbacks',	'patch-trackbacks.sql' ),
-	array( 'externallinks', 'patch-externallinks.sql' ),
-	array( 'job',           'patch-job.sql' ),
-	array( 'langlinks',     'patch-langlinks.sql' ),
-	array( 'querycache_info', 'patch-querycacheinfo.sql' ),
-	array( 'filearchive',   'patch-filearchive.sql' ),
-	array( 'querycachetwo',	'patch-querycachetwo.sql' ),
-	array( 'redirect', 'patch-redirect.sql' ),
+	array( 'hitcounter',       'patch-hitcounter.sql' ),
+	array( 'querycache',       'patch-querycache.sql' ),
+	array( 'objectcache',      'patch-objectcache.sql' ),
+	array( 'categorylinks',    'patch-categorylinks.sql' ),
+	array( 'logging',          'patch-logging.sql' ),
+	array( 'user_newtalk',     'patch-usernewtalk2.sql' ),
+	array( 'transcache',       'patch-transcache.sql' ),
+	array( 'trackbacks',       'patch-trackbacks.sql' ),
+	array( 'externallinks',    'patch-externallinks.sql' ),
+	array( 'job',              'patch-job.sql' ),
+	array( 'langlinks',        'patch-langlinks.sql' ),
+	array( 'querycache_info',  'patch-querycacheinfo.sql' ),
+	array( 'filearchive',      'patch-filearchive.sql' ),
+	array( 'querycachetwo',    'patch-querycachetwo.sql' ),
+	array( 'redirect',         'patch-redirect.sql' ),
 	array( 'protected_titles', 'patch-protected_titles.sql' ),
+	array( 'imageredirects',   'patch-image_reditects.sql' ),
 );
 
 $wgNewFields = array(
