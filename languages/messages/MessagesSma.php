@@ -6,6 +6,8 @@
  * @author Max sonnelid
  */
 
+
+
 $messages = array(
 # Dates
 'sunday'        => 'Aejlege',
@@ -51,6 +53,7 @@ $messages = array(
 'go'               => 'Vaadtsa',
 'searcharticle'    => 'Vaadtsa',
 'edit'             => 'Värrhtoedimmie',
+'editthispage'     => 'Värrhtoedimmie dïhte bielie',
 'newpage'          => 'Orre bielie',
 'talkpagelinktext' => 'Dïerhkestidh',
 'talk'             => 'Dïerhkestidh',
@@ -63,15 +66,20 @@ $messages = array(
 
 'editsection' => 'värrhtoedimmie',
 'editold'     => 'värrhtoedimmie',
+'showtoc'     => 'vuesehte',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'  => 'Bielie',
-'nstab-user'  => 'Nuhtjien bielie',
-'nstab-media' => 'Guvvie',
-'nstab-image' => 'Guvvie',
+'nstab-main'      => 'Bielie',
+'nstab-user'      => 'Nuhtjien bielie',
+'nstab-media'     => 'Guvvie',
+'nstab-project'   => 'Wikipedije bielie',
+'nstab-image'     => 'Guvvie',
+'nstab-mediawiki' => 'Mediawiki-dïjre',
+'nstab-help'      => 'Viehke bielie',
 
 # General errors
-'error' => 'Båajhtode',
+'error'      => 'Båajhtode',
+'viewsource' => 'Vuesehte tjaalege',
 
 # Login and logout pages
 'yourname'           => 'Nuhtjiennomme:',
@@ -138,10 +146,17 @@ $messages = array(
 'whatlinkshere-page' => 'Bielie:',
 
 # Block/unblock
-'ipaddress' => 'IP Tjaalesijjie:',
+'ipaddress'            => 'IP Tjaalesijjie:',
+'ipadressorusername'   => 'IP Tjaalesijjie jallh nuhtjiennomme:',
+'ipblocklist-username' => 'Nuhtjiennomme jallh IP tjaalesijjie:',
+'ipblocklist-submit'   => 'Ohtsedh',
+
+# Namespace 8 related
+'allmessagesname' => 'Nomme',
 
 # Tooltip help for the actions
 'tooltip-search' => 'Ohtsedh {{SITENAME}}',
+'tooltip-p-logo' => 'Åejjiebielie',
 
 # AJAX search
 'useajaxsearch' => 'Nuhtjie AJAX ohtsedh',
