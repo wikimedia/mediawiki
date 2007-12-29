@@ -460,6 +460,8 @@ $2',
 'namespaceprotected'   => 'Du har ikke rettigheder til t redigere sider i $1-navnerummet.',
 'customcssjsprotected' => 'Du har ikke rettigheder til at redigere denne side, da den indeholder en anden brugers personlige indstillinger.',
 'ns-specialprotected'  => 'Sider i navnerummet {{ns:special}} kan ikke redigeres.',
+'titleprotected'       => 'Dette sidenavn er beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er <i>$2</i>.',
+
 
 # Login and logout pages
 'logouttitle'                => 'Bruger-log-af',
@@ -834,6 +836,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'searchsubtitle'        => 'Til din søgning „[[:$1]]“.',
 'searchsubtitleinvalid' => 'Til din søgning „$1“.',
 'noexactmatch'          => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]].',
+'noexactmatch-nocreate' => "'''Der er ingen side med navnet \"\$1\".'''",
 'titlematches'          => 'Artikeltitler der opfyldte forespørgslen',
 'notitlematches'        => 'Ingen artikeltitler opfyldte forespørgslen',
 'textmatches'           => 'Artikeltekster der opfyldte forespørgslen',
@@ -924,6 +927,10 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'userrights-available-none'   => 'Du kan ikke ændre gruppetilhørsforhold.',
 'userrights-available-add'    => 'Du kan tilføje medlemmer til $1.',
 'userrights-available-remove' => 'Du kan fjerne medlemmer fra $1.',
+'userrights-no-interwiki'     => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
+'userrights-nodatabase'       => 'Databasen $1 eksisterer ikke lokalt.',
+'userrights-nologin'          => 'Du skal [[Special:Userlogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
+'userrights-notallowed'       => 'Din konto har ikke andgang til at ændre brugerrettigheder.',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1009,6 +1016,9 @@ For at indlejre '''mediefiler''' ind, bruges f.eks.:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:fil.ogg|Henvisningstekst<nowiki>]]</nowiki></tt>'''
 
 Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne redigere eller slette de filer, du har lagt op, hvis de mener det hjælper {{SITENAME}}, og du kan blive blokeret fra at lægge op hvis du misbruger systemet.",
+'upload-permitted'            => 'Tilladte filtyper: $1.',
+'upload-preferred'            => 'Foretrukne filtyper: $1.',
+'upload-prohibited'           => 'Uønskede filtyper: $1.',
 'uploadlog'                   => 'oplægningslog',
 'uploadlogpage'               => 'Oplægningslog',
 'uploadlogpagetext'           => 'Herunder vises de senest oplagte filer. Alle de viste tider er serverens tid (UTC).',
@@ -1024,6 +1034,8 @@ Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
 'illegalfilename'             => 'Filnavnet "$1" indeholder tegn, der ikke er tilladte i sidetitler. Omdøb filen og prøv at lægge den op igen.',
 'badfilename'                 => 'Navnet på filen er blevet ændret til "$1".',
 'filetype-badmime'            => 'Filer med MIME-typen „$1“ må ikke uploades.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' er ikke en foretrukken filtype.  De foretrukne filtyper er \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' er en uønsket filtype.  De tillatdte filtyper er \$2.",
 'filetype-missing'            => 'Filen der skal uploades har ingen endelse (f.eks. „.jpg“).',
 'large-file'                  => 'Filstørrelsen skal så vidt muligt ikke overstige $1. Denne fil er $2 stor.',
 'largefileserver'             => 'Filen er større end den på serveren indstillede maksimale størrelse.',
@@ -1262,13 +1274,15 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'protectedpages-summary'          => 'Denne specialside viser alle sider, der er beskyttet mod ændring eller flytning.',
 'protectedpagestext'              => 'De følgende sider er beskyttede mod redigering og flytning.',
 'protectedpagesempty'             => 'I øjeblikket er ingen sider beskyttet på denne måde.',
+'protectedtitles'                 => 'Beskyttede sidenavne',
+'protectedtitlestext'             => 'Disse sidenavne er beskyttet mod at blive oprettet',
+'protectedtitlesempty'            => 'Der er ingen sidetitler der er beskyttet med disse arametre.',
 'listusers'                       => 'Brugerliste',
 'listusers-summary'               => "Denne specialside viser alle registrerede brugere; det samlede tal kan ses [[Special:Statistics|her]]. Med udvalget ''Gruppe'' kan søgningen begrænses til bestemte brugergrupper.",
 'specialpages'                    => 'Specielle sider',
 'specialpages-summary'            => 'Denne side giver en oversigt over alle specialsider. De genereres automatisk og kan ikke ændres.',
 'spheading'                       => 'Specielle sider for alle brugere',
 'restrictedpheading'              => 'Specielle sider med begrænset adgang',
-'rclsub'                          => '(til sider henvist fra "$1")',
 'newpages'                        => 'Nyeste artikler',
 'newpages-summary'                => 'Denne specialside viser alle nye artikler fra de sidste 30 dage. Visningen kan begrænses til et navnerum eller et brugernavn.',
 'newpages-username'               => 'Brugernavn:',
@@ -1490,6 +1504,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 # Restrictions (nouns)
 'restriction-edit' => 'ændre',
 'restriction-move' => 'flytte',
+'restriction-create' => 'oprette',
 
 # Restriction levels
 'restriction-level-sysop'         => 'beskyttet (kun administratorer)',
@@ -1705,6 +1720,7 @@ for at flytte en side.',
 'movepage-moved'          => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'En side med det navn eksisterer allerede, eller det
 navn du har valgt er ikke gyldigt. Vælg et andet navn.',
+'cantmove-titleprotected' => 'Du kan ikke omdøbe en side til dette navn. Det nye navn er beskyttet mod oprettelse.',
 'talkexists'              => 'Siden blev flyttet korrekt, men den tilhørende diskussionsside kunne ikke flyttes, fordi der allerede eksisterer en med den nye titel. Du er nødt til at flette dem sammen manuelt.',
 'movedto'                 => 'flyttet til',
 'movetalk'                => 'Flyt også "diskussionssiden", hvis den eksisterer.',
@@ -2299,6 +2315,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'searchnamed'      => "Søger efter sider, hvis navn indeholder ''$1''.",
 'articletitles'    => "Sider, som begynder med ''$1''",
 'hideresults'      => 'Skjul',
+'useajaxsearch'    => 'Brug AJAX-søgning',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← forrige side',
