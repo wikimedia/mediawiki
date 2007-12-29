@@ -76,7 +76,14 @@ abstract class FileRepo {
 	 *
 	 * @param mixed $time 14-character timestamp, or false for the current version
 	 */
-	function findFile( $title, $time = false ) {
+	function findFile( $title, $time = false, $redirected = false ) {
+		if ( !($title instanceof Title) ) {
+			$title = Title::makeTitleSafe( NS_IMAGE, $title );
+			if ( !is_object( $title ) ) {
+				return null;
+			}
+		}
+	
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {
@@ -89,6 +96,13 @@ abstract class FileRepo {
 		$img = $this->newFile( $title, $time );
 		if ( $img->exists() ) {
 			return $img;
+		}
+
+		#Try redirects
+		if( !$redirected ) {	// Prevent redirect loops
+			$redir = $this->checkRedirects( $title->getDBkey() );
+			if( $redir )
+				return $this->findFile( $redir, $time, $title );
 		}
 	}
 
@@ -400,5 +414,20 @@ abstract class FileRepo {
 	 * STUB
 	 */
 	function cleanupDeletedBatch( $storageKeys ) {}
+	
+	/**
+	 * Check for redirects.
+	 */
+	function checkRedirects( $filename ) {
+		$dbr = $this->getSlaveDB();
+		$res = $dbr->selectRow(
+			'imageredirects',
+			array( 'ir_from', 'ir_to' ),
+			array( 'ir_from' => $filename ),
+			__METHOD__
+		);
+		if( !$res ) return false;
+		return $res->ir_to;
+	}
 }
 
