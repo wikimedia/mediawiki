@@ -14,6 +14,7 @@
  * @author Juanpabl
  * @author SPQRobin
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -530,7 +531,7 @@ Reviseu-ne l\'ortografia, o creeu un nou compte d\'usuari.',
 'wrongpasswordempty'         => "La contrasenya que s'ha introduït era en blanc. Torneu-ho a provar.",
 'passwordtooshort'           => 'La contrasenya és massa curta. Com ha mínim ha de tenir $1 caràcters.',
 'mailmypassword'             => "Envia'm una nova contrasenya per correu electrònic",
-'passwordremindertitle'      => 'Recordatori de la contrasenya del projecte {{SITENAME}}',
+'passwordremindertitle'      => 'Nova contrasenya temporal per al projecte {{SITENAME}}',
 'passwordremindertext'       => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha sol·licitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
 La contrasenya per a l'usuari «$2» és ara «$3».
 Ara hauríeu d'iniciar la sessió i canviar la vostra contrasenya.
@@ -569,7 +570,7 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'resetpass_submit'        => 'Definiu una contrasenya i inicieu una sessió',
 'resetpass_success'       => "S'ha canviat la vostra contrasenya amb èxit! Ara ja podeu iniciar-hi una sessió...",
 'resetpass_bad_temporary' => 'La contrasenya temporal no és vàlida. Potser ja havíeu canviat la vostra contrasenya o heu sol·licitat una nova contrasenya temporal.',
-'resetpass_forbidden'     => "No poden canviar-se les contrasenyes d'aquest wiki",
+'resetpass_forbidden'     => 'No poden canviar-se les contrasenyes al projecte {{SITENAME}}',
 'resetpass_missing'       => 'No hi ha cap dada de formulari.',
 
 # Edit page toolbar
@@ -644,7 +645,7 @@ La vostra adreça IP és $3, i el núm. ID del blocatge és #$5. Si us plau, inc
 'whitelistreadtitle'        => "Heu d'iniciar una sessió per a llegir-ho",
 'whitelistreadtext'         => "Heu d'[[Special:Userlogin|indentificar-vos]] per llegir les pàgines.",
 'whitelistacctitle'         => 'No teniu permisos per a crear un compte',
-'whitelistacctext'          => "Per estar autoritzat a crear comptes en aquesta Viqui heu d'[[Special:Userlogin|identificar-vos]] i tenir els permisos apropiats.",
+'whitelistacctext'          => "Per estar autoritzat a crear comptes al projecte {{SITENAME}} heu d'[[Special:Userlogin|identificar-vos]] i tenir els permisos apropiats.",
 'confirmedittitle'          => "Cal una confirmació de l'adreça electrònica per a poder editar",
 'confirmedittext'           => "Heu de confirmar la vostra adreça electrònica abans de poder editar pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
 'nosuchsectiontitle'        => 'No hi ha cap secció',
@@ -1030,7 +1031,7 @@ Totes les hores són les del servidor (UTC).",
 'savefile'                    => 'Desa el fitxer',
 'uploadedimage'               => '"[[$1]]" carregat.',
 'uploaddisabled'              => "S'ha inhabilitat la càrrega",
-'uploaddisabledtext'          => "S'ha inhabilitat la càrrega de fitxers en aquest wiki.",
+'uploaddisabledtext'          => 'El projecte {{SITENAME}} ha inhabilitat la càrrega de fitxers.',
 'uploadscripted'              => 'Aquest fitxer conté codi HTML o de seqüències que pot ser interpretat equivocadament per un navegador.',
 'uploadcorrupt'               => 'El fitxer està corrupte o té una extensió incorrecte. Reviseu-lo i torneu-lo a pujar.',
 'uploadvirus'                 => 'El fitxer conté un virus! Detalls: $1',
@@ -1081,6 +1082,7 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Data/hora',
 'filehist-user'             => 'Usuari',
+'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Mida del fitxer',
 'filehist-comment'          => 'Comentari',
 'imagelinks'                => 'Enllaços a la imatge',
@@ -1187,7 +1189,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'nviews'                  => '$1 {{PLURAL:$1|visita|visites}}',
 'specialpage-empty'       => 'Aquesta pàgina és buida.',
 'lonelypages'             => 'Pàgines òrfenes',
-'lonelypagestext'         => "Les següents pàgines no s'enllacen des d'altres pàgines d'aquest wiki.",
+'lonelypagestext'         => "Les següents pàgines no s'enllacen des d'altres pàgines del projecte {{SITENAME}}.",
 'uncategorizedpages'      => 'Pàgines sense categoria',
 'uncategorizedcategories' => 'Categories sense categoria',
 'uncategorizedimages'     => 'Imatges sense categoria',
@@ -1208,7 +1210,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'shortpages'              => 'Pàgines curtes',
 'longpages'               => 'Pàgines llargues',
 'deadendpages'            => 'Pàgines atzucac',
-'deadendpagestext'        => "Aquestes pàgines no tenen enllaços a d'altres pàgines d'aquesta mateixa wiki.",
+'deadendpagestext'        => "Aquestes pàgines no tenen enllaços a d'altres pàgines del projecte {{SITENAME}}.",
 'protectedpages'          => 'Pàgines protegides',
 'protectedpagestext'      => 'Aquestes pàgines estan protegides contra la seva lliure edició o el seu reanomenament:',
 'protectedpagesempty'     => 'No hi ha cap pàgina protegida per ara',
@@ -1229,7 +1231,8 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'unusedcategoriestext'    => 'Les pàgines de categoria següents existeixen encara que cap altre article o categoria les utilitza.',
 'notargettitle'           => 'No hi ha pàgina en blanc',
 'notargettext'            => 'No heu especificat a quina pàgina dur a terme aquesta funció.',
-'pager-newer-n'           => '{{PLURAL:$1|1 más rezient|$1 más rezients}}',
+'pager-newer-n'           => '{{PLURAL:$1|1 posterior|$1 posteriors}}',
+'pager-older-n'           => '{{PLURAL:$1|anterior|$1 anteriors}}',
 
 # Book sources
 'booksources'               => 'Obres de referència',
@@ -1454,6 +1457,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'restriction-level'           => 'Nivell de restricció:',
 'minimum-size'                => 'Mida mínima',
 'maximum-size'                => 'Mida màxima',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Edita',
@@ -1686,7 +1690,7 @@ En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho de
 'movenologin'             => "No sou a dins d'una sessió",
 'movenologintext'         => "Heu de ser un usuari registrat i estar [[Special:Userlogin|dintre d'una sessió]]
 per reanomenar una pàgina.",
-'movenotallowed'          => 'No teniu permisos per a moure pàgines en aquest wiki.',
+'movenotallowed'          => 'No teniu permís per a moure pàgines al projecte {{SITENAME}}.',
 'newtitle'                => 'A títol nou',
 'move-watch'              => 'Vigila aquesta pàgina',
 'movepagebtn'             => 'Reanomena la pàgina',
@@ -2100,6 +2104,7 @@ La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgin
 'exif-componentsconfiguration-0' => 'no existeix',
 
 'exif-exposureprogram-0' => 'No definit',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => "amb prioritat d'obertura",
 'exif-exposureprogram-4' => "amb prioritat de velocitat d'obturació",

@@ -575,17 +575,36 @@ El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códi
 'previewconflict'           => "Esta previsualización amuesa'l testu del área d'edición d'enriba talo y como apaecerá si guardes los cambeos.",
 'session_fail_preview'      => "<strong>¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.</strong>",
+'session_fail_preview_html' => "<strong>¡Sentímoslo! Nun se pudo procesar la to edición pola mor d'una perda de datos de sesión.</strong>
+
+''Como {{SITENAME}} tien activáu'l HTML puru, la previsualización nun s'amosará como precaución escontra ataques en JavaScript.''
+
+<strong>Si esti ye un intentu llexítimu d'edición, por favor inténtalo otra vuelta. Si tovía asina nun furrula, intenta desconeutate y volver a identificate.</strong>",
+'token_suffix_mismatch'     => "<strong>La to edición nun foi aceutada porque'l to navegador mutiló los carauteres de puntuación
+nel editor. La edición nun foi aceutada pa prevenir corrupciones na páxina de testu. Esto hai vegaes
+que pasa cuando tas usando un proxy anónimu basáu en web que seya problemáticu.</strong>",
 'editing'                   => 'Editando $1',
 'editinguser'               => "Editando l'usuariu <b>$1</b>",
 'editingsection'            => 'Editando $1 (seición)',
 'editingcomment'            => 'Editando $1 (comentariu)',
 'editconflict'              => "Conflictu d'edición: $1",
+'explainconflict'           => "Daquién más camudó esta páxina dende qu'empecipiasti a editala.
+Na área de testu d'enriba ta'l testu de la páxina como ta nestos momentos.
+Los tos cambeos amuésense na área de testu d'embaxo.
+Vas tener que fusionar los tos cambeos dientro del testu esistente.
+<b>Namái</b> va guardase'l testu de l'área d'enriba cuando calques en
+\"Guardar páxina\".<br />",
 'yourtext'                  => 'El to testu',
 'storedversion'             => 'Versión almacenada',
+'nonunicodebrowser'         => "<strong>AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.</strong>",
 'editingold'                => "<strong>AVISU: Tas editando una versión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa versión van perdese.</strong>",
 'yourdiff'                  => 'Diferencies',
 'copyrightwarning'          => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} considérense feches públiques baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao.
+<strong>¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!</strong>",
+'copyrightwarning2'         => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} puen ser editaes, alteraes o eliminaes por otros usuarios. Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
+Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte
+llibre de dominiu públicu o asemeyao (ver $1 pa más detalles).
 <strong>¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!</strong>",
 'longpagewarning'           => '<strong>AVISU: Esta páxina tien más de $1 quilobytes; dellos navegadores puen tener problemes editando páxines de 32 ó más kb. Habríes dixebrar la páxina en seiciones más pequeñes.</strong>',
 'longpageerror'             => "<strong>ERROR: El testu qu'unviasti tien $1 quilobytes, que ye
@@ -627,6 +646,7 @@ La razón dada por $3 ye ''$2''",
 'viewpagelogs'        => "Ver rexistros d'esta páxina",
 'nohistory'           => "Nun hay historial d'ediciones pa esta páxina.",
 'revnotfound'         => 'Revisión non atopada',
+'revnotfoundtext'     => "La revisión antigua de la páxina que solicitasti nun se pudo atopar. Por favor comprueba l'URL qu'usasti p'acceder a esta páxina.",
 'loadhist'            => "Cargando l'historial de la páxina",
 'currentrev'          => 'Revisión actual',
 'revisionasof'        => 'Revisión de $1',
@@ -658,17 +678,35 @@ Seique fuera borrada o renomada na wiki.
 Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
 
 # Revision deletion
-'rev-deleted-comment'    => '(comentariu elimináu)',
-'rev-deleted-user'       => "(nome d'usuariu elimináu)",
-'rev-deleted-event'      => '(entrada eliminada)',
-'rev-delundel'           => 'amosar/esconder',
-'revisiondelete'         => 'Borrar/restaurar revisiones',
-'revdelete-selected'     => "{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de '''$1:'''",
-'revdelete-hide-text'    => 'Esconder testu de revisión',
-'revdelete-hide-comment' => "Esconder comentariu d'edición",
-'revdelete-hide-image'   => 'Esconder el conteníu del archivu',
-'revdelete-log'          => 'Comentariu de rexistru:',
-'revdelete-submit'       => 'Aplicar a la revisión seleicionada',
+'rev-deleted-comment'         => '(comentariu elimináu)',
+'rev-deleted-user'            => "(nome d'usuariu elimináu)",
+'rev-deleted-event'           => '(entrada eliminada)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Esta revisión de la páxina foi eliminada de los archivos públicos.
+Pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru de borraos].
+</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Esta revisión de la páxina foi eliminada de los archivos públicos.
+Como alministrador d\'esti sitiu pues vela; pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru de borraos].
+</div>',
+'rev-delundel'                => 'amosar/esconder',
+'revisiondelete'              => 'Borrar/restaurar revisiones',
+'revdelete-nooldid-title'     => 'Nun hai revisión de destín',
+'revdelete-nooldid-text'      => 'Nun especificasti una revisión o revisiones de destín sobre les que realizar esta función.',
+'revdelete-selected'          => "{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Seleicionáu un eventu de rexistru|Seleicionaos eventos de rexistru}} pa '''$1:'''",
+'revdelete-text'              => "Les revisiones y eventos eliminaos van siguir apaeciendo nel historial de la páxina
+y nos rexistros, pero parte del so conteníu nun va ser accesible al públicu.
+
+Otros alministrados de {{SITENAME}} van siguir pudiendo acceder al conteníu escondíu
+y puen restauralu de nuevo al traviés d'esta mesma interfaz, a nun ser que s'establezan
+restricciones adicionales.",
+'revdelete-legend'            => 'Establecer restricciones:',
+'revdelete-hide-text'         => 'Esconder testu de revisión',
+'revdelete-hide-comment'      => "Esconder comentariu d'edición",
+'revdelete-hide-image'        => 'Esconder el conteníu del archivu',
+'revdelete-log'               => 'Comentariu de rexistru:',
+'revdelete-submit'            => 'Aplicar a la revisión seleicionada',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
@@ -1012,6 +1050,8 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'move'                    => 'Treslladar',
 'movethispage'            => 'Treslladar esta páxina',
 'unusedcategoriestext'    => "Les siguientes categoríes esisten magar que nengún artículu o categoría faiga usu d'elles.",
+'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
+'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 
 # Book sources
 'booksources'               => 'Fontes de llibros',
@@ -1563,7 +1603,9 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-flash'                  => 'Flax',
 'exif-cfapattern'             => 'patrón CFA',
 'exif-exposuremode'           => "Mou d'esposición",
+'exif-whitebalance'           => 'Balance de blancos',
 'exif-contrast'               => 'Contraste',
+'exif-saturation'             => 'Saturación',
 'exif-gpslatituderef'         => 'Llatitú Norte o Sur',
 'exif-gpslatitude'            => 'Llatitú',
 'exif-gpslongituderef'        => 'Llonxitú Este o Oeste',
@@ -1594,6 +1636,9 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-exposureprogram-2' => 'Programa normal',
 
 'exif-subjectdistance-value' => '{{PLURAL:$1|$1 metru|$1 metros}}',
+
+'exif-lightsource-0' => 'Desconocida',
+'exif-lightsource-4' => 'Flax',
 
 'exif-focalplaneresolutionunit-2' => 'pulgaes',
 

@@ -10,6 +10,7 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author ChrisPtDe
  */
 
 $skinNames = array(
@@ -2142,7 +2143,7 @@ $1",
 'searchnamed'      => 'Cercar los articles nomenats « $1 ».',
 'articletitles'    => 'Articles començant per « $1 »',
 'hideresults'      => 'Amagar los resultats',
-'useajaxsearch'    => 'Uilizar la recèrca AJAX',
+'useajaxsearch'    => 'Utilizar la recèrca AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; pagina precedenta',

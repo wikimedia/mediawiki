@@ -314,7 +314,7 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'createaccount'              => 'Bindu',
 'gotaccount'                 => 'Bindu nga ba noppi? $1.',
 'gotaccountlink'             => 'Xammeeku',
-'createaccountmail'          => 'Jare ko ci bataaxal',
+'createaccountmail'          => 'Jaare ko ci m-bataaxal',
 'badretype'                  => 'Baatujàll yi nga bind yemuñu.',
 'userexists'                 => 'Turu jëfandikukat bi nga bind am na boroom ba noppi. Tànnal beneen.',
 'youremail'                  => 'Sa màkkaanub m-bataaxal :',
@@ -351,10 +351,11 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'passwordsent'               => 'Ab baatujàll bu bees yónnee nañ ko ci màkkaanub m-bataaxal bu jëfandikukat bii di « $1 ». Jéemal a duggaat soo ko jotee.',
 'blocked-mailpassword'       => 'Ngir faggandiku ci yaq gi, ku ñu téye sa màkkaanu IP ba doo man a soppi dara, doo man a yónneelu baatujàll bu bees.',
 'eauthentsent'               => 'Yónnee nañ la ab m-bataaxalub dëggal ci màkkaanub m-bataaxal bi nga joxe. Balaa ñuy yónnee beneen m-bataaxal ci bii màkkaan, fawwu nga topp tektal yiñ la jox ngir dëggal ni yaa moom bii màkkaan.',
-'throttled-mailpassword'     => "Ab bataaxal bu la'y fattali sa baatu duggu yònnee nañ la ko ci diiru $1 waxtu yu mujju. Ngir moytu ay say-sayee, benn bataaxalu fattali rek lañ lay yònnee ci diiru $1 waxtu.",
-'acct_creation_throttle_hit' => 'Jeggalu, bindu nga $1 yoon. manoo binduwaat',
+'throttled-mailpassword'     => 'Ab m-bataaxal bu lay fattali sa baatujàll yónnee nañ la ko am na $1 waxtu. Ngir moytu ay say-sayee, benn m-bataaxalu fattali rek lañ lay yónnee ci diiru $1 waxtu.',
+'mailerror'                  => 'Njuumte ci yónneeb m-bataaxal bi : $1',
+'acct_creation_throttle_hit' => 'Jéggalu, bindu nga $1 yoon. manoo binduwaat',
 'accountcreated'             => 'léegi bindu nga.',
-'accountcreatedtext'         => 'Mbindug jëfëndikookat $1 jall na',
+'accountcreatedtext'         => 'Mbindug jëfandikukat bii di $1 jàll na',
 'loginlanguagelabel'         => 'Làkk : $1',
 
 # Edit page toolbar

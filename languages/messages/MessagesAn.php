@@ -1316,7 +1316,7 @@ Ta obtenir más informazión y aduya:
 'confirmdelete'               => 'Confirmar o borrau',
 'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
-'confirmdeletetext'           => "Ye á punto de borrar d'a base de datos
+'confirmdeletetext'           => "Ye amanato á borrar d'a base de datos
 una pachina con tot o suyo istorial.
 Por fabor, confirme que reyalment ye mirando de fer ixo, que acata
 as consecuenzias, y que lo fa d'alcuerdo con as 
@@ -1696,6 +1696,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-pt-watchlist'            => 'A lista de pachinas en que ha estato bexilando os cambeos',
 'tooltip-pt-mycontris'            => "Lista d'as mías contribuzions",
 'tooltip-pt-login'                => 'Li recomendamos rechistrar-se, encara que no ye obligatorio',
+'tooltip-pt-anonlogin'            => 'Li alentamos á rechistrar-se, anque no ye obligatorio',
 'tooltip-pt-logout'               => 'Rematar a sesión',
 'tooltip-ca-talk'                 => "Descusión sobre l'articlo",
 'tooltip-ca-edit'                 => 'Puede editar ista pachina. Por fabor, faga serbir o botón de bisualizazión prebia antes de grabar.',
@@ -1765,9 +1766,47 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'nocredits'        => 'No bi ha informazión de creditos ta ista pachina.',
 
 # Spam protection
+'spamprotectiontitle'  => 'Filtro de protezión contra o spam',
+'spamprotectiontext'   => "A pachina que mira d'alzar ha estato bloquiata por o filtro de spam.  A causa ye probablement en os binclos esternos bi encluyitos.",
+'spamprotectionmatch'  => 'O testo siguient ye o que autibó o nuestro filtro de spam: $1',
 'subcategorycount'     => 'Bi ha {{PLURAL:$1|una subcategoría|$1 subcategorías}} en ista categoría.',
 'categoryarticlecount' => 'Bi ha $1 {{PLURAL:$1|articlo|articlos}} en ista categoría.',
 'category-media-count' => 'Bi ha {{PLURAL:$1|&nbsp;un archibo|$1 archibos}} en ista categoría.',
+'spambot_username'     => 'Esporga de spam de MediaWiki',
+'spam_reverting'       => "Rebertindo t'a zaguera bersión sin de binclos ta $1",
+'spam_blanking'        => 'Todas as bersions contienen binclos ta $1, se blanquea a pachina',
+
+# Info page
+'infosubtitle'   => "Informazión d'a pachina",
+'numedits'       => "Numero d'edizions (articlo): $1",
+'numtalkedits'   => "Numero d'edizions (pachina de descusión): $1",
+'numwatchers'    => "Número d'usuario bexilando: $1",
+'numauthors'     => "Numero d'autors (articlo): $1",
+'numtalkauthors' => "Numero d'autors (pachina de descusión): $1",
+
+# Math options
+'mw_math_png'    => 'Produzir siempre PNG',
+'mw_math_simple' => "HTML si ye muit simple, si no'n ye, PNG",
+'mw_math_html'   => "HTML si ye posible, si no'n ye, PNG",
+'mw_math_source' => 'Deixar como TeX (ta nabegadores en formato testo)',
+'mw_math_modern' => 'Recomendato ta nabegadors modernos',
+'mw_math_mathml' => 'MathML si ye posible (esperimental)',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Siñalar como ya controlato',
+'markaspatrolledtext'                 => 'Siñalar iste articlo como controlato',
+'markedaspatrolled'                   => 'Siñalato como controlato',
+'markedaspatrolledtext'               => 'A bersión trigata ye siñalata como controlata.',
+'rcpatroldisabled'                    => "S'ha desautibato o control d'os zagurers cambeos",
+'rcpatroldisabledtext'                => "A funzión de control d'os zaguers cambeos ye desautibata en iste inte.",
+'markedaspatrollederror'              => 'No se puede siñalar como controlata',
+'markedaspatrollederrortext'          => "Ha d'espezificar una bersión ta siñalar-la como controlata.",
+'markedaspatrollederror-noautopatrol' => 'No tiene premisos ta siñalar os suyos propios cambios como controlatos.',
+
+# Patrol log
+'patrol-log-page' => 'Rechistro de control de bersions',
+'patrol-log-line' => "s'ha siñalato a bersión $1 de $2 como controlata $3",
+'patrol-log-auto' => '(automatico)',
 
 # Browsing diffs
 'previousdiff' => '← Ir ta esferenzias anteriors',
@@ -1809,9 +1848,16 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'edit-externally-help' => 'Leiga as [http://meta.wikimedia.org/wiki/Help:External_editors instruzions de confegurazión] (en anglés) ta más informazión.',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'toz',
-'namespacesall' => 'todo',
-'monthsall'     => '(toz)',
+'recentchangesall' => 'toz',
+'imagelistall'     => 'todas',
+'watchlistall2'    => 'toz',
+'namespacesall'    => 'todo',
+'monthsall'        => '(toz)',
+
+# Multipage image navigation
+'imgmultipageprev' => '← pachina anterior',
+'imgmultipagenext' => 'pachina siguient →',
+'imgmultigo'       => 'Ir-ie!',
 
 # Auto-summaries
 'autosumm-blank'   => 'Pachina blanquiata',
@@ -1822,6 +1868,8 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 # Live preview
 'livepreview-loading' => 'Cargando…',
 'livepreview-ready'   => 'Cargando… ya!',
+'livepreview-failed'  => "A prebisualizazión á l'inte falló!
+Prebe con a prebisualizazión normal.",
 'livepreview-error'   => 'No s\'ha puesto coneutar: $1 "$2". Prebe con l\'ambiesta prebia normal.',
 
 # Friendlier slave lag warnings

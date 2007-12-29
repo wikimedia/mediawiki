@@ -9,6 +9,8 @@
  * @author לערי ריינהארט
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'           => 'Salungguhitan ang mga kawing:',
@@ -217,8 +219,8 @@ $messages = array(
 
 Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan sa {{SITENAME}}.',
 'loginpagetitle'            => 'Paglagda ng manggagamit',
-'yourname'                  => 'Bansag (username):',
-'yourpassword'              => 'Hudyat (password):',
+'yourname'                  => 'Bansag:',
+'yourpassword'              => 'Hudyat:',
 'remembermypassword'        => 'Tandaan ang hudyat sa kompyuter na ito',
 'yourdomainname'            => 'Iyong dominyo:',
 'loginproblem'              => '<b>Nagkaroon ng problema sa iyong paglagda.</b><br />Subukan po muli!',
@@ -238,6 +240,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'yourrealname'              => 'Tunay na pangalan:',
 'yourlanguage'              => 'Wika:',
 'yournick'                  => 'Palayaw:',
+'badsiglength'              => 'Masyadong mahaba ang bansag; kailangan ito ay hindi hihigit sa $1 karakter.',
 'loginerror'                => 'Kamalian sa paglagda',
 'prefs-help-email-required' => 'Kinakailangan ang direksyong e-liham.',
 'loginsuccesstitle'         => 'Matagumpay ang paglagda',
@@ -334,6 +337,10 @@ upang makapagkarga ng talaksan.',
 'mycontris'     => 'Aking mga ginawa',
 'contribsub2'   => 'Para kay $1 ($2)',
 
+'sp-contributions-newbies'     => 'Ipakita ang mga ambag ng mga bagong kuwenta lamang',
+'sp-contributions-newbies-sub' => 'Para sa mga bagong kuwenta',
+'sp-contributions-blocklog'    => 'Tala sa paglipat',
+
 # What links here
 'whatlinkshere'       => 'Mga nakaturo dito',
 'whatlinkshere-title' => 'Mga pahinang kumakawing sa $1',
@@ -381,29 +388,40 @@ Pumili muli ng ibang pangalan.',
 'delete_and_move_confirm' => 'Oo, burahin ang pahina',
 
 # Export
-'export'        => 'Magluwas ng pahina',
-'export-submit' => 'Magluwas',
+'export'          => 'Magluwas ng pahina',
+'exportcuronly'   => 'Isama lamang ang kasalukuyang rebisyon, hindi ang buong kasaysayan',
+'export-submit'   => 'Magluwas',
+'export-download' => 'Itala bilang talaksan',
 
 # Namespace 8 related
 'allmessages'               => 'Mga mensaheng pansistema',
 'allmessagesname'           => 'Pangalan',
 'allmessagesdefault'        => 'Tinakdang teksto',
 'allmessagescurrent'        => 'Kasalukuyang teksto',
+'allmessagestext'           => 'Ito ay isang tala ng mga mensaheng pansistema na matatagpuan sa ngalan-espasyong MediaWiki.',
 'allmessagesnotsupportedDB' => "Hindi magamit ang '''{{ns:special}}:Allmessages''' dahil nakapatay ang '''\$wgUseDatabaseMessages'''.",
 
 # Thumbnails
 'thumbnail-more' => 'Palakihin',
+'missingimage'   => '<b>Nawawalang larawan</b><br /><i>$1</i>',
 'filemissing'    => 'Nawawala ang talaksan',
 
 # Special:Import
 'import'                  => 'Mag-angkat ng pahina',
 'import-interwiki-submit' => 'Mag-angkat',
 'importstart'             => 'Inaangkat ang mga pahina...',
+'importsuccess'           => 'Matagumpay ang pag-angkat!',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'    => 'Aking pahina ng manggagamit',
 'tooltip-pt-mytalk'      => 'Aking pahinang usapan',
 'tooltip-pt-preferences' => 'Aking mga kagustuhan',
+'tooltip-pt-mycontris'   => 'Tala ng aking mga ambag',
+'tooltip-pt-logout'      => 'Umalis sa pagkalagda',
+
+# Spam protection
+'subcategorycount'     => 'Mayroong {{PLURAL:$1|isang subkategorya|$1 subkategorya}} sa kategoryang ito.',
+'category-media-count' => 'Mayroong {{PLURAL:$1|isang talaksan|$1 talaksan}} sa kategoryang ito.',
 
 # Media information
 'file-nohires'         => '<small>Walang makuhang mas mataas na resolusyon.</small>',
