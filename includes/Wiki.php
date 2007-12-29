@@ -219,12 +219,17 @@ class MediaWiki {
 		}
 
 		switch( $title->getNamespace() ) {
-		case NS_IMAGE:
-			return new ImagePage( $title );
-		case NS_CATEGORY:
-			return new CategoryPage( $title );
-		default:
-			return new Article( $title );
+			case NS_IMAGE:
+				$file = RepoGroup::singleton()->findFile( $title->getText() );
+				if( $file && $file->getRedirectedFrom() ) {
+					return new Article( $title );
+				} else {
+					return new ImagePage( $title );
+				}
+			case NS_CATEGORY:
+				return new CategoryPage( $title );
+			default:
+				return new Article( $title );
 		}
 	}
 
