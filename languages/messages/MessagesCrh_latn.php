@@ -525,7 +525,7 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'resetpass_submit'        => 'Parol qoyıp kir',
 'resetpass_success'       => 'Paroliñiz muvafaqiyetnen deñiştirildi! Sistemağa kirmektesiñiz...',
 'resetpass_bad_temporary' => 'Muvaqqat paroliñiz yañlıştır. Ola bilir ki, siz endi paroliñizni muvafaqiyetnen deñiştirgen ya da e-mail-ge yañı bir parol yollamağa rica etkendirsiñiz.',
-'resetpass_forbidden'     => 'Bu vikide parol deñiştirmek yasaq',
+'resetpass_forbidden'     => '{{SITENAME}} saytında parol deñiştirmek yasaq',
 'resetpass_missing'       => 'Forma boştır.',
 
 # Edit page toolbar
@@ -667,7 +667,7 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'nocreatetitle'             => 'Saife yaratuv sıñırlıdır',
 'nocreatetext'              => 'Bu saytta yañı saife yaratuv sıñırlıdır.
 Keri qaytıp mevcüt olğan saifeni deñiştire, [[{{ns:special}}:Userlogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
-'nocreate-loggedin'         => 'Bu vikide yañı saifeler yaratmağa iziniñiz yoqtır.',
+'nocreate-loggedin'         => '{{SITENAME}} saytında yañı saifeler yaratmağa iziniñiz yoqtır.',
 'permissionserrors'         => 'İrişim aqlarınıñ hataları',
 'permissionserrorstext'     => 'Bunı yapmağa iziniñiz yoqtır. {{PLURAL:$1|Sebep|Sebepler}}:',
 'recreate-deleted-warn'     => "'''Diqqat: evelce yoq etilgen saifeni yañıdan yaratmağa tırışasıñız.'''
@@ -1065,7 +1065,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'nrevisions'              => '{{PLURAL:$1|1 közden keçirüv|$1 közden keçirüv}}',
 'nviews'                  => '{{PLURAL:$1|1 körünüv|$1 körünüv}}',
 'lonelypages'             => 'Özüne iç bağlantı olmağan saifeler',
-'lonelypagestext'         => 'İlerideki saifelerge bu vikiniñ diger saifelerinden bağlantı yoqtır.',
+'lonelypagestext'         => 'İlerideki saifelerge {{SITENAME}} saytınıñ diger saifelerinden bağlantı yoqtır.',
 'uncategorizedpages'      => 'Er angi bir kategoriyada olmağan saifeler',
 'uncategorizedcategories' => 'Er angi bir kategoriyada olmağan kategoriyalar',
 'uncategorizedimages'     => 'Er angi bir kategoriyada olmağan resimler',
@@ -1086,7 +1086,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'shortpages'              => 'Qısqa saifeler',
 'longpages'               => 'Uzun saifeler',
 'deadendpages'            => 'Başqa saifelerge bağlantısı olmağan saifeler',
-'deadendpagestext'        => 'Bu başqa saifelerge bağlantısı olmağan saifelerdir.',
+'deadendpagestext'        => 'Bu {{SITENAME}} başqa saifelerine bağlantısı olmağan saifelerdir.',
 'protectedpages'          => 'Qorçalanğan saifeler',
 'protectedpagestext'      => 'Bu saifelerniñ deñiştirüvge qarşı qorçalavı bar',
 'listusers'               => 'Qullanıcı cedveli',

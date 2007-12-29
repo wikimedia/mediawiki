@@ -719,6 +719,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'searchsubtitle'        => '問い合わせ："[[:$1]]" （[[Special:Prefixindex/$1|全ページ]]/[[Special:Whatlinkshere/$1|リンク元]]）',
 'searchsubtitleinvalid' => '問い合わせ: "$1"',
 'noexactmatch'          => '"$1" という名称のページは存在しませんでした。[[:$1|新規作成する]]。',
+'noexactmatch-nocreate' => "''\"\$1\"'' という名称のページは存在しませんでした。",
 'titlematches'          => '項目名と一致',
 'notitlematches'        => '項目名とは一致しませんでした',
 'textmatches'           => 'ページ内本文と一致',
@@ -1102,7 +1103,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'protectedpages'          => '保護されているページ',
 'protectedpagestext'      => '以下のページは移動や編集が禁止されています。',
 'protectedpagesempty'     => '現在保護中のページがありません。',
-'protectedtitles'         => '白紙化保護',
+'protectedtitles'         => '白紙化保護されているページ',
 'protectedtitlestext'     => '以下のページは新規作成が禁止されています',
 'protectedtitlesempty'    => '現在白紙化保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
@@ -1336,8 +1337,9 @@ $NEWPAGE
 'pagesize'                    => '（バイト）',
 
 # Restrictions (nouns)
-'restriction-edit' => '編集',
-'restriction-move' => '移動',
+'restriction-edit'   => '編集',
+'restriction-move'   => '移動',
+'restriction-create' => '作成',
 
 # Restriction levels
 'restriction-level-sysop'         => '全保護',
@@ -1357,6 +1359,7 @@ $NEWPAGE
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
 'undelete-revision'            => '$1 の削除された版 $2 :',
 'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
+'undelete-nodiff'              => 'これより前の版はありません。',
 'undeletebtn'                  => '復帰',
 'undeletereset'                => 'リセット',
 'undeletecomment'              => 'コメント:',
@@ -2157,6 +2160,7 @@ $1',
 'searchnamed'      => "ページ名が '''$1''' の項目の検索。",
 'articletitles'    => "''$1'' からはじまる項目",
 'hideresults'      => '結果を隠す',
+'useajaxsearch'    => 'Ajax による検索を利用する',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; 前ページ',

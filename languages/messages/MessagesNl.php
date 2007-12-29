@@ -2374,7 +2374,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 # E-mail address confirmation
 'confirmemail'            => 'E-mailadres bevestigen',
 'confirmemail_noemail'    => 'U heeft geen geldig e-mailadres ingegeven in uw [[{{ns:special}}:Preferences|gebruikersvoorkeuren]].',
-'confirmemail_text'       => 'Deze wiki vereist de bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kan gebruiken. Klik op de onderstaande knop om een bevestigingsbericht te ontvangen. Dit bericht bevat een link met een code. Open die link om uw e-mailadres te bevestigen.',
+'confirmemail_text'       => '{{SITENAME}} eist bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kan gebruiken. Klik op de onderstaande knop om een bevestigingsbericht te ontvangen. Dit bericht bevat een link met een code. Open die link om uw e-mailadres te bevestigen.',
 'confirmemail_pending'    => '<div class="error">Er is al een bevestigingsbericht aan u verzonden. Als u recentelijk uw gebruiker heeft aangemaakt, wacht dan een paar minuten totdat die aankomt voordat u opnieuw een e-mail laat sturen.</div>',
 'confirmemail_send'       => 'Een bevestigingscode verzenden',
 'confirmemail_sent'       => 'Bevestigingscode verzonden.',

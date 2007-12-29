@@ -1671,7 +1671,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'movenologin'             => 'Ikke logget inn',
 'movenologintext'         => 'Du må være registrert bruker og være [[Special:Userlogin|logget på]] for å flytte en side.',
 'movenotallowed'          => 'Du har ikke tillatelse til å flytte sider på {{SITENAME}}.',
-'newtitle'                => 'Til ny tittel',
+'newtitle'                => 'Ny tittel',
 'move-watch'              => 'Overvåk denne siden',
 'movepagebtn'             => 'Flytt side',
 'pagemovedsub'            => 'Flytting gjennomført',

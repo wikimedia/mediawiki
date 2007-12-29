@@ -9,13 +9,15 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'Bınê gırêyan de xete bıonce:',
-'tog-highlightbroken' => 'Gırêyanê thalan <a href="" class="new">wına</a> (alternative: wına<a href="" class="internal">?</a>) bımocne.',
-'tog-justify'         => 'Nuşte be rêza serraşte',
-'tog-hideminor'       => 'Vurnayışanê senıkan bınımne',
-'tog-extendwatchlist' => 'Lista seyr-kerdışia awankerdiye',
-'tog-usenewrc'        => "Lista vurnayışanê peyênana awankerdiye (''JavaScript'' lazımo)",
-'tog-numberheadings'  => 'Rêzanê seri xoser numra ke',
+'tog-underline'       => 'Bınê gıreyan de xete bance:',
+'tog-highlightbroken' => 'Gıreyanê thalan/vengan {a href="" class="new"}wına{/a} (alternative: wına{a 
+href="" class="internal"}?{/a}) bımocne.',
+'tog-justify'         => 'Nuşte dı kıştan ser bıazne',
+'tog-hideminor'       => 'Vurnayışanê şenıkan perra „vurnayışê peyêni“ de bınımne/wedare',
+'tog-extendwatchlist' => 'Lista seyr-kerdışia hirakerdiye',
+'tog-usenewrc'        => "Lista vurnayışanê peyênana hirakerdiye (''JavaScript'' lazımo)",
+'tog-numberheadings'  => 'Sernuşteyan be xo numre cışane',
+'tog-showtoolbar'     => 'Goceganê hacetanê vurnayışi bımocne (JavaScript)',
 'tog-showtoc'         => 'Bımocne table of contents (for pages with more than 3 headings)',
 
 # Dates

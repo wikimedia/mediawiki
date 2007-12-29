@@ -849,7 +849,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'files'                    => 'Fichiérs',
 
 # User rights
-'userrights-lookup-user'      => 'Maneyance des drêts utilisator',
+'userrights-lookup-user'      => 'Maneyance des drêts d’utilisator',
 'userrights-user-editname'    => 'Entrâd un nom d’utilisator :',
 'editusergroup'               => 'Modificacion des groupes d’utilisators',
 'userrights-editusergroup'    => 'Èditar los groupes de l’utilisator',
@@ -862,6 +862,10 @@ Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar
 'userrights-available-none'   => 'Vos pouede pas changiér l’apartegnence ux difèrents groupes.',
 'userrights-available-add'    => 'Vos pouede apondre des utilisators a $1.',
 'userrights-available-remove' => 'Vos pouede enlevar des utilisators de $1.',
+'userrights-no-interwiki'     => 'Vos avéd pas la pèrmission de modifiar los drêts des utilisators dessus d’ôtros vouiquis.',
+'userrights-nodatabase'       => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas una bâsa de balyês locala.',
+'userrights-nologin'          => 'Vos dête vos [[Special:Userlogin|conèctar]] avouéc un compto administrator por balyér los drêts d’utilisator.',
+'userrights-notallowed'       => 'Voutron compto at pas la pèrmission de balyér des drêts d’utilisator.',
 
 # Groups
 'group'               => 'Groupe :',
@@ -928,6 +932,9 @@ Por encllure una émâge dens una pâge, utilisâd un lim de la fôrma :
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fichiér.png|tèxte altèrnatif]]</nowiki>'''
 ou ben por liyér tot drêt vers lo fichiér :
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichiér.ogg]]</nowiki>'''",
+'upload-permitted'            => 'Formats de fichiérs ôtorisâs : $1.',
+'upload-preferred'            => 'Formats de fichiérs prèferâs : $1.',
+'upload-prohibited'           => 'Formats de fichiérs dèfendus : $1.',
 'uploadlog'                   => 'Historico de les importacions',
 'uploadlogpage'               => 'Historico de les importacions de fichiérs multimèdia',
 'uploadlogpagetext'           => 'Vê-que la lista des dèrriérs fichiérs copiyês sur lo sèrvior.',
@@ -943,6 +950,8 @@ ou ben por liyér tot drêt vers lo fichiér :
 'illegalfilename'             => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges. Marci de lo renomar et de lo relevar.',
 'badfilename'                 => 'L’émâge at étâ renomâ en « $1 ».',
 'filetype-badmime'            => 'Los fichiérs du tipo MIME « $1 » pôvont pas étre importâs.',
+'filetype-unwanted-type'      => "'''« .$1 »''' est d’un format pas dèsirâ. Celos que sont prèferâs sont $2.",
+'filetype-banned-type'        => "'''« .$1 »''' est dens un format pas admês. Celos que sont accèptâs sont $2.",
 'filetype-missing'            => 'Lo fichiér at gins d’èxtension (coment « .jpg » per ègzemplo).',
 'large-file'                  => 'Los fichiérs importâs devriant pas étre ples grôs que $1 ; ceti fichiér fât $2.',
 'largefileserver'             => 'La talye de ceti fichiér est d’amont lo nivô lo ples hôt ôtorisâ.',
@@ -965,7 +974,7 @@ Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament voly�
 'uploadedimage'               => 'at importâ « [[$1]] »',
 'overwroteimage'              => 'at importâ una novèla vèrsion de « [[$1]] »',
 'uploaddisabled'              => 'Dèsolâ, l’èxpèdicion de fichiér est dèsactivâ.',
-'uploaddisabledtext'          => 'L’èxpèdicion de fichiérs est dèsactivâ sur ceti vouiqui.',
+'uploaddisabledtext'          => 'L’èxpèdicion de fichiérs est dèsactivâ dessus {{SITENAME}}.',
 'uploadscripted'              => 'Ceti fichiér contint du code HTML ou ben un script que porrêt étre entèrprètâ de façon fôssa per un navigator Malyâjo.',
 'uploadcorrupt'               => 'Ceti fichiér est corrompu, at una talye nula ou at una èxtension envalida.
 Volyéd controlar lo fichiér.',
@@ -1129,7 +1138,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modific
 'nviews'                  => '$1 {{PLURAL:$1|consulta|consultes}}',
 'specialpage-empty'       => 'Ceta pâge est voueda.',
 'lonelypages'             => 'Pâges orfenes',
-'lonelypagestext'         => 'Les pâges siuventes sont pas liyês dês ôtres pâges du vouiqui.',
+'lonelypagestext'         => 'Les pâges siuventes sont pas liyês dês d’ôtres pâges de {{SITENAME}}.',
 'uncategorizedpages'      => 'Pâges sen catègorie',
 'uncategorizedcategories' => 'Catègories sen catègorie',
 'uncategorizedimages'     => 'Émâges sen catègorie',
@@ -1150,10 +1159,13 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modific
 'shortpages'              => 'Pâges côrtes',
 'longpages'               => 'Pâges longes',
 'deadendpages'            => 'Pâges en cul-de-sac',
-'deadendpagestext'        => 'Les pâges siuventes contegnont gins de lim vers d’ôtres pâges du vouiqui.',
+'deadendpagestext'        => 'Les pâges siuventes ont gins de lim vers d’ôtres pâges de {{SITENAME}}.',
 'protectedpages'          => 'Pâges protègiês',
 'protectedpagestext'      => 'Les pâges siuventes sont protègiês contre les modificacions et/ou lo renomâjo :',
-'protectedpagesempty'     => 'Niona pâge est protègiê orendrêt.',
+'protectedpagesempty'     => 'Niona pâge est orendrêt protègiê.',
+'protectedtitles'         => 'Titros protègiês',
+'protectedtitlestext'     => 'Los titros siuvents sont protègiês a la crèacion',
+'protectedtitlesempty'    => 'Nion titro est orendrêt protègiê avouéc celos paramètres.',
 'listusers'               => 'Lista des participents',
 'specialpages'            => 'Pâges spèciâles',
 'spheading'               => 'Pâges spèciâles',
@@ -1180,7 +1192,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modific
 
 'categoriespagetext' => 'Les catègories siuventes ègzistont dens lo vouiqui.',
 'data'               => 'Balyês',
-'userrights'         => 'Maneyance des drêts de l’utilisator',
+'userrights'         => 'Maneyance des drêts d’utilisator',
 'groups'             => 'Groupes d’utilisators',
 'alphaindexline'     => '$1 a $2',
 'version'            => 'Vèrsion',
@@ -1616,7 +1628,7 @@ Dens cél câs, vos devréd renomar ou fusionar la pâge manuèlament se vos lo 
 'movearticle'             => 'Renomar l’articllo :',
 'movenologin'             => 'Pas conèctâ',
 'movenologintext'         => 'Por povêr renomar una pâge, vos dête étre [[Special:Userlogin|conèctâ]] a titro d’utilisator enregistrâ et voutron compto dêt avêr una ancianatât sufisenta.',
-'movenotallowed'          => 'Vos avéd pas la pèrmission de renomar des pâges sur ceti vouiqui.',
+'movenotallowed'          => 'Vos avéd pas la pèrmission de renomar des pâges dessus {{SITENAME}}.',
 'newtitle'                => 'Novél titro :',
 'move-watch'              => 'Siuvre ceta pâge',
 'movepagebtn'             => 'Renomar l’articllo',
@@ -1627,6 +1639,7 @@ Volyéd controlar qu’ègziste gins de redirèccion dobla ou câssa, et corregi
 'articleexists'           => 'Ègziste ja un articllo portent cél titro, ou ben lo titro
 que vos éd chouèsi/cièrdu est pas valido.
 Volyéd nen chouèsir/cièrdre un ôtro.',
+'cantmove-titleprotected' => 'Vos avéd pas la possibilitât de dèplaciér una pâge vers cél emplacement perce que lo novél titro at étâ protègiê a la crèacion.',
 'talkexists'              => "'''La pâge lyé-méma at étâ dèplaciê avouéc reusséta, mas la pâge de discussion at pas possu étre dèplaciê perce que nen ègzistâve ja yona desot lo novél nom. Volyéd les fusionar manuèlament.'''",
 'movedto'                 => 'renomâ en',
 'movetalk'                => 'Renomar asse-ben la pâge de discussion associyê',
@@ -2218,6 +2231,7 @@ $1',
 'searchnamed'      => 'Chèrchiér los articllos apelâs « $1 ».',
 'articletitles'    => 'Articllos comencient per « $1 »',
 'hideresults'      => 'Cachiér los rèsultats',
+'useajaxsearch'    => 'Utilisar la rechèrche AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← pâge prècèdenta',

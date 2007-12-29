@@ -1025,6 +1025,7 @@ To include the image in a page, use a link in the form
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
+'upload-permitted'            => 'Megengedett fájltípusok: $1.',
 'uploadlog'                   => 'feltöltési napló',
 'uploadlogpage'               => 'Feltöltési_napló',
 'uploadlogpagetext'           => 'Alább látható a legutóbbi feltöltések listája. Minden időpont a kiszolgáló időzónájában (UTC) van megadva.',
@@ -1040,6 +1041,8 @@ To include the image in a page, use a link in the form
 'illegalfilename'             => 'A „$1” lap neve olyan karaktereket tartalmaz, melyek nincsenek megengedve lapcímben. Kérlek, változtasd meg a nevet, és próbálkozz a mentéssel újra.',
 'badfilename'                 => 'A kép új neve „$1”.',
 'filetype-badmime'            => '„$1” MIME-típusú fájlokat nem lehet feltölteni.',
+'filetype-unwanted-type'      => "A(z) '''„.$1”''' nem javasolt fájltípus. Az ajánlott típusok: $2.",
+'filetype-banned-type'        => "A(z) '''„.$1”''' nem megengedett fájltípus.  A megengedett típusok: $2.",
 'filetype-missing'            => 'A fájlnak nincs kiterjesztése (pl. „.jpg”).',
 'large-file'                  => 'Javasoljuk, hogy a dájl ne legyen nagyobb, mint $1; ennek a fájlnak a mérete $2.',
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',

@@ -1,5 +1,5 @@
 <?php
-/** Southern Sami (Lullisámegiella)
+/** Southern Sami (Åarjelsaemien gïele)
  *
  * @addtogroup Language
  *
@@ -48,11 +48,13 @@ $messages = array(
 'help'             => 'Viehkie',
 'search'           => 'Ohtsedh',
 'searchbutton'     => 'Ohtsedh',
+'go'               => 'Vaadtsa',
 'searcharticle'    => 'Vaadtsa',
 'edit'             => 'Värrhtoedimmie',
 'newpage'          => 'Orre bielie',
 'talkpagelinktext' => 'Dïerhkestidh',
 'talk'             => 'Dïerhkestidh',
+'otherlanguages'   => 'jeatjebh gïele',
 'jumptosearch'     => 'ohtsedh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -64,6 +66,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'  => 'Bielie',
+'nstab-user'  => 'Nuhtjien bielie',
 'nstab-media' => 'Guvvie',
 'nstab-image' => 'Guvvie',
 
@@ -74,6 +77,7 @@ $messages = array(
 'yourname'           => 'Nuhtjiennomme:',
 'yourpassword'       => 'Loevesbaakoe:',
 'youremail'          => 'E-påaste:',
+'username'           => 'Nuhtjiennomme:',
 'yourlanguage'       => 'Gïele:',
 'email'              => 'E-påaste',
 'mailmypassword'     => 'E-påaste loevesbaakoe',
@@ -94,26 +98,53 @@ $messages = array(
 'group-sysop-member' => 'Reerien',
 
 # Image list
-'imagelist'     => 'Guvvie lästoe',
-'imgfile'       => 'guvvie',
-'filehist-user' => 'Nuhtjien',
+'imagelist'      => 'Guvvie lästoe',
+'ilsubmit'       => 'Ohtsedh',
+'imgfile'        => 'guvvie',
+'filehist-user'  => 'Nuhtjien',
+'imagelist_name' => 'Nomme',
+'imagelist_user' => 'Nuhtjien',
 
 'brokenredirects-edit' => '(värrhtoedimmie)',
 
 # Miscellaneous special pages
 'listusers' => 'Nuhtjien lästoe',
 
+# Book sources
+'booksources-go' => 'Vaadtsa',
+
 # Special:Log
 'specialloguserlabel' => 'Nuhtjien:',
+'log-search-submit'   => 'Vaadtsa',
 
 # Special:Allpages
-'nextpage' => 'Minngebe bielie ($1)',
+'nextpage'       => 'Minngebe bielie ($1)',
+'allpagessubmit' => 'Vaadtsa',
 
 # E-mail user
 'emailuser' => 'E-påaste dïhte nuhtjien',
 
+# Restrictions (nouns)
+'restriction-edit'   => 'Värrhtoedimmie',
+'restriction-move'   => 'Jåhta',
+'restriction-create' => 'Skaepiedidh',
+
+# Undelete
+'undelete-search-submit' => 'Ohtsedh',
+
+'sp-contributions-submit' => 'Ohtsedh',
+
+# What links here
+'whatlinkshere-page' => 'Bielie:',
+
+# Block/unblock
+'ipaddress' => 'IP Tjaalesijjie:',
+
 # Tooltip help for the actions
 'tooltip-search' => 'Ohtsedh {{SITENAME}}',
+
+# AJAX search
+'useajaxsearch' => 'Nuhtjie AJAX ohtsedh',
 
 # Auto-summaries
 'autosumm-new' => 'Orre bielie: $1',

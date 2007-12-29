@@ -93,7 +93,7 @@ $messages = array(
 'protectthispage'  => 'E ho‘omalu i kēia ‘ao‘ao',
 'unprotect'        => 'E wehe ho‘omalu',
 'newpage'          => '‘Ao‘ao hou',
-'talkpagelinktext' => 'Kūkākūkā',
+'talkpagelinktext' => 'kūkākūkā',
 'talk'             => 'Kūkākūkā',
 'otherlanguages'   => "Ma nā leo 'ē a'e",
 'jumpto'           => 'Lele i:',
@@ -230,6 +230,7 @@ hō‘ike ‘ia i lalo:",
 'hist'            => 'loli',
 'hide'            => 'hūnā',
 'minoreditletter' => 'iki',
+'newpageletter'   => 'hou',
 'boteditletter'   => 'lopako',
 
 # Recent changes linked
