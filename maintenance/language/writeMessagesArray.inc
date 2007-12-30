@@ -193,16 +193,27 @@ $blockComment
 		$blockText .= ' => ';
 
 		# Check for the appropriate apostrophe and add the value
-		if ( strpos( $value, "'" ) === false ) {
-			$blockText .= "'$value'";
-		} elseif ( strpos( $value, '"' ) === false && !preg_match('/\$[a-zA-Z]/', $value) ) {
-			$blockText .= "\"$value\"";
+		# Quote \ here, because it needs always escaping
+		$value = addcslashes( $value, '\\' );
+
+		# For readability
+		$single = "'";
+		$double = '"';
+
+		# Nothing ugly, just use '
+		if ( strpos( $value, $single ) === false ) {
+			$blockText .= $single.$value.$single;
+
+		# No "-quotes, no variables that need quoting, use "
+		} elseif ( strpos( $value, $double ) === false && !preg_match('/\$[a-zA-Z_\x7f-\xff]/', $value) ) {
+			$blockText .= $double.$value.$double;
+
+		# Something needs quoting, pick the quote which causes less quoting
 		} else {
-			# Pick the less numerous one to escape
-			$quote = substr_count( $value, '"' ) + substr_count( $value, '$' ) >= substr_count( $value, "'" ) ? "'" : '"';
-			if ('"' == $quote) { $extra = '$'; }
-			else { $extra = ''; }
-			$blockText .= $quote . addcslashes( $value, $quote.'\\'.$extra ) . $quote;
+			$quote = substr_count( $value, $double ) + substr_count( $value, '$' ) >=
+				substr_count( $value, $single ) ? $single : $double;
+			if ( $quote === $double ) { $extra = '$'; } else { $extra = ''; }
+			$blockText .= $quote . addcslashes( $value, $quote.$extra ) . $quote;
 		}
 
 		# Comma
