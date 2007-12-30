@@ -174,7 +174,7 @@ $messages = array(
 'category-empty'        => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
-'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu Guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
+'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
 
 == Dèmarrar avouéc MediaWiki ==
 
@@ -272,6 +272,7 @@ $messages = array(
 'faqpage'           => 'Project:FdeQ',
 'helppage'          => 'Help:Somèro',
 'mainpage'          => 'Reçua',
+'policy-url'        => 'Project:Règlles de dedens',
 'portal'            => 'Comunôtât',
 'portal-url'        => 'Project:Reçua',
 'privacy'           => 'Politica de confidencialitât',
@@ -2067,6 +2068,8 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-meteringmode-0'   => 'Encognua',
 'exif-meteringmode-1'   => 'Moyena',
 'exif-meteringmode-2'   => 'Mesera centrâla moyena',
+'exif-meteringmode-3'   => 'Pouent',
+'exif-meteringmode-4'   => 'MultiPouent',
 'exif-meteringmode-5'   => 'Palèta',
 'exif-meteringmode-6'   => 'Parcièla',
 'exif-meteringmode-255' => 'Ôtra',
@@ -2182,7 +2185,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 Un code de confirmacion vos at ja étâ emmandâ per mèl ; se vos vegnéd de crèar voutron compto, volyéd atendre doux-três menutes que lo mèl arreve devant que demandar un code novél.
 </div>',
 'confirmemail_send'       => 'Emmandar un code de confirmacion',
-'confirmemail_sent'       => 'Mèl de confirmacion emmandâ',
+'confirmemail_sent'       => 'Mèl de confirmacion emmandâ.',
 'confirmemail_oncreate'   => 'Un code de confirmacion at étâ emmandâ a voutra adrèce de mèl. Cél code est pas requis por sè conèctar, mas vos en aréd fôta por activar les fonccionalitâts liyês ux mèls sur ceti vouiqui.',
 'confirmemail_sendfailed' => 'Empossiblo d’emmandar lo mèl de confirmacion. Controlâd voutra adrèce.
 
@@ -2246,8 +2249,8 @@ $1',
 'imgmultiparseerror' => 'Ceti fichiér émâge est aparament corrompu ou fôx, et {{SITENAME}} pôt pas fornir una lista de les pâges.',
 
 # Table pager
-'ascending_abbrev'         => 'mont',
-'descending_abbrev'        => 'dèsc',
+'ascending_abbrev'         => 'crès',
+'descending_abbrev'        => 'dècr',
 'table_pager_next'         => 'Pâge siuventa',
 'table_pager_prev'         => 'Pâge prècèdenta',
 'table_pager_first'        => 'Premiére pâge',

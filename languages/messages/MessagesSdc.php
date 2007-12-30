@@ -1419,6 +1419,7 @@ Nota chi la pàgina '''nò''' sarà ippusthadda si n'isisthi già una cu' lu nob
 In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuimmazioni cuntinuddi i' la pàgina di dischussioni.",
 'movearticle'             => 'Ippustha la pàgina',
 'movenologin'             => 'Intradda nò effettuadda',
+'movenologintext'         => "L'ippusthamentu di li pàgini è cunsintiddu soru a l'utenti registhraddi chi so [[Special:Userlogin|intraddi]] i' lu situ.",
 'movenotallowed'          => "Nò si diponi di li primmissi nezzessàri a l'ippusthamentu di pàgini i' {{SITENAME}}.",
 'newtitle'                => 'Nobu tìturu:',
 'move-watch'              => "Aggiungi a l'abbaidaddi ippiziari",
@@ -1426,6 +1427,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'pagemovedsub'            => 'Ippusthamentu effettuaddu',
 'movepage-moved'          => '<big>\'\'\'"$1" è isthadda ippusthadda a lu tìturu "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Una pàgina cun chisth'innòmmu isisthi già, oppuru l'innòmmu sciubaraddu no à vàriddu. Sciubarà un'althru tìturu.",
+'cantmove-titleprotected' => "L'ippusthamentu di la pàgina nò è pussìbiri parchí lu nobu tìturu è isthaddu prutiggiddu pa impidinni la criazioni",
 'talkexists'              => "'''La pàgina è isthadda ippusthadda currettamenti, ma nò è isthaddu pussìbiri ippusthà la pàgina di dischussioni parchí ni isisthi già un'althra cu' lu nobu tìturu. Aggiugnì a manu li cuntiniddi di li dui pàgini.'''",
 'movedto'                 => 'ippusthadda a',
 'movetalk'                => 'Ippustha puru la pàgina di dischussioni.',
@@ -1440,6 +1442,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'delete_and_move'         => 'Canzella e ippustha',
 'delete_and_move_confirm' => 'Emmo, sobbraischribì la pàgini',
 'delete_and_move_reason'  => "Canzilladda pa rindì pussìbiri l'ippusthamentu",
+'selfmove'                => "Lu nobu tìturu è uguari a lu vécciu; impussìbiri ippusthà la pàgina cu' lu matessi innòmmu.",
 
 # Export
 'export'            => 'Ippurtha li pàgini',
@@ -1457,23 +1460,28 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'allmessagesmodified' => 'Musthra soru chiddi mudìfiggaddi.',
 
 # Thumbnails
-'thumbnail-more'  => 'Immannitta',
-'missingimage'    => '<b>Immàgina mancanti</b><br /><i>$1</i>',
-'filemissing'     => 'File mancanti',
-'thumbnail_error' => "Errori i' la criazioni di la miniadduri: $1",
-'djvu_page_error' => 'Nùmaru di pàgina DjVu ibbagliaddu',
+'thumbnail-more'           => 'Immannitta',
+'missingimage'             => '<b>Immàgina mancanti</b><br /><i>$1</i>',
+'filemissing'              => 'File mancanti',
+'thumbnail_error'          => "Errori i' la criazioni di la miniadduri: $1",
+'djvu_page_error'          => 'Nùmaru di pàgina DjVu ibbagliaddu',
+'djvu_no_xml'              => "Impussìbiri uttinì l'XML pa lu file DjVu",
+'thumbnail_invalid_params' => 'Parametri antiprimma nò curretti',
+'thumbnail_dest_directory' => 'Impussìbiri crià la carthella di disthinazioni',
 
 # Special:Import
-'import'                  => 'Impurtha pàgini',
-'importinterwiki'         => 'Impurthazioni transwiki',
-'import-interwiki-submit' => 'Impurtha',
-'importstart'             => 'Impurthendi li pàgini...',
-'import-revision-count'   => '{{PLURAL:$1|una ribisioni impurthadda|$1 ribisioni impurthaddi}}',
-'importnopages'           => 'Nisciuna pàgina da impurthà.',
-'importfailed'            => 'Impurthazioni nò ridiscidda: $1',
-'importbadinterwiki'      => 'Cullegamentu interwiki ibbagliaddu',
-'importnotext'            => 'Testhu bioddu o mancanti',
-'importsuccess'           => 'Impurthazioni ridiscidda.',
+'import'                     => 'Impurtha pàgini',
+'importinterwiki'            => 'Impurthazioni transwiki',
+'import-interwiki-history'   => "Cupia l'intrea cronologia di chistha pàgina",
+'import-interwiki-submit'    => 'Impurtha',
+'import-interwiki-namespace' => "Traiffira li pàgini i' lu tipu di pàgina:",
+'importstart'                => 'Impurthendi li pàgini...',
+'import-revision-count'      => '{{PLURAL:$1|una ribisioni impurthadda|$1 ribisioni impurthaddi}}',
+'importnopages'              => 'Nisciuna pàgina da impurthà.',
+'importfailed'               => 'Impurthazioni nò ridiscidda: $1',
+'importbadinterwiki'         => 'Cullegamentu interwiki ibbagliaddu',
+'importnotext'               => 'Testhu bioddu o mancanti',
+'importsuccess'              => 'Impurthazioni ridiscidda.',
 
 # Import log
 'importlogpage'                    => 'Impurthazioni',
@@ -1483,7 +1491,9 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'La pàgina utenti tóia',
+'tooltip-pt-anonuserpage'         => 'La pàgina utenti di chistu indirizzu IP',
 'tooltip-pt-mytalk'               => 'La tóia pàgina di dischussioni',
+'tooltip-pt-anontalk'             => "Dischussioni i' li mudìfigghi arriggaddi da chisthu indirizzu IP",
 'tooltip-pt-preferences'          => 'Li tó prifirènzi',
 'tooltip-pt-watchlist'            => "La listha di li pàgini ch'isthai tinendi sottu osseivvazioni",
 'tooltip-pt-mycontris'            => 'La listha di li tó cuntributi',
@@ -1522,6 +1532,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'tooltip-ca-nstab-main'           => 'Vèdi la bozi',
 'tooltip-ca-nstab-user'           => 'Vèdi la pàgina utenti',
 'tooltip-ca-nstab-media'          => 'Vedi la pàgina di lu file mùrthimediari',
+'tooltip-ca-nstab-special'        => 'Chistha è una pàgina ippiziari, nò pó assé mudìfiggadda.',
 'tooltip-ca-nstab-project'        => 'Vèdi la pàgina di saivvìziu',
 'tooltip-ca-nstab-image'          => "Vèdi la pàgina di l'immàgina",
 'tooltip-ca-nstab-mediawiki'      => "Vèdi l'imbasciadda di sisthema",
@@ -1541,9 +1552,11 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'siteuser'         => '$1, utenti di {{SITENAME}}',
 'lastmodifiedatby' => "Chistha pàgina è isthadda mudìfiggadda pa l'ulthima voltha lu $2, $1 da $3.", # $1 date, $2 time, $3 user
 'and'              => 'e',
+'othercontribs'    => "Lu testhu attuari è basaddu i' li cuntributi di $1.",
 'others'           => 'althri',
 'siteusers'        => '$1, utenti di {{SITENAME}}',
 'creditspage'      => 'Autori di la pàgina',
+'nocredits'        => "Nisciuna infuimmazioni i' l'autori dipunìbiri pa chistha pàgina.",
 
 # Spam protection
 'subcategorycount'       => 'Chistha categuria cunteni {{PLURAL:$1|una sottocateguria|$1 sottocateguri}}.',
