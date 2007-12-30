@@ -11,6 +11,8 @@
  * @author Nike
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotturìnia li cullegamenti:',
@@ -788,6 +790,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'userrights-available-remove' => 'È pussìbiri buggà utenti da lu gruppu $1.',
 'userrights-no-interwiki'     => "Nò ài lu primmissu pa mudìfiggà li diritti di l'utenti i' althri siti.",
 'userrights-nodatabase'       => 'La bancadati $1 nò isisthi o nò è in lucari.',
+'userrights-nologin'          => 'Débi [[Special:Userlogin|intrà]] cumenti amministhradori pa assignà li diritti utenti.',
+'userrights-notallowed'       => "La registhrazioni tóia nò à lu primissu d'assignà li diritti utenti.",
 
 # Groups
 'group'               => 'Gruppu:',
@@ -1004,6 +1008,7 @@ pà culligà direttamenti l'althri tipi di file.",
 'statistics'             => 'Sthatisthigghi',
 'sitestats'              => 'Sthatisthigghi reratibi a {{SITENAME}}',
 'userstats'              => "Sthatisthigghi reratibi a l'utenti",
+'userstatstext'          => "Abà {{PLURAL:$1|è registhraddu '''1''' [[Special:Listusers|utenti]]|so registhraddi '''$1''' [[Special:Listusers|utenti]]}}. Lu gruppu $5 è cumposthu da '''$2''' {{PLURAL:$2|utenti|utenti}}, pari a lu '''$4%''' di li registhraddi.",
 'statistics-mostpopular' => 'Pàgini più visitaddi',
 
 'disambiguations'      => 'Pàgini cu lu matessi innòmmu',
@@ -1119,6 +1124,7 @@ pà culligà direttamenti l'althri tipi di file.",
 
 # E-mail user
 'mailnologin'     => "Nisciun indirizzu a lu quari invià l'imbasciadda.",
+'mailnologintext' => "Pa invià imbasciaddi di postha erettrònica è nezzessàriu [[Special:Userlogin|intrà]] e abé registhraddu un'indirizzu variddu i' li propri [[Special:Preferences|prifirenzi]].",
 'emailuser'       => "Ischribì a l'utenti",
 'emailpage'       => "Invia un'imbasciadda di postha erettrònica a l'utenti",
 'usermailererror' => "L'oggettu di l'imbasciadda à turraddu l'errori:",
@@ -1446,6 +1452,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 
 # Export
 'export'            => 'Ippurtha li pàgini',
+'exportcuronly'     => "Incrudi soru la ribisioni attuari, nò l'intrea cronologia.",
 'export-submit'     => 'Ippurtha',
 'export-addcattext' => 'Aggiungi pàgini da la categuria:',
 'export-addcat'     => 'Aggiungi',
@@ -1456,6 +1463,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'allmessagesname'     => 'Nommu',
 'allmessagesdefault'  => 'Testhu pridifiniddu',
 'allmessagescurrent'  => 'Testhu attuari',
+'allmessagestext'     => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki:",
 'allmessagesfilter'   => "Filthru i' l'imbasciaddi:",
 'allmessagesmodified' => 'Musthra soru chiddi mudìfiggaddi.',
 
@@ -1559,6 +1567,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'nocredits'        => "Nisciuna infuimmazioni i' l'autori dipunìbiri pa chistha pàgina.",
 
 # Spam protection
+'spamprotectiontext'     => "La pàgina ch'eri saivvendi è isthadda broccadda da lu filthru anti-spam, pó assé pa la prisènzia di un cullegamentu a un situ esthernu broccaddu.",
 'subcategorycount'       => 'Chistha categuria cunteni {{PLURAL:$1|una sottocateguria|$1 sottocateguri}}.',
 'categoryarticlecount'   => 'Chistha categuria cunteni {{PLURAL:$1|una pàgina|$1 pàgini}}.',
 'category-media-count'   => 'Chistha categuria cunteni {{PLURAL:$1|un file|$1 file}}.',
@@ -1822,3 +1831,4 @@ $1',
 'watchlisttools-raw'  => 'Mudìfigga la listha in fuimmaddu testhu',
 
 );
+

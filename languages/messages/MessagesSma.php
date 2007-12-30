@@ -11,6 +11,9 @@
 
 
 $messages = array(
+'underline-always' => 'Iktesth',
+'underline-never'  => 'Aaltere',
+
 # Dates
 'sunday'        => 'Aejlege',
 'monday'        => 'Måanta',
@@ -57,6 +60,7 @@ $messages = array(
 'searcharticle'    => 'Vaadtsa',
 'history'          => 'Bielie historije',
 'history_short'    => 'Historije',
+'info_short'       => 'Bïevnesh',
 'printableversion' => 'Tjaelije bielie',
 'print'            => 'Tjaeledh olkese',
 'edit'             => 'Värrhtoedimmie',
@@ -64,6 +68,7 @@ $messages = array(
 'newpage'          => 'Orre bielie',
 'talkpagelinktext' => 'Dïerhkestidh',
 'talk'             => 'Dïerhkestidh',
+'toolbox'          => 'Dïrregeborhtje',
 'otherlanguages'   => 'jeatjebh gïele',
 'jumptosearch'     => 'ohtsedh',
 
@@ -133,7 +138,9 @@ $messages = array(
 'brokenredirects-edit' => '(värrhtoedimmie)',
 
 # Miscellaneous special pages
-'listusers' => 'Nuhtjien lästoe',
+'listusers'    => 'Nuhtjien lästoe',
+'specialpages' => 'Joekoenlaakan bielie',
+'move'         => 'Jåhta',
 
 # Book sources
 'booksources-go' => 'Vaadtsa',
@@ -147,7 +154,13 @@ $messages = array(
 'allpagessubmit' => 'Vaadtsa',
 
 # E-mail user
-'emailuser' => 'E-påaste dïhte nuhtjien',
+'emailuser'       => 'E-påaste dïhte nuhtjien',
+'defemailsubject' => '{{SITENAME}} e-påaste',
+'emailsubject'    => 'Ïebne',
+'emailmessage'    => 'Dïjre',
+'emailsend'       => 'Seedtie',
+
+'created' => 'skaepede',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Värrhtoedimmie',
@@ -168,12 +181,20 @@ $messages = array(
 'ipblocklist-username' => 'Nuhtjiennomme jallh IP tjaalesijjie:',
 'ipblocklist-submit'   => 'Ohtsedh',
 
+# Move page
+'movepage'    => 'Jåhta bielie',
+'movearticle' => 'Jåhta bielie:',
+'movepagebtn' => 'Jåhta bielie',
+
 # Namespace 8 related
 'allmessagesname' => 'Nomme',
 
 # Tooltip help for the actions
 'tooltip-search' => 'Ohtsedh {{SITENAME}}',
 'tooltip-p-logo' => 'Åejjiebielie',
+
+# Attribution
+'and' => 'jih',
 
 # AJAX search
 'useajaxsearch' => 'Nuhtjie AJAX ohtsedh',
@@ -182,3 +203,4 @@ $messages = array(
 'autosumm-new' => 'Orre bielie: $1',
 
 );
+
