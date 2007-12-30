@@ -969,7 +969,7 @@ la solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l�
 Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta d’importar una vèrsion rèduita.',
 'file-thumbnail-no'           => 'Lo nom du fichiér comence per <strong><tt>$1</tt></strong>. O est possiblo que s’ag·ésse d’una vèrsion rèduita <i>(thumbnail)</i>.
 Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament volyéd changiér lo nom du fichiér.',
-'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja ; marci de tornar arriér et de copiyér lo fichiér desot un novél nom. [[{{ns:image}}:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja ; marci de tornar arriér et de copiyér lo fichiér desot un novél nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichiér portent lo mémo nom ègziste ja dens la bâsa de balyês comena ; volyéd tornar arriér et l’emmandar desot un novél nom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Copia reussia',
 'uploadwarning'               => 'Atencion !',
@@ -978,8 +978,8 @@ Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament voly�
 'overwroteimage'              => 'at importâ una novèla vèrsion de « [[$1]] »',
 'uploaddisabled'              => 'Dèsolâ, l’èxpèdicion de fichiér est dèsactivâ.',
 'uploaddisabledtext'          => 'L’èxpèdicion de fichiérs est dèsactivâ dessus {{SITENAME}}.',
-'uploadscripted'              => 'Ceti fichiér contint du code HTML ou ben un script que porrêt étre entèrprètâ de façon fôssa per un navigator Malyâjo.',
-'uploadcorrupt'               => 'Ceti fichiér est corrompu, at una talye nula ou at una èxtension envalida.
+'uploadscripted'              => 'Ceti fichiér contint de code HTML ou ben un script que porrêt étre entèrprètâ de façon fôssa per un navigator Malyâjo.',
+'uploadcorrupt'               => 'Ceti fichiér est corrompu, il at una talye nula ou ben una èxtension envalida.
 Volyéd controlar lo fichiér.',
 'uploadvirus'                 => 'Ceti fichiér contint un virus ! Por més de dètalys, consultâd : $1',
 'sourcefilename'              => 'Nom du fichiér a emmandar ',
@@ -1105,13 +1105,13 @@ Vos devriâd considèrar s’o est convegnâblo de continuar l’impôrt de cél
 Ceti chifro encllut les pâges de discussion, les pâges sur {{SITENAME}}, les pâges côrtes (« començons »), les pâges de redirèccion, et pués d’ôtres pâges que sont pas considèrâs coment des articllos.
 S’on èxcllut celes pâges, réste {{PLURAL:$2|'''1''' pâge qu’est probâblament un veretâblo articllo|'''$2''' pâges que sont probâblament de veretâblos articllos}}.<p>
 
-{{PLURAL:$8|'''$8''' fichiér at étâ tèlèchargiê|'''$8''' fichiérs ont étâ tèlèchargiês}}.
+{{PLURAL:$8|'''1''' fichiér at étâ tèlèchargiê|'''$8''' fichiérs ont étâ tèlèchargiês}}.
 
-{{PLURAL:$3|'''$3''' pâge at étâ consultâ|'''$3''' pâges ont étâ consultâs}} et {{PLURAL:$4|'''$4''' pâge modifiâ|'''$4''' pâges modifiâs}} dês la crèacion de {{SITENAME}}.
+{{PLURAL:$3|'''1''' pâge at étâ consultâ|'''$3''' pâges ont étâ consultâs}} et {{PLURAL:$4|'''1''' pâge modifiâ|'''$4''' pâges modifiâs}} dês la crèacion de {{SITENAME}}.
 
-Cen reprèsente una moyena de {{PLURAL:$5|'''$5''' modificacion|'''$5''' modificacions}} per pâge et de {{PLURAL:$6|'''$6''' consulta|'''$6''' consultes}} por una modificacion.</p>
+Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modificacions}} per pâge et de {{PLURAL:$6|'''1''' consulta|'''$6''' consultes}} por una modificacion.</p>
 
-<p>Y at ora {{PLURAL:$7|'''$7''' ovrâjo|'''$7''' ovrâjos}} dens la [http://meta.wikimedia.org/wiki/Help:Job_queue fela d’atenta des travâlys].</p>",
+<p>Y at ora {{PLURAL:$7|'''1''' ovrâjo|'''$7''' ovrâjos}} dens la [http://meta.wikimedia.org/wiki/Help:Job_queue fela d’atenta des travâlys].</p>",
 'userstatstext'          => "Y at {{PLURAL:$1|'''1''' [[Special:Listusers|utilisator enregistrâ]]|'''$1''' [[Special:Listusers|utilisators enregistrâs]]}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5 (vêde $3).",
 'statistics-mostpopular' => 'Pâges les ples consultâs',
 
@@ -1882,9 +1882,9 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'widthheightpage'      => '$1×$2, $3 pâges',
 'file-info'            => '(Talye du fichiér : $1, tipo MIME : $2)',
 'file-info-size'       => '($1 × $2 pixèles, talye du fichiér : $3, tipo MIME : $4)',
-'file-nohires'         => '<small>Pas de ples hôta rèsolucion disponibla.</small>',
+'file-nohires'         => '<small>Pas de rèsolucion ples hôta disponibla.</small>',
 'svg-long-desc'        => '(Fichiér SVG, rèsolucion de $1 × $2 pixèles, talye : $3)',
-'show-big-image'       => 'Émâge en ples hôta rèsolucion',
+'show-big-image'       => 'Émâge en rèsolucion ples hôta',
 'show-big-image-thumb' => '<small>Talye de ceta vua : $1 × $2 pixèles</small>',
 
 # Special:Newimages
@@ -2324,4 +2324,3 @@ $1',
 'hebrew-calendar-m12-gen' => 'Eloul',
 
 );
-

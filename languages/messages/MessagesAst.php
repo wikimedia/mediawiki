@@ -1310,6 +1310,9 @@ de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái 
 'undelete-search-prefix'   => "Amosar páxines qu'empecipien por:",
 'undelete-search-submit'   => 'Buscar',
 'undelete-error-short'     => "Error al restaurar l'archivu: $1",
+'undelete-error-long'      => "Atopáronse errores al restaurar l'archivu:
+
+$1",
 
 # Namespace form on various pages
 'namespace'      => 'Espaciu de nomes:',
@@ -1384,6 +1387,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipusubmit'                   => 'Desbloquiar esta direición',
 'unblocked'                   => '[[User:$1|$1]] foi desbloquiáu',
 'ipblocklist'                 => "Llista de direiciones IP y nomes d'usuarios bloquiaos",
+'ipblocklist-legend'          => 'Atopar un usuariu bloquiáu',
 'ipblocklist-username'        => "Nome d'usuariu o direición IP:",
 'ipblocklist-submit'          => 'Buscar',
 'blocklistline'               => '$1, $2 bloquió a $3 ($4)',
@@ -1482,8 +1486,8 @@ La páxina de destín "[[$1]]" yá esiste. ¿Quies borrala pa dexar sitiu pal tr
 'immobile_namespace'      => "El nome d'orixe o'l de destín ye d'una triba especial; nun se puen mover páxines dende nin a esti espaciu de nomes.",
 
 # Export
-'export'        => 'Esportar páxines',
-'exporttext'    => "Pues esportar el testu y l'historial d'ediciones d'una páxina en particular o d'una
+'export'          => 'Esportar páxines',
+'exporttext'      => "Pues esportar el testu y l'historial d'ediciones d'una páxina en particular o d'una
 riestra páxines endolcaes nun documentu XML. Esti pue ser importáu depués n'otra wiki
 qu'use MediaWiki al traviés de la páxina [[Special:Importar|importar]].
 
@@ -1492,9 +1496,10 @@ y seleiciona si quies la versión actual xunto con toles versiones antigües, xu
 so historial, o namái la versión actual cola información de la postrer edición.
 
 Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
-'exportcuronly' => 'Amestar namái la revisión actual, non tol historial',
-'export-submit' => 'Esportar',
-'export-addcat' => 'Añader',
+'exportcuronly'   => 'Amestar namái la revisión actual, non tol historial',
+'export-submit'   => 'Esportar',
+'export-addcat'   => 'Añader',
+'export-download' => 'Guardar como archivu',
 
 # Namespace 8 related
 'allmessages'               => 'Tolos mensaxes del sistema',
@@ -1828,4 +1833,3 @@ $1",
 'watchlisttools-raw'  => 'Editar la llista de vixilancia (en bruto)',
 
 );
-

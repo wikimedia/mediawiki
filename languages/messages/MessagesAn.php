@@ -13,6 +13,14 @@
 
 $fallback = 'es';
 
+$skinNames = array(
+	'standard'    => 'Clasica (Classic)',
+	'nostalgia'   => 'Recosiros (Nostalgia)',
+	'cologneblue' => 'Colonia Azul (Cologne Blue)',
+	'myskin'      => 'Mi aparenzia (MySkin)',
+	'simple'      => 'Simpla (Simple)',
+);
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Espezial',
@@ -32,6 +40,77 @@ $namespaceNames = array(
 	NS_HELP_TALK      => 'Descusión_aduya',
 	NS_CATEGORY       => 'Categoría',
 	NS_CATEGORY_TALK  => 'Descusión_categoría',
+);
+
+$magicWords = array(
+	'namespace'           => array( '1', 'NAMESPACE', 'ESPAZIODENOMBRES' ),
+	'namespacee'          => array( '1', 'NAMESPACEE', 'ESPAZIODENOMBRESE' ),
+	'img_right'           => array( '1', 'right', 'dreita' ),
+	'img_left'            => array( '1', 'left', 'cucha', 'zurda' ),
+	'ns'                  => array( '0', 'NS:', 'EN:', 'EDN:' ),
+	'displaytitle'        => array( '1', 'DISPLAYTITLE', 'TÍTOL' ),
+	'currentversion'      => array( '1', 'CURRENTVERSION', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL' ),
+	'language'            => array( '0', '#LANGUAGE:', '#LENGUACHE:', '#LUENGA:', '#IDIOMA:' ),
+	'special'             => array( '0', 'special', 'espezial' ),
+	'defaultsort'         => array( '1', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:', 'ORDENAR:' ),
+);
+
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Reendrezeras_dobles', 'Dobles_reendrezeras', 'Endrezeras_dobles', 'Dobles_endrezeras' ),
+	'BrokenRedirects'           => array( 'Reendrezeras_trencatas', 'Endrezeras_trencatas', 'Reendrezeras_crebatas', 'Endrezeras_crebatas', 'Endrezeras_trencadas', 'Endrezeras_crebadas' ),
+	'Disambiguations'           => array( 'Desambigazions', 'Pachinas_de_desambigazión' ),
+	'Userlogin'                 => array( 'Dentrar', 'Enzetar_sesión' ),
+	'Userlogout'                => array( 'Salir', 'Rematar_sesión' ),
+	'Preferences'               => array( 'Preferenzias' ),
+	'Watchlist'                 => array( 'Lista_de_seguimiento' ),
+	'Recentchanges'             => array( 'Zaguers_cambeos', 'cambeos_rezients' ),
+	'Upload'                    => array( 'Cargar', 'Puyar' ),
+	'Imagelist'                 => array( 'Lista_d\'imáchens', 'Lista_d\'imachens' ),
+	'Listusers'                 => array( 'Lista_d\'usuarios' ),
+	'Statistics'                => array( 'Estadistica', 'Estatistica', 'Estadisticas', 'Estatisticas' ),
+	'Randompage'                => array( 'Pachina_aliatoria', 'Pachina_aleatoria', 'Pachina_á_l\'azar' ),
+	'Lonelypages'               => array( 'Pachinas_popiellas' ),
+	'Uncategorizedpages'        => array( 'Pachinas_sin_categorías', 'Pachinas_sin_categorizar' ),
+	'Uncategorizedcategories'   => array( 'Categorías_sin_categorías', 'Categorías_sin_categorizar' ),
+	'Uncategorizedimages'       => array( 'Imachens_sin_categorías', 'Imáchens_sin_categorías', 'Imachens_sin_categorizar', 'Imáchens_sin_categorizar' ),
+	'Uncategorizedtemplates'    => array( 'Plantillas_sin_categorías', 'Plantillas_sin_categorizar' ),
+	'Unusedcategories'          => array( 'Categorías_no_emplegatas', 'Categorías_sin_emplegar' ),
+	'Unusedimages'              => array( 'Imáchens_no_emplegatas', 'Imáchens_sin_emplegar' ),
+	'Wantedpages'               => array( 'Pachinas_requiestas', 'Pachinas_demandatas', 'Binclos_crebatos', 'Binclos_trencatos' ),
+	'Wantedcategories'          => array( 'Categorías_requiestas', 'Categorías_demandatas' ),
+	'Mostlinked'                => array( 'Pachinas_más_enlazatas', 'Pachinas_más_binculatas' ),
+	'Mostlinkedcategories'      => array( 'Categorías_más_enlazatas', 'Categorías_más_binculatas' ),
+	'Mostlinkedtemplates'       => array( 'Plantillas_más_enlazatas', 'Plantillas_más_binculatas' ),
+	'Mostcategories'            => array( 'Pachinas_con_más_categorías' ),
+	'Mostimages'                => array( 'Imáchens_más_emplegatas', 'Imachens_más_emplegatas' ),
+	'Mostrevisions'             => array( 'Pachinas_con_más_edizions', 'Pachinas_más_editatas', 'Pachinas_con_más_bersions' ),
+	'Fewestrevisions'           => array( 'Pachinas_con_menos_edizions', 'Pachinas_menos_editatas', 'Pachinas_con_menos_bersions' ),
+	'Shortpages'                => array( 'Pachinas_más_cortas' ),
+	'Longpages'                 => array( 'Pachinas_más_largas' ),
+	'Newpages'                  => array( 'Pachinas_nuebas', 'Pachinas_más_nuebas', 'Pachinas_más_rezients', 'Pachinas_rezients' ),
+	'Ancientpages'              => array( 'Pachinas_más_biellas', 'Pachinas_biellas', 'Pachinas_más_antigas', 'Pachinas_antigas' ),
+	'Deadendpages'              => array( 'Pachinas_sin_salida', 'Pachinas_sin_de_salida' ),
+	'Protectedpages'            => array( 'Pachinas_protexitas', 'Pachinas_protechitas', 'Pachinas_protechidas' ),
+	'Protectedtitles'           => array( 'Títols_protechitos', 'Títols_protexitos', 'Títols_protechius' ),
+	'Allpages'                  => array( 'Todas_as_pachinas' ),
+	'Prefixindex'               => array( 'Pachinas_por_prefixo', 'Mirar_por_prefixo' ),
+	'Ipblocklist'               => array( 'Lista_d\'IPs_bloqueyatas', 'Lista_d\'IPs_bloquiatas', 'Lista_d\'adrezas_IP_bloqueyatas', 'Lista_d\'adrezas_IP_bloquiatas' ),
+	'Specialpages'              => array( 'Pachinas_espezials' ),
+	'Contributions'             => array( 'Contrebuzions' ),
+	'Emailuser'                 => array( 'Nimbía_mensache' ),
+	'Movepage'                  => array( 'Renombrar_pachina', 'Mober_pachina', 'Tresladar_pachina' ),
+	'Categories'                => array( 'Categorías' ),
+	'Export'                    => array( 'Esportar' ),
+	'Version'                   => array( 'Bersión' ),
+	'Allmessages'               => array( 'Todos_os_mensaches' ),
+	'Import'                    => array( 'Importar' ),
+	'Mypage'                    => array( 'A_mía_pachina', 'A_mía_pachina_d\'usuario' ),
+	'Mytalk'                    => array( 'A_mía_descusión', 'A_mía_pachina_de_descusión' ),
+	'Mycontributions'           => array( 'As_mías_contrebuzions' ),
+	'Listadmins'                => array( 'Lista_d\'almenistradors' ),
+	'Listbots'                  => array( 'Lista_de_bots' ),
+	'Popularpages'              => array( 'Pachinas_populars', 'Pachinas_más_populars' ),
+	'Search'                    => array( 'Mirar' ),
 );
 
 $messages = array(
