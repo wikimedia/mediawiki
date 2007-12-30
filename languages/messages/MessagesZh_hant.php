@@ -2184,7 +2184,7 @@ Variants for Chinese language
 # E-mail address confirmation
 'confirmemail'            => '確認郵箱位址',
 'confirmemail_noemail'    => '您沒有在您的[[Special:Preferences|用戶設定]]裡面輸入一個有效的 email 位址。',
-'confirmemail_text'       => '此網站要求您在使用郵件功能之前驗證您的郵箱位址。
+'confirmemail_text'       => '{{SITENAME}}要求您在使用郵件功能之前驗證您的郵箱位址。
 點擊以下按鈕可向您的郵箱發送一封確認郵件。該郵件包含有一行代碼連結；
 請在您的瀏覽器中加載此連結以確認您的郵箱位址是有效的。',
 'confirmemail_pending'    => '<div class="error">
