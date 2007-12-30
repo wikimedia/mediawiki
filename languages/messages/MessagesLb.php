@@ -32,15 +32,19 @@ $messages = array(
 'tog-watchmoves'           => 'Säiten déi ech réckelen automatesch op meng Suivi-Lëscht setzen',
 'tog-watchdeletion'        => 'Säiten déi ech läschen automatesch op meng Suivi-Lëscht setzen',
 'tog-minordefault'         => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
+'tog-previewonfirst'       => "Beim éischten Änneren de ''Preview'' uweisen.",
 'tog-nocache'              => 'Säitecache deaktivéieren',
 'tog-enotifwatchlistpages' => 'Schéck mer eng E-Mail wann eng vun de Säiten op menger Suivislëscht geännert ginn ass.',
 'tog-enotifusertalkpages'  => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
+'tog-enotifminoredits'     => 'Schéckt mer och bäi kléngen Ännerungen op menge suivéierte Säiten eng E-Mail.',
 'tog-shownumberswatching'  => "D'Zuel vun de Benotzer déi dës Säit suivéiere weisen",
 'tog-fancysig'             => 'Ënnerschrëft ouni automatesche Link op déi eege Benotzersäit',
 'tog-externaleditor'       => 'Externen Editor als Standard benotzen',
 'tog-externaldiff'         => 'Externen Diff-Programm als Standard benotzen',
 'tog-uselivepreview'       => 'Live-Preview notzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'     => 'Warnen, wa beim Späicheren de Résumé feelt',
+'tog-watchlisthideown'     => 'Meng Ännerungen op menger Suivi-Lëscht verstoppen',
+'tog-watchlisthidebots'    => 'Ännerungen vu Boten op menger Suivi-Lëscht verstoppen',
 'tog-watchlisthideminor'   => 'Kleng Ännerungen op menger Suivi-Lëscht verstoppen',
 'tog-ccmeonemails'         => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'             => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net de ganzen Artikel",
@@ -124,6 +128,7 @@ $messages = array(
 'newwindow'      => '(geet an enger neier Fënster op)',
 'cancel'         => 'Zeréck',
 'qbfind'         => 'Fannen',
+'qbbrowse'       => 'Bliederen',
 'qbedit'         => 'Änneren',
 'qbpageoptions'  => 'Säitenoptiounen',
 'qbmyoptions'    => 'Meng Säiten',
@@ -292,6 +297,8 @@ Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. So
 'viewsourcefor'        => 'fir $1',
 'actionthrottled'      => 'Dës Aktioun gouf gebremst',
 'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, dee jidderee liese kann.",
+'namespaceprotected'   => "Dir hutt net déi néideg Rechter fir d'Säiten am Nummraum '''$1''' ze änneren.",
+'customcssjsprotected' => 'Dir hutt net déi néideg Rechter fir dës Säit ze änneren, wëll si zu de perséinlechen Astellungen vun engem anere Benotzer gehéiert.',
 'ns-specialprotected'  => 'Säiten am {{ns:special}}-Nummraum kënnen net verännert ginn.',
 
 # Login and logout pages
@@ -307,7 +314,11 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'yourpasswordagain'          => 'Passwuert widderhuelen:',
 'remembermypassword'         => 'Meng Umeldung op dësem Computer verhalen',
 'yourdomainname'             => 'Ären Domain',
+'loginproblem'               => "'''Et gouf e Problem bäi ärer Umeldung.'''<br />
+
+Probéiert et w.e.g. nach eng Kéier!",
 'login'                      => 'Umellen',
+'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin'                  => 'Aloggen',
 'logout'                     => 'Ofmellen',
 'userlogout'                 => 'Ausloggen',
@@ -318,6 +329,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'gotaccountlink'             => 'Umellen',
 'createaccountmail'          => 'Via Email',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
+'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt. Sicht iech w.e.g. een anere Benotzernumm.',
 'youremail'                  => 'E-Mail-Adress:',
 'username'                   => 'Benotzernumm:',
 'uid'                        => 'Benotzer-Nummer:',
@@ -341,6 +353,13 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'passwordtooshort'           => 'Ärt Passwuert ass ongülteg oder ze kuerz: Et muss mindestens $1 Zeeche laang sinn an et däerf net matt dem Benotzernumm identesch sinn.',
 'mailmypassword'             => 'Neit Passwuert per mail kréien',
 'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkonto',
+'passwordremindertext'       => "Iergend een matt der IP-Adress $1, waarscheinlech Dir selwer, huet een neit Passwuert fir d'Umeldung op {{SITENAME}} ($4) gefrot.
+
+Dat automatesch generéiert Passwuert fir  de Benotzer $2 ass elo: $3
+
+Dir sollt iech elo umellen an d'Passwuert änneren.
+
+Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschenzäit nees un ärt Passwuert erënnere kënnt an Dir àrt Passwuert net ännere wëllt dann ignoréiert dëse Message a benotzt weider ärt aalt Passwuert.",
 'noemail'                    => 'De Benotzer „$1“ huet keng E-Mail-Adress uginn.',
 'eauthentsent'               => "Eng Confirmatiouns-Email gouf un déi uginnen Adress geschéckt.<br>Ier iergend eng Email vun anere Benotzer op dee Kont geschéckt ka ginn, muss der als éischt d'Instructiounen an der Confirmatiouns-Email befollegen, fir ze bestätegen datt de Kont wierklech ären eegenen ass.",
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
@@ -356,6 +375,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 # Password reset dialog
 'resetpass'           => 'Passwuert fir Benotzerkont zrécksetzen',
 'resetpass_header'    => 'Passwuert zrécksetzen',
+'resetpass_submit'    => 'Passwuert aginn an umellen',
 'resetpass_forbidden' => 'Passwierder kënnen op {{SITENAME}} net geännert ginn.',
 'resetpass_missing'   => 'Eidelt Formular',
 
@@ -372,6 +392,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'headline_tip'    => 'Iwwerschrëft vum Niveau 2',
 'math_sample'     => 'Formel hei asetzen',
 'math_tip'        => 'Mathematesch Formel (LaTeX)',
+'nowiki_sample'   => 'Unformatéierten Text hei afügen',
 'nowiki_tip'      => 'Unformatéierten Text',
 'image_tip'       => 'Bildlink',
 'media_tip'       => 'Link op e Medien Fichier',
@@ -453,6 +474,11 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'storedversion'             => 'Gespäichert Versioun',
 'editingold'                => '<strong>OPGEPASST: Dir ännert eng al Versioun vun dëser Säit. Wann Dir späichert, sinn all rezent Versioune vun dëser Säit verluer.</strong>',
 'yourdiff'                  => 'Ënnerscheeder',
+'copyrightwarning'          => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënner der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn. Wann Dir net wëllt datt är Texter vun anere Mataarbechter verännert, geläscht a weiderverdeelt kënne ginn, da setzt näischt heihinner.<br /> 
+
+Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnleche Ressource kopéiert hutt.
+
+<strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNISS AN!</strong>',
 'copyrightwarning2'         => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Matschaffer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br /> Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnlecher Ressource kopéiert hutt. (cf. $1 fir méi Detailler). <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!</strong>',
 'protectedpagewarning'      => '<strong>OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.</strong>',
 'templatesused'             => 'Schablounen déi op dëser Säit am Gebrauch sinn:',
@@ -520,10 +546,14 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 
 # Search results
 'searchresults'         => 'Resultat vun der Sich',
+'noexactmatch'          => "'''Et gëtt keng Säite mam Titel \"\$1\".''' 
+
+Dir kënnt [[:\$1|déi Säit uleeën]].",
 'noexactmatch-nocreate' => "'''Et gëtt keng Säit mam Titel \"\$1\".'''",
 'titlematches'          => 'Artikeltitel Iwwerdeneestëmmungen',
 'textmatches'           => 'Säitentext Iwwerdeneestëmmungen',
 'nextn'                 => 'nächst $1',
+'viewprevnext'          => 'Weis ($1) ($2) ($3)',
 'showingresults'        => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
 'showingresultsnum'     => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
 'nonefound'             => '<strong>Opgepasst</strong>: Net erfollegräich Siche geschéien dacks doduerch, datt zevill allgeméng Wierder benotzt ginn, wéi "an" oder "vun", déi net indexéiert sinn, oder wann dir méi wéi ee Wuert ugitt (dir kritt nëmmen déi Säiten ugewisen, an deenen all d\'Wierder stinn).',
@@ -608,6 +638,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 
 # Recent changes
 'recentchanges'                     => 'Rezent Ännerungen',
+'rcnote'                            => "Ugewisen {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– neien Artikel; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
 'rcshowhideminor'                   => 'Kleng Ännerungen $1',
 'rcshowhidebots'                    => 'Botten $1',
 'rcshowhideliu'                     => 'Ugemellte Benotzer $1',
@@ -679,6 +710,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'filehist-filesize'         => 'Gréisst vum Fichier',
 'filehist-comment'          => 'Bemierkung',
 'imagelinks'                => 'Biller Linken',
+'linkstoimage'              => 'Déi folgenden Säite benotzen dëse Fichier:',
 'shareduploadwiki-linktext' => 'Datei-Beschreiwungssäit',
 'imagelist_date'            => 'Datum',
 'imagelist_name'            => 'Numm',
@@ -1067,6 +1099,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'tooltip-pt-userpage'             => 'Meng Benotzersäit',
 'tooltip-pt-mytalk'               => 'Meng Diskussioun',
 'tooltip-pt-preferences'          => 'Meng Preferenzen',
+'tooltip-pt-mycontris'            => 'Lëscht vu menge Kontributiounen',
 'tooltip-pt-login'                => 'Sech unzemellen gëtt gäre gesinn, Dir musst et awer net maachen.',
 'tooltip-pt-logout'               => 'Ofmellen',
 'tooltip-ca-talk'                 => 'Diskussioun iwwert de Säiteninhalt',
@@ -1081,12 +1114,14 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'tooltip-search'                  => 'Op {{SITENAME}} sichen',
 'tooltip-n-mainpage'              => "Besicht d'Haaptsäit",
 'tooltip-n-recentchanges'         => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',
+'tooltip-n-randompage'            => 'Zoufälleg Säit',
 'tooltip-n-help'                  => 'Hëllefsäiten weisen.',
 'tooltip-n-sitesupport'           => 'Ënnerstetzt eis',
 'tooltip-t-whatlinkshere'         => 'Lëscht vun alle Säiten, déi heihi linken',
 'tooltip-feed-rss'                => 'RSS-Feed fir dës Säit',
 'tooltip-feed-atom'               => 'Atom-Feed fir dës Säit',
 'tooltip-t-emailuser'             => 'Dësem Benotzer eng E-Mail schécken',
+'tooltip-t-upload'                => 'Biller oder Medie-Fichierën eroplueden',
 'tooltip-t-specialpages'          => 'Lëscht vun alle Spezialsäiten',
 'tooltip-ca-nstab-main'           => 'Contenu vun der Säit weisen',
 'tooltip-ca-nstab-user'           => 'Benotzersäit weisen',
@@ -1339,4 +1374,3 @@ $1',
 'watchlistedit-raw-done' => 'Är Suivi-Lëscht gouf gespäichert.',
 
 );
-
