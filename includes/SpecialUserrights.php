@@ -70,7 +70,7 @@ class UserrightsForm extends HTMLForm {
 				$reason = $this->mRequest->getVal( 'user-reason' );
 				if( $wgUser->matchEditToken( $this->mRequest->getVal( 'wpEditToken' ), $username ) ) {
 					$this->saveUserGroups( $username,
-						$this->mRequest->getArray( 'member' ),
+						$this->mRequest->getArray( 'removable' ),
 						$this->mRequest->getArray( 'available' ),
 						$reason );
 				}
@@ -269,7 +269,12 @@ class UserrightsForm extends HTMLForm {
 		global $wgOut, $wgUser;
 		
 		list( $addable, $removable ) = $this->splitGroups( $groups );
-
+		
+		$list = array();
+		foreach( $user->getGroups() as $group )
+			$list[] = self::buildGroupLink( $group );
+		$grouplist = implode( ', ', $list );
+		
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
 			Xml::hidden( 'user-editname', $user->getName() ) .
@@ -278,6 +283,7 @@ class UserrightsForm extends HTMLForm {
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			wfMsgExt( 'editinguser', array( 'parse' ),
 				wfEscapeWikiText( $user->getName() ) ) .
+			'<p>' . wfMsgHtml('userrights-groupsmember') . ' ' . $grouplist . '</p>' .
 			$this->explainRights() .
 			"<table border='0'>
 			<tr>
@@ -314,6 +320,19 @@ class UserrightsForm extends HTMLForm {
 			Xml::closeElement( 'form' ) . "\n"
 		);
 	}
+	
+	/**
+	 * Format a link to a group description page
+	 *
+	 * @param string $group
+	 * @return string
+	 */
+	private static function buildGroupLink( $group ) {
+		static $cache = array();
+		if( !isset( $cache[$group] ) )
+			$cache[$group] = User::makeGroupLinkHtml( $group, User::getGroupMember( $group ) );
+		return $cache[$group];
+	}
 
 	/**
 	 * Prepare a list of groups the user is able to add and remove
@@ -343,7 +362,7 @@ class UserrightsForm extends HTMLForm {
 	 * @return string XHTML <select> element
 	 */
 	private function removeSelect( $groups ) {
-		return $this->doSelect( $groups, 'member' );
+		return $this->doSelect( $groups, 'removable' );
 	}
 
 	/**
@@ -360,7 +379,7 @@ class UserrightsForm extends HTMLForm {
 	 * Adds the <select> thingie where you can select what groups to add/remove
 	 *
 	 * @param array  $groups The groups that can be added/removed
-	 * @param string $name   'member' or 'available'
+	 * @param string $name   'removable' or 'available'
 	 * @return string XHTML <select> element
 	 */
 	private function doSelect( $groups, $name ) {
