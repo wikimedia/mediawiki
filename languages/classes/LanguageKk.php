@@ -12,7 +12,7 @@ define( 'KK_C_UC', 'АӘБВГҒДЕЁЖЗИЙКҚЛМНҢОӨПРСТУҰҮФХ
 define( 'KK_C_LC', 'аәбвгғдеёжзийкқлмнңоөпрстуұүфхһцчшщъыіьэюя' ); # Kazakh Cyrillic lowercase
 define( 'KK_L_UC', 'AÄBCÇDEÉFGĞHIİÏJKLMNÑOÖPQRSŞTUÜVWXYÝZ' ); # Kazakh Latin uppercase
 define( 'KK_L_LC', 'aäbcçdeéfgğhıiïjklmnñoöpqrsştuüvwxyýz' ); # Kazakh Latin lowercase
-define( 'KK_A', 'اٵبۆگعدەجزيكقلمنڭوٶپرستۋۇٷفحھچشىٸ' ); # Kazakh Arabic
+//define( 'KK_A', 'اٵبۆگعدەجزيكقلمنڭوٶپرستۋۇٷفحھچشىٸ' ); # Kazakh Arabic
 
 class KkConverter extends LanguageConverter {
 	
@@ -37,18 +37,18 @@ class KkConverter extends LanguageConverter {
 		$kk2Cyrl = array();
 		$kk2Latn = array();
 		$kk2Arab = array();
-		$kk2KZ = array();
-		$kk2TR = array();
-		$kk2CN = array();
+		$kk2KZ   = array();
+		$kk2TR   = array();
+		$kk2CN   = array();
 
 		$this->mTables = array(
-			'kk-cyrl'	=> new ReplacementArray( $kk2Cyrl ),
-			'kk-latn'	=> new ReplacementArray( $kk2Latn ),
-			'kk-arab'	=> new ReplacementArray( $kk2Arab ),
-			'kk-kz'		=> new ReplacementArray( array_merge($kk2Cyrl, $kk2KZ) ),
-			'kk-tr'		=> new ReplacementArray( array_merge($kk2Latn, $kk2TR) ),
-			'kk-cn'		=> new ReplacementArray( array_merge($kk2Arab, $kk2CN) ),
-			'kk'		=> new ReplacementArray()
+			'kk-cyrl' => new ReplacementArray( $kk2Cyrl ),
+			'kk-latn' => new ReplacementArray( $kk2Latn ),
+			'kk-arab' => new ReplacementArray( $kk2Arab ),
+			'kk-kz'   => new ReplacementArray( array_merge($kk2Cyrl, $kk2KZ) ),
+			'kk-tr'   => new ReplacementArray( array_merge($kk2Latn, $kk2TR) ),
+			'kk-cn'   => new ReplacementArray( array_merge($kk2Arab, $kk2CN) ),
+			'kk'      => new ReplacementArray()
 		);
 	}
 
@@ -140,45 +140,47 @@ class KkConverter extends LanguageConverter {
 			## Cyrillic -> Arabic
 			'/\№/u' => 'نٶ.',
 			'/([АӘЕЁИОӨҰҮЭЮЯЪЬ])е/ui' => '$1يە',
+			'/[еэ]/ui' => 'ە', '/[ъь]/ui' => '',
 			'/а/ui' => 'ا', '/ә/ui' => 'ٵ', '/б/ui' => 'ب', '/в/ui' => 'ۆ',
-			'/г/ui' => 'گ', '/ғ/ui' => 'ع', '/д/ui' => 'د', '/[еэ]/ui' => 'ە',
-			'/ё/ui' => 'يو', '/ж/ui' => 'ج', '/з/ui' => 'ز', '/и/ui' => 'ي',
-			'/й/ui' => 'ي', '/к/ui' => 'ك', '/қ/ui' => 'ق', '/л/ui' => 'ل',
-			'/м/ui' => 'م', '/н/ui' => 'ن', '/ң/ui' => 'ڭ', '/о/ui' => 'و',
-			'/ө/ui' => 'ٶ', '/п/ui' => 'پ', '/р/ui' => 'ر', '/с/ui' => 'س',
-			'/т/ui' => 'ت', '/у/ui' => 'ۋ', '/ұ/ui' => 'ۇ', '/ү/ui' => 'ٷ',
-			'/ф/ui' => 'ف', '/х/ui' => 'ح', '/һ/ui' => 'ھ', '/ц/ui' => 'تس',
-			'/ч/ui' => 'چ', '/ш/ui' => 'ش', '/щ/ui' => 'شش', '/[ъь]/ui' => '',
-			'/ы/ui' => 'ى', '/і/ui' => 'ٸ', '/ю/ui' => 'يۋ', '/я/ui' => 'يا',
-
+			'/г/ui' => 'گ', '/ғ/ui' => 'ع', '/д/ui' => 'د', '/ё/ui' => 'يو',
+			'/ж/ui' => 'ج', '/з/ui' => 'ز', '/и/ui' => 'ي', '/й/ui' => 'ي',
+			'/к/ui' => 'ك', '/қ/ui' => 'ق', '/л/ui' => 'ل', '/м/ui' => 'م',
+			'/н/ui' => 'ن', '/ң/ui' => 'ڭ', '/о/ui' => 'و', '/ө/ui' => 'ٶ',
+			'/п/ui' => 'پ', '/р/ui' => 'ر', '/с/ui' => 'س', '/т/ui' => 'ت',
+			'/у/ui' => 'ۋ', '/ұ/ui' => 'ۇ', '/ү/ui' => 'ٷ', '/ф/ui' => 'ف',
+			'/х/ui' => 'ح', '/һ/ui' => 'ھ', '/ц/ui' => 'تس', '/ч/ui' => 'چ',
+			'/ш/ui' => 'ش', '/щ/ui' => 'شش', '/ы/ui' => 'ى', '/і/ui' => 'ٸ',
+			'/ю/ui' => 'يۋ', '/я/ui' => 'يا',
 			## Latin -> Arabic // commented for now...
 			/*'/No\./u' => 'نٶ.',
-			'/a/ui' => 'ا',  '/ä/ui' => 'ٵ',  '/b/ui' => 'ب', '/c/ui' => 'تس',
-			'/ç/ui' => 'چ', '/d/ui' => 'د', '/[eé]/ui' => 'ە', '/f/ui' => 'ف', 
-			'/g/ui' => 'گ',  '/ğ/ui' => 'ع', '/h/ui' => 'ھ', '/[ıI]/u' => 'ى', 
-			'/[iİ]/u' => 'ٸ', '/ï/ui' => 'ي', '/j/ui' => 'ج', '/k/ui' => 'ك',
-			'/l/ui' => 'ل', '/m/ui' => 'م', '/n/ui' => 'ن', '/ñ/ui' => 'ڭ',
-			'/o/ui' => 'و', '/ö/ui' => 'ٶ', '/p/ui' => 'پ', '/q/ui' => 'ق',
-			'/r/ui' => 'ر', '/s/ui' => 'س', '/ş/ui' => 'ش', '/t/ui' => 'ت',
-			'/u/ui' => 'ۇ', '/ü/ui' => 'ٷ', '/v/ui' => 'ۆ', '/w/ui' => 'ۋ',
-			'/x/ui' => 'ح', '/[yý]/ui' => 'ي', '/z/ui' => 'ز', '/[ʺʹ]/ui' => '',*/
-
+			'/[ıI]/u' => 'ى', '/[iİ]/u' => 'ٸ',
+			'/[eé]/ui' => 'ە', '/[yý]/ui' => 'ي',
+			'/[ʺʹ]/ui' => '',
+			'/a/ui' => 'ا', '/ä/ui' => 'ٵ', '/b/ui' => 'ب', '/c/ui' => 'تس',
+			'/ç/ui' => 'چ', '/d/ui' => 'د', '/f/ui' => 'ف', '/g/ui' => 'گ',
+			'/ğ/ui' => 'ع', '/h/ui' => 'ھ', '/ï/ui' => 'ي', '/j/ui' => 'ج',
+			'/k/ui' => 'ك', '/l/ui' => 'ل', '/m/ui' => 'م', '/n/ui' => 'ن',
+			'/ñ/ui' => 'ڭ', '/o/ui' => 'و', '/ö/ui' => 'ٶ', '/p/ui' => 'پ',
+			'/q/ui' => 'ق', '/r/ui' => 'ر', '/s/ui' => 'س', '/ş/ui' => 'ش',
+			'/t/ui' => 'ت', '/u/ui' => 'ۇ', '/ü/ui' => 'ٷ', '/v/ui' => 'ۆ',
+			'/w/ui' => 'ۋ', '/x/ui' => 'ح', '/z/ui' => 'ز',*/
 			## Punctuation -> Arabic
-			'/\?/' => '؟', # &#x061F;
 			'/\,/' => '،', # &#x060C;
-			'/\;/' => '؛' , # &#x061B;
-			'/\%/' => '٪', # &#x066a;
+			'/;/' => '؛', # &#x061B;
+			'/\?/' => '؟', # &#x061F;
+			'/%/' => '٪', # &#x066A;
+			'/\*/' => '٭', # &#x066D;
 			## Digits -> Arabic
-			'/0/' => '۰',  # &#x06f0;
-			'/1/' => '۱', # &#x06f1;
-			'/2/' => '۲', # &#x06f2;
-			'/3/' => '۳', # &#x06f3;
-			'/4/' => '۴', # &#x06f4;
-			'/5/' => '۵', # &#x06f5;
-			'/6/' => '۶', # &#x06f6;
-			'/7/' => '۷', # &#x06f7;
-			'/8/' => '۸', # &#x06f8;
-			'/9/' => '۹', # &#x06f9;
+			'/0/' => '۰', # &#x06F0;
+			'/1/' => '۱', # &#x06F1;
+			'/2/' => '۲', # &#x06F2;
+			'/3/' => '۳', # &#x06F3;
+			'/4/' => '۴', # &#x06F4;
+			'/5/' => '۵', # &#x06F5;
+			'/6/' => '۶', # &#x06F6;
+			'/7/' => '۷', # &#x06F7;
+			'/8/' => '۸', # &#x06F8;
+			'/9/' => '۹', # &#x06F9;
 		);
 
 	}
@@ -287,7 +289,7 @@ class KkConverter extends LanguageConverter {
 		return $ret;
 	}
 
-	function regsConverter( $text, $toVariant ) {	
+	function regsConverter( $text, $toVariant ) {
 		if ($text == '') return $text;
 
 		$pat = array();
