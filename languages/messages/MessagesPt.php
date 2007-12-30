@@ -161,12 +161,17 @@ $messages = array(
 'october-gen'   => 'Outubro',
 'november-gen'  => 'Novembro',
 'december-gen'  => 'Dezembro',
+'jan'           => 'Jan',
 'feb'           => 'Fev',
+'mar'           => 'Mar',
 'apr'           => 'Abr',
 'may'           => 'Mai',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
 'aug'           => 'Ago',
 'sep'           => 'Set',
 'oct'           => 'Out',
+'nov'           => 'Nov',
 'dec'           => 'Dez',
 
 # Bits of text used by many pages
@@ -273,6 +278,8 @@ $messages = array(
 'disclaimerpage'    => 'Project:Aviso_geral',
 'edithelp'          => 'Ajuda de edição',
 'edithelppage'      => 'Help:Editar',
+'faq'               => 'FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Conteúdos',
 'mainpage'          => 'Página principal',
 'policy-url'        => 'Project:Políticas',
@@ -292,6 +299,7 @@ $messages = array(
 'versionrequired'     => 'É necessária a versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para poder ser utilizada. Consulte [[{{ns:special}}:Version|a página sobre a versão do sistema]]',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Obtido em "$1"',
 'youhavenewmessages'      => 'Você tem $1 ($2).',
 'newmessageslink'         => 'novas mensagens',
@@ -306,6 +314,7 @@ $messages = array(
 'thisisdeleted'           => 'Ver ou restaurar $1?',
 'viewdeleted'             => 'Ver $1?',
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
+'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Tipo de subscrição feed inválido.',
 'site-rss-feed'           => 'Feed RSS $1',
 'site-atom-feed'          => 'Feed Atom $1',
@@ -437,6 +446,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'yournick'                   => 'Alcunha:',
 'badsig'                     => 'Assinatura inválida; verifique o código HTML utilizado.',
 'badsiglength'               => 'Nome de utilizador muito longo. Seria necessário que possuísse menos de $1 caracteres.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'                 => 'Erro de autenticação',
 'prefs-help-email'           => 'O fornecimento de um endereço de e-mail é opcional, mas permite que os utilizadores entrem em contacto consigo sem que tenha de lhes revelar o seu endereço de e-mail.',
@@ -681,6 +691,7 @@ A justificativa apresentada por $3 foi ''$2''",
 'cur'                 => 'act',
 'next'                => 'prox',
 'last'                => 'ult',
+'orig'                => 'orig',
 'page_first'          => 'primeira',
 'page_last'           => 'última',
 'histlegend'          => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
@@ -689,6 +700,7 @@ Legenda: (actu) = diferenças da versão actual,
 'deletedrev'          => '[eliminada]',
 'histfirst'           => 'Mais antigas',
 'histlast'            => 'Mais recentes',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(vazio)',
 
 # Revision feed
@@ -878,6 +890,8 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'userrights-available-remove' => 'É possível remover utilizadores de $1.',
 'userrights-no-interwiki'     => 'Você não tem permissão de alterar privilégios de utilizadores em outras wikis.',
 'userrights-nodatabase'       => 'A base de dados $1 não existe ou não é uma base de dados local.',
+'userrights-nologin'          => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de utilizador.',
+'userrights-notallowed'       => 'Sua conta não possui permissão para conceder privilégios a utilizadores.',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1036,6 +1050,7 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'bydate'                    => 'por data',
 'bysize'                    => 'por tamanho',
 'imgdelete'                 => 'eli',
+'imgdesc'                   => 'desc',
 'imgfile'                   => 'ficheiro',
 'filehist'                  => 'Histórico do ficheiro',
 'filehist-help'             => 'Clique em uma data/horário para ver o ficheiro tal como ele se encontrava em tal momento.',
@@ -1091,6 +1106,7 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'mimesearch'         => 'Pesquisa MIME',
 'mimesearch-summary' => 'Esta página possibilita que os ficheiros sejam filtrados a partir de seu tipo MIME. Sintaxe de busca: tipo/subtipo (por exemplo, <tt>image/jpeg</tt>).',
 'mimetype'           => 'tipo MIME:',
+'download'           => 'download',
 
 # Unwatched pages
 'unwatchedpages' => 'Páginas não vigiadas',
@@ -1129,6 +1145,7 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'statistics-mostpopular' => 'Páginas mais vistas',
 
 'disambiguations'      => 'Página de desambiguações',
+'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => 'As páginas a seguir ligam a "páginas de desambiguação" ao invés de aos tópicos adequados.<br /> Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:disambiguationspage]]',
 
 'doubleredirects'     => 'Redireccionamentos duplos',
@@ -1145,7 +1162,9 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'fewestrevisions' => 'Páginas de conteúdo com menos edições',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
+'nlinks'                  => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisão|revisões}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
@@ -1415,6 +1434,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 'restriction-level'           => 'Nível de restrição:',
 'minimum-size'                => 'Tam. mínimo',
 'maximum-size'                => 'Tam. máximo',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Editar',
@@ -1503,6 +1523,7 @@ $1',
 'istemplate'          => 'inclusão',
 'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|próximo|próximos $1}}',
+'whatlinkshere-links' => '← links',
 
 # Block/unblock
 'blockip'                     => 'Bloquear utilizador',
@@ -1802,15 +1823,16 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 
 # Spam protection
-'spamprotectiontitle'  => 'Filtro de protecção contra spam',
-'spamprotectiontext'   => 'A página que deseja salvar foi bloqueada pelo filtro de spam. Tal bloqueio foi provavelmente causado por uma ligação para um website externo.',
-'spamprotectionmatch'  => 'O seguinte texto activou o filtro de spam: $1',
-'subcategorycount'     => '{{PLURAL:$1|Existe uma subcategoria|Existem $1 subcategorias}} nesta categoria.',
-'categoryarticlecount' => '{{PLURAL:$1|Existe uma página|Existem $1 páginas}} nesta categoria.',
-'category-media-count' => '{{PLURAL:$1|Há um ficheiro|Há $1 ficheiros}} nesta categoria.',
-'spambot_username'     => 'MediaWiki limpeza de spam',
-'spam_reverting'       => 'Revertendo para a última versão não contendo hiperligações para $1',
-'spam_blanking'        => 'Todas revisões contendo hiperligações para $1, limpando',
+'spamprotectiontitle'    => 'Filtro de protecção contra spam',
+'spamprotectiontext'     => 'A página que deseja salvar foi bloqueada pelo filtro de spam. Tal bloqueio foi provavelmente causado por uma ligação para um website externo.',
+'spamprotectionmatch'    => 'O seguinte texto activou o filtro de spam: $1',
+'subcategorycount'       => '{{PLURAL:$1|Existe uma subcategoria|Existem $1 subcategorias}} nesta categoria.',
+'categoryarticlecount'   => '{{PLURAL:$1|Existe uma página|Existem $1 páginas}} nesta categoria.',
+'category-media-count'   => '{{PLURAL:$1|Há um ficheiro|Há $1 ficheiros}} nesta categoria.',
+'listingcontinuesabbrev' => 'cont.',
+'spambot_username'       => 'MediaWiki limpeza de spam',
+'spam_reverting'         => 'Revertendo para a última versão não contendo hiperligações para $1',
+'spam_blanking'          => 'Todas revisões contendo hiperligações para $1, limpando',
 
 # Info page
 'infosubtitle'   => 'Informação para página',
@@ -2111,6 +2133,7 @@ Trackbacks para esta página:<br />
 $1
 </div>",
 'trackbackremove'   => ' ([$1 Eliminar])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'O trackback foi eliminado com sucesso.',
 
 # Delete conflict
@@ -2124,9 +2147,10 @@ Por favor, confirme que realmente deseja recriar esta página.",
 'redirectingto' => 'Redireccionando para [[$1]]...',
 
 # action=purge
-'confirm_purge' => 'Limpar a memória cache desta página?
+'confirm_purge'        => 'Limpar a memória cache desta página?
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Pesquisar por páginas contendo ''$1''.",
@@ -2143,6 +2167,8 @@ $1',
 'imgmultiparseerror' => 'O ficheiro aparenta estar corrompido ou com algum outro erro. Por conta disso, não será possível exibir uma listagem de páginas no wiki {{SITENAME}}.',
 
 # Table pager
+'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'desc',
 'table_pager_next'         => 'Próxima página',
 'table_pager_prev'         => 'Página anterior',
 'table_pager_first'        => 'Primeira página',

@@ -2207,7 +2207,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 # E-mail address confirmation
 'confirmemail'            => 'Bekreft e-postadresse',
 'confirmemail_noemail'    => 'Du har ikke oppgitt en gydlig e-postadresse i [[Special:Preferences|innstillingene dine]].',
-'confirmemail_text'       => 'Denne wikien krever at du bekrefter e-postadressa di før du kan benytte e-posttjenester. Trykk på knappen under for å sende en bekreftelsesmelding til din e-postadresse. E-posten vil inneholde en lenke med en kode; last lenken i nettleseren din for å bekrefte at e-postadressa er gyldig.',
+'confirmemail_text'       => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',
 'confirmemail_pending'    => '<div class="error">
 En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig har opprettet kontoen din, kan du ønske å vente noen minutter før du spør om ny kode.
 </div>',

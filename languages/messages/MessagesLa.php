@@ -1384,7 +1384,7 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 # E-mail address confirmation
 'confirmemail'            => 'Inscriptionem electronicam adfirmare',
 'confirmemail_noemail'    => 'Non est tibi inscriptio electronica valida in [[Special:Preferences|tuis praeferentiis]] posita.',
-'confirmemail_text'       => 'Hoc vici te postulat inscriptionem tuam electronicam adfirmare priusquam proprietatibus litterarum electronicarum fruaris. Imprime botonem subter ut nuntium adfirmationis tibi mittatur. Nuntio nexus inerit quod est scribendus in tuo navigatro interretiali ut validum adfirmes tuam inscriptionem electronicam.',
+'confirmemail_text'       => '{{SITENAME}} te postulat inscriptionem tuam electronicam adfirmare priusquam proprietatibus litterarum electronicarum fruaris. Imprime botonem subter ut nuntium adfirmationis tibi mittatur. Nuntio nexus inerit quod est scribendus in tuo navigatro interretiali ut validum adfirmes tuam inscriptionem electronicam.',
 'confirmemail_send'       => 'Mittere codicem adfirmationis',
 'confirmemail_sent'       => 'Missae sunt litterae electronicae adfirmationis.',
 'confirmemail_sendfailed' => 'Litteras electronicas adfirmationis non potuimus mittere. Inspice inscriptionem tuam electronicam ut errores invenias.
