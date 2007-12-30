@@ -32,214 +32,210 @@ class LanguageKk_cyrl extends Language {
 		}
 		// Set up some constants...
 		// Vowels in last syllable
-		$frontVowels = array( "е", "ө", "ү", "і", "ә", "э" );
-		$backVowels = array( "а", "о", "ұ", "ы", "я", "ё" );
-		$allVowels = array( "е", "ө", "ү", "і", "ә", "э", "а", "о", "ұ", "ы", "я", "ё" );
+		$frontVowels = array( "е", "ө", "ү", "і", "ә", "э", "я", "ё", "и" );
+		$backVowels = array( "а", "о", "ұ", "ы" );
+		$allVowels = array( "е", "ө", "ү", "і", "ә", "э", "а", "о", "ұ", "ы", "я", "ё", "и" );
 		// Preceding letters
-		$preVowels = $allVowels;
-		$preNasals = array( "м", "н", "ң" );
-		$preSonants = array( "и", "й", "л", "р", "у", "ю");
-		# $preVoiceds = array( "б", "в", "г", "ғ", "д", "ж", "з", "һ" );
-		# $preVoicelesses = array( "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ" );
-		$preConsonants = array( "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ", "б", "в", "г", "д" );
-		$preEzhZet = array( "ж", "з" );
-		$preSonorants = array( "и", "й", "л", "р", "у", "ю", "м", "н", "ң", "ж", "з");
+		$Vowels = $allVowels;
+		$Nasals = array( "м", "н", "ң" );
+		$Sonants = array( "и", "й", "л", "р", "у", "ю");
+		$Consonants = array( "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ", "б", "в", "г", "д" );
+		$Sibilants = array( "ж", "з" );
+		$Sonorants = array( "и", "й", "л", "р", "у", "ю", "м", "н", "ң", "ж", "з");
 
 		// Possessives
-		$firsts = array( "м", "ң" ); // 1st singular, 2nd unformal
-		$seconds = array( "з" );	 // 1st plural, 2nd formal
-		$thirds = array( "ы", "і" ); // 3rd
-		// Put the word in a form we can play with since we're using UTF-8
-		$ar = array();
-		$ar = preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
-		$wordEnding = $ar[count( $ar ) - 1]; //Here's the last letter in the word
-		$wordReversed = array_reverse( $ar ); //Here's an array with the order of the letters in the word reversed so we can find a match quicker *shrug*
+		$firstPerson = array( "м", "ң" ); // 1st singular, 2nd unformal
+		$secondPerson = array( "з" ); // 1st plural, 2nd formal
+		$thirdPerson = array( "ы", "і" ); // 3rd
 
-		$wordLastVowel = self::lastVowel( $wordReversed, $allVowels );
+		$lastLetter = self::lastLetter( $word, $allVowels );
+		$wordEnding = $lastLetter[0];
+		$wordLastVowel = $lastLetter[1];
+
 		// Now convert the word
 		switch ( $case ) {
 			case "dc1":
 			case "genitive": #ilik
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "тің";
+						$word = $word . "тің";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "тың";
+						$word = $word . "тың";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "нің";
+						$word = $word . "нің";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ның";
+						$word = $word . "ның";
 					}
-				} elseif ( in_array( $wordEnding, $preSonants ) || in_array( $wordEnding, $preEzhZet )) {
+				} elseif ( in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants )) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "дің";
+						$word = $word . "дің";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "дың";
+						$word = $word . "дың";
 					}
 				}
 				break;
 			case "dc2":
 			case "dative": #barıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ке";
+						$word = $word . "ке";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "қа";
+						$word = $word . "қа";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preSonorants ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ге";
+						$word = $word . "ге";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ға";
+						$word = $word . "ға";
 					}
 				}
 				break;
 			case "dc21":
 			case "possessive dative": #täweldık + barıs
-				if ( in_array( $wordEnding, $firsts ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "е";
+						$word = $word . "е";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "а";
+						$word = $word . "а";
 					}
-				} elseif ( in_array( $wordEnding, $seconds ) ) {
+				} elseif ( in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ге";
+						$word = $word . "ге";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ға";
+						$word = $word . "ға";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
 				  if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "не";
+						$word = $word . "не";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "на";
+						$word = $word . "на";
 					}
 				}
 				break;
 			case "dc3":
 			case "accusative": #tabıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ті";
+						$word = $word . "ті";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ты";
+						$word = $word . "ты";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) ) {
 					if ( in_array($wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ні";
+						$word = $word . "ні";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ны";
+						$word = $word . "ны";
 					}
-				} elseif ( in_array( $wordEnding, $preSonorants) ) {
+				} elseif ( in_array( $wordEnding, $Sonorants) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "ді";
+						$word = $word . "ді";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ды";
+						$word = $word . "ды";
 					}
 				}
 				break;
 			case "dc31":
 			case "possessive accusative": #täweldık + tabıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $seconds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ді";
+						$word = $word . "ді";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ды";
+						$word = $word . "ды";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
-						$word = implode( "", $ar ) . "н";
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
+						$word = $word . "н";
 				}
 				break;
 			case "dc4":
 			case "locative": #jatıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "те";
+						$word = $word . "те";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "та";
+						$word = $word . "та";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preSonorants ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "де";
+						$word = $word . "де";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "",$ar ) . "да";
+						$word = $word . "да";
 					}
 				} 
 				break;
 			case "dc41":
 			case "possessive locative": #täweldık + jatıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $seconds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "де";
+						$word = $word . "де";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "да";
+						$word = $word . "да";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "нде";
+						$word = $word . "нде";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "",$ar ) . "нда";
+						$word = $word . "нда";
 					}
 				} 
 				break;
 			case "dc5":
 			case "ablative": #şığıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "тен";
+						$word = $word . "тен";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "тан";
+						$word = $word . "тан";
 					}
-				} elseif ( in_array($wordEnding, $preVowels ) || in_array($wordEnding, $preSonants ) || in_array($wordEnding, $preEzhZet ) ) {
+				} elseif ( in_array($wordEnding, $Vowels ) || in_array($wordEnding, $Sonants ) || in_array($wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ден";
+						$word = $word . "ден";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "дан";
+						$word = $word . "дан";
 					}
-				}  elseif ( in_array($wordEnding, $preNasals ) ) {
+				}  elseif ( in_array($wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "нен";
+						$word = $word . "нен";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "нан";
+						$word = $word . "нан";
 					}
 				}
 				break;
 			case "dc51":
 			case "possessive ablative": #täweldık + şığıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $thirds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $thirdPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "нен";
+						$word = $word . "нен";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "нан";
+						$word = $word . "нан";
 					}
-				} elseif ( in_array($wordEnding, $seconds ) ) {
+				} elseif ( in_array($wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ден";
+						$word = $word . "ден";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "дан";
+						$word = $word . "дан";
 					}
 				}
 				break;
 			case "dc6":
 			case "comitative": #kömektes
-				if ( in_array( $wordEnding, $preConsonants ) ) {
-						$word = implode( "", $ar ) . "пен";
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) || in_array( $wordEnding, $preSonants ) ) {
-						$word = implode( "", $ar ) . "мен";
-				} elseif ( in_array( $wordEnding, $preEzhZet ) ) {
-						$word = implode( "", $ar ) . "бен";
+				if ( in_array( $wordEnding, $Consonants ) ) {
+						$word = $word . "пен";
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+						$word = $word . "мен";
+				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
+						$word = $word . "бен";
 				}
 				break;
 			case "dc61":
 			case "possessive comitative": #täweldık + kömektes
-				if ( in_array( $wordEnding, $preConsonants ) ) {
-						$word = implode( "", $ar ) . "пенен";
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) || in_array( $wordEnding, $preSonants ) ) {
-						$word = implode( "", $ar ) . "менен";
-				} elseif ( in_array( $wordEnding, $preEzhZet ) ) {
-						$word = implode( "", $ar ) . "бенен";
+				if ( in_array( $wordEnding, $Consonants ) ) {
+						$word = $word . "пенен";
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+						$word = $word . "менен";
+				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
+						$word = $word . "бенен";
 				}
 				break;
 			default: #dc0 #nominative #ataw
@@ -261,210 +257,206 @@ class LanguageKk_cyrl extends Language {
 		$backVowels = array( "a", "o", "u", "ı" );
 		$allVowels = array( "e", "ö", "ü", "i", "ä", "é", "a", "o", "u", "ı" );
 		// Preceding letters
-		$preVowels = $allVowels;
-		$preNasals = array( "m", "n", "ñ" );
-		$preSonants = array( "ï", "ý", "l", "r", "w");
-		# $preVoiceds = array( "b", "v", "g", "ğ", "d", "j", "z", "h" );
-		# $preVoicelesses = array( "p", "f", "k", "q", "t", "ş", "s", "x", "c", "ç"  );
-		$preConsonants = array( "p", "f", "k", "q", "t", "ş", "s", "x", "c", "ç", "b", "v", "g", "d" );
-		$preEzhZet = array( "j", "z" );
-		$preSonorants = array( "ï", "ý", "l", "r", "w", "m", "n", "ñ", "j", "z");
+		$Vowels = $allVowels;
+		$Nasals = array( "m", "n", "ñ" );
+		$Sonants = array( "ï", "y", "ý", "l", "r", "w");
+		$Consonants = array( "p", "f", "k", "q", "t", "ş", "s", "x", "c", "ç", "b", "v", "g", "d" );
+		$Sibilants = array( "j", "z" );
+		$Sonorants = array( "ï", "y", "ý", "l", "r", "w", "m", "n", "ñ", "j", "z");
 
 		// Possessives
-		$firsts = array( "m", "ñ" ); // 1st singular, 2nd unformal
-		$seconds = array( "z" );	 // 1st plural, 2nd formal
-		$thirds = array( "ı", "i" ); // 3rd
-		// Put the word in a form we can play with since we're using UTF-8
-		$ar = array();
-		$ar = preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
-		$wordEnding = $ar[count( $ar ) - 1]; //Here's the last letter in the word
-		$wordReversed = array_reverse( $ar ); //Here's an array with the order of the letters in the word reversed so we can find a match quicker *shrug*
+		$firstPerson = array( "m", "ñ" ); // 1st singular, 2nd unformal
+		$secondPerson = array( "z" ); // 1st plural, 2nd formal
+		$thirdPerson = array( "ı", "i" ); // 3rd
 
-		$wordLastVowel = self::lastVowel( $wordReversed, $allVowels );
+		$lastLetter = self::lastLetter( $word, $allVowels );
+		$wordEnding = $lastLetter[0];
+		$wordLastVowel = $lastLetter[1];
+
 		// Now convert the word
 		switch ( $case ) {
 			case "dc1":
 			case "genitive": #ilik
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "tiñ";
+						$word = $word . "tiñ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "tıñ";
+						$word = $word . "tıñ";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "niñ";
+						$word = $word . "niñ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "nıñ";
+						$word = $word . "nıñ";
 					}
-				} elseif ( in_array( $wordEnding, $preSonants ) || in_array( $wordEnding, $preEzhZet )) {
+				} elseif ( in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants )) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "diñ";
+						$word = $word . "diñ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "dıñ";
+						$word = $word . "dıñ";
 					}
 				}
 				break;
 			case "dc2":
 			case "dative": #barıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ke";
+						$word = $word . "ke";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "qa";
+						$word = $word . "qa";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preSonorants ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ge";
+						$word = $word . "ge";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ğa";
+						$word = $word . "ğa";
 					}
 				}
 				break;
 			case "dc21":
 			case "possessive dative": #täweldık + barıs
-				if ( in_array( $wordEnding, $firsts ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "e";
+						$word = $word . "e";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "a";
+						$word = $word . "a";
 					}
-				} elseif ( in_array( $wordEnding, $seconds ) ) {
+				} elseif ( in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ge";
+						$word = $word . "ge";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ğa";
+						$word = $word . "ğa";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
 				  if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ne";
+						$word = $word . "ne";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "na";
+						$word = $word . "na";
 					}
 				}
 				break;
 			case "dc3":
 			case "accusative": #tabıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ti";
+						$word = $word . "ti";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "tı";
+						$word = $word . "tı";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) ) {
 					if ( in_array($wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ni";
+						$word = $word . "ni";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "nı";
+						$word = $word . "nı";
 					}
-				} elseif ( in_array( $wordEnding, $preSonorants) ) {
+				} elseif ( in_array( $wordEnding, $Sonorants) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "di";
+						$word = $word . "di";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "dı";
+						$word = $word . "dı";
 					}
 				}
 				break;
 			case "dc31":
 			case "possessive accusative": #täweldık + tabıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $seconds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "di";
+						$word = $word . "di";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "dı";
+						$word = $word . "dı";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
-						$word = implode( "", $ar ) . "n";
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
+						$word = $word . "n";
 				}
 				break;
 			case "dc4":
 			case "locative": #jatıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "te";
+						$word = $word . "te";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ta";
+						$word = $word . "ta";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preSonorants ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "de";
+						$word = $word . "de";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "",$ar ) . "da";
+						$word = $word . "da";
 					}
 				} 
 				break;
 			case "dc41":
 			case "possessive locative": #täweldık + jatıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $seconds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "de";
+						$word = $word . "de";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "da";
+						$word = $word . "da";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "nde";
+						$word = $word . "nde";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "",$ar ) . "nda";
+						$word = $word . "nda";
 					}
 				} 
 				break;
 			case "dc5":
 			case "ablative": #şığıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ten";
+						$word = $word . "ten";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "tan";
+						$word = $word . "tan";
 					}
-				} elseif ( in_array($wordEnding, $preVowels ) || in_array($wordEnding, $preSonants ) || in_array($wordEnding, $preEzhZet ) ) {
+				} elseif ( in_array($wordEnding, $Vowels ) || in_array($wordEnding, $Sonants ) || in_array($wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "den";
+						$word = $word . "den";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "dan";
+						$word = $word . "dan";
 					}
-				}  elseif ( in_array($wordEnding, $preNasals ) ) {
+				}  elseif ( in_array($wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "nen";
+						$word = $word . "nen";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "nan";
+						$word = $word . "nan";
 					}
 				}
 				break;
 			case "dc51":
 			case "possessive ablative": #täweldık + şığıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $thirds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $thirdPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "nen";
+						$word = $word . "nen";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "nan";
+						$word = $word . "nan";
 					}
-				} elseif ( in_array($wordEnding, $seconds ) ) {
+				} elseif ( in_array($wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "den";
+						$word = $word . "den";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "dan";
+						$word = $word . "dan";
 					}
 				}
 				break;
 			case "dc6":
 			case "comitative": #kömektes
-				if ( in_array( $wordEnding, $preConsonants ) ) {
-						$word = implode( "", $ar ) . "pen";
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) || in_array( $wordEnding, $preSonants ) ) {
-						$word = implode( "", $ar ) . "men";
-				} elseif ( in_array( $wordEnding, $preEzhZet ) ) {
-						$word = implode( "", $ar ) . "ben";
+				if ( in_array( $wordEnding, $Consonants ) ) {
+						$word = $word . "pen";
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+						$word = $word . "men";
+				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
+						$word = $word . "ben";
 				}
 				break;
 			case "dc61":
 			case "possessive comitative": #täweldık + kömektes
-				if ( in_array( $wordEnding, $preConsonants ) ) {
-						$word = implode( "", $ar ) . "penen";
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) || in_array( $wordEnding, $preSonants ) ) {
-						$word = implode( "", $ar ) . "menen";
-				} elseif ( in_array( $wordEnding, $preEzhZet ) ) {
-						$word = implode( "", $ar ) . "benen";
+				if ( in_array( $wordEnding, $Consonants ) ) {
+						$word = $word . "penen";
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+						$word = $word . "menen";
+				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
+						$word = $word . "benen";
 				}
 				break;
 			default: #dc0 #nominative #ataw
@@ -486,209 +478,206 @@ class LanguageKk_cyrl extends Language {
 		$backVowels = array( "ا", "و", "ۇ", "ى"  );
 		$allVowels = array( "ە", "ٶ", "ٷ", "ٸ", "ٵ", "ە", "ا", "و", "ۇ", "ى" );
 		// Preceding letters
-		$preVowels = $allVowels;
-		$preNasals = array( "م", "ن", "ڭ" );
-		$preSonants = array( "ي", "ي", "ل", "ر", "ۋ");
-		# $preVoiceds = array( "ب", "ۆ", "گ", "ع", "د", "ج", "ز", "ھ" );
-		# $preVoicelesses = array( "پ", "ف", "ك", "ق", "ت", "ش", "س", "ح", "تس", "چ" );
-		$preConsonants = array( "پ", "ف", "ك", "ق", "ت", "ش", "س", "ح", "تس", "چ", "ب", "ۆ", "گ", "د" );
-		$preEzhZet = array( "ج", "ز" );
-		$preSonorants = array( "ي", "ي", "ل", "ر", "ۋ", "م", "ن", "ڭ", "ج", "ز");
+		$Vowels = $allVowels;
+		$Nasals = array( "م", "ن", "ڭ" );
+		$Sonants = array( "ي", "ي", "ل", "ر", "ۋ");
+		$Consonants = array( "پ", "ف", "ك", "ق", "ت", "ش", "س", "ح", "تس", "چ", "ب", "ۆ", "گ", "د" );
+		$Sibilants = array( "ج", "ز" );
+		$Sonorants = array( "ي", "ي", "ل", "ر", "ۋ", "م", "ن", "ڭ", "ج", "ز");
 
 		// Possessives
-		$firsts = array( "م", "ڭ" ); // 1st singular, 2nd unformal
-		$seconds = array( "ز" );	 // 1st plural, 2nd formal
-		$thirds = array( "ى", "ٸ" ); // 3rd
-		// Put the word in a form we can play with since we're using UTF-8
-		$ar = array();
-		$ar = preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
-		$wordEnding = $ar[count( $ar ) - 1]; //Here's the last letter in the word
-		$wordReversed = array_reverse( $ar ); //Here's an array with the order of the letters in the word reversed so we can find a match quicker *shrug*
-		$wordLastVowel = self::lastVowel( $wordReversed, $allVowels );
+		$firstPerson = array( "م", "ڭ" ); // 1st singular, 2nd unformal
+		$secondPerson = array( "ز" ); // 1st plural, 2nd formal
+		$thirdPerson = array( "ى", "ٸ" ); // 3rd
+
+		$lastLetter = self::lastLetter( $word, $allVowels );
+		$wordEnding = $lastLetter[0];
+		$wordLastVowel = $lastLetter[1];
+
 		// Now convert the word
 		switch ( $case ) {
 			case "dc1":
 			case "genitive": #ilik
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "تٸڭ";
+						$word = $word . "تٸڭ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "تىڭ";
+						$word = $word . "تىڭ";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "نٸڭ";
+						$word = $word . "نٸڭ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "نىڭ";
+						$word = $word . "نىڭ";
 					}
-				} elseif ( in_array( $wordEnding, $preSonants ) || in_array( $wordEnding, $preEzhZet )) {
+				} elseif ( in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants )) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "دٸڭ";
+						$word = $word . "دٸڭ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "دىڭ";
+						$word = $word . "دىڭ";
 					}
 				}
 				break;
 			case "dc2":
 			case "dative": #barıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "كە";
+						$word = $word . "كە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "قا";
+						$word = $word . "قا";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preSonorants ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "گە";
+						$word = $word . "گە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "عا";
+						$word = $word . "عا";
 					}
 				}
 				break;
 			case "dc21":
 			case "possessive dative": #täweldık + barıs
-				if ( in_array( $wordEnding, $firsts ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "ە";
+						$word = $word . "ە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "ا";
+						$word = $word . "ا";
 					}
-				} elseif ( in_array( $wordEnding, $seconds ) ) {
+				} elseif ( in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "گە";
+						$word = $word . "گە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "عا";
+						$word = $word . "عا";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
 				  if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "نە";
+						$word = $word . "نە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "نا";
+						$word = $word . "نا";
 					}
 				}
 				break;
 			case "dc3":
 			case "accusative": #tabıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "تٸ";
+						$word = $word . "تٸ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "تى";
+						$word = $word . "تى";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) ) {
 					if ( in_array($wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "نٸ";
+						$word = $word . "نٸ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "نى";
+						$word = $word . "نى";
 					}
-				} elseif ( in_array( $wordEnding, $preSonorants) ) {
+				} elseif ( in_array( $wordEnding, $Sonorants) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "دٸ";
+						$word = $word . "دٸ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "دى";
+						$word = $word . "دى";
 					}
 				}
 				break;
 			case "dc31":
 			case "possessive accusative": #täweldık + tabıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $seconds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "دٸ";
+						$word = $word . "دٸ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "دى";
+						$word = $word . "دى";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
-						$word = implode( "", $ar ) . "ن";
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
+						$word = $word . "ن";
 				}
 				break;
 			case "dc4":
 			case "locative": #jatıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "تە";
+						$word = $word . "تە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "تا";
+						$word = $word . "تا";
 					}
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preSonorants ) ) {
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "دە";
+						$word = $word . "دە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "",$ar ) . "دا";
+						$word = $word . "دا";
 					}
 				} 
 				break;
 			case "dc41":
 			case "possessive locative": #täweldık + jatıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $seconds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "دە";
+						$word = $word . "دە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "دا";
+						$word = $word . "دا";
 					}
-				} elseif ( in_array( $wordEnding, $thirds ) ) {
+				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels) ) {
-						$word = implode( "", $ar ) . "ندە";
+						$word = $word . "ندە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "",$ar ) . "ندا";
+						$word = $word . "ندا";
 					}
 				} 
 				break;
 			case "dc5":
 			case "ablative": #şığıs
-				if ( in_array( $wordEnding, $preConsonants ) ) {
+				if ( in_array( $wordEnding, $Consonants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "تەن";
+						$word = $word . "تەن";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "تان";
+						$word = $word . "تان";
 					}
-				} elseif ( in_array($wordEnding, $preVowels ) || in_array($wordEnding, $preSonants ) || in_array($wordEnding, $preEzhZet ) ) {
+				} elseif ( in_array($wordEnding, $Vowels ) || in_array($wordEnding, $Sonants ) || in_array($wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "دەن";
+						$word = $word . "دەن";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "دان";
+						$word = $word . "دان";
 					}
-				}  elseif ( in_array($wordEnding, $preNasals ) ) {
+				}  elseif ( in_array($wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "نەن";
+						$word = $word . "نەن";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "نان";
+						$word = $word . "نان";
 					}
 				}
 				break;
 			case "dc51":
 			case "possessive ablative": #täweldık + şığıs
-				if ( in_array( $wordEnding, $firsts ) || in_array( $wordEnding, $thirds ) ) {
+				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $thirdPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "نەن";
+						$word = $word . "نەن";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "نان";
+						$word = $word . "نان";
 					}
-				} elseif ( in_array($wordEnding, $seconds ) ) {
+				} elseif ( in_array($wordEnding, $secondPerson  ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
-						$word = implode( "", $ar ) . "دەن";
+						$word = $word . "دەن";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
-						$word = implode( "", $ar ) . "دان";
+						$word = $word . "دان";
 					}
 				}
 				break;
 			case "dc6":
 			case "comitative": #kömektes
-				if ( in_array( $wordEnding, $preConsonants ) ) {
-						$word = implode( "", $ar ) . "پەن";
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) || in_array( $wordEnding, $preSonants ) ) {
-						$word = implode( "", $ar ) . "مەن";
-				} elseif ( in_array( $wordEnding, $preEzhZet ) ) {
-						$word = implode( "", $ar ) . "بەن";
+				if ( in_array( $wordEnding, $Consonants ) ) {
+						$word = $word . "پەن";
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+						$word = $word . "مەن";
+				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
+						$word = $word . "بەن";
 				}
 				break;
 			case "dc61":
 			case "possessive comitative": #täweldık + kömektes
-				if ( in_array( $wordEnding, $preConsonants ) ) {
-						$word = implode( "", $ar ) . "پەنەن";
-				} elseif ( in_array( $wordEnding, $preVowels ) || in_array( $wordEnding, $preNasals ) || in_array( $wordEnding, $preSonants ) ) {
-						$word = implode( "", $ar ) . "مەنەن";
-				} elseif ( in_array( $wordEnding, $preEzhZet ) ) {
-						$word = implode( "", $ar ) . "بەنەن";
+				if ( in_array( $wordEnding, $Consonants ) ) {
+						$word = $word . "پەنەن";
+				} elseif ( in_array( $wordEnding, $Vowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+						$word = $word . "مەنەن";
+				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
+						$word = $word . "بەنەن";
 				}
 				break;
 			default: #dc0 #nominative #ataw
@@ -696,27 +685,36 @@ class LanguageKk_cyrl extends Language {
 		return $word;
 	}
 
-	function lastVowel( $wordReversed, $allVowels ) {
+	function lastLetter( $word, $allVowels ) {
+		$lastLetter = array();
+		$ar = array();
+
+		// Put the word in a form we can play with since we're using UTF-8
+		$ar = preg_split('//u', parent::lc($word), -1, PREG_SPLIT_NO_EMPTY);
+		$wordReversed = array_reverse( $ar ); //Here's an array with the order of the letters in the word reversed so we can find a match quicker *shrug*
+
+		//Here's the last letter in the word
+		$lastLetter[0] = $ar[count( $ar ) - 1];
 
 		// Find the last vowel in the word
-		$wordLastVowel = NULL;
+		$lastLetter[1] = NULL;
 		foreach ( $wordReversed as $xvalue ) {
 			foreach ( $allVowels as $yvalue ) {
 				if ( strcmp( $xvalue, $yvalue ) == 0 ) {
-					$wordLastVowel = $xvalue;
+					$lastLetter[1] = $xvalue;
 					break;
 				} else {
 					continue;
 				}
 			}
-			if ( $wordLastVowel !== NULL ) {
+			if ( $lastLetter[1] !== NULL ) {
 				break;
 			} else {
 				continue;
 			}
 		}
 
-		return $wordLastVowel; $wordEnding;
+		return $lastLetter;
 	}
 
 	/**
