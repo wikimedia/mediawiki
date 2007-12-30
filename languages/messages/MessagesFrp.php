@@ -261,7 +261,7 @@ $messages = array(
 'bugreportspage'    => 'Project:Rapôrt d’èrrors',
 'copyright'         => 'Lo contegnu est disponiblo d’aprés los tèrmos de la licence $1.',
 'copyrightpagename' => 'licence {{SITENAME}}',
-'copyrightpage'     => '{{ns:project}}:Copyright',
+'copyrightpage'     => '{{ns:project}}:Drêt d’ôtor',
 'currentevents'     => 'Novèles',
 'currentevents-url' => 'Project:Novèles',
 'disclaimers'       => 'Avèrtissements',
@@ -438,7 +438,7 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'yourvariant'                => 'Varianta:',
 'yournick'                   => 'Signatura por les discussions :',
 'badsig'                     => 'Signatura bruta fôssa ; controlâd voutres balises HTML.',
-'badsiglength'               => 'Voutra signatura est trop longe : la talye la ples hôta est de $1 caractèros.',
+'badsiglength'               => 'Voutra signatura est trop longe : la talye la ples granta est de $1 caractèros.',
 'email'                      => 'Mèl',
 'prefs-help-realname'        => '(u chouèx) : se vos lo spècefiâd, serat utilisâ por l’atribucion de voutres contribucions.',
 'loginerror'                 => 'Èrror d’identificacion',
@@ -608,10 +608,10 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'yourdiff'                  => 'Difèrences',
 'copyrightwarning'          => 'Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys). Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada.<br />
-<strong>UTILISÂD PAS D’ÔVRES DESOT COPYRIGHT SEN ÔTORISACION ÈXPRÈSSA !</strong>',
+<strong>UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !</strong>',
 'copyrightwarning2'         => 'Totes les contribucions a {{SITENAME}} pôvont étre modifiâs ou suprimâs per d’ôtros utilisators. Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada (vêde $1 por més de dètalys).<br />
-<strong>UTILISÂD PAS D’ÔVRES DESOT COPYRIGHT SEN ÔTORISACION ÈXPRÈSSA !</strong>',
+<strong>UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !</strong>',
 'longpagewarning'           => '<strong>ATENCION : ceta pâge at una longior de $1 ko ;
 cèrtins navigators g·èront mâl la modificacion de les pâges aprochient ou dèpassent 32 ko.
 Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.</strong>',
@@ -944,7 +944,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 'filename'                    => 'Nom du fichiér',
 'filedesc'                    => 'Dèscripcion',
 'fileuploadsummary'           => 'Dèscripcion, sôrsa (ôtor, seto Malyâjo...) :',
-'filestatus'                  => 'Statut du copyright',
+'filestatus'                  => 'Statut du drêt d’ôtor',
 'filesource'                  => 'Sôrsa',
 'uploadedfiles'               => 'Fichiérs copiyês',
 'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér.',
@@ -1334,8 +1334,8 @@ Retôrn et assistance :
 'deletepage'                  => 'Suprimar una pâge',
 'confirm'                     => 'Confirmar',
 'excontent'                   => 'contegnent « $1 »',
-'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor en ére « [[{{ns:user_talk}}:$2|$2]] » ([[Special:Contributions/$2|Contribucions]])',
-'exbeforeblank'               => 'Contegnéve devant blanchiment : $1',
+'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor nen ére « [[User talk:$2|$2]] » ([[Special:Contributions/$2|Contribucions]])',
+'exbeforeblank'               => 'contegnéve devant blanchiment : « $1 »',
 'exblank'                     => 'pâge voueda',
 'confirmdelete'               => 'Confirmar la suprèssion',
 'deletesub'                   => '(Suprèssion de « $1 »)',
@@ -1394,17 +1394,17 @@ Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 'protect-cascadeon'           => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|la pâge siuventa|les pâges siuventes}}, èyent étâ protègiê avouéc lo chouèx « Protèccion en cascâda » activâ. Vos pouede changiér lo nivô de protèccion de ceta pâge sen que cen afècte la protèccion en cascâda.',
 'protect-default'             => 'Pas de protèccion',
-'protect-fallback'            => 'At fôta de l’habilitacion « $1 »',
+'protect-fallback'            => 'At fôta de la pèrmission « $1 »',
 'protect-level-autoconfirmed' => 'Mié-protèccion',
 'protect-level-sysop'         => 'Administrators solament',
 'protect-summary-cascade'     => 'protèccion en cascâda',
-'protect-expiring'            => 'èxpire lo $1 (hora UTC)',
+'protect-expiring'            => 'èxpire lo $1 (UTC)',
 'protect-cascade'             => 'Protèccion en cascâda - Protège totes les pâges encllues dens ceta.',
 'protect-cantedit'            => 'Vos pouede pas modifiar los nivôs de protèccion de cela pâge perce que vos avéd pas la pèrmission de l’èditar.',
 'restriction-type'            => 'Pèrmission :',
 'restriction-level'           => 'Nivô de rèstriccion :',
-'minimum-size'                => 'Talye la ples bâssa',
-'maximum-size'                => 'Talye la ples hôta',
+'minimum-size'                => 'Talye la ples petiôta',
+'maximum-size'                => 'Talye la ples granta',
 'pagesize'                    => '(octèts)',
 
 # Restrictions (nouns)
@@ -1550,7 +1550,7 @@ d’una adrèce IP prècèdament blocâ.',
 'ipblocklist-submit'          => 'Chèrchiér',
 'blocklistline'               => '$1 ($4) : $2 at blocâ $3',
 'infiniteblock'               => 'pèrmanent',
-'expiringblock'               => 'èxpire lo : $1',
+'expiringblock'               => 'èxpire lo $1',
 'anononlyblock'               => 'utilisator pas enregistrâ solament',
 'noautoblockblock'            => 'blocâjo ôtomatico dèsactivâ',
 'createaccountblock'          => 'crèacion de compto blocâ',
@@ -1581,7 +1581,7 @@ d’una adrèce IP prècèdament blocâ.',
 'proxyblockreason'            => 'Voutra adrèce IP at étâ blocâ perce qu’el est un proxy uvèrt. Marci de vos veriér vers voutron fornissor d’accès u Malyâjo ou voutron supôrt tècnico et de l’enformar de ceti problèmo de sècuritât.',
 'proxyblocksuccess'           => 'Chavonâ.',
 'sorbsreason'                 => 'Voutra adrèce IP est listâ a titro de proxy uvèrt DNSBL.',
-'sorbs_create_account_reason' => 'Voutra adrèce IP est listâ a titro de proxy uvèrt DNSBL. Vos pouede pas crèar un compto utilisator',
+'sorbs_create_account_reason' => 'Voutra adrèce IP est listâ a titro de proxy uvèrt DNSBL. Vos pouede pas crèar un compto utilisator.',
 
 # Developer tools
 'lockdb'              => 'Vèrrolyér la bâsa',
@@ -1676,7 +1676,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 'export-submit'     => 'Èxportar',
 'export-addcattext' => 'Apondre les pâges de la catègorie :',
 'export-addcat'     => 'Apondre',
-'export-download'   => 'Pèrmetre de sôvar a titro de fichiér',
+'export-download'   => 'Sôvar a titro de fichiér',
 
 # Namespace 8 related
 'allmessages'               => 'Lista des mèssâjos sistèmo',
@@ -1753,8 +1753,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-ca-watch'                => 'Apondéd ceta pâge a voutra lista de siuvu.',
 'tooltip-ca-unwatch'              => 'Reteriéd ceta pâge de voutra lista de siuvu.',
 'tooltip-search'                  => 'Chèrchiér dens {{SITENAME}}',
-'tooltip-search-go'               => 'Alar vers una pâge portent justament ceti nom s’ègziste.',
-'tooltip-search-fulltext'         => 'Rechèrchiér les pâges presentent ceti tèxte.',
+'tooltip-search-go'               => 'Alâd vers una pâge portent justament ceti nom s’ègziste.',
+'tooltip-search-fulltext'         => 'Chèrchiéd les pâges presentent ceti tèxte.',
 'tooltip-p-logo'                  => 'Pâge principâla',
 'tooltip-n-mainpage'              => 'Visitâd la pâge principâla.',
 'tooltip-n-portal'                => 'A propôs du projèt',
@@ -1818,15 +1818,15 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 
 # Spam protection
 'spamprotectiontitle'    => 'Pâge ôtomaticament protègiê a côsa de spame',
-'spamprotectiontext'     => 'La pâge que vos éd tâchiê de sôvar at étâ blocâ per lo filtro antipurrièl. Cen est probâblament côsâ per un lim vers un seto de defôr.',
+'spamprotectiontext'     => 'La pâge que vos éd tâchiê de sôvar at étâ blocâ per lo filtro antispame. Cen est probâblament côsâ per un lim vers un seto de defôr.',
 'spamprotectionmatch'    => "La chêna de caractèros '''« $1 »''' at dècllenchiê lo dècelior de spame.",
 'subcategorycount'       => '{{PLURAL:$1|Yona sot-catègorie est listâ|$1 sot-catègories sont listâs}} ce-desot. S’un lim « (200 prècèdents) » ou ben « (200 siuvents) » est present ce-dessus, pôt menar a d’ôtres sot-catègories.',
 'categoryarticlecount'   => 'Y at {{PLURAL:$1|yon articllo|$1 articllos}} dens ceta catègorie.',
-'category-media-count'   => 'Y at {{PLURAL:$1|yon fichiér|$1 fichiérs}} multimèdia dens <u>ceta sèccion</u> de ceta catègorie.',
-'listingcontinuesabbrev' => '(suite)',
-'spambot_username'       => 'Neteyâjo de spame MediaWiki',
-'spam_reverting'         => 'Rèstoracion de la dèrriére vèrsion contegnent pas de lim vers $1',
-'spam_blanking'          => 'Totes les vèrsions contegnent des lims vers $1 sont blanchies',
+'category-media-count'   => 'Y at {{PLURAL:$1|yon fichiér|$1 fichiérs}} multimèdia dens ceta catègorie.',
+'listingcontinuesabbrev' => '(suita)',
+'spambot_username'       => 'Neteyâjo de spame per MediaWiki',
+'spam_reverting'         => 'Rèstoracion de la dèrriére vèrsion contegnent pas de lim vers $1.',
+'spam_blanking'          => 'Totes les vèrsions contegnent des lims vers $1 sont blanchies.',
 
 # Info page
 'infosubtitle'   => 'Enformacions por la pâge',
@@ -1851,7 +1851,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'markedaspatrolledtext'               => 'La vèrsion sèlèccionâ at étâ marcâ coment pas vandalisâ.',
 'rcpatroldisabled'                    => 'La fonccion de patrolye des dèrriérs changements est pas activâ.',
 'rcpatroldisabledtext'                => 'La fonccionalitât de survelyence des dèrriérs changements est pas activâ.',
-'markedaspatrollederror'              => 'Pôt pas étre marcâ coment pas vandalisâ',
+'markedaspatrollederror'              => 'Pôt pas étre marcâ coment pas vandalisâ.',
 'markedaspatrollederrortext'          => 'Vos dête sèlèccionar una vèrsion por povêr la marcar coment pas vandalisâ.',
 'markedaspatrollederror-noautopatrol' => 'Vos avéd pas lo drêt de marcar voutres prôpres modificacions coment survelyês.',
 
@@ -1864,7 +1864,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 # Image deletion
 'deletedrevision'                 => 'La vielye vèrsion $1 at étâ suprimâ.',
 'filedeleteerror-short'           => 'Èrror pendent la suprèssion du fichiér : $1',
-'filedeleteerror-long'            => 'Des èrrors ont étâ rencontrâs pendent la suprèssion du fichiér :\n\n$1\n',
+'filedeleteerror-long'            => 'Des èrrors ont étâ rencontrâs pendent la suprèssion du fichiér :\\n\\n$1\\n',
 'filedelete-missing'              => 'Lo fichiér « $1 » pôt pas étre suprimâ perce qu’ègziste pas.',
 'filedelete-old-unregistered'     => 'La vèrsion du fichiér spècefiâ « $1 » est pas dens la bâsa de balyês.',
 'filedelete-current-unregistered' => 'Lo fichiér spècefiâ « $1 » est pas dens la bâsa de balyês.',
@@ -1942,7 +1942,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-model'                       => 'Modèlo de l’aparèly',
 'exif-software'                    => 'Programeria utilisâ',
 'exif-artist'                      => 'Ôtor',
-'exif-copyright'                   => 'Dètentor du copyright',
+'exif-copyright'                   => 'Dètentor du drêt d’ôtor',
 'exif-exifversion'                 => 'Vèrsion EXIF',
 'exif-flashpixversion'             => 'Vèrsion FlashPix',
 'exif-colorspace'                  => 'Èspâço colorimètrico',
@@ -1976,7 +1976,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-flash'                       => 'Èludo',
 'exif-focallength'                 => 'Longior focâla',
 'exif-subjectarea'                 => 'Emplacement du sujèt',
-'exif-flashenergy'                 => 'Ènèrg·ie du flash',
+'exif-flashenergy'                 => 'Ènèrg·ie de l’èludo',
 'exif-spatialfrequencyresponse'    => 'Frèquence espaciâla',
 'exif-focalplanexresolution'       => 'Rèsolucion X de focâla plana',
 'exif-focalplaneyresolution'       => 'Rèsolucion Y de focâla plana',
@@ -2017,7 +2017,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-gpstrackref'                 => 'Rèference por la dirèccion du mouvement',
 'exif-gpstrack'                    => 'Dirèccion du mouvement',
 'exif-gpsimgdirectionref'          => 'Rèference por l’oriantacion de l’émâge',
-'exif-gpsimgdirection'             => 'Dirèccion de l’émâge',
+'exif-gpsimgdirection'             => 'Oriantacion de l’émâge',
 'exif-gpsmapdatum'                 => 'Sistèmo g·eodèsico utilisâ',
 'exif-gpsdestlatituderef'          => 'Rèference por la latituda de la dèstinacion',
 'exif-gpsdestlatitude'             => 'Latituda de la dèstinacion',
@@ -2132,16 +2132,16 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 
 'exif-saturation-0' => 'Normala',
 'exif-saturation-1' => 'Fêbla',
-'exif-saturation-2' => 'Èlevâ',
+'exif-saturation-2' => 'Hôta',
 
 'exif-sharpness-0' => 'Normala',
 'exif-sharpness-1' => 'Doce',
 'exif-sharpness-2' => 'Dura',
 
 'exif-subjectdistancerange-0' => 'Encognua',
-'exif-subjectdistancerange-1' => 'Macrô',
-'exif-subjectdistancerange-2' => 'Raprochiê',
-'exif-subjectdistancerange-3' => 'Distant',
+'exif-subjectdistancerange-1' => 'Vision en grôs',
+'exif-subjectdistancerange-2' => 'Vision de prés',
+'exif-subjectdistancerange-3' => 'Vision de luen',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Bise (nord)',
@@ -2324,3 +2324,4 @@ $1',
 'hebrew-calendar-m12-gen' => 'Eloul',
 
 );
+

@@ -719,23 +719,37 @@ restricciones adicionales.",
 'revdelete-success'           => 'Visibilidá de revisiones establecida correutamente.',
 'logdelete-success'           => "Visibilidá d'eventos establecida correutamente.",
 
+# Oversight log
+'oversightlog'    => "Rexistru d'ediciones ocultes",
+'overlogpagetext' => "Abaxo amuésase una llista de los borraos y bloqueos más recientes de conteníu
+ocultáu por alministradores. Vete a la [[Special:Ipblocklist|llista de bloqueos d'IP]] pa consultar la llista de bloqueos activos anguaño.",
+
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
+'mergehistory-header'              => "Esta páxina permítete fusionar revisiones del historial d'una páxina orixe nuna páxina nueva.
+Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxina.
+
+'''A lo menos ha caltenese la revisión actual de la páxina d'orixe.'''",
 'mergehistory-box'                 => 'Fusionar les revisiones de dos páxines:',
 'mergehistory-from'                => "Páxina d'orixe:",
 'mergehistory-into'                => 'Páxina de destín:',
+'mergehistory-list'                => "Historial d'ediciones fusionable",
+'mergehistory-merge'               => "Les siguientes revisiones de [[:$1]] puen fusionase en [[:$2]]. Usa la columna de botones d'opción pa fusionar namaí les revisiones creaes na y enantes de la hora especificada. has fixate en que si uses los enllaces de navegación borraránse les seleiciones feches nesta columna.",
 'mergehistory-go'                  => 'Amosar ediciones fusionables',
 'mergehistory-submit'              => 'Fusionar revisiones',
 'mergehistory-empty'               => 'Nun se pue fusionar nenguna revisión',
 'mergehistory-success'             => '$3 revisiones de [[:$1]] fusionaes correutamente en [[:$2]].',
+'mergehistory-fail'                => "Nun se pudo facer la fusión d'historiales, por favor verifica la páxina y los parámetros temporales.",
 'mergehistory-no-source'           => "La páxina d'orixe $1 nun esiste.",
 'mergehistory-no-destination'      => 'La páxina de destín $1 nun esiste.',
 'mergehistory-invalid-source'      => "La páxina d'orixe ha tener un títulu válidu.",
 'mergehistory-invalid-destination' => 'La páxina de destín ha tener un títulu válidu.',
 
 # Merge log
-'mergelog'    => 'Rexistru de fusiones',
-'revertmerge' => 'Dixebrar',
+'mergelog'           => 'Rexistru de fusiones',
+'pagemerge-logentry' => '[[$1]] foi fusionada en [[$2]] (hasta la revisión $3)',
+'revertmerge'        => 'Dixebrar',
+'mergelogpagetext'   => "Abaxo amuésase una llista de les fusiones más recientes d'un historial de páxina con otru.",
 
 # Diffs
 'history-title'           => 'Historial de revisiones de "$1"',
@@ -747,17 +761,27 @@ restricciones adicionales.",
 
 # Search results
 'searchresults'         => 'Resultaos de la busca',
+'searchresulttext'      => 'Pa más información tocante a busques en {{SITENAME}}, vete a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Buscasti '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Buscasti '''$1'''",
 'noexactmatch'          => "'''Nun esiste la páxina \"\$1\".''' Pues [[:\$1|crear esta páxina]].",
 'noexactmatch-nocreate' => "'''Nun hai nenguna páxina col títulu \"\$1\".'''",
+'titlematches'          => 'Coincidencies de los títulos de la páxina',
+'notitlematches'        => 'Nun hai coincidencies nel títulu de la páxina',
+'textmatches'           => 'Coincidencies del testu de la páxina',
+'notextmatches'         => 'Nun hai coincidencies nel testu de la páxina',
 'prevn'                 => 'previos $1',
 'nextn'                 => 'siguientes $1',
 'viewprevnext'          => 'Ver ($1) ($2) ($3)',
 'showingresults'        => "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsnum'     => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
+'nonefound'             => "'''Nota''': Les busques fallíes son ocasionaes davezu por buscar
+pallabres comunes como \"de\" o \"a\", que nun tán indexaes, o por
+especificar más d'un términu de busca (namái van apaecer nel
+resultáu les páxines que contengan tolos términos de la busca).",
 'powersearch'           => 'Buscar',
 'powersearchtext'       => 'Buscar nel espaciu de nomes:<br />$1<br />$2 Llistar redireiciones<br />Buscar $3 $9',
+'searchdisabled'        => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
 
 # Preferences page
 'preferences'              => 'Preferencies',
@@ -765,6 +789,8 @@ restricciones adicionales.",
 'prefs-edits'              => "Númberu d'ediciones:",
 'prefsnologin'             => 'Non identificáu',
 'prefsnologintext'         => 'Necesites tar [[Special:Userlogin|identificáu]] pa poder camudar les preferencies.',
+'prefsreset'               => 'Les preferencies fueron restablecíes a los valores por defeutu.',
+'qbsettings'               => 'Barra rápida',
 'qbsettings-none'          => 'Nenguna',
 'qbsettings-fixedleft'     => 'Fixa a manzorga',
 'qbsettings-fixedright'    => 'Fixa a mandrecha',
@@ -776,9 +802,12 @@ restricciones adicionales.",
 'dateformat'               => 'Formatu de fecha',
 'datedefault'              => 'Ensin preferencia',
 'datetime'                 => 'Fecha y hora',
+'math_failure'             => 'Fallu al revisar la fórmula',
 'math_unknown_error'       => 'error desconocíu',
 'math_unknown_function'    => 'función desconocida',
+'math_lexing_error'        => 'Error lléxicu',
 'math_syntax_error'        => 'error de sintaxis',
+'math_image_error'         => 'Falló la convesión PNG; comprueba que tea bien la instalación de latex, dvips, gs y convert',
 'prefs-personal'           => 'Datos personales',
 'prefs-rc'                 => 'Cambeos recientes',
 'prefs-watchlist'          => 'Llista de vixilancia',
@@ -797,6 +826,7 @@ restricciones adicionales.",
 'resultsperpage'           => "Resultaos p'amosar per páxina:",
 'contextlines'             => "Llinies p'amosar per resultáu:",
 'contextchars'             => 'Carauteres de testu per llinia:',
+'recentchangesdays'        => "Díes qu'amosar nos cambeos recientes:",
 'recentchangescount'       => "Númberu d'ediciones amosaes en cambeos recientes:",
 'savedprefs'               => 'Les tos preferencies quedaron grabaes.',
 'timezonelegend'           => 'Zona horaria',
@@ -811,6 +841,7 @@ restricciones adicionales.",
 'files'                    => 'Archivos',
 
 # User rights
+'userrights-lookup-user'      => "Remanamientu de grupos d'usuariu",
 'userrights-user-editname'    => "Escribi un nome d'usuariu:",
 'editusergroup'               => "Modificar grupos d'usuarios",
 'userrights-editusergroup'    => "Editar los grupos d'usuariu",
@@ -1797,3 +1828,4 @@ $1",
 'watchlisttools-raw'  => 'Editar la llista de vixilancia (en bruto)',
 
 );
+
