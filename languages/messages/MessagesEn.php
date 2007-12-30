@@ -1330,7 +1330,7 @@ containing all of the search terms will appear in the result).",
 'editusergroup'               => 'Edit User Groups',
 'userrights-editusergroup'    => 'Edit user groups',
 'saveusergroups'              => 'Save User Groups',
-'userrights-groupsmember'     => 'Member of:',
+'userrights-groupsmember'     => 'Removable groups:',
 'userrights-groupsavailable'  => 'Available groups:',
 'userrights-groupshelp'       => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
