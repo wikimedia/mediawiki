@@ -2292,7 +2292,7 @@ Variants for Chinese language
 # E-mail address confirmation
 'confirmemail'            => '確認電郵地址',
 'confirmemail_noemail'    => '你唔需要響你嘅[[Special:Preferences|用戶喜好設定]]度設定一個有效嘅電郵地址。',
-'confirmemail_text'       => '呢個wiki需要你喺使用電郵功能之前驗證吓你嘅電郵地址。
+'confirmemail_text'       => '{{SITENAME}}需要你喺使用電郵功能之前驗證吓你嘅電郵地址。
 啟用下邊個掣嚟發封確認信去你個地址度。
 封信入面會附帶一條包含代碼嘅連結；
 喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。',

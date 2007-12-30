@@ -2209,7 +2209,7 @@ Variants for Chinese language
 # E-mail address confirmation
 'confirmemail'            => '确认邮箱地址',
 'confirmemail_noemail'    => '您没有在您的[[Special:Preferences|用户设置]]里面输入一个有效的 email 地址。',
-'confirmemail_text'       => '此网站要求您在使用邮件功能之前验证您的邮箱地址。
+'confirmemail_text'       => '{{SITENAME}}要求您在使用邮件功能之前验证您的邮箱地址。
 点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',
 'confirmemail_pending'    => '<div class="error">
