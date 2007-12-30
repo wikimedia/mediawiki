@@ -703,10 +703,21 @@ y puen restauralu de nuevo al traviés d'esta mesma interfaz, a nun ser que s'es
 restricciones adicionales.",
 'revdelete-legend'            => 'Establecer restricciones:',
 'revdelete-hide-text'         => 'Esconder testu de revisión',
+'revdelete-hide-name'         => 'Esconder aición y oxetivu',
 'revdelete-hide-comment'      => "Esconder comentariu d'edición",
+'revdelete-hide-user'         => "Esconder el nome d'usuariu/IP del editor",
+'revdelete-hide-restricted'   => "Aplicar estes restricciones a los alministradores lo mesmo qu'a los demás",
+'revdelete-suppress'          => 'Eliminar datos de los alministradores lo mesmo que los de los demás',
 'revdelete-hide-image'        => 'Esconder el conteníu del archivu',
+'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauraes',
 'revdelete-log'               => 'Comentariu de rexistru:',
 'revdelete-submit'            => 'Aplicar a la revisión seleicionada',
+'revdelete-logentry'          => 'camudada la visibilidá de revisiones de [[$1]]',
+'logdelete-logentry'          => "camudada la visibilidá d'eventos de [[$1]]",
+'revdelete-logaction'         => '$1 {{PLURAL:$1|revisión establecida|revisiones establecíes}} en mou $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|eventu a [[$3]] establecíu|eventos a [[$3]] establecíos}} en mou $2',
+'revdelete-success'           => 'Visibilidá de revisiones establecida correutamente.',
+'logdelete-success'           => "Visibilidá d'eventos establecida correutamente.",
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
@@ -716,13 +727,15 @@ restricciones adicionales.",
 'mergehistory-go'                  => 'Amosar ediciones fusionables',
 'mergehistory-submit'              => 'Fusionar revisiones',
 'mergehistory-empty'               => 'Nun se pue fusionar nenguna revisión',
+'mergehistory-success'             => '$3 revisiones de [[:$1]] fusionaes correutamente en [[:$2]].',
 'mergehistory-no-source'           => "La páxina d'orixe $1 nun esiste.",
 'mergehistory-no-destination'      => 'La páxina de destín $1 nun esiste.',
 'mergehistory-invalid-source'      => "La páxina d'orixe ha tener un títulu válidu.",
 'mergehistory-invalid-destination' => 'La páxina de destín ha tener un títulu válidu.',
 
 # Merge log
-'mergelog' => 'Rexistru de fusiones',
+'mergelog'    => 'Rexistru de fusiones',
+'revertmerge' => 'Dixebrar',
 
 # Diffs
 'history-title'           => 'Historial de revisiones de "$1"',
@@ -1106,6 +1119,7 @@ o nun quier recibir correos d'otros usuarios.",
 'emailsubject'    => 'Asuntu',
 'emailmessage'    => 'Mensaxe',
 'emailsend'       => 'Unviar',
+'emailccme'       => 'Unviame per corréu una copia del mio mensaxe.',
 'emailsent'       => 'Corréu unviáu',
 'emailsenttext'   => 'El to corréu foi unviáu.',
 
@@ -1114,6 +1128,7 @@ o nun quier recibir correos d'otros usuarios.",
 'mywatchlist'          => 'La mio páxina de vixilancia',
 'watchlistfor'         => "(pa '''$1''')",
 'nowatchlist'          => 'La to llista de vixilancia ta vacia.',
+'watchlistanontext'    => 'Por favor $1 pa ver o editar entraes na to llista de vixilancia.',
 'watchnologin'         => 'Non identificáu',
 'watchnologintext'     => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder camudar la to llista de vixilancia.',
 'addedwatch'           => 'Añadida a la llista de vixilancia',
@@ -1129,8 +1144,12 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'notanarticle'         => 'Nun ye un artículu',
 'watchnochange'        => 'Nenguna de les tos páxines vixilaes foi editada nel periodu escoyíu.',
 'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxines}} vixilaes ensin cuntar les páxines de discusión.',
+'wlheader-enotif'      => '* La notificación per corréu electrónicu ta activada.',
 'wlheader-showupdated' => "* Les páxines camudaes dende la to última visita amuésense en '''negrina'''",
+'watchmethod-recent'   => 'buscando páxines vixilaes nos cambeos recientes',
+'watchmethod-list'     => 'buscando cambeos recientes nes páxines vixilaes',
 'watchlistcontains'    => 'La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.',
+'wlnote'               => "Abaxo {{PLURAL:$1|ta'l caberu cambéu|tán los caberos '''$1''' cambeos}} {{PLURAL:$2|na cabera hora|nes caberes '''$2''' hores}}.",
 'wlshowlast'           => 'Amosar les últimes $1 hores $2 díes $3',
 'watchlist-show-bots'  => 'Amosar ediciones de bot',
 'watchlist-hide-bots'  => 'Esconder ediciones de bots',
@@ -1148,6 +1167,9 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'enotif_impersonal_salutation' => 'Usuariu de {{SITENAME}}',
 'changed'                      => 'camudada',
 'created'                      => 'creada',
+'enotif_subject'               => 'La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
+'enotif_lastvisited'           => 'Mira en $1 tolos cambeos dende la to postrer visita.',
+'enotif_lastdiff'              => 'Mira en $1 pa ver esti cambéu.',
 'enotif_anon_editor'           => 'usuariu anónimu $1',
 
 # Delete/protect/revert
@@ -1172,6 +1194,10 @@ Mira en $2 la llista de les últimes páxines borraes.',
 'deletecomment'               => 'Razón pa borrar',
 'deleteotherreason'           => 'Otra razón/razón adicional:',
 'deletereasonotherlist'       => 'Otra razón',
+'deletereason-dropdown'       => '*Motivos comunes de borráu
+** A pidimientu del autor
+** Violación de Copyright
+** Vandalismu',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'revertir',
 'cantrollback'                => "Nun se pue revertir la edición; el postrer collaborador ye l'únicu autor d'esta páxina.",
@@ -1217,6 +1243,11 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 # Restrictions (nouns)
 'restriction-edit' => 'Editar',
 'restriction-move' => 'Treslladar',
+
+# Restriction levels
+'restriction-level-sysop'         => 'totalmente protexida',
+'restriction-level-autoconfirmed' => 'semiprotexida',
+'restriction-level-all'           => 'cualesquier nivel',
 
 # Undelete
 'undelete'                 => 'Ver páxines borraes',
@@ -1313,7 +1344,11 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'blockipsuccesssub'           => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'          => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
 <br />Mira na [[Special:Ipblocklist|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
+'ipb-edit-dropdown'           => 'Editar motivos de bloquéu',
 'ipb-unblock-addr'            => 'Desbloquiar $1',
+'ipb-unblock'                 => "Desbloquiar un nome d'usuariu o direición IP",
+'ipb-blocklist-addr'          => 'Ver los bloqueos esistentes de $1',
+'ipb-blocklist'               => 'Ver los bloqueos esistentes',
 'unblockip'                   => 'Desbloquiar usuariu',
 'ipusubmit'                   => 'Desbloquiar esta direición',
 'unblocked'                   => '[[User:$1|$1]] foi desbloquiáu',
@@ -1443,6 +1478,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 # Thumbnails
 'thumbnail-more'  => 'Agrandar',
 'missingimage'    => '<b>Falta la imaxe</b><br /><i>$1</i>',
+'filemissing'     => 'Falta archivu',
 'thumbnail_error' => 'Error al crear la miniatura: $1',
 'djvu_page_error' => 'Páxina DjVu fuera de llímites',
 'djvu_no_xml'     => 'Nun se pudo obtener el XML pal archivu DjVu',
@@ -1487,10 +1523,14 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'tooltip-n-help'                  => 'El llugar pa deprender',
 'tooltip-n-sitesupport'           => 'Sofítanos',
 'tooltip-t-whatlinkshere'         => "Llista de toles páxines wiki qu'enllacien equí",
+'tooltip-feed-rss'                => 'Canal RSS pa esta páxina',
+'tooltip-feed-atom'               => 'Canal Atom pa esta páxina',
 'tooltip-t-contributions'         => "Amuesa la llista de contribuciones d'esti usuariu",
 'tooltip-t-emailuser'             => 'Unvia un corréu a esti usuariu',
 'tooltip-t-upload'                => 'Xube imáxenes o archivos multimedia',
 'tooltip-t-specialpages'          => 'Llista de toles páxines especiales',
+'tooltip-t-print'                 => "Versión imprentable d'esta páxina",
+'tooltip-t-permalink'             => 'Enllaz permanente a esta versión de la páxina',
 'tooltip-ca-nstab-user'           => "Amuesa la páxina d'usuariu",
 'tooltip-ca-nstab-project'        => 'Amuesa la páxina de proyeutu',
 'tooltip-ca-nstab-image'          => 'Amuesa la páxina de la imaxe',
@@ -1670,7 +1710,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 # E-mail address confirmation
 'confirmemail'            => 'Confirmar direición de corréu',
 'confirmemail_noemail'    => "Nun tienes una direición de corréu válida nes tos [[Special:Preferences|preferencies d'usuariu]].",
-'confirmemail_text'       => "Esta wiki requier que valides la to direición de corréu enantes d'usar les
+'confirmemail_text'       => "{{SITENAME}} requier que valides la to direición de corréu enantes d'usar les
 funcionalidaes de mensaxes. Da-y al botón que tienes equí embaxo pa unviar un avisu de
 confirmación a la to direición. Esti avisu va incluyir un enllaz con un códigu; carga
 l'enllaz nel to navegador pa confirmar la to direición de corréu electrónicu.",

@@ -24,12 +24,12 @@ $messages = array(
 
 # Dates
 'sunday'       => 'Lāpule',
-'monday'       => "Pō'akahi",
-'tuesday'      => "Pō'alua",
-'wednesday'    => "Pō'akolu",
-'thursday'     => "Pō'ahā",
-'friday'       => "Pō'alima",
-'saturday'     => "Pō'aono",
+'monday'       => 'Pō‘akahi',
+'tuesday'      => 'Pō‘alua',
+'wednesday'    => 'Pō‘akolu',
+'thursday'     => 'Pō‘ahā',
+'friday'       => 'Pō‘alima',
+'saturday'     => 'Pō‘aono',
 'january'      => 'Ianuali',
 'february'     => 'Pepeluali',
 'march'        => 'Malaki',
@@ -113,7 +113,7 @@ $messages = array(
 'badaccess' => 'Hewa ‘ae',
 
 'youhavenewmessages'      => 'He $1 ($2) kou.',
-'newmessageslink'         => 'nā memo hou',
+'newmessageslink'         => 'mau memo hou',
 'youhavenewmessagesmulti' => 'He mau memo kou ma $1',
 'editsection'             => "E ho'opololei",
 'editold'                 => "E ho'opololei",
@@ -167,10 +167,11 @@ Ua hana ‘ia kāu mea ho‘ohana. Mai poina e loli kāu {{SITENAME}} makemake.'
 'resetpass_success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
 
 # Edit page toolbar
-'bold_sample'   => 'Ho‘okā‘ele',
-'bold_tip'      => 'Ho‘okā‘ele',
-'italic_sample' => 'Ho‘ohiō',
-'italic_tip'    => 'Ho‘ohiō',
+'bold_sample'     => 'Ho‘okā‘ele',
+'bold_tip'        => 'Ho‘okā‘ele',
+'italic_sample'   => 'Ho‘ohiō',
+'italic_tip'      => 'Ho‘ohiō',
+'headline_sample' => 'Po‘o‘ōlelo',
 
 # Edit pages
 'summary'               => "Hō'ulu'ulu mana'o",
@@ -179,7 +180,7 @@ Ua hana ‘ia kāu mea ho‘ohana. Mai poina e loli kāu {{SITENAME}} makemake.'
 'savearticle'           => 'E mālama i ka mea',
 'showpreview'           => "E hō'ike i ka nāmua",
 'showdiff'              => "E hō'ike hou",
-'anoneditwarning'       => "'''A‘o ‘ana:''' ‘O ‘oe ‘a‘ole ʻeʻe. E ho‘opa‘a ana ‘ia kou wahi noho IP ma \"he aha i ho‘ololi ‘ia ai\" o kēia ‘ao‘ao.",
+'anoneditwarning'       => "'''A‘o ‘ana:''' ‘O ‘oe ‘a‘ole ʻeʻe. E ho‘opa‘a ‘ia ana kou IP ma \"he aha i ho‘ololi ‘ia ai\" o kēia ‘ao‘ao.",
 'blockedtitle'          => 'Ua ke‘a ‘ia ka mea ho‘ohana',
 'blockednoreason'       => '‘a‘ohe kumu',
 'blockedoriginalsource' => "Aia ke kumu o '''$1''' 
@@ -189,6 +190,7 @@ hō‘ike ‘ia i lalo:",
 'accmailtitle'          => 'Ua ho‘ouna ‘ia ka hua‘ōlelo huna',
 'newarticle'            => '(Hou)',
 'anontalkpagetext'      => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:Userlogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
+'editing'               => 'Ke ho‘opololei nei iā $1',
 'yourdiff'              => 'Nā mea ‘oko‘a',
 'protectedpagewarning'  => '<strong>A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā "kahu" ke ho‘opololei wale nō.</strong>',
 'template-protected'    => '(ho‘omalu ‘ia)',
@@ -226,6 +228,7 @@ hō‘ike ‘ia i lalo:",
 
 # Recent changes
 'recentchanges'   => 'Nā loli hou',
+'rcshowhideminor' => '$1 ho‘opololei iki',
 'diff'            => '‘oko‘a',
 'hist'            => 'loli',
 'hide'            => 'hūnā',
@@ -243,8 +246,11 @@ hō‘ike ‘ia i lalo:",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
 # Image list
-'ilsubmit'   => 'Huli',
-'imagelinks' => 'Nā loulou',
+'ilsubmit'          => 'Huli',
+'filehist-datetime' => 'Manawa',
+'filehist-user'     => 'Mea ho‘ohana',
+'filehist-comment'  => 'Mana‘o',
+'imagelinks'        => 'Nā loulou',
 
 # Random page
 'randompage' => 'He mo‘olelo kaulele',
@@ -302,7 +308,7 @@ hō‘ike ‘ia i lalo:",
 'restriction-move' => "E ho'ololi i ka inoa",
 
 # Namespace form on various pages
-'blanknamespace' => '(‘Ano nui)',
+'blanknamespace' => '(‘ano nui)',
 
 # Contributions
 'contributions' => 'Nā ha‘awina o kēia mea ho‘ohana',
@@ -343,6 +349,10 @@ hō‘ike ‘ia i lalo:",
 'thumbnail-more' => 'ho‘onui',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'    => 'a‘u',
+'tooltip-pt-mytalk'      => 'ka‘u ‘ōlelo',
+'tooltip-pt-preferences' => 'ka‘u makemake',
+'tooltip-ca-edit'        => 'Hiki iā‘oe ke ho‘opololei i kēia ‘ao‘ao. Imua o ka mālama, ho‘ohana i ka nāmua, ke ‘olu‘olu.',
 'tooltip-ca-move'        => 'E ne‘e i kēia mo‘olelo',
 'tooltip-search'         => 'Huli {{SITENAME}}',
 'tooltip-n-mainpage'     => 'Hele i ka papa kinohi',

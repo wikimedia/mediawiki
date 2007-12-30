@@ -229,7 +229,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'sitesupport-url'   => 'Project:Dunazioni',
 
 'badaccess'        => 'Primmissi no suffizenti',
-'badaccess-group0' => "No si diponi di li primmissi nezzessàri pa eseguì l'azioni dumandadda.",
+'badaccess-group0' => "Nò si diponi di li primmissi nezzessàri pa eseguì l'azioni dumandadda.",
 'badaccess-group1' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a lu gruppu $1.',
 'badaccess-group2' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a li gruppi $1.',
 'badaccess-groups' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a unu di li sighenti gruppi: $1.',
@@ -340,7 +340,7 @@ Interrogazioni: $2",
 'cascadeprotected'     => 'In chistha pàgina nò è pussìbiri effettuà mudìfigghi parchí è isthadda incrusa {{PLURAL:$1|i la sighenti pàgina indicadda, ch\'è isthadda prutiggidda|i li sighenti pàgini indicaddi, chi so isthaddi prutiggiddi}} chirriendi la prutizioni "ricussiba":
 $2',
 'namespaceprotected'   => "No si diponi di li pimmissi nezzessàri pa mudifiggà li pàgini di lu namespace '''$1'''.",
-'customcssjsprotected' => "No si diponi di li pimmissi nezzessàri pa mudifiggà la pàgina, parchí cunteni l'impusthazioni passunari di un althru utenti.",
+'customcssjsprotected' => "Nò si diponi di li pimmissi nezzessàri pa mudifiggà la pàgina, parchí cunteni l'impusthazioni passunari di un althru utenti.",
 'ns-specialprotected'  => 'No è pussìbiri mudifiggà li pàgini di lu namespace {{ns:special}}.',
 'titleprotected'       => 'Chisthu tìturu è isthaddu prutiggiddu da la criazioni da [[User:$1|$1]]. La rasgioni frunidda è <i>$2</i>.',
 
@@ -573,7 +573,7 @@ Inviendi lu testhu ài la ripunsabiriddai chi lu testhu sia toiu oppuru sia i lu
 'nocreatetext'              => 'Chisthu situ à limitaddu la pussibiliddai di crià nobi pagini a li sori utenti registhraddi. È pussìbiri turrà indareddu e mudìfiggà una pàgina esisthenti, oppuru [[Special:Userlogin|intrà o crià una noba registhrazioni]].',
 'nocreate-loggedin'         => "Nò si diponi di li pimmissi nezzessàri pa crià nobi pàgini i' {{SITENAME}}.",
 'permissionserrors'         => 'Errori i li pimmissi',
-'permissionserrorstext'     => "Nò si dipuni di li pimmissi nezzessàri a eseguì l'azioni dumandadda, pa {{PLURAL:$1|lu sighenti mutibu|li sighenti mutibi}}:",
+'permissionserrorstext'     => "Nò si diponi di li pimmissi nezzessàri a eseguì l'azioni dumandadda, pa {{PLURAL:$1|lu sighenti mutibu|li sighenti mutibi}}:",
 'recreate-deleted-warn'     => "'''Attinzioni: s'è pa ricrià una pàgina già canzilladda in passadu.'''
 
 S'azzirthà chi sia avveru opporthunu continuà a mudìfiggà chistha pàgina. L'erencu di li reratibi canzilladduri vèni ripurthaddu inogghi pa cumudiddai:",
@@ -1232,7 +1232,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'unprotectsub'                => '(Ibbruccu di "$1")',
 'protect-unchain'             => "Ischulliga i primmissi d'ippusthamentu",
 'protect-text'                => 'Chisthu mòdulu cunsenti di vidé e mudìfiggà lu libellu di prutizioni pa la pàgina <strong>$1</strong>.',
-'protect-locked-access'       => "No si diponi di li primmissi nezzessàri pa mudìfiggà lu libellu di prutizioni di la pàgina.
+'protect-locked-access'       => "Nò si diponi di li primmissi nezzessàri pa mudìfiggà lu libellu di prutizioni di la pàgina.
 L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'protect-cascadeon'           => "Chistha pàgina abà è broccadda parchí è incrusa {{PLURAL:$1|i' la sighenti pàgina, pa la quari|i' li sighenti pàgini, pa li quari}} è attiba la prutizioni ricussiba. È pussìbiri mudìfiggà lu libellu di prutizioni di la pàgina, ma l'impusthazioni reratibi a la prutuzioni ricussina nò sarani mudìfiggaddi.",
 'protect-default'             => '(pridifiniddu)',
@@ -1242,7 +1242,7 @@ L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'protect-summary-cascade'     => 'ricussiba',
 'protect-expiring'            => 'ischadènzia: $1 (UTC)',
 'protect-cascade'             => 'Prutizioni ricussiba (isthendi la prutizioni a tutti li pàgini incrusi in chista)',
-'protect-cantedit'            => 'Nò è pussìbiri mudìfiggà li libelli di prutizioni pa la pàgina parchí nò si dipuni di pimmissi nezzessàri pa mudìfiggà la pàgina.',
+'protect-cantedit'            => 'Nò è pussìbiri mudìfiggà li libelli di prutizioni pa la pàgina parchí nò si diponi di pimmissi nezzessàri pa mudìfiggà la pàgina.',
 'restriction-type'            => 'Primmissu:',
 'restriction-level'           => 'Libellu di isthrigniddura',
 'minimum-size'                => 'Misura mìnima (in byte)',
@@ -1388,6 +1388,7 @@ $1",
 'ip_range_invalid'            => "Intervallu d'indirizzi ip nò vàriddu.",
 'blockme'                     => 'Broccami',
 'proxyblocker'                => 'Broccu di li proxy abbérthi',
+'proxyblocker-disabled'       => 'Chistha funzioni nò è attiba.',
 'proxyblocksuccess'           => 'Broggu eseguiddu.',
 
 # Developer tools
@@ -1418,6 +1419,7 @@ Nota chi la pàgina '''nò''' sarà ippusthadda si n'isisthi già una cu' lu nob
 In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuimmazioni cuntinuddi i' la pàgina di dischussioni.",
 'movearticle'             => 'Ippustha la pàgina',
 'movenologin'             => 'Intradda nò effettuadda',
+'movenotallowed'          => "Nò si diponi di li primmissi nezzessàri a l'ippusthamentu di pàgini i' {{SITENAME}}.",
 'newtitle'                => 'Nobu tìturu:',
 'move-watch'              => "Aggiungi a l'abbaidaddi ippiziari",
 'movepagebtn'             => 'Ippustha la pàgina',
@@ -1567,14 +1569,19 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'patrol-log-auto' => '(verìfica automàtigga)',
 
 # Image deletion
-'deletedrevision'       => 'Prizzidenti ribisioni canzilladda: $1',
-'filedeleteerror-short' => 'Errori canzellendi lu file: $1',
+'deletedrevision'                 => 'Prizzidenti ribisioni canzilladda: $1',
+'filedeleteerror-short'           => 'Errori canzellendi lu file: $1',
+'filedelete-missing'              => 'Impussìbiri canzillà lu file "$1" parchí nò isisthi.',
+'filedelete-old-unregistered'     => 'La ribisioni di lu file sciubaradda, "$1", no è cuntinudda i\' la bancadati.',
+'filedelete-current-unregistered' => 'Lu file ippizzificaddu, "$1", nò è cuntinuddu i\' la bancadati.',
+'filedelete-archive-read-only'    => 'L\'elaburaddori sivvidori nò pó ischribì i\' la carthella d\'archìbiu "$1".',
 
 # Browsing diffs
 'previousdiff' => '← Diffarènzia prizzidenti',
 'nextdiff'     => 'Diffarènzia sighenti →',
 
 # Media information
+'mediawarning'         => "'''Attinzioni''': Chisthu file pó cuntinì còdizi marignu, chi si eseguiddu pó danniggià lu propriu sisthema infuimmatigu.<hr />",
 'imagemaxsize'         => "Misura màssima di l'immàgini i' li reratibi pàgini di dischussioni:",
 'thumbsize'            => 'Mannària di li miniadduri:',
 'widthheightpage'      => '$1×$2, $3 pàgini',
@@ -1684,7 +1691,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 # E-mail address confirmation
 'confirmemail'            => 'Cunfèimma indirizzu di postha erettrònica',
 'confirmemail_noemail'    => "Nò è isthaddu indicaddu un'indirizzu postha erettrònica vàriddu i' li pròpri [[Special:Preferences|prifirenzi]].",
-'confirmemail_text'       => "Chisthu situ dumanda la verifigga di l'indirizzu di postha erettrònica primma di pudé l'usà. Incalchà lu buttoni in giossu pa invià una prigonta di cunfèimma a lu propriu indirizzu; i' l'imbasciadda è prisenti un cullegamentu chi cunteni un còdizi. Visità lu cullegamentu cu' lu proprio nabiggadori pa cunfèimmà chi l'indirizzu è vàriddu.",
+'confirmemail_text'       => "{{SITENAME}} dumanda la verifigga di l'indirizzu di postha erettrònica primma di pudé l'usà. Incalchà lu buttoni in giossu pa invià una prigonta di cunfèimma a lu propriu indirizzu; i' l'imbasciadda è prisenti un cullegamentu chi cunteni un còdizi. Visità lu cullegamentu cu' lu proprio nabiggadori pa cunfèimmà chi l'indirizzu è vàriddu.",
 'confirmemail_pending'    => '<div class="error">
 Un còdizi di cunfèimma è già isthaddu inviaddu pa postha erettrònica; si la registhrazioni è isthadda cridda da poggu, è nezzessàriu aisittà l\'arribu di lu còdizi pa calchi minutu primma di dumandanni unu nobu.
 </div>',

@@ -4,6 +4,8 @@
  * @addtogroup Language
  *
  * @author Max sonnelid
+ * @author Siebrand
+ * @author Nike
  */
 
 
@@ -42,8 +44,9 @@ $messages = array(
 'november-gen'  => 'Rahka',
 'december-gen'  => 'Goeve',
 
-'about'  => 'Bïjre',
-'qbedit' => 'Värrhtoedimmie',
+'about'         => 'Bïjre',
+'qbedit'        => 'Värrhtoedimmie',
+'qbpageoptions' => 'Dïhte bielie',
 
 'errorpagetitle'   => 'Båajhtode',
 'tagline'          => 'Raejeste {{SITENAME}}',
@@ -52,6 +55,10 @@ $messages = array(
 'searchbutton'     => 'Ohtsedh',
 'go'               => 'Vaadtsa',
 'searcharticle'    => 'Vaadtsa',
+'history'          => 'Bielie historije',
+'history_short'    => 'Historije',
+'printableversion' => 'Tjaelije bielie',
+'print'            => 'Tjaeledh olkese',
 'edit'             => 'Värrhtoedimmie',
 'editthispage'     => 'Värrhtoedimmie dïhte bielie',
 'newpage'          => 'Orre bielie',
@@ -78,8 +85,10 @@ $messages = array(
 'nstab-help'      => 'Viehke bielie',
 
 # General errors
-'error'      => 'Båajhtode',
-'viewsource' => 'Vuesehte tjaalege',
+'error'              => 'Båajhtode',
+'internalerror'      => 'Sjisjnjie båajhtede',
+'internalerror_info' => 'Sjisjnjie båajhtede: $1',
+'viewsource'         => 'Vuesehte tjaalege',
 
 # Login and logout pages
 'yourname'           => 'Nuhtjiennomme:',
@@ -94,6 +103,7 @@ $messages = array(
 # Edit pages
 'savearticle' => 'Spååredh bielie',
 'newarticle'  => '(Orre)',
+'editinguser' => 'Värrhtoedimmie nuhtjien <b>$1</b>',
 
 # History pages
 'page_first' => 'voestegh',
@@ -103,6 +113,13 @@ $messages = array(
 'nextn'       => 'minngeben $1',
 'powersearch' => 'Ohtsedh',
 
+# Preferences page
+'searchresultshead' => 'Ohtsedh',
+
+# Groups
+'group-bot' => 'Jïjtjesvïhtjije',
+
+'group-bot-member'   => 'Jïjtjesvïhtjije',
 'group-sysop-member' => 'Reerien',
 
 # Image list

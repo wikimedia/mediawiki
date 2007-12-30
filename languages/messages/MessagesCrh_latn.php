@@ -1682,9 +1682,7 @@ Er satır * simvolınen başlamalı. Satırnıñ birinci bağlantısı eklemege 
 # E-mail address confirmation
 'confirmemail'            => 'E-mail adresini tasdıqla',
 'confirmemail_noemail'    => '[[{{ns:special}}:Preferences|Qullanıcı ayarlarıñızda]] keçerli bir e-mail adresiñiz yoq.',
-'confirmemail_text'       => 'Vikiniñ e-mail funktsiyalarını qullanmazdan evel e-mail adresiñizniñ
-tasdıqlanması kerek. Adresiñizge tasdıq e-mail mektübini yollamaq içün aşağıdaki
-dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen irişip olacaq, tasdıq kodu olğan bir bağlantı olacaq.',
+'confirmemail_text'       => '{{SITENAME}} saytınıñ e-mail funktsiyalarını qullanmazdan evel e-mail adresiñizniñ tasdıqlanması kerek. Adresiñizge tasdıq e-mail mektübini yollamaq içün aşağıdaki dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen irişip olacaq, tasdıq kodu olğan bir bağlantı olacaq.',
 'confirmemail_pending'    => '<div class="error">
 Tasdıq kodu endi sizge yollandı.
 Eger esabıñıznı keçenleri açsa ediñiz, belki de yañnı kodnı bir daa sorağanıñızda, biraz beklemek kerek olur.

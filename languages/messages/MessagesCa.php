@@ -717,6 +717,7 @@ en un fitxer de text i desar-lo més tard.</strong>',
 'nocreatetitle'             => "S'ha limitat la creació de pàgines",
 'nocreatetext'              => "Està restringida la possibilitat de crear noves pàgines.
 Podeu editar les planes ja existents o bé [[Special:Userlogin|entrar en un compte d'usuari]].",
+'nocreate-loggedin'         => 'No teniu permisos per a crear pàgines noves a la {{SITENAME}}.',
 'permissionserrors'         => 'Errors de premisos',
 'permissionserrorstext'     => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'recreate-deleted-warn'     => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
@@ -731,6 +732,9 @@ A continuació s'ofereix el registre d'esborraments de la pàgina:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No es pot crear el compte',
+'cantcreateaccount-text' => "[[User:$3|$3]] ha bloquejat la creació de comptes des d'aquesta adreça IP (<b>$1</b>).
+
+El motiu donat per $3 és ''$2''",
 
 # History pages
 'viewpagelogs'        => "Visualitza els registres d'aquesta pàgina",
@@ -810,9 +814,12 @@ Altres administradors d'aquest web basat en wiki encara podrien accedir al conti
 'mergehistory-box'                 => 'Fusiona les revisions de dues pàgines:',
 'mergehistory-from'                => "Pàgina d'origen:",
 'mergehistory-into'                => 'Pàgina de destinació:',
+'mergehistory-list'                => "Historial d'edició que es pot fusionar",
+'mergehistory-merge'               => "Les revisions següents de [[:$1]] poden fusionar-se en [[:$2]]. Feu servir la columna de botó d'opció per a fusionar només les revisions creades en el moment especificat o anteriors. Teniu en comptes que els enllaços de navegació reiniciaran aquesta columna.",
 'mergehistory-go'                  => 'Mostra les edicions que es poden fusionar',
 'mergehistory-submit'              => 'Fusiona les revisions',
 'mergehistory-empty'               => 'No pot fusionar-se cap revisió',
+'mergehistory-success'             => "$3 revisions de [[:$1]] s'han fusionat amb èxit a [[:$2]].",
 'mergehistory-fail'                => "No s'ha pogut realitzar la fusió de l'historial, comproveu la pàgina i els paràmetres horaris.",
 'mergehistory-no-source'           => "La pàgina d'origen $1 no existeix.",
 'mergehistory-no-destination'      => 'La pàgina de destinació $1 no existeix.',
@@ -820,8 +827,10 @@ Altres administradors d'aquest web basat en wiki encara podrien accedir al conti
 'mergehistory-invalid-destination' => 'La pàgina de destinació ha de tenir un títol vàlid.',
 
 # Merge log
-'mergelog'    => 'Fusiona el registre',
-'revertmerge' => 'Desfusiona',
+'mergelog'           => 'Fusiona el registre',
+'pagemerge-logentry' => "s'ha fusionat [[$1]] en [[$2]] (revisions fins a $3)",
+'revertmerge'        => 'Desfusiona',
+'mergelogpagetext'   => "A sota hi ha una llista de les fusions més recents d'una pàgina d'historial en una altra.",
 
 # Diffs
 'history-title'           => 'Historial de versions de «$1»',
@@ -932,6 +941,10 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'userrights-available-none'   => "No podeu alterar l'afiliació al grup.",
 'userrights-available-add'    => 'Podeu afegir usuaris a $1.',
 'userrights-available-remove' => 'Podeu treure usuaris de $1.',
+'userrights-no-interwiki'     => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
+'userrights-nodatabase'       => 'La base de dades $1 no existeix o no és local.',
+'userrights-nologin'          => "Heu [[Special:Userlogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
+'userrights-notallowed'       => "El vostre compte no té permisos per a assignar permisos d'usuari.",
 
 # Groups
 'group'               => 'Grup:',
@@ -965,6 +978,7 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 'rcnotefrom'                        => 'A sota hi ha els canvis des de <b>$2</b> (es mostren fins <b>$1</b>).',
 'rclistfrom'                        => 'Mostra els canvis nous des de $1',
 'rcshowhideminor'                   => '$1 edicions menors',
+'rcshowhidebots'                    => '$1 bots',
 'rcshowhideliu'                     => '$1 usuaris identificats',
 'rcshowhideanons'                   => '$1 usuaris anònims',
 'rcshowhidepatr'                    => '$1 edicions patrullades',
@@ -1019,17 +1033,25 @@ Totes les hores són les del servidor (UTC).",
 'illegalfilename'             => "El nom de l'arxiu “$1” conté caràcters que no estan permesos en els títols de pàgines. Si us plau canvieu el nom a l'arxiu i torneu a carregar-lo.",
 'badfilename'                 => 'El nom de la imatge s\'ha canviat a "$1".',
 'filetype-badmime'            => 'Els fitxers del tipus MIME «$1» no poden penjar-se.',
+'filetype-unwanted-type'      => "'''«.$1»''' és un tipus de fitxer no desitjat. Els tipus de fitxer preferits són $2.",
+'filetype-banned-type'        => "'''«.$1»''' no és un tipus de fitxer permès.  Els tipus de fitxer permesos són $2.",
 'filetype-missing'            => 'El fitxer no té extensió (com ara «.jpg»).',
 'large-file'                  => 'Els fitxers importants no haurien de ser més grans de $1; aquest fitxer ocupa $2.',
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => "L'arxiu que heu carregat sembla estar buit. Això por ser degut a un mal caràcter en el nom de l'arxiu. Si us plau reviseu si realment voleu carregar aquest arxiu.",
 'fileexists'                  => 'Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu $1 si no esteu segurs de voler substituir-lo.',
+'fileexists-extension'        => 'Ja existeix un fitxer amb un nom semblant:<br />
+Nom del fitxer que es puja: <strong><tt>$1</tt></strong><br />
+Nom del fitxer existent: <strong><tt>$2</tt></strong><br />
+Si us plau, trieu un nom diferent.',
+'fileexists-thumb'            => "<center>'''Imatge existent'''</center>",
 'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers; si us plau, torneu enrera i carregueu-ne una còpia amb un altre nom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => "El fitxer s'ha carregat amb èxit",
 'uploadwarning'               => 'Avís de càrrega',
 'savefile'                    => 'Desa el fitxer',
 'uploadedimage'               => '"[[$1]]" carregat.',
+'overwroteimage'              => "s'ha penjat una nova versió de «[[$1]]»",
 'uploaddisabled'              => "S'ha inhabilitat la càrrega",
 'uploaddisabledtext'          => 'El projecte {{SITENAME}} ha inhabilitat la càrrega de fitxers.',
 'uploadscripted'              => 'Aquest fitxer conté codi HTML o de seqüències que pot ser interpretat equivocadament per un navegador.',
@@ -1102,17 +1124,21 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'imagelist_search_for'      => "Cerca un nom d'imatge:",
 
 # File reversion
-'filerevert'            => 'Reverteix $1',
-'filerevert-legend'     => 'Reverteix el fitxer',
-'filerevert-comment'    => 'Comentari:',
-'filerevert-submit'     => 'Reverteix',
-'filerevert-badversion' => "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",
+'filerevert'                => 'Reverteix $1',
+'filerevert-legend'         => 'Reverteix el fitxer',
+'filerevert-comment'        => 'Comentari:',
+'filerevert-defaultcomment' => "S'ha revertit a la versió com de $2, $1",
+'filerevert-submit'         => 'Reverteix',
+'filerevert-badversion'     => "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",
 
 # File deletion
 'filedelete'         => 'Suprimeix $1',
 'filedelete-legend'  => 'Suprimeix el fitxer',
+'filedelete-intro'   => "Esteu eliminant '''[[Media:$1|$1]]'''.",
 'filedelete-comment' => 'Comentari:',
 'filedelete-submit'  => 'Suprimeix',
+'filedelete-success' => "'''$1''' s'ha eliminat.",
+'filedelete-nofile'  => "'''$1''' no existeix en aquest lloc.",
 
 # MIME search
 'mimesearch' => 'Cerca per MIME',
@@ -1350,16 +1376,17 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'watching'   => "S'està vigilant...",
 'unwatching' => "S'està desatenent...",
 
-'enotif_mailer'      => 'Sistema de notificació per correl de {{SITENAME}}',
-'enotif_reset'       => 'Marca totes les pàgines com a visitades',
-'enotif_newpagetext' => 'Aquesta és una nova pàgina.',
-'changed'            => 'modificat',
-'created'            => 'publicat',
-'enotif_subject'     => '$PAGEEDITOR ha $CHANGEDORCREATED la pàgina $PAGETITLE en {{SITENAME}}',
-'enotif_lastvisited' => "Vegeu $1 per a tots els canvis que s'han fet des de la teua darrera visita.",
-'enotif_lastdiff'    => 'Consulteu $1 per a visualitzar aquest canvi.',
-'enotif_anon_editor' => 'usuari anònim $1',
-'enotif_body'        => 'Benvolgut $WATCHINGUSERNAME,
+'enotif_mailer'                => 'Sistema de notificació per correl de {{SITENAME}}',
+'enotif_reset'                 => 'Marca totes les pàgines com a visitades',
+'enotif_newpagetext'           => 'Aquesta és una nova pàgina.',
+'enotif_impersonal_salutation' => 'usuari de la {{SITENAME}}',
+'changed'                      => 'modificat',
+'created'                      => 'publicat',
+'enotif_subject'               => '$PAGEEDITOR ha $CHANGEDORCREATED la pàgina $PAGETITLE en {{SITENAME}}',
+'enotif_lastvisited'           => "Vegeu $1 per a tots els canvis que s'han fet des de la teua darrera visita.",
+'enotif_lastdiff'              => 'Consulteu $1 per a visualitzar aquest canvi.',
+'enotif_anon_editor'           => 'usuari anònim $1',
+'enotif_body'                  => 'Benvolgut $WATCHINGUSERNAME,
 
 La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATE per $PAGEEDITOR, vegeu $PAGETITLE_URL per la versió actual.
 
@@ -1424,6 +1451,7 @@ per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre ha editat
 La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]).",
 'editcomment'                 => 'El comentari d\'edició ha estat: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]); s'ha recuperat la darrera versió de [[User:$1|$1]]",
+'rollback-success'            => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
 'sessionfailure'              => 'Sembla que hi ha problema amb la vostra sessió; aquesta acció ha estat anulada en prevenció de pirateig de sessió. Si us plau, pitgueu "Torna", i recarregueu la pàgina des d\'on veniu, aleshores intenteu-lo de nou.',
 'protectlogpage'              => 'Registre de protecció',
 'protectlogtext'              => 'Aquest és el registre de proteccions i desproteccions. Vegeu la [[Special:Protectedpages|llista de pàgines protegides]] per a la llista de les pàgines que actualment tenen alguna protecció.',
@@ -1453,6 +1481,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'expira el dia $1 (UTC)',
 'protect-cascade'             => 'Protecció en cascada: protegeix totes les pàgines i plantilles incloses en aquesta.',
+'protect-cantedit'            => "No podeu canviar els nivells de protecció d'aquesta pàgina, perquè no teniu permisos per a editar-la.",
 'restriction-type'            => 'Permís:',
 'restriction-level'           => 'Nivell de restricció:',
 'minimum-size'                => 'Mida mínima',
@@ -1699,6 +1728,7 @@ per reanomenar una pàgina.",
 'articleexists'           => 'Ja existeix una pàgina amb aquest nom, o el nom que heu
 escollit no és vàlid.
 Escolliu un altre nom, si us plau.',
+'cantmove-titleprotected' => "No podeu moure una pàgina a aquesta ubicació, perquè s'ha protegit la creació del títol nou",
 'talkexists'              => "S'ha reanomenat la pàgina amb èxit, però la pàgina de discussió no s'ha pogut moure car ja no existeix en el títol nou.
 
 Incorporeu-les manualment, si us plau.",
@@ -1923,6 +1953,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'filedeleteerror-long'            => "S'han produït errors en suprimir el fitxer:
 
 $1",
+'filedelete-missing'              => 'No es pot suprimir el fitxer «$1», perquè no existeix.',
 'filedelete-old-unregistered'     => 'La revisió de fitxer especificada «$1» no es troba a la base de dades.',
 'filedelete-current-unregistered' => 'El fitxer especificat «$1» no es troba a la base de dades.',
 'filedelete-archive-read-only'    => "El directori d'arxiu «$1» no té permisos d'escriptura per al servidor web.",
@@ -2324,13 +2355,21 @@ Trieu amb la previsualització normal.',
 'lag-warn-normal' => 'Els canvis més nous de $1 segons podrien no mostrar-se a la llista.',
 
 # Watchlist editor
-'watchlistedit-noitems'       => 'La vostra llista de seguiment no té cap títol.',
-'watchlistedit-normal-title'  => 'Edita la llista de seguiment',
-'watchlistedit-normal-legend' => 'Esborra els títols de la llista de seguiment',
-'watchlistedit-normal-submit' => 'Esborra els títols',
-'watchlistedit-raw-titles'    => 'Títols:',
-'watchlistedit-raw-submit'    => 'Actualitza la llista de seguiment',
-'watchlistedit-raw-done'      => "S'ha actualitzat la vostra llista de seguiment.",
+'watchlistedit-numitems'       => 'La vostra llista de seguiment conté {{PLURAL:$1|1 títol|$1 títols}}, excloent-ne les pàgines de discussió.',
+'watchlistedit-noitems'        => 'La vostra llista de seguiment no té cap títol.',
+'watchlistedit-normal-title'   => 'Edita la llista de seguiment',
+'watchlistedit-normal-legend'  => 'Esborra els títols de la llista de seguiment',
+'watchlistedit-normal-explain' => 'Els títols de la vostra llista de seguiment es mostren a continuació. Per a eliminar un títol, marqueu
+	el quadre del costat, i feu clic a Elimina els títols. Podeu també [[Special:Watchlist/raw|editar-ne la llista crua]].',
+'watchlistedit-normal-submit'  => 'Esborra els títols',
+'watchlistedit-normal-done'    => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} eliminat de la vostra llista de seguiment:",
+'watchlistedit-raw-title'      => 'Edita la llista de seguiment crua',
+'watchlistedit-raw-legend'     => 'Edita la llista de seguiment crua',
+'watchlistedit-raw-titles'     => 'Títols:',
+'watchlistedit-raw-submit'     => 'Actualitza la llista de seguiment',
+'watchlistedit-raw-done'       => "S'ha actualitzat la vostra llista de seguiment.",
+'watchlistedit-raw-added'      => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} afegit:",
+'watchlistedit-raw-removed'    => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} eliminat:",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Visualitza els canvis rellevants',

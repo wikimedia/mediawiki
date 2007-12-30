@@ -15,35 +15,41 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
-'tog-underline'           => 'Linken ënnersträichen:',
-'tog-highlightbroken'     => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
-'tog-justify'             => "Ränner vum Text riten (''justify'')",
-'tog-hideminor'           => 'Verstopp kleng Ännerungen an de rezenten Ännerungen',
-'tog-extendwatchlist'     => 'Suivis-Lëscht op all Ännerungen ausbreeden',
-'tog-usenewrc'            => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
-'tog-numberheadings'      => 'Iwwerschrëften automatesch numeréieren',
-'tog-editondblclick'      => 'Säite mat Duebelklick veränneren (JavaScript)',
-'tog-editsection'         => "Linken fir d'Verännere vun eenzelnen Abschnitten uweisen",
-'tog-showtoc'             => 'Inhaltsverzeechniss uweisen bäi Säite matt méi wéi dräi Iwwerschreften',
-'tog-rememberpassword'    => 'Meng Umeldung op dësem Computer verhalen',
-'tog-editwidth'           => 'Verännerungskëscht iwwert déi ganz Breed vum Ecran',
-'tog-watchcreations'      => 'Säiten déi ech ufänken automatesch op meng Suivi-Lëscht setzen',
-'tog-watchdefault'        => 'Säiten déi ech veränneren automatesch op meng Suivi-Lëscht setzen',
-'tog-watchmoves'          => 'Säiten déi ech réckelen automatesch op meng Suivi-Lëscht setzen',
-'tog-watchdeletion'       => 'Säiten déi ech läschen automatesch op meng Suivi-Lëscht setzen',
-'tog-minordefault'        => "Alle Verännerungen déi ech maachen automatesch als 'Kleng Ännerungen' uweisen",
-'tog-nocache'             => 'Säitecache ausschalten',
-'tog-shownumberswatching' => "D'Zuel vun de Benotzer déi dës Säit suivéieren uweisen",
-'tog-fancysig'            => 'Ënnerschrëft ouni automatesche Link op déi eege Benotzersäit',
-'tog-uselivepreview'      => 'Live-Preview notzen (JavaScript) (experimentell)',
-'tog-forceeditsummary'    => 'Warnen, wa beim Späicheren de Résumé feelt',
-'tog-watchlisthideminor'  => 'Kleng Ännerungen op menger Suivi-Lëscht verstoppen',
-'tog-ccmeonemails'        => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
-'tog-diffonly'            => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net de ganzen Artikel",
+'tog-underline'            => 'Linken ënnersträichen:',
+'tog-highlightbroken'      => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
+'tog-justify'              => "Ränner vum Text riten (''justify'')",
+'tog-hideminor'            => 'Verstopp kleng Ännerungen an de rezenten Ännerungen',
+'tog-extendwatchlist'      => 'Suivis-Lëscht op all Ännerungen ausbreeden',
+'tog-usenewrc'             => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
+'tog-numberheadings'       => 'Iwwerschrëften automatesch numeréieren',
+'tog-editondblclick'       => 'Säite mat Duebelklick veränneren (JavaScript)',
+'tog-editsection'          => "Linke fir d'Verännere vun eenzelnen Abschnitter weisen",
+'tog-showtoc'              => 'Inhaltsverzeechniss weisen bäi Säite mat méi wéi dräi Iwwerschrëften',
+'tog-rememberpassword'     => 'Mäi Passwuert op dësem Computer verhalen',
+'tog-editwidth'            => 'Verännerungskëscht iwwert déi ganz Breed vum Ecran',
+'tog-watchcreations'       => 'Säiten déi ech nei uleeën automatesch op meng Suivi-Lëscht setzen',
+'tog-watchdefault'         => 'Säiten déi ech veränneren automatesch op meng Suivi-Lëscht setzen',
+'tog-watchmoves'           => 'Säiten déi ech réckelen automatesch op meng Suivi-Lëscht setzen',
+'tog-watchdeletion'        => 'Säiten déi ech läschen automatesch op meng Suivi-Lëscht setzen',
+'tog-minordefault'         => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
+'tog-nocache'              => 'Säitecache deaktivéieren',
+'tog-enotifwatchlistpages' => 'Schéck mer eng E-Mail wann eng vun de Säiten op menger Suivislëscht geännert ginn ass.',
+'tog-enotifusertalkpages'  => 'Schéck mer eng E-Maile wa meng Diskussiounssäit geännert ginn ass.',
+'tog-shownumberswatching'  => "D'Zuel vun de Benotzer déi dës Säit suivéiere weisen",
+'tog-fancysig'             => 'Ënnerschrëft ouni automatesche Link op déi eege Benotzersäit',
+'tog-externaleditor'       => 'Externen Editor als Standard huelen',
+'tog-externaldiff'         => 'Externt Diff-Programm als Standard huelen',
+'tog-uselivepreview'       => 'Live-Preview notzen (JavaScript) (experimentell)',
+'tog-forceeditsummary'     => 'Warnen, wa beim Späicheren de Résumé feelt',
+'tog-watchlisthideminor'   => 'Kleng Ännerungen op menger Suivi-Lëscht verstoppen',
+'tog-ccmeonemails'         => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
+'tog-diffonly'             => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net de ganzen Artikel",
 
 'underline-always'  => 'ëmmer',
 'underline-never'   => 'Ni',
 'underline-default' => 'vun der Browserastellung ofhängig',
+
+'skinpreview' => '(Kucken)',
 
 # Dates
 'sunday'        => 'Sonndeg',
@@ -101,11 +107,17 @@ $messages = array(
 'categories'            => 'Kategorien',
 'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'       => 'Artikelen an der Kategorie "$1"',
-'subcategories'         => 'Ënnerkategorien',
+'subcategories'         => 'Souskategorien',
 'category-media-header' => 'Medien an der Kategorie "$1"',
 'category-empty'        => "''An dëser Kategorie gëtt et am Ament nach keng Artikelen oder Medien''",
 
-'mainpagetext' => "<big>'''MediaWiki gouf mat Succès installéiert.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki gouf mat Succès installéiert.'''</big>",
+'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren. 
+
+== Starthëllefen ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Hëllef bei der Konfiguratioun]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]",
 
 'about'          => 'A propos',
 'article'        => 'Artikel',
@@ -161,9 +173,9 @@ $messages = array(
 'userpage'         => 'Benotzersäit',
 'projectpage'      => 'Meta-Text',
 'imagepage'        => 'Bildsäit',
-'templatepage'     => 'Schabloune(säit) uweisen',
-'viewhelppage'     => 'Hëllefsäit uweisen',
-'categorypage'     => 'Kategoriesäit uweisen',
+'templatepage'     => 'Schabloune(säit) weisen',
+'viewhelppage'     => 'Hëllefsäit weisen',
+'categorypage'     => 'Kategoriesäit weisen',
 'viewtalkpage'     => 'Diskussioun weisen',
 'otherlanguages'   => 'Aner Sproochen',
 'redirectedfrom'   => '(Virugeleet vun $1)',
@@ -215,9 +227,11 @@ $messages = array(
 'editold'             => 'änneren',
 'editsectionhint'     => 'Abschnitt veränneren: $1',
 'toc'                 => 'Inhaltsverzeechnis',
-'showtoc'             => 'weis',
+'showtoc'             => 'weisen',
 'hidetoc'             => 'verstoppen',
-'viewdeleted'         => '$1 uwesien?',
+'thisisdeleted'       => '$1 kucken oder zerécksetzen?',
+'viewdeleted'         => '$1 weisen?',
+'restorelink'         => '$1 geläschte {{PLURAL:$1|Versioun|Versionen}}',
 'feedlinks'           => 'Feed:',
 'site-rss-feed'       => 'RSS-Feed fir $1',
 'site-atom-feed'      => 'Atom-Feed fir $1',
@@ -246,8 +260,17 @@ All Spezialsäiten déi et gëtt sinn op der [[{{ns:special}}:Specialpages|Lesch
 'dberrortext'          => 'En Datebank Syntax Fehler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". MySQL Feeler "$3: $4".',
 'nodb'                 => "D'Datebank $1 konnt net gewielt ginn",
 'cachederror'          => 'Folgend Säit ass eng Kopie aus dem Cache an net onbedéngt aktuell.',
+'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
 'readonly'             => "D'Datebank ass gespart",
 'enterlockreason'      => 'Gitt w.e.g. e Grond fir de Lock an, a wéilaang en ongeféier bestoe soll.',
+'readonlytext'         => 'Datebank ass am Moment fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen. 
+
+Den Administrateur huet folgend Erklärung uginn: $1',
+'missingarticle'       => 'D\'Datebank huet den Text vun enger Säit net fonnt deen hätt solle fonnt ginn, mam Numm "$1".
+
+Dëst geschitt meeschtens andeems en alen diff oder Historique Link op eng Säit hiweist déi geläscht ginn ass.
+
+Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. Sot w.e.g. engem Administrateur Bescheed an deelt him och d\'URL mat.',
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
 'internalerror'        => 'Interne Feeler',
 'internalerror_info'   => 'Interne Feeler: $1',
@@ -303,7 +326,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'email'                      => 'E-Mail',
 'loginerror'                 => 'Feeler bäi der Umeldung',
 'prefs-help-email'           => 'E-mail adress ass optional, awer si erméiglecht et anere Benotzer, per Mail Kontakt matt iech opzehuelen, ouni datt Dir är Identitéit musst präisginn, an erméiglecht et datt dir e neit Passwuert per Mail zougeschöckt kënnt kréien.',
-'nocookieslogin'             => "{{SITENAME}} benotzt Cookiën beim Umelle vun de Benotzer. Dir hutt Cookiën desaktivéiert, w.e.g aktivéirt d'Cookiën a versicht et nach eng Kéier.",
+'nocookieslogin'             => "{{SITENAME}} benotzt Cookiën beim Umelle vun de Benotzer. Dir hutt Cookiën ausgeschalt, w.e.g aktivéiert d'Cookiën a versicht et nach eng Kéier.",
 'noname'                     => 'Dir hutt kee gültege Benotzernumm uginn.',
 'loginsuccesstitle'          => 'Umeldung huet geklappt',
 'loginsuccess'               => "'''Dir sidd elo als \"\$1\" op {{SITENAME}} ugemellt.'''",
@@ -341,6 +364,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 'headline_sample' => 'Titel Text',
 'math_sample'     => 'Formel hei asetzen',
 'nowiki_tip'      => 'Unformatéierten Text',
+'image_tip'       => 'Bildlink',
 'sig_tip'         => 'Är Ënnerschrëft matt Zäitstempel',
 'hr_tip'          => 'Horizontal Linn (mat Moosse gebrauchen)',
 
@@ -416,9 +440,11 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'editingold'            => '<strong>OPGEPASST: Dir ännert eng al Versioun vun dëser Säit. Wann Dir späichert, sinn all rezent Versioune vun dëser Säit verluer.</strong>',
 'yourdiff'              => 'Ënnerscheeder',
 'copyrightwarning2'     => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Matschaffer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br /> Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnlecher Ressource kopéiert hutt. (cf. $1 fir méi Detailler). <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!</strong>',
-'templatesused'         => 'Schablounen déi an dësem Artikel gebraucht ginn:',
-'templatesusedsection'  => 'Schablounen déi an dësem Abschnitt benotzt ginn:',
-'template-protected'    => '(schreiwgeschützt)',
+'protectedpagewarning'  => '<strong>OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.</strong>',
+'templatesused'         => 'Schablounen déi op dëser Säit am Gebrauch sinn:',
+'templatesusedpreview'  => 'Schablounen déi an dësem Preview am Gebrauch sinn:',
+'templatesusedsection'  => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
+'template-protected'    => '(protegéiert)',
 'nocreate-loggedin'     => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
 'permissionserrorstext' => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
 
@@ -476,7 +502,12 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 # Search results
 'searchresults'         => 'Resultat vun der Sich',
 'noexactmatch-nocreate' => "'''Et gëtt keng Säit mam Titel \"\$1\".'''",
+'titlematches'          => 'Artikeltitel Iwwerdeneestëmmungen',
+'textmatches'           => 'Säitentext Iwwerdeneestëmmungen',
 'nextn'                 => 'nächst $1',
+'showingresults'        => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
+'showingresultsnum'     => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
+'nonefound'             => '<strong>Opgepasst</strong>: Net erfollegräich Siche geschéien dacks doduerch, datt zevill allgeméng Wierder benotzt ginn, wéi "an" oder "vun", déi net indexéiert sinn, oder wann dir méi wéi ee Wuert ugitt (dir kritt nëmmen déi Säiten ugewisen, an deenen all d\'Wierder stinn).',
 'powersearch'           => 'Sichen',
 
 # Preferences page
@@ -488,6 +519,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'qbsettings-fixedleft'  => 'Lénks, fest',
 'qbsettings-fixedright' => 'Riets, fest',
 'changepassword'        => 'Passwuert änneren',
+'skin'                  => 'Skin',
 'dateformat'            => 'Datumsformat',
 'datedefault'           => 'Egal (Standard)',
 'datetime'              => 'Datum an Auerzäit',
@@ -510,8 +542,9 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'searchresultshead'     => 'Sich',
 'contextlines'          => 'Zuel vun de Linnen:',
 'contextchars'          => 'Kontextcharactère pro Linn:',
+'stub-threshold'        => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',
 'recentchangesdays'     => 'Deeg déi an de Rezenten Ännerungen ugewise ginn:',
-'recentchangescount'    => 'Zuel vun Titelen bei de rezenten Ännerungen an den Neie Säiten:',
+'recentchangescount'    => 'Zuel vun Titele bei de rezenten Ännerungen an den Neie Säiten:',
 'savedprefs'            => 'Är Preferenze goufe gespäichert.',
 'timezonelegend'        => 'Zäitzon',
 'timezonetext'          => "Gitt d'Zuel vun de Stonnen an, déi tëscht ärer Zäitzon an der Serverzäit (UTC) leien (A West- a Mëtteleuropa ass dat +1 Stonn am Wanter an +2 am Summer).",
@@ -590,7 +623,9 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'badfilename'         => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
 'emptyfile'           => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'          => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
+'successfulupload'    => 'Eroplueden erfollegräich',
 'savefile'            => 'Fichier späicheren',
+'sourcefilename'      => 'Numm vum Sourcefichier',
 'destfilename'        => 'Numm op der Wiki',
 'watchthisupload'     => 'Dës Säit verfollegen',
 'filename-bad-prefix' => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
@@ -602,8 +637,11 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Image list
+'imagelist'                 => 'Lëscht vun de Fichieren',
+'imagelisttext'             => "Hei ass eng Lëscht vun '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
 'getimagelist'              => 'Billerlëscht gëtt opgestallt',
 'ilsubmit'                  => 'Sichen',
+'showlast'                  => 'Weis déi lescht $1 Fichieren, no $2 zortéiert.',
 'byname'                    => 'no Numm',
 'bydate'                    => 'no Datum',
 'bysize'                    => 'no Gréisst',
@@ -658,10 +696,10 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'randomredirect' => 'Zoufälleg Weiderleedung',
 
 # Statistics
-'statistics'    => 'Statistik',
-'sitestats'     => '{{SITENAME}}-Statistik',
-'userstats'     => 'Benotzerstatistik',
-'sitestatstext' => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Artikel|Artikelen}} an der Datebank.
+'statistics'             => 'Statistik',
+'sitestats'              => '{{SITENAME}}-Statistik',
+'userstats'              => 'Benotzerstatistik',
+'sitestatstext'          => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Artikel|Artikelen}} an der Datebank.
 Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Artikelen, Redirecten an anerer déi eventuell net als Artikele gezielt kënne ginn.
 
 Déi ausgeschloss ginn et {{PLURAL:\$2|Artikel den|Artikelen déi}} als Artikel betruecht {{PLURAL:\$2|ka|kënne}} ginn. 
@@ -672,6 +710,8 @@ Am ganze gouf '''\$3''' {{PLURAL:\$3|Artikeloffro|Artikeloffroen}} ann '''\$4'''
 Doraus ergi sech '''\$5''' Bearbechtungen pro Artikel an '''\$6''' Artikeloffroen pro Bearbechtung.
 
 Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''\$7'''",
+'userstatstext'          => "Et gi '''$1''' {{PLURAL:$1|registréierten|registréiert}} [[Special:Listusers|Benotzer]].  '''$2''' (oder '''$4%''') vun dëse {{PLURAL:$2|ass|sinn}} $5.",
+'statistics-mostpopular' => 'Am meeschte gekuckte Säiten',
 
 'disambiguations'     => 'Homonymie Säiten',
 'disambiguationspage' => 'Template:Homonymie',
@@ -695,6 +735,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'nmembers'                => '$1 {{PLURAL:$1|Member|Memberen}}',
 'nrevisions'              => '$1 {{PLURAL:$1|Revisioun|Revisiounen}}',
 'nviews'                  => '$1 {{PLURAL:$1|Offro|Offroen}}',
+'specialpage-empty'       => 'Dës Säit ass eidel.',
 'lonelypages'             => 'Weesesäiten',
 'uncategorizedcategories' => 'Kategorien ouni Kategorie',
 'uncategorizedimages'     => 'Biller ouni Kategorie',
@@ -714,6 +755,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'deadendpagestext'        => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
 'protectedtitles'         => 'Gespaarten Titel',
 'specialpages'            => 'Spezialsäiten',
+'spheading'               => 'Spezialsäite fir all Benotzer',
 'newpages'                => 'Nei Säiten',
 'newpages-username'       => 'Benotzernumm:',
 'ancientpages'            => 'Al Säiten',
@@ -757,6 +799,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
 # E-mail user
+'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg Email Adress an äre [[Special:Preferences|Preferenzen]] agestallt hunn, fir engem anere Benotzer eng E-mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng Email schécken',
 'emailpage'       => 'Dem Benotzer eng Email schécken',
 'emailpagetext'   => 'Wann dëse Benotzer eng valid Email Adress a senge Preferenzen agestallt huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi Email Adress déi dir an Äre Preferenzen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
@@ -768,6 +811,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'emailmessage'    => 'Message',
 'emailsend'       => 'Schécken',
 'emailccme'       => 'Eng E-mail-Kopie vum Message fir mech',
+'emailccsubject'  => 'Kopie vun denger Noriicht un $1: $2',
 'emailsent'       => 'Email geschéckt',
 'emailsenttext'   => 'Är Email gouf fortgeschéckt.',
 
@@ -779,16 +823,25 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'watch'                => 'Verfollegen',
 'watchthispage'        => 'Dës Säit verfollegen',
 'unwatch'              => 'Net méi verfollegen',
+'watchlistcontains'    => 'Op ärer Suivi-Lëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
+'wlshowlast'           => "Weis d'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg).",
+'watchlist-show-bots'  => 'Bot-Ännerunge weisen',
 'watchlist-hide-bots'  => 'Bot-Ännerunge verstoppen',
+'watchlist-show-own'   => 'Meng Ännerunge weisen',
 'watchlist-hide-own'   => 'Meng Ännerunge verstoppen',
+'watchlist-show-minor' => 'Kleng Ännerunge weisen',
 'watchlist-hide-minor' => 'kleng Ännerungen verstoppen',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'unwatching' => 'Net verfollegen …',
+'watching'   => 'Suivéieren …',
+'unwatching' => 'Net suivéieren …',
 
-'enotif_newpagetext' => 'Dëst ass eng nei Säit.',
-'changed'            => 'geännert',
-'enotif_anon_editor' => 'Anonyme Benotzer $1',
+'enotif_newpagetext'           => 'Dëst ass eng nei Säit.',
+'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
+'changed'                      => 'geännert',
+'enotif_lastvisited'           => 'All Ännerungen op ee Bléck: $1',
+'enotif_lastdiff'              => 'Kuckt $1 fir dës Ännerung.',
+'enotif_anon_editor'           => 'Anonyme Benotzer $1',
 
 # Delete/protect/revert
 'deletepage'                => 'Läschungssäit',
@@ -808,6 +861,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'dellogpagetext'            => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server (UTC).',
 'deletionlog'               => 'Läschungslog',
 'deletecomment'             => "Grond fir d'Läschen",
+'deleteotherreason'         => 'Aneren/ergänzende Grond:',
 'deletereasonotherlist'     => 'Anere Grond',
 'rollbacklink'              => 'Zrécksetzen',
 'cantrollback'              => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
@@ -823,6 +877,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # Undelete
 'undelete'                 => 'Geläschte Säit restauréieren',
+'undeletehistorynoadmin'   => "Dësen Artikel gouf geläscht. De Grond fir d'Läschen gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. De Contenu vun dësen Textversioune kann awer just vun Administrateuren gekuckt a restauréiert ginn.",
 'undelete-nodiff'          => 'Et si keng méi al Versiounen do.',
 'undeletebtn'              => 'Restauréieren',
 'undeletedarticle'         => 'huet "[[$1]]" restauréiert',
@@ -843,10 +898,13 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'uctop'         => ' (aktuell)',
 
 'sp-contributions-newbies'     => 'Nëmme Kontributioune vun neie Mataarbechter weisen',
-'sp-contributions-newbies-sub' => 'Fir nei Wikipedianer',
-'sp-contributions-search'      => 'No Beiträg sichen',
+'sp-contributions-newbies-sub' => 'Fir déi Nei',
+'sp-contributions-blocklog'    => 'Block Log',
+'sp-contributions-search'      => 'No Kontributioune sichen',
 'sp-contributions-username'    => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-submit'      => 'Sichen',
+
+'sp-newimages-showfrom' => 'Nei Biller weisen, ugefaange mat $1',
 
 # What links here
 'whatlinkshere'       => 'Linken op dës Säit',
@@ -861,6 +919,14 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 # Block/unblock
 'blockip'                     => 'Benotzer blockéieren',
 'blockiptext'                 => 'Benotzt dës Form fir eng spezifesch IP Adress oder e Benotzernumm ze blockéieren. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat der [[Wikipedia:Vandalismus|Wikipedia Policy]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
+'ipbreason-dropdown'          => "*Heefeg Ursaache fir Benotzer ze spären:
+**Bewosst falsch Informatiounen an een oder méi Artikele gesat
+**Ouni Grond Inhalt vun Artikelen/Säite geläscht
+**Spam-Verknëppunge mat externe Säiten
+**Topereien an d'Artikele gesat
+**Beleidegt oder bedréit aner Mataarbechter
+**Mëssbrauch vu verschiddene Benotzernimm
+**Net akzeptabele Benotzernumm",
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
 'badipaddress'                => "D'IP-Adress huet dat falscht Format.",
 'blockipsuccesssub'           => 'Mat Succès gespaart',
@@ -881,18 +947,38 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'blocklogtext'                => "Dëst ass e Log vu Blockéieren an Deblockéieren. Automatesch blockéiert IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:Ipblocklist|IP block list]] fir déi aktuell Blockagen.",
 'block-log-flags-anononly'    => 'Nëmmen anonym Benotzer',
 'block-log-flags-noautoblock' => 'Autoblock deaktivéiert',
+'range_block_disabled'        => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_already_blocked'         => '„$1“ ass scho gespaart',
 'proxyblocker-disabled'       => 'Dës Funktioun ass ausgeschalt.',
+'sorbsreason'                 => 'Är IP Adress steet als oppene Proxy an der schwoarzer Lëscht (DNSBL) vu [http://www.sorbs.net SORBS].',
+'sorbs_create_account_reason' => 'Är IP Adress steet als oppene Proxy an der schwoarzer Lëscht (DNSBL) vu [http://www.sorbs.net SORBS]. Där kënnt kee Kont opmaachen',
+
+# Developer tools
+'lockdbtext'        => "Wann d'Datebank gespaart ass, ka kee Benotzer méi Säiten änneren, seng Preferenzen änneren, seng Suivi-Lëscht änneren, an all aner Aarbecht, déi op d'Datebank zréckgräift. 
+
+W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spär ewechhuelt soubal d'Maintenance-Aarbechten eriwwer sinn.",
+'lockconfirm'       => "Jo, ech wëll d'Datebank wierklech spären.",
+'lockdbsuccesstext' => "D'{{SITENAME}}-Datebank gouf gespaart. <br />
+Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance-Aarbechte fäerdeg sinn.",
 
 # Move page
 'movepage'                => 'Säit réckelen',
+'movepagetext'            => "Wann der folgende Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Redirect op déi nei Säit. Linken op déi aal Säit ginn net ëmgeännert;  passt op datt keng duebel oder feelerhaft Redirecten am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.
+
+Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonn eng Säit mat deem neien Titel gëtt, ausser dës ass eidel, e Redirect oder huet keen Historique. Dëst bedeit datt dir eng Säit kennt ëmbenennen an datt dir keng existent Säit iwwerschreiwe kënnt.
+
+<b>OPGEPASST!</b> 
+Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
 'movearticle'             => 'Säit réckelen:',
 'newtitle'                => 'Op neien Titel:',
 'move-watch'              => 'Dës Säit verfollegen',
 'movepagebtn'             => 'Säit réckelen',
 'pagemovedsub'            => 'Mat Succès geréckelt',
 'articleexists'           => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
+'talkexists'              => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
 'movedto'                 => 'geréckelt op',
+'talkpagemoved'           => "D'Diskussiounssäit gouf mat eriwwergeholl.",
+'talkpagenotmoved'        => "D'Diskussiounssäit gouf <strong>net</strong> mat eriwwergeholl.",
 '1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir'         => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 'movelogpage'             => 'Réckel-Logbuch',
@@ -920,11 +1006,12 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:namespace''', déi vun der MediaWiki-Software benotzt ginn. Si kënnen nëmme vun [[Wikipedia:Administrators|Administrateure]] geännert ginn.",
 'allmessagesnotsupportedDB' => "'''Special:AllMessages''' gëtt den Ament net ënnertstëtzt well d'Datebank ''offline'' ass.",
 'allmessagesfilter'         => 'Noriichtennummfilter:',
-'allmessagesmodified'       => 'Nëmme geännert uweisen',
+'allmessagesmodified'       => 'Nëmme geännerter weisen',
 
 # Thumbnails
-'thumbnail-more' => 'vergréisseren',
-'filemissing'    => 'Fichier feelt',
+'thumbnail-more'  => 'vergréisseren',
+'filemissing'     => 'Fichier feelt',
+'djvu_page_error' => 'DjVu-Säit baussent dem Säiteberäich',
 
 # Special:Import
 'import-interwiki-submit' => 'Import',
@@ -939,38 +1026,61 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'import-logentry-interwiki'     => 'huet $1 importéiert (Transwiki)',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'      => 'Meng Benotzersäit',
-'tooltip-pt-mytalk'        => 'Meng Diskussioun',
-'tooltip-pt-preferences'   => 'Meng Preferenzen',
-'tooltip-pt-login'         => 'Sech unzemellen gëtt gäre gesinn, Dir musst et awer net maachen.',
-'tooltip-pt-logout'        => 'Ofmellen',
-'tooltip-ca-talk'          => 'Diskussioun iwwert de Säiteninhalt',
-'tooltip-ca-history'       => 'Virescht Versioune vun dëser Säit',
-'tooltip-ca-protect'       => 'Dës Säit protegéieren',
-'tooltip-ca-delete'        => 'Dës Säit läschen',
-'tooltip-ca-move'          => 'Dës Säit réckelen',
-'tooltip-ca-watch'         => 'Dës Säit op är Suivi-Lëscht bäisetzen',
-'tooltip-search'           => 'Op {{SITENAME}} sichen',
-'tooltip-n-mainpage'       => "Besicht d'Haaptsäit",
-'tooltip-n-recentchanges'  => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',
-'tooltip-n-help'           => 'Hëllefsäiten uweisen.',
-'tooltip-n-sitesupport'    => 'Ënnerstetzt eis',
-'tooltip-t-whatlinkshere'  => 'Lëscht vun alle Säiten, déi heihi linken',
-'tooltip-t-emailuser'      => 'Dësem Benotzer eng E-Mail schécken',
-'tooltip-t-specialpages'   => 'Lëscht vun alle Spezialsäiten',
-'tooltip-ca-nstab-user'    => 'Benotzersäit weisen',
-'tooltip-ca-nstab-special' => 'Dëst ass eng Spezialsäit. Si kann net verännert ginn.',
-'tooltip-ca-nstab-help'    => 'Hëllefesäiten uweisen',
-'tooltip-minoredit'        => 'Dës Ännerung als kleng markéieren.',
-'tooltip-save'             => 'Ännerungen späicheren',
+'tooltip-pt-userpage'             => 'Meng Benotzersäit',
+'tooltip-pt-mytalk'               => 'Meng Diskussioun',
+'tooltip-pt-preferences'          => 'Meng Preferenzen',
+'tooltip-pt-login'                => 'Sech unzemellen gëtt gäre gesinn, Dir musst et awer net maachen.',
+'tooltip-pt-logout'               => 'Ofmellen',
+'tooltip-ca-talk'                 => 'Diskussioun iwwert de Säiteninhalt',
+'tooltip-ca-edit'                 => 'Dës Säit ka geännert ginn. Maacht vum Preview Gebrauch a kuckt ob alles an der Rei ass ier der ofspäichert.',
+'tooltip-ca-viewsource'           => 'Dës Säit ass protegéiert. Nëmmen de Quelltext ka gewise ginn.',
+'tooltip-ca-history'              => 'Virescht Versioune vun dëser Säit',
+'tooltip-ca-protect'              => 'Dës Säit protegéieren',
+'tooltip-ca-delete'               => 'Dës Säit läschen',
+'tooltip-ca-move'                 => 'Dës Säit réckelen',
+'tooltip-ca-watch'                => 'Dës Säit op är Suivi-Lëscht bäisetzen',
+'tooltip-ca-unwatch'              => 'Dës Säit vun der Suivis-Lëscht erafhuelen',
+'tooltip-search'                  => 'Op {{SITENAME}} sichen',
+'tooltip-n-mainpage'              => "Besicht d'Haaptsäit",
+'tooltip-n-recentchanges'         => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',
+'tooltip-n-help'                  => 'Hëllefsäiten weisen.',
+'tooltip-n-sitesupport'           => 'Ënnerstetzt eis',
+'tooltip-t-whatlinkshere'         => 'Lëscht vun alle Säiten, déi heihi linken',
+'tooltip-feed-rss'                => 'RSS-Feed fir dës Säit',
+'tooltip-feed-atom'               => 'Atom-Feed fir dës Säit',
+'tooltip-t-emailuser'             => 'Dësem Benotzer eng E-Mail schécken',
+'tooltip-t-specialpages'          => 'Lëscht vun alle Spezialsäiten',
+'tooltip-ca-nstab-main'           => 'Contenu vun der Säit weisen',
+'tooltip-ca-nstab-user'           => 'Benotzersäit weisen',
+'tooltip-ca-nstab-media'          => 'Mediesäit weisen',
+'tooltip-ca-nstab-special'        => 'Dëst ass eng Spezialsäit. Si kann net geännert ginn.',
+'tooltip-ca-nstab-project'        => 'Portalsäit weisen',
+'tooltip-ca-nstab-image'          => 'Billersäit weisen',
+'tooltip-ca-nstab-mediawiki'      => 'Systemmessage weisen',
+'tooltip-ca-nstab-template'       => 'Schabloun weisen',
+'tooltip-ca-nstab-help'           => 'Hëllefesäite weisen',
+'tooltip-ca-nstab-category'       => 'Kategoriesäit weisen',
+'tooltip-minoredit'               => 'Dës Ännerung als kleng markéieren.',
+'tooltip-save'                    => 'Ännerungen späicheren',
+'tooltip-diff'                    => 'Weis wéi eng Ännerungen der beim Text gemaach hutt.',
+'tooltip-compareselectedversions' => "D'Ennerscheeder op dëser Säit tëscht den zwou gewielte Versioune weisen.",
+'tooltip-watch'                   => 'Dës Säit op är Suivi-Lëscht bäisetzen',
 
 # Attribution
 'anonymous'   => 'Anonym(e) Benotzer op {{SITENAME}}',
+'siteuser'    => '{{SITENAME}}-Benotzer $1',
+'siteusers'   => '{{SITENAME}}-Benotzer $1',
 'creditspage' => 'Quellen',
 
 # Spam protection
+'spamprotectiontitle'  => 'Spamfilter',
+'spamprotectiontext'   => "D'Säit déi dir späichere wollt gouf vum Spamfilter blockéiert. Dëst wahrscheinlech duerch en externe Link.",
+'subcategorycount'     => 'Fir dës Kategorie {{PLURAL:$1|gëtt et $1 Souskategorie| ginn et $1 Souskategorien}}.',
 'categoryarticlecount' => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Artikel|ginn et bis ewell $1 Artikelen}}.',
 'category-media-count' => 'Et {{PLURAL:$1|gëtt eng Datei|ginn $1 Dateien}} an dëser Kategorie',
+
+# Math options
+'mw_math_html' => 'Wa méiglech als HTML duerstellen, soss PNG',
 
 # Patrolling
 'markedaspatrollederrortext' => 'Dir musst eng Säitenännerung auswielen.',
@@ -986,6 +1096,8 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'nextdiff' => 'Nächsten Ënnerscheed →',
 
 # Media information
+'imagemaxsize'    => 'Biller op de Billerbeschreiwungssäite limitéieren op:',
+'thumbsize'       => 'Gréisst vun de Thumbnails:',
 'widthheightpage' => '$1×$2, $3 Säiten',
 'file-info'       => '(Dateigréisst: $1, MIME-Typ: $2)',
 'file-info-size'  => '($1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4)',
@@ -993,13 +1105,19 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'show-big-image'  => 'Versioun an enger méi héijer Opléisung',
 
 # Metadata
-'metadata' => 'Metadaten',
+'metadata'          => 'Metadaten',
+'metadata-expand'   => 'Weis detailléiert Informatiounen',
+'metadata-collapse' => 'Verstopp detailléiert Informatiounen',
 
 # EXIF tags
+'exif-imagewidth'                  => 'Breet',
 'exif-imagelength'                 => 'Längt',
 'exif-bitspersample'               => 'Biten pro Farfkomponent',
+'exif-compression'                 => 'Aart vun der Kompressioun',
 'exif-photometricinterpretation'   => 'Pixelzesummesetzung',
+'exif-orientation'                 => 'Kameraausriichtung',
 'exif-samplesperpixel'             => 'Zuel vun de Komponenten',
+'exif-planarconfiguration'         => 'Datenausriichtung',
 'exif-ycbcrpositioning'            => 'Y an C Positionéirung',
 'exif-xresolution'                 => 'Horizontal Opléisung',
 'exif-yresolution'                 => 'Vertikal Opléisung',
@@ -1007,46 +1125,107 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'exif-jpeginterchangeformatlength' => 'Gréisst vun de JPEG-Daten a Byten',
 'exif-whitepoint'                  => 'Manuell mat Miessung',
 'exif-referenceblackwhite'         => 'Schwoarz/Wäiss-Referenzpunkten',
+'exif-datetime'                    => 'Späicherzäitpunkt',
 'exif-make'                        => 'Fabrikant',
 'exif-copyright'                   => "Droits d'auteur",
 'exif-exifversion'                 => 'Exif-Versioun',
+'exif-colorspace'                  => 'Faarfraum',
+'exif-componentsconfiguration'     => 'Bedeitung vun eenzelne Komponenten',
+'exif-compressedbitsperpixel'      => 'Kompriméiert Biten pro Pixel',
+'exif-datetimeoriginal'            => 'Erfaassungszäitpunkt',
+'exif-datetimedigitized'           => 'Digitaliséierungszäitpunkt',
 'exif-subsectime'                  => 'Späicherzäitpunkt (1/100 s)',
 'exif-subsectimedigitized'         => 'Digitaliséirungszäitpunkt (1/100 s)',
+'exif-exposuretime'                => 'Beliichtungsdauer',
 'exif-exposuretime-format'         => '$1 Sekonnen ($2)',
 'exif-fnumber'                     => 'Blend',
+'exif-exposureprogram'             => 'Beliichtungsprogramm',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlechkeet (ISO)',
+'exif-shutterspeedvalue'           => 'Beliichtungszäitwäert',
+'exif-aperturevalue'               => 'Blendewäert',
+'exif-brightnessvalue'             => 'Hellegkeetswäert',
 'exif-lightsource'                 => 'Liichtquell',
 'exif-flash'                       => 'Blëtz',
 'exif-focallength'                 => 'Brennwäit',
+'exif-subjectarea'                 => 'Beräich',
+'exif-flashenergy'                 => 'Blëtzstäerkt',
 'exif-focalplanexresolution'       => 'Sensoropléisung horizontal',
 'exif-focalplaneyresolution'       => 'Sensoropléisung vertikal',
 'exif-focalplaneresolutionunit'    => 'Eenheet vun der Sensoropléisung',
 'exif-subjectlocation'             => 'Motivstanduert',
+'exif-exposureindex'               => 'Beliichtungsindex',
+'exif-exposuremode'                => 'Beliichtungsmodus',
 'exif-whitebalance'                => 'Wäissofgläich',
 'exif-focallengthin35mmfilm'       => 'Brennwäit (Klengbildäquivalent)',
 'exif-scenecapturetype'            => 'Opnameaart',
 'exif-gaincontrol'                 => 'Verstäerkung',
+'exif-sharpness'                   => 'Schäerft',
+'exif-subjectdistancerange'        => 'Motivdistanz',
+'exif-gpsaltitude'                 => 'Héicht',
 'exif-gpstimestamp'                => 'GPS-Zäit',
 'exif-gpsdestlatituderef'          => "Referenz fir d'Breet",
+'exif-gpsdestlatitude'             => 'Breet',
 'exif-gpsdestlongituderef'         => "Referenz fir d'Längt",
+'exif-gpsdestlongitude'            => 'Längt',
 'exif-gpsdestdistance'             => 'Motivdistanz',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 
+# EXIF attributes
+'exif-compression-1' => 'Onkompriméiert',
+
 'exif-unknowndate' => 'Onbekannten Datum',
 
-'exif-meteringmode-0' => 'Onbekannt',
-'exif-meteringmode-1' => 'Duerchschnëttlech',
+'exif-orientation-2' => 'Horizontal gedréit', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Ëm 180° gedréit', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Vertikal gedréit', # 0th row: bottom; 0th column: left
 
+'exif-componentsconfiguration-0' => 'Gëtt et net',
+
+'exif-exposureprogram-0' => 'Onbekannt',
+'exif-exposureprogram-3' => 'Zäitautomatik',
+'exif-exposureprogram-8' => 'Landschaftsopnamen',
+
+'exif-meteringmode-0'   => 'Onbekannt',
+'exif-meteringmode-1'   => 'Duerchschnëttlech',
+'exif-meteringmode-3'   => 'Spotmiessung',
+'exif-meteringmode-4'   => 'Méifachspotmiessung',
+'exif-meteringmode-6'   => 'Bilddeel',
+'exif-meteringmode-255' => 'Onbekannt',
+
+'exif-lightsource-0'  => 'Onbekannt',
+'exif-lightsource-1'  => 'Dageslut',
+'exif-lightsource-4'  => 'Blëtz',
+'exif-lightsource-9'  => 'Schéint Wieder',
+'exif-lightsource-10' => 'Wollekeg',
+'exif-lightsource-11' => 'Schiet',
+
+'exif-sensingmethod-1' => 'Ondefinéiert',
 'exif-sensingmethod-2' => 'Een-Chip-Farfsensor',
 'exif-sensingmethod-3' => 'Zwee-Chip-Farfsensor',
 'exif-sensingmethod-4' => 'Dräi-Chip-Farfsensor',
 'exif-sensingmethod-7' => 'Trilineare Sensor',
 
+'exif-exposuremode-0' => 'Automatesch Beliichtung',
+'exif-exposuremode-1' => 'Manuell Beliichtung',
+'exif-exposuremode-2' => 'Beliichtungsserie',
+
 'exif-whitebalance-0' => 'Automatesche Wäissofgläich',
 
 'exif-scenecapturetype-3' => 'Nuetszeen',
 
+'exif-gaincontrol-0' => 'Keng',
+
+'exif-contrast-1' => 'Schwaach',
+'exif-contrast-2' => 'Stark',
+
 'exif-saturation-2' => 'Héich',
+
+'exif-sharpness-2' => 'Stark',
+
+'exif-subjectdistancerange-0' => 'Onbekannt',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'No',
+'exif-subjectdistancerange-3' => 'wäit ewech',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-n' => 'Kniet',
@@ -1057,7 +1236,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
-'imagelistall'     => 'all',
+'imagelistall'     => 'alleguerten',
 'watchlistall2'    => 'all',
 'namespacesall'    => 'all',
 'monthsall'        => 'all',
@@ -1091,8 +1270,15 @@ Feelermeldung vum Mailserver: $1",
 'imgmultigotopre' => "Géi op d'Säit",
 
 # Table pager
-'ascending_abbrev'  => 'erop',
-'descending_abbrev' => 'erof',
+'ascending_abbrev'         => 'erop',
+'descending_abbrev'        => 'erof',
+'table_pager_next'         => 'Nächst Säit',
+'table_pager_prev'         => 'Virescht Säit',
+'table_pager_first'        => 'Éischt Säit',
+'table_pager_last'         => 'Lescht Säit',
+'table_pager_limit'        => '$1 Objete pro Säit weisen',
+'table_pager_limit_submit' => 'Lass',
+'table_pager_empty'        => 'Keng Resultater',
 
 # Auto-summaries
 'autosumm-blank'   => 'All Inhalt vun der Säit gëtt geläscht',
