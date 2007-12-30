@@ -44,8 +44,6 @@ if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
 		document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera6Fixes.css">');
 	} else if (is_opera_seven && !is_opera_95) {
 		document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera7Fixes.css">');
-	} else if (is_opera_95) {
-		document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera95Fixes.css">');
 	} else if (is_khtml) {
 		document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/KHTMLFixes.css">');
 	}
