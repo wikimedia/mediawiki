@@ -143,6 +143,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Pöl',
 'returnto'          => 'Geikön lü $1.',
+'tagline'           => 'Se {{SITENAME}}',
 'help'              => 'Yuf',
 'search'            => 'Suk',
 'searchbutton'      => 'Sukolöd',
@@ -400,6 +401,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 
 # Diffs
 'history-title'           => 'Revidajenotem pada: "$1"',
+'lineno'                  => 'Lien $1:',
 'compareselectedversions' => 'Leigodolöd fomamis pevälöl',
 
 # Search results
@@ -796,11 +798,12 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 'sp-newimages-showfrom' => 'Jonolöd magodis nulik, primölo tü düp $1',
 
 # What links here
-'whatlinkshere' => 'Yüms isio',
-'linklistsub'   => '(Yümalised)',
-'linkshere'     => "Pads sököl payümons ko '''[[:$1]]''':",
-'nolinkshere'   => "Pads nonik peyümons lü '''[[:$1]]'''.",
-'isredirect'    => 'lüodükömapad',
+'whatlinkshere'       => 'Yüms isio',
+'linklistsub'         => '(Yümalised)',
+'linkshere'           => "Pads sököl payümons ko '''[[:$1]]''':",
+'nolinkshere'         => "Pads nonik peyümons lü '''[[:$1]]'''.",
+'isredirect'          => 'lüodükömapad',
+'whatlinkshere-links' => '← yüms',
 
 # Block/unblock
 'blockip'                  => 'Blokön gebani',
@@ -912,6 +915,14 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 # Import log
 'importlogpage' => 'Jenotalised nüveigamas',
 
+# Tooltip help for the actions
+'tooltip-pt-preferences' => 'Buükams obik',
+'tooltip-pt-logout'      => 'Senunädön oki',
+'tooltip-search'         => 'Sukön in {{SITENAME}}',
+'tooltip-n-mainpage'     => 'Visitolös Cifapadi',
+'tooltip-n-sitesupport'  => 'Stütolös obsi',
+'tooltip-t-specialpages' => 'Lised padas patik valik',
+
 # Stylesheets
 'common.css'   => '/** El CSS isio peplädöl pogebon pro padafomäts valik */',
 'monobook.css' => '/* El CSS isio pepladöl otefon gebanis padafomäta: Monobook */',
@@ -1015,3 +1026,4 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'autosumm-new'     => 'Pad nulik: $1',
 
 );
+

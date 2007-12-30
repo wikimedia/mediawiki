@@ -1303,7 +1303,7 @@ Por suprimar cela pâge de voutra lista de siuvu, clicâd dessus « pas més siu
 'enotif_impersonal_salutation' => 'Utilisator de {{SITENAME}}',
 'changed'                      => 'modifiâ',
 'created'                      => 'crèâ',
-'enotif_subject'               => 'La pâge $PAGETITLE de {{SITENAME}} at étâ $CHANGEDORCREATED per $PAGEEDITOR',
+'enotif_subject'               => 'La pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => 'Consultâd $1 por tôs los changements dês voutra dèrriére visita.',
 'enotif_lastdiff'              => 'Consultâd $1 por vêre cela modificacion.',
 'enotif_anon_editor'           => 'utilisator pas enregistrâ $1',
