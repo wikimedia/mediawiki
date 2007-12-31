@@ -112,7 +112,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add HTML ID's mw-read-only-warning and mw-anon-edit-warning to warnings when
   editing to allow CSS styling.
 * Parser now returns list of sections
-* Support images-redirects
 
 === Bug fixes in 1.12 ===
 
