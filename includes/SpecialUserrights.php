@@ -232,6 +232,8 @@ class UserrightsForm extends HTMLForm {
 	 */
 	function switchForm() {
 		global $wgOut, $wgRequest;
+		$wgOut->addWikiText( wfMsg( 'userrights-text' ) );
+		
 		$username = $wgRequest->getText( 'user-editname' );
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'uluser' ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
