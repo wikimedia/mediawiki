@@ -470,7 +470,7 @@ Se vos éte pas l’ôtor de cela demanda, ou se vos vos rapelâd ora de voutron
 Devant qu’un ôtro mèl seye emmandâ a cél compto, vos devréd siuvre les enstruccions du mèl et confirmar que lo compto est ben lo voutro.',
 'throttled-mailpassword'     => 'Un mèl de rapèl de voutron mot de pâssa at ja étâ emmandâ pendent les $1 hores passâs. Por èvitar los abus, un solèt mèl de rapèl serat emmandâ en $1 hores.',
 'mailerror'                  => 'Èrror en emmandent lo mèl : $1',
-'acct_creation_throttle_hit' => 'Dèsolâ, vos éd ja crèâ $1 comptos. Vos pouede pas nen crèar d’ôtros.',
+'acct_creation_throttle_hit' => 'Dèsolâ, vos éd ja crèâ {{PLURAL:$1|yon compto|$1 comptos}}. Vos pouede pas nen crèar d’ôtros.',
 'emailauthenticated'         => 'Voutra adrèce de mèl at étâ ôtentifiâ lo $1.',
 'emailnotauthenticated'      => 'Voutra adrèce de mèl est <strong>p’oncor ôtentifiâ</strong>. Nion mèl serat emmandâ por châcuna de les fonccions siuventes.',
 'noemailprefs'               => '<strong>Niona adrèce èlèctronica at étâ endicâ,</strong> les fonccions siuventes seront pas disponibles.',
@@ -530,17 +530,18 @@ Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',
 'showdiff'                  => 'Changements en cors',
 'anoneditwarning'           => "'''Atencion :''' vos éte pas identifiâ. Voutra adrèce IP serat enregistrâ dens l’historico de ceta pâge.",
 'missingsummary'            => "'''Atencion :''' vos éd pas modifiâ lo rèsumâ de voutra modificacion. Se vos tornâd clicar sur lo boton « Sôvar ceta pâge », la pâge serat sôvâ sen novél avèrtissement.",
-'missingcommenttext'        => 'Marci d’entrebetar un rèsumâ ce-desot.',
-'missingcommentheader'      => "'''Rapèl :''' vos éd pas forni de sujèt/titro a ceti comentèro. Se vos tornâd clicar dessus « Sôvar ceta pâge », voutra èdicion serat enregistrâ sen comentèro.",
+'missingcommenttext'        => 'Volyéd fâre voutron comentèro ce-desot.',
+'missingcommentheader'      => "'''Rapèl :''' vos éd pas forni de sujèt/titro a ceti comentèro. Se vos tornâd clicar dessus « Sôvar ceta pâge », voutra èdicion serat enregistrâ sen titro.",
 'summary-preview'           => 'Prèvisualisacion du rèsumâ ',
 'subject-preview'           => 'Prèvisualisacion du sujèt/titro ',
 'blockedtitle'              => 'L’utilisator est blocâ.',
-'blockedtext'               => "<big>'''Voutron compto utilisator ou voutra adrèce IP « $7 » at étâ blocâ.'''</big>
+'blockedtext'               => "<big>'''Voutron compto utilisator ou voutra adrèce IP at étâ blocâ.'''</big>
 
 Lo blocâjo at étâ fêt per $1 por la rêson siuventa : ''$2''.
 
 * Comencement du blocâjo : $8
 * Èxpiracion du blocâjo : $6
+* Compto blocâ : $7
 
 Vos pouede vos veriér vers $1 ou yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar. Vos pouede utilisar la fonccion « Emmandar un mèssâjo a ceti utilisator » ren que s’una adrèce de mèl valida est spècefiâ dens voutres [[Special:Preferences|prèferences]]. Voutra adrèce IP d’ora est $3 et voutron identifiant de blocâjo est #$5. Volyéd los spècefiar dens tota requéta.",
 'autoblockedtext'           => "Voutra adrèce IP at étâ blocâ ôtomaticament perce qu’el at étâ utilisâ per un ôtro utilisator, lui-mémo blocâ per $1.
@@ -577,7 +578,7 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'newarticle'                => '(Novél)',
 'newarticletext'            => "Vos éd siuvu un lim vers una pâge qu’ègziste p’oncor. Por crèar cela pâge, entrâd voutron tèxte dens la bouèta ce-desot (vos pouede consultar la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacion). Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''retôrn''' de voutron navigator.",
 'anontalkpagetext'          => "---- ''Vos éte sur la pâge de discussion d’un utilisator anonimo qu’at p’oncor crèâ un compto ou que l’utilise pas. Por cela rêson, nos devens utilisar son adrèce IP por l’identifiar. Una adrèce IP pôt étre partagiê per plusiors utilisators. Se vos éte un utilisator anonimo et se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede vos [[Special:Userlogin|conèctar ou crèar un compto]] por èvitar tota confusion futura avouéc d’ôtros contributors anonimos.''",
-'noarticletext'             => 'Y at por lo moment gins de tèxte sur ceta pâge ; vos pouede [[Special:Search/{{PAGENAME}}|comenciér una rechèrche sur lo titro de ceta pâge]] ou [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} la modifiar].',
+'noarticletext'             => 'Y at por lo moment gins de tèxte sur ceta pâge ; vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de ceta pâge]] ou ben [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} la modifiar].',
 'userpage-userdoesnotexist' => 'Lo compto utilisator « $1 » est pas enregistrâ. Endicâd se vos voléd crèar ou ben èditar cela pâge.',
 'clearyourcache'            => "'''Nota :''' aprés avêr sôvâ, vos dête forciér lo rechargement de la pâge por vêre los changements : '''Mozilla / Firefox :''' ''Shift-Ctrl-R'' (''Shift-Cmd-R'' en '''Apple Mac'''), '''IE :''' ''Ctrl-F5'', '''Opera :''' ''F5'', '''Safari :''' ''⌘-R'', '''Konqueror :''' ''Ctrl-R''.",
 'usercssjsyoucanpreview'    => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye css/js devant que l’enregistrar.",
@@ -725,7 +726,7 @@ a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèr
 'logdelete-success'           => 'Visibilitât des èvènements changiê avouéc reusséta.',
 
 # Oversight log
-'oversightlog'    => 'Jornal oversight',
+'oversightlog'    => 'Jornal d’oversight',
 'overlogpagetext' => 'La lista ce-desot montre les suprèssions et los blocâjos novéls que lo contegnu est mâscâ mémo por los administrators.
 Consultâd la [[Special:Ipblocklist|lista des comptos blocâs]] por la lista des blocâjos en cors.',
 
@@ -769,12 +770,12 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'searchresulttext'      => 'Por més d’enformacions sur la rechèrche dens {{SITENAME}}, vêde [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Vos éd rechèrchiê '''« [[:$1]] »'''.",
 'searchsubtitleinvalid' => "Vos éd rechèrchiê '''« $1 »'''.",
-'noexactmatch'          => "'''Niona pâge avouéc lo titro « $1 » ègziste pas.''' Vos pouede [[:$1|crèar cél articllo]].",
+'noexactmatch'          => "'''Niona pâge avouéc lo titro « $1 » ègziste.''' Vos pouede [[:$1|crèar cél articllo]].",
 'noexactmatch-nocreate' => "'''Ègziste gins de pâge avouéc lo titro « $1 ».'''",
 'titlematches'          => 'Corrèspondances dens los titros d’articllos',
-'notitlematches'        => 'Nion titro d’articllo corrèspond pas a la rechèrche.',
+'notitlematches'        => 'Nion titro d’articllo corrèspond a la rechèrche.',
 'textmatches'           => 'Corrèspondances dens lo tèxte d’articllos',
-'notextmatches'         => 'Nion tèxte d’articllo corrèspond pas a la rechèrche.',
+'notextmatches'         => 'Nion tèxte d’articllo corrèspond a la rechèrche.',
 'prevn'                 => '$1 prècèdents',
 'nextn'                 => '$1 siuvents',
 'viewprevnext'          => 'Vêre ($1) ($2) ($3).',
@@ -855,7 +856,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'userrights-lookup-user'      => 'Maneyance des drêts d’utilisator',
 'userrights-user-editname'    => 'Entrâd un nom d’utilisator :',
 'editusergroup'               => 'Modificacion des groupes d’utilisators',
-'userrights-editusergroup'    => 'Èditar los groupes de l’utilisator',
+'userrights-editusergroup'    => 'Modifiar los groupes de l’utilisator',
 'saveusergroups'              => 'Sôvar los groupes de l’utilisator',
 'userrights-groupsmember'     => 'Membro de :',
 'userrights-groupsavailable'  => 'Groupes disponiblos :',
@@ -915,7 +916,7 @@ Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siuvu des lims',
-'recentchangeslinked-title'    => 'Changements liyês a $1',
+'recentchangeslinked-title'    => 'Siuvu des lims liyês a $1',
 'recentchangeslinked-noresult' => 'Nion changement sur les pâges liyês pendent la pèrioda chouèsia/cièrdua.',
 'recentchangeslinked-summary'  => "Ceta pâge spèciâla montre los dèrriérs changements sur les pâges que sont liyês. Les pâges de voutra lista de siuvu sont '''en grâs'''.",
 
@@ -965,9 +966,9 @@ Nom du fichiér a importar : <strong><tt>$1</tt></strong><br />
 Nom du fichiér ègzistent : <strong><tt>$2</tt></strong><br />
 la solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l’èxtension. Volyéd controlar que lo fichiér est difèrent et changiér son nom.',
 'fileexists-thumb'            => "<center>'''Émâge ègzistenta'''</center>",
-'fileexists-thumbnail-yes'    => 'Lo fichiér semble étre una émâge en talye rèduita <i>(thumbnail)</i>. Volyéd controlar lo fichiér <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => 'Lo fichiér semble étre una émâge en talye rèduita <i>(figura)</i>. Volyéd controlar lo fichiér <strong><tt>$1</tt></strong>.<br />
 Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta d’importar una vèrsion rèduita.',
-'file-thumbnail-no'           => 'Lo nom du fichiér comence per <strong><tt>$1</tt></strong>. O est possiblo que s’ag·ésse d’una vèrsion rèduita <i>(thumbnail)</i>.
+'file-thumbnail-no'           => 'Lo nom du fichiér comence per <strong><tt>$1</tt></strong>. O est possiblo que s’ag·ésse d’una vèrsion rèduita <i>(figura)</i>.
 Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament volyéd changiér lo nom du fichiér.',
 'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja ; marci de tornar arriér et de copiyér lo fichiér desot un novél nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichiér portent lo mémo nom ègziste ja dens la bâsa de balyês comena ; volyéd tornar arriér et l’emmandar desot un novél nom. [[Image:$1|thumb|center|$1]]',
@@ -1692,10 +1693,10 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 'thumbnail-more'           => 'Agrantir',
 'missingimage'             => '<b>Émâge manquenta</b><br /><i>$1</i>',
 'filemissing'              => 'Fichiér absent',
-'thumbnail_error'          => 'Èrror pendent la crèacion de la miniatura : $1',
+'thumbnail_error'          => 'Èrror pendent la crèacion de la figura : $1',
 'djvu_page_error'          => 'Pâge DjVu en defôr de les limites',
 'djvu_no_xml'              => 'Empossiblo d’obtegnir lo XML por lo fichiér DjVu',
-'thumbnail_invalid_params' => 'Paramètres de la miniatura envalidos',
+'thumbnail_invalid_params' => 'Paramètres de la figura envalidos',
 'thumbnail_dest_directory' => 'Empossiblo de crèar lo rèpèrtouèro de dèstinacion',
 
 # Special:Import
@@ -1878,7 +1879,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'mediawarning'         => '<b>Atencion :</b> ceti fichiér pôt contegnir de code mâlvelyent, voutron sistèmo pôt étre betâ en dangiér per son ègzécucion.
 <hr />',
 'imagemaxsize'         => 'Format lo ples grant por les émâges dens les pâges de dèscripcion d’émâges :',
-'thumbsize'            => 'Talye de la miniatura :',
+'thumbsize'            => 'Talye de la figura :',
 'widthheightpage'      => '$1×$2, $3 pâges',
 'file-info'            => '(Talye du fichiér : $1, tipo MIME : $2)',
 'file-info-size'       => '($1 × $2 pixèles, talye du fichiér : $3, tipo MIME : $4)',

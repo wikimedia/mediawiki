@@ -1070,6 +1070,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'          => 'U moet zich [[Special:Userlogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
 'userrights-notallowed'       => 'U heeft geen rechten om gebruikersrechten toe te wijzen.',
+'userrights-groupsremovable'  => 'Te verwijderen groepen:',
 
 # Groups
 'group'               => 'Groep:',

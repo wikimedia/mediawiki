@@ -7,18 +7,32 @@
  * @author Mirzali
  */
 
+
+
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'Bınê gıreyan de xete bance:',
-'tog-highlightbroken' => 'Gıreyanê thalan/vengan {a href="" class="new"}wına{/a} (alternative: wına{a 
+'tog-underline'               => 'Bınê gıreyan de xete bance:',
+'tog-highlightbroken'         => 'Gıreyanê thalan/vengan {a href="" class="new"}wına{/a} (alternative: wına{a 
 href="" class="internal"}?{/a}) bımocne.',
-'tog-justify'         => 'Nuşte dı kıştan ser bıazne',
-'tog-hideminor'       => 'Vurnayışanê şenıkan perra „vurnayışê peyêni“ de bınımne/wedare',
-'tog-extendwatchlist' => 'Lista seyr-kerdışia hirakerdiye',
-'tog-usenewrc'        => "Lista vurnayışanê peyênana hirakerdiye (''JavaScript'' lazımo)",
-'tog-numberheadings'  => 'Sernuşteyan be xo numre cışane',
-'tog-showtoolbar'     => 'Goceganê hacetanê vurnayışi bımocne (JavaScript)',
-'tog-showtoc'         => 'Bımocne table of contents (for pages with more than 3 headings)',
+'tog-justify'                 => 'Nuşte dı kıştan ser bıazne',
+'tog-hideminor'               => 'Vurnayışanê şenıkan perra „vurnayışê peyêni“ de bınımne/wedare',
+'tog-extendwatchlist'         => 'Lista seyr-kerdışia hirakerdiye',
+'tog-usenewrc'                => "Lista vurnayışanê peyênana hirakerdiye (''JavaScript'' lazımo)",
+'tog-numberheadings'          => 'Sernuşteyan be xo numre cışane',
+'tog-showtoolbar'             => 'Goceganê hacetanê vurnayışi bımocne (JavaScript)',
+'tog-editondblclick'          => 'Pê dı rey tıknayış perre sero bıguriye/bıxebetiye (JavaScript)',
+'tog-editsection'             => 'Vurnayışê tek tek qısman rê gıreyan bımocne',
+'tog-editsectiononrightclick' => 'Sernuştey qısıman sero be gocega raşte tıknaene bıvurne (JavaScript)]',
+'tog-showtoc'                 => 'Tabloê tedeesteyan bımocne (de perranê be hirê sernuşteyan ra zêdêri/vêşêri de)',
+'tog-rememberpassword'        => 'Parola mı bia xo viri',
+'tog-editwidth'               => 'Verınina perra cıdayışê nuştey tam bıaso',
+'tog-watchcreations'          => 'Perrê ke mı afernaê, lista mına seyr-kerdışi ke',
+'tog-watchdefault'            => 'Perrê ke mı vurnaê, lista mına seyr-kerdışi ke',
+'tog-watchmoves'              => 'Perrê ke mı kırışnaê, lista mına seyr-kerdışi ke',
+'tog-watchdeletion'           => 'Perrê ke mı esterıtê/kerdê paki, lista mına seyr-kerdışi ke',
+'tog-minordefault'            => 'Vurnayışanê xo pêroine ‘vurnayışo qıckek’ nışan bıde',
+'tog-previewontop'            => 'Verqayti perra nuştışi ser de bımocne',
+'tog-previewonfirst'          => 'Vurnayışo verên de verqayti tım bımocne',
 
 # Dates
 'sunday'        => 'Yewşeme',

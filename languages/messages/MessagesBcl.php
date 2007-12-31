@@ -7,6 +7,8 @@
  * @author Steven*fung
  * @author Siebrand Mazeland
  * @author Niklas Laxström
+ * @author Siebrand
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -809,6 +811,7 @@ Dai babâgohon an mga grupong dai pigpili. Pwede mong bawîon an pagpili sa pagp
 
 'group-autoconfirmed-member' => 'Enseguidang nakonpirmar na parágamit',
 'group-sysop-member'         => 'Opsys',
+'group-bureaucrat-member'    => 'Bureaucrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Mga enseguidang nakonpirmar na parágamit',
 'grouppage-bot'           => '{{ns:project}}:Mga bot',

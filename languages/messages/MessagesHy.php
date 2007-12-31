@@ -6,8 +6,8 @@
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
- * @author G - ג
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $separatorTransformTable = array(
@@ -498,6 +498,7 @@ $messages = array(
 'versionrequired'     => 'Պահանջվում է MediaWiki ծրագրի $1 տարբերակը',
 'versionrequiredtext' => 'Այս էջի օգտագործման համար պահանջվում է MediaWiki ծրագրի $1 տարբերակը։ Տես [[{{ns:special}}:Version|տարբերակի էջը]]։',
 
+'ok'                      => 'OK',
 'pagetitle'               => '$1 — {{SITENAME}}',
 'retrievedfrom'           => 'Ստացված է «$1» էջից',
 'youhavenewmessages'      => 'Դուք ունեք $1 ($2)։',
@@ -1394,6 +1395,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'emailpagetext'   => 'Եթե այս մասնակիցը նշել է գործող էլ-փոստի հասցե իր նախընտրություններում, ապա ստորև բերված ձևով հնարավոր է ուղարկել նրան էլ-նամակ։
 Այն էլ-հասցեն, որը դուք նշել եք ձեր նախընտրություններում, կերևա «Ումից» դաշտում, ուստի ստացողը հնարավորություն կունենա պատասխանել։',
 'usermailererror' => 'Նամակն ուղարկելիս՝ վերադառձվել է սխալ.',
+'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Չկա էլ-փոստի հասցե',
 'noemailtext'     => 'Այս մասնակիցը չի նշել էլ-փոստի հասցե կամ նախընտրել է չստանալ էլ-նամակներ այլ մասնակիցներից։',
 'emailfrom'       => 'Ումից',
@@ -2082,6 +2084,7 @@ $3
 $1
 </div>',
 'trackbackremove'   => ' ([$1 ջնջել])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback-ը հաջողությամբ հեռացվեց։',
 
 # Delete conflict
@@ -2097,9 +2100,10 @@ $1
 'redirectingto' => 'Վերահղվում է դեպի [[$1]]…',
 
 # action=purge
-'confirm_purge' => 'Մաքրե՞լ այս էջի քեշը։
+'confirm_purge'        => 'Մաքրե՞լ այս էջի քեշը։
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => 'Որոնել էջեր, որոնք պարունակում են «$1»։',

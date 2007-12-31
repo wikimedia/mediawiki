@@ -212,6 +212,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:免責聲明',
 'edithelp'          => '編寫幫助',
 'edithelppage'      => 'Help:啷編寫文章',
+'faq'               => 'FAQ',
 'helppage'          => 'Help:説明',
 'mainpage'          => '封面',
 'policy-url'        => 'Project:政策',

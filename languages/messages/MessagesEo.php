@@ -3,13 +3,13 @@
  *
  * @addtogroup Language
  *
- * @author G - ג
  * @author Tlustulimu
  * @author Michawiki
  * @author Nike
  * @author Amikeco
  * @author Gangleri
  * @author Jon Harald Søby
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -566,12 +566,11 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'cantcreateaccounttitle' => 'Ne povas krei konton',
 
 # History pages
-'revhistory'          => 'Historio de redaktoj',
 'viewpagelogs'        => 'Vidu la loglibrojn por tiu ĉi paĝo',
 'nohistory'           => 'Ne ekzistas historio de redaktoj por ĉi tiu paĝo.',
 'revnotfound'         => 'Ne ekzistas malnova versio de la artikolo',
 'revnotfoundtext'     => 'Ne eblis trovi malnovan version de la artikolo kiun vi petis.
-Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
+Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'loadhist'            => 'Ŝarĝas redaktohistorion',
 'currentrev'          => 'Aktuala versio',
 'revisionasof'        => 'Kiel registrite je $1',
@@ -598,13 +597,9 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
 'rev-delundel' => 'montru/kaŝu',
 
 # Diffs
-'difference'                => '(Malsamoj inter versioj)',
-'loadingrev'                => 'ŝarĝas version por malsamoj',
-'lineno'                    => 'Linio $1:',
-'editcurrent'               => 'Redaktu la nunan version de la paĝo',
-'selectnewerversionfordiff' => 'Elektu la pli novan version por kompari.',
-'selectolderversionfordiff' => 'Elektu malpli novan version por kompari.',
-'compareselectedversions'   => 'Komparu la selektitajn versiojn',
+'difference'              => '(Malsamoj inter versioj)',
+'lineno'                  => 'Linio $1:',
+'compareselectedversions' => 'Komparu la selektitajn versiojn',
 
 # Search results
 'searchresults'         => 'Serĉrezultoj',
@@ -918,7 +913,6 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'specialpages'            => 'Specialaj paĝoj',
 'spheading'               => 'Specialaj paĝoj',
 'restrictedpheading'      => 'Alirlimigitaj specialaj paĝoj',
-'rclsub'                  => '(al paĝoj ligitaj de "$1")',
 'newpages'                => 'Novaj paĝoj',
 'newpages-username'       => 'Salutnomo:',
 'ancientpages'            => 'Plej malnovaj artikoloj',
@@ -1140,10 +1134,6 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'month'         => 'Ekde monato (kaj pli frue):',
 'year'          => 'Ekde jaro (kaj pli frue):',
 
-'sp-contributions-newest'      => 'Plej novaj',
-'sp-contributions-oldest'      => 'Plej malnovaj',
-'sp-contributions-newer'       => '$1 pli novajn',
-'sp-contributions-older'       => '$1 pli malnovajn',
 'sp-contributions-newbies'     => 'Montru kontribuojn nur de novaj kontoj',
 'sp-contributions-newbies-sub' => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
 'sp-contributions-blocklog'    => 'Blokada loglibro',
@@ -1171,7 +1161,7 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'ipbreasonotherlist'   => 'Alia kaŭzo',
 'ipbsubmit'            => 'Forbaru la adreson',
 'ipbother'             => 'Alia daŭro',
-'ipboptions'           => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite',
+'ipboptions'           => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'       => 'alia',
 'ipbotherreason'       => 'Alia/aldona kaŭzo:',
 'badipaddress'         => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
