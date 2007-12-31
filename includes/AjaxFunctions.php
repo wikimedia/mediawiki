@@ -74,14 +74,14 @@ function code2utf($num){
 }
 
 function wfSajaxSearch( $term ) {
-	global $wgContLang, $wgOut, $wgUser;
+	global $wgContLang, $wgOut, $wgUser, $wgCapitalLinks;
 	$limit = 16;
 	$sk = $wgUser->getSkin();
 
 	$term = trim( $term );
-	$term = str_replace( ' ', '_', $wgContLang->ucfirst( 
-			$wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) )
-		) );
+	$term = $wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) );
+	if ( $wgCapitalLinks )
+		$term = $wgContLang->ucfirst( $term ); 
 	$term_title = Title::newFromText( $term );
 
 	$r = $more = '';
@@ -97,7 +97,7 @@ function wfSajaxSearch( $term ) {
 
 		$i = 0;
 		while ( ( $row = $db->fetchObject( $res ) ) && ( ++$i <= $limit ) ) {
-			$nt = Title::newFromText( $row->page_title, $row->page_namespace );
+			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$r .= '<li>' . $sk->makeKnownLinkObj( $nt ) . "</li>\n";
 		}
 		if ( $i > $limit ) {
@@ -116,7 +116,7 @@ function wfSajaxSearch( $term ) {
 
 		foreach( $specialPages as $page ) {
 			if( $wgContLang->uc( $page ) != $page && strpos( $page, $term_title->getText() ) === 0 ) {
-				$r .= '<li>' . $sk->makeKnownLinkObj( Title::newFromText( $page, NS_SPECIAL ) ) . '</li>';
+				$r .= '<li>' . $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, $page ) ) . '</li>';
 			}
 		}
 
@@ -125,7 +125,7 @@ function wfSajaxSearch( $term ) {
 
 	$valid = (bool) $term_title;
 	$term_url = urlencode( $term );
-	$term_diplay = htmlspecialchars( $valid ? $term_title->getFullText() : str_replace( '_', ' ', $term ) );
+	$term_diplay = htmlspecialchars( $valid ? $term_title->getFullText() : $term );
 	$subtitlemsg = ( $valid ? 'searchsubtitle' : 'searchsubtitleinvalid' );
 	$subtitle = wfMsgWikiHtml( $subtitlemsg, $term_diplay );
 	$html = '<div id="searchTargetHide"><a onclick="Searching_Hide_Results();">'
@@ -174,7 +174,7 @@ function wfAjaxWatch($pagename = "", $watch = "") {
 	}
 	$watch = 'w' === $watch;
 
-	$title = Title::newFromText($pagename);
+	$title = Title::newFromDBkey($pagename);
 	if(!$title) {
 		// Invalid title
 		return '<err#>';
