@@ -273,6 +273,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3097) Inconsistently usable titles containing HTML character entities
   are now forbidden. A run of cleanupTitles.php will fix up existing pages.
 * (bug 12446) Permissions check fix for undelete link
+* (bug 12451) AJAX title normalization tweaks
 
 
 == Parser changes in 1.12 ==
