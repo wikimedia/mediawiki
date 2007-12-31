@@ -711,17 +711,6 @@ CREATE TABLE /*$wgDBprefix*/image (
 ) /*$wgDBTableOptions*/;
 
 --
--- Image redirects. Only existent images are put in this table.
---
-CREATE TABLE /*$wgDBprefix*/imageredirects (
-	-- Source image name
-	ir_from varchar(255) binary NOT NULL default '',
-	-- Destination image name
-	ir_to   varchar(255) binary NOT NULL default '',
-
-	PRIMARY KEY ir_from (ir_from)
-) /*$wgDBTableOptions*/;
---
 -- Previous revisions of uploaded files.
 -- Awkwardly, image rows have to be moved into
 -- this table at re-upload time.
