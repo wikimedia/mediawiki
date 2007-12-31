@@ -222,8 +222,6 @@ $messages = array(
 # Statistics
 'statistics'    => 'Статистика',
 'userstats'     => 'Колдонуучулардын статистикасы',
-'userstatstext' => "'''$1''' катталган колдонуучу, алардын ичинен
-'''$2''' (же '''$4%''') администратор бар (кара $3).",
 
 # Miscellaneous special pages
 'unusedcategories' => 'Колдонулбаган категориялар',
