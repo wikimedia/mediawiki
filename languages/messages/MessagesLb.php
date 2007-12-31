@@ -958,6 +958,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 # Contributions
 'contributions' => 'Kontributiounen',
 'mycontris'     => 'Meng Kontributiounen',
+'ucnote'        => 'Hei stinn dësem Benotzer seng lescht <b>$1</b> Ännerungen vun de leschten <b>$2</b> Deeg.',
 'uclinks'       => 'Weis déi läscht $1 Kontributiounen; weis déi läscht $2 Deeg.',
 'uctop'         => ' (aktuell)',
 
@@ -997,6 +998,8 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
 Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
+'unblocked'                   => 'De(n) [[User:$1|$1]] gouf debloquéiert',
+'unblocked-id'                => "D'gespäerten ID $1 gouf debloquéiert.",
 'ipblocklist-legend'          => 'No engem gespaarte Benotzer sichen',
 'ipblocklist-username'        => 'Benotzernumm oder IP-Adress:',
 'ipblocklist-submit'          => 'Sichen',
@@ -1098,9 +1101,12 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Meng Benotzersäit',
 'tooltip-pt-mytalk'               => 'Meng Diskussioun',
+'tooltip-pt-anontalk'             => "Diskussioun iwwer d'Ännerungen déi vun dëser IP-Adress aus gemaach gi sinn",
 'tooltip-pt-preferences'          => 'Meng Preferenzen',
+'tooltip-pt-watchlist'            => 'Lëscht vu Säiten, bei deenen Der op Ännerungen oppasst',
 'tooltip-pt-mycontris'            => 'Lëscht vu menge Kontributiounen',
 'tooltip-pt-login'                => 'Sech unzemellen gëtt gäre gesinn, Dir musst et awer net maachen.',
+'tooltip-pt-anonlogin'            => 'Et wier gutt, Dir géift Iech aloggen, och wann et keng Musse-Saach ass.',
 'tooltip-pt-logout'               => 'Ofmellen',
 'tooltip-ca-talk'                 => 'Diskussioun iwwert de Säiteninhalt',
 'tooltip-ca-edit'                 => 'Dës Säit ka geännert ginn. Maacht vum Preview Gebrauch a kuckt ob alles an der Rei ass ier der ofspäichert.',
@@ -1112,7 +1118,8 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'tooltip-ca-watch'                => 'Dës Säit op är Suivi-Lëscht bäisetzen',
 'tooltip-ca-unwatch'              => 'Dës Säit vun der Suivis-Lëscht erafhuelen',
 'tooltip-search'                  => 'Op {{SITENAME}} sichen',
-'tooltip-n-mainpage'              => "Besicht d'Haaptsäit",
+'tooltip-n-mainpage'              => 'Eis Entréesdier',
+'tooltip-n-currentevents'         => "D'Aktualitéit a wat dohannert ass",
 'tooltip-n-recentchanges'         => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',
 'tooltip-n-randompage'            => 'Zoufälleg Säit',
 'tooltip-n-help'                  => 'Hëllefsäiten weisen.',
@@ -1135,6 +1142,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'tooltip-ca-nstab-category'       => 'Kategoriesäit weisen',
 'tooltip-minoredit'               => 'Dës Ännerung als kleng markéieren.',
 'tooltip-save'                    => 'Ännerungen späicheren',
+'tooltip-preview'                 => "Klickt op 'Preview' éier Der späichert!",
 'tooltip-diff'                    => 'Weis wéi eng Ännerungen der beim Text gemaach hutt.',
 'tooltip-compareselectedversions' => "D'Ennerscheeder op dëser Säit tëscht den zwou gewielte Versioune weisen.",
 'tooltip-watch'                   => 'Dës Säit op är Suivi-Lëscht bäisetzen',

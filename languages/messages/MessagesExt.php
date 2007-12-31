@@ -97,12 +97,15 @@ $messages = array(
 'december-gen'  => 'Diciembri',
 'jan'           => 'Ene',
 'feb'           => 'Heb',
+'mar'           => 'Mar',
 'apr'           => 'Abr',
+'may'           => 'May',
 'jun'           => 'Hún',
 'jul'           => 'Húl',
 'aug'           => 'Ago',
 'sep'           => 'Set',
 'oct'           => 'Otu',
+'nov'           => 'Nov',
 'dec'           => 'Dic',
 
 # Bits of text used by many pages

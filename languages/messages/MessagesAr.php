@@ -1160,6 +1160,7 @@ $1 ساعة.',
 'userrights-nodatabase'       => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
 'userrights-nologin'          => 'يجب عليك [[Special:Userlogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
 'userrights-notallowed'       => 'حسابك لا يمتلك السماح لتعديل صلاحيات المستخدم.',
+'userrights-groupsremovable'  => 'المجموعات للإزالة:',
 
 # Groups
 'group'               => 'المجموعة:',
@@ -1483,7 +1484,7 @@ PICT # misc.
 'protectedpages'          => 'صفحات محمية',
 'protectedpagestext'      => 'الصفحات التالية محمية من النقل أو التعديل',
 'protectedpagesempty'     => 'لا توجد صفحات محمية حاليا بهذه المحددات.',
-'protectedtitles'         => 'العناوين المحمية',
+'protectedtitles'         => 'عناوين محمية',
 'protectedtitlestext'     => 'العناوين التالية محمية ضد الإنشاء',
 'protectedtitlesempty'    => 'لا توجد عناوين محمية حاليا بهذه المحددات.',
 'listusers'               => 'قائمة الأعضاء',

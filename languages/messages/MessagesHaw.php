@@ -186,7 +186,9 @@ Ua hana ‘ia kāu mea ho‘ohana. Mai poina e loli kāu {{SITENAME}} makemake.'
 'bold_tip'        => 'Ho‘okā‘ele',
 'italic_sample'   => 'Ho‘ohiō',
 'italic_tip'      => 'Ho‘ohiō',
+'extlink_tip'     => 'Loulou kūwaho (e ho‘omana‘o i ka poʻo pāʻālua http://)',
 'headline_sample' => 'Po‘o‘ōlelo',
+'hr_tip'          => 'Laina ‘ilikai (e ho‘ohana pākiko)',
 
 # Edit pages
 'summary'               => "Hō'ulu'ulu mana'o",
@@ -370,10 +372,11 @@ hō‘ike ‘ia i lalo:",
 'tooltip-pt-logout'      => 'e ha‘alele',
 'tooltip-ca-edit'        => 'Hiki iā‘oe ke ho‘opololei i kēia ‘ao‘ao. Imua o ka mālama, ho‘ohana i ka nāmua, ke ‘olu‘olu.',
 'tooltip-ca-move'        => 'E ne‘e i kēia mo‘olelo',
-'tooltip-search'         => 'Huli {{SITENAME}}',
+'tooltip-search'         => 'Huli iā {{SITENAME}}',
 'tooltip-n-mainpage'     => 'Hele i ka papa kinohi',
 'tooltip-n-sitesupport'  => 'Kāko‘o mai',
 'tooltip-t-specialpages' => 'Helu o nā papa nui apau',
+'tooltip-save'           => 'Mālama i kāu ho‘opololei',
 
 # Attribution
 'and' => 'a me',

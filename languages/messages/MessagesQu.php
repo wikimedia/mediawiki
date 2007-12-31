@@ -1820,6 +1820,7 @@ Sutisuyu imakunallam (* sananchawan qallariq siq'ikunapi) hamut'arisqa. Siq'ipi 
 Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi rikchayuq p'anqakunam.",
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => "Kay willañiqipiqa aswan sapaqlla willaymi, iliktruniku rikchahap'inawanchá, iskanirwanchá icha rikcharurana wakichiwanchá yapasqa. Willañiqi chaymantapacha hukchasqa kaptinqa, huk sapaq samiqninkuna chinkasqachá.",
 'metadata-expand'   => 'Aswan sapaqlla willakunata rikuchiy',
 'metadata-collapse' => 'Sapaqlla willakunata pakay',

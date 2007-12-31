@@ -892,6 +892,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'userrights-nodatabase'       => 'A base de dados $1 não existe ou não é uma base de dados local.',
 'userrights-nologin'          => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de utilizador.',
 'userrights-notallowed'       => 'Sua conta não possui permissão para conceder privilégios a utilizadores.',
+'userrights-groupsremovable'  => 'Grupos dos quais pode ser removido:',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1989,8 +1990,11 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-imageuniqueid'               => 'Identificação única da imagem',
 'exif-gpsversionid'                => 'Versão de GPS',
 'exif-gpslatituderef'              => 'Latitude Norte ou Sul',
+'exif-gpslatitude'                 => 'Latitude',
 'exif-gpslongituderef'             => 'Longitude Leste ou Oeste',
+'exif-gpslongitude'                => 'Longitude',
 'exif-gpsaltituderef'              => 'Referência de altitude',
+'exif-gpsaltitude'                 => 'Altitude',
 'exif-gpstimestamp'                => 'Tempo GPS (relógio atómico)',
 'exif-gpssatellites'               => 'Satélites utilizados para a medição',
 'exif-gpsstatus'                   => 'Estado do receptor',

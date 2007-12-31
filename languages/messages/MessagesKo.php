@@ -1,8 +1,17 @@
 <?php
 /** Korean (한국어)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Klutzy
+ * @author PuzzletChung
+ * @author לערי ריינהארט
+ * @author TheAlpha for knowledge
+ * @author Nike
+ * @author Teak
+ * @author Siebrand
+ */
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => '특수기능',
@@ -280,7 +289,7 @@ $messages = array(
 'feedlinks'               => '피드:',
 'feed-invalid'            => '잘못된 구독 피드 방식입니다.',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '문서',
 'nstab-user'      => '사용자 문서',
 'nstab-media'     => '자료',
@@ -564,7 +573,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'cantcreateaccounttitle' => '계정을 만들 수 없음',
 
 # History pages
-'revhistory'          => '문서 역사',
 'viewpagelogs'        => '이 문서의 기록 보기',
 'nohistory'           => '이 문서는 편집 역사가 없습니다.',
 'revnotfound'         => '버전 없음',
@@ -601,15 +609,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revisiondelete' => '버전 삭제/복구',
 
 # Diffs
-'difference'                => '(버전 사이의 차이)',
-'loadingrev'                => '버전 간의 차이를 받고 있습니다.',
-'lineno'                    => '$1번째 줄:',
-'editcurrent'               => '현재 버전의 문서를 편집합니다',
-'selectnewerversionfordiff' => '비교할 최근 버전을 선택해 주세요.',
-'selectolderversionfordiff' => '비교할 과거 버전을 선택해 주세요.',
-'compareselectedversions'   => '선택된 버전들을 비교하기',
-'editundo'                  => '편집 취소',
-'diff-multi'                => '(중간 $1개의 편집이 숨겨짐)',
+'difference'              => '(버전 사이의 차이)',
+'lineno'                  => '$1번째 줄:',
+'compareselectedversions' => '선택된 버전들을 비교하기',
+'editundo'                => '편집 취소',
+'diff-multi'              => '(중간 $1개의 편집이 숨겨짐)',
 
 # Search results
 'searchresults'         => '검색 결과',
@@ -863,6 +867,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'unusedtemplatestext' => '다른 문서에 사용되지 않는 틀을 모아 놓았습니다. 삭제하기 전에 쓰이지 않는지를 다시 한번 확인해 주세요.',
 'unusedtemplateswlh'  => '다른 링크',
 
+# Random page
+'randompage'         => '임의 문서로',
+'randompage-nopages' => '이 네임스페이스에는 문서가 없습니다.',
+
 # Random redirect
 'randomredirect'         => '임의 넘겨주기 문서로',
 'randomredirect-nopages' => '이 네임스페이스에서 해당하는 넘겨주기 문서가 없습니다.',
@@ -924,8 +932,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mostrevisions'           => '가장 많이 편집된 문서 목록',
 'allpages'                => '모든 문서 목록',
 'prefixindex'             => '접두어 목록',
-'randompage'              => '임의 문서로',
-'randompage-nopages'      => '이 네임스페이스에는 문서가 없습니다.',
 'shortpages'              => '짧은 문서 목록',
 'longpages'               => '긴 문서 목록',
 'deadendpages'            => '막다른 문서 목록',
@@ -937,7 +943,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'specialpages'            => '특수 문서 목록',
 'spheading'               => '일반 특수 문서',
 'restrictedpheading'      => '제한된 특수 문서',
-'rclsub'                  => '(‘$1’에서 링크된 문서들)',
 'newpages'                => '새 문서 목록',
 'newpages-username'       => '이름:',
 'ancientpages'            => '오래된 문서 목록',
@@ -946,6 +951,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'movethispage'            => '문서 이동하기',
 'unusedimagestext'        => '<p>다른 사이트에서 그림의 URL을 사용하고 있을 가능성이 있고, 따라서 이 목록에 있는 그림도 사용하고 있을 수 있습니다.</p>',
 'unusedcategoriestext'    => '사용하지 않는 분류 문서들의 목록입니다.',
+'notargettitle'           => '해당하는 문서 없음',
+'notargettext'            => '기능을 수행할 목표 문서나 목표 사용자를 지정하지 않았습니다.',
 
 # Book sources
 'booksources'               => '책 찾기',
@@ -1172,10 +1179,6 @@ $NEWPAGE
 'uclinks'       => '최근 $1개 보기; 최근 $2일 보기',
 'uctop'         => ' (최신)',
 
-'sp-contributions-newest'   => '마지막',
-'sp-contributions-oldest'   => '처음',
-'sp-contributions-newer'    => '이전 $1개',
-'sp-contributions-older'    => '다음 $1개',
 'sp-contributions-blocklog' => '차단 기록',
 'sp-contributions-username' => 'IP 주소 혹은 사용자 이름:',
 
@@ -1184,8 +1187,6 @@ $NEWPAGE
 # What links here
 'whatlinkshere'       => '여기를 가리키는 글',
 'whatlinkshere-title' => '$1 문서를 가리키는 문서 목록',
-'notargettitle'       => '해당하는 문서 없음',
-'notargettext'        => '기능을 수행할 목표 문서나 목표 사용자를 지정하지 않았습니다.',
 'linklistsub'         => '(링크 목록)',
 'linkshere'           => "다음의 문서들이 '''[[:$1]]''' 문서를 가리키고 있습니다:",
 'nolinkshere'         => "'''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
@@ -1210,7 +1211,7 @@ $NEWPAGE
 'ipbenableautoblock'          => '이 사용자가 최근에 사용했거나 앞으로 사용하는 IP를 자동으로 막기',
 'ipbsubmit'                   => '이 사용자를 차단하기',
 'ipbother'                    => '지정 기간',
-'ipboptions'                  => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite',
+'ipboptions'                  => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '수동으로 지정',
 'badipaddress'                => '잘못된 IP 주소',
 'blockipsuccesssub'           => '차단 완료',
@@ -1242,9 +1243,9 @@ $NEWPAGE
 'range_block_disabled'        => 'IP 범위 차단 기능이 비활성화되어 있습니다.',
 'ipb_expiry_invalid'          => '차단 기간이 잘못되었습니다.',
 'ipb_already_blocked'         => '$1 사용자는 이미 차단됨',
+'ipb_cant_unblock'            => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
 'ip_range_invalid'            => 'IP 범위가 잘못되었습니다.',
 'proxyblocker'                => '프록시 차단',
-'ipb_cant_unblock'            => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
 'proxyblockreason'            => '당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다. 만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자에게 문의해주세요.',
 'proxyblocksuccess'           => '완료.',
 'sorbsreason'                 => '당신의 IP 주소는 DNSBL의 공개 프록시 목록에 들어있습니다.',

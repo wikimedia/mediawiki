@@ -232,6 +232,7 @@ $messages = array(
 'versionrequired'     => 'Sî-yeu MediaWiki $1-pán',
 'versionrequiredtext' => 'Sî-yeu pán-pún $1-ke MediaWiki chhòi-nèn sṳ́-yung chhṳ́-chông. Chhâm-cheu [[Special:Version|Pán-pún]].',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Chhí-chhṳ "$1"',
 'youhavenewmessages'      => 'Ngì yû $1（$2）。',
 'newmessageslink'         => 'Sîn sin-sit',
@@ -679,9 +680,8 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'group-sysop-member'      => 'Kón-lî-yèn',
 'group-bureaucrat-member' => 'Hàng-chṳn-yèn',
 
-'grouppage-bot'        => '{{ns:project}}:Kî-hi-ngìn',
-'grouppage-sysop'      => '{{ns:project}}:Kón-lî-yèn',
-'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrats',
+'grouppage-bot'   => '{{ns:project}}:Kî-hi-ngìn',
+'grouppage-sysop' => '{{ns:project}}:Kón-lî-yèn',
 
 # User rights log
 'rightslog'      => 'Yung-fu khièn-han ngit-ki',
@@ -856,7 +856,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'statistics-mostpopular' => 'Pûn-ngìn chhà-khon chhṳ-su chui-tô ke vùn-chông',
 
 'disambiguations'      => 'Sêu-hàm fù-chông',
-'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => 'Yî-ha ke hong-mien tû-yû to <b> sêu-hàm fù-chông </b> ke lièn-chiap, than yin-kôi he lièn-to sṳt-tông ke phêu-thì. <br /> Yit-ke hong-mien chiông-voi pûn-ngìn sṳ-vi Sêu-hàm fù-chông kó-yèn kí he lièn-chhṳ [[MediaWiki:disambiguationspage]].',
 
 'doubleredirects'     => 'Sûng chhûng-chhûng thin-hiong',
@@ -929,6 +928,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'data'               => 'Chṳ̂-liau',
 'userrights'         => 'Yung-fu khièn-han kón-lî',
 'groups'             => 'Yung-fu khiùn-chû',
+'alphaindexline'     => '$1 to $2',
 'version'            => 'Pán-pún',
 
 # Special:Log
