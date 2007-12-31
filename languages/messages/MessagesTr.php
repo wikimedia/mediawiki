@@ -1380,3 +1380,4 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'autosumm-new'     => 'Yeni sayfa: $1',
 
 );
+

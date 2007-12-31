@@ -8,6 +8,8 @@
  * @author Siebrand
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Kahalalo i nā loulou:',
@@ -138,6 +140,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Mea',
+'nstab-image'     => 'Waihona',
 'nstab-mediawiki' => 'Memo',
 'nstab-template'  => 'Anakuhi',
 'nstab-category'  => 'Mahele',
@@ -263,11 +266,14 @@ hō‘ike ‘ia i lalo:",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
 # Image list
-'ilsubmit'          => 'Huli',
-'filehist-datetime' => 'Manawa',
-'filehist-user'     => 'Mea ho‘ohana',
-'filehist-comment'  => 'Mana‘o',
-'imagelinks'        => 'Nā loulou',
+'ilsubmit'            => 'Huli',
+'filehist-datetime'   => 'Manawa',
+'filehist-user'       => 'Mea ho‘ohana',
+'filehist-dimensions' => 'Nā nui',
+'filehist-filesize'   => 'Nui o ka waihona',
+'filehist-comment'    => 'Mana‘o',
+'imagelinks'          => 'Nā loulou',
+'linkstoimage'        => 'Loulou kēia mau ‘ao‘ao i kēia waihona:',
 
 # Random page
 'randompage' => 'He mo‘olelo kaulele',
@@ -396,3 +402,4 @@ hō‘ike ‘ia i lalo:",
 'watchlistedit-normal-title' => 'E ho‘opololei i ka‘u papa nānā pono',
 
 );
+

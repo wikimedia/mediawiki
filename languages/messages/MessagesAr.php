@@ -354,7 +354,7 @@ $messages = array(
 'tog-usenewrc'                => 'شكل متقدم من أحدث التغييرات (جافا سكريبت)',
 'tog-numberheadings'          => 'رقم العناوين تلقائيا',
 'tog-showtoolbar'             => 'اعرض شريط التحرير (جافا سكريبت)',
-'tog-editondblclick'          => 'عدل الصفحات عند النقر المزدوج (جافا سكريبت)',
+'tog-editondblclick'          => 'عدل الصفحات عند الضغط المزدوج (جافا سكريبت)',
 'tog-editsection'             => 'فعل تعديل الأقسام عن طريق وصلات [تحرير]',
 'tog-editsectiononrightclick' => 'فعل تعديل الأقسام بواسطة كبسة الفأرة اليمين على عناوين الأقسام (جافاسكريبت)',
 'tog-showtoc'                 => 'اعرض فهرس المحتويات (للصفحات التي تحتوي على أكثر من 3 عناوين)',
@@ -374,7 +374,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'أظهر عنوان بريدي الإلكتروني في رسائل الإخطار',
 'tog-shownumberswatching'     => 'اعرض عدد المستخدمين المراقبين',
 'tog-fancysig'                => 'توقيعات خام (بدون وصلة أوتوماتيكية)',
-'tog-externaleditor'          => 'استخدم محرر نصوص خارجيا افتراضيا',
+'tog-externaleditor'          => 'استخدم محرر خارجي افتراضيا',
 'tog-externaldiff'            => 'استخدم فرقا خارجيا افتراضيا',
 'tog-showjumplinks'           => 'فعل وصلات "اذهب إلى".',
 'tog-uselivepreview'          => 'استخدم الاستعراض السريع (جافاسكريبت) (تجريبي)',
@@ -453,7 +453,7 @@ $messages = array(
 'category-empty'        => "''هذا التصنيف لا يحتوي حاليا على مقالات أو ملفات ميديا.''",
 
 'mainpagetext'      => "<big>'''تم تشغيل ميدياويكي بنجاح.'''</big>",
-'mainpagedocfooter' => 'انظر [http://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.
+'mainpagedocfooter' => 'استشر [http://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.
 
 == البداية ==
 
@@ -504,7 +504,7 @@ $messages = array(
 'protect'           => 'حماية',
 'protect_change'    => 'تغيير الحماية',
 'protectthispage'   => 'احم هذه الصفحة',
-'unprotect'         => 'إزالة الحماية',
+'unprotect'         => 'أزل الحماية',
 'unprotectthispage' => 'إزالة حماية هذه الصفحة',
 'newpage'           => 'صفحة جديدة',
 'talkpage'          => 'ناقش هذه الصفحة',
@@ -586,9 +586,9 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|تعديل واحد محذوف|تعديلان محذوفان|$1 تعديلات محذوفة|$1 تعديل محذوف|$1 تعديلا محذوفا}}',
 'feedlinks'               => 'تلقيم:',
 'feed-invalid'            => 'نوع اشتراك التليقم غير صحيح.',
-'site-rss-feed'           => '$1 تلقيم أر إس إس',
+'site-rss-feed'           => '$1 تلقيم أر‌إس‌إس',
 'site-atom-feed'          => '$1 تلقيم أتوم',
-'page-rss-feed'           => '"$1" تلقيم أر إس إس',
+'page-rss-feed'           => '"$1" تلقيم أر‌إس‌إس',
 'page-atom-feed'          => '"$1" تلقيم أتوم',
 'feed-atom'               => 'أتوم',
 'feed-rss'                => 'أر إس إس',
@@ -1149,6 +1149,7 @@ $1 ساعة.',
 'userrights-editusergroup'    => 'تعديل مجموعات المستخدم',
 'saveusergroups'              => 'حفظ مجموعات المستخدم',
 'userrights-groupsmember'     => 'عضو في:',
+'userrights-groupsremovable'  => 'المجموعات للإزالة:',
 'userrights-groupsavailable'  => 'المجموعات المتوفرة:',
 'userrights-groupshelp'       => 'قم باختيار المجموعات التي تريد المستخدم أن يضاف إليها أو تتم إزالته منها.
 المجموعات غير المختارة ستترك كما هي. يمكنك إزالة مجموعة بالضغط على كنترل + ضغطة فأرة يسرى.',
@@ -1160,7 +1161,6 @@ $1 ساعة.',
 'userrights-nodatabase'       => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
 'userrights-nologin'          => 'يجب عليك [[Special:Userlogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
 'userrights-notallowed'       => 'حسابك لا يمتلك السماح لتعديل صلاحيات المستخدم.',
-'userrights-groupsremovable'  => 'المجموعات للإزالة:',
 
 # Groups
 'group'               => 'المجموعة:',
@@ -2680,3 +2680,4 @@ $1',
 'hebrew-calendar-m12-gen' => 'أيلول',
 
 );
+

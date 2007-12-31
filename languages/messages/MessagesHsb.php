@@ -8,6 +8,7 @@
  * @author Nike
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $fallback = 'de';
@@ -2367,3 +2368,4 @@ Spytaj normalny přehlad.',
 'iranian-calendar-m12' => '12. měsac Jalāli',
 
 );
+

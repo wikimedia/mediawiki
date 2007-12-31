@@ -837,6 +837,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-editusergroup'    => 'Modifier les groupes de l’utilisateur',
 'saveusergroups'              => 'Sauvegarder les groupes utilisateur',
 'userrights-groupsmember'     => 'Membre de :',
+'userrights-groupsremovable'  => 'Groupes supprimables :',
 'userrights-groupsavailable'  => 'Groupes disponibles :',
 'userrights-groupshelp'       => 'Choisissez les groupes desquels vous voulez retirer ou rajouter l’utilisateur. Les groupes non sélectionnés ne seront pas modifiés. Vous pouvez désélectionner un groupe avec CTRL + clic gauche.',
 'userrights-reason'           => 'Motif du changement :',
@@ -1831,7 +1832,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 # Image deletion
 'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',
 'filedeleteerror-short'           => 'Erreur lors de la suppression du fichier : $1',
-'filedeleteerror-long'            => 'Des erreurs ont été rencontrées lors de la suppression du fichier :\n\n$1\n',
+'filedeleteerror-long'            => 'Des erreurs ont été rencontrées lors de la suppression du fichier :\\n\\n$1\\n',
 'filedelete-missing'              => 'Le fichier « $1 » ne peut pas être supprimé parce qu’il n’existe pas.',
 'filedelete-old-unregistered'     => 'La révision du fichier spécifié « $1 » n’est pas dans la base de données.',
 'filedelete-current-unregistered' => 'Le fichier spécifié « $1 » n’est pas dans la base de données.',
@@ -2266,3 +2267,4 @@ Essayez la prévisualisation normale.',
 'watchlisttools-raw'  => 'Modifier la liste (mode brut)',
 
 );
+

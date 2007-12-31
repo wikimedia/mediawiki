@@ -415,7 +415,7 @@ Võit ilma nimeldä edesi toimõndaq vai minnäq sisse tõõsõ nimega.',
 'nocookieslogin'             => '{{SITENAME}} tarvitas pruukjidõ kimmästegemises valmistuisi. Suq võrgokaejan ommaq valmistusõq keeledüq. Säeq valmistusõq lubatus ja prooviq vahtsõst.',
 'noname'                     => 'Võlssi kirotõt pruukjanimi.',
 'loginsuccesstitle'          => "Sisseminek läts' kõrda",
-'loginsuccess'               => 'Olõt nimega sisse lännüq. Suq pruukjanimi om \"$1\".',
+'loginsuccess'               => 'Olõt nimega sisse lännüq. Suq pruukjanimi om "$1".',
 'nosuchuser'                 => ' "$1" nimelist pruukjat olõ-i olõman. Kaeq kiräpilt üle vai pruugiq alanolõvat vormi vahtsõ konto luumisõs.',
 'nosuchusershort'            => '"$1" nimelist pruukjat olõ-i olõman. Kas kirotit iks nime õigõhe?',
 'nouserspecified'            => 'Olõ-i kirotõt pruukjanimme.',
@@ -2051,3 +2051,4 @@ Prooviq harilikku kaehust.',
 'watchlisttools-edit' => 'Kaeq ja toimõndaq perräkaemisnimekirjä',
 
 );
+

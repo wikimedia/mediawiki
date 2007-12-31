@@ -2217,3 +2217,4 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'watchlisttools-raw'  => "Chawa watiqana sutisuyuta llamk'apuy",
 
 );
+

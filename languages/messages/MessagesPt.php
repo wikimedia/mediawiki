@@ -153,7 +153,6 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Fundir_históricos', 'Fundir_edições' ),
 );
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinhar hiperligações',
@@ -940,6 +939,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'resultsperpage'           => 'Resultados por página:',
 'contextlines'             => 'Linhas por resultado:',
 'contextchars'             => 'Contexto por linha:',
+'stub-threshold'           => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
 'recentchangesdays'        => 'Dias a serem exibidos nas Mudanças recentes:',
 'recentchangescount'       => 'Número de edições a serem exibidas nas Mudanças recentes:',
 'savedprefs'               => 'As suas preferências foram salvas.',
@@ -961,6 +961,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'userrights-editusergroup'    => 'Editar grupos do utilizador',
 'saveusergroups'              => 'Salvar Grupos do Utilizador',
 'userrights-groupsmember'     => 'Membro de:',
+'userrights-groupsremovable'  => 'Grupos dos quais pode ser removido:',
 'userrights-groupsavailable'  => 'Grupos disponíveis:',
 'userrights-groupshelp'       => 'Seleccione os grupos no qual deseja que o utilizador seja removido ou adicionado.
 Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a selecção a um grupo com CTRL + Click esquerdo',
@@ -972,7 +973,6 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'userrights-nodatabase'       => 'A base de dados $1 não existe ou não é uma base de dados local.',
 'userrights-nologin'          => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de utilizador.',
 'userrights-notallowed'       => 'Sua conta não possui permissão para conceder privilégios a utilizadores.',
-'userrights-groupsremovable'  => 'Grupos dos quais pode ser removido:',
 
 # Groups
 'group'               => 'Grupo:',
@@ -2048,6 +2048,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-subjectdistance'             => 'Distância do sujeito',
 'exif-meteringmode'                => 'Modo de medição',
 'exif-lightsource'                 => 'Fonte de luz',
+'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Comprimento de foco da lente',
 'exif-subjectarea'                 => 'Área de sujeito',
 'exif-flashenergy'                 => 'Energia do flash',
@@ -2102,6 +2103,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-compression-1' => 'Descomprimido',
 
 'exif-unknowndate' => 'Data desconhecida',
+
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 
 'exif-planarconfiguration-1' => 'formato irregular',
 'exif-planarconfiguration-2' => 'formato plano',
@@ -2304,3 +2307,4 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'watchlisttools-raw'  => 'Edição crua dos vigiados',
 
 );
+

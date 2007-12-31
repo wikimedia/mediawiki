@@ -8,6 +8,7 @@
  * @author Togaed
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $separatorTransformTable = array(
@@ -2174,3 +2175,4 @@ $1',
 'watchlisttools-raw'  => 'Խմբագրել հում հսկացանկը',
 
 );
+

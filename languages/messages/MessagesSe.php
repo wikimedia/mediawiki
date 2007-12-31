@@ -7,7 +7,11 @@
  * @author G - ג
  * @author Siebrand
  * @author Teak
+ * @author לערי ריינהארט
+ * @author SPQRobin
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -1336,3 +1340,4 @@ $1 | $2',
 'watchlisttools-edit' => 'Ođasmahte listtu',
 
 );
+

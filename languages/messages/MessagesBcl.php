@@ -9,6 +9,7 @@
  * @author Niklas Laxström
  * @author Siebrand
  * @author Nike
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -1972,3 +1973,4 @@ $1',
 'watchlisttools-raw'  => 'Hirahón an bâgong pigbabantayan',
 
 );
+

@@ -5,6 +5,7 @@
  *
  * @author MF-Warburg
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -503,3 +504,4 @@ $messages = array(
 'autosumm-new' => 'Pájina foun: $1',
 
 );
+

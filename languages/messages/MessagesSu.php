@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Mssetiadi
+ * @author SPQRobin
  */
 
 $fallback = 'id';
@@ -1190,7 +1191,7 @@ Asupan jeung bantuan salajengna:
 'ipbcreateaccount'            => 'Tong bisa nyieun rekening',
 'ipbsubmit'                   => 'Peungpeuk pamaké ieu',
 'ipbother'                    => 'Waktu séjén',
-'ipboptions'                  => '2 jam:2 hours,sapoé:1 day,3 poé:3 days,saminggu:1 week,2 minggu:2 weeks,sabulan:1 month,3 bulan:3 months,6 bulan:6 months,sataun:1 year,tanpa wates:infinite',
+'ipboptions'                  => '2 jam:2 hours,sapoé:1 day,3 poé:3 days,saminggu:1 week,2 minggu:2 weeks,sabulan:1 month,3 bulan:3 months,6 bulan:6 months,sataun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'séjénna',
 'ipbotherreason'              => 'Alesan séjén/tambahan',
 'badipaddress'                => 'Alamat IP teu sah',
@@ -1643,3 +1644,4 @@ Coba ku sawangan normal.',
 'watchlisttools-edit' => 'Témbongkeun sarta édit béréndélan awaskeuneun',
 
 );
+

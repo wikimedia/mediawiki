@@ -7,7 +7,10 @@
  * @author Ccaxjoj Iteja Z Iti Poop
  * @author Teak
  * @author Siebrand
+ * @author SPQRobin
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -1138,3 +1141,4 @@ iitom e-iitomde diijömde caitóm.',
 'autosumm-new' => 'Hunpáhina: $1',
 
 );
+

@@ -9,6 +9,7 @@
  * @author G - ג
  * @author Võrok
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -1283,3 +1284,4 @@ Kui see *ei* ole sinu loodud konto, siis ära kliki lingil. Kinnituskood aegub $
 'watchlisttools-raw'  => 'Redigeeri lähtefaili',
 
 );
+

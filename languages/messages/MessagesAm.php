@@ -8,24 +8,28 @@
  * @author Nike
  * @author G - ג
  * @author SPQRobin
+ * @author Teferra
+ * @author לערי ריינהארט
  */
+
+
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'መያያዣ የሚሠመር',
-'tog-highlightbroken'         => 'ሰባሪ (ቀይ) መያያዣ <a href="" class="new">እንዲህ</a>? አለዚያ: እንዲህ<a href="" class="internal">?</a>)',
-'tog-justify'                 => 'አንቀጾች ቅርጽ ልክ እንዲሆን',
-'tog-hideminor'               => 'ጥቃቅን ለውጦች ይሠወሩ',
-'tog-extendwatchlist'         => 'ለአንድ መጣጥፍ የተደረጁ ለውጦች ሁሉ ይዘረዝሩ',
-'tog-usenewrc'                => 'የተደረጁ ቅርብ ለውጦች (JavaScript)',
-'tog-numberheadings'          => 'ቁጥሮች በየክፍሉ ይታዩ',
-'tog-showtoolbar'             => 'የማዘጋጀት መሳርዮች ይታዩ (JavaScript)',
-'tog-editondblclick'          => '2 እጥፍ ማውስ በመጫን ገጹን ለማስተካከል እንዲቻል (JavaScript)',
-'tog-editsection'             => '[ለማስተካከል] የሚለው መያያዣ በየክፍሉ ይታይ',
-'tog-editsectiononrightclick' => 'ቀኝ እምቡጥ በMouseዎ ላይ በመጫን ክፍልን ማስተካከል እንዲቻል (JavaScript)',
-'tog-showtoc'                 => 'ከ3 ክፍሎች በላይ ሲኖሩ የይዞታ ሳጥን ይታይ',
-'tog-rememberpassword'        => 'መግቢያዎ እንዲታወስ ምልክት እዚህ ያድርጉ',
-'tog-editwidth'               => 'የማዘጋጀት ሰንጠረዝ በሙሉ እንዲስፋፋ',
+'tog-underline'               => 'በመያያዥ ስር አስምር',
+'tog-highlightbroken'         => 'የተሰበረ (ቀይ) መያያዣን <a href="" class="new">እንዲህ</a>? አለዚያ: እንዲህ<a href="" class="internal">?</a>)',
+'tog-justify'                 => 'አንቀጾችን አስተካክል',
+'tog-hideminor'               => 'አነስተኛ እርማቶችን ደብቅ',
+'tog-extendwatchlist'         => 'የሚደረጉ ለውጦችን ለማሳየት መቆጣጠሪያ-ዝርዝርን ዘርጋ',
+'tog-usenewrc'                => 'የተሻሻሉ የቅርብ ለውጦች (JavaScript)',
+'tog-numberheadings'          => 'አርዕስቶችን በራስገዝ ቁጥር ስጥ',
+'tog-showtoolbar'             => 'አርም ትዕዛዝ-ማስጫ ይታይ (JavaScript)',
+'tog-editondblclick'          => 'ሁለቴ መጫን ገጹን ማረም ያስችል (JavaScript)',
+'tog-editsection'             => 'በ[አርም] መያያዣ ክፍል ማረምን አስችል',
+'tog-editsectiononrightclick' => 'የክፍል አርዕስት ላይ ህለቴ በመጫን ክፍል ማረምን አስችል (JavaScript)',
+'tog-showtoc'                 => 'ከ3 አርዕስቶች በላይ የማውጫ ሰንጠረዥ ይታይ',
+'tog-rememberpassword'        => 'መግባቴን እሲህ አስሊ ላይ አስታውስ',
+'tog-editwidth'               => 'የማረሚያ ሳጥን ሙሉ ስፋት አለው',
 'tog-watchcreations'          => 'የፈጠሩት ሁሉ ወደ ተከታተሉት ገጾች ዝርዝር ይጨመር',
 'tog-watchdefault'            => 'ያዘጋጁት ሁሉ ወደ ተከታተሉት ገጾች ዝርዝር ይጨመር',
 'tog-watchmoves'              => 'ያዛወሩት ሁሉ ወደ ተከታተሉት ገጾች ዝርዝር ይጨመር',
@@ -41,13 +45,14 @@ $messages = array(
 'skinpreview' => '(ለሙከራ)',
 
 # Dates
-'sunday'    => 'እሁድ',
+'sunday'    => 'እሑድ',
 'monday'    => 'ሰኞ',
 'tuesday'   => 'ማክሰኞ',
-'wednesday' => 'ሮብ',
+'wednesday' => 'ረቡዕ',
 'thursday'  => 'ሐሙስ',
 'friday'    => 'ዓርብ',
 'saturday'  => 'ቅዳሜ',
+'sun'       => 'እሑድ',
 
 # Bits of text used by many pages
 'categories'      => '{{PLURAL:$1|መደብ|መደቦች}}',
@@ -56,10 +61,16 @@ $messages = array(
 'subcategories'   => 'ንዑስ-መደቦች',
 'category-empty'  => 'ይህ መደብ አሁን ባዶ ነው።',
 
-'newwindow'  => '(ባዲስ መስኮት ውስጥ ይከፈታል።)',
-'cancel'     => '<br>ይቅር! (ለመሰረዝ)',
-'mytalk'     => 'የኔ ውይይት፤',
-'navigation' => 'የማውጫ ቁልፎች',
+'about'          => 'ስለ',
+'newwindow'      => '(ባዲስ መስኮት ውስጥ ይከፈታል።)',
+'cancel'         => '<br>ይቅር! (ለመሰረዝ)',
+'qbfind'         => 'አግኝ',
+'qbbrowse'       => 'ቃኝ',
+'qbedit'         => 'አርም',
+'qbpageoptions'  => 'ይህ ገጽ',
+'qbspecialpages' => 'ልዩ ገጾች',
+'mytalk'         => 'የኔ ውይይት፤',
+'navigation'     => 'የማውጫ ቁልፎች',
 
 'returnto'         => '(ወደ $1 ለመመለስ)',
 'tagline'          => 'ከ{{SITENAME}}',
@@ -721,3 +732,4 @@ $3
 'watchlisttools-raw'  => 'የዝርዝሩ ጥሬ ኮድ',
 
 );
+

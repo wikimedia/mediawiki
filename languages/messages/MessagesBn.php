@@ -8,6 +8,8 @@
  * @author G - ג
  * @author Siebrand
  * @author Nike
+ * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -1155,3 +1157,4 @@ $1',
 'watchlisttools-raw'  => 'অশোধিত নজর তালিকা সম্পাদনা করো',
 
 );
+

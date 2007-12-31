@@ -7,6 +7,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Ergon
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -1210,7 +1211,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipbenableautoblock'          => 'Blloko edhe IP adresën që ka përdor ky përdorues deri tash, si dhe të gjitha subadresat nga të cilat mundohet ky përdorues të editoj.',
 'ipbsubmit'                   => 'Blloko këtë përdorues',
 'ipbother'                    => 'Kohë tjetër',
-'ipboptions'                  => '1 Orë:1 hour,2 Orë:2 hours,6 Orë:6 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,1 Vjet:1 year,Pa kufi:infinite',
+'ipboptions'                  => '1 Orë:1 hour,2 Orë:2 hours,6 Orë:6 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'tjetër',
 'ipbotherreason'              => 'Arsye tjetër/shtesë',
 'badipaddress'                => 'Nuk ka asnjë përdorues me atë emër',
@@ -1701,3 +1702,4 @@ $1',
 'autosumm-new'     => 'Faqe e re: $1',
 
 );
+

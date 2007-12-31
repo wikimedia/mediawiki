@@ -848,24 +848,33 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'saveusergroups'              => "Guardar los grupos d'usuariu",
 'userrights-groupsmember'     => 'Miembru de:',
 'userrights-groupsavailable'  => 'Grupos disponibles:',
+'userrights-groupshelp'       => 'Seleiciona los grupos de/a los que quies quitar/añader esti usuariu.
+Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu calcando CTRL + Botón Esquierdu del ratón',
 'userrights-reason'           => 'Motivu del cambéu:',
 'userrights-available-add'    => 'Pues añader usuarios a $1.',
 'userrights-available-remove' => 'Pues eliminar usuarios de $1.',
+'userrights-no-interwiki'     => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
+'userrights-nodatabase'       => 'La base de datos $1 nun esiste o nun ye llocal.',
+'userrights-nologin'          => "Has tar [[Special:Userlogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
+'userrights-notallowed'       => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
 
 # Groups
-'group'            => 'Grupu:',
-'group-bot'        => 'Bots',
-'group-sysop'      => 'Alministradores',
-'group-bureaucrat' => 'Burócrates',
-'group-all'        => '(toos)',
+'group'               => 'Grupu:',
+'group-autoconfirmed' => 'Usuarios autoconfirmaos',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Alministradores',
+'group-bureaucrat'    => 'Burócrates',
+'group-all'           => '(toos)',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Alministrador',
-'group-bureaucrat-member' => 'Burócrata',
+'group-autoconfirmed-member' => 'Usuariu autoconfirmáu',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Alministrador',
+'group-bureaucrat-member'    => 'Burócrata',
 
-'grouppage-bot'        => '{{ns:project}}:Bots',
-'grouppage-sysop'      => '{{ns:project}}:Alministradores',
-'grouppage-bureaucrat' => '{{ns:project}}:Burócrates',
+'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmaos',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Alministradores',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burócrates',
 
 # User rights log
 'rightslog'     => "Rexistru de perfil d'usuariu",
@@ -1833,3 +1842,4 @@ $1",
 'watchlisttools-raw'  => 'Editar la llista de vixilancia (en bruto)',
 
 );
+
