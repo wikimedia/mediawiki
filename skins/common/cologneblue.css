@@ -78,7 +78,6 @@ h1 {
  font-family: Verdana, Arial, sans-serif;
  font-size: 180%; line-height: 21pt;
 }
-h1 .editsection { font-size: 55.6%; }
 h1.pagetitle { padding-bottom: 0; margin-bottom: 0; }
 #article p.subtitle {
  color: #666666; font-size: 11pt; font-weight: bold;
@@ -91,7 +90,7 @@ a:visited { color: #8D0749; }
 a.printable { text-decoration: underline; }
 a.stub, #quickbar a.stub { color:#772233; text-decoration:none; }
 a.new, #quickbar a.new { color: #CC2200; }
-h2, h3, h4, h5, h6 { margin-bottom: 0; }
+.mw-h2, .mw-h3, .mw-h4, .mw-h5, .mw-h6 { margin-bottom: 0; }
 small { font-size: 75%; }
 input.mw-searchInput { width: 106px; }
 

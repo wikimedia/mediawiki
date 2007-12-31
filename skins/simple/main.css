@@ -1,26 +1,3 @@
-/* For clarity, explicitly state some recommendations from <http://www.w3.org/
-   TR/CSS21/sample.html> to make sure the editsection links scale right */
-
-h1 { font-size: 2em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.17em; }
-h5 { font-size: .83em; }
-h6 { font-size: .75em; }
-h1, h2, h3, h4, h5, h6 { font-weight: bolder }
-
-/* Now the custom parts */
-
-/* Make edit sections (which are inside h# tags) normal-sized */
-.editsection {
-	font-weight: normal;
-}
-h1 .editsection { font-size: 50% }
-h2 .editsection { font-size: 66.7% }
-h3 .editsection { font-size: 85.5% }
-h5 .editsection { font-size: 120% }
-h6 .editsection { font-size: 133% }
-
-
 #toolbar {
   display: none;
 }
@@ -86,11 +63,22 @@ p {
 }
 p img { margin: 0; }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding-top: 0.5em;
-    padding-bottom: 0.17em;
+.mw-h1, .mw-h2, .mw-h3, .mw-h4, .mw-h5, .mw-h6 {
+	margin: 0;
 }
+/* To replicate the old padding, where h# were block-level elements and edit
+ * links were floated, we need to multiply .5em top padding and .17em bottom
+ * padding by the header text sizes.  We assume the W3 recommendations are
+ * used: 200%, 150%, 117%, 100%, 83%, 75% size in that order
+ * <http://www.w3.org/TR/CSS21/sample.html>.  If not the padding may be margin-
+ * ally off. */
+.mw-h1 { padding: .94em 0 .32em; } /* (0.5*1.88)em 0 (0.17*1.88)em */
+.mw-h2 { padding: .75em 0 .26em; } /* (0.5*1.50)em 0 (0.17*1.50)em */
+.mw-h3 { padding: .66em 0 .22em; } /* etc. */
+.mw-h4 { padding: .58em 0 .20em; }
+.mw-h5 { padding: .50em 0 .17em; }
+.mw-h6 { padding: .40em 0 .14em; }
+
 fieldset {
     margin: 1em 0em 1em 0em;
     padding: 0em 1em 1em 1em;
