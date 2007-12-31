@@ -1114,6 +1114,8 @@ $wgGroupPermissions['sysop']['apihighlimits']   = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
+// Permission to change users' groups assignments across wikis
+#$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 
 // Experimental permissions, not ready for production use
 //$wgGroupPermissions['sysop']['deleterevision'] = true;
