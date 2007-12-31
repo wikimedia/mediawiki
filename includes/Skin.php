@@ -784,7 +784,7 @@ END;
 			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
 			($n = $wgTitle->isDeleted() ) )
 		{
-			if ( $wgUser->isAllowed( 'delete' ) ) {
+			if ( $wgUser->isAllowed( 'undelete' ) ) {
 				$msg = 'thisisdeleted';
 			} else {
 				$msg = 'viewdeleted';
