@@ -1343,7 +1343,6 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-nodatabase'       => 'Database $1 does not exist or is not local.',
 'userrights-nologin'          => 'You must [[Special:Userlogin|log in]] with an administrator account to assign user rights.',
 'userrights-notallowed'       => 'Your account does not have permission to assign user rights.',
-'userrights-text'             => '', # don't translate or duplicate this message to other languages
 
 # Groups
 'group'               => 'Group:',
