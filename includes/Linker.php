@@ -1225,7 +1225,7 @@ class Linker {
 	 * @return string HTML headline
 	 */
 	public function makeHeadline( $level, $attribs, $anchor, $text, $link ) {
-		return "<div class=\"mw-h$level\"><a name=\"$anchor\" id=\"$anchor\"></a> <h$level$attribs$text</h$level> $link</div>";
+		return "<a name=\"$anchor\"></a><h$level$attribs$link <span class=\"mw-headline\">$text</span></h$level>";
 	}
 
 	/**
