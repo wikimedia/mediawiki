@@ -2299,3 +2299,4 @@ Klaskit rakwelet er mod boutin.',
 'iranian-calendar-m12' => '12vet miz Jalāli',
 
 );
+

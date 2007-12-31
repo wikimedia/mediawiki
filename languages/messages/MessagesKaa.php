@@ -7,6 +7,7 @@
  * @author Jiemurat
  * @author AlefZet
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $fallback = 'kk-latn';
@@ -175,7 +176,7 @@ $messages = array(
 'category-media-header' => '"$1" kategoriyasindag\'ı media',
 'category-empty'        => "''Bul kategoriyada ha'zir hesh bet yamasa media joq''",
 
-'linkprefix'   => '/^(.*?)([a-zıA-Zİ\x80-\xff]+)$/sDu',
+'linkprefix'   => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
 'mainpagetext' => "<big>'''MediaWiki tabıslı ornatıldı.'''</big>",
 
 'about'          => 'Proyekt haqqında',
@@ -1463,3 +1464,4 @@ Sol qatardag'ı keyingi ha'r bir siltewler tısqarı qabıl etiledi, mısalı qa
 'watchlisttools-raw'  => '"Shiyki" baqlaw dizimin o\'zgertiw',
 
 );
+

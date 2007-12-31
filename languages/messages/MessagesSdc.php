@@ -9,6 +9,7 @@
  * @author Teak
  * @author Antofa
  * @author Nike
+ * @author SPQRobin
  */
 
 
@@ -330,12 +331,12 @@ Pa piazeri, sìgnara l'accaduddu a un amministhradori ippizzifichendi l'indirizz
 'wrong_wfQuery_params' => "Errori i' li parametri inviaddi a la funzioni wfQuery()<br />
 funzioni: $1<br />
 Interrogazioni: $2",
-'viewsource'           => 'Vèdi càntaru',
+'viewsource'           => 'Vèdi còdizi',
 'viewsourcefor'        => 'pa $1',
 'actionthrottled'      => 'Azioni limitadda',
 'actionthrottledtext'  => "Cumenti rimédiu anti-spam, v'è un lìmiti a l'azioni ch'è pussìbiri eseguì i'nu tempu isthabiriddu, e abà suparaddu. Pògu tèmpu e pói riprubà.",
 'protectedpagetext'    => 'Chistha pàgina è isthadda prutiggidda pa impidinni la mudìfigga.',
-'viewsourcetext'       => 'È pussìbiri visuarizzà e cupià lu còdizi càntaru di chistha pàgina:',
+'viewsourcetext'       => 'È pussìbiri visuarizzà e cupià lu còdizi di chistha pàgina:',
 'protectedinterface'   => "Chistha pàgina cunteni un'erementu chi fazzi parthi di l'interfàccia utenti di lu software; è dunca prutiggidda pa evità pussìbiri abusi.",
 'editinginterface'     => "'''Attinzioni:''' Lu testhu di chistha pàgina fazzi parthi di l'interfàccia utenti di lu situ. Tutti li mudìfigghi arriggaddi a chistha pàgina si rifrittìni i' li imbasciaddi visuarizzaddi pa tutti l'utenti.",
 'sqlhidden'            => "(l'interrogazioni SQL è isthadda cuadda)",
@@ -782,6 +783,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'userrights-editusergroup'    => 'Mudìfigga gruppi utenti',
 'saveusergroups'              => 'Sàivva gruppi utenti',
 'userrights-groupsmember'     => 'Appartheni a li gruppi:',
+'userrights-groupsremovable'  => 'Gruppi supprimibiri:',
 'userrights-groupsavailable'  => 'Gruppi dipunìbiri:',
 'userrights-groupshelp'       => "Isciubarà i gruppi a li quari si vó lià o buggà l'utenti. L'apparthinènzia a li gruppi non sciubaraddi nò sarà mudìfiggadda. Pa libà un gruppu, incalchà Ctrl + lu buttoni mancu di lu mouse.",
 'userrights-reason'           => 'Mutibu di la mudìffiga:',
@@ -1487,9 +1489,14 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'import-revision-count'      => '{{PLURAL:$1|una ribisioni impurthadda|$1 ribisioni impurthaddi}}',
 'importnopages'              => 'Nisciuna pàgina da impurthà.',
 'importfailed'               => 'Impurthazioni nò ridiscidda: $1',
+'importunknownsource'        => "Tipu d'orìgini ischunisciddu pa l'impurthazioni",
+'importcantopen'             => "Impussìbiri abbrì lu file d'impurthazioni",
 'importbadinterwiki'         => 'Cullegamentu interwiki ibbagliaddu',
 'importnotext'               => 'Testhu bioddu o mancanti',
 'importsuccess'              => 'Impurthazioni ridiscidda.',
+'importhistoryconflict'      => 'La cronologia cunteni di li versioni in cuntrasthu (chistha pàgina pudia assé già isthadda impurthadda)',
+'importnosources'            => "Nò è isthadda difinidda un'origini pa l'impurthazioni transwiki; l'impurthazioni diretta di la cronologia nò è attiba.",
+'importnofile'               => "Nò è isthaddu cariggaddu nisciun file pa l'impurthazioni.",
 
 # Import log
 'importlogpage'                    => 'Impurthazioni',
@@ -1586,13 +1593,28 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'mw_math_modern' => 'Fuimmaddu cunsigliaddu pa li nabiggadori muderni',
 'mw_math_mathml' => 'Usa MathML si pussìbiri (ippirimintari)',
 
+# Patrolling
+'markaspatrolleddiff'                 => 'Signa la mudìffiga cumenti verifiggadda',
+'markaspatrolledtext'                 => 'Signa chistha pàgina cumenti verifiggadda',
+'markedaspatrolled'                   => 'Signaddu cumenti verifiggaddu',
+'markedaspatrolledtext'               => 'La ribisioni sciubaradda è isthadda signadda cumenti verifiggadda.',
+'rcpatroldisabled'                    => "La verìfica di l'ulthimi mudìfigghi è disattibadda.",
+'rcpatroldisabledtext'                => "La funzioni di verìfica di l'ulthimi mudìfigghi abà nò è attiba.",
+'markedaspatrollederror'              => 'Impussìbiri signàralla cumenti verifiggadda',
+'markedaspatrollederrortext'          => 'Débi ippizzificà una ribisizioni da signàrà cumenti verifiggadda.',
+'markedaspatrollederror-noautopatrol' => 'Nò si diponi di li primmissi nezzessàri pa signà li propri mudìfigghi cumenti verifiggaddi.',
+
 # Patrol log
 'patrol-log-page' => 'Mudìfigghi verifiggaddi',
+'patrol-log-line' => 'à signaraddu la $1 a la pàgina $2 cumenti verifiggadda $3',
 'patrol-log-auto' => '(verìfica automàtigga)',
 
 # Image deletion
 'deletedrevision'                 => 'Prizzidenti ribisioni canzilladda: $1',
 'filedeleteerror-short'           => 'Errori canzellendi lu file: $1',
+'filedeleteerror-long'            => "Si so verifiggaddi di l'errori prubendi a canzillà lu file:
+
+$1",
 'filedelete-missing'              => 'Impussìbiri canzillà lu file "$1" parchí nò isisthi.',
 'filedelete-old-unregistered'     => 'La ribisioni di lu file sciubaradda, "$1", no è cuntinudda i\' la bancadati.',
 'filedelete-current-unregistered' => 'Lu file ippizzificaddu, "$1", nò è cuntinuddu i\' la bancadati.',

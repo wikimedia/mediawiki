@@ -1741,7 +1741,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'importsuccess'              => 'Importazione riuscita.',
 'importhistoryconflict'      => 'La cronologia contiene delle versioni in conflitto (questa pagina potrebbe essere già stata importata)',
 'importnosources'            => "Non è stata definita una fonte per l'importazione transwiki; l'importazione diretta della cronologia non è attiva.",
-'importnofile'               => "Non è stato caricato nessun file per l'importazione,",
+'importnofile'               => "Non è stato caricato nessun file per l'importazione.",
 'importuploaderror'          => "Caricamento del file per l'importazione non riuscita; è possibile che il file sia di dimensioni superiori a quelle ammesse per gli upload.",
 
 # Import log
@@ -2327,3 +2327,4 @@ Usare l\'anteprima standard.',
 'watchlisttools-raw'  => 'Modifica la lista in formato testo',
 
 );
+

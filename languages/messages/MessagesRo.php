@@ -13,6 +13,7 @@
  * @author Teak
  * @author לערי ריינהארט
  * @author Meno25
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -2038,3 +2039,4 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'watchlisttools-view' => 'Vizualizează schimbările relevante',
 
 );
+

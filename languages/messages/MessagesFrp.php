@@ -79,7 +79,7 @@ $messages = array(
 'tog-editsection'             => 'Modifiar una sèccion per los lims [modifiar]',
 'tog-editsectiononrightclick' => 'Modifiar una sèccion en fassent un clic drêt sur son titro (JavaScript)',
 'tog-showtoc'                 => 'Afichiér la trâbla de les matiéres (por les pâges èyent més de 3 sèccions)',
-'tog-rememberpassword'        => 'Sè rapelar de mon mot de pâssa (cookie)',
+'tog-rememberpassword'        => "Sè rapelar de mon mot de pâssa (tèmouen (''cookie''))",
 'tog-editwidth'               => 'Afichiér la fenétra d’èdicion en plêna largior',
 'tog-watchcreations'          => 'Apondre les pâges que crèo a ma lista de siuvu',
 'tog-watchdefault'            => 'Apondre les pâges que modifio a ma lista de siuvu',
@@ -107,9 +107,9 @@ $messages = array(
 'tog-ccmeonemails'            => 'M’emmandar una copia des mèls que j/y’emmando ux ôtros utilisators',
 'tog-diffonly'                => 'Pas montrar lo contegnu de les pâges desot los difs',
 
-'underline-always'  => 'Tojorn',
-'underline-never'   => 'Jamés',
-'underline-default' => 'D’aprés lo navigator',
+'underline-always'  => 'tojorn',
+'underline-never'   => 'jamés',
+'underline-default' => 'd’aprés lo navigator',
 
 'skinpreview' => '(Prèvisualisar)',
 
@@ -346,7 +346,7 @@ La dèrriére requéta emmandâ ére :
 « $1 »
 fêta per la fonccion « $2 ».
 MySQL at retornâ l’èrror « $3 : $4 ».',
-'noconnect'            => 'Dèsolâ ! Suite a des problèmos tècnicos, o est empossiblo de sè conèctar a la bâsa de balyês por lo moment.<br />
+'noconnect'            => 'Dèsolâ ! Aprés des problèmos tècnicos, o est empossiblo de sè conèctar a la bâsa de balyês por lo moment.<br />
 $1',
 'nodb'                 => 'Empossiblo de sèlèccionar la bâsa de balyês $1',
 'cachederror'          => 'Cela pâge est una vèrsion en cache et pôt pas étre a jorn.',
@@ -371,7 +371,7 @@ Volyéd raportar ceta èrror a un administrator, en lui endiquent l’adrèce de
 'filedeleteerror'      => 'Empossiblo de suprimar lo fichiér « $1 ».',
 'directorycreateerror' => 'Empossiblo de crèar lo dossiér « $1 ».',
 'filenotfound'         => 'Empossiblo de trovar lo fichiér « $1 ».',
-'fileexistserror'      => 'Empossiblo d’ècrire dens lo dossiér « $1 » : lo fichiér ègziste',
+'fileexistserror'      => 'Empossiblo d’ècrire dens lo dossiér « $1 » : lo fichiér ègziste.',
 'unexpected'           => 'Valor emprèvua : « $1 » = « $2 ».',
 'formerror'            => 'Èrror : empossiblo de sometre lo formulèro',
 'badarticleerror'      => 'Cela accion pôt pas étre fêta sur ceta pâge.',
@@ -392,9 +392,9 @@ Requéta : $2',
 'protectedpagetext'    => 'Ceta pâge at étâ protègiê por empachiér sa modificacion.',
 'viewsourcetext'       => 'Vos pouede vêre et copiyér lo contegnu de la pâge por povêr travalyér dessus :',
 'protectedinterface'   => 'Ceta pâge fornét du tèxte d’entèrface por la programeria et est protègiê por èvitar los abus.',
-'editinginterface'     => "'''Atencion :''' vos èditâd una pâge utilisâ por crèar lo tèxte de l’entèrface de la programeria. Los changements sè cognetront, d’aprés lo contèxte, sur totes ou cèrtênes pâges visibles per los ôtros utilisators.",
+'editinginterface'     => "'''Atencion :''' vos éte aprés èditar una pâge utilisâ por crèar lo tèxte de l’entèrface de la programeria. Los changements sè cognetront, d’aprés lo contèxte, sur totes ou cèrtênes pâges visibles per los ôtros utilisators. Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Translating:Intro Betawiki], lo projèt d’entèrnacionalisacion des mèssâjos de MediaWiki.",
 'sqlhidden'            => '(Requéta SQL cachiê)',
-'cascadeprotected'     => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|la pâge siuventa|les pâges siuventes}}, èyent étâ protègiê avouéc lo chouèx « protèccion en cascâda » activâ :
+'cascadeprotected'     => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|la pâge siuventa|les pâges siuventes}}, èyent étâ protègiê{{PLURAL:$1||s}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de modifiar les pâges de l’èspâço de nom '''« $1 »'''.",
 'customcssjsprotected' => 'Vos avéd pas la pèrmission d’èditar ceta pâge perce que contint des prèferences d’ôtros utilisators.',
@@ -412,12 +412,12 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'yourname'                   => 'Voutron nom d’utilisator :',
 'yourpassword'               => 'Voutron mot de pâssa :',
 'yourpasswordagain'          => 'Tornâd entrar voutron mot de pâssa :',
-'remembermypassword'         => 'Sè rapelar de mon mot de pâssa (cookie)',
+'remembermypassword'         => "Sè rapelar de mon mot de pâssa (tèmouen (''cookie''))",
 'yourdomainname'             => 'Voutron domêno :',
 'externaldberror'            => 'Ou ben una èrror est arrevâ avouéc la bâsa de balyês d’ôtentificacion de defôr, ou ben vos éte pas ôtorisâ a betar a jorn voutron compto de defôr.',
 'loginproblem'               => '<b>Problèmo d’identificacion.</b><br />Tornâd èprovar !',
 'login'                      => 'Identificacion',
-'loginprompt'                => 'Vos dête activar los cookies por étre conèctâ ôtomaticament a {{SITENAME}}.',
+'loginprompt'                => "Vos dête activar los tèmouens (''cookies'') por étre conèctâ ôtomaticament a {{SITENAME}}.",
 'userlogin'                  => 'Sè conèctar ou crèar un compto',
 'logout'                     => 'Sè dèconèctar',
 'userlogout'                 => 'Dèconèccion',
@@ -444,8 +444,8 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'loginerror'                 => 'Èrror d’identificacion',
 'prefs-help-email'           => '(u chouèx) : pèrmèt de sè veriér vers vos dês lo seto sen dèvouèlar voutra identitât.',
 'prefs-help-email-required'  => 'Una adrèce de mèl est requisa.',
-'nocookiesnew'               => 'Lo compto utilisator at étâ crèâ, mas vos éte pas conèctâ. {{SITENAME}} utilise des cookies por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et vos tornar conèctar avouéc lo mémo nom et lo mémo mot de pâssa.',
-'nocookieslogin'             => '{{SITENAME}} utilise des cookies por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et vos tornar conèctar.',
+'nocookiesnew'               => "Lo compto utilisator at étâ crèâ, mas vos éte pas conèctâ. {{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et vos tornar conèctar avouéc lo mémo nom et lo mémo mot de pâssa.",
+'nocookieslogin'             => "{{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et vos tornar conèctar.",
 'noname'                     => 'Vos éd pas grepâ un nom d’utilisator valido.',
 'loginsuccesstitle'          => 'Identificacion reussia.',
 'loginsuccess'               => "'''Orendrêt, vos éte conèctâ dessus {{SITENAME}} a titro de « $1 ».'''",
@@ -2145,12 +2145,12 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-subjectdistancerange-3' => 'Vision de luen',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'Bise (nord)',
-'exif-gpslatitude-s' => 'Mié-jorn (sud)',
+'exif-gpslatitude-n' => "Bise (''nord'')",
+'exif-gpslatitude-s' => "Mié-jorn (''sud'')",
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => 'Levant (èst)',
-'exif-gpslongitude-w' => 'Ponant (ouèst)',
+'exif-gpslongitude-e' => "Levant (''èst'')",
+'exif-gpslongitude-w' => "Ponant (''ouèst'')",
 
 'exif-gpsstatus-a' => 'Mesera en cors',
 'exif-gpsstatus-v' => 'Entèropèrabilitât de la mesera',
@@ -2165,7 +2165,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Veré dirèccion',
-'exif-gpsdirection-m' => 'Bise magnètica (nord magnètico)',
+'exif-gpsdirection-m' => "Bise magnètica (''nord magnètico'')",
 
 # External editor support
 'edit-externally'      => 'Modifiar ceti fichiér en utilisent una aplicacion de defôr',
@@ -2307,21 +2307,48 @@ $1',
 'watchlisttools-raw'  => 'Modifiar la lista de siuvu (fôrma bruta)',
 
 # Iranian month names
-'iranian-calendar-m3' => 'Khordād',
-'iranian-calendar-m5' => 'Mordād',
-'iranian-calendar-m8' => 'Ābān',
-'iranian-calendar-m9' => 'Āzar',
+'iranian-calendar-m1'  => 'de farvardin',
+'iranian-calendar-m2'  => 'd’ordibehesht',
+'iranian-calendar-m3'  => 'de khordād',
+'iranian-calendar-m4'  => 'de tir',
+'iranian-calendar-m5'  => 'de mordād',
+'iranian-calendar-m6'  => 'de ch·ahrivar',
+'iranian-calendar-m7'  => 'de mèhr',
+'iranian-calendar-m8'  => 'd’ābān',
+'iranian-calendar-m9'  => 'd’āzar',
+'iranian-calendar-m10' => 'de dèy',
+'iranian-calendar-m11' => 'de bahman',
+'iranian-calendar-m12' => 'd’èsfand',
 
 # Hebrew month names
-'hebrew-calendar-m1'      => 'Tishri',
-'hebrew-calendar-m2'      => 'Heshvan',
-'hebrew-calendar-m7'      => 'Nissan',
-'hebrew-calendar-m10'     => 'Tamouz',
-'hebrew-calendar-m12'     => 'Eloul',
-'hebrew-calendar-m1-gen'  => 'Tishri',
-'hebrew-calendar-m2-gen'  => 'Heshvan',
-'hebrew-calendar-m7-gen'  => 'Nissan',
-'hebrew-calendar-m10-gen' => 'Tamouz',
-'hebrew-calendar-m12-gen' => 'Eloul',
+'hebrew-calendar-m1'      => 'de tich·eri',
+'hebrew-calendar-m2'      => 'd’hèch·evan',
+'hebrew-calendar-m3'      => 'de quislèv',
+'hebrew-calendar-m4'      => 'de tevèt',
+'hebrew-calendar-m5'      => 'de ch·evât',
+'hebrew-calendar-m6'      => 'd’adâr',
+'hebrew-calendar-m6a'     => 'd’adâr I',
+'hebrew-calendar-m6b'     => 'd’adâr II',
+'hebrew-calendar-m7'      => 'de nissan',
+'hebrew-calendar-m8'      => 'd’iyâr',
+'hebrew-calendar-m9'      => 'de sivan',
+'hebrew-calendar-m10'     => 'de tamouz',
+'hebrew-calendar-m11'     => 'd’âv',
+'hebrew-calendar-m12'     => 'd’èloul',
+'hebrew-calendar-m1-gen'  => 'de tich·eri',
+'hebrew-calendar-m2-gen'  => 'd’hèch·evan',
+'hebrew-calendar-m3-gen'  => 'de quislèv',
+'hebrew-calendar-m4-gen'  => 'de tevèt',
+'hebrew-calendar-m5-gen'  => 'de ch·evât',
+'hebrew-calendar-m6-gen'  => 'd’adâr',
+'hebrew-calendar-m6a-gen' => 'd’adâr I',
+'hebrew-calendar-m6b-gen' => 'd’adâr II',
+'hebrew-calendar-m7-gen'  => 'de nissan',
+'hebrew-calendar-m8-gen'  => 'd’iyâr',
+'hebrew-calendar-m9-gen'  => 'de sivan',
+'hebrew-calendar-m10-gen' => 'de tamouz',
+'hebrew-calendar-m11-gen' => 'd’âv',
+'hebrew-calendar-m12-gen' => 'd’èloul',
 
 );
+

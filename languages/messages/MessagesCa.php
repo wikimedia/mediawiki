@@ -674,9 +674,9 @@ Si sou ací per error simplement cliqueu el botó \"enrere\" del vostre navegado
 d'edició superior tal i com apareixerà si escolliu gravar.",
 'session_fail_preview'      => "<strong>Ho sentim, no s'ha pogut processar, però, les vostres modificacions, a causa d'una pèrdua de la sessió de dades.
 Si us plau, intenteu-lo una altra vegada. Si continua havent-hi problemes, eixiu la sessió del vostre compte i torneu per autenticar-vos-hi.</strong>",
-'session_fail_preview_html' => "<strong>Ho sentim, no s'ha pogut processar, però, les vostres modificacions, a causa d'una pèrdua de la sessió de dades.</strong>
+'session_fail_preview_html' => "<strong>Ho sentim, no s'han pogut processar les vostres modificacions a causa d'una pèrdua de la sessió de dades.</strong>
 
-''Com que aquest web basat en wiki té habilitat l'ús de codi planer d'HTML, s'ha amagat la previsualització com a prevenció contra atacs mitjançant codis JavaScript.''
+''Com que el projecte {{SITENAME}} té habilitat l'ús de codi HTML pla, s'ha amagat la previsualització com a prevenció contra atacs mitjançant codis JavaScript.''
 
 <strong>Si es tracta d'una contribució legítima, si us plau, intenteu-ho una altra vegada. Si continua havent-hi problemes, eixiu la sessió del vostre compte i torneu per autenticar-vos-hi.</strong>",
 'token_suffix_mismatch'     => "<strong>S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.</strong>",
@@ -785,9 +785,9 @@ Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a adm
 'revdelete-nooldid-text'      => 'No heu especificat la versió des de la qual voleu aplicar aquesta funció.',
 'revdelete-selected'          => '{{PLURAL:$2|Versió seleccionada|Versions seleccionades}} de [[:$1]]:',
 'logdelete-selected'          => "{{PLURAL:$2|Registre seleccionat|Registres seleccionats}} per '''$1:'''",
-'revdelete-text'              => "Les versions esborrades es mostraran encara dins de l'historial de l'article, si bé el seu contingut serà inaccessible al públic.
+'revdelete-text'              => 'Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.
 
-Altres administradors d'aquest web basat en wiki encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.",
+Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.',
 'revdelete-legend'            => 'Defineix restriccions en la revisió:',
 'revdelete-hide-text'         => 'Amaga el text de revisió',
 'revdelete-hide-name'         => "Acció d'amagar i objectiu",
@@ -2249,9 +2249,9 @@ La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgin
 # E-mail address confirmation
 'confirmemail'            => "Confirma l'adreça de correu electrònic",
 'confirmemail_noemail'    => "No heu introduït una direcció vàlida de correu electrònic en les vostres [[Special:Preferences|preferències d'usuari]].",
-'confirmemail_text'       => "El programari del sistema necessita que valideu la vostra adreça de correu
+'confirmemail_text'       => "El projecte {{SITENAME}} necessita que valideu la vostra adreça de correu
 electrònic per a poder gaudir d'algunes facilitats. Cliqueu el botó inferior
-per enviar un codi de confirmació a la vostra adreça. Seguiu l'enllaç que
+per a enviar un codi de confirmació a la vostra adreça. Seguiu l'enllaç que
 hi haurà al missatge enviat per a confirmar que el vostre correu és correcte.",
 'confirmemail_pending'    => "<div class=\"error\">
 Ja s'ha enviat el vostre codi de confirmació per correu electrònic; si
@@ -2377,3 +2377,4 @@ Trieu amb la previsualització normal.',
 'watchlisttools-raw'  => 'Edita la llista de seguiment sense format',
 
 );
+

@@ -10,6 +10,7 @@
  * @author Siebrand
  * @author Nike
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -2294,3 +2295,4 @@ Tente a vista previa normal.',
 'watchlisttools-raw'  => 'Editar a listaxe de vixilancia simple',
 
 );
+

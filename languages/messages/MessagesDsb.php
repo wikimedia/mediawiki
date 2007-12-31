@@ -2246,3 +2246,4 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'iranian-calendar-m12' => 'Dwanasty mjasec Jalāli',
 
 );
+

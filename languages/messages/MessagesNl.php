@@ -1059,6 +1059,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'userrights-editusergroup'    => 'Gebruikersgroepen wijzigen',
 'saveusergroups'              => 'Gebruikersgroepen opslaan',
 'userrights-groupsmember'     => 'Lid van:',
+'userrights-groupsremovable'  => 'Te verwijderen groepen:',
 'userrights-groupsavailable'  => 'Beschikbare groepen:',
 'userrights-groupshelp'       => 'Selecteer de groepen waaruit u de gebruiker wilt verwijderen of aan toe wilt voegen.
 Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctrl + linkermuisknop".',
@@ -1070,7 +1071,6 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'userrights-nodatabase'       => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'          => 'U moet zich [[Special:Userlogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
 'userrights-notallowed'       => 'U heeft geen rechten om gebruikersrechten toe te wijzen.',
-'userrights-groupsremovable'  => 'Te verwijderen groepen:',
 
 # Groups
 'group'               => 'Groep:',
@@ -2509,3 +2509,4 @@ Probeer normale voorvertoning.',
 'iranian-calendar-m12' => 'Twaalfde Perzische maand',
 
 );
+

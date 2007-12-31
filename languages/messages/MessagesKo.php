@@ -10,6 +10,7 @@
  * @author Nike
  * @author Teak
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -1581,3 +1582,4 @@ $1',
 'autosumm-new'     => '새 문서: $1',
 
 );
+
