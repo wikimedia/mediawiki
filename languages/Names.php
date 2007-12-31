@@ -264,6 +264,7 @@
 	'sr-jc' => 'ијекавица',	# Serbian cyrillic iyekvian
 	'sr-el' => 'latinica',	# Serbian latin ekavian
 	'sr-jl' => 'ijekavica',	# Serbian latin iyekavian
+	'srn' => 'Sranan Tongo',		# Sranan Tongo
 	'ss' => 'SiSwati',		# Swati
 	'st' => 'Sesotho',		# Southern Sotho
 	'stq' => 'Seeltersk',		# Saterland Frisian
