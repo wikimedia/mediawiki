@@ -20,6 +20,7 @@
 	'as' => 'অসমীয়া',	# Assamese
 	'ast' => 'Asturianu',	# Asturian
 	'av' => 'Авар',	# Avar
+	'avk' => 'Kotava', #Kotava (Kotava)
 	'ay' => 'Aymar',		# Aymara, should possibly be Aymará
 	'az' => 'Azərbaycan',	# Azerbaijani
 	'ba' => 'Башҡорт',	# Bashkir
