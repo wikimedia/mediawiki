@@ -460,7 +460,7 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'accmailtitle'              => 'Passwuert gouf geschéckt.',
 'accmailtext'               => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
 'newarticle'                => '(Nei)',
-'anontalkpagetext'          => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mir d'[[IP Adress]] benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt ginn. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
+'anontalkpagetext'          => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mir d'IP Adress benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt ginn. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
 'noarticletext'             => '(Dës Säit huet momentan nach keen Text, Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën)',
 'userpage-userdoesnotexist' => 'De Benotzerkont "$1" gëtt et net. Iwwerpréift w.e.g. op Dir dës Säit erschafe/ännere wëllt.',
 'clearyourcache'            => "'''Opgepasst:''' Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn: '''Mozilla/Firefox:''' klickt ''reload'' (oder ''ctrl-R''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
@@ -661,6 +661,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'grouppage-bureaucrat' => '{{ns:project}}:Bürokraten',
 
 # User rights log
+'rightslog'  => 'Logbuch vun de Benotzerrechter',
 'rightsnone' => '(keen)',
 
 # Recent changes
@@ -746,9 +747,11 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'imagelinks'                => 'Biller Linken',
 'linkstoimage'              => 'Déi folgenden Säite benotzen dëse Fichier:',
 'nolinkstoimage'            => 'Keng Säit benotzt dëse Fichier.',
+'sharedupload'              => 'Dës Fichier ass ee gemeinsam genotzten Upload a ka vun anere Projeten benotzt ginn.',
 'shareduploadwiki-linktext' => 'Datei-Beschreiwungssäit',
 'noimage'                   => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt $1.',
 'noimage-linktext'          => 'eroplueden',
+'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
 'imagelist_date'            => 'Datum',
 'imagelist_name'            => 'Numm',
 'imagelist_user'            => 'Benotzer',
@@ -774,7 +777,8 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'filedelete-success' => "'''$1''' gouf geläscht.",
 
 # MIME search
-'download' => 'eroflueden',
+'mimesearch' => 'Sich no MIME-Zort',
+'download'   => 'eroflueden',
 
 # Unwatched pages
 'unwatchedpages' => 'Nët iwwerwaachte Säiten',
@@ -842,14 +846,18 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'popularpages'            => 'Populär Säiten',
 'wantedcategories'        => 'Gewënschte Kategorien',
 'wantedpages'             => 'Gewënschte Säiten',
+'mostlinked'              => 'Dack verlinkte Säiten',
+'mostlinkedcategories'    => 'Dack benotzte Kategorien',
 'mostlinkedtemplates'     => 'Dack benotzte Schablounen',
 'mostcategories'          => 'Säite mat de meeschte Kategorien',
+'mostimages'              => 'Dack benotzte Biller',
 'mostrevisions'           => 'Säite mat de meeschten Versiounen',
 'allpages'                => 'All Säiten',
 'shortpages'              => 'Kuurz Säiten',
 'longpages'               => 'Laang Säiten',
 'deadendpages'            => 'Sakgaasse-Säiten',
 'deadendpagestext'        => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
+'protectedpages'          => 'Protegéiert Säiten',
 'protectedtitles'         => 'Gespaarten Titel',
 'listusers'               => 'Benotzerlëscht',
 'specialpages'            => 'Spezialsäiten',
@@ -922,8 +930,11 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'mywatchlist'          => 'Meng Iwwerwaachungs-Lëscht',
 'watchlistfor'         => "(fir '''$1''')",
 'addedwatch'           => "An d'Iwwerwaachungs-Lëscht derbäigesat.",
-'addedwatchtext'       => "D'Säit \"\$1\" gouf bei är [[Special:Watchlist|Lëscht vun den iwwerwaachte Säiten]] bäigefügt. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit gin hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:Recentchanges|rezenten Ännerungen]] aus fir se méi séier erëmzefannen. <p>Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" op der Säit.",
+'addedwatchtext'       => "D'Säit \"\$1\" gouf bei är [[Special:Watchlist|Lëscht vun den iwwerwaachte Säiten]] bäigefügt. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit gin hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:Recentchanges|rezenten Ännerungen]] aus fir se méi séier erëmzefannen.
+
+Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" op der Säit.",
 'removedwatch'         => 'Vun der Iwwerwaachungslëscht erofgeholl',
+'removedwatchtext'     => 'D\'Säit "$1" gouf vun ärer Iwwerwaachungs-Lësch erofgeholl.',
 'watch'                => 'Iwwerwaachen',
 'watchthispage'        => 'Dës Säit iwwerwaachen',
 'unwatch'              => 'Net méi iwwerwaachen',
@@ -1124,6 +1135,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'articleexists'           => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
 'talkexists'              => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
 'movedto'                 => 'geréckelt op',
+'movetalk'                => "D'Diskussiounssäit matréckelen, wa méiglich.",
 'talkpagemoved'           => "D'Diskussiounssäit gouf mat eriwwergeholl.",
 'talkpagenotmoved'        => "D'Diskussiounssäit gouf <strong>net</strong> mat eriwwergeholl.",
 '1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
@@ -1259,14 +1271,15 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'nextdiff'     => 'Nächsten Ënnerscheed →',
 
 # Media information
-'imagemaxsize'    => 'Biller op de Billerbeschreiwungssäite limitéieren op:',
-'thumbsize'       => 'Gréisst vun de Thumbnails:',
-'widthheightpage' => '$1×$2, $3 Säiten',
-'file-info'       => '(Dateigréisst: $1, MIME-Typ: $2)',
-'file-info-size'  => '($1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4)',
-'file-nohires'    => '<small>Et gëtt keng méi eng héich Opléisung.</small>',
-'svg-long-desc'   => '(SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3)',
-'show-big-image'  => 'Versioun an enger méi héijer Opléisung',
+'imagemaxsize'         => 'Biller op de Billerbeschreiwungssäite limitéieren op:',
+'thumbsize'            => 'Gréisst vun de Thumbnails:',
+'widthheightpage'      => '$1×$2, $3 Säiten',
+'file-info'            => '(Dateigréisst: $1, MIME-Typ: $2)',
+'file-info-size'       => '($1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4)',
+'file-nohires'         => '<small>Et gëtt keng méi eng héich Opléisung.</small>',
+'svg-long-desc'        => '(SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3)',
+'show-big-image'       => 'Versioun an enger méi héijer Opléisung',
+'show-big-image-thumb' => '<small>Gréisst vun dem Thumbnail: $1 × $2 Pixel</small>',
 
 # Metadata
 'metadata'          => 'Metadaten',
@@ -1463,5 +1476,10 @@ $1',
 
 # Watchlist editor
 'watchlistedit-raw-done' => 'Är Iwwerwaachungs-Lëscht gouf gespäichert.',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Iwwerwaachungs-Lëscht: Ännerungen',
+'watchlisttools-edit' => 'Iwwerwaachungs-Lëscht weisen an änneren',
+'watchlisttools-raw'  => 'Net-formatéiert Iwwerwaachungslëscht änneren',
 
 );

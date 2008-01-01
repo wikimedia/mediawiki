@@ -22,6 +22,13 @@ $messages = array(
 'thursday'      => 'Dåarsta',
 'friday'        => 'Bearjedh',
 'saturday'      => 'Laavadahke',
+'sun'           => 'Aej',
+'mon'           => 'Måa',
+'tue'           => 'Däj',
+'wed'           => 'Gas',
+'thu'           => 'Dåa',
+'fri'           => 'Bea',
+'sat'           => 'Laa',
 'january'       => 'Tsiengele',
 'february'      => 'Goevte',
 'march'         => 'Njoktje',
@@ -92,6 +99,7 @@ $messages = array(
 'nstab-main'      => 'Bielie',
 'nstab-user'      => 'Nuhtjien bielie',
 'nstab-media'     => 'Guvvie',
+'nstab-special'   => 'Joekoelaakan',
 'nstab-project'   => 'Wikipedije bielie',
 'nstab-image'     => 'Guvvie',
 'nstab-mediawiki' => 'Mediawiki-dïjre',
@@ -113,27 +121,41 @@ $messages = array(
 'mailmypassword'     => 'E-påaste loevesbaakoe',
 'loginlanguagelabel' => 'Gïele: $1',
 
+# Edit page toolbar
+'bold_sample' => 'Buajtehks tjaalege',
+'bold_tip'    => 'Buajtehks tjaalege',
+
 # Edit pages
 'savearticle' => 'Spååredh bielie',
 'newarticle'  => '(Orre)',
+'updated'     => '(Orrestahteme)',
 'editinguser' => 'Värrhtoedimmie nuhtjien <b>$1</b>',
 
 # History pages
+'next'       => 'minngebe',
 'page_first' => 'voestegh',
 'page_last'  => 'minngemes',
 
 # Search results
-'nextn'       => 'minngeben $1',
-'powersearch' => 'Ohtsedh',
+'nextn'        => 'minngeben $1',
+'viewprevnext' => 'Vuesehte ($1) ($2) ($3)',
+'powersearch'  => 'Ohtsedh',
 
 # Preferences page
-'searchresultshead' => 'Ohtsedh',
+'math_unknown_error' => 'ammes båajhtede',
+'saveprefs'          => 'Spååredh',
+'searchresultshead'  => 'Ohtsedh',
+'timezonelegend'     => 'Tïjjedajve',
 
 # Groups
+'group'     => 'Tjïerte:',
 'group-bot' => 'Jïjtjesvïhtjije',
 
 'group-bot-member'   => 'Jïjtjesvïhtjije',
 'group-sysop-member' => 'Reerien',
+
+# Upload
+'savefile' => 'Spååredh guvvie',
 
 # Image list
 'imagelist'      => 'Guvvie lästoe',
@@ -143,12 +165,18 @@ $messages = array(
 'imagelist_name' => 'Nomme',
 'imagelist_user' => 'Nuhtjien',
 
+# Statistics
+'statistics' => 'Statistiike',
+'sitestats'  => '{{SITENAME}} statistiike',
+
 'brokenredirects-edit' => '(värrhtoedimmie)',
 
 # Miscellaneous special pages
-'listusers'    => 'Nuhtjien lästoe',
-'specialpages' => 'Joekoenlaakan bielie',
-'move'         => 'Jåhta',
+'listusers'         => 'Nuhtjien lästoe',
+'specialpages'      => 'Joekoenlaakan bielie',
+'newpages'          => 'Orre bielie',
+'newpages-username' => 'Nuhtjiennomme:',
+'move'              => 'Jåhta',
 
 # Book sources
 'booksources-go' => 'Vaadtsa',
@@ -159,6 +187,7 @@ $messages = array(
 
 # Special:Allpages
 'nextpage'       => 'Minngebe bielie ($1)',
+'allpagesnext'   => 'Minngebe',
 'allpagessubmit' => 'Vaadtsa',
 
 # E-mail user
@@ -204,10 +233,30 @@ $messages = array(
 # Attribution
 'and' => 'jih',
 
+'exif-scenecapturetype-0' => 'Sïejhme',
+
+'exif-sharpness-1' => 'Möövhkes',
+'exif-sharpness-2' => 'Garre',
+
+'exif-subjectdistancerange-0' => 'Ammes',
+
 # AJAX search
 'useajaxsearch' => 'Nuhtjie AJAX ohtsedh',
 
+# Multipage image navigation
+'imgmultipagenext' => 'minngebe bielie →',
+'imgmultigo'       => 'Vaadtsa!',
+'imgmultigotopre'  => 'Vaadtsa gåajkoe bielie',
+
+# Table pager
+'table_pager_next'         => 'Minngebe bielie',
+'table_pager_limit_submit' => 'Vaadtsa',
+
 # Auto-summaries
 'autosumm-new' => 'Orre bielie: $1',
+
+# Live preview
+'livepreview-loading' => 'Leedtedh…',
+'livepreview-ready'   => 'Leedtedh… Voerkes!',
 
 );

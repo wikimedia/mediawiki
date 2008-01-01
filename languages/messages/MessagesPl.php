@@ -132,9 +132,9 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podkreślenie linków:',
-'tog-highlightbroken'         => '<a href="" class="new">Podświetl</a> linki pustych stron (alternatywa: znak zapytania<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa: dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
-'tog-hideminor'               => 'Ukryj drobne zmiany w "Ostatnich zmianach"',
+'tog-hideminor'               => 'Ukryj drobne poprawki w "Ostatnich zmianach"',
 'tog-extendwatchlist'         => 'Rozszerzona lista obserwowanych',
 'tog-usenewrc'                => 'Rozszerzenie ostatnich zmian (JavaScript)',
 'tog-numberheadings'          => 'Automatyczna numeracja nagłówków',
@@ -149,7 +149,7 @@ $messages = array(
 'tog-watchdefault'            => 'Obserwuj strony, które będę edytować',
 'tog-watchmoves'              => 'Obserwuj strony, które będę przenosić',
 'tog-watchdeletion'           => 'Dodaj strony, które usuwam, do listy obserwowanych',
-'tog-minordefault'            => 'Wszystkie zmiany zaznaczaj domyślnie jako drobne',
+'tog-minordefault'            => 'Wszystkie zmiany oznaczaj domyślnie jako drobne',
 'tog-previewontop'            => 'Pokazuj podgląd przed obszarem edycji',
 'tog-previewonfirst'          => 'Pokaż podgląd strony podczas pierwszej edycji',
 'tog-nocache'                 => 'Wyłącz pamięć podręczną',
@@ -366,7 +366,7 @@ $messages = array(
 'hidetoc'                 => 'ukryj',
 'thisisdeleted'           => 'Pokaż/odtwórz $1',
 'viewdeleted'             => 'Zobacz $1',
-'restorelink'             => '{{PLURAL:$1|jedną skasowaną wersję|skasowane wersje (w sumie $1)}}',
+'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|usunięte wersje (w sumie $1)}}',
 'feedlinks'               => 'Kanały:',
 'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
 'site-rss-feed'           => 'Kanał RSS $1',
@@ -416,12 +416,13 @@ MySQL zgłosił błąd "$3: $4"',
 są prawdopodobnie czynności administracyjne. Po ich zakończeniu przywrócona
 zostanie pełna funkcjonalność bazy.
 Administrator, który zablokował bazę, podał następujące wyjaśnienie:<br /> $1',
-'missingarticle'       => 'Oprogramowanie nie odnalazło tekstu strony, która powinna się znajdować w bazie, tzn. strony "$1".
+'missingarticle'       => 'Oprogramowanie nie odnalazło tekstu strony "$1", która powinna się znajdować w bazie.
 
-Zazwyczaj zdarza się to, gdy wybrane zostanie łącze do skasowanej strony, np. w starszej wersji innej ze stron.
+Zazwyczaj zdarza się to, gdy zostanie wybrane łącze do usuniętej strony,
+np. w starszej wersji innej ze stron.
 
 Inne okoliczności świadczyłyby o tym, że w oprogramowaniu jest błąd. W takim przypadku zgłoś, proszę, ten fakt
-administratorowi podając także powyższy adres.',
+administratorowi, koniecznie podając adres URL tej strony.',
 'readonly_lag'         => 'Baza danych została automatycznie zablokowana na czas potrzebny na synchronizację zmian między serwerem głównym i serwerami pośredniczącymi.',
 'internalerror'        => 'Błąd wewnętrzny',
 'internalerror_info'   => 'Błąd wewnętrzny: $1',
@@ -447,6 +448,7 @@ Zapytanie: $2',
 'viewsource'           => 'Tekst źródłowy',
 'viewsourcefor'        => 'dla $1',
 'actionthrottled'      => 'Akcja wstrzymana',
+'actionthrottledtext'  => 'Mechanizm obrony przed spamem ogranicza liczbę wykonań tej czynności w jednostce czasu. Usiłowałeś przekroczyć to ograniczenie. Proszę spróbuj jeszcze raz za kilka minut.',
 'protectedpagetext'    => 'Wyłączono możliwość edycji tej strony.',
 'viewsourcetext'       => 'Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.',
 'protectedinterface'   => 'Ta strona zawiera tekst interfejsu oprogramowania, dlatego możliwość jej edycji została zablokowana.',
@@ -457,7 +459,7 @@ $2',
 'namespaceprotected'   => "Brak uprawnień do edytowania stron w przestrzeni nazw '''$1'''.",
 'customcssjsprotected' => 'Nie masz uprawnień do dokonywania edycji na tej stronie, gdyż zawiera ona ustawienia osobiste innego użytkownika.',
 'ns-specialprotected'  => 'Nie można edytować stron w przestrzeni nazw {{ns:special}}.',
-'titleprotected'       => 'Utworzenie strony o tej nazwie zostało zablokowane przez [[User:$1|$1]], ponieważ <i>$2</i>.',
+'titleprotected'       => 'Utworzenie strony o tej nazwie zostało zablokowane przez [[User:$1|$1]]. Powód blokady: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Wylogowanie użytkownika',
@@ -769,8 +771,8 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'revdelete-hide-name'         => 'Ukryj akcję i cel',
 'revdelete-hide-comment'      => 'Ukryj komentarz edycji',
 'revdelete-hide-user'         => 'Ukryj nazwę użytkownika/adres IP',
-'revdelete-hide-restricted'   => 'Zaakceptuj te ograniczenia Apply these restrictions to sysops as well as others',
-'revdelete-suppress'          => 'Ukryj informacje przed sysopami tak samo jak przed innymi',
+'revdelete-hide-restricted'   => 'Wprowadź te ograniczenia zarówno dla administratorów jak i dla innych',
+'revdelete-suppress'          => 'Ukryj informacje zarówno przed administratorami jak i przed innymi',
 'revdelete-hide-image'        => 'Ukryj zawartość pliku',
 'revdelete-unsuppress'        => 'Usuń ograniczenia dla odtwarzanej historii zmian',
 'revdelete-log'               => 'Komentarz:',
@@ -784,31 +786,34 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 
 # Oversight log
 'oversightlog'    => 'Log Oversight',
-'overlogpagetext' => 'Poniżej znajduje się lista najnowszych usunięć i blokad dotyczących zawartości ukrytej przed sysopami. Wejdź na stronę [[Special:Ipblocklist|IP block list]], by zobaczyć listę aktywnych banów i blokad.',
+'overlogpagetext' => 'Poniżej znajduje się lista najnowszych usunięć i blokad dotyczących ukrywania zawartości przed administratorami. Wejdź na stronę [[Special:Ipblocklist|IP block list]], by zobaczyć listę aktywnych zakazów i blokad.',
 
 # History merging
-'mergehistory'                     => 'Złącz historię zmian stron',
+'mergehistory'                     => 'Scal historię zmian stron',
 'mergehistory-header'              => "Ta strona pozwala na scalenie historii zmian jednej strony z inną nowszą stroną.
 Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji strony.
 
 '''Na końcu musi pozostać bieżąca wersja strony źródłowej.'''",
-'mergehistory-box'                 => 'Połącz historię zmian dwóch stron:',
+'mergehistory-box'                 => 'Scal historię zmian dwóch stron:',
 'mergehistory-from'                => 'Strona źródłowa:',
 'mergehistory-into'                => 'Strona docelowa:',
-'mergehistory-list'                => 'Historia zmian możliwa do połączenia',
-'mergehistory-go'                  => 'Pokaż możliwe do połączenia edycje',
-'mergehistory-submit'              => 'Połącz historię zmian',
-'mergehistory-empty'               => 'Brak historii zmian do złączenia',
-'mergehistory-success'             => '$3 zmian [[:$1]] z powodzeniem zostało złączonych z [[:$2]].',
+'mergehistory-list'                => 'Historia zmian możliwa do scalenia',
+'mergehistory-merge'               => 'Następujące zmiany strony [[:$1]] mogą zostać scalone z [[:$2]]. Oznacz w kolumnie kropeczką która zmiana, łącznie z wcześniejszymi, ma zostać scalona. Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
+'mergehistory-go'                  => 'Pokaż możliwe do scalenia zmiany',
+'mergehistory-submit'              => 'Scal historię zmian',
+'mergehistory-empty'               => 'Brak historii zmian do scalenia',
+'mergehistory-success'             => '$3 zmian [[:$1]] z powodzeniem zostało scalonych z [[:$2]].',
+'mergehistory-fail'                => 'Scalenie historii zmian jest niewykonalne. Proszę zmienić ustawienia parametrów.',
 'mergehistory-no-source'           => 'Strona źródłowa $1 nie istnieje.',
 'mergehistory-no-destination'      => 'Strona docelowa $1 nie istnieje.',
 'mergehistory-invalid-source'      => 'Strona źródłowa musi mieć poprawną nazwę.',
-'mergehistory-invalid-destination' => 'Strona docelowa musi mieć prawidłową nazwę.',
+'mergehistory-invalid-destination' => 'Strona docelowa musi mieć poprawną nazwę.',
 
 # Merge log
-'mergelog'           => 'Połącz log',
-'pagemerge-logentry' => 'Połączono [[$1]] z [[$2]] (historia zmian aż do $3)',
+'mergelog'           => 'Scal log',
+'pagemerge-logentry' => 'Scalono [[$1]] z [[$2]] (historia zmian aż do $3)',
 'revertmerge'        => 'Rozdziel',
+'mergelogpagetext'   => 'Poniżej znajduje się lista ostatnich scaleń historii zmian stron.',
 
 # Diffs
 'history-title'           => 'Historia edycji "$1"',
@@ -974,7 +979,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'recentchangeslinked'          => 'Zmiany w dolinkowanych',
 'recentchangeslinked-title'    => 'Zmiany w stronach linkowanych z $1',
 'recentchangeslinked-noresult' => 'Nie było żadnych zmian na dolinkowanych stronych w wybranym okresie.',
-'recentchangeslinked-summary'  => "Ta strona specjalna zawiera listę ostatnich zmian dokonanych na stronach dolinkowanych. Strony znajdujące się na Twojej liście obserwowanych zostały '''pogrubione'''.",
+'recentchangeslinked-summary'  => "Ta strona specjalna zawiera listę ostatnich zmian dokonanych na stronach dolinkowanych. Tytuły stron znajdujące się na Twojej liście obserwowanych zostały '''wytłuszczone'''.",
 
 # Upload
 'upload'                      => 'Prześlij plik',
@@ -1359,7 +1364,7 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przest
 'enotif_lastvisited'           => 'Zobacz $1 w celu obejrzenia wszystkich zmian od twojej ostatniej wizyty.',
 'enotif_lastdiff'              => 'Zobacz $1 w celu obejrzenia tej zmiany.',
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
-'enotif_body'                  => 'Drogi $WATCHINGUSERNAME,
+'enotif_body'                  => 'Szanowny $WATCHINGUSERNAME,
 
 strona $PAGETITLE w serwisie {{SITENAME}} została $CHANGEDORCREATED o $PAGEEDITDATE przez użytkownika $PAGEEDITOR, zobacz $PAGETITLE_URL w celu obejrzenia aktualnej wersji.
 
@@ -1371,7 +1376,8 @@ Skontaktuj się z autorem:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane dopóki nie odwiedzisz tej strony. Możesz także zresetować flagi powiadomień dla wszystkich obserwowanych przez ciebie stron.
+W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane dopóki nie odwiedzisz tej strony.
+Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
 
 	Wiadomość systemu powiadomień serwisu {{SITENAME}}
 
@@ -1484,7 +1490,7 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'cannotundelete'               => 'Odtworzenie nie powiodło się. Ktoś inny mógł odtworzyć stronę pierwszy.',
 'undeletedpage'                => '<big>Odtworzono stronę $1.</big>
 
-Zobacz [[{{ns:special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio skasowanych i odtworzonych stron.',
+Zobacz [[{{ns:special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio usuniętych i odtworzonych stron.',
 'undelete-header'              => 'Zobacz [[Special:Log/delete|rejestr usunięć]] aby sprawdzić ostatnio skasowane strony.',
 'undelete-search-box'          => 'Szukaj usuniętych stron',
 'undelete-search-prefix'       => 'Strony zaczynające się od:',
@@ -1492,9 +1498,9 @@ Zobacz [[{{ns:special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'undelete-no-results'          => 'Nie znaleziono wskazanych stron w archiwum usuniętych.',
 'undelete-filename-mismatch'   => 'Nie można odtworzyć wersji pliku z datą $1: niezgodność nazwy pliku',
 'undelete-bad-store-key'       => 'Nie można odtworzyć wersji pliku z datą $1: przed usunięciem brakowało pliku.',
-'undelete-cleanup-error'       => 'Błąd przy odtwarzaniu nieużywanego archiwum pliku "$1".',
-'undelete-missing-filearchive' => 'Nie udało się odtworzyć archiwum pliku o ID $1, ponieważ nie jest w bazie danych. Być może plik został już odtworzony.',
-'undelete-error-short'         => 'Błąd przy odtwarzaniu pliku: $1',
+'undelete-cleanup-error'       => 'Wystąpił błąd przy usuwaniu nieużywanego archiwalnego pliku "$1".',
+'undelete-missing-filearchive' => 'Nie udało się odtworzyć z archiwum pliku o ID $1, ponieważ nie ma go w bazie danych. Być może plik został już odtworzony.',
+'undelete-error-short'         => 'Wystąpił błąd przy odtwarzaniu pliku: $1',
 'undelete-error-long'          => 'Napotkano błędy przy odtwarzaniu pliku:
 
 $1',

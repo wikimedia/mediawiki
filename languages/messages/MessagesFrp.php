@@ -362,7 +362,7 @@ Cen est g·ènèralament diu a un dif pas més utilisâ ou un lim vers l’histo
 
 S’o est pas lo câs, vos éd pôt-étre trovâ una cofierie dens la programeria.
 
-Volyéd raportar ceta èrror a un administrator, en lui endiquent l’adrèce de la pâge fôtiva.',
+Volyéd raportar ceta èrror a un administrator, en lui endiquent l’adrèce de la pâge fôssa.',
 'readonly_lag'         => 'La bâsa de balyês at étâ ôtomaticament vèrrolyê pendent que los sèrviors secondèros ratrapont lor retârd sur lo sèrvior principâl.',
 'internalerror'        => 'Èrror de dedens',
 'internalerror_info'   => 'Èrror de dedens : $1',
