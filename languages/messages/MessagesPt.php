@@ -2007,12 +2007,14 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-orientation'                 => 'Orientação',
 'exif-samplesperpixel'             => 'Número de componentes',
 'exif-planarconfiguration'         => 'Arranjo de dados',
+'exif-ycbcrsubsampling'            => 'Porcentagem de submistura do canal amarelo para o ciano',
 'exif-ycbcrpositioning'            => 'Posicionamento Y e C',
 'exif-xresolution'                 => 'Resolução horizontal',
 'exif-yresolution'                 => 'Resolução vertical',
 'exif-stripoffsets'                => 'Localização de dados da imagem',
 'exif-jpeginterchangeformatlength' => 'Bytes de dados JPEG',
 'exif-transferfunction'            => 'Função de transferência',
+'exif-whitepoint'                  => 'Cromaticidade do ponto branco',
 'exif-referenceblackwhite'         => 'Par de valores de referência de preto e branco',
 'exif-datetime'                    => 'Data e hora de modificação do ficheiro',
 'exif-imagedescription'            => 'Título',
@@ -2052,6 +2054,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-focallength'                 => 'Comprimento de foco da lente',
 'exif-subjectarea'                 => 'Área de sujeito',
 'exif-flashenergy'                 => 'Energia do flash',
+'exif-focalplanexresolution'       => 'Resolução do plano focal X',
+'exif-focalplaneyresolution'       => 'Resolução do plano focal Y',
 'exif-subjectlocation'             => 'Localização de sujeito',
 'exif-exposureindex'               => 'Índice de exposição',
 'exif-sensingmethod'               => 'Método de sensação',
@@ -2059,6 +2063,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-scenetype'                   => 'Tipo de cena',
 'exif-cfapattern'                  => 'padrão CFA',
 'exif-exposuremode'                => 'Modo de exposição',
+'exif-whitebalance'                => 'Balanço do branco',
 'exif-digitalzoomratio'            => 'Proporção de zoom digital',
 'exif-focallengthin35mmfilm'       => 'Distância focal em filme de 35 mm',
 'exif-scenecapturetype'            => 'Tipo de captura de cena',
@@ -2105,6 +2110,13 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-unknowndate' => 'Data desconhecida',
 
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Espelhamento horizontal', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Rotacionado em 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Espelhamento vertical', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Rotacionado em 90º em sentido anti-horário e espelhado verticalmente', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Rotacionado em 90° no sentido horário', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rotacionado em 90° no sentido horário e espelhado verticalmente', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rotacionado 90° no sentido anti-horário', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'formato irregular',
 'exif-planarconfiguration-2' => 'formato plano',
@@ -2128,10 +2140,27 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-lightsource-1'   => 'Luz do dia',
 'exif-lightsource-2'   => 'Fluorescente',
 'exif-lightsource-3'   => 'Tungsténio (luz incandescente)',
+'exif-lightsource-4'   => 'Flash',
+'exif-lightsource-9'   => 'Tempo bom',
 'exif-lightsource-10'  => 'Tempo nublado',
+'exif-lightsource-12'  => 'Iluminação fluorecente (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Iluminação fluorecente branca (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Iluminação fluorecente esbranquiçada (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Iluminação fluorecente branca (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Padrão de lâmpada A',
+'exif-lightsource-18'  => 'Padrão de lâmpada B',
+'exif-lightsource-19'  => 'Padrão de lâmpada C',
 'exif-lightsource-255' => 'Outra fonte de luz',
 
 'exif-focalplaneresolutionunit-2' => 'polegadas',
+
+'exif-sensingmethod-1' => 'Indefinido',
+'exif-sensingmethod-2' => 'Sensor de áreas de cores de um chip',
+'exif-sensingmethod-3' => 'Sensor de áreas de cores de dois chips',
+'exif-sensingmethod-4' => 'Sensor de áreas de cores de três chips',
+'exif-sensingmethod-5' => 'Sensor de área sequencial de cores',
+'exif-sensingmethod-7' => 'Sensor trilinear',
+'exif-sensingmethod-8' => 'Sensor linear sequencial de cores',
 
 'exif-customrendered-0' => 'Processo normal',
 'exif-customrendered-1' => 'Processo personalizado',
@@ -2145,11 +2174,22 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-scenecapturetype-3' => 'Cena noturna',
 
 'exif-gaincontrol-0' => 'Nenhum',
+'exif-gaincontrol-1' => 'Baixo ganho positivo',
+'exif-gaincontrol-2' => 'Alto ganho positivo',
+'exif-gaincontrol-3' => 'Baixo ganho negativo',
+'exif-gaincontrol-4' => 'Alto ganho negativo',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Suave',
+'exif-contrast-2' => 'Alto',
 
 'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Baixa saturação',
+'exif-saturation-2' => 'Alta saturação',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Fraco',
+'exif-sharpness-2' => 'Forte',
 
 'exif-subjectdistancerange-0' => 'Desconhecida',
 'exif-subjectdistancerange-2' => 'Vista próxima',
@@ -2307,4 +2347,3 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'watchlisttools-raw'  => 'Edição crua dos vigiados',
 
 );
-

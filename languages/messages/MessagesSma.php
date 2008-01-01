@@ -50,6 +50,9 @@ $messages = array(
 'about'         => 'Bïjre',
 'qbedit'        => 'Värrhtoedimmie',
 'qbpageoptions' => 'Dïhte bielie',
+'moredotdotdot' => 'Jienebe...',
+'mypage'        => 'Mov bielie',
+'mytalk'        => 'Mov dïjveldidh',
 
 'errorpagetitle'   => 'Båajhtode',
 'tagline'          => 'Raejeste {{SITENAME}}',
@@ -65,10 +68,15 @@ $messages = array(
 'print'            => 'Tjaeledh olkese',
 'edit'             => 'Värrhtoedimmie',
 'editthispage'     => 'Värrhtoedimmie dïhte bielie',
+'protect'          => 'Vaarjelidh',
+'protectthispage'  => 'Vaarjelidh dïhte bielie',
 'newpage'          => 'Orre bielie',
 'talkpagelinktext' => 'Dïerhkestidh',
+'specialpage'      => 'Joekoelaakan Bielie',
 'talk'             => 'Dïerhkestidh',
 'toolbox'          => 'Dïrregeborhtje',
+'userpage'         => 'Vuesehte nuhtjienbielie',
+'projectpage'      => 'Vuesehte Wikipedijebielie',
 'otherlanguages'   => 'jeatjebh gïele',
 'jumptosearch'     => 'ohtsedh',
 
@@ -203,4 +211,3 @@ $messages = array(
 'autosumm-new' => 'Orre bielie: $1',
 
 );
-

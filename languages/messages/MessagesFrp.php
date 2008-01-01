@@ -435,7 +435,7 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'uid'                        => 'Numerô d’utilisator :',
 'yourrealname'               => 'Veré nom :',
 'yourlanguage'               => 'Lengoua de l’entèrface :',
-'yourvariant'                => 'Varianta:',
+'yourvariant'                => 'Varianta :',
 'yournick'                   => 'Signatura por les discussions :',
 'badsig'                     => 'Signatura bruta fôssa ; controlâd voutres balises HTML.',
 'badsiglength'               => 'Voutra signatura est trop longe : la talye la ples granta est de $1 caractèros.',
@@ -588,7 +588,7 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'updated'                   => '(Betâ a jorn)',
 'note'                      => '<strong>Nota :</strong>',
 'previewnote'               => '<strong>Atencion, ceti tèxte est ren qu’una prèvisualisacion et at p’oncor étâ sôvâ !</strong>',
-'previewconflict'           => 'Ceta prèvisualisacion montre lo tèxte de la bouèta de modificacion de d’amont tâl qu’aparêtrat se vos chouèsésséd/cièrde de lo sôvar.',
+'previewconflict'           => 'Ceta prèvisualisacion montre lo tèxte de la bouèta d’èdicion de d’amont tâl qu’aparêtrat se vos chouèsésséd/cièrde de lo sôvar.',
 'session_fail_preview'      => '<strong>Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion. Volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.</strong>',
 'session_fail_preview_html' => "<strong>Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion.</strong>
 
@@ -601,10 +601,10 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'editingsection'            => 'Modificacion de $1 (sèccion)',
 'editingcomment'            => 'Modificacion de $1 (comentèro)',
 'editconflict'              => 'Conflit de modificacion : $1',
-'explainconflict'           => '<b>Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la modifiar. La zona de modificacion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês. Voutres modificacions aparêssont dens la zona de modificacion de desot. Vos voléd devêr aduire voutres modificacions u tèxte ègzistent. Solèt lo tèxte de la zona de d’amont serat sôvâ.</b><br />',
+'explainconflict'           => '<b>Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la modifiar. La zona d’èdicion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês. Voutres modificacions aparêssont dens la zona d’èdicion de desot. Vos voléd devêr aduire voutres modificacions u tèxte ègzistent. Solèt lo tèxte de la zona de d’amont serat sôvâ.</b><br />',
 'yourtext'                  => 'Voutron tèxte',
 'storedversion'             => 'Vèrsion enregistrâ',
-'nonunicodebrowser'         => '<strong>ATENCION : voutron navigator supôrte pas l’unicode. Una solucion temporèra at étâ trovâ por vos pèrmetre de modifiar en tota suretât un articllo : los caractèros nan-ASCII aparêtront dens voutra bouèta de modificacion a titro de codes hèxadècimâls. Vos devriâd utilisar un navigator ples novél.</strong>',
+'nonunicodebrowser'         => '<strong>ATENCION : voutron navigator supôrte pas l’unicode. Una solucion temporèra at étâ trovâ por vos pèrmetre de modifiar en tota suretât un articllo : los caractèros nan-ASCII aparêtront dens voutra bouèta d’èdicion a titro de codes hèxadècimâls. Vos devriâd utilisar un navigator ples novél.</strong>',
 'editingold'                => '<strong>ATENCION : vos éte aprés modifiar una vielye vèrsion de ceta pâge. Se vos sôvâd, totes les modificacions fêtes dês ceta vèrsion seront pèrdues.</strong>',
 'yourdiff'                  => 'Difèrences',
 'copyrightwarning'          => 'Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys). Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
@@ -628,7 +628,7 @@ Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.<
 'templatesusedsection'      => 'Modèlos utilisâs dens ceta sèccion :',
 'template-protected'        => '(protègiê)',
 'template-semiprotected'    => '(mié-protègiê)',
-'edittools'                 => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes de modificacion ou d’impôrt de fichiér. -->',
+'edittools'                 => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes d’èdicion ou d’impôrt de fichiér. -->',
 'nocreatetitle'             => 'Crèacion de pâge limitâ',
 'nocreatetext'              => 'Ceti seto at rètrent la possibilitât de crèar de novèles pâges. Vos pouede tornar arriér et modifiar una pâge ègzistenta, vos [[Special:Userlogin|conèctar ou crèar un compto]].',
 'nocreate-loggedin'         => 'Vos avéd pas la pèrmission de crèar de novèles pâges dessus {{SITENAME}}.',
@@ -859,6 +859,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'userrights-editusergroup'    => 'Modifiar los groupes de l’utilisator',
 'saveusergroups'              => 'Sôvar los groupes de l’utilisator',
 'userrights-groupsmember'     => 'Membro de :',
+'userrights-groupsremovable'  => 'Groupes suprimâblos :',
 'userrights-groupsavailable'  => 'Groupes disponiblos :',
 'userrights-groupshelp'       => 'Chouèsésséd/cièrde los groupes desquints vos voléd reteriér ou ben rapondre l’utilisator.
 Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar un groupe avouéc CTRL + clic gôcho.',
@@ -1547,7 +1548,7 @@ d’una adrèce IP prècèdament blocâ.',
 'ipblocklist'                 => 'Lista des utilisators blocâs',
 'ipblocklist-legend'          => 'Chèrchiér un utilisator blocâ',
 'ipblocklist-username'        => 'Nom d’utilisator ou adrèce IP :',
-'ipblocklist-summary'         => 'La lista ce-desot montre tôs los utilisators et totes les adrèces IP blocâs, per ôrdre anticronologico. Consultar lo [[Special:Log/block|jornal des blocâjos]] por vêre les dèrriéres accions de blocâjo et dèblocâjo fêtes.',
+'ipblocklist-summary'         => 'La lista ce-desot montre tôs los utilisators et totes les adrèces IP blocâs, per ôrdre anticronologico. Consultâd lo [[Special:Log/block|jornal des blocâjos]] por vêre les dèrriéres accions de blocâjo et dèblocâjo fêtes.',
 'ipblocklist-submit'          => 'Chèrchiér',
 'blocklistline'               => '$1 ($4) : $2 at blocâ $3',
 'infiniteblock'               => 'pèrmanent',
@@ -1794,7 +1795,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-upload'                  => 'Comenciér l’impôrt',
 
 # Stylesheets
-'common.css'   => '/** Lo css placiê ique serat aplicâ a totes les aparences. */',
+'common.css'   => '/* Lo css placiê ique serat aplicâ a totes les aparences. */',
 'monobook.css' => '/* Lo css placiê ique afècterat los utilisators de l’aparence Monobook. */',
 
 # Scripts
@@ -2308,8 +2309,8 @@ $1',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'de farvardin',
-'iranian-calendar-m2'  => 'd’ordibehesht',
-'iranian-calendar-m3'  => 'de khordād',
+'iranian-calendar-m2'  => 'd’ordibehèch·et',
+'iranian-calendar-m3'  => 'de c’hordād',
 'iranian-calendar-m4'  => 'de tir',
 'iranian-calendar-m5'  => 'de mordād',
 'iranian-calendar-m6'  => 'de ch·ahrivar',
@@ -2351,4 +2352,3 @@ $1',
 'hebrew-calendar-m12-gen' => 'd’èloul',
 
 );
-

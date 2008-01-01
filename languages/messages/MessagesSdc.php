@@ -437,6 +437,7 @@ Si la registhrazioni è isthadda criadda pa un\'errori, pói ignorà chista imba
 'resetpass_announce'      => "L'intradda è isthadda effettuadda cun un còdizi timpuràniu, inviaddu via postha erettrònica.
 
 Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'órdhini inogghi:",
+'resetpass_text'          => '<!-- Aggiungi lu testhu inogghi -->',
 'resetpass_header'        => "Rimpustha paràura d'órdhini",
 'resetpass_submit'        => "Impustha la paràura d'órdhini e intra",
 'resetpass_success'       => "La paràura d'órdhini tóia è isthadda mudìfiggadda. Abà sei intrendi...",
@@ -461,7 +462,7 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'nowiki_tip'      => 'Ignora la fuimmaddazioni wiki',
 'image_sample'    => 'Esempiu.jpg',
 'image_tip'       => 'Immàgina incoipuradda',
-'media_sample'    => 'Esempio.ogg',
+'media_sample'    => 'Esempiu.ogg',
 'media_tip'       => 'Cullegamentu a file mùrthimediari',
 'sig_tip'         => 'Fimma cun data e ora',
 'hr_tip'          => 'Lìnia orizontari (usà cun moderazioni)',
@@ -553,6 +554,7 @@ S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni 
 'editconflict'              => "Cuntrasthu d'edizioni i $1",
 'yourtext'                  => 'Lu testhu tóiu',
 'storedversion'             => 'La versioni mimurizadda',
+'editingold'                => '<strong>ATTINZIONI: Sei mudìfigghendi una versioni di la pàgina nò aggiornadda. Si vói saivvàlla tutti i ciambamenti arriggaddi daboi chistha ribisioni sarani pessi!</strong>',
 'yourdiff'                  => 'Diffarènzi',
 'copyrightwarning'          => "Nota: tutti li cuntributi a {{SITENAME}} so rilassaddi i la licènzia d'usu $2 (vedi $1 pa maggiori dettàgli). Si nò vói chi li testhi tói siani mudìfiggaddi e disthribuiddi a cassisia chena l'autorizzazioni tóia, nò l'invia à {{SITENAME}}. <br />
 Inviendi lu testhu ài la ripunsabiriddai chi lu testhu sia toiu oppuru sia i lu pùbbriggu dumìniu.
@@ -1017,7 +1019,8 @@ pà culligà direttamenti l'althri tipi di file.",
 'disambiguationspage'  => 'Template:Matessi innòmmu',
 'disambiguations-text' => "Li pàgini i' la sighenti listha cuntènani cullegamenti a '''pàgini cu' lu matessi innòmmu''' e nò a la rasgiòni a chi dubaristhia fà rifirimentu.<br />So cunsidaraddi pàgini cu lu matessi innòmmu tutti chissi chi cuntènini li mudelli erencaddi in [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects' => 'Rinvii doppi',
+'doubleredirects'     => 'Rinvii doppi',
+'doubleredirectstext' => 'Inogghi v\'è una listha di li pàgini chi puntani a pàgini di rinviu. Ogna riga cunteni i cullegamenti a lu primmu e sigundu rinviu, cumenti a la disthinazioni di lu sigundu rinviu, che noimmaimmenti è la pàgina "curretta" a la quari dubia puntà puru lu primmu rinviu.',
 
 'brokenredirects'        => 'Rinvii ibbagliaddi',
 'brokenredirectstext'    => 'Li rinvii sighenti puntani a pàgini inesisthenti:',
@@ -1513,6 +1516,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'tooltip-pt-watchlist'            => "La listha di li pàgini ch'isthai tinendi sottu osseivvazioni",
 'tooltip-pt-mycontris'            => 'La listha di li tó cuntributi',
 'tooltip-pt-login'                => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória',
+'tooltip-pt-anonlogin'            => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória.',
 'tooltip-pt-logout'               => 'Iscidda',
 'tooltip-ca-talk'                 => 'Vèdi li dischussioni reratibi a chista pàgina',
 'tooltip-ca-edit'                 => "Pói mudìfiggà chistha pàgina. Pa piazeri usa lu buttoni d'antiprimma primma di saivvà",
@@ -1574,16 +1578,24 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'nocredits'        => "Nisciuna infuimmazioni i' l'autori dipunìbiri pa chistha pàgina.",
 
 # Spam protection
+'spamprotectiontitle'    => 'Filthru anti-spam',
 'spamprotectiontext'     => "La pàgina ch'eri saivvendi è isthadda broccadda da lu filthru anti-spam, pó assé pa la prisènzia di un cullegamentu a un situ esthernu broccaddu.",
+'spamprotectionmatch'    => 'Lu filthru anti-spam è isthaddu attibaddu da lu testhu sighenti: $1',
 'subcategorycount'       => 'Chistha categuria cunteni {{PLURAL:$1|una sottocateguria|$1 sottocateguri}}.',
 'categoryarticlecount'   => 'Chistha categuria cunteni {{PLURAL:$1|una pàgina|$1 pàgini}}.',
 'category-media-count'   => 'Chistha categuria cunteni {{PLURAL:$1|un file|$1 file}}.',
 'listingcontinuesabbrev' => '(séguiddu)',
 'spambot_username'       => 'MediaWiki buggadda spam',
+'spam_reverting'         => "Turradda a l'ulthima versioni chena cullegamenti a $1",
+'spam_blanking'          => 'Pàgina ibbiuddadda, tutti li ribisioni abìani cullegamenti a $1',
 
 # Info page
-'infosubtitle' => 'Infuimmazioni pa la pàgina',
-'numedits'     => 'Nùmaru di mudìfigghi (pàgina): $1',
+'infosubtitle'   => 'Infuimmazioni pa la pàgina',
+'numedits'       => 'Nùmaru di mudìfigghi (pàgina): $1',
+'numtalkedits'   => 'Nùmaru di mudìfigghi (pàgina di dischussioni): $1',
+'numwatchers'    => "Nùmaru d'osseivvadori: $1",
+'numauthors'     => "Nùmaru d'autori disthinti (pàgina): $1",
+'numtalkauthors' => "Nùmaru d'autori disthinti (pàgina di dischussioni): $1",
 
 # Math options
 'mw_math_png'    => 'Musthra sempri in PNG',
@@ -1853,4 +1865,3 @@ $1',
 'watchlisttools-raw'  => 'Mudìfigga la listha in fuimmaddu testhu',
 
 );
-

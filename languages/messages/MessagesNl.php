@@ -1059,7 +1059,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'userrights-editusergroup'    => 'Gebruikersgroepen wijzigen',
 'saveusergroups'              => 'Gebruikersgroepen opslaan',
 'userrights-groupsmember'     => 'Lid van:',
-'userrights-groupsremovable'  => 'Te verwijderen groepen:',
+'userrights-groupsremovable'  => 'Verwijderbare groepen:',
 'userrights-groupsavailable'  => 'Beschikbare groepen:',
 'userrights-groupshelp'       => 'Selecteer de groepen waaruit u de gebruiker wilt verwijderen of aan toe wilt voegen.
 Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctrl + linkermuisknop".',
@@ -2509,4 +2509,3 @@ Probeer normale voorvertoning.',
 'iranian-calendar-m12' => 'Twaalfde Perzische maand',
 
 );
-

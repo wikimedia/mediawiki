@@ -473,7 +473,7 @@ $1',
 'template-protected'       => '(সুরক্ষিত)',
 'template-semiprotected'   => '(অর্ধ-সুরক্ষিত)',
 'nocreatetitle'            => 'পাতা তৈরি নিয়ন্ত্রণ করা হয়েছে',
-'nocreate-loggedin'        => 'এই উইকিতে আপনার নতুন পাতা তৈরি করার অনুমতি নাই।',
+'nocreate-loggedin'        => 'আপনার এই উইকিতে নতুন পাতা তৈরির অনুমতি নাই।',
 'permissionserrors'        => 'অনুমতি ত্রুটিসমূহ',
 
 # "Undo" feature
@@ -1157,4 +1157,3 @@ $1',
 'watchlisttools-raw'  => 'অশোধিত নজর তালিকা সম্পাদনা করো',
 
 );
-

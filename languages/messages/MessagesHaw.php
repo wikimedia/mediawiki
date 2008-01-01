@@ -129,7 +129,7 @@ $messages = array(
 
 'badaccess' => 'Hewa ‘ae',
 
-'youhavenewmessages'      => 'He $1 ($2) kou.',
+'youhavenewmessages'      => 'He $1 ($2) kāu.',
 'newmessageslink'         => 'mau memo hou',
 'youhavenewmessagesmulti' => 'He mau memo kou ma $1',
 'editsection'             => "E ho'opololei",
@@ -402,4 +402,3 @@ hō‘ike ‘ia i lalo:",
 'watchlistedit-normal-title' => 'E ho‘opololei i ka‘u papa nānā pono',
 
 );
-
