@@ -7,8 +7,6 @@
  * @author SPQRobin
  */
 
-
-
 $messages = array(
 'underline-always' => 'Ар дайым',
 'underline-never'  => 'Эч качан',
@@ -261,7 +259,6 @@ $messages = array(
 'addedwatch'        => 'Байкоо тизмеге кошумчаланды',
 'watch'             => 'Байкоо',
 'watchlistcontains' => 'Байкоо тизмеңизде $1 {{PLURAL:$1|барак бар|барак бар}}.',
-'wlnote'            => 'Астында соңку $1 өзгөрүүлөр соңку <b>$2</b> саатта.',
 'wlshowlast'        => 'Соңку $1 саат $2 күн $3 көрсөт.',
 
 'changed' => 'өзгөртүлдү',
@@ -332,4 +329,3 @@ $messages = array(
 'confirmemail_loggedin' => 'Электрондук дарегиңиз ырасталды.',
 
 );
-
