@@ -925,6 +925,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'userrights-editusergroup'    => 'Redigera användargrupper',
 'saveusergroups'              => 'Spara användargrupper',
 'userrights-groupsmember'     => 'Medlem i:',
+'userrights-groupsremovable'  => 'Grupper som kan tas bort:',
 'userrights-groupsavailable'  => 'Tillgängliga grupper:',
 'userrights-groupshelp'       => 'Markera de grupper, som du vill lägga till eller ta bort användare i. De grupper som du inte markerar, kommer inte att förändras. Du kan avmarkera en grupp med CTRL + vänsterklick.',
 'userrights-reason'           => 'Anledning till ändringen:',
@@ -1531,7 +1532,9 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'undelete-cleanup-error'       => 'Fel vid radering av den oanvända arkivfilen "$1".',
 'undelete-missing-filearchive' => 'Filen med arkiv-ID $1 kunde inte återställas eftersom den inte finns i databasen. Filen kanske redan har återställts.',
 'undelete-error-short'         => 'Fel vid filåterställning: $1',
-'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:\n\n$1',
+'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Namnrymd:',
@@ -1912,7 +1915,9 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 # Image deletion
 'deletedrevision'                 => 'Raderade gammal sidversion $1',
 'filedeleteerror-short'           => 'Fel vid radering av fil: $1',
-'filedeleteerror-long'            => 'Fel inträffade vid raderingen av filen:\n\n$1',
+'filedeleteerror-long'            => 'Fel inträffade vid raderingen av filen:
+
+$1',
 'filedelete-missing'              => 'Filen "$1" kan inte raderas eftersom den inte finns.',
 'filedelete-old-unregistered'     => 'Den angivna filversionen "$1" finns inte i databasen.',
 'filedelete-current-unregistered' => 'Den angivna filen "$1" finns inte i databasen.',

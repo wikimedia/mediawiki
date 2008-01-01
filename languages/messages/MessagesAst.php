@@ -808,6 +808,7 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'math_lexing_error'        => 'Error lléxicu',
 'math_syntax_error'        => 'error de sintaxis',
 'math_image_error'         => 'Falló la convesión PNG; comprueba que tea bien la instalación de latex, dvips, gs y convert',
+'math_bad_tmpdir'          => "Nun se pue escribir o crear el direutoriu temporal 'math'",
 'prefs-personal'           => 'Datos personales',
 'prefs-rc'                 => 'Cambeos recientes',
 'prefs-watchlist'          => 'Llista de vixilancia',
@@ -843,7 +844,7 @@ resultáu les páxines que contengan tolos términos de la busca).",
 # User rights
 'userrights-lookup-user'      => "Remanamientu de grupos d'usuariu",
 'userrights-user-editname'    => "Escribi un nome d'usuariu:",
-'editusergroup'               => "Modificar grupos d'usuarios",
+'editusergroup'               => "Modificar grupos d'usuariu",
 'userrights-editusergroup'    => "Editar los grupos d'usuariu",
 'saveusergroups'              => "Guardar los grupos d'usuariu",
 'userrights-groupsmember'     => 'Miembru de:',
@@ -1313,7 +1314,7 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 'restriction-type'            => 'Permisu:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamañu mínimu',
-'maximum-size'                => 'Tamañu másimu',
+'maximum-size'                => 'Tamañu máximu',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
@@ -1707,6 +1708,7 @@ $1",
 'nextdiff'     => 'Diferencia siguiente →',
 
 # Media information
+'mediawarning'         => "'''Avisu''': Esti archivu pue contener códigu maliciosu, pue ser comprometío executalu nel to sistema.<hr />",
 'imagemaxsize'         => 'Llendar les imáxenes nes páxines de descripción a:',
 'thumbsize'            => 'Tamañu de la muestra:',
 'widthheightpage'      => '$1×$2, $3 páxines',
@@ -1747,8 +1749,11 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-imagelength'                 => 'Altor',
 'exif-bitspersample'               => 'Bits por componente',
 'exif-compression'                 => 'Esquema de compresión',
+'exif-photometricinterpretation'   => 'Composición del píxel',
 'exif-orientation'                 => 'Orientación',
 'exif-samplesperpixel'             => 'Númberu de componentes',
+'exif-planarconfiguration'         => 'Distribución de los datos',
+'exif-ycbcrpositioning'            => 'Allugamientu Y y C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
 'exif-jpeginterchangeformat'       => 'Desplazamientu al JPEG SOI',
@@ -1770,10 +1775,13 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-datetimeoriginal'            => 'Fecha y hora de la xeneración de datos',
 'exif-datetimedigitized'           => 'Fecha y hora de la dixitalización',
 'exif-exposuretime'                => "Tiempu d'esposición",
+'exif-exposuretime-format'         => '$1 seg ($2)',
 'exif-fnumber'                     => 'Númberu F',
 'exif-exposureprogram'             => "Programa d'esposición",
+'exif-oecf'                        => 'Factor de conversión optoelectrónicu',
 'exif-aperturevalue'               => 'Abertura',
 'exif-brightnessvalue'             => 'Brillu',
+'exif-maxaperturevalue'            => "Valor máximu d'apertura",
 'exif-lightsource'                 => 'Fonte de la lluz',
 'exif-flash'                       => 'Flax',
 'exif-exposureindex'               => "Índiz d'esposición",
@@ -1847,9 +1855,28 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-scenecapturetype-2' => 'Retratu',
 'exif-scenecapturetype-3' => 'Escena nocherniega',
 
+'exif-gaincontrol-0' => 'Nenguna',
+'exif-gaincontrol-1' => 'Aumentu de ganancia baxu',
+'exif-gaincontrol-2' => 'Aumentu de ganancia altu',
+'exif-gaincontrol-3' => 'Mengua de ganancia baxa',
+'exif-gaincontrol-4' => 'Mengua de ganancia alta',
+
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Suave',
 'exif-contrast-2' => 'Fuerte',
+
+'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Saturación baxa',
+'exif-saturation-2' => 'Saturación alta',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Suave',
+'exif-sharpness-2' => 'Fuerte',
+
+'exif-subjectdistancerange-0' => 'Desconocíu',
+'exif-subjectdistancerange-1' => 'Macro',
+'exif-subjectdistancerange-2' => 'Vista averada',
+'exif-subjectdistancerange-3' => 'Vista alloñada',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Llatitú Norte',
@@ -1859,9 +1886,20 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-gpslongitude-e' => 'Lloxitú Este',
 'exif-gpslongitude-w' => 'Lloxitú Oeste',
 
+'exif-gpsstatus-a' => 'Midición en progresu',
+'exif-gpsstatus-v' => 'Interoperabilidá de la midición',
+
+'exif-gpsmeasuremode-2' => 'Midición bidimensional',
+'exif-gpsmeasuremode-3' => 'Midición tridimensional',
+
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Quilómetros per hora',
 'exif-gpsspeed-m' => 'Milles per hora',
+'exif-gpsspeed-n' => 'Nueyos',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Direición real',
+'exif-gpsdirection-m' => 'Direición magnética',
 
 # External editor support
 'edit-externally'      => 'Editar esti ficheru usando una aplicación externa',
@@ -1869,6 +1907,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'toos',
+'imagelistall'     => 'toes',
 'watchlistall2'    => 'too',
 'namespacesall'    => 'toos',
 'monthsall'        => 'toos',
@@ -1915,6 +1954,7 @@ Si esti *nun* yes tú, nun abras l\'enllaz. Esti códigu de confirmación caduca
 'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta páxina depués de qu'empecipiaras a editala pola siguiente razón:
 : ''$2''
 Por favor confirma que daveres quies volver a crear esta páxina.",
+'recreate'            => 'Volver a crear',
 
 # HTML dump
 'redirectingto' => 'Redireicionando a [[$1]]...',
@@ -1932,14 +1972,17 @@ $1",
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',
 'imgmultipagenext' => 'páxina siguiente →',
+'imgmultigo'       => '¡Dir!',
 
 # Table pager
-'ascending_abbrev'  => 'asc',
-'descending_abbrev' => 'desc',
-'table_pager_next'  => 'Páxina siguiente',
-'table_pager_prev'  => 'Páxina anterior',
-'table_pager_first' => 'Primer páxina',
-'table_pager_last'  => 'Postrer páxina',
+'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'desc',
+'table_pager_next'         => 'Páxina siguiente',
+'table_pager_prev'         => 'Páxina anterior',
+'table_pager_first'        => 'Primer páxina',
+'table_pager_last'         => 'Postrer páxina',
+'table_pager_limit'        => 'Amosar $1 elementos per páxina',
+'table_pager_limit_submit' => 'Dir',
 
 # Auto-summaries
 'autosumm-blank'   => "Eliminando'l conteníu de la páxina",
@@ -1949,19 +1992,27 @@ $1",
 
 # Live preview
 'livepreview-loading' => 'Cargando…',
+'livepreview-ready'   => 'Cargando… ¡Llisto!',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines de discusión.',
-'watchlistedit-noitems'       => 'La to llista de vixilancia nun tien títulos.',
-'watchlistedit-normal-title'  => 'Editar la llista de vixilancia',
-'watchlistedit-normal-legend' => 'Eliminar títulos de la llista de vixilancia',
-'watchlistedit-normal-submit' => 'Eliminar títulos',
-'watchlistedit-normal-done'   => '{{PLURAL:$1|Eliminóse un títulu|Elimináronse $1 títulos}} de la to llista de vixilancia:',
-'watchlistedit-raw-titles'    => 'Títulos:',
-'watchlistedit-raw-submit'    => 'Actualizar llista de vixilancia',
-'watchlistedit-raw-done'      => 'La to llista de vixilancia foi actualizada.',
-'watchlistedit-raw-added'     => '{{PLURAL:$1|Añadióse un títulu|Añadiéronse $1 títulos}}:',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|Eliminóse ún títulu|Elimináronse $1 títulos}}:',
+'watchlistedit-numitems'       => 'La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines de discusión.',
+'watchlistedit-noitems'        => 'La to llista de vixilancia nun tien títulos.',
+'watchlistedit-normal-title'   => 'Editar la llista de vixilancia',
+'watchlistedit-normal-legend'  => 'Eliminar títulos de la llista de vixilancia',
+'watchlistedit-normal-explain' => "Abaxo amuésense los títulos de la to llista de vixilancia. Pa eliminar un títulu,
+activa la caxa d'al llau d'él, y calca n'Eliminar Títulos. Tamién pues [[Special:Watchlist/raw|editar la llista en bruto]].",
+'watchlistedit-normal-submit'  => 'Eliminar títulos',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminóse un títulu|Elimináronse $1 títulos}} de la to llista de vixilancia:',
+'watchlistedit-raw-title'      => 'Editar la llista de vixilancia en bruto',
+'watchlistedit-raw-legend'     => 'Editar la llista de vixilancia en bruto',
+'watchlistedit-raw-explain'    => "Abaxo amuésense los títulos de la to llista de vixilancia, y puen ser
+editaos añadiéndolos o eliminandolos de la llista; un títulu per llinia. N'acabando, calca n'Actualizar Llista de Vixilancia.
+Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
+'watchlistedit-raw-titles'     => 'Títulos:',
+'watchlistedit-raw-submit'     => 'Actualizar llista de vixilancia',
+'watchlistedit-raw-done'       => 'La to llista de vixilancia foi actualizada.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Añadióse un títulu|Añadiéronse $1 títulos}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Eliminóse ún títulu|Elimináronse $1 títulos}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ver cambeos relevantes',
