@@ -23,7 +23,7 @@ $messages = array(
 'tog-usenewrc'             => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
 'tog-numberheadings'       => 'Iwwerschrëften automatesch numeréieren',
 'tog-editondblclick'       => 'Säite mat Duebelklick veränneren (JavaScript)',
-'tog-editsection'          => "Linke fir d'Verännere vun eenzelnen Abschnitten uweisen",
+'tog-editsection'          => "Linke fir d'Ännere vun eenzelnen Abschnitte weisen",
 'tog-showtoc'              => 'Inhaltsverzeechniss weisen bäi Säite mat méi wéi dräi Iwwerschrëften',
 'tog-rememberpassword'     => 'Mäi Passwuert op dësem Computer verhalen',
 'tog-editwidth'            => 'Verännerungskëscht iwwert déi ganz Breed vum Ecran',
@@ -32,7 +32,7 @@ $messages = array(
 'tog-watchmoves'           => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungs-Lëscht setzen',
 'tog-watchdeletion'        => 'Säiten déi ech läschen automatesch op meng Iwwerwaachungs-Lëscht setzen',
 'tog-minordefault'         => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
-'tog-previewonfirst'       => "Beim éischten Änneren de ''Preview'' uweisen.",
+'tog-previewonfirst'       => "Beim éischten Änneren de ''Preview'' weisen.",
 'tog-nocache'              => 'Säitecache deaktivéieren',
 'tog-enotifwatchlistpages' => 'Schéck mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungs-Lëscht geännert gëtt.',
 'tog-enotifusertalkpages'  => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
@@ -47,7 +47,7 @@ $messages = array(
 'tog-watchlisthidebots'    => 'Ännerungen vu Boten op menger Iwwerwaachungs-Lëscht verstoppen',
 'tog-watchlisthideminor'   => 'Kleng Ännerungen op menger Iwwerwaachungs-Lëscht verstoppen',
 'tog-ccmeonemails'         => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
-'tog-diffonly'             => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net de ganzen Artikel",
+'tog-diffonly'             => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
 
 'underline-always'  => 'ëmmer',
 'underline-never'   => 'Ni',
@@ -110,10 +110,10 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => 'Kategorien',
 'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'category_header'       => 'Artikelen an der Kategorie "$1"',
+'category_header'       => 'Säiten an der Kategorie "$1"',
 'subcategories'         => 'Souskategorien',
 'category-media-header' => 'Medien an der Kategorie "$1"',
-'category-empty'        => "''An dëser Kategorie gëtt et am Ament nach keng Artikelen oder Medien''",
+'category-empty'        => "''An dëser Kategorie gëtt et am Ament nach keng Säiten oder Medien''",
 
 'mainpagetext'      => "<big>'''MediaWiki gouf mat Succès installéiert.'''</big>",
 'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren. 
@@ -124,13 +124,14 @@ $messages = array(
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]",
 
 'about'          => 'A propos',
-'article'        => 'Artikel',
+'article'        => 'Säit',
 'newwindow'      => '(geet an enger neier Fënster op)',
 'cancel'         => 'Zeréck',
 'qbfind'         => 'Fannen',
 'qbbrowse'       => 'Bliederen',
 'qbedit'         => 'Änneren',
 'qbpageoptions'  => 'Säitenoptiounen',
+'qbpageinfo'     => 'Kontext',
 'qbmyoptions'    => 'Meng Säiten',
 'qbspecialpages' => 'Spezialsäiten',
 'moredotdotdot'  => 'Méi …',
@@ -149,7 +150,7 @@ $messages = array(
 'search'           => 'Sichen',
 'searchbutton'     => 'Volltext-Sich',
 'go'               => 'Lass',
-'searcharticle'    => 'Artikel',
+'searcharticle'    => 'Säit',
 'history'          => 'Historique vun der Säit',
 'history_short'    => 'Historique',
 'updatedmarker'    => "geännert zënter dat ech d'Säit fir d'lescht gekuckt hunn",
@@ -172,7 +173,7 @@ $messages = array(
 'specialpage'      => 'Spezialsäit',
 'personaltools'    => 'Perséinlech Tools',
 'postcomment'      => 'Bemierkung derbäisetzen',
-'articlepage'      => 'Artikel',
+'articlepage'      => 'Säit',
 'talk'             => 'Diskussioun',
 'views'            => 'Offroen',
 'toolbox'          => 'Geschirkëscht',
@@ -180,7 +181,7 @@ $messages = array(
 'projectpage'      => 'Meta-Text',
 'imagepage'        => 'Bildsäit',
 'templatepage'     => 'Schabloune(säit) weisen',
-'viewhelppage'     => 'Hëllefsäit weisen',
+'viewhelppage'     => 'Hëllefssäit weisen',
 'categorypage'     => 'Kategoriesäit weisen',
 'viewtalkpage'     => 'Diskussioun weisen',
 'otherlanguages'   => 'Aner Sproochen',
@@ -226,24 +227,25 @@ $messages = array(
 'versionrequired'     => 'Versioun $1 vu MediaWiki gëtt gebraucht',
 'versionrequiredtext' => "D'Versioun $1 vu MediaWiki ass néideg, fir dës Säit ze notzen. Kuckt d'[[{{ns:special}}:Version|Versiounssäit]]",
 
-'retrievedfrom'       => 'Vun „$1“',
-'youhavenewmessages'  => 'Dir hutt $2 op ärer $1.',
-'newmessageslink'     => 'nei Messagen',
-'newmessagesdifflink' => 'Nei Messagen',
-'editsection'         => 'änneren',
-'editold'             => 'änneren',
-'editsectionhint'     => 'Abschnitt veränneren: $1',
-'toc'                 => 'Inhaltsverzeechnis',
-'showtoc'             => 'weisen',
-'hidetoc'             => 'verstoppen',
-'thisisdeleted'       => '$1 kucken oder zerécksetzen?',
-'viewdeleted'         => '$1 weisen?',
-'restorelink'         => '$1 geläschte {{PLURAL:$1|Versioun|Versionen}}',
-'feedlinks'           => 'Feed:',
-'site-rss-feed'       => 'RSS-Feed fir $1',
-'site-atom-feed'      => 'Atom-Feed fir $1',
-'page-rss-feed'       => 'RSS-Feed fir "$1"',
-'page-atom-feed'      => 'Atom-Feed fir "$1"',
+'retrievedfrom'           => 'Vun „$1“',
+'youhavenewmessages'      => 'Dir hutt $2 op ärer $1.',
+'newmessageslink'         => 'nei Messagen',
+'newmessagesdifflink'     => 'Nei Messagen',
+'youhavenewmessagesmulti' => 'Dir huet nei Messagen op $1',
+'editsection'             => 'änneren',
+'editold'                 => 'änneren',
+'editsectionhint'         => 'Abschnitt veränneren: $1',
+'toc'                     => 'Inhaltsverzeechnis',
+'showtoc'                 => 'weisen',
+'hidetoc'                 => 'verstoppen',
+'thisisdeleted'           => '$1 kucken oder zerécksetzen?',
+'viewdeleted'             => '$1 weisen?',
+'restorelink'             => '$1 geläschte {{PLURAL:$1|Versioun|Versionen}}',
+'feedlinks'               => 'Feed:',
+'site-rss-feed'           => 'RSS-Feed fir $1',
+'site-atom-feed'          => 'Atom-Feed fir $1',
+'page-rss-feed'           => 'RSS-Feed fir "$1"',
+'page-atom-feed'          => 'Atom-Feed fir "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Säit',
@@ -296,6 +298,9 @@ Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. So
 'perfdisabled'         => "'''Pardon!''' Dës Fonktioun gouf wéint Iwwerlaaschtung vum Server temporaire ausgeschalt.",
 'perfcachedts'         => 'Dës Donneeë kommen aus dem Cache, leschten Update: $1',
 'querypage-no-updates' => "D'Aktualiséierung vun dëser Säit ass zur Zäit ausgeschalt. D'Daten gi bis op weideres net aktualiséiert.'''",
+'wrong_wfQuery_params' => 'Falsche Parameter fir wfQuery()<br />
+Funktioun: $1<br />
+Ufro: $2',
 'viewsource'           => 'Source kucken',
 'viewsourcefor'        => 'fir $1',
 'actionthrottled'      => 'Dës Aktioun gouf gebremst',
@@ -314,6 +319,9 @@ Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. So
 Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech nacheemol als deeselwechten oder en anere Benotzer umelden. 
 
 Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemeld wiert, bis Dir ärem Browser seng Cache eidelmaacht.',
+'welcomecreation'            => '== Wëllkomm, $1! ==
+
+Äre Kont gouf kreéiert. Denkt drun, Är {{SITENAME}}-Preferenzen anzestellen.',
 'loginpagetitle'             => 'Benotzer-Umeldung',
 'yourname'                   => 'Benotzernumm:',
 'yourpassword'               => 'Passwuert:',
@@ -453,9 +461,12 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 *Spär-ID: #$5 </div>',
 'blockednoreason'           => 'Kee Grond uginn',
 'blockededitsource'         => "Den Text vun '''ären Ännerungen''' op '''$1''' steet hei ënnendrënner:",
+'whitelistedittitle'        => 'Login noutwännesch fir ze änneren',
 'whitelistedittext'         => 'Dir musst iech $1, fir Säiten änneren ze kënnen.',
 'whitelistreadtitle'        => 'Fir ze liesen muss Dir ugemeld sinn',
+'whitelistreadtext'         => 'Dir musst [[Special:Userlogin|ageloggt]] sinn, fir Säiten ze liesen.',
 'whitelistacctitle'         => 'Dir däerft kee Benotzerkont uleeën.',
+'whitelistacctext'          => 'Fir Konten op {{SITENAME}} kënnen opzemaachen musst Dir [[Special:Userlogin|ageloggt]] sinn an déi noutwänneg Rechter hunn.',
 'loginreqlink'              => 'umellen',
 'accmailtitle'              => 'Passwuert gouf geschéckt.',
 'accmailtext'               => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
@@ -464,6 +475,7 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'noarticletext'             => '(Dës Säit huet momentan nach keen Text, Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën)',
 'userpage-userdoesnotexist' => 'De Benotzerkont "$1" gëtt et net. Iwwerpréift w.e.g. op Dir dës Säit erschafe/ännere wëllt.',
 'clearyourcache'            => "'''Opgepasst:''' Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn: '''Mozilla/Firefox:''' klickt ''reload'' (oder ''ctrl-R''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'userjspreview'             => "'''Denkt drun datt Dir äre Javascript nëmmen test, nach ass näischt gespäichert!'''",
 'updated'                   => '(Geännert)',
 'note'                      => '<strong>Notiz:</strong>',
 'previewnote'               => "<strong>Dëst ass nëmmen e Preview; D'Ännerunge sinn nach net gespäichert!</strong>",
@@ -575,7 +587,7 @@ Zu äre Informatioun fannt Dir d'Läsch-Logbuch mat dem Grond fir dat virescht L
 
 Dir kënnt [[:\$1|déi Säit uleeën]].",
 'noexactmatch-nocreate' => "'''Et gëtt keng Säit mam Titel \"\$1\".'''",
-'titlematches'          => 'Artikeltitel Iwwerdeneestëmmungen',
+'titlematches'          => 'Säitentitel Iwwerdeneestëmmungen',
 'textmatches'           => 'Säitentext Iwwerdeneestëmmungen',
 'prevn'                 => 'virescht $1',
 'nextn'                 => 'nächst $1',
@@ -633,7 +645,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'files'                 => 'Fichieren',
 
 # User rights
-'userrights-lookup-user'     => 'Benotzergruppe verwalten',
+'userrights-lookup-user'     => 'Benotzergrupp verwalten',
 'userrights-user-editname'   => 'Benotzernumm uginn:',
 'editusergroup'              => 'Benotzergruppen änneren',
 'userrights-editusergroup'   => 'Benotzergruppen änneren',
@@ -667,7 +679,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'recentchanges'                     => 'Rezent Ännerungen',
-'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– neien Artikel; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
+'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– nei Säiten; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
 'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum <b>$2</b> un (maximum <b>$1</b> Ännerunge gi gewisen).",
 'rclistfrom'                        => 'Nëmmen Ännerungen zënter $1 weisen.',
 'rcshowhideminor'                   => 'Kleng Ännerungen $1',
@@ -798,15 +810,16 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'statistics'             => 'Statistik',
 'sitestats'              => '{{SITENAME}}-Statistik',
 'userstats'              => 'Benotzerstatistik',
-'sitestatstext'          => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Artikel|Artikelen}} an der Datebank.
-Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Artikelen, Redirecten an anerer déi eventuell net als Artikele gezielt kënne ginn.
+'sitestatstext'          => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Säit|Säiten}} an der Datebank.
+Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Säiten, Redirecten an anerer déi eventuell net als Säite gezielt kënne ginn.
 
-Déi ausgeschloss ginn et {{PLURAL:\$2|Artikel den|Artikelen déi}} als Artikel betruecht {{PLURAL:\$2|ka|kënne}} ginn. 
+Déi ausgeschloss ginn et {{PLURAL:\$2|Säit|Säiten}} déi als Säite betruecht {{PLURAL:\$2|ka|kënne}} ginn. 
 
 Am ganzen {{PLURAL:\$8|gouf '''1''' Fichier|goufen '''\$8''' Fichieren}} eropgelueden.
 
-Am ganze gouf '''\$3''' {{PLURAL:\$3|Artikeloffro|Artikeloffroen}} ann '''\$4''' {{PLURAL:\$4|Artikelbearbechtung|Artikelbearbechtungen}} zënter datt {{SITENAME}} ageriicht gouf.
-Doraus ergi sech '''\$5''' Bearbechtungen pro Artikel an '''\$6''' Artikeloffroen pro Bearbechtung.
+Am ganze gouf '''\$3''' {{PLURAL:\$3|Säitenoffro|Säitenoffroen}} ann '''\$4''' {{PLURAL:\$4|Säitebearbechtung|Säitebearbechtungen}} zënter datt {{SITENAME}} ageriicht gouf.
+
+Doraus ergi sech '''\$5''' Bearbechtungen pro Säit an '''\$6''' Säitenoffroen pro Bearbechtung.
 
 Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''\$7'''",
 'userstatstext'          => "Et gi '''$1''' {{PLURAL:$1|registréierten|registréiert}} [[Special:Listusers|Benotzer]].  '''$2''' (oder '''$4%''') vun dëse {{PLURAL:$2|ass|sinn}} $5.",
@@ -823,7 +836,8 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'brokenredirects-edit'   => '(änneren)',
 'brokenredirects-delete' => '(läschen)',
 
-'withoutinterwiki' => 'Säiten ouni Interwiki-Linken',
+'withoutinterwiki'        => 'Säiten ouni Interwiki-Linken',
+'withoutinterwiki-header' => 'Dës Säiten hu keng Interwiki-Linken:',
 
 'fewestrevisions' => 'Säite mat de mannsten Ännerungen',
 
@@ -894,7 +908,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'nextpage'          => 'Nächst Säit ($1)',
 'prevpage'          => 'Virescht Säit ($1)',
 'allpagesfrom'      => 'Säite weisen, ugefaange mat:',
-'allarticles'       => "All d'Artikelen",
+'allarticles'       => "All d'Säiten",
 'allinnamespace'    => "All d'Säiten ($1 Nummraum)",
 'allnotinnamespace' => "All d'Säiten (net am $1 Nummraum)",
 'allpagesprev'      => 'Virescht',
@@ -913,6 +927,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'emailuser'       => 'Dësem Benotzer eng Email schécken',
 'emailpage'       => 'Dem Benotzer eng Email schécken',
 'emailpagetext'   => 'Wann dëse Benotzer eng valid Email Adress a senge Preferenzen agestallt huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi Email Adress déi dir an Äre Preferenzen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
+'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => '{{SITENAME}}-E-Mail',
 'noemailtitle'    => 'Keng E-Mail-Adress',
 'emailfrom'       => 'Vum',
@@ -929,6 +944,9 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'watchlist'            => 'Meng Iwwerwaachungs-Lëscht',
 'mywatchlist'          => 'Meng Iwwerwaachungs-Lëscht',
 'watchlistfor'         => "(fir '''$1''')",
+'watchlistanontext'    => "Wannechglift $1 fir Säiten op ärer Suivi-Lëscht ze gesinn oder z'änneren.",
+'watchnologin'         => 'Net ageloggt',
+'watchnologintext'     => 'Dir musst [[Special:Userlogin|ageloggt]] sinn, fir Är Suivi-Lëscht ze änneren.',
 'addedwatch'           => "An d'Iwwerwaachungs-Lëscht derbäigesat.",
 'addedwatchtext'       => "D'Säit \"\$1\" gouf bei är [[Special:Watchlist|Lëscht vun den iwwerwaachte Säiten]] bäigefügt. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit gin hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:Recentchanges|rezenten Ännerungen]] aus fir se méi séier erëmzefannen.
 
@@ -939,7 +957,12 @@ Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen
 'watchthispage'        => 'Dës Säit iwwerwaachen',
 'unwatch'              => 'Net méi iwwerwaachen',
 'unwatchthispage'      => 'Net méi iwwerwaachen',
+'watchnochange'        => 'Keng vun Äre verfollegte Säite gouf während der ugewisener Zäitperiod verännert.',
 'watchlist-details'    => "Dir iwwerwaacht {{PLURAL:$1|1 Säit|$1 Säiten}} (d'Diskussiounssäite net matgezielt).",
+'wlheader-enotif'      => '* Email-Bescheed ass aktivéiert.',
+'wlheader-showupdated' => "* Säiten déi zënter ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
+'watchmethod-recent'   => 'Rezent Ännerungen gin op verfollegt Säiten iwwerpréift',
+'watchmethod-list'     => 'Verfollegt Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains'    => 'Op ärer Iwwerwaachungs-Lëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
 'wlshowlast'           => "Weis d'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg).",
 'watchlist-show-bots'  => 'Bot-Ännerunge weisen',
@@ -964,7 +987,7 @@ Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen
 'deletepage'                  => 'Läschungssäit',
 'confirm'                     => 'Konfirméieren',
 'excontent'                   => "Inhalt war: '$1'",
-'excontentauthor'             => "Am Artikel stung: '$1' (An als eenzegen dru geschriwwen hat den '$2')",
+'excontentauthor'             => "De Contenu war: '$1' (An als eenzegen dru geschriwwen hat den '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "Den Inhalt virum Läsche wor: '$1'",
 'exblank'                     => "D'Säit wor eidel",
 'confirmdelete'               => "Konfirméiert d'Läschen",
@@ -1012,7 +1035,7 @@ Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen
 # Undelete
 'undelete'                 => 'Geläschte Säit restauréieren',
 'viewdeletedpage'          => 'Geläschte Säite weisen',
-'undeletehistorynoadmin'   => "Dësen Artikel gouf geläscht. De Grond fir d'Läschen gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. De Contenu vun dësen Textversioune kann awer just vun Administrateuren gekuckt a restauréiert ginn.",
+'undeletehistorynoadmin'   => "Dës Säit gouf geläscht. De Grond fir d'Läschen gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. De Contenu vun dësen Textversioune kann awer just vun Administrateuren gekuckt a restauréiert ginn.",
 'undelete-nodiff'          => 'Et si keng méi al Versiounen do.',
 'undeletebtn'              => 'Restauréieren',
 'undeletecomment'          => 'Grond:',
@@ -1024,7 +1047,7 @@ Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen
 
 # Namespace form on various pages
 'namespace'      => 'Nummraum:',
-'invert'         => 'Auswiel umdréinen',
+'invert'         => 'Auswiel ëmdréinen',
 'blanknamespace' => '(Haapt)',
 
 # Contributions
@@ -1067,10 +1090,10 @@ Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen
 'ipbreason'                   => 'Grond:',
 'ipbreasonotherlist'          => 'Anere Grond',
 'ipbreason-dropdown'          => "*Heefeg Ursaache fir Benotzer ze spären:
-**Bewosst falsch Informatiounen an een oder méi Artikele gesat
-**Ouni Grond Inhalt vun Artikelen/Säite geläscht
+**Bewosst falsch Informatiounen an een oder méi Säite gesat
+**Ouni Grond Inhalt vun Säite geläscht
 **Spam-Verknëppunge mat externe Säiten
-**Topereien an d'Artikele gesat
+**Topereien an d'Säite gesat
 **Beleidegt oder bedréit aner Mataarbechter
 **Mëssbrauch vu verschiddene Benotzernimm
 **Net akzeptabele Benotzernumm",
@@ -1144,13 +1167,13 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'movereason'              => 'Grond:',
 'revertmove'              => 'zréck réckelen',
 'delete_and_move'         => 'Läschen a réckelen',
-'delete_and_move_text'    => '== Läsche vum Destinatiounsartikel néideg == Den Artikel "[[$1]]" existéiert schonn. Wëll der e läsche fir d\'Réckelen ze erméiglechen?',
+'delete_and_move_text'    => '== Läsche vun der Destinatiounssäit néideg == D\'Säit "[[$1]]" existéiert schonn. Wëll der se läsche fir d\'Réckelen ze erméiglechen?',
 'delete_and_move_confirm' => "Jo, läsch d'Destinatiounssäit",
 'delete_and_move_reason'  => 'Geläscht fir Plaz ze maache fir eng Säit heihin ze réckelen',
 
 # Export
 'export'            => 'Säiten exportéieren',
-'exporttext'        => "Dir kënnt den Text an den Historique vun enger bestëmmter Säit, oder engem Set vu Säiten, an XML agepakt, exportéieren. An Zukunft kann dat dann an eng aner Wiki mat MediaWiki Software agedroë ginn, mee dat gëtt mat der aktueller Versioun nach net ënnerstëtzt. Fir en Artikel z'exportéieren, gitt den Titel an d'Textkëscht heidrënner an, een Titel pro Linn, a wielt aus op Dir nëmmen déi aktuell Versioun oder all Versioune mam ganzen Historique exportéiere wëllt. Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link benotze wéi z.B [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] fir d'[[{{Mediawiki:Mainpage}}]].",
+'exporttext'        => "Dir kënnt den Text an den Historique vun enger bestëmmter Säit, oder engem Set vu Säiten, an XML agepakt, exportéieren. An Zukunft kann dat dann an eng aner Wiki mat MediaWiki Software agedroë ginn, mee dat gëtt mat der aktueller Versioun nach net ënnerstëtzt. Fir eng Säit z'exportéieren, gitt den Titel an d'Textkëscht heidrënner an, een Titel pro Linn, a wielt aus op Dir nëmmen déi aktuell Versioun oder all Versioune mam ganzen Historique exportéiere wëllt. Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link benotze wéi z.B [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] fir d'[[{{Mediawiki:Mainpage}}]].",
 'exportcuronly'     => 'Nëmmen déi aktuell Versioun exportéieren an net de ganzen Historique',
 'exportnohistory'   => "----
 '''Hiwäis:''' Den Export vu komplette Versiounshistoriquen ass aus Performancegrënn bis op weideres net méiglech.",
@@ -1250,7 +1273,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'spamprotectiontitle'  => 'Spamfilter',
 'spamprotectiontext'   => "D'Säit déi dir späichere wollt gouf vum Spamfilter blockéiert. Dëst wahrscheinlech duerch en externe Link.",
 'subcategorycount'     => 'Fir dës Kategorie {{PLURAL:$1|gëtt et $1 Souskategorie| ginn et $1 Souskategorien}}.',
-'categoryarticlecount' => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Artikel|ginn et bis ewell $1 Artikelen}}.',
+'categoryarticlecount' => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Säit|ginn et bis ewell $1 Säiten}}.',
 'category-media-count' => 'Et {{PLURAL:$1|gëtt eng Datei|ginn $1 Dateien}} an dëser Kategorie',
 
 # Math options
@@ -1435,7 +1458,7 @@ Feelermeldung vum Mailserver: $1",
 
 # Delete conflict
 'deletedwhileediting' => 'Opgepasst: Dës Säit gouf geläscht nodeems datt der ugefaangen hutt se ze änneren!',
-'confirmrecreate'     => "De Benotzer [[User:$1|$1]] ([[User talk:$1|Diskussioun]]) huet dësen Artikel geläscht, nodeems datt där ugefaangen hutt drun ze schaffen. D'Begrënnung war: ''$2'' Bestätegt w.e.g., datt där dësen Artikel wierklich erëm nei opmaache wëllt.",
+'confirmrecreate'     => "De Benotzer [[User:$1|$1]] ([[User talk:$1|Diskussioun]]) huet dës Säit geläscht, nodeems datt där ugefaangen hutt drun ze schaffen. D'Begrënnung war: ''$2'' Bestätegt w.e.g., datt Dir dës Säit wierklich erëm nei opmaache wëllt.",
 
 # action=purge
 'confirm_purge' => 'Dës Säit aus dem Server-Cache läschen? 
@@ -1443,9 +1466,9 @@ Feelermeldung vum Mailserver: $1",
 $1',
 
 # AJAX search
-'searchcontaining' => "No Artikelen siche mat ''$1''.",
+'searchcontaining' => "No Säite siche mat ''$1''.",
 'searchnamed'      => "Sich no Säiten, an deenen hirem Numm ''$1'' virkënnt.",
-'articletitles'    => "Artikelen ugefaange mat ''$1''",
+'articletitles'    => "Säiten déi mat ''$1'' ufänken",
 'hideresults'      => 'Verstopp',
 
 # Multipage image navigation
@@ -1475,7 +1498,20 @@ $1',
 'livepreview-ready'   => 'Lueden … Fäerdeg!',
 
 # Watchlist editor
-'watchlistedit-raw-done' => 'Är Iwwerwaachungs-Lëscht gouf gespäichert.',
+'watchlistedit-numitems'       => "Op Ärer Suivi-Lëscht {{PLURAL:$1|steet 1 Säit|stinn $1 Säiten}}, ouni d'Diskussiounssäiten.",
+'watchlistedit-noitems'        => 'Är Suivi-Lëscht ass eidel.',
+'watchlistedit-normal-title'   => 'Suivi-Lëscht änneren',
+'watchlistedit-normal-legend'  => 'Säite vun der Suivi-Lëscht erofhuelen',
+'watchlistedit-normal-explain' => 'D\'Säite vun äerer Suivi-Lëscht ginn ënnendrenner gewisen. Fir eng Säit erofzehuelen, klickt op d\'Haischen niewen drunn a klickt dono op "Säiten erofhuelen". Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Suivi-Lëscht veränneren]], oder [[Special:Watchlist/clear|äer Suivi-Lëscht eidel maachen]].',
+'watchlistedit-normal-submit'  => 'Säiten erofhuelen',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} vun ärer Suivi-Lëscht erofgeholl:',
+'watchlistedit-raw-title'      => 'Suivi-Lëscht onformatéiert änneren',
+'watchlistedit-raw-explain'    => "D'Säite vun äerer Suivi-Lëscht ginn ënnendrenner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetzt oder erofhuelt; eng Säit pro Linn. Wann Dir fäerdeg sidd, klickt Suivi-Lëscht à jour setzen. Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",
+'watchlistedit-raw-titles'     => 'Säiten:',
+'watchlistedit-raw-submit'     => 'Suivi-Lëscht à jour setzen',
+'watchlistedit-raw-done'       => 'Är Iwwerwaachungs-Lëscht gouf gespäichert.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} derbäigesat:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} erausgeholl:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Iwwerwaachungs-Lëscht: Ännerungen',

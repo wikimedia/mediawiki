@@ -758,14 +758,14 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 
 Uzu ĉi tiun formularon por alŝuti novajn bildojn kaj aliajn dosierojn por ilustrado de viaj artikoloj. Ĉe kutimaj retumiloj, vi vidos ĉi-sube butonon "Foliumi..." aŭ simile; tiu malfermas la dosierelektilon de via operaciumo. Kiam vi elektos dosieron, ĝia nomo plenigos la tekstujon apud la butono. Vi ankaŭ nepre devas klakjesi la skatolon por aserti, ke vi ne malobeas la leĝan kopirajton de aliuloj per alŝuto de la dosiero. Por plenumi la alŝutadon, alklaku la butono "Alŝutu". Tio ĉi eble iomete longe daŭros, se estas granda dosiero kaj se via interreta konekto malrapidas.
 
-La dosiertipoj preferataj ĉe {{SITENAME}} estas JPEG por fotografaĵoj, PNG por grafikaĵoj, diagramoj, ktp; kaj OGG por sonregistraĵoj. Bonvolu doni al via dosiero nomon informan, por eviti konfuzon. Por enmeti la dosieron en artikolon, skribu ligilon laŭ la formoj</p>
+La dosiertipoj preferataj ĉe {{SITENAME}} estas JPEG por fotografaĵoj, PNG por grafikaĵoj, diagramoj, ktp; kaj OGG por sonregistraĵoj. Bonvolu doni al via dosiero nomon informan, por eviti konfuzon. Por enmeti la dosieron en artikolon, skribu ligilon laŭ la formoj
 
 * <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dosiero.jpg]]</nowiki>
 * <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|teksto por retumiloj negrafikaj]]</nowiki>
 aŭ por sono
 * <nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>
 
-<p>Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas redakti, anstataŭigi, aŭ forigi viajn alŝutaĵojn se ili pensas, ke tio servus la vikion. Se vi aĉe misuzas la sistemon, eblas ke vi estos forbarita.',
+Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas redakti, anstataŭigi, aŭ forigi viajn alŝutaĵojn se ili pensas, ke tio servus la vikion. Se vi aĉe misuzas la sistemon, eblas ke vi estos forbarita.',
 'uploadlog'                   => 'loglibro de alŝutaĵoj',
 'uploadlogpage'               => 'Loglibro de alŝutaĵoj',
 'uploadlogpagetext'           => 'Jen la plej laste alŝutitaj dosieroj.
@@ -1515,4 +1515,3 @@ $1',
 'autosumm-new'     => 'Nova paĝo: $1',
 
 );
-

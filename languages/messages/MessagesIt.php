@@ -694,7 +694,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'edittools'                 => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
 'nocreatetitle'             => 'Creazione delle pagine limitata',
 'nocreatetext'              => 'Questo sito ha limitato la possibilità di creare nuove pagine ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
-'nocreate-loggedin'         => 'Non si dispone dei permessi necessari a creare nuove pagine sul sito.',
+'nocreate-loggedin'         => 'Non si dispone dei permessi necessari a creare nuove pagine su {{SITENAME}}.',
 'permissionserrors'         => 'Errore nei permessi',
 'permissionserrorstext'     => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
 'recreate-deleted-warn'     => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
@@ -912,6 +912,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-editusergroup'    => 'Modifica gruppi utente',
 'saveusergroups'              => 'Salva gruppi utente',
 'userrights-groupsmember'     => 'Appartiene ai gruppi:',
+'userrights-groupsremovable'  => 'Gruppi eliminabili:',
 'userrights-groupsavailable'  => 'Gruppi disponibili:',
 'userrights-groupshelp'       => "Selezionare i gruppi ai quali si vuole associare o rimuovere l'utente. L'appartenenza ai gruppi non selezionati non verrà modificata. Per deselezionare un gruppo, premere Ctrl + il tasto sinistro del mouse.",
 'userrights-reason'           => 'Motivo della modifica:',
@@ -920,6 +921,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-available-remove' => 'È possibile rimuovere utenti dal gruppo $1.',
 'userrights-no-interwiki'     => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'       => 'Il database $1 non esiste o non è un database locale.',
+'userrights-nologin'          => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
+'userrights-notallowed'       => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
 
 # Groups
 'group'               => 'Gruppo:',
@@ -1657,7 +1660,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movearticle'             => 'Sposta la pagina',
 'movenologin'             => 'Accesso non effettuato',
 'movenologintext'         => "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:Userlogin|accesso]] al sito.",
-'movenotallowed'          => 'Non si dispone dei permessi necessari allo spostamento delle pagine sul sito.',
+'movenotallowed'          => 'Non si dispone dei permessi necessari allo spostamento delle pagine su {{SITENAME}}.',
 'newtitle'                => 'Nuovo titolo:',
 'move-watch'              => 'Aggiungi agli osservati speciali',
 'movepagebtn'             => 'Sposta la pagina',
@@ -2327,4 +2330,3 @@ Usare l\'anteprima standard.',
 'watchlisttools-raw'  => 'Modifica la lista in formato testo',
 
 );
-
