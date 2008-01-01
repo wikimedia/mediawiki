@@ -141,7 +141,7 @@ $messages = array(
 'tog-showtoolbar'             => 'Pokaż pasek narzędzi (JavaScript)',
 'tog-editondblclick'          => 'Podwójne kliknięcie rozpoczyna edycję (JavaScript)',
 'tog-editsection'             => 'Możliwość edycji poszczególnych sekcji strony',
-'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem na tytule sekcji<br />rozpoczyna jej edycję (JavaScript)',
+'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji<br />rozpoczyna jej edycję (JavaScript)',
 'tog-showtoc'                 => 'Pokaż spis treści (na stronach zawierających więcej niż 3 nagłówki)',
 'tog-rememberpassword'        => 'Pamiętaj hasło między sesjami',
 'tog-editwidth'               => 'Obszar edycji o pełnej szerokości',
@@ -156,14 +156,14 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Wyślij e-mail kiedy obserwowana przeze mnie strona ulegnie zmianie',
 'tog-enotifusertalkpages'     => 'Wyślij e-mail kiedy moja strona dyskusji ulegnie zmianie',
 'tog-enotifminoredits'        => 'Wyślij e-mail także w przypadku drobnych zmian na stronach',
-'tog-enotifrevealaddr'        => 'Ujawnij mój adres e-mail w zawiadomieniach',
+'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e-mail w powiadomieniach',
 'tog-shownumberswatching'     => 'Pokaż liczbę obserwujących użytkowników',
 'tog-fancysig'                => 'Podpis bez automatycznego linku',
 'tog-externaleditor'          => 'Domyślnie używaj zewnętrznego edytora',
 'tog-externaldiff'            => 'Domyślnie używaj zewnętrznego programu pokazującego zmiany',
 'tog-showjumplinks'           => 'Włącz odnośniki "skocz do"',
 'tog-uselivepreview'          => 'Używaj dynamicznego podglądu (JavaScript) (eksperymentalny)',
-'tog-forceeditsummary'        => 'Informuj o niewypełnieniu pola opisu zmian',
+'tog-forceeditsummary'        => 'Informuj o niewypełnieniu opisu zmian',
 'tog-watchlisthideown'        => 'Ukryj moje edycje w obserwowanych',
 'tog-watchlisthidebots'       => 'Ukryj edycje botów w obserwowanych',
 'tog-watchlisthideminor'      => 'Ukryj drobne zmiany w obserwowanych',
@@ -234,7 +234,7 @@ $messages = array(
 'category_header'       => 'Artykuły w kategorii "$1"',
 'subcategories'         => 'Podkategorie',
 'category-media-header' => 'Pliki w kategorii "$1"',
-'category-empty'        => "''W tej kategorii nie ma aktualnie artykułów ani plików.''",
+'category-empty'        => "''W tej kategorii nie ma obecnie artykułów ani plików.''",
 
 'mainpagetext'      => "<big>'''Instalacja MediaWiki powiodła się.'''</big>",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
@@ -332,6 +332,7 @@ $messages = array(
 'edithelp'          => 'Pomoc w edycji',
 'edithelppage'      => 'Help:Jak edytować stronę',
 'faq'               => 'FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Pomoc',
 'mainpage'          => 'Strona główna',
 'policy-url'        => 'Project:Zasady',
@@ -433,7 +434,7 @@ administratorowi podając także powyższy adres.',
 'unexpected'           => 'Niespodziewana wartość: "$1"="$2".',
 'formerror'            => 'Błąd: nie można wysłać formularza',
 'badarticleerror'      => 'Dla tej strony ta operacja nie może być wykonana.',
-'cannotdelete'         => 'Nie można skasować podanej strony lub obrazka.',
+'cannotdelete'         => 'Nie można skasować podanej strony lub grafiki.',
 'badtitle'             => 'Niepoprawny tytuł',
 'badtitletext'         => 'Podano niepoprawny tytuł strony. Prawdopodobnie zawiera znaki, których użycie jest zabronione lub jest pusty.',
 'perfdisabled'         => 'Przepraszamy! By odciążyć serwer w godzinach szczytu czasowo zablokowaliśmy wykonanie tej czynności.',
@@ -569,7 +570,7 @@ Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomy�
 'nowiki_sample'   => 'Wstaw tu tekst niesformatowany',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przyklad.jpg',
-'image_tip'       => 'Obrazek osadzony',
+'image_tip'       => 'Grafika osadzona',
 'media_sample'    => 'Przyklad.ogg',
 'media_tip'       => 'Link do pliku',
 'sig_tip'         => 'Twój podpis wraz z datą i czasem',
@@ -765,9 +766,11 @@ Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{PAGENAM
 Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je odtworzyć poprzez ten sam interfejs, chyba że operator serwisu nałożył dodatkowe ograniczenia.',
 'revdelete-legend'            => 'Ustaw ograniczenia dla wersji:',
 'revdelete-hide-text'         => 'Ukryj tekst wersji',
+'revdelete-hide-name'         => 'Ukryj akcję i cel',
 'revdelete-hide-comment'      => 'Ukryj komentarz edycji',
 'revdelete-hide-user'         => 'Ukryj nazwę użytkownika/adres IP',
 'revdelete-hide-restricted'   => 'Zaakceptuj te ograniczenia Apply these restrictions to sysops as well as others',
+'revdelete-suppress'          => 'Ukryj informacje przed sysopami tak samo jak przed innymi',
 'revdelete-hide-image'        => 'Ukryj zawartość pliku',
 'revdelete-unsuppress'        => 'Usuń ograniczenia dla odtwarzanej historii zmian',
 'revdelete-log'               => 'Komentarz:',
@@ -780,10 +783,15 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'logdelete-success'           => 'Pomyślnie zmieniono widoczność zdarzeń.',
 
 # Oversight log
+'oversightlog'    => 'Log Oversight',
 'overlogpagetext' => 'Poniżej znajduje się lista najnowszych usunięć i blokad dotyczących zawartości ukrytej przed sysopami. Wejdź na stronę [[Special:Ipblocklist|IP block list]], by zobaczyć listę aktywnych banów i blokad.',
 
 # History merging
 'mergehistory'                     => 'Złącz historię zmian stron',
+'mergehistory-header'              => "Ta strona pozwala na scalenie historii zmian jednej strony z inną nowszą stroną.
+Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji strony.
+
+'''Na końcu musi pozostać bieżąca wersja strony źródłowej.'''",
 'mergehistory-box'                 => 'Połącz historię zmian dwóch stron:',
 'mergehistory-from'                => 'Strona źródłowa:',
 'mergehistory-into'                => 'Strona docelowa:',
@@ -791,6 +799,7 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'mergehistory-go'                  => 'Pokaż możliwe do połączenia edycje',
 'mergehistory-submit'              => 'Połącz historię zmian',
 'mergehistory-empty'               => 'Brak historii zmian do złączenia',
+'mergehistory-success'             => '$3 zmian [[:$1]] z powodzeniem zostało złączonych z [[:$2]].',
 'mergehistory-no-source'           => 'Strona źródłowa $1 nie istnieje.',
 'mergehistory-no-destination'      => 'Strona docelowa $1 nie istnieje.',
 'mergehistory-invalid-source'      => 'Strona źródłowa musi mieć poprawną nazwę.',
@@ -923,9 +932,10 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Biurokrata',
 
-'grouppage-bot'        => '{{ns:project}}:Boty',
-'grouppage-sysop'      => '{{ns:project}}:Administratorzy',
-'grouppage-bureaucrat' => '{{ns:project}}:Biurokraci',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
+'grouppage-bot'           => '{{ns:project}}:Boty',
+'grouppage-sysop'         => '{{ns:project}}:Administratorzy',
+'grouppage-bureaucrat'    => '{{ns:project}}:Biurokraci',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -997,7 +1007,7 @@ Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je 
 'filetype-unwanted-type'      => "'''\".\$1\"''' nie jest zalecanym typem pliku. Pożądane są pliki w formatach \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' nie jest niedozwolonym typem pliku. Dostępne są pliki w formatach \$2.",
 'filetype-missing'            => 'Plik nie ma rozszerzenia (np. ".jpg").',
-'large-file'                  => 'Zalecane jest aby rozmiar pliku z obrazkiem nie był większy niż $1 bajtów. Ten plik ma rozmiar $2 bajtów.',
+'large-file'                  => 'Zalecane jest aby rozmiar pliku nie był większy niż $1 bajtów. Ten plik ma rozmiar $2 bajtów.',
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku. Sprawdź, czy nazwa jest prawidłowa.',
 'fileexists'                  => 'Plik o takiej nazwie już istnieje! Załadowanie nowej grafiki nieodwacalnie usunie już istniejącą ($1)! Upewnij się, że wiesz, co robisz.',
@@ -1652,6 +1662,7 @@ W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączy�
 'pagemovedsub'            => 'Przeniesienie powiodło się',
 'movepage-moved'          => '<big>\'\'\'Strona "$1" została przeniesiona do "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna. Wybierz, proszę, nową nazwę.',
+'cantmove-titleprotected' => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
 'talkexists'              => 'Strona artykułu została przeniesiona, natomiast strona dyskusji nie - strona dyskusji o nowym tytule już istnieje. Połącz, proszę, teksty obu dyskusji ręcznie.',
 'movedto'                 => 'przeniesiono do',
 'movetalk'                => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
@@ -1699,7 +1710,7 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 
 # Thumbnails
 'thumbnail-more'           => 'Powiększ',
-'missingimage'             => '<b>Brak obrazka</b><br /><i>$1</i>',
+'missingimage'             => '<b>Brak grafiki</b><br /><i>$1</i>',
 'filemissing'              => 'Brak pliku',
 'thumbnail_error'          => 'Błąd przy generowaniu miniatury: $1',
 'djvu_page_error'          => 'Strona DjVu poza zakresem',
@@ -1923,7 +1934,7 @@ Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwag
 'exif-bitspersample'               => 'Bitów na próbkę',
 'exif-compression'                 => 'Metoda kompresji',
 'exif-photometricinterpretation'   => 'Interpretacja fotometryczna',
-'exif-orientation'                 => 'Orientacja',
+'exif-orientation'                 => 'Orientacja obrazu',
 'exif-samplesperpixel'             => 'Próbek na piksel',
 'exif-planarconfiguration'         => 'Rozkład danych',
 'exif-ycbcrsubsampling'            => 'Podpróbkowanie Y do C',
@@ -1953,8 +1964,8 @@ Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwag
 'exif-colorspace'                  => 'Przestrzeń kolorów',
 'exif-componentsconfiguration'     => 'Znaczenie składowych',
 'exif-compressedbitsperpixel'      => 'Skompresowanych bitów na piksel',
-'exif-pixelydimension'             => 'Prawidłowa szerokość obrazka',
-'exif-pixelxdimension'             => 'Prawidłowa wysokość obrazka',
+'exif-pixelydimension'             => 'Prawidłowa szerokość obrazu',
+'exif-pixelxdimension'             => 'Prawidłowa wysokość obrazu',
 'exif-makernote'                   => 'Informacje producenta aparatu',
 'exif-usercomment'                 => 'Komentarz użytkownika',
 'exif-relatedsoundfile'            => 'Powiązany plik audio',
@@ -2000,15 +2011,15 @@ Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwag
 'exif-scenecapturetype'            => 'Rodzaj uchwycenia sceny',
 'exif-gaincontrol'                 => 'Wzmocnienie jasności obrazu',
 'exif-contrast'                    => 'Kontrast obrazu',
-'exif-saturation'                  => 'Nasycenie kolorów',
+'exif-saturation'                  => 'Nasycenie kolorów obrazu',
 'exif-sharpness'                   => 'Ostrość obrazu',
 'exif-devicesettingdescription'    => 'Opis ustawień urządzenia',
 'exif-subjectdistancerange'        => 'Odległość od obiektu',
 'exif-imageuniqueid'               => 'Unikalny identyfikator obrazu',
 'exif-gpsversionid'                => 'Wersja formatu danych GPS',
-'exif-gpslatituderef'              => 'Północna lub południowa szerokość geograficzna',
+'exif-gpslatituderef'              => 'Szerokość geograficzna (północ/południe)',
 'exif-gpslatitude'                 => 'Szerokość geograficzna',
-'exif-gpslongituderef'             => 'Wschodnia lub zachodnia długość geograficzna',
+'exif-gpslongituderef'             => 'Długość geograficzna (wschód/zachód)',
 'exif-gpslongitude'                => 'Długość geograficzna',
 'exif-gpsaltituderef'              => 'Wysokość nad poziomem morza (odniesienie)',
 'exif-gpsaltitude'                 => 'Wysokość nad poziomem morza',
@@ -2038,16 +2049,16 @@ Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwag
 'exif-gpsdifferential'             => 'Korekcja różnicy GPS',
 
 # EXIF attributes
-'exif-compression-1' => 'Nieskompresowany',
+'exif-compression-1' => 'nieskompresowany',
 
-'exif-unknowndate' => 'Nieznana data',
+'exif-unknowndate' => 'nieznana data',
 
-'exif-orientation-1' => 'Normalna', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Odwrócona w poziomie', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Obrócona o 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Odwrócona w pionie', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Obrót o 90° przeciwnie do wskazówek zegara i odwrócenie w pionie', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Obrót o 90° zgodnie ze wskazówkami zegara', # 0th row: right; 0th column: top
+'exif-orientation-1' => 'normalna', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'odbicie lustrzane w poziomie', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'obraz obrócony o 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'odbicie lustrzane w pionie', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'obraz obrócony o 90° przeciwnie do ruchu wskazówek zegara i odbicie lustrzane w pionie', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'obraz obrócony o 90° zgodnie z ruchem wskazówek zegara', # 0th row: right; 0th column: top
 'exif-orientation-7' => 'Obrót o 90° zgodnie zgodnie ze wskazówkami zegara i odwrót w pionie', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Obrót o 90° przeciwnie do wskazówek zegara', # 0th row: left; 0th column: bottom
 
@@ -2056,117 +2067,117 @@ Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwag
 
 'exif-componentsconfiguration-0' => 'nie istnieje',
 
-'exif-exposureprogram-0' => 'Niezdefiniowany',
-'exif-exposureprogram-1' => 'Manualny',
-'exif-exposureprogram-2' => 'Normalny',
-'exif-exposureprogram-3' => 'Preselekcja przysłony',
-'exif-exposureprogram-4' => 'Preselekcja migawki',
-'exif-exposureprogram-5' => 'Kreatywny (duża głębia ostrości)',
-'exif-exposureprogram-6' => 'Aktywny (duża szybkość migawki)',
-'exif-exposureprogram-7' => 'Tryb portretowy (dla zdjęć z bliska, z rozmazanym tłem)',
-'exif-exposureprogram-8' => 'Tryb krajobrazowy (dla dalekich zdjęć z ostrym tłem)',
+'exif-exposureprogram-0' => 'niezdefiniowany',
+'exif-exposureprogram-1' => 'ręczny',
+'exif-exposureprogram-2' => 'standardowy',
+'exif-exposureprogram-3' => 'preselekcja przysłony',
+'exif-exposureprogram-4' => 'preselekcja migawki',
+'exif-exposureprogram-5' => 'kreatywny (duża głębia ostrości)',
+'exif-exposureprogram-6' => 'aktywny (duża szybkość migawki)',
+'exif-exposureprogram-7' => 'tryb portretowy (dla zdjęć z bliska, z nieostrym tłem)',
+'exif-exposureprogram-8' => 'tryb krajobrazowy (dla zdjęć wykonywanych z dużej odległości z ostrością ustawioną na tło)',
 
 'exif-subjectdistance-value' => '$1 metrów',
 
-'exif-meteringmode-0'   => 'Nieznany',
-'exif-meteringmode-1'   => 'Średni',
-'exif-meteringmode-2'   => 'Średnia ważona',
-'exif-meteringmode-3'   => 'Punktowy',
-'exif-meteringmode-4'   => 'Wielopunktowy',
-'exif-meteringmode-5'   => 'Próbkowy',
-'exif-meteringmode-6'   => 'Częściowy',
-'exif-meteringmode-255' => 'Inny',
+'exif-meteringmode-0'   => 'nieokreślony',
+'exif-meteringmode-1'   => 'średnia',
+'exif-meteringmode-2'   => 'średnia ważona',
+'exif-meteringmode-3'   => 'punktowy',
+'exif-meteringmode-4'   => 'wielopunktowy',
+'exif-meteringmode-5'   => 'próbkowanie',
+'exif-meteringmode-6'   => 'częściowy',
+'exif-meteringmode-255' => 'inny',
 
-'exif-lightsource-0'   => 'Nieznane',
-'exif-lightsource-1'   => 'Światło dzienne',
-'exif-lightsource-2'   => 'Światło jarzeniowe',
-'exif-lightsource-3'   => 'Światło sztuczne (żarowe)',
-'exif-lightsource-4'   => 'Lampa błyskowa',
-'exif-lightsource-9'   => 'Dobra pogoda',
-'exif-lightsource-10'  => 'Zachmurzona pogoda',
-'exif-lightsource-11'  => 'Cienie',
-'exif-lightsource-12'  => 'Jarzeniowe światło dnia (D 5700 – 7100K)',
-'exif-lightsource-13'  => 'Jarzeniowe białe (N 4600 – 5400K)',
-'exif-lightsource-14'  => 'Jarzeniowe miękkie (W 3900 – 4500K)',
-'exif-lightsource-15'  => 'Jarzeniowe białe (WW 3200 – 3700K)',
-'exif-lightsource-17'  => 'Światło standardowe A',
-'exif-lightsource-18'  => 'Światło standardowe B',
-'exif-lightsource-19'  => 'Światło standardowe C',
-'exif-lightsource-24'  => 'Żarowe studyjne',
+'exif-lightsource-0'   => 'nieznany',
+'exif-lightsource-1'   => 'dzienne',
+'exif-lightsource-2'   => 'jarzeniowe',
+'exif-lightsource-3'   => 'sztuczne (żarowe)',
+'exif-lightsource-4'   => 'lampa błyskowa (flesz)',
+'exif-lightsource-9'   => 'dzienne (dobra pogoda)',
+'exif-lightsource-10'  => 'dzienne (pochmurno)',
+'exif-lightsource-11'  => 'cień',
+'exif-lightsource-12'  => 'jarzeniowe dzienne (temperatura barwowa 5700 – 7100K)',
+'exif-lightsource-13'  => 'jarzeniowe ciepłe (temperatura barwowa 4600 – 5400K)',
+'exif-lightsource-14'  => 'jarzeniowe zimne (temperatura barwowa 3900 – 4500K)',
+'exif-lightsource-15'  => 'jarzeniowe białe (temperatura barwowa 3200 – 3700K)',
+'exif-lightsource-17'  => 'standardowe A',
+'exif-lightsource-18'  => 'standardowe B',
+'exif-lightsource-19'  => 'standardowe C',
+'exif-lightsource-24'  => 'żarowe studyjne ISO',
 'exif-lightsource-255' => 'Inne źródło światła',
 
 'exif-focalplaneresolutionunit-2' => 'cale',
 
-'exif-sensingmethod-1' => 'Niezdefiniowana',
-'exif-sensingmethod-2' => 'Jednoukładowy kolorowy przetwornik obrazu',
-'exif-sensingmethod-3' => 'Dwuukładowy kolorowy przetwornik obrazu',
-'exif-sensingmethod-4' => 'Trójukładowy kolorowy przetwornik obrazu',
-'exif-sensingmethod-5' => 'Przetwornik obrazu z sekwencyjnym przetwarzaniem kolorów',
-'exif-sensingmethod-7' => 'Trzyliniowy przetwornik obrazu',
-'exif-sensingmethod-8' => 'Sekwencyjny kolorowy liniowy przetwornik obrazu',
+'exif-sensingmethod-1' => 'niezdefiniowana',
+'exif-sensingmethod-2' => 'jednoukładowy przetwornik obrazu kolorowego',
+'exif-sensingmethod-3' => 'dwuukładowy przetwornik obrazu kolorowego',
+'exif-sensingmethod-4' => 'trójukładowy przetwornik obrazu kolorowego',
+'exif-sensingmethod-5' => 'przetwornik obrazu z sekwencyjnym przetwarzaniem kolorów',
+'exif-sensingmethod-7' => 'trójliniowy przetwornik obrazu',
+'exif-sensingmethod-8' => 'liniowy przetwornik obrazu z sekwencyjnym przetwarzaniem kolorów',
 
-'exif-scenetype-1' => 'Obiekt fotografowany bezpośrednio',
+'exif-scenetype-1' => 'obiekt fotografowany bezpośrednio',
 
-'exif-customrendered-0' => 'Obraz bez wstępnego przetworzenia',
-'exif-customrendered-1' => 'Obraz wstępnie przetworzony',
+'exif-customrendered-0' => 'nie',
+'exif-customrendered-1' => 'tak',
 
-'exif-exposuremode-0' => 'Automatyczna',
-'exif-exposuremode-1' => 'Manualna',
-'exif-exposuremode-2' => 'Wielokrotna ze zmianą ustawień ekspozycji',
+'exif-exposuremode-0' => 'automatyczne ustalenie parametrów naświetlania',
+'exif-exposuremode-1' => 'ręczne ustalenie parametrów naświetlania',
+'exif-exposuremode-2' => 'wielokrotna ze zmianą parametrów naświetlania',
 
-'exif-whitebalance-0' => 'Automatyczny balans bieli',
-'exif-whitebalance-1' => 'Ręczny balans bieli',
+'exif-whitebalance-0' => 'automatyczny',
+'exif-whitebalance-1' => 'ręczny',
 
-'exif-scenecapturetype-0' => 'Standardowy',
-'exif-scenecapturetype-1' => 'Krajobraz',
-'exif-scenecapturetype-2' => 'Portret',
-'exif-scenecapturetype-3' => 'Scena nocna',
+'exif-scenecapturetype-0' => 'standardowy',
+'exif-scenecapturetype-1' => 'krajobraz',
+'exif-scenecapturetype-2' => 'portret',
+'exif-scenecapturetype-3' => 'scena nocna',
 
-'exif-gaincontrol-0' => 'Brak',
-'exif-gaincontrol-1' => 'Niskie wzmocnienie',
-'exif-gaincontrol-2' => 'Wysokie wzmocnienie',
-'exif-gaincontrol-3' => 'Niskie osłabienie',
-'exif-gaincontrol-4' => 'Wysokie osłabienie',
+'exif-gaincontrol-0' => 'brak',
+'exif-gaincontrol-1' => 'niskie wzmocnienie',
+'exif-gaincontrol-2' => 'wysokie wzmocnienie',
+'exif-gaincontrol-3' => 'niskie osłabienie',
+'exif-gaincontrol-4' => 'wysokie osłabienie',
 
-'exif-contrast-0' => 'Normalny',
-'exif-contrast-1' => 'Mały',
-'exif-contrast-2' => 'Duży',
+'exif-contrast-0' => 'normalny',
+'exif-contrast-1' => 'niski',
+'exif-contrast-2' => 'wysoki',
 
-'exif-saturation-0' => 'Normalne',
-'exif-saturation-1' => 'Niskie',
-'exif-saturation-2' => 'Wysokie',
+'exif-saturation-0' => 'normalne',
+'exif-saturation-1' => 'niskie',
+'exif-saturation-2' => 'wysokie',
 
-'exif-sharpness-0' => 'Normalna',
-'exif-sharpness-1' => 'Obniżona',
-'exif-sharpness-2' => 'Podwyższona',
+'exif-sharpness-0' => 'normalna',
+'exif-sharpness-1' => 'niska',
+'exif-sharpness-2' => 'wysoka',
 
-'exif-subjectdistancerange-0' => 'Nieznana',
-'exif-subjectdistancerange-1' => 'Makro',
-'exif-subjectdistancerange-2' => 'Widok z bliska',
-'exif-subjectdistancerange-3' => 'Widok z daleka',
+'exif-subjectdistancerange-0' => 'nieznana',
+'exif-subjectdistancerange-1' => 'makro',
+'exif-subjectdistancerange-2' => 'widok z bliska',
+'exif-subjectdistancerange-3' => 'widok z daleka',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'Szerokość geograficzna północna',
-'exif-gpslatitude-s' => 'Szerokość geograficzna południowa',
+'exif-gpslatitude-n' => 'północna',
+'exif-gpslatitude-s' => 'południowa',
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => 'Długość geograficzna wschodnia',
-'exif-gpslongitude-w' => 'Długość geograficzna zachodnia',
+'exif-gpslongitude-e' => 'wschodnia',
+'exif-gpslongitude-w' => 'zachodnia',
 
-'exif-gpsstatus-a' => 'Pomiar w trakcie',
-'exif-gpsstatus-v' => 'Pomiar wykonywany na bieżąco',
+'exif-gpsstatus-a' => 'pomiar w trakcie',
+'exif-gpsstatus-v' => 'wyniki pomiaru dostępne na bieżąco',
 
 'exif-gpsmeasuremode-2' => 'dwuwymiarowy',
 'exif-gpsmeasuremode-3' => 'trójwymiarowy',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
-'exif-gpsspeed-k' => 'Kilometrów na godzinę',
-'exif-gpsspeed-m' => 'Mil na godzinę',
-'exif-gpsspeed-n' => 'Węzłów',
+'exif-gpsspeed-k' => 'kilometrów na godzinę',
+'exif-gpsspeed-m' => 'mil na godzinę',
+'exif-gpsspeed-n' => 'węzłów',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'Kierunek geograficzny',
-'exif-gpsdirection-m' => 'Kierunek magnetyczny',
+'exif-gpsdirection-t' => 'kierunek geograficzny',
+'exif-gpsdirection-m' => 'kierunek magnetyczny',
 
 # External editor support
 'edit-externally'      => 'Edytuj ten plik używając zewnętrznej aplikacji',
@@ -2224,11 +2235,13 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Uwaga: Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!',
-'confirmrecreate'     => 'Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia: : <b>$2</b> Potwierdź chęć odtworzenia tego artykułu.',
+'confirmrecreate'     => "Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
+: ''$2'' 
+Potwierdź chęć odtworzenia tego artykułu.",
 'recreate'            => 'Odtwórz',
 
 # HTML dump
-'redirectingto' => 'Przechodzenie do [[:$1|$1]]...',
+'redirectingto' => 'Przekierowanie do [[:$1|$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Wyczyścić bufor dla tej strony?
@@ -2248,7 +2261,7 @@ $1',
 'imgmultipagenext'   => 'następna strona →',
 'imgmultigo'         => 'Przejdź',
 'imgmultigotopre'    => 'Przejdź na stronę',
-'imgmultiparseerror' => 'Plik graficzny wydaje się być uszkodzony lub nieprawidłowy i nie można odczytać listy stron.',
+'imgmultiparseerror' => 'Plik obrazu wydaje się być uszkodzony lub nieprawidłowy i {{SITENAME}} nie możne odzyskać listy stron.',
 
 # Table pager
 'ascending_abbrev'         => 'rosn.',
@@ -2257,7 +2270,7 @@ $1',
 'table_pager_prev'         => 'Poprzednia strona',
 'table_pager_first'        => 'Pierwsza strona',
 'table_pager_last'         => 'Ostatnia strona',
-'table_pager_limit'        => 'Pokaż $1 obiektów na stronę',
+'table_pager_limit'        => 'Pokaż po $1 pozycji na stronie',
 'table_pager_limit_submit' => 'Pokaż',
 'table_pager_empty'        => 'Brak wyników',
 
@@ -2270,19 +2283,19 @@ $1',
 # Live preview
 'livepreview-loading' => 'Trwa ładowanie…',
 'livepreview-ready'   => 'Trwa ładowanie… Gotowe!',
-'livepreview-failed'  => 'Live preview nie zadziałał! Spróbuj normalnego podglądu.',
-'livepreview-error'   => 'Nie można się połączyć: $1 "$2" Spróbuj normalnego podglądu.',
+'livepreview-failed'  => 'Podgląd na żywo nie zadziałał! Spróbuj podglądu standardowego.',
+'livepreview-error'   => 'Nieudane połączenie: $1 "$2" Spróbuj podglądu standardowego.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Zmiany nowsze niż $1 sekund mogą nie być pokazane na tej liście.',
-'lag-warn-high'   => 'Z powodu dużego obciążenia serwera bazy danych, zmiany nowsze niż $1 sekund mogą nie być pokazane na tej liście.',
+'lag-warn-normal' => 'Na tej liście zmiany nowsze niż $1 sekund mogą nie być pokazane.',
+'lag-warn-high'   => 'Z powodu dużego obciążenia serwerów bazy danych, na tej liście zmiany nowsze niż $1 sekund mogą nie być pokazane.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Twoja lista obserwowanych zawiera {{PLURAL:$1|1 tytuł|$1 tytułów}}, wyłączając strony dyskusji.',
+'watchlistedit-numitems'       => 'Twoja lista obserwowanych zawiera {{PLURAL:$1|1 tytuł|$1 tytułów}}, nieuwzględniając strony dyskusji.',
 'watchlistedit-noitems'        => 'Twoja lista obserwowanych nie zawiera żadnych tytułów.',
 'watchlistedit-normal-title'   => 'Edytuj listę obserwowanych stron',
 'watchlistedit-normal-legend'  => 'Usuń tytuły z listy obserwowanych',
-'watchlistedit-normal-explain' => 'Tytułu na twojej liście obserwowanych są pokazane poniżej. Aby usunąć tytuł, wybierz pole obok niego i kliknij Usuń tytuły. Możesz też [[Special:Watchlist/raw|edytować surową listę]].',
+'watchlistedit-normal-explain' => 'Obserwowane przez Ciebie strony zostały wymienione poniżej. Aby usunąć obserwowaną stronę z listy zaznacz znajdujące się obok niej pole i naciśnij "Usuń zaznaczone pozycje". Możesz także skorzystać z [[Special:Watchlist/raw|edytora surowej listy obserwowanych]] lub [[Special:Watchlist/clear|wyczyścić listę]].',
 'watchlistedit-normal-submit'  => 'Usuń tytuły',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 tytuł został|$1 tytułów zostało}} usuniętych z twojej listy obserwowanych:',
 'watchlistedit-raw-title'      => 'Edycja surowej listy obserwowanych',
@@ -2303,4 +2316,3 @@ Titles on your watchlist are shown below, and can be edited by
 'watchlisttools-raw'  => 'Edytuj surową listę',
 
 );
-

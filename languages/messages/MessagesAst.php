@@ -942,21 +942,39 @@ Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu ca
 'fileexists-thumb'     => "<center>'''Imaxe esistente'''</center>",
 'fileexists-forbidden' => 'Yá esiste un archivu con esti nome; por favor vuelve atrás y xubi esti archivu con otru nome. [[Image:$1|thumb|center|$1]]',
 'successfulupload'     => 'Xubida correuta',
+'uploadwarning'        => "Avisu de xubíes d'archivos",
 'savefile'             => 'Grabar archivu',
 'uploadedimage'        => 'Xubíu "[[$1]]"',
 'overwroteimage'       => 'xubida una versión nueva de "[[$1]]"',
 'uploaddisabled'       => 'Deshabilitaes les xubíes',
+'uploaddisabledtext'   => "Les xubíes d'archivos tán desactivaes en {{SITENAME}}.",
+'uploadscripted'       => 'Esti archivu contién códigu HTML o scripts que puen ser interpretaos erróneamente por un navegador.',
+'uploadcorrupt'        => "L'archivu ta corruptu o tien una estensión incorreuta. Por favor comprueba l'archivu y vuelve a xubilu.",
 'uploadvirus'          => "¡L'archivu tien un virus! Detalles: $1",
 'sourcefilename'       => "Nome d'orixe",
 'destfilename'         => 'Nome de destín',
 'watchthisupload'      => 'Vixilar esta páxina',
+'filewasdeleted'       => 'Yá foi xubíu y depués borráu un archivu con esti nome. Habríes comprobar el $1 enantes de volver a xubilu.',
+'upload-wasdeleted'    => "'''Avisu: Tas xubiendo un archivu que yá foi borráu anteriormente.'''
 
-'upload-proto-error' => 'Protocolu incorreutu',
-'upload-file-error'  => 'Error internu',
-'upload-misc-error'  => 'Error de xubida desconocíu',
+Habríes considerar si ye afechisco continuar xubiendo esti archivu.
+Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
+
+'upload-proto-error'     => 'Protocolu incorreutu',
+'upload-file-error'      => 'Error internu',
+'upload-file-error-text' => 'Hebo un error al intentar crear un archivu temporal nel servidor. Por favor contauta con un alministrador del sistema.',
+'upload-misc-error'      => 'Error de xubida desconocíu',
+'upload-misc-error-text' => "Hebo un error desconocíu na xubida del archivu. Por favor verifica que l'URL ye válidu y accesible, y inténtalo otra vuelta. Si'l problema persiste, contauta con un alministrador del sistema.",
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'Nun se pudo acceder a la URL',
+'upload-curl-error6-text'  => "Nun se pudo acceder a la URL introducida. Por favor comprueba que la URL ye correuta y que'l sitiu ta activu.",
+'upload-curl-error28'      => "Fin del tiempu d'espera de la xubida",
+'upload-curl-error28-text' => "El sitiu tardó demasiáu tiempu en responder. Por favor comprueba que'l sitiu ta activu, espera unos momentos y vuelve a intentalo. Igual ye meyor que lo intentes nun momentu en que tea menos sobrecargáu.",
 
 'nolicense'          => 'Nenguna seleicionada',
 'license-nopreview'  => '(Previsualización non disponible)',
+'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivu del to ordenador)',
 
 # Image list
@@ -993,21 +1011,24 @@ Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu ca
 'imagelist_user'            => 'Usuariu',
 'imagelist_size'            => 'Tamañu',
 'imagelist_description'     => 'Descripción',
+'imagelist_search_for'      => "Buscar por nome d'imaxe:",
 
 # File reversion
-'filerevert'         => 'Revertir $1',
-'filerevert-legend'  => 'Revertir archivu',
-'filerevert-comment' => 'Comentariu:',
-'filerevert-submit'  => 'Revertir',
+'filerevert'            => 'Revertir $1',
+'filerevert-legend'     => 'Revertir archivu',
+'filerevert-comment'    => 'Comentariu:',
+'filerevert-submit'     => 'Revertir',
+'filerevert-badversion' => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
-'filedelete'         => 'Borrar $1',
-'filedelete-legend'  => 'borrar archivu',
-'filedelete-intro'   => "Tas borrando '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Comentariu:',
-'filedelete-submit'  => 'Borrar',
-'filedelete-success' => "'''$1''' foi borráu.",
-'filedelete-nofile'  => "'''$1''' nun esiste nesti sitiu.",
+'filedelete'            => 'Borrar $1',
+'filedelete-legend'     => 'borrar archivu',
+'filedelete-intro'      => "Tas borrando '''[[Media:$1|$1]]'''.",
+'filedelete-comment'    => 'Comentariu:',
+'filedelete-submit'     => 'Borrar',
+'filedelete-success'    => "'''$1''' foi borráu.",
+'filedelete-nofile'     => "'''$1''' nun esiste nesti sitiu.",
+'filedelete-nofile-old' => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
 
 # MIME search
 'mimesearch' => 'Busca MIME',
@@ -1024,10 +1045,12 @@ Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu ca
 'unusedtemplateswlh' => 'otros enllaces',
 
 # Random page
-'randompage' => 'Páxina al debalu',
+'randompage'         => 'Páxina al debalu',
+'randompage-nopages' => 'Nun hai páxines nesti espaciu de nomes.',
 
 # Random redirect
-'randomredirect' => 'Redireición al debalu',
+'randomredirect'         => 'Redireición al debalu',
+'randomredirect-nopages' => 'Nun hai redireiciones nesti espaciu de nomes.',
 
 # Statistics
 'statistics'             => 'Estadístiques',
@@ -1091,7 +1114,11 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'deadendpages'            => 'Páxines ensin salida',
 'deadendpagestext'        => 'Les páxines siguientes nun enllacien a páxina dala de {{SITENAME}}.',
 'protectedpages'          => 'Páxines protexíes',
+'protectedpagestext'      => "Les páxines siguientes tán protexíes escontra'l treslláu y la edición",
+'protectedpagesempty'     => 'Nun hai páxines protexíes anguaño con estos parámetros.',
 'protectedtitles'         => 'Títulos protexíos',
+'protectedtitlestext'     => 'Los siguiente títulos tán protexíos de la so creación',
+'protectedtitlesempty'    => 'Nun hai títulos protexíos anguaño con estos parámetros.',
 'listusers'               => "Llista d'usuarios",
 'specialpages'            => 'Páxines especiales',
 'spheading'               => 'Páxines especiales pa tolos usuarios',
@@ -1103,6 +1130,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'move'                    => 'Treslladar',
 'movethispage'            => 'Treslladar esta páxina',
 'unusedcategoriestext'    => "Les siguientes categoríes esisten magar que nengún artículu o categoría faiga usu d'elles.",
+'notargettext'            => 'Nun especificasti una páxina oxetivu o un usuariu sobre los que realizar esta función.',
 'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 
@@ -1114,6 +1142,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 
 'categoriespagetext' => 'Les categoríes que vienen darréu esisten na wiki.',
 'data'               => 'Datos',
+'userrights'         => "Remanamientu de derechos d'usuariu",
 'groups'             => "Grupos d'usuariu",
 'alphaindexline'     => '$1 a $2',
 'version'            => 'Versión',
@@ -1126,6 +1155,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'log-search-submit'    => 'Dir',
 'alllogstext'          => "Visualización combinada de tolos rexistros disponibles de {{SITENAME}}. Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usuariu o la páxina afectada.",
 'logempty'             => 'Nun hai coincidencies nel rexistru.',
+'log-title-wildcard'   => "Buscar títulos qu'emprimen con esti testu",
 
 # Special:Allpages
 'nextpage'          => 'Páxina siguiente ($1)',
@@ -1147,6 +1177,9 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'listusers-noresult' => "Nun s'atoparon usuarios.",
 
 # E-mail user
+'mailnologintext' => 'Has tar [[Special:Userlogin|identificáu]]
+y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
+pa poder unviar correos a otros usuarios.',
 'emailuser'       => 'Manda-y un email a esti usuariu',
 'emailpage'       => "Corréu d'usuariu",
 'emailpagetext'   => "Si esti usuariu metió una direición de corréu electrónicu válida nes sos preferencies d'usuariu, el formulariu d'embaxo va unviar un mensaxe simple. La direición de corréu electrónicu que metisti nes tos preferencies d'usuariu va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a responder.",
@@ -1247,6 +1280,7 @@ fecha por [[User:$2|$2]] ([[User talk:$2|discusión]]); daquién más yá editó
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
 'editcomment'                 => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusión]]) hasta la versión de [[User:$1|$1]]',
+'rollback-success'            => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 'sessionfailure'              => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
 navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
@@ -1263,6 +1297,8 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'unprotectsub'                => '(Desprotexendo "$1")',
 'protect-unchain'             => 'Camudar los permisos pa tresllaos',
 'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong>$1</strong>.',
+'protect-locked-blocked'      => 'Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta
+ye la configuración actual de la páxina <strong>$1</strong>:',
 'protect-locked-access'       => 'La to cuenta nun tien permisu pa camudar los niveles de proteición de páxina.
 Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 'protect-cascadeon'           => "Esta páxina ta protexida nestos momentos porque ta inxerida {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada. Pues camudar el nivel de proteición d'esta páxina, pero nun va afeutar a la proteición en cascada.",
@@ -1315,6 +1351,9 @@ de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái 
 'undeletedrevisions-files' => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
 'undeletedfiles'           => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',
 'cannotundelete'           => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
+'undeletedpage'            => "<big>'''Restauróse $1'''</big>
+
+Consulta'l [[Special:Log/delete|rexistru de borraos]] pa ver los borraos y restauraciones recientes.",
 'undelete-search-box'      => 'Buscar páxines borraes',
 'undelete-search-prefix'   => "Amosar páxines qu'empecipien por:",
 'undelete-search-submit'   => 'Buscar',
@@ -1542,11 +1581,14 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La mio páxina d'usuariu",
+'tooltip-pt-anonuserpage'         => "La páxina d'usuariu de la IP cola que tas editando",
 'tooltip-pt-mytalk'               => 'La mio páxina de discusión',
+'tooltip-pt-anontalk'             => 'Páxina de discusión de les ediciones feches con esta direición IP',
 'tooltip-pt-preferences'          => 'Les mios preferencies',
 'tooltip-pt-watchlist'            => 'Llista de les páxines nes que tas vixilando los cambeos',
 'tooltip-pt-mycontris'            => 'Llista de les mios contribuciones',
 'tooltip-pt-login'                => 'Encamentámoste a identificate, anque nun ye obligatorio',
+'tooltip-pt-anonlogin'            => "Encamiéntasete que t'identifiques, anque nun ye obligatorio.",
 'tooltip-pt-logout'               => 'Salir',
 'tooltip-ca-talk'                 => 'Discusión tocante al conteníu de la páxina',
 'tooltip-ca-edit'                 => "Pues editar esta páxina. Por favor usa'l botón de previsualización enantes de guardar los cambeos.",
@@ -1555,10 +1597,13 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'tooltip-ca-history'              => "Versiones antigües d'esta páxina.",
 'tooltip-ca-protect'              => 'Protexe esta páxina',
 'tooltip-ca-delete'               => 'Borra esta páxina',
+'tooltip-ca-undelete'             => 'Restaura les ediciones feches nesta páxina enantes de que fuera borrada',
 'tooltip-ca-move'                 => 'Tresllada esta páxina',
 'tooltip-ca-watch'                => 'Añade esta páxina a la to llista de vixilancia',
 'tooltip-ca-unwatch'              => 'Elimina esta páxina de la to llista de vixilancia',
 'tooltip-search'                  => 'Busca en {{SITENAME}}',
+'tooltip-search-go'               => 'Llévate a una páxina con esti nome exautu si esiste',
+'tooltip-search-fulltext'         => 'Busca páxines con esti testu',
 'tooltip-p-logo'                  => 'Portada',
 'tooltip-n-mainpage'              => 'Visita a la Portada',
 'tooltip-n-portal'                => 'Tocante al proyeutu, qué facer, ú atopar coses',
@@ -1568,6 +1613,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'tooltip-n-help'                  => 'El llugar pa deprender',
 'tooltip-n-sitesupport'           => 'Sofítanos',
 'tooltip-t-whatlinkshere'         => "Llista de toles páxines wiki qu'enllacien equí",
+'tooltip-t-recentchangeslinked'   => "Cambeos recientes en páxines qu'enllacien dende esta páxina",
 'tooltip-feed-rss'                => 'Canal RSS pa esta páxina',
 'tooltip-feed-atom'               => 'Canal Atom pa esta páxina',
 'tooltip-t-contributions'         => "Amuesa la llista de contribuciones d'esti usuariu",
@@ -1576,9 +1622,13 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'tooltip-t-specialpages'          => 'Llista de toles páxines especiales',
 'tooltip-t-print'                 => "Versión imprentable d'esta páxina",
 'tooltip-t-permalink'             => 'Enllaz permanente a esta versión de la páxina',
+'tooltip-ca-nstab-main'           => "Amuesa l'artículu",
 'tooltip-ca-nstab-user'           => "Amuesa la páxina d'usuariu",
+'tooltip-ca-nstab-media'          => 'Amuesa la páxina de multimedia',
+'tooltip-ca-nstab-special'        => 'Esta ye una páxina especial, nun puedes editar la páxina',
 'tooltip-ca-nstab-project'        => 'Amuesa la páxina de proyeutu',
 'tooltip-ca-nstab-image'          => 'Amuesa la páxina de la imaxe',
+'tooltip-ca-nstab-mediawiki'      => "Amuesa'l mensaxe de sistema",
 'tooltip-ca-nstab-template'       => 'Amuesa la plantía',
 'tooltip-ca-nstab-help'           => "Amuesa la páxina d'aida",
 'tooltip-ca-nstab-category'       => 'Amuesa la páxina de categoría',
@@ -1588,25 +1638,39 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'tooltip-diff'                    => 'Amuesa los cambeos que fixisti nel testu.',
 'tooltip-compareselectedversions' => "Amuesa les diferencies ente les dos versiones seleicionaes d'esta páxina.",
 'tooltip-watch'                   => 'Amiesta esta páxina na to llista de vixilancia',
+'tooltip-recreate'                => 'Vuelve a crear la páxina magar que se tenga borrao',
+'tooltip-upload'                  => 'Empecipiar la xubida',
 
 # Attribution
 'anonymous'        => 'Usuariu/os anónimu/os de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuariu $1',
 'lastmodifiedatby' => "Esta páxina foi modificada per postrer vegada'l $1 a les $2 por $3.", # $1 date, $2 time, $3 user
 'and'              => 'y',
+'othercontribs'    => 'Basao nel trabayu fechu por $1.',
 'others'           => 'otros',
 'siteusers'        => '{{SITENAME}} usuariu/os $1',
 'creditspage'      => 'Páxina de creitos',
 'nocredits'        => 'Nun hai disponible información de creitos pa esta páxina.',
 
 # Spam protection
+'spamprotectiontitle'    => 'Filtru de proteición de spam',
+'spamprotectiontext'     => 'La páxina que queríes guardas foi bloquiada pol filtru de spam. Probablemente seya causao por un enllaz a un sitiu esternu.',
+'spamprotectionmatch'    => "El testu siguiente foi'l qu'activó'l nuesu filtru de spam: $1",
 'subcategorycount'       => 'Hai {{PLURAL:$1|una subcategoría|$1 subcategoríes}} nesta categoría.',
 'categoryarticlecount'   => 'Hai {{PLURAL:$1|una páxina|$1 páxines}} nesta categoría.',
 'category-media-count'   => 'Hai {{PLURAL:$1|un archivu|$1 archivos}} nesta categoría.',
 'listingcontinuesabbrev' => 'cont.',
+'spambot_username'       => 'Llimpieza de spam de MediaWiki',
+'spam_reverting'         => 'Revirtiendo a la cabera versión que nun contién enllaces a $1',
+'spam_blanking'          => 'Toles revisiones teníen enllaces a $1; dexando en blanco',
 
 # Info page
-'numedits' => "Númberu d'ediciones (páxina): $1",
+'infosubtitle'   => 'Información de la páxina',
+'numedits'       => "Númberu d'ediciones (páxina): $1",
+'numtalkedits'   => "Númberu d'ediciones (páxina de discusión): $1",
+'numwatchers'    => "Númberu d'usuarios vixilando: $1",
+'numauthors'     => "Númberu d'autores distintos (páxina): $1",
+'numtalkauthors' => "Númberu d'autores distintos (páxina de discusión): $1",
 
 # Math options
 'mw_math_png'    => 'Renderizar siempre PNG',
@@ -1616,8 +1680,20 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'mw_math_modern' => 'Recomendao pa navegadores modernos',
 'mw_math_mathml' => 'MathML si ye posible (esperimental)',
 
+# Patrolling
+'markaspatrolleddiff'                 => 'Marcar como supervisada',
+'markaspatrolledtext'                 => 'Marcar esta páxina como supervisada',
+'markedaspatrolled'                   => 'Marcar como supervisada',
+'markedaspatrolledtext'               => 'La revisión seleicionada marcóse como supervisada.',
+'rcpatroldisabled'                    => 'Supervisión de Cambeos Recientes desactivada',
+'rcpatroldisabledtext'                => 'La funcionalidá de Supervisión de Cambeos Recientes ta desactivada nestos momentos.',
+'markedaspatrollederror'              => 'Nun se pue marcar como supervisada',
+'markedaspatrollederrortext'          => 'Necesites conseñar una revisión pa marcala como supervisada.',
+'markedaspatrollederror-noautopatrol' => 'Nun pues marcar los tos propios cambeos como supervisaos.',
+
 # Patrol log
 'patrol-log-page' => 'Rexistru de supervisión',
+'patrol-log-auto' => '(automática)',
 
 # Image deletion
 'deletedrevision'       => 'Borrada versión vieya $1',
@@ -1667,42 +1743,60 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 * focallength", # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'             => 'Anchor',
-'exif-imagelength'            => 'Altor',
-'exif-orientation'            => 'Orientación',
-'exif-xresolution'            => 'Resolución horizontal',
-'exif-yresolution'            => 'Resolución vertical',
-'exif-imagedescription'       => 'Títulu de la imaxe',
-'exif-make'                   => 'Fabricante de la cámara',
-'exif-model'                  => 'Modelu de cámara',
-'exif-software'               => 'Software usáu',
-'exif-artist'                 => 'Autor',
-'exif-compressedbitsperpixel' => "Mou de compresión d'imaxe",
-'exif-makernote'              => 'Notes del fabricante',
-'exif-usercomment'            => 'Comentarios del usuariu',
-'exif-fnumber'                => 'Númberu F',
-'exif-exposureprogram'        => "Programa d'esposición",
-'exif-aperturevalue'          => 'Abertura',
-'exif-brightnessvalue'        => 'Brillu',
-'exif-lightsource'            => 'Fonte de la lluz',
-'exif-flash'                  => 'Flax',
-'exif-cfapattern'             => 'patrón CFA',
-'exif-exposuremode'           => "Mou d'esposición",
-'exif-whitebalance'           => 'Balance de blancos',
-'exif-contrast'               => 'Contraste',
-'exif-saturation'             => 'Saturación',
-'exif-gpslatituderef'         => 'Llatitú Norte o Sur',
-'exif-gpslatitude'            => 'Llatitú',
-'exif-gpslongituderef'        => 'Llonxitú Este o Oeste',
-'exif-gpslongitude'           => 'Llonxitú',
-'exif-gpsaltitude'            => 'Altitú',
-'exif-gpstimestamp'           => 'Hora GPS (reló atómicu)',
-'exif-gpsmeasuremode'         => 'Mou de midida',
-'exif-gpsdop'                 => 'Precisión de midida',
-'exif-gpstrack'               => 'Direición de movimientu',
-'exif-gpsdestlatitude'        => 'Llatitú de destín',
-'exif-gpsdestlongitude'       => 'Llonxitú de destín',
-'exif-gpsdestdistance'        => 'Distancia al destín',
+'exif-imagewidth'                  => 'Anchor',
+'exif-imagelength'                 => 'Altor',
+'exif-bitspersample'               => 'Bits por componente',
+'exif-compression'                 => 'Esquema de compresión',
+'exif-orientation'                 => 'Orientación',
+'exif-samplesperpixel'             => 'Númberu de componentes',
+'exif-xresolution'                 => 'Resolución horizontal',
+'exif-yresolution'                 => 'Resolución vertical',
+'exif-jpeginterchangeformat'       => 'Desplazamientu al JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Bytes de datos JPEG',
+'exif-datetime'                    => 'Fecha y hora de modificación del archivu',
+'exif-imagedescription'            => 'Títulu de la imaxe',
+'exif-make'                        => 'Fabricante de la cámara',
+'exif-model'                       => 'Modelu de cámara',
+'exif-software'                    => 'Software usáu',
+'exif-artist'                      => 'Autor',
+'exif-copyright'                   => 'Titular del Copyright',
+'exif-exifversion'                 => 'Versión Exif',
+'exif-flashpixversion'             => 'Versión almitida de Flashpix',
+'exif-colorspace'                  => 'Espaciu de color',
+'exif-componentsconfiguration'     => 'Significáu de cada componente',
+'exif-compressedbitsperpixel'      => "Mou de compresión d'imaxe",
+'exif-makernote'                   => 'Notes del fabricante',
+'exif-usercomment'                 => 'Comentarios del usuariu',
+'exif-datetimeoriginal'            => 'Fecha y hora de la xeneración de datos',
+'exif-datetimedigitized'           => 'Fecha y hora de la dixitalización',
+'exif-exposuretime'                => "Tiempu d'esposición",
+'exif-fnumber'                     => 'Númberu F',
+'exif-exposureprogram'             => "Programa d'esposición",
+'exif-aperturevalue'               => 'Abertura',
+'exif-brightnessvalue'             => 'Brillu',
+'exif-lightsource'                 => 'Fonte de la lluz',
+'exif-flash'                       => 'Flax',
+'exif-exposureindex'               => "Índiz d'esposición",
+'exif-cfapattern'                  => 'patrón CFA',
+'exif-exposuremode'                => "Mou d'esposición",
+'exif-whitebalance'                => 'Balance de blancos',
+'exif-contrast'                    => 'Contraste',
+'exif-saturation'                  => 'Saturación',
+'exif-sharpness'                   => 'Nitidez',
+'exif-gpslatituderef'              => 'Llatitú Norte o Sur',
+'exif-gpslatitude'                 => 'Llatitú',
+'exif-gpslongituderef'             => 'Llonxitú Este o Oeste',
+'exif-gpslongitude'                => 'Llonxitú',
+'exif-gpsaltitude'                 => 'Altitú',
+'exif-gpstimestamp'                => 'Hora GPS (reló atómicu)',
+'exif-gpssatellites'               => 'Satélites usaos pa la midida',
+'exif-gpsmeasuremode'              => 'Mou de midida',
+'exif-gpsdop'                      => 'Precisión de midida',
+'exif-gpstrack'                    => 'Direición de movimientu',
+'exif-gpsdestlatitude'             => 'Llatitú de destín',
+'exif-gpsdestlongitude'            => 'Llonxitú de destín',
+'exif-gpsdestdistance'             => 'Distancia al destín',
+'exif-gpsdatestamp'                => 'Fecha GPS',
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimida',
@@ -1719,13 +1813,28 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-exposureprogram-0' => 'Non definida',
 'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
+'exif-exposureprogram-7' => 'Mou retratu (pa semeyes cercanes col fondu desenfocáu)',
+'exif-exposureprogram-8' => 'Mou paisaxe (pa semeyes amplies col fondu enfocáu)',
 
 'exif-subjectdistance-value' => '{{PLURAL:$1|$1 metru|$1 metros}}',
 
-'exif-lightsource-0' => 'Desconocida',
-'exif-lightsource-4' => 'Flax',
+'exif-meteringmode-0'   => 'Desconocíu',
+'exif-meteringmode-5'   => 'Patrón',
+'exif-meteringmode-6'   => 'Parcial',
+'exif-meteringmode-255' => 'Otru',
+
+'exif-lightsource-0'   => 'Desconocida',
+'exif-lightsource-1'   => 'Lluz diurna',
+'exif-lightsource-2'   => 'Fluorescente',
+'exif-lightsource-3'   => 'Tungstenu (lluz incandescente)',
+'exif-lightsource-4'   => 'Flax',
+'exif-lightsource-9'   => 'Tiempu despexáu',
+'exif-lightsource-10'  => 'Tiempu ñubláu',
+'exif-lightsource-255' => 'Otra fonte de lluz',
 
 'exif-focalplaneresolutionunit-2' => 'pulgaes',
+
+'exif-sensingmethod-1' => 'Non definíu',
 
 'exif-exposuremode-0' => 'Esposición automática',
 'exif-exposuremode-1' => 'Esposición manual',
@@ -1741,6 +1850,18 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Suave',
 'exif-contrast-2' => 'Fuerte',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Llatitú Norte',
+'exif-gpslatitude-s' => 'Llatitú Sur',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Lloxitú Este',
+'exif-gpslongitude-w' => 'Lloxitú Oeste',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Quilómetros per hora',
+'exif-gpsspeed-m' => 'Milles per hora',
 
 # External editor support
 'edit-externally'      => 'Editar esti ficheru usando una aplicación externa',
@@ -1786,6 +1907,9 @@ $3
 
 Si esti *nun* yes tú, nun abras l\'enllaz. Esti códigu de confirmación caduca en $4.',
 
+# Scary transclusion
+'scarytranscludetoolong' => '[La URL ye demasiao llarga; sentímoslo]',
+
 # Delete conflict
 'deletedwhileediting' => "Avisu: ¡Esta páxina foi borrada depués de qu'entamaras a editala!",
 'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta páxina depués de qu'empecipiaras a editala pola siguiente razón:
@@ -1827,7 +1951,10 @@ $1",
 'livepreview-loading' => 'Cargando…',
 
 # Watchlist editor
+'watchlistedit-numitems'      => 'La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines de discusión.',
 'watchlistedit-noitems'       => 'La to llista de vixilancia nun tien títulos.',
+'watchlistedit-normal-title'  => 'Editar la llista de vixilancia',
+'watchlistedit-normal-legend' => 'Eliminar títulos de la llista de vixilancia',
 'watchlistedit-normal-submit' => 'Eliminar títulos',
 'watchlistedit-normal-done'   => '{{PLURAL:$1|Eliminóse un títulu|Elimináronse $1 títulos}} de la to llista de vixilancia:',
 'watchlistedit-raw-titles'    => 'Títulos:',
@@ -1842,4 +1969,3 @@ $1",
 'watchlisttools-raw'  => 'Editar la llista de vixilancia (en bruto)',
 
 );
-

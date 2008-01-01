@@ -9,6 +9,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
+ * @author Max sonnelid
  */
 
 $skinNames = array(
@@ -904,6 +905,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'userrights-editusergroup'    => 'Rediger brukergrupper',
 'saveusergroups'              => 'Lagre brukergrupper',
 'userrights-groupsmember'     => 'Medlem av:',
+'userrights-groupsremovable'  => 'Avsettlige grupper:',
 'userrights-groupsavailable'  => 'Tilgjengelige grupper:',
 'userrights-groupshelp'       => 'Velg grupper du vil at brukeren skal fjernes fra eller lagt til. Ikke valgte grupper vil ikke bli forandret. Du kan fjerne merkingen av en gruppe med Ctrl + Venstreklikk.',
 'userrights-reason'           => 'Endringsgrunn:',
@@ -2318,4 +2320,3 @@ Prøv vanlig forhåndsvisning.',
 'watchlisttools-raw'  => 'Rediger rå overvåkningsliste',
 
 );
-

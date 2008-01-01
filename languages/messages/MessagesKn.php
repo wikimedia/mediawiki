@@ -762,6 +762,7 @@ $1',
 
 # Namespace 8 related
 'allmessages'         => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
+'allmessagesname'     => 'ಹೆಸರು',
 'allmessagesmodified' => 'ಬದಲಾವಣೆ ಮಾಡಿದ್ದನ್ನು ಮಾತ್ರ ತೋರಿಸು',
 
 # Thumbnails
@@ -860,4 +861,3 @@ $1',
 'watchlistedit-noitems' => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೂ ಪುಟಗಳಿಲ್ಲ.',
 
 );
-
