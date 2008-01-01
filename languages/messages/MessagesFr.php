@@ -1832,7 +1832,9 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 # Image deletion
 'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',
 'filedeleteerror-short'           => 'Erreur lors de la suppression du fichier : $1',
-'filedeleteerror-long'            => 'Des erreurs ont été rencontrées lors de la suppression du fichier :\\n\\n$1\\n',
+'filedeleteerror-long'            => 'Des erreurs ont été rencontrées lors de la suppression du fichier :
+
+$1',
 'filedelete-missing'              => 'Le fichier « $1 » ne peut pas être supprimé parce qu’il n’existe pas.',
 'filedelete-old-unregistered'     => 'La révision du fichier spécifié « $1 » n’est pas dans la base de données.',
 'filedelete-current-unregistered' => 'Le fichier spécifié « $1 » n’est pas dans la base de données.',
@@ -2267,4 +2269,3 @@ Essayez la prévisualisation normale.',
 'watchlisttools-raw'  => 'Modifier la liste (mode brut)',
 
 );
-

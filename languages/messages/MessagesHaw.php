@@ -118,14 +118,16 @@ $messages = array(
 'jumptosearch'     => 'huli',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'E pili ana iā {{SITENAME}}',
-'currentevents' => 'Ka nū hou',
-'disclaimers'   => 'Nā a‘o ‘ana laulā',
-'mainpage'      => 'Ka papa kinohi',
-'portal'        => 'Ka hui kaiaulu',
-'portal-url'    => 'Project:Ka hui kaiaulu',
-'privacy'       => 'Palapala pilikino',
-'sitesupport'   => 'E lūlū mai',
+'aboutsite'      => 'E pili ana iā {{SITENAME}}',
+'currentevents'  => 'Ka nū hou',
+'disclaimers'    => 'Nā a‘o ‘ana laulā',
+'disclaimerpage' => 'Project:Nā a‘o ‘ana laulā',
+'mainpage'       => 'Ka papa kinohi',
+'portal'         => 'Ka hui kaiaulu',
+'portal-url'     => 'Project:Ka hui kaiaulu',
+'privacy'        => 'Palapala pilikino',
+'privacypage'    => 'Project:Palapala pilikino',
+'sitesupport'    => 'E lūlū mai',
 
 'badaccess' => 'Hewa ‘ae',
 

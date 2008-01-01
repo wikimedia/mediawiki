@@ -1427,7 +1427,7 @@ Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 Les arch·ives pôvont étre èfaciês règuliérement.',
 'undeleteextrahelp'            => "Por rèstorar totes les vèrsions de cela pâge, lèssiéd vouedes totes les câses a marcar, et pués clicâd dessus '''''Rèstorar !'''''.<br /> Por fâre una rèstoracion sèlèctiva, marcâd les câses corrèspondent a les vèrsions que sont a rèstorar, et pués clicâd dessus '''''Rèstorar !'''''.<br /> En cliquent sur lo boton '''''Tornar inicialisar''''', la bouèta de rèsumâ et les câses marcâs seront remêses a zérô.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|vèrsion arch·ivâ|vèrsions arch·ivâs}}',
-'undeletehistory'              => 'Se vos rèstorâd la pâge, totes les vèrsions seront rèstorâs dens l’historico.
+'undeletehistory'              => 'Se vos rèstorâd la pâge, totes les vèrsions seront replaciês dens l’historico.
 
 S’una novèla pâge avouéc lo mémo nom at étâ crèâ dês la suprèssion,
 les vèrsions rèstorâs aparêtront dens l’historico prècèdent et la vèrsion corenta serat pas ôtomaticament remplaciê.',
