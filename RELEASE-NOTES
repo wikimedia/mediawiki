@@ -274,6 +274,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   are now forbidden. A run of cleanupTitles.php will fix up existing pages.
 * (bug 12446) Permissions check fix for undelete link
 * (bug 12451) AJAX title normalization tweaks
+* When a user creating a page is not allowed to either create the page nor edit
+  it, all applicable reasons are now shown.
 
 
 == Parser changes in 1.12 ==

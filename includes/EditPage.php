@@ -355,8 +355,17 @@ class EditPage {
 		}
 
 		$permErrors = $this->mTitle->getUserPermissionsErrors('edit', $wgUser);
-		if( !$this->mTitle->exists() )
-			$permErrors += array_diff( $this->mTitle->getUserPermissionsErrors('create', $wgUser), $permErrors );
+		if( !$this->mTitle->exists() ) {
+			# We can't use array_diff here, because that considers ANY TWO
+			# ARRAYS TO BE EQUAL.  Thanks, PHP.
+			$createErrors = $this->mTitle->getUserPermissionsErrors('create', $wgUser);
+			foreach( $createErrors as $error ) {
+				# in_array() actually *does* work as expected.
+				if( !in_array( $error, $permErrors ) ) {
+					$permErrors[] = $error;
+				}
+			}
+		}
 
 		# Ignore some permissions errors.
 		$remove = array();
