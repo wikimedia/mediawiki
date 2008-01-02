@@ -573,6 +573,9 @@ Zu äre Informatioun fannt Dir d'Läsch-Logbuch mat dem Grond fir dat virescht L
 'mergehistory-submit' => 'Versioune verschmelzen',
 'mergehistory-empty'  => 'Et kënne keng Versioune fusionéiert ginn',
 
+# Merge log
+'mergelog' => 'Fusiouns-Logbuch',
+
 # Diffs
 'history-title'           => 'Versiounshistorique vun „$1“',
 'difference'              => '(Ennerscheed tëscht Versiounen)',
@@ -655,7 +658,8 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'userrights-groupsavailable' => "Et ginn d'Gruppen:",
 'userrights-reason'          => 'Grond:',
 'userrights-available-none'  => 'Dir däerft keng Benotzerrechter änneren.',
-'userrights-available-add'   => "Dir kënnt Benotzer an d'Grupppen $1 derbäisetzen.",
+'userrights-available-add'   => 'Dir kënnt Benotzer an déi folgend {{PLURAL:$2|Grupp|Grupppen}}: $1 <br \\>
+derbäisetzen.',
 'userrights-nodatabase'      => "D'Datebank $1 gëtt et net oder se ass net lokal.",
 
 # Groups
@@ -994,7 +998,8 @@ Wann dir dës Säit nëmmi iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen
 'confirmdelete'               => "Konfirméiert d'Läschen",
 'deletesub'                   => '("$1" gëtt geläscht)',
 'historywarning'              => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
-'confirmdeletetext'           => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",
+'confirmdeletetext'           => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. 
+W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",
 'actioncomplete'              => 'Aktioun ofgeschloss',
 'deletedtext'                 => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vu rezent geläschte Säiten.',
 'deletedarticle'              => '"$1" gouf geläscht',

@@ -703,8 +703,8 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 
 # User rights
 'editusergroup'               => 'Greges usorum recensere',
-'userrights-available-add'    => 'Potes usores addere ad $1.',
-'userrights-available-remove' => 'Potes usores removere ex $1.',
+'userrights-available-add'    => 'Potes usores addere ad {{PLURAL:$2|hanc gregem|has greges}}: $1.',
+'userrights-available-remove' => 'Potes usores removere ex {{PLURAL:$2|hac grege|his gregibus}}: $1.',
 
 # Groups
 'group'            => 'Grex:',
@@ -1045,7 +1045,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'confirmdelete'             => 'Adfirmare deletionem',
 'deletesub'                 => '(Deletio de "$1")',
 'historywarning'            => 'Monitio: Pagina quam delere vis historiam habet:',
-'confirmdeletetext'         => 'Paginam cum tota historia eius delebis ex base datorum.
+'confirmdeletetext'         => 'Paginam cum tota historia eius delebis.
 Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:Policy-url}}|consilio]] congruere.',
 'actioncomplete'            => 'Actum perfectum',
 'deletedtext'               => '"$1" deletum est.

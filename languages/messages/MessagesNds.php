@@ -242,6 +242,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'postcomment'       => 'Kommentar hentofögen',
 'articlepage'       => 'Artikel',
 'talk'              => 'Diskuschoon',
+'views'             => 'Ansichten',
 'toolbox'           => 'Warktüüch',
 'userpage'          => 'Brukersiet ankieken',
 'projectpage'       => 'Meta-Text',
@@ -756,7 +757,10 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'newsectionsummary'                 => '/* $1 */ nee Afsnitt',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ännern an lenkte Sieden',
+'recentchangeslinked'          => 'Ännern an lenkte Sieden',
+'recentchangeslinked-title'    => 'Ännern an Sieden, de vun „$1“ ut lenkt sünd',
+'recentchangeslinked-noresult' => 'In disse Tiet hett nüms de lenkten Sieden ännert.',
+'recentchangeslinked-summary'  => "Disse Spezialsiet wiest de letzten Ännern an de lenkten Sieden. Sieden, de op diene Oppasslist staht, sünd '''fett''' schreven.",
 
 # Upload
 'upload'                     => 'Hoochladen',
@@ -847,10 +851,13 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'imgdesc'                   => 'Beschrieven',
 'imgfile'                   => 'Datei',
 'filehist'                  => 'Datei-Historie',
+'filehist-help'             => 'Klick op de Tiet, dat du de Datei ankieken kannst, so as se do utseeg.',
 'filehist-deleteall'        => 'all wegsmieten',
 'filehist-deleteone'        => 'dit wegsmieten',
+'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Datum/Tiet',
 'filehist-user'             => 'Bruker',
+'filehist-dimensions'       => 'Grött',
 'filehist-filesize'         => 'Dateigrött',
 'filehist-comment'          => 'Kommentar',
 'imagelinks'                => 'Bildverwiesen',
@@ -1172,12 +1179,13 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 'sp-contributions-username'    => 'IP-Adress oder Brukernaam:',
 
 # What links here
-'whatlinkshere'  => 'Wat wiest na disse Siet hen',
-'linklistsub'    => '(List vun de Verwiesen)',
-'linkshere'      => 'Disse Sieden wiest hierher:',
-'nolinkshere'    => 'Kene Siet wiest hierher.',
-'nolinkshere-ns' => "Kene Sieden wiest na '''[[:$1]]''' in’n utwählten Naamruum.",
-'isredirect'     => 'Wiederleiden',
+'whatlinkshere'       => 'Wat wiest na disse Siet hen',
+'whatlinkshere-title' => 'Sieden, de na „$1“ wiest',
+'linklistsub'         => '(List vun de Verwiesen)',
+'linkshere'           => 'Disse Sieden wiest hierher:',
+'nolinkshere'         => 'Kene Siet wiest hierher.',
+'nolinkshere-ns'      => "Kene Sieden wiest na '''[[:$1]]''' in’n utwählten Naamruum.",
+'isredirect'          => 'Wiederleiden',
 
 # Block/unblock
 'blockip'                  => 'IP-Adress blocken',
@@ -1456,6 +1464,15 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'newimages'    => 'Ne’e Biller',
 'showhidebots' => '($1 Bots)',
 'noimages'     => 'Kene Biller.',
+
+# Bad image list
+'bad_image_list' => 'Format:
+
+Blot na Regen, de mit en * anfangt, warrt keken. Na dat Teken * mutt toeerst en Lenk op dat Bild stahn, dat nich bruukt warrn dröff.
+Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild liekers noch bruukt warrn dröff.',
+
+# Metadata
+'metadata' => 'Metadaten',
 
 # EXIF tags
 'exif-imagewidth'          => 'Breed',

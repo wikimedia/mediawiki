@@ -5,11 +5,11 @@
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author Bèrto 'd Sèra
- * @author G - ג
  * @author Nike
  * @author SabineCretella
  * @author Teak
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback = 'it';
@@ -125,6 +125,7 @@ dj'artìcol ancó pa scrit",
 'december-gen'  => 'Dzémber',
 'jan'           => 'Gen',
 'feb'           => 'Fër',
+'mar'           => 'Mar',
 'apr'           => 'Avr',
 'may'           => 'Mag',
 'jun'           => 'Giu',
@@ -132,6 +133,7 @@ dj'artìcol ancó pa scrit",
 'aug'           => 'Aos',
 'sep'           => 'Ste',
 'oct'           => 'Oto',
+'nov'           => 'Nov',
 'dec'           => 'Dze',
 
 # Bits of text used by many pages
@@ -203,6 +205,7 @@ dj'artìcol ancó pa scrit",
 'personaltools'     => 'Utiss personaj',
 'postcomment'       => 'Gionta un coment',
 'articlepage'       => "Che a varda l'articol",
+'talk'              => 'Discussion',
 'views'             => 'vìsite',
 'toolbox'           => 'utiss',
 'userpage'          => 'Che a varda la pàgina Utent',
@@ -237,7 +240,7 @@ dj'artìcol ancó pa scrit",
 'disclaimerpage'    => 'Project:Avertense generaj',
 'edithelp'          => 'Manual dë spiegassion',
 'edithelppage'      => "Help:Coma scrive n'artìcol",
-'faqpage'           => 'Project:FAQ',
+'faq'               => 'FAQ',
 'helppage'          => 'Help:Agiut',
 'mainpage'          => 'Intrada',
 'policy-url'        => 'Project:Deuit',
@@ -283,6 +286,7 @@ dj'artìcol ancó pa scrit",
 'nstab-main'      => 'Artìcol',
 'nstab-user'      => "Pàgina dl'utent",
 'nstab-media'     => 'Pàgina multimedial',
+'nstab-special'   => 'Special',
 'nstab-project'   => 'Pàgina ëd servissi',
 'nstab-image'     => 'Figura',
 'nstab-mediawiki' => 'Messagi',
@@ -629,6 +633,7 @@ Che as controla për piasì l'adrëssa (URL) che a l'ha dovrà për rivé a sta 
 'cur'                 => 'cor',
 'next'                => 'anans',
 'last'                => 'andaré',
+'orig'                => 'orig',
 'page_first'          => 'prima',
 'page_last'           => 'ùltima',
 'histlegend'          => 'Confront antra version diferente: che as selession-a le casele dle version che a veul e peui che a sgnaca ël boton për anandié ël process.<br />
@@ -846,6 +851,8 @@ Le partìe nen selessionà a saran nen tocà. Për deselessioné na partìa a ve
 'hide'                              => 'stërma',
 'show'                              => 'smon',
 'minoreditletter'                   => 'c',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 utent che as ten-o sossì sot euj]',
 'rc_categories'                     => 'Limité a le categorìe (che a jë scriva separand-je antra lor con un "|")',
 'rc_categories_any'                 => 'Qualsëssìa',
@@ -1104,6 +1111,7 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'fewestrevisions' => 'Artìcoj con manch ëd modìfiche',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categorìa|categorìe}}',
 'nlinks'                  => '$1 {{PLURAL:$1|anliura|anliure}}',
 'nmembers'                => '$1 {{PLURAL:$1|element|element}}',
@@ -1162,6 +1170,7 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'userrights'         => "Gestion dij drit dj'utent",
 'groups'             => "Partìe d'utent",
 'alphaindexline'     => '$1 a $2',
+'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Utent:',
@@ -1446,6 +1455,7 @@ $1",
 'nolinkshere'         => "A-i é pa gnun-a pàgina che a l'abia dj'anliure che a men-o a '''[[:$1]]'''.",
 'nolinkshere-ns'      => "An stë spassi nominal-sì a-i è pa gnun-a pagina con dj'anliure ch'a men-o a '''[[:$1]]'''.",
 'isredirect'          => 'ridiression',
+'istemplate'          => 'inclusion',
 'whatlinkshere-prev'  => "{{PLURAL:$1|d'un andré|andré ëd $1}}",
 'whatlinkshere-next'  => "{{PLURAL:$1|d'un anans|anans ëd $1}}",
 'whatlinkshere-links' => '← anliure',
@@ -1904,6 +1914,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-subsectimeoriginal'          => 'Data e ora ëd creassion, con frassion ëd second',
 'exif-subsectimedigitized'         => 'Data e ora ëd digitalisassion, con frassion ëd second',
 'exif-exposuretime'                => "Temp d'esposission",
+'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => "Nùmer d'F",
 'exif-exposureprogram'             => "Programa d'esposission",
 'exif-spectralsensitivity'         => 'Sensibilità dë spetro',
@@ -1917,6 +1928,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-subjectdistance'             => 'Distansa dël soget',
 'exif-meteringmode'                => "Càlcol dl'espossision",
 'exif-lightsource'                 => "Sorgiss d'anluminassion",
+'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Lunghëssa focal dle lent',
 'exif-subjectarea'                 => "Spassi d'anquadratura dël soget",
 'exif-flashenergy'                 => 'Potensa dël flash',
@@ -1937,6 +1949,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-focallengthin35mmfilm'       => 'Lunghëssa focal an film da 35 mm',
 'exif-scenecapturetype'            => 'Sistema ëd campionament',
 'exif-gaincontrol'                 => 'Contròl ëd sienari',
+'exif-contrast'                    => 'Contrast',
 'exif-saturation'                  => 'Saturassion',
 'exif-sharpness'                   => 'Definission dij bòrd',
 'exif-devicesettingdescription'    => "Nòm dla configurassion dl'aparechiatura",
@@ -1979,6 +1992,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 
 'exif-unknowndate' => 'Data nen conossùa',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Specolar', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Arvirà ëd 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Arvirà dzorsuta', # 0th row: bottom; 0th column: left
@@ -1998,6 +2012,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-componentsconfiguration-0' => 'a esist pa',
 
 'exif-exposureprogram-0' => 'Nen definì',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => 'Priorità ëd temp',
 'exif-exposureprogram-4' => 'Priorità ëd diaframa',
@@ -2021,6 +2036,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-lightsource-1'   => 'Lus dël dì',
 'exif-lightsource-2'   => 'Fluoressenta',
 'exif-lightsource-3'   => 'Lus al tungsten (a incandessensa)',
+'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Temp bel',
 'exif-lightsource-10'  => 'Temp an-nivolà',
 'exif-lightsource-11'  => 'Ombra',
@@ -2071,16 +2087,20 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-gaincontrol-3' => 'Bassé ij contrast bass',
 'exif-gaincontrol-4' => 'Bassé ij contrast fòrt',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'dosman',
 'exif-contrast-2' => 'contrastà fòrt',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Saturassion bassa',
 'exif-saturation-2' => 'Saturassion àuta',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'dossa',
 'exif-sharpness-2' => 'contrastà',
 
 'exif-subjectdistancerange-0' => 'Nen specificà',
+'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Prim pian',
 'exif-subjectdistancerange-3' => 'Anquadratura a soget lontan',
 
