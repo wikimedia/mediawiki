@@ -139,7 +139,7 @@ class MovePageForm {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
 			$errMsg = "";
 			if( $err == 'hookaborted' ) {
-				$errMsg = $hookErr;
+				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
 			} else {
 				$errMsg = '<p><strong class="error">' . wfMsgWikiHtml( $err ) . "</strong></p>\n";
 			}
@@ -194,7 +194,7 @@ class MovePageForm {
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
-	$this->showLogFragment( $ot, $wgOut );
+		$this->showLogFragment( $ot, $wgOut );
 
 	}
 
