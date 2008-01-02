@@ -61,6 +61,7 @@ class KkConverter extends LanguageConverter {
 	function loadRegs() { 
 
 		$this->mCyrl2Latn = array(
+			## Punctuation
 			'/№/u' => 'No.',
 			## Е after vowels
 			'/([АӘЕЁИОӨҰҮЭЮЯЪЬ])Е/u' => '$1YE',
@@ -99,7 +100,8 @@ class KkConverter extends LanguageConverter {
 		);
 
 		$this->mLatn2Cyrl = array(
-			'/No\./u' => '№',
+			## Punctuation
+			'/#|No\./' => '№',
 			## Şç
 			'/ŞÇʹ/u'=> 'ЩЬ', '/Şçʹ/u'=> 'Щь', '/Şçʹ/u'=> 'Щь',
 			'/Ş[Çç]/u' => 'Щ', '/şç/u' => 'щ',
@@ -137,8 +139,25 @@ class KkConverter extends LanguageConverter {
 		);
 
 		$this->mCyLa2Arab = array(
+			## Punctuation -> Arabic
+			'/\,/' => '،', # &#x060C;
+			'/;/'  => '؛', # &#x061B;
+			'/\?/' => '؟', # &#x061F;
+			'/%/'  => '٪', # &#x066A;
+			'/\*/' => '٭', # &#x066D;
+			'/#|№|No\./u' => 'نٶ.',
+			## Digits -> Arabic
+			'/0/' => '۰', # &#x06F0;
+			'/1/' => '۱', # &#x06F1;
+			'/2/' => '۲', # &#x06F2;
+			'/3/' => '۳', # &#x06F3;
+			'/4/' => '۴', # &#x06F4;
+			'/5/' => '۵', # &#x06F5;
+			'/6/' => '۶', # &#x06F6;
+			'/7/' => '۷', # &#x06F7;
+			'/8/' => '۸', # &#x06F8;
+			'/9/' => '۹', # &#x06F9;
 			## Cyrillic -> Arabic
-			'/\№/u' => 'نٶ.',
 			'/([АӘЕЁИОӨҰҮЭЮЯЪЬ])е/ui' => '$1يە',
 			'/[еэ]/ui' => 'ە', '/[ъь]/ui' => '',
 			'/а/ui' => 'ا', '/ә/ui' => 'ٵ', '/б/ui' => 'ب', '/в/ui' => 'ۆ',
@@ -152,8 +171,7 @@ class KkConverter extends LanguageConverter {
 			'/ш/ui' => 'ش', '/щ/ui' => 'شش', '/ы/ui' => 'ى', '/і/ui' => 'ٸ',
 			'/ю/ui' => 'يۋ', '/я/ui' => 'يا',
 			## Latin -> Arabic // commented for now...
-			/*'/No\./u' => 'نٶ.',
-			'/[ıI]/u' => 'ى', '/[iİ]/u' => 'ٸ',
+			/*'/[ıI]/u' => 'ى', '/[iİ]/u' => 'ٸ',
 			'/[eé]/ui' => 'ە', '/[yý]/ui' => 'ي',
 			'/[ʺʹ]/ui' => '',
 			'/a/ui' => 'ا', '/ä/ui' => 'ٵ', '/b/ui' => 'ب', '/c/ui' => 'تس',
@@ -164,23 +182,6 @@ class KkConverter extends LanguageConverter {
 			'/q/ui' => 'ق', '/r/ui' => 'ر', '/s/ui' => 'س', '/ş/ui' => 'ش',
 			'/t/ui' => 'ت', '/u/ui' => 'ۇ', '/ü/ui' => 'ٷ', '/v/ui' => 'ۆ',
 			'/w/ui' => 'ۋ', '/x/ui' => 'ح', '/z/ui' => 'ز',*/
-			## Punctuation -> Arabic
-			'/\,/' => '،', # &#x060C;
-			'/;/' => '؛', # &#x061B;
-			'/\?/' => '؟', # &#x061F;
-			'/%/' => '٪', # &#x066A;
-			'/\*/' => '٭', # &#x066D;
-			## Digits -> Arabic
-			'/0/' => '۰', # &#x06F0;
-			'/1/' => '۱', # &#x06F1;
-			'/2/' => '۲', # &#x06F2;
-			'/3/' => '۳', # &#x06F3;
-			'/4/' => '۴', # &#x06F4;
-			'/5/' => '۵', # &#x06F5;
-			'/6/' => '۶', # &#x06F6;
-			'/7/' => '۷', # &#x06F7;
-			'/8/' => '۸', # &#x06F8;
-			'/9/' => '۹', # &#x06F9;
 		);
 
 	}
@@ -257,7 +258,7 @@ class KkConverter extends LanguageConverter {
 		switch( $toVariant ) {
 			case 'kk-cyrl':
 			case 'kk-kz':
-				$letters = KK_L_UC . KK_L_LC . 'ʺʹ0123456789';
+				$letters = KK_L_UC . KK_L_LC . 'ʺʹ#0123456789';
 				$wgContLanguageCode = 'kk';
 				break;
 			case 'kk-latn':
@@ -267,8 +268,7 @@ class KkConverter extends LanguageConverter {
 				break;
 			case 'kk-arab':
 			case 'kk-cn':
-				// $letters = KK_C_UC.KK_C_LC.KK_L_UC.KK_L_LC.'ʺʹ%№0123456789?,;';
-				$letters = KK_C_UC . KK_C_LC . '%№0123456789?,;';
+				$letters = KK_C_UC.KK_C_LC./*KK_L_UC.KK_L_LC.'ʺʹ'.*/',;\?%\*№0123456789';
 				$wgContLanguageCode = 'kk-Arab';
 				break;
 			default:
