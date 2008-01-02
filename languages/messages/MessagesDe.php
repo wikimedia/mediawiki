@@ -715,13 +715,13 @@ Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf
 Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong>',
 'session_fail_preview_html' => "<strong>Deine Bearbeitung konnte nicht gespeichert werden, da deine Sitzungsdaten verloren gegangen sind.</strong>
 
-''Da in diesem Wiki reines HTML aktiviert ist, wurde die Vorschau ausgeblendet um JavaScript Attacken vorzubeugen.''
+''Da in {{SITENAME}} das Speichern von reinem HTML aktiviert ist, wurde die Vorschau ausgeblendet, um JavaScript-Attacken vorzubeugen.''
 
 <strong>Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst. Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong>",
 'token_suffix_mismatch'     => '<strong>Deine Bearbeitung wurde zurückgewiesen, da dein Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
 'editing'                   => 'Bearbeiten von $1',
-'editinguser'               => 'Bearbeiten von Benutzer <b>$1</b>',
+'editinguser'               => 'Bearbeiten von Benutzer „<b>$1</b>“',
 'editingsection'            => 'Bearbeiten von $1 (Absatz)',
 'editingcomment'            => 'Bearbeiten von $1 (Kommentar)',
 'editconflict'              => 'Bearbeitungskonflikt: $1',
@@ -759,7 +759,7 @@ speichern kannst. Sichere den Text und versuche die Änderungen später einzuspi
 'edittools'                 => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'             => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'              => 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:Userlogin|anmelden]].',
-'nocreate-loggedin'         => 'Du hast keine Berechtigung, neue Seiten in diesem Wiki anzulegen.',
+'nocreate-loggedin'         => 'Du hast keine Berechtigung, neue Seiten in {{SITENAME}} anzulegen.',
 'permissionserrors'         => 'Berechtigungs-Fehler',
 'permissionserrorstext'     => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'     => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
@@ -828,7 +828,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'logdelete-selected'          => "{{PLURAL:$2|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}} für '''$1:'''",
 'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
 
-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
+{{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
 'revdelete-legend'            => 'Einschränkungen für die Versionen festlegen:',
 'revdelete-hide-text'         => 'Text der Version verstecken',
 'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
@@ -981,6 +981,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'userrights-editusergroup'    => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
 'saveusergroups'              => 'Gruppenzugehörigkeit speichern',
 'userrights-groupsmember'     => 'Mitglied von:',
+'userrights-groupsremovable'  => 'Entfernbare Gruppen:',
 'userrights-groupsavailable'  => 'Verfügbare Gruppen:',
 'userrights-groupshelp'       => "Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
@@ -990,6 +991,8 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'userrights-available-remove' => 'Du darst Benutzer aus den Grupppen $1 entfernen.',
 'userrights-no-interwiki'     => 'Du hast keine Berechtigung, die Benutzerrechte in anderen Wikis zu ändern.',
 'userrights-nodatabase'       => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
+'userrights-nologin'          => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:Userlogin|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-notallowed'       => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1027,7 +1030,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'rcshowhidebots'                    => 'Bots $1',
 'rcshowhideliu'                     => 'Angemeldete Benutzer $1',
 'rcshowhideanons'                   => 'Anonyme Benutzer $1',
-'rcshowhidepatr'                    => 'Überprüfte Änderungen $1',
+'rcshowhidepatr'                    => 'Kontrollierte Änderungen $1',
 'rcshowhidemine'                    => 'Eigene Beiträge $1',
 'rclinks'                           => 'Zeige die letzten $1 Änderungen der letzten $2 Tage.<br />$3',
 'diff'                              => 'Unterschied',
