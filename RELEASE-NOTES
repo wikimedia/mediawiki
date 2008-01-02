@@ -280,6 +280,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12451) AJAX title normalization tweaks
 * When a user creating a page is not allowed to either create the page nor edit
   it, all applicable reasons are now shown.
+* (bug 11428) Allow $wgScript inside $wgArticlePath when emulating PATH_INFO
+  Fixes 'root'-style rewrite configurations
 
 
 == Parser changes in 1.12 ==
