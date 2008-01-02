@@ -1318,7 +1318,7 @@ L'adreza eletronica que endicó en as suyas preferenzias d'usuario amanixerá en
 'nowatchlist'          => 'No tiens denguna pachina en a lista de seguimiento.',
 'watchlistanontext'    => "Ha de $1 ta beyer u editar as dentradas d'a suya lista de seguimiento.",
 'watchnologin'         => 'No ha enzetato a sesión',
-'watchnologintext'     => "Ha d'[[Special:Userlogin|enzetar una sesión]] ta cambiar a suya lista de seguimiento.",
+'watchnologintext'     => "Ha d'estar [[Special:Userlogin|identificato]] ta poder cambiar a suya lista de seguimiento.",
 'addedwatch'           => 'Adibiu á la suya lista de seguimiento',
 'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:Recentchanges|lista de cambeos rezients]] ta fer-la más fázil de deteutar. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de bexilar\" en o menú.",
 'removedwatch'         => "Borrata d'a lista de seguimiento",

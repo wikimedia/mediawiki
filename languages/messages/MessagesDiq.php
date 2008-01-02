@@ -5,6 +5,7 @@
  *
  * @author SPQRobin
  * @author Mirzali
+ * @author Nike
  */
 
 
@@ -22,7 +23,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'tog-showtoolbar'             => 'Goceganê hacetanê vurnayışi bımocne (JavaScript)',
 'tog-editondblclick'          => 'Pê dı rey tıknayış perre sero bıguriye/bıxebetiye (JavaScript)',
 'tog-editsection'             => 'Vurnayışê tek tek qısman rê gıreyan bımocne',
-'tog-editsectiononrightclick' => 'Sernuştey qısıman sero be gocega raşte tıknaene bıvurne (JavaScript)]',
+'tog-editsectiononrightclick' => 'Sernuştey qısıman sero be gocega raşte tıknaene bıvurne (JavaScript)',
 'tog-showtoc'                 => 'Tabloê tedeesteyan bımocne (de perranê be hirê sernuşteyan ra zêdêri/vêşêri de)',
 'tog-rememberpassword'        => 'Parola mı bia xo viri',
 'tog-editwidth'               => 'Verınina perra cıdayışê nuştey tam bıaso',
@@ -242,4 +243,3 @@ href="" class="internal"}?{/a}) bımocne.',
 'articletitles' => 'nuşte',
 
 );
-

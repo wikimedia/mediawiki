@@ -352,6 +352,7 @@ I seguenti collegamenti sono in lingua inglese:
 'versionrequired'     => 'Versione $1 di MediaWiki richiesta',
 'versionrequiredtext' => "Per usare questa pagina è necessario disporre della versione $1 del software MediaWiki. Vedi [[Special:Version|l'apposita pagina]].",
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Estratto da "$1"',
 'youhavenewmessages'      => 'Hai $1 ($2).',
 'newmessageslink'         => 'nuovi messaggi',
@@ -366,6 +367,7 @@ I seguenti collegamenti sono in lingua inglese:
 'thisisdeleted'           => 'Vedi o ripristina $1?',
 'viewdeleted'             => 'Vedi $1?',
 'restorelink'             => '{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}',
+'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Modalità di sottoscrizione del feed non valida.',
 'site-rss-feed'           => 'Feed RSS di $1',
 'site-atom-feed'          => 'Feed Atom di $1',
@@ -380,6 +382,7 @@ I seguenti collegamenti sono in lingua inglese:
 'nstab-project'   => 'Pagina di servizio',
 'nstab-image'     => 'Immagine',
 'nstab-mediawiki' => 'Messaggio',
+'nstab-template'  => 'Template',
 'nstab-help'      => 'Aiuto',
 'nstab-category'  => 'Categoria',
 
@@ -852,6 +855,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'prefsnologin'             => 'Accesso non effettuato',
 'prefsnologintext'         => "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:Userlogin|accesso]].",
 'prefsreset'               => 'Le preferenze sono state ripristinate ai valori predefiniti.',
+'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'Nessuno',
 'qbsettings-fixedleft'     => 'Fisso a sinistra',
 'qbsettings-fixedright'    => 'Fisso a destra',
@@ -933,6 +937,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'group-all'           => '(utenti)',
 
 'group-autoconfirmed-member' => 'Utente autoconvalidato',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Amministratore',
 'group-bureaucrat-member'    => 'Burocrate',
 
@@ -962,9 +967,13 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'rcshowhidepatr'                    => '$1 le modifiche controllate',
 'rcshowhidemine'                    => '$1 le mie modifiche',
 'rclinks'                           => 'Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni<br />$3',
+'diff'                              => 'diff',
 'hist'                              => 'cron',
 'hide'                              => 'nascondi',
 'show'                              => 'mostra',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[osservata da $1 utenti]',
 'rc_categories'                     => 'Limita alle categorie (separate da "|")',
 'rc_categories_any'                 => 'Qualsiasi',

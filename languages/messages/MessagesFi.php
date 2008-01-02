@@ -921,6 +921,7 @@ $1 | $2',
 'userrights-editusergroup'    => 'Käyttäjän ryhmät',
 'saveusergroups'              => 'Tallenna',
 'userrights-groupsmember'     => 'Jäsenenä ryhmissä',
+'userrights-groupsremovable'  => 'Poistettavat ryhmät',
 'userrights-groupsavailable'  => 'Saatavilla olevat ryhmät',
 'userrights-groupshelp'       => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
 'userrights-reason'           => 'Kommentti',
@@ -929,6 +930,8 @@ $1 | $2',
 'userrights-available-remove' => 'Voit poistaa käyttäjiä ryhmistä $1.',
 'userrights-no-interwiki'     => 'Sinulla ei ole lupaa muokata käyttöoikeuksia muissa wikeissä.',
 'userrights-nodatabase'       => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
+'userrights-nologin'          => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]] ylläpitäjätunnuksella muuttaaksesi käyttöoikeuksia.',
+'userrights-notallowed'       => 'Tunnuksellasi ei ole lupaa muuttaa käyttöoikeuksia.',
 
 # Groups
 'group'               => 'Ryhmä',
@@ -1405,7 +1408,7 @@ Palaute ja lisäapu osoitteessa:
 'deleteotherreason'           => 'Muu/lisäsyy:',
 'deletereasonotherlist'       => 'Muu syy',
 'deletereason-dropdown'       => '*Yleiset poistosyyt
-** Lisääjän pyyntö
+** Lisääjän poistopyyntö
 ** Tekijänoikeusrikkomus
 ** Roskaa',
 'rollback'                    => 'palauta aiempaan versioon',
