@@ -171,6 +171,7 @@ class Language {
 	 * @return array
 	 */
 	function getDefaultUserOptions() {
+		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
 		return User::getDefaultOptions();
 	}
 
@@ -1772,8 +1773,8 @@ class Language {
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms['en'][$case][$word]) ) {
-			return $wgGrammarForms['en'][$case][$word];
+		if ( isset($wgGrammarForms[$this->getCode()][$case][$word]) ) {
+			return $wgGrammarForms[$this->getCode()][$case][$word];
 		}
 		return $word;
 	}
