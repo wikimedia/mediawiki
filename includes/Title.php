@@ -1188,8 +1188,7 @@ class Title {
 			}
 		}
 
-		if ($action == 'protect')
-		{
+		if ($action == 'protect') {
 			if ($this->getUserPermissionsErrors('edit', $user) != array()) {
 				$errors[] = array( 'protect-cantedit' ); // If they can't edit, they shouldn't protect.
 			}
@@ -1218,32 +1217,32 @@ class Title {
 			}
 		} elseif( $action == 'move' && !( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
 			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
-       		} else if ( !$user->isAllowed( $action ) ) {
+		} else if ( !$user->isAllowed( $action ) ) {
 			$return = null;
 			$groups = array();
 			global $wgGroupPermissions;
-		        foreach( $wgGroupPermissions as $key => $value ) {
-		            if( isset( $value[$action] ) && $value[$action] == true ) {
-		                $groupName = User::getGroupName( $key );
-		                $groupPage = User::getGroupPage( $key );
-		                if( $groupPage ) {
-		                    $groups[] = '[['.$groupPage->getPrefixedText().'|'.$groupName.']]';
-		                } else {
-		                    $groups[] = $groupName;
-		                }
-		            }
-		        }
-		        $n = count( $groups );
-		        $groups = implode( ', ', $groups );
-		        switch( $n ) {
-		            case 0:
-		            case 1:
-		            case 2:
-		                $return = array( "badaccess-group$n", $groups );
-		                break;
-		            default:
-		                $return = array( 'badaccess-groups', $groups );
-		        }
+			foreach( $wgGroupPermissions as $key => $value ) {
+				if( isset( $value[$action] ) && $value[$action] == true ) {
+					$groupName = User::getGroupName( $key );
+					$groupPage = User::getGroupPage( $key );
+					if( $groupPage ) {
+						$groups[] = '[['.$groupPage->getPrefixedText().'|'.$groupName.']]';
+					} else {
+						$groups[] = $groupName;
+					}
+				}
+			}
+			$n = count( $groups );
+			$groups = implode( ', ', $groups );
+			switch( $n ) {
+				case 0:
+				case 1:
+				case 2:
+					$return = array( "badaccess-group$n", $groups );
+					break;
+				default:
+					$return = array( 'badaccess-groups', $groups );
+			}
 			$errors[] = $return;
 		}
 
