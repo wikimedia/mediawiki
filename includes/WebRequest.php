@@ -80,12 +80,12 @@ class WebRequest {
 					$matches = $this->extractTitle( $path, "$wgScript/$1" );
 					
 					global $wgArticlePath;
-					if( !$matches && $wgActionPaths) {
+					if( !$matches && $wgArticlePath ) {
 						$matches = $this->extractTitle( $path, $wgArticlePath );
 					}
 					
 					global $wgActionPaths;
-					if( !$matches && $wgActionPaths) {
+					if( !$matches && $wgActionPaths ) {
 						$matches = $this->extractTitle( $path, $wgActionPaths, 'action' );
 					}
 					
