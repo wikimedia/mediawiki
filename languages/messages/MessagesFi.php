@@ -699,6 +699,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'protectedpagewarning'      => '<center><small>Tämä sivu on lukittu. Vain ylläpitäjät voivat muokata sitä.</small></center>',
 'semiprotectedpagewarning'  => 'Vain rekisteröityneet käyttäjät voivat muokata tätä sivua.',
 'cascadeprotectedwarning'   => '<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}</strong>:',
+'titleprotectedwarning'     => '<strong>Tämä sivun luominen on rajoitettu vain osalle käyttäjistä.</strong>',
 'templatesused'             => 'Tällä sivulla käytetyt mallineet:',
 'templatesusedpreview'      => 'Esikatselussa mukana olevat mallineet:',
 'templatesusedsection'      => 'Tässä osiossa mukana olevat mallineet:',
@@ -930,7 +931,7 @@ $1 | $2',
 'userrights-available-remove' => 'Voit poistaa käyttäjiä ryhmistä $1.',
 'userrights-no-interwiki'     => 'Sinulla ei ole lupaa muokata käyttöoikeuksia muissa wikeissä.',
 'userrights-nodatabase'       => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
-'userrights-nologin'          => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]] ylläpitäjätunnuksella muuttaaksesi käyttöoikeuksia.',
+'userrights-nologin'          => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]] ylläpitäjätunnuksella, jotta voisit muuttaa käyttöoikeuksia.',
 'userrights-notallowed'       => 'Tunnuksellasi ei ole lupaa muuttaa käyttöoikeuksia.',
 
 # Groups

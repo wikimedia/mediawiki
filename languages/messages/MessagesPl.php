@@ -1367,9 +1367,9 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakład
 'enotif_lastvisited'           => 'Zobacz $1 w celu obejrzenia wszystkich zmian od twojej ostatniej wizyty.',
 'enotif_lastdiff'              => 'Zobacz $1 w celu obejrzenia tej zmiany.',
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
-'enotif_body'                  => 'Szanowny $WATCHINGUSERNAME,
+'enotif_body'                  => 'Drogi (droga) $WATCHINGUSERNAME,
 
-strona $PAGETITLE w serwisie {{SITENAME}} została $CHANGEDORCREATED o $PAGEEDITDATE przez użytkownika $PAGEEDITOR, zobacz $PAGETITLE_URL w celu obejrzenia aktualnej wersji.
+strona $PAGETITLE w serwisie {{SITENAME}} została $CHANGEDORCREATED $PAGEEDITDATE przez użytkownika $PAGEEDITOR, zobacz $PAGETITLE_URL w celu obejrzenia aktualnej wersji.
 
 $NEWPAGE
 
@@ -1379,7 +1379,7 @@ Skontaktuj się z autorem:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane dopóki nie odwiedzisz tej strony.
+W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony.
 Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
 
 	Wiadomość systemu powiadomień serwisu {{SITENAME}}

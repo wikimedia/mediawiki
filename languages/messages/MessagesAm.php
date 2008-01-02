@@ -134,6 +134,7 @@ $messages = array(
 'toc'                 => 'ማውጫ',
 'showtoc'             => 'አሳይ',
 'hidetoc'             => 'ደብቅ',
+'thisisdeleted'       => '($1ን ለመመልከት ወይም ለመመለስ)',
 'restorelink'         => '{{PLURAL:$1|የጠፋ ዕትም|$1 የጠፉት ዕትሞች}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -584,6 +585,10 @@ $messages = array(
 'restriction-level-sysop'         => 'በሙሉ ተቆልፎ',
 'restriction-level-autoconfirmed' => 'በከፊል ተቆልፎ',
 
+# Undelete
+'undelete'     => 'የተደለዘ ገጽ ለመመለስ',
+'undeletepage' => 'የተደለዘ ገጽ ለመመለስ',
+
 # Namespace form on various pages
 'namespace' => 'ዓይነት፦',
 
@@ -722,6 +727,10 @@ $3
 የዚህ መያያዣው ኮድ እስከ $4 ድረስ ይሠራል።',
 
 # Table pager
+'table_pager_next'         => 'ቀጥሎ ገጽ',
+'table_pager_prev'         => 'ፊተኛው ገጽ',
+'table_pager_first'        => 'መጀመርያው ግጽ',
+'table_pager_last'         => 'መጨረሻው ገጽ',
 'table_pager_limit'        => 'በየገጹ $1 መስመሮች',
 'table_pager_limit_submit' => 'ይታዩ',
 
