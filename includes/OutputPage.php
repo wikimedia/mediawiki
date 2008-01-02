@@ -981,14 +981,14 @@ class OutputPage {
 
 	/**
 	 * @param array $errors An array of arrays returned by Title::getUserPermissionsErrors
-	 * @return string The wikitext error-messages, formatted into a list.
+	 * @return string The error-messages, formatted into a list.
 	 */
 	public function formatPermissionsErrorMessage( $errors ) {
-		global $wgParser;
-	
-		$text = wfMsgExt( 'permissionserrorstext', array( 'parsemag' ), count( $errors ) ) . "\n\n";
+		$text = '';
 
-		if (count( $errors ) > 1) {
+		if (sizeof( $errors ) > 1) {
+
+			$text .= wfMsgExt( 'permissionserrorstext', array( 'parse' ), count( $errors ) ) . "\n";
 			$text .= '<ul class="permissions-errors">' . "\n";
 
 			foreach( $errors as $error )
@@ -999,7 +999,7 @@ class OutputPage {
 			}
 			$text .= '</ul>';
 		} else {
-			$text .= '<span class="permissions-errors">' . call_user_func_array( 'wfMsg', $errors[0]) . '</span>';
+			$text .= call_user_func_array( 'wfMsg', $errors[0]);
 		}
 
 		return $text;
