@@ -1755,7 +1755,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-ca-watch'                => 'Apondéd ceta pâge a voutra lista de siuvu.',
 'tooltip-ca-unwatch'              => 'Reteriéd ceta pâge de voutra lista de siuvu.',
 'tooltip-search'                  => 'Chèrchiér dens {{SITENAME}}',
-'tooltip-search-go'               => 'Alâd vers una pâge portent justament ceti nom s’ègziste.',
+'tooltip-search-go'               => 'Alâd vers una pâge portent justo ceti nom s’ègziste.',
 'tooltip-search-fulltext'         => 'Chèrchiéd les pâges presentent ceti tèxte.',
 'tooltip-p-logo'                  => 'Pâge principâla',
 'tooltip-n-mainpage'              => 'Visitâd la pâge principâla.',
