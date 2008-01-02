@@ -615,6 +615,7 @@ vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez c
 Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'''",
 'semiprotectedpagewarning'  => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
 'cascadeprotectedwarning'   => '<strong>ATTENTION : Cette page a été protégée de manière à ce que seuls les [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.</strong>',
+'titleprotectedwarning'     => '<strong>ATTENTION : Cette page a été protégée de telle manière que seuls certains utilisateurs puissent la créer.</strong>',
 'templatesused'             => 'Modèles utilisés sur cette page :',
 'templatesusedpreview'      => 'Modèles utilisés dans cette prévisualisation :',
 'templatesusedsection'      => 'Modèles utilisés dans cette section :',

@@ -1105,6 +1105,9 @@ class EditPage {
 			}
 			$wgOut->addWikiText( $notice );
 		}
+		if( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) != array() ){
+			$wgOut->addWikiText( wfMsg( 'titleprotectedwarning' ) );
+		}
 
 		if ( $this->kblength === false ) {
 			$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
