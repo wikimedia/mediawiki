@@ -6,7 +6,10 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Helix84
+ * @author Nike
  */
+
+
 
 $messages = array(
 # Dates
@@ -197,7 +200,7 @@ $1",
 'rcnote'            => "Tha na {{PLURAL:$1|'''1''' mùthadh|$1 mùthaidhean}} deireanach air na {{PLURAL:$2|là|'''$2''' laithean}} deireanach gu h-ìosal ($3).",
 'rcnotefrom'        => "Gheibhear na mùthaidhean o chionn <b>$2</b> shios (a'nochdadh suas ri <b>$1</b>).",
 'rclistfrom'        => 'Nochd mùthaidhean ùra o chionn $1',
-'rclinks'           => 'Nochd na $1 mùthaidhean deireanach air na $2 laithean deireanach<br/>$3',
+'rclinks'           => 'Nochd na $1 mùthaidhean deireanach air na $2 laithean deireanach<br />$3',
 'diff'              => 'diof',
 'hist'              => 'eachd',
 'hide'              => 'falaich',

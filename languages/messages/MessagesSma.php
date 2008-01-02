@@ -173,6 +173,9 @@ $messages = array(
 'group-bot-member'   => 'Jïjtjesvïhtjije',
 'group-sysop-member' => 'Reerien',
 
+# Recent changes
+'show' => 'Vuesehte',
+
 # Upload
 'savefile' => 'Spååredh guvvie',
 

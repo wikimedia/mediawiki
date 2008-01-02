@@ -328,7 +328,7 @@ Se el cołegamento xè stà seguio par eror, xè suficiente far clic sul botòn 
 
 
 ---- ''Sta quà l'è la paxèna de discussion de un utente anonimo che non'l se ga ancora registrà o che non effettua el login. De conseguenzsa xè necessario identificarlo tramite l'[[Indirizzo IP|indirizzo IP]] numerico. Tale indirizso el pode esser condivixo da diversi utenti. Se te sì un utente anonimo e te pensi che ghe sia sta commenti irrilevanti, te podi [[Special:Userlogin|registrarte o effettuare el login]] par evitare confuxion con altri utenti in futuro.''",
-'noarticletext'            => "In sto momento ła paxèna richiesta xè voda. Xè possibiłe [Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre paxène del sito oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła paxèna 'desso].",
+'noarticletext'            => "In sto momento ła paxèna richiesta xè voda. Xè possibiłe [[Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre paxène del sito oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła paxèna 'desso].",
 'clearyourcache'           => "'''Nota:''' dopo aver salvà, te devi pulire la cache del to browser par veder i cambiamenti: '''Mozilla:''' clicca su ''reload'' (oppure ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
 'previewnote'              => "Tegni presente che sta qua xè solo n'anteprima, e che la to verzsion NON xè stà ancora salvà!",
 'previewconflict'          => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà in questa forma se sceglierai di salvare la pagina ora.",

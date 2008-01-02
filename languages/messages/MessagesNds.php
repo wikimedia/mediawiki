@@ -271,8 +271,8 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'copyrightpage'     => '{{ns:project}}:Lizenz',
 'currentevents'     => 'Aktuell Schehn',
 'currentevents-url' => 'Project:Aktuell Schehn',
-'disclaimers'       => 'Lizenzbestimmen',
-'disclaimerpage'    => 'Project:Lizenzbestimmen',
+'disclaimers'       => 'Impressum',
+'disclaimerpage'    => 'Project:Impressum',
 'edithelp'          => 'Bearbeidenshülp',
 'edithelppage'      => 'Help:Ännern',
 'faq'               => 'Faken stellte Fragen',
@@ -281,6 +281,8 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'mainpage'          => 'Hööftsiet',
 'portal'            => '{{SITENAME}}-Portal',
 'portal-url'        => 'Project:{{SITENAME}}-Portal',
+'privacy'           => 'Över Datenschutz',
+'privacypage'       => 'Project:Datenschutz',
 'sitesupport'       => 'Spennen',
 
 'badaccess'        => 'Fehler bi de Rechten',
@@ -306,6 +308,8 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'thisisdeleted'           => 'Ankieken oder weerholen vun $1?',
 'viewdeleted'             => '$1 ankieken?',
 'restorelink'             => '$1 löscht Bearbeidensvörgäng',
+'site-rss-feed'           => 'RSS-Feed för $1',
+'site-atom-feed'          => 'Atom-Feed för $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -1607,4 +1611,3 @@ Versöök de normale Vörschau.',
 Versöök de normale Vörschau.',
 
 );
-

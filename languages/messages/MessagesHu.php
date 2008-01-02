@@ -967,7 +967,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'group-all'           => '(mind)',
 
 'group-autoconfirmed-member' => 'Automatikus megerősítésű felhasználó',
-'group-bot-member'           => 'Robot',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'adminisztrátor',
 'group-bureaucrat-member'    => 'bürokrata',
 

@@ -243,40 +243,41 @@ $messages = array(
 'nospecialpagetext' => 'Esukol padi patik no dabinöli. Lised padas patik dabinöl binon su pad: [[Special:Specialpages]].',
 
 # General errors
-'error'             => 'Pöl',
-'dberrortext'       => 'Süntagapök pö geb vüka at ejenon.
+'error'              => 'Pöl',
+'dberrortext'        => 'Süntagapök pö geb vüka at ejenon.
 Atos ba sinifön, das dabinon säkäd pö program.
 Steifül lätik ad gebön vüki äbinon:
 <blockquote><tt>$1</tt></blockquote>
 se dunod: "<tt>$2</tt>".
 El MySQL ägesedon pökanuni: "<tt>$3: $4</tt>".',
-'dberrortextcl'     => 'Süntagapök pö geb vüka at ejenon.
+'dberrortextcl'      => 'Süntagapök pö geb vüka at ejenon.
 Steifül lätik ad gebön vüki at äbinon:
 "$1"
 se dunod: "$2".
 El MySQL ägesedon pökanuni: "$3: $4"',
-'cachederror'       => 'Sökölos binon kopied pasetik pada pevipöl. Mögos, das no binon fomam lätikün.',
-'readonly'          => 'Vük pefärmükon',
-'readonlytext'      => 'Vük pefärmükon: yegeds e votükams nuliks no kanons padakipön. Atos ejenon bo pro kosididaduns, pos kels vük ogeikon ad stad kösömik.
+'cachederror'        => 'Sökölos binon kopied pasetik pada pevipöl. Mögos, das no binon fomam lätikün.',
+'readonly'           => 'Vük pefärmükon',
+'readonlytext'       => 'Vük pefärmükon: yegeds e votükams nuliks no kanons padakipön. Atos ejenon bo pro kosididaduns, pos kels vük ogeikon ad stad kösömik.
 
 Guvan, kel äfärmükon vüki, äplänon osi ön mod sököl: $1',
-'missingarticle'    => 'Vödem pada tiädü „"$1"“ no petuvon. Kod atosa nomöfiko binon, das yüm bäldik päsökon ad pad ya pemoüköl.
+'missingarticle'     => 'Vödem pada tiädü „"$1"“ no petuvon. Kod atosa nomöfiko binon, das yüm bäldik päsökon ad pad ya pemoüköl.
 
 If ye pad at dabinon, ba etuvol säkädi in nünömasit. Nunolös, begö! osi guvanes, ed i ladeti (URL) tefik.',
-'readonly_lag'      => 'Vük pefärmükon itjäfidiko du dünanünöms slafik kosädons ko mastanünöm.',
-'internalerror'     => 'Pöl ninik',
-'filecopyerror'     => 'No emögos ad kopiedön ragivi "$1" ad "$2".',
-'filedeleteerror'   => 'No emögos ad moükön ragivi "$1".',
-'filenotfound'      => 'No eplöpos ad tuvön ragivi: "$1".',
-'formerror'         => 'PÖL: no emögos ad bevobön fometi at.',
-'badarticleerror'   => 'Dun at no kanon paledunön su pad at.',
-'cannotdelete'      => 'No emögos ad moükön padi/ragivi pevälöl. (Ba ya pemoükon fa geban votik.)',
-'badtitle'          => 'Tiäd badik',
-'perfcachedts'      => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1.',
-'viewsource'        => 'Logedön fonäti',
-'viewsourcefor'     => 'tefü $1',
-'protectedpagetext' => 'Pad at pejelon ad neletön redakami.',
-'editinginterface'  => "'''Nuned:''' Anu redakol padi, kel labükon vödemi bevüik pro programem. Votükams pada at oflunons logoti gebanasita pro gebans votik.",
+'readonly_lag'       => 'Vük pefärmükon itjäfidiko du dünanünöms slafik kosädons ko mastanünöm.',
+'internalerror'      => 'Pöl ninik',
+'internalerror_info' => 'Pöl ninik: $1',
+'filecopyerror'      => 'No emögos ad kopiedön ragivi "$1" ad "$2".',
+'filedeleteerror'    => 'No emögos ad moükön ragivi "$1".',
+'filenotfound'       => 'No eplöpos ad tuvön ragivi: "$1".',
+'formerror'          => 'PÖL: no emögos ad bevobön fometi at.',
+'badarticleerror'    => 'Dun at no kanon paledunön su pad at.',
+'cannotdelete'       => 'No emögos ad moükön padi/ragivi pevälöl. (Ba ya pemoükon fa geban votik.)',
+'badtitle'           => 'Tiäd badik',
+'perfcachedts'       => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1.',
+'viewsource'         => 'Logedön fonäti',
+'viewsourcefor'      => 'tefü $1',
+'protectedpagetext'  => 'Pad at pejelon ad neletön redakami.',
+'editinginterface'   => "'''Nuned:''' Anu redakol padi, kel labükon vödemi bevüik pro programem. Votükams pada at oflunons logoti gebanasita pro gebans votik.",
 
 # Login and logout pages
 'welcomecreation'            => '== Benokömö, o $1! ==
@@ -497,7 +498,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'nchanges'          => '{{PLURAL:$1|votükam|votükams}} $1',
 'recentchanges'     => 'Votükams nulik',
 'recentchangestext' => 'Su pad at binons votükams nulikün in vüki at.',
-'rcnote'            => 'Dono binons votükams <strong>$1</strong> lätikün delas <strong>$2</strong> lätikün, pänumädöls tü düp: $3.',
+'rcnote'            => "Dono {{PLURAL:$1|binon votükam '''1'''|binons votükams '''$1'''}} lätikün {{PLURAL:$1|dela|delas '''$2'''}} lätikün, pänumädöls tü düp: $3.",
 'rclistfrom'        => 'Jonolöd votükamis nulik, primölo tü düp $1',
 'rcshowhideminor'   => '$1 votükams pülik',
 'rcshowhidebots'    => '$1 elis bot',
@@ -697,6 +698,7 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'allpagessubmit'    => 'Jonolöd',
 'allpagesprefix'    => 'Jonolöd padis labü foyümot:',
 'allpagesbadtitle'  => 'Tiäd pegivöl no lonöfon, u ba labon foyümoti vüpükik u vü-vükik. Mögos i, das labon tonatis u malülis no pedälölis ad penön tiädis.',
+'allpages-bad-ns'   => '{{SITENAME}} no labon nemaspadi: "$1".',
 
 # Special:Listusers
 'listusersfrom' => 'Jonolöd gebanis primölo me:',
@@ -948,8 +950,9 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'filemissing'    => 'Ragiv deföl',
 
 # Special:Import
-'import'      => 'Nüveigön padis',
-'importstart' => 'Nüveigölo padis...',
+'import'       => 'Nüveigön padis',
+'importstart'  => 'Nüveigölo padis...',
+'importnotext' => 'Vödem vagik',
 
 # Import log
 'importlogpage' => 'Jenotalised nüveigamas',
@@ -966,6 +969,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-ca-move'           => 'Topätükön padi at',
 'tooltip-ca-unwatch'        => 'Moükön padi at se galädalised olik',
 'tooltip-search'            => 'Sukön in {{SITENAME}}',
+'tooltip-p-logo'            => 'Cifapad',
 'tooltip-n-mainpage'        => 'Visitolös Cifapadi',
 'tooltip-n-portal'          => 'Tefü proyek, kio kanol-li dunön, kiplado tuvön dinis',
 'tooltip-n-recentchanges'   => 'Lised votükamas nulik in vüki.',

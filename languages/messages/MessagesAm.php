@@ -134,6 +134,7 @@ $messages = array(
 'toc'                 => 'ማውጫ',
 'showtoc'             => 'አሳይ',
 'hidetoc'             => 'ደብቅ',
+'restorelink'         => '{{PLURAL:$1|የጠፋ ዕትም|$1 የጠፉት ዕትሞች}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ገጽ',
@@ -147,6 +148,7 @@ $messages = array(
 'nstab-category'  => 'ምድብ',
 
 # General errors
+'perfcached'         => 'ማስታወቂያ፡ ይህ መረጃ በየጊዜ የሚታደስ ስለሆነ ዘመናዊ ሳይሆን የቆየ ሊሆን ይችላል።',
 'perfcachedts'       => 'የሚቀጥለው መረጃ ተቆጥቧል፣ መጨረሻ የታደሠው $1 እ.ኤ.አ. ነው።',
 'viewsource'         => 'ምንጩን ተመልከት',
 'viewsourcefor'      => 'ለ«$1»',
@@ -254,6 +256,7 @@ $messages = array(
 'nextrevision'        => 'የሚከተለው እትም →',
 'currentrevisionlink' => '«የአሁኑን እትም ለመመልከት»',
 'cur'                 => 'ከአሁን',
+'next'                => 'ቀጥሎ',
 'last'                => 'ካለፈው',
 'page_first'          => 'ፊተኞች',
 'page_last'           => 'ኋለኞች',
@@ -321,7 +324,8 @@ $messages = array(
 'files'                 => 'የስዕሎች መጠን',
 
 # Groups
-'group' => 'ደረጃ፦',
+'group'       => 'ደረጃ፦',
+'group-sysop' => 'መጋቢ',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
@@ -679,10 +683,12 @@ $messages = array(
 # Special:Newimages
 'newimages'    => 'የአዳዲስ ሥዕሎች ማሳያ አዳራሽ',
 'showhidebots' => '(«bots» $1)',
+'noimages'     => 'ምንም የለም!',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'ሁሉ',
-'namespacesall' => 'ሁሉ (all)',
+'recentchangesall' => 'ሁሉ',
+'watchlistall2'    => 'ሁሉ',
+'namespacesall'    => 'ሁሉ (all)',
 
 # E-mail address confirmation
 'confirmemail'            => 'ኢ-ሜልዎን ለማረጋገጥ',
