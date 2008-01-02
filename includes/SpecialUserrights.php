@@ -267,14 +267,17 @@ class UserrightsForm extends HTMLForm {
 	 */
 	protected function showEditUserGroupsForm( $user, $groups ) {
 		global $wgOut, $wgUser;
-		
+
 		list( $addable, $removable ) = $this->splitGroups( $groups );
-		
+
 		$list = array();
 		foreach( $user->getGroups() as $group )
 			$list[] = self::buildGroupLink( $group );
-		$grouplist = implode( ', ', $list );
-		
+
+		$grouplist = '';
+		if( count( $list ) > 0 ) {
+			$grouplist = '<p>' . wfMsgHtml( 'userrights-groupsmember' ) . ' ' . implode( ', ', $list ) . '</p>';
+		}
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
 			Xml::hidden( 'user-editname', $user->getName() ) .
@@ -283,7 +286,7 @@ class UserrightsForm extends HTMLForm {
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			wfMsgExt( 'editinguser', array( 'parse' ),
 				wfEscapeWikiText( $user->getName() ) ) .
-			'<p>' . wfMsgHtml('userrights-groupsmember') . ' ' . $grouplist . '</p>' .
+			$grouplist .
 			$this->explainRights() .
 			"<table border='0'>
 			<tr>
@@ -341,17 +344,17 @@ class UserrightsForm extends HTMLForm {
 	 */
 	private function explainRights() {
 		global $wgUser, $wgLang;
-		
+
 		$out = array();
 		list( $add, $remove ) = array_values( $this->changeableGroups() );
-		
+
 		if( count( $add ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-add', 'parseinline', $wgLang->listToText( $add ) );
+			$out[] = wfMsgExt( 'userrights-available-add', 'parseinline', $wgLang->listToText( $add ), count( $add ) );
 		if( count( $remove ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-remove', 'parseinline', $wgLang->listToText( $remove ) );
-			
+			$out[] = wfMsgExt( 'userrights-available-remove', 'parseinline', $wgLang->listToText( $remove ), count( $add ) );
+
 		return count( $out ) > 0
-			? implode( ' ', $out )
+			? implode( '<br />', $out )
 			: wfMsgExt( 'userrights-available-none', 'parseinline' );
 	}
 
