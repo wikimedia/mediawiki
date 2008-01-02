@@ -70,8 +70,19 @@ class WebRequest {
 				if( $a ) {
 					$path = $a['path'];
 					
+					global $wgScript;
+					if( $path == $wgScript ) {
+						// Script inside a rewrite path?
+						// Abort to keep from breaking...
+						return;
+					}
+					// Raw PATH_INFO style
+					$matches = $this->extractTitle( $path, "$wgScript/$1" );
+					
 					global $wgArticlePath;
-					$matches = $this->extractTitle( $path, $wgArticlePath );
+					if( !$matches && $wgActionPaths) {
+						$matches = $this->extractTitle( $path, $wgArticlePath );
+					}
 					
 					global $wgActionPaths;
 					if( !$matches && $wgActionPaths) {
