@@ -582,9 +582,13 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getLocalURL()
 
-'getUserPermissionsErrors': Add a permissions error when permissions errors are checked for.
-	Use instead of userCan for most cases. Return false if the user can't do it,
-	and populate $result with the reason in the form of array( messagename, param1, param2 )
+'getUserPermissionsErrors': Add a permissions error when permissions errors are
+	checked for.  Use instead of userCan for most cases. Return false if the
+	user can't do it, and populate $result with the reason in the form of
+	array( messagename, param1, param2, ... ).  For consistency, error messages
+	should be plain text with no special coloring, bolding, etc. to show that
+	they're errors; presenting them properly to the user as errors is done by
+	the caller.
 $title: Title object being checked against
 $user : Current user object
 $action: Action being checked
