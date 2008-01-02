@@ -1037,8 +1037,12 @@ class OutputPage {
 
 		if ( !empty($reasons) ) {
 			// Permissions error
-			$this->setPageTitle( wfMsg( 'viewsource' ) );
-			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
+			if( $source ) {
+				$this->setPageTitle( wfMsg( 'viewsource' ) );
+				$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
+			} else {
+				$this->setPageTitle( wfMsg( 'badaccess' ) );
+			}
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons ) );
 		} else {
 			// Wiki is read only
@@ -1071,7 +1075,12 @@ class OutputPage {
 			$this->addHTML( $skin->formatTemplates( $article->getUsedTemplates() ) );
 		}
 
-		$this->returnToMain( false, $wgTitle );
+		# If the title doesn't exist, it's fairly pointless to print a return
+		# link to it.  After all, you just tried editing it and couldn't, so
+		# what's there to do there?
+		if( $wgTitle->exists() ) {
+			$this->returnToMain( false, $wgTitle );
+		}
 	}
 
 	/** @deprecated */

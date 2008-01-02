@@ -112,6 +112,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add HTML ID's mw-read-only-warning and mw-anon-edit-warning to warnings when
   editing to allow CSS styling.
 * Parser now returns list of sections
+* When a user is prohibited from creating a page, a title of "View source"
+  makes no sense, and there should be no "Return to [[Page]]" link.
 
 === Bug fixes in 1.12 ===
 

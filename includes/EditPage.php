@@ -389,8 +389,7 @@ class EditPage {
 		# array_diff returns elements in $permErrors that are not in $remove.
 		$permErrors = array_diff( $permErrors, $remove );
 
-		if ( !empty($permErrors) )
-		{
+		if ( !empty($permErrors) ) {
 			wfDebug( "$fname: User can't edit\n" );
 			$wgOut->readOnlyPage( $this->getContent(), true, $permErrors );
 			wfProfileOut( $fname );
