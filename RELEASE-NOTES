@@ -114,6 +114,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Parser now returns list of sections
 * When a user is prohibited from creating a page, a title of "View source"
   makes no sense, and there should be no "Return to [[Page]]" link.
+* (bug 12486) Protected titles now give a warning for privileged editors.
+
 
 === Bug fixes in 1.12 ===
 

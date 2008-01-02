@@ -523,6 +523,7 @@ $wgMessageStructure = array(
 		'protectedpagewarning',
 		'semiprotectedpagewarning',
 		'cascadeprotectedwarning',
+		'titleprotectedwarning',
 		'templatesused',
 		'templatesusedpreview',
 		'templatesusedsection',
