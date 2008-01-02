@@ -832,6 +832,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'mergehistory-from'                => 'Forrásoldal:',
 'mergehistory-into'                => 'Céloldal:',
 'mergehistory-list'                => 'Egyesíthető laptörténet',
+'mergehistory-merge'               => '[[:$1]] és [[:$2]] következő változatai vonhatóak össze. A gombok segítségével választhatod ki, ha csak egy adott idő előttieket szeretnél feldolgozni.',
 'mergehistory-go'                  => 'Egyesíthető szerkesztések mutatása',
 'mergehistory-submit'              => 'Változatok egyesítése',
 'mergehistory-empty'               => 'Nincs egyesíthető változás',
@@ -860,6 +861,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'searchsubtitle'        => 'Erre kerestél: „[[:$1]]”',
 'searchsubtitleinvalid' => 'A "$1" kereséshez',
 'noexactmatch'          => "Nincs '''$1''' nevű lap. Készíthetsz egy [[:$1|új oldalt]] ezen a néven.",
+'noexactmatch-nocreate' => "'''Nem található „$1” nevű lap.'''",
 'titlematches'          => 'Címszó egyezik',
 'notitlematches'        => 'Nincs egyező címszó',
 'textmatches'           => 'Szócikk szövege egyezik',
@@ -945,6 +947,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'userrights-editusergroup'    => 'Felhasználócsoportok módosítása',
 'saveusergroups'              => 'Felhasználócsoportok mentése',
 'userrights-groupsmember'     => 'Csoporttag:',
+'userrights-groupsremovable'  => 'Eltávolítható csoportok:',
 'userrights-groupsavailable'  => 'Létező csoportok:',
 'userrights-groupshelp'       => 'Jelöld ki azokat a csoportokat, melyekből el akarod távolítani, vagy melyekhez hozzá akarod adni a felhasználót.
 A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod egy csoport kijelölését megszüntetni',
@@ -952,6 +955,8 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'userrights-available-none'   => 'A csoporttagságot nem módosíthatod.',
 'userrights-available-add'    => 'Adhatsz hozzá felhasználókat a(z) $1 csoporthoz.',
 'userrights-available-remove' => 'Távolíthatsz el felhazsnálókat a(z) $1 csoportból.',
+'userrights-no-interwiki'     => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
+'userrights-nodatabase'       => '$1 adatbázis nem létezik vagy nem helyi.',
 
 # Groups
 'group'               => 'Csoport:',
@@ -1026,6 +1031,8 @@ To include the image in a page, use a link in the form
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
 'upload-permitted'            => 'Megengedett fájltípusok: $1.',
+'upload-preferred'            => 'Támogatott fájltípusok: $1.',
+'upload-prohibited'           => 'Tiltott fájltípusok: $1.',
 'uploadlog'                   => 'feltöltési napló',
 'uploadlogpage'               => 'Feltöltési_napló',
 'uploadlogpagetext'           => 'Alább látható a legutóbbi feltöltések listája. Minden időpont a kiszolgáló időzónájában (UTC) van megadva.',
@@ -1174,6 +1181,7 @@ Mielőtt ismét feltöltenéd, nézd meg, miért lett korábban törölve, és e
 # Unused templates
 'unusedtemplates'     => 'Nem használt sablonok',
 'unusedtemplatestext' => 'Ez a lap azon sablon névtérben lévő lapokat gyűjti össze, melyek nem találhatók meg más lapokon. Ellenőrizd a hivatkozásokat, mielőtt törölnéd őket.',
+'unusedtemplateswlh'  => 'más hivatkozások',
 
 # Random page
 'randompage'         => 'Lap találomra',
@@ -1255,6 +1263,9 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue feladat várólista] hossza '''
 'protectedpages'          => 'Védett lapok',
 'protectedpagestext'      => 'A következő lapok átnevezés vagy szerkesztés ellen védettek',
 'protectedpagesempty'     => 'Jelenleg nincsenek ilyen paraméterekkel védett lapok.',
+'protectedtitles'         => 'Létrehozás ellen védett lapok',
+'protectedtitlestext'     => 'A következő lapok védve vannak a létrehozás ellen',
+'protectedtitlesempty'    => 'Jelenleg nincsenek ilyen típusú védett lapok.',
 'listusers'               => 'Felhasználók',
 'specialpages'            => 'Speciális lapok',
 'spheading'               => 'Speciális lapok',

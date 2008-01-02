@@ -325,6 +325,7 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'italic_sample'   => 'Korsiv',
 'italic_tip'      => 'Korsiv',
 'link_sample'     => 'Yümatiäd',
+'link_tip'        => 'Yüm ninik',
 'extlink_sample'  => 'http://www.sam.com yümatiäd',
 'headline_sample' => 'Tiädavödem',
 'headline_tip'    => 'Tiäd nivoda 2id',
@@ -837,6 +838,7 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 'linkshere'           => "Pads sököl payümons ko '''[[:$1]]''':",
 'nolinkshere'         => "Pads nonik peyümons lü '''[[:$1]]'''.",
 'isredirect'          => 'lüodükömapad',
+'istemplate'          => 'ninükam',
 'whatlinkshere-prev'  => '{{PLURAL:$1|büik|büik $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|sököl|sököl $1}}',
 'whatlinkshere-links' => '← yüms',
@@ -971,6 +973,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-n-sitesupport'     => 'Stütolös obsi',
 'tooltip-t-specialpages'    => 'Lised padas patik valik',
 'tooltip-ca-nstab-user'     => 'Logön gebanapadi',
+'tooltip-ca-nstab-image'    => 'Logön padi magoda',
 'tooltip-ca-nstab-template' => 'Logön samafomoti',
 'tooltip-ca-nstab-help'     => 'Logön yufapadi',
 'tooltip-ca-nstab-category' => 'Logön kladapadi',
@@ -1085,4 +1088,3 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'watchlisttools-edit' => 'Logön e redakön galädalisedi',
 
 );
-
