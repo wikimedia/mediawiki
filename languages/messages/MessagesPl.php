@@ -230,7 +230,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategorie',
-'pagecategories'        => '{{PLURAL:$1|Kategoria|Kategorie}}',
+'pagecategories'        => '{{PLURAL:$1|Kategoria|Kategorie|Kategorii}}',
 'category_header'       => 'Artykuły w kategorii "$1"',
 'subcategories'         => 'Podkategorie',
 'category-media-header' => 'Pliki w kategorii "$1"',
@@ -1323,9 +1323,12 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'watchnologin'         => 'Brak logowania',
 'watchnologintext'     => 'Musisz się [[{{ns:special}}:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
 'addedwatch'           => 'Dodana do listy obserwowanych',
-'addedwatchtext'       => 'Strona "[[:$1|$1]]" została dodana do Twojej [[{{ns:special}}:Watchlist|listy obserwowanych]]. Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony dyskusji, a nazwa samej strony zostanie \'\'\'wytłuszczona\'\'\' na [[{{ns:special}}:Recentchanges|liście ostatnich zmian]], aby łatwiej było Ci sam fakt zmiany zauważyć.
+'addedwatchtext'       => 'Strona "[[:$1|$1]]" została dodana do Twojej [[{{ns:special}}:Watchlist|listy obserwowanych]].
+Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony dyskusji, 
+a nazwa samej strony zostanie \'\'\'wytłuszczona\'\'\' na [[{{ns:special}}:Recentchanges|liście ostatnich zmian]], 
+aby łatwiej było Ci sam fakt zmiany zauważyć.
 
-Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przestań obserwować".',
+Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakładkę "nie obserwuj".',
 'removedwatch'         => 'Usunięto z listy obserwowanych',
 'removedwatchtext'     => 'Strona "[[:$1]]" została usunięta z Twojej listy obserwowanych.',
 'watch'                => 'Obserwuj',

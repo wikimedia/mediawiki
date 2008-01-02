@@ -53,6 +53,18 @@ $messages = array(
 'october-gen'   => 'Golke',
 'november-gen'  => 'Rahka',
 'december-gen'  => 'Goeve',
+'jan'           => 'Tsi',
+'feb'           => 'Goe',
+'mar'           => 'Njo',
+'apr'           => 'Voe',
+'may'           => 'Sue',
+'jun'           => 'Ruf',
+'jul'           => 'Snj',
+'aug'           => 'Mïe',
+'sep'           => 'Gae',
+'oct'           => 'Gol',
+'nov'           => 'Rah',
+'dec'           => 'Goe',
 
 'about'         => 'Bïjre',
 'qbedit'        => 'Värrhtoedimmie',
@@ -60,6 +72,7 @@ $messages = array(
 'moredotdotdot' => 'Jienebe...',
 'mypage'        => 'Mov bielie',
 'mytalk'        => 'Mov dïjveldidh',
+'anontalk'      => 'Dïjveldidh ihke dïhte IP',
 
 'errorpagetitle'   => 'Båajhtode',
 'tagline'          => 'Raejeste {{SITENAME}}',
@@ -78,22 +91,27 @@ $messages = array(
 'protect'          => 'Vaarjelidh',
 'protectthispage'  => 'Vaarjelidh dïhte bielie',
 'newpage'          => 'Orre bielie',
+'talkpage'         => 'Dïjveldidh dïhte bielie',
 'talkpagelinktext' => 'Dïerhkestidh',
 'specialpage'      => 'Joekoelaakan Bielie',
 'talk'             => 'Dïerhkestidh',
 'toolbox'          => 'Dïrregeborhtje',
 'userpage'         => 'Vuesehte nuhtjienbielie',
 'projectpage'      => 'Vuesehte Wikipedijebielie',
+'imagepage'        => 'Vuesehte guvvie bielie',
+'viewhelppage'     => 'Vuesehte viehkie bielie',
 'otherlanguages'   => 'jeatjebh gïele',
 'jumptosearch'     => 'ohtsedh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Bïjre {{SITENAME}}',
+'aboutpage' => 'Project:Bïjre',
 'mainpage'  => 'Åejjiebielie',
 
 'editsection' => 'värrhtoedimmie',
 'editold'     => 'värrhtoedimmie',
 'showtoc'     => 'vuesehte',
+'viewdeleted' => 'Vuesehte $1?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bielie',
@@ -109,6 +127,7 @@ $messages = array(
 'error'              => 'Båajhtode',
 'internalerror'      => 'Sjisjnjie båajhtede',
 'internalerror_info' => 'Sjisjnjie båajhtede: $1',
+'badtitle'           => 'Gååre nomme',
 'viewsource'         => 'Vuesehte tjaalege',
 
 # Login and logout pages
@@ -190,12 +209,17 @@ $messages = array(
 'allpagesnext'   => 'Minngebe',
 'allpagessubmit' => 'Vaadtsa',
 
+# Special:Listusers
+'listusers-submit' => 'Vuesehte',
+
 # E-mail user
 'emailuser'       => 'E-påaste dïhte nuhtjien',
 'defemailsubject' => '{{SITENAME}} e-påaste',
+'emailfrom'       => 'Raejeste',
 'emailsubject'    => 'Ïebne',
 'emailmessage'    => 'Dïjre',
 'emailsend'       => 'Seedtie',
+'emailsent'       => 'E-påaste seedtedh',
 
 'created' => 'skaepede',
 
@@ -215,6 +239,8 @@ $messages = array(
 # Block/unblock
 'ipaddress'            => 'IP Tjaalesijjie:',
 'ipadressorusername'   => 'IP Tjaalesijjie jallh nuhtjiennomme:',
+'ipbother'             => 'Jeatjebh tïjje:',
+'ipbotheroption'       => 'jeatjebh',
 'ipblocklist-username' => 'Nuhtjiennomme jallh IP tjaalesijjie:',
 'ipblocklist-submit'   => 'Ohtsedh',
 
@@ -227,13 +253,23 @@ $messages = array(
 'allmessagesname' => 'Nomme',
 
 # Tooltip help for the actions
-'tooltip-search' => 'Ohtsedh {{SITENAME}}',
-'tooltip-p-logo' => 'Åejjiebielie',
+'tooltip-pt-userpage' => 'Mov nuhtjienbielie',
+'tooltip-search'      => 'Ohtsedh {{SITENAME}}',
+'tooltip-p-logo'      => 'Åejjiebielie',
 
 # Attribution
-'and' => 'jih',
+'siteuser' => '{{SITENAME}} nuhtjien $1',
+'and'      => 'jih',
+
+'exif-meteringmode-0'   => 'Ammes',
+'exif-meteringmode-255' => 'Jeatjebh',
+
+'exif-lightsource-0' => 'Ammes',
 
 'exif-scenecapturetype-0' => 'Sïejhme',
+
+'exif-contrast-1' => 'Möövhkes',
+'exif-contrast-2' => 'Garre',
 
 'exif-sharpness-1' => 'Möövhkes',
 'exif-sharpness-2' => 'Garre',

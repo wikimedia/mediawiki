@@ -474,6 +474,7 @@ $2",
 'namespaceprotected'   => "No teniu permís per a editar pàgines en l'espai de noms '''$1'''.",
 'customcssjsprotected' => "No teniu permís per a editar aquesta pàgina, perquè conté paràmetres personals d'un altre usuari.",
 'ns-specialprotected'  => "No poden editar-se les pàgines en l'espai de noms {{ns:special}}.",
+'titleprotected'       => "Aquesta pàgina ha estat protegida contra la seva creació per l'administrador [[User:$1|$1]]. Els seus motius han estat: «$2».",
 
 # Login and logout pages
 'logouttitle'                => 'Fi de la sessió',
@@ -662,6 +663,7 @@ Per a crear-la començeu a escriure en l'espai d'abaix
 Si sou ací per error simplement cliqueu el botó \"enrere\" del vostre navegador.",
 'anontalkpagetext'          => "----''Aquesta és la pàgina de discussió d'un usuari anònim que encara no ha creat un compte o que no usa el seu nom registrat. Per tant hem de usar la seva adreça IP numèrica per identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim i trobau que us han adreçat comentaris inoportuns, si us plau, [[Special:Userlogin|creeu-vos un compte]] per evitar futures confusions amb altres usuaris anònims.''",
 'noarticletext'             => 'En aquest moment no hi ha text en aquesta pàgina. Podeu [[Special:Search/{{PAGENAME}}|cercar-ne el títol]] en altres pàgines o [{{fullurl:{{FULLPAGENAME}}|action=edit}} començar a escriure-hi].',
+'userpage-userdoesnotexist' => "Atenció: El compte d'usuari «$1» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
 'clearyourcache'            => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+Shift+R'' (''Cmd+Shift+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
 'usercssjsyoucanpreview'    => '<strong>Consell:</strong> Utilitzeu el botó «Mostra previsualització» per probar el vostre nou CSS/JS abans de desar-lo.',
 'usercsspreview'            => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari i que encara no s'ha desat!'''",
@@ -1967,6 +1969,7 @@ $1",
 'imagemaxsize'         => "Limita les imatges de les pàgines de descripció d'imatges a:",
 'thumbsize'            => 'Mida de la miniatura:',
 'widthheightpage'      => '$1×$2, $3 pàgines',
+'file-info'            => '(mida: $1, tipus MIME: $2)',
 'file-info-size'       => "($1 × $2 píxels, mida de l'arxiu: $3, tipus MIME: $4)",
 'file-nohires'         => '<small>No hi ha una versió amb una resolució més gran.</small>',
 'svg-long-desc'        => "(fitxer SVG, nominalment $1 × $2 píxels, mida de l'arxiu: $3)",
@@ -2057,6 +2060,7 @@ La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgin
 'exif-subjectdistance'             => 'Distància del subjecte',
 'exif-meteringmode'                => 'Mode de mesura',
 'exif-lightsource'                 => 'Font de llum',
+'exif-flash'                       => 'Flaix',
 'exif-focallength'                 => 'Longitud focal de la lent',
 'exif-subjectarea'                 => 'Enquadre del subjecte',
 'exif-flashenergy'                 => 'Energia del flash',
@@ -2377,4 +2381,3 @@ Trieu amb la previsualització normal.',
 'watchlisttools-raw'  => 'Edita la llista de seguiment sense format',
 
 );
-
