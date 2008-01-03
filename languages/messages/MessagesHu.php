@@ -319,7 +319,7 @@ $messages = array(
 'viewtalkpage'      => 'Beszélgetés megtekintése',
 'otherlanguages'    => 'Más nyelveken',
 'redirectedfrom'    => '($1 szócikkből átirányítva)',
-'redirectpagesub'   => 'Átirányító lap',
+'redirectpagesub'   => 'Átirányítás lap',
 'lastmodifiedat'    => 'A lap utolsó módosítása $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Ezt a lapot {{PLURAL:$1|egy|$1}} alkalommal keresték föl.',
 'protectedpage'     => 'Védett lap',
@@ -423,7 +423,7 @@ $1',
 'readonly'             => 'Az adatbázis zárolt',
 'enterlockreason'      => 'Add meg a lezárás indoklását valamint egy becslést,
 hogy mikor kerül a lezárás feloldásra',
-'readonlytext'         => 'Az adatbázist jelenleg lezárták, és nem vihetők be új bejegyzések vagy módosítások, valószínűleg a napi adatbázis-karbantartás miatt, melynek befejezése után visszavált a normál állapotba. 
+'readonlytext'         => 'A wiki adatbázisa ideiglenesen le van zárva (valószínűleg adatbázis-karbantartás miatt). A lezárás időtartama alatt a lapok nem szerkeszthetők, és új szócikkek sem hozhatóak létre, az oldalak azonban továbbra is böngészhetőek.
 
 Az adminisztrátor, aki lezárta az adatbázist, az alábbi magyarázatot adta: $1',
 'missingarticle'       => 'Az adatbázisban nem található meg a(z) „$1” nevű lap szövege.
@@ -481,7 +481,7 @@ A fiókodat létrehoztuk. Ne felejtsd el módosítani a személyes {{SITENAME}} 
 'yourname'                   => 'Felhasználóneved:',
 'yourpassword'               => 'Jelszavad:',
 'yourpasswordagain'          => 'Jelszavad ismét:',
-'remembermypassword'         => 'Emlékezzen rám ezen a számítógépen',
+'remembermypassword'         => 'Ne léptessen ki a böngésző bezárásakor.',
 'yourdomainname'             => 'A domained:',
 'externaldberror'            => 'Vagy külső adatbázis hitelesítési hiba történt, vagy a külső fiókod frissítése a számodra nem engedélyezett.',
 'loginproblem'               => '<b>Valami probléma van a belépéseddel.</b><br />Kérlek, próbáld ismét!',
@@ -669,7 +669,7 @@ gombját.",
 'note'                      => '<strong>Megjegyzés:</strong>',
 'previewnote'               => '<strong>Ne feledd, hogy ez csak előnézet, a munkád még nincs elmentve!</strong>',
 'previewconflict'           => 'Ez az előnézet a felső szerkesztőablakban levő szövegnek megfelelő képet mutatja, ahogy a mentés után kinézne.',
-'session_fail_preview'      => '<strong>Sajnos nem tudtuk feldolgozni a szerkesztésedet, mert elveszett a session adat. Kérjük próbálkozz újra! Amennyiben továbbra sem sikerül, próbálj meg kijelentkezni, majd ismét bejelentkezni!</strong>',
+'session_fail_preview'      => '<strong>Sajnos nem tudtuk feldolgozni a szerkesztésedet, mert elveszett a session-adat. Kérjük próbálkozz újra! Amennyiben továbbra sem sikerül, próbálj meg kijelentkezni, majd ismét bejelentkezni!</strong>',
 'session_fail_preview_html' => "<strong>Elnézést! A munkamenet adatainak megsemmisülése miatt nem tudtuk feldolgozni a szerkesztésedet.</strong>
 
 ''Mivel ebben a wikiben a nyers HTML engedélyezett, az előnézet a JavaScript támadások miatti elővigyázatosságból rejtett.''
@@ -701,15 +701,14 @@ Ha mented, akkor az ezen változat után végzett összes módosítás elvész.<
 'copyrightwarning2'         => 'A {{SITENAME}} tartalmát, így az általad beküldött szövegeket is más résztvevők átírhatják vagy törölhetik. Ha nem akarod, hogy a művedet átírják, ne küldd be ide.<br />
 A beküldéssel egyben azt is tanúsítod, hogy a beküldött szöveget magad írtad, vagy közkincsből vagy más szabadon felhasználható forrásból másoltad (a részletekért lásd: $1).
 <strong>NE KÜLDJ BE JOGVÉDETT MŰVET ENGEDÉLY NÉLKÜL!</strong>',
-'longpagewarning'           => '<strong>FIGYELEM: Ez a lap $1 kilobájt hosszú;
-néhány böngészőnek problémái vannak a 32KB körüli vagy nagyobb lapok
-szerkesztésével.
+'longpagewarning'           => '<strong>FIGYELEM: Ez a lap $1 kilobájt hosszú; egyes
+böngészőknek problémát okoz a 32 kB-os vagy nagyobb lapok szerkesztése.
 Fontold meg a lap kisebb szakaszokra bontását.</strong>',
 'longpageerror'             => '<strong>HIBA: Az általad beküldött szöveg $1 kilobájt hosszú, ami több az engedélyezett $2 kilobájtnál. It cannot be saved.</strong>',
-'readonlywarning'           => '<strong>FIGYELMEZTETÉS: Az adatbázist karbantartás miatt zárolták,
-ezért sajnos nem tudod most menteni a szerkesztéseidet. A szöveget a vágólapra másolhatod
-és beillesztheted egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
-'protectedpagewarning'      => '<strong>FIGYELMEZTETÉS:  Ezt az oldalt zárolták, ezért csak a rendszerfelelősi jogokkal rendelkező felhasználók szerkeszthetik.</strong>',
+'readonlywarning'           => '<strong>FIGYELMEZTETÉS: A wiki adatbázisát karbantartás miatt zárolták,
+ezért sajnos nem tudod majd elmenteni a szerkesztéseidet. A lap szöveget kimásolhatod
+egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
+'protectedpagewarning'      => '<strong>FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.</strong>',
 'semiprotectedpagewarning'  => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált felhasználók nem szerkeszthetik.",
 'cascadeprotectedwarning'   => "'''Figyelmeztetés:''' Ezt az oldalt zárolták, ezért csak a rendszerfelelősi jogokkal rendelkező felhasználók szerkeszthetik, mert a következő lépcsőzetes védelmű {{PLURAL:$1|page|oldalak}} közé tartozik:",
 'templatesused'             => 'Sablonok ezen a lapon:',
@@ -724,10 +723,10 @@ Visszamehetsz és szerkeszthetsz egy létező lapot, ill. [[Special:Userlogin|be
 'nocreate-loggedin'         => 'Az új lapok készítése nem engedélyezett ebben a wikiben a számodra.',
 'permissionserrors'         => 'Engedélyezési hibák',
 'permissionserrorstext'     => 'Végrehajtása nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
-'recreate-deleted-warn'     => "'''Figyelmeztetés: Olyan oldalt készítesz újra, melyet már töröltünk.''',
+'recreate-deleted-warn'     => "'''Vigyázat: egy olyan lapot akarsz létrehozni, amit korábban már töröltünk.'''
 
-Vedd fontolóra, hogy helyénvaló-e ezen lap szerkesztésének a folytatása.
-Ezen lap törlésnaplóját a kényelem kedvéért alább találod:",
+Mielőtt létrehoznád a lapot nézd meg, miért került korábban törlésre és ellenőrizd,
+hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
 
 # "Undo" feature
 'undo-success' => 'A szerkesztés visszavonható. Kérjük, ellenőrizd a változásokat alább, hogy valóban ezt szeretnéd-e tenni, majd kattints a Lap mentése gombra a visszavonás véglegesítéséhez.',
@@ -745,11 +744,11 @@ Egy IP-címet gyakran több különböző ember is használ; lehetséges, hogy e
 'viewpagelogs'        => 'A lap naplóinak megtekintése',
 'nohistory'           => 'Ennek a lapnak nincs szerkesztési története.',
 'revnotfound'         => 'A változat nem található',
-'revnotfoundtext'     => 'A lap általad kért régi változata nem található. Kérjük, ellenőrizd az URL-t, amivel erre a lapra jutottál.',
+'revnotfoundtext'     => 'A lap általad kért régi változatát nem találom. Kérlek, ellenőrizd az URL-t, amivel erre a lapra jutottál.',
 'loadhist'            => 'Laptörténet beolvasása',
 'currentrev'          => 'Aktuális változat',
 'revisionasof'        => '$1 változat',
-'revision-info'       => '$2 $1 kori változata',
+'revision-info'       => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.',
 'previousrevision'    => '←Régebbi változat',
 'nextrevision'        => 'Újabb változat→',
 'currentrevisionlink' => 'legfrissebb változat',
@@ -926,7 +925,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'contextlines'             => 'Találatonként mutatott sorok száma:',
 'contextchars'             => 'Soronkénti szövegkörnyezet (karakterszám):',
 'stub-threshold'           => 'A <a href="#" class="stub">stub hivatkozás</a> formázásának küszöbértéke:',
-'recentchangesdays'        => 'Napok száma, amíg a legutóbbi változtatások közt látható:',
+'recentchangesdays'        => 'Napok száma a friss változtatásokban:',
 'recentchangescount'       => 'Címszavak száma a friss változtatásokban:',
 'savedprefs'               => 'Az új beállításaid érvénybe léptek.',
 'timezonelegend'           => 'Időzóna',
@@ -978,19 +977,19 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 
 # User rights log
 'rightslog'      => 'Felhasználói jogosultságok naplója',
-'rightslogtext'  => 'A felhasználói jogok változtatásainak naplója.',
-'rightslogentry' => '$1 csoporttagsága $2 típusról $3 típusra változott',
-'rightsnone'     => '(nincs)',
+'rightslogtext'  => 'Ez a rendszernapló a felhasználó jogosultságok változásait mutatja.',
+'rightslogentry' => 'megváltoztatta $1 szerkesztő felhasználó jogait (régi: $2; új: $3)',
+'rightsnone'     => '(semmi)',
 
 # Recent changes
 'nchanges'                          => '$1 változtatás',
 'recentchanges'                     => 'Friss változtatások',
 'recentchangestext'                 => 'A wiki legutóbbi változtatásainak követése ezen a lapon.',
-'recentchanges-feed-description'    => 'A wiki legutóbbi változtatásainak követése ebben a hírcsatornában.',
+'recentchanges-feed-description'    => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',
 'rcnote'                            => 'Alább az utolsó <strong>$2</strong> nap utolsó <strong>$1</strong> változtatása látható. A lap generálásának időpontja $3.',
 'rcnotefrom'                        => 'Alább láthatóak a <b>$2</b> óta történt változások (<b>$1</b>-ig).',
 'rclistfrom'                        => 'Az új változtatások kijelzése $1 után',
-'rcshowhideminor'                   => 'kisebb módosítások $1',
+'rcshowhideminor'                   => 'apró módosítások $1',
 'rcshowhidebots'                    => 'robotok szerkesztéseinek $1',
 'rcshowhideliu'                     => 'bejelentkezett felhasználók szerkesztéseinek $1',
 'rcshowhideanons'                   => 'névtelen szerkesztések $1',
@@ -1013,7 +1012,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'recentchangeslinked'          => 'Kapcsolódó változtatások',
 'recentchangeslinked-title'    => 'A(z) $1 lappal kapcsolatos változtatások',
 'recentchangeslinked-noresult' => 'Nem történt változtatás a hivatkozott lapokon a megadott időtartam alatt.',
-'recentchangeslinked-summary'  => "Ez a speciális lap listázza ki az utolsó változtatásokat azokon a lapokon, melyekre hivatkoznak. A figyelőlistán lévő oldalak '''félkövér''' stílusúak.",
+'recentchangeslinked-summary'  => "Ezek azoknak a lapoknak a legutóbbi változtatásai, amik be vannak linkelve erről az oldalról. Amik fenn vannak a figyelőlistádon, azok '''félkövérrel''' szerepelnek.",
 
 # Upload
 'upload'                      => 'Fájl feltöltése',
@@ -1131,8 +1130,8 @@ Mielőtt ismét feltöltenéd, nézd meg, miért lett korábban törölve, és e
 'linkstoimage'              => 'Az alábbi lapok hivatkoznak erre a képre:',
 'nolinkstoimage'            => 'Erre a képre nem hivatkozik lap.',
 'sharedupload'              => 'Ez a fájlt egy megosztott feltöltés, és más projektek használhatják.',
-'shareduploadwiki'          => 'Lásd a [$1 file leírólapját] a további információkért.',
-'shareduploadwiki-linktext' => 'fájlleírás oldala',
+'shareduploadwiki'          => 'Lásd a [$1 fájl leírólapját] a további információkért.',
+'shareduploadwiki-linktext' => 'fájl leírólapját',
 'noimage'                   => 'Ezen a néven nem létezik médiafájl. Ha szeretnél, $1 egyet.',
 'noimage-linktext'          => 'feltölthetsz',
 'uploadnewversion-linktext' => 'A fájl újabb változatának felküldése',
@@ -1193,7 +1192,7 @@ Mielőtt ismét feltöltenéd, nézd meg, miért lett korábban törölve, és e
 
 # Statistics
 'statistics'             => 'Statisztika',
-'sitestats'              => 'Tartalmi statisztika',
+'sitestats'              => 'Tartalmi statisztikák',
 'userstats'              => 'Felhasználói statisztika',
 'sitestatstext'          => "{{PLURAL:\$1|is '''1''' lap|van '''\$1''' lap összesen}} az adatbázisban.
 Ezek közé tartoznak a \"vitalapok\", oldalak a(z) {{SITENAME}} webhelyről, minimális \"stub\"
@@ -1470,13 +1469,13 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]) végezte.',
 'editcomment'                 => 'A változtatás összefoglalója "<i>$1</i>" volt.', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] szerkesztései visszaállítva $1 utolsó változatára',
-'rollback-success'            => '$1 visszaállított szerkesztései; az utolsó verzióra visszaállította: $2.',
+'revertpage'                  => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]] szerkesztéséről [[User:$1|$1]] szerkesztésére',
+'rollback-success'            => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
 'sessionfailure'              => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
 ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
 Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.',
 'protectlogpage'              => 'Lapvédelmi_napló',
-'protectlogtext'              => 'Ez a lezárt/megnyitott lapok listája. A részleteket a zárt lapok irányelve tartalmazza.',
+'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:Protectedpages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
 'modifiedarticleprotection'   => 'a védelmi szint a következőre változott: "[[$1]]"',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) "[[$1]]" lapról',
@@ -1511,8 +1510,9 @@ Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
 'pagesize'                    => '(bájt)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Szerkesztés',
-'restriction-move' => 'Átmozgatás',
+'restriction-edit'   => 'Szerkesztés',
+'restriction-move'   => 'Átmozgatás',
+'restriction-create' => 'Létrehozás',
 
 # Restriction levels
 'restriction-level-sysop'         => 'teljesen védett',
@@ -1680,7 +1680,7 @@ $1',
 'blockme'                     => 'Saját magam blokkolása',
 'proxyblocker'                => 'Proxyblokkoló',
 'proxyblocker-disabled'       => 'Ez a funkció le van tiltva.',
-'proxyblockreason'            => "Az IP címed ''open proxy'' probléma miatt le van tiltva. Vedd fel a kapcsolatot egy informatikussal vagy az internet szolgáltatóddal ezen súlyos biztonsági probléma ügyében.",
+'proxyblockreason'            => "Az IP-címeden ''nyílt proxy'' üzemel. Amennyiben nem használsz proxyt, vedd fel a kapcsolatot egy informatikussal vagy az internetszolgáltatóddal ezen súlyos biztonsági probléma ügyében.",
 'proxyblocksuccess'           => 'Kész.',
 'sorbsreason'                 => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán.',
 'sorbs_create_account_reason' => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán. Nem hozhatsz létre fiókot.',
@@ -1991,8 +1991,8 @@ $1',
 'file-info-size'       => '($1 × $2 képpont, fájlméret: $3, MIME típus: $4)',
 'file-nohires'         => '<small>Nem érhető el nagyobb felbontású változat.</small>',
 'svg-long-desc'        => '(SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3)',
-'show-big-image'       => 'Teljes felbontás',
-'show-big-image-thumb' => '<small>Jelen előnézet mérete: $1 × $2 képpont</small>',
+'show-big-image'       => 'A kép nagyfelbontású változata',
+'show-big-image-thumb' => '<small>Az előnézet mérete: $1 × $2 képpont</small>',
 
 # Special:Newimages
 'newimages'    => 'Új képek galériája',
@@ -2305,7 +2305,7 @@ $1
 'confirmrecreate'     => "Miután elkezdted szerkeszteni, [[User:$1|$1]] ([[User vita:$1|vita]]) törölte ezt a lapot a következő indokkal:
 : ''$2''
 Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
-'recreate'            => 'Újra létrehozás',
+'recreate'            => 'Újraírás',
 
 # HTML dump
 'redirectingto' => 'Átirányítás a következőre: [[:$1|$1]]...',

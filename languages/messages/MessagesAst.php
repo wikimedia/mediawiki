@@ -1771,6 +1771,8 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-colorspace'                  => 'Espaciu de color',
 'exif-componentsconfiguration'     => 'Significáu de cada componente',
 'exif-compressedbitsperpixel'      => "Mou de compresión d'imaxe",
+'exif-pixelydimension'             => "Anchor d'imaxe válidu",
+'exif-pixelxdimension'             => "Altor d'imaxe válidu",
 'exif-makernote'                   => 'Notes del fabricante',
 'exif-usercomment'                 => 'Comentarios del usuariu',
 'exif-datetimeoriginal'            => 'Fecha y hora de la xeneración de datos',
@@ -1785,27 +1787,48 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-maxaperturevalue'            => "Valor máximu d'apertura",
 'exif-lightsource'                 => 'Fonte de la lluz',
 'exif-flash'                       => 'Flax',
+'exif-focallength'                 => 'Llonxitú focal de la lente',
+'exif-flashenergy'                 => 'Enerxía del flax',
+'exif-focalplanexresolution'       => 'Resolución X del planu focal',
+'exif-focalplaneyresolution'       => 'Resolución Y del planu focal',
+'exif-focalplaneresolutionunit'    => 'Unidá de resolución del planu focal',
 'exif-exposureindex'               => "Índiz d'esposición",
+'exif-filesource'                  => 'Orixe del archivu',
 'exif-cfapattern'                  => 'patrón CFA',
 'exif-exposuremode'                => "Mou d'esposición",
 'exif-whitebalance'                => 'Balance de blancos',
+'exif-focallengthin35mmfilm'       => 'Llonxitú focal en película de 35 mm',
 'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturación',
 'exif-sharpness'                   => 'Nitidez',
+'exif-gpsversionid'                => 'Versión de la etiqueta GPS',
 'exif-gpslatituderef'              => 'Llatitú Norte o Sur',
 'exif-gpslatitude'                 => 'Llatitú',
 'exif-gpslongituderef'             => 'Llonxitú Este o Oeste',
 'exif-gpslongitude'                => 'Llonxitú',
+'exif-gpsaltituderef'              => "Referencia d'altitú",
 'exif-gpsaltitude'                 => 'Altitú',
 'exif-gpstimestamp'                => 'Hora GPS (reló atómicu)',
 'exif-gpssatellites'               => 'Satélites usaos pa la midida',
+'exif-gpsstatus'                   => 'Estáu del receptor',
 'exif-gpsmeasuremode'              => 'Mou de midida',
 'exif-gpsdop'                      => 'Precisión de midida',
+'exif-gpsspeedref'                 => 'Unidá de velocidá',
+'exif-gpsspeed'                    => 'Velocidá del receutor GPS',
+'exif-gpstrackref'                 => 'Referencia de la direición de movimientu',
 'exif-gpstrack'                    => 'Direición de movimientu',
+'exif-gpsimgdirectionref'          => 'Referencia de la direición de la imaxe',
+'exif-gpsimgdirection'             => 'Direición de la imaxe',
+'exif-gpsdestlatituderef'          => 'Referencia de la llatitú de destín',
 'exif-gpsdestlatitude'             => 'Llatitú de destín',
+'exif-gpsdestlongituderef'         => 'Referencia de la llonxitú de destín',
 'exif-gpsdestlongitude'            => 'Llonxitú de destín',
+'exif-gpsdestdistanceref'          => 'Referencia de la distancia al destín',
 'exif-gpsdestdistance'             => 'Distancia al destín',
+'exif-gpsprocessingmethod'         => 'Nome del métodu de procesamientu de GPS',
+'exif-gpsareainformation'          => "Nome de l'área GPS",
 'exif-gpsdatestamp'                => 'Fecha GPS',
+'exif-gpsdifferential'             => 'Correición diferencial de GPS',
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimida',
@@ -1816,18 +1839,29 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-orientation-2' => 'Voltiada horizontalmente', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotada 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Voltiada verticalmente', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Rotada 90° a manzorga y voltiada verticalmente', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Rotada 90° a mandrecha', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rotada 90° a mandrecha y voltiada verticalmente', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rotada 90° a manzorga', # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'nun esiste',
 
 'exif-exposureprogram-0' => 'Non definida',
 'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
+'exif-exposureprogram-3' => "Prioridá d'apertura",
+'exif-exposureprogram-4' => "Prioridá d'obturador",
+'exif-exposureprogram-5' => 'Programa creativu (con prioridá de profundidá de campu)',
+'exif-exposureprogram-6' => "Programa d'aición (prioridá d'alta velocidá del obturador)",
 'exif-exposureprogram-7' => 'Mou retratu (pa semeyes cercanes col fondu desenfocáu)',
 'exif-exposureprogram-8' => 'Mou paisaxe (pa semeyes amplies col fondu enfocáu)',
 
 'exif-subjectdistance-value' => '{{PLURAL:$1|$1 metru|$1 metros}}',
 
 'exif-meteringmode-0'   => 'Desconocíu',
+'exif-meteringmode-1'   => 'Promediáu',
+'exif-meteringmode-3'   => 'Puntual',
+'exif-meteringmode-4'   => 'Multipuntu',
 'exif-meteringmode-5'   => 'Patrón',
 'exif-meteringmode-6'   => 'Parcial',
 'exif-meteringmode-255' => 'Otru',
@@ -1839,11 +1873,30 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-lightsource-4'   => 'Flax',
 'exif-lightsource-9'   => 'Tiempu despexáu',
 'exif-lightsource-10'  => 'Tiempu ñubláu',
+'exif-lightsource-11'  => 'Solombra',
+'exif-lightsource-12'  => 'Fluorescente lluz de día (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Fluorescente blancu día (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Fluorescente blancu fríu (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Fluorescente blancu (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Lluz estándar A',
+'exif-lightsource-18'  => 'Lluz estándar B',
+'exif-lightsource-19'  => 'Lluz estándar C',
 'exif-lightsource-255' => 'Otra fonte de lluz',
 
 'exif-focalplaneresolutionunit-2' => 'pulgaes',
 
 'exif-sensingmethod-1' => 'Non definíu',
+'exif-sensingmethod-2' => "Sensor d'área de color d'un chip",
+'exif-sensingmethod-3' => "Sensor d'área de color de dos chips",
+'exif-sensingmethod-4' => "Sensor d'área de color de tres chips",
+'exif-sensingmethod-5' => "Sensor d'área secuencial de color",
+'exif-sensingmethod-7' => 'Sensor Trillinial',
+'exif-sensingmethod-8' => 'Sensor llinial secuencial de color',
+
+'exif-scenetype-1' => 'Una imaxe fotografiada direutamente',
+
+'exif-customrendered-0' => 'Procesu normal',
+'exif-customrendered-1' => 'Procesu personalizáu',
 
 'exif-exposuremode-0' => 'Esposición automática',
 'exif-exposuremode-1' => 'Esposición manual',
@@ -1950,6 +2003,9 @@ Si esti *nun* yes tú, nun abras l\'enllaz. Esti códigu de confirmación caduca
 # Scary transclusion
 'scarytranscludetoolong' => '[La URL ye demasiao llarga; sentímoslo]',
 
+# Trackbacks
+'trackbackremove' => ' ([$1 Borrar])',
+
 # Delete conflict
 'deletedwhileediting' => "Avisu: ¡Esta páxina foi borrada depués de qu'entamaras a editala!",
 'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta páxina depués de qu'empecipiaras a editala pola siguiente razón:
@@ -1967,13 +2023,17 @@ $1",
 'confirm_purge_button' => 'Aceutar',
 
 # AJAX search
-'articletitles' => "Páxines qu'emprimen por ''$1''",
-'useajaxsearch' => 'Usar la busca AJAX',
+'searchcontaining' => "Buscar páxines que contengan ''$1''.",
+'searchnamed'      => "Buscar páxines col nome ''$1''.",
+'articletitles'    => "Páxines qu'emprimen por ''$1''",
+'hideresults'      => 'Esconder resultaos',
+'useajaxsearch'    => 'Usar la busca AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',
 'imgmultipagenext' => 'páxina siguiente →',
 'imgmultigo'       => '¡Dir!',
+'imgmultigotopre'  => 'Dir a la páxina',
 
 # Table pager
 'ascending_abbrev'         => 'asc',
@@ -1984,6 +2044,7 @@ $1",
 'table_pager_last'         => 'Postrer páxina',
 'table_pager_limit'        => 'Amosar $1 elementos per páxina',
 'table_pager_limit_submit' => 'Dir',
+'table_pager_empty'        => 'Nun hai resultaos',
 
 # Auto-summaries
 'autosumm-blank'   => "Eliminando'l conteníu de la páxina",
@@ -1994,6 +2055,10 @@ $1",
 # Live preview
 'livepreview-loading' => 'Cargando…',
 'livepreview-ready'   => 'Cargando… ¡Llisto!',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => "Los cambeos de los caberos $1 segundos pue que nun s'amuesen nesta llista.",
+'lag-warn-high'   => "Pol mor d'un importante retrasu del servidor de la base de datos, los cambeos de los caberos $1 segundos pue que nun s'amuesen nesta llista.",
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines de discusión.',
