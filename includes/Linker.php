@@ -318,7 +318,7 @@ class Linker {
 	/**
 	 * Make a red link to the edit page of a given title.
 	 * 
-	 * @param $title String: The text of the title
+	 * @param $nt Title object of the target page
 	 * @param $text  String: Link text
 	 * @param $query String: Optional query part
 	 * @param $trail String: Optional trail. Alphabetic characters at the start of this string will
@@ -360,7 +360,7 @@ class Linker {
 	 * 
 	 * Make a brown link to a short article.
 	 * 
-	 * @param $title String: the text of the title
+	 * @param $nt Title object of the target page
 	 * @param $text  String: link text
 	 * @param $query String: optional query part
 	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
@@ -374,7 +374,7 @@ class Linker {
 	/**
 	 * Make a coloured link.
 	 * 
-	 * @param $title  String:  the text of the title
+	 * @param $nt Title object of the target page
 	 * @param $colour Integer: colour of the link
 	 * @param $text   String:  link text
 	 * @param $query  String:  optional query part
@@ -490,24 +490,24 @@ class Linker {
 	 * @param Title $title Title object
 	 * @param File $file File object, or false if it doesn't exist
 	 *
-     * @param array $frameParams Associative array of parameters external to the media handler.
-     *     Boolean parameters are indicated by presence or absence, the value is arbitrary and 
-     *     will often be false.
-     *          thumbnail       If present, downscale and frame
-     *          manualthumb     Image name to use as a thumbnail, instead of automatic scaling
-     *          framed          Shows image in original size in a frame
-     *          frameless       Downscale but don't frame
-     *          upright         If present, tweak default sizes for portrait orientation
-     *          upright_factor  Fudge factor for "upright" tweak (default 0.75)
-     *          border          If present, show a border around the image
-     *          align           Horizontal alignment (left, right, center, none)
-     *          valign          Vertical alignment (baseline, sub, super, top, text-top, middle, 
-     *                          bottom, text-bottom)
-     *          alt             Alternate text for image (i.e. alt attribute). Plain text.
-     *          caption         HTML for image caption.
+	 * @param array $frameParams Associative array of parameters external to the media handler.
+	 *     Boolean parameters are indicated by presence or absence, the value is arbitrary and 
+	 *     will often be false.
+	 *          thumbnail       If present, downscale and frame
+	 *          manualthumb     Image name to use as a thumbnail, instead of automatic scaling
+	 *          framed          Shows image in original size in a frame
+	 *          frameless       Downscale but don't frame
+	 *          upright         If present, tweak default sizes for portrait orientation
+	 *          upright_factor  Fudge factor for "upright" tweak (default 0.75)
+	 *          border          If present, show a border around the image
+	 *          align           Horizontal alignment (left, right, center, none)
+	 *          valign          Vertical alignment (baseline, sub, super, top, text-top, middle, 
+	 *                          bottom, text-bottom)
+	 *          alt             Alternate text for image (i.e. alt attribute). Plain text.
+	 *          caption         HTML for image caption.
 	 *
-     * @param array $handlerParams Associative array of media handler parameters, to be passed 
-     *       to transform(). Typical keys are "width" and "page". 
+	 * @param array $handlerParams Associative array of media handler parameters, to be passed 
+	 *       to transform(). Typical keys are "width" and "page". 
 	 */
 	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array() ) {
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
