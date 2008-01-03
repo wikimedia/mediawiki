@@ -1553,7 +1553,8 @@ $wgMessageStructure = array(
 		'importhistoryconflict',
 		'importnosources',
 		'importnofile',
-		'importuploaderror',
+		'importuploaderrorsize',
+		'importuploaderrorpartial',
 	),
 	'importlog' => array(
 		'importlogpage',
