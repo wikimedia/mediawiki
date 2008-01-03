@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  *
+ * @author Mormegil
  * @author Li-sung
  * @author Helix84
  * @author Danny B.
