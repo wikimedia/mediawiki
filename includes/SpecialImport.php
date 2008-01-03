@@ -850,7 +850,15 @@ class ImportStreamSource {
 			return new WikiErrorMsg( 'importnofile' );
 		}
 		if( !empty( $upload['error'] ) ) {
-			return new WikiErrorMsg( 'importuploaderror', $upload['error'] );
+			switch($upload['error']){
+				case 1: # The uploaded file exceeds the upload_max_filesize directive in php.ini. 
+					return new WikiErrorMsg( 'importuploaderror' );
+				case 2: # The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
+					return new WikiErrorMsg( 'importuploaderrorsize' );
+				case 3: # The uploaded file was only partially uploaded
+					return new WikiErrorMsg( 'importuploaderrorpartial' );
+			}
+			
 		}
 		$fname = $upload['tmp_name'];
 		if( is_uploaded_file( $fname ) ) {

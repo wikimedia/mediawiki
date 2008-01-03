@@ -2301,7 +2301,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importhistoryconflict'      => 'Conflicting history revision exists (may have imported this page before)',
 'importnosources'            => 'No transwiki import sources have been defined and direct history uploads are disabled.',
 'importnofile'               => 'No import file was uploaded.',
-'importuploaderror'          => 'Upload of import file failed; perhaps the file is bigger than the allowed upload size.',
+'importuploaderrorsize'      => 'Upload of import file failed. The file is bigger than the allowed upload size.',
+'importuploaderrorpartial'   => 'Upload of import file failed. The file was only partially uploaded.',
 
 # Import log
 'importlogpage'                    => 'Import log',
