@@ -1875,7 +1875,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'importhistoryconflict'      => 'Existujú konfliktné histórie revízií (možno už bola táto stránka importovaná)',
 'importnosources'            => 'Neboli definované žiadne zdroje pre transwiki import a priame nahranie histórie je vypnuté.',
 'importnofile'               => 'Nebol nahraný import súbor.',
-'importuploaderror'          => 'Nahrávanie importovaného súboru sa nepodarilo; možno súbor presahuje najväčšiu povolenú veľkosť.',
 
 # Import log
 'importlogpage'                    => 'Záznam importov',

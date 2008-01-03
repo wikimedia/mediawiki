@@ -1698,11 +1698,12 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'patrol-log-auto' => '(automática)',
 
 # Image deletion
-'deletedrevision'       => 'Borrada versión vieya $1',
-'filedeleteerror-short' => "Error al borrar l'archivu: $1",
-'filedeleteerror-long'  => "Atopáronse errores al borrar l'archivu:
+'deletedrevision'             => 'Borrada versión vieya $1',
+'filedeleteerror-short'       => "Error al borrar l'archivu: $1",
+'filedeleteerror-long'        => "Atopáronse errores al borrar l'archivu:
 
 $1",
+'filedelete-old-unregistered' => 'La revisión d\'archivu "$1" nun ta na base de datos.',
 
 # Browsing diffs
 'previousdiff' => '← Diferencia anterior',
@@ -1723,6 +1724,7 @@ $1",
 # Special:Newimages
 'newimages'    => "Galería d'imáxenes nueves",
 'showhidebots' => '($1 bots)',
+'noimages'     => 'Nun hai nada que ver.',
 
 # Bad image list
 'bad_image_list' => "El formatu ye'l que sigue:
@@ -1754,11 +1756,19 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-orientation'                 => 'Orientación',
 'exif-samplesperpixel'             => 'Númberu de componentes',
 'exif-planarconfiguration'         => 'Distribución de los datos',
+'exif-ycbcrsubsampling'            => "Razón de somuestréu d'Y a C",
 'exif-ycbcrpositioning'            => 'Allugamientu Y y C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
+'exif-resolutionunit'              => 'Unidá de resolución X y Y',
+'exif-stripoffsets'                => 'Allugamientu de los datos de la imaxe',
+'exif-rowsperstrip'                => 'Númberu de files per banda',
+'exif-stripbytecounts'             => 'Bytes per banda comprimida',
 'exif-jpeginterchangeformat'       => 'Desplazamientu al JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes de datos JPEG',
+'exif-transferfunction'            => 'Función de tresferencia',
+'exif-whitepoint'                  => 'Cromacidá de puntu blancu',
+'exif-primarychromaticities'       => 'Cromacidá de los primarios',
 'exif-datetime'                    => 'Fecha y hora de modificación del archivu',
 'exif-imagedescription'            => 'Títulu de la imaxe',
 'exif-make'                        => 'Fabricante de la cámara',

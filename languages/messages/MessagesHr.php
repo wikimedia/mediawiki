@@ -260,6 +260,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'edithelp'          => 'Kako uređivati stranicu',
 'edithelppage'      => 'Help:Kako_uređivati_stranicu',
 'faq'               => 'Najčešća pitanja',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Pomoć',
 'mainpage'          => 'Glavna stranica',
 'policy-url'        => 'Project:Pravila',
@@ -489,7 +490,7 @@ Možete zanemariti ovu poruku, ukoliko je suradnički račun stvoren nenamjerno.
 'resetpass_submit'        => 'Postavite lozinku i prijavite se',
 'resetpass_success'       => 'Lozinka uspješno postavljena! Prijava u tijeku...',
 'resetpass_bad_temporary' => 'Nevažeća privremena lozinka. Možda ste već uspješno promijenili svoju lozinku ili ste zatražili novu privremenu lozinku.',
-'resetpass_forbidden'     => 'Na ovom wikiju lozinka ne može biti promijenjena',
+'resetpass_forbidden'     => 'Na ovom wikiju ({{SITENAME}}) lozinka ne može biti promijenjena',
 'resetpass_missing'       => 'Forma ne sadrži tražene podatke.',
 
 # Edit page toolbar
@@ -633,6 +634,7 @@ promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je 
 'protectedpagewarning'      => '<strong>UPOZORENJE: ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima.</strong>',
 'semiprotectedpagewarning'  => "'''Napomena:''' Ovu stranicu mogu uređivati samo prijavljeni suradnici.",
 'cascadeprotectedwarning'   => "'''UPOZORENJE:''' Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima, jer je uključena u {{PLURAL:\$1|slijedeću stranicu|slijedeće stranice}} koje su zaštićene \"prenosivom\" zaštitom:",
+'titleprotectedwarning'     => '<strong>UPOZORENJE:  Ova stranica je zaključana i samo je neki suradnici mogu stvoriti.</strong>',
 'templatesused'             => 'Predlošci korišteni na ovoj stranici:',
 'templatesusedpreview'      => 'Predlošci koji se koriste u ovom predpregledu:',
 'templatesusedsection'      => 'Predlošci koji se koriste u odjeljku:',
@@ -739,6 +741,7 @@ postavili dodatna ograničenja.',
 'logdelete-success'           => 'Vidljivost uređivanja uspješno postavljena.',
 
 # Oversight log
+'oversightlog'    => 'Oversight log',
 'overlogpagetext' => 'Slijedi popis posljednjih brisanja stranica i blokiranja koja uključuju sadržaj sakriven od Administratora.
 Vidi [[Special:Ipblocklist|IP popis blokiranja]] za popis trenutno blokiranih IP adresa.',
 
@@ -872,6 +875,7 @@ za podešavanje korisničkih postavki.',
 'userrights-editusergroup'    => 'Uredi skupine suradnika',
 'saveusergroups'              => 'Snimi skupine suradnika',
 'userrights-groupsmember'     => 'Član:',
+'userrights-groupsremovable'  => 'Uklonjive grupe:',
 'userrights-groupsavailable'  => 'Dostupne skupine:',
 'userrights-groupshelp'       => 'Izaberite skupine u koje želite dodati ili iz njih ukloniti suradnika.
 Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovremenim pritiskom CTRL + lijeva tipka miša',
@@ -881,6 +885,8 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'userrights-available-remove' => 'Možete uklanjati suradnike iz grupe $1.',
 'userrights-no-interwiki'     => 'Nemate prava da uređujete prava suradnika na drugim wikijima.',
 'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalno dostupna.',
+'userrights-nologin'          => 'Trebate se [[Special:Userlogin|prijaviti]] s administratorskim računom da bi mogli dodijeliti suradnička prava.',
+'userrights-notallowed'       => 'Vaš trenutačni suradnički račun nema ovlasti mijenjanja suradničkih prava.',
 
 # Groups
 'group'               => 'Grupa:',
@@ -891,6 +897,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'group-all'           => '(svi)',
 
 'group-autoconfirmed-member' => 'Suradnik prijavljen duže od 4 dana',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Birokrat',
 
@@ -924,6 +931,9 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'hist'                              => 'pov',
 'hide'                              => 'sakrij',
 'show'                              => 'prikaži',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|suradnik|suradnika|suradnika}} prati ovu stranicu]',
 'rc_categories'                     => 'Ograniči na kategorije (odvojene znakom  "|")',
 'rc_categories_any'                 => 'Sve',
@@ -1143,7 +1153,7 @@ Duljina [http://meta.wikimedia.org/wiki/Help:Job_queue zadataka za izvršavanje]
 
 'doubleredirects'     => 'Dvostruka preusmjeravanja',
 'doubleredirectstext' => '<b>Pozor:</b>ovaj popis može sadržavati nepravilne članove. To obično znači
-da postoji dodatan tekst u poveznici prve naredbe \#REDIRECT.<br />
+da postoji dodatan tekst u poveznici prve naredbe <nowiki>#REDIRECT</nowiki><br />
 Svaki red sadrži poveznice na prvo i drugo preusmjeravanje, te te prvu liniju teksta drugog preusmjeravanja
 koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.',
 
@@ -1749,7 +1759,9 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'importhistoryconflict'      => 'Došlo je do konflikta među prijašnjim inačicama (ova je stranica možda već uvezena)',
 'importnosources'            => 'Nije unesen nijedan izvor za transwiki uvoz i neposredno postavljanje povijesti je onemogućeno.',
 'importnofile'               => 'Nije postavljena uvozna datoteka.',
-'importuploaderror'          => 'Postavljanje uvozne datoteke nije uspjelo; možda je datoteka veća od dozvoljene veličine.',
+'importuploaderrorsize'      => 'Uvoz datoteke nije uspio. Datoteka je veća od dozvoljene veličine.',
+'importuploaderrorpartial'   => 'Uvoz datoteke nije uspio. Datoteka je djelomično uvezena/snimljena.',
+'importuploaderrortemp'      => 'Uvoz datoteke nije uspio. Nema privremenog direktorija.',
 
 # Import log
 'importlogpage'                    => 'Evidencija uvoza članaka',
@@ -2255,6 +2267,7 @@ Valjanost ovog potvrdnog koda istječe $4.',
 $1
 </div>",
 'trackbackremove'   => ' ([$1 izbrisati])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback izbrisan.',
 
 # Delete conflict

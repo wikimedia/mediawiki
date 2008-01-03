@@ -703,6 +703,7 @@ dina ändringar just nu. Det kan vara klokt att kopiera över texten till din eg
 Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
 'semiprotectedpagewarning'  => "'''Observera:''' Denna sida har delvis skrivskyddats, så att endast registrerade användare kan redigera den.",
 'cascadeprotectedwarning'   => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":',
+'titleprotectedwarning'     => '<strong>VARNING: Den här sidan har skyddats så att endast vissa användare kan skapa den.</strong>',
 'templatesused'             => 'Mallar som används på den här sidan:',
 'templatesusedpreview'      => 'Mallar som används i förhandsgranskningen:',
 'templatesusedsection'      => 'Mallar som används i det här avsnittet:',
@@ -930,8 +931,8 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'userrights-groupshelp'       => 'Markera de grupper, som du vill lägga till eller ta bort användare i. De grupper som du inte markerar, kommer inte att förändras. Du kan avmarkera en grupp med CTRL + vänsterklick.',
 'userrights-reason'           => 'Anledning till ändringen:',
 'userrights-available-none'   => 'Du kan inte ändra några grupptillhörigheter.',
-'userrights-available-add'    => 'Du kan lägga till användare i $1.',
-'userrights-available-remove' => 'Du kan ta bort användare från $1.',
+'userrights-available-add'    => 'Du kan lägga till användare i följande {{PLURAL:$2|grupp|grupper}}: $1.',
+'userrights-available-remove' => 'Du kan ta bort användare från följande {{PLURAL:$2|grupp|grupper}}: $1.',
 'userrights-no-interwiki'     => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'       => 'Databasen $1 finns inte eller så är den inte lokal.',
 'userrights-nologin'          => 'Du måste [[Special:Userlogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
@@ -1420,7 +1421,7 @@ Feedback och hjälp:
 'confirmdelete'               => 'Bekräfta borttagning',
 'deletesub'                   => '(Tar bort "$1")',
 'historywarning'              => 'Varning: Sidan du håller på att radera har en historik:',
-'confirmdeletetext'           => 'Du håller på att permanent ta bort en sida med all dess historik från databasen.
+'confirmdeletetext'           => 'Du håller på att ta bort en sida med hela dess historik.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'              => 'Genomfört',
 'deletedtext'                 => '"$1" har tagits bort. 
@@ -1771,7 +1772,6 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'importhistoryconflict'      => 'Det föreligger en konflikt i versionshistoriken (kanske har denna sida importerats tidigare)',
 'importnosources'            => 'Inga källor för transwiki-import har angivits, och direkt uppladdning av historik har stängts av.',
 'importnofile'               => 'Ingen fil att importera har laddats upp.',
-'importuploaderror'          => 'Importfilen kunde inte laddas upp; kanske är den större än vad filer som skall laddas upp får vara.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

@@ -244,12 +244,17 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'      => '{{PLURAL:$1|Kategori|Kategoriar}}',
-'pagecategories'  => 'Kategoriar',
+'pagecategories'  => '{{PLURAL:$1|Kategori|Kategoriar}}',
 'category_header' => 'Artiklar i kategorien «$1»',
 'subcategories'   => 'Underkategoriar',
 
 'mainpagetext'      => 'MediaWiki er no installert.',
-'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/MediaWiki_localization dokumentasjon for å tilpasse brukargrensesnittet] og [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for bruk og konfigurasjonshjelp.',
+'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
+
+==Kome i gang==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste over konfigurasjonsinnstillingar]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Spørsmål og svar om MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]',
 
 'about'          => 'Om',
 'article'        => 'Innhaldsside',
@@ -286,7 +291,7 @@ $messages = array(
 'editthispage'      => 'Endre sida',
 'delete'            => 'Slett',
 'deletethispage'    => 'Slett side',
-'undelete_short'    => 'Attopprett $1 endringar',
+'undelete_short'    => 'Attopprett {{PLURAL:$1|ei endring|$1 endringar}}',
 'protect'           => 'Vern',
 'protectthispage'   => 'Vern denne sida',
 'unprotect'         => 'Fjern vern',
@@ -313,7 +318,7 @@ $messages = array(
 'redirectedfrom'    => '(Omdirigert frå $1)',
 'redirectpagesub'   => 'Omdirigeringsside',
 'lastmodifiedat'    => 'Sist endra $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Vist $1 gonger.',
+'viewcount'         => 'Sida er vist {{PLURAL:$1|ein gong|$1 gonger}}.',
 'protectedpage'     => 'Verna side',
 'jumptonavigation'  => 'navigering',
 'jumptosearch'      => 'søk',
@@ -356,7 +361,7 @@ $messages = array(
 'hidetoc'         => 'gøym',
 'thisisdeleted'   => 'Sjå eller attopprett $1?',
 'viewdeleted'     => 'Sjå historikk for $1?',
-'restorelink'     => '$1 sletta versjonar',
+'restorelink'     => '{{PLURAL:$1|Ein sletta versjon|$1 sletta versjonar}}',
 'feedlinks'       => 'Mating:',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -530,8 +535,8 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.",
 'newarticle'             => '(Ny)',
 'newarticletext'         => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
 * For å laga ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vera synlege med det same.
-* Om du er ny her er det tilrådd å sjå på [[Project:Retningsliner|retningsliner]] og [[{{MediaWiki:Helppage}}|hjelp]] først.
-* Om du lagrar ei testside, vil du ikkje kunne slette ho sjølv. Ver difor venleg og bruk [[Project:Sandkasse|sandkassa]] til å eksperimentere.
+* Om du er ny her er det tilrådd å sjå på [[{{MediaWiki:Helppage}}|hjelpesida]] først.
+* Om du lagrar ei testside, vil du ikkje kunne slette ho sjølv.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext'       => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext'          => "'''Sida «{{PAGENAME}}» finst ikkje på {{SITENAME}} enno.'''
@@ -605,8 +610,8 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'prevn'                 => 'førre $1',
 'nextn'                 => 'neste $1',
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
-'showingresults'        => 'Nedanfor er opp til <strong>$1</strong> resultat som byrjar med nummer <strong>$2</strong> viste.',
-'showingresultsnum'     => 'Nedanfor er <strong>$3</strong> resultat som byrjar med nummer <strong>$2</strong> viste.',
+'showingresults'        => "Nedanfor er opp til {{PLURAL:$1|'''eitt''' resultat|'''$1''' resultat}} som byrjar med nummer <strong>$2</strong> vist.",
+'showingresultsnum'     => "Nedanfor er {{PLURAL:$3|'''eitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
 'nonefound'             => "'''Merk''': søk utan resultat kan komma av at du leitar etter alminnelege engelske ord som ikkje blir indekserte, eller det kan komma av at du har gjeve meir enn eitt søkjeord (berre sider som inneheld alle søkjeorda vil bli funne).",
 'powersearch'           => 'Søk',
 'powersearchtext'       => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
@@ -680,7 +685,7 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 # Recent changes
 'recentchanges'                     => 'Siste endringar',
 'recentchangestext'                 => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
-'rcnote'                            => 'Nedanfor er dei siste <strong>$1</strong> endringane gjort dei siste <strong>$2</strong> dagane.',
+'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort dei siste <strong>$2</strong> dagane, sidan $3.",
 'rcnotefrom'                        => 'Nedanfor er endringane frå <b>$2</b> inntil <b>$1</b> viste.',
 'rclistfrom'                        => 'Vis nye endringar frå $1',
 'rclinks'                           => 'Vis siste $1 endringar dei siste $2 dagane<br />$3',

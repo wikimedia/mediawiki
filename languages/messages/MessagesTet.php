@@ -160,6 +160,7 @@ $messages = array(
 'categorypage'      => 'Haree pájina kategoría nian',
 'viewtalkpage'      => 'Haree diskusaun',
 'otherlanguages'    => 'Iha lian seluk',
+'protectedpage'     => "Pájina ne'ebé naproteje",
 'jumptonavigation'  => 'hatudu-dalan',
 'jumptosearch'      => 'buka',
 
@@ -179,8 +180,10 @@ $messages = array(
 'privacypage'       => 'Project:Polítika privasidade nian',
 'sitesupport'       => 'Fó donativu ida',
 
-'badaccess-group0' => "Ó lalika halo ne'e.",
+'badaccess-group0' => "Ó la bele halo ne'e.",
 'badaccess-group1' => "Ba halo ne'e tenke iha lubu $1.",
+'badaccess-group2' => "Ba halo ne'e tenke iha lubu ida husi $1.",
+'badaccess-groups' => "Ba halo ne'e tenke iha lubu ida husi $1.",
 
 'versionrequired'     => 'Presiza MediaWiki versaun $1',
 'versionrequiredtext' => "Presiza MediaWiki versaun $1 ba uza pájina ne'e. Haree [[Special:Version|pájina versaun]].",
@@ -207,20 +210,25 @@ $messages = array(
 'nstab-help'      => 'Pájina ajuda',
 'nstab-category'  => 'Kategoría',
 
+# Main script and global functions
+'nosuchspecialpage' => "Pájina espesiál ne'e lá'os",
+
 # General errors
 'error' => 'Sala',
 
 # Login and logout pages
-'yourname'           => "Naran uza-n'in:",
-'nologinlink'        => "Registrar uza-na'in ida",
-'createaccount'      => "Registrar uza-na'in",
-'youremail'          => 'Diresaun korreiu eletróniku:',
-'username'           => "Naran uza-na'in:",
-'uid'                => "Uza-na'in ID:",
-'yourlanguage'       => 'Lian:',
-'email'              => 'Korreiu eletróniku',
-'accountcreated'     => "Registrar tiha uza-na'in",
-'loginlanguagelabel' => 'Lian: $1',
+'yourname'                  => "Naran uza-n'in:",
+'nologinlink'               => 'Registrar',
+'createaccount'             => "Registrar uza-na'in",
+'userexists'                => "Uza-na'in ne'e ona iha wiki. Favór ida lori naran seluk.",
+'youremail'                 => 'Diresaun korreiu eletróniku:',
+'username'                  => "Naran uza-na'in:",
+'uid'                       => "Uza-na'in ID:",
+'yourlanguage'              => 'Lian:',
+'email'                     => 'Korreiu eletróniku',
+'prefs-help-email-required' => 'Haruka diresaun korreiu eletróniku.',
+'accountcreated'            => "Registrar tiha uza-na'in",
+'loginlanguagelabel'        => 'Lian: $1',
 
 # Password reset dialog
 'resetpass_text' => "<!-- Hakerek testu iha ne'e -->",
@@ -504,4 +512,3 @@ $messages = array(
 'autosumm-new' => 'Pájina foun: $1',
 
 );
-
