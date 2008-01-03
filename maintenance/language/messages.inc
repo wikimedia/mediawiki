@@ -1555,6 +1555,7 @@ $wgMessageStructure = array(
 		'importnofile',
 		'importuploaderrorsize',
 		'importuploaderrorpartial',
+		'importuploaderrortemp',
 	),
 	'importlog' => array(
 		'importlogpage',

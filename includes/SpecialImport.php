@@ -857,6 +857,9 @@ class ImportStreamSource {
 					return new WikiErrorMsg( 'importuploaderrorsize' );
 				case 3: # The uploaded file was only partially uploaded
 					return new WikiErrorMsg( 'importuploaderrorpartial' );
+			    case 6: #Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.
+			    	return new WikiErrorMsg( 'importuploaderrortemp' );
+			    # case else: # Currently impossible
 			}
 			
 		}

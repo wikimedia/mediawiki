@@ -2303,6 +2303,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importnofile'               => 'No import file was uploaded.',
 'importuploaderrorsize'      => 'Upload of import file failed. The file is bigger than the allowed upload size.',
 'importuploaderrorpartial'   => 'Upload of import file failed. The file was only partially uploaded.',
+'importuploaderrortemp'      => 'Upload of import file failed. A temporary folder is missing.',
 
 # Import log
 'importlogpage'                    => 'Import log',
