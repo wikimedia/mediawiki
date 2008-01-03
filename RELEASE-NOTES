@@ -285,6 +285,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11428) Allow $wgScript inside $wgArticlePath when emulating PATH_INFO
   Fixes 'root'-style rewrite configurations
 * (bug 12493) Removed hardcoded MAX_FILE_SIZE from Special:Import upload form
+* (bug 12489) Special:Userrights listed in restricted section again
 
 
 == Parser changes in 1.12 ==
