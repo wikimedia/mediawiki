@@ -4,37 +4,26 @@
  * Special page to allow managing user group membership
  *
  * @addtogroup SpecialPage
- * @todo This code is disgusting and needs a total rewrite
+ * @todo Use checkboxes or something, this list thing is incomprehensible to
+ *   normal human beings.
  */
-
-/** */
-require_once( dirname(__FILE__) . '/HTMLForm.php');
-
-/** Entry point */
-function wfSpecialUserrights() {
-	global $wgRequest;
-	$form = new UserrightsForm($wgRequest);
-	$form->execute();
-}
 
 /**
  * A class to manage user levels rights.
  * @addtogroup SpecialPage
  */
-class UserrightsForm extends HTMLForm {
-	var $mPosted, $mRequest, $mSaveprefs;
-	/** Escaped local url name*/
-	var $action;
+class UserrightsPage extends SpecialPage {
+	public function __construct() {
+		parent::__construct( 'Userrights' );
+	}
 
-	/** Constructor*/
-	public function __construct( &$request ) {
-		$this->mPosted = $request->wasPosted();
-		$this->mRequest =& $request;
-		$this->mName = 'userrights';
-		$this->mReason = $request->getText( 'user-reason' );
+	public function isRestricted() {
+		return true;
+	}
 
-		$titleObj = SpecialPage::getTitleFor( 'Userrights' );
-		$this->action = $titleObj->escapeLocalURL();
+	public function userCanExecute( $user ) {
+		$available = $this->changeableGroups();
+		return !empty( $available['add'] ) or !empty( $available['remove'] );
 	}
 
 	/**
@@ -44,40 +33,42 @@ class UserrightsForm extends HTMLForm {
 	function execute() {
 		// If the visitor doesn't have permissions to assign or remove
 		// any groups, it's a bit silly to give them the user search prompt.
-		$available = $this->changeableGroups();
-		if( empty( $available['add'] ) && empty( $available['remove'] ) ) {
+		global $wgUser;
+		if( !$this->userCanExecute( $wgUser ) ) {
 			// fixme... there may be intermediate groups we can mention.
-			global $wgOut, $wgUser;
+			global $wgOut;
 			$wgOut->showPermissionsErrorPage( array(
 				$wgUser->isAnon()
 					? 'userrights-nologin'
 					: 'userrights-notallowed' ) );
 			return;
 		}
-		
+
+		$this->setHeaders();
+
 		// show the general form
 		$this->switchForm();
-		if( $this->mPosted ) {
+
+		global $wgRequest;
+		if( $wgRequest->wasPosted() ) {
 			// show some more forms
-			if( $this->mRequest->getCheck( 'ssearchuser' ) ) {
-				$this->editUserGroupsForm( $this->mRequest->getVal( 'user-editname' ) );
+			if( $wgRequest->getCheck( 'ssearchuser' ) ) {
+				$this->editUserGroupsForm( $wgRequest->getVal( 'user-editname' ) );
 			}
 
 			// save settings
-			if( $this->mRequest->getCheck( 'saveusergroups' ) ) {
-				global $wgUser;
-				$username = $this->mRequest->getVal( 'user-editname' );
-				$reason = $this->mRequest->getVal( 'user-reason' );
-				if( $wgUser->matchEditToken( $this->mRequest->getVal( 'wpEditToken' ), $username ) ) {
+			if( $wgRequest->getCheck( 'saveusergroups' ) ) {
+				$username = $wgRequest->getVal( 'user-editname' );
+				$reason = $wgRequest->getVal( 'user-reason' );
+				if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $username ) ) {
 					$this->saveUserGroups( $username,
-						$this->mRequest->getArray( 'removable' ),
-						$this->mRequest->getArray( 'available' ),
+						$wgRequest->getArray( 'removable' ),
+						$wgRequest->getArray( 'available' ),
 						$reason );
 				}
 			}
 		}
 	}
-
 
 	/**
 	 * Save user groups changes in the database.
@@ -87,7 +78,7 @@ class UserrightsForm extends HTMLForm {
 	 * @param array $removegroup id of groups to be removed.
 	 * @param array $addgroup id of groups to be added.
 	 * @param string $reason Reason for group change
-	 *
+	 * @return null
 	 */
 	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '') {
 		$user = $this->fetchUser( $username );
@@ -130,12 +121,16 @@ class UserrightsForm extends HTMLForm {
 		}
 
 		$log = new LogPage( 'rights' );
+
+		global $wgRequest;
 		$log->addEntry( 'rights',
 			$user->getUserPage(),
-			$this->mReason,
+			$wgRequest->getText( 'user-reason' ),
 			array(
 				$this->makeGroupNameList( $oldGroups ),
-				$this->makeGroupNameList( $newGroups ) ) );
+				$this->makeGroupNameList( $newGroups )
+			)
+		);
 	}
 
 	/**
@@ -154,9 +149,8 @@ class UserrightsForm extends HTMLForm {
 		
 		$this->showEditUserGroupsForm( $user, $groups );
 
-		// This isn't really ideal logging behavior,
-		// but let's not hide the interwiki logs if
-		// we're using them as is.
+		// This isn't really ideal logging behavior, but let's not hide the
+		// interwiki logs if we're using them as is.
 		$this->showLogFragment( $user, $wgOut );
 	}
 
@@ -233,7 +227,7 @@ class UserrightsForm extends HTMLForm {
 	function switchForm() {
 		global $wgOut, $wgRequest;
 		$username = $wgRequest->getText( 'user-editname' );
-		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'uluser' ) );
+		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'uluser' ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user-editname', 'username', 30, $username ) . '</p>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ), array( 'name' => 'ssearchuser' ) ) . '</p>';
@@ -279,7 +273,7 @@ class UserrightsForm extends HTMLForm {
 			$grouplist = '<p>' . wfMsgHtml( 'userrights-groupsmember' ) . ' ' . implode( ', ', $list ) . '</p>';
 		}
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'editGroup' ) ) .
 			Xml::hidden( 'user-editname', $user->getName() ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $user->getName() ) ) .
 			Xml::openElement( 'fieldset' ) .
