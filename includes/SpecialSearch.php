@@ -125,10 +125,11 @@ class SpecialSearch {
 		global $wgOut;
 		$wgOut->addWikiText( wfMsg( 'searchresulttext' ) );
 
-		#if ( !$this->parseQuery() ) {
 		if( '' === trim( $term ) ) {
+			// Empty query -- straight view of search form
 			$wgOut->setSubtitle( '' );
 			$wgOut->addHTML( $this->powerSearchBox( $term ) );
+			$wgOut->addHTML( $this->powerSearchFocus() );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -400,7 +401,7 @@ class SpecialSearch {
 			: '';
 		$redirect = "<input type='checkbox' value='1' name=\"redirs\"{$checked} />\n";
 
-		$searchField = '<input type="text" name="search" value="' .
+		$searchField = '<input type="text" id="powerSearchText" name="search" value="' .
 			htmlspecialchars( $term ) ."\" size=\"16\" />\n";
 
 		$searchButton = '<input type="submit" name="searchx" value="' .
@@ -415,6 +416,12 @@ class SpecialSearch {
 		$action = $title->escapeLocalURL();
 		return "<br /><br />\n<form id=\"powersearch\" method=\"get\" " .
 		  "action=\"$action\">\n{$ret}\n</form>\n";
+	}
+	
+	function powerSearchFocus() {
+		return "<script type='text/javascript'>" .
+			"document.getElementById('powerSearchText').focus();" .
+			"</script>";
 	}
 }
 

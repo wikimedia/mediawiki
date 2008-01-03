@@ -115,6 +115,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * When a user is prohibited from creating a page, a title of "View source"
   makes no sense, and there should be no "Return to [[Page]]" link.
 * (bug 12486) Protected titles now give a warning for privileged editors.
+* (bug 9939) Special:Search now sets focus to search input box when no existing
+  search is active
 
 
 === Bug fixes in 1.12 ===
