@@ -6569,6 +6569,55 @@ Fridrih IV je car.
 </p>
 !! end
 
+!!article 
+Template:Bullet
+!!text
+* Bar
+!!endarticle
+
+!! test
+Bug 529: Uncovered bullet
+!! input
+* Foo {{bullet}}
+!! result
+<ul><li> Foo 
+</li><li> Bar
+</li></ul>
+
+!! end
+
+!! test
+Bug 529: Uncovered table already at line-start
+!! input
+x
+
+{{table}}
+y
+!! result
+<p>x
+</p>
+<table>
+<tr>
+<td> 1 </td><td> 2
+</td></tr>
+<tr>
+<td> 3 </td><td> 4
+</td></tr></table>
+<p>y
+</p>
+!! end
+
+!! test
+Bug 529: Uncovered bullet in parser function result
+!! input
+* Foo {{lc:{{bullet}} }}
+!! result
+<ul><li> Foo 
+</li><li> bar
+</li></ul>
+
+!! end
+
 
 #
 #

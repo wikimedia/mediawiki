@@ -2593,6 +2593,10 @@ class Parser
 			$rules = $normalRules;
 		}
 
+		if ( $this->ot['html'] || ( $this->ot['pre'] && $this->mOptions->getRemoveComments() ) ) {
+			$text = Sanitizer::removeHTMLcomments( $text );
+		}
+
 		$extElements = implode( '|', $this->getStripList() );
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
 		$extElementsRegex = "/($extElements)(?:\s|\/>|>)|(!--)/iA";
@@ -3018,6 +3022,27 @@ class Parser
 	}
 
 	/**
+	 * Convert text to a document tree, like preprocessToDom(), but with some special handling
+	 * assuming the source text is from a template -- specifically noinclude/includeonly behaviour.
+	 */
+	function preprocessTplToDom( $text ) {
+		# If there are any <onlyinclude> tags, only include them
+		if ( !$this->ot['msg'] ) {
+			if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
+				$replacer = new OnlyIncludeReplacer;
+				StringUtils::delimiterReplaceCallback( '<onlyinclude>', '</onlyinclude>', 
+					array( &$replacer, 'replace' ), $text );
+				$text = $replacer->output;
+			}
+			# Remove <noinclude> sections and <includeonly> tags
+			$text = StringUtils::delimiterReplace( '<noinclude>', '</noinclude>', '', $text );
+			$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
+		}
+
+		return $this->preprocessToDom( $text );
+	}
+
+	/**
 	 * Replace magic variables, templates, and template arguments
 	 * with the appropriate text. Templates are substituted recursively,
 	 * taking care to avoid infinite loops.
@@ -3045,12 +3070,6 @@ class Parser
 			$frame = new PPFrame( $this );
 		} elseif ( !( $frame instanceof PPFrame ) ) {
 			throw new MWException( __METHOD__ . ' called using the old argument format' );
-		}
-
-		# Remove comments
-		# This could theoretically be merged into preprocessToDom()
-		if ( $this->ot['html'] || ( $this->ot['pre'] && $this->mOptions->getRemoveComments() ) ) {
-			$text = Sanitizer::removeHTMLcomments( $text );
 		}
 
 		$dom = $this->preprocessToDom( $text );
@@ -3105,8 +3124,6 @@ class Parser
 		# Flags
 		$found = false;             # $text has been filled
 		$nowiki = false;            # wiki markup in $text should be escaped
-		$noparse = false;           # Unsafe HTML tags should not be stripped, etc.
-		$noargs = false;            # Don't replace triple-brace arguments in $text
 		$isHTML = false;            # $text is HTML, armour it against wikitext transformation
 		$forceRawInterwiki = false; # Force interwiki transclusion to be done in raw mode not rendered
 		$isDOM = false;             # $text is a DOM node needing expansion
@@ -3138,8 +3155,6 @@ class Parser
 				# In either case, return without further processing
 				$text = '{{' . $frame->implode( '|', $titleWithSpaces, $args ) . '}}';
 				$found = true;
-				$noparse = true;
-				$noargs = true;
 			}
 		}
 
@@ -3150,8 +3165,6 @@ class Parser
 				$text = $this->getVariableValue( $id );
 				$this->mOutput->mContainsOldMagic = true;
 				$found = true;
-				$noparse = true;
-				$noargs = true;
 			}
 		}
 
@@ -3220,10 +3233,6 @@ class Parser
 					$result = call_user_func_array( $callback, $allArgs );
 					$found = true;
 
-					// The text is usually already parsed, doesn't need triple-brace tags expanded, etc.
-					$noargs = true;
-					$noparse = true;
-
 					if ( is_array( $result ) ) {
 						if ( isset( $result[0] ) ) {
 							$text = $result[0];
@@ -3231,7 +3240,7 @@ class Parser
 						}
 
 						// Extract flags into the local scope
-						// This allows callers to set flags such as nowiki, noparse, found, etc.
+						// This allows callers to set flags such as nowiki, found, etc.
 						extract( $result );
 					} else {
 						$text = $result;
@@ -3260,8 +3269,6 @@ class Parser
 				}
 				# Do infinite loop check
 				if ( isset( $this->mTemplatePath[$titleText] ) ) {
-					$noparse = true;
-					$noargs = true;
 					$found = true;
 					$text = "[[$part1]]" . $this->insertStripItem( '<!-- WARNING: template loop detected -->' );
 					wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
@@ -3277,8 +3284,6 @@ class Parser
 					$text = SpecialPage::capturePath( $title );
 					if ( is_string( $text ) ) {
 						$found = true;
-						$noparse = true;
-						$noargs = true;
 						$isHTML = true;
 						$this->disableCache();
 					}
@@ -3303,108 +3308,75 @@ class Parser
 				if ( $this->ot['html'] && !$forceRawInterwiki ) {
 					$text = $this->interwikiTransclude( $title, 'render' );
 					$isHTML = true;
-					$noparse = true;
 				} else {
 					$text = $this->interwikiTransclude( $title, 'raw' );
+					// Preprocess it like a template
+					$text = $this->preprocessTplToDom( $text );
+					$isDOM = true;
 				}
 				$found = true;
 			}
 			wfProfileOut( __METHOD__ . '-loadtpl' );
 		}
 
-		# Recursive parsing, escaping and link table handling
-		# Only for HTML output
-		if ( $nowiki && $found && ( $this->ot['html'] || $this->ot['pre'] ) ) {
-			if ( $isDOM ) {
-				$text = $frame->expand( $text );
-			}
-			$text = wfEscapeWikiText( $text );
-		} elseif ( !$this->ot['msg'] && $found ) {
-			if ( $noargs ) {
-				$newFrame = $frame->newChild();
-			} else {
-				# Clean up argument array
-				$newFrame = $frame->newChild( $args, $title );
-				# Add a new element to the templace recursion path
-				$this->mTemplatePath[$titleText] = 1;
-			}
-
-			if ( !$noparse ) {
-				if ( $isDOM ) {
-					if ( $titleText !== false && count( $newFrame->args ) == 0 ) {
-						# Expansion is eligible for the empty-frame cache
-						if ( isset( $this->mTplExpandCache[$titleText] ) ) {
-							$text = $this->mTplExpandCache[$titleText];
-						} else {
-							$text = $newFrame->expand( $text );
-							$this->mTplExpandCache[$titleText] = $text;
-						}
-					} else {
-						$text = $newFrame->expand( $text );
-					}
-				} else {
-					$text = $this->replaceVariables( $text, $newFrame );
-				}
-
-				# strip woz 'ere 2004-07
-
-				# Bug 529: if the template begins with a table or block-level
-				# element, it should be treated as beginning a new line.
-				# This behaviour is somewhat controversial.
-				if (!$piece['lineStart'] && preg_match('/^(?:{\\||:|;|#|\*)/', $text)) /*}*/{
-					$text = "\n" . $text;
-				}
-			} elseif ( !$noargs ) {
-				# $noparse and !$noargs
-				# Just replace the arguments, not any double-brace items
-				# This is used for rendered interwiki transclusion
-				if ( $isDOM ) {
-					$text = $newFrame->expand( $text, PPFrame::NO_TEMPLATES );
-				} else {
-					$text = $this->replaceVariables( $text, $newFrame, true );
-				}
-			} elseif ( $isDOM ) {
-				$text = $frame->expand( $text );
-			}
-		} elseif ( $isDOM ) {
-			$text = $frame->expand( $text, PPFrame::NO_TEMPLATES | PPFrame::NO_ARGS );
-		}
-
-		# Prune lower levels off the recursion check path
-		$this->mTemplatePath = $lastPathLevel;
-
-		if ( $found && !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
-			# Error, oversize inclusion
-			$text = "[[$originalTitle]]" . 
-				$this->insertStripItem( '<!-- WARNING: template omitted, post-expand include size too large -->' );
-			$noparse = true;
-			$noargs = true;
-		}
-
+		# If we haven't found text to substitute by now, we're done
+		# Recover the source wikitext and return it
 		if ( !$found ) {
-			wfProfileOut( $fname );
-			return '{{' . $frame->implode( '|', $titleWithSpaces, $args ) . '}}';
-		} else {
-			wfProfileIn( __METHOD__ . '-placeholders' );
-			if ( $isHTML ) {
-				# Replace raw HTML by a placeholder
-				# Add a blank line preceding, to prevent it from mucking up
-				# immediately preceding headings
-				$text = "\n\n" . $this->insertStripItem( $text );
-			}
-			wfProfileOut( __METHOD__ . '-placeholders' );
-		}
-
-		# Prune lower levels off the recursion check path
-		$this->mTemplatePath = $lastPathLevel;
-
-		if ( !$found ) {
-			wfProfileOut( $fname );
-			return '{{' . $frame->implode( '|', $titleWithSpaces, $args ) . '}}';
-		} else {
+			$text = '{{' . $frame->implode( '|', $titleWithSpaces, $args ) . '}}';
+			# Prune lower levels off the recursion check path
+			$this->mTemplatePath = $lastPathLevel;
 			wfProfileOut( $fname );
 			return $text;
 		}
+
+		# Expand DOM-style return values in a child frame
+		if ( $isDOM ) {
+			# Clean up argument array
+			$newFrame = $frame->newChild( $args, $title );
+			# Add a new element to the templace recursion path
+			$this->mTemplatePath[$titleText] = 1;
+
+			if ( $titleText !== false && count( $newFrame->args ) == 0 ) {
+				# Expansion is eligible for the empty-frame cache
+				if ( isset( $this->mTplExpandCache[$titleText] ) ) {
+					$text = $this->mTplExpandCache[$titleText];
+				} else {
+					$text = $newFrame->expand( $text );
+					$this->mTplExpandCache[$titleText] = $text;
+				}
+			} else {
+				$text = $newFrame->expand( $text );
+			}
+		}
+
+		# Replace raw HTML by a placeholder
+		# Add a blank line preceding, to prevent it from mucking up
+		# immediately preceding headings
+		if ( $isHTML ) {
+			$text = "\n\n" . $this->insertStripItem( $text );
+		}
+		# Escape nowiki-style return values
+		elseif ( $nowiki && ( $this->ot['html'] || $this->ot['pre'] ) ) {
+			$text = wfEscapeWikiText( $text );
+		}
+		# Bug 529: if the template begins with a table or block-level
+		# element, it should be treated as beginning a new line.
+		# This behaviour is somewhat controversial.
+		elseif ( !$piece['lineStart'] && preg_match('/^(?:{\\||:|;|#|\*)/', $text)) /*}*/{
+			$text = "\n" . $text;
+		}
+		
+		# Prune lower levels off the recursion check path
+		$this->mTemplatePath = $lastPathLevel;
+
+		if ( !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
+			# Error, oversize inclusion
+			$text = "[[$originalTitle]]" . 
+				$this->insertStripItem( '<!-- WARNING: template omitted, post-expand include size too large -->' );
+		}
+
+		wfProfileOut( $fname );
+		return $text;
 	}
 
 	/**
@@ -3432,27 +3404,7 @@ class Parser
 			return array( false, $title );
 		}
 
-		# If there are any <onlyinclude> tags, only include them
-		if ( !$this->ot['msg'] ) {
-			if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
-				$replacer = new OnlyIncludeReplacer;
-				StringUtils::delimiterReplaceCallback( '<onlyinclude>', '</onlyinclude>', 
-					array( &$replacer, 'replace' ), $text );
-				$text = $replacer->output;
-			}
-			# Remove <noinclude> sections and <includeonly> tags
-			$text = StringUtils::delimiterReplace( '<noinclude>', '</noinclude>', '', $text );
-			$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
-		}
-
-		# Remove comments
-		# This could theoretically be merged into preprocessToDom()
-		if ( $this->ot['html'] || ( $this->ot['pre'] && $this->mOptions->getRemoveComments() ) ) {
-			$text = Sanitizer::removeHTMLcomments( $text );
-		}
-
-		$dom = $this->preprocessToDom( $text );
-
+		$dom = $this->preprocessTplToDom( $text );
 		$this->mTplDomCache[ $titleText ] = $dom;
 
 		if (! $title->equals($cacheTitle)) {
