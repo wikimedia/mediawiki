@@ -269,7 +269,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			if( $n % 3 == 0 ) {
 				$out .= '<tr>';
 			}
-			$out .= "<td>$link</td>";
+			$out .= "<td width=\"33%\">$link</td>";
 			$n++;
 			if( $n % 3 == 0 ) {
 				$out .= '</tr>';
