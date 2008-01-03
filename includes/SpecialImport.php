@@ -95,7 +95,7 @@ function wfSpecialImport( $page = '' ) {
 	<form enctype='multipart/form-data' method='post' action=\"$action\">
 		<input type='hidden' name='action' value='submit' />
 		<input type='hidden' name='source' value='upload' />
-		<input type='hidden' name='MAX_FILE_SIZE' value='2000000' />
+		<input type='hidden' name='MAX_FILE_SIZE' value='2097152' />
 		<input type='file' name='xmlimport' value='' size='30' />
 		<input type='submit' value=\"" . wfMsgHtml( "uploadbtn" ) . "\" />
 	</form>
