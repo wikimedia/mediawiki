@@ -350,7 +350,6 @@ function __autoload($className) {
 
 		# apiedit branch
 		'ApiBlock' => 'includes/api/ApiBlock.php',
-		'ApiChangeRights' => 'includes/api/ApiChangeRights.php',
 		'ApiDelete' => 'includes/api/ApiDelete.php',
 		'ApiMove' => 'includes/api/ApiMove.php',
 		'ApiProtect' => 'includes/api/ApiProtect.php',
