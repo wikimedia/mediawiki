@@ -664,7 +664,7 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'longpageerror'             => '<strong>ERROR: O testo que ha escrito ye de $1 kilobytes, que ye mayor que a grandaria maisima de $2 kilobytes. No se puede alzar.</strong>',
 'readonlywarning'           => '<strong>Pare cuenta: A base de datos ha estato bloquiata por custions de mantenimiento. Por ixo, en iste inte ye imposible alzar as suyas edizions. Puede copiar y apegar o testo en un archibo y alzar-lo ta dimpués.</strong>',
 'protectedpagewarning'      => "<strong>PARE CUENTA: Ista pachina ha estato protechita ta que sólo os usuarios con premisos d'almenistrador puedan editar-la.</strong>",
-'semiprotectedpagewarning'  => "'''Nota:''' Ista página ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
+'semiprotectedpagewarning'  => "'''Nota:''' Ista pachina ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
 'cascadeprotectedwarning'   => "'''Pare cuenta:''' Ista pachina ye protechita ta que nomás os almenistrador puedan editar-la, porque ye encluyita en {{PLURAL:$1|a siguient pachina, protechita|as siguients pachinas, protechitas}} con a opzión de ''cascada'' :",
 'templatesused'             => 'Plantillas emplegatas en ista pachina:',
 'templatesusedpreview'      => 'Plantillas emplegatas en ista ambiesta prebia:',
@@ -1249,7 +1249,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 # Book sources
 'booksources'               => 'Fuents de libros',
 'booksources-search-legend' => 'Mirar fuents de libros',
-'booksources-go'            => 'Ir',
+'booksources-go'            => 'Ir-ie',
 'booksources-text'          => 'Contino ye una lista de binclos ta atros puestos an que benden libros nuebos y usatos, talment bi aiga más informazión sobre os libros que ye mirando.',
 
 'categoriespagetext' => 'En iste wiki bi son as siguients categorías.',
@@ -1649,7 +1649,7 @@ as pachinas que s'han bandalizatas).",
 'databasenotlocked'   => 'A base de datos no ye trancata.',
 
 # Move page
-'movepage'                => 'Tresladar página',
+'movepage'                => 'Tresladar pachina',
 'movepagetext'            => "Si fa serbir o formulario siguient se cambeará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.
 Os binclos ta o títol antigo d'a pachina no se cambearán. Asegure-se de no deixar reendrezeras dobles u crebatas.
@@ -1730,7 +1730,7 @@ En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{
 'missingimage'             => '<b>Imachen no trobata</b><br /><i>$1</i>',
 'filemissing'              => 'Archibo no trobato',
 'thumbnail_error'          => "S'ha produzito una error en creyar a miniatura: $1",
-'djvu_page_error'          => "Página DjVu difuera d'o rango",
+'djvu_page_error'          => "Pachina DjVu difuera d'o rango",
 'djvu_no_xml'              => "No s'ha puesto replegar o XML ta l'archibo DjVu",
 'thumbnail_invalid_params' => "Os parametros d'as miniatura no son correutos",
 'thumbnail_dest_directory' => "No s'ha puesto creyar o direutorio de destino",
@@ -1757,7 +1757,6 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'importhistoryconflict'      => "Bi ha un conflito de bersions en o istorial (talment ista pachina s'aiga importata antes)",
 'importnosources'            => "No bi ha fuents d'importazión interwiki y no ye premitito cargar o istorial dreitament.",
 'importnofile'               => "No s'ha cargato os archibos d'importazión.",
-'importuploaderror'          => "Ha fallato a carga de l'archibo d'importazión. Talment l'archibo ye mayor que a grandaria maisima de carga premitita.",
 
 # Import log
 'importlogpage'                    => "Rechistro d'importazions",
@@ -1802,7 +1801,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-n-sitesupport'           => 'Refirme o procheuto',
 'tooltip-t-whatlinkshere'         => "Lista de todas as pachinas d'o wiki binculatas con ista",
 'tooltip-t-recentchangeslinked'   => 'Zaguers cambeos en as pachinas que tienen binclos enta ista',
-'tooltip-feed-rss'                => "Canal RSS d'ista página",
+'tooltip-feed-rss'                => "Canal RSS d'ista pachina",
 'tooltip-feed-atom'               => "Canal Atom d'ista pachina",
 'tooltip-t-contributions'         => "Beyer a lista de contrebuzions d'iste usuario",
 'tooltip-t-emailuser'             => 'Nimbiar un correu electronico ta iste usuario',
@@ -2284,7 +2283,7 @@ $1",
 
 # Auto-summaries
 'autosumm-blank'   => 'Pachina blanquiata',
-'autosumm-replace' => 'O conteniu d\'a pachina s\'ha cambiato por "$1"',
+'autosumm-replace' => 'O conteniu s\'ha cambiato por "$1"',
 'autoredircomment' => 'Reendrezando ta [[$1]]',
 'autosumm-new'     => 'Pachina nueba: $1',
 

@@ -218,7 +218,7 @@ $messages = array(
 'redirectedfrom'    => '(Redirixido dende $1)',
 'redirectpagesub'   => 'Páxina de redirección',
 'lastmodifiedat'    => 'A última modificación desta páxina foi o $1 ás $2.', # $1 date, $2 time
-'viewcount'         => 'A esta páxina accedeuse $1 veces.',
+'viewcount'         => 'A esta páxina accedeuse {{PLURAL:$1|unha vez|$1 veces}}.',
 'protectedpage'     => 'Páxina protexida',
 'jumpto'            => 'Ir a:',
 'jumptonavigation'  => 'navegación',
@@ -446,10 +446,10 @@ $1 horas.',
 'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
 'createaccount-title'        => 'Creación da conta para {{SITENAME}}',
 'createaccount-text'         => 'Alguen ($1) creou unha conta de $2 sobre ((SITENAME))
-($ 4). O contrasinal para "$2" é "$3". Debe acceder e mudar o contrasinal
+($4). O contrasinal para "$2" é "$3". Debe acceder e mudar o contrasinal
 agora.
 
-Pode facer caso omiso desta mensaxe, si se creou esta conta por erro.',
+Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
@@ -657,7 +657,7 @@ Lenda: (actual) = diferenza coa versión actual,
 'deletedrev'          => '[borrado]',
 'histfirst'           => 'Primeiras',
 'histlast'            => 'Últimas',
-'historysize'         => '($1 bytes)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(baleiro)',
 
 # Revision feed
@@ -762,7 +762,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'nextn'                 => '$1 seguintes',
 'viewprevnext'          => 'Ver ($1) ($2) ($3).',
 'showingresults'        => "Amósanse {{PLURAL:$1|'''1''' resultado|'''$1''' resultados}} comezando polo número '''$2'''.",
-'showingresultsnum'     => 'Amosando <b>$3</b> resultados comezando co número <b>$2</b>.',
+'showingresultsnum'     => "Amosando {{PLURAL:$3|'''1''' resultado|'''$3''' resultados}} comezando co número '''$2'''.",
 'nonefound'             => "'''Nota''': as procuras sen éxito son causadas usualmente
 por procurar usando palabras usuais como \"ter\" e \"desde\",
 que non están incluídas no índice da base de datos, ou por especificar máis dunha palabra
@@ -1014,7 +1014,7 @@ PICT # misc.
 
 # Image list
 'imagelist'                 => 'Listaxe de imaxes',
-'imagelisttext'             => 'Abaixo amósase unha listaxe de $1 imaxes ordenadas $2.',
+'imagelisttext'             => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
 'getimagelist'              => 'obtendo a listaxe de imaxes',
 'ilsubmit'                  => 'Procurar',
 'showlast'                  => 'Mostrar as últimas $1 imaxes ordenadas $2.',
@@ -1285,7 +1285,7 @@ e a páxina aparecerá en '''negriña''' na [[Special:Recentchanges|listaxe de c
 'watchmethod-list'     => 'buscando nas páxinas vixiadas por edicións recentes',
 'watchlistcontains'    => 'A súa listaxe de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
 'iteminvalidname'      => "Hai un problema co ítem '$1', nome non válido...",
-'wlnote'               => 'Abaixo están os $1 cambios nas últimas <b>$2</b> horas.',
+'wlnote'               => "Abaixo {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
 'wlshowlast'           => 'Amosar as últimas $1 horas $2 días $3',
 'watchlist-show-bots'  => 'Mostrar bots',
 'watchlist-hide-bots'  => 'Agochar bots',
@@ -1717,15 +1717,14 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'importhistoryconflict'      => 'Existe un conflito no historial de revisións (por ter importado esta páxina antes)',
 'importnosources'            => 'Non se definiron fontes de importación transwiki e están desactivados os envíos directos dos historiais.',
 'importnofile'               => 'Non se enviou ningún ficheiro de importación.',
-'importuploaderror'          => 'Fallou a importación do ficheiro: talvez o ficheiro ten un tamaño maior do permitido.',
 
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',
 'importlogpagetext'                => 'Rexistro de importación de páxinas xunto co seu historial de edicións procedentes doutros wikis.',
 'import-logentry-upload'           => 'importado [[$1]] mediante a carga do ficheiro',
-'import-logentry-upload-detail'    => '$1 revisión(s)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisións}}',
 'import-logentry-interwiki'        => 'importada $1',
-'import-logentry-interwiki-detail' => '$1 revisión(s) de $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisións}} de $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'A miña páxina de usuario',
@@ -2295,4 +2294,3 @@ Tente a vista previa normal.',
 'watchlisttools-raw'  => 'Editar a listaxe de vixilancia simple',
 
 );
-

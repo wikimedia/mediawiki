@@ -727,6 +727,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'protectedpagewarning'      => '<strong>AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'cascadeprotectedwarning'   => "'''Atenção:''' Esta página se encontra protegida de forma que apenas {{int:group-sysop}} possam editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
+'titleprotectedwarning'     => '<strong>ATENÇÃO: Esta página foi protegida, apenas alguns usuários poderão criá-la.</strong>',
 'templatesused'             => 'Predefinições utilizadas nesta página:',
 'templatesusedpreview'      => 'Predefinições utilizadas nesta previsão:',
 'templatesusedsection'      => 'Predefinições utilizadas nesta secção:',
@@ -1807,7 +1808,6 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'importhistoryconflict'      => 'Existem conflitos de edições no histórico (talvez esta página já foi importada antes)',
 'importnosources'            => 'Não foram definidas fontes de importação transwiki e o carregamento directo de históricos encontra-se desactivado.',
 'importnofile'               => 'Nenhum ficheiro de importação foi carregado.',
-'importuploaderror'          => 'O carregamento do ficheiro de importação falhou; talvez o ficheiro seja maior do que o tamanho de carregamento permitido.',
 
 # Import log
 'importlogpage'                    => 'Registo de importações',

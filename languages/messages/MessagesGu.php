@@ -6,6 +6,7 @@
  * @author לערי ריינהארט
  * @author Aksi great
  * @author SPQRobin
+ * @author Dsvyas
  */
 
 $digitTransformTable = array(
@@ -22,8 +23,16 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-forceeditsummary'   => "કોરો 'ફેરફાર સારાંશ' ઉમેરતા પહેલા મને ચેતવો",
+'tog-watchlisthideown'   => "'મારી ધ્યાનસુચી'માં મે કરેલા ફેરફારો છુપાવો",
+'tog-watchlisthideminor' => "'મારી ધ્યાનસુચી'માં નાનાં ફેરફારો છુપાવો",
+'tog-ccmeonemails'       => 'મે અન્યોને મોકલેલા ઇ-મેઇલની નકલ મને મોકલો',
+
 'underline-always' => 'હંમેશાં',
 'underline-never'  => 'કદી નહિ',
+
+'skinpreview' => '(ફેરફાર બતાવો)',
 
 # Dates
 'sunday'        => 'રવિવાર',

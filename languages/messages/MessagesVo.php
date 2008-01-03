@@ -351,8 +351,12 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 
 Blokam at pejenükon fa $1. Kod binon ''$2''.
 
+* Prim blokama: $8
+* Fin blokama: $6
+* Geban desinik: $7
+
 Kanol penön ele $1, u [[{{MediaWiki:Grouppage-sysop}}|guvanes]], ad bespikön blokami.
-Kanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöföl patuvon in [[Special:Preferences|buükams kala]] olik. Ladet-IP nuik ola binon $3. Mäniotolös oni pö säks valik.",
+Kanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöföl patuvon in [[Special:Preferences|buükams kala]] olik. Ladet-IP nuik ola binon $3 e nüm blokama binon #$5. Mäniotolös oni pö säks valik.",
 'whitelistacctitle'        => 'No dalol jafön kali',
 'confirmedittitle'         => 'Fümedam me pot leäktronik zesüdon ad redakön',
 'confirmedittext'          => 'Mutol fümedön ladeti leäktronik ola büä okanol redakön padis. Pladölos e lonöfükölos ladeti olik in [[Special:Preferences|buükams olik]].',
@@ -442,8 +446,8 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'prevn'                 => 'büik $1',
 'nextn'                 => 'sököl $1',
 'viewprevnext'          => 'Logedön padis ($1) ($2) ($3).',
-'showingresults'        => 'Pajonons dono jü sukaseks <b>$1</b>, primölo me nüm #<b>$2</b>.',
-'showingresultsnum'     => 'Dono pajonons seks <b>$3</b>, primölo me nüm: <b>$2</b>.',
+'showingresults'        => "Pajonons dono jü {{PLURAL:$1|sukasek '''1'''|sukaseks '''$1'''}}, primölo me nüm #'''$2'''.",
+'showingresultsnum'     => "Dono pajonons {{PLURAL:$3:|sek '''1'''|seks '''$3'''}}, primölo me nüm: '''$2'''.",
 'powersearch'           => 'Suk',
 
 # Preferences page
@@ -508,7 +512,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'nchanges'          => '{{PLURAL:$1|votükam|votükams}} $1',
 'recentchanges'     => 'Votükams nulik',
 'recentchangestext' => 'Su pad at binons votükams nulikün in vüki at.',
-'rcnote'            => "Dono {{PLURAL:$1|binon votükam '''1'''|binons votükams '''$1'''}} lätikün {{PLURAL:$1|dela|delas '''$2'''}} lätikün, pänumädöls tü düp: $3.",
+'rcnote'            => "Dono {{PLURAL:$1|binon votükam '''1'''|binons votükams '''$1'''}} lätikün {{PLURAL:$2|dela|delas '''$2'''}} lätikün, pänumädöls tü düp: $3.",
 'rclistfrom'        => 'Jonolöd votükamis nulik, primölo tü düp $1',
 'rcshowhideminor'   => '$1 votükams pülik',
 'rcshowhidebots'    => '$1 elis bot',
@@ -978,7 +982,9 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-pt-userpage'       => 'Gebanapad obik',
 'tooltip-pt-mytalk'         => 'Bespiks obik',
 'tooltip-pt-preferences'    => 'Buükams obik',
+'tooltip-pt-watchlist'      => 'Lised padas, kö galädol tefü votükams',
 'tooltip-pt-mycontris'      => 'Lised keblünotas obik',
+'tooltip-pt-login'          => 'Binos gudik, ab no bligik, ad nunädön oyi.',
 'tooltip-pt-logout'         => 'Senunädön oki',
 'tooltip-ca-talk'           => 'Bespik dö ninädapad',
 'tooltip-ca-edit'           => 'Kanol redakön padi at. Gebolös, begö! büologedi bü dakip.',
@@ -995,6 +1001,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-n-portal'          => 'Tefü proyek, kio kanol-li dunön, kiplado tuvön dinis',
 'tooltip-n-recentchanges'   => 'Lised votükamas nulik in vüki.',
 'tooltip-n-randompage'      => 'Lodön padi fädik',
+'tooltip-n-help'            => 'Is kanoy tuvön yufi e nünis.',
 'tooltip-n-sitesupport'     => 'Stütolös obsi',
 'tooltip-t-whatlinkshere'   => 'Lised padas valik, kels yumons isio',
 'tooltip-t-contributions'   => 'Logedön keblünotalisedi gebana at',
