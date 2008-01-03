@@ -1186,6 +1186,7 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 'nolinkshere'         => 'Kene Siet wiest hierher.',
 'nolinkshere-ns'      => "Kene Sieden wiest na '''[[:$1]]''' in’n utwählten Naamruum.",
 'isredirect'          => 'Wiederleiden',
+'istemplate'          => 'inbunnen dör Vörlaag',
 
 # Block/unblock
 'blockip'                  => 'IP-Adress blocken',

@@ -904,8 +904,8 @@ Mirar $3 $9',
 As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a tecla CTRL y o botón zurdo d'a rateta.",
 'userrights-reason'           => 'Razón ta o cambeo:',
 'userrights-available-none'   => "No puede cambiar a pertenenzia á las collas d'usuarios.",
-'userrights-available-add'    => 'Puede adibir usuarios ta $1.',
-'userrights-available-remove' => 'Puede sacar usuarios de $1.',
+'userrights-available-add'    => 'Puede adibir usuarios ta {{PLURAL:$2|ista colla|istas collas}}: $1.',
+'userrights-available-remove' => "Puede sacar usuarios d'{{PLURAL:$2|ista colla|istas collas}}: $1.",
 'userrights-no-interwiki'     => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
 'userrights-nodatabase'       => 'A base de datos $1 no esiste u no ye local.',
 'userrights-nologin'          => "Ha d'[[Special:Userlogin|enzetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
@@ -1398,7 +1398,7 @@ Ta obtenir más informazión y aduya:
 'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
 'confirmdeletetext'           => "Ye amanato á borrar d'a base de datos
 una pachina con tot o suyo istorial.
-Por fabor, confirme que reyalment ye mirando de fer ixo, que acata
+Por fabor, confirme que reyalment ye mirando de fer ixo, que entiende
 as consecuenzias, y que lo fa d'alcuerdo con as 
 [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'              => 'Aizión rematada',

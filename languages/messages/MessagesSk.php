@@ -295,7 +295,7 @@ $messages = array(
 'help'              => 'Pomoc',
 'search'            => 'Hľadať',
 'searchbutton'      => 'Hľadať',
-'go'                => 'Choď',
+'go'                => 'Vykonať',
 'searcharticle'     => 'Ísť na',
 'history'           => 'história stránky',
 'history_short'     => 'História',
@@ -739,6 +739,7 @@ text do textového súboru a uložiť si ho na neskôr.</strong>',
 'protectedpagewarning'      => '<strong>POZOR: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.</strong>',
 'semiprotectedpagewarning'  => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
 'cascadeprotectedwarning'   => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
+'titleprotectedwarning'     => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba niektorí používatelia.</strong>',
 'templatesused'             => 'Šablóny použité na tejto stránke:',
 'templatesusedpreview'      => 'Šablóny použité v tomto náhľade:',
 'templatesusedsection'      => 'Šablóny použité v tejto sekcii:',
@@ -976,13 +977,14 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'userrights-editusergroup'    => 'Uprav skupinu',
 'saveusergroups'              => 'Uložiť skupinu',
 'userrights-groupsmember'     => 'Člen skupiny:',
+'userrights-groupsremovable'  => 'Odstrániteľné skupiny:',
 'userrights-groupsavailable'  => 'Dostupné skupiny:',
 'userrights-groupshelp'       => 'Označte skupiny, do ktorých chcete pridať alebo z ktorých chcete
 odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu možete pomocou CTRL + kliknutie ľavým tlačidlom',
 'userrights-reason'           => 'Dôvod zmeny:',
 'userrights-available-none'   => 'Nie ste oprávnený meniť členstvo v skupine.',
-'userrights-available-add'    => 'Môžete pridávať používateľov $1.',
-'userrights-available-remove' => 'Môžete odoberať používateľov $1.',
+'userrights-available-add'    => 'Môžete pridávať používateľov do {{PLURAL:$2|skupiny|skupín}}: $1.',
+'userrights-available-remove' => 'Môžete odoberať používateľov zo {{PLURAL:$2|skupiny|skupín}}: $1.',
 'userrights-no-interwiki'     => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
 'userrights-nodatabase'       => 'Databáza $1 neexistuje alebo nie je lokálna.',
 'userrights-nologin'          => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:Userlogin|prihlásiť]] s účtom správcu.',
@@ -1066,6 +1068,9 @@ Na začlenenie obrázku do stránky použite odkaz v tvare
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Súbor.png|alternatívny text]]</nowiki>'''
 alebo pre priamy odkaz na súbor
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Súbor.ogg]]</nowiki>'''",
+'upload-permitted'            => 'Povolené typy súborov: $1.',
+'upload-preferred'            => 'Uprednostňované typy súborov: $1.',
+'upload-prohibited'           => 'Zakázané typy súborov: $1.',
 'uploadlog'                   => 'Záznam nahrávaní',
 'uploadlogpage'               => 'Záznam nahrávaní',
 'uploadlogpagetext'           => 'Nižšie je zoznam nedávno nahraných súborov.
@@ -1082,6 +1087,8 @@ Všetky uvedené časy sú časy na serveri (UTC).',
 'illegalfilename'             => 'Názov súboru "$1" obsahuje znaky, ktoré nie sú povolené v názvoch stránok. Prosím premenujte súbor a skúste ho nahrať znovu.',
 'badfilename'                 => 'Meno obrázka bolo zmenené na "$1".',
 'filetype-badmime'            => 'Nie je povolené nahrávať súbory s MIME typom "$1".',
+'filetype-unwanted-type'      => "'''„.$1“''' je nežiadúci typ súboru. Uprednostňované typy súborov sú $2.",
+'filetype-banned-type'        => "'''„.$1“''' nie je povolený typ súboru. Povolené typy súborov sú $2.",
 'filetype-missing'            => 'Súbor nemá príponu (ako ".jpg").',
 'large-file'                  => 'Odporúča sa aby veľkosť súborov neprekračovala $1; tento súbor má $2.',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
@@ -1103,7 +1110,7 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'uploadedimage'               => 'nahraný „[[$1]]“',
 'overwroteimage'              => 'bola nahraná nová verzia „[[$1]]“',
 'uploaddisabled'              => 'Prepáčte, nahrávanie je vypnuté.',
-'uploaddisabledtext'          => 'Nahrávanie súborov na túto wiki je vypnuté.',
+'uploaddisabledtext'          => 'Nahrávanie súborov na {{GRAMMAR:lokál|{{SITENAME}}}} je vypnuté.',
 'uploadscripted'              => 'Tento súbor obsahuje kód HTML alebo skript, ktorý može byť chybne interpretovaný prehliadačom.',
 'uploadcorrupt'               => 'Tento súbor je závadný alebo má nesprávnu príponu. Skontrolujte súbor a nahrajte ho znova.',
 'uploadvirus'                 => 'Súbor obsahuje vírus! Detaily: $1',
@@ -1280,7 +1287,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'nviews'                  => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'specialpage-empty'       => 'Táto stránka je prázdna.',
 'lonelypages'             => 'Opustené stránky',
-'lonelypagestext'         => 'Na nasledujúce stránky neodkazujú žiadne iné stránky z tejto wiki.',
+'lonelypagestext'         => 'Na nasledujúce stránky neodkazujú žiadne iné stránky z {{GRAMMAR:genitív|{{SITENAME}}}}.',
 'uncategorizedpages'      => 'Stránky nezaradené do kategórií',
 'uncategorizedcategories' => 'Kategórie nezaradené do kategórií',
 'uncategorizedimages'     => 'Nekategorizované obrázky',
@@ -1301,10 +1308,13 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'shortpages'              => 'Krátke stránky',
 'longpages'               => 'Dlhé stránky',
 'deadendpages'            => 'Slepé stránky',
-'deadendpagestext'        => 'Nasledujúce stránky neodkazujú na žiadne iné stránky z tejto wiki.',
+'deadendpagestext'        => 'Nasledujúce stránky neodkazujú na žiadne iné stránky na {{GRAMMAR:lokál|{{SITENAME}}}}.',
 'protectedpages'          => 'Zamknuté stránky',
 'protectedpagestext'      => 'Upravovanie alebo presúvanie nasledovných stránok je zamknuté',
 'protectedpagesempty'     => 'Momentálne nie sú žiadne stránky zamknuté',
+'protectedtitles'         => 'Zamknuté názvy',
+'protectedtitlestext'     => 'Možnosť vytvoriť stránky s nasledovnými názvami bola zamknutá',
+'protectedtitlesempty'    => 'Tieto parametre momentálne nezamykajú žiadne názvy stránok.',
 'listusers'               => 'Zoznam používateľov',
 'specialpages'            => 'Špeciálne stránky',
 'spheading'               => 'Špeciálne stránky pre všetkých používateľov',
@@ -1320,11 +1330,13 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'notargettitle'           => 'Nebol zadaný cieľ',
 'notargettext'            => 'Nezadali ste cieľovú stránku alebo používateľa,
 na ktorý/-ého chcete aplikovať túto funkciu.',
+'pager-newer-n'           => '{{PLURAL:$1|1 novší|$1 novšie|$1 novších}}',
+'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 staršie|$1 starších}}',
 
 # Book sources
 'booksources'               => 'Knižné zdroje',
 'booksources-search-legend' => 'Vyhľadávať knižné zdroje',
-'booksources-go'            => 'Choď',
+'booksources-go'            => 'Vykonať',
 'booksources-text'          => 'Nižšie je zoznam odkazov na iné stránky, ktoré predávajú nové a použité knihy a tiež môžu obsahovať ďalšie informácie o knihách, ktoré hľadáte:',
 
 'categoriespagetext' => 'V tejto wiki existujú nasledovné kategórie.',
@@ -1542,8 +1554,9 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'pagesize'                    => '(bajtov)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Úprava',
-'restriction-move' => 'Presun',
+'restriction-edit'   => 'Úprava',
+'restriction-move'   => 'Presun',
+'restriction-create' => 'Vytvoriť',
 
 # Restriction levels
 'restriction-level-sysop'         => 'úplne zamknutá',
@@ -1560,10 +1573,11 @@ môžu byť obnovené. Archív môže byť pravidelne vyprázdnený.',
 Ak chcete vykonať selektívnu obnovu, zašktrnite polia zodpovedajúce revíziám, ktoré sa majú obnoviť a kliknite na '''''Obnov'''''.
 Kliknutie na '''''Reset''''' vyčistí pole s komentárom a všetky zaškrtávacie polia.",
 'undeleterevisions'            => '$1 {{PLURAL:verzia je archivovaná|verzie sú archivované|verzií je archivovaných}}',
-'undeletehistory'              => 'Ak obnovíte túto stránku, obnovia sa aj všetky predchádzajúce verzie do zoznamu predchádzajúcich verzií.
+'undeletehistory'              => 'Ak obnovíte túto stránku, obnovia sa aj všetky predchádzajúce verzie do histórie predchádzajúcich verzií.
 Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, zobrazia sa
 obnovené verzie ako posledné úpravy novej stránky a aktuálna verzia novej stránky
-nebude automaticky nahradená.',
+nebude automaticky nahradená.
+Tiež pamätajte, že obmedzenia vzťahujúce sa na revízie súborov sa pri obnovení stratia.',
 'undeleterevdel'               => 'Obnovenie sa nevykoná, ak by malo mať za dôsledok čiastočné zmazanie poslednej revízie. V takých prípadoch musíte odznačiť alebo odkryť najnovšie zmazané revízie.
 Revízie súborov
 ktoré nemáte povolenie prehliadať sa neobnovia.',
@@ -1770,7 +1784,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movearticle'             => 'Presunúť stránku',
 'movenologin'             => 'Nie ste prihlásený',
 'movenologintext'         => 'Musíte byť registrovaný používateľ a [[Special:Userlogin|prihlásený]], aby ste mohli presunúť stránku.',
-'movenotallowed'          => 'Na tejto wiki nemáte povolenie presúvať stránky.',
+'movenotallowed'          => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} nemáte povolenie presúvať stránky.',
 'newtitle'                => 'Na nový názov',
 'move-watch'              => 'Sledovať túto stránku',
 'movepagebtn'             => 'Presunúť stránku',
@@ -1779,6 +1793,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'articleexists'           => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.
 Prosím vyberte si iný názov.',
+'cantmove-titleprotected' => 'Nemôžete sem presunúť stránku, pretože nový názov bol zamknutý proti vytvoreniu.',
 'talkexists'              => "'''Samotná stránka bola úspešne premiestnená,
 ale diskusná stránka sa nedala premiestniť,
 pretože už jedna existuje pod zadaným novým názvom.
@@ -1830,7 +1845,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 
 # Thumbnails
 'thumbnail-more'           => 'Zväčšiť',
-'missingimage'             => '<b>Chýbajúci obrázok</b><br /><i>$1</i>\n',
+'missingimage'             => '<b>Chýbajúci obrázok</b><br /><i>$1</i>\\n',
 'filemissing'              => 'Chýbajúci súbor',
 'thumbnail_error'          => 'Chyba pri vytváraní náhľadu: $1',
 'djvu_page_error'          => 'DjVu stránka mimo rozsahu',
@@ -2386,12 +2401,13 @@ $1',
 'searchnamed'      => "Hľadať stránky s názvom ''$1''.",
 'articletitles'    => "Stránky začínajúce na ''$1''",
 'hideresults'      => 'Skryť výsledky',
+'useajaxsearch'    => 'Použiť AJAX vyhľadávanie',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; predošlá stránka',
 'imgmultipagenext'   => 'ďalšia stránka &rarr;',
-'imgmultigo'         => 'Spustiť',
-'imgmultigotopre'    => 'Choď na stránku',
+'imgmultigo'         => 'Vykonať',
+'imgmultigotopre'    => 'Prejsť na stránku',
 'imgmultiparseerror' => 'Tento súbor obrázka vyzerá byť poškodený alebo nesprávny, takže {{SITENAME}} nemôže získať zoznam stránok.',
 
 # Table pager
