@@ -112,7 +112,7 @@ class SpecialPage
 		'Ancientpages'              => array( 'SpecialPage', 'Ancientpages' ),
 		'Deadendpages'              => array( 'SpecialPage', 'Deadendpages' ),
 		'Protectedpages'            => array( 'SpecialPage', 'Protectedpages' ),
-		'Protectedtitles'	    => array( 'SpecialPage', 'Protectedtitles' ),
+		'Protectedtitles'           => array( 'SpecialPage', 'Protectedtitles' ),
 		'Allpages'                  => array( 'IncludableSpecialPage', 'Allpages' ),
 		'Prefixindex'               => array( 'IncludableSpecialPage', 'Prefixindex' ) ,
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
@@ -135,7 +135,7 @@ class SpecialPage
 		'Import'                    => array( 'SpecialPage', 'Import', 'import' ),
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
 		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
-		'Userrights'                => array( 'SpecialPage', 'Userrights' ),
+		'Userrights'                => 'UserrightsPage',
 		'MIMEsearch'                => array( 'SpecialPage', 'MIMEsearch' ),
 		'Unwatchedpages'            => array( 'SpecialPage', 'Unwatchedpages', 'unwatchedpages' ),
 		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
@@ -352,7 +352,7 @@ class SpecialPage
 
 		foreach ( self::$mList as $name => $rec ) {
 			$page = self::getPage( $name );
-			if ( $page->isListed() && $page->getRestriction() == '' ) {
+			if ( $page->isListed() && !$page->isRestricted() ) {
 				$pages[$name] = $page;
 			}
 		}
@@ -373,11 +373,12 @@ class SpecialPage
 
 		foreach ( self::$mList as $name => $rec ) {
 			$page = self::getPage( $name );
-			if ( $page->isListed() ) {
-				$restriction = $page->getRestriction();
-				if ( $restriction != '' && $wgUser->isAllowed( $restriction ) ) {
-					$pages[$name] = $page;
-				}
+			if (
+				$page->isListed()
+				and $page->isRestricted()
+				and $page->userCanExecute( $wgUser )
+			) {
+				$pages[$name] = $page;
 			}
 		}
 		return $pages;
@@ -611,10 +612,25 @@ class SpecialPage
 	}
 
 	/**
-	 * Checks if the given user (identified by an object) can execute this
-	 * special page (as defined by $mRestriction)
+	 * Can be overridden by subclasses with more complicated permissions
+	 * schemes.
+	 *
+	 * @return bool Should the page be displayed with the restricted-access
+	 *   pages?
 	 */
-	function userCanExecute( &$user ) {
+	public function isRestricted() {
+		return $this->mRestriction != '';
+	}
+
+	/**
+	 * Checks if the given user (identified by an object) can execute this
+	 * special page (as defined by $mRestriction).  Can be overridden by sub-
+	 * classes with more complicated permissions schemes.
+	 *
+	 * @param User $user The user to check
+	 * @return bool Does the user have permission to view the page?
+	 */
+	public function userCanExecute( &$user ) {
 		return $user->isAllowed( $this->mRestriction );
 	}
 
