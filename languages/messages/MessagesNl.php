@@ -736,9 +736,8 @@ De blokkade is uitgevoerd door $1. De opgegeven reden is ''$2''.
 * Einde blokkade: $6
 * Bedoeld te blokkeren: $7
 
-U kan contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om te blokkade te bespreken.
-U kan geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres heeft opgegeven in uw 
-[[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet geblokkeerd is.
+U kan contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.
+U kan geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres heeft opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet geblokkeerd is.
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens op deze blokkade reageert.",
 'autoblockedtext'           => "Uw IP-adres is automatisch geblokkeerd, omdat het is gebruikt door een andere gebruiker, die is geblokkeerd door $1.
 De opgegeven reden is:
