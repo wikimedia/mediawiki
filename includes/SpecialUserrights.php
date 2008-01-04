@@ -94,7 +94,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param string $reason Reason for group change
 	 * @return null
 	 */
-	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '') {
+	function saveUserGroups( $username, &$removegroup, &$addgroup, $reason = '') {
 		$user = $this->fetchUser( $username );
 		if( !$user ) {
 			return;
@@ -106,7 +106,11 @@ class UserrightsPage extends SpecialPage {
 			array_intersect( (array)$removegroup, $changeable['remove'] ) );
 		$addgroup = array_unique(
 			array_intersect( (array)$addgroup, $changeable['add'] ) );
-
+		
+		// If nothing is changed, no log entry should be created
+		if($removegroup == $addgroup)
+			return;
+		
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 		// remove then add groups
@@ -241,6 +245,7 @@ class UserrightsPage extends SpecialPage {
 	function switchForm() {
 		global $wgOut;
 		$form  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'uluser' ) );
+		$form .= Xml::hidden( 'title',  'Special:Userrights' );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . '</p>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ) ) . '</p>';
@@ -288,6 +293,7 @@ class UserrightsPage extends SpecialPage {
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'editGroup' ) ) .
 			Xml::hidden( 'user', $user->getName() ) .
+			Xml::hidden( 'title', 'Special:Userrights' ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $user->getName() ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
