@@ -1438,7 +1438,9 @@ $NEWPAGE
 'importhistoryconflict'      => '舊審沖，疑早存焉',
 'importnosources'            => '互匯而未定入源，審、誌不予直進。',
 'importnofile'               => '無匯入也。',
-'importuploaderror'          => '檔未入匯，疑幅越焉。',
+'importuploaderrorsize'      => '檔未入匯。幅越焉。',
+'importuploaderrorpartial'   => '檔未入匯。檔部傳。',
+'importuploaderrortemp'      => '檔未入匯。臨夾已失。',
 
 # Import log
 'importlogpage'                    => '誌入',

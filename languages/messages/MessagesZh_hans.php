@@ -1738,7 +1738,9 @@ $1',
 'importhistoryconflict'      => '存在冲突的修订历史(可能在之前已经导入过此页面)',
 'importnosources'            => '跨Wiki导入源没有定义，同时不允许直接的历史上传。',
 'importnofile'               => '没有上传导入文件。',
-'importuploaderror'          => '上传导入文件失败；可能是该文件大于允许的文件上传大小。',
+'importuploaderrorsize'      => '上载导入文件失败。文件大于可以允许的上传大小。',
+'importuploaderrorpartial'   => '上载导入文件失败。文件只有部份已经上传。',
+'importuploaderrortemp'      => '上载导入文件失败。临时文件夹已遗失。',
 
 # Import log
 'importlogpage'                    => '导入日志',

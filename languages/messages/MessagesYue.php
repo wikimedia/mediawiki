@@ -1805,7 +1805,9 @@ $1',
 'importhistoryconflict'      => '存在有衝突嘅歷史版本（之前可能曾經倒入過呢頁）',
 'importnosources'            => '未定義 transwiki 嘅匯入來源，同埋歷史嘅直接上載已經停用。',
 'importnofile'               => '冇上載到任何要倒入嘅檔案。',
-'importuploaderror'          => '上載要倒入嘅文件失敗；可能文件超過咗允許嘅上載大細。',
+'importuploaderrorsize'      => '上載要倒入嘅檔案失敗。個檔案大過可以容許嘅上載大細。',
+'importuploaderrorpartial'   => '上載要倒入嘅檔案失敗。個檔案只係部份上載咗。',
+'importuploaderrortemp'      => '上載要倒入嘅檔案失敗。個臨時資料夾唔見咗。',
 
 # Import log
 'importlogpage'                    => '倒入日誌',
