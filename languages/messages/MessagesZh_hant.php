@@ -623,7 +623,7 @@ $2',
 'template-semiprotected'    => '(半保護)',
 'edittools'                 => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
 'nocreatetitle'             => '創建頁面受限',
-'nocreatetext'              => '此網站限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
+'nocreatetext'              => '{{SITENAME}}限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
 'nocreate-loggedin'         => '您在{{SITENAME}}中並無許可權去創建新頁面。',
 'permissionserrors'         => '權限錯誤',
 'permissionserrorstext'     => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
@@ -684,7 +684,7 @@ $2',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">該頁面修訂已經被從公共文檔中移除。
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。</div>',
 'rev-deleted-text-view'       => "<div class='mw-warning plainlinks'>
-該頁面修訂已經被從公共文檔中移除。作為此網站的管理員，您可以檢視它；
+該頁面修訂已經被從公共文檔中移除。作為{{SITENAME}}的管理員，您可以檢視它；
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。
 </div>",
 'rev-delundel'                => '顯示/隱藏',
@@ -1064,7 +1064,7 @@ $2',
 'filedelete-submit'      => '刪除',
 'filedelete-success'     => "'''$1'''已經刪除。",
 'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 的版本已經刪除。</span>',
-'filedelete-nofile'      => "'''$1'''在這個網站中不存在。",
+'filedelete-nofile'      => "'''$1'''在{{SITENAME}}中不存在。",
 'filedelete-nofile-old'  => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
 'filedelete-iscurrent'   => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
 
@@ -1576,8 +1576,8 @@ $1',
 'proxyblocker-disabled'       => '這個功能已經停用。',
 'proxyblockreason'            => '您的IP位址是一個開放的代理，它已經被封鎖。請聯繫您的網際網路服務提供商或技術支援者並告知告知他們該嚴重的安全問題。',
 'proxyblocksuccess'           => '完成。\n',
-'sorbsreason'                 => '您的IP位址被 DNSBL列為屬於開放代理服務器.',
-'sorbs_create_account_reason' => '由於您的IP位址被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
+'sorbsreason'                 => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
+'sorbs_create_account_reason' => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
 
 # Developer tools
 'lockdb'              => '禁止更改資料庫',

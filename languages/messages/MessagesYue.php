@@ -713,7 +713,7 @@ $2',
 'template-semiprotected'    => '(半保護)',
 'edittools'                 => '<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->',
 'nocreatetitle'             => '頁面建立被限制',
-'nocreatetext'              => '呢個網站已經限制咗起新版嘅能力。
+'nocreatetext'              => '{{SITENAME}}已經限制咗起新版嘅能力。
 你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:Userlogin|登入或開個新戶口]]。',
 'nocreate-loggedin'         => '你響{{SITENAME}}度並無許可權去開新版。',
 'permissionserrors'         => '權限錯誤',
@@ -779,7 +779,7 @@ $2',
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 呢頁嘅修訂喺公共檔案庫中已經洗咗。
-作為一個喺呢個網站嘅管理員，你可以去睇吓佢；
+作為一個喺{{SITENAME}}嘅管理員，你可以去睇吓佢；
 喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
 </div>',
 'rev-delundel'                => '顯示／隱藏',
@@ -1158,7 +1158,7 @@ $2',
 'filedelete-submit'      => '刪除',
 'filedelete-success'     => "'''$1'''已經刪除咗。",
 'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'響 $2 $3 嘅版本已經刪除咗。</span>',
-'filedelete-nofile'      => "'''$1'''響呢個網站度唔存在。",
+'filedelete-nofile'      => "'''$1'''響{{SITENAME}}度唔存在。",
 'filedelete-nofile-old'  => "用指定嘅屬性，呢度係無'''$1'''響 $2 $3 嘅歸檔版本。",
 'filedelete-iscurrent'   => '你而家嘗試刪除呢個檔案嘅最近版本。請先將個檔打回頭做舊啲嘅版本先。',
 
@@ -1672,8 +1672,8 @@ $1',
 'proxyblocker-disabled'       => '呢個功能已經停用。',
 'proxyblockreason'            => '你嘅IP係一個公開（指任何人都可以用，無須身份認證？）嘅代理地址，因此被封鎖。請聯絡你嘅Internet服務提供商或技術支援，向佢哋報告呢個嚴重嘅安全問題。',
 'proxyblocksuccess'           => '完成。',
-'sorbsreason'                 => '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。',
-'sorbs_create_account_reason' => '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
+'sorbsreason'                 => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。',
+'sorbs_create_account_reason' => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',
