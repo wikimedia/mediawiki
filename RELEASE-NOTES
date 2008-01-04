@@ -117,6 +117,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12486) Protected titles now give a warning for privileged editors.
 * (bug 9939) Special:Search now sets focus to search input box when no existing
   search is active
+* For Special:Userrights, use GET instead of POST to search for users.
+* Allow subpage syntax for Special:Userrights, i.e., Special:Userrights/Name.
+* When submitting changes on Special:Userrights, show the full form again, not
+  just the search box.
 
 
 === Bug fixes in 1.12 ===
