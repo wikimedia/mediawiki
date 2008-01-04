@@ -631,7 +631,8 @@ Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.<
 'template-semiprotected'    => '(mié-protègiê)',
 'edittools'                 => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes d’èdicion ou d’impôrt de fichiér. -->',
 'nocreatetitle'             => 'Crèacion de pâge limitâ',
-'nocreatetext'              => 'Ceti seto at rètrent la possibilitât de crèar de novèles pâges. Vos pouede tornar arriér et modifiar una pâge ègzistenta, vos [[Special:Userlogin|conèctar ou crèar un compto]].',
+'nocreatetext'              => '{{SITENAME}} at rètrent la possibilitât de crèar de novèles pâges.
+Vos pouede tornar arriér et modifiar una pâge ègzistenta, ou ben vos [[Special:Userlogin|conèctar ou crèar un compto]].',
 'nocreate-loggedin'         => 'Vos avéd pas la pèrmission de crèar de novèles pâges dessus {{SITENAME}}.',
 'permissionserrors'         => 'Èrror de pèrmissions',
 'permissionserrorstext'     => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|la rêson siuventa|les rêsons siuventes}} :',
@@ -690,7 +691,7 @@ Vos pouede tâchiér de [[Special:Search|rechèrchiér dens lo vouiqui]] des nov
 'rev-deleted-event'           => '(entrâ suprimâ)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Ceta vèrsion de la pâge at étâ reteriê des arch·ives publiques.
-Pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} jornal de les suprèssions].
+Pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Ceta vèrsion de la pâge at étâ reteriê des arch·ives publiques.
@@ -1084,7 +1085,7 @@ PICT # de totes sôrtes
 'filedelete-submit'      => 'Suprimar',
 'filedelete-success'     => "'''$1''' at étâ suprimâ.",
 'filedelete-success-old' => '<span class="plainlinks">La vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du $2 a $3 at étâ suprimâ.</span>',
-'filedelete-nofile'      => "'''$1''' ègziste pas sur ceti seto.",
+'filedelete-nofile'      => "'''$1''' ègziste pas dessus {{SITENAME}}.",
 'filedelete-nofile-old'  => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs endicâs.",
 'filedelete-iscurrent'   => 'Vos éte aprés tâchiér de suprimar la vèrsion la ples novèla de ceti fichiér. Vos dête, prècèdament, rètablir una vielye vèrsion de ceti.',
 
@@ -1597,8 +1598,8 @@ d’una adrèce IP prècèdament blocâ.',
 'proxyblocker-disabled'       => 'Cela fonccion est dèsactivâ.',
 'proxyblockreason'            => 'Voutra adrèce IP at étâ blocâ perce qu’el est un proxy uvèrt. Marci de vos veriér vers voutron fornissor d’accès u Malyâjo ou voutron supôrt tècnico et de l’enformar de ceti problèmo de sècuritât.',
 'proxyblocksuccess'           => 'Chavonâ.',
-'sorbsreason'                 => 'Voutra adrèce IP est listâ a titro de proxy uvèrt DNSBL.',
-'sorbs_create_account_reason' => 'Voutra adrèce IP est listâ a titro de proxy uvèrt DNSBL. Vos pouede pas crèar un compto utilisator.',
+'sorbsreason'                 => 'Voutra adrèce IP est listâ a titro de proxy uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.',
+'sorbs_create_account_reason' => 'Voutra adrèce IP est listâ a titro de proxy uvèrt dens lo DNSBL utilisâ per {{SITENAME}}. Vos pouede pas crèar un compto utilisator.',
 
 # Developer tools
 'lockdb'              => 'Vèrrolyér la bâsa',
@@ -1737,6 +1738,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'importhistoryconflict'      => 'Y at un conflit dens l’historico de les vèrsions (ceta pâge at possu étre importâ dês devant).',
 'importnosources'            => 'Niona sôrsa entèrvouiqui at étâ dèfenia et la copia drêta d’historico est dèsactivâ.',
 'importnofile'               => 'Nion fichiér at étâ importâ.',
+'importuploaderrorsize'      => 'Lo tèlèchargement du fichiér a importar at pas reussi. Sa talye est ples granta que cela ôtorisâ.',
+'importuploaderrorpartial'   => 'Lo tèlèchargement du fichiér a importar at pas reussi. Ceti l’at étâ ren qu’a mêtiêt.',
 
 # Import log
 'importlogpage'                    => 'Historico de les importacions de pâges',

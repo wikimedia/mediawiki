@@ -1348,7 +1348,7 @@ de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái 
 'undeletebtn'              => 'Restaurar',
 'undeletereset'            => 'Llimpiar',
 'undeletecomment'          => 'Comentariu:',
-'undeletedarticle'         => 'restauróse "[[$1]]"',
+'undeletedarticle'         => 'restauró "[[$1]]"',
 'undeletedrevisions'       => '{{PLURAL:$1|1 revisión restaurada|$1 revisiones restauraes}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
 'undeletedfiles'           => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',

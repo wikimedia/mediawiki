@@ -1350,7 +1350,6 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'importhistoryconflict' => 'Ekzistojnë versione historiku në konflikt (kjo faqe mund të jetë importuar më parë)',
 'importnosources'       => 'Nuk ka asnjë burim importi të përcaktuar dhe ngarkimet historike të drejtpërdrejta janë ndaluar.',
 'importnofile'          => 'Nuk u ngarkua asnjë skedë importi.',
-'importuploaderror'     => 'Ngarkimi i skedës së importit dështoi. Ndoshta skeda kishte madhësi më të madhe se lejohet.',
 
 # Import log
 'importlogpage' => 'Regjistri i importeve',
@@ -1702,4 +1701,3 @@ $1',
 'autosumm-new'     => 'Faqe e re: $1',
 
 );
-

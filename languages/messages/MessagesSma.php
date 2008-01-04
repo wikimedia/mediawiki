@@ -100,6 +100,7 @@ $messages = array(
 'projectpage'      => 'Vuesehte Wikipedijebielie',
 'imagepage'        => 'Vuesehte guvvie bielie',
 'viewhelppage'     => 'Vuesehte viehkie bielie',
+'viewtalkpage'     => 'Vuesehte dïjveldidh',
 'otherlanguages'   => 'jeatjebh gïele',
 'jumptosearch'     => 'ohtsedh',
 
@@ -121,7 +122,9 @@ $messages = array(
 'nstab-project'   => 'Wikipedije bielie',
 'nstab-image'     => 'Guvvie',
 'nstab-mediawiki' => 'Mediawiki-dïjre',
+'nstab-template'  => 'Mallevoudhu',
 'nstab-help'      => 'Viehke bielie',
+'nstab-category'  => 'Kategorije',
 
 # General errors
 'error'              => 'Båajhtode',
@@ -257,8 +260,10 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Mov nuhtjienbielie',
+'tooltip-pt-mytalk'   => 'Mov dïjveldidh bielie',
 'tooltip-search'      => 'Ohtsedh {{SITENAME}}',
 'tooltip-p-logo'      => 'Åejjiebielie',
+'tooltip-n-mainpage'  => 'Vaadtsa Åejjiebielie',
 
 # Attribution
 'siteuser' => '{{SITENAME}} nuhtjien $1',

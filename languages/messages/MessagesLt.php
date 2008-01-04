@@ -7,6 +7,7 @@
  * @author Vpovilaitis
  * @author Matasg
  * @author Pdxx
+ * @author Garas
  */
 
 $namespaceNames = array(
@@ -395,6 +396,7 @@ $2',
 'namespaceprotected'   => "Jūs neturite teisės redaguoti puslapių '''$1''' srityje.",
 'customcssjsprotected' => 'Jūs neturite teisės redaguoti šio puslapio, nes jame yra kito nautotojo asmeninių nustatymų.',
 'ns-specialprotected'  => '„{{ns:special}}“ vardų srityje puslapiai negali būti redaguojami.',
+'titleprotected'       => '[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo. Duota priežastis yra <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Naudotojo atsijungimas',
@@ -639,6 +641,7 @@ ir vėliau įkelti jį čia.</strong>',
 'protectedpagewarning'      => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
 'semiprotectedpagewarning'  => "'''Pastaba:''' Šis puslapis buvo užrakintas ir jį gali redaguoti tik registruoti naudotojai.",
 'cascadeprotectedwarning'   => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:",
+'titleprotectedwarning'     => '<strong>ĮSPĖJIMAS: Šis puslapis buvo užrakintas taip, kad tik kai kurie naudotojai galėtų jį sukurti.</strong>',
 'templatesused'             => 'Puslapyje naudojami šablonai:',
 'templatesusedpreview'      => 'Šablonai, naudoti šioje peržiūroje:',
 'templatesusedsection'      => 'Šablonai, naudoti šiame skyrelyje:',
@@ -876,6 +879,8 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'userrights-available-none'   => 'Jūs negalite keisti grupės narystės.',
 'userrights-available-add'    => 'Jūs galite pridėti naudotojus į $1.',
 'userrights-available-remove' => 'Jūs galite pašalinti naudotojus iš $1.',
+'userrights-nodatabase'       => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
+'userrights-notallowed'       => 'Jūsų paskyra neturi teisių priskirti naudotojų teises.',
 
 # Groups
 'group'               => 'Grupė:',
@@ -949,6 +954,9 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Failas.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Failas.png|alternatyvusis tekstas]]</nowiki>''' arba
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki>''' tiesioginei nuorodai į failą.",
+'upload-permitted'            => 'Leidžiami failų tipai: $1.',
+'upload-preferred'            => 'Pageidautini failų tipai: $1.',
+'upload-prohibited'           => 'Uždrausti failų tipai: $1.',
 'uploadlog'                   => 'įkėlimų istorija',
 'uploadlogpage'               => 'Įkėlimų istorija',
 'uploadlogpagetext'           => 'Žemiau pateikiamas paskutinių failų įkėlimų istorija.',
@@ -964,6 +972,8 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 'illegalfilename'             => 'Failo varde „$1“ yra simbolių, neleidžiamų puslapio pavadinimuose. Prašome pervadint failą ir mėginkite įkelti jį iš naujo.',
 'badfilename'                 => 'Failo pavadinimas pakeistas į „$1“.',
 'filetype-badmime'            => 'Neleidžiama įkelti „$1“ MIME tipo failų.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' yra nepageidautinas failo tipas. Pageidautini failų tipai yra \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' nėra leistinas failo tipas. Leistini failų tipai yra \$2.",
 'filetype-missing'            => 'Failas neturi galūnės (pavyzdžiui „.jpg“).',
 'large-file'                  => 'Rekomenduojama, kad failų dydis būtų nedidesnis nei $1; šio failo dydis yra $2.',
 'largefileserver'             => 'Šis failas yra didesnis nei serveris yra sukonfigūruotas leisti.',
@@ -1176,6 +1186,8 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'protectedpagestext'      => 'Šie puslapiai yra apsaugoti nuo perkėlimo ar redagavimo',
 'protectedpagesempty'     => 'Šiuo metu nėra apsaugotas joks failas su šiais parametrais.',
 'protectedtitles'         => 'Apsaugoti pavadinimai',
+'protectedtitlestext'     => 'Šie pavadinimai yra apsaugoti nuo sukūrimo',
+'protectedtitlesempty'    => 'Šiuo metu nėra jokių pavadinimų apsaugotų šiais parametrais.',
 'listusers'               => 'Naudotojų sąrašas',
 'specialpages'            => 'Specialieji puslapiai',
 'spheading'               => 'Specialieji puslapiai visiems naudotojams',
@@ -1190,6 +1202,8 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'unusedcategoriestext'    => 'Šie kategorijų puslapiai sukurti, nors joks kitas puslapis ar kategorija jo nenaudoja.',
 'notargettitle'           => 'Nenurodytas objektas',
 'notargettext'            => 'Jūs nenurodėte norimo puslapio ar naudotojo, kuriam įvykdyti šią funkciją.',
+'pager-newer-n'           => '$1 {{PLURAL:$1|naujesnis|naujesni|naujesnių}}',
+'pager-older-n'           => '$1 {{PLURAL:$1|senesnis|senesni|senesnių}}',
 
 # Book sources
 'booksources'               => 'Knygų šaltiniai',
@@ -1734,7 +1748,9 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'importhistoryconflict'      => 'Yra konfliktuojanti istorijos versija (galbūt šis puslapis buvo importuotas anksčiau)',
 'importnosources'            => 'Nenustatyti transwiki importo šaltiniai, o tiesioginis praeities įkėlimas uždraustas.',
 'importnofile'               => 'Nebuvo įkeltas joks importo failas.',
-'importuploaderror'          => 'Importo failo įkelimas nepavyko; galbūt failas yra didesnis nei leidžiamas įkėlimo dydis.',
+'importuploaderrorsize'      => 'Importavimo failo įkėlimas nepavyko. Failas didesnis nei leidžiamas dydis.',
+'importuploaderrorpartial'   => 'Importavimo failo įkėlimas nepavyko. Failas buvo tik dalinai įkeltas.',
+'importuploaderrortemp'      => 'Importavimo failo įkėlimas nepavyko. Trūksta laikinojo aplanko.',
 
 # Import log
 'importlogpage'                    => 'Importo istorija',
@@ -2153,7 +2169,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t.y. pusla
 'exif-sharpness-2' => 'Didelis',
 
 'exif-subjectdistancerange-0' => 'Nežinomas',
-'exif-subjectdistancerange-1' => 'Makrokomanda',
+'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Artimas vaizdas',
 'exif-subjectdistancerange-3' => 'Tolimas vaizdas',
 
@@ -2259,6 +2275,7 @@ $1',
 'searchnamed'      => "Ieškoti puslapių, pavadintų ''$1''.",
 'articletitles'    => "Puslapiai, pradedant nuo ''$1''",
 'hideresults'      => 'Slėpti rezultatus',
+'useajaxsearch'    => 'Naudoti AJAX paiešką',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← ankstesnis puslapis',

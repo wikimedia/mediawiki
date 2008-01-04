@@ -10,6 +10,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Max sonnelid
+ * @author Eirik
  */
 
 $skinNames = array(
@@ -155,10 +156,10 @@ $messages = array(
 'tog-showtoc'                 => 'Vis innholdsfortegnelse (for sider med mer enn tre seksjoner)',
 'tog-rememberpassword'        => 'Husk passordet',
 'tog-editwidth'               => 'Full bredde på redigeringsboksen',
-'tog-watchcreations'          => 'Overvåk sider du oppretter',
-'tog-watchdefault'            => 'Overvåk alle redigerte sider',
-'tog-watchmoves'              => 'Legg til sider jeg flytter i overvåkningslista mi',
-'tog-watchdeletion'           => 'Legg til sider jeg sletter i overvåkningslista mi',
+'tog-watchcreations'          => 'Overvåk sider jeg oppretter',
+'tog-watchdefault'            => 'Overvåk alle sider jeg redigerer',
+'tog-watchmoves'              => 'Overvåk sider jeg flytter',
+'tog-watchdeletion'           => 'Overvåk sider jeg sletter.',
 'tog-minordefault'            => 'Merk i utgangspunktet alle redigeringer som mindre',
 'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
@@ -174,7 +175,7 @@ $messages = array(
 'tog-showjumplinks'           => 'Slå på «gå til»-lenker',
 'tog-uselivepreview'          => 'Bruk levende forhåndsvisning (eksperimentell JavaScript)',
 'tog-forceeditsummary'        => 'Advar meg når jeg ikke har noen redigeringsforklaring',
-'tog-watchlisthideown'        => 'Skjul mine endringer fra overvåkningslista',
+'tog-watchlisthideown'        => 'Skjul egne endringer fra overvåkningslista',
 'tog-watchlisthidebots'       => 'Skjul robotendringer fra overvåkningslista',
 'tog-watchlisthideminor'      => 'Skjul mindre endringer fra overvåkningslista',
 'tog-nolangconversion'        => 'Slå av variantkonvertering',
@@ -506,7 +507,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
 'loginerror'                 => 'Innloggingsfeil',
-'prefs-help-email'           => '* E-post (valgfritt): Muliggjør at andre kan kontakte deg uten at identiteten din blir avslørt.',
+'prefs-help-email'           => '* E-post (valgfritt): Gjør at andre kan kontakte deg uten at identiteten din blir avslørt.',
 'prefs-help-email-required'  => 'E-postadresse er påkrevd.',
 'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
 'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem på og prøv igjen.',
@@ -1535,7 +1536,7 @@ $1',
 'nolinkshere'         => "Ingen sider lenker til '''[[:$1]]'''.",
 'nolinkshere-ns'      => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
 'isredirect'          => 'omdirigeringsside',
-'istemplate'          => 'inklusjon',
+'istemplate'          => 'inkludert som mal',
 'whatlinkshere-prev'  => 'forrige $1',
 'whatlinkshere-next'  => 'neste $1',
 'whatlinkshere-links' => '← lenker',
@@ -1926,7 +1927,7 @@ $1',
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
 
-Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en linje må være en lenke til et dårlig bilde. Alle andre linker på samme linje anses å være unntak, altså artikler hvor bildet er tillat brukt.',
+Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en linje må være en lenke til et dårlig bilde. Alle andre linker på samme linje anses å være unntak, altså artikler hvor bildet er tillatt brukt.',
 
 # Metadata
 'metadata'          => 'Metadata',

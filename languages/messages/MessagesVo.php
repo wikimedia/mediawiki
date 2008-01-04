@@ -680,13 +680,13 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 'statistics'             => 'Statits',
 'sitestats'              => 'Statits {{SITENAME}}',
 'userstats'              => 'Gebanastatits',
-'sitestatstext'          => "Dabinons valodo pads '''\$1''' in Vükiped.
+'sitestatstext'          => "{{PLURAL:\$1|Dabinon pad '''1'''|Dabinons valodo pads '''\$1'''}} in {{SITENAME}}.
 Atos ninükon i \"bespikapadis\", padis dö Vükiped it, padis go smalikis (\"sidis\"), lüodükömis, e votikis, kels luveratiko no kanons palelogön as pads ninädilabik.
-Atis fakipölo, retons nog pads '''\$2''', kels luveratiko binons legiko ninädilabiks. 
+Atis fakipölo, retons nog {{PLURAL:\$2|pad '''1''', kel luveratiko binon legiko ninädilabik|pads '''\$2''', kels luveratiko binons legiko ninädilabiks}}. 
 
-Ragivs '''\$8''' pelöpükons.
+{{PLURAL:\$8|Ragiv '''1''' pelöpükon|Ragivs '''\$8''' pelöpükons}}.
 
-Ejenons valodo padilogams '''\$3''', e padiredakams '''\$4''', sisä vük at pästiton.
+Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL:\$4|padiredakam '''1'''|padiredakams '''\$4'''}}, sisä vük at pästiton.
 Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
 
 Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'''.",
@@ -858,8 +858,8 @@ $2 jonon moükamis nulik.',
 ** Copyright violation
 ** Vandalism',
 'rollback'                    => 'Sädunön redakamis',
-'rollback_short'              => 'Sädunön',
-'rollbacklink'                => 'sädunön',
+'rollback_short'              => 'Sädunön mödiki',
+'rollbacklink'                => 'sädunön mödiki',
 'rollbackfailed'              => 'Sädunam no eplöpon',
 'cantrollback'                => 'Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.',
 'revertpage'                  => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]',

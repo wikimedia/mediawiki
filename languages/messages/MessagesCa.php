@@ -720,7 +720,7 @@ en un fitxer de text i desar-lo més tard.</strong>',
 'nocreatetext'              => "Està restringida la possibilitat de crear noves pàgines.
 Podeu editar les planes ja existents o bé [[Special:Userlogin|entrar en un compte d'usuari]].",
 'nocreate-loggedin'         => 'No teniu permisos per a crear pàgines noves a la {{SITENAME}}.',
-'permissionserrors'         => 'Errors de premisos',
+'permissionserrors'         => 'Error de permisos',
 'permissionserrorstext'     => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'recreate-deleted-warn'     => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
 
@@ -1810,7 +1810,6 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'importhistoryconflict'      => "Hi ha un conflicte de versions en l'historial (la pàgina podria haver sigut importada abans)",
 'importnosources'            => "No s'ha definit cap font d'origen interwiki i s'ha deshabilitat la càrrega directa d'una còpia de l'historial",
 'importnofile'               => "No s'ha pujat cap fitxer d'importació.",
-'importuploaderror'          => "Ha fallat la càrrega del fitxer d'importació; potser el seu pes ha excedit el límit màxim.",
 
 # Import log
 'importlogpage'                    => "Registre d'importació",
