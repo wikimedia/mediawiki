@@ -1084,7 +1084,7 @@ the text into a text file and save it for later.</strong>',
 'template-semiprotected'    => '(semi-protected)',
 'edittools'                 => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
 'nocreatetitle'             => 'Page creation limited',
-'nocreatetext'              => 'This site has restricted the ability to create new pages.
+'nocreatetext'              => '{{SITENAME}} has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
 'nocreate-loggedin'         => 'You do not have permission to create new pages on {{SITENAME}}.',
 'permissionserrors'         => 'Permissions Errors',
@@ -1153,7 +1153,7 @@ There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
-As an administrator on this site you can view it;
+As an administrator on {{SITENAME}} you can view it;
 there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 </div>',
 'rev-delundel'                => 'show/hide',
@@ -1574,7 +1574,7 @@ PICT # misc.
 'filedelete-submit'      => 'Delete',
 'filedelete-success'     => "'''$1''' has been deleted.",
 'filedelete-success-old' => '<span class="plainlinks">The version of \'\'\'[[Media:$1|$1]]\'\'\' as of $3, $2 has been deleted.</span>',
-'filedelete-nofile'      => "'''$1''' does not exist on this site.",
+'filedelete-nofile'      => "'''$1''' does not exist on {{SITENAME}}.",
 'filedelete-nofile-old'  => "There is no archived version of '''$1''' with the specified attributes.",
 'filedelete-iscurrent'   => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
 
@@ -2154,8 +2154,8 @@ the list of currently operational bans and blocks.',
 'proxyblockreason'            => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
 'proxyblocksuccess'           => 'Done.',
 'sorbs'                       => 'DNSBL', # only translate this message to other languages if you have to change it
-'sorbsreason'                 => 'Your IP address is listed as an open proxy in the DNSBL used by this site.',
-'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the DNSBL used by this site. You cannot create an account',
+'sorbsreason'                 => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.',
+'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}. You cannot create an account',
 
 # Developer tools
 'lockdb'              => 'Lock database',
