@@ -13,6 +13,11 @@
  * @addtogroup SpecialPage
  */
 class UserrightsPage extends SpecialPage {
+	# The target of the local right-adjuster's interest.  Can be gotten from
+	# either a GET parameter or a subpage-style parameter, so have a member
+	# variable for it.
+	protected $mTarget;
+
 	public function __construct() {
 		parent::__construct( 'Userrights' );
 	}
@@ -29,8 +34,10 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Manage forms to be shown according to posted data.
 	 * Depending on the submit button used, call a form or a save function.
+	 *
+	 * @param mixed $par String if any subpage provided, else null
 	 */
-	function execute() {
+	function execute( $par ) {
 		// If the visitor doesn't have permissions to assign or remove
 		// any groups, it's a bit silly to give them the user search prompt.
 		global $wgUser;
@@ -44,29 +51,36 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
+		global $wgRequest;
+		if( $par ) {
+			$this->mTarget = $par;
+		} else {
+			$this->mTarget = $wgRequest->getVal( 'user' );
+		}
+
 		$this->setHeaders();
 
 		// show the general form
 		$this->switchForm();
 
-		global $wgRequest;
 		if( $wgRequest->wasPosted() ) {
-			// show some more forms
-			if( $wgRequest->getCheck( 'ssearchuser' ) ) {
-				$this->editUserGroupsForm( $wgRequest->getVal( 'user-editname' ) );
-			}
-
 			// save settings
 			if( $wgRequest->getCheck( 'saveusergroups' ) ) {
-				$username = $wgRequest->getVal( 'user-editname' );
 				$reason = $wgRequest->getVal( 'user-reason' );
-				if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $username ) ) {
-					$this->saveUserGroups( $username,
+				if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $this->mTarget ) ) {
+					$this->saveUserGroups(
+						$this->mTarget,
 						$wgRequest->getArray( 'removable' ),
 						$wgRequest->getArray( 'available' ),
-						$reason );
+						$reason
+					);
 				}
 			}
+		}
+
+		// show some more forms
+		if( $this->mTarget ) {
+			$this->editUserGroupsForm( $this->mTarget );
 		}
 	}
 
@@ -225,12 +239,11 @@ class UserrightsPage extends SpecialPage {
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
-		global $wgOut, $wgRequest;
-		$username = $wgRequest->getText( 'user-editname' );
-		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'uluser' ) );
+		global $wgOut;
+		$form  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'uluser' ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
-		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user-editname', 'username', 30, $username ) . '</p>';
-		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ), array( 'name' => 'ssearchuser' ) ) . '</p>';
+		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . '</p>';
+		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ) ) . '</p>';
 		$form .= '</fieldset>';
 		$form .= '</form>';
 		$wgOut->addHTML( $form );
@@ -274,7 +287,7 @@ class UserrightsPage extends SpecialPage {
 		}
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'editGroup' ) ) .
-			Xml::hidden( 'user-editname', $user->getName() ) .
+			Xml::hidden( 'user', $user->getName() ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $user->getName() ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
