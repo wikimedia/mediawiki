@@ -239,8 +239,9 @@ class UserrightsPage extends SpecialPage {
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
-		global $wgOut;
-		$form  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'uluser' ) );
+		global $wgOut, $wgScript;
+		$form  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser' ) );
+		$form .= Xml::hidden( 'title',  'Special:Userrights' ); 
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . '</p>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ) ) . '</p>';
