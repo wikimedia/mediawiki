@@ -69,7 +69,7 @@ class UserrightsPage extends SpecialPage {
 				$reason = $wgRequest->getVal( 'user-reason' );
 				if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $this->mTarget ) ) {
 					$this->saveUserGroups(
-						$this->fetchUser($this->mTarget),
+						$this->mTarget,
 						$wgRequest->getArray( 'removable' ),
 						$wgRequest->getArray( 'available' ),
 						$reason
@@ -88,28 +88,25 @@ class UserrightsPage extends SpecialPage {
 	 * Save user groups changes in the database.
 	 * Data comes from the editUserGroupsForm() form function
 	 *
-	 * @param object $user User or UserRightsProxy to apply changes to.
+	 * @param string $username Username to apply changes to.
 	 * @param array $removegroup id of groups to be removed.
 	 * @param array $addgroup id of groups to be added.
 	 * @param string $reason Reason for group change
 	 * @return null
 	 */
-	function saveUserGroups( $user, &$removegroup, &$addgroup, $reason = '') {
+	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '') {
+		$user = $this->fetchUser( $username );
 		if( !$user ) {
 			return;
 		}
-
+		
 		// Validate input set...
-		$changeable = $this->splitGroups($user->getEffectiveGroups());
+		$changeable = $this->changeableGroups();
 		$removegroup = array_unique(
-			array_intersect( (array)$removegroup, $changeable[1] ) );
+			array_intersect( (array)$removegroup, $changeable['remove'] ) );
 		$addgroup = array_unique(
-			array_intersect( (array)$addgroup, $changeable[0] ) );
-		
-		// If nothing is changed, no log entry should be created
-		if($removegroup == $addgroup)
-			return;
-		
+			array_intersect( (array)$addgroup, $changeable['add'] ) );
+
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 		// remove then add groups
@@ -142,7 +139,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgRequest;
 		$log->addEntry( 'rights',
 			$user->getUserPage(),
-			$reason,
+			$wgRequest->getText( 'user-reason' ),
 			array(
 				$this->makeGroupNameList( $oldGroups ),
 				$this->makeGroupNameList( $newGroups )
@@ -179,44 +176,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return mixed User, UserRightsProxy, or null
 	 */
 	function fetchUser( $username ) {
-		global $wgOut;
-		$retval = $this->fetchUser_real($username);
-		if(!is_array($retval))
-			return $retval;
-		switch($retval[0])
-		{
-			case self::FETCHUSER_NO_INTERWIKI:
-				$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
-				break;
-			case self::FETCHUSER_NO_DATABASE:
-				$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $retval[1] ) );
-				break;
-			case self::FETCHUSER_NO_USER:
-				$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
-				break;
-			case self::FETCHUSER_NOSUCH_USERID:
-				$wgOut->addWikiText( wfMsg( 'noname' ) );
-				break;
-			case self::FETCHUSER_NOSUCH_USERNAME:
-				$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $retval[1] ) ) );
-				break;
-		}
-		return null;
-	}
-	
-	/**
-	 * Backend for fetchUser()
-	 *
-	 * @return mixed User, UserRightsProxy, or array(error code, argument)
-	 */
-	const FETCHUSER_NO_INTERWIKI = -1; // User is not allowed to change rights cross-wiki; no argument
-	const FETCHUSER_NO_DATABASE = -2; // Specified database doesn't exist or isn't local; argument=database
-	const FETCHUSER_NO_USER = -3; // No user name specified; no argument
-	const FETCHUSER_NOSUCH_USERID = -4; // Specified user ID doesn't exist; argument=userid
-	const FETCHUSER_NOSUCH_USERNAME = -5; // There is no user by this name; argument=username
-	
-	function fetchUser_real( $username ) {
-		global $wgUser;
+		global $wgOut, $wgUser;
 
 		$parts = explode( '@', $username );
 		if( count( $parts ) < 2 ) {
@@ -226,15 +186,18 @@ class UserrightsPage extends SpecialPage {
 			list( $name, $database ) = array_map( 'trim', $parts );
 
 			if( !$wgUser->isAllowed( 'userrights-interwiki' ) ) {
-				return array(self::FETCHUSER_NO_INTERWIKI, null);
+				$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
+				return null;
 			}
 			if( !UserRightsProxy::validDatabase( $database ) ) {
-				return array(self::FETCHUSER_NO_DATABASE, $database);
+				$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $database ) );
+				return null;
 			}
 		}
 		
 		if( $name == '' ) {
-			return array(self::FETCHUSER_NO_USER, null);
+			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
+			return false;
 		}
 		
 		if( $name{0} == '#' ) {
@@ -249,7 +212,8 @@ class UserrightsPage extends SpecialPage {
 			}
 			
 			if( !$name ) {
-				return array(self::FETCHUSER_NOSUCH_USERID, $id);
+				$wgOut->addWikiText( wfMsg( 'noname' ) );
+				return null;
 			}
 		}
 		
@@ -260,7 +224,8 @@ class UserrightsPage extends SpecialPage {
 		}
 		
 		if( !$user || $user->isAnon() ) {
-			return array(self::FETCHUSER_NOSUCH_USERNAME, $username);
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
+			return null;
 		}
 		
 		return $user;
@@ -276,7 +241,6 @@ class UserrightsPage extends SpecialPage {
 	function switchForm() {
 		global $wgOut;
 		$form  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'uluser' ) );
-		$form .= Xml::hidden( 'title',  'Special:Userrights' );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . '</p>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ) ) . '</p>';
@@ -324,7 +288,6 @@ class UserrightsPage extends SpecialPage {
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->escapeLocalURL(), 'name' => 'editGroup' ) ) .
 			Xml::hidden( 'user', $user->getName() ) .
-			Xml::hidden( 'title', 'Special:Userrights' ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $user->getName() ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
