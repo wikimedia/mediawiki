@@ -1713,7 +1713,9 @@ $1',
 'importhistoryconflict'      => '存在衝突的修訂歷史(可能在之前已經匯入過此頁面)',
 'importnosources'            => '跨Wiki匯入源沒有定義，同時不允許直接的歷史上傳。',
 'importnofile'               => '沒有上傳匯入檔案。',
-'importuploaderror'          => '上傳匯入檔案失敗；可能是該檔案大於允許的檔案上傳大小。',
+'importuploaderrorsize'      => '上載匯入檔案失敗。檔案大於可以允許的上傳大小。',
+'importuploaderrorpartial'   => '上載匯入檔案失敗。檔案只有部份已經上傳。',
+'importuploaderrortemp'      => '上載匯入檔案失敗。臨時資料夾已遺失。',
 
 # Import log
 'importlogpage'                    => '匯入日誌',
