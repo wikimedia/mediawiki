@@ -1689,7 +1689,9 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'importhistoryconflict'      => 'Un conflit a été détecté dans l’historique des versions (cette page a pu être importée auparavant).',
 'importnosources'            => 'Aucune source inter-wiki n’a été définie et la copie directe d’historique est désactivée.',
 'importnofile'               => 'Aucun fichier n’a été importé.',
-'importuploaderror'          => 'L’import du fichier a échoué : il est possible que celui-ci dépasse la taille autorisée.',
+'importuploaderrorsize'      => 'Le téléchargement du fichier à importer a échoué. Sa taille est plus grande que celle autorisée.',
+'importuploaderrorpartial'   => 'Le téléchargement du fichier à importé a échoué. Celui-ci n’a été que partiellement importé.',
+'importuploaderrortemp'      => 'Le téléchargement du fichier à importer a échoué. Un dossier temporaire est manquant.',
 
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',
@@ -2270,3 +2272,4 @@ Essayez la prévisualisation normale.',
 'watchlisttools-raw'  => 'Modifier la liste (mode brut)',
 
 );
+
