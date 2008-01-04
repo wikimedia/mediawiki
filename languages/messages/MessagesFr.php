@@ -1690,7 +1690,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'importnosources'            => 'Aucune source inter-wiki n’a été définie et la copie directe d’historique est désactivée.',
 'importnofile'               => 'Aucun fichier n’a été importé.',
 'importuploaderrorsize'      => 'Le téléchargement du fichier à importer a échoué. Sa taille est plus grande que celle autorisée.',
-'importuploaderrorpartial'   => 'Le téléchargement du fichier à importé a échoué. Celui-ci n’a été que partiellement importé.',
+'importuploaderrorpartial'   => 'Le téléchargement du fichier à importer a échoué. Celui-ci ne l’a été que partiellement.',
 'importuploaderrortemp'      => 'Le téléchargement du fichier à importer a échoué. Un dossier temporaire est manquant.',
 
 # Import log
