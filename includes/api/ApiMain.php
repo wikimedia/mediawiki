@@ -69,8 +69,7 @@ class ApiMain extends ApiBase {
 		'protect' => 'ApiProtect',
 		'block' => 'ApiBlock',
 		'unblock' => 'ApiUnblock',
-		'move' => 'ApiMove',
-		'changerights' => 'ApiChangeRights'
+		'move' => 'ApiMove'
 	);
 
 	/**
