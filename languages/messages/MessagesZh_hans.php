@@ -648,7 +648,7 @@ $2',
 'template-semiprotected'    => '(半保护)',
 'edittools'                 => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'             => '创建页面受限',
-'nocreatetext'              => '此网站限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
+'nocreatetext'              => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
 'nocreate-loggedin'         => '您在{{SITENAME}}中并无权限去创建新页面。',
 'permissionserrors'         => '权限错误',
 'permissionserrorstext'     => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作:',
@@ -709,7 +709,7 @@ $2',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">该页面修订已经被从公共文档中移除。
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。</div>',
 'rev-deleted-text-view'       => "<div class='mw-warning plainlinks'>
-该页面修订已经被从公共文档中移除。作为此站点的管理员，您可以查看它；
+该页面修订已经被从公共文档中移除。作为{{SITENAME}}的管理员，您可以查看它；
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。
 </div>",
 'rev-delundel'                => '显示/隐藏',
@@ -1088,7 +1088,7 @@ $2',
 'filedelete-submit'      => '删除',
 'filedelete-success'     => "'''$1'''已经删除。",
 'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'于 $2 $3 的版本已经删除。</span>',
-'filedelete-nofile'      => "'''$1'''在这个网站中不存在。",
+'filedelete-nofile'      => "'''$1'''在{{SITENAME}}中不存在。",
 'filedelete-nofile-old'  => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
 'filedelete-iscurrent'   => '您现正尝试删除这个文件的最近版本。请先将个该文件回退成较旧的版本。',
 
@@ -1602,8 +1602,8 @@ $1',
 'proxyblocker-disabled'       => '这个功能已经禁用。',
 'proxyblockreason'            => '您的IP地址是一个开放的代理，它已经被封锁。请联系您的因特网服务提供商或技术支持者并告知告知他们该严重的安全问题。',
 'proxyblocksuccess'           => '完成。\n',
-'sorbsreason'                 => '您的IP地址被 DNSBL 列为属于开放代理服务器。',
-'sorbs_create_account_reason' => '由于您的IP地址被 DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
+'sorbsreason'                 => '您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器。',
+'sorbs_create_account_reason' => '由于您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
 
 # Developer tools
 'lockdb'              => '锁定数据库',
