@@ -630,7 +630,7 @@ class SpecialPage
 	 * @param User $user The user to check
 	 * @return bool Does the user have permission to view the page?
 	 */
-	public function userCanExecute( &$user ) {
+	public function userCanExecute( $user ) {
 		return $user->isAllowed( $this->mRestriction );
 	}
 
