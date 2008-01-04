@@ -16,6 +16,7 @@
  * @author Nike
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Piolinfax
  */
 
 $skinNames = array(
@@ -102,13 +103,13 @@ $messages = array(
 'skinpreview' => '(Ver cómo queda)',
 
 # Dates
-'sunday'        => 'Domingo',
-'monday'        => 'Lunes',
-'tuesday'       => 'Martes',
-'wednesday'     => 'Miércoles',
-'thursday'      => 'Jueves',
-'friday'        => 'Viernes',
-'saturday'      => 'Sábado',
+'sunday'        => 'domingo',
+'monday'        => 'lunes',
+'tuesday'       => 'martes',
+'wednesday'     => 'miércoles',
+'thursday'      => 'jueves',
+'friday'        => 'viernes',
+'saturday'      => 'sábado',
 'sun'           => 'dom',
 'mon'           => 'lun',
 'tue'           => 'mar',
@@ -516,7 +517,7 @@ Tu identificador de bloqueo es $5. Por favor, incluye este identificador en cual
 'whitelistreadtitle'        => 'Se requiere identificación para leer',
 'whitelistreadtext'         => 'Tienes que [[Special:Userlogin|registrarte]] para leer artículos.',
 'whitelistacctitle'         => 'No se le permite crear una cuenta',
-'whitelistacctext'          => 'Para que se te permita crear cuentas en este wiki tienes que [[Special:Userlogin|iniciar sesión]] y tener los permisos apropiados.',
+'whitelistacctext'          => 'Para poder crear cuentas en {{SITENAME}} se ha de [[Special:Userlogin|iniciar sesión]] y tener los permisos apropiados.',
 'confirmedittitle'          => 'Se requiere confirmación de dirección electrónica para editar',
 'confirmedittext'           => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'        => 'No existe tal sección',
@@ -1554,7 +1555,6 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'importhistoryconflict'      => 'Existen revisiones en conflicto en el historial (puede que se haya importado esta página antes)',
 'importnosources'            => 'No hay fuentes de importación transwiki y no está permitido subir directamente el historial.',
 'importnofile'               => 'No se subieron archivos de importación.',
-'importuploaderror'          => 'La subida del archivo de importación ha fallado. Quizá el archivo es mayor que el tamaño máximo de subida permitido.',
 
 # Import log
 'importlogpage'                    => 'Registro de importaciones',

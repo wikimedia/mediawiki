@@ -1,5 +1,5 @@
 <?php
-/** Sassarese (Sassarese)
+/** Sassaresu (Sassaresu)
  *
  * @addtogroup Language
  *
@@ -790,8 +790,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'userrights-groupshelp'       => "Isciubarà i gruppi a li quari si vó lià o buggà l'utenti. L'apparthinènzia a li gruppi non sciubaraddi nò sarà mudìfiggadda. Pa libà un gruppu, incalchà Ctrl + lu buttoni mancu di lu mouse.",
 'userrights-reason'           => 'Mutibu di la mudìffiga:',
 'userrights-available-none'   => "Nò t'è cunsintiddu mudìffigà l'apparthinènzia a li gruppi.",
-'userrights-available-add'    => 'È pussìbiri assuzià utenti a lu gruppu $1.',
-'userrights-available-remove' => 'È pussìbiri buggà utenti da lu gruppu $1.',
+'userrights-available-add'    => 'È pussìbiri assuzià utenti a {{PLURAL:$2|chisthu gruppu|chisthi gruppi}}: $1.',
+'userrights-available-remove' => 'È pussìbiri buggà utenti da {{PLURAL:$2|chisthu gruppu|chisthi gruppi}}: $1.',
 'userrights-no-interwiki'     => "Nò ài lu primmissu pa mudìfiggà li diritti di l'utenti i' althri siti.",
 'userrights-nodatabase'       => 'La bancadati $1 nò isisthi o nò è in lucari.',
 'userrights-nologin'          => 'Débi [[Special:Userlogin|intrà]] cumenti amministhradori pa assignà li diritti utenti.',
@@ -1208,7 +1208,8 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'confirmdelete'               => 'Cunfèimma canzilladdura',
 'deletesub'                   => '(Canzilladdura di "$1")',
 'historywarning'              => 'Attinzioni: La pàgina chi sei canzellendi à una cronologia:',
-'confirmdeletetext'           => "Sei canzillendi pa sempri da la bancati una pàgina o un'immàgina, umpari a la cronologia d'edda. Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguènzi di l'azioni tóia e ch'edda è cunfòimmi a li [[{{MediaWiki:Policy-url}}|lìni ghia]].",
+'confirmdeletetext'           => "Sei canzillendi pa sempri da la bancati una pàgina o un'immàgina, umpari a la cronologia d'edda.
+Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguènzi di l'azioni tóia e ch'edda è cunfòimmi a li [[{{MediaWiki:Policy-url}}|lìni ghia]].",
 'actioncomplete'              => 'Azioni cumpritadda',
 'deletedtext'                 => 'La pàgina "$1" è isthadda canzilladda. Cunsultha lu $2 pa un\'erencu di li pàgini canzilladdi da poggu tempu.',
 'deletedarticle'              => 'ha canzilladdu "[[$1]]"',

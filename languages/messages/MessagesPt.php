@@ -1808,6 +1808,9 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'importhistoryconflict'      => 'Existem conflitos de edições no histórico (talvez esta página já foi importada antes)',
 'importnosources'            => 'Não foram definidas fontes de importação transwiki e o carregamento directo de históricos encontra-se desactivado.',
 'importnofile'               => 'Nenhum ficheiro de importação foi carregado.',
+'importuploaderrorsize'      => 'O envio do ficheiro a ser importado falhou. O ficheiro é maior do que o tamanho máximo permitido para upload.',
+'importuploaderrorpartial'   => 'O envio do ficheiro a ser importado falhou. O ficheiro foi recebido parcialmente.',
+'importuploaderrortemp'      => 'O envio do ficheiro a ser importado falhou. Não há um diretório temporário.',
 
 # Import log
 'importlogpage'                    => 'Registo de importações',

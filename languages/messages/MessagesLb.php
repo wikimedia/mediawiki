@@ -624,6 +624,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'templatesusedpreview'      => 'Schablounen déi an dësem Preview am Gebrauch sinn:',
 'templatesusedsection'      => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
 'template-protected'        => '(protegéiert)',
+'nocreatetext'              => "De Server huet d'Schafe vun neie Säite imitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:Userlogin|umellen]].",
 'nocreate-loggedin'         => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
 'permissionserrorstext'     => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
 'recreate-deleted-warn'     => "'''Opgepasst: Dir sidd am Gaang eng Säit unzeleeën, déi schonn emol geläscht gouf.'''
@@ -797,6 +798,7 @@ derbäisetzen.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'recentchanges'                     => 'Rezent Ännerungen',
+'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– nei Säiten; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
 'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum <b>$2</b> un (maximum <b>$1</b> Ännerunge gi gewisen).",
 'rclistfrom'                        => 'Nëmmen Ännerungen zënter $1 weisen.',
@@ -915,6 +917,9 @@ derbäisetzen.',
 
 # Unwatched pages
 'unwatchedpages' => 'Nët iwwerwaachte Säiten',
+
+# List redirects
+'listredirects' => 'Lëscht vun de Redirecten',
 
 # Unused templates
 'unusedtemplates'    => 'Onbenotzte Schablounen',
@@ -1317,6 +1322,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 # Thumbnails
 'thumbnail-more'  => 'vergréisseren',
 'filemissing'     => 'Fichier feelt',
+'thumbnail_error' => 'Feeler beim Erstellen vum Thumbnail vun: $1',
 'djvu_page_error' => 'DjVu-Säit baussent dem Säiteberäich',
 
 # Special:Import
@@ -1426,6 +1432,9 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'show-big-image'       => 'Versioun an enger méi héijer Opléisung',
 'show-big-image-thumb' => '<small>Gréisst vun dem Thumbnail: $1 × $2 Pixel</small>',
 
+# Special:Newimages
+'newimages' => 'Gallerie vun de neie Biller',
+
 # Metadata
 'metadata'          => 'Metadaten',
 'metadata-expand'   => 'Weis detailléiert Informatiounen',
@@ -1514,12 +1523,15 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'exif-meteringmode-6'   => 'Bilddeel',
 'exif-meteringmode-255' => 'Onbekannt',
 
-'exif-lightsource-0'  => 'Onbekannt',
-'exif-lightsource-1'  => 'Dageslut',
-'exif-lightsource-4'  => 'Blëtz',
-'exif-lightsource-9'  => 'Schéint Wieder',
-'exif-lightsource-10' => 'Wollekeg',
-'exif-lightsource-11' => 'Schiet',
+'exif-lightsource-0'   => 'Onbekannt',
+'exif-lightsource-1'   => 'Dageslut',
+'exif-lightsource-4'   => 'Blëtz',
+'exif-lightsource-9'   => 'Schéint Wieder',
+'exif-lightsource-10'  => 'Wollekeg',
+'exif-lightsource-11'  => 'Schiet',
+'exif-lightsource-255' => 'Aner Liichtquell',
+
+'exif-focalplaneresolutionunit-2' => 'Zoll/Inchen',
 
 'exif-sensingmethod-1' => 'Ondefinéiert',
 'exif-sensingmethod-2' => 'Een-Chip-Farfsensor',
@@ -1550,7 +1562,13 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'exif-subjectdistancerange-3' => 'wäit ewech',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometer pro Stonn',
+'exif-gpsspeed-m' => 'Meile pro Stonn',
 'exif-gpsspeed-n' => 'Kniet',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Tatsächlech Richtung',
+'exif-gpsdirection-m' => 'Magnéitesch Richtung',
 
 # External editor support
 'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',
@@ -1572,20 +1590,29 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 
 Feelermeldung vum Mailserver: $1",
 'confirmemail_invalid'    => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",
+'confirmemail_needlogin'  => 'Dir musst iech $1, fir är E-Mail-Adress ze confirméieren.',
 'confirmemail_success'    => 'Är Email Address gouf konfirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéiren.',
 'confirmemail_loggedin'   => 'Är Email-Adress gouf elo confirméiert.',
 'confirmemail_error'      => 'Et ass eppes falsch gelaf bäim Späichere vun ärer Confirmatioun.',
 'confirmemail_subject'    => '{{SITENAME}} Email-Adress-Confirmatioun',
 'confirmemail_body'       => 'E User, waarscheinlech där selwer, huet mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach. Fir ze bestätegen, datt dee Kont iech wierklech gehéiert a fir d\'Email-Funktiounen um Site {{SITENAME}} z\'aktivéieren, maacht w.e.g. de folgende Link an ärem Browser op: $3 Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De Confirmatiounscode gëtt den $4 ongëlteg.',
 
+# Scary transclusion
+'scarytranscludedisabled' => '[Interwiki-Abannung ass ausgeschalt]',
+'scarytranscludetoolong'  => "[Pardon d'URL ass ze laang]",
+
+# Trackbacks
+'trackbackremove' => '([$1 läschen])',
+
 # Delete conflict
 'deletedwhileediting' => 'Opgepasst: Dës Säit gouf geläscht nodeems datt der ugefaangen hutt se ze änneren!',
 'confirmrecreate'     => "De Benotzer [[User:$1|$1]] ([[User talk:$1|Diskussioun]]) huet dës Säit geläscht, nodeems datt där ugefaangen hutt drun ze schaffen. D'Begrënnung war: ''$2'' Bestätegt w.e.g., datt Dir dës Säit wierklich erëm nei opmaache wëllt.",
 
 # action=purge
-'confirm_purge' => 'Dës Säit aus dem Server-Cache läschen? 
+'confirm_purge'        => 'Dës Säit aus dem Server-Cache läschen? 
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "No Säite siche mat ''$1''.",

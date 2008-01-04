@@ -963,7 +963,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 'largefileserver'             => 'La talye de ceti fichiér est d’amont lo nivô lo ples hôt ôtorisâ.',
 'emptyfile'                   => 'Lo fichiér que vos voléd importar semble vouedo. Cen pôt étre diu a una èrror dens lo nom du fichiér. Volyéd controlar que vos dèsirâd franc copiyér ceti fichiér.',
 'fileexists'                  => 'Un fichiér avouéc ceti nom ègziste ja. Marci de controlar $1. Éte-vos de sûr de volêr modifiar cél fichiér ?',
-'fileexists-extension'        => 'Un fichiér avouéc un nom ègâl ègziste ja :<br />
+'fileexists-extension'        => 'Un fichiér avouéc un nom semblâblo ègziste ja :<br />
 Nom du fichiér a importar : <strong><tt>$1</tt></strong><br />
 Nom du fichiér ègzistent : <strong><tt>$2</tt></strong><br />
 la solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l’èxtension. Volyéd controlar que lo fichiér est difèrent et changiér son nom.',
@@ -1737,7 +1737,6 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'importhistoryconflict'      => 'Y at un conflit dens l’historico de les vèrsions (ceta pâge at possu étre importâ dês devant).',
 'importnosources'            => 'Niona sôrsa entèrvouiqui at étâ dèfenia et la copia drêta d’historico est dèsactivâ.',
 'importnofile'               => 'Nion fichiér at étâ importâ.',
-'importuploaderror'          => 'L’impôrt du fichiér at pas reussi : o est possiblo que ceti dèpâsse la talye ôtorisâ.',
 
 # Import log
 'importlogpage'                    => 'Historico de les importacions de pâges',

@@ -689,6 +689,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'protectedpagewarning'      => '<strong>ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
 'cascadeprotectedwarning'   => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
+'titleprotectedwarning'     => '<strong>ATTENZIONE:  Questa pagina è stata bloccata in modo che solo alcune categorie di utenti possano crearla.</strong>',
 'templatesused'             => 'Template utilizzati in questa pagina:',
 'templatesusedpreview'      => 'Template utilizzati in questa anteprima:',
 'templatesusedsection'      => 'Template utilizzati in questa sezione:',
@@ -1426,6 +1427,8 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 ** Violazione di copyright
 ** Vandalismo",
 'rollback'                    => 'Annulla le modifiche',
+'rollback_short'              => 'Rollback',
+'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback non riuscito',
 'cantrollback'                => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
 'alreadyrolled'               => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback. 
@@ -1518,6 +1521,7 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 $1',
 
 # Namespace form on various pages
+'namespace'      => 'Namespace:',
 'invert'         => 'inverti la selezione',
 'blanknamespace' => '(Principale)',
 
@@ -1754,7 +1758,9 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'importhistoryconflict'      => 'La cronologia contiene delle versioni in conflitto (questa pagina potrebbe essere già stata importata)',
 'importnosources'            => "Non è stata definita una fonte per l'importazione transwiki; l'importazione diretta della cronologia non è attiva.",
 'importnofile'               => "Non è stato caricato nessun file per l'importazione.",
-'importuploaderror'          => "Caricamento del file per l'importazione non riuscita; è possibile che il file sia di dimensioni superiori a quelle ammesse per gli upload.",
+'importuploaderrorsize'      => "Caricamento del file per l'importazione non riuscito. Il file supera le dimensioni massime consentite per l'upload.",
+'importuploaderrorpartial'   => "Caricamento del file per l'importazione non riuscito. Il file è stato caricato solo in parte.",
+'importuploaderrortemp'      => "Caricamento del file per l'importazione non riuscito. Manca una cartella temporanea.",
 
 # Import log
 'importlogpage'                    => 'Importazioni',
