@@ -31,6 +31,20 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kladibespik',
 );
 
+$datePreferences = array(
+	'default',
+	'vo',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'vo';
+
+$dateFormats = array(
+	'vo time' => 'H:i',
+	'vo date' => 'Y F j"id"',
+	'vo both' => 'H:i, Y F j"id"',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Lüodükömstelik', 'Lüodüköms_telik' ),
 	'BrokenRedirects'           => array( 'Lüodükömsdädik', 'Lüodüköms_dädik' ),
