@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Numulunj pilgae
+ * @author Kranch
  */
 
 $fallbak = 'ru';
@@ -43,5 +44,65 @@ $messages = array(
 'tog-showjumplinks'           => 'Мярьгомс "юпадемс" сатовома сюлмафкстненди',
 'tog-uselivepreview'          => 'Максомс эряй васень няфтемась (JavaScript) (Варжамань)',
 'tog-forceeditsummary'        => 'Няфтемс мондине мезе сёрмадомс шава петнема вальмас сувамста',
+
+# Dates
+'sunday'        => 'Таргжи (Недляши)',
+'monday'        => 'Видеши (Панедельник)',
+'tuesday'       => 'Шавши',
+'wednesday'     => 'Вержи',
+'thursday'      => 'Шуваланя',
+'friday'        => 'Шумордамши (Пяденця)',
+'saturday'      => 'Йоткши',
+'sun'           => 'Тр',
+'mon'           => 'Вд',
+'tue'           => 'Шв',
+'wed'           => 'Вр',
+'thu'           => 'Швл',
+'fri'           => 'Шм',
+'sat'           => 'Йот',
+'january'       => 'Йандварь',
+'february'      => 'Февральков',
+'march'         => 'Марков',
+'april'         => 'Апрельков',
+'may_long'      => 'Майгов',
+'june'          => 'Июньков',
+'july'          => 'Июльков',
+'august'        => 'Августков',
+'september'     => 'Сентябрьков',
+'october'       => 'Октябрьков',
+'november'      => 'Ноябрьков',
+'december'      => 'Декабрьков',
+'january-gen'   => 'Йандварень',
+'february-gen'  => 'Февральковонь',
+'march-gen'     => 'Марковонь',
+'april-gen'     => 'Апрельковонь',
+'may-gen'       => 'Майговонь',
+'june-gen'      => 'Июньковонь',
+'july-gen'      => 'Июльковонь',
+'august-gen'    => 'Августковонь',
+'september-gen' => 'Сентябрьковонь',
+'october-gen'   => 'Октябрьковонь',
+'november-gen'  => 'Ноябрьковонь',
+'december-gen'  => 'Декабрьковонь',
+'jan'           => 'Йанд',
+'feb'           => 'Февр',
+'mar'           => 'Марк',
+'apr'           => 'Апрк',
+'may'           => 'Майг',
+'jun'           => 'Июнк',
+'jul'           => 'Июлк',
+'aug'           => 'Авгк',
+'sep'           => 'Сенк',
+'oct'           => 'Октк',
+'nov'           => 'Новк',
+
+# Bits of text used by many pages
+'categories'            => 'Категориет',
+'category_header'       => '"$1" категориеса лопатне',
+'subcategories'         => 'Субкатегориет',
+'category-media-header' => '"$1" категориеса медиясь',
+'category-empty'        => "''Медиа лопат тя категориеса ашет.''",
+
+'mainpagetext' => "<оцю>'''МедиаВикить арафтозь лац.'''</оцю>",
 
 );

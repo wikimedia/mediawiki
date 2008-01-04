@@ -148,9 +148,11 @@ $messages = array(
 'templatepage'      => 'Tingnan ang pahina ng suleras',
 'viewhelppage'      => 'Tingnan ang pahina ng tulong',
 'categorypage'      => 'Tingnan ang pahina ng kategorya',
+'viewtalkpage'      => 'Tingnan ang usapan',
 'otherlanguages'    => 'Sa ibang wika',
 'redirectedfrom'    => '(Ikinarga mula sa $1)',
 'redirectpagesub'   => 'Pahina ng pagkarga',
+'lastmodifiedat'    => 'Huling binago ang pahinang ito noong $2, $1.', # $1 date, $2 time
 'protectedpage'     => 'Pahinang nakasanggalang',
 'jumpto'            => 'Tumalon sa:',
 'jumptonavigation'  => 'nabigasyon',
@@ -195,6 +197,8 @@ $messages = array(
 'toc'                     => 'Mga nilalaman',
 'showtoc'                 => 'ipakita',
 'hidetoc'                 => 'itago',
+'thisisdeleted'           => 'Tingnan o ibalik ang $1?',
+'viewdeleted'             => 'Tingnan ang $1?',
 'restorelink'             => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -209,9 +213,15 @@ $messages = array(
 'nstab-help'      => 'Pahina ng tulong',
 'nstab-category'  => 'Kategorya',
 
+# Main script and global functions
+'nospecialpagetext' => "<big>'''Humiling ka ng isang walang-kabuluhang natatanging pahina.'''</big>
+
+Isang tala ng mga may-kabuluhang natatanging pahina ay matatagpuan sa [[Special:Specialpages]].",
+
 # General errors
 'error'                => 'Kamalian',
 'cachederror'          => 'Ang sumusunod ay isang ibinaong kopya ng hinihiling na pahina, at maaaring hindi ito bago.',
+'readonly'             => 'Nakakandado ang kalipunan ng datos',
 'internalerror'        => 'Kamaliang panloob',
 'internalerror_info'   => 'Kamaliang panloob: $1',
 'filecopyerror'        => 'Hindi makopya ang talaksang "$1" sa "$2".',
@@ -221,10 +231,12 @@ $messages = array(
 'filenotfound'         => 'Hindi mahanap ang talaksang "$1".',
 'fileexistserror'      => 'Hindi makapagsulat sa talaksang "$1": umiiral ang talaksan',
 'formerror'            => 'Kamalian: hindi maipadala ang pormularyo',
+'badarticleerror'      => 'Hindi maisasagawa ang gawaing ito sa pahinang ito.',
 'viewsource'           => 'Tingnan ang pinagmulan',
 'viewsourcefor'        => 'para sa $1',
 'protectedpagetext'    => 'Kinandado ang pahinang ito upang maihadlang ang pagbabago',
 'viewsourcetext'       => 'Maaari mong tingnan at kopyahin ang pinagmulan ng pahinang ito:',
+'namespaceprotected'   => "Wala kang pahintulot na magbago ng mga pahinang nasa ngalan-espasyong '''$1'''.",
 'customcssjsprotected' => 'Wala kang pahintulot na baguhin ang pahinang ito, dahil naglalaman ito ng mga kagustuhang pansarili ng ibang manggagamit.',
 
 # Login and logout pages
@@ -298,6 +310,7 @@ pinapakita sa ibaba:",
 'uploadnologintext' => 'Dapat ikaw ay [[Special:Userlogin|nakalagda]]
 upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
+'watchthisupload'   => 'Bantayan itong pahina',
 
 # Image list
 'nolinkstoimage' => 'Walang pahing tumuturo sa talaksang ito.',
@@ -441,11 +454,15 @@ Pumili muli ng ibang pangalan.',
 'show-big-image'       => 'Buong resolusyon',
 'show-big-image-thumb' => '<small>Laki ng itong pribyu: $1 × $2 piksel</small>',
 
+# Special:Newimages
+'newimages' => 'Galeriya ng mga bagong talaksan',
+
 # External editor support
 'edit-externally' => 'Baguhin ang talaksang ito sa pamamagitan ng panlabas na aplikasyon',
 
 # Delete conflict
 'deletedwhileediting' => 'Babala: Nabura na ang pahinang ito pagkatapos mong magsimulang magbago!',
+'recreate'            => 'Likhain muli',
 
 # HTML dump
 'redirectingto' => 'Nagkakarga sa [[$1]]...',
@@ -454,6 +471,11 @@ Pumili muli ng ibang pangalan.',
 'confirm_purge' => 'Linisin ang baunan ng pahinang ito?
 
 $1',
+
+# Table pager
+'table_pager_first' => 'Unang pahina',
+'table_pager_last'  => 'Huling pahina',
+'table_pager_empty' => 'Walang resulta',
 
 # Auto-summaries
 'autosumm-blank'   => 'Itinatanggal ang lahat ng nilalaman mula sa pahina',

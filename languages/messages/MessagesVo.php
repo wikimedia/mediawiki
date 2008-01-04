@@ -227,6 +227,7 @@ $messages = array(
 'deletethispage'    => 'Moükolös padi at',
 'undelete_short'    => 'Sädunön moükami {{PLURAL:$1|redakama bal|redakamas $1}}',
 'protect'           => 'Jelön',
+'protectthispage'   => 'Jelön padi at',
 'unprotect'         => 'säjelön',
 'unprotectthispage' => 'Säjelolöd padi at',
 'newpage'           => 'Pad nulik',
@@ -420,6 +421,7 @@ Blokam at pejenükon fa $1. Kod binon ''$2''.
 
 Kanol penön ele $1, u [[{{MediaWiki:Grouppage-sysop}}|guvanes]], ad bespikön blokami.
 Kanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöföl patuvon in [[Special:Preferences|buükams kala]] olik. Ladet-IP nuik ola binon $3 e nüm blokama binon #$5. Mäniotolös oni pö säks valik.",
+'whitelistedittext'        => 'Mutol $1 ad redakön padis.',
 'whitelistacctitle'        => 'No dalol jafön kali',
 'confirmedittitle'         => 'Fümedam me pot leäktronik zesüdon ad redakön',
 'confirmedittext'          => 'Mutol fümedön ladeti leäktronik ola büä okanol redakön padis. Pladölos e lonöfükölos ladeti olik in [[Special:Preferences|buükams olik]].',
@@ -709,8 +711,8 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'
 # Miscellaneous special pages
 'nbytes'                  => '{{PLURAL:$1|jölät|jöläts}} $1',
 'ncategories'             => '{{PLURAL:$1|klad|klads}} $1',
-'nlinks'                  => '$1 {{PLURAL:$1|yüm|yüms}}',
-'nmembers'                => '$1 {{PLURAL:$1|liman|limans}}',
+'nlinks'                  => '{{PLURAL:$1|yüm|yüms}} $1',
+'nmembers'                => '{{PLURAL:$1|liman|limans}} $1',
 'specialpage-empty'       => 'Pad at vagon.',
 'lonelypages'             => 'Pads, lü kels yüms nonik dugons',
 'lonelypagestext'         => 'Pads nonik in vüki at peyümons ad pads sököl.',

@@ -1749,7 +1749,9 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'importhistoryconflict'      => 'Motstridende revisjoner finnes (siden kan ha blitt importert tidligere)',
 'importnosources'            => 'Ingen transwikiimportkilder er definert, og direkte historikkimporteringer er slått av.',
 'importnofile'               => 'Ingen importfil opplastet.',
-'importuploaderror'          => 'Opplasting av importfil feilet; kanskje fila er større en den tillatte opplastingsstørrelsen.',
+'importuploaderrorsize'      => 'Importfilopplasting mislyktes. Filen er større enn tillatt opplastingsstørrelse.',
+'importuploaderrorpartial'   => 'Importfilopplasting mislyktes. Filen ble kun delvis opplastet.',
+'importuploaderrortemp'      => 'Importfilopplasting mislyktes. En midlertidig mappe mangler.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

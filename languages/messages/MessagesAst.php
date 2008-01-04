@@ -1359,6 +1359,7 @@ Consulta'l [[Special:Log/delete|rexistru de borraos]] pa ver los borraos y resta
 'undelete-search-box'      => 'Buscar páxines borraes',
 'undelete-search-prefix'   => "Amosar páxines qu'empecipien por:",
 'undelete-search-submit'   => 'Buscar',
+'undelete-cleanup-error'   => 'Error al borrar l\'archivu non usáu "$1".',
 'undelete-error-short'     => "Error al restaurar l'archivu: $1",
 'undelete-error-long'      => "Atopáronse errores al restaurar l'archivu:
 
@@ -1374,6 +1375,7 @@ $1",
 'mycontris'     => 'Les mios contribuciones',
 'contribsub2'   => 'De $1 ($2)',
 'nocontribs'    => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
+'ucnote'        => "Abaxo amuésense los caberos <b>$1</b> cambeos d'esti usuariu nos caberos <b>$2</b> díes.",
 'uclinks'       => 'Ver los caberos $1 cambeos; ver los caberos $2 díes.',
 'uctop'         => ' (últimu cambéu)',
 'month'         => "Dende'l mes (y anteriores):",
@@ -1386,6 +1388,8 @@ $1",
 'sp-contributions-username'    => "Direición IP o nome d'usuariu:",
 'sp-contributions-submit'      => 'Buscar',
 
+'sp-newimages-showfrom' => 'Amosar les imáxenes nueves emprimando dende $1',
+
 # What links here
 'whatlinkshere'       => "Lo qu'enllaza equí",
 'whatlinkshere-title' => "Páxines qu'enllacien a $1",
@@ -1393,6 +1397,7 @@ $1",
 'linklistsub'         => "(Llista d'enllaces)",
 'linkshere'           => "Les páxines siguientes enllacien a '''[[:$1]]''':",
 'nolinkshere'         => "Nenguna páxina enllaza a '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Nenguna páxina enllaza a '''[[:$1]]''' nel espaciu de nome conseñáu.",
 'isredirect'          => 'páxina redirixida',
 'istemplate'          => 'inclusión',
 'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|anteriores $1}}',
@@ -1478,6 +1483,7 @@ mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 'unlockconfirm'       => 'Sí, quiero desprotexer daveres la base de datos.',
 'lockbtn'             => 'Protexer la base de datos',
 'unlockbtn'           => 'Desprotexer la base de datos',
+'locknoconfirm'       => 'Nun activasti la caxa de confirmación.',
 'unlockdbsuccesstext' => 'La base de datos foi desprotexida.',
 'databasenotlocked'   => 'La base de datos nun ta bloquiada.',
 
@@ -1539,7 +1545,7 @@ La páxina de destín "[[$1]]" yá esiste. ¿Quies borrala pa dexar sitiu pal tr
 'export'          => 'Esportar páxines',
 'exporttext'      => "Pues esportar el testu y l'historial d'ediciones d'una páxina en particular o d'una
 riestra páxines endolcaes nun documentu XML. Esti pue ser importáu depués n'otra wiki
-qu'use MediaWiki al traviés de la páxina [[Special:Importar|importar]].
+qu'use MediaWiki al traviés de la páxina [[Special:Import|importar]].
 
 Pa esportar páxines, pon los títulos na caxa de testu d'embaxo, un títulu per llinia,
 y seleiciona si quies la versión actual xunto con toles versiones antigües, xunto col
@@ -1562,24 +1568,41 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'allmessagesmodified'       => 'Amosar solo modificaos',
 
 # Thumbnails
-'thumbnail-more'  => 'Agrandar',
-'missingimage'    => '<b>Falta la imaxe</b><br /><i>$1</i>',
-'filemissing'     => 'Falta archivu',
-'thumbnail_error' => 'Error al crear la miniatura: $1',
-'djvu_page_error' => 'Páxina DjVu fuera de llímites',
-'djvu_no_xml'     => 'Nun se pudo obtener el XML pal archivu DjVu',
+'thumbnail-more'           => 'Agrandar',
+'missingimage'             => '<b>Falta la imaxe</b><br /><i>$1</i>',
+'filemissing'              => 'Falta archivu',
+'thumbnail_error'          => 'Error al crear la miniatura: $1',
+'djvu_page_error'          => 'Páxina DjVu fuera de llímites',
+'djvu_no_xml'              => 'Nun se pudo obtener el XML pal archivu DjVu',
+'thumbnail_dest_directory' => 'Nun se pue crear el direutoriu de destín',
 
 # Special:Import
-'import'                   => 'Importar páxines',
-'import-interwiki-history' => "Copiar toles versiones d'historial d'esta páxina",
-'import-interwiki-submit'  => 'Importar',
-'importstart'              => 'Importando les páxines...',
-'import-revision-count'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
-'importnotext'             => 'Vaciu o ensin testu',
+'import'                     => 'Importar páxines',
+'importinterwiki'            => 'Importación treswiki',
+'import-interwiki-text'      => "Seleiciona una wiki y un títulu de páxina pa importar.
+Les feches de revisión y los nomes de los editores caltendránse.
+Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/import|rexistru d'importaciones]].",
+'import-interwiki-history'   => "Copiar toles versiones d'historial d'esta páxina",
+'import-interwiki-submit'    => 'Importar',
+'import-interwiki-namespace' => 'Tresferir páxines al espaciu de nome:',
+'importtext'                 => "Por favor, esporta l'archivu dende la wiki d'orixe usando la utilidá Especial:Export, guárdalu nel to discu duru y xúbilu equí.",
+'importstart'                => 'Importando les páxines...',
+'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisiones}}',
+'importnopages'              => 'Nun hai páxines pa importar.',
+'importfailed'               => 'Falló la importación: $1',
+'importunknownsource'        => "Triba d'orixe d'importación desconocida",
+'importcantopen'             => "Nun se pudo abrir l'archivu d'importación",
+'importbadinterwiki'         => 'Enllaz interwiki incorreutu',
+'importnotext'               => 'Vaciu o ensin testu',
+'importsuccess'              => '¡Importación realizada!',
+'importhistoryconflict'      => 'Existe un conflictu na revisión del historial (seique esta páxina fuera importada previamente)',
+'importnosources'            => "Nun se definió l'orixe de la importación treswiki y les xubíes direutes del historial tán deshabilitaes.",
+'importnofile'               => "Nun se xubió nengún archivu d'importación.",
 
 # Import log
-'importlogpage'                 => "Rexistru d'importaciones",
-'import-logentry-upload-detail' => '$1 {{PLURAL:$1|revisión|revisiones}}',
+'importlogpage'                    => "Rexistru d'importaciones",
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} dende $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La mio páxina d'usuariu",
@@ -1643,6 +1666,9 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'tooltip-recreate'                => 'Vuelve a crear la páxina magar que se tenga borrao',
 'tooltip-upload'                  => 'Empecipiar la xubida',
 
+# Metadata
+'notacceptable' => 'El servidor de la wiki nun pue suplir los datos nun formatu llexible pol to navegador.',
+
 # Attribution
 'anonymous'        => 'Usuariu/os anónimu/os de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuariu $1',
@@ -1695,15 +1721,19 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 
 # Patrol log
 'patrol-log-page' => 'Rexistru de supervisión',
+'patrol-log-line' => 'marcada la versión $1 de $2 como supervisada $3',
 'patrol-log-auto' => '(automática)',
 
 # Image deletion
-'deletedrevision'             => 'Borrada versión vieya $1',
-'filedeleteerror-short'       => "Error al borrar l'archivu: $1",
-'filedeleteerror-long'        => "Atopáronse errores al borrar l'archivu:
+'deletedrevision'                 => 'Borrada versión vieya $1',
+'filedeleteerror-short'           => "Error al borrar l'archivu: $1",
+'filedeleteerror-long'            => "Atopáronse errores al borrar l'archivu:
 
 $1",
-'filedelete-old-unregistered' => 'La revisión d\'archivu "$1" nun ta na base de datos.',
+'filedelete-missing'              => 'L\'archivu "$1" nun pue borrase porque nun esiste.',
+'filedelete-old-unregistered'     => 'La revisión d\'archivu "$1" nun ta na base de datos.',
+'filedelete-current-unregistered' => 'L\'archivu especificáu "$1" nun ta na base de datos.',
+'filedelete-archive-read-only'    => 'El direutoriu d\'archivos "$1" nun pue ser modificáu pol servidor.',
 
 # Browsing diffs
 'previousdiff' => '← Diferencia anterior',
@@ -1769,6 +1799,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-transferfunction'            => 'Función de tresferencia',
 'exif-whitepoint'                  => 'Cromacidá de puntu blancu',
 'exif-primarychromaticities'       => 'Cromacidá de los primarios',
+'exif-referenceblackwhite'         => 'Pareya de valores blancu y negru de referencia',
 'exif-datetime'                    => 'Fecha y hora de modificación del archivu',
 'exif-imagedescription'            => 'Títulu de la imaxe',
 'exif-make'                        => 'Fabricante de la cámara',
@@ -1785,6 +1816,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-pixelxdimension'             => "Altor d'imaxe válidu",
 'exif-makernote'                   => 'Notes del fabricante',
 'exif-usercomment'                 => 'Comentarios del usuariu',
+'exif-relatedsoundfile'            => "Archivu d'audiu rellacionáu",
 'exif-datetimeoriginal'            => 'Fecha y hora de la xeneración de datos',
 'exif-datetimedigitized'           => 'Fecha y hora de la dixitalización',
 'exif-exposuretime'                => "Tiempu d'esposición",
@@ -1792,22 +1824,33 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-fnumber'                     => 'Númberu F',
 'exif-exposureprogram'             => "Programa d'esposición",
 'exif-oecf'                        => 'Factor de conversión optoelectrónicu',
+'exif-shutterspeedvalue'           => 'Velocidá del obturador',
 'exif-aperturevalue'               => 'Abertura',
 'exif-brightnessvalue'             => 'Brillu',
 'exif-maxaperturevalue'            => "Valor máximu d'apertura",
+'exif-subjectdistance'             => 'Distancia al suxetu',
+'exif-meteringmode'                => 'Mou de midición',
 'exif-lightsource'                 => 'Fonte de la lluz',
 'exif-flash'                       => 'Flax',
 'exif-focallength'                 => 'Llonxitú focal de la lente',
+'exif-subjectarea'                 => 'Área del suxetu',
 'exif-flashenergy'                 => 'Enerxía del flax',
+'exif-spatialfrequencyresponse'    => 'Rempuesta de frecuencia espacial',
 'exif-focalplanexresolution'       => 'Resolución X del planu focal',
 'exif-focalplaneyresolution'       => 'Resolución Y del planu focal',
 'exif-focalplaneresolutionunit'    => 'Unidá de resolución del planu focal',
+'exif-subjectlocation'             => 'Allugamientu del suxetu',
 'exif-exposureindex'               => "Índiz d'esposición",
+'exif-sensingmethod'               => 'Métodu de sensor',
 'exif-filesource'                  => 'Orixe del archivu',
+'exif-scenetype'                   => "Triba d'escena",
 'exif-cfapattern'                  => 'patrón CFA',
+'exif-customrendered'              => "Procesamientu d'imaxe personalizáu",
 'exif-exposuremode'                => "Mou d'esposición",
 'exif-whitebalance'                => 'Balance de blancos',
+'exif-digitalzoomratio'            => 'Razón de zoom dixital',
 'exif-focallengthin35mmfilm'       => 'Llonxitú focal en película de 35 mm',
+'exif-scenecapturetype'            => "Triba de captura d'escena",
 'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturación',
 'exif-sharpness'                   => 'Nitidez',
@@ -2040,10 +2083,11 @@ $1",
 'useajaxsearch'    => 'Usar la busca AJAX',
 
 # Multipage image navigation
-'imgmultipageprev' => '← páxina anterior',
-'imgmultipagenext' => 'páxina siguiente →',
-'imgmultigo'       => '¡Dir!',
-'imgmultigotopre'  => 'Dir a la páxina',
+'imgmultipageprev'   => '← páxina anterior',
+'imgmultipagenext'   => 'páxina siguiente →',
+'imgmultigo'         => '¡Dir!',
+'imgmultigotopre'    => 'Dir a la páxina',
+'imgmultiparseerror' => "L'archivu d'imaxe paez corruptu o incorreutu, polo que {{SITENAME}} nun pue obtener una llista de páxines.",
 
 # Table pager
 'ascending_abbrev'         => 'asc',
@@ -2065,6 +2109,8 @@ $1",
 # Live preview
 'livepreview-loading' => 'Cargando…',
 'livepreview-ready'   => 'Cargando… ¡Llisto!',
+'livepreview-failed'  => '¡La previsualización rápida falló! Intenta la previsualización normal.',
+'livepreview-error'   => 'Nun se pudo coneutar: $1 "$2". Intenta la previsualización normal.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => "Los cambeos de los caberos $1 segundos pue que nun s'amuesen nesta llista.",

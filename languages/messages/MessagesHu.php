@@ -379,6 +379,9 @@ $messages = array(
 'feedlinks'               => 'Hírcsatorna:',
 'feed-invalid'            => 'Érvénytelen a figyelt hírcsatorna típusa.',
 'site-rss-feed'           => '$1 RSS csatorna',
+'site-atom-feed'          => '$1 Atom hírcsatorna',
+'page-rss-feed'           => '„$1” RSS hírcsatorna',
+'page-atom-feed'          => '„$1” Atom hírcsatorna',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Szócikk',
@@ -415,7 +418,7 @@ Az utolsó lekérési próbálkozás:
 "$1"
 a "$2" függvényből történt.
 A MySQL által visszaadott hiba "$3: $4".',
-'noconnect'            => 'Technikai problémák miatt Nem tudok az adatbázisgépre csatlakozni. <br />
+'noconnect'            => 'Technikai problémák miatt nem tudok az adatbázisgépre csatlakozni. <br />
 $1',
 'nodb'                 => 'Nem választható ki a(z) $1 adatbázist',
 'cachederror'          => 'A következő a kért lap tárolt változata, ezért lehet, hogy nem tartalmazza a legújabb módosításokat.',
@@ -455,6 +458,8 @@ Function: $1<br />
 Query: $2',
 'viewsource'           => 'Forrás megtekintése',
 'viewsourcefor'        => '$1 változata',
+'actionthrottled'      => 'Művelet megszakítva',
+'actionthrottledtext'  => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
 'protectedpagetext'    => 'Ezt a lapot a szerkesztések megakadályozása érdekében zároltuk. Módosításokat a vitalapon javasolhatsz, a védelem feloldását az adminisztrátorok üzenőfalán kérheted .',
 'viewsourcetext'       => 'A lap forrását megtekintheted és másolhatod:',
 'protectedinterface'   => 'Ez a lap a honlap felületéhez szolgáltat szöveget a szoftver számára, és a visszaélések elkerülése végett le van zárva. A vitalapon javasolhatsz módosításokat.',
@@ -711,6 +716,7 @@ egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'protectedpagewarning'      => '<strong>FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.</strong>',
 'semiprotectedpagewarning'  => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált felhasználók nem szerkeszthetik.",
 'cascadeprotectedwarning'   => "'''Figyelmeztetés:''' Ezt az oldalt zárolták, ezért csak a rendszerfelelősi jogokkal rendelkező felhasználók szerkeszthetik, mert a következő lépcsőzetes védelmű {{PLURAL:$1|page|oldalak}} közé tartozik:",
+'titleprotectedwarning'     => '<strong>FIGYELEM:  Ez a lap úgy van levédve, hogy csak néhány felhasználó hozhatja létre.</strong>',
 'templatesused'             => 'Sablonok ezen a lapon:',
 'templatesusedpreview'      => 'Az előnézetben használt sablonok:',
 'templatesusedsection'      => 'Szakaszban használt sablonok:',
@@ -843,8 +849,9 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'mergehistory-invalid-destination' => 'A céllapnak érvényes címet kell megadni.',
 
 # Merge log
-'mergelog'    => 'Egyesítési napló',
-'revertmerge' => 'Szétválasztás',
+'mergelog'         => 'Egyesítési napló',
+'revertmerge'      => 'Szétválasztás',
+'mergelogpagetext' => 'A lapok egyesítéséről szóló napló. Szűkítheted a listát a műveletet végző felhasználó vagy az érintett oldal megadásával.',
 
 # Diffs
 'history-title'           => 'A(z) „$1” laptörténete',
@@ -956,6 +963,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'userrights-available-remove' => 'Távolíthatsz el felhazsnálókat a(z) $1 csoportból.',
 'userrights-no-interwiki'     => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
 'userrights-nodatabase'       => '$1 adatbázis nem létezik vagy nem helyi.',
+'userrights-nologin'          => '[[Special:Userlogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy felhasználói jogokat adhass.',
 
 # Groups
 'group'               => 'Csoport:',
@@ -1828,7 +1836,6 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'importhistoryconflict'      => 'Ütköző előzményváltozat létezik (lehet, hogy már importálták ezt a lapot)',
 'importnosources'            => 'Nincsenek transzwikiimport-források definiálva, a közvetlen laptörténet-felküldés pedig nem megengedett.',
 'importnofile'               => 'Nem került importfájl feltöltésre.',
-'importuploaderror'          => 'Az importfájl feltöltése nem sikerült; lehet, hogy a fájl nagyobb, mint a megengedett feltöltési méret.',
 
 # Import log
 'importlogpage'                    => 'Importnapló',

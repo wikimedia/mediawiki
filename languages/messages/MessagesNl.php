@@ -1911,6 +1911,9 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'importhistoryconflict'      => 'Er zijn conflicten in de geschiedenis van de pagina (is misschien eerder geïmporteerd)',
 'importnosources'            => 'Er zijn geen transwiki-importbronnen gedefinieerd en directe geschiedenis-uploads zijn uitgeschakeld.',
 'importnofile'               => 'Er is geen importbestand geüpload.',
+'importuploaderrorsize'      => 'Upload van het importbestand in mislukt. Het bestand is groter dan de ingestelde limiet.',
+'importuploaderrorpartial'   => 'Upload van het importbestand in mislukt. Het bestand is slechts gedeeltelijk aangekomen.',
+'importuploaderrortemp'      => 'Upload van het importbestand in mislukt. De tijdelijke map is niet aanwezig.',
 
 # Import log
 'importlogpage'                    => 'Importlogboek',
