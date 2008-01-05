@@ -189,11 +189,13 @@ $messages = array(
 'helppage'          => 'Help:Περιεχόμενα',
 'mainpage'          => 'Κυρία Δέλτος',
 'portal'            => 'Πύλη πολιτείας',
+'privacy'           => 'Ἡ περὶ τῶν ἰδίων προαίρεσις',
 'sitesupport'       => 'Δῶρα',
 
 'badaccess-group0' => 'Οὐκ ἔξεστί σοι ταῦτα διαπράττειν.',
 
 'ok'                  => 'εἶεν',
+'retrievedfrom'       => 'ᾑρεθὲν ἀπὸ "$1"',
 'youhavenewmessages'  => 'Ἔχεις $1 ($2).',
 'newmessageslink'     => 'νέαι ἀγγελίαι',
 'newmessagesdifflink' => 'ἐσχάτη μεταβολή',
@@ -451,6 +453,7 @@ $messages = array(
 'tooltip-search'            => 'Ζητεῖν {{SITENAME}}',
 'tooltip-p-logo'            => 'Δέλτος Μεγίστη',
 'tooltip-n-mainpage'        => 'Πορεύεσθαι τὴν κυρίαν Δέλτον',
+'tooltip-n-sitesupport'     => 'Τρέφειν ἡμᾶς',
 'tooltip-ca-nstab-main'     => 'χρῆμα δέλτον ὁρᾶν',
 'tooltip-ca-nstab-user'     => 'Δέλτος χρωμένου ὁρᾶν',
 'tooltip-ca-nstab-category' => 'Ἐπισκοπεῖν τὴν τῆς κατηγορίας δέλτον',

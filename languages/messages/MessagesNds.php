@@ -128,6 +128,7 @@ $messages = array(
 'tog-fancysig'                => 'eenfache Signatur (ahn Lenk)',
 'tog-externaleditor'          => 'Jümmer extern Editor bruken',
 'tog-externaldiff'            => 'Extern Warktüüch to’n Wiesen vun Ünnerscheden as Standard bruken',
+'tog-showjumplinks'           => '„Wesseln-na“-Lenken tolaten',
 'tog-uselivepreview'          => 'Live-Vörschau bruken (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Segg mi bescheid, wenn ik keen Tosamenfaten geven heff, wat ik allens ännert heff',
 'tog-watchlisthideown'        => 'Ännern vun mi sülvs op de Oppasslist nich wiesen',
@@ -208,6 +209,9 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'mytalk'         => 'Mien Diskuschoon',
 'anontalk'       => 'Diskuschoonssiet vun disse IP',
 'navigation'     => 'Navigatschoon',
+
+# Metadata in edit box
+'metadata_help' => 'Metadaten:',
 
 'errorpagetitle'    => 'Fehler',
 'returnto'          => 'Trüch to $1.',
@@ -313,6 +317,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'site-rss-feed'           => 'RSS-Feed för $1',
 'site-atom-feed'          => 'Atom-Feed för $1',
 'page-rss-feed'           => 'RSS-Feed för „$1“',
+'page-atom-feed'          => 'Atom-Feed för „$1“',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -497,6 +502,7 @@ As Grund is angeven:
 :$2
 
 De Duer steiht in’t [[Special:Log/block|Logbook]]. Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{MediaWiki:Grouppage-sysop}}|Administraters]]. Geev bi Fragen jümmer ok dien IP-Adress ($3) oder de ID vun dien Block (#$5) mit an.',
+'blockednoreason'          => 'keen Grund angeven',
 'whitelistedittitle'       => 'de Siet to ännern is dat nödig anmellt to wesen',
 'whitelistedittext'        => 'Du musst di $1, dat du Sieden ännern kannst.',
 'whitelistreadtitle'       => 'üm to Lesen is dat neudig anmellt to ween',
@@ -606,6 +612,7 @@ L = Lütte Ännern",
 'deletedrev'          => '[wegsmeten]',
 'histfirst'           => 'Öllste',
 'histlast'            => 'Ne’este',
+'historysize'         => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
 'historyempty'        => '(leddig)',
 
 # Revision feed
@@ -630,6 +637,16 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-hide-name'     => 'Akschoon un Teel versteken',
 'revdelete-hide-comment'  => 'Kommentar versteken',
 'revdelete-log'           => 'Kommentar:',
+
+# Oversight log
+'oversightlog' => 'Opsicht-Logbook',
+
+# History merging
+'mergehistory-from'   => 'Bornsiet:',
+'mergehistory-submit' => 'Versionen tohoopbringen',
+
+# Merge log
+'revertmerge' => 'Tohoopbringen trüchdreihn',
 
 # Diffs
 'history-title'           => 'Versionshistorie vun „$1“',
@@ -773,7 +790,10 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'hide'                              => 'Nich wiesen',
 'show'                              => 'Wiesen',
 'minoreditletter'                   => 'L',
+'boteditletter'                     => 'B',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Een Bruker|$1 Brukers}}, de oppasst]',
+'rc_categories'                     => 'Blot Sieden ut de Kategorien (trennt mit „|“):',
+'rc_categories_any'                 => 'All',
 'newsectionsummary'                 => '/* $1 */ nee Afsnitt',
 
 # Recent changes linked
@@ -999,6 +1019,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'protectedpages'          => 'Schuulte Sieden',
 'protectedpagestext'      => 'Disse Sieden sünd vör dat Schuven oder Ännern schuult',
 'protectedpagesempty'     => 'Opstunns sünd kene Sieden schuult',
+'protectedtitles'         => 'Sparrte Sieden',
 'listusers'               => 'Brukerlist',
 'specialpages'            => 'Sünnerliche Sieden',
 'spheading'               => 'Spezialsieden för all Brukers',
@@ -1179,9 +1200,12 @@ De letzte Ännern is vun [[User:$3|$3]]
 'protect-cantedit'            => 'Du kannst de Sparr vun disse Siet nich ännern, du hest dor nich de nödigen Rechten för.',
 'restriction-type'            => 'Schuulstatus',
 'restriction-level'           => 'Schuulhööchd',
+'pagesize'                    => '(Bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Ännern',
+'restriction-edit'   => 'Ännern',
+'restriction-move'   => 'Schuven',
+'restriction-create' => 'Anleggen',
 
 # Undelete
 'undelete'                 => 'Wegsmetene Siet wedderhalen',
@@ -1192,6 +1216,7 @@ De letzte Ännern is vun [[User:$3|$3]]
 'undeletehistory'          => 'Wenn du disse Siet weerholst, warrt ok alle olen Versionen weerholt. Wenn siet dat Löschen en nieg Siet mit lieken
 Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse Siet wiest.',
 'undeletebtn'              => 'Wedderhalen!',
+'undeletecomment'          => 'Grund:',
 'undeletedarticle'         => '„$1“ wedderhaalt',
 'undeletedrevisions'       => '{{Plural:$1|ene Version|$1 Versionen}} wedderhaalt',
 'undeletedrevisions-files' => '{{Plural:$1|ene Version|$1 Versionen}} un {{Plural:$1|ene Datei|$1 Datein}} wedderhaalt',
@@ -1218,10 +1243,12 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 'sp-contributions-newbies-sub' => 'För ne’e Kontos',
 'sp-contributions-blocklog'    => 'Sparr-Logbook',
 'sp-contributions-username'    => 'IP-Adress oder Brukernaam:',
+'sp-contributions-submit'      => 'Söken',
 
 # What links here
 'whatlinkshere'       => 'Wat wiest na disse Siet hen',
 'whatlinkshere-title' => 'Sieden, de na „$1“ wiest',
+'whatlinkshere-page'  => 'Siet:',
 'linklistsub'         => '(List vun de Verwiesen)',
 'linkshere'           => 'Disse Sieden wiest hierher:',
 'nolinkshere'         => 'Kene Siet wiest hierher.',
@@ -1246,6 +1273,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipbsubmit'                => 'Adress blocken',
 'ipbother'                 => 'Annere Tiet:',
 'ipboptions'               => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'           => 'Annere Duer',
 'ipbotherreason'           => 'Annern Grund:',
 'badipaddress'             => 'De IP-Adress hett en falsch Format.',
 'blockipsuccesssub'        => 'Blocken hett Spood',
@@ -1258,9 +1286,11 @@ Ok den Grund för dat Blocken indregen.',
 'ipblocklist'              => 'List vun blockte IP-Adressen',
 'ipblocklist-legend'       => 'Blockten Bruker finnen',
 'ipblocklist-username'     => 'Brukernaam oder IP-Adress:',
+'ipblocklist-submit'       => 'Söken',
 'blocklistline'            => '$1, $2 hett $3 blockt ($4)',
 'infiniteblock'            => 'unbegrenzt',
 'expiringblock'            => 'löppt $1 af',
+'noautoblockblock'         => 'Autoblock afstellt',
 'blocklink'                => 'blocken',
 'unblocklink'              => 'freegeven',
 'contribslink'             => 'Bidrääg',
@@ -1276,6 +1306,7 @@ Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.
 'ipb_already_blocked'      => '„$1“ is al blockt',
 'ip_range_invalid'         => 'Ungüllig IP-Addressrebeet.',
 'proxyblocker'             => 'Proxyblocker',
+'proxyblocker-disabled'    => 'Disse Funkschoon is afstellt.',
 'proxyblockreason'         => 'Dien IP-Adress is blockt, vun wegen dat se en apenen Proxy is.
 Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat möögliche Sekerheitsproblem.',
 'proxyblocksuccess'        => 'Trech.',
@@ -1297,6 +1328,7 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 'lockdbsuccesstext'   => 'De {{SITENAME}}-Datenbank is sparrt.
 <br />Du muttst de Datenbank weer freegeven, wenn de Pleegarbeiden beennt sünd.',
 'unlockdbsuccesstext' => 'De {{SITENAME}}-Datenbank is weer freegeven.',
+'databasenotlocked'   => 'De Datenbank is nich sparrt.',
 
 # Move page
 'movepage'                => 'Siet schuven',
@@ -1330,6 +1362,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'movelogpage'             => 'Schuuv-Logbook',
 'movereason'              => 'Grund',
 'revertmove'              => 'trüchschuven',
+'delete_and_move'         => 'Wegsmieten un Schuven',
 'delete_and_move_confirm' => 'Jo, de Siet wegsmieten',
 
 # Export
@@ -1338,6 +1371,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'exportcuronly'     => 'Blots de aktuelle Version vun de Siet exporteern',
 'export-addcattext' => 'Sieden ut Kategorie tofögen:',
 'export-addcat'     => 'Tofögen',
+'export-download'   => 'As XML-Datei spiekern',
 
 # Namespace 8 related
 'allmessages'               => 'Alle Systemnarichten',
@@ -1363,6 +1397,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'importnopages'         => 'Gifft kene Sieden to’n Rinhalen.',
 'importfailed'          => 'Import hett kenen Spood: $1',
 'importcantopen'        => 'Kunn de Import-Datei nich apen maken',
+'importbadinterwiki'    => 'Verkehrt Interwiki-Lenk',
 'importnotext'          => 'Leddig oder keen Text',
 'importsuccess'         => 'Import hett Spood!',
 'importhistoryconflict' => 'Dor sünd al öllere Versionen, de mit dissen kollideert. (Mööglicherwies is de Siet al vörher importeert worrn)',
@@ -1503,6 +1538,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 # Media information
 'imagemaxsize'         => 'Biller op de Bildbeschrievensiet begrenzen op:',
 'thumbsize'            => 'Grött vun dat Duumnagel-Bild:',
+'widthheightpage'      => '$1×$2, $3 Sieden',
 'file-info'            => '(Grött: $1, MIME-Typ: $2)',
 'file-info-size'       => '($1 × $2 Pixel, Grött: $3, MIME-Typ: $4)',
 'file-nohires'         => '<small>Gifft dat Bild nich grötter.</small>',
@@ -1538,6 +1574,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-imagewidth'          => 'Breed',
 'exif-imagelength'         => 'Hööchd',
 'exif-orientation'         => 'Utrichtung',
+'exif-imagedescription'    => 'Bildtitel',
 'exif-model'               => 'Kameramodell',
 'exif-software'            => 'bruukte Software',
 'exif-artist'              => 'Autor',
@@ -1545,13 +1582,23 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-colorspace'          => 'Farvruum',
 'exif-exposuretime-format' => '$1 Sek. ($2)',
 'exif-fnumber'             => 'F-Nummer',
+'exif-shutterspeedvalue'   => 'Belichttiet',
+'exif-lightsource'         => 'Lichtborn',
 'exif-flash'               => 'Blitz',
+'exif-flashenergy'         => 'Blitzstärk',
+'exif-filesource'          => 'Dateiborn',
 'exif-whitebalance'        => 'Wittutgliek',
 'exif-contrast'            => 'Kontrast',
 'exif-gpslatitude'         => 'Breed',
 'exif-gpslongitude'        => 'Läng',
 'exif-gpsaltitude'         => 'Hööch',
 'exif-gpsspeedref'         => 'Tempo-Eenheit',
+'exif-gpsspeed'            => 'Tempo vun’n GPS-Empfänger',
+'exif-gpsdestlatitude'     => 'Bredengraad',
+'exif-gpsdestlongitude'    => 'Längengraad',
+'exif-gpsdatestamp'        => 'GPS-Datum',
+
+'exif-unknowndate' => 'Unbekannt Datum',
 
 'exif-orientation-2' => 'waagrecht kippt', # 0th row: top; 0th column: right
 'exif-orientation-3' => '180° dreiht', # 0th row: bottom; 0th column: right
@@ -1564,6 +1611,10 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-componentsconfiguration-0' => 'gifft dat nich',
 
 'exif-subjectdistance-value' => '$1 Meter',
+
+'exif-meteringmode-0' => 'Unbekannt',
+'exif-meteringmode-1' => 'Dörsnittlich',
+'exif-meteringmode-5' => 'Munster',
 
 'exif-lightsource-0'  => 'unbekannt',
 'exif-lightsource-1'  => 'Daglicht',
@@ -1630,14 +1681,16 @@ $3
 Wenn du dat nich sülvst wesen büst, denn folg den Lenk nich. De Bestätigungskood warrt $4 ungüllig.',
 
 # Scary transclusion
-'scarytranscludefailed'  => '[Vörlaag halen för $1 hett nich klappt]',
-'scarytranscludetoolong' => '[URL is to lang]',
+'scarytranscludedisabled' => '[Dat Inbinnen vun Interwikis is nich aktiv]',
+'scarytranscludefailed'   => '[Vörlaag halen för $1 hett nich klappt]',
+'scarytranscludetoolong'  => '[URL is to lang]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
 Trackbacks för dissen Artikel:<br />
 $1
 </div>',
+'trackbackremove'   => '([$1 wegsmieten])',
 'trackbackdeleteok' => 'Trackback mit Spood wegsmeten.',
 
 # Delete conflict
@@ -1661,6 +1714,7 @@ $1',
 'searchnamed'      => "Na Artikels söken, de ''$1'' heten doot.",
 'articletitles'    => 'Artikels, de mit „$1“ anfangt',
 'hideresults'      => 'Resultaten verstecken',
+'useajaxsearch'    => 'Bruuk de AJAX-Söök',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vörige Siet',
@@ -1675,7 +1729,7 @@ $1',
 'table_pager_last'         => 'Letzte Siet',
 'table_pager_limit'        => 'Wies $1 Indrääg je Siet',
 'table_pager_limit_submit' => 'Los',
-'table_pager_empty'        => 'Kene Resultaten',
+'table_pager_empty'        => 'nix funnen',
 
 # Auto-summaries
 'autosumm-blank'   => '[[{{ns:help}}:Autokommentar|AK]]: Siet leddig maakt',
@@ -1690,6 +1744,22 @@ $1',
 Versöök de normale Vörschau.',
 'livepreview-error'   => 'Verbinnen klapp nich: $1 „$2“
 Versöök de normale Vörschau.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Ännern, de jünger as $1 Sekunnen sünd, warrt in de List noch nich wiest.',
+'lag-warn-high'   => 'De Datenbank is temlich dull utlast. Ännern, de jünger as $1 Sekunnen sünd, warrt in de List noch nich wiest.',
+
+# Watchlist editor
+'watchlistedit-numitems'      => 'Du hest {{PLURAL:$1|ene Siet|$1 Sieden}} op diene Oppasslist, Diskuschoonssieden nich tellt.',
+'watchlistedit-noitems'       => 'Diene Oppasslist is leddig.',
+'watchlistedit-normal-title'  => 'Oppasslist ännern',
+'watchlistedit-normal-submit' => 'Sieden rutnehmen',
+'watchlistedit-normal-done'   => '{{PLURAL:$1|Ene Siet|$1 Sieden}} vun de Oppasslist rünnernahmen:',
+'watchlistedit-raw-title'     => 'Oppasslist as Textlist ännern',
+'watchlistedit-raw-legend'    => 'Oppasslist as Textlist ännern',
+'watchlistedit-raw-titles'    => 'Sieden:',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|Ene Siet|$1 Sieden}} dorto:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|Ene Siet|$1 Sieden}} rünnernahmen:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Oppasslist ankieken',

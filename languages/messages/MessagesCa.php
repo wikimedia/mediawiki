@@ -717,7 +717,7 @@ en un fitxer de text i desar-lo més tard.</strong>',
 'template-semiprotected'    => '(semiprotegida)',
 'edittools'                 => "<!-- Es mostrarà als formularis d'edició i de càrrega el text que hi haja després d'aquesta línia. -->",
 'nocreatetitle'             => "S'ha limitat la creació de pàgines",
-'nocreatetext'              => "Està restringida la possibilitat de crear noves pàgines.
+'nocreatetext'              => "El projecte {{SITENAME}} ha restringit la possibilitat de crear noves pàgines.
 Podeu editar les planes ja existents o bé [[Special:Userlogin|entrar en un compte d'usuari]].",
 'nocreate-loggedin'         => 'No teniu permisos per a crear pàgines noves a la {{SITENAME}}.',
 'permissionserrors'         => 'Error de permisos',
@@ -776,7 +776,7 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 'rev-deleted-user'            => "(s'ha suprimit el nom d'usuari)",
 'rev-deleted-event'           => '(revisió esborrada)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Vegeu més detalls al [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registre d\'esborrats].
+Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Vegeu més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d\'esborrats].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a administrador d\'aquest wiki podeu veure-la; vegeu més detalls al [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registre d\'esborrats].
@@ -941,8 +941,8 @@ $2 Llista redireccions   Cerca $3 $9',
 Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup amb CTRL + Clic",
 'userrights-reason'           => 'Motiu del canvi:',
 'userrights-available-none'   => "No podeu alterar l'afiliació al grup.",
-'userrights-available-add'    => 'Podeu afegir usuaris a $1.',
-'userrights-available-remove' => 'Podeu treure usuaris de $1.',
+'userrights-available-add'    => 'Podeu afegir usuaris {{PLURAL:$2|al grup|als grups:}} $1.',
+'userrights-available-remove' => 'Podeu treure usuaris {{PLURAL:$2|del grup|dels grups:}} $1.',
 'userrights-no-interwiki'     => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
 'userrights-nodatabase'       => 'La base de dades $1 no existeix o no és local.',
 'userrights-nologin'          => "Heu [[Special:Userlogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
@@ -1140,7 +1140,7 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'filedelete-comment' => 'Comentari:',
 'filedelete-submit'  => 'Suprimeix',
 'filedelete-success' => "'''$1''' s'ha eliminat.",
-'filedelete-nofile'  => "'''$1''' no existeix en aquest lloc.",
+'filedelete-nofile'  => "'''$1''' no existeix dins el projecte {{SITENAME}}.",
 
 # MIME search
 'mimesearch' => 'Cerca per MIME',
@@ -1663,8 +1663,8 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'proxyblocker-disabled'       => "S'ha inhabilitat la funció.",
 'proxyblockreason'            => "La vostra adreça IP ha estat bloquejada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
 'proxyblocksuccess'           => 'Fet.',
-'sorbsreason'                 => 'La vostra adreça IP està llistada com a servidor intermediari obert a la llista negra de DNS que consulta aquest lloc web.',
-'sorbs_create_account_reason' => 'La vostra adreça IP està llistada com a servidor intermediari obert a la llista negra de DNS que consulta aquest lloc web. No podeu crear-hi un compte',
+'sorbsreason'                 => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert dins la llista negra de DNS que fa servir el projecte {{SITENAME}}.",
+'sorbs_create_account_reason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert a la llista negra de DNS que utilitza el projecte {{SITENAME}}. No podeu crear-vos-hi un compte",
 
 # Developer tools
 'lockdb'              => 'Bloca la base de dades',

@@ -355,6 +355,9 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'throttled-mailpassword'     => 'Ab m-bataaxal bu lay fattali sa baatujàll yónnee nañ la ko am na $1 waxtu. Ngir moytu ay say-sayee, benn m-bataaxalu fattali rek lañ lay yónnee ci diiru $1 waxtu.',
 'mailerror'                  => 'Njuumte ci yónneeb m-bataaxal bi : $1',
 'acct_creation_throttle_hit' => 'Jéggalu, bindu nga $1 yoon. manoo binduwaat',
+'emailauthenticated'         => 'Ci $1 nga dëggal sa màkkaanu m-bataaxal.',
+'emailnotauthenticated'      => 'Dëggalagoo sa m-bataaxal. Duñ la man a yónne benn m-bataaxal bu aju ci yii ci suuf.',
+'emailconfirmlink'           => 'Dëggalal sa m-bataaxal',
 'accountcreated'             => 'léegi bindu nga.',
 'accountcreatedtext'         => 'Mbindug jëfandikukat bii di $1 jàll na',
 'createaccount-title'        => 'Sosum sàq ci {{SITENAME}}',
@@ -813,4 +816,3 @@ Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 'watchlisttools-raw'  => 'Soppi lim gi',
 
 );
-

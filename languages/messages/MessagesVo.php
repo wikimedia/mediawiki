@@ -385,7 +385,7 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'mailmypassword'             => 'Sedolös obe letavödi',
 'passwordremindertitle'      => 'Letavöd nulik nelaidik in {{SITENAME}}',
 'noemail'                    => 'Ladet leäktronik nonik peregistaron pro geban "$1".',
-'passwordsent'               => 'Letavöd nulik pesedon ladete leäktronik fa "$1" peregistaröle.<br>
+'passwordsent'               => 'Letavöd nulik pesedon ladete leäktronik fa "$1" peregistaröle.<br />
 Nunädolös oli dönu posä ogetol oni.',
 'acct_creation_throttle_hit' => 'Säkusädolös, ya ejafol kalis $1. No plu kanol jafön kali nulik.',
 'emailauthenticated'         => 'Ladet leäktronik olik päfümükon tü düp $1.',

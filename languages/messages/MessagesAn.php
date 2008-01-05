@@ -666,6 +666,7 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'protectedpagewarning'      => "<strong>PARE CUENTA: Ista pachina ha estato protechita ta que sólo os usuarios con premisos d'almenistrador puedan editar-la.</strong>",
 'semiprotectedpagewarning'  => "'''Nota:''' Ista pachina ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
 'cascadeprotectedwarning'   => "'''Pare cuenta:''' Ista pachina ye protechita ta que nomás os almenistrador puedan editar-la, porque ye encluyita en {{PLURAL:$1|a siguient pachina, protechita|as siguients pachinas, protechitas}} con a opzión de ''cascada'' :",
+'titleprotectedwarning'     => '<strong>PARE CUENTA:  Ista pachina ye bloquiata ta que sólo bels usuarios puedan creyar-la.</strong>',
 'templatesused'             => 'Plantillas emplegatas en ista pachina:',
 'templatesusedpreview'      => 'Plantillas emplegatas en ista ambiesta prebia:',
 'templatesusedsection'      => 'Plantillas usatas en ista sezión:',

@@ -1726,7 +1726,9 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'importhistoryconflict'      => 'Sivusta on olemassa tuonnin kanssa ristiriitainen muokkausversio. Tämä sivu on saatettu tuoda jo aikaisemmin.',
 'importnosources'            => 'Wikienvälisiä tuontilähteitä ei ole määritelty ja suorat historiatallennukset on poistettu käytöstä.',
 'importnofile'               => 'Mitään tuotavaa tiedostoa ei lähetetty.',
-'importuploaderror'          => 'Tiedoston lähettäminen epäonnistui. Tiedosto saattaa olla liian suuri.',
+'importuploaderrorsize'      => 'Tuontitiedoston tallennus epäonnistui. Tiedosto on suurempi kuin sallittu yläraja.',
+'importuploaderrorpartial'   => 'Tuontitiedoston tallennus epäonnistui. Tiedostosta oli lähetetty vain osa.',
+'importuploaderrortemp'      => 'Tuontitiedoston tallennus epäonnistui. Väliaikaistiedostojen kansio puuttuu.',
 
 # Import log
 'importlogpage'                    => 'Tuontiloki',

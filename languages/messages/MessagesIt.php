@@ -697,7 +697,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'template-semiprotected'    => '(semiprotetto)',
 'edittools'                 => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
 'nocreatetitle'             => 'Creazione delle pagine limitata',
-'nocreatetext'              => 'Questo sito ha limitato la possibilità di creare nuove pagine ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
+'nocreatetext'              => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
 'nocreate-loggedin'         => 'Non si dispone dei permessi necessari a creare nuove pagine su {{SITENAME}}.',
 'permissionserrors'         => 'Errore nei permessi',
 'permissionserrorstext'     => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
@@ -1148,7 +1148,7 @@ PICT # misc.
 'filedelete-submit'      => 'Cancella',
 'filedelete-success'     => "Il file '''$1''' è stato cancellato.",
 'filedelete-success-old' => '<span class="plainlinks">La versione del $3, $2 del file \'\'\'[[Media:$1|$1]]\'\'\' è stata cancellata.</span>',
-'filedelete-nofile'      => 'In questo sito non esiste un file $1',
+'filedelete-nofile'      => 'Su {{SITENAME}} non esiste un file $1',
 'filedelete-nofile-old'  => "In archivio non ci sono versioni di '''$1''' con le caratteristiche indicate",
 'filedelete-iscurrent'   => 'Stai provando a cancellare la versione più recente di questo file. Per cortesia, prima riportalo ad una versione precedente.',
 

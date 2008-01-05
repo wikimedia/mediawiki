@@ -5,7 +5,8 @@
  *
  * @author SPQRobin
  * @author Siebrand
- * @author G - ג
+ * @author לערי ריינהארט
+ * @author Tbc
  */
 
 $fallback = 'nl';
@@ -48,6 +49,9 @@ $messages = array(
 
 # Login and logout pages
 'logout' => 'Ofmeldn',
+
+# Recent changes
+'recentchanges' => 'Juste veranderd',
 
 # Upload
 'upload'            => 'Bestand toevoegn',
