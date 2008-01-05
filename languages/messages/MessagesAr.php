@@ -926,7 +926,7 @@ $1 ساعة.',
 'template-semiprotected'    => '(حماية جزئية)',
 'edittools'                 => '<!-- النص هنا سيظهر تحت صندوق التحرير واستمارة رفع الصور. -->',
 'nocreatetitle'             => 'تم تحديد إنشاء الصفحات',
-'nocreatetext'              => 'قام الموقع بتحديد القدرة على إنشاء صفحات جديدة.
+'nocreatetext'              => 'قام {{SITENAME}} بتحديد القدرة على إنشاء صفحات جديدة.
 يمكنك العودة وتحرير صفحة موجودة بالفعل، أو [[Special:Userlogin|الدخول أو تسجيل حساب]].',
 'nocreate-loggedin'         => 'لا تمتلك الصلاحية لإنشاء صفحات جديدة في {{SITENAME}}.',
 'permissionserrors'         => 'أخطاء السماحات',
@@ -985,8 +985,8 @@ $1 ساعة.',
 'rev-deleted-user'            => '(تم مسح اسم مستخدم)',
 'rev-deleted-event'           => '(تم مسح المدخلة)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-تم مسح هذا التعديل من الأرشيف العام.
-من الممكن أن يكون هناك تفاصيل حول هذا في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
+نسخة الصفحة هذه تمت إزالتها من الأرشيفات العامة.
+ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 تم مسح هذا التعديل من الأرشيف العام.
@@ -1383,7 +1383,7 @@ PICT # misc.
 'filedelete-submit'      => 'حذف',
 'filedelete-success'     => "'''$1''' تم حذفه.",
 'filedelete-success-old' => '<span class="plainlinks">نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ $3، $2 تم حذفها.</span>',
-'filedelete-nofile'      => "'''$1''' غير موجود على هذا الموقع.",
+'filedelete-nofile'      => "'''$1''' غير موجود في {{SITENAME}}.",
 'filedelete-nofile-old'  => "لا توجد نسخة مؤرشفة من '''$1''' بالعناصر المحددة.",
 'filedelete-iscurrent'   => 'أنت تحاول حذف أحدث نسخة من هذا الملف. من فضلك استرجع لنسخة أقدم أولا.',
 
@@ -1893,8 +1893,8 @@ $1',
 'proxyblockreason'            => 'تم منع عنوان الأيبي الخاص بك لكونه بروكسي مفتوح. قم بمراسلة مزود خدمة الإنترنت الخاص بك أو الدعم الفني وأعلمهم بهذه المشكلة الأمنية.',
 'proxyblocksuccess'           => 'تم.',
 'sorbs'                       => 'دي إن إس بي إل',
-'sorbsreason'                 => 'الأيبي الخاص بك تم إدراجه كبروكسي مفتوح في DNSBL المستخدم في هذا الموقع.',
-'sorbs_create_account_reason' => 'الأيبي الخاص بك تم إدراجه كبروكسي مفتوح في DNSBL المستخدم بواسطة هذا الموقع. لا يمكنك إنشاء حساب.',
+'sorbsreason'                 => 'عنوان الأيبي الخاص بك موجود كبروكسي مفتوح في DNSBL المستخدم بواسطة {{SITENAME}}.',
+'sorbs_create_account_reason' => 'عنوان الأيبي الخاص بك موجود كبروكسي مفتوح في DNSBL المستخدم بواسطة {{SITENAME}}. لا يمكنك إنشاء حساب.',
 
 # Developer tools
 'lockdb'              => 'أقفل قاعدة البيانات',

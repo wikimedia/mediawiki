@@ -129,19 +129,19 @@ $messages = array(
 'tog-showtoc'                 => 'Amostrar o endize de contenius (ta pachinas con más de 3 encabezaus)',
 'tog-rememberpassword'        => 'Remerar a palabra de paso entre sesions',
 'tog-editwidth'               => "O cuatrón d'edizión tien l'amplaria masima",
-'tog-watchcreations'          => 'Bexilar as pachinas que creye',
-'tog-watchdefault'            => 'Bexilar as pachinas que edite',
-'tog-watchmoves'              => 'Bexilar as pachinas que treslade',
-'tog-watchdeletion'           => 'Bexilar as pachinas que borre',
+'tog-watchcreations'          => 'Cosirar as pachinas que creye',
+'tog-watchdefault'            => 'Cosirar as pachinas que edite',
+'tog-watchmoves'              => 'Cosirar as pachinas que treslade',
+'tog-watchdeletion'           => 'Cosirar as pachinas que borre',
 'tog-minordefault'            => 'Siñalar por defeuto totas as edizions como menors',
 'tog-previewontop'            => "Amostrar l'ambiesta prebia antes d'o cuatrón d'edizión",
 'tog-previewonfirst'          => "Amostrar l'ambiesta prebia de l'articlo en a primera edizión",
 'tog-nocache'                 => "Desautibar a ''caché'' de pachinas",
-'tog-enotifwatchlistpages'    => 'Nimbiar-me un correu cuan bi aiga cambeos en una pachina bexilada por yo',
+'tog-enotifwatchlistpages'    => 'Nimbiar-me un correu cuan bi aiga cambeos en una pachina cosirata por yo',
 'tog-enotifusertalkpages'     => 'Nimbiar-me un correu cuan cambee a mía pachina de descusión',
 'tog-enotifminoredits'        => 'Nimbiar-me un correu tamién cuan bi aiga edizions menors de pachinas',
 'tog-enotifrevealaddr'        => 'Fer beyer a mía adreza electronica en os correus de notificazión',
-'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que bexilan l'articlo",
+'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-fancysig'                => 'Siñaduras simplas (sin de binclo automatico)',
 'tog-externaleditor'          => 'Emplegar por defeuto á un editor esterno',
 'tog-externaldiff'            => 'Emplegar por defeuto un bisualizador de cambeos esterno',
@@ -558,7 +558,7 @@ Si ista cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'summary'                   => 'Resumen',
 'subject'                   => 'Tema/títol',
 'minoredit'                 => 'He feito una edizión menor',
-'watchthis'                 => 'Bexilar ista pachina',
+'watchthis'                 => 'Cosirar ista pachina',
 'savearticle'               => 'Alzar pachina',
 'preview'                   => 'Bisualizazión prebia',
 'showpreview'               => 'Bisualizazión prebia',
@@ -951,7 +951,7 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'hist'                              => 'ist',
 'hide'                              => 'amagar',
 'show'                              => 'Amostrar',
-'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} bexilando]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} cosirando]',
 'rc_categories'                     => 'Limite d\'as categorías (deseparatas por "|")',
 'rc_categories_any'                 => 'Todas',
 'newsectionsummary'                 => 'Nueba sezión: /* $1 */',
@@ -1030,7 +1030,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadvirus'                 => 'Iste archibo tiene un birus! Detalles: $1',
 'sourcefilename'              => "Nombre de l'archivo d'orichen",
 'destfilename'                => "Nombre de l'archibo de destino",
-'watchthisupload'             => 'Bexilar ista pachina',
+'watchthisupload'             => 'Cosirar ista pachina',
 'filewasdeleted'              => 'Una archibo con iste mesmo nombre ya se cargó prebiament y dimpués estió borrato. Abría de comprebar $1 antes de tornar á cargar-lo una atra begada.',
 'upload-wasdeleted'           => "'''Pare cuenta: Ye cargando un archibo que ya estió borrato d'antes más.'''
 
@@ -1139,7 +1139,7 @@ PICT # misz.
 'download'           => 'escargar',
 
 # Unwatched pages
-'unwatchedpages' => 'Pachinas sin bexilar',
+'unwatchedpages' => 'Pachinas no cosiratas',
 
 # List redirects
 'listredirects' => 'Lista de reendrezeras',
@@ -1320,20 +1320,20 @@ L'adreza eletronica que endicó en as suyas preferenzias d'usuario amanixerá en
 'watchnologin'         => 'No ha enzetato a sesión',
 'watchnologintext'     => "Ha d'estar [[Special:Userlogin|identificato]] ta poder cambiar a suya lista de seguimiento.",
 'addedwatch'           => 'Adibiu á la suya lista de seguimiento',
-'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:Recentchanges|lista de cambeos rezients]] ta fer-la más fázil de deteutar. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de bexilar\" en o menú.",
+'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:Recentchanges|lista de cambeos rezients]] ta que se beiga millor. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de cosirar\" en o menú.",
 'removedwatch'         => "Borrata d'a lista de seguimiento",
 'removedwatchtext'     => 'A pachina "[[:$1]]" ha estato borrata d\'a suya lista de seguimiento.',
-'watch'                => 'Bexilar',
-'watchthispage'        => 'Bexilar ista pachina',
-'unwatch'              => 'Dixar de bexilar',
-'unwatchthispage'      => 'Dixar de bexilar',
+'watch'                => 'Cosirar',
+'watchthispage'        => 'Cosirar ista pachina',
+'unwatch'              => 'Deixar de cosirar',
+'unwatchthispage'      => 'Deixar de cosirar',
 'notanarticle'         => 'No ye una pachina de conteniu',
 'watchnochange'        => "Dengún d'os articlos d'a suya lista de seguimiento no s'ha editoato en o periodo de tiempo amostrato.",
-'watchlist-details'    => '{{PLURAL:$1|$1 pachina|$1 pachinas}} bexiladas (sin contar-ie as pachinas de descusión).',
+'watchlist-details'    => '{{PLURAL:$1|$1 pachina cosirata|$1 pachinas cosiratas}} (sin contar-ie as pachinas de descusión).',
 'wlheader-enotif'      => '* A notificazión por correu eletronico ye autibata',
 'wlheader-showupdated' => "* Las pachinas cambiadas dende a suya zaguer besita s'amuestran en '''negreta'''",
-'watchmethod-recent'   => 'Mirando pachinas bexilatas en os zaguers cambeos',
-'watchmethod-list'     => 'mirando edizions rezients en as pachinas bexilatas',
+'watchmethod-recent'   => 'Mirando pachinas cosiratas en os zaguers cambeos',
+'watchmethod-list'     => 'mirando edizions rezients en as pachinas cosiratas',
 'watchlistcontains'    => 'A suya lista de seguimiento tiene $1 {{PLURAL:$1|pachina|pachinas}}.',
 'iteminvalidname'      => "Bi ha un problema con l'articlo '$1', o nombre no ye conforme...",
 'wlnote'               => "Contino se i {{PLURAL:$1|amuestra o zaguer cambeo|amuestran os zaguers '''$1''' cambeos}} en {{PLURAL:$2|a zaguer ora|as zagueras '''$2''' oras}}.",
@@ -1346,8 +1346,8 @@ L'adreza eletronica que endicó en as suyas preferenzias d'usuario amanixerá en
 'watchlist-hide-minor' => 'Amagar edizions menors',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => 'Bexilando...',
-'unwatching' => 'Deixar de bexilar...',
+'watching'   => 'Cosirando...',
+'unwatching' => 'Deixar de cosirar...',
 
 'enotif_mailer'                => 'Sistema de notificazión por correu de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas as pachinas como besitatas',
@@ -1374,7 +1374,7 @@ por correu: {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
 en o wiki: {{fullurl:User:$PAGEEDITOR_RAWURL}}
 
 Ta recullir nuebas notificazions de cambios d\'ista pachina abrá de besitar-la nuebament.
-Tamién puede cambiar, en a su lista de seguimiento, as opzions de notificazión d\'as pachinas que bexila.
+Tamién puede cambiar, en a su lista de seguimiento, as opzions de notificazión d\'as pachinas que ye cosirando.
 
 Atentament,
  O sistema de notificazión de {{SITENAME}}.
@@ -1674,7 +1674,7 @@ En istos casos, abrá de tresladar manualment o conteniu d'a pachina de descusi�
 'movenologintext'         => 'Amenista estar un usuario rechistrato y [[Special:Userlogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
 'movenotallowed'          => 'No tiene premisos ta tresladar pachinas en {{SITENAME}}.',
 'newtitle'                => 'Ta o nuebo títol',
-'move-watch'              => 'Bexilar iste articlo',
+'move-watch'              => 'Cosirar iste articlo',
 'movepagebtn'             => 'Tresladar pachina',
 'pagemovedsub'            => 'Treslado feito correutament',
 'movepage-moved'          => '<big>\'\'\'"$1" ha estato tresladato á "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -1772,7 +1772,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-pt-mytalk'               => 'A mía pachina de descusión',
 'tooltip-pt-anontalk'             => 'Descusión sobre edizions feitas dende ista adreza IP',
 'tooltip-pt-preferences'          => 'As mías preferenzias',
-'tooltip-pt-watchlist'            => 'A lista de pachinas en que ha estato bexilando os cambeos',
+'tooltip-pt-watchlist'            => 'A lista de pachinas que en ye cosirando os cambeos',
 'tooltip-pt-mycontris'            => "Lista d'as mías contribuzions",
 'tooltip-pt-login'                => 'Li recomendamos rechistrar-se, encara que no ye obligatorio',
 'tooltip-pt-anonlogin'            => 'Li alentamos á rechistrar-se, anque no ye obligatorio',
@@ -1859,7 +1859,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'infosubtitle'   => "Informazión d'a pachina",
 'numedits'       => "Numero d'edizions (articlo): $1",
 'numtalkedits'   => "Numero d'edizions (pachina de descusión): $1",
-'numwatchers'    => "Número d'usuario bexilando: $1",
+'numwatchers'    => "Número d'usuario cosirando: $1",
 'numauthors'     => "Numero d'autors (articlo): $1",
 'numtalkauthors' => "Numero d'autors (pachina de descusión): $1",
 

@@ -1539,7 +1539,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-expiring'            => 'vyprší $1 (UTC)',
 'protect-cascade'             => 'Kaskádní zámek - zamkne všechny stránky vložené do této stránky.',
 'protect-cantedit'            => 'Nemůžete měnit nastavení zámků této stránky, protože nemáte povoleno tuto stránku editovat.',
-'restriction-type'            => 'Povolení:',
+'restriction-type'            => 'Omezení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',
 'maximum-size'                => 'Max. velikost',
@@ -1547,7 +1547,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'editace',
-'restriction-move'   => 'přesun',
+'restriction-move'   => 'přesunutí',
 'restriction-create' => 'vytvoření',
 
 # Restriction levels

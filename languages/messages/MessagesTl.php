@@ -220,8 +220,16 @@ Isang tala ng mga may-kabuluhang natatanging pahina ay matatagpuan sa [[Special:
 
 # General errors
 'error'                => 'Kamalian',
+'databaseerror'        => 'Kamalian sa kalipunan ng datos',
+'noconnect'            => 'Paumanhin! Nagkakaranas ang wiki ng kahirapang teknikal, at hindi makapag-ugnayan sa serbidor ng kalipunan ng datos. <br />
+$1',
+'nodb'                 => 'Hindi mapilian ang kalipunan ng datos na $1',
 'cachederror'          => 'Ang sumusunod ay isang ibinaong kopya ng hinihiling na pahina, at maaaring hindi ito bago.',
 'readonly'             => 'Nakakandado ang kalipunan ng datos',
+'readonlytext'         => 'Kasalukuyang nakakandado ang kalipunan ng datos sa mga bagong entrada at sa ibang mga pagbabago, marahil para sa kalakarang pagpapanatili ng kalipunan ng datos, kung saan pagkatapos ito ay babalik sa normal.
+
+Ang tagapangasiwang nagkandado nito ay nagbigay ng sumusunod na dahilan: $1',
+'readonly_lag'         => 'Automatikong kinandado ang kalipunan ng datos habang humahabol ang mga aliping serbidor ng kalipunan ng datos sa pinuno',
 'internalerror'        => 'Kamaliang panloob',
 'internalerror_info'   => 'Kamaliang panloob: $1',
 'filecopyerror'        => 'Hindi makopya ang talaksang "$1" sa "$2".',
@@ -234,10 +242,12 @@ Isang tala ng mga may-kabuluhang natatanging pahina ay matatagpuan sa [[Special:
 'badarticleerror'      => 'Hindi maisasagawa ang gawaing ito sa pahinang ito.',
 'viewsource'           => 'Tingnan ang pinagmulan',
 'viewsourcefor'        => 'para sa $1',
+'actionthrottled'      => 'Hinadlangan ang gawain',
 'protectedpagetext'    => 'Kinandado ang pahinang ito upang maihadlang ang pagbabago',
 'viewsourcetext'       => 'Maaari mong tingnan at kopyahin ang pinagmulan ng pahinang ito:',
 'namespaceprotected'   => "Wala kang pahintulot na magbago ng mga pahinang nasa ngalan-espasyong '''$1'''.",
 'customcssjsprotected' => 'Wala kang pahintulot na baguhin ang pahinang ito, dahil naglalaman ito ng mga kagustuhang pansarili ng ibang manggagamit.',
+'ns-specialprotected'  => 'Hindi maaaring baguhin ang mga pahinang nasa ngalan-espasyong {{ns:special}}.',
 
 # Login and logout pages
 'welcomecreation'           => '== Maligayang pagdating, $1! ==
@@ -246,10 +256,12 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'loginpagetitle'            => 'Paglagda ng manggagamit',
 'yourname'                  => 'Bansag:',
 'yourpassword'              => 'Hudyat:',
+'yourpasswordagain'         => 'Iyong hudyat muli:',
 'remembermypassword'        => 'Tandaan ang hudyat sa kompyuter na ito',
 'yourdomainname'            => 'Iyong dominyo:',
 'loginproblem'              => '<b>Nagkaroon ng problema sa iyong paglagda.</b><br />Subukan po muli!',
 'login'                     => 'Lumagda',
+'loginprompt'               => 'Dapat pinapahintulot ang mga kuki upang makapaglagda sa {{SITENAME}}.',
 'userlogin'                 => 'Lumagda / lumikha ng kuwenta',
 'logout'                    => 'Umalis sa paglagda',
 'userlogout'                => 'Umalis sa paglagda',
@@ -260,6 +272,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'gotaccount'                => 'May kuwenta ka na? $1.',
 'gotaccountlink'            => 'Lumagda',
 'badretype'                 => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
+'youremail'                 => 'E-liham:',
 'username'                  => 'Bansag:',
 'uid'                       => 'Bilang ng manggagamit:',
 'yourrealname'              => 'Tunay na pangalan:',
@@ -272,12 +285,21 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'loginsuccess'              => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
 'nosuchusershort'           => 'Walang manggagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
 'passwordremindertitle'     => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
+'loginlanguagelabel'        => 'Wika: $1',
+
+# Edit page toolbar
+'bold_sample'   => 'Tekstong maitim',
+'bold_tip'      => 'Tekstong maitim',
+'italic_sample' => 'Tekstong italika',
+'italic_tip'    => 'Tekstong italika',
 
 # Edit pages
 'summary'                => 'Buod',
+'subject'                => 'Paksa/punong pamagat',
 'minoredit'              => 'Ito ay isang maliit na pagbabago',
 'watchthis'              => 'Bantayan itong pahina',
 'savearticle'            => 'Itala ang pahina',
+'preview'                => 'Pribyu',
 'blockedtitle'           => 'Nakaharang ang tagagamit',
 'blockedoriginalsource'  => "Ang pinagmulan ng '''$1''' ay 
 pinapakita sa ibaba:",
@@ -390,6 +412,10 @@ upang makapagkarga ng talaksan.',
 'ipbsubmit'          => 'Harangin itong manggagamit',
 'ipbother'           => 'Ibang oras:',
 'ipboptions'         => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite', # display1:time1,display2:time2,...
+
+# Developer tools
+'lockdb'   => 'Kandaduhan ang kalipunan ng datos',
+'unlockdb' => 'Buksan ang kalipunan ng datos',
 
 # Move page
 'movenologin'             => 'Hindi nakalagda',

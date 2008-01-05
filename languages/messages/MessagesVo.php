@@ -204,6 +204,7 @@ $messages = array(
 'qbpageoptions'  => 'Pad at',
 'qbmyoptions'    => 'Pads obik',
 'qbspecialpages' => 'Pads patik',
+'moredotdotdot'  => 'Plu...',
 'mypage'         => 'Pad obik',
 'mytalk'         => 'Bespiks obik',
 'navigation'     => 'Nafam',
@@ -221,6 +222,7 @@ $messages = array(
 'info_short'        => 'Nün',
 'printableversion'  => 'Fom dabükovik',
 'permalink'         => 'Yüm laidüpik',
+'print'             => 'Bükön',
 'edit'              => 'Redakön',
 'editthispage'      => 'Redakolöd padi at',
 'delete'            => 'Moükön',
@@ -239,8 +241,11 @@ $messages = array(
 'talk'              => 'Bespik',
 'views'             => 'Logams',
 'toolbox'           => 'Stumem',
+'userpage'          => 'Logön gebanapadi',
 'projectpage'       => 'Logedön proyegapadi',
 'imagepage'         => 'Jonön magodapad',
+'mediawikipage'     => 'Logön nunapadi',
+'templatepage'      => 'Logön samafomotapadi',
 'viewhelppage'      => 'Jonön yufapadi',
 'categorypage'      => 'Jonolöd kladapadi',
 'viewtalkpage'      => 'Logedön bespiki',
@@ -380,6 +385,8 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'mailmypassword'             => 'Sedolös obe letavödi',
 'passwordremindertitle'      => 'Letavöd nulik nelaidik in {{SITENAME}}',
 'noemail'                    => 'Ladet leäktronik nonik peregistaron pro geban "$1".',
+'passwordsent'               => 'Letavöd nulik pesedon ladete leäktronik fa "$1" peregistaröle.<br>
+Nunädolös oli dönu posä ogetol oni.',
 'acct_creation_throttle_hit' => 'Säkusädolös, ya ejafol kalis $1. No plu kanol jafön kali nulik.',
 'emailauthenticated'         => 'Ladet leäktronik olik päfümükon tü düp $1.',
 'emailnotauthenticated'      => 'Ladet leäktronik ola no nog pefümedon. Pened nonik posedon me pads sököl.',
@@ -399,6 +406,8 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'headline_tip'    => 'Tiäd nivoda 2id',
 'math_sample'     => 'Pladolös malatami isio',
 'math_tip'        => 'Malatam matematik (LaTeX)',
+'nowiki_sample'   => 'Pladolös isio vödemi no pefomätöli',
+'nowiki_tip'      => 'Nedemön vükifomätami',
 
 # Edit pages
 'summary'                  => 'Plän brefik',
@@ -435,6 +444,7 @@ If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'anontalkpagetext'         => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:Userlogin|jafolös, begö! kali u nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
 'noarticletext'            => 'Atimo no dabinon vödem su pad at. Kanol [[{{ns:special}}:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
 'clearyourcache'           => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. '''Mozilla / Firefox / Safari:''' kipolöd klavi ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pö el Apple Mac); pro el '''IE:''' (Internet Explorer) kipolöd klavi ''Ctrl'' dono e välolöd eli ''Refresh'' (= flifädükön) me mugaparat, u dränolöd klavis ''Ctrl-F5''; '''Konqueror:''': välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi ''F5''; gebans ela '''Opera''' ba nedons vagükön lölöfiko memi nelaidüpik me ''Tools→Preferences'' (Stumem->Buükams).",
+'note'                     => '<strong>Penet:</strong>',
 'previewnote'              => '<strong>Is pajonon te büologed; votükams no nog pedakipons!</strong>',
 'session_fail_preview'     => '<strong>Pidö! No emögos ad lasumön votükamis olik kodü per redakamanünas.<br />Steifülolös dönu. If no oplöpol, tän senunädolös e genunädolös oli, e steifülolös nogna.</strong>',
 'editing'                  => 'Redakam pada: $1',
@@ -458,6 +468,7 @@ Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u 
 'semiprotectedpagewarning' => "'''Noet:''' Pad at pefärmükon. Te gebans peregistaröl kanons redakön oni.",
 'templatesused'            => 'Samafomots su pad at pegeböls:',
 'templatesusedpreview'     => 'Samafomots in büologed at pageböls:',
+'template-protected'       => '(pejelon)',
 'template-semiprotected'   => '(dilo pejelon)',
 'recreate-deleted-warn'    => "'''NUNED: Dönujafol padi pemoüköl.'''
 
@@ -654,6 +665,9 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 'imagelist_name'            => 'Nem',
 'imagelist_user'            => 'Geban',
 'imagelist_description'     => 'Bepenam',
+
+# File deletion
+'filedelete-nofile' => "'''$1''' no dabinon in {{SITENAME}}.",
 
 # MIME search
 'mimesearch' => 'Sukön (MIME)',
@@ -862,7 +876,7 @@ $2 jonon moükamis nulik.',
 'rollbacklink'                => 'sädunön mödiki',
 'rollbackfailed'              => 'Sädunam no eplöpon',
 'cantrollback'                => 'Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.',
-'revertpage'                  => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]',
+'revertpage'                  => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]',
 'protectlogpage'              => 'Jenotalised jelodamas',
 'unprotectedarticle'          => 'Pad: "[[$1]]" pesäjelon.',
 'confirmprotect'              => 'Fümedolös jeli',
@@ -1004,6 +1018,7 @@ Välolös nemi votik.',
 'movelogpage'             => 'Jenotalised topätükamas',
 'movelogpagetext'         => 'Is palisedons pads petopätüköl.',
 'movereason'              => 'Kod',
+'revertmove'              => 'sädunön',
 'delete_and_move'         => 'Moükolöd e topätükolöd',
 'delete_and_move_text'    => '==Moükam peflagon==
 
@@ -1044,45 +1059,48 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'importlogpage' => 'Jenotalised nüveigamas',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Gebanapad obik',
-'tooltip-pt-mytalk'         => 'Bespiks obik',
-'tooltip-pt-preferences'    => 'Buükams obik',
-'tooltip-pt-watchlist'      => 'Lised padas, kö galädol tefü votükams',
-'tooltip-pt-mycontris'      => 'Lised keblünotas obik',
-'tooltip-pt-login'          => 'Binos gudik, ab no bligik, ad nunädön oyi.',
-'tooltip-pt-logout'         => 'Senunädön oki',
-'tooltip-ca-talk'           => 'Bespik dö ninädapad',
-'tooltip-ca-edit'           => 'Kanol redakön padi at. Gebolös, begö! büologedi bü dakip.',
-'tooltip-ca-addsection'     => 'Lüükön küpeti bespike at.',
-'tooltip-ca-viewsource'     => 'Pad at pejelon. Kanol logedön fonätakoti onik.',
-'tooltip-ca-protect'        => 'Jelön padi at',
-'tooltip-ca-delete'         => 'Moükön padi at',
-'tooltip-ca-move'           => 'Topätükön padi at',
-'tooltip-ca-watch'          => 'Lüükolös padi at lü galädalised olik',
-'tooltip-ca-unwatch'        => 'Moükön padi at se galädalised olik',
-'tooltip-search'            => 'Sukön in {{SITENAME}}',
-'tooltip-p-logo'            => 'Cifapad',
-'tooltip-n-mainpage'        => 'Visitolös Cifapadi',
-'tooltip-n-portal'          => 'Tefü proyek, kio kanol-li dunön, kiplado tuvön dinis',
-'tooltip-n-recentchanges'   => 'Lised votükamas nulik in vüki.',
-'tooltip-n-randompage'      => 'Lodön padi fädik',
-'tooltip-n-help'            => 'Is kanoy tuvön yufi e nünis.',
-'tooltip-n-sitesupport'     => 'Stütolös obsi',
-'tooltip-t-whatlinkshere'   => 'Lised padas valik, kels yumons isio',
-'tooltip-t-contributions'   => 'Logedön keblünotalisedi gebana at',
-'tooltip-t-emailuser'       => 'Sedolös penedi gebane at',
-'tooltip-t-upload'          => 'Löpükön magodis u ragivis sümik votik',
-'tooltip-t-specialpages'    => 'Lised padas patik valik',
-'tooltip-ca-nstab-user'     => 'Logön gebanapadi',
-'tooltip-ca-nstab-image'    => 'Logön padi magoda',
-'tooltip-ca-nstab-template' => 'Logön samafomoti',
-'tooltip-ca-nstab-help'     => 'Logön yufapadi',
-'tooltip-ca-nstab-category' => 'Logön kladapadi',
-'tooltip-minoredit'         => 'Nemön atosi votükami pülik',
-'tooltip-save'              => 'Dakipolös votükamis olik',
-'tooltip-preview'           => 'Büologed votükamas olik. Gebolös bü dakip, begö!',
-'tooltip-diff'              => 'Jonön votükamis olik in vödem at.',
-'tooltip-watch'             => 'Lüükön padi at galädalisede olik',
+'tooltip-pt-userpage'        => 'Gebanapad obik',
+'tooltip-pt-mytalk'          => 'Bespiks obik',
+'tooltip-pt-preferences'     => 'Buükams obik',
+'tooltip-pt-watchlist'       => 'Lised padas, kö galädol tefü votükams',
+'tooltip-pt-mycontris'       => 'Lised keblünotas obik',
+'tooltip-pt-login'           => 'Binos gudik, ab no bligik, ad nunädön oyi.',
+'tooltip-pt-logout'          => 'Senunädön oki',
+'tooltip-ca-talk'            => 'Bespik dö ninädapad',
+'tooltip-ca-edit'            => 'Kanol redakön padi at. Gebolös, begö! büologedi bü dakip.',
+'tooltip-ca-addsection'      => 'Lüükön küpeti bespike at.',
+'tooltip-ca-viewsource'      => 'Pad at pejelon. Kanol logedön fonätakoti onik.',
+'tooltip-ca-protect'         => 'Jelön padi at',
+'tooltip-ca-delete'          => 'Moükön padi at',
+'tooltip-ca-move'            => 'Topätükön padi at',
+'tooltip-ca-watch'           => 'Lüükolös padi at lü galädalised olik',
+'tooltip-ca-unwatch'         => 'Moükön padi at se galädalised olik',
+'tooltip-search'             => 'Sukön in {{SITENAME}}',
+'tooltip-p-logo'             => 'Cifapad',
+'tooltip-n-mainpage'         => 'Visitolös Cifapadi',
+'tooltip-n-portal'           => 'Tefü proyek, kio kanol-li dunön, kiplado tuvön dinis',
+'tooltip-n-recentchanges'    => 'Lised votükamas nulik in vüki.',
+'tooltip-n-randompage'       => 'Lodön padi fädik',
+'tooltip-n-help'             => 'Is kanoy tuvön yufi e nünis.',
+'tooltip-n-sitesupport'      => 'Stütolös obsi',
+'tooltip-t-whatlinkshere'    => 'Lised padas valik, kels yumons isio',
+'tooltip-t-contributions'    => 'Logedön keblünotalisedi gebana at',
+'tooltip-t-emailuser'        => 'Sedolös penedi gebane at',
+'tooltip-t-upload'           => 'Löpükön magodis u ragivis sümik votik',
+'tooltip-t-specialpages'     => 'Lised padas patik valik',
+'tooltip-ca-nstab-user'      => 'Logön gebanapadi',
+'tooltip-ca-nstab-special'   => 'Atos binon pad patik, no kanol redakön oni',
+'tooltip-ca-nstab-project'   => 'Logedön proyegapadi',
+'tooltip-ca-nstab-image'     => 'Logön padi magoda',
+'tooltip-ca-nstab-mediawiki' => 'Logön sitanuni',
+'tooltip-ca-nstab-template'  => 'Logön samafomoti',
+'tooltip-ca-nstab-help'      => 'Logön yufapadi',
+'tooltip-ca-nstab-category'  => 'Logön kladapadi',
+'tooltip-minoredit'          => 'Nemön atosi votükami pülik',
+'tooltip-save'               => 'Dakipolös votükamis olik',
+'tooltip-preview'            => 'Büologed votükamas olik. Gebolös bü dakip, begö!',
+'tooltip-diff'               => 'Jonön votükamis olik in vödem at.',
+'tooltip-watch'              => 'Lüükön padi at galädalisede olik',
 
 # Stylesheets
 'common.css'   => '/** El CSS isio peplädöl pogebon pro padafomäts valik */',
@@ -1093,8 +1111,11 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 
 # Attribution
 'anonymous'        => 'Geban(s) nennemik {{SITENAME}}a',
+'siteuser'         => 'Geban ela {{SITENAME}}: $1',
 'lastmodifiedatby' => 'Pad at pävotükon lätiküno tü dÜp $1, ün $2, fa el $3.', # $1 date, $2 time, $3 user
 'and'              => 'e',
+'others'           => 'votiks',
+'siteusers'        => 'Geban(s) ela {{SITENAME}}: $1',
 
 # Spam protection
 'subcategorycount'       => 'Dabinon{{PLURAL:$1|&nbsp;donaklad bal|s donaklads $1}} in klad at.',
@@ -1104,6 +1125,8 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 
 # Info page
 'infosubtitle' => 'Nüns tefü pad',
+'numedits'     => 'Redakamanum (pad): $1',
+'numtalkedits' => 'Redakamanum (bespikapad): $1',
 
 # Math options
 'mw_math_png'    => 'Ai el PNG',
@@ -1112,6 +1135,9 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'mw_math_source' => 'Dakipolöd oni as TeX (pro bevüresodatävöms fomätü vödem)',
 'mw_math_modern' => 'Pakomandöl pro bevüresodatävöms nulädik',
 'mw_math_mathml' => 'El MathML if mögos (nog sperimänt)',
+
+# Patrol log
+'patrol-log-auto' => '(itjäfidik)',
 
 # Image deletion
 'deletedrevision' => 'Moükoy revidi bäldik $1.',
@@ -1129,15 +1155,43 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'newimages'    => 'Pänotem ragivas nulik',
 'showhidebots' => '($1 mäikamenis)',
 
+# Metadata
+'metadata-expand'   => 'Jonön patis pluik',
+'metadata-collapse' => 'Klänedön patis pluik',
+
 # EXIF tags
-'exif-imagewidth'       => 'Vidot',
-'exif-imagedescription' => 'Tiäd magoda',
+'exif-imagewidth'          => 'Vidot',
+'exif-imagedescription'    => 'Tiäd magoda',
+'exif-artist'              => 'Lautan',
+'exif-colorspace'          => 'Kölaspad',
+'exif-exposuretime-format' => '$1 sek ($2)',
+
+'exif-orientation-1' => 'Nomik', # 0th row: top; 0th column: left
+
+'exif-componentsconfiguration-0' => 'no dabinon',
+
+'exif-subjectdistance-value' => 'Mets $1',
+
+'exif-meteringmode-255' => 'Votik',
+
+'exif-lightsource-11' => 'Jad',
+
+'exif-focalplaneresolutionunit-2' => 'puids',
+
+'exif-gaincontrol-0' => 'Nonik',
+
+'exif-contrast-0' => 'Nomik',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Milmets a düp',
+'exif-gpsspeed-m' => 'Liöls a düp',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'valik',
-'watchlistall2' => 'valikis',
-'namespacesall' => 'valik',
-'monthsall'     => 'valik',
+'recentchangesall' => 'valik',
+'imagelistall'     => 'valik',
+'watchlistall2'    => 'valikis',
+'namespacesall'    => 'valik',
+'monthsall'        => 'valik',
 
 # E-mail address confirmation
 'confirmemail'          => 'Fümedolös ladeti leäktronik',
@@ -1180,6 +1234,8 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 # Table pager
 'table_pager_next'         => 'Pad sököl',
 'table_pager_prev'         => 'Pad büik',
+'table_pager_first'        => 'Pad balid',
+'table_pager_last'         => 'Pad lätik',
 'table_pager_limit_submit' => 'Gololöd',
 
 # Auto-summaries
@@ -1187,6 +1243,9 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'autosumm-replace' => "Pad pepläadon me '$1'",
 'autoredircomment' => 'Lüodükon lü [[$1]]',
 'autosumm-new'     => 'Pad nulik: $1',
+
+# Watchlist editor
+'watchlistedit-raw-titles' => 'Tiäds:',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Logön e redakön galädalisedi',

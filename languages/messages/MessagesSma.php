@@ -73,6 +73,7 @@ $messages = array(
 'mypage'        => 'Mov bielie',
 'mytalk'        => 'Mov dïjveldidh',
 'anontalk'      => 'Dïjveldidh ihke dïhte IP',
+'navigation'    => 'Navigasjovne',
 
 'errorpagetitle'   => 'Båajhtode',
 'tagline'          => 'Raejeste {{SITENAME}}',
@@ -102,12 +103,17 @@ $messages = array(
 'viewhelppage'     => 'Vuesehte viehkie bielie',
 'viewtalkpage'     => 'Vuesehte dïjveldidh',
 'otherlanguages'   => 'jeatjebh gïele',
+'jumptonavigation' => 'navigasjovne',
 'jumptosearch'     => 'ohtsedh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Bïjre {{SITENAME}}',
-'aboutpage' => 'Project:Bïjre',
-'mainpage'  => 'Åejjiebielie',
+'aboutsite'      => 'Bïjre {{SITENAME}}',
+'aboutpage'      => 'Project:Bïjre',
+'bugreports'     => 'Bug reektehtse',
+'bugreportspage' => 'Project:Bug reektehtse',
+'mainpage'       => 'Åejjiebielie',
+'portal'         => 'Meatan portaale',
+'portal-url'     => 'Project:Meatan portaale',
 
 'editsection' => 'värrhtoedimmie',
 'editold'     => 'värrhtoedimmie',
@@ -202,9 +208,12 @@ $messages = array(
 'newpages'          => 'Orre bielie',
 'newpages-username' => 'Nuhtjiennomme:',
 'move'              => 'Jåhta',
+'movethispage'      => 'Jåhta dïhte bielie',
 
 # Book sources
 'booksources-go' => 'Vaadtsa',
+
+'data' => 'Daata',
 
 # Special:Log
 'specialloguserlabel' => 'Nuhtjien:',
@@ -268,6 +277,9 @@ $messages = array(
 # Attribution
 'siteuser' => '{{SITENAME}} nuhtjien $1',
 'and'      => 'jih',
+
+# EXIF tags
+'exif-model' => 'Guvviedahke hammohke',
 
 'exif-meteringmode-0'   => 'Ammes',
 'exif-meteringmode-255' => 'Jeatjebh',
