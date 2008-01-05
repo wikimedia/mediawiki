@@ -2575,6 +2575,64 @@ Foo<noinclude>zar</noinclude><includeonly>bar</includeonly>
 </p>
 !! end
 
+!! article
+Template:Includeonly section
+!! text
+<includeonly>
+==Includeonly section==
+</includeonly>
+==Section T-1==
+!!endarticle
+
+!! test
+Bug 6563: Edit link generation for section shown by <includeonly>
+!! input
+{{includeonly section}}
+!! result
+<a name="Includeonly_section"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-1" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline">Includeonly section</span></h2>
+<a name="Section_T-1"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-2" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline">Section T-1</span></h2>
+
+!! end
+
+# Uses same input as the contents of [[Template:Includeonly section]]
+!! test
+Bug 6563: Section extraction for section shown by <includeonly>
+!! options
+section=T-2
+!! input
+<includeonly>
+==Includeonly section==
+</includeonly>
+==Section T-2==
+!! result
+==Section T-2==
+!! end
+
+!! test
+Bug 6563: Edit link generation for section suppressed by <includeonly>
+!! input
+<includeonly>
+==Includeonly section==
+</includeonly>
+==Section 1==
+!! result
+<a name="Section_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline">Section 1</span></h2>
+
+!! end
+
+!! test
+Bug 6563: Section extraction for section suppressed by <includeonly>
+!! options
+section=1
+!! input
+<includeonly>
+==Includeonly section==
+</includeonly>
+==Section 1==
+!! result
+==Section 1==
+!! end
+
 ###
 ### Pre-save transform tests
 ###
@@ -3504,8 +3562,8 @@ __NOTOC__
 ==Section 4==
 !! result
 <a name="Section_0"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a>]</span> <span class="mw-headline">Section 0</span></h2>
-<a name="Section_1"></a><h3><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=1" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 1</span></h3>
-<a name="Section_2"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=2" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 2</span></h2>
+<a name="Section_1"></a><h3><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 1</span></h3>
+<a name="Section_2"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 2</span></h2>
 <a name="Section_4"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a>]</span> <span class="mw-headline">Section 4</span></h2>
 
 !! end
@@ -6223,7 +6281,7 @@ Inclusion of !userCanEdit() content
 !! input
 {{MediaWiki:Fake}}
 !! result
-<a name="header"></a><h2><span class="editsection">[<a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=1" title="MediaWiki:Fake">edit</a>]</span> <span class="mw-headline">header</span></h2>
+<a name="header"></a><h2><span class="editsection">[<a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=T-1" title="MediaWiki:Fake">edit</a>]</span> <span class="mw-headline">header</span></h2>
 
 !! end
 

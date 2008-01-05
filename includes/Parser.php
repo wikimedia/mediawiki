@@ -71,6 +71,9 @@ class Parser
 	const COLON_STATE_COMMENTDASH = 6;
 	const COLON_STATE_COMMENTDASHDASH = 7;
 
+	// Flags for preprocessToDom
+	const PTD_FOR_INCLUSION = 1;
+	
 	/**#@+
 	 * @private
 	 */
@@ -927,11 +930,6 @@ class Parser
 			wfProfileOut( $fname );
 			return $text ;
 		}
-
-		# Remove <noinclude> tags and <includeonly> sections
-		$text = strtr( $text, array( '<onlyinclude>' => '' , '</onlyinclude>' => '' ) );
-		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
-		$text = StringUtils::delimiterReplace( '<includeonly>', '</includeonly>', '', $text );
 
 		$text = $this->replaceVariables( $text );
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ), false, array_keys( $this->mTransparentTagHooks ) );
@@ -2541,17 +2539,32 @@ class Parser
 	}
 
 	/**
-	 * Parse any parentheses in format ((title|part|part)} and return the document tree
+	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of replace_variables(). 
 	 *
 	 * @param string $text The text to parse
+	 * @param integer flags Bitwise combination of:
+	 *          self::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being 
+	 *                                     included. Default is to assume a direct page view. 
+	 *
+	 * The generated DOM tree must depend only on the input text, the flags, and $this->ot['msg']. 
+	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899. 
+	 *
+	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a 
+	 * change in the DOM tree for a given text, must be passed through the section identifier 
+	 * in the section edit link and thus back to extractSections(). 
+	 *
+	 * The output of this function is currently only cached in process memory, but a persistent 
+	 * cache may be implemented at a later date which takes further advantage of these strict 
+	 * dependency requirements.
+	 *
 	 * @private
 	 */
-	function preprocessToDom ( $text ) {
+	function preprocessToDom ( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-makexml' );
 
-		static $msgRules, $normalRules;
+		static $msgRules, $normalRules, $inclusionSupertags, $nonInclusionSupertags;
 		if ( !$msgRules ) {
 			$msgRules = array(
 				'{' => array(
@@ -2592,19 +2605,32 @@ class Parser
 		} else {
 			$rules = $normalRules;
 		}
+		$forInclusion = $flags & self::PTD_FOR_INCLUSION;
 
-		if ( $this->ot['html'] || ( $this->ot['pre'] && $this->mOptions->getRemoveComments() ) ) {
-			$text = Sanitizer::removeHTMLcomments( $text );
+		$xmlishElements = $this->getStripList();
+		$enableOnlyinclude = false;
+		if ( $forInclusion ) {
+			$ignoredTags = array( 'includeonly', '/includeonly' );
+			$ignoredElements = array( 'noinclude' );
+			$xmlishElements[] = 'noinclude';
+			if ( strpos( $text, '<onlyinclude>' ) !== false && strpos( $text, '</onlyinclude>' ) !== false ) {
+				$enableOnlyinclude = true;
+			}
+		} else {
+			$ignoredTags = array( 'noinclude', '/noinclude', 'onlyinclude', '/onlyinclude' );
+			$ignoredElements = array( 'includeonly' );
+			$xmlishElements[] = 'includeonly';
 		}
+		$xmlishRegex = implode( '|', array_merge( $xmlishElements, $ignoredTags ) );
 
-		$extElements = implode( '|', $this->getStripList() );
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
-		$extElementsRegex = "/($extElements)(?:\s|\/>|>)|(!--)/iA";
+		$elementsRegex = "~($xmlishRegex)(?:\s|\/>|>)|(!--)~iA";
 	
 		$stack = array();      # Stack of unclosed parentheses
 		$stackIndex = -1;      # Stack read pointer
 
 		$searchBase = implode( '', array_keys( $rules ) ) . '<';
+		$revText = strrev( $text ); // For fast reverse searches
 
 		$i = -1; # Input pointer, starts out pointing to a pseudo-newline before the start
 		$topAccum = '<root>';      # Top level text accumulator
@@ -2614,8 +2640,27 @@ class Parser
 		$findPipe = false;              # True to take notice of pipe characters
 		$headingIndex = 1;
 		$noMoreGT = false;         # True if there are no more greater-than (>) signs right of $i
+		$findOnlyinclude = $enableOnlyinclude; # True to ignore all input up to the next <onlyinclude>
 
-		while ( $i < strlen( $text ) ) {
+		if ( $enableOnlyinclude ) {
+			$i = 0;
+		}
+
+		while ( true ) {
+			if ( $findOnlyinclude ) {
+				// Ignore all input up to the next <onlyinclude>
+				$startPos = strpos( $text, '<onlyinclude>', $i );
+				if ( $startPos === false ) {
+					// Ignored section runs to the end
+					$accum .= '<ignore>' . htmlspecialchars( substr( $text, $i ) ) . '</ignore>';
+					break;
+				}
+				$tagEndPos = $startPos + strlen( '<onlyinclude>' ); // past-the-end
+				$accum .= '<ignore>' . htmlspecialchars( substr( $text, $i, $tagEndPos - $i ) ) . '</ignore>';
+				$i = $tagEndPos;
+				$findOnlyinclude = false;
+			}
+
 			if ( $i == -1 ) {
 				$found = 'line-start';
 				$curChar = '';
@@ -2684,8 +2729,14 @@ class Parser
 
 			if ( $found == 'angle' ) {
 				$matches = false;
+				// Handle </onlyinclude>
+				if ( $enableOnlyinclude && substr( $text, $i, strlen( '</onlyinclude>' ) ) == '</onlyinclude>' ) {
+					$findOnlyinclude = true;
+					continue;
+				}
+
 				// Determine element name
-				if ( !preg_match( $extElementsRegex, $text, $matches, 0, $i + 1 ) ) {
+				if ( !preg_match( $elementsRegex, $text, $matches, 0, $i + 1 ) ) {
 					// Element name missing or not listed
 					$accum .= '&lt;';
 					++$i;
@@ -2693,21 +2744,37 @@ class Parser
 				}
 				// Handle comments
 				if ( isset( $matches[2] ) && $matches[2] == '!--' ) {
-					// HTML comment, scan to end
-					$endpos = strpos( $text, '-->', $i + 4 );
-					if ( $endpos === false ) {
+					// To avoid leaving blank lines, when a comment is both preceded
+					// and followed by a newline (ignoring spaces), trim leading and
+					// trailing spaces and one of the newlines.
+					
+					// Find the end
+					$endPos = strpos( $text, '-->', $i + 4 );
+					if ( $endPos === false ) {
 						// Unclosed comment in input, runs to end
 						$inner = substr( $text, $i );
-						if ( $this->ot['html'] ) {
-							// Close it so later stripping can remove it
-							$inner .= '-->';
-						}
 						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
 						$i = strlen( $text );
 					} else {
-						$inner = substr( $text, $i, $endpos - $i + 3 );
+						// Search backwards for leading whitespace
+						$wsStart = $i ? ( $i - strspn( $revText, ' ', strlen( $text ) - $i - 1 ) ) : 0;
+						// Search forwards for trailing whitespace
+						// $wsEnd will be the position of the last space
+						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
+						// Eat the line if possible
+						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n" 
+							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
+						{
+							$startPos = $wsStart;
+							$endPos = $wsEnd + 1;
+						} else {
+							// No line to eat, just take the comment itself
+							$startPos = $i;
+							$endPos += 2;
+						}
+						$inner = substr( $text, $startPos, $endPos - $startPos + 1 );
 						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
-						$i = $endpos + 3;
+						$i = $endPos + 1;
 					}
 					continue;
 				}
@@ -2724,6 +2791,15 @@ class Parser
 					++$i;
 					continue;
 				}
+
+				// Handle ignored tags
+				if ( in_array( $name, $ignoredTags ) ) {
+					$accum .= '<ignore>' . htmlspecialchars( substr( $text, $i, $tagEndPos - $i + 1 ) ) . '</ignore>';
+					$i = $tagEndPos + 1;
+					continue;
+				}
+
+				$tagStartPos = $i;
 				if ( $text[$tagEndPos-1] == '/' ) {
 					$attrEnd = $tagEndPos - 1;
 					$inner = null;
@@ -2743,6 +2819,13 @@ class Parser
 						$close = '';
 					}
 				}
+				// <includeonly> and <noinclude> just become <ignore> tags
+				if ( in_array( $name, $ignoredElements ) ) {
+					$accum .= '<ignore>' . htmlspecialchars( substr( $text, $tagStartPos, $i - $tagStartPos ) ) 
+						. '</ignore>';
+					continue;
+				}
+
 				$accum .= '<ext>';
 				if ( $attrEnd <= $attrStart ) {
 					$attr = '';
@@ -2784,13 +2867,11 @@ class Parser
 				// A heading must be open, otherwise \n wouldn't have been in the search list
 				assert( $piece['open'] == "\n" );
 				assert( $stackIndex == 0 );
-				// Search back through the accumulator to see if it has a proper close
-				// No efficient way to do this in PHP AFAICT: strrev, PCRE search with $ anchor 
-				// and rtrim are all O(N) in total size. Optimal would be O(N) in trailing 
-				// whitespace size only.
+				// Search back through the input to see if it has a proper close
+				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
 				$m = false;
 				$count = $piece['count'];
-				if ( preg_match( "/(={{$count}})\s*$/", $accum, $m, 0, $count ) ) {
+				if ( preg_match( "/\s*(={{$count}})/A", $revText, $m, 0, strlen( $text ) - $i ) ) {
 					// Found match, output <h>
 					$count = min( strlen( $m[1] ), $count );
 					$element = "<h level=\"$count\" i=\"$headingIndex\">$accum</h>";
@@ -3019,27 +3100,6 @@ class Parser
 			$w2 = '';
 		}
 		return array( $w1, $trimmed, $w2 );
-	}
-
-	/**
-	 * Convert text to a document tree, like preprocessToDom(), but with some special handling
-	 * assuming the source text is from a template -- specifically noinclude/includeonly behaviour.
-	 */
-	function preprocessTplToDom( $text ) {
-		# If there are any <onlyinclude> tags, only include them
-		if ( !$this->ot['msg'] ) {
-			if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
-				$replacer = new OnlyIncludeReplacer;
-				StringUtils::delimiterReplaceCallback( '<onlyinclude>', '</onlyinclude>', 
-					array( &$replacer, 'replace' ), $text );
-				$text = $replacer->output;
-			}
-			# Remove <noinclude> sections and <includeonly> tags
-			$text = StringUtils::delimiterReplace( '<noinclude>', '</noinclude>', '', $text );
-			$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
-		}
-
-		return $this->preprocessToDom( $text );
 	}
 
 	/**
@@ -3311,7 +3371,7 @@ class Parser
 				} else {
 					$text = $this->interwikiTransclude( $title, 'raw' );
 					// Preprocess it like a template
-					$text = $this->preprocessTplToDom( $text );
+					$text = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
 					$isDOM = true;
 				}
 				$found = true;
@@ -3404,7 +3464,7 @@ class Parser
 			return array( false, $title );
 		}
 
-		$dom = $this->preprocessTplToDom( $text );
+		$dom = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
 		$this->mTplDomCache[ $titleText ] = $dom;
 
 		if (! $title->equals($cacheTitle)) {
@@ -3906,10 +3966,13 @@ class Parser
 			}
 			# give headline the correct <h#> tag
 			if( $showEditLink && $sectionIndex !== false ) {
-				if( $isTemplate )
-					$editlink = $sk->editSectionLinkForOther($titleText, $sectionIndex);
-				else
+				if( $isTemplate ) {
+					# Put a T flag in the section identifier, to indicate to extractSections() 
+					# that sections inside <includeonly> should be counted.
+					$editlink = $sk->editSectionLinkForOther($titleText, "T-$sectionIndex");
+				} else {
 					$editlink = $sk->editSectionLink($this->mTitle, $sectionIndex, $headlineHint);
+				}
 			} else {
 				$editlink = '';
 			}
@@ -4910,14 +4973,22 @@ class Parser
 	 *
 	 * External callers should use the getSection and replaceSection methods.
 	 *
-	 * @param $text Page wikitext
-	 * @param $section Numbered section. 0 pulls the text before the first
-	 *                 heading; other numbers will pull the given section
-	 *                 along with its lower-level subsections. If the section is 
-	 *                 not found, $mode=get will return $newtext, and 
-	 *                 $mode=replace will return $text.
-	 * @param $mode One of "get" or "replace"
-	 * @param $newText Replacement text for section data.
+	 * @param string $text Page wikitext
+	 * @param string $section A section identifier string of the form:
+	 *   <flag1> - <flag2> - ... - <section number>
+	 *
+	 * Currently the only recognised flag is "T", which means the target section number
+	 * was derived during a template inclusion parse, in other words this is a template 
+	 * section edit link. If no flags are given, it was an ordinary section edit link. 
+	 * This flag is required to avoid a section numbering mismatch when a section is 
+	 * enclosed by <includeonly> (bug 6563).
+	 *
+	 * The section number 0 pulls the text before the first heading; other numbers will 
+	 * pull the given section along with its lower-level subsections. If the section is 
+	 * not found, $mode=get will return $newtext, and $mode=replace will return $text.
+	 *
+	 * @param string $mode One of "get" or "replace"
+	 * @param string $newText Replacement text for section data.
 	 * @return string for "get", the extracted section text.
 	 *                for "replace", the whole page with the section replaced.
 	 */
@@ -4931,8 +5002,17 @@ class Parser
 		$outText = '';
 		$frame = new PPFrame( $this );
 
+		// Process section extraction flags
+		$flags = 0;
+		$sectionParts = explode( '-', $section );
+		$sectionIndex = array_pop( $sectionParts );
+		foreach ( $sectionParts as $part ) {
+			if ( $part == 'T' ) {
+				$flags |= self::PTD_FOR_INCLUSION;
+			}
+		}
 		// Preprocess the text
-		$dom = $this->preprocessToDom( $text );
+		$dom = $this->preprocessToDom( $text, $flags );
 		$root = $dom->documentElement;
 
 		// <h> nodes indicate section breaks
@@ -4940,13 +5020,13 @@ class Parser
 		$node = $root->firstChild;
 
 		// Find the target section
-		if ( $section == 0 ) {
+		if ( $sectionIndex == 0 ) {
 			// Section zero doesn't nest, level=big
 			$targetLevel = 1000;
 		} else {
 			while ( $node ) {
 				if ( $node->nodeName == 'h' ) {
-					if ( $curIndex + 1 == $section ) {
+					if ( $curIndex + 1 == $sectionIndex ) {
 						break;
 					}
 					$curIndex++;
@@ -4975,7 +5055,7 @@ class Parser
 			if ( $node->nodeName == 'h' ) {
 				$curIndex++;
 				$curLevel = $node->getAttribute( 'level' );
-				if ( $curIndex != $section && $curLevel <= $targetLevel ) {
+				if ( $curIndex != $sectionIndex && $curLevel <= $targetLevel ) {
 					break;
 				}
 			}
@@ -5012,9 +5092,9 @@ class Parser
 	 *
 	 * If a section contains subsections, these are also returned.
 	 *
-	 * @param $text String: text to look in
-	 * @param $section Integer: section number
-	 * @param $deftext: default to return if section is not found
+	 * @param string $text text to look in
+	 * @param string $section section identifier
+	 * @param string $deftext default to return if section is not found
 	 * @return string text of the requested section
 	 */
 	public function getSection( $text, $section, $deftext='' ) {
@@ -5217,8 +5297,9 @@ class PPFrame {
 	const NO_ARGS = 1;
 	const NO_TEMPLATES = 2;
 	const STRIP_COMMENTS = 4;
+	const NO_IGNORE = 8;
 
-	const RECOVER_ORIG = 3;
+	const RECOVER_ORIG = 11;
 
 	/**
 	 * Construct a new preprocessor frame.
@@ -5323,10 +5404,23 @@ class PPFrame {
 				}
 			} elseif ( $root->nodeName == 'comment' ) {
 				# HTML-style comment
-				if ( $flags & self::STRIP_COMMENTS ) {
+				if ( $this->parser->ot['html'] 
+					|| ( $this->parser->ot['pre'] && $this->mOptions->getRemoveComments() ) 
+					|| ( $flags & self::STRIP_COMMENTS ) ) 
+				{
 					$s = '';
 				} else {
 					$s = $root->textContent;
+				}
+			} elseif ( $root->nodeName == 'ignore' ) {
+				# Output suppression used by <includeonly> etc.
+				# OT_WIKI will only respect <ignore> in substed templates.
+				# The other output types respect it unless NO_IGNORE is set. 
+				# extractSections() sets NO_IGNORE and so never respects it.
+				if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) || ( $flags & self::NO_IGNORE ) ) {
+					$s = $root->textContent;
+				} else {
+					$s = '';
 				}
 			} elseif ( $root->nodeName == 'ext' ) {
 				# Extension tag
@@ -5415,6 +5509,31 @@ class PPFrame {
 		$name = $names->item( 0 );
 		$index = $name->getAttribute( 'index' );
 		return array( $name, $index, $values->item( 0 ) );
+	}
+
+	/**
+	 * Split an <ext> node into an associative array containing name, attr, inner and close
+	 * All values in the resulting array are DOMNodes. Inner and close are optional.
+	 */
+	function splitExtNode( $node ) {
+		$xpath = new DOMXPath( $node->ownerDocument );
+		$names = $xpath->query( 'name', $node );
+		$attrs = $xpath->query( 'attr', $node );
+		$inners = $xpath->query( 'inner', $node );
+		$closes = $xpath->query( 'close', $node );
+		if ( !$names->length || !$attrs->length ) {
+			throw new MWException( 'Invalid ext node passed to ' . __METHOD__ );
+		}
+		$parts = array(
+			'name' => $names->item( 0 ),
+			'attr' => $attrs->item( 0 ) );
+		if ( $inners->length ) {
+			$parts['inner'] = $inners->item( 0 );
+		}
+		if ( $closes->length ) {
+			$parts['close'] = $closes->item( 0 );
+		}
+		return $parts;
 	}
 
 	function __toString() {
