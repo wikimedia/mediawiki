@@ -47,7 +47,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->dieUsage('You don\'t have permission to view deleted revision information', 'permissiondenied');
 
 		$db = $this->getDB();
-		$params = $this->extractRequestParams();
+		$params = $this->extractRequestParams(false);
 		$prop = array_flip($params['prop']);
 		$fld_revid = isset($prop['revid']);
 		$fld_user = isset($prop['user']);
@@ -80,13 +80,18 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addFields(array('ar_text', 'ar_text_id', 'old_text', 'old_flags'));
 			$this->addWhere('ar_text_id = old_id');
 
-			// This also means stricter limits and stricter restrictions
+			// This also means stricter restrictions
 			if(!$wgUser->isAllowed('undelete'))
 				$this->dieUsage('You don\'t have permission to view deleted revision content', 'permissiondenied');
-			$userMax = ApiBase :: LIMIT_SML1;
-			$botMax  = ApiBase :: LIMIT_SML2;
-			$this->validateLimit('limit', $params['limit'], 1, $userMax, $botMax);
 		}
+		// Check limits
+		$userMax = $fld_content ? ApiBase :: LIMIT_SML1 : ApiBase :: LIMIT_BIG1;
+		$botMax  = $fld_content ? ApiBase :: LIMIT_SML2 : ApiBase :: LIMIT_BIG2;
+		if( $limit == 'max' ) {
+			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
+			$this->getResult()->addValue( 'limits', 'limit', $limit );
+		}
+		$this->validateLimit('limit', $params['limit'], 1, $userMax, $botMax);
 		if($fld_token)
 			// Undelete tokens are identical for all pages, so we cache one here
 			$token = $wgUser->editToken();

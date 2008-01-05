@@ -303,13 +303,15 @@ abstract class ApiBase {
 	* Using getAllowedParams(), makes an array of the values provided by the user,
 	* with key being the name of the variable, and value - validated value from user or default.
 	* This method can be used to generate local variables using extract().
+	* limit=max will not be parsed if $parseMaxLimit is set to false; use this
+	* when the max limit is not definite, e.g. when getting revisions.
 	*/
-	public function extractRequestParams() {
+	public function extractRequestParams($parseMaxLimit = true) {
 		$params = $this->getAllowedParams();
 		$results = array ();
 
 		foreach ($params as $paramName => $paramSettings)
-			$results[$paramName] = $this->getParameterFromSettings($paramName, $paramSettings);
+			$results[$paramName] = $this->getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit);
 
 		return $results;
 	}
@@ -341,8 +343,9 @@ abstract class ApiBase {
 	 * Using the settings determine the value for the given parameter
 	 * @param $paramName String: parameter name
 	 * @param $paramSettings Mixed: default value or an array of settings using PARAM_* constants.
+	 * @param $parseMaxLimit Boolean: parse limit when max is given?
 	 */
-	protected function getParameterFromSettings($paramName, $paramSettings) {
+	protected function getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit) {
 
 		// Some classes may decide to change parameter names
 		$encParamName = $this->encodeParamName($paramName);
@@ -411,13 +414,16 @@ abstract class ApiBase {
 							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $encParamName");
 						$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : 0;
 						if( $value == 'max' ) {
-							$value = $this->getMain()->canApiHighLimits() ? $paramSettings[self :: PARAM_MAX2] : $paramSettings[self :: PARAM_MAX];
-							$this->getResult()->addValue( 'limits', 'limit', $value );
+							if( $parseMaxLimit ) {
+								$value = $this->getMain()->canApiHighLimits() ? $paramSettings[self :: PARAM_MAX2] : $paramSettings[self :: PARAM_MAX];
+								$this->getResult()->addValue( 'limits', 'limit', $value );
+								$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
+							}
 						}
 						else {
 							$value = intval($value);
+							$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
 						}
-						$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
 						break;
 					case 'boolean' :
 						if ($multi)
