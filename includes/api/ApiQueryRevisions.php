@@ -46,7 +46,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	public function execute() {
 		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $token = null;
-		extract($this->extractRequestParams());
+		extract($this->extractRequestParams(false));
 
 		// If any of those parameters are used, work in 'enumeration' mode.
 		// Enum mode can only be used when exactly one page is provided.
@@ -122,6 +122,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
 		$botMax  = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
+		if( $limit == 'max' ) {
+			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
+			$this->getResult()->addValue( 'limits', 'limit', $limit );
+		}
 
 		if ($enumRevMode) {
 
