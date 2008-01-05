@@ -622,7 +622,7 @@ el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
 'template-protected'        => '(protexida)',
 'template-semiprotected'    => '(semi-protexida)',
 'nocreatetitle'             => 'Creación de páxines limitada',
-'nocreatetext'              => 'Esti sitiu tien restrinxida la capacidá de crear páxines nueves.
+'nocreatetext'              => '{{SITENAME}} tien restrinxida la capacidá de crear páxines nueves.
 Pues volver atrás y editar una páxina esistente, o bien [[Special:Userlogin|identificate o crear una cuenta]].',
 'nocreate-loggedin'         => 'Nun tienes permisu pa crear páxines nueves en {{SITENAME}}.',
 'permissionserrors'         => 'Errores de Permisos',
@@ -810,6 +810,8 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'math_syntax_error'        => 'error de sintaxis',
 'math_image_error'         => 'Falló la convesión PNG; comprueba que tea bien la instalación de latex, dvips, gs y convert',
 'math_bad_tmpdir'          => "Nun se pue escribir o crear el direutoriu temporal 'math'",
+'math_bad_output'          => "Nun se pue escribir o crear el direutoriu de salida 'math'",
+'math_notexvc'             => "Falta l'executable 'texvc'; por favor mira 'math/README' pa configuralo.",
 'prefs-personal'           => 'Datos personales',
 'prefs-rc'                 => 'Cambeos recientes',
 'prefs-watchlist'          => 'Llista de vixilancia',
@@ -974,6 +976,7 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'upload-curl-error28'      => "Fin del tiempu d'espera de la xubida",
 'upload-curl-error28-text' => "El sitiu tardó demasiáu tiempu en responder. Por favor comprueba que'l sitiu ta activu, espera unos momentos y vuelve a intentalo. Igual ye meyor que lo intentes nun momentu en que tea menos sobrecargáu.",
 
+'license'            => 'Llicencia',
 'nolicense'          => 'Nenguna seleicionada',
 'license-nopreview'  => '(Previsualización non disponible)',
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
@@ -1005,6 +1008,8 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'linkstoimage'              => 'Les páxines siguientes enllacien a esti archivu:',
 'nolinkstoimage'            => "Nun hai páxines qu'enllacien a esti archivu.",
 'sharedupload'              => "L'archivu ye una xubida compartida y pue tar siendo usáu por otros proyeutos.",
+'shareduploadwiki'          => 'Por favor mira la $1 pa más información.',
+'shareduploadwiki-linktext' => 'páxina de descripción del archivu',
 'noimage'                   => 'Nun esiste archivu dalu con esi nome, pues $1.',
 'noimage-linktext'          => 'xubilu',
 'uploadnewversion-linktext' => "Xubir una nueva versión d'esta imaxe",
@@ -1029,7 +1034,7 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'filedelete-comment'    => 'Comentariu:',
 'filedelete-submit'     => 'Borrar',
 'filedelete-success'    => "'''$1''' foi borráu.",
-'filedelete-nofile'     => "'''$1''' nun esiste nesti sitiu.",
+'filedelete-nofile'     => "'''$1''' nun esiste en {{SITENAME}}.",
 'filedelete-nofile-old' => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
 
 # MIME search
@@ -1154,6 +1159,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'speciallogtitlelabel' => 'Títulu:',
 'log'                  => 'Rexistros',
 'all-logs-page'        => 'Tolos rexistros',
+'log-search-legend'    => 'Buscar rexistros',
 'log-search-submit'    => 'Dir',
 'alllogstext'          => "Visualización combinada de tolos rexistros disponibles de {{SITENAME}}. Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usuariu o la páxina afectada.",
 'logempty'             => 'Nun hai coincidencies nel rexistru.',
@@ -1195,6 +1201,7 @@ o nun quier recibir correos d'otros usuarios.",
 'emailmessage'    => 'Mensaxe',
 'emailsend'       => 'Unviar',
 'emailccme'       => 'Unviame per corréu una copia del mio mensaxe.',
+'emailccsubject'  => 'Copia del to mensaxe a $1: $2',
 'emailsent'       => 'Corréu unviáu',
 'emailsenttext'   => 'El to corréu foi unviáu.',
 
@@ -1224,6 +1231,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'watchmethod-recent'   => 'buscando páxines vixilaes nos cambeos recientes',
 'watchmethod-list'     => 'buscando cambeos recientes nes páxines vixilaes',
 'watchlistcontains'    => 'La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.',
+'iteminvalidname'      => "Problema col elementu '$1', nome non válidu...",
 'wlnote'               => "Abaxo {{PLURAL:$1|ta'l caberu cambéu|tán los caberos '''$1''' cambeos}} {{PLURAL:$2|na cabera hora|nes caberes '''$2''' hores}}.",
 'wlshowlast'           => 'Amosar les últimes $1 hores $2 díes $3',
 'watchlist-show-bots'  => 'Amosar ediciones de bot',
@@ -1237,6 +1245,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'watching'   => 'Vixilando...',
 'unwatching' => 'Dexando de vixilar...',
 
+'enotif_mailer'                => 'Notificación de corréu de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar toles páxines visitaes',
 'enotif_newpagetext'           => 'Esta ye una páxina nueva.',
 'enotif_impersonal_salutation' => 'Usuariu de {{SITENAME}}',
@@ -1246,6 +1255,29 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'enotif_lastvisited'           => 'Mira en $1 tolos cambeos dende la to postrer visita.',
 'enotif_lastdiff'              => 'Mira en $1 pa ver esti cambéu.',
 'enotif_anon_editor'           => 'usuariu anónimu $1',
+'enotif_body'                  => 'Estimáu $WATCHINGUSERNAME,
+
+
+La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED el $PAGEEDITDATE por $PAGEEDITOR, vete $PAGETITLE_URL pa ver la versión actual.
+
+$NEWPAGE
+
+Resume del editor: $PAGESUMMARY $PAGEMINOREDIT
+
+Contautos del editor:
+mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+En casu de producise más cambeos, nun habrá más notificaciones a nun ser que visites esta páxina. Tamién podríes restablecer na to llista de vixilancia los marcadores de notificación de toles páxines que tengas vixilaes.
+
+             El to abertable sistema de notificación de {{SITENAME}}
+
+--
+Pa camudar la configuración de la to llista de vixilancia, visita
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Más aida y sofitu:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Borrar páxina',
@@ -1266,6 +1298,7 @@ Mira en $2 la llista de les últimes páxines borraes.',
 'dellogpage'                  => 'Rexistru de borraos',
 'dellogpagetext'              => 'Abaxo tán los artículos borraos más recién.',
 'deletionlog'                 => 'rexistru de borraos',
+'reverted'                    => 'Revertida a una revisión anterior',
 'deletecomment'               => 'Razón pa borrar',
 'deleteotherreason'           => 'Otra razón/razón adicional:',
 'deletereasonotherlist'       => 'Otra razón',
@@ -1473,8 +1506,8 @@ mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 'blockme'                     => 'Blóquiame',
 'proxyblocker-disabled'       => 'Esta función ta deshabilitada.',
 'proxyblocksuccess'           => 'Fecho.',
-'sorbsreason'                 => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada nesti sitiu.',
-'sorbs_create_account_reason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada nesti sitiu. Nun pues crear una cuenta',
+'sorbsreason'                 => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
+'sorbs_create_account_reason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}. Nun pues crear una cuenta',
 
 # Developer tools
 'lockdb'              => 'Protexer la base de datos',
@@ -1598,10 +1631,16 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'importhistoryconflict'      => 'Existe un conflictu na revisión del historial (seique esta páxina fuera importada previamente)',
 'importnosources'            => "Nun se definió l'orixe de la importación treswiki y les xubíes direutes del historial tán deshabilitaes.",
 'importnofile'               => "Nun se xubió nengún archivu d'importación.",
+'importuploaderrorsize'      => "Falló la xubida del archivu d'importación. L'archivu ye más grande que'l tamañu permitíu de xubida.",
+'importuploaderrorpartial'   => "Falló la xubida del archivu d'importación. L'archivu xubióse solo parcialmente.",
+'importuploaderrortemp'      => "Falló la xubida del archivu d'importación. Falta una carpeta temporal.",
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",
+'importlogpagetext'                => "Importaciones alministrativas de páxines con historial d'ediciones d'otres wikis.",
+'import-logentry-upload'           => "importada [[$1]] per aciud d'una xuba d'archivu",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
+'import-logentry-interwiki'        => 'treswikificada $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} dende $2',
 
 # Tooltip help for the actions

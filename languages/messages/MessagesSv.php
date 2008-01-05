@@ -711,7 +711,8 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'template-semiprotected'    => '(delvis skyddad)',
 'edittools'                 => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
 'nocreatetitle'             => 'Skapande av sidor begränsat',
-'nocreatetext'              => 'Denna wiki har begränsat möjligheterna att skapa nya sidor. Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skapa ett användarkonto]].',
+'nocreatetext'              => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
+Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skapa ett användarkonto]].',
 'nocreate-loggedin'         => 'Du har inte behörighet att skapa nya sidor på {{SITENAME}}.',
 'permissionserrors'         => 'Behörighetsfel',
 'permissionserrorstext'     => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
@@ -768,7 +769,10 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-comment'         => '(kommentar borttagen)',
 'rev-deleted-user'            => '(användarnamn borttaget)',
 'rev-deleted-event'           => '(loggåtgärd borttagen)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Denna version av sidan har avlägsnats från de öppna arkiven. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen]. </div>',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Denna version av sidan har avlägsnats från de öppna arkiven.
+Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks"> Denna version av sidan har avlägsnats från de öppna arkiven. Som administratör på denna wiki kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen]. </div>',
 'rev-delundel'                => 'visa/göm',
 'revisiondelete'              => 'Ta bort/återställ versioner',
@@ -1653,7 +1657,7 @@ $1',
 'proxyblockreason'            => 'Din IP-adress har blivit blockerad eftersom den tillhör en öppen proxy. Kontakta din internetleverantör eller din organisations eller företags tekniska support, och informera dem om denna allvarliga säkerhetsrisk.',
 'proxyblocksuccess'           => 'Gjort.',
 'sorbsreason'                 => 'Din IP-adress finns med på DNSBL:s lista över öppna proxies.',
-'sorbs_create_account_reason' => 'Din IP-adress finns med på DNSBL-lista över öppna proxyn. Du kan därför inte skapa något användarkonto.',
+'sorbs_create_account_reason' => 'Din IP-adress finns med på listan över öppna proxyn, DNSBL, som används av {{SITENAME}}. Du kan därför inte skapa något användarkonto.',
 
 # Developer tools
 'lockdb'              => 'Lås databas',

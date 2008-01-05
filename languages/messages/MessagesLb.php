@@ -624,7 +624,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'templatesusedpreview'      => 'Schablounen déi an dësem Preview am Gebrauch sinn:',
 'templatesusedsection'      => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
 'template-protected'        => '(protegéiert)',
-'nocreatetext'              => "De Server huet d'Schafe vun neie Säite imitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:Userlogin|umellen]].",
+'nocreatetext'              => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:Userlogin|umellen]].",
 'nocreate-loggedin'         => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
 'permissionserrorstext'     => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
 'recreate-deleted-warn'     => "'''Opgepasst: Dir sidd am Gaang eng Säit unzeleeën, déi schonn emol geläscht gouf.'''
@@ -1256,8 +1256,8 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'range_block_disabled'        => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_already_blocked'         => '„$1“ ass scho gespaart',
 'proxyblocker-disabled'       => 'Dës Funktioun ass ausgeschalt.',
-'sorbsreason'                 => 'Är IP Adress steet als oppene Proxy an der schwoarzer Lëscht (DNSBL) vu [http://www.sorbs.net SORBS].',
-'sorbs_create_account_reason' => 'Är IP Adress steet als oppene Proxy an der schwoarzer Lëscht (DNSBL) vu [http://www.sorbs.net SORBS]. Där kënnt kee Kont opmaachen',
+'sorbsreason'                 => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
+'sorbs_create_account_reason' => 'Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.',
 
 # Developer tools
 'lockdb'            => 'Datebank spären',

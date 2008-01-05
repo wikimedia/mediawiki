@@ -1740,6 +1740,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'importnofile'               => 'Nion fichiér at étâ importâ.',
 'importuploaderrorsize'      => 'Lo tèlèchargement du fichiér a importar at pas reussi. Sa talye est ples granta que cela ôtorisâ.',
 'importuploaderrorpartial'   => 'Lo tèlèchargement du fichiér a importar at pas reussi. Ceti l’at étâ ren qu’a mêtiêt.',
+'importuploaderrortemp'      => 'Lo tèlèchargement du fichiér a importar at pas reussi. Un dossiér temporèro est manquent.',
 
 # Import log
 'importlogpage'                    => 'Historico de les importacions de pâges',

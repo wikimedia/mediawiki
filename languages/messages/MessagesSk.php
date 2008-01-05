@@ -426,8 +426,8 @@ Zoznam platných špeciálnych stránok nájdete na [[Special:Specialpages]].",
 'dberrortext'          => 'Nastala syntaktická chyba v príkaze na prehľadávanie databázy.
 Posledný pokus o prehľadávanie bol:
 <blockquote><tt>$1</tt></blockquote>
-z funkcie "<tt>$2</tt>".
-MySQL vrátil chybu "<tt>$3: $4</tt>".',
+z funkcie „<tt>$2</tt>“.
+MySQL vrátil chybu „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Nastala syntaktická chyba pri požiadavke do databázy.
 Posledný pokus o požiadavku do databázy znel:
 „$1“
@@ -630,9 +630,9 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'summary-preview'           => 'Náhľad zhrnutia',
 'subject-preview'           => 'Náhľad predmetu/hlavičky',
 'blockedtitle'              => 'Používateľ je zablokovaný',
-'blockedtext'               => '<big>\'\'\'Vaše používateľské meno alebo IP adresa bola zablokovaná.\'\'\'</big>
+'blockedtext'               => "<big>'''Vaše používateľské meno alebo IP adresa bola zablokovaná.'''</big>
 
-Zablokoval vás správca $1. Udáva tento dôvod:<br />\'\'$2\'\'
+Zablokoval vás správca $1. Udáva tento dôvod:<br />''$2''
 
 * Blokovanie začalo: $8
 * Blokovanie vyprší: $6
@@ -641,13 +641,13 @@ Zablokoval vás správca $1. Udáva tento dôvod:<br />\'\'$2\'\'
 Môžete kontaktovať $1 alebo s jedného z ďalších 
 [[{{MediaWiki:Grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
 
-Uvedomte si, že nemôžete použiť funkciu "Pošli e-mail používateľovi", pokiaľ nemáte registrovanú platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]].
+Uvedomte si, že nemôžete použiť funkciu „{{MediaWiki:emailuser}}“, pokiaľ nemáte registrovanú platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]].
 
-Vaša IP adresa je $3 a ID blokovania je #$5. Prosíme, zahrňte oba tieto údaje do každej správy, ktorú posielate.',
-'autoblockedtext'           => 'Vaša IP adresa bola automaticky zablokovaná, pretože je používaná iným používateľom, ktorého zablokoval $1.
+Vaša IP adresa je $3 a ID blokovania je #$5. Prosíme, zahrňte oba tieto údaje do každej správy, ktorú posielate.",
+'autoblockedtext'           => "Vaša IP adresa bola automaticky zablokovaná, pretože je používaná iným používateľom, ktorého zablokoval $1.
 Udaný dôvod zablokovania:
 
-:\'\'$2\'\'
+:''$2''
 
 * Blokovanie začalo: $8
 * Blokovanie vyprší: $6
@@ -655,10 +655,10 @@ Udaný dôvod zablokovania:
 Ak sa potrebujete informovať o blokovaní, môžete kontaktovať $1 alebo niektorého iného
 [[{{MediaWiki:Grouppage-sysop}}|správcu]].
 
-Pozn.: Nemôžete použiť funkciu "Poslať email tomuto používateľovi", ak ste si vo svojich
+Pozn.: Nemôžete použiť funkciu „{{MediaWiki:emailuser}}“, ak ste si vo svojich
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
 
-ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.',
+ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.",
 'blockednoreason'           => 'nebol uvedený dôvod',
 'blockedoriginalsource'     => "Zdroj '''$1''' je zobrazený nižšie:",
 'blockededitsource'         => "Text '''vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
@@ -712,7 +712,7 @@ Horné okno na úpravy obsahuje text stránky tak, ako je momentálne platný.
 Vaše úpravy sú uvedené v dolnom okne na úpravy.
 Budete musieť zlúčiť vaše zmeny s existujúcim textom.
 <b>Iba</b> obsah horného okna sa uloží, keď
-stlačíte "Ulož stránku".<br />',
+stlačíte „{{MediaWiki:savearticle}}“.<br />',
 'yourtext'                  => 'Váš text',
 'storedversion'             => 'Uložená verzia',
 'nonunicodebrowser'         => '<strong>UPOZORNENIE: Váš prehliadač nepodporuje unicode. Dočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.</strong>',
@@ -892,7 +892,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'searchresulttext'      => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} je uvedených na $1.',
 'searchsubtitle'        => 'Na vyhľadávaciu požiadavku „[[:$1]]“',
 'searchsubtitleinvalid' => 'Na vyhľadávaciu požiadavku „$1“',
-'noexactmatch'          => "'''Neexistuje stránka nazvaná \"\$1\"'''. Chcete '''[[:\$1|vytvoriť novú stránku]]''' s týmto názvom?",
+'noexactmatch'          => "'''Neexistuje stránka nazvaná „$1“'''. Chcete '''[[:$1|vytvoriť novú stránku]]''' s týmto názvom?",
 'noexactmatch-nocreate' => "'''Stránka s názvom „$1“ neexistuje.'''",
 'titlematches'          => 'Vyhovujúce názvy stránok',
 'notitlematches'        => 'V názvoch stránok nebola nájdená zhoda',
@@ -1262,7 +1262,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''. Mali by však odkazovať priamo na príslušnú tému.<br />Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Dvojité presmerovania',
-'doubleredirectstext' => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na "skutočný" cieľ, na ktorý má odkazovať prvé presmerovanie.',
+'doubleredirectstext' => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.',
 
 'brokenredirects'        => 'Pokazené presmerovania',
 'brokenredirectstext'    => 'Tieto presmerovania odkazujú na neexistujúcu stránku.',
@@ -1407,9 +1407,9 @@ alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
 'watchnologin'         => 'Nie ste prihlásený/á',
 'watchnologintext'     => 'Musíte byť [[Special:Userlogin|prihlásený/á]], aby ste mohli modifikovať vaše sledované stránky.',
 'addedwatch'           => 'Pridaná do zoznamu sledovaných stránok',
-'addedwatchtext'       => "Stránka [[\$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:Recentchanges|zozname posledných úprav]], aby ste ju ľahšie našli. 
+'addedwatchtext'       => "Stránka [[$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:Recentchanges|zozname posledných úprav]], aby ste ju ľahšie našli. 
 
-Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na \"nesledovať\" v záložkách na vrchu.",
+Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{MediaWiki:unwatch}}“ v záložkách na vrchu.",
 'removedwatch'         => 'Odstránená zo zoznamu sledovaných stránok',
 'removedwatchtext'     => 'Stránka „[[:$1]]“ bola odstránená z vášho zoznamu sledovaných stránok.',
 'watch'                => 'Sledovať',

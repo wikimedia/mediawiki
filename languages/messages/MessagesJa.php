@@ -370,7 +370,7 @@ $2',
 'namespaceprotected'   => "'''$1''' 名前空間に属するページを編集する権限がありません。",
 'customcssjsprotected' => 'このページはユーザーの環境設定を記録するページです。ユーザー本人以外は編集できません。',
 'ns-specialprotected'  => '{{ns:special}}名前空間内にあるページは編集できません。',
-'titleprotected'       => 'このページは [[User:$1|$1]] により白紙化状態で保護されています。保護の理由は次の通りです。: <i>$2</i>',
+'titleprotected'       => 'このページは [[User:$1|$1]] により白紙状態で保護されています。保護の理由は次の通りです。: <i>$2</i>',
 
 # Login and logout pages
 'logouttitle'                => 'ログアウト',
@@ -471,7 +471,7 @@ $2',
 'extlink_tip'     => '外部リンク（http:// を忘れずにつけてください）',
 'headline_sample' => '見出し',
 'headline_tip'    => '標準の見出し',
-'math_sample'     => '\int f(x)dx',
+'math_sample'     => '\\int f(x)dx',
 'math_tip'        => '数式 (LaTeX)',
 'nowiki_sample'   => 'そのまま表示させたい文字を入力',
 'nowiki_tip'      => '入力文字をそのまま表示',
@@ -1615,7 +1615,6 @@ $NEWPAGE
 'importhistoryconflict'      => '取り込み時にいくつかの版が競合しました（以前に同じページを取り込んでいませんか）。',
 'importnosources'            => 'Transwikiの読み込み元が定義されていないため、履歴の直接アップロードは無効になっています。',
 'importnofile'               => 'ファイルがアップロードされませんでした',
-'importuploaderror'          => 'ファイルの取り込みに失敗しました。恐らく、許可されている最大ファイルサイズより大きなファイルをアップロードしようとしています。',
 
 # Import log
 'importlogpage'                    => 'インポート記録',
