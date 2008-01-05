@@ -42,6 +42,7 @@ Options:
   --file           Run test cases from a custom file instead of parserTests.txt
   --record         Record tests in database
   --compare        Compare with recorded results, without updating the database.
+  --keep-uploads   Re-use the same upload directory for each test, don't delete it
   --help           Show this help message
 
 
