@@ -685,6 +685,7 @@ $3 nurodyta priežastis yra ''$2''",
 'cur'                 => 'dab',
 'next'                => 'kitas',
 'last'                => 'pask',
+'orig'                => 'orig',
 'page_first'          => 'pirm',
 'page_last'           => 'pask',
 'histlegend'          => "Skirtumai tarp versijų: pažymėkite lyginamas versijas ir spustelkite ''Enter'' klavišą arba mygtuką apačioje.<br />
@@ -872,6 +873,7 @@ bus tik tie puslapiai, kuriuose bus visi paieškos žodžiai).",
 'userrights-editusergroup'    => 'Redaguoti naudotojų grupes',
 'saveusergroups'              => 'Saugoti naudotojų grupes',
 'userrights-groupsmember'     => 'Narys:',
+'userrights-groupsremovable'  => 'Pašalinamos grupės:',
 'userrights-groupsavailable'  => 'Galimos grupės:',
 'userrights-groupshelp'       => 'Pasirinkite grupes, į kurias pridėti ar iš kurių pašalinti naudotoją.
 Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl ir paspausdami kairiuoju pelės klavišu',
@@ -879,7 +881,9 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'userrights-available-none'   => 'Jūs negalite keisti grupės narystės.',
 'userrights-available-add'    => 'Jūs galite pridėti naudotojus į $1.',
 'userrights-available-remove' => 'Jūs galite pašalinti naudotojus iš $1.',
+'userrights-no-interwiki'     => 'Jūs neturite leidimo keisti naudotojų teises kituose projektuose.',
 'userrights-nodatabase'       => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
+'userrights-nologin'          => 'Jūs privalote [[Special:Userlogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.',
 'userrights-notallowed'       => 'Jūsų paskyra neturi teisių priskirti naudotojų teises.',
 
 # Groups
@@ -926,6 +930,7 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'hide'                              => 'Slėpti',
 'show'                              => 'Rodyti',
 'minoreditletter'                   => 'S',
+'newpageletter'                     => 'N',
 'boteditletter'                     => 'R',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|stebintis naudotojas|stebintys naudotojai|stebinčių naudotojų}}]',
 'rc_categories'                     => 'Rodyti tik šias kategorijas (atskirkite naudodami „|“)',
@@ -1422,6 +1427,7 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'protect-summary-cascade'     => 'pakopinė apsauga',
 'protect-expiring'            => 'baigia galioti $1 (UTC)',
 'protect-cascade'             => 'Apsaugoti puslapius, įtrauktus į šį puslapį (pakopinė apsauga).',
+'protect-cantedit'            => 'Jūs negalite keisti šio puslapio apsaugojimo lygių, nes neturite teisių jo redaguoti.',
 'restriction-type'            => 'Leidimas:',
 'restriction-level'           => 'Apribojimo lygis:',
 'minimum-size'                => 'Min. dydis',
@@ -1665,6 +1671,7 @@ kad suprantate visas pasekmes.",
 'articleexists'           => 'Puslapis tokiu pavadinimu jau egzistuoja
 arba pasirinktas vardas yra neteisingas.
 Pasirinkite kitą pavadinimą.',
+'cantmove-titleprotected' => 'Jūs negalite pervadinti puslapio, nes naujasis pavadinimas buvo apsaugotas nuo sukūrimo',
 'talkexists'              => "'''Pats puslapis buvo sėkmingai pervadintas, bet aptarimų puslapis nebuvo perkeltas, kadangi naujo
 pavadinimo puslapis jau turėjo aptarimų puslapį.
 Prašome sujungti šiuos puslapius.'''",

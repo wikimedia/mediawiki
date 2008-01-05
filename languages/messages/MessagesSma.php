@@ -142,6 +142,7 @@ $messages = array(
 # Login and logout pages
 'yourname'           => 'Nuhtjiennomme:',
 'yourpassword'       => 'Loevesbaakoe:',
+'createaccountmail'  => 'meatan e-påaste',
 'youremail'          => 'E-påaste:',
 'username'           => 'Nuhtjiennomme:',
 'yourlanguage'       => 'Gïele:',
@@ -154,10 +155,13 @@ $messages = array(
 'bold_tip'    => 'Buajtehks tjaalege',
 
 # Edit pages
-'savearticle' => 'Spååredh bielie',
-'newarticle'  => '(Orre)',
-'updated'     => '(Orrestahteme)',
-'editinguser' => 'Värrhtoedimmie nuhtjien <b>$1</b>',
+'savearticle'  => 'Spååredh bielie',
+'accmailtitle' => 'Loevesbaakoe seedtie.',
+'newarticle'   => '(Orre)',
+'updated'      => '(Orrestahteme)',
+'editing'      => 'Värrhtoedimmie $1',
+'editinguser'  => 'Värrhtoedimmie nuhtjien <b>$1</b>',
+'yourtext'     => 'Dov tjaalege',
 
 # History pages
 'next'       => 'minngebe',
@@ -255,6 +259,7 @@ $messages = array(
 'ipaddress'            => 'IP Tjaalesijjie:',
 'ipadressorusername'   => 'IP Tjaalesijjie jallh nuhtjiennomme:',
 'ipbother'             => 'Jeatjebh tïjje:',
+'ipboptions'           => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'       => 'jeatjebh',
 'ipblocklist-username' => 'Nuhtjiennomme jallh IP tjaalesijjie:',
 'ipblocklist-submit'   => 'Ohtsedh',

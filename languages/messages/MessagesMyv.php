@@ -8,7 +8,10 @@
  * @author MF-Warburg
  * @author Tupikovs
  * @author Sura
+ * @author Nike
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -196,7 +199,7 @@ $messages = array(
 'disclaimers'       => 'Видечинь кортамотьне',
 'edithelp'          => 'Витнемань-петнемань лезкс',
 'faq'               => 'Сеедьстэ кепедень кевкстемат',
-'faqpage'           => 'Проект:Сеедьстэ кепедень кевкстемат',
+'faqpage'           => 'Project:Сеедьстэ кепедень кевкстемат',
 'helppage'          => 'Лезкс',
 'mainpage'          => 'Прякслопа',
 'portal'            => 'Велень-сядонь вальма',

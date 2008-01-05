@@ -1169,7 +1169,7 @@ Mielőtt ismét feltöltenéd, nézd meg, miért lett korábban törölve, és e
 'filedelete-submit'      => 'Törlés',
 'filedelete-success'     => "A(z) '''$1''' médiafájlt törölted.",
 'filedelete-success-old' => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: $3, $2 törlése sikerült.</span>',
-'filedelete-nofile'      => "A(z) '''$1''' fájl ezen a webhelyen nem létezik.",
+'filedelete-nofile'      => "'''$1''' nevű fájl nem létezik ezen a wikin.",
 'filedelete-nofile-old'  => "There is no archived version of A(z) '''$1''' fájlnak nincs a megadott attribútumú archivált változata.",
 'filedelete-iscurrent'   => 'A fájl legutóbbi változatát kísérled meg törölni. Kérjük, hogy előbb állíts vissza egy régebbi verziót.',
 
@@ -1836,6 +1836,9 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'importhistoryconflict'      => 'Ütköző előzményváltozat létezik (lehet, hogy már importálták ezt a lapot)',
 'importnosources'            => 'Nincsenek transzwikiimport-források definiálva, a közvetlen laptörténet-felküldés pedig nem megengedett.',
 'importnofile'               => 'Nem került importfájl feltöltésre.',
+'importuploaderrorsize'      => 'Az importálandó fájl feltöltése nem sikerült, mert nagyobb, mint a megengedett feltöltési méret.',
+'importuploaderrorpartial'   => 'Az importálandó fájl feltöltése nem sikerült. A fájl csak részben lett feltöltve.',
+'importuploaderrortemp'      => 'Az importálandó fájl feltöltése nem sikerült. Nem létezik ideiglenes mappa.',
 
 # Import log
 'importlogpage'                    => 'Importnapló',

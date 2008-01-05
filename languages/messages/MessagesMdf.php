@@ -5,6 +5,7 @@
  *
  * @author Numulunj pilgae
  * @author Kranch
+ * @author Nike
  */
 
 $fallbak = 'ru';
@@ -44,6 +45,8 @@ $messages = array(
 'tog-showjumplinks'           => 'Мярьгомс "юпадемс" сатовома сюлмафкстненди',
 'tog-uselivepreview'          => 'Максомс эряй васень няфтемась (JavaScript) (Варжамань)',
 'tog-forceeditsummary'        => 'Няфтемс мондине мезе сёрмадомс шава петнема вальмас сувамста',
+
+'skinpreview' => '(Васень няфтема)',
 
 # Dates
 'sunday'        => 'Таргжи (Недляши)',
@@ -99,15 +102,23 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Категориет',
+'pagecategories'        => '{{PLURAL:$1|Категорие|Категориет}}',
 'category_header'       => '"$1" категориеса лопатне',
 'subcategories'         => 'Субкатегориет',
 'category-media-header' => '"$1" категориеса медиясь',
 'category-empty'        => "''Медиа лопат тя категориеса ашет.''",
 
-'mainpagetext' => "<оцю>'''МедиаВикить арафтозь лац.'''</оцю>",
+'mainpagetext'      => "<big>'''МедиаВикить арафтозь лац.'''</big>",
+'mainpagedocfooter' => 'Ванк [http://meta.wikimedia.org/wiki/Help:Contents Ветямовал Тиинди] тяса ули кода содамс Вики програпнень эрявикснень колга.
+
+== Эрявикс сюлмафксне ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Васьфневи арафнематнень кярькссь]
+* [http://www.mediawiki.org/wiki/Manual:FAQ МедиаВикить Сидеста Кеподеви Кизефксне]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикить од верзиятнень колга кулянь пачфтема]',
 
 'about'          => 'Колганза',
-'article'        => 'Потмакслопа',
+'article'        => 'Сёрматфть потмонц лопац',
 'newwindow'      => '(панчсеви од вальмаса)',
 'cancel'         => 'Мърдамс меки',
 'qbfind'         => 'Мук',
@@ -145,7 +156,7 @@ $messages = array(
 'editthispage'      => 'Петнемс тя лопать',
 'delete'            => 'Нардамс',
 'deletethispage'    => 'Нардамс тя лопать',
-'undelete_short'    => 'Мърдафтомс {{PLURAL:$1|one edit|$1 петнемат}}',
+'undelete_short'    => 'Мърдафтомс {{PLURAL:$1|петнема|$1 петнемат}}',
 'protect'           => 'Араламс',
 'protect_change'    => 'полафтомс араламать',
 'protectthispage'   => 'Араламс тя лопать',
@@ -160,7 +171,7 @@ $messages = array(
 'articlepage'       => 'Ваномс потмакслопать',
 'talk'              => 'Корхнема',
 'views'             => 'Ванфт',
-'toolbox'           => 'Кядьйонкс парга',
+'toolbox'           => 'Кядьйонкс кярькс',
 'userpage'          => 'Ваномс тиить лопанц',
 'projectpage'       => 'Ваномс проектть лопанц',
 'imagepage'         => 'Ваномс архтофкс лопать',
@@ -188,31 +199,72 @@ $messages = array(
 'copyrightpagename' => '{{SITENAME}} копияма видекс',
 'copyrightpage'     => '{{ns:project}}:Копияма видекст',
 'currentevents'     => 'Мезе тяса моли',
+'currentevents-url' => 'Project:Мезе тяса моли',
 'disclaimers'       => 'Видешинь корхтаматне',
 'disclaimerpage'    => 'Project:Пря видешинь корхнема',
 'edithelp'          => 'Петнемань лезкс',
-'edithelppage'      => 'Лезкс:Петнема',
-'faq'               => 'СКК',
-'faqpage'           => 'Проекt:СКК',
-'helppage'          => 'Лезкс:Потмакс',
+'edithelppage'      => 'Help:Петнема',
+'faq'               => 'Сидеста Кеподеви Кизефксне',
+'faqpage'           => 'Project:Сидеста Кеподеви Кизефксне',
+'helppage'          => 'Help:Лопань потмоц',
 'mainpage'          => 'Пря лопа',
-'policy-url'        => 'Проект:Политик',
+'policy-url'        => 'Project:Политик',
 'portal'            => 'Пуромксонь вальма',
-'portal-url'        => 'Проект:Пуромксонь вальма',
-'privacy'           => 'Азорксшинь политиксь',
-'privacypage'       => 'Проект:Азорксшинь политиксь',
-'sitesupport'       => 'Максомат',
-'sitesupport-url'   => 'Проект:Сайтть нежедемац',
+'portal-url'        => 'Project:Пуромксонь вальма',
+'privacy'           => 'Сёпомань политиксь',
+'privacypage'       => 'Project:Сёпомань политиксь',
+'sitesupport'       => 'Лезкс максома',
+'sitesupport-url'   => 'Project:Сайтть нежедемась',
 
-'badaccess'        => 'Мярьгома эльбятькс',
-'badaccess-group0' => 'Тейть аф мярьгови тиемс мезеге тон вешеть.',
-'badaccess-group1' => 'Тевсь тон вешеть мярьгови аньцек полга $1-ть тиихненди.',
-'badaccess-group2' => 'Тевсь то вешеть мярьгови аньцек фкя $1-ть полгань тиихненди.',
-'badaccess-groups' => 'Тевсь тон вешеть мярьгови аньцек фкя $1-ть полгать тиихненди.',
+'badaccess'        => 'Мярьговома эльбятькс',
+'badaccess-group0' => 'Тондейть аф мярьгови тиемс ся мезе тон вешеть.',
+'badaccess-group1' => 'Тевсь тон вешеть мярьгови тиемс аньцек полга $1-ть тиихненди.',
+'badaccess-group2' => 'Тевсь то вешеть мярьгови тиемс аньцек фкя полгань тиихненди $1-ть полгатнень йоткса.',
+'badaccess-groups' => 'Тевсь тон вешеть мярьгови тиемс аньцек фкя полгань тиихненди  $1-ть полгатнень йоткса.',
 
-'versionrequired'     => 'Медиавикить верзиенц $1 вешфоль',
-'versionrequiredtext' => 'Кундамс тя лопас Медиавикить $1 верзие эряви. Ванк [[Special:Верзие|верзиень лопась]].',
+'versionrequired'     => 'Эряви МедиаВикить верзиенц $1',
+'versionrequiredtext' => 'Тя лопать панжеманцты эрявксты МедиаВикить верзие $1. Ванк [[Special:Верзие|верзиень лопась]].',
 
-'ok' => 'OK',
+'ok'                      => 'OK',
+'retrievedfrom'           => '"$1"-ста сявф',
+'youhavenewmessages'      => 'Тонь ули $1 ($2).',
+'newmessageslink'         => 'Од сёрмат',
+'newmessagesdifflink'     => 'мекольце полафтома',
+'youhavenewmessagesmulti' => 'Тонь улихть од сёрмат $1-са',
+'editsection'             => 'петнемс',
+'editold'                 => 'петнемс',
+'editsectionhint'         => 'Петемс пялькс: $1',
+'toc'                     => 'Лопань потмоц',
+'showtoc'                 => 'няфтемс',
+'hidetoc'                 => 'кяшемс',
+'thisisdeleted'           => 'Ваномс эли мърдафтомс $1?',
+'viewdeleted'             => 'Ваномс $1?',
+'restorelink'             => '{{PLURAL:$1|нардаф петнема|$1 нардаф петнемат}}',
+'feedlinks'               => 'Сортса:',
+'feed-invalid'            => 'Аф виде сёрматфтома каналть сортоц.',
+'site-rss-feed'           => '$1 RSS линия',
+'site-atom-feed'          => '$1 Atom линия',
+'page-rss-feed'           => '"$1" RSS линия',
+'page-atom-feed'          => '"$1" Atom линия',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'Лопа',
+'nstab-user'      => 'Тиить лопась',
+'nstab-media'     => 'Медиа лопась',
+'nstab-special'   => 'Башка лопа',
+'nstab-project'   => 'Проектонь лопа',
+'nstab-image'     => 'Файл',
+'nstab-mediawiki' => 'Сёрма',
+'nstab-template'  => 'Лопа кепотькс',
+'nstab-help'      => 'Лезкс лопа',
+'nstab-category'  => 'Категорие',
+
+# Main script and global functions
+'nosuchaction'      => 'Тянь тиемс аш кода',
+'nosuchactiontext'  => 'Аш кода морафтомс тя URL-са сёрматф кошардоматне Викить програматнень вельде.',
+'nosuchspecialpage' => 'Стама башка лопа аш',
+'nospecialpagetext' => "<big>'''Аш стама башка лопа.'''</big>
+
+Ванк [[Special:Specialpages]].",
 
 );

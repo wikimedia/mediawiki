@@ -917,8 +917,8 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'userrights-groupshelp'       => 'Zaznacz grupy do których użytkownik ma zostać dodany lub z których ma zostać usunięty. Niezaznaczone grupy nie zostaną zmienione. Możesz odznaczyć grupę za pomocą CTRL + lewy przycisk myszy.',
 'userrights-reason'           => 'Powód zmiany:',
 'userrights-available-none'   => 'Nie możesz zmieniać przynależności do grup.',
-'userrights-available-add'    => 'Możesz dodać użytkowników do grupy $1.',
-'userrights-available-remove' => 'Możesz usunąć użytkowników z grupy $1.',
+'userrights-available-add'    => 'Możesz dodać użytkowników do {{PLURAL:$2|grupy|grup}}: $1.',
+'userrights-available-remove' => 'Możesz usunąć użytkowników z {{PLURAL:$2|grupy|grup}}: $1.',
 'userrights-no-interwiki'     => 'Nie masz dostępu do edycji uprawnień.',
 'userrights-nodatabase'       => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
 'userrights-nologin'          => 'Musisz [[Special:Userlogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
@@ -1124,7 +1124,7 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'filedelete-submit'      => 'Skasuj',
 'filedelete-success'     => "Skasowano plik '''$1'''.",
 'filedelete-success-old' => '<span class="plainlinks">Skasowano plik \'\'\'[[Media:$1|$1]]\'\'\' w wersji z $3, $2.</span>',
-'filedelete-nofile'      => "Plik '''$1''' nie istnieje w tym serwisie.",
+'filedelete-nofile'      => "Plik '''$1''' nie istnieje w {{SITENAME}}.",
 'filedelete-nofile-old'  => "Nie ma zarchiwizowanje wersji '''$1''' o podanych atrybutach.",
 'filedelete-iscurrent'   => 'Próbujesz skasować najnowszą wersję tego pliku. Musisz najpierw przywrócić starszą wersję.',
 
@@ -1747,7 +1747,6 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 'importhistoryconflict'      => 'Wystąpił konflikt wersji (ta strona mogła zostać importowana już wcześniej)',
 'importnosources'            => 'Możliwość bezpośredniego importu historii została wyłączona: nie zdefiniowano źródła.',
 'importnofile'               => 'Importowany plik nie został załadowany.',
-'importuploaderror'          => 'Przesłanie pliku nie powiodło się. Możliwe, że plik jest większy od dozwolonego limitu.',
 
 # Import log
 'importlogpage'                    => 'Rejestr importu',
