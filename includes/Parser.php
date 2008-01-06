@@ -2435,14 +2435,34 @@ class Parser
 				wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision...\n" );
 				return $this->mRevisionId;
 			case 'revisionday':
+				// Let the edit saving system know we should parse the page
+				// *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONDAY}} used, setting vary-revision...\n" );
 				return intval( substr( $this->getRevisionTimestamp(), 6, 2 ) );
 			case 'revisionday2':
+				// Let the edit saving system know we should parse the page
+				// *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONDAY2}} used, setting vary-revision...\n" );
 				return substr( $this->getRevisionTimestamp(), 6, 2 );
 			case 'revisionmonth':
+				// Let the edit saving system know we should parse the page
+				// *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONMONTH}} used, setting vary-revision...\n" );
 				return intval( substr( $this->getRevisionTimestamp(), 4, 2 ) );
 			case 'revisionyear':
+				// Let the edit saving system know we should parse the page
+				// *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONYEAR}} used, setting vary-revision...\n" );
 				return substr( $this->getRevisionTimestamp(), 0, 4 );
 			case 'revisiontimestamp':
+				// Let the edit saving system know we should parse the page
+				// *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONTIMESTAMP}} used, setting vary-revision...\n" );
 				return $this->getRevisionTimestamp();
 			case 'namespace':
 				return str_replace('_',' ',$wgContLang->getNsText( $this->mTitle->getNamespace() ) );
