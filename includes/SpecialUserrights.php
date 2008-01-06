@@ -51,6 +51,8 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
+		$this->outputHeader();
+
 		global $wgRequest;
 		if( $par ) {
 			$this->mTarget = $par;
