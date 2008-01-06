@@ -577,7 +577,7 @@ Blok $1 administrator tarafından etildi. Sebebi: \'\'"$2"\'\'.
 
 Blok etüvni muzakere etmek içün $1 qullanıcığa ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|administratorğa]] mektüp yollap olasıñız.
 
-Diqqat etiñiz ki, registrirlenmegen ve elektron poçtañıznıñ adresini [[{{ns:special}}:Preferences|şahsiy ayarlarda (nastroykalarda)]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
+Diqqat etiñiz ki, qayd olunmağan ve elektron poçtañıznıñ adresini [[{{ns:special}}:Preferences|şahsiy ayarlarda (nastroykalarda)]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
 
 IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administratorlarğa mektüpleriñizde bu malümatnı belgileñiz.',
 'autoblockedtext'           => 'IP adresiñiz evelde blok etilgen qullanıcılardan biri tarafından qullanılğanı içün avtomatik olaraq blok etildi. Onı blok etken administrator ($1) böyle sebepni belgiledi:
@@ -589,7 +589,7 @@ IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administrator
 
 Blok etüvni muzakere etmek içün $1 qullanıcığa ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|administratorğa]] mektüp yollap olasıñız.
 
-Diqqat etiñiz ki, registrirlenmegen ve elektron poçtañıznıñ adresini [[{{ns:special}}:Preferences|şahsiy ayarlarda (nastroykalarda)]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
+Diqqat etiñiz ki, qayd olunmağan ve elektron poçtañıznıñ adresini [[{{ns:special}}:Preferences|şahsiy ayarlarda (nastroykalarda)]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
 
 Siziñ blok identifikatorıñız — #$5. Lütfen, administratorlarğa mektüpleriñizde onı belgileñiz.',
 'blockednoreason'           => 'sebep belgilenmedi',
@@ -657,7 +657,7 @@ Ayrıca, mında isse qoşaraq, bu isseniñ özüñiz tarafından yazılğanına,
 'longpageerror'             => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir. Maksimum izinli büyüklik ise $2 kilobayt. Bu saife saqlanıp olamaz.</strong>',
 'readonlywarning'           => '<strong>DİQQAT: Baqım sebebi ile malümat bazası al-azırda kilitlidir. Bu sebepten deñişiklikleriñiz şimdi saqlanamamaqta. Yazğanlarıñıznı başqa bir editor programmasına alıp saqlap olur ve daa soñ tekrar mında ketirip saqlap olursıñız</strong>',
 'protectedpagewarning'      => '<strong>TENBİ: Bu saife qorçalav altına alınğandır ve yalıñız administratorlar tarafından deñiştirilip olur.</strong>',
-'semiprotectedpagewarning'  => "'''Tenbi''': Bu saife tek registrirlengen qullanıcı olğanlar tarafından deñiştirilip olur.",
+'semiprotectedpagewarning'  => "'''Tenbi''': Bu saife tek qaydlı qullanıcılar tarafından deñiştirilip olur.",
 'cascadeprotectedwarning'   => "'''Tenbi:''' Bu saifeni tek \"Administratorlar\" gruppasına kirgen qullanıcılar deñiştirip olalar, çünki o kaskad qorçalav altında bulunğan {{PLURAL:\$1|saifege|saifelerge}} mensüptir:",
 'templatesused'             => 'Bu saifede qullanılğan şablonlar:',
 'templatesusedpreview'      => 'Bu ög baquvda qullanılğan şablonlar:',
@@ -845,7 +845,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'rclistfrom'                        => '$1 tarihından berli yapılğan deñişikliklerni köster',
 'rcshowhideminor'                   => 'kiçik deñişikliklerni $1',
 'rcshowhidebots'                    => 'botlarnı $1',
-'rcshowhideliu'                     => 'registrirlengen qullanıcılarnı $1',
+'rcshowhideliu'                     => 'qaydlı qullanıcılarnı $1',
 'rcshowhideanons'                   => 'anonim qullanıcılarnı $1',
 'rcshowhidepatr'                    => 'közetilgen deñişikliklerni $1',
 'rcshowhidemine'                    => 'deñişiklerimni $1',
@@ -1037,7 +1037,7 @@ Sayt qurulğanından bu künge qadar toplam '''\$4''' saife deñişikligi ve sai
 Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme sayısı '''\$6''' oldı.
 
 Şimdiki [http://meta.wikimedia.org/wiki/Help:Job_queue iş sırası] sayısı '''\$7'''.",
-'userstatstext'          => "Al-azırda '''{{PLURAL:$1|1|$1}}''' registrirlengen qullanıcımız bar. Bunlardan '''{{PLURAL:$2|1|$2}}''' (ya da '''$4%''') danesi - $5.",
+'userstatstext'          => "Al-azırda '''{{PLURAL:$1|1|$1}}''' qaydlı qullanıcımız bar. Bulardan '''{{PLURAL:$2|1|$2}}''' (ya da '''$4%''') danesi - $5.",
 'statistics-mostpopular' => 'Eñ sıq baqılğan saifeler',
 
 'disambiguations'      => 'Çoq manalı terminler saifeleri',
@@ -1274,7 +1274,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'unprotectsub'                => '(qorçalav çıqarılır "$1")',
 'protect-text'                => '<strong>[[$1]]</strong> saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.',
 'protect-default'             => '(standart)',
-'protect-level-autoconfirmed' => 'registrirlenmegen deñiştirmesin',
+'protect-level-autoconfirmed' => 'qayd olunmağan deñiştirmesin',
 'protect-level-sysop'         => 'tek administratorlar',
 'protect-expiring'            => 'bite: $1 (UTC)',
 'restriction-type'            => 'Ruhseti:',

@@ -171,7 +171,14 @@ $messages = array(
 'category-media-header' => 'Media in de categorie "$1"',
 'category-empty'        => "''Deze categorie is laeg, hae bevat op 't memènt gén artiekele of media.''",
 
-'mainpagetext' => 'Wiki software succesvol geïnsjtalleerd.',
+'mainpagetext'      => 'Wiki software succesvol geïnsjtalleerd.',
+'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
+
+== Mieë hölp ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lies mit instellinge]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki VGV (FAQ)]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]",
 
 'about'          => 'Informatie',
 'article'        => 'Contentpazjena',
@@ -1583,9 +1590,19 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'immobile_namespace'      => "De gewinsde paginanaam is van 'n speciaal type. 'ne Pazjena kin neet hernömp waere nao die naamruumde.",
 
 # Export
-'export'          => "Exporteer pazjena's",
-'export-addcat'   => 'Toevoege',
-'export-download' => 'Es bestandj opslaon',
+'export'            => "Exporteer pazjena's",
+'exporttext'        => "Doe kans de teks en gesjiedenis van 'ne pazjena of van pazjena's exportere (oetveure) nao XML. Dit exportbestandj is daona te importere (inveure) in 'ne angere MediaWiki via de [[Special:Import|importpazjena]]. (duk is hiej importrech veur neudig)
+
+Gaef in 't óngerstaonde veldj de name van de te exportere pazjena's op, éine pazjena per regel, en gaef aan ofse alle versies mit de bewerkingssamevatting of allein de hujige versies mit de bewerkingssamevatting wils exportere.
+
+In 't letste geval kanse ouch 'ne link gebroeken, beveurbeild [[Special:Export/{{Mediawiki:Mainpage}}]] veure pazjena \"{{Mediawiki:Mainpage}}\".",
+'exportcuronly'     => 'Allein de letste versie, neet de volledige gesjiedenis',
+'exportnohistory'   => "---- 
+'''Let op:''' 't exportere van de ganse gesjiedenis is oetgezat waeges prestatieree.",
+'export-submit'     => 'Exportere',
+'export-addcattext' => "Voeg pagina's toe van categorie:",
+'export-addcat'     => 'Toevoege',
+'export-download'   => 'Es bestandj opslaon',
 
 # Namespace 8 related
 'allmessages'               => 'Alle systeemberichte',
@@ -1608,7 +1625,38 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'thumbnail_dest_directory' => 'Neet in staat doel directory aan te make',
 
 # Special:Import
-'import' => "Pazjena's importere",
+'import'                     => "Pazjena's importere",
+'importinterwiki'            => 'Transwiki-import',
+'import-interwiki-text'      => "Selecteer 'ne wiki en pazjenanaam om te importere.
+Versie- en auteursgegaeves blieve hiej bie bewaard.
+Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|importlogbook]].",
+'import-interwiki-history'   => 'Volledige gesjiedenis van deze pazjena ouch kopiëre',
+'import-interwiki-submit'    => 'Importere',
+'import-interwiki-namespace' => 'Pazjena in de volgendje naamruumdje plaatse:',
+'importtext'                 => 'Gebroek de functie Special:Export in de wiki wo de informatie vanaaf kömp, slao de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
+'importstart'                => "Pazjena's aan 't importere ...",
+'import-revision-count'      => '$1 {{PLURAL:$1|versie|versies}}',
+'importnopages'              => "Gein pazjena's te importere.",
+'importfailed'               => 'Import is misluk: $1',
+'importunknownsource'        => 'Ónbekindj importbróntype',
+'importcantopen'             => "Kós 't importbestandj neet äöpene",
+'importbadinterwiki'         => 'Verkeerde interwikilink',
+'importnotext'               => 'Laeg of geine teks',
+'importsuccess'              => 'Import geslaag.',
+'importhistoryconflict'      => "d'r Zeen conflicte in de gesjiedenis van de pazjena (is mesjiens eerder geïmporteerd)",
+'importnosources'            => "d'r Zeen gein transwiki-importbrónne gedefinieerd en directe gesjiedenis-uploads zeen oetgezat.",
+'importnofile'               => "d'r Is gein importbestandj geüpload.",
+'importuploaderrorsize'      => "Upload van 't importbestandj is misluk. 't Bestand is groter es de ingesteldje limiet.",
+'importuploaderrorpartial'   => "Upload van 't importbestandj is misluk. 't Bestandj is slechs gedeiltelik aangekómme.",
+'importuploaderrortemp'      => "Upload van 't importbestandj is misluk. De tiedelike map is neet aanwezig.",
+
+# Import log
+'importlogpage'                    => 'Importlogbook',
+'importlogpagetext'                => "Administratieve import van pazjena's mit gesjiedenis van anger wiki's.",
+'import-logentry-upload'           => "[[$1]] geïmporteerd via 'ne bestandjsupload",
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
+'import-logentry-interwiki'        => 'transwiki veur $1 geslaag',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mien gebroekerspazjena',

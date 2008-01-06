@@ -684,6 +684,7 @@ Lubiš nam tež, zo sy jón sam napisał abo ze zjawneje domejny abo z podobneho
 'protectedpagewarning'      => '<strong>KEDŹBU: Strona bu škitana, tak zo jenož wužiwarjo z prawami administratora móža ju wobdźěłać.</strong>',
 'semiprotectedpagewarning'  => '<b>Kedźbu:</b> Strona bu škitana, tak zo jenož přizjewjeni wužiwarjo móža ju wobdźěłać.',
 'cascadeprotectedwarning'   => "'''KEDŹBU: Tuta strona je škitana, tak zo móža ju jenož wužiwarjo z prawami administratora wobdźělać, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitane}}:'''",
+'titleprotectedwarning'     => '<strong>WARNOWANJE: Tuta strona bu zawrjena, jenož wěsći wužiwarjo móža ju wutworić.</strong>',
 'templatesused'             => 'Na tutej stronje wužiwane předłohi:',
 'templatesusedpreview'      => 'W tutym přehledźe wužiwane předłohi:',
 'templatesusedsection'      => 'W tutym wotrězku wužiwane předłohi:',
@@ -907,6 +908,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'userrights-editusergroup'    => 'Wužiwarske skupiny wobdźěłać',
 'saveusergroups'              => 'Wužiwarske skupiny składować',
 'userrights-groupsmember'     => 'Čłon skupiny:',
+'userrights-groupsremovable'  => 'Wotstronjomne skupiny:',
 'userrights-groupsavailable'  => 'K dispoziciji stejace skupiny:',
 'userrights-groupshelp'       => 'Wubjer skupiny, z kotrychž chceš wužiwarja wotstronić abo kotrymž chceš wužiwarja přidać. Njewubrane skupiny so njezměnja. Móžeš skupinu z STRG + lěwe kliknjenje wotwolić',
 'userrights-reason'           => 'Přičina:',
@@ -915,6 +917,8 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'userrights-available-remove' => 'Směš wužiwarjow z {{PLURAL:$2|tuteje skupiny|tutych skupinow}} wotstronić: $1.',
 'userrights-no-interwiki'     => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
 'userrights-nodatabase'       => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
+'userrights-nologin'          => 'Dyrbiš so z admininstratorowym kontom [[Special:Userlogin|přizjewić]], zo by wužiwarske prawa změnił.',
+'userrights-notallowed'       => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźělił.',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1781,6 +1785,9 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'importhistoryconflict'      => 'Je konflikt ze stawiznami strony wustupił. Snano bu strona hižo prjedy importowana.',
 'importnosources'            => 'Žane importowanske žórła za transwiki wubrane. Direktne nahraće stawiznow je znjemóžnjene.',
 'importnofile'               => 'Žana importowanska dataja wubrana.',
+'importuploaderrorsize'      => 'Nahraće importoweje dataje je so njeporadźiło. Dataja je wjetša hač dowolena datajowa wulkosć.',
+'importuploaderrorpartial'   => 'Nahraće importoweje dataje je so njeporadźiło. Dataja je so jenož zdźěla nahrała.',
+'importuploaderrortemp'      => 'Nahraće importoweje dataje je so njeporadźiło. Temporarny zapis faluje.',
 
 # Import log
 'importlogpage'                    => 'Protokol importow',
