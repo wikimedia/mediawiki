@@ -636,6 +636,7 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-hide-text'     => 'Versiontext versteken',
 'revdelete-hide-name'     => 'Akschoon un Teel versteken',
 'revdelete-hide-comment'  => 'Kommentar versteken',
+'revdelete-hide-image'    => 'Dateiinholt versteken',
 'revdelete-log'           => 'Kommentar:',
 
 # Oversight log

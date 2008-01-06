@@ -45,6 +45,18 @@ href="" class="internal"}?{/a}) bımocne.',
 'tog-externaldiff'            => 'Têverşanayışan pê programê teberi vıraze',
 'tog-showjumplinks'           => 'Gırey "şo" aktif/feel ke',
 'tog-uselivepreview'          => 'Verqayto cınde bıgurene/bıxebetne (JavaScript) (hewna cerrebnayış dero)',
+'tog-forceeditsummary'        => 'Mı ke xulasa kerde cı vira, hay be mı ser de',
+'tog-watchlisthideown'        => 'Vurnayışanê mı lista mına seyr-kerdışi de bınımne/wedare',
+'tog-watchlisthidebots'       => 'Vurnayışanê boti lista mına seyr-kerdışi de bınımne/wedare',
+'tog-watchlisthideminor'      => 'Vurnayışanê qıckekan lista mına seyr-kerdışi de bınımne/wedare',
+'tog-ccmeonemails'            => 'E-mailanê ke ez karberanê binan rê rışenan, mı rê kopya inan bırışe',
+'tog-diffonly'                => 'Qıyasê verziyonan de tek ferqan bımocne, perra butıne nê',
+
+'underline-always'  => 'tım',
+'underline-never'   => 'qet',
+'underline-default' => 'Qerar browseri (cıgeyraoği) dest dero',
+
+'skinpreview' => '(Verqayt)',
 
 # Dates
 'sunday'        => 'Yewşeme',

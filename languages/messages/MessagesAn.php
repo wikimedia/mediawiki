@@ -674,7 +674,7 @@ Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más ch
 'template-semiprotected'    => '(semiprotechita)',
 'edittools'                 => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 'nocreatetitle'             => "S'ha restrinchito a creyazión de pachinas",
-'nocreatetext'              => 'Iste wiki ha limitato a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
+'nocreatetext'              => '{{SITENAME}} ha restrinchito a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
 'nocreate-loggedin'         => 'No tiene premisos ta creyar nuebas pachinas en {{SITENAME}}.',
 'permissionserrors'         => 'Errors de premisos',
 'permissionserrorstext'     => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',

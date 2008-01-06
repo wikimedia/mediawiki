@@ -1180,7 +1180,7 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'filedelete-submit'      => 'Eliminar',
 'filedelete-success'     => "'''$1''' foi eliminado.",
 'filedelete-success-old' => '<span class="plainlinks">A versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como $3, $2 foi eliminada.</span>',
-'filedelete-nofile'      => "'''$1''' não existe neste sítio.",
+'filedelete-nofile'      => "'''$1''' não existe na {{SITENAME}}.",
 'filedelete-nofile-old'  => "Não há uma versão de '''$1''' em arquivo com os parâmetros especificados.",
 'filedelete-iscurrent'   => 'Você está tentando eliminar a versão mais recente deste ficheiro. Por gentileza, reverta para uma edição anterior antes de tentar novamente.',
 

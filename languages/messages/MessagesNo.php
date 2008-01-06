@@ -693,7 +693,7 @@ kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
 'template-semiprotected'    => '(halvbeskyttet)',
 'edittools'                 => '<!-- Teksten her vil vises under redigerings- og opplastingsboksene. -->',
 'nocreatetitle'             => 'Sideoppretting er begrenset',
-'nocreatetext'              => 'Denne siden har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:Userlogin|logge inn eller opprette en ny konto]].',
+'nocreatetext'              => '{{SITENAME}} har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:Userlogin|logge inn eller opprette en ny konto]].',
 'nocreate-loggedin'         => 'Du har ikke tillatelse til å opprette sider på {{SITENAME}}.',
 'permissionserrors'         => 'Tilgangsfeil',
 'permissionserrorstext'     => 'Du har ikke tillatelse til å utføre dette, av følgende {{PLURAL:$1|grunn|grunner}}:',
@@ -748,7 +748,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-user'            => '(brukernavn fjernet)',
 'rev-deleted-event'           => '(fjernet)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Denne sidehistorikken har blitt fjernet fra de offentlige arkivene. Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].
+Denne revisjonen har blitt fjernet fra de offentlige arkivene. Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator har du mulighet til å se den; det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].
@@ -1137,7 +1137,7 @@ PICT # div.
 'filedelete-submit'      => 'Slett',
 'filedelete-success'     => "'''$1''' har blitt slettet.",
 'filedelete-success-old' => '<span class="plainlinks">Versjonen av \'\'\'[[Media:$1|$1]]\'\'\' à $3, $2 har blitt slettet.</span>',
-'filedelete-nofile'      => "'''$1''' eksisterer ikke på denne siden.",
+'filedelete-nofile'      => "'''$1''' eksisterer ikke på {{SITENAME}}.",
 'filedelete-nofile-old'  => "Det er ingen arkivert versjon av '''$1''' med de gitte attributtene.",
 'filedelete-iscurrent'   => 'Du forsøker å slette den nyeste versjonen av denne filen. Vennligst tilbakestill til en eldre versjon først.',
 
@@ -1616,8 +1616,8 @@ $1',
 'proxyblocker-disabled'       => 'Denne funksjonen er slått av.',
 'proxyblockreason'            => 'IP-adressa di har blitt blokkert fordi den er en åpen proxy. Kontakt internettleverandør eller teknisk støtte og informer dem om dette alvorlige sikkerhetsproblemet.',
 'proxyblocksuccess'           => 'Utført.',
-'sorbsreason'                 => 'IP-adressa di er oppgitt som åpen proxy i DNSBL.',
-'sorbs_create_account_reason' => 'IP-adressa di oppgis som en åpen proxy i DNSBL. Du kan ikke opprette en konto.',
+'sorbsreason'                 => 'Din IP-adresse oppgis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}.',
+'sorbs_create_account_reason' => 'Din IP-adresse oppgis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}. Du kan ikke opprette en konto',
 
 # Developer tools
 'lockdb'              => 'Lås database',
