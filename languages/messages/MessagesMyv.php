@@ -189,15 +189,18 @@ $messages = array(
 'redirectpagesub'   => 'Лиясто ютавтозь лопа',
 'lastmodifiedat'    => 'Те лопанть меельседе витнезь-петнезь $2, $1.', # $1 date, $2 time
 'jumpto'            => 'Тёкадемс тей:',
+'jumptonavigation'  => 'Новигациясь-лездамось',
 'jumptosearch'      => 'вешнеме',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} ланга',
 'aboutpage'         => 'Проектесь:Эстедендэ',
+'copyrightpage'     => '{{ns:project}}:Ломанень видечинзэ',
 'currentevents'     => 'Мезе ней моли',
 'currentevents-url' => 'Project:Мезе ней моли',
 'disclaimers'       => 'Видечинь кортамотьне',
 'edithelp'          => 'Витнемань-петнемань лезкс',
+'edithelppage'      => 'Лескс:Витнема-петнема',
 'faq'               => 'Сеедьстэ кепедень кевкстемат',
 'faqpage'           => 'Project:Сеедьстэ кепедень кевкстемат',
 'helppage'          => 'Лезкс',
@@ -302,9 +305,14 @@ $messages = array(
 'math_tip'        => 'Математикань хвормула (LaTeX)',
 'nowiki_sample'   => 'Совавтомс хворматтомо текст тезэнь',
 'image_sample'    => 'Саемга.jpg',
+'image_tip'       => 'Путозь фотокувось',
 'media_sample'    => 'Саемга.ogg',
+'media_tip'       => 'Файланть марто сюлмавкс (налткесь)',
+'hr_tip'          => 'Менельгирьксень кикс (тевс нолдыть ванстозь)',
 
 # Edit pages
+'summary'            => 'Вейсэндязь',
+'subject'            => 'Сёрмадовксонть лемезе',
 'minoredit'          => 'Те апокшкэ витнема-петнема',
 'watchthis'          => 'Ваномс те лопанть мельга',
 'savearticle'        => 'Ванстомс лопанть',
@@ -318,6 +326,9 @@ $messages = array(
 'accmailtitle'       => 'Салавань вал кучозь.',
 'newarticle'         => '(Од)',
 'editing'            => 'Витнят-петнят $1',
+'copyrightwarning'   => 'Инескеть тешкстынк, тынк внси путовксне {{SITENAME}}-се, кода арсетян нолдазь 2 $ ало (вант 1 $ педе пес). Кодак Тынк арась меленк тынк сермадовксось улевель витнезь-петнезь педте пес илядо сестэ путто сонзе тей.<br />
+Тынь истяжо макстад вал сень коряс - тень Тынь сёрмадынк тыньдынсь, али саинк сонзэ вейсэнь ёнксто али олячинь порталсто. 
+<strong>ИЛЯДО МАКСО ВАНСТОЗЬ ЛОМАНЕНЬ ВИДЕЧИСЭ ВАЖОДИМАНТЬ АПАК МЕЛЬТЕМЕ!</strong>',
 
 # History pages
 'currentrev'          => 'Тевате лиякстомтома',
@@ -344,6 +355,7 @@ $messages = array(
 'revertmerge' => 'Явомс логонть мекев, кода ульнесь вейтьсэндямодо икеле',
 
 # Diffs
+'lineno'   => 'Киксэсь $1:',
 'editundo' => 'Велявтомс мекев мезе витнинь-петнинь',
 
 # Search results
@@ -382,10 +394,12 @@ $messages = array(
 'rcshowhideanons' => '$1 лемтеме совицят',
 'rcshowhidemine'  => '$1 мезе мон витнинь-петнинь',
 'rclinks'         => 'Невтемс меельсе $1 полавтнемат меельсе $2 чинь перть<br />$3',
+'diff'            => 'кадовикс',
 'hide'            => 'Кекшемс',
 'show'            => 'Невтемс',
 
 # Recent changes linked
+'recentchangeslinked'       => 'Сюлмавозь лиякстоматьне',
 'recentchangeslinked-title' => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
 
 # Upload
@@ -452,6 +466,10 @@ $messages = array(
 'watchlist-hide-own'   => 'Кекшэмс мезе мон витнинь-петнинь',
 'watchlist-hide-minor' => 'Кекшэмс апокшкэ витнемат-петнемат',
 
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Ванома...',
+'unwatching' => 'Аванома...',
+
 'enotif_anon_editor' => 'лемтеме совиця $1',
 
 # Delete/protect/revert
@@ -463,6 +481,12 @@ $messages = array(
 'undelete-search-prefix' => 'Невтемс лопат тестэ саезь:',
 'undelete-search-submit' => 'Вешнемс',
 
+# Namespace form on various pages
+'blanknamespace' => '(Прявкс)',
+
+# Contributions
+'mycontris' => 'Монь путовкст',
+
 'sp-contributions-username' => 'IP сёрмапарго эли совицянь лем:',
 'sp-contributions-submit'   => 'Вешнемс',
 
@@ -472,6 +496,7 @@ $messages = array(
 'whatlinkshere-links' => '← сюлмавомапеть',
 
 # Block/unblock
+'blocklink'    => 'блокось',
 'contribslink' => 'лездыцят кить',
 
 # Move page
@@ -483,26 +508,33 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => 'Совицянь лопам',
 'tooltip-pt-mytalk'         => 'Кортнемалопам',
+'tooltip-pt-preferences'    => 'Монь лия ютксто явома',
+'tooltip-pt-watchlist'      => 'Лопань потмакс конататьненть Тынь вандад лиякстоманть коряс',
 'tooltip-pt-mycontris'      => 'Мезесэ мон лездынь',
 'tooltip-pt-login'          => 'Совавтовлить эсь прят тезэнь, арась мелеть, иля.',
 'tooltip-pt-logout'         => 'Лисемс',
+'tooltip-ca-talk'           => 'Кортавтома пек паро лопадонть',
 'tooltip-ca-edit'           => 'Те лопаськак витневи-петневи. Ансяк, ванстомадо икеле яла васнянь невтевкс повнэнть лепштика.',
 'tooltip-ca-protect'        => 'Аравтомс те лопанть прянь ванстомас',
 'tooltip-ca-delete'         => 'Нардамс те лопанть, илязо улеяк',
 'tooltip-ca-move'           => 'Ютавтык те лопанть лияв',
 'tooltip-search'            => 'Вешнемс вана тестэ {{SITENAME}}',
 'tooltip-n-mainpage'        => 'Совака прякслопантень',
+'tooltip-n-portal'          => 'Проектэнть эйстэ,  мейсэ Тынь лездатад, косо муемс курмот-кармот',
+'tooltip-n-currentevents'   => 'Муинк совавикс информациянть неень событиятнесэ',
 'tooltip-n-recentchanges'   => 'Викисэ мезе чияк полавтовсь-лиякстомтовсь.',
 'tooltip-n-randompage'      => 'Макста ловномс кодамо понгсь лопа',
 'tooltip-n-help'            => 'Превс путыть косо.',
 'tooltip-n-sitesupport'     => 'Макста миненек нежедематарка',
 'tooltip-t-whatlinkshere'   => 'Викинь весе лопатне, конат тезэнь сюлмазь',
 'tooltip-t-emailuser'       => 'Те совицянтень кучомс е-сёрма',
+'tooltip-t-upload'          => 'Ёкстамс путовкст ды фотокувт',
 'tooltip-t-specialpages'    => 'Башка тевень лопатне мельга-мельцек',
 'tooltip-ca-nstab-user'     => 'Ваномс совицянь лопанть',
 'tooltip-ca-nstab-template' => 'Ванномс лопапарцунонть',
 'tooltip-ca-nstab-help'     => 'Ванномс лездамонь лопанть',
 'tooltip-save'              => 'Ванстомс мезе лиякстомтыть',
+'tooltip-preview'           => 'Ванодо тынк лиякстоматнень, инескеть тевс нолдадо тень ванстоманть икеле!',
 'tooltip-diff'              => 'Невтемс мейсэ лиякстомтыть текстэнть.',
 
 # Attribution

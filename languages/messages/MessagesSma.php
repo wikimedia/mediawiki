@@ -66,6 +66,10 @@ $messages = array(
 'nov'           => 'Rah',
 'dec'           => 'Goe',
 
+# Bits of text used by many pages
+'category_header'       => 'Bielie sïjse kategorije "$1"',
+'category-media-header' => 'Guvvie sïjse karegorije "$1"',
+
 'about'         => 'Bïjre',
 'qbedit'        => 'Värrhtoedimmie',
 'qbpageoptions' => 'Dïhte bielie',
@@ -76,6 +80,7 @@ $messages = array(
 'navigation'    => 'Navigasjovne',
 
 'errorpagetitle'   => 'Båajhtode',
+'returnto'         => 'Bååstide gåajkoe $1.',
 'tagline'          => 'Raejeste {{SITENAME}}',
 'help'             => 'Viehkie',
 'search'           => 'Ohtsedh',
@@ -101,6 +106,7 @@ $messages = array(
 'projectpage'      => 'Vuesehte Wikipedijebielie',
 'imagepage'        => 'Vuesehte guvvie bielie',
 'viewhelppage'     => 'Vuesehte viehkie bielie',
+'categorypage'     => 'Vuesehte kategorije bielie',
 'viewtalkpage'     => 'Vuesehte dïjveldidh',
 'otherlanguages'   => 'jeatjebh gïele',
 'jumptonavigation' => 'navigasjovne',
@@ -111,14 +117,19 @@ $messages = array(
 'aboutpage'      => 'Project:Bïjre',
 'bugreports'     => 'Bug reektehtse',
 'bugreportspage' => 'Project:Bug reektehtse',
+'edithelppage'   => 'Help:Värrhotedimmie',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 'mainpage'       => 'Åejjiebielie',
 'portal'         => 'Meatan portaale',
 'portal-url'     => 'Project:Meatan portaale',
 
-'editsection' => 'värrhtoedimmie',
-'editold'     => 'värrhtoedimmie',
-'showtoc'     => 'vuesehte',
-'viewdeleted' => 'Vuesehte $1?',
+'youhavenewmessages' => 'Datne åtna $1 ($2).',
+'newmessageslink'    => 'orre bïjre',
+'editsection'        => 'värrhtoedimmie',
+'editold'            => 'värrhtoedimmie',
+'showtoc'            => 'vuesehte',
+'viewdeleted'        => 'Vuesehte $1?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bielie',
@@ -138,6 +149,7 @@ $messages = array(
 'internalerror_info' => 'Sjisjnjie båajhtede: $1',
 'badtitle'           => 'Gååre nomme',
 'viewsource'         => 'Vuesehte tjaalege',
+'viewsourcefor'      => 'ihke $1',
 
 # Login and logout pages
 'yourname'           => 'Nuhtjiennomme:',
@@ -250,10 +262,14 @@ $messages = array(
 # Undelete
 'undelete-search-submit' => 'Ohtsedh',
 
-'sp-contributions-submit' => 'Ohtsedh',
+'sp-contributions-username' => 'IP Tjaalesijjie jallh nuhtjiennomme:',
+'sp-contributions-submit'   => 'Ohtsedh',
 
 # What links here
-'whatlinkshere-page' => 'Bielie:',
+'whatlinkshere-page'  => 'Bielie:',
+'linklistsub'         => '(Lästoe bijjelen lïenghke)',
+'whatlinkshere-next'  => '{{PLURAL:$1|minngebe|minngebe $1}}',
+'whatlinkshere-links' => '← lïenghke',
 
 # Block/unblock
 'ipaddress'            => 'IP Tjaalesijjie:',
@@ -269,12 +285,16 @@ $messages = array(
 'movearticle' => 'Jåhta bielie:',
 'movepagebtn' => 'Jåhta bielie',
 
+# Export
+'export-addcat' => 'Lissiehtidh',
+
 # Namespace 8 related
 'allmessagesname' => 'Nomme',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Mov nuhtjienbielie',
 'tooltip-pt-mytalk'   => 'Mov dïjveldidh bielie',
+'tooltip-ca-move'     => 'Jåhta dïhte bielie',
 'tooltip-search'      => 'Ohtsedh {{SITENAME}}',
 'tooltip-p-logo'      => 'Åejjiebielie',
 'tooltip-n-mainpage'  => 'Vaadtsa Åejjiebielie',
@@ -283,8 +303,18 @@ $messages = array(
 'siteuser' => '{{SITENAME}} nuhtjien $1',
 'and'      => 'jih',
 
+# Info page
+'infosubtitle' => 'Bïevnesh ihke bielie',
+
+# Media information
+'file-info'      => '(baalka stoerre: $1, MIME-vuekie: $2)',
+'file-info-size' => '($1 × $2 pixel, baalka stoerre: $3, MIME-vuekie: $4)',
+'svg-long-desc'  => '(SVG baalka, maadth-stoerre $1 × $2 pixel, baalka stoerre: $3)',
+
 # EXIF tags
-'exif-model' => 'Guvviedahke hammohke',
+'exif-imagewidth'  => 'Gamte',
+'exif-imagelength' => 'Gåhkoe',
+'exif-model'       => 'Guvviedahke hammohke',
 
 'exif-meteringmode-0'   => 'Ammes',
 'exif-meteringmode-255' => 'Jeatjebh',
@@ -301,6 +331,21 @@ $messages = array(
 
 'exif-subjectdistancerange-0' => 'Ammes',
 
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'gaajhke',
+'imagelistall'     => 'gaajhke',
+'watchlistall2'    => 'gaajhke',
+'namespacesall'    => 'gaajhke',
+'monthsall'        => 'gaajhke',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[URL lea ihke guhkie; gaatelassjedh]',
+
+# action=purge
+'confirm_purge' => 'Döömedh cache ihke dïhte bielie?
+
+$1',
+
 # AJAX search
 'useajaxsearch' => 'Nuhtjie AJAX ohtsedh',
 
@@ -311,6 +356,8 @@ $messages = array(
 
 # Table pager
 'table_pager_next'         => 'Minngebe bielie',
+'table_pager_first'        => 'Voestemes bielie',
+'table_pager_last'         => 'Minngemes bielie',
 'table_pager_limit_submit' => 'Vaadtsa',
 
 # Auto-summaries

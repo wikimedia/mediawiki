@@ -354,6 +354,7 @@ $messages = array(
 'edithelp'          => 'Redigeringshjälp',
 'edithelppage'      => 'Help:Hur man redigerar en sida',
 'faq'               => 'FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Innehåll',
 'mainpage'          => 'Huvudsida',
 'policy-url'        => 'Project:Riktlinjer',

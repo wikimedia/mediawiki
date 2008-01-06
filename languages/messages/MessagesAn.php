@@ -476,7 +476,7 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'badsig'                     => 'A suya siñadura no ye conforme; comprebe as etiquetas HTML.',
 'badsiglength'               => 'Embotada masiau larga; no abría de tener más de $1 caráuters.',
 'email'                      => 'Adreza electronica',
-'prefs-help-realname'        => "* Nombre reyal (opzional): si eslixe escribir-lo, se ferá serbir ta l'atribuzión d'a suya faina.",
+'prefs-help-realname'        => "* Nombre reyal (opzional): si esliche escribir-lo, se ferá serbir ta l'atribuzión d'a suya faina.",
 'loginerror'                 => 'Error en enzetar a sesión',
 'prefs-help-email'           => "Adreza electronica (opzional): Premite á atros usuarios nimbiar-le correus electronicos por meyo de a suya pachina d'usuario u de descusión d'usuario sin d'aber de rebelar a suya identidá.",
 'prefs-help-email-required'  => 'Cal una adreza electronica.',
@@ -733,8 +733,8 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'           => "(s'ha sacata ista dentrada)",
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ista bersión d\'a pachina ye sacata d\'os archibos publicos. 
-Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rechistro de borrau].
+Ista bersión d\'a pachina ye estata sacata d\'os archibos publicos. 
+Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].
 </div>',
 'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
 Ista bersión d'a pachina ye sacata d'os archibos publicos. 
@@ -1129,7 +1129,7 @@ PICT # misz.
 'filedelete-submit'      => 'Borrar',
 'filedelete-success'     => "S'ha borrato '''$1'''.",
 'filedelete-success-old' => "<span class=\"plainlinks\">S'ha borrato a bersión de '''[[Media:\$1|\$1]]''' de \$3, \$2.</span>",
-'filedelete-nofile'      => "'''$1''' no esiste en iste sitio.",
+'filedelete-nofile'      => "'''$1''' no esiste en {{SITENAME}}.",
 'filedelete-nofile-old'  => "No bi ha garra bersión alzata de '''$1''' con ixos atributos.",
 'filedelete-iscurrent'   => "Ye prebando de borrar a bersión más rezient d'iste archibo. Por fabor, torne en primeras ta una bersión anterior.",
 
@@ -1628,8 +1628,8 @@ as pachinas que s'han bandalizatas).",
 'proxyblocker-disabled'       => 'Ista funzión ye desautibata.',
 'proxyblockreason'            => "S'ha bloquiato a suya adreza IP porque ye un proxy ubierto. Por fabor, contaute on o suyo furnidor de serbizios d'Internet u con o suyo serbizio d'asistenzia tecnica e informe-les d'iste grau problema de seguridat.",
 'proxyblocksuccess'           => 'Feito.',
-'sorbsreason'                 => 'A suya adreza IP ye en a lista de proxies ubiertos en DNSBL.',
-'sorbs_create_account_reason' => 'A suya adreza IP ye en a lista de proxies ubiertos en DNSBL. No puede creyar una cuenta',
+'sorbsreason'                 => 'A suya adreza IP ye en a lista de proxies ubiertos en a DNSBL de {{SITENAME}}.',
+'sorbs_create_account_reason' => 'A suya adreza IP ye en a lista de proxies ubiertos en a DNSBL de {{SITENAME}}. No puede creyar una cuenta',
 
 # Developer tools
 'lockdb'              => 'Trancar a base de datos',
@@ -1679,7 +1679,7 @@ En istos casos, abrá de tresladar manualment o conteniu d'a pachina de descusi�
 'movepagebtn'             => 'Tresladar pachina',
 'pagemovedsub'            => 'Treslado feito correutament',
 'movepage-moved'          => '<big>\'\'\'"$1" ha estato tresladato á "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Ya bi ha una pachina con ixe nombre u o nombre ha trigato no ye conforme. Por fabor eslixa un atro nombre.',
+'articleexists'           => 'Ya bi ha una pachina con ixe nombre u o nombre que ha eslechito no ye conforme. Por fabor trigue un atro nombre.',
 'cantmove-titleprotected' => 'No puede tresladar una pachina ta íste títol porque o nuebo títol ye protechito y no puede estar creyato',
 'talkexists'              => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
 'movedto'                 => 'tresladato ta',
@@ -1705,7 +1705,7 @@ A pachina de destino ("[[$1]]") ya esiste. Quiere borrar-la ta premitir o tresla
 'export'            => 'Esportar as pachinas',
 'exporttext'        => "Puede esportar o testo y l'istorial d'edizions d'una pachina u conchunto de pachinas ta un testo XML. Iste testo XML puede importar-se ta atro wiki que faiga serbir MediaWiki á trabiés d'a [[Special:Import|pachina d'importazión]].
 
-Ta esportar pachinas, escriba os títols en a caixa de testo que bi ha más ta baixo, metendo un títol en cada linia, y eslixa si quiere esportar a bersión autual con as bersions anteriors y as lineas de l'istorial u nomás a bersión autual con a informazión sobre a zaguer edizión.
+Ta esportar pachinas, escriba os títols en a caixa de testo que bi ha más ta baixo, metendo un títol en cada linia, y eslicha si quiere esportar a bersión autual con as bersions anteriors y as lineas de l'istorial u nomás a bersión autual con a informazión sobre a zaguer edizión.
 
 En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{{Mediawiki:Mainpage}}]] t'a pachina {{Mediawiki:Mainpage}}.",
 'exportcuronly'     => "Encluye nomás a bersión autual, no l'istorial de bersions completo.",
@@ -1758,6 +1758,9 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'importhistoryconflict'      => "Bi ha un conflito de bersions en o istorial (talment ista pachina s'aiga importata antes)",
 'importnosources'            => "No bi ha fuents d'importazión interwiki y no ye premitito cargar o istorial dreitament.",
 'importnofile'               => "No s'ha cargato os archibos d'importazión.",
+'importuploaderrorsize'      => "Ha fallato a carga de l'archibo importato. L'archibo brinca d'a grandaria de carga premitita.",
+'importuploaderrorpartial'   => "Ha fallato a carga de l'archibo importato. Sólo una parte de l'archibo s'ha cargato.",
+'importuploaderrortemp'      => "Ha fallato a carga de l'archibo importato. No se troba o direutorio temporal.",
 
 # Import log
 'importlogpage'                    => "Rechistro d'importazions",

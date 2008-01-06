@@ -593,6 +593,7 @@ Jie fersicherje hiermäd uk, dät Jie dän Biedraach sälwen ferfoated hääbe b
 'protectedpagewarning'      => '<strong>WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administrationsgjuchte beoarbeded wäide kon.</strong>',
 'semiprotectedpagewarning'  => "'''Oachtenge:''' Disse Siede is ousleeten un kon bloot fon anmäldede Besäikere beoarbaided wäide.",
 'cascadeprotectedwarning'   => "'''WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administratorgjuchte beoarbaided wäide kon. Ju is in do {{PLURAL:$1|foulgjende Siede|foulgjende Sieden}} ienbuunen, do der middels ju Kaskadenspeeroption schutsed {{PLURAL:$1|is|sunt}}:'''",
+'titleprotectedwarning'     => '<strong>OACHTENGE: Dät Moakjen fon Sieden wuude speerd. Bloot bestimde Benutsergruppen konnen ju Siede moakje.</strong>',
 'templatesused'             => 'Foulgjende Foarloagen wäide fon disse Artikkele ferwoand:',
 'templatesusedpreview'      => 'Foulgjende Foarloagen wäide fon disse Siedefoarschau ferwoand:',
 'templatesusedsection'      => 'Foulgjende Foarloagen wuuden fon disse Oudeelenge ferwoand:',
@@ -600,7 +601,7 @@ Jie fersicherje hiermäd uk, dät Jie dän Biedraach sälwen ferfoated hääbe b
 'template-semiprotected'    => '(Siedenschuts foar nit anmäldede un näie Benutsere)',
 'edittools'                 => '<!-- Text hier stoant unner Beoarbaidengsfäildere un Hoochleedefäildere. -->',
 'nocreatetitle'             => 'Dät Moakjen fon näie Sieden is begränsed',
-'nocreatetext'              => '{{SITENAME}} häd testwiese dät Moakjen fon näie Sieden begränsed. Du koast oawers al bestoundene Sieden beoarbaidje of die [[Special:Userlogin|anmäldje]].',
+'nocreatetext'              => 'Ap {{SITENAME}} wuude dät Moakjen fon näie Sieden begränsed. Du koast al bestoundene Sieden beoarbaidje of die [[Special:Userlogin|anmäldje]].',
 'nocreate-loggedin'         => 'Du hääst neen Begjuchtigenge, näie Sieden in {{SITENAME}} antoulääsen.',
 'permissionserrors'         => 'Begjuchtigengs-Failere',
 'permissionserrorstext'     => 'Du bäst nit begjuchtiged, ju Aktion uuttoufieren. {{PLURAL:$1|Gruund|Gruunde}}:',
@@ -822,14 +823,17 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'userrights-editusergroup'    => 'Beoarbaidje Gruppentouheeregaid fon dän Benutser',
 'saveusergroups'              => 'Spiekerje Gruppentouheeregaid',
 'userrights-groupsmember'     => 'Meeglid fon:',
+'userrights-groupsremovable'  => 'Gruppen, do der wächhoald wäide konnen:',
 'userrights-groupsavailable'  => 'Ferföigboare Gruppen:',
 'userrights-groupshelp'       => "Wääl do Gruppen, uut do die Benutser wächhoald of tou do hie touföiged wäide schäl. Nit selektierde Gruppen wäide nit annerd. Ne Uutwoal kon mäd '''Strg + Linksklick''' wier wächhoald wäide.",
 'userrights-reason'           => 'Gruund:',
 'userrights-available-none'   => 'Du duurst neen Benutsergjuchte ferannerje.',
-'userrights-available-add'    => 'Du duurst Benutsere an do Grupppen $1 touföigje.',
-'userrights-available-remove' => 'Du duurst Benutsere ut do Grupppen $1 wächhoalje.',
+'userrights-available-add'    => 'Du duurst Benutsere an {{PLURAL:$2|ju foulgjende Gruppe|do foulgjende $2 Grupppen}} touföigje: $1.',
+'userrights-available-remove' => 'Du duurst Benutsere ut {{PLURAL:$2|ju foulgjende Gruppe|do foulgjende $2 Gruppen}} wächhoalje: $1.',
 'userrights-no-interwiki'     => 'Du hääst neen Begjuchtigenge, do Benutsergjuchte in uur Wikis tou annerjen.',
 'userrights-nodatabase'       => 'Ju Doatenboank $1 is nit deer of nit lokoal.',
+'userrights-nologin'          => 'Du moast die mäd n Administrator-Benutserkonto [[Special:Userlogin|anmäldje]], uum Benutsergjuchte tou annerjen.',
+'userrights-notallowed'       => 'Du hääst neen Begjuchtigenge, uum Benutsergjuchte tou reeken.',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1050,7 +1054,7 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'filedelete-submit'      => 'Läskje',
 'filedelete-success'     => "'''\"\$1\"''' wuude läsked.",
 'filedelete-success-old' => '<span class="plainlinks">Fon ju Doatäi \'\'\'„[[Media:$1|$1]]“\'\'\' wuud ju Version $2, $3 Uure läsked.</span>',
-'filedelete-nofile'      => "'''„$1“''' is ap disse Website nit deer.",
+'filedelete-nofile'      => "'''„$1“''' is ap {{SITENAME}} nit deer.",
 'filedelete-nofile-old'  => "Et rakt fon '''„$1“''' neen Version fon $2, $3 Uure.",
 'filedelete-iscurrent'   => 'Du fersäkst, ju aktuelle Version fon disse Doatäi tou läskjen. Sät foartied ap ne allere Version tourääch.',
 
@@ -1554,8 +1558,8 @@ Reek dän Gruund foar ju Speere oun.',
 'proxyblocker-disabled'       => 'Disse Funktion is deaktivierd.',
 'proxyblockreason'            => 'Jou IP-Adrässe wuude speerd, deer ju n eepenen Proxy is. Kontaktierje jädden Jou Provider af Jou Systemtechnik un informierje Jou jou uur dit muugelke Sicherhaidsproblem.',
 'proxyblocksuccess'           => 'Kloor.',
-'sorbsreason'                 => 'Dien IP-Adrässe is bie ju DNSBL fon {{SITENAME}} as eepene PROXY liested.',
-'sorbs_create_account_reason' => 'Dien IP-Adrässe is bie ju DNSBL fon {{SITENAME}} as eepene PROXY liested. Du koast neen Benutser-Account anlääse.',
+'sorbsreason'                 => 'Dien IP-Adrässe is in ju DNSBL fon {{SITENAME}} as eepene PROXY liested.',
+'sorbs_create_account_reason' => 'Dien IP-Adrässe is in ju DNSBL fon {{SITENAME}} as eepene PROXY liested. Du koast neen Benutser-Account anlääse.',
 
 # Developer tools
 'lockdb'              => 'Doatenboank speere',
@@ -1668,7 +1672,6 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'importhistoryconflict'      => 'Deer bestounde al allere Versionen, do mäd disse kollidierje. Muugelkerwiese wuude ju Siede al eer importierd.',
 'importnosources'            => 'Foar dän Transwiki Import sunt neen Wällen definierd un dät direkte Hoochleeden fon Versione is blokkierd.',
 'importnofile'               => 'Deer is neen Importdoatäi hoochleeden wuuden.',
-'importuploaderror'          => 'Dät Hoochleeden fon ju Importdoatäi glipte (sluuch fail). Fielicht is ju Doatäi gratter as toulät.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbouk',
@@ -2257,4 +2260,3 @@ $1',
 'watchlisttools-raw'  => 'Liestenformoat beoarbaidje (Import/Export)',
 
 );
-

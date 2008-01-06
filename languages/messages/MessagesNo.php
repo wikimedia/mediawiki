@@ -539,7 +539,7 @@ Dersom denne forespørselen ble utført av noen andre, eller om du kom på passo
 'invalidemailaddress'        => 'E-postadressa kan ikke aksepteres, fordi den er ugyldig formatert. Skriv inn en fungerende e-postadresse eller tøm feltet.',
 'accountcreated'             => 'Brukerkonto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
-'createaccount-title'        => 'Kontoopretting på {{SITENAME}}',
+'createaccount-title'        => 'Kontooppretting på {{SITENAME}}',
 'createaccount-text'         => 'Noen ($1) opprettet en konto for $2 på {{SITENAME}} ($4). Passordet for «$2» er «$3». Du burde logge inn og endre passordet nå.
 
 Du kan ignorere denne beskjeden dersom kontoen feilaktig ble opprettet.',
@@ -547,7 +547,7 @@ Du kan ignorere denne beskjeden dersom kontoen feilaktig ble opprettet.',
 
 # Password reset dialog
 'resetpass'               => 'Resett kontopassord',
-'resetpass_announce'      => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen, må du oppgi et nytt passord her:',
+'resetpass_announce'      => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen må du oppgi et nytt passord her:',
 'resetpass_text'          => '<!-- Legg til tekst her -->',
 'resetpass_header'        => 'Resett passord',
 'resetpass_submit'        => 'Angi passord og logg inn',

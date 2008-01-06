@@ -478,6 +478,9 @@ Dersom dette ikkje er tilfellet kan du ha funne ein feil i programvaren. Gje mel
 'cascadeprotected'     => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',
 'namespaceprotected'   => "Du har ikkje tilgang til å endre sidene i '''$1'''-namnerommet.",
+'customcssjsprotected' => 'Du har ikkje tilgang til å endre denne sida, fordi ho inneheld ein annan brukar sine personlege innstillingar.',
+'ns-specialprotected'  => 'Sider i {{ns:special}}-namnerommet kan ikkje endrast.',
+'titleprotected'       => 'Denne sidetittelen er verna mot oppretting av [[User:$1|$1]]. Grunnen som er gjeven er: <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
@@ -510,14 +513,18 @@ Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sj
 'userexists'                 => 'Brukarnamnet er allereie i bruk. Vel eit nytt.',
 'youremail'                  => 'E-postadresse*',
 'username'                   => 'Brukarnamn:',
+'uid'                        => 'Brukar-ID:',
 'yourrealname'               => 'Namn*',
 'yourlanguage'               => 'Språk for brukargrensesnittet',
 'yourvariant'                => 'Språkvariant',
 'yournick'                   => 'Kallenamn (for signaturar)',
+'badsig'                     => 'Ugyldig råsignatur, sjekk HTML-kodinga.',
+'badsiglength'               => 'Brukarnamnet er for langt, det må vere under $1 teikn.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
 'loginerror'                 => 'Innloggingsfeil',
 'prefs-help-email'           => '* E-post (valfritt): Gjer det mogleg for andre brukarar å ta kontakt med deg utan at du offentleggjer adressa.',
+'prefs-help-email-required'  => 'E-postadresse må oppgjevast.',
 'nocookiesnew'               => 'Brukarkontoen vart oppretta, men du er ikkje innlogga. {{SITENAME}} bruker informasjonskapslar for å logge inn brukarar,
 nettlesaren din er innstilt for ikkje å godta desse. Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskapslar, kan du logge inn med det nye brukarnamnet og passordet ditt.',
 'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapslar for å logge inn brukarar, nettlesaren din er innstilt for ikkje å godta desse.
@@ -536,7 +543,9 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'passwordremindertext'       => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4). Passordet for brukaren «$2» er no «$3». Du bør logge inn og endre passordet så snart som råd.',
 'noemail'                    => 'Det er ikkje registrert noka e-postadresse åt brukaren «$1».',
 'passwordsent'               => 'Eit nytt passord er sendt åt e-postadressa registrert på brukaren «$1».',
+'blocked-mailpassword'       => 'IP-adressa di er blokkert frå å endre sider, og du kan difor heller ikkje få nytt passord. Dette er for å hindre misbruk.',
 'eauthentsent'               => 'Ein stadfestings-e-post er sendt til den oppgjevne e-postadressa. For at adressa skal kunna brukast, må du følgje instruksjonane i e-posten for å stadfeste at ho faktisk tilhøyrer deg.',
+'throttled-mailpassword'     => 'Ei passordpåminning er allereie sendt {{PLURAL:$1|den siste timen|dei siste $1 timane}}. For å hindre misbruk vert det berre sendt ut nytt passord ein gong kvar {{PLURAL:$1|time|$1. time}}.',
 'mailerror'                  => 'Ein feil oppstod ved sending av e-post: $1',
 'acct_creation_throttle_hit' => 'Beklagar, du har allereie laga $1 brukarkontoar. Du har ikkje høve til å laga fleire.',
 'emailauthenticated'         => 'E-postadressa di vart stadfest $1.',
@@ -544,7 +553,23 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'noemailprefs'               => '<strong>Du har ikkje oppgjeve noko e-postadresse</strong>, dei følgjande funksjonane vil ikkje verke.',
 'emailconfirmlink'           => 'Stadfest e-post-adressa di',
 'invalidemailaddress'        => 'E-postadressa kan ikkje brukast sidan ho er feil oppbygd. Skriv ei rett oppbygd adresse eller tøm feltet.',
+'accountcreated'             => 'Brukarkonto oppretta',
+'accountcreatedtext'         => 'Brukarkontoen til $1 er oppretta.',
+'createaccount-title'        => 'Oppretting av brukarkonto på {{SITENAME}}',
+'createaccount-text'         => 'Nokon ($1) oppretta ein brukarkonto for $2 på {{SITENAME}} ($4). Passordet til «$2» er «$3». Du bør logge inn og endre passordet ditt med ein gong.
+
+Du kan oversjå denne meldinga dersom kontoen vart oppretta med eit uhell.',
 'loginlanguagelabel'         => 'Språk: $1',
+
+# Password reset dialog
+'resetpass'               => 'Nullstill passordet til brukarkontoen',
+'resetpass_announce'      => 'Du logga inn med eit mellombels passord du fekk på e-post. For å fullføre innlogginga må du lage eit nytt passord her:',
+'resetpass_header'        => 'Nullstill passord',
+'resetpass_submit'        => 'Oppgje passord og logg inn',
+'resetpass_success'       => 'Passordet ditt er no endra! Loggar inn...',
+'resetpass_bad_temporary' => 'Ugyldig mellombels passord. Du kan allereie ha endra det, eller bede om eit nytt.',
+'resetpass_forbidden'     => 'Passord kan ikkje endrast på {{SITENAME}}',
+'resetpass_missing'       => 'Skjemaet er tomt.',
 
 # Edit page toolbar
 'bold_sample'     => 'Halvfeit skrift',
@@ -576,9 +601,14 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'savearticle'            => 'Lagre',
 'preview'                => 'Førehandsvising',
 'showpreview'            => 'Førehandsvis',
+'showlivepreview'        => 'Levande førehandsvising',
 'showdiff'               => 'Vis skilnad',
 'anoneditwarning'        => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for denne sida.",
+'missingsummary'         => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
+'missingcommenttext'     => 'Ver venleg og skriv ein kommentar nedanfor.',
+'missingcommentheader'   => "'''Påminning:''' Du har ikkje oppgjeve noko emne/overskrift for denne kommentaren. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
 'summary-preview'        => 'Førehandsvising av endringssamandraget',
+'subject-preview'        => 'Førehandsvising av emne/overskrift',
 'blockedtitle'           => 'Brukaren er blokkert',
 'blockedtext'            => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring.'''</big>
 
@@ -589,12 +619,21 @@ Blokkeringa vart gjort av $1. Denne grunnen vart gjeven: ''$2''.
 * Blokkeringa var meint på: $7
 
 Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. IP-adressa di er $3, og blokkeringsnummeret er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
+'autoblockedtext'        => "IP-adressa di er automatisk blokkert frå endring fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Denne grunnen vart gjeven: ''$2''.
+
+* Blokkeringa byrja: $8
+* Blokkeringa utgår: $6
+
+Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Blokkeringsnummeret ditt er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
+'blockednoreason'        => 'Inga grunngjeving',
+'blockedoriginalsource'  => "Kjelda til '''$1''' er vist nedanfor:",
+'blockededitsource'      => "Teksten i '''endringane dine''' på '''$1''' er vist nedanfor:",
 'whitelistedittitle'     => 'Du lyt logge inn for å gjera endringar',
 'whitelistedittext'      => 'Du lyt $1 for å endre sider.',
 'whitelistreadtitle'     => 'Du lyt logge inn for å lesa',
 'whitelistreadtext'      => 'Du lyt [[Special:Userlogin|logge inn]] for å lesa sider.',
 'whitelistacctitle'      => 'Du har ikkje løyve til å laga brukarkonto',
-'whitelistacctext'       => 'For å laga brukarkontoar på denne wikien lyt du [[Special:Userlogin|logge inn]] og ha rett type tilgang.',
+'whitelistacctext'       => 'For å lage brukarkonto her på {{SITENAME}} må du [[Special:Userlogin|logge inn]] og ha rett type tilgang.',
 'loginreqtitle'          => 'Innlogging trengst',
 'loginreqlink'           => 'logge inn',
 'loginreqpagetext'       => 'Du lyt $1 for å lesa andre sider.',

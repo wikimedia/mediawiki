@@ -269,6 +269,10 @@ $messages = array(
 'mypage'         => 'Min side',
 'mytalk'         => 'Min diskussion',
 'anontalk'       => 'Diskussionsside for denne IP-adresse',
+'navigation'     => 'Navigation',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Fejl',
 'returnto'          => 'Tilbage til $1.',
@@ -281,6 +285,7 @@ $messages = array(
 'history'           => 'Historik',
 'history_short'     => 'Historik',
 'updatedmarker'     => '(ændret)',
+'info_short'        => 'Information',
 'printableversion'  => 'Udskriftsvenlig udgave',
 'permalink'         => 'Permanent henvisning',
 'print'             => 'Udskriv',
@@ -357,6 +362,7 @@ $messages = array(
 'versionrequired'     => 'Kræver version $1 af MediaWiki',
 'versionrequiredtext' => 'Version $1 af MediaWiki er påkrævet, for at bruge denne side. Se [[{{ns:special}}:Version|Versionssiden]]',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Hentet fra "$1"',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nye beskeder',
@@ -371,6 +377,7 @@ $messages = array(
 'thisisdeleted'           => 'Se eller gendan $1?',
 'viewdeleted'             => 'Vise $1?',
 'restorelink'             => '{{PLURAL:$1|en slettet ændring|$1 slettede ændringer}}',
+'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ugyldig abonnementstype.',
 'site-rss-feed'           => '$1 RSS-feed',
 'site-atom-feed'          => '$1 Atom-feed',
@@ -493,6 +500,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'yournick'                   => 'Dit kaldenavn (til signaturer)',
 'badsig'                     => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
 'badsiglength'               => 'Underskriften er for lang. Den må højst indeholde $1 tegn.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => '* <strong>Dit rigtige navn</strong> (valgfrit): Hvis du vælger at oplyse dit navn vil dette blive brugt til at tilskrive dig dit arbejde.',
 'loginerror'                 => 'Fejl med at logge på',
 'prefs-help-email'           => '** <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, 
@@ -689,6 +697,7 @@ så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
 'protectedpagewarning'      => '<strong>ADVARSEL: Denne side er skrivebeskyttet, så kun administratorer kan redigere den.</strong>',
 'semiprotectedpagewarning'  => "'''Halv spærring:''' Siden er spærret, så kun registrerede brugere kan ændre den.",
 'cascadeprotectedwarning'   => "'''BEMÆRK: Denne side er skrivebeskyttet, så den kun kan ændres af brugere med Administratorrettigheder. Den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af nedarvende sidebeskyttelse:'''",
+'titleprotectedwarning'     => '<strong>ADVARSEL:  Den side er låst så kun nogle brugere kan oprette den.</strong>',
 'templatesused'             => 'Skabeloner der er brugt på denne side:',
 'templatesusedpreview'      => 'Følgende skabeloner bruges af denne artikelforhåndsvisning:',
 'templatesusedsection'      => 'Følgende skabeloner bruges af dette afsnit:',
@@ -968,7 +977,10 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'hist'                              => 'historik',
 'hide'                              => 'skjul',
 'show'                              => 'vis',
-'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|overvåget bruger|overvågede brugere}}]',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|overvågende bruger|overvågende brugere}}]',
 'rc_categories'                     => 'Kun sider fra kategorierne (adskilt med „|“):',
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
@@ -1213,6 +1225,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'fewestrevisions-summary' => 'Denne specialside viser en liste med sider med de færreste ændringer.',
 
 # Miscellaneous special pages
+'nbytes'                          => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'                     => '$1 {{PLURAL:$1|kategori|kategorier}}',
 'nlinks'                          => '{{PLURAL:$1|1 henvisning|$1 henvisninger}}',
 'nmembers'                        => '– {{PLURAL:$1|1 artikel|$1 artikler}}',
@@ -1294,6 +1307,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'booksources-text'          => 'Dette er en liste med henvisninger til Internetsider, som sælger nye og brugte bøger. Der kan der også findes yderligere informationer om bøgerne. {{SITENAME}} er ikke forbundet med nogen af dem.',
 
 'categoriespagetext' => '{{SITENAME}} har følgende kategorier.',
+'data'               => 'Data',
 'userrights'         => 'Forvaltning af brugerrettigheder',
 'groups'             => 'Brugergrupper',
 'alphaindexline'     => '$1 til $2',
@@ -1343,6 +1357,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'emailto'         => 'Til',
 'emailsubject'    => 'Emne',
 'emailmessage'    => 'Besked',
+'emailsend'       => 'Send',
 'emailccme'       => 'Send en kopi af denne E-mail til mig',
 'emailccsubject'  => 'Kopi sendes til $1: $2',
 'emailsent'       => 'E-mail sendt',
@@ -1484,6 +1499,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'restriction-level'           => 'Beskyttelseshøjde',
 'minimum-size'                => 'Mindste størrelse',
 'maximum-size'                => 'Største størrelse',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'ændre',
@@ -1554,6 +1570,7 @@ $1',
 'nocontribs'    => 'Ingen ændringer er fundet som opfylder disse kriterier.',
 'ucnote'        => 'Herunder er denne brugers sidste <b>$1</b> ændringer i de sidste <b>$2</b> dage.',
 'uclinks'       => 'Vis de sidste $1 ændringer; vis de sidste $2 dage.',
+'uctop'         => ' (seneste)',
 'month'         => 'Måned:',
 'year'          => 'År:',
 
@@ -1775,6 +1792,9 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'importhistoryconflict'      => 'Der er en konflikt i versionhistorikken (siden kan have været importeret før)',
 'importnosources'            => 'Ingen transwiki importkilde defineret og direkte historikuploads er deaktiveret.',
 'importnofile'               => 'Ingen importfil valgt!',
+'importuploaderrorsize'      => 'Upload af importfil mislykkedes da filen er større en den tilladte maksimale uploadstørrelse.',
+'importuploaderrorpartial'   => 'Upload af importfil mislykkedes da filen kun blev delvist uploadet.',
+'importuploaderrortemp'      => 'Upload af importfil mislykkedes da en midlertidig mappe mangler.',
 
 # Import log
 'importlogpage'                    => 'Importlog',
@@ -1957,6 +1977,7 @@ $1',
 Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvisning på en linje er til det uønskede billede. Efterfølgende links på samme linjer er undtagelser, dvs. sider hvor billedet må optræde.',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Denne fil indeholder yderligere informationer, der som regel stammer fra digitalkameraet eller den brugte scanner. Ved en efterfølgende bearbejdning kan nogle data være ændret.',
 'metadata-expand'   => 'Vis udvidede data',
 'metadata-collapse' => 'Skjul udvidede data',
@@ -2093,6 +2114,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 'exif-unknowndate' => 'Ukendt dato',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Horisontalt spejlet', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Drejet 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikalt spejlet', # 0th row: bottom; 0th column: left
@@ -2175,12 +2197,15 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gaincontrol-0' => 'Ingen',
 'exif-gaincontrol-1' => 'Ringe',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Svag',
 'exif-contrast-2' => 'Stærk',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Ringe',
 'exif-saturation-2' => 'Høj',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Ringe',
 'exif-sharpness-2' => 'Stærk',
 
@@ -2279,7 +2304,8 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'redirectingto' => 'Videresendt til [[$1]]',
 
 # action=purge
-'confirm_purge' => 'Slette denne side fra serverens cache? $1',
+'confirm_purge'        => 'Slette denne side fra serverens cache? $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Søger efter sider, hvori ''$1'' forekommer.",
