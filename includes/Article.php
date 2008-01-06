@@ -1349,8 +1349,10 @@ class Article {
 
 			$lastRevision = 0;
 			$revisionId = 0;
+			
+			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
-			if ( 0 != strcmp( $text, $oldtext ) ) {
+			if ( $changed ) {
 				$this->mGoodAdjustment = (int)$this->isCountable( $text )
 				  - (int)$this->isCountable( $oldtext );
 				$this->mTotalAdjustment = 0;
@@ -1415,9 +1417,8 @@ class Article {
 				# Invalidate cache of this article and all pages using this article
 				# as a template. Partly deferred.
 				Article::onArticleEdit( $this->mTitle );
-
+				
 				# Update links tables, site stats, etc.
-				$changed = ( strcmp( $oldtext, $text ) != 0 );
 				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
 			}
 		} else {
