@@ -934,6 +934,7 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 
 # What links here
 'whatlinkshere'       => 'Yüms isio',
+'whatlinkshere-title' => 'Pads ad $1 yumöls',
 'linklistsub'         => '(Yümalised)',
 'linkshere'           => "Pads sököl payümons ko '''[[:$1]]''':",
 'nolinkshere'         => "Pads nonik peyümons lü '''[[:$1]]'''.",

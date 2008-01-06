@@ -589,29 +589,44 @@ $2',
 'readonlywarning'           => '<strong>সতর্কীকরণ: রক্ষণাবেক্ষণের জন্য ডাটাবেজ বন্ধ রাখা হয়েছে, তাই আপনি আপনার সম্পাদনাগুলি এই মুহূর্তে সংরক্ষণ করতে পারবেন না। আপনি ইচ্ছা করলে টেক্সটটি কাট-অ্যান্ড-পেস্ট করে কোন টেক্সট ফাইলে ভবিষ্যতের জন্য সংরক্ষণ করে রাখতে পারেন।</strong>',
 'protectedpagewarning'      => '<strong>সতর্কীকরণ: এই পাতাটি বন্ধ করা হয়েছে; কেবলমাত্র প্রশাসক মর্যাদার ব্যবহারকারীরাই এটি সম্পাদনা করতে পারবেন।</strong>',
 'semiprotectedpagewarning'  => "'''নোট:''' এই পাতাটির ব্যবহার নিয়ন্ত্রণ করা হয়েছে তাই নিবন্ধনকৃত ব্যবহারকারী এটি সম্পাদনা করতে পারবেন।",
+'cascadeprotectedwarning'   => "'''সতর্কীকরণ:''' এই পাতাটি বন্ধ করা হয়েছে, যাতে কেবল প্রশাসকের ক্ষমতাবিশিষ্ট ব্যবহারকারীরা এটি সম্পাদনা করতে পারেন, কারণ এই পাতাটি নিচের প্রপাতাকারে সুরক্ষিত (cascade-protected) {{PLURAL:$1|টি পাতায়|টি পাতায়}} অন্তর্ভুক্ত আছে:",
+'titleprotectedwarning'     => '<strong>সতর্কীকরণ: এই পাতাটি বন্ধ করা আছে, যাতে কেবলমাত্র কিছু ব্যবহারকারী এটি সৃষ্টি করতে পারেন।</strong>',
 'templatesused'             => 'এই পাতায় ব্যবহৃত টেম্পলেট:',
 'templatesusedpreview'      => 'এই প্রাকদর্শনে ব্যবহৃত টেম্পলেটসমূহ:',
 'templatesusedsection'      => 'এই অনুচ্ছেদে ব্যবহৃত টেম্পলেটসমূহ:',
 'template-protected'        => '(সুরক্ষিত)',
 'template-semiprotected'    => '(অর্ধ-সুরক্ষিত)',
 'nocreatetitle'             => 'পাতা তৈরি নিয়ন্ত্রণ করা হয়েছে',
+'nocreatetext'              => '{{SITENAME}}-এ নতুন পাতা সৃষ্টি করার ক্ষমতা সীমাবদ্ধ করা হয়েছে।
+আপনি ফিরে গিয়ে ইতিমধ্যে বিদ্যমান কোন পাতা সম্পাদনা করতে পারেন, অথবা [[Special:Userlogin|অ্যাকাউন্টে প্রবেশ কিংবা অ্যাকাউন্ট সৃষ্টি করতে পারেন]]।',
 'nocreate-loggedin'         => 'আপনার এই উইকিতে নতুন পাতা তৈরির অনুমতি নাই।',
 'permissionserrors'         => 'অনুমতি ত্রুটিসমূহ',
 'permissionserrorstext'     => 'আপনার এটা করার অনুমতি নেই, নিচের {{PLURAL:$1|টি কারণের|টি কারণের}} জন্য:',
+'recreate-deleted-warn'     => "'''সতর্কীকরণ: আপনি এমন একটি পাতা সৃষ্টি করছেন যা পূর্বে মুছে দেয়া হয়েছিল।'''
+
+আপনি পাতাটি আর সম্পাদনা করবেন কি না বিবেচনা করে দেখুন।
+আপনার সুবিধার্থে পাতাটির অবলুপ্তি লগ এখানে দেয়া হল:",
 
 # "Undo" feature
+'undo-success' => 'সম্পাদনাটি বাতিল করা যাবে। অনুগ্রহ করে নিচের তুলনাটি পরীক্ষা করে দেখুন ও নিশ্চিত করুন যে এটাই আপনি করতে চান, এবং তারপর নিচের সম্পাদনাগুলি সংরক্ষণ করে সম্পাদনাটির বাতিল প্রক্রিয়া সমাপ্ত করুন।',
 'undo-failure' => 'এ সম্পাদনা মধ্যবর্তী সম্পাদনাসমূহের কারণে পূর্বাবস্থায় ফিরিয়ে নেওয়া যাবে না।',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|আলাপ]])-এর করা $1 সংশোধনটি বাতিল করা হোক',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'অ্যাকাউন্ট তৈরি করা যাবে না',
+'cantcreateaccount-text' => "[[User:$3|$3]] এই আইপি ঠিকানা(<b>$1</b>) থেকে অ্যাকাউন্ট সৃষ্টিতে বাধা দিয়েছেন।
+
+$3-এর দেয়া কারণ হল ''$2''",
 
 # History pages
 'viewpagelogs'        => 'এই পাতার জন্য লগ্‌গুলো দেখুন',
 'nohistory'           => 'এই পাতার কোন সম্পাদনার ইতিহাস নাই।',
 'revnotfound'         => 'সংশোধন খুজে পাওয়া যাচ্ছে না',
+'revnotfoundtext'     => 'আপনির পাতাটির যে পুরনো সংস্করণটি অনুরোধ করেছেন, তা খুঁজে পাওয়া যায়নি। পাতাটিতে যাবার জন্য আপনি যে URL-টি ব্যবহার করেছিলেন, অনুগ্রহ করে সেটি পরীক্ষা করে দেখুন।',
 'loadhist'            => 'পাতার ইতিহাস লোড হচ্ছে',
 'currentrev'          => 'বর্তমান সংশোধন',
 'revisionasof'        => '$1 তারিখের সংশোধন',
+'revision-info'       => '$1-এ $2-এর করা সংশোধন',
 'previousrevision'    => '←পুর্বের সংস্করণ',
 'nextrevision'        => 'পরবর্তী সংস্করণ→',
 'currentrevisionlink' => 'বর্তমান সংশোধন',
@@ -630,29 +645,41 @@ $2',
 'historyempty'        => '(খালি)',
 
 # Revision feed
-'history-feed-title'       => 'সংশোধন ইতিহাস',
-'history-feed-description' => 'এ উইকিতে এই পাতার সংশোধনের ইতিহাস',
-'history-feed-empty'       => 'অনুরোধকৃত পাতাটির কোন অস্তিত্ব নেই।
+'history-feed-title'          => 'সংশোধন ইতিহাস',
+'history-feed-description'    => 'এ উইকিতে এই পাতার সংশোধনের ইতিহাস',
+'history-feed-item-nocomment' => '$2-এ $1', # user at time
+'history-feed-empty'          => 'অনুরোধকৃত পাতাটির কোন অস্তিত্ব নেই।
 হয়ত পাতাটি উইকি থেকে মুছে ফেলা হয়েছে, কিংবা নতুন নামকরণ করা হয়েছে। 
 প্রাসঙ্গিক নতুন পাতাগুলির জন্য [[Special:Search|উইকি অনুসন্ধানের]] চেষ্টা করুন।',
 
 # Revision deletion
-'rev-deleted-comment'       => '(মন্তব্য সরিয়ে নেওয়া হয়েছে)',
-'rev-deleted-user'          => '(ব্যবহারকারীর নাম সরিয়ে নেওয়া হয়েছে)',
-'rev-deleted-event'         => '(ভুক্তি সরিয়ে নেওয়া হয়েছে)',
-'rev-delundel'              => 'দেখাও/আড়াল করো',
-'revisiondelete'            => 'অবলুপ্ত/পুনঃস্থাপন সংশোধনসমূহ',
-'revdelete-nooldid-title'   => 'কোন লক্ষ্য সংশোধন নাই',
-'revdelete-legend'          => 'সীমাবদ্ধ করো:',
-'revdelete-hide-text'       => 'সংশোধিত লেখা আড়াল করো',
-'revdelete-hide-name'       => 'কাজ এবং লক্ষ্য আড়াল করো',
-'revdelete-hide-comment'    => 'সম্পাদনা মন্তব্য আড়াল করো',
-'revdelete-hide-user'       => 'সম্পাদকে ব্যবহারকারীর নাম/আইপি আড়াল করো',
-'revdelete-hide-restricted' => 'এই সীমাবদ্ধতা প্রশাসক সহ সবার ক্ষেত্রে প্রয়োগ করো',
-'revdelete-hide-image'      => 'ফাইলের বিষয়বস্তু আড়াল করো',
-'revdelete-unsuppress'      => 'সংশোধন পুনঃস্থাপনের উপর সীমাবদ্ধতা দূর করো',
-'revdelete-log'             => 'লগ্‌ মন্তব্য:',
-'revdelete-submit'          => 'নির্বাচিত সংশোধনে প্রয়োগ করো',
+'rev-deleted-comment'         => '(মন্তব্য সরিয়ে নেওয়া হয়েছে)',
+'rev-deleted-user'            => '(ব্যবহারকারীর নাম সরিয়ে নেওয়া হয়েছে)',
+'rev-deleted-event'           => '(ভুক্তি সরিয়ে নেওয়া হয়েছে)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+এই সংশোধনটি উন্মুক্ত আর্কাইভ থেকে সরিয়ে ফেলা হয়েছে।
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি লগে] এ ব্যাপারে বিস্তারিত বিবরণ থাকতে পারে।
+</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+এই সংশোধনটি উন্মুক্ত আর্কাইভ থেকে সরিয়ে ফেলা হয়েছে।
+{{SITENAME}}-এর একজন প্রশাসক হিসেবে আপনি এটি দেখতে পারেন; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি লগে] এ ব্যাপারে বিস্তারিত বিবরণ থাকতে পারে।
+</div>',
+'rev-delundel'                => 'দেখাও/আড়াল করো',
+'revisiondelete'              => 'অবলুপ্ত/পুনঃস্থাপন সংশোধনসমূহ',
+'revdelete-nooldid-title'     => 'কোন লক্ষ্য সংশোধন নাই',
+'revdelete-nooldid-text'      => 'এই কাজটি সম্পন্ন করার জন্য আপনি কোন লক্ষ্য সম্পাদনা বা সংশোধন নির্দিষ্ট করে দেননি।',
+'revdelete-selected'          => "'''$1'''-এর {{PLURAL:$2|টি নির্বাচিত সংশোধন|টি নির্বাচিত সংশোধন}}:",
+'logdelete-selected'          => "'''$1'''-এর জন্য {{PLURAL:$2|টি নির্বাচিত লগ-ঘটনা|টি নির্বাচিত লগ-ঘটনা}}:",
+'revdelete-legend'            => 'সীমাবদ্ধ করো:',
+'revdelete-hide-text'         => 'সংশোধিত লেখা আড়াল করো',
+'revdelete-hide-name'         => 'কাজ এবং লক্ষ্য আড়াল করো',
+'revdelete-hide-comment'      => 'সম্পাদনা মন্তব্য আড়াল করো',
+'revdelete-hide-user'         => 'সম্পাদকে ব্যবহারকারীর নাম/আইপি আড়াল করো',
+'revdelete-hide-restricted'   => 'এই সীমাবদ্ধতা প্রশাসক সহ সবার ক্ষেত্রে প্রয়োগ করো',
+'revdelete-hide-image'        => 'ফাইলের বিষয়বস্তু আড়াল করো',
+'revdelete-unsuppress'        => 'সংশোধন পুনঃস্থাপনের উপর সীমাবদ্ধতা দূর করো',
+'revdelete-log'               => 'লগ্‌ মন্তব্য:',
+'revdelete-submit'            => 'নির্বাচিত সংশোধনে প্রয়োগ করো',
 
 # History merging
 'mergehistory-from' => 'উৎস পাতা:',
@@ -1442,14 +1469,41 @@ $1',
 'exif-gpslongitude'        => 'দ্রাঘিমা',
 'exif-gpsaltituderef'      => 'উচ্চতা নির্দেশক',
 'exif-gpsaltitude'         => 'উচ্চতা',
+'exif-gpsdestbearing'      => 'দূরত্বের উন্নতি কোণ',
+'exif-gpsdestdistanceref'  => 'গন্তব্য থেকে দূরত্বের নির্দেশক',
+'exif-gpsdestdistance'     => 'গন্তব্য থেকে দূরত্ব',
+'exif-gpsprocessingmethod' => 'GPS প্রক্রিয়াকরণ পদ্ধতির নাম',
+'exif-gpsareainformation'  => 'GPS এলাকার নাম',
+'exif-gpsdatestamp'        => 'GPS তারিখ',
+'exif-gpsdifferential'     => 'GPS ডিফারেনশিয়াল সংশোধন',
+
+# EXIF attributes
+'exif-compression-1' => 'অসংকুচিত',
 
 'exif-unknowndate' => 'অজানা তারিখ',
 
 'exif-orientation-1' => 'সাধারণ', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'অনুভূমিকভাবে উল্টানো', # 0th row: top; 0th column: right
+'exif-orientation-3' => '১৮০° ঘোরানো', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'উল্লম্বভাবে উল্টানো', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'ঘড়ির কাঁটার বিপরীতে ৯০° ঘোরানো এবং উল্লম্বভাবে উল্টানো', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'ঘড়ির কাঁটার দিকে ৯০° ঘোরানো', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'ঘড়ির কাঁটার দিকে ৯০° ঘোরানো এবং উল্লম্বভাবে উল্টানো', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'ঘড়ির কাঁটার বিপরীত দিকে ৯০° ঘোরানো', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'খণ্ড ফরম্যাট',
+'exif-planarconfiguration-2' => 'সমতলীয় ফরম্যাট',
 
 'exif-componentsconfiguration-0' => 'বিদ্যমান নয়',
 
 'exif-exposureprogram-0' => 'অসংজ্ঞায়িত',
+'exif-exposureprogram-1' => 'হস্তচালিত',
+'exif-exposureprogram-2' => 'সাধারণ প্রোগ্রাম',
+'exif-exposureprogram-3' => 'আলোকসম্পাত অগ্রাধিকার',
+'exif-exposureprogram-4' => 'শাটার অগ্রাধিকার',
+'exif-exposureprogram-5' => 'সৃষ্টিশীল প্রোগ্রাম (ক্ষেত্রের গভীরতার প্রতি পক্ষপাতবিশিষ্ট)',
+'exif-exposureprogram-6' => 'অ্যাকশন প্রোগ্রাম (শাটার দ্রুতির প্রতি পক্ষপাতবিশিষ্ট)',
+'exif-exposureprogram-7' => 'প্রতিকৃতি মোড (পটভূমিকে ফোকাসের বাইরে রেখে ক্লোজ-আপ ছবি তোলার জন্য)',
 
 'exif-subjectdistance-value' => '$1 মিটার',
 

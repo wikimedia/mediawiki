@@ -333,6 +333,7 @@ $messages = array(
 'bugreports'        => 'Hibabejelentések',
 'bugreportspage'    => 'Project:Hibabejelentések',
 'copyright'         => 'A tartalom a(z) $1 feltételei szerint használható fel.',
+'copyrightpagename' => '{{SITENAME}} szerzői jogok',
 'copyrightpage'     => '{{ns:project}}:Szerzői jogok',
 'currentevents'     => 'Aktuális események',
 'currentevents-url' => 'Project:Friss események',
@@ -849,9 +850,10 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'mergehistory-invalid-destination' => 'A céllapnak érvényes címet kell megadni.',
 
 # Merge log
-'mergelog'         => 'Egyesítési napló',
-'revertmerge'      => 'Szétválasztás',
-'mergelogpagetext' => 'A lapok egyesítéséről szóló napló. Szűkítheted a listát a műveletet végző felhasználó vagy az érintett oldal megadásával.',
+'mergelog'           => 'Egyesítési napló',
+'pagemerge-logentry' => '[[$1]] és [[$2]] egyesítve ($3 változatig)',
+'revertmerge'        => 'Szétválasztás',
+'mergelogpagetext'   => 'A lapok egyesítéséről szóló napló. Szűkítheted a listát a műveletet végző felhasználó vagy az érintett oldal megadásával.',
 
 # Diffs
 'history-title'           => 'A(z) „$1” laptörténete',
@@ -964,6 +966,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'userrights-no-interwiki'     => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
 'userrights-nodatabase'       => '$1 adatbázis nem létezik vagy nem helyi.',
 'userrights-nologin'          => '[[Special:Userlogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy felhasználói jogokat adhass.',
+'userrights-notallowed'       => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
 
 # Groups
 'group'               => 'Csoport:',
@@ -1350,6 +1353,7 @@ Feladóként a beállításaid között megadott e-mail címed
 fog szerepelni, 
 hogy a címzett válaszolni tudjon.',
 'usermailererror' => 'A postázó objektum által visszaadott hiba:',
+'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Nincs e-mail cím',
 'noemailtext'     => 'Ez a felhasználó nem adott meg e-mail címet, vagy
 nem kíván másoktól leveleket kapni.',
@@ -1754,6 +1758,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'movepage-moved'          => "<big>'''A(z) „$1” lapot sikeresen átmozgattad a(z) „$2” névre.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
+'cantmove-titleprotected' => 'Nem nevezheted át a lapot, mert az új cím le van védve az elkészítés ellen.',
 'talkexists'              => 'A lap áthelyezése sikerült, de a hozzá tartozó vitalapot nem tudtam áthelyezni mert már létezik egy egyező nevű
 lap az új helyen. Kérjük gondoskodj a két lap összefűzéséről.',
 'movedto'                 => 'átnevezve',
@@ -1845,6 +1850,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'importlogpagetext'                => 'Lapok szerkesztési előzményekkel történő adminisztratív imporálása más wikikből.',
 'import-logentry-upload'           => '[[$1]] importálása fájlfeltöltéssel kész',
 'import-logentry-upload-detail'    => '$1 változat',
+'import-logentry-interwiki'        => '$1 más wikiből áthozva',
 'import-logentry-interwiki-detail' => '$1 változat innen: $2',
 
 # Tooltip help for the actions
@@ -2051,6 +2057,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-jpeginterchangeformatlength' => 'JPEG adatok bájtjai',
 'exif-transferfunction'            => 'Átviteli funkció',
 'exif-whitepoint'                  => 'Fehér pont színérték',
+'exif-primarychromaticities'       => 'Színinger',
+'exif-ycbcrcoefficients'           => 'Színtér transzformációs mátrixának együtthatói',
 'exif-referenceblackwhite'         => 'Fekete-fehér referenciaértékek párja',
 'exif-datetime'                    => 'Utolsó változtatás ideje',
 'exif-imagedescription'            => 'Kép címe',
@@ -2061,6 +2069,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-copyright'                   => 'Szerzői jog tulajdonosa',
 'exif-exifversion'                 => 'EXIF verzió',
 'exif-flashpixversion'             => 'Támogatott Flashpix verzió',
+'exif-colorspace'                  => 'Színtér',
 'exif-componentsconfiguration'     => 'Az egyes összetevők jelentése',
 'exif-compressedbitsperpixel'      => 'Képtömörítési mód',
 'exif-pixelydimension'             => 'Érvényes képszélesség',
@@ -2070,6 +2079,9 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-relatedsoundfile'            => 'Kapcsolódó hangfájl',
 'exif-datetimeoriginal'            => 'EXIF információ létrehozásának dátuma',
 'exif-datetimedigitized'           => 'Digitalizálás dátuma és időpontja',
+'exif-subsectime'                  => 'DateTime almásodpercek',
+'exif-subsectimeoriginal'          => 'DateTimeOriginal almásodpercek',
+'exif-subsectimedigitized'         => 'DateTimeDigitized almásodpercek',
 'exif-exposuretime'                => 'Expozíciós idő',
 'exif-exposuretime-format'         => '$1 mp. ($2)',
 'exif-fnumber'                     => 'F szám',
@@ -2080,6 +2092,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-shutterspeedvalue'           => 'Zársebesség',
 'exif-aperturevalue'               => 'Lencsenyílás',
 'exif-brightnessvalue'             => 'Fényerő',
+'exif-exposurebiasvalue'           => 'Expozíciós dőltség',
 'exif-maxaperturevalue'            => 'Legnagyobb földi lencsenyílás',
 'exif-subjectdistance'             => 'Tárgy távolsága',
 'exif-meteringmode'                => 'Fénymérési mód',
@@ -2088,16 +2101,23 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-focallength'                 => 'Fókusztávolság',
 'exif-subjectarea'                 => 'Tárgy területe',
 'exif-flashenergy'                 => 'Vaku ereje',
+'exif-spatialfrequencyresponse'    => 'Térbeli frekvenciareakció',
+'exif-focalplanexresolution'       => 'Mátrixdetektor X felbontása',
+'exif-focalplaneyresolution'       => 'Mátrixdetektor Y felbontása',
+'exif-focalplaneresolutionunit'    => 'Mátrixdetektor felbontásának mértékegysége',
 'exif-subjectlocation'             => 'Tárgy helye',
+'exif-exposureindex'               => 'Expozíciós index',
+'exif-sensingmethod'               => 'Érzékelési mód',
 'exif-filesource'                  => 'Fájl forrása',
 'exif-scenetype'                   => 'Színhely típusa',
 'exif-cfapattern'                  => 'CFA minta',
 'exif-customrendered'              => 'Egyéni képfeldolgozás',
+'exif-exposuremode'                => 'Expozíciós mód',
 'exif-whitebalance'                => 'Fehéregyensúly',
 'exif-digitalzoomratio'            => 'Digitális zoom aránya',
 'exif-focallengthin35mmfilm'       => 'Fókusztávolság 35 mm-es filmen',
 'exif-scenecapturetype'            => 'Színhely rögzítési típusa',
-'exif-gaincontrol'                 => 'Színhely kezelése',
+'exif-gaincontrol'                 => 'Érzékelés vezérlése',
 'exif-contrast'                    => 'Kontraszt',
 'exif-saturation'                  => 'Telítettség',
 'exif-sharpness'                   => 'Élesség',
@@ -2150,6 +2170,11 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-orientation-7' => 'Elforgatott 90° ÓSZ és függőlegesen tükrözött', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Elforgatott 90° ÓE', # 0th row: left; 0th column: bottom
 
+'exif-planarconfiguration-1' => 'sűrű formátum',
+'exif-planarconfiguration-2' => 'sík formátum',
+
+'exif-componentsconfiguration-0' => 'nem létezik',
+
 'exif-exposureprogram-0' => 'Nem meghatározott',
 'exif-exposureprogram-1' => 'Kézi',
 'exif-exposureprogram-2' => 'Normál program',
@@ -2164,6 +2189,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 'exif-meteringmode-0'   => 'Ismeretlen',
 'exif-meteringmode-1'   => 'Átlagos',
+'exif-meteringmode-2'   => 'CenterWeightedAverage',
 'exif-meteringmode-3'   => 'Megvilágítás',
 'exif-meteringmode-4'   => 'Többszörös megvilágítás',
 'exif-meteringmode-5'   => 'Minta',
@@ -2185,6 +2211,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-lightsource-17'  => 'Hagyományos izzó A',
 'exif-lightsource-18'  => 'Hagyományos izzó B',
 'exif-lightsource-19'  => 'Hagyományos izzó C',
+'exif-lightsource-24'  => 'ISO stúdió wolfram',
 'exif-lightsource-255' => 'Egyéb fényforrás',
 
 'exif-focalplaneresolutionunit-2' => 'hüvelyk',
@@ -2204,6 +2231,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 'exif-exposuremode-0' => 'Automatikus felvétel',
 'exif-exposuremode-1' => 'Kézi felvétel',
+'exif-exposuremode-2' => 'automatikus zárás',
 
 'exif-whitebalance-0' => 'Automatikus fehéregyensúly',
 'exif-whitebalance-1' => 'Kézi fehéregyensúly',
@@ -2214,6 +2242,10 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-scenecapturetype-3' => 'Éjszakai színhely',
 
 'exif-gaincontrol-0' => 'Nincs',
+'exif-gaincontrol-1' => 'Alacsony frekvenciák kiemelése',
+'exif-gaincontrol-2' => 'Magas frekvenciák kiemelése',
+'exif-gaincontrol-3' => 'Alacsony frekvenciák elnyomása',
+'exif-gaincontrol-4' => 'Magas frekvenciák elnyomása',
 
 'exif-contrast-0' => 'Normál',
 'exif-contrast-1' => 'Lágy',
@@ -2239,6 +2271,9 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Keleti hosszúsági fok',
 'exif-gpslongitude-w' => 'Nyugati hosszúsági fok',
+
+'exif-gpsstatus-a' => 'Mérés folyamatban',
+'exif-gpsstatus-v' => 'Mérés közbeni működőképesség',
 
 'exif-gpsmeasuremode-2' => '2-dimenziós méret',
 'exif-gpsmeasuremode-3' => '3-dimenziós méret',
@@ -2298,8 +2333,9 @@ Ha ez *nem* te vagy, ne kattints a hivatkozásra. Ennek a megerősítésre szán
 a felhasználhatósági ideje lejár: $4.',
 
 # Scary transclusion
-'scarytranscludefailed'  => '[$1 sablonjának visszakeresése nem sikerült; sajnáljuk]',
-'scarytranscludetoolong' => '[Túl hosszú az URL; sajnáljuk]',
+'scarytranscludedisabled' => '[Interwiki beillesztése le van tiltva]',
+'scarytranscludefailed'   => '[$1 sablonjának visszakeresése nem sikerült; sajnáljuk]',
+'scarytranscludetoolong'  => '[Túl hosszú az URL; sajnáljuk]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2331,6 +2367,7 @@ $1',
 'searchnamed'      => "''$1'' című lapok keresése.",
 'articletitles'    => "''$1'' kezdetű szócikkek",
 'hideresults'      => 'Eredmények elrejtése',
+'useajaxsearch'    => 'AJAX-alapú kereső használata',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← előző oldal',

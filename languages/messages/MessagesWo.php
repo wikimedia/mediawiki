@@ -358,6 +358,7 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'emailauthenticated'         => 'Ci $1 nga dëggal sa màkkaanu m-bataaxal.',
 'emailnotauthenticated'      => 'Dëggalagoo sa m-bataaxal. Duñ la man a yónne benn m-bataaxal bu aju ci yii ci suuf.',
 'emailconfirmlink'           => 'Dëggalal sa m-bataaxal',
+'invalidemailaddress'        => 'Daytalub m-bataaxal bi baaxul. Duggalal beneen walla nga bàyyi tool bi ne këmm',
 'accountcreated'             => 'léegi bindu nga.',
 'accountcreatedtext'         => 'Mbindug jëfandikukat bii di $1 jàll na',
 'createaccount-title'        => 'Sosum sàq ci {{SITENAME}}',
@@ -385,12 +386,15 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 'extlink_tip'     => 'Lëkkalekaay yu biti (bul fattee jiital http://)',
 'headline_sample' => 'Ron-koj',
 'headline_tip'    => 'Ron-koj 2° dayoo',
+'nowiki_sample'   => 'Duggalal fii mbind mi ñu daytalul',
+'nowiki_tip'      => 'Jéelaleel mbindinu wiki',
 'image_tip'       => 'Nataal bu roofu',
 'sig_tip'         => 'Xaatimee waxtu wi',
 'hr_tip'          => 'Buum bu tëdd (bul ci ëppal)',
 
 # Edit pages
 'summary'                 => 'Koj&nbsp;',
+'subject'                 => 'Tëriit/koj',
 'minoredit'               => 'Coppite yu néewal',
 'watchthis'               => 'Topp xët wii',
 'savearticle'             => 'Duggal coppite yi',
@@ -403,6 +407,31 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 'missingcommenttext'      => 'Di la sakku nga duggal ab tënk ci-suuf, jërëjëf.',
 'missingcommentheader'    => "'''Fattali :''' Joxoo ab koj say coppite. Soo cuqaate ci «duggal coppite yi», di nañ leen duggal te duñ am koj.",
 'summary-preview'         => 'Wonendi koj gi',
+'subject-preview'         => 'Wonendi gu tëriit/koj',
+'blockedtitle'            => 'Bii jëfandikukat dañ kaa téye',
+'blockedtext'             => '<big>\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ leen téye .\'\'\'</big>
+
+Ki def téye gi mooy $ te lii mooy ngirte li : \'\'$2\'\'.
+
+Man ngaa jokkoo ak $1 walla kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorekat yi]] ngir ngeen ma cee waxtaan. 
+
+Te nga jàpp ne jumtukaay bii di "yónne bataaxal bii jëfandikukat" du dox su fekke duggaluloo ab m-bataaxal ci say   [[Special:Preferences|tànneef]]. Sa màkkaanu IP mooy $3, xammeekaayu téye gi moy #$5. Di la sakku nga duggal leen fépp fuñ la leen laajee
+* Ndorteelu déye gi : $8
+* Jeexantalu téye gi : $6
+* Sàq mi ñu téye : $7.',
+'autoblockedtext'         => 'Bii màkkaanu IP dañ kaa téye ndaxte da nga koo bokk ak beneen jëfandikukat, te moom it $1 moo ko téye $1.
+Te lii mooy ngirte yi mu joxe :
+
+:\'\'$2\'\'
+
+* Ndoorteelu téye gi: $8
+* Njeexintalu téye gi : $6
+
+Man ngaa jookkook $1 walla ak kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorekat yi]] ngir waxtaan ci téye gi. 
+
+Su fekkee joxe nga ab màkkaanu m-bataaxal ci say [[Special:Preferences|tànneef]] te terewuñula nga jëfandikoo ko, man ngaa jëfandikoo jumtukaay bii di "yónne ab m-bataaxal bii jëfandikukat" ngir jookkook ab yorekat.
+
+Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen fuñ la leen laajee.',
 'blockededitsource'       => "Ndefug '''say coppite''' yi nga def fii '''$1''' mooy lii ci suuf:",
 'whitelistedittitle'      => 'Laaj na nga bindi ngir mana soppi ndef gi',
 'whitelistedittext'       => 'Da ngay  wara doon $1 ngir am sañ-sañu soppi ngef gi.',
