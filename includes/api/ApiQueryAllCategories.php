@@ -62,7 +62,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			$this->addWhere("cl_to LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
 
 		$this->addOption('LIMIT', $params['limit']+1);
-		$this->addOption('ORDER BY', 'cl_to' . ($params['dir'] == 'ZtoA' ? ' DESC' : ''));
+		$this->addOption('ORDER BY', 'cl_to' . ($params['dir'] == 'descending' ? ' DESC' : ''));
 		$this->addOption('DISTINCT');
 
 		$res = $this->select(__METHOD__);

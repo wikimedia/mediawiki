@@ -113,7 +113,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
 		$this->addOption('ORDER BY', 'page_namespace, page_title' .
-						($params['dir'] == 'ZtoA' ? ' DESC' : ''));
+						($params['dir'] == 'descending' ? ' DESC' : ''));
 
 		$res = $this->select(__METHOD__);
 
