@@ -36,4 +36,6 @@ $messages = array(
 'variantname-kk-arab' => 'توتە',
 'variantname-kk'      => 'disable',
 
+'edittools'                 => '<!-- Мындағы мәтін өңдеу және қотару пішіндердің астында көрсетіледі. -->',
+
 );

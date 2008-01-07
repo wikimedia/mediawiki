@@ -145,7 +145,7 @@ class KkConverter extends LanguageConverter {
 			'/\?/' => '؟', # &#x061F;
 			'/%/'  => '٪', # &#x066A;
 			'/\*/' => '٭', # &#x066D;
-			'/#|№|No\./u' => 'نٶ.',
+			'/#|№|No\./u' => '؀',
 			## Digits -> Arabic
 			'/0/' => '۰', # &#x06F0;
 			'/1/' => '۱', # &#x06F1;
@@ -310,7 +310,7 @@ class KkConverter extends LanguageConverter {
 				return $text;
 				break;
 			case 'kk-cyrl':
-			case 'kk-cn':
+			case 'kk-kz':
 				foreach( $this->mLatn2Cyrl as $pat => $rep ) {
 					$text = preg_replace( $pat, $rep, $text );
 				}
