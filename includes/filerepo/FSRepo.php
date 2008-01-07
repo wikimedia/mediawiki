@@ -149,7 +149,7 @@ class FSRepo extends FileRepo {
 				// In the deleted zone, seed new directories with a blank 
 				// index.html, to prevent crawling
 				if ( $dstZone == 'deleted' ) {
-					file_put_contents( "$dstDir/index.html", '' );
+					$this->file_put_contents( "$dstDir/index.html", '' );
 				}
 			}
 			
@@ -189,7 +189,7 @@ class FSRepo extends FileRepo {
 
 			if ( $flags & self::DELETE_SOURCE ) {
 				if ( $deleteDest ) {
-					unlink( $dstPath );
+					$this->unlink( $dstPath );
 				}
 				if ( !rename( $srcPath, $dstPath ) ) {
 					$status->error( 'filerenameerror', $srcPath, $dstPath );
@@ -202,7 +202,7 @@ class FSRepo extends FileRepo {
 				}
 			}
 			if ( $good ) {
-				chmod( $dstPath, 0644 );
+				$this->chmod( $dstPath, 0644 );
 				$status->successCount++;
 			} else {
 				$status->failCount++;
@@ -525,6 +525,11 @@ class FSRepo extends FileRepo {
 		return strtr( $param, $this->simpleCleanPairs );
 	}
 
+	function file_put_contents( $fileName, $contents ) {
+		file_put_contents( $fileName, $contents );
+	}
+
+	
 }
 
 
