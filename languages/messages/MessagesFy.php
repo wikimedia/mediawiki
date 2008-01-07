@@ -3,9 +3,10 @@
  *
  * @addtogroup Language
  *
- * @author G - ג
  * @author Helix84
  * @author Maartenvdbent
+ * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -65,7 +66,7 @@ $linkTrail = '/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Keppelings ûnderstreekje',
+'tog-underline'               => 'Keppelings ûnderstreekje:',
 'tog-highlightbroken'         => 'Keppelings nei lege siden ta <a href="" class="new">read</a> (oars mei in fraachteken<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafen útfolje',
 'tog-hideminor'               => "Tekstwizigings wei litte út 'Koarts feroare'",
@@ -326,7 +327,6 @@ It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>',
 'protectedpagewarning' => '<strong>Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.</strong>',
 
 # History pages
-'revhistory'      => 'Sideskiednis',
 'nohistory'       => 'Dit is de earste ferzje fan de side.',
 'revnotfound'     => 'Ferzje net fûn',
 'revnotfoundtext' => "De âlde ferzje fan dizze side dêr't jo om frege hawwe, is der net.
@@ -342,10 +342,8 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 (doe) = ferskill mei de side sa't er doe wie, foar de feroaring, T = Tekstwiziging",
 
 # Diffs
-'difference'  => '(Ferskil tusken ferzjes)',
-'loadingrev'  => 'Ferskil tusken ferzjes ...',
-'lineno'      => 'Rigel $1:',
-'editcurrent' => 'Bewurk de hjoeddeistiche ferzje fan dizze side',
+'difference' => '(Ferskil tusken ferzjes)',
+'lineno'     => 'Rigel $1:',
 
 # Search results
 'searchresults'         => 'Sykresultaat',
@@ -494,7 +492,7 @@ meitsje fan it systeem..",
 'linkstoimage'   => 'Dizze siden binne keppele oan it ôfbyld:',
 'nolinkstoimage' => 'Der binne gjin siden oan dit ôfbyld keppelje.',
 
-# Random pages
+# Random page
 'randompage' => 'Samar in side',
 
 # Statistics
@@ -543,7 +541,6 @@ de twadde trochferwizing, wat it "echte" doel wêze moat.',
 'listusers'        => 'Brûkerlist',
 'specialpages'     => 'Bysûndere siden',
 'spheading'        => 'Bysûndere siden foar all brûkers',
-'rclsub'           => '(nei siden dêr\'t "$1" keppelings nei hat)',
 'newpages'         => 'Nije siden',
 'ancientpages'     => 'Alde siden',
 'movethispage'     => 'Move this side',

@@ -547,7 +547,7 @@ S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni 
 'note'                      => '<strong>NOTA:</strong>',
 'previewnote'               => "'''Attinzioni''': chistha è soru un'antiprimma. Li mudìfigghi a la pàgina '''NÒ''' so ancora isthaddi saivvaddi!",
 'previewconflict'           => "L'antiprimma curripundi a lu testhu prisenti i' la casella di mudìfigga superiori e musthra la pàgina cumenti apparirà si s'à gana di incalchà abà '''Sàivva la pàgina'''.",
-'session_fail_preview'      => '<strong>Semmu dipiazuddi, nò è isthaddu pussìbiri sàivva la mudìfiggà parchí sò andaddi pessi i dati reratibi a la sissioni. Si lu problema continua, prubà a iscì e effettuà una noba intradda.</strong>',
+'session_fail_preview'      => '<strong>Semmu dipiazuddi, nò è isthaddu pussìbiri sàivva la mudìfiggà parchí sò andaddi pessi i dati reratibi a la sissioni. Si lu probrema continua, prubà a iscì e effettuà una noba intradda.</strong>',
 'session_fail_preview_html' => "<strong>Semmu dipiazuddi, nò è isthaddu pussìbiri elaburà la mudìfigga parchí sò andaddi pessi i dati reratibi a la sissioni.</strong>
 
 ''Parchí i' {{SITENAME}} è cunsintiddu l'usu di l'HTML chena limitazioni, l'antiprimma nò è visuarizzadda, pa sigguriddai contru l'attacchi JavaScript.''
@@ -924,16 +924,20 @@ Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènt
 'destfilename'               => 'Nommu di lu file di disthinazioni',
 'watchthisupload'            => "Aggiungi a l'abbaidaddi ippiziari",
 'filewasdeleted'             => "Un file cun chist'innòmmu è già isthaddu cariggaddu e canzilladdu. Verifiggà $1 primma di turrà a cariggallu.",
+'filename-bad-prefix'        => "L'innòmmu di lu file chi sei carrigghendi ischumenza cun <strong>\"\$1\"</strong>, ch'è un'innòmmu nò dischrittibu assignaddu automatiggamenti da li fotocameri. Pa piazieri sciubarà un'innòmmu più dischrittibu pa lu file tóiu.",
 
 'upload-proto-error'      => 'Protocollu ibbagliaddu',
 'upload-proto-error-text' => 'Pa lu cariggamentu "luntanu" è nezzessàriu ippizzificà indirizzi ch\'ischumenzani cun <code>http://</code> oppuru <code>ftp://</code>.',
 'upload-file-error'       => 'Errori internu',
 'upload-file-error-text'  => "S'è verifiggaddu un errori internu duranti la criazioni di un file timpuràniu i' l'elaburaddori sivvidori. Cuntattà un'amministhradore di sisthema.",
 'upload-misc-error'       => 'Errori ischunisciddu di carriggamentu',
+'upload-misc-error-text'  => "S'è verifiggaddu un errori nò identifiggaddu duranti lu carriggamentu di lu file. Verifiggà chi l'URL sia curretta e atzessibili e turrà a prubà. Si lu probrema prisisthi, cuntattà un'amministhradore di sisthema.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'  => 'URL nò aggiumpibiri',
-'upload-curl-error28' => 'Tempu ischaduddu pa lu carriggamentu',
+'upload-curl-error6'       => 'URL nò aggiumpibiri',
+'upload-curl-error6-text'  => "Impussìbiri raggiugnì l'URL ippizzificaddu. Verifiggà chi l'URL sia ischrittu currettamenti e chi lu situ sia attibu.",
+'upload-curl-error28'      => 'Tempu ischaduddu pa lu carriggamentu',
+'upload-curl-error28-text' => "Lu situ à impiegaddu troppu tempu a rippundì. Verifiggà chi lu situ sia attibu, aisittà calchi minuti e turrà a prubà, pussibiimmenti candu v'è mancu genti.",
 
 'license'            => "Licènzia d'usu",
 'nolicense'          => 'Nisciuna licènzia indicadda',
@@ -1291,6 +1295,7 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'unprotectsub'                => '(Ibbruccu di "$1")',
 'protect-unchain'             => "Ischulliga i primmissi d'ippusthamentu",
 'protect-text'                => 'Chisthu mòdulu cunsenti di vidé e mudìfiggà lu libellu di prutizioni pa la pàgina <strong>$1</strong>.',
+'protect-locked-blocked'      => "Nò è pussìbiri mudìfiggà i libelli di prutizioni cand'è attibu un broccu. L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'protect-locked-access'       => "Nò si diponi di li primmissi nezzessàri pa mudìfiggà lu libellu di prutizioni di la pàgina.
 L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'protect-cascadeon'           => "Chistha pàgina abà è broccadda parchí è incrusa {{PLURAL:$1|i' la sighenti pàgina, pa la quari|i' li sighenti pàgini, pa li quari}} è attiba la prutizioni ricussiba. È pussìbiri mudìfiggà lu libellu di prutizioni di la pàgina, ma l'impusthazioni reratibi a la prutuzioni ricussina nò sarani mudìfiggaddi.",
@@ -1323,7 +1328,9 @@ L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'undeletepage'                 => 'Musthra e ricupara li pàgini canzilladdi',
 'viewdeletedpage'              => 'Musthra li pàgini canzilladdi',
 'undeleterevisions'            => '{{PLURAL:$1|Una ribisioni|$1 ribisioni}} in archìbiu',
+'undeletehistorynoadmin'       => "La pàgina è isthadda canzilladda. Lu mutibu di la canzilladdura è indicaddu inogghi, impari ai dati di l'utenti chi abìani mudìfiggaddu la pàgina primma di la canzilladdura. Lu testhu cuntinuddu i' li ribisioni canzilladdi è dipunìbiri soru a li amministhradori.",
 'undelete-revision'            => 'Ribisioni canzilladda di la pàgina $1, insiridda lu $2 da $3:',
+'undeleterevision-missing'     => "Ribisioni erradda o mancanti. Lu cullegamentu è erraddu oppuru la ribisioni è già isthadda ricuparadda o eliminadda da l'archìbiu.",
 'undelete-nodiff'              => 'Nò è isthadda acciappadda nisciuna ribisioni prizzidenti.',
 'undeletebtn'                  => 'Turra che primma',
 'undeletereset'                => 'Rimpustha',
@@ -1436,6 +1443,7 @@ $1",
 'autoblocker'                 => "Broccaddu automatiggamenti parchí l'indirizzu IP è cundibisu cu' l'utenti \"[[User:\$1|\$1]]\". Lu broccu di l'utenti \$1 è isthaddu impusthaddu pa lu sighenti mutibu: \"'''\$2'''\".",
 'blocklogpage'                => 'Brocchi',
 'blocklogentry'               => "à broccaddu [[$1]] cu' l'ischadènzia $2 $3",
+'blocklogtext'                => "Chisthu è l'erencu di l'azioni di broccu e ibbruccu utenti. Li indirizzi IP broccaddi automatiggamenti nò so erencaddi. Cunsulthà la [[Special:Ipblocklist|listha di l'IP broccaddi]] pa l'erencu di l'indirizzi e innòmmi utenti chi so broccaddi abà.",
 'unblocklogentry'             => 'à ibbruccaddu $1',
 'block-log-flags-anononly'    => 'soru utenti anònimi',
 'block-log-flags-nocreate'    => 'criazioni registhrazioni broccadda',
@@ -1444,6 +1452,8 @@ $1",
 'range_block_disabled'        => "La pussibiliddai di broccà intervalli d'indirizzi IP nò è attiba abà.",
 'ipb_expiry_invalid'          => 'Duradda o ischadènzia di lu broccu nò vàridda.',
 'ipb_already_blocked'         => 'L\'utenti "$1" è già broccaddu',
+'ipb_cant_unblock'            => 'Errori: Impussìbiri acciappà lu broccu cun ID $1. Lu broccu pudia assé già isthaddu buggaddu.',
+'ipb_blocked_as_range'        => "Errori: L'indirizzu IP $1 nò è broccaddu individuaimmenti e nò pó assé ibbruccaddu. Lu broccu è inveci attibu a libellu di l'intervallu  $2, chi pó assé ibbruccaddu.",
 'ip_range_invalid'            => "Intervallu d'indirizzi ip nò vàriddu.",
 'blockme'                     => 'Broccami',
 'proxyblocker'                => 'Broccu di li proxy abbérthi',
@@ -1502,26 +1512,38 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'movereason'              => 'Mutibu',
 'revertmove'              => 'turra che primma',
 'delete_and_move'         => 'Canzella e ippustha',
+'delete_and_move_text'    => '==Prigonga di canzilladdura==
+
+La pàgina di disthinazioni "[[$1]]" isisthi già. Vói canzillalla pa rindì pussìbiri l\'ippusthamentu?',
 'delete_and_move_confirm' => 'Emmo, sobbraischribì la pàgini',
 'delete_and_move_reason'  => "Canzilladda pa rindì pussìbiri l'ippusthamentu",
 'selfmove'                => "Lu nobu tìturu è uguari a lu vécciu; impussìbiri ippusthà la pàgina cu' lu matessi innòmmu.",
+'immobile_namespace'      => 'Lu nobu tìturu curripondi à una pàgina ippiziari; impussìbiri ippusthà pàgini in chiddu tipu di pàgina.',
 
 # Export
 'export'            => 'Ippurtha li pàgini',
+'exporttext'        => "È pussìbiri ippurthà lu testhu e la cronologia di li mudìfigghi di una pàgina o di un gruppu di pàgini in fuimmaddu XML pa impurthalli i'althri siti ch'utilizzanni lu software MediaWiki, attrabessu [[Special:Import]].
+
+Pa ippurthà li pàgina indicà i tìturi i' la casella di testhu in giossu, unu pa riga, e ippizzificà si s'à gana d'uttinì la versioni currenti e tutti li versioni prizzidenti, cu' li dati di la cronologia di la pàgina, oppure soru l'ulthima versioni e i dati curripundenti a l'ulthima mudìfigga.
+
+In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pa ippurthà \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => "Incrudi soru la ribisioni attuari, nò l'intrea cronologia.",
+'exportnohistory'   => "----
+'''Nota:''' l'ippurthazioni di l'intrea cronologia di li pàgini attrabessu chistha interfàccia è isthadda disattibadda pa mutibi liaddi a li presthazioni di lu sisthema.",
 'export-submit'     => 'Ippurtha',
 'export-addcattext' => 'Aggiungi pàgini da la categuria:',
 'export-addcat'     => 'Aggiungi',
 'export-download'   => 'Dumanda lu saivvamentu cumenti file',
 
 # Namespace 8 related
-'allmessages'         => 'Imbasciaddi di sisthema',
-'allmessagesname'     => 'Nommu',
-'allmessagesdefault'  => 'Testhu pridifiniddu',
-'allmessagescurrent'  => 'Testhu attuari',
-'allmessagestext'     => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki:",
-'allmessagesfilter'   => "Filthru i' l'imbasciaddi:",
-'allmessagesmodified' => 'Musthra soru chiddi mudìfiggaddi.',
+'allmessages'               => 'Imbasciaddi di sisthema',
+'allmessagesname'           => 'Nommu',
+'allmessagesdefault'        => 'Testhu pridifiniddu',
+'allmessagescurrent'        => 'Testhu attuari',
+'allmessagestext'           => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki:",
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nò è supporthaddu parchí l'indicadori '''\$wgUseDatabaseMessages''' nò è attibuu.",
+'allmessagesfilter'         => "Filthru i' l'imbasciaddi:",
+'allmessagesmodified'       => 'Musthra soru chiddi mudìfiggaddi.',
 
 # Thumbnails
 'thumbnail-more'           => 'Immannitta',

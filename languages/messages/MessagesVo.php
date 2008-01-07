@@ -342,6 +342,7 @@ If ye pad at dabinon, ba etuvol säkädi in nünömasit. Nunolös, begö! osi gu
 'badarticleerror'    => 'Dun at no kanon paledunön su pad at.',
 'cannotdelete'       => 'No emögos ad moükön padi/ragivi pevälöl. (Ba ya pemoükon fa geban votik.)',
 'badtitle'           => 'Tiäd badik',
+'badtitletext'       => 'Padatiäd peflagöl äbinon nelonöfik, vägik, u ba yüm bevüpükik u bevüvükik dädik. Mögos, das ninädon malati(s), kel(s) no dalon(s) pagebön ad jafön tiädis.',
 'perfcachedts'       => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1.',
 'viewsource'         => 'Logedön fonäti',
 'viewsourcefor'      => 'tefü $1',
@@ -380,13 +381,23 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'loginsuccess'               => "'''Binol anu in {{SITENAME}} as \"\$1\".'''",
 'nosuchuser'                 => 'No dabinon geban labü nem: "$1". Koräkolös tonatami nema at, u jafolös kali nulik.',
 'nosuchusershort'            => 'No dabinon geban labü nem: "$1". Koräkolös tonatami nema at.',
+'nouserspecified'            => 'Mutol välön gebananemi.',
 'wrongpassword'              => 'Letavöd neveräton. Steifülolös dönu.',
 'wrongpasswordempty'         => 'Letavöd vagon. Steifülolös dönu.',
+'passwordtooshort'           => 'Letavöd olik no lonöfon u binon te brefik. Muton binädon me tonats/numats pu $1 e difön de gebananem olik.',
 'mailmypassword'             => 'Sedolös obe letavödi',
 'passwordremindertitle'      => 'Letavöd nulik nelaidik in {{SITENAME}}',
+'passwordremindertext'       => 'Ek (luveratiko ol, se ladet-IP: $1)
+ebegon, das osedobs ole letavödi nulik pro {{SITENAME}} ($4).
+Letavöd gebana: "$2" binon anu "$3".
+Anu kanol nunädön oli e votükön letavödi olik.
+
+If no ol, ab pösod votik ebegon letavödi nulik, ud if ememol letavödi olik e no plu vilol votükön oni, kanol nedemön penedi at e laigebön letavödi rigik ola.',
 'noemail'                    => 'Ladet leäktronik nonik peregistaron pro geban "$1".',
 'passwordsent'               => 'Letavöd nulik pesedon ladete leäktronik fa "$1" peregistaröle.<br />
 Nunädolös oli dönu posä ogetol oni.',
+'eauthentsent'               => 'Pened leäktronik pesedon ladete pegivöl ad fümükön dabini onik.
+Büä pened votik alseimik okanon pasedön kale at, omutol dunön valikosi in pened at peflagöli, ad fümükön, das kal binon jenöfo olik.',
 'acct_creation_throttle_hit' => 'Säkusädolös, ya ejafol kalis $1. No plu kanol jafön kali nulik.',
 'emailauthenticated'         => 'Ladet leäktronik olik päfümükon tü düp $1.',
 'emailnotauthenticated'      => 'Ladet leäktronik ola no nog pefümedon. Pened nonik posedon me pads sököl.',
@@ -404,12 +415,14 @@ Nunädolös oli dönu posä ogetol oni.',
 'link_sample'     => 'Yümatiäd',
 'link_tip'        => 'Yüm ninik',
 'extlink_sample'  => 'http://www.sam.com yümatiäd',
+'extlink_tip'     => 'Yüm plödik (memolös foyümoti: http://)',
 'headline_sample' => 'Tiädavödem',
 'headline_tip'    => 'Tiäd nivoda 2id',
 'math_sample'     => 'Pladolös malatami isio',
 'math_tip'        => 'Malatam matematik (LaTeX)',
 'nowiki_sample'   => 'Pladolös isio vödemi no pefomätöli',
 'nowiki_tip'      => 'Nedemön vükifomätami',
+'sig_tip'         => 'Dispenäd olik kobü dät e tim',
 
 # Edit pages
 'summary'                  => 'Plän brefik',
@@ -421,6 +434,7 @@ Nunädolös oli dönu posä ogetol oni.',
 'showpreview'              => 'Jonolöd padalogoti',
 'showdiff'                 => 'Jonolöd votükamis',
 'anoneditwarning'          => "'''Nuned:''' No enunädol oli. Ladet-IP olik poregistaron su redakamajenotem pada at.",
+'summary-preview'          => 'Büologed brefik',
 'blockedtitle'             => 'Geban peblokon',
 'blockedtext'              => "<big>'''Gebananam u ladet-IP olik(s) peblokon(s).'''</big>
 
@@ -472,6 +486,8 @@ Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u 
 'templatesusedpreview'     => 'Samafomots in büologed at pageböls:',
 'template-protected'       => '(pejelon)',
 'template-semiprotected'   => '(dilo pejelon)',
+'nocreatetext'             => '{{SITENAME}} emiedükon mögi ad jafön padis nulik.
+Kanol redakön padi dabinöl, u [[Special:Userlogin|nunädön oli u jafön kali]].',
 'recreate-deleted-warn'    => "'''NUNED: Dönujafol padi pemoüköl.'''
 
 Vätälolös, va binos pötik ad lairedakön padi at.<br>
@@ -484,6 +500,7 @@ Jenotalised moükama pada at pajonon is as yuf.",
 'viewpagelogs'        => 'Jonön jenotalisedis pada at',
 'currentrev'          => 'Revid anuik',
 'revisionasof'        => 'Revid dätü $1',
+'revision-info'       => 'Revid timü $1 fa el $2',
 'previousrevision'    => '←Revid vönedikum',
 'nextrevision'        => 'Revid nulikum→',
 'currentrevisionlink' => 'Revid anuik',
@@ -495,12 +512,14 @@ Jenotalised moükama pada at pajonon is as yuf.",
 'deletedrev'          => '[pemoüköl]',
 'histfirst'           => 'Balid',
 'histlast'            => 'Lätik',
+'historysize'         => '({{PLURAL:$1|jölät 1|jöläts $1}})',
 'historyempty'        => '(vagik)',
 
 # Revision feed
-'history-feed-title'       => 'Revidajenotem',
-'history-feed-description' => 'Revidajenotem pada at in vük',
-'history-feed-empty'       => 'Pad pevipöl no dabinon.
+'history-feed-title'          => 'Revidajenotem',
+'history-feed-description'    => 'Revidajenotem pada at in vük',
+'history-feed-item-nocomment' => '$1 lä $2', # user at time
+'history-feed-empty'          => 'Pad pevipöl no dabinon.
 Ba pemoükon se ragivs, u ba pevotanemon.
 Kanol [[Special:Search|sukön]] padis nulik tefik.',
 
@@ -719,8 +738,10 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'
 'doubleredirects'     => 'Lüodüköms telik',
 'doubleredirectstext' => 'Kedet alik labon yümis lü lüodüköm balid e telid, ed i kedeti balid vödema lüodüköma telid, kel nomiko ninädon padi, ko kel lüodüköm balid söton payümön.',
 
-'brokenredirects'     => 'Lüodüköms dädik',
-'brokenredirectstext' => 'Lüodüköms sököl dugons lü pads no dabinöls:',
+'brokenredirects'        => 'Lüodüköms dädik',
+'brokenredirectstext'    => 'Lüodüköms sököl dugons lü pads no dabinöls:',
+'brokenredirects-edit'   => '(redakön)',
+'brokenredirects-delete' => '(moükön)',
 
 'withoutinterwiki'        => 'Pads nen yüms bevüpükik',
 'withoutinterwiki-header' => 'Pads sököl no yumons lü fomams in püks votik.',
@@ -841,6 +862,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'watchthispage'        => 'Galädolöd padi at',
 'unwatch'              => 'Negalädön',
 'watchnochange'        => 'Nonik padas pagalädöl olik peredakon dü period löpo pejonöl.',
+'watchlist-details'    => '{{PLURAL:$1|pad $1|pads $1}} su galädalised, plä bespikapads.',
 'watchlistcontains'    => 'Galädalised olik labon {{PLURAL:$1|padi|padis}} $1.',
 'wlshowlast'           => 'Jonolöd: düpis lätik $1, delis lätik $2, $3',
 'watchlist-show-bots'  => 'Jonolöd redakamis elas bots',
@@ -849,6 +871,10 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'watchlist-hide-own'   => 'Klänolöd redakamis obik',
 'watchlist-show-minor' => 'Jonolöd redakamis pülik',
 'watchlist-hide-minor' => 'Klänolöd redakamis pülik',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Papladon ini galädalised...',
+'unwatching' => 'Pamoükon se galädalised...',
 
 'enotif_newpagetext' => 'Atos binon pad nulik.',
 'changed'            => 'pevotüköl',
@@ -891,9 +917,11 @@ $2 jonon moükamis nulik.',
 'confirmprotect'              => 'Fümedolös jeli',
 'protectcomment'              => 'Küpet:',
 'unprotectsub'                => '(Säjelölo padi: "$1")',
+'protect-text'                => 'Kanol logön e votükön is jelanivodi pada: <strong>$1</strong>.',
 'protect-default'             => '(pebuüköl)',
 'protect-level-autoconfirmed' => 'Blokön gebanis no peregistarölis',
 'protect-level-sysop'         => 'Te guvans',
+'pagesize'                    => '(jöläts)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redakön',
@@ -931,6 +959,9 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 'mycontris'     => 'Keblünots obik',
 'contribsub2'   => 'Tefü $1 ($2)',
 'nocontribs'    => 'Votükams nonik petuvons me paramets at.',
+'uctop'         => ' (lätik)',
+'month'         => 'De mul (e büiks):',
+'year'          => 'De yel (e büiks):',
 
 'sp-contributions-newbies'     => 'Jonolöd te keblünotis kalas nulik',
 'sp-contributions-newbies-sub' => 'Tefü kals nulik',
@@ -1172,6 +1203,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön yüm ad magod badik. Yüms votik valik su lien ot palelogons as pläams, a.s. pads, in kelas vödems magod dalon pagebön.',
 
 # Metadata
+'metadata'          => 'Ragivanüns',
 'metadata-expand'   => 'Jonön patis pluik',
 'metadata-collapse' => 'Klänedön patis pluik',
 

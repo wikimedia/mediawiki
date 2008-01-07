@@ -1565,7 +1565,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'contribslink'                => 'contribuciones',
 'autoblocker'                 => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[Usuariu:$1|$1]]". La razón del bloquéu de $1 ye: "$2"',
 'blocklogpage'                => 'Rexistru de bloqueos',
-'blocklogentry'               => 'bloquiáu [[$1]] con una caducidá de $2 $3',
+'blocklogentry'               => 'bloquió [[$1]] con una caducidá de $2 $3',
 'blocklogtext'                => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios. Les direcciones IP
 bloquiaes automáticamente nun salen equí. Pa ver los bloqueos qu'hai agora mesmo, 
 mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
@@ -1860,7 +1860,7 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 
 # Patrol log
 'patrol-log-page' => 'Rexistru de supervisión',
-'patrol-log-line' => 'marcada la versión $1 de $2 como supervisada $3',
+'patrol-log-line' => 'marcó la versión $1 de $2 como supervisada $3',
 'patrol-log-auto' => '(automática)',
 
 # Image deletion
@@ -1959,14 +1959,20 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-relatedsoundfile'            => "Archivu d'audiu rellacionáu",
 'exif-datetimeoriginal'            => 'Fecha y hora de la xeneración de datos',
 'exif-datetimedigitized'           => 'Fecha y hora de la dixitalización',
+'exif-subsectime'                  => 'Fecha y hora (precisión infrasegundu)',
+'exif-subsectimeoriginal'          => 'Fecha y hora del orixinal (precisión infrasegundu)',
+'exif-subsectimedigitized'         => 'Fecha y hora de la dixitalización (precisión infrasegundu)',
 'exif-exposuretime'                => "Tiempu d'esposición",
 'exif-exposuretime-format'         => '$1 seg ($2)',
 'exif-fnumber'                     => 'Númberu F',
 'exif-exposureprogram'             => "Programa d'esposición",
+'exif-spectralsensitivity'         => 'Sensitividá espeutral',
+'exif-isospeedratings'             => 'Sensibilidá ISO',
 'exif-oecf'                        => 'Factor de conversión optoelectrónicu',
 'exif-shutterspeedvalue'           => 'Velocidá del obturador',
 'exif-aperturevalue'               => 'Abertura',
 'exif-brightnessvalue'             => 'Brillu',
+'exif-exposurebiasvalue'           => "Correición d'esposición",
 'exif-maxaperturevalue'            => "Valor máximu d'apertura",
 'exif-subjectdistance'             => 'Distancia al suxetu',
 'exif-meteringmode'                => 'Mou de midición',
@@ -1995,6 +2001,9 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturación',
 'exif-sharpness'                   => 'Nitidez',
+'exif-devicesettingdescription'    => 'Descripción de la configuración del dispositivu',
+'exif-subjectdistancerange'        => 'Intervalu de distacia al suxetu',
+'exif-imageuniqueid'               => "Identificación única d'imaxe",
 'exif-gpsversionid'                => 'Versión de la etiqueta GPS',
 'exif-gpslatituderef'              => 'Llatitú Norte o Sur',
 'exif-gpslatitude'                 => 'Llatitú',
@@ -2013,10 +2022,13 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-gpstrack'                    => 'Direición de movimientu',
 'exif-gpsimgdirectionref'          => 'Referencia de la direición de la imaxe',
 'exif-gpsimgdirection'             => 'Direición de la imaxe',
+'exif-gpsmapdatum'                 => 'Usaos datos del estudiu xeodésicu',
 'exif-gpsdestlatituderef'          => 'Referencia de la llatitú de destín',
 'exif-gpsdestlatitude'             => 'Llatitú de destín',
 'exif-gpsdestlongituderef'         => 'Referencia de la llonxitú de destín',
 'exif-gpsdestlongitude'            => 'Llonxitú de destín',
+'exif-gpsdestbearingref'           => 'Referencia de la orientación de destín',
+'exif-gpsdestbearing'              => 'Orientación del destín',
 'exif-gpsdestdistanceref'          => 'Referencia de la distancia al destín',
 'exif-gpsdestdistance'             => 'Distancia al destín',
 'exif-gpsprocessingmethod'         => 'Nome del métodu de procesamientu de GPS',
@@ -2038,6 +2050,9 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-orientation-7' => 'Rotada 90° a mandrecha y voltiada verticalmente', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Rotada 90° a manzorga', # 0th row: left; 0th column: bottom
 
+'exif-planarconfiguration-1' => 'formatu irregular',
+'exif-planarconfiguration-2' => 'formatu planu',
+
 'exif-componentsconfiguration-0' => 'nun esiste',
 
 'exif-exposureprogram-0' => 'Non definida',
@@ -2054,6 +2069,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 
 'exif-meteringmode-0'   => 'Desconocíu',
 'exif-meteringmode-1'   => 'Promediáu',
+'exif-meteringmode-2'   => 'Media ponderada centrada',
 'exif-meteringmode-3'   => 'Puntual',
 'exif-meteringmode-4'   => 'Multipuntu',
 'exif-meteringmode-5'   => 'Patrón',
@@ -2075,6 +2091,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-lightsource-17'  => 'Lluz estándar A',
 'exif-lightsource-18'  => 'Lluz estándar B',
 'exif-lightsource-19'  => 'Lluz estándar C',
+'exif-lightsource-24'  => "Tungstenu ISO d'estudio",
 'exif-lightsource-255' => 'Otra fonte de lluz',
 
 'exif-focalplaneresolutionunit-2' => 'pulgaes',
@@ -2094,6 +2111,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 
 'exif-exposuremode-0' => 'Esposición automática',
 'exif-exposuremode-1' => 'Esposición manual',
+'exif-exposuremode-2' => 'Puesta ente paréntesis automática',
 
 'exif-whitebalance-0' => 'Balance automáticu de blancos',
 'exif-whitebalance-1' => 'Balance manual de blancos',
@@ -2195,7 +2213,9 @@ $3
 Si esti *nun* yes tú, nun abras l\'enllaz. Esti códigu de confirmación caduca en $4.',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[La URL ye demasiao llarga; sentímoslo]',
+'scarytranscludedisabled' => '[La tresclusión interwiki ta desactivada]',
+'scarytranscludefailed'   => '[La obtención de la plantía falló pa $1; sentímoslo]',
+'scarytranscludetoolong'  => '[La URL ye demasiao llarga; sentímoslo]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
