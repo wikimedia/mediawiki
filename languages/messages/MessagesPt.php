@@ -14,6 +14,7 @@
  * @author Malafaya
  * @author SPQRobin
  * @author לערי ריינהארט
+ * @author Villate
  */
 
 $namespaceNames = array(
@@ -268,7 +269,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configuração de opções]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Perguntas e respostas frequentes]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de e-mail de anúncios de novas versões do MediaWiki]',
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correio de anúncios de novas versões do MediaWiki]',
 
 'about'          => 'Sobre',
 'article'        => 'Artigo',
@@ -727,7 +728,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'protectedpagewarning'      => '<strong>AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'cascadeprotectedwarning'   => "'''Atenção:''' Esta página se encontra protegida de forma que apenas {{int:group-sysop}} possam editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
-'titleprotectedwarning'     => '<strong>ATENÇÃO: Esta página foi protegida, apenas alguns usuários poderão criá-la.</strong>',
+'titleprotectedwarning'     => '<strong>ATENÇÃO: Esta página foi protegida, apenas alguns utilizadores poderão criá-la.</strong>',
 'templatesused'             => 'Predefinições utilizadas nesta página:',
 'templatesusedpreview'      => 'Predefinições utilizadas nesta previsão:',
 'templatesusedsection'      => 'Predefinições utilizadas nesta secção:',

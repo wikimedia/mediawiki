@@ -224,7 +224,7 @@ $messages = array(
 'hidetoc'             => 'кекшемс',
 'viewdeleted'         => 'Ванномс $1?',
 'feedlinks'           => 'Максовкс:',
-'site-rss-feed'       => 'RSS-нть максовкс 1 $ -нть кисе',
+'site-rss-feed'       => 'RSS-нть максовкс $1 -нть кисе',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Лопа',
@@ -247,8 +247,10 @@ $messages = array(
 'internalerror'      => 'Потмонь ильведькс',
 'internalerror_info' => 'Потмонь ильведькс: $1',
 'filecopyerror'      => '"$1" файлась эзь ванстово од "$2" файлакс.',
+'filerenameerror'    => 'Файлантень а маштови "$1" максомс од лем "$2".',
 'filedeleteerror'    => '"$1" файлась шукшпряв эзь ливтеве.',
 'filenotfound'       => '"$1" файлась а муеви.',
+'fileexistserror'    => 'Файлась "$1" а сёрмадови: ули уш истямо',
 'badtitle'           => 'Амаштовикс конякс',
 'viewsource'         => 'Ванномс лисьмапрянть',
 'viewsourcefor'      => ' $1 -нь юртозо',
@@ -330,6 +332,8 @@ $messages = array(
 'showdiff'           => 'Невтемс мезе полавтовсь',
 'anoneditwarning'    => "'''Икелев мерема:''' Тынь апак сова. Тынк IP адрестенк карми совавтозь те витнема-петнема историянь лопасонть.",
 'summary-preview'    => 'Цётомань седеикелев вановкс',
+'blockednoreason'    => 'тувтал апак максо',
+'whitelistedittext'  => 'Лопань витнемс - петнемс эряви $1.',
 'nosuchsectiontitle' => 'Истямо явкс арась',
 'loginreqtitle'      => 'Совамс эряви',
 'loginreqlink'       => 'совамс',
@@ -337,9 +341,13 @@ $messages = array(
 'newarticle'         => '(Од)',
 'previewnote'        => '<strong>Это - ансяк икелев ваномась; полавтоматне эзть ульне ванстозь!</strong>',
 'editing'            => 'Витнят-петнят $1',
+'yourtext'           => 'Мезе сёрмадыть',
+'storedversion'      => 'Ванстозь версия',
+'yourdiff'           => 'Мейсэ явовить',
 'copyrightwarning'   => 'Инескеть тешкстынк, тынк внси путовксне {{SITENAME}}-се, кода арсетян нолдазь 2 $ ало (вант 1 $ педе пес). Кодак Тынк арась меленк тынк сермадовксось улевель витнезь-петнезь педте пес илядо сестэ путто сонзе тей.<br />
 Тынь истяжо макстад вал сень коряс - тень Тынь сёрмадынк тыньдынсь, али саинк сонзэ вейсэнь ёнксто али олячинь порталсто. 
 <strong>ИЛЯДО МАКСО ВАНСТОЗЬ ЛОМАНЕНЬ ВИДЕЧИСЭ ВАЖОДИМАНТЬ АПАК МЕЛЬТЕМЕ!</strong>',
+'templatesused'      => 'Те лопасонть тевс нолдазь лопапарцунт:',
 'template-protected' => '(ванстозь)',
 
 # History pages
@@ -400,6 +408,7 @@ $messages = array(
 'textboxsize'              => 'Витнема-петнема',
 'localtime'                => 'Тескэнь шкась',
 'servertime'               => 'Серверэнь шка',
+'files'                    => 'Файлат',
 
 # Recent changes
 'recentchanges'   => 'Чыяконь полавтнемат-лиякстомтомат',
@@ -419,6 +428,7 @@ $messages = array(
 'upload'        => 'Ёкстамонзо файланть',
 'uploadbtn'     => 'Тонгомс файланть',
 'filename'      => 'Файлонь лем',
+'savefile'      => 'Ванстомс файланть',
 'uploadedimage' => 'тонгозь "[[$1]]"',
 
 # Image list
@@ -450,7 +460,7 @@ $messages = array(
 'fewestrevisions' => 'Лопатьне седе аламонь вановкснэнь марто',
 
 # Miscellaneous special pages
-'nmembers'           => '1 $ {{PLURAL:$1|совиця|совицятне}}',
+'nmembers'           => '$1 {{PLURAL:$1|совиця|совицятне}}',
 'lonelypages'        => 'Лопаурозкэть',
 'uncategorizedpages' => 'Категориявтомо лопат',
 'unusedcategories'   => 'Тевс апак нолда категорият',

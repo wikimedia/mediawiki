@@ -1,22 +1,29 @@
 <?php
-/** Kinaray-a
+/** Kinaray-a (Kinaray-a)
+ *
+ * @addtogroup Language
  *
  * @author RonaldPanaligan, Harvzsf (September 2007)
- * 
- * @addtogroup Language
+ * @author RonaldPanaligan
+ * @author Harvzsf
  */
+
+
 
 $messages = array(
 # User preference toggles
 'tog-underline'            => "Koritan ang dalum kang manga ''link'':",
+'tog-justify'              => 'Tururupungun ang kilid kang manga paragraph',
 'tog-hideminor'            => "Tagoon ang gagmay nga ''edit'' sa mga bag-o nga ilis",
 'tog-extendwatchlist'      => "Palapadun ang ''watchlist'' agud nga mapakita ang tanan nga ginasogtan nga pag-ilis",
 'tog-numberheadings'       => "Automatiko nga togroan kang nomero ang manga ''heading''",
+'tog-showtoolbar'          => 'Ipakita ang pangbolig sa pag-ilis (JavaScript)',
 'tog-rememberpassword'     => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer''",
 'tog-watchcreations'       => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpanghimo ko",
 'tog-watchdefault'         => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpang-''edit'' ko",
 'tog-watchmoves'           => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpanghalin ko",
 'tog-watchdeletion'        => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpamara ko",
+'tog-previewonfirst'       => 'Ipakita ang preview sa ona nga ilis',
 'tog-nocache'              => "Ontatun ang ''page caching''",
 'tog-enotifwatchlistpages' => 'Padarhan ako kang e-mail kon may nag-ilis kang pahina nga akun ginabantayan',
 'tog-enotifminoredits'     => "Padarhan man ako kang ''e-mail'' tohay sa manga gagmay nga pag-ilis sa manga pahina",
@@ -97,6 +104,8 @@ $messages = array(
 'newwindow'      => "(gabokas sa bag-o nga ''window'')",
 'cancel'         => 'Kanselar',
 'qbfind'         => 'Sagap',
+'qbbrowse'       => 'Bilid',
+'qbedit'         => 'Iislan',
 'qbpageoptions'  => 'Dya nga Pahina',
 'qbpageinfo'     => 'Konteksto',
 'qbspecialpages' => 'Manga espesyal nga pahina',
@@ -113,18 +122,19 @@ $messages = array(
 'searcharticle'     => 'Agto',
 'history'           => 'Kasaysayan kang Pahina',
 'history_short'     => 'Kasaysayan',
+'updatedmarker'     => 'ginpabag-o halin kang orihi ko nga pagbisita',
 'info_short'        => 'Impormasyon',
 'printableversion'  => "Bersyon nga sarang ma-''print''",
 'permalink'         => "Permanyente nga ''link''",
 'print'             => 'Printa',
-'edit'              => 'Ilis',
+'edit'              => 'Iislan',
 'editthispage'      => 'Islan ang dya nga pahina',
 'delete'            => 'Para',
 'deletethispage'    => 'Paraun ang dya nga Pahina',
 'protect'           => 'Amlig',
 'protect_change'    => 'islan ang proteksyon',
 'protectthispage'   => 'Amligan ang dya nga pahina',
-'unprotect'         => 'Huksun ang proteksyon',
+'unprotect'         => 'huksun ang proteksyon',
 'unprotectthispage' => 'Huksun ang proteksyon sa dya nga pahina',
 'newpage'           => 'Bag-o nga pahina',
 'talkpage'          => 'Sogdanunun ang dya nga pahina',
@@ -134,25 +144,58 @@ $messages = array(
 'articlepage'       => 'Turukun ang pahina kasudlan',
 'talk'              => 'Sogdanunay',
 'views'             => 'Manga paglantaw',
+'toolbox'           => 'Pangbolig',
 'otherlanguages'    => 'Sa iban nga lingwahe',
+'redirectpagesub'   => 'Idaho ang pahina',
 'protectedpage'     => 'Protektado nga pahina',
+'jumpto'            => 'Lompat sa:',
 'jumptosearch'      => 'sagap',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'bugreports'  => "Mga report kang ''bug''",
+'edithelp'    => 'Panoytoy sa Pag-ilis',
 'mainpage'    => 'Pono nga Pahina',
 'sitesupport' => 'Donasyon',
 
 'badaccess'        => 'Sayup sa lisensya',
 'badaccess-group0' => 'Indi kaw ginpasogtan nga himoon ang lihuk nga ginalaum mo.',
 
+'ok'                      => 'OK dun',
 'youhavenewmessages'      => 'May rudyan kaw nga $1 ($2).',
 'newmessageslink'         => 'bag-o nga manga mensahe',
 'newmessagesdifflink'     => 'orihi nga ilis',
 'youhavenewmessagesmulti' => 'May rudyan kaw nga manga bag-o nga mensahe sa $1',
+'editsection'             => 'iislan',
+'editold'                 => 'iislan',
+'toc'                     => 'Manga Sulud',
+'showtoc'                 => 'ipakita',
+'hidetoc'                 => 'itago',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'Pahina',
+'nstab-media'     => 'Pahina kang Midya',
+'nstab-special'   => 'Espesyal',
+'nstab-project'   => 'Pahina kang Proyekto',
+'nstab-image'     => 'Inayap',
+'nstab-mediawiki' => 'Mensahe',
+'nstab-template'  => "''Template''",
+'nstab-help'      => 'Pahina kang Panoytoy',
+'nstab-category'  => 'Kategorya',
 
 # General errors
-'error'      => 'Sayup',
-'viewsource' => 'Turukun ang ginhalinan',
+'error'                => 'Sayup',
+'databaseerror'        => 'Sayup sa database',
+'nodb'                 => "Indi mapili ang ''database'' nga $1",
+'readonly'             => "Napintalan ang ''database''",
+'internalerror'        => 'Sayup internal',
+'internalerror_info'   => 'Sayup internal: $1',
+'filecopyerror'        => 'Indi makopya ang \'\'file\'\' halin sa "$1" paagto sa "$2".',
+'filerenameerror'      => 'Indi maislan ang ngaran kang \'\'file\'\' halin sa "$1" paagto sa "$2".',
+'filedeleteerror'      => "Indi mapara ang ''file'' nga \"\$1\".",
+'directorycreateerror' => "Indi mahimo ang ''directory'' nga \"\$1\".",
+'filenotfound'         => "Indi makita ang ''file'' nga \"\$1\".",
+'fileexistserror'      => "Indi makasolat sa ''file'' nga \"\$1\": may amo kadya run nga ''file''",
+'viewsource'           => 'Turukun ang ginhalinan',
 
 # Login and logout pages
 'nologinlink'   => "Himo ka sangka ''account''",
