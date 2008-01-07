@@ -481,19 +481,21 @@ Jenotalised moükama pada at pajonon is as yuf.",
 'cantcreateaccounttitle' => 'Kal no kanon pajafön',
 
 # History pages
-'viewpagelogs'     => 'Jonön jenotalisedis pada at',
-'currentrev'       => 'Revid anuik',
-'revisionasof'     => 'Revid dätü $1',
-'previousrevision' => '←Revid büik',
-'cur'              => 'nuik',
-'next'             => 'sököl',
-'last'             => 'lätik',
-'page_first'       => 'balid',
-'page_last'        => 'lätik',
-'deletedrev'       => '[pemoüköl]',
-'histfirst'        => 'Balid',
-'histlast'         => 'Lätik',
-'historyempty'     => '(vagik)',
+'viewpagelogs'        => 'Jonön jenotalisedis pada at',
+'currentrev'          => 'Revid anuik',
+'revisionasof'        => 'Revid dätü $1',
+'previousrevision'    => '←Revid vönedikum',
+'nextrevision'        => 'Revid nulikum→',
+'currentrevisionlink' => 'Revid anuik',
+'cur'                 => 'nuik',
+'next'                => 'sököl',
+'last'                => 'lätik',
+'page_first'          => 'balid',
+'page_last'           => 'lätik',
+'deletedrev'          => '[pemoüköl]',
+'histfirst'           => 'Balid',
+'histlast'            => 'Lätik',
+'historyempty'        => '(vagik)',
 
 # Revision feed
 'history-feed-title'       => 'Revidajenotem',
@@ -782,6 +784,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'
 'specialloguserlabel'  => 'Geban:',
 'speciallogtitlelabel' => 'Tiäd:',
 'log'                  => 'Jenotaliseds',
+'all-logs-page'        => 'Jenotaliseds valik',
 'alllogstext'          => 'Kobojonam jenotalisedas löpükamas, moükamas, jelodamas, blokamas e guvanas.
 Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'logempty'             => 'No dabinons notets in jenotalised at.',
@@ -1266,6 +1269,7 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'watchlistedit-raw-titles' => 'Tiäds:',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Logedön votükamis teföl',
 'watchlisttools-edit' => 'Logön e redakön galädalisedi',
 
 );

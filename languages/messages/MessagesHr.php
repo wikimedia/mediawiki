@@ -1098,7 +1098,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'filedelete-submit'      => 'Izbriši',
 'filedelete-success'     => "Datoteka '''$1''' je izbrisana.",
 'filedelete-success-old' => '<span class="plainlinks">Inačica datoteke \'\'\'[[Media:$1|$1]]\'\'\' od $3, $2 je obrisana.</span>',
-'filedelete-nofile'      => "'''$1''' ne postoji na ovoj stranici.",
+'filedelete-nofile'      => "'''$1''' ne postoji na {{SITENAME}}.",
 'filedelete-nofile-old'  => "Nema arhivirane verzije datoteke '''$1''' s zadanim parametrima.",
 'filedelete-iscurrent'   => 'Pokušavate obrisati najnoviju inačicu ove datoteke. Molimo vas da prije toga vratite na stariju inačicu.',
 

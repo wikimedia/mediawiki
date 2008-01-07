@@ -1234,12 +1234,14 @@ que tean n'usu activu.</p>",
 'listusers-noresult' => "Nun s'atoparon usuarios.",
 
 # E-mail user
+'mailnologin'     => "Ensin direición d'unviu",
 'mailnologintext' => 'Has tar [[Special:Userlogin|identificáu]]
 y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
 pa poder unviar correos a otros usuarios.',
 'emailuser'       => 'Manda-y un email a esti usuariu',
 'emailpage'       => "Corréu d'usuariu",
 'emailpagetext'   => "Si esti usuariu metió una direición de corréu electrónicu válida nes sos preferencies d'usuariu, el formulariu d'embaxo va unviar un mensaxe simple. La direición de corréu electrónicu que metisti nes tos preferencies d'usuariu va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a responder.",
+'usermailererror' => "L'operador de corréu devolvió un error:",
 'defemailsubject' => 'Corréu electrónicu de {{SITENAME}}',
 'noemailtitle'    => 'Ensin direición de corréu',
 'noemailtext'     => "Esti usuariu nun punxo una dirección de corréu válida,
@@ -1355,8 +1357,10 @@ Mira en $2 la llista de les últimes páxines borraes.',
 ** A pidimientu del autor
 ** Violación de Copyright
 ** Vandalismu',
+'rollback'                    => 'Revertir ediciones',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'revertir',
+'rollbackfailed'              => 'Falló la reversión',
 'cantrollback'                => "Nun se pue revertir la edición; el postrer collaborador ye l'únicu autor d'esta páxina.",
 'alreadyrolled'               => 'Nun se pue revertir la postrer edición de [[:$1]]
 fecha por [[User:$2|$2]] ([[User talk:$2|discusión]]); daquién más yá editó o revirtió la páxina.
@@ -1371,6 +1375,7 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protectlogpage'              => 'Rexistru de proteiciones',
 'protectlogtext'              => 'Esti ye un rexistru de les páxines protexíes y desprotexíes. Consulta la [[Special:Protectedpages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
 'protectedarticle'            => 'protexó $1',
+'modifiedarticleprotection'   => 'camudó\'l nivel de proteición de "[[$1]]"',
 'unprotectedarticle'          => 'desprotexó "[[$1]]"',
 'protectsub'                  => '(Protexendo "$1")',
 'confirmprotect'              => 'Confirmar proteición',
@@ -1383,6 +1388,8 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong>$1</strong>.',
 'protect-locked-blocked'      => 'Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta
 ye la configuración actual de la páxina <strong>$1</strong>:',
+'protect-locked-dblock'       => "Los niveles de proteición nun puen ser camudaos pol mor d'un bloquéu activu de
+la base de datos. Esta ye la configuración actual de la páxina <strong>$1</strong>:",
 'protect-locked-access'       => 'La to cuenta nun tien permisu pa camudar los niveles de proteición de páxina.
 Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 'protect-cascadeon'           => "Esta páxina ta protexida nestos momentos porque ta inxerida {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada. Pues camudar el nivel de proteición d'esta páxina, pero nun va afeutar a la proteición en cascada.",
@@ -1411,40 +1418,52 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 'restriction-level-all'           => 'cualesquier nivel',
 
 # Undelete
-'undelete'                 => 'Ver páxines borraes',
-'undeletepage'             => 'Ver y restaurar páxines borraes',
-'viewdeletedpage'          => 'Ver páxines borraes',
-'undeletepagetext'         => "Les siguientes páxines foron borraes pero tovía tán nel archivu y puen
+'undelete'                     => 'Ver páxines borraes',
+'undeletepage'                 => 'Ver y restaurar páxines borraes',
+'viewdeletedpage'              => 'Ver páxines borraes',
+'undeletepagetext'             => "Les siguientes páxines foron borraes pero tovía tán nel archivu y puen
 ser restauraes. L'archivu pue ser purgáu periódicamente.",
-'undeleteextrahelp'        => "Pa restaurar tola páxina, deseleiciona toles caxelles y calca en
+'undeleteextrahelp'            => "Pa restaurar tola páxina, deseleiciona toles caxelles y calca en
 '''''Restaurar'''''. Pa realizar una restauración selectiva, seleiciona les caxelles de la revisión
 que quies restaurar y calca en '''''Restaurar'''''. Calcando en '''''Llimpiar''''' quedarán vacios
 el campu de comentarios y toles caxelles.",
-'undeleterevisions'        => '$1 {{PLURAL:$1|revisión archivada|revisiones archivaes}}',
-'undeletehistory'          => 'Si restaures la páxina, restauraránse toles revisiones al historial.
+'undeleterevisions'            => '$1 {{PLURAL:$1|revisión archivada|revisiones archivaes}}',
+'undeletehistory'              => 'Si restaures la páxina, restauraránse toles revisiones al historial.
 Si se creó una páxina col mesmu nome dende que foi borrada, les revisiones
 restauraes van apaecer nel historial anterior. Date cuenta tamién de que les restricciones del archivu de revisiones
 perderánse depués de la restauración',
-'undeletehistorynoadmin'   => "Esta páxina foi borrada. La razón del borráu amuésase
+'undeleterevdel'               => "Nun se fadrá la restauración si ésta provoca un borráu parcial de la cabera revisión
+de la páxina. Nestos casos, tienes que desmarcar o amosar les revisiones borraes más recién. Les revisiones d'archivos
+que nun tienes permisu pa ver nun sedrán restauraos.",
+'undeletehistorynoadmin'       => "Esta páxina foi borrada. La razón del borráu amuésase
 nel resumen d'embaxo, amás de detalles de los usuarios qu'editaron esta páxina enantes
 de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái pa los alministradores.",
-'undeletebtn'              => 'Restaurar',
-'undeletereset'            => 'Llimpiar',
-'undeletecomment'          => 'Comentariu:',
-'undeletedarticle'         => 'restauró "[[$1]]"',
-'undeletedrevisions'       => '{{PLURAL:$1|1 revisión restaurada|$1 revisiones restauraes}}',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
-'undeletedfiles'           => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',
-'cannotundelete'           => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
-'undeletedpage'            => "<big>'''Restauróse $1'''</big>
+'undelete-revision'            => 'Revisión borrada de $1 (del $2) fecha por $3:',
+'undeleterevision-missing'     => "Falta la revisión o nun ye válida. Sieque l'enllaz nun seya correutu, o que la
+revisión fuera restaurada o eliminada del archivu.",
+'undelete-nodiff'              => "Nun s'atopó revisión previa.",
+'undeletebtn'                  => 'Restaurar',
+'undeletereset'                => 'Llimpiar',
+'undeletecomment'              => 'Comentariu:',
+'undeletedarticle'             => 'restauró "[[$1]]"',
+'undeletedrevisions'           => '{{PLURAL:$1|1 revisión restaurada|$1 revisiones restauraes}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
+'undeletedfiles'               => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',
+'cannotundelete'               => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
+'undeletedpage'                => "<big>'''Restauróse $1'''</big>
 
 Consulta'l [[Special:Log/delete|rexistru de borraos]] pa ver los borraos y restauraciones recientes.",
-'undelete-search-box'      => 'Buscar páxines borraes',
-'undelete-search-prefix'   => "Amosar páxines qu'empecipien por:",
-'undelete-search-submit'   => 'Buscar',
-'undelete-cleanup-error'   => 'Error al borrar l\'archivu non usáu "$1".',
-'undelete-error-short'     => "Error al restaurar l'archivu: $1",
-'undelete-error-long'      => "Atopáronse errores al restaurar l'archivu:
+'undelete-header'              => 'Mira nel [[Special:Log/delete|rexistru de borraos]] les páxines borraes recién.',
+'undelete-search-box'          => 'Buscar páxines borraes',
+'undelete-search-prefix'       => "Amosar páxines qu'empecipien por:",
+'undelete-search-submit'       => 'Buscar',
+'undelete-no-results'          => "Nun s'atoparon páxines afechisques a la busca nel archivu de borraos.",
+'undelete-filename-mismatch'   => "Nun se pue restaurar la revisión del archivu con fecha $1: el nome d'archivu nun concuaya",
+'undelete-bad-store-key'       => "Nun se pue restaurar la revisión del archivu con fecha $1: yá nun esistía l'archivu nel momentu de borralu.",
+'undelete-cleanup-error'       => 'Error al borrar l\'archivu non usáu "$1".',
+'undelete-missing-filearchive' => "Nun se pue restaurar l'archivu col númberu d'identificación $1 porque nun ta na base de datos. Seique yá fuera restauráu.",
+'undelete-error-short'         => "Error al restaurar l'archivu: $1",
+'undelete-error-long'          => "Atopáronse errores al restaurar l'archivu:
 
 $1",
 
@@ -1506,12 +1525,14 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 ** Nome d'usuariu inaceutable",
 'ipbanononly'                 => 'Bloquiar namái usuarios anónimos',
 'ipbcreateaccount'            => 'Evitar creación de cuentes',
+'ipbemailban'                 => "Torgar al usuariu l'unviu de corréu electrónicu",
 'ipbenableautoblock'          => "Bloquiar automáticamente la cabera direición IP usada por esti usuariu y toles IP posteriores dende les qu'intente editar",
 'ipbsubmit'                   => 'Bloquiar esti usuariu',
 'ipbother'                    => 'Otru periodu:',
 'ipboptions'                  => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'otru',
 'ipbotherreason'              => 'Otra razón/razón adicional:',
+'ipbhidename'                 => "Ocultar el nome d'usuariu / IP del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
 'badipaddress'                => 'IP non válida',
 'blockipsuccesssub'           => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'          => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
@@ -1522,6 +1543,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipb-blocklist-addr'          => 'Ver los bloqueos esistentes de $1',
 'ipb-blocklist'               => 'Ver los bloqueos esistentes',
 'unblockip'                   => 'Desbloquiar usuariu',
+'unblockiptext'               => "Usa'l formulariu d'abaxo pa restablecer l'accesu d'escritura a una direicion IP o a un nome d'usuariu previamente bloquiáu.",
 'ipusubmit'                   => 'Desbloquiar esta direición',
 'unblocked'                   => '[[User:$1|$1]] foi desbloquiáu',
 'unblocked-id'                => 'El bloquéu $1 foi elimináu',
@@ -1537,6 +1559,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'createaccountblock'          => 'bloquiada la creación de cuentes',
 'emailblock'                  => 'corréu electrónicu bloquiáu',
 'ipblocklist-empty'           => 'La llista de bloqueos ta vacia.',
+'ipblocklist-no-results'      => "La direición IP o nome d'usuariu solicitáu nun ta bloquiáu.",
 'blocklink'                   => 'bloquiar',
 'unblocklink'                 => 'desbloquiar',
 'contribslink'                => 'contribuciones',
@@ -1551,11 +1574,16 @@ mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 'block-log-flags-nocreate'    => 'creación de cuentes deshabilitada',
 'block-log-flags-noautoblock' => 'bloquéu automáticu deshabilitáu',
 'block-log-flags-noemail'     => 'corréu electrónicu bloquiáu',
+'range_block_disabled'        => "La capacidá d'alministrador pa crear bloqueos d'intervalos ta desactivada.",
 'ipb_expiry_invalid'          => 'Tiempu incorrectu.',
 'ipb_already_blocked'         => '"$1" yá ta bloqueáu',
+'ipb_cant_unblock'            => "Error: Nun s'atopó'l bloquéu númberu $1. Seique yá fuera desbloquiáu.",
+'ipb_blocked_as_range'        => 'Error: La IP $1 nun ta bloquiada direutamente, polo que nun pue ser desloquiada. Sicasí, foi bloquiada como parte del intervalu $2, que pue ser desbloquiáu.',
 'ip_range_invalid'            => 'Rangu IP non válidu.',
 'blockme'                     => 'Blóquiame',
+'proxyblocker'                => 'Bloquiador de proxys',
 'proxyblocker-disabled'       => 'Esta función ta deshabilitada.',
+'proxyblockreason'            => "La to direición IP foi bloquiada porque ye un proxy abiertu. Por favor contauta col to proveedor de serviciones d'Internet o col to servicio d'asistencia téunica y infórmalos d'esti seriu problema de seguridá.",
 'proxyblocksuccess'           => 'Fecho.',
 'sorbsreason'                 => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
 'sorbs_create_account_reason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}. Nun pues crear una cuenta',
@@ -1563,12 +1591,26 @@ mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 # Developer tools
 'lockdb'              => 'Protexer la base de datos',
 'unlockdb'            => 'Desprotexer la base de datos',
+'lockdbtext'          => "Al bloquiar la base de datos suspenderáse la capacidá de tolos
+usuarios pa editar páxines, camudar les sos preferencies, editar
+les sos llistes de vixilancia y otres aiciones que requieran
+cambeos na base de datos. Por favor confirma que ye lo que quies facer,
+y que vas desbloquiar la base de datos cuando fine'l so mantenimientu.",
+'unlockdbtext'        => 'Al desbloquiar la base de datos restauraráse la capacida de tolos
+usuarios pa editar páxines, camudar les sos preferencies, editar
+les sos llistes de vixilancia y otres aiciones que requieren cambeos
+na base de datos. Por favor confirma que ye lo quies facer.',
 'lockconfirm'         => 'Si, quiero protexer daveres la base de datos.',
 'unlockconfirm'       => 'Sí, quiero desprotexer daveres la base de datos.',
 'lockbtn'             => 'Protexer la base de datos',
 'unlockbtn'           => 'Desprotexer la base de datos',
 'locknoconfirm'       => 'Nun activasti la caxa de confirmación.',
+'lockdbsuccesssub'    => 'Bloquéu de la base de datos efeutuáu correutamente',
+'unlockdbsuccesssub'  => "Elimináu'l bloquéu de la base de datos",
+'lockdbsuccesstext'   => "La base de datos foi bloquiada.
+<br />Alcuérdate de [[Special:Unlockdb|desbloquiala]] depués d'acabar el so mantenimientu.",
 'unlockdbsuccesstext' => 'La base de datos foi desprotexida.',
+'lockfilenotwritable' => "L'archivu de bloquéu de la base de datos nun ye escribible. Pa bloquiar o desbloquiar la base de datos ésti tien que poder ser modificáu pol servidor.",
 'databasenotlocked'   => 'La base de datos nun ta bloquiada.',
 
 # Move page
@@ -1605,6 +1647,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'pagemovedsub'            => 'Treslláu correctu',
 'movepage-moved'          => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
+'cantmove-titleprotected' => "Nun pues mover una páxina a esti llugar porque'l nuevu títulu foi protexíu de la so creación",
 'talkexists'              => "'''La páxina treslladóse correutamente, pero non la so páxina de discusión porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
 'movedto'                 => 'treslladáu a',
 'movetalk'                => 'Mover la páxina de discusión asociada',
@@ -1626,8 +1669,8 @@ La páxina de destín "[[$1]]" yá esiste. ¿Quies borrala pa dexar sitiu pal tr
 'immobile_namespace'      => "El nome d'orixe o'l de destín ye d'una triba especial; nun se puen mover páxines dende nin a esti espaciu de nomes.",
 
 # Export
-'export'          => 'Esportar páxines',
-'exporttext'      => "Pues esportar el testu y l'historial d'ediciones d'una páxina en particular o d'una
+'export'            => 'Esportar páxines',
+'exporttext'        => "Pues esportar el testu y l'historial d'ediciones d'una páxina en particular o d'una
 riestra páxines endolcaes nun documentu XML. Esti pue ser importáu depués n'otra wiki
 qu'use MediaWiki al traviés de la páxina [[Special:Import|importar]].
 
@@ -1636,10 +1679,13 @@ y seleiciona si quies la versión actual xunto con toles versiones antigües, xu
 so historial, o namái la versión actual cola información de la postrer edición.
 
 Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
-'exportcuronly'   => 'Amestar namái la revisión actual, non tol historial',
-'export-submit'   => 'Esportar',
-'export-addcat'   => 'Añader',
-'export-download' => 'Guardar como archivu',
+'exportcuronly'     => 'Amestar namái la revisión actual, non tol historial',
+'exportnohistory'   => "----
+'''Nota:''' Desactivóse la esportación del historial completu de páxines al traviés d'esti formulariu por motivos de rendimientu.",
+'export-submit'     => 'Esportar',
+'export-addcattext' => 'Añader páxines dende la categoría:',
+'export-addcat'     => 'Añader',
+'export-download'   => 'Guardar como archivu',
 
 # Namespace 8 related
 'allmessages'               => 'Tolos mensaxes del sistema',
@@ -1658,6 +1704,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'thumbnail_error'          => 'Error al crear la miniatura: $1',
 'djvu_page_error'          => 'Páxina DjVu fuera de llímites',
 'djvu_no_xml'              => 'Nun se pudo obtener el XML pal archivu DjVu',
+'thumbnail_invalid_params' => 'Parámetros de miniatura non válidos',
 'thumbnail_dest_directory' => 'Nun se pue crear el direutoriu de destín',
 
 # Special:Import
@@ -1757,7 +1804,9 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'tooltip-upload'                  => 'Empecipiar la xubida',
 
 # Metadata
-'notacceptable' => 'El servidor de la wiki nun pue suplir los datos nun formatu llexible pol to navegador.',
+'nodublincore'      => 'Metados RDF Dublin Core deshabilitaos pa esti servidor.',
+'nocreativecommons' => 'Metadatos RDF Creative Commons deshabilitaos pa esti servidor.',
+'notacceptable'     => 'El servidor de la wiki nun pue suplir los datos nun formatu llexible pol to navegador.',
 
 # Attribution
 'anonymous'        => 'Usuariu/os anónimu/os de {{SITENAME}}',
@@ -1889,6 +1938,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-transferfunction'            => 'Función de tresferencia',
 'exif-whitepoint'                  => 'Cromacidá de puntu blancu',
 'exif-primarychromaticities'       => 'Cromacidá de los primarios',
+'exif-ycbcrcoefficients'           => 'Coeficientes de la matriz de tresformación del espaciu de color',
 'exif-referenceblackwhite'         => 'Pareya de valores blancu y negru de referencia',
 'exif-datetime'                    => 'Fecha y hora de modificación del archivu',
 'exif-imagedescription'            => 'Títulu de la imaxe',
@@ -1941,6 +1991,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-digitalzoomratio'            => 'Razón de zoom dixital',
 'exif-focallengthin35mmfilm'       => 'Llonxitú focal en película de 35 mm',
 'exif-scenecapturetype'            => "Triba de captura d'escena",
+'exif-gaincontrol'                 => "Control d'escena",
 'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturación',
 'exif-sharpness'                   => 'Nitidez',
@@ -2147,7 +2198,13 @@ Si esti *nun* yes tú, nun abras l\'enllaz. Esti códigu de confirmación caduca
 'scarytranscludetoolong' => '[La URL ye demasiao llarga; sentímoslo]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Borrar])',
+'trackbackbox'      => '<div id="mw_trackbacks">
+Retroenllaces pa esta páxina:<br />
+$1
+</div>',
+'trackbackremove'   => ' ([$1 Borrar])',
+'trackbacklink'     => 'Retroenllaz',
+'trackbackdeleteok' => 'El retroenllaz borróse correutamente.',
 
 # Delete conflict
 'deletedwhileediting' => "Avisu: ¡Esta páxina foi borrada depués de qu'entamaras a editala!",

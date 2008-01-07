@@ -562,6 +562,7 @@ S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni 
 'explainconflict'           => "Un'althru utenti à sàivvaddu una noba versioni di la pàgina primma di lu saivvatàggiu tóiu. La casella di mudìfigga superiori cunteni lu testhu di la pàgina attuarmenti in lìnia, cumenti è isthadda mudìfiggadda da l'althru utenti. La versioni cu' li mudìfigghi tói è i' la casella di mudìfigga in giossu. Si vói cunfèimmalli, dévi arriggà li mudìfigghi tói i' lu testhu esisthenti (casella superiori). <b>Soru</b> lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"Sàivva la pàgina\".<br />",
 'yourtext'                  => 'Lu testhu tóiu',
 'storedversion'             => 'La versioni mimurizadda',
+'nonunicodebrowser'         => "<strong>ATTINZIONI: Lu nabiggadori tóiu nò è cumpatìbiri cu' li caràtteri Unicode. Pa cunsintì la mudìfigga di li pàgini chena crià incunvinienti, i caràtteri nò ASCII so visuarizzaddi i' la casella di mudìfigga cumenti còdizi esadezimari.</strong>",
 'editingold'                => '<strong>ATTINZIONI: Sei mudìfigghendi una versioni di la pàgina nò aggiornadda. Si vói saivvàlla tutti i ciambamenti arriggaddi daboi chistha ribisioni sarani pessi!</strong>',
 'yourdiff'                  => 'Diffarènzi',
 'copyrightwarning'          => "Nota: tutti li cuntributi a {{SITENAME}} so rilassaddi i la licènzia d'usu $2 (vedi $1 pa maggiori dettàgli). Si nò vói chi li testhi tói siani mudìfiggaddi e disthribuiddi a cassisia chena l'autorizzazioni tóia, nò l'invia à {{SITENAME}}. <br />
@@ -573,9 +574,12 @@ Inviendi lu testhu ài la ripunsabiriddai chi lu testhu sia toiu oppuru sia i lu
 
 <strong>NÒ INVIÀ MATERIARI CUBERTHU DA DIRITTU D'AUTORI CHENA AUTORIZZAZIONI!</strong>",
 'longpagewarning'           => '<strong>ATTINZIONI: Chistha pàgina è longa $1 kilobyte; zerthuni nabiggadori pudiani abé dei prubremi. Si pussìbiri suddibidì la pàgina in sezzioni o sottupàgini minori.</strong>',
+'longpageerror'             => "<strong>ERRORI: Lu testhu ch'ài inviaddu è longu $1 kB (kilobytes), più di la misura massima cunsintidda di $2 kB. Lu testhu nò pò assé sàivvaddu.</strong>",
+'readonlywarning'           => "<strong>ATTINZIONI: La bancadati è isthadda broccadda pa manutinzioni, dunca abà è impussìbiri sàivvà li mudìfigghi. Pa nò li pirdhì, cupià lu testhu mudìfiggaddu i' un file i' lu propriu elaburaddori e turrà a sàivvallu candu la bancadati sarà ibbruccadda.</strong>",
 'protectedpagewarning'      => "<strong>ATTINZIONI: Chista pàgina è isthadda broccadda parchì soru l'utenti cun pribiréggi di amministhradori possiano mudìfiggarla.</strong>",
 'semiprotectedpagewarning'  => "'''Nota:''' Chista pàgina è isthadda broccadda parchì soru li utenti registhraddi possiano mudìfiggarla.",
 'cascadeprotectedwarning'   => "'''Attinzioni:''' Chistha pàgina è isthadda broccadda in modu chi soru l'utenti cun pribiréggi di amministhradori possiano mudìfiggarla. Lu chi avvini parchí la pàgina è incrusa {{PLURAL:\$1|i la pàgina indicadda ..., ch'è isthadda prutiggidda|i li pàgini indicaddi ..., chi so isthaddi prutiggiddi}} chirriendi la prutizioni \"ricussiba\":",
+'titleprotectedwarning'     => '<strong>ATTINZIONI: Chistha pàgina è isthadda broccadda in modu chi soru zerthuni utenti possiano crialla.</strong>',
 'templatesused'             => 'Mudelli utirizaddi in chistha pàgina:',
 'templatesusedpreview'      => 'Mudelli utirizaddi in chistha antiprimma:',
 'templatesusedsection'      => 'Mudelli utirizaddi in chistha sezzioni:',
@@ -721,6 +725,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'viewprevnext'          => 'Vèdi ($1) ($2) ($3).',
 'showingresults'        => "Accó {{PLURAL:$1|màssimu '''1''' risulthaddu|màssimu li '''$1''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
 'showingresultsnum'     => "Accó {{PLURAL:$3|'''1''' risulthaddu |li '''$3''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
+'nonefound'             => "'''Nota''': Zerthuni paràuri di la linga ingresa, cumenti \"zero\" o \"more\", nò so indizizzabiri e pudiani dunca nò frunì risulthaddi, cumenti l'indicazioni di più tèimmini da zirchà (soru li pàgini chi cuntenani tutti i tèimmini sciubaraddi sò visuarizzaddi i' li risulthaddi).",
 'powersearch'           => 'Zercha',
 'powersearchtext'       => "Zercha i' li sighenti namespaces:<br />$1<br />$2 Musthra i rinvii <br />Critéri pa zirchà: $3 $9",
 'searchdisabled'        => "Abà nò pói zirchà i' {{SITENAME}}; pruba cun [http://www.google.it/search?q=site%3Asdc.wikipedia.org Google] o sìmiri, ma ammintati chi li cuntinuddi di {{SITENAME}} pudia nò assé aggiornaddi.",
@@ -1104,6 +1109,7 @@ Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènt
 'booksources'               => 'Rifirimenti di libri',
 'booksources-search-legend' => 'Zercha rifirimenti di libri',
 'booksources-go'            => 'Vai',
+'booksources-text'          => "Inogghi v'è una listha di cullegamenti bessu siti estherni chi vindani libri nobi e usaddi, attrabessu li quari è pussìbiri uttinì maggiori infuimmazioni i' lu testhu zirchaddu.",
 
 'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i' lu situ.",
 'data'               => 'Dati',
@@ -1134,6 +1140,7 @@ Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènt
 'allpagesnext'      => 'Sighenti',
 'allpagessubmit'    => 'Vai',
 'allpagesprefix'    => "Musthra li pàgini ch'ischuminzani cun:",
+'allpagesbadtitle'  => "Lu tìturu indicaddu pa la pàgina nò è vàriddu o cunteni prefissi interlinga o interwiki. Pudia puru cuntinì unu o più caràtteri chi nò si pudiani usà i' li tìturi.",
 'allpages-bad-ns'   => 'Lu namespace "$1" nò isisthi i\' {{SITENAME}}.',
 
 # Special:Listusers
