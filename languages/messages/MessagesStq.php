@@ -1672,6 +1672,9 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'importhistoryconflict'      => 'Deer bestounde al allere Versionen, do mäd disse kollidierje. Muugelkerwiese wuude ju Siede al eer importierd.',
 'importnosources'            => 'Foar dän Transwiki Import sunt neen Wällen definierd un dät direkte Hoochleeden fon Versione is blokkierd.',
 'importnofile'               => 'Deer is neen Importdoatäi hoochleeden wuuden.',
+'importuploaderrorsize'      => 'Dät Hoochleeden fon ju Importdoatäi is failsloain. Ju Doatäi is gratter as ju maximoal toulätte Doatäigrööte.',
+'importuploaderrorpartial'   => 'Dät Hoochleeden fon ju Importdoatäi is failsloain. Ju Doatäi wuude man deelwiese hoochleeden.',
+'importuploaderrortemp'      => 'Dät Hoochleeden fon ju Importdoatäi is failsloain. N temporär Ferteeknis failt.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbouk',

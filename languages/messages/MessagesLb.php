@@ -648,6 +648,7 @@ Zu äre Informatioun fannt Dir d'Läsch-Logbuch mat dem Grond fir dat virescht L
 
 # History pages
 'viewpagelogs'        => 'Logbicher fir dës Säit weisen',
+'nohistory'           => 'Et gëtt keng al Versioune vun dëser Säit.',
 'revnotfound'         => 'Dës Versioun gouf net fonnt.',
 'currentrev'          => 'Aktuell Versioun',
 'revisionasof'        => 'Versioun vum $1',
@@ -710,6 +711,7 @@ Zu äre Informatioun fannt Dir d'Läsch-Logbuch mat dem Grond fir dat virescht L
 
 # Search results
 'searchresults'         => 'Resultat vun der Sich',
+'searchresulttext'      => "Fir méi Informatiounen iwwert d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'        => 'Dir hutt no "[[:$1|$1]]" gesicht.',
 'searchsubtitleinvalid' => 'Dir hutt no "$1" gesicht.',
 'noexactmatch'          => "'''Et gëtt keng Säite mam Titel \"\$1\".''' 
@@ -718,6 +720,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'noexactmatch-nocreate' => "'''Et gëtt keng Säit mam Titel \"\$1\".'''",
 'titlematches'          => 'Säitentitel Iwwerdeneestëmmungen',
 'textmatches'           => 'Säitentext Iwwerdeneestëmmungen',
+'notextmatches'         => 'Keen Text vun enger Säit entsprecht deem wat Dir sicht.',
 'prevn'                 => 'virescht $1',
 'nextn'                 => 'nächst $1',
 'viewprevnext'          => 'Weis ($1) ($2) ($3)',
@@ -726,6 +729,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'nonefound'             => '<strong>Opgepasst</strong>: Net erfollegräich Siche geschéien dacks doduerch, datt zevill allgeméng Wierder benotzt ginn, wéi "an" oder "vun", déi net indexéiert sinn, oder wann dir méi wéi ee Wuert ugitt (dir kritt nëmmen déi Säiten ugewisen, an deenen all d\'Wierder stinn).',
 'powersearch'           => 'Sichen',
 'powersearchtext'       => 'Sich an de Nimmraim:<br />$1<br />$2 Redirecte weisen<br />Sich no: $3 $9',
+'searchdisabled'        => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat H!ellef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Preferences page
 'preferences'             => 'Preferenzen',
@@ -791,19 +795,22 @@ derbäisetzen.',
 'userrights-nodatabase'      => "D'Datebank $1 gëtt et net oder se ass net lokal.",
 
 # Groups
-'group'            => 'Grupp:',
-'group-bot'        => 'Boten',
-'group-sysop'      => 'Administrateuren',
-'group-bureaucrat' => 'Bürokraten',
-'group-all'        => '(all)',
+'group'               => 'Grupp:',
+'group-autoconfirmed' => 'Registréiert Benotzer',
+'group-bot'           => 'Boten',
+'group-sysop'         => 'Administrateuren',
+'group-bureaucrat'    => 'Bürokraten',
+'group-all'           => '(all)',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Administrateur',
-'group-bureaucrat-member' => 'Bürokrat',
+'group-autoconfirmed-member' => 'Registréierte Benotzer',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Administrateur',
+'group-bureaucrat-member'    => 'Bürokrat',
 
-'grouppage-bot'        => '{{ns:project}}:Botten',
-'grouppage-sysop'      => '{{ns:project}}:Administrateuren',
-'grouppage-bureaucrat' => '{{ns:project}}:Bürokraten',
+'grouppage-autoconfirmed' => '{{ns:project}}:Registréiert Benotzer',
+'grouppage-bot'           => '{{ns:project}}:Botten',
+'grouppage-sysop'         => '{{ns:project}}:Administrateuren',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
 # User rights log
 'rightslog'  => 'Logbuch vun de Benotzerrechter',
@@ -812,6 +819,7 @@ derbäisetzen.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'recentchanges'                     => 'Rezent Ännerungen',
+'recentchangestext'                 => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– nei Säiten; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
 'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum <b>$2</b> un (maximum <b>$1</b> Ännerunge gi gewisen).",
@@ -846,6 +854,7 @@ derbäisetzen.',
 'uploadbtn'           => 'Fichier eroplueden',
 'uploadnologin'       => 'Net ugemellt',
 'uploaderror'         => 'Feeler bäim Eroplueden',
+'upload-prohibited'   => 'Verbuede Fichiers Formater: $1.',
 'uploadlogpage'       => 'Logbuch vum Eroplueden',
 'filename'            => 'Numm vum Fichier',
 'filedesc'            => 'Résumé',
@@ -855,8 +864,11 @@ derbäisetzen.',
 'uploadedfiles'       => 'Eropgeluede Fichierën',
 'ignorewarning'       => 'Warnung ignoréieren an de Fichier nawell späicheren.',
 'ignorewarnings'      => 'Ignoréier all Iwwerschreiwungswarnungen',
+'minlength1'          => "D'Nimm vu Fichieren musse mindestens e Buchstaf/Caractère laang sinn.",
 'illegalfilename'     => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'         => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
+'filetype-missing'    => 'De Fichier huet keng Erweiderung (wéi z. B. ".jpg").',
+'large-file'          => "D'Fichieren sollte no Méiglechkeet net méi grouss wéi $1 sinn. Dëse Fhihier huet $2.",
 'emptyfile'           => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'          => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
 'successfulupload'    => 'Eroplueden erfollegräich',
@@ -1161,6 +1173,9 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'protect_expiry_old'          => "D'Spärzäit läit an der Vergaangenheet.",
 'protect-unchain'             => 'Réckel-Protectioun änneren',
 'protect-text'                => "Hei kënnt Dir de Protectiounsstatus fir d'Säit <strong>$1</strong> kucken an änneren.",
+'protect-locked-access'       => "Dir hutt net déi néideg Rechter fir de Protectiouns-Niveau vun dëser Säit z'änneren. 
+Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
+'protect-cascadeon'           => "Dës Säit ass elo gespaart well si an déi folg4end {{PLURAL:$1|Säit|Säiten}} agebonn ass déi duerch eng Kaskadespär blockéiert {{PLURAL:$1|ass|sinn}}. De Protectiounsniveau ka fir dës Seite geännert ginn, dëst huet awer keen Afloss op d'Kaskadespär.",
 'protect-default'             => 'Alleguer (Standard)',
 'protect-fallback'            => 'Eng "$1"-Autorisatioun gëtt gebraucht.',
 'protect-level-autoconfirmed' => 'Spär fir net ugemellte Benotzer',
@@ -1191,6 +1206,7 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'undeletedarticle'         => 'huet "[[$1]]" restauréiert',
 'undeletedrevisions'       => '$1 {{PLURAL:$1|Versioun gouf|$1 Versioune goufe}} restauréiert',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} an {{PLURAL:$2|1 Fichier|$2 Fichieren}} goufe restauréiert',
+'undeletedfiles'           => '$1 {{PLURAL:$1|Fichier gouf|Fichiere goufe}} restauréiert',
 'undelete-search-box'      => 'Sich no geläschte Säiten',
 'undelete-search-submit'   => 'Sichen',
 
@@ -1248,6 +1264,8 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 **Net akzeptabele Benotzernumm",
 'ipbsubmit'                   => 'Dës IP-Adress resp dëse Benotzer spären',
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'              => 'Aner Dauer',
+'ipbotherreason'              => 'Aneren oder zousätzleche Grond:',
 'badipaddress'                => "D'IP-Adress huet dat falscht Format.",
 'blockipsuccesssub'           => 'Mat Succès gespaart',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
@@ -1287,6 +1305,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 
 W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spär ewechhuelt soubal d'Maintenance-Aarbechten eriwwer sinn.",
 'lockconfirm'       => "Jo, ech wëll d'Datebank wierklech spären.",
+'lockbtn'           => 'Datebank spären',
 'lockdbsuccesstext' => "D'{{SITENAME}}-Datebank gouf gespaart. <br />
 Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance-Aarbechte fäerdeg sinn.",
 
@@ -1298,6 +1317,11 @@ Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonn eng Säi
 
 <b>OPGEPASST!</b> 
 Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
+'movepagetalktext'        => "Déi assoziéiert Diskussiounssäit gëtt, wann et se gëtt, automatesch matgeréckelt, '''et sief:'''
+*Et gëtt schonn eng Diskussiounssäit mit dësem Numm, oder
+*Dir wielt déi Optioun hei ënnedrënner of.
+
+An deene Fäll musst Dir, wann Dir dat wënscht, de Contenu vun däer Säit manuell réckelen oder fusionéieren.",
 'movearticle'             => 'Säit réckelen:',
 'newtitle'                => 'Op neien Titel:',
 'move-watch'              => 'Dës Säit iwwerwaachen',
@@ -1348,10 +1372,12 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'djvu_page_error' => 'DjVu-Säit baussent dem Säiteberäich',
 
 # Special:Import
+'import'                   => 'Säiten importéieren',
 'import-interwiki-history' => "Importéier all d'Versioune vun dëser Säit",
 'import-interwiki-submit'  => 'Import',
 'importstart'              => 'Importéier Säiten …',
 'import-revision-count'    => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
+'importnopages'            => "Et gëtt keng Säiten fir z'importéieren.",
 'importunknownsource'      => 'Onbekannt Importquell',
 'importbadinterwiki'       => 'Falschen Interwiki-Link',
 'importnotext'             => 'Eidel oder keen Text',
@@ -1382,6 +1408,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'tooltip-ca-watch'                => 'Dës Säit op är Iwwerwaachungs-Lëscht bäisetzen',
 'tooltip-ca-unwatch'              => 'Dës Säit vun der Iwwerwaachungs-Lëscht erofhuelen',
 'tooltip-search'                  => 'Op {{SITENAME}} sichen',
+'tooltip-p-logo'                  => 'Haaptsäit',
 'tooltip-n-mainpage'              => 'Eis Entréesdier',
 'tooltip-n-portal'                => 'Iwwer de Portal, wat Dir maache kënnt, wou wat ze fannen ass',
 'tooltip-n-currentevents'         => "D'Aktualitéit a wat dohannert ass",
@@ -1416,6 +1443,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 # Attribution
 'anonymous'   => 'Anonym(e) Benotzer op {{SITENAME}}',
 'siteuser'    => '{{SITENAME}}-Benotzer $1',
+'and'         => 'an',
 'siteusers'   => '{{SITENAME}}-Benotzer $1',
 'creditspage' => 'Quellen',
 
@@ -1426,6 +1454,9 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 'categoryarticlecount'   => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Säit|ginn et bis ewell $1 Säiten}}.',
 'category-media-count'   => 'Et {{PLURAL:$1|gëtt eng Datei|ginn $1 Dateien}} an dëser Kategorie',
 'listingcontinuesabbrev' => '(Fortsetzung)',
+
+# Info page
+'numwatchers' => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
 
 # Math options
 'mw_math_html' => 'Wa méiglech als HTML duerstellen, soss PNG',
@@ -1685,6 +1716,7 @@ $1',
 'watchlistedit-normal-submit'  => 'Säiten erofhuelen',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} vun ärer Suivi-Lëscht erofgeholl:',
 'watchlistedit-raw-title'      => 'Suivi-Lëscht onformatéiert änneren',
+'watchlistedit-raw-legend'     => 'Iwwerwaachungs-Lëscht onformatéiert änneren',
 'watchlistedit-raw-explain'    => "D'Säite vun äerer Suivi-Lëscht ginn ënnendrenner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetzt oder erofhuelt; eng Säit pro Linn. Wann Dir fäerdeg sidd, klickt Suivi-Lëscht à jour setzen. Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",
 'watchlistedit-raw-titles'     => 'Säiten:',
 'watchlistedit-raw-submit'     => 'Suivi-Lëscht à jour setzen',

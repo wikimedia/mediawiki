@@ -154,9 +154,12 @@ $messages = array(
 # Login and logout pages
 'yourname'           => 'Nuhtjiennomme:',
 'yourpassword'       => 'Loevesbaakoe:',
+'yourdomainname'     => 'Dov domäne:',
+'createaccount'      => 'Skaepede nuhtjien',
 'createaccountmail'  => 'meatan e-påaste',
 'youremail'          => 'E-påaste:',
 'username'           => 'Nuhtjiennomme:',
+'uid'                => 'Nuhtjien ID:',
 'yourlanguage'       => 'Gïele:',
 'email'              => 'E-påaste',
 'mailmypassword'     => 'E-påaste loevesbaakoe',
