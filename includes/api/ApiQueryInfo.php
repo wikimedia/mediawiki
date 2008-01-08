@@ -200,7 +200,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				if($tok_protect)
 					$res['query']['pages'][$pageid]['protecttoken'] = $wgUser->editToken();
 				if($fld_protection)
-					$res['query']['pages'][$pageid]['protection'] = $prottitles[$title->getNamespace()][$title->getDbKey()];
+					$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][$title->getDbKey()];
+				$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
 			}
 		}
 	}
