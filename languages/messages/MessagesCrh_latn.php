@@ -124,7 +124,7 @@ $messages = array(
 'tog-watchdefault'            => 'Men deñiştirgen saifelerni közetüv cedvelime ekle',
 'tog-watchmoves'              => 'Menim tarafımdan adı deñiştirilgen saifelerni közetüv cedvelime ekle',
 'tog-watchdeletion'           => 'Men yoq etken saifelerni közetüv cedvelime ekle',
-'tog-minordefault'            => "Deñişiklikni 'kiçik deñişiklik' olaraq seçili ketir",
+'tog-minordefault'            => 'Yapqan deñişikliklerimni kiçik deñişiklik olaraq işaretle',
 'tog-previewontop'            => 'Ög baquvnı yazuv pencereniñ üstünde köster',
 'tog-previewonfirst'          => 'Deñiştirmede ög baquvnı köster',
 'tog-nocache'                 => 'Saifelerni hatırlama',
@@ -333,7 +333,7 @@ $messages = array(
 'retrievedfrom'           => 'Menba – "$1"',
 'youhavenewmessages'      => 'Yañı $1 bar. ($2)',
 'newmessageslink'         => 'beyanatıñız',
-'newmessagesdifflink'     => 'Bir evelki versiyağa köre eklengen yazı farqı',
+'newmessagesdifflink'     => 'muzakere saifesiñizniñ sоñki deñişikligi',
 'youhavenewmessagesmulti' => '$1 saifesinde yañı beyanatıñız bar.',
 'editsection'             => 'deñiştir',
 'editold'                 => 'deñiştir',
@@ -1178,7 +1178,7 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'removedwatchtext'     => '"[[:$1]]" saifesi közetüv cedveliñizden yoq etildi.',
 'watch'                => 'Közet',
 'watchthispage'        => 'Bu saifeni közet',
-'unwatch'              => 'Saifeni közetme',
+'unwatch'              => 'Közetme',
 'unwatchthispage'      => 'Saife közetmekni toqtat',
 'notanarticle'         => 'Malümat saifesi degil',
 'watchnochange'        => 'Kösterilgen zaman aralığında közetüv cedveliñizdeki saifelerniñ iç biri deñiştirilmegen.',
@@ -1304,7 +1304,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 
 # Namespace form on various pages
 'namespace'      => 'İsim fezası:',
-'invert'         => 'Seçili harıçındakilerni köster',
+'invert'         => 'Saylanğan tışındakilerni sayla',
 'blanknamespace' => '(Esas)',
 
 # Contributions

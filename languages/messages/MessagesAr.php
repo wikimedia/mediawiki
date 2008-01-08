@@ -982,10 +982,10 @@ $1 ساعة.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(تم مسح تعليق)',
-'rev-deleted-user'            => '(تم مسح اسم مستخدم)',
-'rev-deleted-event'           => '(تم مسح المدخلة)',
+'rev-deleted-user'            => '(اسم المستخدم أزيل)',
+'rev-deleted-event'           => '(المدخلة أزيلت)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-نسخة الصفحة هذه تمت إزالتها من الأرشيفات العامة.
+مراجعة الصفحة هذه أزيلت من الأرشيفات العامة.
 ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
@@ -994,7 +994,7 @@ $1 ساعة.',
 من الممكن أن يكون هناك تفاصيل حول هذا في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 </div>',
 'rev-delundel'                => 'عرض/إخفاء',
-'revisiondelete'              => 'امسح/استرجع التعديلات',
+'revisiondelete'              => 'احذف/استرجع المراجعات',
 'revdelete-nooldid-title'     => 'لا توجد نسخة مختارة',
 'revdelete-nooldid-text'      => 'لم تقم بتحديد نسخة أو نسخ معينة لعمل هذه الوظيفة عليها.',
 'revdelete-selected'          => "{{PLURAL:$2|النسخة المختارة|النسختان المختارتان|النسخ المختارة}} من '''$1:'''",
@@ -1117,7 +1117,7 @@ $1 ساعة.',
 'prefs-watchlist-edits'    => 'عدد التعديلات التي تعرض في قائمة المراقبة الموسعة:',
 'prefs-misc'               => 'متفرقات',
 'saveprefs'                => 'حفظ',
-'resetprefs'               => 'إعادة ضبط',
+'resetprefs'               => 'أعد الضبط',
 'oldpassword'              => 'كلمة السر القديمة:',
 'newpassword'              => 'كلمة السر الجديدة:',
 'retypenew'                => 'أعد كتابة كلمة السر الجديدة:',

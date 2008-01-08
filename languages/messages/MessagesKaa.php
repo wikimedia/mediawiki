@@ -397,6 +397,8 @@ Soraw: $2',
 
 # Login and logout pages
 'logouttitle'                => "Shıg'ıw",
+'logouttext'                 => "<strong>Siz endi sayttan shıqtın'ız.</strong><br />
+Siz {{SITENAME}} saytınan anonim halda paydalanıwın'ız mu'mkin. Yamasa siz ja'ne ha'zirgi yaki basqa paydalanıwshı atı menen qaytadan sistemag'a kiriwin'izge boladı. Sonı este saqlan', ayrım betler sizin' brauzerin'izdin' keshi tazalanbag'anlıg'ı sebebli sistemada kirgenin'izdey ko'riniste dawam ettire beriwi mu'mkin.",
 'welcomecreation'            => "== Xosh keldin'iz, $1! ==
 
 Akkauntın'ız jaratıldı. {{SITENAME}} sazlawların'ızdı o'zgertiwdi umıtpan'.",

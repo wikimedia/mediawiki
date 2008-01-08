@@ -1,14 +1,16 @@
 <?php
 /** Malayalam (മലയാളം)
-  *
-  * @addtogroup Language
-  *
-  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  * @author Sadik Khalid <sadik.khalid@gmail.com>
-  * @author Manjith Joseph <manjithkaini@gmail.com>
-  * @author Praveen Prakash <me.praveen@gmail.com>
-  * @author Shiju Alex <shijualexonline@gmail.com>
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Sadik Khalid <sadik.khalid@gmail.com>
+ * @author Manjith Joseph <manjithkaini@gmail.com>
+ * @author Praveen Prakash <me.praveen@gmail.com>
+ * @author Shiju Alex <shijualexonline@gmail.com>
+ * @author לערי ריינהארט
+ * @author Jyothis
+ */
 
 $namespaceNames = array(
 	NS_MEDIA => 'മീഡിയ',
@@ -166,6 +168,16 @@ $magicWords = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-hideminor'            => 'പുതിയ മാറ്റങ്ങളുടെ പട്ടികയില്‍ ചെറിയ തിരുത്തലുകള്‍ പ്രദര്‍ശിപ്പിക്കാതിരിക്കുക',
+'tog-rememberpassword'     => 'എന്റെ പ്രവേശനം ഈ കമ്പ്യൂട്ടറില്‍ ഓര്‍ത്തുവെക്കുക',
+'tog-watchcreations'       => 'ഞാന്‍ നിര്‍മ്മിക്കുന്ന താളുകള്‍ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയില്‍ ചേര്‍ക്കുക',
+'tog-watchdefault'         => 'ഞാന്‍ തിരുത്തുന്ന താളുകള്‍ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയില്‍ ചേര്‍ക്കുക',
+'tog-watchmoves'           => 'ഞാന്‍ പേരു മാറ്റുന്ന താളുകള്‍ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയില്‍ ചേര്‍ക്കുക',
+'tog-watchdeletion'        => 'ഞാന്‍ നീ‍ക്കം ചെയ്യുന്ന താളുകള്‍ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയില്‍ ചേര്‍ക്കുക',
+'tog-enotifwatchlistpages' => 'ഞാന്‍ ശ്രദ്ധിക്കുന്ന താളിനു മാറ്റം സംഭവിച്ചാല്‍ ഈമെയില്‍ അയക്കുക',
+'tog-enotifusertalkpages'  => 'എന്റെ സം‌വാദം താളിനു മാറ്റം സംഭവിച്ചാല്‍ ഈമെയില്‍ അയക്കുക',
+
 # Dates
 'sunday'    => 'ഞായര്‍',
 'monday'    => 'തിങ്കള്‍',
@@ -183,9 +195,9 @@ $messages = array(
 'sat'       => 'ശ.',
 'january'   => 'ജനുവരി',
 'february'  => 'ഫെബ്രുവരി',
-'march'     => 'മാര്‍ച്ച്‌',
+'march'     => 'മാര്‍ച്ച്',
 'april'     => 'ഏപ്രില്‍',
-'may_long'  => 'മേയ്‌',
+'may_long'  => 'മേയ്',
 'june'      => 'ജൂണ്‍',
 'july'      => 'ജൂലൈ',
 'august'    => 'ഓഗസ്റ്റ്‌',
@@ -205,6 +217,54 @@ $messages = array(
 'oct'       => 'ഒക്ടോ‍.‍',
 'nov'       => 'നവം.',
 'dec'       => 'ഡിസം.',
+
+'mytalk' => 'എന്റെ സംവാദവേദി',
+
+'help'           => 'സഹായി',
+'search'         => 'തിരയുക',
+'history_short'  => 'പഴയ രൂപം',
+'edit'           => 'മാറ്റിയെഴുതുക',
+'delete'         => 'ഡിലിറ്റ്‌',
+'newpage'        => 'പുതിയ താള്‍',
+'talk'           => 'സംവാദം',
+'redirectedfrom' => '($1-ല്‍ നിന്നും തിരിച്ചു വിട്ടതു പ്രകാരം)',
+'lastmodifiedat' => 'ഈ താള്‍ അവസാനം തിരുത്തപ്പെട്ടത് $2, $1.', # $1 date, $2 time
+'viewcount'      => 'ഈ താള്‍ $1 പ്രാവശ്യം സന്ദര്‍ശിക്കപ്പെട്ടിട്ടുണ്ട്.',
+'protectedpage'  => 'സംരക്ഷിത താള്‍',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'currentevents' => 'സമകാലികം',
+'edithelp'      => 'എഡിറ്റിങ്ങ് സഹായി',
+'mainpage'      => 'പ്രധാന താള്‍',
+'portal'        => 'വിക്കി സമൂഹം',
+'sitesupport'   => 'സംഭാവന',
+
+# Preferences page
+'preferences' => 'ക്രമീകരണങ്ങള്‍',
+
+# Recent changes
+'recentchanges' => 'പുതിയ മാറ്റങ്ങള്‍',
+
+# Recent changes linked
+'recentchangeslinked' => 'അനുബന്ധ മാറ്റങ്ങള്‍',
+
+# Upload
+'upload' => 'അപ്‌ലോഡ്‌',
+
+# Miscellaneous special pages
+'allpages'     => 'എല്ലാ പേജുകളും',
+'specialpages' => 'പ്രത്യേക പേജുകള്‍',
+'move'         => 'മാറ്റുക',
+
+# Watchlist
+'watch' => 'ഈ പേജിലെ മാറ്റങ്ങള്‍ ശ്രദ്ധിക്കുക',
+
+# Contributions
+'contributions' => 'ഉപയോക്താവിന്റെ സംഭാവനകള്‍',
+'mycontris'     => 'എന്റെ സംഭാവനകള്‍',
+
+# What links here
+'whatlinkshere' => 'കണ്ണികള്‍',
 
 # Auto-summaries
 'autosumm-blank'   => 'താളിലെ എല്ലാവിവരങ്ങളും നീക്കം ചെയ്യുന്നു',
