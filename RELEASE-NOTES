@@ -409,6 +409,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Fix output of wfSajaxSearch
 * (bug 12413) meta=userinfo missing <query> tag
 * Add list of sections to action=parse output
+* Added action=logout
 
 === Languages updated in 1.12 ===
 

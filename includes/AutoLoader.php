@@ -314,6 +314,7 @@ function __autoload($className) {
 		'ApiFormatYaml' => 'includes/api/ApiFormatYaml.php',
 		'ApiHelp' => 'includes/api/ApiHelp.php',
 		'ApiLogin' => 'includes/api/ApiLogin.php',
+		'ApiLogout' => 'includes/api/ApiLogout.php',
 		'ApiMain' => 'includes/api/ApiMain.php',
 		'ApiOpenSearch' => 'includes/api/ApiOpenSearch.php',
 		'ApiPageSet' => 'includes/api/ApiPageSet.php',

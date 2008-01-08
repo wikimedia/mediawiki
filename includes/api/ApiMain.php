@@ -53,6 +53,7 @@ class ApiMain extends ApiBase {
 	 */
 	private static $Modules = array (
 		'login' => 'ApiLogin',
+		'logout' => 'ApiLogout',
 		'query' => 'ApiQuery',
 		'expandtemplates' => 'ApiExpandTemplates',
 		'render' => 'ApiRender',
@@ -115,8 +116,9 @@ class ApiMain extends ApiBase {
 			global $wgUser;
 			if (!$wgUser->isAllowed('read')) {
 				self::$Modules = array(
-					'login' => self::$Modules['login'],
-					'help' => self::$Modules['help']
+					'login'  => self::$Modules['login'],
+					'logout' => self::$Modules['logout'],
+					'help'   => self::$Modules['help'],
 					); 
 			}
 		}
@@ -296,9 +298,9 @@ class ApiMain extends ApiBase {
 	 * Execute the actual module, without any error handling
 	 */
 	protected function executeAction() {
-		
+
 		$params = $this->extractRequestParams();
-		
+
 		$this->mShowVersions = $params['version'];
 		$this->mAction = $params['action'];
 

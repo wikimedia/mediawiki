@@ -84,7 +84,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			$messages_out[] = $message;
 		}
 		$result->setIndexedTagName( $messages_out, 'message' );
-		$result->addValue( null, $this->getModuleName(), $messages_out );
+		$result->addValue( 'query', $this->getModuleName(), $messages_out );
 	}
 
 	protected function getAllowedParams() {
