@@ -1958,10 +1958,20 @@ class User {
 	}
 
 	/**
-	 * Logout user
-	 * Clears the cookies and session, resets the instance cache
+	 * Logout user.
 	 */
 	function logout() {
+		if( wfRunHooks( 'UserLogout', array(&$this) ) ) {
+			$this->doLogout();
+			wfRunHooks( 'UserLogoutComplete', array(&$wgUser) );
+		}
+	}
+
+	/**
+	 * Really logout user
+	 * Clears the cookies and session, resets the instance cache
+	 */
+	function doLogout() {
 		global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookiePrefix;
 		$this->clearInstanceCache( 'defaults' );
 
