@@ -23,8 +23,8 @@
 
 $originalDir = getcwd();
 
-require_once( 'commandLine.inc' );
-require_once( 'backup.inc' );
+require_once( './commandLine.inc' );
+require_once( './backup.inc' );
 
 /**
  * Stream wrapper around 7za filter program.
@@ -146,7 +146,8 @@ class TextPassDumper extends BackupDumper {
 		
 		switch( $opt ) {
 		case 'prefetch':
-			require_once 'maintenance/backupPrefetch.inc';
+			global $IP;
+			require_once "$IP/maintenance/backupPrefetch.inc";
 			$this->prefetch = new BaseDump( $url );
 			break;
 		case 'stub':
