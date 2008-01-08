@@ -73,6 +73,11 @@ class BagOStuff {
 		return true;
 	}
 
+	function keys() {
+		/* stub */
+		return array();
+	}
+
 	/* *** Emulated functions *** */
 	/* Better performance can likely be got with custom written versions */
 	function get_multi($keys) {
@@ -202,6 +207,10 @@ class HashBagOStuff extends BagOStuff {
 		unset($this->bag[$key]);
 		return true;
 	}
+
+	function keys() {
+		return array_keys( $this->bag );
+	}
 }
 
 /*
@@ -281,6 +290,19 @@ abstract class SqlBagOStuff extends BagOStuff {
 		$this->_query(
 			"DELETE FROM $0 WHERE keyname='$1'", $key );
 		return true; /* ? */
+	}
+
+	function keys() {
+		$res = $this->_query( "SELECT keyname FROM $0" );
+		if(!$res) {
+			$this->_debug("keys: ** error: " . $this->_dberror($res) . " **");
+			return array();
+		}
+		$result = array();
+		while( $row = $this->_fetchobject($res) ) {
+			$result[] = $row->keyname;
+		}
+		return $result;
 	}
 
 	function getTableName() {
@@ -742,6 +764,19 @@ class DBABagOStuff extends BagOStuff {
 		dba_close( $handle );
 		wfProfileOut( __METHOD__ );
 		return $ret;
+	}
+
+	function keys() {
+		$reader = $this->getReader();
+		$k1 = dba_firstkey( $reader );
+		if( !$k1 ) {
+			return array();
+		}
+		$result[] = $k1;
+		while( $key = dba_nextkey( $reader ) ) {
+			$result[] = $key;
+		}
+		return $result;
 	}
 }
 	
