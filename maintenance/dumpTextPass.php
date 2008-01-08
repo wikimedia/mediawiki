@@ -23,8 +23,8 @@
 
 $originalDir = getcwd();
 
-require_once( './commandLine.inc' );
-require_once( './backup.inc' );
+require_once( 'commandLine.inc' );
+require_once( 'backup.inc' );
 
 /**
  * Stream wrapper around 7za filter program.
