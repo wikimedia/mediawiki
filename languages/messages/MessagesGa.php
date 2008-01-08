@@ -179,10 +179,11 @@ $messages = array(
 'dec'        => 'Noll',
 
 # Bits of text used by many pages
-'categories'      => 'Catagóirí',
-'pagecategories'  => 'Catagóirí',
-'category_header' => 'Ailt sa chatagóir "$1"',
-'subcategories'   => 'Fo-chatagóirí',
+'categories'            => 'Catagóirí',
+'pagecategories'        => 'Catagóirí',
+'category_header'       => 'Ailt sa chatagóir "$1"',
+'subcategories'         => 'Fo-chatagóirí',
+'category-media-header' => 'Meáin sa chatagóir "$1"',
 
 'mainpagetext'      => 'Suiteáladh an ríomhchlár vicí go rathúil.',
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
@@ -355,6 +356,7 @@ Déan nóta den URL le do thoil, agus cuir an ábhar in iúl do riarthóir.',
 sclábhánta an bhunachair sonraí ag teacht suas chun dáta leis an máistirfhreastalaí
 fós.',
 'internalerror'        => 'Earráid inmhéanach',
+'internalerror_info'   => 'Earráid inmhéanach: $1',
 'filecopyerror'        => 'Ní féidir an comhad "$1" a chóipeáil go "$2".',
 'filerenameerror'      => 'Ní féidir an comhad "$1" a athainmnigh mar "$2".',
 'filedeleteerror'      => 'Ní féidir an comhad "$1" a scriosaigh amach.',
@@ -373,6 +375,7 @@ Feidhm: $1<br />
 Iarratas: $2',
 'viewsource'           => 'Féach ar fhoinse',
 'viewsourcefor'        => 'le haghaidh $1',
+'editinginterface'     => "'''Rabhadh:''' Tá tú ag déanamh eagarthóireachta ar leathanach a chuireann téacs an chomhéadain do na bogearraí. Cuirfear athruithe ar an leathanach seo i bhfeidhm ar an gcomhéadan úsáideora.",
 'sqlhidden'            => '(Iarratas SQL folaithe)',
 
 # Login and logout pages
@@ -562,6 +565,10 @@ ní féidir leat do chuid athruithe a shábháil díreach anois. B'fhéidir gur 
 ghreamú i gcomhad téacs agus é a úsáid níos déanaí.",
 'protectedpagewarning'   => '<strong>AIRE: Glasáladh an leathanach seo, agus ní féidir le duine ar bith é a athrú ach amhaín na húsáideoirí le pribhléidí oibreora córais. Bí cinnte go leanann tú na treoirlínte do leathanaigh glasáilte.</strong>',
 'templatesused'          => 'Teimpléid in úsáid ar an lch seo:',
+'templatesusedpreview'   => 'Teimpléid in úsáid sa réamhamharc alt seo:',
+'templatesusedsection'   => 'Teimpléid in úsáid san alt seo:',
+'template-protected'     => '(ghlasáil)',
+'template-semiprotected' => '(leath-ghlasáil)',
 
 # History pages
 'nohistory'           => 'Níl aon stáir athraithe ag an leathanach seo.',
@@ -711,6 +718,7 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 'hist'                              => 'stáir',
 'hide'                              => 'Folaigh',
 'show'                              => 'taispeán',
+'boteditletter'                     => 'r',
 'sectionlink'                       => '?',
 'number_of_watching_users_pageview' => '[$1 úsáideoirí ag breathnú]',
 
@@ -840,8 +848,10 @@ De ghnáth cíallaíonn sé sin go bhfuil téacs breise le naisc thíos sa chéa
 gach sraith tá náisc chuig an chéad is an dara athsheoladh, chomh maith le chéad líne an dara téacs athsheolaidh. De
 ghnáth tugann sé sin an sprioc-alt "fíor".',
 
-'brokenredirects'     => 'Athsheolaidh Briste',
-'brokenredirectstext' => 'Is iad na athsheolaidh seo a leanas a nascaíonn go ailt nach bhfuil ann fós.',
+'brokenredirects'        => 'Athsheolaidh Briste',
+'brokenredirectstext'    => 'Is iad na athsheolaidh seo a leanas a nascaíonn go ailt nach bhfuil ann fós.',
+'brokenredirects-edit'   => '(athraigh)',
+'brokenredirects-delete' => '(scrios)',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 beart',
@@ -880,7 +890,8 @@ iad in aon alt eile nó in aon chatagóir eile.',
 chun an gníomh seo a dhéanamh ar.',
 
 # Book sources
-'booksources' => 'Leabharfhoinsí',
+'booksources'               => 'Leabharfhoinsí',
+'booksources-search-legend' => 'Cuardaigh le foinsí leabhar',
 
 'categoriespagetext' => 'Tá na catagóir seo a leanas ann sa vicí.',
 'data'               => 'Sonraí',
@@ -892,6 +903,7 @@ chun an gníomh seo a dhéanamh ar.',
 'specialloguserlabel'  => 'Úsáideoir:',
 'speciallogtitlelabel' => 'Teideal:',
 'log'                  => 'Logaí',
+'all-logs-page'        => 'Gach logaí',
 'alllogstext'          => 'Taispeántas comhcheangaltha de logaí a bhaineann le huaslódáil, scriosadh, glasáil, coisc,
 agus oibreoirí córais. Is féidir leat an taispeántas a ghéarú - roghnaigh an saghas loga, an ainm úsáideora, nó an
 leathanach atá i gceist agat.',
@@ -906,6 +918,7 @@ leathanach atá i gceist agat.',
 'allpagesnext'      => 'Ar aghaidh',
 'allpagessubmit'    => 'Dul',
 'allpagesprefix'    => 'Taispeáin leathanaigh leis an réimír:',
+'allpages-bad-ns'   => 'Níl an ainmspás "$1" ar {{SITENAME}}',
 
 # E-mail user
 'mailnologin'     => 'Níl aon seoladh maith ann',
@@ -1087,54 +1100,61 @@ seo caite.',
 'isredirect'    => 'Leathanach athsheolaidh',
 
 # Block/unblock
-'blockip'              => 'Coisc úsáideoir',
-'blockiptext'          => 'Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó
+'blockip'                 => 'Coisc úsáideoir',
+'blockiptext'             => 'Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó
 seoladh IP nó ainm úsáideora áirithe.
 Is féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chosc, de réir
 mar a deirtear sa [[{{MediaWiki:Policy-url}}|polasaí {{GRAMMAR:genitive|{{SITENAME}}}}]].
 Líonaigh cúis áirithe anseo thíos (mar shampla, is féidir leat a luaigh
 leathanaigh áirithe a rinne an duine damáiste ar).',
-'ipaddress'            => 'Seoladh IP / ainm úsáideora',
-'ipadressorusername'   => 'Seoladh IP nó ainm úsáideora:',
-'ipbexpiry'            => 'Am éaga',
-'ipbreason'            => 'Cúis',
-'ipbsubmit'            => 'Coisc an úsáideoir seo',
-'ipbother'             => 'Méid eile ama',
-'ipboptions'           => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'       => 'eile',
-'badipaddress'         => 'Níl aon úsáideoir ann leis an ainm seo.',
-'blockipsuccesssub'    => "D'éirigh leis an cosc",
-'blockipsuccesstext'   => 'Choisceadh [[Special:Contributions/$1|$1]].
+'ipaddress'               => 'Seoladh IP / ainm úsáideora',
+'ipadressorusername'      => 'Seoladh IP nó ainm úsáideora:',
+'ipbexpiry'               => 'Am éaga',
+'ipbreason'               => 'Cúis',
+'ipbsubmit'               => 'Coisc an úsáideoir seo',
+'ipbother'                => 'Méid eile ama',
+'ipboptions'              => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'          => 'eile',
+'badipaddress'            => 'Níl aon úsáideoir ann leis an ainm seo.',
+'blockipsuccesssub'       => "D'éirigh leis an cosc",
+'blockipsuccesstext'      => 'Choisceadh [[Special:Contributions/$1|$1]].
 <br />Féach ar an g[[Special:Ipblocklist|liosta coisc IP]] chun coisc a athbhreithniú.',
-'unblockip'            => 'Díchoisc úsáideoir',
-'unblockiptext'        => 'Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais do seoladh
+'ipb-unblock-addr'        => 'Díchoisc $1',
+'ipb-unblock'             => 'Díchosc ainm úsáideora ná seoladh IP',
+'unblockip'               => 'Díchoisc úsáideoir',
+'unblockiptext'           => 'Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais do seoladh
 IP nó ainm úsáideora a raibh faoi chosc roimhe seo.',
-'ipusubmit'            => 'Díchoisc an seoladh seo',
-'unblocked'            => 'Díchoisceadh [[User:$1|$1]]',
-'ipblocklist'          => 'Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe',
-'blocklistline'        => '$1, $2 a choisc $3 (am éaga $4)',
-'anononlyblock'        => 'úsáideoirí gan ainm agus iad amháin',
-'blocklink'            => 'Cosc',
-'unblocklink'          => 'bain an cosc',
-'contribslink'         => 'dréachtaí',
-'autoblocker'          => 'Coisceadh go huathoibríoch thú dá bharr gur úsáideadh do sheoladh IP ag an úsáideoir "[[User:$1|$1]]". Is é seo an cúis don cosc ar $1: "$2".',
-'blocklogpage'         => 'Cuntas_coisc',
-'blocklogentry'        => 'coisceadh "$1"; is é $2 an am éaga',
-'blocklogtext'         => 'Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
+'ipusubmit'               => 'Díchoisc an seoladh seo',
+'unblocked'               => 'Díchoisceadh [[User:$1|$1]]',
+'ipblocklist'             => 'Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe',
+'ipblocklist-legend'      => 'Aimsigh úsáideoir coiscthe',
+'ipblocklist-username'    => 'Ainm úsáideora ná seoladh IP:',
+'blocklistline'           => '$1, $2 a choisc $3 (am éaga $4)',
+'infiniteblock'           => 'gan teora',
+'anononlyblock'           => 'úsáideoirí gan ainm agus iad amháin',
+'ipblocklist-empty'       => 'Tá an liosta coisc folamh.',
+'blocklink'               => 'Cosc',
+'unblocklink'             => 'bain an cosc',
+'contribslink'            => 'dréachtaí',
+'autoblocker'             => 'Coisceadh go huathoibríoch thú dá bharr gur úsáideadh do sheoladh IP ag an úsáideoir "[[User:$1|$1]]". Is é seo an cúis don cosc ar $1: "$2".',
+'blocklogpage'            => 'Cuntas_coisc',
+'blocklogentry'           => 'coisceadh "$1"; is é $2 an am éaga',
+'blocklogtext'            => 'Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
 seoltaí IP a raibh coiscthe go huathoibríoch ar an liosta seo. Féach ar an
 [[Special:Ipblocklist|Liosta coisc IP]] chun
 liosta a fháil de coisc atá i bhfeidhm faoi láthair.',
-'unblocklogentry'      => 'díchoisceadh $1',
-'range_block_disabled' => 'Faoi láthair, míchumasaítear an cumas riarthóra chun réimsechoisc a dhéanamh.',
-'ipb_expiry_invalid'   => 'Am éaga neamhbhailí.',
-'ipb_already_blocked'  => 'Tá cosc ar "$1" cheana féin',
-'ip_range_invalid'     => 'Réimse IP neamhbhailí.',
-'proxyblocker'         => 'Cosc ar seachfhreastalaithe',
-'proxyblockreason'     => "Coisceadh do sheoladh IP dá bharr gur seachfhreastalaí
+'unblocklogentry'         => 'díchoisceadh $1',
+'block-log-flags-noemail' => 'cosc ar ríomhphost',
+'range_block_disabled'    => 'Faoi láthair, míchumasaítear an cumas riarthóra chun réimsechoisc a dhéanamh.',
+'ipb_expiry_invalid'      => 'Am éaga neamhbhailí.',
+'ipb_already_blocked'     => 'Tá cosc ar "$1" cheana féin',
+'ip_range_invalid'        => 'Réimse IP neamhbhailí.',
+'proxyblocker'            => 'Cosc ar seachfhreastalaithe',
+'proxyblockreason'        => "Coisceadh do sheoladh IP dá bharr gur seachfhreastalaí
 neamhshlándála is ea é. Déan teagmháil le do chomhlacht idirlín nó le do lucht cabhrach teicneolaíochta
 go mbeidh 'fhios acu faoin fadhb slándála tábhachtach seo.",
-'proxyblocksuccess'    => 'Rinneadh.',
-'sorbsreason'          => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL.',
+'proxyblocksuccess'       => 'Rinneadh.',
+'sorbsreason'             => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL.',
 
 # Developer tools
 'lockdb'              => 'Glasáil an bunachar sonraí',
@@ -1229,6 +1249,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 'allmessagescurrent'        => 'Téacs reatha',
 'allmessagestext'           => 'Liosta is ea seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki: .',
 'allmessagesnotsupportedDB' => "Níl aon tacaíocht anseo do {{ns:special}}:Allmessages dá bharr go bhfuil '''\$wgUseDatabaseMessages''' druidte.",
+'allmessagesfilter'         => "Scagaire teachtaireacht d'ainm:",
 
 # Thumbnails
 'thumbnail-more' => 'Méadaigh',
@@ -1330,6 +1351,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'spamprotectionmatch'    => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
 'subcategorycount'       => 'Tá $1 fo-chatagóirí sa chatagóir seo.',
 'categoryarticlecount'   => 'Tá $1 ailt sa chatagóir seo.',
+'category-media-count'   => 'Tá {{PLURAL:$1| comhad amháin| $1 comhaid}} sa chatagóir seo.',
 'listingcontinuesabbrev' => 'ar lean.',
 
 # Info page

@@ -7,6 +7,7 @@
  * @author Maartenvdbent
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Pyt
  */
 
 $skinNames = array(
@@ -86,41 +87,61 @@ $messages = array(
 'tog-nocache'                 => 'Gjin oerslag brûke',
 
 # Dates
-'sunday'    => 'snein',
-'monday'    => 'moandei',
-'tuesday'   => 'tiisdei',
-'wednesday' => 'woansdei',
-'thursday'  => 'tongersdei',
-'friday'    => 'freed',
-'saturday'  => 'sneon',
-'january'   => 'jannewaris',
-'february'  => 'febrewaris',
-'march'     => 'maart',
-'april'     => 'april',
-'may_long'  => 'maaie',
-'june'      => 'juny',
-'july'      => 'july',
-'august'    => 'augustus',
-'september' => 'septimber',
-'october'   => 'oktober',
-'november'  => 'novimber',
-'december'  => 'decimber',
-'jan'       => 'jan',
-'feb'       => 'feb',
-'mar'       => 'mar',
-'apr'       => 'apr',
-'may'       => 'mai',
-'jun'       => 'jun',
-'jul'       => 'jul',
-'aug'       => 'aug',
-'sep'       => 'sep',
-'oct'       => 'okt',
-'nov'       => 'nov',
-'dec'       => 'dec',
+'sunday'        => 'snein',
+'monday'        => 'moandei',
+'tuesday'       => 'tiisdei',
+'wednesday'     => 'woansdei',
+'thursday'      => 'tongersdei',
+'friday'        => 'freed',
+'saturday'      => 'sneon',
+'sun'           => 'si',
+'mon'           => 'mo',
+'tue'           => 'ti',
+'wed'           => 'wo',
+'thu'           => 'to',
+'fri'           => 'fr',
+'sat'           => 'so',
+'january'       => 'jannewaris',
+'february'      => 'febrewaris',
+'march'         => 'maart',
+'april'         => 'april',
+'may_long'      => 'maaie',
+'june'          => 'juny',
+'july'          => 'july',
+'august'        => 'augustus',
+'september'     => 'septimber',
+'october'       => 'oktober',
+'november'      => 'novimber',
+'december'      => 'decimber',
+'january-gen'   => 'jannewaris',
+'february-gen'  => 'febrewaris',
+'march-gen'     => 'maart',
+'april-gen'     => 'april',
+'may-gen'       => 'maaie',
+'june-gen'      => 'juny',
+'july-gen'      => 'july',
+'august-gen'    => 'augustus',
+'september-gen' => 'septimber',
+'october-gen'   => 'oktober',
+'november-gen'  => 'novimber',
+'december-gen'  => 'desimber',
+'jan'           => 'jan',
+'feb'           => 'feb',
+'mar'           => 'mrt',
+'apr'           => 'apr',
+'may'           => 'mai',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'aug',
+'sep'           => 'sep',
+'oct'           => 'okt',
+'nov'           => 'nov',
+'dec'           => 'des',
 
 'mainpagetext' => 'Wiki-programma goed installearre.',
 
 'about'         => 'Ynfo',
+'newwindow'     => '(iepent yn in nij finster)',
 'cancel'        => 'Ferlitte',
 'qbfind'        => 'Sykje',
 'qbbrowse'      => 'Blêdzje',
@@ -134,20 +155,28 @@ $messages = array(
 
 'errorpagetitle'   => 'Fout',
 'returnto'         => 'Werom nei "$1".',
+'tagline'          => 'Ut {{SITENAME}}',
+'help'             => 'Help',
 'search'           => 'Sykje',
 'searchbutton'     => 'Sykje',
 'go'               => 'Side',
 'searcharticle'    => 'Side',
 'history'          => 'Sideskiednis',
 'printableversion' => 'Ofdruk-ferzje',
+'permalink'        => 'Permaninte link',
 'edit'             => 'Wizigje',
 'editthispage'     => 'Side bewurkje',
 'deletethispage'   => 'Side wiskje',
 'protectthispage'  => 'Side beskermje',
 'newpage'          => 'Nije side',
 'talkpage'         => 'Sideoerlis',
+'talkpagelinktext' => 'Oerlis',
+'personaltools'    => 'Persoanlike ynstellings',
 'postcomment'      => 'Skrieuw in opmerking',
 'articlepage'      => 'Side lêze',
+'talk'             => 'Oerlis',
+'views'            => 'Aspekten/aksjes',
+'toolbox'          => 'Arkkiste',
 'userpage'         => 'Brûkerside',
 'projectpage'      => 'Metaside',
 'imagepage'        => 'Ofbyldside',
@@ -157,6 +186,9 @@ $messages = array(
 'lastmodifiedat'   => 'Lêste kear bewurke op $2, $1.', # $1 date, $2 time
 'viewcount'        => 'Disse side is $1 kear iepenslein.',
 'protectedpage'    => 'Beskerme side',
+'jumpto'           => 'Gean nei:',
+'jumptonavigation' => 'navigaasje',
+'jumptosearch'     => 'sykje',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Oer de {{SITENAME}}',
@@ -166,18 +198,26 @@ $messages = array(
 'copyrightpagename' => '{{SITENAME}} auteursrjocht',
 'copyrightpage'     => '{{ns:project}}:Auteursrjocht',
 'currentevents'     => 'Hjoeddeis',
+'disclaimers'       => 'Foarbehâld',
+'disclaimerpage'    => 'Projekt:Algemien foarbehâld',
 'edithelp'          => 'Siden bewurkje',
 'edithelppage'      => 'Help:Bewurk-rie',
 'helppage'          => 'Help:Help',
 'mainpage'          => 'Haadside',
+'privacy'           => 'Privacybelied',
+'privacypage'       => 'Projekt:Privacybelied',
 
-'ok'            => 'Goed',
-'retrievedfrom' => 'Untfongen fan "$1"',
-'toc'           => 'Ynhâld',
-'showtoc'       => 'sjen litte',
-'hidetoc'       => 'net sjen litte',
-'thisisdeleted' => '"$1" lêze of werombringje?',
-'restorelink'   => '$1 wiske ferzjes',
+'ok'              => 'Goed',
+'retrievedfrom'   => 'Untfongen fan "$1"',
+'editsection'     => 'bewurkje',
+'editsectionhint' => 'Dielside bewurkje: $1',
+'toc'             => 'Ynhâld',
+'showtoc'         => 'sjen litte',
+'hidetoc'         => 'net sjen litte',
+'thisisdeleted'   => '"$1" lêze of werombringje?',
+'restorelink'     => '$1 wiske ferzjes',
+'site-rss-feed'   => '$1 RSS Feed',
+'site-atom-feed'  => '$1 Atom-Feed',
 
 # Main script and global functions
 'nosuchaction'      => 'Unbekende aksje.',
@@ -268,6 +308,18 @@ Meld jo no oan, en feroarje jo wachtwurd.',
 'passwordsent'          => 'In nij wachtwurd is tastjoert oan it e-postadres foar "$1".
 Please log in again after you receive it.',
 
+# Edit page toolbar
+'bold_sample'    => 'Tsjûkprinte tekst',
+'italic_sample'  => 'Skeanprinte tekst',
+'italic_tip'     => 'skeanprinte',
+'link_sample'    => 'Underwerp',
+'link_tip'       => 'Ynterne link',
+'extlink_sample' => 'http://www.foarbyld.com linktekst',
+'headline_tip'   => 'Tuskenkop (heechste plan)',
+'math_sample'    => 'Formule hjir ynfiere',
+'image_tip'      => 'Ofbylding',
+'media_tip'      => 'Link nei triem',
+
 # Edit pages
 'summary'              => 'Gearfetting',
 'subject'              => 'Mêd',
@@ -276,6 +328,7 @@ Please log in again after you receive it.',
 'savearticle'          => 'Fêstlizze',
 'preview'              => 'Oerlêze',
 'showpreview'          => 'Oerlêze foar de side fêstlein is',
+'showdiff'             => 'Feroarings sjen litte',
 'blockedtitle'         => 'Brûker is útsletten troch',
 'blockedtext'          => "Jo brûkersname of Ynternet-adres is útsletten.
 As reden is opjûn:<br />''\$2''<p>As jo wolle, kinne jo hjiroer kontakt op nimme meid de behearder.
@@ -318,36 +371,41 @@ Dy wurde allinnich tapasse safier as jo se yn it earste fjild ynpasse.
 'editingold'           => '<strong>Waarskôging: Jo binne dwaande mei in âldere ferzje fan dizze side.
 Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong>',
 'yourdiff'             => 'Feroarings',
-'longpagewarning'      => '<strong>Waarskôging: Dizze side is $1 kilobyte lang;
-der binne blêdzjers dy problemen hawwe mei siden fan tsjin de 32kb. of langer.
-Besykje de side yn lytsere stikken te brekken.</strong>',
+'copyrightwarning'     => "Tink derom dat alle bydragen oan {{SITENAME}} beskôge wurde frijjûn te wêzen ûnder de $2 (sjoch $1 foar bysûnderheden). As jo net wolle dat jo tekst troch oaren neffens eigen goedfinen bewurke en ferspraat wurde kin, kies dan net foar 'Side Bewarje'.</br>
+Hjirby sizze jo tagelyk ta, dat jo dizze tekst sels skreaun hawwe, of oernommen hawwe út in frije, iepenbiere boarne.</br/>
+<strong>BRûK GJIN MATERIAAL DAT BESKERME WURDT TROCH AUTERURSRJOCHT, OF JO MOATTE DêR TASTIMMING TA HAWWE!</STRONG>",
+'longpagewarning'      => "<strong>Warskôging: Dizze side is $1 kilobyte lang;
+der binne blêders dy't problemen hawwe mei siden fan tsjin de 32kb. of langer.
+Besykje de side yn lytsere stikken te brekken.</strong>",
 'readonlywarning'      => '<strong>Waarskôging: De databank is ôfsletten foar
 ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze.
 It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>',
 'protectedpagewarning' => '<strong>Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.</strong>',
 
 # History pages
-'nohistory'       => 'Dit is de earste ferzje fan de side.',
-'revnotfound'     => 'Ferzje net fûn',
-'revnotfoundtext' => "De âlde ferzje fan dizze side dêr't jo om frege hawwe, is der net.
+'nohistory'        => 'Dit is de earste ferzje fan de side.',
+'revnotfound'      => 'Ferzje net fûn',
+'revnotfoundtext'  => "De âlde ferzje fan dizze side dêr't jo om frege hawwe, is der net.
 Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
-'loadhist'        => 'Sideskiednis ...',
-'currentrev'      => 'Dizze ferzje',
-'revisionasof'    => 'Ferzje op $1',
-'cur'             => 'no',
-'next'            => 'dan',
-'last'            => 'doe',
-'orig'            => 'ea',
-'histlegend'      => "Utlis: (no) = ferskil mei de side sa't dy no is,
+'loadhist'         => 'Sideskiednis ...',
+'currentrev'       => 'Dizze ferzje',
+'revisionasof'     => 'Ferzje op $1',
+'previousrevision' => '←Aldere ferzje',
+'cur'              => 'no',
+'next'             => 'dan',
+'last'             => 'doe',
+'orig'             => 'ea',
+'histlegend'       => "Utlis: (no) = ferskil mei de side sa't dy no is,
 (doe) = ferskill mei de side sa't er doe wie, foar de feroaring, T = Tekstwiziging",
 
 # Diffs
 'difference' => '(Ferskil tusken ferzjes)',
 'lineno'     => 'Rigel $1:',
+'editundo'   => 'oergean litte',
 
 # Search results
 'searchresults'         => 'Sykresultaat',
-'searchresulttext'      => '"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
+'searchresulttext'      => '!! "[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
 'searchsubtitle'        => 'Foar fraach "[[:$1]]"',
 'searchsubtitleinvalid' => 'Foar fraach "$1"',
 'noexactmatch'          => 'Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.',
@@ -374,6 +432,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 
 # Preferences page
 'preferences'              => 'Ynstellings',
+'mypreferences'            => 'Myn foarkarynstellings',
 'prefsnologin'             => 'Net oanmeld',
 'prefsnologintext'         => 'Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo ynstellings te feroarjen.',
 'prefsreset'               => "De ynstellings binne tebek set sa't se fêstlein wienen.",
@@ -420,12 +479,15 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'rcnote'            => 'Dit binne de lêste <strong>$1</strong> feroarings yn de lêste <strong>$2</strong> dagen.',
 'rcnotefrom'        => 'Dit binne de feroarings sûnt <b>$2</b> (maksimaal <b>$1</b>).',
 'rclistfrom'        => 'Jou nije feroarings, begjinnende mei $1',
+'rcshowhideminor'   => 'lytse feroarings $1',
 'rclinks'           => 'Jou $1 nije feroarings yn de lêste $2 dagen; $3 tekstwiziging',
 'diff'              => 'ferskil',
 'hist'              => 'skiednis',
 'hide'              => 'gjin',
 'show'              => 'al',
 'minoreditletter'   => 'T',
+'newpageletter'     => 'N',
+'boteditletter'     => 'b',
 
 # Recent changes linked
 'recentchangeslinked' => 'Folgje keppelings',
@@ -488,6 +550,7 @@ meitsje fan it systeem..",
 'bysize'         => 'grutte',
 'imgdelete'      => 'wisk',
 'imgdesc'        => 'tekst',
+'filehist'       => 'Triemskiednis',
 'imagelinks'     => 'Ofbyldkeppelings',
 'linkstoimage'   => 'Dizze siden binne keppele oan it ôfbyld:',
 'nolinkstoimage' => 'Der binne gjin siden oan dit ôfbyld keppelje.',
@@ -588,7 +651,9 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 <p>As jo letter in side net mear folgje wolle, dan brûke jo "Ferjit dizze side".',
 'removedwatch'       => 'Net mear folgje',
 'removedwatchtext'   => 'De side "$1" stiet net mear op jo folchlist.',
+'watch'              => 'Folgje',
 'watchthispage'      => 'Folgje dizze side',
+'unwatch'            => 'Net folgje',
 'unwatchthispage'    => 'Ferjit dizze side',
 'notanarticle'       => 'Dit kin net folge wurde.',
 'watchnochange'      => "Fan de siden dy't jo folgje is der yn dizze perioade net ien feroare.",
@@ -598,6 +663,10 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 'watchlistcontains'  => 'Jo folgje op it stuit $1 siden.',
 'iteminvalidname'    => 'Misse namme: "$1" ...',
 'wlnote'             => 'Dit binne de lêste <strong>$1</strong> feroarings yn de lêste <strong>$2</strong> oeren.',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => "Dwaande mei op'e folchlist te setten ...",
+'unwatching' => "Dwaande mei fan'e folchlist ôf te heljen ...",
 
 # Delete/protect/revert
 'deletepage'        => 'Wisk side',
@@ -646,6 +715,9 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 'undeletebtn'       => 'Weromset!',
 'undeletedarticle'  => '"$1" weromset',
 
+# Namespace form on various pages
+'blanknamespace' => '(Haadnammerûmte)',
+
 # Contributions
 'contributions' => 'Brûker bydragen',
 'mycontris'     => 'Myn bydragen',
@@ -656,11 +728,12 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 'uctop'         => ' (boppen)',
 
 # What links here
-'whatlinkshere' => 'Wat is hjirmei keppele',
-'linklistsub'   => '(List fan keppelings)',
-'linkshere'     => 'Dizze siden binne hjirmei keppele:',
-'nolinkshere'   => 'Gjinien side is hjirmei keppele!',
-'isredirect'    => 'trochverwizing',
+'whatlinkshere'       => 'Wat is hjirmei keppele',
+'linklistsub'         => '(List fan keppelings)',
+'linkshere'           => 'Dizze siden binne hjirmei keppele:',
+'nolinkshere'         => 'Gjinien side is hjirmei keppele!',
+'isredirect'          => 'trochverwizing',
+'whatlinkshere-links' => '← links dêrnei ta',
 
 # Block/unblock
 'blockip'            => 'Slut brûker út',
@@ -740,6 +813,34 @@ Gearfoegje de oerlissiden hânmjittig.",
 # Namespace 8 related
 'allmessages' => 'Alle wikiberjochten',
 
+# Thumbnails
+'thumbnail-more' => 'Grutter',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'     => 'Myn brûkersside',
+'tooltip-pt-mytalk'       => 'Myn oerlisside',
+'tooltip-pt-preferences'  => 'Myn foarkarynstellings',
+'tooltip-pt-watchlist'    => "List fan siden dy'sto besjochst op feroarings",
+'tooltip-pt-mycontris'    => 'Myn bydragen',
+'tooltip-pt-login'        => 'Jo wurde fan herten útnoege jo oan te melden, mar it hoecht net.',
+'tooltip-pt-logout'       => 'Ofmelde',
+'tooltip-ca-talk'         => 'Oerlis oer dizze side',
+'tooltip-ca-edit'         => "Jo kinne dizze side bewurkje. Brûk a.j.w. de foarbyldwerjefteknop foar't Jo de boel bewarje.",
+'tooltip-search'          => '{{SITENAME}} trochsykje',
+'tooltip-n-mainpage'      => 'Gean nei de haadside',
+'tooltip-n-portal'        => "Oer it projekt: wat'st dwaan kinst, wêr'st dingen fine kinst.",
+'tooltip-n-currentevents' => 'Eftergrûnynformaasje oer rinnende saken.',
+'tooltip-n-recentchanges' => 'De list fan koartlyn oanbrochte feroarings yn dizze wiki.',
+'tooltip-n-randompage'    => 'Samar in side sjen litte.',
+'tooltip-n-help'          => 'Helpynformaasje oer dizze wiki.',
+'tooltip-n-sitesupport'   => 'Stypje ús',
+'tooltip-t-whatlinkshere' => "List fan alle siden dy't nei dizze side ferwize",
+'tooltip-t-upload'        => 'Triemmen oplade',
+'tooltip-t-specialpages'  => 'List fan alle spesjale siden',
+'tooltip-save'            => 'Jo feroarings bewarje',
+'tooltip-preview'         => "Oerlêze foar't de side fêstlein is!",
+'tooltip-diff'            => "Sjen litte hokker feroarings jo yn'e tekst makke hawwe.",
+
 # Math options
 'mw_math_png'    => 'Altiten as PNG ôfbyldzje',
 'mw_math_simple' => 'HTML foar ienfâldiche formules, oars PNG',
@@ -747,5 +848,11 @@ Gearfoegje de oerlissiden hânmjittig.",
 'mw_math_source' => 'Lit de TeX ferzje stean (foar tekstblêdzjers)',
 'mw_math_modern' => 'Oanbefelle foar resinte blêdzjers',
 'mw_math_mathml' => 'MathML',
+
+# Bad image list
+'bad_image_list' => "De opmaak is as folget:
+
+Allinne rigels fan in list dy't begjinne mei * wurde ferwurke. De earste link op in rigel moat in link wêze nei in net winske ôfbylding.
+Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûndering, lykas bygelyks siden dêr't de ôfbylding yn'e tekst opnommen is.",
 
 );

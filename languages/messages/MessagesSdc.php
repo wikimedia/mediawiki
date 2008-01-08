@@ -677,7 +677,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'logdelete-success'           => "Visibiriddai di l'eventu impusthadda.",
 
 # Oversight log
-'oversightlog' => 'Rigisthru di li mudìfigghi traschuraddi',
+'oversightlog'    => 'Rigisthru di li mudìfigghi traschuraddi',
+'overlogpagetext' => "Inogghi v'è una listha di li canzilladduri e di li brocchi reratibi a cuntinuddi cuaddi pa l'amministhradori. Cunsulthà la [[Special:Ipblocklist|listha di l'IP broccaddi]] pa l'erencu di brocchi e bandi chi so attibi abà.",
 
 # History merging
 'mergehistory'                     => 'Unioni cronologi',
@@ -819,6 +820,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'group-all'           => '(utenti)',
 
 'group-autoconfirmed-member' => 'Utenti autocunfèimmaddu',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Amministhradori',
 'group-bureaucrat-member'    => 'Buròcrati',
 
@@ -852,6 +854,9 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'hist'                              => 'cron',
 'hide'                              => 'cua',
 'show'                              => 'musthra',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => "[abbaidadda da {{PLURAL:$1|un'utenti|$1 utenti}}]",
 'rc_categories'                     => 'Limita a li categuri (siparaddi da "|")',
 'rc_categories_any'                 => 'Cassisia',
@@ -864,15 +869,15 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'recentchangeslinked-summary'  => "Chistha pàgina ippiziari musthra li mudìfigghi più rizzenti a li pàgini curriraddi a chidda sciubaradda. Li pàgini abbaidaddi so evidenziaddi in '''grasseddu'''.",
 
 # Upload
-'upload'                     => 'Carrigga un file',
-'uploadbtn'                  => 'Carrigga',
-'reupload'                   => 'Carrigga di nobu',
-'reuploaddesc'               => 'Turra a lu mòdulu pa lu carriggamentu.',
-'uploadnologin'              => 'Intradda nò effettuadda',
-'uploadnologintext'          => 'È nezzessàriu [[Special:Userlogin|intrà]] pa carriggà file.',
-'upload_directory_read_only' => "L'elaburaddori sivvidori nò è bonu à ischribì i' la carthella di carriggamentu ($1).",
-'uploaderror'                => "Errori i' lu carriggamentu",
-'uploadtext'                 => "Usa lu mòdulu in giossu pà carriggà file. Pà visuarizzà o zirchà li file già carriggaddi, cunsulthà  lu [[Special:Imagelist|rigisthru di li file carriggaddi]]. Carriggamenti e ischarriggamenti di file so registhraddi i' lu  [[Special:Log/upload|rigisthru di li carriggamenti]].
+'upload'                      => 'Carrigga un file',
+'uploadbtn'                   => 'Carrigga',
+'reupload'                    => 'Carrigga di nobu',
+'reuploaddesc'                => 'Turra a lu mòdulu pa lu carriggamentu.',
+'uploadnologin'               => 'Intradda nò effettuadda',
+'uploadnologintext'           => 'È nezzessàriu [[Special:Userlogin|intrà]] pa carriggà file.',
+'upload_directory_read_only'  => "L'elaburaddori sivvidori nò è bonu à ischribì i' la carthella di carriggamentu ($1).",
+'uploaderror'                 => "Errori i' lu carriggamentu",
+'uploadtext'                  => "Usa lu mòdulu in giossu pà carriggà file. Pà visuarizzà o zirchà li file già carriggaddi, cunsulthà  lu [[Special:Imagelist|rigisthru di li file carriggaddi]]. Carriggamenti e ischarriggamenti di file so registhraddi i' lu  [[Special:Log/upload|rigisthru di li carriggamenti]].
 
 Pà insirì un'immàgina i' na pàgina, fà un cullegamentu cussì:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -880,51 +885,60 @@ Pà insirì un'immàgina i' na pàgina, fà un cullegamentu cussì:
 usa inveci
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
 pà culligà direttamenti l'althri tipi di file.",
-'upload-permitted'           => 'Fuimmaddi di file autorizaddi: $1.',
-'upload-preferred'           => 'Fuimmaddi di file prifiriddi: $1.',
-'upload-prohibited'          => 'Fuimmaddi di file pruibbiddi: $1.',
-'uploadlog'                  => 'File carriggaddi',
-'uploadlogpage'              => 'Rigisthru di li file carriggaddi',
-'uploadlogpagetext'          => "Inogghi v'è l'erencu di l'ulthimi file cariggaddi.",
-'filename'                   => 'Innòmu di lu file',
-'filedesc'                   => 'Dettàgliu',
-'fileuploadsummary'          => 'Dettàgli di lu file:',
-'filestatus'                 => "Infuimmazioni i' lu copyright",
-'filesource'                 => 'Orìgini',
-'uploadedfiles'              => 'Erencu di li file carriggaddi',
-'ignorewarning'              => "Ignora l'avvirthimentu e saivva cumenti si sia lu file.",
-'ignorewarnings'             => 'Ignora li imbasciaddi di avvirthimentu di lu sisthema',
-'minlength1'                 => "Lu nommu di lu file débi assé cumposthu arumandu d'un caràtteri.",
-'illegalfilename'            => 'L\'innòmmu "$1" cunteni caràtteri nò primmissi i\' li tìturi di li pàgini. Dà a lu file un\'innòmmu dibessu e prubà a carriggarlu di nobu.',
-'badfilename'                => 'L\'innòmmu di lu file è isthaddu ciambaddu in "$1".',
-'filetype-badmime'           => 'Nò è cunsintiddu carriggà file di tipu MIME "$1".',
-'filetype-unwanted-type'     => "'''\".\$1\"''' è un tipu di file digradiddu. Li file prifiriddi so di tipu \$2.",
-'filetype-banned-type'       => "'''\".\$1\"''' nò è un tipu di file primmissu. Li file primmissi so di tipu \$2.",
-'filetype-missing'           => 'Lu file è chena esthensioni (cumenti ".jpg").',
-'large-file'                 => 'Pa piazeri nò suparà li misuri di $1 pa ugni file; chisthu file è mannu $2.',
-'largefileserver'            => "Lu file supara li misuri cunsintiddi da la cunfigurazioni di l'elaburaddori sivvidori.",
-'emptyfile'                  => "Lu file appena cariggaddu pari assé bioddu. Lu chi pudia assé dubuddu a un'errori i' l'innòmmu di lu file. Verifiggà chi s'aggia avveru gana di cariggà chisthu file.",
-'fileexists'                 => "Un file cu' chisth'innòmmu isisthi già. Verifiggà primma <strong><tt>$1</tt></strong> si nò s'è sigguri di vurellu sobbraschribì.",
-'fileexists-extension'       => "Un file cu'un'innòmmu sìmmiri isisthi già; la sora diffarènzia è l'usu di li maiuschini i' l'esthensioni:<br />
+'upload-permitted'            => 'Fuimmaddi di file autorizaddi: $1.',
+'upload-preferred'            => 'Fuimmaddi di file prifiriddi: $1.',
+'upload-prohibited'           => 'Fuimmaddi di file pruibbiddi: $1.',
+'uploadlog'                   => 'File carriggaddi',
+'uploadlogpage'               => 'Rigisthru di li file carriggaddi',
+'uploadlogpagetext'           => "Inogghi v'è l'erencu di l'ulthimi file cariggaddi.",
+'filename'                    => 'Innòmu di lu file',
+'filedesc'                    => 'Dettàgliu',
+'fileuploadsummary'           => 'Dettàgli di lu file:',
+'filestatus'                  => "Infuimmazioni i' lu copyright",
+'filesource'                  => 'Orìgini',
+'uploadedfiles'               => 'Erencu di li file carriggaddi',
+'ignorewarning'               => "Ignora l'avvirthimentu e saivva cumenti si sia lu file.",
+'ignorewarnings'              => 'Ignora li imbasciaddi di avvirthimentu di lu sisthema',
+'minlength1'                  => "Lu nommu di lu file débi assé cumposthu arumandu d'un caràtteri.",
+'illegalfilename'             => 'L\'innòmmu "$1" cunteni caràtteri nò primmissi i\' li tìturi di li pàgini. Dà a lu file un\'innòmmu dibessu e prubà a carriggarlu di nobu.',
+'badfilename'                 => 'L\'innòmmu di lu file è isthaddu ciambaddu in "$1".',
+'filetype-badmime'            => 'Nò è cunsintiddu carriggà file di tipu MIME "$1".',
+'filetype-unwanted-type'      => "'''\".\$1\"''' è un tipu di file digradiddu. Li file prifiriddi so di tipu \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' nò è un tipu di file primmissu. Li file primmissi so di tipu \$2.",
+'filetype-missing'            => 'Lu file è chena esthensioni (cumenti ".jpg").',
+'large-file'                  => 'Pa piazeri nò suparà li misuri di $1 pa ugni file; chisthu file è mannu $2.',
+'largefileserver'             => "Lu file supara li misuri cunsintiddi da la cunfigurazioni di l'elaburaddori sivvidori.",
+'emptyfile'                   => "Lu file appena cariggaddu pari assé bioddu. Lu chi pudia assé dubuddu a un'errori i' l'innòmmu di lu file. Verifiggà chi s'aggia avveru gana di cariggà chisthu file.",
+'fileexists'                  => "Un file cu' chisth'innòmmu isisthi già. Verifiggà primma <strong><tt>$1</tt></strong> si nò s'è sigguri di vurellu sobbraschribì.",
+'fileexists-extension'        => "Un file cu'un'innòmmu sìmmiri isisthi già; la sora diffarènzia è l'usu di li maiuschini i' l'esthensioni:<br />
 Innòmmu di lu file cariggaddu: <strong><tt>$1</tt></strong><br />
 Innòmmu di lu file esisthenti: <strong><tt>$2</tt></strong><br />
 Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènti pa lu file da carriggà.",
-'fileexists-thumb'           => "<center>'''Immàgina esisthenti'''</center>",
-'successfulupload'           => 'Carriggamentu cumpritaddu',
-'uploadwarning'              => 'Avvisu di carriggamentu',
-'savefile'                   => 'Sàivva file',
-'uploadedimage'              => 'ha carriggaddu "[[$1]]"',
-'overwroteimage'             => 'ha carriggaddu una nóba versioni di "[[$1]]"',
-'uploaddisabled'             => 'Semmu dipiazuddi, ma lu carriggamentu di file è timpuraniamenti suippesu.',
-'uploaddisabledtext'         => "Lu carriggamentu di file nò è attibu i' {{SITENAME}}.",
-'uploadscripted'             => 'Chistu file cunteni còdizi HTML o script, chi pudia assé interpretaddu mari da lu nabiggadori.',
-'uploadcorrupt'              => "Lu file è currumpiddu o à un'esthensioni nò curretta. Contrullà lu file e turrà a prubà lu carriggamentu.",
-'uploadvirus'                => 'Chisthu file cunteni un virus! Dettàgli: $1',
-'sourcefilename'             => "Nommu d'orìgini di lu file",
-'destfilename'               => 'Nommu di lu file di disthinazioni',
-'watchthisupload'            => "Aggiungi a l'abbaidaddi ippiziari",
-'filewasdeleted'             => "Un file cun chist'innòmmu è già isthaddu cariggaddu e canzilladdu. Verifiggà $1 primma di turrà a cariggallu.",
-'filename-bad-prefix'        => "L'innòmmu di lu file chi sei carrigghendi ischumenza cun <strong>\"\$1\"</strong>, ch'è un'innòmmu nò dischrittibu assignaddu automatiggamenti da li fotocameri. Pa piazieri sciubarà un'innòmmu più dischrittibu pa lu file tóiu.",
+'fileexists-thumb'            => "<center>'''Immàgina esisthenti'''</center>",
+'fileexists-thumbnail-yes'    => "Lu file carriggaddu pari assé lu risulthaddu d'un'antiprimma <i>(thumbnail)</i>. Verifiggà, pa cunfrontu, lu file <strong><tt>$1</tt></strong>.<br />
+S'è la matessi immàgina, i' li misuri originari, nò è nezzessàriu carriggà althri antiprimmi.",
+'file-thumbnail-no'           => "L'innòmmu di lu file ischumenza cun <strong><tt>$1</tt></strong>. Pari assé lu risulthaddu d'un'antiprimma <i>(thumbnail)</i>.
+Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla. A l'invessu, pa piazeri ciambà l'innòmmu di lu file.",
+'fileexists-forbidden'        => "Un file cun chisthu innòmmu isisthi già. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[Image:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Un file cun chisthu innòmmu isisthi già i l'archìbiu di li risuzzi mùrthimediari cundibisi. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[Image:$1|thumb|center|$1]]",
+'successfulupload'            => 'Carriggamentu cumpritaddu',
+'uploadwarning'               => 'Avvisu di carriggamentu',
+'savefile'                    => 'Sàivva file',
+'uploadedimage'               => 'ha carriggaddu "[[$1]]"',
+'overwroteimage'              => 'ha carriggaddu una nóba versioni di "[[$1]]"',
+'uploaddisabled'              => 'Semmu dipiazuddi, ma lu carriggamentu di file è timpuraniamenti suippesu.',
+'uploaddisabledtext'          => "Lu carriggamentu di file nò è attibu i' {{SITENAME}}.",
+'uploadscripted'              => 'Chistu file cunteni còdizi HTML o script, chi pudia assé interpretaddu mari da lu nabiggadori.',
+'uploadcorrupt'               => "Lu file è currumpiddu o à un'esthensioni nò curretta. Contrullà lu file e turrà a prubà lu carriggamentu.",
+'uploadvirus'                 => 'Chisthu file cunteni un virus! Dettàgli: $1',
+'sourcefilename'              => "Nommu d'orìgini di lu file",
+'destfilename'                => 'Nommu di lu file di disthinazioni',
+'watchthisupload'             => "Aggiungi a l'abbaidaddi ippiziari",
+'filewasdeleted'              => "Un file cun chist'innòmmu è già isthaddu cariggaddu e canzilladdu. Verifiggà $1 primma di turrà a cariggallu.",
+'upload-wasdeleted'           => "'''Attenzioni: sei carrigghendi un file chi prizzidentementi è già isthaddu canzilladdu.'''
+
+Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigisthru cu' la mutibazioni di la canzilladdura:",
+'filename-bad-prefix'         => "L'innòmmu di lu file chi sei carrigghendi ischumenza cun <strong>\"\$1\"</strong>, ch'è un'innòmmu nò dischrittibu assignaddu automatiggamenti da li fotocameri. Pa piazieri sciubarà un'innòmmu più dischrittibu pa lu file tóiu.",
 
 'upload-proto-error'      => 'Protocollu ibbagliaddu',
 'upload-proto-error-text' => 'Pa lu cariggamentu "luntanu" è nezzessàriu ippizzificà indirizzi ch\'ischumenzani cun <code>http://</code> oppuru <code>ftp://</code>.',
@@ -956,6 +970,7 @@ Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènt
 'bysize'                    => 'misura',
 'imgdelete'                 => 'canz',
 'imgdesc'                   => "pàgina di l'immàgina",
+'imgfile'                   => 'file',
 'filehist'                  => 'Cronologia di lu file',
 'filehist-help'             => "Fà clic i' un gruppu data/ora pa vidé lu file cumenti era i' lu mamentu indicaddu.",
 'filehist-deleteall'        => 'canzella tuttu',
@@ -1035,6 +1050,14 @@ Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènt
 'statistics'             => 'Sthatisthigghi',
 'sitestats'              => 'Sthatisthigghi reratibi a {{SITENAME}}',
 'userstats'              => "Sthatisthigghi reratibi a l'utenti",
+'sitestatstext'          => "La bancadati cunteni {{PLURAL:\$1|'''1''' pàgina|'''\$1''' pàgini}}.
+Chisthu nùmaru cumprendi le pàgini di \"dischussioni\", li pàgini i' {{SITENAME}}, li pàgini \"sàgumi\", li rinvii e althri pàgini chi forsi nò so parthi di li cuntinuddi. Eschrudendi chisthi, {{PLURAL:\$2|v'è '''1''' pàgina|vi so '''\$2''' pàgini}} chi forsi {{PLURAL:\$2|è una vera pàgina|so veri pàgini}} di cuntinuddi.
+
+{{PLURAL:\$8|È puru isthaddu carriggaddu|So puru isthaddi carriggaddi}} '''\$8''' file.
+
+Da l'isthallazioni di {{SITENAME}} finz'abà  '''\$3''' {{PLURAL:\$3|pàgina è isthadda visitadda|pàgini so isthaddi visitaddi}}, e '''\$4''' {{PLURAL:\$4|mudìfigga è isthadda arriggadda|mudìfigghi so isthaddi arriggaddi}}, pa una mèdia di '''\$5''' mudìfigghi pa pàgina e '''\$6''' litturi pa mudìfigga.
+
+La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa '''\$7'''.",
 'userstatstext'          => "Abà {{PLURAL:$1|è registhraddu '''1''' [[Special:Listusers|utenti]]|so registhraddi '''$1''' [[Special:Listusers|utenti]]}}. Lu gruppu $5 è cumposthu da '''$2''' {{PLURAL:$2|utenti|utenti}}, pari a lu '''$4%''' di li registhraddi.",
 'statistics-mostpopular' => 'Pàgini più visitaddi',
 
@@ -1327,6 +1350,7 @@ L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'undelete'                     => 'Musthra pàgini canzilladdi',
 'undeletepage'                 => 'Musthra e ricupara li pàgini canzilladdi',
 'viewdeletedpage'              => 'Musthra li pàgini canzilladdi',
+'undeletepagetext'             => "Li pàgini chi so inogghi so isthaddi canzilladdi, ma so ancora i'archìbiu e dunca pudiani assé ricuparaddi. L'archìbiu pó assé ibbiuddaddu di tantu in tantu.",
 'undeleterevisions'            => '{{PLURAL:$1|Una ribisioni|$1 ribisioni}} in archìbiu',
 'undeletehistorynoadmin'       => "La pàgina è isthadda canzilladda. Lu mutibu di la canzilladdura è indicaddu inogghi, impari ai dati di l'utenti chi abìani mudìfiggaddu la pàgina primma di la canzilladdura. Lu testhu cuntinuddu i' li ribisioni canzilladdi è dipunìbiri soru a li amministhradori.",
 'undelete-revision'            => 'Ribisioni canzilladda di la pàgina $1, insiridda lu $2 da $3:',
