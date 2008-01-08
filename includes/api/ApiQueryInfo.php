@@ -109,6 +109,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addFields(array('pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry'));
 			$this->addWhere($lb->constructSet('pt', $db));
 			$res = $this->select(__METHOD__);
+			$prottitles = array();
 			while($row = $db->fetchObject($res)) {
 				$prottitles[$row->pt_namespace][$row->pt_title] = array(
 					'type' => 'create',
@@ -200,7 +201,11 @@ class ApiQueryInfo extends ApiQueryBase {
 				if($tok_protect)
 					$res['query']['pages'][$pageid]['protecttoken'] = $wgUser->editToken();
 				if($fld_protection)
-					$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][$title->getDbKey()];
+					// FIXME: Fix XML formatter
+					if(isset($prottitles[$title->getNamespace()][$title->getDbKey()]))
+						$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][$title->getDbKey()];
+					else
+						$res['query']['pages'][$pageid]['protection'] = array();
 				$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
 			}
 		}
