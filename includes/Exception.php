@@ -16,6 +16,26 @@ class MWException extends Exception
 		return is_object( $wgLang );
 	}
 
+	function runHooks( $name, $args = array() ) {
+		global $wgExceptionHooks;
+		if( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) ) 
+			return;	// Just silently ignore
+		if( !array_key_exists( $name, $wgExceptionHooks ) || !is_array( $wgExceptionHooks[ $name ] ) )
+			return;
+		$hooks = $wgExceptionHooks[ $name ];
+		$callargs = array_merge( array( $this ), $args );
+
+		foreach( $hooks as $hook ) {
+			if( is_string( $hook ) || ( is_array( $hook ) && count( $hook ) >= 2 && is_string( $hook[0] ) ) ) {	//'function' or array( 'class', hook' )
+				$result = call_user_func_array( $hook, $callargs );
+			} else {
+				$result = null;
+			}
+			if( is_string( $result ) )
+				return $result;
+		}
+	}
+
 	/** Get a message from i18n */
 	function msg( $key, $fallback /*[, params...] */ ) {
 		$args = array_slice( func_get_args(), 2 );
@@ -83,9 +103,16 @@ class MWException extends Exception
 			$wgOut->enableClientCache( false );
 			$wgOut->redirect( '' );
 			$wgOut->clearHTML();
-			$wgOut->addHTML( $this->getHTML() );
+			if( $hookResult = $this->runHooks( get_class( $this ) ) ) {
+				$wgOut->addHTML( $hookResult );
+			} else {
+				$wgOut->addHTML( $this->getHTML() );
+			}
 			$wgOut->output();
 		} else {
+			if( $hookResult = $this->runHooks( get_class( $this ) . "Raw" ) ) {
+				die( $hookResult );
+			}
 			echo $this->htmlHeader();
 			echo $this->getHTML();
 			echo $this->htmlFooter();
@@ -131,7 +158,6 @@ class MWException extends Exception
 	function htmlFooter() {
 		echo "</body></html>";
 	}
-
 }
 
 /**
