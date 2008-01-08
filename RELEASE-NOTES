@@ -121,6 +121,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow subpage syntax for Special:Userrights, i.e., Special:Userrights/Name.
 * When submitting changes on Special:Userrights, show the full form again, not
   just the search box.
+* Added exception hooks
 
 
 === Bug fixes in 1.12 ===

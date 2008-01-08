@@ -2854,3 +2854,13 @@ $wgSlaveLagCritical = 30;
 $wgParserConf = array( 
 	'class' => 'Parser',
 );
+
+/**
+ * Hooks that are used for outputting exceptions
+ * Format is:
+ * 	$wgExceptionHooks[] = $funcname
+ * or:
+ * 	$wgExceptionHooks[] = array( $class, $funcname )
+ * Hooks should return strings or false
+ */
+$wgExceptionHooks = array();
