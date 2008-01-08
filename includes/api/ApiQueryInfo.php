@@ -201,12 +201,15 @@ class ApiQueryInfo extends ApiQueryBase {
 				if($tok_protect)
 					$res['query']['pages'][$pageid]['protecttoken'] = $wgUser->editToken();
 				if($fld_protection)
-					// FIXME: Fix XML formatter
+				{
+					// Apparently the XML formatting code doesn't like array(null)
+					// This is painful to fix, so we'll just work around it
 					if(isset($prottitles[$title->getNamespace()][$title->getDbKey()]))
 						$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][$title->getDbKey()];
 					else
 						$res['query']['pages'][$pageid]['protection'] = array();
-				$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
+					$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
+				}
 			}
 		}
 	}
