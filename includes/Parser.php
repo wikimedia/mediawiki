@@ -2777,7 +2777,7 @@ class Parser
 						$i = strlen( $text );
 					} else {
 						// Search backwards for leading whitespace
-						$wsStart = $i ? ( $i - strspn( $revText, ' ', strlen( $text ) - $i - 1 ) ) : 0;
+						$wsStart = $i ? ( $i - strspn( $revText, ' ', strlen( $text ) - $i ) ) : 0;
 						// Search forwards for trailing whitespace
 						// $wsEnd will be the position of the last space
 						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
@@ -2787,11 +2787,18 @@ class Parser
 						{
 							$startPos = $wsStart;
 							$endPos = $wsEnd + 1;
+							// Remove leading whitespace from the end of the accumulator
+							// Sanity check first though
+							$wsLength = $i - $wsStart;
+							if ( $wsLength > 0 && substr( $accum, -$wsLength ) === str_repeat( ' ', $wsLength ) ) {
+								$accum = substr( $accum, 0, -$wsLength );
+							}
 						} else {
 							// No line to eat, just take the comment itself
 							$startPos = $i;
 							$endPos += 2;
 						}
+
 						$inner = substr( $text, $startPos, $endPos - $startPos + 1 );
 						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
 						$i = $endPos + 1;
@@ -5425,7 +5432,7 @@ class PPFrame {
 			} elseif ( $root->nodeName == 'comment' ) {
 				# HTML-style comment
 				if ( $this->parser->ot['html'] 
-					|| ( $this->parser->ot['pre'] && $this->mOptions->getRemoveComments() ) 
+					|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() ) 
 					|| ( $flags & self::STRIP_COMMENTS ) ) 
 				{
 					$s = '';
