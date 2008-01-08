@@ -72,6 +72,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodTitles();
+		$missing = $pageSet->getMissingTitles();
 		$result = $this->getResult();
 
 		$pageRestrictions = $pageSet->getCustomField('page_restrictions');
@@ -82,23 +83,42 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageLatest = $pageSet->getCustomField('page_latest');
 		$pageLength = $pageSet->getCustomField('page_len');
 
-		if ($fld_protection && count($titles) > 0) {
+		$db = $this->getDB();
+		if ($fld_protection && !empty($titles)) {
 			$this->addTables('page_restrictions');
 			$this->addFields(array('pr_page', 'pr_type', 'pr_level', 'pr_expiry'));
 			$this->addWhereFld('pr_page', array_keys($titles));
 
-			$db = $this->getDB();
 			$res = $this->select(__METHOD__);
 			while($row = $db->fetchObject($res)) {
 				$protections[$row->pr_page][] = array(
-								'type' => $row->pr_type,
-								'level' => $row->pr_level,
-								'expiry' => Block::decodeExpiry( $row->pr_expiry, TS_ISO_8601 )
-							);
+					'type' => $row->pr_type,
+					'level' => $row->pr_level,
+					'expiry' => Block::decodeExpiry( $row->pr_expiry, TS_ISO_8601 )
+				);
 			}
 			$db->freeResult($res);
 		}
-		
+		// We don't need to check for pt stuff if there are no nonexistent titles
+		if($fld_protection && !empty($missing))
+		{
+			$this->resetQueryParams();
+			// Construct a custom WHERE clause that matches all titles in $missing
+			$lb = new LinkBatch($missing);
+			$this->addTables('protected_titles');
+			$this->addFields(array('pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry'));
+			$this->addWhere($lb->constructSet('pt', $db));
+			$res = $this->select(__METHOD__);
+			while($row = $db->fetchObject($res)) {
+				$prottitles[$row->pt_namespace][$row->pt_title] = array(
+					'type' => 'create',
+					'level' => $row->pt_create_perm,
+					'expiry' => Block::decodeExpiry($row->pt_expiry, TS_ISO_8601)
+				);
+			}
+			$db->freeResult($res);
+		}
+
 		foreach ( $titles as $pageid => $title ) {
 			$pageInfo = array (
 				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
@@ -169,14 +189,19 @@ class ApiQueryInfo extends ApiQueryBase {
 			), $pageid, $pageInfo);
 		}
 
-		// Get edit tokens for missing titles if requested
-		// Delete, protect and move tokens are N/A for missing titles anyway
-		if($tok_edit)
+		// Get edit/protect tokens and protection data for missing titles if requested
+		// Delete and move tokens are N/A for missing titles anyway
+		if($tok_edit || $tok_protect || $fld_protection)
 		{
-			$missing = $pageSet->getMissingTitles();
 			$res = &$result->getData();
-			foreach($missing as $pageid => $title)
-				$res['query']['pages'][$pageid]['edittoken'] = $wgUser->editToken();
+			foreach($missing as $pageid => $title) {
+				if($tok_edit)
+					$res['query']['pages'][$pageid]['edittoken'] = $wgUser->editToken();
+				if($tok_protect)
+					$res['query']['pages'][$pageid]['protecttoken'] = $wgUser->editToken();
+				if($fld_protection)
+					$res['query']['pages'][$pageid]['protection'] = $prottitles[$title->getNamespace()][$title->getDbKey()];
+			}
 		}
 	}
 

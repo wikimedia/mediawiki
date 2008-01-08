@@ -59,11 +59,8 @@ class ApiProtect extends ApiBase {
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
 			$this->dieUsage("Bad title ``{$params['title']}''", 'invalidtitle');
-		if(!$titleObj->exists())
-			$this->dieUsage("``{$params['title']}'' doesn't exist", 'missingtitle');
 		if(!$titleObj->userCan('protect'))
 			$this->dieUsage('You don\'t have permission to change protection levels', 'permissiondenied');
-		$articleObj = new Article($titleObj);
 		
 		if(in_array($params['expiry'], array('infinite', 'indefinite', 'never')))
 			$expiry = Block::infinity();
@@ -83,16 +80,24 @@ class ApiProtect extends ApiBase {
 		{
 			$p = explode('=', $prot);
 			$protections[$p[0]] = ($p[1] == 'all' ? '' : $p[1]);
+			if($titleObj->exists() && $p[0] == 'create')
+				$this->dieUsage("Existing titles can't be protected with 'create'", 'create-titleexists');
+			if(!$titleObj->exists() && $p[0] != 'create')
+				$this->dieUsage("Missing titles can only be protected with 'create'", 'create-missingtitle');
 		}
 
 		$dbw = wfGetDb(DB_MASTER);
 		$dbw->begin();
-		$ok = $articleObj->updateRestrictions($protections, $params['reason'], $params['cascade'], $expiry);
+		if($titleObj->exists()) {
+			$articleObj = new Article($titleObj);
+			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $params['cascade'], $expiry);
+		} else
+			$ok = $titleObj->updateTitleProtection($protections['create'], $params['reason'], $expiry);
 		if(!$ok)
 			// This is very weird. Maybe the article was deleted or the user was blocked/desysopped in the meantime?
 			$this->dieUsage('Unknown error', 'unknownerror');
 		$dbw->commit();
-		$res = array('title' => $titleObj->getPrefixedText(), 'reason' => $params['reason'], 'expiry' => $expiry);
+		$res = array('title' => $titleObj->getPrefixedText(), 'reason' => $params['reason'], 'expiry' => wfTimestamp(TS_ISO_8601, $expiry));
 		if($params['cascade'])
 			$res['cascade'] = '';
 		$res['protections'] = $protections;
