@@ -83,7 +83,7 @@ class ApiProtect extends ApiBase {
 			if($titleObj->exists() && $p[0] == 'create')
 				$this->dieUsage("Existing titles can't be protected with 'create'", 'create-titleexists');
 			if(!$titleObj->exists() && $p[0] != 'create')
-				$this->dieUsage("Missing titles can only be protected with 'create'", 'create-missingtitle');
+				$this->dieUsage("Missing titles can only be protected with 'create'", 'missingtitle');
 		}
 
 		$dbw = wfGetDb(DB_MASTER);
