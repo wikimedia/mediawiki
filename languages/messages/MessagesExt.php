@@ -788,6 +788,7 @@ El restu e duendis d'esti güiqui sí tendrán premisu pa visoreal el caltiniu a
 'userrights-editusergroup'    => 'Eital alabanis d´usuárius',
 'saveusergroups'              => 'Emburacal alabanis d´usuárius',
 'userrights-groupsmember'     => 'Miembru e:',
+'userrights-groupsremovable'  => 'Alabanis esborrabris:',
 'userrights-groupsavailable'  => 'Alabanis disponibris:',
 'userrights-groupshelp'       => "Aseñala los alabanis a los que quieis añiil al usuáriu (u de los que quieis esborralu). Los alabanis nu aseñalaus nu chambarán. Pueis ehal d'aseñalal un alabán pursandu la tecra CTRL.",
 'userrights-reason'           => 'Razón el chambu:',
@@ -1303,6 +1304,7 @@ Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
 'protect-summary-cascade'     => 'proteción en "cascá"',
 'protect-expiring'            => 'acabiha el $1 (UTC)',
 'protect-cascade'             => 'Protehel las páhinas encluias nesta páhina (proteción en "cascá")',
+'protect-cantedit'            => "Nu t'es posibri chambal el nivel de proteción desta páhina ebiu a que nu tienis los premisus nesezárius pa eitala.",
 'restriction-type'            => 'Premisus:',
 'restriction-level'           => 'Nivel de restrición:',
 'minimum-size'                => 'Grandol mén.',
@@ -1787,6 +1789,7 @@ $1',
 'exif-gpsdestlongitude'        => 'Lonhitú el destinu',
 'exif-gpsdestdistanceref'      => 'Longol al destinu',
 'exif-gpsdestdistance'         => 'Longol al destinu',
+'exif-gpsareainformation'      => 'Nombri el ária GPS',
 'exif-gpsdatestamp'            => 'Fecha el GPS',
 
 # EXIF attributes
@@ -1963,6 +1966,7 @@ $1',
 'searchnamed'      => "Landeal artículus llamaus ''$1''.",
 'articletitles'    => "Artículus qu´esmiencin pol ''$1''",
 'hideresults'      => 'Açonchal resurtaus',
+'useajaxsearch'    => 'Usa el landeru AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páhina anteriol',
@@ -2033,4 +2037,3 @@ $1',
 'iranian-calendar-m12' => '12 mes Jalāli',
 
 );
-

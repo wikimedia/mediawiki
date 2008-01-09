@@ -2373,4 +2373,7 @@ Spytaj normalny přehlad.',
 'iranian-calendar-m11' => '11. měsac Jalāli',
 'iranian-calendar-m12' => '12. měsac Jalāli',
 
+# Core parser functions
+'unknown_extension_tag' => 'Njeznata taflička rozšěrjenja "$1"',
+
 );

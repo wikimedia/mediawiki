@@ -138,6 +138,7 @@ $messages = array(
 'mypage'         => 'Монь лопам',
 'mytalk'         => 'Монь кортамом',
 'anontalk'       => 'Кортамс те IP-нть марто',
+'navigation'     => 'Навигациянть',
 
 # Metadata in edit box
 'metadata_help' => 'Метадата:',
@@ -307,6 +308,7 @@ $messages = array(
 'italic_tip'      => 'Комавтонь текст',
 'link_sample'     => 'Сюлмавомапень конякс',
 'link_tip'        => 'Потмоёндонь сюлмавомапе',
+'extlink_sample'  => 'http://www.example.com налткенть лемезе',
 'extlink_tip'     => 'Ушо ёнксонь сюлмавкс / налтке (мельсэ кирдить http:// путовксонть)',
 'headline_sample' => 'Конякссонть текстэсь',
 'headline_tip'    => 'Омбоце эскельксэнь конякс',
@@ -340,6 +342,9 @@ $messages = array(
 'loginreqlink'       => 'совамс',
 'accmailtitle'       => 'Салавань вал кучозь.',
 'newarticle'         => '(Од)',
+'newarticletext'     => "Тынь молиде налткенть мельга сёрмадовксось конань эзь ульне теезь. 
+Ули меленк теемс сёрмадовкс сёрмадодо валт ало паргосонть (вандодо [[{{MediaWiki:Helppage}}|help page]] тесэ лездамо информация). 
+Кодак тынь тесэ ильветькс коряс, лепштядо '''back''' браузерсэ.",
 'previewnote'        => '<strong>Это - ансяк икелев ваномась; полавтоматне эзть ульне ванстозь!</strong>',
 'editing'            => 'Витнят-петнят $1',
 'yourtext'           => 'Мезе сёрмадыть',
@@ -422,8 +427,9 @@ $messages = array(
 'show'            => 'Невтемс',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Сюлмавозь лиякстоматьне',
-'recentchangeslinked-title' => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
+'recentchangeslinked'          => 'Сюлмавозь лиякстоматьне',
+'recentchangeslinked-title'    => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
+'recentchangeslinked-noresult' => 'Кодаткак полавтомат сюлмавозь лопатьнесэ те шкастонть.',
 
 # Upload
 'upload'        => 'Ёкстамонзо файланть',
@@ -436,6 +442,7 @@ $messages = array(
 'imagelist'                 => 'Файлат-мезть',
 'imgfile'                   => 'файл',
 'filehist'                  => 'Файланть эрямопингезэ',
+'filehist-help'             => 'Лепштинк чиннть/шканть ланкс, сестэ вансынк коли файлось ульнесь теезь.',
 'filehist-datetime'         => 'Чи/Шка',
 'filehist-user'             => 'Совиця',
 'filehist-dimensions'       => 'Онкставкс',
@@ -488,6 +495,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel'  => 'Совиця:',
 'speciallogtitlelabel' => 'Конякс:',
+'log'                  => 'Салав валось (регистрациясь)',
 
 # Special:Allpages
 'allpagesfrom'   => 'Невтема лопатьне, ушодовицятне:',
@@ -541,9 +549,10 @@ $messages = array(
 'blanknamespace' => '(Прявкс)',
 
 # Contributions
-'mycontris' => 'Монь путовкст',
-'month'     => 'Ковстонть (ды седе икеле):',
-'year'      => 'Иестэнть (ды седе икеле):',
+'contributions' => 'Совицянть-кирдицянть путовксозо',
+'mycontris'     => 'Монь путовкст',
+'month'         => 'Ковстонть (ды седе икеле):',
+'year'          => 'Иестэнть (ды седе икеле):',
 
 'sp-contributions-username' => 'IP сёрмапарго эли совицянь лем:',
 'sp-contributions-submit'   => 'Вешнемс',
@@ -552,6 +561,7 @@ $messages = array(
 'whatlinkshere'       => 'Мезе тезэнь сюлмави',
 'whatlinkshere-title' => 'Лопат конат сюлмазь $1 марто',
 'linklistsub'         => '(Налткень потмокс)',
+'linkshere'           => "Сыця лопатьне сюлмававить '''[[:$1]]''' марто:",
 'isredirect'          => 'Лиякс витнинк-петнинк лопанть',
 'istemplate'          => 'совавтомс',
 'whatlinkshere-links' => '← сюлмавомапеть',
@@ -579,57 +589,67 @@ $messages = array(
 'thumbnail-more' => 'Покшолгавтомс',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Совицянь лопам',
-'tooltip-pt-mytalk'         => 'Кортнемалопам',
-'tooltip-pt-preferences'    => 'Монь лия ютксто явома',
-'tooltip-pt-watchlist'      => 'Лопань потмакс конататьненть Тынь вандад лиякстоманть коряс',
-'tooltip-pt-mycontris'      => 'Мезесэ мон лездынь',
-'tooltip-pt-login'          => 'Совавтовлить эсь прят тезэнь, арась мелеть, иля.',
-'tooltip-pt-logout'         => 'Лисемс',
-'tooltip-ca-talk'           => 'Кортавтома пек паро лопадонть',
-'tooltip-ca-edit'           => 'Те лопаськак витневи-петневи. Ансяк, ванстомадо икеле яла васнянь невтевкс повнэнть лепштика.',
-'tooltip-ca-viewsource'     => 'Те лопась ванстозь. Ули меленк ваномонзо сонзе лисмапрянть.',
-'tooltip-ca-protect'        => 'Аравтомс те лопанть прянь ванстомас',
-'tooltip-ca-delete'         => 'Нардамс те лопанть, илязо улеяк',
-'tooltip-ca-move'           => 'Ютавтык те лопанть лияв',
-'tooltip-ca-watch'          => 'Топавтомс те лопанть тынк ваномалопаньте',
-'tooltip-search'            => 'Вешнемс вана тестэ {{SITENAME}}',
-'tooltip-n-mainpage'        => 'Совака прякслопантень',
-'tooltip-n-portal'          => 'Проектэнть эйстэ,  мейсэ Тынь лездатад, косо муемс курмот-кармот',
-'tooltip-n-currentevents'   => 'Муинк совавикс информациянть неень событиятнесэ',
-'tooltip-n-recentchanges'   => 'Викисэ мезе чияк полавтовсь-лиякстомтовсь.',
-'tooltip-n-randompage'      => 'Макста ловномс кодамо понгсь лопа',
-'tooltip-n-help'            => 'Превс путыть косо.',
-'tooltip-n-sitesupport'     => 'Макста миненек нежедематарка',
-'tooltip-t-whatlinkshere'   => 'Викинь весе лопатне, конат тезэнь сюлмазь',
-'tooltip-t-emailuser'       => 'Те совицянтень кучомс е-сёрма',
-'tooltip-t-upload'          => 'Ёкстамс путовкст ды фотокувт',
-'tooltip-t-specialpages'    => 'Башка тевень лопатне мельга-мельцек',
-'tooltip-ca-nstab-user'     => 'Ваномс совицянь лопанть',
-'tooltip-ca-nstab-image'    => 'Ванынк фотокувонть лопанть',
-'tooltip-ca-nstab-template' => 'Ванномс лопапарцунонть',
-'tooltip-ca-nstab-help'     => 'Ванномс лездамонь лопанть',
-'tooltip-ca-nstab-category' => 'Варштынк категориянь лопатьнень',
-'tooltip-save'              => 'Ванстомс мезе лиякстомтыть',
-'tooltip-preview'           => 'Ванодо тынк лиякстоматнень, инескеть тевс нолдадо тень ванстоманть икеле!',
-'tooltip-diff'              => 'Невтемс мейсэ лиякстомтыть текстэнть.',
-'tooltip-watch'             => 'Топавтомс те лопанть тынк ваномалопаньте',
+'tooltip-pt-userpage'             => 'Совицянь лопам',
+'tooltip-pt-mytalk'               => 'Кортнемалопам',
+'tooltip-pt-preferences'          => 'Монь лия ютксто явома',
+'tooltip-pt-watchlist'            => 'Лопань потмакс конататьненть Тынь вандад лиякстоманть коряс',
+'tooltip-pt-mycontris'            => 'Мезесэ мон лездынь',
+'tooltip-pt-login'                => 'Совавтовлить эсь прят тезэнь, арась мелеть, иля.',
+'tooltip-pt-logout'               => 'Лисемс',
+'tooltip-ca-talk'                 => 'Кортавтома пек паро лопадонть',
+'tooltip-ca-edit'                 => 'Те лопаськак витневи-петневи. Ансяк, ванстомадо икеле яла васнянь невтевкс повнэнть лепштика.',
+'tooltip-ca-addsection'           => 'Топавтодо мельполадкс кортавтоманьте.',
+'tooltip-ca-viewsource'           => 'Те лопась ванстозь. Ули меленк ваномонзо сонзе лисмапрянть.',
+'tooltip-ca-protect'              => 'Аравтомс те лопанть прянь ванстомас',
+'tooltip-ca-delete'               => 'Нардамс те лопанть, илязо улеяк',
+'tooltip-ca-move'                 => 'Ютавтык те лопанть лияв',
+'tooltip-ca-watch'                => 'Топавтомс те лопанть тынк ваномалопаньте',
+'tooltip-search'                  => 'Вешнемс вана тестэ {{SITENAME}}',
+'tooltip-n-mainpage'              => 'Совака прякслопантень',
+'tooltip-n-portal'                => 'Проектэнть эйстэ,  мейсэ Тынь лездатад, косо муемс курмот-кармот',
+'tooltip-n-currentevents'         => 'Муинк совавикс информациянть неень событиятнесэ',
+'tooltip-n-recentchanges'         => 'Викисэ мезе чияк полавтовсь-лиякстомтовсь.',
+'tooltip-n-randompage'            => 'Макста ловномс кодамо понгсь лопа',
+'tooltip-n-help'                  => 'Превс путыть косо.',
+'tooltip-n-sitesupport'           => 'Макста миненек нежедематарка',
+'tooltip-t-whatlinkshere'         => 'Викинь весе лопатне, конат тезэнь сюлмазь',
+'tooltip-t-emailuser'             => 'Те совицянтень кучомс е-сёрма',
+'tooltip-t-upload'                => 'Ёкстамс путовкст ды фотокувт',
+'tooltip-t-specialpages'          => 'Башка тевень лопатне мельга-мельцек',
+'tooltip-ca-nstab-user'           => 'Ваномс совицянь лопанть',
+'tooltip-ca-nstab-image'          => 'Ванынк фотокувонть лопанть',
+'tooltip-ca-nstab-template'       => 'Ванномс лопапарцунонть',
+'tooltip-ca-nstab-help'           => 'Ванномс лездамонь лопанть',
+'tooltip-ca-nstab-category'       => 'Варштынк категориянь лопатьнень',
+'tooltip-save'                    => 'Ванстомс мезе лиякстомтыть',
+'tooltip-preview'                 => 'Ванодо тынк лиякстоматнень, инескеть тевс нолдадо тень ванстоманть икеле!',
+'tooltip-diff'                    => 'Невтемс мейсэ лиякстомтыть текстэнть.',
+'tooltip-compareselectedversions' => 'Вант явовкст кавто саезь версиятнень те лопанть.',
+'tooltip-watch'                   => 'Топавтомс те лопанть тынк ваномалопаньте',
 
 # Attribution
 'and' => 'ды',
+
+# Spam protection
+'listingcontinuesabbrev' => 'поладовксось моли',
 
 # Browsing diffs
 'nextdiff' => 'Сы кадовиксэсь →',
 
 # Media information
-'file-info-size' => '($1 × $2 пиксельть, файлонть-путовксонть сталмозо: $3, MIME типезе: $4)',
-'show-big-image' => 'Пешксе теевксесь',
+'file-info-size'       => '($1 × $2 пиксельть, файлонть-путовксонть сталмозо: $3, MIME типезе: $4)',
+'show-big-image'       => 'Пешксе теевксесь',
+'show-big-image-thumb' => '<small>Покшолма икелев ваноманть: $1 × $2 пиксэлт</small>',
 
 # Special:Newimages
 'newimages' => 'Од файлатьнень галлереясь',
 
 # Metadata
-'metadata' => 'Meta-нь даннойтне',
+'metadata'          => 'Meta-нь даннойтне',
+'metadata-collapse' => 'Пекстынк келейкстазь детальтнень.',
+
+# External editor support
+'edit-externally-help' => 'Вант [http://meta.wikimedia.org/wiki/Help:External_editors аравтома инструкциятнень ] седе ламо информациянть кис.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'весе',

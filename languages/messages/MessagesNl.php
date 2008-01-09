@@ -2094,7 +2094,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand is aangepast, dan komen details mogelijk niet overeen met de gewijzigde afbeelding.',
 'metadata-expand'   => 'Uitgebreide gegevens tonen',
 'metadata-collapse' => 'Uitgebreide gegevens verbergen',
-'metadata-fields'   => 'De EXIF metadatavelden in dit bericht worden ook getoond op een afbeeldingspagina als de metadatatabel is ingeklapt. Andere velden wordt verborgen.
+'metadata-fields'   => 'De EXIF-metadatavelden in dit bericht worden ook getoond op een afbeeldingspagina als de metadatatabel ingeklapt is. Andere velden worden verborgen.
 * make
 * model
 * datetimeoriginal
@@ -2501,5 +2501,8 @@ Probeer normale voorvertoning.',
 'iranian-calendar-m10' => 'Tiende Perzische maand',
 'iranian-calendar-m11' => 'Elfde Perzische maand',
 'iranian-calendar-m12' => 'Twaalfde Perzische maand',
+
+# Core parser functions
+'unknown_extension_tag' => 'Onbekende tag "$1"',
 
 );

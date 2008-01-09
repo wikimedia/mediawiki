@@ -2683,4 +2683,7 @@ $1',
 'hebrew-calendar-m11-gen' => 'آف',
 'hebrew-calendar-m12-gen' => 'أيلول',
 
+# Core parser functions
+'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
+
 );

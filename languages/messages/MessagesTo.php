@@ -14,6 +14,7 @@
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Ngaahi fehokotaki ʻoku laineʻi ʻi lalo:',
+'tog-highlightbroken'    => 'Ngaohi ʻa e ngaahi fehokotaki maumau ʻoku <a href="" class="new">pehē</a> (meʻa kehe ʻoku pehē <a href="" class="internal">?</a>).',
 'tog-rememberpassword'   => 'Manatuʻi ʻeku kau-ki-ai ʻi he komipiuta ʻeni',
 'tog-watchcreations'     => 'Tānaki ngaahi peesi ʻoku fakatupu ʻe au ki he hokohoko leʻo',
 'tog-watchdefault'       => 'Tānaki ngaahi peesi ʻoku fatu ʻe au ki he hokohoko leʻo',
@@ -237,6 +238,7 @@ Eke: $2",
 'protectedinterface'   => 'Ko e peesi ʻeni ʻoku fakaai ia ʻa e potutohi maʻa e founga fakakomipiuta, ʻoku maluʻi ia ʻo taʻofi leakovi.',
 'editinginterface'     => "'''Fakatokanga''' ʻOku ke fatu ʻi he peesi ʻoku ne ngāueʻaki ki he potutohi ʻo e founga fakakomipiuta. Ko ia ʻene ʻasi mai maʻa e kau ʻetita kotoa ʻe hūkitonu ai ʻa e ngaahi liliu ʻo e pēsí.",
 'sqlhidden'            => '(ʻOku toi ʻa e fehuʻi SQL)',
+'namespaceprotected'   => "ʻOku ʻikai ngofua ke ke fatu ʻa e ngaahi kupu ʻi he vā hingoa '''$1'''.",
 
 # Login and logout pages
 'logouttitle'                => 'ʻAlu mamaʻo ʻo e ʻetita',
@@ -576,6 +578,15 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'imagelist_description'     => 'Fakamahino',
 'imagelist_search_for'      => 'Kumi ki he hingoa ʻo e faitā:',
 
+# File reversion
+'filerevert'                => 'Toe foki $1 ki hono tuʻunga muʻa',
+'filerevert-legend'         => 'Toe foki ʻa e faile ki hono tuʻunga muʻa',
+'filerevert-intro'          => '<span class="plainlinks">ʻOku ke toe foki ʻa e \'\'\'[[Media:$1|$1]]\'\'\' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.</span>',
+'filerevert-comment'        => 'Fakamatala:',
+'filerevert-defaultcomment' => 'Kuo toe foki $1 ki hono tuʻunga muʻa ʻo e $2',
+'filerevert-submit'         => 'Toe foki ki hono tuʻunga muʻa',
+'filerevert-success'        => '<span class="plainlinks">Kuo toe foki ʻa e \'\'\'[[Media:$1|$1]]\'\'\' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.</span>',
+
 # MIME search
 'mimesearch' => 'Kumi fakaMIME',
 'mimetype'   => 'Faʻahinga MIME:',
@@ -648,6 +659,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'longpages'               => 'Peesi lōloa',
 'deadendpages'            => 'Peesi ngata-mate',
 'protectedpages'          => 'Peesi maluʻi',
+'protectedtitles'         => 'Ngaahi ʻuluʻitohi maluʻi',
 'listusers'               => 'Hokohoko kau-ki-ai',
 'specialpages'            => 'Ngaahi peesi makehe',
 'spheading'               => 'Ngaahi peesi makehe maʻa e kau ʻetita kotoa pē',
@@ -674,12 +686,15 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'specialloguserlabel'  => 'ʻEtita:',
 'speciallogtitlelabel' => 'Hingoa:',
 'log'                  => 'Tohinoa',
+'all-logs-page'        => 'Tohinoa kātoa',
+'log-search-legend'    => 'Kumi ha ngaahi tohinoa',
 'log-search-submit'    => 'Fai ā',
 'alllogstext'          => 'Fakaʻaliʻali fakakātoa ʻo e ngaahi tohinoa hiki hake, mo tāmateʻi, mo maluʻi, mo taʻofi, mo fakapule. ʻOku lava ke ke sivi ʻa e fakaʻaliʻalí ni ʻi he fili ʻo e falenga tohinoa pe hingoa ʻo e ʻetita pe peesi hūkitonu.',
 'logempty'             => 'ʻOku maha ʻa e tohinoa.',
 
 # Special:Allpages
 'nextpage'          => 'Peesi hoko ($1)',
+'prevpage'          => 'Peesi ki muʻa ($1)',
 'allpagesfrom'      => 'ʻAsi mai ngaahi peesi ʻoku kamata he:',
 'allarticles'       => 'Ngaahi kupu kātoa',
 'allinnamespace'    => 'Peesi kotoa ($1 vā hingoa)',
@@ -974,6 +989,9 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'importlogpagetext'             => "Ko e ngaahi hūmai fakapule mo e honau hisitōlia fatu mei he ngaahi ''wiki'' kehe.",
 'import-logentry-upload-detail' => 'paaki ʻe $1',
 
+# Metadata
+'notacceptable' => "ʻOku ʻikai lava fakaai ʻe he tauhia 'wiki' ʻa e meʻaʻilo ʻi he meʻangaohi ʻoku lava lau ʻe koe.",
+
 # Attribution
 'anonymous'   => 'Kau ʻetita taʻehingoa ʻo e {{SITENAME}}',
 'siteuser'    => 'Ko e ʻetita {{SITENAME}} $1',
@@ -1070,6 +1088,11 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'exif-gpsareainformation'          => 'Hingoa ʻo e feituʻu FTM',
 'exif-gpsdatestamp'                => 'ʻAho FTM',
 'exif-gpsdifferential'             => 'Fakatonutonu fakafaikehekehe FTM',
+
+'exif-planarconfiguration-1' => 'ngaohi konga noa pē',
+'exif-planarconfiguration-2' => 'ngaohi laini kotoa pē',
+
+'exif-componentsconfiguration-0' => 'ʻoku ʻikai ʻi ai',
 
 'exif-subjectdistance-value' => 'mita ʻe $1',
 

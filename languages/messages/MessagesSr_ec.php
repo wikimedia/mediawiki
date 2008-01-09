@@ -1558,6 +1558,9 @@ Protect pages included in this page (cascading protection)',
 'undeletedpage'            => "<big>'''Страна $1 је враћена'''</big>",
 'undelete-search-submit'   => 'Претрага',
 'undelete-error-short'     => 'Грешка при враћању фајла: $1',
+'undelete-error-long'      => 'Десила се грешка при враћању фајла:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Именски простор:',
@@ -1575,8 +1578,10 @@ Protect pages included in this page (cascading protection)',
 'month'         => 'За месец (и раније):',
 'year'          => 'Од године (и раније):',
 
+'sp-contributions-newbies'     => 'Прикажи само прилоге нових налога',
 'sp-contributions-newbies-sub' => 'За новајлије',
 'sp-contributions-blocklog'    => 'Историја блокирања',
+'sp-contributions-search'      => 'Претрага прилога',
 'sp-contributions-username'    => 'ИП адреса или корисничко име:',
 'sp-contributions-submit'      => 'Претрага',
 
@@ -1619,27 +1624,41 @@ Protect pages included in this page (cascading protection)',
 ** Непожељно корисничко име',
 'ipbanononly'                 => 'Блокирај само анонимне кориснике',
 'ipbcreateaccount'            => 'Спречи прављење налога',
+'ipbemailban'                 => 'Забраните кориснику да шаље е-пошту',
 'ipbenableautoblock'          => 'Аутоматски блокирај последњу ИП адресу овог корисника, и сваку следећу адресу са које се покуша уређивање.',
 'ipbsubmit'                   => 'Блокирај овог корисника',
 'ipbother'                    => 'Остало време',
 'ipboptions'                  => '2 сата:2 hours,1 дан:1 day,3 дана:3 days,1 недеља:1 week,2 недеље:2 weeks,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year,бесконачно:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'остало',
+'ipbotherreason'              => 'Други/додатни разлог:',
 'badipaddress'                => 'Лоша ИП адреса',
 'blockipsuccesssub'           => 'Блокирање је успело',
 'blockipsuccesstext'          => '"[[Special:Contributions/$1|$1]]" је блокиран.
 <br />Погледајте [[Special:Ipblocklist|ИП списак блокираних корисника]] за преглед блокирања.',
+'ipb-edit-dropdown'           => 'Мењајте разлоге блока',
+'ipb-unblock-addr'            => 'Одблокирај $1',
+'ipb-unblock'                 => 'Одблокирај корисничко име или ИП адресу',
+'ipb-blocklist-addr'          => 'Погледајте посојеће блокове за $1',
+'ipb-blocklist'               => 'Погледајте постојеће блокове',
 'unblockip'                   => 'Одблокирај корисника',
 'unblockiptext'               => 'Употребите доњи упитник да бисте вратили право писања
 раније блокираној ИП адреси или корисничком имену.',
 'ipusubmit'                   => 'Одблокирај ову адресу',
 'unblocked'                   => '[[User:$1|$1]] је деблокиран',
+'unblocked-id'                => 'Блок $1 је уклоњен',
 'ipblocklist'                 => 'Списак блокираних ИП адреса и корисника',
+'ipblocklist-legend'          => 'Пронађи блокираног корисника',
+'ipblocklist-username'        => 'Корисник или ИП адреса:',
+'ipblocklist-submit'          => 'Претрага',
 'blocklistline'               => '$1, $2 блокирао корисника [[User:$3|$3]], (истиче $4)',
 'infiniteblock'               => 'бесконачан',
 'expiringblock'               => 'истиче $1',
 'anononlyblock'               => 'само анонимни',
 'noautoblockblock'            => 'Аутоблокирање је онемогућено',
 'createaccountblock'          => 'блокирано прављење налога',
+'emailblock'                  => 'е-пошта блокираном',
+'ipblocklist-empty'           => 'Списак блокова је празан.',
+'ipblocklist-no-results'      => 'Унешена ИП адреса или корисничко име није блокирано.',
 'blocklink'                   => 'блокирај',
 'unblocklink'                 => 'одблокирај',
 'contribslink'                => 'прилози',
@@ -1649,12 +1668,18 @@ Protect pages included in this page (cascading protection)',
 'blocklogtext'                => 'Ово је историја блокирања и деблокирања корисника. Аутоматски
 блокиране ИП адресе нису исписане овде. Погледајте [[Special:Ipblocklist|блокиране ИП адресе]] за списак тренутних забрана и блокирања.',
 'unblocklogentry'             => 'одблокирао "$1"',
+'block-log-flags-anononly'    => 'само анонимни корисници',
+'block-log-flags-nocreate'    => 'забрањено прављење налога',
+'block-log-flags-noautoblock' => 'искључено аутоматско блокирање',
+'block-log-flags-noemail'     => 'блокирано слање е-поште',
 'range_block_disabled'        => 'Администраторска могућност да блокира блокове ИП адреса је искључена.',
 'ipb_expiry_invalid'          => 'Погрешно време трајања.',
 'ipb_already_blocked'         => '"$1" је већ блокиран',
 'ipb_cant_unblock'            => 'Грешка: ИД блока $1 није нађен. Могуће је да је већ одблокиран.',
 'ip_range_invalid'            => 'Нетачан блок ИП адреса.',
+'blockme'                     => 'Блокирај ме',
 'proxyblocker'                => 'Блокер проксија',
+'proxyblocker-disabled'       => 'Ова фукција је искључена.',
 'proxyblockreason'            => 'Ваша ИП адреса је блокирана јер је она отворени прокси. Молимо контактирајте вашег Интернет сервис провајдера или техничку подршку и обавестите их о овом озбиљном сигурносном проблему.',
 'proxyblocksuccess'           => 'Урађено.',
 'sorbsreason'                 => 'Ваша ИП адреса је на списку као отворен прокси на DNSBL.',
@@ -1713,6 +1738,7 @@ Protect pages included in this page (cascading protection)',
 'movenologin'             => 'Нисте пријављени',
 'movenologintext'         => 'Морате бити регистровани корисник и [[Special:Userlogin|пријављени]]
 да бисте преместили страницу.',
+'movenotallowed'          => 'Немате облашћења за премештање страница на {{SITENAME}}.',
 'newtitle'                => 'Нови наслов',
 'move-watch'              => 'Надгледај ову страницу',
 'movepagebtn'             => 'премести страницу',
@@ -1721,6 +1747,7 @@ Protect pages included in this page (cascading protection)',
 'articleexists'           => 'Страница под тим именом већ постоји, или је
 име које сте изабрали неисправно.
 Молимо изаберите друго име.',
+'cantmove-titleprotected' => 'Не можете преместити страницу на ову локацију, зато што је нови наслов заштићен за прављење',
 'talkexists'              => "'''Сама страница је успешно премештена, али
 страница за разговор није могла бити премештена јер таква већ постоји на новом наслову. Молимо вас да их спојите ручно.'''",
 'movedto'                 => 'премештена на',
@@ -1743,18 +1770,21 @@ Protect pages included in this page (cascading protection)',
 'immobile_namespace'      => 'Циљани назив је посебног типа; не могу да преместе стране у тај именски простор.',
 
 # Export
-'export'          => 'Извези странице',
-'exporttext'      => 'Можете извозити текст и историју промена одређене
+'export'            => 'Извези странице',
+'exporttext'        => 'Можете извозити текст и историју промена одређене
 странице или групе страница у XML формату. Ово онда може бити увезено у други
 вики који користи МедијаВики софтвер преко {{ns:special}}:Import странице.
 
 Да бисте извозили странице, унесите називе у текстуалном пољу испод, са једним насловом по реду, и одаберите да ли желите тренутну верзију са свим старим верзијама или само тренутну верзију са информацијама о последњој измени.
 
 У другом случају, можете такође користити везу, нпр. [[{{ns:special}}:Export/{{int:mainpage}}]] за страницу {{int:mainpage}}.',
-'exportcuronly'   => 'Укључи само тренутну ревизију, не целу историју',
-'exportnohistory' => "---- 
+'exportcuronly'     => 'Укључи само тренутну ревизију, не целу историју',
+'exportnohistory'   => "---- 
 '''Напомена:''' извожење пуне историје страна преко овог формулара је онемогућено због серверских разлога.",
-'export-submit'   => 'Извоз',
+'export-submit'     => 'Извоз',
+'export-addcattext' => 'Додај странице из категорије:',
+'export-addcat'     => 'Додај',
+'export-download'   => 'Сачувај као фајл',
 
 # Namespace 8 related
 'allmessages'               => 'Системске поруке',
@@ -2304,6 +2334,20 @@ $1',
 
 # Auto-summaries
 'autoredircomment' => 'Преусмерење на [[$1]]',
+
+# Live preview
+'livepreview-loading' => 'Учитавање…',
+'livepreview-ready'   => 'Учитавање… Готово!',
+'livepreview-failed'  => 'Брзи приказ неуспешан! Покушајте нормални приказ.',
+'livepreview-error'   => 'Неуспешна конекција: $1 "$2". Пробајте нормални приказ.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Измене новије од $1 секунди се неће приказати у списку.',
+'lag-warn-high'   => 'Због великог лага базе података, измене новије од $1 секунди се неће приказати на списку.',
+
+# Watchlist editor
+'watchlistedit-numitems' => 'Ваш списак надгледања садржи {{PLURAL:$1|1 наслов|$1 наслова}}, искључујући странице за разговор.',
+'watchlistedit-noitems'  => 'Нема наслова у вашем списку надгледања.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Преглед сродних промена',

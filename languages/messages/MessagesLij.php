@@ -9,6 +9,8 @@
  * @author SPQRobin
  */
 
+$fallback = 'it';
+
 $messages = array(
 # User preference toggles
 'tog-editwidth'      => 'Spaçio pe cangiâ a larghessa pinn-a',

@@ -9,6 +9,8 @@
  * @author Siebrand
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'            => "Tumana ling'ko:",
@@ -444,6 +446,8 @@ Query: $2",
 'preferences'       => 'Petohoni di sebelu',
 'mypreferences'     => 'Zwa petohoni di sebelu',
 'prefs-edits'       => "Hloli ye ng'inabi:",
+'prefsnologin'      => 'Ni menuhile',
+'qbsettings-none'   => 'Ni',
 'skin'              => 'PendiBe',
 'math'              => 'Mat',
 'dateformat'        => 'Data apukisize',
@@ -454,15 +458,22 @@ Query: $2",
 'saveprefs'         => 'Bulukezi',
 'resetprefs'        => 'Lisetize',
 'textboxsize'       => "Hloli ye ng'i",
+'rows'              => 'Roo:',
+'columns'           => 'Kalom:',
 'searchresultshead' => 'Fatukile',
 'resultsperpage'    => 'Hit di petulo:',
 'contextlines'      => 'Lani di hit:',
 'contextchars'      => 'Selt di lani:',
 'timezoneoffset'    => 'Ufiseti¹',
+'default'           => 'auto',
 'files'             => 'Imegini',
 
+# Groups
+'group-all' => '(xete)',
+
 # User rights log
-'rightslog' => 'Desu di petuhoni kwa sebelu',
+'rightslog'  => 'Desu di petuhoni kwa sebelu',
+'rightsnone' => '(ni)',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|petuho|petuho}}',
@@ -494,6 +505,9 @@ Query: $2",
 'upload'            => 'Imegi uplodezi',
 'uploadbtn'         => 'Imegi uplodezi',
 'reupload'          => 'Uplodezi nca',
+'uploadnologin'     => 'Ni menuhile',
+'uploadnologintext' => 'A sa [[Special:Userlogin|menuhile]]
+di uplodezi media.',
 'uploaderror'       => 'Bufosi duplodezi',
 'uploadlogpage'     => 'Desu di uplodezi',
 'filename'          => 'Imegi',
