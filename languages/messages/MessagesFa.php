@@ -2522,4 +2522,7 @@ $1',
 'hebrew-calendar-m11-gen' => 'آب',
 'hebrew-calendar-m12-gen' => 'ایلول',
 
+# Core parser functions
+'unknown_extension_tag' => 'برچسب ناشناختهٔ افزونه «$1»',
+
 );
