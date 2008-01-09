@@ -8,6 +8,7 @@
  * @author Malafaya
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -263,14 +264,14 @@ $messages = array(
 'aboutsite'         => 'Tefü {{SITENAME}}',
 'aboutpage'         => 'Project:Tefü',
 'bugreports'        => 'Nunods dö programapöks',
-'bugreportspage'    => 'Proyeg:Nunods dö programapöks',
+'bugreportspage'    => 'Project:Nunods dö programapöks',
 'copyright'         => 'Ninäd gebidon ma el $1.',
 'copyrightpagename' => 'Kopiedagität {{SITENAME}}a',
 'copyrightpage'     => '{{ns:project}}:Kopiedagitäts',
 'currentevents'     => 'Jenots nuik',
 'currentevents-url' => 'Project:Jenots nuik',
 'disclaimers'       => 'Nuneds',
-'disclaimerpage'    => 'Proyeg:Gididimiedükam valemik',
+'disclaimerpage'    => 'Project:Gididimiedükam valemik',
 'edithelp'          => 'Redakamayuf',
 'edithelppage'      => 'Yuf:Redakam',
 'faq'               => 'Säks suvo pasäköls',
@@ -281,7 +282,7 @@ $messages = array(
 'privacy'           => 'Dunamod demü soelöf',
 'privacypage'       => 'Project:Dunamod_demü_soelöf',
 'sitesupport'       => 'Födagivots',
-'sitesupport-url'   => 'Proyeg:Födagivots',
+'sitesupport-url'   => 'Project:Födagivots',
 
 'badaccess-group0' => 'No pedälol ad ledunön atosi, kelosi ebegol.',
 'badaccess-group1' => 'Dun, keli eflagol, padälon te gebanes grupa: $1.',

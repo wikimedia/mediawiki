@@ -91,6 +91,9 @@ $messages = array(
 'thursday'     => 'Perşembe',
 'friday'       => 'Cuma',
 'saturday'     => 'Cumartesi',
+'tue'          => 'Sal',
+'wed'          => 'Çar',
+'thu'          => 'Per',
 'fri'          => 'Cuma',
 'january'      => 'Ocak',
 'february'     => 'Şubat',
@@ -176,6 +179,7 @@ $messages = array(
 'unprotectthispage' => 'Sayfa korumasını kaldır',
 'newpage'           => 'Yeni sayfa',
 'talkpage'          => 'Sayfayı tartış',
+'talkpagelinktext'  => 'Tartışma',
 'specialpage'       => 'Özel Sayfa',
 'personaltools'     => 'Kişisel aletler',
 'postcomment'       => 'Yorum ekle',
@@ -186,6 +190,8 @@ $messages = array(
 'userpage'          => 'Kullanıcı sayfasını görüntüle',
 'projectpage'       => 'Proje sayfasına bak',
 'imagepage'         => 'Resim sayfasını görüntüle',
+'templatepage'      => 'Şablon sayfasını görüntüle',
+'viewhelppage'      => 'Yardım sayfasına bak',
 'categorypage'      => 'Kategori sayfasını göster',
 'viewtalkpage'      => 'Tartışma sayfasına git',
 'otherlanguages'    => 'Diğer diller',
@@ -336,7 +342,7 @@ Kullanıcı adınız Türkçe karakter, boşluk '''içerebilir'''. Kullanıcı a
 'youremail'                  => 'E-posta adresiniz*',
 'username'                   => 'Kullanıcı adı:',
 'uid'                        => 'Kayıt numarası:',
-'yourrealname'               => 'Gerçek isminiz *',
+'yourrealname'               => 'Gerçek isminiz:',
 'yourlanguage'               => 'Arayüz dili',
 'yourvariant'                => 'Sizce:',
 'yournick'                   => 'İmzalarda gözükmesini istediğiniz isim',
@@ -472,6 +478,14 @@ Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalam
 'protectedpagewarning'     => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca yönetici olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
 'semiprotectedpagewarning' => "'''Uyarı''': Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.",
 'templatesused'            => 'Bu sayfada kullanılan şablonlar:',
+'templatesusedpreview'     => 'Bu önizlemede kullanılan şablonlar:',
+'templatesusedsection'     => 'Bu bölümde kullanılan şablonlar:',
+'template-protected'       => '(koruma)',
+'template-semiprotected'   => '(yarı-koruma)',
+
+# "Undo" feature
+'undo-success' => 'Bu değişiklik geri alınabilir. Lütfen aşağıdaki karşılaştırmayı kontrol edin, gerçekten bu değişikliği yapmak istediğinizden emin olun ve sayfayı kaydederek bir önceki değişikliği geriye alın.',
+'undo-failure' => 'Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Hesap oluşturulamıyor',
@@ -668,13 +682,25 @@ veya doğrudan bağlantı için
 'uploadedimage'               => 'Yüklenen: "[[$1]]"',
 'uploaddisabled'              => 'Geçici olarak şu anda herhangi bir dosya yüklenmez. Biraz sonra bir daha deneyiniz.',
 'uploaddisabledtext'          => 'Bu wikide dosya yükleme özelliği iptal edilmiştir.',
+'uploadscripted'              => 'Bu dosya bir internet tarayıcısı tarafından hatalı çevrilebilecek bir HTML veya script kodu içermektedir.',
 'uploadcorrupt'               => 'Bu dosya ya bozuk ya da uzantısı yanlış. Dosyayı kontrol edip, tekrar yüklemeyi deneyin.',
 'uploadvirus'                 => 'Bu dosya virüslüdür! Detayları: $1',
 'sourcefilename'              => 'Yüklemek istediğiniz dosya',
 'destfilename'                => '{{SITENAME}} sitesindeki dosya adı',
+'watchthisupload'             => 'Bu sayfayı izle',
 'filewasdeleted'              => 'Bu isimde bir dosya yakın zamanda yüklendi ve ardından yöneticiler tarafından silindi. Dosyayı yüklemeden önce, $1 sayfasına bir göz atınız.',
 
-'nolicense' => 'Hiçbirini seçme',
+'upload-proto-error' => 'Hatalı protokol',
+'upload-file-error'  => 'Dahili hata',
+'upload-misc-error'  => 'Bilinmeyen yükleme hatası',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'  => "URL'ye ulaşılamadı",
+'upload-curl-error28' => 'Yüklemede zaman aşımı',
+
+'nolicense'          => 'Hiçbirini seçme',
+'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
+'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
 # Image list
 'imagelist'                 => 'Resim listesi',
@@ -744,6 +770,9 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'brokenredirects'     => 'Varolmayan maddeye yapılmış yönlendirmeler',
 'brokenredirectstext' => 'Bu sayfa mevcut olmayan sayfalara yönlendirme içeren bozuk sayfaları listeler.',
 
+'withoutinterwiki'        => 'Diğer dillere bağlantısı olmayan sayfalar',
+'withoutinterwiki-header' => 'Aşağıda listelenen sayfalar diğer dillere bağlantı içermemektedir:',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 bayt',
 'ncategories'             => '$1 kategori',
@@ -755,6 +784,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'uncategorizedpages'      => 'Herhangi bir kategoride olmayan sayfalar',
 'uncategorizedcategories' => 'Herhangi bir kategoride olmayan kategoriler',
 'uncategorizedimages'     => 'Herhangi bir kategoride olmayan resimler',
+'uncategorizedtemplates'  => 'Kategorize edilmemiş şablonlar',
 'unusedcategories'        => 'Kullanılmayan kategoriler',
 'unusedimages'            => 'Kullanılmayan resimler',
 'popularpages'            => 'Popüler sayfalar',
@@ -872,6 +902,16 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'watchlistcontains'    => 'İzleme listenizde $1 sayfa var.',
 'wlnote'               => '{{CURRENTTIME}} {{CURRENTMONTHNAME}} {{CURRENTDAY}} (UTC) tarihinde son <b>$2</b> saatte yapılan $1 değişiklik aşağıdadır.',
 'wlshowlast'           => 'Son $1 saati $2 günü göster $3',
+'watchlist-show-bots'  => 'Bot değişikliklerini göster',
+'watchlist-hide-bots'  => 'Bot değişikliklerini gizle',
+'watchlist-show-own'   => 'Benim değişikliklerimi göster',
+'watchlist-hide-own'   => 'Benim değişikliklerimi gizle',
+'watchlist-show-minor' => 'Küçük değişiklikleri göster',
+'watchlist-hide-minor' => 'Küçük değişiklikleri gizle',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'İzleniyor...',
+'unwatching' => 'Durduruluyor...',
 
 'enotif_mailer'      => '{{SITENAME}} Bildirim Postası',
 'enotif_reset'       => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
@@ -951,15 +991,26 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'restriction-move' => 'Taşı',
 
 # Undelete
-'undelete'           => 'Silinmiş sayfaları göster',
-'undeletepage'       => 'Sayfanın silinmiş sürümlerine göz at ve geri getir.',
-'viewdeletedpage'    => 'Silinen sayfalara bak',
-'undeletebtn'        => 'Geri getir!',
-'undeletereset'      => 'Vazgeç',
-'undeletecomment'    => 'Neden:',
-'undeletedarticle'   => '"$1" geri getirildi.',
-'undeletedrevisions' => 'Toplam $1 kayıt geri getirildi.',
-'cannotundelete'     => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
+'undelete'               => 'Silinmiş sayfaları göster',
+'undeletepage'           => 'Sayfanın silinmiş sürümlerine göz at ve geri getir.',
+'viewdeletedpage'        => 'Silinen sayfalara bak',
+'undeletepagetext'       => 'Aşağıdaki sayfalar silinmiştir, ancak halen arşivde saklanmakta ve istendiği zaman geri getirilebilmektedirler. Arşiv düzenli olarak temizlenebilir.',
+'undeleteextrahelp'      => "Sayfala birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve '''Neden''' alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
+'undeletehistory'        => 'Eğer bu sayfa geri getiriyorsanız sayfanın bütün geçmişi de geri getirilecektir. Silindikten sonra aynı isimle yeni bir sayfa eklenmişse geri gelecek sayfanın geçmişi varolan sayfayı değiştirmeden halihazırdaki geçmişe eklenecektir.',
+'undeletehistorynoadmin' => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
+'undeletebtn'            => 'Geri getir!',
+'undeletereset'          => 'Vazgeç',
+'undeletecomment'        => 'Neden:',
+'undeletedarticle'       => '"$1" geri getirildi.',
+'undeletedrevisions'     => 'Toplam $1 kayıt geri getirildi.',
+'cannotundelete'         => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
+'undeletedpage'          => "<big>'''$1 sayfası geri getirildi'''</big>
+
+Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
+'undelete-header'        => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
+'undelete-search-box'    => 'Silinmiş sayfaları ara',
+'undelete-search-submit' => 'Ara',
+'undelete-no-results'    => 'Silme arşivinde birbiriyle eşleşen hiçbir sayfaya rastlanmadı.',
 
 # Namespace form on various pages
 'namespace'      => 'Alan adı:',
@@ -971,7 +1022,11 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'mycontris'     => 'Katkılarım',
 'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Bu kriterlere uyan değişiklik bulunamadı',
+'ucnote'        => 'Aşağıdakiler bu kullanıcının son <b>$2</b> günde yaptığı son <b>$1</b> değişikliktir.',
+'uclinks'       => 'Son $1 değişikliği göster; son $2 günü göster.',
 'uctop'         => '(son)',
+'month'         => 'Ay:',
+'year'          => 'Yıl:',
 
 'sp-contributions-newbies-sub' => 'Yeni kullanıcılar için',
 
@@ -1001,6 +1056,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 <br />[[Special:Ipblocklist|IP adresi engellenenler]] listesine bakınız.',
 'unblockip'          => 'Kullanıcının engellemesini kaldır',
 'ipusubmit'          => 'Bu adresin engellemesini kaldır',
+'unblocked'          => '[[User:$1|$1]] - engelleme kaldırıldı',
 'ipblocklist'        => 'Erişimi durdurulmuş kullanıcılar ve IP adresleri listesi',
 'blocklistline'      => '$1, $2 blok etti: $3 ($4)',
 'infiniteblock'      => 'süresiz',
@@ -1023,6 +1079,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'unlockdb'            => 'Veritabanı kilitini aç',
 'unlockconfirm'       => 'Evet, veritabanının kilidini açmak istediğimden eminim.',
 'lockbtn'             => 'Veritabanı kilitli',
+'unlockbtn'           => 'Veritabanın kilidi kaldır',
 'unlockdbsuccesssub'  => 'Veritabanı kiliti açıldı.',
 'unlockdbsuccesstext' => 'Veritanı kilidi açıldı.',
 'databasenotlocked'   => 'Veritabanı kilitli değil.',
@@ -1151,6 +1208,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'tooltip-diff'                    => 'Metine yaptığınız değişiklikleri gösterir.',
 'tooltip-compareselectedversions' => 'Seçilmiş iki sürüm arasındaki farkları göster.',
 'tooltip-watch'                   => 'Sayfayı izleme listene ekle',
+'tooltip-recreate'                => 'Silinmiş olmasına rağmen sayfayı geri getir',
 
 # Stylesheets
 'common.css'   => '/* Buraya konulacak CSS kodu tüm temalarda etkin olur */',
@@ -1371,7 +1429,10 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'articletitles' => "''$1'' ile başlayan maddeler",
 
 # Table pager
-'ascending_abbrev' => 'küçükten büyüğe',
+'ascending_abbrev'         => 'küçükten büyüğe',
+'table_pager_next'         => 'Sonraki sayfa',
+'table_pager_prev'         => 'Önceki sayfa',
+'table_pager_limit_submit' => 'Git',
 
 # Auto-summaries
 'autosumm-blank'   => 'Sayfa boşaltıldı',
@@ -1379,5 +1440,20 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'autoredircomment' => '[[$1]] sayfasına yönlendirildi',
 'autosumm-new'     => 'Yeni sayfa: $1',
 
-);
+# Watchlist editor
+'watchlistedit-normal-title'  => 'İzleme listesini düzenle',
+'watchlistedit-normal-legend' => 'İzleme listesinden başlıkları kaldır',
+'watchlistedit-normal-submit' => 'Başlıkları kaldır',
+'watchlistedit-raw-title'     => 'Ham izleme listesini düzenle',
+'watchlistedit-raw-legend'    => 'Ham izleme listesini düzenle',
+'watchlistedit-raw-explain'   => "İzleme listenizdeki başlıklar aşağıda gösterilmektedir. Her satırda bir başlık olmak üzere, başlıkları ekleyerek ya da silerek listeyi düzenleyebilirsiniz. Bittiğinde ''İzleme listesini güncelle'''ye tıklayınız. Ayrıca [[Special:Watchlist/edit|standart düzenleme sayfasını]] da kullanabilirsiniz.",
+'watchlistedit-raw-titles'    => 'Başlıklar:',
+'watchlistedit-raw-submit'    => 'İzleme listesini güncelle',
+'watchlistedit-raw-done'      => 'İzleme listeniz güncellendi.',
 
+# Watchlist editing tools
+'watchlisttools-view' => 'İlgili değişiklikleri göster',
+'watchlisttools-edit' => 'İzleme listesini gör ve düzenle',
+'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
+
+);

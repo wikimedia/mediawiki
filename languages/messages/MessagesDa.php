@@ -448,6 +448,7 @@ Hvis det ikke er tilfældet, har du måske fundet en fejl i programmet. Meld det
 Funktion: $1<br />
 Forespørgsel: $2',
 'viewsource'           => 'Vis kilden',
+'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Begrænsning af handling',
 'actionthrottledtext'  => 'For at modvirke spam, er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Vær venlig at forsøge igen om et par minutter.',
 'protectedpagetext'    => 'Denne side er skrivebeskyttet.',
@@ -1366,6 +1367,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 # Watchlist
 'watchlist'            => 'Overvågningsliste',
 'mywatchlist'          => 'Overvågningsliste',
+'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext'    => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
 'watchnologin'         => 'Ikke logget på',
@@ -1567,6 +1569,7 @@ $1',
 # Contributions
 'contributions' => 'Brugerbidrag',
 'mycontris'     => 'Mine bidrag',
+'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Ingen ændringer er fundet som opfylder disse kriterier.',
 'ucnote'        => 'Herunder er denne brugers sidste <b>$1</b> ændringer i de sidste <b>$2</b> dage.',
 'uclinks'       => 'Vis de sidste $1 ændringer; vis de sidste $2 dage.',

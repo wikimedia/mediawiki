@@ -7,9 +7,10 @@
  * @author SPQRobin
  * @author Gangleri
  * @author Soroush
- * @author G - ג
  * @author FrancisTyers
  * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Cbrown1023
  */
 
 $namespaceNames = array(
@@ -105,6 +106,7 @@ $messages = array(
 'currentevents' => 'Вокеаҳои кунунӣ',
 'mainpage'      => 'Саҳифаи Аслӣ',
 'portal'        => 'Вуруди корбарон',
+'portal-url'    => 'Project:Вуруди корбарон',
 'sitesupport'   => 'Кӯмаки молӣ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
