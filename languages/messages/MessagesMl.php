@@ -225,19 +225,20 @@ $messages = array(
 'mytalk'         => 'എന്റെ സംവാദവേദി',
 'navigation'     => 'ഉള്ളടക്കം',
 
-'help'           => 'സഹായി',
-'search'         => 'തിരയുക',
-'searchbutton'   => 'തിരയുക',
-'history_short'  => 'പഴയ രൂപം',
-'edit'           => 'മാറ്റിയെഴുതുക',
-'delete'         => 'ഡിലിറ്റ്‌',
-'newpage'        => 'പുതിയ താള്‍',
-'talk'           => 'സംവാദം',
-'toolbox'        => 'പണിസഞ്ചി',
-'redirectedfrom' => '($1-ല്‍ നിന്നും തിരിച്ചു വിട്ടതു പ്രകാരം)',
-'lastmodifiedat' => 'ഈ താള്‍ അവസാനം തിരുത്തപ്പെട്ടത് $2, $1.', # $1 date, $2 time
-'viewcount'      => 'ഈ താള്‍ $1 പ്രാവശ്യം സന്ദര്‍ശിക്കപ്പെട്ടിട്ടുണ്ട്.',
-'protectedpage'  => 'സംരക്ഷിത താള്‍',
+'help'             => 'സഹായി',
+'search'           => 'തിരയുക',
+'searchbutton'     => 'തിരയുക',
+'history_short'    => 'പഴയ രൂപം',
+'edit'             => 'മാറ്റിയെഴുതുക',
+'delete'           => 'ഡിലിറ്റ്‌',
+'newpage'          => 'പുതിയ താള്‍',
+'talkpagelinktext' => 'സംവാദം',
+'talk'             => 'സംവാദം',
+'toolbox'          => 'പണിസഞ്ചി',
+'redirectedfrom'   => '($1-ല്‍ നിന്നും തിരിച്ചു വിട്ടതു പ്രകാരം)',
+'lastmodifiedat'   => 'ഈ താള്‍ അവസാനം തിരുത്തപ്പെട്ടത് $2, $1.', # $1 date, $2 time
+'viewcount'        => 'ഈ താള്‍ $1 പ്രാവശ്യം സന്ദര്‍ശിക്കപ്പെട്ടിട്ടുണ്ട്.',
+'protectedpage'    => 'സംരക്ഷിത താള്‍',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents' => 'സമകാലികം',
@@ -253,6 +254,9 @@ $messages = array(
 
 'versionrequired'     => 'മീഡിയവിക്കി വേര്‍ഷന്‍ $1 ആവശ്യമാണ്',
 'versionrequiredtext' => 'ഈ പേജ് ഉപയോഗിക്കാന്‍ മീഡിയവിക്കി വേര്‍ഷന്‍ $1 ആവശ്യമാണ്.കൂടുതല്‍ വിവരങ്ങള്‍ക്ക് [[Special:Version|വേര്‍ഷന്‍ പേജ്]] കാണുക.',
+
+'editsection'     => 'തിരുത്തുക',
+'editsectionhint' => 'വിഭാഗം തിരുത്തുക: $1',
 
 # Edit pages
 'summary'     => 'ചുരുക്കം',
@@ -294,6 +298,9 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => 'കണ്ണികള്‍',
+
+# Tooltip help for the actions
+'tooltip-n-mainpage' => 'പ്രധാന താള്‍ സന്ദര്‍ശിക്കുക',
 
 # Auto-summaries
 'autosumm-blank'   => 'താളിലെ എല്ലാവിവരങ്ങളും നീക്കം ചെയ്യുന്നു',

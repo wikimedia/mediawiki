@@ -2356,4 +2356,7 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'watchlisttools-edit' => 'Visa och redigera övervakningslistan',
 'watchlisttools-raw'  => 'Redigera övervakningslistan som text',
 
+# Core parser functions
+'unknown_extension_tag' => 'Okänd tagg "$1"',
+
 );

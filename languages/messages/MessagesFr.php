@@ -2271,5 +2271,7 @@ Essayez la prévisualisation normale.',
 'watchlisttools-edit' => 'Voir et modifier la liste de suivi',
 'watchlisttools-raw'  => 'Modifier la liste (mode brut)',
 
-);
+# Core parser functions
+'unknown_extension_tag' => "Balise d'extension « $1 » inconnue",
 
+);

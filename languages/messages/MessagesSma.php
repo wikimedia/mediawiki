@@ -11,6 +11,10 @@
 
 
 $messages = array(
+# User preference toggles
+'tog-showtoolbar' => 'Vuesehte värrhtoedimmie dïrregeborhtje (JavaScript)',
+'tog-fancysig'    => 'Saajpe singnatuvreh (namhtah jïjtsistie lïenghke)',
+
 'underline-always' => 'Iktesth',
 'underline-never'  => 'Aaltere',
 
@@ -67,17 +71,22 @@ $messages = array(
 'dec'           => 'Goe',
 
 # Bits of text used by many pages
+'pagecategories'        => '{{PLURAL:$1|Kategorije|Kategorijeh}}',
 'category_header'       => 'Bielie sïjse kategorije "$1"',
+'subcategories'         => 'Subkategorijeh',
 'category-media-header' => 'Guvvie sïjse karegorije "$1"',
 
-'about'         => 'Bïjre',
-'qbedit'        => 'Värrhtoedimmie',
-'qbpageoptions' => 'Dïhte bielie',
-'moredotdotdot' => 'Jienebe...',
-'mypage'        => 'Mov bielie',
-'mytalk'        => 'Mov dïjveldidh',
-'anontalk'      => 'Dïjveldidh ihke dïhte IP',
-'navigation'    => 'Navigasjovne',
+'about'          => 'Bïjre',
+'qbfind'         => 'Gaavnedh',
+'qbedit'         => 'Värrhtoedimmie',
+'qbpageoptions'  => 'Dïhte bielie',
+'qbmyoptions'    => 'Mov bielieh',
+'qbspecialpages' => 'Joekoelaakan bielieh',
+'moredotdotdot'  => 'Jienebe...',
+'mypage'         => 'Mov bielie',
+'mytalk'         => 'Mov dïjveldidh',
+'anontalk'       => 'Dïjveldidh ihke dïhte IP',
+'navigation'     => 'Navigasjovne',
 
 'errorpagetitle'   => 'Båajhtode',
 'returnto'         => 'Bååstide gåajkoe $1.',
@@ -109,6 +118,7 @@ $messages = array(
 'categorypage'     => 'Vuesehte kategorije bielie',
 'viewtalkpage'     => 'Vuesehte dïjveldidh',
 'otherlanguages'   => 'jeatjebh gïele',
+'protectedpage'    => 'Vaarjelidh bielie',
 'jumptonavigation' => 'navigasjovne',
 'jumptosearch'     => 'ohtsedh',
 
@@ -130,6 +140,10 @@ $messages = array(
 'editold'            => 'värrhtoedimmie',
 'showtoc'            => 'vuesehte',
 'viewdeleted'        => 'Vuesehte $1?',
+'site-rss-feed'      => '$1 RSS Feed',
+'site-atom-feed'     => '$1 Atom Feed',
+'page-rss-feed'      => '"$1" RSS Feed',
+'page-atom-feed'     => '"$1" Atom Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bielie',
@@ -145,6 +159,8 @@ $messages = array(
 
 # General errors
 'error'              => 'Båajhtode',
+'databaseerror'      => 'Daatabaase båajhtode',
+'readonly'           => 'Daatabaase steegkeldahkesne',
 'internalerror'      => 'Sjisjnjie båajhtede',
 'internalerror_info' => 'Sjisjnjie båajhtede: $1',
 'badtitle'           => 'Gååre nomme',
@@ -163,30 +179,46 @@ $messages = array(
 'yourlanguage'       => 'Gïele:',
 'email'              => 'E-påaste',
 'mailmypassword'     => 'E-påaste loevesbaakoe',
+'accountcreated'     => 'Nuhtjien skaepede',
 'loginlanguagelabel' => 'Gïele: $1',
 
 # Edit page toolbar
 'bold_sample' => 'Buajtehks tjaalege',
 'bold_tip'    => 'Buajtehks tjaalege',
+'link_tip'    => 'Sjisjnjie lïenghke',
 
 # Edit pages
-'savearticle'  => 'Spååredh bielie',
-'accmailtitle' => 'Loevesbaakoe seedtie.',
-'newarticle'   => '(Orre)',
-'updated'      => '(Orrestahteme)',
-'editing'      => 'Värrhtoedimmie $1',
-'editinguser'  => 'Värrhtoedimmie nuhtjien <b>$1</b>',
-'yourtext'     => 'Dov tjaalege',
+'minoredit'        => 'Dïhte lea ohtje värrhtoedimmie',
+'savearticle'      => 'Spååredh bielie',
+'loginreqpagetext' => 'Dov galkedh $1 ihke vuesehte jeatjebh bielieh.',
+'accmailtitle'     => 'Loevesbaakoe seedtie.',
+'accmailtext'      => 'Loevesbaakoe ihke ”$1” utnedh seedtedh gåajkoe $2.',
+'newarticle'       => '(Orre)',
+'updated'          => '(Orrestahteme)',
+'note'             => '<strong>Galtege:</strong>',
+'editing'          => 'Värrhtoedimmie $1',
+'editinguser'      => 'Värrhtoedimmie nuhtjien <b>$1</b>',
+'yourtext'         => 'Dov tjaalege',
 
 # History pages
-'next'       => 'minngebe',
-'page_first' => 'voestegh',
-'page_last'  => 'minngemes',
+'next'        => 'minngebe',
+'page_first'  => 'voestegh',
+'page_last'   => 'minngemes',
+'historysize' => '({{PLURAL:$1|1 byte|$1 byteh}})',
+
+# Revision feed
+'history-feed-title' => 'Gïehtjedamme histovrije',
+
+# Diffs
+'history-title' => 'Gïehtjedamme histovrije ihke "$1"',
 
 # Search results
-'nextn'        => 'minngeben $1',
-'viewprevnext' => 'Vuesehte ($1) ($2) ($3)',
-'powersearch'  => 'Ohtsedh',
+'searchresults'    => 'Ohtsedh resultaateh',
+'searchresulttext' => 'Ihke jeenjebe bïevnesh bïjre ohtsedh {{SITENAME}}, vuejnedh [[{{Mediawiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'   => "Dov ohtsedh ihke '''[[:$1]]'''",
+'nextn'            => 'minngeben $1',
+'viewprevnext'     => 'Vuesehte ($1) ($2) ($3)',
+'powersearch'      => 'Ohtsedh',
 
 # Preferences page
 'math_unknown_error' => 'ammes båajhtede',
@@ -205,7 +237,8 @@ $messages = array(
 'show' => 'Vuesehte',
 
 # Upload
-'savefile' => 'Spååredh guvvie',
+'savefile'    => 'Spååredh guvvie',
+'uploadvirus' => 'Guvvie tjeekehdidh viirus! Bïevnesh: $1',
 
 # Image list
 'imagelist'      => 'Guvvie lästoe',
@@ -216,12 +249,16 @@ $messages = array(
 'imagelist_user' => 'Nuhtjien',
 
 # Statistics
-'statistics' => 'Statistiike',
-'sitestats'  => '{{SITENAME}} statistiike',
+'statistics'    => 'Statistiike',
+'sitestats'     => '{{SITENAME}} statistiike',
+'userstatstext' => "Dïhte {{PLURAL:$1|lea '''1''' registreered [[Special:Listusers|nuhtjien]]|lea '''$1''' registreered [[Special:Listusers|nuhtjienh]]}},  jih
+'''$2''' (jallh '''$4%''') {{PLURAL:$2|åtna|åtnah}} $5 reahkta.",
 
 'brokenredirects-edit' => '(värrhtoedimmie)',
 
 # Miscellaneous special pages
+'mostcategories'    => 'Bielieh meatan jïjnje kategorijeh',
+'mostrevisions'     => 'Bielieh meatan jïjnje gïehtjedammeh',
 'listusers'         => 'Nuhtjien lästoe',
 'specialpages'      => 'Joekoenlaakan bielie',
 'newpages'          => 'Orre bielie',
@@ -265,6 +302,9 @@ $messages = array(
 # Undelete
 'undelete-search-submit' => 'Ohtsedh',
 
+# Contributions
+'uctop' => ' (gïerege)',
+
 'sp-contributions-username' => 'IP Tjaalesijjie jallh nuhtjiennomme:',
 'sp-contributions-submit'   => 'Ohtsedh',
 
@@ -306,8 +346,15 @@ $messages = array(
 'siteuser' => '{{SITENAME}} nuhtjien $1',
 'and'      => 'jih',
 
+# Spam protection
+'category-media-count' => 'Dïhte {{PLURAL:$1|lea akte guvvie|lea $1 guvvieh}} sïjse dïhte kategorije.',
+
 # Info page
 'infosubtitle' => 'Bïevnesh ihke bielie',
+'numtalkedits' => 'Låhkoe värrhtoedimmieh (dïjvaldidh bielie): $1',
+
+# Patrol log
+'patrol-log-auto' => '(jïjtsistie)',
 
 # Media information
 'file-info'      => '(baalka stoerre: $1, MIME-vuekie: $2)',

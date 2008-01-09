@@ -852,7 +852,7 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'userrights-editusergroup'    => "Editar los grupos d'usuariu",
 'saveusergroups'              => "Guardar los grupos d'usuariu",
 'userrights-groupsmember'     => 'Miembru de:',
-'userrights-groupsremovable'  => 'Grupos de los que pue ser elimináu:',
+'userrights-groupsremovable'  => "Grupos d'onde pue ser elimináu:",
 'userrights-groupsavailable'  => 'Grupos disponibles:',
 'userrights-groupshelp'       => 'Seleiciona los grupos de/a los que quies quitar/añader esti usuariu.
 Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu calcando CTRL + Botón Esquierdu del ratón',
@@ -2307,5 +2307,8 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'watchlisttools-view' => 'Ver cambeos relevantes',
 'watchlisttools-edit' => 'Ver y editar la llista de vixilancia',
 'watchlisttools-raw'  => 'Editar la llista de vixilancia (en bruto)',
+
+# Core parser functions
+'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" desconocida',
 
 );

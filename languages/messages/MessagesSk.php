@@ -2460,4 +2460,7 @@ Skúste obyčajný náhľad.',
 'watchlisttools-edit' => 'Zobraziť a upraviť zoznam sledovaných stránok',
 'watchlisttools-raw'  => 'Upraviť nespracovaný zoznam sledovaných stránok',
 
+# Core parser functions
+'unknown_extension_tag' => 'Neznáma značka rozšírenia „$1“',
+
 );

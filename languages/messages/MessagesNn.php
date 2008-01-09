@@ -210,56 +210,55 @@ $messages = array(
 'skinpreview' => '(førehandsvis)',
 
 # Dates
-'sunday'        => 'søndag',
-'monday'        => 'måndag',
-'tuesday'       => 'tysdag',
-'wednesday'     => 'onsdag',
-'thursday'      => 'torsdag',
-'friday'        => 'fredag',
-'saturday'      => 'laurdag',
-'sun'           => 'søn',
-'mon'           => 'mån',
-'tue'           => 'tys',
-'wed'           => 'ons',
-'thu'           => 'tor',
-'fri'           => 'fre',
-'sat'           => 'lau',
-'january'       => 'januar',
-'february'      => 'februar',
-'march'         => 'mars',
-'april'         => 'april',
-'may_long'      => 'mai',
-'june'          => 'juni',
-'july'          => 'juli',
-'august'        => 'august',
-'september'     => 'september',
-'october'       => 'oktober',
-'november'      => 'november',
-'december'      => 'desember',
-'january-gen'   => 'Januar',
-'february-gen'  => 'Februar',
-'march-gen'     => 'Mars',
-'april-gen'     => 'April',
-'may-gen'       => 'Mai',
-'june-gen'      => 'Juni',
-'july-gen'      => 'Juli',
-'august-gen'    => 'August',
-'september-gen' => 'September',
-'october-gen'   => 'Oktober',
-'november-gen'  => 'November',
-'december-gen'  => 'Desember',
-'jan'           => 'jan',
-'feb'           => 'feb',
-'mar'           => 'mar',
-'apr'           => 'apr',
-'may'           => 'mai',
-'jun'           => 'jun',
-'jul'           => 'jul',
-'aug'           => 'aug',
-'sep'           => 'sep',
-'oct'           => 'okt',
-'nov'           => 'nov',
-'dec'           => 'des',
+'sunday'       => 'søndag',
+'monday'       => 'måndag',
+'tuesday'      => 'tysdag',
+'wednesday'    => 'onsdag',
+'thursday'     => 'torsdag',
+'friday'       => 'fredag',
+'saturday'     => 'laurdag',
+'sun'          => 'søn',
+'mon'          => 'mån',
+'tue'          => 'tys',
+'wed'          => 'ons',
+'thu'          => 'tor',
+'fri'          => 'fre',
+'sat'          => 'lau',
+'january'      => 'januar',
+'february'     => 'februar',
+'march'        => 'mars',
+'april'        => 'april',
+'may_long'     => 'mai',
+'june'         => 'juni',
+'july'         => 'juli',
+'august'       => 'august',
+'september'    => 'september',
+'october'      => 'oktober',
+'november'     => 'november',
+'december'     => 'desember',
+'january-gen'  => 'januar',
+'february-gen' => 'februar',
+'march-gen'    => 'mars',
+'april-gen'    => 'april',
+'may-gen'      => 'mai',
+'june-gen'     => 'juni',
+'july-gen'     => 'juli',
+'august-gen'   => 'august',
+'october-gen'  => 'oktober',
+'november-gen' => 'november',
+'december-gen' => 'Desember',
+'jan'          => 'jan',
+'feb'          => 'feb',
+'mar'          => 'mar',
+'apr'          => 'apr',
+'may'          => 'mai',
+'jun'          => 'jun',
+'jul'          => 'jul',
+'aug'          => 'aug',
+'sep'          => 'sep',
+'oct'          => 'okt',
+'nov'          => 'nov',
+'dec'          => 'des',
 
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategori|Kategoriar}}',
@@ -337,7 +336,7 @@ $messages = array(
 'imagepage'         => 'Vis filside',
 'mediawikipage'     => 'Vis systemmeldingsside',
 'templatepage'      => 'Vis malside',
-'viewhelppage'      => 'Vis hjelpside',
+'viewhelppage'      => 'Vis hjelpeside',
 'categorypage'      => 'Vis kategoriside',
 'viewtalkpage'      => 'Vis diskusjon',
 'otherlanguages'    => 'På andre språk',
@@ -393,7 +392,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Du har nye meldingar på $1',
 'editsection'             => 'endre',
 'editold'                 => 'endre',
-'editsectionhint'         => 'Rediger bolk: $1',
+'editsectionhint'         => 'Endre bolk: $1',
 'toc'                     => 'Innhaldsliste',
 'showtoc'                 => 'vis',
 'hidetoc'                 => 'gøym',
@@ -484,8 +483,8 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
-'logouttext'                 => 'Du er no utlogga. Avhengig av innstillingane på tenaren kan nettlesaren no brukast anonymt på {{SITENAME}};
-du kan logge inn att med same kontoen eller ein annan brukar kan logge inn. Ver merksam på at nokre sider kan fortsetje å bli viste som om du er innlogga inntil du tømmer mellomlageret til nettlesaren din.',
+'logouttext'                 => '<strong>Du er no utlogga.</strong><br />
+Avhengig av innstillingane på tenaren kan nettlesaren no brukast anonymt på {{SITENAME}}, du kan logge inn att med same kontoen eller ein annan brukar kan logge inn. Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.',
 'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, [[user:$1|$1]]! ==
 
 Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sjølv på [[user:$1|brukarsida di]] og ser gjennom [[special:preferences|brukarinnstillingane dine]].',
@@ -504,7 +503,7 @@ Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sj
 'userlogout'                 => 'Logg ut',
 'notloggedin'                => 'Ikkje innlogga',
 'nologin'                    => 'Er du ikkje registrert? $1.',
-'nologinlink'                => 'Lag brukarkonto',
+'nologinlink'                => 'Registrer deg',
 'createaccount'              => 'Opprett ny konto',
 'gotaccount'                 => 'Er du allereie registrert? $1.',
 'gotaccountlink'             => 'Logg inn',
@@ -596,7 +595,7 @@ Du kan oversjå denne meldinga dersom kontoen vart oppretta med eit uhell.',
 # Edit pages
 'summary'                   => 'Samandrag',
 'subject'                   => 'Emne/overskrift',
-'minoredit'                 => 'Uviktig endring',
+'minoredit'                 => 'Småplukk',
 'watchthis'                 => 'Overvak side',
 'savearticle'               => 'Lagre',
 'preview'                   => 'Førehandsvising',
@@ -645,15 +644,15 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'accmailtext'               => 'Passordet for «$1» er vorte sendt til $2.',
 'newarticle'                => '(Ny)',
 'newarticletext'            => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
-* For å laga ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vera synlege med det same.
+* For å lage ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vere synlege med det same.
 * Om du er ny her er det tilrådd å sjå på [[{{MediaWiki:Helppage}}|hjelpesida]] først.
-* Om du lagrar ei testside, vil du ikkje kunne slette ho sjølv.
+* Om du lagrar ei testside, vil du ikkje kunne slette henne sjølv.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext'          => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext'             => "'''Sida «{{PAGENAME}}» finst ikkje på {{SITENAME}} enno.'''
 * Klikk på '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} endre]''' for å opprette sida.",
 'userpage-userdoesnotexist' => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
-'clearyourcache'            => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren omgår mellomlageret sitt for at endringane skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'clearyourcache'            => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview'    => '<strong>Tip:</strong> Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din føre du lagrar.',
 'usercsspreview'            => "'''Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!'''",
 'userjspreview'             => "'''Hugs at du berre testar ditt eige JavaScript, det har ikkje vorte lagra enno!!'''",
@@ -695,6 +694,7 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'templatesusedpreview'      => 'Malar som er brukte i denne førehandsvisinga:',
 'template-protected'        => '(verna)',
 'template-semiprotected'    => '(delvis verna)',
+'edittools'                 => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
 'nocreatetext'              => '{{SITENAME}} har avgrensa mogelegheita for å opprette nye sider.
 Du kan gå attende og endre ei eksisterande side, [[Special:Userlogin|logge inn eller opprette ein brukarkonto]].',
 'recreate-deleted-warn'     => "'''Åtvaring: Du opprettar ei side som tidlegare har vorte sletta på nytt.'''
@@ -719,7 +719,7 @@ Sletteloggen for sida er lista nedanfor:",
 'last'                => 'førre',
 'page_first'          => 'fyrste',
 'page_last'           => 'siste',
-'histlegend'          => 'Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />Forklaring: (no) = skilnad frå den noverande versjonen, (førre) = skilnad frå den førre versjonen, <b>u</b> = uviktig endring',
+'histlegend'          => 'Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />Forklaring: (no) = skilnad frå den noverande versjonen, (førre) = skilnad frå den førre versjonen, <b>s</b> = småplukk',
 'deletedrev'          => '[sletta]',
 'histfirst'           => 'Første',
 'histlast'            => 'Siste',
@@ -845,7 +845,7 @@ Sletteloggen for sida er lista nedanfor:",
 'hist'                              => 'hist',
 'hide'                              => 'gøym',
 'show'                              => 'vis',
-'minoreditletter'                   => 'u',
+'minoreditletter'                   => 's',
 'newpageletter'                     => 'n',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Éin brukar|$1 brukarar}} overvakar]',
@@ -935,6 +935,7 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 
 # MIME search
 'mimesearch' => 'MIME-søk',
+'download'   => 'last ned',
 
 # List redirects
 'listredirects' => 'Omdirigeringsliste',
@@ -1030,7 +1031,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'speciallogtitlelabel' => 'Tittel:',
 'log'                  => 'Loggar',
 'all-logs-page'        => 'Alle loggane',
-'alllogstext'          => 'Kombinert vising av opplastings-, slette-, verne-, blokkerings- og administrator-loggar. Du kan avgrense visinga ved å velja loggtype, brukarnamn, og/eller sidnamn.',
+'alllogstext'          => 'Kombinert vising av alle loggane som er tilgjengelege på {{SITENAME}}. Du kan avgrense visinga ved å velje loggtype, brukarnamn, og/eller sidenamn.',
 
 # Special:Allpages
 'nextpage'          => 'Neste side ($1)',
@@ -1063,7 +1064,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 
 # Watchlist
 'watchlist'            => 'Overvakingsliste',
-'mywatchlist'          => 'Overvakingsliste',
+'mywatchlist'          => 'Overvakingslista mi',
 'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ikkje noko i overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',
@@ -1239,7 +1240,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'ipbother'                    => 'Anna tid',
 'ipboptions'                  => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'anna tid',
-'badipaddress'                => 'IP-adressa var ugyldig eller brukarblokkering er deaktivert på tenaren.',
+'badipaddress'                => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
 'blockipsuccesssub'           => 'Blokkering utført',
 'blockipsuccesstext'          => '«[[User:$1|$1]]» er blokkert.<br />Sjå [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringar.',
 'unblockip'                   => 'Opphev blokkering',
@@ -1342,7 +1343,7 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 # Thumbnails
 'thumbnail-more'  => 'Forstørr',
 'missingimage'    => '<b>Bilete manglar</b><br /><i>$1</i>',
-'filemissing'     => 'Fil manglar',
+'filemissing'     => 'Fila manglar',
 'thumbnail_error' => 'Feil ved oppretting av miniatyrbilete: $1',
 
 # Special:Import
@@ -1415,6 +1416,12 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch'                   => 'Legg denne sida til i overvakingslista di',
 'tooltip-recreate'                => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
+
+# Stylesheets
+'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
+
+# Scripts
+'monobook.js' => '/* Ute av bruk, bruk [[MediaWiki:common.js]] i staden */',
 
 # Metadata
 'nodublincore'      => 'Funksjonen for Dublin Core RDF metadata er deaktivert på denne tenaren.',
@@ -1546,7 +1553,7 @@ slått av. Dei andre felta er gøymde som standard.
 'exif-exposuretime'                => 'Eksponeringstid',
 'exif-fnumber'                     => 'F-nummer',
 'exif-exposureprogram'             => 'Eksponeringsprogram',
-'exif-isospeedratings'             => 'Lysfølsemd (ISO)',
+'exif-isospeedratings'             => 'Lyskjensle (ISO)',
 'exif-shutterspeedvalue'           => 'Lukkarfart',
 'exif-aperturevalue'               => 'Blendartal',
 'exif-brightnessvalue'             => 'Lysstyrke',
@@ -1763,10 +1770,10 @@ $1
 'trackbackdeleteok' => 'Attendelenkja vart sletta.',
 
 # Delete conflict
-'deletedwhileediting' => 'Åtvaring: Denne sida har blitt sletta medan du endra den!',
-'confirmrecreate'     => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra den med denne grunngjevinga:
-: ''$2''
-Du må stadfesta om du verkjeleg vil nyopprette denne sida.",
+'deletedwhileediting' => "'''Åtvaring:''' Denne sida har vorte sletta medan du endra henne!",
+'confirmrecreate'     => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra henne, og gav denne grunnen: ''$2''
+
+Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
 
 # Watchlist editing tools

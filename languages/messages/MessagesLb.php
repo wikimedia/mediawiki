@@ -153,7 +153,7 @@ $messages = array(
 'tog-uselivepreview'       => 'Live-Preview notzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'     => 'Warnen, wa beim Späicheren de Résumé feelt',
 'tog-watchlisthideown'     => 'Meng Ännerungen op menger Iwwerwaachungs-Lëscht verstoppen',
-'tog-watchlisthidebots'    => 'Ännerungen vu Boten op menger Iwwerwaachungs-Lëscht verstoppen',
+'tog-watchlisthidebots'    => 'Ännerungen vu Botten op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthideminor'   => 'Kleng Ännerungen op menger Iwwerwaachungs-Lëscht verstoppen',
 'tog-ccmeonemails'         => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'             => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
@@ -298,7 +298,7 @@ $messages = array(
 'redirectpagesub'  => 'Redirectsäit',
 'lastmodifiedat'   => "Dës Säit gouf den $1 ëm $2 Auer fir d'lescht geännert.", # $1 date, $2 time
 'viewcount'        => 'Dës Säit gouf bis elo {{PLURAL:$1|emol|$1-mol}} ofgefrot.',
-'protectedpage'    => 'Geschützte Säit',
+'protectedpage'    => 'Protegéiert Säit',
 'jumpto'           => 'Wiesselen op:',
 'jumptonavigation' => 'Navigatioun',
 'jumptosearch'     => 'Sich',
@@ -316,7 +316,7 @@ $messages = array(
 'disclaimers'       => 'Impressum',
 'disclaimerpage'    => 'Project:Impressum',
 'edithelp'          => 'Hëllef beim Änneren',
-'edithelppage'      => 'Hëllef:Wéi änneren ech eng Säit',
+'edithelppage'      => 'Help:Wéi änneren ech eng Säit',
 'faq'               => 'FAQ',
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hëllef',
@@ -629,7 +629,7 @@ Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus 
 
 <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNISS AN!</strong>',
 'copyrightwarning2'         => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
-Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Source kopéiert hutt. (cf. $1 fir méi Detailler). <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!</strong>',
+Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!</strong>',
 'longpagewarning'           => '<strong>WARNUNG: Dës Säit ass $1 kB grouss; verschidde Browser kéinte Problemer hunn, Säiten ze verschaffen, déi méi grouss wéi 32 KB sinn.
 
 Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méiglich ass.</strong>',
@@ -639,7 +639,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'templatesusedpreview'      => 'Schablounen déi an dësem Preview am Gebrauch sinn:',
 'templatesusedsection'      => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
 'template-protected'        => '(protegéiert)',
-'template-semiprotected'    => '(schreiwgeschützt fir net-ugemellten an nei Benotzer)',
+'template-semiprotected'    => '(gespaart fir net-ugemellten an nei Benotzer)',
 'nocreatetext'              => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:Userlogin|umellen]].",
 'nocreate-loggedin'         => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
 'permissionserrorstext'     => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
@@ -804,7 +804,7 @@ derbäisetzen.',
 # Groups
 'group'               => 'Grupp:',
 'group-autoconfirmed' => 'Registréiert Benotzer',
-'group-bot'           => 'Boten',
+'group-bot'           => 'Botten',
 'group-sysop'         => 'Administrateuren',
 'group-bureaucrat'    => 'Bürokraten',
 'group-all'           => '(all)',
@@ -865,9 +865,9 @@ derbäisetzen.',
 'uploadlogpage'       => 'Logbuch vum Eroplueden',
 'filename'            => 'Numm vum Fichier',
 'filedesc'            => 'Résumé',
-'fileuploadsummary'   => 'Résumé/Source:',
+'fileuploadsummary'   => 'Résumé/Quell:',
 'filestatus'          => 'Copyright Status',
-'filesource'          => 'Source',
+'filesource'          => 'Quell',
 'uploadedfiles'       => 'Eropgeluede Fichierën',
 'ignorewarning'       => 'Warnung ignoréieren an de Fichier nawell späicheren.',
 'ignorewarnings'      => 'Ignoréier all Iwwerschreiwungswarnungen',
@@ -882,7 +882,7 @@ derbäisetzen.',
 'savefile'            => 'Fichier späicheren',
 'uploadedimage'       => 'huet "[[$1]]" eropgelueden',
 'uploadvirus'         => 'An dësem Fichier ass ee Virus! Detailer: $1',
-'sourcefilename'      => 'Numm vum Sourcefichier',
+'sourcefilename'      => 'Numm vum Originalfichier',
 'destfilename'        => 'Numm op der Wiki',
 'watchthisupload'     => 'Dës Säit iwwerwaachen',
 'filename-bad-prefix' => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
@@ -989,7 +989,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'statistics-mostpopular' => 'Am meeschte gekuckte Säiten',
 
 'disambiguations'     => 'Homonymie Säiten',
-'disambiguationspage' => 'Template:Homonymie',
+'disambiguationspage' => 'Schabloun:Homonymie',
 
 'doubleredirects'     => 'Duebel Redirecten',
 'doubleredirectstext' => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vum éischte #REDIRECT gëtt.<br /> An all Rei sti Linken zum éischten an zweete Redirect, souwéi déi éischt Zeil vum Text vum zweete Redirect, wou normalerweis déi "richteg" Zilsäit drasteet, op déi den éischte Redirect hilinke soll.',
@@ -1052,7 +1052,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'pager-older-n'           => '{{PLURAL:$1|virëschten|virëscht $1}}',
 
 # Book sources
-'booksources' => 'Bicherressourcen',
+'booksources' => 'Bicherreferenzen',
 
 'categoriespagetext' => 'Dës Kategorie gëtt et op {{SITENAME}}:',
 'userrights'         => 'Benotzerrechterverwaltung',
@@ -1326,17 +1326,20 @@ Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance
 
 # Move page
 'movepage'                => 'Säit réckelen',
-'movepagetext'            => "Wann der folgende Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Redirect op déi nei Säit. Linken op déi aal Säit ginn net ëmgeännert;  passt op datt keng duebel oder feelerhaft Redirecten am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.
+'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Redirect op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert; 
 
-Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonn eng Säit mat deem neien Titel gëtt, ausser dës ass eidel, e Redirect oder huet keen Historique. Dëst bedeit datt dir eng Säit kennt ëmbenennen an datt dir keng existent Säit iwwerschreiwe kënnt.
+Passt op datt keng duebel oder feelerhaft Redirecten am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.
+
+Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonns eng Säit mat deem Titel gëtt, ausser dës ass eidel, ass e Redirect oder huet keen Historique. Dëst bedeit datt dir eng Säit ëmbenenne kënnt an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
 
 <b>OPGEPASST!</b> 
 Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
-'movepagetalktext'        => "Déi assoziéiert Diskussiounssäit gëtt, wann et se gëtt, automatesch matgeréckelt, '''et sief:'''
-*Et gëtt schonn eng Diskussiounssäit mit dësem Numm, oder
-*Dir wielt déi Optioun hei ënnedrënner of.
+'movepagetalktext'        => "D'assoziéiert Diskussiounssäit, falls eng do ass, gëtt automatesch matgeréckelt, '''ausser:'''
+*D'Säit gëtt an een anere Nummraum geréckelt.
+*Et gëtt schonn eng Diskussiounssäit mat dësem Numm, oder
+*Dir klickt d'Këschtchen ënnedrënner net un.
 
-An deene Fäll musst Dir, wann Dir dat wënscht, de Contenu vun däer Säit manuell réckelen oder fusionéieren.",
+An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéieren.",
 'movearticle'             => 'Säit réckelen:',
 'newtitle'                => 'Op neien Titel:',
 'move-watch'              => 'Dës Säit iwwerwaachen',
@@ -1729,23 +1732,23 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => "Op Ärer Iwwerwaachungslëscht {{PLURAL:$1|steet 1 Säit|stinn $1 Säiten}}, ouni d'Diskussiounssäiten.",
 'watchlistedit-noitems'        => 'Är Iwwerwaachungslëscht ass eidel.',
-'watchlistedit-normal-title'   => 'Suivi-Lëscht änneren',
-'watchlistedit-normal-legend'  => 'Säite vun der Suivi-Lëscht erofhuelen',
-'watchlistedit-normal-explain' => 'D\'Säite vun äerer Suivi-Lëscht ginn ënnendrenner gewisen. Fir eng Säit erofzehuelen, klickt op d\'Haischen niewen drunn a klickt dono op "Säiten erofhuelen". Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Suivi-Lëscht veränneren]], oder [[Special:Watchlist/clear|äer Suivi-Lëscht eidel maachen]].',
+'watchlistedit-normal-title'   => 'Iwwerwaachungslëscht änneren',
+'watchlistedit-normal-legend'  => 'Säite vun der Iwwerwaachungslëscht erofhuelen',
+'watchlistedit-normal-explain' => 'D\'Säite vun ärer Iwwerwaachungslëscht ginn ënnendrenner gewisen. Fir eng Säit erofzehuelen, klickt op d\'Haischen niewen drunn a klickt duerno op "Säiten erofhuelen". Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslëscht änneren]], oder [[Special:Watchlist/clear|Är Iwwerwaachungslëscht eidel maachen]].',
 'watchlistedit-normal-submit'  => 'Säiten erofhuelen',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} vun ärer Suivi-Lëscht erofgeholl:',
-'watchlistedit-raw-title'      => 'Suivi-Lëscht onformatéiert änneren',
-'watchlistedit-raw-legend'     => 'Iwwerwaachungs-Lëscht onformatéiert änneren',
-'watchlistedit-raw-explain'    => "D'Säite vun äerer Suivi-Lëscht ginn ënnendrenner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetzt oder erofhuelt; eng Säit pro Linn. Wann Dir fäerdeg sidd, klickt Suivi-Lëscht à jour setzen. Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} vun ärer Iwwerwaachungslëscht erofgeholl:',
+'watchlistedit-raw-title'      => 'Iwwerwaachungslëscht onformatéiert änneren',
+'watchlistedit-raw-legend'     => 'Iwwerwaachungslëscht onformatéiert änneren',
+'watchlistedit-raw-explain'    => "D'Säite vun ärer Iwwerwaachungslëscht ginn ënnendrenner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetzt oder erofhuelt; eng Säit pro Linn. Wann Dir fäerdeg sidd, klickt Iwwerwaachungslëscht aktualiséieren. Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",
 'watchlistedit-raw-titles'     => 'Säiten:',
-'watchlistedit-raw-submit'     => 'Suivi-Lëscht à jour setzen',
-'watchlistedit-raw-done'       => 'Är Iwwerwaachungs-Lëscht gouf gespäichert.',
+'watchlistedit-raw-submit'     => 'Iwwerwaachungslëscht aktualiséieren',
+'watchlistedit-raw-done'       => 'Är Iwwerwaachungslëscht gouf gespäichert.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} derbäigesat:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} erausgeholl:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Iwwerwaachungs-Lëscht: Ännerungen',
-'watchlisttools-edit' => 'Iwwerwaachungs-Lëscht weisen an änneren',
+'watchlisttools-view' => 'Iwwerwaachungslëscht: Ännerungen',
+'watchlisttools-edit' => 'Iwwerwaachungslëscht weisen an änneren',
 'watchlisttools-raw'  => 'Net-formatéiert Iwwerwaachungslëscht änneren',
 
 );
