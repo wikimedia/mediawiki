@@ -565,7 +565,7 @@ XHTML id names.
 'category-media-header' => 'Media in category "$1"',
 'category-empty'        => "''This category currently contains no pages or media.''",
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
@@ -3116,7 +3116,7 @@ $1',
 'signature'      => '[[{{ns:user}}:$1|$2]]', # don't translate or duplicate this message to other languages
 'signature-anon' => '[[{{#special:Contributions}}/$1|$2]]', # don't translate or duplicate this message to other languages
 
-# CoreParserFunctions
-'unknown_extension_tag'   => 'Unknown extension tag "$1"',
+# Core parser functions
+'unknown_extension_tag' => 'Unknown extension tag "$1"',
 
 );
