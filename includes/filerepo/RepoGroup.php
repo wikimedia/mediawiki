@@ -32,6 +32,13 @@ class RepoGroup {
 	}
 
 	/**
+	 * Set the singleton instance to a given object
+	 */
+	static function setSingleton( $instance ) {
+		self::$instance = $instance;
+	}
+
+	/**
 	 * Construct a group of file repositories. 
 	 * @param array $data Array of repository info arrays. 
 	 *     Each info array is an associative array with the 'class' member 
