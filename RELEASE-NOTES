@@ -292,6 +292,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12493) Removed hardcoded MAX_FILE_SIZE from Special:Import upload form
 * (bug 12489) Special:Userrights listed in restricted section again
 * (bug 12553) Fixed invalid XHTML in edit conflict screen
+* (bug 12505) Fixed section=0 with action=raw
 
 
 == Parser changes in 1.12 ==

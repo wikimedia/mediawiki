@@ -193,7 +193,7 @@ class RawPage {
 					$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 					header( "Last-modified: $lastmod" );
 
-					if ( !is_null($this->mSection) && $this->mSection != '' ) {
+					if ( !is_null($this->mSection ) ) {
 						global $wgParser;
 						return $wgParser->getSection ( $rev->getText(), $this->mSection );
 					} else
