@@ -1352,7 +1352,7 @@ END
 			$de->showDiff( wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addWikiText( '==' . wfMsg( "yourtext" ) . '==' );
-			$wgOut->addHTML( "<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
+			$wgOut->addHTML( "<textarea tabindex='6' id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}'>"
 				. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox2 ) ) . "\n</textarea>" );
 		}
 		$wgOut->addHTML( $this->editFormTextBottom );
