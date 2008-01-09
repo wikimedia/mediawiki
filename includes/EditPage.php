@@ -1088,7 +1088,7 @@ class EditPage {
 				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' )
 					$notice = '';
 			} else {
-			# Then it must be protected based on static groups (regular)
+				# Then it must be protected based on static groups (regular)
 				$notice = wfMsg( 'protectedpagewarning' );
 			}
 			$wgOut->addWikiText( $notice );
