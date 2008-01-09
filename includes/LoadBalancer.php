@@ -418,9 +418,7 @@ class LoadBalancer {
 	 * @access private
 	 */
 	function reallyOpenConnection( &$server ) {
-		wfProfileIn( __METHOD__ );
 		if( !is_array( $server ) ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( 'You must update your load-balancing configuration. See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
@@ -431,7 +429,6 @@ class LoadBalancer {
 		# Create object
 		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
 		$db->setLBInfo( $server );
-		wfProfileOut( __METHOD__ );
 		return $db;
 	}
 
