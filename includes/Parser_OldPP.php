@@ -2832,7 +2832,8 @@ class Parser_OldPP
 			$mw =& MagicWord::get( $id );
 			if ($mw->match($matches[1])) {
 				$text = $this->getVariableValue( $id );
-				$this->mOutput->mContainsOldMagic = true;
+				if (MagicWord::getCacheTTL($id)>-1)
+					$this->mOutput->mContainsOldMagic = true;
 			} else {
 				$text = $matches[0];
 			}
