@@ -3251,7 +3251,8 @@ class Parser
 			$id = $this->mVariables->matchStartToEnd( $part1 );
 			if ( $id !== false ) {
 				$text = $this->getVariableValue( $id );
-				$this->mOutput->mContainsOldMagic = true;
+				if (MagicWord::getCacheTTL($id)>-1)
+					$this->mOutput->mContainsOldMagic = true;
 				$found = true;
 			}
 		}

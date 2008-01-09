@@ -101,6 +101,44 @@ class MagicWord {
 		'numberofadmins',
 		'defaultsort',
 	);
+	
+	/* Array of caching hints for ParserCache */
+	static public $mCacheTTLs = array (
+		'currentmonth' => 86400,
+		'currentmonthname' => 86400,
+		'currentmonthnamegen' => 86400,
+		'currentmonthabbrev' => 86400,
+		'currentday' => 3600,
+		'currentday2' => 3600,
+		'currentdayname' => 3600,
+		'currentyear' => 86400,
+		'currenttime' => 3600,
+		'currenthour' => 3600,
+		'localmonth' => 86400,
+		'localmonthname' => 86400,
+		'localmonthnamegen' => 86400,
+		'localmonthabbrev' => 86400,
+		'localday' => 3600,
+		'localday2' => 3600,
+		'localdayname' => 3600,
+		'localyear' => 86400,
+		'localtime' => 3600,
+		'localhour' => 3600,
+		'numberofarticles' => 3600,
+		'numberoffiles' => 3600,
+		'numberofedits' => 3600,
+		'currentweek' => 3600,
+		'currentdow' => 3600,
+		'localweek' => 3600,
+		'localdow' => 3600,
+		'numberofusers' => 3600,
+		'numberofpages' => 3600,
+		'currentversion' => 86400,
+		'currenttimestamp' => 3600,
+		'localtimestamp' => 3600,
+		'pagesinnamespace' => 3600,
+		'numberofadmins' => 3600,
+		);
 
 	static public $mObjects = array();
 
@@ -148,7 +186,17 @@ class MagicWord {
 		}
 		return self::$mVariableIDs;
 	}
-
+	
+	/* Allow external reads of TTL array */
+	static function getCacheTTL($id) {
+		if (array_key_exists($id,self::$mCacheTTLs)) {
+			return self::$mCacheTTLs[$id];
+		} else {
+			return -1;
+		}
+	}
+	
+	
 	# Initialises this object with an ID
 	function load( $id ) {
 		global $wgContLang;
