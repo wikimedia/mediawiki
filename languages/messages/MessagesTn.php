@@ -1,8 +1,13 @@
 <?php
-/** Setswana
+/** Tswana (Setswana)
  *
  * @addtogroup Language
+ *
+ * @author Hakka
+ * @author Cbrown1023
  */
+
+
 
 $messages = array(
 # Dates
@@ -63,15 +68,17 @@ $messages = array(
 'edithelp'      => 'Thuso ya go fetola',
 'mainpage'      => 'Tsebe ya konokono',
 'portal'        => 'Patlelo ya setšhaba',
+'portal-url'    => 'Project:Patlelo ya setšhaba',
 'privacy'       => 'Melawana ya sephiri',
 'sitesupport'   => 'Dimpho',
 
-'youhavenewmessages' => 'O na le $1 ($2).',
-'newmessageslink'    => 'molaetsa o moša',
-'editsection'        => 'baakanya',
-'editold'            => 'baakanya',
+'youhavenewmessages'      => 'O na le $1 ($2).',
+'newmessageslink'         => 'molaetsa o moša',
+'youhavenewmessagesmulti' => 'O na le molaetsa o moša mo $1',
+'editsection'             => 'baakanya',
+'editold'                 => 'baakanya',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Mokwalo',
 'nstab-mediawiki' => 'Molaetsa',
 
@@ -122,8 +129,10 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'uploadbtn'       => 'Tsenya mokwalo o o tswang kwantle',
 'watchthisupload' => 'Lebelela tsebe e',
 
+# Random page
+'randompage' => 'Tsebe e e sa tlhomamang',
+
 # Miscellaneous special pages
-'randompage'   => 'Tsebe e e sa tlhomamang',
 'specialpages' => 'Diphetogo tse di faphegileng',
 'move'         => 'Suta',
 'movethispage' => 'Sutisa tsebe e',
@@ -154,7 +163,5 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 
 # Namespace 8 related
 'allmessages' => 'Melaetsa ya maranyane',
-
-'youhavenewmessagesmulti' => 'O na le molaetsa o moša mo $1',
 
 );

@@ -17,6 +17,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Piolinfax
+ * @author Dmcdevit
  */
 
 $skinNames = array(
@@ -1587,6 +1588,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'tooltip-ca-watch'                => 'Añadir esta página a su lista de seguimiento',
 'tooltip-ca-unwatch'              => 'Borrar esta página de su lista de seguimiento',
 'tooltip-search'                  => 'Buscar en este wiki',
+'tooltip-search-go'               => 'Ir al artículo con este nombre exacto si existe',
 'tooltip-p-logo'                  => 'Portada',
 'tooltip-n-mainpage'              => 'Visitar la Portada',
 'tooltip-n-portal'                => 'Acerca del proyecto, qué puede hacer, dónde encontrar información',

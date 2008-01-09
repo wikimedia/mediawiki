@@ -305,7 +305,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Iwwer {{SITENAME}}',
-'aboutpage'         => 'Projet: Iwwer {{SITENAME}}',
+'aboutpage'         => 'Project: Iwwer {{SITENAME}}',
 'bugreports'        => 'Feelermeldungen',
 'bugreportspage'    => 'Project:Feelermeldungen',
 'copyright'         => 'Inhalt ass zur Verfügung gestallt ënnert der $1.<br />',
@@ -989,7 +989,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'statistics-mostpopular' => 'Am meeschte gekuckte Säiten',
 
 'disambiguations'     => 'Homonymie Säiten',
-'disambiguationspage' => 'Schabloun:Homonymie',
+'disambiguationspage' => 'Template:Homonymie',
 
 'doubleredirects'     => 'Duebel Redirecten',
 'doubleredirectstext' => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vum éischte #REDIRECT gëtt.<br /> An all Rei sti Linken zum éischten an zweete Redirect, souwéi déi éischt Zeil vum Text vum zweete Redirect, wou normalerweis déi "richteg" Zilsäit drasteet, op déi den éischte Redirect hilinke soll.',

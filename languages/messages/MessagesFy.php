@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Pyt
+ * @author Nike
  */
 
 $skinNames = array(
@@ -138,6 +139,9 @@ $messages = array(
 'nov'           => 'nov',
 'dec'           => 'des',
 
+# Bits of text used by many pages
+'category_header' => 'Siden yn kategory "$1"',
+
 'mainpagetext' => 'Wiki-programma goed installearre.',
 
 'about'         => 'Ynfo',
@@ -206,10 +210,12 @@ $messages = array(
 'mainpage'          => 'Haadside',
 'privacy'           => 'Privacybelied',
 'privacypage'       => 'Projekt:Privacybelied',
+'sitesupport'       => 'Jildlik stypje',
 
 'ok'              => 'Goed',
 'retrievedfrom'   => 'Untfongen fan "$1"',
 'editsection'     => 'bewurkje',
+'editold'         => 'bewurkje',
 'editsectionhint' => 'Dielside bewurkje: $1',
 'toc'             => 'Ynhâld',
 'showtoc'         => 'sjen litte',
@@ -218,6 +224,10 @@ $messages = array(
 'restorelink'     => '$1 wiske ferzjes',
 'site-rss-feed'   => '$1 RSS Feed',
 'site-atom-feed'  => '$1 Atom-Feed',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-image'    => 'Triem',
+'nstab-category' => 'Kategory',
 
 # Main script and global functions
 'nosuchaction'      => 'Unbekende aksje.',
@@ -266,6 +276,7 @@ Jou dat asjebleaft troch oan de behearder, tegearre mei de URL.',
 miskeppele ynter-taal of ynter-wiki titel.',
 'perfdisabled'    => "Sorry! Dit ûnderdiel is tydlik út set om't it de databank sa starich makket
 dat gjinien de wiki brûke kin.",
+'viewsource'      => 'Boarnetekst sjen litte',
 
 # Login and logout pages
 'logouttitle'           => 'Ofmelde',
@@ -309,16 +320,24 @@ Meld jo no oan, en feroarje jo wachtwurd.',
 Please log in again after you receive it.',
 
 # Edit page toolbar
-'bold_sample'    => 'Tsjûkprinte tekst',
-'italic_sample'  => 'Skeanprinte tekst',
-'italic_tip'     => 'skeanprinte',
-'link_sample'    => 'Underwerp',
-'link_tip'       => 'Ynterne link',
-'extlink_sample' => 'http://www.foarbyld.com linktekst',
-'headline_tip'   => 'Tuskenkop (heechste plan)',
-'math_sample'    => 'Formule hjir ynfiere',
-'image_tip'      => 'Ofbylding',
-'media_tip'      => 'Link nei triem',
+'bold_sample'     => 'Tsjûkprinte tekst',
+'bold_tip'        => 'Tsjûkprinte',
+'italic_sample'   => 'Skeanprinte tekst',
+'italic_tip'      => 'skeanprinte',
+'link_sample'     => 'Underwerp',
+'link_tip'        => 'Ynterne link',
+'extlink_sample'  => 'http://www.foarbyld.com linktekst',
+'extlink_tip'     => 'Eksterne link (ferjit http:// net)',
+'headline_sample' => 'Dielûnderwerp',
+'headline_tip'    => 'Tuskenkop (heechste plan)',
+'math_sample'     => 'Formule hjir ynfiere',
+'math_tip'        => 'Wiskundige formule (LaTeX)',
+'nowiki_sample'   => 'Fier hjir de net op te meitsjen tekst yn',
+'nowiki_tip'      => 'Wiki-opmaak net oernimme',
+'image_tip'       => 'Ofbylding',
+'media_tip'       => 'Link nei triem',
+'sig_tip'         => 'Jo hanteken mei datum en tiid',
+'hr_tip'          => 'Horizontale streek (net tefolle brûke)',
 
 # Edit pages
 'summary'              => 'Gearfetting',
@@ -329,6 +348,7 @@ Please log in again after you receive it.',
 'preview'              => 'Oerlêze',
 'showpreview'          => 'Oerlêze foar de side fêstlein is',
 'showdiff'             => 'Feroarings sjen litte',
+'anoneditwarning'      => "'''Warskôging:''' Jo binne net oanmeld. Jo IP-adres wurdt opslein as jo feroarings op dizze side meitsje.",
 'blockedtitle'         => 'Brûker is útsletten troch',
 'blockedtext'          => "Jo brûkersname of Ynternet-adres is útsletten.
 As reden is opjûn:<br />''\$2''<p>As jo wolle, kinne jo hjiroer kontakt op nimme meid de behearder.
@@ -381,6 +401,7 @@ Besykje de side yn lytsere stikken te brekken.</strong>",
 ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze.
 It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>',
 'protectedpagewarning' => '<strong>Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.</strong>',
+'template-protected'   => '(befeilige)',
 
 # History pages
 'nohistory'        => 'Dit is de earste ferzje fan de side.',
@@ -399,13 +420,14 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 (doe) = ferskill mei de side sa't er doe wie, foar de feroaring, T = Tekstwiziging",
 
 # Diffs
-'difference' => '(Ferskil tusken ferzjes)',
-'lineno'     => 'Rigel $1:',
-'editundo'   => 'oergean litte',
+'difference'              => '(Ferskil tusken ferzjes)',
+'lineno'                  => 'Rigel $1:',
+'compareselectedversions' => 'Ferlykje keazen ferzjes',
+'editundo'                => 'oergean litte',
 
 # Search results
 'searchresults'         => 'Sykresultaat',
-'searchresulttext'      => '!! "[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
+'searchresulttext'      => '"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
 'searchsubtitle'        => 'Foar fraach "[[:$1]]"',
 'searchsubtitleinvalid' => 'Foar fraach "$1"',
 'noexactmatch'          => 'Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.',
@@ -490,7 +512,10 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'boteditletter'     => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Folgje keppelings',
+'recentchangeslinked'          => 'Folgje keppelings',
+'recentchangeslinked-title'    => 'Feroarings yn ferbân mei $1',
+'recentchangeslinked-noresult' => "Der hawwe gjin bewurkings yn 'e bedoelde perioade west op'e siden dy't hjirwei linke wurde.",
+'recentchangeslinked-summary'  => "Dizze spesjale side lit de lêste bewurkings sjen op siden dy't linke wurde fan dizze side ôf. Siden dy't op [[Special:Watchlist|jo folchlist]] steane, wurde '''tsjûk''' werjûn.",
 
 # Upload
 'upload'            => 'Bied bestân oan',
@@ -540,20 +565,28 @@ meitsje fan it systeem..",
 'uploaddisabled'    => 'Sorry, op dizze tsjinner kin net oanbean wurde.',
 
 # Image list
-'imagelist'      => 'Ofbyld list',
-'imagelisttext'  => 'Dit is in list fan $1 ôfbylden, op $2.',
-'getimagelist'   => 'Ofbyld list ...',
-'ilsubmit'       => 'Sykje',
-'showlast'       => 'Jou lêste $1 ôfbylden, op $2.',
-'byname'         => 'namme',
-'bydate'         => 'datum',
-'bysize'         => 'grutte',
-'imgdelete'      => 'wisk',
-'imgdesc'        => 'tekst',
-'filehist'       => 'Triemskiednis',
-'imagelinks'     => 'Ofbyldkeppelings',
-'linkstoimage'   => 'Dizze siden binne keppele oan it ôfbyld:',
-'nolinkstoimage' => 'Der binne gjin siden oan dit ôfbyld keppelje.',
+'imagelist'           => 'Ofbyld list',
+'imagelisttext'       => 'Dit is in list fan $1 ôfbylden, op $2.',
+'getimagelist'        => 'Ofbyld list ...',
+'ilsubmit'            => 'Sykje',
+'showlast'            => 'Jou lêste $1 ôfbylden, op $2.',
+'byname'              => 'namme',
+'bydate'              => 'datum',
+'bysize'              => 'grutte',
+'imgdelete'           => 'wisk',
+'imgdesc'             => 'tekst',
+'filehist'            => 'Triemskiednis',
+'filehist-help'       => "Klik op in datum/tiid om de triem te sjen sa't er doedestiids wie.",
+'filehist-current'    => 'rinnend',
+'filehist-datetime'   => 'Datum/tiid',
+'filehist-user'       => 'Brûker',
+'filehist-dimensions' => 'Ofmjittings',
+'filehist-filesize'   => 'Triemgrutte',
+'filehist-comment'    => 'Oanmerking',
+'imagelinks'          => 'Ofbyldkeppelings',
+'linkstoimage'        => 'Dizze siden binne keppele oan it ôfbyld:',
+'nolinkstoimage'      => 'Der binne gjin siden oan dit ôfbyld keppelje.',
+'sharedupload'        => 'Dizze triem is in dielde oplading en kin ek troch oare projektren brûkt wurde.',
 
 # Random page
 'randompage' => 'Samar in side',
@@ -606,6 +639,7 @@ de twadde trochferwizing, wat it "echte" doel wêze moat.',
 'spheading'        => 'Bysûndere siden foar all brûkers',
 'newpages'         => 'Nije siden',
 'ancientpages'     => 'Alde siden',
+'move'             => 'Ferskowe nei oare namme',
 'movethispage'     => 'Move this side',
 'unusedimagestext' => '<p>Tink derom dat ore web sides lykas fan de oare
 parten fan it meartaliche projekt mei in keppeling nei in direkte URL nei
@@ -614,6 +648,12 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 'notargettext'     => 'Jo hawwe net sein oer hokfoar side jo dit witte wolle.',
 
 'alphaindexline' => "$1 oan't $2",
+
+# Special:Log
+'log' => 'Logboeken',
+
+# Special:Allpages
+'allpagessubmit' => 'Ynoarder',
 
 # E-mail user
 'mailnologin'     => 'Gjin adres beskikber',
@@ -716,6 +756,7 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 'undeletedarticle'  => '"$1" weromset',
 
 # Namespace form on various pages
+'namespace'      => 'Nammerûmte:',
 'blanknamespace' => '(Haadnammerûmte)',
 
 # Contributions
@@ -729,10 +770,14 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 
 # What links here
 'whatlinkshere'       => 'Wat is hjirmei keppele',
+'whatlinkshere-title' => "Siden dy't ferwize nei $1",
 'linklistsub'         => '(List fan keppelings)',
 'linkshere'           => 'Dizze siden binne hjirmei keppele:',
 'nolinkshere'         => 'Gjinien side is hjirmei keppele!',
 'isredirect'          => 'trochverwizing',
+'istemplate'          => 'ynfoege as sjabloan',
+'whatlinkshere-prev'  => '{{PLURAL:$1|foargeande|foargeande $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|folgjende|folgjende $1}}',
 'whatlinkshere-links' => '← links dêrnei ta',
 
 # Block/unblock
@@ -814,32 +859,44 @@ Gearfoegje de oerlissiden hânmjittig.",
 'allmessages' => 'Alle wikiberjochten',
 
 # Thumbnails
-'thumbnail-more' => 'Grutter',
+'thumbnail-more'  => 'Grutter',
+'thumbnail_error' => 'Flater by it oanmeitsjen fan thumbnail: $1',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'Myn brûkersside',
-'tooltip-pt-mytalk'       => 'Myn oerlisside',
-'tooltip-pt-preferences'  => 'Myn foarkarynstellings',
-'tooltip-pt-watchlist'    => "List fan siden dy'sto besjochst op feroarings",
-'tooltip-pt-mycontris'    => 'Myn bydragen',
-'tooltip-pt-login'        => 'Jo wurde fan herten útnoege jo oan te melden, mar it hoecht net.',
-'tooltip-pt-logout'       => 'Ofmelde',
-'tooltip-ca-talk'         => 'Oerlis oer dizze side',
-'tooltip-ca-edit'         => "Jo kinne dizze side bewurkje. Brûk a.j.w. de foarbyldwerjefteknop foar't Jo de boel bewarje.",
-'tooltip-search'          => '{{SITENAME}} trochsykje',
-'tooltip-n-mainpage'      => 'Gean nei de haadside',
-'tooltip-n-portal'        => "Oer it projekt: wat'st dwaan kinst, wêr'st dingen fine kinst.",
-'tooltip-n-currentevents' => 'Eftergrûnynformaasje oer rinnende saken.',
-'tooltip-n-recentchanges' => 'De list fan koartlyn oanbrochte feroarings yn dizze wiki.',
-'tooltip-n-randompage'    => 'Samar in side sjen litte.',
-'tooltip-n-help'          => 'Helpynformaasje oer dizze wiki.',
-'tooltip-n-sitesupport'   => 'Stypje ús',
-'tooltip-t-whatlinkshere' => "List fan alle siden dy't nei dizze side ferwize",
-'tooltip-t-upload'        => 'Triemmen oplade',
-'tooltip-t-specialpages'  => 'List fan alle spesjale siden',
-'tooltip-save'            => 'Jo feroarings bewarje',
-'tooltip-preview'         => "Oerlêze foar't de side fêstlein is!",
-'tooltip-diff'            => "Sjen litte hokker feroarings jo yn'e tekst makke hawwe.",
+'tooltip-pt-userpage'             => 'Myn brûkersside',
+'tooltip-pt-mytalk'               => 'Myn oerlisside',
+'tooltip-pt-preferences'          => 'Myn foarkarynstellings',
+'tooltip-pt-watchlist'            => "List fan siden dy'sto besjochst op feroarings",
+'tooltip-pt-mycontris'            => 'Myn bydragen',
+'tooltip-pt-login'                => 'Jo wurde fan herten útnoege jo oan te melden, mar it hoecht net.',
+'tooltip-pt-logout'               => 'Ofmelde',
+'tooltip-ca-talk'                 => 'Oerlis oer dizze side',
+'tooltip-ca-edit'                 => "Jo kinne dizze side bewurkje. Brûk a.j.w. de foarbyldwerjefteknop foar't Jo de boel bewarje.",
+'tooltip-ca-addsection'           => 'In opmerking tafoegje oan de oerlis-side.',
+'tooltip-ca-viewsource'           => 'Dizze side is befeilige, mar jo kinne de boarne wol besjen.',
+'tooltip-ca-move'                 => 'Dizze side ferskowe',
+'tooltip-ca-watch'                => 'Dizze side oan myn folchside tafoegje',
+'tooltip-search'                  => '{{SITENAME}} trochsykje',
+'tooltip-n-mainpage'              => 'Gean nei de haadside',
+'tooltip-n-portal'                => "Oer it projekt: wat'st dwaan kinst, wêr'st dingen fine kinst.",
+'tooltip-n-currentevents'         => 'Eftergrûnynformaasje oer rinnende saken.',
+'tooltip-n-recentchanges'         => 'De list fan koartlyn oanbrochte feroarings yn dizze wiki.',
+'tooltip-n-randompage'            => 'Samar in side sjen litte.',
+'tooltip-n-help'                  => 'Helpynformaasje oer dizze wiki.',
+'tooltip-n-sitesupport'           => 'Stypje ús',
+'tooltip-t-whatlinkshere'         => "List fan alle siden dy't nei dizze side ferwize",
+'tooltip-t-upload'                => 'Triemmen oplade',
+'tooltip-t-specialpages'          => 'List fan alle spesjale siden',
+'tooltip-ca-nstab-image'          => 'De triemside sjen litte',
+'tooltip-ca-nstab-category'       => 'Kategory-side sjen litte',
+'tooltip-save'                    => 'Jo feroarings bewarje',
+'tooltip-preview'                 => "Oerlêze foar't de side fêstlein is!",
+'tooltip-diff'                    => "Sjen litte hokker feroarings jo yn'e tekst makke hawwe.",
+'tooltip-compareselectedversions' => 'Sjoch de ferskillen tusken de twa keazen ferzjes fan dizze side.',
+
+# Spam protection
+'categoryarticlecount'   => 'Der {{PLURAL:$1|is ien side|binne $1 siden}} yn dizze kategory.',
+'listingcontinuesabbrev' => 'mear',
 
 # Math options
 'mw_math_png'    => 'Altiten as PNG ôfbyldzje',
@@ -849,10 +906,36 @@ Gearfoegje de oerlissiden hânmjittig.",
 'mw_math_modern' => 'Oanbefelle foar resinte blêdzjers',
 'mw_math_mathml' => 'MathML',
 
+# Media information
+'file-info-size'       => '($1 × $2 pixel, triemgrutte: $3, MIME type: $4)',
+'file-nohires'         => '<small>Gjin hegere resolúsje beskikber.</small>',
+'show-big-image'       => 'Hegere resolúsje',
+'show-big-image-thumb' => '<small>Grutte fan dizze ôfbylding: $1 × $2 pixels</small>',
+
 # Bad image list
 'bad_image_list' => "De opmaak is as folget:
 
 Allinne rigels fan in list dy't begjinne mei * wurde ferwurke. De earste link op in rigel moat in link wêze nei in net winske ôfbylding.
 Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûndering, lykas bygelyks siden dêr't de ôfbylding yn'e tekst opnommen is.",
+
+# Metadata
+'metadata'          => 'Metadata',
+'metadata-help'     => "Dizze triem befettet oanfoljende ynformaasje, dy't troch in fotokamera, scanner of fotobewurkingsprogramma tafoege wêze kin. As de triem oanpast is, komme de details mûglik net folslein oerien mei de feroare ôfbylding.",
+'metadata-expand'   => 'Utwreide details sjen litte',
+'metadata-collapse' => 'Ferskûlje útwreide details',
+'metadata-fields'   => 'De EXIF-metadatafjilden yn dit berjocht steane op in ôfbyldingsside as de metadatatabel ynklapt is. Oare fjilden wurde ferburgen.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
+
+# External editor support
+'edit-externally'      => 'Dizze triem bewurkje mei in ekstern programma',
+'edit-externally-help' => 'Sjoch de [http://meta.wikimedia.org/wiki/Help:External_editors ynstel-hantlieding] foar mear ynformaasje.',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'alle',
 
 );

@@ -458,7 +458,7 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'logout'                     => "Salir d'a sesión",
 'userlogout'                 => 'Salir',
 'notloggedin'                => 'No ha dentrato en o sistema',
-'nologin'                    => 'No tiene cuenta? $1.',
+'nologin'                    => 'No tiene garra cuenta? $1.',
 'nologinlink'                => 'Creyar una nueba cuenta',
 'createaccount'              => 'Creyar una nueba cuenta',
 'gotaccount'                 => 'Tiene ya una cuenta? $1.',
@@ -655,9 +655,9 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 'nonunicodebrowser'         => "<strong>Pare cuenta: O suyo nabegador no cumple a norma Unicode. S'ha autibato un sistema d'edizión alternatibo que li premitirá d'editar articlos con seguridat: os caráuters no ASCII aparixerán en a caxa d'edizión como codigos exadezimals.</strong>",
 'editingold'                => "<strong>PARE CUENTA: Ye editando una bersión antiga d'ista pachina. Si alza a pachina, toz os cambeos feitos dende ixa rebisión se tresbatirán.</strong>",
 'yourdiff'                  => 'Esferenzias',
-'copyrightwarning'          => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} se consideran feitas publicas baxo a lizenzia $2 (beyer detalles en $1). Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
+'copyrightwarning'          => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} se consideran publicatas baxo a lizenzia $2 (beyer detalles en $1). Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong><br />",
-'copyrightwarning2'         => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que a chen corrixa os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
+'copyrightwarning2'         => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong>",
 'longpagewarning'           => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32KB o más.
 Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más chicoz.</strong>',
@@ -700,7 +700,7 @@ A razón endicata por $3 ye ''$2''",
 'revnotfound'         => 'Bersión no trobata',
 'revnotfoundtext'     => "No se pudo trobar a bersión antiga d'a pachina demandata.
 Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
-'loadhist'            => "Recuperando o istorial d'a pachina",
+'loadhist'            => "Cargando o istorial d'a pachina",
 'currentrev'          => 'Bersión autual',
 'revisionasof'        => "Bersión d'o $1",
 'revision-info'       => "Bersión d'o $1 feita por $2",
@@ -1095,7 +1095,7 @@ PICT # misz.
 'filehist-filesize'         => "Grandaria d'o fichero",
 'filehist-comment'          => 'Comentario',
 'imagelinks'                => 'Binclos ta la imachen',
-'linkstoimage'              => 'Istas son as pachinas que tienen binclos con ista imachen:',
+'linkstoimage'              => 'Istas son as pachinas que tienen binclos ta ista imachen:',
 'nolinkstoimage'            => 'Denguna pachina tiene un binclo ta ista imachen.',
 'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos.',
 'shareduploadwiki'          => 'Ta más informazión, consulte $1.',
@@ -1147,7 +1147,7 @@ PICT # misz.
 
 # Unused templates
 'unusedtemplates'     => 'Plantillas sin de uso',
-'unusedtemplatestext' => "En ista pachina se fa una lista de todas as pachinas en o espazio de nombres de plantillas que no s'encluyen en denguna atra pachina. Alcuerde-se de mirar as pachinas que tiengan binclos con una plantilla antis de borrar-la.",
+'unusedtemplatestext' => "En ista pachina se fa una lista de todas as pachinas en o espazio de nombres de plantillas que no s'encluyen en denguna atra pachina. Alcuerde-se de mirar as pachinas que tiengan binclos ta una plantilla antis de borrar-la.",
 'unusedtemplateswlh'  => 'atros binclos',
 
 # Random page
@@ -1178,7 +1178,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 
 'disambiguations'      => 'Pachinas de desambigazión',
 'disambiguationspage'  => 'Template:Desambigazión',
-'disambiguations-text' => "As siguients pachinas tienen binclos con una '''pachina de desambigazión'''. Ixos binclos abrían de ir millor t'a pachina espezifica apropiada.<br />Una pachina se considera pachina de desambigazión si fa serbir una plantilla probenient de  [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "As siguients pachinas tienen binclos ta una '''pachina de desambigazión'''. Ixos binclos abrían de ir millor t'a pachina espezifica apropiada.<br />Una pachina se considera pachina de desambigazión si fa serbir una plantilla probenient de  [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Reendrezeras dobles',
 'doubleredirectstext' => "En ista pachina s'amuestran as pachinas que son reendrezatas enta atras reendrezeras.  Cada ringlera contiene o binclo t'a primer y segunda reendrezeras, y tamién o destino d'a segunda reendrezera, que ye á sobent a pachina \"reyal\" á la que a primer pachina abría d'endrezar.",
@@ -1536,12 +1536,12 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Pachinas que enlazan con ista',
-'whatlinkshere-title' => 'Pachinas que tienen binclos con $1',
+'whatlinkshere-title' => 'Pachinas que tienen binclos ta $1',
 'whatlinkshere-page'  => 'Pachina:',
 'linklistsub'         => '(Lista de binclos)',
 'linkshere'           => "As siguients pachinas tienen binclos enta '''[[:$1]]''':",
 'nolinkshere'         => "Denguna pachina tiene binclos ta '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Denguna pachina d'o espazio de nombres trigato tiene binclos con  '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Denguna pachina d'o espazio de nombres trigato tiene binclos ta '''[[:$1]]'''.",
 'isredirect'          => 'pachina reendrezata',
 'istemplate'          => 'enclusión',
 'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|anteriors $1}}',
@@ -1562,15 +1562,15 @@ as pachinas que s'han bandalizatas).",
 'ipbreason'                   => 'Razón',
 'ipbreasonotherlist'          => 'Atra razón',
 'ipbreason-dropdown'          => "*Razons comuns de bloqueo
-** Adibir informazión falsa
+** Meter informazión falsa
 ** Borrar conteniu d'as pachinas
 ** Fer publizidat ficando binclos con atras pachinas web
-** Ficar sinconisions u basuera en as pachinas
+** Meter sinconisions u basuera en as pachinas
 ** Portar-se de traza intimidatoria u biolenta / atosegar
 ** Abusar de multiples cuentas
 ** Nombre d'usuario inazeutable",
 'ipbanononly'                 => 'Bloquiar nomás os usuarios anonimos',
-'ipbcreateaccount'            => "Pribar a creyazión de cuentas d'usuario.",
+'ipbcreateaccount'            => "Aprebenir a creyazión de cuentas d'usuario.",
 'ipbemailban'                 => 'Pribar que os usuarios nimbíen correus electronicos',
 'ipbenableautoblock'          => "Bloquiar automaticament l'adreza IP emplegata por iste usuario, y cualsiquier IP posterior dende a que prebe d'editar",
 'ipbsubmit'                   => 'Bloquiar á iste usuario',

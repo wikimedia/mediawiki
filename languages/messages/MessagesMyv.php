@@ -9,6 +9,7 @@
  * @author Tupikovs
  * @author Sura
  * @author Nike
+ * @author Max sonnelid
  */
 
 
@@ -634,6 +635,9 @@ $messages = array(
 'watchlistall2' => 'весе',
 'namespacesall' => 'весе',
 'monthsall'     => 'весе',
+
+# Multipage image navigation
+'imgmultigo' => 'Адя!',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Ваномс ды витнемс-петнемс мезе мельга ванстнят',

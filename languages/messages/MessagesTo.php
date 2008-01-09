@@ -6,7 +6,10 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Tauʻolunga
+ * @author Cbrown1023
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -161,6 +164,7 @@ $messages = array(
 'faqpage'           => 'Project:Fehuʻi faʻa eke',
 'mainpage'          => 'Peesi tali fiefia',
 'portal'            => 'Fale fakataha',
+'portal-url'        => 'Project:Fale fakataha',
 'sitesupport'       => 'Ngaahi meʻa ʻofa',
 
 'badaccess'        => 'Halaʻi fakangofua',
@@ -964,7 +968,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'importsuccess'              => 'Kuo ola ʻa e hū mai!',
 'importnosources'            => "Naʻe ʻikai fakaʻuhingaʻi ha ngaahi hūmai fakalava ''wiki'' pea ʻoku fakataʻeʻaongaʻi  ngaahi hiki hake fakahisitōlia.",
 'importnofile'               => 'Naʻe ʻikai fekahekaʻi hake ha faile hūmai.',
-'importuploaderror'          => 'Naʻe hala ʻa e hiki hake ʻo faile hūmai; mahalo pē ʻoku fuʻu lahi ia.',
 
 # Import log
 'importlogpage'                 => 'Tohinoa ʻo e hūmai',
