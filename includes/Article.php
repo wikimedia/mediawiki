@@ -1884,21 +1884,20 @@ class Article {
 		$row = $dbw->fetchObject($res);
 		$onlyAuthor = $row->rev_user_text;
 		// Try to find a second contributor
-		while(($row = $dbw->fetchObject($res)))
-			if($row->rev_user_text != $onlyAuthor)
-			{
+		while( $row = $dbw->fetchObject($res) ) {
+			if($row->rev_user_text != $onlyAuthor) {
 				$onlyAuthor = false;
 				break;
 			}
+		}
 		$dbw->freeResult($res);
 
 		// Generate the summary with a '$1' placeholder
-		if($blank)
+		if($blank) {
 			// The current revision is blank and the one before is also
 			// blank. It's just not our lucky day
 			$reason = wfMsgForContent('exbeforeblank', '$1');
-		else
-		{
+		} else {
 			if($onlyAuthor)
 				$reason = wfMsgForContent('excontentauthor', '$1', $onlyAuthor);
 			else
@@ -1945,8 +1944,7 @@ class Article {
 		# Check permissions
 		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
 
-		if (count($permission_errors)>0)
-		{
+		if (count($permission_errors)>0) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
