@@ -335,6 +335,7 @@ $magicWords = array(
 	'special'                => array( 0,    'special',               ),
 	'defaultsort'            => array( 1,    'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'               => array( 0,    'FILEPATH:'              ),
+	'tag'                    => array( 0,    'tag'                    ),
 );
 
 /**
@@ -3114,5 +3115,8 @@ $1',
 # Signatures
 'signature'      => '[[{{ns:user}}:$1|$2]]', # don't translate or duplicate this message to other languages
 'signature-anon' => '[[{{#special:Contributions}}/$1|$2]]', # don't translate or duplicate this message to other languages
+
+# CoreParserFunctions
+'unknown_extension_tag'   => 'Unknown extension tag "$1"',
 
 );

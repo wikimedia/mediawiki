@@ -166,6 +166,7 @@ class Parser
 		$this->setFunctionHook( 'special',          array( 'CoreParserFunctions', 'special'          ) );
 		$this->setFunctionHook( 'defaultsort',      array( 'CoreParserFunctions', 'defaultsort'      ), SFH_NO_HASH );
 		$this->setFunctionHook( 'filepath',         array( 'CoreParserFunctions', 'filepath'         ), SFH_NO_HASH );
+		$this->setFunctionHook( 'tag',              array( 'CoreParserFunctions', 'tagObj'           ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
 			$this->setFunctionHook( 'displaytitle', array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
@@ -3661,7 +3662,8 @@ class Parser
 	 *
 	 * @param array $params Associative array of parameters:
 	 *     name       DOMNode for the tag name
-	 *     attrText   DOMNode for unparsed text where tag attributes are thought to be
+	 *     attr       DOMNode for unparsed text where tag attributes are thought to be
+	 *     attributes Optional associative array of parsed attributes
 	 *     inner      Contents of extension element
 	 *     noClose    Original text did not have a close tag
 	 * @param PPFrame $frame
@@ -3671,15 +3673,18 @@ class Parser
 		static $n = 1;
 
 		$name = $frame->expand( $params['name'] );
-		$attrText = is_null( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
-		$content = is_null( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
+		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
+		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
 
 		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $n++) . $this->mMarkerSuffix;
 		
 		if ( $this->ot['html'] ) {
 			$name = strtolower( $name );
 
-			$params = Sanitizer::decodeTagAttributes( $attrText );
+			$attributes = Sanitizer::decodeTagAttributes( $attrText );
+			if ( isset( $params['attributes'] ) ) {
+				$attributes = $attributes + $params['attributes'];
+			}
 			switch ( $name ) {
 				case 'html':
 					if( $wgRawHtml ) {
@@ -3693,15 +3698,15 @@ class Parser
 					break;
 				case 'math':
 					$output = $wgContLang->armourMath(
-						MathRenderer::renderMath( $content, $params ) );
+						MathRenderer::renderMath( $content, $attributes ) );
 					break;
 				case 'gallery':
-					$output = $this->renderImageGallery( $content, $params );
+					$output = $this->renderImageGallery( $content, $attributes );
 					break;
 				default:
 					if( isset( $this->mTagHooks[$name] ) ) {
 						$output = call_user_func_array( $this->mTagHooks[$name],
-							array( $content, $params, $this ) );
+							array( $content, $attributes, $this ) );
 					} else {
 						throw new MWException( "Invalid call hook $name" );
 					}
