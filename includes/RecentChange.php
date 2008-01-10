@@ -262,8 +262,13 @@ class RecentChange
 		$newId = 0)
 	{
 
+		global $wgRequest;
+
 		if ( $bot === 'default' ) {
 			$bot = $user->isAllowed( 'bot' );
+			if ( $bot ) {
+				$bot = $wgRequest->getBool( 'bot' , true );
+			}
 		}
 
 		if ( !$ip ) {
@@ -315,6 +320,8 @@ class RecentChange
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = 'default',
 	  $ip='', $size = 0, $newId = 0 )
 	{
+		global $wgRequest;
+
 		if ( !$ip ) {
 			$ip = wfGetIP();
 			if ( !$ip ) {
@@ -323,6 +330,9 @@ class RecentChange
 		}
 		if ( $bot === 'default' ) {
 			$bot = $user->isAllowed( 'bot' );
+			if ( $bot ) {
+				$bot = $wgRequest->getBool( 'bot' , true );
+			}
 		}
 
 		$rc = new RecentChange;
@@ -362,6 +372,8 @@ class RecentChange
 	# Makes an entry in the database corresponding to a rename
 	public static function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
+		global $wgRequest;
+
 		if ( !$ip ) {
 			$ip = wfGetIP();
 			if ( !$ip ) {
@@ -383,7 +395,7 @@ class RecentChange
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> $user->isAllowed( 'bot' ) ? 1 : 0,
+			'rc_bot'	=> $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot' , true ) : 0,
 			'rc_moved_to_ns'	=> $newTitle->getNamespace(),
 			'rc_moved_to_title'	=> $newTitle->getDBkey(),
 			'rc_ip'		=> $ip,
@@ -414,6 +426,8 @@ class RecentChange
 	public static function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
 	   $type, $action, $target, $logComment, $params )
 	{
+		global $wgRequest;
+
 		if ( !$ip ) {
 			$ip = wfGetIP();
 			if ( !$ip ) {
@@ -435,7 +449,7 @@ class RecentChange
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> $user->isAllowed( 'bot' ) ? 1 : 0,
+			'rc_bot'	=> $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot' , true ) : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip'	=> $ip,

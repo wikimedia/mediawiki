@@ -122,6 +122,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * When submitting changes on Special:Userrights, show the full form again, not
   just the search box.
 * Added exception hooks
+* (bug 12574) Allow bots to specify whether an edit should be marked as a bot
+  edit, via the parameter 'bot'. (Default: '1')
 
 
 === Bug fixes in 1.12 ===

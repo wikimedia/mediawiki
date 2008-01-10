@@ -1298,7 +1298,7 @@ class Article {
 	 * @return bool success
 	 */
 	function doEdit( $text, $summary, $flags = 0 ) {
-		global $wgUser, $wgDBtransactions;
+		global $wgUser, $wgDBtransactions, $wgRequest;
 
 		wfProfileIn( __METHOD__ );
 		$good = true;
@@ -1323,7 +1323,7 @@ class Article {
 
 		# Silently ignore EDIT_MINOR if not allowed
 		$isminor = ( $flags & EDIT_MINOR ) && $wgUser->isAllowed('minoredit');
-		$bot = $wgUser->isAllowed( 'bot' ) || ( $flags & EDIT_FORCE_BOT );
+		$bot = ( $wgUser->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot' , true ) : 0 ) || ( $flags & EDIT_FORCE_BOT );
 
 		$oldtext = $this->getContent();
 		$oldsize = strlen( $oldtext );
@@ -2280,7 +2280,7 @@ class Article {
 	 * @return self::SUCCESS on succes, self::* on failure
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails ) {
-		global $wgUser, $wgUseRCPatrol;
+		global $wgUser, $wgUseRCPatrol, $wgRequest;
 		$resultDetails = null;
 
 		# Just in case it's being called from elsewhere		
@@ -2368,7 +2368,7 @@ class Article {
 		if ($wgUser->isAllowed('minoredit'))
 			$flags |= EDIT_MINOR;
 
-		if( $bot )
+		if( $bot && $wgRequest->getBool( 'bot' , true ) )
 			$flags |= EDIT_FORCE_BOT;
 		$this->doEdit( $target->getText(), $summary, $flags );
 
