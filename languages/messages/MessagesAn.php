@@ -2324,4 +2324,7 @@ Prebe con a prebisualizazión normal.",
 'watchlisttools-edit' => 'Beyer y editar a lista de seguimiento',
 'watchlisttools-raw'  => 'Editar a lista de seguimiento en formato testo',
 
+# Core parser functions
+'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" esconoixita',
+
 );

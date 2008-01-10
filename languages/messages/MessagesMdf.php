@@ -45,6 +45,15 @@ $messages = array(
 'tog-showjumplinks'           => 'Мярьгомс "юпадемс" сатовома сюлмафкстненди',
 'tog-uselivepreview'          => 'Максомс эряй васень няфтемась (JavaScript) (Варжамань)',
 'tog-forceeditsummary'        => 'Няфтемс мондине мезе сёрмадомс шава петнема вальмас сувамста',
+'tog-watchlisthideown'        => 'Кяшемс монь петнематне ванома лопаста',
+'tog-watchlisthidebots'       => 'Кяшемс bot петнематне ванома лопаста.',
+'tog-watchlisthideminor'      => 'Кяшемс петнема анцяйнятне ванома лопаста',
+'tog-ccmeonemails'            => 'Кучт тейне копия электрононь сермане конатнень кучсайне иля тиихненди.',
+'tog-diffonly'                => 'Тят няфте лопань потмоц diffs ала',
+
+'underline-always'  => 'Фалу',
+'underline-never'   => 'Мъзярдонга',
+'underline-default' => 'Вальмась кадомс апак полафтт',
 
 'skinpreview' => '(Васень няфтема)',
 

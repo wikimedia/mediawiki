@@ -460,7 +460,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'resetpass_submit'        => 'Poñer o contrasinal e entrar',
 'resetpass_success'       => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
 'resetpass_bad_temporary' => 'O contrasinal provisorio non é válido. Isto pode deberse a que xa mudou o contrasinal con éxito ou a que solicitou un novo contrasinal provisorio.',
-'resetpass_forbidden'     => 'Os contrasinais non se poden mudar neste wiki',
+'resetpass_forbidden'     => 'Os contrasinais non se poden mudar en {{SITENAME}}',
 'resetpass_missing'       => 'O formulario está baleiro.',
 
 # Edit page toolbar
@@ -538,7 +538,7 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'whitelistreadtitle'        => 'Cómpre rexistrarse para poder ler',
 'whitelistreadtext'         => 'Tense que [[Special:Userlogin|rexistrar]] para poder ler artigos.',
 'whitelistacctitle'         => 'Non se lle permite crear unha conta',
-'whitelistacctext'          => 'Para que se lle permita crear contas neste Wiki cómpre [[Special:Userlogin|rexistrarse]] e contar cos permisos apropiados.',
+'whitelistacctext'          => 'Para que se lle permita crear contas en {{SITENAME}} cómpre [[Special:Userlogin|rexistrarse]] e contar cos permisos apropiados.',
 'confirmedittitle'          => 'Requírese confirmar o enderezo electrónico para editar',
 'confirmedittext'           => 'Debe confirmar o enderezo electrónico antes de comezar a editar. Por favor configure e valide o enderezo electrónico mediante as [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'        => 'Non existe tal sección',
@@ -569,7 +569,7 @@ Se chegou aquí por erro, simplemente prema no botón '''para tras''' do seu nav
 Por favor, ténteo de novo. Se segue sen funcionar, probe a saír do sistema e volver a entrar.</strong>',
 'session_fail_preview_html' => "<strong>Sentímolo! O sistema non pode procesar a súa edición porque se perderon os datos da sesión.</strong>
 
-''Dado que este wiki ten activado o HTML simple, agóchase a vista previa como precaución contra ataques mediante JavaScript.''
+''Dado que {{SITENAME}} ten activado o HTML simple, agóchase a vista previa como precaución contra ataques mediante JavaScript.''
 
 <strong>Se é un intento de edición lexítimo, por favor ténteo outra vez. Se segue sen funcionar, probe a saír do sistema e volver a entrar.</strong>",
 'token_suffix_mismatch'     => '<strong>Rexeitouse a a súa edición porque o seu cliente confundiu os signos de puntuación na edición.
@@ -605,6 +605,7 @@ polo que non vai poder gardar as súas edicións polo de agora. Se cadra pode co
 'protectedpagewarning'      => '<strong>ATENCIÓN: Esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta páxina foi bloqueada e só os usuarios rexistrados poden editala.",
 'cascadeprotectedwarning'   => "'''Aviso:''' Esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina|nas seguintes páxinas}} protexidas coa opción \"protección en serie\" activada:",
+'titleprotectedwarning'     => '<strong>AVISO: Bloqueouse esta páxina para que só algúns usuarios a poidan crear.</strong>',
 'templatesused'             => 'Modelos usados nesta páxina:',
 'templatesusedpreview'      => 'Modelos usados nesta vista previa:',
 'templatesusedsection'      => 'Modelos usados nesta sección:',
@@ -612,8 +613,9 @@ polo que non vai poder gardar as súas edicións polo de agora. Se cadra pode co
 'template-semiprotected'    => '(semi-protexido)',
 'edittools'                 => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
 'nocreatetitle'             => 'Limitada a creación de páxinas',
-'nocreatetext'              => 'Este wiki ten restrinxida a posibilidade de crear páxinas novas. Vostede debe volver atrás e editar unha páxina que xa existe ou, se non, [[Special:Userlogin|rexistrarse ou crear unha conta de acceso]].',
-'nocreate-loggedin'         => 'Non dispón de permiso para crear páxinas novas neste wiki.',
+'nocreatetext'              => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
+Pode volver atrás e editar unha páxina que xa existe ou, se non, [[Special:Userlogin|rexistrarse ou crear unha conta de acceso]].',
+'nocreate-loggedin'         => 'Non dispón de permiso para crear páxinas novas en {{SITENAME}}.',
 'permissionserrors'         => 'Erros de permisos',
 'permissionserrorstext'     => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
 'recreate-deleted-warn'     => "'''Atención: Vai volver a crear unha páxina que xa se eliminou anteriormente.'''
@@ -674,7 +676,7 @@ Probe a [[{{ns:special}}:Search/{{PAGENAME}}|buscar no wiki]] para atopar as pá
 'rev-deleted-event'           => '(entrada eliminada)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Esta revisión da páxina foi eliminada dos arquivos públicos.
-Pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rexistro de borrado].
+Pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrado].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Esta revisión da páxina foi eliminada dos arquivos públicos.
@@ -689,7 +691,7 @@ pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rexi
 'logdelete-selected'          => "{{PLURAL:$2|Evento de rexistro seleccionado|Eventos de rexistro seleccionados}} para '''$1:'''",
 'revdelete-text'              => 'As revisión eliminadas aínda aparecerán no historial da páxina, pero o contido do seu texto será inaccesíbel ao público.
 
-Outros administradores deste wiki poderán acceder aínda ao contido oculto e poderán volver atrás esa eliminación a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.',
+Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto e poderán volver atrás esa eliminación a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.',
 'revdelete-legend'            => 'Aplicar restricións de revisión:',
 'revdelete-hide-text'         => 'Agochar texto da revisión',
 'revdelete-hide-name'         => 'Agochar acción e destino',
@@ -844,12 +846,16 @@ e a do servidor (UTC).',
 'userrights-editusergroup'    => 'Editar grupos de usuarios',
 'saveusergroups'              => 'Gardar Grupos de Usuarios',
 'userrights-groupsmember'     => 'Membro de:',
+'userrights-groupsremovable'  => 'Grupos eliminábeis:',
 'userrights-groupsavailable'  => 'Grupos dispoñíbeis:',
 'userrights-groupshelp'       => 'Escolla os grupos dos que quere retirar ou sumar o usuario. Os grupos non seleccionados non se modificarán. Pode deseleccionar un grupo con CTRL + Clic Esquerdo',
 'userrights-reason'           => 'Razón para a modificación:',
 'userrights-available-none'   => 'Non pode mudar a pertenza ao grupo.',
-'userrights-available-add'    => 'Pode engadir usuarios a $1.',
-'userrights-available-remove' => 'Pode eliminar usuarios de $1.',
+'userrights-available-add'    => 'Pode engadir usuarios a {{PLURAL:$2|este grupo|estes grupos}}: $1.',
+'userrights-available-remove' => 'Pode eliminar usuarios {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
+'userrights-no-interwiki'     => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
+'userrights-nodatabase'       => 'A base de datos $1 non existe ou non é local.',
+'userrights-notallowed'       => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
 
 # Groups
 'group'               => 'Grupo:',
@@ -966,7 +972,7 @@ Se dispón dunha versión desta imaxe de maior resolución, envíe esta última.
 'uploadedimage'               => '"[[$1]]" cargado',
 'overwroteimage'              => 'enviouse unha nova versión de "[[$1]]"',
 'uploaddisabled'              => 'Sentímolo, a subida de ficheiros está desactivada.',
-'uploaddisabledtext'          => 'A carga de ficheiros está desactivada neste wiki.',
+'uploaddisabledtext'          => 'A carga de ficheiros está desactivada en {{SITENAME}}.',
 'uploadscripted'              => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
 'uploadcorrupt'               => 'O ficheiro está corrompido ou ten unha extensión incorrecta. Por favor verifique o ficheiro e súbao de novo.',
 'uploadvirus'                 => 'O ficheiro contén un virus! Detalles: $1',
@@ -1070,7 +1076,7 @@ PICT # misc.
 'filedelete-submit'      => 'Eliminar',
 'filedelete-success'     => "Eliminouse '''$1'''.",
 'filedelete-success-old' => '<span class="plainlinks">Eliminouse a versión de \'\'\'[[Media:$1|$1]]\'\'\' de $3, $2 .</span>',
-'filedelete-nofile'      => "'''$1''' non existe neste sitio.",
+'filedelete-nofile'      => "'''$1''' non existe en {{SITENAME}}.",
 'filedelete-nofile-old'  => "Non existe unha versión arquivada de '''$1''' cos atributos especificados.",
 'filedelete-iscurrent'   => 'Tentou eliminar a versión máis recente deste ficheiro. Volva antes a unha versión máis antiga.',
 
@@ -1145,7 +1151,7 @@ Cada fileira contén ligazóns cara á primeira e segunda redirección, e tamén
 'nviews'                  => '$1 {{PLURAL:$1|vista|vistas}}',
 'specialpage-empty'       => 'Esta páxina está baleira.',
 'lonelypages'             => 'Páxinas orfas',
-'lonelypagestext'         => 'As seguintes páxinas están illadas, non están enlazadas desde outras páxinas deste wiki.',
+'lonelypagestext'         => 'As seguintes páxinas están illadas, non están enlazadas desde outras páxinas de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páxinas sen categorías',
 'uncategorizedcategories' => 'Categorías sen categorías',
 'uncategorizedimages'     => 'Imaxes sen categorías',
@@ -1166,7 +1172,7 @@ Cada fileira contén ligazóns cara á primeira e segunda redirección, e tamén
 'shortpages'              => 'Páxinas curtas',
 'longpages'               => 'Páxinas longas',
 'deadendpages'            => 'Páxinas sen ligazóns cara a outras',
-'deadendpagestext'        => 'Estas páxinas non enlazan con ningunha outra páxina deste wiki.',
+'deadendpagestext'        => 'Estas páxinas non enlazan con ningunha outra páxina de {{SITENAME}}.',
 'protectedpages'          => 'Páxinas protexidas',
 'protectedpagestext'      => 'As seguintes páxinas están protexidas fronte a edición ou traslado',
 'protectedpagesempty'     => 'Non hai páxinas protexidas neste momento',
@@ -1426,8 +1432,7 @@ se queiran recuperar e a continuación prema en '''''Restaurar'''''. Premendo en
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión|revisións}} arquivadas',
 'undeletehistory'              => 'Se restaura a páxina, todas as revisións van ser restauradas no historial.
 Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións
-restauradas van aparecer no historial anterior e non se vai substituír
-automaticamente a revisión actual da páxina viva.',
+restauradas van aparecer no historial anterior. Teña tamén en conta que as restricións sobre as revisións dos ficheiros pérdense cando se restauran',
 'undeleterevdel'               => 'Non se levará a cabo a reversión do borrado se ocasiona que a última revisión da páxina se elimine parcialmente.
 Nestes casos, debe retirar a selección ou quitar a ocultación das revisións borradas máis recentes.
 Non se restaurarán as revisións dos ficheiros sobre os que non ten permiso para ver.',
@@ -1576,8 +1581,8 @@ a un enderezo IP ou usuario que estea bloqueado.',
 'proxyblocker-disabled'       => 'Esta función está desactivada.',
 'proxyblockreason'            => 'O seu enderezo de IP foi bloqueado porque é un proxy aberto. Por favor contacte co seu fornecedor de acceso a internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
 'proxyblocksuccess'           => 'Feito.',
-'sorbsreason'                 => "O seu enderezo IP está rexistrado na listaxe DNSBL como un ''proxy'' aberto.",
-'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado na listaxe DNSBL como un ''proxy'' aberto. Polo tanto non pode crear unha conta de acceso",
+'sorbsreason'                 => 'O seu enderezo IP está rexistrado na listaxe DNSBL usada por {{SITENAME}}.',
+'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na listaxe DNSBL usada por {{SITENAME}}. Polo tanto non pode crear unha conta de acceso",
 
 # Developer tools
 'lockdb'              => 'Fechar base de datos',
@@ -1632,7 +1637,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'             => 'Mover esta páxina',
 'movenologin'             => 'Non está dentro do sistema',
 'movenologintext'         => 'Vostede ha ser un usuario rexistrado e estar [[Special:Userlogin|dentro do sistema]] para mover unha páxina.',
-'movenotallowed'          => 'Non ten permiso para mover páxinas neste wiki.',
+'movenotallowed'          => 'Non ten permiso para mover páxinas en {{SITENAME}}.',
 'newtitle'                => 'Ao novo título',
 'move-watch'              => 'Vixiar esta páxina',
 'movepagebtn'             => 'Mover páxina',
@@ -1717,6 +1722,9 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'importhistoryconflict'      => 'Existe un conflito no historial de revisións (por ter importado esta páxina antes)',
 'importnosources'            => 'Non se definiron fontes de importación transwiki e están desactivados os envíos directos dos historiais.',
 'importnofile'               => 'Non se enviou ningún ficheiro de importación.',
+'importuploaderrorsize'      => 'Fallou o envío do ficheiro de importación. O ficheiro é máis grande que o tamaño de envío permitido.',
+'importuploaderrorpartial'   => 'Fallou o envío do ficheiro de importación. O ficheiro só se enviou parcialmente.',
+'importuploaderrortemp'      => 'Fallou o envío do ficheiro de importación. Falta un cartafol temporal.',
 
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',
@@ -2172,7 +2180,7 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 # E-mail address confirmation
 'confirmemail'            => 'Confirmar o enderezo do correo electrónico',
 'confirmemail_noemail'    => 'Non ten configurado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] de usuario.',
-'confirmemail_text'       => 'É necesario que vostede valide o seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: clique nesta ligazón para  
+'confirmemail_text'       => '{{SITENAME}} require que vostede valide o seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: clique nesta ligazón para abrila no navegador web e 
 confirmar que o seu enderezo é válido.',
 'confirmemail_pending'    => '<div class="error"> Envíouselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código. </div>',
 'confirmemail_send'       => 'Enviar por correo elecrónico un código de confirmación',
@@ -2292,5 +2300,8 @@ Tente a vista previa normal.',
 'watchlisttools-view' => 'Ver as modificacións relevantes',
 'watchlisttools-edit' => 'Ver e editar a listaxe de vixilancia',
 'watchlisttools-raw'  => 'Editar a listaxe de vixilancia simple',
+
+# Core parser functions
+'unknown_extension_tag' => 'Etiqueta de extensión descoñecida "$1"',
 
 );

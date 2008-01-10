@@ -2140,7 +2140,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsdirection-m' => 'Nord magnétique',
 
 # External editor support
-'edit-externally'      => 'Modifier ce fichier en utilisant un application externe',
+'edit-externally'      => 'Modifier ce fichier en utilisant une application externe',
 'edit-externally-help' => 'Voir [http://meta.wikimedia.org/wiki/Help:External_editors les instructions] pour plus d’informations.',
 
 # 'all' in various places, this might be different for inflected languages

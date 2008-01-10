@@ -2319,4 +2319,7 @@ Prøv vanlig forhåndsvisning.',
 'watchlisttools-edit' => 'Vis og rediger overvåkningsliste',
 'watchlisttools-raw'  => 'Rediger rå overvåkningsliste',
 
+# Core parser functions
+'unknown_extension_tag' => 'Ukjent tilleggsmerking «$1»',
+
 );

@@ -210,7 +210,7 @@ $messages = array(
 'copyrightpagename' => '{{SITENAME}} auteursrjocht',
 'copyrightpage'     => '{{ns:project}}:Auteursrjocht',
 'currentevents'     => 'Hjoeddeis',
-'currentevents-url' => 'Projekt:Rinnende saken',
+'currentevents-url' => 'Project:Rinnende saken',
 'disclaimers'       => 'Foarbehâld',
 'disclaimerpage'    => 'Projekt:Algemien foarbehâld',
 'edithelp'          => 'Siden bewurkje',
@@ -218,11 +218,11 @@ $messages = array(
 'helppage'          => 'Help:Help',
 'mainpage'          => 'Haadside',
 'portal'            => 'Brûkersportaal',
-'portal-url'        => 'Projekt:Brûkersportaal',
+'portal-url'        => 'Project:Brûkersportaal',
 'privacy'           => 'Privacybelied',
 'privacypage'       => 'Projekt:Privacybelied',
 'sitesupport'       => 'Jildlik stypje',
-'sitesupport-url'   => 'Projekt:Jildlik stypje',
+'sitesupport-url'   => 'Project:Jildlik stypje',
 
 'ok'                  => 'Goed',
 'retrievedfrom'       => 'Untfongen fan "$1"',
@@ -551,7 +551,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'guesstimezone'            => 'Freegje de blêdzjer',
 'defaultns'                => "Nammeromten dy't normaal trochsykje wurde:",
 
-'grouppage-sysop' => '{{ns:projekt}}:Behearders',
+'grouppage-sysop' => '{{ns:project}}:Behearders',
 
 # User rights log
 'rightslog' => 'Brûkersrjochte-lochboek',
