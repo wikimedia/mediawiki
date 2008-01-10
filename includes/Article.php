@@ -2404,7 +2404,7 @@ class Article {
 			$wgRequest->getVal( 'from' ),
 			$wgRequest->getText( 'summary' ),
 			$wgRequest->getVal( 'token' ),
-			$wgRequest->getBool( 'bot' ) and $wgUser->isAllowed( 'markbotedit' ),
+			$wgRequest->getBool( 'bot' ),
 			$details
 		);
 
