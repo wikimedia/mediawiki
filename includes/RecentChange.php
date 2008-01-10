@@ -261,9 +261,6 @@ class RecentChange
 		$oldId, $lastTimestamp, $bot, $ip = '', $oldSize = 0, $newSize = 0,
 		$newId = 0)
 	{
-
-		global $wgRequest;
-
 		if ( !$ip ) {
 			$ip = wfGetIP();
 			if ( !$ip ) {
