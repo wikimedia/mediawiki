@@ -136,17 +136,19 @@ class UserrightsPage extends SpecialPage {
 			wfRunHooks( 'UserRights', array( &$user, $addgroup, $removegroup ) );
 		}
 
-		$log = new LogPage( 'rights' );
+		if( $addgroup or $removegroup ) {
+			$log = new LogPage( 'rights' );
 
-		global $wgRequest;
-		$log->addEntry( 'rights',
-			$user->getUserPage(),
-			$wgRequest->getText( 'user-reason' ),
-			array(
-				$this->makeGroupNameList( $oldGroups ),
-				$this->makeGroupNameList( $newGroups )
-			)
-		);
+			global $wgRequest;
+			$log->addEntry( 'rights',
+				$user->getUserPage(),
+				$wgRequest->getText( 'user-reason' ),
+				array(
+					$this->makeGroupNameList( $oldGroups ),
+					$this->makeGroupNameList( $newGroups )
+				)
+			);
+		}
 	}
 
 	/**
