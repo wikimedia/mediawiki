@@ -37,17 +37,22 @@ $messages = array(
 'tog-justify'        => 'Aliyen paragraf yo',
 'tog-watchcreations' => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
 
+'underline-always' => 'Toujou',
+'underline-never'  => 'Jamè',
+
+'skinpreview' => '(Voye kout zye)',
+
 # Dates
 'sunday'        => 'dimanch',
 'monday'        => 'lendi',
-'tuesday'       => 'mardi',
+'tuesday'       => 'madi',
 'wednesday'     => 'mèkredi',
 'thursday'      => 'jedi',
 'friday'        => 'vandredi',
 'saturday'      => 'samdi',
 'sun'           => 'dim',
 'mon'           => 'len',
-'tue'           => 'mar',
+'tue'           => 'mad',
 'wed'           => 'mèr',
 'thu'           => 'jed',
 'fri'           => 'van',
@@ -91,6 +96,10 @@ $messages = array(
 
 # Bits of text used by many pages
 'subcategories' => 'Pitit kategori yo',
+
+'about'         => 'Apwopo',
+'article'       => 'Atik',
+'qbpageoptions' => 'Opsyon Paj sa a',
 
 'errorpagetitle' => 'Erè',
 
