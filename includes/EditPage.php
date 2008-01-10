@@ -681,7 +681,7 @@ class EditPage {
 	 * Attempt submission (no UI)
 	 * @return one of the constants describing the result
 	 */
-	function internalAttemptSave( &$result ) {
+	function internalAttemptSave( &$result, $bot = false ) {
 		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut, $wgParser;
 		global $wgMaxArticleSize, $wgTitle;
 
@@ -800,7 +800,7 @@ class EditPage {
 			$isComment = ( $this->section == 'new' );
 			
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
-				$this->minoredit, $this->watchthis, false, $isComment);
+				$this->minoredit, $this->watchthis, false, $isComment, $bot);
 
 			wfProfileOut( $fname );
 			return self::AS_SUCCESS_NEW_ARTICLE;
@@ -944,7 +944,7 @@ class EditPage {
 
 		# update the article here
 		if( $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
-			$this->watchthis, '', $sectionanchor ) ) {
+			$this->watchthis, $bot, $sectionanchor ) ) {
 			wfProfileOut( $fname );
 			return self::AS_SUCCESS_UPDATE;
 		} else {
@@ -2158,10 +2158,10 @@ END
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
 	function attemptSave() {
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
 		$resultDetails = false;
-		$value = $this->internalAttemptSave( $resultDetails );
+		$value = $this->internalAttemptSave( $resultDetails, $wgUser->isAllowed('bot') && $wgRequest->getBool('bot', true) );
 		
 		if( $value == self::AS_SUCCESS_UPDATE || $value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;

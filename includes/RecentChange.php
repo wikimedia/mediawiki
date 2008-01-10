@@ -258,18 +258,11 @@ class RecentChange
 
 	# Makes an entry in the database corresponding to an edit
 	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
-		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0,
+		$oldId, $lastTimestamp, $bot, $ip = '', $oldSize = 0, $newSize = 0,
 		$newId = 0)
 	{
 
 		global $wgRequest;
-
-		if ( $bot === 'default' ) {
-			$bot = $user->isAllowed( 'bot' );
-			if ( $bot ) {
-				$bot = $wgRequest->getBool( 'bot' , true );
-			}
-		}
 
 		if ( !$ip ) {
 			$ip = wfGetIP();
@@ -317,21 +310,13 @@ class RecentChange
 	 * Note: the title object must be loaded with the new id using resetArticleID()
 	 * @todo Document parameters and return
 	 */
-	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = 'default',
+	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
 	  $ip='', $size = 0, $newId = 0 )
 	{
-		global $wgRequest;
-
 		if ( !$ip ) {
 			$ip = wfGetIP();
 			if ( !$ip ) {
 				$ip = '';
-			}
-		}
-		if ( $bot === 'default' ) {
-			$bot = $user->isAllowed( 'bot' );
-			if ( $bot ) {
-				$bot = $wgRequest->getBool( 'bot' , true );
 			}
 		}
 
