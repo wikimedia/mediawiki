@@ -1961,6 +1961,7 @@ class User {
 	 * Logout user.
 	 */
 	function logout() {
+		global $wgUser;
 		if( wfRunHooks( 'UserLogout', array(&$this) ) ) {
 			$this->doLogout();
 			wfRunHooks( 'UserLogoutComplete', array(&$wgUser) );
