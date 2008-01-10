@@ -2368,7 +2368,7 @@ class Article {
 		if ($wgUser->isAllowed('minoredit'))
 			$flags |= EDIT_MINOR;
 
-		if( $bot )
+		if( $bot && ($wgUser->isAllowed('markbotedits') || $wgUser->isAllowed('bot')) )
 			$flags |= EDIT_FORCE_BOT;
 		$this->doEdit( $target->getText(), $summary, $flags );
 
