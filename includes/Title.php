@@ -1258,6 +1258,11 @@ class Title {
 	public function getTitleProtection() {
 		$dbr = wfGetDB( DB_SLAVE );
 
+		// Can't protect pages in special namespaces
+		if ( $this->getNamespace() < NS_MAIN ) {
+			return false;
+		}
+
 		$res = $dbr->select( 'protected_titles', '*', 
 			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBKey()) );
 
