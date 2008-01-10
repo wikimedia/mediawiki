@@ -42,7 +42,6 @@ class ApiParse extends ApiBase {
 		$params = $this->extractRequestParams();
 		$text = $params['text'];
 		$title = $params['title'];
-		$retval = '';
 
 		//Create title for parser
 		$title_obj = Title :: newFromText($params['title']);
