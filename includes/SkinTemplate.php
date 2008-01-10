@@ -765,7 +765,7 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $this->mTitle->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
-					if( !is_array( $this->mTitle->getRestrictions('create') ) ) {
+					if( !is_array( $this->mTitle->getTitleProtection() ) ) {
 						$content_actions['protect'] = array(
 							'class' => ($action == 'protect') ? 'selected' : false,
 							'text' => wfMsg('protect'),
