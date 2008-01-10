@@ -12,24 +12,38 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Especial',
-	NS_MAIN             => '',
-	NS_TALK             => 'Discusión',
-	NS_USER             => 'Usuariu',
-	NS_USER_TALK        => 'Usuariu_discusión',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => '$1_discusión',
-	NS_IMAGE            => 'Imaxen',
-	NS_IMAGE_TALK       => 'Imaxen_discusión',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_discusión',
-	NS_TEMPLATE         => 'Plantilla',
-	NS_TEMPLATE_TALK    => 'Plantilla_discusión',
-	NS_HELP             => 'Ayuda',
-	NS_HELP_TALK        => 'Ayuda_discusión',
-	NS_CATEGORY         => 'Categoría',
-	NS_CATEGORY_TALK    => 'Categoría_discusión',
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Especial',
+	NS_MAIN           => '',
+	NS_TALK           => 'Alderique',
+	NS_USER           => 'Usuariu',
+	NS_USER_TALK      => 'Usuariu_alderique',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_alderique',
+	NS_IMAGE          => 'Imaxe',
+	NS_IMAGE_TALK     => 'Imaxe_alderique',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_alderique',
+	NS_TEMPLATE       => 'Plantía',
+	NS_TEMPLATE_TALK  => 'Plantía_alderique',
+	NS_HELP           => 'Aida',
+	NS_HELP_TALK      => 'Aida_alderique',
+	NS_CATEGORY       => 'Categoría',
+	NS_CATEGORY_TALK  => 'Categoría_alderique',
+);
+
+$namespaceAliases = array(
+	'Discusión'           => NS_TALK,
+	'Usuariu_discusión'   => NS_USER_TALK,
+	'$1_discusión'        => NS_PROJECT_TALK,
+	'Imaxen'              => NS_IMAGE,
+	'Imaxen_discusión'    => NS_IMAGE_TALK,
+	'MediaWiki_discusión' => NS_MEDIAWIKI_TALK,
+	'Plantilla'           => NS_TEMPLATE,
+	'Plantilla_discusión' => NS_TEMPLATE_TALK,
+	'Ayuda'               => NS_HELP,
+	'Ayuda_discusión'     => NS_HELP_TALK,
+	'Categoría_discusión' => NS_CATEGORY_TALK,
 );
 
 $messages = array(
