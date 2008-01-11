@@ -2352,4 +2352,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'watchlisttools-edit' => 'Pregled i uređivanje praćenih stranica',
 'watchlisttools-raw'  => 'Uređivanje praćenih stranica u okviru za uređivanje',
 
+# Core parser functions
+'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
+
 );

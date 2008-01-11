@@ -829,7 +829,7 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'mergehistory-invalid-destination' => 'La pàgina de destinació ha de tenir un títol vàlid.',
 
 # Merge log
-'mergelog'           => 'Fusiona el registre',
+'mergelog'           => 'Registre de fusions',
 'pagemerge-logentry' => "s'ha fusionat [[$1]] en [[$2]] (revisions fins a $3)",
 'revertmerge'        => 'Desfusiona',
 'mergelogpagetext'   => "A sota hi ha una llista de les fusions més recents d'una pàgina d'historial en una altra.",

@@ -72,7 +72,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Keppelings nei lege siden ta <a href="" class="new">read</a> (oars mei in fraachteken<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafen útfolje',
 'tog-hideminor'               => "Tekstwizigings wei litte út 'Koarts feroare'",
-'tog-usenewrc'                => "Utwreide ferzje fan 'Koarts feroare' brûke (net mei alle blêdzjers mooglik)",
+'tog-usenewrc'                => "Utwreide ferzje fan 'Koarts feroare' brûke (net mei alle blêders mooglik)",
 'tog-numberheadings'          => 'Koppen fansels nûmerje',
 'tog-showtoolbar'             => 'Show edit toolbar',
 'tog-editondblclick'          => 'Dûbelklik jout bewurkingsside (freget JavaScript)',
@@ -212,7 +212,7 @@ $messages = array(
 'currentevents'     => 'Hjoeddeis',
 'currentevents-url' => 'Project:Rinnende saken',
 'disclaimers'       => 'Foarbehâld',
-'disclaimerpage'    => 'Projekt:Algemien foarbehâld',
+'disclaimerpage'    => 'Project:Algemien foarbehâld',
 'edithelp'          => 'Siden bewurkje',
 'edithelppage'      => 'Help:Bewurk-rie',
 'helppage'          => 'Help:Help',
@@ -220,7 +220,7 @@ $messages = array(
 'portal'            => 'Brûkersportaal',
 'portal-url'        => 'Project:Brûkersportaal',
 'privacy'           => 'Privacybelied',
-'privacypage'       => 'Projekt:Privacybelied',
+'privacypage'       => 'Project:Privacybelied',
 'sitesupport'       => 'Jildlik stypje',
 'sitesupport-url'   => 'Project:Jildlik stypje',
 
@@ -379,7 +379,7 @@ Please log in again after you receive it.',
 'watchthis'              => 'Folgje dizze side',
 'savearticle'            => 'Fêstlizze',
 'preview'                => 'Oerlêze',
-'showpreview'            => 'Oerlêze foar de side fêstlein is',
+'showpreview'            => "Oerlêze foar't de side fêstlein is",
 'showdiff'               => 'Feroarings sjen litte',
 'anoneditwarning'        => "'''Warskôging:''' Jo binne net oanmeld. Jo IP-adres wurdt opslein as jo feroarings op dizze side meitsje.",
 'summary-preview'        => 'Gearfetting neisjen',
@@ -401,7 +401,7 @@ e-postadres opjûn hawwe in jo [[{{ns:special}}:Preferences|ynstellings]].",
 'newarticletext'         => "Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
 Om sels tekst te meistjsen kinne jo dy gewoan yntype in dit bewurkingsfjild
 ([[{{MediaWiki:Helppage}}|Mear ynformaasje oer bewurkjen]].)
-Oars kinne jo tebek mei de tebek-knop fan jo blêdzjer.",
+Oars kinne jo tebek mei de tebek-knop fan jo blêder.",
 'anontalkpagetext'       => "---- ''Dit is de oerlisside fan in unbekinde brûker; in brûker
 dy't sich net oanmeld hat. Om't der gjin namme is wurd it Ynternet-adres brûkt om
 oan te jaan wa. Mar faak is it sa dat sa'n adres net altid troch deselde brûkt wurdt.
@@ -548,7 +548,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'localtime'                => 'Jo tiidsône',
 'timezoneoffset'           => 'Ferskil',
 'servertime'               => 'UTC',
-'guesstimezone'            => 'Freegje de blêdzjer',
+'guesstimezone'            => 'Freegje de blêder',
 'defaultns'                => "Nammeromten dy't normaal trochsykje wurde:",
 
 'grouppage-sysop' => '{{ns:project}}:Behearders',
@@ -602,12 +602,12 @@ Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it
 [[Special:Log/delete|lochboek]].
 
 Om't nije ôfbylden oan te bieden, kieze jo in bestân út sa't dat
-normaal is foar jo blêdzjer en bestjoersysteem.
+normaal is foar jo blêder en bestjoersysteem.
 Dan jouwe jo oan jo gjin auteursrjocht skeine troch it oanbieden.
 Mei \"Bied oan\" begjinne jo dan it oanbieden.
 Dit kin efkes duorje as jo Ynternet-ferbining net sa flug is.
 
-Foar de bestânsforam wurdt foto's JPEG oanret, foar tekenings ensfh. PNG, en foar
+Foar de bestânsfoarm wurdt foto's JPEG oanret, foar tekenings ensfh. PNG, en foar
 lûden OGG. Brûk in dúdlike bestânsnamme, sa't in oar ek wit wat it is.
 
 Om it ôfbyld yn in side op te nimmen, meitsje jo dêr sa'n keppeling:<br />
@@ -1082,8 +1082,8 @@ Gearfoegje de oerlissiden hânmjittig.",
 'mw_math_png'    => 'Altiten as PNG ôfbyldzje',
 'mw_math_simple' => 'HTML foar ienfâldiche formules, oars PNG',
 'mw_math_html'   => 'HTML as mooglik, oars PNG',
-'mw_math_source' => 'Lit de TeX ferzje stean (foar tekstblêdzjers)',
-'mw_math_modern' => 'Oanbefelle foar resinte blêdzjers',
+'mw_math_source' => 'Lit de TeX ferzje stean (foar tekstblêders)',
+'mw_math_modern' => 'Oanbefelle foar resinte blêders',
 'mw_math_mathml' => 'MathML',
 
 # Browsing diffs

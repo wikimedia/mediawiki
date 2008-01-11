@@ -2444,4 +2444,7 @@ $1',
 'hebrew-calendar-m11-gen' => 'avu',
 'hebrew-calendar-m12-gen' => 'elulu',
 
+# Core parser functions
+'unknown_extension_tag' => 'Neznámá značka rozšíření: „$1“',
+
 );

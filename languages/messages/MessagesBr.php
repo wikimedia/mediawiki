@@ -613,6 +613,7 @@ n'oc'h ket evit enrollañ ho kemmoù diouzhtu eta. Gallout a rit eilañ an deste
 N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.</strong>",
 'semiprotectedpagewarning'  => "''Notenn :''' Gwarezet eo ar bajenn-mañ; n'eus nemet an implijerien bet krouet ur gont ganto a c'hall degas kemmoù enni.",
 'cascadeprotectedwarning'   => "<strong>DIWALLIT: Prennet eo ar bajenn-mañ. N'eus nemet ar verourien a c'hall degas kemmoù enni peogwir he c'haver e-touez ar pajennoù da-heul zo bet gwarezet en ur zibab an dibarzh \"skalierad\".</strong>:",
+'titleprotectedwarning'     => "<strong>WARNING:  Gwarezet eo bet ar bajenn-mañ e doare ma n'hallo bezañ krouet nemet gant implijerien zo.</strong>",
 'templatesused'             => 'Patromoù implijet war ar bajenn-mañ :',
 'templatesusedpreview'      => 'Patromoù implijet er rakweladenn-mañ :',
 'templatesusedsection'      => 'Patromoù implijet er rann-mañ :',
@@ -620,7 +621,8 @@ N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.</
 'template-semiprotected'    => '(damwarezet)',
 'edittools'                 => '<!-- Diskouezet e vo an destenn kinniget amañ dindan ar sternioù kemmañ ha kargañ. -->',
 'nocreatetitle'             => "Strishaet eo bet ar c'hrouiñ pajennoù",
-'nocreatetext'              => "N'eus pennad ebet gant anv lakaet ganeoc'h c'hoazh. Mar fell deoc'h e c'hallit en em lugañ pe [[special:userlogin|krouiñ ur gont]]. Goude-se e c'hallot krouiñ pennadoù nevez. Taolit evezh koulskoude da zoujañ ouzh ar reolennoù a denn da anvioù ar pennadoù ha klaskit mat a-raok krouiñ ur pennad zo anezhañ dija.",
+'nocreatetext'              => 'Strishaet eo bet an tu da grouiñ pajennoù nevez war {{SITENAME}}.
+Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Special:Userlogin|en em enrollañ ha krouiñ ur gont]].',
 'nocreate-loggedin'         => "N'oc'h ket aotreet da grouiñ pajennoù nevez war {{SITENAME}}.",
 'permissionserrors'         => 'Fazioù Aotre',
 'permissionserrorstext'     => "N'oc'h ket aotreet d'ober kement-mañ ha {{PLURAL:$1|reason|setu perak}} :",
@@ -680,8 +682,8 @@ Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe
 'rev-deleted-user'            => '(anv implijer diverket)',
 'rev-deleted-event'           => '(meneg dilamet)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Lamet eo bet kuit ar stumm-mañ eus ar bajenn diouzh an dielloù foran.
-Marteze e kavot munudoù war [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} roll ar pajennoù diverket].
+Lamet eo bet kuit ar stumm-mañ eus ar bajenn eus an dielloù foran.
+Marteze e kavot munudoù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].
 </div>',
 'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
 Lamet eo bet kuit ar stumm-mañ eus ar bajenn diouzh an dielloù foran.
@@ -848,13 +850,14 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9',
 'userrights-editusergroup'    => 'Kemmañ strolladoù an implijer',
 'saveusergroups'              => 'Enrollañ ar strolladoù implijer',
 'userrights-groupsmember'     => 'Ezel eus :',
+'userrights-groupsremovable'  => "Strolladoù a c'haller diverkañ :",
 'userrights-groupsavailable'  => 'Strolladoù zo :',
 'userrights-groupshelp'       => "Diuzit ar strolladoù a fell deoc'h e vefe ouzhpennet an implijer dezho pe tennet diouto. 
 Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ ur strollad gant CTRL + Klik kleiz",
 'userrights-reason'           => 'Abeg kemmañ :',
 'userrights-available-none'   => "N'hallit ket cheñch roll perzhidi ar strollad",
-'userrights-available-add'    => 'Gallout a rit ouzhpennañ implijerien da $1.',
-'userrights-available-remove' => 'Gallout a rit tennañ implijerien diouzh $1.',
+'userrights-available-add'    => "Gallout a rit ouzhpennañ implijerien d'ar {{PLURAL:$2|strollad-mañ|strolladoù-mañ}} :$1.",
+'userrights-available-remove' => 'Gallout a rit tennañ implijerien eus {{PLURAL:$2|ar strollad-mañ|ar strolladoù-mañ}} : $1.',
 'userrights-no-interwiki'     => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
 'userrights-nodatabase'       => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
 'userrights-nologin'          => "Ret eo deoc'h [[Special:Userlogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
@@ -1706,7 +1709,6 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'importhistoryconflict'      => "Divankadennoù zo er pennad istor ha tabut zo gant se (marteze eo bet enporzhiet ar bajenn araozoc'h)",
 'importnosources'            => "N'eus bet spisaet tamm mammenn etrewiki ebet ha diweredekaet eo enporzhiañ an Istor war-eeun.",
 'importnofile'               => "N'eus bet enporzhiet restr ebet.",
-'importuploaderror'          => "N'eus ket bet gallet enporzhiañ ar restr; marteze peogwir eo brasoc'h eget ar vent enporzhiañ aotreet.",
 
 # Import log
 'importlogpage'                    => 'Log an enporzhiadennoù',
@@ -2299,4 +2301,3 @@ Klaskit rakwelet er mod boutin.',
 'iranian-calendar-m12' => '12vet miz Jalāli',
 
 );
-
