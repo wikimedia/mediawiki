@@ -297,6 +297,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12505) Fixed section=0 with action=raw
 * Do not log user rights change that didn't change anything
 * (bug 12584) Don't reset cl_timestamp when auto-updating sort key on move
+* (bug 12588) Fix selection in namespace selector on Special:Newpages
 
 
 == Parser changes in 1.12 ==
