@@ -335,12 +335,11 @@ class EditPage {
 	function edit() {
 		global $wgOut, $wgUser, $wgRequest, $wgTitle;
 
-		if ( ! wfRunHooks( 'AlternateEdit', array( &$this ) ) )
+		if ( !wfRunHooks( 'AlternateEdit', array( &$this ) ) )
 			return;
 
-		$fname = 'EditPage::edit';
-		wfProfileIn( $fname );
-		wfDebug( "$fname: enter\n" );
+		wfProfileIn( __METHOD__ );
+		wfDebug( __METHOD__.": enter\n" );
 
 		// this is not an article
 		$wgOut->setArticleFlag(false);
@@ -350,7 +349,7 @@ class EditPage {
 
 		if( $this->live ) {
 			$this->livePreview();
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -386,13 +385,12 @@ class EditPage {
 				}
 			}
 		}
-		# array_diff returns elements in $permErrors that are not in $remove.
 		$permErrors = array_diff( $permErrors, $remove );
 
 		if ( !empty($permErrors) ) {
-			wfDebug( "$fname: User can't edit\n" );
+			wfDebug( __METHOD__.": User can't edit\n" );
 			$wgOut->readOnlyPage( $this->getContent(), true, $permErrors );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		} else {
 			if ( $this->save ) {
@@ -412,7 +410,7 @@ class EditPage {
 			}
 		}
 
-		wfProfileIn( "$fname-business-end" );
+		wfProfileIn( __METHOD__."-business-end" );
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
@@ -455,8 +453,8 @@ class EditPage {
 
 		if ( 'save' == $this->formtype ) {
 			if ( !$this->attemptSave() ) {
-				wfProfileOut( "$fname-business-end" );
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__."-business-end" );
+				wfProfileOut( __METHOD__ );
 				return;
 			}
 		}
@@ -466,8 +464,8 @@ class EditPage {
 		if ( 'initial' == $this->formtype || $this->firsttime ) {
 			if ($this->initialiseForm() === false) {
 				$this->noSuchSectionPage();
-				wfProfileOut( "$fname-business-end" );
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__."-business-end" );
+				wfProfileOut( __METHOD__ );
 				return;
 			}
 			if( !$this->mTitle->getArticleId() ) 
@@ -475,8 +473,8 @@ class EditPage {
 		}
 
 		$this->showEditForm();
-		wfProfileOut( "$fname-business-end" );
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__."-business-end" );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1004,7 +1002,6 @@ class EditPage {
 			$this->textbox1 = $this->getContent();
 			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
-
 			if( $this->section != '' ) {
 				if( $this->section == 'new' ) {
 					$s = wfMsg('editingcomment', $wgTitle->getPrefixedText() );
@@ -1040,7 +1037,7 @@ class EditPage {
 				$wgOut->addWikiText( '<div id="mw-missingcommentheader">' . wfMsg( 'missingcommentheader' ) . '</div>' );
 			}
 
-			if( !$this->hookError == '' ) {
+			if( $this->hookError ) {
 				$wgOut->addWikiText( $this->hookError );
 			}
 
