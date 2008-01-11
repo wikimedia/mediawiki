@@ -2350,13 +2350,26 @@ class Title {
 		}
 		$redirid = $this->getArticleID();
 
-		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
+		// Category memberships include a sort key which may be customized.
+		// If it's left as the default (the page title), we need to update
+		// the sort key to match the new title.
+		//
+		// Be careful to avoid resetting cl_timestamp, which may disturb
+		// time-based lists on some sites.
+		//
+		// Warning -- if the sort key is *explicitly* set to the old title,
+		// we can't actually distinguish it from a default here, and it'll
+		// be set to the new title even though it really shouldn't.
+		// It'll get corrected on the next edit, but resetting cl_timestamp.
 		$dbw = wfGetDB( DB_MASTER );
-		$categorylinks = $dbw->tableName( 'categorylinks' );
-		$sql = "UPDATE $categorylinks SET cl_sortkey=" . $dbw->addQuotes( $nt->getPrefixedText() ) .
-			" WHERE cl_from=" . $dbw->addQuotes( $pageid ) .
-			" AND cl_sortkey=" . $dbw->addQuotes( $this->getPrefixedText() );
-		$dbw->query( $sql, 'SpecialMovepage::doSubmit' );
+		$dbw->update( 'categorylinks',
+			array(
+				'cl_sortkey' => $nt->getPrefixedText(),
+				'cl_timestamp=cl_timestamp' ),
+			array(
+				'cl_from' => $pageid,
+				'cl_sortkey' => $this->getPrefixedText() ),
+			__METHOD__ );
 
 		# Update watchlists
 

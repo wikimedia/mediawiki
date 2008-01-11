@@ -296,6 +296,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12553) Fixed invalid XHTML in edit conflict screen
 * (bug 12505) Fixed section=0 with action=raw
 * Do not log user rights change that didn't change anything
+* (bug 12584) Don't reset cl_timestamp when auto-updating sort key on move
+
 
 == Parser changes in 1.12 ==
 
