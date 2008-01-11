@@ -1208,16 +1208,14 @@ class Title {
 					$errors[] = array ( 'titleprotected', User::whoIs($pt_user), $pt_reason );
 				}
 			}
-		}
 
-		if( $action == 'create' ) {
 			if( (  $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
 				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
 				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
 			}
 		} elseif( $action == 'move' && !( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
 			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
-		} else if ( !$user->isAllowed( $action ) ) {
+		} elseif ( !$user->isAllowed( $action ) ) {
 			$return = null;
 			$groups = array();
 			global $wgGroupPermissions;
