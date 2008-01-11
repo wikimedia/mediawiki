@@ -457,7 +457,7 @@ Probéiert et w.e.g. nach eng Kéier!",
 'createaccount'              => 'Neie Kont opmaachen',
 'gotaccount'                 => 'Dier hutt schonn e Kont? $1.',
 'gotaccountlink'             => 'Umellen',
-'createaccountmail'          => 'Via Email',
+'createaccountmail'          => 'Via E-Mail',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt. Sicht iech w.e.g. een anere Benotzernumm.',
 'youremail'                  => 'E-Mail-Adress:',
@@ -496,11 +496,13 @@ Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschen
 'passwordsent'               => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mail-Adress geschéckt.
 Melt iech w.e.g. domatt un, soubal Dir et kritt hutt.',
 'blocked-mailpassword'       => "Déi vun iech benotzten IP-Adress ass fir d'Ännere vu Säite gespaart. Fir Mëssbrauch ze verhënneren, gouf d'Méiglechkeet fir een neit Passwuert unzefroen och gespaart.",
-'eauthentsent'               => "Eng Confirmatiouns-Email gouf un déi uginnen Adress geschéckt.<br>Ier iergend eng Email vun anere Benotzer op dee Kont geschéckt ka ginn, muss der als éischt d'Instructiounen an der Confirmatiouns-Email befollegen, fir ze bestätegen datt de Kont wierklech ären eegenen ass.",
+'eauthentsent'               => "Eng Confirmatiouns-E-Mail gouf un déi uginnen Adress geschéckt.<br/ >
+Ier iergend eng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, muss der als éischt d'Instructiounen an der Confirmatiouns-E-Mail befollegen, fir ze bestätegen datt de Kont wierklech ären eegenen ass.",
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Dir hutt scho(nn) $1 Konten. Dir kënnt keen Neie méi derbäikréien.',
 'emailauthenticated'         => 'Äer E-Mail-Adress gouf confirméiert: $1.',
-'emailnotauthenticated'      => 'Är Email Adress gouf <strong>nach net confirméiert</strong>.<br>Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen Emailen ze schécken oder ze kréien.',
+'emailnotauthenticated'      => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br/ >
+Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
 'noemailprefs'               => 'Gitt eng E-Mail-Adress un, fir datt déie folgend Funktiounen fonctionéieren.',
 'emailconfirmlink'           => 'Confirméiert äer E-Mail-Adress w.e.g..',
 'accountcreated'             => 'De Kont gouf geschaf',
@@ -563,7 +565,7 @@ Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[{{MediaWiki:Gro
 
 Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. 
 
-Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gülteg Email Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
+Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gülteg E-Mail Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
 'autoblockedtext'           => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
 
 \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) 
@@ -581,6 +583,7 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 *IP-Adress: $3 
 *Spär-ID: #$5 </div>',
 'blockednoreason'           => 'Kee Grond uginn',
+'blockedoriginalsource'     => "De Quelltext vun '''$1''' steet hei ënnendrënner:",
 'blockededitsource'         => "Den Text vun '''ären Ännerungen''' op '''$1''' steet hei ënnendrënner:",
 'whitelistedittitle'        => 'Login noutwännesch fir ze änneren',
 'whitelistedittext'         => 'Dir musst iech $1, fir Säiten änneren ze kënnen.',
@@ -595,7 +598,7 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'accmailtitle'              => 'Passwuert gouf geschéckt.',
 'accmailtext'               => "D'Passwuert fir „$1“ gouf op $2 geschéckt.",
 'newarticle'                => '(Nei)',
-'newarticletext'            => "Dir hutt op e Link vun enger Säit geklickt, déi et nach net gëtt. Fir dës Säit unzeleeën, gitt w.e.g. ären Text an déi Këscht hei ënnendrënner an (kuckt [[{{MediaWiki:Helppage}}|Hëllef Säit]] fir méi Informatiounen). Wann Dir duerch een Iertum heihi komm sidd, da klickt einfach op de Kneppchen '''Zréck''' vun ärem Browser.",
+'newarticletext'            => "Dir hutt op e Link vun enger Säit geklickt, déi et nach net gëtt. Fir dës Säit unzeleeën, gitt w.e.g. ären Text an déi Këscht hei ënnendrënner an (kuckt d'[[{{MediaWiki:Helppage}}|Hëllef Säit]] fir méi Informatiounen). Wann Dir duerch een Iertum heihi komm sidd, da klickt einfach op de Knäppchen '''Zréck''' vun ärem Browser.",
 'anontalkpagetext'          => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinster musse mir d'IP Adress benotzen fir hien/hatt z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt ginn. Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:Userlogin|maacht e Kont op oder loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
 'noarticletext'             => '(Dës Säit huet momentan nach keen Text, Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën].',
 'userpage-userdoesnotexist' => 'De Benotzerkont "$1" gëtt et net. Iwwerpréift w.e.g. op Dir dës Säit erschafe/ännere wëllt.',
@@ -782,7 +785,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'timezoneoffset'          => 'Ënnerscheed¹:',
 'servertime'              => 'Serverzäit:',
 'guesstimezone'           => 'Vum Browser iwwerhuelen',
-'allowemail'              => 'Emaile vun anere Benotzer kréien.',
+'allowemail'              => 'E-Maile vun anere Benotzer kréien.',
 'defaultns'               => 'Dës Nimmraim duerchsichen:',
 'default'                 => 'Standard',
 'files'                   => 'Fichieren',
@@ -1089,10 +1092,10 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
 # E-mail user
-'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg Email Adress an äre [[Special:Preferences|Preferenzen]] agestallt hunn, fir engem anere Benotzer eng E-mail ze schécken.',
-'emailuser'       => 'Dësem Benotzer eng Email schécken',
-'emailpage'       => 'Dem Benotzer eng Email schécken',
-'emailpagetext'   => 'Wann dëse Benotzer eng valid Email Adress a senge Preferenzen agestallt huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi Email Adress déi dir an Äre Preferenzen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
+'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Preferenzen]] agestallt hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
+'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
+'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
+'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a senge Preferenzen agestallt huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mail Adress déi dir an Äre Preferenzen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => '{{SITENAME}}-E-Mail',
 'noemailtitle'    => 'Keng E-Mail-Adress',
@@ -1101,10 +1104,10 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'emailsubject'    => 'Sujet',
 'emailmessage'    => 'Message',
 'emailsend'       => 'Schécken',
-'emailccme'       => 'Eng E-mail-Kopie vum Message fir mech',
+'emailccme'       => 'Eng E-Mail-Kopie vum Message fir mech',
 'emailccsubject'  => 'Kopie vun denger Noriicht un $1: $2',
-'emailsent'       => 'Email geschéckt',
-'emailsenttext'   => 'Är Email gouf fortgeschéckt.',
+'emailsent'       => 'E-Mail geschéckt',
+'emailsenttext'   => 'Är E-Mail gouf fortgeschéckt.',
 
 # Watchlist
 'watchlist'            => 'Meng Iwwerwaachungs-Lëscht',
@@ -1126,7 +1129,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'notanarticle'         => 'Keng Säit',
 'watchnochange'        => 'Keng vun Äre verfollegte Säite gouf während der ugewisener Zäitperiod verännert.',
 'watchlist-details'    => "Dir iwwerwaacht {{PLURAL:$1|1 Säit|$1 Säiten}} (d'Diskussiounssäite net matgezielt).",
-'wlheader-enotif'      => '* Email-Bescheed ass aktivéiert.',
+'wlheader-enotif'      => '* E-Mail-Bescheed ass aktivéiert.',
 'wlheader-showupdated' => "* Säiten déi zënter ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
 'watchmethod-recent'   => 'Rezent Ännerungen gin op verfollegt Säiten iwwerpréift',
 'watchmethod-list'     => 'Verfollegt Säite ginn op rezent Ännerungen iwwerpréift',
@@ -1665,20 +1668,20 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'monthsall'        => 'all',
 
 # E-mail address confirmation
-'confirmemail'            => 'Email-Adress bestätegen',
-'confirmemail_text'       => "Ier der d'Email-Funktioune vun der {{SITENAME}} notze kënnt musst der als éischt är Email-Adress bestätegen. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-Email op déi Adress ze schécken déi der uginn hutt. An däer Email steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
-'confirmemail_send'       => 'Confirmatiouns-Email schécken',
-'confirmemail_sent'       => 'Confirmatiouns-Email gouf geschéckt.',
-'confirmemail_sendfailed' => "D'Confirmatiouns-Email konnt net verschéckt ginn. Iwwerpréift w.e.g. är Adress op keng ongëlteg Zeechen dran enthale sinn.
+'confirmemail'            => 'E-Mail-Adress bestätegen',
+'confirmemail_text'       => "Ier der d'E-Mail-Funktioune vun der {{SITENAME}} notze kënnt musst der als éischt är E-Mail-Adress bestätegen. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi der uginn hutt. An däer E-Mail steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
+'confirmemail_send'       => 'Confirmatiouns-E-Mail schécken',
+'confirmemail_sent'       => 'Confirmatiouns-E-Mail gouf geschéckt.',
+'confirmemail_sendfailed' => "D'Confirmatiouns-E-Mail konnt net verschéckt ginn. Iwwerpréift w.e.g. är Adress op keng ongëlteg Zeechen dran enthale sinn.
 
 Feelermeldung vum Mailserver: $1",
 'confirmemail_invalid'    => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",
 'confirmemail_needlogin'  => 'Dir musst iech $1, fir är E-Mail-Adress ze confirméieren.',
-'confirmemail_success'    => 'Är Email Address gouf konfirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéiren.',
-'confirmemail_loggedin'   => 'Är Email-Adress gouf elo confirméiert.',
+'confirmemail_success'    => 'Är E-Mail Address gouf konfirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéiren.',
+'confirmemail_loggedin'   => 'Är E-Mail-Adress gouf elo confirméiert.',
 'confirmemail_error'      => 'Et ass eppes falsch gelaf bäim Späichere vun ärer Confirmatioun.',
-'confirmemail_subject'    => '{{SITENAME}} Email-Adress-Confirmatioun',
-'confirmemail_body'       => 'E User, waarscheinlech där selwer, huet mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach. Fir ze bestätegen, datt dee Kont iech wierklech gehéiert a fir d\'Email-Funktiounen um Site {{SITENAME}} z\'aktivéieren, maacht w.e.g. de folgende Link an ärem Browser op: $3 Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De Confirmatiounscode gëtt den $4 ongëlteg.',
+'confirmemail_subject'    => '{{SITENAME}} E-Mail-Adress-Confirmatioun',
+'confirmemail_body'       => 'E Benotzer, waarscheinlech dir selwer, hutt mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach. Fir ze bestätegen, datt dee Kont iech wierklech gehéiert a fir d\'E-Mail-Funktiounen um Site {{SITENAME}} z\'aktivéieren, maacht w.e.g. de folgende Link an ärem Browser op: $3 Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De Confirmatiounscode gëtt den $4 ongëlteg.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Abannung ass ausgeschalt]',

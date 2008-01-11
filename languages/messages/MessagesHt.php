@@ -33,9 +33,15 @@ $linkTrail = '/^([a-zàèòÀÈÒ]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'      => 'Souliyen lyen yo :',
-'tog-justify'        => 'Aliyen paragraf yo',
-'tog-watchcreations' => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
+'tog-underline'       => 'Souliyen lyen yo :',
+'tog-highlightbroken' => 'Afiche <a href="" class="new">nan koulè wouj</a> lyen yo ki ap mene nan paj ki pa egziste (oubyen : tankou <a href="" class="internal">?</a>)',
+'tog-justify'         => 'Aliyen paragraf yo',
+'tog-hideminor'       => 'Kache tout modifikasyon resan yo ki pa enpòtan',
+'tog-extendwatchlist' => 'Itilize lis swivi ki miyò a',
+'tog-usenewrc'        => 'Itilize lis swivi ki miyò a (JavaScript)',
+'tog-numberheadings'  => 'Nimewote otomatiman tit yo',
+'tog-showtoolbar'     => 'Montre panèl meni modifikasyon an',
+'tog-watchcreations'  => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
 
 'underline-always' => 'Toujou',
 'underline-never'  => 'Jamè',

@@ -3,9 +3,10 @@
  *
  * @addtogroup Language
  *
- * @author Ivan Lanin (since March 2006)
  * @author Irwangatot
  * @author לערי ריינהארט
+ * @author IvanLanin
+ * @author Borgx
  */
 
 /**
@@ -1256,7 +1257,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'protectedpagestext'      => 'Halaman-halaman berikut dilindungi dari pemindahan atau penyuntingan.',
 'protectedpagesempty'     => 'Saat ini tidak ada halaman yang sedang dilindungi dengan parameter-parameter tersebut.',
 'protectedtitles'         => 'Judul yang dilindungi',
-'protectedtitles-summary' => '',
 'protectedtitlestext'     => 'Judul berikut ini dilindungi dari pembuatan',
 'protectedtitlesempty'    => 'Tidak ada judul yang dilindungi.',
 'listusers'               => 'Daftar pengguna',
@@ -1426,7 +1426,7 @@ Umpan balik dan bantuan lanjutan:
 'deletionlog'                 => 'log penghapusan',
 'reverted'                    => 'Dikembalikan ke revisi sebelumnya',
 'deletecomment'               => 'Alasan penghapusan',
-'deleteotherreason'           => 'Lainnya/Alasan tambahan:',
+'deleteotherreason'           => 'Lainnya/alasan tambahan:',
 'deletereasonotherlist'       => 'Alasan lain',
 'deletereason-dropdown'       => '*Alasan penghapusan
 ** Permintaan pengguna

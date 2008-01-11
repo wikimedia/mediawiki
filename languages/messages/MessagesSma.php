@@ -78,6 +78,7 @@ $messages = array(
 'category-media-header' => 'Guvvie sïjse karegorije "$1"',
 
 'about'          => 'Bïjre',
+'newwindow'      => '(geehpehtidh sïjse orre klaase)',
 'qbfind'         => 'Gaavnedh',
 'qbedit'         => 'Värrhtoedimmie',
 'qbpageoptions'  => 'Dïhte bielie',
@@ -111,15 +112,18 @@ $messages = array(
 'talkpagelinktext' => 'Dïerhkestidh',
 'specialpage'      => 'Joekoelaakan Bielie',
 'talk'             => 'Dïerhkestidh',
+'views'            => 'Vuesehteh',
 'toolbox'          => 'Dïrregeborhtje',
 'userpage'         => 'Vuesehte nuhtjienbielie',
 'projectpage'      => 'Vuesehte Wikipedijebielie',
 'imagepage'        => 'Vuesehte guvvie bielie',
+'templatepage'     => 'Vuesehte maale bielie',
 'viewhelppage'     => 'Vuesehte viehkie bielie',
 'categorypage'     => 'Vuesehte kategorije bielie',
 'viewtalkpage'     => 'Vuesehte dïjveldidh',
 'otherlanguages'   => 'jeatjebh gïele',
 'protectedpage'    => 'Vaarjelidh bielie',
+'jumpto'           => 'Vaadtsa gåajkoe:',
 'jumptonavigation' => 'navigasjovne',
 'jumptosearch'     => 'ohtsedh',
 
@@ -128,9 +132,11 @@ $messages = array(
 'aboutpage'      => 'Project:Bïjre',
 'bugreports'     => 'Bug reektehtse',
 'bugreportspage' => 'Project:Bug reektehtse',
+'edithelp'       => 'Värrhtoedimmie viehkie',
 'edithelppage'   => 'Help:Värrhotedimmie',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
+'helppage'       => 'Help:Sisvege',
 'mainpage'       => 'Åejjiebielie',
 'portal'         => 'Meatan portaale',
 'portal-url'     => 'Project:Meatan portaale',
@@ -139,7 +145,10 @@ $messages = array(
 'newmessageslink'    => 'orre bïjre',
 'editsection'        => 'värrhtoedimmie',
 'editold'            => 'värrhtoedimmie',
+'editsectionhint'    => 'Värrhtoedimmie sektiovne: $1',
+'toc'                => 'Sisvege',
 'showtoc'            => 'vuesehte',
+'hidetoc'            => 'gaptjedh',
 'viewdeleted'        => 'Vuesehte $1?',
 'site-rss-feed'      => '$1 RSS Feed',
 'site-atom-feed'     => '$1 Atom Feed',
@@ -154,7 +163,7 @@ $messages = array(
 'nstab-project'   => 'Wikipedije bielie',
 'nstab-image'     => 'Guvvie',
 'nstab-mediawiki' => 'Mediawiki-dïjre',
-'nstab-template'  => 'Mallevoudhu',
+'nstab-template'  => 'Maale',
 'nstab-help'      => 'Viehke bielie',
 'nstab-category'  => 'Kategorije',
 
@@ -172,6 +181,8 @@ $messages = array(
 'yourname'           => 'Nuhtjiennomme:',
 'yourpassword'       => 'Loevesbaakoe:',
 'yourdomainname'     => 'Dov domäne:',
+'userlogin'          => 'Logge sïjse / skaepede nuhtjien',
+'userlogout'         => 'Logge ålkone',
 'createaccount'      => 'Skaepede nuhtjien',
 'createaccountmail'  => 'meatan e-påaste',
 'youremail'          => 'E-påaste:',
@@ -192,7 +203,12 @@ $messages = array(
 
 # Edit pages
 'minoredit'              => 'Dïhte lea ohtje värrhtoedimmie',
+'watchthis'              => 'Sïektjedh dïhte bielie',
 'savearticle'            => 'Spååredh bielie',
+'preview'                => 'Åvte-vuesiehtidh',
+'showpreview'            => 'Vuesehte åvte-vuesiehtidh',
+'showdiff'               => 'Vuesehte värrhtoedimmie',
+'anoneditwarning'        => "'''Vaaroehtidh:''' Dov lea ijje logge sïjse. Dov IP tjaalesijjie båetedh spååredh sïjse dïhte bielie värrhtoedimmie histovrije.",
 'loginreqpagetext'       => 'Dov galkedh $1 ihke vuesehte jeatjebh bielieh.',
 'accmailtitle'           => 'Loevesbaakoe seedtie.',
 'accmailtext'            => 'Loevesbaakoe ihke ”$1” utnedh seedtedh gåajkoe $2.',
@@ -201,11 +217,17 @@ $messages = array(
 'note'                   => '<strong>Galtege:</strong>',
 'editing'                => 'Värrhtoedimmie $1',
 'editinguser'            => 'Värrhtoedimmie nuhtjien <b>$1</b>',
+'editingsection'         => 'Värrhtoedimmie $1 (sektiovne)',
 'yourtext'               => 'Dov tjaalege',
+'longpagewarning'        => '<strong>VAAROEHTIDH: Dïhte bielie lea $1 kilobyteh guhkie; såemies
+gaskeviermie-låhkoeh åtna tsagkeseh värrhtoedimmie bielih stoerre jallh guhkies enn 32kb.
+Joekedidh värrhtoedimmie sïjse unnebe sektiovneh.</strong>',
+'templatesused'          => 'Maaleh nuhtjie nille dïhte bielie:',
 'template-protected'     => '(vaarjelidh)',
 'template-semiprotected' => '(lehkie-vaarjelidh)',
 
 # History pages
+'loadhist'         => 'Leedtedh bielie histovrije',
 'previousrevision' => '←Båarasåabpoe gïehtjedamme',
 'nextrevision'     => 'Minngebe gïehtjedamme→',
 'next'             => 'minngebe',
@@ -215,6 +237,9 @@ $messages = array(
 
 # Revision feed
 'history-feed-title' => 'Gïehtjedamme histovrije',
+
+# History merging
+'mergehistory-from' => 'Gaaltjie bielie:',
 
 # Diffs
 'history-title' => 'Gïehtjedamme histovrije ihke "$1"',
@@ -239,38 +264,60 @@ $messages = array(
 'localtime'          => 'Byjrehks tïjje',
 
 # Groups
-'group'     => 'Tjïerte:',
-'group-bot' => 'Jïjtjesvïhtjije',
+'group'       => 'Tjïerte:',
+'group-bot'   => 'Jïjtjesvïhtjije',
+'group-sysop' => 'Reeredh',
 
 'group-bot-member'   => 'Jïjtjesvïhtjije',
 'group-sysop-member' => 'Reerien',
 
+'grouppage-sysop' => '{{ns:project}}:Reeredh',
+
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|värrhtoedimmie|värrhtoedimmieh}}',
+'rcshowhideminor' => '$1 ohtje värrhtoedimmie',
+'rcshowhidemine'  => '$1 mov värrhtoedimmieh',
+'diff'            => 'joekehts',
 'hist'            => 'hist',
+'hide'            => 'Gaptjedh',
 'show'            => 'Vuesehte',
 'minoreditletter' => 'o',
 'newpageletter'   => 'O',
 'boteditletter'   => 'j',
 
 # Upload
+'filename'         => 'Guvvienomme',
+'filesource'       => 'Gaaltjie',
 'fileexists-thumb' => "<center>'''Lea-guvvie'''</center>",
 'savefile'         => 'Spååredh guvvie',
 'uploadvirus'      => 'Guvvie tjeekehdidh viirus! Bïevnesh: $1',
+'sourcefilename'   => 'Gaaltjie guvvienomme',
+
+'upload-file-error' => 'Sjisjnjie båajhtode',
 
 'license' => 'Liseense',
 
 # Image list
-'imagelist'      => 'Guvvie lästoe',
-'ilsubmit'       => 'Ohtsedh',
-'imgfile'        => 'guvvie',
-'filehist-user'  => 'Nuhtjien',
-'imagelist_name' => 'Nomme',
-'imagelist_user' => 'Nuhtjien',
-'imagelist_size' => 'Stoerre',
+'imagelist'            => 'Guvvie lästoe',
+'ilsubmit'             => 'Ohtsedh',
+'byname'               => 'minngesne nomme',
+'imgfile'              => 'guvvie',
+'filehist'             => 'Guvvie histovrije',
+'filehist-user'        => 'Nuhtjien',
+'filehist-filesize'    => 'Guvvie stoerre',
+'imagelinks'           => 'Lïenghkeh',
+'imagelist_name'       => 'Nomme',
+'imagelist_user'       => 'Nuhtjien',
+'imagelist_size'       => 'Stoerre',
+'imagelist_search_for' => 'Ohtsedh ihke guvvie nomme:',
 
 # MIME search
 'mimesearch' => 'MIME ohtsedh',
 'mimetype'   => 'MIME vuekie:',
+
+# Unused templates
+'unusedtemplates'    => 'Ov-nuhtjie maaleh',
+'unusedtemplateswlh' => 'jeatjebh lïenghkeh',
 
 # Statistics
 'statistics'    => 'Statistiike',
@@ -282,30 +329,50 @@ $messages = array(
 'brokenredirects-edit' => '(värrhtoedimmie)',
 
 # Miscellaneous special pages
-'ncategories'       => '$1 {{PLURAL:$1|kategorije|kategorijeh}}',
-'nlinks'            => '$1 {{PLURAL:$1|lïenghke|lïenghkeh}}',
-'nrevisions'        => '$1 {{PLURAL:$1|gïehtjedamme|gïehtjedammeh}}',
-'nviews'            => '$1 {{PLURAL:$1|vuesehte|vuesehteh}}',
-'mostcategories'    => 'Bielieh meatan jïjnje kategorijeh',
-'mostrevisions'     => 'Bielieh meatan jïjnje gïehtjedammeh',
-'listusers'         => 'Nuhtjien lästoe',
-'specialpages'      => 'Joekoenlaakan bielie',
-'newpages'          => 'Orre bielie',
-'newpages-username' => 'Nuhtjiennomme:',
-'move'              => 'Jåhta',
-'movethispage'      => 'Jåhta dïhte bielie',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|byteh}}',
+'ncategories'             => '$1 {{PLURAL:$1|kategorije|kategorijeh}}',
+'nlinks'                  => '$1 {{PLURAL:$1|lïenghke|lïenghkeh}}',
+'nmembers'                => '$1 {{PLURAL:$1|lihtsege|lihtsegeh}}',
+'nrevisions'              => '$1 {{PLURAL:$1|gïehtjedamme|gïehtjedammeh}}',
+'nviews'                  => '$1 {{PLURAL:$1|vuesehte|vuesehteh}}',
+'uncategorizedpages'      => 'Ov-kategorije bielieh',
+'uncategorizedcategories' => 'Ov-kategorije kategorijeh',
+'uncategorizedimages'     => 'Ov-kategorije guvvieh',
+'uncategorizedtemplates'  => 'Ov-kategorije maaleh',
+'unusedcategories'        => 'Ov-nuhtjie kategorije',
+'unusedimages'            => 'Ov-nnuhtjie guvvieh',
+'mostcategories'          => 'Bielieh meatan jïjnje kategorijeh',
+'mostrevisions'           => 'Bielieh meatan jïjnje gïehtjedammeh',
+'allpages'                => 'Gaajhke bielieh',
+'shortpages'              => 'Åenehks bielieh',
+'longpages'               => 'Guhkie bielieh',
+'listusers'               => 'Nuhtjien lästoe',
+'specialpages'            => 'Joekoenlaakan bielie',
+'newpages'                => 'Orre bielie',
+'newpages-username'       => 'Nuhtjiennomme:',
+'move'                    => 'Jåhta',
+'movethispage'            => 'Jåhta dïhte bielie',
 
 # Book sources
-'booksources-go' => 'Vaadtsa',
+'booksources'               => 'Gärja gaaltjieh',
+'booksources-search-legend' => 'Ohtsedh ihke gärja gaaltjieh',
+'booksources-go'            => 'Vaadtsa',
 
-'data' => 'Daata',
+'data'           => 'Daata',
+'groups'         => 'Nuhtjien tjïerteh',
+'alphaindexline' => '$1 gåajkoe $2',
+'version'        => 'Låhkoe',
 
 # Special:Log
 'specialloguserlabel' => 'Nuhtjien:',
+'log'                 => 'Loggeh',
 'log-search-submit'   => 'Vaadtsa',
 
 # Special:Allpages
 'nextpage'       => 'Minngebe bielie ($1)',
+'prevpage'       => 'Övtebe bielie ($1)',
+'allarticles'    => 'Gaajhke bielieh',
+'allpagesprev'   => 'Övtebe',
 'allpagesnext'   => 'Minngebe',
 'allpagessubmit' => 'Vaadtsa',
 
@@ -324,28 +391,48 @@ $messages = array(
 'emailsent'       => 'E-påaste seedtedh',
 
 # Watchlist
-'watchlistfor' => "(ihke '''$1''')",
+'mywatchlist'        => 'Mov sïektjedhlästoe',
+'watchlistfor'       => "(ihke '''$1''')",
+'watch'              => 'Sïektjedh',
+'watchthispage'      => 'Sïektjedh dïhte bielie',
+'unwatch'            => 'Ov-sïektjedh',
+'watchlist-show-own' => 'Vuesehte mov värrhtoedimmieh',
 
-'created' => 'skaepede',
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Sïektjedh...',
+'unwatching' => 'Ov-sïektjedh...',
+
+'enotif_newpagetext'           => 'Dïhte lea orre bielie.',
+'enotif_impersonal_salutation' => '{{SITENAME}} nuhtjien',
+'created'                      => 'skaepede',
+
+# Delete/protect/revert
+'protect-level-sysop' => 'Barre reeredh',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Värrhtoedimmie',
 'restriction-move'   => 'Jåhta',
 'restriction-create' => 'Skaepiedidh',
 
+# Restriction levels
+'restriction-level-sysop' => 'dïeves-vaarjelidh',
+
 # Undelete
 'undeleterevisions'      => '$1 {{PLURAL:$1|gïehtjedamme|gïehtjedammeh}} våarhkoe',
 'undelete-search-submit' => 'Ohtsedh',
 
 # Contributions
-'uctop' => ' (gïerege)',
+'mycontris' => 'Mov värrhtoedimmieh',
+'uctop'     => ' (gïerege)',
 
-'sp-contributions-username' => 'IP Tjaalesijjie jallh nuhtjiennomme:',
-'sp-contributions-submit'   => 'Ohtsedh',
+'sp-contributions-newbies-sub' => 'Ihke orre nuhtjienh',
+'sp-contributions-username'    => 'IP Tjaalesijjie jallh nuhtjiennomme:',
+'sp-contributions-submit'      => 'Ohtsedh',
 
 # What links here
 'whatlinkshere-page'  => 'Bielie:',
 'linklistsub'         => '(Lästoe bijjelen lïenghke)',
+'whatlinkshere-prev'  => '{{PLURAL:$1|övtebe|övtebe $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|minngebe|minngebe $1}}',
 'whatlinkshere-links' => '← lïenghke',
 
@@ -358,13 +445,20 @@ $messages = array(
 'ipblocklist-username' => 'Nuhtjiennomme jallh IP tjaalesijjie:',
 'ipblocklist-submit'   => 'Ohtsedh',
 
+# Developer tools
+'lockdb'            => 'Tjuevtedh daatabaase',
+'lockbtn'           => 'Tjuevtedh daatabaase',
+'databasenotlocked' => 'Daatabaase lea ijje tjuevtedh.',
+
 # Move page
 'movepage'    => 'Jåhta bielie',
 'movearticle' => 'Jåhta bielie:',
+'move-watch'  => 'Sïektjedh dïhte bielie',
 'movepagebtn' => 'Jåhta bielie',
 
 # Export
 'export'        => 'Ehksporte bielieh',
+'export-submit' => 'Ehksporte',
 'export-addcat' => 'Lissiehtidh',
 
 # Namespace 8 related
@@ -385,6 +479,8 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage'    => 'Mov nuhtjienbielie',
 'tooltip-pt-mytalk'      => 'Mov dïjveldidh bielie',
+'tooltip-pt-mycontris'   => 'Lästoe bijjelen mov värrhtoedimmie',
+'tooltip-pt-logout'      => 'Logge ålkone',
 'tooltip-ca-move'        => 'Jåhta dïhte bielie',
 'tooltip-search'         => 'Ohtsedh {{SITENAME}}',
 'tooltip-p-logo'         => 'Åejjiebielie',
@@ -399,6 +495,7 @@ $messages = array(
 'siteusers' => '{{SITENAME}} nuhtjien(h) $1',
 
 # Spam protection
+'subcategorycount'     => 'Dïhte {{PLURAL:$1|lea akte subkategorije|lea $1 subkategorijeh}} gåajkoe dïhte kategorije.',
 'categoryarticlecount' => 'Dïhte {{PLURAL:$1|lea akte bielie|lea $1 bielieh}} sïjse dïhte kategorije.',
 'category-media-count' => 'Dïhte {{PLURAL:$1|lea akte guvvie|lea $1 guvvieh}} sïjse dïhte kategorije.',
 
@@ -410,10 +507,16 @@ $messages = array(
 # Patrol log
 'patrol-log-auto' => '(jïjtsistie)',
 
+# Browsing diffs
+'previousdiff' => '← Övtebe joekehts',
+'nextdiff'     => 'Minngebe joekehts →',
+
 # Media information
-'file-info'      => '(baalka stoerre: $1, MIME-vuekie: $2)',
-'file-info-size' => '($1 × $2 pixel, baalka stoerre: $3, MIME-vuekie: $4)',
-'svg-long-desc'  => '(SVG baalka, maadth-stoerre $1 × $2 pixel, baalka stoerre: $3)',
+'file-info'            => '(baalka stoerre: $1, MIME-vuekie: $2)',
+'file-info-size'       => '($1 × $2 pixel, baalka stoerre: $3, MIME-vuekie: $4)',
+'svg-long-desc'        => '(SVG baalka, maadth-stoerre $1 × $2 pixel, baalka stoerre: $3)',
+'show-big-image'       => 'Dïeves stoerre',
+'show-big-image-thumb' => '<small>Stoerre ihke dïhte vuesiehtidh: $1 × $2 pixel</small>',
 
 # EXIF tags
 'exif-imagewidth'         => 'Gamte',
