@@ -1,5 +1,6 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/**
+ * Chinese (Simplified) (中文 (简化字))
  *
  * @addtogroup Language
  *
@@ -2333,5 +2334,8 @@ $1
 'watchlisttools-view' => '查看有关更改',
 'watchlisttools-edit' => '查看并编辑监视列表',
 'watchlisttools-raw'  => '编辑源监视列表',
+
+# Core parser functions
+'unknown_extension_tag' => '不明的扩展标签 "$1"',
 
 );
