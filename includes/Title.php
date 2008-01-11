@@ -1255,7 +1255,7 @@ class Title {
 	 * @return mixed An associative array representing any existent title
 	 *   protection, or false if there's none.
 	 */
-	public function getTitleProtection() {
+	private function getTitleProtection() {
 		// Can't protect pages in special namespaces
 		if ( $this->getNamespace() < NS_MAIN ) {
 			return false;
