@@ -70,6 +70,10 @@ $namespaceAliases = array(
 	'Санат_талқылауы'     => NS_CATEGORY_TALK,
 
 	# Aliases to renamed kk-arab namespaces
+	'مەدياۋيكي'        => NS_MEDIAWIKI,
+	'مەدياۋيكي_تالقىلاۋى'  => NS_MEDIAWIKI_TALK ,
+	'ٷلگٸ'        => NS_TEMPLATE ,
+	'ٷلگٸ_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'ٴۇلگٴى'              => NS_TEMPLATE,
 	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 
@@ -287,6 +291,7 @@ $magicWords = array(
 	'special'                => array( 0,    'arnaýı', 'special' ),
 	'defaultsort'            => array( 1,    'ÄDEPKİSURIPTAW:', 'ÄDEPKİSANATSURIPTAW:', 'ÄDEPKİSURIPTAWKİLTİ:', 'ÄDEPKİSURIP:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'               => array( 0,    'FILEPATH:', 'FAÝLMEKENİ' ),
+	'tag'                    => array( 0,    'belgi', 'tag' ),
 );
 
 $specialPageAliases = array(
@@ -973,7 +978,7 @@ sondıqtan däl qazir tüzetwiñizdi saqtaý almaýsız. Sosın qoldanwğa üşi
 'template-protected'        => '(qorğalğan)',
 'template-semiprotected'    => '(jartılaý qorğalğan)',
 'nocreatetitle'             => 'Betti bastaw şektelgen',
-'nocreatetext'              => 'Bul torapta jaña bet bastawı şektelgen.
+'nocreatetext'              => '{{SITENAME}} jobasında jaña bet bastawı şektelgen.
 Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{ns:special}}:Userlogin|kirwiñizge ne tirkelwiñizge]] boladı.',
 'nocreate-loggedin'         => '{{SITENAME}} jobasında jaña bet bastaw ruqsatıñız joq.',
 'permissionserrors'         => 'Ruqsattar qateleri',
@@ -1039,8 +1044,8 @@ Bul jaýtqa [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} joyw j
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Osı bettiñ nusqası jarïya murağattarınan alastalğan.
-Sonı osı toraptıñ äkimşisi bop körwiñiz mümkin;
-bul jaýtqa [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälmetteri bolwı mümkin.
+{{SITENAME}} äkimşisi bop sonı köre alasız;
+[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälmetteri bolwı mümkin.
 </div>',
 'rev-delundel'                => 'körset/jasır',
 'revisiondelete'              => 'Nusqalardı joyw/joywdı boldırmaw',
@@ -1422,7 +1427,7 @@ Qolaýlı bolwı üşin bul faýldıñ joyw jwrnalı keltirilgen:",
 'filedelete-submit'      => 'Joý',
 'filedelete-success'     => "'''$1''' degen joýıldı.",
 'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degenniñ $3, $2 kezindegi nusqası joýıldı.</span>',
-'filedelete-nofile'      => "'''$1''' degen mına torapta joq boldı.",
+'filedelete-nofile'      => "'''$1''' degen {{SITENAME}} jobasında joq.",
 'filedelete-nofile-old'  => "Keltirilgen anıqtawıştarımen '''$1''' degenniñ murağattalğan nusqası mında joq.",
 'filedelete-iscurrent'   => 'Bul faýldıñ eñ soñğı nusqasın joyw talap etkensiz. Aldınan eski nusqasına qaýtarıñız.',
 
@@ -1953,8 +1958,8 @@ buğattalğan IP jaýlar osında tizimdelgemegen. Ağımdağı belsendi buğatta
 'proxyblocker-disabled'       => 'Bul fwnkcïya öşirilgen.',
 'proxyblockreason'            => 'IP jaýıñız aşıq proksï serverge jatatındıqtan buğattalğan. Ïnternet qızmetin jabdıqtawşıñızben, ne texnïkalıq medew qızmetimen qatınasıñız, jäne olarğa osı ote kürdeli qawıpsizdik şataq twralı aqparat beriñiz.',
 'proxyblocksuccess'           => 'Bitti.',
-'sorbsreason'                 => 'Sizdiñ IP jaýıñız osı torapta qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.',
-'sorbs_create_account_reason' => 'Sizdiñ IP jaýıñız osı torapta qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı. Tirkele almaýsız.',
+'sorbsreason'                 => 'Sizdiñ IP jaýıñız {{SITENAME}} torabında qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.',
+'sorbs_create_account_reason' => 'Sizdiñ IP jaýıñız {{SITENAME}} torabında qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı. Tirkelgini jarata almaýsız.',
 
 # Developer tools
 'lockdb'              => 'Derekqordı qulıptaw',
@@ -2742,5 +2747,8 @@ Tağı da [[Special:Watchlist/edit|qalıptı öñdewişti paýdalana]] alasız.'
 'hebrew-calendar-m10-gen' => 'tımozdıñ',
 'hebrew-calendar-m11-gen' => 'abtıñ',
 'hebrew-calendar-m12-gen' => 'aýloldıñ',
+
+# Core parser functions
+'unknown_extension_tag' => 'Tanılmağan keñeýtpe belgisi «$1»',
 
 );

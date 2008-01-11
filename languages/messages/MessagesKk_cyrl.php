@@ -68,6 +68,10 @@ $namespaceAliases = array(
 	'Sanat_talqılawı'     => NS_CATEGORY_TALK,
 
 	# Aliases to renamed kk-arab namespaces
+	'مەدياۋيكي'        => NS_MEDIAWIKI,
+	'مەدياۋيكي_تالقىلاۋى'  => NS_MEDIAWIKI_TALK ,
+	'ٷلگٸ'        => NS_TEMPLATE ,
+	'ٷلگٸ_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'ٴۇلگٴى'              => NS_TEMPLATE,
 	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 
@@ -285,6 +289,7 @@ $magicWords = array(
 	'special'                => array( 0,    'арнайы', 'special' ),
 	'defaultsort'            => array( 1,    'ӘДЕПКІСҰРЫПТАУ:', 'ӘДЕПКІСАНАТСҰРЫПТАУ:', 'ӘДЕПКІСҰРЫПТАУКІЛТІ:', 'ӘДЕПКІСҰРЫП:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'               => array( 0,    'FILEPATH:', 'ФАЙЛМЕКЕНІ' ),
+	'tag'                    => array( 0,    'белгі', 'tag' ),
 );
 
 $specialPageAliases = array(
@@ -971,7 +976,7 @@ $2',
 'template-protected'        => '(қорғалған)',
 'template-semiprotected'    => '(жартылай қорғалған)',
 'nocreatetitle'             => 'Бетті бастау шектелген',
-'nocreatetext'              => 'Бұл торапта жаңа бет бастауы шектелген.
+'nocreatetext'              => '{{SITENAME}} жобасында жаңа бет бастауы шектелген.
 Кері қайтып бар бетті өңдеуіңізге болады, немесе [[{{ns:special}}:Userlogin|кіруіңізге не тіркелуіңізге]] болады.',
 'nocreate-loggedin'         => '{{SITENAME}} жобасында жаңа бет бастау рұқсатыңыз жоқ.',
 'permissionserrors'         => 'Рұқсаттар қателері',
@@ -1037,8 +1042,8 @@ $3 келтірілген себебі: ''$2''",
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Осы беттің нұсқасы жария мұрағаттарынан аласталған.
-Соны осы тораптың әкімшісі боп көруіңіз мүмкін;
-бұл жайтқа [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} жою журналында] егжей-тегжей мәлметтері болуы мүмкін.
+{{SITENAME}} әкімшісі боп соны көре аласыз;
+[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} жою журналында] егжей-тегжей мәлметтері болуы мүмкін.
 </div>',
 'rev-delundel'                => 'көрсет/жасыр',
 'revisiondelete'              => 'Нұсқаларды жою/жоюды болдырмау',
@@ -1420,7 +1425,7 @@ $3 келтірілген себебі: ''$2''",
 'filedelete-submit'      => 'Жой',
 'filedelete-success'     => "'''$1''' деген жойылды.",
 'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' дегеннің $3, $2 кезіндегі нұсқасы жойылды.</span>',
-'filedelete-nofile'      => "'''$1''' деген мына торапта жоқ болды.",
+'filedelete-nofile'      => "'''$1''' деген {{SITENAME}} жобасында жоқ.",
 'filedelete-nofile-old'  => "Келтірілген анықтауыштарымен '''$1''' дегеннің мұрағатталған нұсқасы мында жоқ.",
 'filedelete-iscurrent'   => 'Бұл файлдың ең соңғы нұсқасын жою талап еткенсіз. Алдынан ескі нұсқасына қайтарыңыз.',
 
@@ -1951,8 +1956,8 @@ $1',
 'proxyblocker-disabled'       => 'Бұл функция өшірілген.',
 'proxyblockreason'            => 'IP жайыңыз ашық прокси серверге жататындықтан бұғатталған. Интернет қызметін жабдықтаушыңызбен, не техникалық медеу қызметімен қатынасыңыз, және оларға осы оте күрделі қауыпсіздік шатақ туралы ақпарат беріңіз.',
 'proxyblocksuccess'           => 'Бітті.',
-'sorbsreason'                 => 'Сіздің IP жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады.',
-'sorbs_create_account_reason' => 'Сіздің IP жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады. Тіркеле алмайсыз.',
+'sorbsreason'                 => 'Сіздің IP жайыңыз {{SITENAME}} торабында қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады.',
+'sorbs_create_account_reason' => 'Сіздің IP жайыңыз {{SITENAME}} торабында қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады. Тіркелгіні жарата алмайсыз.',
 
 # Developer tools
 'lockdb'              => 'Дерекқорды құлыптау',
@@ -2727,7 +2732,7 @@ $1',
 'hebrew-calendar-m11'     => 'аб',
 'hebrew-calendar-m12'     => 'айлол',
 'hebrew-calendar-m1-gen'  => 'тішридің',
-'hebrew-calendar-m2-gen'  => 'xышуандың',
+'hebrew-calendar-m2-gen'  => 'хышуандың',
 'hebrew-calendar-m3-gen'  => 'кіслудің',
 'hebrew-calendar-m4-gen'  => 'тоттың',
 'hebrew-calendar-m5-gen'  => 'шыбаттың',
@@ -2740,5 +2745,8 @@ $1',
 'hebrew-calendar-m10-gen' => 'тымоздың',
 'hebrew-calendar-m11-gen' => 'абтың',
 'hebrew-calendar-m12-gen' => 'айлолдың',
+
+# Core parser functions
+'unknown_extension_tag' => 'Танылмаған кеңейтпе белгісі «$1»',
 
 );
