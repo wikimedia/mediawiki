@@ -2422,4 +2422,7 @@ $1',
 'watchlisttools-edit' => '睇吓同埋編輯監視清單',
 'watchlisttools-raw'  => '編輯原始監視清單',
 
+# Core parser functions
+'unknown_extension_tag' => '未知嘅擴展標籤 "$1"',
+
 );

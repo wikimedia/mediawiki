@@ -1750,4 +1750,7 @@ $1',
 'watchlisttools-edit' => '治哨站',
 'watchlisttools-raw'  => '治源哨',
 
+# Core parser functions
+'unknown_extension_tag' => '未明之擴標「$1」',
+
 );

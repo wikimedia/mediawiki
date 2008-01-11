@@ -2309,4 +2309,7 @@ $1
 'watchlisttools-edit' => '檢視並編輯監視列表',
 'watchlisttools-raw'  => '編輯原始監視列表',
 
+# Core parser functions
+'unknown_extension_tag' => '不明的擴展標籤 "$1"',
+
 );
