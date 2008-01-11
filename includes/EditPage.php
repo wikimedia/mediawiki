@@ -1037,7 +1037,7 @@ class EditPage {
 				$wgOut->addWikiText( '<div id="mw-missingcommentheader">' . wfMsg( 'missingcommentheader' ) . '</div>' );
 			}
 
-			if( $this->hookError ) {
+			if( $this->hookError !== '' ) {
 				$wgOut->addWikiText( $this->hookError );
 			}
 
