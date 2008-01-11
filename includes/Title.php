@@ -1257,7 +1257,7 @@ class Title {
 	 */
 	private function getTitleProtection() {
 		// Can't protect pages in special namespaces
-		if ( $this->getNamespace() < NS_MAIN ) {
+		if ( $this->getNamespace() < 0 ) {
 			return false;
 		}
 
