@@ -104,6 +104,14 @@ class Xml {
 		$namespaces = $wgContLang->getFormattedNamespaces();
 		$options = array();
 		
+		// Godawful hack... we'll be frequently passed selected namespaces
+		// as strings since PHP is such a shithole.
+		// But we also don't want blanks and nulls and "all"s matching 0,
+		// so let's convert *just* string ints to clean ints.
+		if( preg_match( '/^\d+$/', $selected ) ) {
+			$selected = intval( $selected );
+		}
+		
 		if( !is_null( $all ) )
 			$namespaces = array( $all => wfMsg( 'namespacesall' ) ) + $namespaces;
 		foreach( $namespaces as $index => $name ) {
