@@ -13,6 +13,8 @@ define( 'KK_C_LC', 'аәбвгғдеёжзийкқлмнңоөпрстуұүфх
 define( 'KK_L_UC', 'AÄBCÇDEÉFGĞHIİÏJKLMNÑOÖPQRSŞTUÜVWXYÝZ' ); # Kazakh Latin uppercase
 define( 'KK_L_LC', 'aäbcçdeéfgğhıiïjklmnñoöpqrsştuüvwxyýz' ); # Kazakh Latin lowercase
 //define( 'KK_A', 'اٵبۆگعدەجزيكقلمنڭوٶپرستۋۇٷفحھچشىٸ' ); # Kazakh Arabic
+define( 'H_HAMZA', 'ٴ' ); # U+0674 ARABIC LETTER HIGH HAMZA
+define( 'ZWNJ', '‌' ); # U+200C ZERO WIDTH NON-JOINER
 
 class KkConverter extends LanguageConverter {
 	
@@ -140,12 +142,12 @@ class KkConverter extends LanguageConverter {
 
 		$this->mCyLa2Arab = array(
 			## Punctuation -> Arabic
+			'/#|№|No\./u' => '؀', # &#x0600;
 			'/\,/' => '،', # &#x060C;
 			'/;/'  => '؛', # &#x061B;
 			'/\?/' => '؟', # &#x061F;
 			'/%/'  => '٪', # &#x066A;
 			'/\*/' => '٭', # &#x066D;
-			'/#|№|No\./u' => '؀',
 			## Digits -> Arabic
 			'/0/' => '۰', # &#x06F0;
 			'/1/' => '۱', # &#x06F1;
@@ -158,30 +160,34 @@ class KkConverter extends LanguageConverter {
 			'/8/' => '۸', # &#x06F8;
 			'/9/' => '۹', # &#x06F9;
 			## Cyrillic -> Arabic
+			'/Аллаһ/ui' => 'ﷲ',
 			'/([АӘЕЁИОӨҰҮЭЮЯЪЬ])е/ui' => '$1يە',
 			'/[еэ]/ui' => 'ە', '/[ъь]/ui' => '',
-			'/а/ui' => 'ا', '/ә/ui' => 'ٵ', '/б/ui' => 'ب', '/в/ui' => 'ۆ',
-			'/г/ui' => 'گ', '/ғ/ui' => 'ع', '/д/ui' => 'د', '/ё/ui' => 'يو',
-			'/ж/ui' => 'ج', '/з/ui' => 'ز', '/и/ui' => 'ي', '/й/ui' => 'ي',
-			'/к/ui' => 'ك', '/қ/ui' => 'ق', '/л/ui' => 'ل', '/м/ui' => 'م',
-			'/н/ui' => 'ن', '/ң/ui' => 'ڭ', '/о/ui' => 'و', '/ө/ui' => 'ٶ',
-			'/п/ui' => 'پ', '/р/ui' => 'ر', '/с/ui' => 'س', '/т/ui' => 'ت',
-			'/у/ui' => 'ۋ', '/ұ/ui' => 'ۇ', '/ү/ui' => 'ٷ', '/ф/ui' => 'ف',
-			'/х/ui' => 'ح', '/һ/ui' => 'ھ', '/ц/ui' => 'تس', '/ч/ui' => 'چ',
-			'/ш/ui' => 'ش', '/щ/ui' => 'شش', '/ы/ui' => 'ى', '/і/ui' => 'ٸ',
-			'/ю/ui' => 'يۋ', '/я/ui' => 'يا',
+			'/[аә]/ui' => 'ا', '/[оө]/ui' => 'و', '/[ұү]/ui' => 'ۇ', '/[ыі]/ui' => 'ى', 
+			'/[и]/ui' => 'ىي', '/ё/ui' => 'يو', '/ю/ui' => 'يۋ', '/я/ui' => 'يا', '/[й]/ui' => 'ي',
+			'/ц/ui' => 'تس', '/щ/ui' => 'شش',
+			'/һ/ui' => 'ح', '/ч/ui' => 'تش',
+			#'/һ/ui' => 'ھ', '/ч/ui' => 'چ',
+			'/б/ui' => 'ب', '/в/ui' => 'ۆ', '/г/ui' => 'گ', '/ғ/ui' => 'ع',
+			'/д/ui' => 'د', '/ж/ui' => 'ج', '/з/ui' => 'ز', '/к/ui' => 'ك',
+			'/қ/ui' => 'ق', '/л/ui' => 'ل', '/м/ui' => 'م', '/н/ui' => 'ن',
+			'/ң/ui' => 'ڭ', '/п/ui' => 'پ', '/р/ui' => 'ر', '/с/ui' => 'س',
+			'/т/ui' => 'ت', '/у/ui' => 'ۋ', '/ф/ui' => 'ف', '/х/ui' => 'ح',
+			'/ш/ui' => 'ش',
 			## Latin -> Arabic // commented for now...
-			/*'/[ıI]/u' => 'ى', '/[iİ]/u' => 'ٸ',
-			'/[eé]/ui' => 'ە', '/[yý]/ui' => 'ي',
-			'/[ʺʹ]/ui' => '',
-			'/a/ui' => 'ا', '/ä/ui' => 'ٵ', '/b/ui' => 'ب', '/c/ui' => 'تس',
-			'/ç/ui' => 'چ', '/d/ui' => 'د', '/f/ui' => 'ف', '/g/ui' => 'گ',
-			'/ğ/ui' => 'ع', '/h/ui' => 'ھ', '/ï/ui' => 'ي', '/j/ui' => 'ج',
-			'/k/ui' => 'ك', '/l/ui' => 'ل', '/m/ui' => 'م', '/n/ui' => 'ن',
-			'/ñ/ui' => 'ڭ', '/o/ui' => 'و', '/ö/ui' => 'ٶ', '/p/ui' => 'پ',
-			'/q/ui' => 'ق', '/r/ui' => 'ر', '/s/ui' => 'س', '/ş/ui' => 'ش',
-			'/t/ui' => 'ت', '/u/ui' => 'ۇ', '/ü/ui' => 'ٷ', '/v/ui' => 'ۆ',
-			'/w/ui' => 'ۋ', '/x/ui' => 'ح', '/z/ui' => 'ز',*/
+			/*'/Allah/ui' => 'ﷲ',
+			'/[eé]/ui' => 'ە', '/[yý]/ui' => 'ي', '/[ʺʹ]/ui' => '',
+			'/[aä]/ui' => 'ا', '/[oö]/ui' => 'و', '/[uü]/ui' => 'ۇ',
+			'/[ï]/ui' => 'ىي', '/[ıIiİ]/u' => 'ى',
+			'/c/ui' => 'تس', 
+			'/ç/ui' => 'تش', '/h/ui' => 'ح',
+			#'/ç/ui' => 'چ', '/h/ui' => 'ھ',
+			'/b/ui' => 'ب','/d/ui' => 'د',
+			'/f/ui' => 'ف', '/g/ui' => 'گ', '/ğ/ui' => 'ع',
+			'/j/ui' => 'ج', '/k/ui' => 'ك', '/l/ui' => 'ل', '/m/ui' => 'م',
+			'/n/ui' => 'ن', '/ñ/ui' => 'ڭ', '/p/ui' => 'پ', '/q/ui' => 'ق',
+			'/r/ui' => 'ر', '/s/ui' => 'س', '/ş/ui' => 'ش', '/t/ui' => 'ت',
+			'/v/ui' => 'ۆ', '/w/ui' => 'ۋ', '/x/ui' => 'ح', '/z/ui' => 'ز',*/
 		);
 
 	}
@@ -297,6 +303,26 @@ class KkConverter extends LanguageConverter {
 		switch( $toVariant ) {
 			case 'kk-arab':
 			case 'kk-cn':
+				$letters = KK_C_LC.KK_C_UC/*.KK_L_LC.KK_L_UC*/;
+				$front = 'әөүіӘӨҮІ'/*.'äöüiÄÖÜİ'*/;
+				$excludes = 'еэгғкқЕЭГҒКҚ'/*.'eégğkqEÉGĞKQ'*/;
+				// split text to words
+				$matches = preg_split( '/[\b\s\-\.:]+/', $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
+				$mstart = 0;
+				$ret = '';
+				foreach( $matches as $m ) {
+					$ret .= substr( $text, $mstart, $m[1] - $mstart );
+					// is matched the word to front vowels?
+					// exclude a words matched to е, э, г, к, к, қ,
+					// them should be without hamza
+					if ( preg_match('/['.$front.']/u', $m[0]) && !preg_match('/['.$excludes.']/u', $m[0]) ) {
+						$ret .= preg_replace('/['.$letters.']+/u', H_HAMZA.'$0', $m[0]);
+					} else {
+						$ret .= $m[0];
+					}
+					$mstart = $m[1] + strlen($m[0]);
+				}
+				$text =& $ret;
 				foreach( $this->mCyLa2Arab as $pat => $rep ) {
 					$text = preg_replace( $pat, $rep, $text );
 				}
