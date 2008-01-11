@@ -891,6 +891,14 @@ $wgMaxArticleSize	= 2048; # Maximum article size in kilobytes
 
 $wgMaxPPNodeCount = 1000000;  # A complexity limit on template expansion
 
+/**
+ * Maximum recursion depth for templates within templates.
+ * The current parser adds two levels to the PHP call stack for each template, 
+ * and xdebug limits the call stack to 100 by default. So this should hopefully
+ * stop the parser before it hits the xdebug limit.
+ */
+$wgMaxTemplateDepth = 40;
+
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
