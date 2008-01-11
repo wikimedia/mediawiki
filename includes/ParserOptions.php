@@ -22,6 +22,7 @@ class ParserOptions
 	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
 	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
 	var $mMaxPPNodeCount;            # Maximum number of nodes touched by PPFrame::expand()
+	var $mMaxTemplateDepth;          # Maximum recursion depth for templates within templates
 	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
 	var $mTemplateCallback;          # Callback for template fetching
 	var $mEnableLimitReport;         # Enable limit report in an HTML comment on output
@@ -40,6 +41,7 @@ class ParserOptions
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
+	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
 	function getRemoveComments()                { return $this->mRemoveComments; }
 	function getTemplateCallback()              { return $this->mTemplateCallback; }
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
@@ -72,6 +74,7 @@ class ParserOptions
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
+	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
 	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
 	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
 	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
@@ -92,7 +95,7 @@ class ParserOptions
 	function initialiseFromUser( $userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion, $wgMaxArticleSize;
-		global $wgMaxPPNodeCount;
+		global $wgMaxPPNodeCount, $wgMaxTemplateDepth;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
@@ -122,6 +125,7 @@ class ParserOptions
 		$this->mInterfaceMessage = false;
 		$this->mMaxIncludeSize = $wgMaxArticleSize * 1024;
 		$this->mMaxPPNodeCount = $wgMaxPPNodeCount;
+		$this->mMaxTemplateDepth = $wgMaxTemplateDepth;
 		$this->mRemoveComments = true;
 		$this->mTemplateCallback = array( 'Parser', 'statelessFetchTemplate' );
 		$this->mEnableLimitReport = false;

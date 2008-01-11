@@ -87,9 +87,7 @@ class Parser
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	var $mInterwikiLinkHolders, $mLinkHolders;
 	var $mIncludeSizes, $mPPNodeCount, $mDefaultSort;
-	var $mTplExpandCache,// empty-frame expansion cache
-	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
-		                // in this path. Used for loop detection.
+	var $mTplExpandCache; // empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings;
 
 	# Temporary
@@ -225,7 +223,6 @@ class Parser
 		$this->mUniqPrefix = "\x7fUNIQ" . Parser::getRandomString();
 
 		# Clear these on every parse, bug 4549
- 		$this->mTemplatePath = array();
 		$this->mTplExpandCache = $this->mTplRedirCache = $this->mTplDomCache = array();
 
 		$this->mShowToc = true;
@@ -3277,9 +3274,6 @@ class Parser
 		}
 		wfProfileOut( __METHOD__.'-modifiers' );
 
-		# Save path level before recursing into functions & templates.
-		$lastPathLevel = $this->mTemplatePath;
-
 		# Parser functions
 		if ( !$found ) {
 			wfProfileIn( __METHOD__ . '-pfunc' );
@@ -3357,10 +3351,16 @@ class Parser
 					$wgContLang->findVariantLink($part1, $title);
 				}
 				# Do infinite loop check
-				if ( isset( $this->mTemplatePath[$titleText] ) ) {
+				if ( isset( $frame->loopCheckHash[$titleText] ) ) {
 					$found = true;
-					$text = "[[$part1]]" . $this->insertStripItem( '<!-- WARNING: template loop detected -->' );
+					$text = "<span class=\"error\">Template loop detected: [[$titleText]]</span>";
 					wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
+				}
+				# Do recursion depth check
+				$limit = $this->mOptions->getMaxTemplateDepth();
+				if ( $frame->depth >= $limit ) {
+					$found = true;
+					$text = "<span class=\"error\">Template recursion depth limit exceeded ($limit)</span>";
 				}
 			}
 		}
@@ -3412,8 +3412,6 @@ class Parser
 		# Recover the source wikitext and return it
 		if ( !$found ) {
 			$text = '{{' . $frame->implode( '|', $titleWithSpaces, $args ) . '}}';
-			# Prune lower levels off the recursion check path
-			$this->mTemplatePath = $lastPathLevel;
 			wfProfileOut( $fname );
 			return $text;
 		}
@@ -3422,8 +3420,8 @@ class Parser
 		if ( $isDOM ) {
 			# Clean up argument array
 			$newFrame = $frame->newChild( $args, $title );
-			# Add a new element to the templace recursion path
-			$this->mTemplatePath[$titleText] = 1;
+			# Add a new element to the templace loop detection hashtable
+			$newFrame->loopCheckHash[$titleText] = true;
 
 			if ( $titleText !== false && count( $newFrame->args ) == 0 ) {
 				# Expansion is eligible for the empty-frame cache
@@ -3434,6 +3432,7 @@ class Parser
 					$this->mTplExpandCache[$titleText] = $text;
 				}
 			} else {
+				# Uncached expansion
 				$text = $newFrame->expand( $text );
 			}
 		}
@@ -3455,9 +3454,6 @@ class Parser
 			$text = "\n" . $text;
 		}
 		
-		# Prune lower levels off the recursion check path
-		$this->mTemplatePath = $lastPathLevel;
-
 		if ( !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
 			# Error, oversize inclusion
 			$text = "[[$originalTitle]]" . 
@@ -4356,8 +4352,6 @@ class Parser
 	 *   found                     The text returned is valid, stop processing the template. This
 	 *                             is on by default.
 	 *   nowiki                    Wiki markup in the return value should be escaped
-	 *   noparse                   Unsafe HTML tags should not be stripped, etc.
-	 *   noargs                    Don't replace triple-brace arguments in the return value
 	 *   isHTML                    The returned text is HTML, armour it against wikitext transformation
 	 *
 	 * @public
@@ -5327,6 +5321,17 @@ class PPFrame {
 	var $parser, $title;
 	var $titleCache;
 
+	/**
+	 * Hashtable listing templates which are disallowed for expansion in this frame,
+	 * having been encountered previously in parent frames.
+	 */
+	var $loopCheckHash;
+
+	/**
+	 * Recursion depth of this frame, top = 0
+	 */
+	var $depth;
+
 	const NO_ARGS = 1;
 	const NO_TEMPLATES = 2;
 	const STRIP_COMMENTS = 4;
@@ -5343,6 +5348,8 @@ class PPFrame {
 		$this->parser = $parser;
 		$this->title = $parser->mTitle;
 		$this->titleCache = array( $this->title ? $this->title->getPrefixedDBkey() : false );
+		$this->loopCheckHash = array();
+		$this->depth = 0;
 	}
 
 	/**
@@ -5586,8 +5593,7 @@ class PPFrame {
  * Expansion frame with template arguments
  */
 class PPTemplateFrame extends PPFrame {
-	var $parser, $args, $parent;
-	var $titleCache;
+	var $args, $parent;
 
 	function __construct( $parser, $parent = false, $args = array(), $title = false ) {
 		$this->parser = $parser;
@@ -5596,6 +5602,8 @@ class PPTemplateFrame extends PPFrame {
 		$this->title = $title;
 		$this->titleCache = $parent->titleCache;
 		$this->titleCache[] = $title ? $title->getPrefixedDBkey() : false;
+		$this->loopCheckHash = /*clone*/ $parent->loopCheckHash;
+		$this->depth = $parent->depth + 1;
 	}
 
 	function __toString() {
