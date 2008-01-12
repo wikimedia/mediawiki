@@ -12,22 +12,18 @@ class ProfilerSimple extends Profiler {
 	var $mProfileID = false;
 
 	function __construct() {
-		global $wgRequestTime,$wgRUstart;
-		if (!empty($wgRequestTime) && !empty($wgRUstart)) {
-			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime,$this->getCpuTime($wgRUstart));
+		global $wgRequestTime;
+		if (!empty($wgRequestTime)) {
+			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime);
 
-			$elapsedcpu = $this->getCpuTime() - $this->getCpuTime($wgRUstart);
 			$elapsedreal = microtime(true) - $wgRequestTime;
 
 			$entry =& $this->mCollated["-setup"];
 			if (!is_array($entry)) {
-				$entry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
+				$entry = array('real' => 0.0, 'count' => 0);
 				$this->mCollated["-setup"] =& $entry;
 			}
-			$entry['cpu'] += $elapsedcpu;
-			$entry['cpu_sq'] += $elapsedcpu*$elapsedcpu;
 			$entry['real'] += $elapsedreal;
-			$entry['real_sq'] += $elapsedreal*$elapsedreal;
 			$entry['count']++;
 		}
 	}
@@ -53,7 +49,7 @@ class ProfilerSimple extends Profiler {
 		if ($wgDebugFunctionEntry) {
 			$this->debug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
 		}
-		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), microtime(true), $this->getCpuTime());
+		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack));
 	}
 
 	function profileOut($functionname) {
@@ -81,13 +77,10 @@ class ProfilerSimple extends Profiler {
 			$elapsedcpu = $this->getCpuTime() - $octime;
 			$elapsedreal = microtime(true) - $ortime;
 			if (!is_array($entry)) {
-				$entry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
+				$entry = array('real' => 0.0, 'count' => 0);
 				$this->mCollated[$functionname] =& $entry;
 			}
-			$entry['cpu'] += $elapsedcpu;
-			$entry['cpu_sq'] += $elapsedcpu*$elapsedcpu;
 			$entry['real'] += $elapsedreal;
-			$entry['real_sq'] += $elapsedreal*$elapsedreal;
 			$entry['count']++;
 
 		}
@@ -95,17 +88,6 @@ class ProfilerSimple extends Profiler {
 
 	function getFunctionReport() {
 		/* Implement in output subclasses */
-	}
-
-	function getCpuTime($ru=null) {
-		if ( function_exists( 'getrusage' ) ) {
-			if ( $ru == null )
-				$ru = getrusage();
-			return ($ru['ru_utime.tv_sec'] + $ru['ru_stime.tv_sec'] + ($ru['ru_utime.tv_usec'] + 
-				$ru['ru_stime.tv_usec']) * 1e-6);
-		} else {
-			return 0;
-		}
 	}
 
 	/* If argument is passed, it assumes that it is dual-format time string, returns proper float time value */
