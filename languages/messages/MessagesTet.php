@@ -355,7 +355,9 @@ $messages = array(
 'randompage' => 'Pájina ruma',
 
 # Statistics
-'statistics' => 'Estátistika',
+'statistics'    => 'Estátistika',
+'sitestats'     => '{{SITENAME}} estátistika',
+'userstatstext' => "Iha ne'e registrar tiha ona '''$1''' [[Special:Listusers|uza-na'in]], '''$2''' (ka '''$4''') $5.",
 
 'brokenredirects-edit'   => '(edita)',
 'brokenredirects-delete' => '(halakon)',

@@ -331,7 +331,7 @@ $messages = array(
 
 'ok'                      => 'Ok',
 'retrievedfrom'           => 'Menba – "$1"',
-'youhavenewmessages'      => 'Yañı $1 bar. ($2)',
+'youhavenewmessages'      => 'Yañı $1 bar ($2).',
 'newmessageslink'         => 'beyanatıñız',
 'newmessagesdifflink'     => 'muzakere saifesiñizniñ sоñki deñişikligi',
 'youhavenewmessagesmulti' => '$1 saifesinde yañı beyanatıñız bar.',
@@ -1402,10 +1402,12 @@ Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege m
 'movearticle'             => 'Eski isim',
 'movenologin'             => 'Oturım açmadıñız',
 'movenologintext'         => 'Saifeniñ adını deñiştirip olmaq içün [[Special:Userlogin|oturım açıñız]].',
+'movenotallowed'          => '{{SITENAME}} saytında saifeler adlarını deñiştirmege iziniñiz yоq.',
 'newtitle'                => 'Yañı isim',
 'move-watch'              => 'Bu saifeni közet',
 'movepagebtn'             => 'İsimini deñiştir',
 'pagemovedsub'            => 'İsim deñişikligi tamamlandı',
+'movepage-moved'          => '<big>\'\'\'"$1" saifesiniñ yañı adı: "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Bu isimde bir saife endi mevcüt ya da siz yazğan isim izinli degil.
 Lütfen başqa bir isim saylap yazıñız.',
 'talkexists'              => "'''Saifeniñ adı deñiştirildi, amma muzakere saifesiniñ

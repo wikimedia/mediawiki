@@ -449,7 +449,7 @@ Móžoš toś tom informacije zabyś kak to jano zmólka była.',
 'resetpass_submit'        => 'Šćitne gronidło nastajiś a se pśizjawiś',
 'resetpass_success'       => 'Twójo nowe šćitne gronidło jo nastajone. Něnto se pśizjaw …',
 'resetpass_bad_temporary' => 'Nachylne e-mailowe šćitne gronidło njejo korektne. Sy swójo šćitne gronidło južo pśeměnił(a) abo wó nowe nachylne gronidło pšošył(a).',
-'resetpass_forbidden'     => 'Šćitne gronidło na toś tom wikiju njamóžo se změniś.',
+'resetpass_forbidden'     => 'Njamóžna změniś pótajmnego słowa na boku {{SITENAME}}',
 'resetpass_missing'       => 'Prozny formular.',
 
 # Edit page toolbar
@@ -524,7 +524,7 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'whitelistreadtitle'        => 'Za cytanje dejš se pśizjawiś',
 'whitelistreadtext'         => 'Za cytanje bokow dejš se [[Special:Userlogin|how pśizjawiś]].',
 'whitelistacctitle'         => 'Njamaš pšawo, wužywarske konto załožyś.',
-'whitelistacctext'          => 'Aby mógał pód {{SITENAME}} wužywarjow załožyś, musyš [[Special:Userlogin|how se pśizjawiś]] a wótpowědujuce pšawa měś.',
+'whitelistacctext'          => 'Aby mógał pód {{SITENAME}} wužywarske konta załožyś, musyš [[Special:Userlogin|how se pśizjawiś]] a wótpowědujuce pšawa měś.',
 'confirmedittitle'          => 'Za wobźěłanje jo wobkšuśenje e-mailki notne.',
 'confirmedittext'           => 'Nježli až móžoš źěłaš, musyš swóju e-mailowu adresu wobkšuśiś. Pšosym dodaj a wobkšuś swóju e-mailowu adresu w [[Special:Preferences|nastajenjach]].',
 'nosuchsectiontitle'        => 'Wótrězk njeeksistěrujo.',
@@ -556,7 +556,7 @@ Aby bok wutwórił, ga napiš do kašćika spózy. (Dokradnjejše informacije p�
 'session_fail_preview'      => '<strong>Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili. Pšosym wopytaj hyšći raz. Jolic až to pón pśecej hyšći njejźo, wopytaj se wótzjawiś a zasej pśizjawiś.</strong>',
 'session_fail_preview_html' => "<strong>Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili.</strong>
 
-''Dokulaž jo w toś tom wikiju cysty html aktiwizěrowane, jo pśeglěd se zacynił - ako šćit pśeśiwo JavaScriptowym atakam.''
+''Dokulaž {{SITENAME}} ma cysty html aktiwizěrowany, jo pśeglěd se zacynił - ako šćit pśeśiwo JavaScriptowym atakam.''
 
 <strong>Jo-lic to legitiměrowane wobźěłanje, wopytaj hyšći raz. Gaž to zasej njejźo, wopytaj se wót- a zasej pśizjawiś.</strong>",
 'token_suffix_mismatch'     => '<strong>Twójo wobźěłanje jo se wótpokazało, dokulaž jo twój browser znamuška we wobźěłańskem tokenje rozsekał. Składowanje by mógało wopśimjeśe boka znicyś. Take casy se źejo, gaž wužywaš web-bazěrowanu, zmólkatu, anonymnu proksy-słužbu.</strong>',
@@ -1661,7 +1661,6 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'importhistoryconflict'      => 'Konflikt wersijow (snaź jo toś ten bok južo raz se importěrował)',
 'importnosources'            => 'Za transwikijowe importěrowanje njejsu žrědła definěrowane, direktne stawizny uploadowanja su znjemóžnjone.',
 'importnofile'               => 'Žedna dataja za importěrowanje njejo se uploadowała.',
-'importuploaderror'          => 'Uploadowanje dataje za importěrowanje njejo se zglucył, snaź jo dataja wětša ako dowólone.',
 
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',
@@ -2246,4 +2245,3 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'iranian-calendar-m12' => 'Dwanasty mjasec Jalāli',
 
 );
-

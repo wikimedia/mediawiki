@@ -12,6 +12,7 @@
  * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Myildirim2007
+ * @author Karduelis
  */
 
 $namespaceNames = array(
@@ -40,7 +41,7 @@ $linkTrail = '/^([a-zÇĞçğİıÖöŞşÜüÂâÎîÛû]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Bağlatıların altını çiz',
+'tog-underline'               => 'Bağlantıların altını çiz',
 'tog-highlightbroken'         => 'Boş bağlantıları <a href="" class="new">bu şekilde</a> (alternatif: bu şekilde<a href="" class="internal">?</a>) göster.',
 'tog-justify'                 => 'Paragraf iki yana yaslayarak ayarla',
 'tog-hideminor'               => 'Küçük değişiklikleri "Son değişiklikler" sayfasında gizle',
@@ -288,43 +289,45 @@ $messages = array(
 'nospecialpagetext' => 'Bulunmayan bir özel sayfaya girdiniz. Varolan tüm özel sayfaları [[Special:Specialpages]] sayfasında görebilirsiniz.',
 
 # General errors
-'error'            => 'Hata',
-'databaseerror'    => 'Veritabanı hatası',
-'dberrortext'      => 'Veritabanı hatası.
+'error'              => 'Hata',
+'databaseerror'      => 'Veritabanı hatası',
+'dberrortext'        => 'Veritabanı hatası.
 Bu bir yazılım hatası olabilir.
 "<tt>$2</tt>" işlevinden denenen son sorgulama:
 <blockquote><tt>$1</tt></blockquote>.
 
 MySQL\'in rapor ettiği hata "<tt>$3: $4</tt>".',
-'dberrortextcl'    => 'Veritabanı komut hatası.
+'dberrortextcl'      => 'Veritabanı komut hatası.
 Son yapılan veritabanı erişim komutu:
 "$1"
 Kullanılan fonksiyon "$2".
 MySQL\'in verdiği hata mesajı "$3: $4"',
-'cachederror'      => 'Aşağıdaki, istediğiniz sayfanın önbellekteki kopyasıdır ve güncel olmayabilir.',
-'readonly'         => 'Veritabanı kilitlendi',
-'enterlockreason'  => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
-'readonlytext'     => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
+'cachederror'        => 'Aşağıdaki, istediğiniz sayfanın önbellekteki kopyasıdır ve güncel olmayabilir.',
+'readonly'           => 'Veritabanı kilitlendi',
+'enterlockreason'    => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
+'readonlytext'       => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
 
 Veritabanını kilitleyen operatörün açıklaması: $1',
-'internalerror'    => 'Yazılım hatası',
-'filecopyerror'    => '"$1"  "$2" dosyasına kopyalanamıyor.',
-'filerenameerror'  => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
-'filedeleteerror'  => '"$1" dosyası silinemedi.',
-'filenotfound'     => '"$1" dosyası bulunamadı.',
-'unexpected'       => 'beklenmeyen değer: "$1"="$2".',
-'formerror'        => 'Hata: Form gönderilemiyor',
-'badarticleerror'  => 'Yapmak istediğiniz işlem geçersizdir.',
-'cannotdelete'     => 'Belirtilen sayfa ya da görüntü silinemedi. (başka bir kullanıcı tarafından silinmiş olabilir).',
-'badtitle'         => 'Geçersiz başlık',
-'badtitletext'     => 'Girilen sayfa ismi ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
-'perfdisabled'     => 'Özür dileriz! Bu özellik, veritabanını kullanılamayacak derecede yavaşlattığı için, geçici olarak kullanımdan çıkarıldı.',
-'perfcached'       => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',
-'perfcachedts'     => 'Aşağıda saklanmış bilgiler bulunmaktadır, son güncelleme zamanı: $1.',
-'viewsource'       => 'Kaynağı gör',
-'viewsourcefor'    => '$1 için',
-'editinginterface' => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.",
-'cascadeprotected' => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
+'internalerror'      => 'Yazılım hatası',
+'internalerror_info' => 'İç hata: $1',
+'filecopyerror'      => '"$1"  "$2" dosyasına kopyalanamıyor.',
+'filerenameerror'    => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
+'filedeleteerror'    => '"$1" dosyası silinemedi.',
+'filenotfound'       => '"$1" dosyası bulunamadı.',
+'unexpected'         => 'beklenmeyen değer: "$1"="$2".',
+'formerror'          => 'Hata: Form gönderilemiyor',
+'badarticleerror'    => 'Yapmak istediğiniz işlem geçersizdir.',
+'cannotdelete'       => 'Belirtilen sayfa ya da görüntü silinemedi. (başka bir kullanıcı tarafından silinmiş olabilir).',
+'badtitle'           => 'Geçersiz başlık',
+'badtitletext'       => 'Girilen sayfa ismi ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
+'perfdisabled'       => 'Özür dileriz! Bu özellik, veritabanını kullanılamayacak derecede yavaşlattığı için, geçici olarak kullanımdan çıkarıldı.',
+'perfcached'         => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',
+'perfcachedts'       => 'Aşağıda saklanmış bilgiler bulunmaktadır, son güncelleme zamanı: $1.',
+'viewsource'         => 'Kaynağı gör',
+'viewsourcefor'      => '$1 için',
+'viewsourcetext'     => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
+'editinginterface'   => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.",
+'cascadeprotected'   => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
 $2',
 
 # Login and logout pages
@@ -340,6 +343,7 @@ Hesabınız açıldı. {{SITENAME}} tercihlerinizi değiştirmeyi unutmayın.',
 'yourpasswordagain'          => 'Parolayı yeniden yaz',
 'remembermypassword'         => 'Parolayı hatırla.',
 'yourdomainname'             => 'Alan adınız',
+'loginproblem'               => '<b>Kayıt olurken bir problem oldu.</b><br />Tekrar deneyin!',
 'login'                      => 'Oturum aç',
 'loginprompt'                => "Dikkat: {{SITENAME}} sitesinde oturum açabilmek için tarayıcınızda çerezlerin (cookies) aktifleştirilmiş olması gerekmektedir.<br />
 Kullanıcı adınız Türkçe karakter, boşluk '''içerebilir'''. Kullanıcı adınıza e-posta adresi '''girmemeniz''' tavsiye edilir.",
@@ -397,6 +401,7 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'invalidemailaddress'        => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',
 'accountcreated'             => 'Hesap açıldı',
 'accountcreatedtext'         => '$1 için bir kullanıcı hesabı açıldı.',
+'loginlanguagelabel'         => 'Dil: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -773,6 +778,14 @@ veya doğrudan bağlantı için
 'imagelist_description'     => 'Tanım',
 'imagelist_search_for'      => 'Resim adı ara:',
 
+# File reversion
+'filerevert-comment' => 'Yorum:',
+
+# File deletion
+'filedelete'         => 'Sil $1',
+'filedelete-legend'  => 'Dosya sil',
+'filedelete-success' => "'''$1''' silindi.",
+
 # MIME search
 'mimesearch' => 'MIME araması',
 'mimetype'   => 'MIME tipi:',
@@ -861,11 +874,13 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'deadendpagestext'        => 'Bu sayfa, diğer sayfalara bağlantısı olmayan sayfaları listeler.',
 'protectedpages'          => 'Koruma altındaki sayfalar',
 'protectedpagestext'      => 'Aşağıdaki sayfalar koruma altına alınmıştır',
+'protectedtitles'         => 'Korunan başlıklar',
 'listusers'               => 'Kullanıcı listesi',
 'specialpages'            => 'Özel sayfalar',
 'spheading'               => 'Tüm kullanıcıları ilgilendirebilecek özel sayfalar',
 'restrictedpheading'      => 'Yöneticilerin yetkileri ile ilgili özel sayfalar',
 'newpages'                => 'Yeni sayfalar',
+'newpages-username'       => 'Kullanıcı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
 'ancientpages-summary'    => 'En son değişiklik yapıldığından bu yana en fazla zaman geçmiş, geliştirilmesi unutulmuş sayfaların listesi.',
 'intl'                    => 'Diller arası bağlantılar',
@@ -909,6 +924,10 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'allpagessubmit'    => 'Getir',
 'allpagesprefix'    => 'Buraya yazdığınız harflerle başlayan sayfaları listeleyin:',
 'allpagesbadtitle'  => 'Girilen sayfa ismi diller arası bağlantı ya da vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
+
+# Special:Listusers
+'listusers-submit'   => 'Göster',
+'listusers-noresult' => 'Kullanıcı bulunamadı.',
 
 # E-mail user
 'mailnologin'     => 'Gönderi adresi yok.',
@@ -1057,10 +1076,13 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Kısıtlama düzeyi:',
 'minimum-size'                => 'Minumum boyutu',
+'maximum-size'                => 'Maksimum boyutu',
+'pagesize'                    => '(bayt)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Düzenle',
-'restriction-move' => 'Taşı',
+'restriction-edit'   => 'Düzenle',
+'restriction-move'   => 'Taşı',
+'restriction-create' => 'Yarat',
 
 # Restriction levels
 'restriction-level-sysop'         => 'Tam koruma',
@@ -1107,6 +1129,8 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 
 'sp-contributions-newbies-sub' => 'Yeni kullanıcılar için',
 'sp-contributions-blocklog'    => 'Engel kaydı',
+'sp-contributions-username'    => 'IP veya kullanıcı:',
+'sp-contributions-submit'      => 'Ara',
 
 # What links here
 'whatlinkshere'      => 'Sayfaya bağlantılar',
@@ -1163,6 +1187,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'ipb_expiry_invalid'          => 'Geçersiz bitiş zamanı.',
 'ipb_already_blocked'         => '"$1" zaten engellenmiş',
 'ip_range_invalid'            => 'Geçersiz IP aralığı.',
+'blockme'                     => 'Beni engelle',
 
 # Developer tools
 'lockdb'              => 'Veritabanı kilitli',
@@ -1353,6 +1378,9 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_modern' => 'Modern tarayıcılar için tavsiye edilen',
 'mw_math_mathml' => 'Mümkünse MathML (daha deneme aşamasında)',
 
+# Patrol log
+'patrol-log-auto' => '(otomatik)',
+
 # Image deletion
 'deletedrevision' => '$1 sayılı eski sürüm silindi.',
 
@@ -1365,7 +1393,10 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 <hr>",
 'imagemaxsize'         => 'Resim açıklamalar sayfalarındaki resmin en büyük boyutu:',
 'thumbsize'            => 'Küçük boyut:',
+'file-info'            => '(dosya boyutu: $1, MIME tipi: $2)',
+'file-info-size'       => '($1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4)',
 'file-nohires'         => '<small>Daha yüksek çözünürlüğe sahip sürüm bulunmamaktadır.</small>',
+'svg-long-desc'        => '(SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3)',
 'show-big-image'       => 'Tam çözünürlük',
 'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
 
@@ -1573,6 +1604,8 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'ascending_abbrev'         => 'küçükten büyüğe',
 'table_pager_next'         => 'Sonraki sayfa',
 'table_pager_prev'         => 'Önceki sayfa',
+'table_pager_first'        => 'İlk',
+'table_pager_last'         => 'Son',
 'table_pager_limit_submit' => 'Git',
 
 # Auto-summaries

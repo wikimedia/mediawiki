@@ -288,4 +288,3 @@ $messages = array(
 'autosumm-new' => 'Керла: $1',
 
 );
-

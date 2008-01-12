@@ -360,7 +360,7 @@ L’administrator èyent vèrrolyê la bâsa de balyês at balyê l’èxpllicac
 
 Cen est g·ènèralament diu a un dif pas més utilisâ ou un lim vers l’historico d’una pâge èfaciê.
 
-S’o est pas lo câs, vos éd pôt-étre trovâ una cofierie dens la programeria.
+Se cen est pas lo câs, vos éd pôt-étre trovâ una cofierie dens la programeria.
 
 Volyéd raportar ceta èrror a un administrator, en lui endiquent l’adrèce de la pâge fôssa.',
 'readonly_lag'         => 'La bâsa de balyês at étâ ôtomaticament vèrrolyê pendent que los sèrviors secondèros ratrapont lor retârd sur lo sèrvior principâl.',
@@ -444,8 +444,8 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'loginerror'                 => 'Èrror d’identificacion',
 'prefs-help-email'           => '(u chouèx) : pèrmèt de sè veriér vers vos dês lo seto sen dèvouèlar voutra identitât.',
 'prefs-help-email-required'  => 'Una adrèce de mèl est requisa.',
-'nocookiesnew'               => "Lo compto utilisator at étâ crèâ, mas vos éte pas conèctâ. {{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et vos tornar conèctar avouéc lo mémo nom et lo mémo mot de pâssa.",
-'nocookieslogin'             => "{{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et vos tornar conèctar.",
+'nocookiesnew'               => "Lo compto utilisator at étâ crèâ, mas vos éte pas conèctâ. {{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et pués vos tornar conèctar avouéc lo mémo nom et lo mémo mot de pâssa.",
+'nocookieslogin'             => "{{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et pués vos tornar conèctar.",
 'noname'                     => 'Vos éd pas grepâ un nom d’utilisator valido.',
 'loginsuccesstitle'          => 'Identificacion reussia.',
 'loginsuccess'               => "'''Orendrêt, vos éte conèctâ dessus {{SITENAME}} a titro de « $1 ».'''",
@@ -468,7 +468,7 @@ Se vos éte pas l’ôtor de cela demanda, ou se vos vos rapelâd ora de voutron
 'blocked-mailpassword'       => 'Voutra adrèce IP est blocâ en èdicion, la fonccion de rapèl du mot de pâssa est vêr dèsactivâ por èvitar los abus.',
 'eauthentsent'               => 'Un mèl de confirmacion at étâ emmandâ a l’adrèce endicâ.
 Devant qu’un ôtro mèl seye emmandâ a cél compto, vos devréd siuvre les enstruccions du mèl et confirmar que lo compto est ben lo voutro.',
-'throttled-mailpassword'     => 'Un mèl de rapèl de voutron mot de pâssa at ja étâ emmandâ pendent les $1 hores passâs. Por èvitar los abus, un solèt mèl de rapèl serat emmandâ en $1 hores.',
+'throttled-mailpassword'     => 'Un mèl de rapèl de voutron mot de pâssa at ja étâ emmandâ pendent les $1 hores passâs. Por èvitar los abus, solament yon mèl de rapèl serat emmandâ en $1 hores.',
 'mailerror'                  => 'Èrror en emmandent lo mèl : $1',
 'acct_creation_throttle_hit' => 'Dèsolâ, vos éd ja crèâ {{PLURAL:$1|yon compto|$1 comptos}}. Vos pouede pas nen crèar d’ôtros.',
 'emailauthenticated'         => 'Voutra adrèce de mèl at étâ ôtentifiâ lo $1.',
@@ -480,7 +480,7 @@ Devant qu’un ôtro mèl seye emmandâ a cél compto, vos devréd siuvre les en
 'accountcreatedtext'         => 'Lo compto utilisator por $1 at étâ crèâ.',
 'createaccount-title'        => 'Crèacion d’un compto por {{SITENAME}}',
 'createaccount-text'         => 'Quârqu’un ($1) at crèâ un compto por $2 dessus {{SITENAME}}
-($4). Lo mot de pâssa por « $2 » est « $3 ». Vos devriâd uvrir una sèssion et changiér dês ora ceti mot de pâssa.
+($4). Lo mot de pâssa por « $2 » est « $3 ». Vos devriâd uvrir una sèssion et pués changiér dês ora ceti mot de pâssa.
 
 Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',
 'loginlanguagelabel'         => 'Lengoua : $1',
@@ -618,7 +618,7 @@ cèrtins navigators g·èront mâl la modificacion de les pâges aprochient ou d
 Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.</strong>',
 'longpageerror'             => '<strong>ÈRROR : lo tèxte que vos éd somês fât $1 ko, cen que dèpâsse la limita fixâ a $2 ko. Lo tèxte pôt pas étre sôvâ.</strong>',
 'readonlywarning'           => '<strong>ATENCION : la bâsa de balyês at étâ vèrrolyê por mantegnence,
-vos porréd vêr pas sôvar voutres modificacions d’abôrd. Vos pouede copiyér lo contegnu de la pâge dens un fichiér tèxte et lo sôvar por ples târd.</strong>',
+vos porréd vêr pas sôvar voutres modificacions d’abôrd. Vos pouede copiyér lo contegnu de la pâge dens un fichiér tèxte et pués lo sôvar por ples târd.</strong>',
 'protectedpagewarning'      => '<strong>ATENCION : ceta pâge est protègiê.
 Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.</strong>',
 'semiprotectedpagewarning'  => "'''Nota :''' ceta pâge at étâ protègiê de façon que solèts los contributors enregistrâs pouessont la modifiar.",
@@ -953,7 +953,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 'uploadedfiles'               => 'Fichiérs copiyês',
 'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér.',
 'ignorewarnings'              => 'Ignorar los avèrtissements pendent l’impôrt',
-'minlength1'                  => 'Los noms de fichiérs dêvont comprendre u muens una lètra.',
+'minlength1'                  => 'Los noms de fichiérs dêvont comprendre u muens yona lètra.',
 'illegalfilename'             => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges. Marci de lo renomar et de lo relevar.',
 'badfilename'                 => 'L’émâge at étâ renomâ en « $1 ».',
 'filetype-badmime'            => 'Los fichiérs du tipo MIME « $1 » pôvont pas étre importâs.',
@@ -1020,7 +1020,7 @@ PICT # de totes sôrtes
 'upload-curl-error6'       => 'Pôt pas avengiér l’URL',
 'upload-curl-error6-text'  => 'L’URL fornia pôt pas étre avengiê. Volyéd controlar que l’URL est corrècta et que lo seto est en legne.',
 'upload-curl-error28'      => 'Dèpassement du dèlê pendent l’impôrt',
-'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre. Controlâd que lo seto est en legne, atendéd un pou et tornâd èprovar. Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
+'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre. Controlâd que lo seto est en legne, atendéd un pou et pués tornâd èprovar. Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 'license'            => 'Licence ',
 'nolicense'          => 'Niona licence sèlèccionâ',
@@ -1685,7 +1685,7 @@ L’articllo de dèstinacion « [[$1]] » ègziste ja. Voléd-vos lo suprimar po
 'export'            => 'Èxportar des pâges',
 'exporttext'        => 'Vos pouede èxportar en XML lo tèxte et l’historico d’una pâge ou d’un ensemblo de pâges ; lo rèsultat pôt adonc étre importâ dens un ôtro vouiqui fonccionent avouéc la programeria MediaWiki.
 
-Por èxportar des pâges, entrâd lors titros dens la bouèta de tèxte ce-desot, un titro per legne, et sèlèccionâd se vos dèsirâd ou pas la vèrsion d’ora avouéc totes les vielyes vèrsions, avouéc la pâge d’historico, ou simplament la pâge d’ora avouéc des enformacions sur la dèrriére modificacion.
+Por èxportar des pâges, entrâd lors titros dens la bouèta de tèxte ce-desot, yon titro per legne, et pués sèlèccionâd, se vos dèsirâd ou pas, la vèrsion d’ora avouéc totes les vielyes vèrsions, avouéc la pâge d’historico, ou simplament la pâge d’ora avouéc des enformacions sur la dèrriére modificacion.
 
 Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:Export/{{MediaWiki:Mainpage}}]] por la pâge {{MediaWiki:Mainpage}}.',
 'exportcuronly'     => 'Èxportar ren que la vèrsion corenta sen l’historico complèt',
@@ -1725,7 +1725,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'import-interwiki-history'   => 'Copiyér totes les vèrsions de l’historico de ceta pâge',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferar les pâges dens l’èspâço de nom :',
-'importtext'                 => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent l’outil [[Special:Export]], lo sôvar sur voutron disco dur et lo copiyér ique.',
+'importtext'                 => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent l’outil [[Special:Export]], lo sôvar sur voutron disco dur et pués lo copiyér ique.',
 'importstart'                => 'Impôrt de les pâges...',
 'import-revision-count'      => '$1 {{PLURAL:$1|vèrsion|vèrsions}}',
 'importnopages'              => 'Niona pâge a importar.',
@@ -1758,8 +1758,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-pt-preferences'          => 'Mes prèferences',
 'tooltip-pt-watchlist'            => 'La lista de les pâges que vos siude',
 'tooltip-pt-mycontris'            => 'La lista de mes contribucions',
-'tooltip-pt-login'                => 'Vos éte envitâ a vos identifiar, mas o est pas oblegatouèro.',
-'tooltip-pt-anonlogin'            => 'Vos éte envitâ a vos identifiar, mas o est pas oblegatouèro.',
+'tooltip-pt-login'                => 'Vos éte envitâ a vos identifiar, mas cen est pas oblegatouèro.',
+'tooltip-pt-anonlogin'            => 'Vos éte envitâ a vos identifiar, mas cen est pas oblegatouèro.',
 'tooltip-pt-logout'               => 'Sè dèconèctar',
 'tooltip-ca-talk'                 => 'Discussion a propôs de ceta pâge',
 'tooltip-ca-edit'                 => 'Vos pouede modifiar ceta pâge. Marci de prèvisualisar devant qu’enregistrar.',
@@ -2368,5 +2368,8 @@ $1',
 'hebrew-calendar-m10-gen' => 'de tamouz',
 'hebrew-calendar-m11-gen' => 'd’âv',
 'hebrew-calendar-m12-gen' => 'd’èloul',
+
+# Core parser functions
+'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
 
 );

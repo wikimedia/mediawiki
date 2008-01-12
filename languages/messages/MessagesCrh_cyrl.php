@@ -332,7 +332,7 @@ $messages = array(
 
 'ok'                      => 'Ок',
 'retrievedfrom'           => 'Менба – "$1"',
-'youhavenewmessages'      => 'Янъы $1 бар. ($2)',
+'youhavenewmessages'      => 'Янъы $1 бар ($2).',
 'newmessageslink'         => 'беянатынъыз',
 'newmessagesdifflink'     => 'музакере саифесинъизнинъ сонъки денъишиклиги',
 'youhavenewmessagesmulti' => '$1 саифесинде янъы беянатынъыз бар.',
@@ -1404,10 +1404,12 @@ e-mail: $PAGEEDITOR_EMAIL
 'movearticle'             => 'Эски исим',
 'movenologin'             => 'Отурым ачмадынъыз',
 'movenologintext'         => 'Саифенинъ адыны денъиштирип олмакъ ичюн [[Special:Userlogin|отурым ачынъыз]].',
+'movenotallowed'          => '{{SITENAME}} сайтында саифелер адларыны денъиштирмеге изининъиз ёкъ.',
 'newtitle'                => 'Янъы исим',
 'move-watch'              => 'Бу саифени козет',
 'movepagebtn'             => 'Исимини денъиштир',
 'pagemovedsub'            => 'Исим денъишиклиги тамамланды',
+'movepage-moved'          => "<big>'''«$1» саифесининъ янъы ады: «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Бу исимде бир саифе энди мевджут я да сиз язгъан исим изинли дегиль.
 Лютфен башкъа бир исим сайлап язынъыз.',
 'talkexists'              => "'''Саифенинъ ады денъиштирильди, амма музакере саифесининъ

@@ -1372,6 +1372,8 @@ $NEWPAGE
 'contributions' => 'Уклад удзельніка',
 'mycontris'     => 'Уклад',
 'contribsub2'   => 'Для $1 ($2)',
+'ucnote'        => 'Ніжэй паказаны апошнія <b>$1</b> дзеянні ўдзельніка за апошнія <b>$2</b> дзён.',
+'uclinks'       => 'Паказаць апошнія $1 мены; паказаць апошнія $2 дзён.',
 'uctop'         => ' (апошн.)',
 'month'         => 'Ад месяцу (і раней):',
 'year'          => 'Ад году (і раней):',
@@ -1382,6 +1384,8 @@ $NEWPAGE
 'sp-contributions-search'      => 'Знайсці ўклад',
 'sp-contributions-username'    => 'Адрас IP або імя ўдзельніка:',
 'sp-contributions-submit'      => 'Пошук',
+
+'sp-newimages-showfrom' => 'Паказаць новыя выявы, пачынаючы з $1',
 
 # What links here
 'whatlinkshere'       => 'Сюды спасылаюцца',

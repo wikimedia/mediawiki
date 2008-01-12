@@ -248,6 +248,7 @@ $messages = array(
 'bugreportspage'    => 'Project:Informes de error',
 'copyright'         => 'El contenido está disponible bajo los términos de la <i>$1</i>',
 'copyrightpagename' => 'Copyright de {{SITENAME}}',
+'copyrightpage'     => '{{ns:project}}:Derechos de autor',
 'currentevents'     => 'Actualidad',
 'currentevents-url' => 'Project:Actualidad',
 'disclaimers'       => 'Aviso legal',
@@ -449,7 +450,7 @@ Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'resetpass_submit'        => 'Cambiar la contraseña e identificarse',
 'resetpass_success'       => 'Se ha cambiado su contraseña. Autenticándole...',
 'resetpass_bad_temporary' => 'Contraseña temporal no válida. Puede que ya hayas cambiado tu contraseña o que hayas solicitado el envío de otra.',
-'resetpass_forbidden'     => 'Imposible cambiar contraseñas en esta wiki',
+'resetpass_forbidden'     => 'Imposible cambiar contraseñas en {{SITENAME}}',
 'resetpass_missing'       => 'No hay datos en el formulario.',
 
 # Edit page toolbar
@@ -878,7 +879,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'savefile'                    => 'Guardar archivo',
 'uploadedimage'               => '«[[$1]]» subido.',
 'uploaddisabled'              => 'Subida de archivos deshabilitada',
-'uploaddisabledtext'          => 'No es posible subir archivos en esta wiki.',
+'uploaddisabledtext'          => 'No es posible subir archivos en {{SITENAME}}.',
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador.',
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
@@ -1023,7 +1024,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'nviews'                  => '$1 {{PLURAL:$1|vista|vistas}}',
 'specialpage-empty'       => 'Esta página está vacía.',
 'lonelypages'             => 'Páginas huérfanas',
-'lonelypagestext'         => 'Ninguna página de este wiki enlaza a las listadas aquí.',
+'lonelypagestext'         => 'Ninguna página de {{SITENAME}} enlaza a las listadas aquí.',
 'uncategorizedpages'      => 'Páginas sin categorizar',
 'uncategorizedcategories' => 'Categorías sin categorizar',
 'uncategorizedimages'     => 'Imágenes sin categorizar',
@@ -1044,7 +1045,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'shortpages'              => 'Páginas cortas',
 'longpages'               => 'Páginas largas',
 'deadendpages'            => 'Páginas sin salida',
-'deadendpagestext'        => 'Las siguientes páginas no enlazan a otras páginas de este wiki.',
+'deadendpagestext'        => 'Las siguientes páginas no enlazan a otras páginas de {{SITENAME}}.',
 'protectedpages'          => 'Páginas protegidas',
 'protectedpagestext'      => 'Las siguientes páginas están protegidas para su edición o traslado',
 'protectedpagesempty'     => 'Actualmente no hay ninguna página protegida con esos parámetros.',
@@ -1209,7 +1210,7 @@ Cambie las opciones de su lista de seguimiento en:
 'confirmdelete'               => 'Confirme el borrado',
 'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Atención: La página que está a punto de borrar tiene un historial:',
-'confirmdeletetext'           => 'Estás a punto de borrar una página o imagen
+'confirmdeletetext'           => 'Estás a punto de borrar una página
 en forma permanente,
 así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las

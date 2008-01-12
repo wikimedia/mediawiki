@@ -279,6 +279,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'yourlanguage'              => 'Wika:',
 'yournick'                  => 'Palayaw:',
 'badsiglength'              => 'Masyadong mahaba ang bansag; kailangan ito ay hindi hihigit sa $1 karakter.',
+'email'                     => 'E-liham',
 'loginerror'                => 'Kamalian sa paglagda',
 'prefs-help-email-required' => 'Kinakailangan ang direksyong e-liham.',
 'loginsuccesstitle'         => 'Matagumpay ang paglagda',
@@ -377,8 +378,22 @@ upang makapagkarga ng talaksan.',
 'watch'         => 'Bantayan',
 'watchthispage' => 'Bantayan itong pahina',
 
+# Delete/protect/revert
+'protect-default'         => '(tinakda)',
+'protect-summary-cascade' => 'kaskada',
+'protect-expiring'        => 'magwawalang-bisa sa $1 (UTC)',
+'protect-cascade'         => 'Ipagsanggalang ang mga pahinang kasama sa pahinang ito (kaskadang pagsanggalang)',
+'restriction-type'        => 'Pahintulot:',
+
+# Restriction levels
+'restriction-level-sysop'         => 'buong nakasanggalang',
+'restriction-level-autoconfirmed' => 'bahagyang nakasanggalang',
+'restriction-level-all'           => 'anumang antas',
+
 # Namespace form on various pages
-'namespace' => 'Ngalan-espasyo:',
+'namespace'      => 'Ngalan-espasyo:',
+'invert'         => 'Baligtarin and pinili',
+'blanknamespace' => '(Pangunahin)',
 
 # Contributions
 'contributions' => 'Mga ambag ng manggagamit',
@@ -387,13 +402,17 @@ upang makapagkarga ng talaksan.',
 
 'sp-contributions-newbies'     => 'Ipakita ang mga ambag ng mga bagong kuwenta lamang',
 'sp-contributions-newbies-sub' => 'Para sa mga bagong kuwenta',
-'sp-contributions-blocklog'    => 'Tala sa paglipat',
+'sp-contributions-blocklog'    => 'Tala ng paglipat',
 
 # What links here
 'whatlinkshere'       => 'Mga nakaturo dito',
 'whatlinkshere-title' => 'Mga pahinang kumakawing sa $1',
+'whatlinkshere-page'  => 'Pahina:',
 
 # Block/unblock
+'blockip'            => 'Harangin ang manggagamit',
+'ipaddress'          => 'Direksyong IP:',
+'ipadressorusername' => 'Direksyong IP o bansag:',
 'ipbexpiry'          => 'Pagkawalang-bisa:',
 'ipbreason'          => 'Dahilan:',
 'ipbreasonotherlist' => 'Ibang dahilan',
@@ -412,6 +431,9 @@ upang makapagkarga ng talaksan.',
 'ipbsubmit'          => 'Harangin itong manggagamit',
 'ipbother'           => 'Ibang oras:',
 'ipboptions'         => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'     => 'iba',
+'ipbotherreason'     => 'Iba/karagdagang dahilan:',
+'blockipsuccesssub'  => 'Matagumpay ang pagharang',
 
 # Developer tools
 'lockdb'   => 'Kandaduhan ang kalipunan ng datos',
