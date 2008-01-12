@@ -29,6 +29,10 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * API module that functions as a shortcut to the wikitext preprocessor. Expands
+ * any templates in a provided string, and returns the result of this expansion
+ * to the caller.
+ *
  * @addtogroup API
  */
 class ApiExpandTemplates extends ApiBase {

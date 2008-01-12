@@ -28,14 +28,26 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+* API module that facilitates the blocking of users. Requires API write mode
+* to be enabled.
+*
  * @addtogroup API
  */
 class ApiBlock extends ApiBase {
 
+	/**
+	 * Std ctor.
+	 */
 	public function __construct($main, $action) {
 		parent :: __construct($main, $action);
 	}
 
+	/**
+	 * Blocks the user specified in the parameters for the given expiry, with the
+	 * given reason, and with all other settings provided in the params. If the block
+	 * succeeds, produces a result containing the details of the block and notice
+	 * of success. If it fails, the result will specify the nature of the error.
+	 */
 	public function execute() {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
@@ -141,7 +153,7 @@ class ApiBlock extends ApiBase {
 			'nocreate' => 'Prevent account creation',
 			'autoblock' => 'Automatically block the last used IP address, and any subsequent IP addresses they try to login from',
 			'noemail' => 'Prevent user from sending e-mail through the wiki',
-			'hidename' => 'Hide the username from the block log.'
+			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)'
 		);
 	}
 

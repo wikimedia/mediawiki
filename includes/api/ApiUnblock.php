@@ -28,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * API module that facilitates the unblocking of users. Requires API write mode
+ * to be enabled.
+ *
  * @addtogroup API
  */
 class ApiUnblock extends ApiBase {
@@ -36,6 +39,9 @@ class ApiUnblock extends ApiBase {
 		parent :: __construct($main, $action);
 	}
 
+	/**
+	 * Unblocks the specified user or provides the reason the unblock failed.
+	 */
 	public function execute() {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
