@@ -289,7 +289,7 @@ class MediaWiki {
 		$this->doJobs();
 		$loadBalancer->saveMasterPos();
 		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
-		$loadBalancer->commitAll();
+		$loadBalancer->commitMasterChanges();
 		$output->output();
 		wfProfileOut( 'MediaWiki::finalCleanup' );
 	}
@@ -301,6 +301,12 @@ class MediaWiki {
 	 */
 	function doUpdates ( &$updates ) {
 		wfProfileIn( 'MediaWiki::doUpdates' );
+		/* No need to get master connections in case of empty updates array */
+		if (!$updates) {
+			wfProfileOut('MediaWiki::doUpdates');
+			return;
+		}
+		
 		$dbw = wfGetDB( DB_MASTER );
 		foreach( $updates as $up ) {
 			$up->doUpdate();
@@ -352,7 +358,6 @@ class MediaWiki {
 	 */
 	function restInPeace ( &$loadBalancer ) {
 		wfLogProfilingData();
-		$loadBalancer->closeAll();
 		wfDebug( "Request ended normally\n" );
 	}
 
