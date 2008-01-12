@@ -260,7 +260,9 @@ $messages = array(
 'error'                => 'Njuumte',
 'noconnect'            => 'Jéggalu! ngir ay tolof-tolofi xarala, fi mu ne nii duggu gi jàppandiwul. <br />
 $1',
+'nodb'                 => 'Falug dattub njoxe bii di $1 antuwul',
 'laggedslavemode'      => 'Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def',
+'readonly'             => 'Dattub njoxe li dañ kaa jaabi',
 'enterlockreason'      => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',
 'readonlytext'         => 'Les ajouts et mises à jour sur la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
 L’administrateur ayant verrouillé la base de données a donné l’explication suivante :$1',
@@ -436,8 +438,10 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'whitelistedittitle'      => 'Laaj na nga bindi ngir mana soppi ndef gi',
 'whitelistedittext'       => 'Da ngay  wara doon $1 ngir am sañ-sañu soppi ngef gi.',
 'whitelistreadtitle'      => 'Laaj na nga bindu ngir mana jàng ndef gi',
-'whitelistreadtext'       => 'Da nga wara [[Special:Userlogin|duggu]] ngir jàng ndef gi.',
+'whitelistreadtext'       => 'Ngir man a jàng ëmbit li laaj na nga [[Special:Userlogin|duggu]].',
 'whitelistacctitle'       => 'Amoo sañ-sañu bindu.',
+'whitelistacctext'        => 'Ngir nga man a sos yeneeni sàq ci bii wiki, laaj na nga [[Special:Userlogin|duggu]] te it xaar ba am sañ-sañ yi mu laaj.',
+'confirmedittitle'        => 'Laaj na nga dëggal sa m-bataaxal ngir man a soppi xët yi',
 'loginreqtitle'           => 'Laaj na nga bindu',
 'loginreqlink'            => 'Duggu',
 'loginreqpagetext'        => 'Faw nga $1 ngir gis yeneen xët yi.',

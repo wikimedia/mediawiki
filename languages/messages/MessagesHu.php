@@ -367,7 +367,7 @@ $messages = array(
 'youhavenewmessages'      => 'Új üzenet vár $1! (Az üzenetet $2.)',
 'newmessageslink'         => 'a vitalapodon',
 'newmessagesdifflink'     => 'külön is megtekintheted',
-'youhavenewmessagesmulti' => 'Új üzeneteid érkeztek a(z) $1 laphoz',
+'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 lapon',
 'editsection'             => 'szerkesztés',
 'editold'                 => 'szerkesztés',
 'editsectionhint'         => 'Szakasz szerkesztése: $1',
@@ -505,13 +505,13 @@ A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személ
 'createaccountmail'          => 'e-mail alapján',
 'badretype'                  => 'Az általad megadott jelszavak nem egyeznek.',
 'userexists'                 => 'A megadott felhasználói név már foglalt. Kérlek, válassz másikat!',
-'youremail'                  => 'E-mail címed1:',
+'youremail'                  => 'Az e-mail címed¹:',
 'username'                   => 'Felhasználói név:',
 'uid'                        => 'Azonosító:',
 'yourrealname'               => 'Valódi neved*',
-'yourlanguage'               => 'A kezelőfelület nyelve:',
+'yourlanguage'               => 'A felület nyelve:',
 'yourvariant'                => 'Változó',
-'yournick'                   => 'Beceneved (aláírásokhoz):',
+'yournick'                   => 'Az aláírásokban használni kívánt névformád:',
 'badsig'                     => 'Rossz aláírás; ellenőrizd a HTML-formázást.',
 'badsiglength'               => 'Túl hosszú a beceneved; $1 karakternél kevesebbnek kell lennie.',
 'email'                      => 'E-mail',
@@ -1586,7 +1586,7 @@ $1',
 'uclinks'       => 'Az utolsó $1 változtatás megtekintése; az utolsó $2 nap megtekintése.',
 'uctop'         => ' (utolsó)',
 'month'         => 'E hónap végéig:',
-'year'          => 'Évtől (és korábban):',
+'year'          => 'Eddig az évig:',
 
 'sp-contributions-newbies'     => 'Csak a nemrég regisztrált szerkesztők közreműködéseinek mutatása',
 'sp-contributions-newbies-sub' => 'Új szerkesztők lapjai',
@@ -2422,5 +2422,8 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'watchlisttools-view' => 'Kapcsolódó változtatások',
 'watchlisttools-edit' => 'A figyelőlista megtekintése és szerkesztése',
 'watchlisttools-raw'  => 'A nyers figyelőlista szerkesztése',
+
+# Core parser functions
+'unknown_extension_tag' => 'Ismeretlen tag kiterjesztés: $1',
 
 );

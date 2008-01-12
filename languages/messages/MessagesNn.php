@@ -599,7 +599,7 @@ Du kan oversjå denne meldinga dersom kontoen vart oppretta med eit uhell.',
 'summary'                   => 'Samandrag',
 'subject'                   => 'Emne/overskrift',
 'minoredit'                 => 'Småplukk',
-'watchthis'                 => 'Overvak side',
+'watchthis'                 => 'Overvak denne sida',
 'savearticle'               => 'Lagre',
 'preview'                   => 'Førehandsvising',
 'showpreview'               => 'Førehandsvis',
@@ -670,6 +670,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 ''Fordi {{SITENAME}} har rå HTML-kode slått på, er førehandsvisinga gøymd grunna fare for JavaScript-angrep.''
 
 <strong>Dersom dette er eit heilt vanleg forsøk på endring, prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>",
+'token_suffix_mismatch'     => '<strong>Endringa di vart avvist fordi klienten/nettlesaren din lagar teiknfeil i teksten. Dette vart gjort for å hindre øydelegging av teksten på sida. Slikt kan av og til hende når ein brukar feilprogrammerte og vevbaserte anonyme proxytenester.</strong>',
 'editing'                   => 'Endrar $1',
 'editinguser'               => 'Endrar $1',
 'editingsection'            => 'Endrar $1 (bolk)',
@@ -690,17 +691,24 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 
 <strong>LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!</strong>',
 'longpagewarning'           => '<strong>ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å handsama endringar av sider som nærmar seg eller er lengre enn 32 KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><br />',
+'longpageerror'             => '<strong>Feil: Teksten du har prøvd å lagre er $1 kilobyte
+lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast.</strong>',
 'readonlywarning'           => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
 'protectedpagewarning'      => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong><br />',
 'semiprotectedpagewarning'  => "'''NB:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.",
+'titleprotectedwarning'     => '<strong>Åtvaring: Denne sida er verna, så berre nokre brukarar kan opprette henne.</strong>',
 'templatesused'             => 'Malar som er brukte på denne sida:',
 'templatesusedpreview'      => 'Malar som er brukte i denne førehandsvisinga:',
 'templatesusedsection'      => 'Malar som er brukte i denne bolken:',
 'template-protected'        => '(verna)',
 'template-semiprotected'    => '(delvis verna)',
 'edittools'                 => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
+'nocreatetitle'             => 'Avgrensa sideoppretting',
 'nocreatetext'              => '{{SITENAME}} har avgrensa mogelegheita for å opprette nye sider.
 Du kan gå attende og endre ei eksisterande side, [[Special:Userlogin|logge inn eller opprette ein brukarkonto]].',
+'nocreate-loggedin'         => 'Du har ikkje tilgang til å opprette nye sider på {{SITENAME}}.',
+'permissionserrors'         => 'Tilgangsfeil',
+'permissionserrorstext'     => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
 'recreate-deleted-warn'     => "'''Åtvaring: Du nyopprettar ei side som tidlegare har vorte sletta.'''
 
 Du bør tenkje over om det er lurt å halde fram med å endre denne sida.
@@ -732,7 +740,7 @@ Sletteloggen for sida finn du her:",
 'history-feed-item-nocomment' => '$1 på $2', # user at time
 
 # Revision deletion
-'rev-delundel'         => 'vis/skjul',
+'rev-delundel'         => 'vis/gøym',
 'revdelete-hide-image' => 'Skjul filinnhald',
 
 # History merging
@@ -1000,7 +1008,8 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'brokenredirects-edit'   => '(endre)',
 'brokenredirects-delete' => '(slett)',
 
-'withoutinterwiki' => 'Sider utan interwikilenkjer',
+'withoutinterwiki'        => 'Sider utan lenkjer til andre språk',
+'withoutinterwiki-header' => 'Desse sidene manglar lenkjer til sider på andre språk:',
 
 'fewestrevisions' => 'Sidene med færrast endringar',
 
@@ -1835,8 +1844,8 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'autosumm-new' => 'Ny side: $1',
 
 # Live preview
-'livepreview-loading' => 'Lastar…',
-'livepreview-ready'   => 'Lastar… Klar!',
+'livepreview-loading' => 'Lastar inn…',
+'livepreview-ready'   => 'Lastar inn… Ferdig!',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Overvakingslista di inneheld {{PLURAL:$1|éi side|$1 sider}} (diskusjonssider ikkje medrekna).',
@@ -1845,9 +1854,14 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'watchlistedit-normal-legend'  => 'Fjern sider frå overvakingslista',
 'watchlistedit-normal-explain' => 'Sidene på overvakingslista di er viste nedanfor. For å fjerne ei side, kryss av boksen ved sidan av sida du vil fjerne og klikk på «Fjern side». Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]], eller [[Special:Watchlist/clear|fjerne alle sidene]].',
 'watchlistedit-normal-submit'  => 'Fjern sider',
+'watchlistedit-raw-title'      => 'Overvakingslista i råformat',
+'watchlistedit-raw-legend'     => 'Endre på overvakingslista i råformat',
 'watchlistedit-raw-explain'    => 'Sidene på overvakingslista di er viste nedanfor, og lista kan endrast ved å legge til eller fjerne sider frå lista; ei side per line. Når du er ferdig, klikk «Oppdater overvakingsliste». Du kan òg [[Special:Watchlist/edit|nytte standardverktøyet]].',
+'watchlistedit-raw-titles'     => 'Sider:',
+'watchlistedit-raw-submit'     => 'Oppdater overvakingslista',
 'watchlistedit-raw-done'       => 'Overvakingslista er oppdatert.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Éi side vart lagt til|$1 sider vart lagde til}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Éi side|$1 sider}} vart fjerna:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vis relevante endringar',
