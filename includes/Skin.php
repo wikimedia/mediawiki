@@ -325,6 +325,7 @@ class Skin extends Linker {
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgBreakFrames' => $wgBreakFrames,
 			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
+			'wgMWVersion' => SpecialVersion::getVersion(),
 		);
 
 		global $wgLivePreview;
