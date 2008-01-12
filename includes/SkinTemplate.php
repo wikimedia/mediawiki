@@ -219,22 +219,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'catlinks', $this->getCategories());
 		if( $wgOut->isSyndicated() ) {
 			$feeds = array();
-			foreach( $wgFeedClasses as $format => $class ) {
-				$linktext = $format;
-				if ( $format == "atom" ) {
-					$linktext = wfMsg( 'feed-atom' );
-				} else if ( $format == "rss" ) {
-					$linktext = wfMsg( 'feed-rss' );
-				}
-				if( is_string( $wgOut->getFeedAppendQuery() ) ) {
-					$appendQuery = "&" . $wgOut->getFeedAppendQuery();
-				} else {
-					$appendQuery = "";
-				}
+			foreach( $wgOut->getSyndicationLinks() as $format => $link ) {
 				$feeds[$format] = array(
-					'text' => $linktext,
-					'href' => $wgRequest->appendQuery( "feed={$format}{$appendQuery}" )
-				);
+					'text' => wfMsg( "feed-$format" ),
+					'href' => $link );
 			}
 			$tpl->setRef( 'feeds', $feeds );
 		} else {

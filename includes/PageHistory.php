@@ -67,6 +67,7 @@ class PageHistory {
 		$wgOut->setArticleRelated( true );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setSyndicated( true );
+		$wgOut->setFeedAppendQuery( 'action=history' );
 
 		$logPage = SpecialPage::getTitleFor( 'Log' );
 		$logLink = $this->mSkin->makeKnownLinkObj( $logPage, wfMsgHtml( 'viewpagelogs' ), 'page=' . $this->mTitle->getPrefixedUrl() );
