@@ -28,6 +28,12 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+/**
+ * API module to allow users to log out of the wiki. API equivalent of 
+ * Special:Userlogout.
+ *
+ * @addtogroup API
+ */
 class ApiLogout extends ApiBase {
 
 	public function __construct($main, $action) {

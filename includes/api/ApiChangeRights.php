@@ -27,7 +27,10 @@ if (!defined('MEDIAWIKI')) {
 	require_once ("ApiBase.php");
 }
 
-/**
+/** 
+ * API module that facilitates the changing of user rights. The API eqivalent of
+ * Special:Userrights. Requires API write mode to be enabled.
+ *
  * @addtogroup API
  */
 class ApiChangeRights extends ApiBase {
