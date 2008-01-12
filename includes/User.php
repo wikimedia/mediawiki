@@ -1977,12 +1977,13 @@ class User {
 		$this->clearInstanceCache( 'defaults' );
 
 		$_SESSION['wsUserID'] = 0;
-
+		
 		setcookie( $wgCookiePrefix.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 		setcookie( $wgCookiePrefix.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
-
-		# Remember when user logged out, to prevent seeing cached pages
-		setcookie( $wgCookiePrefix.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( $wgCookiePrefix.'UserName', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( $wgCookiePrefix.'LoggedOut', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( session_name(), '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		session_destroy();
 	}
 
 	/**
