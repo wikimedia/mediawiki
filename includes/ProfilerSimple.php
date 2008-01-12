@@ -49,7 +49,7 @@ class ProfilerSimple extends Profiler {
 		if ($wgDebugFunctionEntry) {
 			$this->debug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
 		}
-		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack));
+		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack),microtime(true));
 	}
 
 	function profileOut($functionname) {
@@ -59,7 +59,7 @@ class ProfilerSimple extends Profiler {
 			$this->debug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");
 		}
 
-		list($ofname, /* $ocount */ ,$ortime,$octime) = array_pop($this->mWorkStack);
+		list($ofname, /* $ocount */ ,$ortime) = array_pop($this->mWorkStack);
 
 		if (!$ofname) {
 			$this->debug("Profiling error: $functionname\n");
@@ -68,10 +68,14 @@ class ProfilerSimple extends Profiler {
 				$message = "Profile section ended by close(): {$ofname}";
 				$functionname = $ofname;
 				$this->debug( "$message\n" );
+				$this->mCollated[$message] = array(
+					'real' => 0.0, 'count' => 1);
 			}
 			elseif ($ofname != $functionname) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
 				$this->debug( "$message\n" );
+				$this->mCollated[$message] = array(
+					'real' => 0.0, 'count' => 1);
 			}
 			$entry =& $this->mCollated[$functionname];
 			$elapsedreal = microtime(true) - $ortime;
