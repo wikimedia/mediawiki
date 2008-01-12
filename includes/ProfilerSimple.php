@@ -74,7 +74,6 @@ class ProfilerSimple extends Profiler {
 				$this->debug( "$message\n" );
 			}
 			$entry =& $this->mCollated[$functionname];
-			$elapsedcpu = $this->getCpuTime() - $octime;
 			$elapsedreal = microtime(true) - $ortime;
 			if (!is_array($entry)) {
 				$entry = array('real' => 0.0, 'count' => 0);
