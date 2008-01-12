@@ -558,7 +558,7 @@ class LoadBalancer {
 		// Always 0, but who knows.. :)
 		$i = $this->getWriterIndex();
 		if (array_key_exists($i,$this->mConnections)) {
-			if ($this->mConnections[$i]->lastQuery != '') {
+			if ($this->mConnections[$i]->lastQuery() != '') {
 				$this->mConnections[$i]->immediateCommit();
 			}
 		}
