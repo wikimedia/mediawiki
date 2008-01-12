@@ -124,7 +124,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added exception hooks
 * (bug 12574) Allow bots to specify whether an edit should be marked as a bot
   edit, via the parameter 'bot'. (Default: '1')
-* (bug 12536) User should be able to get MediaWiki version from any page
 
 
 === Bug fixes in 1.12 ===
