@@ -2373,4 +2373,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlisttools-edit' => 'Rediger overvågningsliste',
 'watchlisttools-raw'  => 'Rediger rå overvågningsliste',
 
+# Core parser functions
+'unknown_extension_tag' => 'Ukendt extension-tag: $1',
+
 );

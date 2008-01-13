@@ -365,6 +365,7 @@ $messages = array(
 # Miscellaneous special pages
 'nlinks'            => '$1 ligasaun',
 'nmembers'          => '$1 membru',
+'nrevisions'        => '$1 versaun',
 'allpages'          => 'Pájina hotu',
 'longpages'         => 'Pájina naruk',
 'listusers'         => "Lista uza-na'in",
@@ -375,6 +376,7 @@ $messages = array(
 'move'              => 'Book',
 'movethispage'      => "Book pájina ne'e",
 
+'userrights'     => "Filak kuana uza-na'in",
 'groups'         => "Lubu uza-na'in",
 'alphaindexline' => "$1 to'o $2",
 'version'        => 'Versaun',

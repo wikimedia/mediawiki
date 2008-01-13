@@ -1156,6 +1156,7 @@ PICT # misc.
 'mimesearch'         => 'Ricerca in base al tipo MIME',
 'mimesearch-summary' => 'Questa pagina consente di filtrare i file in base al tipo MIME. Inserire la stringa di ricerca nella forma tipo/sottotipo, ad es. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Tipo MIME:',
+'download'           => 'scarica',
 
 # Unwatched pages
 'unwatchedpages'         => 'Pagine non osservate',

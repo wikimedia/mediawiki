@@ -628,7 +628,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 
 Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Blokkeringsnummeret ditt er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
 'blockednoreason'           => 'Inga grunngjeving',
-'blockedoriginalsource'     => "Kjelda til '''$1''' er vist nedanfor:",
+'blockedoriginalsource'     => "Kjeldekoden til '''$1''' er vist nedanfor:",
 'blockededitsource'         => "Teksten i '''endringane dine''' på '''$1''' er vist nedanfor:",
 'whitelistedittitle'        => 'Du lyt logge inn for å gjera endringar',
 'whitelistedittext'         => 'Du lyt $1 for å endre sider.',
@@ -718,6 +718,7 @@ Sletteloggen for sida finn du her:",
 # "Undo" feature
 'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
 'undo-failure' => 'Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjort i mellomtida.',
+'undo-summary' => 'Rullar attende versjon $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan ikkje opprette brukarkonto',
@@ -751,11 +752,39 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'historyempty'        => '(tom)',
 
 # Revision feed
+'history-feed-title'          => 'Endringshistorikk',
+'history-feed-description'    => 'Endringshistorikk for denne sida på wikien',
 'history-feed-item-nocomment' => '$1 på $2', # user at time
+'history-feed-empty'          => 'Den etterspurde sida finst ikkje. Ho kan vere sletta frå wikien, eller vere flytta. Prøv å [[Special:Search|søke på wikien]] for relevante nye sider.',
 
 # Revision deletion
-'rev-delundel'         => 'vis/gøym',
-'revdelete-hide-image' => 'Skjul filinnhald',
+'rev-deleted-comment'         => '(samandraget er fjerna)',
+'rev-deleted-user'            => '(brukarnamnet er fjerna)',
+'rev-deleted-event'           => '(fjerna)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Denne versjonen av sida er fjerna frå den offentlege historikken. Det kan ligge detaljar om dette i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Denne versjonen av sida er fjerna frå den offentlege historikken, men du som administrator på {{SITENAME}} kan sjå han. Det kan ligge detaljar om fjerninga i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].</div>',
+'rev-delundel'                => 'vis/gøym',
+'revisiondelete'              => 'Slett/attopprett versjonar',
+'revdelete-nooldid-title'     => 'Inga endring er oppgjeve',
+'revdelete-nooldid-text'      => 'Du har ikkje oppgjeve kva for versjon(ar) du vil utføre denne handlinga på.',
+'revdelete-selected'          => "{{PLURAL:$2|Vald versjon|Valde versjonar}} av '''$1''':",
+'logdelete-selected'          => "{{PLURAL:$2|Vald loggoppføring|Valde loggoppføringar for}} for '''$1''':",
+'revdelete-text'              => 'Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.
+
+Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.',
+'revdelete-legend'            => 'Vel avgrensing:',
+'revdelete-hide-text'         => 'Gøym endringssamandraga',
+'revdelete-hide-name'         => 'Gøym handling og sidenamn',
+'revdelete-hide-comment'      => 'Gøym endringssamandraga',
+'revdelete-hide-user'         => 'Gøym brukarnamn/IP-adresse',
+'revdelete-hide-restricted'   => 'La desse avgrensingane gjelde for administratorar også',
+'revdelete-suppress'          => 'Fjern informasjon frå administratorar også',
+'revdelete-hide-image'        => 'Skjul filinnhald',
+'revdelete-unsuppress'        => 'Fjern avgrensingane på dei attoppretta versjonane',
+'revdelete-log'               => 'Loggkommentar:',
+'revdelete-submit'            => 'Utfør på vald versjon',
+'revdelete-logentry'          => 'endra versjonsvisinga til [[$1]]',
+'logdelete-logentry'          => 'endra visinga av loggoppføringane til [[$1]]',
 
 # History merging
 'mergehistory-from' => 'Kjeldeside',
@@ -807,6 +836,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'math'                     => 'Matematiske formlar',
 'dateformat'               => 'Datoformat',
 'datedefault'              => 'Standard',
+'datetime'                 => 'Dato og klokkeslett',
 'math_failure'             => 'Klarte ikkje å tolke formelen',
 'math_unknown_error'       => 'ukjend feil',
 'math_unknown_function'    => 'ukjend funksjon',
@@ -854,13 +884,24 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'userrights-groupshelp'      => 'Vel grupper du vil at brukaren skal fjernast frå eller leggjast til. Grupper som ikkje er valde vil ikkje bli endra. Du kan velja vekk ei gruppe med [CTRL + venstreklikk]',
 
 # Groups
-'group' => 'Gruppe:',
+'group'            => 'Gruppe:',
+'group-bot'        => 'Bottar',
+'group-sysop'      => 'Administratorar',
+'group-bureaucrat' => 'Byråkratar',
 
-'grouppage-sysop' => '{{ns:project}}:Administratorar',
+'group-bot-member'        => 'Bott',
+'group-sysop-member'      => 'Administrator',
+'group-bureaucrat-member' => 'Byråkrat',
+
+'grouppage-bot'        => '{{ns:project}}:Bottar',
+'grouppage-sysop'      => '{{ns:project}}:Administratorar',
+'grouppage-bureaucrat' => '{{ns:project}}:Byråkratar',
 
 # User rights log
-'rightslog'     => 'Brukartilgangslogg',
-'rightslogtext' => 'Dette er ein logg over endringar av brukartilgang.',
+'rightslog'      => 'Brukartilgangslogg',
+'rightslogtext'  => 'Dette er ein logg over endringar av brukartilgang.',
+'rightslogentry' => 'endra brukartilgangen til $1 frå $2 til $3',
+'rightsnone'     => '(ingen)',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Éi endring|$1 endringar}}',
@@ -871,7 +912,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'rcnotefrom'                        => 'Nedanfor er endringane frå <b>$2</b> inntil <b>$1</b> viste.',
 'rclistfrom'                        => 'Vis nye endringar frå $1',
 'rcshowhideminor'                   => '$1 småplukk',
-'rcshowhidebots'                    => '$1 robotar',
+'rcshowhidebots'                    => '$1 bottar',
 'rcshowhideliu'                     => '$1 innlogga brukarar',
 'rcshowhideanons'                   => '$1 anonyme brukarar',
 'rcshowhidepatr'                    => '$1 godkjende endringar',
@@ -1146,8 +1187,8 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'iteminvalidname'      => 'Problem med «$1», ugyldig namn...',
 'wlnote'               => 'Nedanfor er {{PLURAL:$1|den siste endringa|dei siste $1 endringane}} {{PLURAL:$2|den siste timen|dei siste $2 timane}}.',
 'wlshowlast'           => 'Vis siste $1 timar $2 dagar $3',
-'watchlist-show-bots'  => 'Vis robotar',
-'watchlist-hide-bots'  => 'Gøym robotar',
+'watchlist-show-bots'  => 'Vis bottar',
+'watchlist-hide-bots'  => 'Gøym bottar',
 'watchlist-show-own'   => 'Vis endringane mine',
 'watchlist-hide-own'   => 'Gøym endringane mine',
 'watchlist-show-minor' => 'Vis småplukk',

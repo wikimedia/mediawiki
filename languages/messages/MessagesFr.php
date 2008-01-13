@@ -17,6 +17,7 @@
  * @author Nike
  * @author לערי ריינהארט
  * @author Dereckson
+ * @author Meithal
  */
 
 $skinNames = array(
@@ -322,7 +323,7 @@ $messages = array(
 == Démarrer avec MediaWiki ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste des paramètres de configuration]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ MediaWiki]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion des parutions de MediaWiki]',
 
 'about'          => 'À propos',
@@ -416,7 +417,7 @@ $messages = array(
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Aide',
 'mainpage'          => 'Accueil',
-'policy-url'        => 'Project:policy',
+'policy-url'        => 'Project:règles',
 'portal'            => 'Communauté',
 'portal-url'        => 'Project:Accueil',
 'privacy'           => 'Politique de confidentialité',
@@ -1047,7 +1048,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
 
 # Upload
-'upload'                      => 'Importer le fichier',
+'upload'                      => 'Importer un fichier',
 'uploadbtn'                   => 'Importer le fichier',
 'reupload'                    => 'Copier à nouveau',
 'reuploaddesc'                => 'Retour au formulaire.',
