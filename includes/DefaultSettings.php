@@ -2521,7 +2521,7 @@ $wgRateLimits = array(
 	'edit' => array(
 		'anon'   => null, // for any and all anonymous edits (aggregate)
 		'user'   => null, // for each logged-in user
-		'newbie' => null, // for each recent account; overrides 'user'
+		'newbie' => null, // for each recent (autoconfirmed) account; overrides 'user'
 		'ip'     => null, // for each anon and recent account
 		'subnet' => null, // ... with final octet removed
 		),
