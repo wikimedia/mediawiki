@@ -428,8 +428,8 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'gotaccount'                 => 'Vos avéd ja un compto ? $1.',
 'gotaccountlink'             => 'Identifiâd-vos',
 'createaccountmail'          => 'per mèl',
-'badretype'                  => 'Los mots de pâssa que vos éd grepâs sont pas identicos.',
-'userexists'                 => 'Lo nom d’utilisator que vos éd grepâ est ja utilisâ. Volyéd nen chouèsir/cièrdre un ôtro.',
+'badretype'                  => 'Los mots de pâssa que vos éd buchiês sont pas identicos.',
+'userexists'                 => 'Lo nom d’utilisator que vos éd buchiê est ja utilisâ. Volyéd nen chouèsir/cièrdre un ôtro.',
 'youremail'                  => 'Adrèce de mèl :',
 'username'                   => 'Nom d’utilisator :',
 'uid'                        => 'Numerô d’utilisator :',
@@ -446,13 +446,13 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'prefs-help-email-required'  => 'Una adrèce de mèl est requisa.',
 'nocookiesnew'               => "Lo compto utilisator at étâ crèâ, mas vos éte pas conèctâ. {{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et pués vos tornar conèctar avouéc lo mémo nom et lo mémo mot de pâssa.",
 'nocookieslogin'             => "{{SITENAME}} utilise des tèmouens (''cookies'') por la conèccion mas vos los éd dèsactivâs. Volyéd los activar et pués vos tornar conèctar.",
-'noname'                     => 'Vos éd pas grepâ un nom d’utilisator valido.',
+'noname'                     => 'Vos éd pas buchiê un nom d’utilisator valido.',
 'loginsuccesstitle'          => 'Identificacion reussia.',
 'loginsuccess'               => "'''Orendrêt, vos éte conèctâ dessus {{SITENAME}} a titro de « $1 ».'''",
 'nosuchuser'                 => 'L’utilisator « $1 » ègziste pas.
 Controlâd que vos éd bien ortografiâ lo nom, ou ben utilisâd lo formulèro ce-desot por crèar un novél compto utilisator.',
 'nosuchusershort'            => 'Y at pas de contributor avouéc lo nom « $1 ». Volyéd controlar l’ortografia.',
-'nouserspecified'            => 'Vos dête grepar un nom d’utilisator.',
+'nouserspecified'            => 'Vos dête buchiér un nom d’utilisator.',
 'wrongpassword'              => 'Lo mot de pâssa est fôx. Volyéd tornar èprovar.',
 'wrongpasswordempty'         => 'Vos éd pas entrâ de mot de pâssa. Volyéd tornar èprovar.',
 'passwordtooshort'           => 'Voutron mot de pâssa est trop côrt. Dêt contegnir u muens $1 caractèros et étre difèrent de voutron nom d’utilisator.',
@@ -924,7 +924,7 @@ Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar
 'recentchangeslinked-summary'  => "Ceta pâge spèciâla montre los dèrriérs changements sur les pâges que sont liyês. Les pâges de voutra lista de siuvu sont '''en grâs'''.",
 
 # Upload
-'upload'                      => 'Importar una émâge ou un son',
+'upload'                      => 'Importar un fichiér',
 'uploadbtn'                   => 'Importar lo fichiér',
 'reupload'                    => 'Relevar',
 'reuploaddesc'                => 'Retôrn u formulèro.',
@@ -1358,7 +1358,7 @@ Retôrn et assistance :
 'confirmdelete'               => 'Confirmar la suprèssion',
 'deletesub'                   => '(Suprèssion de « $1 »)',
 'historywarning'              => 'Atencion : la pâge que vos éte prèst a suprimar at un historico :',
-'confirmdeletetext'           => 'Vos éte prèst a suprimar por tojorn de la bâsa de balyês una pâge ou una émâge, et pués totes ses vèrsions prècèdentes. Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
+'confirmdeletetext'           => 'Vos éte prèst a suprimar por de bon de la bâsa de balyês una pâge ou una émâge, et pués totes ses vèrsions prècèdentes. Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'actioncomplete'              => 'Accion fêta',
 'deletedtext'                 => '« $1 » at étâ suprimâ.
 Vêde l’$2 por una lista de les novèles suprèssions.',
@@ -2373,3 +2373,4 @@ $1',
 'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
 
 );
+
