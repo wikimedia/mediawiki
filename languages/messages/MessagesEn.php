@@ -1928,8 +1928,7 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); changed back to last version by [[User:$1|$1]]',
 'rollback-success'            => 'Reverted edits by $1; changed back to last version by $2.',
-'sessionfailure'              => 'There seems to be a problem with your login session; this action has been canceled as a precaution against session hijacking.
-Please hit "back" and reload the page you came from, then try again.',
+'sessionfailure'              => 'There seems to be a problem with your login session; this action has been canceled as a precaution against session hijacking. Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage'              => 'Protection log',
 'protectlogtext'              => 'Below is a list of page locks and unlocks. See the [[Special:Protectedpages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'            => 'protected "[[$1]]"',

@@ -1025,8 +1025,9 @@ class Title {
 	}
 
 	/**
-	 * Can $user perform $action on this page?  This *does not* check throttles
-	 * (User::pingLimiter()) yet; check that manually to be sure.
+	 * Can $user perform $action on this page?
+	 *
+	 * FIXME: This *does not* check throttles (User::pingLimiter()).
 	 *
 	 * @param string $action action that permission needs to be checked for
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
