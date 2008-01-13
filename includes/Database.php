@@ -759,9 +759,13 @@ class Database {
 
 		# If DBO_TRX is set, start a transaction
 		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() && 
-			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK' 
-		) {
-			$this->begin();
+			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK') {
+			// avoid establishing transactions for SHOW and SET statements too -
+			// that would delay transaction initializations to once connection 
+			// is really used by application
+			$sqlstart = substr($sql,0,10); // very much worth it, benchmark certified(tm)
+			if (strpos($sqlstart,"SHOW ")!==0 and strpos($sqlstart,"SET ")!==0) 
+				$this->begin(); 
 		}
 
 		if ( $this->debug() ) {
