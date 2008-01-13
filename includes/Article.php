@@ -2265,9 +2265,13 @@ class Article {
 	}
 
 	/**
-	 * Roll back the most recent consecutive set of edits to a page
-	 * from the same user; fails if there are no eligible edits to
-	 * roll back to, e.g. user is the sole contributor
+	 * Roll back the most recent consecutive set of edits to a page from the
+	 * same user; fails if there are no eligible edits to roll back to, e.g.
+	 * user is the sole contributor.
+	 *
+	 * FIXME: We shouldn't do permissions checking here; that should be done in
+	 * a wrapper so that server-side scripts can use this if they know what
+	 * they're doing.
 	 *
 	 * @param string $fromP - Name of the user whose edits to rollback. 
 	 * @param string $summary - Custom summary. Set to default summary if empty.
@@ -2286,7 +2290,7 @@ class Article {
 
 		# Just in case it's being called from elsewhere		
 
-		if( $wgUser->isAllowed( 'rollback' ) && $this->mTitle->userCan( 'edit' ) ) {
+		if( $this->mTitle->userCan( 'edit' ) ) {
 			if( $wgUser->isBlocked() ) {
 				return self::BLOCKED;
 			}
@@ -2391,10 +2395,8 @@ class Article {
 
 		$details = null;
 
-		# Skip the permissions-checking in doRollback() itself, by checking permissions here.
-
-		$perm_errors = array_merge( $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser ),
-						$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser ) );
+		# We do permissions checking twice, for some reason . . .
+		$perm_errors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
 
 		if (count($perm_errors)) {
 			$wgOut->showPermissionsErrorPage( $perm_errors );
@@ -2414,7 +2416,7 @@ class Article {
 				$wgOut->blockedPage();
 				break;
 			case self::PERM_DENIED:
-				$wgOut->permissionRequired( 'rollback' );
+				$wgOut->permissionRequired( 'edit' );
 				break;
 			case self::READONLY:
 				$wgOut->readOnlyPage( $this->getContent() );
