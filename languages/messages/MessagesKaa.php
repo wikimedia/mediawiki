@@ -1048,7 +1048,7 @@ Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'�
 'deletesub'                   => '("$1" o\'shirilmekte)',
 'historywarning'              => "Esletpe: O'shireyin dep atırg'an betin'izdin' tariyxi bar:",
 'confirmdeletetext'           => "Siz bul betti yamasa su'wretti barliq tariyxı menen mag'lıwmatlar bazasınan o'shirejaqsız.
-Bunın' aqıbetin tu'singenin'izdi ha'm [[{{{{ns:mediawiki}}:Policy-url}}]] siyasatına ılayıqlı ekenligin tastıyıqlan'.",
+Bunın' aqıbetin tu'singenin'izdi ha'm [[{{MediaWiki:Policy-url}}]] siyasatına ılayıqlı ekenligin tastıyıqlan'.",
 'actioncomplete'              => "Ha'reket tamamlandı",
 'deletedtext'                 => "\"\$1\" o'shirildi.
 Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",

@@ -370,11 +370,11 @@ $messages = array(
 'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",
 'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 
-== Meer hulp ==
+== Meer hulp over MediaWiki ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lijst met instellingen]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglijst voor nieuwe versies]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Veelgestelde vragen (FAQ)]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]',
 
 'about'          => 'Info',
 'article'        => 'Pagina',
@@ -660,8 +660,8 @@ Als iemand anders dan u dit verzoek heeft gedaan of als u zich inmiddels het wac
 'passwordsent'               => 'Het wachtwoord is verzonden naar het e-mailadres voor "$1".
 Meld u a.u.b. aan nadat u het heeft ontvangen.',
 'blocked-mailpassword'       => 'Uw IP-adres is geblokkeerd voor het maken van wijzigingen. Om misbruik te voorkomen is het niet mogelijk om een nieuw wachtwoord aan te vragen.',
-'eauthentsent'               => 'Er is een bevestigingsmail naar het opgegeven e-mailadres gezonden. Volg de instructies in de e-mail om aan te geven dat het uw e-mailadres is. Tot die tijd wordt er geen e-mail aan het adres gezonden.',
-'throttled-mailpassword'     => 'Een wachtwoordherinnering werd gedurende de laatste $1 uren verzonden. Om misbruik te voorkomen, wordt er slechts één herinnering per $1 uren verzonden.',
+'eauthentsent'               => 'Er is een bevestigingse-mail naar het opgegeven e-mailadres gezonden. Volg de instructies in de e-mail om aan te geven dat het uw e-mailadres is. Tot die tijd wordt er geen e-mail aan het adres gezonden.',
+'throttled-mailpassword'     => 'Er is in de laatste $1 uren een wachtwoordherinnering verzonden. Om misbruik te voorkomen, wordt er slechts één herinnering per $1 uren verzonden.',
 'mailerror'                  => 'Fout bij het verzenden van e-mail: $1',
 'acct_creation_throttle_hit' => 'Sorry, er zijn al $1 gebruikers aangemaakt vanaf dit IP-adres. U kan geen nieuwe gebruikers meer aanmaken.',
 'emailauthenticated'         => 'Uw e-mailadres is bevestigd op $1.',
@@ -680,7 +680,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 
 # Password reset dialog
 'resetpass'               => 'Wachtwoord herinstellen',
-'resetpass_announce'      => 'U bent aangemeld met een tijdelijke code die per e-mail is toegezonden. Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
+'resetpass_announce'      => 'U bent aangemeld met een tijdelijke code die u per e-mail is toegezonden. Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'resetpass_text'          => '<!-- Voeg hier tekst toe -->',
 'resetpass_header'        => 'Wachtwoord herinstellen',
 'resetpass_submit'        => 'Wachtwoord instellen en aanmelden',
@@ -1452,7 +1452,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 # E-mail user
 'mailnologin'     => 'Geen verzendadres beschikbaar',
-'mailnologintext' => 'U moet [[Special:Userlogin|aangemeld]] zijn en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]] vermelden om andere gebruikers te mailen.',
+'mailnologintext' => 'U moet [[Special:Userlogin|aangemeld]] zijn en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]] vermelden om andere gebruikers te kunnen e-mailen.',
 'emailuser'       => 'Deze gebruiker e-mailen',
 'emailpage'       => 'Gebruiker e-mailen',
 'emailpagetext'   => 'Als deze gebruiker een geldig e-mailadres heeft opgegeven, dan kan u via dit formulier een bericht verzenden. Het e-mailadres dat u heeft opgegeven bij uw voorkeuren wordt als afzender gebruikt.',
@@ -2376,7 +2376,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'confirmemail_oncreate'   => 'Er is een bevestigingscode is naar uw e-mailadres verzonden. Deze code is niet nodig om u aan te melden, maar u dient deze wel te bevestigen voordat u de e-mailmogelijkheden van deze wiki kan gebruiken.',
 'confirmemail_sendfailed' => 'Het was niet mogelijk een bevestigingscode te verzenden. Controleer het adres op ongeldige tekens.
 
-Het mailprogramma meldde: $1',
+Het e-mailprogramma meldde: $1',
 'confirmemail_invalid'    => 'Ongeldige bevestigingscode. Mogelijk is de code verlopen.',
 'confirmemail_needlogin'  => 'U dient $1 om uw e-mailadres te bevestigen.',
 'confirmemail_success'    => 'Uw e-mailadres is bevestigd. U kan zich nu aanmelden en {{SITENAME}} gebruiken.',

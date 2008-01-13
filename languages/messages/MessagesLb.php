@@ -295,7 +295,7 @@ $messages = array(
 'viewtalkpage'     => 'Diskussioun weisen',
 'otherlanguages'   => 'Aner Sproochen',
 'redirectedfrom'   => '(Virugeleet vun $1)',
-'redirectpagesub'  => 'Redirectsäit',
+'redirectpagesub'  => 'Viruleedungssäit',
 'lastmodifiedat'   => "Dës Säit gouf den $1 ëm $2 Auer fir d'lescht geännert.", # $1 date, $2 time
 'viewcount'        => 'Dës Säit gouf bis elo {{PLURAL:$1|emol|$1-mol}} ofgefrot.',
 'protectedpage'    => 'Protegéiert Säit',
@@ -701,12 +701,13 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'revdelete-logaction'    => '$1 {{PLURAL:$1|Versioun|Versiounen}} an de Modus $2 gesat',
 
 # History merging
-'mergehistory'        => 'Historiquë fusionéieren',
-'mergehistory-box'    => 'Historiquë vun zwou Säite fusionéieren',
-'mergehistory-from'   => 'Originalsäit:',
-'mergehistory-into'   => 'Zilsäit:',
-'mergehistory-submit' => 'Versioune verschmelzen',
-'mergehistory-empty'  => 'Et kënne keng Versioune fusionéiert ginn',
+'mergehistory'         => 'Historiquë fusionéieren',
+'mergehistory-box'     => 'Historiquë vun zwou Säite fusionéieren',
+'mergehistory-from'    => 'Originalsäit:',
+'mergehistory-into'    => 'Zilsäit:',
+'mergehistory-submit'  => 'Versioune verschmelzen',
+'mergehistory-empty'   => 'Et kënne keng Versioune fusionéiert ginn',
+'mergehistory-success' => '{{PLURAL:$3|1 Versioun|$3 Versiounen}} vun [[:$1]] mat Succès op [[:$2]] zesummegeluecht.',
 
 # Merge log
 'mergelog' => 'Fusiouns-Logbuch',
@@ -739,7 +740,10 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'showingresultsnum'     => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
 'nonefound'             => '<strong>Opgepasst</strong>: Net erfollegräich Siche geschéien dacks doduerch, datt zevill allgeméng Wierder benotzt ginn, wéi "an" oder "vun", déi net indexéiert sinn, oder wann dir méi wéi ee Wuert ugitt (dir kritt nëmmen déi Säiten ugewisen, an deenen all d\'Wierder stinn).',
 'powersearch'           => 'Sichen',
-'powersearchtext'       => 'Sich an de Nimmraim:<br />$1<br />$2 Redirecte weisen<br />Sich no: $3 $9',
+'powersearchtext'       => 'Sich an de Nimmraim:<br />$1
+<br />
+$2 Viruleedunge weisen<br />
+Sich no: $3 $9',
 'searchdisabled'        => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat H!ellef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Preferences page
@@ -977,7 +981,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'unwatchedpages' => 'Nët iwwerwaachte Säiten',
 
 # List redirects
-'listredirects' => 'Lëscht vun de Redirecten',
+'listredirects' => 'Lëscht vun de Viruleedungen',
 
 # Unused templates
 'unusedtemplates'     => 'Onbenotzte Schablounen',
@@ -989,22 +993,23 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'randompage-nopages' => 'Et gëtt keng Säiten an dësem Nummraum.',
 
 # Random redirect
-'randomredirect' => 'Zoufälleg Weiderleedung',
+'randomredirect'         => 'Zoufälleg Viruleedung',
+'randomredirect-nopages' => 'An dësem Nummraum gëtt et keng Viruleedungen.',
 
 # Statistics
 'statistics'             => 'Statistik',
 'sitestats'              => '{{SITENAME}}-Statistik',
 'userstats'              => 'Benotzerstatistik',
 'sitestatstext'          => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Säit|Säiten}} an der Datebank.
-Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Säiten, Redirecten an anerer déi eventuell net als Säite gezielt kënne ginn.
+Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Säiten, Viruleedungen an anerer déi eventuell net als Säite gezielt kënne ginn.
 
 Déi ausgeschloss ginn et {{PLURAL:\$2|Säit|Säiten}} déi als Säite betruecht {{PLURAL:\$2|ka|kënne}} ginn. 
 
 Am ganzen {{PLURAL:\$8|gouf '''1''' Fichier|goufen '''\$8''' Fichieren}} eropgelueden.
 
-Am ganze gouf '''\$3''' {{PLURAL:\$3|Säitenoffro|Säitenoffroen}} ann '''\$4''' {{PLURAL:\$4|Säitebearbechtung|Säitebearbechtungen}} zënter datt {{SITENAME}} ageriicht gouf.
+Am ganze gouf '''\$3''' {{PLURAL:\$3|Säitenoffro|Säitenoffroen}} ann '''\$4''' {{PLURAL:\$4|Ännerung|Ännerunge}} zënter datt {{SITENAME}} ageriicht gouf.
 
-Doraus ergi sech '''\$5''' Bearbechtungen pro Säit an '''\$6''' Säitenoffroen pro Bearbechtung.
+Doraus ergi sech '''\$5''' Ännerunge pro Säit an '''\$6''' Säitenoffroen pro Ännerung.
 
 Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''\$7'''",
 'userstatstext'          => "'''$1''' [[Special:Listusers|Benotzer]] {{PLURAL:$1|ass|sinn}} ageschriwwen.  '''$2''' (oder '''$4%''') vun dëse {{PLURAL:$2|ass|sinn}} $5.",
@@ -1013,11 +1018,12 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'disambiguations'     => 'Homonymie Säiten',
 'disambiguationspage' => 'Schabloun:Homonymie',
 
-'doubleredirects'     => 'Duebel Redirecten',
-'doubleredirectstext' => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vum éischte #REDIRECT gëtt.<br /> An all Rei sti Linken zum éischten an zweete Redirect, souwéi déi éischt Zeil vum Text vum zweete Redirect, wou normalerweis déi "richteg" Zilsäit drasteet, op déi den éischte Redirect hilinke soll.',
+'doubleredirects'     => 'Duebel Viruleedungen',
+'doubleredirectstext' => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vun der éischter Viruleedung gëtt.<br /> 
+An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt Zeil vum Text vun der zweeter Viruleedung, wou normalerweis déi "richteg" Zilsäit drasteet, op déi déi éischt Viruleedung hilinke soll.',
 
-'brokenredirects'        => 'Futtise Redirect',
-'brokenredirectstext'    => 'Folgend Redirects linken op Säiten déi et net gëtt.',
+'brokenredirects'        => 'Futtis Viruleedungen',
+'brokenredirectstext'    => 'Viruleedungen op Säiten déi et net gëtt',
 'brokenredirects-edit'   => '(änneren)',
 'brokenredirects-delete' => '(läschen)',
 
@@ -1208,7 +1214,7 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'protect-text'                => "Hei kënnt Dir de Protectiounsstatus fir d'Säit <strong>$1</strong> kucken an änneren.",
 'protect-locked-access'       => "Dir hutt net déi néideg Rechter fir de Protectiouns-Niveau vun dëser Säit z'änneren. 
 Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
-'protect-cascadeon'           => "Dës Säit ass elo gespaart well si an déi folg4end {{PLURAL:$1|Säit|Säiten}} agebonn ass déi duerch eng Kaskadespär blockéiert {{PLURAL:$1|ass|sinn}}. De Protectiounsniveau ka fir dës Seite geännert ginn, dëst huet awer keen Afloss op d'Kaskadespär.",
+'protect-cascadeon'           => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonn ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. De Protectiounsniveau ka fir dës Seite geännert ginn, dëst huet awer keen Afloss op d'Kaskadespär.",
 'protect-default'             => 'Alleguer (Standard)',
 'protect-fallback'            => 'Eng "$1"-Autorisatioun gëtt gebraucht.',
 'protect-level-autoconfirmed' => 'Spär fir net ugemellte Benotzer',
@@ -1276,15 +1282,15 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'linkshere'           => "Déi folgend Säite linken op '''[[:$1]]''':",
 'nolinkshere'         => "Keng Säit ass mat '''[[:$1]]''' verlinkt.",
 'nolinkshere-ns'      => "Keng Säite linken op '''[[:$1]]''' am gewielten Nummraum.",
-'isredirect'          => 'Redirectsäit',
+'isredirect'          => 'Viruleedung',
 'istemplate'          => 'Schablounen déi an dëser Säit integréiert sinn',
 'whatlinkshere-prev'  => '{{PLURAL:$1|vireschten|virescht $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|nächsten|nächst $1}}',
 'whatlinkshere-links' => '← Linken',
 
 # Block/unblock
-'blockip'                     => 'Benotzer blockéieren',
-'blockiptext'                 => 'Benotzt dës Form fir eng spezifesch IP Adress oder e Benotzernumm ze blockéieren. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat der [[Wikipedia:Vandalismus|Wikipedia Policy]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
+'blockip'                     => 'Benotzer spären',
+'blockiptext'                 => 'Benotzt dës Form fir eng spezifesch IP Adress oder e Benotzernumm ze spären. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat der [[Wikipedia:Vandalismus|Wikipedia Policy]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
 'ipaddress'                   => 'IP-Adress oder Benotzernamm:',
 'ipadressorusername'          => 'IP-Adress oder Benotzernumm:',
 'ipbreason'                   => 'Grond:',
@@ -1297,7 +1303,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 **Beleidegt oder bedréit aner Mataarbechter
 **Mëssbrauch vu verschiddene Benotzernimm
 **Net akzeptabele Benotzernumm",
-'ipbenableautoblock'          => 'Automatesch all IP blockéieren duerch déi op dëse Benotzerkont zougegraff ka ginn',
+'ipbenableautoblock'          => 'Automatesch all IP spären duerch déi op dëse Benotzerkont zougegraff ka ginn',
 'ipbsubmit'                   => 'Dës IP-Adress resp dëse Benotzer spären',
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Aner Dauer',
@@ -1315,7 +1321,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipblocklist-legend'          => 'No engem gespaarte Benotzer sichen',
 'ipblocklist-username'        => 'Benotzernumm oder IP-Adress:',
 'ipblocklist-submit'          => 'Sichen',
-'blocklistline'               => '$1, $2 blockéiert $3 (gülteg bis $4)',
+'blocklistline'               => '$1, $2 gespaart $3 (gülteg bis $4)',
 'infiniteblock'               => 'onbegrenzt',
 'expiringblock'               => 'bis $1',
 'anononlyblock'               => 'nëmmen anonym Benotzer',
@@ -1324,7 +1330,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'blocklink'                   => 'spären',
 'unblocklink'                 => 'Spär annulléieren',
 'contribslink'                => 'Kontributiounen',
-'autoblocker'                 => 'Dir sidd autoblockéiert well dir eng IP Adress mam "$1" deelt. Grond "$2".',
+'autoblocker'                 => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "$1" deelt. Grond "$2".',
 'blocklogpage'                => 'Spärlëscht',
 'blocklogentry'               => '"[[$1]]" gespaart, gülteg bis $2 $3',
 'blocklogtext'                => "Dëst ass eng Lëscht vu Spären an den Annulatioune vun de Spären. Automatesch gespaarten IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:Ipblocklist|IP Spärlëschtt]] fir déi aktuell Spären.",
@@ -1355,9 +1361,9 @@ Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance
 'movepage'                => 'Säit réckelen',
 'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Redirect op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert; 
 
-Passt op datt keng duebel oder feelerhaft Redirecten am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.
+Passt op datt keng duebel oder feelerhaft Viruleedungen am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.
 
-Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonns eng Säit mat deem Titel gëtt, ausser dës ass eidel, ass e Redirect oder huet keen Historique. Dëst bedeit datt dir eng Säit ëmbenenne kënnt an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
+Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonns eng Säit mat deem Titel gëtt, ausser dës ass eidel, ass eng Viruleedung oder huet keen Historique. Dëst bedeit datt dir eng Säit ëmbenenne kënnt an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
 
 <b>OPGEPASST!</b> 
 Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
@@ -1496,7 +1502,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamfilter',
-'spamprotectiontext'     => "D'Säit déi dir späichere wollt gouf vum Spamfilter blockéiert. Dëst wahrscheinlech duerch en externe Link.",
+'spamprotectiontext'     => "D'Säit déi dir späichere wollt gouf vum Spamfilter gespaart. Dëst warscheinlech duerch en externe Link.",
 'subcategorycount'       => 'Fir dës Kategorie {{PLURAL:$1|gëtt et $1 Ënnerkategorie| ginn et $1 Ënnerkategorien}}.',
 'categoryarticlecount'   => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Säit|ginn et bis ewell $1 Säiten}}.',
 'category-media-count'   => 'Et {{PLURAL:$1|gëtt eng Datei|ginn $1 Dateien}} an dëser Kategorie',
@@ -1607,10 +1613,12 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'exif-focallengthin35mmfilm'       => 'Brennwäit (Klengbildäquivalent)',
 'exif-scenecapturetype'            => 'Opnameaart',
 'exif-gaincontrol'                 => 'Verstäerkung',
+'exif-contrast'                    => 'Kontrast',
 'exif-sharpness'                   => 'Schäerft',
 'exif-subjectdistancerange'        => 'Motivdistanz',
 'exif-gpsaltitude'                 => 'Héicht',
 'exif-gpstimestamp'                => 'GPS-Zäit',
+'exif-gpsspeedref'                 => 'Eenheet vun der Vitesse',
 'exif-gpsdestlatituderef'          => "Referenz fir d'Breet",
 'exif-gpsdestlatitude'             => 'Breet',
 'exif-gpsdestlongituderef'         => "Referenz fir d'Längt",
@@ -1632,6 +1640,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'exif-exposureprogram-0' => 'Onbekannt',
 'exif-exposureprogram-3' => 'Zäitautomatik',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
+
+'exif-subjectdistance-value' => '$1 Meter',
 
 'exif-meteringmode-0'   => 'Onbekannt',
 'exif-meteringmode-1'   => 'Duerchschnëttlech',
@@ -1655,6 +1665,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'exif-sensingmethod-3' => 'Zwee-Chip-Farfsensor',
 'exif-sensingmethod-4' => 'Dräi-Chip-Farfsensor',
 'exif-sensingmethod-7' => 'Trilineare Sensor',
+
+'exif-scenetype-1' => "D'Bild gouf photograféiert",
 
 'exif-exposuremode-0' => 'Automatesch Beliichtung',
 'exif-exposuremode-1' => 'Manuell Beliichtung',
@@ -1725,6 +1737,9 @@ Feelermeldung vum Mailserver: $1",
 'deletedwhileediting' => 'Opgepasst: Dës Säit gouf geläscht nodeems datt der ugefaangen hutt se ze änneren!',
 'confirmrecreate'     => "De Benotzer [[User:$1|$1]] ([[User talk:$1|Diskussioun]]) huet dës Säit geläscht, nodeems datt där ugefaangen hutt drun ze schaffen. D'Begrënnung war: ''$2'' Bestätegt w.e.g., datt Dir dës Säit wierklich erëm nei opmaache wëllt.",
 
+# HTML dump
+'redirectingto' => 'Virugeleed op [[$1]]',
+
 # action=purge
 'confirm_purge'        => 'Dës Säit aus dem Server-Cache läschen? 
 
@@ -1762,6 +1777,9 @@ $1',
 # Live preview
 'livepreview-loading' => 'Lueden …',
 'livepreview-ready'   => 'Lueden … Fäerdeg!',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Ännerunge vun de leschte(n) $1 Sekonnen kënne an dëser Lëscht net gewise ginn.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => "Op Ärer Iwwerwaachungslëscht {{PLURAL:$1|steet 1 Säit|stinn $1 Säiten}}, ouni d'Diskussiounssäiten.",
