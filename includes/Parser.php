@@ -3626,20 +3626,13 @@ class Parser
 	function argSubstitution( $piece, $frame ) {
 		wfProfileIn( __METHOD__ );
 
-		$text = false;
 		$error = false;
 		$parts = $piece['parts'];
 		$nameWithSpaces = $frame->expand( $piece['title'] );
 		$argName = trim( $nameWithSpaces );
 
-		# For backwards compatibility, only named arguments are trimmed. 
-		# Numbered arguments are left with all whitespace included. 
-		# There is no good reason for this apart from b/c.
-		if ( isset( $frame->numberedArgs[$argName] ) ) {
-			$text = $frame->parent->expand( $frame->numberedArgs[$argName] );
-		} elseif ( isset( $frame->namedArgs[$argName] ) ) {
-			$text = trim( $frame->parent->expand( $frame->namedArgs[$argName] ) );
-		} elseif ( ( $this->ot['html'] || $this->ot['pre'] ) && $parts->length > 0 ) {
+		$text = $frame->getArgument( $argName );
+		if (  $text === false && ( $this->ot['html'] || $this->ot['pre'] ) && $parts->length > 0 ) {
 			# No match in frame, use the supplied default
 			$text = $frame->expand( $parts->item( 0 ) );
 		}
@@ -5603,6 +5596,10 @@ class PPFrame {
 	function isEmpty() {
 		return true;
 	}
+
+	function getArgument( $name ) {
+		return false;
+	}
 }
 
 /**
@@ -5610,6 +5607,7 @@ class PPFrame {
  */
 class PPTemplateFrame extends PPFrame {
 	var $numberedArgs, $namedArgs, $parent;
+	var $numberedExpansionCache, $namedExpansionCache;
 
 	function __construct( $parser, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
 		$this->parser = $parser;
@@ -5621,6 +5619,7 @@ class PPTemplateFrame extends PPFrame {
 		$this->titleCache[] = $title ? $title->getPrefixedDBkey() : false;
 		$this->loopCheckHash = /*clone*/ $parent->loopCheckHash;
 		$this->depth = $parent->depth + 1;
+		$this->numberedExpansionCache = $this->namedExpansionCache = array();
 	}
 
 	function __toString() {
@@ -5645,5 +5644,36 @@ class PPTemplateFrame extends PPFrame {
 	function isEmpty() {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
 	}
-}
 
+	function getNumberedArgument( $index ) {
+		if ( !isset( $this->numberedArgs[$index] ) ) {
+			return false;
+		}
+		if ( !isset( $this->numberedExpansionCache[$index] ) ) {
+			# No trimming for unnamed arguments
+			$this->numberedExpansionCache[$index] = $this->parent->expand( $this->numberedArgs[$index], self::STRIP_COMMENTS );
+		}
+		return $this->numberedExpansionCache[$index];
+	}
+
+	function getNamedArgument( $name ) {
+		if ( !isset( $this->namedArgs[$name] ) ) {
+			return false;
+		}
+		if ( !isset( $this->namedExpansionCache[$name] ) ) {
+			# Trim named arguments post-expand, for backwards compatibility
+			$this->namedExpansionCache[$name] = trim( 
+				$this->parent->expand( $this->namedArgs[$name], self::STRIP_COMMENTS ) );
+		}
+		return $this->namedExpansionCache[$name];
+	}
+
+	function getArgument( $name ) {
+		wfDebug( __METHOD__." getting '$name'\n" );
+		$text = $this->getNumberedArgument( $name );
+		if ( $text === false ) {
+			$text = $this->getNamedArgument( $name );
+		}
+		return $text;
+	}
+}
