@@ -3008,12 +3008,11 @@ class Parser
 					foreach ( $parts as $partIndex => $part ) {
 						if ( isset( $piece['eqpos'][$partIndex] ) ) {
 							$eqpos = $piece['eqpos'][$partIndex];
-							list( $ws1, $argName, $ws2 ) = self::splitWhitespace( substr( $part, 0, $eqpos ) );
-							list( $ws3, $argValue, $ws4 ) = self::splitWhitespace( substr( $part, $eqpos + 1 ) );
-							$element .= "<part>$ws1<name>$argName</name>$ws2=$ws3<value>$argValue</value>$ws4</part>";
+							$argName = substr( $part, 0, $eqpos );
+							$argValue = substr( $part, $eqpos + 1 );
+							$element .= "<part><name>$argName</name>=<value>$argValue</value></part>";
 						} else {
-							list( $ws1, $value, $ws2 ) = self::splitWhitespace( $part );
-							$element .= "<part>$ws1<name index=\"$argIndex\" /><value>$value</value>$ws2</part>";
+							$element .= "<part><name index=\"$argIndex\" /><value>$part</value></part>";
 							$argIndex++;
 						}
 					}
@@ -3634,8 +3633,10 @@ class Parser
 		$arg = trim( $argWithSpaces );
 
 		if ( isset( $frame->args[$arg] ) ) {
+			# Found template argument
 			$text = $frame->parent->expand( $frame->args[$arg] );
 		} else if ( ( $this->ot['html'] || $this->ot['pre'] ) && $parts->length > 0 ) {
+			# No match in frame, use the supplied default
 			$text = $frame->expand( $parts->item( 0 ) );
 		}
 		if ( !$this->incrementIncludeSize( 'arg', strlen( $text ) ) ) {
@@ -3643,6 +3644,7 @@ class Parser
 		}
 
 		if ( $text === false ) {
+			# No match anywhere
 			$text = '{{{' . $frame->implode( '|', $argWithSpaces, $parts ) . '}}}';
 		}
 		if ( $error !== false ) {
