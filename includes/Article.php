@@ -1204,7 +1204,8 @@ class Article {
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false, $bot=false ) {
 		$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $isminor ? EDIT_MINOR : 0 ) |
-			( $suppressRC ? EDIT_SUPPRESS_RC : 0 );
+			( $suppressRC ? EDIT_SUPPRESS_RC : 0 ) |
+			( $bot ? EDIT_FORCE_BOT : 0 );
 
 		# If this is a comment, add the summary as headline
 		if ( $comment && $summary != "" ) {
