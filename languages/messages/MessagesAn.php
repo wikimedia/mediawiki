@@ -770,7 +770,7 @@ Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato
 
 # Oversight log
 'oversightlog'    => "Rechistro d'escudios",
-'overlogpagetext' => "Contino s'amuestra una lista de borraus y bloqueos más rezients relatibos á contenius amagatos d'os almenistradors d'o sistema. Consulte a [[Special:Ipblocklist|lista d'adrezas IP bloquiatas]] ta beyer una lista d'os bloqueos autuals.",
+'overlogpagetext' => "Contino s'amuestra una lista de borraus y bloqueyos más rezients relatibos á contenius amagatos d'os almenistradors d'o sistema. Consulte a [[Special:Ipblocklist|lista d'adrezas IP bloquiatas]] ta beyer una lista d'os bloqueyos autuals.",
 
 # History merging
 'mergehistory'                     => 'Aunir istorials',
@@ -836,7 +836,7 @@ Mirar $3 $9',
 'mypreferences'            => 'Preferenzias',
 'prefs-edits'              => "Numero d'edizions:",
 'prefsnologin'             => 'No ye identificato',
-'prefsnologintext'         => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] y aber enzetau una sesión ta cambear as preferenzias d'usuario.",
+'prefsnologintext'         => "Has d'estar [[{{ns:special}}:Userlogin|rechistrau]] y aber enzetau una sesión ta cambiar as preferenzias d'usuario.",
 'prefsreset'               => "S'ha tornato as preferenzias t'as suyas baluras almadazenatas.",
 'qbsettings'               => 'Preferenzias de "Quickbar"',
 'qbsettings-none'          => 'Denguna',
@@ -877,7 +877,7 @@ Mirar $3 $9',
 'resultsperpage'           => "Resultaus que s'amostrarán por pachina:",
 'contextlines'             => "Linias de contexto que s'amostrarán por resultau",
 'contextchars'             => 'Caráuters de contesto por linia',
-'stub-threshold'           => 'Branquil superior ta o formateo de <a href="#" class="stub">binclos ta borradors</a> (en bytes):',
+'stub-threshold'           => 'Branquil superior ta o formateyo de <a href="#" class="stub">binclos ta borradors</a> (en bytes):',
 'recentchangesdays'        => "Días que s'amostrarán en ''zaguers cambeos'':",
 'recentchangescount'       => "Numero d'edizions que s'amostrarán en ''zaguers cambeos''",
 'savedprefs'               => "S'han alzato as suyas preferenzias.",
@@ -1444,7 +1444,7 @@ Por fabor, prete "Entazaga" en o suyo nabegador ta cargar a pachina d\'a que ben
 'protect-unchain'             => 'Confegurar premisos ta treslaus',
 'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong>$1</strong>.",
 'protect-locked-blocked'      => "No puede cambiar os libels de protezión mientres ye bloquiato. Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
-'protect-locked-dblock'       => "Os libels de protezión no se pueden cambiar por un bloqueo autibo d'a base de datos.
+'protect-locked-dblock'       => "Os libels de protezión no se pueden cambiar por un bloqueyo autibo d'a base de datos.
 Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'protect-locked-access'       => "A suya cuenta no tiene premiso ta cambiar os libels de protezión d'as pachinas. Aquí bi son as propiedaz autuals d'a pachina <strong>$1</strong>:",
 'protect-cascadeon'           => "Ista pachina ye autualment protechita por estar encluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que tienen autibata a opzión de protezión en cascada. Puede cambiar o libel de protezión d'ista pachina, pero no afeutará á la protezión en cascada.",
@@ -1554,14 +1554,14 @@ $1',
 d'escritura dende una cuenta d'usuario u una adreza IP espezifica.
 Isto abría de fer-se sólo ta pribar bandalismos, y d'alcuerdo con
 as [[{{MediaWiki:Policy-url}}|politicas]].
-Escriba a razón espezifica ta o bloqueo (por exemplo, cuaternando
+Escriba a razón espezifica ta o bloqueyo (por exemplo, cuaternando
 as pachinas que s'han bandalizatas).",
 'ipaddress'                   => 'Adreza IP',
 'ipadressorusername'          => "Adreza IP u nombre d'usuario",
 'ipbexpiry'                   => 'Zircunduzión:',
 'ipbreason'                   => 'Razón',
 'ipbreasonotherlist'          => 'Atra razón',
-'ipbreason-dropdown'          => "*Razons comuns de bloqueo
+'ipbreason-dropdown'          => "*Razons comuns de bloqueyo
 ** Meter informazión falsa
 ** Borrar conteniu d'as pachinas
 ** Fer publizidat ficando binclos con atras pachinas web
@@ -1578,10 +1578,10 @@ as pachinas que s'han bandalizatas).",
 'ipboptions'                  => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'atro',
 'ipbotherreason'              => 'Razons diferens u adizionals',
-'ipbhidename'                 => "Amagar usuario/IP en o rechistro de bloqueos, a lista de bloqueos autibos y a lista d'usuarios",
+'ipbhidename'                 => "Amagar usuario/IP en o rechistro de bloqueyos, a lista de bloqueyos autibos y a lista d'usuarios",
 'badipaddress'                => "L'adreza IP no ye conforme.",
-'blockipsuccesssub'           => "O bloqueo s'ha feito correutament",
-'blockipsuccesstext'          => "L'adreza IP [[Special:Contributions/$1|$1]] ye bloquiata. <br />Ir t'a [[Special:Ipblocklist|lista d'adrezas IP bloquiatas]] ta beyer os bloqueos.",
+'blockipsuccesssub'           => "O bloqueyo s'ha feito correutament",
+'blockipsuccesstext'          => "L'adreza IP [[Special:Contributions/$1|$1]] ye bloquiata. <br />Ir t'a [[Special:Ipblocklist|lista d'adrezas IP bloquiatas]] ta beyer os bloqueyos.",
 'ipb-edit-dropdown'           => "Editar as razons d'o bloqueyo",
 'ipb-unblock-addr'            => 'Esbloquiar $1',
 'ipb-unblock'                 => 'Esbloquiar un usuario u una IP',
@@ -1651,9 +1651,9 @@ as pachinas que s'han bandalizatas).",
 
 # Move page
 'movepage'                => 'Tresladar pachina',
-'movepagetext'            => "Si fa serbir o formulario siguient se cambeará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
+'movepagetext'            => "Si fa serbir o formulario siguient se cambiará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.
-Os binclos ta o títol antigo d'a pachina no se cambearán. Asegure-se de no deixar reendrezeras dobles u crebatas.
+Os binclos ta o títol antigo d'a pachina no se cambiarán. Asegure-se de no deixar reendrezeras dobles u crebatas.
 Ye a suya responsabilidat d'asegurar-se que os binclos continan endrezando t'an que abrían de fer-lo.
 
 Remere que a pachina '''no''' se renombrará si ya esiste una pachina con o nuebo títol, si no ye que estase una pachina bueda u una ''reendrezera'' sin istorial.

@@ -2217,4 +2217,7 @@ Probeer normaal veurvertuin.',
 'watchlisttools-edit' => 'Volglies bekieke en bewirke',
 'watchlisttools-raw'  => 'Roew volglies bewirke',
 
+# Core parser functions
+'unknown_extension_tag' => 'Ónbekindje tag "$1"',
+
 );

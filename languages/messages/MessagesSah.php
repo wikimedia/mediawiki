@@ -571,6 +571,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'protectedpagewarning'      => '<strong>СЭРЭТИИ:  Бу сирэй хатанан турар, администратордар эрэ уларытар кыахтаахтар.</strong>',
 'semiprotectedpagewarning'  => "'''Биллэрии:''' Бу сирэй хатанан турар, ааттарын билиһиннэрбит эрэ кыттааччылар уларытар кыахтаахтар.",
 'cascadeprotectedwarning'   => "'''Предупреждение:''' Данную страницу могут редактировать только участники группы «администраторы», поскольку она включена в следующие страницы, для которых активирована возможность каскадной защиты:",
+'titleprotectedwarning'     => '<strong>СЭРЭТИИ:  Бу сирэйи уларытар бобуллубут, аҕыйах эрэ киһи уларытыан сөп.</strong>',
 'templatesused'             => 'Манна туттуллубут халыыптар:',
 'templatesusedpreview'      => 'Манна туттуллубут халыыптар:',
 'templatesusedsection'      => 'Манна туттуллубут халыыптар:',
@@ -2266,5 +2267,8 @@ $1',
 'watchlisttools-view' => 'Атыҥҥа сабыдыаллаах уларытыылар',
 'watchlisttools-edit' => 'Кэтэбил испииһэгин көрүү/уларытыы',
 'watchlisttools-raw'  => '"Сиикэй" испииһэги уларытыы',
+
+# Core parser functions
+'unknown_extension_tag' => 'Биллибэт тиэг "$1"',
 
 );

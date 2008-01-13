@@ -455,7 +455,7 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'loginproblem'               => '<b>Oturımıñız açılğanda problema çıqtı.</b><br />Bir daa etiñiz!',
 'login'                      => 'Oturım aç',
 'loginprompt'                => 'Oturım açmaq içün "cookies"ge izin bermelisiñiz.',
-'userlogin'                  => 'Oturım aç / Yañı esap aç',
+'userlogin'                  => 'Oturım aç / Qayd ol',
 'logout'                     => 'Oturımnı qapat',
 'userlogout'                 => 'Çıqış',
 'notloggedin'                => 'Oturım açmadıñız.',
@@ -848,7 +848,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'rcshowhideliu'                     => 'qaydlı qullanıcılarnı $1',
 'rcshowhideanons'                   => 'anonim qullanıcılarnı $1',
 'rcshowhidepatr'                    => 'közetilgen deñişikliklerni $1',
-'rcshowhidemine'                    => 'deñişiklerimni $1',
+'rcshowhidemine'                    => 'menim deñişiklerimni $1',
 'rclinks'                           => 'Soñki $2 künde yapılğan soñki $1 deñişiklikni köster;<br /> $3',
 'diff'                              => 'farq',
 'hist'                              => 'keçmiş',
@@ -892,9 +892,8 @@ Saifede resim qullanmaq içün böyle şekilli bağlantılar qullanıñız '''<n
 'ignorewarning'               => 'Tenbini ignor etip faylnı yükle.',
 'ignorewarnings'              => 'Tenbini ignor et',
 'minlength1'                  => 'Faylnıñ adı eñ azdan bir ariften ibaret olmalı.',
-'illegalfilename'             => '"$1" faylınıñ isiminde serleva içün yasaqlı işaretler mevcüt.
-Lütfen fayl isimini deñiştirip yañıdan yüklep baqıñız.',
-'badfilename'                 => 'Fayl isimi $1 olaraq deñiştirildi.',
+'illegalfilename'             => '"$1" faylınıñ adında serleva içün yasaqlı işaretler mevcüt. Lütfen, fayl adını deñiştirip yañıdan yüklep baqıñız.',
+'badfilename'                 => 'Fayl adı $1 olaraq deñiştirildi.',
 'filetype-badmime'            => '"$1" MIME çeşitindeki fayllar yükleme yasaqlıdır.',
 'filetype-missing'            => 'Faylnıñ iç bir uzantısı yoq (meselâ ".jpg", ".gif" ve ilh.).',
 'large-file'                  => 'Büyükligi $1 bayttan ziyade ibaret olmağan resimler qullanuv tevsiye etile (bu faylnıñ büyükligi $2 bayt).',
@@ -1367,7 +1366,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'blocklink'               => 'ban et',
 'unblocklink'             => 'ban etüvni çıqar',
 'contribslink'            => 'İsseler',
-'autoblocker'             => 'Avtomatik olaraq ban ettiñiz çünki yaqın zamanda IP adresiñiz "[[User:$1|$1]]" qullanıcısı tarafından qullanıldı. $1 isimli qullanıcınıñ ban etilüvi içün berilgen sebep: "\'\'\'$2\'\'\'"',
+'autoblocker'             => 'Avtomatik olaraq ban ettiñiz çünki yaqın zamanda IP adresiñiz "[[User:$1|$1]]" qullanıcısı tarafından qullanıldı. $1 adlı qullanıcınıñ ban etilüvi içün berilgen sebep: "\'\'\'$2\'\'\'"',
 'blocklogpage'            => 'İrişim ban etüv jurnalları',
 'blocklogentry'           => '"[[$1]]" irişimi $2 $3 toqtatıldı. Sebep',
 'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ya da ban etüv çıqaruv jurnalları cedvellenmekte. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Al-azırda irişimi toqtatılğan qullanıcılarnı [[Special:Ipblocklist|IP ban etüv cedveli]] saifesinden körip olasıñız.',
@@ -1382,34 +1381,32 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'lockbtn' => 'Malümat bazası kilitli',
 
 # Move page
-'movepage'                => 'İsim deñişikligi',
-'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ isimini deñiştirirsiñiz. Bunıñnen beraber deñişiklik jurnalını da yañı isimge avuştırırsıñız.
-Eski isim yañı isimge yöneltici olur.
-Eski isimge doğru olğan bağlantılar olğanı kibi qalır (lütfen [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yönelticiler mevcüt olğanını teşkeriñiz).
-Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
+'movepage'                => 'Ad deñişikligi',
+'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirirsiñiz. Bunıñnen beraber deñişiklik jurnalını da yañı adğa avuştırırsıñız. Eski ad yañı adğa yоllama olur. Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yоllamalar mevcüt olğanını teşkeriñiz). Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
 
-Yañı isimde bir isim zaten mevcüt olsa, isim deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yöneltici ya da boş olsa isim deñişikligi mümkün olacaqtır. Bu demek ki, saife isimini yañlıştan deñiştirgen olsañız deminki isimini keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
+Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yоllama ya da boş olsa ad deñişikligi mümkün olacaqtır. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
 
 '''TENBİ!'''
-İsim deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen deñişiklikni yapmadan evel olabileceklerni köz ögüne alıñız.",
+Ad deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel olabileceklerni köz ögüne alıñız.",
 'movepagetalktext'        => "Qoşulğan muzakere saifesiniñ de (mevcüt olsa)
-isimi avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
+adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
 *Aynı bu isimde boş olmağan bir muzakere saifesi endi mevcüttir;
 *Aşağıdaki boşluqqa işaret qoymadıñız.
 
 Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege mecbur olursıñız.",
-'movearticle'             => 'Eski isim',
+'movearticle'             => 'Eski ad',
 'movenologin'             => 'Oturım açmadıñız',
 'movenologintext'         => 'Saifeniñ adını deñiştirip olmaq içün [[Special:Userlogin|oturım açıñız]].',
 'movenotallowed'          => '{{SITENAME}} saytında saifeler adlarını deñiştirmege iziniñiz yоq.',
-'newtitle'                => 'Yañı isim',
+'newtitle'                => 'Yañı ad',
 'move-watch'              => 'Bu saifeni közet',
-'movepagebtn'             => 'İsimini deñiştir',
-'pagemovedsub'            => 'İsim deñişikligi tamamlandı',
+'movepagebtn'             => 'Adını deñiştir',
+'pagemovedsub'            => 'Ad deñişikligi tamamlandı',
 'movepage-moved'          => '<big>\'\'\'"$1" saifesiniñ yañı adı: "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Bu isimde bir saife endi mevcüt ya da siz yazğan isim izinli degil.
-Lütfen başqa bir isim saylap yazıñız.',
+'articleexists'           => 'Bu adda bir saife endi mevcüt ya da siz yazğan ad yasaqlı.
+Lütfen, başqa bir ad saylap yazıñız.',
+'cantmove-titleprotected' => 'Siz yazğan yañı ad yasaqlıdır, bunıñ içün saife adını deñiştirmekniñ çaresi yоq.',
 'talkexists'              => "'''Saifeniñ adı deñiştirildi, amma muzakere saifesiniñ
 adını deñiştirmege mümkünlik yoqtır, çünki aynı bu adda bir saife endi mevcüttir.
 Lütfen bularnı qolnen birleştiriñiz.'''",

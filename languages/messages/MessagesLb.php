@@ -500,7 +500,7 @@ Melt iech w.e.g. domatt un, soubal Dir et kritt hutt.',
 Ier iergend eng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, muss der als éischt d'Instructiounen an der Confirmatiouns-E-Mail befollegen, fir ze bestätegen datt de Kont wierklech ären eegenen ass.",
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Dir hutt scho(nn) $1 Konten. Dir kënnt keen Neie méi derbäikréien.',
-'emailauthenticated'         => 'Äer E-Mail-Adress gouf confirméiert: $1.',
+'emailauthenticated'         => 'Är E-Mailadress gouf bestätegt: $1..',
 'emailnotauthenticated'      => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br/ >
 Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
 'noemailprefs'               => 'Gitt eng E-Mail-Adress un, fir datt déie folgend Funktiounen fonctionéieren.',
@@ -703,6 +703,7 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 # History merging
 'mergehistory'        => 'Historiquë fusionéieren',
 'mergehistory-box'    => 'Historiquë vun zwou Säite fusionéieren',
+'mergehistory-from'   => 'Originalsäit:',
 'mergehistory-into'   => 'Zilsäit:',
 'mergehistory-submit' => 'Versioune verschmelzen',
 'mergehistory-empty'  => 'Et kënne keng Versioune fusionéiert ginn',
@@ -728,8 +729,9 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 Dir kënnt [[:\$1|déi Säit uleeën]].",
 'noexactmatch-nocreate' => "'''Et gëtt keng Säit mam Titel \"\$1\".'''",
 'titlematches'          => 'Säitentitel Iwwerdeneestëmmungen',
+'notitlematches'        => 'Keng Iwwereneestëmmungen mat Säitentitelen',
 'textmatches'           => 'Säitentext Iwwerdeneestëmmungen',
-'notextmatches'         => 'Keen Text vun enger Säit entsprecht deem wat Dir sicht.',
+'notextmatches'         => 'Keng Iwwereneestëmmungen',
 'prevn'                 => 'virescht $1',
 'nextn'                 => 'nächst $1',
 'viewprevnext'          => 'Weis ($1) ($2) ($3)',
@@ -864,6 +866,22 @@ derbäisetzen.',
 'uploadbtn'           => 'Fichier eroplueden',
 'uploadnologin'       => 'Net ugemellt',
 'uploaderror'         => 'Feeler bäim Eroplueden',
+'uploadtext'          => "Gitt op d'[[Special:Imagelist|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen.
+
+Benotzt dëse Formulair, fir nei Fichieren eropzelueden. Klickt op '''Duerchsichen ...''', fir eng Fënster opzemaachen wou Dir de Ficher eraussiche kënnt.
+Nodeem Dir e Fichier erausgesicht hutt gëtt de Numm vun dësem am Textfeld '''Quell-Fichier''' ugewisen.
+Confirméiert dann d'Lizenz a klickt duerno op '''Fichier eroplueden'''.
+Dat kann eng Zäit daueren, besonnesch bäi enger lueser Internet-Verbindung.
+
+Fir e '''Bild''' op enger Säit zu benotzen, schreiwt aplaz vum Bild zum Beispiel:
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Fichier.jpg<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Fichier.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
+
+Fir '''Fichieren mat anere Medien ''' anzebannen, benotzt zum Beispiel:
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}:Fichier.ogg<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}:Fichier.ogg|Link-Text<nowiki>]]</nowiki></tt>'''
+
+Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotzer är Fichiere läschen oder verännere kënnen.",
 'upload-prohibited'   => 'Verbuede Fichiers Formater: $1.',
 'uploadlogpage'       => 'Logbuch vum Eroplueden',
 'filename'            => 'Numm vum Fichier',
@@ -894,6 +912,7 @@ derbäisetzen.',
 'upload-file-error'  => 'Interne Feeler',
 'upload-misc-error'  => 'Onbekannte Feeler beim Eroplueden',
 
+'nolicense'          => 'Keng Lizenz ausgewielt',
 'license-nopreview'  => '(Kucken ouni ofzespäichere geet net)',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
@@ -1104,7 +1123,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'emailsubject'    => 'Sujet',
 'emailmessage'    => 'Message',
 'emailsend'       => 'Schécken',
-'emailccme'       => 'Eng E-Mail-Kopie vum Message fir mech',
+'emailccme'       => 'Eng E-Mailkopie vun der Noriicht fir mech',
 'emailccsubject'  => 'Kopie vun denger Noriicht un $1: $2',
 'emailsent'       => 'E-Mail geschéckt',
 'emailsenttext'   => 'Är E-Mail gouf fortgeschéckt.',
@@ -1133,7 +1152,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'wlheader-showupdated' => "* Säiten déi zënter ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
 'watchmethod-recent'   => 'Rezent Ännerungen gin op verfollegt Säiten iwwerpréift',
 'watchmethod-list'     => 'Verfollegt Säite ginn op rezent Ännerungen iwwerpréift',
-'watchlistcontains'    => 'Op ärer Iwwerwaachungs-Lëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
+'watchlistcontains'    => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
 'wlshowlast'           => "Weis d'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg).",
 'watchlist-show-bots'  => 'Bot-Ännerunge weisen',
 'watchlist-hide-bots'  => 'Bot-Ännerunge verstoppen',
@@ -1154,7 +1173,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'enotif_anon_editor'           => 'Anonyme Benotzer $1',
 
 # Delete/protect/revert
-'deletepage'                  => 'Läschungssäit',
+'deletepage'                  => 'Säit läschen',
 'confirm'                     => 'Konfirméieren',
 'excontent'                   => "Inhalt war: '$1'",
 'excontentauthor'             => "De Contenu war: '$1' (An als eenzegen dru geschriwwen hat den '[[Special:Contributions/$2|$2]]')",
@@ -1166,7 +1185,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'confirmdeletetext'           => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. 
 W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",
 'actioncomplete'              => 'Aktioun ofgeschloss',
-'deletedtext'                 => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vu rezent geläschte Säiten.',
+'deletedtext'                 => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vun de Säiten déi viru Kuerzem geläscht goufen.',
 'deletedarticle'              => '"$1" gouf geläscht',
 'dellogpage'                  => 'Läschungslog',
 'dellogpagetext'              => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server (UTC).',
@@ -1242,7 +1261,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 
 'sp-contributions-newbies'     => 'Nëmme Kontributioune vun neie Mataarbechter weisen',
 'sp-contributions-newbies-sub' => 'Fir déi Nei',
-'sp-contributions-blocklog'    => 'Block Log',
+'sp-contributions-blocklog'    => 'Spärlescht',
 'sp-contributions-search'      => 'No Kontributioune sichen',
 'sp-contributions-username'    => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-submit'      => 'Sichen',
@@ -1267,6 +1286,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'blockip'                     => 'Benotzer blockéieren',
 'blockiptext'                 => 'Benotzt dës Form fir eng spezifesch IP Adress oder e Benotzernumm ze blockéieren. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat der [[Wikipedia:Vandalismus|Wikipedia Policy]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
 'ipaddress'                   => 'IP-Adress oder Benotzernamm:',
+'ipadressorusername'          => 'IP-Adress oder Benotzernumm:',
 'ipbreason'                   => 'Grond:',
 'ipbreasonotherlist'          => 'Anere Grond',
 'ipbreason-dropdown'          => "*Heefeg Ursaache fir Benotzer ze spären:
@@ -1277,6 +1297,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 **Beleidegt oder bedréit aner Mataarbechter
 **Mëssbrauch vu verschiddene Benotzernimm
 **Net akzeptabele Benotzernumm",
+'ipbenableautoblock'          => 'Automatesch all IP blockéieren duerch déi op dëse Benotzerkont zougegraff ka ginn',
 'ipbsubmit'                   => 'Dës IP-Adress resp dëse Benotzer spären',
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Aner Dauer',
@@ -1286,6 +1307,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
 Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
+'ipb-edit-dropdown'           => 'Spärgrënn änneren',
 'unblockip'                   => 'Spär annuléieren',
 'unblocked'                   => "D'Spär fir de(n) [[User:$1|$1]] gouf annulléiert",
 'unblocked-id'                => "D'Spär $1 gouf annulléiert",
@@ -1303,15 +1325,16 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'unblocklink'                 => 'Spär annulléieren',
 'contribslink'                => 'Kontributiounen',
 'autoblocker'                 => 'Dir sidd autoblockéiert well dir eng IP Adress mam "$1" deelt. Grond "$2".',
-'blocklogpage'                => 'Block Log',
+'blocklogpage'                => 'Spärlëscht',
 'blocklogentry'               => '"[[$1]]" gespaart, gülteg bis $2 $3',
-'blocklogtext'                => "Dëst ass e Log vu Blockéieren an Deblockéieren. Automatesch blockéiert IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:Ipblocklist|IP block list]] fir déi aktuell Blockagen.",
+'blocklogtext'                => "Dëst ass eng Lëscht vu Spären an den Annulatioune vun de Spären. Automatesch gespaarten IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:Ipblocklist|IP Spärlëschtt]] fir déi aktuell Spären.",
 'unblocklogentry'             => "huet d'Spär vum [[$1]] annulléiert",
 'block-log-flags-anononly'    => 'Nëmmen anonym Benotzer',
 'block-log-flags-noautoblock' => 'Autoblock deaktivéiert',
 'block-log-flags-noemail'     => 'E-Mail gespaart',
 'range_block_disabled'        => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_already_blocked'         => '„$1“ ass scho gespaart',
+'blockme'                     => 'Spär mech',
 'proxyblocker-disabled'       => 'Dës Funktioun ass ausgeschalt.',
 'sorbsreason'                 => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
 'sorbs_create_account_reason' => 'Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.',
@@ -1326,6 +1349,7 @@ W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spä
 'lockbtn'           => 'Datebank spären',
 'lockdbsuccesstext' => "D'{{SITENAME}}-Datebank gouf gespaart. <br />
 Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance-Aarbechte fäerdeg sinn.",
+'databasenotlocked' => "D'Datebank ass net gespaart.",
 
 # Move page
 'movepage'                => 'Säit réckelen',
@@ -1462,11 +1486,13 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'tooltip-watch'                   => 'Dës Säit op är Iwwerwaachungs-Lëscht bäisetzen',
 
 # Attribution
-'anonymous'   => 'Anonym(e) Benotzer op {{SITENAME}}',
-'siteuser'    => '{{SITENAME}}-Benotzer $1',
-'and'         => 'an',
-'siteusers'   => '{{SITENAME}}-Benotzer $1',
-'creditspage' => 'Quellen',
+'anonymous'        => 'Anonym(e) Benotzer op {{SITENAME}}',
+'siteuser'         => '{{SITENAME}}-Benotzer $1',
+'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer voum $3 fir d'lescht geännert.", # $1 date, $2 time, $3 user
+'and'              => 'an',
+'others'           => 'anerer',
+'siteusers'        => '{{SITENAME}}-Benotzer $1',
+'creditspage'      => 'Quellen',
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamfilter',
@@ -1477,6 +1503,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'listingcontinuesabbrev' => '(Fortsetzung)',
 
 # Info page
+'numedits'    => 'Zuel vun den Ännerunge vun dëser Säit: $1',
 'numwatchers' => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
 
 # Math options
@@ -1509,10 +1536,13 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'show-big-image-thumb' => '<small>Gréisst vun dem Thumbnail: $1 × $2 Pixel</small>',
 
 # Special:Newimages
-'newimages' => 'Gallerie vun de neie Biller',
+'newimages'    => 'Gallerie vun de neie Biller',
+'showhidebots' => '($1 Botten)',
+'noimages'     => 'Keng Biller fonnt.',
 
 # Metadata
 'metadata'          => 'Metadaten',
+'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benpotzte Scanner kommen. Duerch nodréilech Ännerungen vum Originalfichier kënnen eenzel Detailer verännert gi sinn.',
 'metadata-expand'   => 'Weis detailléiert Informatiounen',
 'metadata-collapse' => 'Verstopp detailléiert Informatiounen',
 'metadata-fields'   => "Dës Felder vun den EXIF-Metadate ginn op Bildbeschreiwungssäite gewisen wann d'Metadatentafel zesummegeklappt ass. Déi aner sinn am Standard verstoppt, kënne awer ugewise ginn.
@@ -1542,6 +1572,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'exif-datetime'                    => 'Späicherzäitpunkt',
 'exif-imagedescription'            => 'Numm vum Bild',
 'exif-make'                        => 'Fabrikant',
+'exif-model'                       => 'Modell',
 'exif-software'                    => 'Benotzte Software',
 'exif-artist'                      => 'Auteur',
 'exif-copyright'                   => "Droits d'auteur",
@@ -1739,7 +1770,7 @@ $1',
 'watchlistedit-normal-legend'  => 'Säite vun der Iwwerwaachungslëscht erofhuelen',
 'watchlistedit-normal-explain' => 'D\'Säite vun ärer Iwwerwaachungslëscht ginn ënnendrenner gewisen. Fir eng Säit erofzehuelen, klickt op d\'Haischen niewen drunn a klickt duerno op "Säiten erofhuelen". Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslëscht änneren]], oder [[Special:Watchlist/clear|Är Iwwerwaachungslëscht eidel maachen]].',
 'watchlistedit-normal-submit'  => 'Säiten erofhuelen',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} vun ärer Iwwerwaachungslëscht erofgeholl:',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufe}} vun ärer Iwwerwaachungslëscht erofgeholl:',
 'watchlistedit-raw-title'      => 'Iwwerwaachungslëscht onformatéiert änneren',
 'watchlistedit-raw-legend'     => 'Iwwerwaachungslëscht onformatéiert änneren',
 'watchlistedit-raw-explain'    => "D'Säite vun ärer Iwwerwaachungslëscht ginn ënnendrenner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetzt oder erofhuelt; eng Säit pro Linn. Wann Dir fäerdeg sidd, klickt Iwwerwaachungslëscht aktualiséieren. Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",

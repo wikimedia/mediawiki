@@ -696,6 +696,7 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'readonlywarning'           => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
 'protectedpagewarning'      => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong><br />',
 'semiprotectedpagewarning'  => "'''NB:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.",
+'cascadeprotectedwarning'   => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
 'titleprotectedwarning'     => '<strong>Åtvaring: Denne sida er verna, så berre nokre brukarar kan opprette henne.</strong>',
 'templatesused'             => 'Malar som er brukte på denne sida:',
 'templatesusedpreview'      => 'Malar som er brukte i denne førehandsvisinga:',
@@ -714,6 +715,16 @@ Du kan gå attende og endre ei eksisterande side, [[Special:Userlogin|logge inn 
 Du bør tenkje over om det er lurt å halde fram med å endre denne sida.
 Sletteloggen for sida finn du her:",
 
+# "Undo" feature
+'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
+'undo-failure' => 'Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjort i mellomtida.',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Kan ikkje opprette brukarkonto',
+'cantcreateaccount-text' => "Kontooppretting frå denne IP-adressa (<b>$1</b>) er blokkert av [[User:$3|$3]].
+
+Grunnen som vart gjeven av $3 er ''$2''",
+
 # History pages
 'viewpagelogs'        => 'Vis loggane for denne sida',
 'nohistory'           => 'Det finst ikkje nokon historikk for denne sida.',
@@ -729,12 +740,15 @@ Sletteloggen for sida finn du her:",
 'cur'                 => 'no',
 'next'                => 'neste',
 'last'                => 'førre',
+'orig'                => 'original',
 'page_first'          => 'fyrste',
 'page_last'           => 'siste',
 'histlegend'          => 'Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />Forklaring: (no) = skilnad frå den noverande versjonen, (førre) = skilnad frå den førre versjonen, <b>s</b> = småplukk',
 'deletedrev'          => '[sletta]',
 'histfirst'           => 'Første',
 'histlast'            => 'Siste',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 byte}})',
+'historyempty'        => '(tom)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 på $2', # user at time
