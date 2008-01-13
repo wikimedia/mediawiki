@@ -575,7 +575,7 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'nohistory'           => 'Does dim hanes cywiriadau am tudalen hon.',
 'revnotfound'         => 'Cywiriad nid wedi darganfod',
 'revnotfoundtext'     => 'Ni ellir darganfod yr hen cywiriad y tudalen rydych wedi gofyn amdano. Gwiriwch yr URL rydych wedi defnyddio i darganfod y tudalen hon.',
-'loadhist'            => 'Yn llwytho hanes y tudalen',
+'loadhist'            => 'Yn llwytho hanes y dudalen',
 'currentrev'          => 'Diwygiad cyfoes',
 'revisionasof'        => 'Diwygiad $1',
 'previousrevision'    => '← at y diwygiad blaenorol',
@@ -1377,7 +1377,6 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'importhistoryconflict' => "Mae gwrthdaro rhwng adolygiadau hanes (efallai eich bod chi wedi mewnforio'r dudalen o'r blaen)",
 'importnosources'       => "Ni ddiffiniwyd unrhyw ffynonellau mewnforio traws-wici, ac mae uwchlwytho hanesion yn uniongyrchol wedi'i analluogi.",
 'importnofile'          => 'Ni uwchlwythwyd unrhyw ffeil mewnforio.',
-'importuploaderror'     => "Methwyd uwchlwytho'r ffeil; efallai bod y ffeil yn fwy o faint na'r hyn sy'n cael ei ganiatau.",
 
 # Import log
 'importlogpage' => 'Lòg mewnforio',
@@ -1575,6 +1574,12 @@ $1",
 'autosumm-blank'   => "Yn gwacau'r dudalen yn llwyr",
 'autoredircomment' => 'Yn ailgyfeirio at [[$1]]',
 'autosumm-new'     => 'Tudalen newydd: $1',
+
+# Live preview
+'livepreview-loading' => "Wrthi'n llwytho…",
+'livepreview-ready'   => 'Llwytho… Ar ben!',
+'livepreview-failed'  => 'Y rhagolwg byw wedi methu! Rhowch gynnig ar y rhagolwg arferol.',
+'livepreview-error'   => 'Wedi methu cysylltu: $1 "$2". Rhowch gynnig ar y rhagolwg arferol.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Hwyrach na ddangosir isod y newidiadau a ddigwyddodd o fewn y $1 eiliad ddiwethaf.',

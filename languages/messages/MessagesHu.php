@@ -1229,7 +1229,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'brokenredirects-edit'   => '(szerkeszt)',
 'brokenredirects-delete' => '(törlés)',
 
-'withoutinterwiki'        => 'Interwiki-link nélküli lapok',
+'withoutinterwiki'        => 'Interwikilink nélküli lapok',
 'withoutinterwiki-header' => 'A következő lapok nem hivatkoznak más nyelvű változatokra:',
 
 'fewestrevisions' => 'Legrövidebb laptörténetű lapok',

@@ -2229,4 +2229,7 @@ $1',
 'watchlisttools-edit' => 'নজর তালিকা দেখুন এবং সম্পাদনা করুন',
 'watchlisttools-raw'  => 'অশোধিত নজর তালিকা সম্পাদনা করো',
 
+# Core parser functions
+'unknown_extension_tag' => 'অজানা এক্সটেনশন ট্যাগ "$1"',
+
 );

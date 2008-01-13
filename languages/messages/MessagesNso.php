@@ -20,6 +20,6 @@ $messages = array(
 'october'   => 'Diphalane',
 'november'  => 'Dibatsela',
 'december'  => 'Manthole',
-'may'       => 'Mopitlo',
+'may'       => 'May',
 
 );

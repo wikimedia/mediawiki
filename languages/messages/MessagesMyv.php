@@ -230,7 +230,8 @@ $messages = array(
 'feedlinks'           => 'Максовкс:',
 'site-rss-feed'       => 'RSS-нть максовкс $1 -нть кисе',
 'site-atom-feed'      => 'Atom-нть максовкс $1-нть кисе',
-'page-rss-feed'       => 'RSS-нть максовкс $1-нть кисе',
+'page-rss-feed'       => '«$1» RSS максовкс',
+'page-atom-feed'      => '«$1» Atom максовкс',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Лопа',
@@ -284,6 +285,7 @@ $messages = array(
 'badretype'             => 'Сёрмадыть салавань валот кавксть, сынь аволь вейкеть.',
 'youremail'             => 'Е-сёрма:',
 'username'              => 'Совицянь леметь:',
+'uid'                   => 'Совицянь ID:',
 'yourrealname'          => 'Алкуксонь леметь:',
 'yourlanguage'          => 'Кель:',
 'yournick'              => 'Путонь леметь:',
@@ -417,6 +419,8 @@ $messages = array(
 'qbsettings-floatingright' => 'Вить ёнга уи',
 'math'                     => 'Математика',
 'datetime'                 => 'Чи ды шка',
+'math_unknown_error'       => 'апак содань ильведькс',
+'math_unknown_function'    => 'апак содань функция',
 'prefs-personal'           => 'Совицядо',
 'prefs-rc'                 => 'Чиень полавтнемат',
 'prefs-watchlist'          => 'Ванома лемрисьме',
@@ -427,6 +431,7 @@ $messages = array(
 'newpassword'              => 'Од салавань валот:',
 'retypenew'                => 'Сёрмадык омбоцеде салавань валот:',
 'textboxsize'              => 'Витнема-петнема',
+'timezonelegend'           => 'Часовойть каркст',
 'localtime'                => 'Тескэнь шкась',
 'servertime'               => 'Серверэнь шка',
 'files'                    => 'Файлат',
@@ -447,6 +452,7 @@ $messages = array(
 'grouppage-bureaucrat' => '{{ns:project}}:Бюрократт',
 
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|полавтнема|полавтнемат}}',
 'recentchanges'   => 'Чыяконь полавтнемат-лиякстомтомат',
 'rcshowhideminor' => '$1 апокшкэ витнемат-петнемат',
 'rcshowhidebots'  => '$1 ботт',
@@ -473,6 +479,8 @@ $messages = array(
 'filename'      => 'Файлонь лем',
 'savefile'      => 'Ванстомс файланть',
 'uploadedimage' => 'тонгозь "[[$1]]"',
+
+'upload-file-error' => 'Потмонь ильведькс',
 
 # Image list
 'imagelist'                 => 'Файлат-мезть',
@@ -502,6 +510,8 @@ $messages = array(
 
 # Statistics
 'statistics' => 'Статистикат',
+'sitestats'  => '{{SITENAME}} статистика',
+'userstats'  => 'Совицянь статистика',
 
 'fewestrevisions' => 'Лопатьне седе аламонь вановкснэнь марто',
 
@@ -514,6 +524,7 @@ $messages = array(
 'uncategorizedpages'   => 'Категориявтомо лопат',
 'unusedcategories'     => 'Тевс апак нолда категорият',
 'unusedimages'         => 'Тевс апак нолда файлат',
+'popularpages'         => 'Раське ютксо вечкевикс лопат',
 'wantedcategories'     => 'Вешезь категориятьне',
 'wantedpages'          => 'Вешевикс лопатьне',
 'mostlinked'           => 'Сехте сюлмавозь лопатьнень марто',
@@ -550,13 +561,15 @@ $messages = array(
 'prevpage'       => 'Седе икелень лопа ($1)',
 'allpagesfrom'   => 'Невтема лопатьне, ушодовицятне:',
 'allarticles'    => 'Весе сёрмадовкст',
+'allinnamespace' => 'Весе лопат ($1 сёрмадовксонть лемезе)',
 'allpagesprev'   => 'Икеле',
 'allpagesnext'   => 'Сыця',
 'allpagessubmit' => 'Молемс',
 'allpagesprefix' => 'Невтевкс лопась полаткс марто:',
 
 # E-mail user
-'emailuser' => 'Те совицянтень кучомс е-сёрма',
+'emailuser'       => 'Те совицянтень кучомс е-сёрма',
+'defemailsubject' => '{{SITENAME}} е-сёрма',
 
 # Watchlist
 'watchlist'            => 'Мезе мельга мон ванстнян',
