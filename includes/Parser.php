@@ -3006,14 +3006,11 @@ class Parser
 					$element .= "<title>$title</title>";
 					$argIndex = 1;
 					foreach ( $parts as $partIndex => $part ) {
-						# For backwards compatibility, only named arguments are trimmed. 
-						# Numbered arguments are left with all whitespace included. 
-						# There is no good reason for this apart from b/c.
 						if ( isset( $piece['eqpos'][$partIndex] ) ) {
 							$eqpos = $piece['eqpos'][$partIndex];
-							list( $ws1, $argName, $ws2 ) = $this->splitWhitespace( substr( $part, 0, $eqpos ) );
-							list( $ws3, $argValue, $ws4 ) = $this->splitWhitespace( substr( $part, $eqpos + 1 ) );
-							$element .= "<part>$ws1<name>$argName</name>$ws2=$ws3<value>$argValue</value>$ws4</part>";
+							$argName = substr( $part, 0, $eqpos );
+							$argValue = substr( $part, $eqpos + 1 );
+							$element .= "<part><name>$argName</name>=<value>$argValue</value></part>";
 						} else {
 							$element .= "<part><name index=\"$argIndex\" /><value>$part</value></part>";
 							$argIndex++;
@@ -3425,7 +3422,7 @@ class Parser
 			# Add a new element to the templace loop detection hashtable
 			$newFrame->loopCheckHash[$titleText] = true;
 
-			if ( $titleText !== false && count( $newFrame->args ) == 0 ) {
+			if ( $titleText !== false && $newFrame->isEmpty() ) {
 				# Expansion is eligible for the empty-frame cache
 				if ( isset( $this->mTplExpandCache[$titleText] ) ) {
 					$text = $this->mTplExpandCache[$titleText];
@@ -3632,13 +3629,17 @@ class Parser
 		$text = false;
 		$error = false;
 		$parts = $piece['parts'];
-		$argWithSpaces = $frame->expand( $piece['title'] );
-		$arg = trim( $argWithSpaces );
+		$nameWithSpaces = $frame->expand( $piece['title'] );
+		$argName = trim( $nameWithSpaces );
 
-		if ( isset( $frame->args[$arg] ) ) {
-			# Found template argument
-			$text = $frame->parent->expand( $frame->args[$arg] );
-		} else if ( ( $this->ot['html'] || $this->ot['pre'] ) && $parts->length > 0 ) {
+		# For backwards compatibility, only named arguments are trimmed. 
+		# Numbered arguments are left with all whitespace included. 
+		# There is no good reason for this apart from b/c.
+		if ( isset( $frame->numberedArgs[$argName] ) ) {
+			$text = $frame->parent->expand( $frame->numberedArgs[$argName] );
+		} elseif ( isset( $frame->namedArgs[$argName] ) ) {
+			$text = trim( $frame->parent->expand( $frame->namedArgs[$argName] ) );
+		} elseif ( ( $this->ot['html'] || $this->ot['pre'] ) && $parts->length > 0 ) {
 			# No match in frame, use the supplied default
 			$text = $frame->expand( $parts->item( 0 ) );
 		}
@@ -3648,7 +3649,7 @@ class Parser
 
 		if ( $text === false ) {
 			# No match anywhere
-			$text = '{{{' . $frame->implode( '|', $argWithSpaces, $parts ) . '}}}';
+			$text = '{{{' . $frame->implode( '|', $nameWithSpaces, $parts ) . '}}}';
 		}
 		if ( $error !== false ) {
 			$text .= $error;
@@ -5362,7 +5363,8 @@ class PPFrame {
 	 * $args is optionally a DOMNodeList containing the template arguments
 	 */
 	function newChild( $args = false, $title = false ) {
-		$assocArgs = array();
+		$namedArgs = array();
+		$numberedArgs = array();
 		if ( $title === false ) {
 			$title = $this->title;
 		}
@@ -5374,19 +5376,21 @@ class PPFrame {
 				}
 
 				$nameNodes = $xpath->query( 'name', $arg );
+				$value = $xpath->query( 'value', $arg );
 				if ( $nameNodes->item( 0 )->hasAttributes() ) {
 					// Numbered parameter
-					$name = $nameNodes->item( 0 )->attributes->getNamedItem( 'index' )->textContent;
+					$index = $nameNodes->item( 0 )->attributes->getNamedItem( 'index' )->textContent;
+					$numberedArgs[$index] = $value->item( 0 );
+					unset( $namedArgs[$index] );
 				} else {
 					// Named parameter
 					$name = trim( $this->expand( $nameNodes->item( 0 ), PPFrame::STRIP_COMMENTS ) );
+					$namedArgs[$name] = $value->item( 0 );
+					unset( $numberedArgs[$name] );
 				}
-
-				$value = $xpath->query( 'value', $arg );
-				$assocArgs[$name] = $value->item( 0 );
 			}
 		}
-		return new PPTemplateFrame( $this->parser, $this, $assocArgs, $title );
+		return new PPTemplateFrame( $this->parser, $this, $numberedArgs, $namedArgs, $title );
 	}
 
 	/**
@@ -5592,18 +5596,26 @@ class PPFrame {
 			return isset( $this->titleCache[$level] ) ? $this->titleCache[$level] : false;
 		}
 	}
+
+	/**
+	 * Returns true if there are no arguments in this frame
+	 */
+	function isEmpty() {
+		return true;
+	}
 }
 
 /**
  * Expansion frame with template arguments
  */
 class PPTemplateFrame extends PPFrame {
-	var $args, $parent;
+	var $numberedArgs, $namedArgs, $parent;
 
-	function __construct( $parser, $parent = false, $args = array(), $title = false ) {
+	function __construct( $parser, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
 		$this->parser = $parser;
 		$this->parent = $parent;
-		$this->args = $args;
+		$this->numberedArgs = $numberedArgs;
+		$this->namedArgs = $namedArgs;
 		$this->title = $title;
 		$this->titleCache = $parent->titleCache;
 		$this->titleCache[] = $title ? $title->getPrefixedDBkey() : false;
@@ -5614,7 +5626,8 @@ class PPTemplateFrame extends PPFrame {
 	function __toString() {
 		$s = 'tplframe{';
 		$first = true;
-		foreach ( $this->args as $name => $value ) {
+		$args = $this->numberedArgs + $this->namedArgs;
+		foreach ( $args as $name => $value ) {
 			if ( $first ) {
 				$first = false;
 			} else {
@@ -5625,6 +5638,12 @@ class PPTemplateFrame extends PPFrame {
 		}
 		$s .= '}';
 		return $s;
+	}
+	/**
+	 * Returns true if there are no arguments in this frame
+	 */
+	function isEmpty() {
+		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
 	}
 }
 
