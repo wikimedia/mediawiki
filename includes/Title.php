@@ -1025,7 +1025,9 @@ class Title {
 	}
 
 	/**
-	 * Can $user perform $action on this page?
+	 * Can $user perform $action on this page?  This *does not* check throttles
+	 * (User::pingLimiter()) yet; check that manually to be sure.
+	 *
 	 * @param string $action action that permission needs to be checked for
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
@@ -1043,8 +1045,7 @@ class Title {
 
 		global $wgEmailConfirmToEdit, $wgUser;
 
-		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() )
-		{
+		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
 			$errors[] = array( 'confirmedittext' );
 		}
 
@@ -1100,15 +1101,16 @@ class Title {
 	}
 
 	/**
-	 * Can $user perform $action on this page?
-	 * This is an internal function, which checks ONLY that previously checked by userCan (i.e. it leaves out checks on wfReadOnly() and blocks)
+	 * Can $user perform $action on this page? This is an internal function,
+	 * which checks ONLY that previously checked by userCan (i.e. it leaves out
+	 * checks on wfReadOnly() and blocks)
+	 *
 	 * @param string $action action that permission needs to be checked for
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
 	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
-		$fname = 'Title::userCan';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$errors = array();
 
@@ -1194,7 +1196,6 @@ class Title {
 			}
 		}
 
-
 		if ($action == 'create') {			
 			$title_protection = $this->getTitleProtection();
 
@@ -1244,7 +1245,7 @@ class Title {
 			$errors[] = $return;
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $errors;
 	}
 
