@@ -35,6 +35,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New permission userrights-interwiki for changing user rights on foreign wikis.
 * $wgImplictGroups for groups that are hidden from Special:Listusers, etc.
 * $wgAutopromote: automatically promote users who match specified criteria
+* The 'rollback' permission now only affects whether rollback is made available
+  through the interface.  Users without the rollback permission can still use
+  it by generating the proper token through, e.g., a script.  This does nothing
+  but allow automated rollback scripts to operate more efficiently, without al-
+  lowing them to do anything extra.
 
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
