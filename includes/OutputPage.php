@@ -825,9 +825,9 @@ class OutputPage {
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
 		global $wgTitle;
-
-		$this->mDebugtext .= 'Original title: ' .
-		$wgTitle->getPrefixedText() . "\n";
+		if ( isset($wgTitle) ) {
+			$this->mDebugtext .= 'Original title: ' . $wgTitle->getPrefixedText() . "\n";
+		}
 		$this->setPageTitle( wfMsg( $title ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
