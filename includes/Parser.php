@@ -3006,11 +3006,14 @@ class Parser
 					$element .= "<title>$title</title>";
 					$argIndex = 1;
 					foreach ( $parts as $partIndex => $part ) {
+						# For backwards compatibility, only named arguments are trimmed. 
+						# Numbered arguments are left with all whitespace included. 
+						# There is no good reason for this apart from b/c.
 						if ( isset( $piece['eqpos'][$partIndex] ) ) {
 							$eqpos = $piece['eqpos'][$partIndex];
-							$argName = substr( $part, 0, $eqpos );
-							$argValue = substr( $part, $eqpos + 1 );
-							$element .= "<part><name>$argName</name>=<value>$argValue</value></part>";
+							list( $ws1, $argName, $ws2 ) = $this->splitWhitespace( substr( $part, 0, $eqpos ) );
+							list( $ws3, $argValue, $ws4 ) = $this->splitWhitespace( substr( $part, $eqpos + 1 ) );
+							$element .= "<part>$ws1<name>$argName</name>$ws2=$ws3<value>$argValue</value>$ws4</part>";
 						} else {
 							$element .= "<part><name index=\"$argIndex\" /><value>$part</value></part>";
 							$argIndex++;
@@ -5376,7 +5379,7 @@ class PPFrame {
 					$name = $nameNodes->item( 0 )->attributes->getNamedItem( 'index' )->textContent;
 				} else {
 					// Named parameter
-					$name = $this->expand( $nameNodes->item( 0 ), PPFrame::STRIP_COMMENTS );
+					$name = trim( $this->expand( $nameNodes->item( 0 ), PPFrame::STRIP_COMMENTS ) );
 				}
 
 				$value = $xpath->query( 'value', $arg );
