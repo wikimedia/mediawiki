@@ -2432,7 +2432,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'livepreview-loading' => 'Laden …',
 'livepreview-ready'   => 'Laden … Fertig!',
 'livepreview-failed'  => 'Live-Vorschau nicht möglich! Bitte die normale Vorschau benutzen.',
-'livepreview-error'   => 'Verbindung nicht möglich: $1 "$2". Bitte die normale Vorschau benutzen.',
+'livepreview-error'   => 'Verbindung nicht möglich: $1 „$2“. Bitte die normale Vorschau benutzen.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Bearbeitungen der letzten $1 Sekunden werden in dieser Liste noch nicht angezeigt.',
@@ -2462,5 +2462,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlisttools-view' => 'Beobachtungsliste: Änderungen',
 'watchlisttools-edit' => 'normal bearbeiten',
 'watchlisttools-raw'  => 'Listenformat bearbeiten (Import/Export)',
+
+# Core parser functions
+'unknown_extension_tag' => 'Unbekannter Extension-Tag „$1“',
 
 );
