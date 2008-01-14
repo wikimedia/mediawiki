@@ -2147,7 +2147,7 @@ class Title {
 			array(
 				"{$prefix}_from=page_id",
 				"{$prefix}_namespace" => $this->getNamespace(),
-				"{$prefix}_title"     => $this->getDbKey() ),
+				"{$prefix}_title"     => $this->getDBkey() ),
 			'Title::getLinksTo',
 			$options );
 
@@ -2490,7 +2490,7 @@ class Title {
 				array(
 					'pl_from'      => $newid,
 					'pl_namespace' => $nt->getNamespace(),
-					'pl_title'     => $nt->getDbKey() ),
+					'pl_title'     => $nt->getDBkey() ),
 				$fname );
 		}
 		

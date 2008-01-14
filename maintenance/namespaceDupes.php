@@ -204,7 +204,7 @@ class NamespaceConflictChecker {
 			$row->id,
 			$row->oldtitle,
 			$newTitle->getNamespace(),
-			$newTitle->getDbKey(),
+			$newTitle->getDBkey(),
 			$newTitle->getPrefixedText() );
 
 		$id = $newTitle->getArticleId();
@@ -235,7 +235,7 @@ class NamespaceConflictChecker {
 		$this->db->update( $table,
 			array(
 				"{$table}_namespace" => $newTitle->getNamespace(),
-				"{$table}_title"     => $newTitle->getDbKey(),
+				"{$table}_title"     => $newTitle->getDBkey(),
 			),
 			array(
 				"{$table}_namespace" => 0,

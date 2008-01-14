@@ -232,7 +232,7 @@ class Linker {
 
 			# Handles links to special pages wich do not exist in the database:
 			if( $nt->getNamespace() == NS_SPECIAL ) {
-				if( SpecialPage::exists( $nt->getDbKey() ) ) {
+				if( SpecialPage::exists( $nt->getDBkey() ) ) {
 					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 				} else {
 					$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
@@ -767,7 +767,7 @@ class Linker {
 				$class = 'internal';
 			} else {
 				$upload = SpecialPage::getTitleFor( 'Upload' );
-				$url = $upload->getLocalUrl( 'wpDestFile=' . urlencode( $title->getDbKey() ) );
+				$url = $upload->getLocalUrl( 'wpDestFile=' . urlencode( $title->getDBkey() ) );
 				$class = 'new';
 			}
 			$alt = htmlspecialchars( $title->getText() );
