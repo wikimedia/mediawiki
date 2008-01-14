@@ -1263,7 +1263,7 @@ class Title {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'protected_titles', '*', 
-			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBKey()) );
+			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey()) );
 
 		if ($row = $dbr->fetchRow( $res )) {
 			return $row;
@@ -1281,7 +1281,7 @@ class Title {
 			return true;
 		}
 
-		list ($namespace, $title) = array( $this->getNamespace(), $this->getDBKey() );
+		list ($namespace, $title) = array( $this->getNamespace(), $this->getDBkey() );
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -1323,7 +1323,7 @@ class Title {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->delete( 'protected_titles', 
-			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBKey()), __METHOD__ );
+			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey()), __METHOD__ );
 	}
 
 	/**
@@ -1419,7 +1419,7 @@ class Title {
 			 * and check again
 			 */
 			if( $this->getNamespace() == NS_SPECIAL ) {
-				$name = $this->getDBKey();
+				$name = $this->getDBkey();
 				list( $name, /* $subpage */) = SpecialPage::resolveAliasWithSubpage( $name );
 				if ( $name === false ) {
 					# Invalid special page, but we show standard login required message
@@ -2766,7 +2766,7 @@ class Title {
 		// Note: === is necessary for proper matching of number-like titles.
 		return $this->getInterwiki() === $title->getInterwiki()
 			&& $this->getNamespace() == $title->getNamespace()
-			&& $this->getDbkey() === $title->getDbkey();
+			&& $this->getDBkey() === $title->getDBkey();
 	}
 	
 	/**

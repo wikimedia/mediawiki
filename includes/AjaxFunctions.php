@@ -90,7 +90,7 @@ function wfSajaxSearch( $term ) {
 		$db = wfGetDB( DB_SLAVE );
 		$res = $db->select( 'page', array( 'page_title', 'page_namespace' ),
 				array(  'page_namespace' => $term_title->getNamespace(),
-					"page_title LIKE '". $db->strencode( $term_title->getDBKey() ) ."%'" ),
+					"page_title LIKE '". $db->strencode( $term_title->getDBkey() ) ."%'" ),
 					"wfSajaxSearch",
 					array( 'LIMIT' => $limit+1 )
 				);

@@ -215,7 +215,7 @@ class CategoryViewer {
 			array( 'page_title', 'page_namespace', 'page_len', 'page_is_redirect', 'cl_sortkey' ),
 			array( $pageCondition,
 			       'cl_from          =  page_id',
-			       'cl_to'           => $this->title->getDBKey()),
+			       'cl_to'           => $this->title->getDBkey()),
 			       #'page_is_redirect' => 0),
 			#+ $pageCondition,
 			__METHOD__,

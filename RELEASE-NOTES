@@ -307,6 +307,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use only default options when generating RSS and Atom syndication links.
   This should help prevent infinite link loops that some software may follow,
   and will generally keep feed behavior cleaner.
+* (bug 12608) Unifying the spelling of getDBkey() in the code.
 
 
 == Parser changes in 1.12 ==

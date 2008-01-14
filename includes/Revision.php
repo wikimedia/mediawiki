@@ -47,7 +47,7 @@ class Revision {
 			array( "rev_id=$matchId",
 			       'page_id=rev_page',
 			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDbkey() ) );
+			       'page_title'     => $title->getDBkey() ) );
 	}
 
 	/**
@@ -110,7 +110,7 @@ class Revision {
 			array( "rev_id=$matchId",
 			       'page_id=rev_page',
 			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDbkey() ) );
+			       'page_title'     => $title->getDBkey() ) );
 	}
 
 	/**
@@ -131,7 +131,7 @@ class Revision {
 			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
 			       'page_id=rev_page',
 			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDbkey() ) );
+			       'page_title'     => $title->getDBkey() ) );
 	}
 
 	/**
@@ -190,7 +190,7 @@ class Revision {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			array( 'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDbkey(),
+			       'page_title'     => $title->getDBkey(),
 			       'page_id=rev_page' ) );
 	}
 
@@ -209,7 +209,7 @@ class Revision {
 			wfGetDB( DB_SLAVE ),
 			array( 'rev_id=page_latest',
 			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDbkey(),
+			       'page_title'     => $title->getDBkey(),
 			       'page_id=rev_page' ) );
 	}
 

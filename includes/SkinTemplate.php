@@ -344,7 +344,7 @@ class SkinTemplate extends Skin {
 				$dbr = wfGetDB( DB_SLAVE );
 				$watchlist = $dbr->tableName( 'watchlist' );
 				$sql = "SELECT COUNT(*) AS n FROM $watchlist
-					WHERE wl_title='" . $dbr->strencode($this->mTitle->getDBKey()) .
+					WHERE wl_title='" . $dbr->strencode($this->mTitle->getDBkey()) .
 					"' AND  wl_namespace=" . $this->mTitle->getNamespace() ;
 				$res = $dbr->query( $sql, 'SkinTemplate::outputPage');
 				$x = $dbr->fetchObject( $res );
