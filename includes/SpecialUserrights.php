@@ -136,7 +136,7 @@ class UserrightsPage extends SpecialPage {
 			wfRunHooks( 'UserRights', array( &$user, $addgroup, $removegroup ) );
 		}
 
-		if( $addgroup or $removegroup ) {
+		if( $newGroups != $oldGroups ) {
 			$log = new LogPage( 'rights' );
 
 			global $wgRequest;
