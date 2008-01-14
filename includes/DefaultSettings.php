@@ -1144,6 +1144,13 @@ $wgGroupPermissions['bureaucrat']['userrights'] = true;
 $wgImplicitGroups = array( '*', 'user', 'autoconfirmed', 'emailconfirmed' );
 
 /**
+ * These are the groups that users are allowed to add to or remove from
+ * their own account via Special:Userrights.
+ */
+$wgGroupsAddToSelf = array();
+$wgGroupsRemoveFromSelf = array();
+
+/**
  * Set of available actions that can be restricted via action=protect
  * You probably shouldn't change this.
  * Translated trough restriction-* messages.
