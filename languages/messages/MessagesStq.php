@@ -227,7 +227,7 @@ $messages = array(
 'copyrightpage'     => '{{ns:project}}:Uurheebergjuchte',
 'currentevents'     => 'Aktuälle Geböärnisse',
 'currentevents-url' => 'Project:Aktuälle Geböärnisse',
-'disclaimers'       => 'Begriepskläärenge',
+'disclaimers'       => 'Begriepsärkläärenge',
 'disclaimerpage'    => 'Project:Siede tou Begriepskläärenge',
 'edithelp'          => 'Beoarbaidengshälpe',
 'edithelppage'      => 'Help:Beoarbaidengshälpe',
@@ -1827,7 +1827,7 @@ $1',
 'filedelete-archive-read-only'    => 'Dät Archiv-Ferteeknis „$1“ is foar dän Webserver nit beschrieuwboar.',
 
 # Browsing diffs
-'previousdiff' => '← Toun foarige Versionsunnerscheed',
+'previousdiff' => '← Toun foarigen Versionsunnerscheed',
 'nextdiff'     => 'Toun naisten Versionsunnerscheed →',
 
 # Media information

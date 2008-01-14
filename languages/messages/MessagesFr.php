@@ -1187,7 +1187,7 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'filerevert-badversion'     => 'Il n’y a pas de version plus ancienne du fichier avec le Timestamp donné.',
 
 # File deletion
-'filedelete'             => 'Supprime $1',
+'filedelete'             => 'Supprimer $1',
 'filedelete-legend'      => 'Suprimer le fichier',
 'filedelete-intro'       => "Vous êtes en train de supprimer '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'   => '<span class="plainlinks">Vous êtes en train d\'effacer la version de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 à $3].</span>',

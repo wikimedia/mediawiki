@@ -785,8 +785,16 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-submit'            => 'Utfør på vald versjon',
 'revdelete-logentry'          => 'endra versjonsvisinga til [[$1]]',
 'logdelete-logentry'          => 'endra visinga av loggoppføringane til [[$1]]',
+'revdelete-logaction'         => '{{PLURAL:$1|Éin versjon er sett|$1 versjonar er sette}} til $2',
+'logdelete-logaction'         => '{{PLURAL:$1|Éi loggoppføring på [[$3]] er sett|$1 loggoppføringar på [[$3]] er sette}} til $2',
+'revdelete-success'           => 'Versjonsvisinga er endra.',
+'logdelete-success'           => 'Visinga av loggoppføringar er endra.',
+
+# Oversight log
+'oversightlog' => 'Oversynslogg',
 
 # History merging
+'mergehistory'      => 'Flett sidehistorikkar',
 'mergehistory-from' => 'Kjeldeside',
 
 # Diffs
@@ -848,6 +856,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'math_notexvc'             => 'Manglar texvc-program; sjå math/README for konfigurasjon.',
 'prefs-personal'           => 'Brukaropplysningar',
 'prefs-rc'                 => 'Siste endringar og spirer',
+'prefs-watchlist'          => 'Overvakingsliste',
 'prefs-misc'               => 'Andre',
 'saveprefs'                => 'Lagre',
 'resetprefs'               => 'Rull attende',
@@ -957,6 +966,9 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 Sjå [[Help:Laste opp fil|hjelp for filopplasting]] for meir informasjon om korleis dette skjemaet verkar og korleis ein bruker filer på wikisider.
 
 For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen som opnar ein standarddialog for val av fil. Når du vel ei fil, vil namnet på denne fila dukke opp i tekstfeltet ved sida av knappen. Skriv inn '''all''' nødvendig informasjon i ''Samandrag''-feltet, kryss av at du ikkje bryt nokon sin opphavsrett, og klikk til slutt på ''Last opp fil''.",
+'upload-permitted'           => 'Godtekne filtypar: $1.',
+'upload-preferred'           => 'Føretrekte filtypar: $1.',
+'upload-prohibited'          => 'Ikkje godtekne filtypar: $1.',
 'uploadlog'                  => 'opplastingslogg',
 'uploadlogpage'              => 'Opplastingslogg',
 'uploadlogpagetext'          => 'Dette er ei liste over filer som nyleg er lasta opp.',
@@ -974,7 +986,9 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'uploadwarning'              => 'Opplastingsåtvaring',
 'savefile'                   => 'Lagre fil',
 'uploadedimage'              => 'Lasta opp «[[$1]]»',
+'overwroteimage'             => 'lasta opp ein ny versjon av «[[$1]]»',
 'uploaddisabled'             => 'Beklagar, funksjonen for opplasting er deaktivert på denne nettenaren.',
+'uploaddisabledtext'         => 'Filopplasting er slått av på {{SITENAME}}.',
 'uploadscripted'             => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
 'uploadcorrupt'              => 'Fila er øydelagd eller har feil etternamn. Sjekk fila og prøv på nytt.',
 'uploadvirus'                => 'Fila innheld virus! Detaljar: $1',
@@ -1021,9 +1035,11 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 # File deletion
 'filedelete'        => 'Slett $1',
 'filedelete-submit' => 'Slett',
+'filedelete-nofile' => "'''$1''' finst ikkje på {{SITENAME}}.",
 
 # MIME search
 'mimesearch' => 'MIME-søk',
+'mimetype'   => 'MIME-type:',
 'download'   => 'last ned',
 
 # List redirects
@@ -1073,6 +1089,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'ncategories'             => '$1 {{PLURAL:$1|kategori|kategoriar}}',
 'nlinks'                  => '{{PLURAL:$1|Éi lenkje|$1 lenkjer}}',
 'nmembers'                => '$1 {{PLURAL:$1|medlem|medlemmer}}',
+'nrevisions'              => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
 'nviews'                  => '{{PLURAL:$1|Éi vising|$1 visingar}}',
 'lonelypages'             => 'Foreldrelause sider',
 'uncategorizedpages'      => 'Ikkje kategoriserte sider',
@@ -1110,6 +1127,8 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'unusedcategoriestext'    => 'Dei følgjande kategorisidene er oppretta, sjølv om ingen artikkel eller kategori brukar dei.',
 'notargettitle'           => 'Inkje mål',
 'notargettext'            => 'Du har ikkje spesifisert noka målside eller nokon brukar å bruke denne funksjonen på.',
+'pager-newer-n'           => '{{PLURAL:$1|nyare|nyare $1}}',
+'pager-older-n'           => '{{PLURAL:$1|eldre|eldre $1}}',
 
 # Book sources
 'booksources'    => 'Bokkjelder',
@@ -1198,14 +1217,15 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'watching'   => 'Overvakar...',
 'unwatching' => 'Fjernar frå overvakinglista...',
 
-'enotif_mailer'      => '{{SITENAME}}-endringsmeldingssendar',
-'enotif_reset'       => 'Merk alle sider som vitja',
-'enotif_newpagetext' => 'Dette er ei ny side.',
-'changed'            => 'endra',
-'created'            => 'oppretta',
-'enotif_subject'     => '{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED av $PAGEEDITOR',
-'enotif_lastvisited' => 'Sjå $1 for alle endringane sidan siste vitjing.',
-'enotif_body'        => 'Hei $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}}-endringsmeldingssendar',
+'enotif_reset'                 => 'Merk alle sider som vitja',
+'enotif_newpagetext'           => 'Dette er ei ny side.',
+'enotif_impersonal_salutation' => '{{SITENAME}}-brukar',
+'changed'                      => 'endra',
+'created'                      => 'oppretta',
+'enotif_subject'               => '{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED av $PAGEEDITOR',
+'enotif_lastvisited'           => 'Sjå $1 for alle endringane sidan siste vitjing.',
+'enotif_body'                  => 'Hei $WATCHINGUSERNAME,
 
 {{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
 
@@ -1369,6 +1389,7 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Ipb
 'unblocklogentry'             => 'oppheva blokkering av «$1»',
 'range_block_disabled'        => 'Funksjonen for blokkering av IP-adresse-seriar er deaktivert på tenaren.',
 'ipb_expiry_invalid'          => 'Ugyldig opphørstid.',
+'ipb_already_blocked'         => '«$1» er allereie blokkert',
 'ip_range_invalid'            => 'Ugyldig IP-adresseserie.',
 'proxyblocker'                => 'Proxy-blokkerar',
 'proxyblockreason'            => 'Du er blokkert frå å endre fordi IP-adressa di tilhøyrer ein open mellomtenar (proxy). Du bør kontakte internettleverandøren din eller kundesørvis og gje dei beskjed, ettersom dette er eit alvorleg sikkerheitsproblem.',
@@ -1890,13 +1911,18 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
 
 # Table pager
+'ascending_abbrev'         => 'stigande',
+'descending_abbrev'        => 'synkande',
 'table_pager_next'         => 'Neste side',
 'table_pager_last'         => 'Siste side',
 'table_pager_limit_submit' => 'Gå',
 'table_pager_empty'        => 'Ingen resultat',
 
 # Auto-summaries
-'autosumm-new' => 'Ny side: $1',
+'autosumm-blank'   => 'Fjernar alt innhald på sida',
+'autosumm-replace' => 'Erstattar innhaldet på sida med «$1»',
+'autoredircomment' => 'Omdirigerer til [[$1]]',
+'autosumm-new'     => 'Ny side: $1',
 
 # Live preview
 'livepreview-loading' => 'Lastar inn…',
@@ -1909,6 +1935,7 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'watchlistedit-normal-legend'  => 'Fjern sider frå overvakingslista',
 'watchlistedit-normal-explain' => 'Sidene på overvakingslista di er viste nedanfor. For å fjerne ei side, kryss av boksen ved sidan av sida du vil fjerne og klikk på «Fjern side». Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]], eller [[Special:Watchlist/clear|fjerne alle sidene]].',
 'watchlistedit-normal-submit'  => 'Fjern sider',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Éi side|$1 sider}} vart fjerna frå overvakingslista di:',
 'watchlistedit-raw-title'      => 'Overvakingslista i råformat',
 'watchlistedit-raw-legend'     => 'Endre på overvakingslista i råformat',
 'watchlistedit-raw-explain'    => 'Sidene på overvakingslista di er viste nedanfor, og lista kan endrast ved å legge til eller fjerne sider frå lista; ei side per line. Når du er ferdig, klikk «Oppdater overvakingsliste». Du kan òg [[Special:Watchlist/edit|nytte standardverktøyet]].',
@@ -1922,5 +1949,8 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'watchlisttools-view' => 'Vis relevante endringar',
 'watchlisttools-edit' => 'Vis og endre overvakingslista',
 'watchlisttools-raw'  => 'Endre på overvakingslista i råformat',
+
+# Core parser functions
+'unknown_extension_tag' => 'Ukjend tilleggsmerking «$1»',
 
 );
