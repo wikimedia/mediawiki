@@ -12,9 +12,9 @@ define( 'KK_C_UC', 'АӘБВГҒДЕЁЖЗИЙКҚЛМНҢОӨПРСТУҰҮФХ
 define( 'KK_C_LC', 'аәбвгғдеёжзийкқлмнңоөпрстуұүфхһцчшщъыіьэюя' ); # Kazakh Cyrillic lowercase
 define( 'KK_L_UC', 'AÄBCÇDEÉFGĞHIİÏJKLMNÑOÖPQRSŞTUÜVWXYÝZ' ); # Kazakh Latin uppercase
 define( 'KK_L_LC', 'aäbcçdeéfgğhıiïjklmnñoöpqrsştuüvwxyýz' ); # Kazakh Latin lowercase
-//define( 'KK_A', 'اٵبۆگعدەجزيكقلمنڭوٶپرستۋۇٷفحھچشىٸ' ); # Kazakh Arabic
+//define( 'KK_A', 'ٴابپتجحدرزسشعفقكلمنڭەوۇۋۆىيچھ' ); # Kazakh Arabic
 define( 'H_HAMZA', 'ٴ' ); # U+0674 ARABIC LETTER HIGH HAMZA
-define( 'ZWNJ', '‌' ); # U+200C ZERO WIDTH NON-JOINER
+//define( 'ZWNJ', '‌' ); # U+200C ZERO WIDTH NON-JOINER
 
 class KkConverter extends LanguageConverter {
 	
@@ -431,27 +431,26 @@ class LanguageKk extends LanguageKk_cyrl {
 	}
 
 	function convertGrammar( $word, $case ) {
-		$fname="LanguageKk::convertGrammar";
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$variant = $this->getPreferredVariant();
 		switch ( $variant ) {
 			case 'kk-arab':
 			case 'kk-cn':
-				$word = parent::convertGrammar( $word, $case, $variant = 'kk-arab' );
+				$word = parent::convertGrammarKk_arab( $word, $case );
 				break;
 			case 'kk-latn':
 			case 'kk-tr':
-				$word = parent::convertGrammar( $word, $case, $variant = 'kk-latn' );
+				$word = parent::convertGrammarKk_latn( $word, $case );
 				break;
 			case 'kk-cyrl':
 			case 'kk-kz':
 			case 'kk':
 			default:
-				$word = parent::convertGrammar( $word, $case, $variant = 'kk-cyrl' );
+				$word = parent::convertGrammarKk_cyrl( $word, $case );
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $word;
 	}
 
