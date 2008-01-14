@@ -35,6 +35,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New permission userrights-interwiki for changing user rights on foreign wikis.
 * $wgImplictGroups for groups that are hidden from Special:Listusers, etc.
 * $wgAutopromote: automatically promote users who match specified criteria
+* $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf: allow users to add or remove
+  themselves from specified groups via Special:Userrights.
 
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload

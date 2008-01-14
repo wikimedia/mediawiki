@@ -17,6 +17,7 @@ class UserrightsPage extends SpecialPage {
 	# either a GET parameter or a subpage-style parameter, so have a member
 	# variable for it.
 	protected $mTarget;
+	protected $isself = false;
 
 	public function __construct() {
 		parent::__construct( 'Userrights' );
@@ -28,7 +29,11 @@ class UserrightsPage extends SpecialPage {
 
 	public function userCanExecute( $user ) {
 		$available = $this->changeableGroups();
-		return !empty( $available['add'] ) or !empty( $available['remove'] );
+		return !empty( $available['add'] ) 
+			or !empty( $available['remove'] )
+			or ($this->isself and 
+				(!empty( $available['add-self'] )
+				 or !empty( $available['remove-self'] )));
 	}
 
 	/**
@@ -40,7 +45,28 @@ class UserrightsPage extends SpecialPage {
 	function execute( $par ) {
 		// If the visitor doesn't have permissions to assign or remove
 		// any groups, it's a bit silly to give them the user search prompt.
-		global $wgUser;
+		global $wgUser, $wgRequest;
+
+		if( $par ) {
+			$this->mTarget = $par;
+		} else {
+			$this->mTarget = $wgRequest->getVal( 'user' );
+		}
+
+		if (!$this->mTarget) {
+			/*
+			 * If the user specified no target, and they can only
+			 * edit their own groups, automatically set them as the
+			 * target.
+			 */
+			$available = $this->changeableGroups();
+			if (empty($available['add']) && empty($available['remove']))
+				$this->mTarget = $wgUser->getName();
+		}
+
+		if ($this->mTarget == $wgUser->getName())
+			$this->isself = true;
+
 		if( !$this->userCanExecute( $wgUser ) ) {
 			// fixme... there may be intermediate groups we can mention.
 			global $wgOut;
@@ -52,13 +78,6 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$this->outputHeader();
-
-		global $wgRequest;
-		if( $par ) {
-			$this->mTarget = $par;
-		} else {
-			$this->mTarget = $wgRequest->getVal( 'user' );
-		}
 
 		$this->setHeaders();
 
@@ -97,6 +116,8 @@ class UserrightsPage extends SpecialPage {
 	 * @return null
 	 */
 	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '') {
+		global $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
+
 		$user = $this->fetchUser( $username );
 		if( !$user ) {
 			return;
@@ -104,10 +125,18 @@ class UserrightsPage extends SpecialPage {
 		
 		// Validate input set...
 		$changeable = $this->changeableGroups();
+		if ($wgUser->getId() != 0 && $wgUser->getId() == $user->getId()) {
+			$addable = array_merge($changeable['add'], $wgGroupsAddToSelf);
+			$removable = array_merge($changeable['remove'], $wgGroupsRemoveFromSelf);
+		} else {
+			$addable = $changeable['add'];
+			$removable = $changeable['remove'];
+		}
+
 		$removegroup = array_unique(
-			array_intersect( (array)$removegroup, $changeable['remove'] ) );
+			array_intersect( (array)$removegroup, $removable ) );
 		$addgroup = array_unique(
-			array_intersect( (array)$addgroup, $changeable['add'] ) );
+			array_intersect( (array)$addgroup, $addable ) );
 
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
@@ -263,9 +292,15 @@ class UserrightsPage extends SpecialPage {
 	 * @return Array:  Tuple of addable, then removable groups
 	 */
 	protected function splitGroups( $groups ) {
+		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 		list($addable, $removable) = array_values( $this->changeableGroups() );
-		$removable = array_intersect($removable, $groups ); // Can't remove groups the user doesn't have
-		$addable   = array_diff(     $addable,   $groups ); // Can't add groups the user does have
+		
+		$removable = array_intersect(
+				array_merge($this->isself ? $wgGroupsRemoveFromSelf : array(), $removable), 
+				$groups ); // Can't remove groups the user doesn't have
+		$addable   = array_diff(
+				array_merge($this->isself ? $wgGroupsAddToSelf : array(), $addable),
+				$groups ); // Can't add groups the user does have
 		
 		return array( $addable, $removable );
 	}
@@ -358,12 +393,20 @@ class UserrightsPage extends SpecialPage {
 		global $wgUser, $wgLang;
 
 		$out = array();
-		list( $add, $remove ) = array_values( $this->changeableGroups() );
+		list( $add, $remove, $addself, $rmself ) = array_values( $this->changeableGroups() );
 
 		if( count( $add ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-add', 'parseinline', $wgLang->listToText( $add ), count( $add ) );
+			$out[] = wfMsgExt( 'userrights-available-add', 'parseinline', 
+					$wgLang->listToText( $add ), count( $add ) );
 		if( count( $remove ) > 0 )
-			$out[] = wfMsgExt( 'userrights-available-remove', 'parseinline', $wgLang->listToText( $remove ), count( $add ) );
+			$out[] = wfMsgExt( 'userrights-available-remove', 'parseinline', 
+					$wgLang->listToText( $remove ), count( $add ) );
+		if( count( $addself ) > 0 )
+			$out[] = wfMsgExt( 'userrights-available-add-self', 'parseinline',
+					$wgLang->listToText( $addself ), count( $addself ) );
+		if( count( $rmself ) > 0 )
+			$out[] = wfMsgExt( 'userrights-available-remove-self', 'parseinline',
+					$wgLang->listToText( $rmself ), count( $rmself ) );
 
 		return count( $out ) > 0
 			? implode( '<br />', $out )
@@ -439,7 +482,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) )
 	 */
 	function changeableGroups() {
-		global $wgUser;
+		global $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		if( $wgUser->isAllowed( 'userrights' ) ) {
 			// This group gives the right to modify everything (reverse-
@@ -454,7 +497,11 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		// Okay, it's not so simple, we will have to go through the arrays
-		$groups = array( 'add' => array(), 'remove' => array() );
+		$groups = array( 
+				'add' => array(), 
+				'remove' => array(),
+				'add-self' => $wgGroupsAddToSelf,
+				'remove-self' => $wgGroupsRemoveFromSelf);
 		$addergroups = $wgUser->getEffectiveGroups();
 
 		foreach ($addergroups as $addergroup) {
