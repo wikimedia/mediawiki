@@ -186,6 +186,7 @@ $magicWords = array(
 	'special'               => array( 0,    'מיוחד',                             'special'                ),
 	'defaultsort'           => array( 1,    'מיון רגיל:',                        'DEFAULTSORT:'           ),
 	'filepath'              => array( 0,    'נתיב לקובץ:',                       'FILEPATH:'              ),
+	'tag'                   => array( 0,    'תגית',                              'tag'                    ),
 );
 
 $specialPageAliases = array(
@@ -2572,5 +2573,8 @@ $1',
 'hebrew-calendar-m10-gen' => 'בתמוז',
 'hebrew-calendar-m11-gen' => 'באב',
 'hebrew-calendar-m12-gen' => 'באלול',
+
+# Core parser functions
+'unknown_extension_tag' => 'תגית בלתי ידועה: "$1"',
 
 );
