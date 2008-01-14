@@ -594,6 +594,9 @@ $user : Current user object
 $action: Action being checked
 $result: User permissions error to add. If none, return true.
 
+'getUserPermissionsErrorsExpensive': Absolutely the same, but is called only
+	if expensive checks are enabled.
+
 'ImageOpenShowImageInlineBefore': Call potential extension just before showing the image on an image page
 $imagePage: ImagePage object ($this)
 $output: $wgOut

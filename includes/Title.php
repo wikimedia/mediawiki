@@ -1130,6 +1130,16 @@ class Title {
 			else if ($result === false )
 				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
 		}
+		if ($doExpensiveQueries && !wfRunHooks( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) ) ) {
+			if ($result != array() && is_array($result) && !is_array($result[0]))
+				$errors[] = $result; # A single array representing an error
+			else if (is_array($result) && is_array($result[0]))
+				$errors = array_merge( $errors, $result ); # A nested array representing multiple errors
+			else if ($result != '' && $result != null && $result !== true && $result !== false)
+				$errors[] = array($result); # A string representing a message-id
+			else if ($result === false )
+				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
+		}
 
 		if( NS_SPECIAL == $this->mNamespace ) {
 			$errors[] = array('ns-specialprotected');
@@ -2279,6 +2289,7 @@ class Title {
 	 * @return mixed true on success, message name on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true ) {
+		global $wgUser;
 		if( !$this or !$nt ) {
 			return 'badtitletext';
 		}
@@ -2303,7 +2314,8 @@ class Title {
 
 		if ( $auth && (
 				!$this->userCan( 'edit' ) || !$nt->userCan( 'edit' ) ||
-				!$this->userCan( 'move' ) || !$nt->userCan( 'move' ) ) ) {
+				!$this->userCan( 'move' ) || !$nt->userCan( 'move' ) ||
+				$this->getNamespace() == NS_IMAGE && !$wgUser->isAllowed( 'upload' ) ) ) {
 			return 'protectedpage';
 		}
 
@@ -2344,6 +2356,17 @@ class Title {
 		$err = $this->isValidMoveOperation( $nt, $auth );
 		if( is_string( $err ) ) {
 			return $err;
+		}
+
+		// If it's existent image, move it as image
+		if( $this->getNamespace() == NS_IMAGE && $nt->getNamespace() == NS_IMAGE && wfFindFile( $this )  ) {
+			$oldfile = wfFindFile( $this );
+			$newfile = wfFindFile( $nt );
+			var_dump( array( $oldfile, $newfile ) );
+			if( $newfile ) {
+				return 'articleexists';
+			}
+			return 'a';
 		}
 
 		$pageid = $this->getArticleID();
@@ -2583,6 +2606,11 @@ class Title {
 		# The new title, and links to the new title, are purged in Article::onArticleCreate()
 		$this->purgeSquid();
 	}
+
+	/**
+	 * Moves image to new title
+	 */
+	//private function moveImage
 
 	/**
 	 * Checks if $this can be moved to a given Title
