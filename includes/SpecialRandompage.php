@@ -9,40 +9,29 @@
  */
 
 /**
- * Main execution point
- * @param $par Namespace to select the page from
- */
-function wfSpecialRandompage( $par = null ) {
-	global $wgOut, $wgContLang;
-
-	$rnd = new RandomPage();
-	$rnd->setNamespace( $wgContLang->getNsIndex( $par ) );
-	$rnd->setRedirect( false );
-
-	$title = $rnd->getRandomTitle();
-
-	if( is_null( $title ) ) {
-		$wgOut->addWikiText( wfMsg( 'randompage-nopages' ) );
-		return;
-	}
-
-	$wgOut->reportTime();
-	$wgOut->redirect( $title->getFullUrl() );
-}
-
-
-/**
  * Special page to direct the user to a random page
  *
  * @addtogroup SpecialPage
  */
-class RandomPage {
+class RandomPage extends SpecialPage {
 	private $namespace = NS_MAIN;  // namespace to select pages from
 	private $redirect = false;     // select redirects instead of normal pages?
 
 	public function getNamespace ( ) {
 		return $this->namespace;
 	}
+	
+	function getTitle($par=null) {
+		return SpecialPage::getTitleFor("Randompage");
+	}
+	
+	function getLocalName() {
+		return SpecialPage::getLocalNameFor("Randompage");
+	}
+	
+	public function setHeaders() {}
+	public function outputHeader() {}
+	
 	public function setNamespace ( $ns ) {
 		if( $ns < NS_MAIN ) $ns = NS_MAIN;
 		$this->namespace = $ns;
@@ -53,6 +42,24 @@ class RandomPage {
 	public function setRedirect ( $redirect ) {
 		$this->redirect = $redirect;
 	}
+	
+	public function execute( $par = null ) {
+		global $wgOut, $wgContLang;
+
+		if ($par)
+			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
+		$this->setRedirect( false );
+
+		$title = $this->getRandomTitle();
+
+		if( is_null( $title ) ) {
+			$wgOut->addWikiText( wfMsg( 'randompage-nopages' ) );
+			return;
+		}
+
+		$wgOut->redirect( $title->getFullUrl() );
+	}
+
 
 	/**
 	 * Choose a random title.
