@@ -18,7 +18,7 @@ class Autopromote {
 			if( self::recCheckCondition( $cond, $user ) )
 				$promote[] = $group;
 		}
-		return array_unique( $promote );
+		return $promote;
 	}
 
 	/**
@@ -98,6 +98,9 @@ class Autopromote {
 			case APCOND_AGE:
 				$age = time() - wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
 				return $age >= $cond[1];
+			case APCOND_INGROUPS:
+				$groups = array_slice( $cond, 1 );
+				return count( array_intersect( $groups, $user->getGroups() ) ) == count( $groups );
 			default:
 				$result = null;
 				wfRunHooks( 'AutopromoteCondition', array( $cond[0], array_slice( $cond, 1 ), $user, &$result ) );
