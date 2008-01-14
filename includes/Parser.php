@@ -3371,7 +3371,7 @@ class Parser
 					$wgContLang->findVariantLink($part1, $title);
 				}
 				# Do infinite loop check
-				if ( isset( $frame->loopCheckHash[$titleText] ) ) {
+				if ( !$frame->loopCheck( $title ) ) {
 					$found = true;
 					$text = "<span class=\"error\">Template loop detected: [[$titleText]]</span>";
 					wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
@@ -3440,8 +3440,6 @@ class Parser
 		if ( $isDOM ) {
 			# Clean up argument array
 			$newFrame = $frame->newChild( $args, $title );
-			# Add a new element to the templace loop detection hashtable
-			$newFrame->loopCheckHash[$titleText] = true;
 
 			if ( $titleText !== false && $newFrame->isEmpty() ) {
 				# Expansion is eligible for the empty-frame cache
@@ -4806,13 +4804,7 @@ class Parser
 				$label = '';
 			}
 
-			$pout = $this->parse( $label,
-				$this->mTitle,
-				$this->mOptions,
-				false, // Strip whitespace...?
-				false  // Don't clear state!
-			);
-			$html = $pout->getText();
+			$html = $this->recursiveTagParse( trim( $label ) );
 
 			$ig->add( $nt, $html );
 
@@ -5621,6 +5613,13 @@ class PPFrame {
 	function getArgument( $name ) {
 		return false;
 	}
+
+	/**
+	 * Returns true if the infinite loop check is OK, false if a loop is detected
+	 */
+	function loopCheck( $title ) {
+		return !isset( $this->loopCheckHash[$title->getPrefixedDBkey()] );
+	}
 }
 
 /**
@@ -5636,9 +5635,13 @@ class PPTemplateFrame extends PPFrame {
 		$this->numberedArgs = $numberedArgs;
 		$this->namedArgs = $namedArgs;
 		$this->title = $title;
+		$pdbk = $title ? $title->getPrefixedDBkey() : false;
 		$this->titleCache = $parent->titleCache;
-		$this->titleCache[] = $title ? $title->getPrefixedDBkey() : false;
+		$this->titleCache[] = $pdbk;
 		$this->loopCheckHash = /*clone*/ $parent->loopCheckHash;
+		if ( $pdbk !== false ) {
+			$this->loopCheckHash[$pdbk] = true;
+		}
 		$this->depth = $parent->depth + 1;
 		$this->numberedExpansionCache = $this->namedExpansionCache = array();
 	}

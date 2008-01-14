@@ -2410,7 +2410,7 @@ Template infinite loop
 !! input
 {{loop1}}
 !! result
-<p><a href="/index.php?title=Loop1&amp;action=edit" class="new" title="Loop1">loop1</a><!-- WARNING: template loop detected -->
+<p><span class="error">Template loop detected: <a href="/wiki/Template:Loop1" title="Template:Loop1">Template:Loop1</a></span>
 </p>
 !! end
 
@@ -5972,8 +5972,8 @@ image4    |300px| centre
 		<td><div class="gallerybox" style="width: 155px;">
 			<div style="height: 152px;">Image5.svg</div>
 			<div class="gallerytext">
-<pre><a href="http://///////" class="external free" title="http://///////" rel="nofollow">http://///////</a>
-</pre>
+<p><a href="http://///////" class="external free" title="http://///////" rel="nofollow">http://///////</a>
+</p>
 			</div>
 		</div></td>
 		<td><div class="gallerybox" style="width: 155px;">
