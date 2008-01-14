@@ -2289,7 +2289,6 @@ class Title {
 	 * @return mixed true on success, message name on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true ) {
-		global $wgUser;
 		if( !$this or !$nt ) {
 			return 'badtitletext';
 		}
@@ -2314,8 +2313,7 @@ class Title {
 
 		if ( $auth && (
 				!$this->userCan( 'edit' ) || !$nt->userCan( 'edit' ) ||
-				!$this->userCan( 'move' ) || !$nt->userCan( 'move' ) ||
-				$this->getNamespace() == NS_IMAGE && !$wgUser->isAllowed( 'upload' ) ) ) {
+				!$this->userCan( 'move' ) || !$nt->userCan( 'move' ) ) ) {
 			return 'protectedpage';
 		}
 
@@ -2356,17 +2354,6 @@ class Title {
 		$err = $this->isValidMoveOperation( $nt, $auth );
 		if( is_string( $err ) ) {
 			return $err;
-		}
-
-		// If it's existent image, move it as image
-		if( $this->getNamespace() == NS_IMAGE && $nt->getNamespace() == NS_IMAGE && wfFindFile( $this )  ) {
-			$oldfile = wfFindFile( $this );
-			$newfile = wfFindFile( $nt );
-			var_dump( array( $oldfile, $newfile ) );
-			if( $newfile ) {
-				return 'articleexists';
-			}
-			return 'a';
 		}
 
 		$pageid = $this->getArticleID();
@@ -2606,11 +2593,6 @@ class Title {
 		# The new title, and links to the new title, are purged in Article::onArticleCreate()
 		$this->purgeSquid();
 	}
-
-	/**
-	 * Moves image to new title
-	 */
-	//private function moveImage
 
 	/**
 	 * Checks if $this can be moved to a given Title
