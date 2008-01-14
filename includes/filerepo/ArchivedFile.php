@@ -35,7 +35,7 @@ class ArchivedFile
 		}
 		$this->id = -1;
 		$this->title = $title;
-		$this->name = $title->getDBKey();
+		$this->name = $title->getDBkey();
 		$this->group = '';
 		$this->key = '';
 		$this->size = 0;
@@ -85,7 +85,7 @@ class ArchivedFile
 					'fa_timestamp',
 					'fa_deleted' ),
 				array( 
-					'fa_name' => $this->title->getDBKey(),
+					'fa_name' => $this->title->getDBkey(),
 					$conds ),
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );

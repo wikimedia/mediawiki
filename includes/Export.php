@@ -111,7 +111,7 @@ class WikiExporter {
 	function pageByTitle( $title ) {
 		return $this->dumpFrom(
 			'page_namespace=' . $title->getNamespace() .
-			' AND page_title=' . $this->db->addQuotes( $title->getDbKey() ) );
+			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
 	}
 
 	function pageByName( $name ) {

@@ -204,8 +204,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				{
 					// Apparently the XML formatting code doesn't like array(null)
 					// This is painful to fix, so we'll just work around it
-					if(isset($prottitles[$title->getNamespace()][$title->getDbKey()]))
-						$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][$title->getDbKey()];
+					if(isset($prottitles[$title->getNamespace()][$title->getDBkey()]))
+						$res['query']['pages'][$pageid]['protection'][] = $prottitles[$title->getNamespace()][$title->getDBkey()];
 					else
 						$res['query']['pages'][$pageid]['protection'] = array();
 					$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');

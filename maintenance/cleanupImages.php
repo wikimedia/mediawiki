@@ -66,8 +66,8 @@ class ImageCleanup extends TableCleanup {
 			return $this->progress( 1 );
 		}
 
-		if( $title->getDbKey() !== $source ) {
-			$munged = $title->getDbKey();
+		if( $title->getDBkey() !== $source ) {
+			$munged = $title->getDBkey();
 			$this->log( "page $source ($munged) doesn't match self." );
 			$this->pokeFile( $source, $munged );
 			return $this->progress( 1 );
@@ -154,7 +154,7 @@ class ImageCleanup extends TableCleanup {
 			$name );
 		
 		$test = Title::makeTitleSafe( NS_IMAGE, $x );
-		if( is_null( $test ) || $test->getDbKey() !== $x ) {
+		if( is_null( $test ) || $test->getDBkey() !== $x ) {
 			$this->log( "Unable to generate safe title from '$name', got '$x'" );
 			return false;
 		}

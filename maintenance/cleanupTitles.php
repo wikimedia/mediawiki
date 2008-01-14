@@ -79,7 +79,7 @@ class TitleCleanup extends TableCleanup {
 			$title = Title::newFromText( $clean );
 		}
 
-		$dest = $title->getDbKey();
+		$dest = $title->getDBkey();
 		if( $this->dryrun ) {
 			$this->log( "DRY RUN: would rename $row->page_id ($row->page_namespace,'$row->page_title') to ($row->page_namespace,'$dest')" );
 		} else {
@@ -97,7 +97,7 @@ class TitleCleanup extends TableCleanup {
 			if( $title->getInterwiki() ) {
 				$prior = $title->getPrefixedDbKey();
 			} else {
-				$prior = $title->getDbKey();
+				$prior = $title->getDBkey();
 			}
 			$clean = 'Broken/' . $prior;
 			$verified = Title::makeTitleSafe( $row->page_namespace, $clean );
@@ -112,7 +112,7 @@ class TitleCleanup extends TableCleanup {
 			wfDie( "Something awry; empty title.\n" );
 		}
 		$ns = $title->getNamespace();
-		$dest = $title->getDbKey();
+		$dest = $title->getDBkey();
 		if( $this->dryrun ) {
 			$this->log( "DRY RUN: would rename $row->page_id ($row->page_namespace,'$row->page_title') to ($row->page_namespace,'$dest')" );
 		} else {
