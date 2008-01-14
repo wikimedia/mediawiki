@@ -213,6 +213,7 @@ function __autoload($className) {
 		'PreferencesForm' => 'includes/SpecialPreferences.php',
 		'SpecialPrefixindex' => 'includes/SpecialPrefixindex.php',
 		'RandomPage' => 'includes/SpecialRandompage.php',
+		'SpecialRandomredirect' => 'includes/SpecialRandomredirect.php',
 		'PasswordResetForm' => 'includes/SpecialResetpass.php',
 		'RevisionDeleteForm' => 'includes/SpecialRevisiondelete.php',
 		'RevisionDeleter' => 'includes/SpecialRevisiondelete.php',

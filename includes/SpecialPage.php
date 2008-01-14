@@ -141,7 +141,7 @@ class SpecialPage
 		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
 		'Revisiondelete'            => array( 'UnlistedSpecialPage', 'Revisiondelete', 'deleterevision' ),
 		'Unusedtemplates'           => array( 'SpecialPage', 'Unusedtemplates' ),
-		'Randomredirect'            => array( 'SpecialPage', 'Randomredirect' ),
+		'Randomredirect'            => 'SpecialRandomredirect',
 		'Withoutinterwiki'          => array( 'SpecialPage', 'Withoutinterwiki' ),
 
 		'Mypage'                    => array( 'SpecialMypage' ),
