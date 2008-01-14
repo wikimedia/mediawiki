@@ -21,6 +21,8 @@ $skinNames = array(
 	'nostalgia' => 'Nostalgie'
 );
 
+$separatorTransformTable = array( ',' => ".", '.' => ',' );
+
 $magicWords = array(
 	#   ID                                 CASE  SYNONYMS
 	'notoc'                  => array( 0,    '__NOTOC__', '__FARACUPRINS__'                    ),
