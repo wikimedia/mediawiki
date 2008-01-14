@@ -1462,9 +1462,7 @@ wiki: $PAGEEDITOR_WIKI
 'editcomment'                 => '編輯摘要係："<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯；恢復到[[User:$1|$1]]嘅最後版本。',
 'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
-'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；
-為咗防止會話劫持，呢個操作已經取消。
-請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
+'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面係一個保護同埋解除保護頁面嘅一覽表。睇吓[[Special:Protectedpages|保護頁面一覽]]去拎現時進行緊嘅頁面保護一覽。',
 'protectedarticle'            => '已經保護 "[[$1]]"',
