@@ -2650,7 +2650,7 @@ class Parser
 		$searchBase = implode( '', array_keys( $rules ) ) . '<';
 		$revText = strrev( $text ); // For fast reverse searches
 
-		$i = -1; # Input pointer, starts out pointing to a pseudo-newline before the start
+		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
 		$topAccum = '<root>';      # Top level text accumulator
 		$accum =& $topAccum;            # Current text accumulator
 		$findEquals = false;            # True to find equals signs in arguments
@@ -2659,10 +2659,7 @@ class Parser
 		$headingIndex = 1;
 		$noMoreGT = false;         # True if there are no more greater-than (>) signs right of $i
 		$findOnlyinclude = $enableOnlyinclude; # True to ignore all input up to the next <onlyinclude>
-
-		if ( $enableOnlyinclude ) {
-			$i = 0;
-		}
+		$fakeLineStart = true;     # Do a line-start run without outputting an LF character
 
 		while ( true ) {
 			if ( $findOnlyinclude ) {
@@ -2679,7 +2676,7 @@ class Parser
 				$findOnlyinclude = false;
 			}
 
-			if ( $i == -1 ) {
+			if ( $fakeLineStart ) {
 				$found = 'line-start';
 				$curChar = '';
 			} else {
@@ -2780,6 +2777,9 @@ class Parser
 						// $wsEnd will be the position of the last space
 						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
 						// Eat the line if possible
+						// TODO: This could theoretically be done if $wsStart == 0, i.e. for comments at 
+						// the overall start. That's not how Sanitizer::removeHTMLcomments() does it, but 
+						// it's a possible beneficial b/c break.
 						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n" 
 							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
 						{
@@ -2791,15 +2791,20 @@ class Parser
 							if ( $wsLength > 0 && substr( $accum, -$wsLength ) === str_repeat( ' ', $wsLength ) ) {
 								$accum = substr( $accum, 0, -$wsLength );
 							}
+							// Do a line-start run next time to look for headings after the comment,
+							// but only if stackIndex=-1, because headings don't exist at deeper levels.
+							if ( $stackIndex == -1 ) {
+								$fakeLineStart = true;
+							}
 						} else {
 							// No line to eat, just take the comment itself
 							$startPos = $i;
 							$endPos += 2;
 						}
 
+						$i = $endPos + 1;
 						$inner = substr( $text, $startPos, $endPos - $startPos + 1 );
 						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
-						$i = $endPos + 1;
 					}
 					continue;
 				}
@@ -2870,8 +2875,12 @@ class Parser
 			elseif ( $found == 'line-start' ) {
 				// Is this the start of a heading? 
 				// Line break belongs before the heading element in any case
-				$accum .= $curChar;
-				$i++;
+				if ( $fakeLineStart ) {
+					$fakeLineStart = false;
+				} else {
+					$accum .= $curChar;
+					$i++;
+				}
 				
 				$count = strspn( $text, '=', $i, 6 );
 				if ( $count > 0 ) {
@@ -2879,6 +2888,7 @@ class Parser
 						'open' => "\n",
 						'close' => "\n",
 						'parts' => array( str_repeat( '=', $count ) ),
+						'startPos' => $i,
 						'count' => $count );
 					$stack[++$stackIndex] = $piece;
 					$i += $count;
@@ -2897,10 +2907,21 @@ class Parser
 				$m = false;
 				$count = $piece['count'];
 				if ( preg_match( "/\s*(={{$count}})/A", $revText, $m, 0, strlen( $text ) - $i ) ) {
-					// Found match, output <h>
-					$count = min( strlen( $m[1] ), $count );
-					$element = "<h level=\"$count\" i=\"$headingIndex\">$accum</h>";
-					$headingIndex++;
+					if ( $i - strlen( $m[0] ) == $piece['startPos'] ) {
+						// This is just a single string of equals signs on its own line
+						// Divide by two and round down to create start and end delimiters
+						$count = intval( $count / 2 );
+					} else {
+						$count = min( strlen( $m[1] ), $count );
+					}
+					if ( $count > 0 ) {
+						// Normal match, output <h>
+						$element = "<h level=\"$count\" i=\"$headingIndex\">$accum</h>";
+						$headingIndex++;
+					} else {
+						// Single equals sign on its own line, count=0
+						$element = $accum;
+					}
 				} else {
 					// No match, no <h>, just pass down the inner text
 					$element = $accum;
