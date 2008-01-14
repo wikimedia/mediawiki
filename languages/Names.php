@@ -62,7 +62,8 @@
 	'cv' => 'Чăвашла',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
-	'de' => 'Deutsch',		# German
+	'de' => 'Deutsch',		# German ("Du")
+	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
 	'dk' => 'Dansk', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
