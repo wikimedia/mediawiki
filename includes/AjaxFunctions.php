@@ -73,8 +73,10 @@ function code2utf($num){
    return '';
 }
 
+define( 'AJAX_SEARCH_VERSION', 1 );	//AJAX search cache version
+
 function wfSajaxSearch( $term ) {
-	global $wgContLang, $wgOut, $wgUser, $wgCapitalLinks;
+	global $wgContLang, $wgOut, $wgUser, $wgCapitalLinks, $wgMemc;
 	$limit = 16;
 	$sk = $wgUser->getSkin();
 
@@ -83,6 +85,14 @@ function wfSajaxSearch( $term ) {
 	if ( $wgCapitalLinks )
 		$term = $wgContLang->ucfirst( $term ); 
 	$term_title = Title::newFromText( $term );
+
+	$memckey = wfMemcKey( 'ajaxsearch', md5( $term_title->getFullText() ) );
+	$cached = $wgMemc->get($memckey);
+	if( is_array( $cached ) && $cached['version'] == AJAX_SEARCH_VERSION ) {
+		$response = new AjaxResponse( $cached['html'] );
+		$response->setCacheDuration( 30*60 );
+		return $response;
+	}
 
 	$r = $more = '';
 	$canSearch = true;
@@ -147,10 +157,10 @@ function wfSajaxSearch( $term ) {
 			. '<ul>' .$r .'</ul>' . $more;
 	}
 
+	$wgMemc->set( $memckey, array( 'version' => AJAX_SEARCH_VERSION, 'html' => $html ), 30 * 60 );
+
 	$response = new AjaxResponse( $html );
-
 	$response->setCacheDuration( 30*60 );
-
 	return $response;
 }
 
