@@ -13,14 +13,6 @@ class LanguageKk_cyrl extends Language {
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
 	 */
-	function convertGrammar( $word, $case, $variant ) {
-		global $wgGrammarForms;
-
-		if ($variant='kk-cyrl') { $word = self::convertGrammarKk_cyrl( $word, $case ); }
-		if ($variant='kk-latn') { $word = self::convertGrammarKk_latn( $word, $case ); }
-		if ($variant='kk-arab') { $word = self::convertGrammarKk_arab( $word, $case ); }
-		return $word;
-	}
 
 	function convertGrammarKk_cyrl( $word, $case ) {
 		global $wgGrammarForms;
