@@ -307,6 +307,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and will generally keep feed behavior cleaner.
 * (bug 12608) Unifying the spelling of getDBkey() in the code.
 * (bug 12611) Bot flag ignored in recent changes
+* (bug 12617) Decimal and thousands separators for Romanian
 
 
 == Parser changes in 1.12 ==
