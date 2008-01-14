@@ -36,7 +36,7 @@
 		padding-right: 0.5em;
 	}
 
-	td.time, td.count {
+	td.time, td.timep, td.count, td.cpr {
 		text-align: right;
 	}
 </style>
@@ -49,6 +49,7 @@ $wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfile
 define( 'MW_NO_SETUP', 1 );
 require_once( './includes/WebStart.php' );
 require_once("./AdminSettings.php");
+require_once( './includes/GlobalFunctions.php' );
 
 if (!$wgEnableProfileInfo) {
 	echo "disabled\n";
@@ -85,7 +86,7 @@ class profile_point {
 	}
 
 	function display($indent = 0.0) {
-		global $expand;
+		global $expand, $totaltime, $totalcount;
 		usort($this->children, "compare_point");
 
 		$extet = '';
@@ -108,7 +109,9 @@ class profile_point {
 		?>
 		<tr>
 		<td class="time"><tt><?php echo $this->fmttime() ?></tt></td>
+		<td class="timep"><?php echo wfPercent( $this->time() / $totaltime * 100 ) ?></td>
 		<td class="count"><?php echo $this->count() ?></td>
+		<td class="cpr"><?php echo round( sprintf( '%.2f',$this->count() / 	$totalcount ), 2 ) ?>
 		<td class="name" style="padding-left: <?php echo $indent ?>em">
 			<?php echo htmlspecialchars($this->name()) . $extet ?>
 		</td>
@@ -179,11 +182,14 @@ else	$filter = '';
 <table cellspacing="0">
 <tr id="top">
 <th><a href="<?php echo makeurl(false, "time") ?>">Time</a></th>
+<th>Time (%)</th>
 <th><a href="<?php echo makeurl(false, "count") ?>">Count</a></th>
+<th>Avg calls per request</th>
 <th><a href="<?php echo makeurl(false, "name") ?>">Name</a></th>
 </tr>
 <?php
 $totaltime = 0.0;
+$totalcount = 0;
 
 function makeurl($_filter = false, $_sort = false, $_expand = false) {
 	global $filter, $sort, $expand;
@@ -204,7 +210,10 @@ $sqltotal = 0.0;
 $last = false;
 while (($o = mysql_fetch_object($res)) !== false) {
 	$next = new profile_point($o->pf_name, $o->pf_count, $o->pf_time);
-	$totaltime += $next->time();
+	if( $next->name() == '-total' ) {
+		$totaltime = $next->time();
+		$totalcount = $next->count();
+	}
 	if ($last !== false) {
 		if (preg_match("/^".preg_quote($last->name(), "/")."/", $next->name())) {
 			$last->add_child($next);
