@@ -129,7 +129,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added exception hooks
 * (bug 12574) Allow bots to specify whether an edit should be marked as a bot
   edit, via the parameter 'bot'. (Default: '1')
-* (bug 12611) Bot flag ignored in recent changes
+* (bug 12536) User should be able to get MediaWiki version from any page
+* (bug 12622) A JavaScript constant to declare whether api.php is available
  
 
 === Bug fixes in 1.12 ===
@@ -308,6 +309,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   This should help prevent infinite link loops that some software may follow,
   and will generally keep feed behavior cleaner.
 * (bug 12608) Unifying the spelling of getDBkey() in the code.
+* (bug 12611) Bot flag ignored in recent changes
 
 
 == Parser changes in 1.12 ==

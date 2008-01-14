@@ -298,6 +298,7 @@ class Skin extends Linker {
 		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
 		global $wgBreakFrames, $wgRequest;
 		global $wgUseAjax, $wgAjaxWatch;
+		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
@@ -325,6 +326,9 @@ class Skin extends Linker {
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgBreakFrames' => $wgBreakFrames,
 			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
+			'wgVersion' => $wgVersion,
+			'wgEnableAPI' => $wgEnableAPI,
+			'wgEnableWriteAPI' => $wgEnableWriteAPI,
 		);
 
 		global $wgLivePreview;
