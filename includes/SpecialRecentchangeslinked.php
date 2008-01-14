@@ -76,7 +76,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
-		$catkey = $dbr->addQuotes( $nt->getDBKey() );
+		$catkey = $dbr->addQuotes( $nt->getDBkey() );
 		$sql = "SELECT /* wfSpecialRecentchangeslinked */
 				rc_id,
 				rc_cur_id,

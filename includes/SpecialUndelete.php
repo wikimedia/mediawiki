@@ -57,7 +57,7 @@ class PageArchive {
 		$title = Title::newFromText( $prefix );
 		if( $title ) {
 			$ns = $title->getNamespace();
-			$encPrefix = $dbr->escapeLike( $title->getDbKey() );
+			$encPrefix = $dbr->escapeLike( $title->getDBkey() );
 		} else {
 			// Prolly won't work too good
 			// @todo handle bare namespace names cleanly?
@@ -132,7 +132,7 @@ class PageArchive {
 					'fa_user',
 					'fa_user_text',
 					'fa_timestamp' ),
-				array( 'fa_name' => $this->title->getDbKey() ),
+				array( 'fa_name' => $this->title->getDBkey() ),
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
 			$ret = $dbr->resultObject( $res );
@@ -174,7 +174,7 @@ class PageArchive {
 				'ar_text_id',
 				'ar_len' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
-			       'ar_title' => $this->title->getDbkey(),
+			       'ar_title' => $this->title->getDBkey(),
 			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
@@ -212,7 +212,7 @@ class PageArchive {
 		$row = $dbr->selectRow( 'archive',
 			'ar_timestamp',
 			array( 'ar_namespace' => $this->title->getNamespace(),
-			       'ar_title' => $this->title->getDbkey(),
+			       'ar_title' => $this->title->getDBkey(),
 			       'ar_timestamp < ' .
 						$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
 			__METHOD__,
@@ -225,7 +225,7 @@ class PageArchive {
 			array( 'rev_id', 'rev_timestamp' ),
 			array(
 				'page_namespace' => $this->title->getNamespace(),
-				'page_title' => $this->title->getDbkey(),
+				'page_title' => $this->title->getDBkey(),
 				'page_id = rev_page',
 				'rev_timestamp < ' .
 						$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),

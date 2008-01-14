@@ -109,7 +109,7 @@ class SearchEngine {
 		# Entering an IP address goes to the contributions page
 		if ( ( $title->getNamespace() == NS_USER && User::isIP($title->getText() ) )
 			|| User::isIP( trim( $searchterm ) ) ) {
-			return SpecialPage::getTitleFor( 'Contributions', $title->getDbkey() );
+			return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
 		}
 
 
