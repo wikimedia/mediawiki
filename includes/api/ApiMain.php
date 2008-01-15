@@ -56,7 +56,6 @@ class ApiMain extends ApiBase {
 		'logout' => 'ApiLogout',
 		'query' => 'ApiQuery',
 		'expandtemplates' => 'ApiExpandTemplates',
-		'render' => 'ApiRender',
 		'parse' => 'ApiParse',
 		'opensearch' => 'ApiOpenSearch',
 		'feedwatchlist' => 'ApiFeedWatchlist',
