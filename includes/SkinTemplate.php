@@ -772,7 +772,7 @@ class SkinTemplate extends Skin {
 
 			wfProfileOut( "$fname-live" );
 
-			if( $this->loggedin ) {
+			if( $this->loggedin && 0) {
 				if( !$this->mTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
 						'class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
