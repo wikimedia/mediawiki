@@ -346,7 +346,6 @@ function __autoload($className) {
 		'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
 		'ApiQueryUserInfo' => 'includes/api/ApiQueryUserInfo.php',
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
-		'ApiRender' => 'includes/api/ApiRender.php',
 		'ApiResult' => 'includes/api/ApiResult.php',
 
 		# apiedit branch
