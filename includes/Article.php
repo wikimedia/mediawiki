@@ -2367,7 +2367,14 @@ class Article {
 		# Get the edit summary
 		$target = Revision::newFromId( $s->rev_id );
 		if( empty( $summary ) )
-			$summary = wfMsgForContent( 'revertpage', $target->getUserText(), $from );
+		{
+			global $wgLang;
+			$summary = wfMsgForContent( 'revertpage',
+					 $target->getUserText(), $from,
+					 $s->rev_id, $wgLang->timeanddate(wfTimestamp(TS_MW, $s->rev_timestamp), true),
+					 $current->getId(), $wgLang->timeanddate($current->getTimestamp())
+			);
+		}
 
 		# Save
 		$flags = EDIT_UPDATE;
