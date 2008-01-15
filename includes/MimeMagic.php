@@ -84,19 +84,19 @@ class MimeMagic {
 	* Mapping of media types to arrays of mime types.
 	* This is used by findMediaType and getMediaType, respectively
 	*/
-	public static $mMediaTypes= NULL;
+	var $mMediaTypes= NULL;
 
 	/** Map of mime type aliases
 	*/
-	public static $mMimeTypeAliases= NULL;
+	var $mMimeTypeAliases= NULL;
 
 	/** map of mime types to file extensions (as a space seprarated list)
 	*/
-	public static $mMimeToExt= NULL;
+	var $mMimeToExt= NULL;
 
 	/** map of file extensions types to mime types (as a space seprarated list)
 	*/
-	public static $mExtToMime= NULL;
+	var $mExtToMime= NULL;
 
 	/** The singleton instance
 	 */
