@@ -191,7 +191,7 @@ abstract class MediaHandler {
 	 * to do things like visual indication of grouped and chained streams
 	 * in ogg container files.
 	 */
-	function formatMetadata( $image, $metadata ) {
+	function formatMetadata( $image ) {
 		return false;
 	}
 
@@ -224,7 +224,7 @@ abstract class MediaHandler {
 		return wfMsg( 'file-info', $sk->formatSize( $file->getSize() ), $file->getMimeType() );
 	}
 
-	function getDimensionsString() {
+	function getDimensionsString( $file ) {
 		return '';
 	}
 

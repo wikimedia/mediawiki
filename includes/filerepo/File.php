@@ -135,15 +135,13 @@ abstract class File {
 
 	/**
 	 * Return the associated title object
-	 * @public
 	 */
-	function getTitle() { return $this->title; }
+	public function getTitle() { return $this->title; }
 
 	/**
 	 * Return the URL of the file
-	 * @public
 	 */
-	function getUrl() { 
+	public function getUrl() { 
 		if ( !isset( $this->url ) ) {
 			$this->url = $this->repo->getZoneUrl( 'public' ) . '/' . $this->getUrlRel();
 		}
@@ -188,10 +186,8 @@ abstract class File {
 	* or in hashed paths like /images/3/3c.
 	*
 	* May return false if the file is not locally accessible.
-	*
-	* @public
 	*/
-	function getPath() {
+	public function getPath() {
 		if ( !isset( $this->path ) ) {
 			$this->path = $this->repo->getZonePath('public') . '/' . $this->getRel();
 		}
@@ -200,9 +196,8 @@ abstract class File {
 
 	/**
 	* Alias for getPath()
-	* @public
 	*/
-	function getFullPath() {
+	public function getFullPath() {
 		return $this->getPath();
 	}
 
@@ -600,7 +595,7 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function purgeCache( $archiveFiles = array() ) {}
+	function purgeCache() {}
 
 	/**
 	 * Purge the file description page, but don't go after
@@ -902,7 +897,7 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function delete( $reason, $suppress=false ) {
+	function delete( $reason ) {
 		$this->readOnlyError();
 	}
 
