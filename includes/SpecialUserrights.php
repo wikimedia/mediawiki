@@ -77,6 +77,12 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
+		if ( wfReadOnly() ) {
+			global $wgOut;
+			$wgOut->readOnlyPage();
+			return;
+		}
+
 		$this->outputHeader();
 
 		$this->setHeaders();
