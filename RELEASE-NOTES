@@ -433,6 +433,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 12413) meta=userinfo missing <query> tag
 * Add list of sections to action=parse output
 * Added action=logout
+* Added cascade flag to prop=info&inprop=protections
 
 === Languages updated in 1.12 ===
 
