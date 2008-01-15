@@ -49,17 +49,10 @@ class ApiRollback extends ApiBase {
 		if(!isset($params['token']))
 			$this->dieUsage('The token parameter must be set', 'notoken');
 
-		// doRollback() also checks for these, but we wanna save some work
-		if($wgUser->isBlocked())
-			$this->dieUsage('You have been blocked from editing', 'blocked');
 		if(wfReadOnly())
 			$this->dieUsage('The wiki is in read-only mode', 'readonly');
 
 		$titleObj = Title::newFromText($params['title']);
-		if(!$titleObj)
-			$this->dieUsage("Bad title ``{$params['title']}''", 'invalidtitle');
-		if(!$titleObj->userCan('rollback'))
-			$this->dieUsage('You don\'t have permission to rollback', 'permissiondenied');
 
 		$username = User::getCanonicalName($params['user']);
 		if(!$username)
@@ -67,39 +60,15 @@ class ApiRollback extends ApiBase {
 
 		$articleObj = new Article($titleObj);
 		$summary = (isset($params['summary']) ? $params['summary'] : "");
-		$details = NULL;
+		$details = null;
 		$dbw = wfGetDb(DB_MASTER);
 		$dbw->begin();
 		$retval = $articleObj->doRollback($username, $summary, $params['token'], $params['markbot'], &$details);
 
-		switch($retval)
-		{
-			case Article::SUCCESS:
-				break; // We'll deal with that later
-			case Article::PERM_DENIED:
-				$this->dieUsage("You don't have permission to rollback", 'permissiondenied');
-			case Article::BLOCKED: // If we get BLOCKED or PERM_DENIED that's very weird, but it's possible
-				$this->dieUsage('You have been blocked from editing', 'blocked');
-			case Article::READONLY:
-				$this->dieUsage('The wiki is in read-only mode', 'readonly');
-			case Article::BAD_TOKEN:
-				$this->dieUsage('Invalid token', 'badtoken');
-			case Article::BAD_TITLE:
-				$this->dieUsage("``{$params['title']}'' doesn't exist", 'missingtitle');
-			case Article::ALREADYROLLED:
-				$current = $details['current'];
-				$currentID = $current->getId();
-				$this->dieUsage("The edit(s) you tried to rollback is/are already rolled back." .
-						"The current revision ID is ``$currentID''", 'alreadyrolled');
-			case Article::ONLY_AUTHOR:
-				$this->dieUsage("User ``$username'' is the only author of the page", 'onlyauthor');
-			case Article::RATE_LIMITED:
-				$this->dieUsage("You can't rollback too many articles in too short a time. Please wait a little while and try again", 'ratelimited');
-			default:
-				// rollback() has apparently invented a new error, which is extremely weird
-				$this->dieDebug(__METHOD__, "rollback() returned an unknown error ($retval)");
-		}
-		// $retval has to be Article::SUCCESS if we get here
+		if(!empty($retval))
+			// We don't care about multiple errors, just report the first one
+			$this->dieUsageMsg(current($retval));
+
 		$dbw->commit();
 		$current = $target = $summary = NULL;
 		extract($details);

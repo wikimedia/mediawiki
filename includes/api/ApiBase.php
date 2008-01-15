@@ -549,6 +549,41 @@ abstract class ApiBase {
 	public function dieUsage($description, $errorCode, $httpRespCode = 0) {
 		throw new UsageException($description, $this->encodeParamName($errorCode), $httpRespCode);
 	}
+	
+	/**
+	 * Array that maps message keys to error messages. $1 and friends are replaced.
+	 */
+	public static $messageMap = array(
+		'ns-specialprotected' => array('code' => 'unsupportednamespace', 'info' => "Pages in the Special namespace can't be edited"),
+		'protectedinterface' => array('code' => 'protectednamespace-interface', 'info' => "You're not allowed to edit interface messages"),
+		'namespaceprotected' => array('code' => 'protectednamespace', 'info' => "You're not allowed to edit pages in the ``\$1'' namespace"),
+		'customcssjsprotected' => array('code' => 'customcssjsprotected', 'info' => "You're not allowed to edit custom CSS and JavaScript pages"),
+		'cascadeprotected' => array('code' => 'cascadeprotected', 'info' =>"The page you're trying to edit is protected because it's included in a cascade-protected page"),
+		'protectedpagetext' => array('code' => 'protectedpage', 'info' => "The ``\$1'' right is required to edit this page"),
+		'protect-cantedit' => array('code' => 'cantedit', 'info' => "You can't protect this page because you can't edit it"),
+		'badaccess-group0' => array('code' => 'permissiondenied', 'info' => "Permission denied"), // Generic permission denied message
+		'badaccess-group1' => array('code' => 'permissiondenied', 'info' => "Permission denied"), // Can't use the parameter 'cause it's wikilinked
+		'badaccess-group2' => array('code' => 'permissiondenied', 'info' => "Permission denied"),
+		'badaccess-groups' => array('code' => 'permissiondenied', 'info' => "Permission denied"),
+		'unknownerror' => array('code' => 'unknownerror', 'info' => "Unknown error"),
+		'titleprotected' => array('code' => 'protectedtitle', 'info' => "This title has been protected from creation"),
+		'nocreate-loggedin' => array('code' => 'cantcreate', 'info' => "You don't have permission to create new pages"),
+		'nocreatetext' => array('code' => 'cantcreate-anon', 'info' => "Anonymous users can't create new pages"),
+		'movenologintext' => array('code' => 'cantmove-anon', 'info' => "Anonymous users can't move pages"),
+		'movenotallowed' => array('code' => 'cantmove', 'info' => "You don't have permission to move pages")
+	);
+	
+	/**
+	 * Output the error message related to a certain array
+	 * @param array $error Element of a getUserPermissionsErrors()
+	 */
+	public function dieUsageMsg($error) {
+		$key = array_shift($error);
+		if(isset(self::$messageMap[$key]))
+			$this->dieUsage(wfMsgReplaceArgs(self::$messageMap[$key]['info'], $error), self::$messageMap[$key]['code']);
+		// If the key isn't present, throw an "unknown error
+		$this->dieUsage(self::$messageMap['unknownerror']['info'], self::$messageMap['unknownerror']['code']);
+	}
 
 	/**
 	 * Internal code errors should be reported with this method
@@ -679,6 +714,6 @@ abstract class ApiBase {
 	 */
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
-	}
+	} 
 }
 
