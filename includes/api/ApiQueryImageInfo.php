@@ -110,11 +110,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$img->resetHistory();
 				}
 
-                $this->getResult()->addValue(array ('query', 'pages', intval($pageId)),
-                    'imagerepository',
-                    $repository);
-                if (!empty($data))
-                    $this->addPageSubItems($pageId, $data);
+				$this->getResult()->addValue(array(
+						'query', 'pages', intval($pageId)),
+						'imagerepository', $repository
+				);
+				if (!empty($data))
+					$this->addPageSubItems($pageId, $data);
 			}
 		}
 	}
