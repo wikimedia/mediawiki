@@ -59,7 +59,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 
-		$allrev = $start = $end = $namespace = $dir = $limit = $prop = null;
+		$allrev = $start = $end = $namespace = $dir = $limit = $prop = $show = null;
 		extract($this->extractRequestParams());
 
 		if (!is_null($prop) && is_null($resultPageSet)) {
@@ -135,7 +135,28 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->addWhereFld('wl_namespace', $namespace);
 		$this->addWhereIf('rc_this_oldid=page_latest', !$allrev);
 		
-		# This is a index optimization for mysql, as done in the Special:Watchlist page
+		if (!is_null($show)) {
+			$show = array_flip($show);
+
+			/* Check for conflicting parameters. */
+			if ((isset ($show['minor']) && isset ($show['!minor'])) 
+					|| (isset ($show['bot']) && isset ($show['!bot'])) 
+					|| (isset ($show['anon']) && isset ($show['!anon']))) {
+						
+				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
+			}
+
+			/* Add additional conditions to query depending upon parameters. */
+			$this->addWhereIf('rc_minor = 0', isset ($show['!minor']));
+			$this->addWhereIf('rc_minor != 0', isset ($show['minor']));
+			$this->addWhereIf('rc_bot = 0', isset ($show['!bot']));
+			$this->addWhereIf('rc_bot != 0', isset ($show['bot']));
+			$this->addWhereIf('rc_user = 0', isset ($show['anon']));
+			$this->addWhereIf('rc_user != 0', isset ($show['!anon']));
+		}
+
+		
+		# This is an index optimization for mysql, as done in the Special:Watchlist page
 		$this->addWhereIf("rc_timestamp > ''", !isset ($start) && !isset ($end) && $wgDBtype == 'mysql');
 
 		$this->addOption('LIMIT', $limit +1);
@@ -262,6 +283,17 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'patrol',
 					'sizes',
 				)
+			),
+			'show' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'minor',
+					'!minor',
+					'bot',
+					'!bot',
+					'anon',
+					'!anon'
+				)
 			)
 		);
 	}
@@ -274,7 +306,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'namespace' => 'Filter changes to only the given namespace(s).',
 			'dir' => 'In which direction to enumerate pages.',
 			'limit' => 'How many total pages to return per request.',
-			'prop' => 'Which additional items to get (non-generator mode only).'
+			'prop' => 'Which additional items to get (non-generator mode only).',
+			'show' => array (
+				'Show only items that meet this criteria.',
+				'For example, to see only minor edits done by logged-in users, set show=minor|!anon'
+			)
 		);
 	}
 
