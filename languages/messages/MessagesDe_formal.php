@@ -229,14 +229,16 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'timezonetext'        => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
 
 # User rights
-'userrights-groupshelp'       => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
+'userrights-groupshelp'            => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
-'userrights-available-none'   => 'Sie dürfen keine Benutzerrechte verändern.',
-'userrights-available-add'    => 'Sie können Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Grupppen}} hinzufügen: $1.',
-'userrights-available-remove' => 'Sie können Benutzer aus {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Grupppen}} entfernen: $1.',
-'userrights-no-interwiki'     => 'Sie haben keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
-'userrights-nologin'          => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[Special:Userlogin|anmelden]], um Benutzerrechte zu ändern.',
-'userrights-notallowed'       => 'Sie besitzen nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-available-none'        => 'Sie dürfen keine Benutzerrechte verändern.',
+'userrights-available-add'         => 'Sie können Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} hinzufügen: $1.',
+'userrights-available-remove'      => 'Sie können Benutzer aus {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} entfernen: $1.',
+'userrights-available-add-self'    => 'Sie können sich selbst {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} hinzufügen: $1.',
+'userrights-available-remove-self' => 'Sie können sich selbst aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entfernen: $1.',
+'userrights-no-interwiki'          => 'Sie haben keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
+'userrights-nologin'               => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[Special:Userlogin|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-notallowed'            => 'Sie besitzen nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
 
 # Recent changes
 'recentchangestext'              => "Auf dieser Seite können Sie die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
