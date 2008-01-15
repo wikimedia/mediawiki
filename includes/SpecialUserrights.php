@@ -498,7 +498,9 @@ class UserrightsPage extends SpecialPage {
 			$all = array_merge( User::getAllGroups() );
 			return array(
 				'add' => $all,
-				'remove' => $all
+				'remove' => $all,
+				'add-self' => array(),
+				'remove-self' => array()
 			);
 		}
 
