@@ -34,6 +34,11 @@ function wfSpecialImport( $page = '' ) {
 	$frompage = '';
 	$history = true;
 
+	if ( wfReadOnly() ) {
+		$wgOut->readOnlyPage();
+		return;
+	}
+
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
 		$isUpload = false;
 		$namespace = $wgRequest->getIntOrNull( 'namespace' );

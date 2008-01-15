@@ -310,6 +310,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12608) Unifying the spelling of getDBkey() in the code.
 * (bug 12611) Bot flag ignored in recent changes
 * (bug 12617) Decimal and thousands separators for Romanian
+* (bug 12567) Fix for misformatted read-only messages on edit, protect.
+  Also added proper read-only checks to several special pages.
+  Have removed read-only checks from the general user permission framework.
 
 
 == Parser changes in 1.12 ==

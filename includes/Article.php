@@ -1942,6 +1942,12 @@ class Article {
 
 		# This code desperately needs to be totally rewritten
 
+		# Read-only check...
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+		
 		# Check permissions
 		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
 

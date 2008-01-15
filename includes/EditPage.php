@@ -352,6 +352,12 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
+		
+		if( wfReadOnly() ) {
+			$wgOut->readOnlyPage( $this->getContent() );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
 
 		$permErrors = $this->mTitle->getUserPermissionsErrors('edit', $wgUser);
 		if( !$this->mTitle->exists() ) {

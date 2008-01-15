@@ -1038,12 +1038,6 @@ class Title {
 
 		global $wgContLang;
 		global $wgLang;
-
-		if ( wfReadOnly() && $action != 'read' ) {
-			global $wgReadOnly;
-			$errors[] = array( 'readonlytext', $wgReadOnly );
-		}
-
 		global $wgEmailConfirmToEdit, $wgUser;
 
 		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {

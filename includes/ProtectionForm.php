@@ -59,7 +59,7 @@ class ProtectionForm {
 		}
 
 		// The form will be available in read-only to show levels.
-		$this->disabled = ($this->mPermErrors = $this->mTitle->getUserPermissionsErrors('protect',$wgUser)) != array();
+		$this->disabled = wfReadOnly() || ($this->mPermErrors = $this->mTitle->getUserPermissionsErrors('protect',$wgUser)) != array();
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
@@ -127,7 +127,13 @@ class ProtectionForm {
 		# Show an appropriate message if the user isn't allowed or able to change
 		# the protection settings at this time
 		if( $this->disabled ) {
-			$message = $wgOut->formatPermissionsErrorMessage( $this->mPermErrors );
+			if( wfReadOnly() ) {
+				$wgOut->readOnlyPage();
+				$message = '';
+			}
+			if( $this->mPermErrors ) {
+				$message = $wgOut->formatPermissionsErrorMessage( $this->mPermErrors );
+			}
 		} else {
 			$message = wfMsg( 'protect-text', wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
 		}

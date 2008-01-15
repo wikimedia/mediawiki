@@ -1038,6 +1038,10 @@ class UndeleteForm {
 
 	function undelete() {
 		global $wgOut, $wgUser;
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
 		if( !is_null( $this->mTargetObj ) ) {
 			$archive = new PageArchive( $this->mTargetObj );
 			
