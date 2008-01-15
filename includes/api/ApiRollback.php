@@ -53,6 +53,8 @@ class ApiRollback extends ApiBase {
 			$this->dieUsage('The wiki is in read-only mode', 'readonly');
 
 		$titleObj = Title::newFromText($params['title']);
+		if(!$titleObj)
+			$this->dieUsage("Bad title ``{$params['title']}''", 'invalidtitle');
 
 		$username = User::getCanonicalName($params['user']);
 		if(!$username)
