@@ -791,11 +791,34 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'logdelete-success'           => 'Visinga av loggoppføringar er endra.',
 
 # Oversight log
-'oversightlog' => 'Oversynslogg',
+'oversightlog'    => 'Oversynslogg',
+'overlogpagetext' => 'Nedanfor finn du ei liste over dei siste slettingane og blokkeringane som er gøymde for administratorane. Sjå [[Special:Ipblocklist|blokkeringslista]] for ei liste over noverande sperringar og blokkeringar.',
 
 # History merging
-'mergehistory'      => 'Flett sidehistorikkar',
-'mergehistory-from' => 'Kjeldeside',
+'mergehistory'                     => 'Flett sidehistorikkar',
+'mergehistory-header'              => "Denne sida lar deg flette historikken til to sider. Pass på at den nye sida også har innhald frå den innfletta sida.
+
+'''Ta i det minste vare på den noverande versjonen av den innfletta sida.'''",
+'mergehistory-box'                 => 'Flett historikkane til to sider:',
+'mergehistory-from'                => 'Kjeldeside',
+'mergehistory-into'                => 'Målside:',
+'mergehistory-list'                => 'Flettbar endringshistorikk',
+'mergehistory-merge'               => 'Versjonane nedanfor frå [[:$1]] kan flettast med [[:$2]]. Du kan velje å berre flette dei versjonane som kom før tidspunktet som er oppgjeve i tabellen. Merk at bruk av lenkjene nullstiller denne kolonnen.',
+'mergehistory-go'                  => 'Vis flettbare endringar',
+'mergehistory-submit'              => 'Flett versjonane',
+'mergehistory-empty'               => 'Ingen endringar kan flettast',
+'mergehistory-success'             => '{{PLURAL:$3|Éin versjon|$3 versjonar}} av [[:$1]] er fletta til [[:$2]].',
+'mergehistory-fail'                => 'Kunne ikkje utføre fletting av historikkane, ver venleg og dobbelsjekk sidene og versjonane du har valt.',
+'mergehistory-no-source'           => 'Kjeldesida $1 finst ikkje.',
+'mergehistory-no-destination'      => 'Målsida $1 finst ikkje.',
+'mergehistory-invalid-source'      => 'Kjeldesida må ha ein gyldig tittel.',
+'mergehistory-invalid-destination' => 'Målsida må ha ein gyldig tittel.',
+
+# Merge log
+'mergelog'           => 'Flettingslogg',
+'pagemerge-logentry' => 'fletta [[$1]] til [[$2]] (versjonar fram til $3)',
+'revertmerge'        => 'Fjern fletting',
+'mergelogpagetext'   => 'Nedanfor finn du ei liste over dei siste flettingane av ein sidehistorikk til ein annan.',
 
 # Diffs
 'history-title'           => 'Historikken til «$1»',
@@ -813,6 +836,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'noexactmatch'          => "* '''{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].'''
 * <big>'''Du kan [[:$1|opprette ho no]]'''</big>.<br />
 (Men du bør søkje etter andre namnevariasjonar først, slik at du ikkje lagar ei side som allereie finst under eit anna namn!)",
+'noexactmatch-nocreate' => "'''Inga side har tittelen «$1».'''",
 'titlematches'          => 'Sidetitlar med treff på førespurnaden',
 'notitlematches'        => 'Ingen sidetitlar hadde treff på førespurnaden',
 'textmatches'           => 'Sider med treff på førespurnaden',
@@ -830,6 +854,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 # Preferences page
 'preferences'              => 'Innstillingar',
 'mypreferences'            => 'Innstillingane mine',
+'prefs-edits'              => 'Tal på endringar:',
 'prefsnologin'             => 'Ikkje innlogga',
 'prefsnologintext'         => 'Du lyt vera [[Special:Userlogin|innlogga]] for å endre brukarinnstillingane dine.',
 'prefsreset'               => 'Innstillingane er tilbakestilte til siste lagra versjon.',
@@ -857,6 +882,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'prefs-personal'           => 'Brukaropplysningar',
 'prefs-rc'                 => 'Siste endringar og spirer',
 'prefs-watchlist'          => 'Overvakingsliste',
+'prefs-watchlist-days'     => 'Tal på dagar som er viste i overvakingslista:',
+'prefs-watchlist-edits'    => 'Talet på endringar som vert viste i den utvida overvakingslista:',
 'prefs-misc'               => 'Andre',
 'saveprefs'                => 'Lagre',
 'resetprefs'               => 'Rull attende',
@@ -870,6 +897,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'resultsperpage'           => 'Resultat per side',
 'contextlines'             => 'Liner per resultat',
 'contextchars'             => 'Teikn per line i resultatet',
+'stub-threshold'           => 'Grense (i byte) for at frø/spirer skal formaterast <a href="#" class="stub">slik</a>:',
+'recentchangesdays'        => 'Tal dagar som skal visast på siste endringar:',
 'recentchangescount'       => 'Tal titlar på «siste endringar»',
 'savedprefs'               => 'Brukarinnstillingane er lagra.',
 'timezonelegend'           => 'Tidssone',
@@ -878,6 +907,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'timezoneoffset'           => 'Skilnad',
 'servertime'               => 'Tenartid',
 'guesstimezone'            => 'Hent tidssone frå nettlesaren',
+'allowemail'               => 'Tillat e-post frå andre brukarar',
 'defaultns'                => 'Søk som standard i desse namneromma:',
 'default'                  => 'standard',
 'files'                    => 'Filer',

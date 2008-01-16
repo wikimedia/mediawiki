@@ -6,6 +6,7 @@
  * @author SPQRobin
  * @author Mirzali
  * @author Nike
+ * @author Siebrand
  */
 
 
@@ -59,17 +60,17 @@ href="" class="internal"}?{/a}) bımocne.',
 'skinpreview' => '(Verqayt)',
 
 # Dates
-'sunday'        => 'Yewşeme',
+'sunday'        => 'Bazar',
 'monday'        => 'Dışeme',
 'tuesday'       => 'Sêşeme',
 'wednesday'     => 'Çarşeme',
 'thursday'      => 'Phancşeme',
 'friday'        => 'Yene',
 'saturday'      => 'Şeme',
-'sun'           => 'Ywş',
+'sun'           => 'Bzr',
 'mon'           => 'Dış',
 'tue'           => 'Sêş',
-'wed'           => 'Çaş',
+'wed'           => 'Çar',
 'thu'           => 'Paş',
 'fri'           => 'Yen',
 'sat'           => 'Şem',
@@ -104,7 +105,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'may'           => 'Gul',
 'jun'           => 'Hez',
 'jul'           => 'Tem',
-'aug'           => 'Tbx',
+'aug'           => 'Teb',
 'sep'           => 'Kşk',
 'oct'           => 'Tşv',
 'nov'           => 'Tşp',
@@ -114,6 +115,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'categories'      => 'Kategoriy',
 'pagecategories'  => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
 'category_header' => 'Nuşteyê ke kategoriya "$1"ine derê.',
+'subcategories'   => 'Kategoriyê bınêni',
 
 'article'        => 'nuşte',
 'cancel'         => 'Bıtexelne',

@@ -162,7 +162,7 @@ $messages = array(
 'skinpreview' => '(Fer una prebatina)',
 
 # Dates
-'sunday'        => 'Domingo',
+'sunday'        => 'domingo',
 'monday'        => 'luns',
 'tuesday'       => 'martes',
 'wednesday'     => 'miércols',
@@ -1315,7 +1315,7 @@ L'adreza de correu-e que endicó en as suyas preferenzias d'usuario amanixerá e
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
 'mywatchlist'          => 'Lista de seguimiento',
-'watchlistfor'         => "(ta '''$1''')",
+'watchlistfor'         => "(de '''$1''')",
 'nowatchlist'          => 'No tiens denguna pachina en a lista de seguimiento.',
 'watchlistanontext'    => "Ha de $1 ta beyer u editar as dentradas d'a suya lista de seguimiento.",
 'watchnologin'         => 'No ha enzetato a sesión',

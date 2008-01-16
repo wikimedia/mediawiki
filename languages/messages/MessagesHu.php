@@ -971,7 +971,7 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 # Groups
 'group'               => 'Csoport:',
 'group-autoconfirmed' => 'Automatikus megerősítésű felhasználók',
-'group-bot'           => 'Botok',
+'group-bot'           => 'botok',
 'group-sysop'         => 'adminisztrátorok',
 'group-bureaucrat'    => 'bürokraták',
 'group-all'           => '(mind)',

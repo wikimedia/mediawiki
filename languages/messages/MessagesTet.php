@@ -66,7 +66,9 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-hideminor' => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
+'tog-hideminor'          => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
+'tog-watchlisthidebots'  => 'Hamsumik bot iha lista hateke',
+'tog-watchlisthideminor' => 'Hamsumik osan-rahun iha lista hateke',
 
 'underline-always' => 'Sempre',
 'underline-never'  => 'Nunka',
@@ -470,6 +472,8 @@ $messages = array(
 # Move page
 'movepage'                => 'Book pájina',
 'movearticle'             => 'Book pájina:',
+'movenotallowed'          => 'Ó la bele book pájina iha {{SITENAME}}.',
+'move-watch'              => "Hateke pájina ne'e",
 'movepagebtn'             => 'Book pájina',
 'movepage-moved'          => '<big>\'\'\'Ó book "$1" ba "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => 'book tiha [[$1]] ba [[$2]]',

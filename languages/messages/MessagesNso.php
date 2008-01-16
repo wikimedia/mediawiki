@@ -6,7 +6,11 @@
  * @author Mohau
  */
 
+
+
 $messages = array(
+'underline-always' => 'Kamehla',
+
 # Dates
 'january'   => 'Pherekgong',
 'february'  => 'Dibokwane',
@@ -21,5 +25,7 @@ $messages = array(
 'november'  => 'Dibatsela',
 'december'  => 'Manthole',
 'may'       => 'May',
+
+'help' => 'Thušo',
 
 );
