@@ -51,6 +51,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'दुव्यांना अधोरेखित करा:',
 'tog-highlightbroken'         => 'चुकीचे दुवे <a href="" class="new">असे दाखवा</a> (किंवा: असे दाखवा<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'परिच्छेद समान करा',
 'tog-hideminor'               => 'छोटे बदल लपवा',
 'tog-extendwatchlist'         => 'पहार्‍याच्या सूचीत सर्व बदल दाखवा',
 'tog-usenewrc'                => 'वाढीव अलीकडील बदल (जावास्क्रीप्ट)',
@@ -77,11 +78,14 @@ $messages = array(
 'tog-shownumberswatching'     => 'पहारा दिलेले सदस्य दाखवा',
 'tog-fancysig'                => 'साधी सही (कुठल्याही दुव्याशिवाय)',
 'tog-externaleditor'          => 'कायम बाह्य संपादक वापरा',
+'tog-externaldiff'            => 'इतिहास पानावर निवडलेल्या आवृत्त्यांमधील बदल दाखविण्यासाठी बाह्य प्रणाली वापरा.',
+'tog-uselivepreview'          => 'संपादन करता करताच झलक दाखवा (जावास्क्रीप्ट)(प्रयोगक्षम)',
 'tog-forceeditsummary'        => 'जर ’बदलांचा आढावा’ दिला नसेल तर मला सूचित करा',
 'tog-watchlisthideown'        => 'पहार्‍याच्या सूचीतून माझे बदल लपवा',
 'tog-watchlisthidebots'       => 'पहार्‍याच्या सूचीतून सांगकामे बदल लपवा',
 'tog-watchlisthideminor'      => 'माझ्या पहार्‍याच्या सूचीतून छोटे बदल लपवा',
 'tog-ccmeonemails'            => 'मी इतर सदस्यांना पाठविलेल्या इमेल च्या प्रती मलाही पाठवा',
+'tog-diffonly'                => 'निवडलेल्या आवृत्त्यांमधील बदल दाखवताना जुनी आवृत्ती दाखवू नका.',
 
 'underline-always' => 'नेहमी',
 'underline-never'  => 'कधीच नाही',
@@ -148,6 +152,15 @@ $messages = array(
 'category-media-header' => '"$1" वर्गातील माध्यमे',
 'category-empty'        => "''या वर्गात अद्याप एकही लेख नाही.''",
 
+'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण'''</big>",
+'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
+
+== सुरुवात ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगची यादी]
+* [http://www.mediawiki.org/wiki/Manual:FAQ मीडियाविकी नेहमी विचारले जाणारे प्रश्न]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce विकीपीडिया मेलिंग लिस्ट]',
+
 'about'          => 'च्या विषयी',
 'article'        => 'लेख',
 'newwindow'      => '(नवीन खिडकीत उघडते.)',
@@ -177,7 +190,7 @@ $messages = array(
 'history_short'     => 'इतिहास',
 'updatedmarker'     => 'शेवटच्या भेटीनंतर बदलले',
 'info_short'        => 'माहिती',
-'printableversion'  => 'छापन्यायोग्य आवर्तन',
+'printableversion'  => 'छापण्यायोग्य आवृत्ती',
 'permalink'         => 'शाश्वत दुवा',
 'print'             => 'छापा',
 'edit'              => 'संपादन',
@@ -232,12 +245,16 @@ $messages = array(
 'helppage'          => 'Help:साहाय्य पृष्ठ',
 'mainpage'          => 'मुखपृष्ठ',
 'portal'            => 'समाज मुखपृष्ठ',
+'portal-url'        => 'प्रकल्प:समाज मुखपृष्ठ',
 'privacy'           => 'गुप्तता नीती',
 'sitesupport'       => 'दान',
 
 'badaccess'        => 'परवानगी नाकारण्यात आली आहे',
 'badaccess-group0' => 'तुम्ही करत असलेल्या क्रियेचे तुम्हाला अधिकार नाहीत.',
 'badaccess-group1' => 'फक्त $1 प्रकारचे सदस्य हे काम करू शकतात.',
+
+'versionrequired'     => 'मीडियाविकीच्या $1 आवृत्तीची गरज आहे.',
+'versionrequiredtext' => 'हे पान वापरण्यासाठी मीडियाविकीच्या $1 आवृत्तीची गरज आहे. पहा [[Special:Version|आवृत्ती यादी]].',
 
 'ok'                      => 'ठीक',
 'retrievedfrom'           => '"$1" पासून मिळविले',
@@ -251,6 +268,7 @@ $messages = array(
 'toc'                     => 'अनुक्रमणिका',
 'showtoc'                 => 'दाखवा',
 'hidetoc'                 => 'लपवा',
+'site-rss-feed'           => '$1 आरएसएस फीड',
 'feed-atom'               => 'ऍटम',
 'feed-rss'                => 'आर.एस.ए‍स.',
 
@@ -316,6 +334,7 @@ MySQL returned error "$3: $4".',
 'yourrealname'               => 'तुमचे खरे नाव:',
 'yourlanguage'               => 'भाषा:',
 'yournick'                   => 'आपले उपनाव (सहीसाठी)',
+'badsiglength'               => 'टोपणनाव $1 अक्षरांपेक्षा कमी लांबीचे हवे.',
 'prefs-help-realname'        => 'तुमचे खरे नाव (वैकल्पिक): हे नाव दिल्यास आपले योगदान या नावाखाली नोंदले व दाखवले जाईल.',
 'loginerror'                 => 'आपल्या प्रवेश नोंदणीमध्ये चुक झाली आहे',
 'prefs-help-email'           => 'विरोप(ईमेल)(वैकल्पिक):इतरांना सदस्य किंवा सदस्य_चर्चा पानातून, तुमची ओळख देण्याची आवश्यकता न ठेवता , तुमच्याशी संपर्क सुविधा पुरवते.',
@@ -465,6 +484,7 @@ MySQL returned error "$3: $4".',
 'prevn'                 => 'मागील $1',
 'nextn'                 => 'पुढील $1',
 'viewprevnext'          => 'पाहा ($1) ($2) ($3).',
+'powersearch'           => 'शोधा',
 
 # Preferences page
 'preferences'           => 'माझ्या पसंती',
@@ -574,6 +594,7 @@ MySQL returned error "$3: $4".',
 'imgdelete'                 => 'पुसा',
 'imgdesc'                   => 'वर्णन',
 'imgfile'                   => 'संचिका',
+'filehist-datetime'         => 'दिनांक/वेळ',
 'imagelinks'                => 'चित्र दुवे',
 'linkstoimage'              => 'खालील पाने या चित्राशी जोडली आहेत:',
 'nolinkstoimage'            => 'या चित्राशी जोडलेली पृष्ठे नाही आहेत.',
@@ -867,6 +888,7 @@ MySQL returned error "$3: $4".',
 'tooltip-ca-delete'             => 'हे पान वगळा',
 'tooltip-ca-move'               => 'हे पान स्थानांतरित करा.',
 'tooltip-ca-watch'              => 'हे पान तुमच्या पहार्‍याची सूचीत टाका',
+'tooltip-ca-unwatch'            => 'हे पान पहार्‍याच्या सूचीतून काढा.',
 'tooltip-search'                => '{{SITENAME}} शोधा',
 'tooltip-p-logo'                => 'मुखपृष्ठ',
 'tooltip-n-mainpage'            => 'मुखपृष्ठाला भेट द्या',

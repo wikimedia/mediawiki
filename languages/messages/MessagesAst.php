@@ -71,7 +71,7 @@ $messages = array(
 'tog-previewonfirst'          => 'Amosar previsualización na primer edición',
 'tog-nocache'                 => 'Desactivar la caché de les páxines',
 'tog-enotifwatchlistpages'    => 'Mandame un corréu cuando cambie una páxina que toi vixilando',
-'tog-enotifusertalkpages'     => 'Mandame un corréu cuando cambie la mio páxina de discusión',
+'tog-enotifusertalkpages'     => "Mandame un corréu cuando camude la mio páxina d'alderique",
 'tog-enotifminoredits'        => 'Mandame tamién un corréu pa les ediciones menores',
 'tog-enotifrevealaddr'        => 'Amosar el mio corréu electrónicu nos correos de notificación',
 'tog-shownumberswatching'     => "Amosar el númberu d'usuarios que la tán vixilando",
@@ -176,8 +176,8 @@ $messages = array(
 'qbspecialpages' => 'Páxines especiales',
 'moredotdotdot'  => 'Más...',
 'mypage'         => 'La mio páxina',
-'mytalk'         => 'La mio páxina de discusión',
-'anontalk'       => 'Discusión pa esta IP',
+'mytalk'         => "La mio páxina d'alderique",
+'anontalk'       => 'Alderique pa esta IP',
 'navigation'     => 'Navegación',
 
 # Metadata in edit box
@@ -209,13 +209,13 @@ $messages = array(
 'unprotect'         => 'Desprotexer',
 'unprotectthispage' => 'Desprotexer esta páxina',
 'newpage'           => 'Páxina nueva',
-'talkpage'          => 'Discutir esta páxina',
-'talkpagelinktext'  => 'discusión',
+'talkpage'          => 'Aldericar sobre esta páxina',
+'talkpagelinktext'  => 'Alderique',
 'specialpage'       => 'Páxina especial',
 'personaltools'     => 'Ferramientes personales',
 'postcomment'       => 'Escribir un comentariu',
 'articlepage'       => 'Ver conteníu de la páxina',
-'talk'              => 'Discusión',
+'talk'              => 'Alderique',
 'views'             => 'Vistes',
 'toolbox'           => 'Ferramientes',
 'userpage'          => "Ver páxina d'usuariu",
@@ -225,7 +225,7 @@ $messages = array(
 'templatepage'      => 'Ver la páxina de plantía',
 'viewhelppage'      => "Ver la páxina d'aida",
 'categorypage'      => 'Ver páxina de categoríes',
-'viewtalkpage'      => 'Ver discusión',
+'viewtalkpage'      => 'Ver alderique',
 'otherlanguages'    => 'Otres llingües',
 'redirectedfrom'    => '(Redirixío dende $1)',
 'redirectpagesub'   => 'Páxina de redirección',
@@ -425,7 +425,7 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'email'                      => 'Corréu',
 'prefs-help-realname'        => "El nome real ye opcional y si decides conseñalu va ser usáu p'atribuyite'l to trabayu.",
 'loginerror'                 => "Error d'identificación",
-'prefs-help-email'           => "La direición de corréu ye opcional, pero permite a los demás contautar contigo al traviés de la to páxina d'usuariu ensin necesidá de revelar la to identidá.",
+'prefs-help-email'           => "La direición de corréu ye opcional, pero permite a los demás contautar contigo al traviés de la to páxina d'alderique ensin necesidá de revelar la to identidá.",
 'prefs-help-email-required'  => 'Necesítase una direición de corréu electrónicu.',
 'nocookiesnew'               => "La cuenta d'usuariu ta creada, pero nun tas identificáu. {{SITENAME}} usa cookies pa identificar a los usuarios. Tienes les cookies deshabilitaes. Por favor actívales y depués identifícate col to nuevu nome d'usuariu y la clave.",
 'nocookieslogin'             => '{{SITENAME}} usa cookies pa identificar a los usuarios. Tienes les cookies deshabilitaes. Por favor actívales y inténtalo otra vuelta.',
@@ -571,7 +571,7 @@ El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códi
 'accmailtext'               => 'La clave de "$1" foi unviada a $2.',
 'newarticle'                => '(Nuevu)',
 'newarticletext'            => 'Siguisti un enllaz a un artículu qu\'inda nun esiste. Pa crealu, empecipia a escribir na caxa d\'equí embaxo. Si llegasti equí por enquivocu, namás tienes que calcar nel botón "atrás" del to navegador.',
-'anontalkpagetext'          => "----''Esta ye la páxina de discusión pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:Userlogin|crea una cuenta o rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
+'anontalkpagetext'          => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:Userlogin|crea una cuenta o rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
 'noarticletext'             => "Nestos momentos nun hai testu nesta páxina. Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu]] n'otres páxines, o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí].",
 'userpage-userdoesnotexist' => 'La cuenta d\'usuariu "$1" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
 'clearyourcache'            => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
@@ -611,7 +611,7 @@ Vas tener que fusionar los tos cambeos dientro del testu esistente.
 'yourtext'                  => 'El to testu',
 'storedversion'             => 'Versión almacenada',
 'nonunicodebrowser'         => "<strong>AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.</strong>",
-'editingold'                => "<strong>AVISU: Tas editando una versión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa versión van perdese.</strong>",
+'editingold'                => "<strong>AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa revisión van perdese.</strong>",
 'yourdiff'                  => 'Diferencies',
 'copyrightwarning'          => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} considérense feches públiques baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao.
@@ -649,7 +649,7 @@ Equí tienes el rexistru de borraos d'esta páxina:",
 # "Undo" feature
 'undo-success' => "La edición pue esfacese. Por favor comprueba la comparanza d'embaxo pa verificar que ye eso lo que quies facer, y depués guarda los cambeos p'acabar d'esfacer la edición.",
 'undo-failure' => "Nun se pudo esfacer la edición pola mor d'ediciones intermedies conflictives.",
-'undo-summary' => 'Esfecha la revisión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusión]])',
+'undo-summary' => 'Esfecha la revisión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nun se pue crear la cuenta',
@@ -860,24 +860,26 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'files'                    => 'Archivos',
 
 # User rights
-'userrights-lookup-user'      => "Remanamientu de grupos d'usuariu",
-'userrights-user-editname'    => "Escribi un nome d'usuariu:",
-'editusergroup'               => "Modificar grupos d'usuariu",
-'userrights-editusergroup'    => "Editar los grupos d'usuariu",
-'saveusergroups'              => "Guardar los grupos d'usuariu",
-'userrights-groupsmember'     => 'Miembru de:',
-'userrights-groupsremovable'  => "Grupos d'onde pue ser elimináu:",
-'userrights-groupsavailable'  => 'Grupos disponibles:',
-'userrights-groupshelp'       => 'Seleiciona los grupos de/a los que quies quitar/añader esti usuariu.
+'userrights-lookup-user'           => "Remanamientu de grupos d'usuariu",
+'userrights-user-editname'         => "Escribi un nome d'usuariu:",
+'editusergroup'                    => "Modificar grupos d'usuariu",
+'userrights-editusergroup'         => "Editar los grupos d'usuariu",
+'saveusergroups'                   => "Guardar los grupos d'usuariu",
+'userrights-groupsmember'          => 'Miembru de:',
+'userrights-groupsremovable'       => "Grupos d'onde pue ser elimináu:",
+'userrights-groupsavailable'       => 'Grupos disponibles:',
+'userrights-groupshelp'            => 'Seleiciona los grupos de/a los que quies quitar/añader esti usuariu.
 Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu calcando CTRL + Botón Esquierdu del ratón',
-'userrights-reason'           => 'Motivu del cambéu:',
-'userrights-available-none'   => 'Nun pues modificar la pertenencia a un grupu.',
-'userrights-available-add'    => 'Pues añader usuarios a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
-'userrights-available-remove' => "Pues eliminar usuarios d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
-'userrights-no-interwiki'     => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
-'userrights-nodatabase'       => 'La base de datos $1 nun esiste o nun ye llocal.',
-'userrights-nologin'          => "Has tar [[Special:Userlogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
-'userrights-notallowed'       => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
+'userrights-reason'                => 'Motivu del cambéu:',
+'userrights-available-none'        => 'Nun pues modificar la pertenencia a un grupu.',
+'userrights-available-add'         => 'Pues añader usuarios a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
+'userrights-available-remove'      => "Pues eliminar usuarios d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
+'userrights-available-add-self'    => 'Pues añadete tu mesmu a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
+'userrights-available-remove-self' => "Pues eliminate tu mesmu d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
+'userrights-no-interwiki'          => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
+'userrights-nodatabase'            => 'La base de datos $1 nun esiste o nun ye llocal.',
+'userrights-nologin'               => "Has tar [[Special:Userlogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
+'userrights-notallowed'            => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
 
 # Groups
 'group'               => 'Grupu:',
@@ -1118,7 +1120,7 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'sitestats'              => 'Estadístiques de {{SITENAME}}',
 'userstats'              => "Estadístiques d'usuariu",
 'sitestatstext'          => "Hai un total {{PLURAL:\$1|d''''una''' páxina|de '''\$1''' páxines}} na base de datos.
-Inclúi páxines de \"discusión\" , páxines sobre {{SITENAME}}, \"entamos\" mínimos,
+Inclúi páxines d'\"alderique\" , páxines sobre {{SITENAME}}, \"entamos\" mínimos,
 redireiciones y otres que nun puen cuntar como páxines.  Ensin estes, hai {{PLURAL:\$2|'''una''' páxina|'''\$2''' páxines}} que son artículos llexítimos.
 
 Hai {{PLURAL:\$8|xubida '''una''' imaxe|xubíes '''\$8''' imáxenes}}.
@@ -1133,7 +1135,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 
 'disambiguations'      => 'Páxines de dixebra',
 'disambiguationspage'  => 'Template:dixebra',
-'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantilla que tea enllaciada dende [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Redireiciones dobles',
 'doubleredirectstext' => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición. Cada filera contién enllaces a la primer y segunda redireición, asina como al oxetivu de la segunda redireición, que normalmente ye la páxina oxetivu "real", aonde la primer redireición habría empobinar.',
@@ -1279,7 +1281,7 @@ o nun quier recibir correos d'otros usuarios.",
 'watchnologin'         => 'Non identificáu',
 'watchnologintext'     => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder camudar la to llista de vixilancia.',
 'addedwatch'           => 'Añadida a la llista de vixilancia',
-'addedwatchtext'       => 'Añadióse la páxina "[[:$1]]" a la to [[Special:Watchlist|llista de vixilancia]]. Los cambeos nesta páxina y la so páxina de discusión asociada van salite en negrina na llista de [[Special:Recentchanges|cambeos recientes]] pa que seya más fácil de vela.
+'addedwatchtext'       => 'Añadióse la páxina "[[:$1]]" a la to [[Special:Watchlist|llista de vixilancia]]. Los cambeos nesta páxina y la so páxina d\'alderique asociada van salite en negrina na llista de [[Special:Recentchanges|cambeos recientes]] pa que seya más fácil de vela.
 
 Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixilar" nel menú llateral.',
 'removedwatch'         => 'Eliminada de la llista de vixilancia',
@@ -1290,7 +1292,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'unwatchthispage'      => 'Dexar de vixilar',
 'notanarticle'         => 'Nun ye un artículu',
 'watchnochange'        => 'Nenguna de les tos páxines vixilaes foi editada nel periodu escoyíu.',
-'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxines}} vixilaes ensin cuntar les páxines de discusión.',
+'watchlist-details'    => "{{PLURAL:$1|$1 páxina|$1 páxines}} vixilaes ensin cuntar les páxines d'alderique.",
 'wlheader-enotif'      => '* La notificación per corréu electrónicu ta activada.',
 'wlheader-showupdated' => "* Les páxines camudaes dende la to última visita amuésense en '''negrina'''",
 'watchmethod-recent'   => 'buscando páxines vixilaes nos cambeos recientes',
@@ -1377,11 +1379,11 @@ Mira en $2 la llista de les últimes páxines borraes.',
 'rollbackfailed'              => 'Falló la reversión',
 'cantrollback'                => "Nun se pue revertir la edición; el postrer collaborador ye l'únicu autor d'esta páxina.",
 'alreadyrolled'               => 'Nun se pue revertir la postrer edición de [[:$1]]
-fecha por [[User:$2|$2]] ([[User talk:$2|discusión]]); daquién más yá editó o revirtió la páxina.
+fecha por [[User:$2|$2]] ([[User talk:$2|alderique]]); daquién más yá editó o revirtió la páxina.
 
-La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
+La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]]).',
 'editcomment'                 => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|discusión]]) hasta la versión de [[User:$1|$1]]',
+'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la versión de [[User:$1|$1]]',
 'rollback-success'            => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 'sessionfailure'              => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
@@ -1646,8 +1648,8 @@ yá esistente.
 Esti pue ser un cambéu importante y inesperáu pa una páxina popular;
 por favor, asegúrate d'entender les consecuencies de lo que vas facer
 enantes de siguir.",
-'movepagetalktext'        => "La páxina de discusión asociada va ser treslladada automáticamente '''a nun ser que:'''
-*Yá esista una páxina de discusión non vacia col nuevu nome, o
+'movepagetalktext'        => "La páxina d'alderique asociada va ser treslladada automáticamente '''a nun ser que:'''
+*Yá esista una páxina d'alderique non vacia col nuevu nome, o
 *Desactives la caxella d'equí baxo.
 
 Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
@@ -1662,11 +1664,11 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'movepage-moved'          => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
 'cantmove-titleprotected' => "Nun pues mover una páxina a esti llugar porque'l nuevu títulu foi protexíu de la so creación",
-'talkexists'              => "'''La páxina treslladóse correutamente, pero non la so páxina de discusión porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
+'talkexists'              => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
 'movedto'                 => 'treslladáu a',
-'movetalk'                => 'Mover la páxina de discusión asociada',
-'talkpagemoved'           => 'La páxina de discusión correspondiente tamién foi treslladada.',
-'talkpagenotmoved'        => 'La páxina de discusión correspondiente <strong>nun</strong> foi treslladada.',
+'movetalk'                => "Mover la páxina d'alderique asociada",
+'talkpagemoved'           => "La páxina d'alderique correspondiente tamién foi treslladada.",
+'talkpagenotmoved'        => "La páxina d'alderique correspondiente <strong>nun</strong> foi treslladada.",
 '1movedto2'               => '[[$1]] treslladáu a [[$2]]',
 '1movedto2_redir'         => '[[$1]] treslladáu a [[$2]] sobre una redireición',
 'movelogpage'             => 'Rexistru de tresllaos',
@@ -1758,17 +1760,17 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La mio páxina d'usuariu",
 'tooltip-pt-anonuserpage'         => "La páxina d'usuariu de la IP cola que tas editando",
-'tooltip-pt-mytalk'               => 'La mio páxina de discusión',
-'tooltip-pt-anontalk'             => 'Páxina de discusión de les ediciones feches con esta direición IP',
+'tooltip-pt-mytalk'               => "La mio páxina d'alderique",
+'tooltip-pt-anontalk'             => 'Alderique de les ediciones feches con esta direición IP',
 'tooltip-pt-preferences'          => 'Les mios preferencies',
 'tooltip-pt-watchlist'            => 'Llista de les páxines nes que tas vixilando los cambeos',
 'tooltip-pt-mycontris'            => 'Llista de les mios contribuciones',
 'tooltip-pt-login'                => 'Encamentámoste a identificate, anque nun ye obligatorio',
 'tooltip-pt-anonlogin'            => "Encamiéntasete que t'identifiques, anque nun ye obligatorio.",
 'tooltip-pt-logout'               => 'Salir',
-'tooltip-ca-talk'                 => 'Discusión tocante al conteníu de la páxina',
+'tooltip-ca-talk'                 => 'Alderique tocante al conteníu de la páxina',
 'tooltip-ca-edit'                 => "Pues editar esta páxina. Por favor usa'l botón de previsualización enantes de guardar los cambeos.",
-'tooltip-ca-addsection'           => 'Añade un comentariu a esta discusión.',
+'tooltip-ca-addsection'           => 'Añadi un comentariu a esti alderique.',
 'tooltip-ca-viewsource'           => 'Esta páxina ta protexida. Pues ver el so códigu fonte.',
 'tooltip-ca-history'              => "Versiones antigües d'esta páxina.",
 'tooltip-ca-protect'              => 'Protexe esta páxina',
@@ -1848,10 +1850,10 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 # Info page
 'infosubtitle'   => 'Información de la páxina',
 'numedits'       => "Númberu d'ediciones (páxina): $1",
-'numtalkedits'   => "Númberu d'ediciones (páxina de discusión): $1",
+'numtalkedits'   => "Númberu d'ediciones (páxina d'alderique): $1",
 'numwatchers'    => "Númberu d'usuarios vixilando: $1",
 'numauthors'     => "Númberu d'autores distintos (páxina): $1",
-'numtalkauthors' => "Númberu d'autores distintos (páxina de discusión): $1",
+'numtalkauthors' => "Númberu d'autores distintos (páxina d'alderique): $1",
 
 # Math options
 'mw_math_png'    => 'Renderizar siempre PNG',
@@ -1878,7 +1880,7 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'patrol-log-auto' => '(automática)',
 
 # Image deletion
-'deletedrevision'                 => 'Borrada versión vieya $1',
+'deletedrevision'                 => 'Borrada la reversión vieya $1',
 'filedeleteerror-short'           => "Error al borrar l'archivu: $1",
 'filedeleteerror-long'            => "Atopáronse errores al borrar l'archivu:
 
@@ -2242,7 +2244,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => "Avisu: ¡Esta páxina foi borrada depués de qu'entamaras a editala!",
-'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta páxina depués de qu'empecipiaras a editala pola siguiente razón:
+'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) borró esta páxina depués de qu'empecipiaras a editala pola siguiente razón:
 : ''$2''
 Por favor confirma que daveres quies volver a crear esta páxina.",
 'recreate'            => 'Volver a crear',
@@ -2298,7 +2300,7 @@ $1",
 'lag-warn-high'   => "Pol mor d'un importante retrasu del servidor de la base de datos, los cambeos de los caberos $1 segundos pue que nun s'amuesen nesta llista.",
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines de discusión.',
+'watchlistedit-numitems'       => "La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines d'alderique.",
 'watchlistedit-noitems'        => 'La to llista de vixilancia nun tien títulos.',
 'watchlistedit-normal-title'   => 'Editar la llista de vixilancia',
 'watchlistedit-normal-legend'  => 'Eliminar títulos de la llista de vixilancia',

@@ -106,6 +106,8 @@ $messages = array(
 
 'about'         => 'Apwopo',
 'article'       => 'Atik',
+'newwindow'     => '(ouvè nan yon dòt fenèt)',
+'cancel'        => 'Anile',
 'qbpageoptions' => 'Opsyon Paj sa a',
 'mytalk'        => 'Paj diskisyon mwen an',
 
@@ -136,12 +138,14 @@ $messages = array(
 'disclaimers'    => 'Avètisman',
 'disclaimerpage' => 'Project:Avètisman jeneral yo',
 'edithelp'       => 'Edite paj èd an',
+'edithelppage'   => 'Èd:koman ou ap modifye yon paj',
 'mainpage'       => 'Akèy',
 'privacy'        => 'Politik konfidansyalite',
 'privacypage'    => 'Project:Konfidansyalite',
 
 'retrievedfrom'   => 'Rekipere depi « $1 »',
 'editsection'     => 'modifye',
+'editold'         => 'modifye',
 'editsectionhint' => 'Modifye seksyon : $1',
 'toc'             => 'Kontni yo',
 'showtoc'         => 'montre',
@@ -149,13 +153,49 @@ $messages = array(
 'site-rss-feed'   => 'Flow RSS depi $1',
 'site-atom-feed'  => 'Flow Atom depi $1',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-image' => 'Fichye',
+
+# General errors
+'viewsource' => 'Wè kòd tèks sa a',
+
 # Login and logout pages
 'userlogin'  => 'Kreye yon kont oubyen konekte ou',
 'userlogout' => 'Dekoneksyon',
 
+# Edit page toolbar
+'bold_sample'     => 'Tèks fonse',
+'bold_tip'        => 'Tèks fonse',
+'italic_sample'   => 'Tèks italik',
+'italic_tip'      => 'Tèks italik',
+'link_sample'     => 'Lyen pou tit an',
+'link_tip'        => 'Lyen andidan',
+'extlink_sample'  => 'http://www.example.com yon tit pou lyen an',
+'extlink_tip'     => 'Lyen dewò (pa blye prefiks http:// an)',
+'headline_sample' => 'Tèks pou tit',
+'headline_tip'    => 'Sou-tit nivo 2',
+'math_sample'     => 'Antre fòmil ou an isit',
+'math_tip'        => 'Fòmil matematik (LaTeX)',
+'nowiki_sample'   => 'Antre tèks ki pa fòmate a',
+'nowiki_tip'      => 'Pa konte sentaks wiki an',
+'image_tip'       => 'Imaj an mete',
+'media_tip'       => 'Lyen pou yon fichye medya',
+'sig_tip'         => 'Siyati ou ak dat an',
+'hr_tip'          => 'Liy orizontal (pa abize)',
+
 # Edit pages
-'summary'     => 'Somè&nbsp;',
-'showpreview' => 'Previzyalizasyon',
+'summary'            => 'Somè&nbsp;',
+'subject'            => 'Sijè/tit',
+'minoredit'          => 'Modifikasyon sa a pa enpòtan',
+'watchthis'          => 'Swiv paj sa a',
+'showpreview'        => 'Previzyalizasyon',
+'showdiff'           => 'Montre chanjman yo',
+'anoneditwarning'    => "'''Pòte atansyon :''' ou pa idantifye nan sistèm an. Adrès IP ou a ap anrejistre nan istorik paj sa a.",
+'noarticletext'      => 'Poko genyen tèks nan paj sa a, ou mèt [[{{ns:special}}:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] oubyen [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye li].',
+'editing'            => 'Modifikasyon pou $1',
+'copyrightwarning'   => 'Souple, raple ou ke tout piblikasyon ki fèt nan {{SITENAME}} piblye anba kontra $2 an (wè $1 pou konnen plis). Si ou pa ta vle ke sa ou ekri pataje oubyen  modifye, ou pa dwèt soumèt yo isit.<br />
+Ou ap pwomèt tou ke sa ou ap ekri a se ou menm menm ki ekri li oubyen ke ou kopye li de yon sous ki nan domèn piblik, ou byen you sous ki lib. <strong>PA ITILIZE TRAVAY MOUN KI PA BAY OTORIZASYON PA LI TOUTBON !</strong>',
+'template-protected' => '(pwoteje)',
 
 # History pages
 'revisionasof'     => 'Vèsyon jou $1',
@@ -168,12 +208,15 @@ $messages = array(
 'editundo' => 'Defè, anile',
 
 # Search results
-'powersearch' => 'Fouye',
+'noexactmatch' => "'''Pa genyen pyès paj ki genyen non sa a « $1 ».''' Ou mèt [[:$1|kreye atik sa a]].",
+'viewprevnext' => 'Wè ($1) ($2) ($3).',
+'powersearch'  => 'Fouye',
 
 # Preferences page
 'mypreferences' => 'Preferans yo',
 
 # Recent changes
+'recentchanges'   => 'Modifikasyon yo ki fèk fèt',
 'rcnote'          => 'Men {{PLURAL:$1|dènye modifikasyon an|dènye $1 modifikasyon yo}} depi {{PLURAL:$2|dènye jou|<b>$2</b> dènye jou yo}}, tankou $3.',
 'rcshowhideminor' => '$1 modifiksayon yo ki pa enpòtan',
 'rclinks'         => 'Afiche dènye $1 modifikasyon ki fèt nan $2 dènye jou sa yo<br />$3.',
@@ -185,23 +228,38 @@ $messages = array(
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Swivi pou lyen yo',
+'recentchangeslinked'         => 'Swivi pou lyen yo',
+'recentchangeslinked-title'   => 'Chanjman ki an relasyon ak $1',
+'recentchangeslinked-summary' => "Paj espesyal sa a ap monter dènye chanjman nan paj ki genyen lyen. Paj yo ki nan lis swivi ou an ap ekri '''fonse'''",
 
 # Upload
 'upload' => 'Chaje fichye an',
 
 # Image list
-'filehist'   => 'Istorik fichye a',
-'imagelinks' => 'Paj yo ki genyen imaj an',
+'filehist'            => 'Istorik fichye a',
+'filehist-help'       => 'Klike anlè yon dat epi yon lè pou fichye a jan li te ye nan moman sa a.',
+'filehist-current'    => 'Kounye a',
+'filehist-datetime'   => 'Dat ak lè',
+'filehist-user'       => 'Itilizatè',
+'filehist-dimensions' => 'Grandè yo',
+'filehist-filesize'   => 'Lajè fichye a',
+'filehist-comment'    => 'Komantè',
+'imagelinks'          => 'Paj yo ki genyen imaj an',
+'linkstoimage'        => 'Paj ki ap swiv yo genyen imaj sa a :',
 
 # Random page
 'randompage' => 'Yon paj o aza',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|okte|okte}}',
+'nmembers'     => '$1 {{PLURAL:$1|manm|manm yo}} andidan',
 'specialpages' => 'Paj espesyal yo',
+'move'         => 'Renonmen',
 
 'alphaindexline' => '$1 jiska $2',
+
+# Special:Allpages
+'allpagessubmit' => 'Ale',
 
 # Watchlist
 'mywatchlist' => 'Lis swivi',
@@ -213,6 +271,7 @@ $messages = array(
 'unwatching' => 'Fini swiv paj sa a...',
 
 # Namespace form on various pages
+'namespace'      => 'Espas non :',
 'blanknamespace' => '(Prensipal)',
 
 # Contributions
@@ -220,6 +279,8 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'Paj ki lye nan paj sa a',
+'whatlinkshere-title' => 'Paj ki genyen lyen ki ap mennen nan $1',
+'linklistsub'         => '(Lis lyen yo)',
 'whatlinkshere-links' => '← lyen yo',
 
 # Block/unblock
@@ -227,7 +288,8 @@ $messages = array(
 'contribslink' => 'Kontribisyon yo',
 
 # Thumbnails
-'thumbnail-more' => 'Agrandi',
+'thumbnail-more'  => 'Agrandi',
+'thumbnail_error' => 'Erè nan kreyasyon minyati : $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'     => 'Paj itilizatè mwen an',
@@ -239,6 +301,8 @@ $messages = array(
 'tooltip-pt-logout'       => 'Dekonekte ou',
 'tooltip-ca-talk'         => 'Diskisyon apwopo kontni paj sa a',
 'tooltip-ca-edit'         => 'Ou mèt modifye paj sa a. Souple, previzyalize mesaj ou an anvan ou anrejistre li.',
+'tooltip-ca-move'         => 'Renonmen paj sa a',
+'tooltip-ca-watch'        => 'Ajoute paj sa a nan lis swivi ou a',
 'tooltip-search'          => 'Fouye nan wiki sa a',
 'tooltip-n-mainpage'      => 'Vizite paj prensipal an',
 'tooltip-n-portal'        => 'Apwopo pwojè a, sa ou kapab fè, ki kote ou mèt twouve kèk bagay',
@@ -250,11 +314,24 @@ $messages = array(
 'tooltip-t-whatlinkshere' => 'Lis paj yo ki lye ak paj sa a',
 'tooltip-t-upload'        => 'Chaje yon imaj oubyen yon fichye medya anlè sèvè a',
 'tooltip-t-specialpages'  => 'Lis tout paj espesyal yo',
+'tooltip-ca-nstab-image'  => 'Wè paj imaj an',
+'tooltip-save'            => 'Sove modifikasyon ou yo',
+'tooltip-preview'         => 'Souple, gade paj ou an (previzyalize li) anvan ou anrejistre li',
+'tooltip-diff'            => 'Montre ki chanjman ou fè nan tèks an.',
+
+# Media information
+'file-info-size' => '($1 × $2 piksèl, lajè fichye a : $3, tip MIME li ye : $4)',
 
 # Bad image list
 'bad_image_list' => 'Fòma a, se konsa li ye :
 
 Sèl liy ki komanse pa * ke konte.  Premye lyen nan liy an se sa ki ap mene kote yon move imaj.
 Lòt lyen yo nan menm liy an ke ap konsidere tankou eksepsyon, pa egzanp atik nan kilès yo imaj an dwèt parèt.',
+
+# Metadata
+'metadata' => 'Metadone',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'Tout',
 
 );
