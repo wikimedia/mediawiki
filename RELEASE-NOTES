@@ -129,7 +129,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12536) User should be able to get MediaWiki version from any page
 * (bug 12622) A JavaScript constant to declare whether api.php is available
 * Add caching to the AJAX search
-* Added APCOND_INGROUPS
+* Add APCOND_INGROUPS
+* Add DBA caching to installer 
 * (bug 18585) Added a bunch of parameters to the revertpage message
 
 

@@ -478,6 +478,8 @@ if ( $conf->eaccel ) {
 	print "<li><a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> installed</li>\n";
 }
 
+$conf->dba = function_exists( 'dba_open' );
+
 if( !( $conf->turck || $conf->eaccel || $conf->apc || $conf->xcache ) ) {
 	echo( '<li>Couldn\'t find <a href="http://turck-mmcache.sourceforge.net">Turck MMCache</a>,
 		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a>,
@@ -1204,7 +1206,7 @@ if( count( $errs ) ) {
 	</p>
 
 	<div class="config-input">
-		<label class='column'>Shared memory caching:</label>
+		<label class='column'>Object caching:</label>
 
 		<ul class="plain">
 		<li><?php aField( $conf, "Shm", "No caching", "radio", "none" ); ?></li>
@@ -1229,6 +1231,11 @@ if( count( $errs ) ) {
 				aField( $conf, "Shm", "eAccelerator", "radio", "eaccel" );
 				echo "</li>";
 			}
+			if ( $conf->dba ) {
+				echo "<li>";
+				aField( $conf, "Shm", "DBA", "radio", "dba" );
+				echo "</li>";
+			}
 		?>
 		<li><?php aField( $conf, "Shm", "Memcached", "radio", "memcached" ); ?></li>
 		</ul>
@@ -1240,6 +1247,7 @@ if( count( $errs ) ) {
 		<br /><br />
 		MediaWiki can also detect and support eAccelerator, Turck MMCache, APC, and XCache, but
 		these should not be used if the wiki will be running on multiple application servers.
+		You can also use DBA for storing object cache in the file.
 	</p>
 </div>
 
@@ -1498,6 +1506,10 @@ function writeLocalSettings( $conf ) {
 		case 'apc':
 		case 'eaccel':
 			$cacheType = 'CACHE_ACCEL';
+			$mcservers = 'array()';
+			break;
+		case 'dba':
+			$cacheType = 'CACHE_DBA';
 			$mcservers = 'array()';
 			break;
 		default:
