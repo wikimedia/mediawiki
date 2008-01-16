@@ -132,6 +132,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add APCOND_INGROUPS
 * Add DBA caching to installer 
 * (bug 18585) Added a bunch of parameters to the revertpage message
+* Support redirects in image namespace
 
 
 === Bug fixes in 1.12 ===

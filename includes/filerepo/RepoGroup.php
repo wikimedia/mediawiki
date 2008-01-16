@@ -77,6 +77,27 @@ class RepoGroup {
 	}
 
 	/**
+	 * Interface for FileRepo::checkRedirect()
+	 */
+	function checkRedirect( $title ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+
+		$redir = $this->localRepo->checkRedirect( $title );
+		if( $redir ) {
+			return $redir;
+		}
+		foreach ( $this->foreignRepos as $repo ) {
+			$redir = $repo->checkRedirect( $title );
+			if ( $redir ) {
+				return $redir;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Get the repo instance with a given key.
 	 */
 	function getRepo( $index ) {

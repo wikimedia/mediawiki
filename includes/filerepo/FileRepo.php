@@ -90,6 +90,19 @@ abstract class FileRepo {
 		if ( $img->exists() ) {
 			return $img;
 		}
+
+		# Now try redirects
+		$redir = $this->checkRedirect( $title );
+		if( $redir ) {
+			$img = $this->newFile( $redir );
+			if( !$img ) {
+				return false;
+			}
+			if( $img->exists() ) {
+				$img->redirectedFrom( $title->getText() );
+				return $img;
+			}
+		}
 	}
 
 	/**
@@ -400,5 +413,15 @@ abstract class FileRepo {
 	 * STUB
 	 */
 	function cleanupDeletedBatch( $storageKeys ) {}
+
+	/**
+	 * Checks if there is a redirect named as $title
+	 * STUB
+	 *
+	 * @param Title $title Title of image
+	 */
+	function checkRedirect( $title ) {
+		return false;
+	}
 }
 
