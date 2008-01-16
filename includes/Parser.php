@@ -251,6 +251,19 @@ class Parser
 	}
 
 	/**
+	 * Set the context title
+	 */
+	function setTitle( $t ) {
+		if ( strval( $t->getFragment() ) !== '' ) {
+			# Strip the fragment to avoid various odd effects
+			$this->mTitle = clone $t;
+			$this->mTitle->setFragment( '' );
+		} else {
+			$this->mTitle = $t;
+		}
+	}
+
+	/**
 	 * Accessor for mUniqPrefix.
 	 *
 	 * @public
@@ -296,7 +309,7 @@ class Parser
 		}
 
 		$this->mOptions = $options;
-		$this->mTitle =& $title;
+		$this->setTitle( $title );
 		$oldRevisionId = $this->mRevisionId;
 		$oldRevisionTimestamp = $this->mRevisionTimestamp;
 		if( $revid !== null ) {
@@ -393,6 +406,7 @@ class Parser
 		if ( $this->mOptions->getEnableLimitReport() ) {
 			$max = $this->mOptions->getMaxIncludeSize();
 			$limitReport = 
+				"NewPP limit report\n" . 
 				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->mMaxPPNodeCount}\n" .
 				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
 				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n";
@@ -430,7 +444,7 @@ class Parser
 		$this->clearState();
 		$this->setOutputType( OT_PREPROCESS );
 		$this->mOptions = $options;
-		$this->mTitle = $title;
+		$this->setTitle( $title );
 		if( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
@@ -4088,7 +4102,7 @@ class Parser
 	 */
 	function preSaveTransform( $text, &$title, $user, $options, $clearState = true ) {
 		$this->mOptions = $options;
-		$this->mTitle =& $title;
+		$this->setTitle( $title );
 		$this->setOutputType( OT_WIKI );
 
 		if ( $clearState ) {
@@ -4276,7 +4290,7 @@ class Parser
 	 * @public
 	 */
 	function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
-		$this->mTitle =& $title;
+		$this->setTitle( $title );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
 		if ( $clearState ) {
@@ -4312,9 +4326,9 @@ class Parser
 		wfProfileIn($fname);
 
 		if ( $wgTitle && !( $wgTitle instanceof FakeTitle ) ) {
-			$this->mTitle = $wgTitle;
+			$this->setTitle( $wgTitle );
 		} else {
-			$this->mTitle = Title::newFromText('msg');
+			$this->setTitle( Title::newFromText('msg') );
 		}
 		$this->mOptions = $options;
 		$this->setOutputType( OT_MSG );
@@ -5034,7 +5048,7 @@ class Parser
 	private function extractSections( $text, $section, $mode, $newText='' ) {
 		global $wgTitle;
 		$this->clearState();
-		$this->mTitle = $wgTitle; // not generally used but removes an ugly failure mode
+		$this->setTitle( $wgTitle ); // not generally used but removes an ugly failure mode
 		$this->mOptions = new ParserOptions;
 		$this->setOutputType( OT_WIKI );
 		$curIndex = 0;
