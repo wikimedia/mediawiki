@@ -723,7 +723,7 @@ class Linker {
 				$upload = SpecialPage::getTitleFor( 'Upload' );
 				if( $text == '' )
 					$text = htmlspecialchars( $title->getPrefixedText() );
-				$redir = RepoGroup::getLocalRepo()->checkRedirect( $title );
+				$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 				if( $redir ) {	
 					return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
 				} 
