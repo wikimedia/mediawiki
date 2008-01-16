@@ -88,6 +88,12 @@ body {
 	display: none;
 }
 
+#mw_contentwrapper {
+	width: 100%;
+	margin: 0 0 0 -14.1em;
+	float: right;
+}
+
 #mw_content {
 	margin: 0 0 0 14em;
 
@@ -102,7 +108,6 @@ body {
 
 #mw_portlets {
 	width: 14em;
-	float: left;
 	
 	border-right: solid 1px #bbbbbb;
 	background-color: #f0f0f0;
@@ -137,7 +142,6 @@ body {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	clear: both;
 }
 
 .portlet h5 {
@@ -159,8 +163,8 @@ li {
 
 #p-cactions {
 	height: 1.5em;
-	display: block;
 	padding: 0 0 0 0;
+	margin: 0 0 0 14em;
 }
 
 #p-cactions div.pBody {

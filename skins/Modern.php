@@ -92,6 +92,38 @@ class ModernTemplate extends QuickTemplate {
 
 	<div id="mw_main">
 
+	<div id="mw_contentwrapper">
+	<!-- navigation portlet -->
+	<div id="p-cactions" class="portlet">
+		<h5><?php $this->msg('views') ?></h5>
+		<div class="pBody">
+			<ul>
+	<?php			foreach($this->data['content_actions'] as $key => $tab) { ?>
+				 <li id="ca-<?php echo Sanitizer::escapeId($key) ?>"<?php
+					 	if($tab['class']) { ?> class="<?php echo htmlspecialchars($tab['class']) ?>"<?php }
+					 ?>><a href="<?php echo htmlspecialchars($tab['href']) ?>"<?php echo $skin->tooltipAndAccesskey('ca-'.$key) ?>><?php
+					 echo htmlspecialchars($tab['text']) ?></a></li>
+	<?php			 } ?>
+			</ul>
+		</div>
+	</div>
+
+	<!-- content -->
+	<div id="mw_content">
+			<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
+
+			<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
+			<div id="contentSub"><?php $this->html('subtitle') ?></div>
+
+			<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
+			<?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
+			<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
+
+			<?php $this->html('bodytext') ?>
+			<?php if($this->data['catlinks']) { ?><div id="catlinks"><?php       $this->html('catlinks') ?></div><?php } ?>
+	</div><!-- mw_content -->
+	</div><!-- mw_contentwrapper -->
+
 	<div id="mw_portlets">
 
 	<!-- other portlets -->
@@ -195,35 +227,6 @@ class ModernTemplate extends QuickTemplate {
 
 	</div><!-- mw_portlets -->
 
-	<!-- navigation portlet -->
-	<div id="p-cactions" class="portlet">
-		<h5><?php $this->msg('views') ?></h5>
-		<div class="pBody">
-			<ul>
-	<?php			foreach($this->data['content_actions'] as $key => $tab) { ?>
-				 <li id="ca-<?php echo Sanitizer::escapeId($key) ?>"<?php
-					 	if($tab['class']) { ?> class="<?php echo htmlspecialchars($tab['class']) ?>"<?php }
-					 ?>><a href="<?php echo htmlspecialchars($tab['href']) ?>"<?php echo $skin->tooltipAndAccesskey('ca-'.$key) ?>><?php
-					 echo htmlspecialchars($tab['text']) ?></a></li>
-	<?php			 } ?>
-			</ul>
-		</div>
-	</div>
-
-	<!-- content -->
-	<div id="mw_content">
-			<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
-
-			<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
-			<div id="contentSub"><?php $this->html('subtitle') ?></div>
-
-			<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
-			<?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
-			<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
-
-			<?php $this->html('bodytext') ?>
-			<?php if($this->data['catlinks']) { ?><div id="catlinks"><?php       $this->html('catlinks') ?></div><?php } ?>
-	</div><!-- mw_content -->
 
 	</div><!-- main -->
 
