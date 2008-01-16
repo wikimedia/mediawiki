@@ -30,7 +30,7 @@ function protectInitialize( tableId, labelText, types ) {
 
 		col.appendChild( document.createTextNode( ' ' ) );
 		var label = document.createElement( 'label' );
-		label.setAttribute( 'for', 'mwProtectUnchained' );
+		label.htmlFor = 'mwProtectUnchained';
 		label.appendChild( document.createTextNode( labelText ) );
 		col.appendChild( label );
 
