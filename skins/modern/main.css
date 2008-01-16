@@ -475,3 +475,7 @@ img.thumbborder {
 	display: none;
 }
 
+#mw_content .plainlinks a {
+        background: none !important;
+        padding: 0 !important;
+}
