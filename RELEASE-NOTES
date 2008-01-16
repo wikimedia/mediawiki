@@ -314,6 +314,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12567) Fix for misformatted read-only messages on edit, protect.
   Also added proper read-only checks to several special pages.
   Have removed read-only checks from the general user permission framework.
+* Creating a site with a name containing '#' is no longer permitted, since the
+  name will not work (but $wgSiteName is not checked if manually set).
 
 
 == Parser changes in 1.12 ==

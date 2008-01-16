@@ -599,8 +599,8 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 /* Check for validity */
 $errs = array();
 
-if( $conf->Sitename == "" || $conf->Sitename == "MediaWiki" || $conf->Sitename == "Mediawiki" ) {
-	$errs["Sitename"] = "Must not be blank or \"MediaWiki\"";
+if( preg_match( '/^$|^mediawiki$|#/i', $conf->Sitename ) ) {
+	$errs["Sitename"] = "Must not be blank or \"MediaWiki\" and may not contain \"#\"";
 }
 if( $conf->DBuser == "" ) {
 	$errs["DBuser"] = "Must not be blank";
