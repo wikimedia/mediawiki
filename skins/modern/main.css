@@ -161,7 +161,7 @@ body {
 	line-height: 1.4em;
 }
 
-li {
+ul {
 	list-style-image: url(bullet.gif);
 }
 
@@ -259,7 +259,7 @@ div.printfooter {
 }
 
 p {
-	margin: 0 0 0 0;
+	margin: 1em 0 1em 0;
 }
 
 #contentSub {
@@ -478,4 +478,83 @@ img.thumbborder {
 #mw_content .plainlinks a {
         background: none !important;
         padding: 0 !important;
+}
+
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+
+#toc,
+.toc {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	border-spacing: 0;
+	background-color: #f0f0f0;
+	border: solid 1px #bbbbbb;
+}
+
+#toc tr, #toc td {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+#toctitle {
+	border-bottom: solid 1px #3c78b5;
+	background-color: #dddddd;
+	margin: 0 0 0 0;
+}
+	
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin: 0 1em 0 1em;
+	padding-left: 0;
+	text-align: left;
+}
+
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}
+
+.mw-warning {
+	margin-left: 50px;
+	margin-right: 50px;
+	text-align: center;
+}
+
+#catlinks {
+	border: solid 1px #bbbbbb;
+	background-color: #f0f0f0;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	margin: 0 0 0 0;
+}
+
+#catlinks p {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 }
