@@ -145,11 +145,13 @@ body {
 }
 
 .portlet h5 {
-	padding: 0.3em 0 0.3em 1em;
+	padding: 0.1em 0 0.3em 1em;
 	margin: 0 0 0 0;
 	background-color: #dddddd;
 	font-weight: bold;
 	border-bottom: solid 1px #3c78b5;
+	font-size: 10pt;
+	height: 1.1em;
 }
 
 .portlet ul {
@@ -226,7 +228,7 @@ ul {
 #footer {
 	background-color: #f0f0f0;
 	background: url(footer-grad.png) repeat-x 0 0;
-	padding: 10px 1em 0 1em;
+	padding: 10px 1em 1em 1em;
 
 	color: #444444;
 }
