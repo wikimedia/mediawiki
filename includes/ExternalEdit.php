@@ -34,6 +34,7 @@ class ExternalEdit {
 		$name=$this->mTitle->getText();
 		$pos=strrpos($name,".")+1;
 		header ( "Content-type: application/x-external-editor; charset=".$this->mCharset );
+		header( "Cache-control: no-cache" );
 
 		# $type can be "Edit text", "Edit file" or "Diff text" at the moment
 		# See the protocol specifications at [[m:Help:External editors/Tech]] for
