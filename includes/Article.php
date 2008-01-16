@@ -2524,7 +2524,7 @@ class Article {
 	 * @param $changed Whether or not the content actually changed
 	 */
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true ) {
-		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser;
+		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser, $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -2539,8 +2539,10 @@ class Article {
 		}
 
 		# Save it to the parser cache
-		$parserCache =& ParserCache::singleton();
-		$parserCache->save( $editInfo->output, $this, $wgUser );
+		if ( $wgEnableParserCache ) {
+			$parserCache =& ParserCache::singleton();
+			$parserCache->save( $editInfo->output, $this, $wgUser );
+		}
 
 		# Update the links tables
 		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
@@ -3151,7 +3153,7 @@ class Article {
 	 * @param bool    $cache
 	 */
 	public function outputWikiText( $text, $cache = true ) {
-		global $wgParser, $wgUser, $wgOut;
+		global $wgParser, $wgUser, $wgOut, $wgEnableParserCache;
 
 		$popts = $wgOut->parserOptions();
 		$popts->setTidy(true);
@@ -3160,7 +3162,7 @@ class Article {
 			$popts, true, true, $this->getRevIdFetched() );
 		$popts->setTidy(false);
 		$popts->enableLimitReport( false );
-		if ( $cache && $this && $parserOutput->getCacheTime() != -1 ) {
+		if ( $wgEnableParserCache && $cache && $this && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache =& ParserCache::singleton();
 			$parserCache->save( $parserOutput, $this, $wgUser );
 		}
