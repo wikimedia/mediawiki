@@ -67,7 +67,7 @@ class LocalRepo extends FSRepo {
 	 * Function link Title::getArticleID().
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
 	 */
-	function getArticleID( $title ) {
+	private function getArticleID( $title ) {
 		if( !$title instanceof Title ) {
 			return 0;
 		}
@@ -85,6 +85,11 @@ class LocalRepo extends FSRepo {
 	}
 
 	function checkRedirect( $title ) {
+		global $wgFileRedirects;
+		if( !$wgFileRedirects ) {
+			return false;
+		}
+		
 		$id = $this->getArticleID( $title );
 		if( !$id ) {
 			return false;

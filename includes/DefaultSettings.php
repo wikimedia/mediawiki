@@ -460,6 +460,11 @@ $wgHashedSharedUploadDirectory = true;
  */
 $wgRepositoryBaseUrl="http://commons.wikimedia.org/wiki/Image:";
 
+/**
+ * Experimental feature still under debugging.
+ */
+$wgFileRedirects = false;
+
 
 #
 # Email settings
