@@ -277,3 +277,113 @@ span.editsection {
 h1, h2 {
 	border-bottom: solid 1px #003366;
 }
+
+#preftoc {
+	width: 100%;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	height: 1.5em;
+	clear: right;
+}
+
+#preftoc li {
+	margin: 0 0.5em 0 0.5em;
+	padding: 0 0.2em 0 0.2em;
+	display: block;
+	float: left;
+	height: 1.5em;
+	text-transform: lowercase;
+}
+
+#preferences {
+	margin: 0 0 0 0;
+	padding: 0em 1em 1em 1em;
+	border: solid 1px #bbbbbb;
+}
+
+#preferences fieldset {
+	margin-top: 0;
+	border: none;
+}
+
+#preferences h2 {
+	font-size: 10pt;
+}
+
+.mainLegend {
+	display: none;
+}
+
+#preftoc li.selected {
+	background-color: #bbbbbb;
+}
+
+#preftoc li a,
+#preftoc li a:hover,
+#preftoc li a:visited {
+	text-decoration: underline;
+	color: #003366;
+}
+
+#preftoc li.selected a,
+#preftoc li.selected a:hover,
+#preftoc li.selected a:visited {
+	text-decoration: none;
+	color: white;
+}
+
+#mw_content a.external,
+#mw_content a[href ^="gopher://"] {
+        background: url(external.png) center right no-repeat;
+        padding-right: 13px;
+}
+#mw_content a[href ^="https://"],
+.link-https {
+        background: url(lock_icon.gif) center right no-repeat;
+        padding-right: 16px;
+}
+#mw_content a[href ^="mailto:"],
+.link-mailto {
+        background: url(mail_icon.gif) center right no-repeat;
+        padding-right: 18px;
+}
+#mw_content a[href ^="news://"] {
+        background: url(news_icon.png) center right no-repeat;
+        padding-right: 18px;
+}
+#mw_content a[href ^="ftp://"],
+.link-ftp {
+        background: url(file_icon.gif) center right no-repeat;
+        padding-right: 18px;
+}
+#mw_content a[href ^="irc://"],
+.link-irc {
+        background: url(discussionitem_icon.gif) center right no-repeat;
+        padding-right: 18px;
+}
+
+#mw_content a.external[href $=".ogg"], #mw_content a.external[href $=".OGG"],
+#mw_content a.external[href $=".mid"], #mw_content a.external[href $=".MID"],
+#mw_content a.external[href $=".midi"], #mw_content a.external[href $=".MIDI"],
+#mw_content a.external[href $=".mp3"], #mw_content a.external[href $=".MP3"],
+#mw_content a.external[href $=".wav"], #mw_content a.external[href $=".WAV"],
+#mw_content a.external[href $=".wma"], #mw_content a.external[href $=".WMA"],
+.link-audio {
+        background: url("audio.png") center right no-repeat;
+        padding-right: 13px;
+}
+#mw_content a.external[href $=".ogm"], #mw_content a.external[href $=".OGM"],
+#mw_content a.external[href $=".avi"], #mw_content a.external[href $=".AVI"],
+#mw_content a.external[href $=".mpeg"], #mw_content a.external[href $=".MPEG"],
+#mw_content a.external[href $=".mpg"], #mw_content a.external[href $=".MPG"],
+.link-video {
+        background: url("video.png") center right no-repeat;
+        padding-right: 13px;
+}
+#mw_content a.external[href $=".pdf"], #mw_content a.external[href $=".PDF"],
+#mw_content a.external[href *=".pdf#"], #mw_content a.external[href *=".PDF#"],
+#mw_content a.external[href *=".pdf?"], #mw_content a.external[href *=".PDF?"],
+.link-document {
+        background: url("document.png") center right no-repeat;
+        padding-right: 12px;
+}
