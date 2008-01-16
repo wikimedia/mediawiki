@@ -221,6 +221,13 @@ class CoreParserFunctions {
 			return '';
 		}
 		$tagName = strtolower( trim( $frame->expand( array_shift( $args ) ) ) );
+
+		if ( count( $args ) ) {
+			$inner = $frame->expand( array_shift( $args ) );
+		} else {
+			$inner = null;
+		}
+
 		$stripList = $parser->getStripList();
 		if ( !in_array( $tagName, $stripList ) ) {
 			return '<span class="error">' . 
@@ -228,33 +235,23 @@ class CoreParserFunctions {
 				'</span>';
 		}
 
-		$lastNumberedNode = false;
 		$attributes = array();
 		foreach ( $args as $arg ) {
 			if ( !$xpath ) {
 				$xpath = new DOMXPath( $arg->ownerDocument );
 			}
 			$names = $xpath->query( 'name', $arg );
-			if ( $names->item( 0 )->hasAttributes() ) {
-				$lastNumberedNode = $arg;
-			} else {
+			if ( !$names->item( 0 )->hasAttributes() ) {
 				$name = $frame->expand( $names->item( 0 ), PPFrame::STRIP_COMMENTS );
-				if ( preg_match( '/^\d+$/', $name ) ) {
-					// For = suppression syntax {{#tag|thing|1=2=3=4}}
-					$lastNumberedNode = $arg;
-				} else {
-					$values = $xpath->query( 'value', $arg );
-					$attributes[$name] = trim( $frame->expand( $values->item( 0 ) ) );
+				$values = $xpath->query( 'value', $arg );
+				$value = trim( $frame->expand( $values->item( 0 ) ) );
+				if ( preg_match( '/^(?:"|\')(.*)(?:"|\')$/s', $value, $m ) ) {
+					$value = $m[1];
 				}
-			}	
+				$attributes[$name] = $value;
+			}
 		}
 
-		if ( !$lastNumberedNode ) {
-			$inner = null;
-		} else {
-			$values = $xpath->query( 'value', $lastNumberedNode );
-			$inner = $frame->expand( $values->item( 0 ) );
-		}
 		$params = array(
 			'name' => $tagName,
 			'inner' => $inner,
