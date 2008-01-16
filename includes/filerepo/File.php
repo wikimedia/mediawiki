@@ -46,7 +46,7 @@ abstract class File {
 	/**
 	 * The following member variables are not lazy-initialised
 	 */
-	var $repo, $title, $lastError;
+	var $repo, $title, $lastError, $redirected;
 
 	/**
 	 * Call this constructor from child classes
@@ -1130,6 +1130,14 @@ abstract class File {
 		} else {
 			return '';
 		}
+	}
+
+	function getRedirected() {
+		return $this->redirected;
+	}
+
+	function redirectedFrom( $from ) {
+		$this->redirected = $from;
 	}
 }
 /**
