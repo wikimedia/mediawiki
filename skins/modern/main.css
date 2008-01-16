@@ -157,6 +157,10 @@ body {
 	padding: 0 0 0 0;
 }
 
+#mw_portlets .portlet ul {
+	line-height: 1.4em;
+}
+
 li {
 	list-style-image: url(bullet.gif);
 }
