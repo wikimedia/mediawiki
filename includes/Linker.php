@@ -723,6 +723,10 @@ class Linker {
 				$upload = SpecialPage::getTitleFor( 'Upload' );
 				if( $text == '' )
 					$text = htmlspecialchars( $title->getPrefixedText() );
+				$redir = RepoGroup::getLocalRepo()->checkRedirect( $title );
+				if( $redir ) {	
+					return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
+				} 
 				$q = 'wpDestFile=' . $title->getPartialUrl();
 				if( $query != '' )
 					$q .= '&' . $query;
