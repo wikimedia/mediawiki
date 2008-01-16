@@ -1942,6 +1942,17 @@ class Article {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
+		
+		# Hack for big sites
+		if( $this->isBigDeletion() ) {
+			$permission_errors = $this->mTitle->getUserPermissionsErrors(
+				'bigdelete', $wgUser );
+
+			if( count( $permission_errors ) > 0 ) {
+				$wgOut->showPermissionsErrorPage( $permission_errors );
+				return;
+			}
+		}
 
 		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
 
@@ -1975,6 +1986,30 @@ class Article {
 		}
 		
 		return $this->confirmDelete( '', $reason );
+	}
+	
+	/**
+	 * @return bool whether or not the page surpasses $wgDeleteRevisionsLimit revisions
+	 */
+	function isBigDeletion() {
+		global $wgDeleteRevisionsLimit;
+		if( $wgDeleteRevisionsLimit ) {
+			$revCount = $this->estimateRevisionCount();
+			return $revCount > $wgDeleteRevisionsLimit;
+		}
+		return false;
+	}
+	
+	/**
+	 * @return int approximate revision count
+	 */
+	function estimateRevisionCount() {
+		$dbr = wfGetDB();
+		// For an exact count...
+		//return $dbr->selectField( 'revision', 'COUNT(*)',
+		//	array( 'rev_page' => $this->getId() ), __METHOD__ );
+		return $dbr->estimateRowCount( 'revision', '*',
+		 	array( 'rev_page' => $this->getId() ), __METHOD__ );
 	}
 
 	/**

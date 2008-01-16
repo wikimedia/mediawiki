@@ -1099,6 +1099,7 @@ $wgGroupPermissions['bot'  ]['apihighlimits']   = true;
 $wgGroupPermissions['sysop']['block']           = true;
 $wgGroupPermissions['sysop']['createaccount']   = true;
 $wgGroupPermissions['sysop']['delete']          = true;
+$wgGroupPermissions['sysop']['bigdelete']       = true; // can be separately configured for pages with > $wgDeleteRevisionsLimit revs
 $wgGroupPermissions['sysop']['deletedhistory'] 	= true; // can view deleted history entries, but not see or restore the text
 $wgGroupPermissions['sysop']['undelete']	= true;
 $wgGroupPermissions['sysop']['editinterface']   = true;
@@ -1246,6 +1247,12 @@ $wgAutopromote = array(
  * $wgRemoveGroups['sysop'] = array( 'sysop', 'bot' ); 
  */
 $wgAddGroups = $wgRemoveGroups = array();
+
+/**
+ * Optional to restrict deletion of pages with higher revision counts
+ * to users with the 'bigdelete' permission. (Default given to sysops.)
+ */
+$wgDeleteRevisionsLimit = 0;
 
 # Proxy scanner settings
 #
