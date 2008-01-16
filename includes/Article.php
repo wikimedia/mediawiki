@@ -2267,17 +2267,23 @@ class Article {
 	 * @param string $fromP - Name of the user whose edits to rollback. 
 	 * @param string $summary - Custom summary. Set to default summary if empty.
 	 * @param string $token - Rollback token.
-	 * @param bool $bot - If true, mark all reverted edits as bot.
+	 * @param bool   $bot - If true, mark all reverted edits as bot.
 	 * 
 	 * @param array $resultDetails contains result-specific array of additional values
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
 	 * 
-	 * @return array of errors, each error formatted as array(messagekey, param1, param2, ...).
-	 * On success, the array is empty.  This array can also be passed to OutputPage::showPermissionsErrorPage().
-	 * NOTE: If the user is blocked, 'blocked' is passed as a message, but it doesn't exist. Be sure to check
-	 *       it before calling showPermissionsErrorPage(). The same is true for 'actionthrottledtext', which
-	 *	 is passed if the rate limit is passed.
+	 * @return array of errors, each error formatted as
+	 *   array(messagekey, param1, param2, ...).
+	 * On success, the array is empty.  This array can also be passed to
+	 * OutputPage::showPermissionsErrorPage(). NOTE: If the user is blocked,
+	 * 'blocked' is passed as a message, but it doesn't exist. Be sure to check
+	 * it before calling showPermissionsErrorPage(). The same is true for
+	 * 'actionthrottledtext', which is passed if the rate limit is passed; and
+	 * for 'readonlytext', which is passed if the wiki is read-only.
+	 *
+	 * FIXME: This is silly, those messages should be possible to output di-
+	 * rectly.
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails ) {
 		global $wgUser;
@@ -2303,14 +2309,21 @@ class Article {
 	}
 	
 	/**
-	 * Backend implementation of doRollback(), please refer there for parameter and return value documentation
+	 * Backend implementation of doRollback(), please refer there for parameter
+	 * and return value documentation
 	 *
-	 * NOTE: This function does NOT check ANY permissions, it just commits the rollback to the DB.
-	 *       Therefore, you should only call this function directly if you really know what you're doing. If you don't, use doRollback() instead
+	 * NOTE: This function does NOT check ANY permissions, it just commits the
+	 * rollback to the DB Therefore, you should only call this function direct-
+	 * ly if you want to use custom permissions checks. If you don't, use
+	 * doRollback() instead.
 	 */	
 	public function commitRollback($fromP, $summary, $bot, &$resultDetails) {
-		global $wgUseRCPatrol;
+		global $wgUseRCPatrol, $wgUser;
 		$dbw = wfGetDB( DB_MASTER );
+
+		if( wfReadOnly() ) {
+			return array( array( 'readonlytext' ) );
+		}
 
 		# Get the last editor
 		$current = Revision::newFromTitle( $this->mTitle );
@@ -2411,17 +2424,32 @@ class Article {
 			$wgRequest->getBool( 'bot' ),
 			$details
 		);
-		
-		if(in_array(array('blocked'), $result)) {
+
+		if( in_array( array( 'blocked' ), $result ) ) {
 			$wgOut->blockedPage();
 			return;
 		}
-		if(in_array(array('actionthrottledtext'), $result)) {
+		if( in_array( array( 'actionthrottledtext' ), $result ) ) {
 			$wgOut->rateLimited();
 			return;
 		}
-		if(!empty($result)) {
-			$wgOut->showPermissionsErrorPage( $result );
+		# Display permissions errors before read-only message -- there's no
+		# point in misleading the user into thinking the inability to rollback
+		# is only temporary.
+		if( !empty($result) && $result !== array( array('readonlytext') ) ) {
+			# array_diff is completely broken for arrays of arrays, sigh.  Re-
+			# move any 'readonlytext' error manually.
+			$out = array();
+			foreach( $result as $error ) {
+				if( $error != array( 'readonlytext' ) ) {
+					$out []= $error;
+				}
+			}
+			$wgOut->showPermissionsErrorPage( $out );
+			return;
+		}
+		if( $result == array( array('readonlytext') ) ) {
+			$wgOut->readOnlyPage();
 			return;
 		}
 
