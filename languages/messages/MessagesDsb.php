@@ -1083,7 +1083,7 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'statistics-mostpopular' => 'Nejwěcej woglědane boki',
 
 'disambiguations'      => 'Rozjasnjenja zapśimjeśow',
-'disambiguationspage'  => 'Pśedłoga:Rozjasnjenje zapśimjeśow',
+'disambiguationspage'  => 'Template:Rozjasnjenje zapśimjeśow',
 'disambiguations-text' => 'Slědujuce boki wótkazuju na bok za rozjasnjenje zapśimjeśow. Wótkazujśo lubjej na pótrjefjony bok.
 
 <br />Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[MediaWiki:disambiguationspage]].<br />Wótkaze z mjenjowych rumow se how njenalicuju.',

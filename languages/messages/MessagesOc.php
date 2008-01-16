@@ -575,7 +575,7 @@ La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament
 'editingold'                => "<strong>Atencion : sètz a modificar una version obsolèta d'aquesta pagina. Se salvagardatz, totas las modificacions efectuadas dempuèi aquesta version seràn perdudas.</strong>",
 'yourdiff'                  => 'Diferéncias',
 'copyrightwarning'          => "Totas las contribucions a {{SITENAME}} son consideradas coma publicadas jols tèrmes de la $2 (vejatz $1 per mai de detalhs). Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Nos prometètz tanben qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura.<strong>UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !</strong>",
-'copyrightwarning2'         => "Totas las contribucions a {{SITENAME}} pòdon èsser modificadas o suprimidas per d’autres utilizaires. Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Tanben nos prometètz qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura. (vejatz $1 per mai de detalhs). <strong>UTILISETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !</strong>",
+'copyrightwarning2'         => "Totas las contribucions a {{SITENAME}} pòdon èsser modificadas o suprimidas per d’autres utilizaires. Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Tanben nos prometètz qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura. (vejatz $1 per mai de detalhs). <strong>UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !</strong>",
 'longpagewarning'           => '<strong>AVERTIMENT : aquesta pagina a una longor de $1 ko. De delà de 32 ko, es preferible per cèrts navegaires de devesir aquesta pagina en seccions mai pichonas.</strong>',
 'longpageerror'             => "<strong>ERROR: Lo tèxt qu'avètz mandat es de $1 Ko, e despassa doncas lo limit autorizat dels $2 Ko. Lo tèxt pòt pas èsser salvagardat.</strong>",
 'readonlywarning'           => "<strong>AVERTIMENT : '''aquesta pagina es <span style=\"color:red\">protegida</span> <u>temporàriament</u> e <u>automaticament</u> per mantenença.'''<br />Doncas poiretz pas i salvagardar vòstras modificacions ara. Podètz copiar lo tèxt dins un fichièr e lo salvagardar per mai tard.</strong>",
@@ -798,19 +798,26 @@ per modificar vòstras preferéncias d'utilizaire.",
 'files'                    => 'Fichièrs',
 
 # User rights
-'userrights-lookup-user'      => "Gestion dels dreches d'utilizaire",
-'userrights-user-editname'    => 'Entrar un nom d’utilizaire :',
-'editusergroup'               => "Modificacion dels gropes d'utilizaires",
-'userrights-editusergroup'    => 'Modificar los gropes de l’utilizaire',
-'saveusergroups'              => "Salvagardar los gropes d'utilizaire",
-'userrights-groupsmember'     => 'Membre de:',
-'userrights-groupsavailable'  => 'Gropes disponibles:',
-'userrights-groupshelp'       => "Causissètz las permissions que volètz levar o ajustar a l'utilizaire.
+'userrights-lookup-user'           => "Gestion dels dreches d'utilizaire",
+'userrights-user-editname'         => 'Entrar un nom d’utilizaire :',
+'editusergroup'                    => "Modificacion dels gropes d'utilizaires",
+'userrights-editusergroup'         => 'Modificar los gropes de l’utilizaire',
+'saveusergroups'                   => "Salvagardar los gropes d'utilizaire",
+'userrights-groupsmember'          => 'Membre de:',
+'userrights-groupsremovable'       => 'Gropes suprimibles :',
+'userrights-groupsavailable'       => 'Gropes disponibles:',
+'userrights-groupshelp'            => "Causissètz las permissions que volètz levar o ajustar a l'utilizaire.
 Los gropes pas seleccionats seràn pas modificats. Podètz deseleccionar un grop amb CTRL + Clic esquèrra.",
-'userrights-reason'           => 'Rason del cambiament:',
-'userrights-available-none'   => 'Podètz pas cambiar l’apartenéncia als diferents gropes.',
-'userrights-available-add'    => "Podètz ajustar d'utilizaires a $1.",
-'userrights-available-remove' => "Podètz levar d'utilizaires de $1.",
+'userrights-reason'                => 'Rason del cambiament:',
+'userrights-available-none'        => 'Podètz pas cambiar l’apartenéncia als diferents gropes.',
+'userrights-available-add'         => "Podètz ajustar d'utilizaires a $1.",
+'userrights-available-remove'      => "Podètz levar d'utilizaires de $1.",
+'userrights-available-add-self'    => 'Podètz vos ajustar vos-meteis dins {{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.',
+'userrights-available-remove-self' => "Podètz vos levar vos-meteis d'{{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.",
+'userrights-no-interwiki'          => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
+'userrights-nodatabase'            => 'La banca de donadas « $1 » existís pas o es pas en local.',
+'userrights-nologin'               => "Vos devètz [[Special:Userlogin|connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
+'userrights-notallowed'            => "Vòstre compte es pas abilitat per balhar de dreches d'utilizaire.",
 
 # Groups
 'group'               => 'Grop:',
@@ -1637,7 +1644,9 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importhistoryconflict'      => "I a un conflicte dins l'istoric de las versions (aquesta pagina a pogut èsser importada de per abans).",
 'importnosources'            => 'Cap de font inter-wiki es pas estada definida e la còpia dirècta d’istoric es desactivada.',
 'importnofile'               => 'Cap de fichièr es pas estat importat.',
-'importuploaderror'          => "L’impòrt del fichièr a pas capitat : es possible qu'aqueste depasse la talha autorizada.",
+'importuploaderrorsize'      => "Lo telecargament del fichièr d'importar a pas capitat. Sa talha es mai granda que la autorizada.",
+'importuploaderrorpartial'   => "Lo telecargament del fichièr d'importar a pas capitat. Aqueste o es pas estat que parcialament.",
+'importuploaderrortemp'      => "Lo telecargament del fichièr d'importar a pas capitat. Un dorsièr temporari es mancant.",
 
 # Import log
 'importlogpage'                    => 'Istoric de las importacions de paginas',
@@ -1658,7 +1667,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-pt-login'                => 'Sètz convidat a vos identificar, mas es pas obligatòri.',
 'tooltip-pt-anonlogin'            => 'Sètz convidat a vos identificar, mas es pas obligatòri.',
 'tooltip-pt-logout'               => 'Se desconnectar',
-'tooltip-ca-talk'                 => "Discussion a prepais d'aquesta pagina",
+'tooltip-ca-talk'                 => "Discussion a prepaus d'aquesta pagina",
 'tooltip-ca-edit'                 => 'Podètz modificar aquesta pagina. Mercé de previsualizar abans d’enregistrar.',
 'tooltip-ca-addsection'           => 'Ajustar un comentari a aquesta discussion.',
 'tooltip-ca-viewsource'           => 'Aquesta pagina es protegida. Podètz çaquelà ne veire lo contengut.',
@@ -2207,5 +2216,7 @@ Ensajatz la previsualizacion normala.',
 'watchlisttools-edit' => 'Veire e modificar la lista de seguit',
 'watchlisttools-raw'  => 'Modificar la lista (mòde brut)',
 
-);
+# Core parser functions
+'unknown_extension_tag' => "Balisa d'extension « $1 » desconeguda",
 
+);
