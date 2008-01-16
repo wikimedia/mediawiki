@@ -12,6 +12,7 @@
  * @author शࣿरीहरि
  * @author Kaustubh
  * @author SPQRobin
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -245,7 +246,7 @@ $messages = array(
 'helppage'          => 'Help:साहाय्य पृष्ठ',
 'mainpage'          => 'मुखपृष्ठ',
 'portal'            => 'समाज मुखपृष्ठ',
-'portal-url'        => 'प्रकल्प:समाज मुखपृष्ठ',
+'portal-url'        => 'Project:समाज मुखपृष्ठ',
 'privacy'           => 'गुप्तता नीती',
 'sitesupport'       => 'दान',
 

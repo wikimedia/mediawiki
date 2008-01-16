@@ -91,6 +91,7 @@
 	'fur' => 'Furlan',		# Friulian
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
+	'gag' => 'Gagauz',		# Gagauz
 	'gan' => '贛語',			# Gan
 	'gd' => 'Gàidhlig',	# Scots Gaelic
 	'gl' => 'Galego',		# Galician

@@ -1213,7 +1213,7 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'cantrollback'                => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
 'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
 'editcomment'                 => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|Kontributioune]]) geläscht an déi lescht Versioun vum [[Benotzer:$1|$1]] restauréiert',
+'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) geläscht an déi lescht Versioun vum [[User:$1|$1]] restauréiert',
 'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
