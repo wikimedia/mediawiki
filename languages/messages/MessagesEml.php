@@ -1,5 +1,5 @@
 <?php
-/** Emiliàn e rumagnòl (Emiliàn e rumagnòl)
+/** Emiliano-Romagnolo (Emiliàn e rumagnòl)
  *
  * @addtogroup Language
  *

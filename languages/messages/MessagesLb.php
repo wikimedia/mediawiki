@@ -1309,7 +1309,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 
 # Block/unblock
 'blockip'                     => 'Benotzer spären',
-'blockiptext'                 => 'Benotzt dës Form fir eng spezifesch IP Adress oder e Benotzernumm ze spären. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat der [[{{MediaWiki:Policy-url}}|Wikipedia Policy]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
+'blockiptext'                 => 'Benotzt dës Form fir eng spezifesch IP Adress oder e Benotzernumm ze spären. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat den [[{{MediaWiki:Policy-url}}|interne Richlinen]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
 'ipaddress'                   => 'IP-Adress oder Benotzernamm:',
 'ipadressorusername'          => 'IP-Adress oder Benotzernumm:',
 'ipbreason'                   => 'Grond:',

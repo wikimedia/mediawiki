@@ -17,6 +17,7 @@
  * @author SabineCretella
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -493,7 +494,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'youremail'                  => 'Indirizzo e-mail: *',
 'username'                   => 'Nome utente',
 'uid'                        => 'ID utente:',
-'yourrealname'               => 'Nome vero: *',
+'yourrealname'               => 'Nome vero:',
 'yourlanguage'               => 'Lingua:',
 'yourvariant'                => 'Variante:',
 'yournick'                   => 'Soprannome (nickname):',

@@ -294,6 +294,7 @@ $messages = array(
 'userrights-editusergroup'  => "Filak lubu uza-na'in",
 'userrights-groupsmember'   => 'Membru iha:',
 'userrights-available-none' => "Ó la bele filak lubu uza-na'in.",
+'userrights-no-interwiki'   => "Ó la bele filak kuana uza-na'in iha wiki seluk.",
 
 # Groups
 'group'            => 'Lubu:',
@@ -311,8 +312,10 @@ $messages = array(
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrata sira',
 
 # User rights log
-'rightslogtext' => "Ne'e lista ba filak lubu uza-na'in.",
-'rightsnone'    => '(mamuk)',
+'rightslog'      => "Lista filak kuana uza-na'in",
+'rightslogtext'  => "Ne'e lista ba filak lubu uza-na'in.",
+'rightslogentry' => 'filak lubu $1 nian husi $2 ba $3',
+'rightsnone'     => '(mamuk)',
 
 # Recent changes
 'recentchanges'   => 'Mudansa foufoun sira',

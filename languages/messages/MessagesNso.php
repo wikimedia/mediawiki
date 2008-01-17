@@ -12,6 +12,12 @@ $messages = array(
 'underline-always' => 'Kamehla',
 
 # Dates
+'monday'    => 'Mošupologo',
+'tuesday'   => 'Labobedi',
+'wednesday' => 'Laboraro',
+'thursday'  => 'Labone',
+'friday'    => 'Labohlano',
+'saturday'  => 'Mokibelo',
 'january'   => 'Pherekgong',
 'february'  => 'Dibokwane',
 'march'     => 'Hlakola',
