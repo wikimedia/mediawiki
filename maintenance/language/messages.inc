@@ -1250,6 +1250,8 @@ $wgMessageStructure = array(
 		'deleteotherreason',
 		'deletereasonotherlist',
 		'deletereason-dropdown',
+		'delete-toobig',
+		'delete-warning-toobig',
 		'rollback',
 		'rollback_short',
 		'rollbacklink',
