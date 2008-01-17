@@ -1942,26 +1942,26 @@ class Article {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
-		
-		# Hack for big sites
-		if( $this->isBigDeletion() ) {
-			$permission_errors = $this->mTitle->getUserPermissionsErrors(
-				'bigdelete', $wgUser );
-
-			if( count( $permission_errors ) > 0 ) {
-				$wgOut->showPermissionsErrorPage( $permission_errors );
-				return;
-			}
-		}
 
 		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
-
+		
 		# Better double-check that it hasn't been deleted yet!
 		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->mTitle->pageCond();
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if ( $latest === false ) {
 			$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
+			return;
+		}
+
+		# Hack for big sites
+		$bigHistory = $this->isBigDeletion();
+		if( $bigHistory && !$this->mTitle->userCan( 'bigdelete' ) ) {
+			global $wgLang, $wgDeleteRevisionsLimit;
+			$wgOut->addWikiText( "<div class='error'>\n" .
+				wfMsg( 'delete-toobig',
+					$wgLang->formatNum( $wgDeleteRevisionsLimit ) ) .
+				"</div>\n" );
 			return;
 		}
 
@@ -1983,6 +1983,13 @@ class Article {
 		if( $hasHistory && !$confirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML( '<strong>' . wfMsg( 'historywarning' ) . ' ' . $skin->historyLink() . '</strong>' );
+			if( $bigHistory ) {
+				global $wgLang, $wgDeleteRevisionsLimit;
+				$wgOut->addWikiText( "<div class='error'>\n" .
+					wfMsg( 'delete-warning-toobig',
+						$wgLang->formatNum( $wgDeleteRevisionsLimit ) ) .
+					"</div>\n" );
+			}
 		}
 		
 		return $this->confirmDelete( '', $reason );
