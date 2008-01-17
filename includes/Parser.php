@@ -126,6 +126,7 @@ class Parser
 		if ( !$this->mFirstCall ) {
 			return;
 		}
+		$this->mFirstCall = false;
 		
 		wfProfileIn( __METHOD__ );
 		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
@@ -174,7 +175,8 @@ class Parser
 		}
 
 		$this->initialiseVariables();
-		$this->mFirstCall = false;
+
+		wfRunHooks( 'ParserFirstCallInit', array( &$this ) );
 		wfProfileOut( __METHOD__ );
 	}
 

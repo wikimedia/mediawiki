@@ -262,6 +262,7 @@ define( 'UTF8_TAIL', true );
 
 # Hook support constants
 define( 'MW_SUPPORTS_EDITFILTERMERGED', 1 );
+define( 'MW_SUPPORTS_PARSERFIRSTCALLINIT', 1 );
 
 # Allowed values for Parser::$mOutputType
 # Parameter to Parser::startExternalParse().
