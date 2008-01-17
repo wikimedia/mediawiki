@@ -207,6 +207,9 @@ class Title {
 	 * Make an array of titles from an array of IDs 
 	 */
 	public static function newFromIDs( $ids ) {
+		if ( !count( $ids ) ) {
+			return array();
+		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ),
 			'page_id IN (' . $dbr->makeList( $ids ) . ')', __METHOD__ );
