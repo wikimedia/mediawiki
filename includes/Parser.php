@@ -2658,19 +2658,18 @@ class Parser
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
 		$elementsRegex = "~($xmlishRegex)(?:\s|\/>|>)|(!--)~iA";
 	
-		$stack = array();      # Stack of unclosed parentheses
-		$stackIndex = -1;      # Stack read pointer
+		$stack = new PPDStack;
 
 		$searchBase = implode( '', array_keys( $rules ) ) . '<';
 		$revText = strrev( $text ); // For fast reverse searches
 
 		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
-		$topAccum = '<root>';      # Top level text accumulator
-		$accum =& $topAccum;            # Current text accumulator
+		$accum =& $stack->getAccum();   # Current text accumulator
+		$accum = '<root>';
 		$findEquals = false;            # True to find equals signs in arguments
-		$findHeading = false;           # True to look at LF characters for possible headings
 		$findPipe = false;              # True to take notice of pipe characters
 		$headingIndex = 1;
+		$inHeading = false;        # True if $i is inside a possible heading
 		$noMoreGT = false;         # True if there are no more greater-than (>) signs right of $i
 		$findOnlyinclude = $enableOnlyinclude; # True to ignore all input up to the next <onlyinclude>
 		$fakeLineStart = true;     # Do a line-start run without outputting an LF character
@@ -2696,21 +2695,29 @@ class Parser
 			} else {
 				# Find next opening brace, closing brace or pipe
 				$search = $searchBase;
-				if ( $stackIndex == -1 ) {
+				if ( $stack->top === false ) {
 					$currentClosing = '';
-					// Look for headings only at the top stack level
-					// Among other things, this resolves the ambiguity between = 
-					// for headings and = for template arguments
-					$search .= "\n";
 				} else {
-					$currentClosing = $stack[$stackIndex]['close'];
+					$currentClosing = $stack->top->close;
 					$search .= $currentClosing;
 				}
 				if ( $findPipe ) {
 					$search .= '|';
 				}
 				if ( $findEquals ) {
+					// First equals will be for the template
 					$search .= '=';
+				} else {
+					// Look for headings
+					// We can't look for headings when $findEquals is true, because the ambiguity 
+					// between template name/value separators and heading starts would be unresolved
+					// until the closing double-brace is found. This would mean either infinite 
+					// backtrack, or creating and updating two separate tree structures until the
+					// end of the ambiguity -- one tree structure assuming a heading, and the other 
+					// assuming a template argument.
+					//
+					// Easier to just break some section edit links.
+					$search .= "\n";
 				}
 				$rule = null;
 				# Output literal section, advance input counter
@@ -2737,10 +2744,10 @@ class Parser
 					} elseif ( $curChar == '<' ) {
 						$found = 'angle';
 					} elseif ( $curChar == "\n" ) {
-						if ( $stackIndex == -1 ) {
-							$found = 'line-start';
-						} else {
+						if ( $inHeading ) {
 							$found = 'line-end';
+						} else {
+							$found = 'line-start';
 						}
 					} elseif ( $curChar == $currentClosing ) {
 						$found = 'close';
@@ -2806,8 +2813,8 @@ class Parser
 								$accum = substr( $accum, 0, -$wsLength );
 							}
 							// Do a line-start run next time to look for headings after the comment,
-							// but only if stackIndex=-1, because headings don't exist at deeper levels.
-							if ( $stackIndex == -1 ) {
+							// but only if stack->top===false, because headings don't exist at deeper levels.
+							if ( $stack->top === false ) {
 								$fakeLineStart = true;
 							}
 						} else {
@@ -2904,24 +2911,23 @@ class Parser
 						'parts' => array( str_repeat( '=', $count ) ),
 						'startPos' => $i,
 						'count' => $count );
-					$stack[++$stackIndex] = $piece;
+					$stack->push( $piece );
+					$accum =& $stack->getAccum();
+					extract( $stack->getFlags() );
 					$i += $count;
-					$accum =& $stack[$stackIndex]['parts'][0];
-					$findPipe = false;
 				}
 			}
 
 			elseif ( $found == 'line-end' ) {
-				$piece = $stack[$stackIndex];
+				$piece = $stack->top;
 				// A heading must be open, otherwise \n wouldn't have been in the search list
-				assert( $piece['open'] == "\n" );
-				assert( $stackIndex == 0 );
+				assert( $piece->open == "\n" );
 				// Search back through the input to see if it has a proper close
 				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
 				$m = false;
-				$count = $piece['count'];
+				$count = $piece->count;
 				if ( preg_match( "/\s*(={{$count}})/A", $revText, $m, 0, strlen( $text ) - $i ) ) {
-					if ( $i - strlen( $m[0] ) == $piece['startPos'] ) {
+					if ( $i - strlen( $m[0] ) == $piece->startPos ) {
 						// This is just a single string of equals signs on its own line
 						// Divide by two and round down to create start and end delimiters
 						$count = intval( $count / 2 );
@@ -2941,12 +2947,9 @@ class Parser
 					$element = $accum;
 				}
 				// Unwind the stack
-				// Headings can only occur on the top level, so this is a bit simpler than the 
-				// generic stack unwind operation in the close case
-				unset( $stack[$stackIndex--] );
-				$accum =& $topAccum;
-				$findEquals = false;
-				$findPipe = false;
+				$stack->pop();
+				$accum =& $stack->getAccum();
+				extract( $stack->getFlags() );
 
 				// Append the result to the enclosing accumulator
 				$accum .= $element;
@@ -2973,11 +2976,9 @@ class Parser
 						'lineStart' => ($i > 0 && $text[$i-1] == "\n"),
 					);
 
-					$stackIndex ++;
-					$stack[$stackIndex] = $piece;
-					$accum =& $stack[$stackIndex]['parts'][0];
-					$findEquals = false;
-					$findPipe = true;
+					$stack->push( $piece );
+					$accum =& $stack->getAccum();
+					extract( $stack->getFlags() );
 				} else {
 					# Add literal brace(s)
 					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
@@ -2986,15 +2987,15 @@ class Parser
 			}
 
 			elseif ( $found == 'close' ) {
-				$piece = $stack[$stackIndex];
+				$piece = $stack->top;
 				# lets check if there are enough characters for closing brace
-				$maxCount = $piece['count'];
+				$maxCount = $piece->count;
 				$count = strspn( $text, $curChar, $i, $maxCount );
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
 				$matchingCount = 0;
-				$rule = $rules[$piece['open']];
+				$rule = $rules[$piece->open];
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
 					# has made an error
@@ -3019,19 +3020,19 @@ class Parser
 				$name = $rule['names'][$matchingCount];
 				if ( $name === null ) {
 					// No element, just literal text
-					$element = str_repeat( $piece['open'], $matchingCount ) .
-						implode( '|', $piece['parts'] ) . 
+					$element = str_repeat( $piece->open, $matchingCount ) .
+						implode( '|', $piece->parts ) . 
 						str_repeat( $rule['end'], $matchingCount );
 				} else {
 					# Create XML element
 					# Note: $parts is already XML, does not need to be encoded further
-					$parts = $piece['parts'];
+					$parts = $piece->parts;
 					$title = $parts[0];
 					unset( $parts[0] );
 
 					# The invocation is at the start of the line if lineStart is set in 
 					# the stack, and all opening brackets are used up.
-					if ( $maxCount == $matchingCount && !empty( $piece['lineStart'] ) ) {
+					if ( $maxCount == $matchingCount && !empty( $piece->lineStart ) ) {
 						$attr = ' lineStart="1"';
 					} else {
 						$attr = '';
@@ -3041,8 +3042,8 @@ class Parser
 					$element .= "<title>$title</title>";
 					$argIndex = 1;
 					foreach ( $parts as $partIndex => $part ) {
-						if ( isset( $piece['eqpos'][$partIndex] ) ) {
-							$eqpos = $piece['eqpos'][$partIndex];
+						if ( isset( $piece->eqpos[$partIndex] ) ) {
+							$eqpos = $piece->eqpos[$partIndex];
 							$argName = substr( $part, 0, $eqpos );
 							$argValue = substr( $part, $eqpos + 1 );
 							$element .= "<part><name>$argName</name>=<value>$argValue</value></part>";
@@ -3058,84 +3059,73 @@ class Parser
 				$i += $matchingCount;
 
 				# Unwind the stack
-				unset( $stack[$stackIndex--] );
-				if ( $stackIndex == -1 ) {
-					$accum =& $topAccum;
-					$findEquals = false;
-					$findPipe = false;
-				} else {
-					$partCount = count( $stack[$stackIndex]['parts'] );
-					$accum =& $stack[$stackIndex]['parts'][$partCount - 1];
-					$findPipe = $stack[$stackIndex]['open'] != "\n";
-					$findEquals = $findPipe && $partCount > 1 
-						&& !isset( $stack[$stackIndex]['eqpos'][$partCount - 1] );
-				}
+				$stack->pop();
+				$accum =& $stack->getAccum();
 
 				# Re-add the old stack element if it still has unmatched opening characters remaining
-				if ($matchingCount < $piece['count']) {
-					$piece['parts'] = array( '' );
-					$piece['count'] -= $matchingCount;
-					$piece['eqpos'] = array();
+				if ($matchingCount < $piece->count) {
+					$piece->parts = array( '' );
+					$piece->count -= $matchingCount;
+					$piece->eqpos = array();
 					# do we still qualify for any callback with remaining count?
-					$names = $rules[$piece['open']]['names'];
+					$names = $rules[$piece->open]['names'];
 					$skippedBraces = 0;
 					$enclosingAccum =& $accum;
-					while ( $piece['count'] ) {
-						if ( array_key_exists( $piece['count'], $names ) ) {
-							$stackIndex++;
-							$stack[$stackIndex] = $piece;
-							$accum =& $stack[$stackIndex]['parts'][0];
-							$findEquals = true;
-							$findPipe = true;
+					while ( $piece->count ) {
+						if ( array_key_exists( $piece->count, $names ) ) {
+							$stack->push( $piece );
+							$accum =& $stack->getAccum();
 							break;
 						}
-						--$piece['count'];
+						--$piece->count;
 						$skippedBraces ++;
 					}
-					$enclosingAccum .= str_repeat( $piece['open'], $skippedBraces );
+					$enclosingAccum .= str_repeat( $piece->open, $skippedBraces );
 				}
+
+				extract( $stack->getFlags() );
 
 				# Add XML element to the enclosing accumulator
 				$accum .= $element;
 			}
 			
 			elseif ( $found == 'pipe' ) {
-				$stack[$stackIndex]['parts'][] = '';
-				$partsCount = count( $stack[$stackIndex]['parts'] );
-				$accum =& $stack[$stackIndex]['parts'][$partsCount - 1];
-				$findEquals = true;
+				$findEquals = true; // shortcut for getFlags()
+				$stack->top->addPart();
+				$accum =& $stack->getAccum();
 				++$i;
-			} 
+			}
 			
 			elseif ( $found == 'equals' ) {
-				$findEquals = false;
-				$partsCount = count( $stack[$stackIndex]['parts'] );
-				$stack[$stackIndex]['eqpos'][$partsCount - 1] = strlen( $accum );
+				$findEquals = false; // shortcut for getFlags()
+				$partsCount = count( $stack->top->parts );
+				$stack->top->eqpos[$partsCount - 1] = strlen( $accum );
 				$accum .= '=';
 				++$i;
 			}
 		}
 
 		# Output any remaining unclosed brackets
-		foreach ( $stack as $piece ) {
-			if ( $piece['open'] == "\n" ) {
-				$topAccum .= $piece['parts'][0];
+		foreach ( $stack->stack as $piece ) {
+			if ( $piece->open == "\n" ) {
+				$stack->topAccum .= $piece->parts[0];
 			} else {
-				$topAccum .= str_repeat( $piece['open'], $piece['count'] ) . implode( '|', $piece['parts'] );
+				$stack->topAccum .= str_repeat( $piece->open, $piece->count ) . implode( '|', $piece->parts );
 			}
 		}
-		$topAccum .= '</root>';
+		$stack->topAccum .= '</root>';
+		$xml = $stack->topAccum;
 
 		wfProfileOut( __METHOD__.'-makexml' );
 		wfProfileIn( __METHOD__.'-loadXML' );
 		$dom = new DOMDocument;
 		wfSuppressWarnings();
-		$result = $dom->loadXML( $topAccum );
+		$result = $dom->loadXML( $xml );
 		wfRestoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
-			$topAccum = UtfNormal::cleanUp( $topAccum );
-			$result = $dom->loadXML( $topAccum );
+			$xml = UtfNormal::cleanUp( $xml );
+			$result = $dom->loadXML( $xml );
 			if ( !$result ) {
 				throw new MWException( __METHOD__.' generated invalid XML' );
 			}
@@ -5284,22 +5274,6 @@ class Parser
  * @todo document, briefly.
  * @addtogroup Parser
  */
-class OnlyIncludeReplacer {
-	var $output = '';
-
-	function replace( $matches ) { 
-		if ( substr( $matches[1], -1 ) == "\n" ) {
-			$this->output .= substr( $matches[1], 0, -1 );
-		} else {
-			$this->output .= $matches[1];
-		}
-	}
-}
-
-/**
- * @todo document, briefly.
- * @addtogroup Parser
- */
 class StripState {
 	var $general, $nowiki;
 
@@ -5713,5 +5687,90 @@ class PPTemplateFrame extends PPFrame {
 			$text = $this->getNamedArgument( $name );
 		}
 		return $text;
+	}
+}
+
+/**
+ * Stack class to help Parser::preprocessToDom()
+ */
+class PPDStack {
+	var $stack, $topAccum, $top;
+
+	function __construct() {
+		$this->stack = array();
+		$this->topAccum = '';
+		$this->top = false;
+	}
+
+	function &getAccum() {
+		if ( count( $this->stack ) ) {
+			return $this->top->getAccum();
+		} else {
+			return $this->topAccum;
+		}
+	}
+
+	function push( $data ) {
+		if ( $data instanceof PPDStackElement ) {
+			$this->stack[] = $data;
+		} else {
+			$this->stack[] = new PPDStackElement( $data );
+		}
+		$this->top =& $this->stack[ count( $this->stack ) - 1 ];
+	}
+
+	function pop() {
+		if ( !count( $this->stack ) ) {
+			throw new MWException( __METHOD__.': no elements remaining' );
+		}
+		$temp = array_pop( $this->stack );
+		if ( count( $this->stack ) ) {
+			$this->top =& $this->stack[ count( $this->stack ) - 1 ];
+		} else {
+			$this->top = false;
+		}
+	}
+
+	function getFlags() {
+		if ( !count( $this->stack ) ) {
+			return array( 
+				'findEquals' => false, 
+				'findPipe' => false,
+				'inHeading' => false,
+			);
+		} else {
+			return $this->top->getFlags();
+		}
+	}
+}
+
+class PPDStackElement {
+	var $open, $close, $count, $parts, $eqpos, $lineStart;
+
+	function __construct( $data = array() ) {
+		$this->parts = array( '' );
+		$this->eqpos = array();
+
+		foreach ( $data as $name => $value ) {
+			$this->$name = $value;
+		}
+	}
+
+	function &getAccum() {
+		return $this->parts[count($this->parts) - 1];
+	}
+
+	function addPart( $s = '' ) {
+		$this->parts[] = $s;
+	}
+
+	function getFlags() {
+		$partCount = count( $this->parts );
+		$findPipe = $this->open != "\n" && $this->open != '[';
+		return array(
+			'findPipe' => $findPipe,
+			'findEquals' => $findPipe && $partCount > 1 && !isset( $this->eqpos[$partCount - 1] ),
+			'inHeading' => $this->open == "\n",
+		);
 	}
 }
