@@ -25,6 +25,7 @@ class HTMLCacheUpdate
 {
 	public $mTitle, $mTable, $mPrefix;
 	public $mRowsPerJob, $mRowsPerQuery;
+	public $mResult;
 
 	function __construct( $titleTo, $table ) {
 		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
@@ -40,15 +41,14 @@ class HTMLCacheUpdate
 		$cond = $this->getToCondition();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( $this->mTable, $this->getFromField(), $cond, __METHOD__ );
-		$resWrap = new ResultWrapper( $dbr, $res );
+		$this->mResult = $res;
 		if ( $dbr->numRows( $res ) != 0 ) {
 			if ( $dbr->numRows( $res ) > $this->mRowsPerJob ) {
-				$this->insertJobs( $resWrap );
+				$this->insertJobs( $res );
 			} else {
-				$this->invalidateIDs( $resWrap );
+				$this->invalidateIDs( $res );
 			}
 		}
-		$dbr->freeResult( $res );
 	}
 
 	function insertJobs( ResultWrapper $res ) {
@@ -87,6 +87,7 @@ class HTMLCacheUpdate
 			'imagelinks' => 'il',
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
+			'redirect' => 'rd',
 			
 			# Not needed
 			# 'externallinks' => 'el',
@@ -107,16 +108,14 @@ class HTMLCacheUpdate
 	}
 
 	function getToCondition() {
+		$prefix = $this->getPrefix();
 		switch ( $this->mTable ) {
 			case 'pagelinks':
-				return array( 
-					'pl_namespace' => $this->mTitle->getNamespace(),
-					'pl_title' => $this->mTitle->getDBkey()
-				);
 			case 'templatelinks':
-				return array(
-					'tl_namespace' => $this->mTitle->getNamespace(),
-					'tl_title' => $this->mTitle->getDBkey()
+			case 'redirect':
+				return array( 
+					"{$prefix}_namespace" => $this->mTitle->getNamespace(),
+					"{$prefix}_title" => $this->mTitle->getDBkey()
 				);
 			case 'imagelinks':
 				return array( 'il_to' => $this->mTitle->getDBkey() );
@@ -218,7 +217,6 @@ class HTMLCacheUpdateJob extends Job {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( $this->table, $fromField, $conds, __METHOD__ );
 		$update->invalidateIDs( new ResultWrapper( $dbr, $res ) );
-		$dbr->freeResult( $res );
 
 		return true;
 	}
