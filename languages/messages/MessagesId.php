@@ -340,15 +340,19 @@ $messages = array(
 'january'      => 'Januari',
 'february'     => 'Februari',
 'march'        => 'Maret',
+'april'        => 'April',
 'may_long'     => 'Mei',
 'june'         => 'Juni',
 'july'         => 'Juli',
 'august'       => 'Agustus',
+'september'    => 'September',
 'october'      => 'Oktober',
+'november'     => 'November',
 'december'     => 'Desember',
 'january-gen'  => 'Januari',
 'february-gen' => 'Februari',
 'march-gen'    => 'Maret',
+'april-gen'    => 'April',
 'may-gen'      => 'Mei',
 'june-gen'     => 'Juni',
 'july-gen'     => 'Juli',
@@ -393,6 +397,9 @@ $messages = array(
 'mytalk'         => 'Pembicaraan saya',
 'anontalk'       => 'Pembicaraan IP ini',
 'navigation'     => 'Navigasi',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Kesalahan',
 'returnto'          => 'Kembali ke $1.',
@@ -638,6 +645,11 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'invalidemailaddress'        => 'Alamat surat-e ini tidak dapat diterima karena formatnya tidak sesuai. Harap masukkan alamat surat-e dalam format yang benar atau kosongkan isian tersebut.',
 'accountcreated'             => 'Akun dibuat',
 'accountcreatedtext'         => 'Akun pengguna untuk $1 telah dibuat.',
+'createaccount-title'        => 'Pembuatan akun untuk {{SITENAME}}',
+'createaccount-text'         => 'Seseorang ($1) telah membuat sebuah akun untuk $2 di {{SITENAME}}
+($4). Kata sandi untuk "$2" adalah "$3". Anda dianjurkan untuk log masuk dan mengganti kata sandi Anda sekarang.
+
+Jika akun ini dibuat karena suatu kesalahan, abaikan pesan ini.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 
 # Password reset dialog
@@ -1555,8 +1567,8 @@ $1',
 'nolinkshere-ns'      => "Tidak ada halaman yang berpaut ke '''[[:$1]]''' pada ruang nama yang dipilih.",
 'isredirect'          => 'halaman peralihan',
 'istemplate'          => 'dengan templat',
-'whatlinkshere-prev'  => '$1 sebelumnya',
-'whatlinkshere-next'  => '$1 selanjutnya',
+'whatlinkshere-prev'  => '$1 {{PLURAL:$1|sebelumnya|sebelumnya}}',
+'whatlinkshere-next'  => '$1 {{PLURAL:$1|selanjutnya|selanjutnya}}',
 'whatlinkshere-links' => '← pranala',
 
 # Block/unblock
@@ -1740,7 +1752,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'import-interwiki-namespace' => 'Transfer halaman ke dalam ruang nama:',
 'importtext'                 => 'Silakan ekspor berkas dari wiki asal dengan menggunakan utilitas [[{{ns:special}}:Export]], simpan ke cakram digital, dan muatkan ke sini.',
 'importstart'                => 'Mengimpor halaman...',
-'import-revision-count'      => '$1 versi terdahulu',
+'import-revision-count'      => '$1 {{PLURAL:$1|revisi|revisi}}',
 'importnopages'              => 'Tidak ada halaman untuk diimpor.',
 'importfailed'               => 'Impor gagal: $1',
 'importunknownsource'        => 'Sumber impor tidak dikenali',
@@ -1758,9 +1770,9 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'importlogpage'                    => 'Log impor',
 'importlogpagetext'                => 'Di bawah ini adalah log impor administratif dari halaman-halaman, berikut riwayat suntingannya dari wiki lain.',
 'import-logentry-upload'           => 'mengimpor [[$1]] melalui pemuatan berkas',
-'import-logentry-upload-detail'    => '$1 versi terdahulu',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisi|revisi}}',
 'import-logentry-interwiki'        => 'men-transwiki $1',
-'import-logentry-interwiki-detail' => '$1 versi terdahulu dari $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisi\\revisi}} dari $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Halaman pengguna saya',
@@ -1850,9 +1862,9 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'spamprotectiontitle'    => 'Filter pencegah spam',
 'spamprotectiontext'     => 'Halaman yang ingin Anda simpan diblokir oleh filter spam. Ini mungkin disebabkan oleh pranala ke situs luar.',
 'spamprotectionmatch'    => 'Teks berikut ini memancing filter spam kami: $1',
-'subcategorycount'       => 'Ada $1 subkategori dalam kategori ini.',
-'categoryarticlecount'   => 'Ada $1 artikel dalam kategori ini.',
-'category-media-count'   => 'Ada $1 berkas dalam kategori ini.',
+'subcategorycount'       => 'Ada $1 {{PLURAL:$1|subkategori|subkategori dalam kategori ini.',
+'categoryarticlecount'   => 'Ada $1 {{PLURAL:$1|halaman|halaman}} dalam kategori ini.',
+'category-media-count'   => 'Ada $1 {{PLURAL:$1|berkas|berkas}} dalam kategori ini.',
 'listingcontinuesabbrev' => 'samb.',
 'spambot_username'       => 'Pembersihan span MediaWiki',
 'spam_reverting'         => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
@@ -2303,5 +2315,8 @@ Coba dengan pratayang normal.',
 'watchlisttools-view' => 'Tampilkan perubahan terkait',
 'watchlisttools-edit' => 'Tampilkan dan sunting daftar pantauan',
 'watchlisttools-raw'  => 'Sunting daftar pantauan mentah',
+
+# Core parser functions
+'unknown_extension_tag' => 'Tag ekstensi tidak dikenal "$1"',
 
 );

@@ -440,8 +440,7 @@ $2',
 # Login and logout pages
 'logouttitle'                => 'Oturımnı qapat',
 'logouttext'                 => '<strong>Oturımnı qapattıñız.</strong><br />
-Şimdi kimligiñizni belgilemeksizniñ {{SITENAME}} saytını qullanmağa devam ete bilesiñiz, ya da yañıdan oturım aça bilesiñiz (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen).
-Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.',
+Şimdi anonim olaraq {{SITENAME}} saytını qullanmağa devam etip olasıñız, ya da yañıdan oturım açıp olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.',
 'welcomecreation'            => '== Hoş keldiñiz, $1! ==
 Esabıñız açıldı.
 Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:special}}:Preferences|deñiştirmege]] unutmañız.',
@@ -807,7 +806,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'timezoneoffset'        => 'Saat farqı',
 'servertime'            => 'Viki serverinde şimdiki saat',
 'guesstimezone'         => 'Brauzeriñiz siziñ yeriñizge toldursın',
-'allowemail'            => 'Diger qullanıcılar sizge e-mail ata bilsin',
+'allowemail'            => 'Diger qullanıcılar sizge e-mail mektüpleri yollap olsun',
 'defaultns'             => 'Qıdıruvnı aşağıda saylanğan isim fezalarında yap.',
 'default'               => 'original',
 'files'                 => 'Fayllar',
@@ -873,9 +872,9 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'uploadbtn'                   => 'Fayl yükle',
 'reupload'                    => 'Yañıdan yükle',
 'reuploaddesc'                => 'Yükleme formasına keri qayt.',
-'uploadnologin'               => 'Oturım açıq degil',
-'uploadnologintext'           => 'Fayl yükley bilmek içün [[Special:Userlogin|oturım açmaq]] kereksiñiz.',
-'upload_directory_read_only'  => 'Web serverniñ ($1) papkasına fayllar saqlamağa aqları yoqtır.',
+'uploadnologin'               => 'Oturım açmadıñız',
+'uploadnologintext'           => 'Fayl yüklep olmaq içün [[Special:Userlogin|oturım açmaq]] kereksiñiz.',
+'upload_directory_read_only'  => 'Web serverniñ ($1) cüzdanına fayllar saqlamağa aqları yoqtır.',
 'uploaderror'                 => 'Yükleme hatası',
 'uploadtext'                  => "Fayllar yüklemek içün aşağıdaki formanı qullanıñız. Evelce yüklengen resim tapmaq ya da baqmaq içün [[Special:Imagelist|yüklengen fayllar cedveline]] keçiñiz. 
 
@@ -1387,7 +1386,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yоllama ya da boş olsa ad deñişikligi mümkün olacaqtır. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
 
 '''TENBİ!'''
-Ad deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel olabileceklerni köz ögüne alıñız.",
+Ad deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel ola bileceklerni köz ögüne alıñız.",
 'movepagetalktext'        => "Qoşulğan muzakere saifesiniñ de (mevcüt olsa)
 adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
@@ -1423,9 +1422,9 @@ Lütfen bularnı qolnen birleştiriñiz.'''",
 'delete_and_move'         => 'Yoq et ve adını deñiştir',
 'delete_and_move_text'    => '==Yoq etmek lâzimdir==
 
-"[[$1]]" saifesi endi mevcüt. Adını deñiştirebilmek içün onı yoq etmege isteysiñizmi?',
+"[[$1]]" saifesi endi mevcüt. Adını deñiştirip olmaq içün onı yoq etmege isteysiñizmi?',
 'delete_and_move_confirm' => 'Ebet, bu saifeni yoq et',
-'delete_and_move_reason'  => 'İsim deñiştire bilmek içün yoq etildi',
+'delete_and_move_reason'  => 'İsim deñiştirip olmaq içün yoq etildi',
 'selfmove'                => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki asıl ile yañı adları bir kele.',
 'immobile_namespace'      => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki yañı ya da eksi adında rezerv etilgen yardımcı söz bardır.',
 

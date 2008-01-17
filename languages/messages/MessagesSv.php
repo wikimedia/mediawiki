@@ -1448,8 +1448,8 @@ Se $2 för noteringar om de senaste raderingarna.',
 ** Författarens begäran
 ** Upphovsrättsbrott
 ** Vandalism',
-'delete-toobig'               => 'Denna sida har en stor redigerings historik, över $1 skillnader. Borttagning av sådana sidor har blivigt restrikterade till att förebygga oavsiktlig splittring av denna sida.',
-'delete-warning-toobig'       => 'Denna sida har en stor redigerings historik, över $1 skillnader. Borttagning kan kanske splittra databas ingrepp; övergå till att redigera med varsamhet.',
+'delete-toobig'               => 'Denna sida har en lång redigeringshistorik med mer än $1 sidversioner. Borttagning av sådana sidor har begränsats för att förhindra oavsiktliga driftstörningar på {{SITENAME}}.',
+'delete-warning-toobig'       => 'Denna sida har en lång redigeringshistorik med mer än $1 sidversioner. Att radera sidan kan skapa problem med hanteringen av databasen på {{SITENAME}}; var försiktig.',
 'rollback'                    => 'Rulla tillbaka ändringar',
 'rollback_short'              => 'Återställning',
 'rollbacklink'                => 'rulla tillbaka',
@@ -1859,8 +1859,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-upload'                  => 'Starta uppladdning',
 
 # Stylesheets
-'common.css'   => '/** CSS som skrivs här nedan påverkar alla skal **/',
-'monobook.css' => '/*CSS som skrivs in här kommer att påverka alla användare av skalet Monobook */',
+'common.css'   => '/* CSS som skrivs här påverkar alla skal */',
+'monobook.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
 
 # Scripts
 'common.js'   => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
