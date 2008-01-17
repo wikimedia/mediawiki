@@ -2968,9 +2968,11 @@ class Article {
 		global $wgDeferredUpdateList, $wgUseFileCache;
 
 		// Invalidate caches of articles which include this page
-		$update = new HTMLCacheUpdate( $title, 'templatelinks' );
-		$wgDeferredUpdateList[] = $update;
+		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
 
+		// Invalidate the caches of all pages which redirect here
+		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'redirect' );
+		
 		# Purge squid for this page only
 		$title->purgeSquid();
 
