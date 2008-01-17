@@ -67,6 +67,19 @@ $messages = array(
 'saturday'  => 'ቅዳሜ',
 'sun'       => 'እሑድ',
 'mon'       => 'ሰኞ',
+'january'   => 'ጃንዩዌሪ',
+'february'  => 'ፌብሩዌሪ',
+'march'     => 'ማርች',
+'april'     => 'ኤይፕርል',
+'may_long'  => 'ሜይ',
+'june'      => 'ጁን',
+'july'      => 'ጁላይ',
+'august'    => 'ኦገስት',
+'september' => 'ሰፕቴምበር',
+'october'   => 'ኦክቶበር',
+'november'  => 'ኖቬምበር',
+'december'  => 'ዲሴምበር',
+'may'       => 'ሜይ',
 
 # Bits of text used by many pages
 'categories'      => 'ምድቦች',
@@ -125,12 +138,16 @@ $messages = array(
 'privacy'       => 'የሚስጥር ፖሊሲ',
 'sitesupport'   => 'መዋጮ ለመስጠት',
 
+'badaccess' => 'ያልተፈቀደ - አይቻልም',
+
 'ok'                  => 'እሺ',
+'retrievedfrom'       => 'ከ «$1» ተወሰደ',
 'youhavenewmessages'  => '$1 አለዎት ($2)።',
 'newmessageslink'     => 'አዲስ መልእክቶች',
 'newmessagesdifflink' => 'የመጨረሻ ለውጥ',
 'editsection'         => 'አርም',
 'editold'             => 'አርም',
+'editsectionhint'     => 'ክፍሉን «$1» ለማስተካከል',
 'toc'                 => 'ማውጫ',
 'showtoc'             => 'አሳይ',
 'hidetoc'             => 'ደብቅ',
@@ -237,6 +254,7 @@ $messages = array(
 'semiprotectedpagewarning' => "'''ማስታወቂያ፦''' ይኸው ገጽ ከቋሚ አዛጋጆች በተቀር በማንም እንዳይለወጥ ተቆልፏል።",
 'templatesused'            => 'በዚሁ ገጽ ላይ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
 'templatesusedpreview'     => 'በዚሁ ቅድመ-እይታ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
+'permissionserrorstext'    => 'ያ አድራጎት አይቻልም - ምክንያቱም፦',
 'recreate-deleted-warn'    => ":<strong><big>'''ማስጠንቀቂያ፦ ይኸው አርእስት ከዚህ በፊት የጠፋ ገጽ ነው!'''</big></strong>
 
 *እባክዎ፥ ገጹ እንደገና እንዲፈጠር የሚገባ መሆኑን ያረጋግጡ።
@@ -327,6 +345,8 @@ $messages = array(
 # Groups
 'group'       => 'ደረጃ፦',
 'group-sysop' => 'መጋቢ',
+
+'group-sysop-member' => 'መጋቢ',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
@@ -590,7 +610,9 @@ $messages = array(
 'undeletepage' => 'የተደለዘ ገጽ ለመመለስ',
 
 # Namespace form on various pages
-'namespace' => 'ዓይነት፦',
+'namespace'      => 'ዓይነት፦',
+'invert'         => '(ምርጫውን ለመገልበጥ)',
+'blanknamespace' => 'መጣጥፎች',
 
 # Contributions
 'contributions' => 'ያባል አስተዋጽኦች',
@@ -632,6 +654,7 @@ $messages = array(
 'expiringblock'            => 'በ$1 እ.ኤ.አ. ያልቃል',
 'anononlyblock'            => 'ያልገቡት የቁ.# ብቻ',
 'createaccountblock'       => 'ስም ከማውጣት ተከለከለ',
+'blocklink'                => 'ማገጃ',
 'contribslink'             => 'አስተዋጽኦች',
 'blocklogpage'             => 'የማገጃ መዝገብ (blocklog)',
 'blocklogentry'            => 'እስከ $2 ድረስ [[$1]] አገዳ $3',
@@ -675,6 +698,22 @@ $messages = array(
 'movelogpagetext'  => 'ይህ መዝገብ ገጽ ሲዛወር ይመዝገባል። <ይመለስ> ቢጫኑ ኖሮ መዛወሩን ይገለብጣል!',
 'movereason'       => 'ምክንያት',
 'revertmove'       => 'ይመለስ',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'     => 'የርስዎ መኖርያ ገጽ',
+'tooltip-pt-mytalk'       => 'የርስዎ መወያያ ገጽ',
+'tooltip-pt-preferences'  => 'የድረግጹን መልክ ለመምረጥ',
+'tooltip-pt-mycontris'    => 'እርስዎ ያደረጓቸው ለውጦች በሙሉ',
+'tooltip-pt-logout'       => 'ከብዕር ስምዎ ለመውጣት',
+'tooltip-ca-talk'         => 'ስለ ገጹ ለመወያየት',
+'tooltip-ca-edit'         => 'ይህን ገጽ ለማዘጋጀት ይችላሉ!',
+'tooltip-search'          => 'ቃል ወይም አርዕስት በ{{SITENAME}} ለመፈለግ',
+'tooltip-n-mainpage'      => 'ወደ ዋናው ገጽ ለመሔድ',
+'tooltip-n-recentchanges' => 'በዚሁ ዊኪ ላይ በቅርቡ የተደረጉ ለውጦች',
+'tooltip-t-whatlinkshere' => 'ወደዚሁ ገጽ የሚያያዙት ገጾች ዝርዝር በሙሉ',
+'tooltip-t-upload'        => 'ፋይል ወይም ሥዕልን ወደ{{SITENAME}} ለመላክ',
+'tooltip-t-specialpages'  => 'የልዩ ገጾች ዝርዝር በሙሉ',
+'tooltip-save'            => 'የለወጡትን ዕትም ወደ {{SITENAME}} ለመላክ',
 
 # Spam protection
 'subcategorycount'       => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ ንዑስ-መደብ አለ|$1 ንዑስ-መደቦች አሉ}}።',

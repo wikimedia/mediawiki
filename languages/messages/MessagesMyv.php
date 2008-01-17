@@ -262,6 +262,7 @@ $messages = array(
 'viewsource'         => 'Ванномс лисьмапрянть',
 'viewsourcefor'      => ' $1 -нь юртозо',
 'protectedpagetext'  => 'Те лопась панжома экшсэ, илязо понго витнемс - петнемс киненьгак.',
+'viewsourcetext'     => 'Тынь сонзе вансынк ды тейдят копиянть лисмапрясто те лопастонть:',
 
 # Login and logout pages
 'logouttitle'           => 'Совицянь лисема',
@@ -362,6 +363,7 @@ $messages = array(
 Тынь истяжо макстад вал сень коряс - тень Тынь сёрмадынк тыньдынсь, али саинк сонзэ вейсэнь ёнксто али олячинь порталсто. 
 <strong>ИЛЯДО МАКСО ВАНСТОЗЬ ЛОМАНЕНЬ ВИДЕЧИСЭ ВАЖОДИМАНТЬ АПАК МЕЛЬТЕМЕ!</strong>',
 'templatesused'          => 'Те лопасонть тевс нолдазь лопапарцунт:',
+'templatesusedpreview'   => 'Шаблонтне, конататьнень тевс нолдыть те икелеввановкссонть:',
 'template-protected'     => '(ванстозь)',
 'template-semiprotected' => '(пельс ванстазь)',
 
@@ -396,6 +398,7 @@ $messages = array(
 'revertmerge' => 'Явомс логонть мекев, кода ульнесь вейтьсэндямодо икеле',
 
 # Diffs
+'difference'              => '(Явовкс ванокснень юткова)',
 'lineno'                  => 'Киксэсь $1:',
 'compareselectedversions' => 'Ванномс саезь версиятьнень',
 'editundo'                => 'Велявтомс мекев мезе витнинь-петнинь',
@@ -450,6 +453,9 @@ $messages = array(
 'grouppage-bot'        => '{{ns:project}}:Ботт',
 'grouppage-sysop'      => '{{ns:project}}:Администраторт',
 'grouppage-bureaucrat' => '{{ns:project}}:Бюрократт',
+
+# User rights log
+'rightslog' => 'Уськесовицянть видечинть кемекстома',
 
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|полавтнема|полавтнемат}}',
@@ -555,6 +561,7 @@ $messages = array(
 'specialloguserlabel'  => 'Совиця:',
 'speciallogtitlelabel' => 'Конякс:',
 'log'                  => 'Салав валось (регистрациясь)',
+'all-logs-page'        => 'Веси совамотне-кемекстамотьне',
 
 # Special:Allpages
 'nextpage'       => 'Сы лопа ($1)',
@@ -593,9 +600,11 @@ $messages = array(
 'deletepage'                  => 'Панемс лопанть',
 'confirm'                     => 'Кемекстамс',
 'deletedarticle'              => 'нардазь "[[$1]]"',
+'dellogpage'                  => 'Нардомань совама-кемекстома',
 'deletecomment'               => 'Тувтал печкеме',
 'deleteotherreason'           => 'Лия/топавтозь тувтал:',
 'deletereasonotherlist'       => 'Лия тувтал',
+'protectlogpage'              => 'Ванстомань совама-кемекстома',
 'protectcomment'              => 'Мельполадкс:',
 'protectexpiry'               => 'Прядови:',
 'protect_expiry_invalid'      => 'Прядома шкась ашти ютань шкасо.',
@@ -740,6 +749,7 @@ $messages = array(
 
 # Metadata
 'metadata'          => 'Meta-нь даннойтне',
+'metadata-help'     => 'Те вайлась кирди потмосо топавтозь информация, кона топавтозь цифровой камерасто, али сулеймашинасто (скенерстэ) ды кона ульнесь теезь цифровой лувс. Сесте кода файлась ульнесь лиякстозь сонзе  невтевксензе эйсте, кой-кона пельксензе аневтить лиякстозь фотоартовксонть.',
 'metadata-collapse' => 'Пекстынк келейкстазь детальтнень.',
 
 # External editor support
