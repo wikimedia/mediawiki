@@ -9,6 +9,8 @@
  * @author SPQRobin
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Levconhani gluyasiki se',
@@ -360,9 +362,11 @@ Ageltal da va yolt al sutekanhal, oke ta redura va warzafa favesikpata va vlevef
 'passwordtooshort'           => 'Rinaf remravlem tir meenaf ok lotrelaf. Va $1 staa leon goruldar ise gotir amidaf gu favesikyolt.',
 'mailmypassword'             => 'Va warzaf remravlem pu jin staksec !',
 'passwordremindertitle'      => 'Rinaf warzaf remravlem moe {{SITENAME}}',
-'passwordremindertext'       => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandé à ce qu'un nouveau mot de passe vous soit envoyé pour votre accès au wiki.
-Le mot de passe de l'utilisateur « $2 » est à présent « $3 ».
-Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.",
+'passwordremindertext'       => 'Kontan (lanon rin, male $1 IP mane) eruyur da pu rin va warzaf remravlem tori {{SITENAME}} staksev ($4).
+Remravlem tori "$2" favesik noelkeon tir "$3".
+Va int rodogluyal aze va remravlem robetal.
+
+Ede artan va bata erura al skur oke va rinaf remravlem setikeyel nume mea djubetal, va bata staksa rotafanal nume va rinaf guazaf remravlem wan favel.',
 'noemail'                    => 'Meke internetmane icde « $1 » favesik al zo koverter.',
 'passwordsent'               => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur « $1 ».
 Veuillez vous identifier dès que vous l'aurez reçu.",
@@ -471,8 +475,9 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actue
 'storedversion'             => 'Koverteyen siatos',
 'editingold'                => '<strong>Obral : rin va savsaf siatos ke batu bu betal. Ede giwal, kot betaks skuyun mali bat siatos di zo deokar.</strong>',
 'yourdiff'                  => 'Amidaceem',
-'copyrightwarning'          => 'Wetce webeks sanegan kan kredeem ke "GNU Free Documentation License" nuyafa valdigarasorta, kot webeks va {{SITENAME}} zo krupter (ta lo pimtara va $1 wil). Ede me djumel da rinaf suteks yo zo ropiskud ise zo rotanamzilid, vaon me staksel ! Dere, kan rinaf suteks ik suteks male sangiskafa nuyafa klita, anton webel ! <br>
-<b>VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL ! (do not submit copyrighted work without permission!)</b>',
+'copyrightwarning'          => 'Wetce webeks sanegan kan kredeem ke $2 nuyafa valdigarasorta, kot webeks va {{SITENAME}} zo krupter (ta lo pimtara va $1 wil). Ede me djumel da rinaf suteks yo zo robetad ise zo rotanamzilid, vaon me staksel !<br />
+Dere, kan rinaf suteks ik suteks male sangiskafa nuyafa klita, anton webel !
+<strong>VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL ! (do not submit copyrighted work without permission!)</strong>',
 'copyrightwarning2'         => 'Vay stragal da kot webeks va {{SITENAME}} gan ar webesik zo robetar ike zo roataler ike zo rosular. Ede me djumel da rinaf suteks yo zo robetad, vaon batliz me staksel !<br />
 Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyafa klita ksudal (va $1 loon wil). 
 <strong>VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL !</strong>',
@@ -560,6 +565,7 @@ Rodimal aze va tisu bu robetal oke [[Special:Userlogin|va int rodogluyal oke rop
 'lineno'                  => 'Conha $1:',
 'compareselectedversions' => 'Dodisukera va reban siatos yo',
 'editundo'                => 'dimaskira',
+'diff-multi'              => '({{PLURAL:$1|1 walif betaks me zo nedir|$1 walif betaks me zo nedid}}.)',
 
 # Search results
 'searchresults'         => 'Aneyaradanekseem',
@@ -1042,9 +1048,8 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'confirmdelete'               => 'Va sulara gruyé',
 'deletesub'                   => '(Sulara va « $1 »)',
 'historywarning'              => 'Obral : Telu bu rinon sulatanu va izvot digir :',
-'confirmdeletetext'           => "Rin sol origak va bu ok ewava is kotaf abdif siatoseem bellikon fu sulal.
-
-Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{ns:4}}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
+'confirmdeletetext'           => 'Rin va bu is varaf izvot fu sulal.
+Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:Policy-url}}|xoverteem]] askil !',
 'actioncomplete'              => 'Skuyuna sulara',
 'deletedtext'                 => '« $1 » tir sulayan.
 Ta vexala dem noeltaf sulareem va $2 disukel.',

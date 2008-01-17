@@ -912,23 +912,25 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'files'                    => 'File',
 
 # User rights
-'userrights-lookup-user'      => 'Gestione dei gruppi utente',
-'userrights-user-editname'    => 'Inserire il nome utente:',
-'editusergroup'               => 'Modifica gruppi utente',
-'userrights-editusergroup'    => 'Modifica gruppi utente',
-'saveusergroups'              => 'Salva gruppi utente',
-'userrights-groupsmember'     => 'Appartiene ai gruppi:',
-'userrights-groupsremovable'  => 'Gruppi eliminabili:',
-'userrights-groupsavailable'  => 'Gruppi disponibili:',
-'userrights-groupshelp'       => "Selezionare i gruppi ai quali si vuole associare o rimuovere l'utente. L'appartenenza ai gruppi non selezionati non verrà modificata. Per deselezionare un gruppo, premere Ctrl + il tasto sinistro del mouse.",
-'userrights-reason'           => 'Motivo della modifica:',
-'userrights-available-none'   => "Non è consentito modificare l'appartenenza ai gruppi.",
-'userrights-available-add'    => 'È possibile associare utenti {{PLURAL:$2|al gruppo|ai gruppi}}: $1.',
-'userrights-available-remove' => 'È possibile rimuovere utenti {{PLURAL:$2|dal gruppo|dai gruppi}}: $1.',
-'userrights-no-interwiki'     => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
-'userrights-nodatabase'       => 'Il database $1 non esiste o non è un database locale.',
-'userrights-nologin'          => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
-'userrights-notallowed'       => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
+'userrights-lookup-user'           => 'Gestione dei gruppi utente',
+'userrights-user-editname'         => 'Inserire il nome utente:',
+'editusergroup'                    => 'Modifica gruppi utente',
+'userrights-editusergroup'         => 'Modifica gruppi utente',
+'saveusergroups'                   => 'Salva gruppi utente',
+'userrights-groupsmember'          => 'Appartiene ai gruppi:',
+'userrights-groupsremovable'       => 'Gruppi eliminabili:',
+'userrights-groupsavailable'       => 'Gruppi disponibili:',
+'userrights-groupshelp'            => "Selezionare i gruppi ai quali si vuole associare o rimuovere l'utente. L'appartenenza ai gruppi non selezionati non verrà modificata. Per deselezionare un gruppo, premere Ctrl + il tasto sinistro del mouse.",
+'userrights-reason'                => 'Motivo della modifica:',
+'userrights-available-none'        => "Non è consentito modificare l'appartenenza ai gruppi.",
+'userrights-available-add'         => 'È possibile associare utenti {{PLURAL:$2|al gruppo|ai gruppi}}: $1.',
+'userrights-available-remove'      => 'È possibile rimuovere utenti {{PLURAL:$2|dal gruppo|dai gruppi}}: $1.',
+'userrights-available-add-self'    => 'È possibile aggiungere il proprio account {{PLURAL:$2|al gruppo indicato|ai gruppi indicati}} di seguito: $1.',
+'userrights-available-remove-self' => 'È possibile rimuovere il proprio account {{PLURAL:$2|dal gruppo indicato|dai gruppi indicati}} di seguito: $1.',
+'userrights-no-interwiki'          => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
+'userrights-nodatabase'            => 'Il database $1 non esiste o non è un database locale.',
+'userrights-nologin'               => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
+'userrights-notallowed'            => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
 
 # Groups
 'group'               => 'Gruppo:',
@@ -1428,6 +1430,8 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 ** Richiesta dell'autore
 ** Violazione di copyright
 ** Vandalismo",
+'delete-toobig'               => 'La cronologia di questa pagina è molto lunga (oltre $1 revisioni). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
+'delete-warning-toobig'       => 'La cronologia di questa pagina è molto lunga (oltre $1 revisioni). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
 'rollback'                    => 'Annulla le modifiche',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',
@@ -2345,5 +2349,8 @@ Usare l\'anteprima standard.',
 'watchlisttools-view' => 'Visualizza le modifiche pertinenti',
 'watchlisttools-edit' => 'Visualizza e modifica la lista',
 'watchlisttools-raw'  => 'Modifica la lista in formato testo',
+
+# Core parser functions
+'unknown_extension_tag' => 'Tag estensione sconosciuto: "$1"',
 
 );

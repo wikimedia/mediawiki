@@ -297,7 +297,7 @@ $messages = array(
 'searchbutton'      => 'Hľadať',
 'go'                => 'Vykonať',
 'searcharticle'     => 'Ísť na',
-'history'           => 'história stránky',
+'history'           => 'História stránky',
 'history_short'     => 'História',
 'updatedmarker'     => 'aktualizované od mojej poslednej návštevy',
 'info_short'        => 'Informácie',
@@ -1498,6 +1498,8 @@ Na $2 nájdete zoznam posledných zmazaní.',
 ** Na žiadosť autora
 ** Porušenie autorských práv
 ** Vandalizmus',
+'delete-toobig'               => 'Táto stránka má veľkú históriu úprav, viac ako $1 revízií. Mazanie takýchto stránok bolo obmedzené, aby sa zabránilo náhodnému poškodeniu {{GRAMMAR:genitív|{{SITENAME}}}}.',
+'delete-warning-toobig'       => 'Táto stránka má veľkú históriu úprav, viac ako $1 revízií. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
 'rollback'                    => 'Rollback úprav',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',

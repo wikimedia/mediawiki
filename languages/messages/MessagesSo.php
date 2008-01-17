@@ -8,6 +8,8 @@
  * @author Siebrand
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hoos ka calaamaday linkyada:',
@@ -65,7 +67,7 @@ $messages = array(
 'thu'           => 'Kha',
 'fri'           => 'Jim',
 'sat'           => 'Sab',
-'january'       => 'Janaayo',
+'january'       => 'Jannaayo',
 'february'      => 'Febraayo',
 'march'         => 'Maarso',
 'april'         => 'Abriil',

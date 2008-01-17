@@ -1455,6 +1455,8 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 ** Požadanje awtora
 ** Zranjenje copyrighta
 ** Wandalizm',
+'delete-toobig'               => 'Tuta strona ma wulke wobdźěłowanske stawiznow, přez $1 wersijow. Wušmórnjenje tajkich stronow bu wobmjezowane, zo by připadne přetorhnjenje {{SITENAME}} wobešło.',
+'delete-warning-toobig'       => 'Tuta strona ma wulke wobdźěłowanske stawizny, přez $1 wersijow. Hdyž je wušmórnješ, móža so operacije datoweje banki {{SITENAME}} přetorhnyć; pokročuj z kedźbliwosću.',
 'rollback'                    => 'Změny cofnyć',
 'rollback_short'              => 'Cofnyć',
 'rollbacklink'                => 'Cofnyć',

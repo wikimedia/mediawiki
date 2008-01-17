@@ -105,6 +105,18 @@ $messages = array(
 'october-gen'   => 'Outubru nian',
 'november-gen'  => 'Novembru nian',
 'december-gen'  => 'Dezembru nian',
+'jan'           => 'Jan',
+'feb'           => 'Fev',
+'mar'           => 'Mar',
+'apr'           => 'Abr',
+'may'           => 'Mai',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
+'aug'           => 'Ago',
+'sep'           => 'Set',
+'oct'           => 'Out',
+'nov'           => 'Nov',
+'dec'           => 'Dez',
 
 # Bits of text used by many pages
 'categories'      => 'Kategoría',
@@ -202,6 +214,8 @@ $messages = array(
 'hidetoc'                 => 'subar',
 'thisisdeleted'           => 'Haree ka restaurar $1?',
 'viewdeleted'             => 'Haree $1?',
+'site-rss-feed'           => 'Feed RSS $1',
+'site-atom-feed'          => 'Feed Atom $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pájina',
@@ -499,6 +513,9 @@ $messages = array(
 'tooltip-t-contributions' => "Haree lista kontribuisaun uza-na'in ne'e nian",
 'tooltip-t-specialpages'  => 'Lista pájina espesiál hotu nian',
 'tooltip-ca-nstab-user'   => "Haree pájina uza-na'in",
+
+# Attribution
+'and' => 'ho',
 
 # Browsing diffs
 'previousdiff' => '←Diferensa molok',

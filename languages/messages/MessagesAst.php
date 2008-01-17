@@ -334,7 +334,7 @@ $1',
 'cachederror'          => 'Esta ye una copia sacada del caché de la páxina solicitada y pue nun tar actualizada.',
 'laggedslavemode'      => 'Avisu: Esta páxina pue que nun tenga actualizaciones recientes.',
 'readonly'             => 'Base de datos protexida',
-'enterlockreason'      => 'Introduz una razón pa la proteición, amiestando una estimación de cuándo va ser llevantada esta',
+'enterlockreason'      => 'Introduz un motivu pa la proteición, amiestando una estimación de cuándo va ser llevantada esta',
 'readonlytext'         => "Nestos momentos la base de datos ta protexida pa nueves entraes y otres modificaciones, seique por un mantenimientu de rutina, depués d'él tará accesible de nuevo.
 
 L'alministrador que la protexó conseñó esti motivu: $1",
@@ -381,7 +381,7 @@ $2',
 'namespaceprotected'   => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
 'customcssjsprotected' => "Nun tienes permisu pa editar esta páxina porque contién preferencies personales d'otru usuariu.",
 'ns-specialprotected'  => 'Les páxines del espaciu de nomes {{ns:special}} nun puen ser editaes.',
-'titleprotected'       => 'Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. La razón conseñada ye <i>$2</i>.',
+'titleprotected'       => 'Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Desconexón',
@@ -525,9 +525,9 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'summary-preview'           => 'Previsualización del resume',
 'subject-preview'           => 'Previsualización del tema/títulu',
 'blockedtitle'              => "L'usuariu ta bloquiáu",
-'blockedtext'               => "<big>'''El to nome d'usuariu o la direición IP foi bloquiáu.'''</big>
+'blockedtext'               => "<big>'''El to nome d'usuariu o la to direición IP foi bloquiáu.'''</big>
 
-El bloquéu féxolu $1. La razón declarada ye ''$2''.
+El bloquéu féxolu $1. El motivu conseñáu ye ''$2''.
 
 * Entamu del bloquéu: $8
 * Caducidá del bloquéu: $6
@@ -551,9 +551,9 @@ Pues contautar con \$1 o con otru
 Fíxate en que nun pues usar la funcionalidá d'\"unvia-y un corréu a esti usuariu\" a nun se que tengas una direición de corréu válida rexistrada na to [[Special:Preferences|páxina de preferencies]] y que nun teas bloquiáu pa usala.
 
 El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códigu nes consultes que faigas.",
-'blockednoreason'           => 'nun se dio razón dala',
+'blockednoreason'           => 'nun se dio nengún motivu',
 'blockedoriginalsource'     => "El códigu fonte de '''$1''' amuésase equí:",
-'blockededitsource'         => "El testu de '''les tos ediciones''' en '''$1''' amuésense equí:",
+'blockededitsource'         => "El testu de '''les tos ediciones''' en '''$1''' amuésase equí:",
 'whitelistedittitle'        => 'Ye necesario tar identificáu pa poder editar',
 'whitelistedittext'         => 'Tienes que $1 pa editar páxines.',
 'whitelistreadtitle'        => 'Necesítase identificación pa lleer',
@@ -640,7 +640,7 @@ el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
 Pues volver atrás y editar una páxina esistente, o bien [[Special:Userlogin|identificate o crear una cuenta]].',
 'nocreate-loggedin'         => 'Nun tienes permisu pa crear páxines nueves en {{SITENAME}}.',
 'permissionserrors'         => 'Errores de Permisos',
-'permissionserrorstext'     => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pola siguiente razón|poles siguientes razones}}:',
+'permissionserrorstext'     => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
 'recreate-deleted-warn'     => "'''Avisu: Tas volviendo a crear una páxina que foi borrada anteriormente.'''
 
 Habríes considerar si ye afechisco siguir editando esta páxina.
@@ -655,7 +655,7 @@ Equí tienes el rexistru de borraos d'esta páxina:",
 'cantcreateaccounttitle' => 'Nun se pue crear la cuenta',
 'cantcreateaccount-text' => "La creación de cuentes dende esta direición IP (<b>$1</b>) foi bloquiada por [[Usuariu:$3|$3]].
 
-La razón dada por $3 ye ''$2''",
+El motivu dau por $3 ye ''$2''",
 
 # History pages
 'viewpagelogs'        => "Ver rexistros d'esta páxina",
@@ -1366,13 +1366,15 @@ Mira en $2 la llista de les últimes páxines borraes.',
 'dellogpagetext'              => 'Abaxo tán los artículos borraos más recién.',
 'deletionlog'                 => 'rexistru de borraos',
 'reverted'                    => 'Revertida a una revisión anterior',
-'deletecomment'               => 'Razón pa borrar',
-'deleteotherreason'           => 'Otra razón/razón adicional:',
-'deletereasonotherlist'       => 'Otra razón',
+'deletecomment'               => 'Motivu pa borrar',
+'deleteotherreason'           => 'Otru motivu/motivu adicional:',
+'deletereasonotherlist'       => 'Otru motivu',
 'deletereason-dropdown'       => '*Motivos comunes de borráu
 ** A pidimientu del autor
 ** Violación de Copyright
 ** Vandalismu',
+'delete-toobig'               => "Esta páxina tien un historial d'ediciones grande, más de $1 revisiones. Restrinxóse'l borráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
+'delete-warning-toobig'       => "Esta páxina tien un historial d'ediciones grande, más de $1 revisiones. Borralu pue perturbar les operaciones de la base de datos de {{SITENAME}}; obra con precaución.",
 'rollback'                    => 'Revertir ediciones',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'revertir',
@@ -1451,8 +1453,8 @@ perderánse depués de la restauración',
 'undeleterevdel'               => "Nun se fadrá la restauración si ésta provoca un borráu parcial de la cabera revisión
 de la páxina. Nestos casos, tienes que desmarcar o amosar les revisiones borraes más recién. Les revisiones d'archivos
 que nun tienes permisu pa ver nun sedrán restauraos.",
-'undeletehistorynoadmin'       => "Esta páxina foi borrada. La razón del borráu amuésase
-nel resumen d'embaxo, amás de detalles de los usuarios qu'editaron esta páxina enantes
+'undeletehistorynoadmin'       => "Esta páxina foi borrada. El motivu del borráu amuésase
+nel resume d'embaxo, amás de detalles de los usuarios qu'editaron esta páxina enantes
 de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái pa los alministradores.",
 'undelete-revision'            => 'Revisión borrada de $1 (del $2) fecha por $3:',
 'undeleterevision-missing'     => "Falta la revisión o nun ye válida. Sieque l'enllaz nun seya correutu, o que la
@@ -1525,13 +1527,13 @@ $1",
 # Block/unblock
 'blockip'                     => 'Bloquiar usuariu',
 'blockiptext'                 => "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.
-Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da una razón específica (como por exemplu citar páxines que fueron vandalizaes).",
+Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da un motivu específicu (como por exemplu citar páxines que fueron vandalizaes).",
 'ipaddress'                   => 'Dirección IP:',
 'ipadressorusername'          => "Dirección IP o nome d'usuariu:",
 'ipbexpiry'                   => 'Caducidá:',
-'ipbreason'                   => 'Razón:',
-'ipbreasonotherlist'          => 'Otra razón',
-'ipbreason-dropdown'          => "*Razones comunes de bloquéu
+'ipbreason'                   => 'Motivu:',
+'ipbreasonotherlist'          => 'Otru motivu',
+'ipbreason-dropdown'          => "*Motivos comunes de bloquéu
 ** Enxertamientu d'información falso
 ** Dexar les páxines en blanco
 ** Enllaces spam a páxines esternes
@@ -1547,7 +1549,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipbother'                    => 'Otru periodu:',
 'ipboptions'                  => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'otru',
-'ipbotherreason'              => 'Otra razón/razón adicional:',
+'ipbotherreason'              => 'Otru motivu/motivu adicional:',
 'ipbhidename'                 => "Ocultar el nome d'usuariu / IP del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
 'badipaddress'                => 'IP non válida',
 'blockipsuccesssub'           => 'Bloquéu fechu correctamente',
@@ -1579,7 +1581,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'blocklink'                   => 'bloquiar',
 'unblocklink'                 => 'desbloquiar',
 'contribslink'                => 'contribuciones',
-'autoblocker'                 => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[Usuariu:$1|$1]]". La razón del bloquéu de $1 ye: "$2"',
+'autoblocker'                 => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[Usuariu:$1|$1]]". El motivu del bloquéu de $1 ye: "$2"',
 'blocklogpage'                => 'Rexistru de bloqueos',
 'blocklogentry'               => 'bloquió [[$1]] con una caducidá de $2 $3',
 'blocklogtext'                => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios. Les direcciones IP
@@ -1607,12 +1609,12 @@ mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
 # Developer tools
 'lockdb'              => 'Protexer la base de datos',
 'unlockdb'            => 'Desprotexer la base de datos',
-'lockdbtext'          => "Al bloquiar la base de datos suspenderáse la capacidá de tolos
+'lockdbtext'          => "Al protexer la base de datos suspenderáse la capacidá de tolos
 usuarios pa editar páxines, camudar les sos preferencies, editar
 les sos llistes de vixilancia y otres aiciones que requieran
 cambeos na base de datos. Por favor confirma que ye lo que quies facer,
-y que vas desbloquiar la base de datos cuando fine'l so mantenimientu.",
-'unlockdbtext'        => 'Al desbloquiar la base de datos restauraráse la capacida de tolos
+y que vas desprotexer la base de datos cuando fine'l so mantenimientu.",
+'unlockdbtext'        => 'Al desprotexer la base de datos restauraráse la capacida de tolos
 usuarios pa editar páxines, camudar les sos preferencies, editar
 les sos llistes de vixilancia y otres aiciones que requieren cambeos
 na base de datos. Por favor confirma que ye lo quies facer.',
@@ -1621,13 +1623,13 @@ na base de datos. Por favor confirma que ye lo quies facer.',
 'lockbtn'             => 'Protexer la base de datos',
 'unlockbtn'           => 'Desprotexer la base de datos',
 'locknoconfirm'       => 'Nun activasti la caxa de confirmación.',
-'lockdbsuccesssub'    => 'Bloquéu de la base de datos efeutuáu correutamente',
-'unlockdbsuccesssub'  => "Elimináu'l bloquéu de la base de datos",
-'lockdbsuccesstext'   => "La base de datos foi bloquiada.
-<br />Alcuérdate de [[Special:Unlockdb|desbloquiala]] depués d'acabar el so mantenimientu.",
+'lockdbsuccesssub'    => 'Proteición de la base de datos efeutuáu correutamente',
+'unlockdbsuccesssub'  => 'Eliminada la proteición de la base de datos',
+'lockdbsuccesstext'   => "Protexóse la base de datos.
+<br />Alcuérdate de [[Special:Unlockdb|desprotexela]] depués d'acabar el so mantenimientu.",
 'unlockdbsuccesstext' => 'La base de datos foi desprotexida.',
-'lockfilenotwritable' => "L'archivu de bloquéu de la base de datos nun ye escribible. Pa bloquiar o desbloquiar la base de datos ésti tien que poder ser modificáu pol servidor.",
-'databasenotlocked'   => 'La base de datos nun ta bloquiada.',
+'lockfilenotwritable' => "L'archivu de proteición de la base de datos nun ye escribible. Pa protexer o desprotexer la base de datos ésti tien que poder ser modificáu pol servidor.",
+'databasenotlocked'   => 'La base de datos nun ta protexida.',
 
 # Move page
 'movepage'                => 'Treslladar páxina',
@@ -1673,7 +1675,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 '1movedto2_redir'         => '[[$1]] treslladáu a [[$2]] sobre una redireición',
 'movelogpage'             => 'Rexistru de tresllaos',
 'movelogpagetext'         => 'Esta ye la llista de páxines treslladaes.',
-'movereason'              => 'Razón:',
+'movereason'              => 'Motivu:',
 'revertmove'              => 'revertir',
 'delete_and_move'         => 'Borrar y treslladar',
 'delete_and_move_text'    => '==Necesítase borrar==
@@ -2244,7 +2246,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => "Avisu: ¡Esta páxina foi borrada depués de qu'entamaras a editala!",
-'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) borró esta páxina depués de qu'empecipiaras a editala pola siguiente razón:
+'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) borró esta páxina depués de qu'empecipiaras a editala pol siguiente motivu:
 : ''$2''
 Por favor confirma que daveres quies volver a crear esta páxina.",
 'recreate'            => 'Volver a crear',

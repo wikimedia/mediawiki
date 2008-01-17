@@ -711,7 +711,7 @@ $messages = array(
 'tooltip-n-mainpage'      => 'ወደ ዋናው ገጽ ለመሔድ',
 'tooltip-n-recentchanges' => 'በዚሁ ዊኪ ላይ በቅርቡ የተደረጉ ለውጦች',
 'tooltip-t-whatlinkshere' => 'ወደዚሁ ገጽ የሚያያዙት ገጾች ዝርዝር በሙሉ',
-'tooltip-t-upload'        => 'ፋይል ወይም ሥዕልን ወደ{{SITENAME}} ለመላክ',
+'tooltip-t-upload'        => 'ፋይል ወይም ሥዕልን ወደ {{SITENAME}} ለመላክ',
 'tooltip-t-specialpages'  => 'የልዩ ገጾች ዝርዝር በሙሉ',
 'tooltip-save'            => 'የለወጡትን ዕትም ወደ {{SITENAME}} ለመላክ',
 

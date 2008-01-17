@@ -1483,6 +1483,8 @@ L’heure indiquée est celle du serveur (UTC).',
 ** Demande de l'auteur
 ** Violation des droits d'auteur
 ** Vandalisme",
+'delete-toobig'               => "Cette page dispose d'un historique important, dépassant $1 versions. La suppression de telles pages a été limitée afin d'éviter des perturbations accidentelles de {{SITENAME}}.",
+'delete-warning-toobig'       => "Cette page dispose d'un historique important, dépassant $1 versions. La supprimer peut perturber le fonctionnement de la base de donnée de {{SITENAME}}. À effectuer avec prudence.",
 'rollback'                    => 'révoquer modifications',
 'rollback_short'              => 'Révoquer',
 'rollbacklink'                => 'révoquer',
