@@ -5315,6 +5315,22 @@ class StripState {
 }
 
 /**
+ * @todo document, briefly.
+ * @addtogroup Parser
+ */
+class OnlyIncludeReplacer {
+	var $output = '';
+
+	function replace( $matches ) { 
+		if ( substr( $matches[1], -1 ) == "\n" ) {
+			$this->output .= substr( $matches[1], 0, -1 );
+		} else {
+			$this->output .= $matches[1];
+		}
+	}
+}
+
+/**
  * An expansion frame, used as a context to expand the result of preprocessToDom()
  */
 class PPFrame {
