@@ -1917,8 +1917,8 @@ See $2 for a record of recent deletions.',
 ** Author request
 ** Copyright violation
 ** Vandalism',
-'delete-toobig'               => 'This page has a large edit history, over $1 revisions. Deletion of such pages has been restricted to prevent accidental disruption of the site.',
-'delete-warning-toobig'       => 'This page has a large edit history, over $1 revisions. Deleting it may disrupt database operations; proceed with caution.',
+'delete-toobig'               => 'This page has a large edit history, over $1 revisions. Deletion of such pages has been restricted to prevent accidental disruption of {{SITENAME}}.',
+'delete-warning-toobig'       => 'This page has a large edit history, over $1 revisions. Deleting it may disrupt database operations of {{SITENAME}}; proceed with caution.',
 'rollback'                    => 'Roll back edits',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',
