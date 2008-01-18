@@ -889,7 +889,8 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 'brokenredirects-edit'   => '(recensere)',
 'brokenredirects-delete' => '(delere)',
 
-'withoutinterwiki' => 'Paginae sine nexibus ad linguas alias',
+'withoutinterwiki'        => 'Paginae sine nexibus ad linguas alias',
+'withoutinterwiki-submit' => 'Monstrare',
 
 'fewestrevisions' => 'Paginae minime mutatae',
 

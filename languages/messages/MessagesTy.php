@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Sab
  */
 
 $fallback = 'fr';
@@ -154,5 +155,8 @@ $messages = array(
 
 # Move page
 '1movedto2' => '’Ua tāhitihia te ’api [[$1]] e ana i te ’api ’āpī [[$2]]',
+
+# Tooltip help for the actions
+'tooltip-search' => 'Roromā’imi {{SITENAME}}',
 
 );

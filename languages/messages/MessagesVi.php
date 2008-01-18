@@ -5,7 +5,6 @@
  *
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
- * @author G - ג
  * @author SPQRobin
  * @author Mxn
  * @author Apple
@@ -19,7 +18,8 @@
  * @author Vinhtantran
  * @author Vương Ngân Hà
  * @author לערי ריינהארט
- * @author SPQRobin
+ * @author Nike
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -333,7 +333,7 @@ $messages = array(
 'faq'               => 'Câu hỏi thường gặp',
 'helppage'          => 'Help:Nội dung',
 'mainpage'          => 'Trang Chính',
-'policy-url'        => 'Wikipedia:Quy định và hướng dẫn',
+'policy-url'        => 'Project:Quy định và hướng dẫn',
 'portal'            => 'Cộng đồng',
 'portal-url'        => 'Project:Cộng đồng',
 'privacy'           => 'Chính sách về sự riêng tư',
@@ -682,123 +682,40 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'copyrightwarning2'         => 'Xin chú ý rằng tất cả các đóng góp của bạn tại {{SITENAME}} có thể được sửa đổi, thay thế, hoặc xóa bỏ bởi các thành viên khác. Nếu bạn không muốn bài viết của bạn bị sửa đổi không thương tiếc, đừng đăng bài ở đây.<br />
 Bạn phải đảm bảo với chúng tôi rằng chính bạn là người viết nên, hoặc chép nó từ một nguồn thuộc phạm vi công cộng hoặc tự do tương đương (xem $1 để biết thêm chi tiết).
 <strong>ĐỪNG ĐĂNG TÁC PHẨM CÓ BẢN QUYỀN MÀ CHƯA XIN PHÉP!</strong>',
-'longpagewarning'           => '<strong>Chú ý : Trang này dài $1 kb; nhiều trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>',
-'longpageerror'             => '<div style="float: left">[[Hình:Nuvola apps error.png|không|24px]]</div>
-<p style="margin-left: 28px"><strong style="color: red; background-color: white">Dài quá:</strong> Nội dung bạn nhập vào dài đến \'\'\'$1 kB\'\'\', vượt quá kích thước tối đa cho phép là $2 kB, nên đã không được lưu.</p>
-</div>',
-'readonlywarning'           => '<strong>Chú ý : trang này bị khóa để bảo trì. Bạn chỉ có thể sao nội dung để sửa đổi trên máy cá nhân.</strong>',
-'protectedpagewarning'      => '<strong>Chú ý : trang này bị khóa. Chỉ có quản lý viên mới sửa được. Chú ý tuân thủ [[{{ns:project}}:Trang_bị_khóa|quy định về trang bị khóa]].</strong>',
-'semiprotectedpagewarning'  => '<div style="float: left">[[Hình:Padlock-silver-medium.svg|không|24px]]</div>
-<p style="margin-left: 28px"><strong style="color: red; background-color: white">Hạn chế sửa đổi:</strong> Việc sửa đổi trang này đang bị [[Wikipedia:Trang này đã bị khóa|hạn chế]]. Chỉ có những người đã [[Đặc biệt:Userlogin|mở tài khoản]] hơn bốn ngày và đã [[Đặc biệt:Userlogin|đăng nhập]] mới có thể sửa đổi nó.</p>',
+'longpagewarning'           => '<strong>CẢNH BÁO: Trang này dài $1 kilobyte; một số trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>',
+'longpageerror'             => '<strong>LỖI: Văn bạn mà bạn muốn lưu dài $1 kilobyte, dài hơn độ dài tối đa cho phép $2 kilobyte. Không thể lưu trang.</strong>',
+'readonlywarning'           => '<strong>CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.</strong>',
+'protectedpagewarning'      => '<strong>CẢNH BÁO:  Trang này đã bị khoá, chỉ có các thành viên có quyền quản lý mới sửa được.</strong>',
+'semiprotectedpagewarning'  => "'''Ghi chú:''' Trang này đã bị khóa, chỉ cho phép các thành viên đã đăng ký sửa đổi.",
 'cascadeprotectedwarning'   => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
-'titleprotectedwarning'     => "<div id=\"titleprotectedwarning\"><span style=\"color:red\">'''CẢNH BÁO:  Trang này đã bị khóa và chỉ có một số thành viên mới có thể tạo được. Nếu bạn là một quản lý, nó có thể đã bị khóa hoàn toàn; hãy bảo đảm rằng bạn đang làm theo [[Wikipedia:Quy định khóa#Tranh cãi nội dung|quy định khóa trang]].'''</span> Nếu bạn không phải là một người quản lý, thì nó chỉ bị nửa khóa, vì một thông điệp khác sẽ xuất hiện nếu bạn không thể sửa trang.</div>",
+'titleprotectedwarning'     => '<strong>CẢNH BÁO:  Trang này đã bị khóa, chỉ có một số thành viên mới có thể tạo ra.</strong>',
 'templatesused'             => 'Các tiêu bản dùng trong trang này',
 'templatesusedpreview'      => 'Các tiêu bản sẽ được dùng trong trang này:',
 'templatesusedsection'      => 'Các tiêu bản sẽ được dùng trong phần này:',
 'template-protected'        => '(khóa hoàn toàn)',
 'template-semiprotected'    => '(bị hạn chế sửa đổi)',
-'edittools'                 => "__NOEDITSECTION__
-<!-- Text here will be shown below edit and upload forms. -->
-<div id=\"edittools\" style=\"margin-top: 2em\">
-
-[[Hình:Nuvola apps important.svg|trái|50px|Lưu ý!]]
-
-==Những thay đổi của bạn sẽ hiện ra ngay.==
-<br clear=\"all\" />
-
-Mời bạn tạo ra, phát triển và '''cải tiến''' những bài có sẵn. Có rất nhiều người [[Đặc biệt:Recentchanges|theo dõi mọi trang]] để phòng chống những sửa đổi phá hoại. Các sửa đổi phá hoại sẽ bị xóa rất nhanh chóng. Trước khi lưu trang này, nên nhấn chuột vào nút “'''Xem thử'''” để chắc chắn bạn đã sửa đổi theo ý muốn.
-
-[[Hình:Nuvola apps filetypes.png|trái|50px|Cần giúp đỡ?]]
-
-==Đừng ngại nếu bạn chưa rành với Wikipedia.==
-<br clear=\"all\" />
-
-Xin đọc thêm '''hướng dẫn''' về [[Trợ giúp:Sửa đổi|sửa đổi]] và [[Wikipedia:Viết trang mới|viết bài mới]]. Nếu còn thắc mắc, mời vào '''[[Wikipedia:Bàn giúp đỡ|Bàn giúp đỡ]]''' để hỏi về cách sử dụng wiki. Xin dùng '''[[Wikipedia:Chỗ thử|Chỗ thử]]''' để tập mã wiki, hoặc vào '''[[Wikipedia:Bàn tham khảo|Bàn tham khảo]]''' để hỏi về toán, khoa học, văn hóa, v.v.
-
-[[Hình:Nuvola apps emacs.png|trái|50px|Dự án này dựa trên nội dung mở.]]
-
-==Chúng tôi tuân theo một số nguyên tắc quan trọng.==
-<br clear=\"all\" />
-
-Mọi đóng góp cho {{SITENAME}} đều tuân theo '''[[Giấy phép Văn bản Tự do GNU]]''' (GFDL); xem '''[[Wikipedia:Quyền tác giả]]'''. Nếu bạn không muốn thông tin bạn đưa vào bị người khác sửa, xin đừng viết vào đây. Xin lưu ý rằng tất cả những đóng góp cho Wikipedia đều được xem là đóng góp tự nguyện.
-
-<font color=\"red\">'''Đừng đăng bài có bản quyền''' trước khi được tác giả cho phép sử dụng theo giấy phép phù hợp với GFDL!</font> Bạn có thể tự ý sao chép vào đây từ nguồn có [[phạm vi công cộng]], nhưng lưu ý là hầu hết các trang web trên Internet không dùng giấy phép này. Bạn cần phải '''[[Wikipedia:Chú thích nguồn gốc|chú thích nguồn gốc tham khảo]]''' để cho mọi người khác có thể thẩm tra những đóng góp của bạn được.
-
-Vì '''[[Wikipedia:Những gì không phải là Wikipedia|Wikipedia là bách khoa toàn thư]]''', bạn nên theo những [[Wikipedia:Cẩm nang về văn phong|tiêu chuẩn bài]] khi viết bài, nhất là phải cố gắng viết với '''[[Wikipedia:Thái độ trung lập|quan điểm trung lập]]'''.
-
-</div>",
-'nocreatetitle'             => 'Chưa có trang này',
-'nocreatetext'              => '__NOEDITSECTION__
-<div class="noarticletext">
-<div class="plainlinks" style="padding: 7px">
-
-==Wikipedia tiếng Việt chưa có trang nào mang tên này.==
-
-Wikipedia hiện không cho mọi người tạo ra [[Wikipedia:Viết trang mới|bài viết mới]] trước khi đăng nhập. Hạn chế này chỉ áp dụng cho việc tạo ra bài mới; bạn vẫn được tạo ra trang thảo luận như thường cũng như sửa các bài đã có.
-
-{|
-|-
-| <div style="position: relative; width: 50px; height: 50px; overflow: hidden">
-<div style="position: absolute; top: 0px; left: 0px; font-size: 100px; overflow: hidden; line-height: 100px; z-index: 3">[{{SERVER}}{{localurl:Đặc biệt:Userlogin|returnto={{FULLPAGENAME}}}} &nbsp;&nbsp;&nbsp;]</div>
-<div style="position: absolute; top: 0px; left: 0px; z-index: 2">[[Hình:Nuvola apps ksig.png|không|50px|]]</div>
-</div>
-| colspan="3" style="font-weight: bold" | <big>[{{SERVER}}{{localurl:Đặc biệt:Userlogin|type=login|returnto={{FULLPAGENAME}}}} Đăng nhập] hay [{{SERVER}}{{localurl:Đặc biệt:Userlogin|type=signup|returnto={{FULLPAGENAME}}}} mở tài khoản]</big> ([[Wikipedia:Đăng nhập|Lợi điểm]])
-|-
-| <div style="position: relative; width: 50px; height: 50px; overflow: hidden">
-<div style="position: absolute; top: 0px; left: 0px; font-size: 100px; overflow: hidden; line-height: 100px; z-index: 3">[[Đặc biệt:Search/{{PAGENAME}}|&nbsp;&nbsp;&nbsp;]]</div>
-<div style="position: absolute; top: 0px; left: 0px; z-index: 2">[[Hình:Nuvola apps kpdf.png|không|50px|Đặc biệt:Search/{{PAGENAME}}]]</div>
-</div>
-| \'\'\'[[Đặc biệt:Search/{{PAGENAME}}|Tìm kiếm về “{{PAGENAME}}”]]\'\'\' trong những bài khác, hay xem những [[Đặc biệt:Whatlinkshere/{{FULLPAGENAME}}|trang liên kết đến đây]].
-| <div style="position: relative; width: 50px; height: 50px; overflow: hidden">
-<div style="position: absolute; top: 0px; left: 0px; font-size: 100px; overflow: hidden; line-height: 100px; z-index: 3">[[Wikipedia:Bài thỉnh cầu|&nbsp;&nbsp;&nbsp;]]</div>
-<div style="position: absolute; top: 0px; left: 0px; z-index: 2">[[Hình:Nuvola apps korganizer.png|không|50px|Wikipedia:Bài thỉnh cầu]]</div>
-</div>
-| \'\'\'[[Wikipedia:Bài thỉnh cầu|Thỉnh cầu]]\'\'\' người khác viết nó.
-|-
-| <div style="position: relative; width: 50px; height: 50px; overflow: hidden">
-<div style="position: absolute; top: 0px; left: 0px; font-size: 100px; overflow: hidden; line-height: 100px; z-index: 3">[[Wikipedia:Chỗ thử|&nbsp;&nbsp;&nbsp;]]</div>
-<div style="position: absolute; top: 0px; left: 0px; z-index: 2">[[Hình:Nuvola apps edu miscellaneous.png|không|50px|Wikipedia:Chỗ thử]]</div>
-</div>
-| \'\'\'[[Wikipedia:Chỗ thử|Viết thử nghiệm]]\'\'\' ở Chỗ thử để thử mã wiki và tìm hiểu về Wikipedia.
-| <div style="position: relative; width: 50px; height: 50px; overflow: hidden">
-<div style="position: absolute; top: 0px; left: 0px; font-size: 100px; overflow: hidden; line-height: 100px; z-index: 3">[[Wikipedia:Bàn tham khảo|&nbsp;&nbsp;&nbsp;]]</div>
-<div style="position: absolute; top: 0px; left: 0px; z-index: 2">[[Hình:Nuvola apps file-manager.png|không|50px|Wikipedia:Bàn tham khảo]]</div>
-</div>
-| \'\'\'[[Wikipedia:Bàn tham khảo|Ghé qua Bàn tham khảo]]\'\'\' để hỏi cộng đồng về kiến thức tổng quát.
-|-
-| <div style="position: relative; width: 50px; height: 57px; overflow: hidden">
-<div style="position: absolute; top: 0px; left: 0px; font-size: 100px; overflow: hidden; line-height: 100px; z-index: 3">[[wikt:{{PAGENAME}}|&nbsp;&nbsp;&nbsp;]]</div>
-<div style="position: absolute; top: 0px; left: 0px; z-index: 2">[[Hình:Wiktsister en.png|không|50px|wikt:{{PAGENAME}}]]</div>
-</div>
-| \'\'\'[[wikt:Đặc biệt:Search/{{PAGENAME}}|Xem “{{PAGENAME}}” ở Wiktionary]]\'\'\', dự án từ điển liên quan.
-| align="center" | <div style="position: relative; width: 35px; height: 46px; overflow: hidden">
-<div style="position: absolute; top: 0px; left: 0px; font-size: 100px; overflow: hidden; line-height: 100px; z-index: 3">[[Commons:{{PAGENAME}}|&nbsp;&nbsp;&nbsp;]]</div>
-<div style="position: absolute; top: 0px; left: 0px; z-index: 2">[[Hình:Commons-logo.svg|không|35px|Commons:{{PAGENAME}}]]</div>
-</div>
-| \'\'\'[[Commons:{{PAGENAME}}|Xem “{{PAGENAME}}” ở Wikimedia Commons]]\'\'\', kho phương tiện có hình ảnh, âm thanh, và phim nội dung mở.
-|}
-
-</div>
-</div>',
-'nocreate-loggedin'         => 'Bạn không có quyền tạo trang mới trên wiki này.',
+'edittools'                 => '<!-- Văn bản dưới đây sẽ xuất hiện phía dưới mẫu sửa đổi và tải lên. -->',
+'nocreatetitle'             => 'Khả năng tạo trang bị hạn chế',
+'nocreatetext'              => '{{SITENAME}} đã hạn chế khả năng tạo trang mới.
+Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[Special:Userlogin|đăng nhập hoặc tạo tài khoản]].',
+'nocreate-loggedin'         => 'Bạn không có quyền tạo trang mới trên {{SITENAME}}.',
 'permissionserrors'         => 'Không có quyền thực hiện',
 'permissionserrorstext'     => 'Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|lý do}}:',
-'recreate-deleted-warn'     => "'''Lưu ý: Bạn vừa tạo lại một trang từng bị xóa trước đây.'''
+'recreate-deleted-warn'     => "'''Cảnh báo: Bạn vừa tạo lại một trang từng bị xóa trước đây.'''
 
 Bạn nên cân nhắc trong việc tiếp tục soạn thảo trang này.
 Nhật trình xóa của trang được đưa ra dưới đây để tiện theo dõi:",
 
 # "Undo" feature
-'undo-success' => '<div style="float: left">[[Hình:Nuvola actions undo.png|không|24px]]</div>
-<p style="margin-left: 28px"><strong style="color: red; background-color: white">Lưu trang:</strong> Để lùi lại sửa đổi, hãy xem lại kết quả ở dưới và bấm nút \'\'\'Lưu trang\'\'\'.</p>',
+'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
 'undo-failure' => 'Không có thể lùi lại sửa đổi vì những sửa đổi sau mâu thuẫn.',
-'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Đặc biệt:Contributions/$2]] ([[Thảo luận Thành viên:$2]])',
+'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2]] ([[User talk:$2]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Không có thể mở tài khoản',
-'cantcreateaccount-text' => "Việc tạo tài khoản từ địa chỉ IP này ('''$1''') đã bị [[Wikipedia:Quy định cấm|khóa]] tạm thời. Điều này có thể do sự phá hoại liên tục từ [[địa chỉ IP]] mà bạn đang dùng để sửa đổi, IP này có thể do nhiều người cùng chia sẻ nếu bạn kết nối Internet thông qua [[máy chủ proxy]] (đa số trường học, công ty và vài [[Nhà cung cấp dịch vụ Internet]] phổ biến ở Việt Nam dùng cách này) hoặc [[kết nối quay số]].
+'cantcreateaccount-text' => "Chức năng tài tạo khoản từ địa chỉ IP này (<b>$1</b>) đã bị [[User:$3|$3]] cấm.
 
-Sau đây là một số thông tin về việc khóa IP này: [[Thành viên:$3|$3]] đã khóa khả năng tạo tài khoản từ địa chỉ IP này, với lý do đưa ra là ''$2''.",
+Lý do được $3 đưa ra là ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Xem nhật trình của trang này',
@@ -830,7 +747,7 @@ Sau đây là một số thông tin về việc khóa IP này: [[Thành viên:$3
 'history-feed-title'          => 'Lịch sử thay đổi',
 'history-feed-description'    => 'Lịch sử thay đổi của trang này ở wiki',
 'history-feed-item-nocomment' => '$1 vào lúc $2', # user at time
-'history-feed-empty'          => 'Trang bạn yêu cầu không tồn tại. Có thể là nó đã bị xóa khỏi wiki hay được đổi tên. Hãy [[Đặc biệt:Search|tìm kiếm trong wiki]] về các trang liên quan mới.',
+'history-feed-empty'          => 'Trang bạn yêu cầu không tồn tại. Có thể là nó đã bị xóa khỏi wiki hay được đổi tên. Hãy [[Special:Search|tìm kiếm trong wiki]] về các trang liên quan mới.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(đang giấu tóm lược)',
@@ -1028,9 +945,9 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9',
 'group-bureaucrat-member'    => 'Hành chính viên',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự động xác nhận',
-'grouppage-bot'           => 'Wikipedia:Robot',
-'grouppage-sysop'         => 'Wikipedia:Người quản lý',
-'grouppage-bureaucrat'    => 'Wikipedia:Hành chính viên',
+'grouppage-bot'           => '{{ns:project}}:Robot',
+'grouppage-sysop'         => '{{ns:project}}:Người quản lý',
+'grouppage-bureaucrat'    => '{{ns:project}}:Hành chính viên',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp thành viên',

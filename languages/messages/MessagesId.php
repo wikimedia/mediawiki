@@ -7,6 +7,7 @@
  * @author לערי ריינהארט
  * @author IvanLanin
  * @author Borgx
+ * @author Nike
  */
 
 /**
@@ -590,7 +591,7 @@ $2',
 'namespaceprotected'   => "Anda tak memiliki hak untuk menyunting halaman di ruang nama '''$1'''.",
 'customcssjsprotected' => 'Anda tak memiliki hak menyunting halaman ini karena mengandung pengaturan pribadi pengguna lain.',
 'ns-specialprotected'  => 'Halaman pada ruang nama {{ns:special}} tidak dapat disunting.',
-'titleprotected'       => 'Judul ini dilindungi dari pembuatan oleh [[Pengguna:$1|$1]]. Alasan yang diberikan adalah <i>$2</i>.',
+'titleprotected'       => 'Judul ini dilindungi dari pembuatan oleh [[User:$1|$1]]. Alasan yang diberikan adalah <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Keluar log pengguna',
@@ -1808,7 +1809,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'import-logentry-upload'           => 'mengimpor [[$1]] melalui pemuatan berkas',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisi|revisi}}',
 'import-logentry-interwiki'        => 'men-transwiki $1',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisi\\revisi}} dari $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisi}} dari $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Halaman pengguna saya',

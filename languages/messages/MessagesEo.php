@@ -12,6 +12,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
+ * @author Yekrats
  */
 
 $namespaceNames = array(
@@ -88,6 +89,7 @@ $messages = array(
 'tog-showjumplinks'           => 'Ebligi alirligojn "salti al" 
 <!-- Bonvolu kontroli ĉu ĝustas la traduko de : Enable "jump to" accessibility links -->',
 'tog-uselivepreview'          => 'Uzu tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',
+'tog-forceeditsummary'        => 'Informu min kiam aldonanta nulan redakto-resumon',
 'tog-watchlisthideown'        => 'Kaŝu miajn redaktojn de la atentaro',
 'tog-watchlisthidebots'       => 'Kaŝu bot-redaktojn de la atentaro',
 'tog-watchlisthideminor'      => 'Kaŝu malgrandajn redaktojn de la atentaro',
@@ -139,16 +141,26 @@ $messages = array(
 'october-gen'   => 'Oktobro',
 'november-gen'  => 'Novembro',
 'december-gen'  => 'Decembro',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mar',
+'apr'           => 'Apr',
 'may'           => 'Maj',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
 'aug'           => 'Aŭg',
+'sep'           => 'Sep',
 'oct'           => 'Okt',
+'nov'           => 'Nov',
+'dec'           => 'Dec',
 
 # Bits of text used by many pages
-'categories'      => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'pagecategories'  => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'category_header' => 'Artikoloj en kategorio "$1"',
-'subcategories'   => 'Subkategorioj',
-'category-empty'  => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
+'categories'            => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'pagecategories'        => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'category_header'       => 'Artikoloj en kategorio "$1"',
+'subcategories'         => 'Subkategorioj',
+'category-media-header' => 'Dosieroj en kategorio "$1"',
+'category-empty'        => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
 
 'mainpagetext'      => 'Vikisoftvaro sukcese instaliĝis.',
 'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for information on using the wiki software.
@@ -176,6 +188,9 @@ $messages = array(
 'anontalk'       => 'Diskutpaĝo por tiu ĉi IP',
 'navigation'     => 'Navigado',
 
+# Metadata in edit box
+'metadata_help' => 'Metadatumoj:',
+
 'errorpagetitle'    => 'Eraro',
 'returnto'          => 'Revenu al $1.',
 'tagline'           => 'El {{SITENAME}}',
@@ -190,6 +205,7 @@ $messages = array(
 'info_short'        => 'Informo',
 'printableversion'  => 'Presebla versio',
 'permalink'         => 'Konstanta ligilo',
+'print'             => 'Printu',
 'edit'              => 'Redaktu',
 'editthispage'      => 'Redaktu la paĝon',
 'delete'            => 'Forigu',
@@ -234,7 +250,7 @@ $messages = array(
 'bugreports'        => 'Raportu cimojn',
 'bugreportspage'    => 'Project:Raportu cimojn',
 'copyright'         => 'La enhavo estas havebla sub $1.',
-'copyrightpagename' => 'permesilo uzata por la {{SITENAME}}',
+'copyrightpagename' => '{{SITENAME}}-kopirajto',
 'copyrightpage'     => '{{ns:project}}:Kopirajto',
 'currentevents'     => 'Aktualaĵoj',
 'currentevents-url' => 'Project:Aktualaĵoj',
@@ -278,7 +294,12 @@ $messages = array(
 'thisisdeleted'           => 'Vidu aŭ restarigu $1?',
 'viewdeleted'             => 'Rigardu $1?',
 'restorelink'             => '{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}',
-'feedlinks'               => 'Nutro:',
+'feedlinks'               => 'RSS-abonilo:',
+'feed-invalid'            => 'Ia nevalida abonilo.',
+'site-rss-feed'           => '$1 RSS-abonilo.',
+'site-atom-feed'          => '$1 Atom-fonto',
+'page-rss-feed'           => '"$1" RSS-abonilo',
+'page-atom-feed'          => '"$1" Atom-abonilo',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikolo',
@@ -317,6 +338,7 @@ el la funkcio "$2".
 $1',
 'nodb'                 => 'Neeblis elekti datumaron $1',
 'cachederror'          => 'Intertempe, jen konservita kopio de la petita paĝo (ĝi eble ne estas ĝisdata).',
+'laggedslavemode'      => 'Avertu: la pagxo eble ne enhavas lastatempajn gxisdatigojn.',
 'readonly'             => 'Datumaro ŝlosita, nurlega',
 'enterlockreason'      => 'Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj
 la estimatan tempon de malŝlosado.',
@@ -330,6 +352,7 @@ La ŝlosinto lasis la jenan mesaĝon:
 artikolo, kiun ĝi devus trovi, nomita "$1".
 Ĉi tio ne estas eraro de la datumbazo, sed probable cimo en la programo.
 Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).',
+'readonly_lag'         => 'La datumbazo estis auxtomate sxlosita dum la subdatumbazo atingas la cxefan datumbazon.',
 'internalerror'        => 'Interna eraro',
 'internalerror_info'   => 'Interna eraro: $1',
 'filecopyerror'        => 'Neeblis kopii dosieron  "$1" al "$2".',
@@ -348,20 +371,26 @@ malĝuste ligita interlingva aŭ intervikia titolo.',
 'perfdisabled'         => 'Ni petas pardonon! La petita funkcio estas malebligita
 provizore por konservi la rapidecon de la servilo.',
 'perfcached'           => 'La sekvantaj informoj venas el kaŝmemoro kaj eble ne estas ĝisdataj :',
+'perfcachedts'         => 'La jena datumo estas provizora, kaj estis laste gxisdatigita $1.',
+'querypage-no-updates' => 'Gxisdatigoj por cxi pagxo estas nune neebligitaj. Datumoj cxi tie ne estos nune refresxigitaj.',
 'wrong_wfQuery_params' => 'Malĝustaj parametroj por wfQuery()<br />
 Funkcio: $1<br />
 Peto: $2',
 'viewsource'           => 'Vidu vikitekston',
 'viewsourcefor'        => 'por $1',
+'actionthrottled'      => 'Agado limigita',
+'actionthrottledtext'  => 'Por kontrauxigi spamon, vi estas limigita farante cxi tiun agon tro pluroble en mallonga tempdauxro, kaj vi plialtigis cxi limon. Bonvolu refaru post kelkaj minutoj.',
 'protectedpagetext'    => 'Tiu ĉi paĝo estas ŝlosita por malebligi redaktadon.',
 'viewsourcetext'       => 'Vi povas rigardi kaj kopii la fonton de la paĝo:',
 'protectedinterface'   => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malabeligi misuzon.',
 'editinginterface'     => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la softvaro. Ŝanĝoj de tiu ĉi teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj.",
+'sqlhidden'            => '(SQL serĉomendo kasxita)',
 'cascadeprotected'     => 'Ĉi tiu paĝo estas protektita kontraŭ redaktado, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan paĝon, kiu|sekvajn paĝojn, kiuj}} estas {{PLURAL:$1|protektata|protektataj}} kun la "kaskada" opcio turnita sur:
 $2',
 'namespaceprotected'   => "Vi ne rajtas redakti paĝojn en la '''$1''' nomspaco.",
 'customcssjsprotected' => 'Vi ne rajtas redakti ĉi tiun paĝon, ĉar ĝi enhavas personajn alĝustigojn de alia uzanto.',
 'ns-specialprotected'  => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
+'titleprotected'       => 'Cxi titolo estas protektita de kreado de [[User:$1|$1]]. La kialo donata estis <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Elsalutu!',
@@ -400,10 +429,12 @@ Via konto estas kreita. <span style="color:#ff0000">Ne forgesu fari viajn [[spec
 'yourvariant'                => 'Varianto',
 'yournick'                   => 'Via kaŝnomo (por subskriboj)',
 'badsig'                     => 'Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!',
+'badsiglength'               => 'Salutnomo estas tro longa; gxi nepre estas sub $1 signoj.',
 'email'                      => 'Retpoŝto',
 'prefs-help-realname'        => '* Vera nomo (opcia) : se vi elektas sciigi ĝin, ĝi estos uzita por aŭtorigi vin pri viaj kontribuoj.',
 'loginerror'                 => 'Ensaluta eraro',
 'prefs-help-email'           => '* Retpoŝto (opcia) : ebligas al aliaj kontakti vin tra via uzantpaĝo aŭ diskutpaĝo sen neceso malkaŝi vian identecon.',
+'prefs-help-email-required'  => 'Ret-adreso estas bezonata.',
 'nocookiesnew'               => 'La uzantokonto estis kreita sed vi ne estas ensalutinta. *** E-igo lcfirst {{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj ensalutu per viaj novaj salutnomo kaj pasvorto.',
 'nocookieslogin'             => '{{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj provu denove.',
 'noname'                     => 'Vi ne tajpis validan salutnomon.',
@@ -429,15 +460,28 @@ Bonvolu saluti denove ricevinte ĝin.',
 'blocked-mailpassword'       => 'Via IP adreso estas blokita de redaktado, kaj tial
 ne estas permesate uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
 'eauthentsent'               => 'Konfirma retmesaĝo estas sendita al la nomita retadreso. Antaŭ ol iu ajn alia mesaĝo estos sendita al la konto, vi devos sekvi la instrukciojn en la mesaĝo por konfirmi ke la konto ja estas la via.',
+'throttled-mailpassword'     => 'Pasvorta rememorigilo estis jam sendita, ene de la lasta $1 horoj. Por preventi misuzo, nur unu pasvorto-rememorigilo estos sendita por $1 horoj.',
 'mailerror'                  => 'Okazis eraro sendante retpoŝtaĵon: $1',
 'acct_creation_throttle_hit' => 'Ni pardonpetas! Vi jam kreis $1 kontojn kaj ne povas krei pluajn.',
 'emailauthenticated'         => 'Via retpoŝta adreso estis aŭtentikigita ĉe $1.',
 'emailnotauthenticated'      => 'Via retadreso <strong>ne jam estas aŭtentigata.</strong> Tial ne eblas elekti ajnan funkcion sube listigatan.',
+'noemailprefs'               => 'Specifi retposxtan adreson por cxi funkcioj funkcii.',
 'emailconfirmlink'           => 'Konfirmu vian retpoŝtan adreson',
 'invalidemailaddress'        => 'La retpoŝt-adreso ne estas akceptebla ĉar ĝi ŝajne havas nevalidan formaton. Bonvole entajpu ĝust-formatan adreson, aŭ malplenigu la zonon.',
 'accountcreated'             => 'Konto kreita',
 'accountcreatedtext'         => 'La uzanto-konto por $1 estas kreita.',
+'createaccount-title'        => 'Konto-kreado por {{SITENAME}}',
+'createaccount-text'         => 'Iu ($1) kreis konton por $2 en {{SITENAME}}
+($4). La pasvorto por "$2" estas "$3". Vi ensalutu kaj sxangxu vian pasvorton nun.
+
+Vi eblus ignori cxi mesagxon, se cxi konto estis kreita erare.',
 'loginlanguagelabel'         => 'Lingvo: $1',
+
+# Password reset dialog
+'resetpass'          => 'Refaru konto-pasvorton',
+'resetpass_announce' => 'Vi ensalutis kun provizora retposxtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton cxi tien:',
+'resetpass_header'   => 'Refaru pasvorton.',
+'resetpass_submit'   => 'Faru pasvorton kaj ensalutu',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasa teksto',
@@ -602,6 +646,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'difference'              => '(Malsamoj inter versioj)',
 'lineno'                  => 'Linio $1:',
 'compareselectedversions' => 'Komparu la selektitajn versiojn',
+'editundo'                => 'malfaru',
 
 # Search results
 'searchresults'         => 'Serĉrezultoj',
@@ -737,13 +782,15 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'hide'                              => 'kaŝu',
 'show'                              => 'montru',
 'minoreditletter'                   => 'E',
+'newpageletter'                     => 'N',
 'boteditletter'                     => 'R',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|unu atentanto|$1 atentantoj}}]',
 'rc_categories'                     => 'Nur por jenaj kategorioj (disigu per "|")',
 'rc_categories_any'                 => 'ĉiu',
 
 # Recent changes linked
-'recentchangeslinked' => 'Rilataj paĝoj',
+'recentchangeslinked'         => 'Rilataj paĝoj',
+'recentchangeslinked-summary' => "Cxi tiu speciala pagxo listigas la lastajn sxangxojn en ligitaj pagxoj. Pagxoj en via atentaro estas '''grasaj'''.",
 
 # Upload
 'upload'                      => 'Alŝutu dosieron',
@@ -812,6 +859,7 @@ Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas
 'imgdelete'                 => 'forigu',
 'imgdesc'                   => 'pri',
 'imgfile'                   => 'dosiero',
+'filehist'                  => 'Historio de dosiero',
 'filehist-datetime'         => 'Dato/Tempo',
 'imagelinks'                => 'Ligiloj al la dosiero',
 'linkstoimage'              => 'La jenaj paĝoj ligas al ĉi tiu dosiero:',
@@ -1016,6 +1064,10 @@ komprenata kiel rekomendo aŭ reklamo.',
 'watchlist-show-minor' => 'Montru redaktetojn',
 'watchlist-hide-minor' => 'Kaŝu redaktetojn',
 
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Rigardante...',
+'unwatching' => 'Malrigardante...',
+
 'enotif_mailer'      => 'Averta retmesaĝo de {{SITENAME}}',
 'enotif_reset'       => 'Marku ĉiujn vizititajn paĝojn',
 'enotif_newpagetext' => 'Tiu ĉi estas nova paĝo',
@@ -1146,12 +1198,13 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'sp-newimages-showfrom' => 'Montru novajn bildojn komencante de $1',
 
 # What links here
-'whatlinkshere'      => 'Ligiloj ĉi tien',
-'whatlinkshere-page' => 'Paĝo:',
-'linklistsub'        => '(Listo de ligiloj)',
-'linkshere'          => "La jenaj paĝoj ligas al '''[[:$1]]''':",
-'nolinkshere'        => "Neniu paĝo ligas al '''[[:$1]]'''.",
-'isredirect'         => 'alidirekto',
+'whatlinkshere'       => 'Ligiloj ĉi tien',
+'whatlinkshere-page'  => 'Paĝo:',
+'linklistsub'         => '(Listo de ligiloj)',
+'linkshere'           => "La jenaj paĝoj ligas al '''[[:$1]]''':",
+'nolinkshere'         => "Neniu paĝo ligas al '''[[:$1]]'''.",
+'isredirect'          => 'alidirekto',
+'whatlinkshere-links' => '← ligiloj',
 
 # Block/unblock
 'blockip'              => 'Forbaru uzanton/IP-adreson',
@@ -1356,6 +1409,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-minoredit'               => 'Marku tiun ŝanĝon kiel malgrava',
 'tooltip-save'                    => 'Konservu viajn ŝanĝojn',
 'tooltip-preview'                 => 'Antaŭrigardu viajn ŝanĝojn. Bonvolu uzi tion antaŭ ol konservi ilin!',
+'tooltip-diff'                    => 'Montru la sxangxojn kiujn vi faris de la teksto.',
 'tooltip-compareselectedversions' => 'Vidu la malsamojn inter ambaŭ selektitaj versioj de ĉi paĝo.',
 'tooltip-watch'                   => 'Aldonu ĉi paĝon al via atentaro',
 

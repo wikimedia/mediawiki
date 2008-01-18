@@ -502,6 +502,9 @@ $messages = array(
 'allmessagesname'    => 'Naran',
 'allmessagescurrent' => 'Testu atuál',
 
+# Import log
+'import-logentry-interwiki-detail' => '$1 versaun husi $2',
+
 # Tooltip help for the actions
 'tooltip-ca-protect'      => "Proteje pájina ne'e",
 'tooltip-ca-delete'       => "Halakon pájina ne'e",

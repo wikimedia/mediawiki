@@ -1,5 +1,5 @@
 <?php
-/** Venitian (Vèneto)
+/** Vèneto (Vèneto)
  *
  * @addtogroup Language
  *
@@ -349,7 +349,7 @@ Sapi che te stè promettendo che te stè inserendo un testo scrito de to pugno, 
 'longpagewarning'          => "<strong>ATENZSION: Sta paxèna xè longa $1 kilobyte; alcuni browser podaria prexentar dei problemi ne ła modifega de paxèna che se aviçina o supera i 32 KB. Valuta l'opportunità de sudividere ła paxèna in sezsion pì piccołe.</strong>",
 'longpageerror'            => '<strong>ERROR: The text you have submitted is $1 kilobytes 
 long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
-'protectedpagewarning'     => '<strong>ATENZSION:  Sta paxèna xè sta protetta e soło i aministradori i pode modificarla. Varda, par essere sicuro ła [[Project:Guida a le paxène protette|Guida a le paxène protette]].</strong>',
+'protectedpagewarning'     => '<strong>ATENZSION:  Sta paxèna xè sta protetta e soło i aministradori i pode modificarla.</strong>',
 'semiprotectedpagewarning' => "'''Nota:''' Sta paxèna xè stà blocà in modo che solo i utenti registrai i poda modefegarla.",
 
 # History pages
@@ -854,7 +854,6 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'importhistoryconflict'    => 'Esiste revision de la cronołogia in conflitto (sta paxèna podaria essere xà sta importà)',
 'importnosources'          => "Non xè stà definia na fonte par l'importazsion transwiki; l'importazsion direta de ła cronołogia non xè ativa.",
 'importnofile'             => "Non xè stà caricà nessun file par l'importazsion,",
-'importuploaderror'        => "El caricamento de le imamgini xè falío, forse parché el file l'è pì grosso del quel che xè permesso.",
 
 # Import log
 'importlogpage'                    => 'Importazsion',

@@ -690,11 +690,11 @@ Vos pouede tâchiér de [[Special:Search|rechèrchiér dens lo vouiqui]] des nov
 'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
 'rev-deleted-event'           => '(entrâ suprimâ)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ceta vèrsion de la pâge at étâ reteriê des arch·ives publiques.
+Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
 Pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ceta vèrsion de la pâge at étâ reteriê des arch·ives publiques.
+Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
 A titro d’administrator de ceti seto, vos pouede la visualisar ;
 pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} jornal de les suprèssions].
 </div>',
@@ -863,7 +863,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'userrights-groupsmember'          => 'Membro de :',
 'userrights-groupsremovable'       => 'Groupes suprimâblos :',
 'userrights-groupsavailable'       => 'Groupes disponiblos :',
-'userrights-groupshelp'            => 'Chouèsésséd/cièrde los groupes desquints vos voléd reteriér ou ben rapondre l’utilisator.
+'userrights-groupshelp'            => 'Chouèsésséd/cièrde los groupes desquints vos voléd enlevar ou ben rapondre l’utilisator.
 Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar un groupe avouéc CTRL + clic gôcho.',
 'userrights-reason'                => 'Rêson du changement :',
 'userrights-available-none'        => 'Vos pouede pas changiér l’apartegnence ux difèrents groupes.',
@@ -1289,8 +1289,8 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres prèferences aparètr
 Les modificacions que vegnont de cela pâge et de la pâge de discussion associyê y seront listâs, et la pâge aparètrat '''en grâs''' dens la [[Special:Recentchanges|lista des dèrriérs changements]] por étre repèrâ ples facilament.
 
 Por suprimar cela pâge de voutra lista de siuvu, clicâd dessus « pas més siuvre » dens lo câdro de navigacion.",
-'removedwatch'         => 'Reteriê de la lista de siuvu',
-'removedwatchtext'     => 'La pâge « [[:$1]] » at étâ reteriê de voutra [[Special:Watchlist|lista de siuvu]].',
+'removedwatch'         => 'Enlevâ de la lista de siuvu',
+'removedwatchtext'     => 'La pâge « [[:$1]] » at étâ enlevâ de voutra [[Special:Watchlist|lista de siuvu]].',
 'watch'                => 'Siuvre',
 'watchthispage'        => 'Siuvre ceta pâge',
 'unwatch'              => 'Pas més siuvre',
@@ -1377,6 +1377,8 @@ L’hora endicâ est cela du sèrvior (UTC).',
 ** Demanda de l’ôtor
 ** Violacion des drêts d’ôtor
 ** Vandalismo',
+'delete-toobig'               => 'Ceta pâge dispôse d’un historico important, dèpassent $1 vèrsions. La suprèssion de tâles pâges at étâ limitâ por èvitar des pèrturbacions emprèvues de {{SITENAME}}.',
+'delete-warning-toobig'       => 'Ceta pâge dispôse d’un historico important, dèpassent $1 vèrsions. La suprimar pôt troblar lo fonccionement de la bâsa de balyês de {{SITENAME}}. A fâre avouéc prudence.',
 'rollback'                    => 'rèvocar modificacions',
 'rollback_short'              => 'Rèvocar',
 'rollbacklink'                => 'rèvocar',
@@ -1773,7 +1775,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-ca-undelete'             => 'Rèstorar ceta pâge',
 'tooltip-ca-move'                 => 'Renomar ceta pâge',
 'tooltip-ca-watch'                => 'Apondéd ceta pâge a voutra lista de siuvu.',
-'tooltip-ca-unwatch'              => 'Reteriéd ceta pâge de voutra lista de siuvu.',
+'tooltip-ca-unwatch'              => 'Enlevâd ceta pâge de voutra lista de siuvu.',
 'tooltip-search'                  => 'Chèrchiér dens {{SITENAME}}',
 'tooltip-search-go'               => 'Alâd vers una pâge portent justo ceti nom s’ègziste.',
 'tooltip-search-fulltext'         => 'Chèrchiéd les pâges presentent ceti tèxte.',
