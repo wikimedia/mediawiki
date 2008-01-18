@@ -289,7 +289,7 @@ $messages = array(
 'toolbox'           => 'Geschirkëscht',
 'userpage'          => 'Benotzersäit',
 'projectpage'       => 'Meta-Text',
-'imagepage'         => 'Bildsäit',
+'imagepage'         => 'Billersäit kucken',
 'templatepage'      => 'Schabloune(säit) weisen',
 'viewhelppage'      => 'Hëllefssäit weisen',
 'categorypage'      => 'Kategoriesäit weisen',
@@ -322,6 +322,7 @@ $messages = array(
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hëllef',
 'mainpage'          => 'Haaptsäit',
+'policy-url'        => 'Project:Richtlinnen',
 'portal'            => 'Kommunautéit',
 'portal-url'        => 'Project:Kommunautéit',
 'privacy'           => 'Dateschutz',
@@ -506,6 +507,7 @@ Ier iergend eng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, muss d
 Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
 'noemailprefs'               => 'Gitt eng E-Mail-Adress un, fir datt déie folgend Funktiounen fonctionéieren.',
 'emailconfirmlink'           => 'Confirméiert är E-Mailadress w.e.g..',
+'invalidemailaddress'        => 'Dës E-Mailadress gëtt net akzeptéiert well se en ongëltegt Format (z.B. ongëlteg Zeechen) ze hu schéngt. Gitt w.e.g. eng valabel E-Mailadress an oder loosst dëst Feld eidel.',
 'accountcreated'             => 'De Kont gouf geschaf',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 'createaccount-title'        => 'Opmaache vun engem Benotzerkont op {{SITENAME}}',
@@ -651,6 +653,9 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
  
 Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
+
+# "Undo" feature
+'undo-summary' => 'Ännerung $1 vu(n) [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Diskussioun]]) gouf annulléiert.',
 
 # Account creation failure
 'cantcreateaccount-text' => 'Dës IP Adress (<b>$1</b>) gouf vum [[User:$3|$3]] blokéiert fir Benotzer-Konten op der lëtzebuergescher Wikipedia opzemaachen. De Benotzer $3 huet "$2" als Ursaach uginn.',
@@ -810,6 +815,7 @@ Sich no: $3 $9',
 'userrights-available-none'  => 'Dir däerft keng Benotzerrechter änneren.',
 'userrights-available-add'   => 'Dir kënnt Benotzer an déi folgend {{PLURAL:$2|Grupp|Grupppen}}: $1 <br \\>
 derbäisetzen.',
+'userrights-no-interwiki'    => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 'userrights-nodatabase'      => "D'Datebank $1 gëtt et net oder se ass net lokal.",
 
 # Groups
@@ -831,8 +837,9 @@ derbäisetzen.',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
 # User rights log
-'rightslog'  => 'Logbuch vun de Benotzerrechter',
-'rightsnone' => '(keen)',
+'rightslog'     => 'Logbuch vun de Benotzerrechter',
+'rightslogtext' => "Dëst ass d'Lëscht vun den Ännerunge vu Benotzerrechter.",
+'rightsnone'    => '(keen)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
@@ -870,6 +877,7 @@ derbäisetzen.',
 # Upload
 'upload'              => 'Eroplueden',
 'uploadbtn'           => 'Fichier eroplueden',
+'reupload'            => 'Nacheemol eroplueden',
 'reuploaddesc'        => 'Zréck op de Formulaire fir Eropzelueden.',
 'uploadnologin'       => 'Net ugemellt',
 'uploaderror'         => 'Feeler bäim Eroplueden',
@@ -890,6 +898,7 @@ Fir '''Fichieren mat anere Medien ''' anzebannen, benotzt zum Beispiel:
 
 Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotzer är Fichiere läschen oder verännere kënnen.",
 'upload-prohibited'   => 'Verbuede Fichiers Formater: $1.',
+'uploadlog'           => 'Lëscht vun den eropgeluedene Fichieren',
 'uploadlogpage'       => 'Logbuch vum Eroplueden',
 'filename'            => 'Numm vum Fichier',
 'filedesc'            => 'Résumé',
@@ -907,6 +916,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'emptyfile'           => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'          => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
 'successfulupload'    => 'Eroplueden erfollegräich',
+'uploadwarning'       => 'Opgepasst',
 'savefile'            => 'Fichier späicheren',
 'uploadedimage'       => 'huet "[[$1]]" eropgelueden',
 'uploaddisabled'      => "Pardon, d'Eroplueden vu Fichieren ass ausgeschalt.",
@@ -937,6 +947,8 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'byname'                    => 'no Numm',
 'bydate'                    => 'no Datum',
 'bysize'                    => 'no Gréisst',
+'imgdelete'                 => 'läschen',
+'imgdesc'                   => 'Beschreiwung',
 'imgfile'                   => 'Fichier',
 'filehist'                  => 'Versiounen',
 'filehist-help'             => 'Klickt op e bestëmmten Zäitpunkt fir déi respektiv Versioun vum Fichier ze kucken.',
@@ -1039,6 +1051,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 
 'withoutinterwiki'        => 'Säiten ouni Interwiki-Linken',
 'withoutinterwiki-header' => 'Dës Säiten hu keng Interwiki-Linken:',
+'withoutinterwiki-submit' => 'Weisen',
 
 'fewestrevisions' => 'Säite mat de mannsten Ännerungen',
 
@@ -1105,6 +1118,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbicher',
 'all-logs-page'        => "All d'Logbicher",
+'log-search-legend'    => 'Logbicher duerchsichen',
 'log-search-submit'    => 'Sichen',
 'alllogstext'          => 'Dëst ass eng kombinéiert Lëscht vu [[Special:Log/block|Benotzerblockaden-]], [[Special:Log/protect|Säiteschutz-]], [[Special:Log/rights|Bürokraten-]], [[Special:Log/delete|Läsch-]], [[Special:Log/upload|Datei-]], [[Special:Log/move|Réckelen-]], [[Special:Log/newusers|Neiumellungs-]] a [[Special:Log/renameuser|Benotzerännerungs-]]Logbicher.',
 'logempty'             => 'Näischt fonnt.',
@@ -1186,6 +1200,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'enotif_newpagetext'           => 'Dëst ass eng nei Säit.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
 'changed'                      => 'geännert',
+'enotif_subject'               => '[{{SITENAME}}] D\'Säit "$PAGETITLE" gouf vum $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff'              => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor'           => 'Anonyme Benotzer $1',
@@ -1194,9 +1209,9 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'deletepage'                  => 'Säit läschen',
 'confirm'                     => 'Konfirméieren',
 'excontent'                   => "Inhalt war: '$1'",
-'excontentauthor'             => "De Contenu war: '$1' (An als eenzegen dru geschriwwen hat den '[[Special:Contributions/$2|$2]]')",
+'excontentauthor'             => "Op der Säit stong: '$1' (An als eenzegen dru geschriwwen hat de '[[User:$2|Benotzer:$2]]' ([[Special:Contributions/$2|$2 Kontributiounen]])",
 'exbeforeblank'               => "Den Inhalt virum Läsche wor: '$1'",
-'exblank'                     => "D'Säit wor eidel",
+'exblank'                     => "D'Säit war eidel",
 'confirmdelete'               => "Konfirméiert d'Läschen",
 'deletesub'                   => '("$1" gëtt geläscht)',
 'historywarning'              => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
@@ -1212,9 +1227,10 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'deletecomment'               => "Grond fir d'Läschen",
 'deleteotherreason'           => 'Aneren/ergänzende Grond:',
 'deletereasonotherlist'       => 'Anere Grond',
+'rollback'                    => 'Ännerungen zrécksetzen',
 'rollback_short'              => 'Zrécksetzen',
 'rollbacklink'                => 'Zrécksetzen',
-'rollbackfailed'              => 'Zrécksetzen huet net fonctionnéiert',
+'rollbackfailed'              => 'Zrécksetzen huet net geklappt',
 'cantrollback'                => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
 'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
 'editcomment'                 => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
@@ -1461,6 +1477,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'importunknownsource'      => 'Onbekannt Importquell',
 'importbadinterwiki'       => 'Falschen Interwiki-Link',
 'importnotext'             => 'Eidel oder keen Text',
+'importnosources'          => 'Fir den Transwiki-Import si keng Quellen definéiert an et ass net méiglech fir Säite mat alle Versiounen aus dem Transwiki-Tëschespäicher eropzelueden.',
 
 # Import log
 'importlogpage'                 => 'Import-Logbuch',
@@ -1536,10 +1553,12 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'categoryarticlecount'   => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Säit|ginn et bis ewell $1 Säiten}}.',
 'category-media-count'   => 'Et {{PLURAL:$1|gëtt eng Datei|ginn $1 Dateien}} an dëser Kategorie',
 'listingcontinuesabbrev' => '(Fortsetzung)',
+'spam_blanking'          => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
 
 # Info page
-'numedits'    => 'Zuel vun den Ännerunge vun dëser Säit: $1',
-'numwatchers' => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
+'infosubtitle' => 'Informatioun zur Säit',
+'numedits'     => 'Zuel vun den Ännerunge vun dëser Säit: $1',
+'numwatchers'  => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
 
 # Math options
 'mw_math_html' => 'Wa méiglech als HTML duerstellen, soss PNG',

@@ -7,6 +7,7 @@
  * @author Sab
  * @author Siebrand
  * @author SPQRobin
+ * @author Nike
  */
 
 
@@ -902,7 +903,7 @@ Va iyeltak gonageltal.',
 'nbytes'                  => '$1 {{PLURAL:$1|octet|octet}}',
 'ncategories'             => '$1 loma',
 'nlinks'                  => '$1 {{PLURAL:$1|gluyasiki|gluyasiki}}',
-'nmembers'                => '$1 {{PLURAL:$1 bewik|bewik}}',
+'nmembers'                => '$1 {{PLURAL:$1|bewik}}',
 'nrevisions'              => '$1 betara',
 'nviews'                  => '$1 rupera',
 'specialpage-empty'       => 'Mek trasiks tori bat munsteks.',

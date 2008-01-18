@@ -1352,6 +1352,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 'withoutinterwiki'        => "Pagina's zonder links naar andere talen",
 'withoutinterwiki-header' => "De volgende pagina's linken niet naar versies in een andere taal:",
+'withoutinterwiki-submit' => 'Tonen',
 
 'fewestrevisions' => "Pagina's met de minste bewerkingen",
 

@@ -1209,6 +1209,7 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 
 'withoutinterwiki'        => 'Strony bjez mjezyrěčnych wotkazow',
 'withoutinterwiki-header' => 'Sćěhowace strony njewotkazuja na druhe rěčne wersije:',
+'withoutinterwiki-submit' => 'Pokazać',
 
 'fewestrevisions'         => 'Strony z najmjenje wersijemi',
 'fewestrevisions-summary' => 'Tuta specialna strona naliči strony z najmjenje wobdźěłanjemi.',

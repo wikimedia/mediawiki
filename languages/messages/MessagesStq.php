@@ -723,7 +723,7 @@ Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akro
 
 # Diffs
 'history-title'           => 'Versionsgeschichte fon "$1"',
-'difference'              => '(Unnerschied twiske Versionen)',
+'difference'              => '(Unnerscheed twiske Versione)',
 'lineno'                  => 'Riege $1:',
 'compareselectedversions' => 'Wäälde Versione ferglieke',
 'editundo'                => 'tounichte moakje',

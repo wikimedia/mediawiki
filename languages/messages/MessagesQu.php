@@ -1322,6 +1322,8 @@ $2 nisqa p\'anqata qhaway ñaqha qullusqakunata rikunaykipaq.',
 ** Kikin kamariqpa mañakusqan
 ** Ruraqpa hayñinta k'irisqa
 ** Wandaluchasqa",
+'delete-toobig'               => "Kay p'anqaqa ancha wiñay kawsaysapa, $1-manta aswan musuqchasqayuq. Kay hina p'anqakunata qulluyqa saywachasqam, {{SITENAME}}ta mana waqllinapaq.",
+'delete-warning-toobig'       => "Kay p'anqaqa ancha wiñay kawsaysapa, $1-manta aswan musuqchasqayuq. Kay hina p'anqata qulluspaykiqa, {{SITENAME}}ta waqllinkimanchá. Kay ruraymanta anchata yuyaychakuspa hamut'ay.",
 'rollback'                    => 'Hukchasqakunata kutichiy',
 'rollback_short'              => 'Kutichiy',
 'rollbacklink'                => 'Kutichiy',

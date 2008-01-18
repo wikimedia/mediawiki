@@ -1284,6 +1284,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 
 'withoutinterwiki'        => 'Stránky bez mezijazykových odkazů (interwiki)',
 'withoutinterwiki-header' => 'Tyto stránky neobsahují žádný mezijazykový odkaz:',
+'withoutinterwiki-submit' => 'Zobrazit',
 
 'fewestrevisions' => 'Stránky s nejméně verzemi',
 

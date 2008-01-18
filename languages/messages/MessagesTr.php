@@ -326,7 +326,7 @@ Veritabanını kilitleyen operatörün açıklaması: $1',
 'viewsource'         => 'Kaynağı gör',
 'viewsourcefor'      => '$1 için',
 'viewsourcetext'     => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
-'editinginterface'   => '<div style="background: #FFBDBD; border: 1px solid #BB7979; color: #000000; font-weight: bold; margin: 2em 0 1em; padding: .5em 1em; vertical-align: middle; clear: both;">UYARI: Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.</div>',
+'editinginterface'   => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.",
 'cascadeprotected'   => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
 $2',
 

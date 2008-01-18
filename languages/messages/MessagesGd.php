@@ -7,6 +7,8 @@
  * @author לערי ריינהארט
  * @author Helix84
  * @author Nike
+ * @author Sionnach
+ * @author Raymond
  */
 
 
@@ -14,6 +16,7 @@
 $messages = array(
 # Dates
 'thursday' => 'Diardaoin',
+'friday'   => 'Di-Haoine',
 'august'   => 'An Lùnastal',
 
 # Bits of text used by many pages
@@ -71,7 +74,7 @@ $messages = array(
 'edithelp'      => 'Cobhair deasaichaidh',
 'edithelppage'  => 'Help:Deasaicheadh',
 'helppage'      => 'Help:Cuideachadh',
-'mainpage'      => 'Duille Mòr',
+'mainpage'      => 'Prìomh-Dhuilleag',
 'portal'        => 'Doras na Coimhearsnachd',
 'portal-url'    => 'Project:Doras na coimhearsnachd',
 'privacy'       => 'Polasaidh uaigneachd',
@@ -114,7 +117,7 @@ $1",
 'login'                      => 'Cuir a-steach',
 'userlogin'                  => 'Cuir a-steach',
 'logout'                     => 'Cuir a-mach',
-'userlogout'                 => 'Cuir a-mach',
+'userlogout'                 => 'Clàraich a-mach',
 'createaccount'              => 'Cruthaich cùnntas ùr',
 'yourrealname'               => "An dearbh ainm a th'oirbh*",
 'yournick'                   => 'An leth-ainm agaibh (a chuirear ti teachdaireachdan)',

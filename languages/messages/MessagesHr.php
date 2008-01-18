@@ -326,7 +326,7 @@ Za popis svih posebnih stranica posjetite [[Special:Specialpages|ovdje]].",
 # General errors
 'error'                => 'Greška',
 'databaseerror'        => 'Greška baze podataka',
-'dberrortext'          => 'Došlo je do sintaksne pogreške s upitom bazi.
+'dberrortext'          => 'Došlo je do sintaksne pogreške u upitu bazi.
 Možda se radi o bugu u softveru.
 Posljednji pokušaj upita je glasio:
 <blockquote><tt>$1</tt></blockquote>
