@@ -593,6 +593,12 @@ abstract class ApiBase {
 		'cantmove-titleprotected' => array('code' => 'protectedtitle', 'info' => "The destination article has been protected from creation"),
 		// 'badarticleerror' => shouldn't happen
 		// 'badtitletext' => shouldn't happen
+		'ip_range_invalid' => array('code' => 'invalidrange', 'info' => "Invalid IP range"),
+		'range_block_disabled' => array('code' => 'rangedisabled', 'info' => "Blocking IP ranges has been disabled"),
+		'nosuchusershort' => array('code' => 'nosuchuser', 'info' => "The user you specified doesn't exist"),
+		'badipaddress' => array('code' => 'invalidip', 'info' => "Invalid IP address specified"),
+		'ipb_expiry_invalid' => array('code' => 'invalidexpiry', 'info' => "Invalid expiry time"),
+		'ipb_already_blocked' => array('code' => 'alreadyblocked', 'info' => "The user you tried to block was already blocked"),
 		
 		// API-specific messages
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
@@ -602,6 +608,9 @@ abstract class ApiBase {
 		'pastexpiry' => array('code' => 'pastexpiry', 'info' => "Expiry time is in the past"),
 		'create-titleexists' => array('code' => 'create-titleexists', 'info' => "Existing titles can't be protected with 'create'"),
 		'missingtitle-createonly' => array('code' => 'missingtitle-createonly', 'info' => "Missing titles can only be protected with 'create'"),
+		'cantblock' => array('code' => 'cantblock', 'info' => "You don't have permission to block users"),
+		'canthide' => array('code' => 'canthide', 'info' => "You don't have permission to hide user names from the block log"),
+		'cantblock-email' => array('code' => 'cantblock-email', 'info' => "You don't have permission to block users from sending e-mail through the wiki"),
 	);
 	
 	/**

@@ -61,21 +61,23 @@ class ApiBlock extends ApiBase {
 		}
 
 		if(is_null($params['user']))
-			$this->dieUsage('The user parameter must be set', 'nouser');
+			$this->dieUsageMsg(array('missingparam', 'user'));
 		if(is_null($params['token']))
-			$this->dieUsage('The token parameter must be set', 'notoken');
+			$this->dieUsageMsg(array('missingparam', 'token'));
 		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsage('Invalid token', 'badtoken');
+			$this->dieUsageMsg(array('sessionfailure'));
 		if(!$wgUser->isAllowed('block'))
-			$this->dieUsage('You don\'t have permission to block users', 'permissiondenied');
+			$this->dieUsageMsg(array('cantblock'));
 		if($params['hidename'] && !$wgUser->isAllowed('hideuser'))
-			$this->dieUsage('You don\'t have permission to hide user names from the block log', 'nohide');
+			$this->dieUsageMsg(array('canthide'));
+		if($params['noemail'] && !$wgUser->isAllowed('blockemail'))
+			$this->dieUsageMsg(array('cantblock-email'));
 		if(wfReadOnly())
-			$this->dieUsage('The wiki is in read-only mode', 'readonly');
+			$this->dieUsageMsg(array('readonlytext'));
 
 		$form = new IPBlockForm('');
 		$form->BlockAddress = $params['user'];
-		$form->BlockReason = $params['reason'];
+		$form->BlockReason = (is_null($params['reason']) ? '' : $params['reason']);
 		$form->BlockReasonList = 'other';
 		$form->BlockExpiry = ($params['expiry'] == 'never' ? 'infinite' : $params['expiry']);
 		$form->BlockOther = '';
@@ -88,27 +90,11 @@ class ApiBlock extends ApiBase {
 		$dbw = wfGetDb(DB_MASTER);
 		$dbw->begin();
 		$retval = $form->doBlock($userID, $expiry);
-		switch($retval)
-		{
-			case IPBlockForm::BLOCK_SUCCESS:
-				break; // We'll deal with that later
-			case IPBlockForm::BLOCK_RANGE_INVALID:
-				$this->dieUsage("Invalid IP range ``{$params['user']}''", 'invalidrange');
-			case IPBlockForm::BLOCK_RANGE_DISABLED:
-				$this->dieUsage('Blocking IP ranges has been disabled', 'rangedisabled');
-			case IPBlockForm::BLOCK_NONEXISTENT_USER:
-				$this->dieUsage("User ``{$params['user']}'' doesn't exist", 'nosuchuser');
-			case IPBlockForm::BLOCK_IP_INVALID:
-				$this->dieUsage("Invaild IP address ``{$params['user']}''", 'invalidip');
-			case IPBlockForm::BLOCK_EXPIRY_INVALID:
-				$this->dieUsage("Invalid expiry time ``{$params['expiry']}''", 'invalidexpiry');
-			case IPBlockForm::BLOCK_ALREADY_BLOCKED:
-				$this->dieUsage("User ``{$params['user']}'' is already blocked", 'alreadyblocked');
-			default:
-				$this->dieDebug(__METHOD__, "IPBlockForm::doBlock() returned an unknown error ($retval)");
-		}
+		if(!empty($retval))
+			// We don't care about multiple errors, just report one of them
+			$this->dieUsageMsg($retval);
+
 		$dbw->commit();
-		
 		$res['user'] = $params['user'];
 		$res['userID'] = $userID;
 		$res['expiry'] = ($expiry == Block::infinity() ? 'infinite' : $expiry);
@@ -152,7 +138,7 @@ class ApiBlock extends ApiBase {
 			'anononly' => 'Block anonymous users only (i.e. disable anonymous edits for this IP)',
 			'nocreate' => 'Prevent account creation',
 			'autoblock' => 'Automatically block the last used IP address, and any subsequent IP addresses they try to login from',
-			'noemail' => 'Prevent user from sending e-mail through the wiki',
+			'noemail' => 'Prevent user from sending e-mail through the wiki. (Requires the "blockemail" right.)',
 			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)'
 		);
 	}
