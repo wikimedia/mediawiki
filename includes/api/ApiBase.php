@@ -652,6 +652,13 @@ abstract class ApiBase {
 	public function isEditMode() {
 		return false;
 	}
+	
+	/**
+	 * Indicates whether this module must be called with a POST request
+	 */
+	public function mustBePosted() {
+		return false;
+	}
 
 
 	/**

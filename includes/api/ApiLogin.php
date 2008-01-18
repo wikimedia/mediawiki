@@ -217,6 +217,8 @@ class ApiLogin extends ApiBase {
 	private function getMemCacheKey() {
 		return wfMemcKey( 'apilogin', 'badlogin', 'ip', wfGetIP() );
 	}
+	
+	public function mustBePosted() { return true; }
 
 	protected function getAllowedParams() {
 		return array (

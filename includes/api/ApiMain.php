@@ -320,8 +320,11 @@ class ApiMain extends ApiBase {
 				return;
 			}
 		}
-
+		
 		if (!$this->mInternalMode) {
+			// Ignore mustBePosted() for internal calls
+			if($module->mustBePosted() && !$this->mRequest->wasPosted())
+				$this->dieUsage("The {$this->mAction} module requires a POST request", 'mustbeposted');
 
 			// See if custom printer is used
 			$this->mPrinter = $module->getCustomPrinter();
