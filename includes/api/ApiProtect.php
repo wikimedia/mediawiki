@@ -43,24 +43,23 @@ class ApiProtect extends ApiBase {
 		
 		$titleObj = NULL;
 		if(!isset($params['title']))
-			$this->dieUsage('The title parameter must be set', 'notitle');
+			$this->dieUsageMsg(array('missingparam', 'title'));
 		if(!isset($params['token']))
-			$this->dieUsage('The token parameter must be set', 'notoken');
+			$this->dieUsageMsg(array('missingparam', 'token'));
 		if(!isset($params['protections']) || empty($params['protections']))
-			$this->dieUsage('The protections parameter must be set', 'noprotections');
+			$this->dieUsageMsg(array('missingparam', 'protections'));
 
-		if($wgUser->isBlocked())
-			$this->dieUsage('You have been blocked from editing', 'blocked');
-		if(wfReadOnly())
-			$this->dieUsage('The wiki is in read-only mode', 'readonly');
 		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsage('Invalid token', 'badtoken');
+			$this->dieUsageMsg(array('sessionfailure'));
 
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
-			$this->dieUsage("Bad title ``{$params['title']}''", 'invalidtitle');
-		if(!$titleObj->userCan('protect'))
-			$this->dieUsage('You don\'t have permission to change protection levels', 'permissiondenied');
+			$this->dieUsageMsg(array('invalidtitle', $params['title']));
+			
+		$errors = $titleObj->getUserPermissionsErrors('protect', $wgUser);
+		if(!empty($errors))
+			// We don't care about multiple errors, just report one of them
+			$this->dieUsageMsg(current($errors));
 		
 		if(in_array($params['expiry'], array('infinite', 'indefinite', 'never')))
 			$expiry = Block::infinity();
@@ -68,11 +67,11 @@ class ApiProtect extends ApiBase {
 		{
 			$expiry = strtotime($params['expiry']);
 			if($expiry < 0 || $expiry == false)
-				$this->dieUsage('Invalid expiry time', 'invalidexpiry');
+				$this->dieUsageMsg(array('invalidexpiry'));
 			
 			$expiry = wfTimestamp(TS_MW, $expiry);
 			if($expiry < wfTimestampNow())
-				$this->dieUsage('Expiry time is in the past', 'pastexpiry');
+				$this->dieUsageMsg(array('pastexpiry'));
 		}
 
 		$protections = array();
@@ -81,9 +80,9 @@ class ApiProtect extends ApiBase {
 			$p = explode('=', $prot);
 			$protections[$p[0]] = ($p[1] == 'all' ? '' : $p[1]);
 			if($titleObj->exists() && $p[0] == 'create')
-				$this->dieUsage("Existing titles can't be protected with 'create'", 'create-titleexists');
+				$this->dieUsageMsg(array('create-titleexists'));
 			if(!$titleObj->exists() && $p[0] != 'create')
-				$this->dieUsage("Missing titles can only be protected with 'create'", 'missingtitle');
+				$this->dieUsageMsg(array('missingtitles-createonly'));
 		}
 
 		$dbw = wfGetDb(DB_MASTER);
@@ -95,9 +94,15 @@ class ApiProtect extends ApiBase {
 			$ok = $titleObj->updateTitleProtection($protections['create'], $params['reason'], $expiry);
 		if(!$ok)
 			// This is very weird. Maybe the article was deleted or the user was blocked/desysopped in the meantime?
-			$this->dieUsage('Unknown error', 'unknownerror');
+			// Just throw an unknown error in this case, as it's very likely to be a race condition
+			$this->dieUsageMsg(array());
 		$dbw->commit();
-		$res = array('title' => $titleObj->getPrefixedText(), 'reason' => $params['reason'], 'expiry' => wfTimestamp(TS_ISO_8601, $expiry));
+		$res = array('title' => $titleObj->getPrefixedText(), 'reason' => $params['reason']);
+		if($expiry == Block::infinity())
+			$res['expiry'] = 'infinity';
+		else
+			$res['expiry'] = wfTimestamp(TS_ISO_8601, $expiry);
+
 		if($params['cascade'])
 			$res['cascade'] = '';
 		$res['protections'] = $protections;
