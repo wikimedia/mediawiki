@@ -597,7 +597,11 @@ abstract class ApiBase {
 		// API-specific messages
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
-		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''")
+		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''"),
+		'invalidexpiry' => array('code' => 'invalidexpiry', 'info' => "Invalid expiry time"),
+		'pastexpiry' => array('code' => 'pastexpiry', 'info' => "Expiry time is in the past"),
+		'create-titleexists' => array('code' => 'create-titleexists', 'info' => "Existing titles can't be protected with 'create'"),
+		'missingtitle-createonly' => array('code' => 'missingtitle-createonly', 'info' => "Missing titles can only be protected with 'create'"),
 	);
 	
 	/**

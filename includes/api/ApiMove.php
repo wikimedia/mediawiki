@@ -61,11 +61,23 @@ class ApiMove extends ApiBase {
 			$this->dieUsageMsg(array('notanarticle'));
 		$fromTalk = $fromTitle->getTalkPage();
 
-		
 		$toTitle = Title::newFromText($params['to']);
 		if(!$toTitle)
 			$this->dieUsageMsg(array('invalidtitle', $params['to']));
 		$toTalk = $toTitle->getTalkPage();
+
+		// Run getUserPermissionsErrors() here so we get message arguments too,
+		// rather than just a message key. The latter is troublesome for messages
+		// that use arguments.
+		// FIXME: moveTo() should really return an array, requires some 
+		//	  refactoring of other code, though (mainly SpecialMovepage.php)
+		$errors = array_merge($fromTitle->getUserPermissionsErrors('move', $wgUser),
+					$fromTitle->getUserPermissionsErrors('edit', $wgUser),
+					$toTitle->getUserPermissionsErrors('move', $wgUser),
+					$toTitle->getUserPermissionsErrors('edit', $wgUser));
+		if(!empty($errors))
+			// We don't care about multiple errors, just report one of them
+			$this->dieUsageMsg(current($errors));
 
 		$dbw = wfGetDB(DB_MASTER);
 		$dbw->begin();		
