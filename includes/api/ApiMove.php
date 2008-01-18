@@ -46,11 +46,11 @@ class ApiMove extends ApiBase {
 	
 		$titleObj = NULL;
 		if(!isset($params['from']))
-			$this->dieUsageMsg(array('nofrom'));
+			$this->dieUsageMsg(array('missingparam', 'from'));
 		if(!isset($params['to']))
-			$this->dieUsageMsg(array('noto'));
+			$this->dieUsageMsg(array('missingparam', 'to'));
 		if(!isset($params['token']))
-			$this->dieUsageMsg(array('notoken'));
+			$this->dieUsageMsg(array('missingparam', 'token'));
 		if(!$wgUser->matchEditToken($params['token']))
 			$this->dieUsageMsg(array('sessionfailure'));
 

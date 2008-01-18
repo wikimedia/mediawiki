@@ -595,11 +595,7 @@ abstract class ApiBase {
 		// 'badtitletext' => shouldn't happen
 		
 		// API-specific messages
-		'notitle' => array('code' => 'notitle', 'info' => "The title parameter must be set"),
-		'notoken' => array('code' => 'notoken', 'info' => "The token parameter must be set"),
-		'nouser' => array('code' => 'nouser', 'info' => "The user parameter must be set"),
-		'nofrom' => array('code' => 'nofrom', 'info' => "The from parameter must be set"),
-		'noto' => array('code' => 'noto', 'info' => "The to parameter must be set"),
+		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
 		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''")
 	);
@@ -611,7 +607,7 @@ abstract class ApiBase {
 	public function dieUsageMsg($error) {
 		$key = array_shift($error);
 		if(isset(self::$messageMap[$key]))
-			$this->dieUsage(wfMsgReplaceArgs(self::$messageMap[$key]['info'], $error), self::$messageMap[$key]['code']);
+			$this->dieUsage(wfMsgReplaceArgs(self::$messageMap[$key]['info'], $error), wfMsgReplaceArgs(self::$messageMap[$key]['code'], $error));
 		// If the key isn't present, throw an "unknown error"
 		$this->dieUsageMsg(array('unknownerror', $key));
 	}

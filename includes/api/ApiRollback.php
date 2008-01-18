@@ -43,11 +43,11 @@ class ApiRollback extends ApiBase {
 		
 		$titleObj = NULL;
 		if(!isset($params['title']))
-			$this->dieUsageMsg(array('notitle'));
+			$this->dieUsageMsg(array('missingparam', 'title'));
 		if(!isset($params['user']))
-			$this->dieUsageMsg(array('nouser'));
+			$this->dieUsageMsg(array('missingparam', 'user'));
 		if(!isset($params['token']))
-			$this->dieUsageMsg(array('notoken'));
+			$this->dieUsageMsg(array('missingparam', 'token'));
 
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
