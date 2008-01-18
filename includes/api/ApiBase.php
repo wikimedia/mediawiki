@@ -554,6 +554,10 @@ abstract class ApiBase {
 	 * Array that maps message keys to error messages. $1 and friends are replaced.
 	 */
 	public static $messageMap = array(
+		// This one MUST be present, or dieUsageMsg() will recurse infinitely
+		'unknownerror' => array('code' => 'unknownerror', 'info' => "Unknown error: ``\$1''"),
+		
+		// Messages from Title::getUserPermissionsErrors()
 		'ns-specialprotected' => array('code' => 'unsupportednamespace', 'info' => "Pages in the Special namespace can't be edited"),
 		'protectedinterface' => array('code' => 'protectednamespace-interface', 'info' => "You're not allowed to edit interface messages"),
 		'namespaceprotected' => array('code' => 'protectednamespace', 'info' => "You're not allowed to edit pages in the ``\$1'' namespace"),
@@ -565,12 +569,27 @@ abstract class ApiBase {
 		'badaccess-group1' => array('code' => 'permissiondenied', 'info' => "Permission denied"), // Can't use the parameter 'cause it's wikilinked
 		'badaccess-group2' => array('code' => 'permissiondenied', 'info' => "Permission denied"),
 		'badaccess-groups' => array('code' => 'permissiondenied', 'info' => "Permission denied"),
-		'unknownerror' => array('code' => 'unknownerror', 'info' => "Unknown error"),
 		'titleprotected' => array('code' => 'protectedtitle', 'info' => "This title has been protected from creation"),
 		'nocreate-loggedin' => array('code' => 'cantcreate', 'info' => "You don't have permission to create new pages"),
 		'nocreatetext' => array('code' => 'cantcreate-anon', 'info' => "Anonymous users can't create new pages"),
 		'movenologintext' => array('code' => 'cantmove-anon', 'info' => "Anonymous users can't move pages"),
-		'movenotallowed' => array('code' => 'cantmove', 'info' => "You don't have permission to move pages")
+		'movenotallowed' => array('code' => 'cantmove', 'info' => "You don't have permission to move pages"),
+		
+		// Miscellaneous interface messages
+		'alreadyrolled' => array('code' => 'alreadyrolled', 'info' => "The page you tried to rollback was already rolled back"),
+		'cantrollback' => array('code' => 'onlyauthor', 'info' => "The page you tried to rollback only has one author"), 
+		'blocked' => array('code' => 'blocked', 'info' => "You have been blocked from editing"),
+		'readonlytext' => array('code' => 'readonly', 'info' => "The wiki is currently in read-only mode"),
+		'sessionfailure' => array('code' => 'badtoken', 'info' => "Invalid token"),
+		'cannotdelete' => array('code' => 'cantdelete', 'info' => "Couldn't delete ``\$1''. Maybe it was deleted already by someone else"),
+		'notanarticle' => array('code' => 'missingtitle', 'info' => "The page you requested doesn't exist"),
+		
+		// API-specific messages
+		'notitle' => array('code' => 'notitle', 'info' => "The title parameter must be set"),
+		'notoken' => array('code' => 'notoken', 'info' => "The token parameter must be set"),
+		'nouser' => array('code' => 'nouser', 'info' => "The user parameter must be set"),
+		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
+		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''")
 	);
 	
 	/**
@@ -581,8 +600,8 @@ abstract class ApiBase {
 		$key = array_shift($error);
 		if(isset(self::$messageMap[$key]))
 			$this->dieUsage(wfMsgReplaceArgs(self::$messageMap[$key]['info'], $error), self::$messageMap[$key]['code']);
-		// If the key isn't present, throw an "unknown error
-		$this->dieUsage(self::$messageMap['unknownerror']['info'], self::$messageMap['unknownerror']['code']);
+		// If the key isn't present, throw an "unknown error"
+		$this->dieUsageMsg(array('unknownerror', $key));
 	}
 
 	/**
