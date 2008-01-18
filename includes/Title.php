@@ -2310,7 +2310,8 @@ class Title {
 
 		if ( $auth ) {
 			global $wgUser;
-			$errors = $this->getUserPermissionsErrors('move', $wgUser);
+			$errors = array_merge($this->getUserPermissionsErrors('move', $wgUser),
+					$this->getUserPermissionsErrors('edit', $wgUser));
 			if($errors !== array())
 				return $errors[0][0];
 		}
