@@ -303,9 +303,6 @@ class PageArchive {
 		return ($n > 0);
 	}
 
-	const UNDELETE_NOTHINGRESTORED = 0; // No revisions could be restored
-	const UNDELETE_NOTAVAIL = -1; // Not all requested revisions are available
-	const UNDELETE_UNKNOWNERR = -2; // Unknown error
 	/**
 	 * Restore the given (or all) text and file revisions for the page.
 	 * Once restored, the items will be removed from the archive tables.
@@ -315,7 +312,8 @@ class PageArchive {
 	 * @param string $comment
 	 * @param array $fileVersions
 	 *
-	 * @return array(number of revisions restored, number of file versions restored, log reason) on success or UNDELETE_* on failure
+	 * @return array(number of file revisions restored, number of image revisions restored, log message)
+	 * on success, false on failure
 	 */
 	function undelete( $timestamps, $comment = '', $fileVersions = array() ) {
 		// If both the set of text revisions and file revisions are empty,
@@ -335,8 +333,8 @@ class PageArchive {
 		
 		if( $restoreText ) {
 			$textRestored = $this->undeleteRevisions( $timestamps );
-			if($textRestored < 0) // It must be one of UNDELETE_*
-				return $textRestored;
+			if($textRestored === false) // It must be one of UNDELETE_*
+				return false;
 		} else {
 			$textRestored = 0;
 		}
@@ -357,7 +355,7 @@ class PageArchive {
 				$wgContLang->formatNum( $filesRestored ) );
 		} else {
 			wfDebug( "Undelete: nothing undeleted...\n" );
-			return self::UNDELETE_NOTHINGRESTORED;
+			return false;
 		}
 		
 		if( trim( $comment ) != '' )
@@ -376,10 +374,11 @@ class PageArchive {
 	 * @param string $comment
 	 * @param array $fileVersions
 	 *
-	 * @return int number of revisions restored on success or UNDELETE_* on failure
+	 * @return mixed number of revisions restored or false on failure
 	 */
 	private function undeleteRevisions( $timestamps ) {
-		if ( wfReadOnly() ) return 0;
+		if ( wfReadOnly() )
+			return false;
 
 		$restoreAll = empty( $timestamps );
 		
@@ -444,7 +443,7 @@ class PageArchive {
 			);
 		if( $dbw->numRows( $result ) < count( $timestamps ) ) {
 			wfDebug( __METHOD__.": couldn't find all requested rows\n" );
-			return self::UNDELETE_NOTAVAIL;
+			return false;
 		}
 		
 		$revision = null;

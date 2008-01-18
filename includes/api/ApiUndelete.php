@@ -43,22 +43,22 @@ class ApiUndelete extends ApiBase {
 		
 		$titleObj = NULL;
 		if(!isset($params['title']))
-			$this->dieUsage('The title parameter must be set', 'notitle');
+			$this->dieUsageMsg(array('missingparam', 'title'));
 		if(!isset($params['token']))
-			$this->dieUsage('The token parameter must be set', 'notoken');
+			$this->dieUsageMsg(array('missingparam', 'token'));
 
 		if(!$wgUser->isAllowed('undelete'))
-			$this->dieUsage('You don\'t have permission to restore deleted revisions', 'permissiondenied');
+			$this->dieUsageMsg(array('permdenied-undelete'));
 		if($wgUser->isBlocked())
-			$this->dieUsage('You have been blocked from editing', 'blocked');
+			$this->dieUsageMsg(array('blockedtext'));
 		if(wfReadOnly())
-			$this->dieUsage('The wiki is in read-only mode', 'readonly');
+			$this->dieUsageMsg(array('readonlytext'));
 		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsage('Invalid token', 'badtoken');
+			$this->dieUsageMsg(array('sessionfailure'));
 
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
-			$this->dieUsage("Bad title ``{$params['title']}''", 'invalidtitle');
+			$this->dieUsageMsg(array('invalidtitle', $params['title']));
 
 		// Convert timestamps
 		if(!is_array($params['timestamps']))
@@ -71,17 +71,9 @@ class ApiUndelete extends ApiBase {
 		$dbw->begin();
 		$retval = $pa->undelete((isset($params['timestamps']) ? $params['timestamps'] : array()), $params['reason']);
 		if(!is_array($retval))
-			switch($retval)
-			{
-				case PageArchive::UNDELETE_NOTHINGRESTORED:
-					$this->dieUsage('No revisions could be restored', 'norevs');
-				case PageArchive::UNDELETE_NOTAVAIL:
-					$this->dieUsage('Not all requested revisions could be found', 'revsnotfound');
-				case PageArchive::UNDELETE_UNKNOWNERR:
-					$this->dieUsage('Undeletion failed with unknown error', 'unknownerror');
-			}
+			$this->dieUsageMsg(array('cannotundelete'));
+
 		$dbw->commit();
-		
 		$info['title'] = $titleObj->getPrefixedText();
 		$info['revisions'] = $retval[0];
 		$info['fileversions'] = $retval[1];
