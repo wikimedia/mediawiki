@@ -2308,10 +2308,11 @@ class Title {
 			return 'badarticleerror';
 		}
 
-		if ( $auth && (
-				!$this->userCan( 'edit' ) || !$nt->userCan( 'edit' ) ||
-				!$this->userCan( 'move' ) || !$nt->userCan( 'move' ) ) ) {
-			return 'protectedpage';
+		if ( $auth ) {
+			global $wgUser;
+			$errors = $this->getUserPermissionsErrors('move', $wgUser);
+			if($errors !== array())
+				return $errors[0][0];
 		}
 
 		global $wgUser;

@@ -574,20 +574,32 @@ abstract class ApiBase {
 		'nocreatetext' => array('code' => 'cantcreate-anon', 'info' => "Anonymous users can't create new pages"),
 		'movenologintext' => array('code' => 'cantmove-anon', 'info' => "Anonymous users can't move pages"),
 		'movenotallowed' => array('code' => 'cantmove', 'info' => "You don't have permission to move pages"),
+		'confirmedittiext' => array('code' => 'confirmemail', 'info' => "You must confirm your e-mail address before you can edit"),
+		'blockedtext' => array('code' => 'blocked', 'info' => "You have been blocked from editing"),
+		'autoblockedtext' => array('code' => 'autoblocked', 'info' => "Your IP address has been blocked automatically, because it was used by a blocked user"),
 		
 		// Miscellaneous interface messages
 		'alreadyrolled' => array('code' => 'alreadyrolled', 'info' => "The page you tried to rollback was already rolled back"),
 		'cantrollback' => array('code' => 'onlyauthor', 'info' => "The page you tried to rollback only has one author"), 
-		'blocked' => array('code' => 'blocked', 'info' => "You have been blocked from editing"),
 		'readonlytext' => array('code' => 'readonly', 'info' => "The wiki is currently in read-only mode"),
 		'sessionfailure' => array('code' => 'badtoken', 'info' => "Invalid token"),
 		'cannotdelete' => array('code' => 'cantdelete', 'info' => "Couldn't delete ``\$1''. Maybe it was deleted already by someone else"),
 		'notanarticle' => array('code' => 'missingtitle', 'info' => "The page you requested doesn't exist"),
+		'selfmove' => array('code' => 'selfmove', 'info' => "Can't move a page to itself"),
+		'immobile_namespace' => array('code' => 'immobilenamespace', 'info' => "You tried to move pages from or to a namespace that is protected from moving"),
+		'articleexists' => array('code' => 'articleexists', 'info' => "The destination article already exists and is not a redirect to the source article"),
+		'protectedpage' => array('code' => 'protectedpage', 'info' => "You don't have permission to perform this move"),
+		'hookaborted' => array('code' => 'hookaborted', 'info' => "The modification you tried to make was aborted by an extension hook"),
+		'cantmove-titleprotected' => array('code' => 'protectedtitle', 'info' => "The destination article has been protected from creation"),
+		// 'badarticleerror' => shouldn't happen
+		// 'badtitletext' => shouldn't happen
 		
 		// API-specific messages
 		'notitle' => array('code' => 'notitle', 'info' => "The title parameter must be set"),
 		'notoken' => array('code' => 'notoken', 'info' => "The token parameter must be set"),
 		'nouser' => array('code' => 'nouser', 'info' => "The user parameter must be set"),
+		'nofrom' => array('code' => 'nofrom', 'info' => "The from parameter must be set"),
+		'noto' => array('code' => 'noto', 'info' => "The to parameter must be set"),
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
 		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''")
 	);

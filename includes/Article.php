@@ -2318,14 +2318,7 @@ class Article {
 	 * @return array of errors, each error formatted as
 	 *   array(messagekey, param1, param2, ...).
 	 * On success, the array is empty.  This array can also be passed to
-	 * OutputPage::showPermissionsErrorPage(). NOTE: If the user is blocked,
-	 * 'blocked' is passed as a message, but it doesn't exist. Be sure to check
-	 * it before calling showPermissionsErrorPage(). The same is true for
-	 * 'actionthrottledtext', which is passed if the rate limit is passed; and
-	 * for 'readonlytext', which is passed if the wiki is read-only.
-	 *
-	 * FIXME: This is silly, those messages should be possible to output di-
-	 * rectly.
+	 * OutputPage::showPermissionsErrorPage().
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails ) {
 		global $wgUser;
@@ -2340,9 +2333,6 @@ class Article {
 		if ( $wgUser->pingLimiter('rollback') || $wgUser->pingLimiter() ) {
 			$errors[] = array( 'actionthrottledtext' );
 		}
-		if ( $wgUser->isBlocked() )
-			$errors[] = array( 'blocked' );
-
 		# If there were errors, bail out now
 		if(!empty($errors))
 			return $errors;

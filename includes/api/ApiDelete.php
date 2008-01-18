@@ -62,7 +62,7 @@ class ApiDelete extends ApiBase {
 		if(!$titleObj)
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
 		if(!$titleObj->exists())
-			$this->dieUsageMsg(array('notanarticle', $params['title']));
+			$this->dieUsageMsg(array('notanarticle'));
 
 		$articleObj = new Article($titleObj);
 		$reason = (isset($params['reason']) ? $params['reason'] : NULL);
