@@ -1374,6 +1374,7 @@ $2',
 
 'withoutinterwiki'        => 'דפים ללא קישורי שפה',
 'withoutinterwiki-header' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
+'withoutinterwiki-submit' => 'הצגה',
 
 'fewestrevisions' => 'הדפים בעלי מספר העריכות הנמוך ביותר',
 
