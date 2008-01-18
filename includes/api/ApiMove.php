@@ -110,6 +110,8 @@ class ApiMove extends ApiBase {
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
 	
+	public function mustBePosted() { return true; }
+	
 	protected function getAllowedParams() {
 		return array (
 			'from' => null,

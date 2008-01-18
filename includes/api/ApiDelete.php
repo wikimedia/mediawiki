@@ -118,6 +118,8 @@ class ApiDelete extends ApiBase {
 		return array(array('cannotdelete', $article->mTitle->getPrefixedText()));
 	}
 	
+	public function mustBePosted() { return true; }
+	
 	protected function getAllowedParams() {
 		return array (
 			'title' => null,
