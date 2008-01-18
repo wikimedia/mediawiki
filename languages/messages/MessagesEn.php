@@ -1649,6 +1649,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'withoutinterwiki'         => 'Pages without language links',
 'withoutinterwiki-header'  => 'The following pages do not link to other language versions:',
 'withoutinterwiki-summary' => '', # only translate this message to other languages if you have to change it
+'withoutinterwiki-submit'  => 'Show',
 
 'fewestrevisions'         => 'Pages with the fewest revisions',
 'fewestrevisions-summary' => '', # only translate this message to other languages if you have to change it
