@@ -200,7 +200,7 @@ class IPUnblockForm {
 
 	function doSubmit() {
 		global $wgOut;
-		$retval = self::doUnblock(&$this->id, &$this->ip, &$this->reason, &$range);
+		$retval = self::doUnblock($this->id, $this->ip, $this->reason, $range);
 		if($retval == self::UNBLOCK_SUCCESS) {
 			# Report to the user
 			$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
