@@ -43,32 +43,31 @@ class ApiRollback extends ApiBase {
 		
 		$titleObj = NULL;
 		if(!isset($params['title']))
-			$this->dieUsage('The title parameter must be set', 'notitle');
+			$this->dieUsageMsg(array('notitle'));
 		if(!isset($params['user']))
-			$this->dieUsage('The user parameter must be set', 'nouser');
+			$this->dieUsageMsg(array('nouser'));
 		if(!isset($params['token']))
-			$this->dieUsage('The token parameter must be set', 'notoken');
-
-		if(wfReadOnly())
-			$this->dieUsage('The wiki is in read-only mode', 'readonly');
+			$this->dieUsageMsg(array('notoken'));
 
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
-			$this->dieUsage("Bad title ``{$params['title']}''", 'invalidtitle');
+			$this->dieUsageMsg(array('invalidtitle', $params['title']));
+		if(!$titleObj->exists())
+			$this->dieUsageMsg(array('notanarticle'));
 
 		$username = User::getCanonicalName($params['user']);
 		if(!$username)
-			$this->dieUsage("Invalid username ``{$params['user']}''", 'invaliduser');
+			$this->dieUsageMsg(array('invaliduser', $params['user']));
 
 		$articleObj = new Article($titleObj);
 		$summary = (isset($params['summary']) ? $params['summary'] : "");
 		$details = null;
 		$dbw = wfGetDb(DB_MASTER);
 		$dbw->begin();
-		$retval = $articleObj->doRollback($username, $summary, $params['token'], $params['markbot'], &$details);
+		$retval = $articleObj->doRollback($username, $summary, $params['token'], $params['markbot'], $details);
 
 		if(!empty($retval))
-			// We don't care about multiple errors, just report the first one
+			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($retval));
 
 		$dbw->commit();
