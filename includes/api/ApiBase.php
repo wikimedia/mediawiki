@@ -599,6 +599,8 @@ abstract class ApiBase {
 		'badipaddress' => array('code' => 'invalidip', 'info' => "Invalid IP address specified"),
 		'ipb_expiry_invalid' => array('code' => 'invalidexpiry', 'info' => "Invalid expiry time"),
 		'ipb_already_blocked' => array('code' => 'alreadyblocked', 'info' => "The user you tried to block was already blocked"),
+		'ipb_blocked_as_range' => array('code' => 'blockedasrange', 'info' => "IP address ``\$1'' was blocked as part of range ``\$2''. You can't unblock the IP invidually, but you can unblock the range as a whole."),
+		'ipb_cant_unblock' => array('code' => 'cantunblock', 'info' => "The block you specified was not found. It may have been unblocked already"),
 		
 		// API-specific messages
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
@@ -611,6 +613,9 @@ abstract class ApiBase {
 		'cantblock' => array('code' => 'cantblock', 'info' => "You don't have permission to block users"),
 		'canthide' => array('code' => 'canthide', 'info' => "You don't have permission to hide user names from the block log"),
 		'cantblock-email' => array('code' => 'cantblock-email', 'info' => "You don't have permission to block users from sending e-mail through the wiki"),
+		'unblock-notarget' => array('code' => 'notarget', 'info' => "Either the id or the user parameter must be set"),
+		'unblock-idanduser' => array('code' => 'idanduser', 'info' => "The id and user parameters can\'t be used together"),
+		'cantunblock' => array('code' => 'permissiondenied', 'info' => "You don't have permission to unblock users"),
 	);
 	
 	/**

@@ -41,7 +41,7 @@ class ApiUnblock extends ApiBase {
 
 	/**
 	 * Unblocks the specified user or provides the reason the unblock failed.
-	 */
+	 */	
 	public function execute() {
 		global $wgUser;
 		$this->getMain()->requestWriteMode();
@@ -55,42 +55,28 @@ class ApiUnblock extends ApiBase {
 		}
 
 		if(is_null($params['id']) && is_null($params['user']))
-			$this->dieUsage('Either the id or the user parameter must be set', 'notarget');
+			$this->dieUsageMsg(array('unblock-notarget'));
 		if(!is_null($params['id']) && !is_null($params['user']))
-			$this->dieUsage('The id and user parameters can\'t be used together', 'idanduser');
+			$this->dieUsageMsg(array('unblock-idanduser'));
 		if(is_null($params['token']))
-			$this->dieUsage('The token parameter must be set', 'notoken');
+			$this->dieUsageMsg(array('missingparam', 'token'));
 		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsage('Invalid token', 'badtoken');
+			$this->dieUsageMsg(array('sessionfailure'));
 		if(!$wgUser->isAllowed('block'))
-			$this->dieUsage('You don\'t have permission to unblock users', 'permissiondenied');
+			$this->dieUsageMsg(array('cantunblock'));
 		if(wfReadOnly())
-			$this->dieUsage('The wiki is in read-only mode', 'readonly');
+			$this->dieUsageMsg(array('readonlytext'));
 
 		$id = $params['id'];
 		$user = $params['user'];
-		$reason = $params['reason'];
+		$reason = (is_null($params['reason']) ? '' : $params['reason']);
 		$dbw = wfGetDb(DB_MASTER);
 		$dbw->begin();
-		$retval = IPUnblockForm::doUnblock(&$id, &$user, &$reason, &$range);
+		$retval = IPUnblockForm::doUnblock($id, $user, $reason, $range);
+		if(!empty($retval))
+			$this->dieUsageMsg($retval);
 
-		switch($retval)
-		{
-			case IPUnblockForm::UNBLOCK_SUCCESS:
-				break; // We'll deal with that later
-			case IPUnblockForm::UNBLOCK_NO_SUCH_ID:
-				$this->dieUsage("There is no block with ID ``$id''", 'nosuchid');
-			case IPUnblockForm::UNBLOCK_USER_NOT_BLOCKED:
-				$this->dieUsage("User ``$user'' is not blocked", 'notblocked');
-			case IPUnblockForm::UNBLOCK_BLOCKED_AS_RANGE:
-				$this->dieUsage("IP address ``$user'' was blocked as part of range ``$range''. You can't unblock the IP invidually, but you can unblock the range as a whole.", 'blockedasrange');
-			case IPUnblockForm::UNBLOCK_UNKNOWNERR:
-				$this->dieUsage("Unknown error", 'unknownerr');
-			default:
-				$this->dieDebug(__METHOD__, "IPBlockForm::doBlock() returned an unknown error ($retval)");
-		}
 		$dbw->commit();
-		
 		$res['id'] = $id;
 		$res['user'] = $user;
 		$res['reason'] = $reason;

@@ -150,7 +150,7 @@ class IPUnblockForm {
 	 * Backend code for unblocking. doSubmit() wraps around this.
 	 * $range is only used when UNBLOCK_BLOCKED_AS_RANGE is returned, in which
 	 * case it contains the range $ip is part of.
-	 * Returns one of UNBLOCK_*
+	 * @return array array(message key, parameters) on failure, empty array on success
 	 */
 
 	static function doUnblock(&$id, &$ip, &$reason, &$range = null)
@@ -158,7 +158,7 @@ class IPUnblockForm {
 		if ( $id ) {
 			$block = Block::newFromID( $id );
 			if ( !$block ) {
-				return self::UNBLOCK_NO_SUCH_ID;
+				return array('ipb_cant_unblock', htmlspecialchars($id));
 			}
 			$ip = $block->getRedactedName();
 		} else {
@@ -168,19 +168,20 @@ class IPUnblockForm {
 				$id = substr( $ip, 1 );
 				$block = Block::newFromID( $id );
 				if( !$block ) {
-					return self::UNBLOCK_NO_SUCH_ID;
+					return array('ipb_cant_unblock', htmlspecialchars($id));
 				}
+				$ip = $block->getRedactedName();
 			} else {
 				$block = Block::newFromDB( $ip );
 				if ( !$block ) { 
-					return self::UNBLOCK_USER_NOT_BLOCKED;
+					return array('ipb_cant_unblock', htmlspecialchars($id));
 				}
 				if( $block->mRangeStart != $block->mRangeEnd
 						&& !strstr( $ip, "/" ) ) {
 					/* If the specified IP is a single address, and the block is
 					 * a range block, don't unblock the range. */
 					 $range = $block->mAddress;
-					 return self::UNBLOCK_BLOCKED_AS_RANGE;
+					 return array('ipb_blocked_as_range', $ip, $range);
 				}
 			}
 		}
@@ -189,31 +190,28 @@ class IPUnblockForm {
 
 		# Delete block
 		if ( !$block->delete() ) {
-			return self::UNBLOCK_UNKNOWNERR;
+			return array('ipb_cant_unblock', htmlspecialchars($id));
 		}
 
 		# Make log entry
 		$log = new LogPage( 'block' );
 		$log->addEntry( 'unblock', Title::makeTitle( NS_USER, $ip ), $reason );
-		return self::UNBLOCK_SUCCESS;
+		return array();
 	}
 
 	function doSubmit() {
 		global $wgOut;
 		$retval = self::doUnblock($this->id, $this->ip, $this->reason, $range);
-		if($retval == self::UNBLOCK_SUCCESS) {
-			# Report to the user
-			$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
-			$success = $titleObj->getFullURL( "action=success&successip=" . urlencode( $this->ip ) );
-			$wgOut->redirect( $success );
-		} else if($retval == self::UNBLOCK_BLOCKED_AS_RANGE) {
-			$this->showForm( wfMsg( 'ipb_blocked_as_range', $this->ip, $range ) );
-		} else { // UI code doesn't distinguish between errors much. Maybe it should
-			if ( !$this->ip && $this->id ) {
-				$this->ip = '#' . $this->id;
-			}
-			$this->showForm( wfMsg( 'ipb_cant_unblock', htmlspecialchars( $this->id ) ) );
+		if(!empty($retval))
+		{
+			$key = array_shift($retval);
+			$this->showForm(wfMsgReal($key, $retval));
+			return;
 		}
+		# Report to the user
+		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
+		$success = $titleObj->getFullURL( "action=success&successip=" . urlencode( $this->ip ) );
+		$wgOut->redirect( $success );
 	}
 
 	function showList( $msg ) {
