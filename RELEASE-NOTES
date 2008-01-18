@@ -440,6 +440,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added action=logout
 * Added cascade flag to prop=info&inprop=protections
 * Added wlshow parameter to list=watchlist, similar to rcshow (list=recentchanges)
+* Added support for image thumbnailing to prop=imageinfo
 
 === Languages updated in 1.12 ===
 

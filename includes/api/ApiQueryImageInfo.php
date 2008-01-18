@@ -52,6 +52,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$fld_size = isset($prop['size']);
 		$fld_sha1 = isset($prop['sha1']);
 		$fld_metadata = isset($prop['metadata']);
+		
+		if($params['urlheight'] != -1 && $params['urlwidth'] == -1)
+			$this->dieUsage("iiurlheight cannot be used without iiurlwidth", 'iiurlwidth');
+		$scale = $params['urlwidth'] != -1;
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
 		if (!empty($pageIds[NS_IMAGE])) {
@@ -91,8 +95,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 							$vals['width'] = intval($row["{$prefix}_width"]);
 							$vals['height'] = intval($row["{$prefix}_height"]);
 						}
-						if ($fld_url)
-							$vals['url'] = $isCur ? $img->getURL() : $img->getArchiveUrl($row["oi_archive_name"]);
+						if ($fld_url) {
+							if($scale && $isCur) {
+								$vals['url'] = $img->createThumb($params['urlwidth'], $params['urlheight']); 
+							} else {
+								$vals['url'] = $isCur ? $img->getURL() : $img->getArchiveUrl($row["oi_archive_name"]);
+							}
+						}
 						if ($fld_comment)
 							$vals['comment'] = $row["{$prefix}_description"];
 							
@@ -142,6 +151,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				)
 			),
 			'history' => false,
+			'urlwidth' => array(
+				ApiBase :: PARAM_TYPE => 'integer',
+				ApiBase :: PARAM_DFLT => -1
+			),
+			'urlheight' => array(
+				ApiBase :: PARAM_TYPE => 'integer',
+				ApiBase :: PARAM_DFLT => -1
+			)
 		);
 	}
 
@@ -149,6 +166,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array (
 			'prop' => 'What image information to get.',
 			'history' => 'Include upload history',
+			'urlwidth' => 'If iiprop=url is set, a URL to an image scaled to this width will be returned. Only the current version of the image can be scaled.',
+			'urlheight' => 'Similar to iiurlwidth. Cannot be used without iiurlwidth',
 		);
 	}
 
