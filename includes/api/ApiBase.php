@@ -616,6 +616,8 @@ abstract class ApiBase {
 		'unblock-notarget' => array('code' => 'notarget', 'info' => "Either the id or the user parameter must be set"),
 		'unblock-idanduser' => array('code' => 'idanduser', 'info' => "The id and user parameters can\'t be used together"),
 		'cantunblock' => array('code' => 'permissiondenied', 'info' => "You don't have permission to unblock users"),
+		'cannotundelete' => array('code' => 'cantundelete', 'info' => "Couldn't undelete: the requested revisions may not exist, or may have been undeleted already"),
+		'permdenied-undelete' => array('code' => 'permissiondenied', 'info' => "You don't have permission to restore deleted revisions"),
 	);
 	
 	/**
