@@ -46,55 +46,33 @@ class ApiMove extends ApiBase {
 	
 		$titleObj = NULL;
 		if(!isset($params['from']))
-			$this->dieUsage('The from parameter must be set', 'nofrom');
+			$this->dieUsageMsg(array('nofrom'));
 		if(!isset($params['to']))
-			$this->dieUsage('The to parameter must be set', 'noto');
+			$this->dieUsageMsg(array('noto'));
 		if(!isset($params['token']))
-			$this->dieUsage('The token parameter must be set', 'notoken');
+			$this->dieUsageMsg(array('notoken'));
 		if(!$wgUser->matchEditToken($params['token']))
-			$this->dieUsage('Invalid token', 'badtoken');
-
-		if($wgUser->isBlocked())
-			$this->dieUsage('You have been blocked from editing', 'blocked');
-		if(wfReadOnly())
-			$this->dieUsage('The wiki is in read-only mode', 'readonly');
-		if($params['noredirect'] && !$wgUser->isAllowed('suppressredirect'))
-			$this->dieUsage("You don't have permission to suppress redirect creation", 'nosuppress');
+			$this->dieUsageMsg(array('sessionfailure'));
 
 		$fromTitle = Title::newFromText($params['from']);
 		if(!$fromTitle)
-			$this->dieUsage("Bad title ``{$params['from']}''", 'invalidtitle');
+			$this->dieUsageMsg(array('invalidtitle', $params['from']));
 		if(!$fromTitle->exists())
-			$this->dieUsage("``{$params['from']}'' doesn't exist", 'missingtitle');
+			$this->dieUsageMsg(array('notanarticle'));
 		$fromTalk = $fromTitle->getTalkPage();
 
 		
 		$toTitle = Title::newFromText($params['to']);
 		if(!$toTitle)
-			$this->dieUsage("Bad title ``{$params['to']}''", 'invalidtitle');
+			$this->dieUsageMsg(array('invalidtitle', $params['to']));
 		$toTalk = $toTitle->getTalkPage();
 
 		$dbw = wfGetDB(DB_MASTER);
 		$dbw->begin();		
 		$retval = $fromTitle->moveTo($toTitle, true, $params['reason'], !$params['noredirect']);
 		if($retval !== true)
-			switch($retval)
-			{
-				// case 'badtitletext': Can't happen
-				// case 'badarticleerror': Can't happen
-				case 'selfmove':
-					$this->dieUsage("Can't move ``{$params['from']}'' to itself", 'selfmove');
-				case 'immobile_namespace':
-					if($fromTitle->isMovable())
-						$this->dieUsage("Pages in the ``{$fromTitle->getNsText()}'' namespace can't be moved", 'immobilenamespace-from');
-					$this->dieUsage("Pages in the ``{$toTitle->getNsText()}'' namespace can't be moved", 'immobilenamespace-to');
-				case 'articleexists':
-					$this->dieUsage("``{$toTitle->getPrefixedText()}'' already exists and is not a redirect to ``{$fromTitle->getPrefixedText()}''", 'targetexists');
-				case 'protectedpage':
-					$this->dieUsage("You don't have permission to move ``{$fromTitle->getPrefixedText()}'' to ``{$toTitle->getPrefixedText()}''", 'permissiondenied');
-				default:
-					throw new MWException( "Title::moveTo: Unknown return value ``{$retval}''" );
-			}
+			$this->dieUsageMsg(array($retval));
+
 		$r = array('from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason']);
 		if(!$params['noredirect'])
 			$r['redirectcreated'] = '';
@@ -111,31 +89,10 @@ class ApiMove extends ApiBase {
 			}
 			// We're not gonna dieUsage() on failure, since we already changed something
 			else
-				switch($retval)
-				{
-					case 'immobile_namespace':
-						if($fromTalk->isMovable())
-						{
-							$r['talkmove-error-code'] = 'immobilenamespace-from';
-							$r['talkmove-error-info'] = "Pages in the ``{$fromTalk->getNsText()}'' namespace can't be moved";
-						}
-						else
-						{
-							$r['talkmove-error-code'] = 'immobilenamespace-to';
-							$r['talkmove-error-info'] = "Pages in the ``{$toTalk->getNsText()}'' namespace can't be moved";
-						}
-						break;
-					case 'articleexists':
-						$r['talkmove-error-code'] = 'targetexists';
-						$r['talkmove-error-info'] = "``{$toTalk->getPrefixedText()}'' already exists and is not a redirect to ``{$fromTalk->getPrefixedText()}''";
-						break;
-					case 'protectedpage':
-						$r['talkmove-error-code'] = 'permissiondenied';
-						$r['talkmove-error-info'] = "You don't have permission to move ``{$fromTalk->getPrefixedText()}'' to ``{$toTalk->getPrefixedText()}''";
-					default:
-						$r['talkmove-error-code'] = 'unknownerror';
-						$r['talkmove-error-info'] = "Unknown error ``$retval''";
-				}		
+			{
+				$r['talkmove-error-code'] = ApiBase::$messageMap[$retval]['code'];
+				$r['talkmove-error-info'] = ApiBase::$messageMap[$retval]['info'];
+			}	
 		}
 		$dbw->commit(); // Make sure all changes are really written to the DB
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
