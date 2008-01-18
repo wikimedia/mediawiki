@@ -3831,7 +3831,7 @@ class Parser_OldPP
 	 */
 	function getUserSig( &$user ) {
 		global $wgMaxSigChars;
-		
+
 		$username = $user->getName();
 		$nickname = $user->getOption( 'nickname' );
 		$nickname = $nickname === '' ? $username : $nickname;
@@ -3886,7 +3886,7 @@ class Parser_OldPP
 	 */
 	function cleanSig( $text, $parsing = false ) {
 		global $wgTitle;
-		$this->startExternalParse( $wgTitle, new ParserOptions(), $parsing ? OT_WIKI : OT_MSG );
+		$this->startExternalParse( $this->mTitle, new ParserOptions(), $parsing ? OT_WIKI : OT_MSG );
 
 		$substWord = MagicWord::get( 'subst' );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
