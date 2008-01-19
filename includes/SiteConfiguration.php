@@ -48,7 +48,7 @@ class SiteConfiguration {
 			return str_replace( $from, $to, $in );
 		} elseif( is_array( $in ) ) {
 			foreach( $in as $key => $val ) {
-				$in[$key] = $this->doReplace( $from, $to, $in );
+				$in[$key] = $this->doReplace( $from, $to, $val );
 			}
 			return $in;
 		} else {
