@@ -13,6 +13,7 @@
  * @author לערי ריינהארט
  * @author Myildirim2007
  * @author Karduelis
+ * @author Srhat
  */
 
 $namespaceNames = array(
@@ -144,7 +145,13 @@ $messages = array(
 'category-media-header' => '"$1" kategorisindeki medya',
 'category-empty'        => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
 
-'mainpagetext' => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
+'mainpagedocfooter' => "Viki yazılımının kullanımı hakkında bilgi almak için[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız
+== Yeni Başlayanlar ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Hakkında',
 'article'        => 'Madde',
@@ -237,6 +244,7 @@ $messages = array(
 'faqpage'           => 'Project:SSS',
 'helppage'          => 'Help:İçindekiler',
 'mainpage'          => 'Ana Sayfa',
+'policy-url'        => 'Project:Politika',
 'portal'            => 'Topluluk portalı',
 'portal-url'        => 'Project:Topluluk portalı',
 'privacy'           => 'Gizlilik ilkesi',
@@ -264,7 +272,7 @@ $messages = array(
 'toc'                     => 'Konu başlıkları',
 'showtoc'                 => 'göster',
 'hidetoc'                 => 'gizle',
-'thisisdeleted'           => '$1 görmek veya geri getirmek istermisin?',
+'thisisdeleted'           => '$1 görmek veya geri getirmek istermisiniz?',
 'viewdeleted'             => '$1 gör?',
 'restorelink'             => 'silinmiş $1 değişikliği',
 'feedlinks'               => 'Besleme:',
@@ -302,6 +310,8 @@ Son yapılan veritabanı erişim komutu:
 "$1"
 Kullanılan fonksiyon "$2".
 MySQL\'in verdiği hata mesajı "$3: $4"',
+'noconnect'          => "Özür Dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı server'ı ile iletişim kuramıyor. <br />
+$1",
 'cachederror'        => 'Aşağıdaki, istediğiniz sayfanın önbellekteki kopyasıdır ve güncel olmayabilir.',
 'readonly'           => 'Veritabanı kilitlendi',
 'enterlockreason'    => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
@@ -326,6 +336,7 @@ Veritabanını kilitleyen operatörün açıklaması: $1',
 'viewsource'         => 'Kaynağı gör',
 'viewsourcefor'      => '$1 için',
 'viewsourcetext'     => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
+'protectedinterface' => 'Bu sayfa yazılımın arayüz metnini sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
 'editinginterface'   => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.",
 'cascadeprotected'   => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
 $2',

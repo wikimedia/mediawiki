@@ -632,7 +632,7 @@ Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.<
 'edittools'                 => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes d’èdicion ou d’impôrt de fichiér. -->',
 'nocreatetitle'             => 'Crèacion de pâge limitâ',
 'nocreatetext'              => '{{SITENAME}} at rètrent la possibilitât de crèar de novèles pâges.
-Vos pouede tornar arriér et modifiar una pâge ègzistenta, ou ben vos [[Special:Userlogin|conèctar ou crèar un compto]].',
+Vos pouede tornar arriér et pués modifiar una pâge ègzistenta, ou ben vos [[Special:Userlogin|conèctar ou crèar un compto]].',
 'nocreate-loggedin'         => 'Vos avéd pas la pèrmission de crèar de novèles pâges dessus {{SITENAME}}.',
 'permissionserrors'         => 'Èrror de pèrmissions',
 'permissionserrorstext'     => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|la rêson siuventa|les rêsons siuventes}} :',
@@ -976,7 +976,7 @@ Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y
 'file-thumbnail-no'           => 'Lo nom du fichiér comence per <strong><tt>$1</tt></strong>. O est possiblo que s’ag·ésse d’una vèrsion rèduita <i>(figura)</i>.
 Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament volyéd changiér lo nom du fichiér.',
 'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja ; marci de tornar arriér et de copiyér lo fichiér desot un novél nom. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un fichiér portent lo mémo nom ègziste ja dens la bâsa de balyês comena ; volyéd tornar arriér et l’emmandar desot un novél nom. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Un fichiér portent lo mémo nom ègziste ja dens la bâsa de balyês comena ; volyéd tornar arriér et pués l’emmandar desot un novél nom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Copia reussia',
 'uploadwarning'               => 'Atencion !',
 'savefile'                    => 'Sôvar lo fichiér',
@@ -1149,6 +1149,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 
 'withoutinterwiki'        => 'Pâges sen lims entèrlengoues',
 'withoutinterwiki-header' => 'Les pâges siuventes ont pas de lims vers d’ôtres lengoues :',
+'withoutinterwiki-submit' => 'Afichiér',
 
 'fewestrevisions' => 'Articllos los muens modifiâs',
 
@@ -1662,7 +1663,7 @@ Dens cél câs, vos devréd renomar ou fusionar la pâge manuèlament se vos lo 
 
 Volyéd controlar qu’ègziste gins de redirèccion dobla ou câssa, et corregiéd cetes se fôt.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ègziste ja un articllo portent cél titro, ou ben lo titro
-que vos éd chouèsi/cièrdu est pas valido.
+que vos éd chouèsi/cièrdu est envalido.
 Volyéd nen chouèsir/cièrdre un ôtro.',
 'cantmove-titleprotected' => 'Vos avéd pas la possibilitât de dèplaciér una pâge vers cél emplacement perce que lo novél titro at étâ protègiê a la crèacion.',
 'talkexists'              => "'''La pâge lyé-méma at étâ dèplaciê avouéc reusséta, mas la pâge de discussion at pas possu étre dèplaciê perce que nen ègzistâve ja yona desot lo novél nom. Volyéd les fusionar manuèlament.'''",
@@ -1694,7 +1695,7 @@ Por èxportar des pâges, entrâd lors titros dens la bouèta de tèxte ce-desot
 Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:Export/{{MediaWiki:Mainpage}}]] por la pâge {{MediaWiki:Mainpage}}.',
 'exportcuronly'     => 'Èxportar ren que la vèrsion corenta sen l’historico complèt',
 'exportnohistory'   => "---- 
-'''Nota :''' l’èxportacion complèta de l’historico de les pâges avouéc ceti formulèro at étâ dèsactivâ por des rêsons de pèrformances.",
+'''Nota :''' l’èxportacion complèta de l’historico de les pâges avouéc ceti formulèro at étâ dèsactivâ por des rêsons de pèrformences.",
 'export-submit'     => 'Èxportar',
 'export-addcattext' => 'Apondre les pâges de la catègorie :',
 'export-addcat'     => 'Apondre',
@@ -2203,7 +2204,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 
 # E-mail address confirmation
 'confirmemail'            => 'Confirmar l’adrèce de mèl',
-'confirmemail_noemail'    => 'L’adrèce de mèl configurâ dens voutres [[Special:Preferences|prèferences]] est pas valida.',
+'confirmemail_noemail'    => 'L’adrèce de mèl configurâ dens voutres [[Special:Preferences|prèferences]] est envalida.',
 'confirmemail_text'       => '{{SITENAME}} at fôta du contrôlo de voutra adrèce de mèl devant que povêr utilisar tota fonccion de mèssageria. Utilisâd lo boton ce-desot por emmandar un mèl de confirmacion a voutra adrèce. Lo mèl contindrat un lim contegnent un code, chargiéd cél lim dens voutron navigator por validar voutra adrèce.',
 'confirmemail_pending'    => '<div class="error">
 Un code de confirmacion vos at ja étâ emmandâ per mèl ; se vos vegnéd de crèar voutron compto, volyéd atendre doux-três menutes que lo mèl arreve devant que demandar un code novél.

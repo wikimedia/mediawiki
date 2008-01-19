@@ -290,6 +290,7 @@ $messages = array(
 'userpage'          => 'Benotzersäit',
 'projectpage'       => 'Meta-Text',
 'imagepage'         => 'Billersäit kucken',
+'mediawikipage'     => 'Säit mat de Message weisen',
 'templatepage'      => 'Schabloune(säit) weisen',
 'viewhelppage'      => 'Hëllefssäit weisen',
 'categorypage'      => 'Kategoriesäit weisen',
@@ -707,13 +708,16 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'revdelete-logaction'    => '$1 {{PLURAL:$1|Versioun|Versiounen}} an de Modus $2 gesat',
 
 # History merging
-'mergehistory'         => 'Historiquë fusionéieren',
-'mergehistory-box'     => 'Historiquë vun zwou Säite fusionéieren',
-'mergehistory-from'    => 'Originalsäit:',
-'mergehistory-into'    => 'Zilsäit:',
-'mergehistory-submit'  => 'Versioune verschmelzen',
-'mergehistory-empty'   => 'Et kënne keng Versioune fusionéiert ginn',
-'mergehistory-success' => '{{PLURAL:$3|1 Versioun|$3 Versiounen}} vun [[:$1]] mat Succès op [[:$2]] zesummegeluecht.',
+'mergehistory'                     => 'Historiquë fusionéieren',
+'mergehistory-box'                 => 'Historiquë vun zwou Säite fusionéieren',
+'mergehistory-from'                => 'Originalsäit:',
+'mergehistory-into'                => 'Zilsäit:',
+'mergehistory-submit'              => 'Versioune verschmelzen',
+'mergehistory-empty'               => 'Et kënne keng Versioune fusionéiert ginn',
+'mergehistory-success'             => '{{PLURAL:$3|1 Versioun|$3 Versiounen}} vun [[:$1]] mat Succès op [[:$2]] zesummegeluecht.',
+'mergehistory-no-source'           => 'Originalsäit "$1" gëtt et net.',
+'mergehistory-no-destination'      => 'Zilsäit "$1" gëtt et net.',
+'mergehistory-invalid-destination' => 'Zilsäit muss e gültege Säitennumm sinn.',
 
 # Merge log
 'mergelog' => 'Fusiouns-Logbuch',
@@ -1561,7 +1565,10 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'numwatchers'  => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
 
 # Math options
-'mw_math_html' => 'Wa méiglech als HTML duerstellen, soss PNG',
+'mw_math_png'    => 'Ëmmer als PNG duerstellen',
+'mw_math_simple' => 'Einfachen TeX als HTML duerstellen, soss PNG',
+'mw_math_html'   => 'Wa méiglech als HTML duerstellen, soss PNG',
+'mw_math_modern' => 'Recommandéiert fir modern Browser',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Als kontrolléiert markéieren',

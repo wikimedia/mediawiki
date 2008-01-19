@@ -189,15 +189,24 @@ $messages = array(
 'jumptosearch'      => 'xerca',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Supra {{SITENAME}}',
-'aboutpage' => 'Project:Supra',
-'mainpage'  => 'Paje Prima',
+'aboutsite'      => 'Supra {{SITENAME}}',
+'aboutpage'      => 'Project:Supra',
+'copyrightpage'  => '{{ns:project}}:Diretos de autor',
+'disclaimers'    => 'Negas de respondablia',
+'disclaimerpage' => 'Projeta:Nega jeneral de respondablia',
+'edithelp'       => 'Aida con edita',
+'edithelppage'   => 'Aida:Edita',
+'mainpage'       => 'Paje Prima',
+'privacy'        => 'Promete de privadia',
+'privacypage'    => 'Projeta:Promete de privadia',
 
-'ok'          => 'Oce',
-'editsection' => 'cambia',
-'toc'         => 'Contenida',
-'showtoc'     => 'mostra',
-'hidetoc'     => 'asconde',
+'ok'              => 'Oce',
+'retrievedfrom'   => 'Retraeda de "$1"',
+'editsection'     => 'cambia',
+'editsectionhint' => 'Edita sesion: $1',
+'toc'             => 'Contenida',
+'showtoc'         => 'mostra',
+'hidetoc'         => 'asconde',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-category' => 'Categoria',
@@ -215,22 +224,45 @@ $messages = array(
 'createaccount'    => 'Crea un conta',
 'emailconfirmlink' => 'Aproba tu dirije de eposta',
 
+# Edit page toolbar
+'bold_sample'     => 'Testo en leteras forte',
+'bold_tip'        => 'Testo en leteras forte',
+'italic_sample'   => 'Testo en leteras italica',
+'italic_tip'      => 'Testo en leteras italica',
+'link_tip'        => 'Lia interna',
+'extlink_sample'  => 'http://www.esemplo.com titulo de lia',
+'extlink_tip'     => 'Lia esterna (recorda la prefis http://)',
+'headline_sample' => 'Testo de titulo',
+'headline_tip'    => 'Titulo de nivel 2',
+'math_sample'     => 'Introdui formula asi',
+'math_tip'        => 'Formula matematical (LaTeX)',
+'nowiki_sample'   => 'Introdui testo nonformida asi',
+'nowiki_tip'      => 'Iniora la forma de la vici',
+'image_tip'       => 'Imaje interna',
+'media_tip'       => 'Lia a fix de medio',
+'sig_tip'         => 'Tu sinia con la primi de la ora',
+'hr_tip'          => 'Linia orizonal (usa nonfrecuente)',
+
 # Edit pages
-'summary'          => 'Soma',
-'minoredit'        => 'Esta es un cambia minor',
-'watchthis'        => 'Oserva esta paje',
-'savearticle'      => 'Fisa paje',
-'preview'          => 'Previde',
-'showpreview'      => 'Mostra previde',
-'showdiff'         => 'Mostra diferes',
-'blockedtitle'     => 'Usor es impedida',
-'newarticle'       => '(Nova)',
-'yourdiff'         => 'Diferes',
-'copyrightwarning' => 'Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
+'summary'            => 'Soma',
+'subject'            => 'Sujeto/titulo',
+'minoredit'          => 'Esta es un cambia minor',
+'watchthis'          => 'Oserva esta paje',
+'savearticle'        => 'Fisa paje',
+'preview'            => 'Previde',
+'showpreview'        => 'Mostra previde',
+'showdiff'           => 'Mostra diferes',
+'blockedtitle'       => 'Usor es impedida',
+'newarticle'         => '(Nova)',
+'editing'            => 'En la prosede de edita $1',
+'yourdiff'           => 'Diferes',
+'copyrightwarning'   => 'Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
 Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un domina publica o otra orijin libre.
 <strong>NO SUMITA LABORA SU DIRETOS DE AUTOR SIN PERMITE!!</strong>',
+'template-protected' => '(protejeda)',
 
 # History pages
+'revisionasof'     => 'Revisa de $1',
 'previousrevision' => '← Altera presedente',
 'cur'              => 'aora',
 'next'             => 'seguente',
@@ -239,12 +271,19 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 'histfirst'        => 'Prima',
 'histlast'         => 'Ultima',
 
+# Diffs
+'lineno'   => 'Linia $1:',
+'editundo' => 'desfa',
+
 # Search results
 'searchresults' => 'Resultas de xerca',
+'noexactmatch'  => "'''Es no paje clamada \"\$1\".''' Tu pote [[:\$1|crea esta paje]].",
 'prevn'         => '$1 presedente',
 'nextn'         => '$1 seguente',
+'powersearch'   => 'Xerca',
 
 # Preferences page
+'mypreferences'     => 'Me preferis',
 'saveprefs'         => 'Fisa',
 'searchresultshead' => 'Xerca',
 'savedprefs'        => 'Tu preferis es fisada',
@@ -256,13 +295,21 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 'nchanges'          => '$1 {{PLURAL:$1|cambia|cambias}}',
 'recentchanges'     => 'Cambias resente',
 'recentchangestext' => 'Asi la lista de cambias resente en la vici.',
+'rcnote'            => 'Su es {{PLURAL:$1|cambia|cambias}} en la presedente {{PLURAL:$2|dia|dias}}, de $3.',
+'rcshowhideminor'   => '$1 editas minor',
+'rclinks'           => 'Mostra la $1 cambias presedente en la $2 dias presedente<br />$3',
 'diff'              => 'dife',
 'hist'              => 'isto',
 'hide'              => 'Asconde',
 'show'              => 'mostra',
+'minoreditletter'   => 'm',
+'newpageletter'     => 'N',
+'boteditletter'     => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Cambias relateda',
+'recentchangeslinked'         => 'Cambias relateda',
+'recentchangeslinked-title'   => 'Cambias relatada a $1',
+'recentchangeslinked-summary' => "Esta paje spesial es un lista de la cambias plu resente de es liada. Pajes a tu lista de pajes oservada es en leteras '''forte'''.",
 
 # Upload
 'upload'   => 'Envia fixes',
@@ -272,6 +319,8 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 'imagelist'    => 'Lista de imajes',
 'ilsubmit'     => 'Xerca',
 'imgdelete'    => 'sutr',
+'filehist'     => 'Istoria de fix',
+'imagelinks'   => 'Lias',
 'linkstoimage' => 'Esta pajes lia a esta fix:',
 
 # Random page
@@ -285,6 +334,7 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 'doubleredirects' => 'Redirijes duple',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|oteta|otetas}}',
 'lonelypages'             => 'Pajes orfanida',
 'uncategorizedpages'      => 'Pajes sin categoria',
 'uncategorizedcategories' => 'Categorias sin categoria',
@@ -312,6 +362,7 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 
 'categoriespagetext' => 'Es la categorias seguente en la vici.',
 'userrights'         => 'Dirije de la diretos de usores',
+'alphaindexline'     => '$1 a $2',
 
 # Special:Log
 'log' => 'Lista de atas',
@@ -324,10 +375,16 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 
 # Watchlist
 'watchlist'         => 'Pajes oservada',
+'mywatchlist'       => 'Me lista de pajes oservada',
 'nowatchlist'       => 'Tu ave no cosas en tu lista oservada',
+'watch'             => 'Oserva',
 'watchthispage'     => 'Oserva esta paje',
 'unwatch'           => 'Nonoserva',
 'watchlistcontains' => 'Tu lista oservada teni $1 {{PLURAL:$1|paje|pajes}}.',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Oserva...',
+'unwatching' => 'No oserva...',
 
 'enotif_newpagetext' => 'Esta es un paje nova',
 'created'            => 'Creada',
@@ -347,13 +404,17 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 # Undelete
 'undelete' => 'Restora paje sutraeda',
 
+# Namespace form on various pages
+'blanknamespace' => '(Prima)',
+
 # Contributions
 'contributions' => 'Contribuis de usor',
 'mycontris'     => 'Me contribuis',
 
 # What links here
-'whatlinkshere' => 'Ce es liada a asi',
-'linkshere'     => "Esta pajes lia a '''[[:$1]]''':",
+'whatlinkshere'       => 'Ce es liada a asi',
+'linkshere'           => "Esta pajes lia a '''[[:$1]]''':",
+'whatlinkshere-links' => '← lias',
 
 # Block/unblock
 'blockip'           => 'Impedi usor',
@@ -363,6 +424,7 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 'ipusubmit'         => 'Desimpedi esta dirije',
 'ipblocklist'       => 'Liste de usores impedida',
 'blocklink'         => 'impedi',
+'contribslink'      => 'contribuis',
 
 # Move page
 'movepage'        => 'Move paje',
@@ -380,11 +442,35 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 # Namespace 8 related
 'allmessages' => 'Notas de sistem',
 
+# Thumbnails
+'thumbnail-more' => 'Grandi',
+
 # Special:Import
 'import' => 'Emporta pajes',
 
 # Tooltip help for the actions
-'tooltip-save' => 'Fisa tu cambias',
+'tooltip-pt-userpage'     => 'Me paje de usor',
+'tooltip-pt-mytalk'       => 'Me paje de discutes',
+'tooltip-pt-preferences'  => 'Me preferis',
+'tooltip-pt-mycontris'    => 'Lista de me contribuis',
+'tooltip-pt-login'        => 'Nos preferi si tu sinia per entra, ma tu es no obligada.',
+'tooltip-pt-logout'       => 'Sinia per retira',
+'tooltip-ca-talk'         => 'Discute de la paje de contenis',
+'tooltip-ca-edit'         => 'Tu pote edita esta paje. Per favore, usa la boton de previde ante fisa.',
+'tooltip-search'          => 'Xerca {{SITENAME}}',
+'tooltip-n-mainpage'      => 'Visita la paje prima',
+'tooltip-n-portal'        => 'De la projeta, ce tu pote fa, do tu pote trova cosas',
+'tooltip-n-currentevents' => 'Trova informa presedente de avenis nova',
+'tooltip-n-recentchanges' => 'La lista de cambias resente en la vici.',
+'tooltip-n-randompage'    => 'Carga un paje acaso',
+'tooltip-n-help'          => 'La loca per descovre.',
+'tooltip-n-sitesupport'   => 'suporta nos',
+'tooltip-t-whatlinkshere' => 'Lista de tota pajes de vici ce lia a asi',
+'tooltip-t-upload'        => 'Envia imajes o arcivos de medio',
+'tooltip-t-specialpages'  => 'Lista de tota pajes spesial',
+'tooltip-save'            => 'Fisa tu cambias',
+'tooltip-preview'         => 'Previde tu cambias; per favore usa esta ante fisa!',
+'tooltip-diff'            => 'Mostra tu cambias de la testo.',
 
 # Attribution
 'and'    => 'e',
@@ -400,5 +486,11 @@ Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un 
 
 # Special:Newimages
 'newimages' => 'Imajes nova',
+
+# Bad image list
+'bad_image_list' => 'La forma es...
+
+Sola linias de un lista (ce comensa con *) es considerada. La lia prima a la linia nesesa es un lia a un mal imaje.
+Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do la imaje pote aveni enlinia.',
 
 );
