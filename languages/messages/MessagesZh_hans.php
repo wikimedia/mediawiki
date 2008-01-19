@@ -1156,8 +1156,9 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(编辑)',
 'brokenredirects-delete' => '(删除)',
 
-'withoutinterwiki'        => '未有语言链接的页面',
-'withoutinterwiki-header' => '以下的页面是未有语言链接到其它语言版本:',
+'withoutinterwiki'         => '未有语言链接的页面',
+'withoutinterwiki-header'  => '以下的页面是未有语言链接到其它语言版本:',
+'withoutinterwiki-submit'  => '显示',
 
 'fewestrevisions' => '最少修订的页面',
 
