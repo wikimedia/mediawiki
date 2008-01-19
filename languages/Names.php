@@ -166,6 +166,7 @@
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
 	'lbe' => 'Лакку',	# Lak
 	'lez' => 'Лезги',	# Lezgi
+	'lfn' => 'Lingua Franca Nova',	# Lingua Franca Nova
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
 	'lij' => 'Líguru',	# Ligurian
