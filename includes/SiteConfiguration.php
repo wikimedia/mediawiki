@@ -36,10 +36,24 @@ class SiteConfiguration {
 
 		if ( !is_null( $retval ) && count( $params ) ) {
 			foreach ( $params as $key => $value ) {
-				$retval = str_replace( '$' . $key, $value, $retval );
+				$retval = $this->doReplace( '$' . $key, $value, $retval );
 			}
 		}
 		return $retval;
+	}
+	
+	/** Type-safe string replace; won't do replacements on non-strings */
+	function doReplace( $from, $to, $in ) {
+		if( is_string( $in ) ) {
+			return str_replace( $from, $to, $in );
+		} elseif( is_array( $in ) ) {
+			foreach( $in as $key => $val ) {
+				$in[$key] = $this->doReplace( $from, $to, $in );
+			}
+			return $in;
+		} else {
+			return $in;
+		}
 	}
 
 	/** */
