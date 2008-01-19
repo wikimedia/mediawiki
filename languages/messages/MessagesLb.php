@@ -462,7 +462,7 @@ Probéiert et w.e.g. nach eng Kéier!",
 'createaccountmail'          => 'Via E-Mail',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt. Sicht iech w.e.g. een anere Benotzernumm.',
-'youremail'                  => 'E-Mail-Adress:',
+'youremail'                  => 'E-Mailadress:',
 'username'                   => 'Benotzernumm:',
 'uid'                        => 'Benotzer ID:',
 'yourrealname'               => 'Richtege Numm:',
@@ -473,8 +473,8 @@ Probéiert et w.e.g. nach eng Kéier!",
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => 'Äre richtege Numm ass fakultativ. Wann Dir en ugitt gëtt e benotzt fir iech är Kontributiounen zouzeuerdnen.',
 'loginerror'                 => 'Feeler bäi der Umeldung',
-'prefs-help-email'           => 'E-mail adress ass optional, awer si erméiglecht et anere Benotzer, per Mail Kontakt matt iech opzehuelen, ouni datt Dir är Identitéit musst präisginn, an erméiglecht et datt dir e neit Passwuert per Mail zougeschöckt kënnt kréien.',
-'prefs-help-email-required'  => 'Eng gülteg E-Mail-Adress gëtt heifir gebraucht.',
+'prefs-help-email'           => 'E-mailadress ass optional, awer si erméiglecht et anere Benotzer, per Mail Kontakt matt iech opzehuelen, ouni datt Dir är Identitéit musst präisginn, an erméiglecht et datt dir e neit Passwuert per Mail zougeschöckt kënnt kréien.',
+'prefs-help-email-required'  => 'Eng gülteg E-Mailadress gëtt heifir gebraucht.',
 'nocookieslogin'             => "{{SITENAME}} benotzt Cookiën beim Umelle vun de Benotzer. Dir hutt Cookiën ausgeschalt, w.e.g aktivéiert d'Cookiën a versicht et nach eng Kéier.",
 'noname'                     => 'Dir hutt kee gültege Benotzernumm uginn.',
 'loginsuccesstitle'          => 'Umeldung huet geklappt',
@@ -494,8 +494,8 @@ Dat automatesch generéiert Passwuert fir  de Benotzer $2 ass elo: $3
 Dir sollt iech elo umellen an d'Passwuert änneren.
 
 Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschenzäit nees un ärt Passwuert erënnere kënnt an Dir àrt Passwuert net ännere wëllt dann ignoréiert dëse Message a benotzt weider ärt aalt Passwuert.",
-'noemail'                    => 'De Benotzer „$1“ huet keng E-Mail-Adress uginn.',
-'passwordsent'               => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mail-Adress geschéckt.
+'noemail'                    => 'De Benotzer "$1" huet keng E-Mailadress uginn.',
+'passwordsent'               => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mailadress geschéckt.
 Melt iech w.e.g. domatt un, soubal Dir et kritt hutt.',
 'blocked-mailpassword'       => "Déi vun iech benotzten IP-Adress ass fir d'Ännere vu Säite gespaart. Fir Mëssbrauch ze verhënneren, gouf d'Méiglechkeet fir een neit Passwuert unzefroen och gespaart.",
 'eauthentsent'               => "Eng Confirmatiouns-E-Mail gouf un déi uginnen Adress geschéckt.<br/ >
@@ -505,7 +505,7 @@ Ier iergend eng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, muss d
 'emailauthenticated'         => 'Är E-Mailadress gouf bestätegt: $1..',
 'emailnotauthenticated'      => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br/ >
 Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
-'noemailprefs'               => 'Gitt eng E-Mail-Adress un, fir datt déie folgend Funktiounen fonctionéieren.',
+'noemailprefs'               => 'Gitt eng E-Mailadress un, fir datt déie folgend Funktiounen fonctionéieren.',
 'emailconfirmlink'           => 'Confirméiert är E-Mailadress w.e.g..',
 'invalidemailaddress'        => 'Dës E-Mailadress gëtt net akzeptéiert well se en ongëltegt Format (z.B. ongëlteg Zeechen) ze hu schéngt. Gitt w.e.g. eng valabel E-Mailadress an oder loosst dëst Feld eidel.',
 'accountcreated'             => 'De Kont gouf geschaf',
@@ -1149,7 +1149,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a senge Preferenzen agestallt huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mail Adress déi dir an Äre Preferenzen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => '{{SITENAME}}-E-Mail',
-'noemailtitle'    => 'Keng E-Mail-Adress',
+'noemailtitle'    => 'Keng E-Mailadress',
 'emailfrom'       => 'Vum',
 'emailto'         => 'Fir',
 'emailsubject'    => 'Sujet',
@@ -1759,17 +1759,17 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'monthsall'        => 'all',
 
 # E-mail address confirmation
-'confirmemail'            => 'E-Mail-Adress bestätegen',
-'confirmemail_text'       => "Ier der d'E-Mail-Funktioune vun der {{SITENAME}} notze kënnt musst der als éischt är E-Mail-Adress bestätegen. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi der uginn hutt. An däer E-Mail steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
+'confirmemail'            => 'E-Mailadress confirméieren',
+'confirmemail_text'       => "Ier der d'E-Mailfunktioune vun der {{SITENAME}} notze kënnt musst der als éischt är E-Mailadress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi der uginn hutt. An däer E-Mail steet e Link mat engem Code, deen der dann an ärem Browser opmaache musst fir esou ze bestätegen, datt är Adress och wierklech existéiert a valabel ass.",
 'confirmemail_send'       => 'Confirmatiouns-E-Mail schécken',
 'confirmemail_sent'       => 'Confirmatiouns-E-Mail gouf geschéckt.',
 'confirmemail_sendfailed' => "D'Confirmatiouns-E-Mail konnt net verschéckt ginn. Iwwerpréift w.e.g. är Adress op keng ongëlteg Zeechen dran enthale sinn.
 
 Feelermeldung vum Mailserver: $1",
 'confirmemail_invalid'    => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",
-'confirmemail_needlogin'  => 'Dir musst iech $1, fir är E-Mail-Adress ze confirméieren.',
+'confirmemail_needlogin'  => 'Dir musst iech $1, fir är E-Mailadress ze confirméieren.',
 'confirmemail_success'    => 'Är E-Mail Address gouf konfirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéiren.',
-'confirmemail_loggedin'   => 'Är E-Mail-Adress gouf elo confirméiert.',
+'confirmemail_loggedin'   => 'Är E-Mailadress gouf elo confirméiert.',
 'confirmemail_error'      => 'Et ass eppes falsch gelaf bäim Späichere vun ärer Confirmatioun.',
 'confirmemail_subject'    => '{{SITENAME}} E-Mail-Adress-Confirmatioun',
 'confirmemail_body'       => 'E Benotzer, waarscheinlech dir selwer, hutt mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach. Fir ze bestätegen, datt dee Kont iech wierklech gehéiert a fir d\'E-Mail-Funktiounen um Site {{SITENAME}} z\'aktivéieren, maacht w.e.g. de folgende Link an ärem Browser op: $3 Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De Confirmatiounscode gëtt den $4 ongëlteg.',

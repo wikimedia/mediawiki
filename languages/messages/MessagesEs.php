@@ -189,6 +189,7 @@ $messages = array(
 'anontalk'       => 'Discusión para esta IP',
 'navigation'     => 'Navegación',
 
+'errorpagetitle'    => 'Error',
 'returnto'          => 'Volver a $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Ayuda',
@@ -290,6 +291,9 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|una edición borrada|$1 ediciones borradas}}',
 'feedlinks'               => 'Sindicación:',
 'feed-invalid'            => 'Tipo de subscripción a sindicación de noticias inválida.',
+'site-rss-feed'           => '$1 RSS feed',
+'site-atom-feed'          => '$1 Atom feed',
+'page-rss-feed'           => '"$1" RSS feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artículo',
@@ -805,14 +809,19 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'rcnotefrom'                        => 'A continuación se muestran los cambios desde <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom'                        => 'Mostrar nuevos cambios desde $1',
 'rcshowhideminor'                   => '$1 ediciones menores',
+'rcshowhidebots'                    => '$1 bots',
 'rcshowhideliu'                     => '$1 usuarios registrados',
 'rcshowhideanons'                   => '$1 usuarios anónimos',
 'rcshowhidepatr'                    => '$1 ediciones patrulladas',
 'rcshowhidemine'                    => '$1 mis ediciones',
 'rclinks'                           => 'Ver los últimos $1 cambios en los últimos $2 días.<br />$3',
 'diff'                              => 'dif',
+'hist'                              => 'hist',
 'hide'                              => 'ocultar',
 'show'                              => 'mostrar',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 usuarios vigilando]',
 'rc_categories'                     => 'Limitar a categorías (separadas por "|")',
 'rc_categories_any'                 => 'Cualquiera',
@@ -1655,15 +1664,16 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'nocredits'        => 'Hay información de créditos para esta página.',
 
 # Spam protection
-'spamprotectiontitle'  => 'Filtro de protección contra spam',
-'spamprotectiontext'   => 'La página que intentas guardar ha sido bloqueada por el filtro de spam. Esto se debe probablemente a alguno de los un enlaces externos incluidos en ella.',
-'spamprotectionmatch'  => "El siguiente texto es el que activó nuestro filtro ''anti-spam'' (contra la publicidad no solicitada): $1",
-'subcategorycount'     => 'Hay {{PLURAL:$1|una subcategoría|$1 subcategorías}} en esta categoría.',
-'categoryarticlecount' => 'Se {{PLURAL:$1|lista|listan}} $1 {{PLURAL:$1|artículo|artículos}} de esta categoría.',
-'category-media-count' => 'Existe{{PLURAL:$1|&nbsp;un archivo|n $1 archivos}} en esta categoría.',
-'spambot_username'     => 'Limpieza de spam de MediaWiki',
-'spam_reverting'       => 'Revirtiendo a la última versión que no contenga enlaces a $1',
-'spam_blanking'        => 'Todas las revisiones contienen enlaces a $1, blanqueando',
+'spamprotectiontitle'    => 'Filtro de protección contra spam',
+'spamprotectiontext'     => 'La página que intentas guardar ha sido bloqueada por el filtro de spam. Esto se debe probablemente a alguno de los un enlaces externos incluidos en ella.',
+'spamprotectionmatch'    => "El siguiente texto es el que activó nuestro filtro ''anti-spam'' (contra la publicidad no solicitada): $1",
+'subcategorycount'       => 'Hay {{PLURAL:$1|una subcategoría|$1 subcategorías}} en esta categoría.',
+'categoryarticlecount'   => 'Se {{PLURAL:$1|lista|listan}} $1 {{PLURAL:$1|artículo|artículos}} de esta categoría.',
+'category-media-count'   => 'Existe{{PLURAL:$1|&nbsp;un archivo|n $1 archivos}} en esta categoría.',
+'listingcontinuesabbrev' => 'cont.',
+'spambot_username'       => 'Limpieza de spam de MediaWiki',
+'spam_reverting'         => 'Revirtiendo a la última versión que no contenga enlaces a $1',
+'spam_blanking'          => 'Todas las revisiones contienen enlaces a $1, blanqueando',
 
 # Info page
 'infosubtitle'   => 'Información de la página',
@@ -1711,12 +1721,19 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'file-info'            => '(tamaño de archivo: $1; tipo MIME: $2)',
 'file-info-size'       => '($1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4)',
 'file-nohires'         => '<small>No disponible a mayor resolución.</small>',
+'svg-long-desc'        => '(archivo SVG, nominalmente $1 × $2 píxeles, tamaño de archivo: $3)',
 'show-big-image'       => 'Resolución original',
 'show-big-image-thumb' => '<small>Tamaño de esta vista previa: $1 × $2 píxeles</small>',
 
 # Special:Newimages
 'newimages' => 'Galería de imágenes nuevas',
 'noimages'  => 'No hay nada que ver.',
+
+# Bad image list
+'bad_image_list' => 'El formato sigue:
+
+Solamente se reconocen elementos de la lista (líneas que empiezan con *). El enlace primero en una línea tiene que enlazar a la imagen que no quieres aparecer en artículos.
+Los siguientes enlaces en la misma línea se consideran las exepciones (los artículos donde se puede ver la imagen).',
 
 # Metadata
 'metadata'          => 'Metadatos',

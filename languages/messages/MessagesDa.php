@@ -1223,6 +1223,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 
 'withoutinterwiki'        => 'Sider uden henvisninger til andre sprog',
 'withoutinterwiki-header' => 'De følgende sider henviser ikke til andre sprogversioner:',
+'withoutinterwiki-submit' => 'Vis',
 
 'fewestrevisions'         => 'Sider med de færreste versioner',
 'fewestrevisions-summary' => 'Denne specialside viser en liste med sider med de færreste ændringer.',
@@ -1463,6 +1464,8 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 ** Efter forfatters ønske
 ** Overtrædelse af ophavsret
 ** Hærværk',
+'delete-toobig'               => 'Denne side har en stor historik, over $1 versioner. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
+'delete-warning-toobig'       => 'Denne side har en stor historik, over $1 versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
 'rollback'                    => 'Fjern redigeringer',
 'rollback_short'              => 'Fjern redigering',
 'rollbacklink'                => 'fjern redigering',
@@ -2200,7 +2203,10 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-scenecapturetype-3' => 'Natscene',
 
 'exif-gaincontrol-0' => 'Ingen',
-'exif-gaincontrol-1' => 'Ringe',
+'exif-gaincontrol-1' => 'Low gain up',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Svag',
@@ -2293,7 +2299,8 @@ Hvis denne E-mail-adresse *ikke* hører til den anførte brugerkonto, skal du *i
 Trackbacks for denne side:<br />
 $1
 </div>',
-'trackbackremove'   => '([$1 löschen])',
+'trackbackremove'   => '([$1 slet])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback blev slettet.',
 
 # Delete conflict

@@ -1089,9 +1089,9 @@ Bazen bartiv tir tel ke (UTC) zanisiko.',
 
 La dernière modificaion a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Talk]]).",
 'editcomment'                 => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'dimplekura va ironokafa betara va $1',
+'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos gan [[User:$1|$1]]',
 'protectlogpage'              => 'Izvot va nendareem',
-'protectlogtext'              => 'Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].',
+'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:Protectedpages|nendan bueem]] wil.',
 'protectedarticle'            => 'va « $1 » al nendar',
 'unprotectedarticle'          => 'va « $1 » al dimnendar',
 'protectsub'                  => '(Nendara va « $1 »)',

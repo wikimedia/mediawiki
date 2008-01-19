@@ -1259,6 +1259,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 
 'withoutinterwiki'        => 'Pages sans liens interlangues',
 'withoutinterwiki-header' => 'Les pages suivantes ne possèdent pas de liens vers d’autres langues :',
+'withoutinterwiki-submit' => 'Afficher',
 
 'fewestrevisions' => 'Articles les moins modifiés',
 

@@ -900,20 +900,30 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'overlogpagetext' => 'Berikut ini adalah daftar terbaru penghapusan dan pemblokiran yang melibatkan isi yang disembunyikan dari pengurus. Lihat [[Special:Ipblocklist|daftar blokir IP]] untuk daftar terkini pencekalan dan pemblokiran yang berlaku.',
 
 # History merging
-'mergehistory'         => 'Gabung sejarah halaman',
-'mergehistory-header'  => "Halaman ini memperbolehkan Anda untuk menggabungkan revisi-revisi dari satu halaman sumber ke halaman yang lebih baru.
+'mergehistory'                     => 'Gabung sejarah halaman',
+'mergehistory-header'              => "Halaman ini memperbolehkan Anda untuk menggabungkan revisi-revisi dari satu halaman sumber ke halaman yang lebih baru.
 
 '''Revisi sekarang dari halaman sumber harus tetap ada.'''",
-'mergehistory-box'     => 'Gabung revisi-revisi dari dua halaman:',
-'mergehistory-from'    => 'Halaman sumber:',
-'mergehistory-into'    => 'Halaman tujuan:',
-'mergehistory-list'    => 'Mergeable edit history',
-'mergehistory-merge'   => 'Revisi-revisi berikut dari [[:$1]] dapat digabungkan ke [[:$2]]. Gunakan tombol radio untuk menggabungkan revisi-revisi yang dibuat sebelum waktu tertentu. Perhatikan, menggunakan pranala navigasi akan mengeset ulang kolom.',
-'mergehistory-go'      => 'Tampilkan suntingan-suntingan yang dapat digabung',
-'mergehistory-submit'  => 'Gabung revisi',
-'mergehistory-empty'   => 'Tidak ada revisi yang dapat digabung',
-'mergehistory-success' => '$3 {{PLURAL:$1|revisi|revisi}} dari [[:$1]] sukses digabung ke [[:$2]].',
-'mergehistory-fail'    => 'Tidak dapat melakukan penggabungan, harap periksa kembali halaman dan parameter waktu.',
+'mergehistory-box'                 => 'Gabung revisi-revisi dari dua halaman:',
+'mergehistory-from'                => 'Halaman sumber:',
+'mergehistory-into'                => 'Halaman tujuan:',
+'mergehistory-list'                => 'Mergeable edit history',
+'mergehistory-merge'               => 'Revisi-revisi berikut dari [[:$1]] dapat digabungkan ke [[:$2]]. Gunakan tombol radio untuk menggabungkan revisi-revisi yang dibuat sebelum waktu tertentu. Perhatikan, menggunakan pranala navigasi akan mengeset ulang kolom.',
+'mergehistory-go'                  => 'Tampilkan suntingan-suntingan yang dapat digabung',
+'mergehistory-submit'              => 'Gabung revisi',
+'mergehistory-empty'               => 'Tidak ada revisi yang dapat digabung',
+'mergehistory-success'             => '$3 {{PLURAL:$1|revisi|revisi}} dari [[:$1]] sukses digabung ke [[:$2]].',
+'mergehistory-fail'                => 'Tidak dapat melakukan penggabungan, harap periksa kembali halaman dan parameter waktu.',
+'mergehistory-no-source'           => 'Halaman sumber $1 tidak ada.',
+'mergehistory-no-destination'      => 'Halaman tujuan $1 tidak ada.',
+'mergehistory-invalid-source'      => 'Judul halaman sumber haruslah judul yang valid.',
+'mergehistory-invalid-destination' => 'Judul halaman tujuan haruslah judul yang valid.',
+
+# Merge log
+'mergelog'           => 'Gabung log',
+'pagemerge-logentry' => 'menggabungkan [[$1]] ke [[$2]] (revisi sampai dengan $3)',
+'revertmerge'        => 'Batal penggabungan',
+'mergelogpagetext'   => 'Di bawah ini adalah daftar penggabungan sejarah halaman ke halaman yang lain.',
 
 # Diffs
 'history-title'           => 'Riwayat revisi dari "$1"',
@@ -929,6 +939,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'searchsubtitle'        => "Anda mencari '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Anda mencari '''$1'''",
 'noexactmatch'          => "'''Tidak ada halaman yang berjudul \"\$1\".''' Anda dapat [[:\$1|membuat halaman ini]].",
+'noexactmatch-nocreate' => "'''Tidak ada halaman berjudul \"\$1\".'''",
 'titlematches'          => 'Judul artikel yang sama',
 'notitlematches'        => 'Tidak ada judul halaman yang cocok',
 'textmatches'           => 'Teks artikel yang cocok',
@@ -958,6 +969,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'qbsettings-floatingright' => 'Mengambang sebelah kanan',
 'changepassword'           => 'Ganti kata sandi',
 'skin'                     => 'Kulit',
+'math'                     => 'Matematika',
 'dateformat'               => 'Format tanggal',
 'datedefault'              => 'Tak ada preferensi',
 'datetime'                 => 'Tanggal dan waktu',
@@ -2189,12 +2201,15 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 'exif-gaincontrol-0' => 'Tak ada',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Lembut',
 'exif-contrast-2' => 'Keras',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Saturasi rendah',
 'exif-saturation-2' => 'Saturasi tinggi',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Lembut',
 'exif-sharpness-2' => 'Keras',
 
@@ -2285,15 +2300,17 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'redirectingto' => 'Sedang dialihkan ke [[$1]]...',
 
 # action=purge
-'confirm_purge' => "Hapus ''cache'' halaman ini?
+'confirm_purge'        => "Hapus ''cache'' halaman ini?
 
 $1",
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Mencari artikel yang mengandung ''$1''.",
 'searchnamed'      => "Mencari artikel yang berjudul ''$1''.",
 'articletitles'    => "Artikel yang diawali ''$1''",
 'hideresults'      => 'Sembunyikan hasil',
+'useajaxsearch'    => 'Gunakan pencarian AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; halaman sebelumnya',
