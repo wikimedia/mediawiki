@@ -102,7 +102,7 @@ class SpecialVersion {
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
 		$out = "<h2>Extensions</h2>\n";
-		$out .= wfOpenElement('table', array('id' => 'sv-ext') );
+		$out .= Xml::openElement('table', array('id' => 'sv-ext') );
 
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( isset ( $wgExtensionCredits[$type] ) && count ( $wgExtensionCredits[$type] ) ) {
@@ -143,7 +143,7 @@ class SpecialVersion {
 			$out .= $this->openExtType('Skin extension functions');
 			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunction ) . "</td></tr>\n";
 		}
-		$out .= wfCloseElement( 'table' );
+		$out .= Xml::closeElement( 'table' );
 		return $out;
 	}
 
@@ -187,7 +187,7 @@ class SpecialVersion {
 			ksort( $myWgHooks );
 
 			$ret = "<h2>Hooks</h2>\n"
-				. wfOpenElement('table', array('id' => 'sv-hooks') )
+				. Xml::openElement('table', array('id' => 'sv-hooks') )
 				. "<tr><th>Hook name</th><th>Subscribed by</th></tr>\n";
 
 			foreach ($myWgHooks as $hook => $hooks)
@@ -205,13 +205,13 @@ class SpecialVersion {
 
 		if(!$this->firstExtOpened) {
 			// Insert a spacing line
-			$out .= '<tr class="sv-space">' . wfElement( 'td', $opt ) . "</tr>\n";
+			$out .= '<tr class="sv-space">' . Xml::element( 'td', $opt ) . "</tr>\n";
 		}
 		$this->firstExtOpened = false;
 
 		if($name) { $opt['id'] = "sv-$name"; }
 
-		$out .= "<tr>" . wfElement( 'th', $opt, $text) . "</tr>\n";
+		$out .= "<tr>" . Xml::element( 'th', $opt, $text) . "</tr>\n";
 		return $out;
 	}
 
