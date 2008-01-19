@@ -1220,8 +1220,9 @@ Template:搞清楚',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
-'withoutinterwiki'        => '無語言連結嘅頁',
-'withoutinterwiki-header' => '以下嘅頁面係重未有連結到其它嘅語言版本：',
+'withoutinterwiki'         => '無語言連結嘅頁',
+'withoutinterwiki-header'  => '以下嘅頁面係重未有連結到其它嘅語言版本：',
+'withoutinterwiki-submit'  => '顯示',
 
 'fewestrevisions' => '有最少修改嘅版',
 
