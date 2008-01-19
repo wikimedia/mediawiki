@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Cuman
+ * @author Nike
  */
 
 $fallback = 'tr';
@@ -86,22 +87,22 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} için',
-'aboutpage'         => 'Proyekt:Uurunda',
+'aboutpage'         => 'Project:Uurunda',
 'copyrightpage'     => '{{ns:project}}:Avtorluk hakları',
 'currentevents'     => 'Hergünkü sluçaylar',
-'currentevents-url' => 'Proekt:Hergünkü sluçaylar',
+'currentevents-url' => 'Project:Hergünkü sluçaylar',
 'disclaimers'       => 'Cuvapçılık reti',
-'disclaimerpage'    => 'Proyekt:Genel_cuvapçılık_reti',
+'disclaimerpage'    => 'Project:Genel cuvapçılık reti',
 'edithelp'          => 'Nesoy var nicä diiştirmää?',
 'edithelppage'      => 'Help:Nesoy var nicä sayfa diiştirmää',
 'helppage'          => 'Help:İçindekilär',
 'mainpage'          => 'Baş sayfa',
 'portal'            => 'Topluluk portalı',
-'portal-url'        => 'Proekt:Topluluk portalı',
+'portal-url'        => 'Project:Topluluk portalı',
 'privacy'           => 'Saklamaa politikası',
-'privacypage'       => 'Proyekt:Saklamaa_politikası',
+'privacypage'       => 'Project:Saklamaa politikası',
 'sitesupport'       => 'Baaşişlär',
-'sitesupport-url'   => 'Proekt:Baaşiş',
+'sitesupport-url'   => 'Project:Baaşiş',
 
 'retrievedfrom'       => 'Alındı "$1"dän',
 'youhavenewmessages'  => 'Var eni <u>$1</u>. ($2)',

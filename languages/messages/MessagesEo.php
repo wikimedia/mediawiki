@@ -789,8 +789,10 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'rc_categories_any'                 => 'ĉiu',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Rilataj paĝoj',
-'recentchangeslinked-summary' => "Cxi tiu speciala pagxo listigas la lastajn sxangxojn en ligitaj pagxoj. Pagxoj en via atentaro estas '''grasaj'''.",
+'recentchangeslinked'          => 'Rilataj paĝoj',
+'recentchangeslinked-title'    => 'Sxangxoj rilataj al $1',
+'recentchangeslinked-noresult' => 'Neniuj sxangxoj en ligitaj pagxoj dum la donata periodo.',
+'recentchangeslinked-summary'  => "Cxi tiu speciala pagxo listigas la lastajn sxangxojn en ligitaj pagxoj. Pagxoj en via atentaro estas '''grasaj'''.",
 
 # Upload
 'upload'                      => 'Alŝutu dosieron',
@@ -860,10 +862,17 @@ Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas
 'imgdesc'                   => 'pri',
 'imgfile'                   => 'dosiero',
 'filehist'                  => 'Historio de dosiero',
+'filehist-help'             => 'Klaku daton/tempon por rigardi la dosieron kiel gxinaa sxajnita tiame.',
+'filehist-current'          => 'nuna',
 'filehist-datetime'         => 'Dato/Tempo',
+'filehist-user'             => 'Uzanto',
+'filehist-dimensions'       => 'Dimensioj',
+'filehist-filesize'         => 'Grandeco de dosiero',
+'filehist-comment'          => 'Komento',
 'imagelinks'                => 'Ligiloj al la dosiero',
 'linkstoimage'              => 'La jenaj paĝoj ligas al ĉi tiu dosiero:',
 'nolinkstoimage'            => 'Neniu paĝo ligas al ĉi tiu dosiero.',
+'sharedupload'              => 'Cxi tiu dosiero estas komunuma alsxuto kaj estas uzebla de aliaj projektoj.',
 'noimage'                   => 'Ne ekzistas dosiero kun tia nomo vi povas $1.',
 'noimage-linktext'          => 'alŝuti ĝin',
 'uploadnewversion-linktext' => 'Alŝutu novan version de ĉi tiu dosiero',
@@ -1199,11 +1208,15 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 
 # What links here
 'whatlinkshere'       => 'Ligiloj ĉi tien',
+'whatlinkshere-title' => 'Pagxoj ligantaj al $1',
 'whatlinkshere-page'  => 'Paĝo:',
 'linklistsub'         => '(Listo de ligiloj)',
 'linkshere'           => "La jenaj paĝoj ligas al '''[[:$1]]''':",
 'nolinkshere'         => "Neniu paĝo ligas al '''[[:$1]]'''.",
 'isredirect'          => 'alidirekto',
+'istemplate'          => 'inkludo',
+'whatlinkshere-prev'  => '{{PLURAL:$1|antauxa|antauxa $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|posta|posta $1}}',
 'whatlinkshere-links' => '← ligiloj',
 
 # Block/unblock
@@ -1460,11 +1473,15 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'nextdiff'     => 'Iru al sekvanta ŝanĝo →',
 
 # Media information
-'mediawarning'    => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
+'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
 <hr />",
-'imagemaxsize'    => 'Elmontru bildojn en bildpriskribaj paĝoj je maksimume :',
-'thumbsize'       => 'Grandeco de bildetoj :',
-'widthheightpage' => '$1×$2, $3 paĝoj',
+'imagemaxsize'         => 'Elmontru bildojn en bildpriskribaj paĝoj je maksimume :',
+'thumbsize'            => 'Grandeco de bildetoj :',
+'widthheightpage'      => '$1×$2, $3 paĝoj',
+'file-info-size'       => '($1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4)',
+'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',
+'show-big-image'       => 'Plena distingivo',
+'show-big-image-thumb' => '<small>Grandeco de cxi antauxvido: $1 × $2 rastrumeroj</small>',
 
 # Special:Newimages
 'newimages'    => 'Aro da novaj bildoj',
@@ -1472,6 +1489,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'noimages'     => 'Nenio videbla.',
 
 # Metadata
+'metadata'          => 'Metadatumo',
 'metadata-expand'   => 'Montru etendajn detalojn',
 'metadata-collapse' => 'Kaŝu etendajn detalojn',
 

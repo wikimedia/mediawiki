@@ -1197,6 +1197,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 'withoutinterwiki'        => 'Sivut, joilla ei ole kielilinkkejä',
 'withoutinterwiki-header' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
+'withoutinterwiki-submit' => 'Näytä',
 
 'fewestrevisions' => 'Sivut, joilla on vähiten muutoksia',
 
