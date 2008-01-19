@@ -245,8 +245,8 @@ class CoreParserFunctions {
 				$name = $frame->expand( $names->item( 0 ), PPFrame::STRIP_COMMENTS );
 				$values = $xpath->query( 'value', $arg );
 				$value = trim( $frame->expand( $values->item( 0 ) ) );
-				if ( preg_match( '/^(?:"|\')(.*)(?:"|\')$/s', $value, $m ) ) {
-					$value = $m[1];
+				if ( preg_match( '/^(?:["\'](.+)["\']|""|\'\')$/s', $value, $m ) ) {
+					$value = isset( $m[1] ) ? $m[1] : '';
 				}
 				$attributes[$name] = $value;
 			}
@@ -255,7 +255,8 @@ class CoreParserFunctions {
 		$params = array(
 			'name' => $tagName,
 			'inner' => $inner,
-			'attributes' => $attributes
+			'attributes' => $attributes,
+			'close' => "</$tagName>",
 		);
 		return $parser->extensionSubstitution( $params, $frame );
 	}

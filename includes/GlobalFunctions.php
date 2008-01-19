@@ -427,24 +427,12 @@ function wfMsgWeirdKey ( $key ) {
 function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 	global $wgParser, $wgContLang, $wgMessageCache, $wgLang;
 
-	/* <Vyznev> btw, is all that code in wfMsgGetKey() that check
-	 * if the message cache exists of not really necessary, or is
-	 * it just paranoia?
-	 * <TimStarling> Vyznev: it's probably not necessary
-	 * <TimStarling> I think I wrote it in an attempt to report DB
-	 * connection errors properly
-	 * <TimStarling> but eventually we gave up on using the
-	 * message cache for that and just hard-coded the strings
-	 * <TimStarling> it may have other uses, it's not mere paranoia
-	 */
-
-	if ( is_object( $wgMessageCache ) )
-		$transstat = $wgMessageCache->getTransform();
-
+	# If $wgMessageCache isn't initialised yet, try to return something sensible.
 	if( is_object( $wgMessageCache ) ) {
-		if ( ! $transform )
-			$wgMessageCache->disableTransform();
 		$message = $wgMessageCache->get( $key, $useDB, $forContent );
+		if ( $transform ) {
+			$message = $wgMessageCache->transform( $message );
+		}
 	} else {
 		if( $forContent ) {
 			$lang = &$wgContLang;
@@ -456,21 +444,12 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 		# ISSUE: Should we try to handle "message/lang" here too?
 		$key = str_replace( ' ' , '_' , $wgContLang->lcfirst( $key ) );
 
-		wfSuppressWarnings();
 		if( is_object( $lang ) ) {
 			$message = $lang->getMessage( $key );
 		} else {
 			$message = false;
 		}
-		wfRestoreWarnings();
-
-		if ( $transform && strstr( $message, '{{' ) !== false ) {
-			$message = $wgParser->transformMsg($message, $wgMessageCache->getParserOptions() );
-		}
 	}
-
-	if ( is_object( $wgMessageCache ) && ! $transform )
-		$wgMessageCache->setTransform( $transstat );
 
 	return $message;
 }
