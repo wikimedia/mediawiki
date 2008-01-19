@@ -126,8 +126,7 @@ class RawPage {
 			$url = $_SERVER['PHP_SELF'];
 		}
 		
-		$ua = @$_SERVER['HTTP_USER_AGENT'];
-		if( strcmp( $wgScript, $url ) && strpos( $ua, 'MSIE' ) !== false ) {
+		if( strcmp( $wgScript, $url ) ) {
 			# Internet Explorer will ignore the Content-Type header if it
 			# thinks it sees a file extension it recognizes. Make sure that
 			# all raw requests are done through the script node, which will
