@@ -157,6 +157,7 @@ $wgUploadDirectory	= false; /// defaults to "{$IP}/images"
 $wgHashedUploadDirectory	= true;
 $wgLogo				= false; /// defaults to "{$wgStylePath}/common/images/wiki.png"
 $wgFavicon			= '/favicon.ico';
+$wgAppleTouchIcon   = false; /// This one'll actually default to off. For iPhone and iPod Touch web app bookmarks
 $wgMathPath         = false; /// defaults to "{$wgUploadPath}/math"
 $wgMathDirectory    = false; /// defaults to "{$wgUploadDirectory}/math"
 $wgTmpDirectory     = false; /// defaults to "{$wgUploadDirectory}/tmp"
