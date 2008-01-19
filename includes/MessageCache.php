@@ -500,9 +500,6 @@ class MessageCache {
 		if( $message === false ) {
 			return '&lt;' . htmlspecialchars($key) . '&gt;';
 		}
-
-		# Replace brace tags
-		$message = $this->transform( $message );
 		return $message;
 	}
 
@@ -584,12 +581,11 @@ class MessageCache {
 			# Clone it and store it
 			$this->mParser = clone $wgParser;
 		}
-		if ( !$this->mDisableTransform && $this->mParser ) {
+		if ( $this->mParser ) {
 			if( strpos( $message, '{{' ) !== false ) {
 				$popts = $this->getParserOptions();
-				if ( $interface ) { $popts->setInterfaceMessage(true); }
+				$popts->setInterfaceMessage( $interface );
 				$message = $this->mParser->transformMsg( $message, $popts );
-				if ( $interface ) { $popts->setInterfaceMessage(false); }
 			}
 		}
 		return $message;
@@ -597,10 +593,12 @@ class MessageCache {
 
 	function disable() { $this->mDisable = true; }
 	function enable() { $this->mDisable = false; }
-	function disableTransform() { $this->mDisableTransform = true; }
-	function enableTransform() { $this->mDisableTransform = false; }
-	function setTransform( $x ) { $this->mDisableTransform = $x; }
-	function getTransform() { return $this->mDisableTransform; }
+
+	/** @deprecated */
+	function disableTransform() {}
+	function enableTransform() {}
+	function setTransform( $x ) {}
+	function getTransform() { return false; }
 
 	/**
 	 * Add a message to the cache

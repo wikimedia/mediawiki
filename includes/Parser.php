@@ -15,15 +15,17 @@
  * (which in turn the browser understands, and can display).
  *
  * <pre>
- * There are four main entry points into the Parser class:
+ * There are five main entry points into the Parser class:
  * parse()
  *   produces HTML output
  * preSaveTransform().
  *   produces altered wiki markup.
- * transformMsg()
- *   performs brace substitution on MediaWiki messages
  * preprocess()
  *   removes HTML comments and expands templates
+ * cleanSig()
+ *   Cleans a signature before saving it to preferences
+ * extractSections()
+ *   Extracts sections from an article for section editing
  *
  * Globals used:
  *    objects:   $wgLang, $wgContLang
@@ -247,7 +249,6 @@ class Parser
 		$this->ot = array(
 			'html' => $ot == OT_HTML,
 			'wiki' => $ot == OT_WIKI,
-			'msg' => $ot == OT_MSG,
 			'pre' => $ot == OT_PREPROCESS,
 		);
 	}
@@ -256,6 +257,9 @@ class Parser
 	 * Set the context title
 	 */
 	function setTitle( $t ) {
+		if ( !$t || $t instanceof FakeTitle ) {
+			$t = Title::newFromText( 'NO TITLE' );
+		}
 		if ( strval( $t->getFragment() ) !== '' ) {
 			# Strip the fragment to avoid various odd effects
 			$this->mTitle = clone $t;
@@ -453,9 +457,6 @@ class Parser
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->replaceVariables( $text );
-		if ( $this->mOptions->getRemoveComments() ) {
-			$text = Sanitizer::removeHTMLcomments( $text );
-		}
 		$text = $this->mStripState->unstripBoth( $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -2581,7 +2582,7 @@ class Parser
 	 *          self::PTD_FOR_INCLUSION    Handle <noinclude>/<includeonly> as if the text is being 
 	 *                                     included. Default is to assume a direct page view. 
 	 *
-	 * The generated DOM tree must depend only on the input text, the flags, and $this->ot['msg']. 
+	 * The generated DOM tree must depend only on the input text and the flags.
 	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899. 
 	 *
 	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a 
@@ -2598,47 +2599,24 @@ class Parser
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-makexml' );
 
-		static $msgRules, $normalRules, $inclusionSupertags, $nonInclusionSupertags;
-		if ( !$msgRules ) {
-			$msgRules = array(
-				'{' => array(
-					'end' => '}',
-					'names' => array(
-						2 => 'template',
-					),
-					'min' => 2,
-					'max' => 2,
+		$rules = array(
+			'{' => array(
+				'end' => '}',
+				'names' => array(
+					2 => 'template',
+					3 => 'tplarg',
 				),
-				'[' => array(
-					'end' => ']',
-					'names' => array( 2 => null ),
-					'min' => 2,
-					'max' => 2,
-				)
-			);
-			$normalRules = array(
-				'{' => array(
-					'end' => '}',
-					'names' => array(
-						2 => 'template',
-						3 => 'tplarg',
-					),
-					'min' => 2,
-					'max' => 3,
-				),
-				'[' => array(
-					'end' => ']',
-					'names' => array( 2 => null ),
-					'min' => 2,
-					'max' => 2,
-				)
-			);
-		}
-		if ( $this->ot['msg'] ) {
-			$rules = $msgRules;
-		} else {
-			$rules = $normalRules;
-		}
+				'min' => 2,
+				'max' => 3,
+			),
+			'[' => array(
+				'end' => ']',
+				'names' => array( 2 => null ),
+				'min' => 2,
+				'max' => 2,
+			)
+		);
+
 		$forInclusion = $flags & self::PTD_FOR_INCLUSION;
 
 		$xmlishElements = $this->getStripList();
@@ -2662,7 +2640,7 @@ class Parser
 	
 		$stack = new PPDStack;
 
-		$searchBase = implode( '', array_keys( $rules ) ) . '<';
+		$searchBase = '[{<';
 		$revText = strrev( $text ); // For fast reverse searches
 
 		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
@@ -2931,8 +2909,14 @@ class Parser
 				if ( preg_match( "/\s*(={{$count}})/A", $revText, $m, 0, strlen( $text ) - $i ) ) {
 					if ( $i - strlen( $m[0] ) == $piece->startPos ) {
 						// This is just a single string of equals signs on its own line
-						// Divide by two and round down to create start and end delimiters
-						$count = intval( $count / 2 );
+						// Replicate the doHeadings behaviour /={count}(.+)={count}/
+						if ( $count < 3 ) {
+							$count = 0;
+						} elseif ( $count % 2 ) {
+							$count = ( $count - 1 ) / 2;
+						} else {
+							$count = $count / 2 - 1;
+						}
 					} else {
 						$count = min( strlen( $m[1] ), $count );
 					}
@@ -3160,8 +3144,8 @@ class Parser
 	 *
 	 * Note that the substitution depends on value of $mOutputType:
 	 *  OT_WIKI: only {{subst:}} templates
-	 *  OT_MSG: only magic variables
-	 *  OT_HTML: all templates and magic variables
+	 *  OT_PREPROCESS: templates but not extension tags
+	 *  OT_HTML: all templates and extension tags
 	 *
 	 * @param string $tex The text to transform
 	 * @param PPFrame $frame Object describing the arguments passed to the template
@@ -3733,6 +3717,15 @@ class Parser
 					}
 			}
 		} else {
+			if ( is_null( $attrText ) ) {
+				$attrText = '';
+			}
+			if ( isset( $params['attributes'] ) ) {
+				foreach ( $params['attributes'] as $attrName => $attrValue ) {
+					$attrText .= ' ' . htmlspecialchars( $attrName ) . '="' .
+						htmlspecialchars( $attrValue ) . '"';
+				}
+			}
 			if ( $content === null ) {
 				$output = "<$name$attrText/>";
 			} else {
@@ -4244,7 +4237,10 @@ class Parser
 	function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
 			global $wgTitle;
-			$this->startExternalParse( $wgTitle, new ParserOptions(), OT_MSG );
+			$this->clearState();
+			$this->setTitle( $wgTitle );
+			$this->mOptions = new ParserOptions;
+			$this->setOutputType = OT_PREPROCESS;
 		}
 
 		# FIXME: regex doesn't respect extension tags or nowiki
@@ -4291,16 +4287,11 @@ class Parser
 	}
 
 	/**
-	 * Transform a MediaWiki message by replacing magic variables.
+	 * Wrapper for preprocess()
 	 *
-	 * For some unknown reason, it also expands templates, but only to the 
-	 * first recursion level. This is wrong and broken, probably introduced 
-	 * accidentally during refactoring, but probably relied upon by thousands 
-	 * of users. 
-	 *
-	 * @param string $text the text to transform
+	 * @param string $text the text to preprocess
 	 * @param ParserOptions $options  options
-	 * @return string the text with variables substituted
+	 * @return string
 	 * @public
 	 */
 	function transformMsg( $text, $options ) {
@@ -4316,17 +4307,7 @@ class Parser
 		$executing = true;
 
 		wfProfileIn($fname);
-
-		if ( $wgTitle && !( $wgTitle instanceof FakeTitle ) ) {
-			$this->setTitle( $wgTitle );
-		} else {
-			$this->setTitle( Title::newFromText('msg') );
-		}
-		$this->mOptions = $options;
-		$this->setOutputType( OT_MSG );
-		$this->clearState();
-		$text = $this->replaceVariables( $text );
-		$text = $this->mStripState->unstripBoth( $text );
+		$text = $this->preprocess( $text, $wgTitle, $options );
 
 		$executing = false;
 		wfProfileOut($fname);
@@ -5415,18 +5396,12 @@ class PPFrame {
 			return $root;
 		}
 
-		if ( $this->parser->ot['html'] 
-			&& ++$this->parser->mPPNodeCount > $this->parser->mOptions->mMaxPPNodeCount ) 
+		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->mMaxPPNodeCount ) 
 		{
-			return $this->parser->insertStripItem( '<!-- node-count limit exceeded -->' );
+			return '<span class="error">Node-count limit exceeded</span>';
 		}
 
-		if ( is_array( $root ) ) {
-			$s = '';
-			foreach ( $root as $node ) {
-				$s .= $this->expand( $node, $flags );
-			}
-		} elseif ( $root instanceof DOMNodeList ) {
+		if ( is_array( $root ) || $root instanceof DOMNodeList ) {
 			$s = '';
 			foreach ( $root as $node ) {
 				$s .= $this->expand( $node, $flags );
@@ -5457,7 +5432,7 @@ class PPFrame {
 				$titles = $xpath->query( 'title', $root );
 				$title = $titles->item( 0 );
 				$parts = $xpath->query( 'part', $root );
-				if ( $flags & self::NO_ARGS || $this->parser->ot['msg'] ) {
+				if ( $flags & self::NO_ARGS ) {
 					$s = '{{{' . $this->implodeWithFlags( '|', $flags, $title, $parts ) . '}}}';
 				} else {
 					$params = array( 'title' => $title, 'parts' => $parts, 'text' => 'FIXME' );
@@ -5699,7 +5674,6 @@ class PPTemplateFrame extends PPFrame {
 	}
 
 	function getArgument( $name ) {
-		wfDebug( __METHOD__." getting '$name'\n" );
 		$text = $this->getNumberedArgument( $name );
 		if ( $text === false ) {
 			$text = $this->getNamedArgument( $name );
