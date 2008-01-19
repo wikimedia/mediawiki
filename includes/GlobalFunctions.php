@@ -2317,6 +2317,18 @@ function wfLoadExtensionMessages( $extensionName ) {
 }
 
 /**
+ * Load extension messages files
+ */
+function wfLoadMultipleFileExtensionMessages( $extensionName ) {
+	global $wgExtensionMessagesMultipleFiles, $wgMessageCache;
+	if ( !empty( $wgExtensionMessagesMultipleFiles[$extensionName] ) ) {
+		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesMultipleFiles[$extensionName] );
+		// Prevent double-loading
+		$wgExtensionMessagesMultipleFiles[$extensionName] = false;
+	}
+}
+
+/**
  * Get a platform-independent path to the null file, e.g.
  * /dev/null
  *

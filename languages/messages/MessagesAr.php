@@ -1450,6 +1450,7 @@ PICT # misc.
 
 'withoutinterwiki'        => 'صفحات بدون وصلات لغات أخرى',
 'withoutinterwiki-header' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
+'withoutinterwiki-submit' => 'عرض',
 
 'fewestrevisions' => 'المقالات ذات أقل تعديل',
 

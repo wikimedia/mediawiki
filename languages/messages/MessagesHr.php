@@ -1165,6 +1165,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 
 'withoutinterwiki'        => 'Stranice bez međuwiki poveznica',
 'withoutinterwiki-header' => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
+'withoutinterwiki-submit' => 'Prikaži',
 
 'fewestrevisions' => 'Članci s najmanje izmjena',
 

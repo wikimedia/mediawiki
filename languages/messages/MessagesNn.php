@@ -927,6 +927,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'group-bot'        => 'Bottar',
 'group-sysop'      => 'Administratorar',
 'group-bureaucrat' => 'Byråkratar',
+'group-all'        => '(alle)',
 
 'group-bot-member'        => 'Bott',
 'group-sysop-member'      => 'Administrator',
@@ -965,6 +966,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'newpageletter'                     => 'n',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Éin brukar|$1 brukarar}} overvakar]',
+'rc_categories_any'                 => 'Alle',
+'newsectionsummary'                 => '/* $1 */ ny seksjon',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringar',
@@ -1008,6 +1011,7 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'filestatus'                 => 'Opphavsrettsstatus',
 'filesource'                 => 'Kjelde',
 'uploadedfiles'              => 'Filer som er opplasta',
+'ignorewarnings'             => 'Oversjå åtvaringar',
 'illegalfilename'            => 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
 'badfilename'                => 'Namnet på fila har vorte endra til «$1».',
 'emptyfile'                  => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
@@ -1042,6 +1046,8 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'imgfile'                   => 'fil',
 'filehist'                  => 'Filhistorikk',
 'filehist-help'             => 'Klikk på dato/klokkeslett for å sjå fila slik ho var på det tidspunktet.',
+'filehist-deleteall'        => 'slett alle',
+'filehist-deleteone'        => 'slett denne',
 'filehist-current'          => 'noverande',
 'filehist-datetime'         => 'Dato/klokkeslett',
 'filehist-user'             => 'Brukar',
@@ -1061,6 +1067,7 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'imagelist_name'            => 'Namn',
 'imagelist_user'            => 'Brukar',
 'imagelist_size'            => 'Storleik',
+'imagelist_description'     => 'Beskriving',
 
 # File deletion
 'filedelete'        => 'Slett $1',
