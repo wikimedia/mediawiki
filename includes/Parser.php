@@ -2906,16 +2906,16 @@ class Parser
 				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
 				$m = false;
 				$count = $piece->count;
-				if ( preg_match( "/\s*(={{$count}})/A", $revText, $m, 0, strlen( $text ) - $i ) ) {
+				if ( preg_match( "/\s*(=+)/A", $revText, $m, 0, strlen( $text ) - $i ) ) {
 					if ( $i - strlen( $m[0] ) == $piece->startPos ) {
 						// This is just a single string of equals signs on its own line
 						// Replicate the doHeadings behaviour /={count}(.+)={count}/
+						// First find out how many equals signs there really are (don't stop at 6)
+						$count = strlen( $m[1] );
 						if ( $count < 3 ) {
 							$count = 0;
-						} elseif ( $count % 2 ) {
-							$count = ( $count - 1 ) / 2;
 						} else {
-							$count = $count / 2 - 1;
+							$count = min( 6, intval( ( $count - 1 ) / 2 ) );
 						}
 					} else {
 						$count = min( strlen( $m[1] ), $count );
