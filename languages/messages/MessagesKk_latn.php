@@ -1210,12 +1210,13 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'userrights-groupsmember'     => 'Müşeligi:',
 'userrights-groupsremovable'  => 'Alastalatın toptar:',
 'userrights-groupsavailable'  => 'Jetimdi toptar:',
-'userrights-groupshelp'       => 'Qatıswşını topqa üsteýmin ne toptan alastaýmın degen toptardı bölekteñiz.
-Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ bölektewin CTRL + Sol jaq nuqwmen öşirwiñizge boladı.',
+'userrights-groupshelp'            => 'Qatıswşını topqa üsteýmin ne toptan alastaýmın degen toptardı bölekteñiz. Bölektenbegen toptar özgertilimeýdi. Toptardıñ bölektewin CTRL + Sol jaq nuqwmen öşirwiñizge boladı.',
 'userrights-reason'           => 'Özgertw sebebi:',
 'userrights-available-none'   => 'Top müşeligin özgerte almaýsız.',
-'userrights-available-add'    => 'Qatıswşılardı $1 tobına üsteý alasız.',
-'userrights-available-remove' => 'Qatıswşılardı $1 tobınan alastaý alasız.',
+'userrights-available-add'         => 'Qatıswşılardı mına {{PLURAL:$2|topqa|toptarğa}} üsteý alasız: $1.',
+'userrights-available-remove'      => 'Qatıswşılardı mına {{PLURAL:$2|toptan|toptardan}} alastaý alasız: $1.',
+'userrights-available-add-self'    => 'Öziñizdi mına {{PLURAL:$2|topqa|toptarğa}} üsteý alasız: $1.',
+'userrights-available-remove-self' => 'Öziñizdi mına {{PLURAL:$2|toptan|toptardan}} alastaý alasız: $1.',
 'userrights-no-interwiki'     => 'Basqa wïkïlerdegi paýdalanwşı quqıqtarın öñdewge ruqsatıñız joq.',
 'userrights-nodatabase'       => '$1 derekqorı joq ne jergilikti emes.',
 'userrights-nologin'          => 'Qatıswşı quqıqtarın tağaýındaw üşin äkimşi tirkelgisimen [[{{ns:special}}:Userlogin|kirwiñiz]] jön.',
@@ -1491,6 +1492,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 
 'withoutinterwiki'        => 'Eş tilge siltemegen better',
 'withoutinterwiki-header' => 'Kelesi better basqa tilderge siltemeýdi:',
+'withoutinterwiki-submit'  => 'Körset',
 
 'fewestrevisions' => 'Eñ az tüzetilgen better',
 
@@ -1726,6 +1728,8 @@ Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
 ** Awtorı suratılğan
 ** Awtorlıq quqıqtarın buzw
 ** Buzaqılıq',
+'delete-toobig'               => 'Bul bette baýtaq öñdew tarïxı bar, $1 nusqadan astam. Bundaý betterdiñ joywı {{SITENAME}} torabın äldeqalaý üzip tastawına böget salw üşin tïımdalğan.',
+'delete-warning-toobig'       => 'Bul bette baýtaq öñdew tarïxı bar, $1 nusqadan astam. Bunıñ joywı {{SITENAME}} torabındağı derekqor äreketterdi üzip tastawın mümkin; bunı abaýlap ötkiziñiz.',
 'rollback'                    => 'Tüzetwlerdi keri qaýtarw',
 'rollback_short'              => 'Keri qaýtarw',
 'rollbacklink'                => 'keri qaýtarw',
@@ -1738,9 +1742,7 @@ Soñğı öñdewdi [[User:$3|$3]] ([[User_talk:$3|talqılawı]]) istegen.',
 'editcomment'                 => 'Bolğan tüzetw mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
 'revertpage'                  => '[[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|talqılawı]]) tüzetwlerinen qaýtarğan; [[User:$1|$1]] soñğı nusqasına özgertti.',
 'rollback-success'            => '$1 tüzetwlerinen qaýtarğan; $2 soñğı nusqasına özgertti.',
-'sessionfailure'              => 'Kirw sessïyasında şataq bolğan sïyaqtı;
-sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.
-«Artqa» tüýmesin basıñız, jäne betti keri jükteñiz, sosın qaýta baýqap köriñiz.',
+'sessionfailure'              => 'Kirw sessïyasında şataq bolğan sïyaqtı; sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı. «Artqa» tüýmesin basıñız, jäne betti keri jükteñiz, sosın qaýta baýqap köriñiz.',
 'protectlogpage'              => 'Qorğaw_jwrnalı',
 'protectlogtext'              => 'Tömende betterdiñ qorğaw/qorğamaw tizimi berilgen. Ağımdağı qorğaw ärektter bar better üşin [[{{ns:special}}:Protectedpages|qorğalğan bet tizimin]] qarañız.',
 'protectedarticle'            => '«[[$1]]» qorğaldı',
