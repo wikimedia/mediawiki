@@ -104,9 +104,6 @@ class LocalRepo extends FSRepo {
 		if( !$row ) {
 			return false;
 		}
-		if( $row->rd_namespace != NS_IMAGE ) {
-			return false;
-		}
 		return Title::makeTitle( $row->rd_namespace, $row->rd_title );
 	}
 }

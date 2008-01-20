@@ -93,7 +93,7 @@ abstract class FileRepo {
 
 		# Now try redirects
 		$redir = $this->checkRedirect( $title );
-		if( $redir ) {
+		if( $redir && $redir->getNamespace() == NS_IMAGE) {
 			$img = $this->newFile( $redir );
 			if( !$img ) {
 				return false;

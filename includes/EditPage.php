@@ -38,6 +38,8 @@ class EditPage {
 	const AS_OK							= 230;
 	const AS_END						= 231;
 	const AS_SPAM_ERROR					= 232;
+	const AS_IMAGE_REDIRECT_ANON        = 233;
+	const AS_IMAGE_REDIRECT_LOGGED      = 234;
 
 	var $mArticle;
 	var $mTitle;
@@ -697,6 +699,17 @@ class EditPage {
 		{
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
 			return self::AS_HOOK_ERROR;
+		}
+
+		# Check image redirect
+		if ( $wgTitle->getNamespace() == NS_IMAGE &&
+			Title::newFromRedirect( $this->textbox1 ) instanceof Title &&
+			!$wgUser->isAllowed( 'upload' ) ) {
+				if( $wgUser->isAnon() ) {
+					return self::AS_IMAGE_REDIRECT_ANON;
+				} else {
+					return self::AS_IMAGE_REDIRECT_LOGGED;
+				}
 		}
 
 		# Reintegrate metadata
@@ -2196,6 +2209,10 @@ END
 				$this->blockedPage();
 				return false;
 
+			case self::AS_IMAGE_REDIRECT_ANON:
+				$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
+				return false;
+
 			case self::AS_READ_ONLY_PAGE_ANON:
 				$this->userNotLoggedInPage();
 				return false;
@@ -2216,6 +2233,10 @@ END
 			case self::AS_BLANK_ARTICLE:
 		 		$wgOut->redirect( $wgTitle->getFullURL() );
 		 		return false;
+
+			case self::AS_IMAGE_REDIRECT_LOGGED:
+				$wgOut->permissionRequired( 'upload' );
+				return false;
 		}
 	}
 }
