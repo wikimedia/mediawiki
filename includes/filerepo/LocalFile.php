@@ -389,6 +389,7 @@ class LocalFile extends File
 	 * @param $type string 'text' or 'id'
 	 */
 	function getUser($type='text') {
+		$this->load();
 		if( $type == 'text' ) {
 			return $this->user_text;
 		} elseif( $type == 'id' ) {
