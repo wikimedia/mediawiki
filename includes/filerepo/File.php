@@ -220,6 +220,14 @@ abstract class File {
 	public function getHeight( $page = 1 ) { return false; }
 
 	/**
+	 * Returns ID or name of user who uploaded the file
+	 * STUB
+	 *
+	 * @param $type string 'text' or 'id'
+	 */
+	public function getUser( $type='text' ) { return null; }
+
+	/**
 	 * Get the duration of a media file in seconds
 	 */
 	public function getLength() {
@@ -628,6 +636,18 @@ abstract class File {
 	}
 
 	/**
+	 * Return a fragment of the history of file.
+	 *
+	 * STUB
+	 * @param $limit integer Limit of rows to return
+	 * @param $start timestamp Only revisions older than $start will be returned
+	 * @param $end timestamp Only revisions newer than $end will be returned
+	 */
+	function getHistory($limit = null, $start = null, $end = null) {
+		return false;
+	}
+
+	/**
 	 * Return the history of this file, line by line. Starts with current version, 
 	 * then old versions. Should return an object similar to an image/oldimage 
 	 * database row.
@@ -991,6 +1011,14 @@ abstract class File {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Get discription of file revision
+	 * STUB
+	 */
+	function getDescription() {
+		return null;
 	}
 
 	/**

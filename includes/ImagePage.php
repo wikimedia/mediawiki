@@ -411,25 +411,23 @@ EOT
 
 		$sk = $wgUser->getSkin();
 
-		$line = $this->img->nextHistoryLine();
-
-		if ( $line ) {
+		if ( $this->img ) {
 			$list = new ImageHistoryList( $sk, $this->img );
-			$file = $this->repo->newFileFromRow( $line );
+			$file = $this->img;
 			$dims = $file->getDimensionsString();
 			$s = $list->beginImageHistoryList() .
-				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $line->img_timestamp),
-					$this->mTitle->getDBkey(),  $line->img_user,
-					$line->img_user_text, $line->img_size, $line->img_description,
+				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $file->getTimestamp()),
+					$this->mTitle->getDBkey(),  $file->getUser('id'),
+					$file->getUser('text'), $file->getSize(), $file->getDescription(),
 					$dims
 				);
 
-			while ( $line = $this->img->nextHistoryLine() ) {
-				$file = $this->repo->newFileFromRow( $line );
+			$hist = $this->img->getHistory();
+			foreach( $hist as $file ) {
 				$dims = $file->getDimensionsString();
-				$s .= $list->imageHistoryLine( false, $line->oi_timestamp,
-			  		$line->oi_archive_name, $line->oi_user,
-			  		$line->oi_user_text, $line->oi_size, $line->oi_description,
+				$s .= $list->imageHistoryLine( false, wfTimestamp(TS_MW, $file->getTimestamp()),
+			  		$file->getArchiveName(), $file->getUser('id'),
+			  		$file->getUser('text'), $file->getSize(), $file->getDescription(),
 					$dims
 				);
 			}
