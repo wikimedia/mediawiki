@@ -411,7 +411,7 @@ EOT
 
 		$sk = $wgUser->getSkin();
 
-		if ( $this->img->exists ) {
+		if ( $this->img->exists() ) {
 			$list = new ImageHistoryList( $sk, $this->img );
 			$file = $this->img;
 			$dims = $file->getDimensionsString();
