@@ -10,6 +10,7 @@
  * @author BloodIce
  * @author Borislav
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $fallback8bitEncoding = 'windows-1251';
@@ -1933,7 +1934,7 @@ $1',
 
 # Scripts
 'common.js'   => '/* Този файл съдържа код на Джаваскрипт и се зарежда при всички потребители. */',
-'monobook.js' => '/* Остаряла страница; използвайте [[МедияУики:Common.js]] */',
+'monobook.js' => '/* Остаряла страница; използвайте [[MediaWiki:Common.js]] */',
 
 # Metadata
 'nodublincore'      => 'Метаданните Dublin Core RDF са изключени за този сървър.',

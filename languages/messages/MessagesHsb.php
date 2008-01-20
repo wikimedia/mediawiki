@@ -1747,6 +1747,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'export-addcattext' => 'Strony z kategorije dodawać:',
 'export-addcat'     => 'Dodawać',
 'export-download'   => 'Jako XML-dataju składować',
+'export-templates'  => 'Předłohi zapřijeć',
 
 # Namespace 8 related
 'allmessages'               => 'Systemowe zdźělenki',

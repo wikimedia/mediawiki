@@ -1866,6 +1866,7 @@ In het laatste geval kan u ook een link gebruiken, bijvoorbeeld [[Special:Export
 'export-addcattext' => "Voeg pagina's toe van categorie:",
 'export-addcat'     => 'Toevoegen',
 'export-download'   => 'Als bestand opslaan',
+'export-templates'  => 'Sjablonen toevoegen',
 
 # Namespace 8 related
 'allmessages'               => 'Systeemteksten',

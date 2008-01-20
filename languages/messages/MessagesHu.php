@@ -949,24 +949,26 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'files'                    => 'Képek',
 
 # User rights
-'userrights-lookup-user'      => 'Felhasználócsoportok kezelése',
-'userrights-user-editname'    => 'Írd be a felhasználónevet:',
-'editusergroup'               => 'Felhasználócsoportok módosítása',
-'userrights-editusergroup'    => 'Felhasználócsoportok módosítása',
-'saveusergroups'              => 'Felhasználócsoportok mentése',
-'userrights-groupsmember'     => 'Csoporttag:',
-'userrights-groupsremovable'  => 'Eltávolítható csoportok:',
-'userrights-groupsavailable'  => 'Létező csoportok:',
-'userrights-groupshelp'       => 'Jelöld ki azokat a csoportokat, melyekből el akarod távolítani, vagy melyekhez hozzá akarod adni a felhasználót.
+'userrights-lookup-user'           => 'Felhasználócsoportok kezelése',
+'userrights-user-editname'         => 'Írd be a felhasználónevet:',
+'editusergroup'                    => 'Felhasználócsoportok módosítása',
+'userrights-editusergroup'         => 'Felhasználócsoportok módosítása',
+'saveusergroups'                   => 'Felhasználócsoportok mentése',
+'userrights-groupsmember'          => 'Csoporttag:',
+'userrights-groupsremovable'       => 'Eltávolítható csoportok:',
+'userrights-groupsavailable'       => 'Létező csoportok:',
+'userrights-groupshelp'            => 'Jelöld ki azokat a csoportokat, melyekből el akarod távolítani, vagy melyekhez hozzá akarod adni a felhasználót.
 A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod egy csoport kijelölését megszüntetni',
-'userrights-reason'           => 'A változtatás indoka:',
-'userrights-available-none'   => 'A csoporttagságot nem módosíthatod.',
-'userrights-available-add'    => 'Adhatsz hozzá felhasználókat a(z) $1 csoporthoz.',
-'userrights-available-remove' => 'Távolíthatsz el felhazsnálókat a(z) $1 csoportból.',
-'userrights-no-interwiki'     => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
-'userrights-nodatabase'       => '$1 adatbázis nem létezik vagy nem helyi.',
-'userrights-nologin'          => '[[Special:Userlogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy felhasználói jogokat adhass.',
-'userrights-notallowed'       => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
+'userrights-reason'                => 'A változtatás indoka:',
+'userrights-available-none'        => 'A csoporttagságot nem módosíthatod.',
+'userrights-available-add'         => 'Adhatsz hozzá felhasználókat a(z) $1 csoporthoz.',
+'userrights-available-remove'      => 'Távolíthatsz el felhazsnálókat a(z) $1 csoportból.',
+'userrights-available-add-self'    => 'A következő {{PLURAL:$2|csoporthoz|csoportokhoz}} adhatod hozzá magadat: $1.',
+'userrights-available-remove-self' => 'A következő {{PLURAL:$2|csoportból|csoportokból}} távolíthatod el magad: $1.',
+'userrights-no-interwiki'          => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
+'userrights-nodatabase'            => '$1 adatbázis nem létezik vagy nem helyi.',
+'userrights-nologin'               => '[[Special:Userlogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy felhasználói jogokat adhass.',
+'userrights-notallowed'            => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
 
 # Groups
 'group'               => 'Csoport:',
@@ -1231,6 +1233,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 
 'withoutinterwiki'        => 'Interwikilink nélküli lapok',
 'withoutinterwiki-header' => 'A következő lapok nem hivatkoznak más nyelvű változatokra:',
+'withoutinterwiki-submit' => 'Megjelenítés',
 
 'fewestrevisions' => 'Legrövidebb laptörténetű lapok',
 
@@ -1467,6 +1470,8 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 ** Szerző kérésére
 ** Jogsértő
 ** Vandalizmus',
+'delete-toobig'               => 'Ennek a lapnak nagy laptörténete van, $1 változattal. Az ilyen lapok törlése korlátozott a wiki rendjének megőrzése végett.',
+'delete-warning-toobig'       => 'Ennek a lapnak nagy laptörténete van, $1 változattal. Törlése fennakadásokat okozhat a wiki adatbázisműveleteiben; óvatosan járj el.',
 'rollback'                    => 'Szerkesztések visszaállítása',
 'rollback_short'              => 'Visszaállítás',
 'rollbacklink'                => 'visszaállítás',

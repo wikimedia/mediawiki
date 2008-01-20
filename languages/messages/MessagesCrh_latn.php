@@ -1244,8 +1244,8 @@ Yardım ve teklifler içün:
 'confirmdelete'               => 'Yoq etüv işlemini tasdıqla',
 'deletesub'                   => '("$1" yoq etile)',
 'historywarning'              => 'Tenbi: Siz yoq etmek üzre olğan saifeniñ keçmişi bardır:',
-'confirmdeletetext'           => "Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
-Lütfen neticelerini añlağanıñıznı, [[Special:Whatlinkshere/{{FULLPAGENAME}}|saifege bağlantılarını]] teşkergenden soñ ve [[Project:Yoq etüv politikası]]'na uyğunlığını diqqatqa alaraq, bunı yapmağa istegeniñizni tasdıqlañız.",
+'confirmdeletetext'           => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
+Lütfen neticelerini añlağanıñıznı, [[Special:Whatlinkshere/{{FULLPAGENAME}}|saifege bağlantılarını]] teşkergenden soñ ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alaraq, bunı yapmağa istegeniñizni tasdıqlañız.',
 'actioncomplete'              => 'İşlem tamamlandı.',
 'deletedtext'                 => '"$1" yoq etildi.
 yaqın zamanda yoq etilgenlerni körmek içün: $2.',
