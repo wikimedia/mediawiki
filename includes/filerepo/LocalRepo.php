@@ -89,6 +89,10 @@ class LocalRepo extends FSRepo {
 		if( !$wgFileRedirects ) {
 			return false;
 		}
+
+		if( $title->getNamespace() == NS_MEDIA ) {
+			$title = Title::makeTitle( NS_IMAGE, $title->getText() );
+		}
 		
 		$id = $this->getArticleID( $title );
 		if( !$id ) {
