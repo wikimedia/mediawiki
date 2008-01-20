@@ -8,6 +8,7 @@
  * @author Tgr
  * @author Siebrand
  * @author SPQRobin
+ * @author Dorgan
  */
 
 $namespaceNames = array(

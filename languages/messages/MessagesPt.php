@@ -1243,6 +1243,7 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 
 'withoutinterwiki'        => 'Páginas sem interwikis de idiomas',
 'withoutinterwiki-header' => 'As seguintes páginas não possuem links para versões em outros idiomas:',
+'withoutinterwiki-submit' => 'Exibir',
 
 'fewestrevisions' => 'Páginas de conteúdo com menos edições',
 
@@ -1471,6 +1472,8 @@ Consulte $2 para um registo de eliminações recentes.',
 ** Pedido do autor
 ** Violação de direitos autorais
 ** Vandalismo',
+'delete-toobig'               => 'Esta página possui um longo histórico de edições (mais de $1). A eliminação de páginas que se encontram em tal condição foi restrita, a fim de se evitarem interrupções acidentais em {{SITENAME}}.',
+'delete-warning-toobig'       => 'Esta página possui um longo histórico de edições (mais de $1). Eliminá-la poderá causar problemas na base de dados de {{SITENAME}}. Proceda com cuidado.',
 'rollback'                    => 'Reverter edições',
 'rollback_short'              => 'Voltar',
 'rollbacklink'                => 'voltar',
@@ -1768,6 +1771,7 @@ Se desejar, pode utilizar uma ligação, por exemplo [[{{ns:special}}:Export/{{M
 'export-addcattext' => 'Adicionar à listagem páginas da categoria:',
 'export-addcat'     => 'Adicionar',
 'export-download'   => 'Oferecer para salvar como um ficheiro',
+'export-templates'  => 'Incluir predefinições',
 
 # Namespace 8 related
 'allmessages'               => 'Todas as mensagens de sistema',
@@ -2351,5 +2355,8 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'watchlisttools-view' => 'Ver alterações relevantes',
 'watchlisttools-edit' => 'Ver e editar a lista de vigiados',
 'watchlisttools-raw'  => 'Edição crua dos vigiados',
+
+# Core parser functions
+'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
 
 );

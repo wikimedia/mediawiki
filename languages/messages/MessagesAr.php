@@ -1987,6 +1987,7 @@ $1',
 'export-addcattext' => 'إضافة صفحات من تصنيف:',
 'export-addcat'     => 'إضافة',
 'export-download'   => 'اعرض الحفظ كملف',
+'export-templates'  => 'ضمن القوالب',
 
 # Namespace 8 related
 'allmessages'               => 'رسائل النظام',

@@ -23,6 +23,7 @@ $messages = array(
 'tog-editsection'             => 'Kenki fu seksipapira nanga [kenki]-skaki',
 'tog-editsectiononrightclick' => 'Kenki fu seksi duba meki nanga wan letimoysmoysiklik opo wan edelen (JavaScript)',
 'tog-showtoc'                 => 'Inut libi si (fu peprewoysi nanga meni 3 edelen)',
+'tog-rememberpassword'        => 'Memre mi waktiwortu nanga masyinnen opo disi komputer.',
 'tog-editwidth'               => 'Kenki-box is o folbre',
 'tog-watchcreations'          => 'Peprewoysi mi skopu soma opo mi sirey presi',
 'tog-watchdefault'            => 'Peprewoysi mi kenki soma opo mi sirey presi',
@@ -170,6 +171,7 @@ $messages = array(
 'views'             => 'Den kibri',
 'toolbox'           => 'Tubu-box',
 'userpage'          => 'Papira fu masyin libi si',
+'projectpage'       => 'Projectpapira libi si',
 'imagepage'         => 'Gefrepapira libi si',
 'mediawikipage'     => 'Papira fu boskopu libi si',
 'templatepage'      => 'Ankra libi si',
@@ -255,44 +257,62 @@ $messages = array(
 'directorycreateerror' => 'Map “$1” kan no skopu sey.',
 'filenotfound'         => 'Gefre “$1” kan no e findi sey.',
 'badtitle'             => 'Fowtu papiranen',
+'badtitletext'         => 'A nen fu a opoaksa papira ben fowtu, leyti efu abi wan fowtu skaki intertongo- efu interwikinen. Ski abi a nen no gu ben litiwroko.',
 'viewsource'           => 'Bigin libi si',
 'viewsourcefor'        => 'fu $1',
+'viewsourcetext'       => 'Yu kan a wiki-si fu disi papira aluku nanga kopi:',
 
 # Login and logout pages
-'logouttitle'         => 'Gwe efu masyin',
-'loginpagetitle'      => 'Nen fu masyin',
-'yourname'            => 'Nen fu masyin:',
-'yourdomainname'      => 'Yu domein:',
-'login'               => 'Kon',
-'userlogin'           => 'Kon / Meki fu masyin',
-'logout'              => 'Gwe',
-'userlogout'          => 'Gwe',
-'notloggedin'         => 'No kon',
-'nologin'             => 'Yu abi no masyin? $1.',
-'nologinlink'         => 'Meki fu masyin',
-'createaccount'       => 'Meki fu masyin',
-'gotaccount'          => 'Yu abi wansi wan masyin? $1.',
-'gotaccountlink'      => 'Kon',
-'createaccountmail'   => 'via e-mail',
-'youremail'           => 'E-mail:',
-'username'            => 'Nen fu masyin:',
-'uid'                 => 'Masyin ID:',
-'yourrealname'        => 'Yu tru nen:',
-'yourlanguage'        => 'Tongo:',
-'yournick'            => 'Habnen:',
-'email'               => 'E-mail',
-'loginerror'          => 'Fowtu fu a kon',
-'loginsuccesstitle'   => 'Gu e kon',
-'loginsuccess'        => "'''Yu ben e kon opo {{SITENAME}} leki masyin \"\$1\".'''",
-'nosuchuser'          => 'A masyin "$1" ben no da. Luku a yu skrifi efu skopu wan nyun masyin.',
-'nosuchusershort'     => 'A masyin "$1" ben no da. Luku a yu skrifi.',
-'nouserspecified'     => 'Yu mu wan masyinnen opogi.',
-'noemail'             => 'Da ben no e-mailadres dyaso fu a masyin "$1".',
-'eauthentsent'        => 'Da ben wan klari e-mail na a gi e-mailadresi e stir. Folo den instruksi ini a e-mail tu agi taki a yu e-mailadresi ben. Tu dy ten sey da no e-mail na a adresi e stir.',
-'accountcreated'      => 'Masyin ben skopu',
-'accountcreatedtext'  => 'A masyin $1 ben skopu.',
-'createaccount-title' => 'Masyin skopu fu {{SITENAME}}',
-'loginlanguagelabel'  => 'Tongo: $1',
+'logouttitle'           => 'Gwe efu masyin',
+'loginpagetitle'        => 'Nen fu masyin',
+'yourname'              => 'Nen fu masyin:',
+'yourpassword'          => 'Waktiwortu:',
+'remembermypassword'    => 'Memre mi waktiwortu nanga masyinnen opo disi komputer.',
+'yourdomainname'        => 'Yu domein:',
+'login'                 => 'Kon',
+'loginprompt'           => 'Yu mu den kuki iniputi abi tu kan e kon ben opo {{SITENAME}}.',
+'userlogin'             => 'Kon / Meki fu masyin',
+'logout'                => 'Gwe',
+'userlogout'            => 'Gwe',
+'notloggedin'           => 'No kon',
+'nologin'               => 'Yu abi no masyin? $1.',
+'nologinlink'           => 'Meki fu masyin',
+'createaccount'         => 'Meki fu masyin',
+'gotaccount'            => 'Yu abi wansi wan masyin? $1.',
+'gotaccountlink'        => 'Kon',
+'createaccountmail'     => 'via e-mail',
+'youremail'             => 'E-mail:',
+'username'              => 'Nen fu masyin:',
+'uid'                   => 'Masyin ID:',
+'yourrealname'          => 'Yu tru nen:',
+'yourlanguage'          => 'Tongo:',
+'yournick'              => 'Habnen:',
+'email'                 => 'E-mail',
+'prefs-help-realname'   => 'Yu tru nen ben wan opsi, leki yu disi opogi kan disi nen teki sey tu gi yu atribusi fu yu wroko.',
+'loginerror'            => 'Fowtu fu a kon',
+'loginsuccesstitle'     => 'Gu e kon',
+'loginsuccess'          => "'''Yu ben e kon opo {{SITENAME}} leki masyin \"\$1\".'''",
+'nosuchuser'            => 'A masyin "$1" ben no da. Luku a yu skrifi efu skopu wan nyun masyin.',
+'nosuchusershort'       => 'A masyin "$1" ben no da. Luku a yu skrifi.',
+'nouserspecified'       => 'Yu mu wan masyinnen opogi.',
+'wrongpassword'         => 'Waktiwortu ben fowtu. Du noma gi.',
+'wrongpasswordempty'    => 'A waktiwortu ben leyti. Du noma gi.',
+'passwordtooshort'      => 'Yu waktiwortu ben tu syartu. A mu a mena u $1 bloki ben.',
+'mailmypassword'        => 'E-mail waktiwortu',
+'passwordremindertitle' => 'Nyun tempi waktiwortu fu {{SITENAME}}',
+'passwordremindertext'  => 'Wanman, ski yu, abi fu a  IP-adresi $1 wan asuku e du yu a stir fu a waktiwortu fu {{SITENAME}} ($4).
+A waktiwortu fu masyin "$2" ben "$3".
+Kon now nanga kenki yu waktiwortu.
+
+Leki wanman trawan leki yu disi asuku abi e du efu yu yu waktiwortu baka sabi nanga a no langar wana kenki, luku no na disi boskopu nanga teki yu owru waktiwortu.',
+'noemail'               => 'Da ben no e-mailadres dyaso fu a masyin "$1".',
+'passwordsent'          => 'A waktiwortu ben stir na a e-mailadres fu "$1".
+Kon na yu a abi kisi.',
+'eauthentsent'          => 'Da ben wan klari e-mail na a gi e-mailadresi e stir. Folo den instruksi ini a e-mail tu agi taki a yu e-mailadresi ben. Tu dy ten sey da no e-mail na a adresi e stir.',
+'accountcreated'        => 'Masyin ben skopu',
+'accountcreatedtext'    => 'A masyin $1 ben skopu.',
+'createaccount-title'   => 'Masyin skopu fu {{SITENAME}}',
+'loginlanguagelabel'    => 'Tongo: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Deki litiwrok',
@@ -311,6 +331,7 @@ $messages = array(
 'nowiki_tip'      => 'No wiki-opomeki',
 'image_tip'       => 'Gefre',
 'media_tip'       => 'Skaki na wan gefre',
+'sig_tip'         => 'Yu sinaturi nanga datum nanga ten',
 'hr_tip'          => 'Lina dy lupiti ben (teki sparsa)',
 
 # Edit pages
@@ -328,6 +349,17 @@ $messages = array(
 'summary-preview'        => 'Fusi libi si fu infrumasi',
 'subject-preview'        => 'Ondroinfru/edelen fusi',
 'blockedtitle'           => 'Masyin ben spikri',
+'blockedtext'            => "<big>'''Yu massyin efu IP-adresi ben spikri.'''</big>
+
+A spreki ben e du via $1. A gi yesikrari ben ''$2''.
+
+* Set spikri: $8
+* U spikri: $6
+* Wana tu spikri: $7
+
+Yu kan kontakti nanga $1 efu wan trawan [[{{MediaWiki:Grouppage-sysop}}|sesopu]] abra a spikri tu taki.
+Yu kan a funksi 'e-mail disi masyin' no teki, iksi yu wan gu e-mailadresi abi e gi ini yu [[Special:Preferences|wana]] nanga a teki fu disi funksi ni spikri ben.
+Yu IP-adresi ben $3 now nanga a spikrinumro ben #$5. Aksa ala tu a infrumasi leki yu pewan opo disi spikri reagiri.",
 'whitelistedittext'      => 'Yu mu $1 fu a kenki fu peprewoysi.',
 'whitelistreadtext'      => 'Yu mu [[Special:Preferences|kon]] fu a leysi fu peprewoysi.',
 'loginreqlink'           => 'kon',
@@ -343,12 +375,20 @@ Teki a box '''back''' ini yu browser leki yu dyaso soma ben e kon.",
 'editingcomment'         => 'Kenki fu $1 (opotaki)',
 'yourtext'               => 'Yu litiwrok',
 'yourdiff'               => 'Kenki',
+'copyrightwarning'       => "Atessi: Ala kenki opo {{SITENAME}} sey akti tu ben ugi ondro a $2 (si $1 fu eksra infrumasi). Leki yu no wana taki yu litiwroko nanga trawan na awana kenki nanga spredi kan sey, yusu no fu 'Oponaki'.<br />
+Dyasonanga yu pramisi a wi ok taki yu disi litiwroko a yuse skrifi abi, efu abi abrateki u wan gu, fri, opoba sorsi.<br />
+<strong>TEKI NO MATERIYALI TAKI SEY TAPU NANGA OTURSLESI, IKSI YU ABI PERMISI FU TAKI!</strong>",
 'longpagewarning'        => '<strong>Disi papira ben $1 kilobyte gran; ili browser abi problemi nanga a kenki fu peprewoysi dy granr ben leki 32kb. Denki abra a spliti ini den seksi.</strong>',
 'templatesused'          => 'Ankra teki opo disi papira:',
 'templatesusedpreview'   => 'Ankra dy ben teki ini dis fusi:',
 'templatesusedsection'   => 'Ankra teki opo disi seksi:',
 'template-protected'     => '(ben tapu)',
 'template-semiprotected' => '(semitapu)',
+'nocreatetext'           => '{{SITENAME}} abi a abiliti tu nyun peprewoysi skupu apikin.
+Yu kan kaba da ben peprewoysi kenki, efu yu kan [[Special:Userlogin|kon efu wan masyin skopu]].',
+'recreate-deleted-warn'  => "'''Atessi: yu ben skopun wan papira dy ben trowe ini stori.'''
+
+Denka abra a ben gu taki yu kontinu kenki disi papira, Fu yu isi ben dyaso ondro a trowebuku fu disi papira:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan masyin ni skopu.',
@@ -365,6 +405,8 @@ Teki a box '''back''' ini yu browser leki yu dyaso soma ben e kon.",
 'last'                => 'bakaseywan',
 'page_first'          => 'foswan',
 'page_last'           => 'bakaseywan',
+'histlegend'          => 'Sileksi fu diff: sileksi den tu aluku si nanga gi ENTER efru a box ondro a.<br />
+Infrumasi nanga syartu: (disi) = kenki nanga disi si now, (vorige) = kenki nanga a owru si, p = pikin kenki',
 'deletedrev'          => '[ben e trowe]',
 'histfirst'           => 'Foswan',
 'histlast'            => 'Bakaseywan',
@@ -404,6 +446,8 @@ A kan ben trowe efu dribi.
 'powersearch'           => 'Suku',
 
 # Preferences page
+'preferences'              => 'Wana',
+'mypreferences'            => 'Mi wana',
 'prefs-edits'              => 'Nomru fu kenki:',
 'prefsnologin'             => 'No kon',
 'qbsettings'               => 'Kwikbak',
@@ -424,6 +468,7 @@ A kan ben trowe efu dribi.
 'prefs-misc'               => 'Diversi',
 'saveprefs'                => 'Oponaki',
 'resetprefs'               => 'Bakadray na owru si',
+'retypenew'                => 'Gi nyun waktiwortu dyasotu:',
 'textboxsize'              => 'Kenki',
 'rows'                     => 'Rei:',
 'columns'                  => 'Kolum:',
@@ -507,9 +552,10 @@ A kan ben trowe efu dribi.
 'newsectionsummary'              => '/* $1 */ nyon gron',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Saamga kenki',
-'recentchangeslinked-title'   => 'Saamga kenki nanga $1',
-'recentchangeslinked-summary' => "Disi spesyal papira libi den bakaseywan kenki opo peprewoysi dy ben skaki fu disi papira si. Peprewoysi opo [[Special:Watchlist|yu sirey]] ben '''deki'''.",
+'recentchangeslinked'          => 'Saamga kenki',
+'recentchangeslinked-title'    => 'Saamga kenki nanga $1',
+'recentchangeslinked-noresult' => 'Da ben no kenki ini a gi ten opo den peprewoysi dy fu dyaso skaki sey.',
+'recentchangeslinked-summary'  => "Disi spesyal papira libi den bakaseywan kenki opo peprewoysi dy ben skaki fu disi papira si. Peprewoysi opo [[Special:Watchlist|yu sirey]] ben '''deki'''.",
 
 # Upload
 'upload'            => 'Uploti',
@@ -551,6 +597,7 @@ A kan ben trowe efu dribi.
 'imagelinks'                => 'Skaki',
 'linkstoimage'              => 'Disi gefre ben teki opo disi peprewosyi:',
 'nolinkstoimage'            => 'No papira gi skaki na disi gefre.',
+'sharedupload'              => 'Disi gefre ben wan spliti uploti nanga kan ok a trawan project teki sey.',
 'shareduploadwiki'          => 'Si $1 fu pasa infrumasi.',
 'shareduploadwiki-linktext' => 'gefreinfrumasi',
 'noimage'                   => 'Da ben no gefre nanga disi nen. Yu kan a $1.',
@@ -599,6 +646,9 @@ A kan ben trowe efu dribi.
 
 # Random redirect
 'randomredirect' => 'Wansoma stirpapira',
+
+# Statistics
+'statistics' => 'Site-Infrumasi',
 
 'disambiguations' => 'Peprewoysi fu kumakriki',
 
@@ -705,6 +755,7 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'watch'                => 'Si',
 'watchthispage'        => 'Disi papira si',
 'unwatch'              => 'Osi',
+'watchlist-details'    => 'Da {{PLURAL:$1|ben wan papira|ben $1 peprewoysi}} opo yu sirey, nanga no takipeprewoysi.',
 'wlshowlast'           => 'Libi den bakaseywan $1 yuru, $2 dey si ($3)',
 'watchlist-hide-bots'  => 'Kibri kenki fu den bot',
 'watchlist-hide-own'   => 'Kibri mi kenki',
@@ -720,8 +771,13 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'deletesub'                   => '("$1" trowen)',
 'historywarning'              => 'Atessi: a papira dy yu wana trowe abi pasa si:',
 'confirmdeletetext'           => 'Yu wanaefru ben trowen wan papira, nanga si stori. Gi klari a dyaso-ondro ini a box taki disi we fuli yu miki ben, taki yu den folo luku nanga taki a trowe gu ben nanga a [[{{MediaWiki:Policy-url}}|polisi]].',
+'actioncomplete'              => 'Aksi e du',
+'deletedtext'                 => '"$1" ben e trowe. Si a $2 fu wan sibuku fu bakaseywan trowe.',
 'deletedarticle'              => 'abi "[[$1]]" e trowe',
 'dellogpage'                  => 'Trowebuku',
+'deletecomment'               => 'Yesikrari fu trowe',
+'deleteotherreason'           => 'Trawan/okwan yesikrari:',
+'deletereasonotherlist'       => 'Trawan yesikrari',
 'rollbacklink'                => 'draywatra',
 'protectlogpage'              => 'Tapubuku',
 'confirmprotect'              => 'Gi tapu klari',
@@ -730,11 +786,18 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'protect_expiry_invalid'      => 'A lasi ben fowtu.',
 'protect_expiry_old'          => 'A lasi ben ini iksini.',
 'protect-unchain'             => 'Gi dribi u',
+'protect-text'                => 'Dyaso ben yu kan tu kenki nanga aluku a tapunivo fu a papira <strong>$1</strong>.',
+'protect-locked-access'       => "'''Yu masyin abi no lesi tu kenki a tapunivo.'''
+Disi ben a tapunivo fu a papira <strong>[[$1]]</strong> now:",
+'protect-cascadeon'           => 'Disi papira ben tapu sins a ini den folo {{PLURAL:$1|papira|peprewoysi}} ben e presi, dy tapu ben nanga a kaskade-opsi. A tapunivo kenki abi no efekti.',
 'protect-default'             => '(soma saki)',
+'protect-fallback'            => 'Dyaso ben a lesi "$1" fanowdu',
 'protect-level-autoconfirmed' => 'Wawan rigistir masyin',
 'protect-level-sysop'         => 'Wawan sesopu',
 'protect-summary-cascade'     => 'kaskada',
 'protect-expiring'            => 'lasi opo $1',
+'protect-cascade'             => 'Kaskadetapu - tapu ala peprewoysi nanga ankra dy ini disi papira teki ben (atessi; disi kan gran folo abi).',
+'protect-cantedit'            => 'Yu kan a tapunivo fu disi papira no kenki, sins yu no lesi abi tu kenki a.',
 'restriction-type'            => 'Den leti:',
 'restriction-level'           => 'Pelkinivo:',
 
@@ -811,6 +874,7 @@ Gi wan trawan papiranen.',
 'talkpagenotmoved' => 'A takipapira ben <strong>no</strong> e nangadribi.',
 '1movedto2'        => '[[$1]] ben dribi na [[$2]]',
 'movelogpage'      => 'Dribibuku',
+'movereason'       => 'Yesikrari:',
 'revertmove'       => 'bakadray',
 
 # Export
@@ -830,6 +894,7 @@ Gi wan trawan papiranen.',
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mi papira',
 'tooltip-pt-mytalk'               => 'Mi taki',
+'tooltip-pt-preferences'          => 'Mi wana',
 'tooltip-pt-watchlist'            => 'A rey fu papira yu ben sin fu kenki',
 'tooltip-pt-mycontris'            => 'Rey fu mi kenki',
 'tooltip-pt-login'                => 'Yu ben e mudi fu a kon leki wan masyin, ma disi ben no nosakili oda taki.',
@@ -908,8 +973,16 @@ Ala trawan skaki dy opo se lina ben, ben awroko leki spesyal, leki fru eksempre 
 
 # Metadata
 'metadata'          => 'Metadata',
+'metadata-help'     => 'Disi gefre abi eksra infrumasi, dy via wan fotokamera, skennar efu fotokenki-aplikasi presi kan ben. Leki a gefre ben kenki, kan infrumasi ski no gu ben nanga a kenki gefre.',
 'metadata-expand'   => 'Granmeki infrumasi libi si',
 'metadata-collapse' => 'Granmeki infrumasi no libi si',
+'metadata-fields'   => 'Den EXIF-metadatabox ini disi boskopu sey ok libi si opo wan gefrepapira leki a metadatatabel ben inipotu. Trawan box sey no libi si.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # External editor support
 'edit-externally'      => 'Disi gefre nanga a dorosey aplikasi kenki',

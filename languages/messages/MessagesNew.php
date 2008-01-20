@@ -5,6 +5,7 @@
  *
  * @author SPQRobin
  * @author Siebrand
+ * @author Eukesh
  */
 
 $namespaceNames = array(
@@ -40,6 +41,12 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+# Dates
+'sunday' => 'आइतबाः',
+
+# Bits of text used by many pages
+'categories' => 'पुचःत',
+
 'about'      => 'विषयक',
 'mypage'     => 'जिगु पौ',
 'mytalk'     => 'जिगु खं',

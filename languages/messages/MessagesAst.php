@@ -1706,6 +1706,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'export-addcattext' => 'Añader páxines dende la categoría:',
 'export-addcat'     => 'Añader',
 'export-download'   => 'Guardar como archivu',
+'export-templates'  => 'Inxerir plantíes',
 
 # Namespace 8 related
 'allmessages'               => 'Tolos mensaxes del sistema',

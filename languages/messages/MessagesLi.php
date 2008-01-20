@@ -817,24 +817,26 @@ $2 Toen redirects   Zeuk: $3 $9',
 'files'                    => 'Bestenj',
 
 # User rights
-'userrights-lookup-user'      => 'Beheer gebroekersgruup',
-'userrights-user-editname'    => "Veur 'ne gebroekersnaam in:",
-'editusergroup'               => 'Bewerk gebroekersgruup',
-'userrights-editusergroup'    => 'Bewerk gebroekersgruup',
-'saveusergroups'              => 'Gebroekersgruup opslaon',
-'userrights-groupsmember'     => 'Leed van:',
-'userrights-groupsremovable'  => 'Verwiederbare groepe:',
-'userrights-groupsavailable'  => 'Besjikbare gruup:',
-'userrights-groupshelp'       => 'Selecteer de gruup wo oetse de gebroeker wils wisse of aan toe wils voege.
+'userrights-lookup-user'           => 'Beheer gebroekersgruup',
+'userrights-user-editname'         => "Veur 'ne gebroekersnaam in:",
+'editusergroup'                    => 'Bewerk gebroekersgruup',
+'userrights-editusergroup'         => 'Bewerk gebroekersgruup',
+'saveusergroups'                   => 'Gebroekersgruup opslaon',
+'userrights-groupsmember'          => 'Leed van:',
+'userrights-groupsremovable'       => 'Verwiederbare groepe:',
+'userrights-groupsavailable'       => 'Besjikbare gruup:',
+'userrights-groupshelp'            => 'Selecteer de gruup wo oetse de gebroeker wils wisse of aan toe wils voege.
 Neet geselecteerde gruup waere neet gewiezig. Deselecteer \'ne groep mit "Ctrl + linkermoesknoep".',
-'userrights-reason'           => "Reje veur 't verangere:",
-'userrights-available-none'   => 'Doe moogs gein gebroekersrechte verangere.',
-'userrights-available-add'    => 'Doe kins gebroekers toevoege aan {{PLURAL:$2|deze groep|dees gruup}}: $1.',
-'userrights-available-remove' => 'Doe kins gebroekers verwiedere oet {{PLURAL:$2|deze groep|dees gruup}}: $1.',
-'userrights-no-interwiki'     => "Doe höbs gein rechte om gebroekersrechte op anger wiki's te wiezige.",
-'userrights-nodatabase'       => 'Database $1 besteit neet of is gein plaatselike database.',
-'userrights-nologin'          => "Doe mos dich [[Special:Userlogin|aanmelle]] mit 'ne gebroeker mit de zjuuste rech om gebroekersrech toe te wieze.",
-'userrights-notallowed'       => 'Doe höbs gein rechte om gebroekersrechte toe te wieze.',
+'userrights-reason'                => "Reje veur 't verangere:",
+'userrights-available-none'        => 'Doe moogs gein gebroekersrechte verangere.',
+'userrights-available-add'         => 'Doe kins gebroekers toevoege aan {{PLURAL:$2|deze groep|dees gruup}}: $1.',
+'userrights-available-remove'      => 'Doe kins gebroekers verwiedere oet {{PLURAL:$2|deze groep|dees gruup}}: $1.',
+'userrights-available-add-self'    => 'Doe kins dichzelf toevoge aan deze {{PLURAL:$2|groep|gruup}}: $1.',
+'userrights-available-remove-self' => 'Doe kans dichzelf wisse oet deze {{PLURAL:$2|groep|gruup}}: $1.',
+'userrights-no-interwiki'          => "Doe höbs gein rechte om gebroekersrechte op anger wiki's te wiezige.",
+'userrights-nodatabase'            => 'Database $1 besteit neet of is gein plaatselike database.',
+'userrights-nologin'               => "Doe mos dich [[Special:Userlogin|aanmelle]] mit 'ne gebroeker mit de zjuuste rech om gebroekersrech toe te wieze.",
+'userrights-notallowed'            => 'Doe höbs gein rechte om gebroekersrechte toe te wieze.',
 
 # Groups
 'group'               => 'Groep:',
@@ -1101,6 +1103,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 
 'withoutinterwiki'        => 'Interwikiloze pazjenas',
 'withoutinterwiki-header' => "De volgende pagina's linke neet nao versies in 'n anger taal:",
+'withoutinterwiki-submit' => 'Toean',
 
 'fewestrevisions' => 'Artikele met de minste bewerkinge',
 
@@ -1321,6 +1324,8 @@ Commentaar en wiejer assistentie:
 ** Op aanvraog van auteur
 ** Sjending van auteursrech
 ** Vandalisme',
+'delete-toobig'               => "Dees pazjena haet 'ne lange bewerkingsgesjiedenis, mieë es $1 versies. 't Wisse van dit saort pazjena's is mit rech beperk óm 't próngelök versteure van de werking van {{SITENAME}} te veurkómme.",
+'delete-warning-toobig'       => "Dees pazjena haet 'ne lange bewerkingsgesjiedenis, mieë es $1 versies. 't Wisse van dees pazjena kan de werking van de database van {{SITENAME}} versteure. Bön veurzichtig.",
 'rollback'                    => 'Verangering ongedaon gemaak',
 'rollback_short'              => 'Trökdrèjje',
 'rollbacklink'                => 'Trukdrieje',
@@ -1603,6 +1608,7 @@ In 't letste geval kanse ouch 'ne link gebroeken, beveurbeild [[Special:Export/{
 'export-addcattext' => "Voeg pagina's toe van categorie:",
 'export-addcat'     => 'Toevoege',
 'export-download'   => 'Es bestandj opslaon',
+'export-templates'  => 'Sjablone toevoge',
 
 # Namespace 8 related
 'allmessages'               => 'Alle systeemberichte',

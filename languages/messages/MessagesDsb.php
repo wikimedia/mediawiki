@@ -1102,7 +1102,7 @@ PICT # misc.
 'shareduploadwiki'          => 'Za dalšne informacije glědaj $1.',
 'shareduploadwiki-linktext' => 'Bok wopisanja dataje',
 'noimage'                   => 'Dataja z takim mjenim njeeksistěrujo, móžoš ju ale $1.',
-'noimage-linktext'          => 'dataju pósłaś',
+'noimage-linktext'          => 'pósłaś',
 'uploadnewversion-linktext' => 'Uploaduj nowu wersiju toś teje dataje.',
 'imagelist_date'            => 'datum',
 'imagelist_name'            => 'mě dataje',

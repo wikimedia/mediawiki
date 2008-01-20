@@ -523,9 +523,10 @@ Joekedidh värrhtoedimmie sïjse unnebe sektiovneh.</strong>',
 'movereason'     => 'Gaavhtan:',
 
 # Export
-'export'        => 'Ehksporte bielieh',
-'export-submit' => 'Ehksporte',
-'export-addcat' => 'Lissiehtidh',
+'export'           => 'Ehksporte bielieh',
+'export-submit'    => 'Ehksporte',
+'export-addcat'    => 'Lissiehtidh',
+'export-templates' => 'Inkludera mallar',
 
 # Namespace 8 related
 'allmessages'     => 'Systeeme dïrje',

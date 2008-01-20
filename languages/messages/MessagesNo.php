@@ -1714,6 +1714,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'export-addcattext' => 'Legg til sider fra kategori:',
 'export-addcat'     => 'Legg til',
 'export-download'   => 'Lagre som fil',
+'export-templates'  => 'Inkluder maler',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeldinger',

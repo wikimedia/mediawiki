@@ -1652,6 +1652,7 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special
 'export-addcattext' => 'Ajustar las paginas de la categoria :',
 'export-addcat'     => 'Ajustar',
 'export-download'   => 'Salvagardar en tant que fichièr',
+'export-templates'  => 'Inclòure los modèls',
 
 # Namespace 8 related
 'allmessages'               => 'Lista dels messatges del sistèma',

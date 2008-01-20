@@ -1188,6 +1188,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 
 'withoutinterwiki'        => 'Strony bez odnośników językowych',
 'withoutinterwiki-header' => 'Poniższe strony nie odwołują się do innych wersji językowych.',
+'withoutinterwiki-submit' => 'Pokaż',
 
 'fewestrevisions' => 'Strony z najmniejszą ilością wersji',
 
@@ -1418,6 +1419,8 @@ Pomoc:
 ** Prośba autora
 ** Naruszenie praw autorskich
 ** Wandalizm',
+'delete-toobig'               => 'Ta strona ma bardzo długą historię edycji, ponad $1 zmian. Usunięcie jej mogłoby spowodować zakłócenia w pracy {{SITENAME}} i dlatego zostało ograniczone.',
+'delete-warning-toobig'       => 'Ta strona ma bardzo długą historię edycji, ponad $1 zmian. Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{SITENAME}}.',
 'rollback'                    => 'Cofnij edycję',
 'rollback_short'              => 'Cofnij',
 'rollbacklink'                => 'cofnij',
@@ -1708,6 +1711,7 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 'export-addcattext' => 'Dodaj strony z kategorii:',
 'export-addcat'     => 'Dodaj',
 'export-download'   => 'Oferuj do zapisania jako plik',
+'export-templates'  => 'Dołącz szablony',
 
 # Namespace 8 related
 'allmessages'               => 'Komunikaty',
