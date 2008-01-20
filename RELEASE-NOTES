@@ -446,6 +446,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added wlshow parameter to list=watchlist, similar to rcshow (list=recentchanges)
 * Added support for image thumbnailing to prop=imageinfo
 * action={login,block,delete,move,protect,rollback,unblock,undelete} now must be POSTed
+* prop=imageinfo interface changed: iihistory replaced by iilimit, iistart and iiend parameters
 
 === Languages updated in 1.12 ===
 
