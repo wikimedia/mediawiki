@@ -90,7 +90,7 @@ class LocalRepo extends FSRepo {
 			return false;
 		}
 
-		if( $title->getNamespace() == NS_MEDIA ) {
+		if( $title instanceof Title && $title->getNamespace() == NS_MEDIA ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getText() );
 		}
 		
