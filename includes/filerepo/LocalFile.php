@@ -577,7 +577,7 @@ class LocalFile extends File
 	function getHistory($limit = null, $start = null, $end = null) {
 		$dbr = $this->repo->getSlaveDB();
 		$conds = $opts = array();
-		$conds[] = "oi_name = '" . $this->title->getDBKey() . "'";
+		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBKey() );
 		if( $start !== null ) {
 			$conds[] = "oi_timestamp < '" . $dbr->timestamp( $start ) . "'";
 		}
