@@ -5,7 +5,7 @@
 /**
  * Bump this number when serialized cache records may be incompatible.
  */
-define( 'MW_FILE_VERSION', 5 );
+define( 'MW_FILE_VERSION', 6 );
 
 /**
  * Class to represent a local file in the wiki's own database
@@ -157,7 +157,7 @@ class LocalFile extends File
 
 	function getCacheFields( $prefix = 'img_' ) {
 		static $fields = array( 'size', 'width', 'height', 'bits', 'media_type', 
-			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user', 'user_text' );
+			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user', 'user_text', 'description' );
 		static $results = array();
 		if ( $prefix == '' ) {
 			return $fields;
@@ -720,6 +720,9 @@ class LocalFile extends File
 		if ( !$props ) {
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
 		}
+		$props['description'] = $comment;
+		$props['user'] = $wgUser->getID();
+		$props['user_text'] = $wgUser->getName();
 		$this->setProps( $props );
 
 		// Delete thumbnails and refresh the metadata cache
