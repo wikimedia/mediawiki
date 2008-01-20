@@ -1793,6 +1793,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
 'export-addcat'     => 'Ajouter',
 'export-download'   => 'Sauvegarder en tant que fichier',
+'export-templates'  => 'Inclure les modèles',
 
 # Namespace 8 related
 'allmessages'               => 'Liste des messages système',
