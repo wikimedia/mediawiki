@@ -432,8 +432,7 @@ class LoadBalancer {
 		return $db;
 	}
 
-	function reportConnectionError( &$conn )
-	{
+	function reportConnectionError( &$conn ) {
 		$fname = 'LoadBalancer::reportConnectionError';
 		wfProfileIn( $fname );
 		# Prevent infinite recursion
