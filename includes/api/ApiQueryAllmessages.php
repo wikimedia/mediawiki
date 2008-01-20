@@ -42,6 +42,13 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	public function execute() {
 		global $wgMessageCache;
 		$params = $this->extractRequestParams();
+		
+		if(!is_null($params['lang']))
+		{
+			global $wgLang;
+			$wgLang = Language::factory($params['lang']);
+		}
+			
 
 		//Determine which messages should we print
 		$messages_target = array();
@@ -93,6 +100,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 				ApiBase :: PARAM_DFLT => '*',
 			),
 			'filter' => array(),
+			'lang' => null,
 		);
 	}
 
@@ -100,6 +108,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		return array (
 			'messages' => 'Which messages to output. "*" means all messages',
 			'filter' => 'Return only messages that contains specified string',
+			'lang' => 'Language code',
 		);
 	}
 
@@ -110,7 +119,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	protected function getExamples() {
 		return array(
 			'api.php?action=query&meta=allmessages&amfilter=ipb-',
-			'api.php?action=query&meta=allmessages&ammessages=august|mainpage',
+			'api.php?action=query&meta=allmessages&ammessages=august|mainpage&amlang=de',
 			);
 	}
 
