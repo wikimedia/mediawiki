@@ -86,7 +86,7 @@ function wfSajaxSearch( $term ) {
 		$term = $wgContLang->ucfirst( $term ); 
 	$term_title = Title::newFromText( $term );
 
-	$memckey = wfMemcKey( 'ajaxsearch', md5( $term_title->getFullText() ) );
+	$memckey = $term_title ? wfMemcKey( 'ajaxsearch', md5( $term_title->getFullText() ) ) : wfMemcKey( 'ajaxsearch', md5( $term ) );
 	$cached = $wgMemc->get($memckey);
 	if( is_array( $cached ) && $cached['version'] == AJAX_SEARCH_VERSION ) {
 		$response = new AjaxResponse( $cached['html'] );
