@@ -51,34 +51,57 @@ function wfExportGetPagesFromCategory( $title ) {
 
 /**
  * Expand a list of pages to include templates used in those pages.
- * @input $pages string newline-separated list of page titles
- * @output string newline-separated list of page titles
+ * @param $inputPages array, list of titles to look up
+ * @param $pageSet array, associative array indexed by titles for output
+ * @return array associative array index by titles
  */
-function wfExportGetTemplates( $pages ) {
-	$pageList = array_unique( array_filter( explode( "\n", $pages ) ) );
-	$output = array();
+function wfExportGetTemplates( $inputPages, $pageSet ) {
+	return wfExportGetLinks( $inputPages, $pageSet,
+		'templatelinks', 
+	 	array( 'tl_namespace AS namespace', 'tl_title AS title' ),
+		array( 'page_id=tl_from' ) );
+}
+
+/**
+ * Expand a list of pages to include images used in those pages.
+ * @param $inputPages array, list of titles to look up
+ * @param $pageSet array, associative array indexed by titles for output
+ * @return array associative array index by titles
+ */
+function wfExportGetImages( $inputPages, $pageSet ) {
+	return wfExportGetLinks( $inputPages, $pageSet,
+		'imagelinks',
+		array( NS_IMAGE . ' AS namespace', 'il_to AS title' ),
+		array( 'page_id=il_from' ) );
+}
+
+/**
+ * Expand a list of pages to include items used in those pages.
+ * @private
+ */
+function wfExportGetLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 	$dbr = wfGetDB( DB_SLAVE );
-	foreach( $pageList as $page ) {
+	foreach( $inputPages as $page ) {
 		$title = Title::newFromText( $page );
-		$output[$title->getPrefixedText()] = true;
+		$pageSet[$title->getPrefixedText()] = true;
 		if( $title ) {
 			/// @fixme May or may not be more efficient to batch these
 			///        by namespace when given multiple input pages.
 			$result = $dbr->select(
-				array( 'page', 'templatelinks' ),
-				array( 'tl_namespace', 'tl_title' ),
-				array(
-					'page_namespace' => $title->getNamespace(),
-					'page_title' => $title->getDbKey(),
-					'page_id=tl_from' ),
+				array( 'page', $table ),
+				$fields,
+				array_merge( $join,
+					array(
+						'page_namespace' => $title->getNamespace(),
+						'page_title' => $title->getDbKey() ) ),
 				__METHOD__ );
 			foreach( $result as $row ) {
-				$template = Title::makeTitle( $row->tl_namespace, $row->tl_title );
-				$output[$template->getPrefixedText()] = true;
+				$template = Title::makeTitle( $row->namespace, $row->title );
+				$pageSet[$template->getPrefixedText()] = true;
 			}
 		}
 	}
-	return implode( "\n", array_keys( $output ) );
+	return $pageSet;
 }
 
 /**
@@ -161,10 +184,6 @@ function wfSpecialExport( $page = '' ) {
 	$list_authors = $wgRequest->getCheck( 'listauthors' );
 	if ( !$curonly || !$wgExportAllowListContributors ) $list_authors = false ;
 	
-	if( $wgRequest->getCheck( 'templates' ) ) {
-		$page = wfExportGetTemplates( $page );
-	}
-
 	if ( $doexport ) {
 		$wgOut->disable();
 		
@@ -177,7 +196,25 @@ function wfSpecialExport( $page = '' ) {
 			$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
 			$wgRequest->response()->header( "Content-disposition: attachment;filename={$filename}" );
 		}
-		$pages = explode( "\n", $page );
+		
+		/* Split up the input and look up linked pages */
+		$inputPages = array_filter( explode( "\n", $page ) );
+		$pageSet = array_flip( $inputPages );
+
+		if( $wgRequest->getCheck( 'templates' ) ) {
+			$pageSet = wfExportGetTemplates( $inputPages, $pageSet );
+		}
+
+		/*
+		// Enable this when we can do something useful exporting/importing image information. :)
+		if( $wgRequest->getCheck( 'images' ) ) {
+			$pageSet = wfExportGetImages( $inputPages, $pageSet );
+		}
+		*/
+		
+		$pages = array_keys( $pageSet );
+		
+		/* Ok, let's get to it... */
 
 		$db = wfGetDB( DB_SLAVE );
 		$exporter = new WikiExporter( $db, $history );
@@ -230,6 +267,8 @@ function wfSpecialExport( $page = '' ) {
 		$wgOut->addHtml( wfMsgExt( 'exportnohistory', 'parse' ) );
 	}
 	$form .= Xml::checkLabel( wfMsg( 'export-templates' ), 'templates', 'wpExportTemplates', false ) . '<br />';
+	// Enable this when we can do something useful exporting/importing image information. :)
+	//$form .= Xml::checkLabel( wfMsg( 'export-images' ), 'images', 'wpExportImages', false ) . '<br />';
 	$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
 	
 	$form .= Xml::submitButton( wfMsg( 'export-submit' ) );
