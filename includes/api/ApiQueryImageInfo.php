@@ -53,7 +53,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		
 		if($params['urlheight'] != -1 && $params['urlwidth'] == -1)
 			$this->dieUsage("iiurlheight cannot be used without iiurlwidth", 'iiurlwidth');
-		$this->scale = $params['urlwidth'] != -1;
+		$this->scale = ($params['urlwidth'] != -1);
 		$this->urlwidth = $params['urlwidth'];
 		$this->urlheight = $params['urlheight'];
 
@@ -117,7 +117,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['height'] = $f->getHeight();
 		}
 		if($this->fld_url) {
-			if($this->scale) {
+			if($this->scale && !$f->isOld()) {
 				$vals['url'] = $f->createThumb($this->urlwidth, $this->urlheight);
 			} else {
 				$vals['url'] = $f->getURL();
