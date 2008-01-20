@@ -160,11 +160,13 @@ class MagicWord {
 	 * @static
 	 */
 	static function &get( $id ) {
+		wfProfileIn( __METHOD__ );
 		if (!array_key_exists( $id, self::$mObjects ) ) {
 			$mw = new MagicWord();
 			$mw->load( $id );
 			self::$mObjects[$id] = $mw;
 		}
+		wfProfileOut( __METHOD__ );
 		return self::$mObjects[$id];
 	}
 
