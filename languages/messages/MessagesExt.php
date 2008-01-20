@@ -1312,6 +1312,7 @@ La úrtima eición á siu hecha pol [[User:$3|$3]] ([[User talk:$3|Caraba]]).',
 Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
 'protect-locked-access'       => 'Nu tiinis los premisus nesezarius pa chambal los nivelis de proteción duna páhina.
 Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
+'protect-cascadeon'           => "Esta páhina s'alcuetra atualmenti protehia polque está incluia {{PLURAL:$1|ena siguienti páhina, que tieni|enas siguientis páhinas, que tienin}} la proteción en cascá ativá. Pueis chambal el nivel de proteción desta páhina, peru ellu tendrá consecuencias en tola proteción en cascá.",
 'protect-default'             => '(defeutu)',
 'protect-fallback'            => 'Es mestel el premisu "$1"',
 'protect-level-autoconfirmed' => 'Atarugal a los usuárius anónimus',
@@ -1746,6 +1747,12 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'o',
+
+# Bad image list
+'bad_image_list' => 'El hormatu ebi sel asina:
+
+Solu las frasis en hormatu lista (cuandu se prencipia la frasi con *) son consierás. El primel atihu nuna frasi ebi sel a una mala imahin.
+Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas ondi la imahin puei ocurril ena línia.',
 
 # Metadata
 'metadata-help'     => "Esti archivu contieni enhormación aicional (metadatus), probabrienti añiia pola cámara dehital, el escánel u el pograma gastau pa crealu u dehitalizalu. Si s'an hechu chambus nel archivu, es posibri que s'aigan perdiu detallis.",

@@ -1381,114 +1381,110 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'enotif_reset'                 => 'Đánh dấu đã xem mọi trang',
 'enotif_newpagetext'           => 'Trang này mới',
 'enotif_impersonal_salutation' => 'thành viên {{SITENAME}}',
-'changed'                      => 'Đã sửa',
+'changed'                      => 'đã sửa',
 'created'                      => 'đã viết mới',
-'enotif_subject'               => '$PAGETITLE tại {{SITENAME}} đã thay đổi $CHANGEDORCREATED bởi $PAGEEDITOR',
+'enotif_subject'               => '$PAGETITLE tại {{SITENAME}} đã được $CHANGEDORCREATED bởi $PAGEEDITOR',
 'enotif_lastvisited'           => 'Xem $1 để biết các thay đổi diễn ra từ lần xem cuối cùng của bạn.',
 'enotif_lastdiff'              => 'Vào $1 để xem sự thay đổi này.',
-'enotif_anon_editor'           => 'Người sửa đổi vô danh $1',
-'enotif_body'                  => 'Gửi $WATCHINGUSERNAME,  trang $PAGETITLE tại {{SITENAME}} đã được $CHANGEDORCREATED vào $PAGEEDITDATE bởi $PAGEEDITOR, xem {{fullurl:$PAGETITLE_RAWURL}} để biết phiên bản hiện nay. Tóm tắt của $NEWPAGE: $PAGESUMMARY $PAGEMINOREDIT Liên hệ người sửa: thư {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}  {{fullurl:User:$PAGEEDITOR_RAWURL}} Sẽ không có thông báo mới nếu bạn không xem trang này. Bạn có thể thay đổi các cài đặt về các trang theo dõi. Hệ thống thông báo {{SITENAME}} -- Để thay đổi cài đặt, mời vào {{fullurl:Special:Watchlist|edit=yes}} Góp ý của bạn: {{fullurl:Help:Contents}}',
+'enotif_anon_editor'           => 'thành viên vô danh $1',
+'enotif_body'                  => '$WATCHINGUSERNAME thân mến,
+
+
+Trang $PAGETITLE tại {{SITENAME}} đã được $PAGEEDITOR $CHANGEDORCREATED vào $PAGEEDITDATE, xem phiên bản hiện hành tại $PAGETITLE_URL.
+
+$NEWPAGE
+
+Tóm lược sửa đổi: $PAGESUMMARY $PAGEMINOREDIT
+
+Liên lạc với người viết bài qua:
+thư: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó. Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
+
+              Hệ thống báo tin {{SITENAME}} thân thiện của bạn
+
+--
+Để thay đổi các thiết lập danh sách theo dõi, mời xem
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Phản hồi và cần sự hỗ trợ:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Xóa trang',
-'confirm'                     => 'Khẳng định',
-'excontent'                   => "nội dung cũ là: '$1'",
-'excontentauthor'             => 'nội dung cũ: "$1" (người viết duy nhất "$2")',
-'exbeforeblank'               => "nội dung trước khi tẩy trống là: '$1'",
-'exblank'                     => 'trang rỗng',
-'confirmdelete'               => 'Khẳng định xóa',
-'deletesub'                   => '(Xóa  "$1")',
-'historywarning'              => '<b>Chú ý</b>: trang bạn sắp xóa đã có lịch sử:',
-'confirmdeletetext'           => 'Bạn sắp xóa hẳn một trang hoặc hình cùng với tất cả lịch sử của nó khỏi cơ sở dữ liệu. Xin khẳng định bạn hiểu rõ hậu quả có thể xảy ra, và bạn thực hiện đúng [[{{MediaWiki:Policy-url}}|quy định]].',
-'actioncomplete'              => 'Xong',
-'deletedtext'                 => '"$1" đã được xóa. Xem danh sách các xóa bỏ gần nhất tại $2.',
+'confirm'                     => 'Xác nhận',
+'excontent'                   => "nội dung cũ: '$1'",
+'excontentauthor'             => "nội dung cũ: '$1' (người viết duy nhất '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'               => "nội dung trước khi tẩy trống: '$1'",
+'exblank'                     => 'trang trắng',
+'confirmdelete'               => 'Xác nhận xóa',
+'deletesub'                   => '(Sắp xóa "$1")',
+'historywarning'              => 'Cảnh báo: Trang bạn sắp xóa đã có lịch sử:',
+'confirmdeletetext'           => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó. 
+Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].',
+'actioncomplete'              => 'Đã thực hiện xong',
+'deletedtext'                 => 'Đã xóa "$1".
+Xem danh sách các xóa bỏ gần nhất tại $2.',
 'deletedarticle'              => 'đã xóa "$1"',
 'dellogpage'                  => 'Nhật trình xóa',
-'dellogpagetext'              => 'Danh sách xóa mới, theo giờ máy chủ (UTC).',
+'dellogpagetext'              => 'Dưới đây là danh sách các trang bị xóa gần đây nhất.',
 'deletionlog'                 => 'nhật trình xóa',
-'reverted'                    => 'Đã quay lại phiên bản cũ',
+'reverted'                    => 'Đã hồi phục một phiên bản cũ',
 'deletecomment'               => 'Lý do',
 'deleteotherreason'           => 'Lý do khác/bổ sung:',
 'deletereasonotherlist'       => 'Lý do khác',
-'deletereason-dropdown'       => '*Xóa nhanh
-** [[WP:XT#XN11|XT XN1.1]]: Viết linh tinh, phá hoại
-** [[WP:XT#XN12|XT XN1.2]]: Tác giả duy nhất yêu cầu xóa hay tẩy trống
-** [[WP:XT#XN13|XT XN1.3]]: Nội dung tục tĩu
-** [[WP:XT#XN14|XT XN1.4]]: Quảng cáo ngắn
-** [[WP:XT#XN15|XT XN1.5]]: Nội dung quá ngắn (ít hơn 10 chữ)
-** [[WP:XT#XN2|XT XN2]]: Nội dung tiếng Việt ít hơn 10 chữ
-** [[WP:XT#X3|XT X3]]: Tên bài viết sai chính tả, đã di chuyển
-*Hết hạn tiêu bản
-** [[WP:XT#TB1|XT TB1]]: Chất lượng kém quá 7 ngày
-** [[WP:XT#TB2|XT TB2]]: Vi phạm bản quyền quá 7 ngày
-** [[WP:XT#TB3|XT TB3]]: Đơn thuần là quảng cáo quá 1 ngày
-** [[WP:XT#TB4|XT TB4]]: Văn phong không thích hợp quá 7 ngày
-** [[WP:XT#TB5|XT TB5]]: Bài chưa được Unicode hóa quá 7 ngày
-*Tiêu chuẩn đưa vào
-** [[WP:XT#X2|XT X2]]: Về cá nhân nhưng không nêu rõ điểm nổi bật
-** [[WP:XT#X2|XT X2]]: Về tổ chức hay công ty nhưng không nêu rõ điểm nổi bật
-** [[WP:XT#X2|XT X2]]: Địa danh Việt Nam dưới cấp xã nhưng không nêu rõ điểm nổi bật
-*Theo biểu quyết
-** [[WP:XT#X6|XT X6]]: Xóa theo biểu quyết: không bách khoa
-** [[WP:XT#X6|XT X6]]: Xóa theo biểu quyết: không đủ tiêu chuẩn
-*Thường dùng cho trang thảo luận
-** Là trang thảo luận của bài viết không tồn tại
-*Khác
-** Thể loại trống
-** Trang thành viên không tồn tại
-** Chuyển hướng đến trang không tồn tại',
+'deletereason-dropdown'       => '*Các lý do xóa phổ biến
+** Tác giả yêu cầu
+** Vi phạm bản quyền
+** Phá hoại',
 'delete-toobig'               => 'Trang này có lịch sử sửa đổi lớn, đến hơn $1 lần sửa đổi. Việc xóa các trang như vậy bị hạn chế để ngăn ngừa sự phá hoại vô ý cho {{SITENAME}}.',
 'delete-warning-toobig'       => 'Trang này có lịch sử sửa đổi lớn, đến hơn $1 lần sửa đổi. Việc xóa các trang có thể làm tổn hại đến hoạt động của cơ sở dữ liệu của {{SITENAME}}; hãy cẩn trọng khi thực hiện.',
-'rollback'                    => 'Quay lại sửa đổi cũ',
-'rollback_short'              => 'Quay lại',
-'rollbacklink'                => 'quay lại',
-'rollbackfailed'              => 'Không quay lại được',
-'cantrollback'                => 'Không quay lại được; trang này có 1 tác giả.',
-'alreadyrolled'               => 'Không thể quay lại phiên bản của [[:$1]] bởi [[Thành_viên:$2|$2]] ([[Thảo_luận_thành_viên:$2|Thảo luận]]). Đã có sửa đổi lần cuối bởi [[Thành_viên:$3|$3]] ([[Thảo_luận_thành_viên:$3|Thảo luận]]).',
+'rollback'                    => 'Phục hồi sửa đổi',
+'rollback_short'              => 'Phục hồi',
+'rollbacklink'                => 'phục hồi',
+'rollbackfailed'              => 'Không phục hồi được',
+'cantrollback'                => 'Không lùi sửa đổi được; người viết bài cuối cùng là tác giả duy nhất của trang này.',
+'alreadyrolled'               => 'Không thể phục hồi phiên bản của [[User:$2|$2]] ([[User talk:$2|Thảo luận) tại [[:$1]]; ai đó đã sửa đổi hoặc phục hồi rồi.
+
+Sửa đổi lần cuối bởi [[User:$3|$3]] ([[User talk:$3|Thảo luận]]).',
 'editcomment'                 => 'Tóm lược sửa đổi: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'đã hủy sửa đổi của $2, quay về phiên bản của $1',
-'rollback-success'            => 'Lùi các sửa đổi của $1; quay về phiên bản trước của $2.',
-'sessionfailure'              => 'Có thể có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy tải lại trang và thử lại.',
+'revertpage'                  => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]); quay về phiên bản trước của [[User:$1|$1]]',
+'rollback-success'            => 'Đã hủy sửa đổi của $1; quay về phiên bản trước của $2.',
+'sessionfailure'              => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút "back", tải lại trang đó, rồi thử lại.',
 'protectlogpage'              => 'Nhật trình khóa',
-'protectlogtext'              => 'Danh sách khóa/mở (xem [[{{ns:project}}:Các trang bị khóa|các trang bị khóa]]).',
-'protectedarticle'            => 'đã khóa $1',
+'protectlogtext'              => 'Dưới đây là danh sách các thao tác khóa và mở khóa trang. Xem [[Special:Protectedpages|danh sách các trang bị khóa]] để xem danh sách các trang hiện thời đang bị khóa.',
+'protectedarticle'            => 'đã khóa "[[$1]]"',
 'modifiedarticleprotection'   => 'đã đổi mức khóa cho "[[$1]]"',
-'unprotectedarticle'          => 'đã mở $1',
-'protectsub'                  => '(Khóa "$1")',
-'confirmprotect'              => 'Khẳng định khóa',
-'protectcomment'              => 'Lý do',
-'protectexpiry'               => 'Thời hạn',
+'unprotectedarticle'          => 'đã mở khóa cho "[[$1]]"',
+'protectsub'                  => '(Thiết lập mức khóa cho "$1")',
+'confirmprotect'              => 'Xác nhận khóa',
+'protectcomment'              => 'Lý do:',
+'protectexpiry'               => 'Thời hạn:',
 'protect_expiry_invalid'      => 'Thời hạn không hợp lệ.',
 'protect_expiry_old'          => 'Thời hạn đã qua.',
-'unprotectsub'                => '(Mở "$1")',
+'unprotectsub'                => '(Sắp mở khóa cho "$1")',
 'protect-unchain'             => 'Vẫn cho đổi tên bài',
-'protect-text'                => "<div name=\"protect_text\" id=\"protect_text\">Bạn có thể xem và đổi kiểu khóa trang '''<nowiki>\$1</nowiki>''' ở đây. Xin hãy tuân theo [[Wikipedia:Quy định khóa trang|quy định khóa trang]].
-
-Mức độ khóa mặc định là khóa vô thời hạn. Để xác định ngày hết hạn, nhập vào khoảng thời gian cấm (theo [http://www.gnu.org/software/tar/manual/html_node/Date-input-formats.html định dạng chuẩn GNU]) hoặc ngày hết hạn cấm.
-*Tránh các giá trị không phải số nguyên, như  \"2.37 weeks\" hay \"1.84 days\"; phần mềm MediaWiki có thể mắc lỗi khi định dạng các số này.
-*''Toàn bộ'' khóa sẽ mở khi hết hạn, bất kể mức độ khóa là gì.
-**Hãy cẩn trọng với ''trang cấm di chuyển vĩnh viễn'', như ''Tin nhắn cho quản lý''.
-</div>",
+'protect-text'                => 'Bạn có thể xem và đổi kiểu khóa trang <strong>$1</strong> ở đây.',
 'protect-locked-blocked'      => 'Bạn không thể đổi mức khóa khi bị cấm. Đây là trạng thái
 hiện tại của trang <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Hiện không thể đổi mức khóa do cơ sở dữ liệu bị khóa.
 Đây là trạng thái hiện tại của trang <strong>$1</strong>:',
 'protect-locked-access'       => 'Tài khoản của bạn không được cấp quyền đổi mức khóa của trang.
 Đây là trạng thái hiện tại của trang <strong>$1</strong>:',
-'protect-cascadeon'           => '[[Hình:Padlock.svg|phải|60px]]
-<span style="color: red; background-color: transparent;" id="protectedpagewarning"><strong>Trang này hiện bị khóa vì nó được nhúng vào {{PLURAL:$1|những|}} trang dưới đây bị khóa với tùy chọn "khóa theo tầng" được kích hoạt.</strong></span> Bạn có thể đổi mức độ khóa của trang này, nhưng nó sẽ không ảnh hưởng đến việc khóa theo tầng.',
-'protect-default'             => 'Để tất cả mọi người sửa đổi',
+'protect-cascadeon'           => 'Trang này hiện bị khóa vì nó được nhúng vào {{PLURAL:$1|những|}} trang dưới đây bị khóa với tùy chọn "khóa theo tầng" được kích hoạt. Bạn có thể đổi mức độ khóa của trang này, nhưng nó sẽ không ảnh hưởng đến việc khóa theo tầng.',
+'protect-default'             => '(mặc định)',
 'protect-fallback'            => 'Cần quyền “$1”',
-'protect-level-autoconfirmed' => 'Cấm IP và thành viên mới',
+'protect-level-autoconfirmed' => 'Cấm thành viên chưa đăng ký',
 'protect-level-sysop'         => 'Cấm mọi thành viên (trừ quản lý)',
 'protect-summary-cascade'     => 'khóa theo tầng',
-'protect-expiring'            => 'hết hạn $1',
-'protect-cascade'             => 'Khóa theo tầng: tự động khóa các trang được nhúng vào trang ngày',
-'protect-cantedit'            => 'Bạn không thể thay đổi mức khóa cho trang này do thiếu quyền.',
+'protect-expiring'            => 'hết hạn $1 (UTC)',
+'protect-cascade'             => 'Tự động khóa các trang được nhúng vào trang ngày (khóa theo tầng)',
+'protect-cantedit'            => 'Bạn không thể thay đổi mức khóa cho trang này do không có đủ quyền hạn.',
 'restriction-type'            => 'Quyền:',
-'restriction-level'           => 'Mức độ hạn chế',
-'minimum-size'                => 'Kích thước tối thiểu (byte)',
-'maximum-size'                => 'Kích thước lớn nhất',
+'restriction-level'           => 'Mức độ hạn chế:',
+'minimum-size'                => 'Kích thước tối thiểu',
+'maximum-size'                => 'Kích thước tối đa',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
@@ -1502,39 +1498,36 @@ hiện tại của trang <strong>$1</strong>:',
 'restriction-level-all'           => 'mọi mức độ',
 
 # Undelete
-'undelete'                     => 'Phục hồi lại trang đã bị xóa',
-'undeletepage'                 => 'Xem và khôi phục trang bị xóa',
+'undelete'                     => 'Xem các trang bị xóa',
+'undeletepage'                 => 'Xem và phục hồi trang bị xóa',
 'viewdeletedpage'              => 'Xem các trang bị xóa',
-'undeletepagetext'             => 'Các trang sau có thể khôi phục được từ thùng rác. Thùng rác được xóa định kỳ.',
-'undeleteextrahelp'            => "Để phục hồi toàn bộ trang và lịch sử của nó, hãy để trống các hộp kiểm và bấm nút '''''Phục hồi'''''. Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi và bấm nút '''''Phục hồi'''''. Đánh dấu vào một hộp kiểm, sau đó vừa bấm phím Shift vừa chọn một hộp kiểm khác sẽ đánh dấu tất cả các hộp ở giữa, điều này hiện thực được ở nhiều trình duyệt. Bấm nút '''''Tẩy trống''''' sẽ tẩy trống ô lý do và tất cả các hộp kiểm. Hãy chắc chắn rằng bạn đang thực hiện theo đúng [[Wikipedia:Quy định phục hồi|quy định phục hồi]] và đã để lại một câu tóm tắt trong ô lý do.",
+'undeletepagetext'             => 'Các trang sau đã bị xóa nhưng vẫn nằm trong kho lưu trữ và có thể phục hồi được. Kho lưu trữ sẽ được khóa định kỳ.',
+'undeleteextrahelp'            => "Để phục hồi toàn bộ trang, hãy để trống các hộp kiểm và 
+bấm nút '''''Phục hồi'''''. Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi và bấm nút '''''Phục hồi'''''. Bấm nút '''''Tẩy trống''''' sẽ tẩy trống ô lý do và tất cả các hộp kiểm.",
 'undeleterevisions'            => '$1 bản đã được lưu',
-'undeletehistory'              => 'Nếu bạn khôi phục trang này, tất cả các phiên bản của nó sẽ được phục hồi vào lịch sử của trang. Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản được khôi phục sẽ xuất hiện trong lịch sử trước, và phiên bản hiện hành của trang mới sẽ không bị thay thế.',
+'undeletehistory'              => 'Nếu bạn khôi phục trang này, tất cả các phiên bản của nó sẽ được phục hồi vào lịch sử của trang. 
+Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản 
+được khôi phục sẽ xuất hiện trong lịch sử trước. Cũng chú ý rằng các giới hạn áp dụng lên các phiên bản tập tin sẽ bị mất khi phục hồi',
 'undeleterevdel'               => 'Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trên cùng bị xóa mất một phần. Trong những trường hợp như vậy, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất. Các phiên bản của tập tin mà bạn không có quyền xem sẽ không được phục hồi.',
-'undeletehistorynoadmin'       => 'Trang này đã bị [[Wikipedia:Xóa|xóa]]. Lý do xóa trang được hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này trước khi bị xóa. Chỉ có [[Wikipedia:Người quản lý|người quản lý]] không bị cấm tài khoản mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
-'undelete-revision'            => 'Phiên bản của $1 đã được $3 xóa (vào lúc $2):',
-'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản có thể được phục hồi và dời khỏi lưu trữ.',
+'undeletehistorynoadmin'       => 'Trang này đã bị xóa. Lý do xóa trang được 
+hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này 
+trước khi bị xóa. Chỉ cóngười quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
+'undelete-revision'            => 'Đã xóa phiên bản của $1 (vào lúc $2) sửa đổi bởi $3:',
+'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
 'undelete-nodiff'              => 'Không tìm thấy phiên bản cũ hơn.',
-'undeletebtn'                  => 'Khôi phục',
+'undeletebtn'                  => 'Phục hồi',
 'undeletereset'                => 'Tẩy trống',
 'undeletecomment'              => 'Lý do:',
-'undeletedarticle'             => 'đã khôi phục "$1"',
+'undeletedarticle'             => 'đã phục hồi "$1"',
 'undeletedrevisions'           => '$1 bản được phục hồi',
 'undeletedrevisions-files'     => '$1 bản và $2 tập tin đã được phục hồi',
 'undeletedfiles'               => '$1 tập tin đã được phục hồi',
-'cannotundelete'               => '<div class="plainlinks">
-<p>Không thể khôi phục trang hoặc tập tin chỉ định. (Có thể là nó đã <a href="{{fullurle:Đặc biệt:Log/delete}}" title="Đặc biệt:Log/delete">bị một người khác khôi phục</a>.)</p>
-<p>Trở lại về:</p>
-<ul>
-<li><a href="{{fullurle:Wikipedia:Biểu quyết phục hồi bài}}" title="Wikipedia:Biểu quyết phục hồi bài">Biểu quyết phục hồi bài</a></li>
-<li><a href="{{fullurle:Đặc biệt:Recentchanges}}" title="Đặc biệt:Recentchanges">Thay đổi gần đây</a> (<a href="{{fullurl:Đặc biệt:Recentchanges|hideliu=1&hideminor=1}}" title="Đặc biệt:Recentchanges">các sửa đổi vô danh</a>)</li>
-</ul>
-</div>',
-'undeletedpage'                => '__NOEDITSECTION__
-===$1 đã được khôi phục.===
+'cannotundelete'               => 'Phục hồi thất bại; một người nào khác đã phục hồi trang này rồi.',
+'undeletedpage'                => "<big>'''$1 đã được khôi phục'''</big>
 
-Xem danh sách các xóa bỏ và khôi phục tại [[Đặc biệt:Log/delete|nhật trình xóa]].',
+Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:Log/delete|nhật trình xóa]].",
 'undelete-header'              => 'Xem các trang bị xóa gần đây tại [[Đặc biệt:Log/delete|nhật trình xóa]].',
-'undelete-search-box'          => 'Tìm kiếm về trang bị xóa',
+'undelete-search-box'          => 'Tìm kiếm trang đã bị xóa',
 'undelete-search-prefix'       => 'Hiển thị trang có tiền tố:',
 'undelete-search-submit'       => 'Tìm kiếm',
 'undelete-no-results'          => 'Không tìm thấy trang đã bị xóa nào khớp với từ khóa.',
@@ -1556,45 +1549,48 @@ $1',
 'contributions' => 'Đóng góp',
 'mycontris'     => 'Đóng góp của tôi',
 'contribsub2'   => 'Của $1 ($2)',
-'nocontribs'    => 'Không tìm thấy.',
-'ucnote'        => '<b>$1</b> thay đổi mới của người này trong <b>$2</b> ngày qua.',
-'uclinks'       => 'Xem $1 thay đổi mới; xem $2 ngày qua.',
-'uctop'         => '(mới nhất)',
+'nocontribs'    => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
+'ucnote'        => 'Dưới đây là <b>$1</b> sửa đổi mới nhất của thành viên này trong <b>$2</b> ngày qua.',
+'uclinks'       => 'Xem $1 sửa đổi cuối cùng; trong $2 ngày qua.',
+'uctop'         => ' (mới nhất)',
 'month'         => 'Từ tháng (trở về trước):',
 'year'          => 'Từ năm (trở về trước):',
 
 'sp-contributions-newbies'     => 'Chỉ hiển thị đóng góp của tài khoản mới',
-'sp-contributions-newbies-sub' => 'Các người mới đến',
+'sp-contributions-newbies-sub' => 'Các thành viên mới',
 'sp-contributions-blocklog'    => 'Nhật trình cấm',
 'sp-contributions-search'      => 'Tìm kiếm đóng góp',
 'sp-contributions-username'    => 'Địa chỉ IP hay tên thành viên:',
-'sp-contributions-submit'      => 'Tìm',
+'sp-contributions-submit'      => 'Tìm kiếm',
 
-'sp-newimages-showfrom' => 'Trưng bày các tập tin mới, bắt đầu từ $1',
+'sp-newimages-showfrom' => 'Trưng bày những hình mới, bắt đầu từ $1',
 
 # What links here
-'whatlinkshere'        => 'Các liên kết đến đây',
-'whatlinkshere-title'  => 'Các trang liên kết tới $1',
-'whatlinkshere-page'   => 'Trang:',
-'whatlinkshere-barrow' => '←',
-'linklistsub'          => '(Các liên kết)',
-'linkshere'            => "Các trang sau liên kết đến '''[[:$1]]''':",
-'nolinkshere'          => "Không có liên kết đến '''[[:$1]]'''.",
-'nolinkshere-ns'       => "Chưa có trang nào liên kết tới '''[[:$1]]''' trong không gian tên đã chọn.",
-'isredirect'           => 'trang đổi hướng',
-'istemplate'           => 'được nhúng vào',
-'whatlinkshere-prev'   => '{{PLURAL:$1|kết quả trước|$1 kết quả trước}}',
-'whatlinkshere-next'   => '{{PLURAL:$1|kết quả sau|$1 kết quả sau}}',
-'whatlinkshere-links'  => '← liên kết',
+'whatlinkshere'       => 'Các liên kết đến đây',
+'whatlinkshere-title' => 'Các trang liên kết đến $1',
+'whatlinkshere-page'  => 'Trang:',
+'linklistsub'         => '(Danh sách liên kết)',
+'linkshere'           => "Các trang sau liên kết đến '''[[:$1]]''':",
+'nolinkshere'         => "Không có trang nào liên kết đến '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Không có trang nào liên kết đến '''[[:$1]]''' trong không gian tên đã chọn.",
+'isredirect'          => 'trang đổi hướng',
+'istemplate'          => 'được nhúng vào',
+'whatlinkshere-prev'  => '{{PLURAL:$1|kết quả trước|$1 kết quả trước}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|kết quả sau|$1 kết quả sau}}',
+'whatlinkshere-links' => '← liên kết',
 
 # Block/unblock
 'blockip'                     => 'Cấm thành viên',
-'blockiptext'                 => 'Mẫu dưới để cấm một địa chỉ IP hoặc một tài khoản.
-Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và phải tuân theo [[{{ns:project}}:Quy_định|quy_định]]. Xin cho biết lý do cấm.',
-'ipaddress'                   => 'Địa chỉ IP/tên tài khoản',
-'ipadressorusername'          => 'Địa chỉ IP hay tên thành viên',
-'ipbexpiry'                   => 'Thời hạn',
-'ipbreason'                   => 'Lý do',
+'blockiptext'                 => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc
+thành viên không được viết bài.
+Điều này chỉ nên làm để tránh phá hoại, 
+và phải theo [[{{MediaWiki:Policy-url}}|quy định]].
+Điền vào lý do cụ thể ở dưới (ví dụ, chỉ ra trang nào
+bị phá hoại).',
+'ipaddress'                   => 'Địa chỉ IP:',
+'ipadressorusername'          => 'Địa chỉ IP hay tên thành viên:',
+'ipbexpiry'                   => 'Thời hạn:',
+'ipbreason'                   => 'Lý do:',
 'ipbreasonotherlist'          => 'Lý do khác',
 'ipbreason-dropdown'          => '*Một số lý do cấm thường gặp
 ** Phá hoại
@@ -1613,80 +1609,84 @@ Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và
 'ipbemailban'                 => 'Không cho gửi email',
 'ipbenableautoblock'          => 'Tự động cấm các địa chỉ IP mà thành viên này sử dụng',
 'ipbsubmit'                   => 'Cấm',
-'ipbother'                    => 'Thời hạn khác',
+'ipbother'                    => 'Thời hạn khác:',
 'ipboptions'                  => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'khác',
 'ipbotherreason'              => 'Lý do khác',
 'badipaddress'                => 'Địa chỉ IP không hợp lệ',
-'blockipsuccesssub'           => 'Đã cấm',
-'blockipsuccesstext'          => '"$1" đã bị cấm.
-<br />Xem lại những lần cấm tại [[Đặc_biệt:Ipblocklist|danh sách cấm]].',
+'blockipsuccesssub'           => 'Cấm thành công',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] đã bị cấm.
+<br />Xem lại những lần cấm tại [[Special:Ipblocklist|danh sách cấm]].',
 'ipb-edit-dropdown'           => 'Sửa đổi lý do cấm',
 'ipb-unblock-addr'            => 'Bỏ cấm $1',
 'ipb-unblock'                 => 'Bỏ cấm thành viên hay địa chỉ IP',
 'ipb-blocklist-addr'          => 'Xem $1 đang bị cấm hay không',
-'ipb-blocklist'               => 'Xem các người đang bị cấm',
-'unblockip'                   => 'Bỏ cấm',
-'unblockiptext'               => 'Mẫu sau để khôi phục lại quyền sửa bài đối với một địa chỉ IP hoặc tài khoản đã bị cấm trước đó.',
+'ipb-blocklist'               => 'Xem danh sách đang bị cấm',
+'unblockip'                   => 'Bỏ cấm thành viên',
+'unblockiptext'               => 'Sử dụng mẫu sau để phục hồi lại quyền sửa đổi đối với một địa chỉ IP hoặc tên thành viên đã bị cấm trước đó.',
 'ipusubmit'                   => 'Bỏ cấm',
-'unblocked'                   => '[[Thành viên:$1|$1]] đã hết bị cấm',
+'unblocked'                   => '[[User:$1|$1]] đã hết bị cấm',
 'unblocked-id'                => '$1 đã hết bị cấm',
 'ipblocklist'                 => 'Danh sách cấm',
-'ipblocklist-legend'          => 'Tra một thành viên bị cấm',
+'ipblocklist-legend'          => 'Tìm một thành viên bị cấm',
 'ipblocklist-username'        => 'Tên thành viên hoặc địa chỉ IP:',
 'ipblocklist-summary'         => 'Xem [http://tools.wikimedia.de/~krimpet/rbhelper.php?db=viwiki_p công cụ này] để tìm tất cả các nhật trình khóa dải IP đối với một IP cụ thể nào đó.',
-'ipblocklist-submit'          => 'Tìm',
+'ipblocklist-submit'          => 'Tìm kiếm',
 'blocklistline'               => '$1, $2 đã cấm $3 (thời hạn $4)',
-'infiniteblock'               => 'vô tận',
-'expiringblock'               => 'lúc $1',
+'infiniteblock'               => 'vô hạn',
+'expiringblock'               => 'hết hạn lúc $1',
 'anononlyblock'               => 'chỉ cấm vô danh',
-'noautoblockblock'            => 'chức năng tự động cấm bị tắt',
+'noautoblockblock'            => 'đã tắt chức năng tự động cấm',
 'createaccountblock'          => 'không được mở tài khoản',
-'emailblock'                  => 'thư điện tử đã bị cấm',
+'emailblock'                  => 'đã cấm thư điện tử',
 'ipblocklist-empty'           => 'Danh sách cấm hiện đang trống.',
 'ipblocklist-no-results'      => 'Địa chỉ IP hoặc tên thành viên này hiện không bị cấm.',
 'blocklink'                   => 'cấm',
 'unblocklink'                 => 'bỏ cấm',
 'contribslink'                => 'đóng góp',
-'autoblocker'                 => 'Bị tự động cấm vì dùng chung địa chỉ IP với "$1". Lý do "$2".',
+'autoblocker'                 => 'Bạn bị tự động cấm vì địa chỉ IP của bạn vừa rồi đã được "$1" sử dụng. Lý do đưa ra cho việc cấm $1 là: "$2"',
 'blocklogpage'                => 'Nhật trình cấm',
 'blocklogentry'               => 'đã cấm [[$1]] với thời hạn của $2 $3',
-'blocklogtext'                => 'Nhật trình lưu những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê. Xem thêm
-[[Đặc_biệt:Ipblocklist|danh sách cấm]].',
-'unblocklogentry'             => 'đã hết cấm "$1"',
-'block-log-flags-anononly'    => 'chỉ cấm những người chưa đăng nhập',
+'blocklogtext'                => 'Đây là nhật trình ghi lại những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê ở đây. Xem thêm [[Special:Ipblocklist|danh sách cấm]] để có danh sách cấm và cấm hẳn hiện tại.',
+'unblocklogentry'             => 'đã bỏ cấm "$1"',
+'block-log-flags-anononly'    => 'chỉ cấm thành viên vô danh',
 'block-log-flags-nocreate'    => 'cấm mở tài khoản',
-'block-log-flags-noautoblock' => 'tự động cấm không kích hoạt',
-'block-log-flags-noemail'     => 'thư điện tử bị khóa',
-'range_block_disabled'        => 'Không được cấm hàng loạt.',
+'block-log-flags-noautoblock' => 'đã tắt tự động cấm',
+'block-log-flags-noemail'     => 'đã cấm thư điện tử',
+'range_block_disabled'        => 'Đã tắt khả năng cấm hàng loạt của quản lý.',
 'ipb_expiry_invalid'          => 'Thời điểm hết hạn không hợp lệ.',
-'ipb_already_blocked'         => '<div class="alreadyblocked" id="alreadyblocked" style="color:red; font-weight:bold; font-size:96.75%;"><a href="http://vi.wikipedia.org/wiki/Th%C3%A0nh_vi%C3%AAn:$1">$1</a> (<a href="http://vi.wikipedia.org/wiki/Th%E1%BA%A3o_lu%E1%BA%ADn_Th%C3%A0nh_vi%C3%AAn:$1">thảo luận</a> • <a href="http://vi.wikipedia.org/wiki/%C4%90%E1%BA%B7c_bi%E1%BB%87t:Contributions/$1">đóng góp</a>) hiện đang bị cấm (<a href="http://vi.wikipedia.org/w/index.php?title=%C4%90%E1%BA%B7c_bi%E1%BB%87t:Log/block&page=Th%C3%A0nh+vi%C3%AAn:$1">nhật trình cấm</a> • <a href="http://vi.wikipedia.org/w/index.php?title=%C4%90%E1%BA%B7c_bi%E1%BB%87t:Ipblocklist&action=unblock&ip=$1&wpUnblockReason=m%E1%BB%9F+kh%C3%B3a+%C4%91%E1%BB%83+%C4%91%E1%BB%95i+th%E1%BB%9Di+h%E1%BA%A1n">mở khóa</a>) . Để thay đổi thời hạn cấm và/hoặc lý do cấm, trước hết bạn phải bỏ cấm cho thành viên.</div>',
-'ipb_cant_unblock'            => 'Lỗi: Không tìm được ID cấm $1. Địa chỉ IP này có thể bị cấm rồi.',
+'ipb_already_blocked'         => '"$1" đã bị cấm rồi',
+'ipb_cant_unblock'            => 'Lỗi: Không tìm được ID cấm $1. Địa chỉ IP này có thể đã được bỏ cấm.',
 'ip_range_invalid'            => 'Dải IP không hợp lệ.',
 'blockme'                     => 'Cấm tôi',
 'proxyblocker'                => 'Chặn proxy',
-'proxyblocker-disabled'       => 'Chức năng này hiện không bật.',
+'proxyblocker-disabled'       => 'Chức năng này đã bị tắt.',
 'proxyblockreason'            => 'Địa chỉ IP của bạn đã bị cấm vì là proxy mở. Xin hãy liên hệ nhà cung cấp dịch vụ Internet hoặc bộ phận hỗ trợ kỹ thuật của bạn và thông báo với họ về vấn đề an ninh nghiêm trọng này.',
 'proxyblocksuccess'           => 'Xong.',
-'sorbsreason'                 => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở theo DNSBL.',
-'sorbs_create_account_reason' => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở theo DNSBL. Bạn không thể mở được tài khoản.',
+'sorbsreason'                 => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở trong DNSBL mà {{SITENAME}} đang sử dụng.',
+'sorbs_create_account_reason' => 'Địa chỉ chỉ IP của bạn bị liệt kê là một proxy mở trong DNSBL mà {{SITENAME}} đang sử dụng. Bạn không thể mở tài khoản.',
 
 # Developer tools
 'lockdb'              => 'Khóa cơ sở dữ liệu',
-'unlockdb'            => 'Mở cơ sở dữ liệu',
-'lockdbtext'          => 'Khóa cơ sở dữ liệu sẽ không cho phép người dùng sửa đổi các trang, thay đổi thông số cá nhân của họ, sửa danh sách theo dõi, và những thao tác khác đòi hỏi phải thay đổi trong cơ sở dữ liệu.
-Xin hãy khẳng định là bạn có ý định thực hiện điều này, và bạn sẽ mở khóa cơ sở dữ liệu khi xong công việc bảo trì của bạn.',
-'unlockdbtext'        => 'Mở khóa cơ sở dữ liệu sẽ lại cho phép các người dùng có thể sửa đổi trang, thay đổi thông số cá nhân của họ, sửa đổi danh sách theo dõi của họ, và nhiều thao tác khác đòi hỏi phải có thay đổi trong cơ sở dữ liệu.
-Xin hãy khẳng định đây là điều bạn định làm.',
+'unlockdb'            => 'Mở khóa cơ sở dữ liệu',
+'lockdbtext'          => 'Khóa cơ sở dữ liệu sẽ ngưng tất cả khả năng
+sửa đổi các trang, thay đổi tùy chọn cá nhân, sửa danh sách theo dõi, 
+và những thao tác khác của thành viên đòi hỏi phải thay đổi trong cơ sở dữ liệu.
+Xin hãy xác nhận những việc bạn định làm, và rằng bạn sẽ 
+mở khóa cơ sở dữ liệu khi xong công việc bảo trì của bạn.',
+'unlockdbtext'        => 'Mở khóa cơ sở dữ liệu sẽ khôi phục lại tất cả khả năng
+sửa đổi trang, thay đổi tùy chọn cá nhân, sửa đổi danh sách theo dõi, 
+và nhiều thao tác khác của thành viên đòi hỏi phải có thay đổi trong cơ sở dữ liệu.
+Xin hãy xác nhận đây là điều bạn định làm.',
 'lockconfirm'         => 'Vâng, tôi thực sự muốn khóa cơ sở dữ liệu.',
-'unlockconfirm'       => 'Vâng, tôi thực sự muốn mở cơ sở dữ liệu.',
+'unlockconfirm'       => 'Vâng, tôi thực sự muốn mở khóa cơ sở dữ liệu.',
 'lockbtn'             => 'Khóa cơ sở dữ liệu',
-'unlockbtn'           => 'Mở cơ sở dữ liệu',
-'locknoconfirm'       => 'Bạn đã không chọn vào ô khẳng định.',
-'lockdbsuccesssub'    => 'Khóa thành công cơ sở dữ liệu',
-'unlockdbsuccesssub'  => 'Mở thành công cơ sở dữ liệu',
+'unlockbtn'           => 'Mở khóa cơ sở dữ liệu',
+'locknoconfirm'       => 'Bạn đã không đánh vào ô xác nhận.',
+'lockdbsuccesssub'    => 'Đã khóa cơ sở dữ liệu thành công.',
+'unlockdbsuccesssub'  => 'Đã mở khóa cơ sở dữ liệu thành công',
 'lockdbsuccesstext'   => 'Cơ sở dữ liệu đã bị khóa.
-<br />Nhớ bỏ khóa sau khi bảo trì xong.',
+<br />Nhớ [[Special:Unlockdb|mở khóa]] sau khi bảo trì xong.',
 'unlockdbsuccesstext' => 'Cơ sở dữ liệu đã được mở khóa.',
 'lockfilenotwritable' => 'Không có thể ghi vào tập tin khóa cơ sở dữ liệu. Để khóa hay mở khóa cơ sở dữ liệu, cần để máy phục vụ ghi vào tập tin này.',
 'databasenotlocked'   => 'Cơ sở dữ liệu không bị khóa.',

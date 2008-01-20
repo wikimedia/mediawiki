@@ -609,15 +609,18 @@ $3 макссь туфталсь - ''$2''",
 'previousrevision'    => 'Сядынгольдень верзие',
 'nextrevision'        => 'Сяда од верзие',
 'currentrevisionlink' => 'Тяниень верзие',
-'cur'                 => 'тяни',
+'cur'                 => 'тян.',
 'next'                => 'сай',
 'last'                => 'мекольце',
 'orig'                => 'ушеткстонь',
 'page_first'          => 'васенце',
 'page_last'           => 'мекольце',
+'histlegend'          => 'Верзиень кочкама: путт тяшкскат верзиетнень конякскяснон эди люпштак алудонь пунять эли Enter пунять.<br />
+Шарьхкотьфтема: (тян.) = тяниень верзиеда явовомась,
+(сяд.) = сядынгольдень верзияда явовомась, Й = йомла петнема.',
 'deletedrev'          => '[нардаф]',
-'histfirst'           => 'Васенце',
-'histlast'            => 'Мекольце',
+'histfirst'           => 'Кунардонь',
+'histlast'            => 'Улхкомбань',
 'historysize'         => '({{PLURAL:$1|1 байт|$1 байтт}})',
 'historyempty'        => '(шава)',
 
@@ -630,13 +633,35 @@ $3 макссь туфталсь - ''$2''",
 Сувак [[Special:Вешеньдемас|Викиса вешеньдемас]] сяда мала лопатнень муманкса.',
 
 # Revision deletion
-'rev-deleted-comment'     => '(мяльполаткс нардаф)',
-'rev-deleted-user'        => '(тиись нардаф)',
-'rev-deleted-event'       => '(сёрматфсь нардаф)',
-'rev-delundel'            => 'няфтемс/кяшемс',
-'revisiondelete'          => 'Нардамс/мърдафтомс верзиетнень',
-'revdelete-nooldid-title' => 'Верзиесь апак кочкак',
-'revdelete-nooldid-text'  => 'Тон ашеть кочка верзие эли верзиет конатнень мархта эряви тянь тиемс.',
-'revdelete-selected'      => "'''$1:'''-нь {{PLURAL:$2|Кочкаф верзиец|Кочкаф верзиенза}}",
+'rev-deleted-comment'         => '(мяльполаткс нардаф)',
+'rev-deleted-user'            => '(тиить лемоц нардаф)',
+'rev-deleted-event'           => '(сёрматфсь нардаф)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Тя лопать верзиенц нардазь марстонь аркивста.
+Шарьхкотьфнемат, шятьта, улихть
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} нардамань лувомаса].
+</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Тя лопать верзиенц нардазь марстонь аркивста.
+Тондейть, кода {{SITENAME}}-ть оцюнянцти ули кода ваномонза;
+ванк [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} нардамань лувомаса].
+</div>',
+'rev-delundel'                => 'няфтемс/кяшемс',
+'revisiondelete'              => 'Нардамс/мърдафтомс верзиетнень',
+'revdelete-nooldid-title'     => 'Верзиесь апак кочкак',
+'revdelete-nooldid-text'      => 'Тон ашеть кочка верзие эли верзиет конатнень мархта эряви тянь тиемс.',
+'revdelete-selected'          => "'''$1:'''-нь {{PLURAL:$2|Кочкаф верзиец|Кочкаф верзиенза}}",
+'logdelete-selected'          => "{{PLURAL:$2|Кочкаф сёрмафсь|Кочкаф сёрмафтне}} '''$1:''' лопанди",
+'revdelete-legend'            => 'Арафтомс оторхнень:',
+'revdelete-hide-text'         => 'Кяшемс тя лопать верзиенц',
+'revdelete-hide-name'         => 'Кяшемс тиемать эди туфталонц',
+'revdelete-hide-comment'      => 'Кяшемс мяльполатксонь петнемать',
+'revdelete-hide-user'         => 'Кяшемс петнить лемонц/IP адресонц',
+'revdelete-hide-restricted'   => 'Нолдак эряфс кардафкснень вийксненди ди иля тиихненди.',
+'revdelete-suppress'          => 'Кяшемс информациень системонь вятикснень эзда',
+'revdelete-hide-image'        => 'Кяшемс файлхнень потмосна',
+'revdelete-unsuppress'        => 'Валхтомс мърдаф верзиятнень кардамаснон',
+'revdelete-log'               => 'Мяльполаткс:',
+'revdelete-submit'            => 'Нолдамс тевс кочкаф верзиенди',
 
 );

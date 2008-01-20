@@ -9,6 +9,7 @@
  * @author Sunil Mohan
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author לערי ריינהארט
+ * @author Veeven
  */
 
 $namespaceNames = array(
@@ -262,9 +263,11 @@ $messages = array(
 'faqpage'           => 'Project:తరచూ అడిగే ప్రశ్నలు',
 'helppage'          => 'Help:సూచిక',
 'mainpage'          => 'మొదటి పేజీ',
+'policy-url'        => 'ప్రాజెక్టు:విధానం',
 'portal'            => 'సముదాయ పందిరి',
 'portal-url'        => 'Project:సముదాయ పందిరి',
 'privacy'           => 'గోప్యతా విధానం',
+'privacypage'       => 'ప్రాజెక్టు:గోప్యతా విధానం',
 'sitesupport'       => 'విరాళములు',
 'sitesupport-url'   => 'Wikimedia:Fundraising',
 
@@ -486,6 +489,7 @@ $2',
 'italic_sample'  => 'వంగిన అక్షరాలు',
 'italic_tip'     => 'వంగిన అక్షరాలు',
 'link_sample'    => 'లింకు పేరు',
+'link_tip'       => 'అంతర్గత లింకు',
 'extlink_sample' => 'http://www.example.com లింకు పేరు',
 'extlink_tip'    => 'బయటి లింకు (దీనికి ముందు http:// ఇవ్వటం మరువకండి)',
 'sig_tip'        => 'టైంస్టాంపుతో సహా మీ సంతకం',
@@ -499,6 +503,7 @@ $2',
 'savearticle'              => 'పేజీ భధ్రపరచు',
 'preview'                  => 'సరిచూడు',
 'showpreview'              => 'సరిచూడు',
+'showlivepreview'          => 'తాజా మునుజూపు',
 'showdiff'                 => 'తేడాలు చూపించు',
 'anoneditwarning'          => "'''హెచ్చరిక:''' మీరు లాగిన్ అయిలేరు. ఈ పేజీ దిద్దుబాటు చరిత్రలో మీ ఐ.పి.అడ్రసు నమొదు అవుతుంది.",
 'missingsummary'           => "'''గుర్తు చేస్తున్నాం:''' మీరు దిద్దుబాటు సారాంశమేమీ ఇవ్వలేదు. పేజీని మళ్ళీ భద్రపరచమని చెబితే సారాంశమేమీ లేకుండానే దిద్దుబాటును భద్రపరుస్తాం.",
@@ -542,6 +547,7 @@ $2',
 'whitelistacctext'         => '{{SITENAME}}లో అకౌంట్లను సృష్టించడానికి మీరు [[Special:Userlogin|లాగిన్‌]] అయి ఉండాలి, మరియు తగువిధమైన అనుమతులు ఉండాలి.',
 'confirmedittitle'         => 'మార్పులు చేసేముందు ఈ-మెయిలు చిరునామా ధృవీకరణ తప్పనిసరి',
 'confirmedittext'          => 'పేజీల్లో మార్పులు చేసేముందు మీ ఈ-మెయిలు చిరునామా ధృవీకరించాలి. [[Special:Preferences|మీ అభిరుచుల]]లో మీ ఈ-మెయిలు చిరునామా రాసి, ధృవీకరించండి.',
+'nosuchsectiontitle'       => 'అటువంటి విభాగం లేదు',
 'loginreqtitle'            => 'లాగిన్‌ ఆవసరము',
 'loginreqlink'             => 'లాగిన్',
 'loginreqpagetext'         => 'ఇతర పేజీలు చూడడానికి మీరు $1 అయి ఉండాలి.',
@@ -563,6 +569,7 @@ $2',
 'editingcomment'           => '$1 దిద్దుబాటు (వ్యాఖ్య)',
 'editconflict'             => 'దిద్దుబాటు ఘర్షణ: $1',
 'explainconflict'          => 'మీరు మార్పులు చెయ్యడం మొదలుపెట్టిన తరువాత, ఇతర సభ్యులు ఈ పేజీలో మార్పులు చేసారు. పైన ఉన్న టెక్స్ట్ ఏరియాలో ప్రస్తుతపు సంచిక ఉన్నది. మీరు చేసిన మార్పులు కింద ఉన్న టెక్స్ట్ ఏరియాలో చూపించబడ్డాయి. మీరు మీ మార్పులను ప్రస్తుతపు సంచికతో విలీనం చెయ్యవలసి ఉంటుంది. మీరు "పేజీని భద్రపరుచు"ను నొక్కినపుడు, పైన ఉన్న సంచిక <b>మాత్రమే</b> భద్రపరచబడుతుంది.<br />',
+'yourtext'                 => 'మీ పాఠ్యం',
 'storedversion'            => 'భద్రపరచిన కూర్పు',
 'editingold'               => '<strong>హెచ్చ రిక: ఈ పేజీ యొక్క కాలం చెల్లిన సంచికను మీరు మరుస్తున్నారు. దీనిని భద్రపరిస్తే, ఆ సంచిక తరువాత ఈ పేజీలో జరిగిన మార్పులన్నీ పోతాయి.</strong>',
 'yourdiff'                 => 'తేడాలు',
@@ -613,14 +620,21 @@ $2',
 'deletedrev'          => '[తొలగించబడినది]',
 'histfirst'           => 'తొట్టతొలి',
 'histlast'            => 'చిట్టచివరి',
+'historysize'         => '({{PLURAL:$1|1 బైటు|$1 బైట్లు}})',
+'historyempty'        => '(ఖాళీ)',
 
 # Revision deletion
 'rev-delundel'           => 'చూపించు/దాచు',
 'revdelete-hide-comment' => 'దిద్దుబాటు వ్యాఖ్యను దాచు',
 
+# History merging
+'mergehistory-from' => 'మూల పేజీ:',
+'mergehistory-into' => 'లక్ష్యిత పేజీ:',
+
 # Diffs
 'history-title'           => '"$1" కూర్పుల చరితం',
 'difference'              => '(సంచికల మధ్య తేడా)',
+'lineno'                  => 'లైను $1:',
 'compareselectedversions' => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',
 'editundo'                => 'దిద్దుబాటు రద్దుచెయ్యి',
 
@@ -706,10 +720,15 @@ $2',
 'group-sysop-member'      => 'నిర్వాహకుడు',
 'group-bureaucrat-member' => 'అధికారి',
 
+'grouppage-bot'        => '{{ns:project}}:బాట్లు',
+'grouppage-sysop'      => '{{ns:project}}:నిర్వాహకులు',
+'grouppage-bureaucrat' => '{{ns:project}}:అధికార్లు',
+
 # User rights log
 'rightslog'      => 'సభ్యుల హక్కుల లాగ్',
 'rightslogtext'  => 'ఇది సభ్యుల హక్కులకు చేసిన మార్పుల లాగ్.',
 'rightslogentry' => '$1 గారి సభ్యత్వ గుంపును $2 నుండి $3 కి మార్చారు',
+'rightsnone'     => '(ఏమీలేవు)',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ఒక మార్పు|$1 మార్పులు}}',
@@ -814,6 +833,7 @@ $2',
 
 # Image list
 'imagelist'                 => 'ఫైళ్ళ జాబితా',
+'ilsubmit'                  => 'వెతుకు',
 'showlast'                  => '$2 పేర్చిన గత $1 ఫైళ్ళను చూపించు',
 'byname'                    => 'పేర్ల వారీగ',
 'bydate'                    => 'తేదీ వారీగ',
@@ -838,6 +858,17 @@ $2',
 'noimage'                   => 'ఆ పేరుతో ఫైలేమీ లేదు, మీరు $1',
 'noimage-linktext'          => 'దాన్ని అప్‌లోడు చెయ్యవచ్చు',
 'uploadnewversion-linktext' => 'ఈ ఫైలు కొత్త కూర్పును అప్‌లోడు చెయ్యండి',
+'imagelist_date'            => 'తేదీ',
+'imagelist_name'            => 'పేరు',
+'imagelist_user'            => 'వాడుకరి',
+'imagelist_size'            => 'పరిమాణం',
+'imagelist_description'     => 'వివరణ',
+
+# File reversion
+'filerevert-comment' => 'వ్యాఖ్య:',
+
+# File deletion
+'filedelete-comment' => 'వ్యాఖ్య:',
 
 # Unwatched pages
 'unwatchedpages' => 'వీక్షణలో లేని పేజీలు',
@@ -929,6 +960,7 @@ $2',
 'newpages'                    => 'కొత్త పేజీలు',
 'newpages-username'           => 'సభ్యనామం:',
 'ancientpages'                => 'పాత పేజీలు',
+'intl'                        => 'అంతర్భాషా లింకులు',
 'move'                        => 'తరలించు',
 'movethispage'                => 'ఈ పేజీని తరలించు',
 'unusedimagestext'            => '<p>ఇతర వెబ్ సైట్లు సూటి యు.ఆర్.ఎల్ ద్వారా ఇక్కడి బొమ్మలకు లింకు ఇవ్వవచ్చు. అటువంటి లింకులున్న బొమ్మలు కూడా ఇక్కడ చేరి ఉండవచ్చునని గమనించండి.</p>',
@@ -937,7 +969,8 @@ $2',
 'notargettext'                => 'ఈ పని ఏ పేజీ లేదా సభ్యునిపై జరగాలనే గమ్యాన్ని మీరు సూచించలేదు.',
 
 # Book sources
-'booksources' => 'పుస్తక మూలాలు',
+'booksources'    => 'పుస్తక మూలాలు',
+'booksources-go' => 'వెళ్ళు',
 
 'categoriespagetext' => 'వికీలో ఈ కింది వర్గాలు ఉన్నాయి.',
 'data'               => 'డాటా',
@@ -950,6 +983,7 @@ $2',
 'speciallogtitlelabel' => 'పేరు:',
 'log'                  => 'దినచర్య పేజీలు',
 'all-logs-page'        => 'అన్ని లాగ్‌లు',
+'log-search-submit'    => 'వెళ్ళు',
 'alllogstext'          => 'అప్‌లోడు, తొలగింపు, సంరక్షణ, నిరోధం, నిర్వహణల లాగ్ ఇది. ప్రత్యేకించి ఒక లాగ్ రకాన్ని గానీ, ఓ సభ్యుని పేరు గానీ, ఓ పేజీని గాని ఎంచుకుని సంబంధిత లాగ్‌ను మాత్రమే చూడవచ్చు కూడా.',
 'logempty'             => 'దినచర్యలో సరిపోలిన అంశాలు లేవు.',
 
@@ -1113,10 +1147,12 @@ $NEWPAGE
 'restriction-level'           => 'నిరోధ స్థాయి:',
 'minimum-size'                => 'కనీస పరిమాణం',
 'maximum-size'                => 'గరిష్ఠ పరిమాణం',
+'pagesize'                    => '(బైట్లు)',
 
 # Restriction levels
 'restriction-level-sysop'         => 'పూర్తి సంరక్షణ',
 'restriction-level-autoconfirmed' => 'అర్థ సంరక్షణ',
+'restriction-level-all'           => 'ఏ స్థాయి అయినా',
 
 # Undelete
 'undelete'                 => 'తుడిచివేయబడ్డ పేజీలను చూపించు',
@@ -1138,6 +1174,7 @@ $NEWPAGE
 'undeletedpage'            => "<big>'''$1 ను పునస్థాపించాం'''</big>
 
 ఇటీవల జరిగిన తొలగింపులు, పునస్థాపనల కొరకు [[Special:Log/delete|తొలగింపు లాగ్]] చూడండి.",
+'undelete-search-submit'   => 'వెతుకు',
 
 # Namespace form on various pages
 'namespace'      => 'నేంస్పేసు:',
@@ -1151,6 +1188,7 @@ $NEWPAGE
 'nocontribs'    => 'ఈ విధమైన మార్పులేమీ దొరకలేదు.',
 'ucnote'        => 'గత <b>$2</b> రోజులలో ఈ వాడుకరి చేసిన చివరి <b>$1</b> మార్పులు కింద ఉన్నాయి.',
 'uclinks'       => 'చివరి $1 మార్పులు చూపించు; గత $2 రోజుల మార్పులు చూపించు.',
+'uctop'         => ' (పైది)',
 'month'         => 'ఈ నెలవి (దాని ముందువి కూడా):',
 'year'          => 'ఈ సంవత్సరానివి (దాని ముందువి కూడా):',
 
@@ -1214,6 +1252,7 @@ $NEWPAGE
 'ipblocklist'                 => 'నిరోధించబడిన ఐ.పీ చిరునామాలు మరియు సభ్యులు',
 'ipblocklist-legend'          => 'నిరోధించబడిన సభ్యుని వెతకండి',
 'ipblocklist-username'        => 'సభ్యనామం లేదా IP అడ్రసు:',
+'ipblocklist-submit'          => 'వెతుకు',
 'blocklistline'               => '$1, $2లు $3 ($4)ను నిరోధించారు.',
 'infiniteblock'               => 'అనంతం',
 'anononlyblock'               => 'అజ్ఞాతవ్యక్తులు మాత్రమే',
@@ -1293,6 +1332,7 @@ $NEWPAGE
 రెండో పద్ధతిలో అయితే, పేజీ యొక్క లింకును కూడా వాడవచ్చు. ఉదాహరణకు,  {{int:mainpage}} కోసమైతే [[{{ns:Special}}:Export/{{int:mainpage}}]] అని ఇవ్వవచ్చు.',
 'exportcuronly' => 'ప్రస్తుత కూర్పు మాత్రమే, పూర్తి చరితం వద్దు',
 'export-submit' => 'ఎగుమతి చెయ్యి',
+'export-addcat' => 'చేర్చు',
 
 # Namespace 8 related
 'allmessages'         => 'అన్ని సిస్టం సందేశాలు',
@@ -1314,7 +1354,9 @@ $NEWPAGE
 'importlogpage' => 'దిగుమతి లాగ్',
 
 # Tooltip help for the actions
+'tooltip-pt-preferences'          => 'నా అభిరుచులు',
 'tooltip-search'                  => '{{SITENAME}} లో వెతకండి',
+'tooltip-p-logo'                  => 'మొదటి పేజీ',
 'tooltip-diff'                    => 'పాఠానికి మీరు చేసిన మార్పులను చూపుంచు. [alt-v]',
 'tooltip-compareselectedversions' => 'ఈ పేజీలో ఎంచుకున్న రెండు కూర్పులకు మధ్య తేడాలను చూడండి. [alt-v]',
 'tooltip-recreate'                => 'పేజీ తుడిచివేయబడ్డాకానీ మళ్ళీ సృష్టించు',

@@ -918,7 +918,7 @@ Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu ca
 'rcshowhidebots'                    => '$1 bots',
 'rcshowhideliu'                     => '$1 usuarios rexistraos',
 'rcshowhideanons'                   => '$1 usuarios anónimos',
-'rcshowhidepatr'                    => '$1 ediciones patrullaes',
+'rcshowhidepatr'                    => '$1 ediciones supervisaes',
 'rcshowhidemine'                    => '$1 les mios ediciones',
 'rclinks'                           => 'Amosar los caberos $1 cambeos nos caberos $2 díes <br />$3',
 'diff'                              => 'dif',
