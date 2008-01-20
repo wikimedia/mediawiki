@@ -19,6 +19,16 @@
 
 $fallback = 'de';
 
+$skinNames = array(
+	'standard'    => 'Klasiski',
+	'nostalgia'   => 'Nostalgiski',
+	'cologneblue' => 'Kölnski Módry',
+	'monobook'    => 'MonoBook',
+	'myskin'      => 'Mój šat',
+	'chick'       => 'Kurjetko',
+	'simple'      => 'Jadnorje',
+);
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Medija',
 	NS_SPECIAL        => 'Specialne',
