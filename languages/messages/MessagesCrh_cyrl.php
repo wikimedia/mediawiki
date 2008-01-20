@@ -14,6 +14,8 @@ $fallback8bitEncoding = 'windows-1251';
 
 $separatorTransformTable = array(','     => '.', '.'     => ',' );
 
+$linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
+
 $namespaceNames = array(
     NS_MEDIA                     => 'Медиа',
     NS_SPECIAL                   => 'Махсус',
