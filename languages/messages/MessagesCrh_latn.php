@@ -104,6 +104,8 @@ $dateFormats = array(
     'ISO 8601 both' => 'xnY.xnm.xnd"T"xnH:xni:xns',
 );
 
+$linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bağlantılarnıñ altını sız',
