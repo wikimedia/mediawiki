@@ -320,6 +320,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Have removed read-only checks from the general user permission framework.
 * Creating a site with a name containing '#' is no longer permitted, since the
   name will not work (but $wgSiteName is not checked if manually set).
+* (bug 12695) Suppress dvips verbiage from web server error log
 
 
 == Parser changes in 1.12 ==
