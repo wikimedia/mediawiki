@@ -5,7 +5,7 @@
 /**
  * Bump this number when serialized cache records may be incompatible.
  */
-define( 'MW_FILE_VERSION', 4 );
+define( 'MW_FILE_VERSION', 5 );
 
 /**
  * Class to represent a local file in the wiki's own database
@@ -29,24 +29,26 @@ class LocalFile extends File
 	/**#@+
 	 * @private
 	 */
-	var	$fileExists,    # does the file file exist on disk? (loadFromXxx)
-		$historyLine,	# Number of line to return by nextHistoryLine() (constructor)
-		$historyRes,	# result of the query for the file's history (nextHistoryLine)
-		$width,         # \
-		$height,        #  |
-		$bits,          #   --- returned by getimagesize (loadFromXxx)
-		$attr,          # /
-		$media_type,    # MEDIATYPE_xxx (bitmap, drawing, audio...)
-		$mime,          # MIME type, determined by MimeMagic::guessMimeType
-		$major_mime,    # Major mime type
-		$minor_mime,    # Minor mime type
-		$size,          # Size in bytes (loadFromXxx)
-		$metadata,      # Handler-specific metadata
-		$timestamp,     # Upload timestamp
-		$sha1,          # SHA-1 base 36 content hash
-		$dataLoaded,    # Whether or not all this has been loaded from the database (loadFromXxx)
-		$upgraded,      # Whether the row was upgraded on load
-		$locked;        # True if the image row is locked
+	var	$fileExists,       # does the file file exist on disk? (loadFromXxx)
+		$historyLine, 	   # Number of line to return by nextHistoryLine() (constructor)
+		$historyRes, 	   # result of the query for the file's history (nextHistoryLine)
+		$width,            # \
+		$height,           #  |
+		$bits,             #   --- returned by getimagesize (loadFromXxx)
+		$attr,             # /
+		$media_type,       # MEDIATYPE_xxx (bitmap, drawing, audio...)
+		$mime,             # MIME type, determined by MimeMagic::guessMimeType
+		$major_mime,       # Major mime type
+		$minor_mime,       # Minor mime type
+		$size,             # Size in bytes (loadFromXxx)
+		$metadata,         # Handler-specific metadata
+		$timestamp,        # Upload timestamp
+		$sha1,             # SHA-1 base 36 content hash
+		$user, $user_text, # User, who uploaded the file
+		$description,      # Description of current revision of the file
+		$dataLoaded,       # Whether or not all this has been loaded from the database (loadFromXxx)
+		$upgraded,         # Whether the row was upgraded on load
+		$locked;           # True if the image row is locked
 
 	/**#@-*/
 
@@ -155,7 +157,7 @@ class LocalFile extends File
 
 	function getCacheFields( $prefix = 'img_' ) {
 		static $fields = array( 'size', 'width', 'height', 'bits', 'media_type', 
-			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1' );
+			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user', 'user_text' );
 		static $results = array();
 		if ( $prefix == '' ) {
 			return $fields;
@@ -382,6 +384,19 @@ class LocalFile extends File
 	}
 
 	/**
+	 * Returns ID or name of user who uploaded the file
+	 *
+	 * @param $type string 'text' or 'id'
+	 */
+	function getUser($type='text') {
+		if( $type == 'text' ) {
+			return $this->user_text;
+		} elseif( $type == 'id' ) {
+			return $this->user;
+		}
+	}
+
+	/**
 	 * Get handler-specific metadata
 	 */
 	function getMetadata() {
@@ -559,6 +574,28 @@ class LocalFile extends File
 	/** purgeDescription inherited */
 	/** purgeEverything inherited */
 
+	function getHistory($limit = null, $start = null, $end = null) {
+		$dbr = $this->repo->getSlaveDB();
+		$conds = $opts = array();
+		$conds[] = "oi_name = '" . $this->title->getDBKey() . "'";
+		if( $start !== null ) {
+			$conds[] = "oi_timestamp < '" . $dbr->timestamp( $start ) . "'";
+		}
+		if( $end !== null ) {
+			$conds[] = "oi_timestamp > '" . $dbr->timestamp( $end ). "'";
+		}
+		if( $limit ) {
+			$opts['LIMIT'] = $limit;
+		}
+		$opts['ORDER BY'] = 'oi_timestamp DESC';
+		$res = $dbr->select('oldimage', '*', $conds, __METHOD__, $opts);
+		$r = array();
+		while( $row = $dbr->fetchObject($res) ) {
+			$r[] = OldLocalFile::newFromRow($row, $this->repo);
+		}
+		return $r;
+	}
+	
 	/**
 	 * Return the history of this file, line by line.
 	 * starts with current version, then old versions.
@@ -966,6 +1003,11 @@ class LocalFile extends File
 		if ( !$text ) return false;
 		$html = $wgParser->parse( $text, new ParserOptions );
 		return $html;
+	}
+
+	function getDescription() {
+		$this->load();
+		return $this->description;
 	}
 
 	function getTimestamp() {
