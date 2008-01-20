@@ -2261,6 +2261,7 @@ In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{Media
 'export-addcattext' => 'Add pages from category:',
 'export-addcat'     => 'Add',
 'export-download'   => 'Save as file',
+'export-templates'  => 'Include templates',
 
 # Namespace 8 related
 'allmessages'               => 'System messages',

@@ -50,6 +50,38 @@ function wfExportGetPagesFromCategory( $title ) {
 }
 
 /**
+ * Expand a list of pages to include templates used in those pages.
+ * @input $pages string newline-separated list of page titles
+ * @output string newline-separated list of page titles
+ */
+function wfExportGetTemplates( $pages ) {
+	$pageList = array_unique( array_filter( explode( "\n", $pages ) ) );
+	$output = array();
+	$dbr = wfGetDB( DB_SLAVE );
+	foreach( $pageList as $page ) {
+		$title = Title::newFromText( $page );
+		$output[$title->getPrefixedText()] = true;
+		if( $title ) {
+			/// @fixme May or may not be more efficient to batch these
+			///        by namespace when given multiple input pages.
+			$result = $dbr->select(
+				array( 'page', 'templatelinks' ),
+				array( 'tl_namespace', 'tl_title' ),
+				array(
+					'page_namespace' => $title->getNamespace(),
+					'page_title' => $title->getDbKey(),
+					'page_id=tl_from' ),
+				__METHOD__ );
+			foreach( $result as $row ) {
+				$template = Title::makeTitle( $row->tl_namespace, $row->tl_title );
+				$output[$template->getPrefixedText()] = true;
+			}
+		}
+	}
+	return implode( "\n", array_keys( $output ) );
+}
+
+/**
  *
  */
 function wfSpecialExport( $page = '' ) {
@@ -66,6 +98,11 @@ function wfSpecialExport( $page = '' ) {
 		if ( $catname !== '' && $catname !== NULL && $catname !== false ) {
 			$t = Title::makeTitleSafe( NS_CATEGORY, $catname );
 			if ( $t ) {
+				/**
+				 * @fixme This can lead to hitting memory limit for very large
+				 * categories. Ideally we would do the lookup synchronously
+				 * during the export in a single query.
+				 */
 				$catpages = wfExportGetPagesFromCategory( $t );
 				if ( $catpages ) $page .= "\n" . implode( "\n", $catpages );
 			}
@@ -123,6 +160,10 @@ function wfSpecialExport( $page = '' ) {
 	
 	$list_authors = $wgRequest->getCheck( 'listauthors' );
 	if ( !$curonly || !$wgExportAllowListContributors ) $list_authors = false ;
+	
+	if( $wgRequest->getCheck( 'templates' ) ) {
+		$page = wfExportGetTemplates( $page );
+	}
 
 	if ( $doexport ) {
 		$wgOut->disable();
@@ -188,6 +229,7 @@ function wfSpecialExport( $page = '' ) {
 	} else {
 		$wgOut->addHtml( wfMsgExt( 'exportnohistory', 'parse' ) );
 	}
+	$form .= Xml::checkLabel( wfMsg( 'export-templates' ), 'templates', 'wpExportTemplates', false ) . '<br />';
 	$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
 	
 	$form .= Xml::submitButton( wfMsg( 'export-submit' ) );
