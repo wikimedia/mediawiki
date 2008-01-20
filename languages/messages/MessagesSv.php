@@ -1742,6 +1742,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 'export-addcattext' => 'Lägg till sidor från kategori:',
 'export-addcat'     => 'Lägg till',
 'export-download'   => 'Ladda ner som fil',
+'export-templates'  => 'Inkludera mallar',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeddelanden',

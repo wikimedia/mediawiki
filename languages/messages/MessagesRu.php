@@ -1838,6 +1838,7 @@ IP-адреса.',
 'export-addcattext' => 'Добавить страницы из категории:',
 'export-addcat'     => 'Добавить',
 'export-download'   => 'Предложить сохранить как файл',
+'export-templates'  => 'Включить шаблоны',
 
 # Namespace 8 related
 'allmessages'               => 'Системные сообщения',

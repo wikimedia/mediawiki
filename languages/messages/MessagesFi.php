@@ -1688,6 +1688,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'export-addcattext' => 'Lisää sivut luokasta',
 'export-addcat'     => 'Lisää',
 'export-download'   => 'Tallenna tiedostona',
+'export-templates'  => 'Liitä mallineet',
 
 # Namespace 8 related
 'allmessages'               => 'Järjestelmäviestit',

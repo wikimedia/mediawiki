@@ -767,7 +767,7 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 'nocreatetext'              => 'Na {{grammar:6sg|{{SITENAME}}}} je možnost vytváření nových stránek omezena.
 Můžete se vrátit a editovat již existující stránku, nebo [[Special:Userlogin|se přihlásit či se registrovat]].',
 'nocreate-loggedin'         => 'Nemáte povoleno zakládat nové stránky na {{grammar:6sg|{{SITENAME}}}}.',
-'permissionserrors'         => 'Chyba v povolení',
+'permissionserrors'         => 'Chyba povolení',
 'permissionserrorstext'     => 'Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:',
 'recreate-deleted-warn'     => "'''Pozor: Pokoušíte se založit stránku, která již byla smazána.'''
 
@@ -1782,6 +1782,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'export-addcattext' => 'Přidat stránky z kategorie:',
 'export-addcat'     => 'Přidat',
 'export-download'   => 'Nabídnout uložení jako soubor',
+'export-templates'  => 'Zahrnout šablony',
 
 # Namespace 8 related
 'allmessages'               => 'Všechna systémová hlášení',

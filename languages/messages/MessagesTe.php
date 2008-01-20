@@ -263,11 +263,11 @@ $messages = array(
 'faqpage'           => 'Project:తరచూ అడిగే ప్రశ్నలు',
 'helppage'          => 'Help:సూచిక',
 'mainpage'          => 'మొదటి పేజీ',
-'policy-url'        => 'ప్రాజెక్టు:విధానం',
+'policy-url'        => 'Project:విధానం',
 'portal'            => 'సముదాయ పందిరి',
 'portal-url'        => 'Project:సముదాయ పందిరి',
 'privacy'           => 'గోప్యతా విధానం',
-'privacypage'       => 'ప్రాజెక్టు:గోప్యతా విధానం',
+'privacypage'       => 'Project:గోప్యతా విధానం',
 'sitesupport'       => 'విరాళములు',
 'sitesupport-url'   => 'Wikimedia:Fundraising',
 
@@ -492,6 +492,7 @@ $2',
 'link_tip'       => 'అంతర్గత లింకు',
 'extlink_sample' => 'http://www.example.com లింకు పేరు',
 'extlink_tip'    => 'బయటి లింకు (దీనికి ముందు http:// ఇవ్వటం మరువకండి)',
+'headline_tip'   => '2వ స్థాయి శీర్షిక',
 'sig_tip'        => 'టైంస్టాంపుతో సహా మీ సంతకం',
 'hr_tip'         => 'అడ్డగీత (అరుదుగా వాడండి)',
 
@@ -537,6 +538,7 @@ $2',
 మీ [[Special:Preferences|అభిరుచులలో]] సరైన ఈమెయిలు ఐడీని ఇచ్చి ఉంటే తప్ప, మీరు "ఈ సభ్యునికి మెయిలు పంపు" అనే అంశాన్ని వాడజాలరని గమనించండి. 
 
 మీ నిరోధం ఐడి: $5. మీ సంప్రదింపులన్నిటిలోను ఈ ఐడిని ఉదహరించండి.',
+'blockednoreason'          => 'కారణమేమీ ఇవ్వలేదు',
 'blockedoriginalsource'    => "'''$1''' యొక్క మూలాన్ని కింద ఇచ్చాం:",
 'blockededitsource'        => "'''$1''' లో '''మీ దిద్దుబాట్ల''' పూర్తి పాఠాన్ని కింద ఇచ్చాం:",
 'whitelistedittitle'       => 'మార్పులు చెయ్యడానికి లాగిన్‌ అయి ఉండాలి',
@@ -558,6 +560,7 @@ $2',
 'anontalkpagetext'         => "----''ఇది ఒక అజ్ఞాత సభ్యుని చర్చా పేజీ, కాబట్టి ఇంకా ఖాతా సృష్టించ లేదు, లేదా దానిని ఉపయోగించడం లేదు. కాబట్టి వారి ఐ.పీ. అడ్రసే ఆ సభ్యుని గుర్తింపు. ఆ ఐ.పి. అడ్రసు చాలా మంది సభ్యులు వాడే అవకాశం ఉంది. మీరూ ఓ అజ్ఞాత సభ్యులైతే, ఒకే ఐ.పీ. అడ్రసు కారణంగా వేరే సభ్యులకు ఉద్దేశించిన వ్యాఖ్యానాలు మీకూ వర్తించే అవకాశం ఉంది. ఇకనుండి ఈ అయోమయం లేకుండా ఉండాలంటే, [[Special:Userlogin|అకౌంటు సృష్టించండి లేదా లాగిన్‌ అవండి]].''",
 'noarticletext'            => 'ప్రస్తుతం ఈ పేజీ ఖాళీగా ఉంది, మీరు ఈ పేజీ శీర్షిక కొసం వెరె పెజీలు [[Special:Search/{{PAGENAME}}|వెతకవచ్చు]] లేదా [{{fullurl:{{FULLPAGENAME}}|action=edit}} ఈ పెజీని మార్చ] వచ్చు.',
 'clearyourcache'           => "'''గమనిక:''' భద్రపరచిన తరువాత, మార్పులను చూడాలంటే మీ బ్రౌజరులొ దాచబడిన పాత కాపీని తీసివేయాల్సిరావచ్చు. '''మొజిల్లా/ ఫైర్‌ఫాక్స్‌/ సఫారి:''' ''shift'' కీని నొక్కి పెట్టి ''Reload'' నొక్కండి, లేదా ''Ctrl-shift-R'' నొక్కండి (యాపుల్‌ మాక్‌‌లో ''Cmd-shift-R''); '''IE:''' ''Ctrl'' నొక్కి పెట్టి, ''Refresh'' నొక్కండి, లేదా ''Ctrl-F5'' నొక్కండి; '''కాంకరర్‌:''': ''Reload'' మీట నొక్కండి, లేదా ''F5'' నొక్కండి; '''ఒపేరా'''ను వాడే వారు ''Tools→Preferences''కు వెళ్ళి పాత పేజీల కాపీలనన్నిటిని పూర్తిగా తీసివేయ వలసిన అవసరం రావచ్చు.",
+'updated'                  => '(తాజా అయ్యింది)',
 'note'                     => '<strong>గమనిక:</strong>',
 'previewnote'              => '<strong>మీరు సరిచూసుకుంటున్నారు అంతే, ఇంకా భద్రపరచలేదని గుర్తుంచుకోండి!</strong>',
 'previewconflict'          => 'భద్రపరచిన తరువాత పై టెక్స్ట్‌ ఏరియాలోని టెక్స్టు ఇలాగ కనిపిస్తుంది.',
@@ -586,6 +589,7 @@ $2',
 'templatesused'            => 'ఈ పేజీలో వాడిన మూసలు:',
 'templatesusedpreview'     => 'ఈ మునుజూపులో వాడిన మూసలు:',
 'templatesusedsection'     => 'ఈ విభాగంలో వాడిన మూసలు:',
+'template-protected'       => '(సంరక్షితం)',
 'recreate-deleted-warn'    => "'''హెచ్చరిక: ఇంతకు మునుపు ఒకసారి తొలగించిన పేజీని మళ్లీ సృష్టిద్దామని మీరు ప్రయత్నిస్తున్నారు.'''
 
 ఈ పేజీపై మార్పులు చేసేముందు, అవి ఇక్కడ ఉండతగినవేనా కాదా అని ఒకసారి ఆలోచించండి.
@@ -620,7 +624,7 @@ $2',
 'deletedrev'          => '[తొలగించబడినది]',
 'histfirst'           => 'తొట్టతొలి',
 'histlast'            => 'చిట్టచివరి',
-'historysize'         => '({{PLURAL:$1|1 బైటు|$1 బైట్లు}})',
+'historysize'         => '({{PLURAL:$1|ఒక బైటు|$1 బైట్లు}})',
 'historyempty'        => '(ఖాళీ)',
 
 # Revision deletion
@@ -661,6 +665,7 @@ $2',
 'prefsnologin'          => 'లాగిన్‌ అయిలేరు',
 'prefsnologintext'      => 'అభిరుచులను మార్చుకోడానికి, మీరు [[Special:Userlogin|లాగిన్‌]] అయి ఉండాలి.',
 'prefsreset'            => 'ఇదివరకటి అభిరుచులు పునరుధ్ధరించబడ్డాయి.',
+'qbsettings-none'       => 'ఏమీకాదు',
 'changepassword'        => 'సంకేతపదం మార్చండి',
 'skin'                  => 'తొడుగు',
 'math'                  => 'లెక్క',
@@ -828,6 +833,7 @@ $2',
 
 'license'            => 'లైసెన్సు వివరాలు',
 'nolicense'          => 'దేన్నీ ఎంచుకోలేదు',
+'license-nopreview'  => '(మునుజూపు అందుబాటులో లేదు)',
 'upload_source_url'  => ' (సార్వజనికంగా అందుబాటులో ఉన్న, సరైన URL)',
 'upload_source_file' => ' (మీ కంప్యూటర్లో ఒక ఫైలు)',
 
@@ -869,6 +875,7 @@ $2',
 
 # File deletion
 'filedelete-comment' => 'వ్యాఖ్య:',
+'filedelete-submit'  => 'తొలగించు',
 
 # Unwatched pages
 'unwatchedpages' => 'వీక్షణలో లేని పేజీలు',
@@ -1354,9 +1361,20 @@ $NEWPAGE
 'importlogpage' => 'దిగుమతి లాగ్',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'             => 'నా వాడుకరి పేజీ',
+'tooltip-pt-mytalk'               => 'నా చర్చా పేజీ',
 'tooltip-pt-preferences'          => 'నా అభిరుచులు',
+'tooltip-pt-mycontris'            => 'నా మార్పు-చేర్పుల జాబితా',
+'tooltip-ca-protect'              => 'ఈ పేజీని సంరక్షించండి',
+'tooltip-ca-delete'               => 'ఈ పేజీని తొలగించండి',
+'tooltip-ca-move'                 => 'ఈ పేజీని తరలించండి',
 'tooltip-search'                  => '{{SITENAME}} లో వెతకండి',
 'tooltip-p-logo'                  => 'మొదటి పేజీ',
+'tooltip-n-mainpage'              => 'మొదటి పేజీని దర్శించండి',
+'tooltip-n-sitesupport'           => 'మాకు తోడ్పడండి',
+'tooltip-ca-nstab-help'           => 'సహాయపు పేజీ చూడండి',
+'tooltip-ca-nstab-category'       => 'వర్గపు పేజీ చూడండి',
+'tooltip-save'                    => 'మీ మార్పులను భద్రపరచండి',
 'tooltip-diff'                    => 'పాఠానికి మీరు చేసిన మార్పులను చూపుంచు. [alt-v]',
 'tooltip-compareselectedversions' => 'ఈ పేజీలో ఎంచుకున్న రెండు కూర్పులకు మధ్య తేడాలను చూడండి. [alt-v]',
 'tooltip-recreate'                => 'పేజీ తుడిచివేయబడ్డాకానీ మళ్ళీ సృష్టించు',
@@ -1366,6 +1384,7 @@ $NEWPAGE
 'siteuser'         => '{{SITENAME}} వాడుకరి $1',
 'lastmodifiedatby' => 'ఈ పేజీకి $3 $2, $1న చివరి మార్పు చేసారు.', # $1 date, $2 time, $3 user
 'and'              => 'మరియు',
+'others'           => 'ఇతరాలు',
 'siteusers'        => '{{SITENAME}} సభ్యులు $1',
 
 # Spam protection
@@ -1408,6 +1427,7 @@ $NEWPAGE
 'mediawarning'         => "'''హెచ్చరిక''': ఈ ఫైలులో హానికరమైన కోడ్‌ ఉండవచ్చు, దానిని పనిచేయిస్తే మీ సిస్టము దెబ్బతినవచ్చు.<hr />",
 'imagemaxsize'         => 'బొమ్మ వివరణ పేజీలో బొమ్మ ఉండవలసిన సైజు:',
 'thumbsize'            => 'నఖచిత్రం వైశాల్యం:',
+'widthheightpage'      => '$1×$2, $3 పేజీలు',
 'file-nohires'         => '<small>మరింత స్పష్టమైన బొమ్మ లేదు.</small>',
 'show-big-image-thumb' => '<small>ఈ మునుజూపు సైజు: $1 × $2 pixels</small>',
 
@@ -1422,7 +1442,16 @@ $NEWPAGE
 'metadata-collapse' => 'వివరాలు దాచు',
 
 # EXIF tags
+'exif-imagewidth'      => 'వెడల్పు',
+'exif-imagelength'     => 'ఎత్తు',
 'exif-pixelxdimension' => 'బొమ్మ సరైన ఎత్తు',
+'exif-usercomment'     => 'వాడుకరి వ్యాఖ్యలు',
+
+'exif-subjectdistance-value' => '$1 మీటర్లు',
+
+'exif-meteringmode-1' => 'సగటు',
+
+'exif-focalplaneresolutionunit-2' => 'అంగుళాలు',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
@@ -1430,6 +1459,7 @@ $NEWPAGE
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'అన్నీ',
+'imagelistall'     => 'అన్నీ',
 'watchlistall2'    => 'అన్నీ',
 'namespacesall'    => 'అన్నీ',
 'monthsall'        => 'అన్నీ',

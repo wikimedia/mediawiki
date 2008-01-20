@@ -710,6 +710,7 @@ $messages = array(
 'tooltip-search'          => 'ቃል ወይም አርዕስት በ{{SITENAME}} ለመፈለግ',
 'tooltip-n-mainpage'      => 'ወደ ዋናው ገጽ ለመሔድ',
 'tooltip-n-recentchanges' => 'በዚሁ ዊኪ ላይ በቅርቡ የተደረጉ ለውጦች',
+'tooltip-n-help'          => 'ረድኤት ለማግኘት',
 'tooltip-t-whatlinkshere' => 'ወደዚሁ ገጽ የሚያያዙት ገጾች ዝርዝር በሙሉ',
 'tooltip-t-upload'        => 'ፋይል ወይም ሥዕልን ወደ {{SITENAME}} ለመላክ',
 'tooltip-t-specialpages'  => 'የልዩ ገጾች ዝርዝር በሙሉ',

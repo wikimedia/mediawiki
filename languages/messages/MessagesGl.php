@@ -1685,6 +1685,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:special}}:Ex
 'export-addcattext' => 'Engadir páxinas da categoría:',
 'export-addcat'     => 'Engadir',
 'export-download'   => 'Ofrecer gardar como un ficheiro.',
+'export-templates'  => 'Incluír modelos',
 
 # Namespace 8 related
 'allmessages'               => 'Todas as mensaxes do sistema',

@@ -1009,7 +1009,7 @@ Vos devriâd considèrar s’o est convegnâblo de continuar l’impôrt de cél
 'filename-prefix-blacklist'   => '  #<!-- lèssiéd ceta legne justo d’ense --> <pre>
 # La sintaxa est la siuventa :
 #  * Tot caractèro siuvent « # » tant qu’a la fin de la legne serat entèrprètâ coment un comentèro.
-#  * Tota legne pas voueda est un prèfixe por noms de fichiérs qu’est g·ènèralament balyê per los aparèlys-fotô numericos.
+#  * Tota legne pas voueda est un prèfixe por noms de fichiér qu’est g·ènèralament balyê per los aparèlys-fotô numericos.
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
@@ -1608,7 +1608,7 @@ d’una adrèce IP prècèdament blocâ.',
 'ipb_already_blocked'         => '« $1 » est ja blocâ',
 'ipb_cant_unblock'            => 'Èrror : lo blocâjo d’ID $1 ègziste pas. O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ipb_blocked_as_range'        => 'Èrror : l’adrèce IP $1 at pas étâ blocâ tot drêt et pôt vêr pas étre dèblocâ. Portant el at étâ blocâ per la plage $2 laquinta pôt étre dèblocâ.',
-'ip_range_invalid'            => 'Bloc IP fôx.',
+'ip_range_invalid'            => 'Bloco IP fôx.',
 'blockme'                     => 'Blocâd-mè',
 'proxyblocker'                => 'Bloquior de proxy',
 'proxyblocker-disabled'       => 'Cela fonccion est dèsactivâ.',
@@ -1711,6 +1711,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 'export-addcattext' => 'Apondre les pâges de la catègorie :',
 'export-addcat'     => 'Apondre',
 'export-download'   => 'Sôvar a titro de fichiér',
+'export-templates'  => 'Encllure los modèlos',
 
 # Namespace 8 related
 'allmessages'               => 'Lista des mèssâjos sistèmo',
@@ -1719,7 +1720,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 'allmessagescurrent'        => 'Mèssâjo d’ora',
 'allmessagestext'           => 'Cen est la lista de tôs los mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' est pas disponiblo perce que '''\$wgUseDatabaseMessages''' est dèsactivâ.",
-'allmessagesfilter'         => 'Filtro d’èxprèssion racionâla :',
+'allmessagesfilter'         => 'Filtro d’èxprèssion racionèla :',
 'allmessagesmodified'       => 'Afichiér ren que les modificacions',
 
 # Thumbnails
