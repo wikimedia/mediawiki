@@ -1907,6 +1907,7 @@ $1',
 'export-addcattext' => 'הוספת דפים מהקטגוריה:',
 'export-addcat'     => 'הוספה',
 'export-download'   => 'שמירה כקובץ',
+'export-templates'  => 'כלול תבניות',
 
 # Namespace 8 related
 'allmessages'               => 'הודעות המערכת',
