@@ -95,10 +95,22 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->dieUsage('prlevel may not be used without prtype', 'params');
 		}
 		
-		$this->addTables('page');
+		if($params['filterlanglinks'] == 'withoutlanglinks') {
+			$pageName = $this->getDB()->tableName('page');
+			$llName = $this->getDB()->tableName('langlinks');
+			$tables = "$pageName LEFT JOIN $llName ON page_id=ll_from";
+			$this->addWhere('ll_from IS NULL');
+			$this->addTables($tables);
+			$forceNameTitleIndex = false;
+		} else if($params['filterlanglinks'] == 'withlanglinks') {
+			$this->addTables(array('page', 'langlinks'));
+			$this->addWhere('page_id=ll_from');
+			$forceNameTitleIndex = false;		
+		} else {
+			$this->addTables('page');
+		}
 		if ($forceNameTitleIndex)
 			$this->addOption('USE INDEX', 'name_title');
-		
 
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
@@ -191,6 +203,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 					'ascending',
 					'descending'
 				)
+			),
+			'filterlanglinks' => array(
+				ApiBase :: PARAM_TYPE => array(
+					'withlanglinks',
+					'withoutlanglinks',
+					'all'
+				),
+				ApiBase :: PARAM_DFLT => 'all'
 			)
 		);
 	}
@@ -206,6 +226,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			'maxsize' => 'Limit to pages with at most this many bytes',
 			'prtype' => 'Limit to protected pages only',
 			'prlevel' => 'The protection level (must be used with apprtype= parameter)',
+			'filterlanglinks' => 'Filter based on whether a page has langlinks',
 			'limit' => 'How many total pages to return.'
 		);
 	}

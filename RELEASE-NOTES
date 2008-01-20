@@ -448,6 +448,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * action={login,block,delete,move,protect,rollback,unblock,undelete} now must be POSTed
 * prop=imageinfo interface changed: iihistory replaced by iilimit, iistart and iiend parameters
 * Added amlang parameter to meta=allmessages
+* Added apfilterlanglinks parameter to list=allpages, replacing query.php?what=nolanglinks
 
 === Languages updated in 1.12 ===
 
