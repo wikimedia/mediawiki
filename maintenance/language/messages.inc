@@ -1517,6 +1517,7 @@ $wgMessageStructure = array(
 		'export-addcattext',
 		'export-addcat',
 		'export-download',
+		'export-templates',
 	),
 	'allmessages' => array(
 		'allmessages',

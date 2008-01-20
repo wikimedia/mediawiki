@@ -1864,6 +1864,7 @@ $1',
 'export-addcattext' => 'افزودن صفحه‌ها از رده:',
 'export-addcat'     => 'افزودن',
 'export-download'   => 'پیشنهاد ذخیره به صورت پرونده',
+'export-templates'  => 'شامل شدن الگوها',
 
 # Namespace 8 related
 'allmessages'               => 'همهٔ پیغام‌ها',
