@@ -163,13 +163,13 @@ $messages = array(
 'category-empty'        => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
 
 'mainpagetext'      => 'Vikisoftvaro sukcese instaliĝis.',
-'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for information on using the wiki software.
+'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
 
-== Getting started ==
+==Kiel komenci==
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfigurajxoj] (angla)
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angla)
+* [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
 
 'about'          => 'Enkonduko',
 'article'        => 'Artikolo',
@@ -431,7 +431,7 @@ Via konto estas kreita. <span style="color:#ff0000">Ne forgesu fari viajn [[spec
 'badsig'                     => 'Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!',
 'badsiglength'               => 'Salutnomo estas tro longa; gxi nepre estas sub $1 signoj.',
 'email'                      => 'Retpoŝto',
-'prefs-help-realname'        => '* Vera nomo (opcia) : se vi elektas sciigi ĝin, ĝi estos uzita por aŭtorigi vin pri viaj kontribuoj.',
+'prefs-help-realname'        => '* Vera nomo (opcia): se vi elektas sciigi ĝin, ĝi estos uzita por aŭtorigi vin pri viaj kontribuoj.',
 'loginerror'                 => 'Ensaluta eraro',
 'prefs-help-email'           => '* Retpoŝto (opcia) : ebligas al aliaj kontakti vin tra via uzantpaĝo aŭ diskutpaĝo sen neceso malkaŝi vian identecon.',
 'prefs-help-email-required'  => 'Ret-adreso estas bezonata.',
@@ -478,10 +478,13 @@ Vi eblus ignori cxi mesagxon, se cxi konto estis kreita erare.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 
 # Password reset dialog
-'resetpass'          => 'Refaru konto-pasvorton',
-'resetpass_announce' => 'Vi ensalutis kun provizora retposxtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton cxi tien:',
-'resetpass_header'   => 'Refaru pasvorton.',
-'resetpass_submit'   => 'Faru pasvorton kaj ensalutu',
+'resetpass'               => 'Refaru konto-pasvorton',
+'resetpass_announce'      => 'Vi ensalutis kun provizora retposxtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton cxi tien:',
+'resetpass_header'        => 'Refaru pasvorton.',
+'resetpass_submit'        => 'Faru pasvorton kaj ensalutu',
+'resetpass_success'       => 'Via pasvorto estis sukcese sxangxita! Nun ensalutanta vin...',
+'resetpass_bad_temporary' => 'Nevalida provizora pasvorto. Vi versxajne jam sukcese sxangxis vian pasvorton aux petis novan provizoran pasvorton.',
+'resetpass_forbidden'     => 'Ne eblas sxangxi pasvortojn cxe {{SITENAME}}',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasa teksto',
@@ -506,20 +509,23 @@ Vi eblus ignori cxi mesagxon, se cxi konto estis kreita erare.',
 'hr_tip'          => 'Horizontala linio (uzu ŝpareme)',
 
 # Edit pages
-'summary'                  => 'Resumo',
-'subject'                  => 'Temo/subtitolo',
-'minoredit'                => 'Ĉi tiu ŝanĝo estas redakteto',
-'watchthis'                => 'Atentadu la artikolon',
-'savearticle'              => 'Konservu ŝanĝojn',
-'preview'                  => 'Antaŭrigardo',
-'showpreview'              => 'Antaŭrigardu',
-'showdiff'                 => 'Montru ŝanĝojn',
-'anoneditwarning'          => 'Vi ne estas ensalutinta. Via IP-adreso enregistriĝos en la ŝango-historio de tiu ĉi paĝo.',
-'missingsummary'           => "'''Rememorigilo:''' Vi ne provizis redaktan resumon. Se vi alklakos denove la savan butonon, via redaktaĵo estos storata sen resumo.",
-'missingcommenttext'       => 'Bonvolu entajpi komenton malsupre.',
-'summary-preview'          => 'Resuma antaŭrigardo',
-'blockedtitle'             => 'La uzanto estas forbarita.',
-'blockedtext'              => "<big>'''Via konto aŭ IP-adreso estis forbarita'''</big> fare de $1.
+'summary'                   => 'Resumo',
+'subject'                   => 'Temo/subtitolo',
+'minoredit'                 => 'Ĉi tiu ŝanĝo estas redakteto',
+'watchthis'                 => 'Atentadu la artikolon',
+'savearticle'               => 'Konservu ŝanĝojn',
+'preview'                   => 'Antaŭrigardo',
+'showpreview'               => 'Antaŭrigardu',
+'showlivepreview'           => 'Aktiva antauxvido',
+'showdiff'                  => 'Montru ŝanĝojn',
+'anoneditwarning'           => 'Vi ne estas ensalutinta. Via IP-adreso enregistriĝos en la ŝango-historio de tiu ĉi paĝo.',
+'missingsummary'            => "'''Rememorigilo:''' Vi ne provizis redaktan resumon. Se vi alklakos denove la savan butonon, via redaktaĵo estos storata sen resumo.",
+'missingcommenttext'        => 'Bonvolu entajpi komenton malsupre.',
+'missingcommentheader'      => "'''Atento:''' Vi ne donis temo/subtitolo por cxi tiu komento. Se vi klakos Konservu denove, via redakto estos konservita sen gxi.",
+'summary-preview'           => 'Resuma antaŭrigardo',
+'subject-preview'           => 'Antauxrigardo de Temo/Subitolo',
+'blockedtitle'              => 'La uzanto estas forbarita.',
+'blockedtext'               => "<big>'''Via konto aŭ IP-adreso estis forbarita'''</big> fare de $1.
 Kialo estas ''$2''.
 
 Vi rajtas kontakti $1 aŭ alian [[{{MediaWiki:Grouppage-sysop}}|administranton]] por pridiskuti la forbaradon.
@@ -530,91 +536,125 @@ Via IP-adreso estas $3 kaj la ID de la forbarado ests $5. Bonvolu mencii jenajn 
 * Komenco de la forbarado: $8
 * Malvalidiĝo de la forbarado: $6
 * Forbaroto: $7",
-'blockedoriginalsource'    => "La fonto de '''$1''' estas 
+'autoblockedtext'           => 'Via IP-adreso estas auxtomate forbarita, cxar uzis gxin alia uzanto, kiun baris $1.
+La donita kialo estas:
+
+:\'\'$2\'\'
+
+*Komenco de forbaro: $8
+*Limdato de la blokado: $6
+
+Vi povas kontakti $1 aux iun ajn el la aliaj 
+[[{{MediaWiki:grouppage-sysop}}|administrantojn]] por diskuti la blokon.
+
+Notu, ke vi ne povas uzi la servon "Retposxtu cxi tiu uzanton" krom se vi havas validan retpost-adreson registritan en viaj [[Special:Preferences|vikipediistajn preferojn]], kaj vi estas ne blokita kontraux gxia uzado.
+
+Via forbaro-identigo estas $5.  Bonvolu inkluzivi tiun identigon en iuj ajn demandoj de vi farotaj.',
+'blockednoreason'           => 'Nenia kialo donata',
+'blockedoriginalsource'     => "La fonto de '''$1''' estas 
 montrata malsupre:",
-'blockededitsource'        => "La teksto de '''viaj redaktoj''' al '''$1''' estas montrata malsupre:",
-'whitelistedittitle'       => 'Ensalutado devigata por redakti',
-'whitelistedittext'        => 'Vi devas $1 por redakti paĝojn.',
-'whitelistreadtitle'       => 'Ensalutado devigata por legi',
-'whitelistreadtext'        => 'Vi devas [[Special:Userlogin|ensaluti]] por legi paĝojn.',
-'whitelistacctitle'        => 'Vi ne rajtas krei konton',
-'whitelistacctext'         => 'Por rajti krei konton en ĉi tiu vikio vi devas [[Special:Userlogin|ensaluti]] kaj havi la taŭgajn permesojn.',
-'confirmedittitle'         => 'Nepras konfirmi per retpoŝto por redakti',
-'confirmedittext'          => 'Vi devas konfirmi vian retpoŝtan adreson antaŭ ol redakti paĝojn. Bonvolu agordi kaj validigi vian retadreson per viaj [[Special:Preferences|preferoj]].',
-'nosuchsectiontitle'       => 'Ne tia sekcio',
-'nosuchsectiontext'        => 'Vi provis redakti sekcion, kiu ne ekzistas. Ĉar ne estas sekcio $1, ne  estas loko por savi vian redakton.',
-'loginreqtitle'            => 'Nepre ensalutu',
-'loginreqlink'             => 'Ensalutu',
-'loginreqpagetext'         => 'Vi devas $1 por rigardi aliajn paĝojn.',
-'accmailtitle'             => 'Pasvorto sendita.',
-'accmailtext'              => "La pasvorto por '$1' estis sendita al  $2.",
-'newarticle'               => '(Nova)',
-'newarticletext'           => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:Helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
-'anontalkpagetext'         => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran IP-adreso por identigi lin. la sama IP-adreso povas estis samtempte uzata de pluraj uzantoj. Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton aŭ ensaluti]].''",
-'noarticletext'            => '(La paĝo nun estas malplena. Se vi ĵus kreis tiun ĉi paĝon klaku [{{fullurl:{{FULLPAGENAME}}|action=purge}} ĉi tien].)',
-'clearyourcache'           => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
-'usercssjsyoucanpreview'   => '<strong>Konsileto:</strong> Uzu la "Antaŭrigardan" butonon por provi vian novan css/js antaŭ konservi.',
-'usercsspreview'           => '<strong>Memoru ke vi nur antaŭrigardas vian uzanto-CSS. Ĝi ne jam estas konservita!</strong>',
-'userjspreview'            => "'''Memoru ke vi nun nur provas kaj antaŭrigardas vian uzantan javaskripton, ĝi ne estas jam konservita'''",
-'userinvalidcssjstitle'    => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/monobook.css kontraŭe  al {{ns:user}}:Foo/Monobook.css.",
-'updated'                  => '(Ŝanĝo registrita)',
-'note'                     => '<strong>Noto:</strong>',
-'previewnote'              => 'Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!',
-'previewconflict'          => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
+'blockededitsource'         => "La teksto de '''viaj redaktoj''' al '''$1''' estas montrata malsupre:",
+'whitelistedittitle'        => 'Ensalutado devigata por redakti',
+'whitelistedittext'         => 'Vi devas $1 por redakti paĝojn.',
+'whitelistreadtitle'        => 'Ensalutado devigata por legi',
+'whitelistreadtext'         => 'Vi devas [[Special:Userlogin|ensaluti]] por legi paĝojn.',
+'whitelistacctitle'         => 'Vi ne rajtas krei konton',
+'whitelistacctext'          => 'Por rajti krei kontojn en {{SITENAME}} vi devas [[Special:Userlogin|ensaluti]] kaj havi la taŭgajn permesojn.',
+'confirmedittitle'          => 'Nepras konfirmi per retpoŝto por redakti',
+'confirmedittext'           => 'Vi devas konfirmi vian retpoŝtan adreson antaŭ ol redakti paĝojn. Bonvolu agordi kaj validigi vian retadreson per viaj [[Special:Preferences|preferoj]].',
+'nosuchsectiontitle'        => 'Ne tia sekcio',
+'nosuchsectiontext'         => 'Vi provis redakti sekcion, kiu ne ekzistas. Ĉar ne estas sekcio $1, ne  estas loko por savi vian redakton.',
+'loginreqtitle'             => 'Nepre ensalutu',
+'loginreqlink'              => 'Ensalutu',
+'loginreqpagetext'          => 'Vi devas $1 por rigardi aliajn paĝojn.',
+'accmailtitle'              => 'Pasvorto sendita.',
+'accmailtext'               => "La pasvorto por '$1' estis sendita al  $2.",
+'newarticle'                => '(Nova)',
+'newarticletext'            => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:Helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
+'anontalkpagetext'          => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran IP-adreso por identigi lin. la sama IP-adreso povas estis samtempte uzata de pluraj uzantoj. Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton aŭ ensaluti]].''",
+'noarticletext'             => '(La paĝo nun estas malplena. Se vi ĵus kreis tiun ĉi paĝon klaku [{{fullurl:{{FULLPAGENAME}}|action=purge}} ĉi tien].)',
+'userpage-userdoesnotexist' => 'Uzanto-konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti cxi tiu pagxo.',
+'clearyourcache'            => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
+'usercssjsyoucanpreview'    => '<strong>Konsileto:</strong> Uzu la "Antaŭrigardan" butonon por provi vian novan css/js antaŭ konservi.',
+'usercsspreview'            => '<strong>Memoru ke vi nur antaŭrigardas vian uzanto-CSS. Ĝi ne jam estas konservita!</strong>',
+'userjspreview'             => "'''Memoru ke vi nun nur provas kaj antaŭrigardas vian uzantan javaskripton, ĝi ne estas jam konservita'''",
+'userinvalidcssjstitle'     => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/monobook.css kontraŭe  al {{ns:user}}:Foo/Monobook.css.",
+'updated'                   => '(Ŝanĝo registrita)',
+'note'                      => '<strong>Noto:</strong>',
+'previewnote'               => 'Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!',
+'previewconflict'           => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
-'session_fail_preview'     => '<strong>Bedaŭrinde ne eblis trakti vian redakton pro manko de sesiaj datenoj. Bonvolu provi refoje. Se ankoraŭ ne efikas post tio, elsalutu kaj poste re-ensalutu.</strong>',
-'editing'                  => 'Redaktante $1',
-'editinguser'              => 'Redaktante $1',
-'editingsection'           => 'Redaktante $1 (sekcion)',
-'editingcomment'           => 'Redaktante $1 (komenton)',
-'editconflict'             => 'Redakta konflikto: $1',
-'explainconflict'          => 'Iu alia ŝanĝis la paĝon post kiam vi ekredaktis.
+'session_fail_preview'      => '<strong>Bedaŭrinde ne eblis trakti vian redakton pro manko de sesiaj datenoj. Bonvolu provi refoje. Se ankoraŭ ne efikas post tio, elsalutu kaj poste re-ensalutu.</strong>',
+'session_fail_preview_html' => "<strong>Pardonu! Ne eblas procesi vian redakton pro manko de seanca datumo.</strong>
+
+''Cxar {{SITENAME}} ebligas krudan HTML, cxi tiu antauxrigardo estas kasxita kiel prevento kontraux Javascript-atakoj.
+
+<strong>Se cxi tiu estas tauxga provo por redakti, bonvolu reprovi. Se ankoraux ne funkcias, provu elsaluti kaj reensaluti.</strong>",
+'token_suffix_mismatch'     => '<strong>Via redakto estis malpermesita cxar via klienta fusxis la interpunkcio en la redakto-signo.
+La redakto estis malpermesita por preventi koruptado de la teksto de la pagxo.
+Cxi tiel malofte okazas kiam vi uzas fusxan TTT-an anoniman prokurilon.</strong>',
+'editing'                   => 'Redaktante $1',
+'editinguser'               => 'Redaktante $1',
+'editingsection'            => 'Redaktante $1 (sekcion)',
+'editingcomment'            => 'Redaktante $1 (komenton)',
+'editconflict'              => 'Redakta konflikto: $1',
+'explainconflict'           => 'Iu alia ŝanĝis la paĝon post kiam vi ekredaktis.
 La supra tekstujo enhavas la aktualan tekston de la artikolo.
 Viaj ŝanĝoj estas en la malsupra tekstujo.
 Vi devas mem kunfandi viajn ŝanĝojn kaj la jaman tekston.
 <b>Nur</b> la teksto en la supra tekstujo estos konservita kiam
 vi alklakos "Konservu".<br />',
-'yourtext'                 => 'Via teksto',
-'storedversion'            => 'Registrita versio',
-'nonunicodebrowser'        => '<strong>ATENTU: Via foliumilo ne eltenas unikodon, bonvolu ŝanĝi ĝin antaŭ ol redakti artikolon.</strong>',
-'editingold'               => '<strong>AVERTO: Vi nun redaktas malnovan version de tiu ĉi artikolo.
+'yourtext'                  => 'Via teksto',
+'storedversion'             => 'Registrita versio',
+'nonunicodebrowser'         => '<strong>ATENTU: Via foliumilo ne eltenas unikodon, bonvolu ŝanĝi ĝin antaŭ ol redakti artikolon.</strong>',
+'editingold'                => '<strong>AVERTO: Vi nun redaktas malnovan version de tiu ĉi artikolo.
 Se vi konservos vian redakton, ĉiuj ŝanĝoj faritaj post tiu versio perdiĝos.</strong>',
-'yourdiff'                 => 'Malsamoj',
-'copyrightwarning'         => 'Bonvolu noti, ke ĉiu kontribuaĵo al la {{SITENAME}} estu rigardata kiel eldonita laŭ $2 (vidu je $1). Se vi volas, ke via verkaĵo ne estu redaktota senkompate kaj disvastigota laŭvole, ne alklaku "Konservu".<br />
+'yourdiff'                  => 'Malsamoj',
+'copyrightwarning'          => 'Bonvolu noti, ke ĉiu kontribuaĵo al la {{SITENAME}} estu rigardata kiel eldonita laŭ $2 (vidu je $1). Se vi volas, ke via verkaĵo ne estu redaktota senkompate kaj disvastigota laŭvole, ne alklaku "Konservu".<br />
 Vi ankaŭ ĵuras, ke vi mem verkis la tekston, aŭ ke vi kopiis ĝin el fonto senkopirajta.
 <strong>NE UZU KOPIRAJTAJN VERKOJN SENPERMESE!</strong>',
-'copyrightwarning2'        => 'Bonvolu noti ke ĉiuj kontribuoj al {{SITENAME}} povas esti reredaktita, ŝanĝita aŭ forigita de aliaj kontribuantoj. Se vi ne deziras ke viaj verkoj estu senkompate reredaktitaj, ne publikigu ilin ĉi tie.
+'copyrightwarning2'         => 'Bonvolu noti ke ĉiuj kontribuoj al {{SITENAME}} povas esti reredaktita, ŝanĝita aŭ forigita de aliaj kontribuantoj. Se vi ne deziras ke viaj verkoj estu senkompate reredaktitaj, ne publikigu ilin ĉi tie.
 
 Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ simila libera fonto (vidu $1 por detaloj). 
 
 <strong>NE PROPONU KOPIRAJTITAJN VERKOJN SEN PERMESO!</strong>',
-'longpagewarning'          => '<strong>AVERTO: Tiu ĉi paĝo longas $1 kilobitokojn; kelkaj retumiloj
+'longpagewarning'           => '<strong>AVERTO: Tiu ĉi paĝo longas $1 kilobitokojn; kelkaj retumiloj
 povas fuŝi redaktante paĝojn je longo proksime aŭ preter 32kb.
 Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.</strong>',
-'longpageerror'            => '<strong>Eraro: La teksto, kiun vi prezentis, longas $1 kilobajtojn, kio estas pli longa ol la maksimumo de $2 kilobajtoj. Ĝi ne povas esti storata.</strong>',
-'readonlywarning'          => '<strong>AVERTO: La datumbazo estas ŝlosita por teknika laboro;
+'longpageerror'             => '<strong>Eraro: La teksto, kiun vi prezentis, longas $1 kilobajtojn, kio estas pli longa ol la maksimumo de $2 kilobajtoj. Ĝi ne povas esti storata.</strong>',
+'readonlywarning'           => '<strong>AVERTO: La datumbazo estas ŝlosita por teknika laboro;
 pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
 la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
-'protectedpagewarning'     => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado.</strong>',
-'semiprotectedpagewarning' => '<strong>Notu:</strong> Ĉi paĝo estas protektita tiel ke nur [[Special:Userlogin|ensalutintaj]] uzantoj povas redakti ĝin.',
-'cascadeprotectedwarning'  => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
-'templatesused'            => 'Ŝablonoj uzitaj sur ĉi paĝo:',
-'templatesusedpreview'     => 'Ŝablonoj uzataj dum ĉi tiu antaŭrigardo:',
-'templatesusedsection'     => 'Ŝablonoj uzataj en ĉi tiu sekcio:',
-'template-protected'       => '(protektita)',
-'template-semiprotected'   => '(duone protektita)',
-'edittools'                => '<!-- Teksto ĉi tie estas montrata sub redaktaj kaj alŝutaj formularoj. -->',
-'nocreatetitle'            => 'Paĝa kreado estas limigita',
-'nocreatetext'             => '{{SITENAME}} restriktas la eblecon krei novajn pagxojn. Vi eblas reiri kaj redakti faritan pagxon, aux [[Special:Userlogin|ensaluti aux krei konton]].',
-'nocreate-loggedin'        => 'Vi ne rajtas krei novajn paĝojn en ĉi tiu vikio.',
-'permissionserrorstext'    => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
-'recreate-deleted-warn'    => "'''Averto: Vi rekreas pagxon tiu estis antauxe forigita.'''
+'protectedpagewarning'      => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado.</strong>',
+'semiprotectedpagewarning'  => '<strong>Notu:</strong> Ĉi paĝo estas protektita tiel ke nur [[Special:Userlogin|ensalutintaj]] uzantoj povas redakti ĝin.',
+'cascadeprotectedwarning'   => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
+'titleprotectedwarning'     => '<strong>AVERTO: Cxi tiu pagxo estis sxlosita tial nur iuj uzantoj povas krei gxin.</strong>',
+'templatesused'             => 'Ŝablonoj uzitaj sur ĉi paĝo:',
+'templatesusedpreview'      => 'Ŝablonoj uzataj dum ĉi tiu antaŭrigardo:',
+'templatesusedsection'      => 'Ŝablonoj uzataj en ĉi tiu sekcio:',
+'template-protected'        => '(protektita)',
+'template-semiprotected'    => '(duone protektita)',
+'edittools'                 => '<!-- Teksto ĉi tie estas montrata sub redaktaj kaj alŝutaj formularoj. -->',
+'nocreatetitle'             => 'Paĝa kreado estas limigita',
+'nocreatetext'              => '{{SITENAME}} restriktas la eblecon krei novajn pagxojn. Vi eblas reiri kaj redakti faritan pagxon, aux [[Special:Userlogin|ensaluti aux krei konton]].',
+'nocreate-loggedin'         => 'Vi ne rajtas krei novajn paĝojn en {{SITENAME}}.',
+'permissionserrors'         => 'Eraroj pri permesoj',
+'permissionserrorstext'     => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
+'recreate-deleted-warn'     => "'''Averto: Vi rekreas pagxon tiu estis antauxe forigita.'''
 
 Vi konsideru cxu konvenas dauxre redakti cxi pagxon. 
 Jen la loglibro de forigoj por via oportuno:",
 
+# "Undo" feature
+'undo-success' => 'La redakto estas malfarebla. Bonvolu konfirmi la jenan komparajxon por verigi cxi tiel vi volas, kaj konservu la sxangxojn suben fini malfarante la redakton.',
+'undo-failure' => 'Ne eblas nuligi redakton pro konfliktaj intermezaj redaktoj.',
+'undo-summary' => 'Nuligis revizion $1 de [[{{ns:2}}:$2|$2]] ([[Speciala:Contributions/$2|kontribuoj]], [[{{ns:3}}:$2|diskutpagxo]])',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',
+'cantcreateaccount-text' => "Konto-kreado de cxi tiu IP-adreso (<b>$1</b>) estis forbarita de [[User:$3|$3]].
+
+La kialo donata de $3 estas ''$2''.",
 
 # History pages
 'viewpagelogs'        => 'Vidu la loglibrojn por tiu ĉi paĝo',
@@ -645,9 +685,33 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'history-feed-title'          => 'Historio de redaktoj',
 'history-feed-description'    => 'Revizia historio por ĉi tiu paĝo en la vikio',
 'history-feed-item-nocomment' => '$1 cxe $2', # user at time
+'history-feed-empty'          => 'La petata pagxo ne ekzistas.
+Gxi versxajne estis forigita de la vikio, aux alinomita.
+Provu [[Special:Search|sercxi en la vikio]] por rilataj novaj pagxoj.',
 
 # Revision deletion
-'rev-delundel' => 'montru/kaŝu',
+'rev-deleted-comment'         => '(komento nuligita)',
+'rev-deleted-user'            => '(uzanto-nomo forigita)',
+'rev-deleted-event'           => '(ero forigita)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Cxi versio de la pagxo estis forigita de publikaj arhxivoj.
+Povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logolibro de forigoj].
+</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Cxi versio de la pagxo estis forigita de publikaj arhxivoj.
+Kiel administranto de {{SITENAME}} vi povas rigardi gxin;
+povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logolibro de forigoj].
+</div>',
+'rev-delundel'                => 'montru/kaŝu',
+'revisiondelete'              => 'Forigu/Malforigu reviziojn',
+'revdelete-nooldid-title'     => 'Neniu cela revizio',
+'revdelete-nooldid-text'      => 'Vi ne specifis celan revizion aux reviziojn fari cxi funkcion.',
+'revdelete-selected'          => "{{PLURAL:$2|Elektata revizio|Elektataj revizioj}} de '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Selektata loglibra evento|Selektataj loglibraj eventoj}} por '''$1:'''",
+'revdelete-text'              => 'Forigitaj versioj kaj eventoj plu aperos en la historipagxoj, sed iliaj tekstoj ne estos alireblaj de  la publiko. 
+
+Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj restarigi gxin per la sama interfaco, krom se plia limigo estas metita de la pagxaradministrantoj.',
+'revdelete-legend'            => 'Limigu ecojn de versio:',
 
 # Diffs
 'history-title'           => 'Redakto-historio de "$1"',
@@ -1526,8 +1590,17 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 
 # Metadata
 'metadata'          => 'Metadatumo',
+'metadata-help'     => 'Cxi tiu dosiero enhavas pluan informon, versxajne aldonita de la cifereca fotilo aux skanilo uzata krei aux skani gxin. Se la dosiero estis sxangxita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
 'metadata-expand'   => 'Montru etendajn detalojn',
 'metadata-collapse' => 'Kaŝu etendajn detalojn',
+'metadata-fields'   => 'La jenaj EXIF-metadatumaj kampoj estos inkluzivitaj en bildo-pagxoj kiam la metadatuma tabelo estas disfaldigita. Aliaj estos kasxita defauxlte.
+
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'      => 'Larĝeco',

@@ -56,8 +56,9 @@ $messages = array(
 'dec'           => 'Dek',
 
 # Bits of text used by many pages
-'category_header' => '"$1" kategoriyasındaki sayfalar',
-'subcategories'   => 'Alt kategoriyalar',
+'category_header'       => '"$1" kategoriyasındaki sayfalar',
+'subcategories'         => 'Alt kategoriyalar',
+'category-media-header' => '"$1" kategoryasındaki media',
 
 'about'     => 'Uurunda',
 'newwindow' => '(eni bir pencerädä açılêr)',
@@ -73,6 +74,7 @@ $messages = array(
 'history'          => 'Sayfanın istoriyası',
 'printableversion' => 'Tiparlanacêk versiya',
 'edit'             => 'Diiştir',
+'editthispage'     => 'Sayfayı diiştir',
 'delete'           => 'Sil',
 'protect'          => 'Korunmak altına al',
 'newpage'          => 'Eni sayfa',
@@ -163,11 +165,12 @@ $messages = array(
 'template-semiprotected' => '(yarı-korunmaa)',
 
 # History pages
-'previousrevision' => '← İlerki hali',
-'cur'              => 'fark',
-'last'             => 'bitki',
-'histfirst'        => 'En eski',
-'histlast'         => 'En eni',
+'previousrevision'    => '← İlerki hali',
+'currentrevisionlink' => 'en bitki halini göster',
+'cur'                 => 'fark',
+'last'                => 'bitki',
+'histfirst'           => 'En eski',
+'histlast'            => 'En eni',
 
 # Diffs
 'compareselectedversions' => 'Versiyaları ani seçildi, karşılaştır',
@@ -208,6 +211,9 @@ $messages = array(
 'filehist-comment'  => 'Kommentariya',
 'imagelinks'        => 'Sayfalar angıları kullanıldı',
 'nolinkstoimage'    => 'Yok sayfalar ani bu fayla baalı.',
+
+# Statistics
+'statistics' => 'Statistikalar',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 bayt',
@@ -323,6 +329,7 @@ $messages = array(
 'metadata-collapse' => 'Detalları gösterme',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'Hepsini göster',
 'namespacesall' => 'Hepsi',
 'monthsall'     => 'hepsi',
 

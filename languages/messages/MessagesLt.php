@@ -1714,6 +1714,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{ns:special}}:
 'export-addcattext' => 'Pridėti puslapius iš kategorijos:',
 'export-addcat'     => 'Pridėti',
 'export-download'   => 'Saugoti kaip failą',
+'export-templates'  => 'Įskaityti šablonus',
 
 # Namespace 8 related
 'allmessages'               => 'Visi sistemos tekstai bei pranešimai',

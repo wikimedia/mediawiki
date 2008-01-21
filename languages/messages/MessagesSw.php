@@ -80,8 +80,8 @@ $messages = array(
 'privacy'       => 'Sera ya faragha',
 'sitesupport'   => 'Michango',
 
-'showtoc' => 'Fichua',
-'hidetoc' => 'Ficha',
+'showtoc'      => 'Fichua',
+'hidetoc'      => 'Ficha',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Makala',
@@ -124,16 +124,12 @@ Tafadhali, ingia baada ya kulipokea.',
 'loginreqtitle'        => 'Unatakiwa kuingia au kujisajili',
 'accmailtitle'         => 'Neno la siri limeshakutumia.',
 'accmailtext'          => "Neno la siri la '$1' limeshatumwa kwa $2.",
-'newarticletext'       => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
 'noarticletext'        => '(Ukurasa huu haujaandikishwa bado)',
 'editing'              => 'Kuhariri $1',
 'yourtext'             => 'Maandishi yako',
 'editingold'           => '<strong>ANGALIA: Unakuwa unahariri nakala ya zamani ya ukurasa huu.
 Ukiendelea kuihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.</strong>',
 'copyrightwarning'     => 'Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
-Usipotaka maandishi yako yaweze kuharirishwa bure na kutolewa wakati wowote, basi usiyaandike hapa.<br />
-Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. <strong>USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!</strong>',
-'copyrightwarning2'    => 'Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanaweza kuhaririwa, kubadilishwa, au kufutwa kwa watu wengine.
 Usipotaka maandishi yako yaweze kuharirishwa bure na kutolewa wakati wowote, basi usiyaandike hapa.<br />
 Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. <strong>USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!</strong>',
 'longpagewarning'      => '<strong>ANGALIA: Urefu wa ukurasa huu ni kilobaiti $1; vipitiaji kadhaa vinaweza kuwa na matatizo ya kuhariri ukurasa wenye urefu karibu au zaidi ya kb 32.
@@ -151,8 +147,6 @@ Tafadhali fikiria kuhusu kukata ukurasa kwa vipande vifupi.</strong>',
 
 # Recent changes
 'recentchanges'     => 'Mabadilisho ya karibuni',
-'recentchangestext' => 'Orodha ya mabadilisho yaliyofanywa katika Wikipedia siku zilizopita.',
-'rcnote'            => 'Yanayofuata hapa chini ni mabadilisho $1 yaliyofanywa wakati wa siku $2 zilizopita.',
 'rclistfrom'        => 'Onyesha mabadilisho mapya kuanzia $1',
 'rclinks'           => 'Onyesha mabadilisho $1 yaliyofanywa wakati wa siku $2 zilizopita<br />$3',
 'hide'              => 'Ficha',
@@ -173,18 +167,6 @@ Tafadhali fikiria kuhusu kukata ukurasa kwa vipande vifupi.</strong>',
 'statistics'    => 'Takwimu',
 'sitestats'     => 'Takwimu za {{SITENAME}}',
 'userstats'     => 'Takwimu za watumiaji',
-'sitestatstext' => "Kwa ujumla kuna karasa '''$1''' katika utaratibu wa Wikipedia hii. Hiyo inazingatia karasa za majadiliano, karasa kuhusu {{SITENAME}}, karasa ndogo sana, karasa za kuelekeza na nyingine ambazo kwa uwezekano mkubwa siyo makala za kweli. Tusipohesabu hizi, kwa uwezekano mkubwa kuna makala '''$2''' za kweli. 
-
-Tangu mwanzo wa wikiwiki hii kumekuwa na maangalizo '''$2''' ya karasa, na mara '''$4''' karasa zimehaririwa. Kwa hiyo kwa kadiri kila ukarasa umehaririwa mara '''$5''', na baada ya kila kuhariri kumekuwa na maangalizi '''$6''' ya ukarasa.",
-'userstatstext' => "Kuna watumiaji '''$1''' waliojiandikisha. '''$2''' (au '''$4%''') wa hawa ni wakabidhi (angalia $3).",
-
-'disambiguationspage' => "Admins, please maintain this page by including links to all disambiguation templates and any redirects to them.
-
-The list is used by [[Special:Disambiguations]] to show any pages linking to disambiguation articles. The list will also be used by various bots.
-
-<small>Note: This page may be translated and reformatted. Any links to '''<nowiki>[[template:...]]</nowiki>''' will be treated as links to disambiguation templates.</small>
-
-* [[Template:Maana]]",
 
 # Miscellaneous special pages
 'allpages'     => 'Kurasa zote',

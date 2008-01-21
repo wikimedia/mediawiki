@@ -802,10 +802,16 @@ Dalšne administratory we {{GRAMMAR:Lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'mergehistory-box'                 => 'Zwězaś wersjiowu toś teju bokowo:',
 'mergehistory-from'                => 'Žrědłowy bok:',
 'mergehistory-into'                => 'Celowy bok:',
+'mergehistory-submit'              => 'Wersije zjadnośiś',
+'mergehistory-empty'               => 'Njadaju se žedne wersije zjadnośiś.',
 'mergehistory-no-source'           => 'Žrědłowy bok $1 njeeksistěruje.',
 'mergehistory-no-destination'      => 'Celowy bok $1 njeeksistěruje.',
 'mergehistory-invalid-source'      => 'Žrědłowy bok musy měś dobre nadpismo.',
 'mergehistory-invalid-destination' => 'Celowy bok musy měś dobre nadpismo.',
+
+# Merge log
+'mergelog'    => 'Protokol zjadnośenja',
+'revertmerge' => 'Zjadnośenje anulěrowaś',
 
 # Diffs
 'history-title'           => 'Stawizny wersijow wót „$1“',
@@ -908,12 +914,14 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'userrights-editusergroup'    => 'Pšawa wužywarskich kupkow wobźěłaś',
 'saveusergroups'              => 'Wužywarske kupki składowaś',
 'userrights-groupsmember'     => 'Cłonk kupki:',
+'userrights-groupsremovable'  => 'Kupki, kótarež daju se wótwónoźeś:',
 'userrights-groupsavailable'  => 'Eksistěrujuce kupki:',
 'userrights-groupshelp'       => 'Wuzwól kupki, z kótarychž coš wužywarja wulašowaś abo kótarymž coš wužywarja pśidaś. Njewubrane kupki se njezměniju. Demarkěrowaś móžoš kupku z CTRL (= STRG) + lěwym kliknjenim.',
 'userrights-reason'           => 'Pśicyna změny:',
 'userrights-available-none'   => 'Njamaš pšawo cłonkojstwo wužywarskeje kupki změniś.',
 'userrights-available-add'    => 'Móžoš wužywarjow {{PLURAL:$2|slědujucej kupce|slědujucyma kupkoma|slědujucym kupkam}} pśidaś: $1.',
 'userrights-available-remove' => 'Móžoš wužywarjow ze {{PLURAL:$2|slědujuceje kupki|slědujuceju kupkowu|slědujucych kuokow}} wulašowaś: $1',
+'userrights-nodatabase'       => 'Datowa banka $1 njeeksistěrujo abo njejo lokalna.',
 
 # Groups
 'group'               => 'Kupka:',
@@ -997,6 +1005,9 @@ Coš-lic '''medija-dataje''' zawězaś, ga piš na pś.:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:dataja.ogg|Tekst wótkaza<nowiki>]]</nowiki></tt>'''
 
 Pšosym mysli na to, až mógu druge wužywarje twóje dataje wulašowaś a změniś - rowno tak, ako pla normalnego wopśimjeśa boka.",
+'upload-permitted'            => 'Dowolone datajowe typy: $1.',
+'upload-preferred'            => 'Preferěrowane datajowe typy: $1.',
+'upload-prohibited'           => 'Njedowolone datajowe typy: $1.',
 'uploadlog'                   => 'datajowy protokol',
 'uploadlogpage'               => 'Datajowy protokol',
 'uploadlogpagetext'           => 'Dołojce jo lisćina nejnowšych uploadow, glědaj teke how [[{{ns:special}}:Newimages]].',
@@ -1012,6 +1023,8 @@ Pšosym mysli na to, až mógu druge wužywarje twóje dataje wulašowaś a změ
 'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška. Pšosym pśemjeni dataju a wopytaj ju wótnowotki uploadowaś.',
 'badfilename'                 => 'Mě dataje jo se změniło na „$1“.',
 'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se uploadowaś.',
+'filetype-unwanted-type'      => "'''„.$1“''' jo njewitany datajowy typ. Dowolene su: $2.",
+'filetype-banned-type'        => "'''„.$1“''' jo njedowolony datajowy typ. Dowolone su: $2.",
 'filetype-missing'            => 'Dataja njama žedno rozšyrjenje (na pś. „.jpg“).',
 'large-file'                  => 'Pó móžnosći njedejała dataja wětša byś ako $1. Toś ta dataja jo $2 wjelika.',
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',
@@ -1209,6 +1222,7 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 
 'withoutinterwiki'        => 'Boki na kótarychž njejsu žedne wótkaze na druge rěcy',
 'withoutinterwiki-header' => 'Slědujuce boki njewótkazuju na druge rěcne wersije:',
+'withoutinterwiki-submit' => 'Pokazaś',
 
 'fewestrevisions'         => 'Boki z nejmjenjej wersijami',
 'fewestrevisions-summary' => 'Toś ten specialny bok pokazujo lisćinu bokow z nejmjenjej wobźěłanjami.',
@@ -1266,6 +1280,9 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'protectedpages-summary'          => 'Toś ten specialny bok pokazujo wšykne boki, kótarež njamgu se mimo wósebnych pšawow wobźěłowaś a pśesuwaś.',
 'protectedpagestext'              => 'Slědujuce boki njamgu se mimo wósebnych pšawow wobźěłaś resp. pśesuwaś',
 'protectedpagesempty'             => 'Z toś tymi parametrami njejsu tuchylu žedne boki šćitane.',
+'protectedtitles'                 => 'Šćitane titele',
+'protectedtitlestext'             => 'Slědujuce titele su pśeśiwo twórjenjoju šćitane.',
+'protectedtitlesempty'            => 'Tuchylu njejsu žedne boki z pódanych parametrami šćitane.',
 'listusers'                       => 'Lisćina wužywarjow',
 'listusers-summary'               => "Toś ten specialny bok pokazujo wšyknych registrěrowanych wužywarjow; cełkowna licba móžo [[Special:Statistics|how se wobglědowaś]]. Pśez wuzwólowańske pólo ''kupka'' jo móžno, wótpšašowanje na wěste wužywarske kupki wobgranicowaś.",
 'specialpages'                    => 'Specialne boki',
@@ -1727,6 +1744,7 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:special}}:Expo
 'export-addcattext' => 'Pśidaś boki z kategorije:',
 'export-addcat'     => 'Dodaś',
 'export-download'   => 'Ako XML-dataju składowaś',
+'export-templates'  => 'Pśedłogi zapśimjeś',
 
 # Namespace 8 related
 'allmessages'               => 'Systemowe zdźělenja',
@@ -2280,6 +2298,7 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.',
 'searchnamed'      => "Pytaś nastawki z mjenim ''$1''",
 'articletitles'    => "Nastawki, kótarež zachopiju z ''$1''",
 'hideresults'      => 'rezultat schowaś',
+'useajaxsearch'    => 'Pytanje z AJAX wužywaś',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← slědny bok',
@@ -2352,5 +2371,8 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'iranian-calendar-m10' => 'Źasety mjasec Jalāli',
 'iranian-calendar-m11' => 'Jadenasty mjasec Jalāli',
 'iranian-calendar-m12' => 'Dwanasty mjasec Jalāli',
+
+# Core parser functions
+'unknown_extension_tag' => 'Njeznaty tag rozšyrjenja „$1“',
 
 );

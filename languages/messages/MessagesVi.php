@@ -331,6 +331,7 @@ $messages = array(
 'edithelp'          => 'Trợ giúp sửa đổi',
 'edithelppage'      => 'Help:Sửa đổi',
 'faq'               => 'Câu hỏi thường gặp',
+'faqpage'           => '{{ns:Project}}:Các câu hỏi thường gặp',
 'helppage'          => 'Help:Nội dung',
 'mainpage'          => 'Trang Chính',
 'policy-url'        => 'Project:Quy định và hướng dẫn',
@@ -1213,6 +1214,7 @@ Như vậy trung bình có '''\$5''' sửa đổi tại mỗi trang, và '''\$6'
 
 'withoutinterwiki'        => 'Trang chưa có liên kết ngoại ngữ',
 'withoutinterwiki-header' => 'Các trang sau đây không có liên kết đến các phiên bản ngoại ngữ khác:',
+'withoutinterwiki-submit' => 'Xem',
 
 'fewestrevisions' => 'Bài có ít sửa đổi nhất',
 
@@ -1613,6 +1615,7 @@ bị phá hoại).',
 'ipboptions'                  => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'khác',
 'ipbotherreason'              => 'Lý do khác',
+'ipbhidename'                 => 'Giấu thành viên/IP khỏi nhật trình cấm, danh sách cấm và danh sách thành viên hiện tại',
 'badipaddress'                => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'           => 'Cấm thành công',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] đã bị cấm.
@@ -1657,6 +1660,7 @@ bị phá hoại).',
 'ipb_expiry_invalid'          => 'Thời điểm hết hạn không hợp lệ.',
 'ipb_already_blocked'         => '"$1" đã bị cấm rồi',
 'ipb_cant_unblock'            => 'Lỗi: Không tìm được ID cấm $1. Địa chỉ IP này có thể đã được bỏ cấm.',
+'ipb_blocked_as_range'        => 'Lỗi: Địa chỉ IP $1 không bị cấm trực tiếp và do đó không thể bỏ cấm. Tuy nhiên, nó bị cấm do là một bộ phận của dải IP $2, bạn có thể bỏ cấm dải này.',
 'ip_range_invalid'            => 'Dải IP không hợp lệ.',
 'blockme'                     => 'Cấm tôi',
 'proxyblocker'                => 'Chặn proxy',
@@ -1688,149 +1692,174 @@ Xin hãy xác nhận đây là điều bạn định làm.',
 'lockdbsuccesstext'   => 'Cơ sở dữ liệu đã bị khóa.
 <br />Nhớ [[Special:Unlockdb|mở khóa]] sau khi bảo trì xong.',
 'unlockdbsuccesstext' => 'Cơ sở dữ liệu đã được mở khóa.',
-'lockfilenotwritable' => 'Không có thể ghi vào tập tin khóa cơ sở dữ liệu. Để khóa hay mở khóa cơ sở dữ liệu, cần để máy phục vụ ghi vào tập tin này.',
+'lockfilenotwritable' => 'Tập tin khóa của cơ sở dữ liệu không cho phép ghi. Để khóa hay mở khóa cơ sở dữ liệu, máy chủ web phải có khả năng ghi tập tin.',
 'databasenotlocked'   => 'Cơ sở dữ liệu không bị khóa.',
 
 # Move page
-'movepage'                => 'Di chuyển',
-'movepagetext'            => 'Dùng mẫu dưới đây sẽ đổi tên một trang, đồng thời chuyển tất cả lịch sử của nó sang tên mới.
-*Tên cũ sẽ tự động đổi hướng sang tên mới.
-*Trang sẽ <b>không</b> bị chuyển nếu đã có một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng và không có lịch sử sửa đổi. Điều này có nghĩa là bạn có thể đổi tên một trang lại như trước lúc nó được đổi tên nếu bạn nhầm, và bạn không thể ghi đè một trang đã có sẵn.
-*Những liên kết đến tên trang cũ sẽ không thay đổi; cần [[Đặc_biệt:DoubleRedirects|kiểm tra]] những trang chuyển hướng kép và sai.<br />
-<b>Bạn phải đảm bảo những liên kết tiếp tục trỏ đến đúng trang cần thiết.</b>',
-'movepagetalktext'        => "Trang thảo luận đi kèm nếu có, sẽ được tự động chuyển theo '''trừ khi:'''
-*Bạn đang chuyển xuyên qua không gian tên,
-*Một trang thảo luận đã tồn tại dưới tên bạn chọn, hoặc
-*Bạn không chọn vào ô bên dưới.
+'movepage'                => 'Di chuyển trang',
+'movepagetext'            => "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả
+lịch sử của nó sang tên mới.
+Tên cũ sẽ trở thành trang đổi hướng sang tên mới.
+Các liên kết đến trang cũ sẽ không thay đổi; hãy nhớ
+kiểm tra các đổi hướng kép hoặc đổi hướng sai.
+Bạn phải chịu trách nhiệm đảm bảo các liên kết đó
+tiếp tục trỏ đến nơi chúng cần đến.
 
-Trong những trường hợp này, bạn phải di chuyển hoặc hợp nhất trang theo kiểu thủ công nếu muốn.",
-'movearticle'             => 'Di chuyển',
+Chú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có
+một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng
+và không có lịch sử sửa đổi. Điều này có nghĩa là bạn có thể đổi tên 
+trang lại như cũ nếu bạn có nhầm lẫn, và bạn không thể ghi đè
+lên một trang đã có sẵn.
+
+<b>CẢNH BÁO!</b>
+Việc làm này có thể dẫn đến sự thay đổi mạnh mẽ và không lường trước
+đối với các trang phổ biến; xin hãy chắc chắn rằng bạn đã nhận thức
+được những hệ lụy của nó trước khi thực hiện.",
+'movepagetalktext'        => "Trang thảo luận đi kèm sẽ được tự động di chuyển theo '''trừ khi:'''
+*Đã tồn tại một trang thảo luận không trống tại tên mới, hoặc
+*Bạn không đánh vào ô bên dưới.
+
+Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất trang theo kiểu thủ công nếu muốn.",
+'movearticle'             => 'Di chuyển trang:',
 'movenologin'             => 'Chưa đăng nhập',
-'movenologintext'         => 'Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] mới di chuyển trang được.',
-'movenotallowed'          => 'Bạn không có quyền di chuyển trang trong wiki này.',
+'movenologintext'         => 'Bạn phải là thành viên đã đăng ký và [[Special:Userlogin|đăng nhập]] mới di chuyển trang được.',
+'movenotallowed'          => 'Bạn không có quyền di chuyển trang trong {{SITENAME}}.',
 'newtitle'                => 'Tên mới',
 'move-watch'              => 'Theo dõi trang này',
-'movepagebtn'             => 'Di chuyển',
+'movepagebtn'             => 'Di chuyển trang',
 'pagemovedsub'            => 'Di chuyển thành công',
-'movepage-moved'          => '<span class="plainlinks">Trang "$1" {{MediaWiki liên kết di chuyển nguồn}} đã được di chuyển đến "$2" {{MediaWiki liên kết di chuyển đích}}.</span>
-
-\'\'\'Xin hãy {{MediaWiki kiểm tra di chuyển}}\'\'\' xem việc di chuyển này có tạo ra [[Wikipedia:Đổi hướng kép|đổi hướng kép]] hay không, và sửa lại chúng. Bạn có thể sửa bằng đoạn ký tự:\'\'\'
-
-<center><span style="font-family:monospace"><nowiki>#REDIRECT [[$4]]</nowiki></span></center>
-
-Nếu trang này có [[Wikipedia:Nội dung không tự do|hình không tự do]], đừng quên cập nhật [[Wikipedia:Hướng dẫn mô tả sử dụng hợp lý|mô tả sử dụng hợp lý]] để nó liên kết đến tựa bài mới.
-<span id="specialDeleteTarget" style="display:none;"><nowiki>$3</nowiki></span>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
+'movepage-moved'          => '<big>\'\'\'"$1" đã được di chuyển đến "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Đã có một trang với tên đó, hoặc 
+tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
-'talkexists'              => 'Trang được di chuyển thành công, nhưng trang thảo luận tương ứng không thể chuyển được vì đã có một trang thảo luận ở tên mới.
-Xin hãy hợp nhất chúng lại.',
+'cantmove-titleprotected' => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
+'talkexists'              => "'''Trang được di chuyển thành công, nhưng trang thảo luận không thể di chuyển được vì đã tồn tại một trang thảo luận ở tên mới. Xin hãy hợp nhất chúng lại một cách thủ công.'''",
 'movedto'                 => 'đổi thành',
-'movetalk'                => 'Di chuyển trang "thảo luận" nếu có.',
-'talkpagemoved'           => 'Trang thảo luận tương ứng đã chuyển.',
-'talkpagenotmoved'        => 'Trang thảo luận tương ứng <strong>không</strong> chuyển.',
+'movetalk'                => 'Di chuyển trang thảo luận đi kèm',
+'talkpagemoved'           => 'Trang thảo luận tương ứng cũng đã di chuyển.',
+'talkpagenotmoved'        => 'Trang thảo luận tương ứng <strong>không</strong> được di chuyển.',
 '1movedto2'               => '[[$1]] đổi thành [[$2]]',
-'1movedto2_redir'         => '$1 đổi thành $2 qua đổi hướng',
-'movelogpage'             => 'Nhật trình đổi tên',
-'movelogpagetext'         => 'Các trang bị đổi tên.',
-'movereason'              => 'Lý do',
+'1movedto2_redir'         => '[[$1]] đổi thành [[$2]] qua đổi hướng',
+'movelogpage'             => 'Nhật trình di chuyển',
+'movelogpagetext'         => 'Dưới đây là danh sách các trang đã được di chuyển.',
+'movereason'              => 'Lý do:',
 'revertmove'              => 'lùi lại',
 'delete_and_move'         => 'Xóa và đổi tên',
-'delete_and_move_text'    => ' ==Cần xóa==
-Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di chuyển tới tên này không?',
+'delete_and_move_text'    => '==Cần xóa==
+
+Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để dọn chỗ di chuyển tới tên này không?',
 'delete_and_move_confirm' => 'Xóa trang để đổi tên',
 'delete_and_move_reason'  => 'Xóa để có chỗ đổi tên',
-'selfmove'                => 'Tên mới giống tên cũ; không đổi tên được.',
-'immobile_namespace'      => 'Tên mới đặc biệt; không đổi sang tên đó được.',
+'selfmove'                => 'Tên mới giống tên cũ; không đổi tên một trang thành chính nó.',
+'immobile_namespace'      => 'Tên mới hoặc tên cũ là loạiđặc biệt; không thể di chuyển từ/đến không gian tên đó.',
 
 # Export
 'export'            => 'Xuất các trang',
-'exporttext'        => 'Bạn có thể xuất nội dung và lịch sử sửa đổi của một trang hay tập hợp trang nào đó vào trong các XML. Trong tương lai, cũng có thể nhập vào một mạng khác chạy phần mềm MediaWiki.
+'exporttext'        => 'Bạn có thể xuất nội dung và lịch sử sửa đổi của một trang hoặc
+tập hợp trang vào tập tin XML. Những tập tin này cũng có thể được nhập vào
+wiki khác có sử dụng MediaWiki thông qua [[Special:Import|nhập trang]].
 
-Để xuất nội dung các bài, gõ vào tên bài trong cửa sổ dưới đây, mỗi tên một hàng, và cho biết là bạn muốn chọn phiên bản hiện tại cùng với các phiên bản cũ của nó, với các dòng về lịch sử trang, hay chỉ phiên bản hiện hành với thông tin về lần sửa đổi cuối cùng.',
+Để xuất các trang, nhập vào tên trang trong hộp soạn thảo ở dưới, mỗi dòng một tên, và
+lựa chọn bạn muốn phiên bản hiện tại cũng như tất cả phiên bản cũ, với các dòng
+lịch sử trang, hay chỉ là phiên bản hiện tại với thông tin về lần sửa đổi cuối.
+
+Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví dụ [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] để biểu thị trang "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Chỉ xuất phiên bản hiện hành, không xuất tất cả lịch sử trang',
 'exportnohistory'   => "----
-'''Tắt:''' Chức năng xuất lịch sử trang đầy đủ bị tắt tạm thời, do vấn đề hiệu suất. Trong lúc ấy, bạn vẫn có thể lấy lịch sử trang đầy đủ từ những [http://download.wikimedia.org/ dữ liệu nguyên] của nhóm quản lý máy móc Wikimedia.",
+'''Chú ý:''' Chức năng xuất lịch sử trang đầy đủ bằng mẫu này bị tắt do vấn đề hiệu suất.",
 'export-submit'     => 'Xuất',
 'export-addcattext' => 'Thêm bài từ thể loại:',
 'export-addcat'     => 'Thêm',
+'export-download'   => 'Lưu xuống tập tin',
+'export-templates'  => 'Gồm cả tiêu bản',
 
 # Namespace 8 related
 'allmessages'               => 'Thông báo hệ thống',
 'allmessagesname'           => 'Tên thông báo',
 'allmessagesdefault'        => 'Nội dung mặc định',
 'allmessagescurrent'        => 'Nội dung hiện thời',
-'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki: .',
-'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages không được hỗ trợ vì wgUseDatabaseMessages bị tắt.',
-'allmessagesfilter'         => 'Bộ lọc dùng biểu thức chính quy (regular expression):',
+'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
+'allmessagesfilter'         => 'Bộ lọc tên thông báo:',
 'allmessagesmodified'       => 'Chỉ hiển thị các thông báo đã được sửa đổi.',
 
 # Thumbnails
 'thumbnail-more'           => 'Phóng lớn',
 'missingimage'             => '<b>Không có hình</b><br /><i>$1</i>',
-'filemissing'              => 'Không có tệp tin',
+'filemissing'              => 'Không có tập tin',
 'thumbnail_error'          => 'Hình thu nhỏ có lỗi: $1',
+'djvu_page_error'          => 'Trang DjVu quá xa',
+'djvu_no_xml'              => 'Không thể truy xuất XML cho tập tin DjVu',
 'thumbnail_invalid_params' => 'Tham số hình thu nhỏ không hợp lệ',
+'thumbnail_dest_directory' => 'Không thể tạo thư mục đích',
 
 # Special:Import
 'import'                     => 'Nhập các trang',
 'importinterwiki'            => 'Nhập giữa các wiki',
-'import-interwiki-text'      => 'Chọn tên trang và wiki để nhập trang này vào. Các lúc giờ sửa đổi và tên của người sửa đổi sẽ còn nguyên. Các trang được nhập vào đây từ wiki khác sẽ được liệt kê ở [[Đăc biệt:Log/import|nhật trình nhập trang]].',
-'import-interwiki-history'   => 'Sao chép các phiên bản cũ của trang này',
-'import-interwiki-submit'    => 'Nhập các trang',
-'import-interwiki-namespace' => 'Di chuyển các trang vào không gian tên:',
-'importtext'                 => 'Xin hãy xuất tập tin từ wiki nguồn sử dụng công cụ Đặc_biệt:Export, lưu nó vào đĩa và tải lên ở đây.',
+'import-interwiki-text'      => 'Chọn tên trang và wiki để nhập trang vào.
+Ngày của phiên bản và tên người viết bài sẽ được giữ nguyên.
+Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[Special:Log/import|nhật trình nhập trang]].',
+'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
+'import-interwiki-submit'    => 'Nhập trang',
+'import-interwiki-namespace' => 'Chuyển các trang vào không gian tên:',
+'importtext'                 => 'Xin hãy xuất tập tin từ wiki nguồn sử dụng tính năng Special:Export, lưu nó vào máy của bạn rồi tải nó lên đây.',
 'importstart'                => 'Đang nhập các trang…',
 'import-revision-count'      => '$1 phiên bản',
 'importnopages'              => 'Không có trang để nhập vào.',
 'importfailed'               => 'Không nhập được: $1',
 'importunknownsource'        => 'Không hiểu nguồn trang để nhập vào',
 'importcantopen'             => 'Không có thể mở tập tin để nhập vào',
-'importbadinterwiki'         => 'Liên kết đến wiki sai',
-'importnotext'               => 'Trang trống không có nội dung',
+'importbadinterwiki'         => 'Liên kết liên wiki sai',
+'importnotext'               => 'Trang trống hoặc không có nội dung',
 'importsuccess'              => 'Nhập thành công!',
 'importhistoryconflict'      => 'Có mâu thuẫn trong lịch sử của các phiên bản (trang này có thể đã được nhập vào trước đó)',
 'importnosources'            => 'Không có nguồn nhập giữa wiki và việc nhập lịch sử bị tắt.',
 'importnofile'               => 'Không tải được tập tin nào lên.',
+'importuploaderrorsize'      => 'Không thể tải tập tin nhập trang. Tập tin lớn hơn kích thước cho phép tải lên.',
+'importuploaderrorpartial'   => 'Không thể tải tập tin nhập trang. Tập tin mới chỉ tải lên được một phần.',
+'importuploaderrortemp'      => 'Không thể tải tập tin nhập trang. Thiếu thư mục tạm.',
 
 # Import log
 'importlogpage'                    => 'Nhật trình nhập trang',
 'importlogpagetext'                => 'Đây là danh sách các trang được quản lý nhập vào đây. Các trang này có lịch sử sửa đổi từ hồi ở wiki khác.',
-'import-logentry-upload'           => 'nhập vào [[$1]] khi truyền lên tập tin',
+'import-logentry-upload'           => 'nhập vào [[$1]] bằng cách tải tập tin',
 'import-logentry-upload-detail'    => '$1 phiên bản',
-'import-logentry-interwiki'        => 'nhập vào $1 từ wiki khác',
+'import-logentry-interwiki'        => 'đã nhập vào $1 từ wiki khác',
 'import-logentry-interwiki-detail' => '$1 phiên bản từ $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Trang của tôi',
+'tooltip-pt-userpage'             => 'Trang thành viên của tôi',
 'tooltip-pt-anonuserpage'         => 'Trang của IP bạn đang dùng',
 'tooltip-pt-mytalk'               => 'Thảo luận với tôi',
 'tooltip-pt-anontalk'             => 'Thảo luận với địa chỉ IP này',
-'tooltip-pt-preferences'          => 'Lựa chọn cá nhân của tôi',
-'tooltip-pt-watchlist'            => 'Thay đổi của các trang tôi theo dõi.',
+'tooltip-pt-preferences'          => 'Tùy chọn cá nhân của tôi',
+'tooltip-pt-watchlist'            => 'Thay đổi của các trang tôi theo dõi',
 'tooltip-pt-mycontris'            => 'Đóng góp của tôi',
 'tooltip-pt-login'                => 'Đăng nhập sẽ có lợi hơn, tuy nhiên không bắt buộc.',
 'tooltip-pt-anonlogin'            => 'Không đăng nhập vẫn tham gia được, tuy nhiên đăng nhập sẽ lợi hơn.',
 'tooltip-pt-logout'               => 'Đăng xuất',
 'tooltip-ca-talk'                 => 'Thảo luận về trang này',
 'tooltip-ca-edit'                 => 'Bạn có thể sửa được trang này. Xin xem thử trước khi lưu.',
-'tooltip-ca-addsection'           => 'Thêm bình luận vào đây.',
+'tooltip-ca-addsection'           => 'Thêm bàn luận vào đây.',
 'tooltip-ca-viewsource'           => 'Trang này được khóa. Bạn có thể xem mã nguồn.',
 'tooltip-ca-history'              => 'Những phiên bản cũ của trang này.',
 'tooltip-ca-protect'              => 'Khóa trang này lại',
 'tooltip-ca-delete'               => 'Xóa trang này',
-'tooltip-ca-undelete'             => 'Khôi phục lại những sửa đổi trên trang này trước khi nó bị xóa',
+'tooltip-ca-undelete'             => 'Phục hồi những sửa đổi trên trang này như trước khi nó bị xóa',
 'tooltip-ca-move'                 => 'Di chuyển trang này',
 'tooltip-ca-watch'                => 'Thêm trang này vào danh sách theo dõi',
 'tooltip-ca-unwatch'              => 'Bỏ trang này khỏi danh sách theo dõi',
-'tooltip-search'                  => 'Tìm kiếm',
-'tooltip-p-logo'                  => 'Trang đầu',
+'tooltip-search'                  => 'Tìm kiếm {{SITENAME}}',
+'tooltip-search-go'               => 'Xem trang khớp với tên này nếu có',
+'tooltip-search-fulltext'         => 'Tìm trang có nội dung này',
+'tooltip-p-logo'                  => 'Trang Chính',
 'tooltip-n-mainpage'              => 'Đi đến Trang Chính',
-'tooltip-n-portal'                => 'Giới thiệu dự án, cách sử dụng, tìm kiếm thông tin ở đây',
-'tooltip-n-currentevents'         => 'Xem thời sự',
+'tooltip-n-portal'                => 'Giới thiệu dự án, cách sử dụng và tìm kiếm thông tin ở đây',
+'tooltip-n-currentevents'         => 'Các bài có liên quan đến thời sự',
 'tooltip-n-recentchanges'         => 'Danh sách các thay đổi gần đây',
 'tooltip-n-randompage'            => 'Xem trang ngẫu nhiên',
 'tooltip-n-help'                  => 'Nơi tìm hiểu thêm cách dùng.',
-'tooltip-n-sitesupport'           => 'Quyên góp xây dựng dự án mở',
+'tooltip-n-sitesupport'           => 'Hãy ủng hộ chúng tôi',
 'tooltip-t-whatlinkshere'         => 'Các trang liên kết đến đây',
 'tooltip-t-recentchangeslinked'   => 'Thay đổi gần đây của các trang liên kết đến đây',
 'tooltip-feed-rss'                => 'Nạp RSS cho trang này',
@@ -1853,11 +1882,12 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'tooltip-ca-nstab-category'       => 'Xem trang thể loại',
 'tooltip-minoredit'               => 'Đánh dấu đây là sửa đổi nhỏ',
 'tooltip-save'                    => 'Lưu lại những thay đổi của bạn',
-'tooltip-preview'                 => 'Xem thử những thay đổi trước khi lưu!',
-'tooltip-diff'                    => 'Xem thay đổi bạn đã thực hiện',
-'tooltip-compareselectedversions' => 'Xem khác biệt giữa hai phiên bản của trang này.',
-'tooltip-watch'                   => 'Cho trang này vào danh sách theo dõi',
+'tooltip-preview'                 => 'Xem thử những thay đổi, hãy dùng nó trước khi lưu!',
+'tooltip-diff'                    => 'Xem thay đổi bạn đã thực hiện.',
+'tooltip-compareselectedversions' => 'Xem khác biệt giữa hai phiên bản đã chọn của trang này.',
+'tooltip-watch'                   => 'Thêm trang này vào danh sách theo dõi',
 'tooltip-recreate'                => 'Tạo lại trang dù cho nó vừa bị xóa',
+'tooltip-upload'                  => 'Bắt đầu tải lên',
 
 # Metadata
 'nodublincore'      => 'Máy chủ không hỗ trợ siêu dữ liệu Dublin Core RDF.',
@@ -1869,7 +1899,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'siteuser'         => 'Thành viên $1 của {{SITENAME}}',
 'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.', # $1 date, $2 time, $3 user
 'and'              => 'và',
-'othercontribs'    => 'dựa trên công trình của $1.',
+'othercontribs'    => 'Dựa trên công trình của $1.',
 'others'           => 'những người khác',
 'siteusers'        => 'Thành viên $1 của {{SITENAME}}',
 'creditspage'      => 'Trang ghi nhận đóng góp',
@@ -1883,33 +1913,33 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'categoryarticlecount'   => 'Có $1 bài trong thể loại này.',
 'category-media-count'   => '{{#ifeq: $1 | 0 |Không có tập tin nào|Có ít nhất $1 tập tin}} trong thể loại này.',
 'listingcontinuesabbrev' => 'tiếp',
-'spambot_username'       => 'Robot MediaWiki dọn dẹp liên kết nhũng lạm',
-'spam_reverting'         => 'Đổi lại thành phiên bản cuối không liên kết đến $1',
-'spam_blanking'          => 'Các phiên bản liên kết đến $1; tẩy trống',
+'spambot_username'       => 'Bộ dọn dẹp thư rác MediaWiki',
+'spam_reverting'         => 'Lùi lại đến phiên bản cuối không chứa liên kết đến $1',
+'spam_blanking'          => 'Tất cả các phiên bản có liên kết đến $1, đang tẩy trống',
 
 # Info page
 'infosubtitle'   => 'Thông tin về trang',
 'numedits'       => 'Số lần sửa đổi (bài chính): $1',
-'numtalkedits'   => 'Số lần sửa đổi  (trang thảo luận): $1',
+'numtalkedits'   => 'Số lần sửa đổi (trang thảo luận): $1',
 'numwatchers'    => 'Số người theo dõi: $1',
 'numauthors'     => 'Số người sửa đổi khác nhau (bài chính): $1',
 'numtalkauthors' => 'Số người sửa đổi khác nhau (trang thảo luận): $1',
 
 # Math options
 'mw_math_png'    => 'Luôn cho ra dạng hình PNG',
-'mw_math_simple' => 'HTML nếu rất đơn giản, nếu không PNG',
-'mw_math_html'   => 'HTML nếu có thể, nếu không PNG',
-'mw_math_source' => 'Để là TeX (cho trình duyệt văn bản)',
-'mw_math_modern' => 'Dành cho trình duyệt hiện đại',
-'mw_math_mathml' => 'MathML nếu có thể',
+'mw_math_simple' => 'HTML nếu rất đơn giản, nếu không thì PNG',
+'mw_math_html'   => 'HTML nếu có thể, nếu không thì PNG',
+'mw_math_source' => 'Để là TeX (dành cho trình duyệt văn bản)',
+'mw_math_modern' => 'Đề nghị, dành cho trình duyệt hiện đại',
+'mw_math_mathml' => 'MathML nếu có thể (thử nghiệm)',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Đánh dấu tuần tra',
-'markaspatrolledtext'                 => 'Đánh dấu tuần tra',
+'markaspatrolledtext'                 => 'Đánh dấu tuần tra trang này',
 'markedaspatrolled'                   => 'Đã đánh dấu tuần tra',
-'markedaspatrolledtext'               => 'Bản được đánh dấu đã tuần tra.',
+'markedaspatrolledtext'               => 'Phiên bản được chọn đã được đánh dấu đã tuần tra.',
 'rcpatroldisabled'                    => '"Thay đổi gần đây" của các trang tuần tra không bật',
-'rcpatroldisabledtext'                => 'Chức năng "thay đổi gần đây"  của các trang tuần tra hiện không được bật.',
+'rcpatroldisabledtext'                => 'Chức năng "thay đổi gần đây" của các trang tuần tra hiện không được bật.',
 'markedaspatrollederror'              => 'Không thể đánh dấu tuần tra',
 'markedaspatrollederrortext'          => 'Bạn phải chọn phiên bản để đánh dấu tuần tra.',
 'markedaspatrollederror-noautopatrol' => 'Bạn không được đánh dấu tuần tra vào sửa đổi của bạn.',
@@ -1931,29 +1961,30 @@ $1',
 'filedelete-archive-read-only'    => 'Máy chủ web không ghi được vào thư mục lưu trữ "$1".',
 
 # Browsing diffs
-'previousdiff' => '&larr; So với trước',
-'nextdiff'     => 'So với sau &rarr;',
+'previousdiff' => '← Thay đổi trước',
+'nextdiff'     => 'Thay đổi sau →',
 
 # Media information
-'mediawarning'         => " '''Cảnh báo''': Tệp tin này có thể làm hại máy tính của bạn. <hr />",
-'imagemaxsize'         => 'Giới hạn độ phân giải ảnh là:&nbsp;',
-'thumbsize'            => 'Kích thước thu nhỏ:&nbsp;',
+'mediawarning'         => "'''Cảnh báo''': Tập tin này có thể chứa mã hiểm độc, nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.<hr />",
+'imagemaxsize'         => 'Giới hạn độ phân giải trên trang mô tả ảnh:',
+'thumbsize'            => 'Kích thước thu nhỏ:',
 'widthheightpage'      => '$1×$2, $3 trang',
 'file-info'            => '(kích thước tập tin: $1, định dạng MIME: $2)',
-'file-info-size'       => '($1 × $2 điểm ảnh, kích thước: $3, kiểu MIME: $4)',
+'file-info-size'       => '($1 × $2 điểm ảnh, kích thước: $3, định dạng MIME: $4)',
 'file-nohires'         => '<small>Không có độ phân giải cao hơn.</small>',
+'svg-long-desc'        => '(tập tin SVG, $1 × $2 điểm ảnh trên danh nghĩa, kích thước: $3)',
 'show-big-image'       => 'Độ phân giải tối đa',
 'show-big-image-thumb' => '<small>Kích thước xem thử: $1 × $2 điểm ảnh</small>',
 
 # Special:Newimages
 'newimages'    => 'Trang trưng bày hình ảnh mới',
 'showhidebots' => '($1 robot)',
-'noimages'     => 'Chưa có hình',
+'noimages'     => 'Chưa có hình.',
 
 # Bad image list
 'bad_image_list' => 'Định dạng như sau:
 
-Chỉ có những mục được liệt kê (những dòng bắt đầu bằng *) mới được tính tới. Liên kết đầu tiên tại một dòng phải là liên kết đến hình ảnh xấu.
+Chỉ có những mục được liệt kê (những dòng bắt đầu bằng *) mới được tính tới. Liên kết đầu tiên tại một dòng phải là liên kết đến hình ảnh phản cảm.
 Các liên kết sau đó trên cùng một dòng được xem là các ngoại lệ, có nghĩa là các trang mà tại đó có thể dùng được hình.',
 
 # Metadata
@@ -1961,7 +1992,9 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'metadata-help'     => 'Tập tin này có chứa thông tin về nó, do máy ảnh hay máy quét thêm vào. Nếu tập tin bị sửa đổi sau khi được tạo ra lần đầu, có thể thông tin này không được cập nhật.',
 'metadata-expand'   => 'Xem chi tiết cấp cao',
 'metadata-collapse' => 'Giấu chi tiết cấp cao',
-'metadata-fields'   => 'Những thông tin EXIF được danh sách dưới đây sẽ được bao gồm vào trang miêu tả hình khi bảng EXIF bị dẹp xuống. Những thông tin khác sẽ bị giấu mặc định.
+'metadata-fields'   => 'Những thông tin đặc tính EXIF được danh sách dưới đây 
+sẽ được đưa vào vào trang miêu tả hình khi bảng đặc tính
+được thu nhỏ. Những thông tin khác mặc định sẽ bị giấu.
 * make
 * model
 * datetimeoriginal
@@ -1974,20 +2007,25 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-imagelength'                 => 'Chiều cao',
 'exif-bitspersample'               => 'Bit trên mẫu',
 'exif-compression'                 => 'Kiểu nén',
+'exif-photometricinterpretation'   => 'Thành phần điểm ảnh',
 'exif-orientation'                 => 'Hướng',
 'exif-samplesperpixel'             => 'Số mẫu trên điểm ảnh',
 'exif-planarconfiguration'         => 'Cách xếp dữ liệu',
 'exif-ycbcrsubsampling'            => 'Tỉ lệ lấy mẫu con của Y so với C',
 'exif-ycbcrpositioning'            => 'Định vị Y và C',
-'exif-xresolution'                 => 'Phân giải trên bề ngang',
+'exif-xresolution'                 => 'Phân giải theo bề ngang',
 'exif-yresolution'                 => 'Phân giải theo chiều cao',
 'exif-resolutionunit'              => 'Đơn vị phân giải X và Y',
 'exif-stripoffsets'                => 'Vị trí dữ liệu hình',
 'exif-rowsperstrip'                => 'Số hàng trên mỗi mảnh',
+'exif-stripbytecounts'             => 'Số byte trên mỗi mảnh nén',
 'exif-jpeginterchangeformat'       => 'Vị trí SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Kích cỡ (byte) của JPEG',
 'exif-transferfunction'            => 'Hàm chuyển đổi',
+'exif-whitepoint'                  => 'Sắc độ điểm trắng',
+'exif-primarychromaticities'       => 'Sắc độ của màu cơ bản',
 'exif-ycbcrcoefficients'           => 'Hệ số ma trận biến đổi không gian màu',
+'exif-referenceblackwhite'         => 'Giá trị tham chiếu cặp trắng đen',
 'exif-datetime'                    => 'Ngày tháng sửa',
 'exif-imagedescription'            => 'Tiêu đề của hình',
 'exif-make'                        => 'Hãng máy ảnh',
@@ -2001,30 +2039,39 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-componentsconfiguration'     => 'Ý nghĩa thành phần',
 'exif-compressedbitsperpixel'      => 'Độ nén (bit/điểm)',
 'exif-pixelydimension'             => 'Bề ngang hợp lệ',
-'exif-pixelxdimension'             => 'Bề cao hình hợp lệ',
-'exif-makernote'                   => 'Lưu ý của nhà sản xuất',
-'exif-usercomment'                 => 'Ghi chú của tác giả',
-'exif-relatedsoundfile'            => 'Tệp âm thanh liên quan',
+'exif-pixelxdimension'             => 'Chiều cao hợp lệ',
+'exif-makernote'                   => 'Ghi chú của nhà sản xuất',
+'exif-usercomment'                 => 'Lời bình của tác giả',
+'exif-relatedsoundfile'            => 'Tập tin âm thanh liên quan',
 'exif-datetimeoriginal'            => 'Ngày giờ sinh dữ liệu',
 'exif-datetimedigitized'           => 'Ngày giờ số hóa',
+'exif-subsectime'                  => 'Ngày giờ nhỏ hơn giây',
+'exif-subsectimeoriginal'          => 'Ngày giờ gốc nhỏ hơn giây',
+'exif-subsectimedigitized'         => 'Ngày giờ số hóa nhỏ hơn giây',
 'exif-exposuretime'                => 'Thời gian mở ống kính',
 'exif-exposuretime-format'         => '$1 giây ($2)',
 'exif-fnumber'                     => 'Số F',
 'exif-exposureprogram'             => 'Chương trình phơi sáng',
+'exif-spectralsensitivity'         => 'Độ nhạy quang phổ',
 'exif-isospeedratings'             => 'Điểm tốc độ ISO',
+'exif-oecf'                        => 'Yếu tố chuyển đổi quang điện',
 'exif-shutterspeedvalue'           => 'Tốc độ cửa chớp',
 'exif-aperturevalue'               => 'Độ mở ống kính',
 'exif-brightnessvalue'             => 'Độ sáng',
 'exif-exposurebiasvalue'           => 'Độ lệch phơi sáng',
 'exif-maxaperturevalue'            => 'Khẩu độ cực đại qua đất',
+'exif-subjectdistance'             => 'Khoảng cách vật thể',
 'exif-meteringmode'                => 'Chế độ đo',
 'exif-lightsource'                 => 'Nguồn sáng',
 'exif-flash'                       => 'Đèn chớp',
 'exif-focallength'                 => 'Độ dài tiêu cự thấu kính',
+'exif-subjectarea'                 => 'Diện tích vật thể',
 'exif-flashenergy'                 => 'Nguồn đèn chớp',
+'exif-spatialfrequencyresponse'    => 'Phản ứng tần số không gian',
 'exif-focalplanexresolution'       => 'Phân giải X trên mặt phẳng tiêu',
 'exif-focalplaneyresolution'       => 'Phân giải Y trên mặt phẳng tiêu',
 'exif-focalplaneresolutionunit'    => 'Đơn vị phân giải trên mặt phẳng tiêu',
+'exif-subjectlocation'             => 'Vị trí vật thể',
 'exif-exposureindex'               => 'Chỉ số phơi sáng',
 'exif-sensingmethod'               => 'Phương pháp đo',
 'exif-filesource'                  => 'Nguồn tập tin',
@@ -2052,13 +2099,28 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-gpsaltitude'                 => 'Độ cao',
 'exif-gpstimestamp'                => 'Giờ GPS (đồng hồ nguyên tử)',
 'exif-gpssatellites'               => 'Vệ tinh nhân tạo dùng để đo',
+'exif-gpsstatus'                   => 'Tình trạng đầu thu',
 'exif-gpsmeasuremode'              => 'Chế độ đo',
+'exif-gpsdop'                      => 'Độ chính xác máy đo',
 'exif-gpsspeedref'                 => 'Đơn vị tốc độ',
+'exif-gpsspeed'                    => 'Tốc độ đầu thu GPS',
+'exif-gpstrackref'                 => 'Tham chiếu cho hướng chuyển động',
 'exif-gpstrack'                    => 'Hướng chuyển động',
+'exif-gpsimgdirectionref'          => 'Tham chiếu cho hướng của ảnh',
 'exif-gpsimgdirection'             => 'Hướng của hình',
+'exif-gpsmapdatum'                 => 'Dữ liệu trắc địa đã dùng',
+'exif-gpsdestlatituderef'          => 'Tham chiếu cho vĩ độ đích',
+'exif-gpsdestlatitude'             => 'Vĩ độ đích',
+'exif-gpsdestlongituderef'         => 'Tham chiếu cho kinh độ đích',
+'exif-gpsdestlongitude'            => 'Kinh độ đích',
+'exif-gpsdestbearingref'           => 'Tham chiếu cho phương hướng đích',
+'exif-gpsdestbearing'              => 'Phương hướng đích',
+'exif-gpsdestdistanceref'          => 'Tham chiếu cho khoảng cách đến đích',
+'exif-gpsdestdistance'             => 'Khoảng cách đến đích',
 'exif-gpsprocessingmethod'         => 'Tên phương pháp xử lý GPS',
 'exif-gpsareainformation'          => 'Tên khu vực theo GPS',
 'exif-gpsdatestamp'                => 'Ngày theo GPS',
+'exif-gpsdifferential'             => 'Sửa vi sai GPS',
 
 # EXIF attributes
 'exif-compression-1' => 'Không nén',
@@ -2074,24 +2136,37 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-orientation-7' => 'Quay 90° bên phải và lộn thẳng đứng', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Quay 90° bên trái', # 0th row: left; 0th column: bottom
 
-'exif-componentsconfiguration-0' => 'không có',
+'exif-planarconfiguration-1' => 'định dạng thấp',
+'exif-planarconfiguration-2' => 'định dạng phẳng',
 
-'exif-exposureprogram-0' => 'Không định',
+'exif-componentsconfiguration-0' => 'không tồn tại',
+
+'exif-exposureprogram-0' => 'Không chỉ định',
 'exif-exposureprogram-1' => 'Thủ công',
 'exif-exposureprogram-2' => 'Chương trình chuẩn',
+'exif-exposureprogram-3' => 'Ưu tiên độ mở ống kính',
+'exif-exposureprogram-4' => 'Ưu tiên tốc độ sập',
+'exif-exposureprogram-5' => 'Chương trình sáng tạo (thiên về chiều sâu)',
+'exif-exposureprogram-6' => 'Chương trình chụp (thien về tốc độ sập nhanh)',
+'exif-exposureprogram-7' => 'Chế độ chân dung (đối với ảnh chụp gần với phông nền ở ngoài tầm tiêu cự)',
+'exif-exposureprogram-8' => 'Chế độ phong cảnh (đối với ảnh phong cảnh với phông ở trong tiêu cự)',
 
 'exif-subjectdistance-value' => '$1 mét',
 
 'exif-meteringmode-0'   => 'Không biết',
 'exif-meteringmode-1'   => 'Trung bình',
 'exif-meteringmode-2'   => 'Trung bình trọng lượng ở giữa',
+'exif-meteringmode-3'   => 'Vết',
+'exif-meteringmode-4'   => 'Đa vết',
 'exif-meteringmode-5'   => 'Lấy mẫu',
+'exif-meteringmode-6'   => 'Cục bộ',
 'exif-meteringmode-255' => 'Khác',
 
 'exif-lightsource-0'   => 'Không biết',
 'exif-lightsource-1'   => 'Trời nắng',
 'exif-lightsource-2'   => 'Huỳnh quang',
 'exif-lightsource-3'   => 'Vonfram (ánh nóng sáng)',
+'exif-lightsource-4'   => 'Đèn chớp',
 'exif-lightsource-9'   => 'Trời đẹp',
 'exif-lightsource-10'  => 'Trời mây',
 'exif-lightsource-11'  => 'Che nắng',
@@ -2108,9 +2183,12 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-focalplaneresolutionunit-2' => 'inch',
 
 'exif-sensingmethod-1' => 'Không định rõ',
-'exif-sensingmethod-2' => 'Đầu đo vùng màu một mảnh',
-'exif-sensingmethod-3' => 'Đầu đo vùng màu hai mảnh',
-'exif-sensingmethod-4' => 'Đầu đo vùng màu ba mảnh',
+'exif-sensingmethod-2' => 'Cảm biến vùng màu một mảnh',
+'exif-sensingmethod-3' => 'Cảm biến vùng màu hai mảnh',
+'exif-sensingmethod-4' => 'Cảm biến vùng màu ba mảnh',
+'exif-sensingmethod-5' => 'Cảm biến vùng màu liên tục',
+'exif-sensingmethod-7' => 'Cảm biến ba đường',
+'exif-sensingmethod-8' => 'Cảm biến đường màu liên tục',
 
 'exif-scenetype-1' => 'Hình chụp thẳng',
 
@@ -2119,7 +2197,7 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 
 'exif-exposuremode-0' => 'Phơi sáng tự động',
 'exif-exposuremode-1' => 'Phơi sáng thủ công',
-'exif-exposuremode-2' => 'Tự động đặt trong dấu ngoặc đơn',
+'exif-exposuremode-2' => 'Tự động chụp nhiều hình',
 
 'exif-whitebalance-0' => 'Cân bằng trắng tự động',
 'exif-whitebalance-1' => 'Cân bằng trắng thủ công',
@@ -2130,6 +2208,10 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-scenecapturetype-3' => 'Cảnh ban đêm',
 
 'exif-gaincontrol-0' => 'Không có',
+'exif-gaincontrol-1' => 'Độ rọi thấp',
+'exif-gaincontrol-2' => 'Độ rọi cao',
+'exif-gaincontrol-3' => 'Độ rọi dưới thấp',
+'exif-gaincontrol-4' => 'Độ rọi dưới cao',
 
 'exif-contrast-0' => 'Thường',
 'exif-contrast-1' => 'Nhẹ',
@@ -2144,6 +2226,7 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-sharpness-2' => 'Cứng',
 
 'exif-subjectdistancerange-0' => 'Không biết',
+'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Nhìn gần',
 'exif-subjectdistancerange-3' => 'Nhìn xa',
 
@@ -2156,6 +2239,7 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 'exif-gpslongitude-w' => 'Kinh độ tây',
 
 'exif-gpsstatus-a' => 'Đang đo',
+'exif-gpsstatus-v' => 'Mức độ khả năng liên điều hành',
 
 'exif-gpsmeasuremode-2' => 'Đo 2 chiều',
 'exif-gpsmeasuremode-3' => 'Đo 3 chiều',
@@ -2167,6 +2251,7 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Hướng thật',
+'exif-gpsdirection-m' => 'Hướng từ trường',
 
 # External editor support
 'edit-externally'      => 'Sửa bằng phần mềm bên ngoài',
@@ -2181,35 +2266,44 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 
 # E-mail address confirmation
 'confirmemail'            => 'Xác nhận thư điện tử',
-'confirmemail_noemail'    => 'Bạn chưa đưa vào địa chỉ thư điện tử hợp lệ ở [[Đặc biệt:Preferences|tùy chọn cá nhân]].',
-'confirmemail_text'       => 'Cần kiểm tra địa chỉ thư điện tử trước khi lưu. Ấn nút bên dưới để gửi thư xác nhận đến địa chỉ. Thư xác nhận có một mã xác nhận; khi bạn nhập mã xác nhận vào đây, địa chỉ thư điện tử của bạn sẽ được xác nhận.',
+'confirmemail_noemail'    => 'Bạn chưa đưa vào địa chỉ thư điện tử hợp lệ ở [[Special:Preferences|tùy chọn cá nhân]].',
+'confirmemail_text'       => '{{SITENAME}} đòi hỏi bạn xác minh thư điện tử của mình
+trước khi sử dụng tính năng thư điện tử. Nhấn vào nút bên dưới để gửi thư
+xác nhận đến địa chỉ của bạn. Thư xác nhận sẽ có kèm một liên kết có chứa một mã số;
+tải liên kết đó trong trình duyệt để xác nhận địa chỉ thư điện tử của bạn là đúng.',
 'confirmemail_pending'    => '<div class="error">
-Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn. Nếu bạn mới mở tài khoản này, xin chờ vài phút cho mã trước khi yêu cầu mã mới.
+Mã xác đã được gửi đến địa chỉ thư điện tử của bạn; nếu bạn
+mới vừa tạo tài khoản, xin chờ vài phút để thư tới nơi rồi
+hãy cố gắng yêu cầu mã mới.
 </div>',
 'confirmemail_send'       => 'Gửi thư xác nhận',
 'confirmemail_sent'       => 'Thư xác nhận đã được gửi',
-'confirmemail_oncreate'   => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn. Bạn không cần mã này để đăng nhập, nhưng cần sử dụng nó để bật lên các chức năng thư điện tử của wiki này.',
+'confirmemail_oncreate'   => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn. 
+Bạn không cần mã này để đăng nhập, nhưng sẽ cần sử dụng nó để bật 
+các tính năng có dùng thư điện tử của wiki.',
 'confirmemail_sendfailed' => 'Không thể gửi thư xác nhận. Xin kiểm tra lại địa chỉ thư.
 
 Chương trình gửi trả về: $1',
 'confirmemail_invalid'    => 'Mã xác nhận sai. Mã này có thể đã hết hạn',
 'confirmemail_needlogin'  => 'Bạn cần phải $1 để xác nhận địa chỉ thư điện tử.',
-'confirmemail_success'    => 'Thư điện tử của bạn đã được xác nhận. Bạn có thể đăng nhập được.',
+'confirmemail_success'    => 'Thư điện tử của bạn đã được xác nhận. Bạn đã có thể đăng nhập và bắt đầu sử dụng wiki.',
 'confirmemail_loggedin'   => 'Địa chỉ thư điện tử của bạn đã được xác nhận',
-'confirmemail_error'      => 'Có trục trặc',
+'confirmemail_error'      => 'Có trục trặc khi lưu xác nhận của bạn.',
 'confirmemail_subject'    => 'Xác nhận thư điện tử tại {{SITENAME}}',
-'confirmemail_body'       => 'Ai đó, có thể là bạn, với địa chỉ thư điện tử $1, đã mở tài khoản "$2" dùng địa chỉ này ở {{SITENAME}}.
+'confirmemail_body'       => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, đã đăng ký tài khoản có
+tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
 
-Để xác nhận rằng tài khoản này của bạn và dùng chức năng thư điện tử ở {{SITENAME}}, xin mở địa chỉ mạng sau :
+Để xác nhận rằng tài khoản này thực sự là của bạn và để kích hoạt
+tính năng thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
 
 $3
 
-Nếu không phải bạn, đừng mở địa chỉ này. Mã xác nhận này sẽ hết hạn lúc $4.',
+Nếu *không* phải bạn, đừng mở địa chỉ này. Mã xác nhận này sẽ hết hạn lúc $4.',
 
 # Scary transclusion
-'scarytranscludedisabled' => 'Liên wiki bị tắt',
-'scarytranscludefailed'   => 'Tiêu bản cho $1 bị tắt',
-'scarytranscludetoolong'  => 'Địa chỉ mạng dài quá',
+'scarytranscludedisabled' => '[Nhúng giữa các wiki bị tắt]',
+'scarytranscludefailed'   => '[Truy xuất tiêu bản cho $1 thất bại; rất tiếc]',
+'scarytranscludetoolong'  => '[Địa chỉ URL quá dài, rất tiếc]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2221,45 +2315,27 @@ $1
 'trackbackdeleteok' => 'Đã xóa trackback.',
 
 # Delete conflict
-'deletedwhileediting' => '<div style="float: left">[[Hình:Nuvola filesystems trashcan full.png|không|24px]]</div>
-<p style="margin-left: 28px"><strong style="color: red; background-color: white">Đã bị xóa:</strong> Trong lúc bạn đang sửa đổi trang này, một người quản lý đã xóa nó đi. Xin hãy tham khảo [[{{ns:Special}}:Log/delete|nhật trình xóa]] để xem tại sao.</p>',
-'confirmrecreate'     => '<div style="float: left">[[Hình:Nuvola filesystems trashcan full.png|không|24px]]</div>
-<div style="margin-left: 28px">
-
-<strong style="color: red; background-color: white">Đã bị xóa:</strong> Thành viên [[Thành viên:$1|$1]] ([[Thảo luận Thành viên:$1|thảo luận]]) đã xóa trang này trong lúc bạn đang sửa đổi nó, họ cho lý do:
-
-:\'\'$2\'\'
-
-Xin hãy xác nhận là bạn vẫn muốn tạo ra trang này lại hay không.
-
-</div>',
+'deletedwhileediting' => 'Cảnh báo: Trang này đã bị xóa sau khi bắt đầu sửa đổi!',
+'confirmrecreate'     => "Thành viên [[User:$1|$1]] ([[User talk:$1|thảo luận]]) đã xóa trang này sau khi bạn bắt đầu sửa đổi trang với lý do:
+: ''$2''
+Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'recreate'            => 'Tạo ra lại',
 
 # HTML dump
-'redirectingto' => "Đổi hướng đến '''[[$1]]'''…",
+'redirectingto' => 'Đang đổi hướng đến [[$1]]...',
 
 # action=purge
-'confirm_purge'        => "[[Hình:Nuvola apps kcmmemory.png|phải|100px|]]
+'confirm_purge'        => 'Làm sạch vùng nhớ đệm của trang này?
 
-Bạn sắp '''làm sạch vùng nhớ đệm''' của trang này.
-
-''Clear the cache of this page?''
-
-$1
-
-----
-Những tập tin [[Bộ nhớ đệm|nhớ đệm]] là bản sao tạm thời của một trang.
-
-Khi bạn truy nhập vào một trang ở đây, phần mềm dùng mã nguồn để tạo ra phiên bản mới và gửi nó tới trình duyệt của bạn. Do hạn chế công nghệ, các trang được vào bộ nhớ đệm&nbsp;– nó được lưu tạm thời. Vì vậy, hễ khi người dùng thăm một trang đã được thăm trước, bản sao trong vùng nhớ đệm sẽ hiển thị thay vì trang cập nhật.
-
-Sau khi làm sạch vùng nhớ đệm, phiên bản hiện hành sẽ hiển thị.",
-'confirm_purge_button' => 'Được',
+$1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
-'searchcontaining' => 'Tìm những bài có “$1”.',
-'searchnamed'      => "Tìm kiếm bài có tên ''$1''.",
-'articletitles'    => "Các bài bắt đầu với ''$1''",
+'searchcontaining' => "Tìm những bài có chứa ''$1''.",
+'searchnamed'      => "Tìm những bài có tên ''$1''.",
+'articletitles'    => "Những bài bắt đầu bằng ''$1''",
 'hideresults'      => 'Giấu kết quả',
+'useajaxsearch'    => 'Dùng tìm kiếm AJAX',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← trang trước',
@@ -2291,10 +2367,8 @@ Sau khi làm sạch vùng nhớ đệm, phiên bản hiện hành sẽ hiển th
 # Live preview
 'livepreview-loading' => 'Đang tải…',
 'livepreview-ready'   => 'Đang tải… Xong!',
-'livepreview-failed'  => 'Không thể xem thử trực tiếp!
-Dùng thử chế độ xem thử thông thường.',
-'livepreview-error'   => 'Không thể kết nối: $1 "$2"
-Dùng thử chế độ xem thử thông thường.',
+'livepreview-failed'  => 'Không thể xem thử trực tiếp! Hãy dùng thử chế độ xem thử thông thường.',
+'livepreview-error'   => 'Không thể kết nối: $1 "$2". Hãy dùng thử chế độ xem thử thông thường.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Những thay đổi trong vòng $1 giây trở lại đây có thể chưa xuất hiện trong danh sách.',
@@ -2305,9 +2379,8 @@ Dùng thử chế độ xem thử thông thường.',
 'watchlistedit-noitems'        => 'Danh sách các trang bạn theo dõi hiện không có gì.',
 'watchlistedit-normal-title'   => 'Sửa các trang tôi theo dõi',
 'watchlistedit-normal-legend'  => 'Bỏ các trang đang theo dõi ra khỏi danh sách',
-'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, nhấp chuột
-	vào ô cạnh nó, rồi nhấn nút "Bỏ trang đã chọn". Bạn cũng có thể [[Special:Watchlist/raw|sửa danh sách theo dạng thô]],
-	hoặc [[Special:Watchlist/clear|xóa toàn bộ các trang theo dõi]].',
+'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, chọn vào
+hộp kiểm bên cạnh nó, rồi nhấn "Bỏ trang đã chọn". Bạn cũng có thể [[Special:Watchlist/raw|sửa danh sách theo dạng thô]].',
 'watchlistedit-normal-submit'  => 'Bỏ trang đã chọn',
 'watchlistedit-normal-done'    => '$1 trang đã được xóa khỏi danh sách các trang theo dõi:',
 'watchlistedit-raw-title'      => 'Sửa danh sách theo dõi dạng thô',
@@ -2325,5 +2398,8 @@ Dùng thử chế độ xem thử thông thường.',
 'watchlisttools-view' => 'Xem thay đổi trên các trang theo dõi',
 'watchlisttools-edit' => 'Xem và sửa danh sách theo dõi',
 'watchlisttools-raw'  => 'Sửa danh sách theo dõi dạng thô',
+
+# Core parser functions
+'unknown_extension_tag' => 'Không hiểu thẻ mở rộng "$1"',
 
 );
