@@ -738,7 +738,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'  => 'Bophara',
