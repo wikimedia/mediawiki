@@ -257,6 +257,7 @@ class ParserTest {
 	 * @return bool
 	 */
 	private function runTest( $desc, $input, $result, $opts ) {
+		global $wgParserConf;
 		if( $this->showProgress ) {
 			$this->showTesting( $desc );
 		}
@@ -281,7 +282,8 @@ class ParserTest {
 
 		$noxml = (bool)preg_match( '~\\b noxml \\b~x', $opts );
 
-		$parser = new Parser;
+		$class = $wgParserConf['class'];
+		$parser = new $class( $wgParserConf );
 		foreach( $this->hooks as $tag => $callback ) {
 			$parser->setHook( $tag, $callback );
 		}

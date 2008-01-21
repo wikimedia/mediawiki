@@ -8,17 +8,21 @@ class PPFuzzTester {
 	var $hairs = array(
 		'[[', ']]', '{{', '}}', '{{{', '}}}', 
 		'<', '>', '<nowiki', '<gallery', '</nowiki>', '</gallery>', '<nOwIkI>', '</NoWiKi>',
-		//'<!--' , '-->',
-		//'<ref>', '</ref>', '<references/>',
+		'<!--' , '-->',
 		"\n==", "==\n",
 		'|', '=', "\n", ' ', "\t", "\x7f",
+		'~~', '~~~', '~~~~', 'subst:',
 		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
 		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+
+		// extensions
+		//'<ref>', '</ref>', '<references/>',
 	);
 	var $minLength = 0;
 	var $maxLength = 20;
 	var $maxTemplates = 5;
-	var $outputTypes = array( 'OT_HTML', 'OT_WIKI', 'OT_MSG', 'OT_PREPROCESS' );
+	//var $outputTypes = array( 'OT_HTML', 'OT_WIKI', 'OT_PREPROCESS' );
+	var $entryPoints = array( 'testSrvus', 'testPst', 'testPreprocess' );
 	static $currentTest = false;
 
 	function execute() {
@@ -71,26 +75,35 @@ class PPFuzzTester {
 		return Title::newFromText( mt_rand( 0, 1000000 ), mt_rand( 0, 10 ) );
 	}
 
+	/*
 	function pickOutputType() {
 		$count = count( $this->outputTypes );
 		return $this->outputTypes[ mt_rand( 0, $count - 1 ) ];
+	}*/
+
+	function pickEntryPoint() {
+		$count = count( $this->entryPoints );
+		return $this->entryPoints[ mt_rand( 0, $count - 1 ) ];
 	}
 }
 
 class PPFuzzTest {
-	var $templates, $mainText, $title;
+	var $templates, $mainText, $title, $entryPoint;
 
 	function __construct( $tester ) {
 		$this->parent = $tester;
 		$this->mainText = $tester->makeInputText();
 		$this->title = $tester->makeTitle();
-		$this->outputType = $tester->pickOutputType();
+		//$this->outputType = $tester->pickOutputType();
+		$this->entryPoint = $tester->pickEntryPoint();
+		$this->nickname = $tester->makeInputText();
+		$this->fancySig = (bool)mt_rand( 0, 1 );
 		$this->templates = array();
 	}
 
 	function templateHook( $title ) {
 		$titleText = $title->getPrefixedDBkey();
-				
+		
 		if ( !isset( $this->templates[$titleText] ) ) {
 			$finalTitle = $title;
 			if ( count( $this->templates ) >= $this->parent->maxTemplates ) {
@@ -116,16 +129,24 @@ class PPFuzzTest {
 	}
 
 	function execute() {
-		global $wgParser;
+		global $wgParser, $wgUser;
+
+		$wgUser = new PPFuzzUser;
+		$wgUser->mName = 'Fuzz';
+		$wgUser->mFrom = 'name';
+		$wgUser->ppfz_test = $this;
+
 		$options = new ParserOptions;
 		$options->setTemplateCallback( array( $this, 'templateHook' ) );
-		$wgParser->startExternalParse( $this->title, $options, constant( $this->outputType ) );
-		return $wgParser->srvus( $this->mainText );
+		//$wgParser->startExternalParse( $this->title, $options, constant( $this->outputType ) );
+		return call_user_func( array( $wgParser, $this->entryPoint ), $this->mainText, $this->title, $options );
 	}
 
 	function getReport() {
 		$s = "Title: " . $this->title->getPrefixedDBkey() . "\n" .
-			"Output type: {$this->outputType}\n" . 
+//			"Output type: {$this->outputType}\n" . 
+			"Entry point: {$this->entryPoint}\n" . 
+			"User: " . ( $this->fancySig ? 'fancy' : 'no-fancy' ) . ' ' . var_export( $this->nickname, true ) . "\n" . 
 			"Main text: " . var_export( $this->mainText, true ) . "\n";
 		foreach ( $this->templates as $titleText => $template ) {
 			$finalTitle = $template['finalTitle'];
@@ -136,6 +157,20 @@ class PPFuzzTest {
 			}
 		}
 		return $s;
+	}
+}
+
+class PPFuzzUser extends User {
+	var $ppfz_test;
+
+	function getOption( $option, $defaultOverride = '' ) {
+		if ( $option === 'fancysig' ) {
+			return $this->ppfz_test->fancySig;
+		} elseif ( $option === 'nickname' ) {
+			return $this->ppfz_test->nickname;
+		} else {
+			return parent::getOption( $option, $defaultOverride );
+		}
 	}
 }
 
