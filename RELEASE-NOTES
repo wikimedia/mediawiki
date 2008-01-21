@@ -42,12 +42,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
 * Add {{filepath:}} parser function to get full path to an uploaded file,
   complementing {{fullurl:}} for pages.
-* (bug 11136) If using Postgres, search path is explicitly set if wgDBmwschema 
+* (bug 11136) If using Postgres, search path is explicitly set if wgDBmwschema
   is not set to 'mediawiki', allowing multiple mediawiki instances per user.
 * (bug 11151) Add descriptive <title> to revision history page
 * (bug 5412) Add feed links for the site to all pages
 * (bug 11353) Add ability to retrieve raw section content via action=raw
-* (bug 6909) Show relevant deletion log lines when uploading a previously 
+* (bug 6909) Show relevant deletion log lines when uploading a previously
   deleted file
 * On SkinTemplate based skins (like MonoBook), omit confusing "edit"/"view
   source" tab entirely if the page doesn't exist and the user isn't allowed to
@@ -68,7 +68,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on Special:Newpages
 * LogLine hook added to allow formatting custom entries in Special:Log.
 * Support for Iranian calendar
-* (bug 1401) Allow hiding logged-in users, bots and patrolled pages on 
+* (bug 1401) Allow hiding logged-in users, bots and patrolled pages on
   Special:Newpages
 * ChangesListInsertArticleLink hook added for adding extra article info to RC.
 * MediaWikiPerformAction hook added for diverting control after the main
@@ -76,20 +76,20 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * BeforeWatchlist hook added for filtering or replacing watchlist.
 * SkinTemplateTabAction hook added for altering the properties of tab links.
 * OutputPage::getRedirect public method added.
-* (bug 11848) Allow URL parameters 'editintro' and 'preload' in Special:Mypage 
+* (bug 11848) Allow URL parameters 'editintro' and 'preload' in Special:Mypage
   and Special:Mytalk
 * Add ot=raw to Special:Allmessages
 * Support for Hebrew calendar
 * Support for Hebrew numerals in dates and times
 * (bug 11315) Signatures can be configured in [[MediaWiki:Signature]] and
   [[MediaWiki:Signature-anon]]
-* Signatures for anonymous users link to Special:Contributions page rather than 
+* Signatures for anonymous users link to Special:Contributions page rather than
   user page
 * Added --override switch for disabled pages in updateSpecialPages.php
-* Provide a unique message (ipb_blocked_as_range) if unblock of a single IP 
-  fails 
+* Provide a unique message (ipb_blocked_as_range) if unblock of a single IP
+  fails
   because it is part of a blocked range.
-* (bug 3973) Use a separate message for the email content when an account is 
+* (bug 3973) Use a separate message for the email content when an account is
   created by another user
 * dumpTextPass.php can spawn fetchText.php as a subprocess, which should restart
   cleanly if database connections fail unpleasantly.
@@ -130,13 +130,16 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12622) A JavaScript constant to declare whether api.php is available
 * Add caching to the AJAX search
 * Add APCOND_INGROUPS
-* Add DBA caching to installer 
+* Add DBA caching to installer
 * (bug 18585) Added a bunch of parameters to the revertpage message
 * Support redirects in image namespace
 * (bug 10049) Prefix index search and namespaces in Special:Withoutinterwiki
 * (bug 12668) Support for custom iPhone bookmark icon via $wgAppleTouchIcon
 * Add option to include templates in Special:Export.
-
+* (bug 12655) Added $wgUserEmailUseReplyTo config option to put sender
+  address in Reply-To instead of From for user-to-user emails.
+  This protects against SPF problems and privacy-leaking bounce messages
+  when using mailers that set the envelope sender to the From header value.
 
 === Bug fixes in 1.12 ===
 
@@ -164,20 +167,20 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4021) Fix for MySQL wildcard search
 * (bug 10699) Fix for MySQL phrase search
 * (bug 11321) Fix width of gallerybox when option "width=xxx" is used
-* (bug 7890) Special:BrokenRedirects links deleted redirects to a non-existent 
+* (bug 7890) Special:BrokenRedirects links deleted redirects to a non-existent
   page
 * Fix initial statistics when installing: add correct values
 * (bug 11342) Fix several 'returnto' links in permissions/error pages which
   linked to the main page instead of targetted page
-* Strike the link to the redirect rather than using an asterisk in 
+* Strike the link to the redirect rather than using an asterisk in
   Special:Listredirects
 * (bug 11355) Fix false positives in Safe Mode and other config detection
   when boolean settings are disabled with 'Off' via php_admin_value/php_value
-* (bug 11292) Fixed unserialize errors with Postgres by creating special Blob 
+* (bug 11292) Fixed unserialize errors with Postgres by creating special Blob
   object.
 * (bug 11363) Make all metadata fields bytea when using Postgres.
-* (bug 11331) Add buildConcat() and use CASE not IF for DB compatibility. Make 
-  oldimage cascade delete via image table for Postgres, change fa_storage_key 
+* (bug 11331) Add buildConcat() and use CASE not IF for DB compatibility. Make
+  oldimage cascade delete via image table for Postgres, change fa_storage_key
   TEXT.
 * (bug 11438) Live Preview chops returned text
 * Show the right message on account creation when the user is blocked
@@ -211,12 +214,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Initial-lowercase prefix checks in namespaceDupes.php now actually work.
 * Fix regression in LinkBatch.php breaking PHP 5.0
 * (bug 11452) wfMsgExt uses sometimes wrong language object for parsing magic
-  words when called with options ''parsemag'' or ''content''. 
+  words when called with options ''parsemag'' or ''content''.
 * (bug 11727) Support plural in 'historysize' message
 * (bug 11744) Incorrect return value from Title::getParentCategories()
 * (bug 11762) Fix native language name of Akan (ak)
 * (bug 11722) Fix inconsistent case in unprotect tabs
-* (bug 11795) Be more paranoid about confirming accept-encoding header is 
+* (bug 11795) Be more paranoid about confirming accept-encoding header is
   present
 * (bug 11809) Use formatNum() for more numbers
 * (bug 11818) Fix native language name of Inuktitut (iu)
@@ -254,8 +257,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12143) Do not show a link to patrol new pages for non existent pages
 * (bug 12166) Fix XHTML validity for Special:Emailuser
 * (bug 11346) Users who cannot edit a page can now no longer unprotect it.
-* (bug 451) Add a generic Traditional / Simplified Chinese conversion table, 
-  instead of a Traditional conversion with Taiwan variant, and a Simplified 
+* (bug 451) Add a generic Traditional / Simplified Chinese conversion table,
+  instead of a Traditional conversion with Taiwan variant, and a Simplified
   conversion with China variant.
 * (bug 12178) Fix wpReason parameter to action=delete, again.
 * Graceful behavior for updateRestrictions.php if a page already has records
@@ -334,28 +337,28 @@ The parser pass order has changed from
    * Template expansion
    * Main section...
 
-to 
+to
 
    * Template and extension tag parse to intermediate representation
    * Template expansion and extension rendering
    * HTML normalisation and security
    * Main section...
 
-The main effect of this for the user is that the rules for uncovered syntax 
-have changed. 
+The main effect of this for the user is that the rules for uncovered syntax
+have changed.
 
 Uncovered main-pass syntax, such as HTML tags, are now generally valid, whereas
 previously in some cases they were escaped. For example, you could have "<ta" in
 one template, and "ble>" in another template, and put them together to make a
-valid <table> tag. Previously the result would have been "&lt;table&gt;". 
+valid <table> tag. Previously the result would have been "&lt;table&gt;".
 
 Uncovered preprocessor syntax is generally not recognised. For example, if you
 have "{{a" in Template:A and "b}}" in Template:B, then "{{a}}{{b}}" will be
 converted to a literal "{{ab}}" rather than the contents of Template:Ab. This
-was the case previously in HTML output mode, and is now uniformly the case in 
+was the case previously in HTML output mode, and is now uniformly the case in
 the other modes as well. HTML-style comments uncovered by template expansion
 will not be recognised by the preprocessor and hence will not prevent template
-expansion within them, but they will be stripped by the following HTML security 
+expansion within them, but they will be stripped by the following HTML security
 pass.
 
 The rules for template expansion during message transformation were
@@ -369,16 +372,16 @@ The header identification routines for section edit and for numbering section
 edit links have been merged. This removes a significant failure mode and fixes a
 whole category of bugs (tracked by bug #4899). Wikitext headings uncovered by
 template expansion or comment removal will still be rendered into a heading tag,
-and will get an entry in the TOC, but will not have a section edit link. 
+and will get an entry in the TOC, but will not have a section edit link.
 HTML-style headings will also not have a section edit link. Valid wikitext
-headings present in the template source text will get a template section edit 
-link. This is a major break from previous behaviour, but I believe the effects 
+headings present in the template source text will get a template section edit
+link. This is a major break from previous behaviour, but I believe the effects
 are almost entirely beneficial.
 
 The main motivation for making these changes was performance. The new two-pass
 preprocessor can skip "dead branches" in template expansion, such as unfollowed
 #switch cases and unused defaults for template arguments. This provides a
-significant performance improvement in template-heavy test cases taken from 
+significant performance improvement in template-heavy test cases taken from
 Wikipedia. Parser function hooks can participate in this performance improvement
 by using the new SFH_OBJECT_ARGS flag during registration.
 
@@ -396,34 +399,34 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 * (bug 11275) Enable descending sort in categorymembers
 * (bug 11308) Allow the API to output the image metadata
-* (bug 11296) Temporary fix for escaping of ampersands inside links in 
+* (bug 11296) Temporary fix for escaping of ampersands inside links in
   pretty-printed
   help document.
 * (bug 11405) Expand templates implementation in the API
 * (bug 11218) Add option to feedwatchlist to display multiple revisions for each
   page.
-* (bug 11404) Provide name of exception caught in error code field of internal 
+* (bug 11404) Provide name of exception caught in error code field of internal
   api error messages.
 * (bug 11534) rvendid doesn't work
 * Fixed rvlimit of the revisions query to only enforce the lower query limit if
   revision content is requested.
-* Include svn revision number (if install is checked-out from svn) in siteinfo 
+* Include svn revision number (if install is checked-out from svn) in siteinfo
   query.
 * (bug 11173) Allow limited wikicode rendering via api.php
 * (bug 11572) API should provide interface for expanding templates
-* (bug 11569) Login should return the cookie prefix 
+* (bug 11569) Login should return the cookie prefix
 * (bug 11632) Breaking change: Specify the type of a change in the recentchanges
   list as 'edit', 'new', 'log' instead of 0, 1, 2, respectively.
 * Compatibility fix for PHP 5.0.x.
 * Add rctype parameter to list=recentchanges that filters by type
-* Add apprtype and apprlevel parameters to filter list=allpages by protection 
+* Add apprtype and apprlevel parameters to filter list=allpages by protection
   types and levels
 * Add apdir parameter to enable listing all pages from Z to A
 * (bug 11721) Use a different title for results than for the help page.
-* (bug 11562) Added a user_registration parameter/field to the list=allusers 
+* (bug 11562) Added a user_registration parameter/field to the list=allusers
   query.
 * (bug 11588) Preserve document structure for empty dataset in backlinks query.
-* Outputting list of all user preferences rather than having to request them by 
+* Outputting list of all user preferences rather than having to request them by
   name
 * (bug 11206) api.php should honor maxlag
 * Make prop=info check for restrictions in the old format too.
@@ -435,7 +438,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Use bold and italics highlighting only in API help
 * Added action={block,delete,move,protect,rollback,unblock,undelete} and list={blocks,deletedrevs}
 * Fixed sessionid attribute in action=login
-* Standardized limits. Revisions and Deletedrevisions formerly using 200 / 10000, 
+* Standardized limits. Revisions and Deletedrevisions formerly using 200 / 10000,
   now 500 / 5000, in line with other modules.
 * Added list=allcategories module
 * (bug 12321) API list=blocks reveals private data
@@ -669,8 +672,8 @@ updates.
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
 new database fields are filled with data.
 
-If upgrading from before 1.11, and you are using a wiki as a commons repository, 
-make sure that it is updated as well. Otherwise, errors may arise due to 
+If upgrading from before 1.11, and you are using a wiki as a commons repository,
+make sure that it is updated as well. Otherwise, errors may arise due to
 database schema changes.
 
 If you are upgrading from MediaWiki 1.4.x or earlier, some major database
