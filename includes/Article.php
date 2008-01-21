@@ -1766,9 +1766,6 @@ class Article {
 				if ( $cascade )
 					$comment .= "$cascade_description";
 
-				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
-				$nullRevId = $nullRevision->insertOn( $dbw );
-
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
@@ -1781,6 +1778,13 @@ class Article {
 							'pr_type' => $action ), __METHOD__ );
 					}
 				}
+				if($dbw->affectedRows() == 0)
+					// No change
+					return true;
+
+				# Insert a null revision
+				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
+				$nullRevId = $nullRevision->insertOn( $dbw );
 
 				# Update page record
 				$dbw->update( 'page',
