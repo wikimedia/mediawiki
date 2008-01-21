@@ -1283,8 +1283,9 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'brokenredirects-edit'    => '(bearbeiten)',
 'brokenredirects-delete'  => '(löschen)',
 
-'withoutinterwiki'        => 'Seiten ohne Links zu anderen Sprachen',
-'withoutinterwiki-header' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
+'withoutinterwiki'         => 'Seiten ohne Links zu anderen Sprachen',
+'withoutinterwiki-header'  => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
+'withoutinterwiki-submit'  => 'Zeige',
 
 'fewestrevisions'         => 'Seiten mit den wenigsten Versionen',
 'fewestrevisions-summary' => 'Diese Spezialseite zeigt eine Liste von Seiten mit den wenigsten Bearbeitungen.',
@@ -1509,7 +1510,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'deletepage'                  => 'Seite löschen',
 'confirm'                     => 'Bestätigen',
 'excontent'                   => "Alter Inhalt: '$1'",
-'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: [[User:$2|$2]] - [[User_talk:$2|Diskussion]])",
+'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: [[{{ns:User}}:$2|$2]] - [[{{ns:User talk}}:$2|Diskussion]])",
 'exbeforeblank'               => "Inhalt vor dem Leeren der Seite: '$1'",
 'exblank'                     => 'Seite war leer',
 'confirmdelete'               => 'Löschen bestätigen',
@@ -1531,14 +1532,15 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 ** Wunsch des Autors
 ** Urheberrechtsverletzung
 ** Vandalismus',
+'delete-toobig'               => 'Diese Seite hat mit mehr als $1 Versionen eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
+'delete-warning-toobig'       => 'Diese Seite hat mit mehr als $1 Versionen eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
 'rollback'                    => 'Zurücksetzen der Änderungen',
 'rollback_short'              => 'Zurücksetzen',
 'rollbacklink'                => 'Zurücksetzen',
 'rollbackfailed'              => 'Zurücksetzen gescheitert',
 'cantrollback'                => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[User:$2|$2]] <span style='font-size: smaller'>([[User_talk:$2|Diskussion]], 
-[[{{ns:special}}:Contributions/$2|Beiträge]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
-Änderungen an dieser Seite vorgenommen hat.<br />Die letzte Änderung stammt von [[User:$3|$3]] <span style='font-size: smaller'>([[User_talk:$3|Diskussion]])</span>.",
+'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user talk}}:$2|Diskussion]], [[{{#special:Contributions}}/$2|Beiträge]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
+Änderungen an dieser Seite vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user talk}}:$3|Diskussion]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Änderungen von [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt',
 'rollback-success'            => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
@@ -1751,7 +1753,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipb_already_blocked'         => '„$1“ wurde bereits gesperrt',
 'ipb_cant_unblock'            => 'Fehler: Sperr-ID $1 nicht gefunden. Die Sperre wurde bereits aufgehoben.',
 'ipb_blocked_as_range'        => 'Fehler: Die IP-Adresse $1 wurde als Teil der Bereichssperre $2 indirekt gesperrt. Eine Entsperrung von $1 alleine ist nicht möglich.',
-'ip_range_invalid'            => 'Ungültiger IP-Addressbereich.',
+'ip_range_invalid'            => 'Ungültiger IP-Adressbereich.',
 'blockme'                     => 'Sperre mich',
 'proxyblocker'                => 'Proxy blocker',
 'proxyblocker-disabled'       => 'Diese Funktion ist deaktiviert.',
@@ -1833,6 +1835,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 'export-addcattext' => 'Seiten aus Kategorie hinzufügen:',
 'export-addcat'     => 'Hinzufügen',
 'export-download'   => 'Als XML-Datei speichern',
+'export-templates'  => 'Inklusive Vorlagen',
 
 # Namespace 8 related
 'allmessages'               => 'MediaWiki-Systemtexte',
