@@ -270,17 +270,17 @@ Pele re romela melaetša ye mengwe go atrese ye, o kgopelwa go latela ditaelo t�
 'hr_tip'          => 'Mothalo wago ya faase/papamela (šomiša ka hloko)',
 
 # Edit pages
-'summary'               => 'Kakaretšo',
-'subject'               => 'Tabataba/Hlogo ya taba',
-'minoredit'             => 'Ye ke phetogo ye nnyenyane',
-'watchthis'             => 'Tlhapetša letlakala le',
-'savearticle'           => 'Boloka letlakala',
-'preview'               => 'Lebelela',
-'showpreview'           => 'Laetša sebopego sa letlaka',
-'showdiff'              => 'Laetša diphetogo',
-'anoneditwarning'       => "'''Temošo''' Gawa ''tsena'', IP ya gago e tla šumišwa go histori ya diphetogo tša letlakala",
-'summary-preview'       => 'Lebelela kakaretšo',
-'blockedtext'           => "<big>'''Leina la gago la mošumiši goba IP atrese e thibilwe.'''</big>
+'summary'                => 'Kakaretšo',
+'subject'                => 'Tabataba/Hlogo ya taba',
+'minoredit'              => 'Ye ke phetogo ye nnyenyane',
+'watchthis'              => 'Tlhapetša letlakala le',
+'savearticle'            => 'Boloka letlakala',
+'preview'                => 'Lebelela',
+'showpreview'            => 'Laetša sebopego sa letlaka',
+'showdiff'               => 'Laetša diphetogo',
+'anoneditwarning'        => "'''Temošo''' Gawa ''tsena'', IP ya gago e tla šumišwa go histori ya diphetogo tša letlakala",
+'summary-preview'        => 'Lebelela kakaretšo',
+'blockedtext'            => "<big>'''Leina la gago la mošumiši goba IP atrese e thibilwe.'''</big>
 
 O thibilwe ke $1. Makaba a go thiba ke ''$2''.
 
@@ -292,28 +292,29 @@ O ka leka go boledišana le $1 goba [[{{MediaWiki:Grouppage-sysop}}|molaudi]] ka
 O ka se kgone go šumiša thulusu ya 'romela mošumiši molaetša' ka ntle gage o loketše e-mail ya gago go
 [[Special:Preferences|dikgatlhegelo]] gape ge o sa thibelwa go e šomiša.
 IP atrese ya gago ke $3, ge ID ya go thiba ele #$5. Ka kgopelo šumiša ID le IP go dipoledišano ka moka tšeo dilego mabapi le go go thiba.",
-'newarticle'            => '(mpsha)',
-'newarticletext'        => "O latetše hlomaganyo go letlakala leo le sego gona ka se sebaka.
+'newarticle'             => '(mpsha)',
+'newarticletext'         => "O latetše hlomaganyo go letlakala leo le sego gona ka se sebaka.
 Go tlhola letlakala, thoma go ngwalo lepokising le letelago
 (lebelela [[{{MediaWiki:Helppage}}|letlakala la thušo]] go hwetša šedi).
 Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' go ''browser'' ya gago.",
-'noarticletext'         => 'Ga gona ditlhaka letlakaleng le, oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le].',
-'previewnote'           => '<strong>Ye ke Taetšo ya sebopego sa letlakala fela; diphetogo ga di ya bolokwa!</strong>',
-'editing'               => 'O fetola $1',
-'editingsection'        => 'Phetolo ya $1 (sekgoba)',
-'copyrightwarning'      => 'Diabe kamoka go {{SITENAME}} di akanywa go ngwadiwa tlase ga $2 (lebelela $1 go hwetša taba ka bophara). Ge o sa nyake gore mengwalo ya gago e fetolwe ntle le kgaugelo goba e phatlalatšwe ntle le tumello ya gago, o seke wa fana ka mengwalo mo.<br />
+'noarticletext'          => 'Ga gona ditlhaka letlakaleng le, oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le].',
+'previewnote'            => '<strong>Ye ke Taetšo ya sebopego sa letlakala fela; diphetogo ga di ya bolokwa!</strong>',
+'editing'                => 'O fetola $1',
+'editingsection'         => 'Phetolo ya $1 (sekgoba)',
+'copyrightwarning'       => 'Diabe kamoka go {{SITENAME}} di akanywa go ngwadiwa tlase ga $2 (lebelela $1 go hwetša taba ka bophara). Ge o sa nyake gore mengwalo ya gago e fetolwe ntle le kgaugelo goba e phatlalatšwe ntle le tumello ya gago, o seke wa fana ka mengwalo mo.<br />
 Gape o re holofetša  gore mengwalo ye e ngwadile ke wena, goba o e kopiša mothapong wa pepeneneng goba  ke mahala.
 <strong>O SE TSENYE MEŠOMO YA BATHO BA BANGWE NTLE LE TUMELLO YA BONA!</strong>',
-'longpagewarning'       => "<strong>TEMOŠO: Letlakala le le $1 kilobytes ka botelele;
+'longpagewarning'        => "<strong>TEMOŠO: Letlakala le le $1 kilobytes ka botelele;
 di-''browser'' tše dingwe dika ba le bothata go fetola matlakala a golena goba gofeta 32kb.
 
 Ka kgopela akanya ka go roba letlakala le goba le dikgaoe tše nnyenyane.</strong>",
-'templatesused'         => "''Templates'' tšeo di šomišitšwego letlakaleng le:",
-'templatesusedpreview'  => "''Templates'' tšeo di šomišitšwego go taetšo ya sebopego sa letlakala:",
-'template-protected'    => '(e lotilwe)',
-'nocreatetext'          => '{{SITENAME}} e nale dithibelo tše itšego go tlholeng ga matlakala a maphsa.
+'templatesused'          => "''Templates'' tšeo di šomišitšwego letlakaleng le:",
+'templatesusedpreview'   => "''Templates'' tšeo di šomišitšwego go taetšo ya sebopego sa letlakala:",
+'template-protected'     => '(e lotilwe)',
+'template-semiprotected' => '(lota-ka-seripa)',
+'nocreatetext'           => '{{SITENAME}} e nale dithibelo tše itšego go tlholeng ga matlakala a maphsa.
 O ka boela morago wa felola matlakala a lego gona, goba o [[Special:Userlogin|tsene]].',
-'recreate-deleted-warn' => "'''Temošo: O leka go tlhoma letlakala le gape, ka ge le ile la phumulwa.'''
+'recreate-deleted-warn'  => "'''Temošo: O leka go tlhoma letlakala le gape, ka ge le ile la phumulwa.'''
 
 Sekaseka gore letlakala le lephumutšwe ka mabaka afe pele o leka go le fetola.
 Sedi ya phumulo ya letlakala e re:",
@@ -588,6 +589,7 @@ Seemo sa go lota ga letlakala <strong>$1</strong>:',
 'linkshere'           => "Matlaka a latelago a hlomaganya le '''[[:$1]]''':",
 'nolinkshere'         => "Ga go letlakala leo le hlomaganyago go '''[[:$1]]'''.",
 'isredirect'          => "''redirect'' letlakala",
+'istemplate'          => 'tsentšho',
 'whatlinkshere-prev'  => '{{PLURAL:$1|fetile|fetile $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|latela|latela $1}}',
 'whatlinkshere-links' => '← dihlomaganyago',
@@ -729,6 +731,14 @@ Ka kgopelo, kgetha leina le lengwe.',
 'metadata-help'     => "Faele enale sedi yengwe, yeo ekabago e tšwa go khamera goba ''scanner'' tšeo di šumišitšwego go bopa faele ye. Sedi ye itsego ga ena goba gona go faele ye e fetolwago.",
 'metadata-expand'   => 'Bontšha sedi ya gotlala(extended)',
 'metadata-collapse' => "Fihla sedi ya gotlala(''extended'')",
+'metadata-fields'   => "EXIF metadata ''fields'' tšao dilego go molaetša wo, di tla tsenywa go
+letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fields'' di tla fihliwa.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'  => 'Bophara',

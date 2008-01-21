@@ -161,6 +161,7 @@ $messages = array(
 'viewtalkpage'      => 'Vidar debatado',
 'otherlanguages'    => 'Altra lingui',
 'redirectedfrom'    => '(Ridirektita de $1)',
+'lastmodifiedat'    => 'La pagino modifikesis ye $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Ica pagino acesita {{PLURAL:$1|1 foyo|$1 foyi}}.',
 'protectedpage'     => 'Protektita pagino',
 'jumpto'            => 'Irez ad:',
@@ -180,12 +181,15 @@ $messages = array(
 'edithelppage'      => 'Help:Editante pagini',
 'helppage'          => 'Help:Helpo',
 'mainpage'          => 'Frontispico',
+'policy-url'        => 'Projeto:Sistemo di agado',
 'portal'            => 'Komuneso-portalo',
 'portal-url'        => 'Project:Komuneso-portalo',
 'privacy'           => 'Sistemo di agado pri privateso',
 'privacypage'       => 'Projeto:Sistemo di agado pri privateso',
 'sitesupport'       => 'Donacaji',
 'sitesupport-url'   => 'Project:Donacaji',
+
+'badaccess' => 'Eroro permisal',
 
 'retrievedfrom'           => 'Obtenita de "$1"',
 'youhavenewmessages'      => 'Vu havas $1 ($2).',

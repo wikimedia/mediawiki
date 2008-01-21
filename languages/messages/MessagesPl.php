@@ -266,7 +266,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Błąd',
 'returnto'          => 'Wróć do strony $1.',
-'tagline'           => '{{SITENAME}}',
+'tagline'           => 'Z {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'help'              => 'Pomoc',
 'search'            => 'Szukaj',
 'searchbutton'      => 'Szukaj',
@@ -318,12 +318,12 @@ $messages = array(
 'jumptosearch'      => 'wyszukiwanie',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'O serwisie {{SITENAME}}',
+'aboutsite'         => 'O&nbsp;{{grammar:MS.lp|{{SITENAME}}}}',
 'aboutpage'         => 'Project:O serwisie',
 'bugreports'        => 'Raport o błędach',
 'bugreportspage'    => 'Project:Błędy',
 'copyright'         => 'Tekst udostępniany na licencji $1.',
-'copyrightpagename' => 'prawami autorskimi serwisu {{SITENAME}}',
+'copyrightpagename' => 'prawami autorskimi {{grammar:D.lp|{{SITENAME}}}}',
 'copyrightpage'     => '{{ns:project}}:Prawa_autorskie',
 'currentevents'     => 'Bieżące wydarzenia',
 'currentevents-url' => 'Project:Bieżące wydarzenia',
@@ -369,8 +369,8 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
 'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
-'site-rss-feed'           => 'Kanał RSS $1',
-'site-atom-feed'          => 'Kanał Atom $1',
+'site-rss-feed'           => 'Kanał RSS {{grammar:D.lp|$1}}',
+'site-atom-feed'          => 'Kanał Atom {{grammar:D.lp|$1}}',
 'page-rss-feed'           => 'Kanał RSS "$1"',
 'page-atom-feed'          => 'Kanał Atom "$1"',
 
@@ -616,7 +616,7 @@ Blokada wygasa $6
 Możesz skontaktować się z użytkownikiem $1 lub jednym z pozostałych
 [[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.
 
-Nie możesz korzystać z opcji "Wyślij e-mail do tego użytkownika", chyba że podałeś własny adres e-mail w [[Special:Preferences|preferencjach]] i nie została Ci odebrana możliwość wysyłania wiadomości.  Uwaga: Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail, nie możesz skorzystać z opcji "Wyślij e-mail do tego użytkownika". 
+Uwaga: Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail, nie możesz skorzystać z opcji "Wyślij e-mail do tego użytkownika". 
 
 Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'blockednoreason'           => 'nie podano powodu',
@@ -1340,7 +1340,7 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na zakład
 'unwatchthispage'      => 'Przestań obserwować',
 'notanarticle'         => 'To nie artykuł',
 'watchnochange'        => 'Żadna z obserwowanych stron nie była edytowana w podanym okresie.',
-'watchlist-details'    => 'Liczba obserwowanych przez Ciebie stron: $1, nie licząc stron dyskusji.',
+'watchlist-details'    => '$1 {{PLURAL:$1|strona obserwowana|strony obserwowane|stron obserwowanych}}, nie licząc stron dyskusji.',
 'wlheader-enotif'      => '* Wysyłanie powiadomień na adres e-mail jest włączone.',
 'wlheader-showupdated' => "* Strony które zostały zmienione od twojej ostatniej wizyty na nich zostały '''pogrubione'''",
 'watchmethod-recent'   => 'poszukiwanie ostatnich zmian wśród obserwowanych stron',

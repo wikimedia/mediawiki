@@ -180,6 +180,9 @@ $messages = array(
 'anontalk'       => 'या अंकपत्त्याचे चर्चा पान उघडा',
 'navigation'     => 'सुचालन',
 
+# Metadata in edit box
+'metadata_help' => 'मेटाडाटा:',
+
 'errorpagetitle'    => 'चुक',
 'returnto'          => '$1 कडे परत चला.',
 'tagline'           => '{{SITENAME}} कडून',
@@ -225,6 +228,7 @@ $messages = array(
 'redirectedfrom'    => '($1 पासून पुनर्निर्देशित)',
 'redirectpagesub'   => 'पुनर्निदेशनाचे पान',
 'lastmodifiedat'    => 'या पानातील शेवटचा बदल $1 रोजी $2 वाजता केला गेला.', # $1 date, $2 time
+'viewcount'         => 'हे पान {{PLURAL:$1|एकदा|$1 वेळा}} बघितले गेलेले आहे.',
 'protectedpage'     => 'सुरक्षित पृष्ठ',
 'jumpto'            => 'येथे जा:',
 'jumptonavigation'  => 'सुचालन',
