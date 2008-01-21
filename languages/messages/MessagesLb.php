@@ -155,7 +155,7 @@ $messages = array(
 'tog-externaleditor'          => 'Externen Editor als Standard benotzen',
 'tog-externaldiff'            => 'Externen Diff-Programm als Standard benotzen',
 'tog-uselivepreview'          => 'Live-Preview notzen (JavaScript) (experimentell)',
-'tog-forceeditsummary'        => 'Warnen, wa beim Späicheren de Résumé feelt',
+'tog-forceeditsummary'        => 'Warnen, wa beim Späicheren de Resumé feelt',
 'tog-watchlisthideown'        => 'Meng Ännerungen op menger Iwwerwaachungs-Lëscht verstoppen',
 'tog-watchlisthidebots'       => 'Ännerungen vu Botten op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthideminor'      => 'Kleng Ännerungen op menger Iwwerwaachungs-Lëscht verstoppen',
@@ -546,7 +546,7 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'hr_tip'          => 'Horizontal Linn (mat Moosse gebrauchen)',
 
 # Edit pages
-'summary'                   => 'Résumé',
+'summary'                   => 'Resumé',
 'subject'                   => 'Sujet/Iwwerschrëft',
 'minoredit'                 => 'Kleng Ännerung',
 'watchthis'                 => 'Dës Säit iwwerwaachen',
@@ -556,9 +556,9 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'showlivepreview'           => 'Live-Kucken ouni ofzespäicheren',
 'showdiff'                  => 'Weis Ännerungen',
 'anoneditwarning'           => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm är IP Adress am Historique vun dëser Säit gespäichert.',
-'missingsummary'            => "'''Erënnerung:''' Dir hutt kee Résumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Résumé ofgespäichert.",
+'missingsummary'            => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
 'missingcommenttext'        => 'Gitt w.e.g. eng Bemierkung an.',
-'summary-preview'           => 'Résumé kucken ouni ofzespäicheren',
+'summary-preview'           => 'Resumé kucken ouni ofzespäicheren',
 'subject-preview'           => 'Sujet/Iwwerschrëft kucken',
 'blockedtitle'              => 'Benotzer ass gespärt',
 'blockedtext'               => "<big>Äre Benotzernumm oder är IP Adress gouf gespaart.</big>
@@ -921,8 +921,8 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'uploadlog'           => 'Lëscht vun den eropgeluedene Fichieren',
 'uploadlogpage'       => 'Logbuch vum Eroplueden',
 'filename'            => 'Numm vum Fichier',
-'filedesc'            => 'Résumé',
-'fileuploadsummary'   => 'Résumé/Quell:',
+'filedesc'            => 'Resumé',
+'fileuploadsummary'   => 'Resumé/Quell:',
 'filestatus'          => 'Copyright Status',
 'filesource'          => 'Quell',
 'uploadedfiles'       => 'Eropgeluede Fichierën',
@@ -1097,11 +1097,11 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'popularpages'            => 'Populär Säiten',
 'wantedcategories'        => 'Gewënschte Kategorien',
 'wantedpages'             => 'Gewënschte Säiten',
-'mostlinked'              => 'Dack verlinkte Säiten',
-'mostlinkedcategories'    => 'Dack benotzte Kategorien',
-'mostlinkedtemplates'     => 'Dack benotzte Schablounen',
+'mostlinked'              => 'Dacks verlinkte Säiten',
+'mostlinkedcategories'    => 'Dacks benotzte Kategorien',
+'mostlinkedtemplates'     => 'Dacks benotzte Schablounen',
 'mostcategories'          => 'Säite mat de meeschte Kategorien',
-'mostimages'              => 'Dack benotzte Biller',
+'mostimages'              => 'Dacks benotzte Biller',
 'mostrevisions'           => 'Säite mat de meeschten Versiounen',
 'allpages'                => 'All Säiten',
 'prefixindex'             => 'All Säiten (no hiren Ufanksbuchstawen)',
@@ -1430,7 +1430,7 @@ Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance
 
 # Move page
 'movepage'                => 'Säit réckelen',
-'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Redirect op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert; 
+'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Viruleedung op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert; 
 
 Passt op datt keng duebel oder feelerhaft Viruleedungen am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.
 
