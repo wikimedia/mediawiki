@@ -331,6 +331,7 @@ class IPBlockForm {
 					if( !is_null( $user ) && $user->getID() ) {
 						# Use canonical name
 						$userId = $user->getID();
+						$this->BlockAddress = $user->getName();
 					} else {
 						return array('nosuchusershort', htmlspecialchars($user->getName()));
 					}
