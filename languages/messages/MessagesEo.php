@@ -605,8 +605,13 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'template-semiprotected'   => '(duone protektita)',
 'edittools'                => '<!-- Teksto ĉi tie estas montrata sub redaktaj kaj alŝutaj formularoj. -->',
 'nocreatetitle'            => 'Paĝa kreado estas limigita',
+'nocreatetext'             => '{{SITENAME}} restriktas la eblecon krei novajn pagxojn. Vi eblas reiri kaj redakti faritan pagxon, aux [[Special:Userlogin|ensaluti aux krei konton]].',
 'nocreate-loggedin'        => 'Vi ne rajtas krei novajn paĝojn en ĉi tiu vikio.',
 'permissionserrorstext'    => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
+'recreate-deleted-warn'    => "'''Averto: Vi rekreas pagxon tiu estis antauxe forigita.'''
+
+Vi konsideru cxu konvenas dauxre redakti cxi pagxon. 
+Jen la loglibro de forigoj por via oportuno:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',
@@ -620,6 +625,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'loadhist'            => 'Ŝarĝas redaktohistorion',
 'currentrev'          => 'Aktuala versio',
 'revisionasof'        => 'Kiel registrite je $1',
+'revision-info'       => 'Redakto de $1 de $2',
 'previousrevision'    => '← Antaŭa versio',
 'nextrevision'        => 'Sekva versio →',
 'currentrevisionlink' => 'vidu nunan version',
@@ -636,17 +642,20 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'historyempty'        => '(malplena)',
 
 # Revision feed
-'history-feed-title'       => 'Historio de redaktoj',
-'history-feed-description' => 'Revizia historio por ĉi tiu paĝo en la vikio',
+'history-feed-title'          => 'Historio de redaktoj',
+'history-feed-description'    => 'Revizia historio por ĉi tiu paĝo en la vikio',
+'history-feed-item-nocomment' => '$1 cxe $2', # user at time
 
 # Revision deletion
 'rev-delundel' => 'montru/kaŝu',
 
 # Diffs
+'history-title'           => 'Redakto-historio de "$1"',
 'difference'              => '(Malsamoj inter versioj)',
 'lineno'                  => 'Linio $1:',
 'compareselectedversions' => 'Komparu la selektitajn versiojn',
 'editundo'                => 'malfaru',
+'diff-multi'              => '({{PLURAL:$1|Unu meza versio|$1 mezaj versioj}} ne montrata.)',
 
 # Search results
 'searchresults'         => 'Serĉrezultoj',
@@ -759,6 +768,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'grouppage-bureaucrat' => '{{ns:project}}:Burokratoj',
 
 # User rights log
+'rightslog'      => 'Loglibro de uzanto-rajtoj',
 'rightslogtext'  => 'Ĉi tio estas loglibro pri la ŝanĝoj de uzantorajtoj.',
 'rightslogentry' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
 'rightsnone'     => '(nenia)',
@@ -767,6 +777,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'nchanges'                          => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 'recentchanges'                     => 'Lastaj ŝanĝoj',
 'recentchangestext'                 => 'Sekvu la plej lastajn ŝanĝojn en la {{SITENAME}} per ĉi tiu paĝo.',
+'recentchanges-feed-description'    => 'Sekvu la plej lastatempajn sxangxojn al la vikio en cxi tiu fonto.',
 'rcnote'                            => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $3.",
 'rcnotefrom'                        => 'Jen la ŝanĝoj ekde <strong>$2</strong> (lastaj ĝis <strong>$1</strong>).',
 'rclistfrom'                        => 'Montru novajn ŝanĝojn ekde "$1"',
@@ -935,6 +946,8 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'brokenredirects'     => 'Rompitaj alidirektadoj',
 'brokenredirectstext' => 'La jenaj alidirektadoj ligas al neekzistantaj artikoloj.',
 
+'withoutinterwiki' => 'Pagxoj sen lingvaj ligiloj',
+
 'fewestrevisions' => 'Artikoloj kun la plej malmultaj revizioj',
 
 # Miscellaneous special pages
@@ -956,6 +969,7 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'wantedpages'             => 'Dezirataj paĝoj',
 'mostlinked'              => 'Plej ligitaj paĝoj',
 'mostlinkedcategories'    => 'Plej ligitaj kategorioj',
+'mostlinkedtemplates'     => 'Plej ligitaj sxablonoj',
 'mostcategories'          => 'Artikoloj kun la plej multaj kategorioj',
 'mostimages'              => 'Plej ligitaj bildoj',
 'mostrevisions'           => 'Artikoloj kun la plej multaj revizioj',
@@ -1127,6 +1141,8 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletionlog'                 => 'loglibro de forigoj',
 'reverted'                    => 'Restarigis antaŭan version',
 'deletecomment'               => 'Kialo por forigo',
+'deleteotherreason'           => 'Alia/plua kialo:',
+'deletereasonotherlist'       => 'Alia kialo',
 'rollback'                    => 'Restarigu antaŭan redakton',
 'rollback_short'              => 'Restarigo',
 'rollbacklink'                => 'restarigu antaŭan',
@@ -1146,12 +1162,25 @@ Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj
 'protectsub'                  => '(Protektante "$1")',
 'confirmprotect'              => 'Konfirmu protektadon',
 'protectcomment'              => 'Kialo por protekti',
+'protectexpiry'               => 'Eksvalidigxas:',
+'protect_expiry_invalid'      => 'Nevalida findaŭro.',
+'protect_expiry_old'          => 'Eksvalidigxa tempo jam pasis.',
 'unprotectsub'                => '(Malprotektanta "$1")',
 'protect-unchain'             => 'Malŝlosu movpermesojn',
 'protect-text'                => 'Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo [[$1]]. Bonvolu certiĝi ke vi respektas la [[Special:Protectedpages|gvidliniojn de la projekto]].',
+'protect-locked-access'       => 'Via konto ne havas permeson ŝanĝi protekto-nivelojn. 
+Jen la aktualaj valoroj por la paĝo <strong>$1</strong>:',
+'protect-cascadeon'           => 'Cxi pagxo estas nun protektita kontraux redaktado cxar gxi estas inkluzivita en {{PLURAL:$1|jena pagxo, kiu mem estas protektita|jenaj pagxoj, kiuj mem estas protektitaj}} kun kaskada protekto. Vi povas sxangxi ties protektnivelon, sed tio ne sxangxos la kaskadan protekton.',
 'protect-default'             => '(defaŭlte)',
+'protect-fallback'            => '"$1" permeso bezonata',
 'protect-level-autoconfirmed' => 'Bloki neensalutintajn uzantojn',
 'protect-level-sysop'         => 'Nur administrantoj',
+'protect-summary-cascade'     => 'kaskada',
+'protect-expiring'            => 'finiĝas je $1 (UTC)',
+'protect-cascade'             => 'Protektu cxiujn pagxojn inkluzivitajn en cxi pagxo (kaskada protekto)',
+'protect-cantedit'            => 'Vi ne povas sxangxi la protekt-nivelojn de cxi tiu pagxo, cxar vi ne havas permeson redakti gxin.',
+'restriction-type'            => 'Permeso:',
+'restriction-level'           => 'Nivelo de limigo:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktu',
@@ -1308,8 +1337,10 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'movenologin'             => 'Ne ensalutinta',
 'movenologintext'         => 'Vi nepre estu registrita uzanto kaj [[Special:Userlogin|ensalutu]] por rajti movi paĝojn.',
 'newtitle'                => 'Al nova titolo',
+'move-watch'              => 'Atentu cxi tiun pagxon',
 'movepagebtn'             => 'Movu paĝon',
 'pagemovedsub'            => 'Sukcesis movi',
+'movepage-moved'          => '<big>\'\'\'"$1" estis movita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',
 'talkexists'              => 'Oni ja sukcesis movi la paĝon mem, sed
@@ -1369,6 +1400,9 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'importsuccess'           => 'La importo sukcesis!',
 'importhistoryconflict'   => 'Malkongrua historia versio ekzistas (eble la paĝo importiĝis antaŭe)',
 'importnosources'         => 'Neniu transvikia importfonto estis difinita kaj rekta historio de alŝutoj estas malaktivigita.',
+
+# Import log
+'importlogpage' => 'Loglibro de importaĵoj',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mia uzantopaĝo',
@@ -1441,6 +1475,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'spamprotectionmatch'    => 'La jena teksto ekagigis la spam-filtrilon: $1',
 'subcategorycount'       => 'Estas {{PLURAL:$1|unu subkategorio|$1 subkategorioj}} en tiu kategorio.',
 'categoryarticlecount'   => 'Estas {{PLURAL:$1|unu artikolo|$1 artikoloj}} en tiu kategorio.',
+'category-media-count'   => 'Estas {{PLURAL:$1|unu dosiero|$1 dosieroj}} en cxi tiu kategorio.',
 'listingcontinuesabbrev' => 'daŭrigo',
 'spambot_username'       => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting'         => 'Restarigo de lasta versio ne entenante ligilojn al $1',
@@ -1480,6 +1515,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'widthheightpage'      => '$1×$2, $3 paĝoj',
 'file-info-size'       => '($1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4)',
 'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',
+'svg-long-desc'        => '(SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3)',
 'show-big-image'       => 'Plena distingivo',
 'show-big-image-thumb' => '<small>Grandeco de cxi antauxvido: $1 × $2 rastrumeroj</small>',
 
@@ -1585,5 +1621,10 @@ $1',
 # Auto-summaries
 'autoredircomment' => 'Redirektante al [[$1]]',
 'autosumm-new'     => 'Nova paĝo: $1',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Montru koncernajn ŝanĝojn',
+'watchlisttools-edit' => 'Vidi kaj redakti atentaron',
+'watchlisttools-raw'  => 'Redakti krudan atentaron',
 
 );

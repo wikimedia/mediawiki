@@ -724,8 +724,8 @@ a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèr
 'revdelete-submit'            => 'Aplicar a la vèrsion sèlèccionâ',
 'revdelete-logentry'          => 'La visibilitât de la vèrsion at étâ modifiâ por [[$1]]',
 'logdelete-logentry'          => 'La visibilitât de l’èvènement at étâ modifiâ por [[$1]]',
-'revdelete-logaction'         => '$1 {{PLURAL:$1|vèrsion changiê|vèrsions changiês}} en condicion $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|èvènement de [[$3]] changiê|èvènements de [[$3]] changiês}} en condicion $2',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|vèrsion changiê|vèrsions changiês}} en môdo $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|èvènement de [[$3]] changiê|èvènements de [[$3]] changiês}} en môdo $2',
 'revdelete-success'           => 'Visibilitât de les vèrsions changiê avouéc reusséta.',
 'logdelete-success'           => 'Visibilitât des èvènements changiê avouéc reusséta.',
 
@@ -2098,8 +2098,8 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-exposureprogram-4' => 'Prioritât a l’ètopior',
 'exif-exposureprogram-5' => 'Programe crèacion (prèference a la provondior de champ)',
 'exif-exposureprogram-6' => 'Programe accion (prèference a la vitèsse d’ètopâ)',
-'exif-exposureprogram-7' => 'Condicion portrèt (por clich·ês de prés avouéc fond troblo)',
-'exif-exposureprogram-8' => 'Condicion payisâjo (por des clich·ês de payisâjos nèts)',
+'exif-exposureprogram-7' => 'Môdo portrèt (por clich·ês de prés avouéc fond troblo)',
+'exif-exposureprogram-8' => 'Môdo payisâjo (por des clich·ês de payisâjos nèts)',
 
 'exif-subjectdistance-value' => '{{PLURAL:$1|$1 mètre|$1 mètres}}',
 

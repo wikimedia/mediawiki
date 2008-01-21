@@ -1273,6 +1273,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 
 'withoutinterwiki'        => 'Stránky bez jazykových odkazov',
 'withoutinterwiki-header' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
+'withoutinterwiki-submit' => 'Zobraziť',
 
 'fewestrevisions' => 'Stránky s najmenším počtom revízií',
 
@@ -1830,6 +1831,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 'export-addcattext' => 'Pridať stránky z kategórie:',
 'export-addcat'     => 'Pridať',
 'export-download'   => 'Ponúknuť uloženie ako súbor',
+'export-templates'  => 'Vrátane šablón',
 
 # Namespace 8 related
 'allmessages'               => 'Všetky systémové správy',

@@ -537,6 +537,9 @@ Rodimal aze va tisu bu robetal oke [[Special:Userlogin|va int rodogluyal oke rop
 'history-feed-title'          => 'Betarizvot',
 'history-feed-description'    => 'Betarizvot va batu wikibu',
 'history-feed-item-nocomment' => '$1 koe $2', # user at time
+'history-feed-empty'          => 'Erunu bu me tir.
+Ont zo sulayar ont zo yoltayar.
+Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 
 # Revision deletion
 'rev-deleted-comment'     => '(tiolteyen sebuks)',
@@ -545,6 +548,7 @@ Rodimal aze va tisu bu robetal oke [[Special:Userlogin|va int rodogluyal oke rop
 'rev-delundel'            => 'nedira / palsera',
 'revisiondelete'          => 'Sulasa ik volsulasa betara',
 'revdelete-nooldid-title' => 'Me xalafa betara',
+'revdelete-selected'      => "{{PLURAL:$2|Reban betaks|Reban betakseem}} va '''$1:'''",
 'revdelete-legend'        => 'Skus irutareem :',
 'revdelete-hide-text'     => 'Palsera va betaracek',
 'revdelete-hide-name'     => 'Palsera va tegira is xala',
@@ -563,14 +567,16 @@ Rodimal aze va tisu bu robetal oke [[Special:Userlogin|va int rodogluyal oke rop
 'mergehistory-go'                  => 'Nedira va rojoan betakseem',
 'mergehistory-submit'              => 'Joara va betakseem',
 'mergehistory-empty'               => 'Mek rojoan betaks',
+'mergehistory-success'             => '$3 betaks va [[:$1]] joanhayan ko [[:$2]].',
 'mergehistory-no-source'           => '$1 klitabu me tir.',
 'mergehistory-no-destination'      => '$1 jalabu me tir.',
 'mergehistory-invalid-source'      => 'Klitabu gotir vergumveltanh.',
 'mergehistory-invalid-destination' => 'Jalabu gotir enaf vergumvelt.',
 
 # Merge log
-'mergelog'    => 'Va "log" joara',
-'revertmerge' => 'Voljoara',
+'mergelog'         => 'Va "log" joara',
+'revertmerge'      => 'Voljoara',
+'mergelogpagetext' => 'Vleveon tir vexala dem tel lonoeltafa joara se va buizvot ko ar.',
 
 # Diffs
 'history-title'           => 'Va "$1" betarizvot',
@@ -805,8 +811,9 @@ Va iyeltak gonageltal.',
 'upload-file-error' => 'Koefa rokla',
 'upload-misc-error' => 'Megrupena kalvajararokla',
 
-'license'   => 'Gelfara',
-'nolicense' => 'Mecoba rebana',
+'license'            => 'Gelfara',
+'nolicense'          => 'Mecoba rebana',
+'upload_source_file' => ' (iyeltak koe rinafo vusiko)',
 
 # Image list
 'imagelist'                 => 'Ewavavexala',
@@ -848,10 +855,11 @@ Va iyeltak gonageltal.',
 'imagelist_search_for'      => 'Aneyara va ewavayolt :',
 
 # File reversion
-'filerevert'         => 'Dimplekura va $1',
-'filerevert-legend'  => 'Dimplekura va iyeltak',
-'filerevert-comment' => 'Sebuks :',
-'filerevert-submit'  => 'Dimplekura',
+'filerevert'                => 'Dimplekura va $1',
+'filerevert-legend'         => 'Dimplekura va iyeltak',
+'filerevert-comment'        => 'Sebuks :',
+'filerevert-defaultcomment' => 'Sulan kal siatos ke $2, $1',
+'filerevert-submit'         => 'Dimplekura',
 
 # File deletion
 'filedelete'         => 'Sulara va $1',
@@ -1158,6 +1166,7 @@ Si une nouvelle page avec le même nom a été crée depuis la suppression, les 
 'undelete-revision'        => 'Sulayana betara va $1 (ik $2) gan $3 :',
 'undelete-nodiff'          => 'Mek abdif betaks trasin.',
 'undeletebtn'              => 'Skura va dimplekura !',
+'undeletereset'            => 'Tolplekura',
 'undeletecomment'          => 'Sebuks :',
 'undeletedarticle'         => 'va « [[$1]] » al dimplekur',
 'undeletedrevisions'       => '$1 siatos dimplekuyun',

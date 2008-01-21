@@ -5,6 +5,7 @@
  *
  * @author Cgboeree
  * @author Nike
+ * @author SPQRobin
  */
 
 
@@ -202,8 +203,8 @@ $messages = array(
 'disclaimers'       => 'Negas de respondablia',
 'disclaimerpage'    => 'Project:Nega jeneral de respondablia',
 'edithelp'          => 'Aida con edita',
-'edithelppage'      => 'Aida:Edita',
-'helppage'          => 'Aida:Contenis',
+'edithelppage'      => 'Help:Edita',
+'helppage'          => 'Help:Contenis',
 'mainpage'          => 'Paje Prima',
 'portal'            => 'Porta comunial',
 'portal-url'        => 'Project:Porta comunial',
