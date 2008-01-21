@@ -158,8 +158,8 @@ class EmailUserForm {
 				// This is a bit ugly, but will serve to differentiate
 				// wiki-borne mails from direct mails and protects against
 				// SPF and bounce problems with some mailers (see below).
-				global $wgEmergencyContact;
-				$mailFrom = new MailAddress( $wgEmergencyContact );
+				global $wgPasswordSender;
+				$mailFrom = new MailAddress( $wgPasswordSender );
 				$replyTo = $from;
 			} else {
 				// Put the sending user's e-mail address in the From: header.
