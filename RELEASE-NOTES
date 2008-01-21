@@ -326,6 +326,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   name will not work (but $wgSiteName is not checked if manually set).
 * (bug 12695) Suppress dvips verbiage from web server error log
 * (bug 12716) Unprotecting a non-protected page leaves a log entry
+* Log username blocks with canonical form of name instead of input form
 
 
 == Parser changes in 1.12 ==
