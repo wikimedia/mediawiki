@@ -1311,7 +1311,7 @@ class OutputPage {
 			$ret .= $this->feedLink(
 				$format,
 				$link,
-				wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) );
+				wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
 		}
 
 		# Recent changes feed should appear on every page
