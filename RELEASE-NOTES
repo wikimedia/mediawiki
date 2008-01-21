@@ -136,6 +136,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10049) Prefix index search and namespaces in Special:Withoutinterwiki
 * (bug 12668) Support for custom iPhone bookmark icon via $wgAppleTouchIcon
 * Add option to include templates in Special:Export.
+* (bug 12655) Added $wgUserEmailUseReplyTo config option to put sender
+  address in Reply-To instead of From for user-to-user emails.
+  This protects against SPF problems and privacy-leaking bounce messages
+  when using mailers that set the envelope sender to the From header value.
 
 
 === Bug fixes in 1.12 ===
