@@ -1701,6 +1701,7 @@ $1',
 'export-addcattext' => '由分类中添加页面:',
 'export-addcat'     => '添加',
 'export-download'   => '另存为文件',
+'export-templates'  => '包含模版',
 
 # Namespace 8 related
 'allmessages'               => '系统界面',

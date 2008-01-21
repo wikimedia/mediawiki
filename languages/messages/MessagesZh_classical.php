@@ -1402,6 +1402,7 @@ $NEWPAGE
 'export-addcattext' => '索門擇題：',
 'export-addcat'     => '增',
 'export-download'   => '備檔以載',
+'export-templates'  => '含模',
 
 # Namespace 8 related
 'allmessages'               => '官話',

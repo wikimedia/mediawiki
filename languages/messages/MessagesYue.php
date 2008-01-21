@@ -1765,6 +1765,7 @@ $1',
 'export-addcattext' => '由分類度加入頁面：',
 'export-addcat'     => '加入',
 'export-download'   => '另存做檔案',
+'export-templates'  => '包含模',
 
 # Namespace 8 related
 'allmessages'               => '系統信息',
