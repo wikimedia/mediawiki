@@ -1414,10 +1414,10 @@ containing all of the search terms will appear in the result).",
 'reupload'                    => 'Re-upload',
 'reuploaddesc'                => 'Return to the upload form.',
 'uploadnologin'               => 'Not logged in',
-'uploadnologintext'           => 'You must be [[Special:Userlogin|logged in]]
-to upload files.',
+'uploadnologintext'           => 'You must be [[Special:Userlogin|logged in]] to upload files.',
 'upload_directory_read_only'  => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'                 => 'Upload error',
+'upload-summary'              => '', # only translate this message to other languages if you have to change it
 'uploadtext'                  => "Use the form below to upload files, to view or search previously uploaded images go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
 To include the image in a page, use a link in the form

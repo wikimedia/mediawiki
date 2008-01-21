@@ -824,6 +824,7 @@ $wgMessageStructure = array(
 		'uploadnologintext',
 		'upload_directory_read_only',
 		'uploaderror',
+		'upload-summary',
 		'uploadtext',
 		'upload-permitted',
 		'upload-preferred',

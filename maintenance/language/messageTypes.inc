@@ -159,6 +159,7 @@ $wgOptionalMessages = array(
 	'unusedtemplates-summary',
 	'fewestrevisions-summary',
 	'withoutinterwiki-summary',
+	'upload-summary',
 	'tog-nolangconversion',
 	'yourvariant',
 	'variantname-zh-hans',
