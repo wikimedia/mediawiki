@@ -2519,6 +2519,7 @@ $wgMessageComments = array(
 	'sitenotice'                  => 'the equivalent to wgSiteNotice',
 	'history-feed-item-nocomment' => 'user at time',
 	'editcomment'                 => 'only shown if there is an edit comment',
+	'revertpage'                  => 'Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from',
 	'lastmodifiedatby'            => '$1 date, $2 time, $3 user',
 	'exif-orientation-1'          => '0th row: top; 0th column: left',
 	'exif-orientation-2'          => '0th row: top; 0th column: right',
