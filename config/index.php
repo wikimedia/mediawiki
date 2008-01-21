@@ -1233,7 +1233,7 @@ if( count( $errs ) ) {
 			}
 			if ( $conf->dba ) {
 				echo "<li>";
-				aField( $conf, "Shm", "DBA", "radio", "dba" );
+				aField( $conf, "Shm", "DBA (not recommended)", "radio", "dba" );
 				echo "</li>";
 			}
 		?>
@@ -1247,7 +1247,9 @@ if( count( $errs ) ) {
 		<br /><br />
 		MediaWiki can also detect and support eAccelerator, Turck MMCache, APC, and XCache, but
 		these should not be used if the wiki will be running on multiple application servers.
-		You can also use DBA for storing object cache in the file.
+		<br/><br/>
+		DBA (Berkeley-style DB) is generally slower than using no cache at all, and is only 
+		recommended for testing.
 	</p>
 </div>
 
@@ -1478,6 +1480,9 @@ EOT;
 
 
 function escapePhpString( $string ) {
+	if ( is_array( $string ) || is_object( $string ) ) {
+		return false;
+	}
 	return strtr( $string,
 		array(
 			"\n" => "\\n",
@@ -1829,7 +1834,6 @@ function testMemcachedServer( $server ) {
 	}
 	if ( !$errstr && count( $hostport ) != 2 ) {
 		$errstr = 'Please specify host and port';
-		var_dump( $hostport );
 	}
 	if ( !$errstr ) {
 		list( $host, $port ) = $hostport;
