@@ -328,6 +328,7 @@ function __autoload($className) {
 		'ApiMain' => 'includes/api/ApiMain.php',
 		'ApiOpenSearch' => 'includes/api/ApiOpenSearch.php',
 		'ApiPageSet' => 'includes/api/ApiPageSet.php',
+		'ApiParamInfo' => 'includes/api/ApiParamInfo.php',
 		'ApiParse' => 'includes/api/ApiParse.php',
 		'ApiQuery' => 'includes/api/ApiQuery.php',
 		'ApiQueryAllpages' => 'includes/api/ApiQueryAllpages.php',
