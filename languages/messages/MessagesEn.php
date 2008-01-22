@@ -2309,7 +2309,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importuploaderrorpartial'   => 'Upload of import file failed. The file was only partially uploaded.',
 'importuploaderrortemp'      => 'Upload of import file failed. A temporary folder is missing.',
 'import-parse-failure'       => 'XML import parse failure',
-'import-noarticle'           => 'No article to import!',
+'import-noarticle'           => 'No page to import!',
 'import-nonewrevisions'      => 'All revisions were previously imported.',
 'xml-error-string'           => '$1 at line $2, col $3 (byte $4): $5',
 
