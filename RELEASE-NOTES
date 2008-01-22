@@ -76,8 +76,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * BeforeWatchlist hook added for filtering or replacing watchlist.
 * SkinTemplateTabAction hook added for altering the properties of tab links.
 * OutputPage::getRedirect public method added.
-* (bug 11848) Allow URL parameters 'editintro' and 'preload' in Special:Mypage
-  and Special:Mytalk
+* (bug 11848, 12506) Allow URL parameters 'section', 'editintro' and 'preload'
+  in Special:Mypage and Special:Mytalk
 * Add ot=raw to Special:Allmessages
 * Support for Hebrew calendar
 * Support for Hebrew numerals in dates and times

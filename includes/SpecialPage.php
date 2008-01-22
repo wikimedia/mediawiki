@@ -799,7 +799,7 @@ class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 class SpecialMypage extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mypage' );
-		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro' );
+		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro', 'section' );
 	}
 
 	function getRedirect( $subpage ) {
@@ -819,7 +819,7 @@ class SpecialMypage extends UnlistedSpecialPage {
 class SpecialMytalk extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
-		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro' );
+		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro', 'section' );
 	}
 
 	function getRedirect( $subpage ) {
