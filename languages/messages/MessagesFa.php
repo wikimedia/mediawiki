@@ -1567,7 +1567,7 @@ $NEWPAGE
 
 آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]).',
 'editcomment'                 => 'توضیح ویرایش این بود: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود',
+'revertpage'                  => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'ویرایش‌های $1 واگردانی شد؛ صفحه به ویرایش $2 برگردانده شد.',
 'sessionfailure'              => 'بنظر می‌رسد مشکلی در مورد نشست کاربری شما وجود دارد؛ عمل درخواست شده بعنوان اقدام پیشگیرانه در برابر ربوده‌شدن اطلاعات نشست کاربری، لغو شد. لطفاً دکمهٔ «بازگشت» را در مرورگر خود بفشارید و صفحه‌ای که از آن به اینجا رسیده‌اید را مجدداً فراخوانی کنید، سپس مجدداً سعی کنید.',
 'protectlogpage'              => 'سیاههٔ_محافظت',
@@ -1909,6 +1909,10 @@ $1',
 'importuploaderrorsize'      => 'در بارگذاری پروندهٔ ورود، اشکال رخ داد. اندازهٔ پرونده بیشتر از حداکثر اندازهٔ مجاز است.',
 'importuploaderrorpartial'   => 'در بارگذاری پروندهٔ ورود، اشکال رخ داد. پرونده به طور ناقص بارگذاری شده‌است.',
 'importuploaderrortemp'      => 'در بارگذاری پروندهٔ ورود، اشکال رخ داد. پوشهٔ موقت پیدا نشد.',
+'import-parse-failure'       => 'خطا در تحلیل XML بارگذاری‌شده',
+'import-noarticle'           => 'صفحه‌ای برای بارگذاری وجود ندارد!',
+'import-nonewrevisions'      => 'تمام نسخه‌ها قبلاً بارگذاری شده‌اند.',
+'xml-error-string'           => '$1 در سطر $2، ستون $3 (بایت $4): $5',
 
 # Import log
 'importlogpage'                    => 'سیاههٔ واردکردن‌ها',
