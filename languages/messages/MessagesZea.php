@@ -101,11 +101,10 @@ $messages = array(
 'protectedpage'    => 'Beschermde bladzie',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutpage'   => 'Wikipedia',
 'edithelp'    => "Ulpe bie't bewerken",
 'mainpage'    => 'Vòblad',
 'portal'      => "'t Durpsuus",
-'portal-url'  => 'Wikipedia:Durpsuus',
+'portal-url'  => 'Project:Durpsuus',
 'sitesupport' => 'Donaoties',
 
 'badaccess'        => 'Fout in toegangsrechten',
@@ -114,7 +113,6 @@ $messages = array(
 'badaccess-group2' => 'De actie die-a je opgevroge ei is gerizzerveerd vò gebrukers uut de groepen $1.',
 'badaccess-groups' => 'De actie die-a je opgevroge ei is gerizzerveerd vò gebrukers uut de groepen $1.',
 
-'youhavenewmessages' => '<img src="http://upload.wikimedia.org/wikipedia/commons/3/36/Nuvola_apps_email.png" alt="" width="25" height="25" longdesc="/wiki/Image:Nuvola_apps_email.png" /> J\'ei \'n $1 ($2).',
 'newmessageslink'    => 'nieuw bericht',
 'editsection'        => 'bewerken',
 'editold'            => 'bewerk',
@@ -163,9 +161,6 @@ diert kan je, om misbruuk te vorkommen, geên nieuw wachtwoord laete opstiere.',
 'showdiff'              => 'Bekiek veranderiengen',
 'anoneditwarning'       => "'''Waerschuwienge:''' Je bin nie angemolde. Je IP-adres komt in de bewerkiengsgeschiedenisse van deêze bladzie te staen.",
 'blockedtitle'          => 'Gebruker is geblokkeerd',
-'blockedtext'           => "<big>'''Je gebrukersnaem of IP-adres is geblokkeerd.'''</big>
-De blokkaode wier uutgevoerd deu $1. De reje die d'n daevo gaf was ''$2''.
-Je kan contact opneêmen mee $1 of 'n aoren [[Wikipedia:Speciaole gebrukersrechten|opzichter]] om over de blokkaode in discussie te gaen. A je geên geldig e-mailadres opgegeven ei ka je de 'e-mail deêze gebruker'-functie nie gebruke. Je IP-adres is op dit mement $3. Zeit dat d'r in je verzoek(en) bie.",
 'blockedoriginalsource' => "De brontekst van '''$1''' staet ieronder:",
 'blockededitsource'     => "D'n tekst van '''joen biedragen''' an '''$1''' staet ieronder:",
 'accmailtitle'          => 'Wachtwoord verstierd.',
@@ -361,7 +356,6 @@ Kiest 'n aore naem.",
 'tooltip-n-mainpage'      => "Bekiek 't vòblad",
 'tooltip-n-portal'        => "Praet en overleg in't Durpsuus",
 'tooltip-n-recentchanges' => 'Bekiek wat-a juust veranderd is op deêze wiki',
-'tooltip-n-sitesupport'   => 'Steun Wikipedia',
 'tooltip-watch'           => 'Voeg deêze bladzie toe an de volglieste',
 
 # Spam protection
