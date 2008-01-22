@@ -82,8 +82,9 @@ class Parser
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
 		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerSuffix,
-		$mExtLinkBracketedRegex, $mPreprocessor;
-	
+		$mExtLinkBracketedRegex, $mPreprocessor, $mDefaultStripList;
+
+
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState;
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
@@ -114,7 +115,7 @@ class Parser
 		$this->mTransparentTagHooks = array();
 		$this->mFunctionHooks = array();
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
-		$this->mStripList = array( 'nowiki', 'gallery' );
+		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery' );
 		$this->mMarkerSuffix = "-QINU\x7f";
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x0a\\x0d]*?)\]/S';
@@ -3852,6 +3853,14 @@ class Parser
 		$this->mTransparentTagHooks[$tag] = $callback;
 
 		return $oldVal;
+	}
+
+	/**
+	 * Remove all tag hooks
+	 */
+	function clearTagHooks() {
+		$this->mTagHooks = array();
+		$this->mStripList = $this->mDefaultStripList;
 	}
 
 	/**
