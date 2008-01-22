@@ -30,6 +30,13 @@ class Parser_OldPP
 	const COLON_STATE_COMMENTDASH = 6;
 	const COLON_STATE_COMMENTDASHDASH = 7;
 
+	// Allowed values for $this->mOutputType
+	// Parameter to startExternalParse().
+	const OT_HTML = 1;
+	const OT_WIKI = 2;
+	const OT_PREPROCESS = 3;
+	const OT_MSG = 4;
+
 	/**#@+
 	 * @private
 	 */
@@ -195,10 +202,10 @@ class Parser_OldPP
 		$this->mOutputType = $ot;
 		// Shortcut alias
 		$this->ot = array(
-			'html' => $ot == OT_HTML,
-			'wiki' => $ot == OT_WIKI,
-			'msg' => $ot == OT_MSG,
-			'pre' => $ot == OT_PREPROCESS,
+			'html' => $ot == self::OT_HTML,
+			'wiki' => $ot == self::OT_WIKI,
+			'msg' => $ot == self::OT_MSG,
+			'pre' => $ot == self::OT_PREPROCESS,
 		);
 	}
 
@@ -246,7 +253,7 @@ class Parser_OldPP
 			$this->mRevisionId = $revid;
 			$this->mRevisionTimestamp = null;
 		}
-		$this->setOutputType( OT_HTML );
+		$this->setOutputType( self::OT_HTML );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->strip( $text, $this->mStripState );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -372,7 +379,7 @@ class Parser_OldPP
 	function preprocess( $text, $title, $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
 		$this->clearState();
-		$this->setOutputType( OT_PREPROCESS );
+		$this->setOutputType( self::OT_PREPROCESS );
 		$this->mOptions = $options;
 		$this->mTitle = $title;
 		if( $revid !== null ) {
@@ -508,7 +515,7 @@ class Parser_OldPP
 	function strip( $text, $state, $stripcomments = false , $dontstrip = array () ) {
 		global $wgContLang;
 		wfProfileIn( __METHOD__ );
-		$render = ($this->mOutputType == OT_HTML);
+		$render = ($this->mOutputType == self::OT_HTML);
 
 		$uniq_prefix = $this->mUniqPrefix;
 		$commentState = new ReplacementArray;
@@ -2758,9 +2765,9 @@ class Parser_OldPP
 	 * taking care to avoid infinite loops.
 	 *
 	 * Note that the substitution depends on value of $mOutputType:
-	 *  OT_WIKI: only {{subst:}} templates
-	 *  OT_MSG: only magic variables
-	 *  OT_HTML: all templates and magic variables
+	 *  self::OT_WIKI: only {{subst:}} templates
+	 *  self::OT_MSG: only magic variables
+	 *  self::OT_HTML: all templates and magic variables
 	 *
 	 * @param string $tex The text to transform
 	 * @param array $args Key-value pairs representing template parameters to substitute
@@ -2783,7 +2790,7 @@ class Parser_OldPP
 		if ( !$argsOnly ) {
 			$braceCallbacks[2] = array( &$this, 'braceSubstitution' );
 		}
-		if ( $this->mOutputType != OT_MSG ) {
+		if ( $this->mOutputType != self::OT_MSG ) {
 			$braceCallbacks[3] = array( &$this, 'argSubstitution' );
 		}
 		if ( $braceCallbacks ) {
@@ -2819,7 +2826,7 @@ class Parser_OldPP
 		$varname = $wgContLang->lc($matches[1]);
 		wfProfileIn( $fname );
 		$skip = false;
-		if ( $this->mOutputType == OT_WIKI ) {
+		if ( $this->mOutputType == self::OT_WIKI ) {
 			# Do only magic variables prefixed by SUBST
 			$mwSubst =& MagicWord::get( 'subst' );
 			if (!$mwSubst->matchStartAndRemove( $varname ))
@@ -3380,7 +3387,7 @@ class Parser_OldPP
 
 		if ( array_key_exists( $arg, $inputArgs ) ) {
 			$text = $inputArgs[$arg];
-		} else if (($this->mOutputType == OT_HTML || $this->mOutputType == OT_PREPROCESS ) &&
+		} else if (($this->mOutputType == self::OT_HTML || $this->mOutputType == self::OT_PREPROCESS ) &&
 		null != $matches['parts'] && count($matches['parts']) > 0) {
 			$text = $matches['parts'][0];
 		}
@@ -3736,7 +3743,7 @@ class Parser_OldPP
 	function preSaveTransform( $text, &$title, $user, $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
-		$this->setOutputType( OT_WIKI );
+		$this->setOutputType( self::OT_WIKI );
 
 		if ( $clearState ) {
 			$this->clearState();
@@ -3886,7 +3893,7 @@ class Parser_OldPP
 	 */
 	function cleanSig( $text, $parsing = false ) {
 		global $wgTitle;
-		$this->startExternalParse( $this->mTitle, new ParserOptions(), $parsing ? OT_WIKI : OT_MSG );
+		$this->startExternalParse( $this->mTitle, new ParserOptions(), $parsing ? self::OT_WIKI : self::OT_MSG );
 
 		$substWord = MagicWord::get( 'subst' );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
@@ -3952,7 +3959,7 @@ class Parser_OldPP
 			$this->mTitle = Title::newFromText('msg');
 		}
 		$this->mOptions = $options;
-		$this->setOutputType( OT_MSG );
+		$this->setOutputType( self::OT_MSG );
 		$this->clearState();
 		$text = $this->replaceVariables( $text );
 
@@ -4691,7 +4698,7 @@ class Parser_OldPP
 		$oldOutputType = $this->mOutputType;
 		$oldOptions = $this->mOptions;
 		$this->mOptions = new ParserOptions();
-		$this->setOutputType( OT_WIKI );
+		$this->setOutputType( self::OT_WIKI );
 
 		$striptext = $this->strip( $text, $stripState, true );
 

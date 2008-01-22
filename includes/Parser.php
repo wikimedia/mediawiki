@@ -75,6 +75,13 @@ class Parser
 
 	// Flags for preprocessToDom
 	const PTD_FOR_INCLUSION = 1;
+
+	// Allowed values for $this->mOutputType
+	// Parameter to startExternalParse().
+	const OT_HTML = 1;
+	const OT_WIKI = 2;
+	const OT_PREPROCESS = 3;
+	const OT_MSG = 3;
 	
 	/**#@+
 	 * @private
@@ -253,9 +260,9 @@ class Parser
 		$this->mOutputType = $ot;
 		// Shortcut alias
 		$this->ot = array(
-			'html' => $ot == OT_HTML,
-			'wiki' => $ot == OT_WIKI,
-			'pre' => $ot == OT_PREPROCESS,
+			'html' => $ot == self::OT_HTML,
+			'wiki' => $ot == self::OT_WIKI,
+			'pre' => $ot == self::OT_PREPROCESS,
 		);
 	}
 
@@ -328,7 +335,7 @@ class Parser
 			$this->mRevisionId = $revid;
 			$this->mRevisionTimestamp = null;
 		}
-		$this->setOutputType( OT_HTML );
+		$this->setOutputType( self::OT_HTML );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		# No more strip!
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -454,7 +461,7 @@ class Parser
 	function preprocess( $text, $title, $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
 		$this->clearState();
-		$this->setOutputType( OT_PREPROCESS );
+		$this->setOutputType( self::OT_PREPROCESS );
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 		if( $revid !== null ) {
@@ -948,7 +955,7 @@ class Parser
 
 	/**
 	 * Helper function for parse() that transforms wiki markup into
-	 * HTML. Only called for $mOutputType == OT_HTML.
+	 * HTML. Only called for $mOutputType == self::OT_HTML.
 	 *
 	 * @private
 	 */
@@ -2639,9 +2646,9 @@ class Parser
 	 * taking care to avoid infinite loops.
 	 *
 	 * Note that the substitution depends on value of $mOutputType:
-	 *  OT_WIKI: only {{subst:}} templates
-	 *  OT_PREPROCESS: templates but not extension tags
-	 *  OT_HTML: all templates and extension tags
+	 *  self::OT_WIKI: only {{subst:}} templates
+	 *  self::OT_PREPROCESS: templates but not extension tags
+	 *  self::OT_HTML: all templates and extension tags
 	 *
 	 * @param string $tex The text to transform
 	 * @param PPFrame $frame Object describing the arguments passed to the template
@@ -3597,7 +3604,7 @@ class Parser
 	function preSaveTransform( $text, &$title, $user, $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->setTitle( $title );
-		$this->setOutputType( OT_WIKI );
+		$this->setOutputType( self::OT_WIKI );
 
 		if ( $clearState ) {
 			$this->clearState();
@@ -3749,7 +3756,7 @@ class Parser
 			$this->clearState();
 			$this->setTitle( $wgTitle );
 			$this->mOptions = new ParserOptions;
-			$this->setOutputType = OT_PREPROCESS;
+			$this->setOutputType = self::OT_PREPROCESS;
 		}
 
 		# FIXME: regex doesn't respect extension tags or nowiki
@@ -4540,7 +4547,7 @@ class Parser
 		$this->clearState();
 		$this->setTitle( $wgTitle ); // not generally used but removes an ugly failure mode
 		$this->mOptions = new ParserOptions;
-		$this->setOutputType( OT_WIKI );
+		$this->setOutputType( self::OT_WIKI );
 		$curIndex = 0;
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
@@ -4767,7 +4774,7 @@ class Parser
 	/**
 	 * strip/replaceVariables/unstrip for preprocessor regression testing
 	 */
-	function testSrvus( $text, $title, $options, $outputType = OT_HTML ) {
+	function testSrvus( $text, $title, $options, $outputType = self::OT_HTML ) {
 		$this->clearState();
 		$this->mTitle = $title;
 		$this->mOptions = $options;
@@ -4784,7 +4791,7 @@ class Parser
 	}
 
 	function testPreprocess( $text, $title, $options ) {
-		return $this->testSrvus( $text, $title, $options, OT_PREPROCESS );
+		return $this->testSrvus( $text, $title, $options, self::OT_PREPROCESS );
 	}
 }
 
