@@ -654,7 +654,7 @@ Equí tienes el rexistru de borraos d'esta páxina:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nun se pue crear la cuenta',
-'cantcreateaccount-text' => "La creación de cuentes dende esta direición IP (<b>$1</b>) foi bloquiada por [[Usuariu:$3|$3]].
+'cantcreateaccount-text' => "La creación de cuentes dende esta direición IP (<b>$1</b>) foi bloquiada por [[User:$3|$3]].
 
 El motivu dau por $3 ye ''$2''",
 
@@ -1387,7 +1387,7 @@ fecha por [[User:$2|$2]] ([[User talk:$2|alderique]]); daquién más yá editó 
 
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]]).',
 'editcomment'                 => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la versión de [[User:$1|$1]]',
+'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la versión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 'sessionfailure'              => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
@@ -1746,13 +1746,14 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'importcantopen'             => "Nun se pudo abrir l'archivu d'importación",
 'importbadinterwiki'         => 'Enllaz interwiki incorreutu',
 'importnotext'               => 'Vaciu o ensin testu',
-'importsuccess'              => '¡Importación realizada!',
+'importsuccess'              => '¡Importación finalizada!',
 'importhistoryconflict'      => 'Existe un conflictu na revisión del historial (seique esta páxina fuera importada previamente)',
 'importnosources'            => "Nun se definió l'orixe de la importación treswiki y les xubíes direutes del historial tán deshabilitaes.",
 'importnofile'               => "Nun se xubió nengún archivu d'importación.",
 'importuploaderrorsize'      => "Falló la xubida del archivu d'importación. L'archivu ye más grande que'l tamañu permitíu de xubida.",
 'importuploaderrorpartial'   => "Falló la xubida del archivu d'importación. L'archivu xubióse solo parcialmente.",
 'importuploaderrortemp'      => "Falló la xubida del archivu d'importación. Falta una carpeta temporal.",
+'import-noarticle'           => '¡Nun hai páxina pa importar!',
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",

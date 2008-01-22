@@ -1510,7 +1510,7 @@ Na $2 nájdete zoznam posledných zmazaní.',
 
 Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]]).',
 'editcomment'                 => 'Komentár k úprave bol: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1',
+'revertpage'                  => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
 'sessionfailure'              => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
 táto akcia bola zrušená ako prevencia proti zneužitiu relácie (session).
@@ -1871,13 +1871,17 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'importcantopen'             => 'Nedal sa otvoriť súbor importu',
 'importbadinterwiki'         => 'Zlý interwiki odkaz',
 'importnotext'               => 'Prázdny alebo žiadny text',
-'importsuccess'              => 'Import prebehol úspešne!',
+'importsuccess'              => 'Import dokončený!',
 'importhistoryconflict'      => 'Existujú konfliktné histórie revízií (možno už bola táto stránka importovaná)',
 'importnosources'            => 'Neboli definované žiadne zdroje pre transwiki import a priame nahranie histórie je vypnuté.',
 'importnofile'               => 'Nebol nahraný import súbor.',
 'importuploaderrorsize'      => 'Nahranie alebo import súboru zlyhal. Súbor je väčší ako maximálna povolená veľkosť.',
 'importuploaderrorpartial'   => 'Nahranie alebo import súboru zlyhal. Súbor bol nahraný iba čiastočne.',
 'importuploaderrortemp'      => 'Nahranie alebo import súboru zlyhal. Dočasný adresár chýba.',
+'import-parse-failure'       => 'Chyba syntaktickej analýzy pri XML importe',
+'import-noarticle'           => 'Žiadny článok na import!',
+'import-nonewrevisions'      => 'Všetky revízie boli predtým importované.',
+'xml-error-string'           => '$1 na riadku $2, stĺpec $3 (bajt $4): $5',
 
 # Import log
 'importlogpage'                    => 'Záznam importov',

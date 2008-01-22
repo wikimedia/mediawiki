@@ -1484,7 +1484,7 @@ por [[User:$2|$2]] ([[User_talk:$2|Discussão]]); alguém editou ou já reverteu
 
 A última edição foi de [[User:$3|$3]] ([[User_talk:$3|Discussão]]).',
 'editcomment'                 => 'O sumário de edição era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertidas edições por [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]',
+'revertpage'                  => 'Revertidas edições por [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 'sessionfailure'              => 'Foram detectados problemas com a sua sessão;
 Esta acção foi cancelada como medida de protecção contra a intercepção de sessões.
@@ -1811,7 +1811,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'importcantopen'             => 'Não foi possível abrir o ficheiro de importação',
 'importbadinterwiki'         => 'Ligação de interwiki incorrecta',
 'importnotext'               => 'Vazio ou sem texto',
-'importsuccess'              => 'Importação bem sucedida!',
+'importsuccess'              => 'Importação completa!',
 'importhistoryconflict'      => 'Existem conflitos de edições no histórico (talvez esta página já foi importada antes)',
 'importnosources'            => 'Não foram definidas fontes de importação transwiki e o carregamento directo de históricos encontra-se desactivado.',
 'importnofile'               => 'Nenhum ficheiro de importação foi carregado.',

@@ -11,6 +11,7 @@
  * @author Borislav
  * @author Siebrand
  * @author SPQRobin
+ * @author Петър Петров
  */
 
 $fallback8bitEncoding = 'windows-1251';
@@ -1329,9 +1330,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'protectedpages'          => 'Защитени страници',
 'protectedpagestext'      => 'Следните страници са защитени против редактиране или преместване',
 'protectedpagesempty'     => 'В момента няма защитени страници с тези параметри.',
-'protectedtitles'         => 'Защитени страници',
-'protectedtitlestext'     => 'Следните страници са защитени срещу създаване',
-'protectedtitlesempty'    => 'В момента няма страници, защитени с тези параметри.',
+'protectedtitles'         => 'Защитени заглавия',
+'protectedtitlestext'     => 'Следните заглавия са защитени срещу създаване',
+'protectedtitlesempty'    => 'В момента няма заглавия, защитени с тези параметри.',
 'listusers'               => 'Списък на потребителите',
 'specialpages'            => 'Специални страници',
 'spheading'               => 'Специални страници за всички потребители',
@@ -1524,7 +1525,7 @@ $NEWPAGE
 
 Последната редакция е на [[User:$3|$3]] ([[User_talk:$3|Беседа]]).',
 'editcomment'                 => "Коментарът на редакцията е бил: „''$1''“.", # only shown if there is an edit comment
-'revertpage'                  => 'Премахване на [[{{ns:special}}:Contributions/$2|редакции на $2]] ([[User_talk:$2|беседа]]); възвръщане към последната версия на [[User:$1|$1]]',
+'revertpage'                  => 'Премахване на [[{{ns:special}}:Contributions/$2|редакции на $2]] ([[User_talk:$2|беседа]]); възвръщане към последната версия на [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Отменени редакции на $1; възвръщане към последната версия на $2.',
 'sessionfailure'              => 'Изглежда има проблем със сесията ви; действието беше отказано като предпазна мярка срещу крадене на сесията. Натиснете бутона за връщане на браузъра, презаредете страницата, от която сте дошли, и опитайте отново.',
 'protectlogpage'              => 'Дневник на защитата',

@@ -712,6 +712,15 @@ povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logo
 
 Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj restarigi gxin per la sama interfaco, krom se plia limigo estas metita de la pagxaradministrantoj.',
 'revdelete-legend'            => 'Limigu ecojn de versio:',
+'revdelete-hide-text'         => 'Kaŝu tekston de versio',
+'revdelete-hide-name'         => 'Kaŝu agon kaj celon',
+'revdelete-hide-comment'      => 'Kaŝu komenton de redakto',
+'revdelete-hide-user'         => 'Kaŝu nomon aux IP-adreson de redaktinto',
+'revdelete-hide-restricted'   => 'Apliku ĉi limigojn al administrantoj same kiel al aliaj uzantoj',
+'revdelete-suppress'          => 'Subpremu datumojn de administrantoj aldone al de aliaj',
+'revdelete-hide-image'        => 'Kaŝu dosier-enhavon',
+'revdelete-unsuppress'        => 'Forigu limigojn al restarigitaj versioj',
+'revdelete-log'               => 'Loglibra komento:',
 
 # Diffs
 'history-title'           => 'Redakto-historio de "$1"',
@@ -1214,7 +1223,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'cantrollback'                => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
 'alreadyrolled'               => 'Ne eblas restarigi la lastan redakton de [[$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]) pro tio, ke oni intertempe redaktis la paĝon. La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]]).',
 'editcomment'                 => "La komento estis: '<i>$1</i>'.", # only shown if there is an edit comment
-'revertpage'                  => 'Forigis redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]); restarigis al la lasta versio de [[User:$1|$1]]',
+'revertpage'                  => 'Forigis redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]); restarigis al la lasta versio de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
