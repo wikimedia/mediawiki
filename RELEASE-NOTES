@@ -327,6 +327,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12695) Suppress dvips verbiage from web server error log
 * (bug 12716) Unprotecting a non-protected page leaves a log entry
 * Log username blocks with canonical form of name instead of input form
+* (bug 11593, 12719) Fixes for overzealous invocation of thumb.php.
+  Non-image handlers and full-size images may now decline it, fixing
+  mystery failures when using $wgThumbnailScriptPath.
 
 
 == Parser changes in 1.12 ==

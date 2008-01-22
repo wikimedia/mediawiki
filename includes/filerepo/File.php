@@ -505,9 +505,11 @@ abstract class File {
 
 			$script = $this->getTransformScript();
 			if ( $script && !($flags & self::RENDER_NOW) ) {
-				// Use a script to transform on client request
+				// Use a script to transform on client request, if possible
 				$thumb = $this->handler->getScriptedTransform( $this, $script, $params );
-				break;
+				if( $thumb ) {
+					break;
+				}
 			}
 
 			$normalisedParams = $params;
@@ -515,7 +517,7 @@ abstract class File {
 			$thumbName = $this->thumbName( $normalisedParams );	
 			$thumbPath = $this->getThumbPath( $thumbName );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
-
+			
 			if ( $this->repo->canTransformVia404() && !($flags & self::RENDER_NOW ) ) {
 				$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 				break;

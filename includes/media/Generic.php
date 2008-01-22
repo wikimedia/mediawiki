@@ -96,6 +96,19 @@ abstract class MediaHandler {
 	 */
 	function isMetadataValid( $image, $metadata ) { return true; }
 
+
+	/**
+	 * Get a MediaTransformOutput object representing an alternate of the transformed
+	 * output which will call an intermediary thumbnail assist script.
+	 *
+	 * Used when the repository has a thumbnailScriptUrl option configured.
+	 *
+	 * Return false to fall back to the regular getTransform().
+	 */
+	function getScriptedTransform( $image, $script, $params ) {
+		return false;
+	}
+
 	/**
 	 * Get a MediaTransformOutput object representing the transformed output. Does not 
 	 * actually do the transform.
@@ -372,7 +385,10 @@ abstract class ImageHandler extends MediaHandler {
 		}
 		$url = $script . '&' . wfArrayToCGI( $this->getScriptParams( $params ) );
 		$page = isset( $params['page'] ) ? $params['page'] : false;
-		return new ThumbnailImage( $image, $url, $params['width'], $params['height'], $page );
+		
+		if( $image->mustRender() || $params['width'] < $image->getWidth() ) {
+			return new ThumbnailImage( $image, $url, $params['width'], $params['height'], $page );
+		}
 	}
 
 	function getImageSize( $image, $path ) {
