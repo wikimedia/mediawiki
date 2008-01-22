@@ -52,7 +52,7 @@ class MailAddress {
 		# so don't bother generating them
 		if( $this->name != '' && !wfIsWindows() ) {
 			$quoted = wfQuotedPrintable( $this->name );
-			if( strpos( $quoted, '.' ) !== false ) {
+			if( strpos( $quoted, '.' ) !== false || strpos( $quoted, ',' ) !== false ) {
 				$quoted = '"' . $quoted . '"';
 			}
 			return "$quoted <{$this->address}>";
