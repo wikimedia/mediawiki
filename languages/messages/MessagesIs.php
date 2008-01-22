@@ -804,6 +804,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'lineno'                  => 'Lína $1:',
 'compareselectedversions' => 'Bera saman valdar útgáfur',
 'editundo'                => 'Taka aftur þessa breytingu',
+'diff-multi'              => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}}.)',
 
 # Search results
 'searchresults'         => 'Leitarniðurstöður',
@@ -1304,7 +1305,7 @@ sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 eftir [[User:$2|$2]] ([[User_talk:$2|spjall]]) til baka; eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
-'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]',
+'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Þetta er skrá yfir verndunar- og afverndunaraðgerðir. Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
@@ -1868,4 +1869,3 @@ $1',
 'watchlisttools-raw'  => 'Breyta opnum vaktlistanum',
 
 );
-

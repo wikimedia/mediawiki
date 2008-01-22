@@ -405,11 +405,11 @@ La registhrazioni è isthadda criadda currettamenti. No dimintiggà di passunari
 'passwordtooshort'           => "La paràura d'órdhini insiridda è troppu brebi. Débi cuntinì arumancu $1 caràtteri e assé dibessa da l'innòmmu utenti.",
 'mailmypassword'             => "Invia la paràura d'órdhini via postha erettrònica",
 'passwordremindertitle'      => "Saivvìziu promimória paràura d'órdhini di {{SITENAME}}",
-'passwordremindertext'       => "Calchunu (forsi tu, cun l'indirizzu IP \$1) à dumandaddu l'inviu d'una noba paràura d'órdhini pa l'intradda a {{SITENAME}} (\$4).
+'passwordremindertext'       => "Calchunu (forsi tu, cu' l'indirizzu IP \$1) à dumandaddu l'inviu d'una noba paràura d'órdhini pa l'intradda a {{SITENAME}} (\$4).
 La paràura d'órdhini pa l'utenti \"\$2\" è isthadda impusthadda a \"\$3\".
 È opporthunu eseguì un'intradda cantu primma e ciambà la paràura d'órdhini immediatamenti.
 
-Si nò sei isthaddu tu a fà la prigonta, oppuru ài acciapaddu la paràura d'órdhini e nò desideri più la ciambà, pói ignorà chista imbasciadda e continuà a usà la paràura d'órdhini véccia.",
+Si nò sei isthaddu tu a fà la prigonta, oppuru ài acciapaddu la paràura d'órdhini e nò desideri più la ciambà, pói ignorà chisth'imbasciadda e continuà a usà la paràura d'órdhini véccia.",
 'noemail'                    => 'Nisciunu indirizzu di postha erettrònica registhraddu pa l\'utenti "$1".',
 'passwordsent'               => 'Una noba paràura d\'órdhini è isthadda inviadda a l\'indirizzu di postha erettrònica registhraddu pa l\'utenti "$1".
 Pa piazeri, effettua una intradda nò appèna la rizzibi.',
@@ -429,7 +429,7 @@ Pa piazeri, effettua una intradda nò appèna la rizzibi.',
 'createaccount-text'         => 'Calchunu ($1) à criaddu un\'intradda a {{SITENAME}} pa contu di $2
 ($4). La paràura d\'órdhini pa l\'utenti "$2" è impusthadda a "$3".  È opporthunu eseguì un\'intradda cantu primma e ciambà la paràura d\'órdhini immediatamenti.
 
-Si la registhrazioni è isthadda criadda pa un\'errori, pói ignorà chista imbasciadda.',
+Si la registhrazioni è isthadda criadda pa un\'errori, pói ignorà chisth\'imbasciadda.',
 'loginlanguagelabel'         => 'Linga: $1',
 
 # Password reset dialog
@@ -581,7 +581,7 @@ Inviendi lu testhu ài la ripunsabiriddai chi lu testhu sia toiu oppuru sia i lu
 'cascadeprotectedwarning'   => "'''Attinzioni:''' Chistha pàgina è isthadda broccadda in modu chi soru l'utenti cun pribiréggi di amministhradori possiano mudìfiggarla. Lu chi avvini parchí la pàgina è incrusa {{PLURAL:\$1|i la pàgina indicadda ..., ch'è isthadda prutiggidda|i li pàgini indicaddi ..., chi so isthaddi prutiggiddi}} chirriendi la prutizioni \"ricussiba\":",
 'titleprotectedwarning'     => '<strong>ATTINZIONI: Chistha pàgina è isthadda broccadda in modu chi soru zerthuni utenti possiano crialla.</strong>',
 'templatesused'             => 'Mudelli utirizaddi in chistha pàgina:',
-'templatesusedpreview'      => 'Mudelli utirizaddi in chistha antiprimma:',
+'templatesusedpreview'      => "Mudelli utirizaddi in chisth'antiprimma:",
 'templatesusedsection'      => 'Mudelli utirizaddi in chistha sezzioni:',
 'template-protected'        => '(prutiggiddu)',
 'template-semiprotected'    => '(mezu-prutiggiddu)',
@@ -1328,7 +1328,7 @@ L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'protect-level-sysop'         => 'Soru amministhradori',
 'protect-summary-cascade'     => 'ricussiba',
 'protect-expiring'            => 'ischadènzia: $1 (UTC)',
-'protect-cascade'             => 'Prutizioni ricussiba (isthendi la prutizioni a tutti li pàgini incrusi in chista)',
+'protect-cascade'             => 'Prutizioni ricussiba (isthendi la prutizioni a tutti li pàgini incrusi in chistha)',
 'protect-cantedit'            => 'Nò è pussìbiri mudìfiggà li libelli di prutizioni pa la pàgina parchí nò si diponi di pimmissi nezzessàri pa mudìfiggà la pàgina.',
 'restriction-type'            => 'Primmissu:',
 'restriction-level'           => 'Libellu di isthrigniddura',
@@ -1624,9 +1624,9 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'tooltip-pt-login'                => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória',
 'tooltip-pt-anonlogin'            => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória.',
 'tooltip-pt-logout'               => 'Iscidda',
-'tooltip-ca-talk'                 => 'Vèdi li dischussioni reratibi a chista pàgina',
+'tooltip-ca-talk'                 => 'Vèdi li dischussioni reratibi a chistha pàgina',
 'tooltip-ca-edit'                 => "Pói mudìfiggà chistha pàgina. Pa piazeri usa lu buttoni d'antiprimma primma di saivvà",
-'tooltip-ca-addsection'           => 'Aggiungi un cummentu a chista dischussioni',
+'tooltip-ca-addsection'           => 'Aggiungi un cummentu a chistha dischussioni',
 'tooltip-ca-viewsource'           => 'Chistha pàgina è prutiggidda, ma pói vidé lu còdizi soiu.',
 'tooltip-ca-history'              => 'Versioni prizzidenti di chistha pàgina',
 'tooltip-ca-protect'              => 'Prutiggi chistha pàgina',
@@ -1648,7 +1648,7 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'tooltip-n-sitesupport'           => 'Supporthazi',
 'tooltip-t-whatlinkshere'         => 'Erencu di tutti li pàgini chi pùntani inogghi',
 'tooltip-t-recentchangeslinked'   => 'Erencu di li ulthimi mudìfigghi a li pàgini culligaddi a chistha',
-'tooltip-feed-rss'                => 'Feed RSS pa chista pàgina',
+'tooltip-feed-rss'                => 'Feed RSS pa chistha pàgina',
 'tooltip-feed-atom'               => 'Feed Atom pa chistha pàgina',
 'tooltip-t-contributions'         => 'Listha di li cuntributi di chistu utenti',
 'tooltip-t-emailuser'             => "Invia un'imbasciadda di postha erettrònica a chisth'utenti",
@@ -1760,7 +1760,7 @@ $1",
 'file-nohires'         => '<small>Nò so dipunìbiri versioni a risoruzioni maggiori.</small>',
 'svg-long-desc'        => '(file in fuimmaddu SVG, misuri nominari $1 × $2 punti, misuri di lu file: $3)',
 'show-big-image'       => 'Versioni a altha risoruzioni',
-'show-big-image-thumb' => '<small>Misuri di chistha antiprimma: $1 × $2 punti</small>',
+'show-big-image-thumb' => "<small>Misuri di chisth'antiprimma: $1 × $2 punti</small>",
 
 # Special:Newimages
 'newimages'    => 'Galleria di li file nobi',

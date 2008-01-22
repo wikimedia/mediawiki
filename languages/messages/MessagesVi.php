@@ -892,7 +892,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'oldpassword'              => 'Mật khẩu cũ:',
 'newpassword'              => 'Mật khẩu mới:',
 'retypenew'                => 'Gõ lại:',
-'textboxsize'              => 'Kích thước cửa sổ soạn thảo',
+'textboxsize'              => 'Sửa đổi',
 'rows'                     => 'Số hàng:',
 'columns'                  => 'Số cột:',
 'searchresultshead'        => 'Tìm kiếm',
@@ -1451,7 +1451,7 @@ Xem danh sách các xóa bỏ gần nhất tại $2.',
 
 Sửa đổi lần cuối bởi [[User:$3|$3]] ([[User talk:$3|Thảo luận]]).',
 'editcomment'                 => 'Tóm lược sửa đổi: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]); quay về phiên bản trước của [[User:$1|$1]]',
+'revertpage'                  => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]); quay về phiên bản trước của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Đã hủy sửa đổi của $1; quay về phiên bản trước của $2.',
 'sessionfailure'              => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút "back", tải lại trang đó, rồi thử lại.',
 'protectlogpage'              => 'Nhật trình khóa',
