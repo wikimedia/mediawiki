@@ -10,13 +10,14 @@
  */
 
 $skinNames = array(
-	'standard' => 'کلاسیک',
-	'nostalgia' => 'نوستالژی',
+	'standard'    => 'کلاسیک',
+	'nostalgia'   => 'نوستالژی',
 	'cologneblue' => 'آبی کلون',
-	'monobook' => 'مونوبوک',
-	'myskin' => 'پوستهٔ من',
-	'chick' => 'شیک',
-	'simple' => 'ساده',
+	'monobook'    => 'مونوبوک',
+	'myskin'      => 'پوستهٔ من',
+	'chick'       => 'شیک',
+	'simple'      => 'ساده',
+	'modern'      => 'مدرن',
 );
 $namespaceNames = array(
 	NS_MEDIA          => 'مدیا',

@@ -114,7 +114,8 @@ $skinNames = array(
 	'monobook'    => 'MonoBook',
 	'myskin'      => 'MySkin',
 	'chick'       => 'Chick',
-	'simple'      => 'Simple'
+	'simple'      => 'Simple',
+	'modern'      => 'Modern',
 );
 
 /**
