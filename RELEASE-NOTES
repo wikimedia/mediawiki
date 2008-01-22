@@ -459,7 +459,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * prop=imageinfo interface changed: iihistory replaced by iilimit, iistart and iiend parameters
 * Added amlang parameter to meta=allmessages
 * Added apfilterlanglinks parameter to list=allpages, replacing query.php?what=nolanglinks
-* (bug 12718) Added action=paraminfo module that provides information about API modules and their parameters 
+* (bug 12718) Added action=paraminfo module that provides information about API modules and their parameters
+* Added iiurlwidth and iiurlheight parameters to prop=imageinfo
 
 === Languages updated in 1.12 ===
 
