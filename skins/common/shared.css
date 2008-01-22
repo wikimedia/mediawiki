@@ -47,6 +47,15 @@ table.filehistory th.mw-imagepage-filesize {
 	white-space:nowrap;
 }
 
+/*
+ * rev_deleted stuff
+ */
+li span.deleted, span.history-deleted {
+	text-decoration: line-through;
+	color: #888;
+	font-style: italic;
+}
+
 /**
  * Forms
  */
