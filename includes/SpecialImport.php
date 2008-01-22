@@ -66,7 +66,7 @@ function wfSpecialImport( $page = '' ) {
 		}
 
 		if( WikiError::isError( $source ) ) {
-			$wgOut->addWikiText( wfEscapeWikiText( $source->getMessage() ) );
+			$wgOut->addWikiText( '<p class="error">' . wfMsg( 'importfailed', wfEscapeWikiText( $source->getMessage() ) ) . '</p>' );
 		} else {
 			$wgOut->addWikiText( wfMsg( "importstart" ) );
 
@@ -78,15 +78,19 @@ function wfSpecialImport( $page = '' ) {
 
 			$reporter->open();
 			$result = $importer->doImport();
-			$reporter->close();
+			$resultCount = $reporter->close();
 
 			if( WikiError::isError( $result ) ) {
-				$wgOut->addWikiText( wfMsg( "importfailed",
-					wfEscapeWikiText( $result->getMessage() ) ) );
+				# No source or XML parse error
+				$wgOut->addWikiText( '<p class="error">' . wfMsg( 'importfailed', wfEscapeWikiText( $result->getMessage() ) ) . '</p>' );
+			} elseif( WikiError::isError( $resultCount ) ) {
+				# Zero revisions
+				$wgOut->addWikiText( '<p class="error">' . wfMsg( 'importfailed', wfEscapeWikiText( $resultCount->getMessage() ) ) . '</p>' );
 			} else {
 				# Success!
-				$wgOut->addWikiText( wfMsg( "importsuccess" ) );
+				$wgOut->addWikiText( wfMsg( 'importsuccess' ) );
 			}
+			$wgOut->addWikiText( '<hr />' );
 		}
 	}
 
@@ -94,17 +98,17 @@ function wfSpecialImport( $page = '' ) {
 
 	if( $wgUser->isAllowed( 'importupload' ) ) {
 		$wgOut->addWikiText( wfMsg( "importtext" ) );
-		$wgOut->addHTML( "
-<fieldset>
-	<legend>" . wfMsgHtml('upload') . "</legend>
-	<form enctype='multipart/form-data' method='post' action=\"$action\">
-		<input type='hidden' name='action' value='submit' />
-		<input type='hidden' name='source' value='upload' />
-		<input type='file' name='xmlimport' value='' size='30' />
-		<input type='submit' value=\"" . wfMsgHtml( "uploadbtn" ) . "\" />
-	</form>
-</fieldset>
-" );
+		$wgOut->addHTML( 
+			Xml::openElement( 'fieldset' ).
+			Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
+			Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post', 'action' => $action ) ) .
+			Xml::hidden( 'action', 'submit' ) .
+			Xml::hidden( 'source', 'upload' ) .
+			"<input type='file' name='xmlimport' value='' size='30' />" . // No Xml function for type=file? Todo?
+			Xml::submitButton( wfMsg( 'uploadbtn' ) ) . 
+			Xml::closeElement( 'form' ) .
+			Xml::closeElement( 'fieldset' )
+		);
 	} else {
 		if( empty( $wgImportSources ) ) {
 			$wgOut->addWikiText( wfMsg( 'importnosources' ) );
@@ -112,53 +116,56 @@ function wfSpecialImport( $page = '' ) {
 	}
 
 	if( !empty( $wgImportSources ) ) {
-		$wgOut->addHTML( "
-<fieldset>
-	<legend>" . wfMsgHtml('importinterwiki') . "</legend>
-	<form method='post' action=\"$action\">" .
-		$wgOut->parse( wfMsg( 'import-interwiki-text' ) ) . "
-		<input type='hidden' name='action' value='submit' />
-		<input type='hidden' name='source' value='interwiki' />
-		<table>
-			<tr>
-				<td>
-					<select name='interwiki'>" );
+		$wgOut->addHTML(
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'importinterwiki' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action ) ) .
+			wfMsgExt( 'import-interwiki-text', array( 'parse' ) ) .
+			Xml::hidden( 'action', 'submit' ) .
+			Xml::hidden( 'source', 'interwiki' ) .
+			Xml::openElement( 'table' ) .
+			"<tr>
+				<td>" .
+					Xml::openElement( 'select', array( 'name' => 'interwiki' ) )
+		);
 		foreach( $wgImportSources as $prefix ) {
 			$iw = htmlspecialchars( $prefix );
 			$selected = ($interwiki === $prefix) ? ' selected="selected"' : '';
-			$wgOut->addHTML( "<option value=\"$iw\"$selected>$iw</option>\n" );
+			$wgOut->addHTML( Xml::option( $iw, $iw, $selected ) );
 		}
-		$wgOut->addHTML( "
-					</select>
-				</td>
+		$wgOut->addHTML(
+					Xml::closeElement( 'select' ) .
+				"</td>
 				<td>" .
-					wfInput( 'frompage', 50, $frompage ) .
+					Xml::input( 'frompage', 50, $frompage ) .
 				"</td>
 			</tr>
 			<tr>
-				<td></td>
-				<td>" .
-					wfCheckLabel( wfMsg( 'import-interwiki-history' ),
-						'interwikiHistory', 'interwikiHistory', $history ) .
-				"</td>
-			</tr>
-			<tr>
-				<td></td>
 				<td>
-					" . wfMsgHtml( 'import-interwiki-namespace' ) . " " .
-						HTMLnamespaceselector( $namespace, '' ) . "
 				</td>
-			</tr>
-			<tr>
-				<td></td>
 				<td>" .
-					wfSubmitButton( wfMsg( 'import-interwiki-submit' ) ) .
+					Xml::checkLabel( wfMsg( 'import-interwiki-history' ), 'interwikiHistory', 'interwikiHistory', $history ) .
 				"</td>
 			</tr>
-		</table>
-	</form>
-</fieldset>
-" );
+			<tr>
+				<td>
+				</td>
+				<td>" .
+					Xml::label( wfMsg( 'import-interwiki-namespace' ), 'namespace' ) .
+					Xml::namespaceSelector( $namespace, '' ) .
+				"</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>" .
+					Xml::submitButton( wfMsg( 'import-interwiki-submit' ) ) . 
+				"</td>
+			</tr>" .
+			Xml::closeElement( 'table' ).
+			Xml::closeElement( 'form' ) .
+			Xml::closeElement( 'fieldset' )
+		);
 	}
 }
 
@@ -189,12 +196,12 @@ class ImportReporter {
 		$localCount = $wgLang->formatNum( $successCount );
 		$contentCount = $wgContLang->formatNum( $successCount );
 
-		$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) .
-			" " .
-			wfMsgExt( 'import-revision-count', array( 'parsemag', 'escape' ), $localCount ) .
-			"</li>\n" );
-
 		if( $successCount > 0 ) {
+			$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) . " " .
+				wfMsgExt( 'import-revision-count', array( 'parsemag', 'escape' ), $localCount ) .
+				"</li>\n"
+			);
+
 			$log = new LogPage( 'import' );
 			if( $this->mIsUpload ) {
 				$detail = wfMsgExt( 'import-logentry-upload-detail', array( 'content', 'parsemag' ),
@@ -216,15 +223,20 @@ class ImportReporter {
 			# Update page record
 			$article = new Article( $title );
 			$article->updateRevisionOn( $dbw, $nullRevision );
+		} else {
+			$wgOut->addHtml( '<li>' . wfMsgHtml( 'import-nonewrevisions' ) . '</li>' );
 		}
 	}
 
 	function close() {
 		global $wgOut;
 		if( $this->mPageCount == 0 ) {
-			$wgOut->addHtml( "<li>" . wfMsgHtml( 'importnopages' ) . "</li>\n" );
+			$wgOut->addHtml( "</ul>\n" );
+			return new WikiErrorMsg( "importnopages" );
 		}
 		$wgOut->addHtml( "</ul>\n" );
+
+		return $this->mPageCount;
 	}
 }
 
@@ -432,7 +444,7 @@ class WikiImporter {
 			$chunk = $this->mSource->readChunk();
 			if( !xml_parse( $parser, $chunk, $this->mSource->atEnd() ) ) {
 				wfDebug( "WikiImporter::doImport encountered XML parsing error\n" );
-				return new WikiXmlError( $parser, 'XML import parse failure', $chunk, $offset );
+				return new WikiXmlError( $parser, wfMsgHtml( 'import-parse-failure' ), $chunk, $offset );
 			}
 			$offset += strlen( $chunk );
 		} while( $chunk !== false && !$this->mSource->atEnd() );
@@ -894,6 +906,9 @@ class ImportStreamSource {
 	}
 
 	public static function newFromInterwiki( $interwiki, $page, $history=false ) {
+		if( $page == '' ) {
+			return new WikiErrorMsg( 'import-noarticle' );
+		}			
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
 		if( is_null( $link ) || $link->getInterwiki() == '' ) {
 			return new WikiErrorMsg( 'importbadinterwiki' );
@@ -905,6 +920,3 @@ class ImportStreamSource {
 		}
 	}
 }
-
-
-
