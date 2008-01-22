@@ -1447,6 +1447,10 @@ $NEWPAGE
 'importuploaderrorsize'      => '檔未入匯。幅越焉。',
 'importuploaderrorpartial'   => '檔未入匯。檔部傳。',
 'importuploaderrortemp'      => '檔未入匯。臨夾已失。',
+'import-parse-failure'       => 'XML入匯語法敗矣',
+'import-noarticle'           => '無文入匯也！',
+'import-nonewrevisions'      => '全審已入匯也。',
+'xml-error-string'           => '$1 於行$2，欄$3 ($4字節): $5',
 
 # Import log
 'importlogpage'                    => '誌入',
