@@ -176,16 +176,16 @@ $messages = array(
 'currentevents'     => 'Aktualaji',
 'currentevents-url' => 'Project:Aktualaji',
 'disclaimers'       => 'Legala averto',
-'disclaimerpage'    => 'Projeto:Generala des-agnosko',
+'disclaimerpage'    => 'Project:Generala des-agnosko',
 'edithelp'          => 'Helpo editante',
 'edithelppage'      => 'Help:Editante pagini',
 'helppage'          => 'Help:Helpo',
 'mainpage'          => 'Frontispico',
-'policy-url'        => 'Projeto:Sistemo di agado',
+'policy-url'        => 'Project:Sistemo di agado',
 'portal'            => 'Komuneso-portalo',
 'portal-url'        => 'Project:Komuneso-portalo',
 'privacy'           => 'Sistemo di agado pri privateso',
-'privacypage'       => 'Projeto:Sistemo di agado pri privateso',
+'privacypage'       => 'Project:Sistemo di agado pri privateso',
 'sitesupport'       => 'Donacaji',
 'sitesupport-url'   => 'Project:Donacaji',
 
@@ -194,6 +194,7 @@ $messages = array(
 'retrievedfrom'           => 'Obtenita de "$1"',
 'youhavenewmessages'      => 'Vu havas $1 ($2).',
 'newmessageslink'         => 'nova mesaji',
+'newmessagesdifflink'     => 'finala chanjo',
 'youhavenewmessagesmulti' => 'Vu havas nova mesaji ye $1',
 'editsection'             => 'chanjez',
 'editold'                 => 'redaktar',
@@ -641,7 +642,7 @@ da [[User:$2|$2]] ([[User talk:$2|Talk]]); ulu pluse ja editis o desfacis ica pa
 
 Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'        => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]',
+'revertpage'         => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'unprotectedarticle' => 'desprotektita [[$1]]',
 'protectsub'         => '(Protektante "$1")',
 'confirmprotect'     => 'Konfirmar protekto',

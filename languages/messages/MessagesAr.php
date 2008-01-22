@@ -1531,7 +1531,7 @@ PICT # misc.
 'all-logs-page'        => 'كل السجلات',
 'log-search-legend'    => 'ابحث عن سجلات',
 'log-search-submit'    => 'اذهب',
-'alllogstext'          => 'عرض شامل لكل السجلات المتوفرة في{{SITENAME}}. باستطاعتك جعل القائمة أكثر تحديدا وذلك باختيار نوع العملية، أو اسم المستخدم، أو الصفحات المتأثرة.',
+'alllogstext'          => 'عرض شامل لكل السجلات المتوفرة في {{SITENAME}}. باستطاعتك جعل القائمة أكثر تحديدا وذلك باختيار نوع العملية، أو اسم المستخدم، أو الصفحات المتأثرة.',
 'logempty'             => 'لا توجد مدخلات مطابقة في السجل.',
 'log-title-wildcard'   => 'البحث عن عناوين تبدأ بهذا النص',
 
@@ -1688,7 +1688,7 @@ $NEWPAGE
 
 آخر تعديل كان بواسطة [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
 'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'استرجع تعديلات [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]])؛ استرجع حتى تعديل [[User:$1|$1]]',
+'revertpage'                  => 'استرجع تعديلات [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]])؛ استرجع حتى تعديل [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'استرجع تعديلات $1؛ استرجع حتى آخر نسخة بواسطة $2.',
 'sessionfailure'              => 'يبدو أنه هناك مشكلة في هذه الجلسة الخاصة بك؛ لذلك فقد ألغيت هذه العملية كإجراء احترازي ضد الاختراق. الرجاء الضغط على مفتاح "العودة" (Back) للرجوع للصفحة التي جئت منها ثم قم بإعادة تحميلها قبل المحاولة مرة أخرى.',
 'protectlogpage'              => 'سجل الحماية',

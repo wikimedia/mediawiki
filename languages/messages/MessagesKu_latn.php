@@ -426,19 +426,29 @@ Eger kesekî din vê xastinê ji te ra xast ya şîfreya kevin dîsa hate bîrê
 'passwordsent'               => 'Ji navnîşana e-mail ku ji bo "$1" hat tomarkirin şîfreyekê nû hat şandin. Vê bistîne û dîsa têkeve.',
 'blocked-mailpassword'       => "IP'ya te yê ji te niha tê bikaranin ji bo guherandinê ra hatîye astengkirin. Ji bo tiştên şaş çênebin, xastinê te ji bo şifreyeka nuh jî hatîye qedexekirin.",
 'eauthentsent'               => 'E-nameyeka naskirinê ji adresa nivîsî ra hate şandin. Berî e-name ji bikarhênerên din bi vê rêkê dikaribim bi te gên, ew adresa û rastbûna xwe gireke werin naskirin. Xêra xwe e-nameyê naskirinê bixûne!',
+'throttled-mailpassword'     => 'Berî $1 saetan şîfreyekî nuh hate xastin. Ji bo şaşbûn bi vê fonksyonê çênebin, bes her $1 saetan şîfreyekî nuh dikare were xastin.',
 'mailerror'                  => 'Şaşbûnek li cem şandina e-nameyekê: $1',
 'acct_creation_throttle_hit' => 'Biborîne! Te hesab $1 vekirine. Tu êdî nikarî hesabên din vekî.',
 'emailauthenticated'         => 'Adresa e-nameya hate naskirin: $1.',
+'emailnotauthenticated'      => 'Adresa e-nameyan yê te hên nehatîye naskirin. Fonksyonên e-nameyan piştî naskirina te dikarin ji te werin kirin.',
+'noemailprefs'               => "'''Te hên adresa e-nameyan nenivîsandîye''', fonksyonên e-nameyan hên ji te ra ne tên qebûlkirin.",
 'emailconfirmlink'           => 'E-Mail adresê xwe nasbike',
+'invalidemailaddress'        => 'Adresa e-nameyan yê te ne tê qebûlkirin, ji ber ku formata xwe qedexe ye (belkî nîşanên qedexe). Xêra xwe adreseka serrast binivisîne ya vê derê vala bêle.',
 'accountcreated'             => 'Account hate çêkirin',
 'accountcreatedtext'         => 'Hesabê bikarhêneran ji $1 ra hate çêkirin.',
 'createaccount-title'        => 'Çêkirina hesabekî ji {{SITENAME}}',
+'createaccount-text'         => 'Kesek ($1) ji te ra account\'ekî bikarhêneran "$2" li {{SITENAME}} ($4) çêkir. Şîfreya otomatîk ji "$2" ra "$3" ye. Niha ê baş be eger tu xwe qeyd bikê û tu şîfreya xwe biguherînê. Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.',
 'loginlanguagelabel'         => 'Ziman: $1',
 
 # Password reset dialog
-'resetpass_text'      => '<!-- Nivîsê xwe li vir binivisîne -->',
-'resetpass_header'    => 'Şîfreya xwe betalbike',
-'resetpass_forbidden' => 'Şîfre nikanin werin guhartin di {{SITENAME}} da',
+'resetpass'               => "Şîfreya account'î bikarhêneran şondabibe",
+'resetpass_announce'      => 'Te xwe bi şîfreyekê qeydkir, yê bi e-nameyekê ji te ra hate şandin. Ji bo xelaskirinê qeydkirinê, tu niha gireke şîfreyeka nuh binivisînê.',
+'resetpass_text'          => '<!-- Nivîsê xwe li vir binivisîne -->',
+'resetpass_header'        => 'Şîfreya xwe betalbike',
+'resetpass_submit'        => 'Şîfrê bişîne û xwe qedybike',
+'resetpass_success'       => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
+'resetpass_bad_temporary' => 'Şîfreya te niha netê qebûlkirin. Te berê şîfreyekî nuh tomarkir ya şîfreyekî nuh xast.',
+'resetpass_forbidden'     => 'Şîfre nikanin werin guhartin di {{SITENAME}} da',
 
 # Edit page toolbar
 'bold_sample'     => 'Nivîsa estûr',
@@ -483,6 +493,7 @@ Astengkirinê te ji $1 hate çêkirin. Sedemê astengkirinê te ev e: ''$2''.
 Tu dikarî bi $1 ya [[{{MediaWiki:Grouppage-sysop}}|koordînatorekî]] din ra ji astengkirinê te ra dengkê. Tu nikanê 'Ji vê/î bikarhênerê/î re e-name bişîne' bikarwîne eger te di [[Special:Preferences|tercihên xwe]] da adrêsê e-nameyekê nenivîsandîye ya tu ji vê fonksîyonê ra jî hatîyê astengkirin.
 
 IP'yê te yê niha $3 ye, û ID'ya astengkirinê te #$5 e. Xêra xwe yek ji van nimran têke peyamê xwe.",
+'blockednoreason'        => 'sedem nehatîye gotin',
 'whitelistedittitle'     => 'Ji bo guherandinê vê gotarê tu gireke xwe qeydbikê.',
 'whitelistedittext'      => 'Ji bo guherandina rûpelan, $1 pêwîst e.',
 'whitelistreadtitle'     => 'Ji xandinê vê gotarê tu gireke xwe qeydbikê',
@@ -501,6 +512,7 @@ Eger tu bi şaştî hatî, bizivire rûpela berê.",
 'noarticletext'          => 'Ev rûpel niha vala ye, tu dikarî
 [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].',
+'clearyourcache'         => "'''Zanibe:''' Piştî tomarkirinê, tu gireke cache'a browser'î xwe dîsa wînê ji bo dîtina guherandinan. '''Mozilla / Firefor /Safari:''' Kepsa ''Shift'' bigre û li ''Reload'' xe, ya ''Ctrl-Shift-R'' bikepsîne (''Cmd-Shift-R'' li cem Apple Mac); '''IE:''' Kepsa ''Ctrl'' bigre û li ''Reload'' xe, ya li ''Ctrl-F5''; '''Konqueror:''' bes li ''Reload'' xe ya li kepsa ''F5'' xe; bikarhênerên '''Opera''' girekin belkî cache'a xwe tevda di bin ''Tools → Preferences'' da valabikin.",
 'usercssjsyoucanpreview' => "<strong>Tîp:</strong> 'Pêşdîtin' bikarwîne ji bo tu bibînê çawa CSS/JS'ê te yê nuh e berî tomarkirinê.",
 'usercsspreview'         => "'''Zanibe ku tu bes CSS'ê xwe pêşdibînê, ew ne hatîye tomarkirin!'''",
 'updated'                => '(Hat taze kirin)',
@@ -622,30 +634,31 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 </p>',
 
 # Preferences page
-'preferences'       => 'Tercîhên min',
-'mypreferences'     => 'Tercihên min',
-'prefs-edits'       => 'Hejmarê guherandinan:',
-'prefsnologin'      => 'Xwe qeyd nekir',
-'changepassword'    => 'Şîfre biguherîne',
-'skin'              => 'Pêste',
-'math'              => 'TeX',
-'dateformat'        => 'Formata rojê',
-'datedefault'       => 'Tercih tune ne',
-'datetime'          => 'Dem û rêkewt',
-'prefs-personal'    => 'Agahiyên bikarhênerê/î',
-'prefs-rc'          => 'Guherandinên dawî',
-'prefs-misc'        => 'Eyaren cuda',
-'saveprefs'         => 'Tercîhan qeyd bike',
-'oldpassword'       => 'Şîfreya kevn',
-'newpassword'       => 'Şîfreya nû',
-'retypenew'         => 'Şîfreya nû careke din binîvîse',
-'textboxsize'       => 'Guheranin',
-'rows'              => 'Rêz',
-'columns'           => 'sitûn',
-'searchresultshead' => 'Eyarên encamên lêgerinê',
-'savedprefs'        => 'Tercîhên te qeyd kirî ne.',
-'default'           => 'asayî',
-'files'             => 'Dosya',
+'preferences'        => 'Tercîhên min',
+'mypreferences'      => 'Tercihên min',
+'prefs-edits'        => 'Hejmarê guherandinan:',
+'prefsnologin'       => 'Xwe qeyd nekir',
+'changepassword'     => 'Şîfre biguherîne',
+'skin'               => 'Pêste',
+'math'               => 'TeX',
+'dateformat'         => 'Formata rojê',
+'datedefault'        => 'Tercih tune ne',
+'datetime'           => 'Dem û rêkewt',
+'math_unknown_error' => 'şaşbûnekî nezanîn',
+'prefs-personal'     => 'Agahiyên bikarhênerê/î',
+'prefs-rc'           => 'Guherandinên dawî',
+'prefs-misc'         => 'Eyaren cuda',
+'saveprefs'          => 'Tercîhan qeyd bike',
+'oldpassword'        => 'Şîfreya kevn',
+'newpassword'        => 'Şîfreya nû',
+'retypenew'          => 'Şîfreya nû careke din binîvîse',
+'textboxsize'        => 'Guheranin',
+'rows'               => 'Rêz',
+'columns'            => 'sitûn',
+'searchresultshead'  => 'Eyarên encamên lêgerinê',
+'savedprefs'         => 'Tercîhên te qeyd kirî ne.',
+'default'            => 'asayî',
+'files'              => 'Dosya',
 
 # User rights
 'userrights-lookup-user'   => 'Îdarekirina grûpan',
@@ -999,7 +1012,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 bi [[User:$2|$2]] ([[User talk:$2|guftûgo]]) venizivre; keseke din wê rûpelê zivrandiye an guherandiye.
 
 Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
-'revertpage'                  => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1',
+'revertpage'                  => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Reşahiya _parastiyan',
 'protectedarticle'            => 'parastî [[$1]]',
 'unprotectedarticle'          => '"[[$1]]" niha vê parastin e',
@@ -1258,6 +1271,23 @@ if (wgUserLanguage == "ku-arab")
 'subcategorycount'       => 'Di vê kategoriyê de {{PLURAL:$1|binkategorîyek heye|$1 binkategorî hene}}.',
 'categoryarticlecount'   => 'Di vê kategoriyê de {{PLURAL:$1|gotarek heye|$1 gotar hene}}.',
 'listingcontinuesabbrev' => 'dewam',
+
+# Info page
+'numwatchers' => 'Hejmara kesên dişopînin: $1',
+
+# Math options
+'mw_math_png'    => 'Her caran wek PNG nîşanbide',
+'mw_math_simple' => 'HTML eger asan be, wekî din PNG',
+'mw_math_html'   => 'HTML eger bibe, wekî din PNG',
+'mw_math_source' => "Wek TeX bêle (ji browser'ên gotaran ra)",
+'mw_math_modern' => "Baştir e ji browser'ên nuhtir",
+'mw_math_mathml' => 'MathML eger bibe (ceribandin)',
+
+# Patrolling
+'markaspatrolleddiff'   => 'Wek serrastkirî nîşanbide',
+'markaspatrolledtext'   => 'Vê rûpelê wek serrastkirî nîşanbide',
+'markedaspatrolled'     => 'Wek serrastkirî tê nîşandan',
+'markedaspatrolledtext' => 'Guherandina rûpelê wek serrastkirî tê nîşandan.',
 
 # Image deletion
 'deletedrevision'                 => 'Rêvîsîyona berê $1 hate jêbirin.',

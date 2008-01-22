@@ -56,6 +56,7 @@ $messages = array(
 'dec'           => 'Dek',
 
 # Bits of text used by many pages
+'categories'            => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'category_header'       => '"$1" kategoriyasındaki sayfalar',
 'subcategories'         => 'Alt kategoriyalar',
 'category-media-header' => '"$1" kategoryasındaki media',
@@ -63,8 +64,10 @@ $messages = array(
 'about'     => 'Uurunda',
 'newwindow' => '(eni bir pencerädä açılêr)',
 'cancel'    => 'Ret',
+'qbedit'    => 'Diiştir',
 'mytalk'    => 'Sözleşmäk sayfam',
 
+'errorpagetitle'   => 'Yannış',
 'returnto'         => '$1 dön.',
 'tagline'          => '{{SITENAME}} saydından',
 'help'             => 'Yardım',
@@ -72,12 +75,14 @@ $messages = array(
 'searchbutton'     => 'Ara',
 'searcharticle'    => 'Git',
 'history'          => 'Sayfanın istoriyası',
+'history_short'    => 'İstoriya',
 'printableversion' => 'Tiparlanacêk versiya',
 'edit'             => 'Diiştir',
 'editthispage'     => 'Sayfayı diiştir',
 'delete'           => 'Sil',
 'protect'          => 'Korunmak altına al',
 'newpage'          => 'Eni sayfa',
+'talkpage'         => 'Sayfayı diskussiya et',
 'talkpagelinktext' => 'Konuşmaa',
 'personaltools'    => 'Personal instrumentlär',
 'talk'             => 'Diskussiya',
@@ -127,6 +132,7 @@ $messages = array(
 'nstab-category' => 'Kategoriya',
 
 # General errors
+'badtitle'      => 'Yannış yazı adı',
 'viewsource'    => 'Geliniri gör',
 'viewsourcefor' => '$1 için',
 
@@ -137,6 +143,7 @@ $messages = array(
 'login'              => 'Gir',
 'userlogin'          => 'Gir / esap yarat',
 'userlogout'         => 'Oturmaa kapat',
+'yourrealname'       => 'Haliz adınız:',
 'mailmypassword'     => 'Gönder bana e-maillän eni bir parol',
 
 # Edit page toolbar
@@ -182,6 +189,9 @@ $messages = array(
 'viewprevnext' => '($1) ($2) ($3).',
 'powersearch'  => 'Ara',
 
+# Preferences page
+'retypenew' => 'Eni parolu tekrar girin',
+
 # Recent changes
 'recentchanges'   => 'Bitki diişikmäklär',
 'rclistfrom'      => 'Göster diişmäkleri ani $1 datasından beeri yapıldı',
@@ -201,7 +211,8 @@ $messages = array(
 'recentchangeslinked' => 'İlgili diişmäklär',
 
 # Upload
-'upload' => 'Fayl ükle',
+'upload'    => 'Fayl ükle',
+'uploadbtn' => 'Fayl yükle',
 
 # Image list
 'filehist'          => 'Fayl istoriyası',
@@ -218,6 +229,8 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'       => '$1 bayt',
 'allpages'     => 'Hepsi sayfalar',
+'longpages'    => 'Uzun sayfalar',
+'listusers'    => 'Kullanıcı listası',
 'specialpages' => 'Maasus sayfalar',
 'newpages'     => 'Eni sayfalar',
 'move'         => 'Aadını diiştir',
@@ -226,6 +239,9 @@ $messages = array(
 'booksources' => 'Kaynak kiyatlar',
 
 'alphaindexline' => '$1den $2e',
+
+# Special:Log
+'speciallogtitlelabel' => 'Yazı adı:',
 
 # Special:Allpages
 'nextpage'       => 'Geeriki sayfa ($1)',
@@ -248,6 +264,7 @@ $messages = array(
 'unwatching' => 'Durgundurulêr...',
 
 # Delete/protect/revert
+'deletesub'      => '("$1" siliner)',
 'deletedarticle' => '"$1" silindi',
 'rollbacklink'   => 'eski halinä dön',
 
@@ -313,6 +330,7 @@ $messages = array(
 'tooltip-ca-nstab-project'  => 'Proekt sayfasın göster',
 'tooltip-ca-nstab-image'    => 'Pätret sayfasın göster',
 'tooltip-ca-nstab-template' => 'Şablonu göster',
+'tooltip-ca-nstab-help'     => 'Tıkla yardım sayfasın görmää',
 'tooltip-ca-nstab-category' => 'Kategoriya sayfasın göster',
 'tooltip-minoredit'         => 'Küçük diişmäk olarak nışanna',
 'tooltip-save'              => 'Diişmäkläri registrat et',

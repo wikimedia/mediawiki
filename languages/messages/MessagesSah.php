@@ -795,23 +795,25 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'files'                    => 'Билэлэр',
 
 # User rights
-'userrights-lookup-user'      => 'Кыттаачылар бөлөхтөрүн салайыы',
-'userrights-user-editname'    => 'Кыттааччы аата:',
-'editusergroup'               => 'Кыттааччылар бөлөхтөрүн уларытарга',
-'userrights-editusergroup'    => 'Кыттааччы бөлөхтөрүн уларытарга',
-'saveusergroups'              => 'Кыттааччы бөлөхтөрүн бигэргэт',
-'userrights-groupsmember'     => 'Бу бөлөхтөргө киирэр:',
-'userrights-groupsremovable'  => 'Уларытыллар бөлөхтөр:',
-'userrights-groupsavailable'  => 'Бу бөлөхтөргө киириэххэ сөп:',
-'userrights-groupshelp'       => 'Кыттааччыны киллэриэххин эбэтэр таһаарыаххын баҕарар бөлөхтөргүн тал. Талбатах бөлөхтөрүҥ уларыйбаттар. Снять выделение с группы можно используя CTRL + левую клавишу мыши.',
-'userrights-reason'           => 'Уларытыы төрүөтэ:',
-'userrights-available-none'   => 'Бөлөххө киириини уларытар кыаҕыҥ суох.',
-'userrights-available-add'    => 'Эн $1 бөлөххө кыттааччылары киллэрэр кыахтааххын.',
-'userrights-available-remove' => 'Эн $1 бөлөхтөн кыттаачылары таһаарар кыахтааххын.',
-'userrights-no-interwiki'     => 'Атын биикилэргэ кыттааччылар бырааптарын уларытар быраабыҥ суох.',
-'userrights-nodatabase'       => '$1 билэ тиһигэ (олоҕо, база данных) суох эбэтэр локальнай буолбатах.',
-'userrights-nologin'          => 'Эн дьон бырааптарын уларытаргар администратор быһыытынан [[Special:Userlogin|бэлиэтэниэхтээххин]].',
-'userrights-notallowed'       => 'Бэлиэтэммит ааккынан атын кыттааччы быраабын уларытар кыаҕыҥ суох.',
+'userrights-lookup-user'           => 'Кыттаачылар бөлөхтөрүн салайыы',
+'userrights-user-editname'         => 'Кыттааччы аата:',
+'editusergroup'                    => 'Кыттааччылар бөлөхтөрүн уларытарга',
+'userrights-editusergroup'         => 'Кыттааччы бөлөхтөрүн уларытарга',
+'saveusergroups'                   => 'Кыттааччы бөлөхтөрүн бигэргэт',
+'userrights-groupsmember'          => 'Бу бөлөхтөргө киирэр:',
+'userrights-groupsremovable'       => 'Уларытыллар бөлөхтөр:',
+'userrights-groupsavailable'       => 'Бу бөлөхтөргө киириэххэ сөп:',
+'userrights-groupshelp'            => 'Кыттааччыны киллэриэххин эбэтэр таһаарыаххын баҕарар бөлөхтөргүн тал. Талбатах бөлөхтөрүҥ уларыйбаттар. Снять выделение с группы можно используя CTRL + левую клавишу мыши.',
+'userrights-reason'                => 'Уларытыы төрүөтэ:',
+'userrights-available-none'        => 'Бөлөххө киириини уларытар кыаҕыҥ суох.',
+'userrights-available-add'         => 'Эн $1 бөлөххө кыттааччылары киллэрэр кыахтааххын.',
+'userrights-available-remove'      => 'Эн $1 бөлөхтөн кыттаачылары таһаарар кыахтааххын.',
+'userrights-available-add-self'    => 'Бэйэҕин бу {{PLURAL:$2|бөлөххө|бөлөхтөргө}} киллэриэххин сөп: $1.',
+'userrights-available-remove-self' => 'Бэйэҕин бу {{PLURAL:$2|бөлөхтөн|бөлөхтөртөн}} сотуоххун сөп: $1.',
+'userrights-no-interwiki'          => 'Атын биикилэргэ кыттааччылар бырааптарын уларытар быраабыҥ суох.',
+'userrights-nodatabase'            => '$1 билэ тиһигэ (олоҕо, база данных) суох эбэтэр локальнай буолбатах.',
+'userrights-nologin'               => 'Эн дьон бырааптарын уларытаргар администратор быһыытынан [[Special:Userlogin|бэлиэтэниэхтээххин]].',
+'userrights-notallowed'            => 'Бэлиэтэммит ааккынан атын кыттааччы быраабын уларытар кыаҕыҥ суох.',
 
 # Groups
 'group'               => 'Бөлөх:',
@@ -1084,6 +1086,7 @@ PICT # misc.
 
 'withoutinterwiki'        => 'Атын тылынан суруллубут ыстатыйаларга сигэммэт ыстатыйалар',
 'withoutinterwiki-header' => 'Бу сирэйдэр атын тылынан суруллубут ыстатыйаларга сигэммэттэр:',
+'withoutinterwiki-submit' => 'Көрдөрүү',
 
 'fewestrevisions' => 'Саамай аҕыйах көннөрүүлээх ыстатыйалар',
 
@@ -1319,7 +1322,7 @@ $NEWPAGE
 
 Кэнники уларытыыны [[User:$3|$3]] ([[User_talk:$3|Ырытыы]]) оҥорбут.',
 'editcomment'                 => 'Уларытыыны маннык быһаарбыттар: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '([[User_talk:$2|обсуждение]]) көннөрүүлэрэ: [[{{ns:special}}:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр',
+'revertpage'                  => '([[User_talk:$2|обсуждение]]) көннөрүүлэрэ: [[{{ns:special}}:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 көннөрүүлэр бу торумҥа төннөрүлүннүлэр: $2.',
 'sessionfailure'              => 'Арааһа туох эрэ сатаммата, дьайыыҥ оҥоһуллубата. Браузергар "Төнүн" тимэҕи баттаа уонна бу иннинээҕи сирэйгин иккистээн киллэрэн көр.',
 'protectlogpage'              => 'Харысхал сурунаала (көннөрүүттэн көмүскэммит билэлэр испииһэктэрэ)',
@@ -1638,6 +1641,7 @@ $1',
 'export-addcattext' => 'Бу категрияттан сирэйдэри эп:',
 'export-addcat'     => 'Эбэн биэр',
 'export-download'   => 'Билэ быһыытынан хаалларыахха диэ',
+'export-templates'  => 'Халыыптары киллэрии',
 
 # Namespace 8 related
 'allmessages'               => 'Систиэмэ (тиһик) биллэриилэрэ',

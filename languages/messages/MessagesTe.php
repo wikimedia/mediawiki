@@ -142,24 +142,24 @@ $messages = array(
 'october-gen'   => 'అక్టోబరు',
 'november-gen'  => 'నవంబరు',
 'december-gen'  => 'డిసెంబరు',
-'jan'           => 'జనవరి',
-'feb'           => 'ఫిబ్రవరి',
+'jan'           => 'జన',
+'feb'           => 'ఫిబ్ర',
 'mar'           => 'మార్చి',
-'apr'           => 'ఏప్రిల్',
+'apr'           => 'ఏప్రి',
 'may'           => 'మే',
 'jun'           => 'జూన్',
 'jul'           => 'జూలై',
-'aug'           => 'ఆగష్టు',
-'sep'           => 'సెప్టెంబరు',
-'oct'           => 'అక్టోబరు',
-'nov'           => 'నవంబరు',
-'dec'           => 'డిసెంబరు',
+'aug'           => 'ఆగ',
+'sep'           => 'సెప్టెం',
+'oct'           => 'అక్టో',
+'nov'           => 'నవం',
+'dec'           => 'డిసెం',
 
 # Bits of text used by many pages
 'categories'            => 'వర్గాలు',
 'pagecategories'        => '{{PLURAL:$1|వర్గం|వర్గాలు}}',
 'category_header'       => '"$1" వర్గంలో వ్యాసాలు',
-'subcategories'         => 'ఉపవర్గములు',
+'subcategories'         => 'ఉపవర్గాలు',
 'category-media-header' => '"$1" వర్గంలో ఉన్న మీడియా ఫైళ్లు',
 'category-empty'        => "''ప్రస్తుతం ఈ వర్గంలో ఎలాంటి పేజీలుగానీ మీడియా ఫైళ్లుగానీ లేవు.''",
 
@@ -187,7 +187,7 @@ $messages = array(
 'mypage'         => 'నా పేజీ',
 'mytalk'         => 'నా గురించి చర్చ',
 'anontalk'       => 'ఈ ఐ.పి.కి సంబంధించిన చర్చ',
-'navigation'     => 'మార్గదర్శకము',
+'navigation'     => 'మార్గదర్శకం',
 
 # Metadata in edit box
 'metadata_help' => 'మెటాడేటా:',
@@ -195,7 +195,7 @@ $messages = array(
 'errorpagetitle'    => 'లోపం',
 'returnto'          => 'తిరిగి $1 పేజీకి వెళ్లు.',
 'tagline'           => '{{SITENAME}} నుండి',
-'help'              => 'సహాయము',
+'help'              => 'సహాయం',
 'search'            => 'అన్వేషణ',
 'searchbutton'      => 'అన్వేషణ',
 'go'                => 'వెళ్లు',
@@ -496,6 +496,10 @@ $2',
 'headline_tip'    => '2వ స్థాయి శీర్షిక',
 'math_sample'     => 'సూత్రాన్ని ఇక్కడ ఇవ్వండి',
 'math_tip'        => 'గణిత సూత్రం (LaTeX)',
+'nowiki_sample'   => 'ఫార్మాటు చేయకూడని పాఠ్యాన్ని ఇక్కడ చేర్చండి',
+'nowiki_tip'      => 'వికీ ఫార్మాటును పట్టించుకోవద్దు',
+'image_tip'       => 'పొదిగిన(ఎంబెడెడ్) బొమ్మ',
+'media_tip'       => 'మీడియా ఫైలుకు లింకు',
 'sig_tip'         => 'టైంస్టాంపుతో సహా మీ సంతకం',
 'hr_tip'          => 'అడ్డగీత (అరుదుగా వాడండి)',
 
@@ -593,6 +597,7 @@ $2',
 'templatesusedpreview'     => 'ఈ మునుజూపులో వాడిన మూసలు:',
 'templatesusedsection'     => 'ఈ విభాగంలో వాడిన మూసలు:',
 'template-protected'       => '(సంరక్షితం)',
+'template-semiprotected'   => '(సెమీ-రక్షణలో ఉంది)',
 'nocreatetext'             => '{{SITENAME}}లో కొత్త పేజీలు సృష్టించడాన్ని నియంత్రించారు.
 మీరు వెనక్కి వెళ్ళి వేరే పేజీలు మార్చవచ్చు, లేదా [[Special:Userlogin|లోనికి ప్రవేశించండి లేదా ఖాతా సృష్టించుకోండి]].',
 'recreate-deleted-warn'    => "'''హెచ్చరిక: ఇంతకు మునుపు ఒకసారి తొలగించిన పేజీని మళ్లీ సృష్టిద్దామని మీరు ప్రయత్నిస్తున్నారు.'''
@@ -632,6 +637,9 @@ $2',
 'historysize'         => '({{PLURAL:$1|ఒక బైటు|$1 బైట్లు}})',
 'historyempty'        => '(ఖాళీ)',
 
+# Revision feed
+'history-feed-item-nocomment' => '$2 వద్ద ఉన్న $1', # user at time
+
 # Revision deletion
 'rev-delundel'           => 'చూపించు/దాచు',
 'revdelete-hide-comment' => 'దిద్దుబాటు వ్యాఖ్యను దాచు',
@@ -646,6 +654,7 @@ $2',
 'lineno'                  => 'లైను $1:',
 'compareselectedversions' => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',
 'editundo'                => 'దిద్దుబాటు రద్దుచెయ్యి',
+'diff-multi'              => '(మధ్యలో ఉన్న {{PLURAL:$1|ఒక కూర్పును|$1 కూర్పులను}} చూపించటం లేదు.)',
 
 # Search results
 'searchresults'         => 'అన్వేషణ ఫలితాలు',
@@ -744,6 +753,7 @@ $2',
 'nchanges'                          => '{{PLURAL:$1|ఒక మార్పు|$1 మార్పులు}}',
 'recentchanges'                     => 'ఇటీవలి మార్పులు',
 'recentchangestext'                 => 'వికీలో ఇటీవలి కాలంలో జరిగిన మార్పులను ఈ పేజీలో చూడండి.',
+'recentchanges-feed-description'    => 'ఈ ఫీడు ద్వారా వికీలో జరుగుతున్న మార్పుల గురించి ఎప్పటికప్పుడు సమాచారాన్ని పొందండి.',
 'rcnote'                            => "$3 నాటికి, గత {{PLURAL:$2|ఒక్క రోజులో|'''$2''' రోజులలో}} చేసిన చివరి {{PLURAL:$1|ఒక్క మార్పు కింద ఉంది|'''$1''' మార్పులు కింద ఉన్నాయి}}.",
 'rcnotefrom'                        => '<b>$2</b> నుండి జరిగిన మార్పులు (<b>$1</b> వరకు చూపబడ్డాయి).',
 'rclistfrom'                        => '$1 వద్ద మొదలు పెట్టి కొత్త మార్పులు చూపించు',
@@ -766,9 +776,10 @@ $2',
 'newsectionsummary'                 => '/* $1 */ కొత్త విభాగం',
 
 # Recent changes linked
-'recentchangeslinked'         => 'సంబంధిత మార్పులు',
-'recentchangeslinked-title'   => '$1 కు సంబంధించిన మార్పులు',
-'recentchangeslinked-summary' => "దీనికి లింకై ఉన్న పేజీల్లో జరిగిన చివరి మార్పులు ఇక్కడ చూడవచ్చు. మీ వీక్షణ జాబితాలో ఉన్న పేజీలు '''బొద్దు'''గా ఉంటాయి.",
+'recentchangeslinked'          => 'సంబంధిత మార్పులు',
+'recentchangeslinked-title'    => '$1 కు సంబంధించిన మార్పులు',
+'recentchangeslinked-noresult' => 'మీరిచ్చిన కాలంలో ఇక్కడికి లింకు ఉన్న పేజీలలో ఎటువంటు మార్పులూ జరగలేదు.',
+'recentchangeslinked-summary'  => "దీనికి లింకై ఉన్న పేజీల్లో జరిగిన చివరి మార్పులు ఇక్కడ చూడవచ్చు. మీ వీక్షణ జాబితాలో ఉన్న పేజీలు '''బొద్దు'''గా ఉంటాయి.",
 
 # Upload
 'upload'                      => 'ఫైలు అప్‌లోడ్',
@@ -864,7 +875,7 @@ $2',
 'imagelinks'                => 'లింకులు',
 'linkstoimage'              => 'కింది పేజీలలో ఈ ఫైలుకు లింకులు ఉన్నాయి:',
 'nolinkstoimage'            => 'ఈ ఫైలుకు లింకున్న పేజీలు లేవు.',
-'sharedupload'              => 'ఈ ఫైలు ఉమ్మడి ఎగుమతి మరియు ఇతర ప్రాజెక్టులు కూడా దీన్ని వాడుతూవుండవచ్చు.',
+'sharedupload'              => 'ఈ ఫైలు ఒక ఉమ్మడి అప్లోడు, దీనిని ఇతర ప్రాజెక్టులలో కూడా ఉపయోగిస్తూ ఉండవచ్చు.',
 'shareduploadwiki'          => 'మరింత సమాచారం కొరకు [$1 ఫైలు వివరణ పేజీ] చూడండి.',
 'shareduploadwiki-linktext' => 'ఫైలు వివరణ పేజీ',
 'noimage'                   => 'ఆ పేరుతో ఫైలేమీ లేదు, మీరు $1',
@@ -882,6 +893,9 @@ $2',
 # File deletion
 'filedelete-comment' => 'వ్యాఖ్య:',
 'filedelete-submit'  => 'తొలగించు',
+
+# MIME search
+'mimesearch' => 'బొమ్మల మెటాడేటా(MIME)ను వెతకండి',
 
 # Unwatched pages
 'unwatchedpages' => 'వీక్షణలో లేని పేజీలు',
@@ -929,6 +943,7 @@ $2',
 
 'withoutinterwiki'        => 'భాషా లింకులు లేని పేజీలు',
 'withoutinterwiki-header' => 'క్రింది పేజీల నుండి ఇతర భాషా వికీలకు లింకులు లేవు:',
+'withoutinterwiki-submit' => 'చూపించు',
 
 'fewestrevisions' => 'అతి తక్కువ కూర్పులు కలిగిన వ్యాసాలు',
 
@@ -959,6 +974,7 @@ $2',
 'mostimages'                  => 'అధిక లింకులు గల బొమ్మలు',
 'mostrevisions'               => 'అధిక సంచికలు గల వ్యాసాలు',
 'allpages'                    => 'అన్ని పేజీలు',
+'prefixindex'                 => 'ఆదిపదం సూచిక',
 'shortpages'                  => 'చిన్న పేజీలు',
 'longpages'                   => 'పొడవు పేజీలు',
 'deadendpages'                => 'అగాధ (డెడ్ఎండ్) పేజీలు',
@@ -1070,7 +1086,8 @@ $2',
 'watchlist-hide-minor' => 'చిన్న మార్పులను దాచు',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching' => 'గమనిస్తున్నాం...',
+'watching'   => 'గమనిస్తున్నాం...',
+'unwatching' => 'వీక్షణ్ నుండీ తొలగిస్తున్నా...',
 
 'enotif_mailer'                => '{{SITENAME}} ప్రకటన మెయిలు పంపునది',
 'enotif_reset'                 => 'అన్ని పేజీలను చూసినట్లుగా గుర్తించు',
@@ -1141,13 +1158,14 @@ $NEWPAGE
 ** సభ్యుని కోరికపై, సభ్యుని ఉపపేజీ తొలగింపు
 ** ఏ సభ్యునికీ చెందని సభ్యపేజీ
 ** లేని వ్యాసానికి దారిమార్పు',
+'rollbacklink'                => 'రద్దుచేయి',
 'rollbackfailed'              => 'రోల్‌బ్యాక్ విఫలమైంది',
 'cantrollback'                => 'రచనను వెనక్కి తీసుకువెళ్ళలేము; ఈ పేజీకి ఇదొక్కటే రచన.',
 'alreadyrolled'               => '[[$1]]లో [[User:$2|$2]] ([[User talk:$2|చర్చ]]) చేసిన చివరి మార్పును రోల్‌బాక్ చెయ్యలేము; మరెవరో ఆ పేజీని రోల్‌బాక్ చేసారు, లేదా మార్చారు. 
 
 చివరి మార్పులు చేసినవారు: [[User:$3|$3]] ([[User talk:$3|చర్చ]]).',
 'editcomment'                 => 'దిద్దుబాటు వ్యాఖ్య: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|చర్చ]]) చేసిన మార్పులను [[User:$1|$1]] వైనక్కు తేసుకువెళ్ళారు',
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|చర్చ]]) చేసిన మార్పులను [[User:$1|$1]] వైనక్కు తేసుకువెళ్ళారు', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 చేసిన దిద్దుబాట్లను వెనక్కు తీసుకెళ్ళాం; తిరిగి $2 చేసిన చివరి కూర్పుకు మార్చాం.',
 'sessionfailure'              => 'మీ లాగిన్ సెషనుతో ఏదో సమస్య ఉన్నట్లుంది;
 సెషను హైజాకు కాకుండా ఈ చర్యను రద్దు చేసాం.
@@ -1157,11 +1175,21 @@ $NEWPAGE
 'protectedarticle'            => '"[[$1]]" సంరక్షించబడింది.',
 'confirmprotect'              => 'సంరక్షణను నిర్ధారించు',
 'protectcomment'              => 'సంరక్షించడానికి కారణం',
+'protectexpiry'               => 'గడువు:',
+'protect_expiry_invalid'      => 'గడువు సమయాన్ని సరిగ్గా ఇవ్వలేదు.',
+'protect_expiry_old'          => 'మీరిచ్చిన గడువు ప్రస్తుత సమయం కంటే ముందు ఉంది.',
+'protect-unchain'             => 'తరలింపు హక్కులపై రక్షణను తీసేయి',
 'protect-text'                => 'ఈ పెజీ <strong>$1></strong> ఎంత సంరక్షణలొ వుందో మీరు ఇక్కడ చూడవచ్చు, మార్చవచ్చు.',
+'protect-locked-access'       => 'మీ ఖాతకు పేజీ రక్షన స్థాయిని మార్చే హక్కులు లేవు.
+<strong>$1</strong> అనే పేరున్న ఈ పేజీకి ప్రస్తుతం ఈ రక్షణ ఉంది:',
+'protect-cascadeon'           => 'ఈ పేజీ కాస్కేడింగు రక్షణలో ఉన్న ఈ కింది {{PLURAL:$1|పేజీకి|పేజీలకు}} జతచేయటం వలన, ప్రస్తుతం రక్షణలో ఉంది.  మీరు ఈ పేజీ యొక్క రక్షణ స్థాయిన మార్చవచ్చు, దాని వలన కాస్కేడింగు రక్షణకు ఎటువంటి సమస్య ఉండదు.',
+'protect-default'             => '(డీఫాల్టు)',
 'protect-fallback'            => '"$1" అనుమతి అవసరం',
 'protect-level-autoconfirmed' => 'అజ్ఞాత సభ్యులను నిరోధించు',
 'protect-level-sysop'         => 'నిర్వాహకులు మాత్రమే',
+'protect-summary-cascade'     => 'కాస్కేడింగు',
 'protect-expiring'            => '$1 (UTC)న కాలంచెల్లుతుంది',
+'protect-cascade'             => 'ఈ పేజీకి జతపరిచిన పేజీలను కూడా రక్షించు (కాస్కేడింగు రక్షణ)',
 'protect-cantedit'            => 'ఈ పేజీ యొక్క సంరక్షణా స్థాయిని మీరు మార్చలేరు, ఎందుకంటే దాన్ని మార్చే అనుమతి మీకు లేదు.',
 'restriction-type'            => 'అనుమతి:',
 'restriction-level'           => 'నిరోధ స్థాయి:',
@@ -1214,6 +1242,7 @@ $NEWPAGE
 
 'sp-contributions-newbies'     => 'కొత్త సభ్యులు చేసిన రచనలు మాత్రమే చూపించు',
 'sp-contributions-newbies-sub' => 'కొత్తవారి కోసం',
+'sp-contributions-blocklog'    => 'నిరోధం లాగ్',
 'sp-contributions-search'      => 'రచనల కోసం అన్వేషణ',
 'sp-contributions-username'    => 'ఐ.పి.అడ్రసు లేదా సభ్యనామం:',
 'sp-contributions-submit'      => 'వెతుకు',
@@ -1229,6 +1258,7 @@ $NEWPAGE
 'nolinkshere'         => "'''[[:$1]]'''కు ఏ పేజీ నుండీ లింకు లేదు.",
 'nolinkshere-ns'      => "'''[[:$1]]''' పేజీకి లింకయ్యే పేజీలు ఎంచుకున్న నేంస్పేసులో లేవు.",
 'isredirect'          => 'దారిమార్పు పేజీ',
+'istemplate'          => 'పేజీకి జతపరిచారు',
 'whatlinkshere-prev'  => '{{PLURAL:$1|మునుపటిది|మునుపటి $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|తరువాతది|తరువాతి $1}}',
 'whatlinkshere-links' => '← లింకులు',
@@ -1335,6 +1365,7 @@ $NEWPAGE
 'movelogpage'             => 'తరలింపు దినచర్య',
 'movelogpagetext'         => 'కింద తరలించిన పేజీల జాబితా ఉన్నది.',
 'movereason'              => 'కారణము',
+'revertmove'              => 'తరలింపును రద్దుచేయి',
 'delete_and_move'         => 'తొలగించి, తరలించు',
 'delete_and_move_text'    => '==తొలగింపు అవసరం==
 
@@ -1379,6 +1410,7 @@ $NEWPAGE
 'tooltip-pt-preferences'          => 'నా అభిరుచులు',
 'tooltip-pt-watchlist'            => 'మీరు మార్పుల కొరకు గమనిస్తున్న పేజీల జాబితా',
 'tooltip-pt-mycontris'            => 'నా మార్పు-చేర్పుల జాబితా',
+'tooltip-pt-login'                => 'మీరు లగిన్ అయ్యి మార్పులు చేస్తే బాగుంతుంది, అలాగని మార్పులు చేయటానికి లాగిన్ అవ్వటం తప్పని సరి కాదు.',
 'tooltip-pt-logout'               => 'నిష్క్రమించండి',
 'tooltip-ca-talk'                 => 'విషయపు పేజీ గురించి చర్చ',
 'tooltip-ca-edit'                 => 'ఈ పేజీని మీరు సరిదిద్దవచ్చు. భద్రపరిచేముందు మునుజూపు బొత్తాన్ని వాడండి.',
@@ -1393,6 +1425,7 @@ $NEWPAGE
 'tooltip-p-logo'                  => 'మొదటి పేజీ',
 'tooltip-n-mainpage'              => 'మొదటి పేజీని దర్శించండి',
 'tooltip-n-portal'                => 'ప్రాజెక్టు గురించి, మీరేం చేయవచ్చు, సమాచారం ఎక్కడ దొరుకుతుంది',
+'tooltip-n-currentevents'         => 'వర్తమాన ఘటనలకు సంబంధించిన సమాచారాన్ని పొందండి.',
 'tooltip-n-recentchanges'         => 'వికీలో ఇటీవల జరిగిన మార్పుల జాబితా.',
 'tooltip-n-randompage'            => 'ఓ యాదృచ్చిక పేజీని చూడండి',
 'tooltip-n-help'                  => 'తెలుసుకోడానికి ఓ మంచి ప్రదేశం.',
@@ -1400,8 +1433,10 @@ $NEWPAGE
 'tooltip-t-whatlinkshere'         => 'ఇక్కడికి లింకయి ఉన్న అన్ని వికీ పేజీలు',
 'tooltip-t-contributions'         => 'ఈ వాడుకరి యొక్క రచనల జాబితా చూడండి',
 'tooltip-t-emailuser'             => 'ఈ వాడుకరికి ఓ ఈమెయిలు పంపండి',
+'tooltip-t-upload'                => 'బొమ్మలను లేదా మీడియా ఫైళ్లను అప్లోడు చేయండి',
 'tooltip-t-specialpages'          => 'అన్ని ప్రత్యేక పేజీల జాబితా',
 'tooltip-ca-nstab-user'           => 'వాడుకరి పేజీ చూడండి',
+'tooltip-ca-nstab-special'        => 'ఇది ఓ ప్రత్యేక పేజీ, దీన్ని మీరు సరిదిద్దలేదు.',
 'tooltip-ca-nstab-project'        => 'ప్రాజెక్టు పేజీని చూడండి',
 'tooltip-ca-nstab-image'          => 'బొమ్మ పేజీ చూడండి',
 'tooltip-ca-nstab-template'       => 'మూసని చూడండి',
@@ -1467,6 +1502,7 @@ $NEWPAGE
 'file-info-size'       => '($1 × $2 పిక్సెళ్ళు, ఫైలు పరిమాణం: $3, MIME రకం: $4)',
 'file-nohires'         => '<small>మరింత స్పష్టమైన బొమ్మ లేదు.</small>',
 'svg-long-desc'        => '(SVG ఫైలు, నామమాత్రంగా $1 × $2 పిక్సెళ్ళు, ఫైలు పరిమాణం: $3)',
+'show-big-image'       => 'అసలు పరిమాణం',
 'show-big-image-thumb' => '<small>ఈ మునుజూపు సైజు: $1 × $2 pixels</small>',
 
 # Special:Newimages
@@ -1474,20 +1510,39 @@ $NEWPAGE
 'showhidebots' => '($1 బాట్లు)',
 'noimages'     => 'చూసేందుకు ఏమీ లేదు.',
 
+# Bad image list
+'bad_image_list' => 'కింద తెలిపిన తీరులో కలపాలి:
+
+జాబితాలో ఉన్నవాటినే పరిగణలోకి తీసుకుంటారు(* గుర్తుతో మొదలయ్యే వాక్యాలు). వ్యాక్యంలో ఉన్న మొదటి లింకు ఒక చెడిపోయిన బొమ్మకు లింకు అయ్యుండాలి.
+అదే వాక్యంలో ఆ లింకు తరువాత వచ్చే లింకులన్నీ సరయిన లింకులుగానే పరిగణిస్తుంది. అంటే ఆ పేలలో బొమ్మలు సరిగ్గా చేర్చారని.',
+
 # Metadata
 'metadata'          => 'మెటాడేటా',
+'metadata-help'     => 'డిజిటలు కెమారానో లేక స్కానరునో ఉపయోగించటం వలన, ఈ ఫైలులో బొమ్మతో పాటుగా మరికొంత సమాచారం ఉంది. ఈ ఫైలు అసలు స్థితి నుండి మారిస్తే కొంత సమాచారం మారే అవకాశం ఉంది, ఉన్న వివరాలను బట్టి బొమ్మలో వేటిని మార్చారో పూర్తిగా తెలుసుకునే అవకాశం ఉండకపోవచ్చు.',
 'metadata-expand'   => 'వివరాలు చూపించు',
 'metadata-collapse' => 'వివరాలు దాచు',
+'metadata-fields'   => 'కింద జాబితాలో ఉన్న వివరాలను బొమ్మ పేజీలో, బొమ్మ మేటాడేటాలో మూసుకు పోయినప్పుడు కూడా చూపిస్తారు.
+మిగిలిన వివరాలు దాచేసి ఉంటాయి. ఇక్కడ మీరు బొమ్మలో చూపించాలని అనుకుంటున్న వివరాల
+మీడియావికీ పేర్లను చేరిస్తేగనక, వాటిని బొమ్మ పేజీలో చూపిస్తుంది.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'      => 'వెడల్పు',
 'exif-imagelength'     => 'ఎత్తు',
+'exif-orientation'     => 'దిశ',
 'exif-pixelxdimension' => 'బొమ్మ సరైన ఎత్తు',
 'exif-usercomment'     => 'వాడుకరి వ్యాఖ్యలు',
 
 'exif-subjectdistance-value' => '$1 మీటర్లు',
 
 'exif-meteringmode-1' => 'సగటు',
+
+'exif-lightsource-0' => 'తెలియదు',
 
 'exif-focalplaneresolutionunit-2' => 'అంగుళాలు',
 
