@@ -1958,6 +1958,10 @@ $1',
 'importuploaderrorsize'      => 'העלאת קובץ הייבוא נכשלה. הקובץ היה גדול יותר מגודל ההעלאה המותר.',
 'importuploaderrorpartial'   => 'העלאת קובץ הייבוא נכשלה. הקובץ הועלה באופן חלקי בלבד.',
 'importuploaderrortemp'      => 'העלאת קובץ הייבוא נכשלה. חסרה תיקייה זמנית.',
+'import-parse-failure'       => 'שגיאה בפענוח ה־XML',
+'import-noarticle'           => 'אין דף לייבוא!',
+'import-nonewrevisions'      => 'כל הגרסאות יובאו בעבר.',
+'xml-error-string'           => '$1 בשורה $2, עמודה $3 (בייט מספר $4): $5',
 
 # Import log
 'importlogpage'                    => 'יומן ייבוא',
