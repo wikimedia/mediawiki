@@ -64,6 +64,7 @@ $messages = array(
 'about'     => 'Uurunda',
 'newwindow' => '(eni bir pencerädä açılêr)',
 'cancel'    => 'Ret',
+'qbfind'    => 'Bul',
 'qbedit'    => 'Diiştir',
 'mytalk'    => 'Sözleşmäk sayfam',
 
@@ -95,6 +96,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} için',
 'aboutpage'         => 'Project:Uurunda',
+'bugreports'        => 'Yannışnık raportları',
+'bugreportspage'    => 'Project:Yannışnık raportları',
 'copyrightpage'     => '{{ns:project}}:Avtorluk hakları',
 'currentevents'     => 'Hergünkü sluçaylar',
 'currentevents-url' => 'Project:Hergünkü sluçaylar',
@@ -137,14 +140,21 @@ $messages = array(
 'viewsourcefor' => '$1 için',
 
 # Login and logout pages
-'yourname'           => 'Kullanıcı adınız',
-'yourpassword'       => 'Parol',
-'remembermypassword' => 'Parolu an.',
-'login'              => 'Gir',
-'userlogin'          => 'Gir / esap yarat',
-'userlogout'         => 'Oturmaa kapat',
-'yourrealname'       => 'Haliz adınız:',
-'mailmypassword'     => 'Gönder bana e-maillän eni bir parol',
+'yourname'              => 'Kullanıcı adınız',
+'yourpassword'          => 'Parol',
+'remembermypassword'    => 'Parolu an.',
+'login'                 => 'Gir',
+'userlogin'             => 'Gir / esap yarat',
+'userlogout'            => 'Oturmaa kapat',
+'createaccount'         => 'Eni esap aç',
+'gotaccount'            => 'Taa ilerdä esap açtınızmı? $1.',
+'gotaccountlink'        => 'Herliim ilerdän esap açtıysanız girin bu baalantıdan.',
+'yourrealname'          => 'Haliz adınız:',
+'loginsuccesstitle'     => 'Oturmak başarılan açıldı',
+'wrongpassword'         => 'Parolu yannış girdiniz. Yalvarerêz tekrar denämää.',
+'wrongpasswordempty'    => 'Boş parol girdiniz. Yalvarerez tekrar denämää.',
+'mailmypassword'        => 'Gönder bana e-maillän eni bir parol',
+'passwordremindertitle' => '{{SITENAME}} saytından parol hatırlatıcısı.',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın tekst',
@@ -164,6 +174,7 @@ $messages = array(
 'subject'                => 'Konu/başlık',
 'minoredit'              => 'Küçük diişmäklär',
 'watchthis'              => 'Bak bu sayfaa',
+'savearticle'            => 'Sayfayı registrat et',
 'showdiff'               => 'Diişmekläri göster',
 'newarticle'             => '(Eni)',
 'editing'                => '"$1" sayfasın diiştirersiniz',
@@ -172,14 +183,18 @@ $messages = array(
 'template-semiprotected' => '(yarı-korunmaa)',
 
 # History pages
+'revisionasof'        => 'Sayfanın $1 datasındaki hali',
 'previousrevision'    => '← İlerki hali',
 'currentrevisionlink' => 'en bitki halini göster',
 'cur'                 => 'fark',
 'last'                => 'bitki',
+'page_first'          => 'ilk',
+'page_last'           => 'bitki',
 'histfirst'           => 'En eski',
 'histlast'            => 'En eni',
 
 # Diffs
+'lineno'                  => '$1. liniya:',
 'compareselectedversions' => 'Versiyaları ani seçildi, karşılaştır',
 'editundo'                => 'geeri al',
 
@@ -192,7 +207,10 @@ $messages = array(
 # Preferences page
 'retypenew' => 'Eni parolu tekrar girin',
 
+'grouppage-sysop' => '{{ns:project}}:Önderciler',
+
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|diiştir|diiştir}}',
 'recentchanges'   => 'Bitki diişikmäklär',
 'rclistfrom'      => 'Göster diişmäkleri ani $1 datasından beeri yapıldı',
 'rcshowhideminor' => 'küçük diişmäkläri $1',
@@ -211,36 +229,67 @@ $messages = array(
 'recentchangeslinked' => 'İlgili diişmäklär',
 
 # Upload
-'upload'    => 'Fayl ükle',
-'uploadbtn' => 'Fayl yükle',
+'upload'        => 'Fayl ükle',
+'uploadbtn'     => 'Fayl yükle',
+'uploadedimage' => 'Üklenen: "[[$1]]"',
 
 # Image list
-'filehist'          => 'Fayl istoriyası',
-'filehist-current'  => 'Şindiki',
-'filehist-datetime' => 'Gün/Zaman',
-'filehist-user'     => 'Kullanıcı',
-'filehist-comment'  => 'Kommentariya',
-'imagelinks'        => 'Sayfalar angıları kullanıldı',
-'nolinkstoimage'    => 'Yok sayfalar ani bu fayla baalı.',
+'imagelist'                 => 'Pätret listası',
+'filehist'                  => 'Fayl istoriyası',
+'filehist-current'          => 'Şindiki',
+'filehist-datetime'         => 'Gün/Zaman',
+'filehist-user'             => 'Kullanıcı',
+'filehist-comment'          => 'Kommentariya',
+'imagelinks'                => 'Sayfalar angıları kullanıldı',
+'nolinkstoimage'            => 'Yok sayfalar ani bu fayla baalı.',
+'noimage'                   => 'Bu adda fayl yok. Siz $1.',
+'noimage-linktext'          => 'var nicä üklemää',
+'uploadnewversion-linktext' => 'Eni fayl ükle',
+
+# MIME search
+'mimesearch' => 'MIME arayışı',
+
+# Unused templates
+'unusedtemplates' => 'Kullanılmayan şablonlar',
 
 # Statistics
 'statistics' => 'Statistikalar',
 
+'withoutinterwiki' => 'Başka dillerä baalantısı olmayan sayfalar',
+
 # Miscellaneous special pages
-'nbytes'       => '$1 bayt',
-'allpages'     => 'Hepsi sayfalar',
-'longpages'    => 'Uzun sayfalar',
-'listusers'    => 'Kullanıcı listası',
-'specialpages' => 'Maasus sayfalar',
-'newpages'     => 'Eni sayfalar',
-'move'         => 'Aadını diiştir',
+'nbytes'                  => '$1 bayt',
+'lonelypages'             => 'Sayfalar ani yok kendisinä hiç baalantı',
+'uncategorizedpages'      => 'Kategorizațiya olunmamıș sayfalar',
+'uncategorizedcategories' => 'Kategorizațiya olunmamış kategoriyalar',
+'uncategorizedimages'     => 'Her angı bir kategoriyada olmayan pätretler',
+'uncategorizedtemplates'  => 'Şablonnar angıları kategorizațiya olunmadı',
+'unusedcategories'        => 'Kullanılmayan kategoriyalar',
+'unusedimages'            => 'Kullanılmayan pätretler',
+'wantedcategories'        => 'Kategoriyalar ani istener',
+'wantedpages'             => 'İstenen sayfalar',
+'mostlinked'              => 'En fazlı baalantı verilmiş sayfalar',
+'mostlinkedcategories'    => 'Kategoriyalar angılarında var en çok yazı',
+'mostimages'              => 'En çok kullanılan pätretler',
+'allpages'                => 'Hepsi sayfalar',
+'shortpages'              => 'Kısa sayfalar',
+'longpages'               => 'Uzun sayfalar',
+'deadendpages'            => 'Başka sayfalara baalantısız sayfalar',
+'protectedpages'          => 'Korunma altındaki sayfalar',
+'listusers'               => 'Kullanıcı listası',
+'specialpages'            => 'Maasus sayfalar',
+'newpages'                => 'Eni sayfalar',
+'move'                    => 'Aadını diiştir',
+'movethispage'            => 'Sayfayı taşı',
 
 # Book sources
 'booksources' => 'Kaynak kiyatlar',
 
 'alphaindexline' => '$1den $2e',
+'version'        => 'Versiya',
 
 # Special:Log
+'specialloguserlabel'  => 'Kullanıcı:',
 'speciallogtitlelabel' => 'Yazı adı:',
 
 # Special:Allpages
@@ -253,20 +302,39 @@ $messages = array(
 'emailuser' => 'Gönder bu kullanıcıya bir e-mail',
 
 # Watchlist
-'watchlist'    => 'Bakmaa listam',
-'mywatchlist'  => 'Bakmaa listam',
-'watchlistfor' => "('''$1''' için)",
-'watch'        => 'Bak',
-'unwatch'      => 'Durgun sayfa izlemää',
+'watchlist'     => 'Bakmaa listam',
+'mywatchlist'   => 'Bakmaa listam',
+'watchlistfor'  => "('''$1''' için)",
+'addedwatch'    => 'Bakmaa listasına registrat edildi.',
+'removedwatch'  => 'Bakmaa listanızdan silindi',
+'watch'         => 'Bak',
+'watchthispage' => 'Bak bu sayfaya',
+'unwatch'       => 'Durgun sayfa izlemää',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Bakılêr...',
 'unwatching' => 'Durgundurulêr...',
 
 # Delete/protect/revert
-'deletesub'      => '("$1" siliner)',
-'deletedarticle' => '"$1" silindi',
-'rollbacklink'   => 'eski halinä dön',
+'deletepage'             => 'Sayfayı sil',
+'deletesub'              => '("$1" siliner)',
+'actioncomplete'         => 'İşlik tamannandı.',
+'deletedtext'            => '"$1" silindi.
+Yakın zamanda silinenleri görmää deyni: $2.',
+'deletedarticle'         => '"$1" silindi',
+'deletecomment'          => 'Silmää sebep',
+'deleteotherreason'      => 'Başka/ek sebep:',
+'deletereasonotherlist'  => 'Başka sebep',
+'rollbacklink'           => 'eski halinä dön',
+'protectcomment'         => 'Korunma altına almaa sebep:',
+'protectexpiry'          => 'Bitmää datası:',
+'protect_expiry_invalid' => 'Yannış bitmää datası.',
+'protect_expiry_old'     => 'Bitmää datası geçti.',
+'protect-default'        => '(standart)',
+'protect-level-sysop'    => 'sadäcä önderciler',
+'protect-expiring'       => 'bitmää datası $1 (UTC)',
+'restriction-type'       => 'İzin:',
+'restriction-level'      => 'Yasaklama düzeni:',
 
 # Undelete
 'undeletebtn' => 'Geeri getir!',
@@ -283,6 +351,8 @@ $messages = array(
 'month'         => 'Ay:',
 'year'          => 'Yıl:',
 
+'sp-contributions-newbies-sub' => 'Eni kullanıcılara deyni',
+
 # What links here
 'whatlinkshere'       => 'Baalantılar sayfaa',
 'whatlinkshere-title' => '$1 baalantısı olan sayfalar',
@@ -297,8 +367,21 @@ $messages = array(
 # Block/unblock
 'contribslink' => 'yardımnar',
 
+# Move page
+'movepage'    => 'Ad diişmäklii',
+'movearticle' => 'Eski ad',
+'newtitle'    => 'Eni ad',
+'move-watch'  => 'Bak bu sayfaya',
+'movepagebtn' => 'Adı diiştir',
+'movedto'     => 'taşındı:',
+'1movedto2'   => '[[$1]] sayfasın eni adı: [[$2]]',
+'movereason'  => 'Sebep',
+
 # Export
 'export' => 'Sayfa registrat et',
+
+# Namespace 8 related
+'allmessages' => 'Sistema tekstleri',
 
 # Thumbnails
 'thumbnail-more' => 'Büüt',
@@ -340,6 +423,9 @@ $messages = array(
 'subcategorycount'       => 'Bu kategoriyada var $1 alt kategoriya.',
 'categoryarticlecount'   => 'Bu kategoriyada $1 yazı var.',
 'listingcontinuesabbrev' => '(devam)',
+
+# Special:Newimages
+'newimages' => 'Eni pätretler',
 
 # Metadata
 'metadata'          => 'Pätret detalları',

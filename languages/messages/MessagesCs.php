@@ -1511,7 +1511,7 @@ $2 zaznamenává poslední smazání.',
 'cantrollback'                => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
 'alreadyrolled'               => 'Nelze vrátit zpět poslední editaci [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskuse]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět. Poslední editace byla od [[User:$3|$3]] ([[User talk:$3|Diskuse]]).',
 'editcomment'                 => 'Shrnutí editace bylo: <i>„$1“</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.',
+'revertpage'                  => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
 'sessionfailure'              => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.
@@ -1820,13 +1820,17 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'importcantopen'             => 'Nepodařilo se otevřít importní soubor',
 'importbadinterwiki'         => 'Neplatný interwiki odkaz',
 'importnotext'               => 'Prázdný nebo žádný text',
-'importsuccess'              => 'Import byl úspěšný!',
+'importsuccess'              => 'Import skončil!',
 'importhistoryconflict'      => 'Existuje konflikt mezi historiemi verzí. Možná, že tato stránka byla již importována dříve.',
 'importnosources'            => 'Nebyly definovány žádné zdroje pro import mezi wiki a přímé načítání historie je vypnuto.',
 'importnofile'               => 'Nebyl načten importní soubor.',
 'importuploaderrorsize'      => 'Nepodařilo se načíst importní soubor. Soubor je větší než povolená velikost.',
 'importuploaderrorpartial'   => 'Nepodařilo se načíst importní soubor. Soubor byl načten jen částečně.',
 'importuploaderrortemp'      => 'Nepodařilo se načíst importní soubor. Není k dispozici dočasná složka.',
+'import-parse-failure'       => 'Chyba při importu XML',
+'import-noarticle'           => 'Není určena žádná stránka na import!',
+'import-nonewrevisions'      => 'Všechny verze již byly dříve importovány.',
+'xml-error-string'           => '$1 na řádku $2, sloupec $3 (bajt $4): $5',
 
 # Import log
 'importlogpage'                    => 'Kniha importů',

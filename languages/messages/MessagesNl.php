@@ -1582,7 +1582,7 @@ Feedback en andere assistentie:
 
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]).',
 'editcomment'                 => 'Bewerkingssamenvatting: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]); hersteld tot de laatste versie door [[User:$1|$1]]',
+'revertpage'                  => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]); hersteld tot de laatste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
 'sessionfailure'              => 'Er lijkt een probleem te zijn met uw aanmeldsessie. Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie). Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 'protectlogpage'              => 'Beveiligingslogboek',
@@ -1906,13 +1906,17 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'importcantopen'             => 'Kon het importbestand niet openen',
 'importbadinterwiki'         => 'Verkeerde interwikilink',
 'importnotext'               => 'Leeg of geen tekst',
-'importsuccess'              => 'Import geslaagd.',
+'importsuccess'              => 'Import afgerond!',
 'importhistoryconflict'      => 'Er zijn conflicten in de geschiedenis van de pagina (is misschien eerder geïmporteerd)',
 'importnosources'            => 'Er zijn geen transwiki-importbronnen gedefinieerd en directe geschiedenis-uploads zijn uitgeschakeld.',
 'importnofile'               => 'Er is geen importbestand geüpload.',
 'importuploaderrorsize'      => 'Upload van het importbestand in mislukt. Het bestand is groter dan de ingestelde limiet.',
 'importuploaderrorpartial'   => 'Upload van het importbestand in mislukt. Het bestand is slechts gedeeltelijk aangekomen.',
 'importuploaderrortemp'      => 'Upload van het importbestand in mislukt. De tijdelijke map is niet aanwezig.',
+'import-parse-failure'       => 'Fout bij het verwerken van de XML-import',
+'import-noarticle'           => "Er zijn geen te importeren pagina's!",
+'import-nonewrevisions'      => 'Alle versies zijn al eerder geïmporteerd.',
+'xml-error-string'           => '$1 op regel $2, kolom $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Importlogboek',

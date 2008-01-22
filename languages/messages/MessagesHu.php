@@ -1598,7 +1598,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]) végezte.',
 'editcomment'                 => 'A változtatás összefoglalója "<i>$1</i>" volt.', # only shown if there is an edit comment
-'revertpage'                  => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]] szerkesztéséről [[User:$1|$1]] szerkesztésére',
+'revertpage'                  => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]] szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
 'sessionfailure'              => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
 ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
@@ -1953,7 +1953,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'importcantopen'             => 'Nem nyitható meg az importfájl',
 'importbadinterwiki'         => 'Rossz interwiki hivatkozás',
 'importnotext'               => 'Üres, vagy nincs szöveg',
-'importsuccess'              => 'Az importálás sikerült!',
+'importsuccess'              => 'Az importálás befejeződött!',
 'importhistoryconflict'      => 'Ütköző előzményváltozat létezik (lehet, hogy már importálták ezt a lapot)',
 'importnosources'            => 'Nincsenek transzwikiimport-források definiálva, a közvetlen laptörténet-felküldés pedig nem megengedett.',
 'importnofile'               => 'Nem került importfájl feltöltésre.',

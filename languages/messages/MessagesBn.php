@@ -813,24 +813,26 @@ $3-এর দেয়া কারণ হল ''$2''",
 'files'                    => 'ফাইল',
 
 # User rights
-'userrights-lookup-user'      => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
-'userrights-user-editname'    => 'ব্যবহারকারীর নাম লিখুন:',
-'editusergroup'               => 'ব্যবহারকারীর দল সম্পাদনা করো',
-'userrights-editusergroup'    => 'ব্যবহারকারীর দল সম্পাদনা করো',
-'saveusergroups'              => 'ব্যবহারকারীর দল সংরক্ষণ করো',
-'userrights-groupsmember'     => 'সদস্য:',
-'userrights-groupsremovable'  => 'মুছে ফেলার যোগ্য দলগুলি:',
-'userrights-groupsavailable'  => 'বিদ্যমান দলসমূহ:',
-'userrights-groupshelp'       => 'ব্যবহারকারীটিকে যে দলগুলিতে যোগ করতে চান বা যেগুলি থেকে সরিয়ে ফেলতে চান, সেগুলি নির্বাচন করুন।
+'userrights-lookup-user'           => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
+'userrights-user-editname'         => 'ব্যবহারকারীর নাম লিখুন:',
+'editusergroup'                    => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'userrights-editusergroup'         => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'saveusergroups'                   => 'ব্যবহারকারীর দল সংরক্ষণ করো',
+'userrights-groupsmember'          => 'সদস্য:',
+'userrights-groupsremovable'       => 'মুছে ফেলার যোগ্য দলগুলি:',
+'userrights-groupsavailable'       => 'বিদ্যমান দলসমূহ:',
+'userrights-groupshelp'            => 'ব্যবহারকারীটিকে যে দলগুলিতে যোগ করতে চান বা যেগুলি থেকে সরিয়ে ফেলতে চান, সেগুলি নির্বাচন করুন।
 অনির্বাচিত দলগুলি পরিবর্তন করা হবে না। আপনি CTRL + Left Click-এর মাধ্যমে কোন দল অনির্বাচিত করতে পারেন।',
-'userrights-reason'           => 'পরিবর্তনের কারণ:',
-'userrights-available-none'   => 'আপনি দলের সদস্যপদ পরিবর্তন করতে পারবেন না।',
-'userrights-available-add'    => 'আপনি {{PLURAL:$2|এই দলে|এই দলগুলিতে}} ব্যবহারকারী যোগ করতে পারেন: $1।',
-'userrights-available-remove' => 'আপনি {{PLURAL:$2|এই দল|এই দলগুলি}} থেকে ব্যবহারকারী বাদ দিতে পারেন: $1।',
-'userrights-no-interwiki'     => 'আপনার অন্য উইকিতে ব্যবহারকারী অধিকার সম্পাদনা করার অনুমতি নেই।',
-'userrights-nodatabase'       => '$1 ডাটাবেজটির হয় কোন অস্তিত্ব নেই অথবা এটি স্থানীয় ডাটাবেজ নয়।',
-'userrights-nologin'          => 'ব্যবহারকারী অধিকার প্রযুক্ত করতে হলে আপনাকে কোন প্রশাসকের অ্যাকাউন্টে [[Special:Userlogin|প্রবেশ]] করতে হবে।',
-'userrights-notallowed'       => 'আপনার অ্যাকাউন্ট থেকে ব্যবহারকারী অধিকার প্রযুক্ত করার অনুমতি নেই।',
+'userrights-reason'                => 'পরিবর্তনের কারণ:',
+'userrights-available-none'        => 'আপনি দলের সদস্যপদ পরিবর্তন করতে পারবেন না।',
+'userrights-available-add'         => 'আপনি {{PLURAL:$2|এই দলে|এই দলগুলিতে}} ব্যবহারকারী যোগ করতে পারেন: $1।',
+'userrights-available-remove'      => 'আপনি {{PLURAL:$2|এই দল|এই দলগুলি}} থেকে ব্যবহারকারী বাদ দিতে পারেন: $1।',
+'userrights-available-add-self'    => 'আপনি এই {{PLURAL:$2|এই দলে|এই দলগুলোতে}} যোগ দিতে পারেন: $1।',
+'userrights-available-remove-self' => 'আপনি নিজেকে {{PLURAL:$2|এই দল|এই দলগুলো}} থেকে সরিয়ে নিতে পারেন: $1।',
+'userrights-no-interwiki'          => 'আপনার অন্য উইকিতে ব্যবহারকারী অধিকার সম্পাদনা করার অনুমতি নেই।',
+'userrights-nodatabase'            => '$1 ডাটাবেজটির হয় কোন অস্তিত্ব নেই অথবা এটি স্থানীয় ডাটাবেজ নয়।',
+'userrights-nologin'               => 'ব্যবহারকারী অধিকার প্রযুক্ত করতে হলে আপনাকে কোন প্রশাসকের অ্যাকাউন্টে [[Special:Userlogin|প্রবেশ]] করতে হবে।',
+'userrights-notallowed'            => 'আপনার অ্যাকাউন্ট থেকে ব্যবহারকারী অধিকার প্রযুক্ত করার অনুমতি নেই।',
 
 # Groups
 'group'               => 'দল:',
@@ -1092,6 +1094,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 
 'withoutinterwiki'        => 'ভাষার সংযোগহীন পাতাসমূহ',
 'withoutinterwiki-header' => 'এই পাতা সমূহ অন্য ভাষার সংস্করণের সাথে সংযুক্ত নয়:',
+'withoutinterwiki-submit' => 'দেখাও',
 
 'fewestrevisions' => 'সবচেয়ে কমসংখ্যক সংশোধিত পাতাগুলি',
 
@@ -1316,6 +1319,7 @@ $NEWPAGE
 ** লেখকের অনুরোধ
 ** কপিরাইট ভঙ্গ
 ** ধ্বংসপ্রবণতা',
+'delete-toobig'               => 'এই পাতার অনেক বড় সম্পাদনার ইতিহাস রয়েছে, যা $1 সংশোধনের বেশি। {{SITENAME}} এর দূর্ঘটনাজনিত সমস্যা এড়াতে এই ধরনের পাতা মুছার ব্যপারে সীমাবদ্ধতা আরোপ করা হয়েছে।',
 'rollback'                    => 'সম্পাদনা ফিরিয়ে নিন',
 'rollback_short'              => 'ফিরিয়ে নিন',
 'rollbacklink'                => 'রোলব্যাক',
@@ -1325,7 +1329,7 @@ $NEWPAGE
 
 শেষ সম্পাদনা করেছেন [[User:$3|$3]] ([[User talk:$3|আলাপ]])।',
 'editcomment'                 => 'সম্পাদনা মন্তব্যটি ছিল: "<i>$1</i>"।', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|আলাপ]]) এর সম্পাদিত সংস্করণ হতে [[User:$1|$1]] এর সম্পাদিত সর্বশেষ সংস্করণে ফেরত যাওয়া হয়েছে।',
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|আলাপ]]) এর সম্পাদিত সংস্করণ হতে [[User:$1|$1]] এর সম্পাদিত সর্বশেষ সংস্করণে ফেরত যাওয়া হয়েছে।', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1-এর সম্পাদনাগুলি পূর্বাবস্থায় ফিরিয়ে নেওয়া হয়েছে; $2-এর করা শেষ সংস্করণে পাতাটি ফেরত নেওয়া হয়েছে।',
 'sessionfailure'              => 'আপনার লগ ইন সেশনে একটি সমস্যা হয়েছে বলে মনে হচ্ছে;
 সেশন হাইজ্যাক প্রতিরোধের উপায় হিসেবে এই কাজটি বাতিল করা হয়েছে।

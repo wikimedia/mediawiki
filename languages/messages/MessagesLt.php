@@ -1754,13 +1754,17 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'importcantopen'             => 'Nepavyksta atverti importo failo',
 'importbadinterwiki'         => 'Bloga tarpprojektinė nuoroda',
 'importnotext'               => 'Tuščia arba jokio teksto',
-'importsuccess'              => 'Importas pavyko!',
+'importsuccess'              => 'Importas užbaigtas!',
 'importhistoryconflict'      => 'Yra konfliktuojanti istorijos versija (galbūt šis puslapis buvo importuotas anksčiau)',
 'importnosources'            => 'Nenustatyti transwiki importo šaltiniai, o tiesioginis praeities įkėlimas uždraustas.',
 'importnofile'               => 'Nebuvo įkeltas joks importo failas.',
 'importuploaderrorsize'      => 'Importavimo failo įkėlimas nepavyko. Failas didesnis nei leidžiamas dydis.',
 'importuploaderrorpartial'   => 'Importavimo failo įkėlimas nepavyko. Failas buvo tik dalinai įkeltas.',
 'importuploaderrortemp'      => 'Importavimo failo įkėlimas nepavyko. Trūksta laikinojo aplanko.',
+'import-parse-failure'       => 'XML importo nagrinėjimo klaida',
+'import-noarticle'           => 'Nėra puslapių importuoti!',
+'import-nonewrevisions'      => 'Visos versijos buvo importuotos anksčiau.',
+'xml-error-string'           => '$1 $2 eilutėje, $3 stulpelyje ($4 baitas): $5',
 
 # Import log
 'importlogpage'                    => 'Importo istorija',
