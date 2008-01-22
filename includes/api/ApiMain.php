@@ -60,6 +60,7 @@ class ApiMain extends ApiBase {
 		'opensearch' => 'ApiOpenSearch',
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
+		'paraminfo' => 'ApiParamInfo',
 	);
 	
 	private static $WriteModules = array (
