@@ -134,6 +134,11 @@ body {
 	padding: 1em 0 1em 0;
 }
 
+textarea {
+	width: 100%;
+	padding: .1em;
+}
+
 #searchBody {
 	text-align: center;
 }
