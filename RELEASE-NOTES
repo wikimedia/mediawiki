@@ -331,6 +331,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Non-image handlers and full-size images may now decline it, fixing
   mystery failures when using $wgThumbnailScriptPath.
 * (bug 12327) Comma in username no longer disrupts mail headers
+* (bug 6436) Localization of Special:Import XML parser Error message(s).
 
 
 == Parser changes in 1.12 ==
