@@ -1493,7 +1493,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'cantrollback'                => 'Impossible de révoquer : l’auteur est la seule personne à avoir effectué des modifications sur cette page.',
 'alreadyrolled'               => 'Impossible de révoquer la dernière modification de l’article « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué l’article. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
 'editcomment'                 => 'Le résumé de la modification était: <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Révocation des modifications de [[Special:Contributions/$2|$2]] (retour à la dernière version de [[User:$1|$1]])',
+'revertpage'                  => 'Révocation des modifications de [[Special:Contributions/$2|$2]] (retour à la dernière version de [[User:$1|$1]])', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Révocation des modifications de $1 ; retour à la version de $2.',
 'sessionfailure'              => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
 'protectlogpage'              => 'Historique des protections',
@@ -1840,6 +1840,10 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'importuploaderrorsize'      => 'Le téléchargement du fichier à importer a échoué. Sa taille est plus grande que celle autorisée.',
 'importuploaderrorpartial'   => 'Le téléchargement du fichier à importer a échoué. Celui-ci ne l’a été que partiellement.',
 'importuploaderrortemp'      => 'Le téléchargement du fichier à importer a échoué. Un dossier temporaire est manquant.',
+'import-parse-failure'       => "Rupture dans l'analyse de l'import XML",
+'import-noarticle'           => 'Aucune page à importer !',
+'import-nonewrevisions'      => 'Toute les révisions ont été importées auparavant.',
+'xml-error-string'           => '$1 à la ligne $2, col $3 (octet $4) : $5',
 
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',
