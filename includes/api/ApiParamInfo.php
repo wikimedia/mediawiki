@@ -43,30 +43,35 @@ class ApiParamInfo extends ApiBase {
 		$result = $this->getResult();
 		$r = array();
 		if(is_array($params['modules']))
+		{
+			$modArr = $this->getMain()->getModules();
 			foreach($params['modules'] as $m)
 			{
-				$className = "Api$m";
-				if(!class_exists($className))
+				if(!isset($modArr[$m]))
 				{
-					$mods[$m] = array('missing' => '');
+					$r['modules'][$m] = array('missing' => '');
 					continue;
 				}
-				$obj = new $className($this->getMain(), $m);
+				$obj = new $modArr[$m]($this->getMain(), $m);
 				$r['modules'][$m] = $this->getClassInfo($obj);				
 			}
+		}
 		if(is_array($params['querymodules']))
+		{
+			$queryObj = new ApiQuery($this->getMain(), 'query');
+			$qmodArr = $queryObj->getModules();
 			foreach($params['querymodules'] as $qm)
 			{
-				$className = "ApiQuery$qm";
-				if(!class_exists($className))
+				if(!isset($qmodArr[$qm]))
 				{
-					$qmods[$qm] = array('missing' => '');
+					$r['querymodules'][$qm] = array('missing' => '');
 					continue;
 				}
-				$obj = new $className($this, $qm);
+				$obj = new $qmodArr[$qm]($this, $qm);
 				$r['querymodules'][$qm] = $this->getClassInfo($obj);
 			}
-		$result->addValue( null, $this->getModuleName(), $r );
+		}
+		$result->addValue(null, $this->getModuleName(), $r);
 	}
 
 	function getClassInfo($obj)

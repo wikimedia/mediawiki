@@ -147,6 +147,13 @@ class ApiQuery extends ApiBase {
 	public function getPageSet() {
 		return $this->mPageSet;
 	}
+	
+	/**
+	 * Get the array mapping module names to class names
+	 */
+	function getModules() {
+		return array_merge($this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules);
+	}
 
 	/**
 	 * Query execution happens in the following steps:

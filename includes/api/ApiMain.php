@@ -570,6 +570,13 @@ class ApiMain extends ApiBase {
 	protected function addFormat( $fmtName, $fmtClass ) {
 		$this->mFormats[$fmtName] = $fmtClass;
 	}
+	
+	/**
+	 * Get the array mapping module names to class names
+	 */
+	function getModules() {
+		return $this->mModules;
+	}
 }
 
 /**
