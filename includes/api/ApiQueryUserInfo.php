@@ -73,6 +73,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			if (isset($prop['options'])) {
 				$vals['options'] = (is_null($wgUser->mOptions) ? User::getDefaultOptions() : $wgUser->mOptions);
 			}
+			if (isset($prop['editcount'])) {
+				$vals['editcount'] = $wgUser->getEditCount();
+			}
 		}
 		
 		$result->addValue("query", $this->getModuleName(), $vals);
@@ -88,7 +91,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'hasmsg',
 					'groups',
 					'rights',
-					'options'
+					'options',
+					'editcount'
 				))
 		);
 	}
@@ -101,7 +105,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  hasmsg    - adds a tag "message" if user has pending messages',
 				'  groups    - lists all the groups the current user belongs to',
 				'  rights    - lists of all rights the current user has',
-				'  options   - lists all preferences the current user has set'
+				'  options   - lists all preferences the current user has set',
+				'  editcount - adds the user\'s edit count'
 			)
 		);
 	}

@@ -464,6 +464,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 12718) Added action=paraminfo module that provides information about API modules and their parameters
 * Added iiurlwidth and iiurlheight parameters to prop=imageinfo
 * Added format=txt and format=dbg, imported from query.php
+* Added uiprop=editcount to meta=userinfo
 
 === Languages updated in 1.12 ===
 
