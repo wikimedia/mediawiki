@@ -80,6 +80,7 @@ class SpecialPage
 
 		'Userlogin'                 => array( 'SpecialPage', 'Userlogin' ),
 		'Userlogout'                => array( 'UnlistedSpecialPage', 'Userlogout' ),
+		'CreateAccount'             => array( 'SpecialCreateAccount' ),
 		'Preferences'               => array( 'SpecialPage', 'Preferences' ),
 		'Watchlist'                 => array( 'SpecialPage', 'Watchlist' ),
 
@@ -844,5 +845,19 @@ class SpecialMycontributions extends UnlistedSpecialPage {
 	function getRedirect( $subpage ) {
 		global $wgUser;
 		return SpecialPage::getTitleFor( 'Contributions', $wgUser->getName() );
+	}
+}
+/**
+ * Shortcut to construct a special page pointing to create account form.
+ * @addtogroup SpecialPage
+ */
+class SpecialCreateAccount extends SpecialPage {
+	function __construct() {
+		parent::__construct( 'CreateAccount' );
+		$this->mAllowedRedirectParams = array( 'uselang' );
+	}
+
+		function getRedirect() {
+			return SpecialPage::getTitleFor( 'Userlogin', 'signup' );
 	}
 }

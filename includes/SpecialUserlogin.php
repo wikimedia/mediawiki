@@ -7,13 +7,13 @@
 /**
  * constructor
  */
-function wfSpecialUserlogin() {
+function wfSpecialUserlogin( $par = '' ) {
 	global $wgRequest;
 	if( session_id() == '' ) {
 		wfSetupSession();
 	}
 
-	$form = new LoginForm( $wgRequest );
+	$form = new LoginForm( $wgRequest, $par );
 	$form->execute();
 }
 
@@ -41,11 +41,11 @@ class LoginForm {
 	 * Constructor
 	 * @param WebRequest $request A WebRequest object passed by reference
 	 */
-	function LoginForm( &$request ) {
+	function LoginForm( &$request, $par = '' ) {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;
 		global $wgAuth;
 
-		$this->mType = $request->getText( 'type' );
+		$this->mType = ( $par == 'signup' ) ? $par : $request->getText( 'type' ); # Check for [[Special:Userlogin/signup]]
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
 		$this->mRetype = $request->getText( 'wpRetype' );

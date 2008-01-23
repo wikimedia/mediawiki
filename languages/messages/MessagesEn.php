@@ -353,6 +353,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Disambiguations' ),
 	'Userlogin'                 => array( 'Userlogin' ),
 	'Userlogout'                => array( 'Userlogout' ),
+	'CreateAccount'             => array( 'CreateAccount' ),
 	'Preferences'               => array( 'Preferences' ),
 	'Watchlist'                 => array( 'Watchlist' ),
 	'Recentchanges'             => array( 'Recentchanges' ),
