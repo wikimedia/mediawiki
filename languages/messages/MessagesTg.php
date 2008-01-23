@@ -75,7 +75,7 @@ $messages = array(
 'tog-hideminor'        => 'Нишон надодани тағйироти ҷузъи дар феҳристи тағйироти охир',
 'tog-extendwatchlist'  => 'Густариши феҳристи пайгириҳо барои нишон додани ҳамаи тағйиротҳои марбута',
 'tog-numberheadings'   => 'шуморагузори~и худкори инвонҳо',
-'tog-showtoolbar'      => 'Намойиши навори абзори виройиш (JavaScript)',
+'tog-showtoolbar'      => 'Намоиши навори абзори вироиш (JavaScript)',
 'tog-rememberpassword' => 'Маро дар хотири компютер нигоҳ дор',
 'tog-previewonfirst'   => 'Нишон додани пешнамоиш дар нахустин вироиш',
 'tog-ccmeonemails'     => 'Нусхаҳои хатҳоро ба ман рои кунед, ман онҳоро ба корбарон рои мекунам',
@@ -141,6 +141,7 @@ $messages = array(
 'subcategories'   => 'Зергурӯҳҳо',
 
 'about'         => 'Дар бораи',
+'newwindow'     => '(дар равзанаи ҷадид боз мешавад)',
 'cancel'        => 'Лағв',
 'qbedit'        => 'Вироиш',
 'qbmyoptions'   => 'Саҳифаҳои ман',
@@ -232,6 +233,7 @@ $messages = array(
 
 # General errors
 'error'            => 'Иштибоҳ',
+'viewsource'       => 'Намоиши матни вики',
 'editinginterface' => "'''Огоҳи:''' Шумо саҳифаеро вироиш карда истодаед, ки матни интерфейси барнома мебошад. Тағйироти ин саҳифа барои намуди интерфейси дигар корбарон таъсир хоҳад расонид.",
 
 # Login and logout pages
@@ -280,10 +282,17 @@ $messages = array(
 'link_sample'     => 'Унвони пайванд',
 'link_tip'        => 'Пайванди дохилӣ',
 'extlink_sample'  => 'http://www.example.com унвони пайванд',
+'extlink_tip'     => 'Пайванди беруна (пешванди http:// фаромӯш накунед)',
 'headline_sample' => 'Матни унвон',
 'headline_tip'    => 'Унвони сатҳи 2',
 'math_sample'     => 'Илова кардани формула дар инҷо',
+'math_tip'        => 'Формулаи риёзӣ (LaTeX)',
+'nowiki_sample'   => 'Инҷо матни қолаббанди-нашударо дохил кунед',
+'nowiki_tip'      => 'Рад кардани қолаббандии вики',
+'image_tip'       => 'Тасвири дохили матн',
+'media_tip'       => 'Пайванди парвандаи расона',
 'sig_tip'         => 'Имзои Шумо бо мӯҳри сана',
+'hr_tip'          => 'Хати уфуқӣ (сарфакорона истифода кунед)',
 
 # Edit pages
 'summary'               => 'Хулоса',
@@ -306,6 +315,7 @@ $messages = array(
 сохтани саҳифа, ба қуттии зерин нависед ([[{{MediaWiki:Helppage}}|саҳифаи роҳнаморо]] 
 барои маълумоти бештар нигаред). Агар аз сабаби хатогӣ ва ё иштибоҳ омадед, 
 тугмаи '''Ба оқиб'''-ро дар браузери худ пахш кунед.",
+'noarticletext'         => 'Дар ин саҳифа то кунун, матн вуҷуд надорад, шумо метавонед дар дигар саҳифаҳо [[Special:Search/{{PAGENAME}}|унвони ин саҳифаро ҷустуҷӯ кунед]] ё [{{fullurl:{{FULLPAGENAME}}|action=edit}} ин саҳифаро вироиш кунед].',
 'previewnote'           => '<strong>Ин фақат пешнамоиш аст; дигаргуниҳо ҳоло захира нашудаанд!</strong>',
 'editing'               => 'Дар ҳоли вироиш $1',
 'editingsection'        => 'Дар ҳоли вироиши $1 (қисмат)',
@@ -314,6 +324,7 @@ $messages = array(
 'yourdiff'              => 'Фарқиятҳо',
 'copyrightwarning'      => 'Ҳамаи ҳиссагузорӣ ба {{SITENAME}} аз рӯи қонунҳои зерин $2 (нигаред $1 барои маълумоти бештар) ҳиссагузорӣ мешаванд. Агар Шумо намехоҳед, ки навиштаҷоти Шумо вироиш ва паҳн нашаванд, Шумо метавонед ин мақоларо нафиристед.<br /> Шумо ваъда медиҳед, ки худатон ин мақоларо навиштед ё ки аз сарчашмаҳои кушод нусхабардорӣ кардаед. <strong>АСАРҲОИ ҚОБИЛИ ҲУҚУҚИ МУАЛЛИФРО БЕ ИҶОЗАТ НАФИРИСТЕД!</strong>',
 'templatesused'         => 'Шаблонҳои дар ин саҳифа истифодашуда:',
+'template-protected'    => '(ҳифзшуда)',
 'recreate-deleted-warn' => "'''Диққат: Шумо саҳифаеро барқарор карда истодаед, ки пештар ҳазф шудааст.''' 
 
 Шумо зарурияти вироиши ин саҳифаро дида баромаданатон лозим. Сабти ҳазфшавии 
@@ -341,6 +352,7 @@ $messages = array(
 # Search results
 'searchresults' => 'Натиҷаҳои ҷустуҷӯ',
 'noexactmatch'  => "'''Бо сарлавҳаи \"\$1\" мақола вуҷуд надорад.''' Шумо метавонед [[:\$1|ин саҳифаро бинависед]].",
+'viewprevnext'  => 'Намоиш ($1) ($2) ($3)',
 'powersearch'   => 'Ҷустуҷӯ',
 
 # Preferences page
@@ -388,7 +400,9 @@ $messages = array(
 'newsectionsummary' => '/* $1 */ бахши ҷадид',
 
 # Recent changes linked
-'recentchangeslinked' => 'Таъғироти монандӣ',
+'recentchangeslinked'         => 'Таъғироти монандӣ',
+'recentchangeslinked-title'   => 'Тағйирҳои алоқаманд ба $1',
+'recentchangeslinked-summary' => "Ин саҳифаи вижа тағйироти охири саҳифаҳои пайвастаро дар бар мегирад. Саҳифаҳои дар рӯизати назароти шумо буда  '''пурранг''' ҳастанд.",
 
 # Upload
 'upload'            => 'Фиристодани файл',
@@ -404,14 +418,22 @@ $messages = array(
 'uploadwarning'     => 'Огоҳии фиристодан',
 
 # Image list
-'imagelist'      => 'Рӯйхати файлҳо',
-'ilsubmit'       => 'Ҷустуҷӯи',
-'byname'         => 'аз рӯи ном',
-'bydate'         => 'аз рӯи сана',
-'bysize'         => 'аз рӯи ҳаҷм',
-'filehist'       => 'Таърихи файл',
-'imagelinks'     => 'Пайвандҳо',
-'imagelist_user' => 'Корбар',
+'imagelist'           => 'Рӯйхати файлҳо',
+'ilsubmit'            => 'Ҷустуҷӯи',
+'byname'              => 'аз рӯи ном',
+'bydate'              => 'аз рӯи сана',
+'bysize'              => 'аз рӯи ҳаҷм',
+'filehist'            => 'Таърихи файл',
+'filehist-help'       => 'Рӯи таърихҳо клик кунед то нусхаи марбути парвандаро бубинед.',
+'filehist-current'    => 'нусхаи феълӣ',
+'filehist-datetime'   => 'Таърих',
+'filehist-user'       => 'Корбар',
+'filehist-dimensions' => 'Андоза',
+'filehist-filesize'   => 'Андозаи парванда',
+'filehist-comment'    => 'Тавзеҳ',
+'imagelinks'          => 'Пайвандҳо',
+'linkstoimage'        => 'Саҳифаҳои зерин ба ин акс пайванданд:',
+'imagelist_user'      => 'Корбар',
 
 # MIME search
 'mimesearch' => 'Ҷустуҷӯ бо стандарти MIME',
@@ -440,6 +462,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт|байтҳо}}',
+'nmembers'                => '$1 {{PLURAL:$1|узв}}',
 'uncategorizedpages'      => 'Саҳифаҳое, ки ба ягон гурӯҳ дохил нестанд',
 'uncategorizedcategories' => 'Гурӯҳҳое, ки ба ягон гурӯҳ дохил нестанд',
 'uncategorizedimages'     => 'Аксҳое, ки ба ягон гурӯҳ дохил нестанд',
@@ -510,6 +533,10 @@ $messages = array(
 'watch'          => 'Назар кардан',
 'unwatch'        => 'Назар накардан',
 
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Пайгири...',
+'unwatching' => 'Тавқифи пайгири...',
+
 'enotif_newpagetext' => 'Ин саҳифаи нав аст',
 
 # Delete/protect/revert
@@ -549,6 +576,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'Пайвандҳои дар ин сахифа',
+'linklistsub'         => '(Феҳристи пайвандҳо)',
 'whatlinkshere-links' => '← пайвандҳо',
 
 # Block/unblock
@@ -641,6 +669,9 @@ $messages = array(
 
 # Spam protection
 'spamprotectiontitle' => 'Филтри муҳофизат аз спам',
+
+# Media information
+'file-info-size' => '($1 × $2 пиксел, ҳаҷми парванда: $3, навъи MIME: $4)',
 
 # Special:Newimages
 'showhidebots' => '($1 ботҳо)',
