@@ -131,7 +131,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if($this->fld_comment) 
 			$vals['comment'] = $f->getDescription();
 		if($this->fld_sha1) 
-			$vals['sha1'] = $f->getSha1();
+			$vals['sha1'] = wfBaseConvert($f->getSha1(), 36, 16, 40);
 		if($this->fld_metadata) {
 			$metadata = unserialize($f->getMetadata());
 			$vals['metadata'] = $metadata ? $metadata : null;
