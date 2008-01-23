@@ -21,10 +21,11 @@ $skinNames = array(
 	'standard'    => 'רגיל',
 	'nostalgia'   => 'נוסטלגי',
 	'cologneblue' => 'מים כחולים',
-	'simple'      => 'פשוט',
 	'monobook'    => 'מונובוק',
 	'myskin'      => 'הרקע שלי',
-	'chick'       => "צ'יק"
+	'chick'       => "צ'יק",
+	'simple'      => 'פשוט',
+	'modern'      => 'מודרני',
 );
 
 $datePreferences = array(
@@ -195,6 +196,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'פירושונים', 'דפי_פירושונים' ),
 	'Userlogin'                 => array( 'כניסה_לחשבון', 'כניסה', 'כניסה_/_הרשמה_לחשבון' ),
 	'Userlogout'                => array( 'יציאה_מהחשבון', 'יציאה' ),
+	'CreateAccount'             => array( 'הרשמה_לחשבון' ),
 	'Preferences'               => array( 'העדפות', 'ההעדפות_שלי' ),
 	'Watchlist'                 => array( 'רשימת_המעקב', 'רשימת_מעקב', 'רשימת_המעקב_שלי' ),
 	'Recentchanges'             => array( 'שינויים_אחרונים' ),
