@@ -63,7 +63,7 @@ class ApiParamInfo extends ApiBase {
 					$qmods[$qm] = array('missing' => '');
 					continue;
 				}
-				$obj = new $className($this, 'query');
+				$obj = new $className($this, $qm);
 				$r['querymodules'][$qm] = $this->getClassInfo($obj);
 			}
 		$result->addValue( null, $this->getModuleName(), $r );
@@ -74,6 +74,7 @@ class ApiParamInfo extends ApiBase {
 		$result = $this->getResult();
 		$retval['classname'] = get_class($obj);
 		$retval['description'] = (is_array($obj->getDescription()) ? implode("\n", $obj->getDescription()) : $obj->getDescription());
+		$retval['prefix'] = $obj->getModulePrefix();
 		$allowedParams = $obj->getAllowedParams();
 		if(!is_array($allowedParams))
 			return $retval;
