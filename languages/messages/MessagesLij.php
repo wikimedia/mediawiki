@@ -7,6 +7,7 @@
  * @author Dario vet
  * @author Dedee
  * @author SPQRobin
+ * @author ZeneizeForesto
  */
 
 $fallback = 'it';
@@ -59,6 +60,7 @@ $messages = array(
 'december-gen'  => 'Dexembre',
 'jan'           => 'Zen',
 'feb'           => 'Fre',
+'mar'           => 'Mar',
 'apr'           => 'Arv',
 'may'           => 'Maz',
 'jun'           => 'Zûg',
@@ -66,6 +68,7 @@ $messages = array(
 'aug'           => 'Ago',
 'sep'           => 'Set',
 'oct'           => 'Öto',
+'nov'           => 'Nov',
 'dec'           => 'Dex',
 
 'about'          => 'Informaçioin',
@@ -94,17 +97,23 @@ $messages = array(
 'talkpage'         => 'Discusci questa pagina',
 'talkpagelinktext' => 'Ciæti',
 'specialpage'      => 'Pagina speçiâ',
+'personaltools'    => 'Strûmenti personâli',
 'articlepage'      => 'Veddi a voxe',
 'talk'             => 'Ciæti',
+'views'            => 'Viscite',
 'toolbox'          => 'Arneisi',
 'projectpage'      => 'Veddi a pagina de o progetto',
 'viewtalkpage'     => 'Veddi o ciæto',
 'otherlanguages'   => 'In ätre lengue',
+'redirectedfrom'   => '(Rediritto da $1)',
 'lastmodifiedat'   => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1.", # $1 date, $2 time
+'jumpto'           => 'Vanni a:',
+'jumptonavigation' => 'Navegassion',
 'jumptosearch'     => 'çerca',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Informaçioin in scia {{SITENAME}}',
+'aboutpage'         => 'Project:Informassioîn',
 'bugreports'        => 'Danni',
 'bugreportspage'    => 'Project:Danni',
 'copyright'         => 'O contenüo o se peu trovâ a $1.',
@@ -113,6 +122,7 @@ $messages = array(
 'currentevents'     => 'Cosse ghe?',
 'currentevents-url' => 'Project:Cosse ghe',
 'disclaimers'       => 'Avvertense',
+'disclaimerpage'    => 'Project:Avvertense generâli',
 'helppage'          => 'Help:Contenùi',
 'mainpage'          => 'Pagina prinçipâ',
 'policy-url'        => 'Project:Lezzi',
@@ -127,9 +137,16 @@ $messages = array(
 'badaccess-group2' => "L'açion che ti te veu fâ a l'è permissa a i utenti de un de i gruppi $1 soö.",
 'badaccess-groups' => "L'açion che ti te veu fâ a l'è permissa a i utenti de un de i gruppi $1 soö.",
 
+'retrievedfrom'           => 'Estræto da "$1"',
 'youhavenewmessages'      => 'Ti ghe $1 ($2).',
 'youhavenewmessagesmulti' => "Ti t'æ neuvi messaggi in scia $1",
+'editsection'             => 'Modificâ',
+'editsectionhint'         => 'Modificâ a session $1',
+'toc'                     => 'Indiçe',
+'showtoc'                 => 'Fâ vedde',
 'hidetoc'                 => 'ascondi',
+'site-rss-feed'           => 'Feed RSS de $1',
+'site-atom-feed'          => 'Feed Atom de $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-image' => 'Papê',
@@ -245,6 +262,8 @@ A razon dæta a l'è ''$2''",
 # History pages
 'loadhist'            => 'Camallando a stöia da pagina',
 'currentrev'          => 'Urtima revixion',
+'revisionasof'        => 'Verscion do $1',
+'previousrevision'    => '← Verscion meno reçente',
 'nextrevision'        => 'Revixion ciù neuva →',
 'currentrevisionlink' => 'Urtima revixion',
 'next'                => 'Proscimo',
@@ -256,7 +275,8 @@ A razon dæta a l'è ''$2''",
 'history-feed-title' => 'Stöia de e revisioin',
 
 # Diffs
-'lineno' => 'Linia $1:',
+'lineno'   => 'Linia $1:',
+'editundo' => 'Annûllâ',
 
 # Search results
 'searchresults'         => 'Resultati da reçerca',
@@ -281,8 +301,10 @@ A razon dæta a l'è ''$2''",
 
 # Recent changes
 'recentchanges'   => 'urtimi cangiamenti',
+'rcnote'          => "Chì sotta {{PLURAL:$1|gh'è a modiffica ciû reçente fæta|ghe son e '''$1''' modiffiche ciû reçenti fæte}} inte 'sto scîto {{PLURAL:$2|inte ûrtime 24 ôe|inti ûrtimi '''$2''' giorni}}; i dæti son aggiornæ a $3.",
 'rcshowhideminor' => '$1 cangiamenti minoi',
 'rcshowhidemine'  => '$1 i mæ cangiamenti',
+'rclinks'         => 'Fâ vedde e $1 modiffiche ciû reçenti fæte inti ûrtimi $2 giorni<br />$3',
 'hide'            => 'Ascondi',
 
 # Recent changes linked
@@ -315,6 +337,8 @@ A razon dæta a l'è ''$2''",
 'bysize'                    => 'pe grandessa',
 'imgdelete'                 => 'scassa',
 'imgfile'                   => 'papê',
+'filehist'                  => "Cronologîa de l'archivvio",
+'imagelinks'                => "Collegamenti a l'immaggine",
 'linkstoimage'              => 'E pagine seguenti appontan a questo papê:',
 'nolinkstoimage'            => 'Non ghe son de pagine che appontan a sto papê.',
 'shareduploadwiki-linktext' => 'pagina da descriçion do papê',
@@ -400,6 +424,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'removedwatch'         => 'Scassæ da a lista in osservaçion',
 'removedwatchtext'     => 'A pagina "[[:$1]]" a l\'è stæta scassâ da a toa lista in osservaçion.',
 'watch'                => "In t'a lista in osservaçion",
+'unwatch'              => 'No seguî',
 'watchlistcontains'    => "A lista in osservaçion g'ha $1 {{PLURAL:$1|pagine|pagina}}.",
 'watchlist-show-bots'  => 'Fanni vedde i cangiamenti de i bot',
 'watchlist-hide-bots'  => 'Ascondi i cangiamenti de i bot',
@@ -407,6 +432,10 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'watchlist-hide-own'   => 'Ascondi i mæ cangiamenti',
 'watchlist-show-minor' => 'Fanni vedde i cangiamenti minô',
 'watchlist-hide-minor' => 'Ascondi i cangiamenti minô',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Inti osservæ speçiâli...',
+'unwatching' => 'Scassâa da-i osservæ speçiâli',
 
 'changed' => 'cangiâ',
 
@@ -419,7 +448,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 de [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarchedun ätro a l'ha cangiâ o l'è tornoö in derrê de za.
 
 O urtimo cangiamento o l'è de [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
-'revertpage'     => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]',
+'revertpage'     => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Restrictions (nouns)
 'restriction-edit' => 'Cangia',
@@ -462,6 +491,7 @@ $1',
 'emailblock'                  => 'posta elettronega affermaä',
 'ipblocklist-empty'           => "A lista de e affermaçioin a l'è veua.",
 'blocklink'                   => 'Affermaçion',
+'contribslink'                => 'Contribûssioîn',
 'autoblocker'                 => 'Affermoö automaticamente perchè o teu indirisso IP o l\'è stæto usöo da "[[User:$1|$1]]" neuvamente. A razon dæta pe affermâ $1 a l\'è stæta:
 "$2"',
 'blocklogpage'                => 'Affermaçioin',
@@ -509,7 +539,26 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 'thumbnail_invalid_params' => 'Parametri da a imàginetta non validi',
 
 # Tooltip help for the actions
-'tooltip-search' => 'Çerca {{SITENAME}}',
+'tooltip-pt-userpage'     => 'User page',
+'tooltip-pt-mytalk'       => 'Mæ discûscioîn',
+'tooltip-pt-preferences'  => 'Mæ preferense',
+'tooltip-pt-watchlist'    => "A lista de-e paggine che ti g'hæ sotta osservassion",
+'tooltip-pt-mycontris'    => 'Mæ contribûssioîn',
+'tooltip-pt-login'        => "Conseggiæmo a registrassion, scibben a no l'è d'òbbligo.",
+'tooltip-pt-logout'       => 'Sciortîa (logout)',
+'tooltip-ca-talk'         => "Vedde e discûscioin insce 'sta paggina.",
+'tooltip-ca-edit'         => "O se pêu modificâ 'sta paggina. Pe piaxei scia dêuvie o pommello d'anteprimma primma de sarvâla.",
+'tooltip-search'          => 'Çerca {{SITENAME}}',
+'tooltip-n-mainpage'      => 'Viscita a paggina prinçipâ',
+'tooltip-n-portal'        => 'Descrission do progetto, cose che se pêuan fâ, donde trovâ e cose',
+'tooltip-n-currentevents' => "Informassioin insci fæti d'attualitæ.",
+'tooltip-n-recentchanges' => 'E ûrtime modiffiche into scîto',
+'tooltip-n-randompage'    => "Fâ vedde 'na paggina a brettîo.",
+'tooltip-n-help'          => "Paggine d'agiûtto",
+'tooltip-n-sitesupport'   => 'Agiûttine',
+'tooltip-t-whatlinkshere' => 'Lista de tûtte e paggine che son collegæ a questa chì.',
+'tooltip-t-upload'        => 'Caregâ immagini òu archivvi multimedia',
+'tooltip-t-specialpages'  => 'Lista de tûtte e paggine speçiâli',
 
 # Stylesheets
 'common.css' => '/** o codiçe css scrïo chie o vegne azzounto in tutte e pagine */',

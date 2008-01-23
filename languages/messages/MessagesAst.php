@@ -1753,7 +1753,10 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'importuploaderrorsize'      => "Falló la xubida del archivu d'importación. L'archivu ye más grande que'l tamañu permitíu de xubida.",
 'importuploaderrorpartial'   => "Falló la xubida del archivu d'importación. L'archivu xubióse solo parcialmente.",
 'importuploaderrortemp'      => "Falló la xubida del archivu d'importación. Falta una carpeta temporal.",
+'import-parse-failure'       => "Fallu nel análisis d'importación XML",
 'import-noarticle'           => '¡Nun hai páxina pa importar!',
+'import-nonewrevisions'      => 'Toles revisiones fueran importaes previamente.',
+'xml-error-string'           => '$1 na llinia $2, col $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",

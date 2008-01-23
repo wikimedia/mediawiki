@@ -7,31 +7,37 @@
  * @author Gangleri
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Felipe Aira
  */
 
 
 
 $messages = array(
 # User preference toggles
-'tog-underline'           => 'Salungguhitan ang mga kawing:',
-'tog-highlightbroken'     => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
-'tog-justify'             => 'Pantayin ang mga talata',
-'tog-hideminor'           => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
-'tog-usenewrc'            => 'Pinadagdagang huling binago (JavaScript)',
-'tog-numberheadings'      => 'Automatikong bilangin ang mga pamagat',
-'tog-editondblclick'      => 'Magbago ng mga pahina sa dobleng pag-klik (JavaScript)',
-'tog-showtoc'             => 'Ipakita ang tala ng nilalaman (para sa mga pahinang may higit sa 3 pamagat)',
-'tog-rememberpassword'    => 'Tandaan ang paglagda ko sa kompyuter na ito',
-'tog-editwidth'           => 'May buong kalaparan ang kahon ng pagbabago',
-'tog-minordefault'        => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
-'tog-previewontop'        => 'Ipakita ang pribyu bago ang kahon ng pagbabago',
-'tog-previewonfirst'      => 'Ipakita ang pribyu sa unang pagbabago',
-'tog-nocache'             => 'Salantain ang pagbaon ng pahina',
-'tog-shownumberswatching' => 'Ipakita ang bilang ng mga bumabantay na manggagamit',
-'tog-fancysig'            => 'Hilaw na lagda (walang automatikong pagkawing)',
-'tog-externaleditor'      => 'Gumamit ng panlabas na editor nang nakatakda',
-'tog-uselivepreview'      => 'Gamitin ang buhay na pribyu (JavaScript) (Eksperimental)',
-'tog-forceeditsummary'    => 'Diktahan ako kapag pumapasok ng walang-laman na buod ng pagbabago',
+'tog-underline'               => 'Salungguhitan mga kawing:',
+'tog-highlightbroken'         => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Pantayin mga talata',
+'tog-hideminor'               => 'Itago mga maliliit na pagbabago sa mga huling binago',
+'tog-extendwatchlist'         => 'Palawigin bantayan upang mapakita lahat na magagawang pagbabago.',
+'tog-usenewrc'                => 'Pinadagdagang huling binago (JavaScript)',
+'tog-numberheadings'          => 'Automatikong bilangin ang mga pamagat',
+'tog-showtoolbar'             => "Ipakita ang ''toolbar'' pampagbabago (JavaScript)",
+'tog-editondblclick'          => 'Magbago ng mga pahina sa dalawahang pagpindot (JavaScript)',
+'tog-editsection'             => 'Payagan mga pagbabagong panseksyon sa mga [edit] na kawing',
+'tog-editsectiononrightclick' => 'Payagan mga pagbabagong panseksyon sa pakanang pagpipindot ng mga pamagat ng mga seksyon (JavaScript)',
+'tog-showtoc'                 => 'Ipakita talaan ng mga nilalaman (sa mga pahinang may higit sa 3 mga ulo)',
+'tog-rememberpassword'        => 'Tandaan paglagda ko sa kompyuter na ito',
+'tog-editwidth'               => 'May buong kalaparan kahon ng pagbabago',
+'tog-watchcreations'          => 'Iragdag mga pahinang ginawa ko sa bantayan ko',
+'tog-minordefault'            => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
+'tog-previewontop'            => 'Ipakita ang pribyu bago ang kahon ng pagbabago',
+'tog-previewonfirst'          => 'Ipakita ang pribyu sa unang pagbabago',
+'tog-nocache'                 => 'Salantain ang pagbaon ng pahina',
+'tog-shownumberswatching'     => 'Ipakita ang bilang ng mga bumabantay na manggagamit',
+'tog-fancysig'                => 'Hilaw na lagda (walang automatikong pagkawing)',
+'tog-externaleditor'          => 'Gumamit ng panlabas na editor nang nakatakda',
+'tog-uselivepreview'          => 'Gamitin ang buhay na pribyu (JavaScript) (Eksperimental)',
+'tog-forceeditsummary'        => 'Diktahan ako kapag pumapasok ng walang-laman na buod ng pagbabago',
 
 'underline-default' => 'Tinakda ng pambasa-basa',
 
@@ -95,7 +101,14 @@ $messages = array(
 'category-media-header' => 'Mga midya sa kategoryang "$1"',
 'category-empty'        => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
 
-'mainpagetext' => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
+'mainpagetext'      => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
+'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa kaalaman sa paggamit ng wiking ''software''.
+
+== Pagsisimula ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'article'        => 'Pahina ng nilalaman',
 'newwindow'      => '(magbubukas sa bagong bintana)',

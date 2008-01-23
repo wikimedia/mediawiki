@@ -1818,6 +1818,10 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'importuploaderrorsize'      => 'O envio do ficheiro a ser importado falhou. O ficheiro é maior do que o tamanho máximo permitido para upload.',
 'importuploaderrorpartial'   => 'O envio do ficheiro a ser importado falhou. O ficheiro foi recebido parcialmente.',
 'importuploaderrortemp'      => 'O envio do ficheiro a ser importado falhou. Não há um diretório temporário.',
+'import-parse-failure'       => 'Falha ao importar dados XML',
+'import-noarticle'           => 'Sem páginas para importar!',
+'import-nonewrevisions'      => 'Todas as edições já haviam sido importadas.',
+'xml-error-string'           => '$1 na linha $2, coluna $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Registo de importações',

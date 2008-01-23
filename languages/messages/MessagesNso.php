@@ -20,6 +20,8 @@ $messages = array(
 'tog-enotifwatchlistpages' => 'Nromele molaetša ge letlaka leo ke le tlhapetšego le ena le diphetogo',
 'tog-enotifusertalkpages'  => 'Nromele molaetša ge letlakala la Dipoledišano laka le fetoga',
 'tog-shownumberswatching'  => 'Laetša palo bašomiši bao ba tlhapetšego',
+'tog-watchlisthideown'     => 'Fihla diphetogo tšeo di direlego ke nna go lenano la ditlhapetšo.',
+'tog-watchlisthideminor'   => 'Fihla diphetogo tše nyenyane tšeo di direlego ke nna go lenano la ditlhapetšo',
 'tog-ccmeonemails'         => 'Nromele kopi ya melaetša yeo ke romelago bašumiši ba bangwe',
 
 'underline-always' => 'Kamehla',
