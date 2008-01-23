@@ -140,6 +140,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   address in Reply-To instead of From for user-to-user emails.
   This protects against SPF problems and privacy-leaking bounce messages
   when using mailers that set the envelope sender to the From header value.
+* (bug 11897) Add alias [[Special:CreateAccount]] & [[Special:Userlogin/signup]]
+  for Special:Userlogin?type=signup
 
 === Bug fixes in 1.12 ===
 
