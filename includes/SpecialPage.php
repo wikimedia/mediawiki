@@ -857,7 +857,7 @@ class SpecialCreateAccount extends SpecialPage {
 		$this->mAllowedRedirectParams = array( 'uselang' );
 	}
 
-		function getRedirect() {
+		function getRedirect( $subpage ) {
 			return SpecialPage::getTitleFor( 'Userlogin', 'signup' );
 	}
 }
