@@ -78,6 +78,7 @@ class ApiParamInfo extends ApiBase {
 		if(!is_array($allowedParams))
 			return $retval;
 		$retval['parameters'] = array();
+		$paramDesc = $obj->getParamDescription();
 		foreach($obj->getAllowedParams() as $n => $p)
 		{
 			$a = array('name' => $n);
@@ -111,6 +112,8 @@ class ApiParamInfo extends ApiBase {
 				$a['highmax'] = $p[ApiBase::PARAM_MAX2];
 			if(isset($p[ApiBase::PARAM_MIN]))
 				$a['min'] = $p[ApiBase::PARAM_MIN];
+			if(isset($paramDesc[$n]))
+				$a['description'] = (is_array($paramDesc[$n]) ? implode("\n", $paramDesc[$n]) : $paramDesc[$n]);
 			$retval['parameters'][] = $a;
 		}
 		$result->setIndexedTagName($retval['parameters'], 'param');
