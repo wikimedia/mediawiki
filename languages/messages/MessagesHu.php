@@ -194,7 +194,7 @@ $magicWords = array(
 	'img_manualthumb'     => array( '1', 'thumbnail=$1', 'thumb=$1', 'bélyegkép=$1', 'bélyeg=$1' ),
 	'img_right'           => array( '1', 'right', 'jobb', 'jobbra' ),
 	'img_left'            => array( '1', 'left', 'bal', 'balra' ),
-	'img_none'            => array( '1', 'none', 'nincs' ),
+	'img_none'            => array( '1', 'none', 'semmi' ),
 	'img_width'           => array( '1', '$1px' ),
 	'img_center'          => array( '1', 'center', 'centre', 'közép', 'középre' ),
 	'img_framed'          => array( '1', 'framed', 'enframed', 'frame', 'keretezett' ),
@@ -594,7 +594,7 @@ $2',
 'logouttitle'                => 'Kilépés',
 'logouttext'                 => '<strong>Kiléptél.</strong><br />
 A {{SITENAME}} használatát névtelenül folytathatod, vagy beléphetsz
-újra ugyanazzal vagy másik felhasználónévvel. Néhány oldalon lehet, 
+újra ugyanazzal vagy másik felhasználónévvel. Néhány oldalon lehet,
 hogy továbbra is bejelentkezettként leszel látható, mindaddig, amíg
 nem üríted ki a böngésződ gyorsítótárát.',
 'welcomecreation'            => '== Köszöntünk, $1! ==
@@ -654,16 +654,16 @@ azt kérte, hogy küldjünk neked új {{SITENAME}} ($4) jelszót.
 A "$2" felhasználó jelszava most "$3".
 Lépj be, és változtasd meg a jelszavadat.
 
-Ha nem kértél új jelszót, vagy közben eszedbe jutott a régi, 
-és már nem akarod megváltoztatni, nyugodtan figyelmen kívül 
+Ha nem kértél új jelszót, vagy közben eszedbe jutott a régi,
+és már nem akarod megváltoztatni, nyugodtan figyelmen kívül
 hagyhatod ezt az értesítést, és használhatod tovább a régi jelszavadat.',
 'noemail'                    => 'Nincs a "$1" felhasználóhoz e-mail felvéve.',
 'passwordsent'               => 'Az új jelszót elküldtük "$1" email címére.
 Lépj be a levélben található adatokkal.',
 'blocked-mailpassword'       => 'Az IP-címedet blokkoltuk, azaz eltiltottuk a szerkesztéstől, ezért a visszaélések elkerülése érdekében a jelszóvisszaállítás funkciót nem használhatod.',
 'eauthentsent'               => 'Egy ellenőrző e-mailt küldtünk a megadott címre. Mielőtt más leveleket kaphatnál, igazolnod kell az e-mailben írt utasításoknak megfelelően, hogy valóban a tiéd a megadott cím.',
-'throttled-mailpassword'     => '$1 órája már elküldtük a jelszó-emlékeztetőt. 
-A visszaélések elkerülése végett $1 óránként csak egy jelszó-emlékeztetőt 
+'throttled-mailpassword'     => '$1 órája már elküldtük a jelszó-emlékeztetőt.
+A visszaélések elkerülése végett $1 óránként csak egy jelszó-emlékeztetőt
 küldünk.',
 'mailerror'                  => 'Hiba az e-mail küldésekor: $1',
 'acct_creation_throttle_hit' => 'Már létrehoztál $1 felhasználói azonosítót. Sajnáljuk, de többet nem hozhatsz létre.',
@@ -754,7 +754,7 @@ Kapcsolatfelvétel: '''Ha be vagy jelentkezve, és adtál meg email-címet''', k
 
 Blokkolásod azonosítószáma: $5. Kérjük, hogy érdeklődés esetén add meg ezt az azonosítószámot.",
 'blockednoreason'           => 'nem lett ok megadva',
-'blockedoriginalsource'     => "'''$1''' forrása 
+'blockedoriginalsource'     => "'''$1''' forrása
 megtalálható alább:",
 'blockededitsource'         => "'''$1''' lapon '''általad végrehajtott szerkesztések''' szövege:",
 'whitelistedittitle'        => 'A szerkesztéshez be kell lépned',
@@ -798,8 +798,8 @@ gombját.",
 ''Mivel ebben a wikiben a nyers HTML engedélyezett, az előnézet a JavaScript támadások miatti elővigyázatosságból rejtett.''
 
 <strong>Ha ez egy jogos szerkesztési kísérlet, akkor próbáld meg újra. Ha még mindig nem működik, próbáld meg, hogy kijelentkezel, és visszajelentkezel.</strong>",
-'token_suffix_mismatch'     => '<strong>A szerkesztésedet elutasítottuk, mert az ügyfeled megváltoztatta az írásjeleket 
-a szerkesztési vezérjelben. A szerkesztést azért utasítottuk vissza, hogy megelőzzük a cikk szövegének sérülését. 
+'token_suffix_mismatch'     => '<strong>A szerkesztésedet elutasítottuk, mert az ügyfeled megváltoztatta az írásjeleket
+a szerkesztési vezérjelben. A szerkesztést azért utasítottuk vissza, hogy megelőzzük a cikk szövegének sérülését.
 Ez olyankor fordul elő, ha az általad használt webalapú névtelen proxy szolgáltatás hibás.</strong>',
 'editing'                   => '$1 szerkesztés alatt',
 'editinguser'               => '$1 szerkesztés alatt',
@@ -815,8 +815,8 @@ Ez olyankor fordul elő, ha az általad használt webalapú névtelen proxy szol
 'yourtext'                  => 'A te változatod',
 'storedversion'             => 'A tárolt változat',
 'nonunicodebrowser'         => '<strong>Figyelem: A böngésződ nem unicode kompatibilis. Egy programozási trükk segítségével biztonságban szerkesztheted a cikkeket: a nem ASCII karakterek a szerkesztőablakban hexadeciális kódokként jelennek meg..</strong>',
-'editingold'                => '<strong>FIGYELMEZTETÉS: A lap egy elavult változatát 
-szerkeszted. 
+'editingold'                => '<strong>FIGYELMEZTETÉS: A lap egy elavult változatát
+szerkeszted.
 Ha mented, akkor az ezen változat után végzett összes módosítás elvész.</strong>',
 'yourdiff'                  => 'Eltérések',
 'copyrightwarning'          => 'A szöveg elküldésével tanúsítod, hogy nem sért szerzői jogokat, és engedélyezed a(z) $2 szerinti felhasználását. Ha nem akarod, hogy az írásodat módosítsák vagy továbbterjesszék, akkor ne küldd itt be.<br />
@@ -1431,7 +1431,7 @@ további információkat lelhetsz ott az általad keresett könyvekről:',
 'all-logs-page'        => 'Rendszernaplók',
 'log-search-legend'    => 'Naplók keresése',
 'log-search-submit'    => 'Menj',
-'alllogstext'          => 'Az átnevezési, feltöltési, törlési, lapvédelmi, blokkolási, bürokrata és felhasználó-átnevezési naplók közös listája. 
+'alllogstext'          => 'Az átnevezési, feltöltési, törlési, lapvédelmi, blokkolási, bürokrata és felhasználó-átnevezési naplók közös listája.
 Szűkítheted a listát a naplótípus, a műveletet végző felhasználó vagy az érintett oldal megadásával.',
 'logempty'             => 'Nincs illeszkedő naplóbejegyzés.',
 'log-title-wildcard'   => 'Így kezdődő címek keresése',
@@ -1462,10 +1462,10 @@ Szűkítheted a listát a naplótípus, a műveletet végző felhasználó vagy 
 és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
-'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail címet adott meg, 
-akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni. 
-Feladóként a beállításaid között megadott e-mail címed 
-fog szerepelni, 
+'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail címet adott meg,
+akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni.
+Feladóként a beállításaid között megadott e-mail címed
+fog szerepelni,
 hogy a címzett válaszolni tudjon.',
 'usermailererror' => 'A postázó objektum által visszaadott hiba:',
 'defemailsubject' => '{{SITENAME}} e-mail',
@@ -1534,7 +1534,7 @@ Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az o
 'enotif_lastdiff'              => 'Lásd a $1 lapot ezen változtatás megtekintéséhez.',
 'enotif_anon_editor'           => '$1 névtelen felhasználó',
 'enotif_body'                  => 'Kedves $WATCHINGUSERNAME!
-	
+
 
 A(z) {{SITENAME}} $PAGETITLE című oldalát $CHANGEDORCREATED $PAGEEDITDATE-n $PAGEEDITOR, a jelenlegi verziót lásd a $PAGETITLE_URL webcímen.
 
@@ -1567,13 +1567,13 @@ Visszajelzés és további segítség:
 'confirmdelete'               => 'Törlés megerősítése',
 'deletesub'                   => '(„$1” törlése)',
 'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, története van:',
-'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti 
-végleges törlésére készülsz.  
-Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni, 
-átlátod a következményeit, és a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]] 
+'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti
+végleges törlésére készülsz.
+Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni,
+átlátod a következményeit, és a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]]
 összhangban cselekedsz.',
 'actioncomplete'              => 'Művelet végrehajtva',
-'deletedtext'                 => 'A(z) „$1” lapot törölted.  
+'deletedtext'                 => 'A(z) „$1” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletedarticle'              => '„$1” törölve',
 'dellogpage'                  => 'Törlési_napló',
@@ -1617,7 +1617,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'unprotectsub'                => '(„$1” védelmének feloldása)',
 'protect-unchain'             => 'Átnevezési jogok állítása külön',
 'protect-text'                => 'Itt megtekintheted és módosíthatod a(z) [[$1]] lap védelmi szintjét. Légy szives, tartsd be a védett lapokkal kapcsolatos előírásokat.',
-'protect-locked-blocked'      => 'Nem változtathatod meg a védelmi szinteket, amíg blokkolnak. Itt vannak a(z) 
+'protect-locked-blocked'      => 'Nem változtathatod meg a védelmi szinteket, amíg blokkolnak. Itt vannak a(z)
 <strong>$1</strong> lap jelenlegi beállításai:',
 'protect-locked-dblock'       => 'A védelmi szinteket egy aktív adatbázis zárolás miatt nem változtathatod meg.
 Itt vannak a(z) <strong>$1</strong> lap jelenlegi beállításai:',
@@ -1662,8 +1662,8 @@ változatok a laptörténet elejére kerülnek be, a jelenlegi lapváltozat mód
 'undeleterevdel'               => 'A visszavonás nem hajtható végre, ha a legfrissebb lapváltozat részben
 törlését eredmémyezi. Ilyen esetekben törölnöd kell a legújabb törölt változatok kijelölését, vagy megszüntetni az elrejtésüket. Azon fájlváltozatok,
 melyek megtekintése a számodra nem engedélyezett, nem kerülnek visszaállításra.',
-'undeletehistorynoadmin'       => 'Ezt a szócikket törölték. A törlés okát alább az összegzésben 
-láthatod, az oldalt a törlés előtt szerkesztő felhasználók részleteivel együtt. Ezeknek 
+'undeletehistorynoadmin'       => 'Ezt a szócikket törölték. A törlés okát alább az összegzésben
+láthatod, az oldalt a törlés előtt szerkesztő felhasználók részleteivel együtt. Ezeknek
 a törölt változatoknak a tényleges szövege csak az adminisztrátorok számára hozzáférhető.',
 'undelete-revision'            => '$1 változatának törlése kész ($2), $3:',
 'undeleterevision-missing'     => 'Érvénytelen vagy hiányzó változat. Lehet, hogy rossz hivatkozásod van, ill. a
@@ -1816,14 +1816,14 @@ $1',
 # Developer tools
 'lockdb'              => 'Adatbázis zárolása',
 'unlockdb'            => 'Adatbázis kinyitása',
-'lockdbtext'          => 'Az adatbázis zárolása felfüggeszti valamennyi felhasználó 
-számára a lapok szerkesztésének, a beállításaik módosításának, és olyan más 
-dolgoknak a képességét, amihez az adatbázisban kell 
-változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni, és a karbantartás 
+'lockdbtext'          => 'Az adatbázis zárolása felfüggeszti valamennyi felhasználó
+számára a lapok szerkesztésének, a beállításaik módosításának, és olyan más
+dolgoknak a képességét, amihez az adatbázisban kell
+változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni, és a karbantartás
 befejezése után kinyitod az adatbázist.',
-'unlockdbtext'        => 'Az adatbázis kinyitása visszaállítja valamennyi felhasználó 
-számára a lapok szerkesztésének, a beállításaik módosításának, és olyan más 
-dolgoknak a képességét, amihez az adatbázisban kell 
+'unlockdbtext'        => 'Az adatbázis kinyitása visszaállítja valamennyi felhasználó
+számára a lapok szerkesztésének, a beállításaik módosításának, és olyan más
+dolgoknak a képességét, amihez az adatbázisban kell
 változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 'lockconfirm'         => 'Igen, valóban zárolni akarom az adatbázist.',
 'unlockconfirm'       => 'Igen, valóban ki akarom nyitni az adatbázist.',
@@ -1840,26 +1840,26 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 
 # Move page
 'movepage'                => 'Lap átnevezése',
-'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és 
-helyezheted át előzményeit az új névre. 
-A régi cím az új címre átirányító lap lesz. A régi lapcímre 
-mutató hivatkozások változatlanok maradnak; a rossz 
-átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért, 
-hogy a hivatkozások továbbítsanak ahhoz a ponthoz, 
+'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és
+helyezheted át előzményeit az új névre.
+A régi cím az új címre átirányító lap lesz. A régi lapcímre
+mutató hivatkozások változatlanok maradnak; a rossz
+átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért,
+hogy a hivatkozások továbbítsanak ahhoz a ponthoz,
 ahová feltehetőleg vinniük kell.
 
-A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap, 
-hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye. 
-Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, 
-ha hibázol, létező oldalt pedig 
+A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap,
+hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye.
+Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére,
+ha hibázol, létező oldalt pedig
 nem tudsz felülírni.
 
 <b>FIGYELEM!</b>
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
-győződj meg róla a folytatás előtt, hogy tisztában vagy-e 
+győződj meg róla a folytatás előtt, hogy tisztában vagy-e
 a következményekkel.",
 'movepagetalktext'        => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''
-*már létezik egy nem üres vitalap az új helyen, 
+*már létezik egy nem üres vitalap az új helyen,
 *nem jelölöd be a lenti pipát.
 
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",
@@ -1898,12 +1898,12 @@ Az átnevezés céljaként megadott „[[$1]]” szócikk már létezik.  Ha az 
 
 # Export
 'export'            => 'Lapok exportálása',
-'exporttext'        => 'Egy adott lap vagy lapcsoport szövegét és laptörténetét exportálhatod XML-be. A kapott 
-fájlt importálhatod egy másik MediaWiki alapú rendszerbe 
+'exporttext'        => 'Egy adott lap vagy lapcsoport szövegét és laptörténetét exportálhatod XML-be. A kapott
+fájlt importálhatod egy másik MediaWiki alapú rendszerbe
 a Special:Import lapon keresztül.
 
-Lapok exportálásához add meg a címüket a lenti szövegdobozban (minden címet külön sorba), és válaszd ki, 
-hogy az összes korábbi változatra és a teljes laptörténetekre szükséged van-e, vagy csak az aktuális 
+Lapok exportálásához add meg a címüket a lenti szövegdobozban (minden címet külön sorba), és válaszd ki,
+hogy az összes korábbi változatra és a teljes laptörténetekre szükséged van-e, vagy csak az aktuális
 változatok és a legutolsó változtatásokra vonatkozó információk kellenek.
 
 Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[Special:Export/{{MediaWiki:Mainpage}}]] a [[{{MediaWiki:Mainpage}}]] nevű lapot exportálja.',
@@ -2142,8 +2142,8 @@ Ugyanazon sor további hivatkozásai kivételnek tekintettek, pl. a szócikkek, 
 'metadata-help'     => 'Ez a kép járulékos adatokat tartalmaz, amelyek feltehetően a kép létrehozásához használt digitális fényképezőgép vagy lapolvasó beállításairól adnak tájékoztatást.  Ha a képet az eredetihez képest módosították, ezen adatok eltérhetnek a kép tényleges jellemzőitől.',
 'metadata-expand'   => 'További képadatok',
 'metadata-collapse' => 'További képadatok elrejtése',
-'metadata-fields'   => 'Az ebben az üznetben kilistázott EXIF metaadat mezőket 
-a képlap megjelenítés a metaadat táblázat összecsukásakor 
+'metadata-fields'   => 'Az ebben az üznetben kilistázott EXIF metaadat mezőket
+a képlap megjelenítés a metaadat táblázat összecsukásakor
 tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 * make
 * model
@@ -2417,18 +2417,18 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 # E-mail address confirmation
 'confirmemail'            => 'E-mail cím megerősítése',
 'confirmemail_noemail'    => 'Nincs érvényes e-mail cím megadva a [[Special:Preferences|beállításaidnál]].',
-'confirmemail_text'       => 'Ennek a wikinek a használatához meg kell erősítened az e-mail címed, 
-mielőtt használni kezded a levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt, 
+'confirmemail_text'       => 'Ennek a wikinek a használatához meg kell erősítened az e-mail címed,
+mielőtt használni kezded a levelezési rendszerét. Nyomd meg az alsó gombot, hogy kaphass egy e-mailt,
 melyben megtalálod a megerősítéshez szükséges kódot. Töltsd be a kódot a böngésződbe, hogy aktiválhasd az e-mail címedet. Köszönjük!',
 'confirmemail_pending'    => '<div class="error">
-A megerősítő kódot már megküldtük neked e-mailben; ha nemrég hoztad 
+A megerősítő kódot már megküldtük neked e-mailben; ha nemrég hoztad
 létre a fiókodat, akkor várhatnál néhány percet, amíg megérkezik,
 mielőtt új kódot kérnél.
 </div>',
 'confirmemail_send'       => 'Küldd el a kódot',
 'confirmemail_sent'       => 'Kaptál egy e-mailt, melyben megtalálod a megerősítéshez szükséges kódot.',
 'confirmemail_oncreate'   => 'A megerősítő kódot elküldtük az e-mail címedre.
-Ez a kód nem szükséges a belépéshez, de meg kell adnod, 
+Ez a kód nem szükséges a belépéshez, de meg kell adnod,
 mielőtt a wiki e-mail alapú szolgáltatásait igénybe veheted.',
 'confirmemail_sendfailed' => 'Nem tudjuk elküldeni a megerősítéshez szükséges e-mailt. Kérjük, ellenőrizd a címet. $1',
 'confirmemail_invalid'    => 'Nem megfelelő kód. A kódnak lehet, hogy lejárt a felhasználhatósági ideje.',
@@ -2437,15 +2437,15 @@ mielőtt a wiki e-mail alapú szolgáltatásait igénybe veheted.',
 'confirmemail_loggedin'   => 'E-mail címed megerősítve.',
 'confirmemail_error'      => 'Hiba az e-mail címed megerősítése során.',
 'confirmemail_subject'    => '{{SITENAME}} e-mail cím megerősítés',
-'confirmemail_body'       => 'Valaki, valószínűleg te, a $1 IP címről regisztrált a "$2" azonosítóval, 
-ezzel az e-maillel. 
+'confirmemail_body'       => 'Valaki, valószínűleg te, a $1 IP címről regisztrált a "$2" azonosítóval,
+ezzel az e-maillel.
 
-Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik, és aktiválni szeretnéd az 
+Annak érdekében, hogy megerősítsd, ez az azonosító valóban hozzád tartozik, és aktiválni szeretnéd az
 e-mail címedet, nyisd meg az alábbi hivatkozást a böngésződben:
 
 $3
 
-Ha ez *nem* te vagy, ne kattints a hivatkozásra. Ennek a megerősítésre szánt kódnak 
+Ha ez *nem* te vagy, ne kattints a hivatkozásra. Ennek a megerősítésre szánt kódnak
 a felhasználhatósági ideje lejár: $4.',
 
 # Scary transclusion
