@@ -341,6 +341,9 @@ class ProtectionForm {
 		return '<tr>'
 			. '<td><label for="expires">' . wfMsgExt( 'protectexpiry', array( 'parseinline' ) ) . '</label></td>'
 			. '<td>' . Xml::input( 'mwProtect-expiry', 60, $this->mExpiry, $attribs ) . '</td>'
+			. '</tr><tr>'
+			. '<td><label for="expires">' . wfMsgExt( 'protectexpiry', array( 'parseinline' ) ) . '</label></td>'
+			. '<td>' . Xml::input( 'mwProtect-expiry', 60, $this->mExpiry, $attribs ) . '</td>'
 			. '</tr>';
 	}
 	

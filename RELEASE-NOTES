@@ -335,7 +335,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12327) Comma in username no longer disrupts mail headers
 * (bug 6436) Localization of Special:Import XML parser Error message(s).
 * Security fix for API on MSIE
-
+* (bug 12768) Database query syntax error in maintenance/storage/compressOld.inc
 
 == Parser changes in 1.12 ==
 
