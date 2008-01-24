@@ -103,8 +103,9 @@ class EditPage {
 	
 	/**
 	 * Fetch initial editing page content.
+	 * @private
 	 */
-	private function getContent( $def_text = '' ) {
+	function getContent( $def_text = '' ) {
 		global $wgOut, $wgRequest, $wgParser;
 
 		# Get variables from query string :P
