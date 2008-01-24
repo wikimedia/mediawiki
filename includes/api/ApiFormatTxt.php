@@ -38,11 +38,11 @@ class ApiFormatTxt extends ApiFormatBase {
 	}
 
 	public function getMimeType() {
-		return 'text/html';
+		return 'text/text';
 	}
 
 	public function execute() {
-		$this->printText($this->formatHTML(print_r($this->getResultData(), true)));
+		$this->printText(print_r($this->getResultData(), true));
 	}
 
 	protected function getDescription() {

@@ -38,11 +38,11 @@ class ApiFormatDbg extends ApiFormatBase {
 	}
 
 	public function getMimeType() {
-		return 'text/html';
+		return 'text/text';
 	}
 
 	public function execute() {
-		$this->printText($this->formatHTML(var_export($this->getResultData(), true)));
+		$this->printText(var_export($this->getResultData(), true));
 	}
 
 	protected function getDescription() {
