@@ -5348,11 +5348,10 @@ Section extraction test with comment after heading (section 1)
 section=1
 !! input
 ==a==
-==unmarked== <!-- an unmarked section -->
-==b==
+==b== <!-- -->
+==c==
 !! result
 ==a==
-==unmarked== <!-- an unmarked section -->
 !! end
 
 !! test
@@ -5361,10 +5360,10 @@ Section extraction test with comment after heading (section 2)
 section=2
 !! input
 ==a==
-==unmarked== <!-- an unmarked section -->
-==b==
+==b== <!-- -->
+==c==
 !! result
-==b==
+==b== <!-- -->
 !! end
 
 !! test
@@ -6712,56 +6711,26 @@ Morwen/13: Unclosed link followed by heading
 !! end
 
 !! test
-HHP1: Heuristics for headings in preprocessor parenthetical structures
+HHP2.1: Heuristics for headings in preprocessor parenthetical structures
 !! input
-{{foo
+{{foo|
+=heading=
+!! result
+<p>{{foo|
+</p>
+<a name="heading"></a><h1> <span class="mw-headline">heading</span></h1>
+
+!! end
+
+!! test
+HHP2.2: Heuristics for headings in preprocessor parenthetical structures
+!! input
+{{foo|
 ==heading==
 !! result
-<p>{{foo
+<p>{{foo|
 </p>
 <a name="heading"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline">heading</span></h2>
-
-!! end
-
-!! test
-HHP2: Heuristics for headings in preprocessor parenthetical structures
-!! input
-{{foo|
-==heading==
-!! result
-<p>{{foo|
-</p>
-<a name="heading"></a><h2> <span class="mw-headline">heading</span></h2>
-
-!! end
-
-!! test
-HHP3: Heuristics for headings in preprocessor parenthetical structures
-!! input
-{{foo|
-==heading 1==
-==heading 2==
-!! result
-<p>{{foo|
-</p>
-<a name="heading_1"></a><h2> <span class="mw-headline">heading 1</span></h2>
-<a name="heading_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading 2">edit</a>]</span> <span class="mw-headline">heading 2</span></h2>
-
-!! end
-
-# Note that heading 2 is counted, so heading 3 gets section=2 not section=1
-!! test
-HHP4: Heuristics for headings in preprocessor parenthetical structures
-!! input
-{{foo|
-==heading 1==
-==heading 2==
-}}
-==heading 3==
-!! result
-<p>FOO
-</p>
-<a name="heading_3"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: heading 3">edit</a>]</span> <span class="mw-headline">heading 3</span></h2>
 
 !! end
 
