@@ -320,6 +320,8 @@ function __autoload($className) {
 		'ApiFormatPhp' => 'includes/api/ApiFormatPhp.php',
 		'ApiFormatWddx' => 'includes/api/ApiFormatWddx.php',
 		'ApiFormatXml' => 'includes/api/ApiFormatXml.php',
+		'ApiFormatTxt' => 'includes/api/ApiFormatTxt.php',
+		'ApiFormatDbg' => 'includes/api/ApiFormatDbg.php',
 		'Spyc' => 'includes/api/ApiFormatYaml_spyc.php',
 		'ApiFormatYaml' => 'includes/api/ApiFormatYaml.php',
 		'ApiHelp' => 'includes/api/ApiHelp.php',
