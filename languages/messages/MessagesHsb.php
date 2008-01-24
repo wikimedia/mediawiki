@@ -576,24 +576,17 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto ze zmylkom wutwo
 'summary-preview'           => 'Přehlad zjeća',
 'subject-preview'           => 'Přehlad temy',
 'blockedtitle'              => 'Wužiwar je zablokowany',
-'blockedtext'               => '<big>\'\'\'Twoje wužiwarske mjeno abo twoja IP-adresa bu přez administratora $1 blokowane(-a).\'\'\'</big>
+'blockedtext'               => "<big>'''Twoje wužiwarske mjeno abo twoja IP-adresa bu $1 blokowane.'''</big>
 
-Podata přičina je: $2.
+Podata přičina je: ''$2''.
 
-Ty móhł wužiwarja $1 abo jednoho z druhich [[{{MediaWiki:Grouppage-sysop}}|administratorow]] kontaktować, zo by wo blokowanju diskutował.
+* Spočatk blokowanja: $8
+* Kónc blokowanja: $6
+* Zablokowany wužiwar: $7
 
-Njemóžeš \'e-mejlowe funkcije\' wužiwać, chibazo sy płaćiwu e-mejlowu adresu w swojich [[{{ns:special}}:Preferences|kontowych nastajenjach]] zapodał. Twoja tuchwilna IP-adresa je $3 a blokowa ID je #$5. Prošu podaj jedyn z njeju abo wobaj we swojich naprašowanjach.
-
-<div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
-\'\'\'Prošu podaj slědowace daty w kóždym naprašowanju:\'\'\'
-*Blokowacy administrator: $1
-*Přičina blokowanja: $2
-*Započatk blokowanja: $8
-*Kónc blokowanja: $6
-*IP-adresa: $3
-*Bolokowanje nastupa: $7
-*ID blokowanja: #$5
-</div>',
+Ty móžeš $1 abo druheho [[{{MediaWiki:Grouppage-sysop}}|administratora]] kontaktować, zo by wo blokowanju diskutował.
+Njemóžeš 'e-mejlowu funkciju' wužiwać, chibazo sy płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|kontowych nastajenjach]] podał a njebu přećiwo jeje wužiwanju zablokowany.
+Twoja tuchwilna IP-adresa je $3 a blokowanski ID je #$5. Prošu podaj pak IP-adresu pak blokowanski ID abo wobaj w swojich naprašowanjach.",
 'autoblockedtext'           => 'Twoja IP-adresa bu awtomatisce blokowana, dokelž ju druhi wužiwar wužiwaše, kiž bu wot administratora $1 zablokowany.
 Přičina zablokowanja bě:
 
@@ -634,7 +627,7 @@ Móžeš administratora $1 abo jednoho z druhich [[{{MediaWiki:Grouppage-sysop}}
 'accmailtitle'              => 'Hesło bu pósłane.',
 'accmailtext'               => 'Hesło za wužiwarja [[User:$1]] bu na adresu $2 pósłane.',
 'newarticle'                => '(Nowy nastawk)',
-'newarticletext'            => 'Sy wotkaz k stronje slědował, kotraž hišće njeeksistuje. Zo by stronu wutworił, wupjelń tekstowe polo deleka (hlej [[{{MediaWiki:Helppage}}|stronu pomocy]] za wjace informacijow). Jeli sy zmylnje tu, klikń na tłóčku <b>Wróćo</b> swojeho wobhladowaka.',
+'newarticletext'            => 'Sy wotkaz k stronje slědował, kotraž hišće njeeksistuje. Zo by stronu wutworił, wupjelń slědowace tekstowe polo (hlej [[{{MediaWiki:Helppage}}|stronu pomocy]] za dalše informacije). Jeli sy zmylnje tu, klikń prosće na tłóčatko <b>Wróćo</b> we swojim wobhladowaku.',
 'anontalkpagetext'          => "---- ''To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka IP-adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[Special:Userlogin|wutwor konto abo přizjew so]], zo by přichodnu šmjatańcu wobešoł.''",
 'noarticletext'             => 'Tuchwilu tuta strona žadyn tekst njewobsahuje, móžeš jeje titul w druhich stronach [[Special:Search/{{PAGENAME}}|pytać]] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} stronu wobdźěłać].',
 'userpage-userdoesnotexist' => 'Wužiwarske konto „$1“ njeje zregistrowane. Prošu pruwuj, hač chceš tutu stronu woprawdźe wutworić/wobdźěłać.',
@@ -1195,7 +1188,7 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'disambiguations'         => 'Rozjasnjenja wjacezmyslnosće',
 'disambiguations-summary' => 'Tuta specialna strona naliči nastawki z wotkazami na daleposrědkowanja. Měli město toho na poprawne hesło wotkazać.<br />Strona so jako rozjasnjenje wjacezmyslnosće zarjaduje, jeli [[MediaWiki:disambiguationspage]] na nju wotkazuje. Wotkazy z druhich mjenowych rumow hač hłowneho (nastawkoweho) so tu njenaspomnjeja.',
 'disambiguationspage'     => 'Template:Wjacezmyslnosć',
-'disambiguations-text'    => "Slědowace strony na '''rozjasnjenje wjacezmyslnosće''' wotkazuja. Měli město toho na poprawne hesło wotkazać.<br />Strona so jako rozjasnjenje wjacezmyslnosće zarjaduje, jeli [[MediaWiki:disambiguationspage]] na nju wotkazuje.",
+'disambiguations-text'    => "Slědowace strony na '''rozjasnjenje wjacezmyslnosće''' wotkazuja. Měli město toho na poprawnu stronu wotkazać.<br />Strona so jako rozjasnjenje wjacezmyslnosće zarjaduje, jeli předłohu wužiwa, na kotruž so wot [[MediaWiki:Disambiguationspage]] wotkazuje.",
 
 'doubleredirects'         => 'Dwójne daleposrědkowanja',
 'doubleredirects-summary' => '<b>Kedźbu:</b> Tuta lisćina móže „wopačne pozitiwy” wobsahować. To je potom z wašnjom, jeli su w daleposrědkowanju nimo přispomnjenja, zo so wo tajku stronu jedna, hišće druhe wotkazy zapisane. Tute měli so wotstronjeć.',
@@ -1408,9 +1401,9 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'enotif_lastvisited'           => 'Hlej $1 za wšě změny po twojim poslednim wopyće.',
 'enotif_lastdiff'              => 'Hlej $1 za tutu změnu.',
 'enotif_anon_editor'           => 'anonymny wužiwar $1',
-'enotif_body'                  => 'Luby(a) $WATCHINGUSERNAME,<br />
+'enotif_body'                  => 'Luby $WATCHINGUSERNAME,<br />
 
-Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom „$PAGETITLE” bu dnja $PAGEEDITDATE wot $PAGEEDITOR $CHANGEDORCREATED,
+Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom $PAGETITLE bu dnja $PAGEEDITDATE wot $PAGEEDITOR $CHANGEDORCREATED,
 hlej $PAGETITLE_URL za aktualnu wersiju.
 
 $NEWPAGE
@@ -1422,13 +1415,16 @@ e-mejl: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Njebudu žane druhe zdźělenki w padźe dalšich změnow, chibazo wopytaš tutu stronu.
-Ty móhł tež zdźělenske opcije za wšě ze swojich wobkedźbowanych stronow wróćo stajić.
+Móžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich wobkedźbowankach wróćo stajić.
 
-Přećelny zdźělenski system {{GRAMMAR:genitiw|{{SITENAME}}}}
+               Twój přećelny zdźělenski system {{GRAMMAR:genitiw|{{SITENAME}}}}
 
 --
 Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
-{{fullurl:{{ns:special}}:Watchlist/edit}}',
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Wospjetne prašenja a dalša pomoc:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Stronu wušmórnyć',
@@ -1440,8 +1436,9 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 'confirmdelete'               => 'Wušmórnjenje wobkrućić',
 'deletesub'                   => '(strona „$1” so wušmórnje)',
 'historywarning'              => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
-'confirmdeletetext'           => 'Sy so rozsudźił stronu abo dataju hromadźe ze jeje stawiznami z datoweje banki wotstronić. Prošu wobkruć, zo to maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo 
-[[{{MediaWiki:Policy-url}}|prawidłam tutoho wikija]] činiš.',
+'confirmdeletetext'           => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić. 
+Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo 
+[[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
 'actioncomplete'              => 'Dokónčene',
 'deletedtext'                 => 'Strona „$1” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
 'deletedarticle'              => 'je stronu [[$1]] wušmórnył.',
@@ -1467,7 +1464,7 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 
 Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).',
 'editcomment'                 => 'Komentar wobdźěłanja běše: „<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Změny wužiwarja [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|přinoški]]) cofnjene, nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]',
+'revertpage'                  => 'Změny wužiwarja [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|přinoški]]) cofnjene, nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
 'sessionfailure'              => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
 'protectlogpage'              => 'Protokol škita',
@@ -1592,7 +1589,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Wužiwarja zablokować',
-'blockiptext'                 => 'Wužij formular deleka, zo by pisanski přistup za podatu IP-adresu abo wužiwarske mjeno blokował. To měło so jenož stać, zo by wandalizmej zadźěwało a woptpowědujo [[{{MediaWiki:Policy-url}}|prawidłam]]. Zapodaj deleka přičinu (na př. citujo wosebite strony, kotrež běchu z woporom wandalizma).',
+'blockiptext'                 => 'Wužij slědowacy formular deleka, zo by pisanski přistup za podatu IP-adresu abo wužiwarske mjeno blokował. To měło so jenož stać, zo by wandalizmej zadźěwało a woptpowědujo [[{{MediaWiki:Policy-url}}|zasadam]]. Zapodaj deleka přičinu (na př. citujo wosebite strony, kotrež běchu z woporom wandalizma).',
 'ipaddress'                   => 'IP-adresa',
 'ipadressorusername'          => 'IP-adresa abo wužiwarske mjeno',
 'ipbexpiry'                   => 'Spadnjenje',
@@ -1794,6 +1791,10 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'importuploaderrorsize'      => 'Nahraće importoweje dataje je so njeporadźiło. Dataja je wjetša hač dowolena datajowa wulkosć.',
 'importuploaderrorpartial'   => 'Nahraće importoweje dataje je so njeporadźiło. Dataja je so jenož zdźěla nahrała.',
 'importuploaderrortemp'      => 'Nahraće importoweje dataje je so njeporadźiło. Temporarny zapis faluje.',
+'import-parse-failure'       => 'Zmylk za XML-import:',
+'import-noarticle'           => 'Žadyn nastawk za import!',
+'import-nonewrevisions'      => 'Wšě wersije buchu hižo prjedy importowane.',
+'xml-error-string'           => '$1 linka $2, špalta $3, (bajt $4): $5',
 
 # Import log
 'importlogpage'                    => 'Protokol importow',

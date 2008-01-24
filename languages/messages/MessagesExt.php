@@ -145,6 +145,9 @@ $messages = array(
 'anontalk'       => 'Caraba pa esta IP',
 'navigation'     => 'Güiquipeandu',
 
+# Metadata in edit box
+'metadata_help' => 'Metadatus:',
+
 'errorpagetitle'    => 'Marru',
 'returnto'          => 'Gorvel a $1.',
 'tagline'           => 'Endi {{SITENAME}}',
@@ -328,12 +331,12 @@ Pol favol, enhorma d'estu a un duendi u a un alministraol, incluyendu la direci�
 'protectedpagetext'    => "Esta páhina s'alcuentra atarugá a nuevas eicionis.",
 'viewsourcetext'       => 'Pueis vel i copial el cóigu huenti desta páhina:',
 'protectedinterface'   => "Esta páhina proporciona el testu la entrihazi el software, razón pola que s'alcuentra atarugá.",
-'editinginterface'     => "'''Cudiau:''' Estás eitandu una páhina que proporciona el testu la entrihazi el software. Los chambus hechus aquí afetarán al entrihazi d´otrus usuárius.",
+'editinginterface'     => "'''Cudiau:''' Estás eitandu una páhina que proporciona el testu la entrihazi el software. Los chambus hechus aquí afetarán al entrihazi d'otrus usuárius.",
 'sqlhidden'            => '(Consurta SQL açonchá)',
 'cascadeprotected'     => 'Esta páhina s\'alcuentra protehia ebiu a que horma parti e {{PLURAL:$1|la siguienti páhina|las siguientis páhinas}}, qu\'están protehias cola oción "proteción en cascá" ativá:
 $2',
 'namespaceprotected'   => "Nu tiinis premisu pa eital páhinas nel \"espaciu e nombris\" '''\$1'''.",
-'customcssjsprotected' => 'Nu tiinis premisu pa eital esta páhina ebiu a que contieni la configuración presonal d´otru usuáriu.',
+'customcssjsprotected' => "Nu tiinis premisu pa eital esta páhina ebiu a que contieni la configuración presonal d'otru usuáriu.",
 'ns-specialprotected'  => 'Nu se puein eital las páhinas el {{ns:special}} "espaciu e nombris".',
 'titleprotected'       => 'Esti entítulu á siu atarugau pol [[User:$1|$1]]. La razón es la siguienti: <i>$2</i>.',
 
@@ -376,21 +379,21 @@ Ya está creá la tu cuenta. Recuerda chambal la tus preferéncias al tentu la {
 'badsig'                     => 'Nu se premiti esa firma; compreba las etiquetas HTML.',
 'badsiglength'               => 'El tu moti es mu largu; ebi tenel menus de $1 carautéris.',
 'email'                      => 'Email',
-'prefs-help-realname'        => 'El nombri rial es ocional, peru nel chascu en que lo escrebas, se gastará p´atribuilti el tu labutu.',
+'prefs-help-realname'        => "El nombri rial es ocional, peru nel chascu en que lo escribas, se gastará p'atribuilti el tu labutu.",
 'loginerror'                 => "Marru d'ativación",
-'prefs-help-email'           => 'Es ocional escrebil el tu email, peru premiti qu´otrus usuárius contatin tegu a través de la tu páhina d´usuáriu u caraba, sin sel mestel revelal la tu entiá.',
+'prefs-help-email'           => "Es ocional escribil el tu email, peru premiti qu'otrus usuárius contatin tegu a través de la tu páhina d'usuáriu u caraba, sin sel mestel revelal la tu entiá.",
 'prefs-help-email-required'  => 'Es mestel la direción email.',
 'nocookiesnew'               => "S'á creau la tu cuenta d'usuáriu, inque nu la tienis abierta. {{SITENAME}} gasta \"cookies\" pa premitil el acesu a los usuárius, i tú las tienis desativás. Pol favol, atívalas i entra ena tu cuenta con el tu nombri d'usuáriu i consínia.",
 'nocookieslogin'             => '{{SITENAME}} gasta cookies pa entifical a los usuárius, i tú las tiinis esativás. Pol favol, atívalas i preba otra vezi.',
 'noname'                     => "Nu as escrebiu un nombri d'usuáriu corretu.",
 'loginsuccesstitle'          => 'Yeu, lo cúmu va esu?',
 'loginsuccess'               => "'''Acabihas d'entral en {{SITENAME}} con el nombri \"\$1\".'''",
-'nosuchuser'                 => 'Nu ai dengún usuáriu llamau "$1". Compreba qu´esté bien escrebiu, u crea una cuenta nueva.',
-'nosuchusershort'            => 'Nu ai dengún usuáriu llamau "$1". Compreba qu´esté bien escrebiu.',
-'nouserspecified'            => 'Ebis escrebil un nombri d´usuáriu.',
+'nosuchuser'                 => 'Nu ai dengún usuáriu llamau "$1". Compreba qu\'esté bien escritu, u cria una cuenta nueva.',
+'nosuchusershort'            => 'Nu ai dengún usuáriu llamau "$1". Compreba qu\'esté bien escritu.',
+'nouserspecified'            => "Ebis escribil un nombri d'usuáriu.",
 'wrongpassword'              => 'La consínia escrebia nu es correta. Pol favol, preba otra vezi.',
 'wrongpasswordempty'         => 'As ehau en brancu la consínia. Pol favol, preba otra vezi.',
-'passwordtooshort'           => 'La tu consínia nu es valia, u es mu chiquenina. Ebi tenel al menus $1 carateris i sel deferenti el tu nombri d´usuáriu.',
+'passwordtooshort'           => "La tu consínia nu es valia, u es mu chiquenina. Ebi tenel al menus $1 carateris i sel deferenti el tu nombri d'usuáriu.",
 'mailmypassword'             => 'Envialmi pol correu la consínia',
 'passwordremindertitle'      => 'Alcuerda-consínias de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (siguramenti tú), dendi la direción IP $1)
@@ -399,18 +402,18 @@ La nueva consínia el usuáriu "$2" es "$3".
 
 Si nu ás solicitau tú el chambu, u ya t\'as alcuerdau la tu consínia i nu quieis chambala, pueis acontinal gastandu la tú consínia antigua.',
 'noemail'                    => 'Nu ai emburacau dengún e-mail el usuáriu "$1".',
-'passwordsent'               => 'S´á enviau una nueva consínia a la direción d´email
-rustrá pol "$1".
-Pol favol, abri la tu cuenta d´usuáriu cuandu la recibas.',
-'blocked-mailpassword'       => 'La tu direción d´IP está atarugá, polo que nu se te premiti
-gastal la hunción p´arrecuperal consínias pa previnil abusionis.',
+'passwordsent'               => 'S\'á enviau una nueva consínia a la direción d\'email
+rustria pol "$1".
+Pol favol, abri la tu cuenta d\'usuáriu cuandu la recibas.',
+'blocked-mailpassword'       => "La tu direción d'IP está atarugá, polo que nu se te premiti
+gastal la hunción p'arrecuperal consínias pa previnil abusionis.",
 'eauthentsent'               => "S'á enviau un email de confirmación a la direción especificá. Enantis de que se envii cualisquiel otru correu a la cuenta tienis que seguil las istrucionis enviás nel mensahi, pa d'esta horma, confirmal que la direción te preteneci.",
-'throttled-mailpassword'     => 'Un alcuerda-consínias s´á enviau hazi
-menus d´una ora. Cumu miia e seguráncia, solu s´enviará un alcuerda-consínias
-pol ca $1 oras.',
+'throttled-mailpassword'     => "Un alcuerda-consínias s'á enviau hazi
+menus duna ora. Cumu miia e seguráncia, solu s'enviará un alcuerda-consínias
+pol ca $1 oras.",
 'mailerror'                  => 'Marru enviandu el mensahi: $1',
 'acct_creation_throttle_hit' => 'Perdona, ya tiinis creás $1 cuentas, ya nu pueis crial más.',
-'emailauthenticated'         => 'La tu direción d´email hue comprebá a las $1.',
+'emailauthenticated'         => "La tu direción d'email hue comprebá a las $1.",
 'emailnotauthenticated'      => 'Entovia nu as confirmau la tu direción email. Hata que lo hagas, nu estarán disponibris las siguientis huncionis.',
 'noemailprefs'               => "Escreba la su direción de correu p'atival estas caraterísticas.",
 'emailconfirmlink'           => 'Confirma el tu e-mail',
@@ -821,6 +824,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'group-bureaucrat-member'    => 'Alministraol',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuárius autuconfirmaus',
+'grouppage-bot'           => '{{ns:proyeutu}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Duendis',
 'grouppage-bureaucrat'    => '{{ns:project}}:Alministraoris',
 
@@ -1502,6 +1506,7 @@ cuandu aigas acabihau.',
 'lockdbsuccesstext'   => 'La basi e datus á siu atarugá.
 <br />Alcuerdati d´[[Special:Unlockdb|esborral el tarugu]] cuandu aigas acabihau.',
 'unlockdbsuccesstext' => "S'á desatarugau la basi e datus.",
+'lockfilenotwritable' => "El tarugu la basi e datus nu se puei sobriescribil. P'atarugual u desatarugal la basi e datus, esta ebi puel sel escrita pol sirviol web.",
 'databasenotlocked'   => 'La basi e datus nu está atarugá.',
 
 # Move page
@@ -1600,6 +1605,8 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'importnotext'               => 'Vaciu u sin testu',
 'importsuccess'              => 'Archivu emporteau!',
 'importnofile'               => 'Dengún archivu emporteau hue empuntau.',
+'import-noarticle'           => 'Nu ai páhinas pa emporteal!',
+'import-nonewrevisions'      => 'Ya án siu emporteás tolas revisionis.',
 
 # Import log
 'importlogpage'                    => 'Emporteal rustrihu',
@@ -1761,6 +1768,7 @@ Solu las frasis en hormatu lista (cuandu se prencipia la frasi con *) son consie
 Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas ondi la imahin puei ocurril ena línia.',
 
 # Metadata
+'metadata'          => 'Metadatus',
 'metadata-help'     => "Esti archivu contieni enhormación aicional (metadatus), probabrienti añiia pola cámara dehital, el escánel u el pograma gastau pa crialu u dehitalizalu. Si s'án hechu chambus nel archivu, es posibri que s'aigan perdiu detallis.",
 'metadata-expand'   => 'Muestral detallis',
 'metadata-collapse' => 'Açonchal detallis',

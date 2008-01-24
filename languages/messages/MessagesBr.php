@@ -1076,17 +1076,18 @@ PICT # misc.
 'filerevert-badversion'     => "N'eus stumm lec'hel kent ebet eus ar restr-mañ d'ar mare spisaet.",
 
 # File deletion
-'filedelete'             => 'Diverkañ $1',
-'filedelete-legend'      => 'Diverkañ ar restr',
-'filedelete-intro'       => "O tiverkañ '''[[Media:$1|$1]]''' emaoc'h.",
-'filedelete-intro-old'   => '<span class="plainlinks">Emaoc\'h o tiverkañ stumm \'\'\'[[Media:$1|$1]]\'\'\' eus [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Notenn :',
-'filedelete-submit'      => 'Diverkañ',
-'filedelete-success'     => "Diverket eo bet '''$1'''.",
-'filedelete-success-old' => '<span class="plainlinks">Diverket eo bet stumm \'\'\'[[Media:$1|$1]]\'\'\' eus $3, $2.</span>',
-'filedelete-nofile'      => "N'eus ket eus '''$1''' war al lec'hienn-mañ.",
-'filedelete-nofile-old'  => "N'eus stumm diellaouet ebet eus '''$1''' gant an dezverkoù lakaet.",
-'filedelete-iscurrent'   => "Emaoc'h o klask diverkañ doare diwezhañ ar restr-mañ. Distroit d'ur stumm koshoc'h da gentañ.",
+'filedelete'                  => 'Diverkañ $1',
+'filedelete-legend'           => 'Diverkañ ar restr',
+'filedelete-intro'            => "O tiverkañ '''[[Media:$1|$1]]''' emaoc'h.",
+'filedelete-intro-old'        => '<span class="plainlinks">Emaoc\'h o tiverkañ stumm \'\'\'[[Media:$1|$1]]\'\'\' eus [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Notenn :',
+'filedelete-submit'           => 'Diverkañ',
+'filedelete-success'          => "Diverket eo bet '''$1'''.",
+'filedelete-success-old'      => '<span class="plainlinks">Diverket eo bet stumm \'\'\'[[Media:$1|$1]]\'\'\' eus $3, $2.</span>',
+'filedelete-nofile'           => "N'eus ket eus '''$1''' war al lec'hienn-mañ.",
+'filedelete-nofile-old'       => "N'eus stumm diellaouet ebet eus '''$1''' gant an dezverkoù lakaet.",
+'filedelete-iscurrent'        => "Emaoc'h o klask diverkañ doare diwezhañ ar restr-mañ. Distroit d'ur stumm koshoc'h da gentañ.",
+'filedelete-reason-otherlist' => 'Abeg all',
 
 # MIME search
 'mimesearch'         => 'Klask MIME',
@@ -1379,7 +1380,7 @@ gant [[User:$2|$2]] ([[User talk:$2|Talk]]); kemmet pe distaolet eo bet c'hoazh 
 
 Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 'editcomment'                 => 'Diverradenn ar c\'hemm a oa: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User_talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
+'revertpage'                  => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User_talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
 'sessionfailure'              => 'Evit doare ez eus ur gudenn gant ho talc\'h;
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.

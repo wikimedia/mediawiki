@@ -1132,17 +1132,21 @@ Harkitse, onko asianmukaista jatkaa tämän tiedoston tallentamista. Kyseisen ti
 'filerevert-badversion'     => 'Tiedostosta ei ole luotu versiota kyseisellä ajan hetkellä.',
 
 # File deletion
-'filedelete'             => 'Tiedoston $1 poisto',
-'filedelete-legend'      => 'Tiedoston poisto',
-'filedelete-intro'       => "Olet poistamassa tiedostoa '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Olet poistamassa tiedoston \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3 kello $2 luotua versiota].</span>',
-'filedelete-comment'     => 'Poiston syy',
-'filedelete-submit'      => 'Poista',
-'filedelete-success'     => "Tiedosto '''$1''' on poistettu.",
-'filedelete-success-old' => '<span class="plainlinks">Tiedoston \'\'\'[[Media:$1|$1]]\'\'\' $3 kello $2 luotu versio on poistettu.</span>',
-'filedelete-nofile'      => "Tiedostoa '''$1''' ei ole.",
-'filedelete-nofile-old'  => "Tiedostosta '''$1''' ei ole olemassa pyydettyä versiota.",
-'filedelete-iscurrent'   => 'Et voi poistaa tiedoston uusinta versiota. Palauta jokin muu version uusimmaksi.',
+'filedelete'                  => 'Tiedoston $1 poisto',
+'filedelete-legend'           => 'Tiedoston poisto',
+'filedelete-intro'            => "Olet poistamassa tiedostoa '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Olet poistamassa tiedoston \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3 kello $2 luotua versiota].</span>',
+'filedelete-comment'          => 'Poiston syy',
+'filedelete-submit'           => 'Poista',
+'filedelete-success'          => "Tiedosto '''$1''' on poistettu.",
+'filedelete-success-old'      => '<span class="plainlinks">Tiedoston \'\'\'[[Media:$1|$1]]\'\'\' $3 kello $2 luotu versio on poistettu.</span>',
+'filedelete-nofile'           => "Tiedostoa '''$1''' ei ole.",
+'filedelete-nofile-old'       => "Tiedostosta '''$1''' ei ole olemassa pyydettyä versiota.",
+'filedelete-iscurrent'        => 'Et voi poistaa tiedoston uusinta versiota. Palauta jokin muu version uusimmaksi.',
+'filedelete-reason-otherlist' => 'Muu syy',
+'filedelete-reason-dropdown'  => '*Yleiset poistosyyt
+** Duplikaatti
+** Tekijänoikeusrikkomus',
 
 # MIME search
 'mimesearch'         => 'MIME-haku',
@@ -1422,7 +1426,7 @@ Palaute ja lisäapu osoitteessa:
 'cantrollback'                => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
 'alreadyrolled'               => 'Käyttäjän [[User:$2|$2]] ([[User_talk:$2|keskustelu]]) tekemiä muutoksia sivuun $1 ei voi kumota, koska käyttäjä [[User:$3|$3]] ([[User_talk:$3|keskustelu]]) on tehnyt uudempia muutoksia.',
 'editcomment'                 => 'Muokkauksen yhteenveto oli: <i>$1</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User_talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.',
+'revertpage'                  => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User_talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
 'sessionfailure'              => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
 'protectlogpage'              => 'Suojausloki',

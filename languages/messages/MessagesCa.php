@@ -1452,7 +1452,7 @@ per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre ha editat
 
 La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]).",
 'editcomment'                 => 'El comentari d\'edició ha estat: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]); s'ha recuperat la darrera versió de [[User:$1|$1]]",
+'revertpage'                  => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]); s'ha recuperat la darrera versió de [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
 'sessionfailure'              => 'Sembla que hi ha problema amb la vostra sessió; aquesta acció ha estat anulada en prevenció de pirateig de sessió. Si us plau, pitgueu "Torna", i recarregueu la pàgina des d\'on veniu, aleshores intenteu-lo de nou.',
 'protectlogpage'              => 'Registre de protecció',
@@ -1806,7 +1806,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'importcantopen'             => "No ha estat possible d'obrir el fitxer a importar",
 'importbadinterwiki'         => "Enllaç d'interwiki incorrecte",
 'importnotext'               => 'Buit o sense text',
-'importsuccess'              => "S'ha importat amb èxit!",
+'importsuccess'              => "S'ha acabat d'importar.",
 'importhistoryconflict'      => "Hi ha un conflicte de versions en l'historial (la pàgina podria haver sigut importada abans)",
 'importnosources'            => "No s'ha definit cap font d'origen interwiki i s'ha deshabilitat la càrrega directa d'una còpia de l'historial",
 'importnofile'               => "No s'ha pujat cap fitxer d'importació.",

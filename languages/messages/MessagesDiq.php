@@ -112,10 +112,11 @@ href="" class="internal"}?{/a}) bımocne.',
 'dec'           => 'Gağ',
 
 # Bits of text used by many pages
-'categories'      => 'Kategoriy',
-'pagecategories'  => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
-'category_header' => 'Nuşteyê ke kategoriya "$1"(-i) derê.',
-'subcategories'   => 'Kategoriyê bınêni',
+'categories'            => 'Kategoriy',
+'pagecategories'        => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
+'category_header'       => 'Nuşteyê ke kategoriya "$1"(-i) derê.',
+'subcategories'         => 'Kategoriyê bınêni',
+'category-media-header' => 'Medyawa ke kategoriya "$1" (-i) dera',
 
 'about'          => 'Heqa',
 'article'        => 'nuşte',
@@ -140,9 +141,11 @@ href="" class="internal"}?{/a}) bımocne.',
 'edit'             => 'bıvurne',
 'editthispage'     => 'Ena pele bıvurne',
 'delete'           => 'bıestere',
+'deletethispage'   => 'Ena pele bıestere',
 'protect'          => 'kılit ke',
 'unprotect'        => 'ake',
 'newpage'          => 'Perra newiye',
+'talkpagelinktext' => 'werênayış',
 'specialpage'      => 'Pela xase',
 'articlepage'      => 'nuşte',
 'talk'             => 'werênayış',
@@ -189,6 +192,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'viewsource' => 'Çımey bıvêne',
 
 # Login and logout pages
+'logouttitle'        => 'Veciyaena karberi',
 'loginpagetitle'     => 'Cıkewtena karberi',
 'yourname'           => 'Namey karberi',
 'yourpassword'       => 'Parola',
@@ -220,11 +224,17 @@ href="" class="internal"}?{/a}) bımocne.',
 'loginreqlink' => 'Cıkewe',
 'newarticle'   => '(Newe)',
 
+# History pages
+'cur'  => 'ferq',
+'last' => 'pey',
+
 # Revision deletion
 'rev-delundel' => 'bımocne/bınımne',
 
 # Preferences page
 'mypreferences'   => 'tercihê mı',
+'prefs-personal'  => 'Pela karberi',
+'prefs-rc'        => 'Vurnayışê peyêni',
 'prefs-watchlist' => 'Lista seyr-kerdışi',
 'saveprefs'       => 'Qeyd ke',
 'oldpassword'     => 'Parola khane:',
@@ -245,6 +255,7 @@ href="" class="internal"}?{/a}) bımocne.',
 
 # Upload
 'upload'     => 'Dosya bar ke',
+'uploadbtn'  => 'Dosya bar ke',
 'filename'   => 'Namey Dosya',
 'filesource' => 'Çımey',
 'savefile'   => 'Dosya qeyd ke',
@@ -252,17 +263,33 @@ href="" class="internal"}?{/a}) bımocne.',
 # Image list
 'imagelist'         => 'Lista Dosya',
 'ilsubmit'          => 'Cıgeyre',
+'imgfile'           => 'dosya',
 'filehist-datetime' => 'Tarix/Zeman',
 'filehist-user'     => 'Karber',
 'noimage-linktext'  => 'Bar ke',
 'imagelist_date'    => 'Tarix',
 'imagelist_user'    => 'Karber',
 
+# File deletion
+'filedelete'        => '$1 bıestere',
+'filedelete-legend' => 'Dosya bıestere',
+'filedelete-submit' => 'bıestere',
+
+# MIME search
+'download' => 'bar ke',
+
 # Random page
 'randompage' => 'Kamci pele ke raşt amê',
 
+'brokenredirects-edit'   => '(bıvurne)',
+'brokenredirects-delete' => '(bıestere)',
+
+'withoutinterwiki-submit' => 'bımocne',
+
 # Miscellaneous special pages
 'ncategories'       => '$1 {{PLURAL:$1|Kategoriye|Kategoriy}}',
+'shortpages'        => 'Pelê kılmi',
+'longpages'         => 'Pelê dergi',
 'listusers'         => 'Lista karberan',
 'specialpages'      => 'Pelê xasi',
 'newpages'          => 'Pelê newey',
@@ -284,8 +311,16 @@ href="" class="internal"}?{/a}) bımocne.',
 'listusers-submit' => 'Bımocne',
 
 # Watchlist
-'watchlist' => 'lista mına seyr-kerdışi',
-'watch'     => 'bıgê seyr-kerdış',
+'watchlist'   => 'lista mına seyr-kerdışi',
+'mywatchlist' => 'lista mına seyr-kerdışi',
+'watch'       => 'bıgê seyr-kerdış',
+
+# Delete/protect/revert
+'deletepage'   => 'Pele bıestere',
+'rollbacklink' => 'peyser biya',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Bıvurne',
 
 # Contributions
 'mycontris' => 'iştırakê mı',

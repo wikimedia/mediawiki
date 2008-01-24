@@ -12,6 +12,7 @@
  * @author Cbrown1023
  * @author Ibrahim
  * @author Nike
+ * @author Farrukh
  */
 
 $namespaceNames = array(
@@ -151,6 +152,7 @@ $messages = array(
 'anontalk'      => 'Баҳс бо ин IP',
 'navigation'    => 'Гаштан',
 
+'returnto'         => 'Бозгашт ба $1.',
 'tagline'          => 'Аз {{SITENAME}}',
 'help'             => 'Роҳнамо',
 'search'           => 'Ҷустуҷӯ',
@@ -197,12 +199,14 @@ $messages = array(
 'disclaimerpage'    => 'Лоиҳа:Такзибномаи умумӣ',
 'edithelp'          => 'Роҳнамои вироиш',
 'edithelppage'      => 'Роҳнамо:Вироиш',
+'helppage'          => 'Роҳнамо:Мундариҷа',
 'mainpage'          => 'Саҳифаи Аслӣ',
 'portal'            => 'Вуруди корбарон',
 'portal-url'        => 'Project:Вуруди корбарон',
 'privacy'           => 'Сиёсати ҳифзи асрор',
 'privacypage'       => 'Лоиҳа:Сиёсати ҳифзи асрор',
 'sitesupport'       => 'Кӯмаки молӣ',
+'sitesupport-url'   => 'Лоиҳа:Кӯмаки молӣ',
 
 'badaccess'        => 'Иштибоҳи иҷоза',
 'badaccess-group1' => 'Амали шумо дархосткарда ба корбарони ин гурӯҳ $1 маҳдуд аст.',
@@ -234,6 +238,7 @@ $messages = array(
 # General errors
 'error'            => 'Иштибоҳ',
 'viewsource'       => 'Намоиши матни вики',
+'viewsourcefor'    => 'барои $1',
 'editinginterface' => "'''Огоҳи:''' Шумо саҳифаеро вироиш карда истодаед, ки матни интерфейси барнома мебошад. Тағйироти ин саҳифа барои намуди интерфейси дигар корбарон таъсир хоҳад расонид.",
 
 # Login and logout pages
@@ -338,6 +343,7 @@ $messages = array(
 'currentrev'       => 'Вироишоти кунунӣ',
 'revisionasof'     => 'Нусха $1',
 'previousrevision' => '←Нусхаи кӯҳнатар',
+'nextrevision'     => 'Нусхаи навтарин→',
 'cur'              => 'феълӣ',
 'last'             => 'қаблӣ',
 'page_first'       => 'аввал',
@@ -345,6 +351,7 @@ $messages = array(
 'histlast'         => 'Охирин',
 
 # Diffs
+'difference'              => '(Фарқияти байни нусхаҳо)',
 'lineno'                  => 'Сатри $1:',
 'compareselectedversions' => 'Нусхаҳои интихобшударо муқоиса кунед',
 'editundo'                => 'ботил',
@@ -352,6 +359,8 @@ $messages = array(
 # Search results
 'searchresults' => 'Натиҷаҳои ҷустуҷӯ',
 'noexactmatch'  => "'''Бо сарлавҳаи \"\$1\" мақола вуҷуд надорад.''' Шумо метавонед [[:\$1|ин саҳифаро бинависед]].",
+'prevn'         => 'қаблӣ $1',
+'nextn'         => 'баъдӣ $1',
 'viewprevnext'  => 'Намоиш ($1) ($2) ($3)',
 'powersearch'   => 'Ҷустуҷӯ',
 
@@ -400,9 +409,10 @@ $messages = array(
 'newsectionsummary' => '/* $1 */ бахши ҷадид',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Таъғироти монандӣ',
-'recentchangeslinked-title'   => 'Тағйирҳои алоқаманд ба $1',
-'recentchangeslinked-summary' => "Ин саҳифаи вижа тағйироти охири саҳифаҳои пайвастаро дар бар мегирад. Саҳифаҳои дар рӯизати назароти шумо буда  '''пурранг''' ҳастанд.",
+'recentchangeslinked'          => 'Таъғироти монандӣ',
+'recentchangeslinked-title'    => 'Тағйирҳои алоқаманд ба $1',
+'recentchangeslinked-noresult' => 'Дар давоми замони додашуда тағйире дар саҳифаҳои пайваста рух надодааст.',
+'recentchangeslinked-summary'  => "Ин саҳифаи вижа тағйироти охири саҳифаҳои пайвастаро дар бар мегирад. Саҳифаҳои дар рӯизати назароти шумо буда  '''пурранг''' ҳастанд.",
 
 # Upload
 'upload'            => 'Фиристодани файл',
@@ -433,6 +443,7 @@ $messages = array(
 'filehist-comment'    => 'Тавзеҳ',
 'imagelinks'          => 'Пайвандҳо',
 'linkstoimage'        => 'Саҳифаҳои зерин ба ин акс пайванданд:',
+'sharedupload'        => 'Ин парванда бо таври умумӣ бор карда шудааст ва шояд аз тарафи дигар лоиҳаҳо мавриди истифода бошад.',
 'imagelist_user'      => 'Корбар',
 
 # MIME search
@@ -498,6 +509,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel'  => 'Корбар:',
 'speciallogtitlelabel' => 'Сарлавҳа:',
+'log'                  => 'Гузоришҳо',
 'all-logs-page'        => 'Ҳамаи сабтҳо',
 'log-search-submit'    => 'Бирав',
 
@@ -540,13 +552,17 @@ $messages = array(
 'enotif_newpagetext' => 'Ин саҳифаи нав аст',
 
 # Delete/protect/revert
-'confirm'          => 'Тасдиқ',
-'confirmdelete'    => 'Тасдиқи ҳазф',
-'actioncomplete'   => 'Амал иҷро шуд',
-'reverted'         => 'Ба нусхаи пештара вогардонида шуд',
-'deletecomment'    => 'Сабаби ҳазфкунӣ',
-'protect-cascade'  => 'Муҳофизати обшорӣ - Аз ҳама саҳифаҳое, ки дар ин саҳифа омадаанд муҳофизат мешаванд',
-'protect-cantedit' => 'Шумо вазъияти ҳифзи ин саҳифаро тағйир дода наметавонед, чун иҷозати вироиши онро надоред.',
+'confirm'             => 'Тасдиқ',
+'confirmdelete'       => 'Тасдиқи ҳазф',
+'actioncomplete'      => 'Амал иҷро шуд',
+'deletedarticle'      => 'ҳазфшуда "[[$1]]"',
+'dellogpage'          => 'Гузоришҳои ҳазф',
+'reverted'            => 'Ба нусхаи пештара вогардонида шуд',
+'deletecomment'       => 'Сабаби ҳазфкунӣ',
+'rollbacklink'        => 'вогардони',
+'protect-level-sysop' => 'Танҳо барои мудирон',
+'protect-cascade'     => 'Муҳофизати обшорӣ - Аз ҳама саҳифаҳое, ки дар ин саҳифа омадаанд муҳофизат мешаванд',
+'protect-cantedit'    => 'Шумо вазъияти ҳифзи ин саҳифаро тағйир дода наметавонед, чун иҷозати вироиши онро надоред.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Вироиш',
@@ -576,7 +592,14 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'Пайвандҳои дар ин сахифа',
+'whatlinkshere-title' => 'Саҳифаҳое ки ба $1 пайванд доранд',
 'linklistsub'         => '(Феҳристи пайвандҳо)',
+'linkshere'           => "Саҳифаҳои зерин ба '''[[:$1]]''' пайванданд:",
+'nolinkshere'         => "Ягон саҳифа ба '''[[:$1]]''' пайванд нест.",
+'isredirect'          => 'саҳифаи тағйири масир',
+'istemplate'          => 'истифодашуда дар саҳифа',
+'whatlinkshere-prev'  => '{{PLURAL:$1|қаблӣ|қаблӣ $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|баъдӣ|баъдӣ $1}}',
 'whatlinkshere-links' => '← пайвандҳо',
 
 # Block/unblock
@@ -602,6 +625,9 @@ $messages = array(
 'movereason'      => 'Сабаби кӯчонидан:',
 'revertmove'      => 'вогардонӣ',
 
+# Export
+'export' => 'Судури саҳифаҳо',
+
 # Namespace 8 related
 'allmessages'         => 'Пайёмҳои системавӣ',
 'allmessagesname'     => 'Ном',
@@ -612,7 +638,8 @@ $messages = array(
 'allmessagesmodified' => 'Фақат тағйирдодаро нишон деҳ',
 
 # Thumbnails
-'thumbnail-more' => 'Бузург шавад',
+'thumbnail-more'  => 'Бузург шавад',
+'thumbnail_error' => 'Хато дар эҷоди ангуштдона: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Саҳифаи корбарии ман',
@@ -668,10 +695,18 @@ $messages = array(
 'siteusers' => 'Википедиа user(s) $1',
 
 # Spam protection
-'spamprotectiontitle' => 'Филтри муҳофизат аз спам',
+'spamprotectiontitle'    => 'Филтри муҳофизат аз спам',
+'categoryarticlecount'   => '{{PLURAL:$1|мақола|$1 мақолаҳо}} дар ин гурӯҳ вуҷуд дорад.',
+'listingcontinuesabbrev' => 'идома',
+
+# Browsing diffs
+'previousdiff' => '← Фарқияти аввалина',
 
 # Media information
-'file-info-size' => '($1 × $2 пиксел, ҳаҷми парванда: $3, навъи MIME: $4)',
+'file-info-size'       => '($1 × $2 пиксел, ҳаҷми парванда: $3, навъи MIME: $4)',
+'file-nohires'         => '<small>Нусхаи ҳаҷман ва сифатан баландтар дастрас нест.</small>',
+'show-big-image'       => 'Акси пурра',
+'show-big-image-thumb' => '<small>Андозаи ин пешнамоиш: $1 × $2 пиксел</small>',
 
 # Special:Newimages
 'showhidebots' => '($1 ботҳо)',
@@ -681,11 +716,25 @@ $messages = array(
 
 Фақат сатрҳое, ки бо * шурӯъ шаванд ба назар гирифта мешаванд. Аввалин пайванд дар ҳар сатр, бояд пайванде ба як тасвир ва ё акси бад бошад. Пайвандҳои баъдӣ дар ҳамон сатр, ба унвони мавриди истисно ба назар гирифта мешавад.',
 
+# Metadata
+'metadata'          => 'Метадода',
+'metadata-help'     => 'Ин парванда иттилооти иловагиро дар бар мегирад, эҳтимол аз аксбардораки рақамӣ ё сканер дар вақти сохтан ва рақамӣ кардан, илова шуда. Агар парванда аз вазъияти ибтидоиаш тағйир дода бошад, мумкин аст, шарҳу тафсилоти мавҷуди иттилооти аксро тамоман бозтоб надиҳад.',
+'metadata-expand'   => 'Намоиши ҷузъиёти тафсилӣ',
+'metadata-collapse' => 'Пинҳон кардани ҷузъиёти тафсилӣ',
+'metadata-fields'   => 'EXIF фосилаҳои додаҳо, ки дар ин паём оварда шудаанд дар ҷадвали акс ҷамъ шуда бошанд ҳам, намоиш дода хоҳанд шуд. Бақия онҳо танҳо дар вақти боз кардани ҷадвал нишон дода хоҳанд шуд.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
+
 # EXIF tags
 'exif-artist' => 'Муаллиф',
 
 # External editor support
-'edit-externally' => 'Ин файлро бо барномаи беруна таҳрир кунед',
+'edit-externally'      => 'Ин файлро бо барномаи беруна таҳрир кунед',
+'edit-externally-help' => 'Барои иттилооти бештар [http://meta.wikimedia.org/wiki/Help:External_editors роҳнамои танзимотро оиди вироишгарони беруна] нигаред.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ҳама',

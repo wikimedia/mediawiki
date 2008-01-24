@@ -492,6 +492,7 @@ $messages = array(
 'recentchangeslinked'          => 'Сюлмавозь лиякстоматьне',
 'recentchangeslinked-title'    => 'Полавтнемат-лиякстомтомат конат кандовить теватезэнь $1',
 'recentchangeslinked-noresult' => 'Кодаткак полавтомат сюлмавозь лопатьнесэ те шкастонть.',
+'recentchangeslinked-summary'  => "Те башка лопасонть максозь потмокс меельцень витнематьнень-петнематнень, сулмавозь лопатнесэ. Лопатне ванома потмоксто '''эчкестэ тештезь'''",
 
 # Upload
 'upload'        => 'Ёкстамонзо файланть',
@@ -516,6 +517,7 @@ $messages = array(
 'imagelinks'                => 'Сюлмавомапеть',
 'linkstoimage'              => 'Те файлантень сюлмазь вана истят сюлмавомапеть:',
 'nolinkstoimage'            => 'Арасть вейкеяк лопать, конат сюлмавовить те файланть марто.',
+'sharedupload'              => 'Те файлась вачказезь вейксеньте знярыянь проектень ванстома таркас.',
 'noimage'                   => 'Кодамояк файла истямо лем марто арась, тынь $1 тейдяд.',
 'noimage-linktext'          => 'тонгинк тень',
 'uploadnewversion-linktext' => 'Тонгодо од версия те файланть',
@@ -619,6 +621,7 @@ $messages = array(
 'deletecomment'               => 'Тувтал печкеме',
 'deleteotherreason'           => 'Лия/топавтозь тувтал:',
 'deletereasonotherlist'       => 'Лия тувтал',
+'rollbacklink'                => 'кевердемс',
 'protectlogpage'              => 'Ванстомань совама-кемекстома',
 'protectcomment'              => 'Мельполадкс:',
 'protectexpiry'               => 'Прядови:',
@@ -693,7 +696,8 @@ $messages = array(
 'allmessages' => 'Систэмань вишка сёрмадовкс',
 
 # Thumbnails
-'thumbnail-more' => 'Покшолгавтомс',
+'thumbnail-more'  => 'Покшолгавтомс',
+'thumbnail_error' => 'Миниатюрань тееманть ильветькс: $1',
 
 # Special:Import
 'import-revision-count' => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
@@ -748,6 +752,8 @@ $messages = array(
 'and' => 'ды',
 
 # Spam protection
+'subcategorycount'       => 'Те категриясонть $1 {{PLURAL:$1|категорияньалкс|категорияньалкст|категорияньалкстнеде}}.',
+'categoryarticlecount'   => 'Те категориясонть $1 {{PLURAL:$1|сёрмадовкс|сёрмадовкст|сёрмадовкстнеде}}.',
 'listingcontinuesabbrev' => 'поладовксось моли',
 
 # Browsing diffs
@@ -758,6 +764,7 @@ $messages = array(
 'widthheightpage'      => '$1×$2, $3 лопат',
 'file-info'            => '(файлонть-путовксонть сталмозо: $1, MIME типезе: $2)',
 'file-info-size'       => '($1 × $2 пиксельть, файлонть-путовксонть сталмозо: $3, MIME типезе: $4)',
+'file-nohires'         => '<small>Арась версия покш разрешения марто.</small>',
 'svg-long-desc'        => '(SVG файла, $1 × $2 пиксельть, файланть покшолмазо: $3)',
 'show-big-image'       => 'Пешксе теевксесь',
 'show-big-image-thumb' => '<small>Покшолма икелев ваноманть: $1 × $2 пиксэлт</small>',
@@ -775,9 +782,11 @@ $messages = array(
 # Metadata
 'metadata'          => 'Meta-нь даннойтне',
 'metadata-help'     => 'Те вайлась кирди потмосо топавтозь информация, кона топавтозь цифровой камерасто, али сулеймашинасто (скенерстэ) ды кона ульнесь теезь цифровой лувс. Сесте кода файлась ульнесь лиякстозь сонзе  невтевксензе эйсте, кой-кона пельксензе аневтить лиякстозь фотоартовксонть.',
+'metadata-expand'   => 'Невтемс топавтозь даннойтнень',
 'metadata-collapse' => 'Пекстынк келейкстазь детальтнень.',
 
 # External editor support
+'edit-externally'      => 'Витнемс-петнемс те файланть, тевс нолдазь ушо ёнксонь программанть',
 'edit-externally-help' => 'Вант [http://meta.wikimedia.org/wiki/Help:External_editors аравтома инструкциятнень ] седе ламо информациянть кис.',
 
 # 'all' in various places, this might be different for inflected languages
