@@ -142,6 +142,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   when using mailers that set the envelope sender to the From header value.
 * (bug 11897) Add alias [[Special:CreateAccount]] & [[Special:Userlogin/signup]]
   for Special:Userlogin?type=signup
+* (bug 12214) Add a predefined list of delete reasons to the file deletion form
 
 === Bug fixes in 1.12 ===
 
