@@ -99,7 +99,7 @@ class Preprocessor_DOM implements Preprocessor {
 	
 		$stack = new PPDStack;
 
-		$searchBase = '[{<'; #}
+		$searchBase = "[{<\n"; #}
 		$revText = strrev( $text ); // For fast reverse searches
 
 		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
@@ -148,17 +148,6 @@ class Preprocessor_DOM implements Preprocessor {
 				if ( $findEquals ) {
 					// First equals will be for the template
 					$search .= '=';
-				} else {
-					// Look for headings
-					// We can't look for headings when $findEquals is true, because the ambiguity 
-					// between template name/value separators and heading starts would be unresolved
-					// until the closing double-brace is found. This would mean either infinite 
-					// backtrack, or creating and updating two separate tree structures until the
-					// end of the ambiguity -- one tree structure assuming a heading, and the other 
-					// assuming a template argument.
-					//
-					// Easier to just break some section edit links.
-					$search .= "\n";
 				}
 				$rule = null;
 				# Output literal section, advance input counter
@@ -240,7 +229,7 @@ class Preprocessor_DOM implements Preprocessor {
 						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
 						// Eat the line if possible
 						// TODO: This could theoretically be done if $wsStart == 0, i.e. for comments at 
-						// the overall start. That's not how Sanitizer::removeHTMLcomments() does it, but 
+						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but 
 						// it's a possible beneficial b/c break.
 						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n" 
 							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
@@ -253,28 +242,24 @@ class Preprocessor_DOM implements Preprocessor {
 							if ( $wsLength > 0 && substr( $accum, -$wsLength ) === str_repeat( ' ', $wsLength ) ) {
 								$accum = substr( $accum, 0, -$wsLength );
 							}
-							// Do a line-start run next time to look for headings after the comment,
-							// but only if stack->top===false, because headings don't exist at deeper levels.
-							if ( $stack->top === false ) {
-								$fakeLineStart = true;
-							}
+							// Do a line-start run next time to look for headings after the comment
+							$fakeLineStart = true;
 						} else {
 							// No line to eat, just take the comment itself
 							$startPos = $i;
 							$endPos += 2;
 						}
 
-						/*
 						if ( $stack->top ) {
-							if ( $stack->top->commentEndPos !== false && $stack->top->commentEndPos == $wsStart ) {
+							$part = $stack->top->getCurrentPart();
+							if ( isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 ) {
 								// Comments abutting, no change in visual end
-								$stack->top->commentEndPos = $wsEnd;
+								$part->commentEnd = $wsEnd;
 							} else {
-								$stack->top->visualEndPos = $wsStart;
-								$stack->top->commentEndPos = $wsEnd;
+								$part->visualEnd = $wsStart;
+								$part->commentEnd = $endPos;
 							}
 						}
-						 */
 						$i = $endPos + 1;
 						$inner = substr( $text, $startPos, $endPos - $startPos + 1 );
 						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
@@ -356,7 +341,11 @@ class Preprocessor_DOM implements Preprocessor {
 				}
 				
 				$count = strspn( $text, '=', $i, 6 );
-				if ( $count > 0 ) {
+				if ( $count == 1 && $findEquals ) {
+					// DWIM: This looks kind of like a name/value separator
+					// Let's let the equals handler have it and break the potential heading
+					// This is heuristic, but AFAICT the methods for completely correct disambiguation are very complex.
+				} elseif ( $count > 0 ) {
 					$piece = array(
 						'open' => "\n",
 						'close' => "\n",
@@ -374,23 +363,32 @@ class Preprocessor_DOM implements Preprocessor {
 				$piece = $stack->top;
 				// A heading must be open, otherwise \n wouldn't have been in the search list
 				assert( $piece->open == "\n" );
+				$part = $piece->getCurrentPart();
 				// Search back through the input to see if it has a proper close
 				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
-				$m = false;
+				$wsLength = strspn( $revText, " \t", strlen( $text ) - $i );
+				$searchStart = $i - $wsLength;
+				if ( isset( $part->commentEnd ) && $searchStart - 1 == $part->commentEnd ) {
+					// Comment found at line end
+					// Search for equals signs before the comment
+					$searchStart = $part->visualEnd;
+					$searchStart -= strspn( $revText, " \t", strlen( $text ) - $searchStart );
+				}
 				$count = $piece->count;
-				if ( preg_match( "/\s*(=+)/A", $revText, $m, 0, strlen( $text ) - $i ) ) {
-					if ( $i - strlen( $m[0] ) == $piece->startPos ) {
+				$equalsLength = strspn( $revText, '=', strlen( $text ) - $searchStart );
+				if ( $equalsLength > 0 ) {
+					if ( $i - $equalsLength == $piece->startPos ) {
 						// This is just a single string of equals signs on its own line
 						// Replicate the doHeadings behaviour /={count}(.+)={count}/
 						// First find out how many equals signs there really are (don't stop at 6)
-						$count = strlen( $m[1] );
+						$count = $equalsLength;
 						if ( $count < 3 ) {
 							$count = 0;
 						} else {
 							$count = min( 6, intval( ( $count - 1 ) / 2 ) );
 						}
 					} else {
-						$count = min( strlen( $m[1] ), $count );
+						$count = min( $equalsLength, $count );
 					}
 					if ( $count > 0 ) {
 						// Normal match, output <h>
@@ -869,13 +867,6 @@ class PPFrame_DOM implements PPFrame {
 			} elseif ( is_array( $contextNode ) || $contextNode instanceof DOMNodeList ) {
 				$newIterator = $contextNode;
 			} elseif ( $contextNode instanceof DOMNode ) {
-				/*
-				print str_repeat( '&nbsp;', count( debug_backtrace() ) ) . $contextNode->nodeName;
-				if ( $contextNode->nodeName == 'title' ) {
-					print ' = ' . $contextNode->textContent;
-				}
-				print "<br/>\n";
-				 */
 				if ( $contextNode->nodeType == XML_TEXT_NODE ) {
 					$out .= $contextNode->nodeValue;
 				} elseif ( $contextNode->nodeName == 'template' ) {

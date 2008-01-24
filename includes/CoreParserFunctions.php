@@ -51,12 +51,20 @@ class CoreParserFunctions {
 
 	static function lc( $parser, $s = '' ) {
 		global $wgContLang;
-		return $wgContLang->lc( $s );
+		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
+			return $parser->markerSkipCallback( $s, array( $wgContLang, 'lc' ) );
+		} else {
+			return $wgContLang->lc( $s );
+		}
 	}
 
 	static function uc( $parser, $s = '' ) {
 		global $wgContLang;
-		return $wgContLang->uc( $s );
+		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
+			return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
+		} else {
+			return $wgContLang->uc( $s );
+		}
 	}
 
 	static function localurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLocalURL', $s, $arg ); }

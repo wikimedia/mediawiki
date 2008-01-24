@@ -4815,6 +4815,30 @@ class Parser
 		}
 		return $this->testSrvus( $text, $title, $options, self::OT_PREPROCESS );
 	}
+
+	function markerSkipCallback( $s, $callback ) {
+		$i = 0;
+		$out = '';
+		while ( $i < strlen( $s ) ) {
+			$markerStart = strpos( $s, $this->mUniqPrefix, $i );
+			if ( $markerStart === false ) {
+				$out .= call_user_func( $callback, substr( $s, $i ) );
+				break;
+			} else {
+				$out .= call_user_func( $callback, substr( $s, $i, $markerStart - $i ) );
+				$markerEnd = strpos( $s, $this->mMarkerSuffix, $markerStart );
+				if ( $markerEnd === false ) {
+					$out .= substr( $s, $markerStart );
+					break;
+				} else {
+					$markerEnd += strlen( $this->mMarkerSuffix );
+					$out .= substr( $s, $markerStart, $markerEnd - $markerStart );
+					$i = $markerEnd;
+				}
+			}
+		}
+		return $out;
+	}
 }
 
 /**
