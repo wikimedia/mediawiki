@@ -802,7 +802,7 @@ class EditPage {
 			}
 
 			# Don't save a new article if it's blank.
-			if ( ( '' == $this->textbox1 ) ) {
+			if ( '' == $this->textbox1 ) {
 					wfProfileOut( $fname );
 					return self::AS_BLANK_ARTICLE;
 			}
@@ -2183,8 +2183,7 @@ END
 			$this->didSave = true;
 		}
 
-		switch ($value)
-		{
+		switch ($value) {
 			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONTENT_TOO_BIG:
 		 	case self::AS_ARTICLE_WAS_DELETED:
@@ -2194,7 +2193,7 @@ END
 			case self::AS_MAX_ARTICLE_SIZE_EXCEDED:
 			case self::AS_END:
 				return true;
-			
+
 			case self::AS_HOOK_ERROR:
 			case self::AS_FILTERING:
 			case self::AS_SUCCESS_NEW_ARTICLE:

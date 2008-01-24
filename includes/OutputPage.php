@@ -1031,7 +1031,7 @@ class OutputPage {
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
-		
+
 		// If no reason is given, just supply a default "I can't let you do
 		// that, Dave" message.  Should only occur if called by legacy code.
 		if ( $protected && empty($reasons) ) {

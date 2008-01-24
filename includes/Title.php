@@ -673,7 +673,7 @@ class Title {
 	 */
 	public function getBaseText() {
 		global $wgNamespacesWithSubpages;
-		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace ] ) && $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
+		if( !empty( $wgNamespacesWithSubpages[$this->mNamespace] ) ) {
 			$parts = explode( '/', $this->getText() );
 			# Don't discard the real title if there's no subpage involved
 			if( count( $parts ) > 1 )
@@ -797,16 +797,15 @@ class Title {
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
-				if($variant!=false && $wgContLang->hasVariants()){
-					if($wgVariantArticlePath==false) {
+				if( $variant != false && $wgContLang->hasVariants() ) {
+					if( $wgVariantArticlePath == false ) {
 						$variantArticlePath =  "$wgScript?title=$1&variant=$2"; // default
 					} else {
 						$variantArticlePath = $wgVariantArticlePath;
 					}
 					$url = str_replace( '$2', urlencode( $variant ), $variantArticlePath );
 					$url = str_replace( '$1', $dbkey, $url  );
-				}
-				else {
+				} else {
 					$url = str_replace( '$1', $dbkey, $wgArticlePath );
 				}
 			} else {
