@@ -18,7 +18,7 @@ class Parser_DiffTest
 		foreach ( $this->conf['parsers'] as $i => $parserConf ) {
 			if ( !is_array( $parserConf ) ) {
 				$class = $parserConf;
-				$parserconf = array( 'class' => $parserConf );
+				$parserConf = array( 'class' => $parserConf );
 			} else {
 				$class = $parserConf['class'];
 			}

@@ -1,14 +1,35 @@
 <?php
 
 class Preprocessor_DOM implements Preprocessor {
-	var $parser;
+	var $parser, $memoryLimit;
 
 	function __construct( $parser ) {
 		$this->parser = $parser;
+		$mem = ini_get( 'memory_limit' );
+		$this->memoryLimit = false;
+		if ( strval( $mem ) !== '' && $mem != -1 ) {
+			if ( preg_match( '/^\d+$/', $mem ) ) {
+				$this->memoryLimit = $mem;
+			} elseif ( preg_match( '/^(\d+)M$/i', $mem, $m ) ) {
+				$this->memoryLimit = $m[1] * 1048576;
+			}
+		}
 	}
 
 	function newFrame() {
 		return new PPFrame_DOM( $this );
+	}
+
+	function memCheck() {
+		if ( $this->memoryLimit === false ) {
+			return;
+		}
+		$usage = memory_get_usage();
+		if ( $usage > $this->memoryLimit * 0.9 ) {
+			$limit = intval( $this->memoryLimit * 0.9 / 1048576 + 0.5 );
+			throw new MWException( "Preprocessor hit 90% memory limit ($limit MB)" );
+		}
+		return $usage <= $this->memoryLimit * 0.8;
 	}
 
 	/**
@@ -78,11 +99,11 @@ class Preprocessor_DOM implements Preprocessor {
 	
 		$stack = new PPDStack;
 
-		$searchBase = '[{<';
+		$searchBase = '[{<'; #}
 		$revText = strrev( $text ); // For fast reverse searches
 
 		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
-		$accum =& $stack->getAccum();   # Current text accumulator
+		$accum =& $stack->getAccum();   # Current accumulator
 		$accum = '<root>';
 		$findEquals = false;            # True to find equals signs in arguments
 		$findPipe = false;              # True to take notice of pipe characters
@@ -93,6 +114,8 @@ class Preprocessor_DOM implements Preprocessor {
 		$fakeLineStart = true;     # Do a line-start run without outputting an LF character
 
 		while ( true ) {
+			if ( ! ($i % 10) ) $this->memCheck();
+
 			if ( $findOnlyinclude ) {
 				// Ignore all input up to the next <onlyinclude>
 				$startPos = strpos( $text, '<onlyinclude>', $i );
@@ -241,6 +264,17 @@ class Preprocessor_DOM implements Preprocessor {
 							$endPos += 2;
 						}
 
+						/*
+						if ( $stack->top ) {
+							if ( $stack->top->commentEndPos !== false && $stack->top->commentEndPos == $wsStart ) {
+								// Comments abutting, no change in visual end
+								$stack->top->commentEndPos = $wsEnd;
+							} else {
+								$stack->top->visualEndPos = $wsStart;
+								$stack->top->commentEndPos = $wsEnd;
+							}
+						}
+						 */
 						$i = $endPos + 1;
 						$inner = substr( $text, $startPos, $endPos - $startPos + 1 );
 						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
@@ -326,7 +360,7 @@ class Preprocessor_DOM implements Preprocessor {
 					$piece = array(
 						'open' => "\n",
 						'close' => "\n",
-						'parts' => array( str_repeat( '=', $count ) ),
+						'parts' => array( new PPDPart( str_repeat( '=', $count ) ) ),
 						'startPos' => $i,
 						'count' => $count );
 					$stack->push( $piece );
@@ -395,8 +429,6 @@ class Preprocessor_DOM implements Preprocessor {
 						'open' => $curChar,
 						'close' => $rule['end'],
 						'count' => $count,
-						'parts' => array( '' ),
-						'eqpos' => array(),
 						'lineStart' => ($i > 0 && $text[$i-1] == "\n"),
 					);
 
@@ -444,14 +476,12 @@ class Preprocessor_DOM implements Preprocessor {
 				$name = $rule['names'][$matchingCount];
 				if ( $name === null ) {
 					// No element, just literal text
-					$element = str_repeat( $piece->open, $matchingCount ) .
-						implode( '|', $piece->parts ) . 
-						str_repeat( $rule['end'], $matchingCount );
+					$element = $piece->breakSyntax( $matchingCount ) . str_repeat( $rule['end'], $matchingCount );
 				} else {
 					# Create XML element
 					# Note: $parts is already XML, does not need to be encoded further
 					$parts = $piece->parts;
-					$title = $parts[0];
+					$title = $parts[0]->out;
 					unset( $parts[0] );
 
 					# The invocation is at the start of the line if lineStart is set in 
@@ -466,13 +496,12 @@ class Preprocessor_DOM implements Preprocessor {
 					$element .= "<title>$title</title>";
 					$argIndex = 1;
 					foreach ( $parts as $partIndex => $part ) {
-						if ( isset( $piece->eqpos[$partIndex] ) ) {
-							$eqpos = $piece->eqpos[$partIndex];
-							$argName = substr( $part, 0, $eqpos );
-							$argValue = substr( $part, $eqpos + 1 );
+						if ( isset( $part->eqpos ) ) {
+							$argName = substr( $part->out, 0, $part->eqpos );
+							$argValue = substr( $part->out, $part->eqpos + 1 );
 							$element .= "<part><name>$argName</name>=<value>$argValue</value></part>";
 						} else {
-							$element .= "<part><name index=\"$argIndex\" /><value>$part</value></part>";
+							$element .= "<part><name index=\"$argIndex\" /><value>{$part->out}</value></part>";
 							$argIndex++;
 						}
 					}
@@ -488,9 +517,8 @@ class Preprocessor_DOM implements Preprocessor {
 
 				# Re-add the old stack element if it still has unmatched opening characters remaining
 				if ($matchingCount < $piece->count) {
-					$piece->parts = array( '' );
+					$piece->parts = array( new PPDPart );
 					$piece->count -= $matchingCount;
-					$piece->eqpos = array();
 					# do we still qualify for any callback with remaining count?
 					$names = $rules[$piece->open]['names'];
 					$skippedBraces = 0;
@@ -515,15 +543,14 @@ class Preprocessor_DOM implements Preprocessor {
 			
 			elseif ( $found == 'pipe' ) {
 				$findEquals = true; // shortcut for getFlags()
-				$stack->top->addPart();
+				$stack->addPart();
 				$accum =& $stack->getAccum();
 				++$i;
 			}
 			
 			elseif ( $found == 'equals' ) {
 				$findEquals = false; // shortcut for getFlags()
-				$partsCount = count( $stack->top->parts );
-				$stack->top->eqpos[$partsCount - 1] = strlen( $accum );
+				$stack->getCurrentPart()->eqpos = strlen( $accum );
 				$accum .= '=';
 				++$i;
 			}
@@ -531,14 +558,10 @@ class Preprocessor_DOM implements Preprocessor {
 
 		# Output any remaining unclosed brackets
 		foreach ( $stack->stack as $piece ) {
-			if ( $piece->open == "\n" ) {
-				$stack->topAccum .= $piece->parts[0];
-			} else {
-				$stack->topAccum .= str_repeat( $piece->open, $piece->count ) . implode( '|', $piece->parts );
-			}
+			$stack->rootAccum .= $piece->breakSyntax();
 		}
-		$stack->topAccum .= '</root>';
-		$xml = $stack->topAccum;
+		$stack->rootAccum .= '</root>';
+		$xml = $stack->rootAccum;
 
 		wfProfileOut( __METHOD__.'-makexml' );
 		wfProfileIn( __METHOD__.'-loadXML' );
@@ -558,6 +581,156 @@ class Preprocessor_DOM implements Preprocessor {
 		wfProfileOut( __METHOD__.'-loadXML' );
 		wfProfileOut( __METHOD__ );
 		return $obj;
+	}
+}
+
+/**
+ * Stack class to help Preprocessor::preprocessToObj()
+ */
+class PPDStack {
+	var $stack, $rootAccum, $top;
+	var $out;
+	static $false = false;
+
+	function __construct() {
+		$this->stack = array();
+		$this->top = false;
+		$this->rootAccum = '';
+		$this->accum =& $this->rootAccum;
+	}
+
+	function count() {
+		return count( $this->stack );
+	}
+
+	function &getAccum() {
+		return $this->accum;
+	}
+
+	function getCurrentPart() {
+		if ( $this->top === false ) {
+			return false;
+		} else {
+			return $this->top->getCurrentPart();
+		}
+	}
+
+	function push( $data ) {
+		if ( $data instanceof PPDStackElement ) {
+			$this->stack[] = $data;
+		} else {
+			$this->stack[] = new PPDStackElement( $data );
+		}
+		$this->top = $this->stack[ count( $this->stack ) - 1 ];
+		$this->accum =& $this->top->getAccum();
+	}
+
+	function pop() {
+		if ( !count( $this->stack ) ) {
+			throw new MWException( __METHOD__.': no elements remaining' );
+		}
+		$temp = array_pop( $this->stack );
+
+		if ( count( $this->stack ) ) {
+			$this->top = $this->stack[ count( $this->stack ) - 1 ];
+			$this->accum =& $this->top->getAccum();
+		} else {
+			$this->top = self::$false;
+			$this->accum =& $this->rootAccum;
+		}
+		return $temp;
+	}
+
+	function addPart( $s = '' ) {
+		$this->top->addPart( $s );
+		$this->accum =& $this->top->getAccum();
+	}
+
+	function getFlags() {
+		if ( !count( $this->stack ) ) {
+			return array( 
+				'findEquals' => false, 
+				'findPipe' => false,
+				'inHeading' => false,
+			);
+		} else {
+			return $this->top->getFlags();
+		}
+	}
+}
+
+class PPDStackElement {
+	var $open,		        // Opening character (\n for heading)
+		$close,     	    // Matching closing character
+		$count,             // Number of opening characters found (number of "=" for heading)
+		$parts,             // Array of PPDPart objects describing pipe-separated parts.
+		$lineStart;         // True if the open char appeared at the start of the input line. Not set for headings.
+
+	function __construct( $data = array() ) {
+		$this->parts = array( new PPDPart );
+
+		foreach ( $data as $name => $value ) {
+			$this->$name = $value;
+		}
+	}
+
+	function &getAccum() {
+		return $this->parts[count($this->parts) - 1]->out;
+	}
+
+	function addPart( $s = '' ) {
+		$this->parts[] = new PPDPart( $s );
+	}
+
+	function getCurrentPart() {
+		return $this->parts[count($this->parts) - 1];
+	}
+
+	function getFlags() {
+		$partCount = count( $this->parts );
+		$findPipe = $this->open != "\n" && $this->open != '[';
+		return array(
+			'findPipe' => $findPipe,
+			'findEquals' => $findPipe && $partCount > 1 && !isset( $this->parts[$partCount - 1]->eqpos ),
+			'inHeading' => $this->open == "\n",
+		);
+	}
+
+	/**
+	 * Get the output string that would result if the close is not found.
+	 */
+	function breakSyntax( $openingCount = false ) {
+		if ( $this->open == "\n" ) {
+			$s = $this->parts[0]->out;
+		} else {
+			if ( $openingCount === false ) {
+				$openingCount = $this->count;
+			}
+			$s = str_repeat( $this->open, $openingCount );
+			$first = true;
+			foreach ( $this->parts as $part ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$s .= '|';
+				}
+				$s .= $part->out;
+			}
+		}
+		return $s;
+	}
+}
+
+class PPDPart {
+	var $out; // Output accumulator string
+
+	// Optional member variables: 
+	//   eqpos        Position of equals sign in output accumulator
+	//   commentEnd   Past-the-end input pointer for the last comment encountered
+	//   visualEnd    Past-the-end input pointer for the end of the accumulator minus comments
+
+	function __construct( $out = '' ) {
+		$this->out = $out;
 	}
 }
 
@@ -1037,91 +1210,6 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	}
 }
 
-/**
- * Stack class to help Parser::preprocessToDom()
- */
-class PPDStack {
-	var $stack, $topAccum, $top;
-
-	function __construct() {
-		$this->stack = array();
-		$this->topAccum = '';
-		$this->top = false;
-	}
-
-	function &getAccum() {
-		if ( count( $this->stack ) ) {
-			return $this->top->getAccum();
-		} else {
-			return $this->topAccum;
-		}
-	}
-
-	function push( $data ) {
-		if ( $data instanceof PPDStackElement ) {
-			$this->stack[] = $data;
-		} else {
-			$this->stack[] = new PPDStackElement( $data );
-		}
-		$this->top =& $this->stack[ count( $this->stack ) - 1 ];
-	}
-
-	function pop() {
-		if ( !count( $this->stack ) ) {
-			throw new MWException( __METHOD__.': no elements remaining' );
-		}
-		$temp = array_pop( $this->stack );
-		if ( count( $this->stack ) ) {
-			$this->top =& $this->stack[ count( $this->stack ) - 1 ];
-		} else {
-			$this->top = false;
-		}
-	}
-
-	function getFlags() {
-		if ( !count( $this->stack ) ) {
-			return array( 
-				'findEquals' => false, 
-				'findPipe' => false,
-				'inHeading' => false,
-			);
-		} else {
-			return $this->top->getFlags();
-		}
-	}
-}
-
-class PPDStackElement {
-	var $open, $close, $count, $parts, $eqpos, $lineStart;
-
-	function __construct( $data = array() ) {
-		$this->parts = array( '' );
-		$this->eqpos = array();
-
-		foreach ( $data as $name => $value ) {
-			$this->$name = $value;
-		}
-	}
-
-	function &getAccum() {
-		return $this->parts[count($this->parts) - 1];
-	}
-
-	function addPart( $s = '' ) {
-		$this->parts[] = $s;
-	}
-
-	function getFlags() {
-		$partCount = count( $this->parts );
-		$findPipe = $this->open != "\n" && $this->open != '[';
-		return array(
-			'findPipe' => $findPipe,
-			'findEquals' => $findPipe && $partCount > 1 && !isset( $this->eqpos[$partCount - 1] ),
-			'inHeading' => $this->open == "\n",
-		);
-	}
-}
-
 class PPNode_DOM implements PPNode {
 	var $node;
 
@@ -1143,7 +1231,7 @@ class PPNode_DOM implements PPNode {
 				$s .= $node->ownerDocument->saveXML( $node );
 			}
 		} else {
-			$s = $this->node->ownerDocument->saveXML( $node );
+			$s = $this->node->ownerDocument->saveXML( $this->node );
 		}
 		return $s;
 	}

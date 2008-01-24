@@ -89,7 +89,7 @@ class Parser
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
 		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerSuffix,
-		$mExtLinkBracketedRegex, $mPreprocessor, $mDefaultStripList;
+		$mExtLinkBracketedRegex, $mPreprocessor, $mDefaultStripList, $mVarCache, $mConf;
 
 
 	# Cleared with clearState():
@@ -118,6 +118,7 @@ class Parser
 	 * @public
 	 */
 	function __construct( $conf = array() ) {
+		$this->mConf = $conf;
 		$this->mTagHooks = array();
 		$this->mTransparentTagHooks = array();
 		$this->mFunctionHooks = array();
@@ -126,6 +127,7 @@ class Parser
 		$this->mMarkerSuffix = "-QINU\x7f";
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x0a\\x0d]*?)\]/S';
+		$this->mVarCache = array();
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} else {
@@ -237,6 +239,7 @@ class Parser
 		 * the behaviour of <nowiki> in a link.
 		 */
 		#$this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
+		# Changed to \x7f to allow XML double-parsing -- TS
 		$this->mUniqPrefix = "\x7fUNIQ" . Parser::getRandomString();
 
 		# Clear these on every parse, bug 4549
@@ -251,6 +254,11 @@ class Parser
 		$this->mPPNodeCount = 0;
 		$this->mDefaultSort = false;
 		$this->mHeadings = array();
+
+		# Fix cloning
+		if ( isset( $this->mPreprocessor ) && $this->mPreprocessor->parser !== $this ) {
+			$this->mPreprocessor = null;
+		}
 
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 		wfProfileOut( __METHOD__ );
@@ -2374,14 +2382,13 @@ class Parser
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		static $varCache = array();
-		if ( wfRunHooks( 'ParserGetVariableValueVarCache', array( &$this, &$varCache ) ) ) {
-			if ( isset( $varCache[$index] ) ) {
-				return $varCache[$index];
+		if ( wfRunHooks( 'ParserGetVariableValueVarCache', array( &$this, &$this->mVarCache ) ) ) {
+			if ( isset( $this->mVarCache[$index] ) ) {
+				return $this->mVarCache[$index];
 			}
 		}
 
-		$ts = time();
+		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
 		wfRunHooks( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
 
 		# Use the time zone
@@ -2408,29 +2415,29 @@ class Parser
 
 		switch ( $index ) {
 			case 'currentmonth':
-				return $varCache[$index] = $wgContLang->formatNum( gmdate( 'm', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'm', $ts ) );
 			case 'currentmonthname':
-				return $varCache[$index] = $wgContLang->getMonthName( gmdate( 'n', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->getMonthName( gmdate( 'n', $ts ) );
 			case 'currentmonthnamegen':
-				return $varCache[$index] = $wgContLang->getMonthNameGen( gmdate( 'n', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->getMonthNameGen( gmdate( 'n', $ts ) );
 			case 'currentmonthabbrev':
-				return $varCache[$index] = $wgContLang->getMonthAbbreviation( gmdate( 'n', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->getMonthAbbreviation( gmdate( 'n', $ts ) );
 			case 'currentday':
-				return $varCache[$index] = $wgContLang->formatNum( gmdate( 'j', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'j', $ts ) );
 			case 'currentday2':
-				return $varCache[$index] = $wgContLang->formatNum( gmdate( 'd', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'd', $ts ) );
 			case 'localmonth':
-				return $varCache[$index] = $wgContLang->formatNum( $localMonth );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( $localMonth );
 			case 'localmonthname':
-				return $varCache[$index] = $wgContLang->getMonthName( $localMonthName );
+				return $this->mVarCache[$index] = $wgContLang->getMonthName( $localMonthName );
 			case 'localmonthnamegen':
-				return $varCache[$index] = $wgContLang->getMonthNameGen( $localMonthName );
+				return $this->mVarCache[$index] = $wgContLang->getMonthNameGen( $localMonthName );
 			case 'localmonthabbrev':
-				return $varCache[$index] = $wgContLang->getMonthAbbreviation( $localMonthName );
+				return $this->mVarCache[$index] = $wgContLang->getMonthAbbreviation( $localMonthName );
 			case 'localday':
-				return $varCache[$index] = $wgContLang->formatNum( $localDay );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( $localDay );
 			case 'localday2':
-				return $varCache[$index] = $wgContLang->formatNum( $localDay2 );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( $localDay2 );
 			case 'pagename':
 				return wfEscapeWikiText( $this->mTitle->getText() );
 			case 'pagenamee':
@@ -2516,51 +2523,51 @@ class Parser
 			case 'subjectspacee':
 				return( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
 			case 'currentdayname':
-				return $varCache[$index] = $wgContLang->getWeekdayName( gmdate( 'w', $ts ) + 1 );
+				return $this->mVarCache[$index] = $wgContLang->getWeekdayName( gmdate( 'w', $ts ) + 1 );
 			case 'currentyear':
-				return $varCache[$index] = $wgContLang->formatNum( gmdate( 'Y', $ts ), true );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'Y', $ts ), true );
 			case 'currenttime':
-				return $varCache[$index] = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
+				return $this->mVarCache[$index] = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
 			case 'currenthour':
-				return $varCache[$index] = $wgContLang->formatNum( gmdate( 'H', $ts ), true );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'H', $ts ), true );
 			case 'currentweek':
 				// @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
-				return $varCache[$index] = $wgContLang->formatNum( (int)gmdate( 'W', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( (int)gmdate( 'W', $ts ) );
 			case 'currentdow':
-				return $varCache[$index] = $wgContLang->formatNum( gmdate( 'w', $ts ) );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'w', $ts ) );
 			case 'localdayname':
-				return $varCache[$index] = $wgContLang->getWeekdayName( $localDayOfWeek + 1 );
+				return $this->mVarCache[$index] = $wgContLang->getWeekdayName( $localDayOfWeek + 1 );
 			case 'localyear':
-				return $varCache[$index] = $wgContLang->formatNum( $localYear, true );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( $localYear, true );
 			case 'localtime':
-				return $varCache[$index] = $wgContLang->time( $localTimestamp, false, false );
+				return $this->mVarCache[$index] = $wgContLang->time( $localTimestamp, false, false );
 			case 'localhour':
-				return $varCache[$index] = $wgContLang->formatNum( $localHour, true );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( $localHour, true );
 			case 'localweek':
 				// @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
-				return $varCache[$index] = $wgContLang->formatNum( (int)$localWeek );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( (int)$localWeek );
 			case 'localdow':
-				return $varCache[$index] = $wgContLang->formatNum( $localDayOfWeek );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( $localDayOfWeek );
 			case 'numberofarticles':
-				return $varCache[$index] = $wgContLang->formatNum( SiteStats::articles() );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::articles() );
 			case 'numberoffiles':
-				return $varCache[$index] = $wgContLang->formatNum( SiteStats::images() );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::images() );
 			case 'numberofusers':
-				return $varCache[$index] = $wgContLang->formatNum( SiteStats::users() );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::users() );
 			case 'numberofpages':
-				return $varCache[$index] = $wgContLang->formatNum( SiteStats::pages() );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::pages() );
 			case 'numberofadmins':
-				return $varCache[$index] = $wgContLang->formatNum( SiteStats::admins() );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::admins() );
 			case 'numberofedits':
-				return $varCache[$index] = $wgContLang->formatNum( SiteStats::edits() );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::edits() );
 			case 'currenttimestamp':
-				return $varCache[$index] = wfTimestampNow();
+				return $this->mVarCache[$index] = wfTimestamp( TS_MW, $ts );
 			case 'localtimestamp':
-				return $varCache[$index] = $localTimestamp;
+				return $this->mVarCache[$index] = $localTimestamp;
 			case 'currentversion':
-				return $varCache[$index] = SpecialVersion::getVersion();
+				return $this->mVarCache[$index] = SpecialVersion::getVersion();
 			case 'sitename':
 				return $wgSitename;
 			case 'server':
@@ -2576,7 +2583,7 @@ class Parser
 				return $wgContLanguageCode;
 			default:
 				$ret = null;
-				if ( wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$varCache, &$index, &$ret ) ) )
+				if ( wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$this->mVarCache, &$index, &$ret ) ) )
 					return $ret;
 				else
 					return null;
@@ -2936,7 +2943,9 @@ class Parser
 			# Clean up argument array
 			$newFrame = $frame->newChild( $args, $title );
 
-			if ( $titleText !== false && $newFrame->isEmpty() ) {
+			if ( $nowiki ) {
+				$text = $newFrame->expand( $text, PPFrame::RECOVER_ORIG );
+			} elseif ( $titleText !== false && $newFrame->isEmpty() ) {
 				# Expansion is eligible for the empty-frame cache
 				if ( isset( $this->mTplExpandCache[$titleText] ) ) {
 					$text = $this->mTplExpandCache[$titleText];
@@ -2948,6 +2957,10 @@ class Parser
 				# Uncached expansion
 				$text = $newFrame->expand( $text );
 			}
+		}
+		if ( $isLocalObj && $nowiki ) {
+			$text = $frame->expand( $text, PPFrame::RECOVER_ORIG );
+			$isLocalObj = false;
 		}
 
 		# Replace raw HTML by a placeholder
@@ -3635,7 +3648,7 @@ class Parser
 			$oldtz = getenv( 'TZ' );
 			putenv( 'TZ='.$wgLocaltimezone );
 		}
-		$d = $wgContLang->timeanddate( date( 'YmdHis' ), false, false) .
+		$d = $wgContLang->timeanddate( $this->mOptions->getTimestamp(), false, false) .
 		  ' (' . date( 'T' ) . ')';
 		if ( isset( $wgLocaltimezone ) ) {
 			putenv( 'TZ='.$oldtz );
@@ -4776,6 +4789,9 @@ class Parser
 	 */
 	function testSrvus( $text, $title, $options, $outputType = self::OT_HTML ) {
 		$this->clearState();
+		if ( ! ( $title instanceof Title ) ) {
+			$title = Title::newFromText( $title );
+		}
 		$this->mTitle = $title;
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
@@ -4787,10 +4803,16 @@ class Parser
 
 	function testPst( $text, $title, $options ) {
 		global $wgUser;
+		if ( ! ( $title instanceof Title ) ) {
+			$title = Title::newFromText( $title );
+		}
 		return $this->preSaveTransform( $text, $title, $wgUser, $options );
 	}
 
 	function testPreprocess( $text, $title, $options ) {
+		if ( ! ( $title instanceof Title ) ) {
+			$title = Title::newFromText( $title );
+		}
 		return $this->testSrvus( $text, $title, $options, self::OT_PREPROCESS );
 	}
 }
