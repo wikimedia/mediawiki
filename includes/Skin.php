@@ -1620,6 +1620,7 @@ END;
 
 		$bar = array();
 		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
+		$heading = '';
 		foreach ($lines as $line) {
 			if (strpos($line, '*') !== 0)
 				continue;
@@ -1649,7 +1650,6 @@ END;
 						}
 					}
 
-					if( !isset($heading) ) $heading='';
 					$bar[$heading][] = array(
 						'text' => $text,
 						'href' => $href,
