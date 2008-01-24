@@ -1308,18 +1308,24 @@ $2',
 'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המצוין.',
 
 # File deletion
-'filedelete'             => 'מחיקת $1',
-'filedelete-backlink'    => '→ $1',
-'filedelete-legend'      => 'מחיקת קובץ',
-'filedelete-intro'       => "מוחק את '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">אתם מוחקים את הגרסה של \'\'\'[[Media:$1|$1]]\'\'\' מ־[$4 $3, $2].</span>',
-'filedelete-comment'     => 'הערה:',
-'filedelete-submit'      => 'מחיקה',
-'filedelete-success'     => "'''$1''' נמחק.",
-'filedelete-success-old' => '<span class="plainlinks">הגרסה של \'\'\'[[Media:$1|$1]]\'\'\' מ־$3, $2 נמחקה.</span>',
-'filedelete-nofile'      => "'''$1''' אינו קיים באתר זה.",
-'filedelete-nofile-old'  => "אין גרסה ישנה של '''$1''' עם התכונות המצוינות.",
-'filedelete-iscurrent'   => 'אתם מנסים למחוק את הגרסה החדשה ביותר של הקובץ. אנא שחזרו קודם לגרסה ישנה יותר.',
+'filedelete'                  => 'מחיקת $1',
+'filedelete-backlink'         => '→ $1',
+'filedelete-legend'           => 'מחיקת קובץ',
+'filedelete-intro'            => "מוחק את '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">אתם מוחקים את הגרסה של \'\'\'[[Media:$1|$1]]\'\'\' מ־[$4 $3, $2].</span>',
+'filedelete-comment'          => 'סיבה למחיקה:',
+'filedelete-submit'           => 'מחיקה',
+'filedelete-success'          => "'''$1''' נמחק.",
+'filedelete-success-old'      => '<span class="plainlinks">הגרסה של \'\'\'[[Media:$1|$1]]\'\'\' מ־$3, $2 נמחקה.</span>',
+'filedelete-nofile'           => "'''$1''' אינו קיים באתר זה.",
+'filedelete-nofile-old'       => "אין גרסה ישנה של '''$1''' עם התכונות המצוינות.",
+'filedelete-iscurrent'        => 'אתם מנסים למחוק את הגרסה החדשה ביותר של הקובץ. אנא שחזרו קודם לגרסה ישנה יותר.',
+'filedelete-otherreason'      => 'סיבה נוספת/אחרת:',
+'filedelete-reason-otherlist' => 'סיבה אחרת',
+'filedelete-reason-dropdown'  => '
+* סיבות מחיקה נפוצות
+** הפרת זכויות יוצרים
+** קובץ כפול',
 
 # MIME search
 'mimesearch'         => 'חיפוש MIME',
