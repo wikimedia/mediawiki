@@ -1626,7 +1626,6 @@ END;
 			if (strpos($line, '**') !== 0) {
 				$line = trim($line, '* ');
 				$heading = $line;
-				if( strlen($heading) == 0) $heading='';
 			} else {
 				if (strpos($line, '|') !== false) { // sanity check
 					$line = explode( '|' , trim($line, '* '), 2 );
@@ -1650,6 +1649,7 @@ END;
 						}
 					}
 
+					if( !isset($heading) ) $heading='';
 					$bar[$heading][] = array(
 						'text' => $text,
 						'href' => $href,
