@@ -26,8 +26,8 @@ Not vulnerable versions:
 
 Vulnerable versions:
 * 1.11 <= 1.11.0rc1
-* 1.10 <= 1.10.1
-* 1.9 <= 1.9.3
+* 1.10 <= 1.10.2
+* 1.9 <= 1.9.4
 * 1.8 any version (if $wgEnableAPI has been switched on)
 
 MediaWiki 1.7 and below are not affected as they do not include
