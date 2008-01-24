@@ -281,7 +281,7 @@ p {
 }
 
 a, a:hover, a:visited {
-	text-decoration: underline;
+	/*text-decoration: underline;*/
 	color: #003366;
 }
 
