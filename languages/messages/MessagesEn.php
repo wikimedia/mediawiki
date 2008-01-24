@@ -1569,18 +1569,24 @@ PICT # misc.
 'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
-'filedelete'             => 'Delete $1',
-'filedelete-backlink'    => '← $1', # only translate this message to other languages if you have to change it
-'filedelete-legend'      => 'Delete file',
-'filedelete-intro'       => "You are deleting '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Comment:',
-'filedelete-submit'      => 'Delete',
-'filedelete-success'     => "'''$1''' has been deleted.",
-'filedelete-success-old' => '<span class="plainlinks">The version of \'\'\'[[Media:$1|$1]]\'\'\' as of $3, $2 has been deleted.</span>',
-'filedelete-nofile'      => "'''$1''' does not exist on {{SITENAME}}.",
-'filedelete-nofile-old'  => "There is no archived version of '''$1''' with the specified attributes.",
-'filedelete-iscurrent'   => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
+'filedelete'                   => 'Delete $1',
+'filedelete-backlink'          => '← $1', # only translate this message to other languages if you have to change it
+'filedelete-legend'            => 'Delete file',
+'filedelete-intro'             => "You are deleting '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'         => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
+'filedelete-comment'           => 'Reason for deletion:',
+'filedelete-submit'            => 'Delete',
+'filedelete-success'           => "'''$1''' has been deleted.",
+'filedelete-success-old'       => '<span class="plainlinks">The version of \'\'\'[[Media:$1|$1]]\'\'\' as of $3, $2 has been deleted.</span>',
+'filedelete-nofile'            => "'''$1''' does not exist on {{SITENAME}}.",
+'filedelete-nofile-old'        => "There is no archived version of '''$1''' with the specified attributes.",
+'filedelete-iscurrent'         => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
+'filedelete-otherreason'       => 'Other/additional reason:',
+'filedelete-reason-otherlist'  => 'Other reason',
+'filedelete-reason-dropdown'   => '
+*Common delete reasons
+** Copyright violation
+** Duplicated file',
 
 # MIME search
 'mimesearch'         => 'MIME search',

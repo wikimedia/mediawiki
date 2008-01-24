@@ -63,23 +63,31 @@ class FileDeleteForm {
 		
 		// Perform the deletion if appropriate
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->oldimage ) ) {
-			$comment = $wgRequest->getText( 'wpReason' );
+			$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
+			$this->DeleteReason = $wgRequest->getText( 'wpReason' );
+			$reason = $this->DeleteReasonList;
+			if ( $reason != 'other' && $this->DeleteReason != '') {
+				// Entry from drop down menu + additional comment
+				$reason .= ': ' . $this->DeleteReason;
+			} elseif ( $reason == 'other' ) {
+				$reason = $this->DeleteReason;
+			}
 			if( $this->oldimage ) {
-				$status = $this->file->deleteOld( $this->oldimage, $comment );
+				$status = $this->file->deleteOld( $this->oldimage, $reason );
 				if( $status->ok ) {
 					// Need to do a log item
 					$log = new LogPage( 'delete' );
 					$logComment = wfMsg( 'deletedrevision', $this->oldimage );
-					if( trim( $comment ) != '' )
-						$logComment .= ": {$comment}";
+					if( trim( $reason ) != '' )
+						$logComment .= ": {$reason}";
 					$log->addEntry( 'delete', $this->title, $logComment );
 				}
 			} else {
-				$status = $this->file->delete( $comment );
+				$status = $this->file->delete( $reason );
 				if( $status->ok ) {
 					// Need to delete the associated article
 					$article = new Article( $this->title );
-					$article->doDeleteArticle( $comment );
+					$article->doDeleteArticle( $reason );
 				}
 			}
 			if( !$status->isGood() )
@@ -103,15 +111,58 @@ class FileDeleteForm {
 	 */
 	private function showForm() {
 		global $wgOut, $wgUser, $wgRequest;
+		
+		$mDeletereasonother = Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' );
+		$mDeletereasonotherlist = wfMsgHtml( 'filedelete-reason-otherlist' );
+		$scDeleteReasonList = wfMsgForContent( 'filedelete-reason-dropdown' );
+		$mDeleteReasonList = '';
+		$delcom = Xml::label( wfMsg( 'filedelete-comment' ), 'wpDeleteReasonList' );
+		if ( $scDeleteReasonList != '' && $scDeleteReasonList != '-' ) {
+			$deleteReasonList = "<option value=\"other\">$mDeletereasonotherlist</option>";
+			$optgroup = "";
+			foreach ( explode( "\n", $scDeleteReasonList ) as $option) {
+				$value = trim( htmlspecialchars($option) );
+				if ( $value == '' ) {
+					continue;
+				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
+					// A new group is starting ...
+					$value = trim( substr( $value, 1 ) );
+					$deleteReasonList .= "$optgroup<optgroup label=\"$value\">";
+					$optgroup = "</optgroup>";
+				} elseif ( substr( $value, 0, 2) == '**' ) {
+					// groupmember
+					$selected = "";
+					$value = trim( substr( $value, 2 ) );
+					if ( $mDeleteReasonList === $value)
+					$selected = ' selected="selected"';
+					$deleteReasonList .= "<option value=\"$value\"$selected>$value</option>";
+				} else {
+					// groupless delete reason
+					$selected = "";
+					if ( $this->DeleteReasonList === $value)
+						$selected = ' selected="selected"';
+					$deleteReasonList .= "$optgroup<option value=\"$value\"$selected>$value</option>";
+					$optgroup = "";
+				}
+			}
+			$deleteReasonList .= $optgroup;
+		}
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
 		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filedelete-legend' ) . '</legend>';
+		$form .= '<table><tr>';
 		$form .= $this->prepareMessage( 'filedelete-intro' );
-
-		$form .= '<p>' . Xml::inputLabel( wfMsg( 'filedelete-comment' ), 'wpReason', 'wpReason',
-			60, $wgRequest->getText( 'wpReason' ) ) . '</p>';
+		$form .= "<td align=\"right\"> $delcom </td><td align=\"left\">";
+		$form .= "<select tabindex='2' id='wpDeleteReasonList' name=\"wpDeleteReasonList\">
+		$deleteReasonList
+</select>";
+		$form .= "</tr><tr><td align=\"right\"> $mDeletereasonother </td><td align=\"left\">";
+		$form .= "<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' ";
+		$form .= "value=\"". htmlspecialchars( $wgRequest->getText( 'wpReason' ) ) ."\" tabindex=\"1\" />";
+		$form .= '</td></tr><tr><td colspan=2>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'filedelete-submit' ), array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit' ) ) . '</p>';
+		$form .= '</tr></table>';
 		$form .= '</fieldset>';
 		$form .= '</form>';
 
