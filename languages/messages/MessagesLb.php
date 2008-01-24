@@ -128,7 +128,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
 'tog-justify'                 => "Ränner vum Text riten (''justify'')",
 'tog-hideminor'               => 'Verstopp kleng Ännerungen an de rezenten Ännerungen',
-'tog-extendwatchlist'         => 'Iwwerwaachungs-Lëscht op all Ännerungen ausbreeden',
+'tog-extendwatchlist'         => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden',
 'tog-usenewrc'                => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
 'tog-numberheadings'          => 'Iwwerschrëften automatesch numeréieren',
 'tog-showtoolbar'             => 'Ännerungstoolbar weisen (JavaScript)',
@@ -138,15 +138,15 @@ $messages = array(
 'tog-showtoc'                 => 'Inhaltsverzeechniss weisen bäi Säite mat méi wéi dräi Iwwerschrëften',
 'tog-rememberpassword'        => 'Mäi Passwuert op dësem Computer verhalen',
 'tog-editwidth'               => 'Verännerungskëscht iwwert déi ganz Breed vum Ecran',
-'tog-watchcreations'          => 'Säiten déi ech nei uleeën automatesch op meng Iwwerwaachungs-Lëscht setzen',
+'tog-watchcreations'          => 'Säiten déi ech nei uleeën automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdefault'            => 'Säiten déi ech änneren op meng Iwwerwaachungslëscht setzen',
-'tog-watchmoves'              => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungs-Lëscht setzen',
+'tog-watchmoves'              => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdeletion'           => 'Säiten déi ech läschen op meng Iwwerwaachungslëscht setzen',
 'tog-minordefault'            => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
 'tog-previewontop'            => "De ''Preview'' uewen un der Ännerungsfënster weisen",
 'tog-previewonfirst'          => "Beim éischten Änneren de ''Preview'' weisen.",
 'tog-nocache'                 => 'Säitecache deaktivéieren',
-'tog-enotifwatchlistpages'    => 'Schéck mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungs-Lëscht geännert gëtt.',
+'tog-enotifwatchlistpages'    => 'Schéck mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungslëscht geännert gëtt.',
 'tog-enotifusertalkpages'     => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
 'tog-enotifminoredits'        => 'Schéckt mir och bäi kléngen Ännerungen op vu mir iwwerwaachte Säiten eng E-Mail.',
 'tog-enotifrevealaddr'        => 'Meng E-Mailadress an de Benoriichtigungsmaile weisen.',
@@ -156,9 +156,9 @@ $messages = array(
 'tog-externaldiff'            => 'Externen Diff-Programm als Standard benotzen',
 'tog-uselivepreview'          => 'Live-Preview notzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wa beim Späicheren de Resumé feelt',
-'tog-watchlisthideown'        => 'Meng Ännerungen op menger Iwwerwaachungs-Lëscht verstoppen',
+'tog-watchlisthideown'        => 'Meng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthidebots'       => 'Ännerungen vu Botten op menger Iwwerwaachungslëscht verstoppen',
-'tog-watchlisthideminor'      => 'Kleng Ännerungen op menger Iwwerwaachungs-Lëscht verstoppen',
+'tog-watchlisthideminor'      => 'Kleng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
 'tog-ccmeonemails'            => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'                => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
 
@@ -791,9 +791,9 @@ Sich no: $3 $9',
 'math_syntax_error'       => 'Syntaxfeeler',
 'prefs-personal'          => 'Benotzerprofil',
 'prefs-rc'                => 'Rezent Ännerungen',
-'prefs-watchlist'         => 'Iwwerwaachungs-Lëscht',
-'prefs-watchlist-days'    => 'Maximal Zuel vun den Deeg, déi an der Iwwerwaachungs-Lëscht ugewise solle ginn:',
-'prefs-watchlist-edits'   => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungs-Lëscht ugewise solle ginn:',
+'prefs-watchlist'         => 'Iwwerwaachungslëscht',
+'prefs-watchlist-days'    => 'Maximal Zuel vun den Deeg, déi an der Iwwerwaachungslëscht ugewise solle ginn:',
+'prefs-watchlist-edits'   => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungslëscht ugewise solle ginn:',
 'prefs-misc'              => 'Verschiddenes',
 'saveprefs'               => 'Späicheren',
 'resetprefs'              => 'Zrécksetzen',
@@ -891,7 +891,7 @@ derbäisetzen.',
 'recentchangeslinked'          => 'Ännerungen op verlinkte Säiten',
 'recentchangeslinked-title'    => 'Ännerungen op Säiten, déi vun "$1" verlinkt sinn',
 'recentchangeslinked-noresult' => 'Am ausgewielten Zäitraum goufen op de verlinkte Säite keng Ännerunge gemaach.',
-'recentchangeslinked-summary'  => "Op dëser Spezialsäite stinn déi rezent Ännerungen vun de verlinkte Säiten. Säiten déi op menger Iwwerwaachungs-Lëscht stinn si '''fett''' geschriwwen.",
+'recentchangeslinked-summary'  => "Op dëser Spezialsäite stinn déi rezent Ännerungen vun de verlinkte Säiten. Säiten déi op menger Iwwerwaachungslëscht stinn si '''fett''' geschriwwen.",
 
 # Upload
 'upload'              => 'Eroplueden',
@@ -920,6 +920,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'upload-prohibited'   => 'Verbuede Fichiers Formater: $1.',
 'uploadlog'           => 'Lëscht vun den eropgeluedene Fichieren',
 'uploadlogpage'       => 'Logbuch vum Eroplueden',
+'uploadlogpagetext'   => 'Dëst ass dLëscht vun de Fichieren déi eropgeluede goufen, kuckt och [[{{ns:special}}:Newimages|Spezial:Nei Biller]].',
 'filename'            => 'Numm vum Fichier',
 'filedesc'            => 'Resumé',
 'fileuploadsummary'   => 'Resumé/Quell:',
@@ -1172,7 +1173,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
 'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a senge Preferenzen agestallt huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mail Adress déi dir an Äre Preferenzen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
-'defemailsubject' => '{{SITENAME}}-E-Mail',
+'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',
 'emailfrom'       => 'Vum',
 'emailto'         => 'Fir',
@@ -1185,8 +1186,8 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'emailsenttext'   => 'Är E-Mail gouf fortgeschéckt.',
 
 # Watchlist
-'watchlist'            => 'Meng Iwwerwaachungs-Lëscht',
-'mywatchlist'          => 'Meng Iwwerwaachungs-Lëscht',
+'watchlist'            => 'Meng Iwwerwaachungslëscht',
+'mywatchlist'          => 'Meng Iwwerwaachungslëscht',
 'watchlistfor'         => "(fir '''$1''')",
 'watchlistanontext'    => "Dir musst $1 fir Säiten op ärer Iwwerwaachungslëscht ze gesinn oder z'änneren.",
 'watchnologin'         => 'Net ageloggt',
@@ -1196,7 +1197,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 
 Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" uewen op der Säit.",
 'removedwatch'         => 'Vun der Iwwerwaachungslëscht erofgeholl',
-'removedwatchtext'     => 'D\'Säit "$1" gouf vun ärer Iwwerwaachungs-Lësch erofgeholl.',
+'removedwatchtext'     => 'D\'Säit "[[:$1]]" gouf vun ärer Iwwerwaachungslëscht erofgeholl.',
 'watch'                => 'Iwwerwaachen',
 'watchthispage'        => 'Dës Säit iwwerwaachen',
 'unwatch'              => 'Net méi iwwerwaachen',
@@ -1251,6 +1252,10 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'deletecomment'               => "Grond fir d'Läschen",
 'deleteotherreason'           => 'Aneren/ergänzende Grond:',
 'deletereasonotherlist'       => 'Anere Grond',
+'deletereason-dropdown'       => '* Heefegst Grënn fir eng Säit ze läschen
+** Wonsch vum Auteur
+** Verletzung vun engem Copyright
+** Vandalismus',
 'rollback'                    => 'Ännerungen zrécksetzen',
 'rollback_short'              => 'Zrécksetzen',
 'rollbacklink'                => 'Zrécksetzen',
@@ -1258,7 +1263,7 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'cantrollback'                => 'Lescht Ännerung kann net zeréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
 'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zeréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
 'editcomment'                 => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) geläscht an déi lescht Versioun vum [[User:$1|$1]] restauréiert',
+'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) geläscht an déi lescht Versioun vum [[User:$1|$1]] restauréiert', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
@@ -1368,6 +1373,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 **Beleidegt oder bedréit aner Mataarbechter
 **Mëssbrauch vu verschiddene Benotzernimm
 **Net akzeptabele Benotzernumm",
+'ipbanononly'                 => 'Nëmmen anonym Benotzer spären',
 'ipbenableautoblock'          => 'Automatesch all IP spären duerch déi op dëse Benotzerkont zougegraff ka ginn',
 'ipbsubmit'                   => 'Dës IP-Adress resp dëse Benotzer spären',
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
@@ -1382,6 +1388,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-unblock-addr'            => 'Spär vum $1 annuléieren',
 'ipb-unblock'                 => 'Spär vun enger IP-Adress oder engem Benotzer annuléieren',
 'unblockip'                   => 'Spär annuléieren',
+'ipusubmit'                   => "D'Spär vun dëser Adress ophiewen",
 'unblocked'                   => "D'Spär fir de(n) [[User:$1|$1]] gouf annulléiert",
 'unblocked-id'                => "D'Spär $1 gouf annulléiert",
 'ipblocklist'                 => 'Lëscht vu gespaarte Benotzer an IP-Adressen',
@@ -1418,7 +1425,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 # Developer tools
 'lockdb'            => 'Datebank spären',
 'unlockdb'          => 'Spär vun der Datebank annulléieren',
-'lockdbtext'        => "Wann d'Datebank gespaart ass, ka kee Benotzer méi Säiten änneren, seng Preferenzen änneren, seng Iwwerwaachungs-Lëscht änneren, an all aner Aarbecht, déi op d'Datebank zréckgräift. 
+'lockdbtext'        => "Wann d'Datebank gespaart ass, ka kee Benotzer méi Säiten änneren, seng Preferenzen änneren, seng Iwwerwaachungslëscht änneren, an all aner Aarbecht, déi op d'Datebank zréckgräift. 
 
 W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spär ewechhuelt soubal d'Maintenance-Aarbechten eriwwer sinn.",
 'lockconfirm'       => "Jo, ech wëll d'Datebank wierklech spären.",
@@ -1505,10 +1512,13 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'importunknownsource'      => 'Onbekannt Importquell',
 'importbadinterwiki'       => 'Falschen Interwiki-Link',
 'importnotext'             => 'Eidel oder keen Text',
+'importsuccess'            => 'Den Import ass fäerdeg!',
 'importnosources'          => 'Fir den Transwiki-Import si keng Quellen definéiert an et ass net méiglech fir Säite mat alle Versiounen aus dem Transwiki-Tëschespäicher eropzelueden.',
+'import-noarticle'         => "Keng Säit fir z'importéieren!",
+'import-nonewrevisions'    => "All d'Versioune goufe scho virdrunn importéiert.",
 
 # Import log
-'importlogpage'                 => 'Import-Logbuch',
+'importlogpage'                 => 'Lëscht vun den Säitenimporten',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'import-logentry-interwiki'     => 'huet $1 importéiert (Transwiki)',
 
@@ -1530,8 +1540,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'tooltip-ca-protect'              => 'Dës Säit protegéieren',
 'tooltip-ca-delete'               => 'Dës Säit läschen',
 'tooltip-ca-move'                 => 'Dës Säit réckelen',
-'tooltip-ca-watch'                => 'Dës Säit op är Iwwerwaachungs-Lëscht bäisetzen',
-'tooltip-ca-unwatch'              => 'Dës Säit vun der Iwwerwaachungs-Lëscht erofhuelen',
+'tooltip-ca-watch'                => 'Dës Säit op är Iwwerwaachungslëscht bäisetzen',
+'tooltip-ca-unwatch'              => 'Dës Säit vun der Iwwerwaachungslëscht erofhuelen',
 'tooltip-search'                  => 'Op {{SITENAME}} sichen',
 'tooltip-p-logo'                  => 'Haaptsäit',
 'tooltip-n-mainpage'              => 'Eis Entréesdier',
@@ -1563,7 +1573,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'tooltip-preview'                 => "Klickt op 'Preview' éier Der späichert!",
 'tooltip-diff'                    => 'Weis wéi eng Ännerungen der beim Text gemaach hutt.',
 'tooltip-compareselectedversions' => "D'Ennerscheeder op dëser Säit tëscht den zwou gewielte Versioune weisen.",
-'tooltip-watch'                   => 'Dës Säit op är Iwwerwaachungs-Lëscht bäisetzen',
+'tooltip-watch'                   => 'Dës Säit op är Iwwerwaachungslëscht bäisetzen',
 
 # Attribution
 'anonymous'        => 'Anonym(e) Benotzer op {{SITENAME}}',

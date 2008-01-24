@@ -298,7 +298,7 @@ $messages = array(
 'feed-invalid'            => 'Ia nevalida abonilo.',
 'site-rss-feed'           => '$1 RSS-abonilo.',
 'site-atom-feed'          => '$1 Atom-fonto',
-'page-rss-feed'           => '"$1" RSS-abonilo',
+'page-rss-feed'           => '"$1" RSS-fonto',
 'page-atom-feed'          => '"$1" Atom-abonilo',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -636,13 +636,13 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'template-semiprotected'    => '(duone protektita)',
 'edittools'                 => '<!-- Teksto ĉi tie estas montrata sub redaktaj kaj alŝutaj formularoj. -->',
 'nocreatetitle'             => 'Paĝa kreado estas limigita',
-'nocreatetext'              => '{{SITENAME}} restriktas la eblecon krei novajn pagxojn. Vi eblas reiri kaj redakti faritan pagxon, aux [[Special:Userlogin|ensaluti aux krei konton]].',
+'nocreatetext'              => '{{SITENAME}} restriktas la eblecon krei novajn paĝojn. Vi eblas reiri kaj redakti faritan paĝon, aŭ [[Special:Userlogin|ensaluti aŭ krei konton]].',
 'nocreate-loggedin'         => 'Vi ne rajtas krei novajn paĝojn en {{SITENAME}}.',
 'permissionserrors'         => 'Eraroj pri permesoj',
 'permissionserrorstext'     => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
-'recreate-deleted-warn'     => "'''Averto: Vi rekreas pagxon tiu estis antauxe forigita.'''
+'recreate-deleted-warn'     => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
 
-Vi konsideru cxu konvenas dauxre redakti cxi pagxon. 
+Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon. 
 Jen la loglibro de forigoj por via oportuno:",
 
 # "Undo" feature
@@ -868,7 +868,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'minoreditletter'                   => 'E',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'R',
-'number_of_watching_users_pageview' => '[{{PLURAL:$1|unu atentanto|$1 atentantoj}}]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|priatentanta uzanto|priatentantaj uzantoj}}]',
 'rc_categories'                     => 'Nur por jenaj kategorioj (disigu per "|")',
 'rc_categories_any'                 => 'ĉiu',
 
@@ -876,7 +876,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'recentchangeslinked'          => 'Rilataj paĝoj',
 'recentchangeslinked-title'    => 'Sxangxoj rilataj al $1',
 'recentchangeslinked-noresult' => 'Neniuj sxangxoj en ligitaj pagxoj dum la donata periodo.',
-'recentchangeslinked-summary'  => "Cxi tiu speciala pagxo listigas la lastajn sxangxojn en ligitaj pagxoj. Pagxoj en via atentaro estas '''grasaj'''.",
+'recentchangeslinked-summary'  => "Ĉi tiu speciala paĝo listigas la lastajn ŝanĝojn en ligitaj paĝoj. Paĝoj en via atentaro estas '''grasaj'''.",
 
 # Upload
 'upload'                      => 'Alŝutu dosieron',
@@ -933,6 +933,8 @@ Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas
 
 'upload-file-error' => 'Interna eraro',
 
+'license-nopreview' => '(Antaŭvido ne montrebla)',
+
 # Image list
 'imagelist'                 => 'Listo de alŝutitaj dosieroj',
 'imagelisttext'             => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
@@ -965,13 +967,19 @@ Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas
 'imagelist_description'     => 'Priskribo',
 
 # File deletion
-'filedelete-intro'   => "Vi forigas '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Komento:',
-'filedelete-submit'  => 'Forigu',
-'filedelete-success' => "'''$1''' estas forigita.",
+'filedelete-intro'            => "Vi forigas '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Komento:',
+'filedelete-submit'           => 'Forigu',
+'filedelete-success'          => "'''$1''' estas forigita.",
+'filedelete-otherreason'      => 'Alia/plua kialo:',
+'filedelete-reason-otherlist' => 'Alia kialo',
+'filedelete-reason-dropdown'  => '* Oftaj kialoj de forigo
+** Malobservo de kopirajto
+** Duplikata dosiero',
 
 # MIME search
 'mimesearch' => 'MIME-serĉilo',
+'mimetype'   => 'MIME-tipo:',
 'download'   => 'elŝutu',
 
 # Unwatched pages
@@ -1016,10 +1024,12 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'doubleredirectstext' => '<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br />
 Ĉiu linio montras ligilojn ĉe la unua kaj dua alidirektadoj, kaj la unua linio de la teksto de la dua alidirektado, kiu ĝenerale montras la "veran" artikolon, kiu devus celi la unuan alidirektadon.',
 
-'brokenredirects'     => 'Rompitaj alidirektadoj',
-'brokenredirectstext' => 'La jenaj alidirektadoj ligas al neekzistantaj artikoloj.',
+'brokenredirects'        => 'Rompitaj alidirektadoj',
+'brokenredirectstext'    => 'La jenaj alidirektadoj ligas al neekzistantaj artikoloj.',
+'brokenredirects-edit'   => '(redaktu)',
+'brokenredirects-delete' => '(forigu)',
 
-'withoutinterwiki' => 'Pagxoj sen lingvaj ligiloj',
+'withoutinterwiki' => 'Paĝoj sen lingvaj ligiloj',
 
 'fewestrevisions' => 'Artikoloj kun la plej malmultaj revizioj',
 
@@ -1051,7 +1061,7 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'shortpages'              => 'Paĝetoj',
 'longpages'               => 'Paĝegoj',
 'deadendpages'            => 'Seneliraj paĝoj',
-'deadendpagestext'        => 'La sekvaj paĝoj ne ligas al aliaj paĝoj en ĉi tiu vikio.',
+'deadendpagestext'        => 'La sekvaj paĝoj ne ligas al aliaj paĝoj en {{SITENAME}}.',
 'protectedpages'          => 'Protektitaj paĝoj',
 'protectedpagestext'      => 'La sekvaj paĝoj estas protektitaj kontraŭ movigo aŭ redaktado',
 'protectedpagesempty'     => 'Neniuj paĝoj estas momente protektitaj kun ĉi tiuj parametroj.',
@@ -1216,6 +1226,12 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletecomment'               => 'Kialo por forigo',
 'deleteotherreason'           => 'Alia/plua kialo:',
 'deletereasonotherlist'       => 'Alia kialo',
+'deletereason-dropdown'       => '*Oftaj kialoj por forigo
+** Peto de aŭtoro
+** Malobservo de kopirajto
+** Vandalismo',
+'delete-toobig'               => 'Ĉi paĝo havas grandan redakto-historion, pli ol $1 reviziojn. Forigo de ĉi tiaj paĝoj estis limigitaj por preventi akcidentan disrompigon de {{SITENAME}}.',
+'delete-warning-toobig'       => 'Ĉi paĝo havas grandan redakto-historion, pli ol $1 reviziojn. Forigo de ĝi povas disrompigi operacion de {{SITENAME}}; forigu singarde.',
 'rollback'                    => 'Restarigu antaŭan redakton',
 'rollback_short'              => 'Restarigo',
 'rollbacklink'                => 'restarigu antaŭan',
@@ -1231,57 +1247,86 @@ Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj pro
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
 Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj.',
 'protectedarticle'            => 'protektita [[:$1]]',
+'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[$1]]"',
 'unprotectedarticle'          => 'malprotektita [[$1]]',
 'protectsub'                  => '(Protektante "$1")',
 'confirmprotect'              => 'Konfirmu protektadon',
 'protectcomment'              => 'Kialo por protekti',
-'protectexpiry'               => 'Eksvalidigxas:',
+'protectexpiry'               => 'Eksvalidiĝas:',
 'protect_expiry_invalid'      => 'Nevalida findaŭro.',
 'protect_expiry_old'          => 'Eksvalidigxa tempo jam pasis.',
 'unprotectsub'                => '(Malprotektanta "$1")',
 'protect-unchain'             => 'Malŝlosu movpermesojn',
 'protect-text'                => 'Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo [[$1]]. Bonvolu certiĝi ke vi respektas la [[Special:Protectedpages|gvidliniojn de la projekto]].',
+'protect-locked-blocked'      => 'Vi ne povas ŝanĝi prokekto-nivelojn dum forbarita. Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',
+'protect-locked-dblock'       => 'Ne eblas ŝanĝi nivelojn de protekto pro aktiva datumbaza ŝloso.
+Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',
 'protect-locked-access'       => 'Via konto ne havas permeson ŝanĝi protekto-nivelojn. 
 Jen la aktualaj valoroj por la paĝo <strong>$1</strong>:',
-'protect-cascadeon'           => 'Cxi pagxo estas nun protektita kontraux redaktado cxar gxi estas inkluzivita en {{PLURAL:$1|jena pagxo, kiu mem estas protektita|jenaj pagxoj, kiuj mem estas protektitaj}} kun kaskada protekto. Vi povas sxangxi ties protektnivelon, sed tio ne sxangxos la kaskadan protekton.',
+'protect-cascadeon'           => 'Ĉi paĝo estas nun protektita kontraŭ redaktado ĉar gxi estas inkluzivita en {{PLURAL:$1|jena paĝo, kiu mem estas protektita|jenaj paĝoj, kiuj mem estas protektitaj}} kun kaskada protekto. Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.',
 'protect-default'             => '(defaŭlte)',
 'protect-fallback'            => '"$1" permeso bezonata',
 'protect-level-autoconfirmed' => 'Bloki neensalutintajn uzantojn',
 'protect-level-sysop'         => 'Nur administrantoj',
 'protect-summary-cascade'     => 'kaskada',
 'protect-expiring'            => 'finiĝas je $1 (UTC)',
-'protect-cascade'             => 'Protektu cxiujn pagxojn inkluzivitajn en cxi pagxo (kaskada protekto)',
-'protect-cantedit'            => 'Vi ne povas sxangxi la protekt-nivelojn de cxi tiu pagxo, cxar vi ne havas permeson redakti gxin.',
+'protect-cascade'             => 'Protektu ĉiujn paĝojn inkluzivitajn en ĉi paĝo (kaskada protekto)',
+'protect-cantedit'            => 'Vi ne povas ŝanĝi la protekt-nivelojn de cxi tiu paĝo, ĉar vi ne havas permeson redakti ĝin.',
 'restriction-type'            => 'Permeso:',
 'restriction-level'           => 'Nivelo de limigo:',
+'minimum-size'                => 'Minimuma grandeco',
+'maximum-size'                => 'Maksimuma grandeco',
+'pagesize'                    => '(bitokoj)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Redaktu',
-'restriction-move' => 'Movu',
+'restriction-edit'   => 'Redaktu',
+'restriction-move'   => 'Movu',
+'restriction-create' => 'Kreu',
+
+# Restriction levels
+'restriction-level-sysop'         => 'plene protektita',
+'restriction-level-autoconfirmed' => 'duone protektita',
+'restriction-level-all'           => 'iu nivelo',
 
 # Undelete
-'undelete'                 => 'Restarigu forigitajn paĝojn',
-'undeletepage'             => 'Montru kaj restarigu forigitajn paĝojn',
-'viewdeletedpage'          => 'Rigardu forigitajn paĝojn',
-'undeletepagetext'         => 'La jenaj paĝoj estis forigitaj, sed ankoraŭ restas arkivitaj,
+'undelete'                     => 'Restarigu forigitajn paĝojn',
+'undeletepage'                 => 'Montru kaj restarigu forigitajn paĝojn',
+'viewdeletedpage'              => 'Rigardu forigitajn paĝojn',
+'undeletepagetext'             => 'La jenaj paĝoj estis forigitaj, sed ankoraŭ restas arkivitaj,
 kaj oni povas restarigi ilin. La arkivo povas esti malplenigita periode.',
-'undeleteextrahelp'        => "Por restarigi la tuton de la paĝo, marku neniun markobutonon kaj klaku la butonon '''''Restarigu'''''. Por restarigi selektitajn versiojn de la paĝo, marku la butonojn konformajn al la dezirataj versioj, kaj klaku la butonon '''''Restarigu'''''. Klako je '''''Restarigu''''' malplenigos la komentozonon kaj malmarkos ĉiujn la markobutonojn.",
-'undeleterevisions'        => '$1 {{PLURAL:$1|versio arkivita|versioj arkivitaj}}',
-'undeletehistory'          => 'Se vi restarigos la paĝon, ĉiuj versioj estos restarigitaj
+'undeleteextrahelp'            => "Por restarigi la tuton de la paĝo, marku neniun markobutonon kaj klaku la butonon '''''Restarigu'''''. Por restarigi selektitajn versiojn de la paĝo, marku la butonojn konformajn al la dezirataj versioj, kaj klaku la butonon '''''Restarigu'''''. Klako je '''''Restarigu''''' malplenigos la komentozonon kaj malmarkos ĉiujn la markobutonojn.",
+'undeleterevisions'            => '$1 {{PLURAL:$1|versio arkivita|versioj arkivitaj}}',
+'undeletehistory'              => 'Se vi restarigos la paĝon, ĉiuj versioj estos restarigitaj
 en la historio. Se nova paĝo kun la sama nomo estis kreita post la forigo, la restarigitaj
 versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭigita.',
-'undeletehistorynoadmin'   => 'Ĉi tiu artikolo estis forigita. La kaŭzo por la forigo estas montrata en la malsupra resumo, kune kun detaloj pri la uzantoj, kiuj redaktis ĉi tiun paĝon antaŭ la forigo. La aktuala teksto de ĉi tiuj forigitaj revizioj estas atingebla nur por administrantoj.',
-'undeletebtn'              => 'Restarigu!',
-'undeletereset'            => 'Reŝarĝu',
-'undeletecomment'          => 'Komento:',
-'undeletedarticle'         => 'restarigis "$1"',
-'undeletedrevisions'       => '{{PLURAL:$1|1 versio restarigita|$1 versioj restarigitaj}}',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 versio|$1 versioj}} kaj {{PLURAL:$2|1 dosiero|$2 dosieroj}} restarigitaj',
-'undeletedfiles'           => '{{PLURAL:$1|1 dosiero restarigita|$1 dosieroj restarigitaj}}',
-'undeletedpage'            => "<big>'''$1 estis restarigita'''</big>
+'undeletehistorynoadmin'       => 'Ĉi tiu artikolo estis forigita. La kaŭzo por la forigo estas montrata en la malsupra resumo, kune kun detaloj pri la uzantoj, kiuj redaktis ĉi tiun paĝon antaŭ la forigo. La aktuala teksto de ĉi tiuj forigitaj revizioj estas atingebla nur por administrantoj.',
+'undelete-revision'            => 'Forigita revizio de $1 (de $2) fare de $3:',
+'undeleterevision-missing'     => 'Nevalida aŭ malaperita revizio. Vi verŝajne havas malbonan ligilon, aŭ la
+revizio eble estis restarigita aŭ forigita de la arkivo.',
+'undelete-nodiff'              => 'Neniu antaŭa revizio trovebla.',
+'undeletebtn'                  => 'Restarigu!',
+'undeletereset'                => 'Reŝarĝu',
+'undeletecomment'              => 'Komento:',
+'undeletedarticle'             => 'restarigis "$1"',
+'undeletedrevisions'           => '{{PLURAL:$1|1 versio restarigita|$1 versioj restarigitaj}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 versio|$1 versioj}} kaj {{PLURAL:$2|1 dosiero|$2 dosieroj}} restarigitaj',
+'undeletedfiles'               => '{{PLURAL:$1|1 dosiero restarigita|$1 dosieroj restarigitaj}}',
+'cannotundelete'               => 'Restarigo malsukcesis; iu eble restarigis la paĝon antaŭe.',
+'undeletedpage'                => "<big>'''$1 estis restarigita'''</big>
 
 Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj forigoj kaj restarigoj.",
-'undelete-search-submit'   => 'Serĉi',
+'undelete-header'              => 'Konsultu la [[Special:Log/delete|loglibro de forigoj]] por lastatempaj forigoj.',
+'undelete-search-box'          => 'Serĉu forigitajn paĝojn',
+'undelete-search-prefix'       => 'Montru paĝojn komence kun:',
+'undelete-search-submit'       => 'Serĉi',
+'undelete-no-results'          => 'Neniuj kongruaj paĝoj trovitaj en la forigo-arkivo.',
+'undelete-filename-mismatch'   => 'Ne eblas restarigi dosiero-revizion kun tempo $1: malkongrua dosiernomo',
+'undelete-bad-store-key'       => 'Ne eblas restarigi dosiero-revizio de tempo $1: dosiero estis malaperita antaŭ forigo.',
+'undelete-missing-filearchive' => 'Ne eblas restarigi dosiera arkivo ID $1 ĉar ĝi ne estas en la datumbazo. Verŝajne ĝi jam estis restarigita.',
+'undelete-error-short'         => 'Eraro pro restarigo de dosiero: $1',
+'undelete-error-long'          => 'Jen eraroj dum restarigo de dosiero:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Nomspaco:',
@@ -1317,7 +1362,7 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'nolinkshere'         => "Neniu paĝo ligas al '''[[:$1]]'''.",
 'isredirect'          => 'alidirekto',
 'istemplate'          => 'inkludo',
-'whatlinkshere-prev'  => '{{PLURAL:$1|antauxa|antauxa $1}}',
+'whatlinkshere-prev'  => '{{PLURAL:$1|antaŭa|antaŭa $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|posta|posta $1}}',
 'whatlinkshere-links' => '← ligiloj',
 
@@ -1329,24 +1374,45 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'ipbexpiry'            => 'Blokdaŭro',
 'ipbreason'            => 'Kialo',
 'ipbreasonotherlist'   => 'Alia kaŭzo',
+'ipbreason-dropdown'   => '*Oftaj kialoj de forbaro
+** Enmetas malveraĵojn
+** Forviŝas entenon el paĝoj
+** Entrudas ligilojn al eksteraj paĝaroj
+** Enmetas sensencaĵojn
+** Terurigema sinteno
+** Misuzo de pluraj salutnomoj
+** Neakceptebla uzanto-nomo',
+'ipbanononly'          => 'Forbaru nur anonimulojn',
+'ipbcreateaccount'     => 'Malpermesu kreadon de konto',
+'ipbemailban'          => 'Malebligu al uzanto sendi retpoŝton.',
+'ipbenableautoblock'   => 'Aŭtomate forbaru la lastan IP-adreson uzitan de la uzanto, kaj ĉiajn subsekvantajn adresojn el kiuj tiu provos redakti',
 'ipbsubmit'            => 'Forbaru la adreson',
 'ipbother'             => 'Alia daŭro',
 'ipboptions'           => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'       => 'alia',
 'ipbotherreason'       => 'Alia/aldona kaŭzo:',
+'ipbhidename'          => 'Kaŝu la uzantonomon/IP-on de la forbara loglibro, de la aktuala forbarlisto kaj de la uzantolisto.',
 'badipaddress'         => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'    => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext'   => '"$1" estas forbarita. <br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].',
+'ipb-edit-dropdown'    => 'Redaktu kialojn de forbaro.',
+'ipb-unblock-addr'     => 'Malforbaru $1',
+'ipb-unblock'          => 'Malforbaru uzantnomon aŭ IP-adreson',
+'ipb-blocklist-addr'   => 'Rigardu ekzistantajn forbarojn por $1',
 'unblockip'            => 'Malforbaru IP-adreson/nomon',
 'unblockiptext'        => 'Per la jena formulo vi povas repovigi al iu
 forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'ipusubmit'            => 'Malforbaru la adreson',
+'unblocked'            => '[[User:$1|$1]] estas malforbarita.',
+'unblocked-id'         => 'Forbaro $1 estas forigita.',
 'ipblocklist'          => 'Listo de forbaritaj IP-adresoj/nomoj',
+'ipblocklist-legend'   => 'Trovu forbaritan uzanton.',
 'ipblocklist-username' => 'Uzantonomo aŭ IP-adreso:',
 'ipblocklist-submit'   => 'Serĉi',
 'blocklistline'        => 'Je $1, $2 forbaris $3 ($4)',
 'infiniteblock'        => 'senfina',
 'expiringblock'        => 'finiĝas je $1',
+'anononlyblock'        => 'nur anonimuloj',
 'blocklink'            => 'forbaru',
 'unblocklink'          => 'malforbaru',
 'contribslink'         => 'kontribuoj',
@@ -1590,7 +1656,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',
 'svg-long-desc'        => '(SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3)',
 'show-big-image'       => 'Plena distingivo',
-'show-big-image-thumb' => '<small>Grandeco de cxi antauxvido: $1 × $2 rastrumeroj</small>',
+'show-big-image-thumb' => '<small>Grandeco de ĉi antaŭvido: $1 × $2 rastrumeroj</small>',
 
 # Special:Newimages
 'newimages'    => 'Aro da novaj bildoj',
@@ -1599,10 +1665,10 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 
 # Metadata
 'metadata'          => 'Metadatumo',
-'metadata-help'     => 'Cxi tiu dosiero enhavas pluan informon, versxajne aldonita de la cifereca fotilo aux skanilo uzata krei aux skani gxin. Se la dosiero estis sxangxita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
+'metadata-help'     => 'Ĉi tiu dosiero enhavas pluan informon, verŝajne aldonita de la cifereca fotilo aux skanilo uzata krei aux skani ĝin. Se la dosiero estis ŝanĝita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
 'metadata-expand'   => 'Montru etendajn detalojn',
 'metadata-collapse' => 'Kaŝu etendajn detalojn',
-'metadata-fields'   => 'La jenaj EXIF-metadatumaj kampoj estos inkluzivitaj en bildo-pagxoj kiam la metadatuma tabelo estas disfaldigita. Aliaj estos kasxita defauxlte.
+'metadata-fields'   => 'La jenaj EXIF-metadatumaj kampoj estos inkluzivitaj en bildo-paĝoj kiam la metadatuma tabelo estas disfaldigita. Aliaj estos kaŝita defaŭlte.
 
 * make
 * model

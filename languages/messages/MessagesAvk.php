@@ -503,6 +503,10 @@ Rodimal aze va tisu bu robetal oke [[Special:Userlogin|va int rodogluyal oke rop
 'nocreate-loggedin'         => 'Ko {{SITENAME}} ta redura va warzafu bu rin me zo rictal.',
 'permissionserrors'         => 'Rictajaks',
 'permissionserrorstext'     => 'Ta mana askira me zo rictal, golde {{PLURAL:$1|lazava|lazava se}}:',
+'recreate-deleted-warn'     => "'''Obral: Rin va sulayanu bu djutolredul.'''
+
+Gokrafial ede tolredura va batu bu tir vodanhaf.
+Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Pataredura me tir',
@@ -800,6 +804,7 @@ Va amidaf yolt vay kiblal !',
 'uploadwarning'              => 'Obral !',
 'savefile'                   => 'Giwara va iyeltak',
 'uploadedimage'              => '« [[$1]] » ksudayan mo zanisiko',
+'overwroteimage'             => 'kalvajayan siatos ke "[[$1]]"',
 'uploaddisabled'             => 'Skalev, staksera va iyeltak tir gritegirayan.',
 'uploadcorrupt'              => 'Bat iyeltak tir avonanaf ok lumiskaf oke va mewadaf yolt digir.
 Va iyeltak gonageltal.',
@@ -807,12 +812,17 @@ Va iyeltak gonageltal.',
 'sourcefilename'             => 'Klitiyeltakyolt',
 'destfilename'               => 'Warzaf iyeltakyolt',
 'watchthisupload'            => 'Suzdara va batu bu',
+'upload-wasdeleted'          => "'''Obral: Rin va sulayan iyeltak djukalvajal.'''
+
+Gokrafial ede tolkalvajara va bat iyeltak tir vodanhafa.
+Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 
 'upload-file-error' => 'Koefa rokla',
 'upload-misc-error' => 'Megrupena kalvajararokla',
 
 'license'            => 'Gelfara',
 'nolicense'          => 'Mecoba rebana',
+'license-nopreview'  => '(Abdinedira me zo roderaykar)',
 'upload_source_file' => ' (iyeltak koe rinafo vusiko)',
 
 # Image list
@@ -897,7 +907,13 @@ Va iyeltak gonageltal.',
 'statistics'             => 'Enkopaca yo',
 'sitestats'              => 'Enkopaca yo va xo',
 'userstats'              => 'Enkopaca yo va favesik',
-'sitestatstext'          => 'Origak va <b>$1</b> bu noelon ruldar. Bata ota va se "prilarabu" is bu icde {{SITENAME}} is yupbu is graskarabu is aru metelizkorafu bu ruldar. Divlapuson va batu bu se, <b>$2</b> lanon telizkorafu bu zavzad. <p> <b>$3</b> bu zo rupeyed ise <b>$4</b> zo betayad. Va mialuk va <b>$5</b> betara fuxe bu is <b>$6</b> rupera fuxe betara batcoba tadler.',
+'sitestatstext'          => 'Origak va <b>$1</b> bu noelon ruldar. Bata ota va se "prilarabu" is bu icde {{SITENAME}} is yupbu is graskarabu is aru metelizkorafu bu ruldar. Divlapuson va batu bu se, <b>$2</b> lanon telizkorafu bu zavzad. <br />
+
+\'\'\'$8\'\'\' iyeltak tid kalvajayan. <br />
+
+<p> <b>$3</b> bu zo rupeyed ise <b>$4</b> zo betayad. Va mialuk va <b>$5</b> betara fuxe bu is <b>$6</b> rupera fuxe betara batcoba tadler. <br />
+
+Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\'\'$7\'\'\'.',
 'userstatstext'          => "{{PLURAL:$1|Tir '''1''' vertokayan [[Special:Listusers|favesik]]|Tid '''$1''' vertokayan [[Special:Listusers|favesik]]}}. Vanmiaeon '''$2''' (ok '''$4%''') va $5 roka {{PLURAL:$2|digir|digid}}.",
 'statistics-mostpopular' => 'Tel lorupen bueem',
 
@@ -953,6 +969,7 @@ Va iyeltak gonageltal.',
 'protectedpagesempty'     => 'Meku bu nendanu kan bat doreem.',
 'protectedtitles'         => 'Nendan vergumvelteem',
 'protectedtitlestext'     => 'Radimef vergumvelteem reduron zo nendar',
+'protectedtitlesempty'    => 'Nedoy vergumvelt kan bat dor se zo nendar.',
 'listusers'               => 'Pakesikeem',
 'specialpages'            => 'Aptaf bueem',
 'spheading'               => 'Aptaf bueem',
@@ -1111,7 +1128,7 @@ Bazen bartiv tir tel ke (UTC) zanisiko.',
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'editcomment'                 => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos gan [[User:$1|$1]]',
+'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos gan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Izvot va nendareem',
 'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:Protectedpages|nendan bueem]] wil.',
 'protectedarticle'            => 'va « $1 » al nendar',
@@ -1406,6 +1423,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'tooltip-ca-watch'                => 'Kosuzdasikira va batu bu',
 'tooltip-ca-unwatch'              => 'Divsuzdasikira va batu bu',
 'tooltip-search'                  => 'Aneyara vanmia bati wiki',
+'tooltip-search-go'               => 'Ede bu dem bat tageltaf yolt tir kalon grablé',
 'tooltip-search-fulltext'         => 'Aneyara va bu dem bat krent',
 'tooltip-p-logo'                  => 'Emudexo',
 'tooltip-n-mainpage'              => 'Va emudexo woral !',
@@ -1416,6 +1434,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'tooltip-n-help'                  => 'Trasixo.',
 'tooltip-n-sitesupport'           => 'Va cin zobel !',
 'tooltip-t-whatlinkshere'         => 'Batliz gluyas wikibueem',
+'tooltip-t-recentchangeslinked'   => 'Noeltaf betakseem koe bu yo skedasu va batu',
 'tooltip-feed-rss'                => 'RSS rust icde batu bu',
 'tooltip-feed-atom'               => 'Atom rust icde batu bu',
 'tooltip-t-contributions'         => 'Wira va webekseem ke bat favesik',
@@ -1423,7 +1442,10 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'tooltip-t-upload'                => 'Kalvajara va mamaf ok ewavaf iyeltak',
 'tooltip-t-specialpages'          => 'Aptabueem',
 'tooltip-t-print'                 => 'Rorubian siatos ke batu bu',
+'tooltip-t-permalink'             => 'Elubkafi gluyasiki va bat busiatos',
+'tooltip-ca-nstab-main'           => 'Rupera va cekbu',
 'tooltip-ca-nstab-user'           => 'Wira va favesikbu',
+'tooltip-ca-nstab-special'        => 'Batu bu tis aptafu bu vaon me robetal',
 'tooltip-ca-nstab-project'        => 'Wira va abdumimaks bu',
 'tooltip-ca-nstab-image'          => 'Wira va ewava bu',
 'tooltip-ca-nstab-mediawiki'      => 'Wira va bolkstaksa',
@@ -1479,11 +1501,12 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'mw_math_mathml' => 'MathML',
 
 # Patrolling
-'markaspatrolleddiff'   => 'Marquer comme vérifiée',
-'markaspatrolledtext'   => 'Marquer cet article comme vérifié',
-'markedaspatrolled'     => 'Marqué comme vérifié',
-'markedaspatrolledtext' => 'La version sélectionnée a été marquée comme vérifiée.',
-'rcpatroldisabledtext'  => "La fonctionnalité de surveillance des modifications récentes n'est pas activée.",
+'markaspatrolleddiff'    => 'Marquer comme vérifiée',
+'markaspatrolledtext'    => 'Marquer cet article comme vérifié',
+'markedaspatrolled'      => 'Marqué comme vérifié',
+'markedaspatrolledtext'  => 'La version sélectionnée a été marquée comme vérifiée.',
+'rcpatroldisabledtext'   => "La fonctionnalité de surveillance des modifications récentes n'est pas activée.",
+'markedaspatrollederror' => 'Va fieks me rotcalar',
 
 # Patrol log
 'patrol-log-auto' => '(mivaskon)',

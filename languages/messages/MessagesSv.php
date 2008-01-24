@@ -1159,17 +1159,22 @@ PICT # allmänt bildprefix
 'filerevert-badversion'     => 'Det finns ingen tidigare version av filen från den angivna tidpunkten.',
 
 # File deletion
-'filedelete'             => 'Radera $1',
-'filedelete-legend'      => 'Radera fil',
-'filedelete-intro'       => "Du håller på att radera '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => "Du håller på att radera versionen av '''[[Media:$1|$1]]''' från [$4 $2 kl. $3].",
-'filedelete-comment'     => 'Anledning:',
-'filedelete-submit'      => 'Radera',
-'filedelete-success'     => "'''$1''' har raderats.",
-'filedelete-success-old' => 'Versionen av [[Media:$1|$1]] från $2 kl. $3 har raderats.',
-'filedelete-nofile'      => "Filen '''$1''' finns inte på den här webplatsen.",
-'filedelete-nofile-old'  => "Den versionen av '''$1''' kan inte raderas eftersom den inte finns.",
-'filedelete-iscurrent'   => 'Du försöker radera den senaste versionen av en fil. För att göra det måste du först återställa till en äldre version av filen.',
+'filedelete'                  => 'Radera $1',
+'filedelete-legend'           => 'Radera fil',
+'filedelete-intro'            => "Du håller på att radera '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => "Du håller på att radera versionen av '''[[Media:$1|$1]]''' från [$4 $2 kl. $3].",
+'filedelete-comment'          => 'Anledning:',
+'filedelete-submit'           => 'Radera',
+'filedelete-success'          => "'''$1''' har raderats.",
+'filedelete-success-old'      => 'Versionen av [[Media:$1|$1]] från $2 kl. $3 har raderats.',
+'filedelete-nofile'           => "Filen '''$1''' finns inte på den här webplatsen.",
+'filedelete-nofile-old'       => "Den versionen av '''$1''' kan inte raderas eftersom den inte finns.",
+'filedelete-iscurrent'        => 'Du försöker radera den senaste versionen av en fil. För att göra det måste du först återställa till en äldre version av filen.',
+'filedelete-otherreason'      => 'Annan/ytterligare anledning:',
+'filedelete-reason-otherlist' => 'Annan anledning',
+'filedelete-reason-dropdown'  => '*Vanliga anledningar till radering
+** Upphovsrättsbrott
+** Dubblettfil',
 
 # MIME search
 'mimesearch'         => 'MIME-sökning',
@@ -1782,7 +1787,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'importcantopen'             => 'Misslyckades med att öppna importfilen.',
 'importbadinterwiki'         => 'Felaktig interwiki-länk',
 'importnotext'               => 'Tom eller ingen text',
-'importsuccess'              => 'Importen lyckades!',
+'importsuccess'              => 'Importen är genomförd!',
 'importhistoryconflict'      => 'Det föreligger en konflikt i versionshistoriken (kanske har denna sida importerats tidigare)',
 'importnosources'            => 'Inga källor för transwiki-import har angivits, och direkt uppladdning av historik har stängts av.',
 'importnofile'               => 'Ingen fil att importera har laddats upp.',

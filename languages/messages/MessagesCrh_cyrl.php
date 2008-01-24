@@ -237,7 +237,7 @@ $messages = array(
 'qbspecialpages' => 'Махсус саифелер',
 'moredotdotdot'  => 'Даа...',
 'mypage'         => 'Саифем',
-'mytalk'         => 'Музакере саифесим',
+'mytalk'         => 'Музакере саифем',
 'anontalk'       => 'Бу IP-нинъ музакереси',
 'navigation'     => 'Сайтта ёл тапув',
 
@@ -336,7 +336,7 @@ $messages = array(
 'retrievedfrom'           => 'Менба – "$1"',
 'youhavenewmessages'      => 'Янъы $1 бар ($2).',
 'newmessageslink'         => 'беянатынъыз',
-'newmessagesdifflink'     => 'музакере саифесинъизнинъ сонъки денъишиклиги',
+'newmessagesdifflink'     => 'музакере саифенъизнинъ сонъки денъишиклиги',
 'youhavenewmessagesmulti' => '$1 саифесинде янъы беянатынъыз бар.',
 'editsection'             => 'денъиштир',
 'editold'                 => 'денъиштир',
@@ -1267,7 +1267,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'rollbackfailed'              => 'кери алув ишлеми мувафакъиетсиз',
 'cantrollback'                => 'Денъишикликлер кери алынамай, сонъки денъиштирген киши саифенинъ тек бир муэллифидир',
 'editcomment'                 => 'Денъиштирме изааты: "<i>$1</i>" эди.', # only shown if there is an edit comment
-'revertpage'                  => '[[User:$2|$2]] тарафындан япылгъан денъишикликлер кери алынаракъ, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.',
+'revertpage'                  => '[[User:$2|$2]] тарафындан япылгъан денъишикликлер кери алынаракъ, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Къорчалав журналы',
 'protectlogtext'              => 'Къорчалавгъа алув/чыкъарув иле багълы денъишикликлер журналыны корьмектесинъиз.
 Къорчалав алтына алынгъан саифелер там джедвели [[{{ns:special}}:Protectedpages|бу саифеде]] корип оласынъыз.',
@@ -1459,7 +1459,7 @@ e-mail: $PAGEEDITOR_EMAIL
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Шахсий саифем',
 'tooltip-pt-anonuserpage'         => 'IP адресим ичюн къулланыджы саифеси',
-'tooltip-pt-mytalk'               => 'Музакере саифесим',
+'tooltip-pt-mytalk'               => 'Музакере саифем',
 'tooltip-pt-anontalk'             => 'Бу IP адресинден япылгъан денъишикликлерни музакере эт',
 'tooltip-pt-preferences'          => 'Аярларым (настройкаларым)',
 'tooltip-pt-watchlist'            => 'Мен козетювге алгъан саифелер',
@@ -1478,7 +1478,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'tooltip-ca-move'                 => 'Саифенинъ адыны денъиштир',
 'tooltip-ca-watch'                => 'Бу саифени козетювге ал',
 'tooltip-ca-unwatch'              => 'Бу саифени козетмекни ташла',
-'tooltip-search'                  => 'Бу викиде къыдырув яп',
+'tooltip-search'                  => '{{SITENAME}} сайтында къыдырув яп',
 'tooltip-search-go'               => 'Бу адда саифе мевджут олса, онъа бар',
 'tooltip-search-fulltext'         => 'Бу метини олгъан саифелер къыдыр',
 'tooltip-p-logo'                  => 'Баш саифе',

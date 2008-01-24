@@ -366,9 +366,9 @@ $2",
 'customcssjsprotected' => "Nid oes caniatad ganddoch i olygu'r dudalen hon oherwydd bod gosodiadau personol defnyddiwr arall arno.",
 
 # Login and logout pages
-'logouttitle'                => "Allgofnodi'r defnyddwr",
-'logouttext'                 => "Yr ydych wedi allgofnodi.
-Gallwch chi defnyddio'r {{SITENAME}} yn anhysbys, neu gallwch chi mewngofnodi eto fel yr un defnyddwr neu un arall.",
+'logouttitle'                => "Allgofnodi'r defnyddiwr",
+'logouttext'                 => '<strong>Rydych wedi allgofnodi.</strong><br />
+Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch fewngofnodi eto wrth yr un un enw neu wrth enw arall. Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddech wedi mewngofnodi hyd nes i chi glirio celc eich porwr.',
 'welcomecreation'            => '==Croeso, $1!==
 
 Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich ffafraethau defnyddwr {{SITENAME}}.',
@@ -410,8 +410,8 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'nocookiesnew'               => "Mae'r accownt defnyddiwr wedi gael eu creu, ond dydwch chi ddim wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, felly mewngofnodwch gyda'ch enw defnyddiwr a cyfrinair newydd.",
 'nocookieslogin'             => 'Mae {{SITENAME}} yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, a triwch eto.',
 'noname'                     => 'Dydi chi ddim wedi enwi enw defnyddwr dilys.',
-'loginsuccesstitle'          => 'Mewngofnod llwyddiannus',
-'loginsuccess'               => 'Yr ydych wedi mewngofnodi i {{SITENAME}} fel "$1".',
+'loginsuccesstitle'          => 'Llwyddodd y mewngofnodi',
+'loginsuccess'               => "'''Yr ydych wedi mewngofnodi i {{SITENAME}} wrth yr enw \"\$1\".'''",
 'nosuchuser'                 => 'Does dim defnyddwr gyda\'r enw "$1".
 Sicrhau rydych chi wedi sillafu\'n iawn, neu creuwch accownt newydd gyda\'r ffurflen isod.',
 'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "$1". Gwiriwch eich sillafu.',
