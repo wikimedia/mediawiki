@@ -26,6 +26,7 @@ class ParserOptions
 	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
 	var $mTemplateCallback;          # Callback for template fetching
 	var $mEnableLimitReport;         # Enable limit report in an HTML comment on output
+	var $mTimestamp;                 # Timestamp used for {{CURRENTDAY}} etc.
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
 
@@ -60,6 +61,13 @@ class ParserOptions
 		return $this->mDateFormat;
 	}
 
+	function getTimestamp() { 
+		if ( !isset( $this->mTimestamp ) ) {
+			$this->mTimestamp = wfTimestampNow();
+		}
+		return $this->mTimestamp; 
+	}
+
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
 	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
@@ -78,6 +86,7 @@ class ParserOptions
 	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
 	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
 	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
+	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
 
 	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
