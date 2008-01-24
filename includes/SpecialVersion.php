@@ -193,7 +193,7 @@ class SpecialVersion {
 			foreach ($myWgHooks as $hook => $hooks)
 				$ret .= "<tr><td>$hook</td><td>" . $this->listToText( $hooks ) . "</td></tr>\n";
 
-			$ret .= '</table>';
+			$ret .= Xml::closeElement( 'table' );
 			return $ret;
 		} else
 			return '';
@@ -232,6 +232,7 @@ class SpecialVersion {
 	 */
 	function listToText( $list ) {
 		$cnt = count( $list );
+		sort( $list );
 
 	    if ( $cnt == 1 ) {
 			// Enforce always returning a string
