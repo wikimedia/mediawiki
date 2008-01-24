@@ -3,6 +3,38 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.10.3 ==
+
+January 23, 2008
+
+This is a security update to the Winter 2007 quarterly release. A potential
+XSS injection vector affecting api.php only for Microsoft Internet Explorer
+users has been closed.
+
+
+To work around the vulnerability without upgrading, you may disable the
+API if you don't need it:
+
+  $wgEnableAPI = false;
+
+Not vulnerable versions:
+* 1.12 or later
+* 1.11 >= 1.11.1
+* 1.10 >= 1.10.3
+* 1.9 >= 1.9.5
+* 1.8 any version (if $wgEnableAPI has been left off)
+
+Vulnerable versions:
+* 1.11 <= 1.11.0rc1
+* 1.10 <= 1.10.2
+* 1.9 <= 1.9.4
+* 1.8 any version (if $wgEnableAPI has been switched on)
+
+MediaWiki 1.7 and below are not affected as they do not include
+the API functionality, however the BotQuery extension is similarly
+vulnerable unless updated to the latest SVN version.
+
+
 == MediaWiki 1.10.2 ==
 
 September 10, 2007
