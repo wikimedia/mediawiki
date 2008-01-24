@@ -1,11 +1,19 @@
 body {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
-	font-size: 10pt;
+	/*font-size: 10pt;*/
+	font-size: x-small;
+	
 
 	font-family: sans-serif;
 	color: black;
 	background-color: #f0f0f0;
+}
+
+#mw_main,
+#p-personal,
+#mw_header {
+	font-size: 130%;
 }
 
 #mw_header {
@@ -155,7 +163,6 @@ textarea {
 	background-color: #dddddd;
 	font-weight: bold;
 	border-bottom: solid 1px #3c78b5;
-	font-size: 10pt;
 	height: 1.1em;
 }
 
@@ -322,7 +329,6 @@ h1, h2 {
 }
 
 #preferences h2 {
-	font-size: 10pt;
 }
 
 .mainLegend {
