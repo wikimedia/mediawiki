@@ -571,3 +571,9 @@ img.thumbborder {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 }
+
+#mw_header h1,
+#p-personal,
+#p-cactions {
+	overflow: hidden;
+}
