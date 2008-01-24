@@ -89,7 +89,9 @@ class ApiMain extends ApiBase {
 		'xmlfm' => 'ApiFormatXml',
 		'yaml' => 'ApiFormatYaml',
 		'yamlfm' => 'ApiFormatYaml',
-		'rawfm' => 'ApiFormatJson'
+		'rawfm' => 'ApiFormatJson',
+		'txt' => 'ApiFormatTxt',
+		'dbg' => 'ApiFormatDbg'
 	);
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
