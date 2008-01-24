@@ -2018,11 +2018,11 @@ class User {
 
 
 	/**
-	 * Checks if a user with the given name exists, returns the ID
+	 * Checks if a user with the given name exists, returns the ID.
 	 */
 	function idForName() {
 		$s = trim( $this->getName() );
-		if ( 0 == strcmp( '', $s ) ) return 0;
+		if ( $s === '' ) return 0;
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__ );
