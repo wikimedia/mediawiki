@@ -15,7 +15,7 @@ function compressOldPages( $start = 0, $extdb = '' ) {
 	print "Starting from old_id $start...\n";
 	$dbw = wfGetDB( DB_MASTER );
 	do {
-		$res = $dbw->select( 'text', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
+		$res = $dbw->select( 'text', array( 'old_id','old_flags','old_text' ),
 			"old_id>=$start", $fname, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
 		if( $dbw->numRows( $res ) == 0 ) {
 			break;
