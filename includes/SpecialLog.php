@@ -394,17 +394,6 @@ class LogViewer {
 			// show change protection link
 			} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
 				$revert = '(' .  $skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' ) . ')';
-			// show user tool links for self created users
-			// @todo The extension should be handling this, get it out of core! E.g. Use the hook below.
-			} elseif ( $s->log_action == 'create2' ) {
-				if( isset( $paramArray[0] ) ) {
-					$revert = $this->skin->userToolLinks( $paramArray[0], $s->log_title, true );
-				} else {
-					# Fall back to a blue contributions link
-					$revert = $this->skin->userToolLinks( 1, $s->log_title );
-				}
-				# Suppress $comment from old entries, not needed and can contain incorrect links
-				$comment = '';
 			// Show unmerge link
 			} elseif ( $s->log_action == 'merge' ) {
 				$merge = SpecialPage::getTitleFor( 'Mergehistory' );
