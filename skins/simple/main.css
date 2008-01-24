@@ -199,17 +199,9 @@ textarea {
   width: 100%;
 }
 
-#p-personal li, #p-personal ul,
-#p-tb li, #p-tb ul,
-#p-navigation li, #p-navigation ul,
-#p-cactions li, #p-cactions ul,
-#p-newlinks li, #p-newlinks ul {
-  padding-left: 0em;
-  margin-left: 0.5em;
-}
-
-#p-cactions li, #p-cactions ul {
-  margin-left: 0.7em;
+.pBody li, .pBody ul {
+	padding-left: 0em;
+	margin-left: 0.5em;
 }
 
 pre {
