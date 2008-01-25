@@ -262,7 +262,7 @@ span.subpages {
 	border: 1px solid #ffa500;
 	color: black;
 	font-weight: bold;
-	margin: 2em 0 1em;
+	margin: .5em 0;
 	padding: .5em 1em;
 	vertical-align: middle;
 }
