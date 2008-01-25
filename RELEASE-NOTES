@@ -143,6 +143,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11897) Add alias [[Special:CreateAccount]] & [[Special:Userlogin/signup]]
   for Special:Userlogin?type=signup
 * (bug 12214) Add a predefined list of delete reasons to the file deletion form
+* (bug 12681) New messages bar should appear above page title, for consistency
+  with other message boxes
 
 === Bug fixes in 1.12 ===
 
