@@ -16,30 +16,30 @@
  * usually the same, but they are now allowed to be different.
  */
 class EditPage {
-	const AS_SUCCESS_UPDATE				= 200;
+	const AS_SUCCESS_UPDATE			= 200;
 	const AS_SUCCESS_NEW_ARTICLE		= 201;
-	const AS_HOOK_ERROR					= 210;
-	const AS_FILTERING					= 211;
+	const AS_HOOK_ERROR			= 210;
+	const AS_FILTERING			= 211;
 	const AS_HOOK_ERROR_EXPECTED		= 212;
 	const AS_BLOCKED_PAGE_FOR_USER		= 215;
-	const AS_CONTENT_TOO_BIG			= 216;
-	const AS_USER_CANNOT_EDIT			= 217;
+	const AS_CONTENT_TOO_BIG		= 216;
+	const AS_USER_CANNOT_EDIT		= 217;
 	const AS_READ_ONLY_PAGE_ANON		= 218;
 	const AS_READ_ONLY_PAGE_LOGGED		= 219;
-	const AS_READ_ONLY_PAGE				= 220;
-	const AS_RATE_LIMITED				= 221;
+	const AS_READ_ONLY_PAGE			= 220;
+	const AS_RATE_LIMITED			= 221;
 	const AS_ARTICLE_WAS_DELETED		= 222;
 	const AS_NO_CREATE_PERMISSION		= 223;
-	const AS_BLANK_ARTICLE				= 224;
-	const AS_CONFLICT_DETECTED			= 225;
-	const AS_SUMMARY_NEEDED				= 226;
-	const AS_TEXTBOX_EMPTY				= 228;
-	const AS_MAX_ARTICLE_SIZE_EXCEDED	= 229;
-	const AS_OK							= 230;
-	const AS_END						= 231;
-	const AS_SPAM_ERROR					= 232;
-	const AS_IMAGE_REDIRECT_ANON        = 233;
-	const AS_IMAGE_REDIRECT_LOGGED      = 234;
+	const AS_BLANK_ARTICLE			= 224;
+	const AS_CONFLICT_DETECTED		= 225;
+	const AS_SUMMARY_NEEDED			= 226;
+	const AS_TEXTBOX_EMPTY			= 228;
+	const AS_MAX_ARTICLE_SIZE_EXCEEDED	= 229;
+	const AS_OK				= 230;
+	const AS_END				= 231;
+	const AS_SPAM_ERROR			= 232;
+	const AS_IMAGE_REDIRECT_ANON		= 233;
+	const AS_IMAGE_REDIRECT_LOGGED		= 234;
 
 	var $mArticle;
 	var $mTitle;
@@ -88,7 +88,6 @@ class EditPage {
 	 * @param $article
 	 */
 	function EditPage( $article ) {
-		global $wgTitle;
 		$this->mArticle =& $article;
 		$this->mTitle = $article->getTitle();
 
@@ -336,7 +335,7 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgUser, $wgRequest, $wgTitle;
+		global $wgOut, $wgUser, $wgRequest;
 
 		if ( !wfRunHooks( 'AlternateEdit', array( &$this ) ) )
 			return;
@@ -690,7 +689,7 @@ class EditPage {
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
 		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut, $wgParser;
-		global $wgMaxArticleSize, $wgTitle;
+		global $wgMaxArticleSize;
 
 		$fname = 'EditPage::attemptSave';
 		wfProfileIn( $fname );
@@ -703,7 +702,7 @@ class EditPage {
 		}
 
 		# Check image redirect
-		if ( $wgTitle->getNamespace() == NS_IMAGE &&
+		if ( $this->mTitle->getNamespace() == NS_IMAGE &&
 			Title::newFromRedirect( $this->textbox1 ) instanceof Title &&
 			!$wgUser->isAllowed( 'upload' ) ) {
 				if( $wgUser->isAnon() ) {
@@ -742,7 +741,7 @@ class EditPage {
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR_EXPECTED;
 		}
-		if ( $wgUser->isBlockedFrom( $wgTitle, false ) ) {
+		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
@@ -957,7 +956,7 @@ class EditPage {
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			wfProfileOut( $fname );
-			return self::AS_MAX_ARTICLE_SIZE_EXCEDED;
+			return self::AS_MAX_ARTICLE_SIZE_EXCEEDED;
 		}
 
 		# update the article here
@@ -2191,7 +2190,7 @@ END
 			case self::AS_CONFLICT_DETECTED:
 			case self::AS_SUMMARY_NEEDED:
 			case self::AS_TEXTBOX_EMPTY:
-			case self::AS_MAX_ARTICLE_SIZE_EXCEDED:
+			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_END:
 				return true;
 
