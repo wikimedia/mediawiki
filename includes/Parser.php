@@ -2835,6 +2835,10 @@ class Parser
 						$allArgs = array_merge( $initialArgs, $funcArgs );
 					}
 
+					# Workaround for PHP bug 35229 and similar
+					if ( !is_callable( $callback ) ) {
+						throw new MWException( "Tag hook for $name is not callable\n" );
+					}
 					$result = call_user_func_array( $callback, $allArgs );
 					$found = true;
 
@@ -3239,6 +3243,10 @@ class Parser
 					break;
 				default:
 					if( isset( $this->mTagHooks[$name] ) ) {
+						# Workaround for PHP bug 35229 and similar
+						if ( !is_callable( $this->mTagHooks[$name] ) ) {
+							throw new MWException( "Tag hook for $name is not callable\n" );
+						}
 						$output = call_user_func_array( $this->mTagHooks[$name],
 							array( $content, $attributes, $this ) );
 					} else {
