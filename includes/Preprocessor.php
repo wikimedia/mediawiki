@@ -11,8 +11,9 @@ interface PPFrame {
 	const NO_TEMPLATES = 2;
 	const STRIP_COMMENTS = 4;
 	const NO_IGNORE = 8;
+	const RECOVER_COMMENTS = 16;
 
-	const RECOVER_ORIG = 11;
+	const RECOVER_ORIG = 27; // = 1|2|8|16 no constant expression support in PHP yet
 
 	/**
 	 * Create a child frame

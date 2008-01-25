@@ -114,7 +114,7 @@ class Preprocessor_DOM implements Preprocessor {
 		$fakeLineStart = true;     # Do a line-start run without outputting an LF character
 
 		while ( true ) {
-			if ( ! ($i % 10) ) $this->memCheck();
+			//$this->memCheck();
 
 			if ( $findOnlyinclude ) {
 				// Ignore all input up to the next <onlyinclude>
@@ -911,12 +911,20 @@ class PPFrame_DOM implements PPFrame {
 					}
 				} elseif ( $contextNode->nodeName == 'comment' ) {
 					# HTML-style comment
+					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
 					if ( $this->parser->ot['html'] 
 						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() ) 
 						|| ( $flags & self::STRIP_COMMENTS ) ) 
 					{
 						$out .= '';
-					} else {
+					}
+					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
+					# Not in RECOVER_COMMENTS mode (extractSections) though
+					elseif ( $this->parser->ot['wiki'] && ! ( $flags & self::RECOVER_COMMENTS ) ) {
+						$out .= $this->parser->insertStripItem( $contextNode->textContent );
+					}
+					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
+					else {
 						$out .= $contextNode->textContent;
 					}
 				} elseif ( $contextNode->nodeName == 'ignore' ) {
