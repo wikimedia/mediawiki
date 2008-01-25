@@ -1569,21 +1569,21 @@ PICT # misc.
 'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
-'filedelete'                   => 'Delete $1',
-'filedelete-backlink'          => '← $1', # only translate this message to other languages if you have to change it
-'filedelete-legend'            => 'Delete file',
-'filedelete-intro'             => "You are deleting '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'         => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
-'filedelete-comment'           => 'Reason for deletion:',
-'filedelete-submit'            => 'Delete',
-'filedelete-success'           => "'''$1''' has been deleted.",
-'filedelete-success-old'       => '<span class="plainlinks">The version of \'\'\'[[Media:$1|$1]]\'\'\' as of $3, $2 has been deleted.</span>',
-'filedelete-nofile'            => "'''$1''' does not exist on {{SITENAME}}.",
-'filedelete-nofile-old'        => "There is no archived version of '''$1''' with the specified attributes.",
-'filedelete-iscurrent'         => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
-'filedelete-otherreason'       => 'Other/additional reason:',
-'filedelete-reason-otherlist'  => 'Other reason',
-'filedelete-reason-dropdown'   => '
+'filedelete'                  => 'Delete $1',
+'filedelete-backlink'         => '← $1', # only translate this message to other languages if you have to change it
+'filedelete-legend'           => 'Delete file',
+'filedelete-intro'            => "You are deleting '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Reason for deletion:',
+'filedelete-submit'           => 'Delete',
+'filedelete-success'          => "'''$1''' has been deleted.",
+'filedelete-success-old'      => '<span class="plainlinks">The version of \'\'\'[[Media:$1|$1]]\'\'\' as of $3, $2 has been deleted.</span>',
+'filedelete-nofile'           => "'''$1''' does not exist on {{SITENAME}}.",
+'filedelete-nofile-old'       => "There is no archived version of '''$1''' with the specified attributes.",
+'filedelete-iscurrent'        => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
+'filedelete-otherreason'      => 'Other/additional reason:',
+'filedelete-reason-otherlist' => 'Other reason',
+'filedelete-reason-dropdown'  => '
 *Common delete reasons
 ** Copyright violation
 ** Duplicated file',
@@ -1938,7 +1938,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); changed back to last version by [[User:$1|$1]]', # Also available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); changed back to last version by [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Reverted edits by $1; changed back to last version by $2.',
 'sessionfailure'              => 'There seems to be a problem with your login session; this action has been canceled as a precaution against session hijacking. Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage'              => 'Protection log',

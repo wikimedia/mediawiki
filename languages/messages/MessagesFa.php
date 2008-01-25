@@ -1250,18 +1250,24 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'filerevert-badversion'     => 'نسخهٔ قدیمی‌تری از این پرونده وجود نداشت.',
 
 # File deletion
-'filedelete'             => 'حذف $1',
-'filedelete-backlink'    => '→ $1',
-'filedelete-legend'      => 'حذف پرونده',
-'filedelete-intro'       => "شما در حال حذف کردن '''[[Media:$1|$1]]''' هستید.",
-'filedelete-intro-old'   => '<span class="plainlinks">شما در حال حذف نسخه \'\'\'[[Media:$1|$1]]\'\'\' به تاریخ [$4 $3، $2] هستید.</span>',
-'filedelete-comment'     => 'توضیح:',
-'filedelete-submit'      => 'حذف',
-'filedelete-success'     => "'''$1''' حذف شد.",
-'filedelete-success-old' => '<span class="plainlinks">نسخه \'\'\'[[Media:$1|$1]]\'\'\' به تاریخ $3، $2 حذف شد.</span>',
-'filedelete-nofile'      => "'''$1''' در این وبگاه وجود ندارد.",
-'filedelete-nofile-old'  => "نسخه بایگانی شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد..",
-'filedelete-iscurrent'   => 'شما می‌خواهید که آخرین نسخه از این پرونده را حذف کنید. لطفاً ابتدا پرونده را به یک نسخه قدیمی‌تر واگردانی کنید.',
+'filedelete'                  => 'حذف $1',
+'filedelete-backlink'         => '→ $1',
+'filedelete-legend'           => 'حذف پرونده',
+'filedelete-intro'            => "شما در حال حذف کردن '''[[Media:$1|$1]]''' هستید.",
+'filedelete-intro-old'        => '<span class="plainlinks">شما در حال حذف نسخه \'\'\'[[Media:$1|$1]]\'\'\' به تاریخ [$4 $3، $2] هستید.</span>',
+'filedelete-comment'          => 'توضیح:',
+'filedelete-submit'           => 'حذف',
+'filedelete-success'          => "'''$1''' حذف شد.",
+'filedelete-success-old'      => '<span class="plainlinks">نسخه \'\'\'[[Media:$1|$1]]\'\'\' به تاریخ $3، $2 حذف شد.</span>',
+'filedelete-nofile'           => "'''$1''' در این وبگاه وجود ندارد.",
+'filedelete-nofile-old'       => "نسخه بایگانی شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد..",
+'filedelete-iscurrent'        => 'شما می‌خواهید که آخرین نسخه از این پرونده را حذف کنید. لطفاً ابتدا پرونده را به یک نسخه قدیمی‌تر واگردانی کنید.',
+'filedelete-otherreason'      => 'دلایل دیگر/اضافی:',
+'filedelete-reason-otherlist' => 'دیگر',
+'filedelete-reason-dropdown'  => '
+*دلایل متداول حذف
+** نقض حق تکثیر
+** پرونده تکراری',
 
 # MIME search
 'mimesearch'         => 'جستجوی MIMEی',
