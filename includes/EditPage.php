@@ -811,7 +811,7 @@ class EditPage {
 			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError ) ) ) {
 				# Error messages etc. could be handled within the hook...
 				wfProfileOut( $fname );
-				return false;
+				return self::AS_HOOK_ERROR;
 			}
 
 			$isComment = ( $this->section == 'new' );
@@ -894,7 +894,7 @@ class EditPage {
 		if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
-			return false;
+			return self::AS_HOOK_ERROR;
 		}
 
 		# Handle the user preference to force summaries here, but not for null edits
