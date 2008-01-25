@@ -1208,17 +1208,23 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'filerevert-badversion'     => 'Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.',
 
 # File deletion
-'filedelete'             => 'Lösche „$1“',
-'filedelete-legend'      => 'Lösche Datei',
-'filedelete-intro'       => "Du löschst die Datei '''„[[Media:$1|$1]]“'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Du löschst von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' die [$4 Version vom $2, $3 Uhr].</span>',
-'filedelete-comment'     => 'Grund:',
-'filedelete-submit'      => 'Löschen',
-'filedelete-success'     => "'''„$1“''' wurde gelöscht.",
-'filedelete-success-old' => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version $2, $3 Uhr gelöscht.</span>',
-'filedelete-nofile'      => "'''„$1“''' ist auf {{SITENAME}} nicht vorhanden.",
-'filedelete-nofile-old'  => "Es gibt von '''„$1“''' keine Version vom $2, $3 Uhr.",
-'filedelete-iscurrent'   => 'Du versuchst die aktuelle Version dieser Datei zu löschen. Bitte setze diese vorher auf eine ältere Version zurück.',
+'filedelete'                  => 'Lösche „$1“',
+'filedelete-legend'           => 'Lösche Datei',
+'filedelete-intro'            => "Du löschst die Datei '''„[[Media:$1|$1]]“'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Du löschst von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' die [$4 Version vom $2, $3 Uhr].</span>',
+'filedelete-comment'          => 'Grund:',
+'filedelete-submit'           => 'Löschen',
+'filedelete-success'          => "'''„$1“''' wurde gelöscht.",
+'filedelete-success-old'      => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version $2, $3 Uhr gelöscht.</span>',
+'filedelete-nofile'           => "'''„$1“''' ist auf {{SITENAME}} nicht vorhanden.",
+'filedelete-nofile-old'       => "Es gibt von '''„$1“''' keine Version vom $2, $3 Uhr.",
+'filedelete-iscurrent'        => 'Du versuchst die aktuelle Version dieser Datei zu löschen. Bitte setze diese vorher auf eine ältere Version zurück.',
+'filedelete-otherreason'      => 'Anderer/ergänzender Grund:',
+'filedelete-reason-otherlist' => 'Anderer Grund',
+'filedelete-reason-dropdown'  => '
+* Allgemeine Löschgründe
+** Urheberrechtsverletzung
+** Duplikat',
 
 # MIME search
 'mimesearch'         => 'Suche nach MIME-Typ',
