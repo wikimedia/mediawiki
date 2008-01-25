@@ -1765,7 +1765,8 @@ class Article {
 					$comment .= "$expiry_description";
 				if ( $cascade )
 					$comment .= "$cascade_description";
-
+				
+				$rowsAffected = false;
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
@@ -1773,12 +1774,16 @@ class Article {
 							array( 'pr_page' => $id, 'pr_type' => $action
 								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ? 1 : 0
 								, 'pr_expiry' => $encodedExpiry ), __METHOD__  );
+						if($dbw->affectedRows() != 0)
+							$rowsAffected = true;
 					} else {
 						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 							'pr_type' => $action ), __METHOD__ );
+						if($dbw->affectedRows() != 0)
+							$rowsAffected = true;
 					}
 				}
-				if($dbw->affectedRows() == 0)
+				if(!$rowsAffected)
 					// No change
 					return true;
 
@@ -1800,6 +1805,8 @@ class Article {
 
 				# Update the protection log
 				$log = new LogPage( 'protect' );
+				
+				
 
 				if( $protect ) {
 					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
