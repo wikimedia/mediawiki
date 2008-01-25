@@ -556,6 +556,7 @@ abstract class ApiBase {
 	public static $messageMap = array(
 		// This one MUST be present, or dieUsageMsg() will recurse infinitely
 		'unknownerror' => array('code' => 'unknownerror', 'info' => "Unknown error: ``\$1''"),
+		'unknownerror-nocode' => array('code' => 'unknownerror', 'info' => 'Unknown error'),
 		
 		// Messages from Title::getUserPermissionsErrors()
 		'ns-specialprotected' => array('code' => 'unsupportednamespace', 'info' => "Pages in the Special namespace can't be edited"),
@@ -574,11 +575,12 @@ abstract class ApiBase {
 		'nocreatetext' => array('code' => 'cantcreate-anon', 'info' => "Anonymous users can't create new pages"),
 		'movenologintext' => array('code' => 'cantmove-anon', 'info' => "Anonymous users can't move pages"),
 		'movenotallowed' => array('code' => 'cantmove', 'info' => "You don't have permission to move pages"),
-		'confirmedittiext' => array('code' => 'confirmemail', 'info' => "You must confirm your e-mail address before you can edit"),
+		'confirmedittext' => array('code' => 'confirmemail', 'info' => "You must confirm your e-mail address before you can edit"),
 		'blockedtext' => array('code' => 'blocked', 'info' => "You have been blocked from editing"),
 		'autoblockedtext' => array('code' => 'autoblocked', 'info' => "Your IP address has been blocked automatically, because it was used by a blocked user"),
 		
 		// Miscellaneous interface messages
+		'actionthrottledtext' => array('code' => 'ratelimited', 'info' => "You've exceeded your rate limit. Please wait some time and try again"),
 		'alreadyrolled' => array('code' => 'alreadyrolled', 'info' => "The page you tried to rollback was already rolled back"),
 		'cantrollback' => array('code' => 'onlyauthor', 'info' => "The page you tried to rollback only has one author"), 
 		'readonlytext' => array('code' => 'readonly', 'info' => "The wiki is currently in read-only mode"),
