@@ -309,7 +309,7 @@ class Xml {
 			'type' => 'hidden',
 			'value' => $value ) + $attribs );
 	}
-	
+
 	/**
 	 * Convenience function to build an HTML drop-down list item.
 	 * @param $text String: text for this item
@@ -327,6 +327,51 @@ class Xml {
 			$attribs['selected'] = 'selected';
 		}
 		return self::element( 'option', $attribs, $text );
+	}
+
+	/**
+	 * Build a drop-down box for selecting a reason for an action
+	 * 
+	 * @param mixed $other Text for the "Other reasons" option
+	 * @param mixed $list Correctly formatted text to be used to generate the options
+	 * @param mixed $selected Option which should be pre-selected
+	 * @return string
+	 */
+	public static function reasonDropDown( $other = '', $list = '', $selected = '' ) {
+		$options = '';
+		$optgroup = false;
+		
+		$options = self::option( $other, 'other', $selected === 'other' );
+		
+		foreach ( explode( "\n", $list ) as $option) {
+				$value = trim( htmlspecialchars($option) );
+				if ( $value == '' ) {
+					continue;
+				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
+					// A new group is starting ...
+					$value = trim( substr( $value, 1 ) );
+					if( $optgroup ) $options .= self::closeElement('optgroup');
+					$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
+					$optgroup = true;
+				} elseif ( substr( $value, 0, 2) == '**' ) {
+					// groupmember
+					$value = trim( substr( $value, 2 ) );
+					$options .= self::option( $value, $value, $selected === $value );
+				} else {
+					// groupless reason list
+					if( $optgroup ) $options .= self::closeElement('optgroup');
+					$options .= self::option( $value, $value, $selected === $value );
+					$optgroup = false;
+				}
+			}
+			if( $optgroup ) $options .= self::closeElement('optgroup');
+		
+		return Xml::openElement( 'select', array( 'id' => 'wpReasonDropDown', 'name' => 'wpReasonDropDown',
+			'class' => 'wpReasonDropDown' ) )
+			. "\n"
+			. $options
+			. "\n"
+			. Xml::closeElement( 'select' );
 	}
 
 	/**
