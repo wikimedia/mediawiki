@@ -149,20 +149,20 @@ class FileDeleteForm {
 		}
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
-		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filedelete-legend' ) . '</legend>';
-		$form .= '<table><tr>';
+		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
+		$form .= '<table><tr><td colspan="2">';
 		$form .= $this->prepareMessage( 'filedelete-intro' );
-		$form .= "<td align=\"right\"> $delcom </td><td align=\"left\">";
+		$form .= "</td></tr><tr><td align=\"right\"> $delcom </td><td align=\"left\">";
 		$form .= "<select tabindex='2' id='wpDeleteReasonList' name=\"wpDeleteReasonList\">
 		$deleteReasonList
 </select>";
-		$form .= "</tr><tr><td align=\"right\"> $mDeletereasonother </td><td align=\"left\">";
+		$form .= "</td></tr><tr><td align=\"right\"> $mDeletereasonother </td><td align=\"left\">";
 		$form .= "<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' ";
 		$form .= "value=\"". htmlspecialchars( $wgRequest->getText( 'wpReason' ) ) ."\" tabindex=\"1\" />";
-		$form .= '</td></tr><tr><td colspan=2>';
+		$form .= '</td></tr><tr><td colspan="2">';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'filedelete-submit' ), array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit' ) ) . '</p>';
-		$form .= '</tr></table>';
+		$form .= '</td></tr></table>';
 		$form .= '</fieldset>';
 		$form .= '</form>';
 
