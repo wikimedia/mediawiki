@@ -49,12 +49,15 @@ class ApiParamInfo extends ApiBase {
 			{
 				if(!isset($modArr[$m]))
 				{
-					$r['modules'][$m] = array('missing' => '');
+					$r['modules'][] = array('name' => $m, 'missing' => '');
 					continue;
 				}
 				$obj = new $modArr[$m]($this->getMain(), $m);
-				$r['modules'][$m] = $this->getClassInfo($obj);				
+				$a = $this->getClassInfo($obj);
+				$a['name'] = $m;
+				$r['modules'][] = $a;				
 			}
+			$result->setIndexedTagName($r['modules'], 'module');
 		}
 		if(is_array($params['querymodules']))
 		{
@@ -64,12 +67,15 @@ class ApiParamInfo extends ApiBase {
 			{
 				if(!isset($qmodArr[$qm]))
 				{
-					$r['querymodules'][$qm] = array('missing' => '');
+					$r['querymodules'][] = array('name' => $qm, 'missing' => '');
 					continue;
 				}
 				$obj = new $qmodArr[$qm]($this, $qm);
-				$r['querymodules'][$qm] = $this->getClassInfo($obj);
+				$a = $this->getClassInfo($obj);
+				$a['name'] = $qm;
+				$r['querymodules'][] = $a;
 			}
+			$result->setIndexedTagName($r['querymodules'], 'module');
 		}
 		$result->addValue(null, $this->getModuleName(), $r);
 	}
