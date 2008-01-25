@@ -6734,6 +6734,16 @@ HHP2.2: Heuristics for headings in preprocessor parenthetical structures
 
 !! end
 
+!! test
+Tildes in comments
+!! options
+pst
+!! input
+<!-- ~~~~ -->
+!! result
+<!-- ~~~~ -->
+!! end
+
 #
 #
 #
