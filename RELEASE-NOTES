@@ -340,6 +340,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Security fix for API on MSIE
 * (bug 12768) Database query syntax error in maintenance/storage/compressOld.inc
 * (bug 12753) Empty captions in MediaWiki:Sidebar result in PHP errors
+* (bug 12790) Page protection is not logged when edit-protection is used and move-protection is not
 
 == Parser changes in 1.12 ==
 
