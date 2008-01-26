@@ -98,7 +98,7 @@ $specialPageAliases = array(
 	'Export'                    => array( 'Lapok_exportálása' ),
 	'Version'                   => array( 'Névjegy', 'Verziószám' ),
 	'Allmessages'               => array( 'Rendszerüzenetek' ),
-	'Log'                       => array( 'Rendszernaplók' ),
+	'Log'                       => array( 'Rendszernaplók', 'Naplók', 'Napló' ),
 	'Blockip'                   => array( 'Blokkolás' ),
 	'Undelete'                  => array( 'Törölt_lapváltozatok_visszaállítása' ),
 	'Import'                    => array( 'Lapok_importálása' ),
@@ -1282,17 +1282,22 @@ Mielőtt ismét feltöltenéd, nézd meg, miért lett korábban törölve, és e
 'filerevert-badversion'     => 'A megadott időbélyegzésű fájlnak nincs helyi változata.',
 
 # File deletion
-'filedelete'             => '$1 törlése',
-'filedelete-legend'      => 'Fájl törlése',
-'filedelete-intro'       => "Törölni készülsz a következő médiafájlt: '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: [$4 $3, $2] változatát törlöd.</span>',
-'filedelete-comment'     => 'Indoklás:',
-'filedelete-submit'      => 'Törlés',
-'filedelete-success'     => "A(z) '''$1''' médiafájlt törölted.",
-'filedelete-success-old' => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: $3, $2 törlése sikerült.</span>',
-'filedelete-nofile'      => "'''$1''' nevű fájl nem létezik ezen a wikin.",
-'filedelete-nofile-old'  => "There is no archived version of A(z) '''$1''' fájlnak nincs a megadott attribútumú archivált változata.",
-'filedelete-iscurrent'   => 'A fájl legutóbbi változatát kísérled meg törölni. Kérjük, hogy előbb állíts vissza egy régebbi verziót.',
+'filedelete'                  => '$1 törlése',
+'filedelete-legend'           => 'Fájl törlése',
+'filedelete-intro'            => "Törölni készülsz a következő médiafájlt: '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: [$4 $3, $2] változatát törlöd.</span>',
+'filedelete-comment'          => 'Indoklás:',
+'filedelete-submit'           => 'Törlés',
+'filedelete-success'          => "A(z) '''$1''' médiafájlt törölted.",
+'filedelete-success-old'      => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: $3, $2 törlése sikerült.</span>',
+'filedelete-nofile'           => "'''$1''' nevű fájl nem létezik ezen a wikin.",
+'filedelete-nofile-old'       => "There is no archived version of A(z) '''$1''' fájlnak nincs a megadott attribútumú archivált változata.",
+'filedelete-iscurrent'        => 'A fájl legutóbbi változatát kísérled meg törölni. Kérjük, hogy előbb állíts vissza egy régebbi verziót.',
+'filedelete-otherreason'      => 'Más/további ok:',
+'filedelete-reason-otherlist' => 'Más ok',
+'filedelete-reason-dropdown'  => '*Általános törlési okok
+** Szerzői jog megsértése
+** Duplikátum',
 
 # MIME search
 'mimesearch'         => 'Keresés MIME-típus alapján',
@@ -1840,26 +1845,26 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 
 # Move page
 'movepage'                => 'Lap átnevezése',
-'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és
-helyezheted át előzményeit az új névre.
-A régi cím az új címre átirányító lap lesz. A régi lapcímre
-mutató hivatkozások változatlanok maradnak; a rossz
-átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért,
-hogy a hivatkozások továbbítsanak ahhoz a ponthoz,
+'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és 
+helyezheted át előzményeit az új névre. 
+A régi cím az új címre átirányító lap lesz. A régi lapcímre 
+mutató hivatkozások változatlanok maradnak; a rossz 
+átirányításokat ellenőrizd. Te vagy a felelős annak biztosításáért, 
+hogy a hivatkozások továbbítsanak ahhoz a ponthoz, 
 ahová feltehetőleg vinniük kell.
 
-A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap,
-hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye.
-Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére,
-ha hibázol, létező oldalt pedig
+A lap '''nem''' kerül áthelyezésre, ha már van olyan című új lap, 
+hacsak nem üres vagy átirányítás, és nincs szerkesztési előzménye. 
+Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, 
+ha hibázol, létező oldalt pedig 
 nem tudsz felülírni.
 
 <b>FIGYELEM!</b>
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
-győződj meg róla a folytatás előtt, hogy tisztában vagy-e
+győződj meg róla a folytatás előtt, hogy tisztában vagy-e 
 a következményekkel.",
 'movepagetalktext'        => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''
-*már létezik egy nem üres vitalap az új helyen,
+*már létezik egy nem üres vitalap az új helyen, 
 *nem jelölöd be a lenti pipát.
 
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",
@@ -1914,6 +1919,7 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[Speci
 'export-addcattext' => 'Lapok hozzáadása kategóriából:',
 'export-addcat'     => 'Hozzáadás',
 'export-download'   => 'A fájlban történő mentés felkínálása',
+'export-templates'  => 'Sablonok hozzáadása',
 
 # Namespace 8 related
 'allmessages'               => 'Rendszerüzenetek',
@@ -1960,6 +1966,10 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'importuploaderrorsize'      => 'Az importálandó fájl feltöltése nem sikerült, mert nagyobb, mint a megengedett feltöltési méret.',
 'importuploaderrorpartial'   => 'Az importálandó fájl feltöltése nem sikerült. A fájl csak részben lett feltöltve.',
 'importuploaderrortemp'      => 'Az importálandó fájl feltöltése nem sikerült. Nem létezik ideiglenes mappa.',
+'import-parse-failure'       => 'XML elemzési hiba importáláskor',
+'import-noarticle'           => 'Nincs importálandó lap!',
+'import-nonewrevisions'      => 'A korábban importált összes változat.',
+'xml-error-string'           => '$1 a(z) $2. sorban, $3. oszlopban ($4. bájt): $5',
 
 # Import log
 'importlogpage'                    => 'Importnapló',
@@ -2549,3 +2559,4 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'unknown_extension_tag' => 'Ismeretlen tag kiterjesztés: $1',
 
 );
+

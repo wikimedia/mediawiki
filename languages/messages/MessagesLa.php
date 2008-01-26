@@ -831,15 +831,17 @@ Ad imaginem includendum in pagina, utere nexu
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' reversum est ad [emendationem $4 ex $3, $2].</span>',
 
 # File deletion
-'filedelete'             => 'Delere $1',
-'filedelete-legend'      => 'Fasciculum delere',
-'filedelete-intro'       => "Deles '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Deles fasciculi \'\'\'[[Media:$1|$1]]\'\'\' emendationem [$4 ex $3, $2].</span>',
-'filedelete-comment'     => 'Summarium:',
-'filedelete-submit'      => 'Delere',
-'filedelete-success'     => "'''$1''' deletum est.",
-'filedelete-success-old' => '<span class="plainlinks">Emendatio fasciculi \'\'\'[[Media:$1|$1]]\'\'\' ex $3, $2 deletum est.</span>',
-'filedelete-iscurrent'   => 'Emendationem recentissimam huius fasciculi delere conaris. Necesse est antea ad aliam emendationem reverti.',
+'filedelete'                  => 'Delere $1',
+'filedelete-legend'           => 'Fasciculum delere',
+'filedelete-intro'            => "Deles '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Deles fasciculi \'\'\'[[Media:$1|$1]]\'\'\' emendationem [$4 ex $3, $2].</span>',
+'filedelete-comment'          => 'Causa deletionis:',
+'filedelete-submit'           => 'Delere',
+'filedelete-success'          => "'''$1''' deletum est.",
+'filedelete-success-old'      => '<span class="plainlinks">Emendatio fasciculi \'\'\'[[Media:$1|$1]]\'\'\' ex $3, $2 deletum est.</span>',
+'filedelete-iscurrent'        => 'Emendationem recentissimam huius fasciculi delere conaris. Necesse est antea ad aliam emendationem reverti.',
+'filedelete-otherreason'      => 'Causa alia vel explicatio:',
+'filedelete-reason-otherlist' => 'Causa alia',
 
 # MIME search
 'mimesearch' => 'Quaerere per MIME',
@@ -1068,7 +1070,7 @@ Vide $2 pro indice deletionum recentum.',
 'cantrollback'              => 'Haec non potest reverti; conlator proximus solus auctor huius rei est.',
 'alreadyrolled'             => 'Ad mutationem proxima paginae "[[$1]]" ab usore "[[User:$2|$2]]" ([[User talk:$2|disputatio]]) reverti non potest; alius paginam iam recensuit vel revertit. Mutatio proxima ab usore "[[User:$3|$3]]" ([[User talk:$3|disputatio]]) effecta est.',
 'editcomment'               => 'Dictum recensiti erat: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                => 'Reverti recensiones ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|conlationes]]) ad mutationem proximam ab [[User:$1|$1]]',
+'revertpage'                => 'Reverti recensiones ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|conlationes]]) ad mutationem proximam ab [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'            => 'Index protectionum',
 'protectlogtext'            => 'Subter est index protectionum et deprotectionum paginarum. Vide [[Special:Protectedpages|indicem paginarum nunc protectarum]].',
 'protectedarticle'          => 'protegit "[[$1]]"',
@@ -1462,3 +1464,4 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum inspicere vel recensere',
 
 );
+
