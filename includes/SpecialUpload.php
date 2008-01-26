@@ -552,10 +552,15 @@ class UploadForm {
 			$resultDetails = array( 'internal' => $status->getWikiText() );
 			return self::INTERNAL_ERROR;
 		} else {
+			
+			// Check if "Watch this page" is checked or not and process.
+			global $wgUser;
 			if ( $this->mWatchthis ) {
-				global $wgUser;
 				$wgUser->addWatch( $this->mLocalFile->getTitle() );
+			} else {
+				$wgUser->removeWatch( $this->mLocalFile->getTitle() );
 			}
+			
 			// Success, redirect to description page
 			$img = null; // @todo: added to avoid passing a ref to null - should this be defined somewhere?
 			wfRunHooks( 'UploadComplete', array( &$img ) );
@@ -1010,7 +1015,8 @@ wgAjaxLicensePreview = {$alp};
 
 		$watchChecked =
 			( $wgUser->getOption( 'watchdefault' ) ||
-				( $wgUser->getOption( 'watchcreations' ) && $this->mDesiredDestName == '' ) )
+				( $wgUser->getOption( 'watchcreations' ) && $this->mDesiredDestName == '' ) ||
+				( isset( $title ) && $title->userIsWatching() ) )
 			? 'checked="checked"'
 			: '';
 		$warningChecked = $this->mIgnoreWarning ? 'checked' : '';
