@@ -79,6 +79,13 @@ function wfSajaxSearch( $term ) {
 	global $wgContLang, $wgOut, $wgUser, $wgCapitalLinks, $wgMemc;
 	$limit = 16;
 	$sk = $wgUser->getSkin();
+	$output = '';
+
+	if( !wfRunHooks( 'SajaxSearch', array( $term, &$output ) ) ) {
+		$response = new AjaxResponse( $output );
+		$response->setCacheDuration( 30*60 );
+		return $response;
+	}
 
 	$term = trim( $term );
 	$term = $wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) );
