@@ -12,7 +12,8 @@ $skinNames = array(
         'cologneblue' => '馨藍',
         'monobook' => '單書',
         'myskin' => '吾風',
-        'chick' => '窈窕'
+	'chick' => '窈窕',
+	'modern' => '時髦',
 );
 
 /**
@@ -874,17 +875,23 @@ $2',
 'filerevert-badversion'     => '該日無版也。',
 
 # File deletion
-'filedelete'             => '刪$1',
-'filedelete-legend'      => '刪檔',
-'filedelete-intro'       => "欲刪'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'   => '<span class="plainlinks">欲刪\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版$4。</span>',
-'filedelete-comment'     => '註：',
-'filedelete-submit'      => '刪',
-'filedelete-success'     => "'''$1'''刪矣。",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版刪矣。</span>',
-'filedelete-nofile'      => "{{SITENAME}}無'''$1'''也。",
-'filedelete-nofile-old'  => "無合'''$1'''藏也。",
-'filedelete-iscurrent'   => '刪版乃新，先還舊焉。',
+'filedelete'                  => '刪$1',
+'filedelete-legend'           => '刪檔',
+'filedelete-intro'            => "欲刪'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'        => '<span class="plainlinks">欲刪\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版$4。</span>',
+'filedelete-comment'          => '刪因：',
+'filedelete-submit'           => '刪',
+'filedelete-success'          => "'''$1'''刪矣。",
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版刪矣。</span>',
+'filedelete-nofile'           => "{{SITENAME}}無'''$1'''也。",
+'filedelete-nofile-old'       => "無合'''$1'''藏也。",
+'filedelete-iscurrent'        => '刪版乃新，先還舊焉。',
+'filedelete-otherreason'      => '另／附之因：',
+'filedelete-reason-otherlist' => '另因',
+'filedelete-reason-dropdown'  => '
+*常刪之因
+** 侵版權
+** 重檔',
 
 # MIME search
 'mimesearch'         => '篩檔',
@@ -1127,8 +1134,8 @@ $NEWPAGE
 'dellogpagetext'              => '近刪如下：',
 'deletionlog'                 => '誌刪',
 'reverted'                    => '已還前審',
-'deletecomment'               => '註刪',
-'deleteotherreason'           => '另／附之因:',
+'deletecomment'               => '刪因',
+'deleteotherreason'           => '另／附之因：',
 'deletereasonotherlist'       => '另因',
 'deletereason-dropdown'       => '
 *常刪之因
@@ -1448,7 +1455,7 @@ $NEWPAGE
 'importuploaderrorpartial'   => '檔未入匯。檔部傳。',
 'importuploaderrortemp'      => '檔未入匯。臨夾已失。',
 'import-parse-failure'       => 'XML入匯語法敗矣',
-'import-noarticle'           => '無文入匯也！',
+'import-noarticle'           => '無頁入匯也！',
 'import-nonewrevisions'      => '全審已入匯也。',
 'xml-error-string'           => '$1 於行$2，欄$3 ($4字節): $5',
 

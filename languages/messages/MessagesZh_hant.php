@@ -50,6 +50,7 @@ $skinNames = array(
 	'standard' => '標準',
 	'nostalgia' => '懷舊',
 	'cologneblue' => '科隆香水藍',
+	'modern' => '現代',
 );
 
 $bookstoreList = array(
@@ -1058,17 +1059,23 @@ $2',
 'filerevert-badversion'     => '這個檔案所提供的時間截記並無先前的本地版本。',
 
 # File deletion
-'filedelete'             => '刪除$1',
-'filedelete-legend'      => '刪除檔案',
-'filedelete-intro'       => "您現正刪除'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'   => '<span class="plainlinks">你現正刪除\'\'\'[[Media:$1|$1]]\'\'\'於[$4 $2 $3]的版本。</span>',
-'filedelete-comment'     => '註解:',
-'filedelete-submit'      => '刪除',
-'filedelete-success'     => "'''$1'''已經刪除。",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 的版本已經刪除。</span>',
-'filedelete-nofile'      => "'''$1'''在{{SITENAME}}中不存在。",
-'filedelete-nofile-old'  => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
-'filedelete-iscurrent'   => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
+'filedelete'                  => '刪除$1',
+'filedelete-legend'           => '刪除檔案',
+'filedelete-intro'            => "您現正刪除'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'        => '<span class="plainlinks">你現正刪除\'\'\'[[Media:$1|$1]]\'\'\'於[$4 $2 $3]的版本。</span>',
+'filedelete-comment'          => '刪除理由:',
+'filedelete-submit'           => '刪除',
+'filedelete-success'          => "'''$1'''已經刪除。",
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 的版本已經刪除。</span>',
+'filedelete-nofile'           => "'''$1'''在{{SITENAME}}中不存在。",
+'filedelete-nofile-old'       => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
+'filedelete-iscurrent'        => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
+'filedelete-otherreason'      => '其它／附加的理由:',
+'filedelete-reason-otherlist' => '其它理由',
+'filedelete-reason-dropdown'  => '
+*常用刪除理由
+** 侵犯版權
+** 重覆檔案',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
@@ -1723,7 +1730,7 @@ $1',
 'importuploaderrorpartial'   => '上載匯入檔案失敗。檔案只有部份已經上傳。',
 'importuploaderrortemp'      => '上載匯入檔案失敗。臨時資料夾已遺失。',
 'import-parse-failure'       => 'XML匯入語法失敗',
-'import-noarticle'           => '沒有文章作匯入！',
+'import-noarticle'           => '沒有頁面作匯入！',
 'import-nonewrevisions'      => '所有的修訂已經在先前匯入。',
 'xml-error-string'           => '$1 於行$2，欄$3 ($4位元組): $5',
 

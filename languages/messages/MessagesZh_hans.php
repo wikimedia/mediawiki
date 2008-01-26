@@ -53,6 +53,7 @@ $skinNames = array(
 	'standard' => '标准',
 	'nostalgia' => '怀旧',
 	'cologneblue' => '科隆香水蓝',
+	'modern' => '现代',
 );
 
 $extraUserToggles = array(
@@ -1083,17 +1084,23 @@ $2',
 'filerevert-badversion'     => '这个文件所提供的时间截记并无先前的本地版本。',
 
 # File deletion
-'filedelete'             => '删除$1',
-'filedelete-legend'      => '删除文件',
-'filedelete-intro'       => "您现正删除'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'   => '<span class="plainlinks">你现正删除\'\'\'[[Media:$1|$1]]\'\'\'于[$4 $2 $3]的版本。</span>',
-'filedelete-comment'     => '注解:',
-'filedelete-submit'      => '删除',
-'filedelete-success'     => "'''$1'''已经删除。",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'于 $2 $3 的版本已经删除。</span>',
-'filedelete-nofile'      => "'''$1'''在{{SITENAME}}中不存在。",
-'filedelete-nofile-old'  => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
-'filedelete-iscurrent'   => '您现正尝试删除这个文件的最近版本。请先将个该文件回退成较旧的版本。',
+'filedelete'                  => '删除$1',
+'filedelete-legend'           => '删除文件',
+'filedelete-intro'            => "您现正删除'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'        => '<span class="plainlinks">你现正删除\'\'\'[[Media:$1|$1]]\'\'\'于[$4 $2 $3]的版本。</span>',
+'filedelete-comment'          => '删除理由:',
+'filedelete-submit'           => '删除',
+'filedelete-success'          => "'''$1'''已经删除。",
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'于 $2 $3 的版本已经删除。</span>',
+'filedelete-nofile'           => "'''$1'''在{{SITENAME}}中不存在。",
+'filedelete-nofile-old'       => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
+'filedelete-iscurrent'        => '您现正尝试删除这个文件的最近版本。请先将个该文件回退成较旧的版本。',
+'filedelete-otherreason'      => '其它／附加的理由:',
+'filedelete-reason-otherlist' => '其它理由',
+'filedelete-reason-dropdown'  => '
+*常用删除理由
+** 侵犯版权
+** 重覆档案',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
@@ -1749,7 +1756,7 @@ $1',
 'importuploaderrorpartial'   => '上载导入文件失败。文件只有部份已经上传。',
 'importuploaderrortemp'      => '上载导入文件失败。临时文件夹已遗失。',
 'import-parse-failure'       => 'XML导入语法失败',
-'import-noarticle'           => '没有文章作导入！',
+'import-noarticle'           => '没有页面作导入！',
 'import-nonewrevisions'      => '所有的修订已经在先前导入。',
 'xml-error-string'           => '$1 於行$2，列$3 ($4字节): $5',
 

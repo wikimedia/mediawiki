@@ -6,13 +6,14 @@
   */
 
 $skinNames = array(
-	'standard' 	=> '傳統', /* "Classic, Standard" */
-	'nostalgia' 	=> '懷舊', /* "Nostalgia" */
-	'cologneblue' 	=> '科隆藍', /* "Cologne Blue" */
-	'monobook' 	=> 'MonoBook',
-	'myskin' 	=> '我嘅畫面', /* "MySkin" */
-	'chick' 	=> '俏', /* "Chick" */
-	'simple' 	=> '簡單' /* "Simple" */
+	'standard'    => '傳統', /* "Classic, Standard" */
+	'nostalgia'   => '懷舊', /* "Nostalgia" */
+	'cologneblue' => '科隆藍', /* "Cologne Blue" */
+	'monobook'    => 'MonoBook',
+	'myskin'      => '我嘅畫面', /* "MySkin" */
+	'chick'       => '俏', /* "Chick" */
+	'simple'      => '簡單', /* "Simple" */
+	'modern'      => '摩登', /* "Modern" */
 );
 
 $bookstoreList = array(
@@ -1152,17 +1153,23 @@ $2',
 'filerevert-badversion'     => '呢個檔案所提供嘅時間截記並無之前嘅本地版本。',
 
 # File deletion
-'filedelete'             => '刪除$1',
-'filedelete-legend'      => '刪除檔案',
-'filedelete-intro'       => "你而家刪除緊'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'   => '<span class="plainlinks">你而家刪除緊\'\'\'[[Media:$1|$1]]\'\'\'響[$4 $2 $3]嘅版本。</span>',
-'filedelete-comment'     => '註解:',
-'filedelete-submit'      => '刪除',
-'filedelete-success'     => "'''$1'''已經刪除咗。",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'響 $2 $3 嘅版本已經刪除咗。</span>',
-'filedelete-nofile'      => "'''$1'''響{{SITENAME}}度唔存在。",
-'filedelete-nofile-old'  => "用指定嘅屬性，呢度係無'''$1'''響 $2 $3 嘅歸檔版本。",
-'filedelete-iscurrent'   => '你而家嘗試刪除呢個檔案嘅最近版本。請先將個檔打回頭做舊啲嘅版本先。',
+'filedelete'                  => '刪除$1',
+'filedelete-legend'           => '刪除檔案',
+'filedelete-intro'            => "你而家刪除緊'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'        => '<span class="plainlinks">你而家刪除緊\'\'\'[[Media:$1|$1]]\'\'\'響[$4 $2 $3]嘅版本。</span>',
+'filedelete-comment'          => '刪除原因:',
+'filedelete-submit'           => '刪除',
+'filedelete-success'          => "'''$1'''已經刪除咗。",
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'響 $2 $3 嘅版本已經刪除咗。</span>',
+'filedelete-nofile'           => "'''$1'''響{{SITENAME}}度唔存在。",
+'filedelete-nofile-old'       => "用指定嘅屬性，呢度係無'''$1'''響 $2 $3 嘅歸檔版本。",
+'filedelete-iscurrent'        => '你而家嘗試刪除呢個檔案嘅最近版本。請先將個檔打回頭做舊啲嘅版本先。',
+'filedelete-otherreason'      => '其它／附加嘅原因:',
+'filedelete-reason-otherlist' => '其它原因',
+'filedelete-reason-dropdown'  => '
+*常用刪除原因
+** 侵犯版權
+** 重覆檔案',
 
 # MIME search
 'mimesearch'         => 'MIME 搜尋',
@@ -1813,7 +1820,7 @@ $1',
 'importuploaderrorpartial'   => '上載要倒入嘅檔案失敗。個檔案只係部份上載咗。',
 'importuploaderrortemp'      => '上載要倒入嘅檔案失敗。個臨時資料夾唔見咗。',
 'import-parse-failure'       => 'XML倒入語法失敗',
-'import-noarticle'           => '無文章去倒入！',
+'import-noarticle'           => '無版去倒入！',
 'import-nonewrevisions'      => '全部嘅修訂已經響之前倒入咗。',
 'xml-error-string'           => '$1 響行$2，欄$3 ($4 bytes): $5',
 
