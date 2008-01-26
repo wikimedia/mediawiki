@@ -245,14 +245,10 @@ class CoreParserFunctions {
 
 		$attributes = array();
 		foreach ( $args as $arg ) {
-			if ( !$xpath ) {
-				$xpath = new DOMXPath( $arg->ownerDocument );
-			}
-			$names = $xpath->query( 'name', $arg );
-			if ( !$names->item( 0 )->hasAttributes() ) {
-				$name = $frame->expand( $names->item( 0 ), PPFrame::STRIP_COMMENTS );
-				$values = $xpath->query( 'value', $arg );
-				$value = trim( $frame->expand( $values->item( 0 ) ) );
+			$bits = $arg->splitArg();
+			if ( strval( $bits['index'] ) === '' ) {
+				$name = $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS );
+				$value = trim( $frame->expand( $bits['value'] ) );
 				if ( preg_match( '/^(?:["\'](.+)["\']|""|\'\')$/s', $value, $m ) ) {
 					$value = isset( $m[1] ) ? $m[1] : '';
 				}
