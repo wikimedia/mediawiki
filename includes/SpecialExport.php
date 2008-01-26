@@ -238,7 +238,7 @@ function wfSpecialExport( $page = '' ) {
 			#Bug 8824: Only export pages the user can read
 			$title = Title::newFromText( $page );
 			if( is_null( $title ) ) continue; #TODO: perhaps output an <error> tag or something.
-			if( !$title->userCan( 'read' ) ) continue; #TODO: perhaps output an <error> tag or something.
+			if( !$title->userCanRead() ) continue; #TODO: perhaps output an <error> tag or something.
 
 			$exporter->pageByTitle( $title );
 		}
