@@ -22,8 +22,8 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 		$plength=0;
 		$packet="";
 		foreach ($this->mCollated as $entry=>$pfdata) {
-			$pfline=sprintf ("%s %s %d 0 0 %f 0 %s\n", $this->getProfileID(),"-",$pfdata['count'],
-				$pfdata['real'],$entry);
+			$pfline=sprintf ("%s %s %d %f %f %f %f %s\n", $this->getProfileID(),"-",$pfdata['count'],
+				$pfdata['cpu'],$pfdata['cpu_sq'],$pfdata['real'],$pfdata['real_sq'],$entry);
 			$length=strlen($pfline);
 			/* printf("<!-- $pfline -->"); */
 			if ($length+$plength>1400) {
@@ -37,3 +37,4 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 		socket_sendto($sock,$packet,$plength,0x100,$wgUDPProfilerHost,$wgUDPProfilerPort);
 	}
 }
+
