@@ -499,6 +499,11 @@ class PageArchive {
 				wfRunHooks( 'ArticleUndelete', array( &$this->title, false ) );
 				Article::onArticleEdit( $this->title );
 			}
+
+			if( $this->title->getNamespace() == NS_IMAGE ) {
+				$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
+				$update->doUpdate();
+			}
 		} else {
 			// Revision couldn't be created. This is very weird
 			return self::UNDELETE_UNKNOWNERR;
