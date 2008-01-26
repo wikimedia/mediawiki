@@ -851,6 +851,7 @@ $wgMessageStructure = array(
 		'largefileserver',
 		'emptyfile',
 		'fileexists',
+		'filepageexists',
 		'fileexists-extension',
 		'fileexists-thumb',
 		'fileexists-thumbnail-yes',
