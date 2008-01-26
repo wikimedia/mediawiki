@@ -2960,6 +2960,10 @@ class Article {
 		if( $title->getNamespace() == NS_MEDIAWIKI) {
 			$wgMessageCache->replace( $title->getDBkey(), false );
 		}
+		if( $title->getNamespace() == NS_IMAGE ) {
+			$update = new HTMLCacheUpdate( $title, 'imagelinks' );
+			$update->doUpdate();
+		}
 	}
 
 	/**
