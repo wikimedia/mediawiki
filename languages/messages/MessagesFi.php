@@ -1060,7 +1060,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'filewasdeleted'              => 'Tämän niminen tiedosto on lisätty ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 'upload-wasdeleted'           => "'''Varoitus: Olet tallentamassa tiedostoa, joka on jo aikaisemmin poistettu.'''
 
-Harkitse, onko asianmukaista jatkaa tämän tiedoston tallentamista. Kyseisen tiedoston poistoloki näkyy tässä:",
+Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki näkyy tässä:",
 'filename-bad-prefix'         => 'Tallentamasi tiedoston nimi alkaa merkkijonolla <strong>$1</strong>, joka on yleensä digitaalikameroiden automaattisesti antama nimi, joka ei kuvaa tiedoston sisältöä. Anna tiedostolle kuvaavampi nimi.',
 
 'upload-proto-error'      => 'Virheellinen protokolla',
@@ -1143,9 +1143,10 @@ Harkitse, onko asianmukaista jatkaa tämän tiedoston tallentamista. Kyseisen ti
 'filedelete-nofile'           => "Tiedostoa '''$1''' ei ole.",
 'filedelete-nofile-old'       => "Tiedostosta '''$1''' ei ole olemassa pyydettyä versiota.",
 'filedelete-iscurrent'        => 'Et voi poistaa tiedoston uusinta versiota. Palauta jokin muu version uusimmaksi.',
+'filedelete-otherreason'      => 'Muu syy tai tarkennus',
 'filedelete-reason-otherlist' => 'Muu syy',
 'filedelete-reason-dropdown'  => '*Yleiset poistosyyt
-** Duplikaatti
+** Kaksoiskappale
 ** Tekijänoikeusrikkomus',
 
 # MIME search
@@ -1413,7 +1414,7 @@ Palaute ja lisäapu osoitteessa:
 'deletionlog'                 => 'poistoloki',
 'reverted'                    => 'Palautettu aikaisempaan versioon',
 'deletecomment'               => 'Poistamisen syy',
-'deleteotherreason'           => 'Muu/lisäsyy:',
+'deleteotherreason'           => 'Muu syy tai tarkennus:',
 'deletereasonotherlist'       => 'Muu syy',
 'deletereason-dropdown'       => '*Yleiset poistosyyt
 ** Lisääjän poistopyyntö
@@ -1737,6 +1738,8 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'importuploaderrorsize'      => 'Tuontitiedoston tallennus epäonnistui. Tiedosto on suurempi kuin sallittu yläraja.',
 'importuploaderrorpartial'   => 'Tuontitiedoston tallennus epäonnistui. Tiedostosta oli lähetetty vain osa.',
 'importuploaderrortemp'      => 'Tuontitiedoston tallennus epäonnistui. Väliaikaistiedostojen kansio puuttuu.',
+'import-noarticle'           => 'Ei tuotavaa sivua.',
+'import-nonewrevisions'      => 'Kaikki versiot on tuotu aiemmin.',
 
 # Import log
 'importlogpage'                    => 'Tuontiloki',
@@ -2316,3 +2319,4 @@ Yritä normaalia esikatselua.',
 'unknown_extension_tag' => 'Tuntematon laajennuskoodi ”$1”.',
 
 );
+
