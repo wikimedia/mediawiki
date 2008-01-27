@@ -972,7 +972,7 @@ Er alda bu faylnı yüklemege devam etmege isteysiñizmi? Bu fayl içün yoq et�
 'filehist-deleteone'        => 'bunı yoq et',
 'filehist-revert'           => 'keri al',
 'filehist-current'          => 'ağımdaki',
-'filehist-datetime'         => 'Tarih/Saat',
+'filehist-datetime'         => 'Tarih ve saat',
 'filehist-user'             => 'Qullanıcı',
 'filehist-dimensions'       => 'En × boy',
 'filehist-filesize'         => 'Fayl büyükligi',
@@ -1608,7 +1608,7 @@ Er satır * simvolınen başlamalı. Satırnıñ birinci bağlantısı eklemege 
 'metadata-help'     => 'Faylda (adetince raqam kamera ve skanerlernen eklengen) ilâve malümatı bar. Eger bu fayl yaratılğandan soñ deñiştirilse edi, belki de bazı parametrler eskirdi.',
 'metadata-expand'   => 'Tafsilâtnı köster',
 'metadata-collapse' => 'Tafsilâtnı kösterme',
-'metadata-fields'   => 'Bu cedveldeki EXIF meta malümatı fezaları resim saifesinde kösterilecek, başqaları ise gizlenecek.
+'metadata-fields'   => 'Bu cedveldeki EXIF meta malümatı resim saifesinde kösterilecek, başqaları ise gizlenecek.
 * make
 * model
 * datetimeoriginal

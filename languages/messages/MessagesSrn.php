@@ -228,6 +228,7 @@ $messages = array(
 'hidetoc'                 => 'kibri',
 'thisisdeleted'           => '$1 libi si efu otrowe?',
 'viewdeleted'             => '$1 libi si?',
+'restorelink'             => '$1 {{PLURAL:$1|si|si}} taki ben e trowe',
 'feedlinks'               => 'Nyan:',
 'site-rss-feed'           => '$1 RSS-nyan',
 'site-atom-feed'          => '$1 Atom-nyan',
@@ -267,6 +268,7 @@ $messages = array(
 'loginpagetitle'        => 'Nen fu masyin',
 'yourname'              => 'Nen fu masyin:',
 'yourpassword'          => 'Waktiwortu:',
+'yourpasswordagain'     => 'Gi yu waktiwortu fu a fostu:',
 'remembermypassword'    => 'Memre mi waktiwortu nanga masyinnen opo disi komputer.',
 'yourdomainname'        => 'Yu domein:',
 'login'                 => 'Kon',
@@ -314,6 +316,11 @@ Kon na yu a abi kisi.',
 'createaccount-title'   => 'Masyin skopu fu {{SITENAME}}',
 'loginlanguagelabel'    => 'Tongo: $1',
 
+# Password reset dialog
+'resetpass'        => 'Kenki yu waktiwortu',
+'resetpass_header' => 'Kenki yu waktiwortu',
+'resetpass_submit' => 'Kenki yu waktiwortu nanga kon',
+
 # Edit page toolbar
 'bold_sample'     => 'Deki litiwrok',
 'bold_tip'        => 'Fatu',
@@ -360,9 +367,16 @@ A spreki ben e du via $1. A gi yesikrari ben ''$2''.
 Yu kan kontakti nanga $1 efu wan trawan [[{{MediaWiki:Grouppage-sysop}}|sesopu]] abra a spikri tu taki.
 Yu kan a funksi 'e-mail disi masyin' no teki, iksi yu wan gu e-mailadresi abi e gi ini yu [[Special:Preferences|wana]] nanga a teki fu disi funksi ni spikri ben.
 Yu IP-adresi ben $3 now nanga a spikrinumro ben #$5. Aksa ala tu a infrumasi leki yu pewan opo disi spikri reagiri.",
+'whitelistedittitle'     => 'Yu mu kon fu a kenki',
 'whitelistedittext'      => 'Yu mu $1 fu a kenki fu peprewoysi.',
+'whitelistreadtitle'     => 'Yu mu kon fu a leysi',
 'whitelistreadtext'      => 'Yu mu [[Special:Preferences|kon]] fu a leysi fu peprewoysi.',
+'whitelistacctitle'      => 'Yu kan no masyin skopu',
+'loginreqtitle'          => 'Yu mu kon',
 'loginreqlink'           => 'kon',
+'loginreqpagetext'       => 'Yu mu $1 tu a libi si fu trawan peprewoysi.',
+'accmailtitle'           => 'Waktiwortu ben stir.',
+'accmailtext'            => 'A waktiwortu fu "$1" ben stir na $2.',
 'newarticle'             => '(Nyon)',
 'newarticletext'         => "Disi papira ben no da. Presi ini a ondroben box tu skopu a papira (pasa infrumasi ben opo a [[{{MediaWiki:Helppage}}|yepipapira]]).
 Teki a box '''back''' ini yu browser leki yu dyaso soma ben e kon.",
@@ -402,7 +416,9 @@ Denka abra a ben gu taki yu kontinu kenki disi papira, Fu yu isi ben dyaso ondro
 'nextrevision'        => 'Nyunr si→',
 'currentrevisionlink' => 'Disi si',
 'cur'                 => 'disi',
+'next'                => 'trawan',
 'last'                => 'bakaseywan',
+'orig'                => 'owrus',
 'page_first'          => 'foswan',
 'page_last'           => 'bakaseywan',
 'histlegend'          => 'Sileksi fu diff: sileksi den tu aluku si nanga gi ENTER efru a box ondro a.<br />
@@ -437,9 +453,12 @@ A kan ben trowe efu dribi.
 'diff-multi'              => '({{plural:$1|Wan inisey si ben|$1 inisey si ben}} no libi si)',
 
 # Search results
+'searchresults'         => 'Sukuleysi',
+'searchresulttext'      => 'Fu pasa infrumasi abra suku opo {{SITENAME}}, leysi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Y ben o suku na '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Yu ben o suku na '''$1'''",
 'noexactmatch'          => "'''Da ben no papira nanga a nen \"\$1\".''' Yu kan disi [[:\$1|skopu]].",
+'noexactmatch-nocreate' => "'''Da ben no papira nanga a nen \"\$1\".'''",
 'prevn'                 => 'fos $1',
 'nextn'                 => 'tra $1',
 'viewprevnext'          => '($1) ($2) ($3) libi si.',
@@ -456,8 +475,12 @@ A kan ben trowe efu dribi.
 'qbsettings-fixedright'    => 'Set na pe',
 'qbsettings-floatingleft'  => 'Han na ku',
 'qbsettings-floatingright' => 'Han na pe',
+'changepassword'           => 'Kenki yu waktiwortu',
 'skin'                     => 'Buba',
 'math'                     => 'Fomula',
+'dateformat'               => 'Datumopomeki',
+'datedefault'              => 'No wana',
+'datetime'                 => 'Datum nanga ten',
 'math_lexing_error'        => 'leksikografi fowtu',
 'math_syntax_error'        => 'sintaki fowtu',
 'prefs-personal'           => 'Masyinmasi',
@@ -468,6 +491,8 @@ A kan ben trowe efu dribi.
 'prefs-misc'               => 'Diversi',
 'saveprefs'                => 'Oponaki',
 'resetprefs'               => 'Bakadray na owru si',
+'oldpassword'              => 'Owru waktiwortu:',
+'newpassword'              => 'Nyun waktiwortu:',
 'retypenew'                => 'Gi nyun waktiwortu dyasotu:',
 'textboxsize'              => 'Kenki',
 'rows'                     => 'Rei:',
@@ -562,6 +587,8 @@ A kan ben trowe efu dribi.
 'uploadbtn'         => 'Uploti',
 'reupload'          => 'Ri-uploti',
 'uploadnologin'     => 'No kon',
+'uploaderror'       => 'Uplotifowtu',
+'uploadlog'         => 'uplotibuku',
 'uploadlogpage'     => 'Uplotibuku',
 'filename'          => 'Gefrenen',
 'filedesc'          => 'Infrumasi-box',
@@ -570,6 +597,7 @@ A kan ben trowe efu dribi.
 'savefile'          => 'Gefre oponaki',
 'uploadedimage'     => 'abi "[[$1]]" e uploti',
 'overwroteimage'    => 'abi wan nyun si fu "[[$1]]" e uploti',
+'watchthisupload'   => 'Disi papira si',
 
 'license-nopreview' => '(No fusi)',
 
@@ -639,35 +667,58 @@ A kan ben trowe efu dribi.
 'listredirects' => 'Rey fu stirpeprewoysi',
 
 # Unused templates
-'unusedtemplates' => 'Oteki ankra',
+'unusedtemplates'    => 'Oteki ankra',
+'unusedtemplateswlh' => 'trawan skaki',
 
 # Random page
-'randompage' => 'Wan somapapira',
+'randompage'         => 'Wan somapapira',
+'randompage-nopages' => 'Da ben no peprewoysi ini disi nenpreki.',
 
 # Random redirect
-'randomredirect' => 'Wansoma stirpapira',
+'randomredirect'         => 'Wansoma stirpapira',
+'randomredirect-nopages' => 'Da ben no stirpeprewoysi ini disi nenpreki.',
 
 # Statistics
-'statistics' => 'Site-Infrumasi',
+'statistics'    => 'Site-Infrumasi',
+'sitestats'     => '{{SITENAME}}-Infrumasi',
+'userstats'     => 'Masyininfrumasi',
+'sitestatstext' => "Ini a databesi {{PLURAL:$1|ben wan papira|ben '''$1''' peprewoysi}}, nanga takipeprewoysi, {{SITENAME}}-peprewoysi, den stub dy si syartu ben, stirpeprewoysi, boskopu nanga trawan peprewoysi dy hosa no infrumasi abi.
+Da {{PLURAL:$2|ben hosa wan peprewoysi|ben hosa '''$2''' peprewoysi}} nanga tru infrumasi.
+
+Da {{PLURAL:$8|ben '''wan''' gefre|ben '''$8''' gefre}} uploti.
+
+Da {{PLURAL:$3|ben '''wan''' papira|ben '''$3''' peprewoysi}} libi si nanga {{PLURAL:$4|wan kenki|'''$4''' kenki}} e meki sins {{SITENAME}} ben e skopu.
+Taki gi wan midi fu '''$5''' kenki ies papira nanga '''$6''' sko peprewoysi ies kenki.
+
+A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'''.",
+'userstatstext' => "Da {{PLURAL:$1|ben '''wan''' register masyin|ben '''$1''' register masyin}}, pefu da
+'''$2''' (efu '''$4%''') $5-lesi {{PLURAL:$2|abi|abi}}.",
 
 'disambiguations' => 'Peprewoysi fu kumakriki',
 
-'doubleredirects' => 'Tustirpeprewoysi',
+'doubleredirects'     => 'Tustirpeprewoysi',
+'doubleredirectstext' => 'Disi rei abi peprewoysi dy stir na trawan stir. Ies rei abi skaki na a foswan nanga a fostu stirpapira nanga wan skaki na a duli fu a fosty stirpapira. Pasa den ten ben a bakaseywan papira a tru duli.',
 
 'brokenredirects'        => 'Broko stirpeprewoysi',
+'brokenredirectstext'    => 'Dyaso ben stirpeprewoysi dy wan stir ben na wan papira dy no da ben.',
 'brokenredirects-edit'   => '(kenki)',
 'brokenredirects-delete' => '(trowe)',
 
 'withoutinterwiki'        => 'Peprewoysi nanga no skaki na trawan tongo',
+'withoutinterwiki-header' => 'Disi peprewoysi skaki no na si ini wan trawan tongo:',
 'withoutinterwiki-submit' => 'Libi si',
 
 'fewestrevisions' => 'Peprewoysi nanga a mena kenki',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|a byte|den byte}}',
+'ncategories'             => '$1 {{PLURAL:$1|guru|guru}}',
 'nlinks'                  => '$1 {{PLURAL:$1|skaki|skaki}}',
 'nmembers'                => '$1 {{PLURAL:$1|man|man}}',
+'nrevisions'              => '$1 {{PLURAL:$1|si|si}}',
+'nviews'                  => '$1 {{PLURAL:$1|mansi|mansi}}',
 'lonelypages'             => 'Wawan peprewoysi',
+'lonelypagestext'         => 'Na den ondroben peprewoysi sey fu u {{SITENAME}} no skaki.',
 'uncategorizedpages'      => 'Oguru peprewoysi',
 'uncategorizedcategories' => 'Oguru guru',
 'uncategorizedimages'     => 'Oguru gefre',
@@ -687,10 +738,13 @@ A kan ben trowe efu dribi.
 'shortpages'              => 'Syartu peprewoysi',
 'longpages'               => 'Langa peprewoysi',
 'deadendpages'            => 'Peprewoysi nanga no skaki',
+'deadendpagestext'        => 'Den ondroben peprewoysi abi no skaki na trawan peprewoysi ini {{SITENAME}}.',
 'protectedpages'          => 'Tapu peprewoysi',
+'protectedpagestext'      => 'Da ondroben peprewoysi ben tapu nanga kan no kenki abi efru e dribi ben',
 'listusers'               => 'Rey fu masyin',
 'specialpages'            => 'Spesyal peprewoysi',
 'newpages'                => 'Nyon peprewoysi',
+'newpages-username'       => 'Masyinnen:',
 'ancientpages'            => 'Pasa owru peprewoysi',
 'move'                    => 'Dribi',
 'movethispage'            => 'Disi papira dribi',

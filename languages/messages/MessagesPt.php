@@ -1175,17 +1175,22 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'filerevert-badversion'     => 'Não há uma versão local anterior deste ficheiro no período de tempo especificado.',
 
 # File deletion
-'filedelete'             => 'Eliminar $1',
-'filedelete-legend'      => 'Eliminar ficheiro',
-'filedelete-intro'       => "Você está prestes a eliminar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Você se encontra prestes a eliminar a versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como se encontrava em [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Motivo de eliminação:',
-'filedelete-submit'      => 'Eliminar',
-'filedelete-success'     => "'''$1''' foi eliminado.",
-'filedelete-success-old' => '<span class="plainlinks">A versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como $3, $2 foi eliminada.</span>',
-'filedelete-nofile'      => "'''$1''' não existe na {{SITENAME}}.",
-'filedelete-nofile-old'  => "Não há uma versão de '''$1''' em arquivo com os parâmetros especificados.",
-'filedelete-iscurrent'   => 'Você está tentando eliminar a versão mais recente deste ficheiro. Por gentileza, reverta para uma edição anterior antes de tentar novamente.',
+'filedelete'                  => 'Eliminar $1',
+'filedelete-legend'           => 'Eliminar ficheiro',
+'filedelete-intro'            => "Você está prestes a eliminar '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Você se encontra prestes a eliminar a versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como se encontrava em [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Motivo de eliminação:',
+'filedelete-submit'           => 'Eliminar',
+'filedelete-success'          => "'''$1''' foi eliminado.",
+'filedelete-success-old'      => '<span class="plainlinks">A versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como $3, $2 foi eliminada.</span>',
+'filedelete-nofile'           => "'''$1''' não existe na {{SITENAME}}.",
+'filedelete-nofile-old'       => "Não há uma versão de '''$1''' em arquivo com os parâmetros especificados.",
+'filedelete-iscurrent'        => 'Você está tentando eliminar a versão mais recente deste ficheiro. Por gentileza, reverta para uma edição anterior antes de tentar novamente.',
+'filedelete-otherreason'      => 'Outro/motivo adicional:',
+'filedelete-reason-otherlist' => 'Outro motivo',
+'filedelete-reason-dropdown'  => '*Motivos comuns para eliminação
+** Violação de direitos de autor
+** Ficheiro duplicado',
 
 # MIME search
 'mimesearch'         => 'Pesquisa MIME',
@@ -2138,6 +2143,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-componentsconfiguration-0' => 'não existe',
 
 'exif-exposureprogram-0' => 'Não definido',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => 'Prioridade de abertura',
 'exif-exposureprogram-4' => 'Prioridade de obturador',
@@ -2148,7 +2154,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 
 'exif-subjectdistance-value' => '$1 metros',
 
-'exif-meteringmode-0' => 'Desconhecido',
+'exif-meteringmode-0'   => 'Desconhecido',
+'exif-meteringmode-6'   => 'Parcial',
+'exif-meteringmode-255' => 'Outro',
 
 'exif-lightsource-0'   => 'Desconhecida',
 'exif-lightsource-1'   => 'Luz do dia',

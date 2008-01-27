@@ -979,6 +979,7 @@ P'amiestar la imaxe nuna páxina, usa un enllaz col formatu
 'largefileserver'             => 'Esti archivu ye mayor de lo que permite la configuración del servidor.',
 'emptyfile'                   => "L'archivu que xubisti paez tar vaciu. Esto podría ser pola mor d'un enquivocu nel nome l'archivu. Por favor, camienta si daveres quies xubir esti archivu.",
 'fileexists'                  => 'Yá esiste un archivu con esti nome, por favor comprueba <strong><tt>$1</tt></strong> si nun tas seguru de quere camudalu.',
+'filepageexists'              => 'Yá esiste una páxina (non imaxe) con esti nome, por favor revisa <strong><tt>$1</tt></strong> por si nun tas seguru de querer camudala.',
 'fileexists-extension'        => 'Yá esiste un archivu con un nome asemeyáu:<br />
 Nome del archivu que se quier xubir: <strong><tt>$1</tt></strong><br />
 Nome del archivu esistente: <strong><tt>$2</tt></strong><br />
@@ -1079,17 +1080,22 @@ Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
-'filedelete'             => 'Borrar $1',
-'filedelete-legend'      => 'borrar archivu',
-'filedelete-intro'       => "Tas borrando '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Tas borrando la versión de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a les $2].</span>',
-'filedelete-comment'     => 'Comentariu:',
-'filedelete-submit'      => 'Borrar',
-'filedelete-success'     => "'''$1''' foi borráu.",
-'filedelete-success-old' => '<span class="plainlinks">La versión de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a les $2 foi borrada.</span>',
-'filedelete-nofile'      => "'''$1''' nun esiste en {{SITENAME}}.",
-'filedelete-nofile-old'  => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
-'filedelete-iscurrent'   => "Tas tentando de borrar la versión más reciente d'esti archivu. Por favor revierti primero a una versión más antigua.",
+'filedelete'                  => 'Borrar $1',
+'filedelete-legend'           => 'borrar archivu',
+'filedelete-intro'            => "Tas borrando '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Tas borrando la versión de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a les $2].</span>',
+'filedelete-comment'          => 'Comentariu:',
+'filedelete-submit'           => 'Borrar',
+'filedelete-success'          => "'''$1''' foi borráu.",
+'filedelete-success-old'      => '<span class="plainlinks">La versión de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a les $2 foi borrada.</span>',
+'filedelete-nofile'           => "'''$1''' nun esiste en {{SITENAME}}.",
+'filedelete-nofile-old'       => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
+'filedelete-iscurrent'        => "Tas tentando de borrar la versión más reciente d'esti archivu. Por favor revierti primero a una versión más antigua.",
+'filedelete-otherreason'      => 'Otru motivu/motivu adicional:',
+'filedelete-reason-otherlist' => 'Otru motivu',
+'filedelete-reason-dropdown'  => '*Motivos comunes de borráu
+** Violación de Copyright
+** Archivu duplicáu',
 
 # MIME search
 'mimesearch'         => 'Busca MIME',

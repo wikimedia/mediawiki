@@ -721,6 +721,9 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'revdelete-submit'        => 'Op déi gewielte Versioun uwenden',
 'revdelete-logaction'     => '$1 {{PLURAL:$1|Versioun|Versiounen}} an de Modus $2 gesat',
 
+# Oversight log
+'overlogpagetext' => "Dëst ass d'Lëscht vun de Läschungen a Spären, déi virun den Administrateure verstoppt sinn.",
+
 # History merging
 'mergehistory'                     => 'Historiquë fusionéieren',
 'mergehistory-box'                 => 'Historiquë vun zwou Säite fusionéieren',
@@ -1011,13 +1014,16 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' gouf op d\'[$4 Versioun vum $2, $3 Auer] zeréckgesat.</span>',
 
 # File deletion
-'filedelete'         => 'Läsch "$1"',
-'filedelete-legend'  => 'Fichier läschen',
-'filedelete-intro'   => "Dir läscht de Fichier '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Grond:',
-'filedelete-submit'  => 'Läschen',
-'filedelete-success' => "'''$1''' gouf geläscht.",
-'filedelete-nofile'  => "'''$1''' gëtt et net op {{SITENAME}}.",
+'filedelete'                  => 'Läsch "$1"',
+'filedelete-legend'           => 'Fichier läschen',
+'filedelete-intro'            => "Dir läscht de Fichier '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Dir läscht  d\'Versioun $4  vum $2, $3 Auer vum Fichier \'\'\'„[[Media:$1|$1]]“\'\'\'.</span>',
+'filedelete-comment'          => 'Grond:',
+'filedelete-submit'           => 'Läschen',
+'filedelete-success'          => "'''$1''' gouf geläscht.",
+'filedelete-nofile'           => "'''$1''' gëtt et net op {{SITENAME}}.",
+'filedelete-otherreason'      => 'Aneren/zousätzleche Grond:',
+'filedelete-reason-otherlist' => 'Anere Grond',
 
 # MIME search
 'mimesearch' => 'Sich no MIME-Zort',
@@ -1164,6 +1170,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'allpages-bad-ns'   => 'De Nummraum „$1“ gëtt et net op {{SITENAME}}.',
 
 # Special:Listusers
+'listusersfrom'      => "D'Benotzer uweisen, ugefaange bei:",
 'listusers-submit'   => 'Weis',
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
@@ -1175,6 +1182,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',
+'noemailtext'     => 'Dëse Benotzer huet keng gülteg E-Mailadress uginn, oder well keng E-Mail vun anere Wikipedianer kréien.',
 'emailfrom'       => 'Vum',
 'emailto'         => 'Fir',
 'emailsubject'    => 'Sujet',
@@ -1235,7 +1243,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'confirm'                     => 'Konfirméieren',
 'excontent'                   => "Inhalt war: '$1'",
 'excontentauthor'             => "Op der Säit stong: '$1' (An als eenzegen dru geschriwwen hat de '[[User:$2|Benotzer:$2]]' ([[Special:Contributions/$2|$2 Kontributiounen]])",
-'exbeforeblank'               => "Den Inhalt virum Läsche wor: '$1'",
+'exbeforeblank'               => "Den Inhalt virum Läsche war: '$1'",
 'exblank'                     => "D'Säit war eidel",
 'confirmdelete'               => "Konfirméiert d'Läschen",
 'deletesub'                   => '("$1" gëtt geläscht)',
@@ -1431,6 +1439,7 @@ W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spä
 'lockconfirm'       => "Jo, ech wëll d'Datebank wierklech spären.",
 'unlockconfirm'     => "Jo, ech well d'Spär vun der Datebank wirklech ophiewen.",
 'lockbtn'           => 'Datebank spären',
+'locknoconfirm'     => "Dir hutt d'Konfirmatiounsbox net ugeklickt.",
 'lockdbsuccesstext' => "D'{{SITENAME}}-Datebank gouf gespaart. <br />
 Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance-Aarbechte fäerdeg sinn.",
 'databasenotlocked' => "D'Datebank ass net gespaart.",
@@ -1575,6 +1584,10 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'tooltip-compareselectedversions' => "D'Ennerscheeder op dëser Säit tëscht den zwou gewielte Versioune weisen.",
 'tooltip-watch'                   => 'Dës Säit op är Iwwerwaachungslëscht bäisetzen',
 
+# Metadata
+'nodublincore'      => 'Dublin Core RDF Metadata ass op dësem Server ausgeschalt.',
+'nocreativecommons' => 'Creative Commons RDF Metadata ass op dësem Server ausgeschalt.',
+
 # Attribution
 'anonymous'        => 'Anonym(e) Benotzer op {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benotzer $1',
@@ -1597,6 +1610,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'infosubtitle' => 'Informatioun zur Säit',
 'numedits'     => 'Zuel vun den Ännerunge vun dëser Säit: $1',
 'numwatchers'  => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
+'numauthors'   => 'Zuel vu verschiddenen Auteuren: $1',
 
 # Math options
 'mw_math_png'    => 'Ëmmer als PNG duerstellen',

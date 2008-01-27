@@ -937,6 +937,8 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'hist'                              => 'breytingaskrá',
 'hide'                              => 'Fela',
 'show'                              => 'Sýna',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
 'boteditletter'                     => 'v',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|notandi skoðandi|$1 notendur skoðandi}}]',
 'rc_categories'                     => 'Takmark á flokkum (aðskilja með "|")',
@@ -1042,12 +1044,14 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'filerevert-submit'  => 'Taka aftur',
 
 # File deletion
-'filedelete'         => 'Eyði „$1“',
-'filedelete-legend'  => 'Eyða skrá',
-'filedelete-intro'   => "Þú ert að eyða '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Ástæða:',
-'filedelete-submit'  => 'Eyða',
-'filedelete-success' => "'''$1''' hefur verið eytt.",
+'filedelete'                  => 'Eyði „$1“',
+'filedelete-legend'           => 'Eyða skrá',
+'filedelete-intro'            => "Þú ert að eyða '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Ástæða:',
+'filedelete-submit'           => 'Eyða',
+'filedelete-success'          => "'''$1''' hefur verið eytt.",
+'filedelete-otherreason'      => 'Aðrar/fleiri ástæður:',
+'filedelete-reason-otherlist' => 'Önnur ástæða',
 
 # MIME search
 'mimesearch' => 'MIME leit',
@@ -1106,6 +1110,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 
 'withoutinterwiki'        => 'Síður án tungumálatengla',
 'withoutinterwiki-header' => 'Eftirfarandi síður tengja ekki í önnur tungumál:',
+'withoutinterwiki-submit' => 'Sýna',
 
 'fewestrevisions' => 'Greinar með fæstar breytingar',
 
@@ -1155,6 +1160,7 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 skrár héðan, svo að þær gætu komið fram á þessum lista þrátt 
 fyrir að vera í notkun.',
 'unusedcategoriestext'    => 'Þessir flokkar eru til en engar síður eða flokkar eru í þeim.',
+'pager-newer-n'           => '{{PLURAL:$1|nýrri 1|nýrri $1}}',
 
 # Book sources
 'booksources'               => 'Bókaverslanir',

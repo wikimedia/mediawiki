@@ -1092,17 +1092,23 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'filerevert-badversion'     => 'Nema prethodne lokalne inačice datoteke s zadanim datumom i vremenom.',
 
 # File deletion
-'filedelete'             => 'Izbriši $1',
-'filedelete-legend'      => 'Izbriši datoteku',
-'filedelete-intro'       => "Brišete datoteku '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Brišete inačicu \'\'\'[[Media:$1|$1]]\'\'\' od [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Komentar:',
-'filedelete-submit'      => 'Izbriši',
-'filedelete-success'     => "Datoteka '''$1''' je izbrisana.",
-'filedelete-success-old' => '<span class="plainlinks">Inačica datoteke \'\'\'[[Media:$1|$1]]\'\'\' od $3, $2 je obrisana.</span>',
-'filedelete-nofile'      => "'''$1''' ne postoji na {{SITENAME}}.",
-'filedelete-nofile-old'  => "Nema arhivirane verzije datoteke '''$1''' s zadanim parametrima.",
-'filedelete-iscurrent'   => 'Pokušavate obrisati najnoviju inačicu ove datoteke. Molimo vas da prije toga vratite na stariju inačicu.',
+'filedelete'                  => 'Izbriši $1',
+'filedelete-legend'           => 'Izbriši datoteku',
+'filedelete-intro'            => "Brišete datoteku '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Brišete inačicu \'\'\'[[Media:$1|$1]]\'\'\' od [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Komentar:',
+'filedelete-submit'           => 'Izbriši',
+'filedelete-success'          => "Datoteka '''$1''' je izbrisana.",
+'filedelete-success-old'      => '<span class="plainlinks">Inačica datoteke \'\'\'[[Media:$1|$1]]\'\'\' od $3, $2 je obrisana.</span>',
+'filedelete-nofile'           => "'''$1''' ne postoji na {{SITENAME}}.",
+'filedelete-nofile-old'       => "Nema arhivirane verzije datoteke '''$1''' s zadanim parametrima.",
+'filedelete-iscurrent'        => 'Pokušavate obrisati najnoviju inačicu ove datoteke. Molimo vas da prije toga vratite na stariju inačicu.',
+'filedelete-otherreason'      => 'Drugi/dodatni razlog:',
+'filedelete-reason-otherlist' => 'Drugi razlog',
+'filedelete-reason-dropdown'  => '*Česti razlozi brisanje
+** Kršenje autorskih prava
+** Dupla datoteka
+** Nekorištena datoteka',
 
 # MIME search
 'mimesearch'         => 'MIME tražilica',
@@ -1410,7 +1416,7 @@ Sva vremena su prema poslužiteljevom vremenu (UTC).',
 
 Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'Komentar promjene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1',
+'revertpage'                  => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
 'sessionfailure'              => 'Uočili smo problem s vašom prijavom. Zadnja naredba nije izvršena
 kako bi izbjegla zloupotreba. Molimo vas da u pregledniku pritisnete "Natrag" (Back) i ponovno učitate stranicu

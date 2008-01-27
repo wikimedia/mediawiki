@@ -1263,6 +1263,7 @@ $1 ساعة.',
 'largefileserver'             => 'حجم هذا الملف أكبر من المسموح به على هذا الخادم.',
 'emptyfile'                   => 'يبدو أن الملف الذي رفعته فارغ. قد يكون سبب ذلك خطأ في كتابة الاسم. من فضلك تأكد من أنك تريد فعلا رفع هذا الملف.',
 'fileexists'                  => 'هناك ملف موجود يحمل نفس هذا الاسم الرجاء التأكد من هذا الملف باتباع الوصلة التالية <strong><tt>$1</tt></strong> قبل القيام بتغييره.',
+'filepageexists'              => 'صفحة (ليست صورة) بهذا الاسم موجودة بالفعل، من فضلك تحقق من <strong><tt>$1</tt></strong> لو كنت غير متأكد من أنك تريد تغييرها.',
 'fileexists-extension'        => 'يوجد ملف باسم مشابه:<br />
 اسم الملف المراد رفعه: <strong><tt>$1</tt></strong><br />
 اسم الملف الموجود بالفعل: <strong><tt>$2</tt></strong><br />
@@ -1377,17 +1378,22 @@ PICT # misc.
 'filerevert-badversion'     => 'لا توجد نسخة محلية سابقة لهذا الملف بالتاريخ المعطى.',
 
 # File deletion
-'filedelete'             => 'احذف $1',
-'filedelete-legend'      => 'احذف الملف',
-'filedelete-intro'       => "أنت تحذف '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">أنت تحذف نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ [$4 $3، $2].</span>',
-'filedelete-comment'     => 'تعليق:',
-'filedelete-submit'      => 'حذف',
-'filedelete-success'     => "'''$1''' تم حذفه.",
-'filedelete-success-old' => '<span class="plainlinks">نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ $3، $2 تم حذفها.</span>',
-'filedelete-nofile'      => "'''$1''' غير موجود في {{SITENAME}}.",
-'filedelete-nofile-old'  => "لا توجد نسخة مؤرشفة من '''$1''' بالعناصر المحددة.",
-'filedelete-iscurrent'   => 'أنت تحاول حذف أحدث نسخة من هذا الملف. من فضلك استرجع لنسخة أقدم أولا.',
+'filedelete'                  => 'احذف $1',
+'filedelete-legend'           => 'احذف الملف',
+'filedelete-intro'            => "أنت تحذف '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">أنت تحذف نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ [$4 $3، $2].</span>',
+'filedelete-comment'          => 'تعليق:',
+'filedelete-submit'           => 'حذف',
+'filedelete-success'          => "'''$1''' تم حذفه.",
+'filedelete-success-old'      => '<span class="plainlinks">نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ $3، $2 تم حذفها.</span>',
+'filedelete-nofile'           => "'''$1''' غير موجود في {{SITENAME}}.",
+'filedelete-nofile-old'       => "لا توجد نسخة مؤرشفة من '''$1''' بالعناصر المحددة.",
+'filedelete-iscurrent'        => 'أنت تحاول حذف أحدث نسخة من هذا الملف. من فضلك استرجع لنسخة أقدم أولا.',
+'filedelete-otherreason'      => 'سبب إضافي/آخر:',
+'filedelete-reason-otherlist' => 'سبب آخر',
+'filedelete-reason-dropdown'  => '*أسباب الحذف الشائعة
+** خرق حقوق النشر
+** ملف مكرر',
 
 # MIME search
 'mimesearch'         => 'بحث MIME',

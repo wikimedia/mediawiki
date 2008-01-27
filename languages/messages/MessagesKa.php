@@ -7,6 +7,8 @@
  * @author Alsandro
  * @author Nike
  * @author לערי ריינהארט
+ * @author Malafaya
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -1198,7 +1200,7 @@ $NEWPAGE
 'cantrollback'                => 'შეუძლებელია უწინდელი რედაქციის აღდგენა; ის, ვინც უკანასკნელი ცვლილებები შეიტანა, ამ სტატიის ერთადერთი ავტორია.',
 'alreadyrolled'               => '[[:$1]]-ს უკანასკნელი რედაქტირების უკუქცევა შეუძლებელია [[User:$2|$2]] ([[User talk:$2|Talk]]); ვიღაცამ უკვე დაარედაქტირა ან უკუაქცია გვერდი. უკანასკნელი რედაქტორი [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'რედაქტირება განმარტებული იყო შემდეგნაირად: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია',
+'revertpage'                  => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'ჩანს, რომ პრობლემაა თქვენი რეგისტრაციის სესიისათვის;
 ეს მოქმედება შეჩერდა თქვენი სესიაში შემოჭრის თავიდან ასაცილებლად.
 გთხოვთ, დააწკაპუნოთ ღილაკს "უკან" და თავიდან ჩართოთ გვერდი, რომლიდანაც შემოხვედით და სცადოთ განმეორებით.',
@@ -1456,7 +1458,7 @@ $NEWPAGE
 'tooltip-ca-move'                 => 'ამ გვერდის გადატანა',
 'tooltip-ca-watch'                => 'დაამატეთ ეს გვერდი თქვენი კონტროლის სიას',
 'tooltip-ca-unwatch'              => 'მოხსენით ეს გვერდი თქვენი კონტროლის სიიდან',
-'tooltip-search'                  => 'ძიება {{SITENAME}} [alt-f]',
+'tooltip-search'                  => 'ძიება {{SITENAME}}',
 'tooltip-search-go'               => 'მოიძიე გვერდი ზუსტად ამ სახელით',
 'tooltip-p-logo'                  => 'მთავარი გვერდი',
 'tooltip-n-mainpage'              => 'იხილეთ მთავარი გვერდი',

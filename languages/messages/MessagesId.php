@@ -1234,17 +1234,23 @@ Log penghapusan berkas adalah sebagai berikut:",
 'filerevert-badversion'     => 'Tidak ada versi lokal terdahulu dari berkas ini dengan stempel waktu yang dimaksud.',
 
 # File deletion
-'filedelete'             => 'Menghapus $1',
-'filedelete-legend'      => 'Menghapus berkas',
-'filedelete-intro'       => "Anda menghapus '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Anda menghapus versi \'\'\'[[Media:$1|$1]]\'\'\' hingga [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Komentar:',
-'filedelete-submit'      => 'Hapus',
-'filedelete-success'     => "'''$1''' telah dihapus.",
-'filedelete-success-old' => '<span class="plainlinks">Versi \'\'\'[[Media:$1|$1]]\'\'\' pada $3, $2 telah dihapus.</span>',
-'filedelete-nofile'      => "'''$1''' tak ditemukan pada situs ini.",
-'filedelete-nofile-old'  => "Tak ditemukan arsip versi dari '''$1''' dengan atribut yang diberikan.",
-'filedelete-iscurrent'   => 'Anda mencoba menghapus versi terakhir berkas ini. Harap kembalikan dulu ke versi lama.',
+'filedelete'                  => 'Menghapus $1',
+'filedelete-legend'           => 'Menghapus berkas',
+'filedelete-intro'            => "Anda menghapus '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Anda menghapus versi \'\'\'[[Media:$1|$1]]\'\'\' hingga [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Komentar:',
+'filedelete-submit'           => 'Hapus',
+'filedelete-success'          => "'''$1''' telah dihapus.",
+'filedelete-success-old'      => '<span class="plainlinks">Versi \'\'\'[[Media:$1|$1]]\'\'\' pada $3, $2 telah dihapus.</span>',
+'filedelete-nofile'           => "'''$1''' tak ditemukan pada situs ini.",
+'filedelete-nofile-old'       => "Tak ditemukan arsip versi dari '''$1''' dengan atribut yang diberikan.",
+'filedelete-iscurrent'        => 'Anda mencoba menghapus versi terakhir berkas ini. Harap kembalikan dulu ke versi lama.',
+'filedelete-otherreason'      => 'Alasan lain:',
+'filedelete-reason-otherlist' => 'Alasan lain',
+'filedelete-reason-dropdown'  => '*Alasan penghapusan
+** Pelanggaran hak cipta
+** Berkas duplikat
+** [[Istimewa:Berkastakdigunakan|Berkas tidak digunakan]]',
 
 # MIME search
 'mimesearch'         => 'Pencarian MIME',
@@ -1297,6 +1303,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 
 'withoutinterwiki'        => 'Halaman tanpa interwiki',
 'withoutinterwiki-header' => 'Halaman-halaman berikut tidak memiliki pranala ke versi dalam bahasa lain:',
+'withoutinterwiki-submit' => 'Tampilkan',
 
 'fewestrevisions' => 'Artikel dengan perubahan tersedikit',
 
@@ -1351,6 +1358,8 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'unusedcategoriestext'    => 'Kategori berikut ada walaupun tidak ada artikel atau kategori lain yang menggunakannya.',
 'notargettitle'           => 'Tidak ada sasaran',
 'notargettext'            => 'Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.',
+'pager-newer-n'           => '{{PLURAL:$1|1 lebih baru|$1 lebih baru}}',
+'pager-older-n'           => '{{PLURAL:$1|1 lebih lama|$1 lebih lama}}',
 
 # Book sources
 'booksources'               => 'Sumber buku',
@@ -1359,6 +1368,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'booksources-text'          => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
 
 'categoriespagetext' => 'Kategori-kategori berikut ada dalam wiki.',
+'data'               => 'Data',
 'userrights'         => 'Manajemen hak pengguna',
 'groups'             => 'Kelompok pengguna',
 'alphaindexline'     => '$1 ke $2',
@@ -1510,6 +1520,8 @@ Umpan balik dan bantuan lanjutan:
 ** Permintaan pengguna
 ** Pelanggaran hak cipta
 ** Vandalisme',
+'delete-toobig'               => 'Halaman ini memiliki sejarah penyuntingan yang panjang yaitu melebihi $1 revisi. Penghapusan halaman dengan sejarah penyuntingan yang banyak tidak diperbolehkan untuk mencegah kerusakan di {{SITENAME}}.',
+'delete-warning-toobig'       => 'Halaman ini memiliki sejarah penyuntingan yang panjang yaitu melebihi $1 revisi. Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{SITENAME}}.',
 'rollback'                    => 'Kembalikan suntingan',
 'rollback_short'              => 'Kembalikan',
 'rollbacklink'                => 'kembalikan',
@@ -1545,6 +1557,7 @@ Umpan balik dan bantuan lanjutan:
 'protect-summary-cascade'     => 'runtun',
 'protect-expiring'            => 'kadalawarsa $1 (UTC)',
 'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun ).',
+'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
 'restriction-type'            => 'Perlindungan:',
 'restriction-level'           => 'Tingkatan:',
 'minimum-size'                => 'Ukuran minimum',
@@ -1552,8 +1565,9 @@ Umpan balik dan bantuan lanjutan:
 'pagesize'                    => '(bita)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Penyuntingan',
-'restriction-move' => 'Pemindahan',
+'restriction-edit'   => 'Penyuntingan',
+'restriction-move'   => 'Pemindahan',
+'restriction-create' => 'Buat',
 
 # Restriction levels
 'restriction-level-sysop'         => 'perlindungan penuh',

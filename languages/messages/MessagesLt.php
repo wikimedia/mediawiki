@@ -525,15 +525,15 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'subject'                   => 'Tema/antraštė',
 'minoredit'                 => 'Tai smulkus pataisymas',
 'watchthis'                 => 'Stebėti šį puslapį',
-'savearticle'               => 'Išsaugoti puslapį',
+'savearticle'               => 'Įrašyti puslapį',
 'preview'                   => 'Peržiūra',
 'showpreview'               => 'Rodyti peržiūrą',
 'showlivepreview'           => 'Tiesioginė peržiūra',
 'showdiff'                  => 'Rodyti skirtumus',
 'anoneditwarning'           => "'''Dėmesio:''' Jūs nesate prisijungęs. Jūsų IP adresas bus įrašytas į šio puslapio istoriją.",
-'missingsummary'            => "'''Priminimas:''' Jūs nenurodėte  keitimo komentaro. Jei vėl paspausite Saugoti, jūsų keitimas bus išsaugotas be jo.",
+'missingsummary'            => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
 'missingcommenttext'        => 'Prašome įvesti komentarą.',
-'missingcommentheader'      => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Saugoti, jūsų keitimas bus išsaugotas be jo.",
+'missingcommentheader'      => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
 'summary-preview'           => 'Komentaro peržiūra',
 'subject-preview'           => 'Skyrelio/antraštės peržiūra',
 'blockedtitle'              => 'Naudotojas yra užblokuotas',
@@ -575,7 +575,7 @@ Jūsų blokavimo ID yra $5. Prašome nurodyti šį ID visuose prašymuose, kuriu
 'confirmedittitle'          => 'Reikalingas el. pašto patvirtinimas, kad redaguotumėte',
 'confirmedittext'           => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius. Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[{{ns:special}}:Preferences|naudotojo nustatymus]].',
 'nosuchsectiontitle'        => 'Nėra tokio skyriaus',
-'nosuchsectiontext'         => 'Jūs mėginote redaguoti skyrių, kuris neegzistuoja. Kadangi nėra skyriaus „$1“, tai nėra kur išsaugoti jūsų keitimo.',
+'nosuchsectiontext'         => 'Jūs mėginote redaguoti skyrių, kuris neegzistuoja. Kadangi nėra skyriaus „$1“, tai nėra kur įrašyti jūsų keitimo.',
 'loginreqtitle'             => 'Reikalingas prisijungimas',
 'loginreqlink'              => 'prisijungti',
 'loginreqpagetext'          => 'Jums reikia $1, kad matytumėte kitus puslapius.',
@@ -1086,17 +1086,22 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'filerevert-badversion'     => 'Nėra jokių ankstesnių vietinių šio failo versijų su pateiktu laiku.',
 
 # File deletion
-'filedelete'             => 'Trinti $1',
-'filedelete-legend'      => 'Trinti failą',
-'filedelete-intro'       => "Jūs trinate '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Jūs trinate \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3, $2] versiją.</span>',
-'filedelete-comment'     => 'Komentaras:',
-'filedelete-submit'      => 'Trinti',
-'filedelete-success'     => "'''$1''' buvo ištrintas.",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' $3, $2 versija buvo ištrinta.</span>',
-'filedelete-nofile'      => "Šioje svetainėje '''$1''' neegzistuoja.",
-'filedelete-nofile-old'  => "Nėra jokios '''$1''' suarchyvuotos versijos su nurodytais atributais.",
-'filedelete-iscurrent'   => 'Jūs bandote ištrinti pačią naujiausią šio failo versiją. Pirmiausia prašome grąžinti į senesnę versiją.',
+'filedelete'                  => 'Trinti $1',
+'filedelete-legend'           => 'Trinti failą',
+'filedelete-intro'            => "Jūs trinate '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Jūs trinate \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3, $2] versiją.</span>',
+'filedelete-comment'          => 'Trynimo priežastis:',
+'filedelete-submit'           => 'Trinti',
+'filedelete-success'          => "'''$1''' buvo ištrintas.",
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' $3, $2 versija buvo ištrinta.</span>',
+'filedelete-nofile'           => "Šioje svetainėje '''$1''' neegzistuoja.",
+'filedelete-nofile-old'       => "Nėra jokios '''$1''' suarchyvuotos versijos su nurodytais atributais.",
+'filedelete-iscurrent'        => 'Jūs bandote ištrinti pačią naujiausią šio failo versiją. Pirmiausia prašome grąžinti į senesnę versiją.',
+'filedelete-otherreason'      => 'Kita/papildoma priežastis:',
+'filedelete-reason-otherlist' => 'Kita priežastis',
+'filedelete-reason-dropdown'  => '*Dažnos trynimo priežastys
+** Autorystės teisių pažeidimai
+** Pasikartojantis failas',
 
 # MIME search
 'mimesearch'         => 'MIME paieška',
@@ -1804,7 +1809,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-n-portal'                => 'Apie projektą, ką galima daryti, kur ką rasti',
 'tooltip-n-currentevents'         => 'Raskite naujausią informaciją',
 'tooltip-n-recentchanges'         => 'Paskutinių keitimų sąrašas šiame projekte.',
-'tooltip-n-randompage'            => 'Atidaryti atsitiktinį puslapį',
+'tooltip-n-randompage'            => 'Įkelti atsitiktinį puslapį',
 'tooltip-n-help'                  => 'Vieta, kur rasite rūpimus atsakymus.',
 'tooltip-n-sitesupport'           => 'Padėkite mums',
 'tooltip-t-whatlinkshere'         => 'Puslapių sąrašas, rodančių į čia',
@@ -2211,7 +2216,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t.y. pusla
 'exif-gpsdirection-m' => 'Magnetinė kryptis',
 
 # External editor support
-'edit-externally'      => 'Atidaryti išoriniame redaktoriuje',
+'edit-externally'      => 'Atverti išoriniame redaktoriuje',
 'edit-externally-help' => 'Norėdami gauti daugiau informacijos, žiūrėkite [http://meta.wikimedia.org/wiki/Help:External_editors diegimo instrukcijas].',
 
 # 'all' in various places, this might be different for inflected languages
@@ -2251,7 +2256,7 @@ el. pašto paslaugas projekte {{SITENAME}}, atverkite šią nuorodą savo naršy
 
 $3
 
-Jei naudotoją registravote *ne* jūs, neatidarykite šio adreso. Patvirtinimo kodas
+Jei naudotoją registravote *ne* jūs, neatverkite šio adreso. Patvirtinimo kodas
 baigs galioti $4.',
 
 # Scary transclusion

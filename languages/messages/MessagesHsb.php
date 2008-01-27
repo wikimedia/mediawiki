@@ -1129,17 +1129,22 @@ PICT # misc.
 'filerevert-badversion'     => 'W zapodatym času žana wersija dataje njeje.',
 
 # File deletion
-'filedelete'             => '„$1“ wušmórnyć',
-'filedelete-legend'      => 'Wušmórnju dataju',
-'filedelete-intro'       => "Wušmórnješ '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Wušmórnješ wersiju \'\'\'[[Media:$1|$1]]\'\'\' wot [$4 wot $2, $3 hodź].</span>',
-'filedelete-comment'     => 'Přičina:',
-'filedelete-submit'      => 'Wušmórnyć',
-'filedelete-success'     => "Strona '''„$1“''' bu wušmórnjena.",
-'filedelete-success-old' => '<span class="plainlinks">Wersija \'\'\'[[Media:$1|$1]]\'\'\' wot $2, $3 hodź. bu zničena.</span>',
-'filedelete-nofile'      => "'''„$1“''' njeeksistuje na tutym webowym sydle.",
-'filedelete-nofile-old'  => "Njeje žana wersija '''„$1“''' wot $2, $3 hodźin.",
-'filedelete-iscurrent'   => 'Spytaš najnowšu wersiju dataje wušmórnyć. Prošu cofń do toho na staršu wersiju.',
+'filedelete'                  => '„$1“ wušmórnyć',
+'filedelete-legend'           => 'Wušmórnju dataju',
+'filedelete-intro'            => "Wušmórnješ '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Wušmórnješ wersiju \'\'\'[[Media:$1|$1]]\'\'\' wot [$4 wot $2, $3 hodź].</span>',
+'filedelete-comment'          => 'Přičina:',
+'filedelete-submit'           => 'Wušmórnyć',
+'filedelete-success'          => "Strona '''„$1“''' bu wušmórnjena.",
+'filedelete-success-old'      => '<span class="plainlinks">Wersija \'\'\'[[Media:$1|$1]]\'\'\' wot $2, $3 hodź. bu zničena.</span>',
+'filedelete-nofile'           => "'''„$1“''' njeeksistuje na tutym webowym sydle.",
+'filedelete-nofile-old'       => "Njeje žana wersija '''„$1“''' wot $2, $3 hodźin.",
+'filedelete-iscurrent'        => 'Spytaš najnowšu wersiju dataje wušmórnyć. Prošu cofń do toho na staršu wersiju.',
+'filedelete-otherreason'      => 'Druha/přidatna přičina:',
+'filedelete-reason-otherlist' => 'Druha přičina',
+'filedelete-reason-dropdown'  => '*Powšitkowne přičina za wušmórnjenja
+** Zranjenje awtorksich prawow
+** Dwójna dataja',
 
 # MIME search
 'mimesearch'         => 'Pytanje po družinje MIME',

@@ -664,7 +664,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'summary-preview'           => 'Náhled shrnutí',
 'subject-preview'           => 'Náhled předmětu/nadpisu',
 'blockedtitle'              => 'Uživatel zablokován',
-'blockedtext'               => "== Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace. ==
+'blockedtext'               => "<big>''' Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''</big>
 
 Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;uživatelským jménem „$1“. Jako důvod blokování bylo uvedeno:
 
@@ -1118,6 +1118,7 @@ váš uživatelský účet zablokován.',
 'largefileserver'             => 'Velikost tohoto souboru překračuje limit nastavený na serveru.',
 'emptyfile'                   => 'Soubor, který jste vložili, se zdá být prázdný. Mohl to způsobit překlep v názvu souboru. Prosím zkontrolujte, zda jste opravdu chtěli vložit tento soubor.',
 'fileexists'                  => 'Soubor s tímto jménem již existuje, prosím podívejte se na <strong><tt>$1</tt></strong>, pokud nevíte jistě, zda chcete tento soubor nahradit.',
+'filepageexists'              => 'Stránka (nikoliv soubor) s tímto jménem již existuje, prosím podívejte se na <strong><tt>$1</tt></strong> pokud nevíte jistě, zda to chcete nahradit.',
 'fileexists-extension'        => 'Již existuje soubor s podobným jménem:<br />
 Jméno načítaného souboru: <strong><tt>$1</tt></strong><br />
 Jméno existujícího souboru: <strong><tt>$2</tt></strong><br />
@@ -1218,17 +1219,22 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'filerevert-badversion'     => 'Není dostupná předchozí verze tohoto souboru s odpovídající časovou značkou.',
 
 # File deletion
-'filedelete'             => 'Smazání souboru $1',
-'filedelete-legend'      => 'Smazat soubor',
-'filedelete-intro'       => "Chystáte se smazat '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Chystáte se smazat verzi souboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3 $2].</span>',
-'filedelete-comment'     => 'Zdůvodnění:',
-'filedelete-submit'      => 'Smazat',
-'filedelete-success'     => "Soubor '''$1''' byl smazán.",
-'filedelete-success-old' => '<span class="plainlinks">Verze souboru \'\'\'[[Media:$1|$1]]\'\'\' z $3 $2 byla smazána.</span>',
-'filedelete-nofile'      => "Soubor '''$1''' na {{grammar:6sg|{{SITENAME}}}} neexistuje.",
-'filedelete-nofile-old'  => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
-'filedelete-iscurrent'   => 'Pokoušíte se smazat současnou verzi souboru. Nejprve navraťte starší verzi souboru.',
+'filedelete'                  => 'Smazání souboru $1',
+'filedelete-legend'           => 'Smazat soubor',
+'filedelete-intro'            => "Chystáte se smazat '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Chystáte se smazat verzi souboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3 $2].</span>',
+'filedelete-comment'          => 'Důvod smazání:',
+'filedelete-submit'           => 'Smazat',
+'filedelete-success'          => "Soubor '''$1''' byl smazán.",
+'filedelete-success-old'      => '<span class="plainlinks">Verze souboru \'\'\'[[Media:$1|$1]]\'\'\' z $3 $2 byla smazána.</span>',
+'filedelete-nofile'           => "Soubor '''$1''' na {{grammar:6sg|{{SITENAME}}}} neexistuje.",
+'filedelete-nofile-old'       => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
+'filedelete-iscurrent'        => 'Pokoušíte se smazat současnou verzi souboru. Nejprve navraťte starší verzi souboru.',
+'filedelete-otherreason'      => 'Jiný či další důvod:',
+'filedelete-reason-otherlist' => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
+'filedelete-reason-dropdown'  => '*Obvyklé důvody smazání
+** Porušení autorských práv
+** Nadbytečná kopie',
 
 # MIME search
 'mimesearch'         => 'Hledání podle MIME typu',

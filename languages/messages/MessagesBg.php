@@ -1224,17 +1224,22 @@ $1',
 'filerevert-success'        => '<span class="plainlinks">Файлът \'\'\'[[Media:$1|$1]]\'\'\' беше възвърнат към [$4 версия от $3, $2].</span>',
 
 # File deletion
-'filedelete'             => 'Изтриване на $1',
-'filedelete-legend'      => 'Изтриване на файл',
-'filedelete-intro'       => "Изтривате '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Изтривате версията на \'\'\'[[Media:$1|$1]]\'\'\' към [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Коментар:',
-'filedelete-submit'      => 'Изтриване',
-'filedelete-success'     => "Файлът '''$1''' беше изтрит.",
-'filedelete-success-old' => '<span class="plainlinks">Версията на \'\'\'[[Media:$1|$1]]\'\'\' към $3, $2 е била изтрита.</span>',
-'filedelete-nofile'      => "Файлът '''$1''' не съществува в {{SITENAME}}.",
-'filedelete-nofile-old'  => "Не съществува архивна версия на '''$1''' с указаните параметри.",
-'filedelete-iscurrent'   => 'Опитвате се да изтриете последната версия на този файл. Първо направете възвръщане към по-стара версия.',
+'filedelete'                  => 'Изтриване на $1',
+'filedelete-legend'           => 'Изтриване на файл',
+'filedelete-intro'            => "Изтривате '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Изтривате версията на \'\'\'[[Media:$1|$1]]\'\'\' към [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Коментар:',
+'filedelete-submit'           => 'Изтриване',
+'filedelete-success'          => "Файлът '''$1''' беше изтрит.",
+'filedelete-success-old'      => '<span class="plainlinks">Версията на \'\'\'[[Media:$1|$1]]\'\'\' към $3, $2 е била изтрита.</span>',
+'filedelete-nofile'           => "Файлът '''$1''' не съществува в {{SITENAME}}.",
+'filedelete-nofile-old'       => "Не съществува архивна версия на '''$1''' с указаните параметри.",
+'filedelete-iscurrent'        => 'Опитвате се да изтриете последната версия на този файл. Първо направете възвръщане към по-стара версия.',
+'filedelete-otherreason'      => 'Друга/допълнителна причина:',
+'filedelete-reason-otherlist' => 'Друга причина',
+'filedelete-reason-dropdown'  => '*Общи причини за изтриване
+** Нарушение на авторските права
+** Файлът се повтаря',
 
 # MIME search
 'mimesearch'         => 'MIME-търсене',
@@ -1812,6 +1817,7 @@ $1',
 'export-addcattext' => 'Добавяне на страници от категория:',
 'export-addcat'     => 'Добавяне',
 'export-download'   => 'Съхраняване като файл',
+'export-templates'  => 'Включване на шаблоните',
 
 # Namespace 8 related
 'allmessages'               => 'Системни съобщения',
