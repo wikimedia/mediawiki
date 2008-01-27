@@ -1360,6 +1360,7 @@ function do_postgres_updates() {
 		array("recentchanges", "rc_old_len",           "INTEGER"),
 		array("recentchanges", "rc_params",            "TEXT"),
 		array("revision",      "rev_len",              "INTEGER"),
+		array("revision",      "rev_deleted",          "INTEGER NOT NULL DEFAULT 0"),
 	);
 
 
