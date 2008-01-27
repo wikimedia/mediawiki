@@ -1032,6 +1032,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'largefileserver'             => 'Tập tin này quá lớn so với khả năng phục vụ của máy chủ.',
 'emptyfile'                   => 'Tập tin bạn vừa mới truyền lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
 'fileexists'                  => 'Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại <strong><tt>$1</tt></strong> nếu bạn không chắc bạn có muốn thay đổi nó hay không.',
+'filepageexists'              => 'Đã có một trang (không phải trang chứa hình) tồn tại ở tên mới, xin hãy đánh dấu chọn <strong><tt>$1</tt></strong> nếu bạn không chắc chắn mình có muốn đổi tên hay không.',
 'fileexists-extension'        => 'Hiện có một tập tin trùng tên:<br />
 Tên tập tin đang tải lên: <strong><tt>$1</tt></strong><br />
 Tên tập tin có từ trước: <strong><tt>$2</tt></strong><br />
@@ -1146,17 +1147,22 @@ PICT # khác
 'filerevert-badversion'     => 'Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.',
 
 # File deletion
-'filedelete'             => 'Xóa $1',
-'filedelete-legend'      => 'Xóa tập tin',
-'filedelete-intro'       => "Bạn đang xóa '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Lý do:',
-'filedelete-submit'      => 'Xóa',
-'filedelete-success'     => "'''$1''' đã bị xóa.",
-'filedelete-success-old' => '<span class="plainlinks">Phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc $3, $2 đã bị xóa.</span>',
-'filedelete-nofile'      => "'''$1''' không tồn tại trên {{SITENAME}}.",
-'filedelete-nofile-old'  => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
-'filedelete-iscurrent'   => 'Bạn đang cố xóa phiên bản mới nhất của tập tin này. Xin hãy lui tập tin về một phiên bản cũ hơn đã.',
+'filedelete'                  => 'Xóa $1',
+'filedelete-legend'           => 'Xóa tập tin',
+'filedelete-intro'            => "Bạn đang xóa '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Lý do:',
+'filedelete-submit'           => 'Xóa',
+'filedelete-success'          => "'''$1''' đã bị xóa.",
+'filedelete-success-old'      => '<span class="plainlinks">Phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc $3, $2 đã bị xóa.</span>',
+'filedelete-nofile'           => "'''$1''' không tồn tại trên {{SITENAME}}.",
+'filedelete-nofile-old'       => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
+'filedelete-iscurrent'        => 'Bạn đang cố xóa phiên bản mới nhất của tập tin này. Xin hãy lui tập tin về một phiên bản cũ hơn đã.',
+'filedelete-otherreason'      => 'Lý do bổ sung:',
+'filedelete-reason-otherlist' => 'Lý do khác',
+'filedelete-reason-dropdown'  => '*Những lý do xóa thường gặp
+** Vi phạm bản quyền
+** Tập tin trùng lắp',
 
 # MIME search
 'mimesearch'         => 'Tìm kiếm theo định dạng',
@@ -1348,11 +1354,11 @@ tại tùy chọn cá nhân, biểu mẫu dưới đây sẽ cho bạn gửi th�
 'watchnologin'         => 'Chưa đăng nhập',
 'watchnologintext'     => 'Bạn phải [[Special:Userlogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addedwatch'           => 'Đã thêm vào danh sách theo dõi',
-'addedwatchtext'       => 'Trang "$1" đã được cho vào [[Đặc_biệt:Watchlist|danh sách theo dõi]].
-Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>in đậm</b> trong [[Đặc_biệt:Recentchanges|danh sách các thay đổi mới]].
+'addedwatchtext'       => 'Trang "$1" đã được cho vào [[Special:Watchlist|danh sách theo dõi]].
+Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:Recentchanges|danh sách các thay đổi mới]].
 <p>Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
 'removedwatch'         => 'Đã ra khỏi danh sách theo dõi',
-'removedwatchtext'     => 'Trang « $1 » đã ra khỏi danh sách theo dõi.',
+'removedwatchtext'     => 'Trang "[[:$1]]" đã được đưa ra khỏi danh sách theo dõi.',
 'watch'                => 'Theo dõi',
 'watchthispage'        => 'Theo dõi trang này',
 'unwatch'              => 'Ngừng theo dõi',
@@ -1818,6 +1824,10 @@ Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[S
 'importuploaderrorsize'      => 'Không thể tải tập tin nhập trang. Tập tin lớn hơn kích thước cho phép tải lên.',
 'importuploaderrorpartial'   => 'Không thể tải tập tin nhập trang. Tập tin mới chỉ tải lên được một phần.',
 'importuploaderrortemp'      => 'Không thể tải tập tin nhập trang. Thiếu thư mục tạm.',
+'import-parse-failure'       => 'Không thể phân tích tập tin nhập XML',
+'import-noarticle'           => 'Không có trang nào để nhập cả!',
+'import-nonewrevisions'      => 'Tất cả các phiên bản đều đã được nhập trước đây.',
+'xml-error-string'           => '$1 tại dòng $2, cột $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Nhật trình nhập trang',

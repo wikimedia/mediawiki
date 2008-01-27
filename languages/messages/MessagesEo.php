@@ -485,6 +485,7 @@ Vi eblus ignori cxi mesagxon, se cxi konto estis kreita erare.',
 'resetpass_success'       => 'Via pasvorto estis sukcese sxangxita! Nun ensalutanta vin...',
 'resetpass_bad_temporary' => 'Nevalida provizora pasvorto. Vi versxajne jam sukcese sxangxis vian pasvorton aux petis novan provizoran pasvorton.',
 'resetpass_forbidden'     => 'Ne eblas sxangxi pasvortojn cxe {{SITENAME}}',
+'resetpass_missing'       => 'Mankas formularaj datumoj.',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasa teksto',
@@ -721,6 +722,9 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'revdelete-hide-image'        => 'Kaŝu dosier-enhavon',
 'revdelete-unsuppress'        => 'Forigu limigojn al restarigitaj versioj',
 'revdelete-log'               => 'Loglibra komento:',
+'revdelete-submit'            => 'Apliku al la selektita versio',
+'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
+'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
 
 # Diffs
 'history-title'           => 'Redakto-historio de "$1"',

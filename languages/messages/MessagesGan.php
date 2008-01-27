@@ -7,6 +7,7 @@
  * @author Nike
  * @author Siebrand
  * @author SPQRobin
+ * @author Vipuser
  */
 
 
@@ -67,7 +68,7 @@ $messages = array(
 'thursday'      => '禮拜四',
 'friday'        => '禮拜五',
 'saturday'      => '禮拜六',
-'sun'           => '禮拜日',
+'sun'           => '禮拜天',
 'mon'           => '禮拜一',
 'tue'           => '禮拜二',
 'wed'           => '禮拜三',
@@ -251,6 +252,9 @@ $messages = array(
 'restorelink'             => '$1隻拕刪吥嗰版本',
 'feedlinks'               => '鎖定:',
 'feed-invalid'            => '冇用嗰鎖定類型。',
+'site-rss-feed'           => '$1嗰RSS訊息',
+'site-atom-feed'          => '$1嗰Atom訊息',
+'page-rss-feed'           => '"$1"嗰RSS訊息',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文章',
@@ -469,6 +473,7 @@ $2',
 注意嗰係話伓定倷冇"e-mail箇隻用戶"功能，因為倷還冇到[[Special:Preferences|用戶設置]]有隻註冊email地址，更加倷冇因為用佢拕封過。
 
 倷嗰封鎖ID係$5。請莫管到哪首都標到佢。',
+'blockednoreason'           => '冇哇理由',
 'blockedoriginalsource'     => "底下係'''$1'''嗰原始碼:",
 'blockededitsource'         => "底下係倷對'''$1'''嗰'''編輯'''內容:",
 'whitelistedittitle'        => '登入後才編得正',
@@ -1177,6 +1182,8 @@ $NEWPAGE
 'deletionlog'                 => '刪除日誌',
 'reverted'                    => '恢復到早先嗰版本',
 'deletecomment'               => '刪除原因',
+'deleteotherreason'           => '別嗰/附加理由:',
+'deletereasonotherlist'       => '別嗰理由',
 'rollback'                    => '還原修改',
 'rollback_short'              => '還原',
 'rollbacklink'                => '還原',
@@ -1186,7 +1193,7 @@ $NEWPAGE
 
 最晏編輯人: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本',
+'revertpage'                  => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '返回由$1嗰編輯；恢復到$2嗰最末一隻版本。',
 'sessionfailure'              => '倷嗰登入好像有嚸問題，為到防範未然，箇隻動作拕取消嘞。
 
@@ -1218,6 +1225,7 @@ $NEWPAGE
 'protect-summary-cascade'     => '聯鎖',
 'protect-expiring'            => '$1 (UTC)到期',
 'protect-cascade'             => '保護箇頁含到嗰頁面 (連鎖保護)',
+'protect-cantedit'            => '倷改伓正箇頁嗰保護程度，因為倷冇搦到編輯授權。',
 'restriction-type'            => '許可權:',
 'restriction-level'           => '限制級別:',
 'minimum-size'                => '最細碼子',
@@ -1375,6 +1383,7 @@ $NEWPAGE
 'ipb_already_blocked'         => '鎖到嘞"$1"',
 'ipb_cant_unblock'            => '錯誤: 冇發現Block ID $1。箇隻IP話伓定拕解封嘍。',
 'ip_range_invalid'            => '冇用嗰IP範圍。',
+'blockme'                     => '封鎖我',
 'proxyblocker'                => '代理封鎖器',
 'proxyblockreason'            => '倷嗰IP係一隻公開嗰代理，佢拕封到嘞。請聯絡倷嗰Internet服務提供商或技術幫助再告誦佢俚箇隻嚴重嗰安全問題。',
 'proxyblocksuccess'           => '抚正囉。',
@@ -1451,6 +1460,7 @@ $NEWPAGE
 'export-addcattext' => '從分類裡頭加進頁面:',
 'export-addcat'     => '加入',
 'export-download'   => '提供一隻檔案去另存',
+'export-templates'  => '包括模板',
 
 # Namespace 8 related
 'allmessages'               => '系統消息',
@@ -1492,6 +1502,7 @@ $NEWPAGE
 'importhistoryconflict'      => '挭過仗嗰修改歷史(之前就話伓定導過箇隻頁面)',
 'importnosources'            => '跨Wiki導入源冇定義，還伓準直接嗰歷史上傳。',
 'importnofile'               => '冇上傳導入檔案。',
+'import-noarticle'           => '冇得頁面導入！',
 
 # Import log
 'importlogpage'                    => '導入日誌',
@@ -1669,6 +1680,7 @@ $1',
 會考慮單列到嗰項目（以*開頭嗰項目）。第一隻連結非要連到隻壞圖。之後同一行嗰連結會考慮係特殊，也就係幅圖都能到哪一篇文章同時顯示得正。',
 
 # Metadata
+'metadata'          => '元數據',
 'metadata-help'     => '箇隻檔案含到額外嗰信息。噉可能係數碼相機或掃描儀扤得。 如果改嘞箇隻檔嗰源檔案，佢嗰資料伓見得會同改過後一樣。',
 'metadata-expand'   => '顯到詳細資料',
 'metadata-collapse' => '弆到詳細資料',
@@ -1999,6 +2011,7 @@ $1',
 'searchnamed'      => "尋叫''$1''嗰文章。",
 'articletitles'    => '以"$1"開頭嗰文章',
 'hideresults'      => '弆到嗰結果',
+'useajaxsearch'    => '用 AJAX 尋',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← 上頁',
@@ -2055,5 +2068,8 @@ $1',
 'watchlisttools-view' => '眵吖相關更改',
 'watchlisttools-edit' => '眵吖同到編寫監視列表',
 'watchlisttools-raw'  => '編寫原始監視列表',
+
+# Core parser functions
+'unknown_extension_tag' => '不曉得個擴展標籤 "$1"',
 
 );

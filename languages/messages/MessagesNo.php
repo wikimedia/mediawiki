@@ -1019,6 +1019,7 @@ For å lenke direkte til bildet, skriv:
 'largefileserver'             => 'Denne fila er større enn det tjeneren er konfigurert til å tillate.',
 'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
 'fileexists'                  => 'Ei fil med dette navnet finnes allerede. Sjekk $1 hvis du ikke er sikker på at du vil forandre den.',
+'filepageexists'              => 'En side (ikke bilde) med dette navnet finnes allerede, sjekk <strong><tt>$1</tt></strong> om du ikke er sikker på om du vil endre den.',
 'fileexists-extension'        => 'En fil med et lignende navn finnes:<br />
 Navnet på din fil: <strong><tt>$1</tt></strong><br />
 Navn på eksisterende fil: <strong><tt>$2</tt></strong><br />
@@ -1131,17 +1132,22 @@ PICT # div.
 'filerevert-badversion'     => 'Det er ingen tidligere lokal versjon av denne filen med det gitte tidstrykket.',
 
 # File deletion
-'filedelete'             => 'Slett $1',
-'filedelete-legend'      => 'Slett fil',
-'filedelete-intro'       => "Du sletter '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Du sletter versjonen av \'\'\'[[Media:$1|$1]]\'\'\' à [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Kommentar:',
-'filedelete-submit'      => 'Slett',
-'filedelete-success'     => "'''$1''' har blitt slettet.",
-'filedelete-success-old' => '<span class="plainlinks">Versjonen av \'\'\'[[Media:$1|$1]]\'\'\' à $3, $2 har blitt slettet.</span>',
-'filedelete-nofile'      => "'''$1''' eksisterer ikke på {{SITENAME}}.",
-'filedelete-nofile-old'  => "Det er ingen arkivert versjon av '''$1''' med de gitte attributtene.",
-'filedelete-iscurrent'   => 'Du forsøker å slette den nyeste versjonen av denne filen. Vennligst tilbakestill til en eldre versjon først.',
+'filedelete'                  => 'Slett $1',
+'filedelete-legend'           => 'Slett fil',
+'filedelete-intro'            => "Du sletter '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Du sletter versjonen av \'\'\'[[Media:$1|$1]]\'\'\' à [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Kommentar:',
+'filedelete-submit'           => 'Slett',
+'filedelete-success'          => "'''$1''' har blitt slettet.",
+'filedelete-success-old'      => '<span class="plainlinks">Versjonen av \'\'\'[[Media:$1|$1]]\'\'\' à $3, $2 har blitt slettet.</span>',
+'filedelete-nofile'           => "'''$1''' eksisterer ikke på {{SITENAME}}.",
+'filedelete-nofile-old'       => "Det er ingen arkivert versjon av '''$1''' med de gitte attributtene.",
+'filedelete-iscurrent'        => 'Du forsøker å slette den nyeste versjonen av denne filen. Vennligst tilbakestill til en eldre versjon først.',
+'filedelete-otherreason'      => 'Annen grunn:',
+'filedelete-reason-otherlist' => 'Annen grunn',
+'filedelete-reason-dropdown'  => '*Vanlige slettingsgrunner
+** Opphavsrettsbrudd
+** Duplikatfil',
 
 # MIME search
 'mimesearch'         => 'MIME-søk',
@@ -1424,7 +1430,7 @@ Tilbakemeldinger og videre assistanse:
 'cantrollback'                => 'Kan ikke fjerne redigering; den siste brukeren er den eneste forfatteren.',
 'alreadyrolled'               => 'Kan ikke fjerne den siste redigeringen på [[$1]] av [[User:$2|$2]] ([[User talk:$2|diskusjon]]); en annen har allerede redigert siden eller fjernet redigeringen. Den siste redigeringen er foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]]).',
 'editcomment'                 => "Redigeringskommentaren var: «''$1''»", # only shown if there is an edit comment
-'revertpage'                  => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]] · [[Special:Blockip/$2|blokker]]) til siste versjon av $1',
+'revertpage'                  => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]] · [[Special:Blockip/$2|blokker]]) til siste versjon av $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Tilbakestilte endringer av $1; endret til siste versjon av $2.',
 'sessionfailure'              => "Det ser ut til å være et problem med innloggingen din, og den har blitt avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
 'protectlogpage'              => 'Låsingslogg',
@@ -1752,13 +1758,17 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'importcantopen'             => 'Kunne ikke åpne importfil',
 'importbadinterwiki'         => 'Ugyldig interwikilenke',
 'importnotext'               => 'Tom eller ingen tekst',
-'importsuccess'              => 'Import lyktes!',
+'importsuccess'              => 'Importering ferdig.',
 'importhistoryconflict'      => 'Motstridende revisjoner finnes (siden kan ha blitt importert tidligere)',
 'importnosources'            => 'Ingen transwikiimportkilder er definert, og direkte historikkimporteringer er slått av.',
 'importnofile'               => 'Ingen importfil opplastet.',
 'importuploaderrorsize'      => 'Importfilopplasting mislyktes. Filen er større enn tillatt opplastingsstørrelse.',
 'importuploaderrorpartial'   => 'Importfilopplasting mislyktes. Filen ble kun delvis opplastet.',
 'importuploaderrortemp'      => 'Importfilopplasting mislyktes. En midlertidig mappe mangler.',
+'import-parse-failure'       => 'Tolkningsfeil ved XML-import',
+'import-noarticle'           => 'Ingen side å importere!',
+'import-nonewrevisions'      => 'Alle revisjoner var importert fra før.',
+'xml-error-string'           => '$1 på linje $2, kolonne $3 (byte: $4): $5',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

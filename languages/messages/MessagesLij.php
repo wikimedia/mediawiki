@@ -30,10 +30,11 @@ $messages = array(
 'saturday'      => 'Sabbo',
 'sun'           => 'Dom',
 'mon'           => 'Lûn',
-'tue'           => 'Mät',
+'tue'           => 'Mar',
 'wed'           => 'Mäc',
 'thu'           => 'Zêu',
 'fri'           => 'Ven',
+'sat'           => 'Sab',
 'january'       => 'Zenâ',
 'february'      => 'Frevâ',
 'march'         => 'Marso',
@@ -71,8 +72,12 @@ $messages = array(
 'nov'           => 'Nov',
 'dec'           => 'Dex',
 
+# Bits of text used by many pages
+'category_header' => 'Paggine inta categorîa "$1"',
+
 'about'          => 'Informaçioin',
 'article'        => 'Pagina de i contenùi',
+'newwindow'      => "(A s'ârve inte 'n âtro barcon)",
 'cancel'         => 'Scassa',
 'qbedit'         => 'Cangia',
 'qbspecialpages' => 'Pagine speçiä',
@@ -82,12 +87,12 @@ $messages = array(
 'navigation'     => 'Navegaçion',
 
 'tagline'          => 'Da {{SITENAME}}',
-'help'             => 'Aggiutto',
+'help'             => 'Agiûtto',
 'search'           => 'Çerca',
 'searchbutton'     => 'Çerca',
 'go'               => 'Vanni',
 'searcharticle'    => 'Vanni',
-'history'          => 'Stöia da-a pagina',
+'history'          => 'Stöja da paggina',
 'history_short'    => 'Stöia',
 'printableversion' => 'Verscion pe stampâ',
 'permalink'        => 'Inganço fisso',
@@ -101,7 +106,7 @@ $messages = array(
 'articlepage'      => 'Veddi a voxe',
 'talk'             => 'Ciæti',
 'views'            => 'Viscite',
-'toolbox'          => 'Arneisi',
+'toolbox'          => 'Arneixi',
 'projectpage'      => 'Veddi a pagina de o progetto',
 'viewtalkpage'     => 'Veddi o ciæto',
 'otherlanguages'   => 'In ätre lengue',
@@ -123,13 +128,15 @@ $messages = array(
 'currentevents-url' => 'Project:Cosse ghe',
 'disclaimers'       => 'Avvertense',
 'disclaimerpage'    => 'Project:Avvertense generâli',
-'helppage'          => 'Help:Contenùi',
-'mainpage'          => 'Pagina prinçipâ',
+'helppage'          => 'Agiûtto:Contegnûi',
+'mainpage'          => 'Paggina prinçipâ',
 'policy-url'        => 'Project:Lezzi',
-'portal'            => 'Pòrtego da cumünitæ',
-'privacy'           => 'Leze su i dæti privæ',
-'privacypage'       => 'Project:Leze su i dæti privæ',
+'portal'            => 'Pòrtego da comûnitæ',
+'portal-url'        => 'Project:Pòrtego da comûnitæ',
+'privacy'           => 'Leze insci dæti privæ',
+'privacypage'       => 'Project:Leze insci dæti privæ',
 'sitesupport'       => 'Donasioin',
+'sitesupport-url'   => 'Project:Donassioîn',
 
 'badaccess'        => 'Non ti ghe o permisso',
 'badaccess-group0' => 'Non ti ghe o permisso te fâ questa açion.',
@@ -141,15 +148,17 @@ $messages = array(
 'youhavenewmessages'      => 'Ti ghe $1 ($2).',
 'youhavenewmessagesmulti' => "Ti t'æ neuvi messaggi in scia $1",
 'editsection'             => 'Modificâ',
+'editold'                 => 'Modiffica',
 'editsectionhint'         => 'Modificâ a session $1',
 'toc'                     => 'Indiçe',
 'showtoc'                 => 'Fâ vedde',
-'hidetoc'                 => 'ascondi',
+'hidetoc'                 => 'Asconde',
 'site-rss-feed'           => 'Feed RSS de $1',
 'site-atom-feed'          => 'Feed Atom de $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-image' => 'Papê',
+'nstab-user'  => 'Ûtente',
+'nstab-image' => 'Archivvio',
 
 # General errors
 'databaseerror'   => 'Errô da a base de i dæti',
@@ -161,6 +170,7 @@ $messages = array(
 'cannotdelete'    => 'Non çe peu scassâ a pagina o o papê. (o peu ese za stæto scassoö da quarchedun ätro).',
 'badtitle'        => 'O titolo o non va ben!',
 'viewsource'      => 'Veddi a fonte',
+'viewsourcefor'   => 'de $1',
 
 # Login and logout pages
 'welcomecreation'            => "== Benvegnùo, $1! ==
@@ -172,7 +182,7 @@ O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe 
 'yourdomainname'             => 'Indirisso do scito:',
 'login'                      => 'Entra',
 'loginprompt'                => "Ti te devvi avei e lesche (''cookies'') abilitæ in to teu navigatô pe entrâ in {{SITENAME}}.",
-'userlogin'                  => 'Entra / Registrate',
+'userlogin'                  => 'Intra / Registrate',
 'userlogout'                 => 'Sciorti',
 'badretype'                  => 'E pòule segrette che ti te scrïo son despægie.',
 'youremail'                  => 'Posta elettronega:',
@@ -198,23 +208,34 @@ O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe 
 'resetpass_forbidden' => 'E pòule segrette non se possan cangiâ in {{SITENAME}}',
 
 # Edit page toolbar
-'bold_sample'    => 'Grascietto',
-'bold_tip'       => 'Grascietto',
-'link_sample'    => "Nomme de l'inganço",
-'link_tip'       => 'Inganço interno',
-'extlink_sample' => "http://www.exempio.com nomme de l'inganço",
-'image_sample'   => 'Exempio.jpg',
-'media_sample'   => 'Exempio.ogg',
-'media_tip'      => 'Media papê inganço',
-'hr_tip'         => 'Linia orizzontâ',
+'bold_sample'     => 'Grascietto',
+'bold_tip'        => 'Grascietto',
+'italic_tip'      => 'Corscivo',
+'link_sample'     => "Nomme de l'inganço",
+'link_tip'        => 'Inganço interno',
+'extlink_sample'  => "http://www.esempio.com Nomme de l'inganço",
+'extlink_tip'     => 'Collegamento esterno (inclûdde o prefisso http:// )',
+'headline_sample' => 'Tittolo',
+'headline_tip'    => 'Tittolo de 2° livello',
+'math_sample'     => 'Inserî a formûla chì',
+'nowiki_sample'   => 'Inserî chì o testo sensa formattassion',
+'nowiki_tip'      => 'Ignorâ a formattassion wiki',
+'image_sample'    => 'Exempio.jpg',
+'image_tip'       => 'Immagine incorporâa',
+'media_sample'    => 'Exempio.ogg',
+'media_tip'       => "Inganço a 'n archivvio multimedia",
+'sig_tip'         => 'Firma con data e ôa',
+'hr_tip'          => 'Linnia orissontâ',
 
 # Edit pages
+'subject'               => 'Argomento (tittolo)',
 'minoredit'             => 'Cangiamento minô (m)',
-'savearticle'           => 'Sarva a pagina',
+'watchthis'             => 'Azzonze a li osservæ speçiâli',
+'savearticle'           => 'Sârva a paggina',
 'preview'               => 'Anteprimm-a',
-'showpreview'           => "Veddi l'anteprimm-a",
+'showpreview'           => "Veddi l'anteprimma",
 'showdiff'              => 'Veddi i cangiamenti',
-'anoneditwarning'       => "'''Da a mente:''' Non ti tè registroö. O toö indirisso IP o saja regristroö in t-a stöia de i cangiamenti da a pagina.",
+'anoneditwarning'       => "'''Attension:''' No ti t'hæ registròu. O têu indirisso IP o sajà misso inta stöja di cangiamenti da paggina.",
 'blockedtitle'          => "O utente o l'è affermoö",
 'blockedtext'           => "<big>'''A teu nomme utente o o teu indirisso IP o l'è stæto affermoö.'''</big>
 O l'è stæto affermoö da \$1. A razon dæta a l'è stæta ''\$2''.
@@ -249,9 +270,21 @@ O teu blocco ID o l'è \$5. Pe piaxei metti sto ID in tutte e domande che ti te 
 'whitelistacctitle'     => 'Ti non ti peu registräte',
 'accmailtitle'          => 'Pòula segretta spedïa',
 'accmailtext'           => 'A pòula segretta pe-o utente "$1" a l\'è stæta spedïa a o indirisso $2.',
+'newarticletext'        => "'Sto collegamento o corisponde a 'na paggina che ancon a no l'esciste.
+
+Se o se vêu creâ a paggina òua, o se pêu comensâ a scrive o testo into spassio vêuo chì sotta.
+(fâ riferimento a-e [[{{MediaWiki:Helppage}}|paggine d'agiûtto]] pe ciû informassion).
+
+Se o s'ha intròu inte 'sto collegamento pe sbàllio, o basta sciaccâ '''Inderrê''' (Indietro) into navigatô.",
+'noarticletext'         => "Inte 'sto momento a paggina çercâa a l'è vêua. O l'è poscibbile [[Special:Search/{{PAGENAME}}|çercâ 'sto tittolo]] inte âtre paggine do scîto oppûre [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificâ a paggina òua].",
 'previewnote'           => "<strong>Questa a l'è un'anteprimm-a soö; i cangiamenti non son ancon stæti sarvæ!</strong>",
+'editing'               => 'Modiffica de $1',
 'yourtext'              => 'O teu testo',
 'yourdiff'              => 'Differense',
+'copyrightwarning'      => "Nota: Tûtte e contribûssioîn a {{SITENAME}} se conscideran rilasciæ drento a-i termini da licensa d'ûso $2 (veddi $1 pe ciû dettaggi).
+Se no ti vêu che i têu testi pêuan esse modificæ da quarchedûn sensa limitassioin, no li mandi a {{SITENAME}}.<br />
+Inviando o testo ti ti diciâri, sott'a têu responsabilitæ, c'o l'è stæto scritto da ti personalmente oppûre c'o l'è stæto copiòu da 'na fonte de pûbbrico dominnio ou analogamente lìbea.
+<strong>NO INVIÂ MATERIÂ COVERTO DA DIRITTO D'OUTÔ SENSA OUTORISSASSION!</strong>",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Non çe peu registrâ o utente',
@@ -267,7 +300,7 @@ A razon dæta a l'è ''$2''",
 'nextrevision'        => 'Revixion ciù neuva →',
 'currentrevisionlink' => 'Urtima revixion',
 'next'                => 'Proscimo',
-'last'                => 'urtima',
+'last'                => 'Ûrtima',
 'histfirst'           => 'Primmo',
 'histlast'            => 'Urtimo',
 
@@ -275,14 +308,18 @@ A razon dæta a l'è ''$2''",
 'history-feed-title' => 'Stöia de e revisioin',
 
 # Diffs
-'lineno'   => 'Linia $1:',
-'editundo' => 'Annûllâ',
+'lineno'                  => 'Linia $1:',
+'compareselectedversions' => 'Confronta e verscioîn selessionæ',
+'editundo'                => 'Annûllâ',
 
 # Search results
 'searchresults'         => 'Resultati da reçerca',
 'searchsubtitle'        => "Ti t'è çercoö '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Ti t'è çercoö '''$1'''",
+'noexactmatch'          => "'''No gh'è nisciûnn-a paggina c'a se ciamme \"\$1\".''' O se pêu [[:\$1|creâla òua]].",
+'prevn'                 => 'Preçedenti $1',
 'nextn'                 => 'Proscima $1',
+'viewprevnext'          => 'Veddi ($1) ($2) ($3).',
 'powersearch'           => 'Çerca',
 
 # Preferences page
@@ -300,7 +337,7 @@ A razon dæta a l'è ''$2''",
 'files'             => 'Papê',
 
 # Recent changes
-'recentchanges'   => 'urtimi cangiamenti',
+'recentchanges'   => 'Ûrtimi cangiamenti',
 'rcnote'          => "Chì sotta {{PLURAL:$1|gh'è a modiffica ciû reçente fæta|ghe son e '''$1''' modiffiche ciû reçenti fæte}} inte 'sto scîto {{PLURAL:$2|inte ûrtime 24 ôe|inti ûrtimi '''$2''' giorni}}; i dæti son aggiornæ a $3.",
 'rcshowhideminor' => '$1 cangiamenti minoi',
 'rcshowhidemine'  => '$1 i mæ cangiamenti',
@@ -308,7 +345,10 @@ A razon dæta a l'è ''$2''",
 'hide'            => 'Ascondi',
 
 # Recent changes linked
-'recentchangeslinked' => 'Cangiamenti correlæ',
+'recentchangeslinked'          => 'Cangiamenti correlæ',
+'recentchangeslinked-title'    => 'Modiffiche correlæ a $1',
+'recentchangeslinked-noresult' => 'Nisciûn cangiamento a-e paggine collegæ into periodo speçificòu.',
+'recentchangeslinked-summary'  => "'Sta paggina speçiâ a fa vedde e modiffiche ciû reçenti a-e paggine collegæ a quella specificâa. E paggine osservæ son dipinte in '''grascietto'''.",
 
 # Upload
 'upload'               => 'Carega un papê',
@@ -338,9 +378,15 @@ A razon dæta a l'è ''$2''",
 'imgdelete'                 => 'scassa',
 'imgfile'                   => 'papê',
 'filehist'                  => "Cronologîa de l'archivvio",
+'filehist-help'             => "Sciacca inscie 'n grûppo data/ôa pe vedde l'archivvio comme o se presentâva into momento indicòu.",
+'filehist-datetime'         => 'Data/Ôa',
+'filehist-user'             => 'Ûtente',
+'filehist-dimensions'       => 'Dimensioîn',
+'filehist-filesize'         => "Dimension de l'archivvio",
 'imagelinks'                => "Collegamenti a l'immaggine",
-'linkstoimage'              => 'E pagine seguenti appontan a questo papê:',
+'linkstoimage'              => "E paggine seguenti appontan a 'st'archivvio",
 'nolinkstoimage'            => 'Non ghe son de pagine che appontan a sto papê.',
+'sharedupload'              => "'St'archivvio o l'è condiviso; sajeiva a dî c'o pêu ese dêuviòu da ciû progetti wiki.",
 'shareduploadwiki-linktext' => 'pagina da descriçion do papê',
 'noimage'                   => 'Un papê co sto nomme o non existe, ti peu $1.',
 'imagelist_date'            => 'Dæta',
@@ -361,7 +407,7 @@ A razon dæta a l'è ''$2''",
 'unusedimages'       => 'Papê inutilisæ',
 'wantedpages'        => 'Pagine domandæ',
 'allpages'           => 'Tutte e pagine',
-'specialpages'       => 'Pagine speçiä',
+'specialpages'       => 'Paggine speçiâli',
 'spheading'          => 'Pagine speçiä pe tutti',
 'restrictedpheading' => 'Pagine speçiä assegnæ',
 'ancientpages'       => 'Pagine vëgie',
@@ -442,6 +488,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 # Delete/protect/revert
 'deletepage'     => 'Scassa a pagina',
 'actioncomplete' => 'Açion finïa',
+'deletedarticle' => 'O s\'ha scassòu "[[$1]]"',
 'deletecomment'  => 'Raxon pe scassâ',
 'cantrollback'   => "Non çe peu tornâ in derrè; a urtima modifica a l'è l'unega per sta pagina.",
 'alreadyrolled'  => "No se peu tornà in derrê o urtimi cangiamento da a pagina [[:$1]]
@@ -471,13 +518,16 @@ $1',
 'blanknamespace' => '(Prinçipâ)',
 
 # Contributions
-'contributions' => "Contribuçioin de l'utente",
+'contributions' => "Contribussioîn de l'ûtente",
 'mycontris'     => 'Mæ contribuçioin',
 
 # What links here
-'whatlinkshere' => 'Cosse apponta chie',
-'linklistsub'   => "(Lista de l'ingançi)",
-'linkshere'     => "E pagine seguenti appontan a '''[[:$1]]''':",
+'whatlinkshere'       => 'Cose appunta chì',
+'whatlinkshere-title' => "Paggine c'appuntan a $1",
+'linklistsub'         => "(Lista de l'ingançi)",
+'linkshere'           => "E paggine seguenti appontan a '''[[:$1]]''':",
+'isredirect'          => 'Rindirissâ',
+'istemplate'          => 'Inclûxon',
 
 # Block/unblock
 'blockip'                     => 'Afferma o utente',
@@ -522,6 +572,9 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 'delete_and_move_confirm' => 'Scì, scassa a pagina',
 'delete_and_move_reason'  => 'Levoö pe fâ röso pe un remescio',
 
+# Export
+'export' => 'Esportâ paggine',
+
 # Namespace 8 related
 'allmessages'               => 'Messaggi do scistemm-a',
 'allmessagesname'           => 'Nomme',
@@ -533,32 +586,43 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 'allmessagesmodified'       => 'Vanni vedde söo i cangiamenti',
 
 # Thumbnails
-'thumbnail-more'           => 'Ciù grande',
+'thumbnail-more'           => 'Ciû grande',
 'filemissing'              => 'O papê non ghe!',
-'thumbnail_error'          => 'Errô creando a imàginetta: $1',
+'thumbnail_error'          => 'Errô inta creassion da miniatûa: $1',
 'thumbnail_invalid_params' => 'Parametri da a imàginetta non validi',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'User page',
-'tooltip-pt-mytalk'       => 'Mæ discûscioîn',
-'tooltip-pt-preferences'  => 'Mæ preferense',
-'tooltip-pt-watchlist'    => "A lista de-e paggine che ti g'hæ sotta osservassion",
-'tooltip-pt-mycontris'    => 'Mæ contribûssioîn',
-'tooltip-pt-login'        => "Conseggiæmo a registrassion, scibben a no l'è d'òbbligo.",
-'tooltip-pt-logout'       => 'Sciortîa (logout)',
-'tooltip-ca-talk'         => "Vedde e discûscioin insce 'sta paggina.",
-'tooltip-ca-edit'         => "O se pêu modificâ 'sta paggina. Pe piaxei scia dêuvie o pommello d'anteprimma primma de sarvâla.",
-'tooltip-search'          => 'Çerca {{SITENAME}}',
-'tooltip-n-mainpage'      => 'Viscita a paggina prinçipâ',
-'tooltip-n-portal'        => 'Descrission do progetto, cose che se pêuan fâ, donde trovâ e cose',
-'tooltip-n-currentevents' => "Informassioin insci fæti d'attualitæ.",
-'tooltip-n-recentchanges' => 'E ûrtime modiffiche into scîto',
-'tooltip-n-randompage'    => "Fâ vedde 'na paggina a brettîo.",
-'tooltip-n-help'          => "Paggine d'agiûtto",
-'tooltip-n-sitesupport'   => 'Agiûttine',
-'tooltip-t-whatlinkshere' => 'Lista de tûtte e paggine che son collegæ a questa chì.',
-'tooltip-t-upload'        => 'Caregâ immagini òu archivvi multimedia',
-'tooltip-t-specialpages'  => 'Lista de tûtte e paggine speçiâli',
+'tooltip-pt-userpage'             => 'User page',
+'tooltip-pt-mytalk'               => 'Mæ discûscioîn',
+'tooltip-pt-preferences'          => 'Mæ preferense',
+'tooltip-pt-watchlist'            => "A lista de-e paggine che ti g'hæ sotta osservassion",
+'tooltip-pt-mycontris'            => 'Mæ contribûssioîn',
+'tooltip-pt-login'                => "Conseggiæmo a registrassion, scibben a no l'è d'òbbligo.",
+'tooltip-pt-logout'               => 'Sciortîa (logout)',
+'tooltip-ca-talk'                 => "Vedde e discûscioin insce 'sta paggina.",
+'tooltip-ca-edit'                 => "O se pêu modificâ 'sta paggina. Pe piaxei scia dêuvie o pommello d'anteprimma primma de sarvâla.",
+'tooltip-ca-addsection'           => "Azzonze 'n commentâjo a 'sta discûscion chì.",
+'tooltip-ca-viewsource'           => "'Sta paggina a l'è protetta, ma o se pêu vedde o sêu còddice sorgente.",
+'tooltip-ca-move'                 => "Sposta 'sta paggina (cangia tittolo)",
+'tooltip-ca-watch'                => "Azzonze 'sta paggina a-a têu lista d'osservassion speçiâ",
+'tooltip-search'                  => 'Çerca {{SITENAME}}',
+'tooltip-n-mainpage'              => 'Viscita a paggina prinçipâ',
+'tooltip-n-portal'                => 'Descrission do progetto, cose che se pêuan fâ, donde trovâ e cose',
+'tooltip-n-currentevents'         => "Informassioin insci fæti d'attualitæ.",
+'tooltip-n-recentchanges'         => 'E ûrtime modiffiche into scîto',
+'tooltip-n-randompage'            => "Fâ vedde 'na paggina a brettîo.",
+'tooltip-n-help'                  => "Paggine d'agiûtto",
+'tooltip-n-sitesupport'           => 'Agiûttine',
+'tooltip-t-whatlinkshere'         => 'Lista de tûtte e paggine che son collegæ a questa chì.',
+'tooltip-t-upload'                => 'Caregâ immagini òu archivvi multimedia',
+'tooltip-t-specialpages'          => 'Lista de tûtte e paggine speçiâli',
+'tooltip-ca-nstab-user'           => "Veddi a paggina d'ûtente",
+'tooltip-ca-nstab-image'          => "Veddi a paggina de l'immaggine",
+'tooltip-ca-nstab-category'       => 'Veddi a paggina da categorîa',
+'tooltip-save'                    => 'Sârva e modiffiche',
+'tooltip-preview'                 => 'Anteprimma de-e modiffiche (conseggiâa, primma de sarvâ!)',
+'tooltip-diff'                    => "Ammîa e modiffiche che ti ti g'hæ fæto a-o testo.",
+'tooltip-compareselectedversions' => "Ammîa e differense tra e doe verscioîn selessionæ de 'sta paggina chì.",
 
 # Stylesheets
 'common.css' => '/** o codiçe css scrïo chie o vegne azzounto in tutte e pagine */',
@@ -568,11 +632,17 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 'lastmodifiedatby' => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1 da $3.", # $1 date, $2 time, $3 user
 'and'              => 'e',
 
+# Spam protection
+'categoryarticlecount' => "'Sta categorîa a contegne {{PLURAL:$1|ûnn-a paggina|$1 paggine}}.",
+
 # Browsing diffs
 'nextdiff' => 'Proscima diff →',
 
 # Media information
-'thumbsize' => 'Dimescion da a imàginetta:',
+'thumbsize'            => 'Dimescion da a imàginetta:',
+'file-nohires'         => '<small>No ghe son verscioîn a resolûxon ciû ærta.</small>',
+'show-big-image'       => "Verscion d'ærta resolûxon",
+'show-big-image-thumb' => "<small>Dimensioîn de 'st'anteprimma: $1 × $2 pixel</small>",
 
 # Special:Newimages
 'newimages' => 'Gallaia de neuvi papê',
@@ -580,7 +650,19 @@ Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçi
 # Bad image list
 'bad_image_list' => "O formato o l'è coscì:
 
-Vegnan considerë soö i elenchi puntæ (righe che comensan con o carattere *). O primmo ingançio su ciaschedunn-a riga o devve esê un ingançio a unn-a imàgine indesiderâ. Li ingançi successïm, in scia mexima riga, son consideræ eccescioin (pagine dovve a imàgine a la peu esê reciammâ normalmente).",
+Vegnan conscideræ solo i elenchi puntæ (righe che comensan co-o carattere *). O primmo inganço insce ciaschedûnn-a riga o deive ese 'n inganço a 'n'imaggine indesciderâa. L'ingançi succescivi, inscia mæxima riga, son conscideræ eccescioîn (paggine donde l'imaggine a pêu ese reciammâa normalmente).",
+
+# Metadata
+'metadata-help'     => "'St'archivvio o contegne informassioîn azzontive, fòscia azzonte da-a fotocamera o da-o scanner ûsæ pe creâla o digitalissâla. Se l'archivvio o l'è stæto modificòu, çerti dettaggi porieivan no corisponde a-e modiffiche apportæ.",
+'metadata-expand'   => 'Fâ vedde dettaggi',
+'metadata-collapse' => 'Asconde dettaggi',
+'metadata-fields'   => "I campi relativi a-i metadati EXIF elencæ inte 'sto messaggio sajàn visti inscia paggina de l'immaggine quande a tabella di metadati a seggie presentâa inta forma breive. Pe l'impostassion predefinîa, li âtri campi sajàn ascoxi.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-datetime'   => 'Data e öa do cangiamento do papê',
@@ -589,10 +671,12 @@ Vegnan considerë soö i elenchi puntæ (righe che comensan con o carattere *). 
 'exif-filesource' => 'Reixe do papê',
 
 # External editor support
-'edit-externally' => 'Cangia sto papê co unn-a applicaçion externa',
+'edit-externally'      => "Modiffica 'st'archivvio co unn-a applicassion esterna",
+'edit-externally-help' => "Pe ciû informassion consûltâ l' [http://meta.wikimedia.org/wiki/Help:External_editors istrûssioîn] (in ingleise)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutti',
+'namespacesall' => 'Tûtti',
 
 # AJAX search
 'articletitles' => "Pagine che comensan con ''$1''",

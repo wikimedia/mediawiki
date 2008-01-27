@@ -5,11 +5,15 @@
  *
  * @author SPQRobin
  * @author Siebrand
+ * @author JJohnson
  */
+
+
 
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Undermearcian bendas:',
+'tog-hideminor' => 'Hȳdan smalla ādihtunga in nīwlicum wendungum',
 
 'underline-always' => 'Ǣfre',
 'underline-never'  => 'Nǣfre',
@@ -361,8 +365,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'userstatstext' => "Þǣr sind '''$1''' genemnode brūcend, þāra þe
 '''$2''' (oþþe '''$4%''') sind bewitend (sēo $3).",
 
-'disambiguationspage' => 'Template:disambig',
-
 'doubleredirects' => 'Twifealdlice Ymblǣderas',
 
 'brokenredirects'        => 'Gebrocene Ymblǣderas',
@@ -384,7 +386,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'longpages'         => 'Lange trametas',
 'specialpages'      => 'Syndrige trametas',
 'spheading'         => 'Syndrige trametas eallum brýcerum',
-'rclsub'            => '(tō trametum gebunden fram "$1")',
 'newpages'          => 'Nīwe trametas',
 'newpages-username' => 'Brūcendnama:',
 'ancientpages'      => 'Ieldestan Trametas',
@@ -457,7 +458,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'rollbacklink'       => 'Edhwierfan',
 'rollbackfailed'     => 'Edhwierft misfangen',
 'editcomment'        => 'Sēo ādihtungymbsprǣc wæs: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]',
+'revertpage'         => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'unprotectedarticle' => 'unweardod "[[$1]]"',
 'protectsub'         => '(Weardiende "$1")',
 'unprotectsub'       => '(Unweardiende "$1")',
@@ -479,10 +480,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'contributions' => 'Brūcendforðunga',
 'mycontris'     => 'Mīna forðunga',
 
-'sp-contributions-newest' => 'Nīwost',
-'sp-contributions-oldest' => 'Ieldest',
-'sp-contributions-newer'  => 'Nīwran $1',
-'sp-contributions-older'  => 'Ieldran $1',
 'sp-contributions-submit' => 'Sēcan',
 
 # What links here
@@ -506,7 +503,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 ** Unacceptable username',
 'ipbsubmit'          => 'Gǣlan þisne brūcend',
 'ipbother'           => 'Ōðeru tīd',
-'ipboptions'         => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wucu:2 wuca,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite',
+'ipboptions'         => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wucu:2 wuca,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'ōðer',
 'ipbotherreason'     => 'Ōðeru/geīecendlicu racu:',
 'ipblocklist-submit' => 'Sēcan',

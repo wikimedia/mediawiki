@@ -327,6 +327,7 @@ Pol favol, enhorma d'estu a un duendi u a un alministraol, incluyendu la direci�
 'wrong_wfQuery_params' => 'Parametrus a wfQuery()<br /> Hunción: $1<br /> Pregunta: $2 encorretus',
 'viewsource'           => 'Vel coigu huenti',
 'viewsourcefor'        => 'pa $1',
+'actionthrottled'      => 'Ación ilimitá',
 'actionthrottledtext'  => 'Cumu miia pa prevenil el spam, solu pueis hazel esta ación un limitau númeru e vezis nun cortu praçu e tiempu, i as pasau esti límiti. Pol favol, enténtalu otra vezi endrentu angunus minutus.',
 'protectedpagetext'    => "Esta páhina s'alcuentra atarugá a nuevas eicionis.",
 'viewsourcetext'       => 'Pueis vel i copial el cóigu huenti desta páhina:',
@@ -1002,15 +1003,17 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'filerevert-success'        => '<span class="plainlinks">S\'á revertiu \'\'\'[[Media:$1|$1]]\'\'\' a [$4 velsión de $3, $2].</span>',
 
 # File deletion
-'filedelete'            => 'Esborral $1',
-'filedelete-legend'     => 'Esborral archivu',
-'filedelete-intro'      => "Estás esborrandu '''[[Media:$1|$1]]'''.",
-'filedelete-comment'    => 'Comentáriu:',
-'filedelete-submit'     => 'Esborral',
-'filedelete-success'    => "S´á esborrau '''$1'''.",
-'filedelete-nofile'     => "Nu desisti '''$1''' nesti lugal.",
-'filedelete-nofile-old' => "Nu desisti una velsión archivá e '''$1''' con esas caraterísticas.",
-'filedelete-iscurrent'  => "Vas a esborral la úrtima velsión d'esti archivu. Pol favol enantis revierti a una velsión anteriol.",
+'filedelete'                  => 'Esborral $1',
+'filedelete-legend'           => 'Esborral archivu',
+'filedelete-intro'            => "Estás esborrandu '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Comentáriu:',
+'filedelete-submit'           => 'Esborral',
+'filedelete-success'          => "S´á esborrau '''$1'''.",
+'filedelete-nofile'           => "Nu desisti '''$1''' nesti lugal.",
+'filedelete-nofile-old'       => "Nu desisti una velsión archivá e '''$1''' con esas caraterísticas.",
+'filedelete-iscurrent'        => "Vas a esborral la úrtima velsión d'esti archivu. Pol favol enantis revierti a una velsión anteriol.",
+'filedelete-otherreason'      => 'Razón adicional:',
+'filedelete-reason-otherlist' => 'Otra razón',
 
 # MIME search
 'mimesearch' => 'Landeu MIME',
@@ -1829,6 +1832,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'exif-gaincontrol'             => 'Control la escena',
 'exif-contrast'                => 'Contrasti',
 'exif-saturation'              => 'Saturáncia',
+'exif-gpsversionid'            => 'Velsión la etiqueta GPS',
 'exif-gpslatituderef'          => 'Latitú Norti u Sul',
 'exif-gpslatitude'             => 'Latitú',
 'exif-gpslongituderef'         => 'Lonhitú Esti u Oesti',
@@ -1878,6 +1882,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 
 'exif-meteringmode-0'   => 'Andarriu',
 'exif-meteringmode-1'   => 'Promeyu',
+'exif-meteringmode-2'   => 'Promeyu centrau',
 'exif-meteringmode-4'   => 'MurtiSpot',
 'exif-meteringmode-5'   => 'Patrón',
 'exif-meteringmode-6'   => 'Parcial',
@@ -1975,22 +1980,28 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'monthsall'        => 'tó',
 
 # E-mail address confirmation
-'confirmemail'           => 'Confirmal email',
-'confirmemail_noemail'   => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
-'confirmemail_pending'   => '<div class="error">
+'confirmemail'            => 'Confirmal email',
+'confirmemail_noemail'    => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
+'confirmemail_text'       => "{{SITENAME}} requieri que confirmis la tu direción d'email enantis de gastal las huncionis de correu. Ativa el botón d'embahu pa envial un correu e confirmación a la tu direción. El correu incluirá un atihu con un cóigu; sigui el atihu pa confirmal la tu direción d'email.",
+'confirmemail_pending'    => '<div class="error">
 Un coigu e confirmación s\'á enviau a la tu direción d\'email; si acabihas de
 crial la tu cuenta, aspera duranti angunus minutus a que te chegui el
 correu enantis de solicital otru coigu.
 </div>',
-'confirmemail_send'      => 'Envial un coigu e confirmación pol email',
-'confirmemail_sent'      => 'Email de confirmación enviau.',
-'confirmemail_invalid'   => 'Coigu e confirmación envaliu. Es posibri qu´aiga caucau.',
-'confirmemail_needlogin' => "Es mestel $1 pa confirmal la tu direción d'email.",
-'confirmemail_success'   => 'Ya s´á confirmau la tu direción d´email. Ya pueis entral ena tu cuenta i embailti cola Güiqui.',
-'confirmemail_loggedin'  => 'Ya s´á confirmau la tu direción d´email.',
-'confirmemail_error'     => 'Marru al emburacal la tu confirmación.',
-'confirmemail_subject'   => 'Confirmaeru e direción de correu e {{SITENAME}}',
-'confirmemail_body'      => 'Yeu!
+'confirmemail_send'       => 'Envial un coigu e confirmación pol email',
+'confirmemail_sent'       => 'Email de confirmación enviau.',
+'confirmemail_oncreate'   => "S'á enviau un cóigu e confirmación a la tu direción de correu eletrónicu.
+Esti cóigu nu es mestel pa entral ena tu cuenta, peru tendrás que dalu enantis d'atival cualisquiel hunción basá en correu eletrónicu nel güiqui.",
+'confirmemail_sendfailed' => 'Nu es posibri envial el email de confirmación. Compreba que la direción esté bien escrita.
+
+El correu degorvió: $1',
+'confirmemail_invalid'    => 'Coigu e confirmación envaliu. Es posibri qu´aiga caucau.',
+'confirmemail_needlogin'  => "Es mestel $1 pa confirmal la tu direción d'email.",
+'confirmemail_success'    => 'Ya s´á confirmau la tu direción d´email. Ya pueis entral ena tu cuenta i embailti cola Güiqui.',
+'confirmemail_loggedin'   => 'Ya s´á confirmau la tu direción d´email.',
+'confirmemail_error'      => 'Marru al emburacal la tu confirmación.',
+'confirmemail_subject'    => 'Confirmaeru e direción de correu e {{SITENAME}}',
+'confirmemail_body'       => 'Yeu!
 
 Alguien, siguramenti tú, á rustriu la cuenta "$2" dendi la direción 
 IP $1 con esta direción d\'email en {{SITENAME}}.
@@ -2005,6 +2016,7 @@ caucará en $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[El EntelGüiqui está desativau]',
+'scarytranscludefailed'   => '[Marru al cargal la prantilla pa $1]',
 'scarytranscludetoolong'  => '[La URL es mu larga]',
 
 # Trackbacks
@@ -2067,6 +2079,7 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Es posibri que nu se muestrin los chambus hechus hazi $1 segundus.',
+'lag-warn-high'   => 'Ebiu a una arta laténcia el sirviol la basi e datus, los chambus hechus enos úrtimus $1 segundus puein nu sel muestraus nesta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ena tu lista e seguimientu ai {{PLURAL:$1|1 entítulu|$1 entítulus}}, sin contal las carabas.',

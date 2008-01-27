@@ -1205,17 +1205,22 @@ PICT # misc.
 'filerevert-badversion'     => 'Neexistuje predchádzajúca lokálna verzia tohto súboru s požadovanopu časovou známkou.',
 
 # File deletion
-'filedelete'             => 'Zmazať $1',
-'filedelete-legend'      => 'Zmazať súbor',
-'filedelete-intro'       => "Mažete '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Mažete verziu súboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Komentár:',
-'filedelete-submit'      => 'Zmazať',
-'filedelete-success'     => "'''$1''' bol zmazaný.",
-'filedelete-success-old' => '<span class="plainlinks">Verzia súboru \'\'\'[[Media:$1|$1]]\'\'\' z $3, $2 bola zmazaná.</span>',
-'filedelete-nofile'      => "'''$1''' neexistuje na {{GRAMMAR:lokál|{{SITENAME}}}}.",
-'filedelete-nofile-old'  => "Neexistuje archivovaná verzia '''$1''' s uvedenými atribútmi.",
-'filedelete-iscurrent'   => 'Pokúšate sa zmazať poslednú verziu tohto súboru. Prosím, najskôr vráťte staršiu verziu.',
+'filedelete'                  => 'Zmazať $1',
+'filedelete-legend'           => 'Zmazať súbor',
+'filedelete-intro'            => "Mažete '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Mažete verziu súboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Komentár:',
+'filedelete-submit'           => 'Zmazať',
+'filedelete-success'          => "'''$1''' bol zmazaný.",
+'filedelete-success-old'      => '<span class="plainlinks">Verzia súboru \'\'\'[[Media:$1|$1]]\'\'\' z $3, $2 bola zmazaná.</span>',
+'filedelete-nofile'           => "'''$1''' neexistuje na {{GRAMMAR:lokál|{{SITENAME}}}}.",
+'filedelete-nofile-old'       => "Neexistuje archivovaná verzia '''$1''' s uvedenými atribútmi.",
+'filedelete-iscurrent'        => 'Pokúšate sa zmazať poslednú verziu tohto súboru. Prosím, najskôr vráťte staršiu verziu.',
+'filedelete-otherreason'      => 'Iný/ďalší dôvod:',
+'filedelete-reason-otherlist' => 'Iný dôvod',
+'filedelete-reason-dropdown'  => '* Bežné dôvody mazania
+** Porušenie autorských práv
+** Duplicitný súbor',
 
 # MIME search
 'mimesearch'         => 'MIME vyhľadávanie',

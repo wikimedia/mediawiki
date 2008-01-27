@@ -5,7 +5,10 @@
  *
  * @author SPQRobin
  * @author Siebrand
+ * @author Max sonnelid
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -72,6 +75,7 @@ $messages = array(
 'unprotect'         => 'ᐃᖅ ᓴᐳᒻᒥᕚ',
 'unprotectthispage' => 'ᐃᖅ ᓴᐳᒻᒥᕚ ᒪᑉᐱᑕᖅ',
 'newpage'           => 'ᐱᒋᕗᖅ ᒪᑉᐱᑕᖅ',
+'talkpagelinktext'  => 'ᐅᖃᓕᒪᔪᖅ',
 'specialpage'       => 'ᐱᔨ ᒪᑉᐱᑕᖅ',
 'articlepage'       => 'ᐅᕝᕙ ᐃᓗᓕᒃ ᒪᑉᐱᑕᖅ',
 'talk'              => 'ᐅᖃᓕᒪᔪᖅ',

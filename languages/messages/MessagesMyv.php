@@ -221,6 +221,7 @@ $messages = array(
 
 'ok'                  => 'Маштови',
 'retrievedfrom'       => 'Лисмапрясь "$1"-сто',
+'youhavenewmessages'  => 'Тынь саиде $1 ($2).',
 'newmessageslink'     => 'Од нурька сёрмадт',
 'newmessagesdifflink' => 'меельсе полавтома',
 'editsection'         => 'витнемс-петнемс',
@@ -473,6 +474,7 @@ $messages = array(
 'recentchanges'                  => 'Чыяконь полавтнемат-лиякстомтомат',
 'recentchanges-feed-description' => 'Мельга ваннынк кода ульнесть витьнемат-петнемат wiki-сэ те максовксонть.',
 'rcnote'                         => "{{PLURAL:$1|Меельце '''$1''' лиякстома|Меельцеть '''$1''' лиякстомат|Меельце '''$1''' лиякстоматьне}}  '''$2''' {{plural:$2|чи|чинть|читьнень}}, те $3 шканть коряс.",
+'rclistfrom'                     => 'Невтемс од витьнематьнень $1-нтсэ.',
 'rcshowhideminor'                => '$1 апокшкэ витнемат-петнемат',
 'rcshowhidebots'                 => '$1 ботт',
 'rcshowhideliu'                  => '$1 совазь уськекирдицятьне',
@@ -497,6 +499,7 @@ $messages = array(
 # Upload
 'upload'        => 'Ёкстамонзо файланть',
 'uploadbtn'     => 'Тонгомс файланть',
+'uploadlogpage' => 'Файлань тонгома журналось',
 'filename'      => 'Файлонь лем',
 'savefile'      => 'Ванстомс файланть',
 'uploadedimage' => 'тонгозь "[[$1]]"',
@@ -524,6 +527,9 @@ $messages = array(
 'imagelist_date'            => 'Чи',
 'imagelist_name'            => 'Лем',
 
+# MIME search
+'mimesearch' => 'MIME вешнема',
+
 # List redirects
 'listredirects' => 'Лияв адрессев кучома потмо',
 
@@ -540,6 +546,7 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт|байтт}}',
 'ncategories'             => '$1 {{PLURAL:$1|категория|категорият}}',
+'nlinks'                  => '$1 {{PLURAL:$1|невтевкс|невтевкст|невтевкснедэ}}',
 'nmembers'                => '$1 {{PLURAL:$1|совиця|совицятне}}',
 'nrevisions'              => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
 'lonelypages'             => 'Лопаурозкэть',
@@ -602,6 +609,7 @@ $messages = array(
 'watch'                => 'Ванстнемс',
 'watchthispage'        => 'Ванстнемс те лопа мельга',
 'unwatch'              => 'А ванстнемс тень мельга',
+'watchlist-details'    => '$1 {{plural:$1|лопа|лопат|лопатнеде}}, апак лова кортнема лопатнень.',
 'wlshowlast'           => 'Невтемс мельсе $1 цяст $2 чить $3',
 'watchlist-hide-bots'  => 'Кекшэмс мезе ботось витнесь-петнесь',
 'watchlist-hide-own'   => 'Кекшэмс мезе мон витнинь-петнинь',
@@ -647,10 +655,12 @@ $messages = array(
 'contributions' => 'Совицянть-кирдицянть путовксозо',
 'mycontris'     => 'Монь путовкст',
 'contribsub2'   => '$1 ($2) туртов',
+'uctop'         => ' (меельцесь)',
 'month'         => 'Ковстонть (ды седе икеле):',
 'year'          => 'Иестэнть (ды седе икеле):',
 
 'sp-contributions-newbies-sub' => 'Од акаунтс',
+'sp-contributions-blocklog'    => 'Пекстамонь журналось',
 'sp-contributions-username'    => 'IP адрес эли совицянь лем:',
 'sp-contributions-submit'      => 'Вешнемс',
 
@@ -678,16 +688,18 @@ $messages = array(
 'blocklink'          => 'блокось',
 'unblocklink'        => 'панжомс',
 'contribslink'       => 'лездыцят кить',
+'blocklogpage'       => 'Пекстамонь журналось',
 'blocklogentry'      => 'пектстамонзо [[$1]]  ютазь шканть марто $2 $3',
 
 # Move page
-'newtitle'   => 'Од леменьтэ:',
-'move-watch' => 'Ваномс лопанть',
-'movedto'    => 'печтевтезь',
-'movetalk'   => 'Сыргамот, конат улить кортамо-лопасонть',
-'1movedto2'  => '[[$1]] ютавтозь тей [[$2]]',
-'movereason' => 'Тувтал:',
-'revertmove' => 'велявтодо',
+'newtitle'    => 'Од леменьтэ:',
+'move-watch'  => 'Ваномс лопанть',
+'movedto'     => 'печтевтезь',
+'movetalk'    => 'Сыргамот, конат улить кортамо-лопасонть',
+'1movedto2'   => '[[$1]] ютавтозь тей [[$2]]',
+'movelogpage' => 'Одс лемдявтомань журналось',
+'movereason'  => 'Тувтал:',
+'revertmove'  => 'велявтодо',
 
 # Export
 'export' => 'Экспортировамс лопат',
@@ -754,6 +766,7 @@ $messages = array(
 # Spam protection
 'subcategorycount'       => 'Те категриясонть $1 {{PLURAL:$1|категорияньалкс|категорияньалкст|категорияньалкстнеде}}.',
 'categoryarticlecount'   => 'Те категориясонть $1 {{PLURAL:$1|сёрмадовкс|сёрмадовкст|сёрмадовкстнеде}}.',
+'category-media-count'   => 'Те категориясонть $1 {{PLURAL:$1|файла|файланть|файлатнеде}}.',
 'listingcontinuesabbrev' => 'поладовксось моли',
 
 # Browsing diffs
@@ -806,6 +819,7 @@ $messages = array(
 'autosumm-new' => 'Од лопа: $1',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Лиякстоматьне лопатнесэ потмоксстонть',
 'watchlisttools-edit' => 'Ваномс ды витнемс-петнемс мезе мельга ванстнят',
 'watchlisttools-raw'  => 'Витнедэ начко ваномалопанть',
 

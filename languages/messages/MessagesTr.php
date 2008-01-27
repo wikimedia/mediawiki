@@ -14,6 +14,7 @@
  * @author Myildirim2007
  * @author Karduelis
  * @author Srhat
+ * @author Erkan Yilmaz
  */
 
 $namespaceNames = array(
@@ -67,6 +68,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Sayfa değişikliklerinde bana e-posta gönder',
 'tog-enotifusertalkpages'     => 'Kullanıcı sayfamda değişiklik olduğunda bana e-posta gönder',
 'tog-enotifminoredits'        => 'Sayfalardaki küçük değişikliklerde de bana e-posta gönder',
+'tog-enotifrevealaddr'        => 'E-mail adresimi bildiri maillerinde göster.',
 'tog-shownumberswatching'     => 'İzleyen kullanıcı sayısını göster',
 'tog-fancysig'                => 'Ham imza (İmzanız yukarda belirttiğiniz gibi görünür. Sayfanıza otomatik bağlantı yaratılmaz)',
 'tog-externaleditor'          => 'Değişiklikleri başka editör programı ile yap',
@@ -242,7 +244,7 @@ $messages = array(
 'edithelppage'      => 'Help:Sayfa nasıl değiştirilir',
 'faq'               => 'SSS',
 'faqpage'           => 'Project:SSS',
-'helppage'          => 'Help:İçindekiler',
+'helppage'          => '{{ns:Help}}:İçindekiler',
 'mainpage'          => 'Ana Sayfa',
 'policy-url'        => 'Project:Politika',
 'portal'            => 'Topluluk portalı',
@@ -277,6 +279,8 @@ $messages = array(
 'restorelink'             => 'silinmiş $1 değişikliği',
 'feedlinks'               => 'Besleme:',
 'feed-invalid'            => 'Hatalı besleme tipi.',
+'site-rss-feed'           => '$1 RSS Beslemesi',
+'site-atom-feed'          => '$1 Atom Beslemesi',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Madde',
@@ -297,48 +301,50 @@ $messages = array(
 'nospecialpagetext' => 'Bulunmayan bir özel sayfaya girdiniz. Varolan tüm özel sayfaları [[Special:Specialpages]] sayfasında görebilirsiniz.',
 
 # General errors
-'error'              => 'Hata',
-'databaseerror'      => 'Veritabanı hatası',
-'dberrortext'        => 'Veritabanı hatası.
+'error'                => 'Hata',
+'databaseerror'        => 'Veritabanı hatası',
+'dberrortext'          => 'Veritabanı hatası.
 Bu bir yazılım hatası olabilir.
 "<tt>$2</tt>" işlevinden denenen son sorgulama:
 <blockquote><tt>$1</tt></blockquote>.
 
 MySQL\'in rapor ettiği hata "<tt>$3: $4</tt>".',
-'dberrortextcl'      => 'Veritabanı komut hatası.
+'dberrortextcl'        => 'Veritabanı komut hatası.
 Son yapılan veritabanı erişim komutu:
 "$1"
 Kullanılan fonksiyon "$2".
 MySQL\'in verdiği hata mesajı "$3: $4"',
-'noconnect'          => "Özür Dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı server'ı ile iletişim kuramıyor. <br />
+'noconnect'            => "Özür Dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı server'ı ile iletişim kuramıyor. <br />
 $1",
-'cachederror'        => 'Aşağıdaki, istediğiniz sayfanın önbellekteki kopyasıdır ve güncel olmayabilir.',
-'readonly'           => 'Veritabanı kilitlendi',
-'enterlockreason'    => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
-'readonlytext'       => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
+'cachederror'          => 'Aşağıdaki, istediğiniz sayfanın önbellekteki kopyasıdır ve güncel olmayabilir.',
+'readonly'             => 'Veritabanı kilitlendi',
+'enterlockreason'      => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
+'readonlytext'         => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
 
 Veritabanını kilitleyen operatörün açıklaması: $1',
-'internalerror'      => 'Yazılım hatası',
-'internalerror_info' => 'İç hata: $1',
-'filecopyerror'      => '"$1"  "$2" dosyasına kopyalanamıyor.',
-'filerenameerror'    => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
-'filedeleteerror'    => '"$1" dosyası silinemedi.',
-'filenotfound'       => '"$1" dosyası bulunamadı.',
-'unexpected'         => 'beklenmeyen değer: "$1"="$2".',
-'formerror'          => 'Hata: Form gönderilemiyor',
-'badarticleerror'    => 'Yapmak istediğiniz işlem geçersizdir.',
-'cannotdelete'       => 'Belirtilen sayfa ya da görüntü silinemedi. (başka bir kullanıcı tarafından silinmiş olabilir).',
-'badtitle'           => 'Geçersiz başlık',
-'badtitletext'       => 'Girilen sayfa ismi ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
-'perfdisabled'       => 'Özür dileriz! Bu özellik, veritabanını kullanılamayacak derecede yavaşlattığı için, geçici olarak kullanımdan çıkarıldı.',
-'perfcached'         => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',
-'perfcachedts'       => 'Aşağıda saklanmış bilgiler bulunmaktadır, son güncelleme zamanı: $1.',
-'viewsource'         => 'Kaynağı gör',
-'viewsourcefor'      => '$1 için',
-'viewsourcetext'     => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
-'protectedinterface' => 'Bu sayfa yazılımın arayüz metnini sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
-'editinginterface'   => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.",
-'cascadeprotected'   => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
+'internalerror'        => 'Yazılım hatası',
+'internalerror_info'   => 'İç hata: $1',
+'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
+'filerenameerror'      => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
+'filedeleteerror'      => '"$1" dosyası silinemedi.',
+'directorycreateerror' => '"$1" dizini yaratılamadı',
+'filenotfound'         => '"$1" dosyası bulunamadı.',
+'fileexistserror'      => '"$1" dosyasına yazılamadı: dosya bulunmaktadır',
+'unexpected'           => 'beklenmeyen değer: "$1"="$2".',
+'formerror'            => 'Hata: Form gönderilemiyor',
+'badarticleerror'      => 'Yapmak istediğiniz işlem geçersizdir.',
+'cannotdelete'         => 'Belirtilen sayfa ya da görüntü silinemedi. (başka bir kullanıcı tarafından silinmiş olabilir).',
+'badtitle'             => 'Geçersiz başlık',
+'badtitletext'         => 'Girilen sayfa ismi ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
+'perfdisabled'         => 'Özür dileriz! Bu özellik, veritabanını kullanılamayacak derecede yavaşlattığı için, geçici olarak kullanımdan çıkarıldı.',
+'perfcached'           => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',
+'perfcachedts'         => 'Aşağıda saklanmış bilgiler bulunmaktadır, son güncelleme zamanı: $1.',
+'viewsource'           => 'Kaynağı gör',
+'viewsourcefor'        => '$1 için',
+'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
+'protectedinterface'   => 'Bu sayfa yazılımın arayüz metnini sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
+'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.",
+'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
 $2',
 
 # Login and logout pages
@@ -579,7 +585,7 @@ Tanımlar: (güncel) = güncel sürümle aradaki fark,
 'searchresulttext'      => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
 'searchsubtitle'        => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
 'searchsubtitleinvalid' => 'Aranan: "$1"',
-'noexactmatch'          => " Başlığı bu olan bir madde bulunamadı. Bu maddenin yazılmasını [[:$1|'''siz başlatabilirsiniz''']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.",
+'noexactmatch'          => "Başlığı bu olan bir madde bulunamadı. Bu maddenin yazılmasını [[:$1|'''siz başlatabilirsiniz''']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.",
 'titlematches'          => 'Madde adı eşleşiyor',
 'notitlematches'        => 'Hiçbir başlıkta bulunamadı',
 'textmatches'           => 'Sayfa metni eşleşiyor',
@@ -723,12 +729,14 @@ veya doğrudan bağlantı için
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten tyüklemek isteyip istemediğinizden emin olun.',
 'fileexists'                  => 'Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce $1 dosyasına bir gözatın.',
+'fileexists-thumb'            => "<center>'''Bu isimde zaten imaj var'''</center>",
 'fileexists-forbidden'        => 'Bu isimde zaten dosya var; lütfen farklı bir isimle yeniden yükleyin. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut; lütfen geri gidip dosyayı yeni bir isimle yükleyiniz. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Yükleme başarılı',
 'uploadwarning'               => 'Yükleme uyarısı',
 'savefile'                    => 'Dosyayı kaydet',
 'uploadedimage'               => 'Yüklenen: "[[$1]]"',
+'overwroteimage'              => '"[[$1]]" dan yeni versiyon yüklenmiştir',
 'uploaddisabled'              => 'Geçici olarak şu anda herhangi bir dosya yüklenmez. Biraz sonra bir daha deneyiniz.',
 'uploaddisabledtext'          => 'Bu wikide dosya yükleme özelliği iptal edilmiştir.',
 'uploadscripted'              => 'Bu dosya bir internet tarayıcısı tarafından hatalı çevrilebilecek bir HTML veya script kodu içermektedir.',
@@ -1066,7 +1074,7 @@ Yakın zamanda silinenleri görmek için: $2.',
 
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'Değiştirme notu: "<i>$1</i>" idi.', # only shown if there is an edit comment
-'revertpage'                  => '[[User:$2|$2]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
+'revertpage'                  => '[[User:$2|$2]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Koruma kayıtları',
 'protectlogtext'              => 'Korumaya alma/kaldırma ile ilgili değişiklikleri görmektesiniz.
 Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına bakabilirsiniz.',
@@ -1144,13 +1152,14 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'sp-contributions-submit'      => 'Ara',
 
 # What links here
-'whatlinkshere'      => 'Sayfaya bağlantılar',
-'whatlinkshere-page' => 'Sayfa:',
-'linklistsub'        => '(Bağlantı listesi)',
-'linkshere'          => 'Buraya bağlantısı olan sayfalar:',
-'nolinkshere'        => 'Buraya bağlanan sayfa yok.',
-'isredirect'         => 'yönlendirme sayfası',
-'istemplate'         => 'ekleme',
+'whatlinkshere'       => 'Sayfaya bağlantılar',
+'whatlinkshere-page'  => 'Sayfa:',
+'linklistsub'         => '(Bağlantı listesi)',
+'linkshere'           => 'Buraya bağlantısı olan sayfalar:',
+'nolinkshere'         => 'Buraya bağlanan sayfa yok.',
+'isredirect'          => 'yönlendirme sayfası',
+'istemplate'          => 'ekleme',
+'whatlinkshere-links' => '← linkler',
 
 # Block/unblock
 'blockip'                     => "Bu IP'den erişimi engelle",
@@ -1277,9 +1286,10 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'allmessagesmodified'       => 'Sadece değiştirilmişleri göster',
 
 # Thumbnails
-'thumbnail-more' => 'Büyüt',
-'missingimage'   => '<b>Bulunmayan resim</b><br /><i>$1</i>',
-'filemissing'    => 'Dosya bulunmadı',
+'thumbnail-more'  => 'Büyüt',
+'missingimage'    => '<b>Bulunmayan resim</b><br /><i>$1</i>',
+'filemissing'     => 'Dosya bulunmadı',
+'thumbnail_error' => 'Önizleme oluşturmada hata: $1',
 
 # Special:Import
 'import'                     => 'Sayfaları aktar',
@@ -1311,7 +1321,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'tooltip-ca-talk'                 => 'İçerik ile ilgili görüş belirt',
 'tooltip-ca-edit'                 => 'Bu sayfayı değiştirebilirsiniz. Kaydetmeden önce önizleme yapmayı unutmayın.',
 'tooltip-ca-addsection'           => 'Bu tartışmaya yorum ekleyin.',
-'tooltip-ca-viewsource'           => 'Bu sayfa kormu altında. Kaynak kodunu sadece görebilirsiniz. Değiştiremezsiniz.',
+'tooltip-ca-viewsource'           => 'Bu sayfa koruma altında. Sadece kaynak kodunu sadece görebilirsiniz. İçeriği değiştiremezsiniz.',
 'tooltip-ca-history'              => 'Bu sayfanın geçmiş versiyonları.',
 'tooltip-ca-protect'              => 'Bu sayfayı koru',
 'tooltip-ca-delete'               => 'Sayfayı sil',
