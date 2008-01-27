@@ -1037,3 +1037,7 @@ dl {
 	margin-top: .2em;
 	margin-bottom: .5em;
 }
+
+#p-cactions li.new a {
+	color: #cc2200;
+}
