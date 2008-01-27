@@ -472,7 +472,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added iiurlwidth and iiurlheight parameters to prop=imageinfo
 * Added format=txt and format=dbg, imported from query.php
 * Added uiprop=editcount to meta=userinfo
-* meta=userinfo can now fetch information on other users as well, through the uiusers parameter
+* Added list=users which fetches user information
 
 === Languages updated in 1.12 ===
 

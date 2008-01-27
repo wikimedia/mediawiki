@@ -356,6 +356,7 @@ function __autoload($className) {
 		'ApiQuerySearch' => 'includes/api/ApiQuerySearch.php',
 		'ApiQueryAllmessages' => 'includes/api/ApiQueryAllmessages.php',
 		'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
+		'ApiQueryUsers' => 'includes/api/ApiQueryUsers.php',
 		'ApiQueryUserInfo' => 'includes/api/ApiQueryUserInfo.php',
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
 		'ApiResult' => 'includes/api/ApiResult.php',
