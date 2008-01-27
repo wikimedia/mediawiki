@@ -262,7 +262,9 @@ class PageHistory {
 		$tools = array();
 		
 		if ( !is_null( $next ) && is_object( $next ) ) {
-			if( $wgUser->isAllowed( 'rollback' ) && $latest ) {
+			if( !$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser )
+			&& !$this->mTitle->getUserPermissionsErrors( 'edit', $wgUser )
+			&& $latest ) {
 				$tools[] = '<span class="mw-rollback-link">'
 					. $this->mSkin->buildRollbackLink( $rev )
 					. '</span>';

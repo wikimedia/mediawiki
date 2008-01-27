@@ -114,9 +114,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * Generates each row in the contributions list.
 	 *
 	 * Contributions which are marked "top" are currently on top of the history.
-	 * For these contributions, a [rollback] link is shown for users with sysop
-	 * privileges. The rollback link restores the most recent version that was not
-	 * written by the target user.
+	 * For these contributions, a [rollback] link is shown for users with roll-
+	 * back privileges. The rollback link restores the most recent version that
+	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
 	 */
@@ -139,7 +139,8 @@ class ContribsPager extends ReverseChronologicalPager {
 				$difftext .= $this->messages['newarticle'];
 			}
 
-			if( $wgUser->isAllowed( 'rollback' ) ) {
+			if( !$page->getUserPermissionsErrors( 'rollback', $wgUser )
+			&&  !$page->getUserPermissionsErrors( 'edit', $wgUser ) ) {
 				$topmarktext .= ' '.$sk->generateRollback( $rev );
 			}
 
