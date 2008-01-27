@@ -341,7 +341,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12790) Page protection is not logged when edit-protection is used and move-protection is not
 * (bug 12793) Fix for restricted namespaces/pages in Special:Export
 * Fix for Special:Export so it doesn't ignore the page named '0'
-
+* Don't display rollback link if the user doesn't have all required permissions
 
 == Parser changes in 1.12 ==
 
