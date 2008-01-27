@@ -89,10 +89,10 @@ CREATE TABLE revision (
   rev_text_id     INTEGER          NULL, -- FK
   rev_comment     TEXT,
   rev_user        INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT,
-  rev_user_text   TEXT         NOT NULL,
-  rev_timestamp   TIMESTAMPTZ  NOT NULL,
+  rev_user_text   TEXT          NOT NULL,
+  rev_timestamp   TIMESTAMPTZ   NOT NULL,
   rev_minor_edit  CHAR         NOT NULL  DEFAULT '0',
-  rev_deleted     CHAR         NOT NULL  DEFAULT '0',
+  rev_deleted     INTEGER      NOT NULL  DEFAULT 0,
   rev_len         INTEGER          NULL,
   rev_parent_id   INTEGER          NULL
 );
