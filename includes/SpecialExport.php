@@ -105,6 +105,13 @@ function wfExportGetLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 }
 
 /**
+ * Callback function to remove empty strings from the pages array.
+ */
+function wfFilterPage( $page ) {
+	return $page !== '' && $page !== null;
+}
+
+/**
  *
  */
 function wfSpecialExport( $page = '' ) {
@@ -198,7 +205,7 @@ function wfSpecialExport( $page = '' ) {
 		}
 		
 		/* Split up the input and look up linked pages */
-		$inputPages = array_filter( explode( "\n", $page ) );
+		$inputPages = array_filter( explode( "\n", $page ), 'wfFilterPage' );
 		$pageSet = array_flip( $inputPages );
 
 		if( $wgRequest->getCheck( 'templates' ) ) {
