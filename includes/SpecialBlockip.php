@@ -82,7 +82,6 @@ class IPBlockForm {
 		$mIpbothertime = wfMsgHtml( 'ipbotheroption' );
 		$mIpbreasonother = Xml::label( wfMsg( 'ipbreason' ), 'wpBlockReasonList' );
 		$mIpbreason = Xml::label( wfMsg( 'ipbotherreason' ), 'mw-bi-reason' );
-		$mIpbreasonotherlist = wfMsgHtml( 'ipbreasonotherlist' );
 
 		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
@@ -111,38 +110,8 @@ class IPBlockForm {
 			$blockExpiryFormOptions .= "<option value=\"$value\"$selected>$show</option>";
 		}
 
-		$scBlockReasonList = wfMsgForContent( 'ipbreason-dropdown' );
-		$blockReasonList = '';
-		if ( $scBlockReasonList != '' && $scBlockReasonList != '-' ) { 
-			$blockReasonList = "<option value=\"other\">$mIpbreasonotherlist</option>";
-			$optgroup = "";
-			foreach ( explode( "\n", $scBlockReasonList ) as $option) {
-				$value = trim( htmlspecialchars($option) );
-				if ( $value == '' ) {
-					continue;
-				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
-					// A new group is starting ...
-					$value = trim( substr( $value, 1 ) );
-					$blockReasonList .= "$optgroup<optgroup label=\"$value\">";
-					$optgroup = "</optgroup>";
-				} elseif ( substr( $value, 0, 2) == '**' ) {
-					// groupmember
-					$selected = "";
-					$value = trim( substr( $value, 2 ) );
-					if ( $this->BlockReasonList === $value)
-						$selected = ' selected="selected"';
-					$blockReasonList .= "<option value=\"$value\"$selected>$value</option>";
-				} else {
-					// groupless block reason
-					$selected = "";
-					if ( $this->BlockReasonList === $value)
-						$selected = ' selected="selected"';
-					$blockReasonList .= "$optgroup<option value=\"$value\"$selected>$value</option>";
-					$optgroup = "";
-				}
-			}
-			$blockReasonList .= $optgroup;
-		}
+		$reasonDropDown = Xml::listDropDown( 'wpBlockReasonList', wfMsgHtml( 'ipbreason-dropdown' ), 
+			wfMsgForContent( 'ipbreasonotherlist' ), '', 'wpBlockDropDown', 4 );
 
 		$token = $wgUser->editToken();
 
@@ -182,17 +151,13 @@ class IPBlockForm {
 					array( 'tabindex' => '3', 'id' => 'mw-bi-other' ) ) . "
 			</td>
 		</tr>");
-		if ( $blockReasonList != '' ) {
-			$wgOut->addHTML("
-			<tr>
-				<td align=\"$alignRight\">{$mIpbreasonother}</td>
-				<td>
-					<select tabindex='4' id=\"wpBlockReasonList\" name=\"wpBlockReasonList\">
-						$blockReasonList
-						</select>
-				</td>
-			</tr>");
-		}
+		$wgOut->addHTML("
+		<tr>
+			<td align=\"$alignRight\">{$mIpbreasonother}</td>
+			<td>
+				$reasonDropDown
+			</td>
+		</tr>");
 		$wgOut->addHTML("
 		<tr id=\"wpBlockReason\">
 			<td align=\"$alignRight\">{$mIpbreason}</td>

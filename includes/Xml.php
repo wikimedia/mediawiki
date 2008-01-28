@@ -330,14 +330,16 @@ class Xml {
 	}
 
 	/**
-	 * Build a drop-down box for selecting a reason for an action
+	 * Build a drop-down box from a textual list.
 	 * 
+	 * @param mixed $name Name and id for the drop-down
+	 * @param mixed $class CSS classes for the drop-down
 	 * @param mixed $other Text for the "Other reasons" option
 	 * @param mixed $list Correctly formatted text to be used to generate the options
 	 * @param mixed $selected Option which should be pre-selected
 	 * @return string
 	 */
-	public static function reasonDropDown( $other = '', $list = '', $selected = '' ) {
+	public static function listDropDown( $name= '', $list = '', $other = '', $selected = '', $class = '', $tabindex = Null ) {
 		$options = '';
 		$optgroup = false;
 		
@@ -366,8 +368,8 @@ class Xml {
 			}
 			if( $optgroup ) $options .= self::closeElement('optgroup');
 		
-		return Xml::openElement( 'select', array( 'id' => 'wpReasonDropDown', 'name' => 'wpReasonDropDown',
-			'class' => 'wpReasonDropDown' ) )
+		return Xml::openElement( 'select', array( 'id' => $name, 'name' => $name,
+			'class' => $class, 'tabindex' => $tabindex ) )
 			. "\n"
 			. $options
 			. "\n"

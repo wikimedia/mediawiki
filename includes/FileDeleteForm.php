@@ -112,41 +112,10 @@ class FileDeleteForm {
 	private function showForm() {
 		global $wgOut, $wgUser, $wgRequest;
 		
-		$mDeletereasonother = Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' );
-		$mDeletereasonotherlist = wfMsgHtml( 'filedelete-reason-otherlist' );
-		$scDeleteReasonList = wfMsgForContent( 'filedelete-reason-dropdown' );
-		$mDeleteReasonList = '';
+		$deletereasonother = Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' );
 		$delcom = Xml::label( wfMsg( 'filedelete-comment' ), 'wpDeleteReasonList' );
-		if ( $scDeleteReasonList != '' && $scDeleteReasonList != '-' ) {
-			$deleteReasonList = "<option value=\"other\">$mDeletereasonotherlist</option>";
-			$optgroup = "";
-			foreach ( explode( "\n", $scDeleteReasonList ) as $option) {
-				$value = trim( htmlspecialchars($option) );
-				if ( $value == '' ) {
-					continue;
-				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
-					// A new group is starting ...
-					$value = trim( substr( $value, 1 ) );
-					$deleteReasonList .= "$optgroup<optgroup label=\"$value\">";
-					$optgroup = "</optgroup>";
-				} elseif ( substr( $value, 0, 2) == '**' ) {
-					// groupmember
-					$selected = "";
-					$value = trim( substr( $value, 2 ) );
-					if ( $mDeleteReasonList === $value)
-					$selected = ' selected="selected"';
-					$deleteReasonList .= "<option value=\"$value\"$selected>$value</option>";
-				} else {
-					// groupless delete reason
-					$selected = "";
-					if ( $this->DeleteReasonList === $value)
-						$selected = ' selected="selected"';
-					$deleteReasonList .= "$optgroup<option value=\"$value\"$selected>$value</option>";
-					$optgroup = "";
-				}
-			}
-			$deleteReasonList .= $optgroup;
-		}
+		$reasonDropDown = Xml::listDropDown( 'wpDeleteReasonList', wfMsgHtml( 'filedelete-reason-dropdown' ), 
+			wfMsgForContent( 'filedelete-reason-otherlist' ), '', 'wpReasonDropDown', 1 );
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filedelete-legend' ) . '</legend>';
@@ -154,10 +123,8 @@ class FileDeleteForm {
 		$form .= '<table><tr><td colspan="2">';
 		$form .= $this->prepareMessage( 'filedelete-intro' );
 		$form .= "</td></tr><tr><td align=\"right\"> $delcom </td><td align=\"left\">";
-		$form .= "<select tabindex='2' id='wpDeleteReasonList' name=\"wpDeleteReasonList\">
-		$deleteReasonList
-</select>";
-		$form .= "</td></tr><tr><td align=\"right\"> $mDeletereasonother </td><td align=\"left\">";
+		$form .= $reasonDropDown;
+		$form .= "</td></tr><tr><td align=\"right\"> $deletereasonother </td><td align=\"left\">";
 		$form .= "<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' ";
 		$form .= "value=\"". htmlspecialchars( $wgRequest->getText( 'wpReason' ) ) ."\" tabindex=\"1\" />";
 		$form .= '</td></tr><tr><td colspan="2">';
