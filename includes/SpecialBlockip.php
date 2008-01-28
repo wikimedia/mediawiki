@@ -110,7 +110,8 @@ class IPBlockForm {
 			$blockExpiryFormOptions .= "<option value=\"$value\"$selected>$show</option>";
 		}
 
-		$reasonDropDown = Xml::listDropDown( 'wpBlockReasonList', wfMsgHtml( 'ipbreason-dropdown' ), 
+		$reasonDropDown = Xml::listDropDown( 'wpBlockReasonList',
+			wfMsgForContent( 'ipbreason-dropdown' ), 
 			wfMsgForContent( 'ipbreasonotherlist' ), '', 'wpBlockDropDown', 4 );
 
 		$token = $wgUser->editToken();

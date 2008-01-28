@@ -346,7 +346,7 @@ class Xml {
 		$options = self::option( $other, 'other', $selected === 'other' );
 		
 		foreach ( explode( "\n", $list ) as $option) {
-				$value = trim( htmlspecialchars($option) );
+				$value = trim( $option );
 				if ( $value == '' ) {
 					continue;
 				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
@@ -368,8 +368,18 @@ class Xml {
 			}
 			if( $optgroup ) $options .= self::closeElement('optgroup');
 		
-		return Xml::openElement( 'select', array( 'id' => $name, 'name' => $name,
-			'class' => $class, 'tabindex' => $tabindex ) )
+		$attribs = array();
+		if( $name ) {
+			$attribs['id'] = $name;
+			$attribs['name'] = $name;
+		}
+		if( $class ) {
+			$attribs['class'] = $class;
+		}
+		if( $tabindex ) {
+			$attribs['tabindex'] = $tabindex;
+		}
+		return Xml::openElement( 'select', $attribs )
 			. "\n"
 			. $options
 			. "\n"
