@@ -133,7 +133,7 @@ class ApiParse extends ApiBase {
 		}
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'title' => array( 
 				ApiBase :: PARAM_DFLT => 'API',
@@ -156,7 +156,7 @@ class ApiParse extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'text' => 'Wikitext to parse',
 			'title' => 'Title of page',
@@ -164,7 +164,7 @@ class ApiParse extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'This module parses wikitext and returns parser output';
 	}
 

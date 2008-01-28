@@ -158,7 +158,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$result->addValue('query', $this->getModuleName(), $data);
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'from' => null,
 			'prefix' => null,
@@ -183,7 +183,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'from' => 'The user name to start enumerating from.',
 			'prefix' => 'Search for all page titles that begin with this value.',
@@ -195,7 +195,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Enumerate all registered users';
 	}
 

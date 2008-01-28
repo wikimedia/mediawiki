@@ -75,7 +75,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$db->freeResult($res);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Returns all external urls (not interwikies) from the given page(s)';
 	}
 

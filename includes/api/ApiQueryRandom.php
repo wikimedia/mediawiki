@@ -90,7 +90,7 @@ if (!defined('MEDIAWIKI')) {
 		return $vals;
 	}
 		
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'namespace' => array(
 				ApiBase :: PARAM_TYPE => 'namespace',
@@ -106,14 +106,14 @@ if (!defined('MEDIAWIKI')) {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'namespace' => 'Return pages in these namespaces only',
 			'limit' => 'Limit how many random pages will be returned'
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(	'Get a set of random pages',
 				'NOTE: When using a namespace filter, this module may return an empty result. In that case, retry the request'
 		);

@@ -136,7 +136,7 @@ class ApiFormatXml extends ApiFormatBase {
 				break;
 		}
 	}
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Output data in XML format' . parent :: getDescription();
 	}
 

@@ -260,7 +260,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			}
 	}			
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'start' => array (
 				ApiBase :: PARAM_TYPE => 'timestamp'
@@ -321,7 +321,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'start' => 'The timestamp to start enumerating from.',
 			'end' => 'The timestamp to end enumerating.',
@@ -337,7 +337,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Enumerate recent changes';
 	}
 

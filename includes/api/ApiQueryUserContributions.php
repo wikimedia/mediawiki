@@ -196,7 +196,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		return $vals;
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
@@ -246,7 +246,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'limit' => 'The maximum number of contributions to return.',
 			'start' => 'The start timestamp to return from.',
@@ -259,7 +259,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Get all edits by a user';
 	}
 

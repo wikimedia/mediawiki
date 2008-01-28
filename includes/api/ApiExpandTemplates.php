@@ -64,7 +64,7 @@ class ApiExpandTemplates extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $retval_array );
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'title' => array( 
 				ApiBase :: PARAM_DFLT => 'API',
@@ -73,14 +73,14 @@ class ApiExpandTemplates extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'text' => 'Wikitext to convert',
 			'title' => 'Title of page',
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'This module expand all templates in wikitext';
 	}
 

@@ -280,7 +280,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		return $vals;
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
@@ -337,7 +337,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => 'Which properties to get for each revision.',
 			'limit' => 'limit how many revisions will be returned (enum)',
@@ -353,7 +353,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array (
 			'Get revision information.',
 			'This module may be used in several ways:',

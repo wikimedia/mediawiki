@@ -66,19 +66,19 @@ class ApiFormatJson extends ApiFormatBase {
 		}
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'callback' => null
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'callback' => 'If specified, wraps the output into a given function call',
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		if ($this->mIsRaw)
 			return 'Output data with the debuging elements in JSON format' . parent :: getDescription();
 		else

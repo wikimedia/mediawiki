@@ -166,7 +166,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		return implode('.', $parts);
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'start' => array(
 				ApiBase :: PARAM_TYPE => 'timestamp'
@@ -212,7 +212,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to stop enumerating at',
@@ -224,7 +224,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'List all blocked users and IP addresses.';
 	}
 

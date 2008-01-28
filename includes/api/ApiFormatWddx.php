@@ -80,7 +80,7 @@ class ApiFormatWddx extends ApiFormatBase {
 		}
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Output data in WDDX format' . parent :: getDescription();
 	}
 

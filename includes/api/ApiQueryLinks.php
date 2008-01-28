@@ -123,7 +123,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 	}
 
-	protected function getAllowedParams()
+	public function getAllowedParams()
 	{
 		return array(
 				'namespace' => array(
@@ -133,14 +133,14 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			);
 	}
 
-	protected function getParamDescription()
+	public function getParamDescription()
 	{
 		return array(
 				'namespace' => "Show {$this->description}s in this namespace(s) only"
 			);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return "Returns all {$this->description}s from the given page(s)";
 	}
 

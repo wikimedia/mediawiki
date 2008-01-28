@@ -138,7 +138,7 @@ class ApiFeedWatchlist extends ApiBase {
 		return new FeedItem($titleStr, $completeText, $titleUrl, $timestamp, $user);
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		global $wgFeedClasses;
 		$feedFormatNames = array_keys($wgFeedClasses);
 		return array (
@@ -156,7 +156,7 @@ class ApiFeedWatchlist extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'feedformat' => 'The format of the feed',
 			'hours'      => 'List pages modified within this many hours from now',
@@ -164,7 +164,7 @@ class ApiFeedWatchlist extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'This module returns a watchlist feed';
 	}
 

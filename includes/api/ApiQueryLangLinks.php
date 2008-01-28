@@ -76,7 +76,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		$db->freeResult($res);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Returns all interlanguage links from the given page(s)';
 	}
 

@@ -48,7 +48,7 @@ class ApiFormatTxt extends ApiFormatBase {
 		$this->printText(print_r($this->getResultData(), true));
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Output data in PHP\'s print_r() format' . parent :: getDescription();
 	}
 

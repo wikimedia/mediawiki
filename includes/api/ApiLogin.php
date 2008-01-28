@@ -220,7 +220,7 @@ class ApiLogin extends ApiBase {
 	
 	public function mustBePosted() { return true; }
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'name' => null,
 			'password' => null,
@@ -228,7 +228,7 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'name' => 'User Name',
 			'password' => 'Password',
@@ -236,7 +236,7 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array (
 			'This module is used to login and get the authentication tokens. ',
 			'In the event of a successful log-in, a cookie will be attached',

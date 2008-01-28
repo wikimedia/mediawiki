@@ -50,7 +50,7 @@ class ApiHelp extends ApiBase {
 		return false;
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array (
 			'Display this help screen.'
 		);

@@ -120,7 +120,7 @@ class ApiDelete extends ApiBase {
 	
 	public function mustBePosted() { return true; }
 	
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'title' => null,
 			'token' => null,
@@ -128,7 +128,7 @@ class ApiDelete extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'title' => 'Title of the page you want to delete.',
 			'token' => 'A delete token previously retrieved through prop=info',
@@ -136,7 +136,7 @@ class ApiDelete extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 			'Deletes a page. You need to be logged in as a sysop to use this function, see also action=login.'
 		);

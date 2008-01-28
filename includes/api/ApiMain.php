@@ -377,7 +377,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * See ApiBase for description.
 	 */
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'format' => array (
 				ApiBase :: PARAM_DFLT => ApiMain :: API_DEFAULT_FORMAT,
@@ -397,7 +397,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * See ApiBase for description.
 	 */
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'format' => 'The format of the output',
 			'action' => 'What action you would like to perform',
@@ -409,7 +409,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * See ApiBase for description.
 	 */
-	protected function getDescription() {
+	public function getDescription() {
 		return array (
 			'',
 			'',

@@ -88,7 +88,7 @@ class ApiRollback extends ApiBase {
 	
 	public function mustBePosted() { return true; }
 	
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'title' => null,
 			'user' => null,
@@ -98,7 +98,7 @@ class ApiRollback extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'title' => 'Title of the page you want to rollback.',
 			'user' => 'Name of the user whose edits are to be rolled back. If set incorrectly, you\'ll get a badtoken error.',
@@ -108,7 +108,7 @@ class ApiRollback extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 				'Undoes the last edit to the page. If the last user who edited the page made multiple edits in a row,',
 				'they will all be rolled back. You need to be logged in as a sysop to use this function, see also action=login.'

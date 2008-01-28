@@ -112,7 +112,7 @@ class ApiMove extends ApiBase {
 	
 	public function mustBePosted() { return true; }
 	
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'from' => null,
 			'to' => null,
@@ -123,7 +123,7 @@ class ApiMove extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'from' => 'Title of the page you want to move.',
 			'to' => 'Title you want to rename the page to.',
@@ -134,7 +134,7 @@ class ApiMove extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 			'Moves a page.'
 		);

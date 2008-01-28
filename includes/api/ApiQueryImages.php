@@ -98,7 +98,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Returns all images contained on the given page(s)';
 	}
 
