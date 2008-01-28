@@ -473,6 +473,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added format=txt and format=dbg, imported from query.php
 * Added uiprop=editcount to meta=userinfo
 * Added list=users which fetches user information
+* Added list=random which fetches a list of random pages
 
 === Languages updated in 1.12 ===
 

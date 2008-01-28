@@ -351,6 +351,7 @@ function __autoload($className) {
 		'ApiQueryLangLinks' => 'includes/api/ApiQueryLangLinks.php',
 		'ApiQueryLinks' => 'includes/api/ApiQueryLinks.php',
 		'ApiQueryLogEvents' => 'includes/api/ApiQueryLogEvents.php',
+		'ApiQueryRandom' => 'includes/api/ApiQueryRandom.php',
 		'ApiQueryRecentChanges'=> 'includes/api/ApiQueryRecentChanges.php',
 		'ApiQueryRevisions' => 'includes/api/ApiQueryRevisions.php',
 		'ApiQuerySearch' => 'includes/api/ApiQuerySearch.php',
