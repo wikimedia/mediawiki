@@ -287,9 +287,28 @@ p {
 	padding: 0 0 0 0;
 }
 
-a, a:hover, a:visited {
-	/*text-decoration: underline;*/
-	color: #003366;
+a {
+        text-decoration: none;
+        color: #003366;
+        background: none;
+}
+a:visited {
+        color: #5a3696;
+}
+a:active {
+        color: #faa700;
+}
+a:hover {
+        text-decoration: underline;
+}
+a.stub {
+        color: #772233;
+}
+a.new {
+        color: #ba0000;
+}
+a.new:visited {
+        color: #a55858;
 }
 
 span.editsection {
