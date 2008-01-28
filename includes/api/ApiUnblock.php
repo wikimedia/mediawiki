@@ -85,7 +85,7 @@ class ApiUnblock extends ApiBase {
 	
 	public function mustBePosted() { return true; }
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'id' => null,
 			'user' => null,
@@ -95,7 +95,7 @@ class ApiUnblock extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'id' => 'ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with user',
 			'user' => 'Username, IP address or IP range you want to unblock. Cannot be used together with id',
@@ -105,7 +105,7 @@ class ApiUnblock extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 			'Unblock a user.'
 		);

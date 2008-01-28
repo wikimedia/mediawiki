@@ -45,7 +45,7 @@ class ApiFormatYaml extends ApiFormatBase {
 		$this->printText(Spyc :: YAMLDump($this->getResultData()));
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Output data in YAML format' . parent :: getDescription();
 	}
 

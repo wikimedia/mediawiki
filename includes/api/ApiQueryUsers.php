@@ -119,7 +119,7 @@ if (!defined('MEDIAWIKI')) {
 		return $retval;		
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => NULL,
@@ -136,7 +136,7 @@ if (!defined('MEDIAWIKI')) {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => array(
 				'What pieces of information to include',
@@ -148,7 +148,7 @@ if (!defined('MEDIAWIKI')) {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Get information about a list of users';
 	}
 

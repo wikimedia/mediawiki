@@ -125,7 +125,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'from' => null,
 			'prefix' => null,
@@ -152,7 +152,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'from' => 'The page title to start enumerating from.',
 			'prefix' => 'Search for all page titles that begin with this value.',
@@ -163,7 +163,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Enumerate all links that point to a given namespace';
 	}
 

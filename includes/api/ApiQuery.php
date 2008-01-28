@@ -388,7 +388,7 @@ class ApiQuery extends ApiBase {
 	 * Returns the list of allowed parameters for this module.
 	 * Qurey module also lists all ApiPageSet parameters as its own. 
 	 */
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
@@ -475,7 +475,7 @@ class ApiQuery extends ApiBase {
 		return true;
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => 'Which properties to get for the titles/revisions/pageids',
 			'list' => 'Which lists to get',
@@ -486,7 +486,7 @@ class ApiQuery extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array (
 			'Query API module allows applications to get needed pieces of data from the MediaWiki databases,',
 			'and is loosely based on the Query API interface currently available on all MediaWiki servers.',

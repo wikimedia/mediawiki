@@ -111,7 +111,7 @@ class ApiProtect extends ApiBase {
 
 	public function mustBePosted() { return true; }
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'title' => null,
 			'token' => null,
@@ -124,7 +124,7 @@ class ApiProtect extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'title' => 'Title of the page you want to restore.',
 			'token' => 'A protect token previously retrieved through prop=info',
@@ -135,7 +135,7 @@ class ApiProtect extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 			'Change the protection level of a page.'
 		);

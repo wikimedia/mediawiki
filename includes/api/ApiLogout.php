@@ -45,15 +45,15 @@ class ApiLogout extends ApiBase {
 		$wgUser->logout();
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array ();
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array ();
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array (
 			'This module is used to logout and clear session data'
 		);

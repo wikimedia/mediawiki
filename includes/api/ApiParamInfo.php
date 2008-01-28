@@ -132,7 +132,7 @@ class ApiParamInfo extends ApiBase {
 		return $retval;
 	}
 	
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'modules' => array(
 				ApiBase :: PARAM_ISMULTI => true
@@ -143,14 +143,14 @@ class ApiParamInfo extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'modules' => 'List of module names (value of the action= parameter)',
 			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Obtain information about certain API parameters';
 	}
 

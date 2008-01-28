@@ -120,7 +120,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
@@ -131,13 +131,13 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => 'Which additional properties to get for each category.',
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'List all categories the page(s) belong to';
 	}
 

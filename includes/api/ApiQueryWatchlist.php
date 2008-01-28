@@ -243,7 +243,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'allrev' => false,
 			'start' => array (
@@ -298,7 +298,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'allrev' => 'Include multiple revisions of the same page within given timeframe.',
 			'start' => 'The timestamp to start enumerating from.',
@@ -314,7 +314,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return '';
 	}
 

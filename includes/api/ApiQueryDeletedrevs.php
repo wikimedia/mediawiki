@@ -163,7 +163,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$result->addValue('query', $this->getModuleName(), $data);
 		}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'start' => array(
 				ApiBase :: PARAM_TYPE => 'timestamp'
@@ -205,7 +205,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to stop enumerating at',
@@ -216,7 +216,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'List deleted revisions.';
 	}
 

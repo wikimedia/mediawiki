@@ -83,7 +83,7 @@ class ApiUndelete extends ApiBase {
 	
 	public function mustBePosted() { return true; }
 	
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'title' => null,
 			'token' => null,
@@ -94,7 +94,7 @@ class ApiUndelete extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'title' => 'Title of the page you want to restore.',
 			'token' => 'An undelete token previously retrieved through list=deletedrevs',
@@ -103,7 +103,7 @@ class ApiUndelete extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 			'Restore certain revisions of a deleted page. A list of deleted revisions (including timestamps) can be',
 			'retrieved through list=deletedrevs'

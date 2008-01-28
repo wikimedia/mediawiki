@@ -108,7 +108,7 @@ class ApiChangeRights extends ApiBase {
 		$this->getResult()->addValue(null, $this->getModuleName(), $res);
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'user' => null,
 			'token' => null,
@@ -124,7 +124,7 @@ class ApiChangeRights extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'user' => 'The user you want to add to or remove from groups.',
 			'token' => 'A changerights token previously obtained through the gettoken parameter.',
@@ -136,7 +136,7 @@ class ApiChangeRights extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 			'Add or remove a user from certain groups.'
 		);

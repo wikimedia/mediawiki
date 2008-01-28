@@ -82,7 +82,7 @@ class ApiOpenSearch extends ApiBase {
 		$result->addValue(null, 1, $srchres);
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'search' => null,
 			'limit' => array (
@@ -95,14 +95,14 @@ class ApiOpenSearch extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'search' => 'Search string',
 			'limit' => 'Maximum amount of results to return'
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'This module implements OpenSearch protocol';
 	}
 

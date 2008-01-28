@@ -315,7 +315,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		'|' . $lastPageID;
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 
 		return array (
 			'title' => null,
@@ -343,7 +343,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'title' => 'Title to search. If null, titles= parameter will be used instead, but will be obsolete soon.',
 			'continue' => 'When more results are available, use this to continue.',
@@ -354,7 +354,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		switch ($this->getModuleName()) {
 			case 'backlinks' :
 				return 'Find all pages that link to the given page';

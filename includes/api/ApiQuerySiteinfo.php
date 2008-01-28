@@ -181,7 +181,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->addValue('query', $property, $data);
 	}	
 	
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 		
 			'prop' => array (
@@ -205,7 +205,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => array (
 				'Which sysinfo properties to get:',
@@ -220,7 +220,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Return general information about the site.';
 	}
 

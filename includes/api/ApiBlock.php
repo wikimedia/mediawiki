@@ -115,7 +115,7 @@ class ApiBlock extends ApiBase {
 
 	public function mustBePosted() { return true; }
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'user' => null,
 			'token' => null,
@@ -130,7 +130,7 @@ class ApiBlock extends ApiBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'user' => 'Username, IP address or IP range you want to block',
 			'token' => 'A block token previously obtained through the gettoken parameter',
@@ -145,7 +145,7 @@ class ApiBlock extends ApiBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array(
 			'Block a user.'
 		);

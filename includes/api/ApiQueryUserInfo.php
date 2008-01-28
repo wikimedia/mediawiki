@@ -87,7 +87,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return $vals;
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => NULL,
@@ -107,7 +107,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => array(
 				'What pieces of information to include',
@@ -122,7 +122,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Get information about the current user';
 	}
 

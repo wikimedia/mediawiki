@@ -134,7 +134,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		}
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		global $wgUrlProtocols;
 		$protocols = array();
 		foreach ($wgUrlProtocols as $p) {
@@ -173,7 +173,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => 'What pieces of information to include',
 			'offset' => 'Used for paging. Use the value returned for "continue"',
@@ -184,7 +184,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Enumerate pages that contain a given URL';
 	}
 

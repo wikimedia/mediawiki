@@ -140,7 +140,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return $vals;
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
@@ -179,7 +179,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => 'What image information to get.',
 			'limit' => 'How many image revisions to return',
@@ -190,7 +190,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return array (
 			'Returns image information and upload history'
 		);

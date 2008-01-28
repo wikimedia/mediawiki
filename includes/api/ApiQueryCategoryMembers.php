@@ -172,7 +172,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		}
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'category' => null,
 			'prop' => array (
@@ -214,7 +214,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'category' => 'Which category to enumerate (required)',
 			'prop' => 'What pieces of information to include',
@@ -226,7 +226,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'List all pages in a given category';
 	}
 

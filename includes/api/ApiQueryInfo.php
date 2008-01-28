@@ -217,7 +217,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => NULL,
@@ -237,7 +237,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'prop' => array (
 				'Which additional properties to get:',
@@ -248,7 +248,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Get basic page information such as namespace, title, last touched date, ...';
 	}
 

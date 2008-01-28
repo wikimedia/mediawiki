@@ -94,7 +94,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		$result->addValue( 'query', $this->getModuleName(), $messages_out );
 	}
 
-	protected function getAllowedParams() {
+	public function getAllowedParams() {
 		return array (
 			'messages' => array (
 				ApiBase :: PARAM_DFLT => '*',
@@ -104,7 +104,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		);
 	}
 
-	protected function getParamDescription() {
+	public function getParamDescription() {
 		return array (
 			'messages' => 'Which messages to output. "*" means all messages',
 			'filter' => 'Return only messages that contains specified string',
@@ -112,7 +112,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		);
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Return messages from this site.';
 	}
 
