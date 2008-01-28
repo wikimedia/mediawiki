@@ -2097,7 +2097,8 @@ class Article {
 		$watch = Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching(), array( 'tabindex' => '2' ) );
 		
 		$deletereasonother = Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' );
-		$reasonDropDown = Xml::listDropDown( 'wpDeleteReasonList', wfMsgHtml( 'deletereason-dropdown' ), 
+		$reasonDropDown = Xml::listDropDown( 'wpDeleteReasonList',
+			wfMsgForContent( 'deletereason-dropdown' ), 
 			wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 );
 
 		$wgOut->addHTML( "

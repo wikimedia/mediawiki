@@ -114,7 +114,8 @@ class FileDeleteForm {
 		
 		$deletereasonother = Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' );
 		$delcom = Xml::label( wfMsg( 'filedelete-comment' ), 'wpDeleteReasonList' );
-		$reasonDropDown = Xml::listDropDown( 'wpDeleteReasonList', wfMsgHtml( 'filedelete-reason-dropdown' ), 
+		$reasonDropDown = Xml::listDropDown( 'wpDeleteReasonList',
+			wfMsgForContent( 'filedelete-reason-dropdown' ), 
 			wfMsgForContent( 'filedelete-reason-otherlist' ), '', 'wpReasonDropDown', 1 );
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
