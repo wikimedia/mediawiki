@@ -28,6 +28,7 @@ $skinNames = array(
 	'myskin'      => 'Mon Interface',
 	'chick'       => 'Poussin',
 	'simple'      => 'Simple',
+	'modern'      => 'Moderne',
 );
 
 $bookstoreList = array(
