@@ -92,7 +92,7 @@ CREATE TABLE revision (
   rev_user_text   TEXT          NOT NULL,
   rev_timestamp   TIMESTAMPTZ   NOT NULL,
   rev_minor_edit  CHAR         NOT NULL  DEFAULT '0',
-  rev_deleted     INTEGER      NOT NULL  DEFAULT 0,
+  rev_deleted     SMALLINT     NOT NULL  DEFAULT 0,
   rev_len         INTEGER          NULL,
   rev_parent_id   INTEGER          NULL
 );
@@ -229,7 +229,7 @@ CREATE TABLE ipblocks (
   ipb_expiry            TIMESTAMPTZ  NOT NULL,
   ipb_range_start       TEXT,
   ipb_range_end         TEXT,
-  ipb_deleted           CHAR         NOT NULL  DEFAULT '0',
+  ipb_deleted           SMALLINT     NOT NULL  DEFAULT 0,
   ipb_block_email       CHAR         NOT NULL  DEFAULT '0'
 
 );
@@ -423,7 +423,7 @@ CREATE TABLE logging (
   log_title       TEXT         NOT NULL,
   log_comment     TEXT,
   log_params      TEXT,
-  log_deleted     INTEGER      NOT NULL DEFAULT 0
+  log_deleted     SMALLINT     NOT NULL DEFAULT 0
 );
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
