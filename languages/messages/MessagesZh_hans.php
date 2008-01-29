@@ -983,7 +983,8 @@ $2',
 'large-file'                  => '建议文件大小不能超过 $1；本文件大小为 $2。',
 'largefileserver'             => '这个文件的大小比服务器配置允许的大小还要大。',
 'emptyfile'                   => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
-'fileexists'                  => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查$1。',
+'fileexists'                  => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><tt>$1</tt></strong>。',
+'filepageexists'              => '已存在相同名称的页面（不是文件），如果您无法确定您是否要改变它，请检查<strong><tt>$1</tt></strong>。',
 'fileexists-extension'        => '一个相似名称的文件已经存在:<br />
 上载文件的档名: <strong><tt>$1</tt></strong><br />
 现有文件的档名: <strong><tt>$2</tt></strong><br />

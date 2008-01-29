@@ -1053,6 +1053,7 @@ $2',
 'largefileserver'             => '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'                   => '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
 'fileexists'                  => '呢個檔名已經存在，如果你唔肯定係唔係要更改<strong><tt>$1</tt></strong>，請先檢查佢。',
+'filepageexists'              => '有一版同名嘅頁（唔係檔案）已經存在，如果你唔肯定係唔係要更改<strong><tt>$1</tt></strong>，請先檢查佢。',
 'fileexists-extension'        => '一個相似檔名嘅檔案已經存在:<br />
 上載檔案嘅檔名: <strong><tt>$1</tt></strong><br />
 現有檔案嘅檔名: <strong><tt>$2</tt></strong><br />

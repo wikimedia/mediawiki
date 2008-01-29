@@ -958,7 +958,8 @@ $2',
 'large-file'                  => '建議檔案大小不能超過 $1；本檔案大小為 $2。',
 'largefileserver'             => '這個檔案的大小比伺服器配置允許的大小還要大。',
 'emptyfile'                   => '您所上傳的檔案不存在。這可能是由於檔案名鍵入錯誤。請檢查您是否真的要上傳此檔案。',
-'fileexists'                  => '已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查$1。',
+'fileexists'                  => '已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查<strong><tt>$1</tt></strong>。',
+'filepageexists'              => '已存在相同名稱的頁面（不是檔案），如果您無法確定您是否要改變它，請檢查<strong><tt>$1</tt></strong>。',
 'fileexists-extension'        => '一個相似檔名的檔案已經存在:<br />
 上載檔案的檔名: <strong><tt>$1</tt></strong><br />
 現有檔案的檔名: <strong><tt>$2</tt></strong><br />
