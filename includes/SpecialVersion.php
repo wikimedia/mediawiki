@@ -81,8 +81,11 @@ class SpecialVersion {
 	/** Return a string of the MediaWiki version with SVN revision if available */
 	public static function getVersion() {
 		global $wgVersion, $IP;
+		wfProfileIn( __METHOD__ );
 		$svn = self::getSvnRevision( $IP );
-		return $svn ? "$wgVersion (r$svn)" : $wgVersion;
+		$version = $svn ? "$wgVersion (r$svn)" : $wgVersion;
+		wfProfileOut( __METHOD__ );
+		return $version;
 	}
 
 	/** Generate wikitext showing extensions name, URL, author and description */
