@@ -27,8 +27,9 @@ $response->header( 'Content-type: application/opensearchdescription+xml' );
 
 # Set an Expires header so that squid can cache it for a short time
 # Short enough so that the sysadmin barely notices when $wgSitename is changed
-$expiryTime = 300; # 5 minutes
+$expiryTime = 600; # 10 minutes
 $response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expiryTime ) . ' GMT' );
+$response->header( 'Cache-control: max-age=600' );
 
 echo <<<EOT
 <?xml version="1.0"?>
