@@ -42,16 +42,33 @@ class ApiParse extends ApiBase {
 		$params = $this->extractRequestParams();
 		$text = $params['text'];
 		$title = $params['title'];
+		$page = $params['page'];
+		if(!is_null($page) && (!is_null($text) || $title != "API"))
+			$this->dieUsage("The page parameter cannot be used together with the text and title parameters", 'params');
 		$prop = array_flip($params['prop']);
+		
+		global $wgParser, $wgUser;
+		if(!is_null($page)) {
+			$titleObj = Title::newFromText($page);
+			if(!$titleObj)
+				$this->dieUsageMsg(array('missingtitle', $page));
 
-		//Create title for parser
-		$title_obj = Title :: newFromText($params['title']);
-		if(!$title_obj)
-			$title_obj = Title :: newFromText("API");	//  Default title is "API". For example, ExpandTemplates uses "ExpendTemplates" for it
-
-		// Parse text
-		global $wgParser;
-		$p_result = $wgParser->parse( $text, $title_obj, new ParserOptions() );
+			// Try the parser cache first
+			$articleObj = new Article($titleObj);
+			$pcache =& ParserCache::singleton();
+			$p_result = $pcache->get($articleObj, $wgUser);
+			if(!$p_result) {
+				$p_result = $wgParser->parse($articleObj->getContent(), $titleObj, new ParserOptions());
+				global $wgUseParserCache;
+				if($wgUseParserCache)
+					$pcache->save($p_result, $articleObj, $wgUser);
+			}
+		} else {
+			$titleObj = Title::newFromText($title);
+			if(!$titleObj)
+				$titleObj = Title::newFromText("API");
+			$p_result = $wgParser->parse($text, $titleObj, new ParserOptions());
+		}
 
 		// Return result
 		$result = $this->getResult();
@@ -74,7 +91,7 @@ class ApiParse extends ApiBase {
 			$result_array['externallinks'] = array_keys($p_result->getExternalLinks());
 		if(isset($prop['sections']))
 			$result_array['sections'] = $p_result->getSections();
-		
+
 		$result_mapping = array(
 			'langlinks' => 'll',
 			'categories' => 'cl',
@@ -139,6 +156,7 @@ class ApiParse extends ApiBase {
 				ApiBase :: PARAM_DFLT => 'API',
 			),
 			'text' => null,
+			'page' => null,
 			'prop' => array(
 				ApiBase :: PARAM_DFLT => 'text|langlinks|categories|links|templates|images|externallinks|sections',
 				ApiBase :: PARAM_ISMULTI => true,
@@ -159,8 +177,11 @@ class ApiParse extends ApiBase {
 	public function getParamDescription() {
 		return array (
 			'text' => 'Wikitext to parse',
-			'title' => 'Title of page',
-			'prop' => 'Which pieces of information to get'
+			'title' => 'Title of page the text belongs to',
+			'page' => 'Parse the content of this page. Cannot be used together with text and title',
+			'prop' => array('Which pieces of information to get.',
+					'NOTE: Section tree is only generated if there are more than 4 sections, or if the __TOC__ keyword is present'
+			),
 		);
 	}
 

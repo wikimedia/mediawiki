@@ -474,6 +474,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added uiprop=editcount to meta=userinfo
 * Added list=users which fetches user information
 * Added list=random which fetches a list of random pages
+* Added page parameter to action=parse to facilitate parsing of existing pages
 
 === Languages updated in 1.12 ===
 
