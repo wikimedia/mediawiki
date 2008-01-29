@@ -125,7 +125,7 @@ class LoginForm {
 		$u->saveSettings();
 		$result = $this->mailPasswordInternal( $u, false, 'createaccount-title', 'createaccount-text' );
 
-		wfRunHooks( 'AddNewAccount', array( $u ) );
+		wfRunHooks( 'AddNewAccount', array( $u, true ) );
 
 		$wgOut->setPageTitle( wfMsg( 'accmailtitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -855,4 +855,5 @@ class LoginForm {
 		return $skin->makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
 	}
 }
+
 
