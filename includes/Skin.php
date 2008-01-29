@@ -841,8 +841,11 @@ END;
 	}
 
 	function subPageSubtitle() {
-		global $wgOut,$wgTitle,$wgNamespacesWithSubpages;
 		$subpages = '';
+		if(!wfRunHooks('SkinSubPageSubtitle', array(&$subpages)))
+			return $retval;
+
+		global $wgOut, $wgTitle, $wgNamespacesWithSubpages;
 		if($wgOut->isArticle() && !empty($wgNamespacesWithSubpages[$wgTitle->getNamespace()])) {
 			$ptext=$wgTitle->getPrefixedText();
 			if(preg_match('/\//',$ptext)) {
