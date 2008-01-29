@@ -31,7 +31,7 @@ if ( !$pendingDBs ) {
 	}
 
 	foreach ( $dbsByMaster as $master => $dbs ) {
-		$dbConn = new Database( $master, $wgDBuser, $wgDBpassword );
+		$dbConn = new Database( $master, $wgDBuser, $wgDBpassword, $dbs[0] );
 		$stype = $dbConn->addQuotes($type);
 
 		# Padding row for MySQL bug
