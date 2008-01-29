@@ -183,7 +183,7 @@ class LocalFile extends File
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
 
-		$dbr = $this->repo->getSlaveDB();
+		$dbr = $this->repo->getMasterDB();
 
 		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
 			array( 'img_name' => $this->getName() ), $fname );
@@ -293,6 +293,9 @@ class LocalFile extends File
 		$dbw = $this->repo->getMasterDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
+		if ( wfReadOnly() ) {
+			return;
+		}
 		wfDebug(__METHOD__.': upgrading '.$this->getName()." to the current schema\n");
 
 		$dbw->update( 'image',
@@ -608,6 +611,9 @@ class LocalFile extends File
 	 * @public
 	 */
 	function nextHistoryLine() {
+		# Polymorphic function name to distinguish foreign and local fetches
+		$fname = get_class( $this ) . '::' . __FUNCTION__;
+
 		$dbr = $this->repo->getSlaveDB();
 
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur
@@ -617,7 +623,7 @@ class LocalFile extends File
 					"'' AS oi_archive_name"
 				),
 				array( 'img_name' => $this->title->getDBkey() ),
-				__METHOD__
+				$fname
 			);
 			if ( 0 == $dbr->numRows( $this->historyRes ) ) {
 				$dbr->freeResult($this->historyRes);
@@ -628,7 +634,7 @@ class LocalFile extends File
 			$dbr->freeResult($this->historyRes);
 			$this->historyRes = $dbr->select( 'oldimage', '*', 
 				array( 'oi_name' => $this->title->getDBkey() ),
-				__METHOD__,
+				$fname,
 				array( 'ORDER BY' => 'oi_timestamp DESC' )
 			);
 		}
