@@ -2459,7 +2459,9 @@ class User {
 	 * @return bool
 	 */
 	function canSendEmail() {
-		return $this->isEmailConfirmed();
+		$canSend = $this->isEmailConfirmed();
+		wfRunHooks( 'UserCanSendEmail', array( &$this, &$canSend ) );
+		return $canSend;
 	}
 
 	/**
@@ -2468,7 +2470,7 @@ class User {
 	 * @return bool
 	 */
 	function canReceiveEmail() {
-		return $this->canSendEmail() && !$this->getOption( 'disablemail' );
+		return $this->isEmailConfirmed() && !$this->getOption( 'disablemail' );
 	}
 
 	/**
