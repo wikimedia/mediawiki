@@ -1906,20 +1906,20 @@ Feedback and further assistance:
 'excontentauthor'             => "content was: '$1' (and the only contributor was '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "content before blanking was: '$1'",
 'exblank'                     => 'page was empty',
-'confirmdelete'               => 'Confirm delete',
-'deletesub'                   => '(Deleting "$1")',
+'delete-confirm'              => 'Delete "$1"',
+'delete-backlink'             => '← $1', # only translate this message to other languages if you have to change it
+'delete-legend'               => 'Delete',
 'historywarning'              => 'Warning: The page you are about to delete has a history:',
 'confirmdeletetext'           => 'You are about to delete a page along with all of its history.
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'actioncomplete'              => 'Action complete',
-'deletedtext'                 => '"$1" has been deleted.
-See $2 for a record of recent deletions.',
+'deletedtext'                 => '"$1" has been deleted. See $2 for a record of recent deletions.',
 'deletedarticle'              => 'deleted "[[$1]]"',
 'dellogpage'                  => 'Deletion log',
 'dellogpagetext'              => 'Below is a list of the most recent deletions.',
 'deletionlog'                 => 'deletion log',
 'reverted'                    => 'Reverted to earlier revision',
-'deletecomment'               => 'Reason for deletion',
+'deletecomment'               => 'Reason for deletion:',
 'deleteotherreason'           => 'Other/additional reason:',
 'deletereasonotherlist'       => 'Other reason',
 'deletereason-dropdown'       => '

@@ -223,6 +223,7 @@ $wgOptionalMessages = array(
 	'hours-abbrev',
 	'filerevert-backlink',
 	'filedelete-backlink',
+	'delete-backlink',
 	'pagetitle',
 	'filename-prefix-blacklist',
 	'edittools',

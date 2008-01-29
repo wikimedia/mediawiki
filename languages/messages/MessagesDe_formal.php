@@ -360,7 +360,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl
 
 # Delete/protect/revert
 'historywarning'         => 'Achtung, die Seite, die Sie löschen möchten, hat eine Versionsgeschichte:',
-'confirmdeletetext'      => 'Sie sind dabei, eine Seite oder eine Datei und alle zugehörigen älteren Versionen zu löschen. Bitte bestätigen Sie, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handeln.',
+'confirmdeletetext'      => 'Sie sind dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätigen Sie, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handeln.',
 'deletedtext'            => '„$1“ wurde gelöscht. Im $2 finden Sie eine Liste der letzten Löschungen.',
 'sessionfailure'         => 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
