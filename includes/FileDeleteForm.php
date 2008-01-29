@@ -115,7 +115,7 @@ class FileDeleteForm {
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) ) .
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsgHtml( 'filedelete-legend' ) ) .
+			Xml::element( 'legend', null, wfMsg( 'filedelete-legend' ) ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) ) .
 			$this->prepareMessage( 'filedelete-intro' ) .
 			Xml::openElement( 'table' ) .
