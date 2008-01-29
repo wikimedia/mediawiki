@@ -76,6 +76,9 @@ class DumpHTML {
 	# UDP profiling
 	var $udpProfile, $udpProfileCounter = 0, $udpProfileInit = false;
 
+	# Debug level
+	var $debug = 0;
+
 	function DumpHTML( $settings = array() ) {
 		foreach ( $settings as $var => $value ) {
 			$this->$var = $value;
@@ -625,6 +628,9 @@ class DumpHTML {
 	function getArticleHTML( $title ) {
 		global $wgOut, $wgTitle, $wgArticle, $wgUser;
 
+		if ( $this->debug ) {
+			print $title->getPrefixedDBkey() . "\n";
+		}
 		$linkCache =& LinkCache::singleton();
 		$linkCache->clear();
 		$wgTitle = $title;
