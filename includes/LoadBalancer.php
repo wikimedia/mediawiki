@@ -16,12 +16,6 @@ class LoadBalancer {
 	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
 
-	/**
-	 * Scale polling time so that under overload conditions, the database server
-	 * receives a SHOW STATUS query at an average interval of this many microseconds
-	 */
-	const AVG_STATUS_POLL = 30000;
-
 	function __construct( $servers, $failFunction = false, $waitTimeout = 10, $waitForMasterNow = false )
 	{
 		$this->mServers = $servers;
@@ -133,7 +127,7 @@ class LoadBalancer {
 	 * Side effect: opens connections to databases
 	 */
 	function getReaderIndex() {
-		global $wgReadOnly, $wgDBClusterTimeout;
+		global $wgReadOnly, $wgDBClusterTimeout, $wgDBAvgStatusPoll;
 
 		$fname = 'LoadBalancer::getReaderIndex';
 		wfProfileIn( $fname );
@@ -180,7 +174,7 @@ class LoadBalancer {
 								# Too much load, back off and wait for a while.
 								# The sleep time is scaled by the number of threads connected,
 								# to produce a roughly constant global poll rate.
-								$sleepTime = self::AVG_STATUS_POLL * $status['Threads_connected'];
+								$sleepTime = $wgDBAvgStatusPoll * $status['Threads_connected'];
 
 								# If we reach the timeout and exit the loop, don't use it
 								$i = false;
