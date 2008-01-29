@@ -1,6 +1,6 @@
 <?php
 
-$optionsWithArgs = array( 'maxjobs' );
+$optionsWithArgs = array( 'maxjobs', 'type' );
 $wgUseNormalUser = true;
 require_once( 'commandLine.inc' );
 require_once( "$IP/includes/JobQueue.php" );
@@ -20,15 +20,15 @@ $wgTitle = Title::newFromText( 'RunJobs.php' );
 
 $dbw = wfGetDB( DB_MASTER );
 $n = 0;
-$conds = array();
+$conds = '';
 if ($type !== false)
-	$conds = array('job_cmd' => $type);
+	$conds = "job_cmd = " . $dbw->addQuotes($type);
 
 while ( $dbw->selectField( 'job', 'count(*)', $conds, 'runJobs.php' ) ) {
 	$offset=0;
 	for (;;) {
 		$job = ($type == false) ?
-				Job::pop($offset, $type)
+				Job::pop($offset)
 				: Job::pop_type($type);
 
 		if ($job == false)
