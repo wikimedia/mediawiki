@@ -23,7 +23,7 @@ $options = array( 'fix', 'suffix', 'help' );
 require_once( 'commandLine.inc' );
 
 if(isset( $options['help'] ) ) {
-print <<<END
+print <<<ENDS
 usage: namespaceDupes.php [--fix] [--suffix=<text>] [--help]
     --help          : this help message
     --fix           : attempt to automatically fix errors
@@ -33,7 +33,7 @@ usage: namespaceDupes.php [--fix] [--suffix=<text>] [--help]
                       in place of the standard namespace list.
     --verbose       : Display output for checked namespaces without conflicts
 
-END;
+ENDS;
 die;
 }
 
@@ -218,8 +218,14 @@ class NamespaceConflictChecker {
 
 	function resolveConflict( $row, $resolvable, $suffix ) {
 		if( !$resolvable ) {
+			echo "...  *** old title {$row->title}\n";
 			$row->title .= $suffix;
+			echo "...  *** new title {$row->title}\n";
 			$title = Title::makeTitleSafe( $row->namespace, $row->title );
+			if ( ! $title ) {
+				echo "... !!! invalid title\n";
+				return false;
+			}
 			echo "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n";
 		}
 		$tables = array( 'page' );
