@@ -1587,8 +1587,9 @@ $NEWPAGE
 'excontentauthor'             => "תוכן היה: '$1' והתורם היחיד היה [[Special:Contributions/$2|$2]]",
 'exbeforeblank'               => 'תוכן לפני שרוקן היה: "$1"',
 'exblank'                     => 'הדף היה ריק',
-'confirmdelete'               => 'אישור מחיקת הדף',
-'deletesub'                   => '(מחיקה של "$1")',
+'delete-confirm'              => 'מחיקת "$1"',
+'delete-backlink'             => '→ $1',
+'delete-legend'               => 'מחיקה',
 'historywarning'              => 'אזהרה – לדף שאתם עומדים למחוק יש היסטוריית שינויים:',
 'confirmdeletetext'           => 'אתם עומדים למחוק דף או תמונה יחד עם כל ההיסטוריה שלהם.
 
@@ -1600,7 +1601,7 @@ $NEWPAGE
 'dellogpagetext'              => 'להלן רשימה של המחיקות האחרונות שבוצעו.',
 'deletionlog'                 => 'יומן מחיקות',
 'reverted'                    => 'שוחזר לגרסה קודמת',
-'deletecomment'               => 'סיבת המחיקה',
+'deletecomment'               => 'סיבת המחיקה:',
 'deleteotherreason'           => 'סיבה נוספת/אחרת:',
 'deletereasonotherlist'       => 'סיבה אחרת',
 'deletereason-dropdown'       => '
