@@ -41,10 +41,13 @@ $namespaceNames = array(
 );
 
 $skinNames = array(
-	'standard' => 'Klassiek',
-	'nostalgia' => 'Nostalgie',
+	'standard'    => 'Klassiek',
+	'nostalgia'   => 'Nostalgie',
 	'cologneblue' => 'Keuls blauw',
-	'myskin' => 'MijnSkin'
+	'monobook'    => 'Monobook',
+	'myskin'      => 'MijnSkin',
+	'simple'      => 'Eenvoudig',
+	'modern'      => 'Modern',
 );
 
 $dateFormats = array(
