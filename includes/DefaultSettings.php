@@ -637,6 +637,12 @@ $wgDBerrorLog		= false;
 $wgDBClusterTimeout = 10;
 
 /**
+ * Scale load balancer polling time so that under overload conditions, the database server
+ * receives a SHOW STATUS query at an average interval of this many microseconds
+ */
+$wgDBAvgStatusPoll = 2000;
+
+/**
  * wgDBminWordLen :
  * MySQL 3.x : used to discard words that MySQL will not return any results for
  * shorter values configure mysql directly.
