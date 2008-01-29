@@ -257,6 +257,7 @@ $message: out parameter: error message to display on abort
 
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
+$byEmail: true when account was created "by email" (added in 1.12)
 
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
@@ -659,6 +660,7 @@ $paramArray: Array of parameters that corresponds to logging.log_params field. N
     appears to contain anything.
 &$comment: string that corresponds to logging.log_comment database field, and which is displayed in the UI.
 &$revert: string that is displayed in the UI, similar to $comment.
+$time: timestamp of the log entry (added in 1.12) 
 
 'LogPageValidTypes': action being logged. DEPRECATED: Use $wgLogTypes
 &$type: array of strings
