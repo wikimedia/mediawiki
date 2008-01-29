@@ -108,6 +108,7 @@ $wgHTMLDump = new DumpHTML( array(
 	'compress' => $options['compress'],
 	'noSharedDesc' => $options['no-shared-desc'],
 	'udpProfile' => $options['udp-profile'],
+	'debug' => $options['debug'],
 ));
 
 
