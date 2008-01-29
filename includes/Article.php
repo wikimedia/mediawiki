@@ -1954,8 +1954,8 @@ class Article {
 			return;
 		}
 
-		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
-		
+		$wgOut->setPagetitle( wfMsg( 'delete-confirm', $this->mTitle->getPrefixedText() ) );
+
 		# Better double-check that it hasn't been deleted yet!
 		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->mTitle->pageCond();
@@ -2078,64 +2078,60 @@ class Article {
 
 	/**
 	 * Output deletion confirmation dialog
+	 * @param $par string FIXME: do we need this parameter? One Call from Article::delete with '' only.
+	 * @param $reason string Prefilled reason
 	 */
 	function confirmDelete( $par, $reason ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgContLang;
+		$align = $wgContLang->isRtl() ? 'left' : 'right';
 
 		wfDebug( "Article::confirmDelete\n" );
 
-		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
-		$wgOut->setSubtitle( wfMsg( 'deletesub', $sub ) );
+		$wgOut->setSubtitle( wfMsg( 'delete-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->mTitle ) ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addWikiText( wfMsg( 'confirmdeletetext' ) );
 
-		$formaction = $this->mTitle->escapeLocalURL( 'action=delete' . $par );
+		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->mTitle->getLocalURL( 'action=delete' . $par ), 'id' => 'deleteconfirm' ) ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', array(), wfMsg( 'delete-legend' ) ) .
+			Xml::openElement( 'table' ) .
+			"<tr id=\"wpDeleteReasonListRow\" name=\"wpDeleteReasonListRow\">
+				<td align=$align>" .
+					Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' ) .
+				"</td>
+				<td>" .
+					Xml::listDropDown( 'wpDeleteReasonList',
+						wfMsgForContent( 'deletereason-dropdown' ), 
+						wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 ) .
+				"</td>
+			</tr>
+			<tr id=\"wpDeleteReasonRow\" name=\"wpDeleteReasonRow\">
+				<td align=$align>" .
+					Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' ) .
+				"</td>
+				<td>" .
+					Xml::input( 'wpReason', 60, $reason, array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '2' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" .
+					Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching(), array( 'tabindex' => '3' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" .
+					Xml::submitButton( wfMsg( 'deletepage' ), array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '4' ) ) .
+				"</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' );
 
-		$confirm = htmlspecialchars( wfMsg( 'deletepage' ) );
-		$delcom = Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' );
-		$token = htmlspecialchars( $wgUser->editToken() );
-		$watch = Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching(), array( 'tabindex' => '2' ) );
-		
-		$deletereasonother = Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' );
-		$reasonDropDown = Xml::listDropDown( 'wpDeleteReasonList',
-			wfMsgForContent( 'deletereason-dropdown' ), 
-			wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 );
-
-		$wgOut->addHTML( "
-<form id='deleteconfirm' method='post' action=\"{$formaction}\">
-	<table border='0'>
-		<tr id=\"wpDeleteReasonListRow\" name=\"wpDeleteReasonListRow\">
-			<td align='right'>
-				$delcom:
-			</td>
-			<td align='left'>
-				$reasonDropDown
-			</td>
-		</tr>
-		<tr id=\"wpDeleteReasonRow\" name=\"wpDeleteReasonRow\">
-			<td>
-				$deletereasonother
-			</td>
-			<td align='left'>
-				<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"2\" />
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>$watch</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>
-				<input type='submit' name='wpConfirmB' id='wpConfirmB' value=\"{$confirm}\" tabindex=\"3\" />
-			</td>
-		</tr>
-	</table>
-	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
-</form>\n" );
-
-		$wgOut->returnToMain( false, $this->mTitle );
-
+		$wgOut->addHTML( $form );
 		$this->showLogExtract( $wgOut );
 	}
 
