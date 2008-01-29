@@ -1551,6 +1551,14 @@ $wgDebugFunctionEntry = 0;
 /** Lots of debugging output from SquidUpdate.php */
 $wgDebugSquid = false;
 
+/*
+ * Destination for wfIncrStats() data...
+ * 'cache' to go into the system cache, if enabled (memcached)
+ * 'udp' to be sent to the UDP profiler (see $wgUDPProfilerHost)
+ * false to disable
+ */
+$wgStatsMethod = 'cache';
+
 /** Whereas to count the number of time an article is viewed.
  * Does not work if pages are cached (for example with squid).
  */

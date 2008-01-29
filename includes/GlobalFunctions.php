@@ -1644,13 +1644,29 @@ function wfMkdirParents( $fullDir, $mode = 0777 ) {
 /**
  * Increment a statistics counter
  */
- function wfIncrStats( $key ) {
-	 global $wgMemc;
-	 $key = wfMemcKey( 'stats', $key );
-	 if ( is_null( $wgMemc->incr( $key ) ) ) {
-		 $wgMemc->add( $key, 1 );
-	 }
- }
+function wfIncrStats( $key ) {
+	global $wgStatsMethod;
+	
+	if( $wgStatsMethod == 'udp' ) {
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname;
+		static $socket;
+		if (!$socket) {
+			$socket=socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+			$statline="stats/{$wgDBname} - 1 1 1 1 1 -total\n";
+			socket_sendto($socket,$statline,strlen($statline),0,$wgUDPProfilerHost,$wgUDPProfilerPort);
+		}
+		$statline="stats/{$wgDBname} - 1 1 1 1 1 {$key}\n";
+		@socket_sendto($socket,$statline,strlen($statline),0,$wgUDPProfilerHost,$wgUDPProfilerPort);
+	} elseif( $wgStatsMethod == 'cache' ) {
+		global $wgMemc;
+		$key = wfMemcKey( 'stats', $key );
+		if ( is_null( $wgMemc->incr( $key ) ) ) {
+			$wgMemc->add( $key, 1 );
+		}
+	} else {
+		// Disabled
+	}
+}
 
 /**
  * @param mixed $nr The number to format
