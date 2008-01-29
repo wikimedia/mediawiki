@@ -120,7 +120,7 @@ class FileDeleteForm {
 			$this->prepareMessage( 'filedelete-intro' ) .
 			Xml::openElement( 'table' ) .
 			"<tr>
-				<td align=$align>" .
+				<td align='$align'>" .
 					Xml::label( wfMsg( 'filedelete-comment' ), 'wpDeleteReasonList' ) .
 				"</td>
 				<td>" .
@@ -130,7 +130,7 @@ class FileDeleteForm {
 				"</td>
 			</tr>
 			<tr>
-				<td align=$align>" .
+				<td align='$align'>" .
 					Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' ) .
 				"</td>
 				<td>" .

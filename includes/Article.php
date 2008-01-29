@@ -2096,7 +2096,7 @@ class Article {
 			Xml::element( 'legend', array(), wfMsg( 'delete-legend' ) ) .
 			Xml::openElement( 'table' ) .
 			"<tr id=\"wpDeleteReasonListRow\" name=\"wpDeleteReasonListRow\">
-				<td align=$align>" .
+				<td align='$align'>" .
 					Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' ) .
 				"</td>
 				<td>" .
@@ -2106,7 +2106,7 @@ class Article {
 				"</td>
 			</tr>
 			<tr id=\"wpDeleteReasonRow\" name=\"wpDeleteReasonRow\">
-				<td align=$align>" .
+				<td align='$align'>" .
 					Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' ) .
 				"</td>
 				<td>" .
@@ -2128,7 +2128,6 @@ class Article {
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
-			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 
 		$wgOut->addHTML( $form );
