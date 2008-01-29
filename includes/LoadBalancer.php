@@ -20,7 +20,7 @@ class LoadBalancer {
 	 * Scale polling time so that under overload conditions, the database server
 	 * receives a SHOW STATUS query at an average interval of this many microseconds
 	 */
-	const AVG_STATUS_POLL = 2000;
+	const AVG_STATUS_POLL = 30000;
 
 	function __construct( $servers, $failFunction = false, $waitTimeout = 10, $waitForMasterNow = false )
 	{
