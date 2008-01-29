@@ -1175,6 +1175,7 @@ De laatste link is bedoeld voor mediabestanden.",
 'largefileserver'             => 'Het bestand is groter dan de instelling van de server toestaat.',
 'emptyfile'                   => 'Het bestand dat u heeft geüpload lijkt leeg te zijn. Dit zou kunnen komen door een typefout in de bestandsnaam. Ga a.u.b. na of u dit bestand werkelijk bedoelde te uploaden.',
 'fileexists'                  => 'Er bestaat al een bestand met deze naam. Controleer $1 als u niet zeker weet of u het huidige bestand wilt overschrijven.',
+'filepageexists'              => 'Een pagina (geen afbeelding) met deze naam bestaat al, gelieve <strong><tt>$1</tt></strong> te controleren als u niet zeker bent of u het wil wijzigen.',
 'fileexists-extension'        => 'Een bestand met dezelfde naam bestaat al:<br />
 Naam van het geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van het bestaande bestand: <strong><tt>$2</tt></strong><br />
@@ -2526,3 +2527,4 @@ Probeer normale voorvertoning.',
 'unknown_extension_tag' => 'Onbekende tag "$1"',
 
 );
+
