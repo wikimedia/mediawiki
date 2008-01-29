@@ -619,6 +619,9 @@ class MessageCache {
 	 */
 	function addMessages( $messages, $lang = 'en' ) {
 		wfProfileIn( __METHOD__ );
+		if ( !is_array( $messages ) ) {
+			throw new MWException( __METHOD__.': Invalid message array' );
+		}
 		if ( isset( $this->mExtensionMessages[$lang] ) ) {
 			$this->mExtensionMessages[$lang] = $messages + $this->mExtensionMessages[$lang];
 		} else {
