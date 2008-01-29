@@ -984,6 +984,11 @@ $action: Action being checked
 $result: Pointer to result returned if hook returns false. If null is returned,
  userCan checks are continued by internal code.
 
+'UserCanSendEmail': To override User::canSendEmail() permission check
+$user: User (object) whose permission is being checked
+&$canSend: bool set on input, can override on output
+
+
 'UserClearNewTalkNotification': called when clearing the "You have new messages!" message, return false to not delete it
 $user: User (object) that'll clear the message
 
