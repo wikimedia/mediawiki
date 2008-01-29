@@ -155,7 +155,7 @@ class WhatLinksHerePage {
 		$options['offset'] = $this->request->getVal( 'offset' );
 		/* Offset must be an integral. */
 		if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
-		$options['offset'] = '';
+			$options['offset'] = '';
 		$options['target'] = $this->target->getPrefixedText();
 
 		// Read the rows into an array and remove duplicates
