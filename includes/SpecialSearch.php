@@ -392,8 +392,9 @@ class SpecialSearch {
 			if( '' == $name ) {
 				$name = wfMsg( 'blanknamespace' );
 			}
+			$encName = htmlspecialchars( $name );
 			$namespaces .= " <label><input type='checkbox' value=\"1\" name=\"" .
-			  "ns{$ns}\"{$checked} />{$name}</label>\n";
+			  "ns{$ns}\"{$checked} />{$encName}</label>\n";
 		}
 
 		$checked = $this->searchRedirects
