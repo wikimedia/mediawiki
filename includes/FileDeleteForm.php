@@ -110,29 +110,42 @@ class FileDeleteForm {
 	 * Show the confirmation form
 	 */
 	private function showForm() {
-		global $wgOut, $wgUser, $wgRequest;
-		
-		$deletereasonother = Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' );
-		$delcom = Xml::label( wfMsg( 'filedelete-comment' ), 'wpDeleteReasonList' );
-		$reasonDropDown = Xml::listDropDown( 'wpDeleteReasonList',
-			wfMsgForContent( 'filedelete-reason-dropdown' ), 
-			wfMsgForContent( 'filedelete-reason-otherlist' ), '', 'wpReasonDropDown', 1 );
+		global $wgOut, $wgUser, $wgRequest, $wgContLang;
+		$align = $wgContLang->isRtl() ? 'left' : 'right';
 
-		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
-		$form .= '<fieldset><legend>' . wfMsgHtml( 'filedelete-legend' ) . '</legend>';
-		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
-		$form .= '<table><tr><td colspan="2">';
-		$form .= $this->prepareMessage( 'filedelete-intro' );
-		$form .= "</td></tr><tr><td align=\"right\"> $delcom </td><td align=\"left\">";
-		$form .= $reasonDropDown;
-		$form .= "</td></tr><tr><td align=\"right\"> $deletereasonother </td><td align=\"left\">";
-		$form .= "<input type='text' maxlength='255' size='60' name='wpReason' id='wpReason' ";
-		$form .= "value=\"". htmlspecialchars( $wgRequest->getText( 'wpReason' ) ) ."\" tabindex=\"1\" />";
-		$form .= '</td></tr><tr><td colspan="2">';
-		$form .= '<p>' . Xml::submitButton( wfMsg( 'filedelete-submit' ), array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit' ) ) . '</p>';
-		$form .= '</td></tr></table>';
-		$form .= '</fieldset>';
-		$form .= '</form>';
+		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', array(), wfMsgHtml( 'filedelete-legend' ) ) .
+			Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) ) .
+			$this->prepareMessage( 'filedelete-intro' ) .
+			Xml::openElement( 'table' ) .
+			"<tr>
+				<td align=$align>" .
+					Xml::label( wfMsg( 'filedelete-comment' ), 'wpDeleteReasonList' ) .
+				"</td>
+				<td>" .
+					Xml::listDropDown( 'wpDeleteReasonList',
+						wfMsgForContent( 'filedelete-reason-dropdown' ), 
+						wfMsgForContent( 'filedelete-reason-otherlist' ), '', 'wpReasonDropDown', 1 ) .
+				"</td>
+			</tr>
+			<tr>
+				<td align=$align>" .
+					Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' ) .
+				"</td>
+				<td>" .
+					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ), array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '1' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" .
+					Xml::submitButton( wfMsg( 'filedelete-submit' ), array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit' ) ) .
+				"</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' );
 
 		$wgOut->addHtml( $form );
 	}
@@ -168,7 +181,7 @@ class FileDeleteForm {
 		global $wgLang, $wgServer;
 		if( $this->oldimage ) {
 			return wfMsgExt(
-				"{$message}-old",
+				"{$message}-old", # To ensure grep will find them: 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
 				'parse',
 				$this->title->getText(),
 				$wgLang->date( $this->getTimestamp(), true ),
