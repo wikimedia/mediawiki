@@ -1351,21 +1351,19 @@ $NEWPAGE
 'excontentauthor'             => '內容為: "$1" (而且唯一貢獻者為"$2")',
 'exbeforeblank'               => '被清空前的內容為: "$1"',
 'exblank'                     => '頁面為空',
-'confirmdelete'               => '確認刪除',
-'deletesub'                   => '（正在刪除「$1」）',
+'delete-confirm'              => '刪除「$1」',
+'delete-legend'               => '刪除',
 'historywarning'              => '警告: 您將要刪除的頁內含有歷史',
 'confirmdeletetext'           => '您即將刪除一個頁面或圖像以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
-'deletedtext'                 => '「$1」已經被刪除。
-最近刪除的紀錄請參見$2。',
+'deletedtext'                 => '「$1」已經被刪除。最近刪除的紀錄請參見$2。',
 'deletedarticle'              => '已刪除「$1」',
 'dellogpage'                  => '刪除紀錄',
-'dellogpagetext'              => '以下是最近刪除的紀錄列表。
-所有的時間都是使用伺服器時間。',
+'dellogpagetext'              => '以下是最近刪除的紀錄列表。',
 'deletionlog'                 => '刪除紀錄',
 'reverted'                    => '恢復到早期版本',
-'deletecomment'               => '刪除理由',
+'deletecomment'               => '刪除理由:',
 'deleteotherreason'           => '其它／附加的理由:',
 'deletereasonotherlist'       => '其它理由',
 'deletereason-dropdown'       => '
