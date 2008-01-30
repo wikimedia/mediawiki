@@ -422,7 +422,7 @@ class FSRepo extends FileRepo {
 					$status->error( 'filerenameerror', $srcPath, $archivePath );
 					$good = false;
 				} else {
-					chmod( $archivePath, 0644 );
+					@chmod( $archivePath, 0644 );
 				}
 			}
 			if ( $good ) {
