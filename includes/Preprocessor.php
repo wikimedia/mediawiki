@@ -57,6 +57,11 @@ interface PPFrame {
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
 	 */
 	function loopCheck( $title );
+
+	/**
+	 * Return true if the frame is a template frame
+	 */
+	function isTemplate();
 }
 
 interface PPNode {
