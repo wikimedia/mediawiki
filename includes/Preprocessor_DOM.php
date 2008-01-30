@@ -1097,7 +1097,6 @@ class PPFrame_DOM implements PPFrame {
 		return $out;
 	}
 
-
 	function __toString() {
 		return 'frame{}';
 	}
@@ -1126,6 +1125,13 @@ class PPFrame_DOM implements PPFrame {
 	 */
 	function loopCheck( $title ) {
 		return !isset( $this->loopCheckHash[$title->getPrefixedDBkey()] );
+	}
+
+	/**
+	 * Return true if the frame is a template frame
+	 */
+	function isTemplate() {
+		return false;
 	}
 }
 
@@ -1206,6 +1212,13 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 			$text = $this->getNamedArgument( $name );
 		}
 		return $text;
+	}
+
+	/**
+	 * Return true if the frame is a template frame
+	 */
+	function isTemplate() {
+		return true;
 	}
 }
 
