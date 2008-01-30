@@ -144,6 +144,7 @@ function __autoload($className) {
 		'ParserOptions' => 'includes/ParserOptions.php',
 		'PatrolLog' => 'includes/PatrolLog.php',
 		'Preprocessor' => 'includes/Preprocessor.php',
+		'PrefixSearch' => 'includes/PrefixSearch.php',
 		'PPFrame' => 'includes/Preprocessor.php',
 		'PPNode' => 'includes/Preprocessor.php',
 		'Preprocessor_DOM' => 'includes/Preprocessor_DOM.php',

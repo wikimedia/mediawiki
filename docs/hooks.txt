@@ -800,6 +800,13 @@ the built-in rate limiting checks are used, if enabled.
 $form : PreferencesForm object
 &$html : HTML to append to
 
+'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
+AJAX search suggestions. Put results into &$results outparam and return false.
+$ns : int namespace key to search in
+$search : search term (not guaranteed to be conveniently normalized)
+$limit : maximum number of results to return
+&$results : out param: array of page names (strings)
+
 'PrefsEmailAudit': called when user changes his email address
 $user: User (object) changing his email address
 $oldaddr: old email address (string)

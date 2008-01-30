@@ -44,37 +44,12 @@ class ApiOpenSearch extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$search = $params['search'];
+		$limit = $params['limit'];
 
 		// Open search results may be stored for a very long time
 		$this->getMain()->setCacheMaxAge(1200);
-
-		$title = Title :: newFromText($search);
-		if(!$title)
-			return; // Return empty result
-			
-		// Prepare nested request
-		$req = new FauxRequest(array (
-			'action' => 'query',
-			'list' => 'allpages',
-			'apnamespace' => $title->getNamespace(),
-			'aplimit' => $params['limit'],
-			'apprefix' => $title->getDBkey()
-		));
-
-		// Execute
-		$module = new ApiMain($req);
-		$module->execute();
-
-		// Get resulting data
-		$data = $module->getResultData();
-
-		// Reformat useful data for future printing by JSON engine
-		$srchres = array ();
-		foreach ($data['query']['allpages'] as & $pageinfo) {
-			// Note: this data will no be printable by the xml engine
-			// because it does not support lists of unnamed items
-			$srchres[] = $pageinfo['title'];
-		}
+		
+		$srchres = PrefixSearch::titleSearch( $search, $limit );
 
 		// Set top level elements
 		$result = $this->getResult();
