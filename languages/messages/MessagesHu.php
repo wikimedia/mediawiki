@@ -1569,6 +1569,8 @@ Visszajelzés és további segítség:
 'excontentauthor'             => 'a lap tartalma: „$1” (és csak „$2” szerkesztette)',
 'exbeforeblank'               => 'az eltávolítás előtti tartalom: $1',
 'exblank'                     => 'a lap üres volt',
+'delete-confirm'              => '$1 törlése',
+'delete-legend'               => 'Törlés',
 'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, története van:',
 'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti
 végleges törlésére készülsz.
