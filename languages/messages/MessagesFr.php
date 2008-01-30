@@ -1090,6 +1090,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
 'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut-être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
 'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier $1. Êtes-vous certain de vouloir modifier ce fichier ?',
+'filepageexists'              => "Une page (pas une image) avec ce nom existe déjà. Veuillez verifier <strong><tt>$1</tt></strong> si vous n'êtes pas sûr de vouloir la modifier.",
 'fileexists-extension'        => 'Un fichier avec un nom similaire existe déjà :<br />
 Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
 Nom du fichier existant : <strong><tt>$2</tt></strong><br />
@@ -1470,8 +1471,8 @@ Retour et assistance :
 'excontentauthor'             => 'Le contenu était : « $1 » et l’unique contributeur en était « [[Utilisateur:$2|$2]] » ([[Special:Contributions/$2|Contributions]])',
 'exbeforeblank'               => 'Contenait avant blanchiment : $1',
 'exblank'                     => 'page vide',
-'confirmdelete'               => 'Confirmer la suppression',
-'deletesub'                   => '(Suppression de « $1 »)',
+'delete-confirm'              => 'Supprimmer « $1 »',
+'delete-legend'               => 'Suppression',
 'historywarning'              => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
 'confirmdeletetext'           => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'              => 'Action effectuée',
@@ -2433,3 +2434,4 @@ Essayez la prévisualisation normale.',
 'unknown_extension_tag' => "Balise d'extension « $1 » inconnue",
 
 );
+
