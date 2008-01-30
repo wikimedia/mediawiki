@@ -388,7 +388,7 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 'loginreqlink'           => 'sessiya aç',
 'accmailtitle'           => 'Parol gönderildi.',
 'newarticle'             => '(Eni)',
-'newarticletext'         => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[Help:İçindäkiler|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
+'newarticletext'         => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
 'noarticletext'          => 'Bu sayfa boş. Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda yaki bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} var nicä yazmaa].',
 'updated'                => '(Enilendi)',
 'previewnote'            => 'Bu saadä bir ön siir, hem diişmäkler henez korunmadı!',
