@@ -456,6 +456,7 @@ Wótpšašanje: $2',
 'viewsource'           => 'Žrědłowy tekst wobglědaś',
 'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akcije limitowane',
+'actionthrottledtext'  => 'Ako napšawa pśeśiwo spamoju, móžoš toś tu akciju jano někotare raze we wěstym case wuwjasć. Sy toś ten limit dośěgnuł. Pšosym wopytaj za někotare minuty hyšći raz.',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
 'viewsourcetext'       => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
 'protectedinterface'   => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary. Jogo wobźěłowanje jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
@@ -465,6 +466,7 @@ Wótpšašanje: $2',
 'namespaceprotected'   => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
 'customcssjsprotected' => 'Toś te boki njesmějoš wobźěłaś, dokulaž wopśimjeju wósobinske dataje drugego wužywarja.',
 'ns-specialprotected'  => 'Njejo móžno, boki w rumje {{ns:special}} wobźěłaś.',
+'titleprotected'       => 'Bok z toś tym mjenim bu wót [[User:$1|$1]] pśeśiwo napóranjeju šćitany. Pśicyna jo <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Wužywarja wótzjawiś',
@@ -697,6 +699,7 @@ Pšosym pśemysli, lic njamóžo se bok na mjeńše wótrězki rozdźěliś.</st
 'protectedpagewarning'      => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano sysopowe wužywarje mógu jen wobźěłaś.'''",
 'semiprotectedpagewarning'  => "'''Markuj:''' Toś ten bok jo se zakazał, tak až jano registrěrowane wužywarje mógu jen wobźěłaś.",
 'cascadeprotectedwarning'   => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano wužywarje ze sysopowymi priwiliegijami mógu jen wobźěłaś, dokulaž jo zawězana do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo šćitany|kótarejž stej šćitanej|kótarež su šćitane}} z pomocu kaskadoweje zakazanskeje opcije.'''",
+'titleprotectedwarning'     => '<strong>WARNOWANJE: Toś ten bok bu zakazany, tak až jano wěste wužywarje mógu jen napóraś.</strong>',
 'templatesused'             => 'Za toś ten bok su se slědujuce pśedłogi wužywali:',
 'templatesusedpreview'      => 'Za toś ten pśeglěd su slědujuce pśedłogi se wužywali:',
 'templatesusedsection'      => 'W toś tom wótrězku su slědujuce pśedłogi se wužywali:',
@@ -800,19 +803,29 @@ Dalšne administratory we {{GRAMMAR:Lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
+'mergehistory-header'              => "Z toś tym bokom móžoš historiju wersijow žrědłowego boka z tej celowego boka zjadnośiś.
+Zaruc, až historija wersijow nastawka jo njepśetergnjona.
+
+'''Nanejmjenej aktualna wersij žrědłowego boka dej se wuchowaś.'''",
 'mergehistory-box'                 => 'Zwězaś wersjiowu toś teju bokowo:',
 'mergehistory-from'                => 'Žrědłowy bok:',
 'mergehistory-into'                => 'Celowy bok:',
+'mergehistory-list'                => 'Wersije, kótarež móžoš zjadnośiś',
+'mergehistory-merge'               => 'Slědujuce wersije wót [[:$1]] móžoš z [[:$2]] zjadnośiś. Markěruj wersiju, až k tej se wersije deje pśenjasć. Glědaj pšosym, až wužywanje nawigaciskich wótkazow wuběrk slědk stajijo.',
+'mergehistory-go'                  => 'Wersije, kótarež daju se zjadnośiś, pokazaś',
 'mergehistory-submit'              => 'Wersije zjadnośiś',
 'mergehistory-empty'               => 'Njadaju se žedne wersije zjadnośiś.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wót [[:$1]] wuspěšnje do [[:$2]] {{PLURAL:$3|zjadnośona|zjadnośonej|zjadnośone|zjadnośone}}.',
 'mergehistory-no-source'           => 'Žrědłowy bok $1 njeeksistěruje.',
 'mergehistory-no-destination'      => 'Celowy bok $1 njeeksistěruje.',
 'mergehistory-invalid-source'      => 'Žrědłowy bok musy měś dobre nadpismo.',
 'mergehistory-invalid-destination' => 'Celowy bok musy měś dobre nadpismo.',
 
 # Merge log
-'mergelog'    => 'Protokol zjadnośenja',
-'revertmerge' => 'Zjadnośenje anulěrowaś',
+'mergelog'           => 'Protokol zjadnośenja',
+'pagemerge-logentry' => 'zjadnośi [[$1]] do [[$2]] (Wersije až do $3)',
+'revertmerge'        => 'Zjadnośenje anulěrowaś',
+'mergelogpagetext'   => 'Dołojce jo lisćina nejnowejšych zjadnośenjow historije boka z drugej.',
 
 # Diffs
 'history-title'           => 'Stawizny wersijow wót „$1“',
@@ -1036,6 +1049,7 @@ Pšosym mysli na to, až mógu druge wužywarje twóje dataje wulašowaś a změ
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',
 'emptyfile'                   => 'Dataja jo prozna. Pśicyna togo móžo byś zmólka w mjenju dataje. Kontrolěruj pšosym, lic coš dataju napšawdu uploadowaś.',
 'fileexists'                  => 'Dataja z toś tym mjenim južo eksistěrujo. Tłocyš-lic na "Dataju składowaś", ga se dataja pśepišo. Pšosym kontrolěruj <strong><tt>$1</tt></strong>, gaž njejsy se kradu wěsty.',
+'filepageexists'              => 'Bok (žeden wobraz) z toś tym mjenim juž eksistujo, pšosym pśeglědaj <strong><tt>$1</tt></strong>, jolic njejsy se wěsty, lěc coš jen změniś.',
 'fileexists-extension'        => 'Eksistěrujo južo dataja z pódobnym mjenim:<br />
 Mě dataje, kótaraž dej se uploadowaś: <strong><tt>$1</tt></strong><br />
 Mě eksistěrujuceje dataje: <strong><tt>$2</tt></strong><br />
@@ -1458,8 +1472,8 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'excontentauthor'             => "wopśimjeśe jo było: '$1' (a jadnučki wobźěłaŕ jo był '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "Wopśimjeśe do wuprozdnjenja jo było: '$1'",
 'exblank'                     => 'bok jo był prozny',
-'confirmdelete'               => 'wulašowanje wobkšuśiś',
-'deletesub'                   => '(„$1“ se wulašujo)',
+'delete-confirm'              => '„$1“ lašowaś',
+'delete-legend'               => 'Lašowaś',
 'historywarning'              => 'Glědaj! Bok, kótaryž coš wulašowaś, ma stawizny:',
 'confirmdeletetext'           => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
 'actioncomplete'              => 'Akcija jo se wugbała.',
@@ -1469,7 +1483,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'dellogpagetext'              => 'How jo log-lisćina wulašowanych bokow a datajow.',
 'deletionlog'                 => 'log-lisćina wulašowanjow',
 'reverted'                    => 'Nawrośone na staršu wersiju',
-'deletecomment'               => 'Pśicyna wulašowanja',
+'deletecomment'               => 'Pśicyna wulašowanja:',
 'deleteotherreason'           => 'Druga/pśidatna pśicyna:',
 'deletereasonotherlist'       => 'Druga pśicyna',
 'deletereason-dropdown'       => '* Powšykne pśicyny za lašowanja
@@ -1514,6 +1528,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protect-summary-cascade'     => 'kaskaděrujucy',
 'protect-expiring'            => 'kóńcy $1 (UTC)',
 'protect-cascade'             => 'Kaskaděrujucy šćit – wšykne pśedłogi, kótarež su zawězane do toś togo boka, tejerownosći se zamknu.',
+'protect-cantedit'            => 'Njamóžoš šćitne rowniny toś tego boka změniś, dokulaž njamaš dowólnosć toś ten bok wobźěłaś.',
 'restriction-type'            => 'Status šćita',
 'restriction-level'           => 'Rownina šćita:',
 'minimum-size'                => 'Minimalna wjelikosć (bytes)',
@@ -1680,6 +1695,7 @@ $1',
 'ipb_expiry_invalid'          => 'Pódany cas jo njepłaśecy.',
 'ipb_already_blocked'         => '"$1" jo južo blokěrowany/-a',
 'ipb_cant_unblock'            => 'Zmólka: Blokěrowańska ID $1 njejo se namakała. Blokěrowanje jo było južo wótpórane.',
+'ipb_blocked_as_range'        => 'Zmólka: IP-adresa $1 njejo direktnje blokěrowana a njeda se wótblokěrowaś. Jo pak ako źěl wobcerka $2 blokěrowana, kótaryž da se wótblokěrowaś.',
 'ip_range_invalid'            => 'Njepłaśecy wobłuk IP-adresow.',
 'blockme'                     => 'blokěruj mě',
 'proxyblocker'                => 'Blokěrowanje proxy',
@@ -1725,6 +1741,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'pagemovedsub'            => 'Bok jo se pśesunuł.',
 'movepage-moved'          => "<big>'''Bok „$1“ jo se pśesunuł na „$2“.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',
+'cantmove-titleprotected' => 'Njamóžoš bok k toś tomu městnoju pśesunuś, dokulaž nowy titel jo pśeśiwo napóranjeju šćitany.',
 'talkexists'              => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',
 'movedto'                 => 'pśesunjony do',
 'movetalk'                => 'Diskusijny bok sobu pśesunuś.',

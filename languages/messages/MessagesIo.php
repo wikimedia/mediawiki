@@ -635,8 +635,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'excontent'          => "La kontenajo esis: '$1'",
 'exbeforeblank'      => "La kontenajo ante efaco esis: '$1'",
 'exblank'            => 'La pagino esis vakua',
-'confirmdelete'      => 'Konfirmar la efaco',
-'deletesub'          => '(Efacante "$1")',
 'historywarning'     => 'Egardez: La pagino, quan vu efaceskas, havas versionaro:',
 'actioncomplete'     => 'Ago kompletigita',
 'deletedtext'        => '"$1" efacesis.

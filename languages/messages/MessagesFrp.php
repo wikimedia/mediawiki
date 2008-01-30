@@ -975,7 +975,8 @@ ou ben por liyér tot drêt vers lo fichiér :
 'large-file'                  => 'Los fichiérs importâs devriant pas étre ples grôs que $1 ; ceti fichiér fât $2.',
 'largefileserver'             => 'La talye de ceti fichiér est d’amont lo nivô lo ples hôt ôtorisâ.',
 'emptyfile'                   => 'Lo fichiér que vos voléd importar semble vouedo. Cen pôt étre diu a una èrror dens lo nom du fichiér. Volyéd controlar que vos dèsirâd franc copiyér ceti fichiér.',
-'fileexists'                  => 'Un fichiér avouéc ceti nom ègziste ja. Marci de controlar $1. Éte-vos de sûr de volêr modifiar cél fichiér ?',
+'fileexists'                  => 'Un fichiér avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr lo modifiar ?',
+'filepageexists'              => 'Una pâge (pas una émâge) avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr la modifiar ?',
 'fileexists-extension'        => 'Un fichiér avouéc un nom semblâblo ègziste ja :<br />
 Nom du fichiér a importar : <strong><tt>$1</tt></strong><br />
 Nom du fichiér ègzistent : <strong><tt>$2</tt></strong><br />
@@ -1090,17 +1091,22 @@ PICT # de totes sôrtes
 'filerevert-badversion'     => 'Y at pas de vèrsion ples vielye du fichiér avouéc la dâta balyê.',
 
 # File deletion
-'filedelete'             => 'Suprime $1',
-'filedelete-legend'      => 'Suprimar lo fichiér',
-'filedelete-intro'       => "Vos éte aprés suprimar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Vos éte aprés èfaciér la vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 a $3].</span>',
-'filedelete-comment'     => 'Comentèro :',
-'filedelete-submit'      => 'Suprimar',
-'filedelete-success'     => "'''$1''' at étâ suprimâ.",
-'filedelete-success-old' => '<span class="plainlinks">La vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du $2 a $3 at étâ suprimâ.</span>',
-'filedelete-nofile'      => "'''$1''' ègziste pas dessus {{SITENAME}}.",
-'filedelete-nofile-old'  => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs endicâs.",
-'filedelete-iscurrent'   => 'Vos éte aprés tâchiér de suprimar la vèrsion la ples novèla de ceti fichiér. Vos dête, prècèdament, rètablir una vielye vèrsion de ceti.',
+'filedelete'                  => 'Suprime $1',
+'filedelete-legend'           => 'Suprimar lo fichiér',
+'filedelete-intro'            => "Vos éte aprés suprimar '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Vos éte aprés èfaciér la vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 a $3].</span>',
+'filedelete-comment'          => 'Comentèro :',
+'filedelete-submit'           => 'Suprimar',
+'filedelete-success'          => "'''$1''' at étâ suprimâ.",
+'filedelete-success-old'      => '<span class="plainlinks">La vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du $2 a $3 at étâ suprimâ.</span>',
+'filedelete-nofile'           => "'''$1''' ègziste pas dessus {{SITENAME}}.",
+'filedelete-nofile-old'       => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs endicâs.",
+'filedelete-iscurrent'        => 'Vos éte aprés tâchiér de suprimar la vèrsion la ples novèla de ceti fichiér. Vos dête, prècèdament, rètablir una vielye vèrsion de ceti.',
+'filedelete-otherreason'      => 'Rêson difèrenta ou suplèmentèra :',
+'filedelete-reason-otherlist' => 'Rêson difèrenta',
+'filedelete-reason-dropdown'  => '*Rêsons de suprèssion les ples corentes
+** Violacion des drêts d’ôtor
+** Fichiér en doblo',
 
 # MIME search
 'mimesearch'         => 'Rechèrche per tipo MIME',
@@ -1369,8 +1375,6 @@ Retôrn et assistance :
 'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor nen ére « [[User talk:$2|$2]] » ([[Special:Contributions/$2|Contribucions]])',
 'exbeforeblank'               => 'contegnéve devant blanchiment : « $1 »',
 'exblank'                     => 'pâge voueda',
-'confirmdelete'               => 'Confirmar la suprèssion',
-'deletesub'                   => '(Suprèssion de « $1 »)',
 'historywarning'              => 'Atencion : la pâge que vos éte prèst a suprimar at un historico :',
 'confirmdeletetext'           => 'Vos éte prèst a suprimar por de bon de la bâsa de balyês una pâge ou una émâge, et pués totes ses vèrsions prècèdentes. Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'actioncomplete'              => 'Accion fêta',
@@ -1383,7 +1387,7 @@ L’hora endicâ est cela du sèrvior (UTC).',
 'deletionlog'                 => 'historico des èfacements',
 'reverted'                    => 'Rètablissement de la vèrsion prècèdenta',
 'deletecomment'               => 'Rêson de la suprèssion',
-'deleteotherreason'           => 'Rêsons suplèmentères ou ben ôtres :',
+'deleteotherreason'           => 'Rêson difèrenta ou suplèmentèra :',
 'deletereasonotherlist'       => 'Ôtra rêson',
 'deletereason-dropdown'       => '*Rêsons de suprèssion les ples corentes
 ** Demanda de l’ôtor
@@ -1400,7 +1404,7 @@ L’hora endicâ est cela du sèrvior (UTC).',
 
 La dèrriére modificacion at étâ fêta per [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
 'editcomment'                 => 'Lo rèsumâ de la modificacion ére : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])',
+'revertpage'                  => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Rèvocacion de les modificacions de $1 ; retôrn a la vèrsion de $2.',
 'sessionfailure'              => 'Voutra sèssion de conèccion semble avêr des problèmos ;
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèssion.
@@ -1543,7 +1547,7 @@ Balyéd ce-desot una rêson cllâra (per ègzemplo en endiquent les pâges qu’
 'ipbexpiry'                   => 'Durâ du blocâjo :',
 'ipbreason'                   => 'Rêson :',
 'ipbreasonotherlist'          => 'Ôtra rêson',
-'ipbreason-dropdown'          => '* Rêsons de blocâjo les ples frèquentes
+'ipbreason-dropdown'          => '*Rêsons de blocâjo les ples corentes
 ** Vandalismo
 ** Entrebetâ d’enformacions fôsses
 ** Suprèssion de contegnu sen èxplicacion
@@ -1758,6 +1762,10 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'importuploaderrorsize'      => 'Lo tèlèchargement du fichiér a importar at pas reussi. Sa talye est ples granta que cela ôtorisâ.',
 'importuploaderrorpartial'   => 'Lo tèlèchargement du fichiér a importar at pas reussi. Ceti l’at étâ ren qu’a mêtiêt.',
 'importuploaderrortemp'      => 'Lo tèlèchargement du fichiér a importar at pas reussi. Un dossiér temporèro est manquent.',
+'import-parse-failure'       => 'Arrét dens l’analisa de l’impôrt XML',
+'import-noarticle'           => 'Niona pâge a importar !',
+'import-nonewrevisions'      => 'Totes les vèrsions ont étâ importâs dês devant.',
+'xml-error-string'           => '$1 a la legne $2, col $3 (octèt $4) : $5',
 
 # Import log
 'importlogpage'                    => 'Historico de les importacions de pâges',

@@ -673,6 +673,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'cur'                 => 'nuna',
 'next'                => 'sekv',
 'last'                => 'antaŭa',
+'orig'                => 'orig',
 'page_first'          => 'unua',
 'page_last'           => 'lasta',
 'histlegend'          => 'Klarigo: (nuna) = vidu malsamojn kompare kun la nuna versio, (antaŭa) = malsamojn kompare kun la antaŭa versio, <strong>E</strong> = malgranda redakteto',
@@ -725,6 +726,8 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'revdelete-submit'            => 'Apliku al la selektita versio',
 'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}} farita por reĝimo $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
 
 # Diffs
 'history-title'           => 'Redakto-historio de "$1"',
@@ -740,6 +743,7 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'searchsubtitle'        => 'Serĉmendo "[[$1]]"',
 'searchsubtitleinvalid' => 'Serĉmendo "$1"',
 'noexactmatch'          => '<b>Ne estas paĝo titolita "$1".</b> Vi povas [[:$1|krei la paĝon]].',
+'noexactmatch-nocreate' => "'''Estas neniu paĝo titolita \"\$1\".'''",
 'titlematches'          => 'Trovitaj laŭ titolo',
 'notitlematches'        => 'Neniu trovita laŭ titolo',
 'textmatches'           => 'Trovitaj laŭ enhavo',
@@ -764,6 +768,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 # Preferences page
 'preferences'              => 'Preferoj',
 'mypreferences'            => 'Miaj preferoj',
+'prefs-edits'              => 'Nombro de redaktoj:',
 'prefsnologin'             => 'Ne jam salutis!',
 'prefsnologintext'         => '[[Special:Userlogin|Ensalutu]] kaj vi povos ŝanĝi viajn preferojn.',
 'prefsreset'               => 'Preferoj reprenitaj el la registro.',
@@ -828,6 +833,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-groupsmember'    => 'Membro de:',
 'userrights-groupsavailable' => 'Disponeblaj grupoj:',
 'userrights-groupshelp'      => 'Selektu grupojn el kiuj vi volas forigi aŭ al kiuj vi volas aldoni uzanton. Neselektitaj grupoj ne estos ŝanĝitaj. Vi povas malselekti grupon per STR.',
+'userrights-reason'          => 'Kialo por ŝanĝo:',
 
 # Groups
 'group'            => 'Grupo:',
@@ -875,6 +881,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|priatentanta uzanto|priatentantaj uzantoj}}]',
 'rc_categories'                     => 'Nur por jenaj kategorioj (disigu per "|")',
 'rc_categories_any'                 => 'ĉiu',
+'newsectionsummary'                 => '/* $1 */ nova sekcio',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Rilataj paĝoj',
@@ -891,18 +898,13 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'uploadnologintext'           => 'Se vi volas alŝuti dosierojn, vi devas [[Special:Userlogin|ensaluti]].',
 'upload_directory_read_only'  => 'La TTT-servilo ne povas alskribi la alŝuto-dosierujon ($1).',
 'uploaderror'                 => 'Eraro okazis dum alŝuto',
-'uploadtext'                  => 'Por okulumi aŭ serĉi jam alŝutitajn dosierojn, aliru la [[Special:Imagelist|liston de alŝutaĵoj]]. Ĉiuj alŝutoj kaj forigoj estas registrataj en la [[Special:Log/upload|alŝuta loglibro]].
+'uploadtext'                  => 'Uzu la jenan formon por alŝuti dosierojn; okulumi, aux serĉi antaŭe alŝutitajn bildojn, iru la [[Special:Imagelist|Listo de alŝutitaj dosieroj]]. Alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Loglibro de alŝutoj]].
 
-Uzu ĉi tiun formularon por alŝuti novajn bildojn kaj aliajn dosierojn por ilustrado de viaj artikoloj. Ĉe kutimaj retumiloj, vi vidos ĉi-sube butonon "Foliumi..." aŭ simile; tiu malfermas la dosierelektilon de via operaciumo. Kiam vi elektos dosieron, ĝia nomo plenigos la tekstujon apud la butono. Vi ankaŭ nepre devas klakjesi la skatolon por aserti, ke vi ne malobeas la leĝan kopirajton de aliuloj per alŝuto de la dosiero. Por plenumi la alŝutadon, alklaku la butono "Alŝutu". Tio ĉi eble iomete longe daŭros, se estas granda dosiero kaj se via interreta konekto malrapidas.
+Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 
-La dosiertipoj preferataj ĉe {{SITENAME}} estas JPEG por fotografaĵoj, PNG por grafikaĵoj, diagramoj, ktp; kaj OGG por sonregistraĵoj. Bonvolu doni al via dosiero nomon informan, por eviti konfuzon. Por enmeti la dosieron en artikolon, skribu ligilon laŭ la formoj
-
-* <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dosiero.jpg]]</nowiki>
+* <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.jpg]]</nowiki>
 * <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|teksto por retumiloj negrafikaj]]</nowiki>
-aŭ por sono
-* <nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>
-
-Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas redakti, anstataŭigi, aŭ forigi viajn alŝutaĵojn se ili pensas, ke tio servus la vikion. Se vi aĉe misuzas la sistemon, eblas ke vi estos forbarita.',
+* <nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki> por ligi rekte al la dosiero.',
 'uploadlog'                   => 'loglibro de alŝutaĵoj',
 'uploadlogpage'               => 'Loglibro de alŝutaĵoj',
 'uploadlogpagetext'           => 'Jen la plej laste alŝutitaj dosieroj.
@@ -934,8 +936,10 @@ Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas
 'uploadvirus'                 => 'Viruso troviĝas en la dosiero! Detaloj: $1',
 'sourcefilename'              => 'Fonta dosiernomo',
 'destfilename'                => 'Celdosiernomo',
+'watchthisupload'             => 'Atentu ĉi paĝon',
 
-'upload-file-error' => 'Interna eraro',
+'upload-proto-error' => 'Nevalida protokolo',
+'upload-file-error'  => 'Interna eraro',
 
 'license-nopreview' => '(Antaŭvido ne montrebla)',
 
@@ -968,9 +972,14 @@ Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj uzantoj rajtas
 'uploadnewversion-linktext' => 'Alŝutu novan version de ĉi tiu dosiero',
 'imagelist_date'            => 'Dato',
 'imagelist_name'            => 'Nomo',
+'imagelist_size'            => 'Grandeco',
 'imagelist_description'     => 'Priskribo',
 
+# File reversion
+'filerevert-comment' => 'Komento:',
+
 # File deletion
+'filedelete'                  => 'Forigu $1',
 'filedelete-intro'            => "Vi forigas '''[[Media:$1|$1]]'''.",
 'filedelete-comment'          => 'Komento:',
 'filedelete-submit'           => 'Forigu',
@@ -1088,12 +1097,14 @@ Tio ne estus enkalkutita en la jena listo.',
 
 # Book sources
 'booksources'      => 'Libroservoj',
+'booksources-go'   => 'Ek',
 'booksources-text' => 'Jen ligilaro al aliaj TTT-ejoj, kiuj vendas librojn,
 kaj/aŭ informumos pri la libro ligita.
 La {{SITENAME}} ne estas komerce ligita al tiuj vendejoj, kaj la listo ne estu
 komprenata kiel rekomendo aŭ reklamo.',
 
 'categoriespagetext' => 'La sekvantaj kategorioj ekzistas jam en la vikio.',
+'data'               => 'Datumoj',
 'userrights'         => 'Administrado de uzantorajtoj',
 'groups'             => 'Uzantogrupoj',
 'alphaindexline'     => '$1 ĝis $2',
@@ -1121,7 +1132,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 'allpagesprefix'    => 'Montru paĝojn kun prefikso:',
 
 # Special:Listusers
-'listusers-submit' => 'Montri',
+'listusers-submit'   => 'Montri',
+'listusers-noresult' => 'Neniu uzanto trovita.',
 
 # E-mail user
 'mailnologin'     => 'Neniu alsendota adreso',
@@ -1214,8 +1226,6 @@ Reagoj kaj plia helpo :
 'excontentauthor'             => "la enteno estis : '$1' (kaj la sola kontribuinto estis '$2')",
 'exbeforeblank'               => "antaŭ malplenigo enhavis: '$1'",
 'exblank'                     => 'estis malplena',
-'confirmdelete'               => 'Konfirmu forigadon',
-'deletesub'                   => '(Forigas "$1")',
 'historywarning'              => 'Averto: la forigota paĝo havas historion:',
 'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'              => 'Ago farita',
@@ -1426,6 +1436,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'blocklogtext'         => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry'      => '$1 estis malbarita',
 'ipb_expiry_invalid'   => 'Nevalida blokdaŭro.',
+'proxyblocksuccess'    => 'Farita.',
 
 # Developer tools
 'lockdb'              => 'Ŝlosi datumaron',
@@ -1667,6 +1678,11 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'showhidebots' => '($1 robotojn)',
 'noimages'     => 'Nenio videbla.',
 
+# Bad image list
+'bad_image_list' => 'La formato de la listo de malbonaj bildoj estas jen:
+
+Nur listeroj (kun linio komence de steleto *) estas konsiderata. La komenca ligilo de linio devas esti ligilo al malbona bildo. Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la bildo estas permesita esti montrata.)',
+
 # Metadata
 'metadata'          => 'Metadatumo',
 'metadata-help'     => 'Ĉi tiu dosiero enhavas pluan informon, verŝajne aldonita de la cifereca fotilo aux skanilo uzata krei aux skani ĝin. Se la dosiero estis ŝanĝita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
@@ -1762,6 +1778,11 @@ $1',
 # AJAX search
 'articletitles' => "Artikoloj komencante de ''$1''",
 'hideresults'   => 'Kaŝu rezultojn',
+
+# Multipage image navigation
+'imgmultipageprev' => '← antaŭa paĝo',
+'imgmultipagenext' => 'sekva paĝo →',
+'imgmultigo'       => 'Ek!',
 
 # Table pager
 'table_pager_next'  => 'Sekva paĝo',

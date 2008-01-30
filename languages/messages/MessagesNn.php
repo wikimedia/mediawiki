@@ -913,27 +913,35 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'files'                    => 'Filer',
 
 # User rights
-'userrights-lookup-user'     => 'Administrer brukargrupper',
-'userrights-user-editname'   => 'Skriv inn brukarnamn:',
-'editusergroup'              => 'Endre brukargrupper',
-'userrights-editusergroup'   => 'Endre brukargrupper',
-'saveusergroups'             => 'Lagre brukargrupper',
-'userrights-groupsmember'    => 'Medlem av:',
-'userrights-groupsavailable' => 'Tilgjengelege grupper:',
-'userrights-groupshelp'      => 'Vel grupper du vil at brukaren skal fjernast frå eller leggjast til. Grupper som ikkje er valde vil ikkje bli endra. Du kan velja vekk ei gruppe med [CTRL + venstreklikk]',
+'userrights-lookup-user'           => 'Administrer brukargrupper',
+'userrights-user-editname'         => 'Skriv inn brukarnamn:',
+'editusergroup'                    => 'Endre brukargrupper',
+'userrights-editusergroup'         => 'Endre brukargrupper',
+'saveusergroups'                   => 'Lagre brukargrupper',
+'userrights-groupsmember'          => 'Medlem av:',
+'userrights-groupsremovable'       => 'Grupper som kan fjernast:',
+'userrights-groupsavailable'       => 'Tilgjengelege grupper:',
+'userrights-groupshelp'            => 'Vel grupper du vil at brukaren skal fjernast frå eller leggjast til. Grupper som ikkje er valde vil ikkje bli endra. Du kan velja vekk ei gruppe med [CTRL + venstreklikk]',
+'userrights-reason'                => 'Grunn til endring:',
+'userrights-available-none'        => 'Du kan ikkje endre gruppemedlemsskap.',
+'userrights-available-add'         => 'Du kan legge brukarar til {{PLURAL:$2|denne gruppa|desse gruppene}}: $1.',
+'userrights-available-remove'      => 'Du kan fjerne brukarar frå {{PLURAL:$2|denne gruppa|desse gruppene}}: $1.',
+'userrights-available-add-self'    => 'Du kan legge deg sjølv til {{PLURAL:$2|denne gruppa|desse gruppene}}: $1.',
+'userrights-available-remove-self' => 'Du kan fjerne deg sjølv frå {{PLURAL:$2|denne gruppa|desse gruppene}}: $1.',
+'userrights-no-interwiki'          => 'Du har ikkje tilgang til å endre brukartilgangar på andre wikiar.',
 
 # Groups
 'group'            => 'Gruppe:',
-'group-bot'        => 'Bottar',
+'group-bot'        => 'Robotar',
 'group-sysop'      => 'Administratorar',
 'group-bureaucrat' => 'Byråkratar',
 'group-all'        => '(alle)',
 
-'group-bot-member'        => 'Bott',
+'group-bot-member'        => 'Robot',
 'group-sysop-member'      => 'Administrator',
 'group-bureaucrat-member' => 'Byråkrat',
 
-'grouppage-bot'        => '{{ns:project}}:Bottar',
+'grouppage-bot'        => '{{ns:project}}:Robotar',
 'grouppage-sysop'      => '{{ns:project}}:Administratorar',
 'grouppage-bureaucrat' => '{{ns:project}}:Byråkratar',
 
@@ -952,7 +960,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'rcnotefrom'                        => 'Nedanfor er endringane frå <b>$2</b> inntil <b>$1</b> viste.',
 'rclistfrom'                        => 'Vis nye endringar frå $1',
 'rcshowhideminor'                   => '$1 småplukk',
-'rcshowhidebots'                    => '$1 bottar',
+'rcshowhidebots'                    => '$1 robotar',
 'rcshowhideliu'                     => '$1 innlogga brukarar',
 'rcshowhideanons'                   => '$1 anonyme brukarar',
 'rcshowhidepatr'                    => '$1 godkjende endringar',
@@ -1243,8 +1251,8 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'iteminvalidname'      => 'Problem med «$1», ugyldig namn...',
 'wlnote'               => 'Nedanfor er {{PLURAL:$1|den siste endringa|dei siste $1 endringane}} {{PLURAL:$2|den siste timen|dei siste $2 timane}}.',
 'wlshowlast'           => 'Vis siste $1 timar $2 dagar $3',
-'watchlist-show-bots'  => 'Vis bottar',
-'watchlist-hide-bots'  => 'Gøym bottar',
+'watchlist-show-bots'  => 'Vis robotar',
+'watchlist-hide-bots'  => 'Gøym robotar',
 'watchlist-show-own'   => 'Vis endringane mine',
 'watchlist-hide-own'   => 'Gøym endringane mine',
 'watchlist-show-minor' => 'Vis småplukk',
@@ -1292,8 +1300,6 @@ For hjelp og meir informasjon:
 'excontentauthor'             => 'innhaldet var: «$1» (og den einaste bidragsytaren var «$2»)',
 'exbeforeblank'               => 'innhaldet før sida vart tømd var: «$1»',
 'exblank'                     => 'sida var tom',
-'confirmdelete'               => 'Stadfest sletting',
-'deletesub'                   => '(Slettar «$1»)',
 'historywarning'              => 'Åtvaring: Sida du held på å slette har ein historikk:',
 'confirmdeletetext'           => 'Du held på å varig slette ei side eller eit bilete saman med heile den tilhøyrande historikken frå databasen. Stadfest at du verkeleg vil gjere dette, at du skjønar konsekvensane, og at du gjer dette i tråd med [[{{MediaWiki:Policy-url}}|retningslinene]].',
 'actioncomplete'              => 'Ferdig',
@@ -1315,7 +1321,7 @@ For hjelp og meir informasjon:
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]).',
 'editcomment'                 => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Attenderulla endring gjort av [[User:$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]',
+'revertpage'                  => 'Attenderulla endring gjort av [[User:$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
 'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:Protectedpages|Verna side]] for meir info.',
@@ -1525,6 +1531,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'importsuccess'           => 'Importeringa er ferdig!',
 'importhistoryconflict'   => 'Det kan vera at det er konflikt i historikken (kanskje sida vart importert før)',
 'importnosources'         => 'Ingen kjelder for transwikiimport er oppgjevne og funksjonen for opplasting av historikk er deaktivert.',
+'import-parse-failure'    => 'Feil i tolking av XML-import',
 
 # Import log
 'importlogpage' => 'Importeringslogg',
@@ -1662,7 +1669,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 
 # Special:Newimages
 'newimages'    => 'Filgalleri',
-'showhidebots' => '($1 bottar)',
+'showhidebots' => '($1 robotar)',
 'noimages'     => 'Her er ingen filer som kan visast.',
 
 # Bad image list
@@ -1951,7 +1958,10 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'ascending_abbrev'         => 'stigande',
 'descending_abbrev'        => 'synkande',
 'table_pager_next'         => 'Neste side',
+'table_pager_prev'         => 'Førre side',
+'table_pager_first'        => 'Fyrste side',
 'table_pager_last'         => 'Siste side',
+'table_pager_limit'        => 'Vis $1 element per side',
 'table_pager_limit_submit' => 'Gå',
 'table_pager_empty'        => 'Ingen resultat',
 
@@ -1964,6 +1974,12 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 # Live preview
 'livepreview-loading' => 'Lastar inn…',
 'livepreview-ready'   => 'Lastar inn… Ferdig!',
+'livepreview-failed'  => 'Levande førehandsvising var mislykka. Prøv vanleg førehandsvising.',
+'livepreview-error'   => 'Tilkoplinga var mislykka: $1 «$2». Prøv vanleg førehandsvising.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Endringar som er nyare enn $1 sekund er ikkje viste på denne lista.',
+'lag-warn-high'   => 'På grunn av stor databaseforseinking, er ikkje endringar som er nyare enn $1 sekund viste på denne lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Overvakingslista di inneheld {{PLURAL:$1|éi side|$1 sider}} (diskusjonssider ikkje medrekna).',

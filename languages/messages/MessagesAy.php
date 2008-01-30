@@ -10,10 +10,11 @@
 $fallback = 'es';
 
 $messages = array(
-'article' => 'Amtachinu',
-'cancel'  => 'Jan saña',
-'qbfind'  => 'Thaqaña',
-'qbedit'  => 'Trukaña',
+'article'    => 'Amtachinu',
+'cancel'     => 'Jan saña',
+'qbfind'     => 'Thaqaña',
+'qbedit'     => 'Trukaña',
+'navigation' => 'Wampuña',
 
 'errorpagetitle'   => 'Pantja',
 'help'             => 'Yanapaña',
@@ -28,6 +29,7 @@ $messages = array(
 'talkpagelinktext' => 'Kutkatasiña',
 'talk'             => 'Tuqisiwi',
 'otherlanguages'   => 'Yaqha arunaka',
+'jumptonavigation' => 'wampuña',
 'jumptosearch'     => 'thaqaña',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -85,6 +87,9 @@ $messages = array(
 'imagelist_user'        => 'Apnaqiri',
 'imagelist_description' => 'Uñt’ayawi',
 
+# Miscellaneous special pages
+'move' => 'Qillqaraña',
+
 # Special:Log
 'specialloguserlabel'  => 'Apnaqiri:',
 'speciallogtitlelabel' => 'Titulu:',
@@ -95,6 +100,9 @@ $messages = array(
 
 # Watchlist
 'watch' => 'Uñjaña',
+
+# Restrictions (nouns)
+'restriction-move' => 'Qillqaraña',
 
 # Undelete
 'undelete-search-submit' => 'Thaqaña',

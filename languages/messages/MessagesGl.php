@@ -957,6 +957,7 @@ Para incluir unha imaxe na páxina, use unha ligazón do seguinte xeito:
 'largefileserver'             => 'Este ficheiro é de maior tamaño que o permitido pola configuración do servidor.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro. Isto pode deberse a un erro ortográfico no seu nome. Por favor verifique se realmente quere cargar este ficheiro.',
 'fileexists'                  => 'Xa existe un ficheiro con ese nome. Por favor, verifique <strong><tt>$1</tt></strong> se non está seguro de que quere cambialo.',
+'filepageexists'              => 'Unha páxina (non imaxe) con ese nome xa esxiste, comprobe <strong><tt>$1</tt></strong> se non está seguro de que quere cambiala.',
 'fileexists-extension'        => 'Xa hai un ficheiro cun nome semellante:<br />
 Nome do ficheiro que tenta cargar: <strong><tt>$1</tt></strong><br />
 Nome de ficheiro que hai: <strong><tt>$2</tt></strong><br />
@@ -1071,17 +1072,22 @@ PICT # misc.
 'filerevert-badversion'     => 'Non existe unha versión local anterior deste ficheiro coa data e hora indicadas.',
 
 # File deletion
-'filedelete'             => 'Eliminar $1',
-'filedelete-legend'      => 'Eliminar o ficheiro',
-'filedelete-intro'       => "Vai eliminar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Vai eliminar a versión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Comentario:',
-'filedelete-submit'      => 'Eliminar',
-'filedelete-success'     => "Eliminouse '''$1'''.",
-'filedelete-success-old' => '<span class="plainlinks">Eliminouse a versión de \'\'\'[[Media:$1|$1]]\'\'\' de $3, $2 .</span>',
-'filedelete-nofile'      => "'''$1''' non existe en {{SITENAME}}.",
-'filedelete-nofile-old'  => "Non existe unha versión arquivada de '''$1''' cos atributos especificados.",
-'filedelete-iscurrent'   => 'Tentou eliminar a versión máis recente deste ficheiro. Volva antes a unha versión máis antiga.',
+'filedelete'                  => 'Eliminar $1',
+'filedelete-legend'           => 'Eliminar o ficheiro',
+'filedelete-intro'            => "Vai eliminar '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Vai eliminar a versión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Comentario:',
+'filedelete-submit'           => 'Eliminar',
+'filedelete-success'          => "Eliminouse '''$1'''.",
+'filedelete-success-old'      => '<span class="plainlinks">Eliminouse a versión de \'\'\'[[Media:$1|$1]]\'\'\' de $3, $2 .</span>',
+'filedelete-nofile'           => "'''$1''' non existe en {{SITENAME}}.",
+'filedelete-nofile-old'       => "Non existe unha versión arquivada de '''$1''' cos atributos especificados.",
+'filedelete-iscurrent'        => 'Tentou eliminar a versión máis recente deste ficheiro. Volva antes a unha versión máis antiga.',
+'filedelete-otherreason'      => 'Outra/adicional razón:',
+'filedelete-reason-otherlist' => 'Outra razón',
+'filedelete-reason-dropdown'  => '*Razóns comúns para eliminar:
+** Violación do Copyright
+** Arquivo duplicado',
 
 # MIME search
 'mimesearch'         => 'Busca MIME',
@@ -1348,8 +1354,8 @@ Feedback e axuda:
 'excontentauthor'             => "O texto puña: '$1' (e o único editor foi '$2')",
 'exbeforeblank'               => "o contido antes do baleiramento era: '$1'",
 'exblank'                     => 'a páxina estaba baleira',
-'confirmdelete'               => 'Confirmar borrado',
-'deletesub'                   => '(Borrando "$1")',
+'delete-confirm'              => 'Borrar "$1"',
+'delete-legend'               => 'Borrar',
 'historywarning'              => 'Atención: A páxina que está a borrar ten un historial:',
 'confirmdeletetext'           => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos. Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras da [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'A acción foi completada',
@@ -1360,10 +1366,10 @@ En $2 pode ver unha listaxe dos borrados recentes.',
 'dellogpagetext'              => 'Abaixo está a listaxe dos borrados máis recentes.',
 'deletionlog'                 => 'rexistro de borrado',
 'reverted'                    => 'Devolto a unha versión anterior',
-'deletecomment'               => 'Razón para o borrado',
+'deletecomment'               => 'Razón para o borrado:',
 'deleteotherreason'           => 'Outros/Máis motivos:',
 'deletereasonotherlist'       => 'Outro motivo',
-'deletereason-dropdown'       => '*Motivos frecuentes para eliminar
+'deletereason-dropdown'       => '*Motivos frecuentes para borrar
 ** Petición do autor
 ** Violación de copyright
 ** Vandalismo',
@@ -1379,7 +1385,7 @@ feita por [[User:$2|$2]] ([[User talk:$2|disc.]]); alguén máis editou ou desfi
 
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|disc.]]).',
 'editcomment'                 => 'O comentario da edición era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Desfíxose a edición de [[Special:Contributions/$2|$2]] ([[User_talk:$2|disc.]]), cambiado á última versión feita por [[User:$1|$1]]',
+'revertpage'                  => 'Desfíxose a edición de [[Special:Contributions/$2|$2]] ([[User_talk:$2|disc.]]), cambiado á última versión feita por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Desfixéronse as edicións de $1; volveuse á última edición, feita por $2.',
 'sessionfailure'              => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema en "atrás", volva a carregar a páxina da que proviña e ténteo de novo.',
 'protectlogpage'              => 'Rexistro de protección',
@@ -1442,7 +1448,7 @@ restauradas van aparecer no historial anterior. Teña tamén en conta que as res
 'undeleterevdel'               => 'Non se levará a cabo a reversión do borrado se ocasiona que a última revisión da páxina se elimine parcialmente.
 Nestes casos, debe retirar a selección ou quitar a ocultación das revisións borradas máis recentes.
 Non se restaurarán as revisións dos ficheiros sobre os que non ten permiso para ver.',
-'undeletehistorynoadmin'       => 'Este artigo foi eliminado. O motivo da eliminación consta no resumo de embaixo, xuntos cos detalles dos usuarios que editaron esta páxina antes da súa eliminación. O das revisións eliminadas só está á disposición dos administradores.',
+'undeletehistorynoadmin'       => 'Esta páxina foi borrada. O motivo do borrado consta no resumo de embaixo, xuntos cos detalles dos usuarios que editaron esta páxina antes da súa eliminación. O das revisións eliminadas só está á disposición dos administradores.',
 'undelete-revision'            => 'Revisión de $1 eliminada (en $2) por $3:',
 'undeleterevision-missing'     => 'Revisión non válida ou inexistente. Pode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.',
 'undelete-nodiff'              => 'Non se atopou ningunha revisión anterior.',
@@ -1458,7 +1464,7 @@ Non se restaurarán as revisións dos ficheiros sobre os que non ten permiso par
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
 'undelete-header'              => 'Vexa [[Special:Log/delete|no rexistro de borrado]] as páxinas eliminadas recentemente.',
-'undelete-search-box'          => 'Buscar páxinas eliminadas',
+'undelete-search-box'          => 'Buscar páxinas borradas',
 'undelete-search-prefix'       => 'Mostrar páxinas que comecen por:',
 'undelete-search-submit'       => 'Procurar',
 'undelete-no-results'          => 'Non se atoparon páxinas coincidentes no arquivo de eliminacións.',
@@ -1725,13 +1731,15 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'importcantopen'             => 'Non se pode abrir o ficheiro importado',
 'importbadinterwiki'         => 'Ligazón entre wikis incorrecta',
 'importnotext'               => 'Texto baleiro ou inexistente',
-'importsuccess'              => 'A importación foi un éxito!',
+'importsuccess'              => 'A importación rematou!',
 'importhistoryconflict'      => 'Existe un conflito no historial de revisións (por ter importado esta páxina antes)',
 'importnosources'            => 'Non se definiron fontes de importación transwiki e están desactivados os envíos directos dos historiais.',
 'importnofile'               => 'Non se enviou ningún ficheiro de importación.',
 'importuploaderrorsize'      => 'Fallou o envío do ficheiro de importación. O ficheiro é máis grande que o tamaño de envío permitido.',
 'importuploaderrorpartial'   => 'Fallou o envío do ficheiro de importación. O ficheiro só se enviou parcialmente.',
 'importuploaderrortemp'      => 'Fallou o envío do ficheiro de importación. Falta un cartafol temporal.',
+'import-noarticle'           => 'Ningunha páxina para importar!',
+'import-nonewrevisions'      => 'Todas as revisións son previamente importadas.',
 
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',

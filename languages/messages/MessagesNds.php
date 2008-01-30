@@ -1172,8 +1172,6 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'excontentauthor'             => 'Inholt weer: ‚$1‘ (un de eenzige Autor weer ‚[[Special:Contributions/$2|$2]]‘)',
 'exbeforeblank'               => 'Inholt vör dat Leddigmaken vun de Siet: ‚$1‘',
 'exblank'                     => 'Siet weer leddig',
-'confirmdelete'               => 'Wegsmieten bestätigen',
-'deletesub'                   => '(Smiet „$1“ weg)',
 'historywarning'              => 'Wohrschau: De Siet, de du bi büst to löschen, hett en Versionshistorie:',
 'confirmdeletetext'           => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
 Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]] hannelst.',

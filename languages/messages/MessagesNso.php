@@ -595,8 +595,6 @@ Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiš
 # Delete/protect/revert
 'deletepage'                  => 'Phumula letlakala',
 'excontent'                   => "mateng ebe e le: '$1'",
-'confirmdelete'               => ' Tiišetša go phumula',
-'deletesub'                   => '(Go phumulwa "$1")',
 'historywarning'              => 'Temošo: Letlakala leo o lekago go lephumula le nale histori:',
 'confirmdeletetext'           => 'O phumula letlakala le histori ka moka ya lona.
 Ka kgopela sitlediša gore ke se o nyakago  go sedira, le gore o kwešiša ditla morago tša se, le gore seo o se dirago se latela melawana le ditaelo go ya ka [[{{MediaWiki:Policy-url}}|polisi]].',

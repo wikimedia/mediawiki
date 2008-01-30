@@ -1013,6 +1013,7 @@ abo zo by so direktnje z dataju zwjazało
 'largefileserver'             => 'Dataja je wjetša hač serwer dowoluje.',
 'emptyfile'                   => 'Dataja, kotruž sy nahrał, zda so prózdna być. Z přičinu móhł pisanski zmylk w mjenje dataje być. Prošu pruwuj hač chceš ju woprawdźe nahrać.',
 'fileexists'                  => 'Dataja z tutym mjenom hižo eksistuje. Jeli kliknješ na „Składować”, so wona přepisuje. Prošu pruwuj $1 jeli njejsy wěsty hač chceš ju změnić.',
+'filepageexists'              => 'Strona (žadyn wobraz) z tutym mjenom hižo eksistuje, prošu přepruwuj <strong><tt>$1</tt></strong>, jeli njejsy sej wěsty, hač chceš je změnić.',
 'fileexists-extension'        => 'Dataja z podobnym mjenom hižo eksistuje:<br />
 Mjeno dataje, kotruž chceš nahrać: <strong><tt>$1</tt></strong><br />
 Mjeno eksistowaceje dataje: <strong><tt>$2</tt></strong><br />
@@ -1438,8 +1439,8 @@ Wospjetne prašenja a dalša pomoc:
 'excontentauthor'             => "wobsah bě: '$1' (a jenički wobdźěłowar bě '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "wobsah do wuprózdnjenja běše: '$1'",
 'exblank'                     => 'strona běše prózdna',
-'confirmdelete'               => 'Wušmórnjenje wobkrućić',
-'deletesub'                   => '(strona „$1” so wušmórnje)',
+'delete-confirm'              => '„$1“ wušmórnyć',
+'delete-legend'               => 'Wušmórnyć',
 'historywarning'              => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
 'confirmdeletetext'           => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić. 
 Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo 
@@ -1451,7 +1452,7 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'dellogpagetext'              => 'Deleka je lisćina najaktualnišich wušmórnjenjow.',
 'deletionlog'                 => 'Protokol wušmórnjenjow',
 'reverted'                    => 'Na staršu wersiju cofnjene',
-'deletecomment'               => 'Přičina wušmórnjenja',
+'deletecomment'               => 'Přičina wušmórnjenja:',
 'deleteotherreason'           => 'Druha/přidatna přičina:',
 'deletereasonotherlist'       => 'Druha přičina',
 'deletereason-dropdown'       => '*Zwučene přičiny za wušmórnjenje
@@ -2372,18 +2373,7 @@ Spytaj normalny přehlad.',
 'watchlisttools-raw'  => 'Lisćinowy format wobdźěłać (import/eksport)',
 
 # Iranian month names
-'iranian-calendar-m1'  => '1. měsac Jalāli',
-'iranian-calendar-m2'  => '2. měsac Jalāli',
-'iranian-calendar-m3'  => '3. měsac Jalāli',
-'iranian-calendar-m4'  => '4. měsac Jalāli',
-'iranian-calendar-m5'  => '5. měsac Jalāli',
-'iranian-calendar-m6'  => '6. měsac Jalāli',
-'iranian-calendar-m7'  => '7. měsac Jalāli',
-'iranian-calendar-m8'  => '8. měsac Jalāli',
-'iranian-calendar-m9'  => '9. měsac Jalāli',
-'iranian-calendar-m10' => '10. měsac Jalāli',
-'iranian-calendar-m11' => '11. měsac Jalāli',
-'iranian-calendar-m12' => '12. měsac Jalāli',
+'iranian-calendar-m2' => 'Ordibehešt',
 
 # Core parser functions
 'unknown_extension_tag' => 'Njeznata taflička rozšěrjenja "$1"',

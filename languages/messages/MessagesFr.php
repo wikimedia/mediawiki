@@ -2434,4 +2434,3 @@ Essayez la prévisualisation normale.',
 'unknown_extension_tag' => "Balise d'extension « $1 » inconnue",
 
 );
-

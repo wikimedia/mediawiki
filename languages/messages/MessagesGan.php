@@ -1170,8 +1170,6 @@ $NEWPAGE
 'excontentauthor'             => '內容係: \'$1\' (唯一嗰貢獻者係"$2")',
 'exbeforeblank'               => "拕清空之前嗰內容係: '$1'",
 'exblank'                     => '頁面冇內容',
-'confirmdelete'               => '確認刪除',
-'deletesub'                   => '("$1"刪除中)',
 'historywarning'              => '警告: 倷要刪卟嗰頁面含到歷史版',
 'confirmdeletetext'           => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，還曉得佢嗰後果，更加不能違反[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '扤正嘞',

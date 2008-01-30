@@ -932,6 +932,7 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 *'''Internet Explorer''' / '''Opera''': '''ctrl-f5'''
 *'''Safari''': '''cmd-r'''
 *'''Konqueror''': '''ctrl-r'''",
+'filepageexists'              => "Kachkanñam kay sutiyuq p'anqa (manam rikchachu), ama hina kaspa, <strong><tt>$1</tt></strong> nisqata llanchiy, hukchana munayniykita mana yachaspaykiqa.",
 'fileexists-extension'        => 'Kay willañiqip sutinman yaqa kaqlla sutiyuq willañiqim kachkanña:<br />
 Churkunayasqayki willañiqip sutin: <strong><tt>$1</tt></strong><br />
 Kachkaqña willañiqip sutin: <strong><tt>$2</tt></strong><br />
@@ -1032,17 +1033,22 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'filerevert-badversion'     => "Kay willañiqimanta qusqayki pachayuq tiyaylla llamk'apusqaqa manam kanchu.",
 
 # File deletion
-'filedelete'             => '$1-ta qulluy',
-'filedelete-legend'      => 'Willañiqita qulluy',
-'filedelete-intro'       => "'''[[Media:$1|$1]]'''-tam qulluchkanki.",
-'filedelete-intro-old'   => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' musuqchasqatam qulluchkanki [$4 $3, $2] nisqamanta.</span>',
-'filedelete-comment'     => 'Willapuy:',
-'filedelete-submit'      => 'Qulluy',
-'filedelete-success'     => "'''$1''' qullusqañam.",
-'filedelete-success-old' => "<span class=\"plainlinks\">\$3, \$2 pachamanta '''[[Media:\$1|\$1]]''' llamk'apusqaqa qullusqañam.</span>",
-'filedelete-nofile'      => "{{SITENAME}}piqa '''$1''' manam kanchu.",
-'filedelete-nofile-old'  => "Qusqa kachkaykunayuq '''$1'''-manta waqaychasqa llamk'apusqaqa manam kanchu.",
-'filedelete-iscurrent'   => "Kay willañiqimanta lliwmanta aswan ñaqha llamk'apusqatam qulluykachachkanki. Ama hina kaspa, ñawpaqta mawk'a llamk'apusqaman kutichiy.",
+'filedelete'                  => '$1-ta qulluy',
+'filedelete-legend'           => 'Willañiqita qulluy',
+'filedelete-intro'            => "'''[[Media:$1|$1]]'''-tam qulluchkanki.",
+'filedelete-intro-old'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' musuqchasqatam qulluchkanki [$4 $3, $2] nisqamanta.</span>',
+'filedelete-comment'          => 'Willapuy:',
+'filedelete-submit'           => 'Qulluy',
+'filedelete-success'          => "'''$1''' qullusqañam.",
+'filedelete-success-old'      => "<span class=\"plainlinks\">\$3, \$2 pachamanta '''[[Media:\$1|\$1]]''' llamk'apusqaqa qullusqañam.</span>",
+'filedelete-nofile'           => "{{SITENAME}}piqa '''$1''' manam kanchu.",
+'filedelete-nofile-old'       => "Qusqa kachkaykunayuq '''$1'''-manta waqaychasqa llamk'apusqaqa manam kanchu.",
+'filedelete-iscurrent'        => "Kay willañiqimanta lliwmanta aswan ñaqha llamk'apusqatam qulluykachachkanki. Ama hina kaspa, ñawpaqta mawk'a llamk'apusqaman kutichiy.",
+'filedelete-otherreason'      => 'Hukrayku:',
+'filedelete-reason-otherlist' => 'Hukrayku',
+'filedelete-reason-dropdown'  => "*Sapsirayku qullusqa
+** K'irisqa ruraqpa hayñin
+** Iskaychasqa willañiqi",
 
 # MIME search
 'mimesearch'         => 'MIME maskay',
@@ -1102,6 +1108,7 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 
 'withoutinterwiki'        => "Interwiki t'inkinnaq p'anqakuna",
 'withoutinterwiki-header' => "Kay p'anqakunaqa manam huk rimaykunapi p'anqakunaman t'inkinchu:",
+'withoutinterwiki-submit' => 'Rikuchiy',
 
 'fewestrevisions' => "Aslla kuti llamk'apusqa p'anqakuna",
 
@@ -1302,8 +1309,6 @@ Yanapasunaykipaq:
 'excontentauthor'             => "Samiqnin karqan kay hinam: '$1' (huklla ruraqnin: '$2')",
 'exbeforeblank'               => "manaraq qullusqa kaptin, samiqnin kay hinam karqan: '$1'",
 'exblank'                     => "p'anqaqa ch'usaqmi karqan",
-'confirmdelete'               => 'Qullunata takyachiy',
-'deletesub'                   => '(Qulluspa "$1")',
 'historywarning'              => "Paqtataq: Kay qulluna p'anqaqa wiñay kawsasqayuqmi:",
 'confirmdeletetext'           => "Qullunayachkanki p'anqatam icha rikchatam, wiñay kawsasqantapas.
 Ama hina kaspa, takyachiy munayniykita, qatiqninkunata riqsiyniykita, [[{{MediaWiki:Policy-url}}|kawpaykama]] rurayniykitapas.",
@@ -1331,7 +1336,7 @@ $2 nisqa p\'anqata qhaway ñaqha qullusqakunata rikunaykipaq.',
 'cantrollback'                => "Manam atinichu llamk'apusqata kutichiyta; qhipaq kaq llamk'apuqqa kay p'anqap hukllam ruraqnin.",
 'alreadyrolled'               => "Manam atinichu [[User:$2|$2]]-pa ([[User talk:$2|rimanakuy]]) [[$1]] nisqa qhipaq llamk'apusqanta kutichiyta; pipas kay p'anqataqa llamk'apurqunñam icha kutichirqunñam. Qhipaq kaq llamk'apusqaqa [[User:$3|$3]]-pa ([[User talk:$3|rimanakuy]]) rurasqanmi.",
 'editcomment'                 => 'Llamk\'apusqamantaqa kaymi willasqa: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|rimachina]]) sutiyuq ruraqpa hukchasqankunaqa kutichisqam [[User:$1|$1]]-pa ñawpaq hukchasqanman',
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|rimachina]]) sutiyuq ruraqpa hukchasqankunaqa kutichisqam [[User:$1|$1]]-pa ñawpaq hukchasqanman', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "$1-pa hukchasqankunaqa kutichisqañam $2-pa ñawpaq llamk'apusqanta paqarichispa.",
 'sessionfailure'              => "Lamk'apuy tiyayniykiwanqa sasachakuymi rikch'akun;
 kay rurayqa t'ipisqam karqan millay runap llullaspa yaykunanta hark'anapaq.
@@ -1618,6 +1623,7 @@ Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{ns:special
 'export-addcattext' => "P'anqakunata yapay kay katiguriyamanta:",
 'export-addcat'     => 'Yapay',
 'export-download'   => 'Willañiqi hina waqaychay niy',
+'export-templates'  => "Plantillata ch'aqtay",
 
 # Namespace 8 related
 'allmessages'               => 'MediaWiki-p tukuy willayninkuna',
@@ -1664,6 +1670,9 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'importuploaderrorsize'      => 'Manam atinichu hawamanta chaskina willañiqita churkuyta, saqillasqamanta aswan hatun kaptinmi.',
 'importuploaderrorpartial'   => 'Manam atinichu hawamanta chaskina willañiqita churkuyta, rakillam churkusqa.',
 'importuploaderrortemp'      => "Manam atinichu hawamanta chaskina willañiqita churkuyta, mit'alla willañiqi churana mana kaptinmi.",
+'import-noarticle'           => "Manam hawamanta chaskina p'anqachu!",
+'import-nonewrevisions'      => 'Tukuy musuqchasqakunaqa ñawpaqtañam hawamanta chaskisqa.',
+'xml-error-string'           => "$1, $2 siq'ipi, $3 tunupi (byte $4): $5",
 
 # Import log
 'importlogpage'                    => "Hawamanta chaskiy hallch'a",

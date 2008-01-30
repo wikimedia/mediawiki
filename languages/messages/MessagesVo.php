@@ -394,6 +394,7 @@ Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
 'gotaccountlink'             => 'Nunädolös obi',
 'createaccountmail'          => 'me pot leäktronik',
 'badretype'                  => 'Letavöds fa ol pepenöls no leigons.',
+'userexists'                 => 'Gebananem at ya dabinon. Välolös, begö! nemik votik.',
 'youremail'                  => 'Ladet leäktronik *:',
 'username'                   => 'Gebananem:',
 'uid'                        => 'Gebanadientif:',
@@ -402,6 +403,7 @@ Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
 'yournick'                   => 'Länem:',
 'email'                      => 'Ladet leäktronik',
 'prefs-help-realname'        => 'Nem jenöfik no binon zesüdik. If vilol givön oni, pogebon ad dasevön vobi olik.',
+'loginerror'                 => 'Nunädamapöl',
 'prefs-help-email'           => '* Ladet leäktronik (if vilol): dälon votikanes ad kosikön ko ol 
 yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'prefs-help-email-required'  => 'Ladet leäktronik paflagon.',
@@ -427,6 +429,7 @@ If no ol, ab pösod votik ebegon letavödi nulik, ud if ememol letavödi olik e 
 Nunädolös oli dönu posä ogetol oni.',
 'eauthentsent'               => 'Pened leäktronik pesedon ladete pegivöl ad fümükön dabini onik.
 Büä pened votik alseimik okanon pasedön kale at, omutol dunön valikosi in pened at peflagöli, ad fümükön, das kal binon jenöfo olik.',
+'mailerror'                  => 'Pöl dü sedam pota: $1',
 'acct_creation_throttle_hit' => 'Säkusädolös, ya ejafol kalis $1. No plu kanol jafön kali nulik.',
 'emailauthenticated'         => 'Ladet leäktronik olik päfümükon tü düp $1.',
 'emailnotauthenticated'      => 'Ladet leäktronik ola no nog pefümedon. Pened nonik posedon me pads sököl.',
@@ -590,6 +593,8 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'revdelete-hide-comment' => 'Klänedön redakamaküpeti',
 
 # History merging
+'mergehistory-from'           => 'Fonätapad:',
+'mergehistory-into'           => 'Zeilapad:',
 'mergehistory-no-source'      => 'Fonätapad: $1 no dabinon.',
 'mergehistory-no-destination' => 'Zeilapad: $1 no dabinon.',
 
@@ -994,8 +999,6 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'excontent'                   => "ninäd äbinon: '$1'",
 'excontentauthor'             => "ninäd äbinon: '$1' (e keblünan teik äbinon '[[Special:Contributions/$2|$2]]')",
 'exblank'                     => 'pad ävagon',
-'confirmdelete'               => 'Fümedolös moükami',
-'deletesub'                   => '(Moükölo padi: "$1")',
 'historywarning'              => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
 'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Peledunon',
@@ -1444,6 +1447,7 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'table_pager_prev'         => 'Pad büik',
 'table_pager_first'        => 'Pad balid',
 'table_pager_last'         => 'Pad lätik',
+'table_pager_limit'        => 'Jonön lienis $1 a pad',
 'table_pager_limit_submit' => 'Gololöd',
 
 # Auto-summaries

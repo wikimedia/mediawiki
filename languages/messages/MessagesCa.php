@@ -1418,8 +1418,6 @@ Suggeriments i ajuda:
 'excontentauthor'             => "el contingut era: «$1» (i l'única persona qui hi ha editat ha estat «[[Special:Contributions/$2|$2]]»)",
 'exbeforeblank'               => "el contingut abans d'estar en blanc era: '$1'",
 'exblank'                     => 'la pàgina estava en blanc',
-'confirmdelete'               => "Confirma l'esborrament",
-'deletesub'                   => '(Esborrant "$1")',
 'historywarning'              => 'Avís: La pàgina que eliminareu té un historial:',
 'confirmdeletetext'           => "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les

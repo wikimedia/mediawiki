@@ -1018,6 +1018,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku. Sprawdź, czy nazwa jest prawidłowa.',
 'fileexists'                  => 'Plik o takiej nazwie już istnieje! Załadowanie nowej grafiki nieodwacalnie usunie już istniejącą ($1)! Upewnij się, że wiesz, co robisz.',
+'filepageexists'              => 'Istnieje już strona o tej nazwie (nie grafika), sprawdź <strong><tt>$1</tt></strong> jeżeli nie jesteś pewien czy chcesz ją zmienić.',
 'fileexists-extension'        => 'Plik o podobnej nazwie już istnieje:<br />
 Nazwa przesyłanego pliku: <strong><tt>$1</tt></strong><br />
 Nazwa istniejącego pliku: <strong><tt>$2</tt></strong><br />
@@ -1118,17 +1119,22 @@ Rejestr usunięć tego pliku jest dla wygody podany poniżej:",
 'filerevert-badversion'     => 'Nie ma poprzedniej lokalnej wersji tego pliku z podaną datą.',
 
 # File deletion
-'filedelete'             => 'Usunięcie $1',
-'filedelete-legend'      => 'Skasuj plik',
-'filedelete-intro'       => "Usuwasz '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Usuwasz wersję pliku \'\'\'[[Media:$1|$1]]\'\'\' z datą [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Komentarz:',
-'filedelete-submit'      => 'Skasuj',
-'filedelete-success'     => "Skasowano plik '''$1'''.",
-'filedelete-success-old' => '<span class="plainlinks">Skasowano plik \'\'\'[[Media:$1|$1]]\'\'\' w wersji z $3, $2.</span>',
-'filedelete-nofile'      => "Plik '''$1''' nie istnieje w {{SITENAME}}.",
-'filedelete-nofile-old'  => "Nie ma zarchiwizowanje wersji '''$1''' o podanych atrybutach.",
-'filedelete-iscurrent'   => 'Próbujesz skasować najnowszą wersję tego pliku. Musisz najpierw przywrócić starszą wersję.',
+'filedelete'                  => 'Usunięcie $1',
+'filedelete-legend'           => 'Skasuj plik',
+'filedelete-intro'            => "Usuwasz '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Usuwasz wersję pliku \'\'\'[[Media:$1|$1]]\'\'\' z datą [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Komentarz:',
+'filedelete-submit'           => 'Skasuj',
+'filedelete-success'          => "Skasowano plik '''$1'''.",
+'filedelete-success-old'      => '<span class="plainlinks">Skasowano plik \'\'\'[[Media:$1|$1]]\'\'\' w wersji z $3, $2.</span>',
+'filedelete-nofile'           => "Plik '''$1''' nie istnieje w {{SITENAME}}.",
+'filedelete-nofile-old'       => "Nie ma zarchiwizowanje wersji '''$1''' o podanych atrybutach.",
+'filedelete-iscurrent'        => 'Próbujesz skasować najnowszą wersję tego pliku. Musisz najpierw przywrócić starszą wersję.',
+'filedelete-otherreason'      => 'Inna/dodatkowa przyczyna:',
+'filedelete-reason-otherlist' => 'Inna przyczyna',
+'filedelete-reason-dropdown'  => '* Najczęstsze przyczyny usunięcia
+** Naruszenie praw autorskich
+** Kopia istniejącego już pliku',
 
 # MIME search
 'mimesearch'         => 'Wyszukiwanie MIME',
@@ -1401,8 +1407,6 @@ Pomoc:
 'excontentauthor'             => 'treść: "$1" (jedyny autor: [[{{ns:special}}:Contributions/$2|$2]])',
 'exbeforeblank'               => 'Poprzednia zawartość pustej strony "$1"',
 'exblank'                     => 'Strona była pusta',
-'confirmdelete'               => 'Potwierdź usunięcie',
-'deletesub'                   => '(Usuwanie "$1")',
 'historywarning'              => 'Uwaga! Strona, którą chcesz skasować ma starsze wersje:',
 'confirmdeletetext'           => 'Zamierzasz trwale usunąć stronę lub plik z bazy danych razem z dotyczącą ich historią. Potwierdź, proszę, swoje zamiary, tzn., że rozumiesz konsekwencje, i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'              => 'Operacja wykonana',
@@ -1428,7 +1432,7 @@ Pomoc:
 'cantrollback'                => 'Nie można cofnąć edycji; jest tylko jedna wersja tej strony.',
 'alreadyrolled'               => 'Nie można cofnąć ostatniej zmiany strony [[:$1|$1]], której autorem jest [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Dyskusja]]). Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony. Autorem ostatniej zmiany jest teraz [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Dyskusja]]).',
 'editcomment'                 => 'Opisano ją następująco: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wycofano edycję użytkownika [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
+'revertpage'                  => 'Wycofano edycję użytkownika [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wycofano edycje użytkownika $1; powrócono do ostatniej wersji autorstwa $2.',
 'sessionfailure'              => 'Błąd weryfikacji sesji. Twoje polecenie zostało anulowane, aby uniknąć przechwycenia sesji.
 
@@ -1756,6 +1760,10 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 'importuploaderrorsize'      => 'Przesyłanie pliku importowanego zawiodło. Jest większy niż dopuszczalny rozmiar dla przesyłanego pliku.',
 'importuploaderrorpartial'   => 'Przesyłanie pliku importowanego zawiodło. Został przesłany tylko częściowo.',
 'importuploaderrortemp'      => 'Przesyłanie pliku importowanego zawiodło. Brak katalogu na dla plików tymczasowych.',
+'import-parse-failure'       => 'nieudana analiza składni importowanego XML',
+'import-noarticle'           => 'Brak stron do importu!',
+'import-nonewrevisions'      => 'Wszystkie wersje wcześniej zaimportowane.',
+'xml-error-string'           => '$1 linia $2, kolumna $3 (bajt $4): $5',
 
 # Import log
 'importlogpage'                    => 'Rejestr importu',

@@ -586,8 +586,6 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 # Delete/protect/revert
 'deletepage'                  => 'Sutrae la paje',
 'confirm'                     => 'Aproba',
-'confirmdelete'               => 'Aproba la sutrae',
-'deletesub'                   => '(Sutraente "$1")',
 'historywarning'              => 'Avisa! La paje ce tu intende sutrae, el ave un istoria:',
 'confirmdeletetext'           => 'Tu va pronto sutrae un paje con tota se istoria. Per favore, afirma ce tu intende esta, ce tu comprende la resultas, e ce tu fa esta en acorda con [[{{MediaWiki:Policy-url}}|la prometes]].',
 'actioncomplete'              => 'Ata completada',

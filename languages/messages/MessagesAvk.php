@@ -1127,8 +1127,6 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'excontentauthor'             => "cek tiyir : '$1' (is tanaf webesik tiyir '$2')",
 'exbeforeblank'               => 'Abdi tuvlardara, batu bu ruldayar va : $1',
 'exblank'                     => 'vlardafu bu',
-'confirmdelete'               => 'Va sulara gruyé',
-'deletesub'                   => '(Sulara va « $1 »)',
 'historywarning'              => 'Obral : Telu bu rinon sulatanu va izvot digir :',
 'confirmdeletetext'           => 'Rin va bu is varaf izvot fu sulal.
 Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:Policy-url}}|xoverteem]] askil !',

@@ -1044,8 +1044,6 @@ Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'�
 'excontent'                   => "bolg'an mag'lıwmat: '$1'",
 'excontentauthor'             => "bolg'an mag'lıwmat: '$1' (tek '[[{{ns:special}}:Contributions/$2|$2]]' u'lesi)",
 'exblank'                     => 'bet bos edi',
-'confirmdelete'               => "O'shiriwdi tastıyıqlan'",
-'deletesub'                   => '("$1" o\'shirilmekte)',
 'historywarning'              => "Esletpe: O'shireyin dep atırg'an betin'izdin' tariyxi bar:",
 'confirmdeletetext'           => "Siz bul betti yamasa su'wretti barliq tariyxı menen mag'lıwmatlar bazasınan o'shirejaqsız.
 Bunın' aqıbetin tu'singenin'izdi ha'm [[{{MediaWiki:Policy-url}}]] siyasatına ılayıqlı ekenligin tastıyıqlan'.",

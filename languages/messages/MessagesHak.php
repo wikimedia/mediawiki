@@ -1039,8 +1039,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'excontentauthor'             => 'Nui-yùng he: "$1" (song-chhiá vì-thu̍k kung-hien-chá he "$2")',
 'exbeforeblank'               => 'Pûn chhîn-khûng chhièn ke nui-yùng he: "$1"',
 'exblank'                     => 'Vùn-chông he hî-khûng',
-'confirmdelete'               => 'Khok-ngin chhù-chhîn',
-'deletesub'                   => '(Chang-chhai chhù-hi "$1")',
 'historywarning'              => 'Kín-ko: Ngì chiông-yeu chhù-hi ke chông-nui hàm-yû li̍t-sṳ́:',
 'confirmdeletetext'           => 'Ngì chiông-voi chhiùng chṳ̂-liau-khu chûng yún-yén chhù-thet yit-ke vùn-chông fe̍t-chá thù-chhiong yî-khi̍p li̍t-sṳ́. Chhiáng khok-thin ngì-yeu chin-hàng chhâu-chok, pin liáu-kié heu-kó, thùng-sṳ̀ ngì-ke hàng-vì fù-ha̍p [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Chhâu-chok vàn-sṳ̀n',
@@ -1058,7 +1056,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'cantrollback'                => 'Vù-fap fî-fu̍k phiên-cho; chui-heu ke kung-hien-chá he pún vùn-chông ke vì-thu̍k chok-chá.',
 'alreadyrolled'               => 'Mò-fap fî-fu̍k yù [[User:$2|$2]] ([[User talk:$2|thó-lun]]) chin-hàng ke [[$1]] ke chui-heu phiên-si̍p; khì-thâ ngìn yí-kîn phiên-siá fe̍t-he fî-fu̍k liáu ke-hong. Chui-heu phiên-si̍p-chá: [[User:$3|$3]] ([[User talk:$3|Thó-lun]])。',
 'editcomment'                 => 'Phiên-siá sot-mìn he: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] ([[User talk:$2|tui-fa]]) ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún',
+'revertpage'                  => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] ([[User talk:$2|tui-fa]]) ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Ngì-ke tên-ngi̍p sṳ-fû yû mun-thì, vi-liáu fòng-chṳ́ sêu-sit pûn làn-chiet, pún-chhṳ chhâu-chok yí-kîn chhí-sêu, chhiáng-on "song-yit-chông" chhùng-sîn chai-ngi̍p.',
 'protectlogpage'              => 'Pó-fu ngit-ki',
 'protectlogtext'              => 'Ha-mien he vùn-chông só-thin lâu chhí-sêu só-thin ke lie̍t-péu. Chhiáng chhâm-kháu [[Special:Protectedpages|Pó-fu vùn-chông chhîn-tân]] yî-khi̍p kiám-sṳ tông-chhièn chin-hàng ke vùn-chông pó-fu.',
@@ -1339,7 +1337,6 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 'importhistoryconflict'      => 'Chhùn-chhai chhûng-thu̍t ke siû-thin li̍t-sṳ́ (khó-nèn chhai chṳ̂-chhièn yí-kîn thô-ngi̍p-ko chhṳ́vùn-chông)',
 'importnosources'            => 'Khiam-wiki thô-ngi̍p ngièn mò-yû thin-ngi, thùng-sṳ̀ put yún-chún chhṳ̍t-chiap ke  li̍t-sṳ́ song-chhòn.',
 'importnofile'               => 'Mò-yû song-chhòn thô-ngi̍p tóng-on.',
-'importuploaderror'          => 'Sông-chhòn thô-ngi̍p tóng-on sṳt-phai; khó-nèn he ke-tóng-on thai-yî yún-chún ke tóng-on sông-chhòn thai-séu.',
 
 # Import log
 'importlogpage'                    => 'Thô-ngi̍p ngit-ki',
@@ -1620,4 +1617,3 @@ Sòn-chhṳ phêu-chún yi-liau.',
 'lag-warn-high'   => 'Yù-yî chṳ̂-liau-khu ke ko-thu yèn-chhṳ̀, tô-yî $1-méu ke kiên-kói khó-nèn put-voi chhai liá-ke chhîn-tân chûng hién-sṳ.',
 
 );
-

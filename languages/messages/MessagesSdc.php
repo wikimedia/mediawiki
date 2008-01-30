@@ -1277,8 +1277,6 @@ Pa dì cosa ni pensi e dumandà assisthènzia:
 'excontentauthor'             => "lu cuntinuddu era: '$1' (e lu soru cuntributori era '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "Lu cuntinuddu primma di l'ibbiuddamentu era: '$1'",
 'exblank'                     => 'la pàgina era biodda',
-'confirmdelete'               => 'Cunfèimma canzilladdura',
-'deletesub'                   => '(Canzilladdura di "$1")',
 'historywarning'              => 'Attinzioni: La pàgina chi sei canzellendi à una cronologia:',
 'confirmdeletetext'           => "Sei canzillendi pa sempri da la bancati una pàgina o un'immàgina, umpari a la cronologia d'edda.
 Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguènzi di l'azioni tóia e ch'edda è cunfòimmi a li [[{{MediaWiki:Policy-url}}|lìni ghia]].",

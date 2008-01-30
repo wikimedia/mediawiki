@@ -497,8 +497,6 @@ Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <
 
 # Delete/protect/revert
 'deletepage'                  => 'Efase yon paj',
-'confirmdelete'               => 'Konfime ou ap efase',
-'deletesub'                   => '(Efasman « $1 »)',
 'historywarning'              => 'Atansyon, paj ou ap efase an genyen yon istorik :',
 'confirmdeletetext'           => 'Ou ap efase pou tout bon nan bazdone a yon paj oubyen yon imaj epi tout vèsyon li yo. Souple, konfime aksyon enpòtan sa a, ke ou konprann sa ou ap fè, nan dwa ak [[{{MediaWiki:Policy-url}}|lwa medyawiki a]].',
 'actioncomplete'              => 'Aksyon an fèt',
@@ -506,7 +504,7 @@ Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <
 Gade $2 pou wè yon lis efasman resan.',
 'deletedarticle'              => 'efase « [[$1]] »',
 'dellogpage'                  => 'Istorik efasman yo',
-'deletecomment'               => 'Poukisa ou efase',
+'deletecomment'               => 'Rezon pou kilès la ou efase :',
 'deleteotherreason'           => 'Rezon an plis :',
 'deletereasonotherlist'       => 'Lòt rezon',
 'rollbacklink'                => 'anlve',

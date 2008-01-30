@@ -673,8 +673,6 @@ Par riscontri e ulteriore assistenzsa:
 'excontent'                   => "el contenuto xera: '$1'",
 'exbeforeblank'               => "El contenuto prima de lo svodamento xera: '$1'",
 'exblank'                     => "ła paxèna l'era voda",
-'confirmdelete'               => 'Conferma scancełazsión',
-'deletesub'                   => '(Scancełazsion de "$1")',
 'historywarning'              => 'Atenzsion: La paxèna che te stè par scancełar gà na cronołogia:',
 'confirmdeletetext'           => "Te stè par scancełar permanentemente da el database na paxèna o na imagine, insieme a tuta la so cronołogia.
 Par cortesia, conferma che l'è to intenzsion proçedere a tałe scancełazsion, conferma che te ghè piena consapevołezsa de łe conseguenzse de la to azsion, e conferma che la to azsion l'è pienamente ottemperante a łe regołe stabilíe ne ła
@@ -692,7 +690,7 @@ Par cortesia, conferma che l'è to intenzsion proçedere a tałe scancełazsion,
 'cantrollback'                => "No xè mia possibiłe tornar a na verzsión precedente: l'ultima modifica xè stà apportà da l'unico utente che gà laorà a stò arthicoło.",
 'alreadyrolled'               => "Non xè mia possibile effettuare el rollback de [[$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]); qualcun altro gà xà modificà o effetuà el rollback de sta voçe. L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]).",
 'editcomment'                 => 'El commento a la modifica xera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Anułate łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła verzsion preçedente de [[User:$1|$1]]',
+'revertpage'                  => 'Anułate łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła verzsion preçedente de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Log de protezsión',
 'protectedarticle'            => 'proteto "[[$1]]"',
 'protectsub'                  => '(Protezsion de "$1")',

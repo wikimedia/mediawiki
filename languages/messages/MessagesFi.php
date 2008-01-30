@@ -1404,8 +1404,8 @@ Palaute ja lisäapu osoitteessa:
 'excontentauthor'             => 'sisälsi: ”$1” (ainoa muokkaaja oli $2)',
 'exbeforeblank'               => 'ennen tyhjentämistä sisälsi: ”$1”',
 'exblank'                     => 'oli tyhjä',
-'confirmdelete'               => 'Vahvista poisto',
-'deletesub'                   => 'Sivun $1 poisto',
+'delete-confirm'              => 'Sivun ”$1” poistaminen',
+'delete-legend'               => 'Sivun poisto',
 'historywarning'              => 'Sivua, jonka aiot poistaa on muokattu useammin kuin kerran:',
 'confirmdeletetext'           => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'actioncomplete'              => 'Toiminto suoritettu',
@@ -1416,7 +1416,7 @@ Palaute ja lisäapu osoitteessa:
 'deletionlog'                 => 'poistoloki',
 'reverted'                    => 'Palautettu aikaisempaan versioon',
 'deletecomment'               => 'Poistamisen syy',
-'deleteotherreason'           => 'Muu syy tai tarkennus:',
+'deleteotherreason'           => 'Muu syy tai tarkennus',
 'deletereasonotherlist'       => 'Muu syy',
 'deletereason-dropdown'       => '*Yleiset poistosyyt
 ** Lisääjän poistopyyntö
@@ -1740,6 +1740,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'importuploaderrorsize'      => 'Tuontitiedoston tallennus epäonnistui. Tiedosto on suurempi kuin sallittu yläraja.',
 'importuploaderrorpartial'   => 'Tuontitiedoston tallennus epäonnistui. Tiedostosta oli lähetetty vain osa.',
 'importuploaderrortemp'      => 'Tuontitiedoston tallennus epäonnistui. Väliaikaistiedostojen kansio puuttuu.',
+'import-parse-failure'       => 'XML-tuonti epäonnistui jäsennysvirheen takia.',
 'import-noarticle'           => 'Ei tuotavaa sivua.',
 'import-nonewrevisions'      => 'Kaikki versiot on tuotu aiemmin.',
 
@@ -2321,4 +2322,3 @@ Yritä normaalia esikatselua.',
 'unknown_extension_tag' => 'Tuntematon laajennuskoodi ”$1”.',
 
 );
-
