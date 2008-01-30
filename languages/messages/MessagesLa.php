@@ -63,6 +63,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Paginae_disambiguationis', 'Disambiguationes' ),
 	'Userlogin'                 => array( 'Conventum_aperire' ),
 	'Userlogout'                => array( 'Conventum_concludere' ),
+	'CreateAccount'             => array( 'Rationem_creare' ),
 	'Preferences'               => array( 'Praeferentiae' ),
 	'Watchlist'                 => array( 'Paginae_custoditae' ),
 	'Recentchanges'             => array( 'Nuper_mutata', 'Mutationes_recentes' ),
