@@ -134,7 +134,7 @@ class FileDeleteForm {
 					Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' ) .
 				"</td>
 				<td>" .
-					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ), array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '1' ) ) .
+					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ), array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '1', 'id' => 'wpReason' ) ) .
 				"</td>
 			</tr>
 			<tr>
