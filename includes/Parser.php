@@ -3169,7 +3169,13 @@ class Parser
 		$argName = trim( $nameWithSpaces );
 		$object = false;
 		$text = $frame->getArgument( $argName );
-		if (  $text === false && ( $this->ot['html'] || $this->ot['pre'] ) && $parts->getLength() > 0 ) {
+		if (  $text === false && $parts->getLength() > 0 
+		  && ( 
+		    $this->ot['html'] 
+		    || $this->ot['pre'] 
+		    || ( $this->ot['wiki'] && $frame->isTemplate() )
+		  )
+		) {
 			# No match in frame, use the supplied default
 			$object = $parts->item( 0 )->getChildren();
 		}
@@ -3665,9 +3671,6 @@ class Parser
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
 		$text = $this->replaceVariables( $text );
-
-		# Strip out <nowiki> etc. added via replaceVariables
-		#$text = $this->strip( $text, $this->mStripState, false, array( 'gallery' ) );
 
 		# Signatures
 		$sigText = $this->getUserSig( $user );
