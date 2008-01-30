@@ -519,6 +519,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'anontalkpagetext'          => '----
 여기는 계정에 로그인하지 않은 익명 사용자를 위한 토론 문서입니다. 익명 사용자의 사용자 이름은 IP 주소로 나오기 때문에, 한 IP 주소를 여러 명이 같이 쓰거나 유동 IP를 사용하는 경우 엉뚱한 사람에게 의견이 전달될 수 있습니다. 이러한 문제를 피하려면 [[Special:Userlogin|계정을 만들거나 로그인해 주시기 바랍니다]].',
 'noarticletext'             => '현재 문서는 비어 있습니다. 이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]할 수 있습니다.',
+'userpage-userdoesnotexist' => '‘$1’ 사용자 이름은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정을 확인해주세요.',
 'clearyourcache'            => "'''참고''': 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다. '''모질라 / 파이어폭스 / 사파리''': ‘시프트’ 키를 누르면서 ‘새로 고침’을 클릭하거나, ''Ctrl-F5''를 입력; '''컨커러''': 단순히 '새로고침'을 클릭하거나 ''F5''를 입력; '''오페라''' 사용자는 ‘도구→설정’에서 캐시를 완전히 비워야 합니다.",
 'usercssjsyoucanpreview'    => "'''안내''': CSS/JS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
 'usercsspreview'            => "'''이것은 CSS 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
@@ -564,6 +565,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nocreate-loggedin'         => '{{SITENAME}}에서 새 문서를 만들 권한이 없습니다.',
 'permissionserrors'         => '권한 오류',
 'permissionserrorstext'     => '해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
+'recreate-deleted-warn'     => "'''주의: 과거에 삭제된 문서를 다시 만들고 있습니다.'''
+
+이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.
+과거 삭제 기록은 다음과 같습니다:",
 
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
@@ -1255,10 +1260,11 @@ $NEWPAGE
 'ipb_cant_unblock'            => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
 'ip_range_invalid'            => 'IP 범위가 잘못되었습니다.',
 'proxyblocker'                => '프록시 차단',
+'proxyblocker-disabled'       => '이 기능은 비활성되어 있습니다.',
 'proxyblockreason'            => '당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다. 만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자에게 문의해주세요.',
 'proxyblocksuccess'           => '완료.',
-'sorbsreason'                 => '당신의 IP 주소는 DNSBL의 공개 프록시 목록에 들어있습니다.',
-'sorbs_create_account_reason' => '당신의 IP 주소는 DNSBL의 공개 프록시 목록에 들어있습니다. 계정을 만들 수 없습니다.',
+'sorbsreason'                 => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.',
+'sorbs_create_account_reason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다. 계정을 만들 수 없습니다.',
 
 # Developer tools
 'lockdb'              => '데이터베이스 잠그기',
@@ -1291,13 +1297,14 @@ $NEWPAGE
 'movearticle'             => '문서 이동하기',
 'movenologin'             => '로그인하지 않음',
 'movenologintext'         => '[[Special:Userlogin|로그인]]해야만 문서를 이동할 수 있습니다.',
-'movenotallowed'          => '문서를 이동할 권한이 없습니다.',
+'movenotallowed'          => '{{SITENAME}}에서 문서를 이동할 권한이 없습니다.',
 'newtitle'                => '새 문서 이름',
 'move-watch'              => '이 문서 주시하기',
 'movepagebtn'             => '이동',
 'pagemovedsub'            => '문서 이동함',
 'movepage-moved'          => "<big>'''‘$1’ 문서를 ‘$2’(으)로 이동함 '''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
+'cantmove-titleprotected' => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
 'movetalk'                => '딸린 토론도 함께 이동합니다.',
@@ -1587,5 +1594,28 @@ $1',
 'autosumm-replace' => '문서 내용을 ‘$1’으로 교체',
 'autoredircomment' => '[[$1]](으)로 넘겨주기',
 'autosumm-new'     => '새 문서: $1',
+
+# Watchlist editor
+'watchlistedit-numitems'       => '주시문서 목록에는 토론 문서를 제외하고 $1개의 문서가 들어 있습니다.',
+'watchlistedit-noitems'        => '주시문서 목록이 비어 있습니다.',
+'watchlistedit-normal-title'   => '주시문서 목록 편집하기',
+'watchlistedit-normal-legend'  => '목록에서 문서 제거하기',
+'watchlistedit-normal-explain' => "주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선책한 다음 '항목 삭제'를 클릭해주세요. 또는 [[Special:Watchlist/raw|목록을 직접 편집할 수도 있습니다]].",
+'watchlistedit-normal-submit'  => '항목 삭제',
+'watchlistedit-normal-done'    => '주시문서 목록에서 다음 $1개 항목을 삭제했습니다:',
+'watchlistedit-raw-title'      => '주시문서 목록 직접 편집하기',
+'watchlistedit-raw-legend'     => '주시문서 목록 직접 편집하기',
+'watchlistedit-raw-explain'    => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다. 각 줄마다 하나의 제목을 쓰고, '주시문서 목록 갱신'을 누르면 됩니다.
+또는 [[Special:Watchlist/edit|일반적인 편집창]]을 쓸 수도 있습니다.",
+'watchlistedit-raw-titles'     => '목록:',
+'watchlistedit-raw-submit'     => '주시문서 목록 갱신',
+'watchlistedit-raw-done'       => '주시문서 목록을 갱신했습니다.',
+'watchlistedit-raw-added'      => '$1개 문서를 추가했습니다:',
+'watchlistedit-raw-removed'    => '$1개 문서를 제거했습니다:',
+
+# Watchlist editing tools
+'watchlisttools-view' => '주시문서 최근 바뀜',
+'watchlisttools-edit' => '주시문서 목록 보기/편집하기',
+'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
 
 );

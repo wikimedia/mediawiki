@@ -1851,7 +1851,7 @@ Kies a.u.b. een andere paginanaam.',
 'talkpagenotmoved'        => 'De bijhorende overlegpagina is <strong>niet</strong> hernoemd.',
 '1movedto2'               => '[[$1]] hernoemd naar [[$2]]',
 '1movedto2_redir'         => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
-'movelogpage'             => "Logboek hernoemde pagina's",
+'movelogpage'             => 'Hernoemingslogboek',
 'movelogpagetext'         => "Hieronder staan hernoemde pagina's.",
 'movereason'              => 'Reden',
 'revertmove'              => 'terugdraaien',
@@ -1874,7 +1874,7 @@ In het laatste geval kan u ook een link gebruiken, bijvoorbeeld [[Special:Export
 'exportnohistory'   => "---- 
 '''Let op:''' het exporteren van de gehele geschiedenis is uitgeschakeld wegens prestatieredenen.",
 'export-submit'     => 'Exporteren',
-'export-addcattext' => "Voeg pagina's toe van categorie:",
+'export-addcattext' => "Pagina's toevoegen van categorie:",
 'export-addcat'     => 'Toevoegen',
 'export-download'   => 'Als bestand opslaan',
 'export-templates'  => 'Sjablonen toevoegen',
@@ -1932,9 +1932,9 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 # Import log
 'importlogpage'                    => 'Importlogboek',
 'importlogpagetext'                => "Administratieve import van pagina's met geschiedenis van andere wiki's.",
-'import-logentry-upload'           => '[[$1]] geïmporteerd via een bestandsupload',
+'import-logentry-upload'           => 'importeerde [[$1]] via een bestandsupload',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
-'import-logentry-interwiki'        => 'transwiki voor $1 geslaagd',
+'import-logentry-interwiki'        => 'importeerde $1 via transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
 
 # Tooltip help for the actions

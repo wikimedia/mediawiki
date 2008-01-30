@@ -628,7 +628,7 @@ Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những
 'accmailtitle'              => 'Đã gửi mật khẩu.',
 'accmailtext'               => 'Mật khẩu của “$1” đã được gửi đến $2.',
 'newarticle'                => '(Mới)',
-'newarticletext'            => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{int:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Back''' trên trình duyệt của bạn.",
+'newarticletext'            => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Back''' trên trình duyệt của bạn.",
 'anontalkpagetext'          => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có nhưng không đăng nhập. Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta. Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung. Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:Userlogin|tạo tài khoản hoặc đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
 'noarticletext'             => 'Trang này hiện chưa có gì, bạn có thể [[{{ns:Special}}:Search/{{PAGENAME}}|tìm kiếm tựa trang]] tại các trang khác hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này].',
 'userpage-userdoesnotexist' => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
@@ -1741,7 +1741,7 @@ Trang với tên “[[$1]]” đã tồn tại. Bạn có muốn xóa nó để 
 
 Để xuất các trang, nhập vào tên trang trong hộp soạn thảo ở dưới, mỗi dòng một tên, và lựa chọn bạn muốn phiên bản hiện tại cũng như tất cả phiên bản cũ, với các dòng lịch sử trang, hay chỉ là phiên bản hiện tại với thông tin về lần sửa đổi cuối.
 
-Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví dụ [[{{ns:Special}}:Export/{{int:Mainpage}}]] để biểu thị trang “[[{{int:Mainpage}}]]”.',
+Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví dụ [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]] để biểu thị trang “[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Chỉ xuất phiên bản hiện hành, không xuất tất cả lịch sử trang',
 'exportnohistory'   => "----
 '''Chú ý:''' Chức năng xuất lịch sử trang đầy đủ bằng mẫu này bị tắt do vấn đề hiệu suất.",

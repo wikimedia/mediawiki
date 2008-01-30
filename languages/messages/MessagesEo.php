@@ -1094,6 +1094,8 @@ Tio ne estus enkalkutita en la jena listo.',
 'unusedcategoriestext'    => 'La paĝoj de la sekvanta kategorio jam ekzistas, sed neniu alia artikolo aŭ kategorio rilatas al ĝi.',
 'notargettitle'           => 'Sen celpaĝo',
 'notargettext'            => 'Vi ne precizigis, kiun paĝon aŭ uzanton priumi.',
+'pager-newer-n'           => '{{PLURAL:$1|pli nova 1|pli novaj $1}}',
+'pager-older-n'           => '{{PLURAL:$1|pli malnova 1|pli malnovaj $1}}',
 
 # Book sources
 'booksources'      => 'Libroservoj',
@@ -1665,7 +1667,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
 <hr />",
 'imagemaxsize'         => 'Elmontru bildojn en bildpriskribaj paĝoj je maksimume :',
-'thumbsize'            => 'Grandeco de bildetoj :',
+'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 paĝoj',
 'file-info-size'       => '($1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4)',
 'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',
@@ -1751,6 +1753,7 @@ Se vi ne mendis ĉi tiun mesaĝon, ne alklaku la ligon. Tiu
 ĉi konfirmokodo eksvalidiĝos je $4.',
 
 # Scary transclusion
+'scarytranscludefailed'  => '[Bedaŭrinde, akiro de ŝablono $1 malsukcesis.]',
 'scarytranscludetoolong' => '[Bedaŭrinde la URL estas tro longa]',
 
 # Trackbacks
@@ -1794,6 +1797,14 @@ $1',
 # Auto-summaries
 'autoredircomment' => 'Redirektante al [[$1]]',
 'autosumm-new'     => 'Nova paĝo: $1',
+
+# Live preview
+'livepreview-loading' => 'Ŝargiĝadas…',
+'livepreview-ready'   => 'Ŝargiĝadas… Preta!',
+
+# Watchlist editor
+'watchlistedit-normal-title' => 'Redaktu atentaron',
+'watchlistedit-raw-titles'   => 'Titoloj:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Montru koncernajn ŝanĝojn',

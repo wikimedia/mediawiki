@@ -614,6 +614,7 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
 'loadhist'            => 'Ag lódáil stáir an leathanaigh',
 'currentrev'          => 'Leagan láithreach',
 'revisionasof'        => 'Leagan ó $1',
+'revision-info'       => 'Leagan mar $1 le $2',
 'previousrevision'    => '←Leagan níos sine',
 'nextrevision'        => 'Leagan níos nuaí→',
 'currentrevisionlink' => 'féach ar an leagan laithreach',
@@ -637,6 +638,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'rev-deleted-user' => '(ainm úsáideora dealaithe)',
 
 # Diffs
+'history-title'           => 'Stair leasú "$1"',
 'difference'              => '(Difríochtaí idir leaganacha)',
 'lineno'                  => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
@@ -771,7 +773,8 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 'number_of_watching_users_pageview' => '[$1 úsáideoirí ag breathnú]',
 
 # Recent changes linked
-'recentchangeslinked' => 'Athruithe gaolmhara',
+'recentchangeslinked'       => 'Athruithe gaolmhara',
+'recentchangeslinked-title' => 'Athruithe gaolmhar le $1',
 
 # Upload
 'upload'            => 'Uaslódáil comhad',
@@ -1025,6 +1028,9 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'watchlist-hide-bots'  => 'Folaigh athruithe róbó',
 'watchlist-hide-own'   => 'Folaigh mo chuid athruithe',
 'watchlist-hide-minor' => 'Folaigh mionathruithe',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' => 'Ag déanamh faire...',
 
 'enotif_mailer'      => 'Fógrasheoltóir as {{SITENAME}}',
 'enotif_reset'       => 'Marcáil gach leathanach bheith tadhlaithe',

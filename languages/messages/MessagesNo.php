@@ -1014,7 +1014,7 @@ For å lenke direkte til bildet, skriv:
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
 'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype. Foretrukne filtyper er $2.",
 'filetype-banned-type'        => "'''«$1»''' er ikke en tillatt filtype. Foretrukne filtyper er $2.",
-'filetype-missing'            => 'Filen har ingen endelsen (som «.jpg»).',
+'filetype-missing'            => 'Filen har ingen endelse (som «.jpg»).',
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
 'largefileserver'             => 'Denne fila er større enn det tjeneren er konfigurert til å tillate.',
 'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',

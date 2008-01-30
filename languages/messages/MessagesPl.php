@@ -1407,6 +1407,8 @@ Pomoc:
 'excontentauthor'             => 'treść: "$1" (jedyny autor: [[{{ns:special}}:Contributions/$2|$2]])',
 'exbeforeblank'               => 'Poprzednia zawartość pustej strony "$1"',
 'exblank'                     => 'Strona była pusta',
+'delete-confirm'              => 'Usuń "$1"',
+'delete-legend'               => 'Usuń',
 'historywarning'              => 'Uwaga! Strona, którą chcesz skasować ma starsze wersje:',
 'confirmdeletetext'           => 'Zamierzasz trwale usunąć stronę lub plik z bazy danych razem z dotyczącą ich historią. Potwierdź, proszę, swoje zamiary, tzn., że rozumiesz konsekwencje, i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'              => 'Operacja wykonana',
