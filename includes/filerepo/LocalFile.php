@@ -5,7 +5,7 @@
 /**
  * Bump this number when serialized cache records may be incompatible.
  */
-define( 'MW_FILE_VERSION', 6 );
+define( 'MW_FILE_VERSION', 7 );
 
 /**
  * Class to represent a local file in the wiki's own database
@@ -729,6 +729,7 @@ class LocalFile extends File
 		$props['description'] = $comment;
 		$props['user'] = $wgUser->getID();
 		$props['user_text'] = $wgUser->getName();
+		$props['timestamp'] = wfTimestamp( TS_MW );
 		$this->setProps( $props );
 
 		// Delete thumbnails and refresh the metadata cache
