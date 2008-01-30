@@ -1946,8 +1946,8 @@ function wfRelativePath( $path, $from ) {
  */
 function wfMakeUrlIndex( $url ) {
 	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
-	$bits = parse_url( $url );
 	wfSuppressWarnings();
+	$bits = parse_url( $url );
 	wfRestoreWarnings();
 	if ( !$bits ) {
 		return false;
