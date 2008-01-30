@@ -376,7 +376,7 @@ $messages = array(
 # Statistics
 'statistics'    => 'Estátistika',
 'sitestats'     => '{{SITENAME}} estátistika',
-'userstatstext' => "Iha ne'e registrar tiha ona '''$1''' [[Special:Listusers|uza-na'in]], '''$2''' (ka '''$4''') $5.",
+'userstatstext' => "Iha ne'e registrar tiha ona '''$1''' [[Special:Listusers|uza-na'in]], '''$2''' (ka '''$4%''') $5.",
 
 'brokenredirects-edit'   => '(edita)',
 'brokenredirects-delete' => '(halakon)',
@@ -438,7 +438,6 @@ $messages = array(
 'excontent'           => "testu iha pájina: '$1'",
 'excontentauthor'     => "testu iha pájina: '$1' (no ema ida de'it ne'ebé kontribui '[[Special:Contributions/$2|$2]]')",
 'exblank'             => 'pájina mamuk',
-'deletesub'           => '(Halakon "$1")',
 'deletedarticle'      => 'halakon "[[$1]]"',
 'dellogpage'          => 'Lista halakon',
 'deletionlog'         => 'lista halakon',
