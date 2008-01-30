@@ -1587,7 +1587,7 @@ $NEWPAGE
 'excontentauthor'             => "תוכן היה: '$1' והתורם היחיד היה [[Special:Contributions/$2|$2]]",
 'exbeforeblank'               => 'תוכן לפני שרוקן היה: "$1"',
 'exblank'                     => 'הדף היה ריק',
-'delete-confirm'              => 'מחיקת "$1"',
+'delete-confirm'              => 'מחיקת $1',
 'delete-backlink'             => '→ $1',
 'delete-legend'               => 'מחיקה',
 'historywarning'              => 'אזהרה – לדף שאתם עומדים למחוק יש היסטוריית שינויים:',
