@@ -845,13 +845,16 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'filerevert' => '"$1" şondabike',
 
 # File deletion
-'filedelete'         => '$1 jêbibe',
-'filedelete-legend'  => 'Data jêbibe',
-'filedelete-intro'   => "Tu kê '''[[Media:$1|$1]]''' jêbibê.",
-'filedelete-comment' => 'Nivîs:',
-'filedelete-submit'  => 'Jêbibe',
-'filedelete-success' => "'''$1''' hate jêbirin.",
-'filedelete-nofile'  => "'''$1''' li vê rûpelê tune.",
+'filedelete'                 => '$1 jêbibe',
+'filedelete-legend'          => 'Data jêbibe',
+'filedelete-intro'           => "Tu kê '''[[Media:$1|$1]]''' jêbibê.",
+'filedelete-comment'         => 'Nivîs:',
+'filedelete-submit'          => 'Jêbibe',
+'filedelete-success'         => "'''$1''' hate jêbirin.",
+'filedelete-nofile'          => "'''$1''' li vê rûpelê tune.",
+'filedelete-reason-dropdown' => '*Sedemên jêbirina wêneyan
+** wêneyeka pîs e
+** kopîyek e',
 
 # MIME search
 'download' => 'dabezandin',
