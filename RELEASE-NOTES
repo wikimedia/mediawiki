@@ -143,6 +143,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11897) Add alias [[Special:CreateAccount]] & [[Special:Userlogin/signup]]
   for Special:Userlogin?type=signup
 * (bug 12214) Add a predefined list of delete reasons to the file deletion form
+* Merged backends for OpenSearch suggestions and AJAX search.
+  Both now accept namespace prefixes, handle 'Media:' and 'Special:' pages,
+  and reject interwiki prefixes. PrefixSearch class centralizes this code,
+  and the backend part can be overridden by the PrefixSearchBackend hook.
+
 
 === Bug fixes in 1.12 ===
 

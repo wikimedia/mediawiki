@@ -73,19 +73,13 @@ function code2utf($num){
    return '';
 }
 
-define( 'AJAX_SEARCH_VERSION', 1 );	//AJAX search cache version
+define( 'AJAX_SEARCH_VERSION', 2 );	//AJAX search cache version
 
 function wfSajaxSearch( $term ) {
 	global $wgContLang, $wgOut, $wgUser, $wgCapitalLinks, $wgMemc;
 	$limit = 16;
 	$sk = $wgUser->getSkin();
 	$output = '';
-
-	if( !wfRunHooks( 'SajaxSearch', array( $term, &$output ) ) ) {
-		$response = new AjaxResponse( $output );
-		$response->setCacheDuration( 30*60 );
-		return $response;
-	}
 
 	$term = trim( $term );
 	$term = $wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) );
@@ -103,41 +97,33 @@ function wfSajaxSearch( $term ) {
 
 	$r = $more = '';
 	$canSearch = true;
-	if( $term_title && $term_title->getNamespace() != NS_SPECIAL ) {
-		$db = wfGetDB( DB_SLAVE );
-		$res = $db->select( 'page', array( 'page_title', 'page_namespace' ),
-				array(  'page_namespace' => $term_title->getNamespace(),
-					"page_title LIKE '". $db->strencode( $term_title->getDBkey() ) ."%'" ),
-					"wfSajaxSearch",
-					array( 'LIMIT' => $limit+1 )
-				);
-
-		$i = 0;
-		while ( ( $row = $db->fetchObject( $res ) ) && ( ++$i <= $limit ) ) {
-			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$r .= '<li>' . $sk->makeKnownLinkObj( $nt ) . "</li>\n";
-		}
-		if ( $i > $limit ) {
-			$more = '<i>' .  $sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
-											wfMsg('moredotdotdot'),
-											"namespace=0&from=" . wfUrlEncode ( $term ) ) .
-				'</i>';
-		}
-	} else if( $term_title && $term_title->getNamespace() == NS_SPECIAL ) {
-		SpecialPage::initList();
-		SpecialPage::initAliasList();
-		$specialPages = array_merge(
-			array_keys( SpecialPage::$mList ),
-			array_keys( SpecialPage::$mAliases )
-		);
-
-		foreach( $specialPages as $page ) {
-			if( $wgContLang->uc( $page ) != $page && strpos( $page, $term_title->getText() ) === 0 ) {
-				$r .= '<li>' . $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, $page ) ) . '</li>';
+	
+	$results = PrefixSearch::titleSearch( $term, $limit + 1 );
+	foreach( array_slice( $results, 0, $limit ) as $titleText ) {
+		$r .= '<li>' . $sk->makeKnownLink( $titleText ) . "</li>\n";
+	}
+	
+	// Hack to check for specials
+	if( $results ) {
+		$t = Title::newFromText( $results[0] );
+		if( $t && $t->getNamespace() == NS_SPECIAL ) {
+			$canSearch = false;
+			if( count( $results ) > $limit ) {
+				$more = '<i>' .
+					$sk->makeKnownLinkObj(
+						SpecialPage::getTitleFor( 'Specialpages' ),
+						wfMsgHtml( 'moredotdotdot' ) ) .
+					'</i>';
+			}
+		} else {
+			if( count( $results ) > $limit ) {
+				$more = '<i>' .
+					$sk->makeKnownLinkObj(
+						SpecialPage::getTitleFor( "Allpages", $term ),
+						wfMsgHtml( 'moredotdotdot' ) ) .
+					'</i>';
 			}
 		}
-
-		$canSearch = false;
 	}
 
 	$valid = (bool) $term_title;
