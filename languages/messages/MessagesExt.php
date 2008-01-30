@@ -1272,8 +1272,6 @@ Ayua la Güiquipeya:
 'excontentauthor'             => "el continiu era: '$1' (i el únicu contribuyenti hue '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "el continiu enantis de branquealu era: '$1'",
 'exblank'                     => 'la páhina estaba vacia',
-'confirmdelete'               => 'Confirmal esborrau',
-'deletesub'                   => '(Esborrandu "$1")',
 'historywarning'              => 'Avisu: La páhina que vas a esborral tieni un estorial:',
 'confirmdeletetext'           => "Vas a esborral una páhina/imahin i el su estorial de horma permanenti.
 Pol favol, confirma que realmenti quieis hazel esu, qu'entiendis las consecuencias, i que lo hazis dalcuerdu cola

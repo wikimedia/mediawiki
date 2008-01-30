@@ -262,7 +262,7 @@ $messages = array(
 $1',
 'nodb'                 => 'Falug dattub njoxe bii di $1 antuwul',
 'laggedslavemode'      => 'Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def',
-'readonly'             => 'Dattub njoxe li dañ kaa jaabi',
+'readonly'             => 'Dattub njoxe li dañ kaa caabi',
 'enterlockreason'      => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',
 'readonlytext'         => 'Les ajouts et mises à jour sur la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
 L’administrateur ayant verrouillé la base de données a donné l’explication suivante :$1',
@@ -455,6 +455,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'anontalkpagetext'          => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukat bu kenn-xamul, bu bindoogul walla du jëfandikoo sàqam. Kon ngir xamme ko faaw nga jëfandikoo màkkaanub IP wan. Te màkkaanub IP jëfandikukat yu bari man nañ ka bokk. Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañ laa féetale ay sànni-kaddu yoo moomul, man ngaa [[Special:Userlogin|bindu walla duggu]] ngi benn jaxase bañatee am ëllëg .''",
 'noarticletext'             => 'Fi mu ne ni amul benn mbind ci xët wii; man ngaa [[{{ns:special}}:Search/{{PAGENAME}}|tambli ab seet ci koju xët wii]] walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii].',
 'userpage-userdoesnotexist' => 'Bii sàqum jëfandikukat « $1 » du bu ku bindu. Seetal bu baax ndax da ngaa namma sos walla soppi wii xët.',
+'clearyourcache'            => "'''Karma :''' Soo dence xët wi ba noppi, faaw nga bës ci si sa arafukaay yii di toftal, te nga bàyyi xel ci joowukaay bi ngay jëfandikoo : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'token_suffix_mismatch'     => '<strong>Votre édition n’a été acceptée car votre navigateur a mélangé les caractères de ponctuation dans l’identifiant d’édition. L’édition a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un proxy anonyme à problème.</strong>',
 'editing'                   => 'Coppiteg $1',
 'editinguser'               => 'Coppiteg $1',

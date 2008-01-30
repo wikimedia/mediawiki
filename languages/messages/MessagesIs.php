@@ -1280,8 +1280,6 @@ Til að fjarlægja síðu þessa af vaktlistanum þarft þú að ýta á tengili
 'excontentauthor'             => "innihaldið var: '$1' (og öll framlög voru frá '[[{{ns:special}}:Contributions/$2|$2]]')",
 'exbeforeblank'               => "innihald fyrir tæmingu var: '$1'",
 'exblank'                     => 'síðan var tóm',
-'confirmdelete'               => 'Staðfesting á eyðingu',
-'deletesub'                   => '(Eyði: „$1“)',
 'historywarning'              => 'Athugið: Síðan sem þú ert um það bil að eyða á sér:',
 'confirmdeletetext'           => 'Þú ert um það bil að eyða síðu eða mynd ásamt
 breytingaskrá hennar úr gagnagrunninum.

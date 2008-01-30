@@ -1397,8 +1397,6 @@ Ta obtenir más informazión y aduya:
 'excontentauthor'             => "O conteniu yera: '$1' (y o suyo unico autor '$2')",
 'exbeforeblank'               => "O conteniu antis de blanquiar yera: '$1'",
 'exblank'                     => 'a pachina yera bueda',
-'confirmdelete'               => 'Confirmar o borrau',
-'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
 'confirmdeletetext'           => "Ye amanato á borrar d'a base de datos
 una pachina con tot o suyo istorial.

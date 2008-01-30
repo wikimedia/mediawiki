@@ -1245,8 +1245,6 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'excontentauthor'             => "Op der Säit stong: '$1' (An als eenzegen dru geschriwwen hat de '[[User:$2|Benotzer:$2]]' ([[Special:Contributions/$2|$2 Kontributiounen]])",
 'exbeforeblank'               => "Den Inhalt virum Läsche war: '$1'",
 'exblank'                     => "D'Säit war eidel",
-'confirmdelete'               => "Konfirméiert d'Läschen",
-'deletesub'                   => '("$1" gëtt geläscht)',
 'historywarning'              => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
 'confirmdeletetext'           => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. 
 W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",

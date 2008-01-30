@@ -668,7 +668,7 @@ Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de e
 'loginreqpagetext'          => 'Você precisa de $1 para poder visualizar outras páginas.',
 'accmailtitle'              => 'Palavra-chave enviada.',
 'accmailtext'               => "A palavra-chave para '$1' foi enviada para $2.",
-'newarticle'                => '(Novo)',
+'newarticle'                => '(Nova)',
 'newarticletext'            => "Você seguiu um link para uma página que ainda não existe. 
 Para criá-la, escreva o seu conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
@@ -736,7 +736,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'template-semiprotected'    => '(semi-protegida)',
 'edittools'                 => '<!-- O texto aqui disponibilizado será exibido abaixo dos formulários de edição e de envio de ficheiros. -->',
 'nocreatetitle'             => 'A criação de páginas encontra-se limitada',
-'nocreatetext'              => 'Este website tem restringida a habilidade de criar novas páginas.
+'nocreatetext'              => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Pode voltar atrás e editar uma página já existente, ou [[{{ns:special}}:Userlogin|autenticar-se ou criar uma conta]].',
 'nocreate-loggedin'         => 'Você não possui permissões de criar novas páginas neste wiki.',
 'permissionserrors'         => 'Erros de permissões',
@@ -963,14 +963,14 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'userrights-editusergroup'         => 'Editar grupos do utilizador',
 'saveusergroups'                   => 'Salvar Grupos do Utilizador',
 'userrights-groupsmember'          => 'Membro de:',
-'userrights-groupsremovable'       => 'Grupos dos quais pode ser removido:',
+'userrights-groupsremovable'       => 'Grupos com remoção possível:',
 'userrights-groupsavailable'       => 'Grupos disponíveis:',
 'userrights-groupshelp'            => 'Seleccione os grupos no qual deseja que o utilizador seja removido ou adicionado.
 Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a selecção a um grupo com CTRL + Click esquerdo',
 'userrights-reason'                => 'Motivo de alterações:',
 'userrights-available-none'        => 'Não será possível alterar o grupo de acesso.',
-'userrights-available-add'         => 'É possível adicionar utilizadores em $1.',
-'userrights-available-remove'      => 'É possível remover utilizadores de $1.',
+'userrights-available-add'         => 'É possível adicionar utilizadores {{PLURAL:$2|neste grupo|nestes grupos}}: $1',
+'userrights-available-remove'      => 'É possível remover utilizadores {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
 'userrights-available-add-self'    => 'Você pode adicionar a si mesmo {{PLURAL:$2|neste grupo|nestes grupos}}: $1.',
 'userrights-available-remove-self' => 'Você pode remover a si mesmo {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
 'userrights-no-interwiki'          => 'Você não tem permissão de alterar privilégios de utilizadores em outras wikis.',
@@ -1075,6 +1075,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'largefileserver'             => 'O tamanho deste ficheiro é superior ao qual o servidor encontra-se configurado para permitir.',
 'emptyfile'                   => 'O ficheiro que está a tentar carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do ficheiro. Por favor verifique se realmente deseja carregar este ficheiro.',
 'fileexists'                  => 'Já existe um ficheiro com este nome. Por favor, verifique <strong><tt>$1</tt></strong> caso não tenha a certeza se deseja alterar o ficheiro actual.',
+'filepageexists'              => 'Já existe uma página &mdash; e não uma imagem &mdash; com este nome. Por gentileza, verifique <strong><tt>$1</tt></strong> caso não tenha certeza se é isso que deseja alterar.',
 'fileexists-extension'        => 'Já existe um ficheiro de nome similar:<br />
 Nome do ficheiro que está sendo enviado: <strong><tt>$1</tt></strong><br />
 Nome do ficheiro existente: <strong><tt>$2</tt></strong><br />
@@ -1335,7 +1336,7 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 'nextpage'          => 'Próxima página ($1)',
 'prevpage'          => 'Página anterior ($1)',
 'allpagesfrom'      => 'Mostrar páginas começando em:',
-'allarticles'       => 'Todos artigos',
+'allarticles'       => 'Todas as páginas',
 'allinnamespace'    => 'Todas as páginas (espaço nominal $1)',
 'allnotinnamespace' => 'Todas as páginas (excepto as do espaço nominal $1)',
 'allpagesprev'      => 'Anterior',
@@ -1457,8 +1458,6 @@ Contacto e assistência
 'excontentauthor'             => "o conteúdo era: '$1' (e o único editor era '[[{{ns:special}}:Contributions/$2|$2]]')",
 'exbeforeblank'               => "o conteúdo antes de esvaziar era: '$1'",
 'exblank'                     => 'página esvaziada',
-'confirmdelete'               => 'Confirmar eliminação',
-'deletesub'                   => '(Eliminando "$1")',
 'historywarning'              => 'Aviso: A página que está prestes a eliminar possui um histórico:',
 'confirmdeletetext'           => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
@@ -1641,7 +1640,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbenableautoblock'          => 'Bloquear automaticamente o endereço de IP mais recente usado por este utilizador e todos os IPs subseqüentes dos quais ele tentar editar',
 'ipbsubmit'                   => 'Bloquear este utilizador',
 'ipbother'                    => 'Outro período:',
-'ipboptions'                  => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,infinito:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'outro',
 'ipbotherreason'              => 'Outro motivo/motivo adicional:',
 'ipbhidename'                 => 'Ocultar utilizador/IP do registo de bloqueios, lista de bloqueios e lista de utilizadores',
@@ -2238,7 +2237,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'recentchangesall' => 'todas',
 'imagelistall'     => 'todas',
 'watchlistall2'    => 'todas',
-'namespacesall'    => 'todos',
+'namespacesall'    => 'todas',
 'monthsall'        => 'todos',
 
 # E-mail address confirmation

@@ -8,6 +8,7 @@
  * @author IvanLanin
  * @author Borgx
  * @author Nike
+ * @author SPQRobin
  */
 
 /**
@@ -1134,6 +1135,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
 'fileexists'                  => 'Suatu berkas dengan nama tersebut telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin untuk mengubahnya.',
+'filepageexists'              => 'Berkas (bukan gambar) dengan nama ini telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin apakah Anda ingin merubahnya.',
 'fileexists-extension'        => 'Berkas dengan nama serupa telah ada:<br />
 Nama berkas yang akan dimuat: <strong><tt>$1</tt></strong><br />
 Nama berkas yang telah ada: <strong><tt>$2</tt></strong><br />
@@ -1249,8 +1251,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'filedelete-reason-otherlist' => 'Alasan lain',
 'filedelete-reason-dropdown'  => '*Alasan penghapusan
 ** Pelanggaran hak cipta
-** Berkas duplikat
-** [[Istimewa:Berkastakdigunakan|Berkas tidak digunakan]]',
+** Berkas duplikat',
 
 # MIME search
 'mimesearch'         => 'Pencarian MIME',
@@ -1502,8 +1503,6 @@ Umpan balik dan bantuan lanjutan:
 'excontentauthor'             => "isinya hanya berupa: '$1' (dan satu-satunya penyumbang adalah '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "isi sebelum dikosongkan: '$1'",
 'exblank'                     => 'halaman kosong',
-'confirmdelete'               => 'Konfirmasi penghapusan',
-'deletesub'                   => '(Menghapus "$1")',
 'historywarning'              => 'Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:',
 'confirmdeletetext'           => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data. Pastikan bahwa Anda memang ingin melakukannya, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan {{SITENAME}}]].',
 'actioncomplete'              => 'Proses selesai',
@@ -1586,7 +1585,9 @@ Umpan balik dan bantuan lanjutan:
 'undeletehistorynoadmin'       => 'Artikel ini telah dihapus. Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut detil pengguna yang telah melakukan penyuntingan pada halaman ini sebelum dihapus. Isi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.',
 'undelete-revision'            => 'Revisi yang telah dihapus dari $1 (sampai $2) oleh $3:',
 'undeleterevision-missing'     => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
+'undelete-nodiff'              => 'Tidak ada revisi yang lebih lama.',
 'undeletebtn'                  => 'Kembalikan!',
+'undeletereset'                => 'Reset',
 'undeletecomment'              => 'Komentar:',
 'undeletedarticle'             => '"$1" telah dikembalikan',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|revisi|revisi}} telah dikembalikan',
@@ -1638,6 +1639,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Pranala balik',
 'whatlinkshere-title' => 'Halaman yang memiliki pranala ke $1',
+'whatlinkshere-page'  => 'Halaman:',
 'linklistsub'         => '(Daftar pranala)',
 'linkshere'           => "Halaman-halaman berikut ini berpaut ke '''[[:$1]]''':",
 'nolinkshere'         => "Tidak ada halaman yang berpaut ke '''[[:$1]]'''.",
@@ -1717,6 +1719,7 @@ $1',
 'ipb_expiry_invalid'          => 'Waktu kadaluwarsa tidak sah.',
 'ipb_already_blocked'         => '"$1" telah diblokir',
 'ipb_cant_unblock'            => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
+'ipb_blocked_as_range'        => 'Kesalahan: IP $1 tidak diblok secara langsung dan tidak dapat dilepaskan. IP $1 diblok sebagai bagian dari pemblokiran kelompok IP $2, yang dapat dilepaskan.',
 'ip_range_invalid'            => 'Blok IP tidak sah.',
 'proxyblocker'                => 'Pemblokir proxy',
 'proxyblockreason'            => 'Alamat IP Anda telah diblokir karena alamat IP Anda adalah proxy terbuka. Silakan hubungi penyedia jasa internet Anda atau dukungan teknis dan beritahukan mereka masalah keamanan serius ini.',

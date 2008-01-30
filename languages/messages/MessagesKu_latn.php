@@ -717,6 +717,7 @@ $2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 'userrights-lookup-user'           => 'Îdarekirina grûpan',
 'userrights-user-editname'         => 'Navî bikarhênerê têke:',
 'userrights-groupsmember'          => 'Endamê:',
+'userrights-reason'                => 'Sedemê guherandinê:',
 'userrights-available-add'         => 'Tu dikarê bikarhêneran têke di nav {{PLURAL:$2|vê komê|van koman}}: $1.',
 'userrights-available-remove'      => 'Tu dikarê bikarhêneran ji nav {{PLURAL:$2|vê komê|van koman}} bibê: $1.',
 'userrights-available-add-self'    => 'Tu dikarê xwe têke di nav {{PLURAL:$2|vê komê|van koman}}: $1.',
@@ -1043,8 +1044,6 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 'excontentauthor'             => "Nawerokê wê rûpelê ew bû: '$1' (û tenya bikarhêner '$2' bû)",
 'exbeforeblank'               => "Nawerok berî betal kirinê ew bû: '$1'",
 'exblank'                     => 'rûpel vala bû',
-'confirmdelete'               => 'Teyîda jêbirinê',
-'deletesub'                   => '("$1" tê jêbirin)',
 'historywarning'              => 'Hîşyar: Ew rûpel ku tu dixwazî jê bibî dîrokek heye:',
 'actioncomplete'              => 'Çalakî temam',
 'deletedtext'                 => '"$1" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
@@ -1089,13 +1088,21 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'restriction-move' => 'Nav biguherîne',
 
 # Undelete
-'undelete'               => 'Li rûpelên jêbirî seke',
-'viewdeletedpage'        => 'Rûpelên vemirandî seke',
-'undeletebtn'            => 'Dîsa çêke!',
-'undeletedarticle'       => '"[[$1]]" dîsa çêkir',
-'undelete-search-box'    => 'Rûpelên jêbirî lêbigere',
-'undelete-search-prefix' => 'Rûpela pêşe min ke ê bi vê destpêdîkin:',
-'undelete-search-submit' => 'Lêbigere',
+'undelete'                 => 'Li rûpelên jêbirî seke',
+'viewdeletedpage'          => 'Rûpelên vemirandî seke',
+'undeletebtn'              => 'Dîsa çêke!',
+'undeletereset'            => 'Biskine',
+'undeletecomment'          => 'Sedem:',
+'undeletedarticle'         => '"[[$1]]" dîsa çêkir',
+'undeletedrevisions'       => '{{PLURAL:$1|Verzyonek dîsa hate|$1 verzyon dîsa hatin}} çêkirin',
+'undeletedrevisions-files' => '{{PLURAL:$1|Verzyonek|$1 verzyon}} û {{PLURAL:$2|medyayek hate|$2 medya hatin}} çêkirin',
+'undeletedfiles'           => '{{PLURAL:$2|Medyayek hate|$2 medya hatin}} çêkirin',
+'undeletedpage'            => "<big>'''$1 dîsa hate çêkirin'''</big>
+
+Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşahîya jêbirinê]] da seke.",
+'undelete-search-box'      => 'Rûpelên jêbirî lêbigere',
+'undelete-search-prefix'   => 'Rûpela pêşe min ke ê bi vê destpêdîkin:',
+'undelete-search-submit'   => 'Lêbigere',
 
 # Namespace form on various pages
 'namespace'      => 'Boşahiya nav:',
@@ -1165,11 +1172,18 @@ Sedemekê binivîse!',
 <br />Bibîne [[Special:Ipblocklist|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
 'ipb-edit-dropdown'      => 'Sedemên astengkirinê',
 'ipb-unblock-addr'       => 'Astengkirinê $1 rake',
+'unblockip'              => "IP'yekê dîsa veke",
+'unblocked'              => '[[User:$1|$1]] niha vê astengkirinê ye',
+'unblocked-id'           => '$1 dîsa vê astengkirinê ye',
 'ipblocklist'            => "Listek ji adresên IP'yan û bikarhêneran yê hatine astengkirin",
 'ipblocklist-legend'     => 'Bikarhênerekî astengkirî bibîne',
+'ipblocklist-username'   => "Navî bikarhêner ya adrêsa IP'yê:",
 'ipblocklist-submit'     => 'Lêbigere',
 'blocklistline'          => '$1, $2 $3 asteng kir ($4)',
 'expiringblock'          => 'heta $1',
+'anononlyblock'          => 'bes kesên netên zanîn',
+'noautoblockblock'       => 'astengkirina otomatîk hatîye temirandin',
+'createaccountblock'     => "çêkirina account'an hatîye qedexekirin",
 'emailblock'             => 'E-Mail hate girtin',
 'ipblocklist-empty'      => 'Lîsteya astengkirinê vala ye.',
 'ipblocklist-no-results' => "Ew IP'ya ya bikarhênera nehatîye astengkirin.",
@@ -1262,7 +1276,9 @@ da bikarî navê wê rûpelê biguherînî.',
 'tooltip-t-emailuser'             => 'Jê re name bişîne',
 'tooltip-ca-nstab-user'           => 'Rûpela bikarhênerê/î temaşe bike',
 'tooltip-ca-nstab-special'        => 'This is a special page, you can',
+'tooltip-save'                    => 'Guherandinên xwe tomarbike',
 'tooltip-compareselectedversions' => 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne.',
+'tooltip-upload'                  => 'Barkirinê destpêke',
 
 # Stylesheets
 'monobook.css' => '*.rtl 
@@ -1333,6 +1349,7 @@ if (wgUserLanguage == "ku-arab")
 'spamprotectionmatch'    => 'Ev nivîsa parastinê spam vêxist: $1',
 'subcategorycount'       => 'Di vê kategoriyê de {{PLURAL:$1|binkategorîyek heye|$1 binkategorî hene}}.',
 'categoryarticlecount'   => 'Di vê kategoriyê de {{PLURAL:$1|gotarek heye|$1 gotar hene}}.',
+'category-media-count'   => "Di vê kategorîyê da {{PLURAL:|data'yek heye|$1 data hene}}.",
 'listingcontinuesabbrev' => 'dewam',
 
 # Info page
@@ -1352,6 +1369,9 @@ if (wgUserLanguage == "ku-arab")
 'markedaspatrolled'     => 'Wek serrastkirî tê nîşandan',
 'markedaspatrolledtext' => 'Guherandina rûpelê wek serrastkirî tê nîşandan.',
 
+# Patrol log
+'patrol-log-auto' => '(otomatîk)',
+
 # Image deletion
 'deletedrevision'                 => 'Rêvîsîyona berê $1 hate jêbirin.',
 'filedelete-missing'              => 'Data\'yê "$1" nikane were jêbirin, ji ber ku ew tune.',
@@ -1362,14 +1382,18 @@ if (wgUserLanguage == "ku-arab")
 'nextdiff'     => 'Ciyawaziya paştir →',
 
 # Media information
-'widthheight'    => '$1 x $2',
-'file-info'      => '(mezinbûnê data: $1, MIME-typ: $2)',
-'file-info-size' => '($1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4)',
-'file-nohires'   => '<small>Versyonekî jê mezintir tune.</small>',
-'show-big-image' => 'Mezînbûn',
+'widthheight'          => '$1 x $2',
+'widthheightpage'      => '$1×$2, $3 rûpel',
+'file-info'            => '(mezinbûnê data: $1, MIME-typ: $2)',
+'file-info-size'       => '($1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4)',
+'file-nohires'         => '<small>Versyonekî jê mezintir tune.</small>',
+'svg-long-desc'        => "(Data'ya SVG, mezinbûna rast: $1 × $2 pixel; mezinbûna data'yê: $3)",
+'show-big-image'       => 'Mezînbûn',
+'show-big-image-thumb' => '<small>Mezinbûna vê pêşnîşandanê: $1 × $2 pixel</small>',
 
 # Special:Newimages
 'newimages' => 'Pêşangeha wêneyên nû',
+'noimages'  => 'Ne tiştek tê dîtin.',
 
 # Variants for Kurdish language
 'variantname-ku-arab' => 'tîpên erebî',
@@ -1402,6 +1426,9 @@ Lê eger ev *ne* tu bû, li lînkê netikîne. Ev e-nameya di rojê $4 da netê 
 'scarytranscludefailed'  => '[Anîna şablona $1 biserneket; biborîne]',
 'scarytranscludetoolong' => '[URL zêde dirêj e; bibore]',
 
+# Trackbacks
+'trackbackremove' => '([$1 jêbibe])',
+
 # Delete conflict
 'deletedwhileediting' => 'Hîşyar: Piştî te guherandinê xwe dest pê kir ev rûpela hate jêbirin!',
 'confirmrecreate'     => "Bikarhêner [[User:$1|$1]] ([[User talk:$1|guftûgo]]) vê rûpelê jêbir, piştî te destpêkir bi guherandinê. Sedemê jêbirinê ev bû:
@@ -1419,8 +1446,10 @@ $1',
 'confirm_purge_button' => 'Temam',
 
 # Multipage image navigation
-'imgmultigo'      => 'Dê!',
-'imgmultigotopre' => 'Here rûpelê',
+'imgmultipageprev' => '← rûpela berî vê',
+'imgmultipagenext' => 'rûpela din →',
+'imgmultigo'       => 'Dê!',
+'imgmultigotopre'  => 'Here rûpelê',
 
 # Table pager
 'table_pager_next'         => 'Rûpelê din',
@@ -1444,10 +1473,13 @@ $1',
 'lag-warn-high'   => 'Ji bo westinê sistêmê ew xeyrandin, yê piştî $1 sanîyan hatine çêkirin netên wêşendan.',
 
 # Watchlist editor
+'watchlistedit-numitems'      => 'Di lîsteya te ya şopandinê da {{PLURAL:$1|gotarek heye|$1 gotar hene}} (vê rûpelên guftûgoyan).',
 'watchlistedit-noitems'       => 'Di lîsteya te ya şopandinê gotar tune ne.',
 'watchlistedit-normal-title'  => 'Lîsteya xwe ya şopandinê biguherîne',
+'watchlistedit-normal-legend' => 'Gotaran ji lîsteya min ya şopandinê rake',
 'watchlistedit-normal-submit' => 'Gotaran jêbibe',
 'watchlistedit-normal-done'   => '{{PLURAL:$1|1 gotar hate|$1 gotaran hatin}} jêbirin ji lîsteya te yê şopandinê:',
+'watchlistedit-raw-titles'    => 'Gotar:',
 'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 gotar hate|$1 gotar hatin}} jêbirin:',
 
 );

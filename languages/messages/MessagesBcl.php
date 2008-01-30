@@ -1263,8 +1263,6 @@ Komentaryo asin iba pang tabang:
 'excontentauthor'             => "ini an dating laog: '$1' (asin an unikong kontribuidor si '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "Ini an dating laog bagô blinankohán: '$1'",
 'exblank'                     => 'mayong laog an páhina',
-'confirmdelete'               => 'Konpirmaron an pagparâ',
-'deletesub'                   => '(Pigpaparâ an "$1")',
 'historywarning'              => 'Patanid: An pahinang paparâon mo igwa nin historya.',
 'confirmdeletetext'           => 'Paparâon mo sa base nin datos ining páhina
 o ladawan kasabay an gabos na mga historya kaini.
@@ -1289,7 +1287,7 @@ ni [[User:$2|$2]] ([[User talk:$2|Olay]]); may ibang parágamit na naghirá na o
 
 Huring hirá ni [[User:$3|$3]] ([[User talk:$3|Olay]]).',
 'editcomment'                 => 'Ini an nakakaag na komentaryo sa paghirá: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]',
+'revertpage'                  => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
 'sessionfailure'              => "Garo may problema sa paglaog mo;
 kinanselár ining aksyón bilang sarong paglikay kontra sa ''session hijacking''.
@@ -1973,4 +1971,3 @@ $1',
 'watchlisttools-raw'  => 'Hirahón an bâgong pigbabantayan',
 
 );
-

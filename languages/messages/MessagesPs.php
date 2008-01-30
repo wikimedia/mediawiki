@@ -6,9 +6,6 @@
  * @author SPQRobin
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author לערי ריינהארט
- * @author Ahmed-Najib-Biabani-Ibrahimkhel
- * @author SPQRobin
- * @author לערי ריינהארט
  */
 
 $rtl = true;
@@ -655,8 +652,6 @@ $messages = array(
 'deletepage'            => 'پاڼه ړنګول',
 'confirm'               => 'تاييد',
 'exblank'               => 'دا مخ تش وه',
-'confirmdelete'         => 'د ړنګولو تاييد',
-'deletesub'             => '("$1" ړنګېږي)',
 'historywarning'        => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
 'confirmdeletetext'     => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
 'actioncomplete'        => 'بشپړه کړنه',

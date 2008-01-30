@@ -821,8 +821,6 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 
 # Delete/protect/revert
 'deletepage'                  => 'Disi papira trowe',
-'confirmdelete'               => 'Gi trowe klari',
-'deletesub'                   => '("$1" trowen)',
 'historywarning'              => 'Atessi: a papira dy yu wana trowe abi pasa si:',
 'confirmdeletetext'           => 'Yu wanaefru ben trowen wan papira, nanga si stori. Gi klari a dyaso-ondro ini a box taki disi we fuli yu miki ben, taki yu den folo luku nanga taki a trowe gu ben nanga a [[{{MediaWiki:Policy-url}}|polisi]].',
 'actioncomplete'              => 'Aksi e du',

@@ -952,8 +952,6 @@ $NEWPAGE
 'excontentauthor'   => "אינהאלט געווען: '$1' (און דער איינציגסטער בארבייטער איז געווען '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'     => 'אינהאלט בעפארן אויסליידיגען איז געווען: "$1"',
 'exblank'           => 'בלאט איז געווען ליידיג',
-'confirmdelete'     => 'באשטעטיג אויסמעקונג',
-'deletesub'         => '(מעקט אויס "$1")',
 'confirmdeletetext' => 'איר גייט איצט אויסמעקן א בלאט אדער א בילד, צוזאמן מיט איר גאנצע היסטאריע, פון די דאטעבאזע.
 
 ביטע באשטעטיגט אז דאס איז טאקע אייער כוונה, אז איר פארשטייט פולערהייט די קאנסקווענסן פון אזא הארבע אקט, און אז דאס איז אין איינקלאנג מיטן פאליסי פון דעם סייט.',
@@ -970,7 +968,7 @@ $NEWPAGE
 'alreadyrolled'     => 'מען קעגן נישט צוריקדרייען די ענדערונג פון בלאט [[:$1]] דורך [[User:$2|$2]] ([[User_talk:$2|רעדן]]); אן אנדערער האט שוין גענדערט אדער צוריקגעדרייט דעם בלאט
 דאס לעצטע ענדערונג איז געווען פון [[User:$3|$3]] ([[User_talk:$3|רעדן]]).',
 'editcomment'       => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'        => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1',
+'revertpage'        => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'confirmprotect'    => 'באשטעטיג באשיצונג',
 
 # Undelete
@@ -1333,4 +1331,3 @@ $1',
 'autosumm-new'     => 'נייער בלאט: $1',
 
 );
-

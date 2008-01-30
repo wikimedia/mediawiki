@@ -550,8 +550,8 @@ Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gop
 Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
 Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg.<br />
 <strong>PEIDIWCH Â CHYFRANNU GWAITH O DAN HAWLFRAINT HEB GANIATÂD!</strong>",
-'longpagewarning'         => "<strong>RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
-Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.</strong>",
+'longpagewarning'         => "<strong>RHYBUDD: Mae'r dudalen hon yn $1 cilobeit o hyd; mae rhai porwyr yn cael trafferth wrth lwytho tudalennau sy'n hirach na 32kb.
+Byddai'n dda o beth llunio sawl tudalen llai o hyd o ddeunydd y dudalen hon.</strong>",
 'readonlywarning'         => "<strong>RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,
 felly fyddwch chi ddim yn medru cadw eich olygiadau rwan. Efalle fyddwch chi'n eisio tori-a-pastio'r
 testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
@@ -934,8 +934,8 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'nrevisions'              => '$1 diwygiad',
 'nviews'                  => '$1 golwgfeydd',
 'specialpage-empty'       => "Mae'r dudalen hon yn wag.",
-'lonelypages'             => 'Erthyglau heb cysylltiadau',
-'lonelypagestext'         => 'Nid oes cysylltiad yn arwain at y tudalennau canlynol oddi wrth unrhyw dudalen arall yn y wici.',
+'lonelypages'             => 'Erthyglau heb gysylltiadau iddynt',
+'lonelypagestext'         => 'Nid oes cysylltiad yn arwain at y tudalennau canlynol oddi wrth unrhyw dudalen arall yn {{SITENAME}}.',
 'uncategorizedpages'      => 'Tudalennau heb gategori',
 'uncategorizedcategories' => 'Categorïau sydd heb gategori',
 'unusedcategories'        => 'Categorïau gwag',
@@ -951,7 +951,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'allpages'                => 'Pob tudalen',
 'prefixindex'             => 'Mynegai rhagddodiad',
 'shortpages'              => 'Erthyglau byr',
-'longpages'               => 'Erthyglau hir',
+'longpages'               => 'Tudalennau hirion',
 'deadendpages'            => 'Tudalennau heb gysylltiadau ynddynt',
 'deadendpagestext'        => "Nid oes cysylltiad yn arwain at dudalen arall oddi wrth yr un o'r tudalennau isod.",
 'listusers'               => 'Rhestr defnyddwyr',
@@ -1109,8 +1109,6 @@ Am fwy o gymorth:
 'excontentauthor'             => "y cynnwys oedd: '$1' (a'r unig gyfrannwr oedd '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "y cynnwys cyn blancio oedd: '$1'",
 'exblank'                     => 'roedd y dudalen yn wag',
-'confirmdelete'               => "Cadarnháu'r dileu",
-'deletesub'                   => '(Wrthi\'n dileu "$1")',
 'historywarning'              => "Rhybudd: mae hanes i'r dudalen rydych ar fin ei dileu.",
 'confirmdeletetext'           => "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.
 Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",

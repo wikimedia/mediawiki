@@ -1320,8 +1320,6 @@ Retorn e assisténcia :
 'excontentauthor'             => 'lo contengut èra : « $1 » (e lo sol contributor èra « [[Special:Contributions/$2|$2]] »)',
 'exbeforeblank'               => "lo contengut abans escafament èra :'$1'",
 'exblank'                     => 'pagina voida',
-'confirmdelete'               => 'Confirmar la supression',
-'deletesub'                   => '(Supression de "$1")',
 'historywarning'              => 'Atencion: La pagina que sètz a mand de suprimir a un istoric:',
 'confirmdeletetext'           => "Sètz a mand de suprimir definitivament de la banca de donadas una pagina
 o un imatge, e mai totas sas versions anterioras.
@@ -1356,7 +1354,7 @@ per  [[User:$2|$2]] ([[User talk:$2|Discussion]]); qualqu'un d'autre a ja modifi
 
 La darrièra modificacion èra de [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
 'editcomment'                 => 'Lo resumit de la modificacion èra: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'restitucion de la darrièra modificacion de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]); retorn a la darrièra version de [[User:$1|$1]]',
+'revertpage'                  => 'restitucion de la darrièra modificacion de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]); retorn a la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Revocacion de las modificacions de $1 ; retorn a la version de $2.',
 'sessionfailure'              => 'Vòstra session de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de session.

@@ -1092,6 +1092,7 @@ alebo pre priamy odkaz na súbor
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
 'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte $1 ak nie ste si istý, či ho chcete zmeniť.',
+'filepageexists'              => 'Stránka (nie obrázok) s týmto názvom už existuje. Prosím, skontrolujte <strong><tt>$1</tt></strong> ak si nie ste istý, či to chcete zmeniť.',
 'fileexists-extension'        => 'Súbor s podobným názvom už existuje:<br />
 Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
 Názov existujúceho súboru: <strong><tt>$2</tt></strong><br />
@@ -1485,8 +1486,8 @@ Návrhy a ďalšia pomoc:
 'excontentauthor'             => 'obsah bol: „$1“ (a jediný autor bol [[Special:Contributions/$2]])',
 'exbeforeblank'               => "obsah pred vyčistením stránky bol: '$1'",
 'exblank'                     => 'stránka bola prázdna',
-'confirmdelete'               => 'Potvrdiť zmazanie',
-'deletesub'                   => '(Mažem "$1")',
+'delete-confirm'              => 'Zmazať „$1“',
+'delete-legend'               => 'Zmazať',
 'historywarning'              => 'UPOZORNENIE: Stránka, ktorú chcete zmazať má históriu:',
 'confirmdeletetext'           => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
 'actioncomplete'              => 'Úloha bola dokončená',

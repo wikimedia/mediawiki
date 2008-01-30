@@ -1564,8 +1564,8 @@ Feedback en andere assistentie:
 'excontentauthor'             => 'inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
 'exbeforeblank'               => "De inhoud was: '$1'",
 'exblank'                     => 'pagina was leeg',
-'confirmdelete'               => 'Verwijdering bevestigen',
-'deletesub'                   => '("$1" aan het verwijderen)',
+'delete-confirm'              => '"$1" verwijderen',
+'delete-legend'               => 'Verwijderen',
 'historywarning'              => 'Waarschuwing: de pagina die u wilt verwijderen heeft meerdere versies:',
 'confirmdeletetext'           => 'U staat op het punt een pagina te verwijderen, inclusief de geschiedenis. Bevestig alstublieft hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat de verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
 'actioncomplete'              => 'Handeling voltooid',
@@ -1575,7 +1575,7 @@ Feedback en andere assistentie:
 'dellogpagetext'              => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
 'deletionlog'                 => 'Verwijderingslogboek',
 'reverted'                    => 'Eerdere versie hersteld',
-'deletecomment'               => 'Reden voor verwijderen',
+'deletecomment'               => 'Reden voor verwijderen:',
 'deleteotherreason'           => 'Andere/eventuele reden:',
 'deletereasonotherlist'       => 'Andere reden',
 'deletereason-dropdown'       => '*Veelvoorkomende verwijderingsredenen
@@ -2527,4 +2527,3 @@ Probeer normale voorvertoning.',
 'unknown_extension_tag' => 'Onbekende tag "$1"',
 
 );
-

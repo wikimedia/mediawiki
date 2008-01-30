@@ -1361,8 +1361,6 @@ Más aida y sofitu:
 'excontentauthor'             => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "el conteníu enantes de dexar en blanco yera: '$1'",
 'exblank'                     => 'la páxina taba vacia',
-'confirmdelete'               => 'Confirmar el borráu',
-'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Avisu: La páxina que vas borrar tien historial:',
 'confirmdeletetext'           => "Tas a piques de borrar una páxina xunto con tol so historial.
 Por favor confirma que ye lo que quies facer, qu'entiendes les consecuencies, y que lo tas faciendo acordies coles [[{{MediaWiki:Policy-url}}|polítiques]].",

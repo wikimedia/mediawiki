@@ -1149,8 +1149,6 @@ Tadhelt:
 'excontentauthor'         => "Ayen yella: '$1' ('[[Special:Contributions/$2|$2]]' kan i yekken deg-s)",
 'exbeforeblank'           => "Ayen yella uqbal ma yettumḥa: '$1'",
 'exblank'                 => 'asebter yella d ilem',
-'confirmdelete'           => 'Validi amḥay',
-'deletesub'               => '(Ad yemḥu "$1")',
 'historywarning'          => 'Aɣtal: Asebter i ara temḥuḍ yesɛa amezruy:',
 'actioncomplete'          => 'Axdam yekfa',
 'deletedtext'             => '"$1" yettumḥa.
@@ -1163,7 +1161,7 @@ Tadhelt:
 'deletecomment'           => 'Ayɣer tebɣiḍ ad temḥuḍ',
 'cantrollback'            => 'Ur yezmir ara ad yessuɣal; yella yiwen kan amseqdac iwumi ibeddel/yexleq asebter-agi.',
 'editcomment'             => 'Agzul n ubeddel yella: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'              => 'Yessuɣal ibeddlen n [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]]); yettubeddel ɣer tasiwelt taneggarut n [[User:$1|$1]]',
+'revertpage'              => 'Yessuɣal ibeddlen n [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]]); yettubeddel ɣer tasiwelt taneggarut n [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'          => 'Yella ugul akk d takmect inek;
 Axdam-agi yebṭel axaṭer waqila yella wemdan nniḍen i yeddem isem n wemseqdac inek.
 G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, umbeɛd wekki ɣef "Actualiser/reload" akk ad tɛerḍeḍ tikelt nniḍen.',
@@ -1335,7 +1333,6 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 'importhistoryconflict'      => 'Amennuɣ ger tisiwal n umezruy (ahat asebter-agi yettwazen yagi)',
 'importnosources'            => 'Asekcam n transwiki ur yexdim ara u amezruy n usekcam yettwakkes.',
 'importnofile'               => 'ulaḥedd afaylu usekcam ur yettwazen.',
-'importuploaderror'          => 'Ur yezmir ara ad yazen ufaylu n usekcam; waqila ufaylu meqqer aṭṭas.',
 
 # Import log
 'importlogpage'                    => 'Aɣmis n usekcam',
@@ -1628,4 +1625,3 @@ $1',
 'watchlisttools-raw'  => 'Beddel umuɣ n uɛessi (raw)',
 
 );
-

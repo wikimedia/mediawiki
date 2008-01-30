@@ -1,10 +1,12 @@
 <?php
-/** Ποντιακά (Ποντιακά)
+/** Pontic (Ποντιακά)
  *
  * @addtogroup Language
  *
  * @author Consta
  */
+
+
 
 $messages = array(
 # Dates
@@ -50,6 +52,9 @@ $messages = array(
 
 # Book sources
 'booksources-go' => 'Δέβα',
+
+# Special:Allpages
+'allpagessubmit' => 'Δέβα',
 
 # Multipage image navigation
 'imgmultigo' => 'Δέβα!',

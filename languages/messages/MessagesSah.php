@@ -806,8 +806,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'userrights-groupshelp'            => 'Кыттааччыны киллэриэххин эбэтэр таһаарыаххын баҕарар бөлөхтөргүн тал. Талбатах бөлөхтөрүҥ уларыйбаттар. Снять выделение с группы можно используя CTRL + левую клавишу мыши.',
 'userrights-reason'                => 'Уларытыы төрүөтэ:',
 'userrights-available-none'        => 'Бөлөххө киириини уларытар кыаҕыҥ суох.',
-'userrights-available-add'         => 'Эн $1 бөлөххө кыттааччылары киллэрэр кыахтааххын.',
-'userrights-available-remove'      => 'Эн $1 бөлөхтөн кыттаачылары таһаарар кыахтааххын.',
+'userrights-available-add'         => 'Эн бу {{PLURAL:$2|бөлөххө|бөлөхтөргө}} кыттааччылары киллэрэр кыахтааххын: $1',
+'userrights-available-remove'      => 'Эн бу {{PLURAL:$2|бөлөхтөн|бөлөхтөртөн}} кыттааччылары таһаарар кыахтааххын: $1.',
 'userrights-available-add-self'    => 'Бэйэҕин бу {{PLURAL:$2|бөлөххө|бөлөхтөргө}} киллэриэххин сөп: $1.',
 'userrights-available-remove-self' => 'Бэйэҕин бу {{PLURAL:$2|бөлөхтөн|бөлөхтөртөн}} сотуоххун сөп: $1.',
 'userrights-no-interwiki'          => 'Атын биикилэргэ кыттааччылар бырааптарын уларытар быраабыҥ суох.',
@@ -910,6 +910,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'largefileserver'             => 'Билэ ыйааһына көҥүллэммиттэн ордук.',
 'emptyfile'                   => 'Суруйбут билэҥ арааһа кураанах быһылаах. Баҕар билэ аатын сыыһа суруйбутуҥ буолаарай. Өссө төгүл көр.',
 'fileexists'                  => 'Инник ааттаах билэ бэлиэр баар эбит, ону уларытыаххын саарбахтыыр буоллаххына - маны көр <strong><tt>$1</tt></strong>.',
+'filepageexists'              => 'Маннык ааттаах сирэй (ойуу буолбатах) номнуо баар, уларытыаҥ иннинэ бука диэн маны көр: <strong><tt>$1</tt></strong>.',
 'fileexists-extension'        => 'Майгынныыр ааттаах билэ баар:<br /> 
 Эн суруйбут билэҥ аата: <strong><tt>$1</tt></strong><br /> 
 Уруккуттан баар билэ аата: <strong><tt>$2</tt></strong><br /> 
@@ -1021,17 +1022,22 @@ PICT # misc.
 'filerevert-badversion'     => 'Бу билэ этиллибит күҥҥэ-ыйга/кэмҥэ оҥоһуллубут урукку торума суох.',
 
 # File deletion
-'filedelete'             => 'Сот: $1',
-'filedelete-legend'      => 'Билэни сот',
-'filedelete-intro'       => "Маны сотон эрэҕин '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Манна баар [$4 $3, $2]  \'\'\'[[Media:$1|$1]]\'\'\' торумнара сотулуннулар.</span>',
-'filedelete-comment'     => 'Быһаарыыта:',
-'filedelete-submit'      => 'Сотуу',
-'filedelete-success'     => "'''$1''' сотулунна.",
-'filedelete-success-old' => '<span class="plainlinks">$3-ҕа баар \'\'\'[[Media:$1|$1]]\'\'\' торуму (версияны)  $2 соппут.</span>',
-'filedelete-nofile'      => "'''$1''' {{SITENAME}} саайтыгар суох.",
-'filedelete-nofile-old'  => "Этиллибит параметрдаах '''$1''' архыыптаммыт торума суох.",
-'filedelete-iscurrent'   => 'Эн билэ саҥа торумун сото сатыыгын. Бастаан эргэ торумун көр.',
+'filedelete'                  => 'Сот: $1',
+'filedelete-legend'           => 'Билэни сот',
+'filedelete-intro'            => "Маны сотон эрэҕин '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Манна баар [$4 $3, $2]  \'\'\'[[Media:$1|$1]]\'\'\' торумнара сотулуннулар.</span>',
+'filedelete-comment'          => 'Быһаарыыта:',
+'filedelete-submit'           => 'Сотуу',
+'filedelete-success'          => "'''$1''' сотулунна.",
+'filedelete-success-old'      => '<span class="plainlinks">$3-ҕа баар \'\'\'[[Media:$1|$1]]\'\'\' торуму (версияны)  $2 соппут.</span>',
+'filedelete-nofile'           => "'''$1''' {{SITENAME}} саайтыгар суох.",
+'filedelete-nofile-old'       => "Этиллибит параметрдаах '''$1''' архыыптаммыт торума суох.",
+'filedelete-iscurrent'        => 'Эн билэ саҥа торумун сото сатыыгын. Бастаан эргэ торумун көр.',
+'filedelete-otherreason'      => 'Атын/эбии төрүөт:',
+'filedelete-reason-otherlist' => 'Атын төрүөт',
+'filedelete-reason-dropdown'  => '*Common сотор төрүөттэрэ
+** Бас билии быраабын кэһии
+** Хос суруллубут билэ',
 
 # MIME search
 'mimesearch'         => 'MIME көрдөөһүн',
@@ -1290,8 +1296,6 @@ $NEWPAGE
 'excontentauthor'             => 'иһинээҕитэ: «$1» (соҕотох ааптар [[{{ns:special}}:Contributions/$2|$2]])',
 'exbeforeblank'               => "иһинээҕитэ сотуллуон иннинэ: '$1'",
 'exblank'                     => 'сирэй кураанах этэ',
-'confirmdelete'               => 'Сотууну бигэргэт',
-'deletesub'                   => '("$1" сотуллар)',
 'historywarning'              => 'Сэрэтии: Сотоору турар сирэйиҥ устуоруйалаах:',
 'confirmdeletetext'           => 'Эн сирэйи (ойууну) уонна кини устуоруйатын букатын сотоору гынаҕын.
 Бука диэн, кырдьык инньэ гынаары гынаргын,
@@ -1312,6 +1316,8 @@ $NEWPAGE
 ** ааптар ирдээһинэ
 ** ааптар быраабын күөмчүлээһин 
 ** Алдьатыы (Вандализм)',
+'delete-toobig'               => 'Бу сирэй уларытыыларын историята уһун, хас да ($1) хат көрүүлэрдээх. Маннык сирэйдэри сотор хааччахтанар, тоҕо диэххэ алҕас {{SITENAME}} алдьаныан сөп.',
+'delete-warning-toobig'       => 'Бу сирэй уларыылара уһун историялаах, хас да ($1) хат көрүүлэрдээх. Маны соттоххуна, {{SITENAME}} билэтин тиһигин алдьатыан сөп; салгыыр буоллаххына сэрэнэн үлэлээ.',
 'rollback'                    => 'Уруккутугар төннөр',
 'rollback_short'              => 'Төннөрүү',
 'rollbacklink'                => 'төннөр',
@@ -1681,13 +1687,15 @@ $1',
 'importcantopen'             => 'Импортанар билэ кыайан арыллыбат',
 'importbadinterwiki'         => 'Интервики ыйынньык сыыһа',
 'importnotext'               => 'Тиэкис суох',
-'importsuccess'              => 'Импортааһын сатанна!',
+'importsuccess'              => 'Импортааһын түмүктэннэ!',
 'importhistoryconflict'      => 'Баар торумнар сөпсөспөтүлэр (баҕар сирэй номнуо импортаммыт буолуон сөп)',
 'importnosources'            => 'Биики ыккрадынааҕы импортанар билэ талыллыбатах, уларытыы историятын көһөрүү арахса сылдьар.',
 'importnofile'               => 'Импортанар билэ сатаан киллэриллибэтэ.',
 'importuploaderrorsize'      => 'Файл ыйааhына наhаа улахан буолан хачайдааhын тохтотулунна.',
 'importuploaderrorpartial'   => 'Хачайдааhын тохтотулунна. Файл сорҕото эрэ сурулунна.',
 'importuploaderrortemp'      => 'Хачайдааhын тохтотулунна. Быстах кэмҥэ уурар сир көстүбэтэ.',
+'import-noarticle'           => 'Импортанар сирэй суох!',
+'import-nonewrevisions'      => 'Туох баар торумнар бу иннинэ импортаммыттар/импортаннылар.',
 
 # Import log
 'importlogpage'                    => 'Импорт сурунаала',

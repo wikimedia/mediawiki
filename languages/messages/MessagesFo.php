@@ -816,7 +816,6 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'excontent'          => "innihald var: '$1'",
 'excontentauthor'    => "innihaldið var: '$1' (og einasti rithøvundur var '[[Special:Contributions/$2|$2]]')",
 'exblank'            => 'síðan var tóm',
-'confirmdelete'      => 'Vátta striking',
 'historywarning'     => 'Ávaring: Síðan, ið tú ert í gongd við at strika, hevur eina søgu:',
 'confirmdeletetext'  => 'Tú ert í gongd við endaliga at strika ein a síðu
 ella mynd saman við allari søgu úr dátugrunninum.

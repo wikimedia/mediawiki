@@ -1048,20 +1048,19 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'excontentauthor'           => "contenta erant: '$1' (et contributor unicus erat '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'             => "contenta priusquam pagina facta vacua erant: '$1'",
 'exblank'                   => 'pagina vacua erat',
-'confirmdelete'             => 'Adfirmare deletionem',
-'deletesub'                 => '(Deletio de "$1")',
+'delete-confirm'            => 'Delere "$1"',
+'delete-legend'             => 'Delere',
 'historywarning'            => 'Monitio: Pagina quam delere vis historiam habet:',
 'confirmdeletetext'         => 'Paginam cum tota historia eius delebis.
 Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:Policy-url}}|consilio]] congruere.',
 'actioncomplete'            => 'Actum perfectum',
-'deletedtext'               => '"$1" deletum est.
-Vide $2 pro indice deletionum recentum.',
+'deletedtext'               => '"$1" deletum est. Vide $2 pro indice deletionum recentum.',
 'deletedarticle'            => 'delevit "[[$1]]"',
 'dellogpage'                => 'Index deletionum',
 'dellogpagetext'            => 'Subter est index deletionum recentissimarum.',
 'deletionlog'               => 'index deletionum',
 'reverted'                  => 'Reversum ad emendationem proximam',
-'deletecomment'             => 'Ratio deletionis',
+'deletecomment'             => 'Causa deletionis:',
 'deleteotherreason'         => 'Causa alia vel explicatio:',
 'deletereasonotherlist'     => 'Causa alia',
 'rollback'                  => 'Reverti mutationes',
@@ -1465,4 +1464,3 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum inspicere vel recensere',
 
 );
-

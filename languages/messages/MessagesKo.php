@@ -411,7 +411,7 @@ $2',
 'wrongpasswordempty'         => '비밀번호가 비었습니다. 다시 시도해 주세요.',
 'passwordtooshort'           => '암호가 너무 짧습니다. 암호 길이는 적어도 $1글자 이상이어야 합니다.',
 'mailmypassword'             => '새 암호를 이메일로 보내기',
-'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 암호',
+'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
 'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}}의 새 암호를 보내달라는 요청이 왔습니다. ($4)
 
 사용자 "$2"의 암호는 이제 "$3"입니다. 로그인한 후에 암호를 변경해 주세요.
@@ -440,7 +440,7 @@ $2',
 'resetpass_submit'        => '암호를 변경하고 로그인 하기',
 'resetpass_success'       => '암호가 성공적으로 변경되었습니다! 로그인을 해 주세요.',
 'resetpass_bad_temporary' => '잘못된 임시 암호. 암호를 이미 바꾸었거나 새로운 임시 암호를 받았을 수 있습니다.',
-'resetpass_forbidden'     => '이 위키에서 암호 변경 불가',
+'resetpass_forbidden'     => '{{SITENAME}}에서 암호 변경 불가',
 'resetpass_missing'       => '입력값 없음.',
 
 # Edit page toolbar
@@ -561,7 +561,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'edittools'                 => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
 'nocreatetitle'             => '문서 생성 제한',
 'nocreatetext'              => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:Userlogin|로그인하거나 계정을 만들 수 있습니다]].',
-'nocreate-loggedin'         => '새 문서를 만들 권한이 없습니다.',
+'nocreate-loggedin'         => '{{SITENAME}}에서 새 문서를 만들 권한이 없습니다.',
 'permissionserrors'         => '권한 오류',
 'permissionserrorstext'     => '해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
 
@@ -748,7 +748,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'show'                              => '보이기',
 'minoreditletter'                   => '잔글',
 'newpageletter'                     => '새글',
-'number_of_watching_users_pageview' => '[$1 명이 주시하고 있음]',
+'number_of_watching_users_pageview' => '[$1명이 주시하고 있음]',
 'rc_categories'                     => '다음 분류로 제한 (‘|’로 구분)',
 'rc_categories_any'                 => '모두',
 'newsectionsummary'                 => '새 주제: /* $1 */',
@@ -801,7 +801,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'uploadedimage'               => '‘[[$1]]’을(를) 올렸습니다.',
 'overwroteimage'              => '‘[[$1]]’ 파일의 새 버전을 올렸습니다.',
 'uploaddisabled'              => '올리기 비활성화됨',
-'uploaddisabledtext'          => '이 위키에서는 파일 올리기 기능이 비활성화되어 있습니다.',
+'uploaddisabledtext'          => '{{SITENAME}}에서는 파일 올리기 기능이 비활성화되어 있습니다.',
 'uploadscripted'              => '이 파일에는 HTML이나 다른 스크립트 코드가 포함되어 있어, 웹 브라우저에서 오류를 일으킬 수 있습니다.',
 'uploadcorrupt'               => '이 파일은 잘못된 형식을 가지고 있습니다. 파일을 확인하고 다시 시도해 주세요.',
 'uploadvirus'                 => '파일이 바이러스를 포함하고 있습니다! 상세 설명: $1',
@@ -916,7 +916,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nviews'                  => '$1번 읽음',
 'specialpage-empty'       => '명령에 대한 결과가 없습니다.',
 'lonelypages'             => '외톨이 문서 목록',
-'lonelypagestext'         => '다른 문서에서 연결하지 않는 문서의 목록입니다.',
+'lonelypagestext'         => '{{SITENAME}}에서, 다른 문서에서 연결하지 않는 문서의 목록입니다.',
 'uncategorizedpages'      => '분류되지 않은 문서 목록',
 'uncategorizedcategories' => '분류되지 않은 분류 목록',
 'uncategorizedimages'     => '분류되지 않은 그림 목록',
@@ -936,7 +936,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'shortpages'              => '짧은 문서 목록',
 'longpages'               => '긴 문서 목록',
 'deadendpages'            => '막다른 문서 목록',
-'deadendpagestext'        => '다른 문서로 연결하지 않는 문서의 목록입니다.',
+'deadendpagestext'        => '{{SITENAME}}에서, 다른 문서로 연결하지 않는 문서의 목록입니다.',
 'protectedpages'          => '보호된 문서 목록',
 'protectedpagestext'      => '다음의 문서는 이동/편집이 불가능하도록 보호되어 있습니다.',
 'protectedpagesempty'     => '보호되어 있는 문서가 없습니다.',
@@ -1090,8 +1090,8 @@ $NEWPAGE
 'excontentauthor'             => '내용: ‘$1’ (그리고 편집한 사람은 ‘$2’뿐)',
 'exbeforeblank'               => '비우기 전의 내용: ‘$1’',
 'exblank'                     => '빈 문서',
-'confirmdelete'               => '삭제 확인',
-'deletesub'                   => '($1 삭제)',
+'delete-confirm'              => '"$1" 삭제',
+'delete-legend'               => '삭제',
 'historywarning'              => '주의: 현재 삭제하려는 문서에는 문서 역사가 있습니다:',
 'confirmdeletetext'           => '문서나 그림, 그리고 이 문서의 역사를 삭제하려고 합니다. 삭제하기 전에 다시 한번 문서 역사를 확인해 주시기 바랍니다.',
 'actioncomplete'              => '명령완료',
@@ -1101,7 +1101,15 @@ $NEWPAGE
 'dellogpagetext'              => '아래의 목록은 최근에 삭제된 문서들입니다.',
 'deletionlog'                 => '삭제 기록',
 'reverted'                    => '이전 버전으로 되돌렸습니다.',
-'deletecomment'               => '삭제 이유',
+'deletecomment'               => '삭제 이유:',
+'deleteotherreason'           => '다른 이유/추가적인 이유:',
+'deletereasonotherlist'       => '다른 이유',
+'deletereason-dropdown'       => '*일반적인 삭제 이유
+** 작성자의 요청
+** 저작권 침해
+** 잘못된 문서',
+'delete-toobig'               => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}}에 큰 혼란을 줄 수 있기 때문에, 삭제할 수 없습니다.',
+'delete-warning-toobig'       => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있기 때문에, 주의해 주세요.',
 'rollback'                    => '편집 되돌리기',
 'rollback_short'              => '되돌리기',
 'rollbacklink'                => '되돌리기',
@@ -1111,7 +1119,7 @@ $NEWPAGE
 
 마지막으로 문서를 편집한 사람은[[User:$3|$3]]([[User talk:$3|토론]])입니다.',
 'editcomment'                 => "편집 요약: ''$1''", # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[Special:Contributions/$1|$1]]의 버전으로 되돌림',
+'revertpage'                  => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[Special:Contributions/$1|$1]]의 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 'sessionfailure'              => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 'protectlogpage'              => '문서 보호 기록',
