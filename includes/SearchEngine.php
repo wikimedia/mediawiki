@@ -51,7 +51,7 @@ class SearchEngine {
 		if($wgContLang->hasVariants()){
 			$allSearchTerms = array_merge($allSearchTerms,$wgContLang->convertLinkToAllVariants($searchterm));
 		}
-
+		
 		foreach($allSearchTerms as $term){
 
 			# Exact match? No need to look further.
@@ -101,6 +101,12 @@ class SearchEngine {
 				if ( $title->exists() ) {
 					return $title;
 				}
+			}
+
+			// Give hooks a chance at better match variants
+			$title = null;
+			if( !wfRunHooks( 'SearchGetNearMatch', array( $term, &$title ) ) ) {
+				return $title;
 			}
 		}
 

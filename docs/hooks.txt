@@ -844,6 +844,10 @@ $namespace : Page namespace
 $title : Page title
 $text : Current text being indexed
 
+'SearchGetNearMatch': An extra chance for exact-title-matches in "go" searches
+$term : Search term string
+&$title : Outparam; set to $title object and return false for a match
+
 'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views
 $text: Text being shown
 $title: Title of the custom script/stylesheet page
