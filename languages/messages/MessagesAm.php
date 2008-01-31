@@ -146,6 +146,7 @@ $messages = array(
 'delete'           => 'ስርዝ',
 'deletethispage'   => 'ይህን ገጽ ሰርዝ',
 'protect'          => 'ጠብቅ',
+'newpage'          => 'አዲስ ገጽ',
 'talkpagelinktext' => 'ውይይት',
 'specialpage'      => 'ልዩ ገጽ',
 'talk'             => 'ውይይት',
@@ -157,16 +158,21 @@ $messages = array(
 'lastmodifiedat'   => 'ይህ ገጽ መጨረሻ የተቀየረው እ.ኣ.አ በ$2፣ $1 ዓ.ም. ነበር።', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'ስለ {{SITENAME}} መርሃግብር',
-'copyright'     => '<br />ይዞታ በ$1 በሚለው ሕግ ሥር በነፃ የሚገኝ ነው።<br />',
-'currentevents' => 'ወቅታዊ ጉዳዮች',
-'disclaimers'   => 'የኃላፊነት ማስታወቂያ',
-'edithelp'      => 'የማረም መመሪያ',
-'faq'           => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',
-'mainpage'      => 'ዋና ገጽ',
-'portal'        => 'የኅብረተሠቡ መረዳጃ',
-'privacy'       => 'የሚስጥር ፖሊሲ',
-'sitesupport'   => 'መዋጮ ለመስጠት',
+'aboutsite'      => 'ስለ {{SITENAME}} መርሃግብር',
+'aboutpage'      => 'Project:ስለ',
+'copyright'      => '<br />ይዞታ በ$1 በሚለው ሕግ ሥር በነፃ የሚገኝ ነው።<br />',
+'currentevents'  => 'ወቅታዊ ጉዳዮች',
+'disclaimers'    => 'የኃላፊነት ማስታወቂያ',
+'disclaimerpage' => 'አጠቃላይ የሕግ ነጥቦች',
+'edithelp'       => 'የማረም መመሪያ',
+'faq'            => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',
+'helppage'       => 'Help:ይዞታ',
+'mainpage'       => 'ዋና ገጽ',
+'portal'         => 'የኅብረተሠቡ መረዳጃ',
+'portal-url'     => 'Project:የኅብረተሠብ መረዳጃ',
+'privacy'        => 'የሚስጥር ፖሊሲ',
+'privacypage'    => 'Project:የግልነት ድንጋጌ',
+'sitesupport'    => 'መዋጮ ለመስጠት',
 
 'badaccess' => 'ያልተፈቀደ - አይቻልም',
 
@@ -183,6 +189,8 @@ $messages = array(
 'hidetoc'             => 'ደብቅ',
 'thisisdeleted'       => '($1ን ለመመልከት ወይም ለመመለስ)',
 'restorelink'         => '{{PLURAL:$1|የጠፋ ዕትም|$1 የጠፉት ዕትሞች}}',
+'site-rss-feed'       => '$1 R.S.S. Feed',
+'site-atom-feed'      => '$1 አቶም Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ገጽ',
@@ -284,6 +292,7 @@ $messages = array(
 * የታገደው ተጠቃሚ፦ $7
 
 $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስለ ማገጃ ለመጠይቅ ይችላሉ። ነገር ግን በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ ኢሜል ካልኖረ ከጥቅሙም ካልተከለከሉ በቀር ለሰው ኢሜል ለመላክ አይችሉም። የአሁኑኑ ቁጥር አድራሻዎ $3 ህኖ የማገጃው ቁጥር #$5 ነው። ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።",
+'newarticle'               => '(አዲስ)',
 'newarticletext'           => 'የተከተሉት መያያዣ እስካሁን ወደሌለ ገጽ ነው ያመጣዎት። ገጹን ለመፍጠር ከታች በሚገኘው ሳጥን ውስጥ መተየብ ይጀምሩ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:Helppage}}|መመሪያ ገጽን]] ይመልከቱ።
 
 ወደዚህ በስሕተት ከሆነ የመጡት፣ የቃኝውን «Back» ቁልፍ ይጫኑ።',
@@ -308,6 +317,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'templatesused'            => 'በዚሁ ገጽ ላይ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
 'templatesusedpreview'     => 'በዚሁ ቅድመ-እይታ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
 'template-protected'       => '(የተቆለፈ)',
+'nocreatetext'             => '{{SITENAME}} አዳዲስ ገጾችን ለመፍጠር ያሚያስችል ሁኔታ ከለክሏል። ተመልሰው የቆየውን ገጽ ማዘጋጀት ይችላሉ፤ አለዚያ [[Special:Userlogin|በብዕር ስም መግባት]] ይችላሉ።',
 'permissionserrorstext'    => 'ያ አድራጎት አይቻልም - ምክንያቱም፦',
 'recreate-deleted-warn'    => ":<strong><big>'''ማስጠንቀቂያ፦ ይኸው አርእስት ከዚህ በፊት የጠፋ ገጽ ነው!'''</big></strong>
 
@@ -764,6 +774,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'movereason'       => 'ምክንያት',
 'revertmove'       => 'ይመለስ',
 
+# Thumbnails
+'thumbnail-more' => 'አጎላ',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'የርስዎ መኖርያ ገጽ',
 'tooltip-pt-mytalk'               => 'የርስዎ መወያያ ገጽ',
@@ -794,6 +807,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'tooltip-t-upload'                => 'ፋይል ወይም ሥዕልን ወደ {{SITENAME}} ለመላክ',
 'tooltip-t-specialpages'          => 'የልዩ ገጾች ዝርዝር በሙሉ',
 'tooltip-ca-nstab-user'           => 'የአባል መኖሪያ ገጽ ለማየት',
+'tooltip-ca-nstab-project'        => 'ግብራዊ ገጹን ለማየት',
 'tooltip-ca-nstab-image'          => 'የፋይሉን ገጽ ለማየት',
 'tooltip-ca-nstab-template'       => 'የመልጠፊያውን ገጽ ለመመልከት',
 'tooltip-ca-nstab-category'       => 'የመደቡን ገጽ ለማየት',

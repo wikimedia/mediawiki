@@ -1110,14 +1110,12 @@ Por favor, escolha outro título.',
 'version-specialpages'          => 'Páginas especiais',
 'version-variables'             => 'Variáveis',
 'version-other'                 => 'Diversos',
+'version-mediahandlers'         => 'Reprodutores de mídia',
 'version-hooks'                 => 'Hooks',
 'version-extension-functions'   => 'Funções da extensão',
 'version-parser-extensiontags'  => 'Etiquetas das extensões de tipo "parser"',
 'version-parser-function-hooks' => 'Funções "hooks" dos "parsers"',
 'version-hook-name'             => 'Nome do hook',
-
-# Unknown messages
-'version-mediahandlers' => 'Reprodutores de mídia',
-'version-version'       => 'Versão',
+'version-version'               => 'Versão',
 
 );

@@ -2465,14 +2465,17 @@ $1',
 # Special:Version
 'version-extensions'               => 'Nainstalovaná rozšíření',
 'version-specialpages'             => 'Speciální stránky',
+'version-parserhooks'              => 'Háky parseru',
 'version-variables'                => 'Proměnné',
 'version-other'                    => 'Jiné',
+'version-mediahandlers'            => 'Obsluha médií',
+'version-hooks'                    => 'Háky',
 'version-extension-functions'      => 'Funkce rozšíření',
 'version-parser-extensiontags'     => 'Značky rozšiřující parser',
+'version-parser-function-hooks'    => 'Funkce parseru',
 'version-skin-extension-functions' => 'Funkce rozšiřující styly',
-
-# Unknown messages
-'version-mediahandlers' => 'Obsluha médií',
-'version-version'       => 'Verze',
+'version-hook-name'                => 'Název háku',
+'version-hook-subscribedby'        => 'Volán z',
+'version-version'                  => 'Verze',
 
 );

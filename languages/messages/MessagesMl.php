@@ -12,10 +12,6 @@
  * @author Jyothis
  * @author Anoopan
  * @author Shijualex
- * @author Shijualex
- * @author לערי ריינהארט
- * @author Anoopan
- * @author Jyothis
  */
 
 $namespaceNames = array(
@@ -431,6 +427,7 @@ $messages = array(
 'login'                      => 'പ്രവേശിക്കുക',
 'loginprompt'                => 'വിക്കിനിഘണ്ടുവില്‍ ലോഗിന്‍ ചെയ്യാന്‍ താങ്കള്‍ കുക്കികള്‍(Cookies) സജ്ജമാക്കിയിരിക്കണം.',
 'userlogin'                  => 'ലോഗിന്‍ ചെയ്യുക / അംഗത്വമെടുക്കുക',
+'userlogout'                 => 'പുറത്തു കടക്കുക',
 'notloggedin'                => 'ലോഗിന്‍ ചെയ്തിട്ടില്ല',
 'nologin'                    => 'അംഗത്വമില്ലേ? $1.',
 'nologinlink'                => 'ഒരെണ്ണം എടുക്കുക',
@@ -465,9 +462,12 @@ $messages = array(
 # Edit page toolbar
 'bold_sample'    => 'തടിച്ച എഴുത്ത്',
 'bold_tip'       => 'തടിച്ച എഴുത്ത്',
+'italic_tip'     => 'ഇറ്റാലിക്ക് ടെക്സ്റ്റ്',
 'extlink_sample' => 'http://www.example.com കണ്ണി തലക്കെട്ട്',
 'extlink_tip'    => 'പുറത്തേക്കുള്ള കണ്ണി (http:// എന്ന പൂര്‍‌വ്വപ്രത്യയം ചേര്‍ക്കാന്‍ ഓര്‍മ്മിക്കുക)',
+'headline_tip'   => 'രണ്ടാംനിര തലക്കെട്ട്',
 'nowiki_tip'     => 'വിക്കി രൂപഘടന അവഗണിക്കുക',
+'media_tip'      => 'മീഡിയ പ്രമാണത്തിലേക്കുള്ള കണ്ണി',
 'hr_tip'         => 'തിരശ്ചീനരേഖ (മിതമായി മാത്രം ഉപയോഗിക്കുക)',
 
 # Edit pages
@@ -545,6 +545,7 @@ $messages = array(
 'previousrevision'    => '←പഴയ രൂപം',
 'nextrevision'        => 'പുതിയ രൂപം→',
 'currentrevisionlink' => 'ഇപ്പോഴുള്ള രൂപം',
+'cur'                 => 'വ്യത്യാസം',
 'next'                => 'അടുത്ത',
 'last'                => 'അവസാനത്തെ',
 'page_first'          => 'ആദി',
@@ -564,6 +565,7 @@ $messages = array(
 'difference'              => '(മാറ്റങ്ങള്‍ തമ്മിലുള്ള വ്യത്യാസങ്ങള്‍)',
 'lineno'                  => 'വരി $1:',
 'compareselectedversions' => 'തിരഞ്ഞെടുത്ത മാറ്റങ്ങളുടെ വ്യത്യാസം കാണുക',
+'editundo'                => 'മാറ്റം ഒഴിവാക്കുക',
 'diff-multi'              => '(ഇടക്കുള്ള $1 മാറ്റങ്ങള്‍ ഇവിടെ കാണിക്കുന്നില്ല)',
 
 # Search results
@@ -1023,9 +1025,13 @@ $messages = array(
 'importbadinterwiki' => 'മോശമായ അന്തര്‍‌വിക്കി കണ്ണി',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'        => 'എന്റെ താളിലേക്കുള്ള കണ്ണി',
+'tooltip-pt-mytalk'          => 'എന്റെ ചര്‍ച്ചാതാളിലേക്കുള്ള കണ്ണി',
 'tooltip-pt-anontalk'        => 'ഈ ip വിലാസത്തില്‍നിന്നുള്ള തിരുത്തലുകളെക്കുറിച്ചുള്ള ചര്‍ച്ച',
+'tooltip-pt-preferences'     => 'എന്റെ ക്രമീകരണങ്ങളിലേക്കുള്ള കണ്ണി',
 'tooltip-pt-mycontris'       => 'എന്റെ സേവനങ്ങളുടെ പട്ടിക',
 'tooltip-pt-login'           => 'ലോഗിന്‍ ചെയ്യണമെന്നു നിര്‍ബന്ധം ഇല്ലെങ്കിലും ലോഗിന്‍ ചെയ്യുവാന്‍ താല്പര്യപ്പെടുന്നു.',
+'tooltip-pt-logout'          => 'പുറത്തു കടക്കാനുള്ള കണ്ണി',
 'tooltip-ca-talk'            => 'ഉള്ളടക്കം താളിനെക്കുറിച്ചുള്ള ചര്‍ച്ച',
 'tooltip-ca-viewsource'      => 'ഈ താള്‍ സം‌രക്ഷിക്കപ്പെട്ടിരിക്കുന്നു. താങ്കള്‍ക്ക് ഈ താളിന്റെ മൂലരൂപം കാണാവുന്നതാണ്‌.',
 'tooltip-ca-protect'         => 'ഈ താള്‍ സം‌രക്ഷിക്കുക',
@@ -1042,6 +1048,7 @@ $messages = array(
 'tooltip-n-randompage'       => 'ക്രമരഹിതമായി ഒരു താള്‍ നോക്കുക',
 'tooltip-n-help'             => 'സഹായം ലഭ്യമായ ഇടം',
 'tooltip-n-sitesupport'      => 'ഞങ്ങളെ പിന്തുണക്കുക',
+'tooltip-t-whatlinkshere'    => 'ഈ താളിലേക്കു കണ്ണിയാല്‍ ബന്ധിപ്പിക്കപ്പെട്ടിരിക്കുന്ന എല്ലാ വിക്കി താളുകളുടേയും പട്ടിക.',
 'tooltip-t-upload'           => 'ചിത്രങ്ങളും മീഡിയാഫയലുകളും അപ്‌ലോഡ് ചെയ്യുവാ‍നുള്ള കണ്ണി',
 'tooltip-t-specialpages'     => 'പ്രത്യേകതാളുകളുടെ പട്ടിക',
 'tooltip-ca-nstab-main'      => 'ഉള്ളടക്കം താള്‍ കാണുക',
@@ -1054,6 +1061,8 @@ $messages = array(
 'tooltip-ca-nstab-help'      => 'സഹായം താള്‍ കാണുക',
 'tooltip-ca-nstab-category'  => 'വിഭാഗം താള്‍ കാണുക',
 'tooltip-minoredit'          => 'ഇത് ഒരു ചെറുതിരുത്തലായി അടയാളപ്പെടുത്തുക',
+'tooltip-save'               => 'മാറ്റങ്ങള്‍ സംരക്ഷിക്കുന്നു',
+'tooltip-preview'            => 'നിങ്ങള്‍ വരുത്തിയ മാറ്റത്തിന്റെ പരിണതഫലം താള്‍ സംരക്ഷിക്കുന്നതിനു മുന്‍പ് കാണുന്നതിനു ഈ ബട്ടണ്‍ ഉപയോഗിക്കുക!',
 'tooltip-diff'               => 'താങ്കള്‍ ഉള്ളടക്കത്തില്‍ വരുത്തിയ മാറ്റങ്ങള്‍ ഏതൊക്കെയെന്നു പ്രദര്‍ശിപ്പിക്കുക',
 
 # Attribution

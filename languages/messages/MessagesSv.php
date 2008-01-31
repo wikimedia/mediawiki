@@ -285,6 +285,7 @@ $messages = array(
 'mytalk'         => 'Min diskussionssida',
 'anontalk'       => 'Diskussionssidan för denna IP-adress',
 'navigation'     => 'Navigering',
+'and'            => 'och',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1887,7 +1888,6 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'anonymous'        => 'Anonym användare av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} användare $1',
 'lastmodifiedatby' => 'Den här sidan ändrades senast $2, $1 av $3.', # $1 date, $2 time, $3 user
-'and'              => 'och',
 'othercontribs'    => 'Baserad på arbete av $1.',
 'others'           => 'andra',
 'siteusers'        => '{{SITENAME}} användare $1',
@@ -2378,5 +2378,12 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 
 # Core parser functions
 'unknown_extension_tag' => 'Okänd tagg "$1"',
+
+# Special:Version
+'version-extensions'    => 'Installerade programtillägg',
+'version-specialpages'  => 'Specialsidor',
+'version-other'         => 'Annat',
+'version-mediahandlers' => 'Mediahanterare',
+'version-version'       => 'Version',
 
 );

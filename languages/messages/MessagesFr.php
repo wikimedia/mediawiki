@@ -1633,7 +1633,7 @@ $1',
 'whatlinkshere-links' => '← liens',
 
 # Block/unblock
-'blockip'                     => 'Bloquer une adresse IP ou un utilisateur',
+'blockip'                     => 'Bloquer en écriture',
 'blockiptext'                 => 'Utilisez le formulaire ci-dessous pour bloquer l’accès en écriture à partir d’une adresse IP donnée ou d’un nom d’utilisateur.
 
 Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].

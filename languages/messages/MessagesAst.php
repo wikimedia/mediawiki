@@ -2347,13 +2347,11 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'version-specialpages'             => 'Páxines especiales',
 'version-variables'                => 'Variables',
 'version-other'                    => 'Otros',
+'version-mediahandlers'            => "Remanadores d'archivos multimedia",
 'version-extension-functions'      => "Funciones d'estensiones",
 'version-parser-extensiontags'     => "Etiquetes d'estensiones d'análisis",
 'version-skin-extension-functions' => "Funciones d'estensiones de pieles",
 'version-hook-subscribedby'        => 'Suscritu por',
-
-# Unknown messages
-'version-mediahandlers' => "Remanadores d'archivos multimedia",
-'version-version'       => 'Versión',
+'version-version'                  => 'Versión',
 
 );

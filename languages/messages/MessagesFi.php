@@ -1577,7 +1577,7 @@ $1',
 'ipbother'                    => 'Vapaamuotoinen kesto',
 'ipboptions'                  => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Muu kesto',
-'ipbotherreason'              => 'Muu syy',
+'ipbotherreason'              => 'Muu syy tai tarkennus',
 'ipbhidename'                 => 'Piilota IP-osoite tai tunnus estolokista, muokkausestolistasta ja käyttäjälistasta',
 'badipaddress'                => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'           => 'Esto onnistui',
@@ -2327,6 +2327,7 @@ Yritä normaalia esikatselua.',
 'version-parserhooks'              => 'Jäsenninkytkökset',
 'version-variables'                => 'Muuttujat',
 'version-other'                    => 'Muut',
+'version-mediahandlers'            => 'Median käsittelijät',
 'version-hooks'                    => 'Kytköspisteet',
 'version-extension-functions'      => 'Laajennusfunktiot',
 'version-parser-extensiontags'     => 'Jäsentimen laajennustagit',
@@ -2334,9 +2335,6 @@ Yritä normaalia esikatselua.',
 'version-skin-extension-functions' => 'Ulkoasun laajennusfunktiot',
 'version-hook-name'                => 'Kytköspisteen nimi',
 'version-hook-subscribedby'        => 'Kytkökset',
-
-# Unknown messages
-'version-mediahandlers' => 'Median käsittelijät',
-'version-version'       => 'Versio',
+'version-version'                  => 'Versio',
 
 );
