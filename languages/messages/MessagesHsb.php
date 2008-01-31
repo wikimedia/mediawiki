@@ -2379,12 +2379,14 @@ Spytaj normalny přehlad.',
 'unknown_extension_tag' => 'Njeznata taflička rozšěrjenja "$1"',
 
 # Special:Version
-'version-extensions'          => 'Instalowane rozšěrjenja',
-'version-specialpages'        => 'Specialne strony',
-'version-parserhooks'         => 'Parserowe hoki',
-'version-variables'           => 'Wariable',
-'version-other'               => 'Druhe',
-'version-hooks'               => 'Hoki',
-'version-extension-functions' => 'Funkcije rozšěrjenjow',
+'version-extensions'            => 'Instalowane rozšěrjenja',
+'version-specialpages'          => 'Specialne strony',
+'version-parserhooks'           => 'Parserowe hoki',
+'version-variables'             => 'Wariable',
+'version-other'                 => 'Druhe',
+'version-hooks'                 => 'Hoki',
+'version-extension-functions'   => 'Funkcije rozšěrjenjow',
+'version-parser-extensiontags'  => "Parserowe rozšěrjenja ''(taflički)''",
+'version-parser-function-hooks' => 'Parserowe funkcije',
 
 );

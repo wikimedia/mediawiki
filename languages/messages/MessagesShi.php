@@ -1,5 +1,5 @@
 <?php
-/** Tašlḥiyt (Tašlḥiyt)
+/** Tachelhit (Tašlḥiyt)
  *
  * @addtogroup Language
  *
@@ -10,7 +10,9 @@ $fallback = 'ar';
 
 $messages = array(
 # User preference toggles
+'tog-underline'      => 'sttr f do-izdayn:',
 'tog-showtoolbar'    => 'sbaynd tizikrt n tbddil(JavaScript)',
+'tog-editwidth'      => 'tasnduqt n tbddil arttamz sfha kollot',
 'tog-watchcreations' => 'zaydn tiwriqin lli origh i tochwafin-ino',
 'tog-watchdefault'   => 'zaydn tiwriqin lli bdlgh i tochwafin-ino',
 'tog-watchmoves'     => 'zaydn tiwriqin lli smattigh i tochwafin-ino',
@@ -48,6 +50,13 @@ $messages = array(
 'october-gen'   => 'kṭuber',
 'november-gen'  => 'Nuwember',
 'december-gen'  => 'Dujanbir',
+'jan'           => 'yennayer',
+'feb'           => 'xubrayr',
+'mar'           => 'Mars',
+'apr'           => 'Ibrir',
+'may'           => 'Mayyuh',
+'jun'           => 'yunyu',
+'jul'           => 'yulyu',
 
 'qbedit'         => 'bddl',
 'qbpageoptions'  => 'tawriqt ad',
@@ -75,5 +84,13 @@ $messages = array(
 'exif-gaincontrol-0' => 'walo',
 
 'exif-subjectdistancerange-0' => 'orityawssan',
+
+# Multipage image navigation
+'imgmultigo' => 'ballak !',
+
+# Table pager
+'table_pager_first'        => 'tawriqt tamzwarut',
+'table_pager_last'         => 'tawriqt tamgrut',
+'table_pager_limit_submit' => 'ballak',
 
 );

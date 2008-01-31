@@ -191,6 +191,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'mytalk'         => 'Sgwrs fi',
 'anontalk'       => 'Sgwrs ar gyfer y cyfeiriad IP hwn',
 'navigation'     => 'Panel llywio',
+'and'            => 'a/ac',
 
 'errorpagetitle'    => 'Gwall',
 'returnto'          => 'Ewch yn ôl i $1.',
@@ -258,7 +259,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'faq'               => 'Cwestiynau cyffredin',
 'faqpage'           => 'Project:Cwestiynau cyffredin',
 'helppage'          => 'Help:Cymorth',
-'mainpage'          => 'Prif tudalen',
+'mainpage'          => 'Hafan',
 'policy-url'        => 'Project:Polisi',
 'portal'            => 'Porth y Gymuned',
 'portal-url'        => 'Project:Porth y Gymuned',
@@ -418,7 +419,7 @@ Sicrhau rydych chi wedi sillafu\'n iawn, neu creuwch accownt newydd gyda\'r ffur
 'wrongpassword'              => "Mae'r allweddair rydych wedi teipio ddim yn cywir. Triwch eto, os gwelwch yn dda.",
 'wrongpasswordempty'         => 'Roedd y cyfrinair yn wag. Rhowch gynnig arall arni.',
 'passwordtooshort'           => "Mae eich cyfrinair yn rhy fyr. Mae'n rhaid cynnwys o leia $1 nôd.",
-'mailmypassword'             => 'E-postiwch allweddair newydd i fi',
+'mailmypassword'             => 'Anfoner cyfrinair newydd ataf trwy e-bost',
 'passwordremindertitle'      => 'Nodyn atgoffa allweddair oddiwrth {{SITENAME}}',
 'passwordremindertext'       => "Mae rhywun (chi mwy na thebyg, o'r cyfeiriad IP $1) wedi gofyn i ni anfon cyfrinair newydd ar gyfer {{SITENAME}} atoch ($4).
 Mae cyfrinair y defnyddiwr '$2' wedi'i newid i '$3'. Dylid mewngofnodi a'i newid cyn gynted â phosib.
@@ -1011,10 +1012,10 @@ Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, n
 'listusers-noresult' => "Dim defnyddiwr i'w gael.",
 
 # E-mail user
-'mailnologin'     => 'Dim cyfeiriad i anfon',
-'mailnologintext' => 'Rhaid i chi wedi [[Special:Userlogin|mewngofnodi]]
-a rhoi cyfeiriad e-bost dilyn yn eich [[Special:Preferences|ffafraethau]]
-i anfon e-bost i ddefnyddwyr eraill.',
+'mailnologin'     => "Does dim cyfeiriad i'w anfon iddo",
+'mailnologintext' => 'Rhaid eich bod wedi [[Special:Userlogin|mewngofnodi]]
+a bod cyfeiriad e-bost dilys yn eich [[Special:Preferences|dewisiadau]]
+er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
 'emailuser'       => 'Anfon e-bost at y defnyddiwr hwn',
 'emailpage'       => 'Anfon e-bost at ddefnyddiwr',
 'emailpagetext'   => 'Os yw\'r defnyddiwr hwn wedi gosod cyfeiriad e-bost yn ei ddewisiadau, gellir anfon un neges ato ar y ffurflen isod. Bydd y cyfeiriad e-bost a osodoch yn eich dewisiadau chithau yn ymddangos ym maes "Oddi wrth" yr e-bost, fel bod y defnyddiwr arall yn gallu ei ateb.',
@@ -1414,7 +1415,6 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 # Attribution
 'anonymous'        => 'Defnyddwyr anhysbys {{SITENAME}}',
 'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf $2, $1 gan $3', # $1 date, $2 time, $3 user
-'and'              => 'a/ac',
 'othercontribs'    => 'Yn seiliedig ar waith gan $1.',
 'others'           => 'eraill',
 'creditspage'      => "Cydnabyddiaethau'r dudalen",

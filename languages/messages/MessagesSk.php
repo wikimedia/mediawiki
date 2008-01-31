@@ -285,6 +285,7 @@ $messages = array(
 'mytalk'         => 'Moja diskusia',
 'anontalk'       => 'Diskusia k tejto IP adrese',
 'navigation'     => 'Navigácia',
+'and'            => 'a',
 
 # Metadata in edit box
 'metadata_help' => 'Metadáta:',
@@ -1976,7 +1977,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'anonymous'        => 'anonymných používateľov {{GRAMMAR:genitív|{{SITENAME}}}}',
 'siteuser'         => 'používateľa {{GRAMMAR:genitív|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Túto stránku naposledy upravoval používateľ $3 $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'a',
 'othercontribs'    => 'Založené na práci $1.',
 'others'           => 'iné',
 'siteusers'        => 'používateľov {{GRAMMAR:genitív|{{SITENAME}}}} $1',
@@ -2478,5 +2478,21 @@ Skúste obyčajný náhľad.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznáma značka rozšírenia „$1“',
+
+# Special:Version
+'version-extensions'               => 'Nainštalované rozšírenia',
+'version-specialpages'             => 'Špeciálne stránky',
+'version-parserhooks'              => 'Prípojné body syntaktického analyzátora',
+'version-variables'                => 'Premenné',
+'version-other'                    => 'Iné',
+'version-mediahandlers'            => 'Obsluha multimédií',
+'version-hooks'                    => 'Prípojené body',
+'version-extension-functions'      => 'Rozširujúce funkcie',
+'version-parser-extensiontags'     => 'Rozširujúce značky syntaxe',
+'version-parser-function-hooks'    => 'Prípojné body funkcií syntaktického analyzátora',
+'version-skin-extension-functions' => 'Rozširujúce funkcie vzhľadu',
+'version-hook-name'                => 'Názov prípojného bodu',
+'version-hook-subscribedby'        => 'Odoberá',
+'version-version'                  => 'Verzia',
 
 );
