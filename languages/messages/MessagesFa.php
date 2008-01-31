@@ -346,7 +346,7 @@ $messages = array(
 
 'errorpagetitle'    => 'خطا',
 'returnto'          => 'بازگشت به $1.',
-'tagline'           => 'از {{SITENAME}}، دانشنامهٔ آزاد.',
+'tagline'           => 'از {{SITENAME}}',
 'help'              => 'راهنما',
 'search'            => 'جستجو',
 'searchbutton'      => 'جستجو کن',
