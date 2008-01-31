@@ -147,7 +147,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Both now accept namespace prefixes, handle 'Media:' and 'Special:' pages,
   and reject interwiki prefixes. PrefixSearch class centralizes this code,
   and the backend part can be overridden by the PrefixSearchBackend hook.
-
+* (bug 10365) Localization of Special:Version
 
 === Bug fixes in 1.12 ===
 

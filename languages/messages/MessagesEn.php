@@ -3135,4 +3135,20 @@ $1',
 # Core parser functions
 'unknown_extension_tag' => 'Unknown extension tag "$1"',
 
+# Special:Version
+'version-extensions'               => 'Installed extensions',
+'version-specialpages'             => 'Special pages',
+'version-parserhooks'              => 'Parser hooks',
+'version-variables'                => 'Variables',
+'version-other'                    => 'Other',
+'version-mediahandlers'            => 'Media handlers',
+'version-hooks'                    => 'Hooks',
+'version-extension-functions'      => 'Extension functions',
+'version-parser-extensiontags'     => 'Parser extension tags',
+'version-parser-function-hooks'    => 'Parser function hooks',
+'version-skin-extension-functions' => 'Skin extension functions',
+'version-hook-name'                => 'Hook name',
+'version-hook-subscribedby'        => 'Subscribed by',
+'version-and'                      => 'and',
+'version-version'                  => 'Version',
 );

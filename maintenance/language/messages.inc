@@ -2346,6 +2346,21 @@ $wgMessageStructure = array(
 	'CoreParserFunctions' => array(
 		'unknown_extension_tag',
 	),
+	'version' => array(
+		'version-extensions',
+		'version-specialpages',
+		'version-parserhooks',
+		'version-variables',
+		'version-other',
+		'version-hooks',
+		'version-extension-functions',
+		'version-parser-extensiontags',
+		'version-parser-function-hooks',
+		'version-skin-extension-functions',
+		'version-hook-name',
+		'version-hook-subscribedby',
+		'version-and',
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
@@ -2521,6 +2536,7 @@ Variants for Chinese language",
 	'hebrew-dates'          => 'Hebrew month names',
 	'signatures'            => 'Signatures',
 	'CoreParserFunctions' => 'Core parser functions',
+	'version'             => 'Special:Version',
 );
 
 /** Short comments for standalone messages */

@@ -24,7 +24,8 @@ class SpecialVersion {
 	 * main()
 	 */
 	function execute() {
-		global $wgOut;
+		global $wgOut, $wgMessageCache;
+		$wgMessageCache->loadAllMessages();
 
 		$wgOut->addHTML( '<div dir="ltr">' );
 		$wgOut->addWikiText(
@@ -96,16 +97,16 @@ class SpecialVersion {
 			return '';
 
 		$extensionTypes = array(
-			'specialpage' => 'Special pages',
-			'parserhook' => 'Parser hooks',
-			'variable' => 'Variables',
-			'media' => 'Media handlers',
-			'other' => 'Other',
+			'specialpage' => wfMsg( 'version-specialpages' ),
+			'parserhook' => wfMsg( 'version-parserhooks' ),
+			'variable' => wfMsg( 'version-variables' ),
+			'media' => wfMsg( 'version-mediahandlers' ),
+			'other' => wfMsg( 'version-other' ),
 		);
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
-		$out = "<h2>Extensions</h2>\n";
-		$out .= Xml::openElement('table', array('id' => 'sv-ext') );
+		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMsg( 'version-extensions' ) ) .
+			Xml::openElement( 'table', array( 'id' => 'sv-ext' ) );
 
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( isset ( $wgExtensionCredits[$type] ) && count ( $wgExtensionCredits[$type] ) ) {
@@ -115,35 +116,36 @@ class SpecialVersion {
 
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
 					$out .= $this->formatCredits(
-						isset ( $extension['name'] )        ? $extension['name']        : '',
-						isset ( $extension['version'] )     ? $extension['version']     : null,
-						isset ( $extension['author'] )      ? $extension['author']      : '',
-						isset ( $extension['url'] )         ? $extension['url']         : null,
-						isset ( $extension['description'] ) ? $extension['description'] : ''
+						isset ( $extension['name'] )           ? $extension['name']        : '',
+						isset ( $extension['version'] )        ? $extension['version']     : null,
+						isset ( $extension['author'] )         ? $extension['author']      : '',
+						isset ( $extension['url'] )            ? $extension['url']         : null,
+						isset ( $extension['description'] )    ? $extension['description'] : '',
+						isset ( $extension['descriptionmsg'] ) ? $extension['descriptionmsg'] : ''
 					);
 				}
 			}
 		}
 
 		if ( count( $wgExtensionFunctions ) ) {
-			$out .= $this->openExtType('Extension functions');
+			$out .= $this->openExtType( wfMsg( 'version-extension-functions' ) );
 			$out .= '<tr><td colspan="3">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i )
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
-			$out .= $this->openExtType('Parser extension tags');
+			$out .= $this->openExtType( wfMsg( 'version-parser-extensiontags' ) );
 			$out .= '<tr><td colspan="3">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
 		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
-			$out .= $this->openExtType('Parser function hooks');
+			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ) );
 			$out .= '<tr><td colspan="3">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
 		if ( count( $wgSkinExtensionFunction ) ) {
-			$out .= $this->openExtType('Skin extension functions');
+			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ) );
 			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunction ) . "</td></tr>\n";
 		}
 		$out .= Xml::closeElement( 'table' );
@@ -162,21 +164,23 @@ class SpecialVersion {
 		}
 	}
 
-	function formatCredits( $name, $version = null, $author = null, $url = null, $description = null) {
-		$ret = '<tr><td>';
-		if ( isset( $url ) )
-			$ret .= "[$url ";
-		$ret .= "''$name";
-		if ( isset( $version ) )
-			$ret .= " (version $version)";
-		$ret .= "''";
-		if ( isset( $url ) )
-			$ret .= ']';
-		$ret .= '</td>';
-		$ret .= "<td>$description</td>";
-		$ret .= "<td>" . $this->listToText( (array)$author ) . "</td>";
-		$ret .= '</tr>';
-		return "$ret\n";
+	function formatCredits( $name, $version = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
+		$extension = isset( $url ) ? "[$url $name]" : $name;
+		$version = isset( $version ) ? "(" . wfMsg( 'version-version' ) . " $version)" : '';
+
+		# Look for a localized description
+		if( isset( $descriptionMsg ) ) {
+			$msg = wfMsg( $descriptionMsg );
+			if ( !wfEmptyMsg( $descriptionMsg, $msg ) && $msg != '' ) {
+				$description = $msg;
+			}
+		}
+
+		return "<tr>
+				<td><em>$extension $version</em></td>
+				<td>$description</td>
+				<td>" . $this->listToText( (array)$author ) . "</td>
+			</tr>\n";
 	}
 
 	/**
@@ -189,12 +193,18 @@ class SpecialVersion {
 			$myWgHooks = $wgHooks;
 			ksort( $myWgHooks );
 
-			$ret = "<h2>Hooks</h2>\n"
-				. Xml::openElement('table', array('id' => 'sv-hooks') )
-				. "<tr><th>Hook name</th><th>Subscribed by</th></tr>\n";
+			$ret = Xml::element( 'h2', array( 'id' => 'mw-version-hooks' ), wfMsg( 'version-hooks' ) ) .
+				Xml::openElement( 'table', array( 'id' => 'sv-hooks' ) ) .
+				"<tr>
+					<th>" . wfMsg( 'version-hook-name' ) . "</th>
+					<th>" . wfMsg( 'version-hook-subscribedby' ) . "</th>
+				</tr>\n";
 
-			foreach ($myWgHooks as $hook => $hooks)
-				$ret .= "<tr><td>$hook</td><td>" . $this->listToText( $hooks ) . "</td></tr>\n";
+			foreach ( $myWgHooks as $hook => $hooks )
+				$ret .= "<tr>
+						<td>$hook</td>
+						<td>" . $this->listToText( $hooks ) . "</td>
+					</tr>\n";
 
 			$ret .= Xml::closeElement( 'table' );
 			return $ret;
@@ -235,20 +245,21 @@ class SpecialVersion {
 	 */
 	function listToText( $list ) {
 		$cnt = count( $list );
-		sort( $list );
 
-	    if ( $cnt == 1 ) {
+		if ( $cnt == 1 ) {
 			// Enforce always returning a string
 			return (string)$this->arrayToString( $list[0] );
-	    } elseif ( $cnt == 0 ) {
+		} elseif ( $cnt == 0 ) {
 			return '';
 		} else {
+			sort( $list );
 			$t = array_slice( $list, 0, $cnt - 1 );
 			$one = array_map( array( &$this, 'arrayToString' ), $t );
 			$two = $this->arrayToString( $list[$cnt - 1] );
+			$and = wfMsg( 'version-and' );
 
-			return implode( ', ', $one ) . " and $two";
-	    }
+			return implode( ', ', $one ) . " $and $two";
+		}
 	}
 
 	/**
@@ -320,4 +331,5 @@ class SpecialVersion {
 }
 
 /**#@-*/
+
 
