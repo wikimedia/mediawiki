@@ -262,17 +262,7 @@ $specialPageAliases = array(
 	'Popularpages'              => array( 'Populaire_artikels' ),
 	'Search'                    => array( 'Zeuken' ),
 	'Resetpass'                 => array( 'Wachwoord_opniej_instellen' ),
-	'Cite'                      => array( 'Citeer' ),
-	'Filepath'                  => array( 'Bestanslokasie' ),
-	'Boardvote'                 => array( 'Bestuursverkiezing' ),
-	'CategoryTree'              => array( 'Kattegerieboomstructuur' ),
-	'SiteMatrix'                => array( 'Wikimedia-wiki\'s' ),
-	'CrossNamespaceLinks'       => array( 'Verwiezingen_naor_aandere_naamruumtes' ),
 	'Withoutinterwiki'          => array( 'Gien_interwiki' ),
-	'ExpandTemplates'           => array( 'Sjablonen_substitueren' ),
-	'Makebot'                   => array( 'Botrechen' ),
-	'Makesysop'                 => array( 'Beheerdersrechen' ),
-	'DeletedContributions'      => array( 'Vort-ehaolen_gebrukersbiedragen' ),
 	);
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
@@ -324,7 +314,7 @@ $messages = array(
 'aboutsite'         => 'Over {{SITENAME}}',
 'copyright'         => 'De inhold is beschikbaor onder de $1.',
 'currentevents'     => "In 't niejs",
-'currentevents-url' => 'Project:In \'t niejs',
+'currentevents-url' => "Project:In 't niejs",
 'disclaimers'       => 'Veurbehold',
 'disclaimerpage'    => 'Project:Veurbehold',
 'mainpage'          => 'Heufdpagina',
