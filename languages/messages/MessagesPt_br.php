@@ -471,9 +471,9 @@ Note que não poderá utilizar a funcionalidade "Contactar usuário" se não pos
 
 O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um desses (ou ambos) dados em quaisquer tentativas de esclarecimentos.',
 'whitelistedittitle'     => 'Login necessário para edição',
-'whitelistedittext'      => 'Você precisa se [[Especial:Userlogin|logar]] para editar artigos.',
+'whitelistedittext'      => 'Você precisa se [[Special:Userlogin|logar]] para editar artigos.',
 'whitelistreadtitle'     => 'Login necessário para leitura',
-'whitelistreadtext'      => 'Você precisa se [[Especial:Userlogin|logar]] para ler artigos.',
+'whitelistreadtext'      => 'Você precisa se [[Special:Userlogin|logar]] para ler artigos.',
 'whitelistacctitle'      => 'Você não está habilitado a criar uma conta',
 'whitelistacctext'       => 'Para ter permissão para se criar uma conta neste Wiki você precisará estar [[Especial:Userlogin|logado]] e ter as permissões apropriadas.',
 'accmailtitle'           => 'Senha enviada.',
