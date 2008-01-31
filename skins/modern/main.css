@@ -127,7 +127,7 @@ body {
 	margin-top: 3.5em;
 }
 
-#mw_clear {
+div.mw_clear {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 	clear: both;
