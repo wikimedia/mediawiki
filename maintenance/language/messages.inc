@@ -2352,6 +2352,7 @@ $wgMessageStructure = array(
 		'version-parserhooks',
 		'version-variables',
 		'version-other',
+		'version-mediahandlers',
 		'version-hooks',
 		'version-extension-functions',
 		'version-parser-extensiontags',
@@ -2359,7 +2360,7 @@ $wgMessageStructure = array(
 		'version-skin-extension-functions',
 		'version-hook-name',
 		'version-hook-subscribedby',
-		'version-and',
+		'version-version',
 	),
 );
 /** Comments for each block */

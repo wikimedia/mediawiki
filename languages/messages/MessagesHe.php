@@ -423,6 +423,7 @@ $messages = array(
 'mytalk'         => 'דף השיחה שלי',
 'anontalk'       => 'השיחה עבור IP זה',
 'navigation'     => 'ניווט',
+'and'            => 'וגם',
 
 # Metadata in edit box
 'metadata_help' => 'מטא־דטה:',
@@ -2060,7 +2061,6 @@ $1',
 'anonymous'        => 'משתמש(ים) אנונימי(ים) של {{SITENAME}}',
 'siteuser'         => 'משתמש {{SITENAME}} $1',
 'lastmodifiedatby' => 'דף זה שונה לאחרונה בתאריך $2, $1 על־ידי $3.', # $1 date, $2 time, $3 user
-'and'              => 'וגם',
 'othercontribs'    => 'מבוסס על העבודה של $1.',
 'others'           => 'אחרים',
 'siteusers'        => 'משתמש(י) {{SITENAME}} $1',
@@ -2596,5 +2596,21 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'תגית בלתי ידועה: "$1"',
+
+# Special:Version
+'version-extensions'               => 'הרחבות מותקנות',
+'version-specialpages'             => 'דפים מיוחדים',
+'version-parserhooks'              => 'הרחבות מפענח',
+'version-variables'                => 'משתנים',
+'version-other'                    => 'אחר',
+'version-mediahandlers'            => 'מציגי מדיה',
+'version-hooks'                    => 'Hooks',
+'version-extension-functions'      => 'פונקציות של הרחבות',
+'version-parser-extensiontags'     => 'תגיות של הרחבות מפענח',
+'version-parser-function-hooks'    => 'משתנים',
+'version-skin-extension-functions' => 'הרחבות רקעים',
+'version-hook-name'                => 'שם ה־Hook',
+'version-hook-subscribedby'        => 'הפונקציה הרושמת',
+'version-version'                  => 'גרסה',
 
 );
