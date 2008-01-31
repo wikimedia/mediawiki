@@ -180,6 +180,7 @@ $messages = array(
 'mytalk'         => "La mio páxina d'alderique",
 'anontalk'       => 'Alderique pa esta IP',
 'navigation'     => 'Navegación',
+'and'            => 'y',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -1361,6 +1362,8 @@ Más aida y sofitu:
 'excontentauthor'             => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "el conteníu enantes de dexar en blanco yera: '$1'",
 'exblank'                     => 'la páxina taba vacia',
+'delete-confirm'              => 'Borrar "$1"',
+'delete-legend'               => 'Borrar',
 'historywarning'              => 'Avisu: La páxina que vas borrar tien historial:',
 'confirmdeletetext'           => "Tas a piques de borrar una páxina xunto con tol so historial.
 Por favor confirma que ye lo que quies facer, qu'entiendes les consecuencies, y que lo tas faciendo acordies coles [[{{MediaWiki:Policy-url}}|polítiques]].",
@@ -1372,7 +1375,7 @@ Mira en $2 la llista de les últimes páxines borraes.',
 'dellogpagetext'              => 'Abaxo tán los artículos borraos más recién.',
 'deletionlog'                 => 'rexistru de borraos',
 'reverted'                    => 'Revertida a una revisión anterior',
-'deletecomment'               => 'Motivu pa borrar',
+'deletecomment'               => 'Motivu del borráu:',
 'deleteotherreason'           => 'Otru motivu/motivu adicional:',
 'deletereasonotherlist'       => 'Otru motivu',
 'deletereason-dropdown'       => '*Motivos comunes de borráu
@@ -1841,7 +1844,6 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'anonymous'        => 'Usuariu/os anónimu/os de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuariu $1',
 'lastmodifiedatby' => "Esta páxina foi modificada per postrer vegada'l $1 a les $2 por $3.", # $1 date, $2 time, $3 user
-'and'              => 'y',
 'othercontribs'    => 'Basao nel trabayu fechu por $1.',
 'others'           => 'otros',
 'siteusers'        => '{{SITENAME}} usuariu/os $1',
@@ -2339,5 +2341,19 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" desconocida',
+
+# Special:Version
+'version-extensions'               => 'Estensiones instalaes',
+'version-specialpages'             => 'Páxines especiales',
+'version-variables'                => 'Variables',
+'version-other'                    => 'Otros',
+'version-extension-functions'      => "Funciones d'estensiones",
+'version-parser-extensiontags'     => "Etiquetes d'estensiones d'análisis",
+'version-skin-extension-functions' => "Funciones d'estensiones de pieles",
+'version-hook-subscribedby'        => 'Suscritu por',
+
+# Unknown messages
+'version-mediahandlers' => "Remanadores d'archivos multimedia",
+'version-version'       => 'Versión',
 
 );

@@ -246,6 +246,7 @@ $messages = array(
 'mytalk'         => 'Pachina de descusión',
 'anontalk'       => "Pachina de descusión d'ista IP",
 'navigation'     => 'Nabego',
+'and'            => 'y',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -1010,6 +1011,7 @@ Ta encluyir a imachen en una pachina, emplegue un binclo d'una d'istas trazas ''
 *'''Internet Explorer''' / '''Opera''': '''ctrl-f5'''
 *'''Safari''': '''cmd-r'''
 *'''Konqueror''': '''ctrl-r''",
+'filepageexists'              => 'Ya bi ha una pachina (no una imachen) con iste nombre, por fabor, mire-se <strong><tt>$1</tt></strong> si no ye seguro si quiere cambiar-la.',
 'fileexists-extension'        => "Ya bi ha un archibo con un nombre parexiu:<br />
 Nombre de l'archibo que ye cargando: <strong><tt>$1</tt></strong><br />
 Nombre de l'archibo ya esistent: <strong><tt>$2</tt></strong><br />
@@ -1123,17 +1125,22 @@ PICT # misz.
 'filerevert-badversion'     => "No bi ha garra bersión antiga d'o archibo con ixa calendata y ora.",
 
 # File deletion
-'filedelete'             => 'Borrar $1',
-'filedelete-legend'      => 'Borrar archibo',
-'filedelete-intro'       => "Ye borrando '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Ye borrando a bersión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Causa:',
-'filedelete-submit'      => 'Borrar',
-'filedelete-success'     => "S'ha borrato '''$1'''.",
-'filedelete-success-old' => "<span class=\"plainlinks\">S'ha borrato a bersión de '''[[Media:\$1|\$1]]''' de \$3, \$2.</span>",
-'filedelete-nofile'      => "'''$1''' no esiste en {{SITENAME}}.",
-'filedelete-nofile-old'  => "No bi ha garra bersión alzata de '''$1''' con ixos atributos.",
-'filedelete-iscurrent'   => "Ye prebando de borrar a bersión más rezient d'iste archibo. Por fabor, torne en primeras ta una bersión anterior.",
+'filedelete'                  => 'Borrar $1',
+'filedelete-legend'           => 'Borrar archibo',
+'filedelete-intro'            => "Ye borrando '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Ye borrando a bersión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Causa:',
+'filedelete-submit'           => 'Borrar',
+'filedelete-success'          => "S'ha borrato '''$1'''.",
+'filedelete-success-old'      => "<span class=\"plainlinks\">S'ha borrato a bersión de '''[[Media:\$1|\$1]]''' de \$3, \$2.</span>",
+'filedelete-nofile'           => "'''$1''' no esiste en {{SITENAME}}.",
+'filedelete-nofile-old'       => "No bi ha garra bersión alzata de '''$1''' con ixos atributos.",
+'filedelete-iscurrent'        => "Ye prebando de borrar a bersión más rezient d'iste archibo. Por fabor, torne en primeras ta una bersión anterior.",
+'filedelete-otherreason'      => 'Atras razons:',
+'filedelete-reason-otherlist' => 'Atra razón',
+'filedelete-reason-dropdown'  => "*Razons comuns ta borrar archibos
+** Dreitos d'autor no respetatos
+** Archibo duplicato",
 
 # MIME search
 'mimesearch'         => 'Mirar por tipo MIME',
@@ -1397,6 +1404,8 @@ Ta obtenir más informazión y aduya:
 'excontentauthor'             => "O conteniu yera: '$1' (y o suyo unico autor '$2')",
 'exbeforeblank'               => "O conteniu antis de blanquiar yera: '$1'",
 'exblank'                     => 'a pachina yera bueda',
+'delete-confirm'              => 'Borrar "$1"',
+'delete-legend'               => 'Borrar',
 'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
 'confirmdeletetext'           => "Ye amanato á borrar d'a base de datos
 una pachina con tot o suyo istorial.
@@ -1411,7 +1420,7 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'dellogpagetext'              => "Contino se i amuestra una lista d'os borraus más rezients.",
 'deletionlog'                 => 'rechistro de borraus',
 'reverted'                    => 'Tornato ta una bersión anterior',
-'deletecomment'               => "Razón d'o borrau",
+'deletecomment'               => 'Razón ta borrar:',
 'deleteotherreason'           => 'Otras/Más razons:',
 'deletereasonotherlist'       => 'Otra razón',
 'deletereason-dropdown'       => "*Razons comuns de borrau
@@ -1849,7 +1858,6 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'anonymous'        => 'Usuario(s) anonimo(s) de {{SITENAME}}',
 'siteuser'         => 'Usuario $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Ista pachina estió modificata por zaguer begada á $2, $1 por $3.', # $1 date, $2 time, $3 user
-'and'              => 'y',
 'othercontribs'    => 'Basato en o treballo de $1.',
 'others'           => 'atros',
 'siteusers'        => 'Usuario(s) $1 de {{SITENAME}}',

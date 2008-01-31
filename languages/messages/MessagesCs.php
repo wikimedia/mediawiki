@@ -333,6 +333,7 @@ $messages = array(
 'mytalk'         => 'Moje diskuse',
 'anontalk'       => 'Diskuse k této IP adrese',
 'navigation'     => 'Navigace',
+'and'            => 'a',
 
 'errorpagetitle'    => 'Chyba',
 'returnto'          => 'Návrat na stránku „$1“.',
@@ -1924,7 +1925,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'anonymous'        => 'anonymní uživatel(é) {{GRAMMAR:2sg|{{SITENAME}}}}',
 'siteuser'         => 'uživatel {{grammar:2sg|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Tuto stránku naposledy měnil $3 v $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'a',
 'othercontribs'    => 'Do textu přispěli $1.',
 'others'           => 'ostatní',
 'siteusers'        => 'uživatel(é) {{grammar:2sg|{{SITENAME}}}} $1',
@@ -2461,5 +2461,18 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznámá značka rozšíření: „$1“',
+
+# Special:Version
+'version-extensions'               => 'Nainstalovaná rozšíření',
+'version-specialpages'             => 'Speciální stránky',
+'version-variables'                => 'Proměnné',
+'version-other'                    => 'Jiné',
+'version-extension-functions'      => 'Funkce rozšíření',
+'version-parser-extensiontags'     => 'Značky rozšiřující parser',
+'version-skin-extension-functions' => 'Funkce rozšiřující styly',
+
+# Unknown messages
+'version-mediahandlers' => 'Obsluha médií',
+'version-version'       => 'Verze',
 
 );

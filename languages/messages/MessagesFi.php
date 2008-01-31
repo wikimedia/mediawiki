@@ -313,6 +313,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'mytalk'         => 'Keskustelusivu',
 'anontalk'       => 'Keskustele tämän IP:n kanssa',
 'navigation'     => 'Valikko',
+'and'            => 'ja',
 
 # Metadata in edit box
 'metadata_help' => 'Sisältökuvaukset:',
@@ -1831,7 +1832,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'anonymous'        => '{{GRAMMAR:genitive|{{SITENAME}}}} anonyymit käyttäjät',
 'siteuser'         => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $1',
 'lastmodifiedatby' => 'Tätä sivua muokkasi viimeksi ”$3” $2 kello $1.', # $1 date, $2 time, $3 user
-'and'              => 'ja',
 'othercontribs'    => 'Perustuu työlle, jonka teki $1.',
 'others'           => 'muut',
 'siteusers'        => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä(t) $1',
@@ -2320,5 +2320,23 @@ Yritä normaalia esikatselua.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tuntematon laajennuskoodi ”$1”.',
+
+# Special:Version
+'version-extensions'               => 'Asennetut laajennukset',
+'version-specialpages'             => 'Toimintosivut',
+'version-parserhooks'              => 'Jäsenninkytkökset',
+'version-variables'                => 'Muuttujat',
+'version-other'                    => 'Muut',
+'version-hooks'                    => 'Kytköspisteet',
+'version-extension-functions'      => 'Laajennusfunktiot',
+'version-parser-extensiontags'     => 'Jäsentimen laajennustagit',
+'version-parser-function-hooks'    => 'Jäsentimen laajennusfunktiot',
+'version-skin-extension-functions' => 'Ulkoasun laajennusfunktiot',
+'version-hook-name'                => 'Kytköspisteen nimi',
+'version-hook-subscribedby'        => 'Kytkökset',
+
+# Unknown messages
+'version-mediahandlers' => 'Median käsittelijät',
+'version-version'       => 'Versio',
 
 );

@@ -163,6 +163,7 @@ $messages = array(
 'mytalk'         => 'Rûpela guftûgo ya min',
 'anontalk'       => 'Guftûgo ji bo vê IPê',
 'navigation'     => 'Navîgasyon',
+'and'            => 'û',
 
 # Metadata in edit box
 'metadata_help' => "Data'yên meta:",
@@ -1342,7 +1343,6 @@ if (wgUserLanguage == "ku-arab")
 # Attribution
 'anonymous' => 'Bikarhênera/ê nediyarkirî ya/yê {{SITENAME}}',
 'siteuser'  => 'Bikarhênera/ê $1 a/ê {{SITENAME}}',
-'and'       => 'û',
 'others'    => 'ên din',
 'siteusers' => 'Bikarhênerên $1 yên {{SITENAME}}',
 

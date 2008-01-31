@@ -138,6 +138,10 @@ $messages = array(
 'mytalk'         => 'Xëtu waxtaanuwaay',
 'anontalk'       => 'Waxtaan ak bii IP',
 'navigation'     => 'Joowiin',
+'and'            => 'ak',
+
+# Metadata in edit box
+'metadata_help' => 'Jéegginjoxe :',
 
 'errorpagetitle'    => 'Njuumte',
 'returnto'          => 'Dellu ci wii xët $1.',
@@ -193,11 +197,11 @@ $messages = array(
 'jumptosearch'      => 'Seet',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Maanaam ci {{SITENAME}}',
-'aboutpage'         => 'Project:Maanaam ci',
+'aboutsite'         => 'Ci mbiri {{SITENAME}}',
+'aboutpage'         => 'Project:Ci mbiri',
 'bugreports'        => 'Ngértey njuumte yi',
 'bugreportspage'    => 'Project:Ngértey njuumte',
-'copyright'         => 'Ndef gi jàppandi na ci $1.',
+'copyright'         => 'Ëmbit li jàppandi na ci $1.',
 'currentevents'     => 'Luy xew',
 'currentevents-url' => 'Project:Luy xew',
 'disclaimers'       => 'Ay aartu',
@@ -226,7 +230,7 @@ $messages = array(
 'editsection'             => 'Soppi',
 'editold'                 => 'Soppi',
 'editsectionhint'         => 'Soppi bii xaaj : $1',
-'toc'                     => 'Tëralin',
+'toc'                     => 'Tëraliin',
 'showtoc'                 => 'Wone',
 'hidetoc'                 => 'Nëbb',
 'thisisdeleted'           => 'Da ngaa bëgg a wone walla loppanti $1 ?',
@@ -792,7 +796,6 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 # Attribution
 'anonymous' => 'Jëfëndikookat bu binduwul gu {{SITENAME}}',
 'siteuser'  => 'Jëfëndikookat $1 bu {{SITENAME}}',
-'and'       => 'ak',
 
 # Math options
 'mw_math_html' => 'HTML su manee ne, lu ko moy PNG',
