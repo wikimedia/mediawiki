@@ -2482,4 +2482,20 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Core parser functions
 'unknown_extension_tag' => 'Unbekannter Extension-Tag „$1“',
 
+# Special:Version
+'version-extensions'               => 'Installierte Erweiterungen',
+'version-specialpages'             => 'Spezialseiten',
+'version-parserhooks'              => 'Parser-Hooks',
+'version-variables'                => 'Variablen',
+'version-other'                    => 'Anderes',
+'version-mediahandlers'            => 'Medien-Handler',
+'version-hooks'                    => "Schnittstellen ''(Hooks)''",
+'version-extension-functions'      => 'Funktionsaufrufe',
+'version-parser-extensiontags'     => "Parser-Erweiterungen ''(tags)''",
+'version-parser-function-hooks'    => 'Parser-Funktionen',
+'version-skin-extension-functions' => 'Skin-Erweiterungs-Funktionen',
+'version-hook-name'                => 'Schnittstellenname',
+'version-hook-subscribedby'        => 'Aufruf von',
+'version-and'                      => 'und',
+'version-version'                  => 'Version',
 );
