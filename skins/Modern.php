@@ -124,7 +124,7 @@ class ModernTemplate extends QuickTemplate {
 			<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
 
 			<?php $this->html('bodytext') ?>
-			<div id='mw_clear'></div>
+			<div class='mw_clear'></div>
 			<?php if($this->data['catlinks']) { ?><div id="catlinks"><?php       $this->html('catlinks') ?></div><?php } ?>
 	</div><!-- mw_contentholder -->
 	</div><!-- mw_content -->
@@ -236,7 +236,7 @@ class ModernTemplate extends QuickTemplate {
 
 	</div><!-- main -->
 
-	<div id="mw_clear"></div>
+	<div class="mw_clear"></div>
 
 	<!-- personal portlet -->
 	<div class="portlet" id="p-personal">
