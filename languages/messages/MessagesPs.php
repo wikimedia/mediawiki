@@ -110,6 +110,7 @@ $messages = array(
 'mytalk'         => 'زما خبرې اترې',
 'anontalk'       => 'ددې IP لپاره خبرې اترې',
 'navigation'     => 'ګرځېدنه',
+'and'            => 'او',
 
 'errorpagetitle'   => 'تېروتنه',
 'returnto'         => 'بېرته $1 ته وګرځه.',
@@ -217,6 +218,7 @@ $messages = array(
 'remembermypassword'         => 'زما پټنوم پدې کمپيوټر په ياد ولره!',
 'loginproblem'               => '<b>همدې غونډال ته ستاسو په ننوتنه کې يوه ستونزه راپېښه شوه!</b><br />بيا يې وآزمويۍ!',
 'login'                      => 'ننوتنه',
+'loginprompt'                => 'په {{SITENAME}} کې د ننوتنې لپاره، تاسو بايد خپل د کمپيوټر کوکيز (cookies) <br>چارن کړۍ.',
 'userlogin'                  => 'ننوتنه / کارن-نوم جوړول',
 'logout'                     => 'وتنه',
 'userlogout'                 => 'وتنه',
@@ -812,7 +814,6 @@ $messages = array(
 
 # Attribution
 'lastmodifiedatby' => 'دا مخ وروستی ځل د $3 لخوا په $2، $1 بدلون موندلی.', # $1 date, $2 time, $3 user
-'and'              => 'او',
 
 # Info page
 'infosubtitle' => 'د مخ مالومات',

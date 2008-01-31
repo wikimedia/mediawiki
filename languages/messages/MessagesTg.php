@@ -200,6 +200,7 @@ $messages = array(
 'mytalk'         => 'Гуфтугӯи ман',
 'anontalk'       => 'Баҳс бо ин IP',
 'navigation'     => 'Гаштан',
+'and'            => 'ва',
 
 # Metadata in edit box
 'metadata_help' => 'Метадода:',
@@ -543,21 +544,36 @@ your old password.
 'currentrevisionlink' => 'Намоиши нусхаи феълӣ',
 'cur'                 => 'феълӣ',
 'last'                => 'қаблӣ',
+'orig'                => 'аслӣ',
 'page_first'          => 'аввал',
 'page_last'           => 'охирин',
 'histlegend'          => 'Интихоби тафовут:қуттии нусхаҳоро барои тафовут қайд кунед ва тугмаи дохил кардан ё тугмаи зерро пахш кунед.<br />
 Шарҳ: (феълӣ) тафовут бо нусхаи феълӣ
 (қаблӣ) = тафовут бо нусхаи феълӣ, ҷузъ = вироиши ҷузъӣ',
+'deletedrev'          => '[ҳазфшуда]',
 'histfirst'           => 'Аввалин',
 'histlast'            => 'Охирин',
+'historysize'         => '({{PLURAL:$1|1 байт|$1 байт}})',
+'historyempty'        => '(холӣ)',
 
 # Revision feed
+'history-feed-title'          => 'Таърихи вироишҳо',
+'history-feed-description'    => 'Таърихи вироишҳои ин саҳифа дар вики',
 'history-feed-item-nocomment' => '$1 дар $2', # user at time
+'history-feed-empty'          => 'Саҳифаи дархостшуда вуҷуд надорад. Мумкин аст, ки аз вики ҳазф ё номаш тағйир дода шуда бошад.
+Саҳифаҳои ҷадидӣ алоқамандро метавонед [[Special:Search|дар вики]] ҷустуҷӯ кунед.',
 
 # Revision deletion
-'rev-deleted-comment' => '(тавзиҳот пок шуд)',
-'rev-delundel'        => 'намоиш/пинҳон',
-'revisiondelete'      => 'Нусхаҳои ҳазф/эҳёӣ',
+'rev-deleted-comment'     => '(тавзиҳот пок шуд)',
+'rev-deleted-user'        => '(номи корбар ҳазф шудааст)',
+'rev-deleted-event'       => '(маврид пок шуд)',
+'rev-delundel'            => 'намоиш/пинҳон',
+'revisiondelete'          => 'Нусхаҳои ҳазф/эҳёӣ',
+'revdelete-nooldid-title' => 'Ҳеҷ нусхае интихоб нашудааст',
+'revdelete-legend'        => 'Танзими маҳдудиятҳои нусха:',
+'revdelete-hide-text'     => 'Пинҳон кардани нусхаи матн',
+'revdelete-hide-name'     => 'Пинҳон кардани амал ва ҳадаф',
+'revdelete-hide-comment'  => 'Пинҳон кардани тавзеҳи вироиш',
 
 # Diffs
 'history-title'           => 'Таърихчаи вироишҳои "$1"',
@@ -616,10 +632,13 @@ your old password.
 # Groups
 'group-all' => '(ҳама)',
 
+'group-bureaucrat-member' => 'Девонсолор',
+
 'grouppage-sysop' => '{{ns:project}}:Мудирон',
 
 # User rights log
-'rightslog' => 'Гузориши ихтиёроти корбар',
+'rightslog'  => 'Гузориши ихтиёроти корбар',
+'rightsnone' => '(ҳеҷ)',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|тағйир|тағйирот}}',
@@ -643,6 +662,7 @@ your old password.
 'minoreditletter'                => 'х',
 'newpageletter'                  => 'Нав',
 'boteditletter'                  => 'б',
+'rc_categories_any'              => 'Ҳар кадом',
 'newsectionsummary'              => '/* $1 */ бахши ҷадид',
 
 # Recent changes linked
@@ -652,18 +672,44 @@ your old password.
 'recentchangeslinked-summary'  => "Ин саҳифаи вижа тағйироти охири саҳифаҳои пайвастаро дар бар мегирад. Саҳифаҳои дар рӯизати назароти шумо буда  '''пурранг''' ҳастанд.",
 
 # Upload
-'upload'            => 'Фиристодани файл',
-'uploadbtn'         => 'Фиристодани файл',
-'uploadnologin'     => 'Вуруд накарда',
-'uploadnologintext' => 'Барои фиристодани файлҳо Шумо бояд [[Special:Userlogin|вуруд кунед]].',
-'uploaderror'       => 'Иштибоҳи фиристодан',
-'uploadlog'         => 'сабти фиристодан',
-'uploadlogpage'     => 'Сабти фиристодан',
-'fileuploadsummary' => 'Натиҷа:',
-'uploadedfiles'     => 'Файлҳои фиристодашуда',
-'successfulupload'  => 'Фиристодан бомуваффақият',
-'uploadwarning'     => 'Огоҳии фиристодан',
-'uploadedimage'     => 'боршуда "[[$1]]"',
+'upload'                     => 'Фиристодани файл',
+'uploadbtn'                  => 'Фиристодани файл',
+'reupload'                   => 'Боргузории дубора',
+'reuploaddesc'               => 'Боз гаштан ба форми боргузорӣ.',
+'uploadnologin'              => 'Вуруд накарда',
+'uploadnologintext'          => 'Барои фиристодани файлҳо Шумо бояд [[Special:Userlogin|вуруд кунед]].',
+'upload_directory_read_only' => 'Шохаи боргузорӣ ($1) аз тарафи веб коргузор қобили навиштан нест.',
+'uploaderror'                => 'Иштибоҳи фиристодан',
+'upload-permitted'           => 'Навъҳои парвандаҳои иҷозатшуда: $1.',
+'upload-preferred'           => 'Навъҳои парвандаҳои иҷозатшуда: $1.',
+'upload-prohibited'          => 'Навъҳои парвандаҳои манъшуда: $1.',
+'uploadlog'                  => 'сабти фиристодан',
+'uploadlogpage'              => 'Сабти фиристодан',
+'filename'                   => 'Номи парванда',
+'filedesc'                   => 'Хулоса',
+'fileuploadsummary'          => 'Хулоса:',
+'filesource'                 => 'Манбаъ',
+'uploadedfiles'              => 'Файлҳои фиристодашуда',
+'ignorewarning'              => 'Аҳмият надодан ба ҳушдор ва захира кардани парванда.',
+'successfulupload'           => 'Фиристодан бомуваффақият',
+'uploadwarning'              => 'Огоҳии фиристодан',
+'savefile'                   => 'Захираи парванда',
+'uploadedimage'              => 'боршуда "[[$1]]"',
+'uploaddisabledtext'         => 'Имкони боргузории парванда дар {{SITENAME}} ғайрифаъол шудааст.',
+
+'upload-proto-error' => 'Қарордоди нодуруст',
+'upload-file-error'  => 'Хатои дохилӣ',
+'upload-misc-error'  => 'Хатои номаълум дар боргузорӣ',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'  => 'Дастраси ба URL мумкин нест',
+'upload-curl-error28' => 'Замони боргузорӣ саромад',
+
+'license'            => 'Иҷозатнома',
+'nolicense'          => 'Ҳеҷ яке интихоб нашудааст',
+'license-nopreview'  => '(Пешнамоиш вуҷуд надорад)',
+'upload_source_url'  => '(як нишони интернетии мӯътабар ва оммавӣ)',
+'upload_source_file' => ' (парвандае дар компютери шумо)',
 
 # Image list
 'imagelist'                 => 'Рӯйхати файлҳо',
@@ -671,8 +717,14 @@ your old password.
 'byname'                    => 'аз рӯи ном',
 'bydate'                    => 'аз рӯи сана',
 'bysize'                    => 'аз рӯи ҳаҷм',
+'imgdelete'                 => 'ҳазф',
+'imgdesc'                   => 'тавсиф',
+'imgfile'                   => 'парванда',
 'filehist'                  => 'Таърихи файл',
 'filehist-help'             => 'Рӯи таърихҳо клик кунед то нусхаи марбути парвандаро бубинед.',
+'filehist-deleteall'        => 'ҳазфи ҳама',
+'filehist-deleteone'        => 'ҳазфи ин маврид',
+'filehist-revert'           => 'вогардонӣ',
 'filehist-current'          => 'нусхаи феълӣ',
 'filehist-datetime'         => 'Таърих',
 'filehist-user'             => 'Корбар',
@@ -683,12 +735,26 @@ your old password.
 'linkstoimage'              => 'Саҳифаҳои зерин ба ин акс пайванданд:',
 'nolinkstoimage'            => 'Ҳеҷ саҳифае ба ин акс пайванд надорад.',
 'sharedupload'              => 'Ин парванда бо таври умумӣ бор карда шудааст ва шояд аз тарафи дигар лоиҳаҳо мавриди истифода бошад.',
+'shareduploadwiki'          => 'Лутфан барои иттилооти бештар ба $1 нигаред.',
+'shareduploadwiki-linktext' => 'саҳифаи тавсифи парванда',
 'noimage'                   => 'Ҳеҷ парвандае бо ин ном мавҷуд нест, шумо метавонед $1.',
 'noimage-linktext'          => 'онро бор кунед',
 'uploadnewversion-linktext' => 'Бор кардани нусхаи ҷадидӣ ин парванда',
+'imagelist_date'            => 'Сана',
+'imagelist_name'            => 'Ном',
 'imagelist_user'            => 'Корбар',
+'imagelist_size'            => 'Андоза(ҳаҷм)',
+'imagelist_description'     => 'Тавсифот',
+'imagelist_search_for'      => 'Ҷустуҷӯи номи акс:',
+
+# File reversion
+'filerevert'         => 'Вогардонии $1',
+'filerevert-legend'  => 'Вогардонии парванда',
+'filerevert-intro'   => '<span class="plainlinks">Шумо дар ҳоли вогардонии \'\'\'[[Media:$1|$1]]\'\'\' ба [$4 нусхаи аз $3, $2] ҳастед.</span>',
+'filerevert-comment' => 'Тавзеҳ:',
 
 # File deletion
+'filedelete'                  => 'Ҳазфи $1',
 'filedelete-comment'          => 'Сабаби ҳазф:',
 'filedelete-submit'           => 'Ҳазф',
 'filedelete-success'          => "'''$1''' ҳазф шуд.",
@@ -697,6 +763,7 @@ your old password.
 
 # MIME search
 'mimesearch' => 'Ҷустуҷӯ бо стандарти MIME',
+'download'   => 'боргирӣ',
 
 # List redirects
 'listredirects' => 'Рӯйхати саҳифаҳои равонакунӣ',
@@ -1045,7 +1112,6 @@ your old password.
 
 # Attribution
 'siteuser'  => 'Википедиа user $1',
-'and'       => 'ва',
 'others'    => 'дигарон',
 'siteusers' => 'Википедиа user(s) $1',
 

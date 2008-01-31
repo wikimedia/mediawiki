@@ -261,6 +261,7 @@ $messages = array(
 'mytalk'         => 'Thảo luận với tôi',
 'anontalk'       => 'Thảo luận với IP này',
 'navigation'     => 'Chuyển hướng',
+'and'            => 'và',
 
 # Metadata in edit box
 'metadata_help' => 'Đặc tính hình:',
@@ -1886,7 +1887,6 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'anonymous'        => 'Thành viên vô danh của {{SITENAME}}',
 'siteuser'         => 'Thành viên $1 của {{SITENAME}}',
 'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'và',
 'othercontribs'    => 'Dựa trên công trình của $1.',
 'others'           => 'những người khác',
 'siteusers'        => 'Thành viên $1 của {{SITENAME}}',
@@ -2385,5 +2385,19 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Không hiểu thẻ mở rộng “$1”',
+
+# Special:Version
+'version-extensions'            => 'Các phần mở rộng được cài đặt',
+'version-specialpages'          => 'Trang đặc biệt',
+'version-parserhooks'           => 'Hook trong bộ xử lý',
+'version-variables'             => 'Biến',
+'version-other'                 => 'Phần mở rộng khác',
+'version-hooks'                 => 'Các hook',
+'version-extension-functions'   => 'Hàm mở rộng',
+'version-parser-extensiontags'  => 'Thẻ mở rộng trong bộ xử lý',
+'version-parser-function-hooks' => 'Hook mở rộng trong bộ xử lý',
+
+# Unknown messages
+'version-mediahandlers' => 'Bộ xử lý phương tiện',
 
 );

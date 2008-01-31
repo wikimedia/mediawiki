@@ -290,6 +290,7 @@ $messages = array(
 'mytalk'         => 'Minha discussão',
 'anontalk'       => 'Discussão para este IP',
 'navigation'     => 'Navegação',
+'and'            => 'e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
@@ -1461,6 +1462,8 @@ Contacto e assistência
 'excontentauthor'             => "o conteúdo era: '$1' (e o único editor era '[[{{ns:special}}:Contributions/$2|$2]]')",
 'exbeforeblank'               => "o conteúdo antes de esvaziar era: '$1'",
 'exblank'                     => 'página esvaziada',
+'delete-confirm'              => 'Eliminar "$1"',
+'delete-legend'               => 'Eliminar',
 'historywarning'              => 'Aviso: A página que está prestes a eliminar possui um histórico:',
 'confirmdeletetext'           => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
@@ -1660,7 +1663,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipusubmit'                   => 'Desbloquear este utilizador',
 'unblocked'                   => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                => 'O bloqueio de $1 foi removido com sucesso',
-'ipblocklist'                 => 'Lista de IPs bloqueados',
+'ipblocklist'                 => 'Lista de IPs e utilizadores bloqueados',
 'ipblocklist-legend'          => 'Procurar por um utilizador bloqueado',
 'ipblocklist-username'        => 'Utilizador ou endereço de IP:',
 'ipblocklist-submit'          => 'Pesquisar',
@@ -1917,7 +1920,6 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'anonymous'        => 'Utilizador(es) anónimo(s) da {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} utilizador $1',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez a $2, $1 por $3.', # $1 date, $2 time, $3 user
-'and'              => 'e',
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
 'siteusers'        => '{{SITENAME}} utilizador(es) $1',
@@ -2372,5 +2374,20 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
+
+# Special:Version
+'version-extensions'            => 'Extensões instaladas',
+'version-specialpages'          => 'Páginas especiais',
+'version-variables'             => 'Variáveis',
+'version-other'                 => 'Diversos',
+'version-hooks'                 => 'Hooks',
+'version-extension-functions'   => 'Funções de extensão',
+'version-parser-extensiontags'  => 'Etiquetas de extensões de tipo "parser"',
+'version-parser-function-hooks' => 'Funções "hooks" de "parser"',
+'version-hook-name'             => 'Nome do hook',
+
+# Unknown messages
+'version-mediahandlers' => 'Executores de média',
+'version-version'       => 'Versão',
 
 );

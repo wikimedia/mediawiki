@@ -234,6 +234,8 @@ $messages = array(
 'prefs-help-email'      => 'ኢሜል አድራሻን ማቅረብዎ አስፈላጊ አይደለም። ቢያቅርቡት ሌሎች አባላት አድራሻውን ሳያውቁ በፕሮግራሙ አማካኝነት ሊገናኙዎት ተቻለ።',
 'loginsuccesstitle'     => 'መግባትዎ ተከናወነ!',
 'loginsuccess'          => 'እንደ «$1» ሆነው አሁን {{SITENAME}}ን ገብተዋል።',
+'wrongpassword'         => 'የተሰጠው መግቢያ ቃል ልክ አልነበረም። ዳግመኛ ይሞክሩ።',
+'wrongpasswordempty'    => 'ምንም መግቢያ ቃል አልተሰጠም። ዳግመኛ ይሞክሩ።',
 'mailmypassword'        => 'Mail me a new password / መግቢያ ቃሌን ረስቼ አዲስ በኔ email ይላክልኝ።',
 'eauthentsent'          => 'የማረጋገጫ ኢ-ሜል ወዳቀረቡት አድራሻ ተልኳል። ያው አድራሻ በውነት የርስዎ እንደሆነ ለማረጋገጥ፣ እባክዎ በዚያ ደብዳቤ ውስጥ የተጻፈውን መያያዣ ይጫኑ። ከዚያ ቀጥሎ ኢ-ሜል ከሌሎች ተጠቃሚዎች መቀበል ይችላሉ።',
 'emailauthenticated'    => 'የርስዎ ኢ-ሜል አድራሻ በ$1 ተረጋገጠ።',
@@ -545,6 +547,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'newpages-username'       => 'በአቅራቢው፦',
 'ancientpages'            => 'የቈዩ ፅሑፎች (በተለወጠበት ሰአት)',
 'move'                    => 'ለማዛወር',
+'movethispage'            => 'ይህንን ገጽ ለማዛወር',
 'unusedimagestext'        => '<p>እነኚህ ፋይሎች ከ{{SITENAME}} አልተያያዙም። ሆኖም ሳያጥፏቸው ከ{{SITENAME}} ውጭ በቀጥታ ተያይዘው የሚገኙ ድረ-ገጾች መኖራቸው እንደሚቻል ይገንዝቡ።</p>',
 'unusedcategoriestext'    => 'እነዚህ መደብ ገጾች ባዶ ናቸው። ምንም ጽሑፍ ወይም ግንኙነት የለባቸውም።',
 
@@ -641,6 +644,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'dellogpagetext'            => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',
 'deletionlog'               => 'የማጥፋት መዝገብ',
 'deletecomment'             => 'የማጥፋቱ ምክንያት፦',
+'deleteotherreason'         => 'ሌላ /ተጨማሪ ምክንያት',
+'deletereasonotherlist'     => 'ሌላ ምክንያት',
 'rollbacklink'              => 'ROLLBACK ይመለስ',
 'revertpage'                => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'            => 'የማቆለፍ መዝገብ (prot. log)',
@@ -648,7 +653,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'protectedarticle'          => 'ገጹን «[[$1]]» ቆለፈው።',
 'modifiedarticleprotection' => 'የመቆለፍ ደረጃ ለ«[[$1]]» ቀየረ።',
 'unprotectedarticle'        => 'ገጹን «[[$1]]» ፈታ።',
+'protect-level-sysop'       => 'መጋቢዎች ብቻ',
 'protect-summary-cascade'   => 'በውስጡም ያለውን የሚያቆልፍ አይነት',
+'protect-expiring'          => 'በ$1 (UTC) ያልቃል',
 'restriction-type'          => 'ፈቃድ፦',
 'restriction-level'         => 'የመቆለፍ ደረጃ፦',
 'minimum-size'              => 'ቢያንስ',
@@ -745,6 +752,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'movepagebtn'      => 'ገጹ ይዛወር',
 'pagemovedsub'     => 'መዛወሩ ተከናወነ',
 'movepage-moved'   => "<big>'''«$1» ወደ «$2» ተዛውሯል'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'    => 'በዚያ አርዕሥት ሌላ ገጽ አሁን አለ። አለበለዚያ የመረጡት ስም ልክ አይደለም - ሌላ አርእስት ይምረጡ።',
+'talkexists'       => "'''ገጹ ወደ አዲሱ አርዕስት ተዛወረ፤ እንጂ በአዲሱ አርዕስት የቆየ ውይይት ገጽ አስቀድሞ ስለ ኖረ የዚህ ውይይት ገጽ ሊዛወር አልተቻለም። እባክዎ፣ በእጅ ያጋጥሙአቸው።'''",
 'movetalk'         => 'ከተቻለ፣ ከነውይይቱ ገጽ ጋራ ይዛወር',
 'talkpagemoved'    => 'ተመሳሳዩ የውይይት ገጽ ደግሞ ተዛውሯል።',
 'talkpagenotmoved' => 'ተመሳሳዩ የውይይት ገጽ ግን <strong>አልተዛወረም</strong>።',
@@ -813,6 +822,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'recentchangesall' => 'ሁሉ',
 'watchlistall2'    => 'ሁሉ',
 'namespacesall'    => 'ሁሉ (all)',
+'monthsall'        => 'ሁሉ',
 
 # E-mail address confirmation
 'confirmemail'            => 'ኢ-ሜልዎን ለማረጋገጥ',

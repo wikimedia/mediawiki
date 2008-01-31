@@ -12,6 +12,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Dnik
+ * @author Suradnik13
  */
 
 $skinNames = array(
@@ -188,6 +189,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'mytalk'         => 'Moj razgovor',
 'anontalk'       => 'Razgovor za ovu IP adresu',
 'navigation'     => 'Orijentacija',
+'and'            => 'i',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',
@@ -1866,7 +1868,6 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'anonymous'        => 'Anonimni suradnik projekta {{SITENAME}}',
 'siteuser'         => 'Suradnik $1 na projektu {{SITENAME}}',
 'lastmodifiedatby' => 'Ovu je stranicu zadnji put mijenjao dana $2, $1 suradnik $3.', # $1 date, $2 time, $3 user
-'and'              => 'i',
 'othercontribs'    => 'Temelji se na doprinosu suradnika $1.',
 'others'           => 'drugih',
 'siteusers'        => '{{SITENAME}} suradnik(ci) $1',
@@ -2371,5 +2372,8 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 
 # Core parser functions
 'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
+
+# Unknown messages
+'version-version' => 'Inačica',
 
 );

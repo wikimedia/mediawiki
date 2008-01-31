@@ -397,6 +397,7 @@ $messages = array(
 'mytalk'         => 'Mijn overleg',
 'anontalk'       => 'Overlegpagina voor dit IP-adres',
 'navigation'     => 'Navigatie',
+'and'            => 'en',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -913,7 +914,7 @@ Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULL
 'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde logboekactie|Geselecteerde logboekacties}} voor '''$1:'''",
 'revdelete-text'              => 'Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
 
-Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er toegevoegde beperkingen gelden die zijn ingesteld door de systeembeheerder.',
+Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.',
 'revdelete-legend'            => 'Versiebeperkingen instellen',
 'revdelete-hide-text'         => 'De bewerkte tekst verbergen',
 'revdelete-hide-name'         => 'Actie en doel verbergen',
@@ -2016,7 +2017,6 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'anonymous'        => 'Anonieme gebruiker(s) van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruiker $1',
 'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.', # $1 date, $2 time, $3 user
-'and'              => 'en',
 'othercontribs'    => 'Gebaseerd op werk van $1.',
 'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-gebruiker(s) $1',
@@ -2525,5 +2525,23 @@ Probeer normale voorvertoning.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende tag "$1"',
+
+# Special:Version
+'version-extensions'               => 'Geïnstalleerde uitbreidingen',
+'version-specialpages'             => "Speciale pagina's",
+'version-parserhooks'              => 'Parserhooks',
+'version-variables'                => 'Variabelen',
+'version-other'                    => 'Overige',
+'version-hooks'                    => 'Hooks',
+'version-extension-functions'      => 'Uitbreidingsfuncties',
+'version-parser-extensiontags'     => 'Parseruitbreidingstags',
+'version-parser-function-hooks'    => 'Parserfunctiehooks',
+'version-skin-extension-functions' => 'Vormgevingsuitbreidingsfuncties',
+'version-hook-name'                => 'Hooknaam',
+'version-hook-subscribedby'        => 'Geabonneerd door',
+
+# Unknown messages
+'version-mediahandlers' => 'Mediaverwerkers',
+'version-version'       => 'Versie',
 
 );

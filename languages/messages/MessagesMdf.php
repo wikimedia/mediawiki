@@ -466,7 +466,7 @@ $2',
 'preview'                   => 'Васень няфтема',
 'showpreview'               => 'Максомс васень няфтема',
 'showlivepreview'           => 'Эряй васень няфтема',
-'showdiff'                  => 'Няфтемс мезе полафтовсь',
+'showdiff'                  => 'Няфтемс мезе полафтсь',
 'anoneditwarning'           => "'''Инголе мярьгома:''' Тон изеть сува. Тонь IP адресце кармай сувафтф тя лопать петнема историязонза.",
 'missingsummary'            => "'''Лятфтама:''' Тон изеть макса петнемацень колга нюрьхкяня лихтемась. Люпштандярят \"Ванфтомс лопать\" тага весть, тонь полафнематне кармайхть ванфтфт мяльполадксфтома.",
 'missingcommenttext'        => 'Путт тонь арьсематне (мяльполадксоце) алу.',
@@ -1256,5 +1256,97 @@ $3 макссь туфталсь - ''$2''",
 'enotif_impersonal_salutation' => '{{SITENAME}} тиись',
 'changed'                      => 'полафтсь',
 'created'                      => 'тиф',
+'enotif_subject'               => '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
+'enotif_lastdiff'              => 'Ванк $1 тя полафнемать няфтеманкса.',
+'enotif_anon_editor'           => 'лемфтома тиись $1',
+
+# Delete/protect/revert
+'deletepage'     => 'Нардамс лопать',
+'deletedarticle' => 'нардаф "[[$1]]"',
+
+# Namespace form on various pages
+'namespace'      => 'Лемботма:',
+'blanknamespace' => '(Пря)',
+
+# Contributions
+'mycontris' => 'Монь путфксне',
+
+# What links here
+'whatlinkshere'       => 'Сюлмафкст тяза',
+'whatlinkshere-title' => 'Лопат конат сюлмафт $1 мархта',
+'linklistsub'         => '(Сюлмафкснень лувомась)',
+'linkshere'           => "Ся лопатне сюлмафт '''[[:$1]]''' мархта:",
+'isredirect'          => 'йотафтф лопа',
+'istemplate'          => 'сувафтома',
+'whatlinkshere-prev'  => '{{PLURAL:$1|сядынголень|сядынголень $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|сай|сай $1}}',
+'whatlinkshere-links' => '← сюлмафкст',
+
+# Block/unblock
+'blocklink'    => 'сёлгома',
+'contribslink' => 'путфкс',
+
+# Thumbnails
+'thumbnail-more'  => 'Оцюлгофтомс',
+'thumbnail_error' => 'Миниатюр тиема эльбятькс: $1',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'             => 'Монь тиинь лопазе',
+'tooltip-pt-mytalk'               => 'Монь корхтама лопазе',
+'tooltip-pt-preferences'          => 'Монь арафнемане',
+'tooltip-pt-watchlist'            => 'Лопатне конатнень мельге тон ванат полафнематнень коряс',
+'tooltip-pt-mycontris'            => 'Монь путфкснень лувомась',
+'tooltip-pt-login'                => 'Тяса ули кода сёрматфтомс аньцек тя аф эрявикс.',
+'tooltip-pt-logout'               => 'Лисемс',
+'tooltip-ca-talk'                 => 'Лопапотмонь колга корхнема',
+'tooltip-ca-edit'                 => 'Тя лопать петневи. Эняльттяма, нолдак тевс васень няфтема пуня лопать ванфтомада инголе.',
+'tooltip-ca-addsection'           => 'Путт мяльполадксце тя корхнеманди.',
+'tooltip-ca-viewsource'           => 'Тя лопась аралаф. Ули кода ваномс лисьмонц лангс.',
+'tooltip-ca-move'                 => 'Йотафтт тя лопать иля вастс',
+'tooltip-ca-watch'                => 'Сувафтт тя лопать тонь ванома сёрмалувомазот',
+'tooltip-search'                  => 'Вешендемс {{SITENAME}}-ста',
+'tooltip-n-mainpage'              => 'Сувак Пря лопас',
+'tooltip-n-portal'                => 'Проектть колга, мезьса лездомс, коста мумс мезь',
+'tooltip-n-currentevents'         => 'Ванк мезе молихть тя пингста',
+'tooltip-n-recentchanges'         => 'Улхкомбань Викиса полафнематнень лувомась.',
+'tooltip-n-randompage'            => 'Макст кодама повсь лопа',
+'tooltip-n-help'                  => 'Коста вешендемс.',
+'tooltip-n-sitesupport'           => 'Макст тейнек лезкс',
+'tooltip-t-whatlinkshere'         => 'Сембе Викинь лопатне конат сюлмафт тя лопать мархта',
+'tooltip-t-upload'                => 'Тонгомс архтофкст эли медиа файлхт',
+'tooltip-t-specialpages'          => 'Сембе башка лопатнень лувомась',
+'tooltip-ca-nstab-image'          => 'Ваномс архтофксонь лопа',
+'tooltip-ca-nstab-category'       => 'Ваномс категориень лопать',
+'tooltip-save'                    => 'Ванфтомс мезе полафтыть',
+'tooltip-preview'                 => 'Ванк тонь полафнематнень лангс васень няфтема вальмаса, эняльттяма нолдак тянь тевс ванфтомада инголе!',
+'tooltip-diff'                    => 'Няфтемс мезе полафтыть текстса.',
+'tooltip-compareselectedversions' => 'Ванк мезьса явовихть ся лопать кафта верзиенза.',
+
+# Spam protection
+'categoryarticlecount'   => '{{PLURAL:$1|фкя лопа|$1 лопат}} тя категориеса.',
+'listingcontinuesabbrev' => 'поладксоц',
+
+# Media information
+'file-info-size'       => '($1 × $2 пикселхть, файлть кувалмоц: $3, MIME сорт: $4)',
+'file-nohires'         => '<small>Сяда лама анцяйнятнень мархта архтофкс аш.</small>',
+'show-big-image'       => 'Няфтемс пяшксе кувалмонц',
+'show-big-image-thumb' => '<small>Сядынголе ваномать кувалмоц: $1 × $2 пикселхть</small>',
+
+# Bad image list
+'bad_image_list' => 'Формат эряви вага стама:
+
+Аньцек лувомать пакшкянза (киксне, конат ушедовихть * тяшкста) кармайхть лувовома. Васенце киксть сюлмафксонцты эряви улемс аф мярьгови архтофксонь сюлмафксокс.
+Сяда тов сюлмафксне тяка киксса кармайхть лувовома кода синнеда башкат, илякс мярьгомс кода лопат коза ули кода архтофкснень сувафнемс.',
+
+# Metadata
+'metadata'        => 'Метадата',
+'metadata-expand' => 'Няфтемс сембе анцяйнянза',
+
+# External editor support
+'edit-externally'      => 'Петнемс тя файлть ушеширень програмонь вельде',
+'edit-externally-help' => 'Ванк [http://meta.wikimedia.org/wiki/Help:External_editors арафнемань вятемовал] сяда лама содаманкса.',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'сембе',
 
 );

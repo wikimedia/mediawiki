@@ -166,6 +166,7 @@ $messages = array(
 'mytalk'         => 'Rimachinay',
 'anontalk'       => 'Kay IP huchhapaq rimanakuy',
 'navigation'     => "Wamp'una",
+'and'            => '-wan',
 
 'errorpagetitle'    => 'Pantasqa',
 'returnto'          => '$1-man kutimuy.',
@@ -1309,6 +1310,8 @@ Yanapasunaykipaq:
 'excontentauthor'             => "Samiqnin karqan kay hinam: '$1' (huklla ruraqnin: '$2')",
 'exbeforeblank'               => "manaraq qullusqa kaptin, samiqnin kay hinam karqan: '$1'",
 'exblank'                     => "p'anqaqa ch'usaqmi karqan",
+'delete-confirm'              => '"$1"-ta qulluy',
+'delete-legend'               => 'Qulluy',
 'historywarning'              => "Paqtataq: Kay qulluna p'anqaqa wiñay kawsasqayuqmi:",
 'confirmdeletetext'           => "Qullunayachkanki p'anqatam icha rikchatam, wiñay kawsasqantapas.
 Ama hina kaspa, takyachiy munayniykita, qatiqninkunata riqsiyniykita, [[{{MediaWiki:Policy-url}}|kawpaykama]] rurayniykitapas.",
@@ -1670,6 +1673,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'importuploaderrorsize'      => 'Manam atinichu hawamanta chaskina willañiqita churkuyta, saqillasqamanta aswan hatun kaptinmi.',
 'importuploaderrorpartial'   => 'Manam atinichu hawamanta chaskina willañiqita churkuyta, rakillam churkusqa.',
 'importuploaderrortemp'      => "Manam atinichu hawamanta chaskina willañiqita churkuyta, mit'alla willañiqi churana mana kaptinmi.",
+'import-parse-failure'       => "Manam atinichu XML qillqata t'ikraspa hawamanta chaskiyta",
 'import-noarticle'           => "Manam hawamanta chaskina p'anqachu!",
 'import-nonewrevisions'      => 'Tukuy musuqchasqakunaqa ñawpaqtañam hawamanta chaskisqa.',
 'xml-error-string'           => "$1, $2 siq'ipi, $3 tunupi (byte $4): $5",
@@ -1761,7 +1765,6 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'anonymous'        => '{{SITENAME}}pi sutinnaq ruraqkuna',
 'siteuser'         => '{{SITENAME}}-pa $1 sutiyuq ruraqnin',
 'lastmodifiedatby' => "Kay p'anqaqa $2, $1 qhipaq kutitam $3-pa hukchasqan karqan.", # $1 date, $2 time, $3 user
-'and'              => '-wan',
 'othercontribs'    => '$1-pa rurasqanmanta paqariq.',
 'others'           => 'hukkuna',
 'siteusers'        => '{{SITENAME}}-pa $1 sutiyuq ruraqnin(kuna)',

@@ -184,6 +184,7 @@ $messages = array(
 'mytalk'         => '내 사용자 토론',
 'anontalk'       => '익명 사용자 토론',
 'navigation'     => '둘러보기',
+'and'            => '그리고',
 
 # Metadata in edit box
 'metadata_help' => '메타데이터([[Project:메타데이터]]에서 자세한 설명을 볼 수 있습니다):',
@@ -554,6 +555,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'protectedpagewarning'      => "'''주의: 이 문서는 관리자만 편집할 수 있도록 보호되어 있습니다. [[Project:문서 보호 정책|문서 보호 정책]]을 참고하십시오.'''",
 'semiprotectedpagewarning'  => "'''주의:''' 이 문서는 잠겨 있습니다. 등록된 사용자만이 편집할 수 있습니다.",
 'cascadeprotectedwarning'   => '<strong>주의: 다음의 문서에서 이 문서를 사용하고 있고 그 문서에 연쇄적 보호 설정이 걸려 있어, 이 문서도 편집에서 보호되어 관리자만이 편집할 수 있습니다</strong>:',
+'titleprotectedwarning'     => '<strong>주의: 이 문서는 잠겨 있어, 일부 사용자만이 생성할 수 있습니다.</strong>',
 'templatesused'             => '이 문서에서 사용한 틀:',
 'templatesusedpreview'      => '이 미리 보기에서 사용한 틀:',
 'templatesusedsection'      => '이 부분에서 사용한 틀:',
@@ -577,6 +579,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Account creation failure
 'cantcreateaccounttitle' => '계정을 만들 수 없음',
+'cantcreateaccount-text' => '현재 아이피 주소(<strong>$1</strong>)는 [[User:$3|$3]] 사용자에 의해 계정 생성이 차단된 상태입니다.
+
+차단 이유는 다음과 같습니다: $2',
 
 # History pages
 'viewpagelogs'        => '이 문서의 기록 보기',
@@ -857,6 +862,14 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'imagelist_size'            => '크기',
 'imagelist_description'     => '설명',
 
+# File deletion
+'filedelete-iscurrent'        => '가장 최신 버전의 파일을 삭제하려고 하고 있습니다. 먼저 이전 버전으로 되돌린 다음에 삭제해주세요.',
+'filedelete-otherreason'      => '다른 이유/추가적인 이유:',
+'filedelete-reason-otherlist' => '다른 이유',
+'filedelete-reason-dropdown'  => '*일반적인 삭제 이유
+** 저작권 침해
+** 중복된 파일',
+
 # MIME search
 'mimesearch' => 'MIME 검색',
 'mimetype'   => 'MIME 종류:',
@@ -945,6 +958,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'protectedpages'          => '보호된 문서 목록',
 'protectedpagestext'      => '다음의 문서는 이동/편집이 불가능하도록 보호되어 있습니다.',
 'protectedpagesempty'     => '보호되어 있는 문서가 없습니다.',
+'protectedtitles'         => '생성 보호된 표제어 목록',
+'protectedtitlestext'     => '다음 표제어들은 생성이 금지되어 있습니다.',
+'protectedtitlesempty'    => '해당 조건에 맞는 생성 금지 표제어가 없습니다.',
 'listusers'               => '사용자 목록',
 'specialpages'            => '특수 문서 목록',
 'spheading'               => '일반 특수 문서',
@@ -1435,7 +1451,6 @@ $NEWPAGE
 'anonymous'        => '{{SITENAME}}의 익명 사용자',
 'siteuser'         => '{{SITENAME}} 사용자 $1',
 'lastmodifiedatby' => '이 문서는 $3에 의해 $2, $1에 마지막으로 바뀌었습니다.', # $1 date, $2 time, $3 user
-'and'              => '그리고',
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
 'others'           => '기타',
 'siteusers'        => '{{SITENAME}} 사용자 $1',

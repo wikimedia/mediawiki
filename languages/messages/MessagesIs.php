@@ -338,6 +338,7 @@ $messages = array(
 'mytalk'         => 'Spjall',
 'anontalk'       => 'Spjallsíða þessa vistfangs.',
 'navigation'     => 'Flakk',
+'and'            => 'og',
 
 # Metadata in edit box
 'metadata_help' => 'Lýsigögn:',
@@ -1655,8 +1656,8 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'anonymous'        => 'Ónefndir notendur {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} notandi $1',
 'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.', # $1 date, $2 time, $3 user
-'and'              => 'og',
 'othercontribs'    => 'Byggt á verkum $1.',
+'siteusers'        => '{{SITENAME}} notandi/notendur $1',
 
 # Spam protection
 'subcategorycount'       => 'Það {{PLURAL:$1|er einn undirflokkur|eru $1 undirflokkar}} í þessum flokki.',
@@ -1678,7 +1679,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'mw_math_html'   => 'HTML ef hægt er, annars PNG',
 'mw_math_source' => 'Sýna TeX jöfnu (fyrir textavafra)',
 'mw_math_modern' => 'Mælt með fyrir nýja vafra',
-'mw_math_mathml' => 'MathML',
+'mw_math_mathml' => 'MathML ef mögulegt (tilraun)',
 
 # Patrol log
 'patrol-log-auto' => '(sjálfkrafa)',
@@ -1820,6 +1821,7 @@ $1',
 'searchnamed'      => "Leita að greinum sem heita ''$1''.",
 'articletitles'    => "Greinar sem hefjast á ''$1''",
 'hideresults'      => 'Fela niðurstöður',
+'useajaxsearch'    => 'Nota AJAX-leit',
 
 # Multipage image navigation
 'imgmultipageprev' => '← fyrri síða',
@@ -1828,6 +1830,8 @@ $1',
 'imgmultigotopre'  => 'Fara á síðuna',
 
 # Table pager
+'ascending_abbrev'         => 'hækkandi',
+'descending_abbrev'        => 'Lækkandi',
 'table_pager_next'         => 'Næsta síða',
 'table_pager_prev'         => 'Fyrri síða',
 'table_pager_first'        => 'Fyrsta síðan',

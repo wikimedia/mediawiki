@@ -194,6 +194,7 @@ $messages = array(
 'mytalk'         => 'Mano aptarimas',
 'anontalk'       => 'Šio IP aptarimas',
 'navigation'     => 'Navigacija',
+'and'            => 'ir',
 
 # Metadata in edit box
 'metadata_help' => 'Metaduomenys:',
@@ -1371,6 +1372,8 @@ Atsiliepimai ir pagalba:
 'excontentauthor'             => 'buvęs turinys: „$1“ (redagavo tik „[[{{ns:special}}:Contributions/$2|$2]]“)',
 'exbeforeblank'               => 'prieš ištrinant turinys buvo: „$1“',
 'exblank'                     => 'puslapis buvo tuščias',
+'delete-confirm'              => 'Ištrinta "$1"',
+'delete-legend'               => 'Trynimas',
 'historywarning'              => 'Dėmesio: Trinamas puslapis turi istoriją:',
 'confirmdeletetext'           => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį kartu su visa jo istorija.
 Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus padarinius, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].',
@@ -1857,7 +1860,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'anonymous'        => 'neregistruotų {{SITENAME}} naudotojų',
 'siteuser'         => '{{SITENAME}} naudotojas $1',
 'lastmodifiedatby' => 'Šį puslapį paskutinį kartą redagavo $3 $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'ir',
 'othercontribs'    => 'Paremta $1 darbu.',
 'others'           => 'kiti',
 'siteusers'        => '{{SITENAME}} naudotojas(-ai) $1',

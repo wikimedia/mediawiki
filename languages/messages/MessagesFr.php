@@ -343,6 +343,7 @@ $messages = array(
 'mytalk'         => 'Page de discussion',
 'anontalk'       => 'Discussion avec cette adresse IP',
 'navigation'     => 'Navigation',
+'and'            => 'et',
 
 # Metadata in edit box
 'metadata_help' => 'Métadonnées :',
@@ -1939,7 +1940,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'anonymous'        => 'Utilisateur(s) non enregistré(s) de {{SITENAME}}',
 'siteuser'         => 'Utilisateur $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.', # $1 date, $2 time, $3 user
-'and'              => 'et',
 'othercontribs'    => 'Basé sur le travail de $1.',
 'others'           => 'autres',
 'siteusers'        => 'Utilisateur(s) $1',
