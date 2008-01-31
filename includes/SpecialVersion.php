@@ -256,7 +256,7 @@ class SpecialVersion {
 			$t = array_slice( $list, 0, $cnt - 1 );
 			$one = array_map( array( &$this, 'arrayToString' ), $t );
 			$two = $this->arrayToString( $list[$cnt - 1] );
-			$and = wfMsg( 'version-and' );
+			$and = wfMsg( 'and' );
 
 			return implode( ', ', $one ) . " $and $two";
 		}

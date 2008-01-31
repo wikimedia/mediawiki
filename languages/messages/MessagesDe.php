@@ -307,6 +307,7 @@ $messages = array(
 'mytalk'         => 'Eigene Diskussion',
 'anontalk'       => 'Diskussionsseite dieser IP',
 'navigation'     => 'Navigation',
+'and'            => 'und',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',
@@ -1988,7 +1989,6 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'anonymous'        => 'Anonyme(r) Benutzer auf {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.', # $1 date, $2 time, $3 user
-'and'              => 'und',
 'othercontribs'    => 'Basiert auf der Arbeit von $1',
 'others'           => 'andere',
 'siteusers'        => '{{SITENAME}}-Benutzer $1',
@@ -2496,6 +2496,5 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'version-skin-extension-functions' => 'Skin-Erweiterungs-Funktionen',
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
-'version-and'                      => 'und',
 'version-version'                  => 'Version',
 );
