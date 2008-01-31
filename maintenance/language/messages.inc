@@ -142,6 +142,7 @@ $wgMessageStructure = array(
 		'mytalk',
 		'anontalk',
 		'navigation',
+		'and',
 	),
 	'metadata_help' => array(
 		'metadata_help',
@@ -1723,7 +1724,6 @@ $wgMessageStructure = array(
 		'anonymous',
 		'siteuser',
 		'lastmodifiedatby',
-		'and',
 		'othercontribs',
 		'others',
 		'siteusers',

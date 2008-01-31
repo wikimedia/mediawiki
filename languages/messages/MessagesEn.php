@@ -593,6 +593,7 @@ XHTML id names.
 'mytalk'         => 'My talk',
 'anontalk'       => 'Talk for this IP',
 'navigation'     => 'Navigation',
+'and'            => 'and',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -2470,7 +2471,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'anonymous'        => 'Anonymous user(s) of {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} user $1',
 'lastmodifiedatby' => 'This page was last modified $2, $1 by $3.', # $1 date, $2 time, $3 user
-'and'              => 'and',
 'othercontribs'    => 'Based on work by $1.',
 'others'           => 'others',
 'siteusers'        => '{{SITENAME}} user(s) $1',
@@ -3149,6 +3149,5 @@ $1',
 'version-skin-extension-functions' => 'Skin extension functions',
 'version-hook-name'                => 'Hook name',
 'version-hook-subscribedby'        => 'Subscribed by',
-'version-and'                      => 'and',
 'version-version'                  => 'Version',
 );
