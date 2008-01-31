@@ -2387,17 +2387,19 @@ $1',
 'unknown_extension_tag' => 'Không hiểu thẻ mở rộng “$1”',
 
 # Special:Version
-'version-extensions'            => 'Các phần mở rộng được cài đặt',
-'version-specialpages'          => 'Trang đặc biệt',
-'version-parserhooks'           => 'Hook trong bộ xử lý',
-'version-variables'             => 'Biến',
-'version-other'                 => 'Phần mở rộng khác',
-'version-hooks'                 => 'Các hook',
-'version-extension-functions'   => 'Hàm mở rộng',
-'version-parser-extensiontags'  => 'Thẻ mở rộng trong bộ xử lý',
-'version-parser-function-hooks' => 'Hook mở rộng trong bộ xử lý',
-
-# Unknown messages
-'version-mediahandlers' => 'Bộ xử lý phương tiện',
+'version-extensions'               => 'Các phần mở rộng được cài đặt',
+'version-specialpages'             => 'Trang đặc biệt',
+'version-parserhooks'              => 'Hook trong bộ xử lý',
+'version-variables'                => 'Biến',
+'version-other'                    => 'Phần mở rộng khác',
+'version-mediahandlers'            => 'Bộ xử lý phương tiện',
+'version-hooks'                    => 'Các hook',
+'version-extension-functions'      => 'Hàm mở rộng',
+'version-parser-extensiontags'     => 'Thẻ mở rộng trong bộ xử lý',
+'version-parser-function-hooks'    => 'Hook cho hàm cú pháp trong bộ xử lý',
+'version-skin-extension-functions' => 'Hàm mở rộng skin',
+'version-hook-name'                => 'Tên hook',
+'version-hook-subscribedby'        => 'Được theo dõi bởi',
+'version-version'                  => 'Phiên bản',
 
 );

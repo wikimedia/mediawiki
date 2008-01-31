@@ -2532,6 +2532,7 @@ Probeer normale voorvertoning.',
 'version-parserhooks'              => 'Parserhooks',
 'version-variables'                => 'Variabelen',
 'version-other'                    => 'Overige',
+'version-mediahandlers'            => 'Mediaverwerkers',
 'version-hooks'                    => 'Hooks',
 'version-extension-functions'      => 'Uitbreidingsfuncties',
 'version-parser-extensiontags'     => 'Parseruitbreidingstags',
@@ -2539,9 +2540,6 @@ Probeer normale voorvertoning.',
 'version-skin-extension-functions' => 'Vormgevingsuitbreidingsfuncties',
 'version-hook-name'                => 'Hooknaam',
 'version-hook-subscribedby'        => 'Geabonneerd door',
-
-# Unknown messages
-'version-mediahandlers' => 'Mediaverwerkers',
-'version-version'       => 'Versie',
+'version-version'                  => 'Versie',
 
 );

@@ -240,6 +240,7 @@ $messages = array(
 'mytalk'         => 'Moja diskusija',
 'anontalk'       => 'Z tutej IP diskutować',
 'navigation'     => 'Nawigacija',
+'and'            => 'a',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaty:',
@@ -1889,7 +1890,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'anonymous'        => 'Anonymny wužiwar/anonymni wužiwarjo {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $3 změnjena.', # $1 date, $2 time, $3 user
-'and'              => 'a',
 'othercontribs'    => 'Na zakładźe dźěła wužiwarja $1.',
 'others'           => 'druhich',
 'siteusers'        => 'wužiwarjow {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
@@ -2377,5 +2377,14 @@ Spytaj normalny přehlad.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Njeznata taflička rozšěrjenja "$1"',
+
+# Special:Version
+'version-extensions'          => 'Instalowane rozšěrjenja',
+'version-specialpages'        => 'Specialne strony',
+'version-parserhooks'         => 'Parserowe hoki',
+'version-variables'           => 'Wariable',
+'version-other'               => 'Druhe',
+'version-hooks'               => 'Hoki',
+'version-extension-functions' => 'Funkcije rozšěrjenjow',
 
 );
