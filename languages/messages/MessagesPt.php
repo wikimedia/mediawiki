@@ -40,12 +40,14 @@ $namespaceNames = array(
 );
 
 $skinNames = array(
-	'standard' => 'Clássico',
-	'nostalgia' => 'Nostalgia',
+	'standard'    => 'Clássico',
+	'nostalgia'   => 'Nostalgia',
 	'cologneblue' => 'Azul colonial',
-	'monobook' => 'MonoBook',
-	'myskin' => 'MySkin',
-	'chick' => 'Chick'
+	'monobook'    => 'MonoBook',
+	'myskin'      => 'MySkin',
+	'chick'       => 'Chique',
+	'simple'      => 'Simples',
+	'modern'      => 'Moderno',
 );
 
 /**
@@ -79,8 +81,9 @@ $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Redireccionamentos_duplos', 'redirecionamentos_duplos' ),
 	'BrokenRedirects'           => array( 'Redireccionamentos_quebrados', 'redirecionamentos_quebrados' ),
 	'Disambiguations'           => array( 'Páginas_de_desambiguação', 'Desambiguar', 'Desambiguações' ),
-	'Userlogin'                 => array( 'Entrar', 'Login', 'Criar_conta' ),
+	'Userlogin'                 => array( 'Entrar', 'Login' ),
 	'Userlogout'                => array( 'Sair', 'Logout' ),
+	'CreateAccount'             => array( 'Criar_conta' ),
 	'Preferences'               => array( 'Preferências' ),
 	'Watchlist'                 => array( 'Páginas_vigiadas', 'Artigos_vigiados', 'Vigiados' ),
 	'Recentchanges'             => array( 'Mudanças_recentes' ),
@@ -144,7 +147,7 @@ $specialPageAliases = array(
 	'Randomredirect'            => array( 'Redireccionamento_aleatório', 'Redirecionamento_aleatório' ),
 	'Mypage'                    => array( 'Minha_página' ),
 	'Mytalk'                    => array( 'Minha_discussão' ),
-	'Mycontributions'           => array( 'Minhas_constribuições', 'Minhas_edições' ),
+	'Mycontributions'           => array( 'Minhas_contribuições', 'Minhas_edições', 'Minhas_constribuições' ),
 	'Listadmins'                => array( 'Administradores', 'Admins', 'Lista_de_administradores', 'Lista_de_admins' ),
 	'Listbots'                  => array( 'Bots', 'Lista_de_bots' ),
 	'Popularpages'              => array( 'Páginas_populares', 'Artigos_populares' ),
