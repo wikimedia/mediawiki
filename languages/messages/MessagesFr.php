@@ -1471,7 +1471,7 @@ Retour et assistance :
 'excontentauthor'             => 'Le contenu était : « $1 » et l’unique contributeur en était « [[Utilisateur:$2|$2]] » ([[Special:Contributions/$2|Contributions]])',
 'exbeforeblank'               => 'Contenait avant blanchiment : $1',
 'exblank'                     => 'page vide',
-'delete-confirm'              => 'Supprimmer « $1 »',
+'delete-confirm'              => 'Supprimer « $1 »',
 'delete-legend'               => 'Suppression',
 'historywarning'              => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
 'confirmdeletetext'           => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
