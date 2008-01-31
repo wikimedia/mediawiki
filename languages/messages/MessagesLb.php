@@ -647,6 +647,8 @@ Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus 
 'longpagewarning'           => '<strong>WARNUNG: Dës Säit ass $1 kB grouss; verschidde Browser kéinte Problemer hunn, Säiten ze verschaffen, déi méi grouss wéi 32 KB sinn.
 
 Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méiglich ass.</strong>',
+'longpageerror'             => '<strong>FEELER: Den Text, den Dir Versicht ze späicheren, huet $1 KB. Dëst ass méi wéi den erlaabte Maximum vun $2 KB – dofir kann den Text net gespäichert ginn.</strong>',
+'readonlywarning'           => "<strong>OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte fir Säitenànnerunge gespaart, dofir kënnt Dir déi Säit den Ament net ofspäicheren. Versuergt den Text a versicht d'Ännerunge méi spéit nach emol ze maachen.</strong>",
 'protectedpagewarning'      => '<strong>OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.</strong>',
 'semiprotectedpagewarning'  => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellte Benotzer s'ännere kënnen.",
 'templatesused'             => 'Schablounen déi op dëser Säit am Gebrauch sinn:',
@@ -1468,6 +1470,7 @@ Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.
 
 An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéieren.",
 'movearticle'             => 'Säit réckelen:',
+'movenologintext'         => 'Dir musst e registréierte Benotzer an [[Special:Userlogin|ageloggt]] sinn, fir eng Säit ze réckelen.',
 'movenotallowed'          => 'Dir hutt net déi néideg Rechter fir Säiten op {{SITENAME}} ze réckelen.',
 'newtitle'                => 'Op neien Titel:',
 'move-watch'              => 'Dës Säit iwwerwaachen',
@@ -1841,6 +1844,7 @@ Feelermeldung vum Mailserver: $1",
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Abannung ass ausgeschalt]',
+'scarytranscludefailed'   => "[D'Siche vun der Schabloun fir $1 huet net funktionéiert]",
 'scarytranscludetoolong'  => "[Pardon d'URL ass ze laang]",
 
 # Trackbacks
@@ -1849,6 +1853,7 @@ Feelermeldung vum Mailserver: $1",
 # Delete conflict
 'deletedwhileediting' => 'Opgepasst: Dës Säit gouf geläscht nodeems datt der ugefaangen hutt se ze änneren!',
 'confirmrecreate'     => "De Benotzer [[User:$1|$1]] ([[User talk:$1|Diskussioun]]) huet dës Säit geläscht, nodeems datt där ugefaangen hutt drun ze schaffen. D'Begrënnung war: ''$2'' Bestätegt w.e.g., datt Dir dës Säit wierklich erëm nei opmaache wëllt.",
+'recreate'            => 'Erëm uleeën',
 
 # HTML dump
 'redirectingto' => 'Virugeleed op [[$1]]',
@@ -1893,6 +1898,7 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Ännerunge vun de leschte(n) $1 Sekonnen kënne an dëser Lëscht net gewise ginn.',
+'lag-warn-high'   => 'Duerch eng héich Serverbelaaschtung kënne Verännerungen déi viru manner wéi $1 Sekonne gemaach goufen, net an dëser Lëscht ugewise ginn.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => "Op Ärer Iwwerwaachungslëscht {{PLURAL:$1|steet 1 Säit|stinn $1 Säiten}}, ouni d'Diskussiounssäiten.",
