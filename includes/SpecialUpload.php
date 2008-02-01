@@ -558,7 +558,7 @@ class UploadForm {
 			}
 			// Success, redirect to description page
 			$img = null; // @todo: added to avoid passing a ref to null - should this be defined somewhere?
-			wfRunHooks( 'UploadComplete', array( &$img ) );
+			wfRunHooks( 'UploadComplete', array( &$this ) );
 			return self::SUCCESS;
 		}
 	}
