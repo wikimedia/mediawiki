@@ -1225,7 +1225,7 @@ $3 макссь туфталсь - ''$2''",
 'removedwatch'         => 'Нардаф ванома сёрмалувомаста',
 'removedwatchtext'     => 'Лопать "[[:$1]]" нардафоль тонь ванома сёрмалувомастот.',
 'watch'                => 'Ватт мельге',
-'watchthispage'        => 'Вномс тя лопать мельге',
+'watchthispage'        => 'Ваномс тя лопать мельге',
 'unwatch'              => 'Аф ваномс тянь мельге',
 'unwatchthispage'      => 'Лоткамс мельге ваномать',
 'notanarticle'         => 'Аф сёрмапотмонь лопа',
@@ -1287,6 +1287,7 @@ $NEWPAGE
 'deletepage'     => 'Нардамс лопать',
 'confirm'        => 'Кемокстамс',
 'excontent'      => "потмосоль: '$1'",
+'historywarning' => 'Инголе мярьгома: Тон йорат нардамс лопать, конань ульсь историец:',
 'deletedtext'    => '"$1" нардаф. Ванк $2 мекольце нардаматнень няфтеманкса.',
 'deletedarticle' => 'нардаф "[[$1]]"',
 'dellogpage'     => 'Нардамань лувома',
@@ -1310,7 +1311,8 @@ $NEWPAGE
 'month'         => 'Ковста (ди сядынголе):',
 'year'          => 'Кизоста (ди сядынголе):',
 
-'sp-contributions-blocklog' => 'Пякстама лувомась',
+'sp-contributions-newbies-sub' => 'Од сёрматфтомаста',
+'sp-contributions-blocklog'    => 'Сёлгомань лувомась',
 
 # What links here
 'whatlinkshere'       => 'Сюлмафкст тяза',
@@ -1332,7 +1334,7 @@ $NEWPAGE
 'unblocklink'   => 'панжемс',
 'contribslink'  => 'путфкс',
 'blocklogpage'  => 'Сёлгомань лувома',
-'blocklogentry' => '[[$1]] пякстаф $2 $3 пингс',
+'blocklogentry' => '[[$1]] сёлкф $2 $3 пингс',
 
 # Move page
 '1movedto2'   => '[[$1]] йотафтф [[$2]]-с',
@@ -1340,7 +1342,7 @@ $NEWPAGE
 'revertmove'  => 'веляфтомс',
 
 # Export
-'export' => 'Лихтемс лопат файлс',
+'export' => 'Вимс лопатнень файлс',
 
 # Namespace 8 related
 'allmessages' => 'Системонь пачфтематне',
@@ -1348,6 +1350,9 @@ $NEWPAGE
 # Thumbnails
 'thumbnail-more'  => 'Оцюлгофтомс',
 'thumbnail_error' => 'Миниатюр тиема эльбятькс: $1',
+
+# Import log
+'importlogpage' => 'Сувафтомань лувома',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Монь тиинь лопазе',
@@ -1423,6 +1428,13 @@ $NEWPAGE
 'metadata-help'     => 'Тя файлса ащи информациень поладкс, улема, цифрань камерста эли сканерста кона тон нолдайхть тевс архтофксть латцеманкса. Полафнендярять тя архтофксть васенце верзиенц, кодамога анцяйнятне, улема, кармайхть аф няевикс мекольцень няйфсонза.',
 'metadata-expand'   => 'Няфтемс сембе анцяйнянза',
 'metadata-collapse' => 'Кяшемс келептьф анцяйнятнень няфтемась',
+'metadata-fields'   => 'EXIF метадатань паксятне конат лувфт тяса ала кармайхть няфтевома архтофксонь лопаса мъзярда метадатань лувома пурдай. Илят улихть кяшфт мъзярс илякс изь мярьгов.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # External editor support
 'edit-externally'      => 'Петнемс тя файлть ушеширень програмонь вельде',
@@ -1434,6 +1446,7 @@ $NEWPAGE
 'monthsall'     => 'сембе',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Няфтемс полафнематне лувомастонь лопапотмова',
 'watchlisttools-edit' => 'Няфтемс эди петнемс ванома сёрмалувомать',
 'watchlisttools-raw'  => 'Петнемс ишь ванома сёрмалувомать',
 

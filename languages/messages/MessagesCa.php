@@ -1184,7 +1184,7 @@ Això resulta en una mitjana {{PLURAL:$5|d'una edició|de '''$5''' edicions}} pe
 i {{PLURAL:$6|'''$6''' visita|'''$6''' visites}} per edició.
 
 La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] és '''$7'''.",
-'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals
+'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals 
 {{PLURAL:$2|un (el '''$4%''') n'és $5|'''$2''' (el '''$4%''') en són $5}}.",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
 
@@ -1283,7 +1283,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'all-logs-page'        => 'Tots els registres',
 'log-search-legend'    => 'Cerca als registres',
 'log-search-submit'    => 'Vés-hi',
-'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador.
+'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador. 
 Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usuari, o la pàgina afectada.",
 'logempty'             => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard'   => 'Cerca els títols que comencin amb aquest text',
@@ -1419,6 +1419,8 @@ Suggeriments i ajuda:
 'excontentauthor'             => "el contingut era: «$1» (i l'única persona qui hi ha editat ha estat «[[Special:Contributions/$2|$2]]»)",
 'exbeforeblank'               => "el contingut abans d'estar en blanc era: '$1'",
 'exblank'                     => 'la pàgina estava en blanc',
+'delete-confirm'              => 'Elimina «$1»',
+'delete-legend'               => 'Elimina',
 'historywarning'              => 'Avís: La pàgina que eliminareu té un historial:',
 'confirmdeletetext'           => "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
@@ -1431,7 +1433,7 @@ Mostra $2 per a un registre dels esborrats més recents.',
 'dellogpagetext'              => 'Davall hi ha un llistat dels esborraments més recents.',
 'deletionlog'                 => "Registre d'esborrats",
 'reverted'                    => 'Invertit amb una revisió anterior',
-'deletecomment'               => 'Motiu per a ser esborrat',
+'deletecomment'               => 'Motiu per a ser esborrat:',
 'deleteotherreason'           => 'Motius diferents o addicionals:',
 'deletereasonotherlist'       => 'Altres motius',
 'deletereason-dropdown'       => "*Motius freqüents d'esborrat
@@ -2376,6 +2378,9 @@ Trieu amb la previsualització normal.',
 'watchlisttools-view' => 'Visualitza els canvis rellevants',
 'watchlisttools-edit' => 'Visualitza i edita la llista de seguiment',
 'watchlisttools-raw'  => 'Edita la llista de seguiment sense format',
+
+# Special:Version
+'version-version' => 'Versió',
 
 # Special:Filepath
 'filepath'        => "Camí d'arxiu",

@@ -506,11 +506,15 @@ your old password.
 тугмаи '''Ба оқиб'''-ро дар браузери худ пахш кунед.",
 'noarticletext'             => 'Дар ин саҳифа то кунун, матн вуҷуд надорад, шумо метавонед дар дигар саҳифаҳо [[Special:Search/{{PAGENAME}}|унвони ин саҳифаро ҷустуҷӯ кунед]] ё [{{fullurl:{{FULLPAGENAME}}|action=edit}} ин саҳифаро вироиш кунед].',
 'userpage-userdoesnotexist' => 'Ҳисоби корбар "$1" сабт нашудааст. Итминон ҳосил кунед ки мехоҳед ин саҳифаро эчод ё вироиш кунед.',
+'updated'                   => '(Ба рӯз шуда)',
 'previewnote'               => '<strong>Ин фақат пешнамоиш аст; дигаргуниҳо ҳоло захира нашудаанд!</strong>',
 'editing'                   => 'Дар ҳоли вироиш $1',
 'editingsection'            => 'Дар ҳоли вироиши $1 (қисмат)',
 'editingcomment'            => 'Дар ҳоли вироиш $1 (comment)',
+'editconflict'              => 'Бархӯрди вироишӣ: $1',
 'yourtext'                  => 'Матни Шумо',
+'editingold'                => '<strong>ҲУШДОР: Шумо нусхаи кӯҳнаи ин саҳифаро вироиш карда истодаед.
+Агар шумо онро захира кунед, ҳар тағйире ки пас аз ин нусха анҷом шуда, аз байн хоҳад рафт.</strong>',
 'yourdiff'                  => 'Фарқиятҳо',
 'copyrightwarning'          => 'Ҳамаи ҳиссагузорӣ ба {{SITENAME}} аз рӯи қонунҳои зерин $2 (нигаред $1 барои маълумоти бештар) ҳиссагузорӣ мешаванд. Агар Шумо намехоҳед, ки навиштаҷоти Шумо вироиш ва паҳн нашаванд, Шумо метавонед ин мақоларо нафиристед.<br /> Шумо ваъда медиҳед, ки худатон ин мақоларо навиштед ё ки аз сарчашмаҳои кушод нусхабардорӣ кардаед. <strong>АСАРҲОИ ҚОБИЛИ ҲУҚУҚИ МУАЛЛИФРО БЕ ИҶОЗАТ НАФИРИСТЕД!</strong>',
 'longpagewarning'           => '<strong>Ҳушдор: Ин саҳифа $1 килобайт дароз аст; баъзе мурургарҳо мумкин ба вироиши саҳифаҳои наздик ба 32kb ё дарозтар аз он мушкили дошта бошанд.
@@ -522,6 +526,7 @@ your old password.
 'templatesusedsection'      => 'Шаблонҳои дар ин қисмат истифода шуда:',
 'template-protected'        => '(ҳифзшуда)',
 'template-semiprotected'    => '(нима-муҳофизатшуда)',
+'nocreatetitle'             => 'Эҷоди саҳифа маҳдуд шудааст',
 'nocreatetext'              => '{{SITENAME}} қобилияти эҷоди саҳифаҳои ҷадидро маҳдуд карда аст.
 Шумо метавонед бозгашта саҳифаи мавҷудбударо вироиш кунед, ё [[Special:Userlogin|ба систем вуруд кунед ё ҳисоби корбарӣ эҷод кунед]].',
 'permissionserrors'         => 'Хатоҳои сатҳи дастрасӣ',
@@ -537,6 +542,8 @@ your old password.
 # History pages
 'viewpagelogs'        => 'Намоиши гузоришҳои марбута ба ин саҳифа',
 'nohistory'           => 'Таърихи вироиш барои ин саҳифа вуҷуд надорад.',
+'revnotfound'         => 'Нусха ёфт нашуд',
+'loadhist'            => 'Дар ҳоли хондани саҳифа',
 'currentrev'          => 'Вироишоти кунунӣ',
 'revisionasof'        => 'Нусха $1',
 'revision-info'       => 'Нусхаи вироиш $2 дар таърихи $1',
@@ -544,6 +551,7 @@ your old password.
 'nextrevision'        => 'Нусхаи навтарин→',
 'currentrevisionlink' => 'Намоиши нусхаи феълӣ',
 'cur'                 => 'феълӣ',
+'next'                => 'баъдӣ',
 'last'                => 'қаблӣ',
 'orig'                => 'аслӣ',
 'page_first'          => 'аввал',
@@ -577,6 +585,17 @@ your old password.
 'revdelete-hide-comment'  => 'Пинҳон кардани тавзеҳи вироиш',
 'revdelete-log'           => 'Гузориши тавзеҳ:',
 
+# History merging
+'mergehistory-from'   => 'Саҳифаи манбаъ:',
+'mergehistory-into'   => 'Саҳифаи мақсад:',
+'mergehistory-list'   => 'Таърихи қобили идғом',
+'mergehistory-submit' => 'Идғом нусхаҳо',
+'mergehistory-empty'  => 'Ҳеҷ як нусхаҳо қобили идғом нестанд',
+
+# Merge log
+'mergelog'    => 'Гузориши идғом',
+'revertmerge' => 'Вогардонии идғом',
+
 # Diffs
 'history-title'           => 'Таърихчаи вироишҳои "$1"',
 'difference'              => '(Фарқияти байни нусхаҳо)',
@@ -592,6 +611,7 @@ your old password.
 'noexactmatch'          => "'''Бо сарлавҳаи \"\$1\" мақола вуҷуд надорад.''' Шумо метавонед [[:\$1|ин саҳифаро бинависед]].",
 'noexactmatch-nocreate' => "'''Саҳифае бо унвони \"\$1\" вуҷуд надорад.'''",
 'titlematches'          => 'Унвони саҳифа татбиқ мекунад',
+'notitlematches'        => 'Унвонҳои ҳеҷ мақолае рост намеояд',
 'prevn'                 => 'қаблӣ $1',
 'nextn'                 => 'баъдӣ $1',
 'viewprevnext'          => 'Намоиш ($1) ($2) ($3)',
@@ -602,12 +622,16 @@ your old password.
 'mypreferences'      => 'Тарҷиҳоти ман',
 'prefs-edits'        => 'Шумораи вироишҳо:',
 'prefsnologin'       => 'Ба систем ворид нашудаед',
+'qbsettings'         => 'Танзимоти тезхат (Quickbar)',
+'qbsettings-none'    => 'Набошад',
 'changepassword'     => 'Иваз намудани калимаи убур',
+'skin'               => 'Пӯст',
 'math'               => 'Риёзиёт',
 'dateformat'         => 'Қолаби сана',
 'datedefault'        => 'Бе тарҷиҳ',
 'datetime'           => 'Сана ва вақт',
 'math_unknown_error' => 'хатои ношинос',
+'math_syntax_error'  => 'хатои наҳвӣ',
 'prefs-personal'     => 'Додаҳои корбар',
 'prefs-rc'           => 'Тағйироти охирин',
 'prefs-watchlist'    => 'Феҳристи пайгириҳо',
@@ -623,13 +647,23 @@ your old password.
 'resultsperpage'     => 'Теъдоди натоиҷ дар ҳар саҳифа:',
 'contextlines'       => 'Теъдоди сатрҳо дар ҳар натиҷа:',
 'timezonelegend'     => 'Минтақаи вақт',
+'localtime'          => 'Вақти маҳаллӣ',
+'servertime'         => 'Вақти феълии коргузор',
 'allowemail'         => 'Иҷозат додани e-mail аз дигар корбарон',
+'default'            => 'пешфарз',
 'files'              => 'Файлҳо',
 
 # User rights
-'userrights-user-editname' => 'Номи корбарро дохил кунед:',
-'editusergroup'            => 'Гуруҳҳои корбарро вироиш кунед',
-'userrights-groupsmember'  => 'Аъзои:',
+'userrights-lookup-user'     => 'Мудирияти гурӯҳҳои корбарӣ',
+'userrights-user-editname'   => 'Номи корбарро дохил кунед:',
+'editusergroup'              => 'Гуруҳҳои корбарро вироиш кунед',
+'userrights-editusergroup'   => 'Вироиши гурӯҳҳои корбарӣ',
+'saveusergroups'             => 'Сабти гурӯҳҳои корбарӣ',
+'userrights-groupsmember'    => 'Аъзои:',
+'userrights-groupsremovable' => 'Гурӯҳҳои қобили ҳазф:',
+'userrights-groupsavailable' => 'Гурӯҳҳои мавҷуд:',
+'userrights-reason'          => 'Иллати тағйир:',
+'userrights-available-none'  => 'Шумо узвияти дар гурӯҳҳоро наметавонед тағйир диҳед.',
 
 # Groups
 'group-all' => '(ҳама)',
@@ -931,6 +965,7 @@ your old password.
 'protectexpiry'               => 'Замони саромадан:',
 'protect_expiry_invalid'      => 'Замони саромадан номӯътабар аст.',
 'protect_expiry_old'          => 'Замони саромадан дар гузашта аст.',
+'unprotectsub'                => '(Бардоштани "$1" аз муҳофизат)',
 'protect-unchain'             => 'Боз кардани иҷозати кӯчонидан',
 'protect-text'                => 'Шумо инҷо сатҳи муҳофизати саҳифаи strong>$1</strong> метавонед нигаред ё тағйир диҳед',
 'protect-locked-access'       => 'Ҳисоби шумо иҷозати тағйири сатҳи ҳифозати саҳифаро надорад. 
@@ -946,18 +981,32 @@ your old password.
 'protect-cantedit'            => 'Шумо вазъияти ҳифзи ин саҳифаро тағйир дода наметавонед, чун иҷозати вироиши онро надоред.',
 'restriction-type'            => 'Дастраси:',
 'restriction-level'           => 'Сатҳи маҳдудият:',
+'minimum-size'                => 'Ҳадди ақали андоза',
+'maximum-size'                => 'Ҳадди аксари андоза',
+'pagesize'                    => '(байт)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Вироиш',
+'restriction-edit'   => 'Вироиш',
+'restriction-move'   => 'Кӯчонидан',
+'restriction-create' => 'Эҷод',
 
 # Restriction levels
-'restriction-level-sysop' => 'пурра ҳифзшуда',
+'restriction-level-sysop'         => 'пурра ҳифзшуда',
+'restriction-level-autoconfirmed' => 'нима муҳофизатшуда',
+'restriction-level-all'           => 'ҳар сатҳе',
 
 # Undelete
+'undelete'               => 'Эҳёи саҳифаҳои ҳазфшуда',
 'undeletehistory'        => 'Агар ин саҳифаро эҳё кунед, ҳамаи нусхаҳои он дар таърихча эҳё хоҳанд шуд. Агар саҳифаи ҷадиде бо номи яксон аз замони ҳазф эҷод шуда бошад, нусхаҳои эҳёшуда дар таърихчаи қабули хоҳанд омад. Ва нусхаи фаъоли саҳифаи зинда ба таври худкорӣ ҷойгузин нахоҳад шуд.',
 'undeletehistorynoadmin' => 'Ин мақола ҳазв карда шудааст. Сабаби ҳазв дар эзоҳ дар зер бо дигар маълумотҳои корбар ки ин саҳифаро ҳазф кард оварда шудааст. Матни аслии ин вироишоти ҳазфшуда фақат ба мудирон-администраторон дастрас аст.',
+'undelete-nodiff'        => 'Нусхаи кӯҳнатаре ёфт нашуд.',
 'undeletebtn'            => 'Барқарор кардан',
+'undeletereset'          => 'Аз нав',
+'undeletecomment'        => 'Тавзеҳ:',
+'undeletedarticle'       => 'эҳё "[[$1]]" {{PLURAL:$1|шуд|шуданд}}',
+'undelete-search-box'    => 'Ҷустуҷӯи саҳифаҳои ҳазфшуда',
 'undelete-search-submit' => 'Ҷустуҷӯ',
+'undelete-no-results'    => 'Ҳеҷ саҳифаи алоқаманде дар бойгони саҳифаҳои ҳазфшуда ёфт нашуд.',
 
 # Namespace form on various pages
 'namespace'      => 'Фазоином:',
@@ -1007,7 +1056,9 @@ your old password.
 'ipbotheroption'              => 'дигар',
 'ipbotherreason'              => 'Далелҳои дигар/изофӣ:',
 'ipbhidename'                 => 'Пинҳони номи корбарӣ/нишонаи IP аз гузориши баста шудан, феҳристи бастагшудагони кунунӣ ва феҳристи корбарон',
+'badipaddress'                => 'IP нишонаи номӯътабар',
 'blockipsuccesssub'           => 'Бастан муваффақ щуд',
+'ipb-edit-dropdown'           => 'Далели қатъи дастрасӣ',
 'ipb-unblock-addr'            => 'Боз кардани $1',
 'ipb-unblock'                 => 'Боз кардани номи корбарӣ ё нишонаи IP',
 'ipb-blocklist-addr'          => 'Дидани бастаҳои мавҷуд барои $1',
@@ -1040,6 +1091,7 @@ your old password.
 'block-log-flags-noautoblock' => 'қатъи дастрасии худкор ғайрифаъол шуд',
 'block-log-flags-noemail'     => 'почтаи электронӣ баста шуд',
 'range_block_disabled'        => 'Қобилияти мудирон барои эҷоди бастаҳо ғайрифаъол шудааст.',
+'ipb_expiry_invalid'          => 'Вақти хотима номӯътабар.',
 'ipb_already_blocked'         => '"$1" аллакай баста шудааст',
 'ip_range_invalid'            => 'Сафи IP номӯътабар аст.',
 'blockme'                     => 'Дастрасии манро қать кун',
@@ -1050,12 +1102,15 @@ your old password.
 # Developer tools
 'lockdb'              => 'Қуфл кардани пойгоҳи дода',
 'unlockdb'            => 'Аз қуфл боз кардани пойгоҳи дода',
+'lockconfirm'         => 'Бале, ман дар ҳақиқат мехоҳам пойгоҳи додаро қуфл кунам.',
+'unlockconfirm'       => 'Бале, ман дар ҳақиқат мехоҳам пойгоҳи додаро аз қуфл кушоям.',
 'lockbtn'             => 'Қуфл кардани пойгоҳи дода',
 'unlockbtn'           => 'Аз қуфл боз кардани пойгоҳи дода',
 'locknoconfirm'       => 'Шумо ба қуттии тасдиқ қайд нагузоштед.',
 'lockdbsuccesssub'    => 'Қуфл кардани пойгоҳи дода бо муваффақият анҷом шуд',
 'unlockdbsuccesssub'  => 'Қуфли пойгоҳи дода бардошта шуд',
 'unlockdbsuccesstext' => 'Пойгоҳи дода аз қуфл боз шуд.',
+'databasenotlocked'   => 'Пойгоҳи дода қуфл нест.',
 
 # Move page
 'movepage'                => 'Кӯчонидани саҳифа',
@@ -1133,6 +1188,10 @@ your old password.
 'import-interwiki-history' => 'Тамоми таърихи нусхаҳои ин саҳифа интиқол дода шавад',
 'import-interwiki-submit'  => 'Ворид шавад',
 'importstart'              => 'Дар ҳоли ворид кардани саҳифаҳо...',
+'importfailed'             => 'Ворид кардани саҳифаҳо шикаст хӯрд: $1',
+'importbadinterwiki'       => 'Пайванди байнивики нодуруст',
+'importnotext'             => 'Саҳифа холӣ ё бе матн',
+'importsuccess'            => 'Ворид кардан бо муваффақият анҷом ёфт!',
 
 # Import log
 'importlogpage' => 'Вориди гузоришҳо',
@@ -1234,15 +1293,43 @@ your old password.
 # EXIF tags
 'exif-artist' => 'Муаллиф',
 
+'exif-exposureprogram-4' => 'Аввалияти шаттер (Shutter priority)',
+
+'exif-subjectdistance-value' => '$1 метр',
+
+'exif-meteringmode-0'   => 'Номаълум',
+'exif-meteringmode-1'   => 'Миёна',
+'exif-meteringmode-2'   => 'МарказВазниМиёна',
+'exif-meteringmode-3'   => 'Нуқта',
+'exif-meteringmode-4'   => 'БисёрНуқта',
+'exif-meteringmode-5'   => 'Тарҳдор',
+'exif-meteringmode-6'   => 'Ҷузъӣ',
 'exif-meteringmode-255' => 'Ғайра',
 
-'exif-lightsource-4'  => 'Флаш',
-'exif-lightsource-9'  => 'Ҳавои хуб',
-'exif-lightsource-10' => 'Осмони абрӣ',
-'exif-lightsource-11' => 'Соя',
-'exif-lightsource-12' => 'Маҳтобӣ дар рӯз (D 5700 – 7100K)',
-'exif-lightsource-13' => 'Маҳтоби сафед дар рӯз (N 4600 – 5400K)',
-'exif-lightsource-14' => 'Маҳтоби сафедӣ хунук (W 3900 – 4500K)',
+'exif-lightsource-0'   => 'Номаълум',
+'exif-lightsource-1'   => 'Рӯшноии рӯз',
+'exif-lightsource-2'   => 'Флуоресент',
+'exif-lightsource-4'   => 'Флаш',
+'exif-lightsource-9'   => 'Ҳавои хуб',
+'exif-lightsource-10'  => 'Осмони абрӣ',
+'exif-lightsource-11'  => 'Соя',
+'exif-lightsource-12'  => 'Маҳтобӣ дар рӯз (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Маҳтоби сафед дар рӯз (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Маҳтоби сафедӣ хунук (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Маҳтоби сафед (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Нури стандартӣ A',
+'exif-lightsource-18'  => 'Нури стандартӣ B',
+'exif-lightsource-19'  => 'Нури стандартӣ C',
+'exif-lightsource-24'  => 'ISO лампи тунстени корхона',
+'exif-lightsource-255' => 'Дигар манбаъи нур',
+
+'exif-focalplaneresolutionunit-2' => 'инч',
+
+'exif-sensingmethod-1' => 'Таърифнашуда',
+
+'exif-exposuremode-0' => 'Нурдиҳии худкор',
+'exif-exposuremode-1' => 'Нурдиҳии дастӣ',
+'exif-exposuremode-2' => 'Қавсбандии худкор (Auto bracket)',
 
 'exif-scenecapturetype-0' => 'Стандарт',
 'exif-scenecapturetype-1' => 'Чашмандоз',
@@ -1251,12 +1338,37 @@ your old password.
 
 'exif-gaincontrol-0' => 'Ҳеҷ',
 
+'exif-contrast-0' => 'Оддӣ',
 'exif-contrast-1' => 'Нарм',
 'exif-contrast-2' => 'Сахт',
 
 'exif-saturation-0' => 'Оддӣ',
 'exif-saturation-1' => 'Рангҳои рақиқшуда',
 'exif-saturation-2' => 'Рангҳои тағлизшуда',
+
+'exif-sharpness-0' => 'Оддӣ',
+'exif-sharpness-1' => 'Нарм',
+'exif-sharpness-2' => 'Нарм',
+
+'exif-subjectdistancerange-0' => 'Номаълум',
+'exif-subjectdistancerange-1' => 'Макро',
+'exif-subjectdistancerange-2' => 'Намои наздик',
+'exif-subjectdistancerange-3' => 'Намои дур',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Арзи ҷуғрофиявӣ шимолӣ',
+'exif-gpslatitude-s' => 'Арзи ҷуғрофиявӣ ҷанубӣ',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Арзи ҷуғрофиявӣ шарқӣ',
+'exif-gpslongitude-w' => 'Арзи ҷуғрофиявӣ ғарбӣ',
+
+'exif-gpsstatus-a' => 'Дар ҳоли андозагирӣ',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Километр бар соат',
+'exif-gpsspeed-m' => 'Мил бар соат',
+'exif-gpsspeed-n' => 'Гиреҳ',
 
 # External editor support
 'edit-externally'      => 'Ин файлро бо барномаи беруна таҳрир кунед',

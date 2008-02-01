@@ -1227,10 +1227,13 @@ Sletteloggen for fila finn du her:",
 'filedelete-legend'           => 'Slett fil',
 'filedelete-intro'            => "Du slettar '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Du slettar versjonen av \'\'\'[[Media:$1|$1]]\'\'\' frå [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Grunn for sletting:',
 'filedelete-submit'           => 'Slett',
+'filedelete-success'          => "'''$1''' er sletta.",
 'filedelete-success-old'      => '<span class="plainlinks">Versjonen av \'\'\'[[Media:$1|$1]]\'\'\' frå $3, $2 er sletta.</span>',
 'filedelete-nofile'           => "'''$1''' finst ikkje på {{SITENAME}}.",
 'filedelete-nofile-old'       => "Det finst ingen arkivert versjon av '''$1''' med dei oppgjevne attributta.",
+'filedelete-iscurrent'        => 'Du prøver å slette den nyaste versjonen av denne fila. Ver venleg og rull attende til ein eldre versjon fyrst.',
 'filedelete-otherreason'      => 'Anna grunn/tilleggsgrunn:',
 'filedelete-reason-otherlist' => 'Anna grunn',
 'filedelete-reason-dropdown'  => '*Vanlege grunnar for sletting
@@ -1238,27 +1241,35 @@ Sletteloggen for fila finn du her:",
 ** Ligg dobbelt',
 
 # MIME search
-'mimesearch' => 'MIME-søk',
-'mimetype'   => 'MIME-type:',
-'download'   => 'last ned',
+'mimesearch'         => 'MIME-søk',
+'mimesearch-summary' => 'Denne sida gjer filtrering av filer etter MIME-type mogleg. Skriv inn: innhaldstype/undertype, t.d. <tt>image/jpeg</tt>.',
+'mimetype'           => 'MIME-type:',
+'download'           => 'last ned',
+
+# Unwatched pages
+'unwatchedpages' => 'Uovervaka sider',
 
 # List redirects
 'listredirects' => 'Omdirigeringsliste',
 
 # Unused templates
-'unusedtemplates' => 'Ubrukte malar',
+'unusedtemplates'     => 'Ubrukte malar',
+'unusedtemplatestext' => 'Denne sida viser alle sidene i mal-namnerommet som ikkje er brukte på andre sider. Hugs også å sjå etter andre lenkjer til malane før du slettar dei.',
+'unusedtemplateswlh'  => 'andre lenkjer',
 
 # Random page
-'randompage' => 'Tilfeldig side',
+'randompage'         => 'Tilfeldig side',
+'randompage-nopages' => 'Det er ingen sider i dette namnerommet.',
 
 # Random redirect
-'randomredirect' => 'Tilfeldig omdirigering',
+'randomredirect'         => 'Tilfeldig omdirigering',
+'randomredirect-nopages' => 'Det er ingen omdirigeringar i dette namnerommet.',
 
 # Statistics
-'statistics'    => 'Statistikk',
-'sitestats'     => '{{SITENAME}}-statistikk',
-'userstats'     => 'Brukarstatistikk',
-'sitestatstext' => "Det er i alt {{PLURAL:$1|'''éi''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, småsider,
+'statistics'             => 'Statistikk',
+'sitestats'              => '{{SITENAME}}-statistikk',
+'userstats'              => 'Brukarstatistikk',
+'sitestatstext'          => "Det er i alt {{PLURAL:$1|'''éi''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, småsider,
 omdirigeringssider, og andre som truleg ikkje kan kallast innhaldssider. Om ein ser bort frå desse sidene, er det {{PLURAL:$2|'''éi''' side|'''$2''' sider}} som truleg er innhaldssider.
 
 '''$8''' {{PLURAL:$8|fil|filer}} har vorte lasta opp.
@@ -1266,10 +1277,12 @@ omdirigeringssider, og andre som truleg ikkje kan kallast innhaldssider. Om ein 
 Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og endra {{PLURAL:$4|'''éin''' gong|'''$4''' gonger}} sidan programvaren vart installert. Det vil seie at kvar side gjennomsnittleg har vorte endra {{PLURAL:$5|'''éin''' gong|'''$5''' gonger}}, og vist {{PLURAL:$6|'''éin''' gong|'''$6''' gonger}} per endring.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Jobbkøen] er '''$7'''.",
-'userstatstext' => "{{SITENAME}} har {{PLURAL:$1|'''éin''' registrert brukar|'''$1''' registrerte brukarar}}. '''$2''' (eller '''$4%''') av desse har $5rettar (sjå $3).",
+'userstatstext'          => "{{SITENAME}} har {{PLURAL:$1|'''éin''' registrert brukar|'''$1''' registrerte brukarar}}. '''$2''' (eller '''$4%''') av desse har $5rettar (sjå $3).",
+'statistics-mostpopular' => 'Mest viste sider',
 
-'disambiguations'     => 'Fleirtydingssider',
-'disambiguationspage' => 'Template:Fleirtyding',
+'disambiguations'      => 'Fleirtydingssider',
+'disambiguationspage'  => 'Template:Fleirtyding',
+'disambiguations-text' => "Sidene nedanfor har lenkje til ei '''fleirtydingsside'''. Dei bør ha lenkje til det rette oppslagsordet i staden for.<br />Sider vert handsama som fleirtydingssider dersom dei inneheld ein mal som har lenkje på [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Doble omdirigeringar',
 'doubleredirectstext' => 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på.',
@@ -1281,6 +1294,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 
 'withoutinterwiki'        => 'Sider utan lenkjer til andre språk',
 'withoutinterwiki-header' => 'Desse sidene manglar lenkjer til sider på andre språk:',
+'withoutinterwiki-submit' => 'Vis',
 
 'fewestrevisions' => 'Sidene med færrast endringar',
 
@@ -1291,7 +1305,9 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'nmembers'                => '$1 {{PLURAL:$1|medlem|medlemmer}}',
 'nrevisions'              => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
 'nviews'                  => '{{PLURAL:$1|Éi vising|$1 visingar}}',
+'specialpage-empty'       => 'Denne sida er tom.',
 'lonelypages'             => 'Foreldrelause sider',
+'lonelypagestext'         => 'Desse sidene er ikkje lenkja til på andre sider på {{SITENAME}}.',
 'uncategorizedpages'      => 'Ikkje kategoriserte sider',
 'uncategorizedcategories' => 'Ikkje kategoriserte kategoriar',
 'uncategorizedimages'     => 'Ukategoriserte filer',
@@ -1312,7 +1328,13 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'shortpages'              => 'Korte sider',
 'longpages'               => 'Lange sider',
 'deadendpages'            => 'Blindvegsider',
+'deadendpagestext'        => 'Desse sidene har ikkje lenkjer til andre sider på {{SITENAME}}.',
 'protectedpages'          => 'Verna sider',
+'protectedpagestext'      => 'Desse sidene er verna mot flytting og endring',
+'protectedpagesempty'     => 'Ingen sider er verna på den valde måten akkurat no.',
+'protectedtitles'         => 'Verna sidenamn',
+'protectedtitlestext'     => 'Desse sidene er verna mot oppretting',
+'protectedtitlesempty'    => 'Ingen sider er verna på den valde måten akkurat no.',
 'listusers'               => 'Brukarliste',
 'specialpages'            => 'Spesialsider',
 'spheading'               => 'Spesialsider for alle brukarar',
@@ -1331,8 +1353,10 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'pager-older-n'           => '{{PLURAL:$1|eldre|eldre $1}}',
 
 # Book sources
-'booksources'    => 'Bokkjelder',
-'booksources-go' => 'Gå',
+'booksources'               => 'Bokkjelder',
+'booksources-search-legend' => 'Søk etter bokkjelder',
+'booksources-go'            => 'Gå',
+'booksources-text'          => 'Nedanfor finn du ei liste over lenkjer til andre nettstader som sel nye og brukte bøker, og desse kan ha meir informasjon om bøker du leitar etter:',
 
 'categoriespagetext' => 'Wikien har følgjande kategoriar.',
 'data'               => 'Data',
@@ -1346,7 +1370,11 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'speciallogtitlelabel' => 'Tittel:',
 'log'                  => 'Loggar',
 'all-logs-page'        => 'Alle loggane',
+'log-search-legend'    => 'Søk i loggane',
+'log-search-submit'    => 'Gå',
 'alllogstext'          => 'Kombinert vising av alle loggane som er tilgjengelege på {{SITENAME}}. Du kan avgrense visinga ved å velje loggtype, brukarnamn, og/eller sidenamn.',
+'logempty'             => 'Ingen treff i loggane.',
+'log-title-wildcard'   => 'Søk i titlar som byrjar med denne teksten',
 
 # Special:Allpages
 'nextpage'          => 'Neste side ($1)',
@@ -1359,6 +1387,13 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'allpagesnext'      => 'Neste',
 'allpagessubmit'    => 'Vis',
 'allpagesprefix'    => 'Vis sider med prefikset:',
+'allpagesbadtitle'  => 'Det oppgjevne sidenamnet var ugyldig eller hadde eit interwiki-prefiks. Det kan også ha hatt eitt eller fleire teikn som ikkje kan brukast i sidenamn.',
+'allpages-bad-ns'   => '{{SITENAME}} har ikkje namnerommet «$1».',
+
+# Special:Listusers
+'listusersfrom'      => 'Vis brukarnamna frå og med:',
+'listusers-submit'   => 'Vis',
+'listusers-noresult' => 'Ingen brukarnamn vart funne.',
 
 # E-mail user
 'mailnologin'     => 'Inga avsendaradresse',
@@ -1374,6 +1409,9 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'emailto'         => 'Åt',
 'emailsubject'    => 'Emne',
 'emailmessage'    => 'Melding',
+'emailsend'       => 'Send',
+'emailccme'       => 'Send meg ein kopi av meldinga mi.',
+'emailccsubject'  => 'Kopi av meldinga di til $1: $2',
 'emailsent'       => 'E-posten er sendt',
 'emailsenttext'   => 'E-posten er sendt.',
 
@@ -1425,6 +1463,8 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'created'                      => 'oppretta',
 'enotif_subject'               => '{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited'           => 'Sjå $1 for alle endringane sidan siste vitjing.',
+'enotif_lastdiff'              => 'Sjå $1 for å sjå denne endringa.',
+'enotif_anon_editor'           => 'anonym brukar $1',
 'enotif_body'                  => 'Hei $WATCHINGUSERNAME,
 
 {{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
@@ -1510,6 +1550,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'protect-cantedit'            => 'Du kan ikkje endre på nivået på vernet av denne sida, fordi du ikkje har tilgang til å endre henne.',
 'restriction-type'            => 'Tilgang:',
 'restriction-level'           => 'Avgrensingsnivå:',
+'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Endre',
@@ -2149,6 +2190,27 @@ $1
 Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
 
+# HTML dump
+'redirectingto' => 'Omdirigerer til [[$1]]...',
+
+# action=purge
+'confirm_purge'        => 'Vil du slette tenarane sin mellomlagra versjon av denne sida?
+
+$1',
+'confirm_purge_button' => 'Ja',
+
+# AJAX search
+'searchcontaining' => "Søk etter sider som inneheld ''$1''.",
+'searchnamed'      => "Søk etter sider som heiter ''$1''.",
+'articletitles'    => "Sider som byrjar med ''$1''",
+'hideresults'      => 'Gøym resultatet',
+'useajaxsearch'    => 'Bruk AJAX-søk',
+
+# Multipage image navigation
+'imgmultipageprev'   => '← førre side',
+'imgmultipagenext'   => 'neste side →',
+'imgmultiparseerror' => 'Biletfila ser ut til å vere øydelagd eller feil, så {{SITENAME}} kan ikkje hente inn ei liste over sider.',
+
 # Table pager
 'ascending_abbrev'         => 'stigande',
 'descending_abbrev'        => 'synkande',
@@ -2200,5 +2262,21 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukjend tilleggsmerking «$1»',
+
+# Special:Version
+'version-extensions'               => 'Installerte utvidingar',
+'version-specialpages'             => 'Spesialsider',
+'version-parserhooks'              => 'Parsertillegg',
+'version-variables'                => 'Variablar',
+'version-other'                    => 'Anna',
+'version-mediahandlers'            => 'Mediahandsamarar',
+'version-hooks'                    => 'Tilleggsuttrykk',
+'version-extension-functions'      => 'Utvidingsfunksjonar',
+'version-parser-extensiontags'     => 'Parserutvidingstaggar',
+'version-parser-function-hooks'    => 'Parserfunksjonstillegg',
+'version-skin-extension-functions' => 'Draktutvidingsfunksjonar',
+'version-hook-name'                => 'Namn på tillegg',
+'version-hook-subscribedby'        => 'Brukt av',
+'version-version'                  => 'Versjon',
 
 );
