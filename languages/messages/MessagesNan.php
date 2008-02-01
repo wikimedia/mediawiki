@@ -121,6 +121,7 @@ $messages = array(
 'mytalk'     => 'Góa ê thó-lūn',
 'anontalk'   => 'Chit ê IP ê thó-lūn-ia̍h',
 'navigation' => 'Se̍h chām',
+'and'        => 'kap',
 
 'errorpagetitle'    => 'Chhò-gō·',
 'returnto'          => 'Tò-tńg khì $1.',
@@ -187,7 +188,7 @@ $messages = array(
 'thisisdeleted'       => 'Khoàⁿ a̍h-sī kiù $1?',
 'feedlinks'           => 'Chhī-liāu:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bûn-chiuⁿ',
 'nstab-user'      => 'Iōng-chiá ê ia̍h',
 'nstab-media'     => 'Mûi-thé',
@@ -360,13 +361,10 @@ $messages = array(
 'histlast'            => 'Tùi āu-piah',
 
 # Diffs
-'difference'                => '(Bô kâng pán-pún ê cheng-chha)',
-'lineno'                    => 'Tē $1 chōa:',
-'editcurrent'               => 'Siu-kái chit ia̍h siōng sin ê pán-pún',
-'selectnewerversionfordiff' => 'Kéng khah sin ê pán-pún lâi phēng',
-'selectolderversionfordiff' => 'Kéng khah kū ê pán-pún lâi phēng',
-'compareselectedversions'   => 'Pí-phēng soán-te̍k ê pán-pún',
-'editundo'                  => 'chhú-siau',
+'difference'              => '(Bô kâng pán-pún ê cheng-chha)',
+'lineno'                  => 'Tē $1 chōa:',
+'compareselectedversions' => 'Pí-phēng soán-te̍k ê pán-pún',
+'editundo'                => 'chhú-siau',
 
 # Search results
 'searchresults'     => 'Kiám-sek kiat-kó',
@@ -510,6 +508,9 @@ $messages = array(
 # Unused templates
 'unusedtemplates' => 'Bô iōng ê pang-bô·',
 
+# Random page
+'randompage' => 'Sûi-chāi kéng ia̍h',
+
 # Random redirect
 'randomredirect' => 'Sûi-chāi choán-ia̍h',
 
@@ -558,7 +559,6 @@ Template:Khu-pia̍t-ia̍h',
 'mostrevisions'           => 'Siōng chia̍p siu-kái ê ia̍h',
 'allpages'                => 'Só·-ū ê ia̍h',
 'prefixindex'             => 'Sû-thâu sek-ín',
-'randompage'              => 'Sûi-chāi kéng ia̍h',
 'shortpages'              => 'Té-ia̍h',
 'deadendpages'            => 'Khu̍t-thâu-ia̍h',
 'deadendpagestext'        => 'Ē-kha ê ia̍h bô liân kàu wiki lāi-té ê kî-thaⁿ ia̍h.',
@@ -568,7 +568,6 @@ Template:Khu-pia̍t-ia̍h',
 'specialpages'            => 'Te̍k-sû-ia̍h',
 'spheading'               => 'Só·-ū iōng-chiá ê te̍k-sû-ia̍h',
 'restrictedpheading'      => 'Hān-chè sú-iōng ê te̍k-sû-ia̍h',
-'rclsub'                  => '(tùi "$1" liân--koè-lâi ê ia̍h)',
 'newpages'                => 'Sin ia̍h',
 'newpages-username'       => 'Iōng-chiá miâ-chheng:',
 'ancientpages'            => 'Kó·-ia̍h',
@@ -651,8 +650,6 @@ Template:Khu-pia̍t-ia̍h',
 'excontentauthor'   => "loē-iông sī: '$1' (î-it ê kòng-hiàn-chiá sī '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'     => "chìn-chêng ê lōe-iông sī: '$1'",
 'exblank'           => 'ia̍h khang-khang',
-'confirmdelete'     => 'Khak-tēng beh thâi',
-'deletesub'         => '(Chún-pī thâi "$1")',
 'historywarning'    => 'Kéng-kò: Lí beh thâi ê ia̍h ū le̍k-sú:',
 'confirmdeletetext' => 'Lí tih-beh kā 1 ê ia̍h a̍h-sī iáⁿ-siōng (pau-koat siong-koan ê le̍k-sú) éng-kiú tùi chu-liāu-khò· thâi tiāu. Chhiáⁿ khak-tēng lí àn-sǹg án-ne chò, jī-chhiáⁿ liáu-kái hiō-kó, jī-chhiáⁿ bô ûi-hoán [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Chip-hêng sêng-kong',
@@ -694,10 +691,6 @@ Template:Khu-pia̍t-ia̍h',
 'month'         => 'Kàu tó 1 kó͘ goe̍h ûi-chí:',
 'year'          => 'Kàu tó 1 nî ûi-chí:',
 
-'sp-contributions-newest'      => 'Siōng sin ê',
-'sp-contributions-oldest'      => 'Siōng kū ê',
-'sp-contributions-newer'       => 'Khah sin ê $1 hāng',
-'sp-contributions-older'       => 'Khah kū ê $1 hāng',
 'sp-contributions-newbies'     => 'Kan-taⁿ hián-sī sin kháu-chō ê kòng-kiàn',
 'sp-contributions-newbies-sub' => 'Sin lâi--ê',
 'sp-contributions-search'      => 'Chhoē chhut kòng-kiàn',
@@ -780,7 +773,6 @@ Template:Khu-pia̍t-ia̍h',
 # Attribution
 'anonymous'     => '{{SITENAME}} bô kì-miâ ê iōng-chiá',
 'siteuser'      => '{{SITENAME}} iōng-chiá $1',
-'and'           => 'kap',
 'othercontribs' => 'Kin-kù $1 ê kòng-hiàn.',
 'siteusers'     => '{{SITENAME}} iōng-chiá $1',
 
@@ -869,5 +861,8 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 'watchlistedit-numitems'      => 'Lí ê kàm-sī-toaⁿ ū $1 ia̍h, thó-lūn-ia̍h bô sǹg chāi-lāi.',
 'watchlistedit-normal-submit' => 'Mài kàm-sī',
 'watchlistedit-normal-done'   => 'Í-keng ū $1 ia̍h ùi lí ê kám-sī-toaⁿ soá cháu:',
+
+# Special:Filepath
+'filepath' => 'Tóng-àn ê soàⁿ-lō·',
 
 );

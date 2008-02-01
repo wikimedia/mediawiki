@@ -2388,4 +2388,12 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'version-hook-name'             => 'Nome do hook',
 'version-version'               => 'Versão',
 
+# Special:Filepath
+'filepath'         => 'Diretório do ficheiro',
+'filepath-page'    => 'Ficheiro:',
+'filepath-submit'  => 'Diretório',
+'filepath-summary' => 'Através dsta página especial é possível descobrir o endereço completo de um determinado ficheiro. As imagens serão exibidas em sua resolução máxima, outros tipos de ficheiros serão iniciados automaticamente em seus programas correspondentes.
+
+Entre com o nome do ficheiro sem utilizar o prefixo "{{ns:image}}:".',
+
 );

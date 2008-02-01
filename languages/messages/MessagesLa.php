@@ -256,6 +256,7 @@ $messages = array(
 'mytalk'         => 'Disputatum meum',
 'anontalk'       => 'Disputatio huius IP',
 'navigation'     => 'Navigatio',
+'and'            => 'et',
 
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Redire ad $1.',
@@ -1340,7 +1341,6 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'anonymous'        => 'Usor ignotus {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => '{{SITENAME}} usor $1',
 'lastmodifiedatby' => 'Ultima mutatio: $2, $1 ab $3.', # $1 date, $2 time, $3 user
-'and'              => 'et',
 
 # Spam protection
 'subcategorycount'     => 'Huic categoriae {{PLURAL:$1|est una subcategoria|sunt $1 subcategoriae}}.',
@@ -1462,5 +1462,9 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-view' => 'Mutationes paginarum custoditarum monstrare',
 'watchlisttools-edit' => 'Indicem paginarum custoditarum inspicere vel recensere',
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum inspicere vel recensere',
+
+# Special:Filepath
+'filepath'      => 'Fasciculorum inscriptio',
+'filepath-page' => 'Fasciculus:',
 
 );

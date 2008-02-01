@@ -169,6 +169,7 @@ dj'artìcol ancó pa scrit",
 'mytalk'         => 'Mie ciaciarade',
 'anontalk'       => "Ciaciarade për st'adrëssa IP-sì",
 'navigation'     => 'Navigassion',
+'and'            => 'e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadat:',
@@ -1760,7 +1761,6 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'anonymous'        => 'Utent anònim ëd la {{SITENAME}}',
 'siteuser'         => '$1, utent ëd {{SITENAME}}',
 'lastmodifiedatby' => "Sta pàgina-sì a l'é staita modificà l'ùltima vira al $2, $1 da $3.", # $1 date, $2 time, $3 user
-'and'              => 'e',
 'othercontribs'    => 'Basà ant sëj travaj ëd $1.',
 'others'           => 'àutri',
 'siteusers'        => '$1, utent ëd {{SITENAME}}',
@@ -2289,5 +2289,13 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'iranian-calendar-m10' => "Mèis Jalāli ch'a fa des",
 'iranian-calendar-m11' => "Mèis Jalāli ch'a fa óndes",
 'iranian-calendar-m12' => "Meis Jalāli ch'a fa dódes",
+
+# Special:Filepath
+'filepath'         => "Përcors d'archivi",
+'filepath-page'    => 'Archivi:',
+'filepath-submit'  => 'Përcors',
+'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për rive-ie a n'archivi. Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite parte da sò programa a pòsta.
+
+Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:image}}:\".",
 
 );

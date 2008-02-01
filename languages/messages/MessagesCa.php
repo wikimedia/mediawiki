@@ -281,6 +281,7 @@ $messages = array(
 'mytalk'         => 'Discussió',
 'anontalk'       => "Discussió d'aquesta IP",
 'navigation'     => 'Navegació',
+'and'            => 'i',
 
 # Metadata in edit box
 'metadata_help' => 'Metadades:',
@@ -631,7 +632,7 @@ La vostra adreça IP és $3, i el núm. ID del blocatge és #$5. Si us plau, inc
 :''$2''
 
 * Inici del blocatge: $8
-* Final del blocatge: $6 
+* Final del blocatge: $6
 
 Podeu contactar l'usuari $1 o algun altre dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] per a discutir el blocatge.
 
@@ -1183,7 +1184,7 @@ Això resulta en una mitjana {{PLURAL:$5|d'una edició|de '''$5''' edicions}} pe
 i {{PLURAL:$6|'''$6''' visita|'''$6''' visites}} per edició.
 
 La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] és '''$7'''.",
-'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals 
+'userstatstext'          => "Hi ha '''$1''' usuaris registrats, dels quals
 {{PLURAL:$2|un (el '''$4%''') n'és $5|'''$2''' (el '''$4%''') en són $5}}.",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
 
@@ -1282,7 +1283,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'all-logs-page'        => 'Tots els registres',
 'log-search-legend'    => 'Cerca als registres',
 'log-search-submit'    => 'Vés-hi',
-'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador. 
+'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador.
 Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usuari, o la pàgina afectada.",
 'logempty'             => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard'   => 'Cerca els títols que comencin amb aquest text',
@@ -1895,7 +1896,6 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'anonymous'        => 'Usuaris anònims del projecte {{SITENAME}}',
 'siteuser'         => 'Usuari $1 del projecte {{SITENAME}}',
 'lastmodifiedatby' => 'Va modificar-se la pàgina per darrera vegada el $2, $1 per $3.', # $1 date, $2 time, $3 user
-'and'              => 'i',
 'othercontribs'    => 'Basat en les contribucions de $1.',
 'others'           => 'altres',
 'siteusers'        => '{{SITENAME}} usuaris $1',
@@ -2376,5 +2376,10 @@ Trieu amb la previsualització normal.',
 'watchlisttools-view' => 'Visualitza els canvis rellevants',
 'watchlisttools-edit' => 'Visualitza i edita la llista de seguiment',
 'watchlisttools-raw'  => 'Edita la llista de seguiment sense format',
+
+# Special:Filepath
+'filepath'        => "Camí d'arxiu",
+'filepath-page'   => 'Arxiu:',
+'filepath-submit' => 'Camí',
 
 );

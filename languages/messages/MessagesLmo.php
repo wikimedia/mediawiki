@@ -393,8 +393,6 @@ al butún \"tegn piü d'öcc\".",
 
 # Delete/protect/revert
 'deletepage'            => 'Scancela la pagina',
-'confirmdelete'         => 'Cunferma scancelaziun',
-'deletesub'             => '(Scancelaziun de la pagina "$1")',
 'historywarning'        => "Atenziún: La pagina che a sii dré a scancelá la gh'a una stòria:",
 'actioncomplete'        => 'Aziun cumpletada',
 'deletedtext'           => 'La pagina "$1" l\'è stada scancelada. Varda el $2 per una lista di ültim scancelaziun.',
@@ -519,5 +517,8 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 
 # Auto-summaries
 'autosumm-blank' => 'Pagina svujada',
+
+# Special:Filepath
+'filepath' => 'Percuurz daj archivi',
 
 );

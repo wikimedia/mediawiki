@@ -409,6 +409,7 @@ $messages = array(
 'mytalk'         => 'Pembicaraan saya',
 'anontalk'       => 'Pembicaraan IP ini',
 'navigation'     => 'Navigasi',
+'and'            => 'dan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1931,7 +1932,6 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'anonymous'        => 'Pengguna(-pengguna) anonim {{SITENAME}}',
 'siteuser'         => 'Pengguna {{SITENAME}} $1',
 'lastmodifiedatby' => 'Halaman ini terakhir kali diubah $2, $1 oleh $3.', # $1 date, $2 time, $3 user
-'and'              => 'dan',
 'othercontribs'    => 'Didasarkan pada karya $1.',
 'others'           => 'lainnya',
 'siteusers'        => 'Pengguna(-pengguna) {{SITENAME}} $1',
@@ -2403,5 +2403,10 @@ Coba dengan pratayang normal.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag ekstensi tidak dikenal "$1"',
+
+# Special:Filepath
+'filepath'        => 'Lokasi berkas',
+'filepath-page'   => 'Berkas:',
+'filepath-submit' => 'Lokasi',
 
 );

@@ -2395,4 +2395,12 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'version-hook-subscribedby'        => 'Undertecknad av',
 'version-version'                  => 'Version',
 
+# Special:Filepath
+'filepath'         => 'Sökväg till fil',
+'filepath-page'    => 'Fil:',
+'filepath-submit'  => 'Sökväg',
+'filepath-summary' => 'Den här sidan ger den fullständiga sökvägen till en fil. Bilder visas i full upplösning i din webbläsare, andra filtyper öppnas direkt i de program som är associerade till dem.
+
+Ange filens namn utan prefixet "{{ns:image}}:".',
+
 );

@@ -268,6 +268,7 @@ $messages = array(
 'mytalk'         => '我嘅討論',
 'anontalk'       => '同呢個 IP 傾偈',
 'navigation'     => '導航',
+'and'            => '同埋',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata',
@@ -844,12 +845,12 @@ $2',
 'mergelogpagetext'   => '下面係一個最近由一版嘅修訂記錄合併到另一個嘅一覽。',
 
 # Diffs
-'history-title'             => '"$1"嘅修訂歷史',
-'difference'                => '（修訂之間嘅差異）',
-'lineno'                    => '第$1行：',
-'compareselectedversions'   => '比較被選嘅版本',
-'editundo'                  => '復原',
-'diff-multi'                => '(當中有$1次嘅修訂唔會顯示。)',
+'history-title'           => '"$1"嘅修訂歷史',
+'difference'              => '（修訂之間嘅差異）',
+'lineno'                  => '第$1行：',
+'compareselectedversions' => '比較被選嘅版本',
+'editundo'                => '復原',
+'diff-multi'              => '(當中有$1次嘅修訂唔會顯示。)',
 
 # Search results
 'searchresults'         => '搵嘢結果',
@@ -1008,10 +1009,10 @@ $2',
 'newsectionsummary'                 => '/* $1 */ 新小節',
 
 # Recent changes linked
-'recentchangeslinked'                    => '連結頁嘅更改',
-'recentchangeslinked-title'              => '對$1有關嘅更改',
-'recentchangeslinked-noresult'           => '響呢一段時間內連結頁並無更改。',
-'recentchangeslinked-summary'            => "呢一個特別頁列示咗呢一版連出去嘅頁面嘅最近更改。響你嘅監視清單度嘅頁面會以'''粗體'''表示。",
+'recentchangeslinked'          => '連結頁嘅更改',
+'recentchangeslinked-title'    => '對$1有關嘅更改',
+'recentchangeslinked-noresult' => '響呢一段時間內連結頁並無更改。',
+'recentchangeslinked-summary'  => "呢一個特別頁列示咗呢一版連出去嘅頁面嘅最近更改。響你嘅監視清單度嘅頁面會以'''粗體'''表示。",
 
 # Upload
 'upload'                      => '上載檔案',
@@ -1045,7 +1046,7 @@ $2',
 'minlength1'                  => '檔名必須最少要有一個字。',
 'illegalfilename'             => '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'                 => '檔名已經更改成「$1」。',
-'filetype-badmime'            => '「$1」嘅MIME類型檔案係唔容許上載嘅。', 
+'filetype-badmime'            => '「$1」嘅MIME類型檔案係唔容許上載嘅。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''係一種唔需要嘅檔案類型。建議嘅檔案類型有\$2。",
 'filetype-banned-type'        => "'''\".\$1\"'''係一種唔准許嘅檔案類型。容許嘅檔案類型有\$2。",
 'filetype-missing'            => '個檔名並冇副檔名（好以「.jpg」）。',
@@ -1228,9 +1229,9 @@ Template:搞清楚',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
-'withoutinterwiki'         => '無語言連結嘅頁',
-'withoutinterwiki-header'  => '以下嘅頁面係重未有連結到其它嘅語言版本：',
-'withoutinterwiki-submit'  => '顯示',
+'withoutinterwiki'        => '無語言連結嘅頁',
+'withoutinterwiki-header' => '以下嘅頁面係重未有連結到其它嘅語言版本：',
+'withoutinterwiki-submit' => '顯示',
 
 'fewestrevisions' => '有最少修改嘅版',
 
@@ -1472,7 +1473,7 @@ wiki: $PAGEEDITOR_WIKI
 
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。',
 'editcomment'                 => '編輯摘要係："<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯；恢復到[[User:$1|$1]]嘅最後版本。',
+'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯；恢復到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 'protectlogpage'              => '保護日誌',
@@ -1628,7 +1629,7 @@ $1',
 'ipbenableautoblock'          => '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅IP地址',
 'ipbsubmit'                   => '封鎖呢位用戶',
 'ipbother'                    => '其它時間:',
-'ipboptions'                  => '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite',
+'ipboptions'                  => '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附加嘅原因:',
 'ipbhidename'                 => '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名／IP',
@@ -1662,7 +1663,7 @@ $1',
 'blocklink'                   => '封鎖',
 'unblocklink'                 => '解封',
 'contribslink'                => '貢獻',
-'autoblocker'                 => '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\嘅封鎖原因係: 「$2」',
+'autoblocker'                 => '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\\嘅封鎖原因係: 「$2」',
 'blocklogpage'                => '封鎖日誌',
 'blocklogentry'               => '已封鎖[[$1]]，到期時間為$2 $3',
 'blocklogtext'                => '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:Ipblocklist|IP封鎖名單]]睇現時生效嘅封鎖名單',
@@ -1911,7 +1912,6 @@ $1',
 'anonymous'        => '{{SITENAME}}嘅匿名用戶',
 'siteuser'         => '{{SITENAME}}嘅用戶$1',
 'lastmodifiedatby' => '呢一頁最後響 $1 $2 畀 $3 修改。', # $1 date, $2 time, $3 user
-'and'              => '同埋',
 'othercontribs'    => '以$1嘅作品為基礎。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}嘅用戶$1',
@@ -2022,8 +2022,8 @@ Variants for Chinese language
 'variantname-sr'    => '無變換',
 
 # Variants for Kazakh language
-'variantname-kk-latn' => '哈薩克拉丁文',
 'variantname-kk-cyrl' => '哈薩克西里爾字',
+'variantname-kk-latn' => '哈薩克拉丁文',
 'variantname-kk-arab' => '哈薩克阿剌伯文',
 
 # Variants for Kurdish language
@@ -2439,5 +2439,13 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => '未知嘅擴展標籤 "$1"',
+
+# Special:Filepath
+'filepath'         => '檔案路徑',
+'filepath-page'    => '檔名：',
+'filepath-submit'  => '搵路徑',
+'filepath-summary' => '呢個特別頁拎一個檔案嘅完整路徑。圖像會以完整嘅解像度顯示，其它嘅檔案類型會以同佢哋關聯咗嘅程式啟動。
+
+請輸入檔名，唔好連埋個"{{ns:image}}:"開頭。',
 
 );

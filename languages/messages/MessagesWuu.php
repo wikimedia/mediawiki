@@ -121,6 +121,7 @@ $messages = array(
 'mytalk'         => '我个讲张',
 'anontalk'       => '该IP个讲张',
 'navigation'     => '导航',
+'and'            => '搭仔',
 
 'errorpagetitle'    => '错误',
 'returnto'          => '返回到$1。',
@@ -613,8 +614,6 @@ $messages = array(
 # Delete/protect/revert
 'deletepage'      => '删脱页面',
 'confirm'         => '确认',
-'confirmdelete'   => '确认删除',
-'deletesub'       => '（正在删除“$1”）',
 'historywarning'  => '警告：倷要删脱个该只页面有历史：',
 'actioncomplete'  => '操作完成哉',
 'deletedarticle'  => '"[[$1]]" 已经删脱哉',
@@ -625,7 +624,7 @@ $messages = array(
 'rollback_short'  => '恢复',
 'rollbacklink'    => '恢复',
 'rollbackfailed'  => '恢复失败',
-'revertpage'      => '恢复[[Special:Contributions/$2|$2]] ([[User_talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本',
+'revertpage'      => '恢复[[Special:Contributions/$2|$2]] ([[User_talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'  => '保护日志',
 'confirmprotect'  => '确认保护',
 'protectcomment'  => '保护理由:',
@@ -763,7 +762,6 @@ $messages = array(
 
 # Attribution
 'anonymous' => '{{SITENAME}}浪个匿名用户',
-'and'       => '搭仔',
 
 # Patrol log
 'patrol-log-auto' => '（自动）',
@@ -848,5 +846,10 @@ Variants for Chinese language
 
 # Watchlist editor
 'watchlistedit-normal-title' => '编辑监控列表',
+
+# Special:Filepath
+'filepath'        => '文件路径',
+'filepath-page'   => '文件：',
+'filepath-submit' => '路径',
 
 );

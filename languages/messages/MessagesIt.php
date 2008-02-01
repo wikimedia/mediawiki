@@ -2380,4 +2380,12 @@ Usare l\'anteprima standard.',
 'version-hook-subscribedby'        => 'Sottoscrizioni',
 'version-version'                  => 'Versione',
 
+# Special:Filepath
+'filepath'         => 'Percorso di un file',
+'filepath-page'    => 'Nome del file:',
+'filepath-submit'  => 'Percorso',
+'filepath-summary' => 'Questa pagina speciale restituisce il percorso completo di un file. Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri tipi di file viene avviato direttamente il programma associato.
+
+Inserire il nome del file senza il prefisso "{{ns:image}}:"',
+
 );

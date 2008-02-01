@@ -196,6 +196,7 @@ $messages = array(
 'mytalk'         => 'Mien euverlikpazjena',
 'anontalk'       => 'Euverlèk veur dit IP adres',
 'navigation'     => 'Navegatie',
+'and'            => 'en',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1306,8 +1307,6 @@ Commentaar en wiejer assistentie:
 'excontentauthor'             => "inhawd waor: '$1' (aangemaak door [[Special:Contributions/$2|$2]])",
 'exbeforeblank'               => "inhawd veur 't wisse waor: '$1'",
 'exblank'                     => 'pazjena waor laeg',
-'confirmdelete'               => 'Bevèstig wisse',
-'deletesub'                   => '(Wisse "$1")',
 'historywarning'              => 'Waorsjuwing: de pazjena daese wils wisse haet meerdere versies:',
 'confirmdeletetext'           => "De sjteis op 't punt 'n pazjena of e plaetje veur ummer te wisse. Dit haolt allen inhawd en historie oet de database eweg. Bevèstig hieónger dat dit welzeker dien bedoeling is, dats te de gevolge begrieps.",
 'actioncomplete'              => 'Actie voltoeid',
@@ -1336,7 +1335,7 @@ door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make. Emes angers h
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]).",
 'editcomment'                 => '\'t Bewirkingscommentair waor: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]',
+'revertpage'                  => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.',
 'sessionfailure'              => "d'r Liek 'n probleem te zeen mit dien aanmelsessie. Diene hanjeling is gestop oet veurzorg taenge 'n beveiligingsrisico (det bestuit oet meugelik \"hijacking\"(euverkape) van deze sessie). Gao 'n pazjena trök, laaj die pazjena opnuuj en probeer 't nog ins.",
 'protectlogpage'              => "Logbook besjermde pazjena's",
@@ -1735,7 +1734,6 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'anonymous'        => 'Anoniem(e) gebroeker(s) van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} gebroeker $1',
 'lastmodifiedatby' => "Dees pazjena is 't litst verangert op $2, $1 doer $3.", # $1 date, $2 time, $3 user
-'and'              => 'en',
 'othercontribs'    => 'Gebaseerd op wèrk van $1.',
 'others'           => 'angere',
 'siteusers'        => '{{SITENAME}} gebroekers(s) $1',
@@ -2225,5 +2223,13 @@ Probeer normaal veurvertuin.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ónbekindje tag "$1"',
+
+# Special:Filepath
+'filepath'         => 'Bestandjspaad',
+'filepath-page'    => 'Bestandj:',
+'filepath-submit'  => 'Zeuk',
+'filepath-summary' => "Dees speciaal pazjena guf 't vollejig paad veur 'n bestandj. Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes waere drèk in 't mit 't MIME-type verbónje programma geäöpendj.
+
+Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:image}}:\".",
 
 );

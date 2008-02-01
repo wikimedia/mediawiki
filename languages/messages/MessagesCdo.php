@@ -98,6 +98,7 @@ $messages = array(
 'mytalk'         => 'Nguāi gì tō̤-lâung',
 'anontalk'       => 'Cī ciáh IP gì tō̤-lâung-hiĕk',
 'navigation'     => 'Īng-dô̤',
+'and'            => 'gâe̤ng',
 
 'returnto'         => 'Duōng kó̤ $1.',
 'tagline'          => 'Lài-nguòng: {{SITENAME}}',
@@ -320,7 +321,6 @@ Nṳ̄ găi-dŏng sṳ̆-liòng lâ, sié lŏ̤h piĕng-cĭk ciā hiĕk-miêng �
 'cantcreateaccounttitle' => 'Mò̤ nièng-ngài kŭi dióng-hô̤',
 
 # History pages
-'revhistory'          => 'Siŭ-gāi lĭk-sṳ̄',
 'viewpagelogs'        => 'Káng cī miêng hiĕk gì nĭk-cé',
 'nohistory'           => 'Ciā hiĕk mò̤ siŭ-gāi lĭk-sṳ̄.',
 'currentrev'          => 'Hiêng-sì bēng-buōng',
@@ -350,7 +350,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'history-title'           => '"$1" gì siŭ-gāi lĭk-sṳ̄',
 'difference'              => '(Bēng-buōng cĭ-găng gì chă-biék)',
 'lineno'                  => 'Dâ̤ $1 hòng:',
-'editcurrent'             => 'Siŭ-gāi ciā hiĕk gì hiêng-sì bēng-buōng',
 'compareselectedversions' => 'Bī-piâng gēng-sōng bēng-buōng',
 'editundo'                => 'chṳ̄-siĕu',
 'diff-multi'              => '(Dài-dŏng ô {{PLURAL:$1|ék|$1}} bĭk bēng-buōng mò̤ hiēng-sê.)',
@@ -620,8 +619,6 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 'excontent'                   => "nô̤i-ṳ̀ng sê: '$1'",
 'excontentauthor'             => "nô̤i-ṳ̀ng sê: '$1' (bêng-chiā cáuk-ciā nâ ô '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "dù táh cĭ-sèng gì nô̤i-ṳ̀ng sê: '$1'",
-'confirmdelete'               => 'Káuk-nêng chēng hiĕk',
-'deletesub'                   => '(Chēng lâi "$1")',
 'historywarning'              => 'Gīng-gó̤: Nṳ̄ buóh-ái chēng lâi gì hiĕk-miêng ô lĭk-sṳ̄:',
 'confirmdeletetext'           => 'Nṳ̄ cūng-bê ciŏng ciā hiĕk-miêng hĕ̤k ùng-giông lièng ĭ găk só-gé̤ṳ-kó gì lĭk-sṳ̄ ciòng-buô chēng lâi. Chiāng nṳ̄ káuk-nêng: nṳ̄ dŏng-cĭng buóh siōng cūng-kuāng có̤, nṳ̄ liēu-gāi cūng-kuāng có̤ gì hâiu-guō, bêng-chiā nṳ̄ cūng-kuāng có̤ sê hù-hăk [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Cék-hèng sìng-gŭng',
@@ -640,7 +637,7 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 
 Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū có̤ gì.',
 'editcomment'                 => 'Siŭ-gāi pàng-lâung sê: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]) sū có̤ gì siŭ-gāi duōng kó̤ [[User:$1|$1]] gì sèng 1 bĭk bēng-buōng',
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]) sū có̤ gì siŭ-gāi duōng kó̤ [[User:$1|$1]] gì sèng 1 bĭk bēng-buōng', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Bō̤-hô nĭk-cé',
 'protectsub'                  => '(Bō̤-hô "$1")',
 'confirmprotect'              => 'Káuk-nêng bō̤-hô',
@@ -684,10 +681,6 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'month'         => 'Téng nguŏk-hông (gâe̤ng gáing cā):',
 'year'          => 'Téng nièng-hông (gâe̤ng gáing cā):',
 
-'sp-contributions-newest'      => 'Dék sĭng gì',
-'sp-contributions-oldest'      => 'Dék gô gì',
-'sp-contributions-newer'       => 'Gă sĭng gì $1 hâung',
-'sp-contributions-older'       => 'Gă gô gì $1 hâung',
 'sp-contributions-newbies'     => 'Nâ hiēng-sê sĭng kŭi dióng-hô gì góng-hióng',
 'sp-contributions-newbies-sub' => 'Ciáh lì gì',
 'sp-contributions-blocklog'    => 'Hŭng-sō̤ nĭk-cé',
@@ -728,7 +721,7 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'ipbenableautoblock'       => 'Cê̤ṳ-dông hŭng-sō̤ ciā ê̤ṳng-hô siā-ê̤ṳng gì IP dê-cī',
 'ipbsubmit'                => 'Hŭng-sō̤ ciā ê̤ṳng-hô',
 'ipbother'                 => 'Gì-tă sì-găng',
-'ipboptions'               => '2 dēng-cṳ̆ng:2 hours,1 gĕ̤ng:1 day,3 gĕ̤ng:3 days,1 lā̤-buái:1 week,2 lā̤-buái:2 weeks,1 month:1 nguŏk-nĭk,3 nguŏk-nĭk:3 months,6 nguŏk-nĭk:6 months,1 nièng:1 year,īng-uōng:infinite',
+'ipboptions'               => '2 dēng-cṳ̆ng:2 hours,1 gĕ̤ng:1 day,3 gĕ̤ng:3 days,1 lā̤-buái:1 week,2 lā̤-buái:2 weeks,1 month:1 nguŏk-nĭk,3 nguŏk-nĭk:3 months,6 nguŏk-nĭk:6 months,1 nièng:1 year,īng-uōng:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'           => 'gì-tă',
 'ipbotherreason'           => 'Gì-tă nguòng-ĭng:',
 'blockipsuccesssub'        => 'Hŭng-sō̤ sìng-gŭng',
@@ -817,7 +810,6 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 # Attribution
 'anonymous'        => '{{SITENAME}} gì mò̤ miàng ê̤ṳng-hô.',
 'lastmodifiedatby' => 'Ciā hiĕk-miêng sê diŏh $2, $1, iù  $3 có̤i-hâiu siŭ-gāi gì.', # $1 date, $2 time, $3 user
-'and'              => 'gâe̤ng',
 
 # Spam protection
 'subcategorycount'       => 'Ciā lôi-biék â-dā̤ gê̤ṳng-cūng ô {{PLURAL:$1|ék|$1}} bĭk cṳ̄-lôi-biék.',
@@ -922,5 +914,8 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 'watchlisttools-view' => 'Káng siŏng-guăng gāi-biéng',
 'watchlisttools-edit' => 'Káng gâe̤ng siŭ-gāi gáng-sê-dăng',
 'watchlisttools-raw'  => 'Siŭ-gāi nguòng-sṳ̄ gáng-sê-dăng',
+
+# Special:Filepath
+'filepath-page' => 'Ùng-giông:',
 
 );

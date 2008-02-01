@@ -510,6 +510,7 @@ $messages = array(
 'mytalk'         => 'Талқылауым',
 'anontalk'       => 'IP талқылауы',
 'navigation'     => 'Бағыттау',
+'and'            => 'және',
 
 # Metadata in edit box
 'metadata_help' => 'Қосымша деректер:',
@@ -1496,9 +1497,9 @@ $3 келтірілген себебі: ''$2''",
 'brokenredirects-edit'   => '(өңдеу)',
 'brokenredirects-delete' => '(жою)',
 
-'withoutinterwiki'         => 'Еш тілге сілтeмеген беттер',
-'withoutinterwiki-header'  => 'Келесі беттер басқа тілдерге сілтемейді:',
-'withoutinterwiki-submit'  => 'Көрсет',
+'withoutinterwiki'        => 'Еш тілге сілтeмеген беттер',
+'withoutinterwiki-header' => 'Келесі беттер басқа тілдерге сілтемейді:',
+'withoutinterwiki-submit' => 'Көрсет',
 
 'fewestrevisions' => 'Ең аз түзетілген беттер',
 
@@ -2200,7 +2201,6 @@ $1',
 'anonymous'        => '{{SITENAME}} тіркелгісіз қатысушы(лары)',
 'siteuser'         => '{{SITENAME}} қатысушы $1',
 'lastmodifiedatby' => 'Бұл бетті $3 қатысушы соңғы өзгерткен кезі: $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'және',
 'othercontribs'    => 'Шығарма негізін $1 жазған.',
 'others'           => 'басқалар',
 'siteusers'        => '{{SITENAME}} қатысушы(лар) $1',
@@ -2762,5 +2762,13 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Танылмаған кеңейтпе белгісі «$1»',
+
+# Special:Filepath
+'filepath'         => 'Файл орналасуы ',
+'filepath-page'    => 'Файл аты:',
+'filepath-submit'  => 'Орналасуын табу ',
+'filepath-summary' => 'Бұл арнайы бет файл орналасуы толық жолын қайтарады. Суреттер толық ажыратылымдығымен көрсетіледі, басқа файл түрлеріне қатысты бағдарламасы тура жегіледі.
+
+Файл атауын «{{ns:image}}:» деген бастауышсыз еңгізіңіз.',
 
 );

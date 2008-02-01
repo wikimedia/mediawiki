@@ -387,6 +387,7 @@ $messages = array(
 'mytalk'         => 'Vitám',
 'anontalk'       => 'az IP-cím vitalapja',
 'navigation'     => 'Navigáció',
+'and'            => 'és',
 
 # Metadata in edit box
 'metadata_help' => 'Metaadatok:',
@@ -2058,7 +2059,6 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'anonymous'        => 'Névtelen {{SITENAME}}-felhasználó(k)',
 'siteuser'         => '$1 {{SITENAME}}-felhasználó',
 'lastmodifiedatby' => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.', # $1 date, $2 time, $3 user
-'and'              => 'és',
 'othercontribs'    => '$1 munkája alapján.',
 'others'           => 'mások',
 'siteusers'        => '$1 {{SITENAME}}-felhasználó(k)',
@@ -2557,5 +2557,13 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 
 # Core parser functions
 'unknown_extension_tag' => 'Ismeretlen tag kiterjesztés: $1',
+
+# Special:Filepath
+'filepath'         => 'Fájlelérés',
+'filepath-page'    => 'Fájl:',
+'filepath-submit'  => 'Elérés',
+'filepath-summary' => 'Ezen lap segítségével lekérheted egy adott fájl pontos útvonalát. A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozzájuk rendelt programmal indulnak el.
+
+Add meg a fájlnevet a „{{ns:image}}:” prefixum nélkül.',
 
 );

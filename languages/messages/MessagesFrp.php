@@ -198,6 +198,7 @@ $messages = array(
 'mytalk'         => 'Pâge de discussion',
 'anontalk'       => 'Discussion avouéc ceta adrèce IP',
 'navigation'     => 'Navigacion',
+'and'            => 'et',
 
 # Metadata in edit box
 'metadata_help' => 'Mètabalyês :',
@@ -1856,7 +1857,6 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'anonymous'        => 'Utilisator(s) pas enregistrâ(s) de {{SITENAME}}',
 'siteuser'         => 'Utilisator $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Ceta pâge at étâ modifiâ por lo dèrriér côp lo $1 a $2 per $3.', # $1 date, $2 time, $3 user
-'and'              => 'et',
 'othercontribs'    => 'Basâ sur l’ôvra de $1.',
 'others'           => 'ôtros',
 'siteusers'        => 'Utilisator(s) $1 de {{SITENAME}}',
@@ -2400,5 +2400,13 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
+
+# Special:Filepath
+'filepath'         => 'Chemin d’accès d’un fichiér',
+'filepath-page'    => 'Fichiér :',
+'filepath-submit'  => 'Chemin d’accès',
+'filepath-summary' => 'Ceta pâge afiche lo chemin d’accès complèt d’un fichiér ; les émâges sont montrâs en rèsolucion hôta, los fichiérs ôdiô et vidèô s’ègzécutont avouéc lor programe associyê.
+
+Entrâd lo nom du fichiér sen lo prèfixe « {{ns:image}}: ».',
 
 );

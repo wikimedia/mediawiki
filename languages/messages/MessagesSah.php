@@ -145,6 +145,7 @@ $messages = array(
 'mytalk'         => 'Кэпсэтэр сирим',
 'anontalk'       => 'Бу IP-га ырытыы',
 'navigation'     => 'Навигация',
+'and'            => 'уонна',
 
 # Metadata in edit box
 'metadata_help' => 'Мета дааннайдар:',
@@ -1784,7 +1785,6 @@ $1',
 'anonymous'        => '{{SITENAME}} ааттамматах кыттааччылара',
 'siteuser'         => '{{SITENAME}} кыттааччыта $1',
 'lastmodifiedatby' => 'Бу сирэйи бүтэһигин $3 кыттааччы $2 уларыппыт, $1.', # $1 date, $2 time, $3 user
-'and'              => 'уонна',
 'othercontribs'    => '$1 үлэтигэр олоҕурбут.',
 'others'           => 'атыттар',
 'siteusers'        => '{{SITENAME}} кыттааччыта (-лара) $1',
@@ -2285,5 +2285,13 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Биллибэт тиэг "$1"',
+
+# Special:Filepath
+'filepath'         => 'Билэ суола',
+'filepath-page'    => 'Билэ:',
+'filepath-submit'  => 'Суол',
+'filepath-summary' => 'Бу аналлаах сирэй билэ толору суолун (дисскэҕэ ханна сытарын) көрдөрөр.
+
+Билэ аатын префикса суох киллэр <code>{{ns:image}}:</code>.',
 
 );

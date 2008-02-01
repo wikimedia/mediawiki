@@ -2337,4 +2337,10 @@ Yritä normaalia esikatselua.',
 'version-hook-subscribedby'        => 'Kytkökset',
 'version-version'                  => 'Versio',
 
+# Special:Filepath
+'filepath'         => 'Tiedoston osoite',
+'filepath-page'    => 'Tiedosto',
+'filepath-submit'  => 'Selvitä osoite',
+'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen. Anna tiedoston nimi ilman {{ns:image}}-nimiavaruusliitettä.',
+
 );

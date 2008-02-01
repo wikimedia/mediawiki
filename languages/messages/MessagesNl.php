@@ -2542,4 +2542,12 @@ Probeer normale voorvertoning.',
 'version-hook-subscribedby'        => 'Geabonneerd door',
 'version-version'                  => 'Versie',
 
+# Special:Filepath
+'filepath'         => 'Bestandslocatie',
+'filepath-page'    => 'Bestand:',
+'filepath-submit'  => 'Zoeken',
+'filepath-summary' => 'Deze speciale pagina geeft het volledige pad voor een bestand. Afbeeldingen worden in hun volledige resolutie getoond. Andere bestandstypen worden direct in het met het MIME-type verbonden programma geopend.
+
+Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
+
 );

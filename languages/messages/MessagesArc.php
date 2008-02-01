@@ -69,6 +69,7 @@ $messages = array(
 'mypage'         => 'ܕܦܝ',
 'mytalk'         => 'ܕܘܪܫܝ',
 'navigation'     => 'ܐܠܦܪܘܬܐ',
+'and'            => 'ܘ',
 
 'errorpagetitle'    => 'ܛܥܝܘܬܐ',
 'help'              => 'ܥܘܕܪܢܐ',
@@ -126,7 +127,7 @@ $messages = array(
 
 # Login and logout pages
 'login'        => 'ܥܘܠ',
-'userlogin'    => 'ܥܘܠ \ ܒܪܝ ܫܡܐ',
+'userlogin'    => 'ܥܘܠ \\ ܒܪܝ ܫܡܐ',
 'logout'       => 'ܦܠܛ',
 'userlogout'   => 'ܦܠܘܛ',
 'yourrealname' => ':ܫܡܐ ܫܪܝܪܐ',
@@ -204,9 +205,6 @@ $messages = array(
 # Namespace 8 related
 'allmessagesname' => 'ܫܡܐ',
 
-# Attribution
-'and' => 'ܘ',
-
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ܟܠ',
 'namespacesall'    => 'ܟܠ',
@@ -219,5 +217,9 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'ܙܠ',
+
+# Special:Filepath
+'filepath'        => 'ܫܒܝܠܐ ܕܫܘܦܝܢܐ',
+'filepath-submit' => 'ܫܒܝܠܐ',
 
 );

@@ -477,6 +477,7 @@ $messages = array(
 'mytalk'         => 'نقاشي',
 'anontalk'       => 'النقاش لعنوان الأيبي هذا',
 'navigation'     => 'إبحار',
+'and'            => 'و',
 
 # Metadata in edit box
 'metadata_help' => 'بيانات ميتا:',
@@ -2126,7 +2127,6 @@ $1',
 'anonymous'        => 'مستخدم مجهول ل{{SITENAME}}',
 'siteuser'         => 'مستخدم {{SITENAME}} $1',
 'lastmodifiedatby' => 'آخر تعديل لهذه الصفحة كان في $2، $1 بواسطة $3.', # $1 date, $2 time, $3 user
-'and'              => 'و',
 'othercontribs'    => 'بناء على عمل $1.',
 'others'           => 'أخرى',
 'siteusers'        => '{{SITENAME}} مستخدم(و) $1',
@@ -2695,5 +2695,11 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
+
+# Special:Filepath
+'filepath'         => 'مسار ملف',
+'filepath-page'    => 'الملف:',
+'filepath-submit'  => 'المسار',
+'filepath-summary' => 'هذه الصفحة الخاصة تعرض المسار الكامل لملف. ستعرض الصور بأقصى دقة، ستعمل أنواع الملفات الأخرى بالبرنامج المخصص لهم مباشرة؛ أدخل اسم الملف بدون البادئة "{{ns:image}}:"',
 
 );

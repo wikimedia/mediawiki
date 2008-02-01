@@ -214,6 +214,7 @@ $messages = array(
 'mytalk'         => '我的对话页',
 'anontalk'       => '该IP的对话页',
 'navigation'     => '导航',
+'and'            => '和',
 
 # Metadata in edit box
 'metadata_help' => '元数据:',
@@ -1164,9 +1165,9 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(编辑)',
 'brokenredirects-delete' => '(删除)',
 
-'withoutinterwiki'         => '未有语言链接的页面',
-'withoutinterwiki-header'  => '以下的页面是未有语言链接到其它语言版本:',
-'withoutinterwiki-submit'  => '显示',
+'withoutinterwiki'        => '未有语言链接的页面',
+'withoutinterwiki-header' => '以下的页面是未有语言链接到其它语言版本:',
+'withoutinterwiki-submit' => '显示',
 
 'fewestrevisions' => '最少修订的页面',
 
@@ -1408,7 +1409,7 @@ $NEWPAGE
 
 最后编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]])。',
 'editcomment'                 => '编辑说明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑；更改回[[User:$1|$1]]的最后一个版本',
+'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑；更改回[[User:$1|$1]]的最后一个版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '恢复由$1的编辑；更改回$2的最后一个版本。',
 'sessionfailure'              => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 'protectlogpage'              => '保护日志',
@@ -1560,7 +1561,7 @@ $1',
 'ipbenableautoblock'          => '自动查封此用户最后所用的IP地址，以及后来试图编辑所用的所有地址',
 'ipbsubmit'                   => '查封该地址',
 'ipbother'                    => '其它时间:',
-'ipboptions'                  => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite',
+'ipboptions'                  => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附带原因:',
 'ipbhidename'                 => '在查封日志、活跃查封列表以及用户列表中隐藏用户名／IP',
@@ -1609,12 +1610,12 @@ $1',
 'ipb_already_blocked'         => '已经封锁"$1"',
 'ipb_cant_unblock'            => '错误: 找不到查封ID$1。可能已经解除封禁。',
 'ipb_blocked_as_range'        => '错误: 该IP $1 无直接查封，不可以解除封禁。但是它是在 $2 的查封范围之内，该段范围是可以解除封禁的。',
-'ip_range_invalid'            => '无效的IP范围。\n',
+'ip_range_invalid'            => '无效的IP范围。\\n',
 'blockme'                     => '禁封我',
 'proxyblocker'                => '代理封锁器',
 'proxyblocker-disabled'       => '这个功能已经禁用。',
 'proxyblockreason'            => '您的IP地址是一个开放的代理，它已经被封锁。请联系您的因特网服务提供商或技术支持者并告知告知他们该严重的安全问题。',
-'proxyblocksuccess'           => '完成。\n',
+'proxyblocksuccess'           => '完成。\\n',
 'sorbsreason'                 => '您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器。',
 'sorbs_create_account_reason' => '由于您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
 
@@ -1847,7 +1848,6 @@ $1',
 'anonymous'        => '{{SITENAME}}的匿名用户',
 'siteuser'         => '{{SITENAME}}用户$1',
 'lastmodifiedatby' => '此页由$3于$1 $2的最后更改。', # $1 date, $2 time, $3 user
-'and'              => '和',
 'othercontribs'    => '在$1的工作基础上。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}用户$1',
@@ -2282,7 +2282,7 @@ $1
 'redirectingto' => '重定向到[[$1]]...',
 
 # action=purge
-'confirm_purge'        => '要清除此页面的缓存吗?\n\n$1',
+'confirm_purge'        => '要清除此页面的缓存吗?\\n\\n$1',
 'confirm_purge_button' => '确定',
 
 # AJAX search
@@ -2354,5 +2354,13 @@ $1
 
 # Core parser functions
 'unknown_extension_tag' => '不明的扩展标签 "$1"',
+
+# Special:Filepath
+'filepath'         => '文件路径',
+'filepath-page'    => '文件名：',
+'filepath-submit'  => '查找路径',
+'filepath-summary' => '这个特殊页面撷取一个文件的完整路径。图像会以完整的解像度显示，其它的文件类型会以同它们已关联程序启动。
+
+请输入档名，不要包含"{{ns:image}}:"开头。',
 
 );

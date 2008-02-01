@@ -194,6 +194,7 @@ $messages = array(
 'mytalk'         => '我的對話頁',
 'anontalk'       => '該IP的對話頁',
 'navigation'     => '導航',
+'and'            => '和',
 
 # Metadata in edit box
 'metadata_help' => '元數據:',
@@ -578,11 +579,11 @@ $2',
 'previewnote'               => '請記住這只是預覽，內容還未保存！',
 'previewconflict'           => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
 'session_fail_preview'      => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。</strong>',
-'session_fail_preview_html' => '<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
+'session_fail_preview_html' => "<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
 
-\'\'由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。\'\'
+''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
-<strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>',
+<strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>",
 'token_suffix_mismatch'     => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                   => '正在編輯$1',
@@ -747,12 +748,12 @@ $2',
 'mergelogpagetext'   => '以下是一個最近由一個頁面的修訂歷史合併到另一個頁面的列表。',
 
 # Diffs
-'history-title'             => '「$1」的修訂歷史',
-'difference'                => '(修訂版本間差異)',
-'lineno'                    => '第$1行：',
-'compareselectedversions'   => '比較選定的版本',
-'editundo'                  => '撤銷',
-'diff-multi'                => '($1個中途的修訂版本沒有顯示。)',
+'history-title'           => '「$1」的修訂歷史',
+'difference'              => '(修訂版本間差異)',
+'lineno'                  => '第$1行：',
+'compareselectedversions' => '比較選定的版本',
+'editundo'                => '撤銷',
+'diff-multi'              => '($1個中途的修訂版本沒有顯示。)',
 
 # Search results
 'searchresults'         => '搜索結果',
@@ -910,10 +911,10 @@ $2',
 'newsectionsummary'                 => '/* $1 */ 新段落',
 
 # Recent changes linked
-'recentchangeslinked'                    => '鏈出更改',
-'recentchangeslinked-title'              => '對於$1有關的鏈出更改',
-'recentchangeslinked-noresult'           => '在這一段時間中連結的頁面並無更改。',
-'recentchangeslinked-summary'            => "這一個特殊頁面列示這一頁鏈出頁面的最近更改。在您監視列表中的頁面會以'''粗體'''表示。",
+'recentchangeslinked'          => '鏈出更改',
+'recentchangeslinked-title'    => '對於$1有關的鏈出更改',
+'recentchangeslinked-noresult' => '在這一段時間中連結的頁面並無更改。',
+'recentchangeslinked-summary'  => "這一個特殊頁面列示這一頁鏈出頁面的最近更改。在您監視列表中的頁面會以'''粗體'''表示。",
 
 # Upload
 'upload'                      => '上傳檔案',
@@ -1139,9 +1140,9 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
-'withoutinterwiki'         => '未有語言鏈接的頁面',
-'withoutinterwiki-header'  => '以下的頁面是未有語言鏈接到其它語言版本:',
-'withoutinterwiki-submit'  => '顯示',
+'withoutinterwiki'        => '未有語言鏈接的頁面',
+'withoutinterwiki-header' => '以下的頁面是未有語言鏈接到其它語言版本:',
+'withoutinterwiki-submit' => '顯示',
 
 'fewestrevisions' => '最少修訂的頁面',
 
@@ -1383,7 +1384,7 @@ $NEWPAGE
 
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本',
+'revertpage'                  => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '恢復由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
@@ -1533,7 +1534,7 @@ $1',
 'ipbenableautoblock'          => '自動查封此用戶最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit'                   => '查封該地址',
 'ipbother'                    => '其它時間:',
-'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite',
+'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附帶原因:',
 'ipbhidename'                 => '在查封日誌、活躍查封列表以及用戶列表中隱藏用戶名／IP',
@@ -1581,12 +1582,12 @@ $1',
 'ipb_already_blocked'         => '已經封鎖"$1"',
 'ipb_cant_unblock'            => '錯誤: 找不到查封ID$1。可能已經解除封禁。',
 'ipb_blocked_as_range'        => '錯誤: 該IP $1 無直接查封，不可以解除封禁。但是它是在 $2 的查封範圍之內，該段範圍是可以解除封禁的。',
-'ip_range_invalid'            => '無效的IP範圍。\n',
+'ip_range_invalid'            => '無效的IP範圍。\\n',
 'blockme'                     => '查封我',
 'proxyblocker'                => '代理封鎖器',
 'proxyblocker-disabled'       => '這個功能已經停用。',
 'proxyblockreason'            => '您的IP位址是一個開放的代理，它已經被封鎖。請聯繫您的網際網路服務提供商或技術支援者並告知告知他們該嚴重的安全問題。',
-'proxyblocksuccess'           => '完成。\n',
+'proxyblocksuccess'           => '完成。\\n',
 'sorbsreason'                 => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
 'sorbs_create_account_reason' => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
 
@@ -1820,7 +1821,6 @@ $1',
 'anonymous'        => '{{SITENAME}}的匿名用戶',
 'siteuser'         => '{{SITENAME}}用戶$1',
 'lastmodifiedatby' => '此頁由$3於$1 $2的最後更改。', # $1 date, $2 time, $3 user
-'and'              => '和',
 'othercontribs'    => '在$1的工作基礎上。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}用戶$1',
@@ -2255,7 +2255,7 @@ $1
 'redirectingto' => '重定向到[[$1]]...',
 
 # action=purge
-'confirm_purge'        => '要清除此頁面的快取嗎?\n\n$1',
+'confirm_purge'        => '要清除此頁面的快取嗎?\\n\\n$1',
 'confirm_purge_button' => '確定',
 
 # AJAX search
@@ -2327,5 +2327,13 @@ $1
 
 # Core parser functions
 'unknown_extension_tag' => '不明的擴展標籤 "$1"',
+
+# Special:Filepath
+'filepath'         => '檔案路徑',
+'filepath-page'    => '檔案名：',
+'filepath-submit'  => '搜尋路徑',
+'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖像會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。
+
+請輸入檔名，不要包含"{{ns:image}}:"開頭。',
 
 );

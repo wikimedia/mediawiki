@@ -187,6 +187,7 @@ $messages = array(
 'mytalk'         => 'Mia diskuto',
 'anontalk'       => 'Diskutpaĝo por tiu ĉi IP',
 'navigation'     => 'Navigado',
+'and'            => 'kaj',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatumoj:',
@@ -1620,7 +1621,6 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'anonymous'        => 'Anonima(j) uzanto(j) de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} uzanto $1',
 'lastmodifiedatby' => 'Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.', # $1 date, $2 time, $3 user
-'and'              => 'kaj',
 'othercontribs'    => 'Bazita sur la laboro de $1.',
 'others'           => 'aliaj',
 'siteusers'        => '{{SITENAME}} uzanto(j) $1',
@@ -1810,5 +1810,11 @@ $1',
 'watchlisttools-view' => 'Montru koncernajn ŝanĝojn',
 'watchlisttools-edit' => 'Vidi kaj redakti atentaron',
 'watchlisttools-raw'  => 'Redakti krudan atentaron',
+
+# Special:Filepath
+'filepath'         => 'Dosiera pado',
+'filepath-page'    => 'Dosiero:',
+'filepath-submit'  => 'Pado',
+'filepath-summary' => 'Ĉi tiu speciala paĝo redonas la kompletan padon por dosiero. Bildoj estas montrataj en alta distingivo, aliaj dosieraj tipoj estas rekte startataj per ties asociita programo.',
 
 );

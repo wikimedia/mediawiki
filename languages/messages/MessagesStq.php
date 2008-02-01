@@ -160,6 +160,7 @@ $messages = array(
 'mytalk'         => 'Oaine Diskussion',
 'anontalk'       => 'Diskussionssiede foar dissen IP',
 'navigation'     => 'Navigation',
+'and'            => 'un',
 
 # Metadata in edit box
 'metadata_help' => 'Metadoatäie:',
@@ -1761,7 +1762,6 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'anonymous'        => 'Anonyme(n) Benutser ap {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutser $1',
 'lastmodifiedatby' => 'Disse Siede wuude toulääst annerd uum $2, $1 fon $3.', # $1 date, $2 time, $3 user
-'and'              => 'un',
 'othercontribs'    => 'Basierd ap ju Oarbaid fon $1.',
 'others'           => 'uur',
 'siteusers'        => '{{SITENAME}}-Benutser $1',
@@ -2259,5 +2259,11 @@ $1',
 'watchlisttools-view' => 'Beooboachtengslieste: Annerengen',
 'watchlisttools-edit' => 'normoal beoarbaidje',
 'watchlisttools-raw'  => 'Liestenformoat beoarbaidje (Import/Export)',
+
+# Special:Filepath
+'filepath'         => 'Doatäipaad',
+'filepath-page'    => 'Doatäi:',
+'filepath-submit'  => 'Paad säike',
+'filepath-summary' => 'Mäd disse Spezialsiede lät sik die komplette Paad fon ju aktuelle Version fon ne Doatäi sunner Uumwai oufräigje. Ju anfräigede Doatäi wäd fluks deerstoald blw. mäd ju ferknätte Anweendenge started.',
 
 );

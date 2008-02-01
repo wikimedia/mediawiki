@@ -79,6 +79,7 @@ $messages = array(
 'mytalk'         => 'E mo discussioni',
 'anontalk'       => 'Discussione per istu indirizzu IP',
 'navigation'     => 'Navigazione',
+'and'            => 'è',
 
 'errorpagetitle'   => 'Errore',
 'returnto'         => 'Vultà à $1.',
@@ -240,18 +241,18 @@ $messages = array(
 'grouppage-bureaucrat' => '{{ns:project}}:Burocrati',
 
 # Recent changes
-'recentchanges'                  => 'Ultimi cambiamenti',
-'rcnotefrom'                     => "Quì sò discritti i cambiamenti dipoi <b>$2</b> (sin'à <b>$1</b>).",
-'rclistfrom'                     => 'Mustrà i cambiamenti dipoi $1',
-'rcshowhideminor'                => '$1 i cambiamenti minori',
-'rcshowhidebots'                 => '$1 i boti',
-'rcshowhideliu'                  => "$1 l'utilizatori registrati",
-'rcshowhideanons'                => '$1 i cuntributori anonimi',
-'rcshowhidemine'                 => '$1 e mo cuntribuzioni',
-'rclinks'                        => 'Mustrà ultimi $1 cambiamenti in i $2 ghjorni scorsi<br />$3',
-'hist'                           => 'cron',
-'hide'                           => 'piattà',
-'show'                           => 'mustrà',
+'recentchanges'   => 'Ultimi cambiamenti',
+'rcnotefrom'      => "Quì sò discritti i cambiamenti dipoi <b>$2</b> (sin'à <b>$1</b>).",
+'rclistfrom'      => 'Mustrà i cambiamenti dipoi $1',
+'rcshowhideminor' => '$1 i cambiamenti minori',
+'rcshowhidebots'  => '$1 i boti',
+'rcshowhideliu'   => "$1 l'utilizatori registrati",
+'rcshowhideanons' => '$1 i cuntributori anonimi',
+'rcshowhidemine'  => '$1 e mo cuntribuzioni',
+'rclinks'         => 'Mustrà ultimi $1 cambiamenti in i $2 ghjorni scorsi<br />$3',
+'hist'            => 'cron',
+'hide'            => 'piattà',
+'show'            => 'mustrà',
 
 # Recent changes linked
 'recentchangeslinked' => 'Cambiamenti assuciati',
@@ -440,7 +441,6 @@ $messages = array(
 
 # Attribution
 'anonymous' => 'Utilizatore(/i) anonimu(/i) di {{SITENAME}}',
-'and'       => 'è',
 'others'    => 'altri',
 
 # Spam protection
@@ -494,5 +494,8 @@ $messages = array(
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Pagine:',
+
+# Special:Filepath
+'filepath-page' => 'Schedariu:',
 
 );

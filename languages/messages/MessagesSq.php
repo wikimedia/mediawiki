@@ -188,6 +188,7 @@ $messages = array(
 'mytalk'         => 'Diskutimet e mia',
 'anontalk'       => 'Diskutimet për këtë IP',
 'navigation'     => 'Shfleto',
+'and'            => 'dhe',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1419,7 +1420,6 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # Attribution
 'anonymous'        => 'Përdorues anonim të {{SITENAME}}',
 'lastmodifiedatby' => 'Kjo faqe është redaktuar së fundit më $2, $1 nga $3.', # $1 date, $2 time, $3 user
-'and'              => 'dhe',
 'othercontribs'    => 'Bazuar në punën e: $1',
 'others'           => 'të tjerë',
 'siteusers'        => 'Përdoruesit $1 e {{SITENAME}}',
@@ -1697,5 +1697,10 @@ $1',
 'autosumm-replace' => "Faqja u zëvendësua me '$1'",
 'autoredircomment' => 'Përcjellim te [[$1]]',
 'autosumm-new'     => 'Faqe e re: $1',
+
+# Special:Filepath
+'filepath'        => 'Vendndodhja e skedave',
+'filepath-page'   => 'Skeda:',
+'filepath-submit' => 'Shko',
 
 );

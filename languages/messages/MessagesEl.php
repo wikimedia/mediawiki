@@ -2479,4 +2479,9 @@ $1',
 # Core parser functions
 'unknown_extension_tag' => 'Άγνωστη ετικέτα επέκτασης "$1"',
 
+# Special:Filepath
+'filepath'        => 'Διαδρομή αρχείου',
+'filepath-page'   => 'Αρχείο:',
+'filepath-submit' => 'Διαδρομή',
+
 );

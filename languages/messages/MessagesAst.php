@@ -2358,4 +2358,9 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'version-hook-subscribedby'        => 'Suscritu por',
 'version-version'                  => 'Versión',
 
+# Special:Filepath
+'filepath'        => "Ruta d'archivu",
+'filepath-page'   => 'Archivu:',
+'filepath-submit' => 'Ruta',
+
 );

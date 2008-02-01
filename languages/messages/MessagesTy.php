@@ -159,4 +159,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-search' => 'Roromā’imi {{SITENAME}}',
 
+# Special:Filepath
+'filepath-page' => 'Putu’ite:',
+
 );

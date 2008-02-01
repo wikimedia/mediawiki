@@ -1244,4 +1244,9 @@ Por favor, escolha outro título.',
 'version-hook-name'             => 'Nome do hook',
 'version-version'               => 'Versão',
 
+# Special:Filepath
+'filepath'        => 'Diretório do arquivo',
+'filepath-page'   => 'Arquivo:',
+'filepath-submit' => 'Diretório',
+
 );

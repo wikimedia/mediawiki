@@ -272,6 +272,7 @@ $messages = array(
 'mytalk'         => 'Min diskusjonsside',
 'anontalk'       => 'Brukerdiskusjon for denne IP-adressa',
 'navigation'     => 'Navigasjon',
+'and'            => 'og',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1855,7 +1856,6 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'anonymous'        => 'Anonym(e) bruker(e) av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-bruker $1',
 'lastmodifiedatby' => 'Denne siden ble sist redigert $2, $1 av $3.', # $1 date, $2 time, $3 user
-'and'              => 'og',
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-bruker(e) $1',
@@ -2335,5 +2335,13 @@ Prøv vanlig forhåndsvisning.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukjent tilleggsmerking «$1»',
+
+# Special:Filepath
+'filepath'         => 'Filsti',
+'filepath-page'    => 'Fil:',
+'filepath-submit'  => 'Sti',
+'filepath-summary' => 'Denne spesialsiden gir den fullstendige stien for en fil. Bilder vises i full oppløsning; andre filtyper startes direkte i sine assosierte programmer.
+
+Skriv inn filnavnet uten «{{ns:image}}:»-prefikset.',
 
 );

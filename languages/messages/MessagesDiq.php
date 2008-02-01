@@ -341,4 +341,7 @@ href="" class="internal"}?{/a}) bımocne.',
 # AJAX search
 'articletitles' => 'nuşte',
 
+# Special:Filepath
+'filepath-page' => 'Dosya:',
+
 );
