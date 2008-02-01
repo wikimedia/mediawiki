@@ -4572,7 +4572,6 @@ class Parser
 		$this->setTitle( $wgTitle ); // not generally used but removes an ugly failure mode
 		$this->mOptions = new ParserOptions;
 		$this->setOutputType( self::OT_WIKI );
-		$curIndex = 0;
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
 
@@ -4597,21 +4596,18 @@ class Parser
 			// Section zero doesn't nest, level=big
 			$targetLevel = 1000;
 		} else {
-			while ( $node ) {
-				if ( $node->getName() == 'h' ) {
-					if ( $curIndex + 1 == $sectionIndex ) {
+            while ( $node ) {
+                if ( $node->getName() == 'h' ) {
+                    $bits = $node->splitHeading();
+					if ( $bits['i'] == $sectionIndex ) {
+        				$targetLevel = $bits['level'];
 						break;
 					}
-					$curIndex++;
 				}
 				if ( $mode == 'replace' ) {
 					$outText .= $frame->expand( $node, PPFrame::RECOVER_ORIG );
 				}
 				$node = $node->getNextSibling();
-			}
-			if ( $node ) {
-				$bits = $node->splitHeading();
-				$targetLevel = $bits['level'];
 			}
 		}
 
@@ -4627,10 +4623,9 @@ class Parser
 		// Find the end of the section, including nested sections
 		do {
 			if ( $node->getName() == 'h' ) {
-				$curIndex++;
 				$bits = $node->splitHeading();
 				$curLevel = $bits['level'];
-				if ( $curIndex != $sectionIndex && $curLevel <= $targetLevel ) {
+				if ( $bits['i'] != $sectionIndex && $curLevel <= $targetLevel ) {
 					break;
 				}
 			}
