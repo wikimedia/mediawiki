@@ -425,6 +425,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Resetpass' ),
 	'Withoutinterwiki'          => array( 'Withoutinterwiki' ),
 	'MergeHistory'              => array( 'MergeHistory' ),
+	'Filepath'                  => array( 'Filepath' ),
 );
 
 /**
@@ -3150,4 +3151,12 @@ $1',
 'version-hook-name'                => 'Hook name',
 'version-hook-subscribedby'        => 'Subscribed by',
 'version-version'                  => 'Version',
+
+# Special:Filepath
+'filepath'         => 'File path',
+'filepath-page'    => 'File:',
+'filepath-submit'  => 'Path',
+'filepath-summary' => 'This special page returns the complete path for a file. Images are shown in full resolution, other file types are started with their associated program directly.
+
+Enter the file name without the "{{ns:image}}:" prefix.',
 );

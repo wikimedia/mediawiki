@@ -2362,6 +2362,12 @@ $wgMessageStructure = array(
 		'version-hook-subscribedby',
 		'version-version',
 	),
+	'filepath' => array(
+		'filepath',
+		'filepath-page',
+		'filepath-submit',
+		'filepath-summary'
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
