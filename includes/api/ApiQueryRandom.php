@@ -47,16 +47,12 @@ if (!defined('MEDIAWIKI')) {
 	public function executeGenerator($resultPageSet) {
 		$this->run($resultPageSet);
 	}
-
-	public function run($resultPageSet = null) {
-		$params = $this->extractRequestParams();
-		$result = $this->getResult();
-		$randstr = wfRandom();
-		$data = array();
-
+	
+	protected function prepareQuery($randstr, $limit, $namespace, &$resultPageSet) {
+		$this->resetQueryParams();
 		$this->addTables('page');
-		$this->addOption('LIMIT', $params['limit']);
-		$this->addWhereFld('page_namespace', $params['namespace']);
+		$this->addOption('LIMIT', $limit);
+		$this->addWhereFld('page_namespace', $namespace);
 		$this->addWhereRange('page_random', 'newer', $randstr, null);
 		$this->addWhere(array('page_is_redirect' => 0));
 		$this->addOption('USE INDEX', 'page_random');
@@ -64,16 +60,46 @@ if (!defined('MEDIAWIKI')) {
 			$this->addFields(array('page_id', 'page_title', 'page_namespace'));
 		else
 			$this->addFields($resultPageSet->getPageTableFields());
+	}
 
+	protected function runQuery(&$data, &$resultPageSet) {
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
+		$count = 0;
 		while($row = $db->fetchObject($res)) {
+			$count++;
 			if(is_null($resultPageSet))
-				$data[] = $this->extractRowInfo($row);
+			{
+				// Prevent duplicates
+				if(!in_array($row->page_id, $this->pageIDs))
+				{
+					$data[] = $this->extractRowInfo($row);
+					$this->pageIDs[] = $row->page_id;
+				}
+			}
 			else
 				$resultPageSet->processDbRow($row);
 		}
 		$db->freeResult($res);
+		return $count;
+	}
+
+	public function run($resultPageSet = null) {
+		$params = $this->extractRequestParams();
+		$result = $this->getResult();
+		$data = array();
+		$this->pageIDs = array();
+		$this->prepareQuery(wfRandom(), $params['limit'], $params['namespace'], $resultPageSet);
+		$count = $this->runQuery($data, $resultPageSet);
+		if($count < $params['limit'])
+		{
+			/* We got too few pages, we probably picked a high value
+			 * for page_random. We'll just take the lowest ones, see
+			 * also the comment in Title::getRandomTitle()
+			 */
+			 $this->prepareQuery(0, $params['limit'] - $count, $params['namespace'], $resultPageSet);
+			 $this->runQuery($data, $resultPageSet);
+		}
 
 		if(is_null($resultPageSet)) {
 			$result->setIndexedTagName($data, 'page');
@@ -115,7 +141,9 @@ if (!defined('MEDIAWIKI')) {
 
 	public function getDescription() {
 		return array(	'Get a set of random pages',
-				'NOTE: When using a namespace filter, this module may return an empty result. In that case, retry the request'
+				'NOTE: Pages are listed in a fixed sequence, only the starting point is random. This means that if, for example, "Main Page" is the first ',
+				'      random page on your list, "List of fictional monkeys" will *always* be second, "List of people on stamps of Vanuatu" third, etc.',
+				'NOTE: If the number of pages in the namespace is lower than rnlimit, you will get fewer pages. You will not get the same page twice.'
 		);
 	}
 
