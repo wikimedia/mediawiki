@@ -60,7 +60,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$vals['id'] = $wgUser->getId();
 		$vals['name'] = $wgUser->getName();
 
-		if( $wgUser->isAnon() ) $vals['anon'] = '';
+		if($wgUser->isAnon())
+			$vals['anon'] = '';
 		if (isset($this->prop['blockinfo'])) {
 			if ($wgUser->isBlocked()) {
 				$vals['blockedby'] = User::whoIs($wgUser->blockedBy());
@@ -100,9 +101,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'options',
 					'editcount'
 				)
-			),
-			'users' => array(
-				ApiBase :: PARAM_ISMULTI => true
 			)
 		);
 	}
@@ -111,14 +109,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return array (
 			'prop' => array(
 				'What pieces of information to include',
-				'  blockinfo - tags if the user is blocked, by whom, and for what reason',
-				'  hasmsg    - adds a tag "message" if user has pending messages',
-				'  groups    - lists all the groups the user belongs to',
-				'  rights    - lists of all rights the user has',
-				'  options   - lists all preferences the user has set',
-				'  editcount - adds the user\'s edit count'
-			),
-			'users' => 'A list of other users to obtain the same information for'
+				'  blockinfo - tags if the current user is blocked, by whom, and for what reason',
+				'  hasmsg    - adds a tag "message" if the current user has pending messages',
+				'  groups    - lists all the groups the current user belongs to',
+				'  rights    - lists of all rights the current user has',
+				'  options   - lists all preferences the current user has set',
+				'  editcount - adds the current user\'s edit count'
+			)
 		);
 	}
 
