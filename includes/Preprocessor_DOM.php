@@ -955,7 +955,11 @@ class PPFrame_DOM implements PPFrame {
 					# Heading
 					$s = $this->expand( $contextNode->childNodes, $flags );
 
-					if ( $this->parser->ot['html'] ) {
+                    # Insert a heading marker only for <h> children of <root>
+                    # This is to stop extractSections from going over multiple tree levels
+                    if ( $contextNode->parentNode->nodeName == 'root' 
+                      && $this->parser->ot['html'] ) 
+                    {
 						# Insert heading index marker
 						$headingIndex = $contextNode->getAttribute( 'i' );
 						$titleText = $this->title->getPrefixedDBkey();
