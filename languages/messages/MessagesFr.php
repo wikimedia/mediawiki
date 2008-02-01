@@ -2433,4 +2433,21 @@ Essayez la prévisualisation normale.',
 # Core parser functions
 'unknown_extension_tag' => "Balise d'extension « $1 » inconnue",
 
+# Special:Version
+'version-extensions'               => 'Versions installées',
+'version-specialpages'             => 'Pages spéciales',
+'version-parserhooks'              => "Appels d'analyses",
+'version-variables'                => 'Variables',
+'version-other'                    => 'Divers',
+'version-mediahandlers'            => 'Gestionnaires de media',
+'version-hooks'                    => 'Appels',
+'version-extension-functions'      => 'Fonctions des extensions',
+'version-parser-extensiontags'     => "Balises d'analyses provenant des extensions",
+'version-parser-function-hooks'    => "Appels des fonctions d'analyse",
+'version-skin-extension-functions' => "Fonctions d'interface d'extensions",
+'version-hook-name'                => "Nom de l'appel",
+'version-hook-subscribedby'        => 'Défini par',
+'version-version'                  => 'Version',
+
 );
+
