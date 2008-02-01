@@ -206,12 +206,14 @@ $messages = array(
 'qbbrowse'       => 'Padön',
 'qbedit'         => 'Redakön',
 'qbpageoptions'  => 'Pad at',
+'qbpageinfo'     => 'Yumed',
 'qbmyoptions'    => 'Pads obik',
 'qbspecialpages' => 'Pads patik',
 'moredotdotdot'  => 'Plu...',
 'mypage'         => 'Pad obik',
 'mytalk'         => 'Bespiks obik',
 'navigation'     => 'Nafam',
+'and'            => 'e',
 
 'errorpagetitle'    => 'Pöl',
 'returnto'          => 'Geikön lü $1.',
@@ -242,6 +244,7 @@ $messages = array(
 'talkpagelinktext'  => 'Bespik',
 'specialpage'       => 'Pad patik',
 'personaltools'     => 'Stums pösodik',
+'postcomment'       => 'Sedön küpeti',
 'articlepage'       => 'Jonön ninädapadi',
 'talk'              => 'Bespik',
 'views'             => 'Logams',
@@ -291,6 +294,9 @@ $messages = array(
 'badaccess-group0' => 'No pedälol ad ledunön atosi, kelosi ebegol.',
 'badaccess-group1' => 'Dun, keli eflagol, padälon te gebanes grupa: $1.',
 'badaccess-groups' => 'Utos, kelosi vilol dunön, padälon te gebanes dutöl lü bal grupas: $1.',
+
+'versionrequired'     => 'Fomam: $1 ela MediaWiki paflagon',
+'versionrequiredtext' => 'Fomam: $1 ela MediaWiki zesüdon ad gebön padi at. Logolös [[Special:Version|fomamapadi]].',
 
 'ok'                      => 'Si!',
 'retrievedfrom'           => 'Pekopiedon se "$1"',
@@ -369,6 +375,7 @@ If ye pad at dabinon, ba etuvol säkädi in nünömasit. Nunolös, begö! osi gu
 'viewsourcetext'     => 'Kanol logön e kopiedön fonätakoti pada at:',
 'editinginterface'   => "'''Nuned:''' Anu redakol padi, kel labükon vödemi bevüik pro programem. Votükams pada at oflunons logoti gebanasita pro gebans votik.",
 'cascadeprotected'   => 'Pad at pejelon ta redakam, bi pakeninükon fa {{PLURAL:$1|pad|pads}} sököl, kels pejelons ma „jänajel“: $2',
+'namespaceprotected' => "No dalol redakön padis in nemaspad: '''$1'''.",
 
 # Login and logout pages
 'logouttext'                 => '<strong>Esenunädol oli.</strong><br />
@@ -501,8 +508,10 @@ Blokamanüm olik binon $5. Mäniotolös, begö! oni in peneds valik olik.",
 'whitelistacctitle'        => 'No dalol jafön kali',
 'confirmedittitle'         => 'Fümedam me pot leäktronik zesüdon ad redakön',
 'confirmedittext'          => 'Mutol fümedön ladeti leäktronik ola büä okanol redakön padis. Pladölos e lonöfükölos ladeti olik in [[Special:Preferences|buükams olik]].',
+'nosuchsectiontitle'       => 'Diläd at no dabinon',
 'nosuchsectiontext'        => 'Esteifülol ad redakön dilädi no dabinöli. Bi diläd: $1 no dabinon, redakam onik no kanon padakipön.',
 'loginreqlink'             => 'ninädolös obi',
+'loginreqpagetext'         => 'Mutol $1 ad logön padis votik.',
 'accmailtitle'             => 'Letavöd pesedon.',
 'accmailtext'              => 'Letavöd pro "$1" pasedon lü $2.',
 'newarticle'               => '(Nulik)',
@@ -523,6 +532,7 @@ If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'explainconflict'          => 'Ek evotükon padi at sisä äprimol ad redakön oni. Vödem balid jonon padi soäsä dabinon anu. Votükams olik pajonons in vödem telid. Sludolös, vio fomams tel at mutons pabalön. Kanol kopiedön se vödem telid ini balid. 
 <b>Te vödem balid podakipon!</b><br />',
 'yourtext'                 => 'Vödem olik',
+'storedversion'            => 'Fomam pedakipöl',
 'editingold'               => '<strong>NUNED: Anu redakol fomami büik pada at. If dakipol oni, votükams posik onepubons.</strong>',
 'yourdiff'                 => 'Difs',
 'copyrightwarning'         => 'Demolös, das keblünots valik lü Vükiped padasumons ma el $2 (logolöd eli $1 tefü notets). If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös oni isio.<br />
@@ -1299,7 +1309,6 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'anonymous'        => 'Geban(s) nennemik {{SITENAME}}a',
 'siteuser'         => 'Geban ela {{SITENAME}}: $1',
 'lastmodifiedatby' => 'Pad at pävotükon lätiküno tü dÜp $1, ün $2, fa el $3.', # $1 date, $2 time, $3 user
-'and'              => 'e',
 'others'           => 'votiks',
 'siteusers'        => 'Geban(s) ela {{SITENAME}}: $1',
 

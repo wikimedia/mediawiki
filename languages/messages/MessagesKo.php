@@ -64,7 +64,7 @@ $messages = array(
 'tog-numberheadings'          => '머릿글 번호 매기기',
 'tog-showtoolbar'             => '편집창에 툴바 보이기 (자바스크립트)',
 'tog-editondblclick'          => '더블클릭으로 문서 편집하기 (자바스크립트)',
-'tog-editsection'             => '"편집" 부분을 눌러 부분을 편집하기',
+'tog-editsection'             => '‘편집’ 링크로 부분을 편집하는 기능 켜기',
 'tog-editsectiononrightclick' => '제목을 오른쪽 클릭해서 부분 편집하기 (자바스크립트)',
 'tog-showtoc'                 => '문서의 차례 보여주기 (머릿글이 4개 이상인 경우)',
 'tog-rememberpassword'        => '자동 로그인',
@@ -187,10 +187,10 @@ $messages = array(
 'and'            => '그리고',
 
 # Metadata in edit box
-'metadata_help' => '메타데이터([[Project:메타데이터]]에서 자세한 설명을 볼 수 있습니다):',
+'metadata_help' => '메타데이터:',
 
 'errorpagetitle'    => '오류',
-'returnto'          => '$1(으)로 돌아가기',
+'returnto'          => '$1(으)로 돌아갑니다.',
 'tagline'           => '{{SITENAME}}',
 'help'              => '도움말',
 'search'            => '찾기',
@@ -245,7 +245,7 @@ $messages = array(
 'aboutpage'         => 'Project:소개',
 'bugreports'        => '버그 신고',
 'bugreportspage'    => 'Project:버그 신고',
-'copyright'         => '문서는 $1 저작권 하에 있습니다.',
+'copyright'         => '문서는 $1 라이센스 하에 있습니다.',
 'copyrightpagename' => '{{SITENAME}} 저작권',
 'copyrightpage'     => '{{ns:project}}:저작권',
 'currentevents'     => '요즘 화제',
@@ -253,7 +253,7 @@ $messages = array(
 'disclaimers'       => '면책 조항',
 'disclaimerpage'    => 'Project:면책 조항',
 'edithelp'          => '편집 도움말',
-'edithelppage'      => 'Help:문서 편집 도움말',
+'edithelppage'      => 'Help:편집하기',
 'helppage'          => 'Help:목차',
 'mainpage'          => '대문',
 'policy-url'        => 'Project:정책',
@@ -1538,7 +1538,7 @@ $NEWPAGE
 
 # E-mail address confirmation
 'confirmemail'            => '이메일 주소 확인',
-'confirmemail_text'       => '이 위키에서는 이메일과 관련된 기능을 사용하기 전에, 이메일 인증을 받아야 합니다. 아래의 버튼을 눌러 인증 메일을 보내세요. 메일에는 인증 코드를 포함한 링크가 들어 있을 것입니다. 링크를 브라우저에서 열면 인증이 됩니다.',
+'confirmemail_text'       => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에, 이메일 인증을 받아야 합니다. 아래의 버튼을 누르면 인증 메일을 보냅니다. 메일에는 인증 코드가 들어있는 링크가 있습니다. 그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
 'confirmemail_send'       => '인증 코드를 메일로 보내기',
 'confirmemail_sent'       => '인증 이메일을 보냈습니다.',
 'confirmemail_sendfailed' => '인증 이메일을 보낼 수 없습니다. 잘못된 주소인지 확인해 주십시오.

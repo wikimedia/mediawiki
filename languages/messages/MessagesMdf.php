@@ -1287,8 +1287,10 @@ $NEWPAGE
 'deletepage'     => 'Нардамс лопать',
 'confirm'        => 'Кемокстамс',
 'excontent'      => "потмосоль: '$1'",
+'deletedtext'    => '"$1" нардаф. Ванк $2 мекольце нардаматнень няфтеманкса.',
 'deletedarticle' => 'нардаф "[[$1]]"',
 'dellogpage'     => 'Нардамань лувома',
+'deletecomment'  => 'Нардамань туфтал:',
 'rollbacklink'   => 'кевордамс меки',
 'protectlogpage' => 'Аралама лувома',
 

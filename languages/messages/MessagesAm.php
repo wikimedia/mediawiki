@@ -158,21 +158,22 @@ $messages = array(
 'lastmodifiedat'   => 'ይህ ገጽ መጨረሻ የተቀየረው እ.ኣ.አ በ$2፣ $1 ዓ.ም. ነበር።', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'      => 'ስለ {{SITENAME}} መርሃግብር',
-'aboutpage'      => 'Project:ስለ',
-'copyright'      => '<br />ይዞታ በ$1 በሚለው ሕግ ሥር በነፃ የሚገኝ ነው።<br />',
-'currentevents'  => 'ወቅታዊ ጉዳዮች',
-'disclaimers'    => 'የኃላፊነት ማስታወቂያ',
-'disclaimerpage' => 'አጠቃላይ የሕግ ነጥቦች',
-'edithelp'       => 'የማረም መመሪያ',
-'faq'            => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',
-'helppage'       => 'Help:ይዞታ',
-'mainpage'       => 'ዋና ገጽ',
-'portal'         => 'የኅብረተሠቡ መረዳጃ',
-'portal-url'     => 'Project:የኅብረተሠብ መረዳጃ',
-'privacy'        => 'የሚስጥር ፖሊሲ',
-'privacypage'    => 'Project:የግልነት ድንጋጌ',
-'sitesupport'    => 'መዋጮ ለመስጠት',
+'aboutsite'         => 'ስለ {{SITENAME}} መርሃግብር',
+'aboutpage'         => 'Project:ስለ',
+'copyright'         => '<br />ይዞታ በ$1 በሚለው ሕግ ሥር በነፃ የሚገኝ ነው።<br />',
+'currentevents'     => 'ወቅታዊ ጉዳዮች',
+'currentevents-url' => 'Project:ወቅታዊ ጉዳዮች',
+'disclaimers'       => 'የኃላፊነት ማስታወቂያ',
+'disclaimerpage'    => 'አጠቃላይ የሕግ ነጥቦች',
+'edithelp'          => 'የማረም መመሪያ',
+'faq'               => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',
+'helppage'          => 'Help:ይዞታ',
+'mainpage'          => 'ዋና ገጽ',
+'portal'            => 'የኅብረተሠቡ መረዳጃ',
+'portal-url'        => 'Project:የኅብረተሠብ መረዳጃ',
+'privacy'           => 'የሚስጥር ፖሊሲ',
+'privacypage'       => 'Project:የግልነት ድንጋጌ',
+'sitesupport'       => 'መዋጮ ለመስጠት',
 
 'badaccess' => 'ያልተፈቀደ - አይቻልም',
 
@@ -191,6 +192,7 @@ $messages = array(
 'restorelink'         => '{{PLURAL:$1|የጠፋ ዕትም|$1 የጠፉት ዕትሞች}}',
 'site-rss-feed'       => '$1 R.S.S. Feed',
 'site-atom-feed'      => '$1 አቶም Feed',
+'page-rss-feed'       => '"$1" R.S.S. Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ገጽ',
@@ -227,6 +229,7 @@ $messages = array(
 'login'                 => 'ለመግባት',
 'loginprompt'           => '(You must have cookies enabled to log in to {{SITENAME}}.)',
 'userlogin'             => 'መግቢያ',
+'logout'                => 'ከብዕር ስምዎ ለመውጣት',
 'userlogout'            => 'መውጫ',
 'nologin'               => 'የብዕር ስም ገና የለዎም? $1!',
 'nologinlink'           => 'አዲስ የብዕር ስም ያውጡ',
@@ -236,9 +239,11 @@ $messages = array(
 'youremail'             => 'ኢ-ሜል *',
 'username'              => 'የብዕር ስም:',
 'uid'                   => 'የገባበት ቁ.: #',
+'yourrealname'          => 'ዕውነተኛ ስም፦',
 'yourlanguage'          => 'የመልኩ ቋንቋ',
 'yournick'              => 'ቁልምጫ ስም (ለፊርማ)',
 'email'                 => 'ኢ-ሜል',
+'prefs-help-realname'   => 'ዕውነተኛ ስምዎን መግለጽ አስፈላጊነት አይደለም። ለመግለጽ ከመረጡ ለሥራዎ ደራሲነቱን ለማስታወቅ ይጠቅማል።',
 'prefs-help-email'      => 'ኢሜል አድራሻን ማቅረብዎ አስፈላጊ አይደለም። ቢያቅርቡት ሌሎች አባላት አድራሻውን ሳያውቁ በፕሮግራሙ አማካኝነት ሊገናኙዎት ተቻለ።',
 'loginsuccesstitle'     => 'መግባትዎ ተከናወነ!',
 'loginsuccess'          => 'እንደ «$1» ሆነው አሁን {{SITENAME}}ን ገብተዋል።',
@@ -349,6 +354,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'historysize'         => '($1 byte)',
 'historyempty'        => '(ባዶ)',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 በ$2', # user at time
+
 # Diffs
 'history-title'           => 'የ«$1» እትሞች ታሪክ',
 'difference'              => '(በ2ቱ እትሞቹ ዘንድ ያለው ልዩነት)',
@@ -411,6 +419,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'group-sysop' => 'መጋቢ',
 
 'group-sysop-member' => 'መጋቢ',
+
+# User rights log
+'rightslog' => 'የአባል መብቶች መዝገብ',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',

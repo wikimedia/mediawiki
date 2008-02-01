@@ -326,6 +326,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Чунин амале вуҷуд надорад',
 'nosuchactiontext'  => 'Вики амали дар URL мушаххас шударо намешиносад',
+'nosuchspecialpage' => 'Чунин саҳифаи вижа вуҷуд надорад',
 'nospecialpagetext' => "<big>'''Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.'''</big>
 
 Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:Specialpages]] нигаред.",
@@ -574,6 +575,7 @@ your old password.
 'revdelete-hide-text'     => 'Пинҳон кардани нусхаи матн',
 'revdelete-hide-name'     => 'Пинҳон кардани амал ва ҳадаф',
 'revdelete-hide-comment'  => 'Пинҳон кардани тавзеҳи вироиш',
+'revdelete-log'           => 'Гузориши тавзеҳ:',
 
 # Diffs
 'history-title'           => 'Таърихчаи вироишҳои "$1"',
@@ -980,6 +982,7 @@ your old password.
 # What links here
 'whatlinkshere'       => 'Пайвандҳои дар ин сахифа',
 'whatlinkshere-title' => 'Саҳифаҳое ки ба $1 пайванд доранд',
+'whatlinkshere-page'  => 'Саҳифа:',
 'linklistsub'         => '(Феҳристи пайвандҳо)',
 'linkshere'           => "Саҳифаҳои зерин ба '''[[:$1]]''' пайванданд:",
 'nolinkshere'         => "Ягон саҳифа ба '''[[:$1]]''' пайванд нест.",
@@ -990,21 +993,73 @@ your old password.
 'whatlinkshere-links' => '← пайвандҳо',
 
 # Block/unblock
-'blockip'            => 'Бастани корбар',
-'ipadressorusername' => 'IP нишона ё номи корбар:',
-'ipbreason'          => 'Сабаб',
-'ipboptions'         => '2 соат:2 hours,1 рӯз:1 day,3 рӯз:3 days,1 ҳафта:1 week,2 ҳафта:2 weeks,1 моҳ:1 month,3 моҳ:3 months,6 моҳ:6 months,1 сол:1 year,беохир:infinite', # display1:time1,display2:time2,...
-'blockipsuccesssub'  => 'Бастан муваффақ щуд',
-'ipblocklist'        => 'Рӯйхати IP нишонаҳо ва корбарҳои баста шуда',
-'blocklink'          => 'бастан',
-'unblocklink'        => 'боз шавад',
-'contribslink'       => 'ҳиссагузорӣ',
-'blocklogpage'       => 'Сабти басташавӣ',
-'blocklogentry'      => 'баста шуд [[$1]] бо вақти саромадан $2 $3',
+'blockip'                     => 'Бастани корбар',
+'ipaddress'                   => 'Нишонаи IP:',
+'ipadressorusername'          => 'IP нишона ё номи корбар:',
+'ipbexpiry'                   => 'Хотима:',
+'ipbreason'                   => 'Сабаб',
+'ipbreasonotherlist'          => 'Дигар далел',
+'ipbanononly'                 => 'Фақат бастани корбарони гумном',
+'ipbcreateaccount'            => 'Ҷилавгирӣ аз эҷоди ҳисоб',
+'ipbsubmit'                   => 'Бастани ин корбар',
+'ipbother'                    => 'Дигар вақт:',
+'ipboptions'                  => '2 соат:2 hours,1 рӯз:1 day,3 рӯз:3 days,1 ҳафта:1 week,2 ҳафта:2 weeks,1 моҳ:1 month,3 моҳ:3 months,6 моҳ:6 months,1 сол:1 year,беохир:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'              => 'дигар',
+'ipbotherreason'              => 'Далелҳои дигар/изофӣ:',
+'ipbhidename'                 => 'Пинҳони номи корбарӣ/нишонаи IP аз гузориши баста шудан, феҳристи бастагшудагони кунунӣ ва феҳристи корбарон',
+'blockipsuccesssub'           => 'Бастан муваффақ щуд',
+'ipb-unblock-addr'            => 'Боз кардани $1',
+'ipb-unblock'                 => 'Боз кардани номи корбарӣ ё нишонаи IP',
+'ipb-blocklist-addr'          => 'Дидани бастаҳои мавҷуд барои $1',
+'ipb-blocklist'               => 'Дидани бастаҳои мавҷуд',
+'unblockip'                   => 'Боз кардани корбар',
+'ipusubmit'                   => 'Боз кардани ин нишона',
+'unblocked'                   => 'Дастрасии [[User:$1|$1]] боз карда шуд',
+'unblocked-id'                => 'Қатъи дастрасии шумораи $1 хотима ёфт',
+'ipblocklist'                 => 'Рӯйхати IP нишонаҳо ва корбарҳои баста шуда',
+'ipblocklist-legend'          => 'Ҷустуҷӯи корбари баста шуда',
+'ipblocklist-username'        => 'Номи корбарӣ ё нишонаи IP:',
+'ipblocklist-submit'          => 'Ҷустуҷӯ',
+'blocklistline'               => '$1, $2 ро баст $3 ($4)',
+'infiniteblock'               => 'бе поён',
+'expiringblock'               => '$1 ба поён мерасад',
+'anononlyblock'               => 'фақат корбарони гумном',
+'noautoblockblock'            => 'бастани худкор ғайрифаъол аст',
+'createaccountblock'          => 'имкони эҷоди ҳисоб баста шудааст',
+'emailblock'                  => 'почтаи электронӣ баста шудааст',
+'ipblocklist-empty'           => 'Феҳристи басташуданҳо холӣ аст.',
+'ipblocklist-no-results'      => 'Дастрасии ҳисоби корбарӣ ё нишонаи интернетии мавриди назар қатъ нест.',
+'blocklink'                   => 'бастан',
+'unblocklink'                 => 'боз шавад',
+'contribslink'                => 'ҳиссагузорӣ',
+'blocklogpage'                => 'Сабти басташавӣ',
+'blocklogentry'               => 'баста шуд [[$1]] бо вақти саромадан $2 $3',
+'unblocklogentry'             => '$1 боз шуд',
+'block-log-flags-anononly'    => 'фақат корбарони гумном',
+'block-log-flags-nocreate'    => 'қобилияти эҷоди ҳисоб ғайрифаъол шуд',
+'block-log-flags-noautoblock' => 'қатъи дастрасии худкор ғайрифаъол шуд',
+'block-log-flags-noemail'     => 'почтаи электронӣ баста шуд',
+'range_block_disabled'        => 'Қобилияти мудирон барои эҷоди бастаҳо ғайрифаъол шудааст.',
+'ipb_already_blocked'         => '"$1" аллакай баста шудааст',
+'ip_range_invalid'            => 'Сафи IP номӯътабар аст.',
+'blockme'                     => 'Дастрасии манро қать кун',
+'proxyblocker'                => 'Проксибанд',
+'proxyblocker-disabled'       => 'Ин амал ғайрифаъол шудааст.',
+'proxyblocksuccess'           => 'Анҷом шуд.',
+
+# Developer tools
+'lockdb'              => 'Қуфл кардани пойгоҳи дода',
+'unlockdb'            => 'Аз қуфл боз кардани пойгоҳи дода',
+'lockbtn'             => 'Қуфл кардани пойгоҳи дода',
+'unlockbtn'           => 'Аз қуфл боз кардани пойгоҳи дода',
+'locknoconfirm'       => 'Шумо ба қуттии тасдиқ қайд нагузоштед.',
+'lockdbsuccesssub'    => 'Қуфл кардани пойгоҳи дода бо муваффақият анҷом шуд',
+'unlockdbsuccesssub'  => 'Қуфли пойгоҳи дода бардошта шуд',
+'unlockdbsuccesstext' => 'Пойгоҳи дода аз қуфл боз шуд.',
 
 # Move page
-'movepage'         => 'Кӯчонидани саҳифа',
-'movepagetext'     => "Бо истифодаи аз формаи зерин номи саҳифа тағйир хоҳад шуд, ва тамоми таърихаш ба номи ҷадид кӯчонида хоҳад шуд. 
+'movepage'                => 'Кӯчонидани саҳифа',
+'movepagetext'            => "Бо истифодаи аз формаи зерин номи саҳифа тағйир хоҳад шуд, ва тамоми таърихаш ба номи ҷадид кӯчонида хоҳад шуд. 
 Унвони пешина табдил ба як саҳифаи масир ба унвони ҷадид хоҳад шуд.
 Пайвандҳо ба унвони пешинаи саҳифа тағйир нахоҳанд кард; ҳатман тағйири масирҳои дутоӣ ё шикастаро барраси кунед. 
 Шумо масъул итминон ҳастед ки ин пайвандҳо ҳанӯз ба ҳамон ҷое ки қарор аст бираванд.
@@ -1013,37 +1068,46 @@ your old password.
 
 <b>ҲУШДОР!</b>
 Кӯчонидани саҳифаҳо ба номи ҷадид мумкин аст тағйири асосӣ ва ғайримунтазире барои саҳифаҳои машҳур бошад; лутфан мутмаин шавед ки пеш аз кӯчонидани саҳифа, оқибати ин корро дарк мекунед.",
-'movepagetalktext' => "Саҳифаи баҳси марбута, агар вуҷуд дошта бошад, ба таври худкорӣ ҳамроҳ бо мақолаи аслӣ кӯчонида хоҳад шуд '''магар инки:'''
+'movepagetalktext'        => "Саҳифаи баҳси марбута, агар вуҷуд дошта бошад, ба таври худкорӣ ҳамроҳ бо мақолаи аслӣ кӯчонида хоҳад шуд '''магар инки:'''
 
 *дар ҳоли кӯчонидани саҳифа аз ин фазои ном ба фазои номи дигаре бошед,
 *як саҳифаи баҳси ғайрихолӣ таҳти ин номи ҷадид вуҷуд дошта бошад, ё 
 *ҷаъбаи зерро тик назада бошед.
 
 Дар ин ҳолат, саҳифаро бояд ба таври дастӣ кӯчонид ва ё ду саҳифаро бо вироиш як кунед.",
-'movearticle'      => 'Кӯчонидани саҳифа:',
-'movenologin'      => 'Вуруд нашудаед',
-'movenologintext'  => 'Барои кӯчонидани саҳифа шумо бояд корбари сабтшуда ва [[Special:Userlogin|ба систем вурудшуда]] бошед.',
-'movenotallowed'   => 'Шумо иҷозати кӯчонидани саҳифаҳоро дар Википедиа надоред.',
-'newtitle'         => 'Ба унвони ҷадид:',
-'move-watch'       => 'Назар кардани ин саҳифа',
-'movepagebtn'      => 'Кӯчонидани саҳифа',
-'pagemovedsub'     => 'Кӯчониш бомуваффақият анҷом ёфт',
-'movepage-moved'   => '<big>\'\'\'"$1" ба "$2" кӯчонида шудааст\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => 'Саҳифае бо ин ном вуҷуд надорад, ё номе,
+'movearticle'             => 'Кӯчонидани саҳифа:',
+'movenologin'             => 'Вуруд нашудаед',
+'movenologintext'         => 'Барои кӯчонидани саҳифа шумо бояд корбари сабтшуда ва [[Special:Userlogin|ба систем вурудшуда]] бошед.',
+'movenotallowed'          => 'Шумо иҷозати кӯчонидани саҳифаҳоро дар Википедиа надоред.',
+'newtitle'                => 'Ба унвони ҷадид:',
+'move-watch'              => 'Назар кардани ин саҳифа',
+'movepagebtn'             => 'Кӯчонидани саҳифа',
+'pagemovedsub'            => 'Кӯчониш бомуваффақият анҷом ёфт',
+'movepage-moved'          => '<big>\'\'\'"$1" ба "$2" кӯчонида шудааст\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Саҳифае бо ин ном вуҷуд надорад, ё номе,
 ки интихоб кардаед мӯътабар нест. 
 Лутфан номи дигареро интихоб намоед.',
-'talkexists'       => "'''Саҳифа бо мувафаққият худаш кӯчонида шуд, вале саҳифаи баҳсро, ба ин далел ки саҳифаи баҳсе дар унвони ҷадид вуҷуд дорад, кӯчонида намешавад. Лутфан онҳоро дастӣ таркиб кунед.'''",
-'movedto'          => 'кӯчонидашуда ба',
-'movetalk'         => 'Саҳифаи баҳси алоқаманд ҳам кӯчонида шавад',
-'talkpagemoved'    => 'Саҳифаи баҳси алоқаманд низ кӯчонида шуд.',
-'talkpagenotmoved' => 'Саҳифаи баҳси алоқаманд кӯчонида <strong>нашуд</strong>.',
-'1movedto2'        => '[[$1]] ба [[$2]] кӯчонида шудааст',
-'movelogpage'      => 'Кӯчонидани гузориш',
-'movereason'       => 'Сабаби кӯчонидан:',
-'revertmove'       => 'вогардонӣ',
+'talkexists'              => "'''Саҳифа бо мувафаққият худаш кӯчонида шуд, вале саҳифаи баҳсро, ба ин далел ки саҳифаи баҳсе дар унвони ҷадид вуҷуд дорад, кӯчонида намешавад. Лутфан онҳоро дастӣ таркиб кунед.'''",
+'movedto'                 => 'кӯчонидашуда ба',
+'movetalk'                => 'Саҳифаи баҳси алоқаманд ҳам кӯчонида шавад',
+'talkpagemoved'           => 'Саҳифаи баҳси алоқаманд низ кӯчонида шуд.',
+'talkpagenotmoved'        => 'Саҳифаи баҳси алоқаманд кӯчонида <strong>нашуд</strong>.',
+'1movedto2'               => '[[$1]] ба [[$2]] кӯчонида шудааст',
+'movelogpage'             => 'Кӯчонидани гузориш',
+'movelogpagetext'         => 'Дар зер феҳристи саҳифаҳои кӯчонидашуд омада аст.',
+'movereason'              => 'Сабаби кӯчонидан:',
+'revertmove'              => 'вогардонӣ',
+'delete_and_move'         => 'Ҳазф ва кӯчонидан',
+'delete_and_move_confirm' => 'Бале, саҳифа ҳазф шавад',
+'delete_and_move_reason'  => 'Ҳазф шуд барои мумкин шудани кӯчонидан',
 
 # Export
-'export' => 'Судури саҳифаҳо',
+'export'            => 'Судури саҳифаҳо',
+'export-submit'     => 'Судур',
+'export-addcattext' => 'Илова кардани саҳифаҳо аз гурӯҳ:',
+'export-addcat'     => 'Илова кардан',
+'export-download'   => 'Пешниҳоди захира кардан ба сурати парванда',
+'export-templates'  => 'Дар бар гирифтани шаблонҳо',
 
 # Namespace 8 related
 'allmessages'         => 'Пайёмҳои системавӣ',
@@ -1055,8 +1119,20 @@ your old password.
 'allmessagesmodified' => 'Фақат тағйирдодаро нишон деҳ',
 
 # Thumbnails
-'thumbnail-more'  => 'Бузург шавад',
-'thumbnail_error' => 'Хато дар эҷоди ангуштдона: $1',
+'thumbnail-more'           => 'Бузург шавад',
+'filemissing'              => 'Парванда вуҷуд надорад',
+'thumbnail_error'          => 'Хато дар эҷоди ангуштдона: $1',
+'djvu_page_error'          => 'Саҳифаи DjVu хориҷ аз ҳудуди саф',
+'djvu_no_xml'              => 'Барои истифодаи XML имкони пайдо кардани парвандаи DjVu вуҷуд надошт',
+'thumbnail_invalid_params' => 'Параметрҳои номӯътабар дар ангуштдонаи акс',
+'thumbnail_dest_directory' => 'Ишкол дар эҷоди пӯшаи мақсад',
+
+# Special:Import
+'import'                   => 'Ворид кардани саҳифаҳо',
+'importinterwiki'          => 'Воридоти трансвики',
+'import-interwiki-history' => 'Тамоми таърихи нусхаҳои ин саҳифа интиқол дода шавад',
+'import-interwiki-submit'  => 'Ворид шавад',
+'importstart'              => 'Дар ҳоли ворид кардани саҳифаҳо...',
 
 # Import log
 'importlogpage' => 'Вориди гузоришҳо',
@@ -1158,6 +1234,23 @@ your old password.
 # EXIF tags
 'exif-artist' => 'Муаллиф',
 
+'exif-meteringmode-255' => 'Ғайра',
+
+'exif-lightsource-4'  => 'Флаш',
+'exif-lightsource-9'  => 'Ҳавои хуб',
+'exif-lightsource-10' => 'Осмони абрӣ',
+'exif-lightsource-11' => 'Соя',
+'exif-lightsource-12' => 'Маҳтобӣ дар рӯз (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Маҳтоби сафед дар рӯз (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Маҳтоби сафедӣ хунук (W 3900 – 4500K)',
+
+'exif-scenecapturetype-0' => 'Стандарт',
+'exif-scenecapturetype-1' => 'Чашмандоз',
+'exif-scenecapturetype-2' => 'Портрет',
+'exif-scenecapturetype-3' => 'Шабона',
+
+'exif-gaincontrol-0' => 'Ҳеҷ',
+
 'exif-contrast-1' => 'Нарм',
 'exif-contrast-2' => 'Сахт',
 
@@ -1177,12 +1270,18 @@ your old password.
 'monthsall'        => 'ҳама',
 
 # E-mail address confirmation
-'confirmemail'      => 'Тасдиқи нишонаи почтаи электронӣ',
-'confirmemail_send' => 'Фиристодани коди тасдиқ',
-'confirmemail_sent' => 'Номаи электронии тасдиқ фиристода шуд.',
+'confirmemail'           => 'Тасдиқи нишонаи почтаи электронӣ',
+'confirmemail_send'      => 'Фиристодани коди тасдиқ',
+'confirmemail_sent'      => 'Номаи электронии тасдиқ фиристода шуд.',
+'confirmemail_invalid'   => 'Коди тасдиқ номӯътабар аст. Мумкин аст, ки сипарӣ шудааст.',
+'confirmemail_needlogin' => 'Барои тасдиқи почтаи электрониатон ниёз ба $1 доред.',
+'confirmemail_success'   => 'Нишонаи почтаи электронии шумо тасдиқ шуд. Ҳамакнун метавонеб ба систем вуруд карда аз вики лаззат бубаред.',
+'confirmemail_loggedin'  => 'Нишонаи почтаи электронии шумо тасдиқ шуд.',
+'confirmemail_subject'   => '{{SITENAME}} тасдиқи нишонаи почтаи электронӣ',
 
 # Trackbacks
-'trackbacklink' => 'Бозтоб',
+'trackbackremove' => ' ([$1 Ҳазф])',
+'trackbacklink'   => 'Бозтоб',
 
 # Delete conflict
 'deletedwhileediting' => 'Огоҳӣ: Ин саҳифа баъди ба вироиш шурӯъ кардани шумо ҳазф шуда буд!',
@@ -1223,12 +1322,15 @@ your old password.
 'livepreview-error'   => 'Иртибот ба мушкилӣ бархӯрд: $1 "$2". Аз пешнамоиши оддӣ истифода кунед.',
 
 # Watchlist editor
-'watchlistedit-noitems'      => 'Феҳристи пайгириҳои шумо холӣ аст.',
-'watchlistedit-normal-title' => 'Вироиши феҳристи пайгириҳо',
-'watchlistedit-raw-titles'   => 'Унвонҳо:',
-'watchlistedit-raw-submit'   => 'Ба рӯз расонидани пайгириҳо',
-'watchlistedit-raw-done'     => 'Феҳристи пайгириҳои шумо ба рӯз шуд.',
-'watchlistedit-raw-removed'  => 'Унвон ҳазф {{PLURAL:$1|шуд|шуданд}}:',
+'watchlistedit-noitems'       => 'Феҳристи пайгириҳои шумо холӣ аст.',
+'watchlistedit-normal-title'  => 'Вироиши феҳристи пайгириҳо',
+'watchlistedit-normal-legend' => 'Ҳазфи унвонҳо аз феҳристи пайгириҳо',
+'watchlistedit-raw-title'     => 'Вироиши феҳристи хомӣ пайгириҳо',
+'watchlistedit-raw-legend'    => 'Вироиши феҳристи хомӣ пайгириҳо',
+'watchlistedit-raw-titles'    => 'Унвонҳо:',
+'watchlistedit-raw-submit'    => 'Ба рӯз расонидани пайгириҳо',
+'watchlistedit-raw-done'      => 'Феҳристи пайгириҳои шумо ба рӯз шуд.',
+'watchlistedit-raw-removed'   => 'Унвон ҳазф {{PLURAL:$1|шуд|шуданд}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Намоиши тағйироти алоқаманди феҳристи пайгириҳо',
@@ -1251,5 +1353,10 @@ your old password.
 
 # Core parser functions
 'unknown_extension_tag' => 'Бачасби ношиноси афзунаи "$1"',
+
+# Special:Version
+'version-specialpages' => 'Саҳифаҳои вижа',
+'version-other'        => 'Дигар',
+'version-version'      => 'Нусха',
 
 );

@@ -145,6 +145,7 @@ $messages = array(
 'mytalk'         => '偶嗰對話框',
 'anontalk'       => '箇隻IP嗰對話框',
 'navigation'     => '導航',
+'and'            => '同到',
 
 # Metadata in edit box
 'metadata_help' => '元數據:',
@@ -473,7 +474,7 @@ $2',
 注意嗰係話伓定倷冇"e-mail箇隻用戶"功能，因為倷還冇到[[Special:Preferences|用戶設置]]有隻註冊email地址，更加倷冇因為用佢拕封過。
 
 倷嗰封鎖ID係$5。請莫管到哪首都標到佢。',
-'blockednoreason'           => '冇哇理由',
+'blockednoreason'           => '冇話理由',
 'blockedoriginalsource'     => "底下係'''$1'''嗰原始碼:",
 'blockededitsource'         => "底下係倷對'''$1'''嗰'''編輯'''內容:",
 'whitelistedittitle'        => '登入後才編得正',
@@ -560,7 +561,7 @@ $2',
 'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])所修訂嗰 $1',
 
 # Account creation failure
-'cantcreateaccounttitle' => '伓能新開帳戶',
+'cantcreateaccounttitle' => '新開伓正帳戶',
 'cantcreateaccount-text' => 'IP 位址伓能 (<b>$1</b>) 新開帳戶。箇可能係因為經常有來自倷嗰學堂或網絡供應商 (ISP)故意嗰破壞扤得。',
 
 # History pages
@@ -680,8 +681,8 @@ $2',
 'datedefault'              => '默認項目',
 'datetime'                 => '日期同到時間',
 'math_failure'             => '分析失敗',
-'math_unknown_error'       => '不明錯誤',
-'math_unknown_function'    => '不明函數',
+'math_unknown_error'       => '未知錯誤',
+'math_unknown_function'    => '未知函數',
 'math_lexing_error'        => '句法錯誤',
 'math_syntax_error'        => '文法錯誤',
 'math_image_error'         => 'PNG轉換失敗；請檢查係否裝正嘞latex, dvips, gs同到convert',
@@ -813,8 +814,8 @@ $2',
 'filestatus'                  => '版權狀態',
 'filesource'                  => '來源',
 'uploadedfiles'               => '上傳檔案中',
-'ignorewarning'               => '伓理警告同保存檔案。',
-'ignorewarnings'              => '伓理所有警告',
+'ignorewarning'               => '伓搭警告同存到檔案。',
+'ignorewarnings'              => '伓搭所有警告',
 'minlength1'                  => '檔案名字至少要有一隻字。',
 'illegalfilename'             => '檔案名"$1"有頁面標題伓容許嗰字元。請改吖名再上傳過。',
 'badfilename'                 => '檔案名已經拕改成"$1"。',
@@ -825,7 +826,7 @@ $2',
 'emptyfile'                   => '倷上傳嗰檔案伓存在。箇可能係因為檔案名按錯嘞。請檢查倷係否真嗰要上傳箇隻檔案。',
 'fileexists'                  => '箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查<strong><tt>$1</tt></strong>。',
 'fileexists-extension'        => '有嘞隻飛像嗰檔名:<br /> 上載文檔嗰檔名: <strong><tt>$1</tt></strong><br /> 目前檔嗰檔名: <strong><tt>$2</tt></strong><br /> 請揀隻伓同嗰名字。',
-'fileexists-thumb'            => "<center>'''存在咭嗰圖像'''</center>",
+'fileexists-thumb'            => "<center>'''早就有嘍嗰圖像'''</center>",
 'fileexists-thumbnail-yes'    => '箇隻檔案好像係一隻圖像嗰縮小版<i>(縮圖)</i>。請檢查清楚箇隻檔案<strong><tt>$1</tt></strong>。<br /> 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。',
 'file-thumbnail-no'           => '箇隻檔案名係以<strong><tt>$1</tt></strong>開頭。佢好像一隻圖像嗰縮小版<i>(縮圖)</i>。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。',
 'fileexists-forbidden'        => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[Image:$1|thumb|center|$1]]',
@@ -854,7 +855,7 @@ $2',
 'upload-proto-error-text' => '遠程上傳要求 URL 用 <code>http://</code> 或 <code>ftp://</code> 開頭。',
 'upload-file-error'       => '內部錯誤',
 'upload-file-error-text'  => '創建臨時檔案時服務器出現內部錯誤。請聯繫系統管理員。',
-'upload-misc-error'       => '不明嗰上傳錯誤',
+'upload-misc-error'       => '未知嗰上傳錯誤',
 'upload-misc-error-text'  => '上傳時發生不明嗰錯誤. 請確認輸嗰係正確同可訪問嗰 URL，接到試過吖。要係還有問題，請聯繫系統管理員。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -919,17 +920,19 @@ $2',
 'filerevert-badversion'     => '箇隻檔案所提供嗰時間標記並冇早先嗰本地版本。',
 
 # File deletion
-'filedelete'             => '刪吥 $1',
-'filedelete-legend'      => '刪吥檔案',
-'filedelete-intro'       => "倷正刪吥'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'   => '<span class="plainlinks">倷正刪吥\'\'\'[[Media:$1|$1]]\'\'\'到[$4 $2 $3]嗰版本。</span>',
-'filedelete-comment'     => '說明:',
-'filedelete-submit'      => '刪吥',
-'filedelete-success'     => "'''$1'''刪吥嘞。",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 嗰版本刪吥嘞。</span>',
-'filedelete-nofile'      => "'''$1'''到箇隻網站伓存在。",
-'filedelete-nofile-old'  => "按到指定屬性嗰情況，箇首冇'''$1'''到$2 $3嗰版本。",
-'filedelete-iscurrent'   => '眼下倷正試得刪掉箇隻檔案嗰最近版本。請拿箇隻檔案退到稍舊嗰版本再著。',
+'filedelete'                  => '刪吥 $1',
+'filedelete-legend'           => '刪吥檔案',
+'filedelete-intro'            => "倷正刪吥'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'        => '<span class="plainlinks">倷正刪吥\'\'\'[[Media:$1|$1]]\'\'\'到[$4 $2 $3]嗰版本。</span>',
+'filedelete-comment'          => '說明:',
+'filedelete-submit'           => '刪吥',
+'filedelete-success'          => "'''$1'''刪吥嘞。",
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 嗰版本刪吥嘞。</span>',
+'filedelete-nofile'           => "'''$1'''到箇隻網站伓存在。",
+'filedelete-nofile-old'       => "按到指定屬性嗰情況，箇首冇'''$1'''到$2 $3嗰版本。",
+'filedelete-iscurrent'        => '眼下倷正試得刪掉箇隻檔案嗰最近版本。請拿箇隻檔案退到稍舊嗰版本再著。',
+'filedelete-otherreason'      => '別嗰/附加緣故:',
+'filedelete-reason-otherlist' => '別嗰緣故',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
@@ -961,8 +964,8 @@ $2',
 'sitestats'              => '{{SITENAME}} 數據',
 'userstats'              => '用戶數據',
 'sitestatstext'          => "資料庫攏共有'''$1'''頁。
-佢就含到「討論」頁、關於{{SITENAME}}頁、嚸大嗰「stub」頁、重定向頁，同到別嗰冇算到內容嗰頁面。
-冇算非內容頁嗰話，唉'''$2'''頁就能算到正規嗰內容。
+佢就含到「討論」頁、關於{{SITENAME}}頁、滴子大嗰「stub」頁、重定向頁，同到別嗰冇算到內容嗰頁面。
+冇算非內容頁嗰話，許'''$2'''頁就算得正正規嗰內容。
 
 '''$8'''隻檔案上傳嘞。
 
@@ -979,13 +982,14 @@ $2',
 'doubleredirects'     => '雙重重定向頁面',
 'doubleredirectstext' => '底下嗰重定向連結到別隻重定向頁面:',
 
-'brokenredirects'        => '壞咭嗰重定向頁',
+'brokenredirects'        => '壞吥嗰重定向頁',
 'brokenredirectstext'    => '底下嗰重定向頁面指到嗰係伓存在嗰頁面:',
 'brokenredirects-edit'   => '(編寫)',
 'brokenredirects-delete' => '(刪吥)',
 
 'withoutinterwiki'        => '冇語言連結嗰頁面',
 'withoutinterwiki-header' => '底下嗰頁面係冇語言連結到別嗰語言版本:',
+'withoutinterwiki-submit' => '顯到',
 
 'fewestrevisions' => '改得最少嗰文章',
 
@@ -1170,6 +1174,8 @@ $NEWPAGE
 'excontentauthor'             => '內容係: \'$1\' (唯一嗰貢獻者係"$2")',
 'exbeforeblank'               => "拕清空之前嗰內容係: '$1'",
 'exblank'                     => '頁面冇內容',
+'delete-confirm'              => '刪卟"$1"去',
+'delete-legend'               => '刪卟去',
 'historywarning'              => '警告: 倷要刪卟嗰頁面含到歷史版',
 'confirmdeletetext'           => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，還曉得佢嗰後果，更加不能違反[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '扤正嘞',
@@ -1179,7 +1185,7 @@ $NEWPAGE
 'dellogpagetext'              => '下底係最晏刪除嗰記錄列表:',
 'deletionlog'                 => '刪除日誌',
 'reverted'                    => '恢復到早先嗰版本',
-'deletecomment'               => '刪除原因',
+'deletecomment'               => '刪除嗰緣故:',
 'deleteotherreason'           => '別嗰/附加理由:',
 'deletereasonotherlist'       => '別嗰理由',
 'rollback'                    => '還原修改',
@@ -1230,8 +1236,9 @@ $NEWPAGE
 'maximum-size'                => '最大碼子',
 
 # Restrictions (nouns)
-'restriction-edit' => '編寫',
-'restriction-move' => '斢動',
+'restriction-edit'   => '編寫',
+'restriction-move'   => '斢動',
+'restriction-create' => '建立',
 
 # Restriction levels
 'restriction-level-sysop'         => '全保護',
@@ -1269,7 +1276,7 @@ $NEWPAGE
 'undelete-filename-mismatch'   => '刪伓正帶到時間標記嗰檔案修訂 $1: 檔案伓匹配',
 'undelete-bad-store-key'       => '刪伓正帶到時間標記嗰檔案修訂 $1: 檔案刪卟之前就跌卟嘞。',
 'undelete-cleanup-error'       => '刪卟冇用嗰存檔文件 "$1" 時出錯。',
-'undelete-missing-filearchive' => '由於資料庫冇檔案存檔 ID $1 ，佢也就到檔案存檔恢復伓正。佢話不定早反刪除嘞。',
+'undelete-missing-filearchive' => '資料庫冇檔案存檔 ID $1 ，故係佢也就到檔案存檔恢復伓正。佢話伓定早反刪除嘞。',
 'undelete-error-short'         => '反刪除檔案嗰時間出錯: $1',
 'undelete-error-long'          => '反刪除檔案當中出錯: $1',
 
@@ -1321,13 +1328,13 @@ $NEWPAGE
 'ipbreason'                   => '原因:',
 'ipbreasonotherlist'          => '別嗰原因',
 'ipbreason-dropdown'          => '*一般嗰封鎖原因 
-** 不斷編寫假嗰內容 
+** 緊編寫假嗰內容 
 ** 刪卟文章內容 
 ** 亂加外部連結 
 ** 寫冇油鹽嗰話
 ** 嚇人／騷擾別嗰 
 ** 濫用帳號 
-** 用戶名亂來',
+** 亂起用戶名',
 'ipbanononly'                 => '光防到匿名用戶',
 'ipbcreateaccount'            => '防止開新帳號',
 'ipbemailban'                 => '防止用戶發email',
@@ -1356,7 +1363,7 @@ $NEWPAGE
 'ipblocklist-username'        => '用戶名或IP地址:',
 'ipblocklist-submit'          => '尋',
 'blocklistline'               => '$1，$2封到$3 ($4)',
-'infiniteblock'               => '不限期',
+'infiniteblock'               => '伓限期',
 'expiringblock'               => '$1到期',
 'anononlyblock'               => '單限制匿名用戶',
 'noautoblockblock'            => '停用自動封鎖',
@@ -1367,7 +1374,7 @@ $NEWPAGE
 'blocklink'                   => '封到',
 'unblocklink'                 => '解封',
 'contribslink'                => '貢獻',
-'autoblocker'                 => '因為倷同"[[$1]]"共用一隻IP，倷也拕自動鎖到嘞。$1封鎖嗰理由係"$2"。',
+'autoblocker'                 => '倷同"[[$1]]"共用一隻IP，故係倷也拕自動鎖到嘞。$1封鎖嗰緣故係"$2"。',
 'blocklogpage'                => '封鎖日誌',
 'blocklogentry'               => '[[$1]]拕封到$3 ，結束時間到$2',
 'blocklogtext'                => '箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:Ipblocklist|拕封IP地址列表]]。',
@@ -1381,10 +1388,10 @@ $NEWPAGE
 'ipb_already_blocked'         => '鎖到嘞"$1"',
 'ipb_cant_unblock'            => '錯誤: 冇發現Block ID $1。箇隻IP話伓定拕解封嘍。',
 'ip_range_invalid'            => '冇用嗰IP範圍。',
-'blockme'                     => '封鎖我',
+'blockme'                     => '封吥偶去',
 'proxyblocker'                => '代理封鎖器',
 'proxyblockreason'            => '倷嗰IP係一隻公開嗰代理，佢拕封到嘞。請聯絡倷嗰Internet服務提供商或技術幫助再告誦佢俚箇隻嚴重嗰安全問題。',
-'proxyblocksuccess'           => '抚正囉。',
+'proxyblocksuccess'           => '扤正囉。',
 'sorbsreason'                 => '倷嗰IP拕 DNSBL 歸到公開代理服務器。',
 'sorbs_create_account_reason' => '由於倷嗰IP拕 DNSBL歸到公開代理服務器，倷也就新開伓正帳戶。',
 
@@ -1589,7 +1596,6 @@ $NEWPAGE
 'anonymous'        => '{{SITENAME}}嗰匿名用戶',
 'siteuser'         => '{{SITENAME}}用戶$1',
 'lastmodifiedatby' => '箇頁由$3對$1 $2最晏嗰改動。', # $1 date, $2 time, $3 user
-'and'              => '同到',
 'othercontribs'    => '以$1為基礎。',
 'others'           => '別嗰',
 'siteusers'        => '{{SITENAME}}用戶$1',
@@ -2068,6 +2074,6 @@ $1',
 'watchlisttools-raw'  => '編寫原始監視列表',
 
 # Core parser functions
-'unknown_extension_tag' => '不曉得個擴展標籤 "$1"',
+'unknown_extension_tag' => '伓認得個嗰擴展標籤 "$1"',
 
 );

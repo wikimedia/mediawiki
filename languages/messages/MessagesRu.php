@@ -345,6 +345,7 @@ $messages = array(
 'mytalk'         => 'Моя страница обсуждения',
 'anontalk'       => 'Обсуждение для этого IP-адреса',
 'navigation'     => 'Навигация',
+'and'            => 'и',
 
 # Metadata in edit box
 'metadata_help' => 'Метаданные:',
@@ -834,7 +835,7 @@ $3 указал следующую причину: ''$2''",
 'deletedrev'          => '[удалена]',
 'histfirst'           => 'старейшие',
 'histlast'            => 'недавние',
-'historysize'         => '($1 {{plural:$1|байт|байта|байтов}})',
+'historysize'         => '($1 {{PLURAL:$1|байт|байта|байт}})',
 'historyempty'        => '(пусто)',
 
 # Revision feed
@@ -1309,7 +1310,7 @@ $3 указал следующую причину: ''$2''",
 'fewestrevisions' => 'Статьи с наименьшим количеством изменений',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|байт|байта|байтов}}',
+'nbytes'                  => '$1 {{PLURAL:$1|байт|байта|байт}}',
 'ncategories'             => '$1 {{PLURAL:$1|категория|категории|категорий}}',
 'nlinks'                  => '$1 {{PLURAL:$1|ссылка|ссылки|ссылок}}',
 'nmembers'                => '$1 {{PLURAL:$1|объект|объекта|объектов}}',
@@ -1915,7 +1916,7 @@ IP-адреса.',
 'tooltip-pt-login'                => 'Здесь можно зарегистрироваться в системе, но это необязательно',
 'tooltip-pt-anonlogin'            => 'Здесь можно зарегистрироваться в системе, но это необязательно',
 'tooltip-pt-logout'               => 'Завершить зарегистрированный сеанс',
-'tooltip-ca-talk'                 => 'Обсуждение статьи',
+'tooltip-ca-talk'                 => 'Обсуждение содержания страницы',
 'tooltip-ca-edit'                 => 'Эту страницу можно изменять. Используйте, пожалуйста, предварительный просмотр перед сохранением',
 'tooltip-ca-addsection'           => 'Добавить комментарий к обсуждению',
 'tooltip-ca-viewsource'           => 'Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст',
@@ -1996,7 +1997,6 @@ The wiki server can't provide data in a format your client can read.",
 'anonymous'        => 'Анонимные пользователи {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => 'Участник {{grammar:genitive|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Эта страница последний раз была изменена $2, $1 участником $3.', # $1 date, $2 time, $3 user
-'and'              => 'и',
 'othercontribs'    => 'Основано на работе $1.',
 'others'           => 'другие',
 'siteusers'        => 'Участник(и) {{grammar:genitive|{{SITENAME}}}} $1',
@@ -2496,8 +2496,8 @@ $1',
 'watchlistedit-raw-title'      => 'Изменение «сырого» списка наблюдения',
 'watchlistedit-raw-legend'     => 'Изменение «сырого» списка наблюдения',
 'watchlistedit-raw-explain'    => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения. Вы можете править список добавляя
-	и удаляя из него строчки с названиями. После завершения правок нажмите кнопку «Сохранить список».
-	Вы также можете использовать [[Special:Watchlist/edit|обычный способ изменения списка]].',
+и удаляя из него строчки с названиями. После завершения правок нажмите кнопку «Сохранить список».
+Вы также можете использовать [[Special:Watchlist/edit|обычный способ изменения списка]].',
 'watchlistedit-raw-titles'     => 'Записи:',
 'watchlistedit-raw-submit'     => 'Сохранить список',
 'watchlistedit-raw-done'       => 'Ваш список наблюдения сохранён.',
@@ -2525,5 +2525,21 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Неизвестный тег дополнения «$1»',
+
+# Special:Version
+'version-extensions'               => 'Установленные расширения',
+'version-specialpages'             => 'Служебные страницы',
+'version-parserhooks'              => 'Перехватчики синтаксического анализатора',
+'version-variables'                => 'Переменные',
+'version-other'                    => 'Иное',
+'version-mediahandlers'            => 'Обработчики медиа',
+'version-hooks'                    => 'Перехватчики',
+'version-extension-functions'      => 'Функции расширений',
+'version-parser-extensiontags'     => 'Теги расширений синтаксического анализатора',
+'version-parser-function-hooks'    => 'Перехватчики функций синтаксического анализатора',
+'version-skin-extension-functions' => 'Функции расширений тем оформления',
+'version-hook-name'                => 'Имя перехватчика',
+'version-hook-subscribedby'        => 'Подписан на',
+'version-version'                  => 'Версия',
 
 );
