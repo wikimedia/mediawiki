@@ -76,6 +76,7 @@ $messages = array(
 'navigation'     => 'Endagiriro',
 
 'returnto'         => 'Dda ku $1.',
+'tagline'          => 'Bisangiddwa ku {{SITENAME}}',
 'help'             => 'Buyambi',
 'search'           => 'Noonya',
 'searchbutton'     => 'Noonya',
@@ -88,26 +89,38 @@ $messages = array(
 'delete'           => 'Gyawo',
 'protect'          => 'Ssiba',
 'protectthispage'  => 'Siba olupapula luno',
+'talkpagelinktext' => 'Yogera nange',
+'personaltools'    => "Ebikola ku akawunti n'enfo yo",
 'talk'             => 'Emboozi',
+'views'            => "Kyusa endabika ya by'olaba wano",
 'toolbox'          => 'Ebikozesebwa',
 'otherlanguages'   => 'Mu nnimi endala',
 'lastmodifiedat'   => 'Luno olupapula lwasemba okukyuusibwamu ku $2, $1.', # $1 date, $2 time
-'jumptonavigation' => 'Endagiriro',
+'jumpto'           => 'Genda ku:',
+'jumptonavigation' => 'Ndagiriro',
+'jumptosearch'     => 'kunoonya',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'Okutangaaza ku {{SITENAME}}',
-'aboutpage'     => 'Project:Okutangaaza',
-'copyright'     => 'Ebiri kuno bifugibwa $1.',
-'currentevents' => 'Ebibindabinda',
-'edithelp'      => 'Obuyambi mu kukyusa',
-'mainpage'      => 'Omuko Ogusooka',
-'portal'        => 'Embuga',
+'aboutsite'      => 'Okutangaaza ku {{SITENAME}}',
+'aboutpage'      => 'Okutangaaza ku Project:',
+'copyright'      => 'Ebiri kuno bifugibwa $1.',
+'currentevents'  => 'Ebibindabinda',
+'disclaimers'    => "Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka",
+'disclaimerpage' => "Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka Project:",
+'edithelp'       => 'Obuyambi mu kukyusa',
+'mainpage'       => 'Omuko Ogusooka',
+'portal'         => 'Embuga',
+'privacy'        => 'Enkola yaffe ku kukuuma ebikufako',
+'privacypage'    => 'Project:Enkola yaffe ku kukuuma ebikufako',
 
-'editsection'   => 'kyuusa',
-'editold'       => 'kyuusa',
-'toc'           => 'Ebirimu',
-'hidetoc'       => 'kweka',
-'thisisdeleted' => 'Oyagala okulaba oba okuzzawo $1?',
+'retrievedfrom'  => 'Bino bigyidwa ku "$1"',
+'editsection'    => 'kyuusa',
+'editold'        => 'kyuusa',
+'toc'            => 'Ebirimu',
+'hidetoc'        => 'kweka',
+'thisisdeleted'  => 'Oyagala okulaba oba okuzzawo $1?',
+'site-rss-feed'  => "Mukutu ogw'amawulire ogw'ekika kya RSS ogw'oku $1",
+'site-atom-feed' => "Mukutu ogw'amawulire ogw'ekika kya Atom ogw'oku $1",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'    => 'Muko',
@@ -194,6 +207,7 @@ oba ku gano agali ku lupapula luno.<br />
 'prevn'        => '$1 ezikulembedde zino',
 'nextn'        => '$1 eziddako',
 'viewprevnext' => 'Laga ($1) ($2) ($3).',
+'powersearch'  => 'Noonya',
 
 # Preferences page
 'mypreferences'     => 'Enteekateeka yange',
@@ -227,6 +241,8 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Book sources
 'booksources-go' => 'Nona',
+
+'alphaindexline' => 'okuva ku $1 kutuuka ku $2',
 
 # Special:Log
 'specialloguserlabel' => 'Memba:',
@@ -285,8 +301,15 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'allmessagesmodified' => 'Lagako ebikyusidwa byokka',
 
 # Tooltip help for the actions
-'tooltip-pt-logout'  => 'Vaamu',
-'tooltip-ca-protect' => 'Siba olupapula luno',
+'tooltip-pt-logout'       => 'Vaamu',
+'tooltip-ca-protect'      => 'Siba olupapula luno',
+'tooltip-search'          => 'Noonyeza ku {{SITENAME}}',
+'tooltip-n-mainpage'      => 'Kebera ku Muko Ogusooka',
+'tooltip-n-portal'        => "Ebikutangaaza ku kawefube wa Wiki eno n'engeri naawe mw'osobolera okubyenyigiramu",
+'tooltip-n-recentchanges' => "Olukalala lw'ebyakakyusibwamu ku Wiki eno",
+'tooltip-n-help'          => 'Ebikutangaaza ku nkola ya Wiki eno',
+'tooltip-t-upload'        => "Bako fayiro ez'ebifaananyi, vidiyo oba malaboozi z'oteeka ku Wiki eno",
+'tooltip-t-specialpages'  => "Olukalala olw'emiko emyawule gyonna",
 
 # Attribution
 'siteuser'  => '{{SITENAME}} memba $1',

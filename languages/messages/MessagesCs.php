@@ -538,7 +538,7 @@ Tento počítač může být používán k prohlížení a editaci {{grammar:2sg
 'welcomecreation'            => '== Vítejte, $1! ==
 Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|nastavení]]!',
 'loginpagetitle'             => 'Přihlaste se',
-'yourname'                   => 'Uživatelské jméno',
+'yourname'                   => 'Uživatelské jméno:',
 'yourpassword'               => 'Vaše heslo',
 'yourpasswordagain'          => 'Napište heslo znovu',
 'remembermypassword'         => 'Trvalé přihlášení',
@@ -564,9 +564,9 @@ Zkuste to znovu!',
 'username'                   => 'Uživatelské jméno:',
 'uid'                        => 'Uživatelské ID:',
 'yourrealname'               => 'Vaše skutečné jméno:',
-'yourlanguage'               => 'Jazyk rozhraní',
+'yourlanguage'               => 'Jazyk rozhraní:',
 'yourvariant'                => 'Jazyková varianta',
-'yournick'                   => 'Alternativní podpis',
+'yournick'                   => 'Alternativní podpis:',
 'badsig'                     => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'badsiglength'               => 'Jméno je příliš dlouhé; musí být kratší než $1 znaků.',
 'prefs-help-realname'        => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
@@ -639,7 +639,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'headline_tip'    => 'Nadpis druhé úrovně',
 'math_sample'     => 'Vložit sem vzorec',
 'math_tip'        => 'Matematický vzorec (LaTeX)',
-'nowiki_sample'   => 'Vložit sem neformátovaný text',
+'nowiki_sample'   => 'Sem vložte neformátovaný text',
 'nowiki_tip'      => 'Ignorovat formátování wiki',
 'image_sample'    => 'Příklad.jpg',
 'image_tip'       => 'Vložený obrázek',
@@ -673,9 +673,9 @@ Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;už
 
 ----
 
-* Začátek zablokování: $8
+* Začátek zablokování: $8 
 * Zablokování vyprší: $6
-* Určeno k blokování: $7
+* Určeno k blokování: $7 
 
 Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu a&nbsp;pokud Vám byla tato možnost zakázána.
@@ -734,7 +734,7 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 ''Jelikož {{SITENAME}} má povoleno libovolné HTML, není zobrazen náhled jako prevence proti útokům JavaScriptem.''
 
 <strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>",
-'token_suffix_mismatch'     => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu. Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
+'token_suffix_mismatch'     => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu. Editace byla odmítnuta, aby se zabránilo poškození textu stránky. 
 Toto se může někdy stát pokud používáte chybující webový anonymizér.</strong>',
 'editing'                   => 'Editace stránky $1',
 'editinguser'               => 'Úprava práv uživatele $1',
@@ -745,7 +745,7 @@ Toto se může někdy stát pokud používáte chybující webový anonymizér.<
 'yourtext'                  => 'Váš text',
 'storedversion'             => 'Uložená verze',
 'nonunicodebrowser'         => '<strong>UPOZORNĚNÍ: Váš prohlížeč není schopen pracovat se znaky Unicode. Abyste mohli tuto stránku bezpečně editovat, je použita pomůcka: všechny znaky mimo ASCII jsou zobrazeny v hexadecimálních kódech.</strong>',
-'editingold'                => '<strong>VAROVÁNÍ: Nyní editujete zastaralou verzi této stránky. Když ji uložíte, všechny změny provedené mezitím se ztratí.</strong>',
+'editingold'                => '<strong>VAROVÁNÍ: Nyní editujete zastaralou verzi této stránky. Když ji uložíte, všechny pozdější změny se ztratí.</strong>',
 'yourdiff'                  => 'Rozdíly',
 'copyrightwarning'          => 'Všechny příspěvky do {{grammar:2sg|{{SITENAME}}}} jsou zveřejňovány podle $2 (podrobnosti najdete na $1). Pokud si nepřejete, aby váš text byl nemilosrdně upravován a volně šířen, pak ho do {{grammar:2sg|{{SITENAME}}}} neukládejte.<br />
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>). <strong>Nekopírujte díla chráněná autorským právem bez dovolení!</strong>',
@@ -1127,7 +1127,7 @@ Vyberte jiné jméno.',
 'fileexists-thumb'            => "<center>'''Existující soubor:'''</center>",
 'fileexists-thumbnail-yes'    => 'Toto soubor je možná obrázek ve zmenšené velikosti <i>(náhled)</i>. Zkontrolujte soubor <strong><tt>$1</tt></strong>.<br />
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.',
-'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>. Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
+'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>. Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>. 
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
 'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
@@ -1690,7 +1690,7 @@ $1',
 'expiringblock'               => 'čas vypršení: $1',
 'anononlyblock'               => 'jen anonymové',
 'noautoblockblock'            => 'bez autoblokování',
-'createaccountblock'          => 'tvorba účtů zakázána',
+'createaccountblock'          => 'vytváření účtů zablokováno',
 'emailblock'                  => 'e-mail blokován',
 'ipblocklist-empty'           => 'Seznam probíhajících bloků je prázdný.',
 'ipblocklist-no-results'      => 'Požadovaná IP adresa nebo uživatelské jméno není blokováno.',
@@ -1745,11 +1745,11 @@ $1',
 * nezrušíte křížek ve formuláři.
 
 V těchto případech musíte přesunout nebo sloučit stránky manuálně, jestliže si to přejete.",
-'movearticle'             => 'Přesunout stránku',
+'movearticle'             => 'Přesunout stránku:',
 'movenologin'             => 'Nejste přihlášen(a)!',
 'movenologintext'         => 'Pro přesouvání stránek se musíte [[Special:Userlogin|přihlásit]].',
 'movenotallowed'          => 'Nemáte oprávnění k přesunu stránek na {{grammar:6sg|{{SITENAME}}}}.',
-'newtitle'                => 'Na nový název',
+'newtitle'                => 'Na nový název:',
 'move-watch'              => 'Sledovat tuto stránku',
 'movepagebtn'             => 'Přesunout stránku',
 'pagemovedsub'            => 'Úspěšně přesunuto',
@@ -1765,7 +1765,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 '1movedto2_redir'         => 'Stránka [[$1]] přemístěna na stránku [[$2]] s výměnou přesměrování',
 'movelogpage'             => 'Kniha přesunů',
 'movelogpagetext'         => 'Toto je záznam všech přesunů stránek.',
-'movereason'              => 'Důvod',
+'movereason'              => 'Důvod:',
 'revertmove'              => 'vrátit',
 'delete_and_move'         => 'Smazat a přesunout',
 'delete_and_move_text'    => '==Je potřeba smazání==
@@ -1869,7 +1869,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'tooltip-ca-watch'                => 'Přidat tuto stránku mezi sledované',
 'tooltip-ca-unwatch'              => 'Vyjmout tuto stránku ze sledovaných',
 'tooltip-search'                  => 'Prohledat tuto wiki',
-'tooltip-search-go'               => 'Jít na stránku s&nbsp;tímto jménem, pokud existuje',
+'tooltip-search-go'               => 'Jít na stránku s tímto jménem, pokud existuje',
 'tooltip-search-fulltext'         => 'Hledat stránky s tímto textem',
 'tooltip-p-logo'                  => 'Hlavní strana',
 'tooltip-n-mainpage'              => 'Navštívit Hlavní stranu',
@@ -2076,7 +2076,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-exposureprogram'             => 'Expoziční program',
 'exif-spectralsensitivity'         => 'Spektrální citlivost',
 'exif-isospeedratings'             => 'Nastavení ISO citlivosti',
-'exif-oecf'                        => 'Optoelectronická převodní funkce (OECF)',
+'exif-oecf'                        => 'Optoelektronická převodní funkce (OECF)',
 'exif-shutterspeedvalue'           => 'Rychlost závěrky',
 'exif-aperturevalue'               => 'Clona',
 'exif-brightnessvalue'             => 'Světlost',
@@ -2186,7 +2186,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 'exif-lightsource-0'   => 'Není známo',
 'exif-lightsource-1'   => 'Denní světlo',
-'exif-lightsource-2'   => 'Fluorescentní',
+'exif-lightsource-2'   => 'Fluorescenční',
 'exif-lightsource-3'   => 'Žárovka',
 'exif-lightsource-4'   => 'Blesk',
 'exif-lightsource-9'   => 'Jasno',

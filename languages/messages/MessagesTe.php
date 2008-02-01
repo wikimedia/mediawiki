@@ -1578,18 +1578,24 @@ $NEWPAGE
 'sorbs_create_account_reason' => 'మీ ఐపీ అడ్రసు [http://www.sorbs.net SORBS] DNSBL లో ఓపెను ప్రాక్సీగా నమోదయి ఉంది. మీరు ఎకౌంటును సృష్టించజాలరు.',
 
 # Developer tools
-'lockdb'             => 'డాటాబేసును లాక్‌ చెయ్యి',
-'unlockdb'           => 'డాటాబేసుకి తాళంతియ్యి',
-'lockdbtext'         => 'డాటాబేసును లాక్‌ చెయ్యడం వలన సభ్యులు పేజీలు మార్చడం, అభిరుచులు మార్చడం, వీక్షణ జాబితాను మార్చడం వంటి డాటాబేసు ఆధారిత పనులు చెయ్యలేరు. మీరు చెయ్యదలచినది ఇదేనని, మీ పని కాగానే తిరిగి డాటాబేసును ప్రారంభిస్తాననీ ధృవీకరించండి.',
-'lockconfirm'        => 'అవును, డేటాబేసును లాకు చెయ్యాలని నిజంగానే అనుకుంటున్నాను.',
-'unlockconfirm'      => 'అవును, నేను నిజంగానే డాటాబేసుకి తాళం తియ్యాలనుకుంటున్నాను.',
-'lockbtn'            => 'డాటాబేసును లాక్‌ చెయ్యి',
-'unlockbtn'          => 'డాటాబేసు తాళంతియ్యి',
-'locknoconfirm'      => 'మీరు ధృవీకరణ పెట్టెలో టిక్కు పెట్టలేదు.',
-'lockdbsuccesssub'   => 'డాటాబేసు లాకు విజయవంతం అయ్యింది.',
-'unlockdbsuccesssub' => 'డాటాబేసుకు తాళం తీసేసాం',
-'lockdbsuccesstext'  => 'డాటాబేసు లాకయింది.<br />పని పూర్తి కాగానే లాకు తియ్యడం మర్చిపోకండి.',
-'databasenotlocked'  => 'డేటాబేసు లాకవలేదు.',
+'lockdb'              => 'డాటాబేసును లాక్‌ చెయ్యి',
+'unlockdb'            => 'డాటాబేసుకి తాళంతియ్యి',
+'lockdbtext'          => 'డాటాబేసును లాక్‌ చెయ్యడం వలన సభ్యులు పేజీలు మార్చడం, అభిరుచులు మార్చడం, వీక్షణ జాబితాను మార్చడం వంటి డాటాబేసు ఆధారిత పనులు చెయ్యలేరు. మీరు చెయ్యదలచినది ఇదేనని, మీ పని కాగానే తిరిగి డాటాబేసును ప్రారంభిస్తాననీ ధృవీకరించండి.',
+'unlockdbtext'        => 'డేటాబేసుకు తాళం తీసేసిన తరువాత, వాడుకరులందరూ పేజీలను మార్చటం మొదలు పెట్టగలరు,
+తమ అభిరుచులను మార్చుకోగలరు, వీక్షణా జాబితాకు పేజీలను కలుపుకోగలరు తీసివేయనూగలరు,
+అంతేకాక డేటాబేసులో మార్పులు చేయగలిగే ఇంకొన్ని పనులు కూడా చేయవచ్చు.
+మీరు చేయదలుచుకుంది ఇదేనాకాదా అని ఒకసారి నిర్ధారించండి.',
+'lockconfirm'         => 'అవును, డేటాబేసును లాకు చెయ్యాలని నిజంగానే అనుకుంటున్నాను.',
+'unlockconfirm'       => 'అవును, నేను నిజంగానే డాటాబేసుకి తాళం తియ్యాలనుకుంటున్నాను.',
+'lockbtn'             => 'డాటాబేసును లాక్‌ చెయ్యి',
+'unlockbtn'           => 'డాటాబేసు తాళంతియ్యి',
+'locknoconfirm'       => 'మీరు ధృవీకరణ పెట్టెలో టిక్కు పెట్టలేదు.',
+'lockdbsuccesssub'    => 'డాటాబేసు లాకు విజయవంతం అయ్యింది.',
+'unlockdbsuccesssub'  => 'డాటాబేసుకు తాళం తీసేసాం',
+'lockdbsuccesstext'   => 'డాటాబేసు లాకయింది.<br />పని పూర్తి కాగానే లాకు తియ్యడం మర్చిపోకండి.',
+'unlockdbsuccesstext' => 'డాటాబేసుకి తాళం తీసాం.',
+'lockfilenotwritable' => 'డేటాబేసుకు తాళంవేయగల ఫైలులో రాయలేకపోతున్నాను.  డేటాబేసుకు తాళంవేయటానికిగానీ లేదా తీసేయటానికిగానీ, వెబ్‌సర్వరులో ఉన్న ఈ ఫైలులో రాయగలగాలి.',
+'databasenotlocked'   => 'డేటాబేసు లాకవలేదు.',
 
 # Move page
 'movepage'                => 'పేజీని తరలించు',
@@ -1615,6 +1621,7 @@ $NEWPAGE
 'pagemovedsub'            => 'తరలింపు విజయవంతమైనది',
 'movepage-moved'          => '<big>\'\'\'"$1" పేజీని "$2"\'\'\' కు తరలించాం</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'ఆ పేరుతో ఇప్పటికే ఒక పేజీ ఉంది, లేదా మీరు ఎంచుకున్న పేరు సరైనది కాదు. వేరే పేరు ఎంచుకోండి.',
+'cantmove-titleprotected' => 'ఈ పేరుతోఉన్న పేజీని సృష్టించనివ్వకుండా సంరక్షిస్తున్నారు, అందుకని ఈ ప్రదేశంలోకి పేజీని తరలించలేను',
 'talkexists'              => "'''పేజీని జయప్రదంగా తరలించాము, కానీ చర్చా పేజీని తరలించలేక పోయాము. కొత్త పేరుతో చర్చ పేజీ ఇప్పటికే ఉంది, ఆ రెంటినీ మీరే ఏకీకృతం చెయ్యండి.'''",
 'movedto'                 => 'తరలింపు',
 'movetalk'                => 'కూడా వున్న చర్చ పేజీని తరలించు',
@@ -1633,39 +1640,62 @@ $NEWPAGE
 'delete_and_move_confirm' => 'అవును, పేజీని తొలగించు',
 'delete_and_move_reason'  => 'తరలింపుకు వీలుగా తొలగించబడింది',
 'selfmove'                => 'మూలం, గమ్యం పేర్లు ఒకటే; పేజీని దాని పైకే తరలించడం కుదరదు.',
+'immobile_namespace'      => 'మీరు తరలించబోతున్న పేజీ లేదా గమ్యస్థానంలో ఉన్న పేజీ ఒక ప్రత్యేక పేజీ; ఆ నేంస్పేసులోకి లేదా ఆ నేంస్పేసు నుండి తరలించటం కుదరదు.',
 
 # Export
-'export'           => 'ఎగుమతి పేజీలు',
-'exporttext'       => 'ఎంచుకున్న పేజీ లేదా పేజీలలోని వ్యాసం మరియు పేజీ చరితం లను XML లో ఎగుమతి చేసుకోవచ్చు. MediaWiki ని ఉపయోగించి Special:Import page ద్వారా దీన్ని వేరే వికీ లోకి దిగుమతి చేసుకోవచ్చు. 
+'export'            => 'ఎగుమతి పేజీలు',
+'exporttext'        => 'ఎంచుకున్న పేజీ లేదా పేజీలలోని వ్యాసం మరియు పేజీ చరితం లను XML లో ఎగుమతి చేసుకోవచ్చు. MediaWiki ని ఉపయోగించి Special:Import page ద్వారా దీన్ని వేరే వికీ లోకి దిగుమతి చేసుకోవచ్చు. 
 
 పేజీలను ఎగుమతి చేసందుకు, కింద ఇచ్చిన టెక్స్టు బాక్సులో పేజీ పేర్లను లైనుకో పేరు చొప్పున ఇవ్వండి. ప్రస్తుత కూర్పుతో పాటు పాత కూర్పులు కూడా కావాలా, లేక ప్రస్తుత కూర్పు మాత్రమే చాలా అనే విషయం కూడా ఇవ్వవచ్చు. 
 
 రెండో పద్ధతిలో అయితే, పేజీ యొక్క లింకును కూడా వాడవచ్చు. ఉదాహరణకు,  {{int:mainpage}} కోసమైతే [[{{ns:Special}}:Export/{{int:mainpage}}]] అని ఇవ్వవచ్చు.',
-'exportcuronly'    => 'ప్రస్తుత కూర్పు మాత్రమే, పూర్తి చరితం వద్దు',
-'export-submit'    => 'ఎగుమతి చెయ్యి',
-'export-addcat'    => 'చేర్చు',
-'export-download'  => 'ఫైలుగా భద్రపరచు',
-'export-templates' => 'మూసలను కలుపు',
+'exportcuronly'     => 'ప్రస్తుత కూర్పు మాత్రమే, పూర్తి చరితం వద్దు',
+'exportnohistory'   => "----
+'''గమనిక:''' ఈ ఫారాన్ని ఉపయోగించి పేజీలయొక్క పూర్తి చరిత్రను ఎగుమతి చేయడాన్ని సర్వరుపై వత్తిడి పెరిగిన కారణంగా ప్రస్తుతం నిలిపివేశారు.",
+'export-submit'     => 'ఎగుమతి చెయ్యి',
+'export-addcattext' => 'ఈ వర్గంలోని పేజీలను చేర్చు:',
+'export-addcat'     => 'చేర్చు',
+'export-download'   => 'ఫైలుగా భద్రపరచు',
+'export-templates'  => 'మూసలను కలుపు',
 
 # Namespace 8 related
-'allmessages'         => 'అన్ని సిస్టం సందేశాలు',
-'allmessagesname'     => 'పేరు',
-'allmessagescurrent'  => 'ప్రస్తుత పాఠం',
-'allmessagestext'     => 'మీడియావికీ నేంస్పేసులో ఉన్న అన్ని సిస్టం సందేశాల జాబితా ఇది.',
-'allmessagesmodified' => 'మార్చినవాటినే చూపించు',
+'allmessages'               => 'అన్ని సిస్టం సందేశాలు',
+'allmessagesname'           => 'పేరు',
+'allmessagesdefault'        => 'డీఫాల్టు పాట్యం',
+'allmessagescurrent'        => 'ప్రస్తుత పాఠం',
+'allmessagestext'           => 'మీడియావికీ నేంస్పేసులో ఉన్న అన్ని సిస్టం సందేశాల జాబితా ఇది.',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''ను ఆఫ్‌లో పెట్టడం వలన '''{{ns:special}}:Allmessages''' వాడలేరు.",
+'allmessagesfilter'         => 'సమాచారం పేరుపై ఫిల్టరు:',
+'allmessagesmodified'       => 'మార్చినవాటినే చూపించు',
 
 # Thumbnails
-'thumbnail-more'  => 'పెద్దది చెయ్యి',
-'missingimage'    => '<b>తప్పిపోయిన బొమ్మ</b><br /><i>$1</i>',
-'filemissing'     => 'ఫైలు కనపడుటలేదు',
-'thumbnail_error' => '$1: నఖచిత్రం తయారుచెయ్యడంలో లోపం జరిగింది',
+'thumbnail-more'           => 'పెద్దది చెయ్యి',
+'missingimage'             => '<b>తప్పిపోయిన బొమ్మ</b><br /><i>$1</i>',
+'filemissing'              => 'ఫైలు కనపడుటలేదు',
+'thumbnail_error'          => '$1: నఖచిత్రం తయారుచెయ్యడంలో లోపం జరిగింది',
+'djvu_page_error'          => 'DjVu పేజీ రేంజి దాటిపోయింది',
+'djvu_no_xml'              => 'DjVu ఫైలు కోసం XMLను తీసుకుని రాలేకపోయాను',
+'thumbnail_invalid_params' => 'నఖచిత్రాలకు సరయిన పారామీటర్లు లేవు',
+'thumbnail_dest_directory' => 'గమ్యస్థానంలో డైరెక్టరీని సృష్టించలేకపోయాం',
 
 # Special:Import
-'importstart'           => 'పేజీలను దిగుమతి చేస్తున్నాం...',
-'import-revision-count' => '$1 {{PLURAL:$1|కూర్పు|కూర్పులు}}',
-'importnopages'         => 'దిగుమతి చెయ్యడానికి పేజీలేమీ లేవు.',
-'importfailed'          => 'దిగుమతి కాలేదు: $1',
-'importsuccess'         => 'దిగుమతి పూర్తయ్యింది!',
+'import'                     => 'పేజీలను దిగుమతి చేసుకోండి',
+'importinterwiki'            => 'ఇంకోవికీ నుండి దిగుమతి',
+'import-interwiki-text'      => 'దిగుమతి చేసుకోవడానికి ఒక వికీని మరియూ అందులోని పేజీని ఎంచుకోండి.
+కూర్పుల తేదీలు మరియు మార్పులు చేసిన వారి పేర్లు భద్రపరచబడతాయి.
+ఇతర వికీలనుండీ చేస్తున్న దిగుమతుల దినచర్యలన్నీ [[Special:Log/import|దిగుమతి దినచర్య]] అనే ప్రత్యేక పేజీలో కనపడతాయి.',
+'import-interwiki-history'   => 'ఈ పేజీ యొక్క అన్ని చారిత్రక కూర్పులను కాపీ చెయ్యి',
+'import-interwiki-submit'    => 'దిగుమతించు',
+'import-interwiki-namespace' => 'ఈ నేంస్పేసులోకి పేజీలను పంపించు:',
+'importstart'                => 'పేజీలను దిగుమతి చేస్తున్నాం...',
+'import-revision-count'      => '$1 {{PLURAL:$1|కూర్పు|కూర్పులు}}',
+'importnopages'              => 'దిగుమతి చెయ్యడానికి పేజీలేమీ లేవు.',
+'importfailed'               => 'దిగుమతి కాలేదు: $1',
+'importnotext'               => 'ఖాళీ లేదా పాఠ్యం లేదు',
+'importsuccess'              => 'దిగుమతి పూర్తయ్యింది!',
+'import-noarticle'           => 'దిగుమతి చెయ్యాల్సిన పేజీ లేదు!',
+'import-nonewrevisions'      => 'అన్ని కూర్పులూ గతంలోనే దిగుమతయ్యాయి.',
+'xml-error-string'           => '$1 $2వ లైనులో, వరుస $3 ($4వ బైటు): $5',
 
 # Import log
 'importlogpage'                    => 'దిగుమతి లాగ్',
@@ -1691,6 +1721,8 @@ $NEWPAGE
 'tooltip-ca-watch'                => 'ఈ పేజీని మీ విక్షణా జాబితాకి చేర్చుకోండి',
 'tooltip-ca-unwatch'              => 'ఈ పేజీని మీ విక్షణా జాబితా నుండి తొలగించండి',
 'tooltip-search'                  => '{{SITENAME}} లో వెతకండి',
+'tooltip-search-go'               => 'ఇదే పేరుతో పేజీ ఉంటే అక్కడికి తీసుకెళ్ళు',
+'tooltip-search-fulltext'         => 'పేజీలలో ఈ పాఠ్యం కొరకు వెతుకు',
 'tooltip-p-logo'                  => 'మొదటి పేజీ',
 'tooltip-n-mainpage'              => 'మొదటి పేజీని దర్శించండి',
 'tooltip-n-portal'                => 'ప్రాజెక్టు గురించి, మీరేం చేయవచ్చు, సమాచారం ఎక్కడ దొరుకుతుంది',
@@ -1708,10 +1740,12 @@ $NEWPAGE
 'tooltip-t-specialpages'          => 'అన్ని ప్రత్యేక పేజీల జాబితా',
 'tooltip-t-print'                 => 'ఈ పేజీ యొక్క ముద్రణా కూర్పు',
 'tooltip-t-permalink'             => 'పేజీ యొక్క ఈ కూర్పుకి శాశ్వత లింకు',
+'tooltip-ca-nstab-main'           => 'విషయపు పేజీ చూడండి',
 'tooltip-ca-nstab-user'           => 'వాడుకరి పేజీ చూడండి',
 'tooltip-ca-nstab-special'        => 'ఇది ఓ ప్రత్యేక పేజీ, దీన్ని మీరు సరిదిద్దలేదు.',
 'tooltip-ca-nstab-project'        => 'ప్రాజెక్టు పేజీని చూడండి',
 'tooltip-ca-nstab-image'          => 'బొమ్మ పేజీ చూడండి',
+'tooltip-ca-nstab-mediawiki'      => 'వ్యవస్థా సందేశం చూడండి',
 'tooltip-ca-nstab-template'       => 'మూసని చూడండి',
 'tooltip-ca-nstab-help'           => 'సహాయపు పేజీ చూడండి',
 'tooltip-ca-nstab-category'       => 'వర్గపు పేజీ చూడండి',
@@ -1750,6 +1784,7 @@ $NEWPAGE
 # Math options
 'mw_math_html'   => 'వీలైతే ఎచ్‌టీఎంఎల్ లేకపోతే పింగ్',
 'mw_math_source' => 'టెక్ గానే ఉండనివ్వు (టెక్స్ట్‌ బ్రౌజర్ల కొరకు)',
+'mw_math_modern' => 'ఆధునిక విహారిణులకు ఉద్దేశించినది',
 
 # Patrolling
 'markaspatrolleddiff'   => 'పరీక్షించినట్లుగా గుర్తు పెట్టు',
@@ -1759,9 +1794,11 @@ $NEWPAGE
 
 # Patrol log
 'patrol-log-page' => 'నిఘా లాగ్‌',
+'patrol-log-auto' => '(దావంత అదే)',
 
 # Image deletion
-'deletedrevision' => 'పాత సంచిక $1 తొలగించబడినది.',
+'deletedrevision'       => 'పాత సంచిక $1 తొలగించబడినది.',
+'filedeleteerror-short' => 'ఫైలు తొలగించడంలో పొరపాటు: $1',
 
 # Browsing diffs
 'previousdiff' => '← మునుపటి తేడా',
@@ -1806,27 +1843,61 @@ $NEWPAGE
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'      => 'వెడల్పు',
-'exif-imagelength'     => 'ఎత్తు',
-'exif-orientation'     => 'దిశ',
-'exif-make'            => 'కేమెరా తయారీదారు',
-'exif-pixelxdimension' => 'బొమ్మ సరైన ఎత్తు',
-'exif-usercomment'     => 'వాడుకరి వ్యాఖ్యలు',
+'exif-imagewidth'                  => 'వెడల్పు',
+'exif-imagelength'                 => 'ఎత్తు',
+'exif-orientation'                 => 'దిశ',
+'exif-planarconfiguration'         => 'డాటా అమరిక',
+'exif-jpeginterchangeformatlength' => 'JPEG డాటా యొక్క బైట్లు',
+'exif-imagedescription'            => 'బొమ్మ శీర్షిక',
+'exif-make'                        => 'కేమెరా తయారీదారు',
+'exif-model'                       => 'కేమెరా మోడల్',
+'exif-pixelxdimension'             => 'బొమ్మ సరైన ఎత్తు',
+'exif-usercomment'                 => 'వాడుకరి వ్యాఖ్యలు',
+'exif-fnumber'                     => 'F సంఖ్య',
+'exif-lightsource'                 => 'కాంతి మూలం',
+'exif-filesource'                  => 'ఫైలు మూలం',
+'exif-gpstrack'                    => 'కదలిక యొక్క దిశ',
+'exif-gpsimgdirection'             => 'బొమ్మ యొక్క దిశ',
+
+'exif-unknowndate' => 'అజ్ఞాత తేదీ',
+
+'exif-exposureprogram-0' => 'అనిర్వచితం',
 
 'exif-subjectdistance-value' => '$1 మీటర్లు',
 
+'exif-meteringmode-0'   => 'అజ్ఞాతం',
 'exif-meteringmode-1'   => 'సగటు',
+'exif-meteringmode-5'   => 'సరళి',
 'exif-meteringmode-255' => 'ఇతర',
 
-'exif-lightsource-0'  => 'తెలియదు',
-'exif-lightsource-1'  => 'సూర్యకాంతి',
-'exif-lightsource-11' => 'నీడ',
+'exif-lightsource-0'   => 'తెలియదు',
+'exif-lightsource-1'   => 'సూర్యకాంతి',
+'exif-lightsource-10'  => 'మేఘావృతం',
+'exif-lightsource-11'  => 'నీడ',
+'exif-lightsource-17'  => 'ప్రామాణిక కాంతి A',
+'exif-lightsource-18'  => 'ప్రామాణిక కాంతి B',
+'exif-lightsource-19'  => 'ప్రామాణిక కాంతి C',
+'exif-lightsource-255' => 'ఇతర కాంతి మూలం',
 
 'exif-focalplaneresolutionunit-2' => 'అంగుళాలు',
+
+'exif-sensingmethod-1' => 'అనిర్వచితం',
+
+'exif-customrendered-0' => 'సాధారణ ప్రక్రియ',
+
+'exif-scenecapturetype-0' => 'ప్రామాణిక',
+
+'exif-subjectdistancerange-0' => 'అజ్ఞాతం',
+'exif-subjectdistancerange-2' => 'దగ్గరి దృశ్యం',
+'exif-subjectdistancerange-3' => 'దూరపు దృశ్యం',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'గంటకి కిలోమీటర్లు',
 'exif-gpsspeed-m' => 'గంటకి మైళ్ళు',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'వాస్తవ దిశ',
+'exif-gpsdirection-m' => 'అయస్కాంత దిశ',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
@@ -1945,6 +2016,12 @@ $1',
 'watchlisttools-view' => 'సంబంధిత మార్పులను చూపించు',
 'watchlisttools-edit' => 'వీక్షణ జాబితాను చూపించు, మార్చు',
 'watchlisttools-raw'  => 'ముడి వీక్షణ జాబితాలో మార్పులు చెయ్యి',
+
+# Special:Version
+'version-extensions'   => 'స్థాపించిన పొడగింతలు',
+'version-specialpages' => 'ప్రత్యేక పేజీలు',
+'version-other'        => 'ఇతర',
+'version-version'      => 'సంచిక',
 
 # Special:Filepath
 'filepath'         => 'పూర్తి చిరునామా',

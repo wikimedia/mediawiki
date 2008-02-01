@@ -292,7 +292,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Saját szerkesztések elrejtése',
 'tog-watchlisthidebots'       => 'Robotok szerkesztéseinek elrejtése',
 'tog-watchlisthideminor'      => 'Apró változtatások elrejtése',
-'tog-nolangconversion'        => 'A változások átalakításának letiltása',
+'tog-nolangconversion'        => 'A változók átalakításának letiltása',
 'tog-ccmeonemails'            => 'A másoknak küldött e-mailekről kapjak én is egy másolatot',
 'tog-diffonly'                => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
 
@@ -685,6 +685,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 # Password reset dialog
 'resetpass'               => 'A fiók jelszavának módosítása',
 'resetpass_announce'      => 'E-mailben megküldött ideiglenes kóddal jelentkeztél be. A bejelentkezés befejezéséhez itt kell megadnod az új jelszót:',
+'resetpass_text'          => '<!-- Ide írd a szöveget -->',
 'resetpass_header'        => 'Jelszó módosítása',
 'resetpass_submit'        => 'Add meg a jelszót és jelentkezz be',
 'resetpass_success'       => 'A jelszavad módosítása sikerült! Most jelentkezel be...',
@@ -1184,6 +1185,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',
 'emptyfile'                   => 'Az általad feltöltött fájl üresnek tűnik. Ez a fájlnévben lévő hibás karakter miatt lehet. Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
 'fileexists'                  => '<strong><tt>$1</tt></strong> névvel már létezik egy állomány. Ellenőrizd, hogy biztosan felül akarod-e írni!',
+'filepageexists'              => 'Egy oldal (nem kép) már létezik ezen a néven, kérlek ellenőrízd a(z) <strong><tt>$1</tt></strong> lapot, ha nem vagy biztos benne, hogy meg szeretnéd változtatni.',
 'fileexists-extension'        => 'Van hasonló nevű fájl:<br />
 A feltöltendő fájl neve: <strong><tt>$1</tt></strong><br />
 A létező fájl neve: <strong><tt>$2</tt></strong><br />
@@ -1213,6 +1215,20 @@ Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetbe
 
 Mielőtt ismét feltöltenéd, nézd meg, miért lett korábban törölve, és ellenőrizd, hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
 'filename-bad-prefix'         => 'Annak a fájlnak a neve, amelyet fel akarsz tölteni <strong>„$1”</strong> karakterekkel kezdődik. Ilyeneket általában a digitális kamerák adnak a fájloknak, automatikusan, azonban ezek nem írják le annak tartalmát. Válassz egy leíró nevet!',
+'filename-prefix-blacklist'   => ' #<!-- ezt a sort hagyd így --> <pre>
+#A szintaktika a következő:
+#   * Minden a „#” karaktertől a sor végéig megjegyzésnek számít
+#   * Minden nemüres sor egy, a digitális fényképezőképek által fájlok neveként használt előtag
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # néhány mobiltelefon
+IMG # általános
+JD # Jenoptik
+MGP # Pentax
+PICT # ált.
+ #</pre> <!-- ezt a sort hagyd így -->',
 
 'upload-proto-error'      => 'Hibás protokoll',
 'upload-proto-error-text' => 'A távoli feltöltéshez <code>http://</code> vagy <code>ftp://</code> kezdetű URL-ekre van szükség.',
@@ -2557,6 +2573,22 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 
 # Core parser functions
 'unknown_extension_tag' => 'Ismeretlen tag kiterjesztés: $1',
+
+# Special:Version
+'version-extensions'               => 'Telepített kiterjesztések',
+'version-specialpages'             => 'Speciális lapok',
+'version-parserhooks'              => 'Értelmező hookok',
+'version-variables'                => 'Változók',
+'version-other'                    => 'Más',
+'version-mediahandlers'            => 'Médiafájl-kezelők',
+'version-hooks'                    => 'Hookok',
+'version-extension-functions'      => 'A kiegészítők függvényei',
+'version-parser-extensiontags'     => 'Az értelmező kiterjesztéseinek tagjei',
+'version-parser-function-hooks'    => 'Az értelmező függvényeinek hookjai',
+'version-skin-extension-functions' => 'Felület kiterjeszések függvényei',
+'version-hook-name'                => 'Hook neve',
+'version-hook-subscribedby'        => 'Használja',
+'version-version'                  => 'verzió:',
 
 # Special:Filepath
 'filepath'         => 'Fájlelérés',

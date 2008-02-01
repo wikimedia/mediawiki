@@ -1456,12 +1456,19 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'livepreview-ready'   => 'Onerans… Factum!',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'Tituli:',
+'watchlistedit-normal-title'  => 'Indicem paginarum custoditarum recensere',
+'watchlistedit-normal-submit' => 'Removere titulos',
+'watchlistedit-raw-titles'    => 'Tituli:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Mutationes paginarum custoditarum monstrare',
 'watchlisttools-edit' => 'Indicem paginarum custoditarum inspicere vel recensere',
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum inspicere vel recensere',
+
+# Special:Version
+'version-specialpages' => 'Paginae speciales',
+'version-other'        => 'Alia',
+'version-version'      => 'Versio',
 
 # Special:Filepath
 'filepath'      => 'Fasciculorum inscriptio',

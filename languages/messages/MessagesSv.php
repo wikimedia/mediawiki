@@ -2382,7 +2382,7 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 # Special:Version
 'version-extensions'               => 'Installerade programtillägg',
 'version-specialpages'             => 'Specialsidor',
-'version-parserhooks'              => 'Parser hakar',
+'version-parserhooks'              => 'Parsertillägg',
 'version-variables'                => 'Variabler',
 'version-other'                    => 'Annat',
 'version-mediahandlers'            => 'Mediahanterare',
@@ -2390,9 +2390,9 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'version-extension-functions'      => 'Tilläggsfunktioner',
 'version-parser-extensiontags'     => 'Tilläggstaggar',
 'version-parser-function-hooks'    => 'Parserfunktioner',
-'version-skin-extension-functions' => 'Skaltillbyggnadsfunktioner',
+'version-skin-extension-functions' => 'Skaltilläggsfunktioner',
 'version-hook-name'                => 'Namn',
-'version-hook-subscribedby'        => 'Undertecknad av',
+'version-hook-subscribedby'        => 'Används av',
 'version-version'                  => 'Version',
 
 # Special:Filepath

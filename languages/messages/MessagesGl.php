@@ -2319,12 +2319,17 @@ Tente a vista previa normal.',
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta de extensión descoñecida "$1"',
 
+# Special:Version
+'version-extensions'   => 'Extensións instaladas',
+'version-specialpages' => 'Páxinas especiais',
+'version-variables'    => 'Variábeis',
+
 # Special:Filepath
 'filepath'         => 'Ruta do arquivo',
 'filepath-page'    => 'Arquivo:',
 'filepath-submit'  => 'Ruta',
 'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro. As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
 	
-Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:"',
+	Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:"',
 
 );

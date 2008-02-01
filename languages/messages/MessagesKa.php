@@ -175,6 +175,7 @@ $messages = array(
 'mytalk'         => 'ჩემი განხილვა',
 'anontalk'       => 'ამ IP-ს განხილვა',
 'navigation'     => 'ნავიგაცია',
+'and'            => 'და',
 
 # Metadata in edit box
 'metadata_help' => 'მეტამონაცემები (იხ. [[Project:მეტამონაცემები|მეტამონაცემები]] განმარტებისთვის):',
@@ -412,7 +413,7 @@ $1',
 'wrongpasswordempty'         => 'პაროლი არ არის შეყვანილი. სცადეთ განმეორებით.',
 'passwordtooshort'           => 'თქვენი პაროლი მოკლეა. მას უნდა ჰქონდეს მინიმუმ $1 სიმბოლო.',
 'mailmypassword'             => 'ახალი პაროლის გამოგზავნა',
-'passwordremindertitle'      => 'პაროლის შეხსენება {{SITENAME}}-დან',
+'passwordremindertitle'      => 'ახალი დროებითი პაროლი {{SITENAME}}-თვის',
 'passwordremindertext'       => "ვიღაცამ (შესაძლოა თქვენ, IP მისამართით $1)
 მოითხოვა ახალი პაროლის გაგზავნა {{SITENAME}}-სთვის ($4).
 პაროლი მოხმარებლისთვის ''$2'' ამჟამად არის ''$3''.
@@ -1060,6 +1061,8 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 # Special:Log
 'specialloguserlabel'  => 'მომხმარებელი:',
 'speciallogtitlelabel' => 'სათაური:',
+'log'                  => 'ჟურნალები',
+'all-logs-page'        => 'ყველა ჟურნალი',
 'log-search-submit'    => 'ძიება',
 'alllogstext'          => 'ატვირთვის, წაშლის, დაცვის, ბლოკირების და ადმინისტრატორის ჟურნალის კომბინირებული ასახვა. შეგიძლიათ გაფილტროთ ჟურნალის ტიპით, მომხმარებლის სახელით ან სტატიის მიხედვით.',
 'logempty'             => 'რეზულტატები არ არის სიაში.',
@@ -1502,7 +1505,6 @@ $NEWPAGE
 'anonymous'        => 'ვიკიპედიის ანონიმური მომხმარებლები',
 'siteuser'         => '{{SITENAME}} მომხმარებელი $1',
 'lastmodifiedatby' => 'ეს გვერდი ბოლოს შეიცვალა $2, $1  $3-ით.', # $1 date, $2 time, $3 user
-'and'              => 'და',
 'othercontribs'    => '$1-ს ნამუშევრის მიხედვით.',
 'others'           => 'სხვები',
 'siteusers'        => '{{SITENAME}} მომხმარებელი $1',

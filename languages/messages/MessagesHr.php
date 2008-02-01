@@ -2374,7 +2374,11 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
 
 # Special:Version
-'version-version' => 'Inačica',
+'version-extensions'   => 'Instalirana proširenja',
+'version-specialpages' => 'Posebne stranice',
+'version-variables'    => 'Varijable',
+'version-other'        => 'Ostalo',
+'version-version'      => 'Inačica',
 
 # Special:Filepath
 'filepath'         => 'Putanja datoteke',
@@ -2382,6 +2386,6 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'filepath-submit'  => 'Putanja',
 'filepath-summary' => "Ova posebna stranica daje Vam kompletnu putanju do neke datoteke. Slike se na taj način prikazuju u punoj rezoluciji, drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u vašem operacijskom sustavu).
 	
-Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
+	Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
 
 );

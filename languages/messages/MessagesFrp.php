@@ -2401,6 +2401,22 @@ $1',
 # Core parser functions
 'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
 
+# Special:Version
+'version-extensions'               => 'Vèrsions enstalâs',
+'version-specialpages'             => 'Pâges spèciâles',
+'version-parserhooks'              => 'Apèls d’analises',
+'version-variables'                => 'Variâbles',
+'version-other'                    => 'De totes sôrtes',
+'version-mediahandlers'            => 'Maneyors de mèdia',
+'version-hooks'                    => 'Apèls',
+'version-extension-functions'      => 'Fonccions de les èxtensions',
+'version-parser-extensiontags'     => 'Balises d’analises vegnent de les èxtensions',
+'version-parser-function-hooks'    => 'Apèls de les fonccions d’analisa',
+'version-skin-extension-functions' => 'Fonccions d’entèrface d’èxtensions',
+'version-hook-name'                => 'Nom de l’apèl',
+'version-hook-subscribedby'        => 'Dèfeni per',
+'version-version'                  => 'Vèrsion',
+
 # Special:Filepath
 'filepath'         => 'Chemin d’accès d’un fichiér',
 'filepath-page'    => 'Fichiér :',

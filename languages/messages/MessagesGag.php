@@ -15,6 +15,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Boş baalantıları <a href="" class="new">bu formada</a> (alternativa: bu formada<a href="" class="internal">?</a>) göster.',
 'tog-justify'                 => 'Paragrafları düz',
 'tog-hideminor'               => 'Küçük diişmäkleri "Bitki diişmäkler" sayfasında sakla',
+'tog-extendwatchlist'         => 'İlerlemiş bakmaa listası',
+'tog-usenewrc'                => 'İlerlemiş bitki diişmäkler listası (her brauzerä uymêêr)',
 'tog-numberheadings'          => 'Başlıklara avtomatik nomer yaz',
 'tog-showtoolbar'             => 'Diişmäk yapar känä yardımcı tuşları göster. (JavaScript)',
 'tog-editondblclick'          => 'Sayfayı çift tuşlayarak diiştirmää başla (JavaScript)',
@@ -25,6 +27,7 @@ $messages = array(
 'tog-editwidth'               => 'Diiştirmää eri brauzer penceräsi büüklüktä olsun',
 'tog-watchcreations'          => 'Yarattıım sayfaları bakmaa listama ekle',
 'tog-watchdefault'            => 'Diişmäk yapılan sayfayı bakmaa listasına ekle',
+'tog-watchmoves'              => 'Bakmaa listama ekle o sayfaları angılarını taşıdım',
 'tog-watchdeletion'           => 'Sildiim sayfaları bakmaa listama ekle',
 'tog-minordefault'            => "Hepsi diişmäkleri 'küçük diişmäk' olarak nışanna",
 'tog-previewontop'            => 'Öni siiri diiştirmää penceräsi üstünde göster',
@@ -127,6 +130,7 @@ $messages = array(
 'newwindow'      => '(eni bir pencerädä açılêr)',
 'cancel'         => 'Ret',
 'qbfind'         => 'Bul',
+'qbbrowse'       => 'Taramaa',
 'qbedit'         => 'Diiştir',
 'qbpageoptions'  => 'Bu sayfa',
 'qbpageinfo'     => 'Kontekst',
@@ -137,6 +141,7 @@ $messages = array(
 'mytalk'         => 'Sözleşmäk sayfam',
 'anontalk'       => 'Bu IP-nin konuşmaları',
 'navigation'     => 'Saytda yol bulmaa',
+'and'            => 'hem',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -220,7 +225,7 @@ $messages = array(
 'sitesupport'       => 'Baaşişlär',
 'sitesupport-url'   => 'Project:Baaşiş',
 
-'badaccess'        => 'İzin yannışlıı',
+'badaccess'        => 'İzin kusurluu',
 'badaccess-group0' => 'Bu işlemi yapmaa kuvediniz yok.',
 'badaccess-group1' => 'O işlem ani yapmaa neetlendiniz sadä var nicä yapılsın $1 gruppasındaki kullanıcılar tarafınnan.',
 'badaccess-group2' => 'O işlem ani yapmaa neetlendiniz, var nicä yapılsın sadä $1 gruppasındaki kullanıcılardan biri tarafınnan.',
@@ -269,8 +274,9 @@ $messages = array(
 'nospecialpagetext' => 'Bir maasus sayfaya girdiniz angısı bulunmêêr. Var olan hepsi maasus sayfaları yakışêr sizä görmää [[Special:Specialpages]] sayfasında.',
 
 # General errors
-'error'              => 'Yannış',
-'databaseerror'      => 'Data bazası yannışı',
+'error'              => 'Kusurluk',
+'databaseerror'      => 'Data bazası kusurluu',
+'nodb'               => '$1 data bazasını yok nicä seçsin',
 'readonly'           => 'Data bazası kilitlendi',
 'internalerror'      => 'İç yannış',
 'internalerror_info' => 'İç yannış: $1',
@@ -286,61 +292,78 @@ $messages = array(
 'viewsourcetext'     => 'Var nicä görmää hem kopiya etmää bu yapraa gelinirini:',
 
 # Login and logout pages
-'logouttitle'           => 'Sessiyanı kapat',
-'welcomecreation'       => '== Hoş geldiniz $1! ==
+'logouttitle'                => 'Sessiyanı kapat',
+'logouttext'                 => 'Sessiyayı kapattınız.
+Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki enidän sessiya açmaa (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.',
+'welcomecreation'            => '== Hoş geldiniz $1! ==
 
 Esapınız açıldı. Unutmayın {{SITENAME}} seçimnerin diiştirmää.',
-'loginpagetitle'        => 'Sessiya aç',
-'yourname'              => 'Kullanıcı adınız',
-'yourpassword'          => 'Parol',
-'yourpasswordagain'     => 'Parolu enidän yaz',
-'remembermypassword'    => 'Parolu hatırla.',
-'yourdomainname'        => 'Domen adınız',
-'loginproblem'          => '<b>Registrat olur känä bir problema oldu.</b><br />Bir taa deneyin!',
-'login'                 => 'Gir',
-'loginprompt'           => "Bak: {{SITENAME}} saytında sessiya açmaa için tarayıcınızda läazım cookies aktivat olsun. <br />
+'loginpagetitle'             => 'Sessiya aç',
+'yourname'                   => 'Kullanıcı adınız',
+'yourpassword'               => 'Parol',
+'yourpasswordagain'          => 'Parolu enidän yaz',
+'remembermypassword'         => 'Parolu hatırla.',
+'yourdomainname'             => 'Domen adınız',
+'loginproblem'               => '<b>Registrat olur känä bir problema oldu.</b><br />Bir taa deneyin!',
+'login'                      => 'Gir',
+'loginprompt'                => "Bak: {{SITENAME}} saytında sessiya açmaa için tarayıcınızda läazım cookies aktivat olsun. <br />
 Kullanıcı adınız '''var nicä içersin'''gagauzça nışan, boşluk . Savaşın kullanıcı adınıza e-mail adresi '''girmemää'''.",
-'userlogin'             => 'Gir / esap yarat',
-'logout'                => 'Sessiyanı kapat',
-'userlogout'            => 'Oturmaa kapat',
-'notloggedin'           => 'Sessiya diil açık',
-'nologin'               => 'Henez aza olmadınız? $1.',
-'nologinlink'           => 'Esap yarat',
-'createaccount'         => 'Eni esap aç',
-'gotaccount'            => 'Taa ilerdä esap açtınızmı? $1.',
-'gotaccountlink'        => 'Herliim ilerdän esap açtıysanız girin bu baalantıdan.',
-'createaccountmail'     => 'e-maillan',
-'youremail'             => 'E-mail adresiniz*',
-'username'              => 'Kullanıcı adı:',
-'uid'                   => 'Registrațiya nomeri:',
-'yourrealname'          => 'Haliz adınız:',
-'yourlanguage'          => 'Dil:',
-'yournick'              => 'Nik',
-'email'                 => 'E-mail',
-'prefs-help-realname'   => '* Aslı ad (istemää baalı): herliim seçersäniz aslı adı vermää, işinize görä sizin için kullanılacêk.',
-'loginsuccesstitle'     => 'Sessiya başarılan açıldı',
-'loginsuccess'          => '{{SITENAME}} saytında "$1" kullanıcı adılan sessiya açtınız.',
-'nosuchuser'            => 'Burada "$1" adlı kullanıcı yok. Yokla bir taa nesoy yazdın, yaki eni esap yarat.',
-'nosuchusershort'       => 'Burada "$1" adlı kullanıcı yok. Yoklayın ani ad nesoy yazıldı.',
-'nouserspecified'       => 'Läazım bir kullanıcı adı göstermää.',
-'wrongpassword'         => 'Parolu yannış girdiniz. Yalvarerêz tekrar denämää.',
-'wrongpasswordempty'    => 'Boş parol girdiniz. Yalvarerez tekrar denämää.',
-'passwordtooshort'      => 'Parolunuz çok kısa. En az $1 bukva hem/yaki țifra läazım olsun.',
-'mailmypassword'        => 'Gönder bana e-maillän eni bir parol',
-'passwordremindertitle' => '{{SITENAME}} saytından parol hatırlatıcısı.',
-'passwordremindertext'  => '$1 IP adresinnän (beki siz) istendi {{SERVERNAME}} için eni bir {{SITENAME}} ($4) parolu göndermää.
+'userlogin'                  => 'Gir / esap yarat',
+'logout'                     => 'Sessiyanı kapat',
+'userlogout'                 => 'Oturmaa kapat',
+'notloggedin'                => 'Sessiya diil açık',
+'nologin'                    => 'Henez aza olmadınız? $1.',
+'nologinlink'                => 'Esap yarat',
+'createaccount'              => 'Eni esap aç',
+'gotaccount'                 => 'Taa ilerdä esap açtınızmı? $1.',
+'gotaccountlink'             => 'Herliim ilerdän esap açtıysanız girin bu baalantıdan.',
+'createaccountmail'          => 'e-maillan',
+'badretype'                  => 'Parollar angılarını girdiniz uymêêr.',
+'userexists'                 => 'Kullanıcı adı ani girdiniz kullanılêr. Yalvarêrız farklı bir kullanıcı adı seçin.',
+'youremail'                  => 'E-mail adresiniz*',
+'username'                   => 'Kullanıcı adı:',
+'uid'                        => 'Registrațiya nomeri:',
+'yourrealname'               => 'Haliz adınız:',
+'yourlanguage'               => 'Dil:',
+'yournick'                   => 'Nik',
+'badsig'                     => 'Geçersiz çii imza; HTML etiketlerini yoklayın.',
+'badsiglength'               => 'Kullanıcı adı çok uzun; lääzım olsun $1 simvol altında.',
+'email'                      => 'E-mail',
+'prefs-help-realname'        => '* Aslı ad (istemää baalı): herliim seçersäniz aslı adı vermää, işinize görä sizin için kullanılacêk.',
+'loginerror'                 => 'Sessiya açmaa yannışı.',
+'prefs-help-email-required'  => 'E-mail adres istenildi.',
+'noname'                     => 'Geçerli bir kullanıcı adı girmediniz.',
+'loginsuccesstitle'          => 'Sessiya başarılan açıldı',
+'loginsuccess'               => '{{SITENAME}} saytında "$1" kullanıcı adılan sessiya açtınız.',
+'nosuchuser'                 => 'Burada "$1" adlı kullanıcı yok. Yokla bir taa nesoy yazdın, yaki eni esap yarat.',
+'nosuchusershort'            => 'Burada "$1" adlı kullanıcı yok. Yoklayın ani ad nesoy yazıldı.',
+'nouserspecified'            => 'Läazım bir kullanıcı adı göstermää.',
+'wrongpassword'              => 'Parolu yannış girdiniz. Yalvarerêz tekrar denämää.',
+'wrongpasswordempty'         => 'Boş parol girdiniz. Yalvarerez tekrar denämää.',
+'passwordtooshort'           => 'Parolunuz çok kısa. En az $1 bukva hem/yaki țifra läazım olsun.',
+'mailmypassword'             => 'Gönder bana e-maillän eni bir parol',
+'passwordremindertitle'      => '{{SITENAME}} saytından parol hatırlatıcısı.',
+'passwordremindertext'       => '$1 IP adresinnän (beki siz) istendi {{SERVERNAME}} için eni bir {{SITENAME}} ($4) parolu göndermää.
 "$2" nikli kullanıcının eni parolu: "$3"
-Läazım sessiya açmaa hem paroluı diiştirmää.
+Läazım sessiya açmaa hem parolu diiştirmää.
 
 Herliim istemeersiniz parolu diiştirmää, yaki vaz geçtiniz neçin ki parolu hatırladınız bu haberi ignor edin hem devam edin kullanmaa eski parolu.',
-'noemail'               => '"$1" adlı kullanıcı için registrat olmuş e-mail adresi yok.',
-'passwordsent'          => '"$1" adına registrat olmuş e-mail adresine eni bir parol gönderildi. Lütfen, läazım açmaa oturmaa ne zaman bunu aldınız.',
-'eauthentsent'          => 'Registrat olunan adresa doorulamak kodlan e-mail gönderildi.
+'noemail'                    => '"$1" adlı kullanıcı için registrat olmuş e-mail adresi yok.',
+'passwordsent'               => '"$1" adına registrat olmuş e-mail adresine eni bir parol gönderildi. Lütfen, läazım açmaa oturmaa ne zaman bunu aldınız.',
+'blocked-mailpassword'       => 'Neçin ki İP adresiniz kösteklendi, eni parol gönderilmäk işlemi yapılmêêr.',
+'eauthentsent'               => 'Registrat olunan adresa doorulamak kodlan e-mail gönderildi.
 O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk ki o adres sizin, başka e-mail gönderilmeycek.',
-'emailconfirmlink'      => 'E-mail adresinizi doorulayın',
-'accountcreated'        => 'Esap açıldı',
-'createaccount-title'   => '{{SITENAME}} için esap açılışı',
-'loginlanguagelabel'    => 'Dil: $1',
+'mailerror'                  => 'E-mail göndermäk yannışı: $1',
+'acct_creation_throttle_hit' => '$1 kullanıcı esap açtınız. Taa çok yok nicä açasınız.',
+'emailauthenticated'         => 'E-mail adresiniz $1 datasında doorulandı.',
+'emailconfirmlink'           => 'E-mail adresinizi doorulayın',
+'accountcreated'             => 'Esap açıldı',
+'accountcreatedtext'         => '$1 için bir kullanıcı esapı açıldı.',
+'createaccount-title'        => '{{SITENAME}} için esap açılışı',
+'loginlanguagelabel'         => 'Dil: $1',
+
+# Password reset dialog
+'resetpass_forbidden' => '{{SITENAME}} saytında parol yok nicä diiştirilsin',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın tekst',
@@ -352,7 +375,7 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'extlink_sample'  => '{{SERVER}} adres adı',
 'extlink_tip'     => 'Dış baalantı (Unutmayın adresin önüne http:// koymaa)',
 'headline_sample' => 'Başlık teksti',
-'headline_tip'    => '2. düzän başlık',
+'headline_tip'    => '2. düzey başlık',
 'math_sample'     => 'Matematik-formulanı-koyun',
 'math_tip'        => 'Matematik formula (LaTeX formatında)',
 'nowiki_sample'   => 'Serbest format yazınızı buraya yazınız',
@@ -365,15 +388,17 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 # Edit pages
 'summary'                => 'Kısaca',
 'subject'                => 'Konu/başlık',
-'minoredit'              => 'Küçük diişmäklär',
+'minoredit'              => 'Küçük diişilmäkler',
 'watchthis'              => 'Bak bu sayfaa',
 'savearticle'            => 'Sayfayı registrat et',
 'preview'                => 'Ön siir',
 'showpreview'            => 'Ön siiri göster',
 'showlivepreview'        => 'Cannı ön siir',
-'showdiff'               => 'Diişmekläri göster',
+'showdiff'               => 'Diişilmäkleri göster',
 'anoneditwarning'        => 'Sessiya açmadınız deyni yazının diişmäk istoriyasına diil nik, IP adresiniz registrat olunacêk.',
 'summary-preview'        => 'Ön siir özeti',
+'subject-preview'        => 'Konu/başlık ön siiri',
+'blockedtitle'           => 'Kullanıcı kösteklendi.',
 'blockedtext'            => '<big>Kullanıcı adınız yaki parolunuz $1 tarafından kösteklendi.</big>
 
 Sizi köstek edän önderci: $1. Köstek sebebi: \'\'$2\'\'.
@@ -384,9 +409,15 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 
 Şindi IP adresiniz $3. Yalvarêrêz bu adresi belirtmää her angı bir sorgu yapar kana.',
 'blockednoreason'        => 'hiç bir sebep belirtilmedi',
+'blockedoriginalsource'  => "'''$1''' sayfasın kaynak teksti aşaada:",
+'whitelistedittitle'     => 'Lääzım açmaa sessiya diişmäk yapmaa deyni',
+'whitelistedittext'      => 'Diişmäk yapmaa için $1.',
 'nosuchsectiontitle'     => 'Bölä bölüm yok',
+'loginreqtitle'          => 'Lääazım sessiya açmaa',
 'loginreqlink'           => 'sessiya aç',
+'loginreqpagetext'       => 'Lääzım $1 görmää übür sayfaları.',
 'accmailtitle'           => 'Parol gönderildi.',
+'accmailtext'            => "'$1' kullanıcısın parolu $2 adresine gönderildi.",
 'newarticle'             => '(Eni)',
 'newarticletext'         => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
 'noarticletext'          => 'Bu sayfa boş. Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda yaki bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} var nicä yazmaa].',
@@ -419,8 +450,12 @@ Sizä yakışêr geeri dönmää hem düzmää var olan yapraa, yaki [[Special:U
 Läazım düşünmää bu sayfayı redaktat etmää devam etmää deyni.
 Sayfanın silmää jurnalı raatlık için yazılêr burada:",
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Yok nicä esap yaratılsın',
+
 # History pages
 'viewpagelogs'        => 'Bu yaprak için jurnalları göster',
+'loadhist'            => 'Sayfa istoriyası üklener',
 'currentrev'          => 'Şindiki versiya',
 'revisionasof'        => 'Sayfanın $1 datasındaki hali',
 'revision-info'       => '$1; $2 datalı versiya',
@@ -428,17 +463,33 @@ Sayfanın silmää jurnalı raatlık için yazılêr burada:",
 'nextrevision'        => 'Geerki hali →',
 'currentrevisionlink' => 'en bitki halini göster',
 'cur'                 => 'fark',
+'next'                => 'geeriki',
 'last'                => 'bitki',
+'orig'                => 'aslı',
 'page_first'          => 'ilk',
 'page_last'           => 'bitki',
 'histlegend'          => "Fark seçimi: 2 versiyanın angısını isteersiniz karşılaştırmaa, önündeki kutucaa tuşlayıp, enter'a basın yaki tuşlayın butona angısı sayfanın en altında bulunêr.<br />
 Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 (ilerki) = bir ilerki versiyalan aradaki fark, K = küçük diişmäk",
+'deletedrev'          => '[silindi]',
 'histfirst'           => 'En eski',
 'histlast'            => 'En eni',
+'historysize'         => '({{PLURAL:$1|1 bayt|$1 bayt}})',
+'historyempty'        => '(boş)',
 
 # Revision feed
+'history-feed-title'          => 'Diişmäk istoriyası',
 'history-feed-item-nocomment' => ' $2de $1', # user at time
+
+# Revision deletion
+'rev-deleted-comment' => '(yorum silindi)',
+'rev-deleted-user'    => '(kullanıcı adı silindi)',
+'rev-deleted-event'   => '(giriş silindi)',
+'rev-delundel'        => 'göster/sakla',
+
+# History merging
+'mergehistory-from' => 'Kaynak sayfası:',
+'mergehistory-into' => 'Yön sayfası:',
 
 # Diffs
 'history-title'           => '"$1" yapraın istoriyası',
@@ -472,7 +523,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'rcnote'                         => '$3 (UTC) datasında bitki <strong>$2</strong> gündä yapılan <strong>$1</strong> diişmäk:',
 'rcnotefrom'                     => '<b>$2</b> datasınnan büüne kadar yapılan diişmäkler aşaada (en çok <b>$1</b> yazı gösteriler).',
 'rclistfrom'                     => 'Göster diişmäkleri ani $1 datasından beeri yapıldı',
-'rcshowhideminor'                => 'küçük diişmäkläri $1',
+'rcshowhideminor'                => 'küçük diişilmäkläri $1',
 'rcshowhidebots'                 => 'botları $1',
 'rcshowhideliu'                  => 'registrat olmuş kullanıcıları $1',
 'rcshowhideanons'                => 'anonim kullanıcıları $1',
@@ -488,7 +539,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'boteditletter'                  => 'b',
 
 # Recent changes linked
-'recentchangeslinked'          => 'İlgili diişmäklär',
+'recentchangeslinked'          => 'İlgili diişilmäklär',
 'recentchangeslinked-title'    => '$1 ilgili diişmäklär',
 'recentchangeslinked-noresult' => 'Baalantılı sayfalarda verilmiş devirde diişmäk olmadı.',
 'recentchangeslinked-summary'  => "Bu maasus sayfa baalantılı sayfalardaki diişmäkleri sayêr. Sizin bakmaa listasındaki sayfalar verildi '''kalın''' bukvalarnan.",
