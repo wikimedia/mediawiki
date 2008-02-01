@@ -1420,6 +1420,8 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'excontentauthor'             => "il contenuto era: '$1' (e l'unico contributore era '$2')",
 'exbeforeblank'               => "Il contenuto prima dello svuotamento era: '$1'",
 'exblank'                     => 'la pagina era vuota',
+'delete-confirm'              => 'Cancella "$1"',
+'delete-legend'               => 'Cancella',
 'historywarning'              => 'Attenzione: La pagina che si sta per cancellare ha una cronologia:',
 'confirmdeletetext'           => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Azione completata',
@@ -1727,6 +1729,7 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[Spec
 'export-addcattext' => 'Aggiungi pagine dalla categoria:',
 'export-addcat'     => 'Aggiungi',
 'export-download'   => 'Richiedi il salvataggio come file',
+'export-templates'  => 'Includi i template',
 
 # Namespace 8 related
 'allmessages'               => 'Messaggi di sistema',
@@ -1773,6 +1776,10 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'importuploaderrorsize'      => "Caricamento del file per l'importazione non riuscito. Il file supera le dimensioni massime consentite per l'upload.",
 'importuploaderrorpartial'   => "Caricamento del file per l'importazione non riuscito. Il file è stato caricato solo in parte.",
 'importuploaderrortemp'      => "Caricamento del file per l'importazione non riuscito. Manca una cartella temporanea.",
+'import-parse-failure'       => "Errore di analisi nell'importazione XML",
+'import-noarticle'           => 'Nessuna pagina da importare.',
+'import-nonewrevisions'      => 'Tutte le revisioni sono già state importate in precedenza.',
+'xml-error-string'           => '$1 a riga $2, colonna $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Importazioni',
@@ -1868,15 +1875,16 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'nocredits'        => 'Nessuna informazione sugli autori disponibile per questa pagina.',
 
 # Spam protection
-'spamprotectiontitle'  => 'Filtro anti-spam',
-'spamprotectiontext'   => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.',
-'spamprotectionmatch'  => 'Il filtro anti-spam è stato attivato dal seguente testo: $1',
-'subcategorycount'     => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
-'categoryarticlecount' => 'Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
-'category-media-count' => 'Questa categoria contiene {{PLURAL:$1|un file|$1 file}}.',
-'spambot_username'     => 'MediaWiki - sistema di rimozione spam',
-'spam_reverting'       => "Ripristinata l'ultima versione priva di collegamenti a $1",
-'spam_blanking'        => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
+'spamprotectiontitle'    => 'Filtro anti-spam',
+'spamprotectiontext'     => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.',
+'spamprotectionmatch'    => 'Il filtro anti-spam è stato attivato dal seguente testo: $1',
+'subcategorycount'       => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
+'categoryarticlecount'   => 'Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
+'category-media-count'   => 'Questa categoria contiene {{PLURAL:$1|un file|$1 file}}.',
+'listingcontinuesabbrev' => 'cont.',
+'spambot_username'       => 'MediaWiki - sistema di rimozione spam',
+'spam_reverting'         => "Ripristinata l'ultima versione priva di collegamenti a $1",
+'spam_blanking'          => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
 
 # Info page
 'infosubtitle'   => 'Informazioni per la pagina',
@@ -2357,5 +2365,19 @@ Usare l\'anteprima standard.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estensione sconosciuto: "$1"',
+
+# Special:Version
+'version-extensions'               => 'Estensioni installate',
+'version-specialpages'             => 'Pagine speciali',
+'version-parserhooks'              => 'Hook del parser',
+'version-variables'                => 'Variabili',
+'version-other'                    => 'Altro',
+'version-extension-functions'      => 'Funzioni introdotte da estensioni',
+'version-parser-extensiontags'     => 'Tag riconosciuti dal parser introdotti da estensioni',
+'version-parser-function-hooks'    => 'Hook per funzioni del parser',
+'version-skin-extension-functions' => "Funzioni legate all'aspetto grafico (skin) introdotte da estensioni",
+'version-hook-name'                => "Nome dell'hook",
+'version-hook-subscribedby'        => 'Sottoscrizioni',
+'version-version'                  => 'Versione',
 
 );

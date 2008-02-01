@@ -169,7 +169,7 @@ $messages = array(
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver clique duplo (JavaScript)',
 'tog-editsection'             => 'Habilitar edição de secção via links [editar]',
-'tog-editsectiononrightclick' => 'Habilitar edição de secção por clique <br /> com o botão direito no título da secção (JavaScript)',
+'tog-editsectiononrightclick' => 'Habilitar edição de secção por clique com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
 'tog-editwidth'               => 'Caixa de edição com largura completa',
@@ -181,12 +181,12 @@ $messages = array(
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição ao invés de ser após',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desactivar caching de páginas',
-'tog-enotifwatchlistpages'    => 'Enviar-me um email quando houver mudanças nas páginas',
+'tog-enotifwatchlistpages'    => 'Enviar-me um email quando houver mudanças nas páginas vigadas por mim',
 'tog-enotifusertalkpages'     => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
-'tog-fancysig'                => 'Assinaturas sem atalhos automáticos.',
+'tog-fancysig'                => 'Assinaturas sem atalhos automáticos',
 'tog-externaleditor'          => 'Utilizar editor externo por padrão',
 'tog-externaldiff'            => 'Utilizar diferenças externas por padrão',
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
@@ -270,20 +270,20 @@ $messages = array(
 
 == Começando ==
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configuração de opções]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Perguntas e respostas frequentes]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correio de anúncios de novas versões do MediaWiki]',
 
 'about'          => 'Sobre',
-'article'        => 'Artigo',
+'article'        => 'Página de conteúdo',
 'newwindow'      => '(abre numa nova janela)',
 'cancel'         => 'Cancelar',
 'qbfind'         => 'Procurar',
 'qbbrowse'       => 'Navegar',
 'qbedit'         => 'Editar',
 'qbpageoptions'  => 'Esta página',
-'qbpageinfo'     => 'Informação da página',
-'qbmyoptions'    => 'Minhas opções',
+'qbpageinfo'     => 'Contexto',
+'qbmyoptions'    => 'Minhas páginas',
 'qbspecialpages' => 'Páginas especiais',
 'moredotdotdot'  => 'Mais...',
 'mypage'         => 'Minha página',
@@ -323,7 +323,7 @@ $messages = array(
 'newpage'           => 'Nova página',
 'talkpage'          => 'Discutir esta página',
 'talkpagelinktext'  => 'Discussão',
-'specialpage'       => 'Página Especial',
+'specialpage'       => 'Página especial',
 'personaltools'     => 'Ferramentas pessoais',
 'postcomment'       => 'Envie um comentário',
 'articlepage'       => 'Ver página de conteúdo',
@@ -406,7 +406,7 @@ $messages = array(
 'page-atom-feed'          => 'Feed Atom de "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artigo',
+'nstab-main'      => 'Página',
 'nstab-user'      => 'Página de utilizador',
 'nstab-media'     => 'Mídia',
 'nstab-special'   => 'Especial',
@@ -421,7 +421,9 @@ $messages = array(
 'nosuchaction'      => 'Acção não existente',
 'nosuchactiontext'  => 'A acção especificada pelo URL não é reconhecida pelo MediaWiki',
 'nosuchspecialpage' => 'Não existe a página especial requisitada',
-'nospecialpagetext' => 'Você requisitou uma página especial inválida; uma lista de páginas especiais válidas poderá ser encontrada em [[{{ns:special}}:Specialpages]].',
+'nospecialpagetext' => "<big>'''Você requisitou uma página especial inválida.'''</big>
+
+Uma lista de páginas especiais válidas poderá ser encontrada em [[{{ns:special}}:Specialpages]].",
 
 # General errors
 'error'                => 'Erro',
@@ -480,9 +482,9 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores.",
+'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Translating:Intro Betawiki], um projeto destinado para a tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
-'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
+'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
 'namespaceprotected'   => "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",
 'customcssjsprotected' => 'Você não possui permissão de editar esta página, já que ela contém configurações pessoais de outro utilizador.',
@@ -492,10 +494,8 @@ $2',
 # Login and logout pages
 'logouttitle'                => 'Desautenticar do sistema',
 'logouttext'                 => '<strong>Você agora está desautenticado.</strong><br />
-Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode autenticar-se
-novamente com o mesmo nome de utilizador ou com um nome de utilizador diferente. Tenha em atenção que algumas páginas poderão
-continuar a ser apresentadas como se você ainda estivesse, até que a cache
-de seu navegador seja limpa.',
+Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode autenticar-se novamente com o mesmo nome de utilizador ou com um nome de utilizador diferente. Tenha em atenção que algumas páginas poderão
+continuar a ser apresentadas como se você ainda estivesse autenticado até que a cache de seu navegador seja limpa.',
 'welcomecreation'            => '== Bem-vindo, $1! ==
 
 A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}}:Preferences|preferências]] na {{SITENAME}}.',
@@ -524,7 +524,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'youremail'                  => 'Endereço de email *:',
 'username'                   => 'Nome de utilizador:',
 'uid'                        => 'Número de identificação:',
-'yourrealname'               => 'Nome verdadeiro *:',
+'yourrealname'               => 'Nome verdadeiro:',
 'yourlanguage'               => 'Idioma:',
 'yourvariant'                => 'Variante',
 'yournick'                   => 'Alcunha:',
@@ -2380,14 +2380,12 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'version-specialpages'          => 'Páginas especiais',
 'version-variables'             => 'Variáveis',
 'version-other'                 => 'Diversos',
+'version-mediahandlers'         => 'Executores de média',
 'version-hooks'                 => 'Hooks',
 'version-extension-functions'   => 'Funções de extensão',
 'version-parser-extensiontags'  => 'Etiquetas de extensões de tipo "parser"',
 'version-parser-function-hooks' => 'Funções "hooks" de "parser"',
 'version-hook-name'             => 'Nome do hook',
-
-# Unknown messages
-'version-mediahandlers' => 'Executores de média',
-'version-version'       => 'Versão',
+'version-version'               => 'Versão',
 
 );

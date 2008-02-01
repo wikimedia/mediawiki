@@ -2380,11 +2380,19 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'unknown_extension_tag' => 'Okänd tagg "$1"',
 
 # Special:Version
-'version-extensions'          => 'Installerade programtillägg',
-'version-specialpages'        => 'Specialsidor',
-'version-other'               => 'Annat',
-'version-mediahandlers'       => 'Mediahanterare',
-'version-extension-functions' => 'Tilläggsfunktioner',
-'version-version'             => 'Version',
+'version-extensions'               => 'Installerade programtillägg',
+'version-specialpages'             => 'Specialsidor',
+'version-parserhooks'              => 'Parser hakar',
+'version-variables'                => 'Variabler',
+'version-other'                    => 'Annat',
+'version-mediahandlers'            => 'Mediahanterare',
+'version-hooks'                    => 'Hakar',
+'version-extension-functions'      => 'Tilläggsfunktioner',
+'version-parser-extensiontags'     => 'Tilläggstaggar',
+'version-parser-function-hooks'    => 'Parserfunktioner',
+'version-skin-extension-functions' => 'Skaltillbyggnadsfunktioner',
+'version-hook-name'                => 'Namn',
+'version-hook-subscribedby'        => 'Undertecknad av',
+'version-version'                  => 'Version',
 
 );

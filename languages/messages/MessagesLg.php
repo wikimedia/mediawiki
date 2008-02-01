@@ -1,48 +1,66 @@
 <?php
-/** Luganda
+/** Ganda (Luganda)
  *
  * @addtogroup Language
+ *
+ * @author Kizito
+ * @author Siebrand
  */
+
+
 
 $messages = array(
 # Dates
-'sunday'       => 'Sande',
-'monday'       => 'Bbalaza',
-'tuesday'      => 'Lwakubiri',
-'wednesday'    => 'Lwakusatu',
-'thursday'     => 'Lwakuna',
-'friday'       => 'Lwakutaano',
-'saturday'     => 'Lwamukaaga',
-'january'      => 'Gatonnya',
-'february'     => 'Mukutulansanja',
-'march'        => 'Mugulansigo',
-'april'        => 'Kafuumuulampawu',
-'june'         => 'Ssebo-aseka',
-'july'         => 'Kasambula',
-'august'       => 'Muwakanya',
-'september'    => 'Mutunda',
-'october'      => 'Mukulukusa',
-'november'     => 'Museenene',
-'december'     => 'Ntenvu',
-'january-gen'  => 'Gatonnya',
-'february-gen' => 'Mukutulansanja',
-'march-gen'    => 'Mugulansigo',
-'june-gen'     => 'Ssebo-aseka',
-'july-gen'     => 'Kasambula',
-'august-gen'   => 'Muwakanya',
-'december-gen' => 'Ntenvu',
-'jan'          => 'Gatonnya',
-'feb'          => 'Mukutulansanja',
-'mar'          => 'Mugulansigo',
-'apr'          => 'Kafuumuulampawu',
-'may'          => 'Muzigo',
-'jun'          => 'Ssebo-aseka',
-'jul'          => 'Kasambula',
-'aug'          => 'Muwakanya',
-'sep'          => 'Mutunda',
-'oct'          => 'Mukulukusa',
-'nov'          => 'Museenene',
-'dec'          => 'Ntenvu',
+'sunday'        => 'Sande',
+'monday'        => 'Bbalaza',
+'tuesday'       => 'Lwakubiri',
+'wednesday'     => 'Lwakusatu',
+'thursday'      => 'Lwakuna',
+'friday'        => 'Lwakutaano',
+'saturday'      => 'Lwamukaaga',
+'sun'           => 'San',
+'mon'           => 'Bal',
+'tue'           => 'Lw2',
+'wed'           => 'Lw3',
+'thu'           => 'Lw4',
+'fri'           => 'Lw5',
+'sat'           => 'Lw6',
+'january'       => 'Gusooka',
+'february'      => 'Gwakubiri',
+'march'         => 'Gwakusatu',
+'april'         => 'Gwakuna',
+'may_long'      => 'Gwakutaano',
+'june'          => 'Gwamukaaga',
+'july'          => 'Gwamusanvu',
+'august'        => 'Gwamunaana',
+'september'     => 'Gwamwenda',
+'october'       => 'Gwakkumi',
+'november'      => 'Gwakkuminogumu',
+'december'      => 'Gwakkuminebiri',
+'january-gen'   => 'Gusooka',
+'february-gen'  => 'Gwakubiri',
+'march-gen'     => 'Gwakusatu',
+'april-gen'     => 'Gwakuna',
+'may-gen'       => 'Gwakutaano',
+'june-gen'      => 'Gwamukaaga',
+'july-gen'      => 'Gwamusanvu',
+'august-gen'    => 'Gwamunaana',
+'september-gen' => 'Gwamwenda',
+'october-gen'   => 'Gwakkumi',
+'november-gen'  => 'Gwakkuminogumu',
+'december-gen'  => 'Gwakkuminebiri',
+'jan'           => 'Gu1',
+'feb'           => 'Gw2',
+'mar'           => 'Gw3',
+'apr'           => 'Gw4',
+'may'           => 'Gw5',
+'jun'           => 'Gw6',
+'jul'           => 'Gw7',
+'aug'           => 'Gw8',
+'sep'           => 'Gw9',
+'oct'           => 'Gw10',
+'nov'           => 'Gw11',
+'dec'           => 'Gw12',
 
 # Bits of text used by many pages
 'categories' => 'Amatuluba',
@@ -50,6 +68,7 @@ $messages = array(
 'about'          => 'Okutangaaza',
 'newwindow'      => '(bijjira mu kadirisa kapya)',
 'cancel'         => 'Biveeko',
+'qbfind'         => 'Noonya',
 'qbedit'         => 'Kyuusa',
 'qbspecialpages' => 'Emiko emyawule',
 'mypage'         => 'Enfo yange',
@@ -90,7 +109,7 @@ $messages = array(
 'hidetoc'       => 'kweka',
 'thisisdeleted' => 'Oyagala okulaba oba okuzzawo $1?',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'    => 'Muko',
 'nstab-user'    => 'Enfo ya memba',
 'nstab-special' => 'Olupapula olwawule',
@@ -158,7 +177,6 @@ Tukwesiga nti by'owandiika muno bibyo oba wabigya mu kya bonna oba awalala gye b
 <strong>TOTEEKAMU EBIRIKO EBIKUGIZO EBY'OBWA NANNYINI NGA BA NYINI BYO TEBAKUWADDE LUKUSA!</strong>",
 
 # History pages
-'revhistory'   => 'Enkyukakyuka',
 'viewpagelogs' => "Kebera likooda ez'olupapula luno",
 'currentrev'   => 'Ebisangiddwawo',
 'cur'          => 'erw',
@@ -198,9 +216,11 @@ oba ku gano agali ku lupapula luno.<br />
 # Image list
 'imagelist_user' => 'Memba',
 
+# Random page
+'randompage' => 'Londa omuko muwawa',
+
 # Miscellaneous special pages
 'allpages'          => 'Empapula zonna',
-'randompage'        => 'Londa omuko muwawa',
 'specialpages'      => 'Emiko emyawule',
 'newpages-username' => "Ery'obwa memba:",
 'move'              => 'Simbuliza',
@@ -219,7 +239,7 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Watchlist
 'watchlist'      => 'Emiko gyengoberera',
-'mywatchlist'      => 'Emiko gyengoberera',
+'mywatchlist'    => 'Emiko gyengoberera',
 'addedwatch'     => "Kigattiddwa ku by'ogoberera",
 'addedwatchtext' => 'Olupapula "[[:$1]]" kati luli mu [[Special:Watchlist|by\'ogoberera]].
 Buli olupapula olwo oba olw\'emboozi lwalwo lwe binaakyuusibwamu, enkyuukakyuka ezo
@@ -280,5 +300,3 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'imgmultigotopre' => 'Genda ku lupapula',
 
 );
-
-

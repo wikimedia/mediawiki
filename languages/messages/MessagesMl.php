@@ -279,7 +279,7 @@ $messages = array(
 'help'              => 'സഹായി',
 'search'            => 'തിരയുക',
 'searchbutton'      => 'തിരയുക',
-'searcharticle'     => 'ലേഖനത്തിലേക്കു പോവുക',
+'searcharticle'     => 'ലേഖനത്തിലേക്ക്',
 'history'           => 'ഈ താളിന്റെ പഴയ പതിപ്പുകള്‍',
 'history_short'     => 'പഴയ രൂപം',
 'updatedmarker'     => 'എന്റെ കഴിഞ്ഞ സന്ദര്‍ശനത്തിനുശേഷം നവീകരിക്കപ്പെട്ടവ',
@@ -287,7 +287,7 @@ $messages = array(
 'permalink'         => 'സ്ഥിരംകണ്ണി',
 'edit'              => 'മാറ്റിയെഴുതുക',
 'editthispage'      => 'ഈ താള്‍ തിരുത്തുക',
-'delete'            => 'ഡിലിറ്റ്‌',
+'delete'            => 'താള്‍ മായ്ക്കുക',
 'deletethispage'    => 'ഈ താള്‍ നീക്കം ചെയ്യുക',
 'protect'           => 'സം‌രക്ഷിക്കുക',
 'protectthispage'   => 'ഈ താള്‍ സം‌രക്ഷിക്കുക',
@@ -320,7 +320,7 @@ $messages = array(
 'jumptosearch'      => 'തിരച്ചില്‍',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'വിക്കിനിഘണ്ടുവിനെക്കുറിച്ച്',
+'aboutsite'         => '{{SITENAME}}:വിവരണം',
 'aboutpage'         => 'Project:വിവരണം',
 'copyright'         => 'ഉള്ളടക്കം $1 പ്രകാരം ലഭ്യം.',
 'copyrightpagename' => 'വിക്കിനിഘണ്ടു പകര്‍പ്പവകാശം',
@@ -336,7 +336,7 @@ $messages = array(
 'policy-url'        => 'Project:നയങ്ങള്‍',
 'portal'            => 'വിക്കി സമൂഹം',
 'portal-url'        => 'Project:വിക്കി സമൂഹം',
-'privacy'           => 'സ്വകാര്യതാ‍ നയം',
+'privacy'           => 'സ്വകാര്യതാ‍നയം',
 'privacypage'       => 'Project:സ്വകാര്യതാനയം',
 'sitesupport'       => 'സംഭാവന',
 'sitesupport-url'   => 'വിക്കിനിഘണ്ടു:സംഭാവന',
@@ -462,12 +462,20 @@ $messages = array(
 # Edit page toolbar
 'bold_sample'    => 'തടിച്ച എഴുത്ത്',
 'bold_tip'       => 'തടിച്ച എഴുത്ത്',
+'italic_sample'  => 'ചരിച്ചുള്ള എഴുത്ത്',
 'italic_tip'     => 'ഇറ്റാലിക്ക് ടെക്സ്റ്റ്',
+'link_sample'    => 'കണ്ണി ചേര്‍ക്കാനുള്ള കോഡ്',
+'link_tip'       => 'കണ്ണി ചേര്‍ക്കാനുള്ള കോഡ്',
 'extlink_sample' => 'http://www.example.com കണ്ണി തലക്കെട്ട്',
 'extlink_tip'    => 'പുറത്തേക്കുള്ള കണ്ണി (http:// എന്ന പൂര്‍‌വ്വപ്രത്യയം ചേര്‍ക്കാന്‍ ഓര്‍മ്മിക്കുക)',
 'headline_tip'   => 'രണ്ടാംനിര തലക്കെട്ട്',
+'math_sample'    => 'ഇവിടെ സൂത്രവാക്യം ചേര്‍ക്കുക',
+'math_tip'       => 'ഗണിതസൂത്രവാക്യം (LaTeX)',
+'nowiki_sample'  => 'വിക്കിഫോര്‍മാറ്റിങ്ങ് ഉപയോഗിക്കേണ്ടാത്ത എഴുത്ത് ഇവിടെ ചേര്‍ക്കുക',
 'nowiki_tip'     => 'വിക്കി രൂപഘടന അവഗണിക്കുക',
+'image_tip'      => 'ചിത്രം ചേര്‍ക്കാ‍നുള്ള കോഡ്',
 'media_tip'      => 'മീഡിയ പ്രമാണത്തിലേക്കുള്ള കണ്ണി',
+'sig_tip'        => 'നിങ്ങളുടെ ഒപ്പ് തിരുത്തല്‍ സമയമടക്കം',
 'hr_tip'         => 'തിരശ്ചീനരേഖ (മിതമായി മാത്രം ഉപയോഗിക്കുക)',
 
 # Edit pages
@@ -565,7 +573,7 @@ $messages = array(
 'difference'              => '(മാറ്റങ്ങള്‍ തമ്മിലുള്ള വ്യത്യാസങ്ങള്‍)',
 'lineno'                  => 'വരി $1:',
 'compareselectedversions' => 'തിരഞ്ഞെടുത്ത മാറ്റങ്ങളുടെ വ്യത്യാസം കാണുക',
-'editundo'                => 'മാറ്റം ഒഴിവാക്കുക',
+'editundo'                => 'മാറ്റം തിരസ്ക്കരിക്കുക',
 'diff-multi'              => '(ഇടക്കുള്ള $1 മാറ്റങ്ങള്‍ ഇവിടെ കാണിക്കുന്നില്ല)',
 
 # Search results
@@ -777,7 +785,7 @@ $messages = array(
 'newpages-username'       => 'ഉപയോക്തൃനാമം:',
 'ancientpages'            => 'ഏറ്റവും പഴയ താളുകള്‍',
 'intl'                    => 'ഭാഷാന്തരകണ്ണികള്‍',
-'move'                    => 'മാറ്റുക',
+'move'                    => 'തലക്കെട്ടു മാറ്റുക',
 'movethispage'            => 'ഈ താള്‍ മാറ്റുക',
 
 # Book sources
@@ -1033,6 +1041,7 @@ $messages = array(
 'tooltip-pt-login'           => 'ലോഗിന്‍ ചെയ്യണമെന്നു നിര്‍ബന്ധം ഇല്ലെങ്കിലും ലോഗിന്‍ ചെയ്യുവാന്‍ താല്പര്യപ്പെടുന്നു.',
 'tooltip-pt-logout'          => 'പുറത്തു കടക്കാനുള്ള കണ്ണി',
 'tooltip-ca-talk'            => 'ഉള്ളടക്കം താളിനെക്കുറിച്ചുള്ള ചര്‍ച്ച',
+'tooltip-ca-edit'            => 'നിങ്ങള്‍ക്ക് ഈ താള്‍ തിരുത്താവുന്നതാണ്. തിരുത്തിയ താള്‍ സേവ് ചെയ്യൂന്നതിനു മുന്‍പ് പ്രിവ്യൂ കാണുക.',
 'tooltip-ca-viewsource'      => 'ഈ താള്‍ സം‌രക്ഷിക്കപ്പെട്ടിരിക്കുന്നു. താങ്കള്‍ക്ക് ഈ താളിന്റെ മൂലരൂപം കാണാവുന്നതാണ്‌.',
 'tooltip-ca-protect'         => 'ഈ താള്‍ സം‌രക്ഷിക്കുക',
 'tooltip-ca-delete'          => 'ഈ താള്‍ നീക്കം ചെയ്യുക',
