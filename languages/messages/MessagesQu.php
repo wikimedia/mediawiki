@@ -2254,4 +2254,9 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 # Core parser functions
 'unknown_extension_tag' => 'Mana riqsisqa "$1" mast\'arina k\'askana',
 
+# Special:Filepath
+'filepath'        => 'Willañiqi ñan',
+'filepath-page'   => 'Willañiqi:',
+'filepath-submit' => 'Ñan',
+
 );

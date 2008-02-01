@@ -229,7 +229,7 @@ $messages = array(
 'category-empty'        => "''Dës Kategorie ass fir den Ament nach eidel''",
 
 'mainpagetext'      => "<big>'''MediaWiki gouf mat Succès installéiert.'''</big>",
-'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren. 
+'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren.
 
 == Starthëllefen ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Hëllef bei der Konfiguratioun]
@@ -395,7 +395,7 @@ All Spezialsäiten déi et gëtt sinn op der [[{{ns:special}}:Specialpages|Lesch
 'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
 'readonly'             => "D'Datebank ass gespart",
 'enterlockreason'      => "Gitt w.e.g. e Grond firwat d'Datebak gespaart ass an, a wéi laang dës Spär ongeféier bestoe soll.",
-'readonlytext'         => 'Datebank ass am Moment fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen. 
+'readonlytext'         => 'Datebank ass am Moment fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
 
 Den Administrateur huet folgend Erklärung uginn: $1',
 'missingarticle'       => 'D\'Datebank huet den Text vun enger Säit net fonnt deen hätt solle fonnt ginn, mam Numm "$1".
@@ -440,7 +440,7 @@ $2',
 'logouttitle'                => 'Benotzer-Ofmeldung',
 'logouttext'                 => '<strong>Dir sidd elo ofgemeld.</strong>
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech nacheemol als deeselwechten oder en anere Benotzer umelden. 
+Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech nacheemol als deeselwechten oder en anere Benotzer umelden.
 
 Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemeld wiert, bis Dir ärem Browser seng Cache eidelmaacht.',
 'welcomecreation'            => '== Wëllkomm, $1! ==
@@ -570,27 +570,27 @@ Dëse Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
 * Ufank vun der Spär: \$8
 * Ënn vun der Spär: \$6
 * Spär betrefft: \$7
- 
+
 Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateuren]] fir d'Spär ze beschwetzen.
 
-Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. 
+Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren.
 
 Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gülteg E-Mail Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
-'autoblockedtext'           => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
+'autoblockedtext'           => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war:
 
-\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) 
+\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>)
 
 <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Dir kënnt d\'Säit weiderhi liesen,</b> nëmmen d\'Méiglechkeet, se ze änneren oder soss Säiten op der {{SITENAME}} unzeleeën oder ze änneren, gouf gespaart.
-Wann der dësen Text gesitt, obwuel der just liese wollt, hutt der op e roude Link geklickt gehat, deen op eng Säit verknëppt, déi et nach net gëtt.</p> 
+Wann der dësen Text gesitt, obwuel der just liese wollt, hutt der op e roude Link geklickt gehat, deen op eng Säit verknëppt, déi et nach net gëtt.</p>
 
 Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer dës Spär ze diskutéieren.
 
 <div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"> \'\'\'Gitt dofir w.e.gl. dës Donnéeën un:\'\'\'
-*Administrateur dee gespaart huet: $1 
-*Grond fir d\'Spär: $2 
-*Ufank vun der Spär: $8 
-*Enn: $6 
-*IP-Adress: $3 
+*Administrateur dee gespaart huet: $1
+*Grond fir d\'Spär: $2
+*Ufank vun der Spär: $8
+*Enn: $6
+*IP-Adress: $3
 *Spär-ID: #$5 </div>',
 'blockednoreason'           => 'Kee Grond uginn',
 'blockedoriginalsource'     => "De Quelltext vun '''$1''' steet hei ënnendrënner:",
@@ -637,7 +637,7 @@ Dir musst Är Ännerungen an dat iewegt Textfeld androen.
 'nonunicodebrowser'         => '<strong>OPGEPASST:</strong> Äre Browser ass net Unicode kompatibel. Ännert dat w.e.g. éier Dir eng Säit ännert.',
 'editingold'                => '<strong>OPGEPASST: Dir ännert eng al Versioun vun dëser Säit. Wann Dir späichert, sinn all rezent Versioune vun dëser Säit verluer.</strong>',
 'yourdiff'                  => 'Ënnerscheeder',
-'copyrightwarning'          => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënner der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn. Wann Dir net wëllt datt är Texter vun anere Mataarbechter verännert, geläscht a weiderverdeelt kënne ginn, da setzt näischt heihinner.<br /> 
+'copyrightwarning'          => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënner der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn. Wann Dir net wëllt datt är Texter vun anere Mataarbechter verännert, geläscht a weiderverdeelt kënne ginn, da setzt näischt heihinner.<br />
 
 Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnleche Ressource kopéiert hutt.
 
@@ -661,7 +661,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'nocreate-loggedin'         => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
 'permissionserrorstext'     => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
 'recreate-deleted-warn'     => "'''Opgepasst: Dës Säit gouf schonns eng Kéier geläscht.'''
- 
+
 Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 
@@ -690,9 +690,9 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'orig'                => 'Original',
 'page_first'          => 'éischt',
 'page_last'           => 'Enn',
-'histlegend'          => "Fir d'Ännerungen unzeweisen: Klickt déi zwou Versiounen un, déi solle verglach ginn.<br /> 
+'histlegend'          => "Fir d'Ännerungen unzeweisen: Klickt déi zwou Versiounen un, déi solle verglach ginn.<br />
 *(aktuell) = Ënnerscheed mat der aktueller Versioun,
-*(lescht) = Ënnerscheed mat der aler Versioun, 
+*(lescht) = Ënnerscheed mat der aler Versioun,
 *k = Kleng Ännerung.",
 'deletedrev'          => '[geläscht]',
 'histfirst'           => 'Eelsten',
@@ -756,7 +756,7 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'searchresulttext'      => "Fir méi Informatiounen iwwert d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'        => 'Dir hutt no "[[:$1|$1]]" gesicht.',
 'searchsubtitleinvalid' => 'Dir hutt no "$1" gesicht.',
-'noexactmatch'          => "'''Et gëtt keng Säite mam Titel \"\$1\".''' 
+'noexactmatch'          => "'''Et gëtt keng Säite mam Titel \"\$1\".'''
 
 Dir kënnt [[:\$1|déi Säit uleeën]].",
 'noexactmatch-nocreate' => "'''Et gëtt keng Säit mam Titel \"\$1\".'''",
@@ -1059,7 +1059,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'sitestatstext'          => "Et sinn am Ganzen '''\$1''' {{PLURAL:\$1|Säit|Säiten}} an der Datebank.
 Dozou zielen d'\"Diskussiounssäiten\", Säiten iwwert {{SITENAME}}, kuerz Säiten, Viruleedungen an anerer déi eventuell net als Säite gezielt kënne ginn.
 
-Déi ausgeschloss ginn et {{PLURAL:\$2|Säit|Säiten}} déi als Säite betruecht {{PLURAL:\$2|ka|kënne}} ginn. 
+Déi ausgeschloss ginn et {{PLURAL:\$2|Säit|Säiten}} déi als Säite betruecht {{PLURAL:\$2|ka|kënne}} ginn.
 
 Am ganzen {{PLURAL:\$8|gouf '''1''' Fichier|goufen '''\$8''' Fichieren}} eropgelueden.
 
@@ -1075,7 +1075,7 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'disambiguationspage' => 'Schabloun:Homonymie',
 
 'doubleredirects'     => 'Duebel Viruleedungen',
-'doubleredirectstext' => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vun der éischter Viruleedung gëtt.<br /> 
+'doubleredirectstext' => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vun der éischter Viruleedung gëtt.<br />
 An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt Zeil vum Text vun der zweeter Viruleedung, wou normalerweis déi "richteg" Zilsäit drasteet, op déi déi éischt Viruleedung hilinke soll.',
 
 'brokenredirects'        => 'Futtis Viruleedungen',
@@ -1252,7 +1252,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'delete-confirm'              => 'Läsche vu(n) "$1"',
 'delete-legend'               => 'Läschen',
 'historywarning'              => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
-'confirmdeletetext'           => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen. 
+'confirmdeletetext'           => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen.
 W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",
 'actioncomplete'              => 'Aktioun ofgeschloss',
 'deletedtext'                 => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vun de Säiten déi viru Kuerzem geläscht goufen.',
@@ -1286,7 +1286,7 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'protect_expiry_old'          => "D'Spärzäit läit an der Vergaangenheet.",
 'protect-unchain'             => 'Réckel-Protectioun änneren',
 'protect-text'                => "Hei kënnt Dir de Protectiounsstatus fir d'Säit <strong>$1</strong> kucken an änneren.",
-'protect-locked-access'       => "Dir hutt net déi néideg Rechter fir de Protectiouns-Niveau vun dëser Säit z'änneren. 
+'protect-locked-access'       => "Dir hutt net déi néideg Rechter fir de Protectiouns-Niveau vun dëser Säit z'änneren.
 Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-cascadeon'           => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonn ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. De Protectiounsniveau ka fir dës Seite geännert ginn, dëst huet awer keen Afloss op d'Kaskadespär.",
 'protect-default'             => 'Alleguer (Standard)',
@@ -1442,7 +1442,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 # Developer tools
 'lockdb'            => 'Datebank spären',
 'unlockdb'          => 'Spär vun der Datebank annulléieren',
-'lockdbtext'        => "Wann d'Datebank gespaart ass, ka kee Benotzer méi Säiten änneren, seng Preferenzen änneren, seng Iwwerwaachungslëscht änneren, an all aner Aarbecht, déi op d'Datebank zréckgräift. 
+'lockdbtext'        => "Wann d'Datebank gespaart ass, ka kee Benotzer méi Säiten änneren, seng Preferenzen änneren, seng Iwwerwaachungslëscht änneren, an all aner Aarbecht, déi op d'Datebank zréckgräift.
 
 W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spär ewechhuelt soubal d'Maintenance-Aarbechten eriwwer sinn.",
 'lockconfirm'       => "Jo, ech wëll d'Datebank wierklech spären.",
@@ -1455,13 +1455,13 @@ Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance
 
 # Move page
 'movepage'                => 'Säit réckelen',
-'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Viruleedung op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert; 
+'movepagetext'            => "Wann der dëse Formulaire benotzt, réckelt dir eng komplett Säit mat hirem Historique op en neien Numm. Den alen Titel déngt als Viruleedung op déi nei Säit. Linken op déi al Säit ginn net ëmgeännert;
 
 Passt op datt keng duebel oder feelerhaft Viruleedungen am Spill sinn. Dir sidd responsabel datt d'Linke weiderhinn dohinner pointéieren, wou se hisollen.
 
 Beuecht w.e.g. datt d'Säit '''net''' geréckelt gëtt, wann ët schonns eng Säit mat deem Titel gëtt, ausser dës ass eidel, ass eng Viruleedung oder huet keen Historique. Dëst bedeit datt dir eng Säit ëmbenenne kënnt an datt dir keng Säit iwwerschreiwe kënnt, déi et schonns gëtt.
 
-<b>OPGEPASST!</b> 
+<b>OPGEPASST!</b>
 Dëst kann en drastesche Changement fir eng populär Säit bedeiten; verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
 'movepagetalktext'        => "D'assoziéiert Diskussiounssäit, falls eng do ass, gëtt automatesch matgeréckelt, '''ausser:'''
 *D'Säit gëtt an een anere Nummraum geréckelt.
@@ -1859,7 +1859,7 @@ Feelermeldung vum Mailserver: $1",
 'redirectingto' => 'Virugeleed op [[$1]]',
 
 # action=purge
-'confirm_purge'        => 'Dës Säit aus dem Server-Cache läschen? 
+'confirm_purge'        => 'Dës Säit aus dem Server-Cache läschen?
 
 $1',
 'confirm_purge_button' => 'OK',
@@ -1921,5 +1921,8 @@ $1',
 'watchlisttools-view' => 'Iwwerwaachungslëscht: Ännerungen',
 'watchlisttools-edit' => 'Iwwerwaachungslëscht weisen an änneren',
 'watchlisttools-raw'  => 'Net-formatéiert Iwwerwaachungslëscht änneren',
+
+# Special:Filepath
+'filepath-page' => 'Fichier:',
 
 );

@@ -512,6 +512,7 @@ $messages = array(
 'mytalk'         => 'Talqılawım',
 'anontalk'       => 'IP talqılawı',
 'navigation'     => 'Bağıttaw',
+'and'            => 'jäne',
 
 # Metadata in edit box
 'metadata_help' => 'Qosımşa derekter:',
@@ -1204,25 +1205,25 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'files'                    => 'Faýldar',
 
 # User rights
-'userrights-lookup-user'      => 'Qatıswşı toptarın rettew',
-'userrights-user-editname'    => 'Qatıswşı atın engiziñiz:',
-'editusergroup'               => 'Qatıswşı toptarın öñdew',
-'userrights-editusergroup'    => 'Qatıswşı toptarın öñdew',
-'saveusergroups'              => 'Qatıswşı toptarın saqtaw',
-'userrights-groupsmember'     => 'Müşeligi:',
-'userrights-groupsremovable'  => 'Alastalatın toptar:',
-'userrights-groupsavailable'  => 'Jetimdi toptar:',
+'userrights-lookup-user'           => 'Qatıswşı toptarın rettew',
+'userrights-user-editname'         => 'Qatıswşı atın engiziñiz:',
+'editusergroup'                    => 'Qatıswşı toptarın öñdew',
+'userrights-editusergroup'         => 'Qatıswşı toptarın öñdew',
+'saveusergroups'                   => 'Qatıswşı toptarın saqtaw',
+'userrights-groupsmember'          => 'Müşeligi:',
+'userrights-groupsremovable'       => 'Alastalatın toptar:',
+'userrights-groupsavailable'       => 'Jetimdi toptar:',
 'userrights-groupshelp'            => 'Qatıswşını topqa üsteýmin ne toptan alastaýmın degen toptardı bölekteñiz. Bölektenbegen toptar özgertilimeýdi. Toptardıñ bölektewin CTRL + Sol jaq nuqwmen öşirwiñizge boladı.',
-'userrights-reason'           => 'Özgertw sebebi:',
-'userrights-available-none'   => 'Top müşeligin özgerte almaýsız.',
+'userrights-reason'                => 'Özgertw sebebi:',
+'userrights-available-none'        => 'Top müşeligin özgerte almaýsız.',
 'userrights-available-add'         => 'Qatıswşılardı mına {{PLURAL:$2|topqa|toptarğa}} üsteý alasız: $1.',
 'userrights-available-remove'      => 'Qatıswşılardı mına {{PLURAL:$2|toptan|toptardan}} alastaý alasız: $1.',
 'userrights-available-add-self'    => 'Öziñizdi mına {{PLURAL:$2|topqa|toptarğa}} üsteý alasız: $1.',
 'userrights-available-remove-self' => 'Öziñizdi mına {{PLURAL:$2|toptan|toptardan}} alastaý alasız: $1.',
-'userrights-no-interwiki'     => 'Basqa wïkïlerdegi paýdalanwşı quqıqtarın öñdewge ruqsatıñız joq.',
-'userrights-nodatabase'       => '$1 derekqorı joq ne jergilikti emes.',
-'userrights-nologin'          => 'Qatıswşı quqıqtarın tağaýındaw üşin äkimşi tirkelgisimen [[{{ns:special}}:Userlogin|kirwiñiz]] jön.',
-'userrights-notallowed'       => 'Qatıswşı quqıqtarın tağaýındaw üşin tirkelgiñizde ruqsat joq.',
+'userrights-no-interwiki'          => 'Basqa wïkïlerdegi paýdalanwşı quqıqtarın öñdewge ruqsatıñız joq.',
+'userrights-nodatabase'            => '$1 derekqorı joq ne jergilikti emes.',
+'userrights-nologin'               => 'Qatıswşı quqıqtarın tağaýındaw üşin äkimşi tirkelgisimen [[{{ns:special}}:Userlogin|kirwiñiz]] jön.',
+'userrights-notallowed'            => 'Qatıswşı quqıqtarın tağaýındaw üşin tirkelgiñizde ruqsat joq.',
 
 # Groups
 'group'               => 'Top:',
@@ -1500,7 +1501,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 
 'withoutinterwiki'        => 'Eş tilge siltemegen better',
 'withoutinterwiki-header' => 'Kelesi better basqa tilderge siltemeýdi:',
-'withoutinterwiki-submit'  => 'Körset',
+'withoutinterwiki-submit' => 'Körset',
 
 'fewestrevisions' => 'Eñ az tüzetilgen better',
 
@@ -2202,7 +2203,6 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'anonymous'        => '{{SITENAME}} tirkelgisiz qatıswşı(ları)',
 'siteuser'         => '{{SITENAME}} qatıswşı $1',
 'lastmodifiedatby' => 'Bul betti $3 qatıswşı soñğı özgertken kezi: $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'jäne',
 'othercontribs'    => 'Şığarma negizin $1 jazğan.',
 'others'           => 'basqalar',
 'siteusers'        => '{{SITENAME}} qatıswşı(lar) $1',
@@ -2764,5 +2764,13 @@ Tağı da [[Special:Watchlist/edit|qalıptı öñdewişti paýdalana]] alasız.'
 
 # Core parser functions
 'unknown_extension_tag' => 'Tanılmağan keñeýtpe belgisi «$1»',
+
+# Special:Filepath
+'filepath'         => 'Faýl ornalaswı ',
+'filepath-page'    => 'Faýl atı:',
+'filepath-submit'  => 'Ornalaswın tabw ',
+'filepath-summary' => 'Bul arnaýı bet faýl ornalaswı tolıq jolın qaýtaradı. Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qatıstı bağdarlaması twra jegiledi.
+
+Faýl atawın «{{ns:image}}:» degen bastawışsız eñgiziñiz.',
 
 );

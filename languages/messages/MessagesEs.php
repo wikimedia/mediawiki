@@ -188,6 +188,7 @@ $messages = array(
 'mytalk'         => 'Mi discusión',
 'anontalk'       => 'Discusión para esta IP',
 'navigation'     => 'Navegación',
+'and'            => 'y',
 
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Volver a $1.',
@@ -319,7 +320,7 @@ $messages = array(
 Esto puede indicar un error en el software.
 La última consulta que se intentó fue: <blockquote><tt>$1</tt></blockquote> dentro de la función "<tt>$2</tt>". El error devuelto por la base de datos fue"<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos. La última consulta que se intentó fue:
-"$1" 
+"$1"
 desde la función "$2".
 MySQL devolvió el error "$3: $4".',
 'noconnect'            => 'No se pudo conectar a la base de datos en $1',
@@ -423,7 +424,7 @@ Compruebe que lo ha escrito correctamente, o use el formulario de abajo para cre
 'passwordtooshort'           => 'Su contraseña es muy corta. Debe tener al menos $1 caracteres.',
 'mailmypassword'             => 'Envíame una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
-'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4). 
+'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4).
 La contraseña para el usuario "$2" es ahora "$3".
 Ahora deberías iniciar sesión y cambiar tu contraseña.
 
@@ -1216,8 +1217,6 @@ Cambie las opciones de su lista de seguimiento en:
 'excontentauthor'             => "El contenido era: '$1' (y el único autor fue '$2')",
 'exbeforeblank'               => "El contenido antes de blanquear era: '$1'",
 'exblank'                     => 'página estaba vacía',
-'confirmdelete'               => 'Confirme el borrado',
-'deletesub'                   => '(Borrando "$1")',
 'historywarning'              => 'Atención: La página que está a punto de borrar tiene un historial:',
 'confirmdeletetext'           => 'Estás a punto de borrar una página
 en forma permanente,
@@ -1246,7 +1245,7 @@ Véase $2 para un registro de los borrados recientes.',
 'cantrollback'                => 'No se pueden revertir las ediciones; el último colaborador es el único autor de este artículo.',
 'alreadyrolled'               => 'No se puede revertir la última edición de [[$1]] por [[User:$2|$2]] ([[User talk:$2|discusión]]); alguien más ya ha editado o revertido esa página. La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
 'editcomment'                 => 'El resumen de la edición es: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertidas las ediciones realizadas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); a la última edición de [[User:$1|$1]]',
+'revertpage'                  => 'Revertidas las ediciones realizadas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); a la última edición de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'              => 'Parece que hay un problema con tu sesión;
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
@@ -1656,7 +1655,6 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'anonymous'        => 'Usuario(s) anónimo(s) de {{SITENAME}}',
 'siteuser'         => 'Usuario $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página fue modificada por última vez en $2, $1 por $3.', # $1 date, $2 time, $3 user
-'and'              => 'y',
 'othercontribs'    => 'Basado en el trabajo de $1.',
 'others'           => 'otros',
 'siteusers'        => 'Usuario(s) $1 de {{SITENAME}}',
@@ -1740,7 +1738,7 @@ Los siguientes enlaces en la misma línea se consideran las exepciones (los art�
 'metadata-help'     => 'Este archivo contiene información adicional (metadatos), probablemente añadida por la cámara digital, el escáner o el programa usado para crearlo o digitalizarlo. Si el archivo ha sido modificado desde su estado original, pueden haberse perdido algunos detalles.',
 'metadata-expand'   => 'Mostrar datos detallados',
 'metadata-collapse' => 'Ocultar datos detallados',
-'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto. 
+'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto.
 * make
 * model
 * datetimeoriginal
@@ -2119,5 +2117,10 @@ Intenta la previsualización normal.',
 'watchlisttools-view' => 'Ver cambios',
 'watchlisttools-edit' => 'Ver y editar tu lista de seguimiento',
 'watchlisttools-raw'  => 'Editar lista de seguimiento en crudo',
+
+# Special:Filepath
+'filepath'        => 'Ruta de archivo',
+'filepath-page'   => 'Archivo:',
+'filepath-submit' => 'Ruta',
 
 );

@@ -2373,7 +2373,15 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 # Core parser functions
 'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
 
-# Unknown messages
+# Special:Version
 'version-version' => 'Inačica',
+
+# Special:Filepath
+'filepath'         => 'Putanja datoteke',
+'filepath-page'    => 'Datoteka:',
+'filepath-submit'  => 'Putanja',
+'filepath-summary' => "Ova posebna stranica daje Vam kompletnu putanju do neke datoteke. Slike se na taj način prikazuju u punoj rezoluciji, drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u vašem operacijskom sustavu).
+	
+Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
 
 );

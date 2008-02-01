@@ -2449,5 +2449,12 @@ Essayez la prévisualisation normale.',
 'version-hook-subscribedby'        => 'Défini par',
 'version-version'                  => 'Version',
 
-);
+# Special:Filepath
+'filepath'         => "Chemin d'accès d’un fichier",
+'filepath-page'    => 'Fichier :',
+'filepath-submit'  => "Chemin d'accès",
+'filepath-summary' => "Cette page affiche le chemin d'accès complet d’un fichier ; les images sont montrées en haute résolution, les fichiers audio et vidéo s’exécutent avec leur programme associé.
 
+Entrez le nom du fichier sans le préfixe « {{ns:image}}: »",
+
+);

@@ -171,6 +171,7 @@ $messages = array(
 'mytalk'         => 'আমার আলাপ',
 'anontalk'       => 'এই বেনামী ব্যবহারকারীর আলাপের পাতা',
 'navigation'     => 'পরিভ্রমণ',
+'and'            => 'এবং',
 
 # Metadata in edit box
 'metadata_help' => 'অধিউপাত্ত (metadata):',
@@ -1742,7 +1743,6 @@ $1',
 'anonymous'        => '{{SITENAME}} এর বেনামী ব্যবহারকারীবৃন্দ',
 'siteuser'         => '{{SITENAME}} ব্যবহারকারী $1',
 'lastmodifiedatby' => 'এই পাতাটিতে শেষ পরিবর্তন হয়েছিল $2, $1 by $3।', # $1 date, $2 time, $3 user
-'and'              => 'এবং',
 'othercontribs'    => '$1-এর কাজের উপর ভিত্তি করে।',
 'others'           => 'অন্যান্য',
 'siteusers'        => '{{SITENAME}} ব্যবহারকারী $1',
@@ -2233,5 +2233,10 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'অজানা এক্সটেনশন ট্যাগ "$1"',
+
+# Special:Filepath
+'filepath'        => 'ফাইলের পাথ',
+'filepath-page'   => 'ফাইল:',
+'filepath-submit' => 'পথ',
 
 );

@@ -2393,4 +2393,12 @@ Spytaj normalny přehlad.',
 'version-hook-subscribedby'        => 'Abonowany wot',
 'version-version'                  => 'Wersija',
 
+# Special:Filepath
+'filepath'         => 'Puć k dataji',
+'filepath-page'    => 'Dataja:',
+'filepath-submit'  => 'Puć pytać',
+'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so dospołnje pokazuja, druhe datajowe typy so přez zwjazanym programom startuja.
+
+Zapisaj datajowe mjeno bjez prefiksa "{{ns:image}}:".',
+
 );

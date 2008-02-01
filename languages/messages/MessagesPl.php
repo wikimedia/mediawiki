@@ -260,6 +260,7 @@ $messages = array(
 'mytalk'         => 'Moja dyskusja',
 'anontalk'       => 'Dyskusja tego IP',
 'navigation'     => 'Nawigacja',
+'and'            => 'oraz',
 
 # Metadata in edit box
 'metadata_help' => 'Metadane:',
@@ -1854,7 +1855,6 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 'anonymous'        => 'Anonimowi użytkownicy serwisu {{SITENAME}}',
 'siteuser'         => 'Użytkownik serwisu {{SITENAME}} - $1',
 'lastmodifiedatby' => 'Ostatnia edycja tej strony: $2, $1 (autor zmian: $3)', # $1 date, $2 time, $3 user
-'and'              => 'oraz',
 'othercontribs'    => 'Inni autorzy: $1.',
 'others'           => 'inni',
 'siteusers'        => 'Użytkownicy serwisu {{SITENAME}} - $1',
@@ -2344,5 +2344,11 @@ Titles on your watchlist are shown below, and can be edited by
 
 # Core parser functions
 'unknown_extension_tag' => 'Nieznany znacznik rozszerzenia "$1"',
+
+# Special:Filepath
+'filepath'         => 'Ścieżka do pliku',
+'filepath-page'    => 'Plik:',
+'filepath-submit'  => 'Ścieżka',
+'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku. Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie. Wpisz nazwę pliku bez prefiksu "{{ns:image}}:".',
 
 );

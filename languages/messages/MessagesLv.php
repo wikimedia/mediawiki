@@ -142,6 +142,7 @@ $messages = array(
 'mytalk'         => 'Mana diskusija',
 'anontalk'       => 'Šīs IP adreses diskusija',
 'navigation'     => 'Navigācija',
+'and'            => 'un',
 
 'errorpagetitle'    => 'Kļūda',
 'returnto'          => 'Atgriezties: $1.',
@@ -1003,7 +1004,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 # Attribution
 'anonymous' => 'Anonīmie {{grammar:ģenitīvs|{{SITENAME}}}} lietotāji(s)',
 'siteuser'  => '{{grammar:ģenitīvs|{{SITENAME}}}} lietotājs $1',
-'and'       => 'un',
 
 # Spam protection
 'subcategorycount'       => 'Šajā kategorijā ir $1 {{PLURAL:$1|apakškategorija|apakškategorijas}}.',
@@ -1096,5 +1096,10 @@ Ja tu *neesi* registrejis sadu lietotaja vardu, nespied uz saites. Si apstiprina
 # Auto-summaries
 'autoredircomment' => 'Pāradresē uz [[$1]]',
 'autosumm-new'     => 'Jauna lapa: $1',
+
+# Special:Filepath
+'filepath'        => 'Failu adreses',
+'filepath-page'   => 'Fails:',
+'filepath-submit' => 'Atrast adresi',
 
 );

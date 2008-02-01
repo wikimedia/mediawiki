@@ -2366,7 +2366,7 @@ $wgMessageStructure = array(
 		'filepath',
 		'filepath-page',
 		'filepath-submit',
-		'filepath-summary'
+		'filepath-summary',
 	),
 );
 /** Comments for each block */
@@ -2542,8 +2542,9 @@ Variants for Chinese language",
 	'iranian-dates'         => 'Iranian month names',
 	'hebrew-dates'          => 'Hebrew month names',
 	'signatures'            => 'Signatures',
-	'CoreParserFunctions' => 'Core parser functions',
-	'version'             => 'Special:Version',
+	'CoreParserFunctions'   => 'Core parser functions',
+	'version'               => 'Special:Version',
+	'filepath'              => 'Special:Filepath',
 );
 
 /** Short comments for standalone messages */

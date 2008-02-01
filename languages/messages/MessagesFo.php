@@ -220,6 +220,7 @@ $messages = array(
 'mytalk'         => 'Mítt kjak',
 'anontalk'       => 'Kjak til hesa ip-adressuna',
 'navigation'     => 'Navigatión',
+'and'            => 'og',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',
@@ -1021,7 +1022,6 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 # Attribution
 'anonymous'     => 'Dulnevndir brúkarar í {{SITENAME}}',
 'siteuser'      => '{{SITENAME}}brúkari $1',
-'and'           => 'og',
 'othercontribs' => 'Grundað á arbeiði eftir $1.',
 'others'        => 'onnur',
 'siteusers'     => '{{SITENAME}}brúkari(ar) $1',
@@ -1116,5 +1116,8 @@ fer úr gildi tann $4.',
 'watchlisttools-view' => 'Vís viðkomandi broytingar',
 'watchlisttools-edit' => 'Vís og rætta eftirlit',
 'watchlisttools-raw'  => 'Rætta rátt eftirlit',
+
+# Special:Filepath
+'filepath-page' => 'Fíla:',
 
 );

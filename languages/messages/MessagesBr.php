@@ -190,6 +190,7 @@ $messages = array(
 'mytalk'         => "Ma c'haozeadennoù",
 'anontalk'       => "Kaozeal gant ar chomlec'h IP-mañ",
 'navigation'     => 'Merdeiñ',
+'and'            => 'ha(g)',
 
 # Metadata in edit box
 'metadata_help' => 'Metaroadennoù :',
@@ -1797,7 +1798,6 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'anonymous'        => 'Implijer(ez) dianv eus {{SITENAME}}',
 'siteuser'         => 'Implijer(ez) $1 eus {{SITENAME}}',
 'lastmodifiedatby' => "Kemmet eo bet ar bajenn-mañ da ziwezhañ d'an/ar $2, $1 gant $3", # $1 date, $2 time, $3 user
-'and'              => 'ha(g)',
 'othercontribs'    => 'Diazezet war labour $1.',
 'others'           => 're all',
 'siteusers'        => 'Implijer(ez) $1 eus {{SITENAME}}',
@@ -2298,5 +2298,8 @@ Klaskit rakwelet er mod boutin.',
 'iranian-calendar-m10' => '10vet miz Jalāli',
 'iranian-calendar-m11' => '11vet miz Jalāli',
 'iranian-calendar-m12' => '12vet miz Jalāli',
+
+# Special:Filepath
+'filepath-page' => 'Restr :',
 
 );

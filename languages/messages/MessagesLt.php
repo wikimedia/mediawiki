@@ -2361,4 +2361,12 @@ $1',
 # Core parser functions
 'unknown_extension_tag' => 'Nežinoma priedo žymė „$1“',
 
+# Special:Filepath
+'filepath'         => 'Failo kelias',
+'filepath-page'    => 'Failas:',
+'filepath-submit'  => 'Kelias',
+'filepath-summary' => 'Šis specialusis puslapis parašo pilną kelią iki failo. Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogiai su jų susietąja programa.
+
+Įveskite failo pavadinimą be „{{ns:image}}:“ priedėlio.',
+
 );

@@ -163,6 +163,7 @@ $messages = array(
 'mytalk'         => 'My besprekings',
 'anontalk'       => 'Besprekingsblad vir hierdie IP',
 'navigation'     => 'Navigasie',
+'and'            => 'en',
 
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Keer terug na $1.',
@@ -466,7 +467,6 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'template-protected'       => '(beskermd)',
 
 # History pages
-'revhistory'          => 'Wysigingsgeskiedenis',
 'nohistory'           => 'Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.',
 'revnotfound'         => 'Weergawe nie gevind nie',
 'revnotfoundtext'     => 'Die ou weergawe wat jy aangevra het kon nie gevind word nie. Gaan asseblief die URL na wat jy gebruik het.',
@@ -489,14 +489,10 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'histlast'            => 'Nuutste',
 
 # Diffs
-'history-title'             => 'Weergawegeskiedenis van "$1"',
-'difference'                => '(Verskil tussen weergawes)',
-'loadingrev'                => 'Besig om weergawe van verskil te laai.',
-'lineno'                    => 'Lyn $1:',
-'editcurrent'               => 'Wysig die huidige weergawe van hierdie bladsy.',
-'selectnewerversionfordiff' => "Kies 'n nuwer weergawe vir vergelyking",
-'selectolderversionfordiff' => "Kies 'n ouer weergawe vir vergelyking",
-'compareselectedversions'   => 'Vergelyk gekose weergawes',
+'history-title'           => 'Weergawegeskiedenis van "$1"',
+'difference'              => '(Verskil tussen weergawes)',
+'lineno'                  => 'Lyn $1:',
+'compareselectedversions' => 'Vergelyk gekose weergawes',
 
 # Search results
 'searchresults'         => 'soekresultate',
@@ -775,7 +771,6 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'listusers'               => 'Gebruikerslys',
 'specialpages'            => 'Spesiale bladsye',
 'spheading'               => 'Spesiale bladsye',
-'rclsub'                  => '(na bladsye waarna "$1" skakel)',
 'newpages'                => 'Nuwe bladsye',
 'ancientpages'            => 'Oudste bladsye',
 'move'                    => 'Skuif',
@@ -870,8 +865,6 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'excontentauthor'             => "Inhoud was: '$1' (en '[[Special:Contributions/$2|$2]]' was die enigste bydraer)",
 'exbeforeblank'               => "Inhoud voor uitwissing was: '$1'",
 'exblank'                     => 'bladsy was leeg',
-'confirmdelete'               => 'Bevestig skrapping',
-'deletesub'                   => '(Besig om "$1" te skrap)',
 'confirmdeletetext'           => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Aksie uitgevoer',
@@ -889,7 +882,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'rollbackfailed'              => 'Terugrol onsuksesvol',
 'cantrollback'                => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
 'editcomment'                 => 'Die wysigopsomming was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
+'revertpage'                  => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 'protectlogpage'              => 'Beskermlogboek',
 'protectedarticle'            => 'het [[$1]] beskerm',
@@ -931,10 +924,6 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'month'         => 'Vanaf maand (en vroeër):',
 'year'          => 'Vanaf jaar (en vroeër):',
 
-'sp-contributions-newest'   => 'Nuutste',
-'sp-contributions-oldest'   => 'Oudste',
-'sp-contributions-newer'    => 'Nuwer $1',
-'sp-contributions-older'    => 'Ouer $1',
 'sp-contributions-newbies'  => 'Wys slegs bydraes deur nuwe rekenings',
 'sp-contributions-blocklog' => 'Blokkeerlogboek',
 'sp-contributions-search'   => 'Soek na bydraes',
@@ -970,7 +959,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 ** Onaanvaarbare gebruikersnaam',
 'ipbsubmit'          => 'Blok hierdie adres',
 'ipbother'           => 'Ander tydperk:',
-'ipboptions'         => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
+'ipboptions'         => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'ander',
 'badipaddress'       => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub'  => 'Blokkering het geslaag',
@@ -1131,7 +1120,6 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 # Attribution
 'anonymous' => 'Anonieme gebruiker(s) van {{SITENAME}}',
 'siteuser'  => '{{SITENAME}} gebruiker $1',
-'and'       => 'en',
 'others'    => 'ander',
 'siteusers' => '{{SITENAME}} gebruiker(s) $1',
 
@@ -1276,5 +1264,10 @@ $1',
 # Watchlist editing tools
 'watchlisttools-view' => 'Besigtig ter saaklike veranderinge',
 'watchlisttools-raw'  => 'Redigeer brondophoulys',
+
+# Special:Filepath
+'filepath'        => 'Lêerpad',
+'filepath-page'   => 'Lêer:',
+'filepath-submit' => 'Pad',
 
 );

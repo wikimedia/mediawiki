@@ -1292,9 +1292,9 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'brokenredirects-edit'    => '(bearbeiten)',
 'brokenredirects-delete'  => '(löschen)',
 
-'withoutinterwiki'         => 'Seiten ohne Links zu anderen Sprachen',
-'withoutinterwiki-header'  => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
-'withoutinterwiki-submit'  => 'Zeige',
+'withoutinterwiki'        => 'Seiten ohne Links zu anderen Sprachen',
+'withoutinterwiki-header' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
+'withoutinterwiki-submit' => 'Zeige',
 
 'fewestrevisions'         => 'Seiten mit den wenigsten Versionen',
 'fewestrevisions-summary' => 'Diese Spezialseite zeigt eine Liste von Seiten mit den wenigsten Bearbeitungen.',
@@ -1551,7 +1551,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user talk}}:$2|Diskussion]], [[{{#special:Contributions}}/$2|Beiträge]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
 Änderungen an dieser Seite vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user talk}}:$3|Diskussion]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Änderungen von [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt',
+'revertpage'                  => 'Änderungen von [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
 'sessionfailure'              => 'Es gab ein Problem mit deiner Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung deiner Änderungen zu einem anderen Benutzer zu verhindern.
@@ -1894,7 +1894,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-parse-failure'       => 'Fehler beim XML-Import:',
 'import-noarticle'           => 'Es wurde kein zu importierender Artikel angegeben!',
 'import-nonewrevisions'      => 'Es sind keine neuen Versionen zum Import vorhanden, alle Versionen wurden bereits früher importiert.',
-'xml-error-string'           => '$1 Zeile $2, Spalte $3, (Byte $4): $5' ,
+'xml-error-string'           => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuch',
@@ -2497,4 +2497,13 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
 'version-version'                  => 'Version',
+
+# Special:Filepath
+'filepath'         => 'Dateipfad',
+'filepath-page'    => 'Datei:',
+'filepath-submit'  => 'Pfad suchen',
+'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.
+
+Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
+
 );

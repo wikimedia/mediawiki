@@ -1474,4 +1474,12 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'watchlisttools-edit' => 'Logön e redakön galädalisedi',
 'watchlisttools-raw'  => 'Redakön galädalisedi nen fomät',
 
+# Special:Filepath
+'filepath'         => 'Ragivaluveg',
+'filepath-page'    => 'Ragiv:',
+'filepath-submit'  => 'Luveg',
+'filepath-summary' => 'Pad patik at tuvon luvegi lölöfik ragiva. Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü programs onsik.
+
+Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
+
 );

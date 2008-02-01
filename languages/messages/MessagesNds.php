@@ -1872,4 +1872,12 @@ Versöök de normale Vörschau.',
 'watchlisttools-edit' => 'Oppasslist ankieken un ännern',
 'watchlisttools-raw'  => 'Oppasslist as Textlist ännern',
 
+# Special:Filepath
+'filepath'         => 'Dateipadd',
+'filepath-page'    => 'Datei:',
+'filepath-submit'  => 'Padd',
+'filepath-summary' => 'Disse Spezialsiet gifft den kumpletten Padd för ene Datei trüch. Biller warrt in vull Oplösen wiest, annere Datein warrt glieks mit dat Programm opropen, dat för de Soort Datein instellt is.
+
+Geev den Dateinaam ahn den Tosatz „{{ns:image}}:“ an.',
+
 );

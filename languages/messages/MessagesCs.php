@@ -191,7 +191,7 @@ $bookstoreList = array(
 );
 
 /**
- * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as 
+ * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as
  * the first group, and the remainder of the string as the second group.
  */
 # Písmena, která se mají objevit jako část odkazu ve formě '[[jazyk]]y' atd:
@@ -485,7 +485,7 @@ $1',
 'laggedslavemode'      => 'Upozornění: Stránka nemusí být zcela aktuální.',
 'readonly'             => 'Databáze je uzamčena',
 'enterlockreason'      => 'Udejte důvod zamčení, včetně odhadu, za jak dlouho dojde k odemčení.',
-'readonlytext'         => 'Databáze je nyní uzamčena, takže nelze ukládat nové doplňky a změny. Důvodem je pravděpodobně pravidelná údržba, po které se vše vrátí do normálního stavu. 
+'readonlytext'         => 'Databáze je nyní uzamčena, takže nelze ukládat nové doplňky a změny. Důvodem je pravděpodobně pravidelná údržba, po které se vše vrátí do normálního stavu.
 
 Správce, který databázi zamkl, zanechal následující zprávu: $1',
 'missingarticle'       => 'Databáze nenašla text hledané stránky nazvané „$1“.
@@ -597,7 +597,7 @@ nechcete, můžete tuto zprávu ignorovat a používat staré heslo.',
 'eauthentsent'               => 'Potvrzovací e-mail byl zaslán na zadanou adresu.
 Před tím, než vám na tuto adresu budou moci být zasílány další zprávy, následujte instrukce
 v e-mailu, abyste potvrdili, že tato adresa skutečně patří vám.',
-'throttled-mailpassword'     => 'Heslo již bylo jednou zasláno během uplynulých $1 hodin. 
+'throttled-mailpassword'     => 'Heslo již bylo jednou zasláno během uplynulých $1 hodin.
 Heslo může být zasláno jen jednou za $1 {{plural:$1|hodinu|hodiny|hodin}}.',
 'mailerror'                  => 'Chyba při zasílání e-mailu: $1',
 'acct_creation_throttle_hit' => 'Omlouváme se, ale už jste vytvořil(a) $1 {{plural:$1|účet|účty|účtů}}. Žádný další už nemůžete vytvořit.',
@@ -673,9 +673,9 @@ Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;už
 
 ----
 
-* Začátek zablokování: $8 
+* Začátek zablokování: $8
 * Zablokování vyprší: $6
-* Určeno k blokování: $7 
+* Určeno k blokování: $7
 
 Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu a&nbsp;pokud Vám byla tato možnost zakázána.
@@ -734,7 +734,7 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 ''Jelikož {{SITENAME}} má povoleno libovolné HTML, není zobrazen náhled jako prevence proti útokům JavaScriptem.''
 
 <strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>",
-'token_suffix_mismatch'     => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu. Editace byla odmítnuta, aby se zabránilo poškození textu stránky. 
+'token_suffix_mismatch'     => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu. Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
 Toto se může někdy stát pokud používáte chybující webový anonymizér.</strong>',
 'editing'                   => 'Editace stránky $1',
 'editinguser'               => 'Úprava práv uživatele $1',
@@ -1127,7 +1127,7 @@ Vyberte jiné jméno.',
 'fileexists-thumb'            => "<center>'''Existující soubor:'''</center>",
 'fileexists-thumbnail-yes'    => 'Toto soubor je možná obrázek ve zmenšené velikosti <i>(náhled)</i>. Zkontrolujte soubor <strong><tt>$1</tt></strong>.<br />
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.',
-'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>. Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>. 
+'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>. Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
 'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
@@ -2477,5 +2477,13 @@ $1',
 'version-hook-name'                => 'Název háku',
 'version-hook-subscribedby'        => 'Volán z',
 'version-version'                  => 'Verze',
+
+# Special:Filepath
+'filepath'         => 'Cesta k souboru',
+'filepath-page'    => 'Soubor:',
+'filepath-submit'  => 'Cesta',
+'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru. Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v  přiřazených programech.
+
+Jméno souboru vkládejte bez označení "{{ns:image}}:" .',
 
 );

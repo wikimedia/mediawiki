@@ -144,6 +144,7 @@ $messages = array(
 'mytalk'         => 'La mi caraba',
 'anontalk'       => 'Caraba pa esta IP',
 'navigation'     => 'Güiquipeandu',
+'and'            => 'i',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatus:',
@@ -1685,7 +1686,6 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'anonymous'        => 'Usuáriu/s anónimu/s en {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuáriu $1',
 'lastmodifiedatby' => 'Esta páhina se chambó pol úrtima vezi a las $2, el dia $1 pol $3.', # $1 date, $2 time, $3 user
-'and'              => 'i',
 'othercontribs'    => 'Basau nun labutu e $1.',
 'others'           => 'otrus',
 'siteusers'        => '{{SITENAME}} usuáriu/s $1',
@@ -2119,5 +2119,8 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'estensión andarria: "$1"',
+
+# Special:Filepath
+'filepath-page' => 'Archivu:',
 
 );

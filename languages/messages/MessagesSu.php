@@ -145,6 +145,7 @@ $messages = array(
 'mytalk'         => 'Obrolan kuring',
 'anontalk'       => 'Obrolan pikeun IP ieu',
 'navigation'     => 'Tuduh Jalan',
+'and'            => 'jeung',
 
 'errorpagetitle'    => 'Kasalahan',
 'returnto'          => 'Balik deui ka $1.',
@@ -1087,8 +1088,6 @@ Asupan jeung bantuan salajengna:
 'excontentauthor'             => "eusina: '$1' (nu ditulis ku '$2' wungkul)",
 'exbeforeblank'               => "eusi méméh dikosongkeun nyéta: '$1'",
 'exblank'                     => 'kaca ieu kosong',
-'confirmdelete'               => 'Konfirmasi ngahapus',
-'deletesub'                   => '(Ngahapus "$1")',
 'historywarning'              => 'Perhatosan: Kaca nu rék dihapus mibanda',
 'confirmdeletetext'           => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
 'actioncomplete'              => 'Peta geus réngsé',
@@ -1108,7 +1107,7 @@ Asupan jeung bantuan salajengna:
 
 Édit ahir ku [[User:$3|$3]] ([[User talk:$3|Obrolan]]).',
 'editcomment'                 => 'Komentar ngéditna: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1',
+'revertpage'                  => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét "back" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.',
 'protectlogpage'              => 'Log_koncian',
 'protectlogtext'              => 'Di handap ieu mangrupa daptar koncian kaca. Tempo [[Special:Protectedpages|kaca nu dikonci]] pikeun iber leuwih lengkep.',
@@ -1406,7 +1405,6 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'anonymous'        => 'Pamaké anonim {{SITENAME}}',
 'siteuser'         => 'Pamaké $1 {{SITENAME}}',
 'lastmodifiedatby' => 'Kaca ieu panungtungan dirobah $2, $1 ku $3.', # $1 date, $2 time, $3 user
-'and'              => 'jeung',
 'othercontribs'    => 'Dumasar karya $1.',
 'others'           => 'Séjénna',
 'siteusers'        => 'Pamaké $1 {{SITENAME}}',
@@ -1643,5 +1641,9 @@ Coba ku sawangan normal.',
 'watchlisttools-view' => 'Témbongkeun parobahan nu patali',
 'watchlisttools-edit' => 'Témbongkeun sarta édit béréndélan awaskeuneun',
 
-);
+# Special:Filepath
+'filepath'        => 'Jalur koropak',
+'filepath-page'   => 'Koropak:',
+'filepath-submit' => 'Jalur',
 
+);

@@ -206,6 +206,7 @@ $messages = array(
 'mytalk'         => 'Ma pagina de discussion',
 'anontalk'       => 'Discussion amb aquesta adreça IP',
 'navigation'     => 'Navigacion',
+'and'            => 'e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadonadas:',
@@ -1785,7 +1786,6 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'anonymous'        => 'Utilizaire(s) pas enregistrat(s) de {{SITENAME}}',
 'siteuser'         => 'Utilizaire $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Aquesta pagina es estada modificada pel darrièr còp lo $1 a $2 per $3.', # $1 date, $2 time, $3 user
-'and'              => 'e',
 'othercontribs'    => "Contribucions de l'utilizaire $1.",
 'others'           => 'autres',
 'siteusers'        => 'Utilizaire(s) $1',
@@ -2278,5 +2278,11 @@ Ensajatz la previsualizacion normala.',
 
 # Core parser functions
 'unknown_extension_tag' => "Balisa d'extension « $1 » desconeguda",
+
+# Special:Filepath
+'filepath'         => "Camin d'accès d'un fichièr",
+'filepath-page'    => 'Fichièr:',
+'filepath-submit'  => "Camin d'accès",
+'filepath-summary' => "Aquesta pagina especiala balha lo camin d'accès complet d’un fichièr ; los imatges son mostrats en nauta resolucion, los fichièrs audiò e vidèo s’executisson amb lor programa associat. Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: »",
 
 );

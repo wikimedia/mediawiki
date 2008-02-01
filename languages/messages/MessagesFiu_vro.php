@@ -175,6 +175,7 @@ $messages = array(
 'mytalk'         => 'Mu arotus',
 'anontalk'       => 'Seo puutri võrgoaadrõsi arotus',
 'navigation'     => 'Juhtminõ',
+'and'            => 'ja',
 
 # Metadata in edit box
 'metadata_help' => 'Metateedüs:',
@@ -1215,8 +1216,6 @@ As\'a kotsilõ mano kaiaq ja küssü saat lehe päält: {{fullurl:{{MediaWiki:He
 'excontentauthor'             => "sisu oll': '$1' (ja ainugõnõ toimõndaja oll' '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "inne tühästegemist oll': '$1'",
 'exblank'                     => "leht oll' tühi",
-'confirmdelete'               => 'Kinnüdäq kistutamist',
-'deletesub'                   => '(Kistuda ärq leheküle "$1")',
 'historywarning'              => 'Hoiatus: Lehel, midä tahat ärq kistutaq, om olõman aolugu:',
 'confirmdeletetext'           => 'Sa kistutat teedüskogost periselt ärq lehe vai pildi üten kõgõ timä aoluuga. Kinnüdäq, et sa tahat tuud tõtõstõ tetäq, et sa saat arvo, miä tuust tullaq või ja et tuu, miä sa tiit, klapis [[{{ns:special}}:Policy|sisekõrraga]].',
 'actioncomplete'              => 'Tallitus valmis',
@@ -1240,7 +1239,7 @@ Kelläaoq ummaq serveriao perrä (UTC).',
 'cantrollback'                => 'Saa-i muutmiisi tagasi pöördäq; viimäne muutja om lehe ainugõnõ toimõndaja.',
 'alreadyrolled'               => 'Pruukja [[User:$2|$2]] ([[User_talk:$2|arotus]]) tettüid lehe $1 muutmiisi saa-i tagasi võttaq, selle et pruukja [[User:$3|$3]] ([[User_talk:$3|arotus]]) om tennüq vahtsõmbit muutmiisi.',
 'editcomment'                 => 'Toimõndamiskokkovõtõq oll\': "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Pruukja [[Special:Contributions/$2|$2]] ([[User_talk:$2|arotus]]) toimõndusõq pöörediq tagasi ja leht panti tagasi pruukja [[User:$1|$1]] tettü kujo pääle.',
+'revertpage'                  => 'Pruukja [[Special:Contributions/$2|$2]] ([[User_talk:$2|arotus]]) toimõndusõq pöörediq tagasi ja leht panti tagasi pruukja [[User:$1|$1]] tettü kujo pääle.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Paistus ollõv määnegi hädä su toimõndamiskõrraga, tuuperäst om viimäne muutminõ egäs johtumisõs jätet tegemäldä. Vaodaq võrgokaeja "tagasi"-nuppi, laadiq üle lehekülg, kost sa tullit ja prooviq vahtsõst.',
 'protectlogpage'              => 'Lehti kaitsmiisi nimekiri',
 'protectlogtext'              => 'Tan om nimekiri lehti kaitsmiisist ja kaitsmisõ maahavõtmiisist. Parhilla kaitsõ all olõvidõ lehti nimekirä lövvät [[Special:Protectedpages|tast]].',
@@ -1628,7 +1627,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'anonymous'        => '{{SITENAME}} nimeldäq pruukjaq',
 'siteuser'         => '{{SITENAME}} pruukja $1',
 'lastmodifiedatby' => "Taad lehte toimõnd' viimäte ”$3” $2 kell $1.", # $1 date, $2 time, $3 user
-'and'              => 'ja',
 'othercontribs'    => 'Tennüq pruukja $1.',
 'others'           => 'tõõsõq',
 'siteusers'        => '{{SITENAME}} pruukja(q) $1',
@@ -2074,5 +2072,10 @@ Prooviq harilikku kaehust.',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Kaeq ja toimõndaq perräkaemisnimekirjä',
+
+# Special:Filepath
+'filepath'        => 'Teedüstü aadrõs',
+'filepath-page'   => 'Teedüstü:',
+'filepath-submit' => 'Aadrõs',
 
 );

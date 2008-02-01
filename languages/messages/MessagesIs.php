@@ -1876,4 +1876,9 @@ $1',
 'watchlisttools-edit' => 'Skoða og breyta vaktalistanum',
 'watchlisttools-raw'  => 'Breyta opnum vaktlistanum',
 
+# Special:Filepath
+'filepath'        => 'Slóð skráar',
+'filepath-page'   => 'Skrá:',
+'filepath-submit' => 'Slóð',
+
 );

@@ -210,6 +210,7 @@ $messages = array(
 'mytalk'         => "Menin' sa'wbetim",
 'anontalk'       => "Usı IP sa'wbeti",
 'navigation'     => 'Navigatsiya',
+'and'            => "ha'm",
 
 # Metadata in edit box
 'metadata_help' => "Metamag'lıwmat:",
@@ -1366,7 +1367,6 @@ Basqa atama saylan'",
 'anonymous'        => '{{SITENAME}} anonim paydalanıwshı(ları)',
 'siteuser'         => '{{SITENAME}} paydalanıwshısı $1',
 'lastmodifiedatby' => "Bul bettin' aqırg'ı ma'rte $3 o'zgertken waqtı: $2, $1.", # $1 date, $2 time, $3 user
-'and'              => "ha'm",
 'others'           => 'basqalar',
 'siteusers'        => '{{SITENAME}} paydalanıwshı(ları) $1',
 'creditspage'      => 'Bet avtorları',
@@ -1519,5 +1519,8 @@ Sol qatardag'ı keyingi ha'r bir siltewler tısqarı qabıl etiledi, mısalı qa
 'watchlisttools-view' => "Baylanıslı o'zgerislerdi qaraw",
 'watchlisttools-edit' => "Baqlaw dizimin ko'riw ha'm o'zgertiw",
 'watchlisttools-raw'  => '"Shiyki" baqlaw dizimin o\'zgertiw',
+
+# Special:Filepath
+'filepath' => 'Fayl jolı',
 
 );

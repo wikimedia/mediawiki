@@ -2542,4 +2542,12 @@ $1',
 'version-hook-subscribedby'        => 'Подписан на',
 'version-version'                  => 'Версия',
 
+# Special:Filepath
+'filepath'         => 'Путь к файлу',
+'filepath-page'    => 'Файл:',
+'filepath-submit'  => 'Путь',
+'filepath-summary' => 'Данная служебная страница возвращает полный путь к файлу в том виде, в котором он хранится на диске.
+
+Введите имя файла без префикса <code>{{ns:image}}:</code>.',
+
 );

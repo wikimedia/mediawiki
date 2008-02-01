@@ -171,6 +171,7 @@ $messages = array(
 'mytalk'         => 'Mesaj Sayfam',
 'anontalk'       => "Bu IP'nin mesajları",
 'navigation'     => 'Sitede yol bulma',
+'and'            => 've',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1430,7 +1431,6 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'anonymous'        => '{{SITENAME}} sitesinin anonim kullanıcıları',
 'siteuser'         => '{{SITENAME}} kullanıcı $1',
 'lastmodifiedatby' => 'Sayfa en son $3 tarafından $2, $1 tarihinde değiştirildi.', # $1 date, $2 time, $3 user
-'and'              => 've',
 'others'           => 'diğerleri',
 'siteusers'        => '{{SITENAME}} kullanıcılar $1',
 
@@ -1719,5 +1719,10 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'watchlisttools-view' => 'İlgili değişiklikleri göster',
 'watchlisttools-edit' => 'İzleme listesini gör ve düzenle',
 'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
+
+# Special:Filepath
+'filepath'        => 'Dosyanın konumu',
+'filepath-page'   => 'Dosya adı:',
+'filepath-submit' => 'Konum',
 
 );

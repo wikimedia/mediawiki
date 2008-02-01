@@ -167,6 +167,7 @@ $messages = array(
 'mytalk'         => 'As miñas discusións',
 'anontalk'       => 'Discusión para este enderezo IP',
 'navigation'     => 'Navegación',
+'and'            => 'e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -1828,7 +1829,6 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'anonymous'        => 'Usuario(s) anónimo(s) de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuario $1',
 'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 as $2 por $3.', # $1 date, $2 time, $3 user
-'and'              => 'e',
 'othercontribs'    => 'Baseado no traballo de $1.',
 'others'           => 'outros',
 'siteusers'        => '{{SITENAME}} usuario(s) $1',
@@ -2318,5 +2318,13 @@ Tente a vista previa normal.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta de extensión descoñecida "$1"',
+
+# Special:Filepath
+'filepath'         => 'Ruta do arquivo',
+'filepath-page'    => 'Arquivo:',
+'filepath-submit'  => 'Ruta',
+'filepath-summary' => 'Esta páxina especial devolve a ruta completa a un ficheiro. As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
+	
+Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:"',
 
 );

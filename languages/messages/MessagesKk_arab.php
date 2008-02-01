@@ -533,6 +533,7 @@ $messages = array(
 'mytalk'         => 'تالقىلاۋىم',
 'anontalk'       => 'IP تالقىلاۋى',
 'navigation'     => 'باعىتتاۋ',
+'and'            => 'جانە',
 
 # Metadata in edit box
 'metadata_help' => 'قوسىمشا دەرەكتەر:',
@@ -1225,25 +1226,25 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'files'                    => 'فايلدار',
 
 # User rights
-'userrights-lookup-user'      => 'قاتىسۋشى توپتارىن رەتتەۋ',
-'userrights-user-editname'    => 'قاتىسۋشى اتىن ەنگىزىڭىز:',
-'editusergroup'               => 'قاتىسۋشى توپتارىن وڭدەۋ',
-'userrights-editusergroup'    => 'قاتىسۋشى توپتارىن وڭدەۋ',
-'saveusergroups'              => 'قاتىسۋشى توپتارىن ساقتاۋ',
-'userrights-groupsmember'     => 'مۇشەلىگى:',
-'userrights-groupsremovable'  => 'الاستالاتىن توپتار:',
-'userrights-groupsavailable'  => 'جەتىمدى توپتار:',
+'userrights-lookup-user'           => 'قاتىسۋشى توپتارىن رەتتەۋ',
+'userrights-user-editname'         => 'قاتىسۋشى اتىن ەنگىزىڭىز:',
+'editusergroup'                    => 'قاتىسۋشى توپتارىن وڭدەۋ',
+'userrights-editusergroup'         => 'قاتىسۋشى توپتارىن وڭدەۋ',
+'saveusergroups'                   => 'قاتىسۋشى توپتارىن ساقتاۋ',
+'userrights-groupsmember'          => 'مۇشەلىگى:',
+'userrights-groupsremovable'       => 'الاستالاتىن توپتار:',
+'userrights-groupsavailable'       => 'جەتىمدى توپتار:',
 'userrights-groupshelp'            => 'قاتىسۋشىنى توپقا ۇستەيمىن نە توپتان الاستايمىن دەگەن توپتاردى بولەكتەڭىز. بولەكتەنبەگەن توپتار وزگەرتىلىمەيدى. توپتاردىڭ بولەكتەۋىن CTRL + سول جاق نۇقۋمەن وشىرۋىڭىزگە بولادى.',
-'userrights-reason'           => 'وزگەرتۋ سەبەبى:',
-'userrights-available-none'   => 'توپ مۇشەلىگىن وزگەرتە المايسىز.',
+'userrights-reason'                => 'وزگەرتۋ سەبەبى:',
+'userrights-available-none'        => 'توپ مۇشەلىگىن وزگەرتە المايسىز.',
 'userrights-available-add'         => 'قاتىسۋشىلاردى مىنا {{PLURAL:$2|توپقا|توپتارعا}} ۇستەي الاسىز: $1.',
 'userrights-available-remove'      => 'قاتىسۋشىلاردى مىنا {{PLURAL:$2|توپتان|توپتاردان}} الاستاي الاسىز: $1.',
 'userrights-available-add-self'    => 'ٴوزىڭىزدى مىنا {{PLURAL:$2|توپقا|توپتارعا}} ۇستەي الاسىز: $1.',
 'userrights-available-remove-self' => 'ٴوزىڭىزدى مىنا {{PLURAL:$2|توپتان|توپتاردان}} الاستاي الاسىز: $1.',
-'userrights-no-interwiki'     => 'باسقا ۋىيكىيلەردەگى پايدالانۋشى قۇقىقتارىن وڭدەۋگە رۇقساتىڭىز جوق.',
-'userrights-nodatabase'       => '$1 دەرەكقورى جوق نە جەرگىلىكتى ەمەس.',
-'userrights-nologin'          => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن اكىمشى تىركەلگىسىمەن [[{{ns:special}}:Userlogin|كىرۋىڭىز]] ٴجون.',
-'userrights-notallowed'       => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن تىركەلگىڭىزدە رۇقسات جوق.',
+'userrights-no-interwiki'          => 'باسقا ۋىيكىيلەردەگى پايدالانۋشى قۇقىقتارىن وڭدەۋگە رۇقساتىڭىز جوق.',
+'userrights-nodatabase'            => '$1 دەرەكقورى جوق نە جەرگىلىكتى ەمەس.',
+'userrights-nologin'               => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن اكىمشى تىركەلگىسىمەن [[{{ns:special}}:Userlogin|كىرۋىڭىز]] ٴجون.',
+'userrights-notallowed'            => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن تىركەلگىڭىزدە رۇقسات جوق.',
 
 # Groups
 'group'               => 'توپ:',
@@ -1521,7 +1522,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 
 'withoutinterwiki'        => 'ەش تىلگە سىلتeمەگەن بەتتەر',
 'withoutinterwiki-header' => 'كەلەسى بەتتەر باسقا تىلدەرگە سىلتەمەيدى:',
-'withoutinterwiki-submit'  => 'كورسەت',
+'withoutinterwiki-submit' => 'كورسەت',
 
 'fewestrevisions' => 'ەڭ از تۇزەتىلگەن بەتتەر',
 
@@ -2223,7 +2224,6 @@ $1',
 'anonymous'        => '{{SITENAME}} تىركەلگىسىز قاتىسۋشى(لارى)',
 'siteuser'         => '{{SITENAME}} قاتىسۋشى $1',
 'lastmodifiedatby' => 'بۇل بەتتى $3 قاتىسۋشى سوڭعى وزگەرتكەن كەزى: $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'جانە',
 'othercontribs'    => 'شىعارما نەگىزىن $1 جازعان.',
 'others'           => 'باسقالار',
 'siteusers'        => '{{SITENAME}} قاتىسۋشى(لار) $1',
@@ -2785,5 +2785,13 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'تانىلماعان كەڭەيتپە بەلگىسى «$1»',
+
+# Special:Filepath
+'filepath'         => 'فايل ورنالاسۋى ',
+'filepath-page'    => 'فايل اتى:',
+'filepath-submit'  => 'ورنالاسۋىن تابۋ ',
+'filepath-summary' => 'بۇل ارنايى بەت فايل ورنالاسۋى تولىق جولىن قايتارادى. سۋرەتتەر تولىق اجىراتىلىمدىعىمەن كٶرسەتٸلەدٸ, باسقا فايل تٷرلەرٸنە قاتىستى باعدارلاماسى تۋرا جەگٸلەدٸ.
+
+فايل اتاۋىن «{{ns:image}}:» دەگەن باستاۋىشسىز ەڭگٸزٸڭٸز.',
 
 );

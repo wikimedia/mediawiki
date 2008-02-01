@@ -183,6 +183,7 @@ $messages = array(
 'mytalk'         => 'マイ・トーク',
 'anontalk'       => 'このIP利用者の会話',
 'navigation'     => 'ナビゲーション',
+'and'            => 'および',
 
 # Metadata in edit box
 'metadata_help' => 'メタデータ（[[{{int:metadata-url}}]]を参照）',
@@ -1708,7 +1709,6 @@ $NEWPAGE
 'anonymous'        => '{{SITENAME}}の匿名利用者',
 'siteuser'         => '{{SITENAME}}の利用者$1',
 'lastmodifiedatby' => '最終更新は $3 による $2, $1 の編集です。', # $1 date, $2 time, $3 user
-'and'              => 'および',
 'othercontribs'    => '$1の版に基づきます。',
 'others'           => 'その他の利用者',
 'siteusers'        => '{{SITENAME}}の利用者$1',
@@ -2243,5 +2243,10 @@ $1',
 'iranian-calendar-m10' => 'イラン歴第10月',
 'iranian-calendar-m11' => 'イラン歴第11月',
 'iranian-calendar-m12' => 'イラン歴第12月',
+
+# Special:Filepath
+'filepath'        => 'パスの取得',
+'filepath-page'   => 'ファイル名:',
+'filepath-submit' => 'パスを取得',
 
 );

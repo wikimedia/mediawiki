@@ -131,6 +131,7 @@ $messages = array(
 'mytalk'         => 'Jinafo prilaxo',
 'anontalk'       => 'Prilara kan IP mane',
 'navigation'     => 'Bugrablera',
+'and'            => 'is',
 
 'errorpagetitle'    => 'Rokla',
 'returnto'          => 'Dimgrablera va $1 bu.',
@@ -1496,7 +1497,6 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'anonymous'        => 'Yoltiskaf favesik va {{SITENAME}}',
 'siteuser'         => '$1 favesik va {{SITENAME}}',
 'lastmodifiedatby' => 'Batu bu ironokon zo betayar ba $2, $1 gan $3.', # $1 date, $2 time, $3 user
-'and'              => 'is',
 'othercontribs'    => 'Omavaf gu kobara ke $1.',
 'others'           => 'ar',
 'siteusers'        => '$1 favesik',
@@ -1698,5 +1698,10 @@ Si il ne s'agit pas de vous, n'ouvrez pas le lien. Ce code de confirmation expir
 'watchlisttools-view' => 'Wira va icdef betakseem',
 'watchlisttools-edit' => 'Wira va suzdasiki isu betara',
 'watchlisttools-raw'  => 'Betara va suzdasiki',
+
+# Special:Filepath
+'filepath'        => 'Iyeltakkelda',
+'filepath-page'   => 'Iyeltak :',
+'filepath-submit' => 'Kelda',
 
 );
