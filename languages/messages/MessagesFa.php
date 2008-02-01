@@ -340,6 +340,7 @@ $messages = array(
 'mytalk'         => 'بحث من',
 'anontalk'       => 'بحث برای این IP',
 'navigation'     => 'گشتن',
+'and'            => 'و',
 
 # Metadata in edit box
 'metadata_help' => 'متاداده:',
@@ -2009,7 +2010,6 @@ $1',
 'anonymous'        => 'کاربر(ان) گمنام {{SITENAME}}',
 'siteuser'         => '$1، کاربر {{SITENAME}}',
 'lastmodifiedatby' => 'این صفحه آخرین بار در $2، $1 به دست $3 تغییر یافته‌است.', # $1 date, $2 time, $3 user
-'and'              => 'و',
 'othercontribs'    => 'بر اساس اثری از $1',
 'others'           => 'دیگران',
 'siteusers'        => '$1، کاربر(ان) {{SITENAME}}',
@@ -2574,5 +2574,21 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'برچسب ناشناختهٔ افزونه «$1»',
+
+# Special:Version
+'version-extensions'               => 'افزونه‌های نصب شده',
+'version-specialpages'             => 'صفحه‌های ویژه',
+'version-parserhooks'              => 'قلاب‌های تجزیه‌گر',
+'version-variables'                => 'متغیرها',
+'version-other'                    => 'غیره',
+'version-mediahandlers'            => 'به‌دست‌گیرنده‌های رسانه‌ها',
+'version-hooks'                    => 'قلاب‌ها',
+'version-extension-functions'      => 'عملگرهای افزونه',
+'version-parser-extensiontags'     => 'برچسب‌های افزونه‌های تجزیه‌گر',
+'version-parser-function-hooks'    => 'قلاب‌های عملگرهای تجزیه‌گر',
+'version-skin-extension-functions' => 'عملگرهای افزونه‌های پوسته',
+'version-hook-name'                => 'نام قلاب',
+'version-hook-subscribedby'        => 'وارد شده توسط',
+'version-version'                  => 'نسخه',
 
 );
