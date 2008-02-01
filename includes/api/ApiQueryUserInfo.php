@@ -85,8 +85,43 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if (isset($this->prop['editcount'])) {
 			$vals['editcount'] = $wgUser->getEditCount();
 		}
+		if (isset($this->prop['ratelimits'])) {
+			$vals['ratelimits'] = $this->getRateLimits();
+		}
 		return $vals;
 	}
+	
+	protected function getRateLimits()
+	{
+		global $wgUser, $wgRateLimits;
+		if(!$wgUser->isPingLimitable())
+			return array(); // No limits
+		
+		// Find out which categories we belong to
+		$categories = array();
+		if($wgUser->isAnon())
+			$categories[] = 'anon';
+		else
+			$categories[] = 'user';
+		if($wgUser->isNewBie())
+		{
+			$categories[] = 'ip';
+			$categories[] = 'subnet';
+			if(!$wgUser->isAnon())
+				$categories[] = 'newbie';
+		}
+		
+		// Now get the actual limits
+		$retval = array();
+		foreach($wgRateLimits as $action => $limits)
+			foreach($categories as $cat)
+				if(isset($limits[$cat]) && !is_null($limits[$cat]))
+				{
+					$retval[$action][$cat]['hits'] = $limits[$cat][0];
+					$retval[$action][$cat]['seconds'] = $limits[$cat][1];
+				}
+		return $retval;
+	}			
 
 	public function getAllowedParams() {
 		return array (
@@ -99,7 +134,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'groups',
 					'rights',
 					'options',
-					'editcount'
+					'editcount',
+					'ratelimits'
 				)
 			)
 		);
@@ -109,12 +145,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return array (
 			'prop' => array(
 				'What pieces of information to include',
-				'  blockinfo - tags if the current user is blocked, by whom, and for what reason',
-				'  hasmsg    - adds a tag "message" if the current user has pending messages',
-				'  groups    - lists all the groups the current user belongs to',
-				'  rights    - lists of all rights the current user has',
-				'  options   - lists all preferences the current user has set',
-				'  editcount - adds the current user\'s edit count'
+				'  blockinfo  - tags if the current user is blocked, by whom, and for what reason',
+				'  hasmsg     - adds a tag "message" if the current user has pending messages',
+				'  groups     - lists all the groups the current user belongs to',
+				'  rights     - lists of all rights the current user has',
+				'  options    - lists all preferences the current user has set',
+				'  editcount  - adds the current user\'s edit count',
+				'  ratelimits - lists all rate limits applying to the current user'
 			)
 		);
 	}
@@ -127,7 +164,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return array (
 			'api.php?action=query&meta=userinfo',
 			'api.php?action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg',
-			'api.php?action=query&meta=userinfo&uioption=rememberpassword',
 		);
 	}
 
