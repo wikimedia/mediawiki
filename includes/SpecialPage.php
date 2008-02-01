@@ -144,6 +144,7 @@ class SpecialPage
 		'Unusedtemplates'           => array( 'SpecialPage', 'Unusedtemplates' ),
 		'Randomredirect'            => 'SpecialRandomredirect',
 		'Withoutinterwiki'          => array( 'SpecialPage', 'Withoutinterwiki' ),
+		'Filepath'                  => array( 'SpecialPage', 'Filepath' ),
 
 		'Mypage'                    => array( 'SpecialMypage' ),
 		'Mytalk'                    => array( 'SpecialMytalk' ),
