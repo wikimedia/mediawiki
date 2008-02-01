@@ -392,8 +392,8 @@ class IPBlockForm {
 
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->setSubtitle( wfMsg( 'blockipsuccesssub' ) );
-		$text = wfMsg( 'blockipsuccesstext', $this->BlockAddress );
-		$wgOut->addWikiText( $text );
+		$text = wfMsgExt( 'blockipsuccesstext', array( 'parse' ), $this->BlockAddress );
+		$wgOut->addHtml( $text );
 	}
 
 	function showLogFragment( $out, $title ) {
