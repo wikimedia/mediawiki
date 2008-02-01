@@ -1022,7 +1022,7 @@ class User {
 			return $result;
 		}
 
-		global $wgRateLimits, $wgRateLimitsExcludedGroups;
+		global $wgRateLimits;
 		if( !isset( $wgRateLimits[$action] ) ) {
 			return false;
 		}
