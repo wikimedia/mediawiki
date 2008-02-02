@@ -1734,7 +1734,7 @@ class Article {
 
 				$expiry_description = '';
 				if ( $encodedExpiry != 'infinity' ) {
-					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) ).')';
+					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry, false, false ) ).')';
 				}
 
 				# Prepare a null revision to be added to the history
