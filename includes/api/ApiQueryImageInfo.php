@@ -79,8 +79,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 					
 					// Now get the old revisions
-					if($params['limit'] > 1) {
-						$oldies = $img->getHistory($params['limit'] - 1, $params['start'], $params['end']);
+					if($params['limit'] > count($data)) {
+						$oldies = $img->getHistory($params['limit'] - count($data), $params['start'], $params['end']);
 						if(!empty($oldies))
 							foreach($oldies as $oldie)
 								$data[] = $this->getInfo($oldie);
