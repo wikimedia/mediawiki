@@ -112,9 +112,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$vals['anon'] = '';
 		}
 		if($this->fld_size) {
-			$vals['size'] = $f->getSize();
-			$vals['width'] = $f->getWidth();
-			$vals['height'] = $f->getHeight();
+			$vals['size'] = intval($f->getSize());
+			$vals['width'] = intval($f->getWidth());
+			$vals['height'] = intval($f->getHeight());
 		}
 		if($this->fld_url) {
 			if($this->scale && !$f->isOld()) {
