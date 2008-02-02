@@ -637,7 +637,8 @@ class MessageCache {
 	}
 
 	/**
-	 * Get the extension messages for a specific language
+	 * Get the extension messages for a specific language. Only English, interface
+	 * and content language are guaranteed to be loaded.
 	 *
 	 * @param string $lang The messages language, English by default
 	 */
@@ -692,11 +693,27 @@ class MessageCache {
 	 * Load messages from a given file
 	 */
 	function loadMessagesFile( $filename ) {
+		global $wgLang, $wgContLang;
 		$messages = $magicWords = false;
 		require( $filename );
 
-		if ( $messages !== false ) {
-			$this->addMessagesByLang( $messages );
+		/*
+		 * Load only languages that are usually used, and merge all fallbacks,
+		 * except English.
+		 */
+		$langs = array_unique( array( 'en', $wgContLang->getCode(), $wgLang->getCode() ) );
+		foreach( $langs as $code ) {
+			$fbcode = $code;
+			$mergedMessages = array();
+			do {
+				if ( isset($messages[$fbcode]) ) {
+					$mergedMessages += $messages[$fbcode];
+				}
+				$fbcode = Language::getFallbackfor( $fbcode );
+			} while( $fbcode && $fbcode !== 'en' );
+
+			if ( !empty($mergedMessages) )
+				$this->addMessages( $mergedMessages, $code );
 		}
 
 		if ( $magicWords !== false ) {
