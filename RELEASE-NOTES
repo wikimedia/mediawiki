@@ -37,6 +37,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgAutopromote: automatically promote users who match specified criteria
 * $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf: allow users to add or remove
   themselves from specified groups via Special:Userrights.
+* When $wgUseTidy has been enabled, PHP's Tidy module is now used if it is
+  present, in preference to an external Tidy executable which may or may not
+  be present. To force use of external Tidy even when the PHP module is
+  available, set $wgTidyInternal to false.
+
 
 === New features in 1.12 ===
 * (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
