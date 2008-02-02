@@ -629,17 +629,21 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Dîroka versyona',
 'history-feed-item-nocomment' => '$1 li $2', # user at time
+'history-feed-empty'          => 'Rûpelê xastî tune ye. Belkî ew rûpela hatîye jêbirin ya sernava xwe hatîye guherandin. [[Special:Search|Di wîkîyê da li rûpelên nêzîkî wê bigere]].',
 
 # Revision deletion
-'rev-deleted-comment'       => '(nivîs hate jêbirin)',
-'rev-deleted-user'          => '(navî bikarhêner hate jêbirin)',
-'rev-delundel'              => 'nîşan bide/veşêre',
-'revisiondelete'            => 'Rêvîsyona jêbibe/dîsa çêke',
-'revdelete-legend'          => 'Qebûlkirinan ji vê versyonê ra:',
-'revdelete-hide-comment'    => 'Nivîsandinê kurte yê guherandinê veşêre',
-'revdelete-hide-user'       => "Navî bikarhêner/IP'yê veşêre",
-'revdelete-hide-restricted' => 'Ev qebûlkirin ji koordînatoran ra ye jî',
-'revdelete-suppress'        => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
+'rev-deleted-comment'         => '(nivîs hate jêbirin)',
+'rev-deleted-user'            => '(navî bikarhêner hate jêbirin)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} reşahîya jêbirinê] da hebin.
+</div>',
+'rev-delundel'                => 'nîşan bide/veşêre',
+'revisiondelete'              => 'Rêvîsyona jêbibe/dîsa çêke',
+'revdelete-legend'            => 'Qebûlkirinan ji vê versyonê ra:',
+'revdelete-hide-comment'      => 'Nivîsandinê kurte yê guherandinê veşêre',
+'revdelete-hide-user'         => "Navî bikarhêner/IP'yê veşêre",
+'revdelete-hide-restricted'   => 'Ev qebûlkirin ji koordînatoran ra ye jî',
+'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 
 # Oversight log
 'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content 
@@ -1098,6 +1102,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 'delete-confirm'              => 'Jêbirina "$1"',
 'delete-legend'               => 'Jêbirin',
 'historywarning'              => 'Hîşyar: Ew rûpel ku tu dixwazî jê bibî dîrokek heye:',
+'confirmdeletetext'           => 'Tu kê niha rûpelekê bi tev dîroka wê jêbibê. Xêra xwe zanibe tu kê niha çi bikê û zanibe, çi di wîkîyê da yê bibe. Hên jî seke, ku ev jêbirina bi [[{{MediaWiki:Policy-url}}|mafên wîkîyê]] ra dimeşin ya na.',
 'actioncomplete'              => 'Çalakî temam',
 'deletedtext'                 => '"$1" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
 'deletedarticle'              => '"$1" hat jêbirin',
@@ -1125,6 +1130,7 @@ bi [[User:$2|$2]] ([[User talk:$2|guftûgo]]) venizivre; keseke din wê rûpelê
 Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'editcomment'                 => 'Kurtenivîsê guherandinê ev bû: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => 'Guherandina $1 şondakir; dîsa guharte verzyona $2.',
 'protectlogpage'              => 'Reşahiya _parastiyan',
 'protectedarticle'            => 'parastî [[$1]]',
 'modifiedarticleprotection'   => 'parastina "[[$1]]" guherand',
@@ -1154,6 +1160,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 # Undelete
 'undelete'                 => 'Li rûpelên jêbirî seke',
 'viewdeletedpage'          => 'Rûpelên vemirandî seke',
+'undeleteextrahelp'        => "Ji bo dîsaçêkirina vê rûpelê, li checkbox'an nexe û li '''''Dîsa çêke''''' klîk bike. Eger tu naxazî ku hemû verzyon dîsa werin çêkirin, li checkbox'ên wan verzyonan xe, yê tu dixazî dîsa çêkê û paşê li '''''Dîsa çêke'''' klîk bike. Eger tu li '''''Biskine''''' xê, hemû checkbox û cihê sedemê yê werin valakirin.",
 'undeletebtn'              => 'Dîsa çêke!',
 'undeletereset'            => 'Biskine',
 'undeletecomment'          => 'Sedem:',

@@ -171,9 +171,14 @@ $messages = array(
 'category-media-header' => "Cyfryngau yn y categori '$1'",
 'category-empty'        => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 
-'mainpagetext'      => "Meddalwedd {{SITENAME}} wedi sefydlu'n llwyddiannus",
-'mainpagedocfooter' => "Gwelwch y [http://meta.wikipedia.org/wiki/MediaWiki_localisation dogfennaeth ar addasu'r rhyngwyneb]
-a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr] (oll yn Saesneg) am gymorth technegol.",
+'mainpagetext'      => "<big>'''Llwyddwyd i osod meddalwedd Mediawiki yma'''</big>",
+'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
+
+==Cychwyn arni==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Rhestr gosodiadau wrth gyflunio]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
 
 'about'          => 'Ynglŷn â',
 'article'        => 'Erthygl',
@@ -401,7 +406,7 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'yourrealname'               => 'Eich enw cywir*',
 'yourlanguage'               => 'Iaith rhyngwyneb',
 'yourvariant'                => 'Amrywiad',
-'yournick'                   => 'Eich llysenw (am llofnod)',
+'yournick'                   => 'Eich llysenw (fel llofnod)',
 'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
 'badsiglength'               => "Mae'r llysenw'n rhy hir; rhaid iddo fod yn llai na $1 llythyren o hyd.",
 'email'                      => 'E-bost',
@@ -637,6 +642,7 @@ $2 Rhestrwch ail-cyfeiriadau &nbsp; Chwiliwch am $3 $9',
 # Preferences page
 'preferences'             => 'ffafraethau',
 'mypreferences'           => 'fy newisiadau',
+'prefs-edits'             => 'Nifer y golygiadau:',
 'prefsnologin'            => 'Nid wedi mewngofnodi',
 'prefsnologintext'        => 'Rhaid i chi [[Special:Userlogin|mewngofnodi]]
 i setio ffafraethau defnyddwr.',
@@ -648,7 +654,7 @@ i setio ffafraethau defnyddwr.',
 'qbsettings-floatingleft' => 'Arnawf de',
 'changepassword'          => 'Newidier y cyfrinair',
 'skin'                    => 'Croen',
-'math'                    => 'Rendro mathemateg',
+'math'                    => 'Mathemateg',
 'dateformat'              => 'Fformat dyddiad',
 'datedefault'             => 'Dim dewisiad',
 'datetime'                => 'Dyddiad ac amser',
@@ -1451,8 +1457,9 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 'mw_math_mathml' => 'MathML',
 
 # Patrolling
-'rcpatroldisabled'     => "Patrol Newidiadau Diweddar wedi'i analluogi",
-'rcpatroldisabledtext' => 'Analluogwyd y nodwedd Patrol Newidiadau Diweddar.',
+'rcpatroldisabled'                    => "Patrol Newidiadau Diweddar wedi'i analluogi",
+'rcpatroldisabledtext'                => 'Analluogwyd y nodwedd Patrol Newidiadau Diweddar.',
+'markedaspatrollederror-noautopatrol' => "Ni chaniateir i chi farcio'ch newidiadau eich hunan fel rhai derbyniol.",
 
 # Image deletion
 'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1.',

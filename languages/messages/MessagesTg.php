@@ -332,28 +332,31 @@ $messages = array(
 Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:Specialpages]] нигаред.",
 
 # General errors
-'error'              => 'Иштибоҳ',
-'databaseerror'      => 'Хатои бойгоҳи дода',
-'dberrortext'        => 'Ишколе дар дастури ба бойгоҳи дода фиристодашуда рух дод.
+'error'                => 'Иштибоҳ',
+'databaseerror'        => 'Хатои бойгоҳи дода',
+'dberrortext'          => 'Ишколе дар дастури ба бойгоҳи дода фиристодашуда рух дод.
 Иллати ин масъала метавонад эроде дар нармафзор бошад.
 Ин хато аз даруни амалгир:
 <blockquote><tt>$1</tt></blockquote>
 фиристода шуд"<tt>$2</tt>".
 Бойгоҳи дода MySQL ин хаторо боз гардонд"<tt>$3: $4</tt>".',
-'readonly'           => 'Бойгоҳи дода қуфл шудааст',
-'internalerror'      => 'Хатои дохилӣ',
-'internalerror_info' => 'Хатои дохилӣ: $1',
-'filecopyerror'      => 'Натавонистам аз парвандаи "$1" рӯи "$2" нусхабардорӣ кунам.',
-'filerenameerror'    => 'Натавонистам парвандаи "$1" ба "$2" тағйири ном диҳам.',
-'filedeleteerror'    => 'Парванда "$1" ҳазф натавонист шуд.',
-'filenotfound'       => 'Парвандаи "$1" ёфт нашуд.',
-'badtitle'           => 'Унвони бад',
-'badtitletext'       => 'Унвони саҳифаи дархостшуда номӯътабар, холӣ, ё пайванди байнизабони ё байнивикии нодуруст буд. Он метавонад як ё якчанд аломатҳоеро дар бар гирад, ки дар унвонҳо истифода шуда наметавонанд.',
-'viewsource'         => 'Намоиши матни вики',
-'viewsourcefor'      => 'барои $1',
-'actionthrottled'    => 'Ҷилави амали шумо гирифта шуд',
-'viewsourcetext'     => 'Шумо метавонед матни викии ин саҳифаро назар кунед ё нусха бардоред:',
-'editinginterface'   => "'''Огоҳи:''' Шумо саҳифаеро вироиш карда истодаед, ки матни интерфейси барнома мебошад. Тағйироти ин саҳифа барои намуди интерфейси дигар корбарон таъсир хоҳад расонид.",
+'readonly'             => 'Бойгоҳи дода қуфл шудааст',
+'internalerror'        => 'Хатои дохилӣ',
+'internalerror_info'   => 'Хатои дохилӣ: $1',
+'filecopyerror'        => 'Натавонистам аз парвандаи "$1" рӯи "$2" нусхабардорӣ кунам.',
+'filerenameerror'      => 'Натавонистам парвандаи "$1" ба "$2" тағйири ном диҳам.',
+'filedeleteerror'      => 'Парванда "$1" ҳазф натавонист шуд.',
+'filenotfound'         => 'Парвандаи "$1" ёфт нашуд.',
+'badtitle'             => 'Унвони бад',
+'badtitletext'         => 'Унвони саҳифаи дархостшуда номӯътабар, холӣ, ё пайванди байнизабони ё байнивикии нодуруст буд. Он метавонад як ё якчанд аломатҳоеро дар бар гирад, ки дар унвонҳо истифода шуда наметавонанд.',
+'perfcached'           => 'Додаҳои зерин аз ҳофизаи муваққатӣ фарохонӣ шудаанд ва мумкин аст, комилан ба рӯз нашудаанд.',
+'perfcachedts'         => 'Додаҳои зерин аз ҳофизаи муваққатӣ фарохонӣ шудаанд ва мумкин аст, охирин ба рӯзрасонӣ $1 аст.',
+'querypage-no-updates' => 'Имкони ба рӯзрасонии ин саҳифа феълан ғайрифаъол шудааст.',
+'viewsource'           => 'Намоиши матни вики',
+'viewsourcefor'        => 'барои $1',
+'actionthrottled'      => 'Ҷилави амали шумо гирифта шуд',
+'viewsourcetext'       => 'Шумо метавонед матни викии ин саҳифаро назар кунед ё нусха бардоред:',
+'editinginterface'     => "'''Огоҳи:''' Шумо саҳифаеро вироиш карда истодаед, ки матни интерфейси барнома мебошад. Тағйироти ин саҳифа барои намуди интерфейси дигар корбарон таъсир хоҳад расонид.",
 
 # Login and logout pages
 'logouttitle'                => 'Хуруҷи корбар аз систем',
@@ -429,12 +432,14 @@ your old password.
 'emailconfirmlink'           => 'Адреси почтаи электрониаторо тасдиқ кунед',
 'accountcreated'             => 'Ҳисоби ҷадид сохта шуд',
 'accountcreatedtext'         => 'Ҳисоби корбар барои $1 сохта шуд.',
+'createaccount-title'        => 'Эҷоди ҳисоби корбарӣ дар {{SITENAME}}',
 'loginlanguagelabel'         => 'Забон: $1',
 
 # Password reset dialog
 'resetpass'           => 'Сифр кардани калимаи убурӣ ҳисоби корбарӣ',
 'resetpass_announce'  => 'Шумо бо коди мувақатӣ ба систем вуруд шудаед. Барои анҷом додани вурудшавӣ, шумо бояд калимаи убурӣ ҷадидро инҷо ворид кунед:',
 'resetpass_header'    => 'Сифр кардани калимаи убур',
+'resetpass_success'   => 'Калимаи убури шумо бо муваффақият тағйир дода шуд! Дар ҳоли ворид кардани шумо ба систем...',
 'resetpass_forbidden' => 'Дар {{SITENAME}} калимаҳои убурро наметавон тағйир дод',
 'resetpass_missing'   => 'Иттилооте барои коргузорӣ фиристода нашудааст.',
 
@@ -484,6 +489,7 @@ your old password.
 Шумо метавонед бо $1 ё яке дигаре аз [[{{MediaWiki:Grouppage-sysop}}|мудирон]] барои гуфтугӯ роҷеъ ба қатъи дастрасӣ тамос гиред.
 Таваҷҷӯҳ кунед, ки аз қобилияти 'фиристодаи почтаи электронӣ ба ин корбар' наметавоне истифода кард, магар ин ки як нишони мӯътабари почтаи электронӣ дар [[Special:Preferences|тарҷиҳоти корбарии]] худ сабт карда бошед ва аз корбурди он манъ нашуда бошед.
 Нишонаи кунунии IP Шумо $3 аст, ва шиносаи қатъи дастрасии Шумо #$5 аст. Лутфан ин ё онро ва ё ҳардуи онро дар дархостҳои худ зикр кунед.",
+'blockednoreason'           => 'далеле мушаххас нашудааст',
 'whitelistedittitle'        => 'Барои вироиш вуруд бояд кард',
 'whitelistedittext'         => 'Барои вироиши мақола бояд ба систем $1 шавед.',
 'whitelistreadtitle'        => 'Барои хондан бояд вуруд кард',
@@ -509,10 +515,12 @@ your old password.
 'updated'                   => '(Ба рӯз шуда)',
 'previewnote'               => '<strong>Ин фақат пешнамоиш аст; дигаргуниҳо ҳоло захира нашудаанд!</strong>',
 'editing'                   => 'Дар ҳоли вироиш $1',
+'editinguser'               => 'Дар ҳоли вироиши корбар <b>$1</b>',
 'editingsection'            => 'Дар ҳоли вироиши $1 (қисмат)',
 'editingcomment'            => 'Дар ҳоли вироиш $1 (comment)',
 'editconflict'              => 'Бархӯрди вироишӣ: $1',
 'yourtext'                  => 'Матни Шумо',
+'storedversion'             => 'Нусхаи сабтшуда',
 'editingold'                => '<strong>ҲУШДОР: Шумо нусхаи кӯҳнаи ин саҳифаро вироиш карда истодаед.
 Агар шумо онро захира кунед, ҳар тағйире ки пас аз ин нусха анҷом шуда, аз байн хоҳад рафт.</strong>',
 'yourdiff'                  => 'Фарқиятҳо',
@@ -529,6 +537,7 @@ your old password.
 'nocreatetitle'             => 'Эҷоди саҳифа маҳдуд шудааст',
 'nocreatetext'              => '{{SITENAME}} қобилияти эҷоди саҳифаҳои ҷадидро маҳдуд карда аст.
 Шумо метавонед бозгашта саҳифаи мавҷудбударо вироиш кунед, ё [[Special:Userlogin|ба систем вуруд кунед ё ҳисоби корбарӣ эҷод кунед]].',
+'nocreate-loggedin'         => 'Шумо иҷозати эҷоди саҳифаи ҷадидро дар {{SITENAME}} надоред.',
 'permissionserrors'         => 'Хатоҳои сатҳи дастрасӣ',
 'permissionserrorstext'     => 'Шумо рухсати анҷоми ин корро ба {{PLURAL:$1|сабаби|сабабҳои}} зерин надоред:',
 'recreate-deleted-warn'     => "'''Диққат: Шумо саҳифаеро барқарор карда истодаед, ки пештар ҳазф шудааст.''' 
@@ -583,7 +592,12 @@ your old password.
 'revdelete-hide-text'     => 'Пинҳон кардани нусхаи матн',
 'revdelete-hide-name'     => 'Пинҳон кардани амал ва ҳадаф',
 'revdelete-hide-comment'  => 'Пинҳон кардани тавзеҳи вироиш',
+'revdelete-hide-image'    => 'Пинҳон кардани мӯҳтавиёти парванда',
+'revdelete-unsuppress'    => 'Хотимаи маҳдудиятҳо дар мавриди нусхаҳои интихобшуда',
 'revdelete-log'           => 'Гузориши тавзеҳ:',
+'revdelete-submit'        => 'Амали кардан бар нусхаи интихобшуда',
+'revdelete-logentry'      => 'тағйири намоии нусха дар [[$1]]',
+'logdelete-logentry'      => 'тағйири намоии маврид дар [[$1]]',
 
 # History merging
 'mergehistory-from'   => 'Саҳифаи манбаъ:',
@@ -708,30 +722,41 @@ your old password.
 'recentchangeslinked-summary'  => "Ин саҳифаи вижа тағйироти охири саҳифаҳои пайвастаро дар бар мегирад. Саҳифаҳои дар рӯизати назароти шумо буда  '''пурранг''' ҳастанд.",
 
 # Upload
-'upload'                     => 'Фиристодани файл',
-'uploadbtn'                  => 'Фиристодани файл',
-'reupload'                   => 'Боргузории дубора',
-'reuploaddesc'               => 'Боз гаштан ба форми боргузорӣ.',
-'uploadnologin'              => 'Вуруд накарда',
-'uploadnologintext'          => 'Барои фиристодани файлҳо Шумо бояд [[Special:Userlogin|вуруд кунед]].',
-'upload_directory_read_only' => 'Шохаи боргузорӣ ($1) аз тарафи веб коргузор қобили навиштан нест.',
-'uploaderror'                => 'Иштибоҳи фиристодан',
-'upload-permitted'           => 'Навъҳои парвандаҳои иҷозатшуда: $1.',
-'upload-preferred'           => 'Навъҳои парвандаҳои иҷозатшуда: $1.',
-'upload-prohibited'          => 'Навъҳои парвандаҳои манъшуда: $1.',
-'uploadlog'                  => 'сабти фиристодан',
-'uploadlogpage'              => 'Сабти фиристодан',
-'filename'                   => 'Номи парванда',
-'filedesc'                   => 'Хулоса',
-'fileuploadsummary'          => 'Хулоса:',
-'filesource'                 => 'Манбаъ',
-'uploadedfiles'              => 'Файлҳои фиристодашуда',
-'ignorewarning'              => 'Аҳмият надодан ба ҳушдор ва захира кардани парванда.',
-'successfulupload'           => 'Фиристодан бомуваффақият',
-'uploadwarning'              => 'Огоҳии фиристодан',
-'savefile'                   => 'Захираи парванда',
-'uploadedimage'              => 'боршуда "[[$1]]"',
-'uploaddisabledtext'         => 'Имкони боргузории парванда дар {{SITENAME}} ғайрифаъол шудааст.',
+'upload'                      => 'Фиристодани файл',
+'uploadbtn'                   => 'Фиристодани файл',
+'reupload'                    => 'Боргузории дубора',
+'reuploaddesc'                => 'Боз гаштан ба форми боргузорӣ.',
+'uploadnologin'               => 'Вуруд накарда',
+'uploadnologintext'           => 'Барои фиристодани файлҳо Шумо бояд [[Special:Userlogin|вуруд кунед]].',
+'upload_directory_read_only'  => 'Шохаи боргузорӣ ($1) аз тарафи веб коргузор қобили навиштан нест.',
+'uploaderror'                 => 'Иштибоҳи фиристодан',
+'upload-permitted'            => 'Навъҳои парвандаҳои иҷозатшуда: $1.',
+'upload-preferred'            => 'Навъҳои парвандаҳои иҷозатшуда: $1.',
+'upload-prohibited'           => 'Навъҳои парвандаҳои манъшуда: $1.',
+'uploadlog'                   => 'сабти фиристодан',
+'uploadlogpage'               => 'Сабти фиристодан',
+'filename'                    => 'Номи парванда',
+'filedesc'                    => 'Хулоса',
+'fileuploadsummary'           => 'Хулоса:',
+'filesource'                  => 'Манбаъ',
+'uploadedfiles'               => 'Файлҳои фиристодашуда',
+'ignorewarning'               => 'Аҳмият надодан ба ҳушдор ва захира кардани парванда.',
+'fileexists-forbidden'        => 'Дар ҳоли ҳозир, парвандае бо ҳамин ном вуҷуд дорад; лутфан бар гардед ва парвандаи мавриди назари худро бо номи дигар бор кунед. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Дар ҳоли ҳозир парванде бо ҳамин ном дар анбори муштараки парвандаҳо вуҷуд дорад; лутфан бар гардед ва парвандаи мавриди назари худро бо номи дигар бо кунед. [[Image:$1|thumb|center|$1]]',
+'successfulupload'            => 'Фиристодан бомуваффақият',
+'uploadwarning'               => 'Огоҳии фиристодан',
+'savefile'                    => 'Захираи парванда',
+'uploadedimage'               => 'боршуда "[[$1]]"',
+'overwroteimage'              => 'нусхаи ҷадиди "[[$1]]" боргузорӣ шуд',
+'uploaddisabled'              => 'Бор кордан ғайрифаъол аст',
+'uploaddisabledtext'          => 'Имкони боргузории парванда дар {{SITENAME}} ғайрифаъол шудааст.',
+'uploadscripted'              => 'Ин парванда коди скриптӣ ё HTML дорад, ки метавонад дар мурургарӣ веб нодуруст намоён шавад.',
+'uploadcorrupt'               => 'Ин парванда хароб аст ва ё пасванди хато дорад. Лутфан онро санҷида аз нав бор кунед.',
+'uploadvirus'                 => 'Ин парванда вирус дорад! Ҷузъиёт: $1',
+'sourcefilename'              => 'Номи парвандаи аслӣ',
+'destfilename'                => 'Номи парвандаи мақсад',
+'watchthisupload'             => 'Пайгирии ин саҳифа',
+'filewasdeleted'              => 'Парвандае бо ҳамин ном пештар боргузорӣ ва пас аз он пок шудааст. Пеш аз боргузорӣ ба $1 нигаред.',
 
 'upload-proto-error' => 'Қарордоди нодуруст',
 'upload-file-error'  => 'Хатои дохилӣ',
@@ -788,9 +813,11 @@ your old password.
 'filerevert-legend'  => 'Вогардонии парванда',
 'filerevert-intro'   => '<span class="plainlinks">Шумо дар ҳоли вогардонии \'\'\'[[Media:$1|$1]]\'\'\' ба [$4 нусхаи аз $3, $2] ҳастед.</span>',
 'filerevert-comment' => 'Тавзеҳ:',
+'filerevert-submit'  => 'бирав',
 
 # File deletion
 'filedelete'                  => 'Ҳазфи $1',
+'filedelete-legend'           => 'Ҳазфи парванда',
 'filedelete-comment'          => 'Сабаби ҳазф:',
 'filedelete-submit'           => 'Ҳазф',
 'filedelete-success'          => "'''$1''' ҳазф шуд.",
@@ -799,6 +826,7 @@ your old password.
 
 # MIME search
 'mimesearch' => 'Ҷустуҷӯ бо стандарти MIME',
+'mimetype'   => 'MIME навъ:',
 'download'   => 'боргирӣ',
 
 # List redirects
@@ -816,6 +844,8 @@ your old password.
 
 # Statistics
 'statistics'             => 'Омор\\Статистика',
+'sitestats'              => 'Омори {{SITENAME}}',
+'userstats'              => 'Омори корбарон',
 'statistics-mostpopular' => 'Саҳифаҳои бисёр назаркардашуда',
 
 'disambiguations' => 'Саҳифаҳои ибҳомзудоӣ',
@@ -823,18 +853,26 @@ your old password.
 'doubleredirects' => 'Тағйири масирҳои дутоӣ',
 
 'brokenredirects'        => 'Саҳифаҳои кандашудаи равонакунӣ',
+'brokenredirectstext'    => 'Масирҳои зерин ба саҳифаҳои номавҷуд пайванданд:',
 'brokenredirects-edit'   => '(вироиш)',
 'brokenredirects-delete' => '(ҳазв)',
 
-'withoutinterwiki' => 'Саҳифаҳои бидуни пайвандҳои забонӣ',
+'withoutinterwiki'        => 'Саҳифаҳои бидуни пайвандҳои забонӣ',
+'withoutinterwiki-header' => 'Саҳифаҳои зерин пайванде ба забони дигар надоранд:',
+'withoutinterwiki-submit' => 'Намоиш',
 
 'fewestrevisions' => 'Саҳифаҳое, ки шумораи ками нусхаҳо доранд',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт|байтҳо}}',
+'ncategories'             => '$1 {{PLURAL:$1|гурӯҳ|гурӯҳҳо}}',
 'nlinks'                  => '$1 {{PLURAL:$1|пайванд|пайвандҳо}}',
 'nmembers'                => '$1 {{PLURAL:$1|узв}}',
+'nrevisions'              => '$1 {{PLURAL:$1|вироиш|вироиш}}',
+'nviews'                  => '$1 {{PLURAL:$1|намоиш|намоишҳо}}',
+'specialpage-empty'       => 'Барои ин ҳисобот натиҷае вуҷуд надорад.',
 'lonelypages'             => 'Саҳифаҳои ятим',
+'lonelypagestext'         => 'Ба саҳифаҳои зерин дар дигар саҳифаи {{SITENAME}} пайванд дода нашудааст.',
 'uncategorizedpages'      => 'Саҳифаҳое, ки ба ягон гурӯҳ дохил нестанд',
 'uncategorizedcategories' => 'Гурӯҳҳое, ки ба ягон гурӯҳ дохил нестанд',
 'uncategorizedimages'     => 'Аксҳое, ки ба ягон гурӯҳ дохил нестанд',
@@ -872,7 +910,9 @@ your old password.
 'intl'                    => 'Пайвандҳои байнизабонӣ',
 'move'                    => 'Кӯчонидан',
 'movethispage'            => 'Кӯчонидани ин саҳифа',
+'unusedcategoriestext'    => 'Гурӯҳҳои зерин вуҷуд дорад, вале ягон саҳифа ё гурӯҳе аз онҳо истифода намекунанд.',
 'notargettitle'           => 'Мақсаде нест',
+'notargettext'            => 'Шумо ягон саҳифа ё корбареро барои иҷрои ин амал рӯи он мушаххас накардаед.',
 'pager-newer-n'           => '{{PLURAL:$1|навтар 1|навтар $1}}',
 'pager-older-n'           => '{{PLURAL:$1|кӯҳнатар 1|кӯҳнатар $1}}',
 
@@ -880,8 +920,12 @@ your old password.
 'booksources'               => 'Манбаҳои китобҳо',
 'booksources-search-legend' => 'Ҷустуҷӯи сарчашмаҳои китоб',
 'booksources-go'            => 'Бирав',
+'booksources-text'          => 'Дер зер феҳристи пайвандҳо ба сомонаҳое, ки китобҳои нав ва кӯҳна мефурӯшанд, оварда шудааст. Мумкин аст, иттилооти бештарро дар бораи китобҳои ҷустуҷӯ кардаатон дошта бошанд:',
 
 'categoriespagetext' => 'Гурӯҳҳои зерин дар вики вуҷуд доранд.',
+'data'               => 'Дода',
+'userrights'         => 'Мудирияти ихтиёроти корбарӣ',
+'groups'             => 'Гурӯҳҳои корбарӣ',
 'alphaindexline'     => '$1 то $2',
 'version'            => 'Нусхаи Медиавики',
 
@@ -890,36 +934,52 @@ your old password.
 'speciallogtitlelabel' => 'Сарлавҳа:',
 'log'                  => 'Гузоришҳо',
 'all-logs-page'        => 'Ҳамаи сабтҳо',
+'log-search-legend'    => 'Ба дунболи гузоришҳо ҷустуҷӯ кун',
 'log-search-submit'    => 'Бирав',
 
 # Special:Allpages
-'nextpage'       => 'Саҳифаи баъдина ($1)',
-'prevpage'       => 'Саҳифаи пешина ($1)',
-'allpagesfrom'   => 'Намоиши саҳифаҳо бо шурӯъ аз:',
-'allarticles'    => 'Ҳамаи мақолаҳо',
-'allinnamespace' => 'Ҳамаи саҳифаҳо ($1 namespace)',
-'allpagesprev'   => 'Пешина',
-'allpagesnext'   => 'Баъдина',
-'allpagessubmit' => 'Рав',
-'allpagesprefix' => 'Намоиши саҳифаҳои дорои пешванд:',
+'nextpage'          => 'Саҳифаи баъдина ($1)',
+'prevpage'          => 'Саҳифаи пешина ($1)',
+'allpagesfrom'      => 'Намоиши саҳифаҳо бо шурӯъ аз:',
+'allarticles'       => 'Ҳамаи мақолаҳо',
+'allinnamespace'    => 'Ҳамаи саҳифаҳо ($1 namespace)',
+'allnotinnamespace' => 'Ҳамаи саҳифаҳо (ки дар фазоином $1 аст)',
+'allpagesprev'      => 'Пешина',
+'allpagesnext'      => 'Баъдина',
+'allpagessubmit'    => 'Рав',
+'allpagesprefix'    => 'Намоиши саҳифаҳои дорои пешванд:',
+'allpages-bad-ns'   => '{{SITENAME}} дорои фазоином "$1" нест.',
 
 # Special:Listusers
-'listusers-submit' => 'Нишон додани',
+'listusersfrom'      => 'Намоиши корбарон бо шурӯъ аз:',
+'listusers-submit'   => 'Нишон додани',
+'listusers-noresult' => 'Ҳеҷ корбаре ёфт нашуд.',
 
 # E-mail user
+'mailnologin'     => 'Нишонае аз фиристанда вуҷуд надорад',
 'emailuser'       => 'Фиристодани email ба ин корбар',
+'emailpage'       => 'Почтаи электронӣ ба корбар',
+'emailpagetext'   => 'Агар ин корбар нишонаи почтаи электронии мӯътабаре дар тарҷиҳоти ворид карда бошад, форми зерин як пайғоме мефиристад.
+Нишонаи почтаи электроние, ки шумо дар тарҷиҳоти корбариатон ворид кардаед, дар нишони фиристандаи нома "From" хоҳад омад, то ки гиранда тавонад ба шумо посух диҳад.',
+'usermailererror' => 'Почтаи электрони ба хатое дучор шуд:',
 'defemailsubject' => 'Википедиа e-mail',
+'noemailtitle'    => 'Нишонаи почтаи электронӣ мавҷуд нест',
+'noemailtext'     => 'Ин корбар, нишонаи мӯътабари почтаи электрониро мушаххас накарда аст, ё тасмим гирифааст, аз корбарони дигар почтаи электронӣ дарёфт накунад.',
 'emailfrom'       => 'Аз',
 'emailto'         => 'Ба',
 'emailsubject'    => 'Мавзӯъ',
 'emailmessage'    => 'Пайём',
 'emailsend'       => 'Ирсол',
 'emailccme'       => 'Нусхаи пайёми маро ба E-mail-и ман фирист.',
+'emailccsubject'  => 'Нусхаи номаи шумо ба $1: $2',
+'emailsent'       => 'Почтаи электронӣ фиристода шуд',
+'emailsenttext'   => 'Номаи почтаи электронии шумо фиристода шуд.',
 
 # Watchlist
 'watchlist'            => 'Феҳристи назаротӣ ман',
 'mywatchlist'          => 'Феҳристи назаротӣ ман',
 'watchlistfor'         => "(барои '''$1''')",
+'nowatchlist'          => 'Дар феҳристи пайгириҳои шумо ҳеҷ мавриде нест.',
 'watchnologin'         => 'Вуруд нашуда',
 'addedwatch'           => 'Ба феҳристи пайгириҳо илова карда шуд',
 'addedwatchtext'       => "Ин саҳифа \"[[:\$1]]\" ва [[{{ns:special}}:Watchlist|феҳристи назаротӣ]] Шумо илова шуд.
@@ -1027,6 +1087,8 @@ your old password.
 'sp-contributions-search'      => 'Ҷустуҷӯи ҳиссагузориҳо',
 'sp-contributions-username'    => 'IP нишона ё номи корбар:',
 'sp-contributions-submit'      => 'Ҷустуҷӯ',
+
+'sp-newimages-showfrom' => 'Нишон додани аксҳои нав шурӯъ аз $1',
 
 # What links here
 'whatlinkshere'       => 'Пайвандҳои дар ин сахифа',
@@ -1293,6 +1355,13 @@ your old password.
 # EXIF tags
 'exif-artist' => 'Муаллиф',
 
+'exif-planarconfiguration-1' => 'Қолаби фарбеҳ',
+
+'exif-componentsconfiguration-0' => 'вуҷуд надорад',
+
+'exif-exposureprogram-1' => 'Дастӣ',
+'exif-exposureprogram-2' => 'Барномаи оддӣ',
+'exif-exposureprogram-3' => 'Аввалияти диафрагм',
 'exif-exposureprogram-4' => 'Аввалияти шаттер (Shutter priority)',
 
 'exif-subjectdistance-value' => '$1 метр',
@@ -1327,9 +1396,15 @@ your old password.
 
 'exif-sensingmethod-1' => 'Таърифнашуда',
 
+'exif-customrendered-0' => 'Пардозиши оддӣ',
+'exif-customrendered-1' => 'Пардозиши суфоришӣ',
+
 'exif-exposuremode-0' => 'Нурдиҳии худкор',
 'exif-exposuremode-1' => 'Нурдиҳии дастӣ',
 'exif-exposuremode-2' => 'Қавсбандии худкор (Auto bracket)',
+
+'exif-whitebalance-0' => 'Танзими худкорӣ ранги сафед (white balance)',
+'exif-whitebalance-1' => 'Танзими дастии ранги сафед (white balance)',
 
 'exif-scenecapturetype-0' => 'Стандарт',
 'exif-scenecapturetype-1' => 'Чашмандоз',
@@ -1337,6 +1412,10 @@ your old password.
 'exif-scenecapturetype-3' => 'Шабона',
 
 'exif-gaincontrol-0' => 'Ҳеҷ',
+'exif-gaincontrol-1' => 'Афзоиши ҳадди ақали дарёфтӣ',
+'exif-gaincontrol-2' => 'Афзоиши ҳадди аксари дарёфтӣ',
+'exif-gaincontrol-3' => 'Коҳиши ҳадди ақали дарёфтӣ',
+'exif-gaincontrol-4' => 'Коҳиши ҳадди аксари дарёфтӣ',
 
 'exif-contrast-0' => 'Оддӣ',
 'exif-contrast-1' => 'Нарм',
@@ -1364,6 +1443,10 @@ your old password.
 'exif-gpslongitude-w' => 'Арзи ҷуғрофиявӣ ғарбӣ',
 
 'exif-gpsstatus-a' => 'Дар ҳоли андозагирӣ',
+'exif-gpsstatus-v' => 'Муқоисапазирии андозагирӣ',
+
+'exif-gpsmeasuremode-2' => 'Андозагирии 2-баъдӣ',
+'exif-gpsmeasuremode-3' => 'Андозагирии 3-баъдӣ',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Километр бар соат',

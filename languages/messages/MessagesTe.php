@@ -1687,28 +1687,47 @@ $NEWPAGE
 'import-interwiki-history'   => 'ఈ పేజీ యొక్క అన్ని చారిత్రక కూర్పులను కాపీ చెయ్యి',
 'import-interwiki-submit'    => 'దిగుమతించు',
 'import-interwiki-namespace' => 'ఈ నేంస్పేసులోకి పేజీలను పంపించు:',
+'importtext'                 => '
+మూలవికీ నుండి ప్రత్యేక:Export అనే ఉపయుక్తమైన ప్రోగ్రామును ఉపయోగించి ఫైలును ఎగుమతి చేసి మీ హార్డుడిస్కులో బధ్రపరచుకుని, ఆ తరువాత ఇక్కడ అప్లోడు చేయండి.',
 'importstart'                => 'పేజీలను దిగుమతి చేస్తున్నాం...',
 'import-revision-count'      => '$1 {{PLURAL:$1|కూర్పు|కూర్పులు}}',
 'importnopages'              => 'దిగుమతి చెయ్యడానికి పేజీలేమీ లేవు.',
 'importfailed'               => 'దిగుమతి కాలేదు: $1',
+'importunknownsource'        => 'దిగుమతి చేసుకుంటున్న దాని మాతృక రకం తెలియదు',
+'importcantopen'             => 'దిగుమతి చేయబోతున్న ఫైలును తెరవలేకపోతున్నాను',
+'importbadinterwiki'         => 'చెడు అంతర్వికీ లింకు',
 'importnotext'               => 'ఖాళీ లేదా పాఠ్యం లేదు',
 'importsuccess'              => 'దిగుమతి పూర్తయ్యింది!',
+'importhistoryconflict'      => 'కూర్పుల చరిత్రలో ఘర్షణ తలెత్తింది (ఈ పేజీని ఇంతకు ముందే దిగుమతి చేసుంటారు)',
+'importnosources'            => 'No transwiki import sources have been defined and direct history uploads are disabled.
+ఎటువంటి అంతర్వికీ దిగుమతి మూలాలను పేర్కొనకపోవటం వలన, ప్రత్యక్ష చరిత్ర అప్లోడులను నిలిపివేశాం.',
+'importnofile'               => 'ఎటువంటి దిగుమతి ఫైలునూ అప్లోడుచేయలేదు.',
+'importuploaderrorsize'      => 'దిగుమతి ఫైలు అప్లోడు ఫలించలేదు. ఈ ఫైలు అప్లోడు ఫైలుకు నిర్దేశించిన పరిమాణం కంటే పెద్దా ఉంది.',
+'importuploaderrorpartial'   => 'దిగుమతి ఫైలు అప్లోడు ఫలించలేదు. ఈ ఫైలులో కొంత భాగాన్ని మాత్రమే అప్లోడు చేయగలిగం.',
+'importuploaderrortemp'      => 'దిగుమతి ఫైలు అప్లోడు ఫలించలేదు. ఒక తాత్కాలిక ఫోల్డరు కనిపించటం లేదు.',
+'import-parse-failure'       => 'దిగుమతి చేసుకుంటున్న XML విశ్లేషణ ఫలించలేదు',
 'import-noarticle'           => 'దిగుమతి చెయ్యాల్సిన పేజీ లేదు!',
 'import-nonewrevisions'      => 'అన్ని కూర్పులూ గతంలోనే దిగుమతయ్యాయి.',
 'xml-error-string'           => '$1 $2వ లైనులో, వరుస $3 ($4వ బైటు): $5',
 
 # Import log
 'importlogpage'                    => 'దిగుమతి లాగ్',
+'importlogpagetext'                => 'ఇతర వికీల నుండీ మార్పుల చరిత్రతోసహా తెచ్చిన నిర్వహణా దిగుమతులు.',
+'import-logentry-upload'           => '[[$1]]ను ఫైలు అప్లోడు ద్వారా దిగుమతి చేసాం',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|కూర్పు|కూర్పులు}}',
+'import-logentry-interwiki'        => 'ఇతర వికీల నుండి $1',
 'import-logentry-interwiki-detail' => '$2 నుండి {{PLURAL:$1|ఒక కూర్పు|$1 కూర్పులు}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'నా వాడుకరి పేజీ',
+'tooltip-pt-anonuserpage'         => 'మీ ఐపీ చిరునామాకి సంబంధించిన వాడుకరి పేజీ',
 'tooltip-pt-mytalk'               => 'నా చర్చా పేజీ',
+'tooltip-pt-anontalk'             => 'ఈ ఐపీ చిరునామా నుండి చేసిన మార్పుల గురించి చర్చ',
 'tooltip-pt-preferences'          => 'నా అభిరుచులు',
 'tooltip-pt-watchlist'            => 'మీరు మార్పుల కొరకు గమనిస్తున్న పేజీల జాబితా',
 'tooltip-pt-mycontris'            => 'నా మార్పు-చేర్పుల జాబితా',
 'tooltip-pt-login'                => 'మీరు లగిన్ అయ్యి మార్పులు చేస్తే బాగుంతుంది, అలాగని మార్పులు చేయటానికి లాగిన్ అవ్వటం తప్పని సరి కాదు.',
+'tooltip-pt-anonlogin'            => 'మీరు ప్రవేశించడాన్ని (లాగిన్) ప్రోత్సహిస్తాం, కానీ అది తప్పనిసరి కాదు.',
 'tooltip-pt-logout'               => 'నిష్క్రమించండి',
 'tooltip-ca-talk'                 => 'విషయపు పేజీ గురించి చర్చ',
 'tooltip-ca-edit'                 => 'ఈ పేజీని మీరు సరిదిద్దవచ్చు. భద్రపరిచేముందు మునుజూపు బొత్తాన్ని వాడండి.',
@@ -1717,6 +1736,7 @@ $NEWPAGE
 'tooltip-ca-history'              => 'ఈ పేజీ యొక్క గత కూర్పులు.',
 'tooltip-ca-protect'              => 'ఈ పేజీని సంరక్షించండి',
 'tooltip-ca-delete'               => 'ఈ పేజీని తొలగించండి',
+'tooltip-ca-undelete'             => 'ఈ పేజీని తొలగించడానికి ముందు చేసిన మార్పులను పునఃస్థాపించు',
 'tooltip-ca-move'                 => 'ఈ పేజీని తరలించండి',
 'tooltip-ca-watch'                => 'ఈ పేజీని మీ విక్షణా జాబితాకి చేర్చుకోండి',
 'tooltip-ca-unwatch'              => 'ఈ పేజీని మీ విక్షణా జాబితా నుండి తొలగించండి',
@@ -1732,6 +1752,7 @@ $NEWPAGE
 'tooltip-n-help'                  => 'తెలుసుకోడానికి ఓ మంచి ప్రదేశం.',
 'tooltip-n-sitesupport'           => 'మాకు తోడ్పడండి',
 'tooltip-t-whatlinkshere'         => 'ఇక్కడికి లింకయి ఉన్న అన్ని వికీ పేజీలు',
+'tooltip-t-recentchangeslinked'   => 'ఈ పేజీనుండి లింకున్న పేజీలకు జరిగిన ఇటీవలి మార్పులు',
 'tooltip-feed-rss'                => 'ఈ పేజీకి RSS ఫీడు',
 'tooltip-feed-atom'               => 'ఈ పేజీకి Atom ఫీడు',
 'tooltip-t-contributions'         => 'ఈ వాడుకరి యొక్క రచనల జాబితా చూడండి',
@@ -1742,6 +1763,7 @@ $NEWPAGE
 'tooltip-t-permalink'             => 'పేజీ యొక్క ఈ కూర్పుకి శాశ్వత లింకు',
 'tooltip-ca-nstab-main'           => 'విషయపు పేజీ చూడండి',
 'tooltip-ca-nstab-user'           => 'వాడుకరి పేజీ చూడండి',
+'tooltip-ca-nstab-media'          => 'మీడియా పేజీని చూడండి',
 'tooltip-ca-nstab-special'        => 'ఇది ఓ ప్రత్యేక పేజీ, దీన్ని మీరు సరిదిద్దలేదు.',
 'tooltip-ca-nstab-project'        => 'ప్రాజెక్టు పేజీని చూడండి',
 'tooltip-ca-nstab-image'          => 'బొమ్మ పేజీ చూడండి',
@@ -1756,13 +1778,17 @@ $NEWPAGE
 'tooltip-compareselectedversions' => 'ఈ పేజీలో ఎంచుకున్న రెండు కూర్పులకు మధ్య తేడాలను చూడండి. [alt-v]',
 'tooltip-watch'                   => 'ఈ పేజీని మీ విక్షణా జాబితాకు చేర్చండి',
 'tooltip-recreate'                => 'పేజీ తుడిచివేయబడ్డాకానీ మళ్ళీ సృష్టించు',
+'tooltip-upload'                  => 'ఎగుమతి మొదలుపెట్టు',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} యొక్క అజ్ఞాత సభ్యులు',
 'siteuser'         => '{{SITENAME}} వాడుకరి $1',
 'lastmodifiedatby' => 'ఈ పేజీకి $3 $2, $1న చివరి మార్పు చేసారు.', # $1 date, $2 time, $3 user
+'othercontribs'    => '$1 యొక్క కృతిపై ఆధారితం.',
 'others'           => 'ఇతరాలు',
 'siteusers'        => '{{SITENAME}} సభ్యులు $1',
+'creditspage'      => 'పేజీ క్రెడిట్లు',
+'nocredits'        => 'ఈ పేజీకి క్రెడిట్ల సమాచారం అందుబాటులో లేదు.',
 
 # Spam protection
 'spamprotectiontitle'    => 'స్పాం సంరక్షణ ఫిల్టరు',
@@ -1782,6 +1808,8 @@ $NEWPAGE
 'numtalkauthors' => 'భిన్నమైన రచయితల సంఖ్య (చర్చా పేజీ): $1',
 
 # Math options
+'mw_math_png'    => 'ఎల్లప్పుడూ PNGగా చూపించు',
+'mw_math_simple' => 'తేలికగా ఉంటే HTML లేకపోతే PNG',
 'mw_math_html'   => 'వీలైతే ఎచ్‌టీఎంఎల్ లేకపోతే పింగ్',
 'mw_math_source' => 'టెక్ గానే ఉండనివ్వు (టెక్స్ట్‌ బ్రౌజర్ల కొరకు)',
 'mw_math_modern' => 'ఆధునిక విహారిణులకు ఉద్దేశించినది',
@@ -1797,8 +1825,14 @@ $NEWPAGE
 'patrol-log-auto' => '(దావంత అదే)',
 
 # Image deletion
-'deletedrevision'       => 'పాత సంచిక $1 తొలగించబడినది.',
-'filedeleteerror-short' => 'ఫైలు తొలగించడంలో పొరపాటు: $1',
+'deletedrevision'                 => 'పాత సంచిక $1 తొలగించబడినది.',
+'filedeleteerror-short'           => 'ఫైలు తొలగించడంలో పొరపాటు: $1',
+'filedeleteerror-long'            => 'ఫైలుని తొలగించడంలో పొరపాట్లు జరిగాయి:
+
+$1',
+'filedelete-missing'              => '"$1" అన్న ఫైలు ఉనికిలో లేనందున, దాన్ని తొలగించలేం.',
+'filedelete-old-unregistered'     => 'మీరు చెప్పిన ఫైలు కూర్పు "$1" డాటాబేసులో లేదు.',
+'filedelete-current-unregistered' => 'మీరు చెప్పిన ఫైలు "$1" డాటాబేసులో లేదు.',
 
 # Browsing diffs
 'previousdiff' => '← మునుపటి తేడా',
@@ -1845,21 +1879,51 @@ $NEWPAGE
 # EXIF tags
 'exif-imagewidth'                  => 'వెడల్పు',
 'exif-imagelength'                 => 'ఎత్తు',
+'exif-photometricinterpretation'   => 'పిక్సెళ్ళ అమరిక',
 'exif-orientation'                 => 'దిశ',
 'exif-planarconfiguration'         => 'డాటా అమరిక',
+'exif-ycbcrpositioning'            => 'Y మరియు C స్థానాలు',
 'exif-jpeginterchangeformatlength' => 'JPEG డాటా యొక్క బైట్లు',
+'exif-referenceblackwhite'         => 'నలుపు మరియు తెలుపు సూచీ విలువల యొక్క జత',
+'exif-datetime'                    => 'ఫైలు మార్చిన తేదీ మరియు సమయం',
 'exif-imagedescription'            => 'బొమ్మ శీర్షిక',
 'exif-make'                        => 'కేమెరా తయారీదారు',
 'exif-model'                       => 'కేమెరా మోడల్',
+'exif-software'                    => 'ఉపయోగించిన సాఫ్ట్&zwnj;వేర్',
+'exif-artist'                      => 'కృతికర్త',
+'exif-copyright'                   => 'కాపీ హక్కుదారు',
+'exif-exifversion'                 => 'ఎక్సిఫ్ వెర్షన్',
+'exif-pixelydimension'             => 'సరైన బొమ్మ వెడల్పు',
 'exif-pixelxdimension'             => 'బొమ్మ సరైన ఎత్తు',
+'exif-makernote'                   => 'తయారీదారు గమనికలు',
 'exif-usercomment'                 => 'వాడుకరి వ్యాఖ్యలు',
+'exif-subsectime'                  => 'తేదీసమయం ఉపక్షణాలు',
+'exif-exposuretime-format'         => '$1 క్షణ ($2)',
 'exif-fnumber'                     => 'F సంఖ్య',
+'exif-subjectdistance'             => 'వస్తువు దూరం',
 'exif-lightsource'                 => 'కాంతి మూలం',
+'exif-subjectarea'                 => 'వస్తువు ప్రదేశం',
+'exif-subjectlocation'             => 'వస్తువు యొక్క ప్రాంతం',
 'exif-filesource'                  => 'ఫైలు మూలం',
+'exif-scenetype'                   => 'దృశ్యపు రకం',
+'exif-gpslatituderef'              => 'ఉత్తర లేదా దక్షిణ అక్షాంశం',
+'exif-gpslatitude'                 => 'అక్షాంశం',
+'exif-gpslongituderef'             => 'తూర్పు లేదా పశ్చిమ రేఖాంశం',
+'exif-gpslongitude'                => 'రేఖాంశం',
+'exif-gpsaltitude'                 => 'సముద్ర మట్టం',
+'exif-gpstimestamp'                => 'GPS సమయం (అణు గడియారం)',
+'exif-gpsstatus'                   => 'రిసీవర్ స్థితి',
 'exif-gpstrack'                    => 'కదలిక యొక్క దిశ',
 'exif-gpsimgdirection'             => 'బొమ్మ యొక్క దిశ',
+'exif-gpsdestlatitude'             => 'గమ్యస్థానం యొక్క అక్షాంశం',
+'exif-gpsdestlongitude'            => 'గమ్యస్థానం యొక్క రేఖాంశం',
+'exif-gpsdestdistance'             => 'గమ్యస్థానానికి దూరం',
+'exif-gpsareainformation'          => 'GPS ప్రదేశం యొక్క పేరు',
+'exif-gpsdatestamp'                => 'GPS తేదీ',
 
 'exif-unknowndate' => 'అజ్ఞాత తేదీ',
+
+'exif-orientation-1' => 'సాధారణ', # 0th row: top; 0th column: left
 
 'exif-exposureprogram-0' => 'అనిర్వచితం',
 
@@ -1868,10 +1932,12 @@ $NEWPAGE
 'exif-meteringmode-0'   => 'అజ్ఞాతం',
 'exif-meteringmode-1'   => 'సగటు',
 'exif-meteringmode-5'   => 'సరళి',
+'exif-meteringmode-6'   => 'పాక్షికం',
 'exif-meteringmode-255' => 'ఇతర',
 
 'exif-lightsource-0'   => 'తెలియదు',
 'exif-lightsource-1'   => 'సూర్యకాంతి',
+'exif-lightsource-2'   => 'ఫ్లోరోసెంట్',
 'exif-lightsource-10'  => 'మేఘావృతం',
 'exif-lightsource-11'  => 'నీడ',
 'exif-lightsource-17'  => 'ప్రామాణిక కాంతి A',
@@ -1886,10 +1952,25 @@ $NEWPAGE
 'exif-customrendered-0' => 'సాధారణ ప్రక్రియ',
 
 'exif-scenecapturetype-0' => 'ప్రామాణిక',
+'exif-scenecapturetype-3' => 'రాత్రి దృశ్యం',
+
+'exif-contrast-0' => 'సాధారణ',
+
+'exif-saturation-0' => 'సాధారణ',
+
+'exif-sharpness-0' => 'సాధారణ',
 
 'exif-subjectdistancerange-0' => 'అజ్ఞాతం',
 'exif-subjectdistancerange-2' => 'దగ్గరి దృశ్యం',
 'exif-subjectdistancerange-3' => 'దూరపు దృశ్యం',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'ఉత్తర అక్షాంశం',
+'exif-gpslatitude-s' => 'దక్షిణ అక్షాంశం',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'తూర్పు రేఖాంశం',
+'exif-gpslongitude-w' => 'పశ్చిమ రేఖాంశం',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'గంటకి కిలోమీటర్లు',
@@ -1915,6 +1996,9 @@ $NEWPAGE
 'confirmemail_noemail'    => '[[Special:Preferences|మీ అభిరుచులలో]] ఈమెయిలు అడ్రసు పెట్టి లేదు.',
 'confirmemail_text'       => '{{SITENAME}}లో ఈ-మెయిలు అంశాల్ని వాడుకునే ముందు మీ ఈ-మెయిలు చిరునామాను నిర్ధారించవలసిన అవసరం ఉంది.
 కింది మీటను నొక్కగానే మీరిచ్చిన చిరునామాకు ధృవీకరణ మెయిలు వెళ్తుంది. ఆ మెయిల్లో ఒక సంకేతం కలిగిన ఒక లింకు ఉంటుంది; ఆ లింకును మీ బ్రౌజరులో తెరవండి. ఈ-మెయిలు చిరునామా ధృవీకరణ అయిపోతుంది.',
+'confirmemail_pending'    => '<div class="error">
+ఒక నిర్ధారణ కోడుని మీకు ఇప్పటికే ఈ-మెయిల్లో పంపించాం; కొద్దిసేపటి క్రితమే మీ ఖాతా సృష్టించి ఉంటే, కొత్త కొడు కోసం అభ్యర్థన పంపేముందు కొద్ది నిమిషాలు వేచిచూడండి.
+</div>',
 'confirmemail_send'       => 'ఒక ధృవీకరణ సంకేతాన్ని పంపించు',
 'confirmemail_sent'       => 'ధృవీకరణ ఈ-మెయిలును పంపబడినది',
 'confirmemail_oncreate'   => 'మీ ఈ-మెయిలు అడ్రసుకు ధృవీకరణ కోడును పంపించాం. 
@@ -1941,7 +2025,13 @@ $4తో కాలం చెల్లుతుంది.',
 'scarytranscludetoolong' => '[యుఆర్‌ఎల్ మరీ పొడుగ్గా ఉంది; క్షమించండి]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 తొలగించు])',
+'trackbackbox'      => '<div id="mw_trackbacks">
+ఈ పేజీకి ట్రాక్&zwnj;బాకులు:<br />
+$1
+</div>',
+'trackbackremove'   => ' ([$1 తొలగించు])',
+'trackbacklink'     => 'ట్రాక్&zwnj;బాక్',
+'trackbackdeleteok' => 'ట్రాక్‌బాక్&zwnj;ని విజయవంతంగా తొలగించాం.',
 
 # Delete conflict
 'deletedwhileediting' => 'హెచ్చరిక: మీరు మార్పులు చేయటం మొదలుపెట్టాక, ఈ పేజీ తొలగించబడింది.',
@@ -1964,10 +2054,11 @@ $1',
 'hideresults'      => 'ఫలితాలను దాచు',
 
 # Multipage image navigation
-'imgmultipageprev' => '← మునుపటి పేజీ',
-'imgmultipagenext' => 'తరువాతి పేజీ →',
-'imgmultigo'       => 'వెళ్ళు!',
-'imgmultigotopre'  => 'ఈ పేజీకి వెళ్ళు',
+'imgmultipageprev'   => '← మునుపటి పేజీ',
+'imgmultipagenext'   => 'తరువాతి పేజీ →',
+'imgmultigo'         => 'వెళ్ళు!',
+'imgmultigotopre'    => 'ఈ పేజీకి వెళ్ళు',
+'imgmultiparseerror' => 'బొమ్మ ఫైలు పాడైనది లేదా సరియైనదికాదు, కనుక {{SITENAME}} ఆ పేజీల బాబితాను తీసుకురాలేకున్నది.',
 
 # Table pager
 'ascending_abbrev'         => 'ఆరోహణ',

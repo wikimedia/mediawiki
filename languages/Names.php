@@ -178,6 +178,7 @@
 	'lt' => 'Lietuvių',	# Lithuanian
 	'lv' => 'Latviešu',	# Latvian
 	'lzz' => 'Lazuri Nena',	#Laz
+	'mai' => 'मैथिली', # Maithili
 	'map-bms' => 'Basa Banyumasan', # Banyumasan 
 	'mdf' => 'мокшень кяль',		# Moksha
 	'mg' => 'Malagasy',		# Malagasy

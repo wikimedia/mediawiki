@@ -1095,7 +1095,7 @@ If pad nulik labü tiäd ot pejafon pos moükam at, revids ogepubons in jenotem 
 'undeletedarticle'         => 'Moükam pada: "[[$1]]" pesädunon',
 'undeletedrevisions'       => 'Moükam revidas $1 pesädunon',
 'undeletedrevisions-files' => 'Moükam revidas $1 e ragiva(s) $2 pesädunon',
-'undeletedfiles'           => 'Moükam ragiva(s) $1 pesädunon',
+'undeletedfiles'           => 'Moükam {{PLURAL:$1|ragiva 1|ragivas $1}} pesädunon',
 'cannotundelete'           => 'Sädunam moükama no eplöpon. Ba ek ya esädunon moükami at.',
 'undeletedpage'            => "<big>'''Moükam pada: $1 pesädunon'''</big>
 

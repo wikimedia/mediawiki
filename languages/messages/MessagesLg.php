@@ -301,13 +301,16 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'allmessagesmodified' => 'Lagako ebikyusidwa byokka',
 
 # Tooltip help for the actions
+'tooltip-pt-login'        => "Lambula Wiki eno ng'okozesa buyinza obwa memba",
 'tooltip-pt-logout'       => 'Vaamu',
 'tooltip-ca-protect'      => 'Siba olupapula luno',
 'tooltip-search'          => 'Noonyeza ku {{SITENAME}}',
 'tooltip-n-mainpage'      => 'Kebera ku Muko Ogusooka',
 'tooltip-n-portal'        => "Ebikutangaaza ku kawefube wa Wiki eno n'engeri naawe mw'osobolera okubyenyigiramu",
 'tooltip-n-recentchanges' => "Olukalala lw'ebyakakyusibwamu ku Wiki eno",
+'tooltip-n-randompage'    => 'Nnondera omuko gwemba nkebera',
 'tooltip-n-help'          => 'Ebikutangaaza ku nkola ya Wiki eno',
+'tooltip-n-sitesupport'   => "Wiki giwe obuyambi obw'ensimbi",
 'tooltip-t-upload'        => "Bako fayiro ez'ebifaananyi, vidiyo oba malaboozi z'oteeka ku Wiki eno",
 'tooltip-t-specialpages'  => "Olukalala olw'emiko emyawule gyonna",
 
