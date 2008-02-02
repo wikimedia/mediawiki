@@ -58,9 +58,8 @@ class MessageCache {
 	 * Try to load the cache from a local file
 	 */
 	function loadFromLocal( $hash ) {
-		global $wgLocalMessageCache;
+		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized;
 
-		$this->mCache = false;
 		if ( $wgLocalMessageCache === false ) {
 			return;
 		}
@@ -74,21 +73,32 @@ class MessageCache {
 			return;
 		}
 
-		// Check to see if the file has the hash specified
-		$localHash = fread( $file, 32 );
-		if ( $hash == $localHash ) {
-			// All good, get the rest of it
-			$serialized = fread( $file, 10000000 );
-			$this->setCache( unserialize( $serialized ) );
+		if ( $wgLocalMessageCacheSerialized ) {
+			$localHash=substr(fread($file,40),8);
+			fclose($file);
+			if ($hash!=$localHash) {
+				return;
+			}
+
+			require("$wgLocalMessageCache/messages-" . wfWikiID());
+			$this->setCache( $this->mCache);
+		} else {
+			// Check to see if the file has the hash specified
+			$localHash = fread( $file, 32 );
+			if ( $hash === $localHash ) {
+				// All good, get the rest of it
+				$serialized = fread( $file, 20000000 );
+				$this->setCache( unserialize( $serialized ) );
+			}
+			fclose( $file );
 		}
-		fclose( $file );
 	}
 
 	/**
 	 * Save the cache to a local file
 	 */
 	function saveToLocal( $serialized, $hash ) {
-		global $wgLocalMessageCache;
+		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized;
 
 		if ( $wgLocalMessageCache === false ) {
 			return;
@@ -111,26 +121,8 @@ class MessageCache {
 	}
 
 	function loadFromScript( $hash ) {
-		global $wgLocalMessageCache;
-		if ( $wgLocalMessageCache === false ) {
-			return;
-		}
-		
-		$filename = "$wgLocalMessageCache/messages-" . wfWikiID();
-		
-		wfSuppressWarnings();
-		$file = fopen( $filename, 'r' );
-		wfRestoreWarnings();
-		if ( !$file ) {
-			return;
-		}
-		$localHash=substr(fread($file,40),8);
-		fclose($file);
-		if ($hash!=$localHash) {
-			return;
-		}
-		require("$wgLocalMessageCache/messages-" . wfWikiID());
-		$this->setCache( $this->mCache);
+		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
+		$this->loadFromLocal( $hash );
 	}
 	
 	function saveToScript($array, $hash) {
@@ -201,19 +193,17 @@ class MessageCache {
 		$this->mCache = false;
 
 		# Try local cache
-		wfProfileIn( $fname.'-fromlocal' );
-		$hash = $this->mMemc->get( "{$this->mMemcKey}-hash" );
-		if ( $hash ) {
-			if ($wgLocalMessageCacheSerialized) {
+		if ( $wgLocalMessageCache !== false ) {
+			wfProfileIn( $fname.'-fromlocal' );
+			$hash = $this->mMemc->get( "{$this->mMemcKey}-hash" );
+			if ( $hash ) {
 				$this->loadFromLocal( $hash );
-			} else {
-				$this->loadFromScript( $hash );
+				if ( $this->mCache ) {
+					wfDebug( "MessageCache::load(): got from local cache\n" );
+				}
 			}
-			if ( $this->mCache ) {
-				wfDebug( "MessageCache::load(): got from local cache\n" );
-			}
+			wfProfileOut( $fname.'-fromlocal' );
 		}
-		wfProfileOut( $fname.'-fromlocal' );
 
 		# Try memcached
 		if ( !$this->mCache ) {
@@ -475,17 +465,20 @@ class MessageCache {
 		}
 
 		# Try the array of another language
-		if( $message === false && strpos( $lckey, '/' ) ) {
-			$message = explode( '/', $lckey );
-			if ( $message[1] ) {
-				wfSuppressWarnings();
-				$message = Language::getMessageFor( $message[0], $message[1] );
-				wfRestoreWarnings();
-				if ( is_null( $message ) ) {
-					$message = false;
+		$pos = strrpos( $lckey, '/' );
+		if( $message === false && $pos !== false) {
+			$mkey = substr( $lckey, 0, $pos );
+			$code = substr( $lckey, $pos+1 );
+			if ( $code ) {
+				$validCodes = array_keys( Language::getLanguageNames() );
+				if ( in_array( $code, $validCodes ) ) {
+					$message = Language::getMessageFor( $mkey, $code );
+					if ( is_null( $message ) ) {
+						$message = false;
+					}
+				} else {
+					wfDebug( __METHOD__ . ": Invalid code $code for $mkey/$code, not trying messages array\n" );
 				}
-			} else {
-				$message = false;
 			}
 		}
 
