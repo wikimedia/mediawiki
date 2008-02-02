@@ -1404,6 +1404,8 @@ Tilbakemeldinger og videre assistanse:
 'excontentauthor'             => 'innholdet var «$1» (og eneste bidragsyter var [[{{ns:special}}:Contributions/$2|$2]])',
 'exbeforeblank'               => 'innholdet før siden ble tømt var: «$1»',
 'exblank'                     => 'siden var tom',
+'delete-confirm'              => 'Slett «$1»',
+'delete-legend'               => 'Slett',
 'historywarning'              => 'Advarsel: Siden du er i ferd med å slette har en historikk:',
 'confirmdeletetext'           => 'Du holder på å slette en side eller et bilde sammen med historikken. Bilder som slettes kan ikke gjenopprettes, men alle andre sider som slettes på denne måten kan gjenopprettes. Bekreft at du virkelig vil slette denne siden, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
 'actioncomplete'              => 'Gjennomført',
@@ -1413,7 +1415,7 @@ Tilbakemeldinger og videre assistanse:
 'dellogpagetext'              => 'Under er ei liste over nylige slettinger.',
 'deletionlog'                 => 'slettingslogg',
 'reverted'                    => 'Gjenopprettet en tidligere versjon',
-'deletecomment'               => 'Begrunnelse for sletting',
+'deletecomment'               => 'Begrunnelse for sletting:',
 'deleteotherreason'           => 'Annen grunn:',
 'deletereasonotherlist'       => 'Annen grunn',
 'deletereason-dropdown'       => '* Vanlige grunner for sletting
@@ -2336,12 +2338,28 @@ Prøv vanlig forhåndsvisning.',
 # Core parser functions
 'unknown_extension_tag' => 'Ukjent tilleggsmerking «$1»',
 
+# Special:Version
+'version-extensions'               => 'Installerte utvidelser',
+'version-specialpages'             => 'Spesialsider',
+'version-parserhooks'              => 'Parsertillegg',
+'version-variables'                => 'Variabler',
+'version-other'                    => 'Annet',
+'version-mediahandlers'            => 'Mediahåndterere',
+'version-hooks'                    => 'Haker',
+'version-extension-functions'      => 'Tilleggsfunksjoner',
+'version-parser-extensiontags'     => 'Tilleggstagger',
+'version-parser-function-hooks'    => 'Parserfunksjoner',
+'version-skin-extension-functions' => 'Skalltilleggsfunksjoner',
+'version-hook-name'                => 'Navn',
+'version-hook-subscribedby'        => 'Brukes av',
+'version-version'                  => 'Versjon',
+
 # Special:Filepath
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Sti',
 'filepath-summary' => 'Denne spesialsiden gir den fullstendige stien for en fil. Bilder vises i full oppløsning; andre filtyper startes direkte i sine assosierte programmer.
 
-Skriv inn filnavnet uten «{{ns:image}}:»-prefikset.',
+	Skriv inn filnavnet uten «{{ns:image}}:»-prefikset.',
 
 );

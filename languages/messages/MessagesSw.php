@@ -7,6 +7,7 @@
  * @author Siebrand
  * @author Robert Ullmann
  * @author Malangali
+ * @author Nike
  */
 
 
@@ -281,8 +282,7 @@ Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.</strong>',
 'templatesusedpreview'   => 'Vigezo vinavyotumiwa katika mandhari haya:',
 'template-protected'     => '(kulindwa)',
 'template-semiprotected' => '(ulindaji kwa kiasi)',
-'nocreatetext'           => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya.\\n
-Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:Userlogin|ingia au anza akaunti]].',
+'nocreatetext'           => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:Userlogin|ingia au anza akaunti]].',
 'recreate-deleted-warn'  => "'''Ilani: Unatengeneza tena ukurasa uliofutwa tayari.'''
 
 Fikiria kama inafaa kuendelea kuhariri ukurasa huu.
@@ -293,16 +293,15 @@ Kumbukumbu ya kufuta ukurasa huu linapatikana hapa kukusaidia:",
 'currentrev'          => 'Kiungo cha daima',
 'revisionasof'        => 'Sahihisho kutoka $1',
 'revision-info'       => 'Sahihisho kutoka $1 na $2',
-'previousrevision'    => '?Sahihisho lililotangulia',
+'previousrevision'    => '←Sahihisho lililotangulia',
 'nextrevision'        => 'Sahihisho mpya zaidi?',
 'currentrevisionlink' => 'Sahahisho ya sasa hivi',
 'cur'                 => 'sasa',
 'last'                => 'kabla',
 'page_first'          => 'ya kwanza',
 'page_last'           => 'ya mwisho',
-'histlegend'          => 'Chagua tofauti: tia alama katika vitufe redio kulinganisha matoleo, na bonyeza "enter" au kitufe hapo chini.<br />\\n
-Ufunguo: (sasa) = tofauti na toleo la sasa, \\n
-(kabla) = tofauti na toleo lililotangulia, D = mabadiliko maDogo.',
+'histlegend'          => 'Chagua tofauti: tia alama katika vitufe redio kulinganisha matoleo, na bonyeza "enter" au kitufe hapo chini.<br />
+Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotangulia, D = mabadiliko maDogo.',
 'histfirst'           => 'Mwanzoni',
 'histlast'            => 'Mwishoni',
 
@@ -696,7 +695,7 @@ Chagua jina lengine.',
 
 # Browsing diffs
 'previousdiff' => '←Tofauti kabla',
-'nextdiff'     => 'Tofauti ijayo ?',
+'nextdiff'     => 'Tofauti ijayo→',
 
 # Media information
 'file-info-size'       => '(piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4)',

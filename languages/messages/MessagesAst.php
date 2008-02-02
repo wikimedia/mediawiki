@@ -2359,8 +2359,11 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'version-version'                  => 'Versión',
 
 # Special:Filepath
-'filepath'        => "Ruta d'archivu",
-'filepath-page'   => 'Archivu:',
-'filepath-submit' => 'Ruta',
+'filepath'         => "Ruta d'archivu",
+'filepath-page'    => 'Archivu:',
+'filepath-submit'  => 'Ruta',
+'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu. Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.
+
+Escribi'l nome d'archivu ensin el prefixu \"{{ns:image}}:\".",
 
 );

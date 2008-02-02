@@ -718,7 +718,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 # Edit pages
 'summary'                   => 'Összegzés',
 'subject'                   => 'Téma/főcím',
-'minoredit'                 => 'Ez egy kisebb változtatás',
+'minoredit'                 => 'Apró változtatás',
 'watchthis'                 => 'A lap figyelése',
 'savearticle'               => 'Lap mentése',
 'preview'                   => 'Előnézet',

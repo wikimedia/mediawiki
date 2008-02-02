@@ -2402,4 +2402,12 @@ $1',
 'version-hook-subscribedby'        => 'Được theo dõi bởi',
 'version-version'                  => 'Phiên bản',
 
+# Special:Filepath
+'filepath'         => 'Đường dẫn tập tin',
+'filepath-page'    => 'Tập tin:',
+'filepath-submit'  => 'Hiển thị tập tin',
+'filepath-summary' => 'Trang này chuyển bạn thẳng đến địa chỉ của một tập tin. Nếu là hình, địa chỉ là của hình kích thước tối đa; các loại tập tin khác sẽ được mở lên ngay trong chương trình đúng.
+
+Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:image}}:”.',
+
 );

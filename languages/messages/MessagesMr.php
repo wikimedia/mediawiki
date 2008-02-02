@@ -724,6 +724,7 @@ $2',
 'prefsnologin'          => 'प्रवेश केलेला नाही',
 'prefsnologintext'      => 'सदस्य पसंती बदलण्यासाठी [[Special:Userlogin|प्रवेश]] करावा लागेल.',
 'prefsreset'            => 'पसंती पूर्ववत करण्यात आल्या आहेत.',
+'qbsettings-none'       => 'नाही',
 'changepassword'        => 'परवलीचा शब्द बदला',
 'skin'                  => 'त्वचा',
 'math'                  => 'गणित',
@@ -881,8 +882,10 @@ $2',
 # File deletion
 'filedelete'                  => '$1 वगळा',
 'filedelete-legend'           => 'संचिका वगळा',
+'filedelete-intro'            => "तुम्ही '''[[Media:$1|$1]]''' वगळत आहात.",
 'filedelete-comment'          => 'वगळ्ण्याची कारणे:',
 'filedelete-submit'           => 'वगळा',
+'filedelete-success'          => "'''$1'''वगळण्यात आले.",
 'filedelete-otherreason'      => 'इतर/शिवाय अधिक कारण:',
 'filedelete-reason-otherlist' => 'इतर कारण',
 'filedelete-reason-dropdown'  => '*वगळण्याची सामान्य कारणे
@@ -906,7 +909,8 @@ $2',
 'unusedtemplateswlh'  => 'इतर दुवे',
 
 # Random page
-'randompage' => 'अविशिष्ट लेख',
+'randompage'         => 'अविशिष्ट लेख',
+'randompage-nopages' => 'या नामविश्वात कोणतीही पाने नाहीत.',
 
 # Random redirect
 'randomredirect' => 'अविशिष्ट पुनर्निर्देशन',
@@ -1096,12 +1100,15 @@ $2',
 'created'                      => 'घडवले',
 'enotif_subject'               => '{{SITENAME}} पान $पानशिर्षक $पानसंपादकाने $निर्मीले किंवा बदलले आहे',
 'enotif_lastvisited'           => 'तुमच्या शेवटच्या भेटीनंतरचे बदल बघणयासाठी पहा - $1.',
+'enotif_anon_editor'           => 'अनामिक उपयोगकर्ता $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'पान वगळा',
 'excontent'                   => "मजकूर होता: '$1'",
 'excontentauthor'             => "मजकूर होता: '$1' (आणि फक्त '[[Special:Contributions/$2|$2]]' यांचे योगदान होते.)",
 'exblank'                     => 'पान रिकामे होते',
+'delete-confirm'              => '"$1" वगळा',
+'delete-legend'               => 'वगळा',
 'historywarning'              => 'सुचना: तुम्ही वगळत असलेल्या पानाला इतिहास आहे:',
 'confirmdeletetext'           => 'तुम्ही एक लेख त्याच्या सर्व इतिहासासोबत वगळण्याच्या तयारीत आहात.
 कृपया तुम्ही करत असलेली कृती ही मीडियाविकीच्या [[{{MediaWiki:Policy-url}}|नीतीनुसार]] आहे ह्याची खात्री करा. तसेच तुम्ही करीत असलेल्या कृतीचे परीणाम कृती करण्यापूर्वी जाणून घ्या.',
@@ -1143,7 +1150,11 @@ $2',
 'protect-cantedit'            => 'तुम्ही या पानाची सुरक्षा पातळी बदलू शकत नाही कारण तुम्हाला तसे करण्याची परवानगी नाही.',
 'restriction-type'            => 'परवानगी:',
 'restriction-level'           => 'सुरक्षापातळी:',
+'minimum-size'                => 'किमान आकार',
 'pagesize'                    => '(बाइट)',
+
+# Restrictions (nouns)
+'restriction-edit' => 'संपादन',
 
 # Undelete
 'undelete'        => 'वगळलेली पाने पाहा',
@@ -1168,12 +1179,15 @@ $2',
 
 'sp-contributions-newbies-sub' => 'नवशिक्यांसाठी',
 'sp-contributions-blocklog'    => 'ब्लॉक यादी',
+'sp-contributions-username'    => 'आंतरजाल अंकपत्ता किंवा सदस्यनाम:',
+'sp-contributions-submit'      => 'शोध',
 
 'sp-newimages-showfrom' => '$1 पासुनची नवीन चित्रे दाखवा',
 
 # What links here
 'whatlinkshere'       => 'येथे काय जोडले आहे',
 'whatlinkshere-title' => '$1ला जोडलेली पाने',
+'whatlinkshere-page'  => 'पान:',
 'linklistsub'         => '(दुव्यांची यादी)',
 'linkshere'           => "खालील लेख '''[[:$1]]''' या निर्देशित पानाशी जोडले आहेत.",
 'nolinkshere'         => "'''[[:$1]]''' इथे काहीही जोडलेले नाही.",
@@ -1184,23 +1198,31 @@ $2',
 'whatlinkshere-links' => '← दुवे',
 
 # Block/unblock
-'blockip'           => 'हा अंकपत्ता आडवा',
-'ipaddress'         => 'अंकपत्ता',
-'ipbreason'         => 'कारण',
-'ipbsubmit'         => 'हा पत्ता आडवा',
-'ipboptions'        => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
-'badipaddress'      => 'अंकपत्ता बरोबर नाही.',
-'blockipsuccesssub' => 'आडवणूक यशस्वी झाली',
-'unblockip'         => 'अंकपत्ता सोडवा',
-'unblockiptext'     => 'खाली दिलेला फॉर्म वापरून पुर्वी आडवलेल्या अंकपत्त्याला लेखनासाठी आधिकार द्या.',
-'ipusubmit'         => 'हा पत्ता सोडवा',
-'ipblocklist'       => 'आडवलेल्या अंकपत्त्यांची यादी',
-'infiniteblock'     => 'अनंत',
-'blocklink'         => 'आडवा',
-'unblocklink'       => 'सोडवा',
-'contribslink'      => 'योगदान',
-'blocklogpage'      => 'ब्लॉक यादी',
-'blocklogentry'     => '[[$1]] ला $2 $3 पर्यंत ब्लॉक केलेले आहे',
+'blockip'            => 'हा अंकपत्ता आडवा',
+'ipaddress'          => 'अंकपत्ता',
+'ipbreason'          => 'कारण',
+'ipbreasonotherlist' => 'इतर कारण',
+'ipbsubmit'          => 'हा पत्ता आडवा',
+'ipboptions'         => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'     => 'इतर',
+'badipaddress'       => 'अंकपत्ता बरोबर नाही.',
+'blockipsuccesssub'  => 'आडवणूक यशस्वी झाली',
+'unblockip'          => 'अंकपत्ता सोडवा',
+'unblockiptext'      => 'खाली दिलेला फॉर्म वापरून पुर्वी आडवलेल्या अंकपत्त्याला लेखनासाठी आधिकार द्या.',
+'ipusubmit'          => 'हा पत्ता सोडवा',
+'ipblocklist'        => 'आडवलेल्या अंकपत्त्यांची यादी',
+'ipblocklist-submit' => 'शोध',
+'infiniteblock'      => 'अनंत',
+'anononlyblock'      => 'केवळ अनामिक',
+'blocklink'          => 'आडवा',
+'unblocklink'        => 'सोडवा',
+'contribslink'       => 'योगदान',
+'blocklogpage'       => 'ब्लॉक यादी',
+'blocklogentry'      => '[[$1]] ला $2 $3 पर्यंत ब्लॉक केलेले आहे',
+'proxyblocksuccess'  => 'झाले.',
+
+# Developer tools
+'lockdbsuccesssub' => 'विदागरास ताळे यशस्वी',
 
 # Move page
 'movepage'                => 'पृष्ठ स्थानांतरण',
@@ -1246,8 +1268,10 @@ $2',
 'delete_and_move_reason'  => 'आधीचे पान वगळून स्थानांतर केले',
 
 # Export
-'export'        => 'पाने निर्यात करा',
-'export-submit' => 'निर्यात करा',
+'export'           => 'पाने निर्यात करा',
+'export-submit'    => 'निर्यात करा',
+'export-download'  => 'संचिका म्हणून जतन करा',
+'export-templates' => 'साचे आंतरभूत करा',
 
 # Namespace 8 related
 'allmessages'         => 'सर्व प्रणाली-संदेश',
@@ -1263,6 +1287,10 @@ $2',
 'missingimage'    => '<b>चित्र सापडत नाही</b><br /><i>$1</i>',
 'filemissing'     => 'संचिका अस्तित्वात नाही',
 'thumbnail_error' => '$1 चा thumbnail बनविण्यात अडथळा आलेला आहे.',
+
+# Special:Import
+'import'                  => 'पाने आयात करा',
+'import-interwiki-submit' => 'आयात',
 
 # Import log
 'importlogpage' => 'ईम्पोर्ट सूची',
@@ -1376,21 +1404,65 @@ $2',
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-imagewidth'  => 'रूंदी',
+'exif-imagelength' => 'उंची',
+'exif-artist'      => 'लेखक',
+'exif-usercomment' => 'सदस्य प्रतिक्रीया',
+'exif-fnumber'     => 'F क्रमांक',
+'exif-filesource'  => 'संचिका स्रोत',
+
+'exif-componentsconfiguration-0' => 'अस्तित्वात नाही',
+
+'exif-subjectdistance-value' => '$1 मीटर',
+
+'exif-meteringmode-0'   => 'अज्ञात',
+'exif-meteringmode-1'   => 'ऍव्हरेज',
+'exif-meteringmode-255' => 'इतर',
+
+'exif-lightsource-1'  => 'सूर्यप्रकाश',
+'exif-lightsource-9'  => 'चांगले हवामान',
+'exif-lightsource-10' => 'ढगाळ हवामान',
+
+'exif-gaincontrol-0' => 'नाही',
+
+'exif-contrast-1' => 'नरम',
+
+'exif-saturation-0' => 'सर्व साधारण',
+
+'exif-sharpness-0' => 'सर्वसाधारण',
+'exif-sharpness-1' => 'मृदू',
+'exif-sharpness-2' => 'कठीण',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-n' => 'गाठी',
+
 # External editor support
 'edit-externally'      => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादा.',
 'edit-externally-help' => 'अधिक माहितीसाठी [http://meta.wikimedia.org/wiki/Help:External_editors स्थापन करण्याच्या सुचना] पाहा.',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'सर्व',
-'watchlistall2' => 'सर्व',
-'namespacesall' => 'सर्व',
-'monthsall'     => 'सर्व',
+'recentchangesall' => 'सर्व',
+'imagelistall'     => 'सर्व',
+'watchlistall2'    => 'सर्व',
+'namespacesall'    => 'सर्व',
+'monthsall'        => 'सर्व',
 
 # E-mail address confirmation
-'confirmemail' => 'इमेल पत्ता पडताळून पहा',
+'confirmemail'          => 'इमेल पत्ता पडताळून पहा',
+'confirmemail_loggedin' => 'तुमचा विपत्र पत्ता आता शाबीत झाला आहे.',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[URL खूप लांब आहे; क्षमस्व]',
+
+# Trackbacks
+'trackbackremove' => '([$1 वगळा])',
 
 # Delete conflict
 'deletedwhileediting' => 'सुचना: तुम्ही संपादन सुरू केल्यानंतर हे पान वगळले गेले आहे.',
+
+# action=purge
+'confirm_purge_button' => 'ठीक',
 
 # AJAX search
 'searchcontaining' => "''$1'' शब्द असलेले लेख शोधा.",
@@ -1401,6 +1473,7 @@ $2',
 # Multipage image navigation
 'imgmultipageprev' => '← मागील पान',
 'imgmultipagenext' => 'पुढील पान →',
+'imgmultigo'       => 'चला!',
 
 # Table pager
 'ascending_abbrev'         => 'चढ',
@@ -1444,5 +1517,14 @@ $2',
 
 # Core parser functions
 'unknown_extension_tag' => 'अज्ञात विस्तार खूण "$1"',
+
+# Special:Version
+'version-other'   => 'इतर',
+'version-version' => 'आवृत्ती',
+
+# Special:Filepath
+'filepath'        => 'संचिका मार्ग',
+'filepath-page'   => 'संचिका:',
+'filepath-submit' => 'मार्ग',
 
 );

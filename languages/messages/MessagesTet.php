@@ -18,11 +18,11 @@ $skinNames = array(
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Espesiál',
-	NS_MAIN	          => '',
-	NS_TALK	          => 'Diskusaun',
-	NS_USER           => "Uza-na'in",
-	NS_USER_TALK      => "Diskusaun_Uza-na'in",
-	# NS_PROJECT set by $wgMetaNamespace
+	NS_MAIN           => '',
+	NS_TALK           => 'Diskusaun',
+	NS_USER           => 'Uza-na\'in',
+	NS_USER_TALK      => 'Diskusaun_Uza-na\'in',
+	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => 'Diskusaun_$1',
 	NS_IMAGE          => 'Imajen',
 	NS_IMAGE_TALK     => 'Diskusaun_Imajen',
@@ -32,8 +32,13 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK  => 'Diskusaun_Template',
 	NS_HELP           => 'Ajuda',
 	NS_HELP_TALK      => 'Diskusaun_Ajuda',
-	NS_CATEGORY       => 'Kategoría',
-	NS_CATEGORY_TALK  => 'Diskusaun_Kategoría',
+	NS_CATEGORY       => 'Kategoria',
+	NS_CATEGORY_TALK  => 'Diskusaun_Kategoria',
+);
+
+$namespaceAliases = array(
+	"Kategoría"           => NS_CATEGORY,
+	"Diskusaun_Kategoría" => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
@@ -136,6 +141,7 @@ $messages = array(
 'mytalk'         => "Ha'u-nia diskusaun",
 'anontalk'       => "Diskusaun ba IP ne'e",
 'navigation'     => 'Hatudu-dalan',
+'and'            => 'ho',
 
 'errorpagetitle'    => 'Sala',
 'tagline'           => 'Husi {{SITENAME}}',
@@ -516,9 +522,6 @@ $messages = array(
 'tooltip-t-specialpages'  => 'Lista pájina espesiál hotu nian',
 'tooltip-ca-nstab-user'   => "Haree pájina uza-na'in",
 
-# Attribution
-'and' => 'ho',
-
 # Browsing diffs
 'previousdiff' => '←Diferensa molok',
 'nextdiff'     => 'Diferensa oinmai→',
@@ -533,6 +536,10 @@ $messages = array(
 'namespacesall'    => 'hotu',
 'monthsall'        => 'hotu',
 
+# Multipage image navigation
+'imgmultipageprev' => '← pájina molok',
+'imgmultipagenext' => 'pájina oinmai →',
+
 # Table pager
 'table_pager_next'  => 'Pájina oinmai',
 'table_pager_prev'  => 'Pájina molok',
@@ -540,5 +547,13 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-new' => 'Pájina foun: $1',
+
+# Watchlist editor
+'watchlistedit-normal-title' => 'Filak lista hateke',
+
+# Special:Version
+'version-specialpages' => 'Pájina espesiál',
+'version-other'        => 'Seluk',
+'version-version'      => 'Versaun',
 
 );
