@@ -13,6 +13,10 @@ class LanguageLt extends Language {
 	*/
 	function convertPlural( $count, $forms ) {
 		if ( !count($forms) ) { return ''; }
+
+		//if no number with word, then use $form[0] for singular and $form[1] for plural or zero
+		if( count($forms) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
+
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ($count%10==1 && $count%100!=11) return $forms[0];
