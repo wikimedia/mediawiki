@@ -352,6 +352,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12793) Fix for restricted namespaces/pages in Special:Export
 * Fix for Special:Export so it doesn't ignore the page named '0'
 * Don't display rollback link if the user doesn't have all required permissions
+* The comment of a time-limited protection now contains the date in the default format
 
 == Parser changes in 1.12 ==
 
