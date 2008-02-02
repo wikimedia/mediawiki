@@ -682,7 +682,21 @@ class Title {
 		} else {
 			return $this->getText();
 		}
-	}
+    }
+
+	/**
+	 * Get the root name, i.e. the leftmost part before the first /
+	 * @return string Root name
+	 */
+	public function getRootText() {
+		global $wgNamespacesWithSubpages;
+		if( !empty( $wgNamespacesWithSubpages[$this->mNamespace] ) ) {
+			$parts = explode( '/', $this->getText() );
+			return $parts[0];
+		} else {
+			return $this->getText();
+		}
+    }
 
 	/**
 	 * Get the lowest-level subpage name, i.e. the rightmost part after /
