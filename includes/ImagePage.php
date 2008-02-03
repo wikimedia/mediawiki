@@ -19,11 +19,11 @@ class ImagePage extends Article {
 	/* private */ var $repo;
 	var $mExtraDescription = false;
 
-	function __construct( $title ) {
+	function __construct( $title, $time = false ) {
 		parent::__construct( $title );
-		$this->img = wfFindFile( $this->mTitle );
+		$this->img = wfFindFile( $this->mTitle, $time );
 		if ( !$this->img ) {
-			$this->img = wfLocalFile( $this->mTitle );
+			$this->img = wfLocalFile( $this->mTitle, $time );
 		}
 		$this->repo = $this->img->repo;
 	}
