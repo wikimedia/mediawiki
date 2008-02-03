@@ -465,6 +465,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'semiprotectedpagewarning' => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
 'templatesused'            => 'Sjablone in gebruik op hierdie blad:',
 'template-protected'       => '(beskermd)',
+'permissionserrorstext'    => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
 
 # History pages
 'nohistory'           => 'Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.',
@@ -493,6 +494,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'difference'              => '(Verskil tussen weergawes)',
 'lineno'                  => 'Lyn $1:',
 'compareselectedversions' => 'Vergelyk gekose weergawes',
+'editundo'                => 'maak ongedaan',
 
 # Search results
 'searchresults'         => 'soekresultate',
@@ -792,6 +794,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 # Special:Log
 'specialloguserlabel'  => 'Gebruiker:',
 'speciallogtitlelabel' => 'Titel:',
+'log'                  => 'Logboeke',
 'all-logs-page'        => 'Alle logboeke',
 'alllogstext'          => "Vertoon 'n samestelling van laai-, skrap-, beskerm-, blok- en administrateurlogs van {{SITENAME}}.
 Jy kan die vertoning vernou deur 'n logtipe, gebruikersnaam of spesifieke blad te kies.",

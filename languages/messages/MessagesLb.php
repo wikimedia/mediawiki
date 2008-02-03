@@ -417,6 +417,7 @@ Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. So
 'badtitle'             => 'Schlechten Titel',
 'badtitletext'         => 'De gewënschten Titel ass invalid, eidel, oder een net korrekten Interwiki Link.',
 'perfdisabled'         => "'''Pardon!''' Dës Fonktioun gouf wéint Iwwerlaaschtung vum Server temporaire ausgeschalt.",
+'perfcached'           => 'Dës Date kommen aus dem Cache a si méiglecherweis net aktuell:',
 'perfcachedts'         => 'Dës Donneeë kommen aus dem Cache, leschten Update: $1',
 'querypage-no-updates' => "D'Aktualiséierung vun dëser Säit ass zur Zäit ausgeschalt. D'Date gi bis op weideres net aktualiséiert.'''",
 'wrong_wfQuery_params' => 'Falsche Parameter fir wfQuery()<br />
@@ -560,6 +561,7 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'anoneditwarning'           => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm är IP Adress am Historique vun dëser Säit gespäichert.',
 'missingsummary'            => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
 'missingcommenttext'        => 'Gitt w.e.g. eng Bemierkung an.',
+'missingcommentheader'      => "'''OPGEPASST:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn. Wann Dir nach en Kéier op \"Späicheren\" klickt da gëtt àr Ännerung ouni Titel ofgespäichert.",
 'summary-preview'           => 'Resumé kucken ouni ofzespäicheren',
 'subject-preview'           => 'Sujet/Iwwerschrëft kucken',
 'blockedtitle'              => 'Benotzer ass gespärt',
@@ -968,6 +970,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'license'            => 'Lizenz',
 'nolicense'          => 'Keng Lizenz ausgewielt',
 'license-nopreview'  => '(Kucken ouni ofzespäichere geet net)',
+'upload_source_url'  => ' (gülteg, ëffentlech zougänglech URL)',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Image list
@@ -1029,6 +1032,9 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'filedelete-nofile'           => "'''$1''' gëtt et net op {{SITENAME}}.",
 'filedelete-otherreason'      => 'Aneren/zousätzleche Grond:',
 'filedelete-reason-otherlist' => 'Anere Grond',
+'filedelete-reason-dropdown'  => "* Allgemeng Läschgrënn
+** Verletzung vun den Droits d'auteur
+** De Fichier gëtt et nach eng Kéier an der Datebank",
 
 # MIME search
 'mimesearch' => 'Sich no MIME-Zort',
@@ -1122,7 +1128,11 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'deadendpages'            => 'Sakgaasse-Säiten',
 'deadendpagestext'        => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
 'protectedpages'          => 'Protegéiert Säiten',
+'protectedpagestext'      => 'Dës Säite si gespaart esou datt si weder geännert nach geréckelt kënne ginn',
+'protectedpagesempty'     => 'Elo si keng Säite mat dëse Parameteren protegéiert.',
 'protectedtitles'         => 'Gespaarten Titel',
+'protectedtitlestext'     => 'Dës Titele si protegéiert an e ka keng Säit mat deenen Titelen ugeluecht ginn',
+'protectedtitlesempty'    => 'Zur Zäit si mat de Parameteren déi Dir uginn huet keng Säite gespaart esou datt si net ugeluecht kënne ginn.',
 'listusers'               => 'Benotzerlëscht',
 'specialpages'            => 'Spezialsäiten',
 'spheading'               => 'Spezialsäite fir all Benotzer',
@@ -1133,6 +1143,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'intl'                    => 'Interwiki-Linken',
 'move'                    => 'Réckelen',
 'movethispage'            => 'Dës Säit réckelen',
+'unusedcategoriestext'    => 'Dës Kategoriesäiten existéieren, mee weder en Artikel nach eng Kategorie maachen dovunner Gebrauch.',
 'notargettitle'           => 'Dir hutt keng Säit uginn.',
 'notargettext'            => 'Dir hutt keng Zilsäit oder keen Zilbenotzer uginn fir déi dës Funktioun ausgheféiert soll ginn.',
 'pager-newer-n'           => '{{PLURAL:$1|nächsten|nächst $1}}',
@@ -1142,6 +1153,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'booksources'               => 'Bicherreferenzen',
 'booksources-search-legend' => 'No Bicherreferenze sichen',
 'booksources-go'            => 'Sichen',
+'booksources-text'          => 'Hei ass eng Lescht mat Linken op Internetsäiten, déi nei a gebraucht Bicher verkafen. Do kann et sinn datt Dir méi Informatiounen iwwer déi Bicher fannt déi Dir sicht.',
 
 'categoriespagetext' => 'Dës Kategorie gëtt et op {{SITENAME}}:',
 'data'               => 'Donnéeën',
@@ -1222,9 +1234,10 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'watchlist-details'    => "Dir iwwerwaacht {{PLURAL:$1|1 Säit|$1 Säiten}} (d'Diskussiounssäite net matgezielt).",
 'wlheader-enotif'      => '* E-Mail-Bescheed ass aktivéiert.',
 'wlheader-showupdated' => "* Säiten déi zënter ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
-'watchmethod-recent'   => 'Rezent Ännerungen gin op verfollegt Säiten iwwerpréift',
+'watchmethod-recent'   => 'Rezent Ännerungen gin op iwwerwaacht Säiten iwwerpréift',
 'watchmethod-list'     => 'Verfollegt Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains'    => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
+'wlnote'               => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn dé lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}.",
 'wlshowlast'           => "Weis d'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg).",
 'watchlist-show-bots'  => 'Bot-Ännerunge weisen',
 'watchlist-hide-bots'  => 'Bot-Ännerunge verstoppen',
@@ -1454,6 +1467,7 @@ W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spä
 'lockbtn'             => 'Datebank spären',
 'unlockbtn'           => 'Spär vun der Datebank ophiewen',
 'locknoconfirm'       => "Dir hutt d'Konfirmatiounsbox net ugeklickt.",
+'lockdbsuccesssub'    => "D'Datebank ass elo gespaart",
 'lockdbsuccesstext'   => "D'{{SITENAME}}-Datebank gouf gespaart. <br />
 Denkt drun [[Special:Unlockdb|d'Spär erëm ewechzehuele]] soubaal d'Maintenance-Aarbechte fäerdeg sinn.",
 'unlockdbsuccesstext' => "D'Spär vun der Datebank ass opgehuewen.",
@@ -1510,6 +1524,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'export-addcattext' => 'Säiten aus Kategorie derbäisetzen:',
 'export-addcat'     => 'Derbäisetzen',
 'export-download'   => 'Als XML-Datei späicheren',
+'export-templates'  => 'Inklusiv Schablounen',
 
 # Namespace 8 related
 'allmessages'               => 'All Systemmessagen',
@@ -1523,6 +1538,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 
 # Thumbnails
 'thumbnail-more'  => 'vergréisseren',
+'missingimage'    => '<b>Bild feelt</b><br /><i>$1</i>',
 'filemissing'     => 'Fichier feelt',
 'thumbnail_error' => 'Feeler beim Erstellen vum Thumbnail vun: $1',
 'djvu_page_error' => 'DjVu-Säit baussent dem Säiteberäich',

@@ -212,6 +212,7 @@ $messages = array(
 'moredotdotdot'  => 'Plu...',
 'mypage'         => 'Pad obik',
 'mytalk'         => 'Bespiks obik',
+'anontalk'       => 'Bespiks ela IP at',
 'navigation'     => 'Nafam',
 'and'            => 'e',
 
@@ -584,6 +585,7 @@ Jenotalised moükama pada at pajonon is as yuf.",
 'cur'                 => 'nuik',
 'next'                => 'sököl',
 'last'                => 'lätik',
+'orig'                => 'rigik',
 'page_first'          => 'balid',
 'page_last'           => 'lätik',
 'histlegend'          => 'Difiväl: välolös fomamis ad paleigodön e gebolös klavi: "Enter" u knopi dono.<br />
@@ -688,23 +690,28 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'files'                 => 'Ragivs',
 
 # User rights
-'userrights-user-editname' => 'Penolös gebananemi:',
-'saveusergroups'           => 'Dakipolöd gebanagrupis',
-'userrights-reason'        => 'Kod votükama:',
+'userrights-user-editname'   => 'Penolös gebananemi:',
+'saveusergroups'             => 'Dakipolöd gebanagrupis',
+'userrights-groupsavailable' => 'Grups gebidik:',
+'userrights-reason'          => 'Kod votükama:',
 
 # Groups
 'group'            => 'Grup:',
+'group-bot'        => 'Bots',
 'group-sysop'      => 'Guvans',
 'group-bureaucrat' => 'Bürans',
 'group-all'        => '(valik)',
 
+'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Guvan',
 'group-bureaucrat-member' => 'Büran',
 
+'grouppage-bot'   => '{{ns:project}}:Bots',
 'grouppage-sysop' => '{{ns:project}}:Guvans',
 
 # User rights log
-'rightslog' => 'Jenotalised gebanagitätas',
+'rightslog'  => 'Jenotalised gebanagitätas',
+'rightsnone' => '(nonik)',
 
 # Recent changes
 'nchanges'                       => '{{PLURAL:$1|votükam|votükams}} $1',
@@ -821,14 +828,15 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 'filerevert-comment' => 'Küpet:',
 
 # File deletion
-'filedelete'             => 'Moükön padi: $1',
-'filedelete-legend'      => 'Moükön ragivi',
-'filedelete-intro'       => "Moükol padi: '''[[Media:$1|$1]]'''.",
-'filedelete-comment'     => 'Küpet:',
-'filedelete-submit'      => 'Moükön',
-'filedelete-success'     => "'''$1''' pemoükon.",
-'filedelete-nofile'      => "'''$1''' no dabinon in {{SITENAME}}.",
-'filedelete-otherreason' => 'Kod votik/zuik:',
+'filedelete'                  => 'Moükön padi: $1',
+'filedelete-legend'           => 'Moükön ragivi',
+'filedelete-intro'            => "Moükol padi: '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Küpet:',
+'filedelete-submit'           => 'Moükön',
+'filedelete-success'          => "'''$1''' pemoükon.",
+'filedelete-nofile'           => "'''$1''' no dabinon in {{SITENAME}}.",
+'filedelete-otherreason'      => 'Kod votik/zuik:',
+'filedelete-reason-otherlist' => 'Kod votik',
 
 # MIME search
 'mimesearch' => 'Sukön (MIME)',
@@ -867,7 +875,7 @@ Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL
 Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
 
 Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'''.",
-'userstatstext'          => "Dabinons gebans peregistaröl '''$1''', bevü kels '''$2''' (ü '''$4%''') binons $5.",
+'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5{{PLURAL:$2||s}}.",
 'statistics-mostpopular' => 'Pads suvüno palogöls:',
 
 'disambiguations'      => 'Telplänovapads',
@@ -884,6 +892,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'
 
 'withoutinterwiki'        => 'Pads nen yüms bevüpükik',
 'withoutinterwiki-header' => 'Pads sököl no yumons lü fomams in püks votik.',
+'withoutinterwiki-submit' => 'Jonolöd',
 
 'fewestrevisions' => 'Yegeds labü revids nemödikün',
 
@@ -901,6 +910,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'
 'uncategorizedtemplates'  => 'Samafomots nen klad',
 'unusedcategories'        => 'Klads no pageböls',
 'unusedimages'            => 'Ragivs no pageböls',
+'popularpages'            => 'Pads suvüno pelogöls',
 'wantedcategories'        => 'Klads mekabik',
 'wantedpages'             => 'Pads mekabik',
 'mostlinked'              => 'Pads suvüno peyümöls',
@@ -1015,10 +1025,11 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'watching'   => 'Papladon ini galädalised...',
 'unwatching' => 'Pamoükon se galädalised...',
 
-'enotif_newpagetext' => 'Atos binon pad nulik.',
-'changed'            => 'pevotüköl',
-'created'            => 'pejafon',
-'enotif_anon_editor' => 'geban nennemik: $1',
+'enotif_newpagetext'           => 'Atos binon pad nulik.',
+'enotif_impersonal_salutation' => 'Geban {{SITENAME}}-a',
+'changed'                      => 'pevotüköl',
+'created'                      => 'pejafon',
+'enotif_anon_editor'           => 'geban nennemik: $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Moükolöd padi',
@@ -1026,6 +1037,8 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'excontent'                   => "ninäd äbinon: '$1'",
 'excontentauthor'             => "ninäd äbinon: '$1' (e keblünan teik äbinon '[[Special:Contributions/$2|$2]]')",
 'exblank'                     => 'pad ävagon',
+'delete-confirm'              => 'Moükön "$1"-i',
+'delete-legend'               => 'Moükön',
 'historywarning'              => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
 'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Peledunon',
@@ -1101,6 +1114,7 @@ If pad nulik labü tiäd ot pejafon pos moükam at, revids ogepubons in jenotem 
 
 Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e sädunamis brefabüikis.",
 'undelete-search-box'      => 'Sukön padis pemoüköl',
+'undelete-search-submit'   => 'Sukolöd',
 
 # Namespace form on various pages
 'namespace'      => 'Nemaspad:',
@@ -1188,6 +1202,7 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 'block-log-flags-noemail'  => 'ladet leäktronik peblokon',
 'ipb_expiry_invalid'       => 'Blokamadul no lonöfon.',
 'ipb_already_blocked'      => '"$1" ya peblokon',
+'blockme'                  => 'Blokolöd obi',
 'proxyblocksuccess'        => 'Peledunon.',
 
 # Developer tools
@@ -1259,10 +1274,11 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'thumbnail_error' => 'Pöl pö jafam magodila: $1',
 
 # Special:Import
-'import'             => 'Nüveigön padis',
-'importstart'        => 'Nüveigölo padis...',
-'importbadinterwiki' => 'Yüm vüvükik dädik',
-'importnotext'       => 'Vödem vagik',
+'import'                => 'Nüveigön padis',
+'importstart'           => 'Nüveigölo padis...',
+'import-revision-count' => '{{PLURAL:$1|fomam|fomams}} $1',
+'importbadinterwiki'    => 'Yüm vüvükik dädik',
+'importnotext'          => 'Vödem vagik',
 
 # Import log
 'importlogpage' => 'Jenotalised nüveigamas',
@@ -1348,6 +1364,9 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'mw_math_modern' => 'Pakomandöl pro bevüresodatävöms nulädik',
 'mw_math_mathml' => 'El MathML if mögos (nog sperimänt)',
 
+# Patrolling
+'markaspatrolleddiff' => 'Välön as pefümüköl',
+
 # Patrol log
 'patrol-log-auto' => '(itjäfidik)',
 
@@ -1361,6 +1380,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 # Media information
 'imagemaxsize'         => 'Miedükön magodis su pads magodis bepenöls ad:',
 'thumbsize'            => 'Gretot magodüla:',
+'widthheightpage'      => '$1×$2, pads $3',
 'file-info-size'       => '($1 × $2 pixel, ragivagret: $3, pated MIME: $4)',
 'file-nohires'         => '<small>Gretot gudikum no pagebidon.</small>',
 'svg-long-desc'        => '(ragiv in fomät: SVG, magodaziöbs $1 × $2, gretot: $3)',
@@ -1396,6 +1416,8 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-colorspace'          => 'Kölaspad',
 'exif-exposuretime-format' => '$1 sek ($2)',
 'exif-flash'               => 'Kämalelit',
+'exif-flashenergy'         => 'Nämet kämalelita',
+'exif-gpsdatestamp'        => 'Dät ela GPS',
 
 'exif-orientation-1' => 'Nomik', # 0th row: top; 0th column: left
 
@@ -1403,8 +1425,10 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 
 'exif-subjectdistance-value' => 'Mets $1',
 
+'exif-meteringmode-0'   => 'Nesevädik',
 'exif-meteringmode-255' => 'Votik',
 
+'exif-lightsource-0'  => 'Nesevädik',
 'exif-lightsource-4'  => 'Kämalelit',
 'exif-lightsource-11' => 'Jad',
 
@@ -1413,6 +1437,8 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gaincontrol-0' => 'Nonik',
 
 'exif-contrast-0' => 'Nomik',
+
+'exif-subjectdistancerange-0' => 'Nesevädik',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Milmets a düp',
@@ -1490,6 +1516,10 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'watchlisttools-view' => 'Logön votükamis teföl',
 'watchlisttools-edit' => 'Logön e redakön galädalisedi',
 'watchlisttools-raw'  => 'Redakön galädalisedi nen fomät',
+
+# Special:Version
+'version-specialpages' => 'Pads patik',
+'version-other'        => 'Votik',
 
 # Special:Filepath
 'filepath'         => 'Ragivaluveg',

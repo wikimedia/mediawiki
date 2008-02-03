@@ -1513,6 +1513,8 @@ For hjelp og meir informasjon:
 ** På førespurnad frå forfattren
 ** Brot på opphavsretten
 ** Hærverk',
+'delete-toobig'               => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Sletting av slike sider er avgrensa for å unngå forstyrring av {{SITENAME}} med uhell.',
+'delete-warning-toobig'       => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Dersom du slettar henne kan det forstyrre handlingar i databasen til {{SITENAME}}, ver varsam.',
 'rollback'                    => 'Rull attende endringar',
 'rollback_short'              => 'Rull attende',
 'rollbacklink'                => 'rull attende',
@@ -1523,10 +1525,12 @@ For hjelp og meir informasjon:
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]).',
 'editcomment'                 => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Attenderulla endring gjort av [[User:$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
 'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:Protectedpages|Verna side]] for meir info.',
 'protectedarticle'            => 'verna «[[$1]]»',
+'modifiedarticleprotection'   => 'endra nivået på vernet av «[[$1]]»',
 'unprotectedarticle'          => 'fjerna vern av «[[$1]]»',
 'protectsub'                  => '(Vernar «$1»)',
 'confirmprotect'              => 'Stadfest vern',
@@ -1537,6 +1541,8 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'unprotectsub'                => '(Fjernar vern av «$1»)',
 'protect-unchain'             => 'Tillat flytting',
 'protect-text'                => 'Her kan du kan sjå og endre på graden av vern for sida <strong>$1</strong>.',
+'protect-locked-blocked'      => 'Du kan ikkje endre nivå på vern medan du er blokkert. Dette er dei noverande innstillingane for sida <strong>$1</strong>:',
+'protect-locked-dblock'       => 'Du kan ikkje endre nivå på vern fordi databasen er låst akkurat no. Dette er dei noverande innstillingane for sida <strong>$1</strong>:',
 'protect-locked-access'       => 'Brukarkontoen din har ikkje tilgang til endring av vern.
 Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'protect-cascadeon'           => 'Denne sida er verna fordi ho er inkludert på {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på. Du kan endre på nivået til vernet av denne sida, men det vil ikkje ha innverknad på djupvernet.',
@@ -1550,11 +1556,19 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'protect-cantedit'            => 'Du kan ikkje endre på nivået på vernet av denne sida, fordi du ikkje har tilgang til å endre henne.',
 'restriction-type'            => 'Tilgang:',
 'restriction-level'           => 'Avgrensingsnivå:',
+'minimum-size'                => 'Minimumstorleik',
+'maximum-size'                => 'Maksimumstorleik',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Endre',
-'restriction-move' => 'Flytt',
+'restriction-edit'   => 'Endre',
+'restriction-move'   => 'Flytt',
+'restriction-create' => 'Opprett',
+
+# Restriction levels
+'restriction-level-sysop'         => 'heilt verna',
+'restriction-level-autoconfirmed' => 'delvis verna',
+'restriction-level-all'           => 'alle nivå',
 
 # Undelete
 'undelete'               => 'Sletta sider',

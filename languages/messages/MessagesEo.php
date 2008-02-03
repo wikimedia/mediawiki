@@ -1043,7 +1043,9 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'brokenredirects-edit'   => '(redaktu)',
 'brokenredirects-delete' => '(forigu)',
 
-'withoutinterwiki' => 'Paĝoj sen lingvaj ligiloj',
+'withoutinterwiki'        => 'Paĝoj sen lingvaj ligiloj',
+'withoutinterwiki-header' => 'Jenaj paĝoj ne ligas al aliaj lingvoversioj:',
+'withoutinterwiki-submit' => 'Montri',
 
 'fewestrevisions' => 'Artikoloj kun la plej malmultaj revizioj',
 
@@ -1054,6 +1056,7 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'nmembers'                => '{{PLURAL:$1|unu membero|$1 memberoj}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revizio|revizioj}}',
 'nviews'                  => '{{PLURAL:$1|unufoje|$1 fojojn}}',
+'specialpage-empty'       => 'Ne estas rezultoj por ĉi tiu raporto.',
 'lonelypages'             => 'Neligitaj paĝoj',
 'uncategorizedpages'      => 'Neenkategoriitaj paĝoj',
 'uncategorizedcategories' => 'Neenkategoriitaj kategorioj',
@@ -1099,9 +1102,10 @@ Tio ne estus enkalkutita en la jena listo.',
 'pager-older-n'           => '{{PLURAL:$1|pli malnova 1|pli malnovaj $1}}',
 
 # Book sources
-'booksources'      => 'Libroservoj',
-'booksources-go'   => 'Ek',
-'booksources-text' => 'Jen ligilaro al aliaj TTT-ejoj, kiuj vendas librojn,
+'booksources'               => 'Libroservoj',
+'booksources-search-legend' => 'Serĉu pri librofontoj',
+'booksources-go'            => 'Ek',
+'booksources-text'          => 'Jen ligilaro al aliaj TTT-ejoj, kiuj vendas librojn,
 kaj/aŭ informumos pri la libro ligita.
 La {{SITENAME}} ne estas komerce ligita al tiuj vendejoj, kaj la listo ne estu
 komprenata kiel rekomendo aŭ reklamo.',
@@ -1229,6 +1233,8 @@ Reagoj kaj plia helpo :
 'excontentauthor'             => "la enteno estis : '$1' (kaj la sola kontribuinto estis '$2')",
 'exbeforeblank'               => "antaŭ malplenigo enhavis: '$1'",
 'exblank'                     => 'estis malplena',
+'delete-confirm'              => 'Forviŝu "$1"',
+'delete-legend'               => 'Forviŝi',
 'historywarning'              => 'Averto: la forigota paĝo havas historion:',
 'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'              => 'Ago farita',
