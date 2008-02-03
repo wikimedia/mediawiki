@@ -1111,7 +1111,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'recentchanges-feed-description'    => 'Met deze feed kan u de recentste wijzigingen in deze wiki bekijken.',
 'rcnote'                            => "Hieronder {{PLURAL:$1|staat de laatste bewerking|staan de laatste '''$1''' bewerkingen}} in de laatste {{PLURAL:$2|dag|'''$2''' dagen}}, op $3.",
 'rcnotefrom'                        => 'Wijzigingen sinds <b>$2</b> (met een maximum van <b>$1</b> wijzigingen).',
-'rclistfrom'                        => 'Toon de wijzigingen vanaf $1',
+'rclistfrom'                        => 'Wijzigingen tonen vanaf $1',
 'rcshowhideminor'                   => 'kleine wijzigingen $1',
 'rcshowhidebots'                    => 'bots $1',
 'rcshowhideliu'                     => 'aangemelde gebruikers $1',

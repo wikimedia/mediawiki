@@ -478,6 +478,7 @@ Function: $1<br />
 Query: $2',
 'viewsource'           => 'Ver código',
 'viewsourcefor'        => 'para $1',
+'actionthrottled'      => 'Acção controlada',
 'actionthrottledtext'  => 'Como medida "anti-spam", está impedido de realizar esta operação demasiadas vezes num curto espaço de tempo, e já excedeu esse limite. Por favor, tente de novo dentro de alguns minutos.',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
@@ -1555,6 +1556,7 @@ campo de comentário e todas as caixas de selecção.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|edição disponível|edições disponíveis}}',
 'undeletehistory'              => 'Se restaurar uma página, todas as edições serão restauradas para o histórico.
 Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão primeiro no histórico e a página actual não será automaticamente trocada. Note que as restrições de acesso às edições serão perdidas ao ser feita a restauração.',
+'undeleterevdel'               => 'O restauro não será executado se resultar na remoção parcial da versão mais recente da página. Em tais casos, deverá desseleccionar ou reverter a ocultação das versões apagadas mais recentes. Versões de ficheiros para os quais não tenha permissão de visualização não serão restauradas.',
 'undeletehistorynoadmin'       => 'Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto actual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
 'undelete-revision'            => 'A edição $1 de $2 foi eliminada por $3:',
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorrecto ou talvez a edição foi restaurada ou removida dos arquivos.',
@@ -2036,10 +2038,14 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-yresolution'                 => 'Resolução vertical',
 'exif-resolutionunit'              => 'Unidade de resolução X e Y',
 'exif-stripoffsets'                => 'Localização de dados da imagem',
+'exif-rowsperstrip'                => 'Número de linhas por tira',
+'exif-stripbytecounts'             => 'Bytes por tira comprimida',
 'exif-jpeginterchangeformat'       => 'Desvio para SOI de JPEG',
 'exif-jpeginterchangeformatlength' => 'Bytes de dados JPEG',
 'exif-transferfunction'            => 'Função de transferência',
 'exif-whitepoint'                  => 'Cromaticidade do ponto branco',
+'exif-primarychromaticities'       => 'Cromaticidades primárias',
+'exif-ycbcrcoefficients'           => 'Coeficientes da matriz de transformação do espaço de cores',
 'exif-referenceblackwhite'         => 'Par de valores de referência de preto e branco',
 'exif-datetime'                    => 'Data e hora de modificação do ficheiro',
 'exif-imagedescription'            => 'Título',
@@ -2060,6 +2066,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-relatedsoundfile'            => 'Ficheiro áudio relacionado',
 'exif-datetimeoriginal'            => 'Data e hora de geração de dados',
 'exif-datetimedigitized'           => 'Data e hora de digitalização',
+'exif-subsectime'                  => 'Subsegundos DataHora',
+'exif-subsectimeoriginal'          => 'Subsegundos DataHoraOriginal',
+'exif-subsectimedigitized'         => 'Subsegundos DataHoraDigitalizado',
 'exif-exposuretime'                => 'Tempo de exposição',
 'exif-exposuretime-format'         => '$1 seg ($2)',
 'exif-fnumber'                     => 'Número F',
@@ -2079,6 +2088,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-focallength'                 => 'Comprimento de foco da lente',
 'exif-subjectarea'                 => 'Área de sujeito',
 'exif-flashenergy'                 => 'Energia do flash',
+'exif-spatialfrequencyresponse'    => 'Resposta em frequência espacial',
 'exif-focalplanexresolution'       => 'Resolução do plano focal X',
 'exif-focalplaneyresolution'       => 'Resolução do plano focal Y',
 'exif-focalplaneresolutionunit'    => 'Unidade de resolução do plano focal',
@@ -2088,6 +2098,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-filesource'                  => 'Fonte do ficheiro',
 'exif-scenetype'                   => 'Tipo de cena',
 'exif-cfapattern'                  => 'padrão CFA',
+'exif-customrendered'              => 'Processamento de imagem personalizado',
 'exif-exposuremode'                => 'Modo de exposição',
 'exif-whitebalance'                => 'Balanço do branco',
 'exif-digitalzoomratio'            => 'Proporção de zoom digital',
@@ -2123,6 +2134,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-gpsdestlatitude'             => 'Latitude do destino',
 'exif-gpsdestlongituderef'         => 'Referência para a longitude do destino',
 'exif-gpsdestlongitude'            => 'Longitude do destino',
+'exif-gpsdestbearingref'           => 'Referência para o azimute do destino',
+'exif-gpsdestbearing'              => 'Azimute do destino',
 'exif-gpsdestdistanceref'          => 'Referência de distância para o destino',
 'exif-gpsdestdistance'             => 'Distância para o destino',
 'exif-gpsprocessingmethod'         => 'Nome do método de processamento do GPS',
@@ -2185,6 +2198,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-lightsource-17'  => 'Padrão de lâmpada A',
 'exif-lightsource-18'  => 'Padrão de lâmpada B',
 'exif-lightsource-19'  => 'Padrão de lâmpada C',
+'exif-lightsource-24'  => 'Tungsténio de estúdio ISO',
 'exif-lightsource-255' => 'Outra fonte de luz',
 
 'exif-focalplaneresolutionunit-2' => 'polegadas',
@@ -2204,6 +2218,10 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 
 'exif-exposuremode-0' => 'Exposição automática',
 'exif-exposuremode-1' => 'Exposição manual',
+'exif-exposuremode-2' => 'Bracket automático',
+
+'exif-whitebalance-0' => 'Balanço de brancos automático',
+'exif-whitebalance-1' => 'Balanço de brancos manual',
 
 'exif-scenecapturetype-0' => 'Padrão',
 'exif-scenecapturetype-1' => 'Paisagem',
@@ -2229,6 +2247,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-sharpness-2' => 'Forte',
 
 'exif-subjectdistancerange-0' => 'Desconhecida',
+'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Vista próxima',
 'exif-subjectdistancerange-3' => 'Vista distante',
 
@@ -2253,6 +2272,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcção real',
+'exif-gpsdirection-m' => 'Direcção magnética',
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',
@@ -2396,18 +2416,20 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
 
 # Special:Version
-'version-extensions'            => 'Extensões instaladas',
-'version-specialpages'          => 'Páginas especiais',
-'version-variables'             => 'Variáveis',
-'version-other'                 => 'Diversos',
-'version-mediahandlers'         => 'Executores de média',
-'version-hooks'                 => 'Hooks',
-'version-extension-functions'   => 'Funções de extensão',
-'version-parser-extensiontags'  => 'Etiquetas de extensões de tipo "parser"',
-'version-parser-function-hooks' => 'Funções "hooks" de "parser"',
-'version-hook-name'             => 'Nome do hook',
-'version-hook-subscribedby'     => 'Subscrito por',
-'version-version'               => 'Versão',
+'version-extensions'               => 'Extensões instaladas',
+'version-specialpages'             => 'Páginas especiais',
+'version-parserhooks'              => 'Hooks do analisador (parser)',
+'version-variables'                => 'Variáveis',
+'version-other'                    => 'Diversos',
+'version-mediahandlers'            => 'Executores de média',
+'version-hooks'                    => 'Hooks',
+'version-extension-functions'      => 'Funções de extensão',
+'version-parser-extensiontags'     => 'Etiquetas de extensões de tipo "parser"',
+'version-parser-function-hooks'    => 'Funções "hooks" de "parser"',
+'version-skin-extension-functions' => 'Funções de extensão de skins',
+'version-hook-name'                => 'Nome do hook',
+'version-hook-subscribedby'        => 'Subscrito por',
+'version-version'                  => 'Versão',
 
 # Special:Filepath
 'filepath'         => 'Diretório do ficheiro',

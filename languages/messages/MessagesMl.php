@@ -290,7 +290,7 @@ $messages = array(
 
 'errorpagetitle'    => 'കുഴപ്പം',
 'returnto'          => '$1 എന്ന താളിലേക്ക് തിരിച്ചുപോവുക.',
-'tagline'           => '{{SITENAME}} ല്‍ നിന്ന്',
+'tagline'           => '{{SITENAME}} സംരംഭത്തില്‍ നിന്ന്',
 'help'              => 'സഹായി',
 'search'            => 'തിരയുക',
 'searchbutton'      => 'തിരയുക',

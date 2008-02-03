@@ -10,19 +10,39 @@
 
 $messages = array(
 # Dates
-'january'   => 'Bhimbídvwane',
-'february'  => 'iNdlóvana',
-'march'     => 'íNdlovu',
-'april'     => 'Mábasa',
-'may_long'  => 'íNkhwekhwéti',
-'june'      => 'íNhlaba',
-'july'      => 'Khólwáne',
-'august'    => 'íNgci',
-'september' => 'íNyoni',
-'october'   => 'íMphala',
-'november'  => 'Lídvúba',
-'december'  => 'íNgongóni',
+'sunday'        => 'LíSontfo',
+'monday'        => 'uMsombulûko',
+'tuesday'       => 'Lesíbilí',
+'wednesday'     => 'Lésitsâtfu',
+'thursday'      => 'Lesíne',
+'friday'        => 'Lesíhlánu',
+'saturday'      => 'úMgcibélo',
+'january'       => 'Bhimbídvwane',
+'february'      => 'iNdlóvana',
+'march'         => 'íNdlovu',
+'april'         => 'Mábasa',
+'may_long'      => 'íNkhwekhwéti',
+'june'          => 'íNhlaba',
+'july'          => 'Khólwáne',
+'august'        => 'íNgci',
+'september'     => 'íNyoni',
+'october'       => 'íMphala',
+'november'      => 'Lídvúba',
+'december'      => 'íNgongóni',
+'january-gen'   => 'Bhimbídvwane',
+'february-gen'  => 'iNdlóvana',
+'march-gen'     => 'íNdlovu',
+'april-gen'     => 'Mábasa',
+'may-gen'       => 'íNkhwekhwéti',
+'june-gen'      => 'íNhlaba',
+'july-gen'      => 'Khólwáne',
+'august-gen'    => 'íNgci',
+'september-gen' => 'íNyoni',
+'october-gen'   => 'íMphala',
+'november-gen'  => 'Lídvúba',
+'december-gen'  => 'íNgongóni',
 
+'qbfind' => 'Kúkhándza',
 'qbedit' => 'Kúhlela',
 
 'help'          => 'Kúsíta',
@@ -60,9 +80,25 @@ $messages = array(
 'searchresultshead' => 'Kucálata',
 
 # Image list
-'ilsubmit' => 'Kucálata',
+'ilsubmit'          => 'Kucálata',
+'filehist-datetime' => 'Lusuku/Síkhatsí',
+'filehist-user'     => 'Umuntfu',
+
+# Miscellaneous special pages
+'move' => 'Kúgojotîsa',
 
 # Special:Log
 'specialloguserlabel' => 'Umuntfu:',
+
+# Special:Allpages
+'allpagessubmit' => 'Kúhámba',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Kúhlela',
+'restriction-move'   => 'Kúgojotîsa',
+'restriction-create' => 'Kúdála',
+
+# Tooltip help for the actions
+'tooltip-search' => 'Kucálata {{SITENAME}}',
 
 );
