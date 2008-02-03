@@ -2095,7 +2095,7 @@ class Article {
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'delete-legend' ) ) .
 			Xml::openElement( 'table' ) .
-			"<tr id=\"wpDeleteReasonListRow\" name=\"wpDeleteReasonListRow\">
+			"<tr id=\"wpDeleteReasonListRow\">
 				<td align='$align'>" .
 					Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' ) .
 				"</td>
@@ -2105,7 +2105,7 @@ class Article {
 						wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 ) .
 				"</td>
 			</tr>
-			<tr id=\"wpDeleteReasonRow\" name=\"wpDeleteReasonRow\">
+			<tr id=\"wpDeleteReasonRow\">
 				<td align='$align'>" .
 					Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' ) .
 				"</td>
