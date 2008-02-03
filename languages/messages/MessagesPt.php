@@ -2034,7 +2034,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-ycbcrpositioning'            => 'Posicionamento Y e C',
 'exif-xresolution'                 => 'Resolução horizontal',
 'exif-yresolution'                 => 'Resolução vertical',
+'exif-resolutionunit'              => 'Unidade de resolução X e Y',
 'exif-stripoffsets'                => 'Localização de dados da imagem',
+'exif-jpeginterchangeformat'       => 'Desvio para SOI de JPEG',
 'exif-jpeginterchangeformatlength' => 'Bytes de dados JPEG',
 'exif-transferfunction'            => 'Função de transferência',
 'exif-whitepoint'                  => 'Cromaticidade do ponto branco',
@@ -2079,6 +2081,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-flashenergy'                 => 'Energia do flash',
 'exif-focalplanexresolution'       => 'Resolução do plano focal X',
 'exif-focalplaneyresolution'       => 'Resolução do plano focal Y',
+'exif-focalplaneresolutionunit'    => 'Unidade de resolução do plano focal',
 'exif-subjectlocation'             => 'Localização de sujeito',
 'exif-exposureindex'               => 'Índice de exposição',
 'exif-sensingmethod'               => 'Método de sensação',
@@ -2159,6 +2162,11 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-subjectdistance-value' => '$1 metros',
 
 'exif-meteringmode-0'   => 'Desconhecido',
+'exif-meteringmode-1'   => 'Média',
+'exif-meteringmode-2'   => 'MédiaPonderadaAoCentro',
+'exif-meteringmode-3'   => 'Ponto',
+'exif-meteringmode-4'   => 'MultiPonto',
+'exif-meteringmode-5'   => 'Padrão',
 'exif-meteringmode-6'   => 'Parcial',
 'exif-meteringmode-255' => 'Outro',
 
@@ -2169,6 +2177,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Tempo bom',
 'exif-lightsource-10'  => 'Tempo nublado',
+'exif-lightsource-11'  => 'Sombra',
 'exif-lightsource-12'  => 'Iluminação fluorecente (D 5700 – 7100K)',
 'exif-lightsource-13'  => 'Iluminação fluorecente branca (N 4600 – 5400K)',
 'exif-lightsource-14'  => 'Iluminação fluorecente esbranquiçada (W 3900 – 4500K)',
@@ -2187,6 +2196,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-sensingmethod-5' => 'Sensor de área sequencial de cores',
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor linear sequencial de cores',
+
+'exif-scenetype-1' => 'Imagem fotografada directamente',
 
 'exif-customrendered-0' => 'Processo normal',
 'exif-customrendered-1' => 'Processo personalizado',
@@ -2229,10 +2240,19 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-gpslongitude-e' => 'Longitude Leste',
 'exif-gpslongitude-w' => 'Longitude Oeste',
 
+'exif-gpsstatus-a' => 'Medição em progresso',
+'exif-gpsstatus-v' => 'Interoperabilidade de medição',
+
+'exif-gpsmeasuremode-2' => 'Medição bidimensional',
+'exif-gpsmeasuremode-3' => 'Medição tridimensional',
+
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Direcção real',
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',
@@ -2386,6 +2406,7 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'version-parser-extensiontags'  => 'Etiquetas de extensões de tipo "parser"',
 'version-parser-function-hooks' => 'Funções "hooks" de "parser"',
 'version-hook-name'             => 'Nome do hook',
+'version-hook-subscribedby'     => 'Subscrito por',
 'version-version'               => 'Versão',
 
 # Special:Filepath

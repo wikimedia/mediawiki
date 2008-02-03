@@ -171,7 +171,7 @@ $messages = array(
 'category-media-header' => "Cyfryngau yn y categori '$1'",
 'category-empty'        => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 
-'mainpagetext'      => "<big>'''Llwyddwyd i osod meddalwedd Mediawiki yma'''</big>",
+'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd Mediawiki yma'''</big>",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
 
 ==Cychwyn arni==
@@ -191,7 +191,7 @@ $messages = array(
 'qbpageinfo'     => 'Gwybodaeth tudalen',
 'qbmyoptions'    => 'Fy dewysiadau',
 'qbspecialpages' => 'Tudalennau arbennig',
-'moredotdotdot'  => 'Mwy...',
+'moredotdotdot'  => 'Rhagor...',
 'mypage'         => 'Fy nhudalen',
 'mytalk'         => 'Sgwrs fi',
 'anontalk'       => 'Sgwrs ar gyfer y cyfeiriad IP hwn',
@@ -339,9 +339,12 @@ Mae'r gweinyddwr wedi dweud yr achos cloi'r databas oedd:
 
 
 $1",
-'missingarticle'       => 'Dydi\'r databas ddim wedi dod o hyd i testun tudalen ddyler hi ffindio, sef "$1".
-Dydi hwn ddim yn gwall y databas, ond debyg byg yn y meddalwedd.
-Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi\'r URL.',
+'missingarticle'       => 'Dylai\'r databas fod wedi dod o hyd i destun yr erthygl "$1", ond mae wedi methu.
+
+Fel arfer, fe ddigwydd hyn pan yn dilyn trywydd hen gyswllt gwahaniaeth neu hanes sy\'n arwain at dudalen sydd wedi ei dileu.
+
+Os nad hyn sydd ar fai, gallasech fod wedi darganfod nam ar y meddalwedd.
+Adroddwch y broblem i weinyddwr os gwelwch yn dda, gan roi\'r cyfeiriad gwe (URL).',
 'readonly_lag'         => "Mae'r databas wedi'i gloi'n awtomatig tra bod y gwas-weinyddion yn unionu gyda'r prif weinydd",
 'internalerror'        => 'Gwall mewnol',
 'internalerror_info'   => 'Gwall mewnol: $1',
@@ -460,7 +463,7 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'extlink_tip'     => 'Cyswllt allanol (cofiwch y rhagddodiad http:// )',
 'headline_sample' => 'Testun pennawd',
 'headline_tip'    => 'Pennawd lefel 2',
-'math_sample'     => 'Mewnosodwch fformwla yma',
+'math_sample'     => 'Gosodwch fformwla yma',
 'math_tip'        => 'Fformwla mathemategol (LaTeX)',
 'nowiki_sample'   => 'Mewnosodwch testun di-fformatedig yma',
 'nowiki_tip'      => 'Anwybyddwch fformatiaeth wiki',
@@ -481,6 +484,8 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'showpreview'             => 'Gweler blaenwelediad',
 'showdiff'                => 'Dangos newidiadau',
 'anoneditwarning'         => "'''Dalier sylw''': Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu'r dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy greu cyfrif (a mewngofnodi) cyn golygu.",
+'missingcommenttext'      => 'Rhowch eich sylwadau isod.',
+'missingcommentheader'    => "'''Nodyn:''' Nid ydych wedi cynnig unrhywbeth yn y blwch 'Pwnc/Pennawd:'. Os y cliciwch 'Cadw'r dudalen' eto fe gedwir y golygiad heb bennawd.",
 'summary-preview'         => "Rhagolwg o'r crynodeb",
 'blockedtitle'            => "Mae'r defnyddiwr hwn wedi cael ei flocio",
 'blockedtext'             => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio gan $1.'''</big> 
@@ -609,6 +614,30 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 # Oversight log
 'oversightlog' => 'Lòg arolygiaeth',
 
+# History merging
+'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
+'mergehistory-header'              => "Pwrpas y dudalen hon yw cyfuno diwygiadau o hanes un dudalen gwreiddiol ar dudalen newydd.
+Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddifetha.
+
+'''Rhaid cadw diwygiad presennol y dudalen gwreiddiol o leiaf.'''",
+'mergehistory-box'                 => "Cyfuno'r diwygiadau o ddwy dudalen:",
+'mergehistory-from'                => 'Y dudalen wreiddiol:',
+'mergehistory-into'                => 'Y dudalen cyrchfan:',
+'mergehistory-list'                => 'Hanes diwygiadau y gellir eu cyfuno',
+'mergehistory-merge'               => "Gellir cyfuno'r diwygiadau canlynol o [[:$1]] i'r dudalen [[:$2]]. Defnyddiwch y botymau radio i gyfuno dim ond y diwygiadau a grewyd hyd at yr amser penodedig. Sylwch y bydd y golofn botwm radio yn cael ei hail-osod pan ddefnyddir y cysylltau llywio.",
+'mergehistory-go'                  => 'Dangos y golygiadau y gellir eu cyfuno',
+'mergehistory-submit'              => 'Cyfuner y diwygiadau',
+'mergehistory-success'             => "Cyfunwyd $3 {{PLURAL:$3|diwygiad|diwygiad}} o [[:$1]] yn llwyddiannus i'r dudalen [[:$2]].",
+'mergehistory-fail'                => "Methodd y cyfuno hanes; a wnewch wirio paramedrau'r dudalen a'r amser unwaith eto.",
+'mergehistory-no-source'           => "Nid yw'r dudalen gwreiddiol $1 yn bod.",
+'mergehistory-no-destination'      => "Nid yw'r dudalen cyrchfan $1 yn bod.",
+'mergehistory-invalid-source'      => 'Rhaid bod teitl dilys gan y dudalen gwreiddiol.',
+'mergehistory-invalid-destination' => 'Rhaid bod teitl dilys gan y dudalen cyrchfan.',
+
+# Merge log
+'mergelog'         => 'Lòg cyfuno',
+'mergelogpagetext' => "Fi ddilyn rhestr o'r achosion diweddaraf o hanes tudalen yn cael ei gyfuno a hanes tudalen arall.",
+
 # Diffs
 'history-title' => "Hanes golygu '$1'",
 'difference'    => '(Gwahaniaethau rhwng diwygiadau)',
@@ -658,15 +687,15 @@ i setio ffafraethau defnyddwr.',
 'dateformat'              => 'Fformat dyddiad',
 'datedefault'             => 'Dim dewisiad',
 'datetime'                => 'Dyddiad ac amser',
-'math_failure'            => 'wedi methu dosbarthu',
+'math_failure'            => 'Wedi methu dosrannu',
 'math_unknown_error'      => 'gwall anhysbys',
 'math_unknown_function'   => 'ffwythiant anhysbys',
 'math_lexing_error'       => 'gwall lecsio',
 'math_syntax_error'       => 'gwall cystrawen',
-'math_image_error'        => "Trosiad PNG wedi methu; gwiriwch fod latex, dvips, gs a convert wedi'u sefydlu'n gywir",
-'math_bad_tmpdir'         => 'Yn methu ysgrifennu i, neu greu, cyfeiriadur dros-dro mathemateg',
-'math_bad_output'         => 'Yn methu ysgrifennu i, neu greu, cyfeiriadur allbwn mathemateg',
-'math_notexvc'            => 'Rhaglen texvc ar goll; gwelwch math/README er mwyn ei sefydlu.',
+'math_image_error'        => "Trosiad PNG wedi methu; gwiriwch fod latex, dvips, a gs wedi'u sefydlu'n gywir cyn trosi.",
+'math_bad_tmpdir'         => 'Yn methu creu cyfeiriadur mathemateg dros dro, nac ysgrifennu iddo',
+'math_bad_output'         => 'Yn methu creu cyfeiriadur allbwn mathemateg nac ysgrifennu iddo',
+'math_notexvc'            => 'Rhaglen texvc yn eisiau; gwelwch math/README er mwyn ei chyflunio.',
 'prefs-personal'          => 'Data defnyddiwr',
 'prefs-rc'                => 'Newidiadau diweddar',
 'prefs-watchlist'         => 'Rhestr gwylio',
@@ -779,6 +808,7 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
 'uploadedfiles'               => 'Ffeiliau wedi llwytho i fynu',
 'ignorewarning'               => "Anwybydder y rhybudd, a rhoi'r dudalen ar gadw beth bynnag.",
 'ignorewarnings'              => 'Anwybydder pob rhybudd',
+'minlength1'                  => 'Rhaid i enwau ffeiliau gynnwys un llythyren neu ragor.',
 'illegalfilename'             => 'Mae\'r enw ffeil "$1" yn cynnwys nodau sydd wedi\'u gwahardd mewn teitlau tudalennau. Ail-enwch y ffeil ac uwchlwythwch hi eto os gwelwch yn dda.',
 'badfilename'                 => 'Mae enw\'r ffeil wedi\'i newid i "$1".',
 'filetype-badmime'            => "Ni chaniateir uwchlwytho ffeiliau o'r math MIME '$1'.",
@@ -1148,6 +1178,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'protectlogpage'              => 'Log_amdiffyno',
 'protectlogtext'              => 'Isod mae rhestr o bob gweithred diogelu, a dad-ddiogelu, tudalennau.',
 'protectedarticle'            => 'wedi amddiffyno [[$1]]',
+'modifiedarticleprotection'   => 'newidiwyd y lefel diogelu ar gyfer "[[$1]]"',
 'unprotectedarticle'          => 'wedi di-amddiffyno [[$1]]',
 'protectsub'                  => '(Yn diogelu "$1")',
 'confirmprotect'              => "Cadarnháu'r diogelu",
@@ -1159,6 +1190,8 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'protect-level-autoconfirmed' => 'Blocio defnyddwyr heb gyfrif',
 'protect-level-sysop'         => 'Gweinyddwyr yn unig',
 'restriction-type'            => 'Caniatâd:',
+'minimum-size'                => 'Maint lleiaf',
+'maximum-size'                => 'Maint mwyaf',
 
 # Undelete
 'undelete'               => 'Gwrthdroi tudalen wedi dileuo',
@@ -1197,6 +1230,8 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'nocontribs'    => 'Dim wedi dod o hyd i newidiadau gyda criterion hyn.',
 'ucnote'        => 'Isod mae y <b>$1</b> newidiadau yn y <b>$2</b> dyddiau olaf am defnyddwr hwn.',
 'uclinks'       => 'Gwelwch y $1 newidiadau olaf; gwelwch y $2 dyddiau olaf.',
+'month'         => 'Cyfraniadau hyd at fis:',
+'year'          => 'Cyfraniadau hyd at y flwyddyn:',
 
 'sp-contributions-newbies'  => 'Dangos cyfraniadau gan gyfrifon newydd yn unig',
 'sp-contributions-search'   => 'Chwilio am gyfraniadau',
@@ -1374,7 +1409,7 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 
 # Thumbnails
 'thumbnail-more'  => 'Helaethwch',
-'missingimage'    => '<b>Delwedd ar goll</b><br /><i>$1</i>',
+'missingimage'    => '<b>Delwedd yn eisiau</b><br /><i>$1</i>',
 'filemissing'     => 'Ffeil yn eisiau',
 'djvu_page_error' => 'Y dudalen DjVu allan o amrediad',
 'djvu_no_xml'     => 'Ddim yn gallu mofyn XML ar gyfer ffeil DjVu',
@@ -1477,7 +1512,7 @@ $1",
 'nextdiff'     => "Cymharer â'r fersiwn dilynol →",
 
 # Media information
-'mediawarning'   => "'''Rhybudd''': Gall y ffeil hon gynnwys côd maleisus; felly bydd eich cyfrifiadur o bosib yn cael ei danseilio wrth lwytho'r ffeil.
+'mediawarning'   => "'''Rhybudd''': Gallasai'r ffeil hon gynnwys côd maleisus; os ydyw mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth lwytho'r ffeil.
 <hr />",
 'imagemaxsize'   => 'Tocio maint y delweddau ar y tudalennau disgrifiad i:',
 'thumbsize'      => 'Maint mân-lun :',
@@ -1506,7 +1541,7 @@ $1",
 'imagelistall'     => 'holl',
 'watchlistall2'    => 'holl',
 'namespacesall'    => 'pob un',
-'monthsall'        => 'holl',
+'monthsall'        => 'pob mis',
 
 # E-mail address confirmation
 'confirmemail'            => "Cadarnhau'r cyfeiriad e-bost",

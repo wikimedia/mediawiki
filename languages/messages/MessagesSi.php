@@ -9,6 +9,8 @@
 
 
 $messages = array(
+'skinpreview' => '(පෙරදසුන)',
+
 # Dates
 'sunday'    => 'ඉරිදා',
 'monday'    => 'සඳුදා',
@@ -17,6 +19,13 @@ $messages = array(
 'thursday'  => 'බ්‍රහස්පතින්දා',
 'friday'    => 'සිකුරාදා',
 'saturday'  => 'සෙනසුරාදා',
+'sun'       => 'ඉරිදා',
+'mon'       => 'සඳු',
+'tue'       => 'අඟ',
+'wed'       => 'බදා',
+'thu'       => 'බ්‍රහස්',
+'fri'       => 'සිකු',
+'sat'       => 'සෙන',
 'january'   => 'ජනවාරි',
 'february'  => 'පෙබරවාරි',
 'march'     => 'මාර්තු',
@@ -29,25 +38,48 @@ $messages = array(
 'october'   => 'ඔක්තෝබර්',
 'november'  => 'නොවැම්බර්',
 'december'  => 'දෙසැම්බර්',
-'may'       => 'මැය්',
+'jan'       => 'ජන',
+'feb'       => 'පෙබ',
+'mar'       => 'මාර්',
+'apr'       => 'අප්‍රේ',
+'may'       => 'මැයි',
+'jun'       => 'ජූනි',
+'jul'       => 'ජූලි',
+'aug'       => 'අගෝ',
+'sep'       => 'සැප්',
+'oct'       => 'ඔක්',
+'nov'       => 'නොවැ',
+'dec'       => 'දෙසැ',
 
-'cancel'     => 'අවලංගු කරන්න',
-'mytalk'     => 'මගේ සාකච්ඡා',
-'navigation' => 'හසුරවන්න',
-'and'        => 'සහ',
+'cancel'        => 'අවලංගු කරන්න',
+'qbbrowse'      => 'පිරික්සන්න',
+'qbedit'        => 'සකසන්න',
+'qbpageoptions' => 'මේ පිටුව',
+'qbmyoptions'   => 'මගේ පිටු',
+'moredotdotdot' => 'තවත්...',
+'mypage'        => 'මගේ පිටුව',
+'mytalk'        => 'මගේ සාකච්ඡා',
+'navigation'    => 'හසුරවන්න',
+'and'           => 'සහ',
 
 'help'             => 'උදව්',
 'search'           => 'සොයන්න',
 'searchbutton'     => 'සොයන්න',
 'go'               => 'යන්න',
 'searcharticle'    => 'යන්න',
+'history'          => 'පිටුවේ ඉතිහාසය',
 'history_short'    => 'ඉතිහාසය',
 'info_short'       => 'තොරතුරු',
 'printableversion' => 'මුද්‍රණ ආකෘතිය',
 'permalink'        => 'ස්ථාවර සබැඳුම',
 'edit'             => 'සංස්කරණය කරන්න',
 'delete'           => 'මකන්න',
+'deletethispage'   => 'මෙම පිටුව මකන්න',
 'protect'          => 'සුරකින්න',
+'protectthispage'  => 'මෙම පිටුව සුරකින්න',
+'newpage'          => 'නව පිටුව',
+'specialpage'      => 'විශේෂ පිටුව',
+'personaltools'    => 'පුද්ගලික මෙවලම්',
 'talk'             => 'සාකච්ඡා පිටුව',
 'toolbox'          => 'මෙවලම්',
 'otherlanguages'   => 'වෙනත් භාෂා වලින්',
@@ -59,14 +91,52 @@ $messages = array(
 'portal-url'    => 'Project:ප්‍රජා ද්වාරය',
 'sitesupport'   => 'පරිත්‍යාග',
 
-'toc' => 'පටුන',
+'ok'                  => 'හරි',
+'newmessagesdifflink' => 'අවසාන වෙනස',
+'toc'                 => 'පටුන',
+'showtoc'             => 'පෙන්වන්න',
+'hidetoc'             => 'සඟවන්න',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'ලිපිය',
-'nstab-category' => 'ප්‍රවර්ගය',
+'nstab-main'      => 'ලිපිය',
+'nstab-user'      => 'පරිශීලක පිටුව',
+'nstab-special'   => 'විශේෂ',
+'nstab-project'   => 'ව්‍යාපෘති පිටුව',
+'nstab-image'     => 'ගොනුව',
+'nstab-mediawiki' => 'Message',
+'nstab-help'      => 'උදව් පිටුව',
+'nstab-category'  => 'ප්‍රවර්ගය',
+
+# General errors
+'badtitle' => 'නුසුදුසු මාතෘකාවක්',
 
 # Login and logout pages
-'logout' => 'පිටවන්න',
+'yourname'           => 'පරිශීලක නාමය:',
+'yourpassword'       => 'මුරපදය:',
+'yourpasswordagain'  => 'මුරපදය නැවත ලියන්න:',
+'yourdomainname'     => 'ඔබගේ වසම:',
+'logout'             => 'පිටවන්න',
+'nologinlink'        => 'ගිණුමක් තනන්න',
+'createaccount'      => 'ගිණුමක් තනන්න',
+'yourrealname'       => 'සත්‍ය නාමය:',
+'yourlanguage'       => 'භාෂාව:',
+'yournick'           => 'විකල්ප නාමය:',
+'emailconfirmlink'   => 'ඔබගේ විද්‍යුත් තැපැල් ලිපිනය තහවුරු කරන්න',
+'loginlanguagelabel' => 'භාෂාව: $1',
+
+# Password reset dialog
+'resetpass_header' => 'මුරපදය යළි පිහිටුවන්න',
+
+# Edit page toolbar
+'link_tip' => 'අභ්‍යන්තර සබැඳිය',
+'math_tip' => 'ගණිත සුත්‍ර(LaTeX)',
+
+# Edit pages
+'summary'     => 'සාරාංශය',
+'minoredit'   => 'මෙය සුළු සංස්කරණයකි',
+'savearticle' => 'පිටුව සුරකින්න',
+'showpreview' => 'පෙරදසුන පෙන්වන්න',
+'showdiff'    => 'වෙනස්වීම් පෙන්වන්න',
 
 # Preferences page
 'mypreferences' => 'මගේ අභිරුචි',

@@ -1036,6 +1036,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'largefileserver'             => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'                   => 'Tiedosto, jota yritit lähettää, näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
 'fileexists'                  => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
+'filepageexists'              => 'Sivu (ei kuva) on jo olemassa tällä nimellä. Tarkista sivu <strong><tt>$1</tt></strong>, jos et ole varma että haluat muuttaa sitä.',
 'fileexists-extension'        => 'Tiedosto, jolla on samankaltainen nimi, on jo olemassa:<br />
 Tallennetun tiedoston nimi: <strong><tt>$1</tt></strong><br />
 Olemassa olevan tiedoston nimi: <strong><tt>$2</tt></strong><br />
@@ -1423,6 +1424,8 @@ Palaute ja lisäapu osoitteessa:
 ** Lisääjän poistopyyntö
 ** Tekijänoikeusrikkomus
 ** Roskaa',
+'delete-toobig'               => 'Tällä sivulla on pitkä muutoshistoria – yli $1 versiota. Näin suurien muutoshistorioiden poistamista on rajoitettu suorituskykysyistä.',
+'delete-warning-toobig'       => 'Tällä sivulla on pitkä muutoshistoria – yli $1 versiota. Näin suurien muutoshistorioiden poistaminen voi haitata sivuston suorituskykyä.',
 'rollback'                    => 'palauta aiempaan versioon',
 'rollback_short'              => 'Palautus',
 'rollbacklink'                => 'palauta',
@@ -1744,6 +1747,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-parse-failure'       => 'XML-tuonti epäonnistui jäsennysvirheen takia.',
 'import-noarticle'           => 'Ei tuotavaa sivua.',
 'import-nonewrevisions'      => 'Kaikki versiot on tuotu aiemmin.',
+'xml-error-string'           => '$1 rivillä $2, sarakkeessa $3 (tavu $4): $5',
 
 # Import log
 'importlogpage'                    => 'Tuontiloki',

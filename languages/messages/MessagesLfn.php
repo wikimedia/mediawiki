@@ -137,6 +137,7 @@ $messages = array(
 'mytalk'         => 'Me discutes',
 'anontalk'       => 'Discutes per esta IP',
 'navigation'     => 'Naviga',
+'and'            => 'e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -593,7 +594,7 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 Vide $2 per un catalogo de sutraes resente.',
 'deletedarticle'              => 'sutraeda "[[$1]]"',
 'dellogpage'                  => 'catalogo de sutraes',
-'deletecomment'               => 'Razona per sutrae',
+'deletecomment'               => 'Razona per esta sutrae:',
 'deleteotherreason'           => 'Otra/plu razona:',
 'deletereasonotherlist'       => 'Otra razona',
 'rollbacklink'                => 'retro',
@@ -761,7 +762,6 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'tooltip-watch'                   => 'Junta esta paje a tu lista de pajes oservada',
 
 # Attribution
-'and'    => 'e',
 'others' => 'otras',
 
 # Spam protection

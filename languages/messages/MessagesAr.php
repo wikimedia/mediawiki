@@ -1665,6 +1665,8 @@ $NEWPAGE
 'excontentauthor'             => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "المحتوى قبل الإفراغ كان: '$1'",
 'exblank'                     => 'الصفحة كانت فارغة',
+'delete-confirm'              => 'حذف "$1"',
+'delete-legend'               => 'حذف',
 'historywarning'              => 'تحذير: هذه الصفحة التي توشك على حذفها تحتوي على تغييرات سابقة:',
 'confirmdeletetext'           => 'أنت على وشك أن تقوم بحذف صفحة أو صورة بالإضافة إلى جميع التعديلات عليها بشكل دائم من قاعدة البيانات. الرجاء التأكد من عزمك على الحذف وبأنك مدرك لنتائج هذه العملية. عمليات الحذف يجب أن تتم بناء على [[{{MediaWiki:Policy-url}}|القواعد المتفق عليها]].',
 'actioncomplete'              => 'انتهاء العملية',
@@ -1675,7 +1677,7 @@ $NEWPAGE
 'dellogpagetext'              => 'بالأسفل قائمة بأحدث عمليات الحذف.',
 'deletionlog'                 => 'سجل الحذف',
 'reverted'                    => 'استرجع لنسخة أقدم',
-'deletecomment'               => 'سبب الحذف',
+'deletecomment'               => 'سبب الحذف:',
 'deleteotherreason'           => 'سبب آخر/إضافي:',
 'deletereasonotherlist'       => 'سبب آخر',
 'deletereason-dropdown'       => '*أسباب الحذف الشائعة
@@ -2695,6 +2697,10 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
+
+# Special:Version
+'version-specialpages' => 'صفحات خاصة',
+'version-version'      => 'إصدار',
 
 # Special:Filepath
 'filepath'         => 'مسار ملف',

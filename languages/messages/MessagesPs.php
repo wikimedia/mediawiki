@@ -350,6 +350,7 @@ $messages = array(
 'rev-delundel' => 'ښکاره کول/ پټول',
 
 # Diffs
+'lineno'                  => '$1 کرښه:',
 'compareselectedversions' => 'ټاکلې بڼې سره پرتله کول',
 
 # Search results
@@ -797,6 +798,7 @@ $messages = array(
 'tooltip-n-recentchanges'    => 'په ويکي کې د وروستي بدلونو لړليک.',
 'tooltip-n-randompage'       => 'يو ناټاکلی مخ ښکاره کوي',
 'tooltip-n-sitesupport'      => 'زموږ ملاتړ وکړی',
+'tooltip-t-whatlinkshere'    => 'د ويکي د ټولو هغو مخونو لړليک چې دلته تړنې لري',
 'tooltip-t-contributions'    => 'د همدې کارونکي د ونډو لړليک کتل',
 'tooltip-t-emailuser'        => 'همدې کارونکي ته يو برېښناليک لېږل',
 'tooltip-t-upload'           => 'انځورونه يا رسنيزې دوتنې پورته کول',
@@ -814,6 +816,10 @@ $messages = array(
 
 # Attribution
 'lastmodifiedatby' => 'دا مخ وروستی ځل د $3 لخوا په $2، $1 بدلون موندلی.', # $1 date, $2 time, $3 user
+
+# Spam protection
+'subcategorycount'     => 'په همدې وېشنيزه کې {{PLURAL:$1|يوازې يوه بله وړه-وېشنيزه ده|$1 نورې وړې-وېشنيزې دي}}.',
+'categoryarticlecount' => 'په همدې وېشنيزه کې  {{PLURAL:$1|يو مخ دی|$1 مخونه دي}}.',
 
 # Info page
 'infosubtitle' => 'د مخ مالومات',
