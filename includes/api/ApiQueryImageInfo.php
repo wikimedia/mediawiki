@@ -79,11 +79,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 					
 					// Now get the old revisions
-					if($params['limit'] > count($data)) {
-						$oldies = $img->getHistory($params['limit'] - count($data), $params['start'], $params['end']);
-						if(!empty($oldies))
-							foreach($oldies as $oldie)
-								$data[] = $this->getInfo($oldie);
+					// Get one more to facilitate query-continue functionality
+					$count = count($data);
+					$oldies = $img->getHistory($params['limit'] - count($data) + 1, $params['start'], $params['end']);
+					foreach($oldies as $oldie) {
+						if(++$count > $params['limit']) {
+							// We've reached the extra one which shows that there are additional pages to be had. Stop here...
+							$this->setContinueEnumParameter('start', $oldie->getTimestamp());
+							break;
+						}
+						$data[] = $this->getInfo($oldie);	
 					}
 				}
 
