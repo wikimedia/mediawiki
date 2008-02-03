@@ -241,7 +241,7 @@ ul {
 	background-color: #f0f0f0;
 	background: url(footer-grad.png) repeat-x 0 0;
 	padding: 10px 1em 1em 1em;
-
+	clear:both;
 	color: #444444;
 }
 
