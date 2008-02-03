@@ -489,6 +489,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added list=random which fetches a list of random pages
 * Added page parameter to action=parse to facilitate parsing of existing pages
 * Added uiprop=ratelimits to meta=userinfo
+* Added siprop=namespacealiases to meta=siteinfo
 
 === Languages updated in 1.12 ===
 
