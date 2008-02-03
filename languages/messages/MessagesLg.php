@@ -106,10 +106,12 @@ $messages = array(
 'aboutsite'      => 'Okutangaaza ku {{SITENAME}}',
 'aboutpage'      => 'Okutangaaza ku Project:',
 'copyright'      => 'Ebiri kuno bifugibwa $1.',
+'copyrightpage'  => "Ebikugizo eby'obwa nannyini ku {{ns:project}}",
 'currentevents'  => 'Ebibindabinda',
 'disclaimers'    => "Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka",
 'disclaimerpage' => "Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka Project:",
-'edithelp'       => 'Obuyambi mu kukyusa',
+'edithelp'       => 'Funa obuyambi',
+'edithelppage'   => "Obuyambi ku by'okukyusakyusa",
 'mainpage'       => 'Omuko Ogusooka',
 'portal'         => 'Embuga',
 'privacy'        => 'Enkola yaffe ku kukuuma ebikufako',
@@ -165,6 +167,22 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'acct_creation_throttle_hit' => 'Omaze okukolawo akawunti $1. Tokkirizibwa kwongera ndala.',
 'accountcreated'             => 'Akawunti ekoleddwa',
 'accountcreatedtext'         => "Akawunti ey'obwa memba eya $1 ekoleddwa.",
+
+# Edit page toolbar
+'bold_sample'    => "Ennukuta z'owandiika wano zonna ziba nziggumivu",
+'bold_tip'       => "Bw'onyiga kano, ofuna w'oyinza okuwandiikira ennukuta ezo ne zivaamu nga nziggumivu",
+'italic_sample'  => "Ennukuta z'owandiika wano zonna ziba za italiki",
+'italic_tip'     => "Bw'onyiga ku kano, ennukuta z'oddako okuwandiika ziba za italiki (ez'esurise). Okuddamu okufuna ennukuta eza bulijjo, ddamu okukanyiga ko.",
+'link_sample'    => 'Enyunzi yo eno egguke wa?',
+'link_tip'       => "Nyiga wano ob'oyagala okukolawo enyunzi egguka ku kifo ekiri ku wiki eno",
+'extlink_sample' => 'http://www.kyakulabirako.com linnya lya nyunzi',
+'extlink_tip'    => "Nyiga ku kano ob'oyagala okuteekawo enyunzi egguka ku kifo ekitali ku wiki eno. (genderera ne kutabulako ennukuta ezikulembedde, http:// )",
+'headline_tip'   => "Nyiga ku kano okuwandiika omutwe ogw'eddaala ery'okubiri",
+'math_sample'    => 'Wandiika wano fomula yo',
+'math_tip'       => "Bw'onyiga wano, ofuna w'osobolera okuwandiika fomula ey'okubala. Okugiwandiika, olina okukozesa empandiika ey'enkola ya LaTeX.",
+'image_tip'      => "Bw'onyiga ku kano, we wakomye okuwandiika wajjawo enyunzi eteekawo ekifaananyi",
+'media_tip'      => "Bw'onyiga ku kano, w'okomye okuwandiika wajjawo enyunzi gy'okozesa okugguka ku fayiro eya mediya (eya vidiyo oba maloboozi)",
+'hr_tip'         => "Bw'onyiga ku kano ofuna olusaze olwawula mu by'owandiika. (Gezaako butakozesa nyingi)",
 
 # Edit pages
 'summary'          => "Wandika wano ebinyonyola enkyukakyuka z'okoze",
@@ -227,6 +245,7 @@ oba ku gano agali ku lupapula luno.<br />
 'recentchanges'     => 'Ebyakakyuusibwa',
 'recentchangestext' => "Goberera enkyuukakyuuka empya ez'oku muko guno",
 'rcnote'            => "{{PLURAL:$1|Enkyukakyuka '''1''' yakakolebwa|Zino z'enkyukakyuka '''$1''' ezaakakolebwa}} mu {{PLURAL:$2|lunaku olwakayita|naku '''$2''' ezaakayita}} okuva ku $3.",
+'rclinks'           => 'Ndaga enkyukakyuka $1 ezikoledwa mu nnaku $2 ezaakayita<br />$3',
 'diff'              => 'enjawulo',
 'hist'              => 'ennanda',
 'hide'              => 'Bino bikise',
@@ -243,7 +262,7 @@ oba ku gano agali ku lupapula luno.<br />
 'imagelist_user' => 'Memba',
 
 # Random page
-'randompage' => 'Londa omuko muwawa',
+'randompage' => 'Nondera omuko muwawa',
 
 # Miscellaneous special pages
 'nbytes'            => '{{PLURAL:$1|bayiti|bayiti}} $1',
@@ -341,6 +360,9 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-t-whatlinkshere' => "Luno lukalala olw'emiko egy'oku wiki gyonna egirimu enyunzi ezikuggusa ku guno",
 'tooltip-t-upload'        => "Bako fayiro ez'ebifaananyi, vidiyo oba malaboozi z'oteeka ku Wiki eno",
 'tooltip-t-specialpages'  => "Nyiga wano okulaba olukalala olw'emiko emyawule gyonna",
+'tooltip-save'            => "Kaza enkyukakyuka z'okoze",
+'tooltip-preview'         => "Nyiga wano okulaba enkyukakyuka zo bwe zinaalabika. Kirungi okukola kino nga tonnakaza by'okoze - kikuyamba kukwata nsobi!",
+'tooltip-diff'            => "Nyiga wano okulaba by'okoze bwe byawukana n'ebisangidwawo",
 
 # Attribution
 'siteuser'  => '{{SITENAME}} memba $1',

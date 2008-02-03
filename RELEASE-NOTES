@@ -635,6 +635,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Northern Sotho (nso) (new)
 * Occitan (oc)
 * Pangasinan (pag) (new)
+* Pampanga (pam) (new)
 * Papiamento (pap) (new)
 * Deitsch (pdc) (new)
 * Polish (pl)
@@ -659,6 +660,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Southern Sami (sma) (new)
 * Serbian (Cyrillic) (sr-ec)
 * Swati (ss) (new)
+* Southern Sotho (st) (new)
 * Saterland Frisian (stq) (new)
 * Sundanese (su)
 * Swedish (sv)
@@ -692,6 +694,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Chinese (Simplified) (zh-hans)
 * Chinese (Traditional) (zh-hant)
 * Chinese (Taiwan) (zh-tw)
+* Zulu (zu) (new)
 
 == Compatibility ==
 

@@ -844,7 +844,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'bysize'                    => 'li gor mezinayiyê',
 'imgdelete'                 => 'jêb',
 'filehist'                  => 'Dîroka datayê',
-'filehist-help'             => 'Li demekê xwe, manê tu kanibê verzîyona data di wê demê da bibînê.',
+'filehist-help'             => 'Li demekê xe ji bo dîtina verzyona wê demê',
 'filehist-deleteall'        => 'giştika jêbibe',
 'filehist-deleteone'        => 'vî jêbibe',
 'filehist-revert'           => 'şonda bibe',

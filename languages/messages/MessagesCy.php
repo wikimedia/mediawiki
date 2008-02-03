@@ -193,7 +193,7 @@ $messages = array(
 'qbspecialpages' => 'Tudalennau arbennig',
 'moredotdotdot'  => 'Rhagor...',
 'mypage'         => 'Fy nhudalen',
-'mytalk'         => 'Sgwrs fi',
+'mytalk'         => 'Fy sgwrs',
 'anontalk'       => 'Sgwrs ar gyfer y cyfeiriad IP hwn',
 'navigation'     => 'Panel llywio',
 'and'            => 'a/ac',
@@ -372,6 +372,7 @@ Adroddwch y broblem i weinyddwr os gwelwch yn dda, gan roi\'r cyfeiriad gwe (URL
 'sqlhidden'            => '(cuddiwyd chwiliad SQL)',
 'cascadeprotected'     => "Gwarchodwyd y dudalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen|tudalennau}} canlynol, a {{PLURAL:$1|honno yn ei thro wedi ei|rheiny yn eu tro wedi  eu}} gwarchod, a'r dewisiad 'sgydol' ynghynn:
 $2",
+'namespaceprotected'   => "Nid oes caniatâd gennych i olygu tudalennau yn y parth '''$1'''.",
 'customcssjsprotected' => "Nid oes caniatad ganddoch i olygu'r dudalen hon oherwydd bod gosodiadau personol defnyddiwr arall arno.",
 
 # Login and logout pages
@@ -964,7 +965,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'fewestrevisions' => "Erthyglau â'r nifer lleiaf o olygiadau iddynt",
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 bytes',
+'nbytes'                  => '$1 beit',
 'ncategories'             => '$1 categori',
 'nlinks'                  => '$1 cysylltiadau',
 'nmembers'                => '$1 {{PLURAL:$1|aelod|aelod}}',
@@ -980,11 +981,12 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'popularpages'            => 'Erthyglau poblogol',
 'wantedcategories'        => 'Categorïau sydd eu hangen',
 'wantedpages'             => 'Erthyglau mewn eisiau',
-'mostlinked'              => "Tudalennau gyda'r nifer mwyaf o gysylltiadau iddynt",
-'mostlinkedcategories'    => "Categorïau gyda'r nifer mwyaf o gysylltiadau iddynt",
-'mostcategories'          => "Erthyglau gyda'r nifer mwyaf o gategorïau",
-'mostimages'              => "Delweddau gyda'r nifer mwyaf o gysylltiadau iddynt",
-'mostrevisions'           => "Erthyglau gyda'r nifer mwyaf o ddiwygiadau",
+'mostlinked'              => 'Tudalennau yn nhrefn nifer y cysylltiadau iddynt',
+'mostlinkedcategories'    => 'Categorïau yn nhrefn nifer eu haelodau',
+'mostlinkedtemplates'     => 'Nodiadau yn nhrefn nifer y cysylltiadau iddynt',
+'mostcategories'          => 'Erthyglau yn nhrefn nifer eu categorïau',
+'mostimages'              => 'Delweddau yn nhrefn nifer y cysylltiadau iddynt',
+'mostrevisions'           => 'Tudalennau yn nhrefn nifer golygiadau',
 'allpages'                => 'Pob tudalen',
 'prefixindex'             => 'Mynegai rhagddodiad',
 'shortpages'              => 'Erthyglau byr',
@@ -1000,7 +1002,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'ancientpages'            => 'Erthyglau hynaf',
 'intl'                    => 'Cysylltiadau rhyngieithol',
 'move'                    => 'Symud',
-'movethispage'            => 'Symydwch tudalen hon',
+'movethispage'            => 'Symud y dudalen hon',
 'unusedimagestext'        => "Sylwch mae gwefannau eraill, e.e. y {{SITENAME}}u Rhwngwladol, yn medru cysylltu at llun gyda URL uniongychol, felly mae'n bosibl dangos enw ffeil yma er gwaethaf mae hi'n dal mewn iws.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
 'notargettitle'           => 'Dim targed',
@@ -1340,38 +1342,41 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 
 # Move page
 'movepage'                => 'Symud tudalen',
-'movepagetext'            => "Fydd defnyddio'r ffurflen isod yn ail-enwi tudalen, symud eu hanes gyfan i'r enw newydd.
-Fydd yr hen teitl yn dod tudalen ail-cyfeiriad i'r teitl newydd.
-Ni fydd cysylltiadau i'r hen teitl yn newid; mae rhaid i chi gwirio mae cysylltau'n dal yn mynd i'r lle mae angen iddyn nhw mynd!
+'movepagetext'            => "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.
+Bydd yr hen deitl yn troi'n dudalen ail-gyfeirio i'r teitl newydd. 
+Ni fydd cysylltiadau i'r hen deitl yn newid; rhaid cywiro ail-gyfeiriadau dwbl ac ail-gyfeiriadau tor eich hunan.
+Eich cyfrifoldeb chi yw sicrhau bod cysylltiadau wici'n dal i arwain at y man iawn!
 
-Sylwch fydd y tudalen '''ddim''' yn symud os mae 'ne tudalen efo'r enw newydd yn barod ar y databas (sef os mae hi'n gwâg neu yn ail-cyfeiriad heb unrhyw hanes golygu). Mae'n posibl i chi ail-enwi tudalen yn ôl i lle oedd hi os ydych chi wedi gwneud camgymeriad, ac mae'n amhosibl i ysgrifennu dros tudalen sydd barod yn bodoli.
+Sylwch '''na fydd''' y dudalen yn symud os oes yna dudalen o'r enw newydd yn bodoli'n barod ar y databas (heblaw ei bod hi'n wag neu'n ail-gyfeiriad heb unrhyw hanes golygu). Felly, os y gwnewch gamgymeriad wrth ail-enwi tudalen dylai fod yn bosibl ei hail-enwi eto ar unwaith wrth yr enw gwreiddiol. Hefyd, mae'n amhosibl ysgrifennu dros ben tudalen sydd yn bodoli'n barod.
 
-<b>RHYBUDD!</b>
-Ellith hwn bod newid sydyn a llym i tudalen poblogol; byddwch yn siwr rydych chi'n deallt y canlyniadau cyn iddich chi mynd ymlaen gyda hwn.",
-'movepagetalktext'        => "Fydd y tudalen sgwrs , os oes ne un, yn symud gyda tudalen hon '''ac eithrio:'''
-*rydych yn symud y tudalen wrth llefydd-enw,
-*mae tudalen sgwrs di-wâg yn barod efo'r enw newydd, neu
-*rydych chi'n di-ticio'r blwch isod.",
-'movearticle'             => 'Symud tudalen',
-'movenologin'             => 'Nid wedi mewngofnodi',
-'movenologintext'         => 'Rhaid i chi bod defnyddwr cofrestredig ac wedi [[Special:Userlogin|mewngofnodi]]
-to move a page.',
-'newtitle'                => 'i teitl newydd',
+<b>DALIER SYLW!</b>
+Gall hwn fod yn newid sydyn a llym i dudalen boblogaidd; byddwch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
+'movepagetalktext'        => "Bydd y dudalen sgwrs yn symud gyda'r dudalen hon '''onibai:'''
+*bod tudalen sgwrs wrth yr enw newydd yn bodoli'n barod
+*bod y blwch isod heb ei farcio.
+
+Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei hun.",
+'movearticle'             => 'Symud y dudalen:',
+'movenologin'             => 'Heb fewngofnodi',
+'movenologintext'         => "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:Userlogin|mewngofnodi]] cyn medru symud tudalen.",
+'movenotallowed'          => 'Nid oes caniatâd gennych i symud tudalennau ar {{SITENAME}}.',
+'newtitle'                => "I'r teitl newydd:",
 'move-watch'              => 'Gwylier y dudalen hon',
 'movepagebtn'             => 'Symud tudalen',
 'pagemovedsub'            => 'Symud yn llwyddiannus',
+'movepage-moved'          => '<big>\'\'\'Symudwyd "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
 Dewiswch enw arall os gwelwch yn dda.",
 'talkexists'              => "Mae'r tudalen wedi symud yn llwyddiannus, ond roedd hi'n amhosibl symud y tudalen sgwrs am achos roedd ne un efo'r teitl newydd yn bodoli'n barod. Cysylltwch nhw eich hun, os gwelwch yn dda.",
 'movedto'                 => 'symud i',
-'movetalk'                => 'Symud tudalen "sgwrs" hefyd, os oes un.',
+'movetalk'                => 'Symud y dudalen sgwrs hefyd',
 'talkpagemoved'           => "Mae'r tudalen sgwrs hefyd wedi symud.",
 'talkpagenotmoved'        => "Dydy'r tudalen sgwrs <strong>ddim</strong> wedi symud.",
 '1movedto2'               => 'Wedi symud [[$1]] i [[$2]]',
 '1movedto2_redir'         => 'Wedi symud [[$1]] i [[$2]] trwy ailgyfeiriad.',
-'movelogpage'             => 'Log symudiadau',
-'movelogpagetext'         => "Isod mae'r restr o dudalennau sydd wedi'u symud",
-'movereason'              => 'Rheswm',
+'movelogpage'             => 'Lòg symud tudalennau',
+'movelogpagetext'         => "Isod mae rhestr y tudalennau sydd wedi'u symud",
+'movereason'              => 'Rheswm:',
 'revertmove'              => 'symud nôl',
 'delete_and_move'         => 'Dileu a symud',
 'delete_and_move_text'    => "==Angen dileu==
@@ -1484,12 +1489,12 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 'numtalkauthors' => 'Nifer o awduron yr erthygl (tudalen sgwrs): $1',
 
 # Math options
-'mw_math_png'    => 'Rendrwch PNG o hyd',
+'mw_math_png'    => 'Arddangos symbolau mathemateg fel delwedd PNG bob amser',
 'mw_math_simple' => 'HTML os yn syml iawn, PNG fel arall',
-'mw_math_html'   => 'HTML os bosibl, PNG fel arall',
-'mw_math_source' => 'Gadewch fel TeX (am porwyr testun)',
-'mw_math_modern' => 'Cymeradwedig am porwyr modern',
-'mw_math_mathml' => 'MathML',
+'mw_math_html'   => 'HTML os yn bosib, PNG fel arall',
+'mw_math_source' => 'Gadewch fel côd TeX (ar gyfer porwyr testun)',
+'mw_math_modern' => 'Argymelledig ar gyfer porwyr modern',
+'mw_math_mathml' => 'MathML os yn bosib (arbrofol)',
 
 # Patrolling
 'rcpatroldisabled'                    => "Patrol Newidiadau Diweddar wedi'i analluogi",
