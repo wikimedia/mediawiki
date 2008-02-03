@@ -24,6 +24,9 @@ class ImagePage extends Article {
 		$this->img = wfFindFile( $this->mTitle, $time );
 		if ( !$this->img ) {
 			$this->img = wfLocalFile( $this->mTitle );
+			$this->current = $this->img;
+		} else {
+			$this->current = $time ? wfLocalFile( $this->mTitle ) : $this->img;
 		}
 		$this->repo = $this->img->repo;
 	}
@@ -412,8 +415,8 @@ EOT
 		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
-			$list = new ImageHistoryList( $sk, $this->img );
-			$file = $this->img;
+			$list = new ImageHistoryList( $sk, $this->current );
+			$file = $this->current;
 			$dims = $file->getDimensionsString();
 			$s = $list->beginImageHistoryList() .
 				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $file->getTimestamp()),
