@@ -23,7 +23,7 @@ class ImagePage extends Article {
 		parent::__construct( $title );
 		$this->img = wfFindFile( $this->mTitle, $time );
 		if ( !$this->img ) {
-			$this->img = wfLocalFile( $this->mTitle, $time );
+			$this->img = wfLocalFile( $this->mTitle );
 		}
 		$this->repo = $this->img->repo;
 	}
