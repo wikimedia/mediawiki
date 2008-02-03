@@ -1060,3 +1060,18 @@ dl {
 #p-cactions li.new a {
 	color: #cc2200;
 }
+
+pre {
+	border: solid 1px #3c78b5;
+	padding: 0.4em;
+	background-color: #f0f0f0;
+}
+
+.usermessage {
+        color: black;
+        font-weight: bold;
+        margin: -1em -1em 0 -1em;
+        padding: 0 1em 1em 1em;
+        vertical-align: middle;
+        background: #f0f0f0 url(footer-grad.png) repeat-x bottom left;
+}
