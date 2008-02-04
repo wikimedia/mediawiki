@@ -153,6 +153,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and reject interwiki prefixes. PrefixSearch class centralizes this code,
   and the backend part can be overridden by the PrefixSearchBackend hook.
 * (bug 10365) Localization of Special:Version
+* When installing using Postgres, the Pl/Pgsql language is now checked for 
+  and installed when at the superuser level.
 
 === Bug fixes in 1.12 ===
 
@@ -355,6 +357,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The comment of a time-limited protection now contains the date in the default format
 * (bug 12880) wfLoadExtensionMessages does not use $fallback from MessagesXx.php
 * (bug 12885) Correction for Russian convertPlural function
+* (bug 12768) Make DatabasePostgres->hasContraint() schema aware.
 
 == Parser changes in 1.12 ==
 
