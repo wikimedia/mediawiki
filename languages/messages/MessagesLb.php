@@ -1050,9 +1050,10 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'listredirects' => 'Lëscht vun de Viruleedungen',
 
 # Unused templates
-'unusedtemplates'     => 'Onbenotzte Schablounen',
-'unusedtemplatestext' => "Op dëser Säit stinn all d'Schablounen, déi a kenger anerer Säit benotzt ginn. Vergiesst net nozekucken, ob et keng aner Linken op dës Schabloune gëtt.",
-'unusedtemplateswlh'  => 'Aner Linken',
+'unusedtemplates'         => 'Onbenotzte Schablounen',
+'unusedtemplates-summary' => 'Op dëser Säit stinn all déi Schablounen, déi net op anere Säite benotzt ginn. Iwwerpréift aner Linken op déi Schablounen, ier Dir se läscht.',
+'unusedtemplatestext'     => "Op dëser Säit stinn all d'Schablounen, déi a kenger anerer Säit benotzt ginn. Vergiesst net nozekucken, ob et keng aner Linken op dës Schabloune gëtt.",
+'unusedtemplateswlh'      => 'Aner Linken',
 
 # Random page
 'randompage'         => 'Zoufallssäit',
@@ -1081,18 +1082,20 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'userstatstext'          => "'''$1''' [[Special:Listusers|Benotzer]] {{PLURAL:$1|ass|sinn}} ageschriwwen.  '''$2''' (oder '''$4%''') vun dëse {{PLURAL:$2|ass|sinn}} $5.",
 'statistics-mostpopular' => 'Am meeschte gekuckte Säiten',
 
-'disambiguations'     => 'Homonymie Säiten',
-'disambiguationspage' => 'Schabloun:Homonymie',
+'disambiguations'         => 'Homonymie Säiten',
+'disambiguations-summary' => 'Homonymiesresumé',
+'disambiguationspage'     => 'Schabloun:Homonymie',
 
 'doubleredirects'         => 'Duebel Viruleedungen',
 'doubleredirects-summary' => 'Op dëser Lëscht stinn déi Viruleedungen, déi op aner Viruleedungen linken.',
 'doubleredirectstext'     => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vun der éischter Viruleedung gëtt.<br /> 
 An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt Zeil vum Text vun der zweeter Viruleedung, wou normalerweis déi "richteg" Zilsäit drasteet, op déi déi éischt Viruleedung hilinke soll.',
 
-'brokenredirects'        => 'Futtis Viruleedungen',
-'brokenredirectstext'    => 'Viruleedungen op Säiten déi et net gëtt',
-'brokenredirects-edit'   => '(änneren)',
-'brokenredirects-delete' => '(läschen)',
+'brokenredirects'         => 'Futtis Viruleedungen',
+'brokenredirects-summary' => "Op dëser Spezialsäit stinn d'Viruleedungen op Säiten, déi et net ginn.",
+'brokenredirectstext'     => 'Viruleedungen op Säiten déi et net gëtt',
+'brokenredirects-edit'    => '(änneren)',
+'brokenredirects-delete'  => '(läschen)',
 
 'withoutinterwiki'        => 'Säiten ouni Interwiki-Linken',
 'withoutinterwiki-header' => 'Dës Säiten hu keng Interwiki-Linken:',
@@ -1138,6 +1141,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'deadendpages'                => 'Sakgaasse-Säiten',
 'deadendpagestext'            => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
 'protectedpages'              => 'Protegéiert Säiten',
+'protectedpages-summary'      => 'Op dëser Spezialsäit stinn all déi Säiten déi esou protegéiert sinn, datt se net vun alle Benotzer geréckelt oder geännert kënne ginn.',
 'protectedpagestext'          => 'Dës Säite si gespaart esou datt si weder geännert nach geréckelt kënne ginn',
 'protectedpagesempty'         => 'Elo si keng Säite mat dëse Parameteren protegéiert.',
 'protectedtitles'             => 'Gespaarten Titel',
@@ -1925,6 +1929,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '← virëscht Säit',
 'imgmultipagenext' => 'nächst Säit →',
+'imgmultigo'       => 'Lass',
 'imgmultigotopre'  => "Géi op d'Säit",
 
 # Table pager

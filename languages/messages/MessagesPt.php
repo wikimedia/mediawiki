@@ -547,7 +547,7 @@ Verifique o nome que introduziu, ou crie uma nova conta de utilizador.',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A palavra-chave introduzida está em branco. Por favor, tente novamente.',
-'passwordtooshort'           => 'A sua palavra-chave é demasiado curta. Deve ter no mínimo $1 caracteres.',
+'passwordtooshort'           => 'A sua palavra-chave é inválida ou demasiado curta. Deve de ter no mínimo $1 caracteres e ser diferente de seu nome de utilizador.',
 'mailmypassword'             => 'Enviar uma nova palavra-chave por correio electrónico',
 'passwordremindertitle'      => 'Lembrador de palavras-chave da {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova palavra-chave para {{SITENAME}} ($4).
@@ -564,7 +564,7 @@ de modo a confirmar que a conta é mesmo sua.',
 'throttled-mailpassword'     => 'Um lembrete de palavra-chave já foi enviado nas últimas
 $1 horas. Para prevenir abusos, apenas um lembrete poderá ser enviado a cada
 $1 horas.',
-'mailerror'                  => 'Erro a enviar o mail: $1',
+'mailerror'                  => 'Erro a enviar o email: $1',
 'acct_creation_throttle_hit' => 'Pedimos desculpa, mas já foram criadas $1 contas por si. Não lhe é possível criar mais nenhuma.',
 'emailauthenticated'         => 'O seu endereço de correio electrónico foi autenticado em $1.',
 'emailnotauthenticated'      => 'O seu endereço de correio electrónico ainda não foi autenticado. Não lhe será enviado nenhum correio sobre nenhuma das seguintes funcionalidades.',

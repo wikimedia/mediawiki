@@ -2320,9 +2320,12 @@ Tente a vista previa normal.',
 'unknown_extension_tag' => 'Etiqueta de extensión descoñecida "$1"',
 
 # Special:Version
-'version-extensions'   => 'Extensións instaladas',
-'version-specialpages' => 'Páxinas especiais',
-'version-variables'    => 'Variábeis',
+'version-extensions'        => 'Extensións instaladas',
+'version-specialpages'      => 'Páxinas especiais',
+'version-variables'         => 'Variábeis',
+'version-other'             => 'Outro',
+'version-hook-subscribedby' => 'Subscrito por',
+'version-version'           => 'Versión',
 
 # Special:Filepath
 'filepath'         => 'Ruta do arquivo',

@@ -154,7 +154,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinhar links',
-'tog-highlightbroken'         => 'Formata links quebrados <a href="" class="new"> como isto </a> (alternative: como isto<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">assim</a> (alternativa: assim<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder as edições menores nas mudanças recentes',
 'tog-extendwatchlist'         => 'Expandir a lista de páginas vigiadas para mostrar todas as alterações aplicáveis',
@@ -354,6 +354,8 @@ $messages = array(
 'disclaimerpage'    => 'Project:Aviso_geral',
 'edithelp'          => 'Ajuda de edição',
 'edithelppage'      => 'Help:Editar',
+'faq'               => 'FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Conteúdos',
 'mainpage'          => 'Página principal',
 'policy-url'        => 'Project:Políticas',
@@ -502,20 +504,29 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'nologinlink'           => 'Criar uma conta',
 'createaccount'         => 'Criar nova conta',
 'gotaccount'            => 'Já possui uma conta? $1.',
+'gotaccountlink'        => 'Entrar',
 'createaccountmail'     => 'por e-Mail',
 'badretype'             => 'As senhas que você digitou não são iguais.',
 'userexists'            => 'O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.',
 'youremail'             => 'Seu e-mail*',
+'username'              => 'Nome de usuário:',
+'uid'                   => 'Número de identificação:',
 'yourrealname'          => 'Nome real:',
+'yourlanguage'          => 'Idioma:',
 'yournick'              => 'Seu apelido (para assinaturas)',
+'email'                 => 'E-mail',
+'prefs-help-realname'   => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'            => 'Erro de autenticação',
 'noname'                => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle'     => 'Login bem sucedido',
 'loginsuccess'          => "'''Agora você está logado na {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'            => 'Não há nenhum usuário com o nome "$1".
 Verifique a grafia fornecida ou crie uma nova conta de usuário.',
+'nosuchusershort'       => 'Não há um usuário com o nome "$1". Verifique o nome fornecido.',
 'nouserspecified'       => 'É necessário especificar um nome de usuário.',
 'wrongpassword'         => 'A senha que você forneceu é inválida. Por favor, tente novamente.',
+'wrongpasswordempty'    => 'O campo de senha foi deixado em branco. Por favor, tente novamente.',
+'passwordtooshort'      => 'A sua senha é inválida ou curta demais. É necessário ter no mínimo $1 caracteres e de ser diferente de seu nome de usuário.',
 'mailmypassword'        => 'Envie uma nova senha por e-mail',
 'passwordremindertitle' => 'Lembrador de senhas da {{SITENAME}}',
 'passwordremindertext'  => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
@@ -525,6 +536,12 @@ Se foi outra pessoa quem fez este pedido, ou caso você já se tenha lembrado da
 'noemail'               => 'Não há um endereço de e-mail associado ao usuário "$1".',
 'passwordsent'          => 'Uma nova senha está sendo enviada para o endereço de e-mail registrado para "$1".
 Por favor, reconecte-se ao recebê-lo.',
+'eauthentsent'          => 'Uma mensagem de confirmação foi enviada para o endereço de e-mail fornecido.
+Antes de qualquer outro e-mail ser enviado para a sua conta, você precisará seguir as instruções da mensagem, de modo a confirmar que a conta é mesmo sua.',
+'mailerror'             => 'Erro ao enviar o e-mail: $1',
+'emailconfirmlink'      => 'Confirme o seu endereço de e-mail',
+'accountcreated'        => 'Conta criada',
+'loginlanguagelabel'    => 'Idioma: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',
@@ -571,12 +588,18 @@ Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]]
 Note que não poderá utilizar a funcionalidade "Contactar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[{{ns:special}}:Preferences|preferências de usuário]] e se tiver sido bloqueado de utilizar tal recurso.
 
 O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um desses (ou ambos) dados em quaisquer tentativas de esclarecimentos.',
+'blockednoreason'        => 'sem motivo especificado',
 'whitelistedittitle'     => 'Login necessário para edição',
 'whitelistedittext'      => 'Você precisa se [[Special:Userlogin|logar]] para editar artigos.',
 'whitelistreadtitle'     => 'Login necessário para leitura',
 'whitelistreadtext'      => 'Você precisa se [[Special:Userlogin|logar]] para ler artigos.',
 'whitelistacctitle'      => 'Você não está habilitado a criar uma conta',
 'whitelistacctext'       => 'Para ter permissão para se criar uma conta neste Wiki você precisará estar [[Especial:Userlogin|logado]] e ter as permissões apropriadas.',
+'nosuchsectiontitle'     => 'Seção inexistente',
+'nosuchsectiontext'      => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
+'loginreqtitle'          => 'Autenticação Requerida',
+'loginreqlink'           => 'autenticar-se',
+'loginreqpagetext'       => 'Você precisa $1 para poder visualizar outras páginas.',
 'accmailtitle'           => 'Senha enviada.',
 'accmailtext'            => "A senha de '$1' foi enviada para $2.",
 'newarticle'             => '(Nova)',
@@ -615,14 +638,30 @@ No momento não é possível salvar suas edições. Você pode copiar e colar o 
 'protectedpagewarning'   => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop podem editar esta página pois ela foi bloqueada.</strong>',
 'templatesused'          => 'Predefinições utilizadas nesta página:',
 'templatesusedpreview'   => 'Predefinições utilizadas nesta previsão:',
+'templatesusedsection'   => 'Predefinições utilizadas nesta seção:',
 'template-protected'     => '(protegida)',
 'template-semiprotected' => '(semi-protegida)',
+'nocreatetitle'          => 'A criação de páginas se encontra limitada',
 'nocreatetext'           => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Volte à tela anterior e edite uma página já existente, ou [[{{ns:special}}:Userlogin|autentique-se ou crie uma conta]].',
+'nocreate-loggedin'      => 'Você não possui permissões de criar novas páginas neste wiki.',
+'permissionserrors'      => 'Erros de permissões',
+'permissionserrorstext'  => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'recreate-deleted-warn'  => "'''Atenção: Você está re-criando uma página já eliminada em outra ocasião.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registro de eliminação desta página é exibido a seguir, para sua comodidade:",
+
+# "Undo" feature
+'undo-success' => 'A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.',
+'undo-failure' => 'A edição não pôde ser desfeita devido a alterações intermediárias conflitantes.',
+'undo-summary' => 'Desfeita a edição $1 de [[{{ns:special}}:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Não é possível criar uma conta',
+'cantcreateaccount-text' => "Este IP (<b>$1</b>) foi bloqueado de criar novas contas por [[User:$3|$3]].
+
+A justificativa apresentada por $3 foi ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Ver registros para esta página',
@@ -633,19 +672,34 @@ Por favor verifique a URL que você usou para acessar esta página.',
 'loadhist'            => 'Carregando histórico',
 'currentrev'          => 'Revisão atual',
 'revisionasof'        => 'Edição de $1',
+'revision-info'       => 'Edição feita às $1 por $2',
 'previousrevision'    => '← Versão anterior',
 'nextrevision'        => 'Versão posterior →',
 'currentrevisionlink' => 'ver versão atual',
 'cur'                 => 'atu',
 'next'                => 'prox',
 'last'                => 'ult',
+'orig'                => 'orig',
 'page_first'          => 'primeira',
 'page_last'           => 'última',
 'histlegend'          => 'Seleção para diferença: marque as caixas em uma das versões que deseja comparar e clique no botão.<br />
 Legenda: (atu) = diferenças da versão atual,
 (ult) = diferença da versão anterior, m = edição menor',
+'deletedrev'          => '[eliminada]',
 'histfirst'           => 'Mais antigas',
 'histlast'            => 'Mais recentes',
+'historyempty'        => '(vazio)',
+
+# Revision feed
+'history-feed-title' => 'Histórico de edições',
+
+# Revision deletion
+'rev-deleted-comment'     => '(comentário removido)',
+'rev-deleted-user'        => '(nome de usuário removido)',
+'rev-delundel'            => 'mostrar/ocultar',
+'revisiondelete'          => 'Eliminar/restaurar edições',
+'revdelete-nooldid-title' => 'Nenhuma edição foi selecionada',
+'revdelete-selected'      => "{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de '''[[:$1]]''':",
 
 # Diffs
 'history-title'           => 'Histórico de edições de "$1"',
@@ -771,28 +825,29 @@ Todas as datas mostradas são do servidor (UTC).',
 'uploadedimage'     => 'enviou "[[$1]]"',
 
 # Image list
-'imagelist'           => 'Lista de Imagens',
-'imagelisttext'       => 'A seguir uma lista de $1 imagens organizadas $2.',
-'getimagelist'        => 'buscando lista de imagens',
-'ilsubmit'            => 'Procura',
-'showlast'            => 'Mostrar as  $1 imagens organizadas $2.',
-'byname'              => 'por nome',
-'bydate'              => 'por data',
-'bysize'              => 'por tamanho',
-'filehist'            => 'Histórico do arquivo',
-'filehist-help'       => 'Clique em uma data/horário para ver o arquivo tal como ele se encontrava em tal momento.',
-'filehist-current'    => 'atual',
-'filehist-datetime'   => 'Data/Horário',
-'filehist-user'       => '{{ns:user}}',
-'filehist-dimensions' => 'Dimensões',
-'filehist-filesize'   => 'Tamanho do arquivo',
-'filehist-comment'    => 'Comentário',
-'imagelinks'          => 'Links',
-'linkstoimage'        => 'As seguintes páginas apontam para este arquivo:',
-'nolinkstoimage'      => 'Nenhuma página aponta para este arquivo.',
-'sharedupload'        => 'Este arquivo encontra-se partilhado, podendo ser utilizado por outros projetos.',
-'noimage'             => 'Não existe nenhum arquivo com este nome. Se desejar, pode $1',
-'noimage-linktext'    => 'carregá-lo',
+'imagelist'                 => 'Lista de Imagens',
+'imagelisttext'             => 'A seguir uma lista de $1 imagens organizadas $2.',
+'getimagelist'              => 'buscando lista de imagens',
+'ilsubmit'                  => 'Procura',
+'showlast'                  => 'Mostrar as  $1 imagens organizadas $2.',
+'byname'                    => 'por nome',
+'bydate'                    => 'por data',
+'bysize'                    => 'por tamanho',
+'filehist'                  => 'Histórico do arquivo',
+'filehist-help'             => 'Clique em uma data/horário para ver o arquivo tal como ele se encontrava em tal momento.',
+'filehist-current'          => 'atual',
+'filehist-datetime'         => 'Data/Horário',
+'filehist-user'             => '{{ns:user}}',
+'filehist-dimensions'       => 'Dimensões',
+'filehist-filesize'         => 'Tamanho do arquivo',
+'filehist-comment'          => 'Comentário',
+'imagelinks'                => 'Links',
+'linkstoimage'              => 'As seguintes páginas apontam para este arquivo:',
+'nolinkstoimage'            => 'Nenhuma página aponta para este arquivo.',
+'sharedupload'              => 'Este arquivo encontra-se partilhado, podendo ser utilizado por outros projetos.',
+'noimage'                   => 'Não existe nenhum arquivo com este nome. Se desejar, pode $1',
+'noimage-linktext'          => 'carregá-lo',
+'uploadnewversion-linktext' => 'Enviar uma nova versão deste arquivo',
 
 # MIME search
 'mimesearch' => 'Pesquisa MIME',
@@ -1033,7 +1088,8 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 'month'         => 'Mês (inclusive anteriores):',
 'year'          => 'Ano (inclusive anteriores):',
 
-'sp-contributions-blocklog' => 'Registro de bloqueios',
+'sp-contributions-newbies-sub' => 'Para contas novas',
+'sp-contributions-blocklog'    => 'Registro de bloqueios',
 
 # What links here
 'whatlinkshere'       => 'Páginas afluentes',
