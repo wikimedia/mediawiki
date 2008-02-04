@@ -17,6 +17,13 @@ $messages = array(
 'tog-hideminor' => 'Ficha mabadilisho madogo ya hivi karibuni',
 
 # Dates
+'sunday'        => 'Jumapili',
+'monday'        => 'Jumatatu',
+'tuesday'       => 'Jumanne',
+'wednesday'     => 'Jumatano',
+'thursday'      => 'Alhamisi',
+'friday'        => 'Ijumaa',
+'saturday'      => 'Jumamosi',
 'sun'           => 'Jpili',
 'mon'           => 'Jtatu',
 'tue'           => 'Jnne',

@@ -176,6 +176,7 @@ $messages = array(
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desabilitar caching de página',
 'tog-enotifwatchlistpages'    => 'Enviar-me um e-mail quando houver mudanças nas páginas vigiadas por mim',
+'tog-enotifusertalkpages'     => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de usuários que estão vigiando',
@@ -505,15 +506,15 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'createaccount'         => 'Criar nova conta',
 'gotaccount'            => 'Já possui uma conta? $1.',
 'gotaccountlink'        => 'Entrar',
-'createaccountmail'     => 'por e-Mail',
+'createaccountmail'     => 'por e-mail',
 'badretype'             => 'As senhas que você digitou não são iguais.',
 'userexists'            => 'O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.',
-'youremail'             => 'Seu e-mail*',
+'youremail'             => 'Seu e-mail:',
 'username'              => 'Nome de usuário:',
 'uid'                   => 'Número de identificação:',
 'yourrealname'          => 'Nome real:',
 'yourlanguage'          => 'Idioma:',
-'yournick'              => 'Seu apelido (para assinaturas)',
+'yournick'              => 'Apelido:',
 'email'                 => 'E-mail',
 'prefs-help-realname'   => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'            => 'Erro de autenticação',
@@ -541,7 +542,21 @@ Antes de qualquer outro e-mail ser enviado para a sua conta, você precisará se
 'mailerror'             => 'Erro ao enviar o e-mail: $1',
 'emailconfirmlink'      => 'Confirme o seu endereço de e-mail',
 'accountcreated'        => 'Conta criada',
+'accountcreatedtext'    => 'A conta de usuário para $1 foi criada.',
+'createaccount-title'   => 'Criação de conta em {{SITENAME}}',
+'createaccount-text'    => 'Alguém ($1) criou uma conta para $2 em {{SITENAME}} ($4). A senha para "$2" é "$3". Você deve se autenticar e alterar sua senha.
+
+Caso a conta tenha sido criada por engano, você pode ignorar esta mensagem.',
 'loginlanguagelabel'    => 'Idioma: $1',
+
+# Password reset dialog
+'resetpass'               => 'Zerar a senha da conta',
+'resetpass_announce'      => 'Você foi autenticado através de uma senha temporária. Para prosseguir, será necessário definir uma nova senha.',
+'resetpass_header'        => 'Zerar senha',
+'resetpass_submit'        => 'Definir senha e entrar',
+'resetpass_success'       => 'Sua senha foi alterada com sucesso! Autenticando-se...',
+'resetpass_bad_temporary' => 'Senha temporária incorreta. Pode ser que você já tenha conseguido alterar a sua senha ou pedido que uma nova temporária fosse gerada.',
+'resetpass_forbidden'     => 'Não é possível alterar senhas neste wiki',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',
@@ -564,18 +579,21 @@ Antes de qualquer outro e-mail ser enviado para a sua conta, você precisará se
 'hr_tip'          => 'Linha horizontal (use de forma moderada)',
 
 # Edit pages
-'summary'                => 'Sumário',
-'subject'                => 'Assunto/cabeçalho',
-'minoredit'              => 'Marcar como edição menor',
-'watchthis'              => 'Vigiar esta página',
-'savearticle'            => 'Salvar página',
-'preview'                => 'Prever',
-'showpreview'            => 'Mostrar previsão',
-'showdiff'               => 'Mostrar alterações',
-'anoneditwarning'        => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registrado no histórico de edições desta página.",
-'summary-preview'        => 'Previsão de sumário',
-'blockedtitle'           => 'Usuário está bloqueado',
-'blockedtext'            => '<big>O seu nome de usuário ou endereço de IP foi bloqueado</big>
+'summary'                   => 'Sumário',
+'subject'                   => 'Assunto/cabeçalho',
+'minoredit'                 => 'Marcar como edição menor',
+'watchthis'                 => 'Vigiar esta página',
+'savearticle'               => 'Salvar página',
+'preview'                   => 'Prever',
+'showpreview'               => 'Mostrar previsão',
+'showlivepreview'           => 'Pré-visualização em tempo real',
+'showdiff'                  => 'Mostrar alterações',
+'anoneditwarning'           => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registrado no histórico de edições desta página.",
+'missingsummary'            => "'''Lembrete:''' Você não introduziu um sumário de edição. Se clicar novamente em Salvar, a sua edição será salva sem um sumário.",
+'missingcommenttext'        => 'Por favor, introduzida um comentário abaixo.',
+'summary-preview'           => 'Previsão de sumário',
+'blockedtitle'              => 'O usuário está bloqueado',
+'blockedtext'               => '<big>O seu nome de usuário ou endereço de IP foi bloqueado</big>
 
 O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
 
@@ -588,66 +606,83 @@ Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]]
 Note que não poderá utilizar a funcionalidade "Contactar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[{{ns:special}}:Preferences|preferências de usuário]] e se tiver sido bloqueado de utilizar tal recurso.
 
 O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um desses (ou ambos) dados em quaisquer tentativas de esclarecimentos.',
-'blockednoreason'        => 'sem motivo especificado',
-'whitelistedittitle'     => 'Login necessário para edição',
-'whitelistedittext'      => 'Você precisa se [[Special:Userlogin|logar]] para editar artigos.',
-'whitelistreadtitle'     => 'Login necessário para leitura',
-'whitelistreadtext'      => 'Você precisa se [[Special:Userlogin|logar]] para ler artigos.',
-'whitelistacctitle'      => 'Você não está habilitado a criar uma conta',
-'whitelistacctext'       => 'Para ter permissão para se criar uma conta neste Wiki você precisará estar [[Especial:Userlogin|logado]] e ter as permissões apropriadas.',
-'nosuchsectiontitle'     => 'Seção inexistente',
-'nosuchsectiontext'      => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
-'loginreqtitle'          => 'Autenticação Requerida',
-'loginreqlink'           => 'autenticar-se',
-'loginreqpagetext'       => 'Você precisa $1 para poder visualizar outras páginas.',
-'accmailtitle'           => 'Senha enviada.',
-'accmailtext'            => "A senha de '$1' foi enviada para $2.",
-'newarticle'             => '(Nova)',
-'newarticletext'         => "Você seguiu um link para uma página que não existe.
+'autoblockedtext'           => 'O seu endereço de IP foi bloqueado de forma automática, uma vez que foi utilizado recentemente por outro usuário, o qual foi bloqueado por $1.
+O motivo apresentado foi:
+
+:\'\'$2\'\'
+
+* Início do bloqueio: $8
+* Expiração do bloqueio: $6
+
+Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
+
+Note que não poderá utilizar a funcionalidade "Contactar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[{{ns:special}}:Preferences|preferências de usuário]] e se tiver sido bloqueado de utilizar tal recurso.
+
+Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de esclarecimentos que for realizar.',
+'blockednoreason'           => 'sem motivo especificado',
+'blockedoriginalsource'     => "O código de '''$1''' é mostrado abaixo:",
+'blockededitsource'         => "O texto das '''suas edições''' em '''$1''' é mostrado abaixo:",
+'whitelistedittitle'        => 'É necessário autenticar-se para editar páginas',
+'whitelistedittext'         => 'Você precisa se [[Special:Userlogin|logar]] para editar artigos.',
+'whitelistreadtitle'        => 'É necessária a autentificação para poder visualizar',
+'whitelistreadtext'         => 'Você precisa se [[Special:Userlogin|logar]] para ler artigos.',
+'whitelistacctitle'         => 'Não lhe é permitido criar uma conta',
+'whitelistacctext'          => 'Para poder criar contas de usuário neste Wiki, você precisará estar [[Special:Userlogin|autenticado]] e possuir as devidas permissões.',
+'confirmedittext'           => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas. Por favor, introduza um e valide-o através das suas [[{{ns:special}}:Preferences|preferências de usuário]].',
+'nosuchsectiontitle'        => 'Seção inexistente',
+'nosuchsectiontext'         => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
+'loginreqtitle'             => 'Autenticação Requerida',
+'loginreqlink'              => 'autenticar-se',
+'loginreqpagetext'          => 'Você precisa $1 para poder visualizar outras páginas.',
+'accmailtitle'              => 'Senha enviada.',
+'accmailtext'               => "A senha de '$1' foi enviada para $2.",
+'newarticle'                => '(Nova)',
+'newarticletext'            => "Você seguiu um link para uma página que não existe.
 Para criá-la, começe escrevendo na caixa abaixo
 (veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
-'anontalkpagetext'       => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.''",
-'noarticletext'          => 'Não existe atualmente texto nesta página; você pode [[{{ns:special}}:Search/{{PAGENAME}}|pesquisar pelo título desta página em outras páginas]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
-'updated'                => '(Atualizado)',
-'note'                   => '<strong>Nota:</strong>',
-'previewnote'            => '<strong>Isto é apenas uma previsão. As modificações ainda não foram salvas!</strong>',
-'previewconflict'        => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
-'editing'                => 'Editando $1',
-'editinguser'            => 'Editando $1',
-'editingsection'         => 'Editando $1 (seção)',
-'editingcomment'         => 'Editando $1 (comentário)',
-'editconflict'           => 'Conflito de edição: $1',
-'explainconflict'        => 'Alguém mudou a página enquanto você a estava editando.
+'anontalkpagetext'          => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.''",
+'noarticletext'             => 'Não existe atualmente texto nesta página; você pode [[{{ns:special}}:Search/{{PAGENAME}}|pesquisar pelo título desta página em outras páginas]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
+'userpage-userdoesnotexist' => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
+'updated'                   => '(Atualizado)',
+'note'                      => '<strong>Nota:</strong>',
+'previewnote'               => '<strong>Isto é apenas uma previsão. As modificações ainda não foram salvas!</strong>',
+'previewconflict'           => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
+'editing'                   => 'Editando $1',
+'editinguser'               => 'Editando $1',
+'editingsection'            => 'Editando $1 (seção)',
+'editingcomment'            => 'Editando $1 (comentário)',
+'editconflict'              => 'Conflito de edição: $1',
+'explainconflict'           => 'Alguém mudou a página enquanto você a estava editando.
 A área de texto acima mostra o texto original.
 Suas mudanças são mostradas na área abaixo.
 Você terá que mesclar suas modificações no texto existente.
 <b>SOMENTE</b> o texto na área acima será salvo quando você pressionar "Salvar página".<br />',
-'yourtext'               => 'Seu texto',
-'storedversion'          => 'Versão guardada',
-'editingold'             => '<strong>CUIDADO: Você está editando uma revisão desatualizada deste artigo.
+'yourtext'                  => 'Seu texto',
+'storedversion'             => 'Versão guardada',
+'editingold'                => '<strong>CUIDADO: Você está editando uma revisão desatualizada deste artigo.
 Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>',
-'yourdiff'               => 'Diferenças',
-'copyrightwarning'       => 'Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
+'yourdiff'                  => 'Diferenças',
+'copyrightwarning'          => 'Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por você mesmo ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
-'longpagewarning'        => '<strong>CUIDADO: Esta página tem $1 kilobytes; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
+'longpagewarning'           => '<strong>CUIDADO: Esta página tem $1 kilobytes; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
 Por gentileza, considere quebrar a página em sessões menores.</strong>',
-'readonlywarning'        => '<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.
+'readonlywarning'           => '<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.
 No momento não é possível salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo ao wiki mais tarde.</strong>',
-'protectedpagewarning'   => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop podem editar esta página pois ela foi bloqueada.</strong>',
-'templatesused'          => 'Predefinições utilizadas nesta página:',
-'templatesusedpreview'   => 'Predefinições utilizadas nesta previsão:',
-'templatesusedsection'   => 'Predefinições utilizadas nesta seção:',
-'template-protected'     => '(protegida)',
-'template-semiprotected' => '(semi-protegida)',
-'nocreatetitle'          => 'A criação de páginas se encontra limitada',
-'nocreatetext'           => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
+'protectedpagewarning'      => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop podem editar esta página pois ela foi bloqueada.</strong>',
+'templatesused'             => 'Predefinições utilizadas nesta página:',
+'templatesusedpreview'      => 'Predefinições utilizadas nesta previsão:',
+'templatesusedsection'      => 'Predefinições utilizadas nesta seção:',
+'template-protected'        => '(protegida)',
+'template-semiprotected'    => '(semi-protegida)',
+'nocreatetitle'             => 'A criação de páginas se encontra limitada',
+'nocreatetext'              => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Volte à tela anterior e edite uma página já existente, ou [[{{ns:special}}:Userlogin|autentique-se ou crie uma conta]].',
-'nocreate-loggedin'      => 'Você não possui permissões de criar novas páginas neste wiki.',
-'permissionserrors'      => 'Erros de permissões',
-'permissionserrorstext'  => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'recreate-deleted-warn'  => "'''Atenção: Você está re-criando uma página já eliminada em outra ocasião.'''
+'nocreate-loggedin'         => 'Você não possui permissões de criar novas páginas neste wiki.',
+'permissionserrors'         => 'Erros de permissões',
+'permissionserrorstext'     => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
+'recreate-deleted-warn'     => "'''Atenção: Você está re-criando uma página já eliminada em outra ocasião.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registro de eliminação desta página é exibido a seguir, para sua comodidade:",

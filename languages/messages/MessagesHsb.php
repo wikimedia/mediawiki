@@ -2394,11 +2394,11 @@ Spytaj normalny přehlad.',
 'version-version'                  => 'Wersija',
 
 # Special:Filepath
-'filepath'         => 'Puć k dataji',
+'filepath'         => 'Datajowy puć',
 'filepath-page'    => 'Dataja:',
-'filepath-submit'  => 'Puć pytać',
-'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so dospołnje pokazuja, druhe datajowe typy so přez zwjazanym programom startuja.
+'filepath-submit'  => 'Puć',
+'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.
 
-Zapisaj datajowe mjeno bjez prefiksa "{{ns:image}}:".',
+Zapodaj datajowe mjeno bjez dodawka "{{ns:image}}:".',
 
 );
