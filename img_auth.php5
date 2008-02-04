@@ -1,1 +1,1 @@
-<?php require './img_auth.php'; ?>
+<?php require './img_auth.php';

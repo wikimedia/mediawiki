@@ -1,1 +1,1 @@
-<?php require './index.php'; ?>
+<?php require './index.php';

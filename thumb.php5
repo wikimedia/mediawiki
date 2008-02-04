@@ -1,1 +1,1 @@
-<?php require './thumb.php'; ?>
+<?php require './thumb.php'; 
