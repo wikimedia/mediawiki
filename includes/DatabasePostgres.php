@@ -119,7 +119,8 @@ class DatabasePostgres extends Database {
 	}
 
 	function hasConstraint( $name ) {
-		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint WHERE conname = '" . pg_escape_string( $name ) . "'";
+		global $wgDBmwschema;
+		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" . pg_escape_string( $name ) . "' AND n.nspname = '" . pg_escape_string($wgDBmwschema) ."'";
 		return $this->numRows($res = $this->doQuery($SQL));
 	}
 
