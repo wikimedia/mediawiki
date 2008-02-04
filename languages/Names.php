@@ -243,6 +243,10 @@
 	'roa-rup' => 'Armãneashce', # Aromanian
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
+	'ruq' => 'Vlăheşte',	# Megleno-Romanian (redirects to ruq-latn)
+	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
+	'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
+	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
 	'rw' => 'Kinyarwanda',	# Kinyarwanda, should possibly be Kinyarwandi
 	'sa' => 'संस्कृत',	# Sanskrit
 	'sah' => 'Саха тыла', # Sakha

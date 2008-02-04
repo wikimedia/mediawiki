@@ -680,9 +680,12 @@ your old password.
 'userrights-available-none'  => 'Шумо узвияти дар гурӯҳҳоро наметавонед тағйир диҳед.',
 
 # Groups
-'group-all' => '(ҳама)',
+'group-sysop'      => 'Администраторҳо',
+'group-bureaucrat' => 'Бюрократҳо',
+'group-all'        => '(ҳама)',
 
-'group-bureaucrat-member' => 'Девонсолор',
+'group-sysop-member'      => 'Администратор',
+'group-bureaucrat-member' => 'Бюрократ',
 
 'grouppage-sysop' => '{{ns:project}}:Мудирон',
 
