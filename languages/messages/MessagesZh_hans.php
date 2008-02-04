@@ -2355,9 +2355,25 @@ $1
 # Core parser functions
 'unknown_extension_tag' => '不明的扩展标签 "$1"',
 
+# Special:Version
+'version-extensions'               => '已经安装的扩展',
+'version-specialpages'             => '特殊页面',
+'version-parserhooks'              => '语法钩',
+'version-variables'                => '变数',
+'version-other'                    => '其它',
+'version-mediahandlers'            => '媒体处理器',
+'version-hooks'                    => '钩',
+'version-extension-functions'      => '扩展函数',
+'version-parser-extensiontags'     => '语法扩展标签',
+'version-parser-function-hooks'    => '语法函数钩',
+'version-skin-extension-functions' => '皮肤扩展函数',
+'version-hook-name'                => '钩名',
+'version-hook-subscribedby'        => '利用於',
+'version-version'                  => '版本',
+
 # Special:Filepath
 'filepath'         => '文件路径',
-'filepath-page'    => '文件名：',
+'filepath-page'    => '文件名:',
 'filepath-submit'  => '查找路径',
 'filepath-summary' => '这个特殊页面撷取一个文件的完整路径。图像会以完整的解像度显示，其它的文件类型会以同它们已关联程序启动。
 

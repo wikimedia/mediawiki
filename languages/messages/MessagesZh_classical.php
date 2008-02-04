@@ -197,6 +197,7 @@ $messages = array(
 'mytalk'         => '書房',
 'anontalk'       => '與（IP）私議',
 'navigation'     => '導',
+'and'            => '與',
 
 # Metadata in edit box
 'metadata_help' => '衍意：',
@@ -1534,7 +1535,6 @@ $NEWPAGE
 'anonymous'        => '{{SITENAME}}無簿者',
 'siteuser'         => '{{SITENAME}}有簿者$1',
 'lastmodifiedatby' => '$1$2，$3新易此頁。', # $1 date, $2 time, $3 user
-'and'              => '與',
 'othercontribs'    => '$1主撰',
 'others'           => '他',
 'siteusers'        => '{{SITENAME}}有簿者$1',
@@ -1770,5 +1770,29 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => '未明之擴標「$1」',
+
+# Special:Version
+'version-extensions'               => '裝展',
+'version-specialpages'             => '奇頁',
+'version-parserhooks'              => '語鈎',
+'version-variables'                => '變數',
+'version-other'                    => '他',
+'version-mediahandlers'            => '媒處',
+'version-hooks'                    => '鈎',
+'version-extension-functions'      => '展函',
+'version-parser-extensiontags'     => '語展標',
+'version-parser-function-hooks'    => '語函鈎',
+'version-skin-extension-functions' => '面版展函',
+'version-hook-name'                => '鈎名',
+'version-hook-subscribedby'        => '用於',
+'version-version'                  => '版',
+
+# Special:Filepath
+'filepath'         => '檔路',
+'filepath-page'    => '檔名：',
+'filepath-submit'  => '尋路',
+'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。
+
+輸檔名之，不包「{{ns:image}}:」開頭也。',
 
 );
