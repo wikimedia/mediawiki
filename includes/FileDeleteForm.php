@@ -134,13 +134,13 @@ class FileDeleteForm {
 					Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' ) .
 				"</td>
 				<td>" .
-					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ), array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '1', 'id' => 'wpReason' ) ) .
+					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ), array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '2', 'id' => 'wpReason' ) ) .
 				"</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>" .
-					Xml::submitButton( wfMsg( 'filedelete-submit' ), array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit' ) ) .
+					Xml::submitButton( wfMsg( 'filedelete-submit' ), array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit', 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .

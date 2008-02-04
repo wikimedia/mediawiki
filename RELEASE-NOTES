@@ -360,6 +360,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12885) Correction for Russian convertPlural function
 * (bug 12768) Make DatabasePostgres->hasContraint() schema aware.
 * (bug 12735) Truncate usernames in comments using mb_ functions.
+* (bug 12892) Poor tab indexing on "delete file" form
 
 == Parser changes in 1.12 ==
 
