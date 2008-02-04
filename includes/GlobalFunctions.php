@@ -2269,7 +2269,7 @@ function &wfGetDB( $db = DB_LAST, $groups = array() ) {
  * @param mixed $title Title object or string. May be interwiki.
  * @param mixed $time Requested time for an archived image, or false for the 
  *                    current version. An image object will be returned which 
- *                    existed at or before the specified time.
+ *                    existed at the specified time.
  * @return File, or false if the file does not exist
  */
 function wfFindFile( $title, $time = false ) {

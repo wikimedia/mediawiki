@@ -82,7 +82,7 @@ abstract class FileRepo {
 		if ( !$img ) {
 			return false;
 		}
-		if ( $img->exists() && ( !$time || $img->getTimestamp() <= $time ) ) {
+		if ( $img->exists() && ( !$time || $img->getTimestamp() == $time ) ) {
 			return $img;
 		}
 		# Now try an old version of the file
