@@ -11,7 +11,7 @@
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akan',		# Akan
 	'aln' => 'Gegë',	# Gheg Albanian
-	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility. See gsw.
+	'als' => 'Alemannisch (deprecated:gsw)',	# Alemannic -- not a valid code, for compatibility. See gsw.
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'Aragonés',	# Aragonese
 	'ang' => 'Anglo Saxon',	# Old English
@@ -66,7 +66,7 @@
 	'de' => 'Deutsch',		# German ("Du")
 	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
-	'dk' => 'Dansk', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
+	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
 	'dum' => 'Middelnederlands', # Middle Dutch
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
@@ -293,7 +293,7 @@
 	'tn' => 'Setswana',		# Setswana
 	'to' => 'faka-Tonga',		# Tonga (Tonga Islands)
 	'tokipona' => 'Toki Pona',      # Toki Pona
-	'tp' => 'Toki Pona',	# Toki Pona - non-standard language code
+	'tp' => 'Toki Pona (deprecated:tokipona)',	# Toki Pona - non-standard language code
 	'tpi' => 'Tok Pisin',	# Tok Pisin
 	'tr' => 'Türkçe',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
