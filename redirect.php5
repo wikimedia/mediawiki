@@ -1,1 +1,1 @@
-<?php require './redirect.php'; ?>
+<?php require './redirect.php';
