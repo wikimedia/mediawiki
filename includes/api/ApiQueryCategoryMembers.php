@@ -59,7 +59,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		} else if(is_null($params['title']))
 			$categoryTitle = Title::makeTitleSafe(NS_CATEGORY, $params['category']);
 		else
-			$this->dieUsage("The category and title parameters can't be used together", 'titleandcategory');
+			$this->dieUsage("The cmcategory and cmtitle parameters can't be used together", 'titleandcategory');
 
 		if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY )
 			$this->dieUsage("The category name you entered is not valid", 'invalidcategory');
