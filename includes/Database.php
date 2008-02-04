@@ -745,8 +745,8 @@ class Database {
 			global $wgUser;
 			if ( is_object( $wgUser ) && !($wgUser instanceof StubObject) ) {
 				$userName = $wgUser->getName();
-				if ( strlen( $userName ) > 15 ) {
-					$userName = substr( $userName, 0, 15 ) . '...';
+				if ( mb_strlen( $userName ) > 15 ) {
+					$userName = mb_substr( $userName, 0, 15 ) . '...';
 				}
 				$userName = str_replace( '/', '', $userName );
 			} else {

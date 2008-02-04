@@ -358,6 +358,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12880) wfLoadExtensionMessages does not use $fallback from MessagesXx.php
 * (bug 12885) Correction for Russian convertPlural function
 * (bug 12768) Make DatabasePostgres->hasContraint() schema aware.
+* (bug 12735) Truncate usernames in comments using mb_ functions.
 
 == Parser changes in 1.12 ==
 
