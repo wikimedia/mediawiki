@@ -2454,14 +2454,6 @@ class Parser
 				return wfEscapeWikiText( $this->mTitle->getBaseText() );
 			case 'basepagenamee':
 				return wfUrlEncode( str_replace( ' ', '_', $this->mTitle->getBaseText() ) );
-			case 'parentpagename':
-				return wfEscapeWikiText( $this->mTitle->getBaseText() );
-			case 'parentpagenamee':
-				return wfUrlEncode( str_replace( ' ', '_', $this->mTitle->getBaseText() ) );
-			case 'rootpagename':
-				return wfEscapeWikiText( $this->mTitle->getRootText() );
-			case 'rootpagenamee':
-				return wfUrlEncode( str_replace( ' ', '_', $this->mTitle->getRootText() ) );
 			case 'talkpagename':
 				if( $this->mTitle->canTalk() ) {
 					$talkPage = $this->mTitle->getTalkPage();
