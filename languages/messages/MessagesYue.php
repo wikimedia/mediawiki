@@ -2440,9 +2440,25 @@ $1',
 # Core parser functions
 'unknown_extension_tag' => '未知嘅擴展標籤 "$1"',
 
+# Special:Version
+'version-extensions'               => '已經安裝咗嘅擴展',
+'version-specialpages'             => '特別頁',
+'version-parserhooks'              => '語法鈎',
+'version-variables'                => '變數',
+'version-other'                    => '其它',
+'version-mediahandlers'            => '媒體處理器',
+'version-hooks'                    => '鈎',
+'version-extension-functions'      => '擴展函數',
+'version-parser-extensiontags'     => '語法擴展標籤',
+'version-parser-function-hooks'    => '語法函數鈎',
+'version-skin-extension-functions' => '畫面擴展函數',
+'version-hook-name'                => '鈎名',
+'version-hook-subscribedby'        => '利用於',
+'version-version'                  => '版本',
+
 # Special:Filepath
 'filepath'         => '檔案路徑',
-'filepath-page'    => '檔名：',
+'filepath-page'    => '檔名:',
 'filepath-submit'  => '搵路徑',
 'filepath-summary' => '呢個特別頁拎一個檔案嘅完整路徑。圖像會以完整嘅解像度顯示，其它嘅檔案類型會以同佢哋關聯咗嘅程式啟動。
 

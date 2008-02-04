@@ -2328,9 +2328,25 @@ $1
 # Core parser functions
 'unknown_extension_tag' => '不明的擴展標籤 "$1"',
 
+# Special:Version
+'version-extensions'               => '已經安裝的擴展',
+'version-specialpages'             => '特殊頁面',
+'version-parserhooks'              => '語法鈎',
+'version-variables'                => '變數',
+'version-other'                    => '其它',
+'version-mediahandlers'            => '媒體處理器',
+'version-hooks'                    => '鈎',
+'version-extension-functions'      => '擴展函數',
+'version-parser-extensiontags'     => '語法擴展標籤',
+'version-parser-function-hooks'    => '語法函數鈎',
+'version-skin-extension-functions' => '面版擴展函數',
+'version-hook-name'                => '鈎名',
+'version-hook-subscribedby'        => '利用於',
+'version-version'                  => '版本',
+
 # Special:Filepath
 'filepath'         => '檔案路徑',
-'filepath-page'    => '檔案名：',
+'filepath-page'    => '檔案名:',
 'filepath-submit'  => '搜尋路徑',
 'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖像會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。
 
