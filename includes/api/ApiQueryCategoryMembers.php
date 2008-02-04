@@ -51,12 +51,18 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
-		$category = $params['category'];
-		if (is_null($category))
-			$this->dieUsage("Category parameter is required", 'param_category');
-		$categoryTitle = Title::makeTitleSafe( NS_CATEGORY, $category );
-		if ( is_null( $categoryTitle ) )
-			$this->dieUsage("Category name $category is not valid", 'param_category');
+		if (is_null($params['category'])) {
+			if (is_null($params['title']))
+				$this->dieUsage("Either the cmcategory or the cmtitle parameter is required", 'notitle');
+			else
+				$categoryTitle = Title::newFromText($params['title']);
+		} else if(is_null($params['title']))
+			$categoryTitle = Title::makeTitleSafe(NS_CATEGORY, $params['category']);
+		else
+			$this->dieUsage("The category and title parameters can't be used together", 'titleandcategory');
+
+		if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY )
+			$this->dieUsage("The category name you entered is not valid", 'invalidcategory');
 		
 		$prop = array_flip($params['prop']);
 		$fld_ids = isset($prop['ids']);
@@ -174,7 +180,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		return array (
-			'category' => null,
+			'title' => null,
+			'category' => null, // DEPRECATED, will be removed in early March
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => 'ids|title',
 				ApiBase :: PARAM_ISMULTI => true,
@@ -216,13 +223,14 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		return array (
-			'category' => 'Which category to enumerate (required)',
+			'title' => 'Which category to enumerate (required). Must include Category: prefix',
 			'prop' => 'What pieces of information to include',
 			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
+			'category' => 'DEPRECATED. Like title, but without the Category: prefix.',
 		);
 	}
 
@@ -232,10 +240,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array (
-				"Get first 10 pages in the categories [[Physics]]:",
-				"  api.php?action=query&list=categorymembers&cmcategory=Physics",
-				"Get page info about first 10 pages in the categories [[Physics]]:",
-				"  api.php?action=query&generator=categorymembers&gcmcategory=Physics&prop=info",
+				"Get first 10 pages in [[Category:Physics]]:",
+				"  api.php?action=query&list=categorymembers&cmtitle=Category:Physics",
+				"Get page info about first 10 pages in [[Category:Physics]]:",
+				"  api.php?action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info",
 			);
 	}
 
