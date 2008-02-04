@@ -155,6 +155,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10365) Localization of Special:Version
 * When installing using Postgres, the Pl/Pgsql language is now checked for 
   and installed when at the superuser level.
+* Added [[Special:API]] shortcut to api.php
 
 === Bug fixes in 1.12 ===
 

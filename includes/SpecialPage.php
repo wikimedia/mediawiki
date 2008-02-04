@@ -152,6 +152,7 @@ class SpecialPage
 		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
 		'MergeHistory'              => array( 'SpecialPage', 'MergeHistory', 'mergehistory' ),
 		'Listbots'                  => array( 'SpecialRedirectToSpecial', 'Listbots', 'Listusers', 'bot' ),
+		'API'			    => array( 'SpecialAPI' ),
 		);
 
 	static public $mAliases;
@@ -846,5 +847,21 @@ class SpecialMycontributions extends UnlistedSpecialPage {
 	function getRedirect( $subpage ) {
 		global $wgUser;
 		return SpecialPage::getTitleFor( 'Contributions', $wgUser->getName() );
+	}
+}
+
+/**
+ * Shortcut to api.php
+ *
+ * Unfortunately we can't use SpecialRedirectToSpecial here
+ */
+class SpecialAPI extends UnlistedSpecialPage {
+	function __construct() {
+		parent::__construct('API');
+	}
+	
+	function execute($par) {
+		global $wgScriptPath, $wgOut;
+		$wgOut->redirect("$wgScriptPath/api.php?$par");
 	}
 }
