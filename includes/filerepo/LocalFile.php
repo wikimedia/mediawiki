@@ -583,10 +583,10 @@ class LocalFile extends File
 		$conds = $opts = array();
 		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBKey() );
 		if( $start !== null ) {
-			$conds[] = "oi_timestamp <= '" . $dbr->timestamp( $start ) . "'";
+			$conds[] = "oi_timestamp <= " . $dbr->addQuotes( $dbr->timestamp( $start ) );
 		}
 		if( $end !== null ) {
-			$conds[] = "oi_timestamp >= '" . $dbr->timestamp( $end ). "'";
+			$conds[] = "oi_timestamp >= " . $dbr->addQuotes( $dbr->timestamp( $end ) );
 		}
 		if( $limit ) {
 			$opts['LIMIT'] = $limit;
