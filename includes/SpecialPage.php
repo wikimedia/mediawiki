@@ -862,6 +862,9 @@ class SpecialAPI extends UnlistedSpecialPage {
 	
 	function execute($par) {
 		global $wgScriptPath, $wgOut;
-		$wgOut->redirect("$wgScriptPath/api.php?$par");
+		if($par != '')
+			$wgOut->redirect("$wgScriptPath/api.php?$par");
+		else
+			$wgOut->redirect("$wgScriptPath/api.php");
 	}
 }
