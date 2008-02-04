@@ -180,8 +180,11 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'headline_tip'   => "Nyiga ku kano okuwandiika omutwe ogw'eddaala ery'okubiri",
 'math_sample'    => 'Wandiika wano fomula yo',
 'math_tip'       => "Bw'onyiga wano, ofuna w'osobolera okuwandiika fomula ey'okubala. Okugiwandiika, olina okukozesa empandiika ey'enkola ya LaTeX.",
+'nowiki_sample'  => 'Byowandiika wano tebijjakufuulafuulibwa enkola ya wiki',
+'nowiki_tip'     => "Nyiga ku kano ob'oyagala okufuna w'owandiikira ebintu ebitafuulibwafuulibwa enkola ya wiki",
 'image_tip'      => "Bw'onyiga ku kano, we wakomye okuwandiika wajjawo enyunzi eteekawo ekifaananyi",
 'media_tip'      => "Bw'onyiga ku kano, w'okomye okuwandiika wajjawo enyunzi gy'okozesa okugguka ku fayiro eya mediya (eya vidiyo oba maloboozi)",
+'sig_tip'        => "Nyiga ku kano ob'oyagala okuteekawo n'erinnya lyo ko n'obudde kw'omalidde bino by'okoze.",
 'hr_tip'         => "Bw'onyiga ku kano ofuna olusaze olwawula mu by'owandiika. (Gezaako butakozesa nyingi)",
 
 # Edit pages
@@ -201,6 +204,7 @@ Oba gwe oyagala okulukolawo, wandiika mu kabokisi wammanga.
 (okuyiga ebisingawo, genda ku [[{{MediaWiki:Helppage}}|lupapula olw'obuyambi]]).
 Bw'obanga tewagenderedde kutuuka wano, nyigabunyizi eppeesa ery'omu kalambula-neti yo
 erya '''ddayo'''.",
+'noarticletext'    => "Wano tewali kyawandiikidwawo, ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula endala oba oyinza [{{fullurl:{{FULLPAGENAME}}|action=edit}} gwe okukiwandiikako] wano.",
 'editing'          => 'Kati okyuusa $1',
 'editinguser'      => 'Kukyuusa ebya memba <b>$1</b>',
 'editingsection'   => 'Okyuusa $1 (kitundu)',
@@ -230,6 +234,7 @@ oba ku gano agali ku lupapula luno.<br />
 'editundo'                => 'julula enkyukakyuka',
 
 # Search results
+'noexactmatch' => "'''Tewali \"\$1\".''' Ob'oyagala, [[:\$1|omuko ogwo gwe osobola okugukolawo]].",
 'prevn'        => '$1 ezikulembedde zino',
 'nextn'        => '$1 eziddako',
 'viewprevnext' => 'Laga ($1) ($2) ($3).',

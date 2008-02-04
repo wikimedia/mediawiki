@@ -1472,15 +1472,22 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'monthsall'        => 'valik',
 
 # E-mail address confirmation
-'confirmemail'          => 'Fümedolös ladeti leäktronik',
-'confirmemail_text'     => 'Vük at flagon, das ofümedol ladeti leäktronik ola büä odälon ole ad gebön poti leäktronik.
+'confirmemail'            => 'Fümedolös ladeti leäktronik',
+'confirmemail_text'       => 'Vük at flagon, das ofümedol ladeti leäktronik ola büä odälon ole ad gebön poti leäktronik.
 Välolös me mugaparat knopi dono ad sedön fümedapenedi ladete olik. Pened oninädon yümi labü fümedakot; sökolös yümi ad fümedön, das ladet olik lonöfon.',
-'confirmemail_oncreate' => 'Fümedakot pesedon lü ladet leäktronik ola. Kot at no zesüdon ad nunädön oli, ab omutol klavön oni büä okanol gebön ladeti leäktronik ola in vük at.',
-'confirmemail_invalid'  => 'Fümedakot no lonöfon. Jiniko binon tu bäldik.',
-'confirmemail_success'  => 'Ladet leäktronik ola pefümedon. Nu kanol nunädön oli e juitön vüki at.',
-'confirmemail_loggedin' => 'Ladeti leäktronik ola nu pefümedon.',
-'confirmemail_error'    => 'Bos no eplöpon pö registaram fümedama olik.',
-'confirmemail_body'     => 'Ek, bo ol se ladet-IP: $1, ejafon kali:
+'confirmemail_send'       => 'Sedön fümedakoti me pot leäktronik',
+'confirmemail_sent'       => 'Fümedapened pesedon.',
+'confirmemail_oncreate'   => 'Fümedakot pesedon lü ladet leäktronik ola. Kot at no zesüdon ad nunädön oli, ab omutol klavön oni büä okanol gebön ladeti leäktronik ola in vük at.',
+'confirmemail_sendfailed' => 'No eplöpos ad sedön fümedapenedi. Ba ädabinons malats no lonöföls in ladet.
+
+Potanünöm egesedon: $1',
+'confirmemail_invalid'    => 'Fümedakot no lonöfon. Jiniko binon tu bäldik.',
+'confirmemail_needlogin'  => 'Nedol $1 ad fümedön ladeti leäktronik ola.',
+'confirmemail_success'    => 'Ladet leäktronik ola pefümedon. Nu kanol nunädön oli e juitön vüki at.',
+'confirmemail_loggedin'   => 'Ladeti leäktronik ola nu pefümedon.',
+'confirmemail_error'      => 'Bos no eplöpon pö registaram fümedama olik.',
+'confirmemail_subject'    => 'Fümedam ladeta leäktronik pro: {{SITENAME}}',
+'confirmemail_body'       => 'Ek, bo ol se ladet-IP: $1, ejafon kali:
 "$2" me ladeti leäktronik at lä {{SITENAME}}.
 
 Ad fümedön, das kal at jenöfiko binon olik, ed ad dalön gebön 
@@ -1490,6 +1497,9 @@ $3
 
 If no binol utan, kel ejafon kali, no sökolös yümi.
 Fümedakot at operon lonöfi okik ün $4.',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[el URL binon liedo tu lunik]',
 
 # Delete conflict
 'deletedwhileediting' => 'Nuned: Pad at pemoükon posä äprimol ad redakön oni!',
@@ -1502,13 +1512,18 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'redirectingto' => 'Lüodükölo lü: [[$1]]...',
 
 # AJAX search
-'articletitles' => "Yegeds me ''$1'' primöls",
+'searchcontaining' => "Sukön padis labü ''$1''.",
+'searchnamed'      => "Sukön padis tiädü ''$1''.",
+'articletitles'    => "Yegeds me ''$1'' primöls",
+'hideresults'      => 'Klänedön sekis',
+'useajaxsearch'    => 'Gebön suki ela AJAX',
 
 # Multipage image navigation
-'imgmultipageprev' => '← pad büik',
-'imgmultipagenext' => 'pad sököl →',
-'imgmultigo'       => 'Gololöd!',
-'imgmultigotopre'  => 'Golön lü pad',
+'imgmultipageprev'   => '← pad büik',
+'imgmultipagenext'   => 'pad sököl →',
+'imgmultigo'         => 'Gololöd!',
+'imgmultigotopre'    => 'Golön lü pad',
+'imgmultiparseerror' => 'Magodaragiv binon jiniko neverätik u dädik, klu {{SITENAME}} no kanon tuvön lisedi padas.',
 
 # Table pager
 'table_pager_next'         => 'Pad sököl',
@@ -1517,6 +1532,7 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'table_pager_last'         => 'Pad lätik',
 'table_pager_limit'        => 'Jonön lienis $1 a pad',
 'table_pager_limit_submit' => 'Gololöd',
+'table_pager_empty'        => 'Seks nonik',
 
 # Auto-summaries
 'autosumm-blank'   => 'Ninäd valik pemoükon se pad',
@@ -1524,9 +1540,26 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'autoredircomment' => 'Lüodükon lü [[$1]]',
 'autosumm-new'     => 'Pad nulik: $1',
 
+# Live preview
+'livepreview-loading' => 'Pabelodon…',
+'livepreview-ready'   => 'Pabelodon… Efinikon!',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Votükams ün sekuns lätik $1 ba no polisedons is.',
+
 # Watchlist editor
-'watchlistedit-noitems'    => 'Galädalised olik keninükon tiädis nonik.',
-'watchlistedit-raw-titles' => 'Tiäds:',
+'watchlistedit-numitems'       => 'Galädalised olik labon {{PLURAL:$1|tiädi bal|tiädis $1}}, fakipü bespikapads.',
+'watchlistedit-noitems'        => 'Galädalised olik keninükon tiädis nonik.',
+'watchlistedit-normal-title'   => 'Redakön galädalisedi',
+'watchlistedit-normal-legend'  => 'Moükön tiädis se galädalised',
+'watchlistedit-normal-explain' => 'Tiäds galädalised olik palisedons dono. Ad moükön tiädi, välolös bugili nilü on e klikolös: Moükön Tiädis. Kanol i [[Special:Watchlist/raw|redakön lisedafonäti]].',
+'watchlistedit-normal-submit'  => 'Moükön Tiädis',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|tiäd bal pemoükon|tiäds $1 pemoükons}} se galädalised olik:',
+'watchlistedit-raw-title'      => 'Redakön fonäti galädaliseda',
+'watchlistedit-raw-legend'     => 'Redakön fonäti galädaliseda',
+'watchlistedit-raw-explain'    => 'Tiäds galädaliseda olik pajonons dono, e kanons paredakön - paläükön u pamoükön se lised (ai tiäd bal a lien). Pos redakam, klikolös Votükön Galädalisedi.
+Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
+'watchlistedit-raw-titles'     => 'Tiäds:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Logön votükamis teföl',
@@ -1536,6 +1569,7 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 # Special:Version
 'version-specialpages' => 'Pads patik',
 'version-other'        => 'Votik',
+'version-version'      => 'Fomam',
 
 # Special:Filepath
 'filepath'         => 'Ragivaluveg',

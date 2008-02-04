@@ -275,6 +275,7 @@ $messages = array(
 'mytalk'         => 'mója diskusija',
 'anontalk'       => 'Diskusija z toś teju IP',
 'navigation'     => 'Nawigacija',
+'and'            => 'a',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaty:',
@@ -1915,7 +1916,6 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'anonymous'        => '{{Plural:$|Anonymny wužywaŕ|Anonymnej wužywarja|Anonymne wužywarje}} na {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-wužywaŕ $1',
 'lastmodifiedatby' => 'Toś ten bok jo slědny raz se wobźěłał $2, $1 góź. wót wužywarja $3.', # $1 date, $2 time, $3 user
-'and'              => 'a',
 'othercontribs'    => 'Bazěrujo na źěle $1',
 'others'           => 'druge',
 'siteusers'        => '{{SITENAME}}-wužywaŕ $1',
@@ -2413,5 +2413,28 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Njeznaty tag rozšyrjenja „$1“',
+
+# Special:Version
+'version-extensions'               => 'Instalowane rozšyrjenja',
+'version-specialpages'             => 'Specialne boki',
+'version-parserhooks'              => 'Parserowe kokule',
+'version-variables'                => 'Wariable',
+'version-other'                    => 'Druge',
+'version-hooks'                    => 'Kokule',
+'version-extension-functions'      => 'Funkcije rozšyrjenjow',
+'version-parser-extensiontags'     => 'Tagi parserowych rozšyrjenjow',
+'version-parser-function-hooks'    => 'Parserowe funkcije',
+'version-skin-extension-functions' => 'Funkcije za rozšyrjenja šatow',
+'version-hook-name'                => 'Mě kokule',
+'version-hook-subscribedby'        => 'Aboněrowany wót',
+'version-version'                  => 'Wersija',
+
+# Special:Filepath
+'filepath'         => 'Datajowa droga',
+'filepath-page'    => 'Dataja:',
+'filepath-submit'  => 'Droga',
+'filepath-summary' => 'Toś ten specialny bok wróśa dopołnu drogu za dataju. Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwězanym programom direktnje startuju.
+
+Zapódaj datajowe mě bźez dodanka "{{ns:image}}:".',
 
 );

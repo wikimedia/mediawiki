@@ -522,7 +522,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'createaccountmail'          => 'por email',
 'badretype'                  => 'As palavras-chaves que introduziu não são iguais.',
 'userexists'                 => 'O nome de utilizador que introduziu já existe. Por favor, escolha um nome diferente.',
-'youremail'                  => 'Endereço de email *:',
+'youremail'                  => 'Endereço de email:',
 'username'                   => 'Nome de utilizador:',
 'uid'                        => 'Número de identificação:',
 'yourrealname'               => 'Nome verdadeiro:',
@@ -574,7 +574,7 @@ $1 horas.',
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta de utilizador para $1 foi criada.',
 'createaccount-title'        => 'Criação de conta em {{SITENAME}}',
-'createaccount-text'         => 'Alguém ($1) criou uma conta para $2 em {{SITENAME}} ($4). A senha para "$2" é "$3". Você deve se autenticar e alterar sua senha.
+'createaccount-text'         => 'Alguém ($1) criou uma conta para $2 em {{SITENAME}} ($4). A palavra-chave para "$2" é "$3". Você deve se autenticar e alterar sua palavra-chave.
 
 Caso a conta tenha sido criada por engano, você pode ignorar esta mensagem.',
 'loginlanguagelabel'         => 'Idioma: $1',
@@ -681,7 +681,7 @@ Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back''
 'anontalkpagetext'          => "----
 ''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza, de modo a que temos que utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser partilhado por vários utilizadores. Se é um utilizador anónimo e sente que comentários irrelevantes foram direccionados a você, por favor [[{{ns:special}}:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
 'noarticletext'             => 'Não existe actualmente texto nesta página; você pode [[{{ns:special}}:Search/{{PAGENAME}}|pesquisar pelo título desta página noutras páginas]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
-'userpage-userdoesnotexist' => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
+'userpage-userdoesnotexist' => 'A conta "$1" não se encontra registada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'clearyourcache'            => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-Shift-R'' (''Cmd-Shift-R'' no Apple Mac); '''IE:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5''; '''Konqueror:''': simplesmente clique no botão ''Recarregar'', ou pressione ''F5''; utilizadores do navegador '''Opera''' talvez precisem limpar completamente a sua cache em ''Ferramentas→Preferências''.",
 'usercssjsyoucanpreview'    => '<strong>Dica:</strong> Utilize o botão "Mostrar previsão" para testar seu novo CSS/JS antes de salvar.',
