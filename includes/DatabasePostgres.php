@@ -335,6 +335,9 @@ class DatabasePostgres extends Database {
 			  print "OK</li>";
 		  }
 			  
+		  ## Install plpgsql if needed
+		  $this->setup_plpgsql();
+
 		  $wgDBsuperuser = '';
 		  return true; // Reconnect as regular user
 			  
@@ -415,32 +418,8 @@ class DatabasePostgres extends Database {
 		  }
 		  print "OK</li>";
 
-		  ## Do we have plpgsql installed?
-		  print "<li>Checking for Pl/Pgsql ...";
-		  $SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
-		  $rows = $this->numRows($this->doQuery($SQL));
-		  if ($rows < 1) {
-			  // plpgsql is not installed, but if we have a pg_pltemplate table, we should be able to create it
-			  print "not installed. Attempting to install Pl/Pgsql ...";
-			  $SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
-				  "WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
-			  $rows = $this->numRows($this->doQuery($SQL));
-			  if ($rows >= 1) {
-				  $olde = error_reporting(0);
-				  error_reporting($olde - E_WARNING);
-				  $result = $this->doQuery("CREATE LANGUAGE plpgsql");
-				  error_reporting($olde);
-				  if (!$result) {
-					  print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
-					  dieout("</ul>");
-				  }
-			  }
-			  else {
-				  print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
-				  dieout("</ul>");
-			  }
-		  }
-		  print "OK</li>\n";
+		  ## Install plpgsql if needed
+		  $this->setup_plpgsql();
 
 		  ## Does the schema already exist? Who owns it?
 		  $result = $this->schemaExists($wgDBmwschema);
@@ -522,6 +501,35 @@ class DatabasePostgres extends Database {
 		  define( "POSTGRES_SEARCHPATH", $path );
 	  }
   }
+
+
+	function setup_plpgsql() {
+		print "<li>Checking for Pl/Pgsql ...";
+		$SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
+		$rows = $this->numRows($this->doQuery($SQL));
+		if ($rows < 1) {
+			// plpgsql is not installed, but if we have a pg_pltemplate table, we should be able to create it
+			print "not installed. Attempting to install Pl/Pgsql ...";
+			$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
+				"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
+			$rows = $this->numRows($this->doQuery($SQL));
+			if ($rows >= 1) {
+			$olde = error_reporting(0);
+				error_reporting($olde - E_WARNING);
+				$result = $this->doQuery("CREATE LANGUAGE plpgsql");
+				error_reporting($olde);
+				if (!$result) {
+					print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
+					dieout("</ul>");
+				}
+			}
+			else {
+				print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
+				dieout("</ul>");
+			}
+		}
+		print "OK</li>\n";
+	}
 
 
 	/**
