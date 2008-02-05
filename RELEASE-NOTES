@@ -360,6 +360,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12768) Make DatabasePostgres->hasContraint() schema aware.
 * (bug 12735) Truncate usernames in comments using mb_ functions.
 * (bug 12892) Poor tab indexing on "delete file" form
+* (bug 12660) When creating an account by e-mail, do not send the creator's IP
+  address
 
 == Parser changes in 1.12 ==
 
