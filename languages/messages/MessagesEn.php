@@ -905,9 +905,7 @@ format. Please enter a well-formatted address or empty that field.',
 'accountcreated'             => 'Account created',
 'accountcreatedtext'         => 'The user account for $1 has been created.',
 'createaccount-title'        => 'Account creation for {{SITENAME}}',
-'createaccount-text'         => 'Someone ($1) created an account for $2 on {{SITENAME}}
-($4). The password for "$2" is "$3". You should log in and change your password
-now.
+'createaccount-text'         => 'Someone created an account for your e-mail address on {{SITENAME}} ($4) named "$2", with password "$3". You should log in and change your password now.
 
 You may ignore this message, if this account was created in error.',
 'loginlanguagelabel'         => 'Language: $1',
