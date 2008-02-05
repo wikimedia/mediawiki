@@ -460,25 +460,41 @@ class MimeMagic {
 			$xml_type = "ASCII";
 		} elseif ( substr( $head, 0, 8 ) == "\xef\xbb\xbf<?xml") {
 			$xml_type = "UTF-8";
-		} elseif ( substr( $head, 0, 10 ) == "\xfe\xff\x00<\x00?\x00x\x00m\x00l" ) {
+		} elseif ( substr( $head, 0, 12 ) == "\xfe\xff\x00<\x00?\x00x\x00m\x00l" ) {
 			$xml_type = "UTF-16BE";
-		} elseif ( substr( $head, 0, 10 ) == "\xff\xfe<\x00?\x00x\x00m\x00l\x00") {
+		} elseif ( substr( $head, 0, 12 ) == "\xff\xfe<\x00?\x00x\x00m\x00l\x00") {
 			$xml_type = "UTF-16LE";
+		} else {
+			/*
+			echo "WARNING: Undetected xml_type ...\n";
+			for( $i = 0; $i < 10; $i++ ) {
+				$c = ord( $head{$i} );
+				if( $c < 32 || $c > 126 ) {
+					printf( "\\x%02x", $c );
+				} else {
+					print $head{$i};
+				}
+			}
+			echo "\n";
+			*/
 		}
 
 		if ( $xml_type ) {
 			if ( $xml_type !== "UTF-8" && $xml_type !== "ASCII" ) {
 				$head = iconv( $xml_type, "ASCII//IGNORE", $head );
 			}
+		}
 
-			$match = array();
-			$doctype = "";
-			$tag = "";
+		$match = array();
+		$doctype = "";
+		$tag = "";
 
-			if ( preg_match( '%<!DOCTYPE\s+[\w-]+\s+PUBLIC\s+["'."'".'"](.*?)["'."'".'"].*>%sim', 
-				$head, $match ) ) {
-					$doctype = $match[1];
-				}
+		if ( preg_match( '%<!DOCTYPE\s+[\w-]+\s+PUBLIC\s+["'."'".'"](.*?)["'."'".'"].*>%siD', 
+			$head, $match ) ) {
+				$doctype = $match[1];
+			}
+		
+		if( $xml_type || $doctype ) {
 			if ( preg_match( '%<(\w+)\b%si', $head, $match ) ) {
 				$tag = $match[1];
 			}
