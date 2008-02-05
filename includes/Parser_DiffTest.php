@@ -4,17 +4,28 @@ class Parser_DiffTest
 {
 	var $parsers, $conf;
 
+	var $dfUniqPrefix;
+
 	function __construct( $conf ) {
 		if ( !isset( $conf['parsers'] ) ) {
 			throw new MWException( __METHOD__ . ': no parsers specified' );
 		}
 		$this->conf = $conf;
+		$this->dtUniqPrefix = "\x7fUNIQ" . Parser::getRandomString();
 	}
 
 	function init() {
 		if ( !is_null( $this->parsers ) ) {
 			return;
 		}
+
+		global $wgHooks;
+		static $doneHook = false;
+		if ( !$doneHook ) {
+			$doneHook = true;
+			$wgHooks['ParserClearState'][] = array( $this, 'onClearState' );
+		}
+
 		foreach ( $this->conf['parsers'] as $i => $parserConf ) {
 			if ( !is_array( $parserConf ) ) {
 				$class = $parserConf;
@@ -37,8 +48,14 @@ class Parser_DiffTest
 			if ( $first ) {
 				$first = false;
 			} else {
-				if ( $lastResult !== $currentResult ) {
-					$mismatch = true;
+				if ( is_object( $lastResult ) ) {
+					if ( $lastResult != $currentResult ) {
+						$mismatch = true;
+					}
+				} else {
+					if ( $lastResult !== $currentResult ) {
+						$mismatch = true;
+					}
 				}
 			}
 			$results[$i] = $currentResult;
@@ -57,6 +74,12 @@ class Parser_DiffTest
 		foreach  ( $this->parsers as $i => $parser ) {
 			$parser->setFunctionHook( $id, $callback, $flags );
 		}
+	}
+
+	function onClearState( &$parser ) {
+		// hack marker prefixes to get identical output
+		$parser->mUniqPrefix = $this->dtUniqPrefix;
+		return true;
 	}
 }
 

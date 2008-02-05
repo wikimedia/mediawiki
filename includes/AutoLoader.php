@@ -153,6 +153,7 @@ function __autoload($className) {
 		'PPDStack' => 'includes/Preprocessor_DOM.php',
 		'PPDStackElement' => 'includes/Preprocessor_DOM.php',
 		'PPNode_DOM' => 'includes/Preprocessor_DOM.php',
+		'Preprocessor_Hash' => 'includes/Preprocessor_Hash.php',
 		'ProfilerSimple' => 'includes/ProfilerSimple.php',
 		'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
 		'Profiler' => 'includes/Profiler.php',

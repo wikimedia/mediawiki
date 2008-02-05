@@ -88,7 +88,7 @@ class Parser
 	 */
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
-		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerSuffix,
+		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerSuffix, $mMarkerIndex,
 		$mExtLinkBracketedRegex, $mPreprocessor, $mDefaultStripList, $mVarCache, $mConf;
 
 
@@ -133,6 +133,7 @@ class Parser
 		} else {
 			$this->mPreprocessorClass = 'Preprocessor_DOM';
 		}
+		$this->mMarkerIndex = 0;
 		$this->mFirstCall = true;
 	}
 	
@@ -241,6 +242,7 @@ class Parser
 		#$this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
 		# Changed to \x7f to allow XML double-parsing -- TS
 		$this->mUniqPrefix = "\x7fUNIQ" . Parser::getRandomString();
+
 
 		# Clear these on every parse, bug 4549
 		$this->mTplExpandCache = $this->mTplRedirCache = $this->mTplDomCache = array();
@@ -650,9 +652,8 @@ class Parser
 	 * @private
 	 */
 	function insertStripItem( $text ) {
-		static $n = 0;
-		$rnd = "{$this->mUniqPrefix}-item-$n-{$this->mMarkerSuffix}";
-		++$n;
+		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-{$this->mMarkerSuffix}";
+		$this->mMarkerIndex++;
 		$this->mStripState->general->setPair( $rnd, $text );
 		return $rnd;
 	}
@@ -3214,13 +3215,12 @@ class Parser
 	 */
 	function extensionSubstitution( $params, $frame ) {
 		global $wgRawHtml, $wgContLang;
-		static $n = 1;
 
 		$name = $frame->expand( $params['name'] );
 		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
 
-		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $n++) . $this->mMarkerSuffix;
+		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $this->mMarkerIndex++) . $this->mMarkerSuffix;
 		
 		if ( $this->ot['html'] ) {
 			$name = strtolower( $name );
