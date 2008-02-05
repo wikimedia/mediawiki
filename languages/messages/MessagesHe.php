@@ -112,10 +112,6 @@ $magicWords = array(
 	'subpagenamee'          => array( 1,    'שם דף המשנה מקודד',                      'SUBPAGENAMEE'           ),
 	'basepagename'          => array( 1,    'שם דף הבסיס',                            'BASEPAGENAME'           ),
 	'basepagenamee'         => array( 1,    'שם דף הבסיס מקודד',                      'BASEPAGENAMEE'          ),
-	'parentpagename'        => array( 1,    'שם דף ההורה',                           'PARENTPAGENAME'         ),
-	'parentpagenamee'       => array( 1,    'שם דף ההורה מקודד',                      'PARENTPAGENAMEE'        ),
-	'rootpagename'          => array( 1,    'שם דף השורש',                           'ROOTPAGENAME'           ),
-	'rootpagenamee'         => array( 1,    'שם דף השורש מקודד',                      'ROOTPAGENAMEE'          ),
 	'talkpagename'          => array( 1,    'שם דף השיחה',                           'TALKPAGENAME'           ),
 	'talkpagenamee'         => array( 1,    'שם דף השיחה מקודד',                      'TALKPAGENAMEE'          ),
 	'subjectpagename'       => array( 1,    'שם דף הנושא', 'שם הערך',                 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
@@ -730,7 +726,7 @@ $2',
 'accountcreated'             => 'החשבון נוצר',
 'accountcreatedtext'         => 'חשבון המשתמש $1 נוצר.',
 'createaccount-title'        => 'יצירת חשבון ב{{grammar:תחילית|{{SITENAME}}}}',
-'createaccount-text'         => 'מישהו ($1) יצר חשבון בשם $2 ב{{grammar:תחילית|{{SITENAME}}}} ($4). הסיסמה לחשבון "$2" היא "$3". עליכם להיכנס ולשנות עכשיו את הסיסמה.
+'createaccount-text'         => 'מישהו יצר חשבון בשם $2 ב{{grammar:תחילית|{{SITENAME}}}} ($4), והסיסמה הזמנית של החשבון היא "$3". עליכם להיכנס ולשנות עכשיו את הסיסמה.
 
 באפשרותכם להתעלם מהודעה זו, אם החשבון נוצר בטעות.',
 'loginlanguagelabel'         => 'שפה: $1',
