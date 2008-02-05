@@ -563,6 +563,19 @@ class ImageHistoryList {
 		return "</table>\n";
 	}
 
+	/**
+	 * Create one row of file history
+	 *
+	 * @param bool $iscur is this the current file version?
+	 * @param string $timestamp timestamp of file version
+	 * @param string $img filename
+	 * @param int $user ID of uploading user
+	 * @param string $usertext username of uploading user
+	 * @param int $size size of file version
+	 * @param string $description description of file version
+	 * @param string $dims dimensions of file version
+	 * @return string a HTML formatted table row
+	 */
 	public function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description, $dims ) {
 		global $wgUser, $wgLang, $wgContLang;
 		$local = $this->img->isLocal();
@@ -575,28 +588,28 @@ class ImageHistoryList {
 			$q[] = 'action=delete';
 			if( !$iscur )
 				$q[] = 'oldimage=' . urlencode( $img );
-			$row .= '(' . $this->skin->makeKnownLinkObj(
+			$row .= $this->skin->makeKnownLinkObj(
 				$this->title,
 				wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
 				implode( '&', $q )
-			) . ')';
+			);
 			$row .= '</td>';
 		}
 
 		// Reversion link/current indicator
 		$row .= '<td>';
 		if( $iscur ) {
-			$row .= '(' . wfMsgHtml( 'filehist-current' ) . ')';
+			$row .= wfMsgHtml( 'filehist-current' );
 		} elseif( $local && $wgUser->isLoggedIn() && $this->title->userCan( 'edit' ) ) {
 			$q = array();
 			$q[] = 'action=revert';
 			$q[] = 'oldimage=' . urlencode( $img );
 			$q[] = 'wpEditToken=' . urlencode( $wgUser->editToken( $img ) );
-			$row .= '(' . $this->skin->makeKnownLinkObj(
+			$row .= $this->skin->makeKnownLinkObj(
 				$this->title,
 				wfMsgHtml( 'filehist-revert' ),
 				implode( '&', $q )
-			) . ')';
+			);
 		}
 		$row .= '</td>';
 
