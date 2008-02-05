@@ -554,10 +554,9 @@ Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt ga
 'accountcreated'             => 'Användarkontot har skapats',
 'accountcreatedtext'         => 'Användarkontot $1 har skapats.',
 'createaccount-title'        => 'Konto skapat för {{SITENAME}}',
-'createaccount-text'         => 'Någon ($1) har skapat ett konto åt $2 på {{SITENAME}}
-($4). Lösenordet för "$2" är "$3". Du bör nu logga in och byta lösenord.
+'createaccount-text'         => 'Någon skapade ett konto med din e-mail adress på {{SITENAME}} ($4) med namnet "$2", med lösenord "$3". Du bör logga in och ändra ditt lösenord nu.
 
-Om detta konto skapades av misstag, så kan du ignorera det här meddelandet.',
+Du kan ignorera detta medelande, om detta konto skapades av ett misstag.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog

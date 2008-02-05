@@ -609,8 +609,10 @@ Heslo může být zasláno jen jednou za $1 {{plural:$1|hodinu|hodiny|hodin}}.',
 'accountcreated'             => 'Účet vytvořen',
 'accountcreatedtext'         => 'Uživatelský účet $1 byl vytvořen.',
 'createaccount-title'        => 'Vytvoření účtu na {{grammar:6sg|{{SITENAME}}}}',
-'createaccount-text'         => 'Někdo ($1) vytvořil účet $2 na {{grammar:6sg|{{SITENAME}}}}
-($4). Heslo účtu „$2“ je „$3“. Měli byste se co nejdřív přihlásit a změnit si heslo.
+'createaccount-text'         => 'Někdo vytvořil na {{grammar:6sg|{{SITENAME}}}} ($4) účet s vaší e-mailovou adresou. 
+Jméno účtu: „$2“
+Heslo: „$3“
+Měli byste se co nejdřív přihlásit a změnit si heslo.
 
 Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'loginlanguagelabel'         => 'Jazyk: $1',

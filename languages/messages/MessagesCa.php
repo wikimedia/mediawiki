@@ -238,7 +238,7 @@ $messages = array(
 'november-gen'  => 'novembre',
 'december-gen'  => 'desembre',
 'jan'           => 'gen',
-'feb'           => 'febr',
+'feb'           => 'feb',
 'mar'           => 'març',
 'apr'           => 'abr',
 'may'           => 'maig',
@@ -465,6 +465,7 @@ Funció: $1<br />
 Consulta: $2',
 'viewsource'           => 'Mostra la font',
 'viewsourcefor'        => 'per a $1',
+'actionthrottledtext'  => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
 'protectedpagetext'    => 'Aquesta pàgina està protegida i no pot ser editada.',
 'viewsourcetext'       => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
 'protectedinterface'   => "Aquesta pàgina conté cadenes de text per a la interfície del programari, i és protegida per a previndre'n abusos.",
@@ -558,10 +559,10 @@ Introduïu una adreça amb un format adequat o bé buideu el camp.",
 'accountcreated'             => "S'ha creat el compte",
 'accountcreatedtext'         => "S'ha creat el compte d'usuari de $1.",
 'createaccount-title'        => "Creació d'un compte a {{SITENAME}}",
-'createaccount-text'         => 'Algú ($1) ha creat un compte d\'usuari anomenat $2 al projecte {{SITENAME}}
-($4). La contrasenya per a l\'usuari "$2" és "$3". Hauríeu d\'accedir al compte i canviar-vos aquesta contrasenya quan abans millor.
+'createaccount-text'         => "Algú ha creat un compte d'usuari anomenat $2 al projecte {{SITENAME}}
+($4) amb la vostra adreça de correu electrònic. La contrasenya per a l'usuari «$2» és «$3». Hauríeu d'accedir al compte i canviar-vos aquesta contrasenya quan abans millor.
 
-Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement ignoreu el missatge.',
+Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement ignoreu el missatge.",
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -711,6 +712,7 @@ en un fitxer de text i desar-lo més tard.</strong>',
 'protectedpagewarning'      => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[{{MediaWiki:Grouppage-sysop}}|administradors]].</strong>',
 'semiprotectedpagewarning'  => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
 'cascadeprotectedwarning'   => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden editar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
+'titleprotectedwarning'     => '<strong>ATENCIÓ: Aquesta pàgina està protegida de tal manera que només certs usuaris poden crear-la.</strong>',
 'templatesused'             => 'Aquesta pàgina fa servir les següents plantilles:',
 'templatesusedpreview'      => 'Plantilles usades en aquesta previsualització:',
 'templatesusedsection'      => 'Plantilles usades en aquesta secció:',
@@ -762,6 +764,7 @@ Reviseu l'URL que heu emprat per a accedir-hi.",
 'deletedrev'          => '[suprimit]',
 'histfirst'           => 'El primer',
 'histlast'            => "L'últim",
+'historysize'         => '({{PLURAL:$1|1 octet|$1 octets}})',
 'historyempty'        => '(buit)',
 
 # Revision feed
@@ -810,7 +813,8 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'logdelete-success'           => "S'ha establert correctament la visibilitat d'aquest element.",
 
 # Oversight log
-'oversightlog' => "Registre d'oversight",
+'oversightlog'    => "Registre d'oversight",
+'overlogpagetext' => 'A continuació trabareu una llista dels esborrats i blocatges més recents relacionats amb contingut amagat pels administradors. Vegeu la [[Special:Ipblocklist|llista de blocatges]] per a la llista completa de tots els blocatges actius.',
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
@@ -931,23 +935,26 @@ $2 Llista redireccions   Cerca $3 $9',
 'files'                    => 'Fitxers',
 
 # User rights
-'userrights-lookup-user'      => "Gestiona els grups d'usuari",
-'userrights-user-editname'    => "Introduïu un nom d'usuari:",
-'editusergroup'               => "Edita els grups d'usuaris",
-'userrights-editusergroup'    => "Edita els grups d'usuaris",
-'saveusergroups'              => "Desa els grups d'usuari",
-'userrights-groupsmember'     => 'Membre de:',
-'userrights-groupsavailable'  => 'Grups disponibles:',
-'userrights-groupshelp'       => "Seleccioneu els grups dels quals voleu suprimir-ne l'usuari o afegir-lo.
+'userrights-lookup-user'           => "Gestiona els grups d'usuari",
+'userrights-user-editname'         => "Introduïu un nom d'usuari:",
+'editusergroup'                    => "Edita els grups d'usuaris",
+'userrights-editusergroup'         => "Edita els grups d'usuaris",
+'saveusergroups'                   => "Desa els grups d'usuari",
+'userrights-groupsmember'          => 'Membre de:',
+'userrights-groupsremovable'       => 'Grups dels quals us podeu treure:',
+'userrights-groupsavailable'       => 'Grups disponibles:',
+'userrights-groupshelp'            => "Seleccioneu els grups dels quals voleu suprimir-ne l'usuari o afegir-lo.
 Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup amb CTRL + Clic",
-'userrights-reason'           => 'Motiu del canvi:',
-'userrights-available-none'   => "No podeu alterar l'afiliació al grup.",
-'userrights-available-add'    => 'Podeu afegir usuaris {{PLURAL:$2|al grup|als grups:}} $1.',
-'userrights-available-remove' => 'Podeu treure usuaris {{PLURAL:$2|del grup|dels grups:}} $1.',
-'userrights-no-interwiki'     => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
-'userrights-nodatabase'       => 'La base de dades $1 no existeix o no és local.',
-'userrights-nologin'          => "Heu [[Special:Userlogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
-'userrights-notallowed'       => "El vostre compte no té permisos per a assignar permisos d'usuari.",
+'userrights-reason'                => 'Motiu del canvi:',
+'userrights-available-none'        => "No podeu alterar l'afiliació al grup.",
+'userrights-available-add'         => 'Podeu afegir usuaris {{PLURAL:$2|al grup|als grups:}} $1.',
+'userrights-available-remove'      => 'Podeu treure usuaris {{PLURAL:$2|del grup|dels grups:}} $1.',
+'userrights-available-add-self'    => 'Podeu afegir-vos a {{PLURAL:$2|aquest grup|aquests grups}}: $1.',
+'userrights-available-remove-self' => "Us podeu treure d'{{PLURAL:$2|aquest grup|aquests grups}}: $1.",
+'userrights-no-interwiki'          => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
+'userrights-nodatabase'            => 'La base de dades $1 no existeix o no és local.',
+'userrights-nologin'               => "Heu [[Special:Userlogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
+'userrights-notallowed'            => "El vostre compte no té permisos per a assignar permisos d'usuari.",
 
 # Groups
 'group'               => 'Grup:',
@@ -1043,6 +1050,7 @@ Totes les hores són les del servidor (UTC).",
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => "L'arxiu que heu carregat sembla estar buit. Això por ser degut a un mal caràcter en el nom de l'arxiu. Si us plau reviseu si realment voleu carregar aquest arxiu.",
 'fileexists'                  => 'Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu $1 si no esteu segurs de voler substituir-lo.',
+'filepageexists'              => 'Una pàgina (no imatge) amb aquest nom ja existeix, comproveu <strong><tt>$1</tt></strong> si no esteu segurs de voler canviar-la.',
 'fileexists-extension'        => 'Ja existeix un fitxer amb un nom semblant:<br />
 Nom del fitxer que es puja: <strong><tt>$1</tt></strong><br />
 Nom del fitxer existent: <strong><tt>$2</tt></strong><br />
@@ -1443,6 +1451,8 @@ Mostra $2 per a un registre dels esborrats més recents.',
 ** Proves
 ** Error en el nom
 ** Fer lloc a un trasllat",
+'delete-toobig'               => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 canvis. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
+'delete-warning-toobig'       => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 canvis. La seva eliminació pot suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",
 'rollback'                    => 'Reverteix edicions',
 'rollback_short'              => 'Revoca',
 'rollbacklink'                => 'Reverteix',
@@ -1811,6 +1821,9 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'importhistoryconflict'      => "Hi ha un conflicte de versions en l'historial (la pàgina podria haver sigut importada abans)",
 'importnosources'            => "No s'ha definit cap font d'origen interwiki i s'ha deshabilitat la càrrega directa d'una còpia de l'historial",
 'importnofile'               => "No s'ha pujat cap fitxer d'importació.",
+'import-parse-failure'       => "error a en importar l'XML",
+'import-noarticle'           => 'No hi ha pàgina a importar!',
+'xml-error-string'           => '$1 a la línia $2, columna $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => "Registre d'importació",
@@ -2380,7 +2393,14 @@ Trieu amb la previsualització normal.',
 'watchlisttools-raw'  => 'Edita la llista de seguiment sense format',
 
 # Special:Version
-'version-version' => 'Versió',
+'version-extensions'               => 'Extensions instaŀlades',
+'version-specialpages'             => 'Pàgines especials',
+'version-other'                    => 'Altres',
+'version-mediahandlers'            => 'Connectors multimèdia',
+'version-extension-functions'      => "Funcions d'extensió",
+'version-skin-extension-functions' => "Funcions d'extensió per l'aparença (skin)",
+'version-hook-subscribedby'        => 'Usat per',
+'version-version'                  => 'Versió',
 
 # Special:Filepath
 'filepath'        => "Camí d'arxiu",

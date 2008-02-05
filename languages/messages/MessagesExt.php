@@ -225,7 +225,7 @@ $messages = array(
 'privacy'           => 'Pulítica',
 'privacypage'       => 'Project:Pulítica e privaciá',
 'sitesupport'       => 'Donacionis',
-'sitesupport-url'   => 'Project:Apoyu al proyeutu',
+'sitesupport-url'   => 'Proyeutu:Apoyu al proyeutu',
 
 'badaccess'        => 'Marru colos tus premisus',
 'badaccess-group0' => 'Nu se te premiti hazel esa ación.',
@@ -309,7 +309,7 @@ La razón dá pol el alministraol que pusu el tarugu es: $1',
 Polo heneral, estu es ebiu a que s'á seguiu un atihu a una deferéncia e velsionis, u el estorial antigu duna páhina que á siu esborrá.
 
 Si esta nu es la causa, es posibri qu'aigas alcuentrau un marru nel software.
-Pol favol, enhorma d'estu a un duendi u a un alministraol, incluyendu la direción URL.",
+Pol favol, enhorma d'estu a un çahoril u a un alministraol, incluyendu la direción URL.",
 'readonly_lag'         => "S'á atarugau la basi e datus temporalmenti mentris los sirvioris se sincroniçan.",
 'internalerror'        => 'Marru entelnu',
 'internalerror_info'   => 'Marru entelnu: $1',
@@ -491,7 +491,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 * Fecha en qu'el tarugu acabiha: \$6
 * Tarugu: \$7
 
-Pueis contatal con \$1 u con otru [[{{MediaWiki:Grouppage-sysop}}|duendi]] pa chalral al tentu el tarugu.
+Pueis contatal con \$1 u con otru [[{{MediaWiki:Grouppage-sysop}}|çahoril]] pa chalral al tentu el tarugu.
 Si nu as especificau ena tu cuenta d'usuáriu una direción d'email, nu te sedrá posibri gastal el botón \"Envial un email a esti usuáriu\" (amás, tendrás qu'asperal a qu'el tarugu acabihi).
 \$3 es la tu direción IP atual, i el ID el tarugu es #\$5. Pol favol, inclui angún/dambus los dos datus en cualisquiel consurta que hagas.",
 'autoblockedtext'           => "La tu direción IP á siu atarugá autumáticamenti ebiu a qu'estaba siendu gastá pol otru usuáriu, qu'á siu atarugau pol $1 cola siguienti razón:
@@ -580,9 +580,9 @@ Pol otra parti, al pursal el botón "emburacal" mos estás asigurandu que lo esc
 'longpageerror'             => "<strong>Marru: El testu qu'as empuntau ocupa $1 kbs (siendu polo tantu mayol de $2 kbs). Nu es posibri emburacal.</strong>",
 'readonlywarning'           => '<strong>Avisu: La basi e datus s´alcuentra afechá pol mantenimientu nesti momentu,
 razón pola que nu pueis emburacal los tus chambus agora. Pa nu perdel los chambus, pueis copialus i pegalus nel tu ordinaol, i endrentu un ratu, emburacalus ena güiqui.</strong>',
-'protectedpagewarning'      => '<strong>Avisu: Esta páhina s´alcuentra atarugá, asínque sólu los duendis puein eitala.</strong>',
+'protectedpagewarning'      => "<strong>Avisu: Esta páhina s'alcuentra atarugá, asínque sólu los çahorilis puein eitala.</strong>",
 'semiprotectedpagewarning'  => "'''Nota:''' S'á atarugau esta páhina, asínque solu los usuárius rustrius puein eitala.",
-'cascadeprotectedwarning'   => "'''Avisu:''' Esta páhina está protehia, asínque solu los duendis puein eitala. La razón de qu'esté protehia es que s'alcuentra encluia {{PLURAL:$1|ena siguienti páhina|enas siguientis páhinas}} cola oción ''cascá'' ativá:",
+'cascadeprotectedwarning'   => "'''Avisu:''' Esta páhina está protehia, asínque solu los çahorilis puein eitala. La razón de qu'esté protehia es que s'alcuentra encluia {{PLURAL:$1|ena siguienti páhina|enas siguientis páhinas}} cola oción ''cascá'' ativá:",
 'titleprotectedwarning'     => '<strong>Avisu: Esta páhina á siu atarugá, polo que solu angunus usuárius puein criala.</strong>',
 'templatesused'             => 'Prantillas gastás nesta páhina:',
 'templatesusedpreview'      => 'Prantillas gastás al previsoreal:',
@@ -666,14 +666,14 @@ puei bel detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rus
 'logdelete-selected'          => "{{PLURAL:$2|Un eventu aseñalau|$2 eventus aseñalaus}} el rustrihu pa '''$1:'''",
 'revdelete-text'              => 'Las revisionis esborrás entovia apaicirán nel estorial la páhina, peru el su continiu nu sedrá acesibri pal púbricu.
 
-El restu e duendis desti güiqui sí tendrán premisu pa visoreal el caltiniu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris el güiqui crein una restrición aicional.',
+El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris del güiqui crein una restrición aicional.',
 'revdelete-legend'            => 'Restricionis:',
 'revdelete-hide-text'         => 'Açonchal el testu la revisión',
 'revdelete-hide-name'         => 'Açonchal ación i ohetivu',
 'revdelete-hide-comment'      => 'Açonchal síntesis la eición',
 'revdelete-hide-user'         => 'Açonchal nombri d´usuáriu/IP el eitol',
-'revdelete-hide-restricted'   => 'Tamién aprical estus tarugus a los duendis',
-'revdelete-suppress'          => 'Esborral tamién los datus de los duendis',
+'revdelete-hide-restricted'   => 'Tamién aprical estus tarugus a los çahorilis',
+'revdelete-suppress'          => 'Esborral tamién los datus los çahorilis',
 'revdelete-hide-image'        => 'Açonchal el continiu el archivu',
 'revdelete-unsuppress'        => 'Esborral restricionis enas revisionis arrecuperás',
 'revdelete-log'               => 'Comentáriu e rustrihu:',
@@ -687,7 +687,7 @@ El restu e duendis desti güiqui sí tendrán premisu pa visoreal el caltiniu a�
 
 # Oversight log
 'oversightlog'    => 'Rustrihu e descúdius',
-'overlogpagetext' => 'Embahu se muestra una lista al tentu los úrtimus esborraus i tarugus relacionaus con continius açonchaus de los duendis. Consurta la [[Special:Ipblocklist|lista d´IP atarugás]] pa vel una lista colos úrtimus tarugus.',
+'overlogpagetext' => "Embahu se muestra una lista al tentu los úrtimus esborraus i tarugus relacionaus con continius açonchaus de los çahorilis. Consurta la [[Special:Ipblocklist|lista d'IP atarugás]] pa vel una lista colos úrtimus tarugus.",
 
 # History merging
 'mergehistory'                     => 'Uñifical el estorial las páhinas',
@@ -830,17 +830,17 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 # Groups
 'group'               => 'Alabán:',
 'group-autoconfirmed' => 'Usuárius autuconfirmaus',
-'group-sysop'         => 'Duendis',
+'group-sysop'         => 'Çahorilis',
 'group-bureaucrat'    => 'Alministraoris',
 'group-all'           => '(tó)',
 
 'group-autoconfirmed-member' => 'Usuáriu autuconfirmau',
-'group-sysop-member'         => 'Duendi',
+'group-sysop-member'         => 'Çahoril',
 'group-bureaucrat-member'    => 'Alministraol',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuárius autuconfirmaus',
-'grouppage-bot'           => '{{ns:proyeutu}}:Bots',
-'grouppage-sysop'         => '{{ns:project}}:Duendis',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Çahorilis',
 'grouppage-bureaucrat'    => '{{ns:project}}:Alministraoris',
 
 # User rights log
@@ -957,7 +957,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload-file-error'       => 'Marru entelnu',
 'upload-file-error-text'  => "Á aconteciu un marru entelnu cuandu s'ententaba crial un ficheru temporal nel sirviol. Pol favol, contata con angún alministraol el sistema.",
 'upload-misc-error'       => "Marru d'empuntu andarriu",
-'upload-misc-error-text'  => 'Marru al empuntal el archivu. Pol favol compreba que la URL es vália i acesibri i enténtalu e nuevu. Si acontina el pobrema, contata con un duendi.',
+'upload-misc-error-text'  => 'Marru al empuntal el archivu. Pol favol compreba que la URL es vália i acesibri i enténtalu e nuevu. Si acontina el pobrema, contata con un çahoril.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nu se puei dil a la URL',
@@ -1359,7 +1359,7 @@ Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
 'protect-default'             => '(defeutu)',
 'protect-fallback'            => 'Es mestel el premisu "$1"',
 'protect-level-autoconfirmed' => 'Atarugal a los usuárius anónimus',
-'protect-level-sysop'         => 'Solu Duendis',
+'protect-level-sysop'         => 'Solu çahorilis',
 'protect-summary-cascade'     => 'proteción en "cascá"',
 'protect-expiring'            => 'acabiha el $1 (UTC)',
 'protect-cascade'             => 'Protehel las páhinas encluias nesta páhina (proteción en "cascá")',
@@ -1389,7 +1389,7 @@ Velaquí las ocionis atualis la páhina <strong>$1</strong>:',
 Si s'á criau una páhina con el mesmu nombri endi que hue esborrá, las revisionis
 arrecuperás apaicerán nel estorial anteriol. Dati cuenta que las restricionis del archivu e revisionis
 se perderán aluspués l'arrecuperación",
-'undeletehistorynoadmin'       => "Esta páhina á siu esborrá. La razón el esborrau se muestra embahu, unta los detallis al tentu los usuárius qu'eitarun esta páhina enantis de que huera esborrá. El testu de las revisionis esborrás solu está disponibri pa los duendis.",
+'undeletehistorynoadmin'       => "Esta páhina á siu esborrá. La razón el esborrau se muestra embahu, unta los detallis al tentu los usuárius qu'eitarun esta páhina enantis de que huera esborrá. El testu las revisionis esborrás solu está disponibri pa los çahorilis.",
 'undelete-revision'            => 'Esborrá la revisión de $1 (cumu $2) pol $3:',
 'undelete-nodiff'              => "Nu s'á alcuentrau denguna revisión previa.",
 'undeletebtn'                  => 'Restaural',
@@ -1522,7 +1522,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'block-log-flags-nocreate'    => 'Desativau el criaeru e cuentas',
 'block-log-flags-noautoblock' => 'autu-tarugu esativau',
 'block-log-flags-noemail'     => 'email atarugau',
-'range_block_disabled'        => 'Nu se premiti a los duendis crial tarugus pol rangus.',
+'range_block_disabled'        => 'Nu se premiti a los çahorilis crial tarugus pol rangus.',
 'ipb_expiry_invalid'          => 'Tiempu encorretu.',
 'ipb_already_blocked'         => '"$1" ya está atarugau',
 'ipb_cant_unblock'            => "Marru: Nu s'á alcuentrau el tarugu con ID $1. Es posibri que ya aiga siu desatarugau.",

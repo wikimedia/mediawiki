@@ -5,6 +5,7 @@
  *
  * @author ne.wikipedia.org sysops
  * @author SPQRobin
+ * @author Nike
  */
 
 $digitTransformTable = array(
@@ -597,8 +598,8 @@ $messages = array(
 'hideresults' => 'नतिजा लुकाउनुहोस्',
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; अघिल्लो पृष्ठ',
-'imgmultipagenext' => 'पछिल्लो पृष्ठ &rarr;',
+'imgmultipageprev' => '← अघिल्लो पृष्ठ',
+'imgmultipagenext' => 'पछिल्लो पृष्ठ →',
 'imgmultigo'       => 'जानुहोस्!',
 
 # Table pager

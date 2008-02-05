@@ -483,7 +483,7 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Translating:Intro Betawiki], um projeto destinado para a tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net Betawiki], um projecto destinado para a tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -574,9 +574,9 @@ $1 horas.',
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta de utilizador para $1 foi criada.',
 'createaccount-title'        => 'Criação de conta em {{SITENAME}}',
-'createaccount-text'         => 'Alguém ($1) criou uma conta para $2 em {{SITENAME}} ($4). A palavra-chave para "$2" é "$3". Você deve se autenticar e alterar sua palavra-chave.
+'createaccount-text'         => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como palavra-chave #$3". Você deve se autenticar e alterar sua palavra-chave.
 
-Caso a conta tenha sido criada por engano, você pode ignorar esta mensagem.',
+Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -816,7 +816,7 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de e
 'revdelete-nooldid-text'      => 'Não especificou nenhuma revisão, ou revisões,
 no qual aplicar esta função.',
 'revdelete-selected'          => "{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} para '''[[:$1]]''':",
-'logdelete-selected'          => "{{PLURAL:$2|Evento de registo selecionado|Eventos de registo selecionados}} para '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Evento de registo seleccionado|Eventos de registo seleccionados}} para '''$1:'''",
 'revdelete-text'              => "Revisões eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
 
 Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
@@ -931,7 +931,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-personal'           => 'Perfil de utilizador',
 'prefs-rc'                 => 'Mudanças recentes',
 'prefs-watchlist'          => 'Lista de artigos vigiados',
-'prefs-watchlist-days'     => 'Número de dias a mostrar na lista de artigos vigiados:',
+'prefs-watchlist-days'     => 'Dias a mostrar na lista de artigos vigiados:',
 'prefs-watchlist-edits'    => 'Numéro de edições a mostrar na lista de artigos vigados expandida:',
 'prefs-misc'               => 'Diversos',
 'saveprefs'                => 'Salvar',
@@ -970,8 +970,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Grupos com remoção possível:',
 'userrights-groupsavailable'       => 'Grupos disponíveis:',
-'userrights-groupshelp'            => 'Seleccione os grupos no qual deseja que o utilizador seja removido ou adicionado.
-Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a selecção a um grupo com CTRL + Click esquerdo',
+'userrights-groupshelp'            => 'Seleccione os grupos nos quais deseja que o utilizador seja removido ou adicionado.
+Grupos não seleccionados não serão alterados. Pode seleccionar ou remover a selecção a um grupo com CTRL + Click esquerdo',
 'userrights-reason'                => 'Motivo de alterações:',
 'userrights-available-none'        => 'Não será possível alterar o grupo de acesso.',
 'userrights-available-add'         => 'É possível adicionar utilizadores {{PLURAL:$2|neste grupo|nestes grupos}}: $1',
@@ -1166,7 +1166,7 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'imagelist_date'            => 'Data',
 'imagelist_name'            => 'Nome',
 'imagelist_user'            => 'Utilizador',
-'imagelist_size'            => 'Tamanho (bytes)',
+'imagelist_size'            => 'Tamanho',
 'imagelist_description'     => 'Descrição',
 'imagelist_search_for'      => 'Pesquisar por nome de imagem:',
 
@@ -1189,7 +1189,7 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' foi eliminado.",
 'filedelete-success-old'      => '<span class="plainlinks">A versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como $3, $2 foi eliminada.</span>',
-'filedelete-nofile'           => "'''$1''' não existe na {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' não existe em {{SITENAME}}.",
 'filedelete-nofile-old'       => "Não há uma versão de '''$1''' em arquivo com os parâmetros especificados.",
 'filedelete-iscurrent'        => 'Você está tentando eliminar a versão mais recente deste ficheiro. Por gentileza, reverta para uma edição anterior antes de tentar novamente.',
 'filedelete-otherreason'      => 'Outro/motivo adicional:',
@@ -1320,7 +1320,7 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 
 'categoriespagetext' => 'As seguintes categorias existem na wiki.',
 'data'               => 'Dados',
-'userrights'         => 'Gestão de privilégios do utilizador',
+'userrights'         => 'Gestão de privilégios de utilizadores',
 'groups'             => 'Grupos de utilizadores',
 'alphaindexline'     => '$1 até $2',
 'version'            => 'Versão',
@@ -1481,10 +1481,10 @@ Consulte $2 para um registo de eliminações recentes.',
 'deletereasonotherlist'       => 'Outro motivo',
 'deletereason-dropdown'       => '* Motivos de eliminação comuns
 ** Pedido do autor
-** Violação de direitos autorais
+** Violação de direitos de autor
 ** Vandalismo',
-'delete-toobig'               => 'Esta página possui um longo histórico de edições (mais de $1). A eliminação de páginas que se encontram em tal condição foi restrita, a fim de se evitarem interrupções acidentais em {{SITENAME}}.',
-'delete-warning-toobig'       => 'Esta página possui um longo histórico de edições (mais de $1). Eliminá-la poderá causar problemas na base de dados de {{SITENAME}}. Proceda com cuidado.',
+'delete-toobig'               => 'Esta página possui um longo histórico de edições, com mais de $1 revisões. A eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.',
+'delete-warning-toobig'       => 'Esta página possui um longo histórico de edições, com mais de $1 revisões. Eliminá-la poderá causar problemas na base de dados de {{SITENAME}}; prossiga com cuidado.',
 'rollback'                    => 'Reverter edições',
 'rollback_short'              => 'Voltar',
 'rollbacklink'                => 'voltar',
@@ -1520,7 +1520,7 @@ Veja a [[Special:Protectedpages|lista de páginas protegidas]] para uma listagem
 Esta é a configuração atual para a página <strong>$1</strong>:',
 'protect-locked-access'       => 'Sua conta não possui permissões para alterar os níveis de proteção de uma página.
 Esta é a configuração atual para a página <strong>$1</strong>:',
-'protect-cascadeon'           => 'Esta página se encontra protegida, uma vez que se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "proteção progressiva" ativada. Você poderá alterar o nível de proteção desta página, mas isso não afetará a "proteção progressiva".',
+'protect-cascadeon'           => 'Esta página encontra-se protegida, uma vez que se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "protecção progressiva" activada. Você poderá alterar o nível de protecção desta página, mas isso não afectará a "protecção progressiva".',
 'protect-default'             => '(padrão)',
 'protect-fallback'            => 'É necessário o privilégio de "$1"',
 'protect-level-autoconfirmed' => 'Bloquear utilizadores não-registados',
@@ -1670,7 +1670,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipblocklist-username'        => 'Utilizador ou endereço de IP:',
 'ipblocklist-submit'          => 'Pesquisar',
 'blocklistline'               => '$1, $2 bloqueou $3 ($4)',
-'infiniteblock'               => 'infinito',
+'infiniteblock'               => 'indefinido',
 'expiringblock'               => 'expira em $1',
 'anononlyblock'               => 'anón. apenas',
 'noautoblockblock'            => 'bloqueio automático desabilitado',
@@ -1681,12 +1681,12 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'blocklink'                   => 'bloquear',
 'unblocklink'                 => 'desbloquear',
 'contribslink'                => 'contribs',
-'autoblocker'                 => 'Você foi automaticamente bloqueado, pois partilha um endereço de IP com "$1". O motivo apresentado foi: "$2".',
+'autoblocker'                 => 'Você foi automaticamente bloqueado, pois partilha um endereço de IP com "[[User:$1|$1]]". O motivo apresentado foi: "$2".',
 'blocklogpage'                => 'Registo de bloqueio',
 'blocklogentry'               => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
 'blocklogtext'                => 'Este é um registo de acções de bloqueio e desbloqueio. Endereços IP sujeitos a bloqueio automático não são listados. Consulte a [[{{ns:special}}:Ipblocklist|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos actualmente válidos.',
 'unblocklogentry'             => 'desbloqueou $1',
-'block-log-flags-anononly'    => 'apenas utilizadores anonimos',
+'block-log-flags-anononly'    => 'apenas utilizadores anónimos',
 'block-log-flags-nocreate'    => 'criação de contas desabilitada',
 'block-log-flags-noautoblock' => 'bloqueio automático desabilitado',
 'block-log-flags-noemail'     => 'impedido de enviar e-mail',
@@ -1701,8 +1701,8 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'proxyblocker-disabled'       => 'Esta função está desabilitada.',
 'proxyblockreason'            => 'O seu endereço de IP foi bloqueado por ser um proxy público. Por favor contacte o seu fornecedor do serviço de Internet ou o apoio técnico e informe-os deste problema de segurança grave.',
 'proxyblocksuccess'           => 'Concluído.',
-'sorbsreason'                 => 'O seu endereço IP encontra-se listado como proxy aberto pela DNSBL utilizada por este sítio.',
-'sorbs_create_account_reason' => 'O seu endereço de IP encontra-se listado como proxy aberto na DNSBL utilizada por este sítio. Você não pode criar uma conta',
+'sorbsreason'                 => 'O seu endereço IP encontra-se listado como proxy aberto pela DNSBL utilizada por {{SITENAME}}.',
+'sorbs_create_account_reason' => 'O seu endereço de IP encontra-se listado como proxy aberto na DNSBL utilizada por {{SITENAME}}. Você não pode criar uma conta',
 
 # Developer tools
 'lockdb'              => 'Trancar base de dados',
@@ -2398,12 +2398,12 @@ Tente a previsão comum.',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de vigiados:',
 'watchlistedit-raw-title'      => 'Edição crua dos vigiados',
 'watchlistedit-raw-legend'     => 'Edição crua dos vigiados',
-'watchlistedit-raw-explain'    => 'Os títulos de sua lista de vigiados são exibidos a seguir e podem ser adicionados ou removidos ao se editar a lista, mantendo-se um por linha. Ao terminar, clique em no botão correspondente para atualizar.
+'watchlistedit-raw-explain'    => 'Os títulos de sua lista de vigiados são exibidos a seguir e podem ser adicionados ou removidos ao se editar a lista, mantendo-se um por linha. Ao terminar, clique no botão correspondente para atualizar.
 
 Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma convencional]] ou [[{{ns:special}}:Watchlist/clear|remover todos os títulos]].',
 'watchlistedit-raw-titles'     => 'Títulos:',
 'watchlistedit-raw-submit'     => 'Atualizar a lista de vigiados',
-'watchlistedit-raw-done'       => 'Sua lista de vigiados foi atualizada.',
+'watchlistedit-raw-done'       => 'Sua lista de vigiados foi actualizada.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Foi adicionado um título|Foram adicionados $1 títulos}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Foi removido um título|Foram removidos $1 títulos}}:',
 

@@ -481,7 +481,7 @@ Devant qu’un ôtro mèl seye emmandâ a cél compto, vos devréd siuvre les en
 'accountcreated'             => 'Compto crèâ.',
 'accountcreatedtext'         => 'Lo compto utilisator por $1 at étâ crèâ.',
 'createaccount-title'        => 'Crèacion d’un compto por {{SITENAME}}',
-'createaccount-text'         => 'Quârqu’un ($1) at crèâ un compto por $2 dessus {{SITENAME}}
+'createaccount-text'         => 'Quârqu’un at crèâ un compto por $2 dessus {{SITENAME}}
 ($4). Lo mot de pâssa por « $2 » est « $3 ». Vos devriâd uvrir una sèssion et pués changiér dês ora ceti mot de pâssa.
 
 Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',

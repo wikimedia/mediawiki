@@ -595,7 +595,7 @@ Query: $2',
 'protectedpagetext'    => 'Deze pagina is beveiligd. Bewerken is niet mogelijk.',
 'viewsourcetext'       => 'U kan de brontekst van deze pagina bekijken en kopiëren:',
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
-'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die gebruikt wordt door de software. Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen. Overweeg voor vertalingen om [http://translatewiki.net/wiki/Translating:Intro Betawiki] te gebruiken, het vertalingsproject voor MediaWiki.",
+'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die gebruikt wordt door de software. Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen. Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl Betawiki] te gebruiken, het vertalingsproject voor MediaWiki.",
 'sqlhidden'            => '(SQL-query verborgen)',
 'cascadeprotected'     => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
@@ -682,8 +682,7 @@ Meld u a.u.b. aan nadat u het heeft ontvangen.',
 'accountcreated'             => 'Gebruiker aangemaakt',
 'accountcreatedtext'         => 'De gebruiker $1 is aangemaakt.',
 'createaccount-title'        => 'Gebruikers aanmaken voor {{SITENAME}}',
-'createaccount-text'         => 'Iemand ($1) heeft een gebruiker voor $2 aangemaakt op {{SITENAME}}
-($4). Het wachtwoord voor "$2" is "$3". Meld u aan en wijzig uw wachtwoord.
+'createaccount-text'         => 'Iemand heeft een gebruiker op {{SITENAME}} ($4) aangemaakt met de naam "$2" en uw e-mailadres. Het wachtwoord voor "$2" is "$3". Meld u aan en wijzig uw wachtwoord.
 
 Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'loginlanguagelabel'         => 'Taal: $1',
@@ -1028,7 +1027,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'prefs-personal'           => 'Gebruikersprofiel',
 'prefs-rc'                 => 'Recente wijzigingen',
 'prefs-watchlist'          => 'Volglijst',
-'prefs-watchlist-days'     => 'Maximaal aantal dagen in de volglijst:',
+'prefs-watchlist-days'     => 'Dagen te tonen in de volglijst:',
 'prefs-watchlist-edits'    => 'Maximaal aantal bewerkingen in de uitgebreide volglijst:',
 'prefs-misc'               => 'Diversen',
 'saveprefs'                => 'Opslaan',

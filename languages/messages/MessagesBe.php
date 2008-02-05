@@ -195,6 +195,7 @@ $messages = array(
 'mytalk'         => 'Размовы',
 'anontalk'       => 'Размова для гэтага IP',
 'navigation'     => 'Навігацыя',
+'and'            => 'і',
 
 # Metadata in edit box
 'metadata_help' => 'Метазвесткі:',
@@ -1655,7 +1656,6 @@ $NEWPAGE
 'anonymous'        => 'Ананімныя ўдзельнікі і ўдзельніцы {{GRAMMAR:родны|{{SITENAME}}}}',
 'siteuser'         => 'удзельнік $1 з {{SITENAME}}',
 'lastmodifiedatby' => 'Апошняе змяненне старонкі адбылося $2, $1 аўтарства $3.', # $1 date, $2 time, $3 user
-'and'              => 'і',
 'othercontribs'    => 'На аснове працы $1.',
 'others'           => 'іншае',
 'siteusers'        => 'удзельнік або ўдзельнікі $1 з {{SITENAME}}',

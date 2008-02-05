@@ -78,12 +78,16 @@ $messages = array(
 'info_short'       => 'ინფორმაცია',
 'newpage'          => 'ახალ გვერდ',
 'specialpage'      => 'სპეციალურ გვერდ',
+'talk'             => 'დისკუსია',
 'otherlanguages'   => 'შხვა ნინალეფს',
 'jumptonavigation' => 'ნავიგაცია',
 'jumptosearch'     => 'გორუა',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage' => 'თავარ გვერდ',
+'copyrightpage' => '{{ns:project}}:ავტორიშ უფლებალეფ',
+'mainpage'      => 'თავარ გვერდ',
+'privacy'       => 'ანონიმურობაშ პოლიტიკა',
+'privacypage'   => 'Project:ანონიმურობაშ პოლიტიკა',
 
 'ok' => 'ჯგირო',
 
@@ -106,27 +110,54 @@ $messages = array(
 'yourlanguage'       => 'ნინა:',
 'loginlanguagelabel' => 'ნინა: $1',
 
+# Edit page toolbar
+'extlink_sample' => 'http://www.example.com ბმულიშ სახელ',
+'math_tip'       => 'მათემატიკურ ფორმულა (LaTeX)',
+'media_tip'      => 'ბმულ მედია ფაილს',
+
 # Edit pages
-'summary' => 'რეზიუმე',
+'summary'  => 'რეზიუმე',
+'yourtext' => 'თქვან ტექსტ',
 
 # History pages
 'revisionasof'     => '$1-იშ ვერსია',
 'previousrevision' => '←ჯვეშ ვერსია',
 'last'             => 'ბოლო',
+'orig'             => 'ორიგ',
+'page_first'       => 'პირველი',
+'page_last'        => 'ბოლო',
+'histfirst'        => 'პირველი',
+'histlast'         => 'ბოლო',
+'historysize'      => '($1 ბაიტ)',
+'historyempty'     => '(ცალიერ)',
+
+# Revision feed
+'history-feed-title'          => 'რედაქტირებიშ ისტორია',
+'history-feed-description'    => 'თენა გვერდიშ რედაქტირებეფიშ ისტორია ვიკის',
+'history-feed-item-nocomment' => '$1  $2-ს', # user at time
 
 # Diffs
 'editundo' => 'გაუქვება',
 
 # Search results
-'powersearch' => 'გორუა',
+'noexactmatch' => '\'\'\'გვერდ თენა სახელით "$1" ვა არსეენც.\'\'\' თქვან შეგიძლიათ [[:$1|შექმნათ თენა გვერდ]].
+
+<span style="display:block; font-size: 89%; margin-left:.2em">თუ შეიძლება, მიგორეთ ვიკიპედიას მსგავსი გვერდეფ, სანამ ახალ სტატიაშ შექმნით, რათა თავიდან აიცილოთ განსხვავებული სათაურით უკვე არსებული გვერდიშ დუპლიკაცია.</span> </span>',
+'powersearch'  => 'გორუა',
+
+# Preferences page
+'mypreferences' => 'ჩქიმ კონფიგურაცია',
 
 # Recent changes
+'hist'            => 'ისტ.',
 'minoreditletter' => 'ჭ',
 
 # Image list
-'imagelist_name' => 'სახელ',
+'filehist-comment' => 'კომენტარ',
+'imagelist_name'   => 'სახელ',
 
 # Miscellaneous special pages
+'nbytes'       => '$1 ბაიტ',
 'specialpages' => 'სპეციალურ გვერდეფ',
 'ancientpages' => 'ძვაშ გვერდეფ',
 
@@ -146,7 +177,9 @@ $messages = array(
 'ipblocklist-submit' => 'გორუა',
 
 # Tooltip help for the actions
-'tooltip-search'        => 'გორუა {{SITENAME}}',
-'tooltip-n-sitesupport' => 'ხუჯ დომკინით',
+'tooltip-pt-userpage'    => 'ჩქიმ გვერდ',
+'tooltip-pt-preferences' => 'ჩქიმ კონფიგურაცია',
+'tooltip-search'         => 'გორუა {{SITENAME}}',
+'tooltip-n-sitesupport'  => 'ხუჯ დომკინით',
 
 );

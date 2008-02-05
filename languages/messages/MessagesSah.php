@@ -418,9 +418,9 @@ MySQL маннык сыыһаны төнүннэрдэ "$3: $4"',
 'accountcreated'             => 'Саҥа аат иҥэрилиннэ',
 'accountcreatedtext'         => 'Кыттааччы $1 диэн ааттанна.',
 'createaccount-title'        => '{{SITENAME}} бырайыакка саҥа аат оҥоруу',
-'createaccount-text'         => 'Ким эрэ ($1) {{SITENAME}} бырайыакка ($4) саҥа $2 ааты бэлиэтээбит. "$2" киирии тыла "$3". Билигин киирэн киирии тылгын уларытыаххын наада.
+'createaccount-text'         => 'Ким эрэ {{SITENAME}} бырайыакка ($4) саҥа $2 ааты бэлиэтээбит. "$2" киирии тыла "$3". Билигин киирэн киирии тылгын уларытыаххын наада.
 
-Саҥа аат сыыһа оҥоһуллубут буоллаҕына бу биллэриигэ эппиэттээмэ (игнорируйдаа).',
+Саҥа аат сыыһа оҥоһуллубут буоллаҕына тугу да гыныа суоххун сөп.',
 'loginlanguagelabel'         => 'Омугун тыла: $1',
 
 # Password reset dialog
@@ -765,7 +765,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'prefs-personal'           => 'Кыттааччы туруоруулара',
 'prefs-rc'                 => 'Кэлиҥҥи уларытыылар',
 'prefs-watchlist'          => 'Кэтээһин',
-'prefs-watchlist-days'     => 'Хас хонук иһинэн кэтээһини көрдөрөрө:',
+'prefs-watchlist-days'     => 'Хас хонуктааҕы уларыйыылар кэтээһин испииһэгэр көстөллөрө:',
 'prefs-watchlist-edits'    => 'Хас уларытыыны тупсарыллыбыт кэтээһиҥҥэ көрдөрөрө:',
 'prefs-misc'               => 'Атын туруоруулар',
 'saveprefs'                => 'Бигэргэт',
@@ -1297,6 +1297,8 @@ $NEWPAGE
 'excontentauthor'             => 'иһинээҕитэ: «$1» (соҕотох ааптар [[{{ns:special}}:Contributions/$2|$2]])',
 'exbeforeblank'               => "иһинээҕитэ сотуллуон иннинэ: '$1'",
 'exblank'                     => 'сирэй кураанах этэ',
+'delete-confirm'              => 'Маны "$1" соторго',
+'delete-legend'               => 'Сотуу',
 'historywarning'              => 'Сэрэтии: Сотоору турар сирэйиҥ устуоруйалаах:',
 'confirmdeletetext'           => 'Эн сирэйи (ойууну) уонна кини устуоруйатын букатын сотоору гынаҕын.
 Бука диэн, кырдьык инньэ гынаары гынаргын,
@@ -1310,7 +1312,7 @@ $NEWPAGE
 'dellogpagetext'              => 'Манна кэнники сотуулар испииһэктэрэ көстөр.',
 'deletionlog'                 => 'сотуу испииһэгэ',
 'reverted'                    => 'Урукку торумугар төннөрүлүннэ',
-'deletecomment'               => 'Сотуу төрүөтэ',
+'deletecomment'               => 'Сотуу төрүөтэ:',
 'deleteotherreason'           => 'Атын/эбии биричиинэлэр:',
 'deletereasonotherlist'       => 'Атын биричиинэ',
 'deletereason-dropdown'       => '*Common сотуу биричиинэтэ
@@ -1695,8 +1697,10 @@ $1',
 'importuploaderrorsize'      => 'Файл ыйааhына наhаа улахан буолан хачайдааhын тохтотулунна.',
 'importuploaderrorpartial'   => 'Хачайдааhын тохтотулунна. Файл сорҕото эрэ сурулунна.',
 'importuploaderrortemp'      => 'Хачайдааhын тохтотулунна. Быстах кэмҥэ уурар сир көстүбэтэ.',
+'import-parse-failure'       => 'Импортааһын кэмигэр ошибка разбора XML',
 'import-noarticle'           => 'Импортанар сирэй суох!',
 'import-nonewrevisions'      => 'Туох баар торумнар бу иннинэ импортаммыттар/импортаннылар.',
+'xml-error-string'           => '$1 - $2 строка, $3 колонка ($4 байт): $5',
 
 # Import log
 'importlogpage'                    => 'Импорт сурунаала',
@@ -2285,6 +2289,22 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Биллибэт тиэг "$1"',
+
+# Special:Version
+'version-extensions'               => 'Туруоруллубут расширениялар',
+'version-specialpages'             => 'Аналлаах сирэйдэр',
+'version-parserhooks'              => 'синтаксическай анализатор перехватчиктара',
+'version-variables'                => 'Уларыйар дааннайдар (переменнайдар)',
+'version-other'                    => 'Атын',
+'version-mediahandlers'            => 'Медиа уларытааччылар',
+'version-hooks'                    => 'Перехватчиктар',
+'version-extension-functions'      => 'Расширениялар функциялара',
+'version-parser-extensiontags'     => 'Синтаксииһы анаалыстыыр тэрил расширениятын тиэктэрэ',
+'version-parser-function-hooks'    => 'Синтаксииһы анаалыстыыр тэрил функциятын перехватчиктара',
+'version-skin-extension-functions' => 'Оформление темаларын расширенияларын функцията',
+'version-hook-name'                => 'Перехватчик аата',
+'version-hook-subscribedby'        => 'Суруттарыыта:',
+'version-version'                  => 'Торум',
 
 # Special:Filepath
 'filepath'         => 'Билэ суола',

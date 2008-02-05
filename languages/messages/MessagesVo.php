@@ -1111,7 +1111,7 @@ Ekö! parametem anuik pada: <strong>$1</strong>:',
 'undeletepagetext'         => 'Pads sököl pemoükons ab binons nog in registar: moükam onas kanon pasädunön.
 Registar pavagükon periodiko.',
 'undeleteextrahelp'        => "Ad sädunön moükami pada lölik, vagükolös bügilis valik e välolös me mugaparat knopi: '''''Sädunolöd moükami'''''. Ad sädunön moükami no lölöfik, välolös me mugaparat bügilis revidas pavipöl, e tän knopi: '''''Sädunolöd moükami'''''. Knop: '''''Vagükolöd vali''''' vagükön küpeti e bügilis valik.",
-'undeleterevisions'        => 'revids $1 peregistarons',
+'undeleterevisions'        => '{{PLURAL:$1|revid 1 peregistaron|revids $1 peregistarons}}',
 'undeletehistory'          => 'If osädunol moükami pada at, revids valik ogepubons in jenotem onik. 
 If pad nulik labü tiäd ot pejafon pos moükam at, revids ogepubons in jenotem pada nulik at, e fomam nuik ona no poplaädon itjäfidiko.',
 'undeletehistorynoadmin'   => 'Yeged at pemoükon. Kod moükama pajonon dono, kobü pats gebanas, kels iredakons padi at büä pämoükon. Vödem redakamas pemoüköl at gebidon te guvanes.',
@@ -1119,8 +1119,8 @@ If pad nulik labü tiäd ot pejafon pos moükam at, revids ogepubons in jenotem 
 'undeletereset'            => 'Vagükolöd vali',
 'undeletecomment'          => 'Küpet:',
 'undeletedarticle'         => 'Moükam pada: "[[$1]]" pesädunon',
-'undeletedrevisions'       => 'Moükam revidas $1 pesädunon',
-'undeletedrevisions-files' => 'Moükam revidas $1 e ragiva(s) $2 pesädunon',
+'undeletedrevisions'       => 'Moükam {{PLURAL:$1|revida 1 pesädunon|revidas $1 pesädunons}}',
+'undeletedrevisions-files' => 'Moükam {{PLURAL:$1|revida 1|revidas $1}} e {{PLURAL:$2|ragiva 1|ragivas $2}} pesädunons',
 'undeletedfiles'           => 'Moükam {{PLURAL:$1|ragiva 1|ragivas $1}} pesädunon',
 'cannotundelete'           => 'Sädunam moükama no eplöpon. Ba ek ya esädunon moükami at.',
 'undeletedpage'            => "<big>'''Moükam pada: $1 pesädunon'''</big>
