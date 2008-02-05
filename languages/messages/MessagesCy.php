@@ -282,7 +282,7 @@ $messages = array(
 'retrievedfrom'           => 'Wedi dod o "$1"',
 'youhavenewmessages'      => 'Mae gennych chi $1 ($2).',
 'newmessageslink'         => 'Neges(eueon) newydd',
-'newmessagesdifflink'     => "gwahaniaeth â'r diwygiad cyn yr un diweddaraf",
+'newmessagesdifflink'     => 'y newid diweddaraf',
 'youhavenewmessagesmulti' => 'Mae negeseuon newydd gennych ar $1',
 'editsection'             => 'golygu',
 'editold'                 => 'golygu',
@@ -526,10 +526,10 @@ Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'accmailtitle'            => 'Wedi danfon cyfrinair.',
 'accmailtext'             => 'Anfonwyd cyfrinair "$1" at $2.',
 'newarticle'              => '(Newydd)',
-'newarticletext'          => "Yr ydych wedi dilyn cysylltiad i tudalen sydd ddim wedi gael eu creu eto.
-I creuo'r tudalen, dechreuwch teipio yn y bocs isaf
-(gwelwch y [[{{MediaWiki:Helppage}}|tudalen help]] am mwy o hysbys).
-Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
+'newarticletext'          => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
+I greu'r dudalen, dechreuwch deipio yn y blwch isod 
+(gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
+Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext'        => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:Userlogin|crëwch gyfrif neu mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys yn y dyfodol.''",
 'noarticletext'           => '(Does dim testun yn y tudalen hon eto)',
 'clearyourcache'          => "'''Sylwer:''' Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau. '''Mozilla / Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ar Apple Mac); '''IE:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''; '''Konqueror:''': cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; '''Opera''': efallai y bydd angen gwacau'r celc yn llwyr yn ''Offer→Dewisiadau / Tools→Preferences''.",
@@ -1526,7 +1526,7 @@ $1",
 'file-nohires'   => '<small>Wedi ei chwyddo hyd yr eithaf.</small>',
 
 # Special:Newimages
-'newimages'    => 'Oriel o ffeiliau newydd',
+'newimages'    => 'Oriel y ffeiliau newydd',
 'showhidebots' => '($1 botiau)',
 'noimages'     => "Does dim byd i'w weld",
 

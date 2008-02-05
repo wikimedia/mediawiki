@@ -209,6 +209,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'mytalk'         => 'Minu arutelu',
 'anontalk'       => 'Arutelu selle IP jaoks',
 'navigation'     => 'Navigeerimine',
+'and'            => 'ja',
 
 'errorpagetitle'    => 'Viga',
 'returnto'          => 'Naase $1 juurde',
@@ -941,8 +942,6 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'excontentauthor'             => "sisu oli: '$1' (ja ainuke kirjutaja oli '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "sisu enne lehekülje tühjendamist: '$1'",
 'exblank'                     => 'lehekülg oli tühi',
-'confirmdelete'               => 'Kinnita kustutamine',
-'deletesub'                   => '(Kustutan "$1")',
 'historywarning'              => 'Hoiatus: leheküljel, mida tahate kustutada, on ajalugu:&nbsp;',
 'confirmdeletetext'           => 'Sa oled andmebaasist jäädavalt kustutamas lehte või pilti koos kogu tema ajalooga. Palun kinnita, et sa tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:Policy-url}}|sisekorraga]].',
 'actioncomplete'              => 'Toiming sooritatud',
@@ -960,7 +959,7 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'rollbackfailed'              => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'                => 'Ei saa muudatusi tagasi pöörata; viimane kaastööline on artikli ainus autor.',
 'editcomment'                 => 'Artikli sisu oli: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Pöörduti tagasi viimasele muudatusele, mille tegi $1',
+'revertpage'                  => 'Pöörduti tagasi viimasele muudatusele, mille tegi $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Kaitsmise logi',
 'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsmised ja kaitsete eemaldamised. Praegu kaitstud lehekülgi vaata [[Special:Protectedpages|kaitstud lehtede loetelust]].',
 'protectedarticle'            => 'kaitses lehekülje "[[$1]]"',
@@ -1186,7 +1185,6 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]',
 # Attribution
 'anonymous' => '{{SITENAME}} anonüümsed kasutajad',
 'siteuser'  => 'Viki kasutaja $1',
-'and'       => 'ja',
 'others'    => 'teised',
 'siteusers' => 'Viki kasutaja(d) $1',
 
@@ -1284,4 +1282,3 @@ Kui see *ei* ole sinu loodud konto, siis ära kliki lingil. Kinnituskood aegub $
 'watchlisttools-raw'  => 'Redigeeri lähtefaili',
 
 );
-

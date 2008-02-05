@@ -1836,6 +1836,7 @@ $NEWPAGE
 
 # Patrol log
 'patrol-log-page' => 'నిఘా లాగ్‌',
+'patrol-log-line' => 'మొత్తం $1లోని $2లను $3గా పెట్రోలు చేసినట్లుగా గుర్తించాము',
 'patrol-log-auto' => '(దావంత అదే)',
 
 # Image deletion
@@ -1968,6 +1969,7 @@ $1',
 'exif-cfapattern'                  => 'CFA క్రమం',
 'exif-customrendered'              => 'కస్టమ్ బొమ్మ ప్రాసెసింగు',
 'exif-exposuremode'                => 'ఎక్స్పోజరు పద్ధతి',
+'exif-whitebalance'                => 'తెలుపు సంతులనం',
 'exif-digitalzoomratio'            => 'డిజిటల్ జూమ్ నిష్పత్తి',
 'exif-focallengthin35mmfilm'       => '35 మి.మీ. ఫిల్ములో నాభ్యంతరం',
 'exif-scenecapturetype'            => 'దృశ్య సంగ్రహ పద్ధతి',
@@ -2057,6 +2059,10 @@ $1',
 'exif-lightsource-9'   => 'ఆహ్లాద వాతావరణం',
 'exif-lightsource-10'  => 'మేఘావృతం',
 'exif-lightsource-11'  => 'నీడ',
+'exif-lightsource-12'  => 'పగటి వెలుగు ఫ్లోరోసెంట్ (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'పగటి తెలుపు ఫ్లోరోసెంట్ (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'చల్లని తెలుపు ఫ్లోరోసెంట్ (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'తెల్లని ఫ్లోరోసెంట్ (WW 3200 – 3700K)',
 'exif-lightsource-17'  => 'ప్రామాణిక కాంతి A',
 'exif-lightsource-18'  => 'ప్రామాణిక కాంతి B',
 'exif-lightsource-19'  => 'ప్రామాణిక కాంతి C',
@@ -2066,16 +2072,25 @@ $1',
 
 'exif-sensingmethod-1' => 'అనిర్వచితం',
 
+'exif-scenetype-1' => 'ఎటువంటి హంగులూ లేకుండా ఫొటోతీయబడిన బొమ్మ',
+
 'exif-customrendered-0' => 'సాధారణ ప్రక్రియ',
+'exif-customrendered-1' => 'ప్రత్యేక ప్రక్రియ',
 
 'exif-scenecapturetype-0' => 'ప్రామాణిక',
+'exif-scenecapturetype-1' => 'ప్రకృతిదృశ్యం',
+'exif-scenecapturetype-2' => 'వ్యక్తి చిత్రణ',
 'exif-scenecapturetype-3' => 'రాత్రి దృశ్యం',
+
+'exif-gaincontrol-0' => 'ఏదీ కాదు',
 
 'exif-contrast-0' => 'సాధారణ',
 'exif-contrast-1' => 'మృదువు',
 'exif-contrast-2' => 'కఠినం',
 
 'exif-saturation-0' => 'సాధారణ',
+'exif-saturation-1' => 'రంగులు ముద్దలు ముద్దలుగా తయారవ్వలేదు',
+'exif-saturation-2' => 'రంగులు ముద్దలు ముద్దలుగా తయారయ్యాయి',
 
 'exif-sharpness-0' => 'సాధారణ',
 'exif-sharpness-1' => 'మృదువు',
@@ -2092,6 +2107,8 @@ $1',
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'తూర్పు రేఖాంశం',
 'exif-gpslongitude-w' => 'పశ్చిమ రేఖాంశం',
+
+'exif-gpsstatus-a' => 'కొలత జరుగుతూంది',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'గంటకి కిలోమీటర్లు',
@@ -2145,7 +2162,9 @@ $3
 $4తో కాలం చెల్లుతుంది.',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[యుఆర్‌ఎల్ మరీ పొడుగ్గా ఉంది; క్షమించండి]',
+'scarytranscludedisabled' => '[ఇతరవికీల మూసలను ఇక్కడ వాడటాన్ని అనుమతించటం లేదు]',
+'scarytranscludefailed'   => '[క్షమించాలి; $1 కోసం మూసను తీసుకురావటం కుదరలేదు]',
+'scarytranscludetoolong'  => '[యుఆర్‌ఎల్ మరీ పొడుగ్గా ఉంది; క్షమించండి]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">

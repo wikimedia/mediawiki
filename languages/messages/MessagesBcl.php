@@ -164,6 +164,7 @@ $messages = array(
 'mytalk'         => 'Olay ko',
 'anontalk'       => 'Olay para sa IP na ini',
 'navigation'     => 'Nabigasyón',
+'and'            => 'asin',
 
 # Metadata in edit box
 'metadata_help' => 'Mga Metadatos:',
@@ -1693,7 +1694,6 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:special}}:
 'anonymous'        => '(Mga)paragamit na anónimo kan {{SITENAME}}',
 'siteuser'         => 'Paragamit kan {{SITENAME}} na si $1',
 'lastmodifiedatby' => 'Ining páhina huring binago sa $2, $1 ni $3.', # $1 date, $2 time, $3 user
-'and'              => 'asin',
 'othercontribs'    => 'Binase ini sa trabaho ni $1.',
 'others'           => 'iba pa',
 'siteusers'        => '(Mga)paragamit kan {{SITENAME}} na si $1',

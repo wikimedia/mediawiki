@@ -8,6 +8,7 @@
  * @author Robert Ullmann
  * @author Malangali
  * @author Nike
+ * @author SPQRobin
  */
 
 
@@ -321,7 +322,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'lineno'                  => 'Mstari $1:',
 'compareselectedversions' => 'Linganisha matoleo mawili uliyochagua',
 'editundo'                => 'tengua',
-'diff-multi'              => '({Hatuonyeshi {PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
+'diff-multi'              => '(Hatuonyeshi {{PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
 
 # Search results
 'noexactmatch' => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
@@ -351,12 +352,12 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'rcnote'                         => "Yanayofuata {{PLURAL:$1|ni badiliko '''1'''|ni mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi $3.",
 'rcnotefrom'                     => 'Hapo chini yaonekana mabadiliko tangu <b>$2</b> (tunaonyesha hadi <b>$1</b>).',
 'rclistfrom'                     => 'Onyesha mabadiliko mapya kuanzia $1',
-'rcshowhideminor'                => '$ mabadiliko madogo',
+'rcshowhideminor'                => '$1 mabadiliko madogo',
 'rcshowhidebots'                 => '$1 roboti',
 'rcshowhideliu'                  => '$1 watumiaji sasa',
 'rcshowhideanons'                => '$1 watumiaji bila majina',
-'rcshowhidepatr'                 => '$ masahihisho yanayofanywa doria',
-'rcshowhidemine'                 => '$ masahihisho zangu',
+'rcshowhidepatr'                 => '$1 masahihisho yanayofanywa doria',
+'rcshowhidemine'                 => '$1 masahihisho zangu',
 'rclinks'                        => 'Onyesha mabadiliko $1 yaliyofanywa wakati wa siku $2 zilizopita<br />$3',
 'diff'                           => 'tofauti',
 'hist'                           => 'hist',

@@ -464,8 +464,8 @@ e-mail óntvange veur alle volgende toepassinge.',
 'accountcreated'             => 'Gebroeker aangemaak',
 'accountcreatedtext'         => 'De gebroeker $1 is aangemaak.',
 'createaccount-title'        => 'Gebroekers aanmake veur {{SITENAME}}',
-'createaccount-text'         => 'emes ($1) haet \'ne gebroeker veur $2 aangemaak op {{SITENAME}}
-($4). \'t wachwaord veur "$2" is "$3". Meld dich aan en wiezig dien wachwaord.
+'createaccount-text'         => 'Emes genaamp "$2" haet \'ne gebroeker veur $2 aangemaak op {{SITENAME}}
+($4) mit \'t wachwaord "$3". Meld dich aan en wiezig dien wachwaord.
 
 Negeer dit berich as deze gebroeker zonger dien medewete is aangemaak.',
 'loginlanguagelabel'         => 'Taol: $1',
@@ -937,6 +937,7 @@ of veur mediabesjtande:
 'largefileserver'             => "'t Bestandj is groter dan de instelling van de server toestuit.",
 'emptyfile'                   => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
 'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek $1 of se dat besjtand mesjien wils vervange.",
+'filepageexists'              => "'ne Pazjena (gein aafbeilding) mit deze naam besteit al, geleve <strong><tt>$1</tt></strong> te controlere es geer neet zeker böntj of geer 'm wil verangere.",
 'fileexists-extension'        => "'n bestand met dezelfde naam bestuit al:<br />
 Naam van 't geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van 't bestaonde bestand: <strong><tt>$2</tt></strong><br />
@@ -1037,17 +1038,22 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'filerevert-badversion'     => "d'r is geine vörge lokale versie van dit bestand mit 't opgegaeve tiejdstip.",
 
 # File deletion
-'filedelete'             => 'Wis $1',
-'filedelete-legend'      => 'Wis bestand',
-'filedelete-intro'       => "Doe bös '''[[Media:$1|$1]]''' aan 't wisse.",
-'filedelete-intro-old'   => '<span class="plainlinks">Doe bös de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] aan \'t wisse.</span>',
-'filedelete-comment'     => 'Opmèrking:',
-'filedelete-submit'      => 'Wisse',
-'filedelete-success'     => "'''$1''' is gewis.",
-'filedelete-success-old' => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is gewis.</span>',
-'filedelete-nofile'      => "'''$1''' bestuit neet op {{SITENAME}}.",
-'filedelete-nofile-old'  => "d'r is geine versie van '''$1''' in 't archief met de aangegaeve eigensjappe.",
-'filedelete-iscurrent'   => "Doe probeers de nuujste versie van dit bestand te wisse. Plaats aub 'n aajere versie truuk.",
+'filedelete'                  => 'Wis $1',
+'filedelete-legend'           => 'Wis bestand',
+'filedelete-intro'            => "Doe bös '''[[Media:$1|$1]]''' aan 't wisse.",
+'filedelete-intro-old'        => '<span class="plainlinks">Doe bös de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] aan \'t wisse.</span>',
+'filedelete-comment'          => 'Opmèrking:',
+'filedelete-submit'           => 'Wisse',
+'filedelete-success'          => "'''$1''' is gewis.",
+'filedelete-success-old'      => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is gewis.</span>',
+'filedelete-nofile'           => "'''$1''' bestuit neet op {{SITENAME}}.",
+'filedelete-nofile-old'       => "d'r is geine versie van '''$1''' in 't archief met de aangegaeve eigensjappe.",
+'filedelete-iscurrent'        => "Doe probeers de nuujste versie van dit bestand te wisse. Plaats aub 'n aajere versie truuk.",
+'filedelete-otherreason'      => 'Angere/additionele ree:',
+'filedelete-reason-otherlist' => 'Angere ree',
+'filedelete-reason-dropdown'  => '*Väölveurkómmende ree veur wisse
+** Auteursrechsjenjing
+** Duplicaatbestandj',
 
 # MIME search
 'mimesearch'         => 'Zeuk op MIME-type',
@@ -1307,6 +1313,8 @@ Commentaar en wiejer assistentie:
 'excontentauthor'             => "inhawd waor: '$1' (aangemaak door [[Special:Contributions/$2|$2]])",
 'exbeforeblank'               => "inhawd veur 't wisse waor: '$1'",
 'exblank'                     => 'pazjena waor laeg',
+'delete-confirm'              => '"$1" wisse',
+'delete-legend'               => 'Wisse',
 'historywarning'              => 'Waorsjuwing: de pazjena daese wils wisse haet meerdere versies:',
 'confirmdeletetext'           => "De sjteis op 't punt 'n pazjena of e plaetje veur ummer te wisse. Dit haolt allen inhawd en historie oet de database eweg. Bevèstig hieónger dat dit welzeker dien bedoeling is, dats te de gevolge begrieps.",
 'actioncomplete'              => 'Actie voltoeid',
@@ -1647,13 +1655,17 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'importcantopen'             => "Kós 't importbestandj neet äöpene",
 'importbadinterwiki'         => 'Verkeerde interwikilink',
 'importnotext'               => 'Laeg of geine teks',
-'importsuccess'              => 'Import geslaag.',
+'importsuccess'              => 'Import geslaag!',
 'importhistoryconflict'      => "d'r Zeen conflicte in de gesjiedenis van de pazjena (is mesjiens eerder geïmporteerd)",
 'importnosources'            => "d'r Zeen gein transwiki-importbrónne gedefinieerd en directe gesjiedenis-uploads zeen oetgezat.",
 'importnofile'               => "d'r Is gein importbestandj geüpload.",
 'importuploaderrorsize'      => "Upload van 't importbestandj is misluk. 't Bestand is groter es de ingesteldje limiet.",
 'importuploaderrorpartial'   => "Upload van 't importbestandj is misluk. 't Bestandj is slechs gedeiltelik aangekómme.",
 'importuploaderrortemp'      => "Upload van 't importbestandj is misluk. De tiedelike map is neet aanwezig.",
+'import-parse-failure'       => "Fout bie 't verwerke van de XML-import",
+'import-noarticle'           => "d'r Zeen gein importeerbaar pazjena's!",
+'import-nonewrevisions'      => 'Alle versies zeen al eerder geïmporteerd.',
+'xml-error-string'           => '$1 op regel $2, kolom $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Importlogbook',
@@ -2223,6 +2235,22 @@ Probeer normaal veurvertuin.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ónbekindje tag "$1"',
+
+# Special:Version
+'version-extensions'               => 'Geïnstalleerde oetbreijinge',
+'version-specialpages'             => "Speciaal pazjena's",
+'version-parserhooks'              => 'Parserheuk',
+'version-variables'                => 'Variabele',
+'version-other'                    => 'Euverige',
+'version-mediahandlers'            => 'Mediaverwerkers',
+'version-hooks'                    => 'Heuk',
+'version-extension-functions'      => 'Oetbreijingsfuncties',
+'version-parser-extensiontags'     => 'Parseroetbreijingstags',
+'version-parser-function-hooks'    => 'Parserfunctieheuk',
+'version-skin-extension-functions' => 'Vormgaevingsoetbreijingsfuncties',
+'version-hook-name'                => 'Hooknaam',
+'version-hook-subscribedby'        => 'Geabonneerd door',
+'version-version'                  => 'Versie',
 
 # Special:Filepath
 'filepath'         => 'Bestandjspaad',

@@ -541,9 +541,9 @@ Dersom denne forespørselen ble utført av noen andre, eller om du kom på passo
 'accountcreated'             => 'Brukerkonto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
 'createaccount-title'        => 'Kontooppretting på {{SITENAME}}',
-'createaccount-text'         => 'Noen ($1) opprettet en konto for $2 på {{SITENAME}} ($4). Passordet for «$2» er «$3». Du burde logge inn og endre passordet nå.
+'createaccount-text'         => 'Noen opprettet en konto for din e-postadresse på {{SITENAME}} ($4) med navnet «$2», med «$3» som passord. Du burde logge inn og endre passordet nå.
 
-Du kan ignorere denne beskjeden dersom kontoen feilaktig ble opprettet.',
+Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -871,7 +871,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'prefs-personal'           => 'Brukerdata',
 'prefs-rc'                 => 'Siste endringer',
 'prefs-watchlist'          => 'Overvåkningsliste',
-'prefs-watchlist-days'     => 'Antall dager vist i overvåkningslista:',
+'prefs-watchlist-days'     => 'Dager som skal vises i overvåkningslista:',
 'prefs-watchlist-edits'    => 'Antall redigeringer som skal vises i utvidet overvåkningsliste:',
 'prefs-misc'               => 'Diverse',
 'saveprefs'                => 'Lagre innstillinger',

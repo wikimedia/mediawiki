@@ -308,7 +308,7 @@ Raporteer die adres asseblief aan enige administrateur.',
 'perfcached'       => "ie volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
 'perfcachedts'     => 'Die volgende data is gekas. Laaste opdatering: $1',
 'viewsource'       => 'Bekyk bronteks',
-'editinginterface' => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed.",
+'editinginterface' => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (het vertalingsproject vir MediaWiki) te gebruik.",
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
@@ -358,7 +358,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'mailmypassword'             => 'E-pos nuwe wagwoord',
 'passwordremindertitle'      => 'Wagwoordwenk van {{SITENAME}}',
 'passwordremindertext'       => 'Iemand (waarskynlik jy, van IP-adres $1)
-het gevra dat ons vir jou \'n nuwe {{SITENAME}} wagwoord stuur.
+het gevra dat ons vir jou \'n nuwe {{SITENAME}}-wagwoord ($4) stuur.
 Die wagwoord vir gebruiker "$2" is nou "$3".
 Teken asseblief in en verander jou wagwoord.',
 'noemail'                    => 'Daar is geen e-posadres vir gebruiker "$1" nie.',
@@ -501,7 +501,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'searchresulttext'      => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Vir navraag "[[:$1]]"',
 'searchsubtitleinvalid' => 'Vir navraag "$1"',
-'noexactmatch'          => "Geen bladsy met hierdie presiese titel bestaan nie, probeer 'n volteksnavraag.",
+'noexactmatch'          => "'''Geen bladsy met die titel \"\$1\" bestaan nie.''' Probeer 'n volteksnavraag of [[:\$1|maak die bladsy]].",
 'titlematches'          => 'Artikeltitel resultate',
 'notitlematches'        => 'Geen artikeltitel resultate nie',
 'textmatches'           => 'Artikelteks resultate',
@@ -597,7 +597,7 @@ om voorkeure te spesifiseer.',
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|wysiging|wysigings}}',
 'recentchanges'     => 'Onlangse wysigings',
-'rcnote'            => 'Hier volg die laaste <strong>$1</strong> wysigings gedurende die afgelope <strong>$2</strong> dae.',
+'rcnote'            => "Hier volg die laaste {{PLURAL:$1|'''$1''' wysiging|'''$1''' wysigings}} gedurende die afgelope {{PLURAL:$2|dag|'''$2''' dae}}, op $3.",
 'rcnotefrom'        => 'Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).',
 'rclistfrom'        => 'Vertoon wysigings vanaf $1',
 'rcshowhideminor'   => '$1 klein wysigings',
@@ -719,13 +719,17 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'statistics'    => 'Statistiek',
 'sitestats'     => 'Werfstatistiek',
 'userstats'     => 'Gebruikerstatistiek',
-'sitestatstext' => 'Daar is \'n totaal van <b>$1</b> bladsye in die databasis.
-Dit sluit "bespreek" bladsye in, bladsye oor {{SITENAME}}, minimale "verkorte"
+'sitestatstext' => "Daar is {{PLURAL:\$1|'''1''' bladsy|'n totaal van '''\$1''' bladsye}} in die databasis.
+Dit sluit \"bespreek\"-bladsye in, bladsye oor {{SITENAME}}, minimale \"verkorte\"
 bladsye, wegwysbladsye, en ander wat waarskynlik nie as artikels kwalifiseer nie.
-Uitsluitend bogenoemde, is daar <b>$2</b> bladsye wat waarskynlik ware artikels is.
+Uitsluitend bogenoemde, is daar {{PLURAL:\$2|'''1''' bladsy|'''\$2''' bladsye}} wat waarskynlik {{PLURAL:\$2|bladsy|bladsye}} met ware inhoud is.
 
-Bladsye is al <b>$3</b> kere aangevra, en <b>$4</b> keer verander sedert die sagteware opgegradeer is (July 20, 2002).
-Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>$6</b> keer per verandering aangevra.',
+'''\$8''' {{PLURAL:\$8|lêer|lêers}} is gelaai.
+
+{{PLURAL:\$3|Bladsy is al '''1''' keer aangevra|Bladsye is al '''\$3''' kere aangevra}}, en '''\$4''' keer verander sedert hierdie wiki opgezet is.
+Dit werk uit op gemiddeld '''\$5''' veranderings per bladsy, en bladsye word '''\$6''' keer per verandering aangevra.
+
+Die ''[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]''-lengte is '''\$7'''.",
 'userstatstext' => 'Daar is <b>$1</b> geregistreerde gebruikers.
 <b>$2</b> van hulle is administrateurs (sien $3).',
 

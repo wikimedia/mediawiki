@@ -575,8 +575,8 @@ nástroje nebudú prístupné.',
 'accountcreated'             => 'Účet vytvorený',
 'accountcreatedtext'         => 'Používateľský účet $1 bol vytvorený.',
 'createaccount-title'        => 'Vytvorenie účtu na {{GRAMMAR:lokál|{{SITENAME}}}}',
-'createaccount-text'         => 'Niekto ($1) vytvoril účet pre $2 na {{GRAMMAR:lokál|{{SITENAME}}}}
-($4). Heslo pre „2“ je „$3“. Mali by ste sa prihlásiť a svoje heslo teraz zmeniť.
+'createaccount-text'         => 'Niekto vytvoril účet pre vašu emailovú adresu na {{GRAMMAR:lokál|{{SITENAME}}}}
+($4) s názvom „$2“, s heslom „$3“. Mali by ste sa prihlásiť a svoje heslo teraz zmeniť.
 
 Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'loginlanguagelabel'         => 'Jazyk: $1',

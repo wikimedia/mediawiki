@@ -216,6 +216,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'mytalk'         => 'Mo chuid phlé',
 'anontalk'       => 'Plé don IP seo',
 'navigation'     => 'Nascleanúint',
+'and'            => 'agus',
 
 'errorpagetitle'    => 'Earráid',
 'returnto'          => 'Dul ar ais go $1.',
@@ -482,6 +483,9 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'accountcreated'             => 'Cúntas cruthaithe',
 'accountcreatedtext'         => 'Cruthaíodh cúntas úsáideora le haghaidh $1.',
 'createaccount-title'        => 'Cuntas cruthú le {{SITENAME}}',
+'createaccount-text'         => 'Chruthaigh duine éigin cuntas do do sheoladh ríomhphoist ar {{SITENAME}} ($4) leis an ainm "$2" agus pasfhocal "$3". Ba cheart duit logáil isteach agus do phasfhocal a athrú anois.
+
+Is féidir leat neamhaird a thabhairt don teachtaireacht seo má cruthaíodh trí earráid í.',
 'loginlanguagelabel'         => 'Teanga: $1',
 
 # Password reset dialog
@@ -1402,7 +1406,6 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 'anonymous'        => 'Úsáideoir(í) gan ainm ar {{SITENAME}}',
 'siteuser'         => 'Úsáideoir $1 ag {{SITENAME}}',
 'lastmodifiedatby' => 'Leasaigh $3 an leathanach seo go déanaí ag $2, $1.', # $1 date, $2 time, $3 user
-'and'              => 'agus',
 'othercontribs'    => 'Bunaithe ar saothair le $1.',
 'others'           => 'daoine eile',
 'siteusers'        => 'Úsáideoir(í) ag {{SITENAME}} $1',
