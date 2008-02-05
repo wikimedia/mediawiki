@@ -761,15 +761,13 @@ $1',
 'cachederror'          => 'The following is a cached copy of the requested page, and may not be up to date.',
 'laggedslavemode'      => 'Warning: Page may not contain recent updates.',
 'readonly'             => 'Database locked',
-'enterlockreason'      => 'Enter a reason for the lock, including an estimate
-of when the lock will be released',
+'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',
 'readonlytext'         => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
 
 The administrator who locked it offered this explanation: $1',
 'missingarticle'       => 'The database did not find the text of a page that it should have found, named "$1".
 
-This is usually caused by following an outdated diff or history link to a
-page that has been deleted.
+This is usually caused by following an outdated diff or history link to a page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.',
@@ -804,8 +802,7 @@ Query: $2',
 'protectedinterface'   => 'This page provides interface text for the software, and is locked to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users. For translations, please consider using [http://translatewiki.net/wiki/Translating:Intro Betawiki], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
-'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the "cascading" option turned on:
-$2',
+'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the "cascading" option turned on: $2',
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannot be edited.',
@@ -813,11 +810,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
-'logouttext'                 => '<strong>You are now logged out.</strong><br />
-You can continue to use {{SITENAME}} anonymously, or you can log in
-again as the same or as a different user. Note that some pages may
-continue to be displayed as if you were still logged in, until you clear
-your browser cache.',
+'logouttext'                 => '<strong>You are now logged out.</strong>
+
+You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user. Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.',
 'welcomecreation'            => "== Welcome, $1! ==
 
 Your account has been created. Don't forget to change your {{SITENAME}} preferences.",
@@ -875,33 +870,22 @@ requested that we send you a new password for {{SITENAME}} ($4).
 The password for user "$2" is now "$3".
 You should log in and change your password now.
 
-If someone else made this request or if you have remembered your password and
-you no longer wish to change it, you may ignore this message and continue using
-your old password.',
+If someone else made this request or if you have remembered your password and you no longer wish to change it, you may ignore this message and continue using your old password.',
 'noemail'                    => 'There is no e-mail address recorded for user "$1".',
-'passwordsent'               => 'A new password has been sent to the e-mail address
-registered for "$1".
-Please log in again after you receive it.',
-'blocked-mailpassword'       => 'Your IP address is blocked from editing, and so
-is not allowed to use the password recovery function to prevent abuse.',
-'eauthentsent'               => 'A confirmation e-mail has been sent to the nominated e-mail address.
-Before any other mail is sent to the account, you will have to follow the instructions in the e-mail,
-to confirm that the account is actually yours.',
-'throttled-mailpassword'     => 'A password reminder has already been sent, within the
-last $1 hours. To prevent abuse, only one password reminder will be sent per
-$1 hours.',
+'passwordsent'               => 'A new password has been sent to the e-mail address registered for "$1". Please log in again after you receive it.',
+'blocked-mailpassword'       => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
+'eauthentsent'               => 'A confirmation e-mail has been sent to the nominated e-mail address. Before any other mail is sent to the account, you will have to follow the instructions in the e-mail, to confirm that the account is actually yours.',
+'throttled-mailpassword'     => 'A password reminder has already been sent, within the last $1 hours. To prevent abuse, only one password reminder will be sent per $1 hours.',
 'loginstart'                 => '', # don't translate or duplicate this message to other languages
 'loginend'                   => '', # don't translate or duplicate this message to other languages
 'signupend'                  => '{{int:loginend}}', # don't translate or duplicate this message to other languages
 'mailerror'                  => 'Error sending mail: $1',
 'acct_creation_throttle_hit' => "Sorry, you have already created $1 accounts. You can't make any more.",
 'emailauthenticated'         => 'Your e-mail address was authenticated on $1.',
-'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated. No e-mail
-will be sent for any of the following features.',
+'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated. No e-mail will be sent for any of the following features.',
 'noemailprefs'               => 'Specify an e-mail address for these features to work.',
 'emailconfirmlink'           => 'Confirm your e-mail address',
-'invalidemailaddress'        => 'The e-mail address cannot be accepted as it appears to have an invalid
-format. Please enter a well-formatted address or empty that field.',
+'invalidemailaddress'        => 'The e-mail address cannot be accepted as it appears to have an invalid format. Please enter a well-formatted address or empty that field.',
 'accountcreated'             => 'Account created',
 'accountcreatedtext'         => 'The user account for $1 has been created.',
 'createaccount-title'        => 'Account creation for {{SITENAME}}',
@@ -960,10 +944,13 @@ You may ignore this message, if this account was created in error.',
 'showpreview'               => 'Show preview',
 'showlivepreview'           => 'Live preview',
 'showdiff'                  => 'Show changes',
-'anoneditwarning'           => "'''Warning:''' You are not logged in. Your IP address will be recorded in this page's edit history.",
-'missingsummary'            => "'''Reminder:''' You have not provided an edit summary. If you click Save again, your edit will be saved without one.",
+'anoneditwarning'           => "'''Warning:''' You are not logged in.
+Your IP address will be recorded in this page's edit history.",
+'missingsummary'            => "'''Reminder:''' You have not provided an edit summary.
+If you click Save again, your edit will be saved without one.",
 'missingcommenttext'        => 'Please enter a comment below.',
-'missingcommentheader'      => "'''Reminder:''' You have not provided a subject/headline for this comment. If you click Save again, your edit will be saved without one.",
+'missingcommentheader'      => "'''Reminder:''' You have not provided a subject/headline for this comment.
+If you click Save again, your edit will be saved without one.",
 'summary-preview'           => 'Summary preview',
 'subject-preview'           => 'Subject/headline preview',
 'blockedtitle'              => 'User is blocked',
@@ -976,8 +963,7 @@ The block was made by $1. The reason given is ''$2''.
 * Intended blockee: $7
 
 You can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.
-You cannot use the 'email this user' feature unless a valid email address is specified in your
-[[Special:Preferences|account preferences]] and you have not been blocked from using it.
+You cannot use the 'email this user' feature unless a valid email address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
 'autoblockedtext'           => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is this:
@@ -987,16 +973,13 @@ The reason given is this:
 * Start of block: $8
 * Expiry of block: $6
 
-You may contact $1 or one of the other
-[[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.
+You may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.
 
-Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address
-registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
+Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
 Your block ID is $5. Please include this ID in any queries you make.',
 'blockednoreason'           => 'no reason given',
-'blockedoriginalsource'     => "The source of '''$1''' is
-shown below:",
+'blockedoriginalsource'     => "The source of '''$1''' is shown below:",
 'blockededitsource'         => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle'        => 'Login required to edit',
 'whitelistedittext'         => 'You have to $1 to edit pages.',
@@ -1015,8 +998,7 @@ shown below:",
 'accmailtext'               => 'The password for "$1" has been sent to $2.',
 'newarticle'                => '(New)',
 'newarticletext'            => "You've followed a link to a page that doesn't exist yet.
-To create the page, start typing in the box below
-(see the [[{{MediaWiki:Helppage}}|help page]] for more info).
+To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon'        => '{{int:newarticletext}}', # don't translate or duplicate this message to other languages
 'talkpagetext'              => '<!-- MediaWiki:talkpagetext -->', # don't translate or duplicate this message to other languages
@@ -1040,8 +1022,7 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
 <strong>If this is a legitimate edit attempt, please try again. If it still doesn't work, try logging out and logging back in.</strong>",
-'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters
-in the edit token. The edit has been rejected to prevent corruption of the page text.
+'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token. The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editing $1',
 'editinguser'               => 'Editing user <b>$1</b>',
@@ -1052,30 +1033,23 @@ This sometimes happens when you are using a buggy web-based anonymous proxy serv
 The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
-<b>Only</b> the text in the upper text area will be saved when you
-press "Save page".<br />',
+<b>Only</b> the text in the upper text area will be saved when you press "Save page".<br />',
 'yourtext'                  => 'Your text',
 'storedversion'             => 'Stored version',
 'nonunicodebrowser'         => '<strong>WARNING: Your browser is not unicode compliant. A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>',
-'editingold'                => '<strong>WARNING: You are editing an out-of-date
-revision of this page.
+'editingold'                => '<strong>WARNING: You are editing an out-of-date revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>',
 'yourdiff'                  => 'Differences',
 'copyrightwarning'          => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
 'copyrightwarning2'         => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you don't want your writing to be edited mercilessly, then don't submit it here.<br />
-You are also promising us that you wrote this yourself, or copied it from a
-public domain or similar free resource (see $1 for details).
+You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-'longpagewarning'           => '<strong>WARNING: This page is $1 kilobytes long; some
-browsers may have problems editing pages approaching or longer than 32kb.
+'longpagewarning'           => '<strong>WARNING: This page is $1 kilobytes long; some browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.</strong>',
-'longpageerror'             => '<strong>ERROR: The text you have submitted is $1 kilobytes
-long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
-'readonlywarning'           => '<strong>WARNING: The database has been locked for maintenance,
-so you will not be able to save your edits right now. You may wish to cut-n-paste
-the text into a text file and save it for later.</strong>',
+'longpageerror'             => '<strong>ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
+'readonlywarning'           => '<strong>WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now. You may wish to cut-n-paste the text into a text file and save it for later.</strong>',
 'protectedpagewarning'      => '<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it.</strong>',
 'semiprotectedpagewarning'  => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'cascadeprotectedwarning'   => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
@@ -1152,24 +1126,19 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.",
 'rev-deleted-event'           => '(entry removed)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
-There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
-</div>',
+There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
-As an administrator on {{SITENAME}} you can view it;
-there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
-</div>',
+As an administrator on {{SITENAME}} you can view it; there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
 'revdelete-nooldid-title'     => 'No target revision',
 'revdelete-nooldid-text'      => 'You have not specified target revision or revisions to perform this function on.',
 'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} of '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Selected log event|Selected log events}} for '''$1:'''",
-'revdelete-text'              => 'Deleted revisions and events will still appear in the page history and logs,
-but parts of their content will be inaccessible to the public.
+'revdelete-text'              => 'Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.
 
-Other admins on {{SITENAME}} will still be able to access the hidden content and can
-undelete it again through this same interface, unless additional restrictions are set.',
+Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.',
 'revdelete-legend'            => 'Set restrictions:',
 'revdelete-hide-text'         => 'Hide revision text',
 'revdelete-hide-name'         => 'Hide action and target',
@@ -1190,8 +1159,7 @@ undelete it again through this same interface, unless additional restrictions ar
 
 # Oversight log
 'oversightlog'    => 'Oversight log',
-'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content
-hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
+'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content hidden from sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
@@ -1244,15 +1212,11 @@ Make sure that this change will maintain historical page continuity.
 'viewprevnext'          => 'View ($1) ($2) ($3)',
 'showingresults'        => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} starting with #'''$2'''.",
 'showingresultsnum'     => "Showing below {{PLURAL:$3|'''1''' result|'''$3''' results}} starting with #'''$2'''.",
-'nonefound'             => "'''Note''': Unsuccessful searches are
-often caused by searching for common words like \"have\" and \"from\",
-which are not indexed, or by specifying more than one search term (only pages
-containing all of the search terms will appear in the result).",
+'nonefound'             => "'''Note''': Unsuccessful searches are often caused by searching for common words like \"have\" and \"from\", which are not indexed, or by specifying more than one search term (only pages containing all of the search terms will appear in the result).",
 'powersearch'           => 'Search',
 'powersearchtext'       => 'Search in namespaces:<br />$1<br />$2 List redirects<br />Search for $3 $9',
 'searchdisabled'        => '{{SITENAME}} search is disabled. You can search via Google in the meantime. Note that their indexes of {{SITENAME}} content may be out of date.',
-'googlesearch'          => '
-<form method="get" action="http://www.google.com/search" id="googlesearch">
+'googlesearch'          => '<form method="get" action="http://www.google.com/search" id="googlesearch">
     <input type="hidden" name="domains" value="{{SERVER}}" />
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
@@ -1623,20 +1587,16 @@ PICT # misc.
 'sitestats'              => '{{SITENAME}} statistics',
 'userstats'              => 'User statistics',
 'sitestatstext'          => "There {{PLURAL:\$1|is '''1''' page|are '''\$1''' total pages}} in the database.
-This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
-pages, redirects, and others that probably don't qualify as content pages.
-Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' pages that are}} probably legitimate
-content {{PLURAL:\$2|page|pages}}.
+This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\" pages, redirects, and others that probably don't qualify as content pages.
+Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' pages that are}} probably legitimate content {{PLURAL:\$2|page|pages}}.
 
 '''\$8''' {{PLURAL:\$8|file has|files have}} been uploaded.
 
-There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}}
-since {{SITENAME}} was setup.
+There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}} since {{SITENAME}} was setup.
 That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
 
 The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
-'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which
-'''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
+'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'Most viewed pages',
 'statistics-footer'      => '', # don't translate or duplicate this message to other languages
 
@@ -1735,9 +1695,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'intl'                            => 'Interlanguage links',
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
-'unusedimagestext'                => '<p>Please note that other web sites may link to an image with
-a direct URL, and so may still be listed here despite being
-in active use.</p>',
+'unusedimagestext'                => '<p>Please note that other web sites may link to an image with a direct URL, and so may still be listed here despite being in active use.</p>',
 'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
@@ -1750,8 +1708,7 @@ in active use.</p>',
 'booksources-search-legend' => 'Search for book sources',
 'booksources-isbn'          => 'ISBN:', # only translate this message to other languages if you have to change it
 'booksources-go'            => 'Go',
-'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have
-further information about books you are looking for:',
+'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:',
 
 'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'               => 'Data',
@@ -1771,8 +1728,7 @@ further information about books you are looking for:',
 'all-logs-page'        => 'All logs',
 'log-search-legend'    => 'Search for logs',
 'log-search-submit'    => 'Go',
-'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
-You can narrow down the view by selecting a log type, the user name, or the affected page.',
+'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}. You can narrow down the view by selecting a log type, the user name, or the affected page.',
 'logempty'             => 'No matching items in log.',
 'log-title-wildcard'   => 'Search titles starting with this text',
 
@@ -1797,21 +1753,15 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 
 # E-mail user
 'mailnologin'     => 'No send address',
-'mailnologintext' => 'You must be [[Special:Userlogin|logged in]]
-and have a valid e-mail address in your [[Special:Preferences|preferences]]
-to send e-mail to other users.',
+'mailnologintext' => 'You must be [[Special:Userlogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'       => 'E-mail this user',
 'emailpage'       => 'E-mail user',
-'emailpagetext'   => 'If this user has entered a valid e-mail address in
-his or her user preferences, the form below will send a single message.
-The e-mail address you entered in your user preferences will appear
-as the "From" address of the mail, so the recipient will be able
-to reply.',
+'emailpagetext'   => 'If this user has entered a valid e-mail address in his or her user preferences, the form below will send a single message.
+The e-mail address you entered in your user preferences will appear as the "From" address of the mail, so the recipient will be able to reply.',
 'usermailererror' => 'Mail object returned error:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'No e-mail address',
-'noemailtext'     => 'This user has not specified a valid e-mail address,
-or has chosen not to receive e-mail from other users.',
+'noemailtext'     => 'This user has not specified a valid e-mail address, or has chosen not to receive e-mail from other users.',
 'emailfrom'       => 'From',
 'emailto'         => 'To',
 'emailsubject'    => 'Subject',
@@ -1832,9 +1782,7 @@ or has chosen not to receive e-mail from other users.',
 'watchnologintext'     => 'You must be [[Special:Userlogin|logged in]] to modify your watchlist.',
 'addedwatch'           => 'Added to watchlist',
 'addedwatchtext'       => "The page \"[[:\$1]]\" has been added to your [[Special:Watchlist|watchlist]].
-Future changes to this page and its associated Talk page will be listed there,
-and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
-make it easier to pick out.
+Future changes to this page and its associated Talk page will be listed there, and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to make it easier to pick out.
 
 If you want to remove the page from your watchlist later, click \"Unwatch\" in the sidebar.",
 'removedwatch'         => 'Removed from watchlist',
@@ -1934,8 +1882,7 @@ Please confirm that you intend to do this, that you understand the consequences,
 'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback failed',
 'cantrollback'                => 'Cannot revert edit; last contributor is only author of this page.',
-'alreadyrolled'               => 'Cannot rollback last edit of [[:$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
+'alreadyrolled'               => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
@@ -1956,8 +1903,7 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'unprotectsub'                => '(Unprotecting "$1")',
 'protect-unchain'             => 'Unlock move permissions',
 'protect-text'                => 'You may view and change the protection level here for the page <strong>$1</strong>.',
-'protect-locked-blocked'      => 'You cannot change protection levels while blocked. Here are the
-current settings for the page <strong>$1</strong>:',
+'protect-locked-blocked'      => 'You cannot change protection levels while blocked. Here are the current settings for the page <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Protection levels cannot be changed due to an active database lock.
 Here are the current settings for the page <strong>$1</strong>:',
 'protect-locked-access'       => 'Your account does not have permission to change page protection levels.
@@ -1991,25 +1937,16 @@ Here are the current settings for the page <strong>$1</strong>:',
 'undelete'                     => 'View deleted pages',
 'undeletepage'                 => 'View and restore deleted pages',
 'viewdeletedpage'              => 'View deleted pages',
-'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and
-can be restored. The archive may be periodically cleaned out.',
-'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and
-click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the
-revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the
-comment field and all checkboxes.",
+'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and can be restored. The archive may be periodically cleaned out.',
+'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the comment field and all checkboxes.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisions}} archived',
 'undeletehistory'              => 'If you restore the page, all revisions will be restored to the history.
-If a new page with the same name has been created since the deletion, the restored
-revisions will appear in the prior history. Also note that restrictions on file revisions are lost upon restoration',
-'undeleterevdel'               => "Undeletion will not be performed if it will result in the top page revision being
-partially deleted. In such cases, you must uncheck or unhide the newest deleted revisions. Revisions of files
-that you don't have permission to view will not be restored.",
-'undeletehistorynoadmin'       => 'This page has been deleted. The reason for deletion is
-shown in the summary below, along with details of the users who had edited this page
-before deletion. The actual text of these deleted revisions is only available to administrators.',
+If a new page with the same name has been created since the deletion, the restored revisions will appear in the prior history. Also note that restrictions on file revisions are lost upon restoration',
+'undeleterevdel'               => "Undeletion will not be performed if it will result in the top page revision being partially deleted. In such cases, you must uncheck or unhide the newest deleted revisions.
+Revisions of files that you don't have permission to view will not be restored.",
+'undeletehistorynoadmin'       => 'This page has been deleted. The reason for deletion is shown in the summary below, along with details of the users who had edited this page before deletion. The actual text of these deleted revisions is only available to administrators.',
 'undelete-revision'            => 'Deleted revision of $1 (as of $2) by $3:',
-'undeleterevision-missing'     => 'Invalid or missing revision. You may have a bad link, or the
-revision may have been restored or removed from the archive.',
+'undeleterevision-missing'     => 'Invalid or missing revision. You may have a bad link, or the revision may have been restored or removed from the archive.',
 'undelete-nodiff'              => 'No previous revision found.',
 'undeletebtn'                  => 'Restore',
 'undeletereset'                => 'Reset',
@@ -2082,12 +2019,9 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Block user',
-'blockiptext'                 => 'Use the form below to block write access
-from a specific IP address or username.
-This should be done only to prevent vandalism, and in
-accordance with [[{{MediaWiki:Policy-url}}|policy]].
-Fill in a specific reason below (for example, citing particular
-pages that were vandalized).',
+'blockiptext'                 => 'Use the form below to block write access from a specific IP address or username.
+This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].
+Fill in a specific reason below (for example, citing particular pages that were vandalized).',
 'ipaddress'                   => 'IP Address:',
 'ipadressorusername'          => 'IP Address or username:',
 'ipbexpiry'                   => 'Expiry:',
@@ -2114,8 +2048,8 @@ pages that were vandalized).',
 'ipbhidename'                 => 'Hide username/IP from the block log, active block list and user list',
 'badipaddress'                => 'Invalid IP address',
 'blockipsuccesssub'           => 'Block succeeded',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] has been blocked.
-<br />See [[Special:Ipblocklist|IP block list]] to review blocks.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] has been blocked.<br />
+See [[Special:Ipblocklist|IP block list]] to review blocks.',
 'ipb-edit-dropdown'           => 'Edit block reasons',
 'ipb-unblock-addr'            => 'Unblock $1',
 'ipb-unblock'                 => 'Unblock a username or IP address',
@@ -2146,9 +2080,9 @@ pages that were vandalized).',
 'autoblocker'                 => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]". The reason given for $1\'s block is: "$2"',
 'blocklogpage'                => 'Block log',
 'blocklogentry'               => 'blocked [[$1]] with an expiry time of $2 $3',
-'blocklogtext'                => 'This is a log of user blocking and unblocking actions. Automatically
-blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
-the list of currently operational bans and blocks.',
+'blocklogtext'                => 'This is a log of user blocking and unblocking actions.
+Automatically blocked IP addresses are not listed.
+See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 'unblocklogentry'             => 'unblocked $1',
 'block-log-flags-anononly'    => 'anonymous users only',
 'block-log-flags-nocreate'    => 'account creation disabled',
@@ -2172,14 +2106,9 @@ the list of currently operational bans and blocks.',
 # Developer tools
 'lockdb'              => 'Lock database',
 'unlockdb'            => 'Unlock database',
-'lockdbtext'          => 'Locking the database will suspend the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do, and that you will
-unlock the database when your maintenance is done.',
-'unlockdbtext'        => 'Unlocking the database will restore the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
+'lockdbtext'          => 'Locking the database will suspend the ability of all users to edit pages, change their preferences, edit their watchlists, and other things requiring changes in the database.
+Please confirm that this is what you intend to do, and that you will unlock the database when your maintenance is done.',
+'unlockdbtext'        => 'Unlocking the database will restore the ability of all users to edit pages, change their preferences, edit their watchlists, and other things requiring changes in the database.
 Please confirm that this is what you intend to do.',
 'lockconfirm'         => 'Yes, I really want to lock the database.',
 'unlockconfirm'       => 'Yes, I really want to unlock the database.',
@@ -2188,32 +2117,23 @@ Please confirm that this is what you intend to do.',
 'locknoconfirm'       => 'You did not check the confirmation box.',
 'lockdbsuccesssub'    => 'Database lock succeeded',
 'unlockdbsuccesssub'  => 'Database lock removed',
-'lockdbsuccesstext'   => 'The database has been locked.
-<br />Remember to [[Special:Unlockdb|remove the lock]] after your maintenance is complete.',
+'lockdbsuccesstext'   => 'The database has been locked.<br />
+Remember to [[Special:Unlockdb|remove the lock]] after your maintenance is complete.',
 'unlockdbsuccesstext' => 'The database has been unlocked.',
 'lockfilenotwritable' => 'The database lock file is not writable. To lock or unlock the database, this needs to be writable by the web server.',
 'databasenotlocked'   => 'The database is not locked.',
 
 # Move page
 'movepage'                => 'Move page',
-'movepagetext'            => "Using the form below will rename a page, moving all
-of its history to the new name.
+'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
-Links to the old page title will not be changed; be sure to
-check for double or broken redirects.
-You are responsible for making sure that links continue to
-point where they are supposed to go.
+Links to the old page title will not be changed; be sure to check for double or broken redirects.
+You are responsible for making sure that links continue to point where they are supposed to go.
 
-Note that the page will '''not''' be moved if there is already
-a page at the new title, unless it is empty or a redirect and has no
-past edit history. This means that you can rename a page back to where
-it was just renamed from if you make a mistake, and you cannot overwrite
-an existing page.
+Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history. This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
 
 <b>WARNING!</b>
-This can be a drastic and unexpected change for a popular page;
-please be sure you understand the consequences of this before
-proceeding.",
+This can be a drastic and unexpected change for a popular page; please be sure you understand the consequences of this before proceeding.",
 'movepagetalktext'        => "The associated talk page will be automatically moved along with it '''unless:'''
 *A non-empty talk page already exists under the new name, or
 *You uncheck the box below.
@@ -2228,8 +2148,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 'movepagebtn'             => 'Move page',
 'pagemovedsub'            => 'Move succeeded',
 'movepage-moved'          => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'A page of that name already exists, or the
-name you have chosen is not valid.
+'articleexists'           => 'A page of that name already exists, or the name you have chosen is not valid.
 Please choose another name.',
 'cantmove-titleprotected' => 'You cannot move a page to this location, because the new title has been protected from creation',
 'talkexists'              => "'''The page itself was moved successfully, but the talk page could not be moved because one already exists at the new title. Please merge them manually.'''",
@@ -2254,13 +2173,9 @@ The destination page "[[$1]]" already exists. Do you want to delete it to make w
 
 # Export
 'export'            => 'Export pages',
-'exporttext'        => 'You can export the text and editing history of a particular page or
-set of pages wrapped in some XML. This can be imported into another wiki using MediaWiki
-via the [[Special:Import|import page]].
+'exporttext'        => 'You can export the text and editing history of a particular page or set of pages wrapped in some XML. This can be imported into another wiki using MediaWiki via the [[Special:Import|import page]].
 
-To export pages, enter the titles in the text box below, one title per line, and
-select whether you want the current version as well as all old versions, with the page
-history lines, or just the current version with the info about the last edit.
+To export pages, enter the titles in the text box below, one title per line, and select whether you want the current version as well as all old versions, with the page history lines, or just the current version with the info about the last edit.
 
 In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for the page "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Include only the current revision, not the full history',
@@ -2609,9 +2524,7 @@ Variants for Chinese language
 'metadata-help'     => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it. If the file has been modified from its original state, some details may not fully reflect the modified image.',
 'metadata-expand'   => 'Show extended details',
 'metadata-collapse' => 'Hide extended details',
-'metadata-fields'   => 'EXIF metadata fields listed in this message will
-be included on image page display when the metadata table
-is collapsed. Others will be hidden by default.
+'metadata-fields'   => 'EXIF metadata fields listed in this message will be included on image page display when the metadata table is collapsed. Others will be hidden by default.
 * make
 * model
 * datetimeoriginal
@@ -2913,20 +2826,12 @@ is collapsed. Others will be hidden by default.
 # E-mail address confirmation
 'confirmemail'            => 'Confirm E-mail address',
 'confirmemail_noemail'    => 'You do not have a valid email address set in your [[Special:Preferences|user preferences]].',
-'confirmemail_text'       => '{{SITENAME}} requires that you validate your e-mail address
-before using e-mail features. Activate the button below to send a confirmation
-mail to your address. The mail will include a link containing a code; load the
-link in your browser to confirm that your e-mail address is valid.',
-'confirmemail_pending'    => '<div class="error">
-A confirmation code has already been e-mailed to you; if you recently
-created your account, you may wish to wait a few minutes for it to
-arrive before trying to request a new code.
-</div>',
+'confirmemail_text'       => '{{SITENAME}} requires that you validate your e-mail address before using e-mail features. Activate the button below to send a confirmation mail to your address. The mail will include a link containing a code; load the link in your browser to confirm that your e-mail address is valid.',
+'confirmemail_pending'    => '<div class="error">A confirmation code has already been e-mailed to you; if you recently created your account, you may wish to wait a few minutes for it to arrive before trying to request a new code.</div>',
 'confirmemail_send'       => 'Mail a confirmation code',
 'confirmemail_sent'       => 'Confirmation e-mail sent.',
 'confirmemail_oncreate'   => 'A confirmation code was sent to your e-mail address.
-This code is not required to log in, but you will need to provide it before
-enabling any e-mail-based features in the wiki.',
+This code is not required to log in, but you will need to provide it before enabling any e-mail-based features in the wiki.',
 'confirmemail_sendfailed' => 'Could not send confirmation mail. Check address for invalid characters.
 
 Mailer returned: $1',
@@ -2936,16 +2841,14 @@ Mailer returned: $1',
 'confirmemail_loggedin'   => 'Your e-mail address has now been confirmed.',
 'confirmemail_error'      => 'Something went wrong saving your confirmation.',
 'confirmemail_subject'    => '{{SITENAME}} e-mail address confirmation',
-'confirmemail_body'       => 'Someone, probably you, from IP address $1, has registered an
-account "$2" with this e-mail address on {{SITENAME}}.
+'confirmemail_body'       => 'Someone, probably you, from IP address $1, has registered an account "$2" with this e-mail address on {{SITENAME}}.
 
-To confirm that this account really does belong to you and activate
-e-mail features on {{SITENAME}}, open this link in your browser:
+To confirm that this account really does belong to you and activate e-mail features on {{SITENAME}}, open this link in your browser:
 
 $3
 
-If this is *not* you, don\'t follow the link. This confirmation code
-will expire at $4.',
+If this is *not* you, don\'t follow the link.
+This confirmation code will expire at $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
@@ -2953,10 +2856,7 @@ will expire at $4.',
 'scarytranscludetoolong'  => '[URL is too long; sorry]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacks for this page:<br />
-$1
-</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks for this page:<br />$1</div>',
 'trackback'         => '; $4$5 : [$2 $1]', # don't translate or duplicate this message to other languages
 'trackbackexcerpt'  => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>', # don't translate or duplicate this message to other languages
 'trackbackremove'   => ' ([$1 Delete])',
@@ -3063,15 +2963,15 @@ $1',
 'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
 'watchlistedit-normal-title'   => 'Edit watchlist',
 'watchlistedit-normal-legend'  => 'Remove titles from watchlist',
-'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below. To remove a title, check
-	the box next to it, and click Remove Titles. You can also [[Special:Watchlist/raw|edit the raw list]].',
+'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
+To remove a title, check the box next to it, and click Remove Titles.
+You can also [[Special:Watchlist/raw|edit the raw list]].',
 'watchlistedit-normal-submit'  => 'Remove Titles',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
 'watchlistedit-raw-title'      => 'Edit raw watchlist',
 'watchlistedit-raw-legend'     => 'Edit raw watchlist',
-'watchlistedit-raw-explain'    => 'Titles on your watchlist are shown below, and can be edited by
-	adding to and removing from the list; one title per line. When finished, click Update Watchlist.
-	You can also [[Special:Watchlist/edit|use the standard editor]].',
+'watchlistedit-raw-explain'    => 'Titles on your watchlist are shown below, and can be edited by adding to and removing from the list; one title per line. When finished, click Update Watchlist.
+You can also [[Special:Watchlist/edit|use the standard editor]].',
 'watchlistedit-raw-titles'     => 'Titles:',
 'watchlistedit-raw-submit'     => 'Update Watchlist',
 'watchlistedit-raw-done'       => 'Your watchlist has been updated.',
@@ -3154,7 +3054,8 @@ $1',
 'filepath'         => 'File path',
 'filepath-page'    => 'File:',
 'filepath-submit'  => 'Path',
-'filepath-summary' => 'This special page returns the complete path for a file. Images are shown in full resolution, other file types are started with their associated program directly.
+'filepath-summary' => 'This special page returns the complete path for a file.
+Images are shown in full resolution, other file types are started with their associated program directly.
 
 Enter the file name without the "{{ns:image}}:" prefix.',
 
