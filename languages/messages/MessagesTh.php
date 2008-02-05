@@ -197,6 +197,7 @@ $messages = array(
 'mytalk'         => 'หน้าพูดคุยของฉัน',
 'anontalk'       => 'พูดคุยกับไอพีนี้',
 'navigation'     => 'นำทาง',
+'and'            => 'and',
 
 # Metadata in edit box
 'metadata_help' => 'เมทาเดทา:',
@@ -289,25 +290,26 @@ $messages = array(
 'versionrequired'     => 'ต้องการมีเดียวิกิรุ่น $1',
 'versionrequiredtext' => 'ต้องการมีเดียวิกิรุ่น $1 สำหรับใช้งานหน้านี้ ดูเพิ่ม [[Special:Version|รุ่นซอฟต์แวร์]]',
 
-'ok'                  => 'ตกลง',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'รับข้อมูลจาก "$1"',
-'youhavenewmessages'  => 'คุณมี $1 ($2)',
-'newmessageslink'     => 'ข้อความใหม่',
-'newmessagesdifflink' => 'ข้อความเข้ามาใหม่',
-'editsection'         => 'แก้ไข',
-'editold'             => 'แก้ไข',
-'editsectionhint'     => 'แก้ไขส่วน: $1',
-'toc'                 => 'เนื้อหา',
-'showtoc'             => 'แสดง',
-'hidetoc'             => 'ซ่อน',
-'thisisdeleted'       => 'แสดงหรือเรียกดู $1',
-'viewdeleted'         => 'ดู $1',
-'restorelink'         => '$1 การแก้ไขที่ถูกลบ',
-'feedlinks'           => 'ฟีด',
-'feed-invalid'        => 'ฟีดที่สมัครไม่ถูกชนิด',
+'ok'                      => 'ตกลง',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => 'รับข้อมูลจาก "$1"',
+'youhavenewmessages'      => 'คุณมี $1 ($2)',
+'newmessageslink'         => 'ข้อความใหม่',
+'newmessagesdifflink'     => 'ข้อความเข้ามาใหม่',
+'youhavenewmessagesmulti' => 'คุณมีข้อความใหม่ที่ $1',
+'editsection'             => 'แก้ไข',
+'editold'                 => 'แก้ไข',
+'editsectionhint'         => 'แก้ไขส่วน: $1',
+'toc'                     => 'เนื้อหา',
+'showtoc'                 => 'แสดง',
+'hidetoc'                 => 'ซ่อน',
+'thisisdeleted'           => 'แสดงหรือเรียกดู $1',
+'viewdeleted'             => 'ดู $1',
+'restorelink'             => '$1 การแก้ไขที่ถูกลบ',
+'feedlinks'               => 'ฟีด',
+'feed-invalid'            => 'ฟีดที่สมัครไม่ถูกชนิด',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'เนื้อหาหลัก',
 'nstab-user'      => 'หน้าผู้ใช้',
 'nstab-media'     => 'หน้าสื่อ',
@@ -403,7 +405,6 @@ $1',
 'yourdomainname'             => 'โดเมนของคุณ:',
 'externaldberror'            => 'อาจมีปัญหาการรับรองฐานข้อมูลผิดพลาด หรือคุณไม่มีสิทธิในการอัปเดตบัญชีอื่นนั้น',
 'loginproblem'               => '<b>เกิดข้อผิดพลาดในการล็อกอิน</b><br />ลองอีกครั้ง!',
-'alreadyloggedin'            => '<strong>ผู้ใช้ $1 - คุณได้ล็อกอินไปแล้ว!</strong><br />',
 'login'                      => 'ล็อกอิน',
 'loginprompt'                => 'ต้องเปิดใช้คุกกี้ก่อนที่จะล็อกอินเข้าสู่ {{SITENAME}}',
 'userlogin'                  => 'ล็อกอิน / สร้างบัญชีผู้ใช้',
@@ -465,6 +466,7 @@ $1',
 'invalidemailaddress'        => 'รูปแบบอีเมลไม่ถูกต้อง ให้ใส่อีเมลให้ถูกต้องตามรูปแบบอีเมล หรือให้ทำช่องอีเมลให้ว่างแทน',
 'accountcreated'             => 'ชื่อบัญชีได้ถูกสร้างขึ้น',
 'accountcreatedtext'         => 'ชื่อบัญชีสำหรับ $1 ได้ถูกสร้างขึ้นแล้ว',
+'loginlanguagelabel'         => 'ภาษา: $1',
 
 # Password reset dialog
 'resetpass'               => 'ตั้งค่ารหัสผ่านใหม่',
@@ -582,7 +584,6 @@ $1',
 <strong>ถ้าการแก้ไขครั้งนี้ถูกต้อง ให้ทดลองแก้ไขอีกครั้งหนึ่ง ถ้ายังไม่สามารถทำได้ให้ลองล็อกเอาต์และล็อกอินกลับมาอีกครั้ง</strong>",
 'token_suffix_mismatch'     => '<strong>การแก้ไขของคุณได้ถูกปฏิเสธเนื่องจากไคลเอนต์ที่คุณใช้อยู่ได้ขัดขวางรูปแบบของเครื่องหมายวรรคตอนในการแก้ไข
 ระบบไม่รับการแก้ไขของคุณเพื่อป้องกันความขัดข้องของข้อมูล ปัญหานี้มักจะเกิดขึ้นถ้าใช้งานบริการพรอกซีซ่อนสำหรับผู้ไม่ประสงค์ออกนาม</strong>',
-'importing'                 => 'กำลังนำเข้า $1',
 'editing'                   => 'กำลังแก้ไข $1',
 'editinguser'               => 'กำลังแก้ไขผู้ใช้ <b>$1</b>',
 'editingsection'            => 'กำลังแก้ไข $1 (เฉพาะส่วน)',
@@ -633,11 +634,8 @@ $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ไม่สามารถสร้างบัญชีผู้ใช้ได้',
-'cantcreateaccounttext'  => 'การสร้างบัญชีผู้ใช้จากหมายเลขไอพีนี้ (<b>$1</b>) ถูกระงับ
-สาเหตุอาจเกิดจากการป้องกันการก่อกวนจากผู้ให้บริการอินเทอร์เน็ตรายนี้',
 
 # History pages
-'revhistory'          => 'ประวัติการปรับปรุง',
 'viewpagelogs'        => 'ดูบันทึกของหน้านี้',
 'nohistory'           => 'ไม่มีประวัติการแก้ไขสำหรับหน้านี้',
 'revnotfound'         => 'ไม่พบรุ่นการปรับปรุง',
@@ -713,24 +711,17 @@ $1',
 สำหรับการบล็อกและห้ามใช้งานในปัจจุบันดูได้ที่  [[Special:Ipblocklist|รายการไอพีที่โดนบล็อก]]',
 
 # Diffs
-'difference'                => '(ความแตกต่างระหว่างรุ่นปรับปรุง)',
-'loadingrev'                => 'กำหลังโหลดรุ่นการปรับปรุงสำหรับการเปลี่ยนแปลง',
-'lineno'                    => 'แถว $1:',
-'editcurrent'               => 'แก้ไขรุ่นปัจจุบันของหน้านี้',
-'selectnewerversionfordiff' => 'เลือกรุ่นที่ใหม่กว่าสำหรับการเปรียบเทียบ',
-'selectolderversionfordiff' => 'เลือกรุ่นที่เก่ากว่าสำหรับการเปรียบเทียบ',
-'compareselectedversions'   => 'เปรียบเทียบสองรุ่นที่เลือก',
-'editundo'                  => 'ย้อนกลับ',
-'diff-multi'                => 'การปรับปรุง $1 รุ่นระหว่างกลางไม่แสดงผล',
+'difference'              => '(ความแตกต่างระหว่างรุ่นปรับปรุง)',
+'lineno'                  => 'แถว $1:',
+'compareselectedversions' => 'เปรียบเทียบสองรุ่นที่เลือก',
+'editundo'                => 'ย้อนกลับ',
+'diff-multi'              => 'การปรับปรุง $1 รุ่นระหว่างกลางไม่แสดงผล',
 
 # Search results
 'searchresults'         => 'ค้นหา',
 'searchresulttext'      => 'วิธีการค้นหาใน {{SITENAME}} ดูวิธีใช้งานเพิ่มที่ [[{{MediaWiki:Helppage}}|{{int:help}}]]',
 'searchsubtitle'        => "ค้นหาเกี่ยวกับ '''[[:$1]]'''",
 'searchsubtitleinvalid' => "ค้นหาเกี่ยวกับ '''$1'''",
-'badquery'              => 'รูปแบบการค้นหาไม่ถูกต้อง',
-'badquerytext'          => 'ไม่สามารถทำการค้นหาได้ อาจเนื่องมาจากการค้นหาคำที่มีตัวอักษรน้อยกว่าสามตัวซึ่งไม่รองรับในวิกินี้ หรือใส่คำสั่งไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
-'matchtotals'           => 'ค้นพบ $2 หัวข้อ และข้อความใน $3 หน้า จากการค้นหา "$1"',
 'noexactmatch'          => "'''ไม่พบหัวข้อ  \"\$1\"''' คุณอาจจะ [[:\$1|สร้างหน้าใหม่ในชื่อนี้]]",
 'titlematches'          => 'พบชื่อหัวข้อนี้',
 'notitlematches'        => 'ไม่พบชื่อหัวข้อนี้',
@@ -745,7 +736,6 @@ $1',
 'powersearch'           => 'ค้นหา',
 'powersearchtext'       => 'ค้นหาในเนมสเปซ:<br />$1<br />$2 แสดงหน้าเปลี่ยนทาง<br />ค้นหาคำ $3 $9',
 'searchdisabled'        => 'งดระบบการค้นหาใน {{SITENAME}} อาจจะลองค้นหาในกูเกิลหรือเซิร์ชเอนจินอื่น',
-'blanknamespace'        => '(หลัก)',
 
 # Preferences page
 'preferences'              => 'ตั้งค่าส่วนตัว',
@@ -802,7 +792,7 @@ $1',
 'timezoneoffset'           => 'ความแตกต่าง¹',
 'servertime'               => 'เวลาเซิร์ฟเวอร์',
 'guesstimezone'            => 'เรียกค่าจากเว็บเบราว์เซอร์',
-'allowemail'               => 'เปิดรับการใช้งานกับผู้ใช้อื่น',
+'allowemail'               => 'เปิดรับอีเมลจากผู้ใช้อื่น',
 'defaultns'                => 'ค้นหาในเนมสเปซ (ค่าตั้งต้น):',
 'default'                  => 'ค่าตั้งต้น',
 'files'                    => 'ไฟล์',
@@ -954,7 +944,6 @@ $1',
 # Image list
 'imagelist'                 => 'รายชื่อไฟล์',
 'imagelisttext'             => "รายชื่อไฟล์ '''$1''' รายการ เรียงตาม$2",
-'imagelistforuser'          => 'แสดงเฉพาะภาพที่อัปโหลดโดย $1',
 'getimagelist'              => 'รับค่ารายชื่อไฟล์',
 'ilsubmit'                  => 'ค้นหา',
 'showlast'                  => 'แสดงไฟล์ $1 รายการเรียงตาม$2',
@@ -1017,6 +1006,10 @@ $1',
 'unusedtemplates'     => 'แม่แบบไม่ได้ใช้',
 'unusedtemplatestext' => 'แม่แบบที่ไม่ได้ใช้งานในหน้าใด',
 'unusedtemplateswlh'  => 'ลิงก์มา',
+
+# Random page
+'randompage'         => 'สุ่มหน้า',
+'randompage-nopages' => 'ไม่มีหน้าใดในเนมสเปซนี้',
 
 # Random redirect
 'randomredirect'         => 'สุ่มหน้าเปลี่ยนทาง',
@@ -1082,8 +1075,6 @@ $1',
 'mostrevisions'           => 'หน้าที่มีการแก้ไขมาก',
 'allpages'                => 'หน้าทุกหน้า',
 'prefixindex'             => 'ดัชนีคำนำหน้า',
-'randompage'              => 'สุ่มหน้า',
-'randompage-nopages'      => 'ไม่มีหน้าใดในเนมสเปซนี้',
 'shortpages'              => 'หน้าสั้นมาก',
 'longpages'               => 'หน้ายาวมาก',
 'deadendpages'            => 'หน้าสุดทาง',
@@ -1095,7 +1086,6 @@ $1',
 'specialpages'            => 'หน้าพิเศษ',
 'spheading'               => 'หน้าพิเศษสำหรับผู้ใช้ทั่วไป',
 'restrictedpheading'      => 'หน้าพิเศษสำหรับผู้ใช้เฉพาะ',
-'rclsub'                  => '(หน้าที่ลิงก์มาที่ "$1")',
 'newpages'                => 'หน้าใหม่',
 'newpages-username'       => 'ชื่อผู้ใช้:',
 'ancientpages'            => 'หน้าที่ไม่ได้แก้ไขนานสุด',
@@ -1104,6 +1094,8 @@ $1',
 'movethispage'            => 'เปลี่ยนชื่อหน้านี้',
 'unusedimagestext'        => '<p>คำแนะนำ: ภาพนี้อาจจะถูกใช้จากเว็บไซต์อื่น ซึ่งลิงก์มาภาพในหน้านี้โดยตรง </p>',
 'unusedcategoriestext'    => 'หมวดหมู่ต่อไปนี้ยังมีอยู่ถึงแม้ว่าจะไม่มีว่าไม่มีหน้าไหนหรือบทความไหนใช้ส่วนนี้',
+'notargettitle'           => 'ไม่พบหน้าปลายทาง',
+'notargettext'            => 'ไม่ได้ใส่หน้าปลายทางหรือชื่อผู้ใช้ที่ต้องการใช้คำสั่งนี้',
 
 # Book sources
 'booksources'               => 'ค้นหาหนังสือ',
@@ -1174,7 +1166,6 @@ $1',
 'watchlistfor'         => "(สำหรับ '''$1''')",
 'nowatchlist'          => 'ไม่ได้ใส่หน้าไหนเข้ารายการเฝ้าดู',
 'watchlistanontext'    => 'กรุณา $1 เพื่อที่จะดูหรือแก้ไขหน้าในรายการเฝ้าดู',
-'watchlistcount'       => "'''มีอยู่ $1 ในรายหารเฝ้าดู (รวมหน้าพูดคุย)'''",
 'watchnologin'         => 'ไม่ได้ล็อกอิน',
 'watchnologintext'     => 'ต้อง[[Special:Userlogin|ล็อกอิน]]เพื่อที่จะแก้ไขรายการเฝ้าดู',
 'addedwatch'           => 'ถูกใส่เข้ารายการเฝ้าดู',
@@ -1198,7 +1189,6 @@ $1',
 'iteminvalidname'      => "เกิดปัญหาชื่อไม่ถูกต้องกับ '$1'...",
 'wlnote'               => 'ด้านล่างเป็นการแก้ไข $1 รายการ ในช่วง $2 ชั่วโมงที่ผ่านมา',
 'wlshowlast'           => 'แสดงล่าสุดใน $1 ชั่วโมง $2 วัน $3',
-'wlsaved'              => 'รุ่นที่ถูกบันทึกของรายการเฝ้าดู',
 'watchlist-show-bots'  => 'แสดงการแก้ไขของบอต',
 'watchlist-hide-bots'  => 'ซ่อนการแก้ไขของบอต',
 'watchlist-show-own'   => 'แสดงการแก้ไขของฉัน',
@@ -1252,8 +1242,6 @@ $NEWPAGE
 'excontentauthor'             => "เนื้อหาเดิม: '$1' (และมีผู้เขียนคนเดียว คือ '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "เนื้อหาเดิมก่อนหน้าถูกทำให้ว่าง: '$1'",
 'exblank'                     => 'หน้าว่าง',
-'confirmdelete'               => 'ยืนยันการลบ',
-'deletesub'                   => '(กำลังลบ "$1")',
 'historywarning'              => 'คำเตือน: ดูประวัติก่อนหน้า:',
 'confirmdeletetext'           => 'คุณกำลังจะลบหน้าหรือภาพนี้ รวมไปถึงประวัติหน้าออกจากระบบ
 กรุณายืนยันว่าต้องการดำเนินการต่อและแน่ใจว่าได้เข้าใจและการลบครั้งนี้สอดคล้องกับ[[{{MediaWiki:Policy-url}}]]',
@@ -1276,7 +1264,7 @@ $NEWPAGE
 
 การแก้ไขล่าสุดจัดทำโดย [[User:$3|$3]] ([[User talk:$3|พูดคุย]])',
 'editcomment'                 => 'ความเห็นโดย: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'ย้อนการแก้ไขของ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นของ [[User:$1|$1]]',
+'revertpage'                  => 'ย้อนการแก้ไขของ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นของ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'ย้อนการแก้ไขของ $1 ไปยังรุ่นของ $2',
 'sessionfailure'              => 'ท่าทางจะมีปัญหาเกี่ยวการล็อกอินในช่วงเวลานี้ เกิดจากทางระบบป้องกันการลักลอบการขโมยล็อกอิน กรุณาย้อนกลับไปหน้าก่อนหน้า และลองโหลดใหม่อีกครั้ง',
 'protectlogpage'              => 'บันทึกการล็อก',
@@ -1356,8 +1344,9 @@ $NEWPAGE
 $1',
 
 # Namespace form on various pages
-'namespace' => 'เนมสเปซ',
-'invert'    => 'เลือกตรงข้าม',
+'namespace'      => 'เนมสเปซ',
+'invert'         => 'เลือกตรงข้าม',
+'blanknamespace' => '(หลัก)',
 
 # Contributions
 'contributions' => 'เรื่องที่คนนี้เขียน',
@@ -1370,10 +1359,6 @@ $1',
 'month'         => 'จากเดือน (และก่อนหน้า):',
 'year'          => 'จากปี (และก่อนหน้า):',
 
-'sp-contributions-newest'      => 'ใหม่สุด',
-'sp-contributions-oldest'      => 'เก่าสุด',
-'sp-contributions-newer'       => 'ใหม่กว่า $1',
-'sp-contributions-older'       => 'เก่ากว่า $1',
 'sp-contributions-newbies'     => 'แสดงการแก้ไขของผู้ใช้ใหม่เท่านั้น',
 'sp-contributions-newbies-sub' => 'สำหรับผู้ใช้ใหม่',
 'sp-contributions-blocklog'    => 'บันทึกการบล็อก',
@@ -1385,8 +1370,6 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'หน้าที่ลิงก์มา',
-'notargettitle'       => 'ไม่พบหน้าปลายทาง',
-'notargettext'        => 'ไม่ได้ใส่หน้าปลายทางหรือชื่อผู้ใช้ที่ต้องการใช้คำสั่งนี้',
 'linklistsub'         => '(หน้าที่ลิงก์มา)',
 'linkshere'           => "หน้าต่อไปนี้ลิงก์มาที่ '''[[:$1]]''':",
 'nolinkshere'         => "ไม่มีหน้าใดลิงก์มาที่ '''[[:$1]]'''",
@@ -1421,7 +1404,7 @@ $1',
 'ipbenableautoblock'          => 'บล็อกหมายเลขไอพีนี้และไอพีที่ผู้ใช้นี้อาจจะใช้',
 'ipbsubmit'                   => 'บล็อกชื่อผู้ใช้',
 'ipbother'                    => 'เวลาอื่น',
-'ipboptions'                  => '1 ชั่วโมง:1 hour,2 ชั่วโมง:2 hours,6 ชั่วโมง:6 hours,1 วัน:1 day,3 วัน:3 days,1 อาทิตย์:1 week,2 อาทิตย์:2 weeks,1 เดือน:1 month,3 เดือน:3 months,1 ปี:1 year,ตลอดไป:infinite',
+'ipboptions'                  => '1 ชั่วโมง:1 hour,2 ชั่วโมง:2 hours,6 ชั่วโมง:6 hours,1 วัน:1 day,3 วัน:3 days,1 อาทิตย์:1 week,2 อาทิตย์:2 weeks,1 เดือน:1 month,3 เดือน:3 months,1 ปี:1 year,ตลอดไป:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'เลือกเวลา',
 'ipbotherreason'              => 'เหตุผลอื่น',
 'ipbhidename'                 => 'ซ่อน ชื่อผู้ใช้/หมายเลขไอพี จากบันทึกการบล็อก รายชื่อผู้ใช้ และรายการผู้ที่ถูกบล็อก',
@@ -1465,9 +1448,9 @@ $1',
 'range_block_disabled'        => 'ยกเลิกการบล็อกช่วงไอพีของผู้ดูแลระบบ',
 'ipb_expiry_invalid'          => 'ค่าวันหมดอายุไม่ถูกต้อง',
 'ipb_already_blocked'         => '"$1" ถูกบล็อกแล้วก่อนหน้านี้',
+'ipb_cant_unblock'            => 'ปัญหา: หมายเลขบล็อก $1 ไม่พบ อาจเกิดจากได้ถูกยกเลิกการบล็อกแล้ว',
 'ip_range_invalid'            => 'ช่วงไอพีไม่ถูกต้อง',
 'proxyblocker'                => 'บล็อกพร็อกซี',
-'ipb_cant_unblock'            => 'ปัญหา: หมายเลขบล็อก $1 ไม่พบ อาจเกิดจากได้ถูกยกเลิกการบล็อกแล้ว',
 'proxyblockreason'            => 'หมายเลขไอพีของคุณถูกบล็อกเนื่องจากเป็นพร็อกซีเปิด กรุณาติดต่อผู้ให้บริการอินเทอร์เน็ตที่คุณใช้งานอยู่เกี่ยวกับปัญหานี้',
 'proxyblocksuccess'           => 'บล็อกสำเร็จ',
 'sorbsreason'                 => 'หมายเลขไอพีของคุณอยู่ในพร็อกซีเปิดในส่วน DNSBL ที่ถูกใช้งานในเว็บไซต์',
@@ -1590,7 +1573,6 @@ $1',
 'importhistoryconflict'      => 'ประวัติหน้าขัดแย้งกัน',
 'importnosources'            => 'ต้นฉบับการรับข้ามไม่ได้ถูกเลือก และการอัปโหลดประวัติหน้าถูกห้ามใช้งาน',
 'importnofile'               => 'ไฟล์รับข้ามไม่ได้ถูกอัปโหลด',
-'importuploaderror'          => 'อัปโหลดหรือรับข้ามไฟล์ไม่สำเร็จ อาจเกิดจากขนาดไฟล์ใหญ่เกินกว่าขนาดที่กำหนด',
 
 # Import log
 'importlogpage'                    => 'บันทึกการรับข้าม',
@@ -1676,7 +1658,6 @@ $1',
 'anonymous'        => 'ผู้ใช้ไม่ประสงค์ออกนามของ {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} ผู้ใช้ $1',
 'lastmodifiedatby' => 'แก้ไขล่าสุดเมื่อเวลา $2 $1 โดย $3', # $1 date, $2 time, $3 user
-'and'              => 'and',
 'othercontribs'    => 'พัฒนาจากงานเขียนของ $1',
 'others'           => 'ผู้อื่น',
 'siteusers'        => '{{SITENAME}} ผู้ใช้ $1',
@@ -1750,10 +1731,10 @@ $1',
 'file-info'            => '(ขนาดไฟล์: $1, ชนิดไมม์: $2)',
 'file-info-size'       => '($1 × $2 พิกเซล, ขนาดไฟล์: $3, ชนิดไมม์: $4)',
 'file-nohires'         => '<small>ไม่มีภาพความละเอียดสูงกว่านี้</small>',
-'file-svg'             => '<small>ภาพเวกเตอร์ที่ขยายได้ในคุณภาพเดิม จากขนาดพื้นฐาน: $1 × $2 พิกเซล</small>',
 'show-big-image'       => 'ความละเอียดสูงสุด',
 'show-big-image-thumb' => '<small>ขนาดของภาพแสดงผล: $1 × $2 พิกเซล</small>',
 
+# Special:Newimages
 'newimages'    => 'แกลลอรีภาพใหม่',
 'showhidebots' => '($1 บอต)',
 'noimages'     => 'ไม่มีให้ดู',
@@ -1775,7 +1756,7 @@ $1',
 * วันที่ถ่าย
 * ความไวชัตเตอร์
 * ค่ารูรับแสง (f)
-* ความยาวโฟกัส',
+* ความยาวโฟกัส', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'กว้าง',
@@ -2096,14 +2077,11 @@ $1
 $1',
 'confirm_purge_button' => 'ตกลง',
 
-'youhavenewmessagesmulti' => 'คุณมีข้อความใหม่ที่ $1',
-
+# AJAX search
 'searchcontaining' => "ค้นหาที่มีส่วนประกอบ ''$1''",
 'searchnamed'      => "ค้นหาหน้าชื่อ ''$1''",
 'articletitles'    => "หน้าที่เริ่มต้นด้วย ''$1''",
 'hideresults'      => 'ซ่อนผลลัพธ์',
-
-'loginlanguagelabel' => 'ภาษา: $1',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← หน้าก่อนหน้า',
@@ -2163,9 +2141,8 @@ $1',
 'watchlistedit-raw-removed'    => '$1 หัวข้อได้ถูกนำออกไป:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'ดูการเปลี่ยนแปลงที่เกี่ยวข้อง',
-'watchlisttools-edit'  => 'ดูและแก้ไขรายการเฝ้าดู',
-'watchlisttools-raw'   => 'แก้ไขรายการเฝ้าดูทั้งหมด',
+'watchlisttools-view' => 'ดูการเปลี่ยนแปลงที่เกี่ยวข้อง',
+'watchlisttools-edit' => 'ดูและแก้ไขรายการเฝ้าดู',
+'watchlisttools-raw'  => 'แก้ไขรายการเฝ้าดูทั้งหมด',
 
 );
-
