@@ -479,9 +479,17 @@ class MimeMagic {
 			*/
 		}
 
-		if ( $xml_type ) {
-			if ( $xml_type !== "UTF-8" && $xml_type !== "ASCII" ) {
-				$head = iconv( $xml_type, "ASCII//IGNORE", $head );
+		if( $xml_type == 'UTF-16BE' || $xml_type == 'UTF-16LE' ) {
+			// Quick and dirty fold down to ASCII!
+			$pack = array( 'UTF-16BE' => 'n*', 'UTF-16LE' => 'v*' );
+			$chars = unpack( $pack[$xml_type], substr( $head, 2 ) );
+			$head = '';
+			foreach( $chars as $codepoint ) {
+				if( $codepoint < 128 ) {
+					$head .= chr( $codepoint );
+				} else {
+					$head .= '?';
+				}
 			}
 		}
 
