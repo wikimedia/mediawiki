@@ -26,6 +26,7 @@ image/svg+xml image/svg svg
 image/tiff tiff tif
 image/vnd.djvu image/x.djvu image/x-djvu djvu
 image/x-portable-pixmap ppm
+image/x-xcf xcf
 text/plain txt
 text/html html htm
 video/ogg ogm ogg
@@ -54,6 +55,7 @@ image/png [BITMAP]
 image/svg+xml [DRAWING]
 image/tiff [BITMAP]
 image/vnd.djvu [BITMAP]
+image/x-xcf [BITMAP]
 image/x-portable-pixmap [BITMAP]
 text/plain [TEXT]
 text/html [TEXT]
@@ -351,10 +353,17 @@ class MimeMagic {
 	 */
 	function isRecognizableExtension( $extension ) {
 		static $types = array(
+			// Types recognized by getimagesize()
 			'gif', 'jpeg', 'jpg', 'png', 'swf', 'psd',
 			'bmp', 'tiff', 'tif', 'jpc', 'jp2',
 			'jpx', 'jb2', 'swc', 'iff', 'wbmp',
-			'xbm', 'djvu'
+			'xbm',
+			
+			// Formats we recognize magic numbers for
+			'djvu', 'ogg', 'mid', 'pdf', 'wmf', 'xcf',
+			
+			// XML formats we sure hope we recognize reliably
+			'svg',
 		);
 		return in_array( strtolower( $extension ), $types );
 	}
@@ -371,130 +380,11 @@ class MimeMagic {
 	* @return string the mime type of $file
 	*/
 	function guessMimeType( $file, $ext = true ) {
-		$mime = $this->detectMimeType( $file, $ext );
+		$mime = $this->doGuessMimeType( $file, $ext );
 
-		// Read a chunk of the file
-		wfSuppressWarnings();
-		$f = fopen( $file, "rt" );
-		wfRestoreWarnings();
-		if( !$f ) return "unknown/unknown";
-		$head = fread( $f, 1024 );
-		fclose( $f );
-
-		$sub4 =  substr( $head, 0, 4 );
-		if ( $sub4 == "\x01\x00\x09\x00" || $sub4 == "\xd7\xcd\xc6\x9a" ) {
-			// WMF kill kill kill
-			// Note that WMF may have a bare header, no magic number.
-			// The former of the above two checks is theoretically prone to false positives
-			$mime = "application/x-msmetafile";
-		}
-
-		if ( strpos( $mime, "text/" ) === 0 || $mime === "application/xml" ) {
-
-			$xml_type = NULL;
-			$script_type = NULL;
-
-			/*
-			* look for XML formats (XHTML and SVG)
-			*/
-			if ($mime === "text/sgml" ||
-			    $mime === "text/plain" ||
-			    $mime === "text/html" ||
-			    $mime === "text/xml" ||
-			    $mime === "application/xml") {
-
-				if ( substr( $head, 0, 5 ) == "<?xml" ) {
-					$xml_type = "ASCII";
-				} elseif ( substr( $head, 0, 8 ) == "\xef\xbb\xbf<?xml") {
-					$xml_type = "UTF-8";
-				} elseif ( substr( $head, 0, 10 ) == "\xfe\xff\x00<\x00?\x00x\x00m\x00l" ) {
-					$xml_type = "UTF-16BE";
-				} elseif ( substr( $head, 0, 10 ) == "\xff\xfe<\x00?\x00x\x00m\x00l\x00") {
-					$xml_type = "UTF-16LE";
-				}
-
-				if ( $xml_type ) {
-					if ( $xml_type !== "UTF-8" && $xml_type !== "ASCII" ) {
-						$head = iconv( $xml_type, "ASCII//IGNORE", $head );
-					}
-
-					$match = array();
-					$doctype = "";
-					$tag = "";
-
-					if ( preg_match( '%<!DOCTYPE\s+[\w-]+\s+PUBLIC\s+["'."'".'"](.*?)["'."'".'"].*>%sim', 
-						$head, $match ) ) {
-							$doctype = $match[1];
-						}
-					if ( preg_match( '%<(\w+).*>%sim', $head, $match ) ) {
-						$tag = $match[1];
-					}
-
-					#print "<br>ANALYSING $file ($mime): doctype= $doctype; tag= $tag<br>";
-
-					if ( strpos( $doctype, "-//W3C//DTD SVG" ) === 0 ) {
-						$mime = "image/svg+xml";
-					} elseif ( $tag === "svg" ) {
-						$mime = "image/svg+xml";
-					} elseif ( strpos( $doctype, "-//W3C//DTD XHTML" ) === 0 ) {
-						$mime = "text/html";
-					} elseif ( $tag === "html" ) {
-						$mime = "text/html";
-					}
-				}
-			}
-
-			/*
-			* look for shell scripts
-			*/
-			if ( !$xml_type ) {
-				$script_type = NULL;
-
-				# detect by shebang
-				if ( substr( $head, 0, 2) == "#!" ) {
-					$script_type = "ASCII";
-				} elseif ( substr( $head, 0, 5) == "\xef\xbb\xbf#!" ) {
-					$script_type = "UTF-8";
-				} elseif ( substr( $head, 0, 7) == "\xfe\xff\x00#\x00!" ) {
-					$script_type = "UTF-16BE";
-				} elseif ( substr( $head, 0, 7 ) == "\xff\xfe#\x00!" ) {
-					$script_type= "UTF-16LE";
-				}
-
-				if ( $script_type ) {
-					if ( $script_type !== "UTF-8" && $script_type !== "ASCII") {
-						$head = iconv( $script_type, "ASCII//IGNORE", $head);
-					}
-
-					$match = array();
-
-					if ( preg_match( '%/?([^\s]+/)(\w+)%', $head, $match ) ) {
-						$mime = "application/x-{$match[2]}";
-					}
-				}
-			}
-
-			/*
-			* look for PHP
-			*/
-			if( !$xml_type && !$script_type ) {
-
-				if( ( strpos( $head, '<?php' ) !== false ) ||
-				    ( strpos( $head, '<? ' ) !== false ) ||
-				    ( strpos( $head, "<?\n" ) !== false ) ||
-				    ( strpos( $head, "<?\t" ) !== false ) ||
-				    ( strpos( $head, "<?=" ) !== false ) ||
-
-				    ( strpos( $head, "<\x00?\x00p\x00h\x00p" ) !== false ) ||
-				    ( strpos( $head, "<\x00?\x00 " ) !== false ) ||
-				    ( strpos( $head, "<\x00?\x00\n" ) !== false ) ||
-				    ( strpos( $head, "<\x00?\x00\t" ) !== false ) ||
-				    ( strpos( $head, "<\x00?\x00=" ) !== false ) ) {
-
-					$mime = "application/x-php";
-				}
-			}
-
+		if( !$mime ) {
+			wfDebug( __METHOD__.": internal type detection failed for $file (.$ext)...\n" );
+			$mime = $this->detectMimeType( $file, $ext );
 		}
 
 		if ( isset( $this->mMimeTypeAliases[$mime] ) ) {
@@ -503,6 +393,160 @@ class MimeMagic {
 
 		wfDebug(__METHOD__.": final mime type of $file: $mime\n");
 		return $mime;
+	}
+	
+	function doGuessMimeType( $file, $ext = true ) {
+		// Read a chunk of the file
+		wfSuppressWarnings();
+		$f = fopen( $file, "rt" );
+		wfRestoreWarnings();
+		if( !$f ) return "unknown/unknown";
+		$head = fread( $f, 1024 );
+		fclose( $f );
+
+		// Hardcode a few magic number checks...
+		$headers = array(
+			// Multimedia...
+			'MThd'             => 'audio/midi',
+			'OggS'             => 'application/ogg',
+			
+			// Image formats...
+			// Note that WMF may have a bare header, no magic number.
+			"\x01\x00\x09\x00" => 'application/x-msmetafile', // Possibly prone to false positives?
+			"\xd7\xcd\xc6\x9a" => 'application/x-msmetafile',
+			'PDF%'             => 'application/pdf',
+			'gimp xcf'         => 'image/x-xcf',
+			
+			// Some forbidden fruit...
+			'MZ'               => 'application/octet-stream', // DOS/Windows executable
+			"\xca\xfe\xba\xbe" => 'application/octet-stream', // Mach-O binary
+			"\x7fELF"          => 'application/octet-stream', // ELF binary
+		);
+		
+		foreach( $headers as $magic => $candidate ) {
+			if( strncmp( $head, $magic, strlen( $magic ) ) == 0 ) {
+				wfDebug( __METHOD__ . ": magic header in $file recognized as $candidate\n" );
+				return $candidate;
+			}
+		}
+
+		/*
+		 * look for PHP
+		 * Check for this before HTML/XML...
+		 * Warning: this is a heuristic, and won't match a file with a lot of non-PHP before.
+		 * It will also match text files which could be PHP. :)
+		 */
+		if( ( strpos( $head, '<?php' ) !== false ) ||
+		    ( strpos( $head, '<? ' ) !== false ) ||
+		    ( strpos( $head, "<?\n" ) !== false ) ||
+		    ( strpos( $head, "<?\t" ) !== false ) ||
+		    ( strpos( $head, "<?=" ) !== false ) ||
+
+		    ( strpos( $head, "<\x00?\x00p\x00h\x00p" ) !== false ) ||
+		    ( strpos( $head, "<\x00?\x00 " ) !== false ) ||
+		    ( strpos( $head, "<\x00?\x00\n" ) !== false ) ||
+		    ( strpos( $head, "<\x00?\x00\t" ) !== false ) ||
+		    ( strpos( $head, "<\x00?\x00=" ) !== false ) ) {
+
+			wfDebug( __METHOD__ . ": recognized $file as application/x-php\n" );
+			return "application/x-php";
+		}
+		
+		/*
+		 * look for XML formats (XHTML and SVG)
+		 */
+		$xml_type = NULL;
+		if ( substr( $head, 0, 5 ) == "<?xml" ) {
+			$xml_type = "ASCII";
+		} elseif ( substr( $head, 0, 8 ) == "\xef\xbb\xbf<?xml") {
+			$xml_type = "UTF-8";
+		} elseif ( substr( $head, 0, 10 ) == "\xfe\xff\x00<\x00?\x00x\x00m\x00l" ) {
+			$xml_type = "UTF-16BE";
+		} elseif ( substr( $head, 0, 10 ) == "\xff\xfe<\x00?\x00x\x00m\x00l\x00") {
+			$xml_type = "UTF-16LE";
+		}
+
+		if ( $xml_type ) {
+			if ( $xml_type !== "UTF-8" && $xml_type !== "ASCII" ) {
+				$head = iconv( $xml_type, "ASCII//IGNORE", $head );
+			}
+
+			$match = array();
+			$doctype = "";
+			$tag = "";
+
+			if ( preg_match( '%<!DOCTYPE\s+[\w-]+\s+PUBLIC\s+["'."'".'"](.*?)["'."'".'"].*>%sim', 
+				$head, $match ) ) {
+					$doctype = $match[1];
+				}
+			if ( preg_match( '%<(\w+).*>%sim', $head, $match ) ) {
+				$tag = $match[1];
+			}
+
+			#print "<br>ANALYSING $file ($mime): doctype= $doctype; tag= $tag<br>";
+
+			if ( strpos( $doctype, "-//W3C//DTD SVG" ) === 0 ) {
+				return "image/svg+xml";
+			} elseif ( $tag === "svg" ) {
+				return "image/svg+xml";
+			} elseif ( strpos( $doctype, "-//W3C//DTD XHTML" ) === 0 ) {
+				return "text/html";
+			} elseif ( $tag === "html" ) {
+				return "text/html";
+			} else {
+				/// Fixme -- this would be the place to allow additional XML type checks
+				return "application/xml";
+			}
+		}
+
+		/*
+		 * look for shell scripts
+		 */
+		$script_type = NULL;
+
+		# detect by shebang
+		if ( substr( $head, 0, 2) == "#!" ) {
+			$script_type = "ASCII";
+		} elseif ( substr( $head, 0, 5) == "\xef\xbb\xbf#!" ) {
+			$script_type = "UTF-8";
+		} elseif ( substr( $head, 0, 7) == "\xfe\xff\x00#\x00!" ) {
+			$script_type = "UTF-16BE";
+		} elseif ( substr( $head, 0, 7 ) == "\xff\xfe#\x00!" ) {
+			$script_type= "UTF-16LE";
+		}
+
+		if ( $script_type ) {
+			if ( $script_type !== "UTF-8" && $script_type !== "ASCII") {
+				$head = iconv( $script_type, "ASCII//IGNORE", $head);
+			}
+
+			$match = array();
+
+			if ( preg_match( '%/?([^\s]+/)(\w+)%', $head, $match ) ) {
+				$mime = "application/x-{$match[2]}";
+				wfDebug( __METHOD__.": shell script recognized as $mime\n" );
+				return $mime;
+			}
+		}
+		
+		wfSuppressWarnings();
+		$gis = getimagesize( $file );
+		wfRestoreWarnings();
+		
+		if( $gis && isset( $gis['mime'] ) ) {
+			$mime = $gis['mime'];
+			wfDebug( __METHOD__.": getimagesize detected $file as $mime\n" );
+			return $mime;
+		} else {
+			return false;
+		}
+
+		// Also test DjVu
+		$deja = new DjVuImage( $file );
+		if( $deja->isValid() ) {
+			wfDebug( __METHOD__.": detected $file as image/vnd.djvu\n" );
+			return 'image/vnd.djvu';
+		}
 	}
 
 	/** Internal mime type detection, please use guessMimeType() for application code instead.
@@ -559,15 +603,6 @@ class MimeMagic {
 			# see http://www.php.net/manual/en/ref.mime-magic.php for details.
 
 			$m = mime_content_type($file);
-
-			if ( $m == 'text/plain' ) {
-				// mime_content_type sometimes considers DJVU files to be text/plain.
-				$deja = new DjVuImage( $file );
-				if( $deja->isValid() ) {
-					wfDebug( __METHOD__.": (re)detected $file as image/vnd.djvu\n" );
-					$m = 'image/vnd.djvu';
-				}
-			}
 		} else {
 			wfDebug( __METHOD__.": no magic mime detector found!\n" );
 		}
@@ -586,66 +621,20 @@ class MimeMagic {
 			}
 		}
 
-		# if still not known, use getimagesize to find out the type of image
-		# TODO: skip things that do not have a well-known image extension? Would that be safe?
-		wfSuppressWarnings();
-		$gis = getimagesize( $file );
-		wfRestoreWarnings();
-
-		$notAnImage = false;
-
-		if ( $gis && is_array($gis) && $gis[2] ) {
-			
-			switch ( $gis[2] ) {
-				case IMAGETYPE_GIF: $m = "image/gif"; break;
-				case IMAGETYPE_JPEG: $m = "image/jpeg"; break;
-				case IMAGETYPE_PNG: $m = "image/png"; break;
-				case IMAGETYPE_SWF: $m = "application/x-shockwave-flash"; break;
-				case IMAGETYPE_PSD: $m = "application/photoshop"; break;
-				case IMAGETYPE_BMP: $m = "image/bmp"; break;
-				case IMAGETYPE_TIFF_II: $m = "image/tiff"; break;
-				case IMAGETYPE_TIFF_MM: $m = "image/tiff"; break;
-				case IMAGETYPE_JPC: $m = "image"; break;
-				case IMAGETYPE_JP2: $m = "image/jpeg2000"; break;
-				case IMAGETYPE_JPX: $m = "image/jpeg2000"; break;
-				case IMAGETYPE_JB2: $m = "image"; break;
-				case IMAGETYPE_SWC: $m = "application/x-shockwave-flash"; break;
-				case IMAGETYPE_IFF: $m = "image/vnd.xiff"; break;
-				case IMAGETYPE_WBMP: $m = "image/vnd.wap.wbmp"; break;
-				case IMAGETYPE_XBM: $m = "image/x-xbitmap"; break;
-			}
-
-			if ( $m ) {
-				wfDebug( __METHOD__.": image mime type of $file: $m\n" );
-				return $m;
-			}
-			else {
-				$notAnImage = true;
-			}
-		} else {
-			// Also test DjVu
-			$deja = new DjVuImage( $file );
-			if( $deja->isValid() ) {
-				wfDebug( __METHOD__.": detected $file as image/vnd.djvu\n" );
-				return 'image/vnd.djvu';
-			}
-		}
-
 		# if desired, look at extension as a fallback.
 		if ( $ext === true ) {
 			$i = strrpos( $file, '.' );
 			$ext = strtolower( $i ? substr( $file, $i + 1 ) : '' );
 		}
 		if ( $ext ) {
-			$m = $this->guessTypesForExtension( $ext );
-
-			# TODO: if $notAnImage is set, do not trust the file extension if
-			# the results is one of the image types that should have been recognized
-			# by getimagesize
-
-			if ( $m ) {
-				wfDebug( __METHOD__.": extension mime type of $file: $m\n" );
-				return $m;
+			if( $this->isRecognizableExtension( $ext ) ) {
+				wfDebug( __METHOD__. ": refusing to guess mime type for .$ext file, we should have recognized it\n" );
+			} else {
+				$m = $this->guessTypesForExtension( $ext );
+				if ( $m ) {
+					wfDebug( __METHOD__.": extension mime type of $file: $m\n" );
+					return $m;
+				}
 			}
 		}
 
