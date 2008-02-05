@@ -479,11 +479,11 @@ class MimeMagic {
 				$head, $match ) ) {
 					$doctype = $match[1];
 				}
-			if ( preg_match( '%<(\w+).*>%sim', $head, $match ) ) {
+			if ( preg_match( '%<(\w+)\b%si', $head, $match ) ) {
 				$tag = $match[1];
 			}
 
-			#print "<br>ANALYSING $file ($mime): doctype= $doctype; tag= $tag<br>";
+			#print "<br>ANALYSING $file: doctype= $doctype; tag= $tag<br>";
 
 			if ( strpos( $doctype, "-//W3C//DTD SVG" ) === 0 ) {
 				return "image/svg+xml";
