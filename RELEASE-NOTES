@@ -155,6 +155,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10365) Localization of Special:Version
 * When installing using Postgres, the Pl/Pgsql language is now checked for 
   and installed when at the superuser level.
+* The default robot policy for the entire wiki is now configurable via the
+  $wgDefaultRobotPolicy setting.
 
 === Bug fixes in 1.12 ===
 

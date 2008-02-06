@@ -613,6 +613,7 @@ class Article {
 		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgParser;
 		global $wgUseTrackbacks, $wgNamespaceRobotPolicies, $wgArticleRobotPolicies;
+		global $wgDefaultRobotPolicy;
 		$sk = $wgUser->getSkin();
 
 		wfProfileIn( __METHOD__ );
@@ -647,8 +648,7 @@ class Article {
 			# Honour customised robot policies for this namespace
 			$policy = $wgNamespaceRobotPolicies[$ns];
 		} else {
-			# Default to encourage indexing and following links
-			$policy = 'index,follow';
+			$policy = $wgDefaultRobotPolicy;
 		}
 		$wgOut->setRobotPolicy( $policy );
 
