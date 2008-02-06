@@ -83,7 +83,7 @@ class SiteConfiguration {
 
 	/** */
 	function getBool( $setting, $wiki, $suffix, $wikiTags = array() ) {
-		return (bool)($this->get( $setting, $wiki, $suffix, $wikiTags ) );
+		return (bool)($this->get( $setting, $wiki, $suffix, array(), $wikiTags ) );
 	}
 
 	/** */
