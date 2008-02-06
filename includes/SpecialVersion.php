@@ -43,10 +43,10 @@ class SpecialVersion {
 	 */
 
 	/**
-	 * @return wiki text showing the licence information
+	 * @return wiki text showing the license information
 	 */
 	static function MediaWikiCredits() {
-		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-licence' ), wfMsg( 'version-licence' ) ) .
+		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) ) .
 		"__NOTOC__
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright (C) 2001-2008 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
