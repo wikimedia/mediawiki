@@ -455,71 +455,20 @@ class MimeMagic {
 		/*
 		 * look for XML formats (XHTML and SVG)
 		 */
-		$xml_type = NULL;
-		if ( substr( $head, 0, 5 ) == "<?xml" ) {
-			$xml_type = "ASCII";
-		} elseif ( substr( $head, 0, 8 ) == "\xef\xbb\xbf<?xml") {
-			$xml_type = "UTF-8";
-		} elseif ( substr( $head, 0, 12 ) == "\xfe\xff\x00<\x00?\x00x\x00m\x00l" ) {
-			$xml_type = "UTF-16BE";
-		} elseif ( substr( $head, 0, 12 ) == "\xff\xfe<\x00?\x00x\x00m\x00l\x00") {
-			$xml_type = "UTF-16LE";
-		} else {
-			/*
-			echo "WARNING: Undetected xml_type ...\n";
-			for( $i = 0; $i < 10; $i++ ) {
-				$c = ord( $head{$i} );
-				if( $c < 32 || $c > 126 ) {
-					printf( "\\x%02x", $c );
-				} else {
-					print $head{$i};
-				}
-			}
-			echo "\n";
-			*/
-		}
-
-		if( $xml_type == 'UTF-16BE' || $xml_type == 'UTF-16LE' ) {
-			// Quick and dirty fold down to ASCII!
-			$pack = array( 'UTF-16BE' => 'n*', 'UTF-16LE' => 'v*' );
-			$chars = unpack( $pack[$xml_type], substr( $head, 2 ) );
-			$head = '';
-			foreach( $chars as $codepoint ) {
-				if( $codepoint < 128 ) {
-					$head .= chr( $codepoint );
-				} else {
-					$head .= '?';
-				}
-			}
-		}
-
-		$match = array();
-		$doctype = "";
-		$tag = "";
-
-		if ( preg_match( '%<!DOCTYPE\s+[\w-]+\s+PUBLIC\s+["'."'".'"](.*?)["'."'".'"].*>%siD', 
-			$head, $match ) ) {
-				$doctype = $match[1];
-			}
-		
-		if( $xml_type || $doctype ) {
-			if ( preg_match( '%<(\w+)\b%si', $head, $match ) ) {
-				$tag = $match[1];
-			}
-
-			#print "<br>ANALYSING $file: doctype= $doctype; tag= $tag<br>";
-
-			if ( strpos( $doctype, "-//W3C//DTD SVG" ) === 0 ) {
-				return "image/svg+xml";
-			} elseif ( $tag === "svg" ) {
-				return "image/svg+xml";
-			} elseif ( strpos( $doctype, "-//W3C//DTD XHTML" ) === 0 ) {
-				return "text/html";
-			} elseif ( $tag === "html" ) {
-				return "text/html";
+		$xml = new XmlTypeCheck( $file );
+		if( $xml->wellFormed ) {
+			$types = array(
+				'http://www.w3.org/2000/svg:svg'    => 'image/svg+xml',
+				'svg'                               => 'image/svg+xml',
+				'http://www.w3.org/1999/xhtml:html' => 'text/html', // application/xhtml+xml?
+				'html'                              => 'text/html', // application/xhtml+xml?
+			);
+			if( isset( $types[$xml->rootElement] ) ) {
+				$mime = $types[$xml->rootElement];
+				return $mime;
 			} else {
 				/// Fixme -- this would be the place to allow additional XML type checks
-				return "application/xml";
+				return 'application/xml';
 			}
 		}
 
@@ -541,7 +490,17 @@ class MimeMagic {
 
 		if ( $script_type ) {
 			if ( $script_type !== "UTF-8" && $script_type !== "ASCII") {
-				$head = iconv( $script_type, "ASCII//IGNORE", $head);
+				// Quick and dirty fold down to ASCII!
+				$pack = array( 'UTF-16BE' => 'n*', 'UTF-16LE' => 'v*' );
+				$chars = unpack( $pack[$script_type], substr( $head, 2 ) );
+				$head = '';
+				foreach( $chars as $codepoint ) {
+					if( $codepoint < 128 ) {
+						$head .= chr( $codepoint );
+					} else {
+						$head .= '?';
+					}
+				}
 			}
 
 			$match = array();

@@ -271,6 +271,7 @@ function __autoload($className) {
 		'WikiErrorMsg' => 'includes/WikiError.php',
 		'WikiXmlError' => 'includes/WikiError.php',
 		'Xml' => 'includes/Xml.php',
+		'XmlTypeCheck' => 'includes/XmlTypeCheck.php',
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
 		'EmaillingJob' => 'includes/JobQueue.php',
