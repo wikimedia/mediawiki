@@ -77,7 +77,7 @@ class FileDeleteForm {
 				if( $status->ok ) {
 					// Need to do a log item
 					$log = new LogPage( 'delete' );
-					$logComment = wfMsg( 'deletedrevision', $this->oldimage );
+					$logComment = wfMsgForContent( 'deletedrevision', $this->oldimage );
 					if( trim( $reason ) != '' )
 						$logComment .= ": {$reason}";
 					$log->addEntry( 'delete', $this->title, $logComment );
