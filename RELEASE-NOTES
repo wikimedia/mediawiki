@@ -305,7 +305,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   user-customized ones (like Common.css, Common.js)
 * (bug 12283) Special:Newpages forgets parameters
 * (bug 12031) All namespaces doesn't work in Special:Newpages
-* (bug 585) Only create searchindex replica table for parser tests if db is MySQL
+* (bug 585) Only create searchindex replica table for parser tests if db is
+  MySQL
 * Allow --record option if parserTests.php to work when using Postgres
 * (bug 12296) Simplify cache epoch in default LocalSettings.php
 * (bug 12346) XML fix when body double-click and click handlers are present
@@ -352,11 +353,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Security fix for API on MSIE
 * (bug 12768) Database query syntax error in maintenance/storage/compressOld.inc
 * (bug 12753) Empty captions in MediaWiki:Sidebar result in PHP errors
-* (bug 12790) Page protection is not logged when edit-protection is used and move-protection is not
+* (bug 12790) Page protection is not logged when edit-protection is used
+  and move-protection is not
 * (bug 12793) Fix for restricted namespaces/pages in Special:Export
 * Fix for Special:Export so it doesn't ignore the page named '0'
 * Don't display rollback link if the user doesn't have all required permissions
-* The comment of a time-limited protection now contains the date in the default format
+* The comment of a time-limited protection now contains the date in the default
+  format
 * (bug 12880) wfLoadExtensionMessages does not use $fallback from MessagesXx.php
 * (bug 12885) Correction for Russian convertPlural function
 * (bug 12768) Make DatabasePostgres->hasContraint() schema aware.
@@ -364,6 +367,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12892) Poor tab indexing on "delete file" form
 * (bug 12660) When creating an account by e-mail, do not send the creator's IP
   address
+* (bug 12931) Fix wrong global variable in SpecialVersion
 
 == Parser changes in 1.12 ==
 
@@ -469,14 +473,16 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Make prop=info check for restrictions in the old format too.
 * Add apihighlimits permission, default for sysops and bots
 * Add limit=max to use maximal limit
-* Add action=parse to render parser output. Use it instead of action=render which has been removed
+* Add action=parse to render parser output. Use it instead of action=render
+  which has been removed
 * Add rvtoken=rollback to prop=revisions
 * Add meta=allmessages to get messages from site's messages cache.
 * Use bold and italics highlighting only in API help
-* Added action={block,delete,move,protect,rollback,unblock,undelete} and list={blocks,deletedrevs}
+* Added action={block,delete,move,protect,rollback,unblock,undelete} and
+  list={blocks,deletedrevs}
 * Fixed sessionid attribute in action=login
-* Standardized limits. Revisions and Deletedrevisions formerly using 200 / 10000,
-  now 500 / 5000, in line with other modules.
+* Standardized limits. Revisions and Deletedrevisions formerly using
+  200 / 10000, now 500 / 5000, in line with other modules.
 * Added list=allcategories module
 * (bug 12321) API list=blocks reveals private data
 * Fix output of wfSajaxSearch
@@ -484,13 +490,18 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Add list of sections to action=parse output
 * Added action=logout
 * Added cascade flag to prop=info&inprop=protections
-* Added wlshow parameter to list=watchlist, similar to rcshow (list=recentchanges)
+* Added wlshow parameter to list=watchlist, similar to rcshow
+  (list=recentchanges)
 * Added support for image thumbnailing to prop=imageinfo
-* action={login,block,delete,move,protect,rollback,unblock,undelete} now must be POSTed
-* prop=imageinfo interface changed: iihistory replaced by iilimit, iistart and iiend parameters
+* action={login,block,delete,move,protect,rollback,unblock,undelete} now must be
+  POSTed
+* prop=imageinfo interface changed: iihistory replaced by iilimit, iistart and
+  iiend parameters
 * Added amlang parameter to meta=allmessages
-* Added apfilterlanglinks parameter to list=allpages, replacing query.php?what=nolanglinks
-* (bug 12718) Added action=paraminfo module that provides information about API modules and their parameters
+* Added apfilterlanglinks parameter to list=allpages, replacing
+  query.php?what=nolanglinks
+* (bug 12718) Added action=paraminfo module that provides information about API
+  modules and their parameters
 * Added iiurlwidth and iiurlheight parameters to prop=imageinfo
 * Added format=txt and format=dbg, imported from query.php
 * Added uiprop=editcount to meta=userinfo

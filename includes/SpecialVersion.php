@@ -91,9 +91,9 @@ class SpecialVersion {
 
 	/** Generate wikitext showing extensions name, URL, author and description */
 	function extensionCredits() {
-		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser, $wgSkinExtensionFunction;
+		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser, $wgSkinExtensionFunctions;
 
-		if ( ! count( $wgExtensionCredits ) && ! count( $wgExtensionFunctions ) && ! count( $wgSkinExtensionFunction ) )
+		if ( ! count( $wgExtensionCredits ) && ! count( $wgExtensionFunctions ) && ! count( $wgSkinExtensionFunctions ) )
 			return '';
 
 		$extensionTypes = array(
@@ -144,9 +144,9 @@ class SpecialVersion {
 			$out .= '<tr><td colspan="3">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
-		if ( count( $wgSkinExtensionFunction ) ) {
+		if ( count( $wgSkinExtensionFunctions ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunction ) . "</td></tr>\n";
+			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
 		}
 		$out .= Xml::closeElement( 'table' );
 		return $out;
