@@ -12,7 +12,7 @@ function wfSpecialSpecialpages() {
 
 	$wgMessageCache->loadAllMessages();
 
-	$wgOut->setRobotpolicy( 'index,nofollow' );
+	$wgOut->setRobotpolicy( 'noindex,nofollow' );  # Is this really needed?
 	$sk = $wgUser->getSkin();
 
 	/** Pages available to all */

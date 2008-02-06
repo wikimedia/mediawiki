@@ -2485,8 +2485,15 @@ $wgNoFollowLinks = true;
 $wgNoFollowNsExceptions = array();
 
 /**
+ * Default robot policy.
+ * The default policy is to encourage indexing and following of links.
+ * It may be overridden on a per-namespace and/or per-page basis.
+ */
+$wgDefaultRobotPolicy = 'index,follow';
+
+/**
  * Robot policies per namespaces.
- * The default policy is 'index,follow', the array is made of namespace
+ * The default policy is given above, the array is made of namespace
  * constants as defined in includes/Defines.php
  * Example:
  *   $wgNamespaceRobotPolicies = array( NS_TALK => 'noindex' );
