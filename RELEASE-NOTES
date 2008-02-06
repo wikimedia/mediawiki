@@ -158,6 +158,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The default robot policy for the entire wiki is now configurable via the
   $wgDefaultRobotPolicy setting.
 * (bug 12239) Use different separators for autocomments
+* (bug 12857) Patrol link on new pages should clear floats
 
 === Bug fixes in 1.12 ===
 
