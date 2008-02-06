@@ -157,6 +157,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and installed when at the superuser level.
 * The default robot policy for the entire wiki is now configurable via the
   $wgDefaultRobotPolicy setting.
+* (bug 12239) Use different separators for autocomments
 
 === Bug fixes in 1.12 ===
 
