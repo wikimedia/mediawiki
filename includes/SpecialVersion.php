@@ -30,6 +30,7 @@ class SpecialVersion {
 		$wgOut->addHTML( '<div dir="ltr">' );
 		$wgOut->addWikiText(
 			$this->MediaWikiCredits() .
+			$this->softwareInformation() .
 			$this->extensionCredits() .
 			$this->wgHooks()
 		);
@@ -42,15 +43,10 @@ class SpecialVersion {
 	 */
 
 	/**
-	 * Return wiki text showing the licence information and third party
-	 * software versions (apache, php, mysql).
-	 * @static
+	 * @return wiki text showing the licence information
 	 */
-	function MediaWikiCredits() {
-		$version = self::getVersion();
-		$dbr = wfGetDB( DB_SLAVE );
-
-		$ret =
+	static function MediaWikiCredits() {
+		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-licence' ), wfMsg( 'version-licence' ) ) .
 		"__NOTOC__
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright (C) 2001-2008 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
@@ -69,14 +65,38 @@ class SpecialVersion {
 
 		You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License]
 		along with this program; if not, write to the Free Software
-		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-		or [http://www.gnu.org/copyleft/gpl.html read it online]
-
-		* [http://www.mediawiki.org/ MediaWiki]: $version
-		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
-		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion();
+		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+		or [http://www.gnu.org/copyleft/gpl.html read it online].
+		";
 
 		return str_replace( "\t\t", '', $ret ) . "\n";
+	}
+
+	/**
+	 * @return wiki text showing the third party software versions (apache, php, mysql).
+	 */
+	static function softwareInformation() {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		return Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMsg( 'version-software' ) ) .
+			Xml::openElement( 'table', array( 'id' => 'sv-software' ) ) .
+				"<tr>
+					<th>" . wfMsg( 'version-software-product' ) . "</th>
+					<th>" . wfMsg( 'version-software-version' ) . "</th>
+				</tr>\n
+				<tr>
+					<td>[http://www.mediawiki.org/ MediaWiki]</td>
+					<td>" . self::getVersion() . "</td>
+				</tr>\n
+				<tr>
+					<td>[http://www.php.net/ PHP]</td>
+					<td>" . phpversion() . " (" . php_sapi_name() . ")</td>
+				</tr>\n
+				<tr>
+					<td>" . $dbr->getSoftwareLink() . "</td>
+					<td>" . $dbr->getServerVersion() . "</td>
+				</tr>\n" .
+			Xml::closeElement( 'table' );
 	}
 
 	/** Return a string of the MediaWiki version with SVN revision if available */

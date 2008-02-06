@@ -2361,6 +2361,10 @@ $wgMessageStructure = array(
 		'version-hook-name',
 		'version-hook-subscribedby',
 		'version-version',
+		'version-licence',
+		'version-software',
+		'version-software-product',
+		'version-software-version',
 	),
 	'filepath' => array(
 		'filepath',
