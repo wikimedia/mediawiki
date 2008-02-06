@@ -1167,6 +1167,7 @@ div#userloginForm .captcha {
 	background-color: #ffa;
 }
 div.patrollink {
+	clear: both;
 	font-size: 75%;
 	text-align: right;
 }
