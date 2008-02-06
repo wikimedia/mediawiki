@@ -973,8 +973,9 @@ class Linker {
 	 * add a separator where needed and format the comment itself with CSS
 	 * Called by Linker::formatComment.
 	 *
-	 * @param $comment Comment text
-	 * @param $title An optional title object used to links to sections
+	 * @param string $comment Comment text
+	 * @param object $title An optional title object used to links to sections
+	 * @return string $comment formatted comment
 	 *
 	 * @todo Document the $local parameter.
 	 */
@@ -1002,14 +1003,17 @@ class Linker {
 					$sectionTitle = wfClone( $title );
 					$sectionTitle->mFragment = $section;
 				}
-				$link = $this->makeKnownLinkObj( $sectionTitle, wfMsg( 'sectionlink' ) );
+				$link = $this->makeKnownLinkObj( $sectionTitle, wfMsgForContent( 'sectionlink' ) );
 			}
-			$sep='-';
-			$auto=$link.$auto;
-			if($pre) { $auto = $sep.' '.$auto; }
-			if($post) { $auto .= ' '.$sep; }
-			$auto='<span class="autocomment">'.$auto.'</span>';
-			$comment=$pre.$auto.$post;
+			$auto = $link . $auto;
+			if( $pre ) {
+				$auto = '- ' . $auto; # written summary $presep autocomment (summary /* section */)
+			}
+			if( $post ) {
+				$auto .= ': '; # autocomment $postsep written summary (/* section */ summary)
+			}
+			$auto = '<span class="autocomment">' . $auto . '</span>';
+			$comment = $pre . $auto . $post;
 		}
 
 		return $comment;
