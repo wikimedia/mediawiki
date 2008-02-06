@@ -18,6 +18,7 @@
  * @author לערי ריינהארט
  * @author Dereckson
  * @author Meithal
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -529,7 +530,7 @@ Requête : $2',
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de l’article pour pouvoir travailler dessus :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
-'editinginterface'     => "'''Attention :''' vous êtes en train d’éditer une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet Mediawiki d'internationalisation des messages [http://translatewiki.net/wiki/Translating:Intro Betawiki].",
+'editinginterface'     => "'''Attention :''' vous êtes en train d’éditer une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet Mediawiki d'internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr Betawiki].",
 'sqlhidden'            => '(Requête SQL cachée)',
 'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée{{PLURAL:$1||s}} avec l’option « protection en cascade » activée :
 $2',
@@ -2447,6 +2448,9 @@ Essayez la prévisualisation normale.',
 'version-hook-name'                => 'Nom du crochet',
 'version-hook-subscribedby'        => 'Défini par',
 'version-version'                  => 'Version',
+'version-software'                 => 'Logiciel installé',
+'version-software-product'         => 'Produit',
+'version-software-version'         => 'Version',
 
 # Special:Filepath
 'filepath'         => "Chemin d'accès d’un fichier",

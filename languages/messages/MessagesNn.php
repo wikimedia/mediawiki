@@ -11,6 +11,7 @@
  * @author Eirik
  * @author Max sonnelid
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 /**
@@ -557,7 +558,7 @@ Dersom dette ikkje er tilfellet kan du ha funne ein feil i programvaren. Gje mel
 'protectedpagetext'    => 'Denne sida er verna for å hindre endring.',
 'viewsourcetext'       => 'Du kan sjå og kopiere kjeldekoden til denne sida:',
 'protectedinterface'   => 'Denne sida inneheld tekst som er brukt av brukargrensesnittet for programvaren, og er difor låst for å hindre hærverk.',
-'editinginterface'     => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvaren. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å omsetje, ver venleg og vurder å bruke [http://translatewiki.net/wiki/Translating:Intro Betawiki], prosjektet for omsetjing av MediaWiki.",
+'editinginterface'     => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvaren. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å omsetje, ver venleg og vurder å bruke [http://translatewiki.net/wiki/Main_Page?setlang=nn Betawiki], prosjektet for omsetjing av MediaWiki.",
 'sqlhidden'            => '(SQL-førespurnaden er gøymd)',
 'cascadeprotected'     => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',

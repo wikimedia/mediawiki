@@ -11,6 +11,7 @@
  * @author Nike
  * @author Max sonnelid
  * @author Amdf
+ * @author SPQRobin
  */
 
 
@@ -629,7 +630,7 @@ $messages = array(
 # Book sources
 'booksources' => 'Кинигань лисьмапрят',
 
-'alphaindexline' => '1 $-сь  2 $-те',
+'alphaindexline' => '$1-сь  $2-те',
 'version'        => 'Версия',
 
 # Special:Log

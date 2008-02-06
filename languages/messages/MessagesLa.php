@@ -386,7 +386,7 @@ $1',
 'protectedpagetext'   => 'Haec pagina protecta est, ut emendationes prohibeantur.',
 'viewsourcetext'      => 'Fontem videas et exscribeas:',
 'protectedinterface'  => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
-'editinginterface'    => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Translating:Intro Betawiki].",
+'editinginterface'    => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la Betawiki].",
 'ns-specialprotected' => 'Paginae in spatio nominali "{{ns:special}}" recenseri non possunt.',
 'titleprotected'      => 'Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur. Ratio data est <i>$2</i>.',
 

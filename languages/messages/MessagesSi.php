@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Asiri wiki
+ * @author Nike
  */
 
 
@@ -51,16 +52,19 @@ $messages = array(
 'nov'       => 'නොවැ',
 'dec'       => 'දෙසැ',
 
-'cancel'        => 'අවලංගු කරන්න',
-'qbbrowse'      => 'පිරික්සන්න',
-'qbedit'        => 'සකසන්න',
-'qbpageoptions' => 'මේ පිටුව',
-'qbmyoptions'   => 'මගේ පිටු',
-'moredotdotdot' => 'තවත්...',
-'mypage'        => 'මගේ පිටුව',
-'mytalk'        => 'මගේ සාකච්ඡා',
-'navigation'    => 'හසුරවන්න',
-'and'           => 'සහ',
+'article'        => 'අන්තර්ගත පිටුව',
+'cancel'         => 'අවලංගු කරන්න',
+'qbfind'         => 'සොයන්න',
+'qbbrowse'       => 'පිරික්සන්න',
+'qbedit'         => 'සකසන්න',
+'qbpageoptions'  => 'මේ පිටුව',
+'qbmyoptions'    => 'මගේ පිටු',
+'qbspecialpages' => 'විශේෂ පිටු',
+'moredotdotdot'  => 'තවත්...',
+'mypage'         => 'මගේ පිටුව',
+'mytalk'         => 'මගේ සාකච්ඡා',
+'navigation'     => 'හසුරවන්න',
+'and'            => 'සහ',
 
 'help'             => 'උදව්',
 'search'           => 'සොයන්න',
@@ -111,39 +115,66 @@ $messages = array(
 'badtitle' => 'නුසුදුසු මාතෘකාවක්',
 
 # Login and logout pages
-'yourname'           => 'පරිශීලක නාමය:',
-'yourpassword'       => 'මුරපදය:',
-'yourpasswordagain'  => 'මුරපදය නැවත ලියන්න:',
-'yourdomainname'     => 'ඔබගේ වසම:',
-'logout'             => 'පිටවන්න',
-'nologinlink'        => 'ගිණුමක් තනන්න',
-'createaccount'      => 'ගිණුමක් තනන්න',
-'yourrealname'       => 'සත්‍ය නාමය:',
-'yourlanguage'       => 'භාෂාව:',
-'yournick'           => 'විකල්ප නාමය:',
-'emailconfirmlink'   => 'ඔබගේ විද්‍යුත් තැපැල් ලිපිනය තහවුරු කරන්න',
-'loginlanguagelabel' => 'භාෂාව: $1',
+'yourname'                   => 'පරිශීලක නාමය:',
+'yourpassword'               => 'මුරපදය:',
+'yourpasswordagain'          => 'මුරපදය නැවත ලියන්න:',
+'yourdomainname'             => 'ඔබගේ වසම:',
+'logout'                     => 'පිටවන්න',
+'nologinlink'                => 'ගිණුමක් තනන්න',
+'createaccount'              => 'ගිණුමක් තනන්න',
+'gotaccount'                 => 'දැනටමත් ගිණුමක් තිබේද?$1.',
+'createaccountmail'          => 'විද්‍යුත් තැපෑල මගින්',
+'youremail'                  => 'විද්‍යුත් තැපෑල:',
+'username'                   => 'පරිශීලක නාමය:',
+'yourrealname'               => 'සැබෑ නාමය:',
+'yourlanguage'               => 'භාෂාව:',
+'yournick'                   => 'විකල්ප නාමය:',
+'email'                      => 'විද්‍යුත් තැපෑල',
+'prefs-help-email-required'  => 'විද්‍යුත් තැපෑල් ලිපිනය අවශ්‍යයි.',
+'mailmypassword'             => 'මුරපදය විද්‍යුත් තැපෑල‍ට යවන්න',
+'acct_creation_throttle_hit' => 'ඔබ දැන‍ටමත් ගිණුම $1 තනා ඇත.ඔබට තවත් ගිණුම් තැනිය නොහැක.',
+'emailconfirmlink'           => 'ඔබගේ විද්‍යුත් තැපැල් ලිපිනය තහවුරු කරන්න',
+'loginlanguagelabel'         => 'භාෂාව: $1',
 
 # Password reset dialog
 'resetpass_header' => 'මුරපදය යළි පිහිටුවන්න',
 
 # Edit page toolbar
-'link_tip' => 'අභ්‍යන්තර සබැඳිය',
-'math_tip' => 'ගණිත සුත්‍ර(LaTeX)',
+'bold_sample'   => 'තදකුරු',
+'bold_tip'      => 'තදකුරු',
+'italic_sample' => 'ඇලකුරු',
+'link_tip'      => 'අභ්‍යන්තර සබැඳිය',
+'math_tip'      => 'ගණිත සුත්‍ර(LaTeX)',
 
 # Edit pages
-'summary'     => 'සාරාංශය',
-'minoredit'   => 'මෙය සුළු සංස්කරණයකි',
-'savearticle' => 'පිටුව සුරකින්න',
-'showpreview' => 'පෙරදසුන පෙන්වන්න',
-'showdiff'    => 'වෙනස්වීම් පෙන්වන්න',
+'summary'           => 'සාරාංශය',
+'minoredit'         => 'මෙය සුළු සංස්කරණයකි',
+'savearticle'       => 'පිටුව සුරකින්න',
+'preview'           => 'පෙරදසුන',
+'showpreview'       => 'පෙරදසුන පෙන්වන්න',
+'showdiff'          => 'වෙනස්වීම් පෙන්වන්න',
+'yourtext'          => 'ඔබගේ පෙළ',
+'copyrightwarning'  => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
+එසේ ම මෙය ඔබ විසින් ම ලියූ බවට හෝ පොදු විෂයපථයකින්, ඊ‍ට ස‍මාන නිදහස් මූලාශ්‍රයකින් උපුටා ගත් බව‍ට හෝ අපහ‍‍ට සහතික විය යුතු ය. (තොරතුරු සඳහා $1 බලන්න).
+<strong>හිමිකම් ඇවුරුණු දේ අනවසරයෙන් ප්‍රකාෂ කිරිමෙන් වලකින්න!</strong>",
+'copyrightwarning2' => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you don't want your writing to be edited mercilessly, then don't submit it here.<br />
+එසේ ම මෙය ඔබ විසින් ම ලියූ බවට හෝ පොදු විෂයපථයකින්, ඊ‍ට ස‍මාන නිදහස් මූලාශ්‍රයකින් උපුටා ගත් බව‍ට හෝ අපහ‍‍ට සහතික විය යුතු ය. (තොරතුරු සඳහා $1 බලන්න).
+<strong>හිමිකම් ඇවුරුණු දේ අනවසරයෙන් ප්‍රකාෂ කිරිමෙන් වලකින්න!</strong>",
+
+# Revision deletion
+'rev-delundel' => 'පෙන්වන්න/සඟවන්න',
 
 # Preferences page
-'mypreferences' => 'මගේ අභිරුචි',
-'prefs-rc'      => 'නව වෙනස්වීම්',
+'mypreferences'  => 'මගේ අභිරුචි',
+'changepassword' => 'මුරපදය වෙනස් කරන්න',
+'datetime'       => 'දිනය සහ වේලාව',
+'prefs-rc'       => 'නව වෙනස්වීම්',
+'prefs-misc'     => 'විවිධ',
+'files'          => 'ගොනු',
 
 # Recent changes
 'recentchanges' => '‍නව වෙනස්වීම්',
+'show'          => 'පෙන්වන්න',
 
 # Recent changes linked
 'recentchangeslinked' => 'සබැඳි වෙනස්වීම්',
@@ -152,7 +183,8 @@ $messages = array(
 'upload' => 'ගොනුවක් උඩුගත කිරීම',
 
 # Image list
-'ilsubmit' => 'සොයන්න',
+'ilsubmit'          => 'සොයන්න',
+'filehist-datetime' => 'දිනය/කාලය',
 
 # Random page
 'randompage' => 'අහඹු පිටුව',
@@ -171,10 +203,16 @@ $messages = array(
 # Special:Allpages
 'allpagessubmit' => 'යන්න',
 
+# Special:Listusers
+'listusers-submit' => 'පෙන්වන්න',
+
 # Watchlist
 'mywatchlist' => 'මගේ මුර ලැයිස්තුව',
 'watch'       => 'මුර කරන්න',
 'unwatch'     => 'මුර නොකරන්න',
+
+# Undelete
+'undelete-search-submit' => 'සොයන්න',
 
 # Contributions
 'contributions' => 'මේ පරිශීලකයාගේ දායකත්වය',
@@ -182,5 +220,46 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => 'සබැඳි පිටු',
+
+# Block/unblock
+'ipaddress' => 'IP යොමුව:',
+
+# Tooltip help for the actions
+'tooltip-ca-delete'  => 'මේ පිටුව මකන්න',
+'tooltip-n-mainpage' => 'මුල් පිටුව‍ට යන්න',
+
+# EXIF tags
+'exif-imagewidth'   => 'පළල',
+'exif-imagelength'  => 'උස',
+'exif-artist'       => 'කතෘ',
+'exif-gpslatitude'  => 'අක්ෂාංශය',
+'exif-gpslongitude' => 'දේශාංශය',
+
+'exif-subjectdistance-value' => 'මීටර $1',
+
+'exif-focalplaneresolutionunit-2' => 'අඟල්',
+
+# action=purge
+'confirm_purge_button' => 'හරි',
+
+# AJAX search
+'useajaxsearch' => 'AJAX සෙවුම භාවිත කරන්න',
+
+# Multipage image navigation
+'imgmultipageprev' => '← පෙර පිටුව',
+'imgmultipagenext' => 'ඊළඟ පිටුව →',
+'imgmultigo'       => 'යන්න!',
+'imgmultigotopre'  => 'පිටුවට යන්න',
+
+# Table pager
+'table_pager_next'         => 'ඊළඟ පිටුව',
+'table_pager_prev'         => 'පෙර පිටුව',
+'table_pager_first'        => 'පළමු පිටුව',
+'table_pager_last'         => 'අවසාන පිටුව',
+'table_pager_limit_submit' => 'යන්න',
+
+# Special:Version
+'version-specialpages' => 'විශේෂ පිටු',
+'version-other'        => 'වෙනත්',
 
 );

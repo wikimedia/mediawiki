@@ -429,7 +429,7 @@ Ufro: $2',
 'protectedpagetext'    => 'Dës Säit ass fir Ännerunge gespaart.',
 'viewsourcetext'       => 'Dir kënnt de Quelltext vun dëser Säit kucken a kopéieren:',
 'protectedinterface'   => 'Op dëser Säit fannt Dir Text fir de Sprooch-Interface vun der Software an dofir ass si gespaart fir Mëssbrauch ze verhenneren.',
-'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, dee jidderee liese kann.",
+'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, je no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer gesi ginn. Fir d'Iwwersetzungen z'änneren onvitéiere mir iech de  [http://translatewiki.net/wiki/Main_Page?setlang=lb Projet Betawiki] vun den internationale Messagen ze benotzen.",
 'sqlhidden'            => '(SQL-Offro verstoppt)',
 'cascadeprotected'     => 'Dës Säit ass gespaart, well duerch Cascadeprotectioun vun {{PLURAL:$1|dëser Säit|dëse Säite}} protegéiert ass:
 $2',
@@ -784,6 +784,7 @@ Sich no: $3 $9',
 
 # Preferences page
 'preferences'             => 'Preferenzen',
+'preferences-summary'     => 'Op dëser Spezialsäit kënnt Dir är Zougangsdaten änneren an Astellunge maachen déi een Afloss dorop hunn wéi äer Säiten op {{Sitename}} ausgesinn a wéi eenzel Säiten ugewise ginn.',
 'mypreferences'           => 'Meng Preferenzen',
 'prefs-edits'             => 'Zuel vun den Ännerungen:',
 'prefsnologin'            => 'Net ugemeld',
@@ -804,7 +805,7 @@ Sich no: $3 $9',
 'prefs-personal'          => 'Benotzerprofil',
 'prefs-rc'                => 'Rezent Ännerungen',
 'prefs-watchlist'         => 'Iwwerwaachungslëscht',
-'prefs-watchlist-days'    => 'Maximal Zuel vun den Deeg, déi an der Iwwerwaachungslëscht ugewise solle ginn:',
+'prefs-watchlist-days'    => 'Zuel vun den Deeg, déi an der Iwwerwaachungslëscht ugewise solle ginn:',
 'prefs-watchlist-edits'   => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungslëscht ugewise solle ginn:',
 'prefs-misc'              => 'Verschiddenes',
 'saveprefs'               => 'Späicheren',
@@ -1044,10 +1045,12 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'download'   => 'eroflueden',
 
 # Unwatched pages
-'unwatchedpages' => 'Nët iwwerwaachte Säiten',
+'unwatchedpages'         => 'Nët iwwerwaachte Säiten',
+'unwatchedpages-summary' => 'Op dëser Spezialsäit stinn all déi Säiten, déi op kengem Benotzer senger Iwwerwaachungslëscht stinn.',
 
 # List redirects
-'listredirects' => 'Lëscht vun de Viruleedungen',
+'listredirects'         => 'Lëscht vun de Viruleedungen',
+'listredirects-summary' => "Op dëser Spezialsäit stinn d'Viruleedungen.",
 
 # Unused templates
 'unusedtemplates'         => 'Onbenotzte Schablounen',
@@ -1124,7 +1127,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'unusedimages'                   => 'Unbenotzt Biller',
 'popularpages'                   => 'Populär Säiten',
 'wantedcategories'               => 'Gewënschte Kategorien',
-'wantedcategories-summary'       => 'OP dëser Spezialsäit stinn all déi Kategorien, déi zwar op Säite benotzt ginn, déi awer nach net als Kategorie ugeluecht goufen.',
+'wantedcategories-summary'       => 'Op dëser Spezialsäit stinn all déi Kategorien, déi zwar op Säite benotzt ginn, déi awer nach net als Kategorie ugeluecht goufen.',
 'wantedpages'                    => 'Gewënschte Säiten',
 'mostlinked'                     => 'Dacks verlinkte Säiten',
 'mostlinkedcategories'           => 'Dacks benotzte Kategorien',
@@ -1319,6 +1322,7 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'protectedarticle'            => 'huet [[$1]] protegéiert',
 'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
+'unprotectedarticle'          => "huet d'Spär vu(n) [[$1]] opgehuewen",
 'confirmprotect'              => "Konfirméiert d'Protectioun",
 'protectcomment'              => 'Grond:',
 'protectexpiry'               => 'Dauer vun der Spär:',

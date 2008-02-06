@@ -1270,10 +1270,12 @@ Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lám
 'movearticle'            => 'Athainmnigh an leathanach',
 'movenologin'            => 'Níl tú logáilte isteach',
 'movenologintext'        => "Ní mór duit bheith i d'úsáideoir cláraithe agus [[Special:Userlogin|logáilte isteach]] chun leathanach a hathainmniú.",
+'movenotallowed'         => 'Níl cead agat leathanaigh a athainmniú ar {{SITENAME}}.',
 'newtitle'               => 'Go teideal nua',
 'move-watch'             => 'Déan faire an leathanach seo',
 'movepagebtn'            => 'Athainmnigh an leathanach',
 'pagemovedsub'           => "D'éirigh leis an athainmniú",
+'movepage-moved'         => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'          => 'Tá leathanach leis an teideal seo ann fós, nó níl an
 teideal a rinne tú rogha air ina theideal bailí.
 Toghaigh teideal eile le do thoil.',

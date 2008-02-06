@@ -212,31 +212,34 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'hr_tip'         => "Bw'onyiga ku kano ofuna olusaze olwawula mu by'owandiika. (Gezaako butakozesa nyingi)",
 
 # Edit pages
-'summary'          => "Wandika wano ebinyonyola enkyukakyuka z'okoze",
-'minoredit'        => 'Eno nkyukakyuka ntono',
-'watchthis'        => 'Goberera olupapula luno',
-'savearticle'      => 'Kaza olupapula',
-'showpreview'      => 'Sooka ondageko',
-'showdiff'         => 'Ndaga bwe bikyuse',
-'anoneditwarning'  => "'''Kulabula:''' Owandiiika toyingidde mu sisitemu. Tujjakuwandiika endagiriro eya kompyuta kwosinzidde
+'summary'           => "Wandika wano ebinyonyola enkyukakyuka z'okoze",
+'minoredit'         => 'Eno nkyukakyuka ntono',
+'watchthis'         => 'Goberera olupapula luno',
+'savearticle'       => 'Kaza olupapula',
+'showpreview'       => 'Sooka ondageko',
+'showdiff'          => 'Ndaga bwe bikyuse',
+'anoneditwarning'   => "'''Kulabula:''' Owandiiika toyingidde mu sisitemu. Tujjakuwandiika endagiriro eya kompyuta kwosinzidde
 mu lukalala lw'enkuykakyuka ez'omu lupapula luno.",
-'loginreqlink'     => 'Yingira',
-'accmailtitle'     => 'Ekigambo ekikuumi kisindikiddwa',
-'accmailtext'      => 'Ekigambo ekikuumi ekya "$1" kisindikiddwa ku $2.',
-'newarticletext'   => "Enyunzi gy'ogenzeko egguka ku lupapula olutannakolebwawo.
+'loginreqlink'      => 'Yingira',
+'accmailtitle'      => 'Ekigambo ekikuumi kisindikiddwa',
+'accmailtext'       => 'Ekigambo ekikuumi ekya "$1" kisindikiddwa ku $2.',
+'newarticletext'    => "Enyunzi gy'ogenzeko egguka ku lupapula olutannakolebwawo.
 Oba gwe oyagala okulukolawo, wandiika mu kabokisi wammanga.
 (okuyiga ebisingawo, genda ku [[{{MediaWiki:Helppage}}|lupapula olw'obuyambi]]).
 Bw'obanga tewagenderedde kutuuka wano, nyigabunyizi eppeesa ery'omu kalambula-neti yo
 erya '''ddayo'''.",
-'noarticletext'    => "Wano tewali kyawandiikidwawo, ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula endala oba oyinza [{{fullurl:{{FULLPAGENAME}}|action=edit}} gwe okukiwandiikako] wano.",
-'editing'          => 'Kati okyuusa $1',
-'editinguser'      => 'Kukyuusa ebya memba <b>$1</b>',
-'editingsection'   => 'Okyuusa $1 (kitundu)',
-'editingcomment'   => 'Kukyuusa $1 (obubaka)',
-'yourtext'         => 'Ebigambo ebibyo',
-'copyrightwarning' => "Genderera nti buli kyowandiika muno mu {{SITENAME}} kibalibwa ng'ekifugibwa $2 (okuyiga ebisingawo, laba $1).
+'noarticletext'     => "Wano tewali kyawandiikidwawo, ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula endala oba oyinza [{{fullurl:{{FULLPAGENAME}}|action=edit}} gwe okukiwandiikako] wano.",
+'editing'           => 'Kati okyuusa $1',
+'editinguser'       => 'Kukyuusa ebya memba <b>$1</b>',
+'editingsection'    => 'Okyuusa $1 (kitundu)',
+'editingcomment'    => 'Kukyuusa $1 (obubaka)',
+'yourtext'          => 'Ebigambo ebibyo',
+'copyrightwarning'  => "Genderera nti buli kyowandiika muno mu {{SITENAME}} kibalibwa ng'ekifugibwa $2 (okuyiga ebisingawo, laba $1).
 Obanga tewetegese okulaba by'owandiise nga babikyusakyusa n'okubisaasaanya nga bwe balaba, tobiwandiika muno.<br />
 Tukwesiga nti by'owandiika muno bibyo oba wabigya mu kya bonna oba awalala gye batalina bikugizo eby'obwa nannyini.
+<strong>TOTEEKAMU EBIRIKO EBIKUGIZO EBY'OBWA NANNYINI NGA BA NYINI BYO TEBAKUWADDE LUKUSA!</strong>",
+'copyrightwarning2' => "Genderera nti buli kyowandiika muno mu {{SITENAME}} abalala bayinza okubikyusa oba n'okubigiramu ddala. Obanga tewetegese okulaba by'owandiise nga babikyusakyusa n'okubisaasaanya nga bwe balaba, tobiwandiika muno.<br />
+Tukwesiga nti by'owandiika muno bibyo oba wabigya mu kya bonna oba awalala gye batalina bikugizo eby'obwa nannyini. (okuyiga ebisingawo, laba $1).
 <strong>TOTEEKAMU EBIRIKO EBIKUGIZO EBY'OBWA NANNYINI NGA BA NYINI BYO TEBAKUWADDE LUKUSA!</strong>",
 
 # History pages
@@ -390,6 +393,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-search'          => 'Noonyeza ku {{SITENAME}}',
 'tooltip-n-mainpage'      => 'Kebera ku Muko Ogusooka',
 'tooltip-n-portal'        => "Ebikutangaaza ku kawefube wa Wiki eno n'engeri naawe mw'osobolera okubyenyigiramu",
+'tooltip-n-currentevents' => 'Nyiga wano oba oyagala okuyiga ebisingawo ku bibindabinda',
 'tooltip-n-recentchanges' => "Nyiga wano okulaba olukalala lw'ebyakakyusibwamu ku wiki eno",
 'tooltip-n-randompage'    => 'Nnondera omuko gwemba nkebera',
 'tooltip-n-help'          => 'Ebikutangaaza ku nkola ya Wiki eno',

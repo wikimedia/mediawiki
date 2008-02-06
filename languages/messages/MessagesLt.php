@@ -8,6 +8,7 @@
  * @author Matasg
  * @author Pdxx
  * @author Garas
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -390,7 +391,7 @@ Užklausa: $2',
 'protectedpagetext'    => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo.',
 'viewsourcetext'       => 'Jūs galite žiūrėti ir kopijuoti puslapio kodą:',
 'protectedinterface'   => 'Šiame puslapyje yra programinės įrangos sąsajos tekstas ir yra apsaugotas, kad būtų apsisaugota nuo piktnaudžiavimo.',
-'editinginterface'     => "'''Dėmesio:''' Jūs redaguojate puslapį, kuris yra naudojamas programinės įrangos sąsajos tekste. Pakeitimai šiame puslapyje taip pat pakeis naudotojo sąsajos išvaizdą ir kitiems naudojams. Jei norite išversti, siūlome pasinaudoti [http://translatewiki.net/wiki/Translating:Intro Betawiki], MediaWiki lokalizacijos projektu.",
+'editinginterface'     => "'''Dėmesio:''' Jūs redaguojate puslapį, kuris yra naudojamas programinės įrangos sąsajos tekste. Pakeitimai šiame puslapyje taip pat pakeis naudotojo sąsajos išvaizdą ir kitiems naudojams. Jei norite išversti, siūlome pasinaudoti [http://translatewiki.net/wiki/Main_Page?setlang=lt Betawiki], MediaWiki lokalizacijos projektu.",
 'sqlhidden'            => '(SQL užklausa paslėpta)',
 'cascadeprotected'     => 'Šis puslapis buvo apsaugotas nuo redagavimo, kadangi jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:
 $2',
@@ -2360,6 +2361,18 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nežinoma priedo žymė „$1“',
+
+# Special:Version
+'version-extensions'       => 'Instaliuoti priedai',
+'version-specialpages'     => 'Specialieji puslapiai',
+'version-variables'        => 'Kintamieji',
+'version-other'            => 'Kita',
+'version-mediahandlers'    => 'Media dresiruotojai',
+'version-version'          => 'versija',
+'version-license'          => 'Licenzija',
+'version-software'         => 'Instaliuota programinė įranga',
+'version-software-product' => 'Produktas',
+'version-software-version' => 'Versija',
 
 # Special:Filepath
 'filepath'         => 'Failo kelias',

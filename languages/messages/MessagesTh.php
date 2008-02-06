@@ -6,6 +6,8 @@
  * @author วรากร อึ้งวิเชียร (Varakorn Ungvichian)
  * @author จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae
  * @author LMNOP at Thai Wikipedia (manop@itshee.com) since July 2007
+ * @author Ans
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -102,7 +104,6 @@ $messages = array(
 'tog-watchlisthideown'        => 'ไม่แสดงการแก้ไขของตนเองจากรายการเฝ้าดูของตนเอง',
 'tog-watchlisthidebots'       => 'ไม่แสดงการแก้ไขของบอตจากรายการเฝ้าดูของตนเอง',
 'tog-watchlisthideminor'      => 'ไม่แสดงการแก้ไขเล็กน้อยจากรายการเฝ้าดูของตนเอง',
-'tog-nolangconversion'        => 'Disable variants conversion',
 'tog-ccmeonemails'            => 'ส่งสำเนาอีเมลกลับมาทุกครั้งที่ส่งหาคนอื่น',
 'tog-diffonly'                => 'ไม่แสดงเนื้อหาใต้ส่วนต่างการแก้ไข',
 
@@ -196,8 +197,7 @@ $messages = array(
 'mypage'         => 'หน้าของฉัน',
 'mytalk'         => 'หน้าพูดคุยของฉัน',
 'anontalk'       => 'พูดคุยกับไอพีนี้',
-'navigation'     => 'นำทาง',
-'and'            => 'and',
+'navigation'     => 'ป้ายบอกทาง',
 
 # Metadata in edit box
 'metadata_help' => 'เมทาเดทา:',
@@ -274,7 +274,7 @@ $messages = array(
 'helppage'          => 'Help:วิธีการใช้งาน',
 'mainpage'          => 'หน้าหลัก',
 'policy-url'        => 'Project:นโยบาย',
-'portal'            => 'ศูนย์รวมชุมชน',
+'portal'            => 'จากวิกิพีเดีย สารานุกรมเสรี',
 'portal-url'        => 'Project:ศูนย์รวมชุมชน',
 'privacy'           => 'นโยบายสิทธิส่วนบุคคล',
 'privacypage'       => 'Project:นโยบายสิทธิส่วนบุคคล',
@@ -291,7 +291,6 @@ $messages = array(
 'versionrequiredtext' => 'ต้องการมีเดียวิกิรุ่น $1 สำหรับใช้งานหน้านี้ ดูเพิ่ม [[Special:Version|รุ่นซอฟต์แวร์]]',
 
 'ok'                      => 'ตกลง',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'รับข้อมูลจาก "$1"',
 'youhavenewmessages'      => 'คุณมี $1 ($2)',
 'newmessageslink'         => 'ข้อความใหม่',
@@ -373,19 +372,18 @@ $1',
 'badtitle'             => 'ชื่อหน้าไม่ควร',
 'badtitletext'         => 'ชื่อหน้าที่ร้องขอไม่ถูกต้อง เป็นชื่อว่าง หรือชื่อที่ผิดพลาดเนื่องจากลิงก์ข้ามมาจากภาษาอื่น ชื่อที่ใช้อาจจะมีตัวอักษรที่ไม่สามารถถูกใช้เป็นชื่อได้',
 'perfdisabled'         => 'เสียใจด้วย! คำสั่งเสริมนี้ถูกระงับการใช้ชั่วคราวเนื่องจากทำให้ฐานข้อมูลช้าเกินกว่าที่จะมีคนใช้งานวิกิได้',
-'perfcached'           => 'ข้อมูลต่อไปนี้เป็นแคชและอาจจะไม่ใช่ข้อมูลล่าสุด',
-'perfcachedts'         => 'ข้อมูลต่อไปนี้ถูกแคชและปรับปรุงล่าสุดเมื่อ $1',
+'perfcached'           => 'ข้อมูลต่อไปนี้อาจเป็นข้อมูลเก่า ที่ถูกเก็บไว้ใน[[แคช]]ของระบบซึ่งถูกปรับปรุงเป็นระยะ ** no aditional [[wikilink]]s',
+'perfcachedts'         => 'ข้อมูลด้านล่างมาจาก[[แคช]] แก้ไขล่าสุดเมื่อ $1 ** no aditional [[wikilink]]s',
 'querypage-no-updates' => 'ขณะนี้การปรับปรุงหน้านี้ถูกระงับ ข้อมูลในที่นี่จะไม่รีเฟรชเป็นข้อมูลปัจจุบัน',
-'wrong_wfQuery_params' => 'พารามิเตอร์ไม่ถูกต้อง สำหรับ wfQuery()<br />
-ฟังก์ชัน: $1<br />
-คิวรี: $2',
+'wrong_wfQuery_params' => 'พารามิเตอร์ที่ส่งไป wfQuery() ไม่ถูกต้อง<br />
+ฟังก์ชั่น: $1<br />
+คำค้น: $2',
 'viewsource'           => 'ดูโค้ด',
 'viewsourcefor'        => 'สำหรับ $1',
 'protectedpagetext'    => 'หน้านี้ถูกล็อกป้องกันการแก้ไข',
 'viewsourcetext'       => 'โค้ดหน้านี้าสามารถดูและนำไปคัดลอกได้:',
-'protectedinterface'   => 'หน้านี้เป็นข้อความที่ใช้แสดงหน้าตาของซอฟต์แวร์ ถูกล็อกห้ามแก้ไขเพื่อป้องกันการก่อกวน',
-'editinginterface'     => "'''คำเตือน:''' คุณกำลังแก้ไขข้อความที่เป็นส่วนหน้าตาของซอฟต์แวร์ การแก้ไขหน้านี้จะมีผลต่อผู้ใช้ทุกคน",
-'sqlhidden'            => '(SQL query hidden)',
+'protectedinterface'   => 'หน้านี้เป็นข้อความที่ใช้แสดงบนหน้าตาหรือส่วนติดต่อผู้ใช้ของซอฟต์แวร์ ถูกล็อกห้ามแก้ไขเพื่อป้องกันการก่อกวน',
+'editinginterface'     => "'''คำเตือน:''' คุณกำลังแก้ไขข้อความที่ใช้แสดงบนหน้าตาหรือส่วนติดต่อผู้ใช้ของซอฟต์แวร์  การแก้ไขหน้านี้จะมีผลต่อการแสดงข้อความบนส่วนติดต่อผู้ใช้ของทุกคน  ถ้าคุณต้องการแปลหน้านี้ ให้ลองใช้บริการของ [http://translatewiki.net Betawiki] ซึ่งเป็นโครงการสำหรับแปลซอฟต์แวร์มีเดียวิกิ",
 'cascadeprotected'     => 'หน้านี้ถูกห้ามแก้ไขเนื่องจากมันเป็นส่วนหนึ่งหน้าต่อไปนี้ $1 ซึ่งถูกป้องกันตามการตั้งค่า แคสเคด ที่เปิดใช้งาน',
 'namespaceprotected'   => "คุณไม่มีสิทธิในการแก้ไขหน้าในส่วนเนมสเปซชื่อ '''$1'''",
 
@@ -493,9 +491,7 @@ $1',
 'math_tip'        => 'ใส่สูตรทางคณิตศาสตร์ (LaTeX)',
 'nowiki_sample'   => 'ใส่ข้อความที่ไม่จัดรูปแบบ',
 'nowiki_tip'      => 'ข้ามการจัดรูปแบบวิกิ',
-'image_sample'    => 'Example.jpg',
 'image_tip'       => 'ใส่ภาพ',
-'media_sample'    => 'Example.ogg',
 'media_tip'       => 'เชื่อมโยงไฟล์สื่อ',
 'sig_tip'         => 'ลายเซ็นพร้อมลงเวลา',
 'hr_tip'          => 'เส้นนอน',
@@ -570,7 +566,7 @@ $1',
 'usercssjsyoucanpreview'    => "<strong>คำแนะนำ:</strong> กดปุ่ม 'แสดงตัวอย่าง' เพื่อทดสอบ CSS/JS ก่อนทำการบันทึก",
 'usercsspreview'            => "'''อย่าลืมว่า CSS ยังไม่ได้ถูกเซฟ ขณะนี้แสดงเพียงตัวอย่างเท่านั้น!'''",
 'userjspreview'             => "'''อย่าลืมว่า จาวาสคริปต์ ยังไม่ได้ถูกเซฟ ขณะนี้แสดงเพียงตัวอย่างเท่านั้น!'''",
-'userinvalidcssjstitle'     => "'''คำเตือน:''' ไม่มีสกิน \"\$1\" อย่าลืมว่าหน้า .css และ .js ที่ปรับแต่งเฉพาะใช้เฉพาะตัวโรมันพิมพ์เล็กเท่านั้น ตัวอย่างเช่น {{ns:user}}:Foo/monobook.css แทนที่จะเป็น {{ns:user}}:Foo/Monobook.css",
+'userinvalidcssjstitle'     => "'''คำเตือน:''' ไม่มีแบบหน้าตา \"\$1\" อย่าลืมว่าหน้า .css และ .js ที่ปรับแต่งเฉพาะใช้เฉพาะตัวโรมันพิมพ์เล็กเท่านั้น ตัวอย่างเช่น {{ns:user}}:Foo/monobook.css แทนที่จะเป็น {{ns:user}}:Foo/Monobook.css",
 'updated'                   => '(ได้รับการปรับปรุง)',
 'note'                      => '<strong>คำแนะนำ:</strong>',
 'previewnote'               => '<strong>นี้เป็นส่วนแสดงผลเท่านั้น การเปลี่ยนแปลงยังไม่ได้ถูกบันทึก!</strong>',
@@ -711,6 +707,7 @@ $1',
 สำหรับการบล็อกและห้ามใช้งานในปัจจุบันดูได้ที่  [[Special:Ipblocklist|รายการไอพีที่โดนบล็อก]]',
 
 # Diffs
+'history-title'           => 'ประวัติการแก้ไขหน้า "$1"',
 'difference'              => '(ความแตกต่างระหว่างรุ่นปรับปรุง)',
 'lineno'                  => 'แถว $1:',
 'compareselectedversions' => 'เปรียบเทียบสองรุ่นที่เลือก',
@@ -750,7 +747,7 @@ $1',
 'qbsettings-floatingleft'  => 'ด้านซ้าย',
 'qbsettings-floatingright' => 'ด้านขวา',
 'changepassword'           => 'เปลี่ยนรหัสผ่าน',
-'skin'                     => 'สกิน',
+'skin'                     => 'หน้าตา',
 'math'                     => 'คณิตศาสตร์',
 'dateformat'               => 'รูปแบบวันที่',
 'datedefault'              => 'ค่าตั้งต้น',
@@ -758,7 +755,6 @@ $1',
 'math_failure'             => 'ส่งผ่านค่าไม่ได้',
 'math_unknown_error'       => 'ปัญหาที่ไม่ทราบที่มา',
 'math_unknown_function'    => 'คำสั่งที่ถูกต้อง',
-'math_lexing_error'        => 'lexing error',
 'math_syntax_error'        => 'ปัญหาไวยกรณ์ภาษาคอมพิวเตอร์',
 'math_image_error'         => 'การแปลงเป็นไฟล์ PNG ขัดข้อง ตรวจสอบการติดตั้ง LaTex, dvips, gs, และ convert',
 'math_bad_tmpdir'          => 'ไม่สามารถเขียนค่าหรือสร้าง ลงไดเรกทอรีชั่วคราวสำหรับเก็บค่าทางคณิตศาสตร์ได้',
@@ -846,7 +842,7 @@ $1',
 'rcshowhideanons'                   => '$1ผู้ใช้ไม่ล็อกอิน',
 'rcshowhidepatr'                    => '$1การตรวจตรา',
 'rcshowhidemine'                    => '$1การแก้ไขของฉัน',
-'rclinks'                           => 'แสดงการเปลี่ยนแปลง $1 รายการ ในช่วง $2 วัน<br />$3',
+'rclinks'                           => 'แสดงการปรับปรุงล่าสุด $1 รายการ ในช่วง $2 วันที่ผ่านมา;<br />$3',
 'diff'                              => 'ต่าง',
 'hist'                              => 'ประวัติ',
 'hide'                              => 'ซ่อน',
@@ -859,9 +855,10 @@ $1',
 'rc_categories_any'                 => 'อันใด',
 
 # Recent changes linked
-'recentchangeslinked'          => 'ปรับปรุงที่ลิงก์มา',
-'recentchangeslinked-noresult' => 'ไม่มีการเปลี่ยนแปลงที่ลิงก์มาหน้านี้ในช่วงเวลาที่กำหนด',
-'recentchangeslinked-summary'  => "หน้านี้แสดงหน้าที่ลิงก์มา ที่มีการปรับปรุงในช่วงวันที่ผ่านมา โดยหน้าที่เฝ้าดูแสดงใน'''ตัวหนา'''",
+'recentchangeslinked'          => 'ปรับปรุงที่เกี่ยวโยง',
+'recentchangeslinked-title'    => 'การปรับปรุงที่ $1 โยงมา',
+'recentchangeslinked-noresult' => 'ไม่มีการเปลี่ยนแปลงในหน้าที่ถูกโยงไป ในช่วงเวลาที่กำหนด',
+'recentchangeslinked-summary'  => "หน้านี้แสดงรายการปรับปรุงล่าสุดของหน้าที่ถูกโยงไป โดยหน้าที่อยู่ในรายการเฝ้าดูแสดงเป็น'''ตัวหนา'''",
 
 # Upload
 'upload'                      => 'อัปโหลด',
@@ -1004,7 +1001,7 @@ $1',
 
 # Unused templates
 'unusedtemplates'     => 'แม่แบบไม่ได้ใช้',
-'unusedtemplatestext' => 'แม่แบบที่ไม่ได้ใช้งานในหน้าใด',
+'unusedtemplatestext' => 'หน้านี้แสดงรายการแม่แบบที่ไม่ได้ใช้งานในหน้าใดๆ  อย่าลืมที่จะตรวจสอบรายการหน้าที่ลิงก์มา ก่อนที่จะลบแม่แบบเหล่านี้',
 'unusedtemplateswlh'  => 'ลิงก์มา',
 
 # Random page
@@ -1339,9 +1336,6 @@ $NEWPAGE
 'undelete-cleanup-error'       => 'เกิดปัญหาการลบไฟล์เก่า "$1"',
 'undelete-missing-filearchive' => 'ไม่สามารถกู้คืนไฟล์เก่ารุ่น $1 เพราะว่าไม่มีไฟล์อยู่ในฐานข้อมูล  ไฟล์อาจจะถูกกู้คืนไปก่อนหน้า',
 'undelete-error-short'         => 'เกิดปัญหาในการกู้คืนไฟล์: $1',
-'undelete-error-long'          => 'Errors were encountered while undeleting the file:
-
-$1',
 
 # Namespace form on various pages
 'namespace'      => 'เนมสเปซ',
@@ -1370,6 +1364,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'หน้าที่ลิงก์มา',
+'whatlinkshere-title' => 'หน้าที่โยงมาที่ $1',
 'linklistsub'         => '(หน้าที่ลิงก์มา)',
 'linkshere'           => "หน้าต่อไปนี้ลิงก์มาที่ '''[[:$1]]''':",
 'nolinkshere'         => "ไม่มีหน้าใดลิงก์มาที่ '''[[:$1]]'''",
@@ -1534,11 +1529,11 @@ $1',
 'export-download'   => 'เสนอให้เซฟเป็นไฟล์',
 
 # Namespace 8 related
-'allmessages'               => 'ข้อความระบบ',
+'allmessages'               => 'ข้อความของระบบ',
 'allmessagesname'           => 'ชื่อ',
 'allmessagesdefault'        => 'ข้อความตั้งต้น',
 'allmessagescurrent'        => 'ข้อความปัจจุบัน',
-'allmessagestext'           => 'ข้อความแสดงหน้าตาของวิกินี้ (ถูกเก็บในเนมสเปซ มีเดียวิกิ)',
+'allmessagestext'           => 'รายการข้อความของระบบ ที่อยู่ในเนมสเปซมีเดียวิกิ',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ไม่สามารถนำมาใช้ได้เพราะว่า '''\$wgUseDatabaseMessages''' ได้ถูกปิด",
 'allmessagesfilter'         => 'กรองเฉพาะข้อความ:',
 'allmessagesmodified'       => 'แสดงเฉพาะที่ถูกแก้ไข',
@@ -1567,7 +1562,6 @@ $1',
 'importfailed'               => 'การรับข้ามไม่สำเร็จ: $1',
 'importunknownsource'        => 'ชนิดของไฟล์รับข้ามไม่ถูกต้อง',
 'importcantopen'             => 'ไม่สามารถเปิดไฟล์ได้',
-'importbadinterwiki'         => 'Bad interwiki link',
 'importnotext'               => 'ไฟล์ว่างหรือไฟล์ไม่มีข้อความ',
 'importsuccess'              => 'รับข้ามไฟล์สำเร็จ!',
 'importhistoryconflict'      => 'ประวัติหน้าขัดแย้งกัน',
@@ -1707,7 +1701,6 @@ $1',
 'patrol-log-page' => 'บันทึกการตรวจตรา',
 'patrol-log-line' => 'กำหนด $1 ของ $2 ว่าถูกตรวจตรา $3',
 'patrol-log-auto' => '(อัตโนมัติ)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => 'รุ่นเก่าที่ถูกลบ $1',
@@ -1731,6 +1724,7 @@ $1',
 'file-info'            => '(ขนาดไฟล์: $1, ชนิดไมม์: $2)',
 'file-info-size'       => '($1 × $2 พิกเซล, ขนาดไฟล์: $3, ชนิดไมม์: $4)',
 'file-nohires'         => '<small>ไม่มีภาพความละเอียดสูงกว่านี้</small>',
+'svg-long-desc'        => '(ไฟล์ SVG, $1 × $2 พิกเซล (พอเป็นพิธี), ขนาดไฟล์: $3)',
 'show-big-image'       => 'ความละเอียดสูงสุด',
 'show-big-image-thumb' => '<small>ขนาดของภาพแสดงผล: $1 × $2 พิกเซล</small>',
 
@@ -1993,9 +1987,6 @@ $1',
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'ลองจิจูดตะวันออก',
 'exif-gpslongitude-w' => 'ลองจิจูดตะวันตก',
-
-'exif-gpsstatus-a' => 'Measurement in progress',
-'exif-gpsstatus-v' => 'Measurement interoperability',
 
 'exif-gpsmeasuremode-2' => 'การวัดสองมิติ',
 'exif-gpsmeasuremode-3' => 'การวัดสามมิติ',

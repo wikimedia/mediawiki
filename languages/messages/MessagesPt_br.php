@@ -9,6 +9,7 @@
  * @author לערי ריינהארט
  * @author 555
  * @author Nike
+ * @author SPQRobin
  */
 
 $fallback = 'pt';
@@ -470,7 +471,7 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se protegida, a fim de se prevenir eventuais abusos.',
-'editinginterface'     => "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afetar a aparência da interface de usuário para outros usuários. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Translating:Intro Betawiki], um projeto destinado para a tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afetar a aparência da interface de usuário para outros usuários. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt-br Betawiki], um projeto destinado para a tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -1521,8 +1522,8 @@ Por favor, escolha outro título.',
 'confirm_purge_button' => 'OK',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; página anterior',
-'imgmultipagenext'   => 'próxima página &rarr;',
+'imgmultipageprev'   => '← página anterior',
+'imgmultipagenext'   => 'próxima página →',
 'imgmultigo'         => 'Ir!',
 'imgmultigotopre'    => 'Mostrar página',
 'imgmultiparseerror' => 'O arquivo parece estar corrompido ou com algum outro erro. Por conta disso, não será possível exibir uma listagem de páginas no wiki {{SITENAME}}.',

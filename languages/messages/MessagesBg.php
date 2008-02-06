@@ -631,8 +631,7 @@ $1',
 'accountcreated'             => 'Потребителската сметка беше създадена',
 'accountcreatedtext'         => 'Потребителската сметка за $1 беше създадена.',
 'createaccount-title'        => 'Създаване на сметка за {{SITENAME}}',
-'createaccount-text'         => 'Някой ($1) е създал сметка за $2 в {{SITENAME}}
-($4). Паролата за „$2“ е „$3“. Влезте в системата и сменете паролата си сега.
+'createaccount-text'         => 'Някой е създал сметка за $2 в {{SITENAME}} ($4) и е посочил този адрес за електронна поща. Паролата за „$2“ е „$3“. Необходимо е да влезте в системата и сменете паролата си.
 
 Можете да пренебрегнете това съобщение, ако сметката е създадена по грешка.',
 'loginlanguagelabel'         => 'Език: $1',
@@ -2380,11 +2379,14 @@ $1',
 'watchlisttools-raw'  => 'Редактиране на необработения списък за наблюдение',
 
 # Special:Version
-'version-extensions'   => 'Инсталирани разширения',
-'version-specialpages' => 'Специални страници',
-'version-variables'    => 'Променливи',
-'version-other'        => 'Други',
-'version-version'      => 'Версия',
+'version-extensions'       => 'Инсталирани разширения',
+'version-specialpages'     => 'Специални страници',
+'version-variables'        => 'Променливи',
+'version-other'            => 'Други',
+'version-version'          => 'Версия',
+'version-software'         => 'Инсталиран софтуер',
+'version-software-product' => 'Продукт',
+'version-software-version' => 'Версия',
 
 # Special:Filepath
 'filepath'         => 'Път до файла',

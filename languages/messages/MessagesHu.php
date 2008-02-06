@@ -582,7 +582,7 @@ Query: $2',
 'protectedpagetext'    => 'Ezt a lapot a szerkesztések megakadályozása érdekében zároltuk. Módosításokat a vitalapon javasolhatsz, a védelem feloldását az adminisztrátorok üzenőfalán kérheted .',
 'viewsourcetext'       => 'A lap forrását megtekintheted és másolhatod:',
 'protectedinterface'   => 'Ez a lap a honlap felületéhez szolgáltat szöveget a szoftver számára, és a visszaélések elkerülése végett le van zárva. A vitalapon javasolhatsz módosításokat.',
-'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felhasználói felületét befolyásolja. A lap átírásával megváltoztatod a megjelenését más felhasználók számára. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Translating:Intro Betawikit].",
+'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felhasználói felületét befolyásolja. A lap átírásával megváltoztatod a megjelenését más felhasználók számára. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Main_Page?setlang=hu Betawikit].",
 'sqlhidden'            => '(SQL lekérdezés rejtett)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelem alatt áll, mert a következő {{PLURAL:$1|page|pages}} oldalak között található, melyek a "lépcsőzetes" lehetőség bekapcsolásával védettek:
 $2',

@@ -2340,6 +2340,10 @@ Yritä normaalia esikatselua.',
 'version-hook-name'                => 'Kytköspisteen nimi',
 'version-hook-subscribedby'        => 'Kytkökset',
 'version-version'                  => 'Versio',
+'version-license'                  => 'Lisenssi',
+'version-software'                 => 'Asennettu ohjelmisto',
+'version-software-product'         => 'Tuote',
+'version-software-version'         => 'Versio',
 
 # Special:Filepath
 'filepath'         => 'Tiedoston osoite',
