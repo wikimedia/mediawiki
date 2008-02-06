@@ -2479,6 +2479,9 @@ $1',
 'version-hook-name'                => 'Název háku',
 'version-hook-subscribedby'        => 'Volán z',
 'version-version'                  => 'Verze',
+'version-software'                 => 'Nainstalovaný software',
+'version-software-product'         => 'Název',
+'version-software-version'         => 'Verze',
 
 # Special:Filepath
 'filepath'         => 'Cesta k souboru',

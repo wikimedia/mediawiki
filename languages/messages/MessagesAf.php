@@ -175,6 +175,7 @@ $messages = array(
 'searcharticle'     => 'Wys',
 'history'           => 'Ouer weergawes',
 'history_short'     => 'Geskiedenis',
+'info_short'        => 'Inligting',
 'printableversion'  => 'Drukbare weergawe',
 'permalink'         => 'Permanente skakel',
 'print'             => 'Druk',
@@ -199,6 +200,9 @@ $messages = array(
 'userpage'          => 'Lees gebruikersbladsy',
 'projectpage'       => 'Lees metabladsy',
 'imagepage'         => 'Lees bladsy oor prent',
+'mediawikipage'     => 'Bekyk boodskapsbladsy',
+'templatepage'      => 'Bekyk sjabloonsbladsy',
+'viewhelppage'      => 'Bekyk hulpbladsy',
 'categorypage'      => 'Bekyk kategorieblad',
 'viewtalkpage'      => 'Lees bespreking',
 'otherlanguages'    => 'Ander tale',
@@ -308,7 +312,8 @@ Raporteer die adres asseblief aan enige administrateur.',
 'perfcached'       => "ie volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
 'perfcachedts'     => 'Die volgende data is gekas. Laaste opdatering: $1',
 'viewsource'       => 'Bekyk bronteks',
-'editinginterface' => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (het vertalingsproject vir MediaWiki) te gebruik.",
+'viewsourcefor'    => 'vir $1',
+'editinginterface' => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (die vertalingsprojek vir MediaWiki) te gebruik.",
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
@@ -374,6 +379,7 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'emailconfirmlink'           => 'Bevestig u e-posadres',
 'accountcreated'             => 'Rekening geskep',
 'accountcreatedtext'         => 'Die rekening vir gebruiker $1 is geskep.',
+'loginlanguagelabel'         => 'Taal: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Vet teks',
@@ -409,6 +415,7 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'anoneditwarning'          => "'''Waarskuwing:''' Aangesien u nie aangeteken is nie, sal u IP-adres in dié blad se wysigingsgeskiedenis gestoor word.",
 'missingsummary'           => "'''Onthou:''' Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer geklik word, word die wysiging sonder opsomming gestoor.",
 'missingcommenttext'       => 'Tik die opsomming onder.',
+'summary-preview'          => 'Opsomming nakijken',
 'blockedtitle'             => 'Gebruiker is geblokkeer',
 'blockedtext'              => "<big>'''Jou gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
@@ -488,6 +495,10 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'deletedrev'          => '[geskrap]',
 'histfirst'           => 'Oudste',
 'histlast'            => 'Nuutste',
+'historyempty'        => '(leeg)',
+
+# Revision feed
+'history-feed-title' => 'Weergawegeskiedenis',
 
 # Diffs
 'history-title'           => 'Weergawegeskiedenis van "$1"',
@@ -577,7 +588,11 @@ om voorkeure te spesifiseer.',
 'files'                    => 'Lêers',
 
 # User rights
-'editusergroup' => 'Wysig gebruikersgroepe',
+'editusergroup'              => 'Wysig gebruikersgroepe',
+'saveusergroups'             => 'Stoor gebruikersgroepen',
+'userrights-groupsremovable' => 'Skrapbare groepen:',
+'userrights-groupsavailable' => 'Beskikbare groepen:',
+'userrights-reason'          => 'Rede vir wysiging:',
 
 # Groups
 'group'            => 'Groep:',
@@ -593,6 +608,10 @@ om voorkeure te spesifiseer.',
 'grouppage-bot'        => '{{ns:project}}:Robotte',
 'grouppage-sysop'      => '{{ns:project}}:Administrateurs',
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrate',
+
+# User rights log
+'rightslog'  => 'Gebruikersrechtenlogboek',
+'rightsnone' => '(geen)',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|wysiging|wysigings}}',
@@ -669,6 +688,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'uploadwarning'     => 'Laaiwaarskuwing',
 'savefile'          => 'Stoor lêer',
 'uploadedimage'     => 'Het "[[$1]]" gelaai',
+'uploaddisabled'    => 'Laai is uitgeskakel',
 'uploadcorrupt'     => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
 'sourcefilename'    => 'Bronlêernaam',
 'destfilename'      => 'Teikenlêernaam',
@@ -677,26 +697,40 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'license' => 'Lisensiëring',
 
 # Image list
-'imagelist'         => 'Prentelys',
-'imagelisttext'     => 'Hier onder is a lys van $1 prente gesorteer $2.',
-'getimagelist'      => 'Besig om prentelys te haal',
-'ilsubmit'          => 'Soek',
-'showlast'          => 'Wys laaste $1 prente gesorteer $2.',
-'byname'            => 'volgens naam',
-'bydate'            => 'volgens datum',
-'bysize'            => 'volgens grootte',
-'imgdelete'         => 'skrap',
-'imgdesc'           => 'beskrywing',
-'filehist'          => 'Lêergeskiedenis',
-'filehist-current'  => 'huidig',
-'filehist-datetime' => 'Datum/Tyd',
-'filehist-user'     => 'Gebruiker',
-'filehist-filesize' => 'Lêergrootte',
-'imagelinks'        => 'Prentskakels',
-'linkstoimage'      => 'Die volgende bladsye gebruik hierdie prent:',
-'nolinkstoimage'    => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
-'noimage'           => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
-'noimage-linktext'  => 'laai dit',
+'imagelist'             => 'Prentelys',
+'imagelisttext'         => 'Hier onder is a lys van $1 prente gesorteer $2.',
+'getimagelist'          => 'Besig om prentelys te haal',
+'ilsubmit'              => 'Soek',
+'showlast'              => 'Wys laaste $1 prente gesorteer $2.',
+'byname'                => 'volgens naam',
+'bydate'                => 'volgens datum',
+'bysize'                => 'volgens grootte',
+'imgdelete'             => 'skrap',
+'imgdesc'               => 'beskrywing',
+'imgfile'               => 'lêer',
+'filehist'              => 'Lêergeskiedenis',
+'filehist-current'      => 'huidig',
+'filehist-datetime'     => 'Datum/Tyd',
+'filehist-user'         => 'Gebruiker',
+'filehist-filesize'     => 'Lêergrootte',
+'imagelinks'            => 'Prentskakels',
+'linkstoimage'          => 'Die volgende bladsye gebruik hierdie prent:',
+'nolinkstoimage'        => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
+'noimage'               => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
+'noimage-linktext'      => 'laai dit',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Naam',
+'imagelist_user'        => 'Gebruiker',
+'imagelist_size'        => 'Grootte',
+'imagelist_description' => 'Beskryving',
+'imagelist_search_for'  => 'Soek vir beeldnaam:',
+
+# File deletion
+'filedelete'                  => 'Skrap $1',
+'filedelete-legend'           => 'Skrap lêer',
+'filedelete-comment'          => 'Rede vir skrapping:',
+'filedelete-submit'           => 'Skrap',
+'filedelete-reason-otherlist' => 'Andere rede',
 
 # MIME search
 'mimesearch' => 'MIME-soek',
@@ -740,8 +774,12 @@ Die ''[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]''-lengte is '''\
 'doubleredirectstext' => '<b>Let op:</b> Hierdie lys bevat moontlik false positiewe. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT is.<br />
 Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuurteks, wat gewoonlik die "regte" teikenbladsy gee waarna die eerste aanstuur behoort te wys.',
 
-'brokenredirects'     => 'Stukkende aansture',
-'brokenredirectstext' => "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
+'brokenredirects'        => 'Stukkende aansture',
+'brokenredirectstext'    => "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
+'brokenredirects-edit'   => '(wysig)',
+'brokenredirects-delete' => '(skrap)',
+
+'withoutinterwiki-submit' => 'Wys',
 
 'fewestrevisions' => 'Artikels met die minste wysigings',
 
@@ -778,6 +816,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'specialpages'            => 'Spesiale bladsye',
 'spheading'               => 'Spesiale bladsye',
 'newpages'                => 'Nuwe bladsye',
+'newpages-username'       => 'Gebruikersnaam:',
 'ancientpages'            => 'Oudste bladsye',
 'move'                    => 'Skuif',
 'movethispage'            => 'Skuif hierdie bladsy',
@@ -800,6 +839,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logboeke',
 'all-logs-page'        => 'Alle logboeke',
+'log-search-legend'    => 'Soek vir logboeke',
 'alllogstext'          => "Vertoon 'n samestelling van laai-, skrap-, beskerm-, blok- en administrateurlogs van {{SITENAME}}.
 Jy kan die vertoning vernou deur 'n logtipe, gebruikersnaam of spesifieke blad te kies.",
 
@@ -862,8 +902,9 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'wlnote'            => 'Hier volg die laaste $1 veranderings binne die laaste <b>$2</b> ure.',
 'wlshowlast'        => 'Wys afgelope $1 ure, $2 dae of $3',
 
-'enotif_newpagetext' => "Dis 'n nuwe bladsy.",
-'changed'            => 'verander',
+'enotif_newpagetext'           => "Dis 'n nuwe bladsy.",
+'enotif_impersonal_salutation' => '{{SITENAME}} gebruiker',
+'changed'                      => 'verander',
 
 # Delete/protect/revert
 'deletepage'                  => 'Skrap bladsy',
@@ -872,6 +913,8 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'excontentauthor'             => "Inhoud was: '$1' (en '[[Special:Contributions/$2|$2]]' was die enigste bydraer)",
 'exbeforeblank'               => "Inhoud voor uitwissing was: '$1'",
 'exblank'                     => 'bladsy was leeg',
+'delete-confirm'              => 'Skrap "$1"',
+'delete-legend'               => 'Skrap',
 'confirmdeletetext'           => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Aksie uitgevoer',
@@ -883,6 +926,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'deletionlog'                 => 'skrappingslogboek',
 'reverted'                    => 'Het terug gegaan na vroeëre weergawe',
 'deletecomment'               => 'Rede vir skrapping',
+'deletereasonotherlist'       => 'Andere rede',
 'rollback'                    => 'Rol veranderinge terug',
 'rollback_short'              => 'Rol terug',
 'rollbacklink'                => 'Rol terug',
@@ -904,16 +948,21 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'protect-level-sysop'         => 'Slegs administrateurs',
 'pagesize'                    => '(grepe)',
 
+# Restrictions (nouns)
+'restriction-edit' => 'Wysig',
+'restriction-move' => 'Skuif',
+
 # Undelete
-'undelete'          => 'Herstel geskrapte bladsy',
-'undeletepage'      => 'Bekyk en herstel geskrapte bladsye',
-'undeletepagetext'  => 'Die volgende bladsye is geskrap, maar hulle is nog in die argief en kan herstel word. Die argief kan periodiek skoongemaak word.',
-'undeleterevisions' => '$1 weergawes in argief',
-'undeletehistory'   => "As jy die bladsy herstel, sal alle weergawes herstel word.
+'undelete'               => 'Herstel geskrapte bladsy',
+'undeletepage'           => 'Bekyk en herstel geskrapte bladsye',
+'undeletepagetext'       => 'Die volgende bladsye is geskrap, maar hulle is nog in die argief en kan herstel word. Die argief kan periodiek skoongemaak word.',
+'undeleterevisions'      => '$1 weergawes in argief',
+'undeletehistory'        => "As jy die bladsy herstel, sal alle weergawes herstel word.
 As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die herstelde weergawes in die nuwe bladsy se voorgeskiedenis verskyn en die huidige weergawe van die lewendige bladsy sal nie outomaties vervang word nie.",
-'undeletebtn'       => 'Herstel',
-'undeletedarticle'  => 'het "$1" herstel',
-'cannotundelete'    => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
+'undeletebtn'            => 'Herstel',
+'undeletedarticle'       => 'het "$1" herstel',
+'cannotundelete'         => 'Skrapping onsuksesvol; miskien het iemand anders dié bladsy al geskrap.',
+'undelete-search-submit' => 'Soek',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruimte:',
@@ -938,6 +987,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 
 # What links here
 'whatlinkshere'       => 'Skakels hierheen',
+'whatlinkshere-page'  => 'Bladsy:',
 'linklistsub'         => '(Lys van skakels)',
 'linkshere'           => 'Die volgende bladsye skakel hierheen:',
 'nolinkshere'         => 'Geen bladsye skakel hierheen nie.',
@@ -1143,6 +1193,9 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'mw_math_modern' => 'Moderne blaaiers.',
 'mw_math_mathml' => 'MathML',
 
+# Patrol log
+'patrol-log-page' => 'Kontroleringslogboek',
+
 # Image deletion
 'deletedrevision' => 'Ou weergawe $1 geskrap',
 
@@ -1161,6 +1214,7 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 # EXIF tags
 'exif-imagewidth'          => 'Breedte',
 'exif-imagelength'         => 'Hoogte',
+'exif-imagedescription'    => 'Beeldtitel',
 'exif-artist'              => 'Bewerker',
 'exif-colorspace'          => 'Kleurruimte',
 'exif-exposuretime'        => 'Beligtingstyd',

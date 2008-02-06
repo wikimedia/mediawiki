@@ -447,7 +447,7 @@ Truy vấn: $2',
 'protectedpagetext'    => 'Trang này đã bị khóa không cho sửa đổi.',
 'viewsourcetext'       => 'Bạn vẫn có thể xem và chép xuống mã nguồn của trang này:',
 'protectedinterface'   => 'Trang này cung cấp một thông báo trong giao diện phần mềm, và bị khóa để tránh phá hoại.',
-'editinginterface'     => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông báo giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng website này. Để dịch luật, hãy xem xét việc sử dụng [http://translatewiki.net/wiki/Translating:Intro Betawiki], dự án địa phương hóa của MediaWiki.",
+'editinginterface'     => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông báo giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng website này. Để dịch luật, hãy xem xét việc sử dụng [http://translatewiki.net/wiki/Main_Page?setlang=vi Betawiki], dự án địa phương hóa của MediaWiki.",
 'sqlhidden'            => '(giấu truy vấn SQL)',
 'cascadeprotected'     => 'Trang này đã bị khóa không cho sửa đổi, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} đã bị khóa với tùy chọn “khóa theo tầng” được kích hoạt:
 $2',
@@ -530,7 +530,7 @@ Nếu một người nào khác yêu cầu điều này hoặc nếu bạn đã 
 'accountcreated'             => 'Mở tài khoản thành công',
 'accountcreatedtext'         => 'Tài khoản thành viên cho $1 đã được mở.',
 'createaccount-title'        => 'Tài khoản mới tại {{SITENAME}}',
-'createaccount-text'         => 'Ai đó (ở địa chỉ $1) đã tạo một tài khoản với tên $2 tại {{SITENAME}} ($4). Mật khẩu của "$2" là "$3". Bạn nên đăng nhập và đổi mật khẩu ngay bây giờ.
+'createaccount-text'         => 'Ai đó đã tạo một tài khoản với tên $2 tại {{SITENAME}} ($4). Mật khẩu của "$2" là "$3". Bạn nên đăng nhập và đổi mật khẩu ngay bây giờ.
 
 Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạn tạo ra.',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
@@ -870,7 +870,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'prefs-personal'           => 'Thông tin cá nhân',
 'prefs-rc'                 => 'Thay đổi gần đây',
 'prefs-watchlist'          => 'Theo dõi',
-'prefs-watchlist-days'     => 'Số ngày hiển thị tối đa trong danh sách theo dõi:',
+'prefs-watchlist-days'     => 'Số ngày hiển thị trong danh sách theo dõi:',
 'prefs-watchlist-edits'    => 'Số lần sửa đổi tối đa trong danh sách theo dõi mở rộng:',
 'prefs-misc'               => 'Linh tinh',
 'saveprefs'                => 'Lưu lựa chọn',

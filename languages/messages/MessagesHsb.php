@@ -522,9 +522,9 @@ format. Prošu zapodaj płaćiwu adresu abo wuprózdń polo.',
 'accountcreated'             => 'Wužiwarske konto wutworjene',
 'accountcreatedtext'         => 'Wužiwarske konto za $1 bu wutworjene.',
 'createaccount-title'        => 'Wutworjenje wužiwarskeho konta za {{SITENAME}}',
-'createaccount-text'         => 'Něchtó ($1) je wužiwarske konto za "$2" na {{SITENAME}} ($4) wutworił. Hesło za "$2" je "$3". Ty měł so nětko přizjewić a swoje hesło změnić.
+'createaccount-text'         => 'Něchtó je wužiwarske konto za twoju e-mejlowu adresu na {{SITENAME}} ($4) z mjenom "$2" z hesłom "$3" wutworił. Ty měł so nětko přizjewić a swoje hesło změnić.
 
-Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto ze zmylkom wutworiło.',
+Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutworiło.',
 'loginlanguagelabel'         => 'Rěč: $1',
 
 # Password reset dialog
@@ -2392,6 +2392,10 @@ Spytaj normalny přehlad.',
 'version-hook-name'                => 'Mjeno hoki',
 'version-hook-subscribedby'        => 'Abonowany wot',
 'version-version'                  => 'Wersija',
+'version-license'                  => 'Licenca',
+'version-software'                 => 'Instalowana software',
+'version-software-product'         => 'Produkt',
+'version-software-version'         => 'Wersija',
 
 # Special:Filepath
 'filepath'         => 'Datajowy puć',

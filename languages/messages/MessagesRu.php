@@ -2545,6 +2545,9 @@ $1',
 'version-hook-name'                => 'Имя перехватчика',
 'version-hook-subscribedby'        => 'Подписан на',
 'version-version'                  => 'Версия',
+'version-software'                 => 'Установленное программное обеспечение',
+'version-software-product'         => 'Продукт',
+'version-software-version'         => 'Версия',
 
 # Special:Filepath
 'filepath'         => 'Путь к файлу',

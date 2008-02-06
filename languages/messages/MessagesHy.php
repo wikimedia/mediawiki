@@ -407,6 +407,7 @@ $messages = array(
 'mytalk'         => 'Իմ քննարկումները',
 'anontalk'       => 'Քննարկում այս IP-հասցեի համար',
 'navigation'     => 'Շրջել կայքում',
+'and'            => 'և',
 
 # Metadata in edit box
 'metadata_help' => 'Մետատվյալներ։',
@@ -1920,7 +1921,6 @@ The wiki server can't provide data in a format your client can read.",
 'anonymous'        => '{{grammar:genitive|{{SITENAME}}}} անանուն մասնակիցները',
 'siteuser'         => '{{grammar:genitive|{{SITENAME}}}} մասնակից $1',
 'lastmodifiedatby' => 'Այս էջը վերջին անգամ փոփոխվել է $2, $1 $3 մասնակցի կողմից։', # $1 date, $2 time, $3 user
-'and'              => 'և',
 'othercontribs'    => 'Հիմնված է {{grammar:genitive|$1}} գործի վրա։',
 'others'           => 'այլոք',
 'siteusers'        => '{{grammar:genitive|{{SITENAME}}}} մասնակից(ներ) $1',

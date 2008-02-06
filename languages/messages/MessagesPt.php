@@ -15,6 +15,7 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Villate
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -483,7 +484,7 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net Betawiki], um projecto destinado para a tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt Betawiki], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -2353,8 +2354,8 @@ $1',
 'useajaxsearch'    => 'Usar busca AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; página anterior',
-'imgmultipagenext'   => 'próxima página &rarr;',
+'imgmultipageprev'   => '← página anterior',
+'imgmultipagenext'   => 'próxima página →',
 'imgmultigo'         => 'Ir!',
 'imgmultigotopre'    => 'Mostrar página',
 'imgmultiparseerror' => 'O ficheiro aparenta estar corrompido ou com algum outro erro. Por conta disso, não será possível exibir uma listagem de páginas no wiki {{SITENAME}}.',
@@ -2430,6 +2431,10 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'version-hook-name'                => 'Nome do hook',
 'version-hook-subscribedby'        => 'Subscrito por',
 'version-version'                  => 'Versão',
+'version-license'                  => 'Licença',
+'version-software'                 => 'Software instalado',
+'version-software-product'         => 'Produto',
+'version-software-version'         => 'Versão',
 
 # Special:Filepath
 'filepath'         => 'Diretório do ficheiro',

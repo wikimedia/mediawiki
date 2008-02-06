@@ -553,10 +553,10 @@ Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt ga
 'invalidemailaddress'        => 'Denna e-postadressen kan inte godtas då formatet verkar vara felaktigt. Skriv in en adress på korrekt format, eller töm fältet.',
 'accountcreated'             => 'Användarkontot har skapats',
 'accountcreatedtext'         => 'Användarkontot $1 har skapats.',
-'createaccount-title'        => 'Konto skapat för {{SITENAME}}',
-'createaccount-text'         => 'Någon skapade ett konto med din e-mail adress på {{SITENAME}} ($4) med namnet "$2", med lösenord "$3". Du bör logga in och ändra ditt lösenord nu.
+'createaccount-title'        => 'Konto skapat på {{SITENAME}}',
+'createaccount-text'         => 'Någon har skapat ett konto åt din e-postadress på {{SITENAME}} ($4) med namnet "$2" och lösenordet "$3". Du bör nu logga in och ändra ditt lösenord.
 
-Du kan ignorera detta medelande, om detta konto skapades av ett misstag.',
+Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog

@@ -7,6 +7,7 @@
  * @author Nike
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $fallback = 'fr';
@@ -394,7 +395,7 @@ Requéta : $2',
 'protectedpagetext'    => 'Ceta pâge at étâ protègiê por empachiér sa modificacion.',
 'viewsourcetext'       => 'Vos pouede vêre et copiyér lo contegnu de la pâge por povêr travalyér dessus :',
 'protectedinterface'   => 'Ceta pâge fornét du tèxte d’entèrface por la programeria et est protègiê por èvitar los abus.',
-'editinginterface'     => "'''Atencion :''' vos éte aprés èditar una pâge utilisâ por crèar lo tèxte de l’entèrface de la programeria. Los changements sè cognetront, d’aprés lo contèxte, sur totes ou cèrtênes pâges visibles per los ôtros utilisators. Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Translating:Intro Betawiki], lo projèt d’entèrnacionalisacion des mèssâjos de MediaWiki.",
+'editinginterface'     => "'''Atencion :''' vos éte aprés èditar una pâge utilisâ por crèar lo tèxte de l’entèrface de la programeria. Los changements sè cognetront, d’aprés lo contèxte, sur totes ou cèrtênes pâges visibles per los ôtros utilisators. Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Main_Page?setlang=frp Betawiki], lo projèt d’entèrnacionalisacion des mèssâjos de MediaWiki.",
 'sqlhidden'            => '(Requéta SQL cachiê)',
 'cascadeprotected'     => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|la pâge siuventa|les pâges siuventes}}, èyent étâ protègiê{{PLURAL:$1||s}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
@@ -2416,6 +2417,10 @@ $1',
 'version-hook-name'                => 'Nom de l’apèl',
 'version-hook-subscribedby'        => 'Dèfeni per',
 'version-version'                  => 'Vèrsion',
+'version-license'                  => 'Licence',
+'version-software'                 => 'Programeria enstalâ',
+'version-software-product'         => 'Produit',
+'version-software-version'         => 'Vèrsion',
 
 # Special:Filepath
 'filepath'         => 'Chemin d’accès d’un fichiér',
