@@ -49,20 +49,13 @@ $namespaceAliases = array(
 	'Hjälp_diskussion'     => NS_HELP_TALK
 );
 
-/**
- * Alternate names of special pages. All names are case-insensitive. The first
- * listed alias will be used as the default. Aliases from the fallback
- * localisation (usually English) will be included by default.
- *
- * This array may be altered at runtime using the LanguageGetSpecialPageAliases
- * hook.
- */
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dubbla_omdirigeringar' ),
 	'BrokenRedirects'           => array( 'Dåliga_omdirigeringar' ),
 	'Disambiguations'           => array( 'Förgreningssidor' ),
 	'Userlogin'                 => array( 'Inloggning' ),
 	'Userlogout'                => array( 'Utloggning' ),
+	'CreateAccount'             => array( 'Skapa_konto' ),
 	'Preferences'               => array( 'Inställningar' ),
 	'Watchlist'                 => array( 'Övervakningslista' ),
 	'Recentchanges'             => array( 'Senaste_ändringar' ),
@@ -72,7 +65,7 @@ $specialPageAliases = array(
 	'Listusers'                 => array( 'Användare', 'Användarlista' ),
 	'Statistics'                => array( 'Statistik' ),
 	'Randompage'                => array( 'Slumpsida' ),
-	'Lonelypages'               => array( 'Sidor_utan_länkar_till' ),
+	'Lonelypages'               => array( 'Övergivna_sidor', 'Sidor_utan_länkar_till' ),
 	'Uncategorizedpages'        => array( 'Okategoriserade_sidor' ),
 	'Uncategorizedcategories'   => array( 'Okategoriserade_kategorier' ),
 	'Uncategorizedimages'       => array( 'Okategoriserade_bilder' ),
@@ -92,14 +85,16 @@ $specialPageAliases = array(
 	'Longpages'                 => array( 'Långa_sidor' ),
 	'Newpages'                  => array( 'Nya_sidor' ),
 	'Ancientpages'              => array( 'Gamla_sidor' ),
-	'Deadendpages'              => array( 'Sidor_utan_länkar_från' ),
+	'Deadendpages'              => array( 'Sidor_utan_länkar', 'Sidor_utan_länkar_från' ),
 	'Protectedpages'            => array( 'Skyddade_sidor' ),
+	'Protectedtitles'           => array( 'Skyddade_titlar' ),
 	'Allpages'                  => array( 'Alla_sidor' ),
-	'Prefixindex'               => array( 'Prefixindex' ) ,
+	'Prefixindex'               => array( 'Prefixindex' ),
 	'Ipblocklist'               => array( 'Blockeringslista' ),
 	'Specialpages'              => array( 'Specialsidor' ),
 	'Contributions'             => array( 'Bidrag' ),
 	'Emailuser'                 => array( 'E-mail' ),
+	'Confirmemail'              => array( 'Bekräfta_epost' ),
 	'Whatlinkshere'             => array( 'Länkar_hit' ),
 	'Recentchangeslinked'       => array( 'Senaste_relaterade_ändringar' ),
 	'Movepage'                  => array( 'Flytta' ),
@@ -126,10 +121,13 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Min_diskussion' ),
 	'Mycontributions'           => array( 'Mina_bidrag' ),
 	'Listadmins'                => array( 'Administratörer' ),
+	'Listbots'                  => array( 'Robotlista' ),
 	'Popularpages'              => array( 'Populära_sidor' ),
 	'Search'                    => array( 'Sök' ),
 	'Resetpass'                 => array( 'Resetpass' ),
 	'Withoutinterwiki'          => array( 'Utan_interwikilänkar' ),
+	'MergeHistory'              => array( 'Slå_ihop_historik' ),
+	'Filepath'                  => array( 'Filsökväg' ),
 );
 
 $linkTrail = '/^([a-zåäöéÅÄÖÉ]+)(.*)$/sDu';
