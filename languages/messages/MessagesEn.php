@@ -3049,6 +3049,10 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'version-hook-name'                => 'Hook name',
 'version-hook-subscribedby'        => 'Subscribed by',
 'version-version'                  => 'Version',
+'version-licence'                  => 'Licence',
+'version-software'                 => 'Installed software',
+'version-software-product'         => 'Product',
+'version-software-version'         => 'Version',
 
 # Special:Filepath
 'filepath'         => 'File path',
