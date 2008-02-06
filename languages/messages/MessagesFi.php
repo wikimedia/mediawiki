@@ -166,6 +166,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Alusta_salasana' ),
 	'Withoutinterwiki'          => array( 'Kielilinkittömät_sivut' ),
 	'MergeHistory'              => array( 'Liitä_muutoshistoria' ),
+	'Filepath'                  => array( 'Tiedostopolku' ),
 );
 
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';

@@ -264,6 +264,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'WachtwoordHerinitialiseren' ),
 	'Withoutinterwiki'          => array( 'ZonderInterwiki' ),
 	'MergeHistory'              => array( 'GeschiedenisSamenvoegen' ),
+	'Filepath'                  => array( 'Bestandspad' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
