@@ -2361,7 +2361,7 @@ $wgMessageStructure = array(
 		'version-hook-name',
 		'version-hook-subscribedby',
 		'version-version',
-		'version-licence',
+		'version-license',
 		'version-software',
 		'version-software-product',
 		'version-software-version',
