@@ -2612,6 +2612,10 @@ $1',
 'version-hook-name'                => 'שם ה־Hook',
 'version-hook-subscribedby'        => 'הפונקציה הרושמת',
 'version-version'                  => 'גרסה',
+'version-license'                  => 'רישיון',
+'version-software'                 => 'תוכנות מותקנות',
+'version-software-product'         => 'תוכנה',
+'version-software-version'         => 'גרסה',
 
 # Special:Filepath
 'filepath'         => 'נתיב לקובץ',
