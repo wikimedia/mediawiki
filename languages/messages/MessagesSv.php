@@ -2391,6 +2391,10 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'version-hook-name'                => 'Namn',
 'version-hook-subscribedby'        => 'Används av',
 'version-version'                  => 'Version',
+'version-license'                  => 'Licens',
+'version-software'                 => 'Installerad programvara',
+'version-software-product'         => 'Produkt',
+'version-software-version'         => 'Version',
 
 # Special:Filepath
 'filepath'         => 'Sökväg till fil',

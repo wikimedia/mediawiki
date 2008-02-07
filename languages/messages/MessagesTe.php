@@ -470,8 +470,7 @@ $2',
 'accountcreated'             => 'అకౌంటు సృష్టించబడింది',
 'accountcreatedtext'         => '$1 గారికి సభ్యుని అకౌంటు సృస్టించబడింది.',
 'createaccount-title'        => '{{SITENAME}} కోసం ఖాతా సృష్టి',
-'createaccount-text'         => 'ఎవరో ($1) {{SITENAME}}లో $2 కోసం ఖాతాను సృష్టించారు
-($4). "$2"కు సంకేత పదం "$3". మీరు సంకేత పదాన్ని మార్చుకోవాలని అనుకుంటే ఇప్పుడు లాగిన్ అవ్వాలి.
+'createaccount-text'         => '$4 వద్ద ఉన్న {{SITENAME}}లో మీ ఈమెయిలు చిరునామాను ఇచ్చి ఎవరో ఖాతా సృష్టించారు. ఖాతా పేరు "$2", దాని ప్రస్తుత సంకేతపదం $3. మీరు సంకేత పదాన్ని మార్చుకోవాలని అనుకుంటే ఇప్పుడు లాగిన్ అవ్వాలి.
  
 ఈ ఖాతా మీకు తెలియకుండా సృష్టిస్తే గనక ఈ సందేశాన్ని పట్టించుకోకండి.',
 'loginlanguagelabel'         => 'భాష: $1',
@@ -1662,8 +1661,8 @@ $NEWPAGE
 # Namespace 8 related
 'allmessages'               => 'అన్ని సిస్టం సందేశాలు',
 'allmessagesname'           => 'పేరు',
-'allmessagesdefault'        => 'డీఫాల్టు పాట్యం',
-'allmessagescurrent'        => 'ప్రస్తుత పాఠం',
+'allmessagesdefault'        => 'డీఫాల్టు పాఠ్యం',
+'allmessagescurrent'        => 'ప్రస్తుత పాఠ్యం',
 'allmessagestext'           => 'మీడియావికీ నేంస్పేసులో ఉన్న అన్ని సిస్టం సందేశాల జాబితా ఇది.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''ను ఆఫ్‌లో పెట్టడం వలన '''{{ns:special}}:Allmessages''' వాడలేరు.",
 'allmessagesfilter'         => 'సమాచారం పేరుపై ఫిల్టరు:',
@@ -2078,6 +2077,12 @@ $1',
 'exif-customrendered-0' => 'సాధారణ ప్రక్రియ',
 'exif-customrendered-1' => 'ప్రత్యేక ప్రక్రియ',
 
+'exif-exposuremode-0' => 'ఆటోమాటిక్ ఎక్స్పోజరు',
+'exif-exposuremode-1' => 'అమర్చిన ఎక్స్పోజరు',
+
+'exif-whitebalance-0' => 'ఆటోమాటిక్ తెలుపు సంతులనం',
+'exif-whitebalance-1' => 'అమర్చిన తెలుపు సంతులనం',
+
 'exif-scenecapturetype-0' => 'ప్రామాణిక',
 'exif-scenecapturetype-1' => 'ప్రకృతిదృశ్యం',
 'exif-scenecapturetype-2' => 'వ్యక్తి చిత్రణ',
@@ -2110,6 +2115,9 @@ $1',
 'exif-gpslongitude-w' => 'పశ్చిమ రేఖాంశం',
 
 'exif-gpsstatus-a' => 'కొలత జరుగుతూంది',
+
+'exif-gpsmeasuremode-2' => 'ద్వైమానిక కొలమానం',
+'exif-gpsmeasuremode-3' => 'త్రిదిశాత్మక కొలమానం',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'గంటకి కిలోమీటర్లు',
@@ -2196,6 +2204,7 @@ $1',
 'searchnamed'      => "''$1'' పేరుతో ఉన్న వ్యాసాల కోసం వెతుకు.",
 'articletitles'    => "''$1''తొ మొదలయ్యే వ్యాసాలు",
 'hideresults'      => 'ఫలితాలను దాచు',
+'useajaxsearch'    => 'వెతకేటప్పుడు AJAXను ఉపయోగించు',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← మునుపటి పేజీ',
@@ -2225,6 +2234,7 @@ $1',
 'livepreview-loading' => 'లోడవుతుంది…',
 'livepreview-ready'   => 'లోడవుతోంది… సిద్ధం!',
 'livepreview-failed'  => 'టైపు చేస్తుండగా ప్రీవ్యూ సృష్టించడం కుదరలేదు! మామూలు ప్రీవ్యూను ప్రయత్నించండి.',
+'livepreview-error'   => 'అనుసంధానం కుదరలేదు: $1 "$2". మామూలు ప్రీవ్యూ ప్రయత్నించి చూడండి.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '$1 సెకండ్ల లోపు జరిగిన మార్పులు ఈ జాబితాలో కనిపించకపోవచ్చు.',
@@ -2253,12 +2263,19 @@ $1',
 'watchlisttools-edit' => 'వీక్షణ జాబితాను చూపించు, మార్చు',
 'watchlisttools-raw'  => 'ముడి వీక్షణ జాబితాలో మార్పులు చెయ్యి',
 
+# Core parser functions
+'unknown_extension_tag' => '"$1" అనే ట్యాగు ఈ పొడిగింతకు తెలియదు',
+
 # Special:Version
-'version-extensions'   => 'స్థాపించిన పొడగింతలు',
-'version-specialpages' => 'ప్రత్యేక పేజీలు',
-'version-variables'    => 'చరరాసులు(వేరియబుల్స్)',
-'version-other'        => 'ఇతర',
-'version-version'      => 'సంచిక',
+'version-extensions'       => 'స్థాపించిన పొడగింతలు',
+'version-specialpages'     => 'ప్రత్యేక పేజీలు',
+'version-variables'        => 'చరరాసులు(వేరియబుల్స్)',
+'version-other'            => 'ఇతర',
+'version-version'          => 'సంచిక',
+'version-license'          => 'లైసెన్సు',
+'version-software'         => 'ప్రవేశపెట్టిన సాఫ్టువేర్లు',
+'version-software-product' => 'ప్రోడక్టు',
+'version-software-version' => 'వెర్షను',
 
 # Special:Filepath
 'filepath'         => 'పూర్తి చిరునామా',

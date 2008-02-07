@@ -1046,7 +1046,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'excontent'                   => "ninäd äbinon: '$1'",
 'excontentauthor'             => "ninäd äbinon: '$1' (e keblünan teik äbinon '[[Special:Contributions/$2|$2]]')",
 'exblank'                     => 'pad ävagon',
-'delete-confirm'              => 'Moükön "$1"-i',
+'delete-confirm'              => 'Moükön padi: "$1"',
 'delete-legend'               => 'Moükön',
 'historywarning'              => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
 'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:Policy-url}}]].',
@@ -1307,11 +1307,15 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'importnotext'          => 'Vödem vagik',
 
 # Import log
-'importlogpage' => 'Jenotalised nüveigamas',
+'importlogpage'                    => 'Jenotalised nüveigamas',
+'import-logentry-upload-detail'    => '{{PLURAL:$1|fomam|fomams}} $1',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|fomam|fomams}} $1 se $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Gebanapad obik',
+'tooltip-pt-anonuserpage'         => 'Gebanapad ladeta-IP, me kel redakol',
 'tooltip-pt-mytalk'               => 'Bespiks obik',
+'tooltip-pt-anontalk'             => 'Bespik votükamas me ladet-IP at pejenükölas',
 'tooltip-pt-preferences'          => 'Buükams obik',
 'tooltip-pt-watchlist'            => 'Lised padas, kö galädol tefü votükams',
 'tooltip-pt-mycontris'            => 'Lised keblünotas obik',
@@ -1338,6 +1342,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-n-help'                  => 'Is kanoy tuvön yufi e nünis.',
 'tooltip-n-sitesupport'           => 'Stütolös obsi',
 'tooltip-t-whatlinkshere'         => 'Lised padas valik, kels yumons isio',
+'tooltip-t-recentchangeslinked'   => 'Votükams nulik padas, lü kels pad at yumon',
 'tooltip-t-contributions'         => 'Logön keblünotalisedi gebana at',
 'tooltip-t-emailuser'             => 'Sedolös penedi gebane at',
 'tooltip-t-upload'                => 'Löpükön magodis u ragivis sümik votik',
@@ -1358,6 +1363,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-diff'                    => 'Jonön votükamis olik in vödem at.',
 'tooltip-compareselectedversions' => 'Logön difis vü fomams pevälöl tel pada at.',
 'tooltip-watch'                   => 'Lüükön padi at galädalisede olik',
+'tooltip-recreate'                => 'Dönujafön padi do ya balna emoükon',
 'tooltip-upload'                  => 'Primön löpükami.',
 
 # Stylesheets
@@ -1581,6 +1587,7 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'watchlistedit-raw-titles'     => 'Tiäds:',
 'watchlistedit-raw-submit'     => 'Votükön Galädalisedi',
+'watchlistedit-raw-done'       => 'Galädalised olik pevotükon.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Tiäd bal peläükon|Tiäds $1 peläükons}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Tiäd bal pemoükon|Tiäds $1 pemoükons}}:',
 

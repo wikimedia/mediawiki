@@ -91,6 +91,7 @@ $messages = array(
 'disclaimers'    => 'अनाधिकार घोषणा',
 'disclaimerpage' => 'Project:अनाधिकार घोषणा',
 'edithelp'       => 'संपादन सहयोग',
+'edithelppage'   => 'सहायता:संपादन',
 'mainpage'       => 'मुख्य पृष्ठ',
 'privacy'        => 'गोपनीयताक नियम',
 'privacypage'    => 'प्रोजेक्ट:गोपनीयता नियम',
@@ -231,6 +232,7 @@ $messages = array(
 'tooltip-t-upload'        => 'चित्र आकि मीडिया फाइलकेँ अपलोड करू',
 'tooltip-t-specialpages'  => 'सभटा विशेष पन्नाक सूची',
 'tooltip-save'            => 'अपन परिवर्त्तनके सुरक्षित करू',
+'tooltip-preview'         => 'परिवर्त्तनक प्रदर्शन, संजोगबाक पहिने एकर प्रयोग करू!',
 'tooltip-diff'            => 'देखाऊ जे परिवर्त्तन अहाँ एहि लेखमे कएलहुँ।',
 
 # Bad image list

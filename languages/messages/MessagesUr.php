@@ -1,7 +1,11 @@
 <?php
-/**
+/** Urdu (اردو)
  *
  * @addtogroup Language
+ *
+ * @author לערי ריינהארט
+ * @author Wisesabre
+ * @author Chris H
  */
 
 $rtl = true;
@@ -42,32 +46,46 @@ $messages = array(
 'underline-never'  => 'کبھی نہیں',
 
 # Dates
-'sunday'    => 'اتوار',
-'monday'    => 'پير',
-'tuesday'   => 'منگل',
-'wednesday' => 'بدھ',
-'thursday'  => 'جمعرات',
-'friday'    => 'جمعہ',
-'saturday'  => 'ہفتہ',
-'january'   => 'جنوری',
-'february'  => 'فروری',
-'march'     => 'مارچ',
-'april'     => 'اپريل',
-'may_long'  => 'مئی',
-'june'      => 'جون',
-'july'      => 'جولائی',
-'august'    => 'اگست',
-'september' => 'ستمبر',
-'october'   => 'اکتوبر',
-'november'  => 'نومبر',
-'december'  => 'دسمبر',
-'may'       => 'مئی',
+'sunday'        => 'اتوار',
+'monday'        => 'پير',
+'tuesday'       => 'منگل',
+'wednesday'     => 'بدھ',
+'thursday'      => 'جمعرات',
+'friday'        => 'جمعہ',
+'saturday'      => 'ہفتہ',
+'january'       => 'جنوری',
+'february'      => 'فروری',
+'march'         => 'مارچ',
+'april'         => 'اپريل',
+'may_long'      => 'مئی',
+'june'          => 'جون',
+'july'          => 'جولائی',
+'august'        => 'اگست',
+'september'     => 'ستمبر',
+'october'       => 'اکتوبر',
+'november'      => 'نومبر',
+'december'      => 'دسمبر',
+'january-gen'   => 'جنوری',
+'february-gen'  => 'فروری',
+'march-gen'     => 'مارچ',
+'april-gen'     => 'اپريل',
+'may-gen'       => 'مئی',
+'june-gen'      => 'جون',
+'july-gen'      => 'جولائ',
+'august-gen'    => 'اگست',
+'september-gen' => 'ستمبر',
+'october-gen'   => 'اکتوبر',
+'november-gen'  => 'نومبر',
+'december-gen'  => 'دسمبر',
+'may'           => 'مئی',
 
 # Bits of text used by many pages
 'categories'      => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
 'pagecategories'  => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
 'category_header' => 'زمرہ "$1" میں مضامین',
 'subcategories'   => 'ذیلی ذمرہ جات',
+
+'mainpagetext' => "<big>'''میڈیاوکی کو کامیابی سے چالو کردیا گیا ہے۔.'''</big>",
 
 'about'         => 'تعارف',
 'newwindow'     => '(نـئی ونـڈو میـں)',
@@ -77,15 +95,16 @@ $messages = array(
 'mytalk'        => 'میری گفتگو',
 'anontalk'      => 'اس IP کیلیے بات چیت',
 'navigation'    => 'رہنمائی',
+'and'           => 'اور',
 
 'returnto'          => 'واپس $1۔',
-'tagline'           => 'وکیپیڈیا سے',
+'tagline'           => '{{SITENAME}} سے',
 'help'              => 'معاونت',
 'search'            => 'تلاش',
 'searchbutton'      => 'تلاش',
 'go'                => 'چلو',
 'searcharticle'     => 'چلو',
-'history'           => 'تاریخچۂ صفحہ',
+'history'           => 'تاریخچہ ء صفحہ',
 'history_short'     => 'تاریخچہ',
 'printableversion'  => 'قابل طبع نسخہ',
 'permalink'         => 'مستقل کڑی',
@@ -103,7 +122,7 @@ $messages = array(
 'talkpage'          => 'اس صفحہ پر تبادلۂ خیال کریں',
 'specialpage'       => 'خصوصی صفحہ',
 'articlepage'       => 'مندرجاتی صفحہ دیکھیۓ',
-'talk'              => 'تبادلۂ خیال',
+'talk'              => 'تبادلہٴ خیال',
 'views'             => 'خیالات',
 'toolbox'           => 'آلات',
 'userpage'          => 'دیکھیں صارف کا صفحہ',
@@ -118,7 +137,7 @@ $messages = array(
 'aboutsite'         => '{{SITENAME}} کا تعارف',
 'aboutpage'         => 'Project:تعارف',
 'copyright'         => 'تمام مواد $1 کے تحت میسر ہے۔',
-'copyrightpagename' => 'ویـکـیـپـیـڈ یـا حق تصنیف',
+'copyrightpagename' => '{{SITENAME}} حق تصنیف',
 'copyrightpage'     => '{{ns:project}}:حقوق تصانیف',
 'currentevents'     => 'تعارف وکیپیڈیا',
 'currentevents-url' => 'Project:تعارف وکیپیڈیا',
@@ -151,7 +170,7 @@ $messages = array(
 'feed-atom'           => 'ایٹم',
 'feed-rss'            => 'آر ایس ایس',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'مضمون',
 'nstab-user'      => 'صفحۂ صارف',
 'nstab-special'   => 'خاص',
@@ -183,16 +202,17 @@ $messages = array(
 'yourpassword'               => 'کلمۂ شناخت',
 'yourpasswordagain'          => 'کلمۂ شناخت دوبارہ لکھیں',
 'remembermypassword'         => 'مجھے یاد رکھیں',
+'yourdomainname'             => 'آپکا ڈومین',
 'loginproblem'               => '<b>داخلے میں کوئی مسلہ درپیش ہے</b><br />دوبارہ اندراج کیجیۓ!',
-'alreadyloggedin'            => '<strong>$1، آپ پہلے ہی داخل حالت میں ہیں!</strong><br />',
 'login'                      => 'داخل ہوں',
-'loginprompt'                => 'ویکیپیڈیا میں داخلے کیلۓ آپکے پاس قند (کوکیز) مجازہوناچاہیں۔',
+'loginprompt'                => '{{SITENAME}} میں داخلے کیلۓ آپکے پاس قند (کوکیز) مجازہوناچاہیں۔',
 'userlogin'                  => 'کھاتہ بنائیں یا اندراج کریں',
 'logout'                     => 'اخراج',
 'userlogout'                 => 'خارج ہوجائیں',
 'nologin'                    => 'کیا آپ نے کھاتہ نہیں بنایا ہوا؟ $1۔',
 'nologinlink'                => 'کھاتا بنائیں',
 'createaccount'              => 'نیا کھاتہ بنائیں',
+'gotaccountlink'             => 'داخل',
 'createaccountmail'          => 'بذریعۂ برقی ڈاک',
 'badretype'                  => 'درج شدہ کلمۂ شناخت اصل سے مطابقت نہیں رکھتا۔',
 'userexists'                 => 'آپ نےجونام درج کیا ہے پہلے سے زیراستعمال ہے۔ مختلف نام استعمال کریں۔',
@@ -205,10 +225,11 @@ $messages = array(
 'email'                      => 'برقی خط',
 'loginerror'                 => 'داخلے میں غلطی',
 'loginsuccesstitle'          => 'داخلہ کامیاب',
-'loginsuccess'               => "'''اب آپ ویکیپیڈیا میں بنام \"\$1\" داخل ہوچکے ہیں۔'''",
+'loginsuccess'               => "'''اب آپ {{SITENAME}} میں بنام \"\$1\" داخل ہوچکے ہیں۔'''",
 'nosuchuser'                 => '"$1" کے نام سے کوئی صارف موجود نہیں۔  براۓکرم ہجوں کے درست اندراج کی تصدیق کرلیجیۓ ، یا آپ چاہیں تو نیا کھاتا بھی بنا سکتے ہیں۔',
 'wrongpassword'              => 'آپ نے غلط کلمۂ شناخت درج کیا ہے۔ دوبارہ کو شش کریں۔',
 'wrongpasswordempty'         => 'کلمۂ شناخت ندارد۔ دوبارہ کوشش کریں۔',
+'passwordtooshort'           => 'آپکا منتخب کردہ کلمۂ شناخت بہت مختصر ہے۔ اسے کم از کم $1 حروف پر مشتمل ہونا چاہیۓ۔',
 'mailmypassword'             => 'کلمۂ شناخت بذریعہ برقی خط',
 'passwordsent'               => 'ایک نیا کلمۂ شناخت "$1" کے نام سے بننے والی برقی ڈاک کے پتے کیلیے بھیج دیا گیا ہے۔ 
 جب وہ موصول ہو جاۓ تو براہ کرم اسکے ذریعے دوبارہ داخل ہوں۔',
@@ -230,9 +251,9 @@ $messages = array(
 'savearticle'          => 'محفوظ',
 'preview'              => 'نمائش',
 'showpreview'          => 'نمائش',
-'anoneditwarning'      => 'آپ ویکیپیڈیا میں داخل نہیں ہوۓ لہذا آپکا IP پتہ اس صفحہ کے تاریخچہ ء ترمیم میں محفوظ ہوجاۓ گا۔',
+'anoneditwarning'      => 'آپ {{SITENAME}} میں داخل نہیں ہوۓ لہذا آپکا IP پتہ اس صفحہ کے تاریخچہ ء ترمیم میں محفوظ ہوجاۓ گا۔',
 'summary-preview'      => 'نمائش خلاصہ',
-'whitelistedittext'    => 'ترمیم و تدوین کیلیے آپ کا [[Special:Userlogin|داخل ہونا]] لا زمی ہے۔',
+'whitelistedittext'    => 'ترمیم و تدوین کے لیۓ آپکا [[Special:Userlogin|داخل ہونا]] لا زمی ہے۔',
 'loginreqtitle'        => 'داخلہ / اندراج لازم',
 'loginreqlink'         => 'داخلہ',
 'accmailtitle'         => 'کلمہ شناخت بھیج دیا گیا۔',
@@ -249,11 +270,11 @@ $messages = array(
 'yourtext'             => 'آپ کی تحریر',
 'editingold'           => '<strong>انتباہ: آپ اس صفحے کا ایک پرانا مسودہ مرتب کررہے ہیں۔ اگر آپ اسے محفوظ کرتے ہیں تو اس صفحے کے اس پرانے مسودے سے اب تک کی جانے والی تمام تدوین ضائع ہو جاۓ گی۔</strong>',
 'yourdiff'             => 'تضادات',
+'copyrightwarning'     => "یہ یادآوری کرلیجیۓ کہ {{SITENAME}} میں تمام تحریری شراکت جی این یو آزاد مسوداتی اجازہ ($2)کے تحت تصور کی جاتی ہے (مزید تفصیل کیلیۓ $1 دیکھیۓ)۔ اگر آپ اس بات سے متفق نہیں کہ آپکی تحریر میں ترمیمات کری جائیں اور اسے آزادانہ (جیسے ضرورت ہو) استعمال کیا جاۓ تو براۓ کرم اپنی تصانیف یہاں داخل نہ کیجیۓ۔ اگر آپ یہاں اپنی تحریر جمع کراتے ہیں تو آپ اس بات کا بھی اقرار کر رہے ہیں کہ، اسے آپ نے خود تصنیف کیا ہے یا دائرہ ءعام (پبلک ڈومین) سے حاصل کیا ہے یا اس جیسے کسی اور آذاد وسیلہ سے۔'''بلااجازت ایسا کام داخل نہ کیجیۓ جسکا حق ِطبع و نشر محفوظ ہو!'''",
 'templatesused'        => 'اس صفحے پر استعمال ہونے والے سانچے:',
 'templatesusedsection' => 'اس قطعے میں استعمال ہونے والے سانچے:',
 
 # History pages
-'revhistory'       => 'تـجدید تاریخـچہ',
 'viewpagelogs'     => 'اس صفحہ کیلیے نوشتہ جات دیکھیے',
 'currentrev'       => 'حـالیـہ تـجدید',
 'revisionasof'     => 'تـجدید بـمطابق $1',
@@ -273,7 +294,6 @@ $messages = array(
 
 # Diffs
 'difference'              => '(اصلاحات میں فرق)',
-'editcurrent'             => 'اس صفحے کا رائج متن مرتب کیجیۓ۔',
 'compareselectedversions' => 'منتخب متـن کا موازنہ',
 
 # Search results
@@ -286,7 +306,6 @@ $messages = array(
 'nextn'                 => 'اگلے $1',
 'viewprevnext'          => 'دیکھیں($1) ($2) ($3)۔',
 'powersearch'           => 'تلاش کریں',
-'blanknamespace'        => '(مرکز)',
 
 # Preferences page
 'preferences'       => 'ترجیحات',
@@ -341,12 +360,51 @@ $messages = array(
 'recentchangeslinked' => 'متعلقہ تبدیلیاں',
 
 # Upload
-'upload'            => 'زبراثقال ِملف (فائل اپ لوڈ)',
+'upload'            => 'فائل بھیجیں',
 'uploadbtn'         => 'زبراثقال ملف (اپ لوڈ فائل)',
 'reupload'          => 'زبراثقال مکرر',
 'reuploaddesc'      => 'زبراثقال ورقہ (فارم) کیجانب واپس۔',
 'uploadnologin'     => 'آپ داخل شدہ حالت میں نہیں',
 'uploadnologintext' => 'زبراثقال ملف (فائل اپ لوڈ) کے لیۓ آپکو  [[Special:Userlogin|داخل شدہ]] حالت میں ہونا لازم ہے۔',
+'uploadtext'        => "<div style=\"border: 1px solid grey; background: #ddf; padding: 10px 30px; margin: 0 auto;\">
+<big>'''یادآوری''': اگر آپ اپنی ملف (فائل) زبراثقال کرتے وقت ، خلاصہ کے خانے میں ،  درج ذیل دو باتوں کی وضاحت نہیں کرتے تو ملف کو <span style=\"color: red; font-weight: bold\">حذف کیا جاسکتا ہے</span>:</big>
+#ملف یا فائل کا '''مـاخـذ''' ، یعنی: 
+#*اگر یہ آپ نے خود تخلیق کی ہے تو بیان کردیجیۓ۔ 
+#*اگر یہ روۓ خط (آن لائن) دستیاب ہے ، تو اس وقوع یعنی سائٹ کا  '''رابطہ (لنک)''' دیجیۓ۔
+#*اگر آپ نے اسے کسی دوسری زبان کے {{SITENAME}} سے لیا ہے تو اسکا نام تحریر کردیجیۓ۔ 
+#صاحب ِحق ِطبع و نشر اور ملف کے اجازہ (لائسنس) کے بارے میں:
+#*ملف کے اجازہ کے بارے میں یہ تحریر کیجیۓ کہ اسکی موجودہ حیثیت کیا ہے۔
+#*اگر آپ خود اسکا حق ِطبع و نشر رکھتے ہیں تو آپ پر لازم ہے کہ آپ اسے {{ٹ}} [[دائرۂ عام]] {{ن}} (پبلک ڈومین) میں بھی آذاد کردیں۔ 
+ 
+
+{| width=\"100%\" border=\"0\" style=\"border: 3px solid red; background-color: #FFE4E1; font-size: larger; margin-top:0.5em; \"
+|-
+| align=\"center\" width=\"60px\" | [[Image:Red_copyright.svg|50px]]
+| align=\"center\" |<big>جب کوئی صارف مستقل ایسی ملف زبراثقال کرتا رہے کہ جس کے اجازہ کے بارے میں غلط بیانی کی گئی ہو یا وہ مستقل ایسے عکس زبراثقال کرتا رہے کہ جنکے بارے میں کوئی بیان تحریر نہ کیا گیا ہو تو ایسی صورت میں پابندی لگاۓ جانے کا قوی امکان موجود ہے۔ </big>
+|}
+
+
+</div>
+
+
+مِلَف (فائل) بھیجنے کیلیے درج ذیل ورقہ (فارم) استعمال کیجیے، اگر آپ اب تک ارسال کردہ تصاویر کو دیکھنا یا تلاش کرنا چاہتے ہیں تو [[Special:Imagelist|ارسال کردہ تصاویر]] کے ربط پر جائیے۔ <br> تمام ارسال و حذف کی گئی تصاویر کو [[Special:Log/upload|نوشتۂ منتقلی]] میں درج کر لیا جاتا ہے۔
+
+تصویر کی منتقلی کے بعد، اسکو کسی صفحہ پر رکھنے کیلیے مندرجہ ذیل صورت میں رمـز (کوڈ) استعمال کیجیۓ۔
+<div style=\"direction: ltr; text-align: right; font-weight: bold;\">
+
+'''<nowiki>[[تصویر:ملف کا نام|متبادل متن]]</nowiki>'''
+
+</div>
+* مندرجہ بالا رموز آپ  انگریزی میں بھی درج کرسکتے ہیں، یعنی
+<div style=\"direction: ltr; text-align: right;\">
+<nowiki>[[Image:File name|Alt.text]]</nowiki>
+</div>
+* ملف کے ساتھ براہ راست رابطہ کیلیے 
+<div style=\"direction: ltr;  text-align: right;\">
+کی طرز میں ربط استعمال کیجیۓ۔ <nowiki>[[Media:File.ogg]]</nowiki>
+</div>
+* ملف کا نام ؛ حرف ابجد کے لیۓ حساس ہے لہذا اگر زبراثقال کرتے وقت ملف کا نام -- name:JPG  ہے اور آپ رابطہ رکھتے وقت name:jpg یــا Name:jpg رکھتے ہیں تو ربط کام نہیں کرے گا
+<br>",
 'uploadlog'         => 'نوشتۂ زبراثقال (اپ لوڈ لاگ)',
 'uploadlogpage'     => 'نوشتۂ زبراثقال (اپ لوڈ لاگ)',
 'uploadlogpagetext' => 'درج ذیل میں حالیہ زبراثقال (اپ لوڈ) کی گئی املاف (فائلوں) کی فہرست دی گئی ہے۔',
@@ -365,16 +423,14 @@ $messages = array(
 'watchthisupload'   => 'یہ صفحہ زیر نظر کیجیۓ',
 
 # Image list
-'imagelist'           => 'فہرست فائل',
-'ilsubmit'            => 'تلاش',
-'byname'              => 'بالحاظ اسم',
-'bydate'              => 'بالحاظ تاریخ',
-'bysize'              => 'بالحاظ جسامت',
-'deleteimg'           => 'ضائع',
-'deleteimgcompletely' => 'اس مِلَف کی تمام تر تجدید ضائع کیجیئے۔',
-'imagelinks'          => 'روابط',
-'linkstoimage'        => 'اس ملف (فائل) سے درج ذیل صفحات رابطہ رکھتے ہیں:',
-'nolinkstoimage'      => 'ایسے کوئی صفحات نہیں جو اس ملف (فائل) سے رابطہ رکھتے ہوں۔',
+'imagelist'      => 'فہرست فائل',
+'ilsubmit'       => 'تلاش',
+'byname'         => 'بالحاظ اسم',
+'bydate'         => 'بالحاظ تاریخ',
+'bysize'         => 'بالحاظ جسامت',
+'imagelinks'     => 'روابط',
+'linkstoimage'   => 'اس ملف (فائل) سے درج ذیل صفحات رابطہ رکھتے ہیں:',
+'nolinkstoimage' => 'ایسے کوئی صفحات نہیں جو اس ملف (فائل) سے رابطہ رکھتے ہوں۔',
 
 # MIME search
 'download' => 'زیراثقال (ڈاؤن لوڈ)',
@@ -385,14 +441,17 @@ $messages = array(
 # Unused templates
 'unusedtemplates' => 'غیر استعمال شدہ سانچے',
 
+# Random page
+'randompage' => 'بےترتیب صفحہ',
+
 # Statistics
 'statistics'    => 'اعداد و شمار',
-'sitestats'     => 'وکیپیڈیا کے اعدادوشمار',
+'sitestats'     => '{{SITENAME}} کے اعدادوشمار',
 'userstats'     => 'ارکان کے اعداد و شمار',
-'sitestatstext' => "اردو ویکیپیڈیا کے ذخیرے میں اب تک کل  '''$1''' صفحات ہیں۔ انمیں تبادلہءخیال صفحات ، ویکیپیڈیا کے بارے میں صفحات ، سٹب صفحات ، پلٹائے گۓ صفحات اور چند دیگر ایسے صفحات شامل ہیں جو کہ ممکنہ طور پر مقالات یا مضامین نہیں کہے جاسکتے۔ ان تمام کو نکال کر  '''$2''' ایسے صفحات ہیں جو کہ بجاطور پر مقالات کے زمرے میں شامل کیۓ جاسکتے ہیں۔ 
+'sitestatstext' => "{{SITENAME}}ا کے ذخیرے میں اب تک کل  '''$1''' صفحات ہیں۔ انمیں تبادلہءخیال صفحات ، {{SITENAME}}ا کے بارے میں صفحات ، سٹب صفحات ، پلٹائے گۓ صفحات اور چند دیگر ایسے صفحات شامل ہیں جو کہ ممکنہ طور پر مقالات یا مضامین نہیں کہے جاسکتے۔ ان تمام کو نکال کر  '''$2''' ایسے صفحات ہیں جو کہ بجاطور پر مقالات کے زمرے میں شامل کیۓ جاسکتے ہیں۔ 
 
-اگر صفحات کے تناسب سے دیکھا جاۓ تو ، اردو ویکیپیڈیا کی ابتداء سے اب تک کل '''$4''' صفحات صارفین کی جانب سے  مرتب کیۓ گۓ۔ گویا فی صفحہ '''$5''' بار تدوین ہوئی۔  مزید تفصیل دیکھیں",
-'userstatstext' => "اردو ویکیپیڈیا میں '''$1''' مـثـبوت (رجسٹرڈ) صارف ہیں ، جنمیں  '''$2''' (یعنی '''$4%''') منتظمین میں شامل ہیں ، (دیکھیۓ $3) ۔",
+اگر صفحات کے تناسب سے دیکھا جاۓ تو ، {{SITENAME}}ا کی ابتداء سے اب تک کل '''$4''' صفحات صارفین کی جانب سے  مرتب کیۓ گۓ۔ گویا فی صفحہ '''$5''' بار تدوین ہوئی۔",
+'userstatstext' => "{{SITENAME}} میں '''$1''' مـثـبوت (رجسٹرڈ) صارف ہیں ، جنمیں  '''$2''' (یعنی '''$4%''') منتظمین میں شامل ہیں ، (دیکھیۓ $3) ۔",
 
 'disambiguations' => 'ضد ابہام صفحات',
 
@@ -418,7 +477,6 @@ $messages = array(
 'mostimages'              => 'سب سے زیادہ استعمال کردہ تصاویر',
 'mostrevisions'           => 'زیادہ تجدید نظر کیے جانے والے صفحات',
 'allpages'                => 'تمام صفحات',
-'randompage'              => 'بےترتیب صفحہ',
 'shortpages'              => 'چھوٹے صفحات',
 'longpages'               => 'طویل ترین صفحات',
 'deadendpages'            => 'مردہ صفحات',
@@ -433,7 +491,7 @@ $messages = array(
 # Book sources
 'booksources' => 'کتابی وسائل',
 
-'categoriespagetext' => 'مندرجہ ذیل زمرہ جات وکیپیڈیا میں موجود ہیں۔',
+'categoriespagetext' => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔',
 'userrights'         => 'صارف کے حقوق کا انتظام',
 'version'            => 'ورژن',
 
@@ -454,15 +512,17 @@ $messages = array(
 # E-mail user
 'mailnologintext' => 'دیگر ارکان کو برقی خط ارسال کرنے کیلیۓ لازم ہے کہ آپ [[Special:Userlogin|داخل شدہ]] حالت میں ہوں اور آپ کی [[Special:Preferences|ترجیحات]] ایک درست برقی خط کا پتا درج ہو۔',
 'emailuser'       => 'صارف کو برقی خط لکھیں',
+'defemailsubject' => '{{SITENAME}} سے برقی خط',
 'noemailtext'     => 'اس صارف نے برقی خط کے لیے کوئی پتہ فراہم نہیں کیا، یا یہ چاہتا ہے کا اس سے کوئی صارف رابطہ نہ کرے۔',
 'emailsubject'    => 'عنوان',
 'emailmessage'    => 'پیغام',
 
 # Watchlist
 'watchlist'         => 'میری زیرنظرفہرست',
-'mywatchlist'         => 'میری زیرنظرفہرست',
+'mywatchlist'       => 'میری زیرنظرفہرست',
 'watchlistfor'      => "(براۓ '''$1''')",
 'addedwatch'        => 'زیر نظر فہرست میں اندراج کردیاگیا',
+'addedwatchtext'    => "یہ صفحہ \"\$1\" آپکی [[Special:Watchlist|زیرنظر]] فہرست میں شامل کردیا گیا ہے۔ اب مستقل میں اس صفحے اور اس سے ملحقہ تبادلہ خیال کا صفحے میں کی جانے والی تبدیلوں کا اندراج کیا جاتا رہے گا، اور ان صفحات کی شناخت کو سہل بنانے کے لیۓ [[Special:حالیہ تبدیلیاں|حالیہ تبدیلیوں کی فہرست]] میں انکو '''مُتَجَل''' (bold) تحریر کیا جاۓ گا۔ <p> اگر آپ کسی وقت اس صفحہ کو زیرنظرفہرست سے خارج کرنا چاہیں تو اوپر دیۓ گۓ \"زیرنظرمنسوخ\" پر ٹک کیجیۓ۔",
 'removedwatch'      => 'زیرنظرفہرست سے خارج کر دیا گیا',
 'removedwatchtext'  => 'صفحہ "$1" آپ کی زیر نظر فہرست سے خارج کر دیا گیا۔',
 'watch'             => 'زیرنظر',
@@ -478,35 +538,33 @@ $messages = array(
 'created'            => 'بنا دیا گیا',
 
 # Delete/protect/revert
-'deletepage'           => 'صفحہ ضائع کریں',
-'confirm'              => 'یقین',
-'excontent'            => "'$1':مواد تھا",
-'excontentauthor'      => "حذف شدہ مواد: '$1' (اور صرف '[[Special:Contributions/$2|$2]]' نے حصہ ڈالا)",
-'exblank'              => 'صفحہ خالی تھا',
-'confirmdelete'        => 'تائید تنسیخ',
-'deletesub'            => '(حذف کیا جارہاہے "$1")',
-'historywarning'       => 'انتباہ: جو صفحہ آپ حذف کرنے جارہے ہیں اس سے ایک تاریخچہ منسلک ہے۔',
-'confirmdeletetext'    => 'آپ نے اس صفحے کو اس سے ملحقہ تاریخچہ سمیت حذف کرنے کا ارادہ کیا ہے۔ براۓ مہربانی تصدیق کرلیجیۓ کہ آپ اس عمل کے نتائج سے بخوبی آگاہ ہیں، اور یہ بھی یقین کرلیجیۓ کہ آپ ایسا [[{{MediaWiki:Policy-url}}|ویکیپیڈیا کی حکمت عملی]] کے دائرے میں رہ کر کر رہے ہیں۔',
-'actioncomplete'       => 'اقدام تکمیل کو پہنچا',
-'deletedtext'          => '"$1" کو حذف کر دیا گیا ہے ۔
+'deletepage'          => 'صفحہ ضائع کریں',
+'confirm'             => 'یقین',
+'excontent'           => "'$1':مواد تھا",
+'excontentauthor'     => "حذف شدہ مواد: '$1' (اور صرف '[[Special:Contributions/$2|$2]]' نے حصہ ڈالا)",
+'exblank'             => 'صفحہ خالی تھا',
+'historywarning'      => 'انتباہ: جو صفحہ آپ حذف کرنے جارہے ہیں اس سے ایک تاریخچہ منسلک ہے۔',
+'confirmdeletetext'   => 'آپ نے اس صفحے کو اس سے ملحقہ تاریخچہ سمیت حذف کرنے کا ارادہ کیا ہے۔ براۓ مہربانی تصدیق کرلیجیۓ کہ آپ اس عمل کے نتائج سے بخوبی آگاہ ہیں، اور یہ بھی یقین کرلیجیۓ کہ آپ ایسا [[{{MediaWiki:Policy-url}}|ویکیپیڈیا کی حکمت عملی]] کے دائرے میں رہ کر کر رہے ہیں۔',
+'actioncomplete'      => 'اقدام تکمیل کو پہنچا',
+'deletedtext'         => '"$1" کو حذف کر دیا گیا ہے ۔
 حالیہ حذف شدگی کے تاریخ نامہ کیلیۓ  $2  دیکھیۓ',
-'deletedarticle'       => 'حذف شدہ "[[$1]]"',
-'dellogpage'           => 'نوشتۂ حذف شدگی',
-'dellogpagetext'       => 'حالیہ حذف شدگی کی فہرست درج ذیل ہے۔',
-'deletionlog'          => 'نوشتۂ حذف شدگی',
-'deletecomment'        => 'حذف کرنے کی وجہ',
-'rollback'             => 'ترمیمات سابقہ حالت پرواپس',
-'rollback_short'       => 'واپس سابقہ حالت',
-'rollbacklink'         => 'واپس سابقہ حالت',
-'rollbackfailed'       => 'سابقہ حالت پر واپسی ناکام',
-'cantrollback'         => 'تدوین ثانی کا اعادہ نہیں کیا جاسکتا؛ کیونکہ اس میں آخری بار حصہ لینے والا ہی اس صفحہ کا واحد کاتب ہے۔',
-'protectlogpage'       => 'نوشتۂ محفوظ شدگی',
-'protectedarticle'     => '"[[$1]]" کومحفوظ کردیا',
-'unprotectedarticle'   => '"[[$1]]" کوغیر محفوظ کیا',
-'protectcomment'       => 'محفوظ کرنے کی وجہ',
-'unprotectsub'         => '("$1" غیر محفوظ کی جا رہی ہے۔)',
-'protect-default'      => '(طے شدہ)',
-'protect-level-sysop'  => 'صرف منتظمین',
+'deletedarticle'      => 'حذف شدہ "[[$1]]"',
+'dellogpage'          => 'نوشتۂ حذف شدگی',
+'dellogpagetext'      => 'حالیہ حذف شدگی کی فہرست درج ذیل ہے۔',
+'deletionlog'         => 'نوشتۂ حذف شدگی',
+'deletecomment'       => 'حذف کرنے کی وجہ',
+'rollback'            => 'ترمیمات سابقہ حالت پرواپس',
+'rollback_short'      => 'واپس سابقہ حالت',
+'rollbacklink'        => 'واپس سابقہ حالت',
+'rollbackfailed'      => 'سابقہ حالت پر واپسی ناکام',
+'cantrollback'        => 'تدوین ثانی کا اعادہ نہیں کیا جاسکتا؛ کیونکہ اس میں آخری بار حصہ لینے والا ہی اس صفحہ کا واحد کاتب ہے۔',
+'protectlogpage'      => 'نوشتۂ محفوظ شدگی',
+'protectedarticle'    => '"[[$1]]" کومحفوظ کردیا',
+'unprotectedarticle'  => '"[[$1]]" کوغیر محفوظ کیا',
+'protectcomment'      => 'محفوظ کرنے کی وجہ',
+'unprotectsub'        => '("$1" غیر محفوظ کی جا رہی ہے۔)',
+'protect-default'     => '(طے شدہ)',
+'protect-level-sysop' => 'صرف منتظمین',
 
 # Undelete
 'undelete'         => 'ضائع کردہ صفحات دیکھیں',
@@ -517,20 +575,21 @@ $messages = array(
 'undeletedarticle' => 'بحال "[[$1]]"',
 
 # Namespace form on various pages
-'namespace' => 'جاۓ نام:',
-'invert'    => 'انتخاب بالعکس',
+'namespace'      => 'جاۓ نام:',
+'invert'         => 'انتخاب بالعکس',
+'blanknamespace' => '(مرکز)',
 
 # Contributions
 'contributions' => 'صارف کا حصہ',
 'mycontris'     => 'میرا حصہ',
-'contribsub2'    => 'براۓ $1 ($2)',
+'contribsub2'   => 'براۓ $1 ($2)',
 'uclinks'       => 'دیکھیں آخری $1 تبدیلیاں؛ دیکھیں آخری $2 دن.',
 'uctop'         => ' (اوپر)',
 
 'sp-contributions-blocklog' => 'نوشتۂ پابندی',
 
 # What links here
-'whatlinkshere' => 'یہاں کس کا رابطہ ہے',
+'whatlinkshere' => 'ادھر کس کا جوڑ ہے',
 'linklistsub'   => '(فہرست روابط)',
 'linkshere'     => 'یہاں درج ذیل صفحات رابطہ رکھتے ہیں:',
 'nolinkshere'   => 'یہاں کسی صفحہ کا ربط نہیں۔',
@@ -573,21 +632,19 @@ $messages = array(
 'export' => 'برآمد صفحات',
 
 # Namespace 8 related
-'allmessages'               => 'نظامی پیغامات',
-'allmessagesname'           => 'نام',
-'allmessagesdefault'        => 'طے شدہ متن',
-'allmessagescurrent'        => 'موجودہ متن',
-'allmessagestext'           => 'یہ میڈیاویکی: جاۓ نام میں دستیاب نظامی پیغامات کی فہرست ہے۔',
-'allmessagesnotsupportedUI' => 'آپکی بین السطحی زبان <b>$1</b> اس وقوع پر  Special:AllMessages میں قابل شناخت نہیں۔',
-'allmessagesfilter'         => 'مِصفاہ اسم پیغام:',
-'allmessagesmodified'       => 'فقط ترامیم کا اظہار',
+'allmessages'         => 'نظامی پیغامات',
+'allmessagesname'     => 'نام',
+'allmessagesdefault'  => 'طے شدہ متن',
+'allmessagescurrent'  => 'موجودہ متن',
+'allmessagestext'     => 'یہ میڈیاویکی: جاۓ نام میں دستیاب نظامی پیغامات کی فہرست ہے۔',
+'allmessagesfilter'   => 'مِصفاہ اسم پیغام:',
+'allmessagesmodified' => 'فقط ترامیم کا اظہار',
 
 # Special:Import
 'import' => 'درآمد صفحات',
 
 # Attribution
 'anonymous' => '{{SITENAME}} گمنام صارف',
-'and'       => 'اور',
 'others'    => 'دیگر',
 
 # Spam protection
@@ -602,10 +659,9 @@ $messages = array(
 'previousdiff' => '> گذشتہ فرق',
 'nextdiff'     => '< اگلا فرق',
 
+# Special:Newimages
 'newimages'    => 'نئی فائلوں کی گیلری',
 'showhidebots' => '($1 بوٹ)',
-
-'passwordtooshort' => 'آپکا منتخب کردہ کلمۂ شناخت بہت مختصر ہے۔ اسے کم از کم $1 حروف پر مشتمل ہونا چاہیۓ۔',
 
 # Metadata
 'metadata' => 'میٹا ڈیٹا',
@@ -626,15 +682,14 @@ $messages = array(
 # action=purge
 'confirm_purge_button' => 'جی!',
 
+# AJAX search
 'searchnamed'   => "مضمون بنام ''$1'' کیلیۓ تلاش۔",
 'articletitles' => "''$1'' سے شروع ہونے والے مضامین",
 'hideresults'   => 'نتیجہ چھپائیں',
 
 # Auto-summaries
 'autosumm-blank'   => 'تمام مندرجات حذف',
-'autoredircomment' => '[[$1]] سے رجوع مکرر', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => '[[$1]] سے رجوع مکرر',
 'autosumm-new'     => 'نیا صفحہ: $1',
 
 );
-
-

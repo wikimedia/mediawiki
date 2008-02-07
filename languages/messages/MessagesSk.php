@@ -2494,6 +2494,10 @@ Skúste obyčajný náhľad.',
 'version-hook-name'                => 'Názov prípojného bodu',
 'version-hook-subscribedby'        => 'Pripojené',
 'version-version'                  => 'Verzia',
+'version-license'                  => 'Licencia',
+'version-software'                 => 'Nainštalovaný softvér',
+'version-software-product'         => 'Produkt',
+'version-software-version'         => 'Verzia',
 
 # Special:Filepath
 'filepath'         => 'Cesta k súboru',
