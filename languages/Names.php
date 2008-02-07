@@ -132,6 +132,7 @@
 	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut (macro language - do no localise, see ike/ikt - falls back to ike-cans)
 	'ja' => '日本語',	# Japanese
 	'jbo' => 'Lojban',		# Lojban
+	'jut' => 'Jysk',	# Jutish / Jutlandic
 	'jv' => 'Basa Jawa',	# Javanese
 	'ka' => 'ქართული',	# Georgian
 	'kaa' => 'Qaraqalpaqsha',	# Karakalpak

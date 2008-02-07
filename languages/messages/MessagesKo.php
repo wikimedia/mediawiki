@@ -684,7 +684,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'prefs-personal'           => '사용자 정보',
 'prefs-rc'                 => '최근 바뀜',
 'prefs-watchlist'          => '주시문서 목록',
-'prefs-watchlist-days'     => '주시문서 목록에 보이는 날짜 수:',
+'prefs-watchlist-days'     => '주시문서 목록에서 보여줄 날짜 수:',
 'prefs-watchlist-edits'    => '주시문서 목록에 보이는 편집 갯수:',
 'prefs-misc'               => '기타',
 'saveprefs'                => '저장',
@@ -785,6 +785,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요. 또는 예전에 올라온 그림을 찾으려면 [[Special:Imagelist|파일 목록]]을 사용할 수 있습니다. [[Special:Log/upload|올리기 기록]]에서 파일이 올라온 기록과 삭제된 기록을 볼 수 있습니다.
 
 문서에 그림을 집어넣으려면 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|대체 설명]]</nowiki>'''과 같이 사용합니다. 또는 파일에 직접 링크하려면 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''와 같이 씁니다.",
+'upload-permitted'            => '허용하는 파일 확장자: $1',
+'upload-preferred'            => '권장하는 파일 확장자: $1',
+'upload-prohibited'           => '금지하는 파일 확장자: $1',
 'uploadlog'                   => '올리기 기록',
 'uploadlogpage'               => '올리기 기록',
 'uploadlogpagetext'           => '최근 올라온 그림 목록입니다.',
@@ -800,6 +803,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'illegalfilename'             => '파일명 "$1"에는 문서 제목으로 허용되지 않는 글자가 포함되어 있습니다. 이름을 바꾸어 다시 시도해 주세요.',
 'badfilename'                 => '파일 이름이 ‘$1’(으)로 바뀌었습니다.',
 'filetype-badmime'            => '‘$1’ MIME을 가진 파일은 올릴 수 없습니다.',
+'filetype-unwanted-type'      => "'''‘.$1’''' 확장자는 추천하지 않습니다. 추천하는 파일 확장자는 $2입니다.",
+'filetype-banned-type'        => "'''‘.$1’''' 확장자로 파일을 올릴 수 없습니다. 가능한 확장자는 $2입니다.",
 'filetype-missing'            => '파일에 확장자(‘.jpg’ 등)가 없습니다.',
 'large-file'                  => '파일 크기는 $1을 넘지 않는 것을 추천합니다. 이 파일의 크기는 $2입니다.',
 'largefileserver'             => '이 파일의 크기가 서버에서 허용된 설정보다 큽니다.',
@@ -1012,6 +1017,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'unusedcategoriestext'    => '사용하지 않는 분류 문서들의 목록입니다.',
 'notargettitle'           => '해당하는 문서 없음',
 'notargettext'            => '기능을 수행할 목표 문서나 목표 사용자를 지정하지 않았습니다.',
+'pager-newer-n'           => '이전 $1개',
+'pager-older-n'           => '다음 $1개',
 
 # Book sources
 'booksources'               => '책 찾기',
@@ -1032,6 +1039,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'log'                  => '로그 목록',
 'all-logs-page'        => '모든 기록',
 'log-search-legend'    => '로그 검색',
+'log-search-submit'    => '찾기',
 'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다. 로그 종류, 사용자 이름, 문서 이름을 선택해서 볼 수 있습니다.',
 'logempty'             => '일치하는 항목이 없습니다.',
 
@@ -1057,7 +1065,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # E-mail user
 'mailnologin'     => '보낼 이메일 주소가 없음',
 'mailnologintext' => '다른 사용자에게 이메일을 보내려면, [[Special:Userlogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
-'emailuser'       => '이 사용자에게 이메일 보내기',
+'emailuser'       => '이메일 보내기',
 'emailpage'       => '사용자에게 이메일 보내기',
 'emailpagetext'   => '이 사용자가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다. 이메일을 받은 사용자가 바로 답장할 수 있도록 하기 위해, 당신의 이메일 주소가 ‘발신자’ 정보에 들어갑니다.',
 'usermailererror' => '메일 객체에서 오류 발생:',
@@ -1195,6 +1203,7 @@ $NEWPAGE
 'protect-unchain'             => '이동 권한을 수동으로 조정',
 'protect-text'                => "'''$1''' 문서의 보호 수준을 보거나 변경할 수 있습니다.",
 'protect-locked-blocked'      => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
+'protect-locked-dblock'       => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
 'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다. 이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
 'protect-default'             => '(기본값)',
 'protect-fallback'            => '‘$1’ 권한 필요',
@@ -1202,6 +1211,7 @@ $NEWPAGE
 'protect-level-sysop'         => '관리자만 가능',
 'protect-summary-cascade'     => '연쇄적',
 'protect-cascade'             => '연쇄적 보호 - 이 문서에서 사용되는 다른 문서를 함께 보호합니다.',
+'protect-cantedit'            => '이 문서의 보호 설정을 바꿀 권한이 없습니다.',
 'pagesize'                    => '(바이트)',
 
 # Restrictions (nouns)
@@ -1281,6 +1291,14 @@ $NEWPAGE
 'ipbexpiry'                   => '기간:',
 'ipbreason'                   => '이유:',
 'ipbreasonotherlist'          => '다른 이유',
+'ipbreason-dropdown'          => '*일반적인 차단 이유
+** 잘못된 내용 편집
+** 문서 내용을 지움
+** 문서에 스팸을 넣음
+** 장난 편집
+** 협박성 행동
+** 다중 계정 악용
+** 잘못된 사용자 이름',
 'ipbanononly'                 => '익명 사용자만 차단하기',
 'ipbcreateaccount'            => '계정 생성을 막기',
 'ipbemailban'                 => '이메일을 보내지 못하도록 막기',
@@ -1585,11 +1603,13 @@ $NEWPAGE
 'imagelistall'     => '모두',
 'watchlistall2'    => '모든 기간',
 'namespacesall'    => '모두',
-'monthsall'        => '모두',
+'monthsall'        => '모든 달',
 
 # E-mail address confirmation
 'confirmemail'            => '이메일 주소 확인',
+'confirmemail_noemail'    => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
 'confirmemail_text'       => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에, 이메일 인증을 받아야 합니다. 아래의 버튼을 누르면 인증 메일을 보냅니다. 메일에는 인증 코드가 들어있는 링크가 있습니다. 그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
+'confirmemail_pending'    => '<div class="error">이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.</div>',
 'confirmemail_send'       => '인증 코드를 메일로 보내기',
 'confirmemail_sent'       => '인증 이메일을 보냈습니다.',
 'confirmemail_sendfailed' => '인증 이메일을 보낼 수 없습니다. 이메일 주소를 잘못 입력했는지 확인해주세요.
@@ -1641,6 +1661,7 @@ $1',
 'searchnamed'      => '"$1" 이름을 가진 문서를 검색합니다.',
 'articletitles'    => "''$1''로 시작하는 문서들",
 'hideresults'      => '결과 숨기기',
+'useajaxsearch'    => 'AJAX 찾기 기능 사용하기',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 이전 문서',
@@ -1683,5 +1704,17 @@ $1',
 'watchlisttools-view' => '주시문서 최근 바뀜',
 'watchlisttools-edit' => '주시문서 목록 보기/편집하기',
 'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
+
+# Special:Version
+'version-extensions'       => '설치된 확장 기능',
+'version-specialpages'     => '특수 문서',
+'version-parserhooks'      => '파서 훅',
+'version-other'            => '기타',
+'version-hook-name'        => '훅 이름',
+'version-version'          => '버전',
+'version-license'          => '라이센스',
+'version-software'         => '설치된 프로그램',
+'version-software-product' => '제품',
+'version-software-version' => '버전',
 
 );

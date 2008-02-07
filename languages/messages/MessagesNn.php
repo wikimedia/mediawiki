@@ -641,7 +641,7 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'accountcreated'             => 'Brukarkonto oppretta',
 'accountcreatedtext'         => 'Brukarkontoen til $1 er oppretta.',
 'createaccount-title'        => 'Oppretting av brukarkonto på {{SITENAME}}',
-'createaccount-text'         => 'Nokon ($1) oppretta ein brukarkonto for $2 på {{SITENAME}} ($4). Passordet til «$2» er «$3». Du bør logge inn og endre passordet ditt med ein gong.
+'createaccount-text'         => 'Nokon oppretta ein brukarkonto for $2 på {{SITENAME}} ($4). Passordet til «$2» er «$3». Du bør logge inn og endre passordet ditt med ein gong.
 
 Du kan oversjå denne meldinga dersom kontoen vart oppretta med eit uhell.',
 'loginlanguagelabel'         => 'Språk: $1',
@@ -966,7 +966,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'prefs-personal'           => 'Brukaropplysningar',
 'prefs-rc'                 => 'Siste endringar og spirer',
 'prefs-watchlist'          => 'Overvakingsliste',
-'prefs-watchlist-days'     => 'Tal på dagar som er viste i overvakingslista:',
+'prefs-watchlist-days'     => 'Tal på dagar som skal visast i overvakingslista:',
 'prefs-watchlist-edits'    => 'Talet på endringar som vert viste i den utvida overvakingslista:',
 'prefs-misc'               => 'Andre',
 'saveprefs'                => 'Lagre',
@@ -1572,17 +1572,34 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'restriction-level-all'           => 'alle nivå',
 
 # Undelete
-'undelete'               => 'Sletta sider',
-'undeletepage'           => 'Sletta sider',
-'viewdeletedpage'        => 'Sjå sletta sider',
-'undeletepagetext'       => 'Dei følgjande sidene er sletta, men dei finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
-'undeleterevisions'      => '{{PLURAL:$1|Éin versjon arkivert|$1 versjonar arkiverte}}',
-'undeletehistory'        => 'Om du attopprettar sida, vil alle versjonane i historikken også bli attoppretta. Dersom ei ny side med same namnet er oppretta sidan den gamle sida vart sletta, vil dei attoppretta versjonane dukke opp i historikken, og den nyaste versjonen vil bli verande som han er.',
-'undeletehistorynoadmin' => 'Ein eller fleire versjonar av denne sida har blitt sletta. Grunnlaget for sletting er oppgjeve under, saman med informasjon om kven som sletta og når versjonane vart sletta. Innhaldet i dei sletta versjonane er berre tilgjengeleg for [[special:listusers/sysop|administratorar]].',
-'undeletebtn'            => 'Attopprett!',
-'undeletedarticle'       => 'attoppretta «[[$1]]»',
-'undeletedrevisions'     => '{{PLURAL:$1|Éin versjon|$1 versjonar}} attoppretta.',
-'undelete-search-submit' => 'Søk',
+'undelete'                     => 'Sletta sider',
+'undeletepage'                 => 'Sletta sider',
+'viewdeletedpage'              => 'Sjå sletta sider',
+'undeletepagetext'             => 'Dei følgjande sidene er sletta, men dei finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
+'undeleterevisions'            => '{{PLURAL:$1|Éin versjon arkivert|$1 versjonar arkiverte}}',
+'undeletehistory'              => 'Om du attopprettar sida, vil alle versjonane i historikken også bli attoppretta. Dersom ei ny side med same namnet er oppretta sidan den gamle sida vart sletta, vil dei attoppretta versjonane dukke opp i historikken, og den nyaste versjonen vil bli verande som han er.',
+'undeletehistorynoadmin'       => 'Ein eller fleire versjonar av denne sida har blitt sletta. Grunnlaget for sletting er oppgjeve under, saman med informasjon om kven som sletta og når versjonane vart sletta. Innhaldet i dei sletta versjonane er berre tilgjengeleg for [[special:listusers/sysop|administratorar]].',
+'undelete-revision'            => 'Sletta versjon av $1 av $3 (frå $2):',
+'undeleterevision-missing'     => 'Ugyldig eller manglande versjon. Lenkja kan vere feil, eller han kan vere fjerna frå arkivet.',
+'undelete-nodiff'              => 'Fann ingen eldre versjonar.',
+'undeletebtn'                  => 'Attopprett!',
+'undeletereset'                => 'Nullstill',
+'undeletecomment'              => 'Kommentar:',
+'undeletedarticle'             => 'attoppretta «[[$1]]»',
+'undeletedrevisions'           => '{{PLURAL:$1|Éin versjon|$1 versjonar}} attoppretta.',
+'undeletedrevisions-files'     => '{{PLURAL:$1|Éin versjon|$1 versjonar}} og {{PLURAL:$2|éi fil|$2 filer}} er attoppretta',
+'undeletedfiles'               => '{{PLURAL:$1|Éi fil|$1 filer}} er attoppretta',
+'cannotundelete'               => 'Feil ved attoppretting, andre kan allereie ha attoppretta sida.',
+'undelete-header'              => 'Sjå [[Special:Log/delete|sletteloggen]] for dei sist sletta sidene.',
+'undelete-search-box'          => 'Søk i sletta sider',
+'undelete-search-prefix'       => 'Vis sider frå og med:',
+'undelete-search-submit'       => 'Søk',
+'undelete-cleanup-error'       => 'Feil ved sletting av den ubrukte arkivfila «$1».',
+'undelete-missing-filearchive' => 'Kunne ikkje attopprette filarkivet med nummer $1 fordi det ikkje ligg i databasen. Det kan allereie ver attoppretta.',
+'undelete-error-short'         => 'Veil ved sletting av fila: $1',
+'undelete-error-long'          => 'Feil ved attoppretting av fila:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Namnerom:',
@@ -1600,9 +1617,14 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'month'         => 'Månad:',
 'year'          => 'År:',
 
+'sp-contributions-newbies'     => 'Vis berre bidrag frå nye brukarar',
 'sp-contributions-newbies-sub' => 'For nybyrjarar',
 'sp-contributions-blocklog'    => 'Blokkeringslogg',
+'sp-contributions-search'      => 'Søk etter bidrag',
+'sp-contributions-username'    => 'IP-adresse eller brukarnamn:',
 'sp-contributions-submit'      => 'Søk',
+
+'sp-newimages-showfrom' => 'Vis nye bilete frå og med $1',
 
 # What links here
 'whatlinkshere'       => 'Lenkjer hit',
@@ -1611,6 +1633,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'linklistsub'         => '(Liste over lenkjer)',
 'linkshere'           => "Desse sidene har lenkjer til '''[[:$1]]''':",
 'nolinkshere'         => "Inga side har lenkje '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Ingen sider har lenkje til '''[[:$1]]''' i det valde namnerommet.",
 'isredirect'          => 'omdirigeringsside',
 'istemplate'          => 'inkludert som mal',
 'whatlinkshere-prev'  => '{{PLURAL:$1|førre|førre $1}}',
@@ -1684,8 +1707,11 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Ipb
 'range_block_disabled'        => 'Funksjonen for blokkering av IP-adresse-seriar er deaktivert på tenaren.',
 'ipb_expiry_invalid'          => 'Ugyldig opphørstid.',
 'ipb_already_blocked'         => '«$1» er allereie blokkert',
+'ipb_cant_unblock'            => 'Feil: Fann ikkje blokkeringsnummeret $1. Blokkeringa kan vere oppheva allereie.',
 'ip_range_invalid'            => 'Ugyldig IP-adresseserie.',
+'blockme'                     => 'Blokker meg',
 'proxyblocker'                => 'Proxy-blokkerar',
+'proxyblocker-disabled'       => 'Denne funksjonen er slått av.',
 'proxyblockreason'            => 'Du er blokkert frå å endre fordi IP-adressa di tilhøyrer ein open mellomtenar (proxy). Du bør kontakte internettleverandøren din eller kundesørvis og gje dei beskjed, ettersom dette er eit alvorleg sikkerheitsproblem.',
 'proxyblocksuccess'           => 'Utført.',
 'sorbsreason'                 => 'IP-adressa di er lista som ein open mellomtenar i DNSBL.',
@@ -1705,6 +1731,7 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Ipb
 'unlockdbsuccesssub'  => 'Skrivevernet på databasen er no oppheva',
 'lockdbsuccesstext'   => 'Databasen er no skriveverna. <br />Hugs å oppheve skrivevernet når du er ferdig med vedlikehaldet.',
 'unlockdbsuccesstext' => 'Skrivevernet er oppheva.',
+'databasenotlocked'   => 'Databasen er ikkje låst.',
 
 # Move page
 'movepage'                => 'Flytt side',
@@ -1721,12 +1748,14 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movearticle'             => 'Flytt side',
 'movenologin'             => 'Ikkje innlogga',
 'movenologintext'         => 'Du lyt vera registrert brukar og vera [[Special:Userlogin|innlogga]] for å flytte ei side.',
+'movenotallowed'          => 'Du har ikkje tilgang til å flytte sider på {{SITENAME}}.',
 'newtitle'                => 'Til ny tittel',
 'move-watch'              => 'Overvak denne sida',
 'movepagebtn'             => 'Flytt side',
 'pagemovedsub'            => 'Flyttinga er gjennomført',
 'movepage-moved'          => "<big>'''«$1» er flytt til «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',
+'cantmove-titleprotected' => 'Du kan ikkje flytte sida hit, fordi det nye sidenamnet er verna mot oppretting.',
 'talkexists'              => "'''Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt flette dei saman manuelt. Dersom det ikkje er mogleg for deg å gjera dette kan du kontakte ein <a href=\"{{localurl:Project:Administratorar}}\">administrator</a> &#8212; men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på endringshistorikken.'''",
 'movedto'                 => 'er flytt til',
 'movetalk'                => 'Flytt diskusjonssida òg om ho finst.',
@@ -1748,14 +1777,16 @@ Målsida «[[$1]]» finst allereie. Vil du slette ho for å gje rom for flytting
 'immobile_namespace'      => 'Måltittelen høyrer til eit namnerom som gjer at sida ikkje kan flyttast dit.',
 
 # Export
-'export'        => 'Eksporter sider',
-'exporttext'    => 'Du kan eksportere teksten og endringshistorikken til ei side eller ein serie sider, pakka inn i litt XML. I framtida kan det hende at dette att kan bli importert til ei anna wiki som brukar MediaWiki-programvaren, men det er det ikkje støtte for dette i denne versjonen av MediaWiki.
+'export'           => 'Eksporter sider',
+'exporttext'       => 'Du kan eksportere teksten og endringshistorikken til ei side eller ein serie sider, pakka inn i litt XML. I framtida kan det hende at dette att kan bli importert til ei anna wiki som brukar MediaWiki-programvaren, men det er det ikkje støtte for dette i denne versjonen av MediaWiki.
 
 For å eksportere sider, skriv tittelen i tekstboksen nedanfor, ein tittel per line, og vel om du vil ha med alle versjonane eller berre siste versjon.
 
 Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{ns:special}}:Export/MediaWiki]] for [[MediaWiki]] sida.',
-'exportcuronly' => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
-'export-submit' => 'Eksporter',
+'exportcuronly'    => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
+'export-submit'    => 'Eksporter',
+'export-download'  => 'Lagre som fil',
+'export-templates' => 'Inkluder malane',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeldingar',
@@ -1786,7 +1817,8 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'import-parse-failure'    => 'Feil i tolking av XML-import',
 
 # Import log
-'importlogpage' => 'Importeringslogg',
+'importlogpage'                 => 'Importeringslogg',
+'import-logentry-upload-detail' => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Brukarsida mi',
@@ -1902,7 +1934,8 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'rcpatroldisabledtext'  => 'Patruljeringsfunksjonen er deaktivert.',
 
 # Image deletion
-'deletedrevision' => 'Slett gammal versjon $1',
+'deletedrevision'       => 'Slett gammal versjon $1',
+'filedeleteerror-short' => 'Feil ved sletting av fila: $1',
 
 # Browsing diffs
 'previousdiff' => '← Gå til førre skilnaden',

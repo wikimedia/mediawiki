@@ -2213,6 +2213,10 @@ $1',
 'version-hook-name'           => 'Nombri el Hook',
 'version-hook-subscribedby'   => 'Suscritu pol',
 'version-version'             => 'Velsión',
+'version-license'             => 'Licéncia',
+'version-software'            => 'Software istalau',
+'version-software-product'    => 'Proutu',
+'version-software-version'    => 'Velsión',
 
 # Special:Filepath
 'filepath'         => "Ruta d'archivu",

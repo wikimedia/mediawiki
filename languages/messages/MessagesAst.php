@@ -472,8 +472,7 @@ non válidu. Por favor escribi una direición con formatu afayadizu o dexa vaciu
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => "La cuenta d'usuariu de $1 ta creada.",
 'createaccount-title'        => 'Creación de cuenta pa {{SITENAME}}',
-'createaccount-text'         => 'Daquién ($1) creó una cuenta pa $2 en {{SITENAME}}
-($4). La clave de "$2" ye "$3". Habríes identificate y camudar la to clave agora.
+'createaccount-text'         => 'Daquién creó una cuenta pa la to direición de corréu electrónicu en {{SITENAME}} ($4) nomada "$2", asociada a la clave "$3". Habríes identificate y camudar la to clave agora.
 
 Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'loginlanguagelabel'         => 'Llingua: $1',
@@ -2357,6 +2356,10 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'version-hook-name'                => 'Nome del hook',
 'version-hook-subscribedby'        => 'Suscritu por',
 'version-version'                  => 'Versión',
+'version-license'                  => 'Llicencia',
+'version-software'                 => 'Software instaláu',
+'version-software-product'         => 'Productu',
+'version-software-version'         => 'Versión',
 
 # Special:Filepath
 'filepath'         => "Ruta d'archivu",

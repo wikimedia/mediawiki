@@ -191,7 +191,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Catagóirí',
-'pagecategories'        => 'Catagóirí',
+'pagecategories'        => '{{PLURAL:$1|Catagóir|Catagóirí}}',
 'category_header'       => 'Ailt sa chatagóir "$1"',
 'subcategories'         => 'Fo-chatagóirí',
 'category-media-header' => 'Meáin sa chatagóir "$1"',
@@ -347,10 +347,8 @@ sonraí.
 "$1", ón suim "$2",
 ab ea an iarratas fiosraithe deireanach chuig an bhunachar sonrai,
 Chuir MySQL an earráid seo ar ais: "$3: $4".',
-'noconnect'            => 'Tá brón orainn! Tá roinnt deacrachtaí teicniúla ag an vicí faoi
-
-láthair,
-agus ní féidir leis teagmháil a dhéanamh leis an mbunachar sonraí.',
+'noconnect'            => 'Tá brón orainn! Tá roinnt deacrachtaí teicniúla ag an vicí faoi láthair, agus ní féidir leis teagmháil a dhéanamh leis an mbunachar sonraí. <br />
+$1',
 'nodb'                 => 'Theip rogha an bhunachair sonraí $1',
 'cachederror'          => 'Seo í cóip taisce den leathanach atá á lorg agat (is dócha nach bhfuil sí bord ar bhord leis an leagan
 
@@ -463,7 +461,7 @@ Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora
 'mailmypassword'             => "Seol m'fhocal faire chugam.",
 'passwordremindertitle'      => 'Cuimneachán an fhocail faire ó {{SITENAME}}',
 'passwordremindertext'       => 'D\'iarr duine éigin (tusa de réir cosúlachta, ón seoladh IP $1)
-go sheolfaimis focal faire {{GRAMMAR:genitive|{{SITENAME}}}} nua.
+go sheolfaimis focal faire {{GRAMMAR:genitive|{{SITENAME}}}} nua  ($4).
 "$3" an focal faire don úsáideoir "$2" anois.
 Ba chóir duit lógail isteach anois agus d\'fhocal faire a athrú.',
 'noemail'                    => 'Níl aon seoladh ríomhphoist i gcuntas don úsáideoir "$1".',
@@ -528,16 +526,23 @@ Is féidir leat neamhaird a thabhairt don teachtaireacht seo má cruthaíodh tr�
 'missingsummary'         => "'''Cuimhneachán:''' Níor thug tú achoimriú don athrú. Má chliceáileann tú Sábháil arís, sábhálfar an t-athrú gan é a hachoimriú.",
 'summary-preview'        => 'Réamhamharc an achoimre',
 'blockedtitle'           => 'Tá an úsáideoir seo faoi chosc',
-'blockedtext'            => 'Chuir $1 cosc ar d\'ainm úsáideora nó ar do sheoladh IP.
-Seo é an cúis a thugadh:<br />\'\'$2\'\'<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
-[[{{MediaWiki:Grouppage-sysop}}|riarthóirí]] chun an cosc a phléigh.
+'blockedtext'            => 'Chuir $1 cosc ar d’ainm úsáideora nó ar do sheoladh IP. Is í seo an chúis a thugadh:<br />\'\'$2\'\'.<p>Is féidir leat teagmháil a dhéanamh le $1 nó le duine eile de na [[{{SITENAME}}:Administrators|riarthóirí]] chun an cosc a phléigh.
 
-Tabhair faoi deara nach bhfuil cead agat an gné "cuir ríomhphost chuig an úsáideoir seo" a úsáid
-mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Special:Preferences|shainroghanna úsáideora]].
+* Tús an chosc: $8
+* Dul as feidhm: $6
+* Sprioc an chosc: $7
+<br />
+Tabhair faoi deara nach féidir leat an gné "cuir ríomhphost chuig an úsáideoir seo" a úsáid mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Special:Preferences|shocruithe úsáideora]]. 
 
-Is é $3 do sheoladh IP. Más é do thoil é, déan tagairt den seoladh seo le gach ceist a chuirfeá.',
+Is é $3 do sheoladh IP agus #$5 do ID coisc. Déan tagairt don seoladh seo le gach ceist a chuirfeá.
+
+==Nóta do úsáideoirí AOL==
+De bhrí ghníomhartha leanúnacha creachadóireachta a dhéanann aon úsáideoir AOL áirithe, is minic a coisceann {{SITENAME}} ar friothálaithe AOL. Faraor, áfach, is féidir le 
+go leor úsáídeoirí AOL an friothálaí céanna a úsáid, agus mar sin is minic a coiscaítear úsáideoirí AOL neamhchiontacha. Gabh ár leithscéal d\'aon trioblóid. 
+
+Dá dtarlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh ríomhphoist AOL. Bheith cinnte tagairt a dhéanamh leis an seoladh IP seo thuas.',
 'whitelistedittitle'     => 'Logáil isteach chun athrú a dhéanamh',
-'whitelistedittext'      => 'Ní mór duit [[Special:Userlogin|logáil isteach]] chun ailt a athrú.',
+'whitelistedittext'      => 'Ní mór duit $1 chun ailt a athrú.',
 'whitelistreadtitle'     => 'Logáil isteach chun ailt a léamh',
 'whitelistreadtext'      => 'Ní mór duit [[Special:Userlogin|logáil isteach]] chun ailt a léamh.',
 'whitelistacctitle'      => 'Níl cead agat cuntas a chruthú',
@@ -653,7 +658,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'searchresulttext'      => 'Féach ar [[{{MediaWiki:Helppage}}|{{int:help}}]] chun a thuilleadh eolais a fháil maidir le cuardaigh {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'searchsubtitle'        => 'Don iarratas "[[:$1]]"',
 'searchsubtitleinvalid' => 'Don iarratas "$1"',
-'noexactmatch'          => 'Níl aon leathanach ann leis an teideal áirithe seo air. Tá cuardach á dhéanamh sa téacs iomlán...',
+'noexactmatch'          => "'''Níl aon leathanach ann leis an teideal \"\$1\".''' Is féidir leat é a [[:\$1|cruthú]].",
 'titlematches'          => 'Tá macasamhla teidil alt ann',
 'notitlematches'        => 'Níl macasamhla teidil alt ann',
 'textmatches'           => 'Tá macasamhla téacs alt ann',
@@ -756,7 +761,7 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 # Recent changes
 'recentchanges'                     => 'Athruithe is déanaí',
 'recentchangestext'                 => 'Déan faire ar na hathruithe is déanaí sa vicí ar an leathanach seo.',
-'rcnote'                            => 'Is iad seo a leanas na <strong>$1</strong> athruithe is déanaí sna <strong>$2</strong> lae seo caite.',
+'rcnote'                            => "Is {{PLURAL:$1|é seo a leanas an athrú|iad seo a leanas na <strong>$1</strong> athruithe}} is déanaí {{PLURAL:$2|sa lá|sna '''$2''' lae}} as $3.",
 'rcnotefrom'                        => 'Is iad seo a leanas na hathruithe ó <b>$2</b> (go dti <b>$1</b> taispeánaithe).',
 'rclistfrom'                        => 'Taispeáin nua-athruithe dom ó <b>$1</b> anuas)',
 'rcshowhideminor'                   => '$1 mionathruithe',
@@ -1101,7 +1106,7 @@ d'athúsáid duine eile eagrán níos luaí cheana féin.
 
 [[User:$3|$3]] ([[User talk:$3|Plé]]) an té a rinne an athrú is déanaí.",
 'editcomment'                 => 'Seo a raibh an mínithe athraithe: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "D'athúsáideadh an athrú seo caite le $1", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Cuntas_cosanta',
 'protectlogtext'              => 'Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
 Féach ar [[Special:Protectedpages|Leathanach glasáilte]] chun a thuilleadh eolais a fháil.',

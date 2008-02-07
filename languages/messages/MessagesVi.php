@@ -2401,6 +2401,10 @@ $1',
 'version-hook-name'                => 'Tên hook',
 'version-hook-subscribedby'        => 'Được theo dõi bởi',
 'version-version'                  => 'Phiên bản',
+'version-license'                  => 'Giấy phép bản quyền',
+'version-software'                 => 'Phần mềm được cài đặt',
+'version-software-product'         => 'Phần mềm',
+'version-software-version'         => 'Phiên bản',
 
 # Special:Filepath
 'filepath'         => 'Đường dẫn tập tin',

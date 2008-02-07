@@ -13,6 +13,7 @@
  * @author לערי ריינהארט
  * @author Dnik
  * @author Suradnik13
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -194,7 +195,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',
 
-'errorpagetitle'    => 'Greška',
+'errorpagetitle'    => 'Pogreška',
 'returnto'          => 'Vrati se na $1.',
 'tagline'           => 'Izvor: {{SITENAME}}',
 'help'              => 'Pomoć',
@@ -250,8 +251,8 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'O projektu {{SITENAME}}',
 'aboutpage'         => 'Project:O_projektu_{{SITENAME}}',
-'bugreports'        => 'Poruke o programskim greškama',
-'bugreportspage'    => 'Project:Poruke_o_programskim_greškama',
+'bugreports'        => 'Poruke o programskim pogreškama',
+'bugreportspage'    => 'Project:Poruke_o_programskim_pogreškama',
 'copyright'         => 'Sadržaji se koriste u skladu s $1.',
 'copyrightpagename' => 'Autorska prava na projektu {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Autorska prava',
@@ -273,7 +274,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'sitesupport'       => 'Novčani prilozi',
 'sitesupport-url'   => 'Project:Donacije',
 
-'badaccess'        => 'Greška u ovlaštenjima',
+'badaccess'        => 'Pogreška u ovlaštenjima',
 'badaccess-group0' => 'Nije vam dopušteno izvršiti ovaj zahvat.',
 'badaccess-group1' => 'Ovaj zahvat mogu izvršiti samo suradnici iz grupe $1.',
 'badaccess-group2' => 'Ovaj zahvat mogu izvršiti samo suradnici iz jedne od grupa $1.',
@@ -326,8 +327,8 @@ nepostojeću naredbu',
 Za popis svih posebnih stranica posjetite [[Special:Specialpages|ovdje]].",
 
 # General errors
-'error'                => 'Greška',
-'databaseerror'        => 'Greška baze podataka',
+'error'                => 'Pogreška',
+'databaseerror'        => 'Pogreška baze podataka',
 'dberrortext'          => 'Došlo je do sintaksne pogreške u upitu bazi.
 Možda se radi o bugu u softveru.
 Posljednji pokušaj upita je glasio:
@@ -355,8 +356,8 @@ Ovo se najčešće događa zbog poveznice na zastarjelu usporedbu ili staru prom
 
 Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom slučaju pošaljete poruku administratoru navodeći URL.',
 'readonly_lag'         => 'Baza podataka je automatski zaključana dok se sekundarni bazni poslužitelji ne usklade s glavnim',
-'internalerror'        => 'Greška sustava',
-'internalerror_info'   => 'Interna greška: $1',
+'internalerror'        => 'Pogreška sustava',
+'internalerror_info'   => 'Interna pogreška: $1',
 'filecopyerror'        => 'Ne mogu kopirati datoteku "$1" u "$2".',
 'filerenameerror'      => 'Ne mogu preimenovati datoteku "$1" u "$2".',
 'filedeleteerror'      => 'Ne mogu obrisati datoteku "$1".',
@@ -364,7 +365,7 @@ Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom sluč
 'filenotfound'         => 'Datoteka "$1" nije nađena.',
 'fileexistserror'      => 'Ne mogu stvoriti datoteku "$1": datoteka s tim imenom već postoji',
 'unexpected'           => 'Neočekivana vrijednost: "$1"="$2".',
-'formerror'            => 'Greška: Ne mogu poslati podatke',
+'formerror'            => 'Pogreška: Ne mogu poslati podatke',
 'badarticleerror'      => 'Ovu radnju nije moguće izvesti s tom stranicom.',
 'cannotdelete'         => 'Ne mogu obrisati navedenu stranicu ili sliku. (Moguće da je već obrisana.)',
 'badtitle'             => 'Loš naslov',
@@ -407,8 +408,8 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'yourpasswordagain'          => 'Ponovno upišite lozinku',
 'remembermypassword'         => 'Trajno zapamti moju lozinku.',
 'yourdomainname'             => 'Vaša domena',
-'externaldberror'            => 'Došlo je do greške s vanjskom autorizacijom ili vam nije dozvoljeno osvježavanje vanjskog suradničkog računa.',
-'loginproblem'               => '<b>Došlo je do greške s vašom prijavom.</b><br />Pokušajte iznova!',
+'externaldberror'            => 'Došlo je do pogreške s vanjskom autorizacijom ili vam nije dozvoljeno osvježavanje vanjskog suradničkog računa.',
+'loginproblem'               => '<b>Došlo je do pogreške s vašom prijavom.</b><br />Pokušajte iznova!',
 'login'                      => 'Prijavi se',
 'loginprompt'                => 'Za prijavu na sustav {{SITENAME}} morate u pregledniku uključiti kolačiće (cookies).',
 'userlogin'                  => 'Prijavi se',
@@ -434,7 +435,7 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'badsiglength'               => 'Suradničko ime je predugo; može imati maksimalno $1 znakova.',
 'email'                      => 'Adresa elektroničke pošte *',
 'prefs-help-realname'        => '* Pravo ime (nije obvezno): za pravnu atribuciju vaših doprinosa.',
-'loginerror'                 => 'Greška u prijavi',
+'loginerror'                 => 'Pogreška u prijavi',
 'prefs-help-email'           => '* E-mail (nije obvezno): Omogućuje drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.
 Također, ako zaboravite lozinku možemo vam na ovu adresu poslati novu, privremenu.',
 'prefs-help-email-required'  => 'Potrebno je navesti adresu e-pošte (e-mail).',
@@ -467,7 +468,7 @@ molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva.',
 'throttled-mailpassword'     => 'Već Vam je poslan e-mail za promjenu lozinke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
 Da bi spriječili zloupotrebu, moguće je poslati jedan e-mail
 za promjenu lozinke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
-'mailerror'                  => 'Greška pri slanju e-maila: $1',
+'mailerror'                  => 'Pogreška pri slanju e-maila: $1',
 'acct_creation_throttle_hit' => 'Nažalost, ne možete otvoriti nove suradničke račune. Već ste otvorili $1.',
 'emailauthenticated'         => 'Vaša e-mail adresa je ovjerena $1.',
 'emailnotauthenticated'      => 'Vaša e-mail adresa još nije ovjerena.
@@ -646,7 +647,7 @@ promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je 
 'nocreatetext'              => 'Na ovom je projektu ograničeno otvaranje novih stranica.
 Možete se vratiti i uređivati već postojeće stranice ili se [[Special:Userlogin|prijaviti ili otvoriti suradnički račun]].',
 'nocreate-loggedin'         => 'Nemate ovlasti za stvaranje novih stranica na {{SITENAME}}.',
-'permissionserrors'         => 'Greška u pravima',
+'permissionserrors'         => 'Pogreška u pravima',
 'permissionserrorstext'     => 'Nemate ovlasti za tu radnju iz sljedećih {{PLURAL:$1|razlog|razloga}}:',
 'recreate-deleted-warn'     => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.''' 
  
@@ -829,10 +830,10 @@ za podešavanje korisničkih postavki.',
 'datedefault'              => 'Nemoj postaviti',
 'datetime'                 => 'Datum i vrijeme',
 'math_failure'             => 'Obrada nije uspjela.',
-'math_unknown_error'       => 'nepoznata greška',
+'math_unknown_error'       => 'nepoznata pogreška',
 'math_unknown_function'    => 'nepoznata funkcija',
-'math_lexing_error'        => 'rječnička greška (lexing error)',
-'math_syntax_error'        => 'sintaksna greška',
+'math_lexing_error'        => 'rječnička pogreška (lexing error)',
+'math_syntax_error'        => 'sintaksna pogreška',
 'math_image_error'         => 'Konverzija u PNG nije uspjela; provjerite jesu li dobro instalirani latex, dvips, gs, i convert',
 'math_bad_tmpdir'          => 'Ne mogu otvoriti ili pisati u privremeni direktorij za matematiku',
 'math_bad_output'          => 'Ne mogu otvoriti ili pisati u odredišni direktorij za matematiku',
@@ -957,7 +958,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'uploadnologin'               => 'Niste prijavljeni',
 'uploadnologintext'           => 'Za postavljanje datoteka morate biti  [[Special:Userlogin|prijavljeni]].',
 'upload_directory_read_only'  => 'Server ne može pisati u direktorij za postavljanje ($1).',
-'uploaderror'                 => 'Greška kod postavljanja',
+'uploaderror'                 => 'Pogreška kod postavljanja',
 'uploadtext'                  => "Ovaj obrazac služi za postavljanje novih slika. Za pregledavanje i pretraživanje već postavljenih slika
 vidi [[Special:Imagelist|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
 
@@ -1028,10 +1029,10 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 
 'upload-proto-error'      => 'Protokol nije valjan',
 'upload-proto-error-text' => 'Udaljeno snimanje zahtijeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
-'upload-file-error'       => 'Interna greška',
-'upload-file-error-text'  => 'Interna greška se dogodila pri pokušaju stvaranja privremene datoteke na poslužitelju. Molimo javite to administratoru web stranice.',
-'upload-misc-error'       => 'Nepoznata greška pri snimanju',
-'upload-misc-error-text'  => 'Dogodila se nepoznata greška pri snimanju. Provjerite valjanost i dostupnost URL-a i pokušajte opet. Ukoliko se problem ponovi, javite to administratoru web stranica.',
+'upload-file-error'       => 'Interna pogreška',
+'upload-file-error-text'  => 'Interna pogreška se dogodila pri pokušaju stvaranja privremene datoteke na poslužitelju. Molimo javite to administratoru web stranice.',
+'upload-misc-error'       => 'Nepoznata pogreška pri snimanju',
+'upload-misc-error-text'  => 'Dogodila se nepoznata pogreška pri snimanju. Provjerite valjanost i dostupnost URL-a i pokušajte opet. Ukoliko se problem ponovi, javite to administratoru web stranica.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL nije dostupan',
@@ -1288,7 +1289,7 @@ da bi mogli slati poštu drugim suradnicima.',
 'emailpagetext'   => 'Ako je suradnik unio valjanu e-mail adresu u svojim postavkama,
 bit će mu poslana poruka s tekstom iz donjeg obrasca.
 E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatelj će vam moći odgovoriti.',
-'usermailererror' => 'Sustav pošte se vratio s greškom:',
+'usermailererror' => 'Sustav pošte javio je pogrešku:',
 'defemailsubject' => '{{SITENAME}} elektronička pošta (e-mail)',
 'noemailtitle'    => 'Nema adrese primaoca',
 'noemailtext'     => 'Ovaj suradnik nije unio valjanu e-mail adresu ili se odlučio na neće primati poštu od drugih suradnika.',
@@ -1507,10 +1508,10 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 'undelete-no-results'          => 'Nije pronađena odgovarajuća stranica u arhivu brisanja.',
 'undelete-filename-mismatch'   => "Ne mogu vratiti inačicu datoteke s vremenom i datumom $1: imena se ne slažu (''filename mismatch'')",
 'undelete-bad-store-key'       => 'Ne mogu vratiti inačicu datoteke s vremenom i datumom $1: datoteka ne postoji (obrisana je) prije vašeg pokušaja brisanja.',
-'undelete-cleanup-error'       => 'Greška pri brisanju nekorištene arhivske datoteke "$1".',
+'undelete-cleanup-error'       => 'Pogreška pri brisanju nekorištene arhivske datoteke "$1".',
 'undelete-missing-filearchive' => 'Vraćanje arhivske datoteke s oznakom $1 nije moguće jer ne postoji u bazi podataka. Moguće je već vraćena.',
-'undelete-error-short'         => 'Greška pri vraćanju datoteke: $1',
-'undelete-error-long'          => 'Dogodila se greška pri vraćanju datoteke:
+'undelete-error-short'         => 'Pogreška pri vraćanju datoteke: $1',
+'undelete-error-long'          => 'Dogodila se pogreška pri vraćanju datoteke:
 
 $1',
 
@@ -1627,8 +1628,8 @@ blokiranja vidi [[Special:Ipblocklist|listu IP blokiranja]].',
 'range_block_disabled'        => 'Isključena je administratorska naredba za blokiranje raspona IP adresa.',
 'ipb_expiry_invalid'          => 'Vremenski rok nije valjan.',
 'ipb_already_blocked'         => '"$1" je već blokiran',
-'ipb_cant_unblock'            => 'Greška: blok ID $1 nije nađen. Moguće je da je suradnik već odblokiran.',
-'ipb_blocked_as_range'        => 'Greška: IP adresa $1 nije blokirana direktno te stoga ne može biti odblokirana. Blokirana je kao dio opsega $2, koji može biti odblokiran.',
+'ipb_cant_unblock'            => 'Pogreška: blok ID $1 nije nađen. Moguće je da je suradnik već odblokiran.',
+'ipb_blocked_as_range'        => 'Pogreška: IP adresa $1 nije blokirana direktno te stoga ne može biti odblokirana. Blokirana je kao dio opsega $2, koji može biti odblokiran.',
 'ip_range_invalid'            => 'Raspon IP adresa nije valjan.',
 'blockme'                     => 'Blokiraj me',
 'proxyblocker'                => 'Zaštita od otvorenih posrednika (proxyja)',
@@ -1776,7 +1777,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'importuploaderrorsize'      => 'Uvoz datoteke nije uspio. Datoteka je veća od dozvoljene veličine.',
 'importuploaderrorpartial'   => 'Uvoz datoteke nije uspio. Datoteka je djelomično uvezena/snimljena.',
 'importuploaderrortemp'      => 'Uvoz datoteke nije uspio. Nema privremenog direktorija.',
-'import-parse-failure'       => 'Greška u parsiranju kod uvoza XML-a',
+'import-parse-failure'       => 'Pogreška u parsiranju kod uvoza XML-a',
 'import-noarticle'           => 'Nema stranice za uvoz!',
 'import-nonewrevisions'      => 'Sve inačice su bile prethodno uvezene.',
 'xml-error-string'           => '$1 u retku $2, stupac $3 (bajt $4): $5',
@@ -1920,8 +1921,8 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 
 # Image deletion
 'deletedrevision'                 => 'Izbrisana stara inačica $1',
-'filedeleteerror-short'           => 'Greška u brisanju datoteke: $1',
-'filedeleteerror-long'            => 'Dogodila se greška prilikom brisanja datoteke:
+'filedeleteerror-short'           => 'Pogreška u brisanju datoteke: $1',
+'filedeleteerror-long'            => 'Dogodila se pogreška prilikom brisanja datoteke:
 
 $1',
 'filedelete-missing'              => 'Datoteka "$1" ne može biti obrisana, jer ne postoji.',
