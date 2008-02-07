@@ -96,6 +96,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->setContinuation($params['continue']);		
 		$this->addWhereFld('cl_to', $categoryTitle->getDBkey());
 		$this->addWhereFld('page_namespace', $params['namespace']);
+		$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
 		
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
@@ -217,6 +218,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'asc',
 					'desc'
 				)
+			),
+			'start' => array(
+				ApiBase :: PARAM_TYPE => 'timestamp'
+			),
+			'end' => array(
+				ApiBase :: PARAM_TYPE => 'timestamp'
 			)
 		);
 	}
@@ -228,6 +235,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
+			'start' => 'Timestamp to start listing from',
+			'end' => 'Timestamp to end listing at',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 			'category' => 'DEPRECATED. Like title, but without the Category: prefix.',
