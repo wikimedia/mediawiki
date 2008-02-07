@@ -81,11 +81,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					// Now get the old revisions
 					// Get one more to facilitate query-continue functionality
 					$count = count($data);
-					$oldies = $img->getHistory($params['limit'] - count($data) + 1, $params['start'], $params['end']);
+					$oldies = $img->getHistory($params['limit'] - $count + 1, $params['start'], $params['end']);
 					foreach($oldies as $oldie) {
 						if(++$count > $params['limit']) {
 							// We've reached the extra one which shows that there are additional pages to be had. Stop here...
-							$this->setContinueEnumParameter('start', $oldie->getTimestamp());
+							// Only set a query-continue if there was only one title
+							if(count($pageIds[NS_IMAGE]) == 1)
+								$this->setContinueEnumParameter('start', $oldie->getTimestamp());
 							break;
 						}
 						$data[] = $this->getInfo($oldie);	
