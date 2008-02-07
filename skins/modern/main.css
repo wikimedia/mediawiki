@@ -111,7 +111,7 @@ body {
 	border-bottom: solid 1px #bbbbbb;
 
 	line-height: 1.5em;
-	padding: 1em 1em 1em 1em;
+	padding: 0 1em 1em 1em;
 }
 
 #mw_portlets {
@@ -1068,12 +1068,33 @@ pre {
 }
 
 .usermessage {
+	background-color: #dadaff;
+}
+
+.mw-topboxes {
+	border-collapse: collapse;
+	margin: 0 -1em 1em -1em;
+	padding: 0 0 8px 0;
+	background: url(footer-grad.png) repeat-x bottom left;
+}
+
+.mw-topbox p {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+.mw-topbox {
         color: black;
         font-weight: bold;
-        margin: -1em -1em 0 -1em;
-        padding: 0 1em 1em 1em;
-        vertical-align: middle;
-        background: #dadaff url(footer-grad.png) repeat-x bottom left;
+	margin: 0 0 0 0;
+	padding: 0 1em 0 1em;
+	vertical-align: middle;
+	border-collapse: collapse;
+	border-bottom: solid 1px #bbbbbb;
+}
+
+#siteSub {
+	background-color: #dddddd;
 }
 
 /* emulate center */

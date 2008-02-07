@@ -91,7 +91,6 @@ class ModernTemplate extends QuickTemplate {
 	</div>
 
 	<div id="mw_main">
-
 	<div id="mw_contentwrapper">
 	<!-- navigation portlet -->
 	<div id="p-cactions" class="portlet">
@@ -114,18 +113,24 @@ class ModernTemplate extends QuickTemplate {
 	     the content area without affecting the meaning of 'em' in #mw_content, which is used
 	     for the margins -->
 	<div id="mw_contentholder">
-			<?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
-			<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
+		<div class='mw-topboxes'>
+			<div class="mw-topbox" id="siteSub"><?php $this->msg('tagline') ?></div>
+			<?php if($this->data['newtalk'] ) {
+				?><div class="usermessage mw-topbox"><?php $this->html('newtalk')  ?></div>
+			<?php } ?>
+			<?php if($this->data['sitenotice']) {
+				?><div class="mw-topbox" id="siteNotice"><?php $this->html('sitenotice') ?></div>
+			<?php } ?>
+		</div>
 
-			<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
-			<div id="contentSub"><?php $this->html('subtitle') ?></div>
+		<div id="contentSub"><?php $this->html('subtitle') ?></div>
 
-			<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
-			<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
+		<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
+		<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
 
-			<?php $this->html('bodytext') ?>
-			<div class='mw_clear'></div>
-			<?php if($this->data['catlinks']) { ?><div id="catlinks"><?php       $this->html('catlinks') ?></div><?php } ?>
+		<?php $this->html('bodytext') ?>
+		<div class='mw_clear'></div>
+		<?php if($this->data['catlinks']) { ?><div id="catlinks"><?php       $this->html('catlinks') ?></div><?php } ?>
 	</div><!-- mw_contentholder -->
 	</div><!-- mw_content -->
 	</div><!-- mw_contentwrapper -->
