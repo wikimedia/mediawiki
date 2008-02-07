@@ -372,6 +372,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12931) Fix wrong global variable in SpecialVersion
 * (bug 12919) Use 'deletedrevision' message as content when deleting an old file
   version
+* (bug 12952) Using Nosuchusershort instead of Nosuchuser when account creation
+  is disabled
 
 == Parser changes in 1.12 ==
 
