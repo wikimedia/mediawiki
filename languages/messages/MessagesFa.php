@@ -2590,6 +2590,10 @@ $1',
 'version-hook-name'                => 'نام قلاب',
 'version-hook-subscribedby'        => 'وارد شده توسط',
 'version-version'                  => 'نسخه',
+'version-license'                  => 'اجازه‌نامه',
+'version-software'                 => 'نسخهٔ نصب‌شده',
+'version-software-product'         => 'محصول',
+'version-software-version'         => 'نسخه',
 
 # Special:Filepath
 'filepath'         => 'مسیر پرونده',
