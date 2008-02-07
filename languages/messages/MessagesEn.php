@@ -1025,7 +1025,7 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token. The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editing $1',
-'editinguser'               => 'Editing user <b>$1</b>',
+'editinguser'               => 'Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 'editingsection'            => 'Editing $1 (section)',
 'editingcomment'            => 'Editing $1 (comment)',
 'editconflict'              => 'Edit conflict: $1',
