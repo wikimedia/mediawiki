@@ -6,7 +6,7 @@
  * @author SPQRobin
  */
 
-$fallback = "tl";
+$fallback = "es";
 
 $messages = array(
 'help'           => 'Ayuda',
