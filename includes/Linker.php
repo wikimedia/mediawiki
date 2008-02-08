@@ -677,8 +677,6 @@ class Linker {
 		$url = $title->getLocalURL( $query );
 
 		$more = htmlspecialchars( wfMsg( 'thumbnail-more' ) );
-		$magnifyalign = $wgContLang->isRTL() ? 'left' : 'right';
-		$textalign = $wgContLang->isRTL() ? ' style="text-align:right"' : '';
 
 		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		if( !$exists ) {
@@ -695,13 +693,13 @@ class Linker {
 			if ( isset( $fp['framed'] ) ) {
 				$zoomicon="";
 			} else {
-				$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
+				$zoomicon =  '<div class="magnify">'.
 					'<a href="'.$url.'" class="internal" title="'.$more.'">'.
 					'<img src="'.$wgStylePath.'/common/images/magnify-clip.png" ' .
 					'width="15" height="11" alt="" /></a></div>';
 			}
 		}
-		$s .= '  <div class="thumbcaption"'.$textalign.'>'.$zoomicon.$fp['caption']."</div></div></div>";
+		$s .= '  <div class="thumbcaption">'.$zoomicon.$fp['caption']."</div></div></div>";
 		return str_replace("\n", ' ', $s);
 	}
 
