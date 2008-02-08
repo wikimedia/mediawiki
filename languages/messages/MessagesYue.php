@@ -461,10 +461,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'protectedpagetext'    => '呢一頁已經鎖咗唔畀改。',
 'viewsourcetext'       => '你可以睇吓或者複製呢一頁嘅原始碼：',
 'protectedinterface'   => '呢一頁提供軟件嘅介面文字，呢一頁已經鎖上以預防濫用。',
-'editinginterface'     => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。要翻譯，請考慮利用[http://translatewiki.net/wiki/Translating:Intro Betawiki]，一個用來為MediaWiki軟件本地化嘅計劃。",
+'editinginterface'     => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。要翻譯，請考慮利用[http://translatewiki.net/wiki/Main_Page?setlang=yue Betawiki]，一個用來為MediaWiki軟件本地化嘅計劃。",
 'sqlhidden'            => '(SQL 查詢隱藏)',
-'cascadeprotected'     => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：
-$2',
+'cascadeprotected'     => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版: $2',
 'namespaceprotected'   => "你無權編輯響'''$1'''空間名裏面嘅呢一版。",
 'customcssjsprotected' => '你無權編輯呢一版，因為佢包含咗另一位用戶嘅個人設定。',
 'ns-specialprotected'  => '響{{ns:special}}空間名嘅版係唔可以編輯嘅。',
@@ -472,9 +471,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => '用戶登出',
-'logouttext'                 => '<strong>你而家已經登出咗。</strong><br />
-你仍然可以用匿名身份用{{SITENAME}}，又或者重新登入。
-但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。',
+'logouttext'                 => '<strong>你而家已經登出咗。</strong>
+
+你仍然可以用匿名身份用{{SITENAME}}，又或者重新登入。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。',
 'welcomecreation'            => '== 歡迎， $1！ ==
 
 你個戶口已經起好。唔好唔記得去改改你嘅{{SITENAME}}喜好設定喎。',
@@ -532,28 +531,23 @@ $2',
 而家用戶 "$2" 嘅新密碼係 "$3"。
 唔該即刻登入，改咗個密碼。
 
-如果係其他人作出呢個請求，又或者你記得返你嘅密碼而又唔想再轉，
-你可以唔使理呢個信息，繼續用舊密碼。',
+如果係其他人作出呢個請求，又或者你記得返你嘅密碼而又唔想再轉，你可以唔使理呢個信息，繼續用舊密碼。',
 'noemail'                    => '呢度冇用戶 "$1" 嘅電郵地址。',
-'passwordsent'               => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。
-收到之後請重新登入。',
+'passwordsent'               => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。收到之後請重新登入。',
 'blocked-mailpassword'       => '你嘅IP地址被鎖住，唔可以用密碼復原功能以防止濫用。',
-'eauthentsent'               => '確認電郵已經傳送到指定嘅電郵地址。
-喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
-'throttled-mailpassword'     => '一個密碼提醒已經響$1個鐘頭之前發送咗。
-為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
+'eauthentsent'               => '確認電郵已經傳送到指定嘅電郵地址。喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
+'throttled-mailpassword'     => '一個密碼提醒已經響$1個鐘頭之前發送咗。為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
 'mailerror'                  => '傳送電郵錯誤： $1',
 'acct_creation_throttle_hit' => '對唔住，你已經開咗 $1 個戶口，唔可以再開多個戶口。',
 'emailauthenticated'         => '你嘅電郵地址已經喺 $1 確認。',
 'emailnotauthenticated'      => '你嘅電郵地址重未確認。 任何傳送電郵嘅功能都唔會運作。',
 'noemailprefs'               => '設置一個電郵地址令到呢啲功能開始運作。',
 'emailconfirmlink'           => '確認你嘅電郵地址',
-'invalidemailaddress'        => '呢個電郵地址嘅格式唔啱，所以接受唔到。
-唔該輸入一個啱格式嘅地址，或清咗嗰個空格。',
+'invalidemailaddress'        => '呢個電郵地址嘅格式唔啱，所以接受唔到。唔該輸入一個啱格式嘅地址，或清咗嗰個空格。',
 'accountcreated'             => '戶口已經建立咗',
 'accountcreatedtext'         => '$1嘅戶口起好咗。',
 'createaccount-title'        => '響{{SITENAME}}度開個新戶口',
-'createaccount-text'         => '有人 ($1) 響{{SITENAME}}度幫 $2 開咗個新戶口 ($4)。 "$2" 嘅密碼係 "$3" 。你應該而家登入，改埋個密碼。
+'createaccount-text'         => '有人響{{SITENAME}}度用咗你個電郵開咗個名叫 "$2" 嘅新戶口 ($4)，密碼係 "$3" 。你應該而家登入，改埋個密碼。
 
 如果個戶口係開錯咗嘅話，你可以唔埋呢篇信。',
 'loginlanguagelabel'         => '語言：$1',
@@ -615,8 +609,7 @@ $2',
 * 對於被封鎖者：$7
 
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論呢次封鎖。
-除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
-否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
+除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
 你現時嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
 'autoblockedtext'           => "你嘅IP地址已經被自動封鎖，由於之前嘅另一位用戶係畀$1封咗。
@@ -629,8 +622,7 @@ $2',
 
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論呢次封鎖。
 
-除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
-否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
+除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
 你個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個封鎖 ID 。",
 'blockednoreason'           => '無原因畀低',
@@ -653,8 +645,7 @@ $2',
 'accmailtext'               => '「$1」嘅密碼已經寄咗去 $2。',
 'newarticle'                => '(新)',
 'newarticletext'            => "你連連過嚟嘅頁面重未存在。
-要起版新嘅，請你喺下面嗰格度輸入。
-(睇睇[[{{MediaWiki:Helppage}}|自助版]]拎多啲資料。)
+要起版新嘅，請你喺下面嗰格度輸入。(睇睇[[{{MediaWiki:Helppage}}|自助版]]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
 'anontalkpagetext'          => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
 'noarticletext'             => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
@@ -678,7 +669,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。 
 當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。</strong>',
 'editing'                   => '而家喺度編輯$1',
-'editinguser'               => '而家喺度編輯用戶<b>$1</b>',
+'editinguser'               => '改緊用戶\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限',
 'editingsection'            => '而家喺度編輯$1 （小節）',
 'editingcomment'            => '而家喺度編輯$1 （評論）',
 'editconflict'              => '編輯衝突：$1',
@@ -690,8 +681,7 @@ $2',
 'yourtext'                  => '你嘅文字',
 'storedversion'             => '已經儲存咗嘅版本',
 'nonunicodebrowser'         => '<strong>警告：你嘅瀏覽器係唔係用緊 Unicode 。而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。</strong>',
-'editingold'                => '<strong>警告：你而家係編輯緊喺呢一頁嘅過時版本。
-如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。</strong>',
+'editingold'                => '<strong>警告：你而家係編輯緊喺呢一頁嘅過時版本。如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。</strong>',
 'yourdiff'                  => '差異',
 'copyrightwarning'          => '請留意喺{{SITENAME}}度，所有喺呢度嘅貢獻會被考慮到喺$2之下發出（睇$1有更詳細嘅資訊）。如果你係唔想你編輯嘅文字無喇喇咁被分發，咁就唔好喺呢度遞交。<br />
 你亦都要同我哋保證啲文字係你自己寫嘅，或者係由公有領域或相似嘅自由資源複製落嚟。
@@ -701,8 +691,7 @@ $2',
 <strong>喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！</strong>',
 'longpagewarning'           => '<strong>警告：呢一頁有 $1 kilobytes 咁長；有啲瀏覽器可能會喺就離或者超過 32kb 編輯頁面會出現一啲問題。
 請考慮分割呢個頁面到細啲嘅小節。</strong>',
-'longpageerror'             => '<strong>錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，
-係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。</strong>',
+'longpageerror'             => '<strong>錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。</strong>',
 'readonlywarning'           => '<strong>錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。</strong>',
 'protectedpagewarning'      => '<strong>警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。</strong>',
 'semiprotectedpagewarning'  => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
@@ -777,24 +766,20 @@ $2',
 'rev-deleted-event'           => '(項目已經移除咗)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 呢頁嘅修訂喺公共檔案庫中已經被洗咗。
-喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
-</div>',
+喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 呢頁嘅修訂喺公共檔案庫中已經洗咗。
 作為一個喺{{SITENAME}}嘅管理員，你可以去睇吓佢；
-喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
-</div>',
+喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。</div>',
 'rev-delundel'                => '顯示／隱藏',
 'revisiondelete'              => '刪除／反刪除修訂',
 'revdelete-nooldid-title'     => '無目標修訂',
 'revdelete-nooldid-text'      => '你重未指定一個或多個修訂去進行呢個功能。',
 'revdelete-selected'          => '揀[[:$1]]嘅$2次修訂：',
 'logdelete-selected'          => '揀[[:$1]]嘅$2次日誌事件：',
-'revdelete-text'              => '刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，
-但係佢哋嘅文字內容係唔可以供公眾瀏覽。
+'revdelete-text'              => '刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，但係佢哋嘅文字內容係唔可以供公眾瀏覽。
 
-其他喺{{SITENAME}}嘅管理員仍然可以睇已經隱藏咗嘅內容，
-同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。',
+其他喺{{SITENAME}}嘅管理員仍然可以睇已經隱藏咗嘅內容，同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。',
 'revdelete-legend'            => '設定修訂限制：',
 'revdelete-hide-text'         => '隱藏修訂嘅文字',
 'revdelete-hide-name'         => '隱藏動作同目標',
@@ -868,9 +853,7 @@ $2',
 'viewprevnext'          => '去睇 ($1) ($2) ($3)',
 'showingresults'        => '自#<b>$2</b>起顯示最多<b>$1</b>個結果。',
 'showingresultsnum'     => '自#<b>$2</b>起顯示<b>$3</b>個結果。',
-'nonefound'             => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、
-\"from\"等太常用而唔會被索引入數據庫嘅詞，
-又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
+'nonefound'             => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、\"from\"等太常用而唔會被索引入數據庫嘅詞，又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
 'powersearch'           => '搵嘢',
 'powersearchtext'       => '喺以下嘅空間名度搵 :<br />$1<br />$2 彈去清單 &nbsp; $3 嘅搜尋 $9',
 'searchdisabled'        => '{{SITENAME}}嘅搜尋功能已經關閉。你可以利用Google嚟搵。不過佢哋對{{SITENAME}}嘅索引可能唔係最新嘅。',
@@ -906,7 +889,7 @@ $2',
 'prefs-personal'           => '用戶簡介',
 'prefs-rc'                 => '最近更改',
 'prefs-watchlist'          => '監視清單',
-'prefs-watchlist-days'     => '監視清單嘅最長顯示日數：',
+'prefs-watchlist-days'     => '監視清單嘅顯示日數：',
 'prefs-watchlist-edits'    => '喺加強版監視清單度嘅最多顯示更改數：',
 'prefs-misc'               => '雜項',
 'saveprefs'                => '儲存',
@@ -1203,9 +1186,7 @@ $2',
 'sitestats'              => '{{SITENAME}}嘅統計',
 'userstats'              => '用戶統計',
 'sitestatstext'          => "資料庫中而家有'''$1'''頁。
-其中包括咗「討論」頁、關於{{SITENAME}}嘅頁、好短嘅「楔位」
-版頁、跳轉，以及其他唔計入內容嘅頁。
-唔計非內容頁在內，則總共有'''$2'''頁可能會計入正規嘅內容。
+其中包括咗「討論」頁、關於{{SITENAME}}嘅頁、好短嘅「楔位」版頁、跳轉，以及其他唔計入內容嘅頁。唔計非內容頁在內，則總共有'''$2'''頁可能會計入正規嘅內容。
 
 '''$8''' 個檔案已經上載。
 
@@ -1293,8 +1274,7 @@ Template:搞清楚',
 'booksources'               => '書籍來源',
 'booksources-search-legend' => '搵書源',
 'booksources-go'            => '去',
-'booksources-text'          => '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，
-可能可以提供到有關你想搵嘅書嘅更多資料：',
+'booksources-text'          => '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，可能可以提供到有關你想搵嘅書嘅更多資料：',
 
 'categoriespagetext' => '喺呢個 wiki 中存在住以下嘅分類。',
 'data'               => '資料',
@@ -1310,8 +1290,7 @@ Template:搞清楚',
 'all-logs-page'        => '全部嘅日誌',
 'log-search-legend'    => '搵日誌',
 'log-search-submit'    => '去',
-'alllogstext'          => '響{{SITENAME}}度全部日誌嘅綜合顯示。
-你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。',
+'alllogstext'          => '響{{SITENAME}}度全部日誌嘅綜合顯示。你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。',
 'logempty'             => '日誌中冇符合嘅項目。',
 'log-title-wildcard'   => '搵以呢個文字開始嘅標題',
 
@@ -1336,18 +1315,14 @@ Template:搞清楚',
 
 # E-mail user
 'mailnologin'     => '冇傳送地址',
-'mailnologintext' => '你一定要[[Special:Userlogin|登入咗]]
-同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址
-先可以傳送電郵畀其他用戶。',
+'mailnologintext' => '你一定要[[Special:Userlogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
 'emailuser'       => '發電郵畀呢位用戶',
 'emailpage'       => '發電郵畀用戶',
-'emailpagetext'   => '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個合法嘅電郵地址，以下表格會發送單單一條信息。
-你喺你嘅用戶喜好設定入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
+'emailpagetext'   => '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個合法嘅電郵地址，以下表格會發送單單一條信息。你喺你嘅用戶喜好設定入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
 'usermailererror' => '目標郵件地址返回錯誤：',
 'defemailsubject' => '{{SITENAME}} 電郵',
 'noemailtitle'    => '無電郵地址',
-'noemailtext'     => '呢個用戶重指指定一個有效嘅電郵電址，
-又或者佢揀咗唔收其他用戶畀佢嘅電郵。',
+'noemailtext'     => '呢個用戶重指指定一個有效嘅電郵電址，又或者佢揀咗唔收其他用戶畀佢嘅電郵。',
 'emailfrom'       => '由',
 'emailto'         => '到',
 'emailsubject'    => '主題',
@@ -1368,8 +1343,7 @@ Template:搞清楚',
 'watchnologintext'     => '你必須先[[Special:Userlogin|登入]]至可以更改你嘅監視清單。',
 'addedwatch'           => '加到監視清單度',
 'addedwatchtext'       => "頁面「[[:$1]]」已加入到你嘅[[Special:Watchlist|監視清單]]度。
-呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，
-佢喺[[Special:Recentchanges|最近更改清單]]度會以'''粗體'''顯示，等你可以容易啲睇到佢。
+呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，佢喺[[Special:Recentchanges|最近更改清單]]度會以'''粗體'''顯示，等你可以容易啲睇到佢。
 
 如果以後你要喺監視清單度刪除佢嘅話，就喺側邊欄度點「唔使監視」。",
 'removedwatch'         => '已經由監視清單中刪除',
@@ -1468,8 +1442,7 @@ wiki: $PAGEEDITOR_WIKI
 'rollbacklink'                => '反轉',
 'rollbackfailed'              => '反轉唔到',
 'cantrollback'                => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
-'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[:$1]]嘅最後編輯；
-有人已經修改過或者反轉咗呢個頁面。
+'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。',
 'editcomment'                 => '編輯摘要係："<i>$1</i>".', # only shown if there is an edit comment
@@ -1525,20 +1498,14 @@ wiki: $PAGEEDITOR_WIKI
 'undelete'                     => '去睇刪除咗嘅頁面',
 'undeletepage'                 => '去睇同恢復刪除咗嘅頁面',
 'viewdeletedpage'              => '去睇被刪除咗嘅頁面',
-'undeletepagetext'             => '以下頁面已經刪除，但係重喺檔庫度可以恢復。
-檔案庫可能會定時清理。',
-'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。
-要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
+'undeletepagetext'             => '以下頁面已經刪除，但係重喺檔庫度可以恢復。檔案庫可能會定時清理。',
+'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
 'undeleterevisions'            => '$1個修訂都已經存檔',
-'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。
-如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度。同時請留意響個檔案修訂嘅限制會響恢復嗰陣遺失。',
+'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度。同時請留意響個檔案修訂嘅限制會響恢復嗰陣遺失。',
 'undeleterevdel'               => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。對於你冇權限去睇嘅修訂係唔能夠恢復嘅。',
-'undeletehistorynoadmin'       => '呢一版已經刪咗。刪除嘅原因喺下面嘅摘要度，
-連同重有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。
-所刪除嘅版本嘅實際內容得管理員可以睇到。',
+'undeletehistorynoadmin'       => '呢一版已經刪咗。刪除嘅原因喺下面嘅摘要度，連同重有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。所刪除嘅版本嘅實際內容得管理員可以睇到。',
 'undelete-revision'            => '已經刪除咗$1嗰陣（響$2）由$3所寫嘅修訂:',
-'undeleterevision-missing'     => '唔正確或者遺失咗修訂。你可能有一個壞連結，
-或者嗰個修訂已經響存檔度恢復咗或者刪除咗。',
+'undeleterevision-missing'     => '唔正確或者遺失咗修訂。你可能有一個壞連結，或者嗰個修訂已經響存檔度恢復咗或者刪除咗。',
 'undelete-nodiff'              => '搵唔到之前嘅修訂。',
 'undeletebtn'                  => '恢復',
 'undeletereset'                => '重設',
@@ -1635,8 +1602,8 @@ $1',
 'ipbhidename'                 => '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名／IP',
 'badipaddress'                => '無效嘅IP地址',
 'blockipsuccesssub'           => '封鎖成功',
-'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]]已經封鎖。
-<br />去[[{{ns:special}}:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
+'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]]已經封鎖。<br />
+去[[{{ns:special}}:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
 'ipb-edit-dropdown'           => '改封鎖原因',
 'ipb-unblock-addr'            => '解封$1',
 'ipb-unblock'                 => '解封一個用戶名或IP地址',
@@ -1689,11 +1656,9 @@ $1',
 # Developer tools
 'lockdb'              => '鎖定資料庫',
 'unlockdb'            => '解除鎖定資料庫',
-'lockdbtext'          => '鎖定資料庫會暫停所有用戶去編輯頁面、更改佢哋嘅喜好設定、
-編輯佢哋嘅監視清單嘅能力，同埋其它需要喺資料庫中更改嘅動作。
+'lockdbtext'          => '鎖定資料庫會暫停所有用戶去編輯頁面、更改佢哋嘅喜好設定、編輯佢哋嘅監視清單嘅能力，同埋其它需要喺資料庫中更改嘅動作。
 請確認你的確係需要要噉做，喺你嘅維護工作完成之後會解除鎖定資料庫。',
-'unlockdbtext'        => '解除資料庫鎖定以便其他用戶可以恢復進行編輯頁面、修改使用
-偏好、修改監視清單以及其他需要修改資料庫嘅操作。
+'unlockdbtext'        => '解除資料庫鎖定以便其他用戶可以恢復進行編輯頁面、修改使用偏好、修改監視清單以及其他需要修改資料庫嘅操作。
 請確認你的而且確打算噉做。',
 'lockconfirm'         => '係，我真係想去鎖定資料庫。',
 'unlockconfirm'       => '係，我真係想去解除鎖定資料庫。',
@@ -1702,8 +1667,8 @@ $1',
 'locknoconfirm'       => '你未剔個確認框喎。',
 'lockdbsuccesssub'    => '資料庫鎖定已經成功',
 'unlockdbsuccesssub'  => '資料庫鎖定已成功移除',
-'lockdbsuccesstext'   => '資料庫現已鎖定。
-<br />請一定要記得喺完成系統維護工作之後[[Special:Unlockdb|解除資料庫嘅鎖定]]。',
+'lockdbsuccesstext'   => '資料庫現已鎖定。<br />
+請一定要記得喺完成系統維護工作之後[[Special:Unlockdb|解除資料庫嘅鎖定]]。',
 'unlockdbsuccesstext' => '資料庫鎖定現已解除。',
 'lockfilenotwritable' => '資料庫封鎖檔案係唔可以寫入嘅。要鎖定或解鎖資料庫，係需要由網頁伺服器中寫入。',
 'databasenotlocked'   => '資料庫而家冇鎖到。',
@@ -1718,8 +1683,7 @@ $1',
 注意如果已經有一個同個新名同名嘅頁面，噉呢個頁面係搬'''唔到'''嘅，除非嗰個同名嘅頁面係空嘅或者佢係一個跳轉頁，兼且要之前冇編輯過（冇編輯歷史）先得。噉即係講萬一你搞錯咗，你可以將呢個頁面改返去佢改之前噉，你唔可以覆蓋一個現有嘅頁面。
 
 <b>警告！</b>
-噉樣對於一個好多人經過嘅頁面嚟講可能係一個好大嘅同埋出人意表嘅修改；
-請你喺行動之前確認你清楚噉做嘅後果。",
+噉樣對於一個好多人經過嘅頁面嚟講可能係一個好大嘅同埋出人意表嘅修改；請你喺行動之前確認你清楚噉做嘅後果。",
 'movepagetalktext'        => "相應嘅討論頁會連同佢一齊自動搬過去，'''除非'''：
 *新嘅頁面名下面已經有咗一個非空嘅討論頁，又或者
 *你唔剔下面個框。
@@ -1734,8 +1698,7 @@ $1',
 'movepagebtn'             => '搬頁',
 'pagemovedsub'            => '搬頁成功',
 'movepage-moved'          => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。
-請揀過第二個名。',
+'articleexists'           => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。請揀過第二個名。',
 'cantmove-titleprotected' => '你唔可以搬呢版去呢個位置，因為個新標題已經保護咗，唔畀開版。',
 'talkexists'              => "'''頁面本身已經成功搬咗，但係個討論頁搬唔到，因為已經有一個同名嘅討論頁。請手工合併佢哋。'''",
 'movedto'                 => '搬去',
@@ -1759,11 +1722,9 @@ $1',
 
 # Export
 'export'            => '倒出/導出/匯出（Export）頁面',
-'exporttext'        => '你可以倒出文字、編輯某個頁面、編輯封裝（wrap）喺一啲XML度嘅一組頁面。
-呢啲嘢可以用MediaWiki透過[[Special:Import|倒入]]頁倒入去其他wiki度。
+'exporttext'        => '你可以倒出文字、編輯某個頁面、編輯封裝（wrap）喺一啲XML度嘅一組頁面。呢啲嘢可以用MediaWiki透過[[Special:Import|倒入]]頁倒入去其他wiki度。
 
-要倒出頁面嘅話，就喺下面嘅文字框度打標題名，一行一個標題，
-然後揀你係要現時版本加上所有嘅舊版本同歷史，定係淨係要現時版本同最後編輯嘅相關資訊。
+要倒出頁面嘅話，就喺下面嘅文字框度打標題名，一行一個標題，然後揀你係要現時版本加上所有嘅舊版本同歷史，定係淨係要現時版本同最後編輯嘅相關資訊。
 
 喺後面嗰種情況下，你亦都可以用一個連結，例如[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]對頁面"[[{{MediaWiki:Mainpage}}]]"。',
 'exportcuronly'     => '淨係包括而家嘅修訂版本，唔包括完整歷史',
@@ -2036,8 +1997,7 @@ Variants for Chinese language
 'metadata-help'     => '呢個檔案有額外嘅資料。佢應該係數碼相機或者掃描器整出來嘅。如果佢整咗之後畀人改過，裏面嘅資料未必同改過之後相符。',
 'metadata-expand'   => '打開詳細資料',
 'metadata-collapse' => '收埋詳細資料',
-'metadata-fields'   => '響呢個信息列出嘅 EXIF 元數據項目會喺圖像頁中包含起嚟，
-而且個元數據表除咗喺下面列出嘅項目之外，其它嘅項目預設會被隱藏。
+'metadata-fields'   => '響呢個信息列出嘅 EXIF 元數據項目會喺圖像頁中包含起嚟，而且個元數據表除咗喺下面列出嘅項目之外，其它嘅項目預設會被隱藏。
 * make
 * model
 * datetimeoriginal
@@ -2311,15 +2271,8 @@ Variants for Chinese language
 # E-mail address confirmation
 'confirmemail'            => '確認電郵地址',
 'confirmemail_noemail'    => '你唔需要響你嘅[[Special:Preferences|用戶喜好設定]]度設定一個有效嘅電郵地址。',
-'confirmemail_text'       => '{{SITENAME}}需要你喺使用電郵功能之前驗證吓你嘅電郵地址。
-啟用下邊個掣嚟發封確認信去你個地址度。
-封信入面會附帶一條包含代碼嘅連結；
-喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。',
-'confirmemail_pending'    => '<div class="error">
-一個確認碼已經電郵咗畀你；
-如果你係啱啱開咗個新戶口嘅，
-你可以響請求一個新嘅確認碼之前等多幾分鐘等佢寄畀你。
-</div>',
+'confirmemail_text'       => '{{SITENAME}}需要你喺使用電郵功能之前驗證吓你嘅電郵地址。啟用下邊個掣嚟發封確認信去你個地址度。封信入面會附帶一條包含代碼嘅連結；喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。',
+'confirmemail_pending'    => '<div class="error">一個確認碼已經電郵咗畀你；如果你係啱啱開咗個新戶口嘅，你可以響請求一個新嘅確認碼之前等多幾分鐘等佢寄畀你。</div>',
 'confirmemail_send'       => '寄出確認碼。',
 'confirmemail_sent'       => '確認電郵已經寄出。',
 'confirmemail_oncreate'   => '一個確認碼已經寄送咗到嘅嘅電郵地址。
@@ -2335,8 +2288,7 @@ Variants for Chinese language
 'confirmemail_subject'    => '{{SITENAME}}電郵地址確認',
 'confirmemail_body'       => '有人（好有可能係嚟自你嘅IP地址 $1）已經用呢個電郵地址喺{{SITENAME}}度註冊咗帳戶"$2"
 
-要確認呢個帳戶的而且確屬於你同埋啟用{{SITENAME}}嘅電郵功能，
-請喺你嘅瀏覽器度打開呢條連結：
+要確認呢個帳戶的而且確屬於你同埋啟用{{SITENAME}}嘅電郵功能，請喺你嘅瀏覽器度打開呢條連結：
 
 $3
 
@@ -2349,10 +2301,7 @@ $3
 'scarytranscludetoolong'  => '[URL 太長；對唔住]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-呢一版嘅過去追蹤：<br />
-$1
-</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">呢一版嘅過去追蹤：<br />$1</div>',
 'trackbackremove'   => ' ([$1 刪除])',
 'trackbacklink'     => '過去追蹤',
 'trackbackdeleteok' => '過去追蹤已經成功噉樣刪除。',
@@ -2455,6 +2404,10 @@ $1',
 'version-hook-name'                => '鈎名',
 'version-hook-subscribedby'        => '利用於',
 'version-version'                  => '版本',
+'version-license'                  => '牌照',
+'version-software'                 => '裝咗嘅軟件',
+'version-software-product'         => '產品',
+'version-software-version'         => '版本',
 
 # Special:Filepath
 'filepath'         => '檔案路徑',
