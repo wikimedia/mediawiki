@@ -1788,7 +1788,7 @@ $1',
 'version-hook-subscribedby'        => '用於',
 'version-version'                  => '版',
 'version-license'                  => '牌',
-'version-software'                 => '已裝之件',
+'version-software'                 => '裝件',
 'version-software-product'         => '品',
 'version-software-version'         => '版',
 
