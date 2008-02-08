@@ -525,16 +525,33 @@ class OutputPage {
 			&& $wgRequest->getText('uselang', false) === false;
 	}
 
+	/** Get a complete X-Vary-Options header */
+	public function getXVO() {
+		global $wgCookiePrefix;
+		return 'X-Vary-Options: ' . 
+			# User ID cookie
+			"Cookie;string-contains={$wgCookiePrefix}UserID;" . 
+			# Session cookie
+			'string-contains=' . session_name() . ',' . 
+			# Encoding checks for gzip only
+			'Accept-Encoding;list-contains=gzip';
+	}
+
 	public function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest;
 		$fname = 'OutputPage::sendCacheControl';
 
+		$response = $wgRequest->response();
 		if ($wgUseETag && $this->mETag)
-			$wgRequest->response()->header("ETag: $this->mETag");
+			$response->header("ETag: $this->mETag");
 
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
-		$wgRequest->response()->header( 'Vary: Accept-Encoding, Cookie' );
+		$response->header( 'Vary: Accept-Encoding, Cookie' );
+
+		# Add an X-Vary-Options header for Squid with Wikimedia patches
+		$response->header( $this->getXVO() );
+
 		if( !$this->uncacheableBecauseRequestvars() && $this->mEnableClientCache ) {
 			if( $wgUseSquid && session_id() == '' &&
 			  ! $this->isPrintable() && $this->mSquidMaxage != 0 )
@@ -546,8 +563,8 @@ class OutputPage {
 					wfDebug( "$fname: proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					$wgRequest->response()->header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
-					$wgRequest->response()->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
+					$response->header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
+					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
@@ -556,24 +573,24 @@ class OutputPage {
 					wfDebug( "$fname: local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					$wgRequest->response()->header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
+					$response->header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
 				wfDebug( "$fname: private caching; {$this->mLastModified} **\n", false );
-				$wgRequest->response()->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-				$wgRequest->response()->header( "Cache-Control: private, must-revalidate, max-age=0" );
+				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
-			if($this->mLastModified) $wgRequest->response()->header( "Last-modified: {$this->mLastModified}" );
+			if($this->mLastModified) $response->header( "Last-modified: {$this->mLastModified}" );
 		} else {
 			wfDebug( "$fname: no caching **\n", false );
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
-			$wgRequest->response()->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-			$wgRequest->response()->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
-			$wgRequest->response()->header( 'Pragma: no-cache' );
+			$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+			$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
+			$response->header( 'Pragma: no-cache' );
 		}
 	}
 
