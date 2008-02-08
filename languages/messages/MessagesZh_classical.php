@@ -447,6 +447,10 @@ $2',
 'invalidemailaddress'        => '驛址不格，惠正略之。',
 'accountcreated'             => '簿增矣',
 'accountcreatedtext'         => '$1簿增矣',
+'createaccount-title'        => '於{{SITENAME}}增簿',
+'createaccount-text'         => '有人於{{SITENAME}}用爾之電郵增名為 "$2" 之簿 ($4)，符節為 "$3" 。汝應登，再改符節也。
+
+如簿誤增，爾可略之。',
 'loginlanguagelabel'         => '語：$1',
 
 # Edit page toolbar
@@ -524,7 +528,7 @@ $2',
 <strong>纂文若合，惠再之。如復不成，簿重登焉。</strong>",
 'token_suffix_mismatch'     => '<strong>君修見拒，蓋因代理之故，亂事見兮。</strong>',
 'editing'                   => '纂$1',
-'editinguser'               => '<b>$1</b>正纂之',
+'editinguser'               => '正纂簿\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權',
 'editingsection'            => '纂節$1',
 'editingcomment'            => '贊$1',
 'editconflict'              => '纂沖$1',
@@ -1674,10 +1678,7 @@ $NEWPAGE
 'scarytranscludetoolong'  => '[歉哉，網址過長]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-此文之引:<br />
-$1
-</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">此文之引:<br />$1</div>',
 'trackbackremove'   => ' （[$1刪]）',
 'trackbacklink'     => '迴響',
 'trackbackdeleteok' => 'Trackback 刪矣。',
@@ -1786,6 +1787,10 @@ $1',
 'version-hook-name'                => '鈎名',
 'version-hook-subscribedby'        => '用於',
 'version-version'                  => '版',
+'version-license'                  => '牌',
+'version-software'                 => '已裝之件',
+'version-software-product'         => '品',
+'version-software-version'         => '版',
 
 # Special:Filepath
 'filepath'         => '檔路',

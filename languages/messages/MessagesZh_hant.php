@@ -467,7 +467,7 @@ $2',
 'accountcreated'             => '已建立帳戶',
 'accountcreatedtext'         => '$1的帳戶已經被創建。',
 'createaccount-title'        => '在{{SITENAME}}中創建新帳戶',
-'createaccount-text'         => '有人 ($1) 在{{SITENAME}}中為 $2 創建了一個新帳戶($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
+'createaccount-text'         => '有人在{{SITENAME}}中利用您的電郵創建了一個名為 "$2" 的新帳戶($4)，密碼是 "$3" 。您應該立即登入並更改密碼。
 
 如果該帳戶創建錯誤的話，您可以忽略此信息。',
 'loginlanguagelabel'         => '語言: $1',
@@ -587,7 +587,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                   => '正在編輯$1',
-'editinguser'               => '正在編輯用戶<b>$1</b>',
+'editinguser'               => '正在更改用戶\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限',
 'editingsection'            => '正在編輯$1 (段落)',
 'editingcomment'            => '正在編輯$1 (評論)',
 'editconflict'              => '編輯衝突：$1',
@@ -808,7 +808,7 @@ $2',
 'prefs-personal'           => '用戶資料',
 'prefs-rc'                 => '最近更改',
 'prefs-watchlist'          => '監視列表',
-'prefs-watchlist-days'     => '監視列表中顯示記錄的最長天數:',
+'prefs-watchlist-days'     => '監視列表中顯示記錄的天數:',
 'prefs-watchlist-edits'    => '在增強的監視列表中顯示的最多更改次數:',
 'prefs-misc'               => '雜項',
 'saveprefs'                => '保存參數設置',
@@ -2238,10 +2238,7 @@ $3
 'scarytranscludetoolong'  => '[抱歉，URL 地址太長]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-此頁面的引用:<br />
-$1
-</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">此頁面的引用:<br />$1</div>',
 'trackbackremove'   => '([$1删除])',
 'trackbacklink'     => '迴響',
 'trackbackdeleteok' => 'Trackback 刪除成功。',
@@ -2343,6 +2340,10 @@ $1
 'version-hook-name'                => '鈎名',
 'version-hook-subscribedby'        => '利用於',
 'version-version'                  => '版本',
+'version-license'                  => '授權',
+'version-software'                 => '已經安裝的軟件',
+'version-software-product'         => '產品',
+'version-software-version'         => '版本',
 
 # Special:Filepath
 'filepath'         => '檔案路徑',

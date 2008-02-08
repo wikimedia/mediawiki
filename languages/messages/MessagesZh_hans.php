@@ -491,7 +491,7 @@ $2',
 'accountcreated'             => '已建立账户',
 'accountcreatedtext'         => '$1的账户已经被创建。',
 'createaccount-title'        => '在{{SITENAME}}中创建新账户',
-'createaccount-text'         => '有人 ($1) 在{{SITENAME}}中为 $2 创建了一个新账户($4)。 "$2" 的密码是 "$3" 。您应该立即登入并更改密码。
+'createaccount-text'         => '有人在{{SITENAME}}中利用您的邮箱创建了一个名为 "$2" 的新帐户($4)，密码是 "$3" 。您应该立即登入并更改密码。
 
 如果该账户创建错误的话，您可以忽略此信息。',
 'loginlanguagelabel'         => '语言: $1',
@@ -612,7 +612,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。</strong>',
 'editing'                   => '正在编辑$1',
-'editinguser'               => '正在编辑用户<b>$1</b>',
+'editinguser'               => '正在更改用户\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限',
 'editingsection'            => '正在编辑$1 (段落)',
 'editingcomment'            => '正在编辑$1 (评论)',
 'editconflict'              => '编辑冲突: $1',
@@ -834,7 +834,7 @@ $2',
 'prefs-personal'           => '用户资料',
 'prefs-rc'                 => '最近更改',
 'prefs-watchlist'          => '监视列表',
-'prefs-watchlist-days'     => '监视列表中显示记录的最长天数:',
+'prefs-watchlist-days'     => '监视列表中显示记录的天数:',
 'prefs-watchlist-edits'    => '在增强的监视列表中显示最多更改次数:',
 'prefs-misc'               => '杂项',
 'saveprefs'                => '保存参数设置',
@@ -2265,10 +2265,7 @@ $3
 'scarytranscludetoolong'  => '[抱歉，URL 过长]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-此页面的引用:<br />
-$1
-</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">此页面的引用:<br />$1</div>',
 'trackbackremove'   => '([$1删除])',
 'trackbacklink'     => '引用',
 'trackbackdeleteok' => '该引用已被成功删除。',
@@ -2370,6 +2367,10 @@ $1
 'version-hook-name'                => '钩名',
 'version-hook-subscribedby'        => '利用於',
 'version-version'                  => '版本',
+'version-license'                  => '授权',
+'version-software'                 => '已经安装的软件',
+'version-software-product'         => '产品',
+'version-software-version'         => '版本',
 
 # Special:Filepath
 'filepath'         => '文件路径',
