@@ -252,6 +252,7 @@ $messages = array(
 'faqpage'           => 'Project:ხშირი შეკითხვები',
 'helppage'          => 'Help:დახმარება',
 'mainpage'          => 'მთავარი გვერდი',
+'policy-url'        => 'Project:პოლიტიკა',
 'portal'            => 'საზოგადოების გვერდები',
 'portal-url'        => 'Project:საზოგადოების გვერდები',
 'privacy'           => 'ანონიმურობის პოლიტიკა',
@@ -351,7 +352,7 @@ $1',
 'protectedpagetext'    => 'ეს გვერდი დაბლოკილია რედაქტირებისთვის.',
 'viewsourcetext'       => 'თქვენ შეგიძლიათ ნახოთ ამ გვერდის საწყისი ფაილი და მისი ასლი შექმნათ:',
 'protectedinterface'   => 'ეს გვერდი პროგრამის ინტერფეისის ნაწილია და დაცულია ვანდალიზმის აღკვეთის მიზნით.',
-'editinginterface'     => "'''ყურადღება:''' თქვენ რედაქტორობთ გვერდს, რომელიც პროგრამის ინტერფეისის ტექსტს შეიცავს. ამ გვერდზე განხორციელებული რედაქტირება გამოიწვევს სხვა მომხმარებელთა სამუშაო ინტერფეისის შეცვლასაც.",
+'editinginterface'     => "'''ყურადღება:''' თქვენ რედაქტორობთ გვერდს, რომელიც პროგრამის ინტერფეისის ტექსტს შეიცავს. ამ გვერდზე განხორციელებული რედაქტირება გამოიწვევს სხვა მომხმარებელთა სამუშაო ინტერფეისის შეცვლასაც. თარგმანისათვის უმჯობესია გამოიყენოთ [http://translatewiki.net/wiki/Main_Page?setlang=ka Betawiki], მედიავიკის ლოკალიზაციის პროექტი.",
 'cascadeprotected'     => 'ეს გვერდი რედაქტირებისგან დაცულია, რადგან იგი ჩართულია სხვა გვერდში, რომელიც დაცულია "კასკადური" პარამეტრი:',
 'namespaceprotected'   => "თქვენ არ გაქვთ '''$1''' სახელთა სივრცეში გვერდების რედაქტირების უფლება.",
 'customcssjsprotected' => 'თქვენ არ გაქვთ ამ გვერდის რედაქტირების უფლება, ვინაიდან ის სხვა მომხმარებლის პირად კონფიგურაციას შეიცავს.',
@@ -444,8 +445,7 @@ $1 საათში.',
 'accountcreated'             => 'ანგარიში შეიქმნა',
 'accountcreatedtext'         => 'მომხმარებლის ანგარიში $1-სთვის შექმნილია.',
 'createaccount-title'        => 'ანგარიშის შექმნა {{SITENAME}}-თვის',
-'createaccount-text'         => 'ვიღაცამ ($1) შექმნა ანგარიში $2 {{SITENAME}} საიტზე
-($4). პაროლი "$2"-თვის არის "$3". გთხოვთ დარეგისტრირდეთ და შეცვალოთ პაროლი.
+'createaccount-text'         => 'ვიღაცამ შექმნა ანგარიში სახელით "$2" და პაროლით "$3" თქვენი ელექტრონული ფოსტისთვის {{SITENAME}}-ში ($4). გთხოვთ დარეგისტრირდეთ და შეცვალოთ პაროლი.
 
 შეგიძლიათ ყურადღება არ მიაქციოთ ამ შეტყობინებას, თუ ანგარიში შეცდომით შეიქმნა.',
 'loginlanguagelabel'         => 'ენა: $1',
@@ -457,7 +457,7 @@ $1 საათში.',
 'resetpass_header'    => 'გაიმეორეთ პაროლი',
 'resetpass_submit'    => 'მიუთითეთ პაროლი და დარეგისტრირდით',
 'resetpass_success'   => 'თქვენი პაროლი წარმატებით შეიცვალა! ამჟამად რეგისტრირდებით...',
-'resetpass_forbidden' => 'პაროლის შეცვლა ამ ვიკიზე შეუძლებელია',
+'resetpass_forbidden' => 'პაროლის შეცვლა {{SITENAME}}-ში შეუძლებელია',
 
 # Edit page toolbar
 'bold_sample'     => 'მუქი ტექსტი',
@@ -592,7 +592,7 @@ $1 საათში.',
 'template-semiprotected'    => '(ნახევრად დაცული)',
 'nocreatetitle'             => 'გვერდის შექმნა ლიმიტირებულია',
 'nocreatetext'              => 'ამ გვერდზე შეუძლებელია ახალი გვერდის შექმნა არსებული აკრძალვის გამო. თქვენ შეგიძლიათ უკან დაბრუნება და არსებული გვერდის რედაქტირება ან [[სპეციალური:Userlogin|შესვლა და ანგარიშის შექმნა]]',
-'nocreate-loggedin'         => 'თქვენ არ გაქვთ ამ ვიკიში ახალი გვერდების შექმნის უფლება.',
+'nocreate-loggedin'         => 'თქვენ არ გაქვთ {{SITENAME}}-ში ახალი გვერდების შექმნის უფლება.',
 'permissionserrorstext'     => 'თქვენ არ გაქვთ ამის გაკეთების უფლება, შემდეგი {{PLURAL:$1|მიზეზის|მიზეზების}} გამო:',
 'recreate-deleted-warn'     => "'''გაფრთხილება: თქვენ ხელახლა ქმნით გვერდს, რომელიც ადრე წაშლილ იქნა.'''
 
@@ -653,9 +653,10 @@ $1 საათში.',
 'revdelete-hide-user'    => 'რედაქტორის მომხ. სახელის/IP-ს დამალვა',
 
 # History merging
-'mergehistory'        => 'გვერდების ისტორიის შერწყმა',
-'mergehistory-submit' => 'ცვლილებების შერწყმა',
-'mergehistory-empty'  => 'რაიმე ცვლილების შერწყმა შეუძლებელია',
+'mergehistory'                => 'გვერდების ისტორიის შერწყმა',
+'mergehistory-submit'         => 'ცვლილებების შერწყმა',
+'mergehistory-empty'          => 'რაიმე ცვლილების შერწყმა შეუძლებელია',
+'mergehistory-no-destination' => 'დანიშნულების გვერდი $1 არ არსებობს.',
 
 # Diffs
 'history-title'           => '"$1" ცვლილებათა ისტორია',
@@ -670,6 +671,7 @@ $1 საათში.',
 'searchsubtitle'        => "თქვენ მოიძიეთ '''[[:$1]]'''",
 'searchsubtitleinvalid' => "თქვენ მოიძიეთ '''$1'''",
 'noexactmatch'          => "'''გვერდი ამ სათაურით \"\$1\" არ არსებობს.''' თქვენ შეგიძლიათ [[:\$1|შექმნათ ეს გვერდი]].",
+'noexactmatch-nocreate' => "'''გვერდი ამ სათაურით \"\$1\" არ არსებობს.'''",
 'titlematches'          => 'სტატიის სათაური შეესაბამება',
 'notitlematches'        => 'არ შეესაბამება არცერთი გვერდის სათაური',
 'textmatches'           => 'გვერდის ტექსტი შესაბამისია',
@@ -707,7 +709,7 @@ $1 საათში.',
 'prefs-personal'           => 'მომხმარებლის მონაცემები',
 'prefs-rc'                 => 'ბოლო ცვლილებები',
 'prefs-watchlist'          => 'კონტროლის სია',
-'prefs-watchlist-days'     => 'კონტროლის სიაში დღეების ჩვენების მაქსიმალური რიცხვი:',
+'prefs-watchlist-days'     => 'კონტროლის სიაში საჩვენებელი დღეები:',
 'prefs-watchlist-edits'    => 'ცვლილებების მაქსიმალური რაოდენობის ჩვენება ვრცელ კონტროლის სიაში:',
 'prefs-misc'               => 'სხვადასხვა',
 'saveprefs'                => 'შენახვა',
@@ -748,8 +750,9 @@ $1 საათში.',
 მოუნიშნავი ჯგუფები არ შეიცვლება. თქვენ შეგიძლიათ არჩევანიდან გააუქმოთ ჯგუფი CRTL + Left დაწკაპუნებით',
 'userrights-reason'           => 'შეცვლის საბაბი:',
 'userrights-available-none'   => 'თქვენ ვერ შეცვლით ჯგუფის წევრობას.',
-'userrights-available-add'    => 'შეგიძლიათ დაამატოთ მომხმარებლები ჯგუფს $1.',
-'userrights-available-remove' => 'შეგიძლიათ წაშალოთ მომხმარებლები ჯგუფიდან $1.',
+'userrights-available-add'    => 'შეგიძლიათ დაამატოთ მომხმარებლები ამ {{PLURAL:$2|ჯგუფს|ჯგუფებს}}: $1.',
+'userrights-available-remove' => 'შეგიძლიათ წაშალოთ მომხმარებლები ამ {{PLURAL:$2|ჯგუფიდან|ჯგუფებიდან}}: $1.',
+'userrights-no-interwiki'     => 'თქვენ არ გაქვთ მომხმარებლის უფლებების რედაქტირების უფლება სხვა ვიკი-ებში.',
 
 # Groups
 'group'               => 'ჯგუფი:',
@@ -769,6 +772,7 @@ $1 საათში.',
 'grouppage-bureaucrat' => '{{ns:project}}:ბიუროკრატები',
 
 # User rights log
+'rightslog'  => 'მომხმარებლის უფლებების ჟურნალი',
 'rightsnone' => '(არცერთი)',
 
 # Recent changes
@@ -925,15 +929,17 @@ $1 საათში.',
 'filerevert-submit'  => 'გაუქმება',
 
 # File deletion
-'filedelete'            => '$1 წაშლა',
-'filedelete-legend'     => 'ფაილის წაშლა',
-'filedelete-intro'      => "თქვენ შლით '''[[Media:$1|$1]]'''.",
-'filedelete-comment'    => 'კომენტარი:',
-'filedelete-submit'     => 'წაშლა',
-'filedelete-success'    => "'''$1''' წაშლილია.",
-'filedelete-nofile'     => "'''$1''' არ არსებობს ამ საიტზე.",
-'filedelete-nofile-old' => "მითითებული ატრიბუტებით '''$1'''-ის არქივირებული ვერსია არ არსებობს.",
-'filedelete-iscurrent'  => 'თქვენ ცდილობთ ამ ფაილის ყველაზე ახალი ვერსიის წაშლას. გთხოვთ, ის ჯერ წინა ვერსიაზე გადაიტანოთ.',
+'filedelete'                  => '$1 წაშლა',
+'filedelete-legend'           => 'ფაილის წაშლა',
+'filedelete-intro'            => "თქვენ შლით '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'კომენტარი:',
+'filedelete-submit'           => 'წაშლა',
+'filedelete-success'          => "'''$1''' წაშლილია.",
+'filedelete-nofile'           => "'''$1''' არ არსებობს {{SITENAME}}-ში.",
+'filedelete-nofile-old'       => "მითითებული ატრიბუტებით '''$1'''-ის არქივირებული ვერსია არ არსებობს.",
+'filedelete-iscurrent'        => 'თქვენ ცდილობთ ამ ფაილის ყველაზე ახალი ვერსიის წაშლას. გთხოვთ, ის ჯერ წინა ვერსიაზე გადაიტანოთ.',
+'filedelete-otherreason'      => 'სხვა/დამატებითი მიზეზი:',
+'filedelete-reason-otherlist' => 'სხვა მიზეზი',
 
 # MIME search
 'mimesearch' => 'MIME ძიება',
@@ -993,6 +999,7 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 
 'withoutinterwiki'        => 'გვერდები ენის ბმულების გარეშე',
 'withoutinterwiki-header' => 'შემდეგ გვერდებს სხვა ენების ვერსიებზე არ აქვთ ბმულები:',
+'withoutinterwiki-submit' => 'ჩვენება',
 
 'fewestrevisions' => 'ყველაზე ნაკლებად რედაქტირებული სტატიები',
 
@@ -1005,7 +1012,7 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'nviews'                  => '$1 ჩვენება',
 'specialpage-empty'       => 'ეს გვერდი ცარიელია.',
 'lonelypages'             => 'ობოლი გვერდები',
-'lonelypagestext'         => 'შემდეგ გვერდებზე ბმულები სხვა გვერდებიდან ამ ვიკიში არ არის.',
+'lonelypagestext'         => 'შემდეგ გვერდებზე არ არის ბმულები სხვა გვერდებიდან {{SITENAME}}-ში.',
 'uncategorizedpages'      => 'გვერდები კატეგორიის გარეშე',
 'uncategorizedcategories' => 'კატეგორიები კატეგორიის გარეშე',
 'uncategorizedimages'     => 'სურათები კატეგორიის გარეშე',
@@ -1022,6 +1029,7 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'mostimages'              => 'ყველაზე მეტი ბმულების მქონე სურათები',
 'mostrevisions'           => 'ყველაზე მეტად რედაქტირებული სტატიები',
 'allpages'                => 'ყველა გვერდი',
+'prefixindex'             => 'საძიებელი სიტყვის დასაწყისის მიხედვით',
 'shortpages'              => 'მოკლე გვერდები',
 'longpages'               => 'გრძელი გვერდები',
 'deadendpages'            => 'ჩიხის გვერდები',
@@ -1182,6 +1190,8 @@ $NEWPAGE
 'excontentauthor'             => "შინაარსი იყო: '$1' (და ერთადერთი ავტორი იყო '$2')",
 'exbeforeblank'               => "გვერდის შინაარსი წაშლამდე იყო შემდეგი: '$1'",
 'exblank'                     => 'გვერდი ცარიელი იყო',
+'delete-confirm'              => '"$1"-ის წაშლა',
+'delete-legend'               => 'წაშლა',
 'historywarning'              => 'ყურადღება: გვერდს, რომლის წაშლასაც აპირებთ, აქვს ისტორია:',
 'confirmdeletetext'           => 'თქვენ აპირებთ გვერდის ან გამოსახულების მისი ისტორიით მონაცემთა ბაზიდან სამუდამოდ წაშლას. გთხოვთ დაადასტუროთ რომ გესმით ამის შედეგები და აკეთებთ ამას [[{{ns:project}}:წესები]] თანახმად.',
 'actioncomplete'              => 'მოქმედება შესრულებულია',
@@ -1194,6 +1204,10 @@ $NEWPAGE
 'deletecomment'               => 'წაშლის მიზეზი',
 'deleteotherreason'           => 'სხვა/დამატებითი მიზეზი:',
 'deletereasonotherlist'       => 'სხვა მიზეზი',
+'deletereason-dropdown'       => '* წაშლის ხშირი მიზეზები
+** ავტორის თხოვნით
+** საავტორო უფლების დარღვევა
+** ვანდალიზმი',
 'rollback'                    => 'რედაქტირების გაუქმება',
 'rollback_short'              => 'გაუქმება',
 'rollbacklink'                => 'გაუქმება',
@@ -1212,6 +1226,7 @@ $NEWPAGE
 'protectexpiry'               => 'ვადა',
 'unprotectsub'                => '(დაცვის მოხსნა "$1")',
 'protect-default'             => '(სტანდარტული)',
+'protect-fallback'            => 'საჭიროა "$1"-ის უფლება',
 'protect-level-autoconfirmed' => 'არარეგისტრირებული მომხმარებლების დაბლოკვა',
 'protect-level-sysop'         => 'მხოლოდ ადმინისტრატორები',
 'protect-expiring'            => 'ვადა გასდის: $1 (UTC)',
@@ -1268,6 +1283,7 @@ $NEWPAGE
 'ucnote'        => 'ქვემოთ არის მოყვანილი  ამ მომხმარებლის უკანასკნელი <b>$1</b> ცვლილებები ბოლო <b>$2</b> დღის განმავლობაში.',
 'uclinks'       => 'იხილე ბოლო $1 ცვლილება; იხილე ბოლო $2 დღე.',
 'uctop'         => '(თავი)',
+'month'         => 'თვე:',
 'year'          => 'წელი:',
 
 'sp-contributions-newbies'     => 'მხოლოდ ახალი მომხმარებლების წვლილის ჩვენება',
@@ -1374,7 +1390,7 @@ $NEWPAGE
 <b>გაფრთხილებთ!</b> ამ მოქმედებამ შეიძლება მნიშვნელოვანი და მოულოდნელი ცვლილება გამოიწვის პოპულარულ გვერდზე; სანამ გააგრძელებდეთ, გთხოვთ დარწმუნდეთ, რომ თქვენ გესმით თქვენი ქმედების შედეგები.',
 'movearticle'             => 'გვერდის გადატანა',
 'movenologin'             => 'რეგისტრაცია ვერ გაიარა',
-'movenotallowed'          => 'თქვენ არ გაქვს ამ ვიკიში გვერდების გადატანის უფლება.',
+'movenotallowed'          => 'თქვენ არ გაქვთ {{SITENAME}}-ში გვერდების გადატანის უფლება.',
 'newtitle'                => 'ახალი სათაური',
 'move-watch'              => 'ამ გვერდის კონტროლი',
 'movepagebtn'             => 'გვერდის გადატანა',
@@ -1434,9 +1450,10 @@ $NEWPAGE
 'importcantopen'             => 'იმპორტირებული ფაილი არ გაიხსნა',
 'importbadinterwiki'         => 'არასწორი ინტერვიკი ბმული',
 'importnotext'               => 'ცარიელია',
-'importsuccess'              => 'იმპორტი წარმატებით განხორციელდა!',
+'importsuccess'              => 'იმპორტი განხორციელდა!',
 
 # Import log
+'importlogpage'                    => 'იმპორტის ჟურნალი',
 'import-logentry-upload-detail'    => '$1 ცვლილება',
 'import-logentry-interwiki-detail' => '$1 ცვლილება $2-დან',
 
@@ -1540,7 +1557,8 @@ $NEWPAGE
 'patrol-log-auto' => '(ავტომატური)',
 
 # Image deletion
-'deletedrevision' => 'წაშლილია ძველი ვერსია $1.',
+'deletedrevision'       => 'წაშლილია ძველი ვერსია $1.',
+'filedeleteerror-short' => 'შეცდომა ფაილის $1 წაშლისას',
 
 # Browsing diffs
 'previousdiff' => '← წინა ცვლილებასთან',
@@ -1607,7 +1625,11 @@ $NEWPAGE
 'exif-digitalzoomratio'          => 'ციფრული გადიდების კოეფიციენტი (ციფრული ზუმი)',
 'exif-contrast'                  => 'კონტრასტი',
 'exif-devicesettingdescription'  => 'მოწყობილობის პარამეტრების აღწერილობა',
+'exif-gpslatitude'               => 'განედი',
+'exif-gpslongitude'              => 'გრძედი',
+'exif-gpsaltitude'               => 'სიმაღლე',
 'exif-gpsspeedref'               => 'სიჩქარის ერთეული',
+'exif-gpstrack'                  => 'მოძრაობის მიმართულება',
 'exif-gpsimgdirection'           => 'სურათზე მიმართულება',
 'exif-gpsdestdistance'           => 'მანძილი დანიშნულებამდე',
 'exif-gpsdatestamp'              => 'GPS-ის მონაცემი',
@@ -1679,6 +1701,7 @@ $NEWPAGE
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'კილომეტრი საათში',
 'exif-gpsspeed-m' => 'მილი საათში',
+'exif-gpsspeed-n' => 'კვანძები',
 
 # External editor support
 'edit-externally'      => 'ამ ფაილის რედაქტირებისას გამოიყენეთ გარე პროგრამა',
@@ -1694,8 +1717,8 @@ $NEWPAGE
 # E-mail address confirmation
 'confirmemail'            => 'ელ. ფოსტის მისამართის დადასტურება',
 'confirmemail_noemail'    => 'თქვენ არ გაქვს მითითებული მართებული ელმისამართი [[Special:Preferences|მომხმარებლის პარამეტრებში]].',
-'confirmemail_text'       => 'ეს ვიკი ითხოვს თქვენი ელ. ფოსტის დადასტურებას სანამ 
-ელ. ფოსტის შესაძლებლობების გამოყენებას შეძლებთ.
+'confirmemail_text'       => '{{SITENAME}} ითხოვს თქვენი ელ. ფოსტის დადასტურებას, სანამ 
+ელ. ფოსტის ფუნქციების გამოყენებას შეძლებთ.
 გააქტიურეთ ღილაკი ქვემოთ თქვენს მისამართზე 
 დამადასტურებელი შეტყობინების გასაგზავნად.
 თქვენს ელ. წერილში მითითებული იქნება ბმული შესაბამის კოდზე;
@@ -1797,5 +1820,16 @@ $1',
 # Watchlist editing tools
 'watchlisttools-view' => 'დაკავშირებული ცვლილებების ხილვა',
 'watchlisttools-edit' => 'კონტროლის სიის ხილვა და რედაქტირება',
+
+# Special:Version
+'version-specialpages'     => 'სპეციალური გვერდები',
+'version-other'            => 'სხვა',
+'version-version'          => 'ვერსია',
+'version-license'          => 'ლიცენზია',
+'version-software-product' => 'პროდუქტი',
+'version-software-version' => 'ვერსია',
+
+# Special:Filepath
+'filepath-page' => 'ფაილი:',
 
 );

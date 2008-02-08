@@ -42,6 +42,7 @@ $messages = array(
 'tog-usenewrc'        => 'Itilize lis swivi ki miyò a (JavaScript)',
 'tog-numberheadings'  => 'Nimewote otomatiman tit yo',
 'tog-showtoolbar'     => 'Montre panèl meni modifikasyon an',
+'tog-editondblclick'  => 'Klike de fwa pou modifye yon paj (JavaScript)',
 'tog-watchcreations'  => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
 
 'underline-always' => 'Toujou',

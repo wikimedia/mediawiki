@@ -67,8 +67,10 @@ $messages = array(
 'qbfind' => 'Kintun',
 'qbedit' => 'Welukan',
 'mytalk' => 'Tañi nütramkawe',
+'and'    => 'ka',
 
 'returnto'         => 'Wüñonge $1 püle.',
+'tagline'          => '{{SITENAME}} mew',
 'help'             => 'Kellu',
 'search'           => 'Kintun',
 'searchbutton'     => 'Kintun',
@@ -98,7 +100,7 @@ $messages = array(
 'hidetoc'                 => 'ellkan',
 'viewdeleted'             => 'Küpaadkintuymi $1 am?',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'Lludüchi',
 'nstab-special'   => 'Kangelu',
 'nstab-mediawiki' => 'Dungu',
@@ -221,9 +223,6 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-mytalk' => 'Tañi nütramkawe',
 'tooltip-pt-logout' => 'Tripan',
-
-# Attribution
-'and' => 'ka',
 
 # Spam protection
 'listingcontinuesabbrev' => 'ramt.',

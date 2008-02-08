@@ -333,7 +333,7 @@ Dät is uk muugelk, dät et n Problem mäd dän Tougriep ap ju Doatenboank rakt.
 'perfdisabled'         => 'Disse Funtion wuude weegen Uurbeläästenge fon dän Server foaruurgungend deaktivierd.',
 'perfcached'           => 'Do foulgjende Doaten stamme uut dän Cache un sunt muugelkerwiese nit aktuäl:',
 'perfcachedts'         => 'Disse Doaten stamme uut dän Cache, lääste Update: $1',
-'querypage-no-updates' => "'''Ju Aktualisierengsfunktion foar disse Siede is apstuuns deaktivierd. Do Doaten wäide toueerst nit fernäid.'''",
+'querypage-no-updates' => "'''Ju Aktualisierengsfunktion foar disse Siede is apstuuns deaktivierd. Do Doaten wäide toueerst nit fernäierd.'''",
 'wrong_wfQuery_params' => 'Falske Parameter foar wfQuery()<br />
 Funktion: $1<br />
 Oufroage: $2',
@@ -1160,7 +1160,7 @@ Lääste schällen dan wächhoald wäide.',
 'allpages'                => 'Aal Artikkele',
 'prefixindex'             => 'Aal Artikkele (mäd Präfix)',
 'shortpages'              => 'Kuute Sieden',
-'longpages'               => 'Loange Artikkel',
+'longpages'               => 'Loange Sieden',
 'deadendpages'            => 'Siede sunner Ferwiese',
 'deadendpagestext'        => 'Do foulgjende Sieden linkje nit tou uur Sieden in {{SITENAME}}.',
 'protectedpages'          => 'Schutsede Sieden',

@@ -1,5 +1,5 @@
 <?php
-/** Jutish (jyske)
+/** Jutish (Jysk)
  *
  * @addtogroup Language
  *
@@ -56,7 +56,9 @@ $messages = array(
 
 # Bits of text used by many pages
 'category_header' => 'Ertikler i\'n klynge "$1"',
+'subcategories'   => 'Underklynger',
 
+'about'     => 'Åm',
 'newwindow' => '(åbner i et nyt vendue)',
 'cancel'    => 'Åfbryd',
 'mytalk'    => 'Min diskusje',
@@ -82,21 +84,23 @@ $messages = array(
 'jumptosearch'     => 'Søĝnenge',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'       => "{{SITENAME}}'m",
-'aboutpage'       => 'Project:Åm',
-'copyrightpage'   => '{{ns:project}}:Åphavsret',
-'disclaimers'     => 'Førbeholt',
-'disclaimerpage'  => 'Project:Huses førbeholt',
-'edithelp'        => 'Hjælp til redigærenge',
-'edithelppage'    => "Help:Vordan redigærer a'n side",
-'helppage'        => 'Help:Hjælpførside',
-'mainpage'        => 'Førsit',
-'portal'          => 'Førside før skrebenter',
-'portal-url'      => 'Project:Førside før skrebenter',
-'privacy'         => 'Behandlenge åf personlige åplysnenger',
-'privacypage'     => 'Project:Behandlinge åf personlige åplysnenger',
-'sitesupport'     => 'Støtside',
-'sitesupport-url' => 'Project:Støtside',
+'aboutsite'         => "{{SITENAME}}'m",
+'aboutpage'         => 'Project:Åm',
+'copyrightpage'     => '{{ns:project}}:Åphavsret',
+'currentevents'     => 'Nænte begevenheder',
+'currentevents-url' => 'Project:Nænte begevenheder',
+'disclaimers'       => 'Førbeholt',
+'disclaimerpage'    => 'Project:Huses førbeholt',
+'edithelp'          => 'Hjælp til redigærenge',
+'edithelppage'      => "Help:Vordan redigærer a'n side",
+'helppage'          => 'Help:Hjælpførside',
+'mainpage'          => 'Førsit',
+'portal'            => 'Førside før skrebenter',
+'portal-url'        => 'Project:Førside før skrebenter',
+'privacy'           => 'Behandlenge åf personlige åplysnenger',
+'privacypage'       => 'Project:Behandlinge åf personlige åplysnenger',
+'sitesupport'       => 'Støtside',
+'sitesupport-url'   => 'Project:Støtside',
 
 'retrievedfrom'   => 'Hæntet frå "$1"',
 'editsection'     => 'redigær',
@@ -159,15 +163,20 @@ $messages = array(
 'copyrightwarning'   => "<strong>Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!</strong><br />
 Du lover os hermed, at du selv <strong>har skrevet skrevselenger</strong>, at skrevselenger tilhører ålmenheden, er (<strong>åpværer hus</strong>), æller at æ <strong>åphavsrets-endehaver</strong> har gevet sen <strong>tilladelse</strong>. Ves denne skrevselenger ålerede er åfentliggkort andre steder, skrev det venligst på æ diskusjesside.
 <i>Bemærk venligst, at ål {{SITENAME}}-ertikler åtomatisk står under „$2“ (se $1 før lileskrevselenger). Ves du ekke vel, at dit arbejde her ændres og udbredes åf andre, så tryk ekke på „Gem“.</i>",
+'templatesused'      => 'Skablåner der er brugt på denne side:',
 'template-protected' => '(skrevebeskyttet)',
 
 # History pages
+'viewpagelogs'     => 'Ves loglister før denne side',
+'currentrev'       => 'Nuværende hersenenge',
 'revisionasof'     => 'Hersenenger frå $1',
 'previousrevision' => '←Ældre hersenenge',
 'cur'              => 'nuværende',
 'last'             => 'forrige',
 
 # Diffs
+'history-title'           => 'Hersengsskigte før "$1"',
+'difference'              => '(Førskelle mellem hersenenger)',
 'lineno'                  => 'Lenje $1:',
 'compareselectedversions' => 'Sammenlign valgte hersenenger',
 'editundo'                => 'baĝgøt',
@@ -244,6 +253,7 @@ Du lover os hermed, at du selv <strong>har skrevet skrevselenger</strong>, at sk
 
 # Delete/protect/revert
 'deletedarticle' => 'slettede "[[$1]]"',
+'dellogpage'     => 'Sletnengslog',
 'rollbacklink'   => 'fjern redigærenge',
 
 # Namespace form on various pages
@@ -259,6 +269,7 @@ Du lover os hermed, at du selv <strong>har skrevet skrevselenger</strong>, at sk
 'whatlinkshere-title' => 'Sider der henveser til $1',
 'linklistsub'         => '(Henvesnengsliste)',
 'linkshere'           => "De følgende sider henveser til '''„[[:$1]]“''':",
+'nolinkshere'         => "Engen sider henveser til '''„[[:$1]]“'''.",
 'isredirect'          => 'åmstyrsside',
 'istemplate'          => 'Skablånvetagnenge',
 'whatlinkshere-prev'  => '{{PLURAL:$1|førge|førge $1}}',
@@ -299,19 +310,26 @@ Du lover os hermed, at du selv <strong>har skrevet skrevselenger</strong>, at sk
 'tooltip-n-help'                  => 'Vordan gør a ...',
 'tooltip-n-sitesupport'           => 'Støt os',
 'tooltip-t-whatlinkshere'         => 'Liste ve ål sider søm henveser hertil',
+'tooltip-t-contributions'         => 'Se denne brugers bidråg',
 'tooltip-t-upload'                => 'Læĝ æ billet, æ sunnåm æller anden mediagøret åp',
 'tooltip-t-specialpages'          => 'Liste ve ål sonst sider',
 'tooltip-ca-nstab-user'           => "Se'n brugerside",
 'tooltip-ca-nstab-image'          => "Se'n billetside",
 'tooltip-ca-nstab-category'       => "Se'n klyngeside",
+'tooltip-minoredit'               => 'Marker dette søm en mendre ændrenge',
 'tooltip-save'                    => 'Gem dine ændrenger',
 'tooltip-preview'                 => 'Førhånds dine ændrenger, brug venligst denne funksje enden du gemmer!',
 'tooltip-diff'                    => 'Ves velke ændrenger du har lavet i æ skrevselenger.',
 'tooltip-compareselectedversions' => 'Se førskellene imellem de to valgte hersenenger åf denne side.',
+'tooltip-watch'                   => 'Tilføj denne side til din åvervågnengsliste',
 
 # Spam protection
+'subcategorycount'       => 'Der er $1 {{PLURAL:$1|underklynge|underklynger}} i denne klynge.',
 'categoryarticlecount'   => 'Der er {{PLURAL:$1|et ertikel|$1 ertikler}} i denne klynge.',
 'listingcontinuesabbrev' => 'førtgøte',
+
+# Browsing diffs
+'previousdiff' => '← Gå til førge førskel',
 
 # Media information
 'file-info-size'       => '($1 × $2 pixel, gøretstørrelse: $3, MIME-senenge: $4)',

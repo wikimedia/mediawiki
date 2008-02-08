@@ -451,7 +451,7 @@ Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
 'session_fail_preview'     => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te teken.</strong>',
 'editing'                  => 'Besig om $1 te wysig',
-'editinguser'              => 'Besig om $1 te wysig',
+'editinguser'              => "Besig om gebruikersrechte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
 'editingsection'           => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'           => 'Besig om $1 (kommentaar) te wysig',
 'editconflict'             => 'Wysigingskonflik: $1',
