@@ -14,6 +14,7 @@
  * @author Emk
  * @author לערי ריינהארט
  * @author Kkkdc
+ * @author JtFuruhata
  */
 
 $skinNames = array(
@@ -255,6 +256,8 @@ $messages = array(
 'disclaimerpage'    => 'Project:免責事項',
 'edithelp'          => '編集の仕方',
 'edithelppage'      => 'Help:編集の仕方',
+'faq'               => 'FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:目次',
 'mainpage'          => 'メインページ',
 'policy-url'        => 'Project:方針',
@@ -263,6 +266,7 @@ $messages = array(
 'privacy'           => 'プライバシー・ポリシー',
 'privacypage'       => 'Project:プライバシー・ポリシー',
 'sitesupport'       => '寄付',
+'sitesupport-url'   => 'Project:このサイトを応援する',
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
@@ -273,6 +277,7 @@ $messages = array(
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext' => 'このページの利用には MediaWiki Version $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => ' "$1" より作成',
 'youhavenewmessages'      => 'あなた宛の$1が届いています。（$2）',
 'newmessageslink'         => '新しいメッセージ',
@@ -292,6 +297,7 @@ $messages = array(
 'site-rss-feed'           => '$1 をRSSフィード',
 'site-atom-feed'          => '$1 をAtomフィード',
 'page-rss-feed'           => '"$1" をRSSフィード',
+'page-atom-feed'          => '"$1" Atomフィード',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '本文',
@@ -361,10 +367,12 @@ $1',
 クエリ: $2',
 'viewsource'           => 'ソースを表示',
 'viewsourcefor'        => '$1 のソース',
+'actionthrottled'      => '操作規制',
+'actionthrottledtext'  => 'あなたが大量の操作を通常考えられないほど短い間隔で行ったため、スパム防止の観点から実行を制限しました。少し時間をおいてからもう一度操作してください。',
 'protectedpagetext'    => 'このページは編集できないように保護されています。',
 'viewsourcetext'       => '以下にソースを表示しています:',
 'protectedinterface'   => 'このページはソフトウェアのインターフェースに使用されるテキストが保存されており、問題回避のために保護されています。',
-'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者に影響します。",
+'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者に影響します。翻訳をする場合、MediaWikiの多言語対応プロジェクトである[http://translatewiki.net/wiki/Main_Page?setlang=ja Betawiki]の利用を検討してください。",
 'sqlhidden'            => '（SQLクエリ非表示）',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。
 $2',
@@ -853,6 +861,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'hide'                              => '隠す',
 'show'                              => '表示',
 'minoreditletter'                   => 'M',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1人がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限（"|" で区切る）',
 'rc_categories_any'                 => 'すべて',
@@ -1790,6 +1800,12 @@ $NEWPAGE
 'newimages'    => '新規画像展示室',
 'showhidebots' => '（ボットを$1）',
 'noimages'     => '画像がありません。',
+
+# Bad image list
+'bad_image_list' => '書式は以下の通りです：
+
+リストアイテム（ * で始まる行）のみであることが考慮されています。各行最初のリンクは、ふさわしくない画像へのリンクとしてください。
+各行2番目以降のリンクはその限りではありません。要は、画像へのリンクを列挙することです。',
 
 /*
 Short names for language variants used for language conversion links.

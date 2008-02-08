@@ -358,7 +358,7 @@ Procura: $2',
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
 'protectedinterface'   => 'Esta páxina fornece o texto da interface para a o software e está protexida para evitar o abuso.',
-'editinginterface'     => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software. Os cambios nesta páxina afectarán a aparencia da interface para os outros usuarios.",
+'editinginterface'     => "Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software. Os cambios nesta páxina afectarán a aparencia da interface para os outros usuarios. Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl Betawiki], a localización do proxecto Mediawiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
 'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}}, a "protección en serie" activada: $2',
 'namespaceprotected'   => "Non dispón de permisos para modificar páxinas no espazo de nomes '''$1'''.",
@@ -446,9 +446,8 @@ $1 horas.',
 'accountcreated'             => 'Conta creada',
 'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
 'createaccount-title'        => 'Creación da conta para {{SITENAME}}',
-'createaccount-text'         => 'Alguen ($1) creou unha conta de $2 sobre ((SITENAME))
-($4). O contrasinal para "$2" é "$3". Debe acceder e mudar o contrasinal
-agora.
+'createaccount-text'         => 'Alguén creou unha conta para o seu enderezo de correo electrónico en ((SITENAME))
+($4). O contrasinal para "$2" é "$3". Debe rexistrarse e mudar o contrasinal agora.
 
 Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'loginlanguagelabel'         => 'Lingua: $1',
@@ -577,7 +576,7 @@ Por favor, ténteo de novo. Se segue sen funcionar, probe a saír do sistema e v
 Rexeitouse a edición para evitar que se corrompa o texto do artigo. Isto pode acontecer porque estea a
 empregar un servizo de proxy anónimo defectuoso baseado na web.</strong>',
 'editing'                   => 'Editando $1',
-'editinguser'               => 'Editando <b>$1</b>',
+'editinguser'               => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editando $1 (sección)',
 'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => 'Conflito de edición: $1',
@@ -809,7 +808,7 @@ Procurar $3 $9',
 'prefs-personal'           => 'Información do usuario',
 'prefs-rc'                 => 'Cambios recentes',
 'prefs-watchlist'          => 'Listaxe de vixilancia',
-'prefs-watchlist-days'     => 'Número de días para mostrar na listaxe de vixilancia:',
+'prefs-watchlist-days'     => 'Días para amosar na listaxe de vixilancia:',
 'prefs-watchlist-edits'    => 'Número de edicións para mostrar na listaxe de vixilancia completa:',
 'prefs-misc'               => 'Preferencias varias',
 'saveprefs'                => 'Gardar as preferencias',
@@ -2326,6 +2325,10 @@ Tente a vista previa normal.',
 'version-other'             => 'Outro',
 'version-hook-subscribedby' => 'Subscrito por',
 'version-version'           => 'Versión',
+'version-license'           => 'Licenza',
+'version-software'          => 'Software instalado',
+'version-software-product'  => 'Produto',
+'version-software-version'  => 'Versión',
 
 # Special:Filepath
 'filepath'         => 'Ruta do arquivo',

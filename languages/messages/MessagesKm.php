@@ -5,6 +5,7 @@
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Bunly
+ * @author តឹក ប៊ុនលី
  */
 
 $digitTransformTable = array(
@@ -170,7 +171,9 @@ $messages = array(
 'show'          => 'បង្ហាញ',
 
 # Upload
-'upload' => 'អាប់ឡូដឯកសារ',
+'upload' => 'អាប់ឡូដ',
+
+'license' => 'អាជ្ញាបណ្ណ',
 
 # Image list
 'filehist'              => 'ប្រវត្តិឯកសារ',
@@ -193,7 +196,7 @@ $messages = array(
 'popularpages' => 'ទំព័រមានប្រជាប្រិយភាព',
 'allpages'     => 'គ្រប់ទំព័រ',
 'shortpages'   => 'ទំព័រខ្លីៗ',
-'specialpages' => 'ទំព័របិសេសៗ',
+'specialpages' => 'ទំព័រពិសេសៗ',
 'move'         => 'ប្តូរទីតាំង',
 
 # Special:Log

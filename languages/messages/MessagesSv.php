@@ -680,7 +680,7 @@ så som det kommer att se ut om du väljer att spara.',
 i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
 'editing'                   => 'Redigerar $1',
-'editinguser'               => 'Redigerar $1',
+'editinguser'               => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Redigerar $1 (avsnitt)',
 'editingcomment'            => 'Redigerar $1 (kommentar)',
 'editconflict'              => 'Redigeringskonflikt: $1',

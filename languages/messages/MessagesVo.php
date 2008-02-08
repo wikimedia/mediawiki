@@ -881,9 +881,9 @@ Atis fakipölo, retons nog {{PLURAL:\$2|pad '''1''', kel luveratiko binon legiko
 {{PLURAL:\$8|Ragiv '''1''' pelöpükon|Ragivs '''\$8''' pelöpükons}}.
 
 Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL:\$4|padiredakam '''1'''|padiredakams '''\$4'''}}, sisä vük at pästiton.
-Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
+Kludo, zänedo ebinons redakams '''\$5''' a pad, e logams '''\$6''' a redakam.
 
-Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'''.",
+Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$7'''.",
 'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5{{PLURAL:$2||s}}.",
 'statistics-mostpopular' => 'Pads suvüno palogöls:',
 

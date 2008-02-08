@@ -890,7 +890,7 @@ $1 ساعة.',
 في نص التعديل. التعديل تم رفضه لمنع فساد نص المقالة. 
 هذا يحدث أحيانا عندما تستخدم خدمة بروكسي مجهولة معيبة أساسها الويب.</strong>',
 'editing'                   => 'تحرير $1',
-'editinguser'               => 'تحرير مستخدم <b>$1</b>',
+'editinguser'               => "تغيير صلاحيات المستخدم للمستخدم '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'تحرير $1 (قسم)',
 'editingcomment'            => 'تحرير $1 (تعليق)',
 'editconflict'              => 'تضارب في التحرير: $1',
