@@ -68,3 +68,18 @@ body.rtl td.mw-submit { text-align: right; }
 
 td.mw-label { vertical-align: top; }
 td.mw-submit { white-space: nowrap; }
+
+/**
+ * Lists (fixing for RTL display_
+ */
+body.rtl #body-content ul { display:table; }
+body.rtl #body-content ol { display:table; }
+
+/**
+ * Image captions
+ */
+body.rtl .thumbcaption { text-aling:right; }
+body.rtl .magnify { float:left; }
+
+body.ltr .thumbcaption { text-aling:left; }
+body.ltr .magnify { float:right; }
