@@ -2390,7 +2390,7 @@ $1',
 'unknown_extension_tag' => '未知嘅擴展標籤 "$1"',
 
 # Special:Version
-'version-extensions'               => '已經安裝咗嘅擴展',
+'version-extensions'               => '裝咗嘅擴展',
 'version-specialpages'             => '特別頁',
 'version-parserhooks'              => '語法鈎',
 'version-variables'                => '變數',
