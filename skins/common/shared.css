@@ -70,7 +70,7 @@ td.mw-label { vertical-align: top; }
 td.mw-submit { white-space: nowrap; }
 
 /**
- * Lists (fixing for RTL display_
+ * Lists (fixing for RTL display)
  */
 body.rtl #body-content ul { display:table; }
 body.rtl #body-content ol { display:table; }
@@ -78,8 +78,8 @@ body.rtl #body-content ol { display:table; }
 /**
  * Image captions
  */
-body.rtl .thumbcaption { text-aling:right; }
+body.rtl .thumbcaption { text-align:right; }
 body.rtl .magnify { float:left; }
 
-body.ltr .thumbcaption { text-aling:left; }
+body.ltr .thumbcaption { text-align:left; }
 body.ltr .magnify { float:right; }
