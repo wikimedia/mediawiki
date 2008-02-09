@@ -348,7 +348,6 @@ class MessageCache {
 		wfProfileIn( __METHOD__ );
 		$this->lock();
 		$this->load();
-		$parserMemc->delete(wfMemcKey('sidebar'));
 		if ( is_array( $this->mCache ) ) {
 			if ( $text === false ) {
 				# Article was deleted
@@ -376,6 +375,7 @@ class MessageCache {
 			}
 		}
 		$this->unlock();
+		$parserMemc->delete(wfMemcKey('sidebar'));
 		wfProfileOut( __METHOD__ );
 	}
 
