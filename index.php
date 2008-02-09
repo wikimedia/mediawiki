@@ -35,10 +35,11 @@
 
 
 # Initialise common code
-require_once( './includes/WebStart.php' );
+$preIP = dirname( __FILE__ );
+require_once( "$preIP/includes/WebStart.php" );
 
 # Initialize MediaWiki base class
-require_once( "includes/Wiki.php" );
+require_once( "$preIP/includes/Wiki.php" );
 $mediaWiki = new MediaWiki();
 
 wfProfileIn( 'main-misc-setup' );
