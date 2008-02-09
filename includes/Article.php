@@ -978,6 +978,11 @@ class Article {
 			$update = SquidUpdate::newSimplePurge( $this->mTitle );
 			$update->doUpdate();
 		}
+		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			global $wgMessageCache;
+			$text = $this->getContent();
+			$wgMessageCache->replace( $this->mTitle->getDBkey(), $text );
+		}
 		$this->view();
 	}
 
