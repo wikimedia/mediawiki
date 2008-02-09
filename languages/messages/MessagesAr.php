@@ -238,6 +238,7 @@ $magicWords = array(
 	'special'             => array( '0', 'خاص', 'special' ),
 	'defaultsort'         => array( '1', 'ترتيب_قياسي:', 'ترتيب_افتراضي:', 'مفتاح_ترتيب_قياسي:', 'مفتاح_ترتيب_افتراضي:', 'ترتيب_تصنيف_قياسي:', 'ترتيب_تصنيف_افتراضي:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'            => array( '0', 'مسار_الملف:', 'مسار_ملف:', 'FILEPATH:' ),
+	'tag'                 => array( '0', 'وسم', 'tag' ),
 );
 
 $skinNames = array(
@@ -248,6 +249,7 @@ $skinNames = array(
 	'myskin'      => 'واجهتي',
 	'chick'       => 'تشيك',
 	'simple'      => 'سيمبل',
+	'modern'      => 'مودرن',
 );
 
 $digitTransformTable = array(
@@ -271,6 +273,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'توضيحات' ),
 	'Userlogin'                 => array( 'دخول_المستخدم' ),
 	'Userlogout'                => array( 'خروج_المستخدم' ),
+	'CreateAccount'             => array( 'إنشاء_حساب' ),
 	'Preferences'               => array( 'تفضيلات' ),
 	'Watchlist'                 => array( 'قائمة_المراقبة' ),
 	'Recentchanges'             => array( 'أحدث_التغييرات' ),
@@ -342,6 +345,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'ضبط_كلمة_السر' ),
 	'Withoutinterwiki'          => array( 'بدون_إنترويكي' ),
 	'MergeHistory'              => array( 'دمج_التاريخ' ),
+	'Filepath'                  => array( 'مسار_ملف' ),
 );
 
 $messages = array(
