@@ -141,11 +141,14 @@ $messages = array(
 'dec'           => 'Des',
 
 # Bits of text used by many pages
-'categories'      => 'Kategorieë',
-'pagecategories'  => '{{PLURAL:$1|Kategorie|Kategorieë}}',
-'category_header' => 'Artikels in "$1"-kategorie',
-'subcategories'   => 'Subkategorieë',
-'category-empty'  => "''Hierdie kategorie bevat geen artikels of media.''",
+'categories'            => 'Kategorieë',
+'pagecategories'        => '{{PLURAL:$1|Kategorie|Kategorieë}}',
+'category_header'       => 'Artikels in "$1"-kategorie',
+'subcategories'         => 'Subkategorieë',
+'category-media-header' => 'Media in kategorie "$1"',
+'category-empty'        => "''Hierdie kategorie bevat geen artikels of media.''",
+
+'mainpagetext' => "<big>'''MediaWiki is suksesvol geïnstalleer.'''</big>",
 
 'about'          => 'Omtrent',
 'article'        => 'Inhoudbladsy',
@@ -185,6 +188,7 @@ $messages = array(
 'deletethispage'    => 'Skrap bladsy',
 'undelete_short'    => 'Herstel {{PLURAL:$1|een wysiging|$1 wysigings}}',
 'protect'           => 'Beskerm',
+'protect_change'    => 'wysig beskerming',
 'protectthispage'   => 'Beskerm hierdie bladsy',
 'unprotect'         => 'Verwyder beskerming',
 'unprotectthispage' => 'Verwyder beskerming',
@@ -228,7 +232,7 @@ $messages = array(
 'disclaimers'       => 'Voorbehoud',
 'disclaimerpage'    => 'Project:Voorwaarden',
 'edithelp'          => 'Wysighulp',
-'edithelppage'      => 'Help:Redigeer',
+'edithelppage'      => 'Help:Wysig',
 'faq'               => 'Gewilde vrae',
 'faqpage'           => 'Project:GewildeVrae',
 'helppage'          => 'Help:Hulp',
@@ -252,6 +256,7 @@ $messages = array(
 'showtoc'             => 'wys',
 'hidetoc'             => 'versteek',
 'thisisdeleted'       => 'Bekyk of herstel $1?',
+'viewdeleted'         => 'Bekyk $1?',
 'restorelink'         => '{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -273,47 +278,48 @@ $messages = array(
 'nospecialpagetext' => 'Ongeldige spesiale bladsy gespesifeer.',
 
 # General errors
-'error'            => 'Fout',
-'databaseerror'    => 'Databasisfout',
-'dberrortext'      => 'Sintaksisfout in databasisnavraag.
+'error'              => 'Fout',
+'databaseerror'      => 'Databasisfout',
+'dberrortext'        => 'Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie "<tt>$2</tt>".
 MySQL foutboodskap "<tt>$3: $4</tt>".',
-'noconnect'        => 'Kon nie met databasis op $1 konnekteer nie',
-'nodb'             => 'Kon nie databasis $1 selekteer nie',
-'cachederror'      => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
-'readonly'         => 'Databasis gesluit',
-'enterlockreason'  => 'Rede vir die sluiting,
+'noconnect'          => 'Kon nie met databasis op $1 konnekteer nie',
+'nodb'               => 'Kon nie databasis $1 selekteer nie',
+'cachederror'        => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
+'readonly'           => 'Databasis gesluit',
+'enterlockreason'    => 'Rede vir die sluiting,
 en beraming van wanneer ontsluiting sal plaas vind',
-'readonlytext'     => 'Die {{SITENAME}} databasis is tans gesluit vir nuwe
+'readonlytext'       => 'Die {{SITENAME}} databasis is tans gesluit vir nuwe
 artikelwysigings, waarskynlik vir roetine databasisonderhoud,
 waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
 
 $1',
-'missingarticle'   => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
+'missingarticle'     => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
 Nie databasisfout nie, moontlik sagtewarefout.
 Raporteer die adres asseblief aan enige administrateur.',
-'readonly_lag'     => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
-'internalerror'    => 'Interne fout',
-'filecopyerror'    => 'Kon nie lêer van "$1" na "$2" kopieer nie.',
-'filerenameerror'  => 'Kon nie lêernaam van "$1" na "$2" wysig nie.',
-'filedeleteerror'  => 'Kon nie lêer "$1" skrap nie.',
-'filenotfound'     => 'Kon nie lêer "$1" vind nie.',
-'unexpected'       => 'Onverwagte waarde: "$1"="$2".',
-'formerror'        => 'Fout: kon vorm nie stuur nie',
-'badarticleerror'  => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
-'cannotdelete'     => 'Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.',
-'badtitle'         => 'Ongeldige titel',
-'badtitletext'     => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
+'readonly_lag'       => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
+'internalerror'      => 'Interne fout',
+'filecopyerror'      => 'Kon nie lêer van "$1" na "$2" kopieer nie.',
+'filerenameerror'    => 'Kon nie lêernaam van "$1" na "$2" wysig nie.',
+'filedeleteerror'    => 'Kon nie lêer "$1" skrap nie.',
+'filenotfound'       => 'Kon nie lêer "$1" vind nie.',
+'unexpected'         => 'Onverwagte waarde: "$1"="$2".',
+'formerror'          => 'Fout: kon vorm nie stuur nie',
+'badarticleerror'    => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
+'cannotdelete'       => 'Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.',
+'badtitle'           => 'Ongeldige titel',
+'badtitletext'       => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
-'perfdisabled'     => 'Jammer, hierdie funksie is tydelik afgeskakel omdat dit die databasis soveel verstadig dat dit onbruikbaar vir andere raak.',
-'perfcached'       => "ie volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
-'perfcachedts'     => 'Die volgende data is gekas. Laaste opdatering: $1',
-'viewsource'       => 'Bekyk bronteks',
-'viewsourcefor'    => 'vir $1',
-'editinginterface' => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (die vertalingsprojek vir MediaWiki) te gebruik.",
+'perfdisabled'       => 'Jammer, hierdie funksie is tydelik afgeskakel omdat dit die databasis soveel verstadig dat dit onbruikbaar vir andere raak.',
+'perfcached'         => "ie volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
+'perfcachedts'       => 'Die volgende data is gekas. Laaste opdatering: $1',
+'viewsource'         => 'Bekyk bronteks',
+'viewsourcefor'      => 'vir $1',
+'editinginterface'   => "'''Waarskuwing:''' Jy is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, overweeg om [http://translatewiki.net/wiki/Main_Page?setlang=af Betawiki] (die vertalingsprojek vir MediaWiki) te gebruik.",
+'namespaceprotected' => "U het nie die rechte nie om bladsye in die '''$1'''-naamruimte te wysig.",
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
@@ -429,6 +435,8 @@ Jy mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]
 You cannot use the 'email this user' feature unless a valid email address is specified in your
 [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+'blockednoreason'          => 'geen rede gegeef nie',
+'whitelistedittext'        => 'U moet $1 om bladsye te wysig.',
 'confirmedittitle'         => 'E-pos-bevestiging nodig om te redigeer',
 'confirmedittext'          => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'accmailtitle'             => 'Wagwoord gestuur.',
@@ -446,7 +454,7 @@ Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
 'userjspreview'            => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
 'updated'                  => '(Gewysig)',
 'note'                     => '<strong>Nota:</strong>',
-'previewnote'              => "Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!",
+'previewnote'              => "<strong>Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!</strong>",
 'previewconflict'          => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien jy die bladsy stoor.',
 'session_fail_preview'     => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te teken.</strong>',
@@ -475,6 +483,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'permissionserrorstext'    => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
 
 # History pages
+'viewpagelogs'        => 'Bekyk logboeke vir hierdie bladsy',
 'nohistory'           => 'Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.',
 'revnotfound'         => 'Weergawe nie gevind nie',
 'revnotfoundtext'     => 'Die ou weergawe wat jy aangevra het kon nie gevind word nie. Gaan asseblief die URL na wat jy gebruik het.',
@@ -499,6 +508,10 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 
 # Revision feed
 'history-feed-title' => 'Weergawegeskiedenis',
+
+# Revision deletion
+'rev-deleted-user' => '(gebruikersnaam geskrap)',
+'rev-delundel'     => 'wys/versteek',
 
 # Diffs
 'history-title'           => 'Weergawegeskiedenis van "$1"',
@@ -588,8 +601,11 @@ om voorkeure te spesifiseer.',
 'files'                    => 'Lêers',
 
 # User rights
+'userrights-lookup-user'     => 'Beheer gebruikersgroepe',
 'editusergroup'              => 'Wysig gebruikersgroepe',
-'saveusergroups'             => 'Stoor gebruikersgroepen',
+'userrights-editusergroup'   => 'wysig gebruikersgroepe',
+'saveusergroups'             => 'Stoor gebruikersgroepe',
+'userrights-groupsmember'    => 'Lid van:',
 'userrights-groupsremovable' => 'Skrapbare groepen:',
 'userrights-groupsavailable' => 'Beskikbare groepen:',
 'userrights-reason'          => 'Rede vir wysiging:',
@@ -687,7 +703,8 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'successfulupload'  => 'Laai suksesvol',
 'uploadwarning'     => 'Laaiwaarskuwing',
 'savefile'          => 'Stoor lêer',
-'uploadedimage'     => 'Het "[[$1]]" gelaai',
+'uploadedimage'     => 'het "[[$1]]" gelaai',
+'overwroteimage'    => 'het een nuwe weergawe van "[[$1]]" gelaai',
 'uploaddisabled'    => 'Laai is uitgeskakel',
 'uploadcorrupt'     => "Die lêer is foutief of is van 'n verkeerde tipe. Gaan asseblief die lêer na en laai weer op.",
 'sourcefilename'    => 'Bronlêernaam',
@@ -730,6 +747,8 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filedelete-legend'           => 'Skrap lêer',
 'filedelete-comment'          => 'Rede vir skrapping:',
 'filedelete-submit'           => 'Skrap',
+'filedelete-success'          => "'''$1''' is geskrap.",
+'filedelete-success-old'      => '<span class="plainlinks">Die weergawe van \'\'\'[[Media:$1|$1]]\'\'\' op $3, $2 is geskrap.</span>',
 'filedelete-reason-otherlist' => 'Andere rede',
 
 # MIME search
@@ -828,6 +847,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 # Book sources
 'booksources'               => 'Boekbronne',
 'booksources-search-legend' => 'Soek vir boekbronne',
+'booksources-go'            => 'Gaan',
 
 'categoriespagetext' => 'Die volgende kategorieë bestaan op die wiki.',
 'groups'             => 'Gebruikersgroepe',
@@ -840,6 +860,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'log'                  => 'Logboeke',
 'all-logs-page'        => 'Alle logboeke',
 'log-search-legend'    => 'Soek vir logboeke',
+'log-search-submit'    => 'Gaan',
 'alllogstext'          => "Vertoon 'n samestelling van laai-, skrap-, beskerm-, blok- en administrateurlogs van {{SITENAME}}.
 Jy kan die vertoning vernou deur 'n logtipe, gebruikersnaam of spesifieke blad te kies.",
 
@@ -1026,6 +1047,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'unblockiptext'      => "Gebruik die vorm hier onder om skryftoegang te herstel vir 'n voorheen geblokkeerde IP-adres.",
 'ipusubmit'          => 'Maak hierdie adres oop',
 'ipblocklist'        => 'Lys van geblokkeerde IP-adresse',
+'ipblocklist-submit' => 'Soek',
 'blocklistline'      => '$1, $2 het $3 geblok ($4)',
 'infiniteblock'      => 'oneindig',
 'blocklink'          => 'blok',

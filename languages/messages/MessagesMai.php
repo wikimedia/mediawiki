@@ -59,8 +59,9 @@ $messages = array(
 'nov'           => 'नव.',
 'dec'           => 'दिस.',
 
-'cancel' => 'समाप्त',
-'mytalk' => 'हमर वार्त्ता',
+'newwindow' => '(नव खिड़कीसँ खुजैछ)',
+'cancel'    => 'समाप्त',
+'mytalk'    => 'हमर वार्त्ता',
 
 'errorpagetitle'   => 'गलती',
 'tagline'          => 'कतयसँ {{वेबसाइटक नाम}}',
@@ -109,8 +110,28 @@ $messages = array(
 'userlogin'  => 'लॉग इन / खेसरा बनाऊ',
 'userlogout' => 'फेर आयब',
 
+# Edit page toolbar
+'bold_sample'     => 'गँहीर लेखन',
+'bold_tip'        => 'गँहीर लेखन',
+'italic_sample'   => 'कटि लेखन',
+'italic_tip'      => 'क़टि लेखन',
+'link_sample'     => 'लिंक उपाधि',
+'link_tip'        => 'अंतरंग इशारा',
+'extlink_sample'  => 'http://www.उदाहरण.com लिंक उपाधि',
+'extlink_tip'     => 'बहरी लिंक (यादि राखू http:// उपसर्ग)',
+'headline_sample' => 'मुख्यपंक्ति लेखन',
+'headline_tip'    => 'स्तर 2 मुख्यपंक्ति',
+'math_sample'     => 'सूत्र समाहित करू',
+'math_tip'        => 'गणितीय सूत्र (LaTeX)',
+'nowiki_tip'      => 'विकी फॉरमेटिंगकेँ छोड़ू',
+'image_tip'       => 'समाहित चित्र',
+'media_tip'       => 'मीडिया फाइल लिंक',
+'sig_tip'         => 'अहाँक हस्ताक्षर समयक मोहरक संग',
+'hr_tip'          => 'अक्षांशीय पंक्ति (अल्प उपयोग)',
+
 # Edit pages
 'summary'              => 'सारांश',
+'subject'              => 'विषय/मुख्यपंक्ति',
 'minoredit'            => 'अल्प संपादन',
 'watchthis'            => 'एहि पृष्ठकेँ देखू',
 'showpreview'          => 'पूर्वप्रदर्शन',

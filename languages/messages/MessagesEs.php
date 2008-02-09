@@ -257,6 +257,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Limitación general de responsabilidad',
 'edithelp'          => 'Ayuda de edición',
 'edithelppage'      => 'Help:Cómo se edita una página',
+'faq'               => 'FAQ',
 'helppage'          => 'Help:Ayuda',
 'mainpage'          => 'Portada',
 'policy-url'        => 'Project:Políticas',
@@ -315,6 +316,7 @@ $messages = array(
 'nospecialpagetext' => 'Ha requerido una página especial que no existe en {{SITENAME}}.',
 
 # General errors
+'error'                => 'Error',
 'databaseerror'        => 'Error de la base de datos',
 'dberrortext'          => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
 Esto puede indicar un error en el software.
@@ -340,6 +342,7 @@ Si esta no es la causa, puedes haber encontrado un error en el software. Por fav
 incluyendo el URL.',
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',
 'internalerror'        => 'Error interno',
+'internalerror_info'   => 'Error interno: $1',
 'filecopyerror'        => 'No se pudo copiar el archivo "$1" a "$2".',
 'filerenameerror'      => 'No se pudo renombrar el archivo "$1" a "$2".',
 'filedeleteerror'      => 'No se pudo borrar el archivo "$1".',
@@ -360,6 +363,7 @@ Función: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver código fuente',
 'viewsourcefor'        => 'para $1',
+'actionthrottledtext'  => "Como una medida contra el ''spam'', hay un límite para las veces que puedes en un corto periodo de tiempo y lo has sobrepasado. Por favor, inténtalo de nuevo en unos minutos.",
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
 'protectedinterface'   => 'Esta página provee texto del interfaz del software. Está protegida para evitar vandalismos. Si cree que debería cambiarse el texto, hable con un [[{{MediaWiki:Grouppage-sysop}}|Administrador]].',
@@ -368,6 +372,7 @@ Consulta: $2',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con las opción de "cascada":',
 'namespaceprotected'   => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",
 'customcssjsprotected' => 'No tienes permiso para editar esta página porque contiene elementos de la configuración personal de otro usuario.',
+'ns-specialprotected'  => 'Las páginas en el espacio de nombres {{ns:special}} no se pueden editar.',
 
 # Login and logout pages
 'logouttitle'                => 'Fin de sesión',
@@ -406,10 +411,12 @@ Tu cuenta ha sido creada. No olvides personalizar [[Special:Preferences|tus pref
 'yourvariant'                => 'Variante lingüística',
 'yournick'                   => 'Su apodo (para firmas)',
 'badsig'                     => 'Firma en crudo inválida; compruebe las etiquetas HTML.',
+'badsiglength'               => 'Nombre de usuario demasiado largo: debe ser de menos de $1 caracteres.',
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => '* Nombre real (opcional): si opta por proporcionarlo, se usará para dar atribución a su trabajo.',
 'loginerror'                 => 'Error de inicio de sesión',
 'prefs-help-email'           => '* Correo (opcional): Permite a otros usuarios escribirle por correo desde su página de usuario o su página de discusión sin la necesidad de revelar su identidad.',
+'prefs-help-email-required'  => 'Es necesario proporcionar una dirección de correo electrónico.',
 'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero ahora mismo no está identificado. {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados, pero parecen deshabilitadas. Por favor, habilítelas e identifíquese con su nombre de usuario y contraseña.',
 'nocookieslogin'             => '{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Tiene las <em>cookies</em> deshabilitadas en el navegador. Por favor, actívelas e inténtelo de nuevo.',
 'noname'                     => 'No ha especificado un nombre de usuario válido.',
@@ -424,7 +431,7 @@ Compruebe que lo ha escrito correctamente, o use el formulario de abajo para cre
 'passwordtooshort'           => 'Su contraseña es muy corta. Debe tener al menos $1 caracteres.',
 'mailmypassword'             => 'Envíame una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
-'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4).
+'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4). 
 La contraseña para el usuario "$2" es ahora "$3".
 Ahora deberías iniciar sesión y cambiar tu contraseña.
 
@@ -587,6 +594,8 @@ Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más 
 'edittools'                 => '<!-- Este texto aparecerá bajo los formularios de edición y subida. -->',
 'nocreatetitle'             => 'Creación de páginas limitada',
 'nocreatetext'              => 'Este wiki ha restringido la posibilidad de crear nuevas páginas. Puede volver atrás y editar una página existente, [[Special:Userlogin|identificarse o crear una cuenta]].',
+'nocreate-loggedin'         => 'No tienes permiso para crear páginas nuevas en {{SITENAME}}.',
+'permissionserrorstext'     => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'recreate-deleted-warn'     => "'''Atención: está creando una página que ha sido borrada previamente.'''
 
 Debería considerar si es apropiado continuar editando esta página.
@@ -599,6 +608,9 @@ Consulte a continuación el registro de borrados:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No se puede crear la cuenta',
+'cantcreateaccount-text' => "La creación de cuentas desde esta dirección IP (<b>$1</b>) ha sido bloqueada por [[Usuario:$3|$3]].
+
+El motivo dado por $3 es ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Ver los registros de esta página',
@@ -623,6 +635,7 @@ Por favor, revise la dirección que usó para acceder a esta página.',
 'deletedrev'          => '[borrado]',
 'histfirst'           => 'Primeras',
 'histlast'            => 'Últimas',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(vacío)',
 
 # Revision feed
@@ -784,10 +797,12 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 
 # Groups
 'group'            => 'Grupo:',
+'group-bot'        => 'Bots',
 'group-sysop'      => 'Administradores',
 'group-bureaucrat' => 'Burócratas',
 'group-all'        => '(todos)',
 
+'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Administrador',
 'group-bureaucrat-member' => 'Burócrata',
 
@@ -858,6 +873,7 @@ Para incluir la imágen en una página, usa un enlace en el formulario '''<nowik
 'uploadedfiles'               => 'Archivos subidos',
 'ignorewarning'               => 'Ignorar aviso y guardar de todos modos.',
 'ignorewarnings'              => 'Ignorar cualquier aviso',
+'minlength1'                  => 'Los nombres de archivo deben tener al menos una letra.',
 'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a "$1".',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
@@ -931,6 +947,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'filehist'                  => 'Historial del archivo',
 'filehist-help'             => 'Haga clic sobre una fecha/hora para ver el
 archivo a esa fecha.',
+'filehist-revert'           => 'revertir',
 'filehist-current'          => 'act',
 'filehist-datetime'         => 'Fecha/Hora',
 'filehist-user'             => 'Usuario',
@@ -1022,6 +1039,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 
 'withoutinterwiki'        => 'Páginas sin interwikis',
 'withoutinterwiki-header' => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',
+'withoutinterwiki-submit' => 'Mostrar',
 
 'fewestrevisions' => 'Artículos con menos ediciones',
 
@@ -1282,10 +1300,12 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamaño mínimo',
 'maximum-size'                => 'Tamaño máximo',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Pueden editar',
-'restriction-move' => 'Pueden trasladar',
+'restriction-edit'   => 'Pueden editar',
+'restriction-move'   => 'Pueden trasladar',
+'restriction-create' => 'Crear',
 
 # Restriction levels
 'restriction-level-sysop'         => 'completamente protegida',
@@ -1322,6 +1342,9 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'undelete-search-submit'   => 'Buscar',
 'undelete-no-results'      => 'No se encontraron páginas borradas para ese criterio de búsqueda.',
 'undelete-error-short'     => 'Error restaurando archivo: $1',
+'undelete-error-long'      => 'Se encontraron errores mientras se restauraba el archivo:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Espacio de nombres:',
@@ -1351,6 +1374,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 # What links here
 'whatlinkshere'       => 'Lo que enlaza aquí',
 'whatlinkshere-title' => 'Páginas que enlazan a $1',
+'whatlinkshere-page'  => 'Página:',
 'linklistsub'         => '(Lista de enlaces)',
 'linkshere'           => "Las siguientes páginas enlazan a '''[[:$1]]''':",
 'nolinkshere'         => "Ninguna página enlaza con '''[[:$1]]'''.",
@@ -1437,6 +1461,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipb_cant_unblock'            => "'''Error''': Número ID $1 de bloqueo no encontrado. Pudo haber sido desbloqueado ya.",
 'ip_range_invalid'            => 'El rango de IP no es válido.',
 'proxyblocker'                => 'Bloqueador de proxies',
+'proxyblocker-disabled'       => 'Esta función está deshabilitada.',
 'proxyblockreason'            => 'Su dirección IP ha sido bloqueada porque es un proxy abierto. Por favor, contacte con su proveedor de servicios de Internet o con su servicio de asistencia técnica e infórmeles de este grave problema de seguridad.',
 'proxyblocksuccess'           => 'Hecho.',
 'sorbsreason'                 => 'Su dirección IP está listada como proxy abierto en DNSBL.',
@@ -1486,6 +1511,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movearticle'             => 'Renombrar página',
 'movenologin'             => 'No ha iniciado sesión',
 'movenologintext'         => 'Es necesario ser usuario registrado y [[Special:Userlogin|haber iniciado sesión]] para renombrar una página.',
+'movenotallowed'          => 'No tienes permiso para trasladar páginas en {{SITENAME}}.',
 'newtitle'                => 'A título nuevo',
 'move-watch'              => 'Vigilar este artículo',
 'movepagebtn'             => 'Renombrar página',
@@ -1525,6 +1551,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Añadir páginas desde la categoría:',
 'export-addcat'     => 'Añadir',
+'export-templates'  => 'Incluir plantillas',
 
 # Namespace 8 related
 'allmessages'               => 'Todos los mensajes de MediaWiki',
@@ -1706,7 +1733,8 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'patrol-log-auto' => '(automático)',
 
 # Image deletion
-'deletedrevision' => 'Borrada revisión antigua $1',
+'deletedrevision'    => 'Borrada revisión antigua $1',
+'filedelete-missing' => 'No se pudo borrar el archivo "$1" porque no existe.',
 
 # Browsing diffs
 'previousdiff' => '← Ir a diferencias anteriores',
@@ -1738,7 +1766,7 @@ Los siguientes enlaces en la misma línea se consideran las exepciones (los art�
 'metadata-help'     => 'Este archivo contiene información adicional (metadatos), probablemente añadida por la cámara digital, el escáner o el programa usado para crearlo o digitalizarlo. Si el archivo ha sido modificado desde su estado original, pueden haberse perdido algunos detalles.',
 'metadata-expand'   => 'Mostrar datos detallados',
 'metadata-collapse' => 'Ocultar datos detallados',
-'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto.
+'metadata-fields'   => 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto. 
 * make
 * model
 * datetimeoriginal
@@ -1870,6 +1898,7 @@ Los siguientes enlaces en la misma línea se consideran las exepciones (los art�
 
 'exif-unknowndate' => 'Fecha desconocida',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Volteada horizontalmente', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotada 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Volteada verticalmente', # 0th row: bottom; 0th column: left
@@ -1884,6 +1913,7 @@ Los siguientes enlaces en la misma línea se consideran las exepciones (los art�
 'exif-componentsconfiguration-0' => 'no existe',
 
 'exif-exposureprogram-0' => 'No definido',
+'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => 'Prioridad de apertura',
 'exif-exposureprogram-4' => 'Prioridad de obturador',
