@@ -73,11 +73,15 @@ class LinksUpdate {
 	 */
 	function doUpdate() {
 		global $wgUseDumbLinkUpdate;
+		
+		wfRunHooks( 'LinksUpdate', array( &$this ) );
 		if ( $wgUseDumbLinkUpdate ) {
 			$this->doDumbUpdate();
 		} else {
 			$this->doIncrementalUpdate();
 		}
+		wfRunHooks( 'LinksUpdateComplete', array( &$this ) );
+
 	}
 
 	function doIncrementalUpdate() {
@@ -594,6 +598,13 @@ class LinksUpdate {
 			$arr[$row->ll_lang] = $row->ll_title;
 		}
 		return $arr;
+	}
+	
+	/**
+	 * Return the title object of the page being updated
+	 */	
+	function getTitle() {
+		return $this->mTitle;
 	}
 }
 
