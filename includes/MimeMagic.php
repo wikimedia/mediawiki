@@ -414,7 +414,7 @@ class MimeMagic {
 			// Note that WMF may have a bare header, no magic number.
 			"\x01\x00\x09\x00" => 'application/x-msmetafile', // Possibly prone to false positives?
 			"\xd7\xcd\xc6\x9a" => 'application/x-msmetafile',
-			'PDF%'             => 'application/pdf',
+			'%PDF'             => 'application/pdf',
 			'gimp xcf'         => 'image/x-xcf',
 			
 			// Some forbidden fruit...
