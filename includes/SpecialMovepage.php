@@ -276,7 +276,7 @@ class MovePageForm {
 		  '&newtitle=' . wfUrlencode( $nt->getPrefixedText() ) .
 		  '&talkmoved='.$talkmoved );
 
-		#$wgOut->redirect( $success );
+		$wgOut->redirect( $success );
 	}
 
 	function showSuccess() {
