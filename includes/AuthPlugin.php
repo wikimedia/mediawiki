@@ -28,10 +28,6 @@
  * accounts authenticate externally, or use it only as a fallback; also
  * you can transparently create internal wiki accounts the first time
  * someone logs in who can be authenticated externally.
- *
- * This interface is new, and might change a bit before 1.4.0 final is
- * done...
- *
  */
 class AuthPlugin {
 	/**
