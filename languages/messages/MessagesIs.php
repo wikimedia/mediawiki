@@ -892,8 +892,8 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 Óvaldir flokkar verða ekki vistaðir. Þú getur afvalið flokk með CTRL + hægri smella',
 'userrights-reason'           => 'Ástæða fyrir breytingunni:',
 'userrights-available-none'   => 'Þú getur ekki breytt notendaréttindum.',
-'userrights-available-add'    => 'Þú getur bætt notendum við $1.',
-'userrights-available-remove' => 'Þú getur fjarlægt notendur af $1.',
+'userrights-available-add'    => 'Þú getur bætt notendum við {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
+'userrights-available-remove' => 'Þú getur fjarlægt notendur af {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
 
 # Groups
 'group'               => 'Flokkur:',

@@ -353,7 +353,7 @@ Jêpirskirin: $2",
 'protectedpagetext'    => 'Ev rûpela hatîye parastin ji bo nenivîsandinê.',
 'viewsourcetext'       => 'Tu dikarê li çavkanîyê vê rûpelê sekê û wê kopîbikê:',
 'protectedinterface'   => "Di vê rûpelê da nivîsandin ji bo interface'î zimanan yê vê software'ê ye. Ew tê parstin ji bo vandalîzm li vê derê çênebe.",
-'editinginterface'     => "'''Hîşyar:''' Tu rûpelekî diguherînê yê ji wêşandinê înformasyonan di sistêmê da girîn in. Guherandin di vê rûpelê da ji her bikarhêneran ra yê were dîtin.",
+'editinginterface'     => "'''Hîşyar:''' Tu rûpelekî diguherînê yê ji wêşandinê înformasyonan di sistêmê da girîn in. Guherandin di vê rûpelê da ji her bikarhêneran ra yê were dîtin. Ji bo tercemekirinan, xêra xwe di [http://translatewiki.net/wiki/Main_Page?setlang=ku Betawiki] da bixebite, projeyê MediaWiki.",
 'sqlhidden'            => '(Jêpirskirina SQL hatîye veşartin)',
 'cascadeprotected'     => '<strong>Ev rûpela hatîye parastin ji ber guherandinê, ji ber ku ev rûpela di {{PLURAL:$1|vê rûpelê|van rûpelan da}} tê bikaranîn:
 $2

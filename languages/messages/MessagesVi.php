@@ -653,7 +653,7 @@ Xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đ
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.</strong>',
 'editing'                   => 'Sửa đổi $1',
-'editinguser'               => 'Sửa đổi $1',
+'editinguser'               => "Thay đổi quyền hạn của thành viên '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Sửa đổi $1',
 'editingcomment'            => 'Sửa đổi $1',
 'editconflict'              => 'Sửa đổi mâu thuẫn : $1',

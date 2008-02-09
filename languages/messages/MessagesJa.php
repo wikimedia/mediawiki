@@ -275,7 +275,7 @@ $messages = array(
 'badaccess-groups' => 'この処理は $1 のうちいずれかの権限を持った利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
-'versionrequiredtext' => 'このページの利用には MediaWiki Version $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
+'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => ' "$1" より作成',
@@ -297,7 +297,7 @@ $messages = array(
 'site-rss-feed'           => '$1 をRSSフィード',
 'site-atom-feed'          => '$1 をAtomフィード',
 'page-rss-feed'           => '"$1" をRSSフィード',
-'page-atom-feed'          => '"$1" Atomフィード',
+'page-atom-feed'          => '"$1" をAtomフィード',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '本文',
@@ -325,7 +325,8 @@ $messages = array(
 最後に実行を試みた問い合わせ:
 <blockquote><tt>$1</tt></blockquote>
 
-from within function "<tt>$2</tt>". MySQL returned error "<tt>$3: $4</tt>".',
+from within function "<tt>$2</tt>".
+MySQL returned error "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'データベースクエリの文法エラーが発生しました。
 ----
 A database query syntax error has occurred.
@@ -357,7 +358,7 @@ $1',
 'badarticleerror'      => 'このページでは要求された処理を行えません。',
 'cannotdelete'         => '指定されたページ、または画像の削除に失敗しました。',
 'badtitle'             => 'ページタイトルの間違い',
-'badtitletext'         => '要求されたページは無効か、何もないか、正しくない inter-language または inter-wiki のタイトルです。',
+'badtitletext'         => '要求されたページは無効か、何もないか、他言語または他ウィキ内のタイトルを誤って指定しています。タイトルに利用できない文字が一つ以上含まれている場合もあります。',
 'perfdisabled'         => 'この機能はデータベースの負荷を軽くするために現在使えなくなっています。',
 'perfcached'           => '以下のデータはキャッシュであり、しばらく更新されていません。',
 'perfcachedts'         => '以下のデータは $1 に最終更新されたキャッシュです。',
@@ -456,6 +457,17 @@ $2',
 'invalidemailaddress'        => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。正しい形式で入力し直すか、メールアドレス欄を空にしてください。',
 'accountcreated'             => 'アカウントを作成しました',
 'accountcreatedtext'         => '利用者 $1 が作成されました。',
+'createaccount-title'        => '{{SITENAME}}のアカウント作成',
+'createaccount-text'         => 'この電子メールアドレスを連絡先として、{{SITENAME}} ($4) にアカウントが作成されました。
+
+　利用者名： "$2"
+
+パスワード： "$3"
+
+
+今すぐログインし、パスワードを変更してください。
+
+何かの手違いでアカウントが作成されたと思う場合、このメッセージは無視してください。',
 'loginlanguagelabel'         => '言語: $1',
 
 # Password reset dialog
@@ -564,14 +576,14 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'previewnote'               => 'これはプレビューです。まだ保存されていません!',
 'previewconflict'           => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview'      => '<strong>セッションが切断されたため編集を保存できません。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
-'session_fail_preview_html' => '<strong>セッションデータが見つからないため、あなたの編集を保存することができませんでした。</strong>
+'session_fail_preview_html' => "<strong>申し訳ありません。セッションが切断されたため編集を保存することができませんでした。</strong>
 
-このウィキでは raw HTML の記述を許可しており、JavaScript でのアタックを予防するためにプレビューを隠しています。
+''{{SITENAME}}ではHTMLタグの使用に制限を設けておらず、JavaScript でのアタックを予防するためにプレビューを隠しています。''
 
-<strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度ログアウトして、もう一度ログインしてみてください。</strong>',
+<strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度ログアウトして、もう一度ログインしてみてください。</strong>",
 'token_suffix_mismatch'     => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
 このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
-問題のある匿名プロクシサービスを利用していると、この問題が起こることがあります。</strong>',
+問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
 'editing'                   => '$1 を編集中',
 'editinguser'               => '$1 を編集中',
 'editingsection'            => '$1 を編集中（節単位編集）',
@@ -596,6 +608,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'protectedpagewarning'      => "'''警告:''' このページは保護されています。{{int:group-sysop}}しか編集できません。",
 'semiprotectedpagewarning'  => "'''お知らせ:''' このページは登録利用者のみが編集できるよう保護されています。",
 'cascadeprotectedwarning'   => "'''警告:''' このページはカスケード保護されている以下のページから呼び出されているため、{{int:group-sysop}}しか編集できません。",
+'titleprotectedwarning'     => '<strong>警告:  このページはロックされているため、特定の利用者以外は作成することができません。</strong>',
 'templatesused'             => 'このページで使われているテンプレート:',
 'templatesusedpreview'      => 'このプレビューで使われているテンプレート:',
 'templatesusedsection'      => 'この節で使われているテンプレート:',
@@ -604,7 +617,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'edittools'                 => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'             => 'ページを作成できません',
 'nocreatetext'              => 'Betawikiではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',
-'nocreate-loggedin'         => 'このウィキで新しいページを作成する権限がありません。',
+'nocreate-loggedin'         => '{{SITENAME}}で新しいページを作成する権限がありません。',
 'permissionserrors'         => '認証エラー',
 'permissionserrorstext'     => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
 'recreate-deleted-warn'     => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
@@ -694,25 +707,31 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'overlogpagetext' => '以下は{{int:group-sysop}}が最近隠蔽した版削除およびブロックの記録です。現時点で有効な投稿ブロックは[[Special:Ipblocklist|{{int:ipblocklist}}]]をご覧ください。',
 
 # History merging
-'mergehistory'         => 'ページの統合履歴',
-'mergehistory-header'  => "ページの履歴を他のページの履歴と統合しようとしています。
+'mergehistory'                     => 'ページの統合履歴',
+'mergehistory-header'              => "ページの履歴を他のページの履歴と統合しようとしています。
 この変更によりページの履歴は連続したひとつの履歴とものになることを確認してください。
 
 '''統合を行った場合でも統合元ページの履歴は完全に消えません。少なくとも最新版の履歴は残ります。'''",
-'mergehistory-box'     => '統合する2ページの過去の版:',
-'mergehistory-from'    => '統合元となるページ:',
-'mergehistory-into'    => '統合先のページ:',
-'mergehistory-list'    => '編集履歴を統合できます',
-'mergehistory-merge'   => '[[:$2]] へ統合可能な [[:$1]] の履歴を以下に表示しています。ラジオボタンで版を選択してから統合操作を行うと指定した時間までの版が自動的に統合されます。また、ナビゲーションリンクを使うことでフォームをリセットできます。',
-'mergehistory-go'      => '統合可能な版の表示',
-'mergehistory-submit'  => '統合する版',
-'mergehistory-empty'   => '統合できる過去の版がありません',
-'mergehistory-success' => '[[:$1]] の過去版 $3 を [[:$2]] へ統合しました。',
-'mergehistory-fail'    => '履歴の統合を行うことが出来ません。統合を行うページと過去の版を再確認してください。',
+'mergehistory-box'                 => '統合する2ページの過去の版:',
+'mergehistory-from'                => '統合元となるページ:',
+'mergehistory-into'                => '統合先のページ:',
+'mergehistory-list'                => '編集履歴を統合できます',
+'mergehistory-merge'               => '[[:$2]] へ統合可能な [[:$1]] の履歴を以下に表示しています。ラジオボタンで版を選択してから統合操作を行うと指定した時間までの版が自動的に統合されます。また、ナビゲーションリンクを使うことでフォームをリセットできます。',
+'mergehistory-go'                  => '統合可能な版の表示',
+'mergehistory-submit'              => '統合する版',
+'mergehistory-empty'               => '統合できる過去の版がありません',
+'mergehistory-success'             => '[[:$1]] の過去版 $3 を [[:$2]] へ統合しました。',
+'mergehistory-fail'                => '履歴の統合を行うことが出来ません。統合を行うページと過去の版を再確認してください。',
+'mergehistory-no-source'           => '統合元となるページ $1 が存在しません。',
+'mergehistory-no-destination'      => '統合先のページ $1 が存在しません。',
+'mergehistory-invalid-source'      => '統合元となるページの正確なタイトルを指定してください。',
+'mergehistory-invalid-destination' => '統合先のページの正確なタイトルを指定してください。',
 
 # Merge log
-'mergelog'         => '統合記録',
-'mergelogpagetext' => '以下に履歴統合の記録を示しています。',
+'mergelog'           => '統合記録',
+'pagemerge-logentry' => '[[$1]]を[[$2]]へ統合（$3版へ）',
+'revertmerge'        => '統合取り消し',
+'mergelogpagetext'   => '以下に履歴統合の記録を示しています。',
 
 # Diffs
 'history-title'           => '$1 の変更履歴',
@@ -807,33 +826,43 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'files'                    => '画像等',
 
 # User rights
-'userrights-lookup-user'      => '利用者の所属グループの管理',
-'userrights-user-editname'    => '利用者名:',
-'editusergroup'               => '編集',
-'userrights-editusergroup'    => '利用者の所属グループ',
-'saveusergroups'              => '利用者の所属グループを保存',
-'userrights-groupsmember'     => '所属グループ:',
-'userrights-groupsavailable'  => '有効なグループ:',
-'userrights-groupshelp'       => 'この利用者から削除したい、またはこの利用者に追加したいグループを選択してください。選択されていないグループは変更されません。選択を解除するには [CTRL]+[左クリック] です。',
-'userrights-reason'           => '変更理由:',
-'userrights-available-none'   => '利用者の所属グループを変更することは出来ません。',
-'userrights-available-add'    => '利用者をグループ $1に追加できます。',
-'userrights-available-remove' => '利用者をグループ $1から削除できます。',
+'userrights-lookup-user'           => '利用者の所属グループの管理',
+'userrights-user-editname'         => '利用者名:',
+'editusergroup'                    => '編集',
+'userrights-editusergroup'         => '利用者の所属グループ',
+'saveusergroups'                   => '利用者の所属グループを保存',
+'userrights-groupsmember'          => '所属グループ:',
+'userrights-groupsremovable'       => '削除可能なグループ:',
+'userrights-groupsavailable'       => '有効なグループ:',
+'userrights-groupshelp'            => 'この利用者から削除したい、またはこの利用者に追加したいグループを選択してください。選択されていないグループは変更されません。選択を解除するには [CTRL]+[左クリック] です。',
+'userrights-reason'                => '変更理由:',
+'userrights-available-none'        => '利用者の所属グループを変更することは出来ません。',
+'userrights-available-add'         => '利用者をグループ $1に追加できます。',
+'userrights-available-remove'      => '利用者をグループ $1から削除できます。',
+'userrights-available-add-self'    => 'あなた自身をグループ $1に追加できます。',
+'userrights-available-remove-self' => 'あなた自身をグループ $1から削除できます。',
+'userrights-no-interwiki'          => '他ウィキ上における利用者情報の編集権限はありません。',
+'userrights-nodatabase'            => 'データベース $1は存在しないか、ローカル上にありません。',
+'userrights-nologin'               => '利用者情報を変更するには[[Special:Userlogin|ログイン]]する必要があります。',
+'userrights-notallowed'            => '利用者情報を変更する権限がありません。',
 
 # Groups
-'group'            => 'グループ:',
-'group-bot'        => 'ボット',
-'group-sysop'      => '管理者',
-'group-bureaucrat' => 'ビューロクラット',
-'group-all'        => '（すべて）',
+'group'               => 'グループ:',
+'group-autoconfirmed' => '自動承認された利用者',
+'group-bot'           => 'ボット',
+'group-sysop'         => '管理者',
+'group-bureaucrat'    => 'ビューロクラット',
+'group-all'           => '（すべて）',
 
-'group-bot-member'        => '{{int:group-bot}}',
-'group-sysop-member'      => '{{int:group-sysop}}',
-'group-bureaucrat-member' => '{{int:group-bureaucrat}}',
+'group-autoconfirmed-member' => '{{int:group-autoconfirmed}}',
+'group-bot-member'           => '{{int:group-bot}}',
+'group-sysop-member'         => '{{int:group-sysop}}',
+'group-bureaucrat-member'    => '{{int:group-bureaucrat}}',
 
-'grouppage-bot'        => '{{ns:project}}:{{int:group-bot}}',
-'grouppage-sysop'      => '{{ns:project}}:{{int:group-sysop}}',
-'grouppage-bureaucrat' => '{{ns:project}}:{{int:group-bureaucrat}}',
+'grouppage-autoconfirmed' => '{{ns:project}}:{{int:group-autoconfirmed}}',
+'grouppage-bot'           => '{{ns:project}}:{{int:group-bot}}',
+'grouppage-sysop'         => '{{ns:project}}:{{int:group-sysop}}',
+'grouppage-bureaucrat'    => '{{ns:project}}:{{int:group-bureaucrat}}',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -932,7 +961,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadedimage'               => '"$1" をアップロードしました。',
 'overwroteimage'              => '"[[$1]]"の新しい版をアップロードしました',
 'uploaddisabled'              => '申し訳ありませんが、アップロードは現在使用できません。',
-'uploaddisabledtext'          => 'このウィキではファイルのアップロードは禁止されています。',
+'uploaddisabledtext'          => '{{SITENAME}}ではファイルのアップロードが禁止されています。',
 'uploadscripted'              => 'このファイルはウェブブラウザが誤って解釈してしまうおそれのあるHTMLまたはスクリプトコードを含んでいます。',
 'uploadcorrupt'               => '指定したファイルは壊れているか拡張子が正しくありません。ファイルを確認の上再度アップロードをしてください。',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています!! &nbsp;詳細: $1',
@@ -1019,7 +1048,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filedelete-submit'      => '削除する',
 'filedelete-success'     => "'''$1''' は削除されました。",
 'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' の $2 $3 の版は削除されています。</span>',
-'filedelete-nofile'      => "'''$1''' はこのサイト上には存在しません。",
+'filedelete-nofile'      => "'''$1''' は{{SITENAME}}上に存在しません。",
 'filedelete-nofile-old'  => "指定された属性を持つ'''$1'''の古い版は存在しません。",
 'filedelete-iscurrent'   => 'このファイルの最新版を削除しようとしています。直前の版に差し戻してください。',
 
@@ -1371,7 +1400,7 @@ $NEWPAGE
 特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 「{{int:undeletereset}}」ボタンををクリックするとコメント欄と全てのチェックボックスがクリアされます。',
 'undeleterevisions'            => '$1版保管',
-'undeletehistory'              => 'ページの復帰を行うと、通常は履歴にある全ての編集が復帰します。特定版の復帰を行う場合は、{{int:undeletebtn}}ボタンを押す前に復帰対象版のチェックボックスを選択してください。',
+'undeletehistory'              => 'ページの復帰を行うと、全ての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。特定版の制限は、この操作によって失われることにも注意してください。特定版の復帰を行う場合は、{{int:undeletebtn}}ボタンを押す前に復帰対象版のチェックボックスを選択してください。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
 'undelete-revision'            => '$1 の削除された版 $2 :',
 'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
@@ -1507,13 +1536,14 @@ $NEWPAGE
 'ipb_already_blocked'         => '"$1" は既にブロックされています。',
 'ipb_cant_unblock'            => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
 'ip_range_invalid'            => '不正なIPアドレス範囲です。',
-'proxyblocker'                => 'プロクシブロッカー',
+'proxyblocker'                => 'プロキシブロッカー',
+'proxyblocker-disabled'       => 'この機能は無効になっています。',
 'proxyblockreason'            => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.
 
-:あなたの使用しているIPアドレスはオープン・プロクシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
+:あなたの使用しているIPアドレスは公開プロキシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess'           => '終了しました。',
-'sorbsreason'                 => 'あなたのIPアドレスはオープンプロクシであると、DNSBLに掲載されています。',
-'sorbs_create_account_reason' => 'あなたのIPアドレスがオープンプロクシであると DNSBLに掲載されているため、アカウントを作成できません。',
+'sorbsreason'                 => 'あなたのIPアドレスは公開プロキシであると、{{SITENAME}}のブラックリストに掲載されています。',
+'sorbs_create_account_reason' => 'あなたのIPアドレスが公開プロキシであると{{SITENAME}}のブラックリストに掲載されているため、アカウントを作成できません。',
 
 # Developer tools
 'lockdb'              => 'データベースのロック',
@@ -1551,7 +1581,7 @@ $NEWPAGE
 'movearticle'             => '移動するページ',
 'movenologin'             => 'ログインしていません',
 'movenologintext'         => 'ページを移動するためには、アカウント作成の上、[[Special:Userlogin|ログイン]]している必要があります。',
-'movenotallowed'          => 'このウィキでページを移動する権限がありません。',
+'movenotallowed'          => '{{SITENAME}}でページを移動する権限がありません。',
 'newtitle'                => '新しいページ名',
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
@@ -2229,7 +2259,7 @@ $1',
 'watchlistedit-noitems'        => 'あなたのウォッチリストには、現在タイトルがありません。',
 'watchlistedit-normal-title'   => 'ウォッチリストの編集',
 'watchlistedit-normal-legend'  => 'ウォッチリストからタイトルを削除',
-'watchlistedit-normal-explain' => 'あなたのウォッチリストにあるタイトルが以下に表示されています。タイトルの横にあるチェックボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」を選べば削除できます。また、[[Special:Watchlist/raw|一覧をテキストで編集]]したり、[[Special:Watchlist/clear|タイトルをすべて削除]]することもできます。',
+'watchlistedit-normal-explain' => 'あなたのウォッチリストにあるタイトルが以下に表示されています。タイトルの横にあるチェックボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」を選べば削除できます。また、[[Special:Watchlist/raw|一覧をテキストで編集]]することもできます。',
 'watchlistedit-normal-submit'  => 'タイトルの削除',
 'watchlistedit-normal-done'    => 'あなたのウォッチリストから $1 タイトルを削除しました:',
 'watchlistedit-raw-title'      => 'ウォッチリストをテキストで編集',

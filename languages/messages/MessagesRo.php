@@ -196,6 +196,7 @@ pe titlul secţiunii (JavaScript)',
 'mytalk'         => 'Discuţii',
 'anontalk'       => 'Discuţia pentru această adresă IP',
 'navigation'     => 'Navigare',
+'and'            => 'şi',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -552,6 +553,7 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 'newarticletext'            => 'Ai ajuns la o pagină care nu există. Pentru a o crea, începe să scrii în caseta de mai jos (vezi [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informaţii). Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ului tău',
 'anontalkpagetext'          => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim adresă IP pentru a identifica această persoană. O adresă IP poate fi folosită în comun de mai mulţi utilizatori. Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:Userlogin|vă creaţi un cont sau să vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
 'noarticletext'             => '{{SITENAME}} nu are încă un articol referitor la această pagină. Puteţi [[Special:Search/{{PAGENAME}}|căuta titlul paginii cu acest nume]] în alte pagini sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita această pagină].',
+'userpage-userdoesnotexist' => 'Contul de utilizator "$1" nu este înregistrat. Verificaţi dacă doriţi să creaţi/modificaţi această pagină.',
 'clearyourcache'            => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
 'usercssjsyoucanpreview'    => "<strong>Sfat:</strong> Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
 'usercsspreview'            => "'''Reţine că urmăreşti doar o previzualizare a css-ului tău de utilizator, acesta nu este încă salvat!'''",
@@ -944,14 +946,19 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'filerevert-submit'         => 'Revenire',
 
 # File deletion
-'filedelete'            => 'Şterge $1',
-'filedelete-legend'     => 'Şterge fişierul',
-'filedelete-intro'      => "Ştergi '''[[Media:$1|$1]]'''.",
-'filedelete-comment'    => 'Comentariu:',
-'filedelete-submit'     => 'Şterge',
-'filedelete-success'    => "'''$1''' a fost şters.",
-'filedelete-nofile'     => "'''$1''' nu există pe acest sit.",
-'filedelete-nofile-old' => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
+'filedelete'                  => 'Şterge $1',
+'filedelete-legend'           => 'Şterge fişierul',
+'filedelete-intro'            => "Ştergi '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Comentariu:',
+'filedelete-submit'           => 'Şterge',
+'filedelete-success'          => "'''$1''' a fost şters.",
+'filedelete-nofile'           => "'''$1''' nu există pe acest sit.",
+'filedelete-nofile-old'       => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
+'filedelete-otherreason'      => 'Alt motiv (adiţional):',
+'filedelete-reason-otherlist' => 'Alt motiv',
+'filedelete-reason-dropdown'  => '*Motive uzuale
+** Încălcare drepturi de autor
+** Fişier duplicat',
 
 # MIME search
 'mimesearch' => 'Căutare MIME',
@@ -1604,7 +1611,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'anonymous'        => 'Utilizator(i) anonimi ai {{SITENAME}}',
 'siteuser'         => 'Utilizator {{SITENAME}} $1',
 'lastmodifiedatby' => 'Această pagină a fost modificată $2, $1 de către $3.', # $1 date, $2 time, $3 user
-'and'              => 'şi',
 'othercontribs'    => 'Bazat pe munca lui $1.',
 'others'           => 'alţii',
 'siteusers'        => 'Utilizator(i) {{SITENAME}} $1',

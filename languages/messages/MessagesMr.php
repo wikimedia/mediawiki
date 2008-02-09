@@ -928,6 +928,7 @@ $3ने ''$2'' कारण दिले आहे.",
 
 'license'            => 'परवाना',
 'nolicense'          => 'काही निवडलेले नाही',
+'license-nopreview'  => '(झलक उपलब्ध नाही)',
 'upload_source_file' => '(तुमच्या संगणकावरील एक संचिका)',
 
 # Image list
@@ -1265,6 +1266,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'restriction-type'            => 'परवानगी:',
 'restriction-level'           => 'सुरक्षापातळी:',
 'minimum-size'                => 'किमान आकार',
+'maximum-size'                => 'महत्तम आकार',
 'pagesize'                    => '(बाइट)',
 
 # Restrictions (nouns)
@@ -1409,7 +1411,11 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Special:Import
 'import'                  => 'पाने आयात करा',
+'importinterwiki'         => 'आंतरविकि आयात',
 'import-interwiki-submit' => 'आयात',
+'importstart'             => 'पाने आयात करत आहे...',
+'importfailed'            => 'अयशस्वी आयात: $1',
+'importnotext'            => 'रिकामे अथवा मजकुर नाही',
 'import-parse-failure'    => 'XML आयात पृथक्करण अयशस्वी',
 
 # Import log
@@ -1479,12 +1485,19 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Info page
 'infosubtitle' => 'पानाची माहिती',
+'numedits'     => 'संपादनांची संख्या (पान): $1',
 
 # Math options
 'mw_math_png'    => 'नेहमीच पीएनजी (PNG) रेखाटा',
 'mw_math_simple' => 'सुलभ असल्यास एचटीएमएल (HTML); अन्यथा पीएनजी (PNG)',
 'mw_math_html'   => 'शक्य असल्यास एचटीएमएल (HTML); अन्यथा पीएनजी (PNG)',
 'mw_math_mathml' => 'शक्य असल्यास मॅथ एमएल (MathML) (प्रयोगावस्था)',
+
+# Patrolling
+'markaspatrolleddiff' => 'टेहळणी केल्याची खूण करा',
+
+# Patrol log
+'patrol-log-page' => 'टेहळणीतील नोंदी',
 
 # Image deletion
 'deletedrevision' => 'जुनी आवृत्ती ($1) वगळली.',
@@ -1532,6 +1545,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'exif-imagewidth'  => 'रूंदी',
 'exif-imagelength' => 'उंची',
 'exif-artist'      => 'लेखक',
+'exif-copyright'   => 'प्रताधिकार धारक',
+'exif-makernote'   => 'उत्पादकाच्या सूचना',
 'exif-usercomment' => 'सदस्य प्रतिक्रीया',
 'exif-fnumber'     => 'F क्रमांक',
 'exif-filesource'  => 'संचिका स्रोत',
@@ -1598,6 +1613,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'imgmultipageprev' => '← मागील पान',
 'imgmultipagenext' => 'पुढील पान →',
 'imgmultigo'       => 'चला!',
+'imgmultigotopre'  => 'पानाकडे चला',
 
 # Table pager
 'ascending_abbrev'         => 'चढ',
@@ -1615,6 +1631,9 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'autosumm-replace' => "पान '$1' वापरून बदलले.",
 'autoredircomment' => '[[$1]] कडे पुनर्निर्देशित',
 'autosumm-new'     => 'नवीन पान: $1',
+
+# Live preview
+'livepreview-ready' => 'चढवत आहे… तयार!',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '$1 सेकंदाच्या आतले बदल या यादी नसण्याची शक्यता आहे.',
@@ -1647,6 +1666,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'unknown_extension_tag' => 'अज्ञात विस्तार खूण "$1"',
 
 # Special:Version
+'version-specialpages'             => 'विशेष पाने',
 'version-parserhooks'              => 'पृथकक अंकुश',
 'version-variables'                => 'चल',
 'version-other'                    => 'इतर',

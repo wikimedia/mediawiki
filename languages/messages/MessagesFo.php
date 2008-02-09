@@ -9,6 +9,7 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Max sonnelid
  */
 
 $skinNames = array(
@@ -302,6 +303,8 @@ $messages = array(
 'viewdeleted'             => 'Vís $1?',
 'restorelink'             => '{{PLURAL:$1|strikaða rætting|$1 strikaðar rættingar}}',
 'feedlinks'               => 'Føðing:',
+'site-rss-feed'           => '$1 RSS Fóðurið',
+'site-atom-feed'          => '$1 Atom Fóðurið',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Grein',
@@ -598,6 +601,7 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'hist'            => 'søga',
 'hide'            => 'fjal',
 'show'            => 'Skoða',
+'minoreditletter' => 's',
 
 # Recent changes linked
 'recentchangeslinked' => 'Viðkomandi broytingar',
@@ -638,6 +642,7 @@ fyri at leggja fílur upp.',
 'bysize'         => 'eftir stød',
 'imgdelete'      => 'strik',
 'imgdesc'        => 'lýs',
+'filehist'       => 'Mynd søga',
 'filehist-user'  => 'Brúkari',
 'imagelinks'     => 'Myndarslóðir',
 'linkstoimage'   => 'Hesar síður slóða til hesa mynd:',
@@ -997,6 +1002,7 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 'tooltip-n-mainpage'            => 'Vitja høvuðssíðuna',
 'tooltip-n-portal'              => 'Um verkætlanina, hvat tú kanst gera, hvar tú finnur ymiskt',
 'tooltip-n-currentevents'       => 'Finn bakgrundsupplýsingar um aktuellar hendingar',
+'tooltip-n-recentchanges'       => 'Listi av seinastu broytingar í wikin.',
 'tooltip-n-randompage'          => 'Far til tilvildarliga síðu',
 'tooltip-n-help'                => 'Staðurin at finna út.',
 'tooltip-n-sitesupport'         => 'Stuðla okkum',
