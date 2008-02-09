@@ -376,6 +376,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   is disabled
 * (bug 12869) Magnify icon alignment should be adjusted using linked CSS
 * Fixing message cache updates for MediaWiki messages moves
+* (bug 12815) Signature timestamps were always in UTC, even if the timezone code
+  in parentheses after them claimed otherwise
 
 == Parser changes in 1.12 ==
 

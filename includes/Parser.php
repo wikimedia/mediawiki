@@ -3657,16 +3657,20 @@ class Parser
 		 * the database, we use $wgContLang here in order to give
 		 * everyone the same signature and use the default one rather
 		 * than the one selected in each user's preferences.
+		 *
+		 * (see also bug 12815)
 		 */
+		$ts = $this->mOptions->getTimestamp();
+		$tz = 'UTC';
 		if ( isset( $wgLocaltimezone ) ) {
+			$unixts = wfTimestamp( TS_UNIX, $ts );
 			$oldtz = getenv( 'TZ' );
 			putenv( 'TZ='.$wgLocaltimezone );
-		}
-		$d = $wgContLang->timeanddate( $this->mOptions->getTimestamp(), false, false) .
-		  ' (' . date( 'T' ) . ')';
-		if ( isset( $wgLocaltimezone ) ) {
+			$ts = date( 'YmdHis', $unixts );
+			$tz = date( 'T', $unixts );  # might vary on DST changeover!
 			putenv( 'TZ='.$oldtz );
 		}
+		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tz)";
 
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
