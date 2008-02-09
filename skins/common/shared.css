@@ -70,12 +70,6 @@ td.mw-label { vertical-align: top; }
 td.mw-submit { white-space: nowrap; }
 
 /**
- * Lists (fixing for RTL display)
- */
-body.rtl #body-content ul { display:table; }
-body.rtl #body-content ol { display:table; }
-
-/**
  * Image captions
  */
 body.rtl .thumbcaption { text-align:right; }
