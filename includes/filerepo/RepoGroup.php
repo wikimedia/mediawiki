@@ -112,6 +112,19 @@ class RepoGroup {
 			return false;
 		}
 	}
+	/**
+	 * Get the repo instance by its name
+	 */
+	function getRepoByName( $name ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+		foreach ( $this->foreignRepos as $key => $repo ) {
+			if ( $repo->name == $name)
+				return $repo;
+		}
+		return false;
+	}
 
 	/**
 	 * Get the local repository, i.e. the one corresponding to the local image
