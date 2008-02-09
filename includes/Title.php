@@ -2465,6 +2465,19 @@ class Title {
 		# We have to remove it so that the next step doesn't trigger
 		# a conflict on the unique namespace+title index...
 		$dbw->delete( 'page', array( 'page_id' => $newid ), $fname );
+		if ( !$dbw->cascadingDeletes() ) {
+			$dbw->delete( 'revision', array( 'rev_page' => $newid ), __METHOD__ );
+			global $wgUseTrackbacks;
+			if ($wgUseTrackbacks)
+				$dbw->delete( 'trackbacks', array( 'tb_page' => $newid ), __METHOD__ );
+			$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
+			$dbw->delete( 'imagelinks', array( 'il_from' => $newid ), __METHOD__ );
+			$dbw->delete( 'categorylinks', array( 'cl_from' => $newid ), __METHOD__ );
+			$dbw->delete( 'templatelinks', array( 'tl_from' => $newid ), __METHOD__ );
+			$dbw->delete( 'externallinks', array( 'el_from' => $newid ), __METHOD__ );
+			$dbw->delete( 'langlinks', array( 'll_from' => $newid ), __METHOD__ );
+			$dbw->delete( 'redirect', array( 'rd_from' => $newid ), __METHOD__ );
+		}
 
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
