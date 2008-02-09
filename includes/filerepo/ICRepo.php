@@ -1,24 +1,24 @@
 <?php
 
 /**
- * A repository for files accessible via InstantCommons. 
+ * A repository for files accessible via InstantCommons.
  */
 
 class ICRepo extends LocalRepo {
-	var $directory, $url, $hashLevels, $cache;	
+	var $directory, $url, $hashLevels, $cache;
 	var $fileFactory = array( 'ICFile', 'newFromTitle' );
 	var $oldFileFactory = false;
 
 	function __construct( $info ) {
-		parent::__construct( $info );		
+		parent::__construct( $info );
 		// Required settings
 		$this->directory = $info['directory'];
 		$this->url = $info['url'];
 		$this->hashLevels = $info['hashLevels'];
 		if(isset($info['cache'])){
 			$this->cache = getcwd().'/images/'.$info['cache'];
-		}		
-	}		
+		}
+	}
 }
 
 /**
@@ -26,30 +26,30 @@ class ICRepo extends LocalRepo {
  */
 class ICFile extends LocalFile{
 	static function newFromTitle($title,$repo){
-		return new self($title, $repo);		
+		return new self($title, $repo);
 	}
-	
+
 	/**
 	 * Returns true if the file comes from the local file repository.
 	 *
 	 * @return bool
 	 */
-	function isLocal() { 
-		return true; 
+	function isLocal() {
+		return true;
 	}
-		
+
 	function load(){
 		if (!$this->dataLoaded ) {
 			if ( !$this->loadFromCache() ) {
 				if(!$this->loadFromDB()){
 					$this->loadFromIC();
-				}				
-				$this->saveToCache(); 
+				}
+				$this->saveToCache();
 			}
 			$this->dataLoaded = true;
-		}		
+		}
 	}
-	
+
 	/**
 	 * Load file metadata from the DB
 	 */
@@ -62,15 +62,15 @@ class ICFile extends LocalFile{
 		$dbr = $this->repo->getSlaveDB();
 
 		$row = $dbr->selectRow( 'ic_image', $this->getCacheFields( 'img_' ),
-			array( 'img_name' => $this->getName() ), __METHOD__ ); 
+			array( 'img_name' => $this->getName() ), __METHOD__ );
 		if ( $row ) {
 			if (trim($row->img_media_type)==NULL) {
 				$this->upgradeRow();
 				$this->upgraded = true;
-			} 
+			}
 			$this->loadFromRow( $row );
 			//This means that these files are local so the repository locations are local
-			$this->setUrlPathLocal();			
+			$this->setUrlPathLocal();
 			$this->fileExists = true;
 			//var_dump($this); exit;
 		} else {
@@ -78,10 +78,10 @@ class ICFile extends LocalFile{
 		}
 
 		wfProfileOut( __METHOD__ );
-		
+
 		return $this->fileExists;
 	}
-	
+
 		/**
 	 * Fix assorted version-related problems with the image row by reloading it from the file
 	 */
@@ -110,106 +110,102 @@ class ICFile extends LocalFile{
 		$this->saveToCache();
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	function exists(){
 		$this->load();
 		return $this->fileExists;
-		
 	}
-	
+
 	/**
 	 * Fetch the file from the repository. Check local ic_images table first. If not available, check remote server
-	 */	 
-	 function loadFromIC(){
-	 	# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
+	 */
+	function loadFromIC(){
+		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
-		$icUrl = $this->repo->directory.'&media='.$this->title->mDbkeyform; 
-		if($h = @fopen($icUrl, 'rb')){		 	
-		 	$contents = fread($h, 3000);
-		 	$image = $this->api_xml_to_array($contents);
-		 	if($image['fileExists']){
-		 		foreach($image as $property=>$value){
-		 			if($property=="url"){$value=$this->repo->url.$value; }	 			
-		 			$this->$property = $value;
-		 		}  
-				 if($this->curl_file_get_contents($this->repo->url.$image['url'], $this->repo->cache.'/'.$image['name'])){
-				 	//Record the image	
-				 	$this->recordDownload("Downloaded with InstantCommons");
-	            	
-				 	//Then cache it			 			 	
-				 }else{//set fileExists back to false			 	
-				 	$this->fileExists = false;
-				 }			 
-		 	}
+		$icUrl = $this->repo->directory.'&media='.$this->title->mDbkeyform;
+		if($h = @fopen($icUrl, 'rb')){
+			$contents = fread($h, 3000);
+			$image = $this->api_xml_to_array($contents);
+			if($image['fileExists']){
+				foreach($image as $property=>$value){
+					if($property=="url"){$value=$this->repo->url.$value; }
+					$this->$property = $value;
+				}
+				if($this->curl_file_get_contents($this->repo->url.$image['url'], $this->repo->cache.'/'.$image['name'])){
+					//Record the image
+					$this->recordDownload("Downloaded with InstantCommons");
+
+					//Then cache it
+				}else{//set fileExists back to false
+					$this->fileExists = false;
+				}
+			}
 		}
-	 }
-	 
-	
-	 function setUrlPathLocal(){
-	 	global $wgScriptPath;
-	 	$path = $wgScriptPath.'/'.substr($this->repo->cache, strlen($wgScriptPath));
-	 	$this->repo->url = $path;//.'/'.rawurlencode($this->title->mDbkeyform);		
+	}
+
+	function setUrlPathLocal(){
+		global $wgScriptPath;
+		$path = $wgScriptPath.'/'.substr($this->repo->cache, strlen($wgScriptPath));
+		$this->repo->url = $path;//.'/'.rawurlencode($this->title->mDbkeyform);
 		$this->repo->directory = $this->repo->cache;//.'/'.rawurlencode($this->title->mDbkeyform);
-	 	
-	 }
-	
-	 function getThumbPath( $suffix=false ){
-	 	$path = $this->repo->cache;
-	 	if ( $suffix !== false ) {
+
+	}
+
+	function getThumbPath( $suffix=false ){
+		$path = $this->repo->cache;
+		if ( $suffix !== false ) {
 			$path .= '/thumb/' . rawurlencode( $suffix );
 		}
 		return $path;
-	 }
-	 function getThumbUrl( $suffix=false ){
-	 	global $wgScriptPath;
+	}
+	function getThumbUrl( $suffix=false ){
+		global $wgScriptPath;
 	 	$path = $wgScriptPath.'/'.substr($this->repo->cache, strlen($wgScriptPath));
-	 	if ( $suffix !== false ) {
+		if ( $suffix !== false ) {
 			$path .= '/thumb/' . rawurlencode( $suffix );
 		}
 		return $path;
-	 }
-	
-	 /**
-	  * Convert the InstantCommons Server API XML Response to an associative array
-	  */
-	  function api_xml_to_array($xml){
-		 preg_match("/<instantcommons><image(.*?)<\/instantcommons>/",$xml,$match);
-		 preg_match_all("/(.*?=\".*?\")/",$match[1], $matches);
-		 foreach($matches[1] as $match){
-		 	list($key,$value) = split("=",$match);
-		 	$image[trim($key,'<" ')]=trim($value,' "');
-		 }	
-		 return $image;
-	  }
-	  
+	}
+
 	/**
-     * Use cURL to read the content of a URL into a string
-     * ref: http://groups-beta.google.com/group/comp.lang.php/browse_thread/thread/8efbbaced3c45e3c/d63c7891cf8e380b?lnk=raot
-     * @param string $url - the URL to fetch
-     * @param resource $fp - filename to write file contents to
-     * @param boolean $bg - call cURL in the background (don't hang page until complete)
-     * @param int $timeout - cURL connect timeout
-     */
-    function curl_file_get_contents($url, $fp, $bg=TRUE, $timeout = 1) {
-        {
-        	# Call curl in the background to download the file
-	        $cmd = 'curl '.wfEscapeShellArg($url).' -o '.$fp.' &';
-	        wfDebug('Curl download initiated='.$cmd );
-	        $success = false;  
-        	$file_contents = array();        	         
-            $file_contents['err'] = wfShellExec($cmd, $file_contents['return']);
-            if($file_contents['err']==0){//Success
-            	$success = true;
-            }                
-        }
-       return $success;                
-    }
-	
+	 * Convert the InstantCommons Server API XML Response to an associative array
+	 */
+	function api_xml_to_array($xml){
+		preg_match("/<instantcommons><image(.*?)<\/instantcommons>/",$xml,$match);
+		preg_match_all("/(.*?=\".*?\")/",$match[1], $matches);
+		foreach($matches[1] as $match){
+			list($key,$value) = split("=",$match);
+			$image[trim($key,'<" ')]=trim($value,' "');
+		}
+		return $image;
+	}
+
+	/**
+	 * Use cURL to read the content of a URL into a string
+	 * ref: http://groups-beta.google.com/group/comp.lang.php/browse_thread/thread/8efbbaced3c45e3c/d63c7891cf8e380b?lnk=raot
+	 * @param string $url - the URL to fetch
+	 * @param resource $fp - filename to write file contents to
+	 * @param boolean $bg - call cURL in the background (don't hang page until complete)
+	 * @param int $timeout - cURL connect timeout
+	 */
+	function curl_file_get_contents($url, $fp, $bg=TRUE, $timeout = 1) {
+		# Call curl in the background to download the file
+		$cmd = 'curl '.wfEscapeShellArg($url).' -o '.$fp.' &';
+		wfDebug('Curl download initiated='.$cmd );
+		$success = false;
+		$file_contents = array();
+		$file_contents['err'] = wfShellExec($cmd, $file_contents['return']);
+		if($file_contents['err']==0){//Success
+			$success = true;
+		}
+		return $success;
+	}
+
 	function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
 			$class = 'Database' . ucfirst( $this->dbType );
-			$this->dbConn = new $class( $this->dbServer, $this->dbUser, 
-				$this->dbPassword, $this->dbName, false, $this->dbFlags, 
+			$this->dbConn = new $class( $this->dbServer, $this->dbUser,
+				$this->dbPassword, $this->dbName, false, $this->dbFlags,
 				$this->tablePrefix );
 		}
 		return $this->dbConn;
@@ -219,10 +215,10 @@ class ICFile extends LocalFile{
 	 * Record a file upload in the upload log and the image table
 	 */
 	private function recordDownload($comment='', $timestamp = false ){
-		global $wgUser; 
+		global $wgUser;
 
 		$dbw = $this->repo->getMasterDB();
-		
+
 		if ( $timestamp === false ) {
 			$timestamp = $dbw->timestamp();
 		}
@@ -252,7 +248,7 @@ class ICFile extends LocalFile{
 		);
 
 		if( $dbw->affectedRows() == 0 ) {
-			# Collision, this is an update of a file			
+			# Collision, this is an update of a file
 			# Update the current image row
 			$dbw->update( 'ic_image',
 				array( /* SET */
@@ -297,7 +293,7 @@ class ICFile extends LocalFile{
 			$descTitle->purgeSquid();
 		}
 
-		
+
 		# Commit the transaction now, in case something goes wrong later
 		# The most important thing is that files don't get lost, especially archives
 		$dbw->immediateCommit();
@@ -308,6 +304,6 @@ class ICFile extends LocalFile{
 
 		return true;
 	}
-	
+
 }
 
