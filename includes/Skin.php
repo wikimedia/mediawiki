@@ -1602,7 +1602,7 @@ END;
 	 * @private
 	 */
 	function buildSidebar() {
-		global $parserMemc, $wgEnableSidebarCache;
+		global $parserMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 		global $wgLang, $wgContLang;
 
 		$fname = 'SkinTemplate::buildSidebar';
@@ -1663,7 +1663,7 @@ END;
 			}
 		}
 		if ($cacheSidebar)
-			$parserMemc->set( $key, $bar, 86400 );
+			$parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		wfProfileOut( $fname );
 		return $bar;
 	}

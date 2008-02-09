@@ -1013,6 +1013,11 @@ $wgEnableParserCache = true;
 $wgEnableSidebarCache = false;
 
 /**
+ * Expiry time for the sidebar cache, in seconds
+ */
+$wgSidebarCacheExpiry = 86400;
+
+/**
  * Under which condition should a page in the main namespace be counted
  * as a valid article? If $wgUseCommaCount is set to true, it will be
  * counted if it contains at least one comma. If it is set to false
