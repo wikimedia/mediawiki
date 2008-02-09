@@ -637,6 +637,12 @@ $lang: laguage code (string)
 $specialPageAliases: associative array of magic words synonyms
 $lang: laguage code (string)
 
+'LinksUpdate': At the beginning of LinksUpdate::doUpdate() just before the actual update
+&$linksUpdate: the LinkUpdate object
+
+'LinksUpdateComplete': At the end of LinksUpdate::doUpdate() when updating has completed
+&$linksUpdate: the LinkUpdate object
+
 'LinksUpdateConstructed': At the end of LinksUpdate() is contruction.
 &$linksUpdate: the LinkUpdate object
 
