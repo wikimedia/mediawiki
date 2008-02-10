@@ -1364,9 +1364,10 @@ function do_postgres_updates() {
 	);
 
 
-	# table, column, desired type, USING clause if needed
+	# table, column, desired type, USING clause if needed (with new default if needed)
 	$typechanges = array(
 		array("archive",      "ar_deleted",      "smallint", ""),
+		array("archive",      "ar_minor_edit",   "smallint", "ar_minor_edit::smallint DEFAULT 0"),
 		array("filearchive",  "fa_deleted",      "smallint", ""),
 		array("filearchive",  "fa_height",       "integer",  ""),
 		array("filearchive",  "fa_metadata",     "bytea",    "decode(fa_metadata,'escape')"),
@@ -1378,6 +1379,13 @@ function do_postgres_updates() {
 		array("image",        "img_size",        "integer",  ""),
 		array("image",        "img_width",       "integer",  ""),
 		array("image",        "img_height",      "integer",  ""),
+		array("interwiki",    "iw_local",        "smallint", "iw_local::smallint DEFAULT 0"),
+		array("interwiki",    "iw_trans",        "smallint", "iw_trans::smallint DEFAULT 0"),
+		array("ipblocks",     "ipb_auto",        "smallint", "ipb_auto::smallint DEFAULT 0"),
+		array("ipblocks",     "ipb_anon_only",        "smallint", "ipb_anon_only::smallint DEFAULT 0"),
+		array("ipblocks",     "ipb_create_account",        "smallint", "ipb_create_account::smallint DEFAULT 1"),
+		array("ipblocks",     "ipb_enable_autoblock",        "smallint", "ipb_enable_autoblock::smallint DEFAULT 1"),
+		array("ipblocks",     "ipb_block_email",        "smallint", "ipb_block_email::smallint DEFAULT 0"),
 		array("ipblocks",     "ipb_address",     "text",     "ipb_address::text"),
 		array("ipblocks",     "ipb_deleted",     "smallint", ""),
 		array("math",         "math_inputhash",  "bytea",    "decode(math_inputhash,'escape')"),
@@ -1388,9 +1396,17 @@ function do_postgres_updates() {
 		array("oldimage",     "oi_height",       "integer",  ""),
 		array("oldimage",     "oi_size",         "integer",  ""),
 		array("oldimage",     "oi_width",        "integer",  ""),
+		array("page",         "page_is_redirect","smallint", "page_is_redirect::smallint DEFAULT 0"),
+		array("page",         "page_is_new",     "smallint", "page_is_new::smallint DEFAULT 0"),
 		array("querycache",   "qc_value",        "integer",  ""),
 		array("querycachetwo","qcc_value",       "integer",  ""),
+		array("recentchanges","rc_bot",          "smallint", "rc_bot::smallint DEFAULT 0"),
 		array("recentchanges","rc_deleted",      "smallint", ""),
+		array("recentchanges","rc_minor",        "smallint", "rc_minor::smallint DEFAULT 0"),
+		array("recentchanges","rc_new",          "smallint", "rc_new::smallint DEFAULT 0"),
+		array("recentchanges","rc_type",         "smallint", "rc_type::smallint DEFAULT 0"),
+		array("recentchanges","rc_patrolled",    "smallint", "rc_patrolled::smallint DEFAULT 0"),
+		array("revision",     "rev_minor_edit",  "smallint", "rev_minor_edit::smallint DEFAULT 0"),
 		array("templatelinks","tl_namespace",    "smallint", "tl_namespace::smallint"),
 		array("user_newtalk", "user_ip",         "text",     "host(user_ip)"),
 	);
@@ -1465,6 +1481,12 @@ function do_postgres_updates() {
 			echo "Changing column type of \"$tc[0].$tc[1]\" from \"{$fi->type()}\" to \"$tc[2]\"\n";
 			$sql = "ALTER TABLE $tc[0] ALTER $tc[1] TYPE $tc[2]";
 			if (strlen($tc[3])) {
+				$default = array();
+				if (preg_match( '/DEFAULT (.+)/', $tc[3], $default)) {
+					$sqldef = "ALTER TABLE $tc[0] ALTER $tc[1] SET DEFAULT $default[1]";
+					$wgDatabase->query($sqldef);
+					$tc[3] = preg_replace( '/\s*DEFAULT .+/', '', $tc[3]);
+				}
 				$sql .= " USING $tc[3]";
 			}
 			$sql .= ";\nCOMMIT;\n";
