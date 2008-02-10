@@ -763,6 +763,9 @@ $text: actual text
 'ParserClearState': called at the end of Parser::clearState()
 $parser: Parser object being cleared
 
+'ParserFirstCallInit': called when the ther parser initialises for the first time
+$parser: Parser object being cleared
+
 'ParserGetVariableValueSwitch': called when the parser need the value of a custom magic word
 $parser: Parser object
 $varCache: array to store the value in case of multiples calls of the same magic word
