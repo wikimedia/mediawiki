@@ -1135,7 +1135,7 @@ END;
 
 		## Make sure that we can write to the correct schema
 		## If not, Postgres will happily and silently go to the next search_path item
-		$ctest = "mw_test_table";
+		$ctest = 'mediawiki_test_table';
 		$safeschema = $this->quote_ident($wgDBmwschema);
 		if ($this->tableExists($ctest, $wgDBmwschema)) {
 			$this->doQuery("DROP TABLE $safeschema.$ctest");
@@ -1148,7 +1148,7 @@ END;
 			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"$wgDBmwschema\"</li>\n";
 			dieout("</ul>");
 		}
-		$this->doQuery("DROP TABLE $safeschema.mw_test_table");
+		$this->doQuery("DROP TABLE $safeschema.$ctest");
 
 		dbsource( "../maintenance/postgres/tables.sql", $this);
 
