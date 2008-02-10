@@ -378,6 +378,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixing message cache updates for MediaWiki messages moves
 * (bug 12815) Signature timestamps were always in UTC, even if the timezone code
   in parentheses after them claimed otherwise
+* (bug 12732) Fix installer and searching to handle built-in tsearch2 for Postgres.
+* (bug 12784) Change "bool" types to smallint to handle Postgres 8.3 strictness.
 
 == Parser changes in 1.12 ==
 

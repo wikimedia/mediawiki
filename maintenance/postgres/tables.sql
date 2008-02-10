@@ -5,7 +5,7 @@
 -- For information about each table, please see the notes in maintenance/tables.sql
 -- Please make sure all dollar-quoting uses $mw$ at the start of the line
 -- We can't use SERIAL everywhere: the sequence names are hard-coded into the PHP
--- TODO: Change CHAR to BOOL (still needed as CHAR due to some PHP code)
+-- TODO: Change CHAR/SMALLINT to BOOL (still needed as CHAR due to some PHP code)
 
 BEGIN;
 SET client_min_messages = 'ERROR';
@@ -55,8 +55,8 @@ CREATE TABLE page (
   page_title         TEXT           NOT NULL,
   page_restrictions  TEXT,
   page_counter       BIGINT         NOT NULL  DEFAULT 0,
-  page_is_redirect   CHAR           NOT NULL  DEFAULT 0,
-  page_is_new        CHAR           NOT NULL  DEFAULT 0,
+  page_is_redirect   SMALLINT       NOT NULL  DEFAULT 0,
+  page_is_new        SMALLINT       NOT NULL  DEFAULT 0,
   page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),
   page_touched       TIMESTAMPTZ,
   page_latest        INTEGER        NOT NULL, -- FK?
@@ -89,9 +89,9 @@ CREATE TABLE revision (
   rev_text_id     INTEGER          NULL, -- FK
   rev_comment     TEXT,
   rev_user        INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT,
-  rev_user_text   TEXT          NOT NULL,
-  rev_timestamp   TIMESTAMPTZ   NOT NULL,
-  rev_minor_edit  CHAR         NOT NULL  DEFAULT '0',
+  rev_user_text   TEXT         NOT NULL,
+  rev_timestamp   TIMESTAMPTZ  NOT NULL,
+  rev_minor_edit  SMALLINT     NOT NULL  DEFAULT 0,
   rev_deleted     SMALLINT     NOT NULL  DEFAULT 0,
   rev_len         INTEGER          NULL,
   rev_parent_id   INTEGER          NULL
@@ -133,7 +133,7 @@ CREATE TABLE archive (
   ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   ar_user_text   TEXT         NOT NULL,
   ar_timestamp   TIMESTAMPTZ  NOT NULL,
-  ar_minor_edit  CHAR         NOT NULL  DEFAULT '0',
+  ar_minor_edit  SMALLINT     NOT NULL  DEFAULT 0,
   ar_flags       TEXT,
   ar_rev_id      INTEGER,
   ar_text_id     INTEGER,
@@ -222,15 +222,15 @@ CREATE TABLE ipblocks (
   ipb_by                INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
   ipb_reason            TEXT         NOT NULL,
   ipb_timestamp         TIMESTAMPTZ  NOT NULL,
-  ipb_auto              CHAR         NOT NULL  DEFAULT '0',
-  ipb_anon_only         CHAR         NOT NULL  DEFAULT '0',
-  ipb_create_account    CHAR         NOT NULL  DEFAULT '1',
-  ipb_enable_autoblock  CHAR         NOT NULL  DEFAULT '1',
+  ipb_auto              SMALLINT     NOT NULL  DEFAULT 0,
+  ipb_anon_only         SMALLINT     NOT NULL  DEFAULT 0,
+  ipb_create_account    SMALLINT     NOT NULL  DEFAULT 1,
+  ipb_enable_autoblock  SMALLINT     NOT NULL  DEFAULT 1,
   ipb_expiry            TIMESTAMPTZ  NOT NULL,
   ipb_range_start       TEXT,
   ipb_range_end         TEXT,
   ipb_deleted           SMALLINT     NOT NULL  DEFAULT 0,
-  ipb_block_email       CHAR         NOT NULL  DEFAULT '0'
+  ipb_block_email       SMALLINT     NOT NULL  DEFAULT 0
 
 );
 CREATE INDEX ipb_address ON ipblocks (ipb_address);
@@ -321,16 +321,16 @@ CREATE TABLE recentchanges (
   rc_namespace       SMALLINT     NOT NULL,
   rc_title           TEXT         NOT NULL,
   rc_comment         TEXT,
-  rc_minor           CHAR         NOT NULL  DEFAULT '0',
-  rc_bot             CHAR         NOT NULL  DEFAULT '0',
-  rc_new             CHAR         NOT NULL  DEFAULT '0',
+  rc_minor           SMALLINT     NOT NULL  DEFAULT 0,
+  rc_bot             SMALLINT     NOT NULL  DEFAULT 0,
+  rc_new             SMALLINT     NOT NULL  DEFAULT 0,
   rc_cur_id          INTEGER          NULL  REFERENCES page(page_id) ON DELETE SET NULL,
   rc_this_oldid      INTEGER      NOT NULL,
   rc_last_oldid      INTEGER      NOT NULL,
-  rc_type            CHAR         NOT NULL  DEFAULT '0',
+  rc_type            SMALLINT     NOT NULL  DEFAULT 0,
   rc_moved_to_ns     SMALLINT,
   rc_moved_to_title  TEXT,
-  rc_patrolled       CHAR         NOT NULL  DEFAULT '0',
+  rc_patrolled       SMALLINT     NOT NULL  DEFAULT 0,
   rc_ip              CIDR,
   rc_old_len         INTEGER,
   rc_new_len         INTEGER,
@@ -366,10 +366,10 @@ CREATE TABLE math (
 
 
 CREATE TABLE interwiki (
-  iw_prefix  TEXT  NOT NULL  UNIQUE,
-  iw_url     TEXT  NOT NULL,
-  iw_local   CHAR  NOT NULL,
-  iw_trans   CHAR  NOT NULL  DEFAULT '0'
+  iw_prefix  TEXT      NOT NULL  UNIQUE,
+  iw_url     TEXT      NOT NULL,
+  iw_local   SMALLINT  NOT NULL,
+  iw_trans   SMALLINT  NOT NULL  DEFAULT 0
 );
 
 
@@ -493,7 +493,7 @@ CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON pagecontent
 CREATE INDEX ts2_page_title ON page USING gin(titlevector);
 CREATE INDEX ts2_page_text ON pagecontent USING gin(textvector);
 
-CREATE FUNCTION add_interwiki (TEXT,INT,CHAR) RETURNS INT LANGUAGE SQL AS
+CREATE FUNCTION add_interwiki (TEXT,INT,SMALLINT) RETURNS INT LANGUAGE SQL AS
 $mw$
   INSERT INTO interwiki (iw_prefix, iw_url, iw_local) VALUES ($1,$2,$3);
   SELECT 1;
