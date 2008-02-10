@@ -477,10 +477,27 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'token_suffix_mismatch'     => '<strong>Votre édition n’a été acceptée car votre navigateur a mélangé les caractères de ponctuation dans l’identifiant d’édition. L’édition a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un proxy anonyme à problème.</strong>',
 'editing'                   => 'Coppiteg $1',
 'editinguser'               => 'Coppiteg $1',
+'editingsection'            => 'Coppiteg $1 (xaaj)',
+'editingcomment'            => 'Coppiteg $1 (sanni-kàddu)',
+'editconflict'              => 'jàppanteb coppite ci: $1',
+'explainconflict'           => "<b>Am na beneen jëfandikukat bu soppi xët wi, mu gën a bees, ci bi ngay soog a door say coppite. Mbind yi ne ci boyotu coppite bi ci kaw, ñooy yi teew nii ci dattub njoxe bi, ni ko beneen jëfandikukat bi soppee. Yaw nag say coppite ñoo nekk ci boyotu coppite bi ci suuf. Soo nammee denc say coppite, faaw nga duggal leen ci boyot bi ci kaw. Soo cuqe ci 'Denc xët wi', mbind yi ne ci boyot bi ci kaw rekk ñooy dencu .</b><br />",
 'yourtext'                  => 'Sa mbind',
 'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en tout sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
 'editingold'                => '<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
 'yourdiff'                  => 'Wuute',
+'copyrightwarning'          => 'Bépp cëru ci {{SITENAME}} dañ leen di jàppe niki ay siiwal yoo def te teg leen ci $2 (xoolal $1 ngir yeneeni xamle). Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br /> 
+Te it na wóor ne li nga fiy duggal yaa leen moom, yaa leen bind, walla fa nga leen jële gongikuwaay bu ubbeeku la, lu kenn moomul. <strong>BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!</strong>',
+'copyrightwarning2'         => 'Karmat: Bépp cëru ci {{SITENAME}} yeneen jëfandikukat yi man nañ leen a soppi walla far leen. Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br />  
+Te it na wóor ne li nga fiy duggal yaa leen moom, yaa leen bind, walla fa nga leen jële gongikuwaay bu ubbeeku la, lu kenn moomul (xoolal $1 ngir yeneeni xamle) 
+<strong>BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!</strong>',
+'longpagewarning'           => "'''Muytul: guddaayu xët wi da fa romb $1 kio ;
+yenn joowukaay yi, man nañoo wone ay tolof-tolof ci bu ñuy soppi xët yi romb dayoob 32 kio. Li doon gën mooy nga séddatle ko ci ay xaaj yu bari.'''",
+'longpageerror'             => '<strong>NJUUMTE : mbind mi nga yónne guddee na $1 kio, kon romb na dig bi di $2 kio. Mbind mi maneesu kaa denc.</strong>',
+'readonlywarning'           => "'''Moytul: dattub njoxe bi dañ kaa caabi ngir ay liggéey,
+kon doo man a denc say coppite fi mu nekk nii. Man ngaa duppi mbind mi taf ko cib tëriin bu ñuy binde te taaxirlu ñu ubbi dattub njoxe bi.'''",
+'protectedpagewarning'      => "'''Moytul : wii xët dañ kaa aar.
+Jëfandikukat yi nekk yorkat rekk a ko man a soppi.'''",
+'semiprotectedpagewarning'  => "'''Karmat :''' wii xët dañ kaa aar ba nga xam ne ñi bindu rekk a ko man a soppi.",
 'cascadeprotectedwarning'   => '<strong>MOYTUL : Xët mii dañ kaa aar ba nga xamne [[{{MediaWiki:Grouppage-sysop}}|yorkat yi]] rek ñoo koy mana soppi. Kaaraange googu dañ kaa def ndaxte xët mii dañ kaa boole ci {{PLURAL:$1|am xët mu ñu aar|ay xët yu ñu aar}} ak « kaaraange cig toppante » te dañ kaa taal.</strong>',
 'templatesused'             => 'Royuwaay yi nekk ci mii xët :',
 'templatesusedpreview'      => 'Royuwaay yi nekk ci gii wonendi :',

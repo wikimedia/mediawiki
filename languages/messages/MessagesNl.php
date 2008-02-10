@@ -779,7 +779,7 @@ U kan deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-sysop
 'newarticle'                => '(Nieuw)',
 'newarticletext'            => "Deze pagina bestaat niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[{{MediaWiki:Helppage}}|hulppagina]]).
 Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
-'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[Special:Preferences|maak dan een gebruikersnaam aan of meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
+'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen gebruikersnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[Special:Userlogin/signup|maak dan een gebruikersnaam aan]] of [[Special:Userlogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
 'noarticletext'             => 'Deze pagina bevat geen tekst. U kan [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
 'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Gelieve te controleren of u deze pagina wel wil aanmaken/bewerken.',
 'clearyourcache'            => '\'\'\'Let op!\'\'\' Leeg uw cache nadat u de wijzigingen heeft opgeslagen.
@@ -990,8 +990,8 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'prevn'                 => 'vorige $1',
 'nextn'                 => 'volgende $1',
 'viewprevnext'          => '($1) ($2) ($3) tonen.',
-'showingresults'        => "Hieronder staan {{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} vanaf #'''$2'''.",
-'showingresultsnum'     => "Hieronder staan {{PLURAL:$3|'''1''' resultaat|'''$3''' resultaten}} vanaf #'''$2'''.",
+'showingresults'        => "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
+'showingresultsnum'     => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
 'nonefound'             => "'''Opmerking''': mislukte zoekopdrachten worden vaak veroorzaakt door zoeken naar veelvoorkomende woorden als \"van\" en \"het\", die niet in de indexen worden opgenomen, of door meer dan één zoekterm op te geven. Alleen pagina's die alle zoektermen bevatten worden opgenomen in de resultaten.",
 'powersearch'           => 'Zoeken',
 'powersearchtext'       => 'Zoeken in naamruimten:<br />$1<br />$2 Doorverwijzingen tonen<br />Zoeken naar $3 $9',
@@ -1423,8 +1423,8 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'unusedcategoriestext'    => 'Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.',
 'notargettitle'           => 'Geen doelpagina',
 'notargettext'            => 'U heeft niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
-'pager-newer-n'           => '{{PLURAL:$1|nieuwere 1|nieuwere $1}}',
-'pager-older-n'           => '{{PLURAL:$1|oudere 1|oudere $1}}',
+'pager-newer-n'           => '{{PLURAL:$1|1 nieuwere|$1 nieuwere}}',
+'pager-older-n'           => '{{PLURAL:$1|1 oudere|$1 oudere}}',
 
 # Book sources
 'booksources'               => 'Boekinformatie',

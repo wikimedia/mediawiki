@@ -283,6 +283,7 @@ $messages = array(
 'site-rss-feed'           => '$1 RSS Beslemesi',
 'site-atom-feed'          => '$1 Atom Beslemesi',
 'page-rss-feed'           => '"$1" RSS Beslemesi',
+'page-atom-feed'          => '"$1" Atom Beslemesi',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Madde',
@@ -318,7 +319,9 @@ Kullanılan fonksiyon "$2".
 MySQL\'in verdiği hata mesajı "$3: $4"',
 'noconnect'            => "Özür Dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı server'ı ile iletişim kuramıyor. <br />
 $1",
+'nodb'                 => '$1 veri tabanı seçilemedi',
 'cachederror'          => 'Aşağıdaki, istediğiniz sayfanın önbellekteki kopyasıdır ve güncel olmayabilir.',
+'laggedslavemode'      => 'Uyarı: Sayfa son güncellemeleri içermeyebilir.',
 'readonly'             => 'Veritabanı kilitlendi',
 'enterlockreason'      => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
 'readonlytext'         => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
@@ -350,9 +353,11 @@ Sorgu: $2',
 'protectedpagetext'    => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
 'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
 'protectedinterface'   => 'Bu sayfa yazılımın arayüz metnini sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
-'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir.",
+'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [http://translatewiki.net/wiki/Main_Page?setlang=tr Betawiki]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
 'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
 $2',
+'namespaceprotected'   => "'''$1''' alandındaki sayfaları düzenlemeye izniniz bulunmamaktadır.",
+'ns-specialprotected'  => '{{ns:special}} alanadı içindeki sayfalar değiştirilemez.',
 
 # Login and logout pages
 'logouttitle'                => 'Oturumu kapat',
@@ -428,7 +433,13 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'invalidemailaddress'        => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',
 'accountcreated'             => 'Hesap açıldı',
 'accountcreatedtext'         => '$1 için bir kullanıcı hesabı açıldı.',
+'createaccount-title'        => '{{SITENAME}} icin yeni kullanıcı oluşturulması',
 'loginlanguagelabel'         => 'Dil: $1',
+
+# Password reset dialog
+'resetpass'           => 'Kullanıcı parolayı sıfırla',
+'resetpass_header'    => 'Parolayı sıfırla',
+'resetpass_forbidden' => 'Parolalar {{SITENAME}} icin değiştirilmiyor',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -476,6 +487,7 @@ Belirtilen sebeb göre engellenmenizin uygun olmadığını düşünüyorsanız,
 Eğer [[Special:Preferences|tercihler]] kısmında geçerli bir e-posta adresi girmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamazsınız.
 
 Şu anda IP adresiniz $3. Lütfen sorgu yaparken bu adresi belirtiniz.',
+'blockednoreason'          => 'sebeb verilmedi',
 'blockedoriginalsource'    => "'''$1''' sayfasının kaynak metni aşağıdır:",
 'blockededitsource'        => "'''$1''' sayfasında '''yaptığınız değişikliğe''' ait metin aşağıdadır:",
 'whitelistedittitle'       => 'Değişiklik yapmak için oturum açmalısınız',
@@ -485,8 +497,10 @@ Eğer [[Special:Preferences|tercihler]] kısmında geçerli bir e-posta adresi g
 'whitelistacctitle'        => 'Hesap açma izniniz yok.',
 'confirmedittitle'         => 'Değişiklik yapmak için e-posta onaylaması gerekiyor',
 'confirmedittext'          => 'Sayfa değiştirmeden önce e-posta adresinizi onaylamalısınız. Lütfen [[Special:Preferences|tercihler]] kısmından e-postanızı ekleyin ve onaylayın.',
+'nosuchsectiontitle'       => 'Böyle bir bölüm yok',
 'loginreqtitle'            => 'Oturum açmanız gerekiyor',
 'loginreqlink'             => 'oturum aç',
+'loginreqpagetext'         => 'Öbür sayfaları görmek için $1 olmalısınız.',
 'accmailtitle'             => 'Parola gönderildi.',
 'accmailtext'              => "'$1' kullanıcısına ait parola $2 adresine gönderildi.",
 'newarticle'               => '(Yeni)',
@@ -535,6 +549,7 @@ Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalam
 'template-semiprotected'   => '(yarı-koruma)',
 'nocreatetext'             => '{{SITENAME}}, yeni sayfa oluşturulabilmesini engelledi.
 Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Special:Userlogin|oturum açabilir]], değilseniz [[Special:Userlogin|kayıt olabilirsiniz]].',
+'permissionserrors'        => 'Müsaade hataları',
 'recreate-deleted-warn'    => "'''Uyarı: Daha önceden silinmiş bir sayfayı yeniden oluşturuyorsunuz.'''
 
 Bu sayfayı düzenlemeye devam ederken bunun uygun olup olmadığını düşünmelisiniz.
@@ -580,15 +595,28 @@ Tanımlar: (güncel) = güncel sürümle aradaki fark,
 # Revision deletion
 'rev-deleted-comment'       => '(yorum silindi)',
 'rev-deleted-user'          => '(kullanıcı adı silindi)',
+'rev-deleted-event'         => '(madde silindi)',
 'rev-delundel'              => 'göster/gizle',
 'revisiondelete'            => 'Sürümleri sil/geri getir',
 'revdelete-hide-comment'    => 'Özeti gösterme',
 'revdelete-hide-user'       => "Değişikliği yapan kullanıcı adını/IP'i gizle",
 'revdelete-hide-restricted' => 'Bu kısıtlamaları yöneticilere ve kullanıcılara uygula',
+'revdelete-log'             => 'Log açıklama:',
 'revdelete-submit'          => 'Seçilen sürüme uygula',
 
 # Oversight log
 'oversightlog' => 'Gözetmen kayıtları',
+
+# History merging
+'mergehistory-from'                => 'Kaynak sayfası:',
+'mergehistory-into'                => 'Gidilecek sayfası:',
+'mergehistory-no-source'           => 'Kaynak sayfa $1 yokdur.',
+'mergehistory-no-destination'      => 'Gidilecek sayfa $1 yokdur.',
+'mergehistory-invalid-source'      => 'Kaynak sayfa geçerli bir isim olmalı.',
+'mergehistory-invalid-destination' => 'Gidecek sayfa geçerli bir isim olmalı.',
+
+# Merge log
+'mergelog' => 'Birleştirme log',
 
 # Diffs
 'history-title'           => '"$1" sayfasının geçmişi',
@@ -624,6 +652,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'mypreferences'         => 'Tercihlerim',
 'prefsnologin'          => 'Oturum açık değil',
 'qbsettings'            => 'Hızlı erişim sütun ayarları',
+'qbsettings-none'       => 'Yok',
 'changepassword'        => 'Şifre değiştir',
 'skin'                  => 'Tema',
 'math'                  => 'Matematiksel semboller',
@@ -631,6 +660,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'datedefault'           => 'Tercih yok',
 'datetime'              => 'Tarih ve saat',
 'math_unknown_error'    => 'bilinmeyen hata',
+'math_syntax_error'     => 'sözdizim hatası',
 'prefs-personal'        => 'Kullanıcı bilgileri',
 'prefs-rc'              => 'Son değişiklikler',
 'prefs-watchlist'       => 'İzleme listesi',
@@ -692,7 +722,8 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'grouppage-bureaucrat' => '{{ns:project}}:Bürokratlar',
 
 # User rights log
-'rightslog' => 'Kullanıcı hakları kayıtları',
+'rightslog'  => 'Kullanıcı hakları kayıtları',
+'rightsnone' => '(yok)',
 
 # Recent changes
 'nchanges'                       => '$1 değişiklik',
@@ -716,6 +747,7 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'minoreditletter'                => 'K',
 'newpageletter'                  => 'Y',
 'boteditletter'                  => 'b',
+'rc_categories_any'              => 'Herhangi',
 'newsectionsummary'              => '/* $1 */ yeni başlık',
 
 # Recent changes linked
@@ -828,12 +860,18 @@ veya doğrudan bağlantı için
 'imagelist_search_for'      => 'Resim adı ara:',
 
 # File reversion
+'filerevert'         => '$1 eski haline döndür',
+'filerevert-legend'  => 'Dosyayı eski haline döndür',
 'filerevert-comment' => 'Yorum:',
+'filerevert-submit'  => 'Eski haline döndür',
 
 # File deletion
-'filedelete'         => 'Sil $1',
-'filedelete-legend'  => 'Dosya sil',
-'filedelete-success' => "'''$1''' silindi.",
+'filedelete'                  => 'Sil $1',
+'filedelete-legend'           => 'Dosya sil',
+'filedelete-comment'          => 'Silinme sebebi:',
+'filedelete-submit'           => 'Sil',
+'filedelete-success'          => "'''$1''' silindi.",
+'filedelete-reason-otherlist' => 'Başka sebeb',
 
 # MIME search
 'mimesearch' => 'MIME araması',
@@ -888,6 +926,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 
 'withoutinterwiki'        => 'Diğer dillere bağlantısı olmayan sayfalar',
 'withoutinterwiki-header' => 'Aşağıda listelenen sayfalar diğer dillere bağlantı içermemektedir:',
+'withoutinterwiki-submit' => 'Göster',
 
 'fewestrevisions' => 'En az düzenleme yapılmış sayfalar',
 
@@ -956,6 +995,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'speciallogtitlelabel' => 'Başlık:',
 'log'                  => 'Kayıtlar',
 'all-logs-page'        => 'Tüm kayıtlar',
+'log-search-legend'    => 'Logları ara',
 'alllogstext'          => '[[Special:Log/upload|Yükleme]], [[Special:Log/delete|silme]], [[Special:Log/move|taşıma]], [[Special:Log/protect|koruma altına alma]], [[Special:Log/newusers|yeni kullanıcı]], [[Special:Log/renameuser|kullanıcıların yeniden adlandırmaları]], [[Special:Log/block|erişim engelleme]], [[Special:Log/rights|yönetici hareketlerinin]] ve [[Special:Log/makebot|botların durumunun]] tümünün kayıtları. 
 
 Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsiniz.',
@@ -1081,6 +1121,8 @@ Yardım ve öneriler için:
 'excontentauthor'             => "eski içerik: '$1' ('[[Special:Contributions/$2|$2]]' katkıda bulunmuş olan tek kullanıcı)",
 'exbeforeblank'               => "Silinmeden önceki içerik: '$1'",
 'exblank'                     => 'sayfa içeriği boş',
+'delete-confirm'              => '"$1" sil',
+'delete-legend'               => 'Sil',
 'historywarning'              => 'Uyarı: Silmek üzere olduğunuz sayfanın geçmişi vardır:',
 'confirmdeletetext'           => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
 Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[{{MediaWiki:Policy-url}}|Silme kurallarına]] uygun olduğuna eminseniz, işlemi onaylayın.',
@@ -1456,6 +1498,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_mathml' => 'Mümkünse MathML (daha deneme aşamasında)',
 
 # Patrol log
+'patrol-log-page' => 'Kontrol log',
 'patrol-log-auto' => '(otomatik)',
 
 # Image deletion
@@ -1631,10 +1674,11 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'edit-externally-help' => 'Daha fazla bilgi için metadaki [http://meta.wikimedia.org/wiki/Help:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz.',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'Tümü',
-'watchlistall2' => 'Hepsini göster',
-'namespacesall' => 'Hepsi',
-'monthsall'     => 'hepsi',
+'recentchangesall' => 'hepsi',
+'imagelistall'     => 'Tümü',
+'watchlistall2'    => 'Hepsini göster',
+'namespacesall'    => 'Hepsi',
+'monthsall'        => 'hepsi',
 
 # E-mail address confirmation
 'confirmemail'            => 'E-posta adresini onayla',
@@ -1667,6 +1711,12 @@ birşey yok.
 
 Bu onay kodu $4 tarihine kadar geçerli olacak.',
 
+# Scary transclusion
+'scarytranscludetoolong' => '[URL maalesef çok uzun]',
+
+# Trackbacks
+'trackbackremove' => ' ([$1 Sil])',
+
 # Delete conflict
 'deletedwhileediting' => 'Uyarı: Bu sayfa siz değişiklik yapmaya başladıktan sonra silinmiş!',
 'confirmrecreate'     => "Bu sayfayı [[User:$1|$1]] ([[User talk:$1|mesaj]]) kullanıcısı siz sayfada değişiklik yaparken silmiştir, nedeni:
@@ -1684,6 +1734,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 # AJAX search
 'articletitles' => "''$1'' ile başlayan maddeler",
 'hideresults'   => 'sonuçları gizle',
+'useajaxsearch' => 'AJAX arama kullan',
 
 # Multipage image navigation
 'imgmultipageprev' => '← önceki sayfa',
@@ -1698,12 +1749,17 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'table_pager_first'        => 'İlk',
 'table_pager_last'         => 'Son',
 'table_pager_limit_submit' => 'Git',
+'table_pager_empty'        => 'Sonuç yok',
 
 # Auto-summaries
 'autosumm-blank'   => 'Sayfa boşaltıldı',
 'autosumm-replace' => "Sayfanın içeriği '$1' ile değiştirildi",
 'autoredircomment' => '[[$1]] sayfasına yönlendirildi',
 'autosumm-new'     => 'Yeni sayfa: $1',
+
+# Live preview
+'livepreview-loading' => 'Yükleniyor...',
+'livepreview-ready'   => 'Yükleniyor...  Tamam!',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'İzleme listesini düzenle',
@@ -1720,6 +1776,14 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'watchlisttools-view' => 'İlgili değişiklikleri göster',
 'watchlisttools-edit' => 'İzleme listesini gör ve düzenle',
 'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
+
+# Special:Version
+'version-variables'        => 'Değişkenler',
+'version-other'            => 'Başka',
+'version-version'          => 'Versiyon',
+'version-license'          => 'Lisans',
+'version-software-product' => 'Ürün',
+'version-software-version' => 'Versiyon',
 
 # Special:Filepath
 'filepath'        => 'Dosyanın konumu',

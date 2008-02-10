@@ -13,6 +13,8 @@
  * @author לערי ריינהארט
  * @author Lou
  * @author Απεργός
+ * @author SPQRobin
+ * @author Demmy
  */
 
 /**
@@ -2478,6 +2480,12 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Άγνωστη ετικέτα επέκτασης "$1"',
+
+# Special:Version
+'version-specialpages'     => 'Ειδικές σελίδες',
+'version-version'          => 'Έκδοση',
+'version-software'         => 'Εγκατεστημένο λογισμικό',
+'version-software-version' => 'Έκδοση',
 
 # Special:Filepath
 'filepath'        => 'Διαδρομή αρχείου',

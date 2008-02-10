@@ -2079,6 +2079,7 @@ $1',
 
 'exif-exposuremode-0' => 'ఆటోమాటిక్ ఎక్స్పోజరు',
 'exif-exposuremode-1' => 'అమర్చిన ఎక్స్పోజరు',
+'exif-exposuremode-2' => 'వెలుతురుబట్టి అంచలవారీగా మారింది',
 
 'exif-whitebalance-0' => 'ఆటోమాటిక్ తెలుపు సంతులనం',
 'exif-whitebalance-1' => 'అమర్చిన తెలుపు సంతులనం',

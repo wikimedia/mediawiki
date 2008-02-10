@@ -300,7 +300,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'aboutpage'         => 'Project:Wo {{GRAMMAR:Lokatiw|{{SITENAME}}}}',
+'aboutpage'         => 'Project:Wo',
 'bugreports'        => 'Zmylkowe wopisanja',
 'bugreportspage'    => 'Project:Zmylkowe wopisanja',
 'copyright'         => 'Wobsah steji pod $1.',
@@ -318,6 +318,7 @@ $messages = array(
 'mainpage'          => 'Hłowna strona',
 'policy-url'        => 'Project:Směrnicy',
 'portal'            => 'Portal {{GRAMMAR:genitiw|{{SITENAME}}}}',
+'portal-url'        => 'Project:Portal',
 'privacy'           => 'Škit datow',
 'privacypage'       => 'Project:Škit datow',
 'sitesupport'       => 'Dary',

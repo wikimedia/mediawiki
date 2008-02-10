@@ -714,33 +714,34 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'license' => 'Lisensiëring',
 
 # Image list
-'imagelist'             => 'Prentelys',
-'imagelisttext'         => 'Hier onder is a lys van $1 prente gesorteer $2.',
-'getimagelist'          => 'Besig om prentelys te haal',
-'ilsubmit'              => 'Soek',
-'showlast'              => 'Wys laaste $1 prente gesorteer $2.',
-'byname'                => 'volgens naam',
-'bydate'                => 'volgens datum',
-'bysize'                => 'volgens grootte',
-'imgdelete'             => 'skrap',
-'imgdesc'               => 'beskrywing',
-'imgfile'               => 'lêer',
-'filehist'              => 'Lêergeskiedenis',
-'filehist-current'      => 'huidig',
-'filehist-datetime'     => 'Datum/Tyd',
-'filehist-user'         => 'Gebruiker',
-'filehist-filesize'     => 'Lêergrootte',
-'imagelinks'            => 'Prentskakels',
-'linkstoimage'          => 'Die volgende bladsye gebruik hierdie prent:',
-'nolinkstoimage'        => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
-'noimage'               => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
-'noimage-linktext'      => 'laai dit',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Naam',
-'imagelist_user'        => 'Gebruiker',
-'imagelist_size'        => 'Grootte',
-'imagelist_description' => 'Beskryving',
-'imagelist_search_for'  => 'Soek vir beeldnaam:',
+'imagelist'                 => 'Prentelys',
+'imagelisttext'             => 'Hier onder is a lys van $1 prente gesorteer $2.',
+'getimagelist'              => 'Besig om prentelys te haal',
+'ilsubmit'                  => 'Soek',
+'showlast'                  => 'Wys laaste $1 prente gesorteer $2.',
+'byname'                    => 'volgens naam',
+'bydate'                    => 'volgens datum',
+'bysize'                    => 'volgens grootte',
+'imgdelete'                 => 'skrap',
+'imgdesc'                   => 'beskrywing',
+'imgfile'                   => 'lêer',
+'filehist'                  => 'Lêergeskiedenis',
+'filehist-current'          => 'huidig',
+'filehist-datetime'         => 'Datum/Tyd',
+'filehist-user'             => 'Gebruiker',
+'filehist-filesize'         => 'Lêergrootte',
+'imagelinks'                => 'Prentskakels',
+'linkstoimage'              => 'Die volgende bladsye gebruik hierdie prent:',
+'nolinkstoimage'            => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
+'noimage'                   => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
+'noimage-linktext'          => 'laai dit',
+'uploadnewversion-linktext' => 'Laai een nuwe weergawe van hierdie lêer',
+'imagelist_date'            => 'Datum',
+'imagelist_name'            => 'Naam',
+'imagelist_user'            => 'Gebruiker',
+'imagelist_size'            => 'Grootte',
+'imagelist_description'     => 'Beskryving',
+'imagelist_search_for'      => 'Soek vir beeldnaam:',
 
 # File deletion
 'filedelete'                  => 'Skrap $1',
@@ -922,6 +923,10 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'watchlistcontains' => 'Jou dophoulys bevat $1 bladsye.',
 'wlnote'            => 'Hier volg die laaste $1 veranderings binne die laaste <b>$2</b> ure.',
 'wlshowlast'        => 'Wys afgelope $1 ure, $2 dae of $3',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Plaas op dophoulys...',
+'unwatching' => 'Verwyder van dophoulys...',
 
 'enotif_newpagetext'           => "Dis 'n nuwe bladsy.",
 'enotif_impersonal_salutation' => '{{SITENAME}} gebruiker',
@@ -1227,6 +1232,7 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 
 # Media information
 'imagemaxsize'   => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
+'file-nohires'   => '<small>Geen hoëre resolusie beskikbaar nie.</small>',
 'show-big-image' => 'Volle resolusie',
 
 # Special:Newimages
@@ -1346,6 +1352,7 @@ $1',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Besigtig ter saaklike veranderinge',
+'watchlisttools-edit' => 'Bekyk en wysig dophoulys',
 'watchlisttools-raw'  => 'Redigeer brondophoulys',
 
 # Special:Filepath

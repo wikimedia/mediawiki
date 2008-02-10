@@ -377,7 +377,7 @@ Goulenn : $2",
 'protectedpagetext'    => "Prennet eo bet ar bajenn-mañ. N'haller ket degas kemmoù enni.",
 'viewsourcetext'       => 'Gallout a rit gwelet hag eilañ danvez ar bajenn-mañ',
 'protectedinterface'   => 'Testenn ar bajenn-mañ a dalvez evit etrefas ar meziant. Setu perak eo bet gwarezet ar bajenn.',
-'editinginterface'     => "'''Diwallit :''' Emaoc'h oc'h adaozañ ur bajenn a dalvez da sevel skridoù evit etrefas ar meziant. Ar c'hemmoù graet ouzh ar bajenn-mañ a zegaso kemmoù war etrefas an holl implijerien.",
+'editinginterface'     => "'''Diwallit :''' Emaoc'h oc'h adaozañ ur bajenn a dalvez da sevel skridoù evit etrefas ar meziant. Ar c'hemmoù graet d'ar bajenn-mañ a zegaso kemmoù war etrefas an holl implijerien. Mar fell deoc'h skoazellañ evit treiñ traoù, soñjit kentoc'h implijout [http://translatewiki.net/wiki/Main_Page?setlang=br Betawiki], ar raktres evit lec'helaat MediaWiki.",
 'sqlhidden'            => '(Reked SQL kuzhet)',
 'cascadeprotected'     => 'Gwarezet eo ar bajenn-mañ; n\'haller ket degas kemmoù enni peogwir he c\'haver er {{PLURAL:$1|bajenn|pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh "skalierad" : 
 $2',
@@ -470,8 +470,8 @@ $1 eur.",
 'accountcreated'             => 'Kont krouet',
 'accountcreatedtext'         => 'Krouet eo bet kont implijer $1.',
 'createaccount-title'        => 'Krouiñ ur gont war {{SITENAME}}',
-'createaccount-text'         => 'Unan bennak ($1) en deus krouet ur gont evit $2 war {{SITENAME}}
-($4). "$3" eo ar ger-tremen evit "$2". Mat e vefe deoc\'h en em lugañ ha cheñch ho ker-tremen bremañ.
+'createaccount-text'         => 'Unan bennak en deus krouet ur gont gant ho chomlec\'h postel war {{SITENAME}} ($4) zo e anv "$2" hag a ra gant ar ger-tremen "$3".
+Mat e vefe deoc\'h en em lugañ ha cheñch ho ker-tremen bremañ.
 
 Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'loginlanguagelabel'         => 'Yezh : $1',
@@ -2342,6 +2342,10 @@ Klaskit rakwelet er mod boutin.',
 'version-hook-name'                => 'Anv ar galv',
 'version-hook-subscribedby'        => 'Termenet gant',
 'version-version'                  => 'Stumm',
+'version-license'                  => 'Aotre implijout',
+'version-software'                 => 'Meziant staliet',
+'version-software-product'         => 'Produ',
+'version-software-version'         => 'Stumm',
 
 # Special:Filepath
 'filepath'         => 'Hent moned ur restr',

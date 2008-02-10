@@ -457,7 +457,9 @@ Büä pened votik alseimik okanon pasedön kale at, omutol dunön valikosi in pe
 'loginlanguagelabel'         => 'Pük: $1',
 
 # Password reset dialog
-'resetpass_success' => 'Letavöd olik pevotükon benosekiko! Anu sit nunädon oli...',
+'resetpass_submit'    => 'Välön letavödi e nunädön omi',
+'resetpass_success'   => 'Letavöd olik pevotükon benosekiko! Anu sit nunädon oli...',
+'resetpass_forbidden' => 'Letavöds no kanons pavotükön in {{SITENAME}}',
 
 # Edit page toolbar
 'bold_sample'     => 'Vödem bigik',
@@ -516,6 +518,7 @@ Küpälolös, das no dalol gebön yümi: „penön gebane at“ if no labol lade
 
 Blokamanüm olik binon $5. Mäniotolös, begö! oni in peneds valik olik.",
 'blockednoreason'          => 'kod nonik pegivon',
+'blockedoriginalsource'    => "Fonät pada: '''$1''' pajonon dono:",
 'whitelistedittitle'       => 'Mutol nunädön oli ad redakön',
 'whitelistedittext'        => 'Mutol $1 ad redakön padis.',
 'whitelistreadtitle'       => 'Mutol nunädön oli ad reidön',
@@ -577,12 +580,16 @@ Jenotalised moükama pada at pajonon is as yuf.",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kal no kanon pajafön',
+'cantcreateaccount-text' => "Kalijaf se ladet-IP at (<b>$1</b>) peblokon fa geban: [[User:$3|$3]].
+
+Kod blokama fa el $3 pegivöl binon ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Jonön jenotalisedis pada at',
 'nohistory'           => 'Pad at no labon redakamajenotemi.',
 'revnotfound'         => 'Fomam no petuvon',
 'revnotfoundtext'     => 'Padafomam büik fa ol peflagöl no petuvon. Kontrololös, begö! ladeti-URL, keli egebol ad logön padi at.',
+'loadhist'            => 'Padajenotem palodon',
 'currentrev'          => 'Fomam anuik',
 'revisionasof'        => 'Fomam dätü $1',
 'revision-info'       => 'Fomam timü $1 fa el $2',
@@ -613,16 +620,20 @@ Ba pemoükon se ragivs, u ba pevotanemon.
 Kanol [[Special:Search|sukön]] padis nulik tefik.',
 
 # Revision deletion
-'rev-deleted-comment'    => '(küpet pemoükon)',
-'rev-deleted-user'       => '(gebananem pemoükon)',
-'rev-delundel'           => 'jonolöd/klänedolöd',
-'revdelete-text'         => 'Revids pemoüköl nog opubons in padajenotem, ab ninäd (vödem) onsik no gebidons publüge. 
+'rev-deleted-comment'     => '(küpet pemoükon)',
+'rev-deleted-user'        => '(gebananem pemoükon)',
+'rev-delundel'            => 'jonolöd/klänedolöd',
+'revisiondelete'          => 'Moükön/sädunön moükami fomamas',
+'revdelete-nooldid-title' => 'No dabinon zeilafomam',
+'revdelete-selected'      => "{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: '''$1:'''",
+'revdelete-text'          => 'Revids pemoüköl nog opubons in padajenotem, ab ninäd (vödem) onsik no gebidons publüge. 
 
 Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons nog geükön oni medü pads patik, üf miedöfükams u neletians pluiks no pepladons.',
-'revdelete-hide-text'    => 'Klänedön vödemi revida',
-'revdelete-hide-comment' => 'Klänedön redakamaküpeti',
-'revdelete-hide-user'    => 'Klänedön gebananemi u ladeti-IP redakana',
-'revdelete-hide-image'   => 'Klänedön ragivaninädi',
+'revdelete-hide-text'     => 'Klänedön vödemi revida',
+'revdelete-hide-name'     => 'Klänedön duni e zeili',
+'revdelete-hide-comment'  => 'Klänedön redakamaküpeti',
+'revdelete-hide-user'     => 'Klänedön gebananemi u ladeti-IP redakana',
+'revdelete-hide-image'    => 'Klänedön ragivaninädi',
 
 # History merging
 'mergehistory-from'           => 'Fonätapad:',

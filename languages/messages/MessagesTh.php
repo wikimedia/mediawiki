@@ -10,6 +10,15 @@
  * @author לערי ריינהארט
  */
 
+$skinNames = array(
+	'standard'    => 'ดั้งเดิม',
+	'nostalgia'   => 'อดีต',
+	'cologneblue' => 'น้ำเงินโคโลญจ์',
+	'myskin'      => 'ปรุงเอง',
+	'simple'      => 'เรียบง่าย',
+	'modern'      => 'นำสมัย',
+);
+
 $namespaceNames = array(
 	NS_MEDIA            => 'สื่อ',
 	NS_SPECIAL          => 'พิเศษ',

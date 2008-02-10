@@ -608,7 +608,7 @@ Consulte a continuación el registro de borrados:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No se puede crear la cuenta',
-'cantcreateaccount-text' => "La creación de cuentas desde esta dirección IP (<b>$1</b>) ha sido bloqueada por [[Usuario:$3|$3]].
+'cantcreateaccount-text' => "La creación de cuentas desde esta dirección IP (<b>$1</b>) ha sido bloqueada por [[User:$3|$3]].
 
 El motivo dado por $3 es ''$2''",
 
