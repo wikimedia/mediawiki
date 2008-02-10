@@ -650,7 +650,7 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 'previewnote'               => '<strong>Isto é apenas uma previsão. As modificações ainda não foram salvas!</strong>',
 'previewconflict'           => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'editing'                   => 'Editando $1',
-'editinguser'               => 'Editando $1',
+'editinguser'               => "Modificando privilégios do usuário '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editando $1 (seção)',
 'editingcomment'            => 'Editando $1 (comentário)',
 'editconflict'              => 'Conflito de edição: $1',

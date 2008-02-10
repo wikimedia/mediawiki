@@ -352,7 +352,7 @@ $messages = array(
 'badaccess-groups' => 'Chỉ những thành viên trong các nhóm $1 mới được làm thao tác này.',
 
 'versionrequired'     => 'Cần phiên bản $1 của MediaWiki',
-'versionrequiredtext' => 'Cần phiên bản $1 của MediaWiki để sử dụng trang này. Xem [[Special:Version|phiên bản trang]].',
+'versionrequiredtext' => 'Cần phiên bản $1 của MediaWiki để sử dụng trang này. Xem [[Special:Version|trang phiên bản]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Lấy từ “$1”',
@@ -1010,13 +1010,13 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'minlength1'                  => 'Tên tập tin phải có ít nhất một ký tự.',
 'illegalfilename'             => 'Tên tập tin “$1” có chứa ký tự không được phép dùng cho tựa trang. Xin hãy đổi tên và tải lên lại.',
 'badfilename'                 => 'Tên tập tin đã được đổi thành “$1”.',
-'filetype-badmime'            => 'Không thể truyền lên các tập tin có định dạng MIME “$1”.',
+'filetype-badmime'            => 'Không thể tải lên các tập tin có định dạng MIME “$1”.',
 'filetype-unwanted-type'      => "'''“.$1”''' là định dạng tập tin không mong muốn.  Những loại tập tin thích hợp hơn là $2.",
 'filetype-banned-type'        => "'''“.$1”''' là định dạng tập tin không được chấp nhận.  Những loại tập tin được chấp nhận là $2.",
 'filetype-missing'            => 'Tập tin không có phần mở rộng (ví dụ “.jpg”).',
 'large-file'                  => 'Các tập tin được khuyến cáo không được lớn hơn $1; tập tin này lớn đến $2.',
 'largefileserver'             => 'Tập tin này quá lớn so với khả năng phục vụ của máy chủ.',
-'emptyfile'                   => 'Tập tin bạn vừa mới truyền lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
+'emptyfile'                   => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
 'fileexists'                  => 'Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại <strong><tt>$1</tt></strong> nếu bạn không chắc bạn có muốn thay đổi nó hay không.',
 'filepageexists'              => 'Đã có một trang (không phải trang chứa hình) tồn tại ở tên mới, xin hãy đánh dấu chọn <strong><tt>$1</tt></strong> nếu bạn không chắc chắn mình có muốn đổi tên hay không.',
 'fileexists-extension'        => 'Hiện có một tập tin trùng tên:<br />
@@ -1028,7 +1028,7 @@ Xin hãy chọn một tên tập tin khác.',
 Nếu tập tin được kiểm tra trùng với hình có kích cỡ gốc thì không cần thiết tải lên một hình thu nhỏ khác.',
 'file-thumbnail-no'           => 'Tên tập tin bắt đầu bằng <strong><tt>$1</tt></strong>. Có vẻ đây là bản có kích thước thu nhỏ của hình <i>(thumbnail)</i>.
 Nếu bạn có bản ở độ phân giải tối đa, mời bạn tải bản này lên, nếu không hãy đổi lại tên tập tin.',
-'fileexists-forbidden'        => 'Đã có tập tin với tên gọi này; xin quay lại để tải tập tin này lên dưới tên khác. [[Image:$1|nhỏ|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Đã có tập tin với tên gọi này; xin quay lại để tải tập tin này lên dưới tên khác. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Một tập tin với tên này đã tồn tại ở kho tập tin dùng chung; xin hãy quay lại và tải tập tin này lên với tên khác.
 [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Đã tải xong',
@@ -1065,7 +1065,7 @@ PICT # khác
  #</pre> <!-- xin để nguyên hàng này -->',
 
 'upload-proto-error'      => 'Giao thức sai',
-'upload-proto-error-text' => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để truyền lên tập tin từ website khác.',
+'upload-proto-error-text' => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',
 'upload-file-error'       => 'Lỗi nội bộ',
 'upload-file-error-text'  => 'Có lỗi nội bộ khi tạo ra tập tin tạm trên máy chủ. Xin hãy liên lạc với người quản lý hệ thống.',
 'upload-misc-error'       => 'Có lỗi lạ khi tải lên',
@@ -1125,11 +1125,11 @@ PICT # khác
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
 'filerevert-legend'         => 'Lùi lại tập tin',
-'filerevert-intro'          => '<span class="plainlinks">Bạn đang lùi \'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' về [phiên bản $4 lúc $3, $2].</span>',
+'filerevert-intro'          => '<span class="plainlinks">Bạn đang lùi \'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' về [$4 phiên bản lúc $3, $2].</span>',
 'filerevert-comment'        => 'Lý do:',
 'filerevert-defaultcomment' => 'Đã lùi về phiên bản lúc $2, $1',
 'filerevert-submit'         => 'Lùi lại',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' đã được lùi về [phiên bản $4 lúc $3, $2].</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' đã được lùi về [$4 phiên bản lúc $3, $2].</span>',
 'filerevert-badversion'     => 'Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.',
 
 # File deletion
@@ -2400,7 +2400,7 @@ $1',
 'version-skin-extension-functions' => 'Hàm mở rộng skin',
 'version-hook-name'                => 'Tên hook',
 'version-hook-subscribedby'        => 'Được theo dõi bởi',
-'version-version'                  => 'Phiên bản',
+'version-version'                  => 'phiên bản',
 'version-license'                  => 'Giấy phép bản quyền',
 'version-software'                 => 'Phần mềm được cài đặt',
 'version-software-product'         => 'Phần mềm',

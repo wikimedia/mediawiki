@@ -462,8 +462,7 @@ $2',
 'accountcreated'             => 'खाते उघडले.',
 'accountcreatedtext'         => '$1 चे सदस्यखाते उघडले.',
 'createaccount-title'        => '{{SITENAME}} साठीची सदस्य नोंदणी',
-'createaccount-text'         => 'कुणीतरी ($1) {{SITENAME}}वर $2 साठी सदस्य नोंदणी केलेली आहे
-($4). "$2" साठीचा परवलीचा शब्द "$3" आहे. कृपया आपण सदस्य प्रवेश करून आपला परवलीचा शब्द बदलावा.
+'createaccount-text'         => 'तुमच्या विपत्र पत्त्याकरिता {{SITENAME}} ($4)वर "$2" नावाच्या कुणी "$3" परवलीने खाते उघडले आहे. कृपया आपण सदस्य प्रवेश करून आपला परवलीचा शब्द बदलावा.
 
 जर ही नोंदणी चुकीने झाली असेल तर तुम्ही या संदेशाकडे दुर्लक्ष करू शकता.',
 'loginlanguagelabel'         => 'भाषा: $1',
@@ -585,7 +584,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>तुमचे संपादन रद्द करण्यात आलेले आहे कारण तुमच्या क्लायंटनी तुमच्या संपादनातील उद्गारवाचक चिन्हांमध्ये (punctuation) बदल केलेले आहेत. पानातील मजकूर खराब होऊ नये यासाठी संपादन रद्द करण्यात आलेले आहे. 
 असे कदाचित तुम्ही अनामिक proxy वापरत असल्याने होऊ शकते.</strong>',
 'editing'                   => '$1 चे संपादन होत आहे.',
-'editinguser'               => '<b>$1</b>सदस्यत्व संपादन',
+'editinguser'               => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])चे सदस्य अधिकारात बदल केला जात आहे.",
 'editingsection'            => '$1 (विभाग) संपादन',
 'editingcomment'            => '$1 संपादन (प्रतिक्रीया)',
 'editconflict'              => 'वादग्रस्त संपादन: $1',
@@ -597,6 +596,7 @@ $2',
 कळ दाबली.<br />',
 'yourtext'                  => 'तुमचे पाठ्य',
 'storedversion'             => 'साठविलेली आवृत्ती',
+'nonunicodebrowser'         => '<strong>सावधान: तुमचा विचरक यूनिकोड आधारीत नाही. ASCIIनसलेली  अक्षरचिन्हे संपादन खिडकीत सोळाअंकी कूटसंकेत (हेक्झाडेसीमल कोड) स्वरूपात दिसण्याची, सुरक्षीतपणे संपादन करू देणारी,  पळवाट उपलब्ध आहे.</strong>',
 'editingold'                => '<strong>इशारा: तुम्ही मूळ पृष्ठाची एक कालबाह्य आवृत्ती संपादित करीत आहात.
 जर आपण बदल साठवून ठेवण्यात आले तर या नंतरच्या सर्व आवृत्त्यांमधील साठविण्यात आलेले बदल नष्ठ होतील.</strong>',
 'yourdiff'                  => 'फरक',
@@ -685,9 +685,18 @@ $3ने ''$2'' कारण दिले आहे.",
 [{{fullurl:Special:Log/delete|पान={{FULLPAGENAMEE}}}} वगळल्याच्या नोंदीत निर्देश असण्याची शक्यता आहे].
 
 </div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+पानाचे हे आवर्तन सार्वजनिक विदागारातून वगळण्यात आले आहे.
+{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .</div>',
 'rev-delundel'                => 'दाखवा/लपवा',
 'revisiondelete'              => 'आवर्तने वगळा/पुर्नस्थापित करा',
 'revdelete-nooldid-title'     => 'अपेक्षीत आवृत्ती नव्हे',
+'revdelete-nooldid-text'      => 'आपण हि कृती करावयाचे/ची आवर्तने सूचीत केली नाहीत',
+'revdelete-selected'          => "'''$1:'''ची {{PLURAL:$2|निवडलेले आवर्तन|निवडलेली आवर्तने}}",
+'logdelete-selected'          => "'''$1:'''करीता {{PLURAL:$2|निवडलेली नोंदीकृत घटना|निवडलेल्या नोंदीकृत घटना}}",
+'revdelete-text'              => 'वगळलेल्या नोंदी आणि घटना अजूनही पानाच्या इतिहासात आणि नोंदीत आढळेल,परंतु मजकुराचा भाग सार्वजनिक स्वरूपात उपलब्ध राहणार नाही.
+
+अजून इतर  प्रतिबंध घातल्या शिवाय {{SITENAME}}चे इतर प्रबंधक झाकलेला मजकुर याच दुव्याने परतवू शकतील.',
 'revdelete-legend'            => 'बंधने निश्चित करा:',
 'revdelete-hide-text'         => 'आवर्तीत मजकुर लपवा',
 'revdelete-hide-name'         => 'कृती आणि ध्येय लपवा',
@@ -699,14 +708,43 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdelete-unsuppress'        => 'पुर्नस्थापीत आवृत्तीवरील बंधने ऊठवा',
 'revdelete-log'               => 'नोंद प्रतिक्रीया:',
 'revdelete-submit'            => 'निवडलेल्या आवृत्त्यांना लागू करा',
+'revdelete-logentry'          => '[[$1]]ची आवर्तन सदृश्यता बदलली.',
+'logdelete-logentry'          => '[[$1]]ची घटना सदृश्यता बदलली.',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}} $2 पद्धतीने लावली',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|घटना|प्रसंग}}  [[$3]]कडे  $2 पद्धतीने लावले',
+'revdelete-success'           => 'आवर्तनांची दृश्यता यशस्वी पणे लाविली.',
+'logdelete-success'           => 'घटनांची दृश्यता यशस्वी पणे लाविली.',
+
+# Oversight log
+'oversightlog'    => 'झापडबंद(ovhersight) नोंदी',
+'overlogpagetext' => '(सिसॉप)प्रचालकांपासून अदृश्य मजकुर असलेली अगदी अलिकडील वगळलेले आणि प्रतिबंधीतांची सूची खाली दिली आहे.सध्या लागू प्रतिबंधनांची आणि बंदीची  [[Special:Ipblocklist|प्रतिबंधीत अंकपत्त्यांची यादी]] पाहा .',
 
 # History merging
-'mergehistory'       => 'पान ईतिहासांचे एकत्रिकरण करा',
-'mergehistory-from'  => 'स्रोत पान:',
-'mergehistory-merge' => '[[:$1]]ची पूढील आवर्तने [[:$2]]मध्ये एकत्रित करता येतील.ठराविक वेळी अथवा तत्पूर्वी झालेल्या आवर्तनांचे एकत्रिकरण करण्याकरिता रेडीओ कळ स्तंभ वापरा.हा स्तंभ सुचालन दुवे वापरल्यास पूर्वपदावर येईल हे लक्षात घ्या.',
+'mergehistory'                     => 'पान ईतिहासांचे एकत्रिकरण करा',
+'mergehistory-header'              => "हे पान एका स्रोत पानाचा इतिहास एखाद्या नविन पानात समाविष्ट करू देते.
+हा बदल पानाचे ऐतिहासिक सातत्य राखेल याची दक्षता घ्या.
+
+'''स्रोत पानाचे किमान आताचे आवर्तन जतन ठेवणे अत्यावश्यक आहे.'''",
+'mergehistory-box'                 => 'दोन पानांची आवर्तने संमिलीत करा:',
+'mergehistory-from'                => 'स्रोत पान:',
+'mergehistory-into'                => 'लक्ष्य पान:',
+'mergehistory-list'                => 'गोळाबेरीज करण्याजोगा संपादन इतिहास',
+'mergehistory-merge'               => '[[:$1]]ची पूढील आवर्तने [[:$2]]मध्ये एकत्रित करता येतील.ठराविक वेळी अथवा तत्पूर्वी झालेल्या आवर्तनांचे एकत्रिकरण करण्याकरिता रेडीओ कळ स्तंभ वापरा.हा स्तंभ सुचालन दुवे वापरल्यास पूर्वपदावर येईल हे लक्षात घ्या.',
+'mergehistory-go'                  => 'गोळाबेरीज करण्याजोगी संपादने दाखवा',
+'mergehistory-submit'              => 'आवर्तने एकत्रित करा.',
+'mergehistory-empty'               => 'कोणतेही आवर्तन एकत्रित करता येत नाही.',
+'mergehistory-success'             => '[[:$1]]ची $3 आवर्तने [[:$2]]मध्ये यशस्वीरित्या एकत्रित केली.',
+'mergehistory-fail'                => 'इतिहासाचे एकत्रिकरण कार्य करू शकत नाही आहे, कृपया पान आणि वेळ नियमावलीची पुर्नतपासणी करा.',
+'mergehistory-no-source'           => 'स्रोत पान $1 अस्तित्वात नाही.',
+'mergehistory-no-destination'      => 'लक्ष्य पान $1  अस्तित्वात नाही.',
+'mergehistory-invalid-source'      => 'स्रोत पानाचे शिर्षक योग्य असणे आवश्यक आहे.',
+'mergehistory-invalid-destination' => 'लक्ष्य पानाचे शिर्षक योग्य असणे आवश्यक आहे.',
 
 # Merge log
-'mergelog' => 'नोंदी एकत्र करा',
+'mergelog'           => 'नोंदी एकत्र करा',
+'pagemerge-logentry' => '[[$2]]मध्ये[[$1]] समाविष्ट केले ($3पर्यंतची आवर्तने)',
+'revertmerge'        => 'वेगवेगळे करा',
+'mergelogpagetext'   => 'एकापानाचा इतिहास इतर पानात टाकून अगदी अलिकडे एकत्रित केलेली एकत्रिकरणे निम्न्दर्शीत सूचीत आहेत.',
 
 # Diffs
 'history-title'           => '"$1" चा संपादन इतिहास',
@@ -730,7 +768,12 @@ $3ने ''$2'' कारण दिले आहे.",
 'prevn'                 => 'मागील $1',
 'nextn'                 => 'पुढील $1',
 'viewprevnext'          => 'पाहा ($1) ($2) ($3).',
+'showingresults'        => "#'''$2'''पासून {{PLURAL:$1|'''1'''पर्यंतचा निकाल|'''$1'''पर्यंतचे निकाल}} खाली दाखवले आहे.",
+'showingresultsnum'     => "#'''$2'''पासून सुरू होणारे  {{PLURAL:$3|'''1''' निकाल|'''$3''' निकाल}}.",
+'nonefound'             => "'''सूचना''':नेहमीच्या सर्वसामान्य \"have\" आणि \"from\" सारख्या सूचीबद्ध न केलेल्या शब्दांचा वापरकरून केलेले शोध किंवा एका पेक्षा अधिक व्याख्या वापरून केलेले शोध सहसा अयशस्वी होताना आढळतात.(दिलेल्या सर्व शोध व्याख्या असलेली पानेच केवळ उत्तरात येतील)",
 'powersearch'           => 'शोधा',
+'powersearchtext'       => 'नामविश्वातील शोध:<br />$1<br />$2 पुर्ननिर्देशन सूची<br /> $3 $9 करिता शोध',
+'searchdisabled'        => '{{SITENAME}} शोध अनुपलब्ध केला आहे.तो पर्यंत गूगलवरून शोध घ्या.{{SITENAME}}च्या मजकुराची त्यांची सूचिबद्धता शिळी असण्याची शक्यता असु शकते हे लक्षात घ्या.',
 
 # Preferences page
 'preferences'              => 'माझ्या पसंती',
@@ -754,6 +797,12 @@ $3ने ''$2'' कारण दिले आहे.",
 'math_failure'             => 'पृथक्करणात अयशस्वी',
 'math_unknown_error'       => 'अपरिचित त्रूटी',
 'math_unknown_function'    => 'अज्ञात function',
+'math_lexing_error'        => 'लेक्झींग(कोशीय?)त्रूटी',
+'math_syntax_error'        => 'आज्ञावली-विन्यास त्रूटी',
+'math_image_error'         => 'PNG पालट अयशस्वी; latex, dvips, gs ची  स्थापना योग्य झाली आहे काय ते तपासा आणि बदल करा',
+'math_bad_tmpdir'          => '"गणितीय तूर्त धारिके"(math temp directory)ची  निर्मीती करू शकत नाही अथवा "मॅथ तूर्त धारिकेत" लिहू शकत नाही .',
+'math_bad_output'          => 'गणितीय प्राप्त धारिकेची( math output directory) निर्मीती अथवा त्यात लेखन करू शकत नाही.',
+'math_notexvc'             => 'texvcकरणी(texvc एक्झिक्यूटेबल)चूकमुकली आहे;कृपया,सज्जीत करण्याकरिता math/README पाहा.',
 'prefs-personal'           => 'सदस्य व्यक्तिरेखा',
 'prefs-rc'                 => 'अलीकडील बदल',
 'prefs-watchlist'          => 'पहार्‍याची सूची',
@@ -771,6 +820,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'searchresultshead'        => 'शोध',
 'resultsperpage'           => 'प्रति पान धडका:',
 'contextlines'             => 'प्रति धडक ओळी:',
+'contextchars'             => 'प्रतिओळ संदर्भ:',
 'stub-threshold'           => '<a href="#" class="stub">अंकुरीत दुव्यांच्या</a> रचनेची नांदी (बाईट्स):',
 'recentchangesdays'        => 'अलिकडील बदल मधील दाखवावयाचे दिवस:',
 'recentchangescount'       => 'अलिकडील बदलमध्ये दाखवावयाच्या संपादनांची संख्या:',
@@ -795,6 +845,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'userrights-groupsmember'          => '(चा) सभासद:',
 'userrights-groupsremovable'       => 'वगळण्यायोग्य मंडळे:',
 'userrights-groupsavailable'       => 'उपलब्ध मंडळे:',
+'userrights-groupshelp'            => 'सदस्य वगळण्याकरिता अथवा नवे सदस्य भरण्याकरिता, गट निवडा.न निअवडलेल्या गटात बद्ल होणार नाही.’CTRL + डावी टिचकी’ वापरून तुम्ही एखाद्या गटाची निवड वगळू शकता.',
 'userrights-reason'                => 'बदलाचे कारण:',
 'userrights-available-none'        => 'तुम्ही गट सदस्यत्व बदलू शकत नाही.',
 'userrights-available-add'         => 'तुम्ही {{PLURAL:$2|या ग्रुपमध्ये|या ग्रुप्समध्ये}} सदस्य वाढवू शकता: $1.',
@@ -908,6 +959,7 @@ $3ने ''$2'' कारण दिले आहे.",
 कृपया दुसरे नाव निवडा.',
 'fileexists-thumb'       => "<center>'''अस्तित्वात असलेली संचिका'''</center>",
 'successfulupload'       => 'यशस्वीरीत्या चढवले',
+'uploadwarning'          => 'चढवताना सूचना',
 'savefile'               => 'संचिका जतन करा',
 'uploadedimage'          => '"[[$1]]" ही संचिका चढवली.',
 'overwroteimage'         => '"[[$1]]" या संचिकेची नवीन आवृत्ती चढविली.',
@@ -923,12 +975,18 @@ $3ने ''$2'' कारण दिले आहे.",
 कृपया तुम्ही करत असलेली कृती योग्य असल्याची खात्री करून घ्या.
 तुमच्या सोयीसाठी वगळल्याची नोंद पुढीलप्रमाणे:",
 
-'upload-file-error' => 'अंतर्गत त्रूटी',
-'upload-misc-error' => 'संचिका चढविताना माहित नसलेली त्रूटी आलेली आहे.',
+'upload-proto-error' => 'चूकीचा संकेत',
+'upload-file-error'  => 'अंतर्गत त्रूटी',
+'upload-misc-error'  => 'संचिका चढविताना माहित नसलेली त्रूटी आलेली आहे.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'  => 'URLपाशी पोहोचले नाही',
+'upload-curl-error28' => 'चढवण्यात वेळगेली',
 
 'license'            => 'परवाना',
 'nolicense'          => 'काही निवडलेले नाही',
 'license-nopreview'  => '(झलक उपलब्ध नाही)',
+'upload_source_url'  => '(एक सुयोग्य,सार्वजनिकरित्या उपलब्ध URL)',
 'upload_source_file' => '(तुमच्या संगणकावरील एक संचिका)',
 
 # Image list
@@ -976,6 +1034,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'filerevert-comment'        => 'प्रतिक्रीया:',
 'filerevert-defaultcomment' => '$2, $1 च्या आवृत्तीत पूर्वपदास',
 'filerevert-submit'         => 'पूर्वपद',
+'filerevert-badversion'     => 'दिलेलेल्या वेळ मापनानुसार,या संचिकेकरिता कोणतीही पूर्वीची स्थानिक आवृत्ती नाही.',
 
 # File deletion
 'filedelete'                  => '$1 वगळा',
@@ -984,6 +1043,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'filedelete-comment'          => 'वगळ्ण्याची कारणे:',
 'filedelete-submit'           => 'वगळा',
 'filedelete-success'          => "'''$1'''वगळण्यात आले.",
+'filedelete-nofile'           => "'''$1''' {{SITENAME}}वर अस्तित्वात नाही.",
 'filedelete-otherreason'      => 'इतर/शिवाय अधिक कारण:',
 'filedelete-reason-otherlist' => 'इतर कारण',
 'filedelete-reason-dropdown'  => '*वगळण्याची सामान्य कारणे
@@ -1013,7 +1073,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'randompage-nopages' => 'या नामविश्वात कोणतीही पाने नाहीत.',
 
 # Random redirect
-'randomredirect' => 'अविशिष्ट पुनर्निर्देशन',
+'randomredirect'         => 'अविशिष्ट पुनर्निर्देशन',
+'randomredirect-nopages' => 'या नामविश्वात कोणतीही पुर्ननिर्देशने नाहीत.',
 
 # Statistics
 'statistics'             => 'सांख्यिकी',
@@ -1053,6 +1114,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'ncategories'             => '$1 {{PLURAL:$1|वर्ग|वर्ग}}',
 'nlinks'                  => '$1 {{PLURAL:$1|दुवा|दुवे}}',
 'nmembers'                => '$1 {{PLURAL:$1|सदस्य|सदस्य}}',
+'nrevisions'              => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
+'nviews'                  => '$1 {{PLURAL:$1|दृषीपथ|दृषीपथ}}',
 'specialpage-empty'       => 'या प्रतिवेदनाकरिता(रिपोर्ट)कोणताही निकाल नाही.',
 'lonelypages'             => 'पोरकी पाने',
 'lonelypagestext'         => 'खालील पानांना {{SITENAME}}च्या इतर पानांकडून दूवा जोड झालेली नाही.',
@@ -1211,6 +1274,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'created'                      => 'घडवले',
 'enotif_subject'               => '{{SITENAME}} पान $पानशिर्षक $पानसंपादकाने $निर्मीले किंवा बदलले आहे',
 'enotif_lastvisited'           => 'तुमच्या शेवटच्या भेटीनंतरचे बदल बघणयासाठी पहा - $1.',
+'enotif_lastdiff'              => 'हा बदल पहाण्याकरिता $1 पाहा.',
 'enotif_anon_editor'           => 'अनामिक उपयोगकर्ता $1',
 
 # Delete/protect/revert
@@ -1235,13 +1299,20 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'deletecomment'               => 'वगळण्याचे कारण',
 'deleteotherreason'           => 'दुसरे/अतिरिक्त कारण:',
 'deletereasonotherlist'       => 'दुसरे कारण',
+'deletereason-dropdown'       => '* वगळण्याची सामान्य कारणे
+** लेखकाची(लेखिकेची) विनंती
+** प्रताधिकार उल्लंघन
+** उत्पात',
 'rollback'                    => 'बदल उलटवा',
 'rollback_short'              => 'उलटवा',
 'rollbacklink'                => 'जुन्या आवृत्तीकडे पुन्हा जा',
+'rollbackfailed'              => 'बदल उलटवणे फसले',
 'editcomment'                 => 'बदलासोबतची नोंद होती : "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
 'protectlogpage'              => 'सुरक्षा नोंदी',
 'protectedarticle'            => '"[[$1]]" सुरक्षित केला',
+'modifiedarticleprotection'   => '"[[$1]]"करिता सुरक्षापातळी बदलली',
 'unprotectedarticle'          => '"[[$1]]" असुरक्षित केला.',
 'protectsub'                  => '("$1" सुरक्षित करत आहे)',
 'confirmprotect'              => 'सुरक्षापातळीतील बदल निर्धारित करा',
@@ -1270,13 +1341,37 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'pagesize'                    => '(बाइट)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'संपादन',
+'restriction-edit'   => 'संपादन',
+'restriction-move'   => 'स्थानांतरण',
+'restriction-create' => 'निर्मित करा',
+
+# Restriction levels
+'restriction-level-sysop'         => 'पूर्ण सूरक्षीत',
+'restriction-level-autoconfirmed' => 'अर्ध सुरक्षीत',
+'restriction-level-all'           => 'कोणतीही पातळी',
 
 # Undelete
-'undelete'        => 'वगळलेली पाने पाहा',
-'viewdeletedpage' => 'काढून टाकलेले लेख पाहा',
-'undeletebtn'     => 'वगळण्याची क्रिया रद्द करा',
-'undeletereset'   => 'पूर्ववत',
+'undelete'                 => 'वगळलेली पाने पाहा',
+'undeletepage'             => 'वगळलेली पाने पाहा आणि पुर्नस्थापित करा',
+'viewdeletedpage'          => 'काढून टाकलेले लेख पाहा',
+'undeleterevisions'        => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}विदागारात संचीत',
+'undelete-revision'        => '$1चे($2चे)आवर्तन $3 ने वगळले:',
+'undelete-nodiff'          => 'पूर्वीचे कोणतेही आवर्तन आढळले नाही.',
+'undeletebtn'              => 'वगळण्याची क्रिया रद्द करा',
+'undeletereset'            => 'पूर्ववत',
+'undeletecomment'          => 'प्रतिक्रीया:',
+'undeletedarticle'         => '"[[$1]]" पुर्नस्थापित',
+'undeletedrevisions'       => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}} पुर्नस्थापित',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}}आणि {{PLURAL:$2|1 संचिका|$2 संचिका}} पुर्नस्थापित',
+'undeletedfiles'           => '{{PLURAL:$1|1 संचिका|$1 संचिका}} पुर्नस्थापित',
+'cannotundelete'           => 'वगळणे उलटवणे फसले; इतर कुणी तुमच्या आधी वगळणे उलटवले असु शकते.',
+'undelete-search-box'      => 'वगळलेली पाने शोधा',
+'undelete-search-prefix'   => 'पासून सूरू होणारी पाने दाखवा:',
+'undelete-search-submit'   => 'शोध',
+'undelete-error-short'     => 'संचिकेचे वगळणे उलटवताना त्रूटी: $1',
+'undelete-error-long'      => 'संचिकेचे वगळणे उलटवताना त्रूटींचा अडथळा आला:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'नामविश्व:',
@@ -1317,32 +1412,55 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'whatlinkshere-links' => '← दुवे',
 
 # Block/unblock
-'blockip'            => 'हा अंकपत्ता आडवा',
-'ipaddress'          => 'अंकपत्ता',
-'ipadressorusername' => 'अंकपत्ता किंवा सदस्यनाम:',
-'ipbreason'          => 'कारण',
-'ipbreasonotherlist' => 'इतर कारण',
-'ipbsubmit'          => 'हा पत्ता आडवा',
-'ipboptions'         => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'     => 'इतर',
-'badipaddress'       => 'अंकपत्ता बरोबर नाही.',
-'blockipsuccesssub'  => 'आडवणूक यशस्वी झाली',
-'unblockip'          => 'अंकपत्ता सोडवा',
-'unblockiptext'      => 'खाली दिलेला फॉर्म वापरून पुर्वी आडवलेल्या अंकपत्त्याला लेखनासाठी आधिकार द्या.',
-'ipusubmit'          => 'हा पत्ता सोडवा',
-'ipblocklist'        => 'आडवलेल्या अंकपत्त्यांची यादी',
-'ipblocklist-submit' => 'शोध',
-'infiniteblock'      => 'अनंत',
-'anononlyblock'      => 'केवळ अनामिक',
-'blocklink'          => 'आडवा',
-'unblocklink'        => 'सोडवा',
-'contribslink'       => 'योगदान',
-'blocklogpage'       => 'ब्लॉक यादी',
-'blocklogentry'      => '[[$1]] ला $2 $3 पर्यंत ब्लॉक केलेले आहे',
-'proxyblocksuccess'  => 'झाले.',
+'blockip'              => 'हा अंकपत्ता आडवा',
+'ipaddress'            => 'अंकपत्ता',
+'ipadressorusername'   => 'अंकपत्ता किंवा सदस्यनाम:',
+'ipbexpiry'            => 'समाप्ति:',
+'ipbreason'            => 'कारण',
+'ipbreasonotherlist'   => 'इतर कारण',
+'ipbanononly'          => 'केवळ अनामिक सदस्यांना प्रतिबंधीत करा',
+'ipbcreateaccount'     => 'खात्याची निर्मिती प्रतिबंधईत करा',
+'ipbemailban'          => 'सदस्यांना विपत्र पाठवण्यापासून प्रतिबंधीत करा',
+'ipbsubmit'            => 'हा पत्ता आडवा',
+'ipbother'             => 'इतर वेळ:',
+'ipboptions'           => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'       => 'इतर',
+'ipbotherreason'       => 'इतर/अजून कारण:',
+'badipaddress'         => 'अंकपत्ता बरोबर नाही.',
+'blockipsuccesssub'    => 'आडवणूक यशस्वी झाली',
+'ipb-edit-dropdown'    => 'प्रतिबंधाची कारणे संपादा',
+'ipb-unblock-addr'     => '$1चा प्रतिबंध उठवा',
+'ipb-unblock'          => 'सदस्यनाव आणि अंकपत्त्यावरचे प्रतिबंधन उठवा',
+'ipb-blocklist-addr'   => '$1करिता सध्याचे प्रतिबंध पाहा',
+'ipb-blocklist'        => 'सध्याचे प्रतिबंध पाहा',
+'unblockip'            => 'अंकपत्ता सोडवा',
+'unblockiptext'        => 'खाली दिलेला फॉर्म वापरून पुर्वी आडवलेल्या अंकपत्त्याला लेखनासाठी आधिकार द्या.',
+'ipusubmit'            => 'हा पत्ता सोडवा',
+'unblocked'            => '[[User:$1|$1]] वरचे प्रतिबंध उठवले आहेत',
+'ipblocklist'          => 'आडवलेल्या अंकपत्त्यांची यादी',
+'ipblocklist-legend'   => 'प्रतिबंधीत सदस्य शोधा',
+'ipblocklist-username' => 'सदस्यनाव किंवा आंतरजाल अंकपत्ता:',
+'ipblocklist-submit'   => 'शोध',
+'blocklistline'        => '$3 ($4)ला $1, $2 ने प्रतिबंधीत केले',
+'infiniteblock'        => 'अनंत',
+'expiringblock'        => 'समाप्ति $1',
+'anononlyblock'        => 'केवळ अनामिक',
+'noautoblockblock'     => 'स्व्यंचलितप्रतिबंधन स्थगित केले',
+'createaccountblock'   => 'खात्याची निर्मिती प्रतिबंधीत केली',
+'emailblock'           => 'विपत्र प्रतिबंधीत',
+'ipblocklist-empty'    => 'प्रतिबंधन यादी रिकामी आहे.',
+'blocklink'            => 'आडवा',
+'unblocklink'          => 'सोडवा',
+'contribslink'         => 'योगदान',
+'blocklogpage'         => 'ब्लॉक यादी',
+'blocklogentry'        => '[[$1]] ला $2 $3 पर्यंत ब्लॉक केलेले आहे',
+'proxyblocksuccess'    => 'झाले.',
 
 # Developer tools
-'lockdbsuccesssub' => 'विदागरास ताळे यशस्वी',
+'lockbtn'            => 'विदागारास ताळे ठोका',
+'unlockbtn'          => 'विदागारचे ताळे काढा',
+'lockdbsuccesssub'   => 'विदागरास ताळे यशस्वी',
+'unlockdbsuccesssub' => 'विदागाराचे ताळे काढले',
 
 # Move page
 'movepage'                => 'पृष्ठ स्थानांतरण',
@@ -1384,12 +1502,14 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'movelogpagetext'         => 'स्थानांतरित केलेल्या पानांची यादी.',
 'movereason'              => 'कारण',
 'revertmove'              => 'पूर्वपदास न्या',
+'delete_and_move'         => 'वगळा आणि स्थानांतरित करा',
 'delete_and_move_confirm' => 'होय, पान वगळा',
 'delete_and_move_reason'  => 'आधीचे पान वगळून स्थानांतर केले',
 
 # Export
 'export'           => 'पाने निर्यात करा',
 'export-submit'    => 'निर्यात करा',
+'export-addcat'    => 'भर',
 'export-download'  => 'संचिका म्हणून जतन करा',
 'export-templates' => 'साचे आंतरभूत करा',
 
@@ -1414,6 +1534,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'importinterwiki'         => 'आंतरविकि आयात',
 'import-interwiki-submit' => 'आयात',
 'importstart'             => 'पाने आयात करत आहे...',
+'importnopages'           => 'आयातीकरिता पाने नाहीत.',
 'importfailed'            => 'अयशस्वी आयात: $1',
 'importnotext'            => 'रिकामे अथवा मजकुर नाही',
 'import-parse-failure'    => 'XML आयात पृथक्करण अयशस्वी',
@@ -1424,6 +1545,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'माझे सदस्य पान',
 'tooltip-pt-mytalk'               => 'माझे चर्चा पान',
+'tooltip-pt-anontalk'             => 'या अंकपत्त्यापासून झालेल्या संपादनांबद्दल चर्चा',
 'tooltip-pt-preferences'          => 'माझ्या पसंती',
 'tooltip-pt-watchlist'            => 'तुम्ही पहारा दिलेल्या पानांची यादी',
 'tooltip-pt-mycontris'            => 'माझ्या योगदानांची यादी',
@@ -1440,6 +1562,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'tooltip-ca-watch'                => 'हे पान तुमच्या पहार्‍याची सूचीत टाका',
 'tooltip-ca-unwatch'              => 'हे पान पहार्‍याच्या सूचीतून काढा.',
 'tooltip-search'                  => '{{SITENAME}} शोधा',
+'tooltip-search-fulltext'         => 'या मजकुराकरिता पान शोधा',
 'tooltip-p-logo'                  => 'मुखपृष्ठ',
 'tooltip-n-mainpage'              => 'मुखपृष्ठाला भेट द्या',
 'tooltip-n-portal'                => 'प्रकल्पाबद्दल, तुम्ही काय करू शकता, कुठे काय सापडेल',
@@ -1454,11 +1577,14 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'tooltip-t-emailuser'             => 'या सदस्याला इमेल पाठवा',
 'tooltip-t-upload'                => 'चित्रे किंवा माध्यम संचिका चढवा',
 'tooltip-t-specialpages'          => 'सर्व विशेष पृष्ठांची यादी',
+'tooltip-t-permalink'             => 'पानाच्या या आवर्तनाचा शाश्वत दुवा',
+'tooltip-ca-nstab-main'           => 'मजकुराचे पान पाहा',
 'tooltip-ca-nstab-user'           => 'सदस्य पान पाहा',
 'tooltip-ca-nstab-media'          => 'माध्यम पान पाहा',
 'tooltip-ca-nstab-special'        => 'हे विशेष पान आहे; तुम्ही ते बदलू शकत नाही.',
 'tooltip-ca-nstab-project'        => 'प्रकल्प पान पाहा',
 'tooltip-ca-nstab-image'          => 'चित्र पान पाहा',
+'tooltip-ca-nstab-mediawiki'      => 'सिस्टीम संदेश पाहा',
 'tooltip-ca-nstab-template'       => 'साचा पाहा',
 'tooltip-ca-nstab-help'           => 'साहाय्य पान पाहा',
 'tooltip-ca-nstab-category'       => 'वर्ग पान पाहा',
@@ -1468,6 +1594,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'tooltip-diff'                    => 'या पाठ्यातील तुम्ही केलेले बदल दाखवा.',
 'tooltip-compareselectedversions' => 'निवडलेल्या आवृत्त्यांमधील बदल दाखवा.',
 'tooltip-watch'                   => 'हे पान तुमच्या पहार्‍याच्या सूचीत टाका.',
+'tooltip-upload'                  => 'चढवणे सुरूकरा',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} वरील अनामिक सदस्य',
@@ -1482,10 +1609,13 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'categoryarticlecount'   => 'या वर्गात {{PLURAL:$1|एक लेख आहे.|$1 लेख आहेत.}}',
 'category-media-count'   => 'या वर्गात {{PLURAL:$1|एक संचिका आहे.|$1 संचिका आहेत.}}',
 'listingcontinuesabbrev' => 'पुढे.',
+'spambot_username'       => 'मिडियाविकि स्पॅम स्वछता',
 
 # Info page
 'infosubtitle' => 'पानाची माहिती',
 'numedits'     => 'संपादनांची संख्या (पान): $1',
+'numtalkedits' => 'संपादनांची संख्या(चर्चा पान): $1',
+'numwatchers'  => 'बघ्यांची संख्या: $1',
 
 # Math options
 'mw_math_png'    => 'नेहमीच पीएनजी (PNG) रेखाटा',
@@ -1542,14 +1672,19 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'  => 'रूंदी',
-'exif-imagelength' => 'उंची',
-'exif-artist'      => 'लेखक',
-'exif-copyright'   => 'प्रताधिकार धारक',
-'exif-makernote'   => 'उत्पादकाच्या सूचना',
-'exif-usercomment' => 'सदस्य प्रतिक्रीया',
-'exif-fnumber'     => 'F क्रमांक',
-'exif-filesource'  => 'संचिका स्रोत',
+'exif-imagewidth'       => 'रूंदी',
+'exif-imagelength'      => 'उंची',
+'exif-software'         => 'वापरलेली संगणन अज्ञावली',
+'exif-artist'           => 'लेखक',
+'exif-copyright'        => 'प्रताधिकार धारक',
+'exif-makernote'        => 'उत्पादकाच्या सूचना',
+'exif-usercomment'      => 'सदस्य प्रतिक्रीया',
+'exif-relatedsoundfile' => 'संबधीत ध्वनी संचिका',
+'exif-exposuretime'     => 'छायांकन कालावधी',
+'exif-fnumber'          => 'F क्रमांक',
+'exif-filesource'       => 'संचिका स्रोत',
+
+'exif-unknowndate' => 'अज्ञात तारीख',
 
 'exif-componentsconfiguration-0' => 'अस्तित्वात नाही',
 
@@ -1559,13 +1694,28 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'exif-meteringmode-1'   => 'ऍव्हरेज',
 'exif-meteringmode-255' => 'इतर',
 
-'exif-lightsource-1'  => 'सूर्यप्रकाश',
-'exif-lightsource-9'  => 'चांगले हवामान',
-'exif-lightsource-10' => 'ढगाळ हवामान',
+'exif-lightsource-1'   => 'सूर्यप्रकाश',
+'exif-lightsource-9'   => 'चांगले हवामान',
+'exif-lightsource-10'  => 'ढगाळ हवामान',
+'exif-lightsource-17'  => 'प्रकाश दर्जा A',
+'exif-lightsource-18'  => 'प्रकाश दर्जा B',
+'exif-lightsource-255' => 'इतर प्रकाश स्रोत',
+
+'exif-focalplaneresolutionunit-2' => 'इंच',
+
+'exif-exposuremode-0' => 'स्वयंचलित छायांकन',
+'exif-exposuremode-1' => 'अस्वयंचलित छायांकन',
+
+'exif-scenecapturetype-0' => 'दर्जा',
+'exif-scenecapturetype-1' => 'आडवे',
+'exif-scenecapturetype-2' => 'उभे',
+'exif-scenecapturetype-3' => 'रात्रीचे दृश्य',
 
 'exif-gaincontrol-0' => 'नाही',
 
+'exif-contrast-0' => 'सामान्य',
 'exif-contrast-1' => 'नरम',
+'exif-contrast-2' => 'कठीण',
 
 'exif-saturation-0' => 'सर्व साधारण',
 
@@ -1573,8 +1723,21 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'exif-sharpness-1' => 'मृदू',
 'exif-sharpness-2' => 'कठीण',
 
+'exif-subjectdistancerange-0' => 'अज्ञात',
+'exif-subjectdistancerange-2' => 'जवळचे दृश्य',
+'exif-subjectdistancerange-3' => 'दूरचे दृश्य',
+
+'exif-gpsmeasuremode-2' => 'द्वि-दिश मापन',
+'exif-gpsmeasuremode-3' => 'त्रि-दिश मोजमाप',
+
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'प्रतिताशी किलोमीटर',
+'exif-gpsspeed-m' => 'प्रतिताशी मैल',
 'exif-gpsspeed-n' => 'गाठी',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'बरोबर दिशा',
+'exif-gpsdirection-m' => 'चुंबकीय दिशा',
 
 # External editor support
 'edit-externally'      => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादा.',
@@ -1588,10 +1751,19 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'monthsall'        => 'सर्व',
 
 # E-mail address confirmation
-'confirmemail'          => 'इमेल पत्ता पडताळून पहा',
-'confirmemail_loggedin' => 'तुमचा विपत्र पत्ता आता शाबीत झाला आहे.',
+'confirmemail'            => 'इमेल पत्ता पडताळून पहा',
+'confirmemail_send'       => 'विपत्र निश्चितीकरण नियमावली',
+'confirmemail_sent'       => 'शाबितीकरण विपत्र पाठवले.',
+'confirmemail_sendfailed' => 'पोच-विपत्र पाठवू शकलो नाही.अयोग्य चिन्हांकरिता पत्ता तपासा.
+
+मेलर वापसी: $1',
+'confirmemail_invalid'    => 'अयोग्य निश्चितीकरण नियमावली.नियमावली काल समाप्त झाला असु शकेल.',
+'confirmemail_needlogin'  => 'तुमचा विपत्रपत्ता शाबीत करण्यासाठी तुम्ही $1 करावयास हवे.',
+'confirmemail_loggedin'   => 'तुमचा विपत्र पत्ता आता शाबीत झाला आहे.',
+'confirmemail_error'      => 'तुमची निश्चिती जतन करताना काही तरी चूकले',
 
 # Scary transclusion
+'scarytranscludefailed'  => '[क्षमस्व;$1करिताची साचा ओढी फसली]',
 'scarytranscludetoolong' => '[URL खूप लांब आहे; क्षमस्व]',
 
 # Trackbacks
@@ -1599,8 +1771,15 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Delete conflict
 'deletedwhileediting' => 'सुचना: तुम्ही संपादन सुरू केल्यानंतर हे पान वगळले गेले आहे.',
+'recreate'            => 'पुर्ननिर्माण',
+
+# HTML dump
+'redirectingto' => '[$1]]कडे पुर्ननिर्देशीत...',
 
 # action=purge
+'confirm_purge'        => 'यापानाची सय रिकामी करावयाची आहे?
+
+$1',
 'confirm_purge_button' => 'ठीक',
 
 # AJAX search
@@ -1608,6 +1787,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'searchnamed'      => "''$1'' या नावाचे लेख शोधा.",
 'articletitles'    => "''$1'' पासून सुरू होणारे लेख",
 'hideresults'      => 'निकाल लपवा',
+'useajaxsearch'    => 'AJAX शोध वापरा',
 
 # Multipage image navigation
 'imgmultipageprev' => '← मागील पान',
@@ -1633,7 +1813,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'autosumm-new'     => 'नवीन पान: $1',
 
 # Live preview
-'livepreview-ready' => 'चढवत आहे… तयार!',
+'livepreview-loading' => 'चढवत आहे…',
+'livepreview-ready'   => 'चढवत आहे… तयार!',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '$1 सेकंदाच्या आतले बदल या यादी नसण्याची शक्यता आहे.',
@@ -1666,10 +1847,12 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'unknown_extension_tag' => 'अज्ञात विस्तार खूण "$1"',
 
 # Special:Version
+'version-extensions'               => 'स्थापित विस्तार',
 'version-specialpages'             => 'विशेष पाने',
 'version-parserhooks'              => 'पृथकक अंकुश',
 'version-variables'                => 'चल',
 'version-other'                    => 'इतर',
+'version-mediahandlers'            => 'मिडिया हॅंडलर',
 'version-hooks'                    => 'अंकुश',
 'version-extension-functions'      => 'अतिविस्तार(एक्स्टेंशन) कार्ये',
 'version-parser-extensiontags'     => 'पृथकक विस्तारीत खूणा',

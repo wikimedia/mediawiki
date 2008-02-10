@@ -336,8 +336,11 @@ I seguenti collegamenti sono in lingua inglese:
 'disclaimerpage'    => 'Project:Avvertenze generali',
 'edithelp'          => 'Guida',
 'edithelppage'      => 'Help:Modifica',
+'faq'               => 'Domande frequenti',
+'faqpage'           => 'Project:Domande frequenti',
 'helppage'          => 'Help:Indice',
 'mainpage'          => 'Pagina principale',
+'policy-url'        => 'Project:Policy',
 'portal'            => 'Portale comunità',
 'portal-url'        => 'Project:Portale comunità',
 'privacy'           => 'Informazioni sulla privacy',
@@ -541,8 +544,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'accountcreated'             => 'Accesso creato',
 'accountcreatedtext'         => "È stato creato un accesso per l'utente $1.",
 'createaccount-title'        => 'Creazione di un accesso a {{SITENAME}}',
-'createaccount-text'         => 'Qualcuno ($1) ha creato un accesso a {{SITENAME}} a nome di $2
-($4). La password per l\'utente "$2" è impostata a "$3". È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
+'createaccount-text'         => 'Qualcuno ($1) ha creato un accesso a {{SITENAME}} ($4) a nome di $2, associato a questo indirizzo di posta elettronica. La password per l\'utente "$2" è impostata a "$3". È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
 
 Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'loginlanguagelabel'         => 'Lingua: $1',
@@ -980,7 +982,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[osservata da $1 utenti]',
+'number_of_watching_users_pageview' => '[osservata da {{PLURAL:$1|un utente|$1 utenti}}]',
 'rc_categories'                     => 'Limita alle categorie (separate da "|")',
 'rc_categories_any'                 => 'Qualsiasi',
 'newsectionsummary'                 => '/* $1 */ nuova sezione',
@@ -1100,7 +1102,7 @@ PICT # misc.
 
 # Image list
 'imagelist'                 => 'Elenco dei file',
-'imagelisttext'             => "Di seguito viene presentata una lista di '''$1''' file ordinati per $2.",
+'imagelisttext'             => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
 'getimagelist'              => 'caricamento elenco file',
 'ilsubmit'                  => 'Ricerca',
 'showlast'                  => 'Mostra gli ultimi $1 file ordinati per $2.',
@@ -1108,6 +1110,7 @@ PICT # misc.
 'bydate'                    => 'data',
 'bysize'                    => 'dimensione',
 'imgdelete'                 => 'canc',
+'imgdesc'                   => 'disc',
 'imgfile'                   => 'file',
 'filehist'                  => 'Cronologia del file',
 'filehist-help'             => 'Fare clic su un gruppo data/ora per vedere il file come si presentava nel momento indicato.',
@@ -2390,6 +2393,10 @@ Usare l\'anteprima standard.',
 'version-hook-name'                => "Nome dell'hook",
 'version-hook-subscribedby'        => 'Sottoscrizioni',
 'version-version'                  => 'Versione',
+'version-license'                  => 'Licenza',
+'version-software'                 => 'Software installato',
+'version-software-product'         => 'Prodotto',
+'version-software-version'         => 'Versione',
 
 # Special:Filepath
 'filepath'         => 'Percorso di un file',

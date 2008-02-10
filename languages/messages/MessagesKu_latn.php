@@ -977,7 +977,7 @@ Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7
 # Special:Log
 'specialloguserlabel'  => 'Bikarhêner:',
 'speciallogtitlelabel' => 'Sernav:',
-'log'                  => 'Reşahiyan',
+'log'                  => 'Reşahîyan',
 'all-logs-page'        => 'Hemû reşahîyan',
 'log-search-legend'    => 'Li reşahîyan bigere',
 'log-search-submit'    => 'Dê',
@@ -1106,9 +1106,9 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 'actioncomplete'              => 'Çalakî temam',
 'deletedtext'                 => '"$1" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
 'deletedarticle'              => '"$1" hat jêbirin',
-'dellogpage'                  => 'Reşahiya_jêbirin',
+'dellogpage'                  => 'Reşahîya jêbirin',
 'dellogpagetext'              => 'Li jêr lîsteyek ji jêbirinên dawî heye.',
-'deletionlog'                 => 'reşahiya jêbirin',
+'deletionlog'                 => 'reşahîya jêbirin',
 'reverted'                    => 'Hate şondabirin berve verzyonekî berê',
 'deletecomment'               => 'Sedema jêbirinê',
 'deleteotherreason'           => 'Sedemekî din:',
@@ -1191,7 +1191,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 
 'sp-contributions-newbies'     => 'Bes beşdarîyên bikarhênerê nû pêşêkê',
 'sp-contributions-newbies-sub' => 'Ji bikarhênerên nû re',
-'sp-contributions-blocklog'    => 'Înformasyon li ser astengkirinê',
+'sp-contributions-blocklog'    => 'Reşahîya astengkirinê',
 'sp-contributions-search'      => 'Li beşdarîyan bigere',
 'sp-contributions-username'    => 'Adresê IP ya navî bikarhêner:',
 'sp-contributions-submit'      => 'Lêbigere',
@@ -1266,7 +1266,7 @@ Sedemekê binivîse!',
 'unblocklink'                 => 'betala astengê',
 'contribslink'                => 'Beşdarî',
 'autoblocker'                 => 'Otomatîk hat bestin jiberku IP-ya we û ya "[[User:$1|$1]]" yek in. Sedem: "\'\'\'$2\'\'\'"',
-'blocklogpage'                => 'Reşahiya_asteng kiriyan',
+'blocklogpage'                => 'Reşahiya astengkirinê',
 'blocklogentry'               => '"[[$1]]" ji bo dema $2 hatiye asteng kirin',
 'unblocklogentry'             => 'astenga "$1" betalkir',
 'block-log-flags-anononly'    => 'bes bikarhênerên neqeydkirî',
@@ -1337,7 +1337,7 @@ Rûpela "[[$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê 
 'importsuccess'           => 'Împort çêbû!',
 
 # Import log
-'importlogpage' => 'Înformasyon li ser Împortê',
+'importlogpage' => 'Reşahîya împortê',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Rûpela min a şexsî',

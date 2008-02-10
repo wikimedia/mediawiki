@@ -74,6 +74,7 @@ $messages = array(
 'category_header'       => 'Ertikler i\'n klynge "$1"',
 'subcategories'         => 'Underklynger',
 'category-media-header' => "Medier i'n klynge „$1“",
+'category-empty'        => "''Denne klynge endeholter før øjeblikket æ verke sider æller medie-gøret.''",
 
 'about'      => 'Åm',
 'article'    => 'Ertikel',
@@ -97,6 +98,7 @@ $messages = array(
 'searchbutton'     => 'Søĝ',
 'searcharticle'    => 'Gå til',
 'history'          => 'Skigt',
+'history_short'    => 'Skigte',
 'printableversion' => 'Utskreftsvelig utgåf',
 'permalink'        => 'Permanent henvesnenge',
 'edit'             => 'Redigær',
@@ -132,6 +134,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => "{{SITENAME}}'m",
 'aboutpage'         => 'Project:Åm',
+'bugreports'        => 'Fejlgåde',
+'bugreportspage'    => 'Project:Fejlgåde',
 'copyrightpage'     => '{{ns:project}}:Åphavsret',
 'currentevents'     => 'Nænte begevenheder',
 'currentevents-url' => 'Project:Nænte begevenheder',
@@ -179,6 +183,7 @@ $messages = array(
 'nstab-category'  => 'Klynge',
 
 # General errors
+'badtitle'       => 'Førkert skrevselenger',
 'badtitletext'   => 'Den ønskede sides nav var ekke tilladt, tøm æller æ side er førkert henvest frå en {{SITENAME}} på et andet språĝ.',
 'viewsource'     => 'Ves æ kelde',
 'viewsourcefor'  => 'før $1',
@@ -191,9 +196,14 @@ $messages = array(
 'login'              => 'Loĝ på',
 'loginprompt'        => 'Du skal have cookies slået til før at kunne loĝge på {{SITENAME}}.',
 'userlogin'          => 'Åpret æ konto æller loĝ på',
+'logout'             => 'Loĝ åf',
 'userlogout'         => 'Loĝ åf',
 'nologin'            => 'Du har engen brugerkonto? $1.',
 'nologinlink'        => 'Åpret ny brugerkonto',
+'createaccount'      => 'Åpret en ny konto',
+'gotaccount'         => 'Du har ålerede en brugerkonto? $1.',
+'loginsuccesstitle'  => 'Du er nu loĝget på',
+'loginsuccess'       => 'Du er nu loĝget på {{SITENAME}} søm "$1".',
 'mailmypassword'     => 'Send et nyt adgangskode til min e-mail-adresse',
 
 # Edit page toolbar
@@ -250,6 +260,8 @@ Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet 
 'copyrightwarning'       => "<strong>Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!</strong><br />
 Du lover os hermed, at du selv <strong>har skrevet skrevselenger</strong>, at skrevselenger tilhører ålmenheden, er (<strong>åpværer hus</strong>), æller at æ <strong>åphavsrets-endehaver</strong> har gevet sen <strong>tilladelse</strong>. Ves denne skrevselenger ålerede er åfentliggkort andre steder, skrev det venligst på æ diskusjesside.
 <i>Bemærk venligst, at ål {{SITENAME}}-ertikler åtomatisk står under „$2“ (se $1 før lileskrevselenger). Ves du ekke vel, at dit arbejde her ændres og udbredes åf andre, så tryk ekke på „Gem“.</i>",
+'longpagewarning'        => "<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 Kb. 
+Åvervej æ side'm ken åpdeles i mendre dæle.</strong>",
 'templatesused'          => 'Skablåner der er brugt på denne side:',
 'templatesusedpreview'   => 'Følgende skablåner bruges åf denne ertikelførhåndsvesnenge:',
 'template-protected'     => '(skrevebeskyttet)',
@@ -270,10 +282,15 @@ denne side er vest nedenfør:",
 'currentrevisionlink' => 'se nuværende hersenenge',
 'cur'                 => 'nuværende',
 'last'                => 'forrige',
+'page_first'          => 'Startem',
+'page_last'           => 'Enden',
 'histlegend'          => 'Førklårenge: (nuværende) = førskel til den nuværende
 hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre ændrenge',
 'histfirst'           => 'Ældste',
 'histlast'            => 'Nyeste',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 ve $2', # user at time
 
 # Diffs
 'history-title'           => 'Hersengsskigte før "$1"',
@@ -281,6 +298,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'lineno'                  => 'Lenje $1:',
 'compareselectedversions' => 'Sammenlign valgte hersenenger',
 'editundo'                => 'baĝgøt',
+'diff-multi'              => "<span style='font-size: smaller'>(Æ hersenengssammenlegnenge vetåger {{plural:$1|en mellemleggende hersenenge|$1 mellemleggende hersenenger}}.)</span>",
 
 # Search results
 'noexactmatch' => "'''{{SITENAME}} har engen ertikel ve dette nav.''' Du ken [[:$1|åprette en ertikel ve dette nav]].",
@@ -333,45 +351,94 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'uploadedimage' => 'Låĝde "[[$1]]" åp',
 
 # Image list
-'imagelist'           => 'Billetliste',
-'filehist'            => 'Billetskigt',
-'filehist-help'       => "Klik på'n dato/tid før at se den hersenenge åf gøret.",
-'filehist-current'    => 'nuværende',
-'filehist-datetime'   => 'Dato/tid',
-'filehist-user'       => 'Bruger',
-'filehist-dimensions' => 'Treflåksjener',
-'filehist-filesize'   => 'Gøretstørrelse',
-'filehist-comment'    => 'Biskrevselenge',
-'imagelinks'          => 'Billethenvesnenger',
-'linkstoimage'        => 'De følgende sider henveser til dette billet:',
-'nolinkstoimage'      => 'Der er engen sider der henveser til dette billet.',
-'sharedupload'        => 'Denne gøret er en fælles læĝenge og ken bruges åf andre projekter.',
+'imagelist'                 => 'Billetliste',
+'filehist'                  => 'Billetskigt',
+'filehist-help'             => "Klik på'n dato/tid før at se den hersenenge åf gøret.",
+'filehist-current'          => 'nuværende',
+'filehist-datetime'         => 'Dato/tid',
+'filehist-user'             => 'Bruger',
+'filehist-dimensions'       => 'Treflåksjener',
+'filehist-filesize'         => 'Gøretstørrelse',
+'filehist-comment'          => 'Biskrevselenge',
+'imagelinks'                => 'Billethenvesnenger',
+'linkstoimage'              => 'De følgende sider henveser til dette billet:',
+'nolinkstoimage'            => 'Der er engen sider der henveser til dette billet.',
+'sharedupload'              => 'Denne gøret er en fælles læĝenge og ken bruges åf andre projekter.',
+'noimage'                   => 'Der er engen gøret ve dette nav, du ken $1',
+'noimage-linktext'          => 'læĝge den åp',
+'uploadnewversion-linktext' => 'Læĝ en ny hersenenge åf denne gøret åp',
+
+# MIME search
+'mimesearch' => 'Søĝe æfter MIME-sårt',
+
+# List redirects
+'listredirects' => 'Henvesnengsliste',
+
+# Unused templates
+'unusedtemplates' => 'Ekke brugte skablåner',
 
 # Random page
 'randompage' => 'Tilfældig ertikel',
 
+# Random redirect
+'randomredirect' => 'Tilfældige henvesnenger',
+
 # Statistics
 'statistics' => 'Sensje',
 
+'disambiguations' => 'Ertikler ve flertydige skrevselenger',
+
+'doubleredirects' => 'Dåbbelte åmstyrenger',
+
+'brokenredirects' => 'Bråken åmstyrenger',
+
+'withoutinterwiki' => 'Sider uden henvesnenger til andre språĝ',
+
+'fewestrevisions' => 'Sider ve de færreste hersenenger',
+
 # Miscellaneous special pages
-'nbytes'       => '$1 {{PLURAL:$1|åg|åger}}',
-'nlinks'       => '{{PLURAL:$1|1 henvesnenge|$1 henvesnenger}}',
-'nmembers'     => '- {{PLURAL:$1|1 ertikel|$1 ertikler}}',
-'allpages'     => 'Åle ertikler',
-'prefixindex'  => 'Åle sider (ve førgøret)',
-'specialpages' => 'Sonst sider',
-'newpages'     => 'Nyeste ertikler',
-'move'         => 'Flyt',
-'movethispage' => 'Flyt side',
+'nbytes'                  => '$1 {{PLURAL:$1|åg|åger}}',
+'nlinks'                  => '{{PLURAL:$1|1 henvesnenge|$1 henvesnenger}}',
+'nmembers'                => '- {{PLURAL:$1|1 ertikel|$1 ertikler}}',
+'lonelypages'             => 'Førældreløse ertikler',
+'uncategorizedpages'      => 'Uklyngede sider',
+'uncategorizedcategories' => 'Uklyngede klynger',
+'uncategorizedimages'     => 'Ekke klyngede gøret',
+'uncategorizedtemplates'  => 'Ekke klyngede skablåner',
+'unusedcategories'        => 'Ubrugte klynger',
+'unusedimages'            => 'Ubrugte billeter',
+'wantedcategories'        => 'Brugte men ekke ånlagte klynger',
+'wantedpages'             => 'Ønskede ertikler',
+'mostlinked'              => 'Sider ve flest henvesnenger',
+'mostlinkedcategories'    => 'Mest brugte klynger',
+'mostlinkedtemplates'     => 'Hyppigst brugte skablåner',
+'mostcategories'          => 'Mest brugte sider',
+'mostimages'              => 'Mest brugte gøret',
+'mostrevisions'           => 'Sider ve de fleste ændrenger',
+'allpages'                => 'Åle ertikler',
+'prefixindex'             => 'Åle sider (ve førgøret)',
+'shortpages'              => 'Kårte ertikler',
+'longpages'               => 'Långe ertikler',
+'deadendpages'            => 'Blendgydesider',
+'protectedpages'          => 'Skrevebeskyttede sider',
+'listusers'               => 'Brugerliste',
+'specialpages'            => 'Sonst sider',
+'newpages'                => 'Nyeste ertikler',
+'ancientpages'            => 'Ældste ertikler',
+'move'                    => 'Flyt',
+'movethispage'            => 'Flyt side',
 
 # Book sources
 'booksources' => 'Boĝkelder',
 
 'alphaindexline' => '$1 til $2',
+'version'        => "Informasje MediaWiki'm",
 
 # Special:Log
-'log'           => 'Loglister',
-'all-logs-page' => 'Åle loglister',
+'specialloguserlabel'  => 'Bruger:',
+'speciallogtitlelabel' => 'Skrevselenge:',
+'log'                  => 'Loglister',
+'all-logs-page'        => 'Åle loglister',
 
 # Special:Allpages
 'nextpage'       => 'Næste side ($1)',
@@ -379,6 +446,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'allpagesfrom'   => 'Ves sider startende frå: $1',
 'allarticles'    => 'Åle ertikler',
 'allpagessubmit' => 'Ves',
+'allpagesprefix' => 'Ves sider ve førgøret:',
 
 # E-mail user
 'emailuser' => 'E-mail til denne bruger',
@@ -438,8 +506,11 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'whatlinkshere-links' => '← henvesnenger',
 
 # Block/unblock
+'blockip'       => 'Bloker bruger',
 'ipboptions'    => '1 tême:1 hour,2 têmer:2 hours,6 têmer:6 hours,1 dåĝ:1 day,3 dåĝ:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,1 år:1 year,ubegrænset:indefinite', # display1:time1,display2:time2,...
+'ipblocklist'   => 'Blokerede IP-adresser og brugernave',
 'blocklink'     => 'blåker',
+'unblocklink'   => 'åphæv blokerenge',
 'contribslink'  => 'bidråĝ',
 'blocklogpage'  => 'Blokerengslog',
 'blocklogentry' => 'blokerede "[[$1]]" ve\'n udløbstid på $2 $3',
@@ -451,6 +522,9 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 # Export
 'export' => 'Utgøter sider',
+
+# Namespace 8 related
+'allmessages' => 'Åle beskeder',
 
 # Thumbnails
 'thumbnail-more'  => 'Førstør',
@@ -493,6 +567,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'tooltip-ca-nstab-project'        => "Vese'n wiki'mside",
 'tooltip-ca-nstab-image'          => "Se'n billetside",
 'tooltip-ca-nstab-template'       => "Se'n skablån",
+'tooltip-ca-nstab-help'           => "Se'n hjælpeside",
 'tooltip-ca-nstab-category'       => "Se'n klyngeside",
 'tooltip-minoredit'               => 'Marker dette søm en mendre ændrenge',
 'tooltip-save'                    => 'Gem dine ændrenger',
@@ -517,6 +592,9 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'svg-long-desc'        => '(SVG gøret, wønetstørrelse $1 × $2 pixel, gøretstørrelse: $3)',
 'show-big-image'       => 'Hersenenge i større åpløsnenge',
 'show-big-image-thumb' => '<small>Størrelse åf førhåndsvesnenge: $1 × $2 pixel</small>',
+
+# Special:Newimages
+'newimages' => 'Liste ve de nyeste billeter',
 
 # Bad image list
 'bad_image_list' => "Æ førmåt er:

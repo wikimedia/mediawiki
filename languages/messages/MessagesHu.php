@@ -2581,7 +2581,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-other'                    => 'Más',
 'version-mediahandlers'            => 'Médiafájl-kezelők',
 'version-hooks'                    => 'Hookok',
-'version-extension-functions'      => 'A kiegészítők függvényei',
+'version-extension-functions'      => 'A kiterjesztések függvényei',
 'version-parser-extensiontags'     => 'Az értelmező kiterjesztéseinek tagjei',
 'version-parser-function-hooks'    => 'Az értelmező függvényeinek hookjai',
 'version-skin-extension-functions' => 'Felület kiterjeszések függvényei',

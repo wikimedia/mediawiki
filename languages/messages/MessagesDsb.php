@@ -461,7 +461,7 @@ Wótpšašanje: $2',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
 'viewsourcetext'       => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
 'protectedinterface'   => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary. Jogo wobźěłowanje jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
-'editinginterface'     => "'''Warnowanje:''' Wobźěłajośo bok, kótaryž wopśimujo tekst za software MediaWiki. Změny budu w rěcnem zwjerchu softwary za drugich wužywarjow wiźeś.",
+'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [http://translatewiki.net/wiki/Main_Page?setlang=dsb Betawiki], projekt MediaWiki za lokalizacije.",
 'sqlhidden'            => '(Wótpšašanje SQL schowane)',
 'cascadeprotected'     => 'Za toś ten bok jo se wobźěłowanje znjemóžniło, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo|kótarejž stej|kótarež su}} pśez kaskadowu opciju {{PLURAL:$1|šćitany|šćitanej|šćitane}}: $2',
 'namespaceprotected'   => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
@@ -547,10 +547,9 @@ Nježli až wótpósćelo se dalšna e-mail na to wužywarske konto, dejš slěd
 'accountcreated'             => 'Wužywarske konto jo se wutwóriło.',
 'accountcreatedtext'         => 'Wužywarske konto $1 jo se wutwóriło.',
 'createaccount-title'        => 'Wužywarske konto za {{SITENAME}} nawarjone',
-'createaccount-text'         => 'Něchten ($1) za $2 jo na boku {{SITENAME}} ($4) wužywarske konto wutwórił.
-Pótajmne słowo za "$2" jo "$3". Trjeba se pśizjawiś a swóje pótajmne słowo pśemjeniś.
+'createaccount-text'         => 'Něchten jo konto za twóje e-mailowu adresu na {{GRAMMAR:lokatiw|{{SITENAME}}}} ($4) z mjenim "$2", z pótajmnym słowom "$3", wutwórił. Dejš se pśizjawiś a swóje pótajmne słowo něnt změniś.
 
-Móžoš toś tom informacije zabyś kak to jano zmólka była.',
+Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnje wutwóriło.',
 'loginlanguagelabel'         => 'Rěc: $1',
 
 # Password reset dialog
@@ -674,7 +673,7 @@ Aby bok wutwórił, ga napiš do kašćika spózy. (Dokradnjejše informacije p�
 <strong>Jo-lic to legitiměrowane wobźěłanje, wopytaj hyšći raz. Gaž to zasej njejźo, wopytaj se wót- a zasej pśizjawiś.</strong>",
 'token_suffix_mismatch'     => '<strong>Twójo wobźěłanje jo se wótpokazało, dokulaž jo twój browser znamuška we wobźěłańskem tokenje rozsekał. Składowanje by mógało wopśimjeśe boka znicyś. Take casy se źejo, gaž wužywaš web-bazěrowanu, zmólkatu, anonymnu proksy-słužbu.</strong>',
 'editing'                   => 'Wobźěłanje boka $1',
-'editinguser'               => 'Wobźěłujucy wužywaŕ <b>$1</b>',
+'editinguser'               => "Změnjaju se wužywarske pšawa wužywarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Wobźěłanje boka $1 (wótrězk)',
 'editingcomment'            => 'Wobźěłanje boka $1 (komentar)',
 'editconflict'              => 'Wobźěłański konflikt: $1',
@@ -892,7 +891,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'prefs-personal'           => 'Wužywarski profil',
 'prefs-rc'                 => 'Aktualne změny',
 'prefs-watchlist'          => 'Wobglědowańka',
-'prefs-watchlist-days'     => 'Maksimalna licba dnjow, kenž maju we wobglědowańkach se pokazaś:',
+'prefs-watchlist-days'     => 'Licba dnjow, kenž maju se we wobglědowańkach pokazaś:',
 'prefs-watchlist-edits'    => 'Maksimalna licba změnow, kenž maju w rozšyrjonej lisćinje wobglědowańkow se pokazaś:',
 'prefs-misc'               => 'Wšake nastajenja',
 'saveprefs'                => 'Składowaś',
@@ -2428,6 +2427,10 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'version-hook-name'                => 'Mě kokule',
 'version-hook-subscribedby'        => 'Aboněrowany wót',
 'version-version'                  => 'Wersija',
+'version-license'                  => 'Licenca',
+'version-software'                 => 'Instalěrowana software',
+'version-software-product'         => 'Produkt',
+'version-software-version'         => 'Wersija',
 
 # Special:Filepath
 'filepath'         => 'Datajowa droga',

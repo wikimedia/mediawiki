@@ -329,7 +329,7 @@ $messages = array(
 'helppage'          => 'Help:Hëllef',
 'mainpage'          => 'Haaptsäit',
 'policy-url'        => 'Project:Richtlinnen',
-'portal'            => 'Kommunautéit',
+'portal'            => '{{SITENAME}}-Portal',
 'portal-url'        => 'Project:Kommunautéit',
 'privacy'           => 'Dateschutz',
 'privacypage'       => 'Projet:Dateschutz',
@@ -981,6 +981,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 
 # Image list
 'imagelist'                 => 'Lëscht vun de Fichieren',
+'imagelist-summary'         => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als öischt ugewisen. Duerch e Klick op d?iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
 'imagelisttext'             => "Hei ass eng Lëscht vun '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
 'getimagelist'              => 'Billerlëscht gëtt opgestallt',
 'ilsubmit'                  => 'Sichen',
@@ -1130,7 +1131,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'uncategorizedtemplates'          => 'Schablounen ouni Kategorie',
 'uncategorizedtemplates-summary'  => 'Op dëser Spezialsäit stinn all déi Schablounen, déi a kenger Kategorie dra sinn.',
 'unusedcategories'                => 'Onbenotzt Kategorien',
-'unusedimages'                    => 'Unbenotzt Biller',
+'unusedimages'                    => 'Onbenotzte Biller',
 'popularpages'                    => 'Populär Säiten',
 'wantedcategories'                => 'Gewënschte Kategorien',
 'wantedcategories-summary'        => 'Op dëser Spezialsäit stinn all déi Kategorien, déi zwar op Säite benotzt ginn, déi awer nach net als Kategorie ugeluecht goufen.',
@@ -1150,8 +1151,11 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'allpages'                        => 'All Säiten',
 'allpages-summary'                => "Op dëser Spezialsäit stinn all d'Säite vu(n) {{SITENAME}} vun A bis Z. Getässelt si se alphabetesch, fir d'éischt Zuelen, da Groussbustawen, Klengbustawen ann dann d'Sonnerzeechen. ''A&nbsp;10'' steet virun ''AZ'', ''Aascht'' kënnt eréischt dann.",
 'prefixindex'                     => 'All Säiten (no hiren Ufanksbuchstawen)',
-'shortpages'                      => 'Kuurz Säiten',
+'prefixindex-summary'             => 'Op dëser Spezialsäit stinn all déi Säiten, déi mat denen Zeechen ("Prefix") ufénken, déi dir uginn hutt. D\'Resultat kann op ee Nummraum limitéiert ginn.',
+'shortpages'                      => 'Kuerz Säiten',
+'shortpages-summary'              => "Op dëser Spezialsäit stinn déi kierzte Säiten aus dem Haaptnummraum. Gezielt ginn d'Zeechen vum Text esou wéi en an der Ännerungsfënster gewise gëtt, also an der Wiki-Syntax an ouni den Inhalt vun agebonnene Schablounen. Et gëtt op Basis vum UTF-8-kodéierten Text gezielt, no dem eenzel Ëmlauter als 2 Zeeche gerechent ginn.",
 'longpages'                       => 'Laang Säiten',
+'longpages-summary'               => "Op dëser Spezialsäit stinn déi längste Säiten aus dem Haaptnummraum. Gezielt ginn d'Zeechen vum Text esou wéi en an der Ännerungsfënster gewise gëtt, also an der Wiki-Syntax an ouni den Inhalt vun agebonnene Schablounen. Et gëtt op Basis vum UTF-8-kodéierten Text gezielt, no dem eenzel Ëmlauter als 2 Zeeche gerechent ginn.",
 'deadendpages'                    => 'Sakgaasse-Säiten',
 'deadendpages-summary'            => 'Op dëser Spezialsäit stinn all déi Säiten, déi keng Linken op aner Säiten oder nëmme Linken op Säiten, déi et nach net gëtt, hunn.',
 'deadendpagestext'                => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
@@ -1737,6 +1741,12 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'showhidebots'      => '($1 Botten)',
 'noimages'          => 'Keng Biller fonnt.',
 
+# Bad image list
+'bad_image_list' => 'Format:
+
+Nëmmen Zeilen, déi mat engem * ufénken, ginn ausgewert. Als éischt no dem * muss ee Link op een net gewëschte Bild stoen.
+Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild awer opdauchen däerf.',
+
 # Metadata
 'metadata'          => 'Metadaten',
 'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benpotzte Scanner kommen. Duerch nodréilech Ännerungen vum Originalfichier kënnen eenzel Detailer verännert gi sinn.',
@@ -1763,6 +1773,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'exif-xresolution'                 => 'Horizontal Opléisung',
 'exif-yresolution'                 => 'Vertikal Opléisung',
 'exif-resolutionunit'              => 'Moosseenheet vun der Opléisung',
+'exif-rowsperstrip'                => 'Zuel vun den Zeile pro Stréif',
 'exif-jpeginterchangeformatlength' => 'Gréisst vun de JPEG-Daten a Byten',
 'exif-whitepoint'                  => 'Manuell mat Miessung',
 'exif-referenceblackwhite'         => 'Schwoarz/Wäiss-Referenzpunkten',
@@ -1833,6 +1844,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'exif-componentsconfiguration-0' => 'Gëtt et net',
 
 'exif-exposureprogram-0' => 'Onbekannt',
+'exif-exposureprogram-1' => 'Manuell',
 'exif-exposureprogram-3' => 'Zäitautomatik',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
 

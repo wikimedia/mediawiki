@@ -48,6 +48,7 @@ $messages = array(
 'searchbutton'     => 'ស្វែងរក',
 'go'               => 'ទៅ',
 'searcharticle'    => 'ទៅ',
+'history'          => 'ទំព័រប្រវត្តិ',
 'history_short'    => 'ប្រវត្តិ',
 'info_short'       => 'ព័ត៌មាន',
 'printableversion' => 'ទំរង់សំរាប់បោះពុម្ភ',
@@ -67,17 +68,21 @@ $messages = array(
 'jumptosearch'     => 'ស្វែងរក',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents' => 'ព្រិត្តិការណ៍ថ្មីៗ',
-'edithelp'      => 'ជំនួយការកែប្រែ',
-'helppage'      => 'ជំនួយ:មាតិកា',
-'mainpage'      => 'ទំព័រដើម',
-'portal'        => 'សមាគមន៏',
-'sitesupport'   => 'វិភាគទាន',
+'aboutpage'         => 'គំរោង:អំពី',
+'currentevents'     => 'ព្រិត្តិការណ៍ថ្មីៗ',
+'currentevents-url' => 'គំរោង:ព្រិត្តិការណ៍ថ្មីៗ',
+'edithelp'          => 'ជំនួយការកែប្រែ',
+'edithelppage'      => 'ជំនួយ:ការកែប្រែ',
+'helppage'          => 'ជំនួយ:មាតិកា',
+'mainpage'          => 'ទំព័រដើម',
+'portal'            => 'សមាគមន៏',
+'sitesupport'       => 'វិភាគទាន',
 
 'ok'                  => 'យល់ព្រម',
 'newmessagesdifflink' => 'បំលាស់ប្តូរចុងក្រោយ',
 'editsection'         => 'កែប្រែ',
 'editold'             => 'កែប្រែ',
+'editsectionhint'     => 'កែប្រែផ្នែក: $1',
 'toc'                 => 'មាតិកា',
 'showtoc'             => 'បង្ហាញ',
 'hidetoc'             => 'លាក់',
@@ -120,6 +125,7 @@ $messages = array(
 'yourrealname'       => 'ឈ្មោះពិត:',
 'yourlanguage'       => 'ភាសា:',
 'yournick'           => 'ឈ្មោះហៅក្រៅ:',
+'loginsuccesstitle'  => 'ឡុកអ៊ីនចូលបានជោគជ័យហើយ!',
 
 # Edit page toolbar
 'bold_sample'   => 'អក្សរឌិត',
@@ -127,18 +133,26 @@ $messages = array(
 'italic_sample' => 'អក្សរទ្រេត',
 
 # Edit pages
+'summary'                => 'សេចក្តីសង្ខេប',
 'savearticle'            => 'រក្សាទំព័រទុក',
 'preview'                => 'មើលជាមុន',
 'showpreview'            => 'បង្ហាញការមើលជាមុន',
 'showdiff'               => 'បង្ហាញបំលាស់ប្តូរ',
+'newarticle'             => '(ថ្មី)',
 'template-protected'     => '(បានការពារ)',
 'template-semiprotected' => '(ពាក់កណ្តាលបានការពារ)',
 
 # History pages
-'next' => 'បន្ទាប់',
+'next'       => 'បន្ទាប់',
+'last'       => 'ចុងក្រោយ',
+'page_first' => 'ដំបូង',
+'page_last'  => 'ចុងក្រោយ',
 
 # Revision deletion
 'rev-delundel' => 'បង្ហាញ/លាក់',
+
+# Diffs
+'lineno' => 'បន្ទាប់ទី $1:',
 
 # Search results
 'powersearch' => 'ស្វែងរក',
@@ -171,11 +185,14 @@ $messages = array(
 'show'          => 'បង្ហាញ',
 
 # Upload
-'upload' => 'អាប់ឡូដ',
+'upload'        => 'អាប់ឡូដ',
+'uploadbtn'     => 'ផ្ទុកឯកសារ',
+'uploadlogpage' => 'កំណត់ហេតុនៃការផ្ទុកឯកសារ',
 
 'license' => 'អាជ្ញាបណ្ណ',
 
 # Image list
+'imagelist'             => 'បញ្ជីរូបភាព',
 'filehist'              => 'ប្រវត្តិឯកសារ',
 'filehist-filesize'     => 'ទំហំហ្វាល់',
 'imagelinks'            => 'តំណភ្ជាប់',
@@ -196,19 +213,53 @@ $messages = array(
 'popularpages' => 'ទំព័រមានប្រជាប្រិយភាព',
 'allpages'     => 'គ្រប់ទំព័រ',
 'shortpages'   => 'ទំព័រខ្លីៗ',
+'longpages'    => 'ទំព័រវែងៗ',
+'listusers'    => 'បញ្ជីអ្នកប្រើប្រាស់',
 'specialpages' => 'ទំព័រពិសេសៗ',
+'ancientpages' => 'ទំព័រចាស់ជាងគេ',
 'move'         => 'ប្តូរទីតាំង',
 
 # Special:Log
-'log'               => 'កំណត់ហេតុ',
-'log-search-submit' => 'ទៅ',
+'specialloguserlabel'  => 'អ្នកប្រើប្រាស់:',
+'speciallogtitlelabel' => 'ចំណងជើង:',
+'log'                  => 'កំណត់ហេតុ',
+'all-logs-page'        => 'គ្រប់កំណត់ហេតុទាំងអស់',
+'log-search-submit'    => 'ទៅ',
+
+# Special:Allpages
+'allarticles' => 'គ្រប់អត្ថបទទាំងអស់',
 
 # Watchlist
-'watch' => 'ពិនិត្យមើល',
+'watch'         => 'ពិនិត្យមើល',
+'watchthispage' => 'ពិនិត្យមើលទំព័រនេះ',
+'unwatch'       => 'ឈប់មើល',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' => 'កំពុងពិនិត្យមើល...',
+
+# Delete/protect/revert
+'deletereasonotherlist' => 'មូលហេតុផ្សេងទៀត',
+
+# Contributions
+'contributions' => 'ការរួមចំនែករបស់អ្នកប្រើប្រាស់',
+'mycontris'     => 'ការរួមចំនែករបស់ខ្ញុំ',
+
+# Block/unblock
+'contribslink' => 'ការរួមចំនែក',
+'blocklogpage' => 'កំណត់ហេតុនៃការហាមឃាត់',
+
+# Move page
+'movelogpage' => 'កំណត់ហេតុនៃការផ្លាស់ប្តូរទីតាំង',
 
 # Tooltip help for the actions
-'tooltip-p-logo'     => 'ទំព័រដើម',
-'tooltip-n-mainpage' => 'មើលទំព័រដើម',
+'tooltip-ca-protect'     => 'ការពារទំព័រនេះ',
+'tooltip-ca-delete'      => 'លុបទំព័រនេះ',
+'tooltip-p-logo'         => 'ទំព័រដើម',
+'tooltip-n-mainpage'     => 'មើលទំព័រដើម',
+'tooltip-t-specialpages' => 'បញ្ជីគ្រប់ទំព័រពិសេសទាំងអស់',
+
+# Special:Newimages
+'newimages' => 'វិចិត្រសាលនៃឯកសារ(Gallery of new files)',
 
 # Table pager
 'table_pager_limit_submit' => 'ទៅ',
