@@ -754,7 +754,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		$wgCommandLineMode = true;
 		if (! defined ( 'STDERR' ) )
-			define( STDERR, fopen("php://stderr", "wb"));
+			define( 'STDERR', fopen("php://stderr", "wb"));
 		$wgUseDatabaseMessages = false; /* FIXME: For database failure */
 		require_once( "$IP/includes/Setup.php" );
 		chdir( "config" );
