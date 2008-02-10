@@ -42,7 +42,7 @@ class NewPagesPage extends QueryPage {
 			/* int  */ 'limit' => 50,
 		);
 
-		$options = $defaults; 
+		$options = $defaults;
 
 		if ( $par ) {
 			$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -145,7 +145,6 @@ class NewPagesPage extends QueryPage {
 		return $conds;
 	}
 
-
 	function getSQL() {
 		global $wgUser, $wgUseNPPatrol, $wgUseRCPatrol;
 		$usepatrol = ( $wgUseNPPatrol || $wgUseRCPatrol ) ? 1 : 0;
@@ -180,8 +179,8 @@ class NewPagesPage extends QueryPage {
 			FROM $recentchanges,$page
 			WHERE rc_cur_id=page_id AND $condstext";
 	}
-	
-	function preprocessResults( $db, $res ) {
+
+	function preprocessResults( &$db, &$res ) {
 		# Do a batch existence check on the user and talk pages
 		$linkBatch = new LinkBatch();
 		while( $row = $db->fetchObject( $res ) ) {
@@ -240,12 +239,12 @@ class NewPagesPage extends QueryPage {
 		}
 		return parent::feedItemDesc( $row );
 	}
-	
+
 	/**
 	 * Show a form for filtering namespace and username
 	 *
 	 * @return string
-	 */	
+	 */
 	function getPageHeader() {
 		global $wgScript, $wgContLang, $wgGroupPermissions, $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
 		$sk = $wgUser->getSkin();
@@ -315,5 +314,4 @@ class NewPagesPage extends QueryPage {
 			Xml::closeElement( 'form' );
 		return $form;
 	}
-	
 }
