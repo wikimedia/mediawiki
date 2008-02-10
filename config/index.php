@@ -753,6 +753,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDBts2schema = $conf->DBts2schema;
 
 		$wgCommandLineMode = true;
+		if (! defined ( 'STDERR' ) )
+			define( STDERR, fopen("php://stderr", "wb"));
 		$wgUseDatabaseMessages = false; /* FIXME: For database failure */
 		require_once( "$IP/includes/Setup.php" );
 		chdir( "config" );
