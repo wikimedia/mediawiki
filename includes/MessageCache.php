@@ -74,15 +74,6 @@ class MessageCache {
 		}
 
 		if ( $wgLocalMessageCacheSerialized ) {
-			$localHash=substr(fread($file,40),8);
-			fclose($file);
-			if ($hash!=$localHash) {
-				return;
-			}
-
-			require("$wgLocalMessageCache/messages-" . wfWikiID());
-			$this->setCache( $this->mCache);
-		} else {
 			// Check to see if the file has the hash specified
 			$localHash = fread( $file, 32 );
 			if ( $hash === $localHash ) {
@@ -91,6 +82,15 @@ class MessageCache {
 				$this->setCache( unserialize( $serialized ) );
 			}
 			fclose( $file );
+		} else {
+			$localHash=substr(fread($file,40),8);
+			fclose($file);
+			if ($hash!=$localHash) {
+				return;
+			}
+
+			require("$wgLocalMessageCache/messages-" . wfWikiID());
+			$this->setCache( $this->mCache);
 		}
 	}
 
