@@ -452,6 +452,7 @@ CREATE TABLE job (
 CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
+-- Note: if version 8.3 or higher, we remove the 'default' arg
 
 ALTER TABLE page ADD titlevector tsvector;
 CREATE FUNCTION ts2_page_title() RETURNS TRIGGER LANGUAGE plpgsql AS
@@ -487,9 +488,10 @@ CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON pagecontent
   FOR EACH ROW EXECUTE PROCEDURE ts2_page_text();
 
 -- These are added by the setup script due to version compatibility issues
--- If using 8.1, switch from "gin" to "gist"
--- CREATE INDEX ts2_page_title ON page USING gin(titlevector);
--- CREATE INDEX ts2_page_text ON pagecontent USING gin(textvector);
+-- If using 8.1, we switch from "gin" to "gist"
+
+CREATE INDEX ts2_page_title ON page USING gin(titlevector);
+CREATE INDEX ts2_page_text ON pagecontent USING gin(textvector);
 
 CREATE FUNCTION add_interwiki (TEXT,INT,CHAR) RETURNS INT LANGUAGE SQL AS
 $mw$
