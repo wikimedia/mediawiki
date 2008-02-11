@@ -24,6 +24,9 @@ include('commandLine.inc');
 
 $doc = $IP . '/docs/hooks.txt';
 $pathinc = $IP . '/includes/';
+$pathfile = $IP . '/includes/filerepo/LocalFile.php';
+$pathlang = $IP . '/languages/Language.php';
+$pathskin = $IP . '/skins/MonoBook.php';
 
 
 # FUNCTIONS
@@ -115,8 +118,19 @@ function printArray( $msg, $arr, $sort = true ) {
 # MAIN
 
 $documented = getHooksFromDoc($doc);
-$potential = getHooksFromPath($pathinc);
-$bad = getBadHooksFromPath($pathinc);
+
+$potenial_inc = getHooksFromPath($pathinc);
+$potential_file = getHooksFromFile($pathfile);
+$potential_lang = getHooksFromFile($pathlang);
+$potential_skin = getHooksFromFile($pathskin);
+
+$bad_inc = getBadHooksFromPath($pathinc);
+$bad_file = getBadHooksFromFile($pathfile);
+$bad_lang = getBadHooksFromFile($pathlang);
+$bad_skin = getBadHooksFromFile($pathskin);
+
+$potential = array_merge($potenial_inc, $potential_file, $potential_lang, $potential_skin);
+$bad = array_merge($bad_inc, $bad_file, $bad_lang, $bad_skin);
 
 $todo = array_diff($potential, $documented);
 $deprecated = array_diff($documented, $potential);
