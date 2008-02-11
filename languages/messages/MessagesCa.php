@@ -1566,7 +1566,7 @@ $1",
 'nocontribs'    => "No s'ha trobat canvis que encaixessin amb aquests criteris.",
 'ucnote'        => "A sota hi ha els darrers <b>$1</b> canvis d'aquest usuari en els darrers <b>$2</b> dies.",
 'uclinks'       => 'Mostra els darrers $1 canvis; mostra els darrers $2 dies.',
-'uctop'         => ' (actual)',
+'uctop'         => '(actual)',
 'month'         => 'Mes (i anteriors):',
 'year'          => 'Any (i anteriors):',
 

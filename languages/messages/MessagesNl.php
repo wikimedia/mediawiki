@@ -1696,7 +1696,7 @@ $1',
 'nocontribs'    => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'ucnote'        => 'Hieronder staan de laatste <b>$1</b> wijzigingen van deze gebruiker in de laatste <b>$2</b> dagen.',
 'uclinks'       => 'Toon de laatste $1 wijzigingen; toon de laatste $2 dagen.',
-'uctop'         => ' (laatste wijziging)',
+'uctop'         => '(laatste wijziging)',
 'month'         => 'Van maand (en eerder):',
 'year'          => 'Van jaar (en eerder):',
 

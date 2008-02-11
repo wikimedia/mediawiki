@@ -94,6 +94,7 @@ $messages = array(
 'mytalk'         => 'Mov dïjveldidh',
 'anontalk'       => 'Dïjveldidh ihke dïhte IP',
 'navigation'     => 'Navigasjovne',
+'and'            => 'jih',
 
 'errorpagetitle'   => 'Båajhtode',
 'returnto'         => 'Bååstide gåajkoe $1.',
@@ -631,7 +632,7 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie <strong>$1</strong>
 'contributions' => 'Nuhtjien värrhtoedimmieh',
 'mycontris'     => 'Mov värrhtoedimmieh',
 'contribsub2'   => 'Ihke $1 ($2)',
-'uctop'         => ' (gïerege)',
+'uctop'         => '(gïerege)',
 'month'         => 'Raejeste aske (jih övtebe):',
 'year'          => 'Raejeste jaepie (jih övtebe):',
 
@@ -769,7 +770,6 @@ Gïemhpes veeljeme jeatjebh nomme.',
 
 # Attribution
 'siteuser'  => '{{SITENAME}} nuhtjien $1',
-'and'       => 'jih',
 'siteusers' => '{{SITENAME}} nuhtjien(h) $1',
 
 # Spam protection

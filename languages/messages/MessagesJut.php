@@ -5,6 +5,7 @@
  *
  * @author Ælsån
  * @author Huslåke
+ * @author Siebrand
  */
 
 $fallback = 'da';
@@ -486,7 +487,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'contributions' => 'Brugerbidråg',
 'mycontris'     => 'Mine bidråg',
 'contribsub2'   => 'Før $1 ($2)',
-'uctop'         => ' (seneste)',
+'uctop'         => '(seneste)',
 'month'         => 'Måned:',
 'year'          => 'År:',
 

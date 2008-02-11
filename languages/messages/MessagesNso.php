@@ -98,6 +98,7 @@ $messages = array(
 'mytalk'        => 'Dipolelo tša ka',
 'anontalk'      => 'Poledišano ya IP ye',
 'navigation'    => 'Tšwelotšo',
+'and'           => 'le',
 
 'errorpagetitle'   => 'Phošo',
 'returnto'         => 'Boela go $1.',
@@ -648,7 +649,7 @@ Seemo sa go lota ga letlakala <strong>$1</strong>:',
 'contributions' => 'Diabe tša mošomiši',
 'mycontris'     => 'Diabe tša ka',
 'contribsub2'   => 'Ya $1 ($2)',
-'uctop'         => ' (godimo)',
+'uctop'         => '(godimo)',
 'month'         => 'Go tloga kgweding (le peleng):',
 'year'          => 'Go tloga ngwageng (le peleng):',
 
@@ -789,7 +790,6 @@ Ka kgopelo, kgetha leina le lengwe.',
 
 # Attribution
 'lastmodifiedatby' => 'Letlakala le  fetotšwe la mafelelo ka $2, $1 ke $3.', # $1 date, $2 time, $3 user
-'and'              => 'le',
 'others'           => 'tše dingwe',
 'siteusers'        => '{{SITENAME}} mošumiši/bašumiši $1',
 

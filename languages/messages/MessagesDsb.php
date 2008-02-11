@@ -1216,7 +1216,7 @@ PICT # misc.
 'userstats'              => 'Statistika wužywarjow',
 'sitestatstext'          => "W datowej bance {{PLURAL:$1|jo dogromady '''1''' bok|stej dogromady '''$1''' boka|su dogromady '''$1''' boki}}. To wobpśimjejo teke diskusijne boki, boki wó {{SITENAME}}, małe boki, dalejpósrědnjenja a dalšne boki, kótarež njamógu se ewentuelnje ako boki gódnośiś.
 
-Jolic toś te boki se wótlicuju, {{PLURAL:$2|jo '''1''' bok|stej '''$2''' boka|su '''$2''' boki}}, {{PLURAL:$2|kótaryž móžo|kótarejž móžotej|kótarež mógu}} se gódnośiś ako bok.
+Jolic toś te boki se wótlicuju, {{PLURAL:$2|jo '''1''' bok|stej '''$2''' boka|su '''$2''' boki}}, {{PLURAL:$2|kótaryž móžo|kótarejž móžotej|kótarež mógu}} se gódnośiś ako nastawk.
 
 Dogromady jo se uploadowało '''$8''' {{PLURAL:$8|dataja|dataji|dataje}}.
 
@@ -1599,7 +1599,7 @@ $1',
 'nocontribs'    => 'Za toś te kriterije njejsu žedne změny se namakali.',
 'ucnote'        => 'How su slědne <b>$1</b> změny wužywarja w slědnych <b>$2</b> dnjach.',
 'uclinks'       => 'Glědaj slědne $1 změny; glědaj slědne $2 dny.',
-'uctop'         => ' (aktualny)',
+'uctop'         => '(aktualny)',
 'month'         => 'wót mjaseca (a jěsnjej):',
 'year'          => 'wót lěta (a jěsnjej):',
 

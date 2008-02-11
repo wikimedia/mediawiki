@@ -88,7 +88,7 @@ $messages = array(
 
 # Contributions
 'mycontris' => 'Myn bydroagn',
-'uctop'     => ' (latste veranderienge)',
+'uctop'     => '(latste veranderienge)',
 
 # Move page
 'delete_and_move' => 'Wegdoen en ernoemn',

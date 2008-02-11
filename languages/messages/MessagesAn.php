@@ -1533,7 +1533,7 @@ $1',
 'nocontribs'    => "No s'han trobato cambeos que concordasen con ixos criterios",
 'ucnote'        => "Contino se i amuestran os zaguers <b>$1</b> cambeos d'iste usuario en os zaguers <b>$2</b> días.",
 'uclinks'       => 'Amostrar os zaguers $1 cambeos; amostrar os zaguers $2 días.',
-'uctop'         => ' (zaguer cambeo)',
+'uctop'         => '(zaguer cambeo)',
 'month'         => 'Dende o mes (y anteriors):',
 'year'          => "Dende l'año (y anteriors):",
 

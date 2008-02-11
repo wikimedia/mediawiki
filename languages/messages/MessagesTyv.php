@@ -8,6 +8,7 @@
  * @author friends at tyvawiki.org
  * @author Nike
  * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -581,7 +582,7 @@ $1',
 # Contributions
 'contributions' => 'Ажыглакчыниң деткимчемнери',
 'mycontris'     => 'Мээң деткимчемнерим',
-'uctop'         => ' (баш)',
+'uctop'         => '(баш)',
 
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң деткимчемнерин көргүзер',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',

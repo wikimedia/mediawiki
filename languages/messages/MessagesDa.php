@@ -271,6 +271,7 @@ $messages = array(
 'mytalk'         => 'Min diskussion',
 'anontalk'       => 'Diskussionsside for denne IP-adresse',
 'navigation'     => 'Navigation',
+'and'            => 'og',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1444,8 +1445,6 @@ Tilbagemelding og yderligere hjælp:
 'excontentauthor'             => "indholdet var: '$1' (og den eneste forfatter var '$2')",
 'exbeforeblank'               => "indholdet før siden blev tømt var: '$1'",
 'exblank'                     => 'siden var tom',
-'confirmdelete'               => 'Bekræft sletning',
-'deletesub'                   => '(Sletter "$1")',
 'historywarning'              => 'Advarsel: Siden du er ved at slette har en historie:',
 'confirmdeletetext'           => 'Du er ved permanent at slette en side
 eller et billede sammen med hele den tilhørende historie fra databasen. Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne, og at du gør dette i overensstemmelse med
@@ -1579,7 +1578,7 @@ $1',
 'nocontribs'    => 'Ingen ændringer er fundet som opfylder disse kriterier.',
 'ucnote'        => 'Herunder er denne brugers sidste <b>$1</b> ændringer i de sidste <b>$2</b> dage.',
 'uclinks'       => 'Vis de sidste $1 ændringer; vis de sidste $2 dage.',
-'uctop'         => ' (seneste)',
+'uctop'         => '(seneste)',
 'month'         => 'Måned:',
 'year'          => 'År:',
 
@@ -1893,7 +1892,6 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'anonymous'        => 'Anonym(e) bruger(e) af {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} bruger $1',
 'lastmodifiedatby' => 'Denne side blev senest ændret $2, $1 af $3.', # $1 date, $2 time, $3 user
-'and'              => 'og',
 'othercontribs'    => 'Baseret på arbejde af $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}} bruger(e) $1',

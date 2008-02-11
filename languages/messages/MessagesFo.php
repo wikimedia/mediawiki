@@ -865,7 +865,7 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'mycontris'     => 'Mítt íkast',
 'contribsub2'   => 'Eftir $1 ($2)',
 'uclinks'       => 'Skoða seinastu $1 broytingarnar; skoða seinastu $2 dagarnar.',
-'uctop'         => ' (ovast)',
+'uctop'         => '(ovast)',
 'month'         => 'Frá mánaði (og áðrenn):',
 'year'          => 'Frá ár (og áðrenn):',
 

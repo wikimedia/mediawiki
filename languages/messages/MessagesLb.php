@@ -1289,6 +1289,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'watching'   => 'Iwwerwaachen …',
 'unwatching' => 'Net méi iwwerwaachen …',
 
+'enotif_reset'                 => 'All Säiten als besicht markéieren',
 'enotif_newpagetext'           => 'Dëst ass eng nei Säit.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
 'changed'                      => 'geännert',
@@ -1406,7 +1407,7 @@ $1',
 'nocontribs'    => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
 'ucnote'        => 'Hei stinn dësem Benotzer seng lescht <b>$1</b> Ännerungen vun de leschten <b>$2</b> Deeg.',
 'uclinks'       => 'Weis déi läscht $1 Kontributiounen; weis déi läscht $2 Deeg.',
-'uctop'         => ' (aktuell)',
+'uctop'         => '(aktuell)',
 'month'         => 'Vum Mount (a virdrun):',
 'year'          => 'Vum Joer (a virdrun):',
 
@@ -1717,8 +1718,12 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'patrol-log-auto' => '(automatesch)',
 
 # Image deletion
-'deletedrevision'       => 'Al Revisioun $1 läschen',
-'filedeleteerror-short' => 'Feeler beim Läsche vum Fichier: $1',
+'deletedrevision'                 => 'Al Revisioun $1 läschen',
+'filedeleteerror-short'           => 'Feeler beim Läsche vum Fichier: $1',
+'filedeleteerror-long'            => 'Bäim Läsche vum Fichier si Feeler festgestallt ginn:
+
+$1',
+'filedelete-current-unregistered' => 'Dee Fichier "$1" ass net an der Datebank.',
 
 # Browsing diffs
 'previousdiff' => '← virescht Ënnerscheeder',
@@ -1788,6 +1793,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-colorspace'                  => 'Faarfraum',
 'exif-componentsconfiguration'     => 'Bedeitung vun eenzelne Komponenten',
 'exif-compressedbitsperpixel'      => 'Kompriméiert Biten pro Pixel',
+'exif-makernote'                   => 'Notize vum Fabrikant',
 'exif-usercomment'                 => 'Bemierkunge vum Benotzer',
 'exif-datetimeoriginal'            => 'Erfaassungszäitpunkt',
 'exif-datetimedigitized'           => 'Digitaliséierungszäitpunkt',
@@ -1801,6 +1807,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-shutterspeedvalue'           => 'Beliichtungszäitwäert',
 'exif-aperturevalue'               => 'Blendewäert',
 'exif-brightnessvalue'             => 'Hellegkeetswäert',
+'exif-subjectdistance'             => 'Distanz zum Sujet',
 'exif-lightsource'                 => 'Liichtquell',
 'exif-flash'                       => 'Blëtz',
 'exif-focallength'                 => 'Brennwäit',
@@ -1961,6 +1968,7 @@ $1',
 'searchnamed'      => "Sich no Säiten, an deenen hirem Numm ''$1'' virkënnt.",
 'articletitles'    => "Säiten déi mat ''$1'' ufänken",
 'hideresults'      => 'Verstopp',
+'useajaxsearch'    => 'AJAX-ënnerstetzt Sich benotzen',
 
 # Multipage image navigation
 'imgmultipageprev' => '← virëscht Säit',
@@ -2016,8 +2024,12 @@ $1',
 'watchlisttools-raw'  => 'Net-formatéiert Iwwerwaachungslëscht änneren',
 
 # Special:Version
-'version-extensions' => 'Installéiert Erweiderungen',
-'version-other'      => 'Aner',
+'version-extensions'       => 'Installéiert Erweiderungen',
+'version-other'            => 'Aner',
+'version-version'          => 'Versioun',
+'version-license'          => 'Lizenz',
+'version-software'         => 'Installéiert Software',
+'version-software-product' => 'Produkt',
 
 # Special:Filepath
 'filepath-page' => 'Fichier:',

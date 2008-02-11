@@ -1259,7 +1259,7 @@ $NEWPAGE
 'nocontribs'    => '이 사용자는 어디에도 기여하지 않았습니다.',
 'ucnote'        => "이 사용자가 '''$2'''일 동안에 바꾼 '''$1'''개의 목록입니다.",
 'uclinks'       => '최근 $1개 보기; 최근 $2일 보기',
-'uctop'         => ' (최신)',
+'uctop'         => '(최신)',
 
 'sp-contributions-newbies'  => '새 사용자의 기여만 보기',
 'sp-contributions-blocklog' => '차단 기록',

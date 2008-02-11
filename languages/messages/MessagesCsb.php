@@ -612,7 +612,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'mycontris'     => 'Mòje edicëje',
 'contribsub2'   => 'Dlô brëkòwnika $1 ($2)',
 'ucnote'        => 'Hewò je lësta slédnëch <b>$1</b> edicëjów dokònónëch przez\\nbrëkòwnika òbczôs òstatnëch <b>$2</b> dni.',
-'uctop'         => ' (slédnô)',
+'uctop'         => '(slédnô)',
 'month'         => 'Òd miesąca (ë wczasni):',
 'year'          => 'Òd rokù (ë wczasni):',
 

@@ -1,10 +1,11 @@
 <?php
-/** Megleno-Romanian (Latin script) (Vlăheşte)
+/** Megleno-Romanian (Latin) (Vlăheşte (Latin))
  *
  * @addtogroup Language
  *
  * @author Макѕе
  * @author Кумулај Маркус
+ * @author Siebrand
  */
 
 $fallback = 'ro';
@@ -252,7 +253,7 @@ $messages = array(
 'contributions' => "Kontribuţi d'utilizatori",
 'mycontris'     => 'Mes kontribuţi',
 'contribsub2'   => 'Pentru $1 ($2)',
-'uctop'         => ' (susverf)',
+'uctop'         => '(susverf)',
 
 # What links here
 'whatlinkshere'       => 'Legǎtul a ce pažu',

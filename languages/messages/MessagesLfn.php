@@ -6,6 +6,7 @@
  * @author Cgboeree
  * @author Nike
  * @author SPQRobin
+ * @author Siebrand
  */
 
 
@@ -637,7 +638,7 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'contributions' => 'Contribuis de usor',
 'mycontris'     => 'Me contribuis',
 'contribsub2'   => 'Per $1 ($2)',
-'uctop'         => ' (culmine)',
+'uctop'         => '(culmine)',
 'month'         => 'De mensa (e plu vea):',
 'year'          => 'De anio (e plu vea):',
 

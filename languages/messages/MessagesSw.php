@@ -558,7 +558,7 @@ Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 'contributions' => 'Michango ya watumiaji',
 'mycontris'     => 'Michango yangu',
 'contribsub2'   => 'Kwa $1 ($2)',
-'uctop'         => ' (juu)',
+'uctop'         => '(juu)',
 'month'         => 'Kutoka mwezi (na zamani zaidi):',
 'year'          => 'Kutoka mwakani (na zamani zaidi):',
 

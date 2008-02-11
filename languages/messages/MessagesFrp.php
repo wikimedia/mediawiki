@@ -1513,7 +1513,7 @@ $1',
 'nocontribs'    => 'Niona modificacion corrèspondent a cetos critèros at étâ trovâ.',
 'ucnote'        => 'Vê-que les <b>$1</b> dèrriéres modificacions fêtes per ceti utilisator pendent los <b>$2</b> jorns passâs.',
 'uclinks'       => 'Afichiér les $1 dèrriéres modificacions ; afichiér los $2 jorns passâs.',
-'uctop'         => ' (dèrriére)',
+'uctop'         => '(dèrriére)',
 'month'         => 'Dês lo mês (et prècèdents) :',
 'year'          => 'Dês l’an (et prècèdents) :',
 

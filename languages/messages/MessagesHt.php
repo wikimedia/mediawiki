@@ -544,7 +544,7 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 'contributions' => 'Kontribisyon itilizatè sa a',
 'mycontris'     => 'Kontribisyon mwen yo',
 'contribsub2'   => 'Lis kontribisyon $1 ($2). Paj yo ki te efase pa afiche non.',
-'uctop'         => ' (komansman)',
+'uctop'         => '(komansman)',
 'month'         => 'depi mwa (ak mwa anvan yo) :',
 'year'          => 'Depi lane (ak anvan tou) :',
 

@@ -1463,7 +1463,7 @@ $1',
 'nocontribs'    => 'Deer wuuden neen Annerengen foar disse Kriterien fuunen.',
 'ucnote'        => 'Dit sunt do lääste <b>$1</b> Biedraage fon dän Benutser in do lääste <b>$2</b> Deege.',
 'uclinks'       => 'Wies do lääste $1 Biedraage fon dän Benutser in do lääste $2 Deege.',
-'uctop'         => ' (aktuäl)',
+'uctop'         => '(aktuäl)',
 'month'         => 'un Mound:',
 'year'          => 'bit Jier:',
 

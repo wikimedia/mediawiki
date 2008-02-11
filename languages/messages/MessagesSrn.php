@@ -5,6 +5,7 @@
  *
  * @author Adfokati
  * @author Jordi
+ * @author Siebrand
  */
 
 $fallback = 'nl';
@@ -131,6 +132,7 @@ $messages = array(
 'mytalk'         => 'Mi taki',
 'anontalk'       => 'Taki fu disi IP',
 'navigation'     => 'Lukubun',
+'and'            => 'nanga',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -866,7 +868,7 @@ Disi ben a tapunivo fu a papira <strong>[[$1]]</strong> now:",
 'contributions' => 'Masyinkenki',
 'mycontris'     => 'Mi kenki',
 'contribsub2'   => 'Fu $1 ($2)',
-'uctop'         => ' (nyunse kenki)',
+'uctop'         => '(nyunse kenki)',
 'month'         => 'Fu mun (nanga owrur):',
 'year'          => 'Fu yari (nanga owrur):',
 
@@ -991,7 +993,6 @@ Gi wan trawan papiranen.',
 
 # Attribution
 'siteuser'  => '{{SITENAME}}-masyin $1',
-'and'       => 'nanga',
 'siteusers' => '{{SITENAME}}-masyin $1',
 
 # Spam protection

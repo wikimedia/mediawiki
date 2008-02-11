@@ -1129,7 +1129,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'contribsub2'   => '$1 ushın ($2)',
 'ucnote'        => "To'mende usı paydalanıwshının' aqırg'ı <b>$2</b> ku'ndegi, aqırg'ı <b>$1</b> o'zgerisleri bar.",
 'uclinks'       => "Aqırg'ı $1 o'zgeristi ko'riw; aqırg'ı $2 ku'ndi ko'riw.",
-'uctop'         => " (joqarg'ı)",
+'uctop'         => "(joqarg'ı)",
 'month'         => "Aydag'ı (ha'm onnanda erterek):",
 'year'          => "Jıldag'ı (ha'm onnanda erterek):",
 

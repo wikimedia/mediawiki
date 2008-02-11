@@ -8,6 +8,7 @@
  * @author Desiphral
  * @author Siebrand
  * @author Nike
+ * @author לערי ריינהארט
  */
 
 $fallback = 'ro';
@@ -84,6 +85,7 @@ $messages = array(
 'mypage'         => 'Miri patrin',
 'mytalk'         => 'Mire vakyarimata',
 'navigation'     => 'Phiripen',
+'and'            => 'thai',
 
 'errorpagetitle'   => 'Dosh',
 'returnto'         => 'Ja palpale kai $1.',
@@ -247,7 +249,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 'yourdiff'           => 'Ververimata',
 
 # History pages
-'revhistory'       => 'puranipen le versiyango',
 'revnotfoundtext'  => 'I puraneder versiya la patrinyaki so tu manglyan na arakhel pes. Mangas tuke te palemdikhes o phandipen so labyardyan kana avilyan kathe.',
 'loadhist'         => 'Ladavav o puranipen le versiyango',
 'previousrevision' => '← Purano paruvipen',
@@ -377,7 +378,6 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 'listusers'    => 'Jenengo patrinipen',
 'specialpages' => 'Uzalutne patrya',
 'spheading'    => 'Uzalutne patrya',
-'rclsub'       => '(le patrinyanca phandle katar "$1")',
 'newpages'     => 'Neve patrya',
 'ancientpages' => 'E puraneder lekha',
 'intl'         => 'Phandimata mashkar ćhiba',
@@ -420,7 +420,6 @@ Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len
 'excontent'       => "o ander sas: '$1'",
 'excontentauthor' => "o ander sas: '$1' (thai o korkoro butyarno sas '$2')",
 'exblank'         => 'i patrin sas chuchi',
-'deletesub'       => '(Khosav "$1")',
 'historywarning'  => 'Dikh! La patrya so kames to khoses la si la puranipen:',
 'actioncomplete'  => 'Agorisardi buti',
 'deletedtext'     => '"$1" sas khosli.
@@ -443,12 +442,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'contributions' => 'Jeneske butya',
 'mycontris'     => 'Mire butya',
 'contribsub2'   => 'Katar $1 ($2)',
-'uctop'         => ' (opre)',
-
-'sp-contributions-newest' => 'O mai nevo',
-'sp-contributions-oldest' => 'O mai purano',
-'sp-contributions-newer'  => 'Mai neve $1',
-'sp-contributions-older'  => 'Mai purane $1',
+'uctop'         => '(opre)',
 
 # What links here
 'whatlinkshere' => 'So phandel pes kathe',
@@ -538,7 +532,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'anonymous'        => 'Bijangle labyarne kai {{SITENAME}}',
 'siteuser'         => 'Jeno kai {{SITENAME}} $1',
 'lastmodifiedatby' => 'Kadaya patrin sas paruvdi agoreste $2, $1 katar $3.', # $1 date, $2 time, $3 user
-'and'              => 'thai',
 'others'           => 'aver',
 'siteusers'        => 'Jeno/e kai {{SITENAME}} $1',
 

@@ -842,7 +842,7 @@ Petohoni di petulo <strong>$1</strong> sa:',
 'contributions' => 'Afina di sebelu',
 'mycontris'     => 'Zwa afina',
 'contribsub2'   => 'Di $1 ($2)',
-'uctop'         => " (nca ng'i)",
+'uctop'         => "(nca ng'i)",
 'month'         => 'Di muna (previ):',
 'year'          => 'Dyanu (previ):',
 

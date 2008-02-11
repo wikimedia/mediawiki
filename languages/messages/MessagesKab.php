@@ -160,6 +160,7 @@ $messages = array(
 'mytalk'         => 'Amyannan inu',
 'anontalk'       => 'Amyannan n IP-yagi',
 'navigation'     => 'Ẓer isebtar',
+'and'            => 'u',
 
 'errorpagetitle'    => 'Agul',
 'returnto'          => 'Uɣal ar $1.',
@@ -1201,7 +1202,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'nocontribs'    => 'Ur yufi ara abddel i tebɣiḍ.',
 'ucnote'        => 'Deg ukessar llan <b>$1</b> n yibeddlen ineggura deg <b>$2</b> n wussan ineggura.',
 'uclinks'       => 'Ẓer $1 n yibeddlen ineggura; ẓer $2 n wussan ineggura.',
-'uctop'         => ' (taneggarut)',
+'uctop'         => '(taneggarut)',
 
 'sp-contributions-newbies'     => 'Ssken tikkin n yimseqdacen imaynuten kan',
 'sp-contributions-newbies-sub' => 'I yisem yimseqdacen imaynuten',
@@ -1403,7 +1404,6 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 'anonymous'        => 'Amseqdac udrig (Imseqdacen udrigen) n {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} amseqdac $1',
 'lastmodifiedatby' => 'Tikkelt taneggarut asmi yettubeddel asebter-agi $2, $1 sɣur $3.', # $1 date, $2 time, $3 user
-'and'              => 'u',
 'othercontribs'    => 'Tikkin n wemseqdac-agi.',
 'others'           => 'wiyaḍ',
 'siteusers'        => '{{SITENAME}} amseqdac(imseqdacen) $1',

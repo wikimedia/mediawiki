@@ -9,8 +9,6 @@
  * @author SPQRobin
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
@@ -1429,7 +1427,7 @@ $1',
 'nocontribs'    => "Nu s'alcuentrun chambus con esus criterius.",
 'ucnote'        => 'Embahu están los úrtimus <b>$1</b> chambus d´esti usuáriu enus úrtimus <b>$2</b> dias.',
 'uclinks'       => 'Vel los úrtimus $1 chambus; vel los úrtimus $2 dias.',
-'uctop'         => ' (úrtimu chambu)',
+'uctop'         => '(úrtimu chambu)',
 'month'         => 'Mes:',
 'year'          => 'Añu:',
 
