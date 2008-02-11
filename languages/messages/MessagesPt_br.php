@@ -1290,7 +1290,7 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 'nocontribs'    => 'Não foram encontradas mudanças com este critério.',
 'ucnote'        => 'Segue as últimas  <b>$1</b> mudanças nos últimos <b>$2</b> dias do usuário.',
 'uclinks'       => 'Ver as últimas $1 mudanças; ver os últimos $2 dias.',
-'uctop'         => ' (edição atual)',
+'uctop'         => '(edição atual)',
 'month'         => 'Mês (inclusive anteriores):',
 'year'          => 'Ano (inclusive anteriores):',
 

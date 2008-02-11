@@ -1305,7 +1305,7 @@ $1',
 'nocontribs'    => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
 'ucnote'        => 'Mai jos se află ultimele <b>$1</b> modificări ale utilizatorului din ultimele <b>$2</b> zile.',
 'uclinks'       => 'Vezi ultimele $1 modificări; vezi ultimele $2 zile.',
-'uctop'         => ' (sus)',
+'uctop'         => '(sus)',
 'month'         => 'Din luna (şi dinainte):',
 
 'sp-contributions-newbies'     => 'Arată doar contribuţiile conturilor noi',

@@ -148,6 +148,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'mytalk'         => "Li me' dischussioni",
 'anontalk'       => 'Dischussioni pa chisthu IP',
 'navigation'     => 'Nabiggazioni',
+'and'            => 'e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',
@@ -1388,7 +1389,7 @@ $1",
 'nocontribs'    => 'Nò so isthaddi acciappaddi mudìfigghi cunfòimmi a li critéri sciubaraddi.',
 'ucnote'        => "Inogghi sò erencaddi li <b>$1</b> mudìfigghi più rizzenti arriggaddi da l'utenti i' l'ulthimi <b>$2</b> dì.",
 'uclinks'       => 'Musthra li ulthimi $1 mudìfigghi; musthra li ulthimi $2 dì.',
-'uctop'         => ' (ulthima pa la pàgina)',
+'uctop'         => '(ulthima pa la pàgina)',
 'month'         => 'A parthì da lu mesi (e prizzidenti):',
 'year'          => "A parthì da l'anni (e prizzidenti):",
 
@@ -1682,7 +1683,6 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'anonymous'        => 'utenti anònimi di {{SITENAME}}',
 'siteuser'         => '$1, utenti di {{SITENAME}}',
 'lastmodifiedatby' => "Chistha pàgina è isthadda mudìfiggadda pa l'ulthima voltha lu $2, $1 da $3.", # $1 date, $2 time, $3 user
-'and'              => 'e',
 'othercontribs'    => "Lu testhu attuari è basaddu i' li cuntributi di $1.",
 'others'           => 'althri',
 'siteusers'        => '$1, utenti di {{SITENAME}}',

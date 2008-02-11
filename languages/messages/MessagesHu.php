@@ -1760,7 +1760,7 @@ $1',
 'ipaddress'                   => 'IP-cím',
 'ipadressorusername'          => 'IP-cím vagy felhasználói név',
 'ipbexpiry'                   => 'Lejárat',
-'ipbreason'                   => 'Blokkolás oka',
+'ipbreason'                   => 'Indok:',
 'ipbreasonotherlist'          => 'Más ok',
 'ipbreason-dropdown'          => '*Gyakori blokkolási okok
 ** Téves információ beírása

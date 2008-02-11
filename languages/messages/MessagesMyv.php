@@ -12,6 +12,7 @@
  * @author Max sonnelid
  * @author Amdf
  * @author SPQRobin
+ * @author Siebrand
  */
 
 
@@ -730,7 +731,7 @@ $messages = array(
 'contributions' => 'Совицянть-кирдицянть путовксозо',
 'mycontris'     => 'Монь путовкст',
 'contribsub2'   => '$1 ($2) туртов',
-'uctop'         => ' (меельцесь)',
+'uctop'         => '(меельцесь)',
 'month'         => 'Ковстонть (ды седе икеле):',
 'year'          => 'Иестэнть (ды седе икеле):',
 

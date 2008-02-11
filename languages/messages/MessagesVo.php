@@ -1186,7 +1186,7 @@ $1',
 'nocontribs'    => 'Votükams nonik petuvons me paramets at.',
 'ucnote'        => 'Ekö! votükams lätik <b>$1</b> gebana at ün dels lätik <b>$2</b>.',
 'uclinks'       => 'Jonön votükamis lätik $1; jonön delis lätik $2.',
-'uctop'         => ' (lätik)',
+'uctop'         => '(lätik)',
 'month'         => 'De mul (e büiks):',
 'year'          => 'De yel (e büiks):',
 

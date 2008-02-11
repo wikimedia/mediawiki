@@ -1,10 +1,11 @@
 <?php
-/** Megleno-Romanian (Cyrillic script) (Влахесте)
+/** Megleno-Romanian (Cyrillic) (Vlăheşte (Cyrillic))
  *
  * @addtogroup Language
  *
  * @author Макѕе
  * @author Кумулај Маркус
+ * @author Siebrand
  */
 
 $fallback = 'mk';
@@ -252,7 +253,7 @@ $messages = array(
 'contributions' => 'Контрибући дутилизатори',
 'mycontris'     => 'Мес контрибући',
 'contribsub2'   => 'пентру $1 ($2)',
-'uctop'         => ' (сусверф)',
+'uctop'         => '(сусверф)',
 
 # What links here
 'whatlinkshere'       => 'Легајтул а це пажу',

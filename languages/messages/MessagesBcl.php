@@ -1388,7 +1388,7 @@ $1",
 'nocontribs'    => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.',
 'ucnote'        => 'Mahihiling sa baba an mga huring <b>$1</b> binagao kaining paragamit sa  <b>$2</b> na aldaw.',
 'uclinks'       => 'Hilingon an mga huring $1 na pagbabago; hilingon an mga huring $2 na aldaw.',
-'uctop'         => ' (alituktok)',
+'uctop'         => '(alituktok)',
 'month'         => 'Poon bulan (asin mas amay):',
 'year'          => 'Poon taon (asin mas amay):',
 

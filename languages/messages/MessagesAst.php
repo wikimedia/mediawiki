@@ -1505,7 +1505,7 @@ $1",
 'nocontribs'    => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
 'ucnote'        => "Abaxo amuésense los caberos <b>$1</b> cambeos d'esti usuariu nos caberos <b>$2</b> díes.",
 'uclinks'       => 'Ver los caberos $1 cambeos; ver los caberos $2 díes.',
-'uctop'         => ' (últimu cambéu)',
+'uctop'         => '(últimu cambéu)',
 'month'         => "Dende'l mes (y anteriores):",
 'year'          => "Dende l'añu (y anteriores):",
 

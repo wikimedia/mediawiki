@@ -112,21 +112,39 @@ href="" class="internal"}?{/a}) bımocne.',
 'dec'           => 'Gağ',
 
 # Bits of text used by many pages
-'categories'            => 'Kategoriy',
-'pagecategories'        => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
-'category_header'       => 'Nuşteyê ke kategoriya "$1"(-i) derê.',
+'categories'            => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
+'pagecategories'        => '{{PLURAL:$1|Kategoriya|Kategoriyê}} perre',
+'category_header'       => 'Nuşteyê ke kategoriya "$1"(-i/-an) derê.',
 'subcategories'         => 'Kategoriyê bınêni',
-'category-media-header' => 'Medyawa ke kategoriya "$1" (-i) dera',
+'category-media-header' => 'Medyawa ke kategoriya "$1" (-i/-an) dera',
+'category-empty'        => "''Ena kategoriye de hewna qet nuştey ya ki medyay çıniyê.''",
 
-'about'          => 'Heqa',
-'article'        => 'nuşte',
+'mainpagetext'      => "<big>'''MediaWiki vıst ra ser, vıraziya.'''</big>",
+'mainpagedocfooter' => "Gurenayış u ayarkerdena Wiki-Software rê yardım etıya de vênenay: [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
+
+== Yardımê Sıftekerdene ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+
+'about'          => 'Sero',
+'article'        => 'Perre',
+'newwindow'      => '(zerrey pençereyê de newey de beno a)',
 'cancel'         => 'Bıtexelne',
-'qbbrowse'       => 'Cıgeyre',
+'qbfind'         => 'Bıvêne',
+'qbbrowse'       => 'Çım ra bıviyarne',
 'qbedit'         => 'Bıvurne',
-'qbspecialpages' => 'Pelê xasi',
-'mypage'         => 'pela mı',
-'mytalk'         => 'pela mesajanê mı',
+'qbpageoptions'  => 'Ena perre',
+'qbpageinfo'     => 'Melumatê perre',
+'qbmyoptions'    => 'Perrê mı',
+'qbspecialpages' => 'Perrê xasi',
+'moredotdotdot'  => 'Vêşêri (zêdêri)...',
+'mypage'         => 'Perra mı',
+'mytalk'         => 'Perra mına werênayışi',
+'anontalk'       => 'Perra werênayışê nê IPy',
 'navigation'     => 'pusula',
+'and'            => 'u',
 
 'tagline'          => '{{SITENAME}} ra',
 'help'             => 'Pheşti',

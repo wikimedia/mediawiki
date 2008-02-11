@@ -731,7 +731,7 @@ Consultare el [[Special:Log/delete|log delle scancełazsioni]] par vardare łe s
 'nocontribs' => 'Nessuna modifica trovata conformemente a questi criteri.',
 'ucnote'     => 'Qui sotto troverai le ultime <b>$1</b> modifiche effettuate da questo Utente negli ultimi <b>$2</b> giorni.',
 'uclinks'    => 'Vedi le ultime $1 modifiche; vedi gli ultimi $2 giorni.',
-'uctop'      => ' (ultima par ła paxèna)',
+'uctop'      => '(ultima par ła paxèna)',
 
 'sp-newimages-showfrom' => 'Mostra łe imagini pì reçenti a partire da $1',
 

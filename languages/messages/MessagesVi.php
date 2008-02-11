@@ -1541,7 +1541,7 @@ $1',
 'nocontribs'    => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
 'ucnote'        => 'Dưới đây là <b>$1</b> sửa đổi mới nhất của thành viên này trong <b>$2</b> ngày qua.',
 'uclinks'       => 'Xem $1 sửa đổi cuối cùng; trong $2 ngày qua.',
-'uctop'         => ' (mới nhất)',
+'uctop'         => '(mới nhất)',
 'month'         => 'Từ tháng (trở về trước):',
 'year'          => 'Từ năm (trở về trước):',
 

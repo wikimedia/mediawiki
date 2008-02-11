@@ -9,6 +9,7 @@
  * @author SPQRobin
  * @author ZeneizeForesto
  * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'it';
@@ -93,6 +94,7 @@ $messages = array(
 'mytalk'         => 'Mæ discuscioin',
 'anontalk'       => 'Discuscion pe questo indirisso IP',
 'navigation'     => 'Navegaçion',
+'and'            => 'e',
 
 'errorpagetitle'   => 'Errô',
 'tagline'          => 'Da {{SITENAME}}',
@@ -680,7 +682,7 @@ $1',
 'contributions' => "Contribussioîn de l'ûtente",
 'mycontris'     => 'Mæ contribuçioin',
 'contribsub2'   => 'Pe $1 ($2)',
-'uctop'         => ' (ûrtima pe-a paggina)',
+'uctop'         => '(ûrtima pe-a paggina)',
 'month'         => 'Partendo da-o meise (e preçedenti):',
 'year'          => "Partendo da l'anno (e preçedenti):",
 
@@ -831,7 +833,6 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 # Attribution
 'anonymous'        => 'Utente anonimmo de {{SITENAME}}',
 'lastmodifiedatby' => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1 da $3.", # $1 date, $2 time, $3 user
-'and'              => 'e',
 
 # Spam protection
 'subcategorycount'     => "'Sta categorîa a g'ha {{PLURAL:$1|ûnn-a sottocategorîa|$1 sottocategorîe}}.",

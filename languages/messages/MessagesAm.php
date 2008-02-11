@@ -760,7 +760,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'mycontris'     => 'የኔ አስተዋጽኦች፤',
 'contribsub2'   => 'ለ $1 ($2)',
 'nocontribs'    => 'ምንም አልተገኘም።',
-'uctop'         => ' (ላይኛ)',
+'uctop'         => '(ላይኛ)',
 'month'         => 'እስከዚህ ወር ድረስ፦',
 'year'          => 'እስከዚህ አመት (እ.ኤ.አ.) ድረስ፡-',
 
