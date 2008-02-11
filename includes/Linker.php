@@ -717,7 +717,8 @@ class Linker {
 		global $wgEnableUploads;
 		if( $title instanceof Title ) {
 			wfProfileIn( __METHOD__ );
-			if( $wgEnableUploads ) {
+			$currentFile = wfFindFile( $title );
+			if( $wgEnableUploads && !$currentFile ) {
 				$upload = SpecialPage::getTitleFor( 'Upload' );
 				if( $text == '' )
 					$text = htmlspecialchars( $title->getPrefixedText() );
