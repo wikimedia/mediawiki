@@ -460,6 +460,7 @@ class Linker {
 	 * @param boolean $thumb shows image as thumbnail in a frame
 	 * @param string $manualthumb image name for the manual thumbnail
 	 * @param string $valign vertical alignment: baseline, sub, super, top, text-top, middle, bottom, text-bottom
+	 * @param string $time, timestamp of the file, set as false for current
 	 * @return string
 	 */
 	function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(), $framed = false,
@@ -482,7 +483,7 @@ class Linker {
 			$frameParams['valign'] = $valign;
 		}
 		$file = wfFindFile( $title, $time );
-		return $this->makeImageLink2( $title, $file, $frameParams, $handlerParams );
+		return $this->makeImageLink2( $title, $file, $frameParams, $handlerParams, $time );
 	}
 
 	/**
@@ -508,8 +509,9 @@ class Linker {
 	 *
 	 * @param array $handlerParams Associative array of media handler parameters, to be passed 
 	 *       to transform(). Typical keys are "width" and "page". 
+	 * @param string $time, timestamp of the file, set as false for current
 	 */
-	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array() ) {
+	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false ) {
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
 		if ( $file && !$file->allowInlineDisplay() ) {
 			wfDebug( __METHOD__.': '.$title->getPrefixedDBkey()." does not allow inline display\n" );
@@ -570,7 +572,7 @@ class Linker {
 			if ( $fp['align'] == '' ) {
 				$fp['align'] = $wgContLang->isRTL() ? 'left' : 'right';
 			}
-			return $prefix.$this->makeThumbLink2( $title, $file, $fp, $hp ).$postfix;
+			return $prefix.$this->makeThumbLink2( $title, $file, $fp, $hp, $time ).$postfix;
 		}
 
 		if ( $file && isset( $fp['frameless'] ) ) {
@@ -590,7 +592,7 @@ class Linker {
 		}
 
 		if ( !$thumb ) {
-			$s = $this->makeBrokenImageLinkObj( $title );
+			$s = $this->makeBrokenImageLinkObj( $title, '', '', '', '', $time==true );
 		} else {
 			$s = $thumb->toHtml( array(
 				'desc-link' => true,
@@ -620,7 +622,7 @@ class Linker {
 		return $this->makeThumbLink2( $title, $file, $frameParams, $params );
 	}
 
-	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array() ) {
+	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false ) {
 		global $wgStylePath, $wgContLang;
 		$exists = $file && $file->exists();
 
@@ -680,7 +682,7 @@ class Linker {
 
 		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		if( !$exists ) {
-			$s .= $this->makeBrokenImageLinkObj( $title );
+			$s .= $this->makeBrokenImageLinkObj( $title, '', '', '', '', $time==true );
 			$zoomicon = '';
 		} elseif ( !$thumb ) {
 			$s .= htmlspecialchars( wfMsg( 'thumbnail_error', '' ) );
@@ -711,14 +713,15 @@ class Linker {
 	 * @param string $query Query string
 	 * @param string $trail Link trail
 	 * @param string $prefix Link prefix
+	 * @param bool $time, a file of a certain timestamp was requested
 	 * @return string
 	 */
-	public function makeBrokenImageLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	public function makeBrokenImageLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '', $time = false ) {
 		global $wgEnableUploads;
 		if( $title instanceof Title ) {
 			wfProfileIn( __METHOD__ );
-			$currentFile = wfFindFile( $title );
-			if( $wgEnableUploads && !$currentFile ) {
+			$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
+			if( $wgEnableUploads && !$currentExists ) {
 				$upload = SpecialPage::getTitleFor( 'Upload' );
 				if( $text == '' )
 					$text = htmlspecialchars( $title->getPrefixedText() );
