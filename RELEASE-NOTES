@@ -380,6 +380,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   in parentheses after them claimed otherwise
 * (bug 12732) Fix installer and searching to handle built-in tsearch2 for Postgres.
 * (bug 12784) Change "bool" types to smallint to handle Postgres 8.3 strictness.
+* (bug 12301) Allow maintenance/findhooks.php to search hooks in multiple directories.
 
 == Parser changes in 1.12 ==
 
