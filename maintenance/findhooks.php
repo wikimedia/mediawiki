@@ -15,22 +15,18 @@
  * @copyright Copyright © Ashar voultoiz
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public Licence 2.0 or later
  */
-
+ 
 /** This is a command line script*/
 include('commandLine.inc');
-
-
+ 
+ 
 # GLOBALS
-
+ 
 $doc = $IP . '/docs/hooks.txt';
-$pathinc = $IP . '/includes/';
-$pathfile = $IP . '/includes/filerepo/LocalFile.php';
-$pathlang = $IP . '/languages/Language.php';
-$pathskin = $IP . '/skins/MonoBook.php';
-
-
+$pathinc = array( $IP.'/includes/', $IP.'/includes/api/', $IP.'/includes/filerepo/', $IP.'/languages/', $IP.'/maintenance/', $IP.'/skins/' );
+ 
 # FUNCTIONS
-
+ 
 /**
  * @return array of documented hooks
  */
@@ -41,7 +37,7 @@ function getHooksFromDoc() {
 	preg_match_all( "/\n'(.*?)'/", $content, $m);
 	return $m[1];
 }
-
+ 
 /**
  * Get hooks from a PHP file
  * @param $file Full filename to the PHP file.
@@ -53,7 +49,7 @@ function getHooksFromFile( $file ) {
 	preg_match_all( '/wfRunHooks\(\s*([\'"])(.*?)\1/', $content, $m);
 	return $m[2];
 }
-
+ 
 /**
  * Get hooks from the source code.
  * @param $path Directory where the include files can be found
@@ -71,7 +67,7 @@ function getHooksFromPath( $path ) {
 	}
 	return $hooks;
 }
-
+ 
 /**
  * Get bad hooks (where the hook name could not be determined) from a PHP file
  * @param $file Full filename to the PHP file.
@@ -82,9 +78,13 @@ function getBadHooksFromFile( $file ) {
 	$m = array();
 	# We want to skip the "function wfRunHooks()" one.  :)
 	preg_match_all( '/(?<!function )wfRunHooks\(\s*[^\s\'"].*/', $content, $m);
-	return $m[0];
+	$list = array();
+	foreach( $m[0] as $match ){
+		$list[] = $match . "(" . $file . ")";
+	}
+	return $list;
 }
-
+ 
 /**
  * Get bad hooks from the source code.
  * @param $path Directory where the include files can be found
@@ -94,7 +94,8 @@ function getBadHooksFromPath( $path ) {
 	$hooks = array();
 	if( $dh = opendir($path) ) {
 		while(($file = readdir($dh)) !== false) {
-			if( filetype($path.$file) == 'file' ) {
+			# We don't want to read this file as it contains bad calls to wfRunHooks()
+			if( filetype( $path.$file ) == 'file' && !$path.$file == __FILE__ ) {
 				$hooks = array_merge( $hooks, getBadHooksFromFile($path.$file) );
 			}
 		}
@@ -102,7 +103,7 @@ function getBadHooksFromPath( $path ) {
 	}
 	return $hooks;
 }
-
+ 
 /**
  * Nicely output the array
  * @param $msg A message to show before the value
@@ -111,33 +112,29 @@ function getBadHooksFromPath( $path ) {
  */
 function printArray( $msg, $arr, $sort = true ) {
 	if($sort) asort($arr); 
-	foreach($arr as $v) print "$msg: $v\n";
+	foreach($arr as $v) echo "$msg: $v\n";
 }
-
-
-# MAIN
-
+ 
+ 
+# MAIN
+ 
 $documented = getHooksFromDoc($doc);
-
-$potenial_inc = getHooksFromPath($pathinc);
-$potential_file = getHooksFromFile($pathfile);
-$potential_lang = getHooksFromFile($pathlang);
-$potential_skin = getHooksFromFile($pathskin);
-
-$bad_inc = getBadHooksFromPath($pathinc);
-$bad_file = getBadHooksFromFile($pathfile);
-$bad_lang = getBadHooksFromFile($pathlang);
-$bad_skin = getBadHooksFromFile($pathskin);
-
-$potential = array_merge($potenial_inc, $potential_file, $potential_lang, $potential_skin);
-$bad = array_merge($bad_inc, $bad_file, $bad_lang, $bad_skin);
-
-$todo = array_diff($potential, $documented);
-$deprecated = array_diff($documented, $potential);
-
+$potential = array();
+$bad = array();
+foreach( $pathinc as $dir ) {
+	$potential = array_merge( $potential, getHooksFromPath( $dir ) );
+	$bad = array_merge( $bad, getBadHooksFromPath( $dir ) );
+}
+ 
+$potential = array_unique( $potential );
+$bad = array_unique( $bad );
+$todo = array_diff( $potential, $documented );
+$deprecated = array_diff( $documented, $potential );
+ 
 // let's show the results:
 printArray('undocumented', $todo );
 printArray('not found', $deprecated );
 printArray('unclear hook calls', $bad );
-
-
+ 
+if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 ) 
+	echo "Looks good!\n";
