@@ -1985,7 +1985,7 @@ $1',
 'nocontribs'    => 'No changes were found matching these criteria.',
 'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
 'uclinks'       => 'View the last $1 changes; view the last $2 days.',
-'uctop'         => ' (top)',
+'uctop'         => '(top)',
 'month'         => 'From month (and earlier):',
 'year'          => 'From year (and earlier):',
 
