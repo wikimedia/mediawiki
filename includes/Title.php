@@ -2032,7 +2032,9 @@ class Title {
 		       strpos( $dbkey, './' ) === 0  ||
 		       strpos( $dbkey, '../' ) === 0 ||
 		       strpos( $dbkey, '/./' ) !== false ||
-		       strpos( $dbkey, '/../' ) !== false ) )
+		       strpos( $dbkey, '/../' ) !== false  ||
+		       substr( $dbkey, -2 ) == '/.' ||
+		       substr( $dbkey, -3 ) == '/..' ) )
 		{
 			return false;
 		}
