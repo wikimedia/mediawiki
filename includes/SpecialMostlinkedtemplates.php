@@ -69,7 +69,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	 * @param Database $dbr Database connection
 	 * @param int $res Result pointer
 	 */
-	public function preprocessResults( &$dbr, &$res ) {
+	public function preprocessResults( $dbr, $res ) {
 		$batch = new LinkBatch();
 		while( $row = $dbr->fetchObject( $res ) ) {
 			$title = Title::makeTitleSafe( $row->namespace, $row->title );
