@@ -42,8 +42,17 @@ if ( !function_exists( '__autoload' ) ) {
  *
  */
 class WebRequest {
+	var $data = array();
+	
 	function __construct() {
+		/// @fixme This preemtive de-quoting can interfere with other web libraries
+		///        and increases our memory footprint. It would be cleaner to do on
+		///        demand; but currently we have no wrapper for $_SERVER etc.
 		$this->checkMagicQuotes();
+		
+		// POST overrides GET data
+		// We don't use $_REQUEST here to avoid interference from cookies...
+		$this->data = array_merge( $_GET, $_POST );
 	}
 	
 	/**
@@ -110,7 +119,7 @@ class WebRequest {
 				$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
 			}
 			foreach( $matches as $key => $val) {
-				$_GET[$key] = $_REQUEST[$key] = $val;
+				$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
 			}
 		}
 	}
@@ -236,7 +245,7 @@ class WebRequest {
 	 * @return string
 	 */
 	function getVal( $name, $default = NULL ) {
-		$val = $this->getGPCVal( $_REQUEST, $name, $default );
+		$val = $this->getGPCVal( $this->data, $name, $default );
 		if( is_array( $val ) ) {
 			$val = $default;
 		}
@@ -257,7 +266,7 @@ class WebRequest {
 	 * @return array
 	 */
 	function getArray( $name, $default = NULL ) {
-		$val = $this->getGPCVal( $_REQUEST, $name, $default );
+		$val = $this->getGPCVal( $this->data, $name, $default );
 		if( is_null( $val ) ) {
 			return null;
 		} else {
@@ -362,7 +371,7 @@ class WebRequest {
 	function getValues() {
 		$names = func_get_args();
 		if ( count( $names ) == 0 ) {
-			$names = array_keys( $_REQUEST );
+			$names = array_keys( $this->data );
 		}
 
 		$retVal = array();
@@ -587,7 +596,6 @@ class WebRequest {
  *
  */
 class FauxRequest extends WebRequest {
-	var $data = null;
 	var $wasPosted = false;
 
 	/**
@@ -604,13 +612,9 @@ class FauxRequest extends WebRequest {
 		$this->wasPosted = $wasPosted;
 	}
 
-	function getVal( $name, $default = NULL ) {
-		return $this->getGPCVal( $this->data, $name, $default );
-	}
-
 	function getText( $name, $default = '' ) {
 		# Override; don't recode since we're using internal data
-		return $this->getVal( $name, $default );
+		return (string)$this->getVal( $name, $default );
 	}
 
 	function getValues() {
