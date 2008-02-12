@@ -1961,7 +1961,8 @@ END
 			'title'     => wfMsg( 'tooltip-diff' ).' ['.wfMsg( 'accesskey-diff' ).']',
 		);
 		$buttons['diff'] = wfElement('input', $temp, '');
-
+		
+		wfRunHooks( 'ModifyEditButtons', array( &$buttons ) );
 		return $buttons;
 	}
 
