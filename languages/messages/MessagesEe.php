@@ -34,7 +34,18 @@ $messages = array(
 'october-gen'   => 'Kele',
 'november-gen'  => 'Adeɛmekpɔxe',
 'december-gen'  => 'Dzome',
+'jan'           => 'Dzo',
+'feb'           => 'Dzo',
+'mar'           => 'Ted',
+'apr'           => 'Afɔ',
 'may'           => 'Damɛ',
+'jun'           => 'Mas',
+'jul'           => 'Sia',
+'aug'           => 'Das',
+'sep'           => 'Any',
+'oct'           => 'Kel',
+'nov'           => 'Ade',
+'dec'           => 'Dzo',
 
 'about'          => 'Ŋutinya',
 'newwindow'      => '(eʋua fesre yeye)',
@@ -59,15 +70,24 @@ $messages = array(
 'jumptosearch'     => 'dii',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'   => '{{SITENAME}} ŋutinya',
-'aboutpage'   => 'Project:Ŋutinya',
-'edithelp'    => 'Kpekpeɖeŋu na etɔtrɔ',
-'portal'      => 'Takpekpewɔƒe',
-'portal-url'  => 'Project:Takpekpewɔƒe',
-'sitesupport' => 'Wɔ nunana',
+'aboutsite'         => '{{SITENAME}} ŋutinya',
+'aboutpage'         => 'Project:Ŋutinya',
+'currentevents'     => 'Nusiwo le dzɔdzɔm',
+'currentevents-url' => 'Project:Nusiwo le dzɔdzɔm',
+'edithelp'          => 'Kpekpeɖeŋu na etɔtrɔ',
+'portal'            => 'Takpekpewɔƒe',
+'portal-url'        => 'Project:Takpekpewɔƒe',
+'sitesupport'       => 'Wɔ nunana',
 
 'newmessageslink' => 'du yeyewo',
 'editsection'     => 'trɔ asi le eŋu',
+'editold'         => 'trɔ asi le eŋu',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user' => 'Ezãla axa',
+
+# General errors
+'viewsource' => 'Kpɔ alesi wowɔe',
 
 # Login and logout pages
 'login'          => 'Ge ɖe eme',
@@ -102,18 +122,30 @@ $messages = array(
 'upload'    => 'Ɖo agbalẽ ɖa',
 'uploadbtn' => 'Ɖo agbalẽ ɖa',
 
+# Image list
+'filehist-user' => 'Ezãla',
+
 # MIME search
 'mimesearch' => 'MIME dii',
 
 # Miscellaneous special pages
 'wantedpages'    => 'Axawo siwo le hahĩam',
+'allpages'       => 'Axawo katã',
 'shortpages'     => 'Axa kpuiwo',
 'protectedpages' => 'Axawo siwo ŋu wole dzɔdzɔm',
 'listusers'      => 'Ezãlawo ƒe xexlẽme',
 'specialpages'   => 'Axa tɔxewo',
+'newpages'       => 'Axa yeyewo',
+'move'           => 'Ɖɔli eƒe nɔƒe',
 'movethispage'   => 'Ɖɔli axa sia ƒe nɔƒe',
 
 'version' => 'Tata',
+
+# Special:Log
+'specialloguserlabel' => 'Ezãla:',
+
+# Special:Allpages
+'allpagessubmit' => 'Yi',
 
 # Watchlist
 'watch'         => 'Le ŋku ɖe eŋu',
@@ -128,12 +160,17 @@ $messages = array(
 # Move page
 'movepage'    => 'Ɖɔli eƒe nɔƒe',
 'movearticle' => 'Ɖɔli eƒe nɔƒe:',
+'move-watch'  => 'Le ŋku ɖe axa sia ŋu',
 'movepagebtn' => 'Ɖɔli eƒe nɔƒe',
 '1movedto2'   => '[[$1]] wohee yi [[$2]]',
+
+# Namespace 8 related
+'allmessages' => 'Nuŋɔŋlɔwo',
 
 # Tooltip help for the actions
 'tooltip-pt-preferences'  => 'Nyeƒe didiwo',
 'tooltip-pt-logout'       => 'Do le eme',
+'tooltip-ca-move'         => 'Ɖɔli axa sia ƒe nɔƒe',
 'tooltip-search'          => 'Dii {{SITENAME}}',
 'tooltip-n-recentchanges' => 'Tɔtrɔ yeyewo le wiki sia me.',
 'tooltip-n-help'          => 'Nuwo srɔ̃ƒe',
@@ -141,8 +178,13 @@ $messages = array(
 'tooltip-t-whatlinkshere' => 'Wiki nuŋɔŋlɔwo katã siwo ku ɖe afii ŋuti',
 'tooltip-t-upload'        => 'Ɖo nutatawo kple nuƒoƒowo ɖa',
 'tooltip-t-specialpages'  => 'Axa tɔxewo ƒe xexlẽme',
+'tooltip-minoredit'       => 'Esia nye tɔtrɔ sue aɖe ko',
 
 # Special:Newimages
 'newimages' => 'Nutata yeyewo',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'katã',
+'namespacesall' => 'katã',
 
 );

@@ -11,6 +11,11 @@
 $fallback = 'da';
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Understreg henvesnenger',
+'tog-highlightbroken' => 'Brug røde henvesnenger til tømme sider',
+'tog-justify'         => 'Ves ertikler ve lege margener',
+
 'underline-always'  => 'åltid',
 'underline-never'   => 'åldreg',
 'underline-default' => 'æfter brovserendstellenge',
