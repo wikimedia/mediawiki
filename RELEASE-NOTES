@@ -159,6 +159,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgDefaultRobotPolicy setting.
 * (bug 12239) Use different separators for autocomments
 * (bug 12857) Patrol link on new pages should clear floats
+* (bug 12968) Render redirect wikilinks in a redirect class for customization
+  via user/site CSS.
 
 === Bug fixes in 1.12 ===
 
