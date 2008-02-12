@@ -158,7 +158,7 @@ class SearchPostgres extends SearchEngine {
 
 		## Redirects
 		if (! $this->showRedirects)
-			$query .= ' AND page_is_redirect = 0::char'; ## IS FALSE
+			$query .= ' AND page_is_redirect = 0';
 
 		## Namespaces - defaults to 0
 		if ( count($this->namespaces) < 1)
