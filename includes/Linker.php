@@ -251,17 +251,16 @@ class Linker {
 				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
 			} else {
 				$colour = '';
-				if ( $nt->isContentPage() ) {
-					# FIXME: This is stupid, we should combine this query with
-					# the Title::getArticleID() query above.
-					$threshold = $wgUser->getOption('stubthreshold');
-					$dbr = wfGetDB( DB_SLAVE );
-					$s = $dbr->selectRow(
-						array( 'page' ),
-						array( 'page_len', 'page_is_redirect', 'page_namespace' ),
-						array( 'page_id' => $aid ), __METHOD__ ) ;
-					$colour = $this->getLinkColour( $s, $threshold );
-				}
+				# FIXME: This is stupid, we should combine this query with
+				# the Title::getArticleID() query above.
+				$threshold = $wgUser->getOption('stubthreshold');
+				$dbr = wfGetDB( DB_SLAVE );
+				$s = $dbr->selectRow(
+					array( 'page' ),
+					array( 'page_len', 'page_is_redirect', 'page_namespace' ),
+					array( 'page_id' => $aid ), __METHOD__ ) ;
+				$colour = $this->getLinkColour( $s, $threshold );
+
 				$retVal = $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
 			}
 			wfProfileOut( __METHOD__.'-immediate' );
