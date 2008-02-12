@@ -4015,9 +4015,9 @@ class Parser
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
 						$current = $ns;
-						$query =  "SELECT page_id, page_namespace, page_title";
+						$query =  "SELECT page_id, page_namespace, page_title, page_is_redirect";
 						if ( $threshold > 0 ) {
-							$query .= ', page_len, page_is_redirect';
+							$query .= ', page_len';
 						}
 						$query .= " FROM $page WHERE (page_namespace=$ns AND page_title IN(";
 					} elseif ( $current != $ns ) {
@@ -4106,9 +4106,9 @@ class Parser
 					// construct query
 					$titleClause = $linkBatch->constructSet('page', $dbr);
 
-					$variantQuery =  "SELECT page_id, page_namespace, page_title";
+					$variantQuery =  "SELECT page_id, page_namespace, page_title, page_is_redirect";
 					if ( $threshold > 0 ) {
-						$variantQuery .= ', page_len, page_is_redirect';
+						$variantQuery .= ', page_len';
 					}
 
 					$variantQuery .= " FROM $page WHERE $titleClause";

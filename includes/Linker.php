@@ -77,7 +77,7 @@ class Linker {
 	 *
 	 * @param mixed $s
 	 * @param integer $threshold user defined threshold
-	 * @return string $colour CSS class
+	 * @return string CSS class
 	 */
 	function getLinkColour( $s, $threshold ) {
 		if( $s == false ) {
@@ -85,7 +85,7 @@ class Linker {
 		}
 
 		$colour = '';
-		if ( $s->page_is_redirect ) {
+		if ( !empty( $s->page_is_redirect ) ) {
 			# Page is a redirect
 			$colour = 'mw-redirect';
 		} elseif ( $threshold > 0 && $s->page_len < $threshold && Namespace::isContent( $s->page_namespace ) ) {
@@ -233,7 +233,7 @@ class Linker {
 		} else {
 			wfProfileIn( __METHOD__.'-immediate' );
 
-			# Handles links to special pages wich do not exist in the database:
+			# Handles links to special pages which do not exist in the database:
 			if( $nt->getNamespace() == NS_SPECIAL ) {
 				if( SpecialPage::exists( $nt->getDBkey() ) ) {
 					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
@@ -252,15 +252,15 @@ class Linker {
 			} else {
 				$colour = '';
 				if ( $nt->isContentPage() ) {
+					# FIXME: This is stupid, we should combine this query with
+					# the Title::getArticleID() query above.
 					$threshold = $wgUser->getOption('stubthreshold');
-					if ( $threshold > 0 ) {
-						$dbr = wfGetDB( DB_SLAVE );
-						$s = $dbr->selectRow(
-							array( 'page' ),
-							array( 'page_len', 'page_is_redirect', 'page_namespace' ),
-							array( 'page_id' => $aid ), __METHOD__ ) ;
-						$colour = $this->getLinkColour( $s, $threshold );
-					}
+					$dbr = wfGetDB( DB_SLAVE );
+					$s = $dbr->selectRow(
+						array( 'page' ),
+						array( 'page_len', 'page_is_redirect', 'page_namespace' ),
+						array( 'page_id' => $aid ), __METHOD__ ) ;
+					$colour = $this->getLinkColour( $s, $threshold );
 				}
 				$retVal = $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
 			}
