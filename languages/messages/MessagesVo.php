@@ -1454,7 +1454,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'patrol-log-auto' => '(itjäfidik)',
 
 # Image deletion
-'deletedrevision'       => 'Moükoy revidi bäldik $1.',
+'deletedrevision'       => 'Fomam büik: $1 pemoükon.',
 'filedeleteerror-short' => 'Pöl pö moükam ragiva: $1',
 
 # Browsing diffs

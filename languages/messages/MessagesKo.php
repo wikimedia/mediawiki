@@ -355,13 +355,14 @@ $messages = array(
 'protectedpagetext'    => '이 문서는 문서 편집이 불가능하도록 보호되어 있습니다.',
 'viewsourcetext'       => '문서의 원본을 보거나 복사할 수 있습니다:',
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
-'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다.",
+'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [http://translatewiki.net/wiki/Main_Page?setlang=ko Betawiki]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
 'sqlhidden'            => '(SQL 쿼리 숨겨짐)',
 'cascadeprotected'     => '다음의 문서에서 이 문서를 사용하고 있고 그 문서에 연쇄적 보호 설정이 걸려 있어, 이 문서도 편집에서 보호됩니다:
 $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
 'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
+'titleprotected'       => '[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다. 이유는 다음과 같습니다. ‘$1’',
 
 # Login and logout pages
 'logouttitle'                => '로그아웃',
@@ -433,6 +434,10 @@ $2',
 'invalidemailaddress'        => '이메일 주소 입력이 잘못되었습니다. 정상적인 이메일을 입력하거나, 칸을 비워 주세요.',
 'accountcreated'             => '계정 만들어짐',
 'accountcreatedtext'         => '‘$1’ 사용자 계정이 만들어졌습니다.',
+'createaccount-title'        => '{{SITENAME}} 계정 만들기',
+'createaccount-text'         => '{{SITENAME}}($4)에서 사용자 이름 ‘$2’, 암호 ‘$3’으로 계정을 만들었습니다. 로그인을 한 다음 암호를 바꾸어 주세요.
+
+계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
 'loginlanguagelabel'         => '언어: $1',
 
 # Password reset dialog
@@ -511,6 +516,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'confirmedittitle'          => '편집하려면 이메일 인증 필요',
 'confirmedittext'           => '문서를 고치려면 이메일 인증 절차가 필요합니다. [[Special:Preferences|사용자 환경 설정]]에서 이메일 주소를 입력하고 이메일 주소 인증을 해 주시기 바랍니다.',
 'nosuchsectiontitle'        => '해당 부분 없음',
+'nosuchsectiontext'         => '편집하려는 문단이 존재하지 않습니다. $1번째 문단이 없기 때문에 편집한 내용을 저장할 수 없습니다.',
 'loginreqtitle'             => '로그인 필요',
 'loginreqlink'              => '로그인',
 'loginreqpagetext'          => '다른 문서를 보기 위해서는 $1해야 합니다.',
@@ -539,7 +545,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 '''다시 저장을 해 주세요. 만약 계속해서 문제가 생긴다면 로그아웃한 다음 다시 로그인을 해 보세요.'''",
 'editing'                   => '$1 편집하기',
-'editinguser'               => "'''$1''' 사용자 편집하기",
+'editinguser'               => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
 'editingsection'            => '$1 편집하기 (부분)',
 'editingcomment'            => '$1 편집하기 (덧붙이기)',
 'editconflict'              => '편집 충돌: $1',
@@ -841,8 +847,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'upload-misc-error-text'  => '파일을 올리는 중 알 수 없는 오류가 발생했습니다. URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세요. 문제가 계속되면 시스템 관리자에게 연락해주세요.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'  => 'URL 접근 불가',
-'upload-curl-error28' => '업로드 시간 초과',
+'upload-curl-error6'       => 'URL 접근 불가',
+'upload-curl-error28'      => '업로드 시간 초과',
+'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다. 사이트 접속이 가능한지 확인한 다음 다시 시도해주세요. 해당 사이트에 접속이 많을 경우, 접속이 원활한 시간대에 시도해주세요.',
 
 'license'           => '라이센스',
 'nolicense'         => '선택하지 않음',
@@ -1246,6 +1253,10 @@ $NEWPAGE
 'undelete-search-box'      => '삭제된 문서 찾기',
 'undelete-search-prefix'   => '다음으로 시작하는 문서 보이기:',
 'undelete-search-submit'   => '찾기',
+'undelete-error-short'     => '파일 복구 오류: $1',
+'undelete-error-long'      => '파일을 복구하는 중 오류 발생:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => '네임스페이스:',
@@ -1260,17 +1271,22 @@ $NEWPAGE
 'ucnote'        => "이 사용자가 '''$2'''일 동안에 바꾼 '''$1'''개의 목록입니다.",
 'uclinks'       => '최근 $1개 보기; 최근 $2일 보기',
 'uctop'         => '(최신)',
+'month'         => '월:',
+'year'          => '연도:',
 
-'sp-contributions-newbies'  => '새 사용자의 기여만 보기',
-'sp-contributions-blocklog' => '차단 기록',
-'sp-contributions-username' => 'IP 주소 혹은 사용자 이름:',
-'sp-contributions-submit'   => '찾기',
+'sp-contributions-newbies'     => '새 사용자의 기여만 보기',
+'sp-contributions-newbies-sub' => '새 사용자들의 기여',
+'sp-contributions-blocklog'    => '차단 기록',
+'sp-contributions-search'      => '기여 검색',
+'sp-contributions-username'    => 'IP 주소 혹은 사용자 이름:',
+'sp-contributions-submit'      => '찾기',
 
 'sp-newimages-showfrom' => '$1부터 올라온 그림 목록 보기',
 
 # What links here
 'whatlinkshere'       => '여기를 가리키는 글',
 'whatlinkshere-title' => '$1 문서를 가리키는 문서 목록',
+'whatlinkshere-page'  => '문서:',
 'linklistsub'         => '(링크 목록)',
 'linkshere'           => "다음의 문서들이 '''[[:$1]]''' 문서를 가리키고 있습니다:",
 'nolinkshere'         => "'''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
@@ -1307,6 +1323,7 @@ $NEWPAGE
 'ipbother'                    => '다른 기간:',
 'ipboptions'                  => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '수동으로 지정',
+'ipbotherreason'              => '다른 이유/추가적인 이유:',
 'badipaddress'                => '잘못된 IP 주소',
 'blockipsuccesssub'           => '차단 완료',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:Ipblocklist|여기]]에서 볼 수 있습니다.',

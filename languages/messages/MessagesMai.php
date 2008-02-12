@@ -93,7 +93,7 @@ $messages = array(
 'disclaimerpage' => 'Project:अनाधिकार घोषणा',
 'edithelp'       => 'संपादन सहयोग',
 'edithelppage'   => 'सहायता:संपादन',
-'mainpage'       => 'मुख्य पृष्ठ',
+'mainpage'       => 'सम्मुख पन्ना',
 'privacy'        => 'गोपनीयताक नियम',
 'privacypage'    => 'प्रोजेक्ट:गोपनीयता नियम',
 
@@ -123,6 +123,7 @@ $messages = array(
 'headline_tip'    => 'स्तर 2 मुख्यपंक्ति',
 'math_sample'     => 'सूत्र समाहित करू',
 'math_tip'        => 'गणितीय सूत्र (LaTeX)',
+'nowiki_sample'   => 'फॉर्मेट विहीन लेख एतय',
 'nowiki_tip'      => 'विकी फॉरमेटिंगकेँ छोड़ू',
 'image_tip'       => 'समाहित चित्र',
 'media_tip'       => 'मीडिया फाइल लिंक',

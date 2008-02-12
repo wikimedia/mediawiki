@@ -411,6 +411,7 @@ Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. So
 'filedeleteerror'      => 'De Fichier "$1" konnt net geläscht ginn.',
 'directorycreateerror' => 'De Repertoire "$1" konnt net geschafe ginn.',
 'filenotfound'         => 'De Fichier "$1" gouf net fonnt.',
+'fileexistserror'      => 'De Fichier "$1" konnt net geschriwwe ginn, wëll et dee Fichier scho gëtt.',
 'unexpected'           => 'Onerwarte Wert: "$1"="$2".',
 'badarticleerror'      => 'Dës Aktioun kann net op dëser Säit duerchgefouert ginn.',
 'cannotdelete'         => "D'Bild oder d'Säit kann net geläscht ginn (ass waarscheinlech schonns vun engem Anere geläscht ginn).",
@@ -971,7 +972,8 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'upload-misc-error'  => 'Onbekannte Feeler beim Eroplueden',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => "URL ass net z'erreechen",
+'upload-curl-error6'  => "URL ass net z'erreechen",
+'upload-curl-error28' => "D'Eroplueden huet ze laang gedauert (timeout)",
 
 'license'            => 'Lizenz',
 'nolicense'          => 'Keng Lizenz ausgewielt',

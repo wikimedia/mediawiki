@@ -1777,16 +1777,18 @@ Målsida «[[$1]]» finst allereie. Vil du slette ho for å gje rom for flytting
 'immobile_namespace'      => 'Måltittelen høyrer til eit namnerom som gjer at sida ikkje kan flyttast dit.',
 
 # Export
-'export'           => 'Eksporter sider',
-'exporttext'       => 'Du kan eksportere teksten og endringshistorikken til ei side eller ein serie sider, pakka inn i litt XML. I framtida kan det hende at dette att kan bli importert til ei anna wiki som brukar MediaWiki-programvaren, men det er det ikkje støtte for dette i denne versjonen av MediaWiki.
+'export'            => 'Eksporter sider',
+'exporttext'        => 'Du kan eksportere teksten og endringshistorikken til ei side eller ein serie sider, pakka inn i litt XML. I framtida kan det hende at dette att kan bli importert til ei anna wiki som brukar MediaWiki-programvaren, men det er det ikkje støtte for dette i denne versjonen av MediaWiki.
 
 For å eksportere sider, skriv tittelen i tekstboksen nedanfor, ein tittel per line, og vel om du vil ha med alle versjonane eller berre siste versjon.
 
 Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{ns:special}}:Export/MediaWiki]] for [[MediaWiki]] sida.',
-'exportcuronly'    => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
-'export-submit'    => 'Eksporter',
-'export-download'  => 'Lagre som fil',
-'export-templates' => 'Inkluder malane',
+'exportcuronly'     => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
+'export-submit'     => 'Eksporter',
+'export-addcattext' => 'Legg til sider frå kategori:',
+'export-addcat'     => 'Legg til',
+'export-download'   => 'Lagre som fil',
+'export-templates'  => 'Inkluder malane',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeldingar',
@@ -1808,7 +1810,9 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 'import-interwiki-submit' => 'Importer',
 'importtext'              => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
 For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
+'importstart'             => 'Importerer sider...',
 'import-revision-count'   => '$1 {{PLURAL:$1|versjon|versjonar}}',
+'importnopages'           => 'Ingen sider å importere.',
 'importfailed'            => 'Importeringa var mislukka: $1',
 'importnotext'            => 'Tom eller ingen tekst',
 'importsuccess'           => 'Importeringa er ferdig!',
@@ -1878,6 +1882,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch'                   => 'Legg denne sida til i overvakingslista di [alt-w]',
 'tooltip-recreate'                => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
+'tooltip-upload'                  => 'Start opplasting',
 
 # Stylesheets
 'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
@@ -1945,6 +1950,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt ta skade.<hr />",
 'imagemaxsize'         => 'Avgrens bilete på filsider til (pikslar):',
 'thumbsize'            => 'Miniatyrstørrelse:',
+'file-info'            => '(filstorleik: $1, MIME-type: $2)',
 'file-info-size'       => '($1 × $2 pikslar, filstorleik: $3, MIME-type: $4)',
 'file-nohires'         => '<small>Høgare oppløysing er ikkje tilgjengeleg.</small>',
 'svg-long-desc'        => '(SVG-fil, standardoppløysing: $1 × $2 pikslar, filstorleik: $3)',
@@ -2141,6 +2147,7 @@ slått av. Dei andre felta er gøymde som standard.
 'exif-whitebalance-0' => 'Automatisk kvitbalanse',
 'exif-whitebalance-1' => 'Manuell kvitbalanse',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Portrett',
 'exif-scenecapturetype-3' => 'Nattscene',
@@ -2257,6 +2264,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev'   => '← førre side',
 'imgmultipagenext'   => 'neste side →',
+'imgmultigotopre'    => 'Gå til side',
 'imgmultiparseerror' => 'Biletfila ser ut til å vere øydelagd eller feil, så {{SITENAME}} kan ikkje hente inn ei liste over sider.',
 
 # Table pager
@@ -2326,5 +2334,14 @@ $1',
 'version-hook-name'                => 'Namn på tillegg',
 'version-hook-subscribedby'        => 'Brukt av',
 'version-version'                  => 'Versjon',
+'version-license'                  => 'Lisens',
+'version-software'                 => 'Installert programvare',
+'version-software-product'         => 'Produkt',
+'version-software-version'         => 'Versjon',
+
+# Special:Filepath
+'filepath'        => 'Filsti',
+'filepath-page'   => 'Fil:',
+'filepath-submit' => 'Sti',
 
 );
