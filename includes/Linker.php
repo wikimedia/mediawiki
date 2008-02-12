@@ -76,18 +76,21 @@ class Linker {
 	 * Return the CSS colour of a known link
 	 *
 	 * @param mixed $s
-	 * @param integer $id 
-	 * @param integer $threshold
+	 * @param integer $threshold user defined threshold
+	 * @return string $colour CSS class
 	 */
 	function getLinkColour( $s, $threshold ) {
-		if( $threshold > 0 && $s!=false ) {
-			$colour = (	$s->page_len >= $threshold || 
-					$s->page_is_redirect ||
-					!Namespace::isContent( $s->page_namespace ) 
-			    ? '' : 'stub' );
+		if( $s == false ) {
+			return '';
 		}
-		else {
-			$colour = '';
+
+		$colour = '';
+		if ( $s->page_is_redirect ) {
+			# Page is a redirect
+			$colour = 'mw-redirect';
+		} elseif ( $threshold > 0 && $s->page_len < $threshold && Namespace::isContent( $s->page_namespace ) ) {
+			# Page is a stub
+			$colour = 'stub';
 		}
 		return $colour;
 	}
