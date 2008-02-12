@@ -51,7 +51,7 @@ class WantedPagesPage extends QueryPage {
 	/**
 	 * Cache page existence for performance
 	 */
-	function preprocessResults( &$db, &$res ) {
+	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
 		while ( $row = $db->fetchObject( $res ) )
 			$batch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );

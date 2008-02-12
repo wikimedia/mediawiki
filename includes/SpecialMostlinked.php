@@ -39,7 +39,7 @@ class MostlinkedPage extends QueryPage {
 	/**
 	 * Pre-fill the link cache
 	 */
-	function preprocessResults( &$db, &$res ) {
+	function preprocessResults( $db, $res ) {
 		if( $db->numRows( $res ) > 0 ) {
 			$linkBatch = new LinkBatch();
 			while( $row = $db->fetchObject( $res ) )

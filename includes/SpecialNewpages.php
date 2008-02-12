@@ -180,7 +180,7 @@ class NewPagesPage extends QueryPage {
 			WHERE rc_cur_id=page_id AND $condstext";
 	}
 
-	function preprocessResults( &$db, &$res ) {
+	function preprocessResults( $db, $res ) {
 		# Do a batch existence check on the user and talk pages
 		$linkBatch = new LinkBatch();
 		while( $row = $db->fetchObject( $res ) ) {
