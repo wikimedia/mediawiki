@@ -299,7 +299,7 @@ class IPBlockForm {
 						$userId = $user->getID();
 						$this->BlockAddress = $user->getName();
 					} else {
-						return array('nosuchusershort', htmlspecialchars($user->getName()));
+						return array('nosuchusershort', htmlspecialchars( $user ? $user->getName() : $this->BlockAddress ) );
 					}
 				} else {
 					return array('badipaddress');
