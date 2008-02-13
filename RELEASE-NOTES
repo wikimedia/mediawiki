@@ -394,7 +394,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   its callers already
 * (bug 12846) IE rtl.css issue in RTL wikis special:Preferences when selecting an
   LTR user language
-
+* (bug 13005) DISPLAYTITLE does not work on preview
 
 == Parser changes in 1.12 ==
 

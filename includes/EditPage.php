@@ -1526,7 +1526,12 @@ END
 			$wgOut->addParserOutputNoText( $parserOutput );
 			
 			# ParserOutput might have altered the page title, so reset it
-			$wgOut->setPageTitle( wfMsg( 'editing', $wgTitle->getPrefixedText() ) );			
+			# Also, use the title defined by DISPLAYTITLE magic word when present
+			if( ( $dt = $parserOutput->getDisplayTitle() ) !== false ) {
+				$wgOut->setPageTitle( wfMsg( 'editing', $dt ) );
+			} else {
+				$wgOut->setPageTitle( wfMsg( 'editing', $wgTitle->getPrefixedText() ) );			
+			}
 
 			foreach ( $parserOutput->getTemplates() as $ns => $template)
 				foreach ( array_keys( $template ) as $dbk)
