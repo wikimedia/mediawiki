@@ -520,6 +520,7 @@ to be echoed at the top of the edit form as wikitext. Return true without alteri
 $error to allow the edit to proceed.
 
 'EditPageBeforeEditButtons':  allows modifying the edit buttons below the textarea in the edit form
+&$editpage: The current EditPage object
 &$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
 
 'EditSectionLink': Override the return value of Linker::editSectionLink()
