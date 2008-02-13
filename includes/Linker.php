@@ -80,7 +80,7 @@ class Linker {
 	 * @return string CSS class
 	 */
 	function getLinkColour( $s, $threshold ) {
-		if( $s == false ) {
+		if( $s === false ) {
 			return '';
 		}
 
