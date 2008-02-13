@@ -80,8 +80,8 @@ div.tright,
 div.tleft {
 	position: relative;
 }
-/*{ border:1px solid Red !important;}*/
 
-BODY.rtl #preftoc a, BODY.rtl #preftoc a:active {
-	float:left;
+/* bug 12846 */
+body.rtl #preftoc a, body.rtl #preftoc a:active {
+	float: left;
 }
