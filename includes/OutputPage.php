@@ -611,11 +611,8 @@ class OutputPage {
 		wfProfileIn( $fname );
 
 		if ( '' != $this->mRedirect ) {
-			if( substr( $this->mRedirect, 0, 4 ) != 'http' ) {
-				# Standards require redirect URLs to be absolute
-				global $wgServer;
-				$this->mRedirect = $wgServer . $this->mRedirect;
-			}
+			# Standards require redirect URLs to be absolute
+			$this->mRedirect = wfExpandUrl( $this->mRedirect );
 			if( $this->mRedirectCode == '301') {
 				if( !$wgDebugRedirects ) {
 					$wgRequest->response()->header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");

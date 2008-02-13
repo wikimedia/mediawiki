@@ -366,9 +366,8 @@ EOT
 	}
 
 	function getUploadUrl() {
-		global $wgServer;
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-		return $wgServer . $uploadTitle->getLocalUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) );
+		return $uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) );
 	}
 
 	/**

@@ -155,12 +155,7 @@ abstract class File {
 	 * @return string
 	 */
 	public function getFullUrl() {
-		$url = $this->getUrl();
-		if( substr( $url, 0, 1 ) == '/' ) {
-			global $wgServer;
-			return $wgServer . $url;
-		}
-		return $url;
+		return wfExpandUrl( $this->getUrl() );
 	}
 
 	function getViewURL() {
