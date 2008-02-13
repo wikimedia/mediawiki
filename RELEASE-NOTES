@@ -389,6 +389,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3269) Inaccessible titles ending in '/.' or '/..' now forbidden.
 * (bug 12935) Fully-qualify archive URLs correctly in deletion message
 * (bug 12938) Fix template expansion and 404 returns for action=raw with section
+* (bug 11567) Fix error checking for PEAR::Mail. UserMailer::send() now returns
+  true-or-WikiError, which seems to be the calling convention expected by half
+  its callers already
 
 
 == Parser changes in 1.12 ==
