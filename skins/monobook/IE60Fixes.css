@@ -82,3 +82,6 @@ div.tleft {
 }
 /*{ border:1px solid Red !important;}*/
 
+BODY.rtl #preftoc a, BODY.rtl #preftoc a:active {
+	float:left;
+}
