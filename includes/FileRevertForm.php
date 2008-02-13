@@ -28,7 +28,7 @@ class FileRevertForm {
 	 * pending authentication, confirmation, etc.
 	 */
 	public function execute() {
-		global $wgOut, $wgRequest, $wgUser, $wgLang, $wgServer;
+		global $wgOut, $wgRequest, $wgUser, $wgLang;
 		$this->setHeaders();
 
 		if( wfReadOnly() ) {
@@ -71,7 +71,7 @@ class FileRevertForm {
 				$wgOut->addHtml( wfMsgExt( 'filerevert-success', 'parse', $this->title->getText(),
 					$wgLang->date( $this->getTimestamp(), true ),
 					$wgLang->time( $this->getTimestamp(), true ),
-					$wgServer . $this->file->getArchiveUrl( $this->oldimage ) ) );
+					wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ) ) ) );
 				$wgOut->returnToMain( false, $this->title );
 			} else {
 				$wgOut->addWikiText( $status->getWikiText() );
@@ -87,14 +87,15 @@ class FileRevertForm {
 	 * Show the confirmation form
 	 */
 	private function showForm() {
-		global $wgOut, $wgUser, $wgRequest, $wgLang, $wgContLang, $wgServer;
+		global $wgOut, $wgUser, $wgRequest, $wgLang, $wgContLang;
 		$timestamp = $this->getTimestamp();
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
 		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filerevert-legend' ) . '</legend>';
 		$form .= wfMsgExt( 'filerevert-intro', 'parse', $this->title->getText(),
-			$wgLang->date( $timestamp, true ), $wgLang->time( $timestamp, true ), $wgServer . $this->file->getArchiveUrl( $this->oldimage ) );
+			$wgLang->date( $timestamp, true ), $wgLang->time( $timestamp, true ),
+			wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ) ) );
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'filerevert-comment' ), 'wpComment', 'wpComment',
 			60, wfMsgForContent( 'filerevert-defaultcomment',
 			$wgContLang->date( $timestamp, false, false ), $wgContLang->time( $timestamp, false, false ) ) ) . '</p>';

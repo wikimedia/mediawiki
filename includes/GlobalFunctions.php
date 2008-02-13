@@ -981,6 +981,21 @@ function wfAppendQuery( $url, $query ) {
 }
 
 /**
+ * Expand a potentially local URL to a fully-qualified URL.
+ * Assumes $wgServer is correct. :)
+ * @param string $url, either fully-qualified or a local path + query
+ * @return string Fully-qualified URL
+ */
+function wfExpandUrl( $url ) {
+	if( substr( $url, 0, 1 ) == '/' ) {
+		global $wgServer;
+		return $wgServer . $url;
+	} else {
+		return $url;
+	}
+}
+
+/**
  * This is obsolete, use SquidUpdate::purge()
  * @deprecated
  */

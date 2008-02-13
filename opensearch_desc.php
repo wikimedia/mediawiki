@@ -10,11 +10,8 @@ $fullName = "$wgSitename ({$wgLanguageNames[$wgLanguageCode]})";
 $shortName = htmlspecialchars( mb_substr( $fullName, 0, 24 ) );
 $siteName = htmlspecialchars( $fullName );
 
-if ( !preg_match( '/^https?:/', $wgFavicon ) ) {
-	$favicon = htmlspecialchars( $wgServer . $wgFavicon );
-} else {
-	$favicon = htmlspecialchars( $wgFavicon );
-}
+
+$favicon = htmlspecialchars( wfExpandUrl( $wgFavicon ) );
 
 $title = SpecialPage::getTitleFor( 'Search' );
 $template = $title->escapeFullURL( 'search={searchTerms}' );
