@@ -76,17 +76,14 @@ class UserMailer {
 	 */
 	protected static function sendWithPear($mailer, $dest, $headers, $body)
 	{
-		$mailResult =& $mailer->send($dest, $headers, $body);
+		$mailResult = $mailer->send($dest, $headers, $body);
 
 		# Based on the result return an error string,
-		if ($mailResult === true) {
-			return '';
-		} elseif (is_object($mailResult)) {
+		if( PEAR::isError( $mailResult ) ) {
 			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
-			return $mailResult->getMessage();
+			return new WikiError( $mailResult->getMessage() );
 		} else {
-			wfDebug( "PEAR::Mail failed, unknown error result\n" );
-			return 'Mail object return unknown error.';
+			return true;
 		}
 	}
 
@@ -101,6 +98,7 @@ class UserMailer {
 	 * @param $subject String: email's subject.
 	 * @param $body String: email's text.
 	 * @param $replyto String: optional reply-to email (default: null).
+	 * @return mixed True on success, a WikiError object on failure.
 	 */
 	static function send( $to, $from, $subject, $body, $replyto=null ) {
 		global $wgSMTP, $wgOutputEncoding, $wgErrorString, $wgEnotifImpersonal;
@@ -148,20 +146,16 @@ class UserMailer {
 			$mail_object =& Mail::factory('smtp', $wgSMTP);
 			if( PEAR::isError( $mail_object ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
-				return $mail_object->getMessage();
+				return new WikiError( $mail_object->getMessage() );
 			}
 
 			wfDebug( "Sending mail via PEAR::Mail to $dest\n" );
-			if (is_array($dest)) {
-				$chunks = array_chunk($dest, $wgEnotifMaxRecips);
-				foreach ($chunks as $chunk) {
-					$e = self::sendWithPear($mail_object, $chunk, $headers, $body);
-					if ($e != '')
-						return $e;
-				}
-			} else
-				return $mail_object->send($dest, $headers, $body);
-
+			$chunks = array_chunk( (array)$dest, $wgEnotifMaxRecips );
+			foreach ($chunks as $chunk) {
+				$e = self::sendWithPear($mail_object, $chunk, $headers, $body);
+				if( WikiError::isError( $e ) )
+					return $e;
+			}
 		} else	{
 			# In the following $headers = expression we removed "Reply-To: {$from}\r\n" , because it is treated differently
 			# (fifth parameter of the PHP mail function, see some lines below)
@@ -207,13 +201,13 @@ class UserMailer {
 
 			if ( $wgErrorString ) {
 				wfDebug( "Error sending mail: $wgErrorString\n" );
-				return $wgErrorString;
+				return new WikiError( $wgErrorString );
 			} elseif (! $sent) {
 				//mail function only tells if there's an error
 				wfDebug( "Error sending mail\n" );
-				return 'mailer error';
+				return new WikiError( 'mailer error' );
 			} else {
-				return '';
+				return true;
 			}
 		}
 	}
@@ -597,6 +591,3 @@ function wfRFC822Phrase( $s ) {
 function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 	return UserMailer::send( $to, $from, $subject, $body, $replyto );
 }
-
-
-

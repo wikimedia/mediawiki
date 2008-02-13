@@ -2385,10 +2385,10 @@ class User {
 	 *
 	 * @param string $subject
 	 * @param string $body
-	 * @param strong $from Optional from address; default $wgPasswordSender will be used otherwise.
+	 * @param string $from Optional from address; default $wgPasswordSender will be used otherwise.
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
-	function sendMail( $subject, $body, $from = null ) {
+	function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if( is_null( $from ) ) {
 			global $wgPasswordSender;
 			$from = $wgPasswordSender;
@@ -2396,13 +2396,7 @@ class User {
 
 		$to = new MailAddress( $this );
 		$sender = new MailAddress( $from );
-		$error = UserMailer::send( $to, $sender, $subject, $body );
-
-		if( $error == '' ) {
-			return true;
-		} else {
-			return new WikiError( $error );
-		}
+		return UserMailer::send( $to, $sender, $subject, $body, $replyto );
 	}
 
 	/**

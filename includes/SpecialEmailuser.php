@@ -4,8 +4,6 @@
  * @addtogroup SpecialPage
  */
 
-require_once('UserMailer.php');
-
 /**
  * @todo document
  */
@@ -182,7 +180,8 @@ class EmailUserForm {
 			$mailResult = UserMailer::send( $to, $mailFrom, $subject, $this->text, $replyTo );
 
 			if( WikiError::isError( $mailResult ) ) {
-				$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
+				$wgOut->addHTML( wfMsg( "usermailererror" ) .
+					' ' . htmlspecialchars( $mailResult->getMessage() ) );
 			} else {
 				
 				// if the user requested a copy of this mail, do this now,
@@ -190,14 +189,15 @@ class EmailUserForm {
 				if ($this->cc_me && $to != $from) {
 					$cc_subject = wfMsg('emailccsubject', $this->target->getName(), $subject);
 					if( wfRunHooks( 'EmailUser', array( &$from, &$from, &$cc_subject, &$this->text ) ) ) {
-						$ccResult = userMailer( $from, $from, $cc_subject, $this->text );
+						$ccResult = UserMailer::send( $from, $from, $cc_subject, $this->text );
 						if( WikiError::isError( $ccResult ) ) {
 							// At this stage, the user's CC mail has failed, but their 
 							// original mail has succeeded. It's unlikely, but still, what to do?
 							// We can either show them an error, or we can say everything was fine,
 							// or we can say we sort of failed AND sort of succeeded. Of these options, 
 							// simply saying there was an error is probably best.
-							$wgOut->addHTML( wfMsg( "usermailererror" ) . $ccResult);
+							$wgOut->addHTML( wfMsg( "usermailererror" ) .
+								' ' . htmlspecialchars( $ccResult->getMessage() ) );
 							return;
 						}
 					}
