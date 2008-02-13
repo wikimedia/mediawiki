@@ -180,13 +180,18 @@ class FileDeleteForm {
 	private function prepareMessage( $message ) {
 		global $wgLang, $wgServer;
 		if( $this->oldimage ) {
+			$url = $this->file->getArchiveUrl( $this->oldimage );
+			if( substr( $url, 0, 1 ) == '/' ) {
+				// Fully-qualify the URL if necessary
+				$url = $wgServer . $url;
+			}
 			return wfMsgExt(
 				"{$message}-old", # To ensure grep will find them: 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
 				'parse',
 				$this->title->getText(),
 				$wgLang->date( $this->getTimestamp(), true ),
 				$wgLang->time( $this->getTimestamp(), true ),
-				$wgServer . $this->file->getArchiveUrl( $this->oldimage )
+				$url
 			);
 		} else {
 			return wfMsgExt(
