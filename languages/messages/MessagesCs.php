@@ -667,7 +667,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'summary-preview'           => 'Náhled shrnutí',
 'subject-preview'           => 'Náhled předmětu/nadpisu',
 'blockedtitle'              => 'Uživatel zablokován',
-'blockedtext'               => "== Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace. ==
+'blockedtext'               => "<big> Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace. </big>
 
 Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;uživatelským jménem „$1“. Jako důvod blokování bylo uvedeno:
 

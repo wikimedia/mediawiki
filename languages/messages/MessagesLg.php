@@ -121,7 +121,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Okutangaaza ku {{SITENAME}}',
-'aboutpage'         => 'Okutangaaza ku Project:',
+'aboutpage'         => 'Project:Okutangaaza ku',
 'copyright'         => 'Ebiri kuno bifugibwa $1.',
 'copyrightpagename' => "bino biriko ekikuguzo eky'obwananyi ekya {{SITENAME}}",
 'copyrightpage'     => "Ebikugizo eby'obwa nannyini ku {{ns:project}}",
@@ -235,6 +235,17 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'showdiff'               => 'Ndaga bwe bikyuse',
 'anoneditwarning'        => "'''Kulabula:''' Owandiiika toyingidde mu sisitemu. Tujjakuwandiika endagiriro eya kompyuta kwosinzidde
 mu lukalala lw'enkuykakyuka ez'omu lupapula luno.",
+'blockedtext'            => "<big>'''Ebikolebwa mu linnya lyo ery'obwa memba, oba okuva ku ndagiriro yo eya 'IP', tebikyakkirizibwa.'''</big>
+
+$1 y'ataddewo natti eyo. Ensonga gy'awadde eri nti ''$2''.
+
+* Natti eyo yatandise ku: $8
+* Ekoma ku: $6
+* Gwebagenderedde okugisibako ye: $7
+
+Osobola okubyogerako ne $1 oba [[{{MediaWiki:Grouppage-sysop}}|omutesitesi]] omulala.
+Ekya 'Memba ono musindikire e-mail' toosobole okukikozesa okugyako nga mu [[Special:Preferences|nteekateeka]] ey'akawunti yo mulimu e-mail ennamu era nga yo teriko natti.
+Kakano endagiriro eya 'IP' gy'oliko eri $3, yo ennamba eya natti gyebakusibye eri #$5. Gw'ogenda okwogera naye ku natti mutegeeze ennamba oba endagiriro eyo, oba byombi.",
 'loginreqlink'           => 'Yingira',
 'accmailtitle'           => 'Ekigambo ekikuumi kisindikiddwa',
 'accmailtext'            => 'Ekigambo ekikuumi ekya "$1" kisindikiddwa ku $2.',
@@ -245,6 +256,7 @@ Oba gwe oyagala okulukolawo, wandiika mu kabokisi wammanga.
 Bw'obanga tewagenderedde kutuuka wano, nyigabunyizi eppeesa ery'omu kalambula-neti yo
 erya '''ddayo'''.",
 'noarticletext'          => "Wano tewali kyawandiikidwawo, ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula endala oba oyinza [{{fullurl:{{FULLPAGENAME}}|action=edit}} gwe okukiwandiikako] wano.",
+'previewnote'            => "<strong>Kuno kugezaamubugeza; by'okoze tebinnakazibwa!</strong>",
 'editing'                => 'Kati okyuusa $1',
 'editinguser'            => 'Kukyuusa ebya memba <b>$1</b>',
 'editingsection'         => 'Okyuusa $1 (kitundu)',
@@ -293,7 +305,7 @@ oba ku gano agali ku lupapula luno.<br />
 'prevn'        => '$1 ezikulembedde zino',
 'nextn'        => '$1 eziddako',
 'viewprevnext' => 'Laga ($1) ($2) ($3).',
-'powersearch'  => 'Ebiyamba mu kunoonya',
+'powersearch'  => 'Noonya',
 
 # Preferences page
 'mypreferences'     => 'Enteekateeka yange',
@@ -325,7 +337,8 @@ oba ku gano agali ku lupapula luno.<br />
 'recentchangeslinked-summary'  => "Olulpapula olw'enjawulo luno luliko olukalala lw'ebikyuse ku mpapula eziriko enyunzi ezigguka ku lw'obadde otunuulira. Ebiwandikidwa mu '''nukuta enziggumivu''' biri ku mpapula z'ogoberera.",
 
 # Upload
-'upload' => 'Teekayo fayiro',
+'upload'        => 'Teekayo fayiro',
+'uploadlogpage' => 'Likooda eya fayiro eziteekedwa ku wiki',
 
 # Image list
 'filehist'            => 'Ebyafaayo ebya fayiro eno',
@@ -336,6 +349,7 @@ oba ku gano agali ku lupapula luno.<br />
 'filehist-filesize'   => 'Obunene bwa fayiro eno',
 'imagelinks'          => 'Empapula eziriko enyunzi ezigguka ku kifaananyi kino',
 'linkstoimage'        => 'Empapula eziriko enyunzi ezigguka ku fayiro eno ze zino:',
+'nolinkstoimage'      => 'Tewali mpapula ziriko nyunzi ezigguka ku fayiro eno.',
 'sharedupload'        => "Fayiro eno y'emu esobola okuba nga empapula nyingi zigikozesa",
 'imagelist_user'      => 'Memba',
 
@@ -361,6 +375,7 @@ oba ku gano agali ku lupapula luno.<br />
 'log'                 => "Empapula ez'ebyafaayo eby'emirimu egitaligimu",
 
 # Special:Allpages
+'allpagesfrom'      => 'Laga empapula okuva ku:',
 'allarticles'       => 'Empapula zonna',
 'allinnamespace'    => 'Empapula zonna (mu kkunngaanizo erya $1)',
 'allnotinnamespace' => 'Empapula zonna (ezitali mu kkunngaanizo erya $1)',
@@ -392,6 +407,9 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 # Restrictions (nouns)
 'restriction-edit' => 'Kyuusa',
 
+# Undelete
+'undeletebtn' => 'Luzzewo',
+
 # Namespace form on various pages
 'namespace'      => 'Kuŋaanyizo:',
 'blanknamespace' => '(Kuŋaanyizo lya byonna)',
@@ -402,6 +420,8 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'uctop'         => '(enkyukakyuka esembye ku lupapula)',
 'month'         => "Mu mwezi (n'egyakulembera):",
 'year'          => "Mu mwaka (n'egyakulembera):",
+
+'sp-contributions-blocklog' => 'Ebifa ku bagaanidwa',
 
 # What links here
 'whatlinkshere'       => 'Empapula ezikuggusa ku luno',
@@ -419,12 +439,15 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'blockipsuccesssub' => 'Memba agaaniddwa okuwandika',
 'blocklink'         => 'Ono agaanibwe okuwandiika',
 'contribslink'      => 'byawaddeyo',
+'blocklogentry'     => '[[$1]] agaanidwa. Obuyinza bumuddizibwa ku $2 $3',
 
 # Move page
 'movepage'    => 'Simbuliza olupapula luno',
 'movearticle' => 'Simbuliza olupapula luno',
 'move-watch'  => 'Goberera olupapula luno',
 'movepagebtn' => 'Lusimbulize',
+'movelogpage' => 'Ebikyusidwa manya',
+'revertmove'  => 'zaawo erinya ekkadde',
 
 # Export
 'export' => 'Okusomosa empapula',
@@ -497,6 +520,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 # Media information
 'file-info-size'       => '(pikseli $1 ku $2 , bunene bwa fayiro: $3, kika kya MIME: $4)',
 'file-nohires'         => '<small>Tewali kisingako wano.</small>',
+'svg-long-desc'        => '(Fayiro ya kika  kya SVG, ya pikselo $1 ku $2 awamu, ya obunene bwa: $3)',
 'show-big-image'       => 'Laga ekifaananyi ekijjuvu',
 'show-big-image-thumb' => '<small>Akalingize kano ka pikseli: $1 ku $2</small>',
 

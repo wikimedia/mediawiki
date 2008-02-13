@@ -502,7 +502,7 @@ Dat automatesch generéiert Passwuert fir  de Benotzer $2 ass elo: $3
 
 Dir sollt iech elo umellen an d'Passwuert änneren.
 
-Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschenzäit nees un ärt Passwuert erënnere kënnt an Dir àrt Passwuert net ännere wëllt dann ignoréiert dëse Message a benotzt weider ärt aalt Passwuert.",
+Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschenzäit nees un ärt Passwuert erënnere kënnt an Dir ärt Passwuert net ännere wëllt da kënnt dir weider ärt aalt Passwuert benotzen.",
 'noemail'                    => 'De Benotzer "$1" huet keng E-Mailadress uginn.',
 'passwordsent'               => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mailadress geschéckt.
 Melt iech w.e.g. domatt un, soubal Dir et kritt hutt.',

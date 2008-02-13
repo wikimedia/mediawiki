@@ -12,6 +12,7 @@
  * @author Max sonnelid
  * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Dittaeva
  */
 
 /**
@@ -625,7 +626,13 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'passwordtooshort'           => 'Passordet er for kort. Det må vera minst $1 teikn langt.',
 'mailmypassword'             => 'Send meg nytt passord',
 'passwordremindertitle'      => 'Nytt passord til {{SITENAME}}',
-'passwordremindertext'       => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4). Passordet for brukaren «$2» er no «$3». Du bør logge inn og endre passordet så snart som råd.',
+'passwordremindertext'       => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4).
+Passordet for brukaren «$2» er no «$3».
+Du bør logge inn og endre passordet så snart som råd.
+
+Logg inn her: {{SERVER}}
+
+Dersom du ikkje ynskjer å endre passordet ditt kan du sjå bort frå denne meldinga og halde fram med å bruka det gamle passordet ditt.',
 'noemail'                    => 'Det er ikkje registrert noka e-postadresse åt brukaren «$1».',
 'passwordsent'               => 'Eit nytt passord er sendt åt e-postadressa registrert på brukaren «$1».',
 'blocked-mailpassword'       => 'IP-adressa di er blokkert frå å endre sider, og du kan difor heller ikkje få nytt passord. Dette er for å hindre misbruk.',

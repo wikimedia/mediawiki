@@ -384,7 +384,7 @@ Upit: $2',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se onemogućile izmjene.',
 'viewsourcetext'       => 'Možete pogledati i kopirati izvorni sadržaj ove stranice:',
 'protectedinterface'   => 'Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.',
-'editinginterface'     => "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika.",
+'editinginterface'     => "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika. Za prijevod, razmotrite korištenje [http://translatewiki.net/wiki/Main_Page?setlang=hr Betawiki], projekta lokalizacije MedijeWiki.",
 'sqlhidden'            => '(SQL upit sakriven)',
 'cascadeprotected'     => 'Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|slijedeću stranicu|slijedeće stranice}}, koje su zaštićene "prenosivom zaštitom":
 $2',
@@ -480,10 +480,9 @@ Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
 'accountcreated'             => 'Suradnički račun otvoren',
 'accountcreatedtext'         => 'Suradnički račun za $1 je otvoren.',
 'createaccount-title'        => 'Otvaranje suradničkog računa za {{SITENAME}}',
-'createaccount-text'         => 'Netko ($1) je stvorio suradnički račun $2 na {{SITENAME}} ($4).
-Lozinka za "$2" je "$3". Trebali biste se prijaviti i promijeniti lozinku.
+'createaccount-text'         => 'Netko je stvorio suradnički račun s vašom adresom elektronske pošte na {{SITENAME}} ($4) nazvan "$2", s lozinkom "$3". Trebali biste se prijaviti i odmah promijeniti lozinku.
 
-Možete zanemariti ovu poruku, ukoliko je suradnički račun stvoren nenamjerno.',
+Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Password reset dialog
@@ -2375,11 +2374,24 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
 
 # Special:Version
-'version-extensions'   => 'Instalirana proširenja',
-'version-specialpages' => 'Posebne stranice',
-'version-variables'    => 'Varijable',
-'version-other'        => 'Ostalo',
-'version-version'      => 'Inačica',
+'version-extensions'               => 'Instalirana proširenja',
+'version-specialpages'             => 'Posebne stranice',
+'version-parserhooks'              => 'Kuke parsera',
+'version-variables'                => 'Varijable',
+'version-other'                    => 'Ostalo',
+'version-mediahandlers'            => 'Rukovatelji medijima',
+'version-hooks'                    => 'Kuke',
+'version-extension-functions'      => 'Funkcije proširenja',
+'version-parser-extensiontags'     => 'Oznake proširenja parsera',
+'version-parser-function-hooks'    => 'Kuke funkcija parsera',
+'version-skin-extension-functions' => 'Funkcije proširenja izgleda',
+'version-hook-name'                => 'Ime kuke',
+'version-hook-subscribedby'        => 'Pretplaćeno od',
+'version-version'                  => 'Inačica',
+'version-license'                  => 'Licenca',
+'version-software'                 => 'Instalirani softver',
+'version-software-product'         => 'Proizvod',
+'version-software-version'         => 'Verzija',
 
 # Special:Filepath
 'filepath'         => 'Putanja datoteke',

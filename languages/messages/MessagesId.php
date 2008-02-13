@@ -1504,6 +1504,8 @@ Umpan balik dan bantuan lanjutan:
 'excontentauthor'             => "isinya hanya berupa: '$1' (dan satu-satunya penyumbang adalah '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "isi sebelum dikosongkan: '$1'",
 'exblank'                     => 'halaman kosong',
+'delete-confirm'              => 'Hapus "$1"',
+'delete-legend'               => 'Hapus',
 'historywarning'              => 'Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:',
 'confirmdeletetext'           => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data. Pastikan bahwa Anda memang ingin melakukannya, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan {{SITENAME}}]].',
 'actioncomplete'              => 'Proses selesai',
@@ -1722,7 +1724,9 @@ $1',
 'ipb_cant_unblock'            => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
 'ipb_blocked_as_range'        => 'Kesalahan: IP $1 tidak diblok secara langsung dan tidak dapat dilepaskan. IP $1 diblok sebagai bagian dari pemblokiran kelompok IP $2, yang dapat dilepaskan.',
 'ip_range_invalid'            => 'Blok IP tidak sah.',
+'blockme'                     => 'Blok saya',
 'proxyblocker'                => 'Pemblokir proxy',
+'proxyblocker-disabled'       => 'Fitur ini sedang tidak diakfifkan.',
 'proxyblockreason'            => 'Alamat IP Anda telah diblokir karena alamat IP Anda adalah proxy terbuka. Silakan hubungi penyedia jasa internet Anda atau dukungan teknis dan beritahukan mereka masalah keamanan serius ini.',
 'proxyblocksuccess'           => 'Selesai.',
 'sorbsreason'                 => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL.',
@@ -1769,6 +1773,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'pagemovedsub'            => 'Pemindahan berhasil',
 'movepage-moved'          => '<big>\'\'\'"$1" dipindahkan ke "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
+'cantmove-titleprotected' => 'Anda tidak dapat memindahkan halaman ke lokasi ini, karena judul tujuan sedang dilindungi dari pembuatan',
 'talkexists'              => 'Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.',
 'movedto'                 => 'dipindahkan ke',
 'movetalk'                => 'Pindahkan halaman pembicaraan yang terkait.',
@@ -1803,6 +1808,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'export-addcattext' => 'Tambahkan halaman dari kategori:',
 'export-addcat'     => 'Tambahkan',
 'export-download'   => 'Tawarkan untuk menyimpan sebagai suatu berkas',
+'export-templates'  => 'Termasuk templat',
 
 # Namespace 8 related
 'allmessages'               => 'Pesan sistem',
@@ -1846,6 +1852,8 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'importnofile'               => 'Tidak ada berkas sumber impor yang telah dimuat.',
 'importuploaderrorsize'      => 'Pemuatan berkas impor gagal. Ukuran berkas melebihi ukuran yang diperbolehkan.',
 'importuploaderrorpartial'   => 'Pemuatan berkas impor gagal. Hanya sebagian berkas yang berhasil dimuat.',
+'importuploaderrortemp'      => 'Pemuatan berkas gagal. Sebuah direktori sementara dibutuhkan.',
+'import-parse-failure'       => 'Proses impor XML gagal',
 
 # Import log
 'importlogpage'                    => 'Log impor',
