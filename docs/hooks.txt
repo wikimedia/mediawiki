@@ -519,6 +519,9 @@ Alternatively, modifying $error and returning true will cause the contents of $e
 to be echoed at the top of the edit form as wikitext. Return true without altering
 $error to allow the edit to proceed.
 
+'EditPageBeforeEditButtons':  allows modifying the edit buttons below the textarea in the edit form
+&$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
+
 'EditSectionLink': Override the return value of Linker::editSectionLink()
 $skin: Skin rendering the UI
 $title: Title being linked to

@@ -161,7 +161,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12857) Patrol link on new pages should clear floats
 * (bug 12968) Render redirect wikilinks in a redirect class for customization
   via user/site CSS.
-* ModifyEditButtons hook added for altering the edit buttons below the edit box
+* EditPageBeforeEditButtons hook added for altering the edit buttons below the edit box
 
 === Bug fixes in 1.12 ===
 

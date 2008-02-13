@@ -1962,7 +1962,7 @@ END
 		);
 		$buttons['diff'] = wfElement('input', $temp, '');
 		
-		wfRunHooks( 'ModifyEditButtons', array( &$buttons ) );
+		wfRunHooks( 'EditPageBeforeEditButtons', array( &$buttons ) );
 		return $buttons;
 	}
 
