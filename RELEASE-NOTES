@@ -392,7 +392,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11567) Fix error checking for PEAR::Mail. UserMailer::send() now returns
   true-or-WikiError, which seems to be the calling convention expected by half
   its callers already
-* (bug 12972) Add page break rules to the "print" style-sheet
 * (bug 12846) IE rtl.css issue in RTL wikis special:Preferences when selecting an
   LTR user language
 
