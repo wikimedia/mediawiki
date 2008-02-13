@@ -54,7 +54,7 @@ $skinNames = array(
 	'modern'   => 'Moden',
 );
 
-$specialPageAliases = array (
+$specialPageAliases = array(
 	'DoubleRedirects'         => array('Pelencongan_berganda'),
 	'BrokenRedirects'         => array('Pelencongan_rosak'),
 	'Disambiguations'         => array('Penyahtaksaan'),
@@ -132,6 +132,7 @@ $specialPageAliases = array (
 	'Resetpass'               => array('Lupa_kata_laluan'),
 	'Withoutinterwiki'        => array('Laman_tanpa_pautan_bahasa'),
 	'MergeHistory'            => array('Gabung_sejarah'),
+	'Filepath'                => array('Laluan_fail'),
 );
 
 $messages = array(
@@ -267,6 +268,7 @@ $messages = array(
 'mytalk'         => 'Perbincangan saya',
 'anontalk'       => 'Perbincangan bagi IP ini',
 'navigation'     => 'Navigasi',
+'and'            => 'dan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -463,10 +465,9 @@ Pertanyaan: $2',
 'protectedpagetext'    => 'Laman ini telah dikunci untuk menghalang penyuntingan.',
 'viewsourcetext'       => 'Anda boleh melihat dan menyalin sumber bagi laman ini:',
 'protectedinterface'   => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.',
-'editinginterface'     => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain. Untuk melakukan penterjemahan, anda boleh menggunakan [http://translatewiki.net/wiki/Translating:Intro Betawiki], sebuah projek penyetempatan MediaWiki.",
+'editinginterface'     => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain. Untuk melakukan penterjemahan, anda boleh menggunakan [http://translatewiki.net/wiki/Main_Page?setlang=ms Betawiki], sebuah projek penyetempatan MediaWiki.",
 'sqlhidden'            => '(Pertanyaan SQL tidak ditunjukkan)',
-'cascadeprotected'     => 'Laman ini telah dilindungi daripada penyuntingan oleh pengguna selain penyelia, kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi dengan secara "melata":
-$2',
+'cascadeprotected'     => 'Laman ini telah dilindungi daripada penyuntingan oleh pengguna selain penyelia, kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi dengan secara "melata": $2',
 'namespaceprotected'   => "Anda tidak mempunyai keizinan untuk menyunting laman dalam ruang nama '''$1'''.",
 'customcssjsprotected' => 'Anda tidak mempunyai keizinan untuk menyunting laman ini kerana ia mengandungi tetapan peribadi pengguna lain.',
 'ns-specialprotected'  => 'Laman dalam ruang nama {{ns:special}} tidak boleh disunting.',
@@ -474,7 +475,8 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Log keluar',
-'logouttext'                 => "<strong>Anda telah log keluar.</strong><br />
+'logouttext'                 => "<strong>Anda telah log keluar.</strong>
+
 Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau
 anda boleh log masuk sekali lagi sebagai pengguna lain. Sila ambil perhatian
 bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk,
@@ -563,9 +565,9 @@ Sila masukkan alamat e-mel yang betul atau kosongkan sahaja ruangan tersebut.',
 'accountcreated'             => 'Akaun dibuka',
 'accountcreatedtext'         => 'Akaun pengguna bagi $1 telah dibuka.',
 'createaccount-title'        => 'Pembukaan akaun {{SITENAME}}',
-'createaccount-text'         => 'Seseorang ($1) telah membuka akaun untuk $2
-di {{SITENAME}} ($4). Kata laluan bagi "$2" ialah "$3". Anda boleh log masuk
-dan tukar kata laluan anda sekarang.
+'createaccount-text'         => 'Seseorang ($1) telah membuka akaun untuk
+alamat e-mel anda di {{SITENAME}} ($4) dengan nama "$2" dan kata laluan "$3".
+Anda boleh log masuk dan tukar kata laluan anda sekarang.
 
 Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'loginlanguagelabel'         => 'Bahasa: $1',
@@ -693,7 +695,7 @@ Sila cuba lagi. Jika masalah ini berlanjutan, log keluar dahulu, kemudian log ma
 dalam token suntingan. Suntingan tersebut telah ditolak untuk menghalang kerosakan teks laman.
 Hal ini kadangkala berlaku apabila anda menggunakan khidmat proksi tanpa nama berdasarkan web yang bermasalah.</strong>',
 'editing'                   => 'Menyunting $1',
-'editinguser'               => 'Menyunting pengguna <b>$1</b>',
+'editinguser'               => "Mengubah hak pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Menyunting $1 (bahagian)',
 'editingcomment'            => 'Menyunting $1 (komen)',
 'editconflict'              => 'Percanggahan penyuntingan: $1',
@@ -765,8 +767,8 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'currentrev'          => 'Semakan semasa',
 'revisionasof'        => 'Semakan pada $1',
 'revision-info'       => 'Semakan pada $1 oleh $2',
-'previousrevision'    => '← Semakan sebelumnya',
-'nextrevision'        => 'Semakan berikutnya →',
+'previousrevision'    => '←Semakan sebelumnya',
+'nextrevision'        => 'Semakan berikutnya→',
 'currentrevisionlink' => 'Semakan semasa',
 'cur'                 => 'kini',
 'next'                => 'berikutnya',
@@ -928,7 +930,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'prefs-personal'           => 'Profil',
 'prefs-rc'                 => 'Perubahan terkini',
 'prefs-watchlist'          => 'Senarai pantau',
-'prefs-watchlist-days'     => 'Had maksimum hari untuk ditunjukkan dalam senarai pantau:',
+'prefs-watchlist-days'     => 'Had bilangan hari dalam senarai pantau:',
 'prefs-watchlist-edits'    => 'Had maksimum perubahan untuk ditunjukkan dalam senarai pantau penuh:',
 'prefs-misc'               => 'Pelbagai',
 'saveprefs'                => 'Simpan',
@@ -1021,8 +1023,8 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'rclinks'                           => 'Tunjukkan $1 perubahan terakhir sejak $2 hari yang lalu<br />$3',
 'diff'                              => 'beza',
 'hist'                              => 'sej',
-'hide'                              => 'Sembunyikan',
-'show'                              => 'Tunjukkan',
+'hide'                              => 'Sembunyi',
+'show'                              => 'Papar',
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'B',
 'boteditletter'                     => 'b',
@@ -1421,16 +1423,16 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'iteminvalidname'      => "Terdapat masalah dengan item '$1', nama tidak sah...",
 'wlnote'               => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' jam yang lalu.",
 'wlshowlast'           => 'Tunjukkan $1 jam / $2 hari yang lalu / $3.',
-'watchlist-show-bots'  => 'Tunjukkan suntingan bot',
-'watchlist-hide-bots'  => 'Sembunyikan suntingan bot',
-'watchlist-show-own'   => 'Tunjukkan suntingan saya',
-'watchlist-hide-own'   => 'Sembunyikan suntingan saya',
-'watchlist-show-minor' => 'Tunjukkan suntingan kecil',
-'watchlist-hide-minor' => 'Sembunyikan suntingan kecil',
+'watchlist-show-bots'  => 'Papar suntingan bot',
+'watchlist-hide-bots'  => 'Sembunyi suntingan bot',
+'watchlist-show-own'   => 'Papar suntingan saya',
+'watchlist-hide-own'   => 'Sembunyi suntingan saya',
+'watchlist-show-minor' => 'Papar suntingan kecil',
+'watchlist-hide-minor' => 'Sembunyi suntingan kecil',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Memantau...',
-'unwatching' => 'Sedang menyahpantau...',
+'unwatching' => 'Menyahpantau...',
 
 'enotif_mailer'                => 'Sistem Pemberitahuan {{SITENAME}}',
 'enotif_reset'                 => 'Tandakan semua laman sebagai telah dikunjungi',
@@ -1673,7 +1675,7 @@ dirosakkan).',
 'ipbenableautoblock'          => 'Sekat alamat IP terakhir dan mana-mana alamat berikutnya yang digunakan oleh pengguna ini secara automatik',
 'ipbsubmit'                   => 'Sekat pengguna ini',
 'ipbother'                    => 'Waktu lain:',
-'ipboptions'                  => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite',
+'ipboptions'                  => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'lain',
 'ipbotherreason'              => 'Sebab tambahan/lain:',
 'ipbhidename'                 => 'Sembunyikan nama pengguna/alamat IP daripada log sekatan, senarai sekatan aktif, dan senarai pengguna',
@@ -1963,7 +1965,6 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'anonymous'        => 'Penguna {{SITENAME}} tanpa nama',
 'siteuser'         => 'Pengguna {{SITENAME}}, $1',
 'lastmodifiedatby' => 'Laman ini diubah buat kali terakhir pada $2, $1 oleh $3.', # $1 date, $2 time, $3 user
-'and'              => 'dan',
 'othercontribs'    => 'Berdasarkan karya $1.',
 'others'           => 'lain-lain',
 'siteusers'        => 'Pengguna-pengguna {{SITENAME}}, $1',
@@ -2071,7 +2072,7 @@ Ruangan lain akan disembunyikan.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lebar',
@@ -2082,8 +2083,19 @@ Ruangan lain akan disembunyikan.
 'exif-orientation'                 => 'Haluan',
 'exif-samplesperpixel'             => 'Bilangan komponen',
 'exif-planarconfiguration'         => 'Penyusunan data',
+'exif-ycbcrsubsampling'            => 'Nisbah subpensampelan Y kepada C',
+'exif-ycbcrpositioning'            => 'Kedudukan Y dan C',
+'exif-xresolution'                 => 'Leraian mengufuk',
+'exif-yresolution'                 => 'Leraian menegak',
+'exif-resolutionunit'              => 'Unit leraian X dan Y',
 'exif-stripoffsets'                => 'Lokasi data imej',
+'exif-rowsperstrip'                => 'Baris sejalur',
+'exif-stripbytecounts'             => 'Bait sejalur termampat',
 'exif-jpeginterchangeformatlength' => 'Jumlah bait bagi data JPEG',
+'exif-transferfunction'            => 'Fungsi pindah',
+'exif-whitepoint'                  => 'Kekromatan takat putih',
+'exif-ycbcrcoefficients'           => 'Pekali matriks penukaran ruang warna',
+'exif-referenceblackwhite'         => 'Nilai rujukan pasangan hitam dan putih',
 'exif-datetime'                    => 'Tarikh dan waktu fail diubah',
 'exif-imagedescription'            => 'Tajuk imej',
 'exif-make'                        => 'Pengilang kamera',
@@ -2103,9 +2115,14 @@ Ruangan lain akan disembunyikan.
 'exif-relatedsoundfile'            => 'Fail audio berkaitan',
 'exif-datetimeoriginal'            => 'Tarikh dan waktu penjanaan data',
 'exif-datetimedigitized'           => 'Tarikh dan waktu pendigitan',
+'exif-subsectime'                  => 'TarikhWaktu subsaat',
+'exif-subsectimeoriginal'          => 'TarikhWaktuAsal subsaat',
+'exif-subsectimedigitized'         => 'TarikhWaktuPendigitan subsaat',
 'exif-exposuretime'                => 'Tempoh pendedahan',
 'exif-exposuretime-format'         => '$1 saat ($2)',
+'exif-fnumber'                     => 'Nombor F',
 'exif-exposureprogram'             => 'Atur cara pendedahan',
+'exif-spectralsensitivity'         => 'Kepekaan spektrum',
 'exif-isospeedratings'             => 'Penilaian kelajuan ISO',
 'exif-oecf'                        => 'Faktor penukaran optoelektronik',
 'exif-shutterspeedvalue'           => 'Kelajuan pengatup',
@@ -2113,14 +2130,20 @@ Ruangan lain akan disembunyikan.
 'exif-brightnessvalue'             => 'Kecerahan',
 'exif-exposurebiasvalue'           => 'Kecenderungan pendedahan',
 'exif-maxaperturevalue'            => 'Bukaan tanah maksimum',
+'exif-subjectdistance'             => 'Jarak subjek',
 'exif-meteringmode'                => 'Mod permeteran',
 'exif-lightsource'                 => 'Sumber cahaya',
 'exif-flash'                       => 'Denyar',
 'exif-focallength'                 => 'Panjang fokus kanta',
-'exif-subjectarea'                 => 'Subject area',
+'exif-subjectarea'                 => 'Luas subjek',
 'exif-flashenergy'                 => 'Tenaga denyar',
+'exif-spatialfrequencyresponse'    => 'Sambutan frekuensi ruang',
+'exif-focalplanexresolution'       => 'Leraian X satah fokus',
+'exif-focalplaneyresolution'       => 'Leraian Y satah fokus',
+'exif-focalplaneresolutionunit'    => 'Unit leraian satah fokus',
+'exif-subjectlocation'             => 'Lokasi subjek',
 'exif-exposureindex'               => 'Indeks pendedahan',
-'exif-sensingmethod'               => 'Sensing method',
+'exif-sensingmethod'               => 'Kaedah penderiaan',
 'exif-filesource'                  => 'Sumber fail',
 'exif-scenetype'                   => 'Jenis latar',
 'exif-cfapattern'                  => 'Corak CFA',
@@ -2128,37 +2151,60 @@ Ruangan lain akan disembunyikan.
 'exif-exposuremode'                => 'Mod pendedahan',
 'exif-whitebalance'                => 'Imbangan warna putih',
 'exif-digitalzoomratio'            => 'Nisbah zum digital',
+'exif-focallengthin35mmfilm'       => 'Panjang fokus dalam filem 35 mm',
+'exif-scenecapturetype'            => 'Jenis penangkapan latar',
 'exif-gaincontrol'                 => 'Kawalan latar',
 'exif-contrast'                    => 'Kontras',
 'exif-saturation'                  => 'Kepekatan',
 'exif-sharpness'                   => 'Ketajaman',
 'exif-devicesettingdescription'    => 'Huraian tetapan peranti',
-'exif-imageuniqueid'               => 'ID imej unik',
+'exif-subjectdistancerange'        => 'Julat jarak subjek',
+'exif-imageuniqueid'               => 'ID unik imej',
+'exif-gpsversionid'                => 'Versi label GPS',
 'exif-gpslatituderef'              => 'Latitud utara atau selatan',
 'exif-gpslatitude'                 => 'Latitud',
 'exif-gpslongituderef'             => 'Logitud timur atau barat',
 'exif-gpslongitude'                => 'Longitud',
 'exif-gpsaltituderef'              => 'Rujukan ketinggian',
 'exif-gpsaltitude'                 => 'Ketinggian',
+'exif-gpstimestamp'                => 'Waktu GPS (jam atom)',
 'exif-gpssatellites'               => 'Satelit yang digunakan untuk pengukuran',
 'exif-gpsstatus'                   => 'Status penerima',
 'exif-gpsmeasuremode'              => 'Mod pengukuran',
+'exif-gpsdop'                      => 'Kepersisan pengukuran',
 'exif-gpsspeedref'                 => 'Unit kelajuan',
 'exif-gpsspeed'                    => 'Kelajuan penerima GPS',
+'exif-gpstrackref'                 => 'Rujukan bagi arah pergerakan',
+'exif-gpstrack'                    => 'Arah pergerakan',
+'exif-gpsimgdirectionref'          => 'Rujukan bagi arah imej',
+'exif-gpsimgdirection'             => 'Arah imej',
+'exif-gpsmapdatum'                 => 'Data ukur geodesi yang digunakan',
+'exif-gpsdestlatituderef'          => 'Rujukan bagi latitud destinasi',
+'exif-gpsdestlatitude'             => 'Latitud destinasi',
+'exif-gpsdestlongituderef'         => 'Rujukan bagi longitud destinasi',
+'exif-gpsdestlongitude'            => 'Longitud destinasi',
+'exif-gpsdestbearingref'           => 'Rujukan bagi bearing destinasi',
+'exif-gpsdestbearing'              => 'Bearing destinasi',
+'exif-gpsdestdistanceref'          => 'Rujukan bagi jarak destinasi',
+'exif-gpsdestdistance'             => 'Jarak destinasi',
 'exif-gpsprocessingmethod'         => 'Nama kaedah pemprosesan GPS',
 'exif-gpsareainformation'          => 'Nama kawasan GPS',
 'exif-gpsdatestamp'                => 'Tarikh GPS',
+'exif-gpsdifferential'             => 'Pembetulan pembezaan GPS',
 
 # EXIF attributes
 'exif-compression-1' => 'Tidak dimampat',
 
-'exif-orientation-2' => 'Dibalikkan secara melintang', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Diputar 180Â°', # 0th row: bottom; 0th column: right
+'exif-unknowndate' => 'Tarikh tidak diketahui',
+
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Dibalikkan secara mengufuk', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Dibalikkan secara menegak', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Diputarkan 90Â° melawan arah jam dan dibalikkan secara menegak', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Diputarkan 90Â° mengikut arah jam', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Diputarkan 90Â° mengikut arah jam dan dibalikkan secara menegak', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Diputarkan 90Â° melawan arah jam', # 0th row: left; 0th column: bottom
+'exif-orientation-5' => 'Diputarkan 90° melawan arah jam dan dibalikkan secara menegak', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Diputarkan 90° mengikut arah jam', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Diputarkan 90° mengikut arah jam dan dibalikkan secara menegak', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Diputarkan 90° melawan arah jam', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'format besar',
 'exif-planarconfiguration-2' => 'format satah',
@@ -2168,14 +2214,22 @@ Ruangan lain akan disembunyikan.
 'exif-exposureprogram-0' => 'Tidak ditentukan',
 'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Atur cara normal',
-'exif-exposureprogram-3' => 'Keutamaan bukaan',
-'exif-exposureprogram-4' => 'Keutamaan pengatup',
+'exif-exposureprogram-3' => 'Mengutamakan bukaan',
+'exif-exposureprogram-4' => 'Mengutamakan pengatup',
+'exif-exposureprogram-5' => 'Atur cara kreatif (cenderung kepada kedalaman lapangan)',
+'exif-exposureprogram-6' => 'Atur cara aksi (cenderung kepada kelajuan pengatup yang tinggi)',
 'exif-exposureprogram-7' => 'Mod potret (untuk foto jarak dekat dengan latar belakang kabur)',
 'exif-exposureprogram-8' => 'Mod landskap (untuk foto landskap dengan latar belakang terfokus)',
 
 'exif-subjectdistance-value' => '$1 meter',
 
 'exif-meteringmode-0'   => 'Tidak diketahui',
+'exif-meteringmode-1'   => 'Purata',
+'exif-meteringmode-2'   => 'Purata cenderung ke pusat',
+'exif-meteringmode-3'   => 'Titik',
+'exif-meteringmode-4'   => 'Berbilang titik',
+'exif-meteringmode-5'   => 'Corak',
+'exif-meteringmode-6'   => 'Separa',
 'exif-meteringmode-255' => 'Lain-lain',
 
 'exif-lightsource-0'   => 'Tidak diketahui',
@@ -2186,9 +2240,27 @@ Ruangan lain akan disembunyikan.
 'exif-lightsource-9'   => 'Cuaca cerah',
 'exif-lightsource-10'  => 'Cuaca mendung',
 'exif-lightsource-11'  => 'Gelap',
+'exif-lightsource-12'  => 'Pendarfluor cahaya siang (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Pendarfluor putih siang (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Pendarfluor putih sejuk (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Pendarfluor putih (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Cahaya standard A',
+'exif-lightsource-18'  => 'Cahaya standard B',
+'exif-lightsource-19'  => 'Cahaya standard C',
+'exif-lightsource-24'  => 'Tungsten studio ISO',
 'exif-lightsource-255' => 'Sumber cahaya lain',
 
 'exif-focalplaneresolutionunit-2' => 'inci',
+
+'exif-sensingmethod-1' => 'Tidak ditentukan',
+'exif-sensingmethod-2' => 'Penderia kawasan warna cip tunggal',
+'exif-sensingmethod-3' => 'Penderia kawasan warna dwicip',
+'exif-sensingmethod-4' => 'Penderia kawasan warna tricip',
+'exif-sensingmethod-5' => 'Penderia kawasan warna berjujukan',
+'exif-sensingmethod-7' => 'Penderia trilinear',
+'exif-sensingmethod-8' => 'Penderia linear warna berjujukan',
+
+'exif-scenetype-1' => 'Gambar yang diambil secara terus',
 
 'exif-customrendered-0' => 'Proses biasa',
 'exif-customrendered-1' => 'Proses tempahan',
@@ -2206,6 +2278,10 @@ Ruangan lain akan disembunyikan.
 'exif-scenecapturetype-3' => 'Malam',
 
 'exif-gaincontrol-0' => 'Tiada',
+'exif-gaincontrol-1' => 'Gandaan rendah atas',
+'exif-gaincontrol-2' => 'Gandaan tinggi atas',
+'exif-gaincontrol-3' => 'Gandaan rendah bawah',
+'exif-gaincontrol-4' => 'Gandaan tinggi bawah',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Lembut',
@@ -2220,7 +2296,7 @@ Ruangan lain akan disembunyikan.
 'exif-sharpness-2' => 'Keras',
 
 'exif-subjectdistancerange-0' => 'Tidak diketahui',
-'exif-subjectdistancerange-1' => 'Macro',
+'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Pandangan dekat',
 'exif-subjectdistancerange-3' => 'Pandangan jauh',
 
@@ -2232,16 +2308,23 @@ Ruangan lain akan disembunyikan.
 'exif-gpslongitude-e' => 'Longitud timur',
 'exif-gpslongitude-w' => 'Longitud barat',
 
+'exif-gpsstatus-a' => 'Pengukuran sedang dijalankan',
+'exif-gpsstatus-v' => 'Interoperabiliti pengukuran',
+
 'exif-gpsmeasuremode-2' => 'Pengukuran dua dimensi',
 'exif-gpsmeasuremode-3' => 'Pengukuran tiga dimensi',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kilometer sejam',
 'exif-gpsspeed-m' => 'Batu sejam',
-'exif-gpsspeed-n' => 'Knots',
+'exif-gpsspeed-n' => 'Knot',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Arah benar',
+'exif-gpsdirection-m' => 'Arah magnet',
 
 # External editor support
-'edit-externally'      => 'Sunting fail ini menggunakan aplikasi luar',
+'edit-externally'      => 'Sunting fail ini menggunakan perisian luar',
 'edit-externally-help' => 'Lihat [http://meta.wikimedia.org/wiki/Help:External_editors arahan pemasangan] untuk maklumat lanjut.',
 
 # 'all' in various places, this might be different for inflected languages
@@ -2318,6 +2401,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 $1',
 'confirm_purge_button' => 'OK',
 
+# AJAX search
 'searchcontaining' => "Cari laman mengandungi ''$1''.",
 'searchnamed'      => "Cari laman bernama ''$1''.",
 'articletitles'    => "Laman bermula dengan ''$1''",
@@ -2385,5 +2469,34 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag penyambung "$1" tidak dikenali',
+
+# Special:Version
+'version-extensions'               => 'Penyambung yang dipasang',
+'version-specialpages'             => 'Laman khas',
+'version-parserhooks'              => 'Penyangkuk penghurai',
+'version-variables'                => 'Pemboleh ubah',
+'version-other'                    => 'Lain-lain',
+'version-mediahandlers'            => 'Pengelola media',
+'version-hooks'                    => 'Penyangkuk',
+'version-extension-functions'      => 'Fungsi penyambung',
+'version-parser-extensiontags'     => 'Tag penyambung penghurai',
+'version-parser-function-hooks'    => 'Penyangkuk fungsi penghurai',
+'version-skin-extension-functions' => 'Fungsi penyangkuk rupa',
+'version-hook-name'                => 'Nama penyangkuk',
+'version-hook-subscribedby'        => 'Dilanggan oleh',
+'version-version'                  => 'Versi',
+'version-license'                  => 'Lesen',
+'version-software'                 => 'Perisian dipasang',
+'version-software-product'         => 'Produk',
+'version-software-version'         => 'Versi',
+
+# Special:Filepath
+'filepath'         => 'Laluan fail',
+'filepath-page'    => 'Fail:',
+'filepath-submit'  => 'Laluan',
+'filepath-summary' => 'Laman khas ini mengembalikan laluan penuh bagi sesebuah fail.
+Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.
+
+Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 
 );
