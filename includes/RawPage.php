@@ -194,7 +194,7 @@ class RawPage {
 
 					if ( !is_null($this->mSection ) ) {
 						global $wgParser;
-						return $wgParser->getSection ( $rev->getText(), $this->mSection );
+						$text = $wgParser->getSection ( $rev->getText(), $this->mSection );
 					} else
 						$text = $rev->getText();
 					$found = true;
