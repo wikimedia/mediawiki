@@ -980,7 +980,11 @@ class Article {
 		}
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			global $wgMessageCache;
-			$text = $this->getContent();
+			if ( $this->getID() == 0 ) {
+				$text = false;
+			} else {
+				$text = $this->getContent();
+			}
 			$wgMessageCache->replace( $this->mTitle->getDBkey(), $text );
 		}
 		$this->view();
