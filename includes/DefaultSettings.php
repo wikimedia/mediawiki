@@ -459,7 +459,7 @@ $wgHashedSharedUploadDirectory = true;
  *
  * Please specify the namespace, as in the example below.
  */
-$wgRepositoryBaseUrl="http://commons.wikimedia.org/wiki/Image:";
+$wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/Image:";
 
 /**
  * Experimental feature still under debugging.
@@ -679,7 +679,7 @@ $wgDBmysql5			= false;
  * account.
  * Array numeric key => database name
  */
-$wgLocalDatabases   = array();
+$wgLocalDatabases = array();
 
 /**
  * For multi-wiki clusters with multiple master servers; if an alternate
@@ -736,7 +736,7 @@ $wgCachedMessageArrays = false;
 # Language settings
 #
 /** Site language code, should be one of ./languages/Language(.*).php */
-$wgLanguageCode     = 'en';
+$wgLanguageCode = 'en';
 
 /**
  * Some languages need different word forms, usually for different cases.
@@ -908,7 +908,7 @@ $wgRedirectSources = false;
 
 $wgShowIPinHeader	= true; # For non-logged in users
 $wgMaxNameChars		= 255;  # Maximum number of bytes in username
-$wgMaxSigChars      = 255;  # Maximum number of Unicode characters in signature
+$wgMaxSigChars		= 255;  # Maximum number of Unicode characters in signature
 $wgMaxArticleSize	= 2048; # Maximum article size in kilobytes
 
 $wgMaxPPNodeCount = 1000000;  # A complexity limit on template expansion
@@ -1818,7 +1818,7 @@ $wgIgnoreImageErrors = false;
 $wgGenerateThumbnailOnParse = true;
 
 /** Obsolete, always true, kept for compatibility with extensions */
-$wgUseImageResize		= true;
+$wgUseImageResize = true;
 
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
@@ -2098,8 +2098,9 @@ $wgSpecialPages = array();
 $wgAutoloadClasses = array();
 
 /**
- * An array of extension types and inside that their names, versions, authors
- * and urls, note that the version and url key can be omitted.
+ * An array of extension types and inside that their names, versions, authors,
+ * urls, descriptions and pointers to localized description msgs. Note that
+ * the version, url, description and descriptionmsg key can be omitted.
  *
  * <code>
  * $wgExtensionCredits[$type][] = array(
@@ -2107,10 +2108,12 @@ $wgAutoloadClasses = array();
  *      'version' => 1.9,
  *	'author' => 'Foo Barstein',
  *	'url' => 'http://wwww.example.com/Example%20Extension/',
+ *	'description' => 'An example extension',
+ *	'descriptionmsg' => 'exampleextension-desc',
  * );
  * </code>
  *
- * Where $type is 'specialpage', 'parserhook', or 'other'.
+ * Where $type is 'specialpage', 'parserhook', 'variable', 'media' or 'other'.
  */
 $wgExtensionCredits = array();
 /*
@@ -2439,13 +2442,13 @@ $wgLogActions = array(
 	'delete/restore'    => 'undeletedarticle',
 	'delete/revision'   => 'revdelete-logentry',
 	'upload/upload'     => 'uploadedimage',
-	'upload/overwrite'	=> 'overwroteimage',
+	'upload/overwrite'  => 'overwroteimage',
 	'upload/revert'     => 'uploadedimage',
 	'move/move'         => '1movedto2',
 	'move/move_redir'   => '1movedto2_redir',
 	'import/upload'     => 'import-logentry-upload',
 	'import/interwiki'  => 'import-logentry-interwiki',
-	'merge/merge'        => 'pagemerge-logentry',
+	'merge/merge'       => 'pagemerge-logentry',
 );
 
 /**
