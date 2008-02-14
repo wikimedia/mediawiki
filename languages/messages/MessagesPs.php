@@ -64,7 +64,7 @@ $messages = array(
 'january-gen'   => 'جنوري',
 'february-gen'  => 'فبروري',
 'march-gen'     => 'مارچ',
-'april-gen'     => 'اپريل',
+'april-gen'     => 'اپرېل',
 'may-gen'       => 'می',
 'june-gen'      => 'جون',
 'july-gen'      => 'جولای',
@@ -76,7 +76,7 @@ $messages = array(
 'jan'           => 'جنوري',
 'feb'           => 'فبروري',
 'mar'           => 'مارچ',
-'apr'           => 'اپريل',
+'apr'           => 'اپرېل',
 'may'           => 'می',
 'jun'           => 'جون',
 'jul'           => 'جولای',
@@ -89,7 +89,7 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => 'وېشنيزې',
 'pagecategories'        => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
-'category_header'       => '"$1" مخونه په وېشنيزه کې',
+'category_header'       => 'د "$1" په وېشنيزه کې شته مخونه',
 'subcategories'         => 'وړې-وېشنيزې',
 'category-media-header' => '"$1" رسنۍ په وېشنيزه کې',
 'category-empty'        => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
@@ -407,6 +407,7 @@ $messages = array(
 'savedprefs'            => 'ستاسو غوره توبونه خوندي شوه.',
 'timezonelegend'        => 'د وخت سيمه',
 'localtime'             => 'سيمه ايز وخت',
+'servertime'            => 'د پالنګر وخت',
 'allowemail'            => 'د نورو کارونکو لخوا د برېښناليک رالېږل چارن کړه',
 'defaultns'             => 'په دغو نوم-تشيالونو کې د ټاکل شوو سمونونو له مخې لټون وکړی:',
 'files'                 => 'دوتنې',
@@ -415,6 +416,7 @@ $messages = array(
 'userrights-user-editname' => 'يو کارن نوم وليکۍ:',
 'userrights-editusergroup' => 'د کاروونکو ډلې سمادول',
 'userrights-groupsmember'  => 'غړی د:',
+'userrights-reason'        => 'د بدلون سبب:',
 
 # Groups
 'group'     => 'ډله:',
@@ -449,7 +451,7 @@ $messages = array(
 'recentchangeslinked-title' => '$1 ته اړونده بدلونونه',
 
 # Upload
-'upload'               => 'لمېسه پورته کول',
+'upload'               => 'دوتنه پورته کول',
 'uploadbtn'            => 'دوتنه پورته کول',
 'reupload'             => 'بيا پورته کول',
 'uploadnologin'        => 'غونډال کې نه ياست ننوتي',
@@ -522,11 +524,13 @@ $messages = array(
 'filerevert-comment' => 'تبصره:',
 
 # File deletion
-'filedelete'         => '$1 ړنګول',
-'filedelete-legend'  => 'دوتنه ړنګول',
-'filedelete-comment' => 'تبصره:',
-'filedelete-submit'  => 'ړنګول',
-'filedelete-success' => "'''$1''' ړنګ شو.",
+'filedelete'                  => '$1 ړنګول',
+'filedelete-legend'           => 'دوتنه ړنګول',
+'filedelete-comment'          => 'تبصره:',
+'filedelete-submit'           => 'ړنګول',
+'filedelete-success'          => "'''$1''' ړنګ شو.",
+'filedelete-otherreason'      => 'بل/اضافه سبب:',
+'filedelete-reason-otherlist' => 'بل سبب',
 
 # MIME search
 'mimesearch' => 'MIME لټون',
@@ -549,6 +553,8 @@ $messages = array(
 'statistics-mostpopular' => 'تر ټولو ډېر کتل شوي مخونه',
 
 'brokenredirects-delete' => '(ړنګول)',
+
+'withoutinterwiki-submit' => 'ښکاره کول',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|بايټ|بايټونه}}',
@@ -608,7 +614,7 @@ $messages = array(
 # Special:Allpages
 'nextpage'          => 'بل مخ ($1)',
 'prevpage'          => 'تېر مخ ($1)',
-'allpagesfrom'      => 'هغه مخونه چې پېلېږي په:',
+'allpagesfrom'      => 'ښکاره دې شي هغه مخونه چې پېلېږي په:',
 'allarticles'       => 'ټول مخونه',
 'allinnamespace'    => 'ټول مخونه ($1 نوم-تشيال)',
 'allnotinnamespace' => 'ټولې پاڼې (د $1 په نوم-تشيال کې نشته)',
@@ -623,19 +629,20 @@ $messages = array(
 'listusers-submit' => 'ښکاره کول',
 
 # E-mail user
-'mailnologin'    => 'هېڅ کومه لېږل شوې پته نشته',
-'emailuser'      => 'همدې کارونکي ته برېښناليک لېږل',
-'emailpage'      => 'کارووني ته برېښناليک ولېږه',
-'noemailtitle'   => 'هېڅ کومه برېښناليکي پته نشته.',
-'emailfrom'      => 'پيغام لېږونکی',
-'emailto'        => 'پيغام اخيستونکی',
-'emailsubject'   => 'موضوع',
-'emailmessage'   => 'پيغام',
-'emailsend'      => 'لېږل',
-'emailccme'      => 'زما د پيغام يوه بېلګه دې ماته برېښناليک کې ولېږلای شي.',
-'emailccsubject' => '$1 ته ستاسو د پيغام لمېسه: $2',
-'emailsent'      => 'برېښناليک ولېږل شو',
-'emailsenttext'  => 'ستاسو د برېښناليک پيغام ولېږل شو.',
+'mailnologin'     => 'هېڅ کومه لېږل شوې پته نشته',
+'emailuser'       => 'همدې کارونکي ته برېښناليک لېږل',
+'emailpage'       => 'کارووني ته برېښناليک ولېږه',
+'defemailsubject' => 'د {{SITENAME}} برېښناليک',
+'noemailtitle'    => 'هېڅ کومه برېښناليکي پته نشته.',
+'emailfrom'       => 'پيغام لېږونکی',
+'emailto'         => 'پيغام اخيستونکی',
+'emailsubject'    => 'موضوع',
+'emailmessage'    => 'پيغام',
+'emailsend'       => 'لېږل',
+'emailccme'       => 'زما د پيغام يوه بېلګه دې ماته برېښناليک کې ولېږلای شي.',
+'emailccsubject'  => '$1 ته ستاسو د پيغام لمېسه: $2',
+'emailsent'       => 'برېښناليک ولېږل شو',
+'emailsenttext'   => 'ستاسو د برېښناليک پيغام ولېږل شو.',
 
 # Watchlist
 'watchlist'            => 'زما کتلی لړليک',
@@ -671,6 +678,8 @@ $messages = array(
 'deletepage'            => 'پاڼه ړنګول',
 'confirm'               => 'تاييد',
 'exblank'               => 'دا مخ تش وه',
+'delete-confirm'        => '"$1" ړنګوول',
+'delete-legend'         => 'ړنګول',
 'historywarning'        => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
 'confirmdeletetext'     => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
 'actioncomplete'        => 'بشپړه کړنه',
@@ -980,5 +989,8 @@ $1',
 'iranian-calendar-m10' => 'مرغومی',
 'iranian-calendar-m11' => 'سلواغه',
 'iranian-calendar-m12' => 'کب',
+
+# Special:Filepath
+'filepath-page' => 'دوتنه:',
 
 );

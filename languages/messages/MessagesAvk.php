@@ -8,7 +8,10 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Nike
+ * @author Nkosi ya Cabinda
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -1599,8 +1602,17 @@ Koti ari milconhafi gluyasiki roklon zo krafiar.',
 
 # Metadata
 'metadata'          => 'Veyorigeem',
+'metadata-help'     => 'Bat iyeltak va loplekufa giva ruldar. Bata giva male reduso ok tuotukaso wanuyasiko iku ksudasiko
+lanon zo loplekuyur. Ede iyeltak malion di zo betayar, konaka pinta va betayana ewava rotir me co-tcazed.',
 'metadata-expand'   => 'Nedira va pintapeem',
 'metadata-collapse' => 'Palsera va pintapeem',
+'metadata-fields'   => 'Divatceson va veyorigak EXIF veyorigafa rapta se vexalana koe bata staksa zo ko ewavabu zo kodoplekutud. Ara rapta omavon zo palseter.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Mantuca',

@@ -636,10 +636,12 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'revdelete-hide-image'    => 'Klänedön ragivaninädi',
 
 # History merging
-'mergehistory-from'           => 'Fonätapad:',
-'mergehistory-into'           => 'Zeilapad:',
-'mergehistory-no-source'      => 'Fonätapad: $1 no dabinon.',
-'mergehistory-no-destination' => 'Zeilapad: $1 no dabinon.',
+'mergehistory-from'                => 'Fonätapad:',
+'mergehistory-into'                => 'Zeilapad:',
+'mergehistory-no-source'           => 'Fonätapad: $1 no dabinon.',
+'mergehistory-no-destination'      => 'Zeilapad: $1 no dabinon.',
+'mergehistory-invalid-source'      => 'Fonätapad muton labön tiädi lonöföl',
+'mergehistory-invalid-destination' => 'Zeilapad muton labön tiädi lonöföl.',
 
 # Diffs
 'history-title'           => 'Revidajenotem pada: "$1"',
@@ -656,12 +658,17 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'searchsubtitleinvalid' => "Esukol padi: '''$1'''",
 'noexactmatch'          => "'''No dabinon pad tiädü \"\$1\".''' Kanol [[:\$1|jafön oni]].",
 'noexactmatch-nocreate' => "'''No dabinon pad tiädü \"\$1\".'''",
+'titlematches'          => 'Leigon ko padatiäd',
+'notitlematches'        => 'Leigon ko padatiäds nonik',
+'textmatches'           => 'Leigon ko dil padavödema',
+'notextmatches'         => 'Leigon ko nos in padavödem',
 'prevn'                 => 'büik $1',
 'nextn'                 => 'sököl $1',
 'viewprevnext'          => 'Logön padis ($1) ($2) ($3).',
 'showingresults'        => "Pajonons dono jü {{PLURAL:$1|sukasek '''1'''|sukaseks '''$1'''}}, primölo me nüm #'''$2'''.",
 'showingresultsnum'     => "Dono pajonons {{PLURAL:$3:|sek '''1'''|seks '''$3'''}}, primölo me nüm: '''$2'''.",
 'powersearch'           => 'Suk',
+'powersearchtext'       => 'Suk in nemaspad:<br />$1<br />$2 Lisedön lüodükömis<br />Sukazeil: $3 $9',
 
 # Preferences page
 'preferences'           => 'Buükams',
@@ -808,6 +815,7 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 'upload-misc-error' => 'Pök nesevädik pö löpükam',
 
 'license'            => 'Dälastad',
+'nolicense'          => 'Nonik pelevälon',
 'upload_source_file' => ' (ragiv pö nünöm olik)',
 
 # Image list
@@ -988,6 +996,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'alllogstext'          => 'Kobojonam jenotalisedas löpükamas, moükamas, jelodamas, blokamas e guvanas.
 Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'logempty'             => 'No dabinons notets in jenotalised at.',
+'log-title-wildcard'   => 'Sukön tiäds primöl me:',
 
 # Special:Allpages
 'nextpage'          => 'Pad sököl ($1)',
@@ -1031,6 +1040,8 @@ fomet at osedon one penedi bal. Ladet leäktronik in gebanabuükams olik opubon 
 'mywatchlist'          => 'Galädalised obik',
 'watchlistfor'         => "(tefü '''$1''')",
 'nowatchlist'          => 'Labol nosi in galädalised olik.',
+'watchlistanontext'    => '$1 ad logön u redakön lienis galädaliseda olik',
+'watchnologintext'     => 'Mutol [[Special:Userlogin|nunädön oli]] büä kanol votükön galädalisedi olik.',
 'addedwatch'           => 'Peläüköl lä galädalised',
 'addedwatchtext'       => "Pad: \"[[:\$1]]\" peläükon lä [[Special:Watchlist|galädalised]] olik.
 Votükams fütürik pada at, äsi bespikapada onik, polisedons us, e pad popenon '''me tonats dagik'''  in [[Special:Recentchanges|lised votükamas nulik]] ad fasilükön tuvi ona.
@@ -1041,6 +1052,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'watch'                => 'Galädön',
 'watchthispage'        => 'Galädolöd padi at',
 'unwatch'              => 'Negalädön',
+'notanarticle'         => 'No binon pad ninädilabik',
 'watchnochange'        => 'Nonik padas pagalädöl olik peredakon dü period löpo pejonöl.',
 'watchlist-details'    => '{{PLURAL:$1|pad $1|pads $1}} su galädalised, plä bespikapads.',
 'watchlistcontains'    => 'Galädalised olik labon {{PLURAL:$1|padi|padis}} $1.',
@@ -1346,11 +1358,12 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'thumbnail_error' => 'Pöl pö jafam magodila: $1',
 
 # Special:Import
-'import'                => 'Nüveigön padis',
-'importstart'           => 'Nüveigölo padis...',
-'import-revision-count' => '{{PLURAL:$1|fomam|fomams}} $1',
-'importbadinterwiki'    => 'Yüm vüvükik dädik',
-'importnotext'          => 'Vödem vagik',
+'import'                     => 'Nüveigön padis',
+'import-interwiki-namespace' => 'Topätükon padis ini nemaspad:',
+'importstart'                => 'Nüveigölo padis...',
+'import-revision-count'      => '{{PLURAL:$1|fomam|fomams}} $1',
+'importbadinterwiki'         => 'Yüm vüvükik dädik',
+'importnotext'               => 'Vödem vagik',
 
 # Import log
 'importlogpage'                    => 'Jenotalised nüveigamas',
@@ -1379,6 +1392,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-ca-unwatch'              => 'Moükön padi at se galädalised olik',
 'tooltip-search'                  => 'Sukön in {{SITENAME}}',
 'tooltip-search-go'               => 'Tuvön padi labü nem at if dabinon',
+'tooltip-search-fulltext'         => 'Sukön vödemi at su pads',
 'tooltip-p-logo'                  => 'Cifapad',
 'tooltip-n-mainpage'              => 'Visitolös Cifapadi',
 'tooltip-n-portal'                => 'Tefü proyek, kio kanol-li dunön, kiplado tuvön dinis',
@@ -1394,6 +1408,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'tooltip-t-upload'                => 'Löpükön magodis u ragivis sümik votik',
 'tooltip-t-specialpages'          => 'Lised padas patik valik',
 'tooltip-t-print'                 => 'Fomam dabükovik pada at',
+'tooltip-t-permalink'             => 'Yüm laidüpik lü padafomam at',
 'tooltip-ca-nstab-main'           => 'Logön ninädapadi',
 'tooltip-ca-nstab-user'           => 'Logön gebanapadi',
 'tooltip-ca-nstab-special'        => 'Atos binon pad patik, no kanol redakön oni',
@@ -1423,6 +1438,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'anonymous'        => 'Geban(s) nennemik {{SITENAME}}a',
 'siteuser'         => 'Geban ela {{SITENAME}}: $1',
 'lastmodifiedatby' => 'Pad at pävotükon lätiküno tü dÜp $1, ün $2, fa el $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Stabü vob gebana: $1.',
 'others'           => 'votiks',
 'siteusers'        => 'Geban(s) ela {{SITENAME}}: $1',
 
@@ -1436,6 +1452,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'infosubtitle'   => 'Nüns tefü pad',
 'numedits'       => 'Redakamanum (pad): $1',
 'numtalkedits'   => 'Redakamanum (bespikapad): $1',
+'numwatchers'    => 'Num galädanas: $1',
 'numauthors'     => 'Num lautanas distik (pad): $1',
 'numtalkauthors' => 'Num lautanas distik (bespikapad): $1',
 
@@ -1456,6 +1473,10 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 # Image deletion
 'deletedrevision'       => 'Fomam büik: $1 pemoükon.',
 'filedeleteerror-short' => 'Pöl pö moükam ragiva: $1',
+'filedeleteerror-long'  => 'Pöls petuvons dü moükam ragiva:
+
+$1',
+'filedelete-missing'    => 'Ragiv: "$1" no kanon pamoükön bi no dabinon.',
 
 # Browsing diffs
 'previousdiff' => '← Dif büik',
@@ -1498,10 +1519,16 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-imagewidth'          => 'Vidot',
 'exif-imagedescription'    => 'Tiäd magoda',
 'exif-artist'              => 'Lautan',
+'exif-copyright'           => 'Dalaban kopiedagitäta',
 'exif-colorspace'          => 'Kölaspad',
 'exif-exposuretime-format' => '$1 sek ($2)',
 'exif-flash'               => 'Kämalelit',
 'exif-flashenergy'         => 'Nämet kämalelita',
+'exif-gpslatituderef'      => 'Videt Nolüdik u Sulüdik',
+'exif-gpslatitude'         => 'Videt',
+'exif-gpslongituderef'     => 'Lunet Lofüdik u Vesüdik',
+'exif-gpslongitude'        => 'Lunet',
+'exif-gpsareainformation'  => 'Nem topäda: GPS',
 'exif-gpsdatestamp'        => 'Dät ela GPS',
 
 'exif-orientation-1' => 'Nomik', # 0th row: top; 0th column: left
@@ -1524,6 +1551,10 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-contrast-0' => 'Nomik',
 
 'exif-subjectdistancerange-0' => 'Nesevädik',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Videt nolüdik',
+'exif-gpslatitude-s' => 'Videt  Sulüdik',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Milmets a düp',

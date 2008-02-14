@@ -10,6 +10,7 @@
  * @author Helix84
  * @author SPQRobin
  * @author Nike
+ * @author Spacebirdy
  */
 
 $skinNames = array(
@@ -778,8 +779,8 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'r',
-'sectionlink'                       => '?',
 'number_of_watching_users_pageview' => '[$1 úsáideoirí ag breathnú]',
+'rc_categories_any'                 => 'Aon chatagóir',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Athruithe gaolmhara',
@@ -866,6 +867,7 @@ uaslódáil é arís, le do thoil.',
 'noimage'                   => 'Níl aon chomhad ann leis an ainm seo, ba féidir leat [$1 é a uaslódáil]',
 'noimage-linktext'          => 'uaslódáil é',
 'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
+'imagelist_user'            => 'Úsáideoir',
 
 # MIME search
 'mimesearch' => 'cuardaigh MIME',
@@ -875,7 +877,8 @@ uaslódáil é arís, le do thoil.',
 'unusedtemplates' => 'Teimpléid gan úsáid',
 
 # Random page
-'randompage' => 'Leathanach fánach',
+'randompage'         => 'Leathanach fánach',
+'randompage-nopages' => 'Níl aon leathanaigh san ainmspás seo.',
 
 # Statistics
 'statistics'    => 'Staidreamh',
@@ -1453,6 +1456,9 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'rcpatroldisabled'      => 'Mhíchumasaíodh Patról na n-Athruithe is Déanaí',
 'rcpatroldisabledtext'  => 'Tá an tréith Patról na n-Athruithe is Déanaí míchumasaithe faoi láthair.',
 
+# Patrol log
+'patrol-log-auto' => '(uathoibríoch)',
+
 # Image deletion
 'deletedrevision' => 'Scriosadh an sean-leagan $1',
 
@@ -1792,11 +1798,15 @@ $1',
 'confirm_purge_button' => 'Tá',
 
 # AJAX search
+'searchnamed'   => "Cuardaigh le leathanaigh ab ainm ''$1''.",
 'articletitles' => "Ailt a tosaíonn le ''$1''",
 'hideresults'   => 'Folaigh torthaí',
 
 # Auto-summaries
 'autoredircomment' => 'Ag athdhíriú go [[$1]]',
 'autosumm-new'     => 'Leathanach nua: $1',
+
+# Live preview
+'livepreview-loading' => 'Ag lódáil…',
 
 );

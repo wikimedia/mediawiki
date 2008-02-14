@@ -540,8 +540,7 @@ W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ogr
 'accountcreated'             => 'Utworzono konto',
 'accountcreatedtext'         => 'Konto dla $1 zostało utworzone.',
 'createaccount-title'        => 'Stworzenie konta dla {{SITENAME}}',
-'createaccount-text'         => 'Ktoś ($1) utworzył konto dla $2 na {{SITENAME}}
-($4). Obecne hasło "$2" to "$3". Powinieneś się teraz zalogować i je zmienić.
+'createaccount-text'         => 'Ktoś utworzył na {{GRAMMAR:Ms.pl|{{SITENAME}}}} ($4) dla Twojego adresu e-mail konto "$2". Aktualne hasło to "$3". Powinieneś się teraz zalogować i je zmienić.
 
 Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomyłkę.',
 'loginlanguagelabel'         => 'Język: $1',
@@ -612,12 +611,11 @@ Przyczyna blokady:
 
 :\'\'$2\'\'
 
-Blokada wygasa $6
+Blokada od $8 wygasa $6
 
-Możesz skontaktować się z użytkownikiem $1 lub jednym z pozostałych
-[[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.
+Możesz skontaktować się z $1 lub jednym z pozostałych [[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.
 
-Uwaga: Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail, nie możesz skorzystać z opcji "Wyślij e-mail do tego użytkownika". 
+Uwaga: Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail lub zablokowano Ci tą funkcjonalność, nie możesz skorzystać z opcji "Wyślij e-mail do tego użytkownika". 
 
 Identyfikator Twojej blokady to $5. Zanotuj go i podaj administratorowi.',
 'blockednoreason'           => 'nie podano powodu',
@@ -876,7 +874,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'prefs-personal'           => 'Dane użytkownika',
 'prefs-rc'                 => 'Ostatnie zmiany',
 'prefs-watchlist'          => 'Obserwowane',
-'prefs-watchlist-days'     => 'Wyświetlanie edycji artykułów obserwowanych z dni:',
+'prefs-watchlist-days'     => 'Liczba dni widocznych na liście obserwowanych:',
 'prefs-watchlist-edits'    => 'Liczba edycji pokazywanych w rozszerzonej liście obserwowanych:',
 'prefs-misc'               => 'Różne',
 'saveprefs'                => 'Zapisz',
@@ -2344,6 +2342,26 @@ Titles on your watchlist are shown below, and can be edited by
 
 # Core parser functions
 'unknown_extension_tag' => 'Nieznany znacznik rozszerzenia "$1"',
+
+# Special:Version
+'version-extensions'               => 'Zainstalowane rozszerzenia',
+'version-specialpages'             => 'Strony specjalne',
+'version-parserhooks'              => 'Haki analizatora składni (Parser hooks)',
+'version-variables'                => 'Zmienne',
+'version-other'                    => 'Pozostałe',
+'version-mediahandlers'            => 'Wtyczki obsługi mediów',
+'version-hooks'                    => 'Haki (Hooks)',
+'version-extension-functions'      => 'Funkcje rozszerzeń',
+'version-parser-extensiontags'     => 'Znaczniki rozszerzeń dla analizatora składni',
+'version-parser-function-hooks'    => 'Funkcje haków analizatora składni (Parser function hooks)',
+'version-skin-extension-functions' => 'Funkcje rozszerzeń skórek',
+'version-hook-name'                => 'Nazwa haka (Hook name)',
+'version-hook-subscribedby'        => 'Zapotrzebowany przez',
+'version-version'                  => 'Wersja',
+'version-license'                  => 'Licencja',
+'version-software'                 => 'Zainstalowane oprogramowanie',
+'version-software-product'         => 'Nazwa',
+'version-software-version'         => 'Wersja',
 
 # Special:Filepath
 'filepath'         => 'Ścieżka do pliku',

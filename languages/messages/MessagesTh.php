@@ -16,7 +16,7 @@ $skinNames = array(
 	'cologneblue' => 'น้ำเงินโคโลญจ์',
 	'myskin'      => 'ปรุงเอง',
 	'simple'      => 'เรียบง่าย',
-	'modern'      => 'นำสมัย',
+	'modern'      => 'ทันสมัย',
 );
 
 $namespaceNames = array(
