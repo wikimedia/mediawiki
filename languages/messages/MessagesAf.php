@@ -730,6 +730,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filehist-datetime'         => 'Datum/Tyd',
 'filehist-user'             => 'Gebruiker',
 'filehist-filesize'         => 'Lêergrootte',
+'filehist-comment'          => 'Opmerking',
 'imagelinks'                => 'Prentskakels',
 'linkstoimage'              => 'Die volgende bladsye gebruik hierdie prent:',
 'nolinkstoimage'            => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
@@ -799,6 +800,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'brokenredirects-edit'   => '(wysig)',
 'brokenredirects-delete' => '(skrap)',
 
+'withoutinterwiki'        => 'Bladsye sonder taalskakels',
 'withoutinterwiki-submit' => 'Wys',
 
 'fewestrevisions' => 'Artikels met die minste wysigings',
@@ -900,29 +902,32 @@ Jy kan die vertoning vernou deur 'n logtipe, gebruikersnaam of spesifieke blad t
 'emailsenttext'   => 'Jou e-pos is gestuur.',
 
 # Watchlist
-'watchlist'         => 'My dophoulys',
-'mywatchlist'       => 'My dophoulys',
-'watchlistfor'      => "(vir '''$1''')",
-'nowatchlist'       => 'Jy het geen items in jou dophoulys nie.',
-'watchnologin'      => 'Nie ingeteken nie',
-'watchnologintext'  => 'Jy moet [[Special:Userlogin|ingeteken]]
+'watchlist'            => 'My dophoulys',
+'mywatchlist'          => 'My dophoulys',
+'watchlistfor'         => "(vir '''$1''')",
+'nowatchlist'          => 'Jy het geen items in jou dophoulys nie.',
+'watchnologin'         => 'Nie ingeteken nie',
+'watchnologintext'     => 'Jy moet [[Special:Userlogin|ingeteken]]
 wees om jou dophoulys te verander.',
-'addedwatch'        => 'Bygevoeg tot dophoulys',
-'addedwatchtext'    => 'Die bladsy "$1" is by u [[Special:Watchlist|dophoulys]] gevoeg.
+'addedwatch'           => 'Bygevoeg tot dophoulys',
+'addedwatchtext'       => 'Die bladsy "$1" is by u [[Special:Watchlist|dophoulys]] gevoeg.
 Die bladsy "$1" is by u [[Special:Watchlist|dophoulys]] gevoeg. Toekomstige veranderinge aan hierdie bladsy en sy verwante besprekingsblad sal daar verskyn en die bladsy sal in \'\'\'vetdruk\'\'\' verskyn in die [[Special:Recentchanges|lys van onlangse wysigings]], sodat u dit makliker kan raaksien.
 
 As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophoulys" in die kieslys bo-aan die bladsy.',
-'removedwatch'      => 'Afgehaal van dophoulys',
-'removedwatchtext'  => 'Die bladsy "[[:$1]]" is van u dophoulys afgehaal.',
-'watch'             => 'Hou dop',
-'watchthispage'     => 'Hou hierdie bladsy dop',
-'unwatch'           => 'Verwyder van dophoulys',
-'unwatchthispage'   => 'Moenie meer dophou',
-'notanarticle'      => "Nie 'n artikel",
-'watchnochange'     => 'Geen item op die dophoulys is geredigeer in die gekose periode nie.',
-'watchlistcontains' => 'Jou dophoulys bevat $1 bladsye.',
-'wlnote'            => 'Hier volg die laaste $1 veranderings binne die laaste <b>$2</b> ure.',
-'wlshowlast'        => 'Wys afgelope $1 ure, $2 dae of $3',
+'removedwatch'         => 'Afgehaal van dophoulys',
+'removedwatchtext'     => 'Die bladsy "[[:$1]]" is van u dophoulys afgehaal.',
+'watch'                => 'Hou dop',
+'watchthispage'        => 'Hou hierdie bladsy dop',
+'unwatch'              => 'Verwyder van dophoulys',
+'unwatchthispage'      => 'Moenie meer dophou',
+'notanarticle'         => "Nie 'n artikel",
+'watchnochange'        => 'Geen item op die dophoulys is geredigeer in die gekose periode nie.',
+'watchlistcontains'    => 'Jou dophoulys bevat $1 bladsye.',
+'wlnote'               => 'Hier volg die laaste $1 veranderings binne die laaste <b>$2</b> ure.',
+'wlshowlast'           => 'Wys afgelope $1 ure, $2 dae of $3',
+'watchlist-hide-bots'  => 'Versteek robotte',
+'watchlist-hide-own'   => 'Versteek my wysigings',
+'watchlist-hide-minor' => 'Versteek klein wysigings',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Plaas op dophoulys...',
@@ -1006,13 +1011,15 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'month'         => 'Vanaf maand (en vroeër):',
 'year'          => 'Vanaf jaar (en vroeër):',
 
-'sp-contributions-newbies'  => 'Wys slegs bydraes deur nuwe rekenings',
-'sp-contributions-blocklog' => 'Blokkeerlogboek',
-'sp-contributions-search'   => 'Soek na bydraes',
-'sp-contributions-submit'   => 'Vertoon',
+'sp-contributions-newbies'     => 'Wys slegs bydraes deur nuwe rekenings',
+'sp-contributions-newbies-sub' => 'Vir nuwe gebruikers',
+'sp-contributions-blocklog'    => 'Blokkeerlogboek',
+'sp-contributions-search'      => 'Soek na bydraes',
+'sp-contributions-submit'      => 'Vertoon',
 
 # What links here
 'whatlinkshere'       => 'Skakels hierheen',
+'whatlinkshere-title' => 'Bladsye die skakel na $1',
 'whatlinkshere-page'  => 'Bladsy:',
 'linklistsub'         => '(Lys van skakels)',
 'linkshere'           => 'Die volgende bladsye skakel hierheen:',
@@ -1231,9 +1238,10 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'nextdiff'     => 'Nuwer wysiging →',
 
 # Media information
-'imagemaxsize'   => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
-'file-nohires'   => '<small>Geen hoëre resolusie beskikbaar nie.</small>',
-'show-big-image' => 'Volle resolusie',
+'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
+'file-nohires'         => '<small>Geen hoëre resolusie beskikbaar nie.</small>',
+'show-big-image'       => 'Volle resolusie',
+'show-big-image-thumb' => '<small>Grootte van hierdie voorskou: $1 × $2 pixels</small>',
 
 # Special:Newimages
 'newimages' => 'Gallery van nuwe beelde',

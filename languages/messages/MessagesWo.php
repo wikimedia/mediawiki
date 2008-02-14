@@ -556,6 +556,7 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'rev-deleted-user'          => '(turu jëfandikukat bi far nañ ko)',
 'rev-deleted-event'         => '(duggit li far nañ ko)',
 'rev-delundel'              => 'wone/nëbb',
+'revdelete-nooldid-title'   => 'Sag jagal amul njeexit',
 'logdelete-selected'        => "{{PLURAL:$2|Xew-xewu yéenekaay bi falu|xew-xewi yéenekaay yi falu}} ngir '''$1''' :",
 'revdelete-hide-name'       => 'Nëbb jëf ji ak njeexitam',
 'revdelete-hide-comment'    => 'Nëbb sanni-kàddub coppite gi',
@@ -563,6 +564,22 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'revdelete-hide-restricted' => 'jëfel digal yu yorkat yi ak yeneen jëfandikukat yi.',
 'revdelete-suppress'        => 'Nëbb xibaar yi yorkat yi tamit.',
 'revdelete-hide-image'      => 'Nëbb ëmbitu dencukaay bi',
+'revdelete-log'             => 'Sanni-kàddu ngir yéenekaay bi :',
+'logdelete-logentry'        => 'Gisub xew-xew bii [[$1]] dañ kaa soppi',
+'logdelete-logaction'       => 'Soppi nga doxaliin bi di $2 ngir {{plural:$1|ab xew-xew bu|ay xew-xew yu}} ñeel [[$3]]',
+'logdelete-success'         => 'Gisub xew-xew bi soppiku na bu baax',
+
+# Oversight log
+'overlogpagetext' => 'Lim bii ci suuf day wone farte yeek téye yi mujj te seen ëmbit nëbbu ci ñépp, ba ci yorkat yi sax. yëral [[Special:Ipblocklist|limu sàq yi ñu téye]] ngir gis limu téye yi teew.',
+
+# History merging
+'mergehistory'        => 'Booleb jaar-jaar yu aw xët',
+'mergehistory-from'   => 'Xëtu gongikuwaay :',
+'mergehistory-into'   => 'Xëtu jëmuwaay :',
+'mergehistory-list'   => 'Jaar-jaar yi boolewu',
+'mergehistory-go'     => 'Wone coppite yi boolewu',
+'mergehistory-submit' => 'Boole jagal yi',
+'mergehistory-fail'   => 'Booleb jaar-jaar yi antuwul. Falaatal xët wi ak taariix yi',
 
 # Search results
 'noexactmatch' => "'''Amul wenn xët wu tudd « $1 » wu am.''' man ngaa [[:$1|sakk xët wi]].",

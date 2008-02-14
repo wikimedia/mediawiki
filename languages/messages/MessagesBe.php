@@ -474,10 +474,9 @@ $2',
 'accountcreated'             => 'Створаны рахунак',
 'accountcreatedtext'         => 'Створаны рахунак удзельніка $1.',
 'createaccount-title'        => 'Стварэнне рахунка на {{SITENAME}}',
-'createaccount-text'         => 'Хтосьці ($1) стварыў рахунак $2 на {{SITENAME}}
-($4). Пароль для "$2" - "$3". Вы павінны ўвайсці ў сістэму і змяніць пароль.
+'createaccount-text'         => 'На пляцоўцы {{SITENAME}} ($4) быў створаны рахунак удзельніка з гэтым адрасам эл.пошты. Назва рахунку "$2", пароль "$3". Варта адразу ўвайсці ў сістэму і змяніць пароль.
 
-Вы можаце праігнараваць гэта паведамленне, калі гэты рахунак быў створаны памылкова.',
+Калі стварэнне рахунку было памылковым, то на гэтае паведамленне можна не звяртаць увагі.',
 'loginlanguagelabel'         => 'Мова: $1',
 
 # Password reset dialog
@@ -595,7 +594,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>Ваша праўка была адхілена, каб пазбегнуць сапсавання тэксту старонкі, таму што ваш браўзер папсаваў знакі прыпынку ў квітку праўкі.
 Магчыма, прычына ў выкарыстанні вамі ананімнага проксі-сервера, праграмы якога працуюць некарэктна.</strong>',
 'editing'                   => 'Правім: $1',
-'editinguser'               => 'Правім дазволы ўдзельніка <b>$1</b>',
+'editinguser'               => "Папраўляюцца дазволы для ўдзельніка '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Правім $1 (раздзел)',
 'editingcomment'            => 'Правім: $1 (каментар)',
 'editconflict'              => 'Канфлікт правак: $1',
@@ -724,6 +723,19 @@ $2',
 'revdelete-success'           => 'Паспяхова настаўлена бачнасць версіі.',
 'logdelete-success'           => 'Бачнасць падзеі настаўленая паспяхова.',
 
+# Oversight log
+'oversightlog'    => 'Журнал звышнагляду',
+'overlogpagetext' => 'Тут паказаны спіс нядаўніх сціранняў і блокаў, лучна з такімі, што схаваныя ад сісопаў. Актуальныя забароны і блокі гл. [[Special:Ipblocklist|спіс IP-блокаў]].',
+
+# History merging
+'mergehistory-header' => "Тут можна аб'ядноўваць версіі з гісторыі адной старонкі ў іншую, навейшую старонку.
+Трэба спачатку ўпэўніцца, што такое дзеянне не парушыць гістарычнай паслядоўнасці версій.
+
+'''Належыць пакінуць цэлай, прынамсі, актуальную версію крынічнай старонкі.'''",
+'mergehistory-from'   => 'Крынічная старонка:',
+'mergehistory-into'   => 'Мэтавая старонка:',
+'mergehistory-merge'  => 'Наступныя версіі [[:$1]] можна ўліць у [[:$2]]. У калонцы радыё-кнопак можна пазначыць дзеля ўлівання толькі тыя версіі, што былі створаны ў пэўны час і перад гэтым часам. Заўважце, што выкарыстанне якой-колечы навігацыйнай спасылкі ачысціць адзнакі, зробленыя ў гэтай калонцы.',
+
 # Diffs
 'history-title'           => 'Гісторыя версій "$1"',
 'difference'              => '(Розніца між версіямі)',
@@ -810,24 +822,26 @@ $2',
 'files'                 => 'Файлы',
 
 # User rights
-'userrights-lookup-user'      => 'Распараджацца групамі ўдзельнікаў',
-'userrights-user-editname'    => 'Увядзіце імя ўдзельніка:',
-'editusergroup'               => 'Правіць групы ўдзельнікаў',
-'userrights-editusergroup'    => 'Распараджацца групамі ўдзельніка',
-'saveusergroups'              => 'Захаваць групы ўдзельнікаў',
-'userrights-groupsmember'     => 'У групе:',
-'userrights-groupsremovable'  => 'Групы для выдалення:',
-'userrights-groupsavailable'  => 'Наяўныя групы:',
-'userrights-groupshelp'       => 'Пазначце групы, з якіх трэба выдаліць, або да якіх трэба дадаць удзельніка.
+'userrights-lookup-user'           => 'Распараджацца групамі ўдзельнікаў',
+'userrights-user-editname'         => 'Увядзіце імя ўдзельніка:',
+'editusergroup'                    => 'Правіць групы ўдзельнікаў',
+'userrights-editusergroup'         => 'Распараджацца групамі ўдзельніка',
+'saveusergroups'                   => 'Захаваць групы ўдзельнікаў',
+'userrights-groupsmember'          => 'У групе:',
+'userrights-groupsremovable'       => 'Групы для выдалення:',
+'userrights-groupsavailable'       => 'Наяўныя групы:',
+'userrights-groupshelp'            => 'Пазначце групы, з якіх трэба выдаліць, або да якіх трэба дадаць удзельніка.
 Непазначаныя групы не будуць мяняцца. Адзнака з групы здымаецца націсканнем левай кнопкі мышы і CTRL.',
-'userrights-reason'           => 'Тлумачэнне змянення:',
-'userrights-available-none'   => 'Вы не можаце мяняць групавай прыналежнасці.',
-'userrights-available-add'    => 'Вы можаце дадаць удзельнікаў да {{PLURAL:$2|гэтай групы|гэтых групаў}}: $1.',
-'userrights-available-remove' => 'Можна выдаліць удзельнікаў з {{PLURAL:$2|гэтай групы|гэтых групаў}}: $1.',
-'userrights-no-interwiki'     => 'Вам не дазволена мяняць дазволаў карыстальнікам на іншых Вікі-ах.',
-'userrights-nodatabase'       => 'Не знойдзена тут, або не існуе база даных $1.',
-'userrights-nologin'          => 'Належыць [[Special:Userlogin|увайсці ў сістэму]] на рахунак адміністратара, каб прызначаць дазволы ўдзельнікам.',
-'userrights-notallowed'       => 'Ваш рахунак не мае дазволаў, каб мяняць дазволы ўдзельнікаў.',
+'userrights-reason'                => 'Тлумачэнне змянення:',
+'userrights-available-none'        => 'Вы не можаце мяняць групавай прыналежнасці.',
+'userrights-available-add'         => 'Вы можаце дадаць удзельнікаў да {{PLURAL:$2|гэтай групы|гэтых групаў}}: $1.',
+'userrights-available-remove'      => 'Можна выдаліць удзельнікаў з {{PLURAL:$2|гэтай групы|гэтых групаў}}: $1.',
+'userrights-available-add-self'    => 'Вы можаце дадаць сябе да {{PLURAL:$2|гэтай групы|гэтых груп}}: $1.',
+'userrights-available-remove-self' => 'Вы можаце спыніць свой удзел у {{PLURAL:$2|гэтай групе|гэтых групах}}: $1.',
+'userrights-no-interwiki'          => 'Вам не дазволена мяняць дазволаў карыстальнікам на іншых Вікі-ах.',
+'userrights-nodatabase'            => 'Не знойдзена тут, або не існуе база даных $1.',
+'userrights-nologin'               => 'Належыць [[Special:Userlogin|увайсці ў сістэму]] на рахунак адміністратара, каб прызначаць дазволы ўдзельнікам.',
+'userrights-notallowed'            => 'Ваш рахунак не мае дазволаў, каб мяняць дазволы ўдзельнікаў.',
 
 # Groups
 'group'               => 'Група:',
@@ -924,6 +938,7 @@ $2',
 'largefileserver'             => "Гэты файл большага аб'ёму, чым дазваляе канфігурацыя сервера.",
 'emptyfile'                   => 'Здаецца, што файл, укладзены вамі, пусты. Магчыма, здарылася памылка ў назве файла? Праверце, ці вы сапраўды хацелі ўкласці менавіта гэты файл.',
 'fileexists'                  => 'Ужо існуе файл з такою назвай, праверце $1, калі не ўпэўнены, што жадаеце мяняць яго змесціва.',
+'filepageexists'              => 'Старонка (але не выява) з такой назвай ужо існуе, праверце <strong><tt>$1</tt></strong>, калі не пэўныя, што жадаеце яе змяніць.',
 'fileexists-extension'        => 'Ужо ёсць файл з падобнай назвай:<br />
 Назва ўкладанага файла: <strong><tt>$1</tt></strong><br />
 Назва наяўнага файла: <strong><tt>$2</tt></strong><br />
@@ -1024,17 +1039,19 @@ $2',
 'filerevert-badversion'     => 'Няма старэйшай тутэйшай версіі гэтага файла з прапанаванай часавай меткай.',
 
 # File deletion
-'filedelete'             => 'Выдаліць $1',
-'filedelete-legend'      => 'Выдаліць файл',
-'filedelete-intro'       => "Вы сціраеце '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Вы сціраеце версію \'\'\'[[Media:$1|$1]]\'\'\' з [$4 $3, $2].</span>',
-'filedelete-comment'     => 'Каментарый:',
-'filedelete-submit'      => 'Выдаліць',
-'filedelete-success'     => "'''$1''' быў выдалены.",
-'filedelete-success-old' => '<span class="plainlinks">Версія \'\'\'[[Media:$1|$1]]\'\'\' з $3, $2 была сцёрта.</span>',
-'filedelete-nofile'      => "'''$1''' няма на пляцоўцы {{SITENAME}}.",
-'filedelete-nofile-old'  => "Не існуе архіўнай (старэйшай) версіі '''$1''' з такімі атрыбутамі.",
-'filedelete-iscurrent'   => 'Вы спрабуеце сцерці актуальную версію гэтага файла. Спачатку трэба адкаціць яго да адной са старэйшых версій.',
+'filedelete'                  => 'Выдаліць $1',
+'filedelete-legend'           => 'Выдаліць файл',
+'filedelete-intro'            => "Вы сціраеце '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Вы сціраеце версію \'\'\'[[Media:$1|$1]]\'\'\' з [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Каментарый:',
+'filedelete-submit'           => 'Выдаліць',
+'filedelete-success'          => "'''$1''' быў выдалены.",
+'filedelete-success-old'      => '<span class="plainlinks">Версія \'\'\'[[Media:$1|$1]]\'\'\' з $3, $2 была сцёрта.</span>',
+'filedelete-nofile'           => "'''$1''' няма на пляцоўцы {{SITENAME}}.",
+'filedelete-nofile-old'       => "Не існуе архіўнай (старэйшай) версіі '''$1''' з такімі атрыбутамі.",
+'filedelete-iscurrent'        => 'Вы спрабуеце сцерці актуальную версію гэтага файла. Спачатку трэба адкаціць яго да адной са старэйшых версій.',
+'filedelete-otherreason'      => 'Іншая/дадатковая прычына:',
+'filedelete-reason-otherlist' => 'Іншая прычына',
 
 # MIME search
 'mimesearch'         => 'Пошук паводле зместу файла',
@@ -1349,10 +1366,16 @@ $NEWPAGE
 'protect-level-autoconfirmed' => 'Забарона для нерэгістраваных удзельнікаў',
 'protect-level-sysop'         => 'Толькі для адміністратараў',
 'protect-cascade'             => 'Каскад - ахоўваць таксама і ўсе тыя старонкі, які ўлучаюцца ў гэтую.',
+'restriction-type'            => 'Дазвол:',
+'restriction-level'           => 'Абмежаванне на ўзроўні:',
+'minimum-size'                => "Мін. аб'ём",
+'maximum-size'                => "Макс. аб'ём",
+'pagesize'                    => '(байты)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Правіць',
-'restriction-move' => 'Перанесці',
+'restriction-edit'   => 'Правіць',
+'restriction-move'   => 'Перанесці',
+'restriction-create' => 'Дадаць',
 
 # Undelete
 'undelete'                 => 'Паказаць сцёртыя старонкі',
@@ -2024,5 +2047,34 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'Невядомая метка пашырэння "$1"',
+
+# Special:Version
+'version-extensions'               => 'Устаноўленыя прыстаўкі',
+'version-specialpages'             => 'Адмысловыя старонкі',
+'version-parserhooks'              => 'Хукі парсера',
+'version-variables'                => 'Зменныя',
+'version-other'                    => 'Рознае',
+'version-mediahandlers'            => 'Апрацоўнікі мультымедый',
+'version-hooks'                    => 'Хукі',
+'version-extension-functions'      => 'Функцыі прыстаўкі',
+'version-parser-extensiontags'     => 'Тагі прыстаўкі да парсера',
+'version-parser-function-hooks'    => 'Хукі функцый парсера',
+'version-skin-extension-functions' => 'Функцыі прыстаўкі да кажуха',
+'version-hook-name'                => 'Назва хука',
+'version-hook-subscribedby'        => 'Сюды падпісаныя',
+'version-version'                  => 'Версія',
+'version-license'                  => 'Ліцэнзія',
+'version-software'                 => 'Устаноўленыя праграмныя прадукты',
+'version-software-product'         => 'Прадукт',
+'version-software-version'         => 'Версія',
+
+# Special:Filepath
+'filepath'         => 'Шлях да файла',
+'filepath-page'    => 'Файл:',
+'filepath-submit'  => 'Шлях',
+'filepath-summary' => 'Гэтая адмысловая старонка вяртае поўны шлях да файла.
+Выявы паказваюцца ў поўным памеры, іншыя тыпы файлаў адкрываюцца ў прыпісаных да іх праграмах.
+
+Упішыце назву файла без прэфіксу "{{ns:image}}:".',
 
 );

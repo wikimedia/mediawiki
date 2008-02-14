@@ -1541,6 +1541,7 @@ $1',
 
 # Export
 'export'            => 'पाने निर्यात करा',
+'exportcuronly'     => 'संपूर्ण इतिहास नको,केवळ आताचे आवर्तन आंर्तभूत करा',
 'export-submit'     => 'निर्यात करा',
 'export-addcattext' => 'वर्गीकरणातून पाने भरा:',
 'export-addcat'     => 'भर',
@@ -1567,28 +1568,32 @@ $1',
 'thumbnail_dest_directory' => 'लक्ष्य धारिकेच्या निर्मितीस असमर्थ',
 
 # Special:Import
-'import'                   => 'पाने आयात करा',
-'importinterwiki'          => 'आंतरविकि आयात',
-'import-interwiki-history' => 'या पानाकरिताची सार्‍या इतिहास आवर्तनांची नक्कल करा',
-'import-interwiki-submit'  => 'आयात',
-'importstart'              => 'पाने आयात करत आहे...',
-'import-revision-count'    => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
-'importnopages'            => 'आयातीकरिता पाने नाहीत.',
-'importfailed'             => 'अयशस्वी आयात: $1',
-'importunknownsource'      => 'आयात स्रोत प्रकार अज्ञात',
-'importcantopen'           => 'आयातीत संचिका उघडणे जमले नाही',
-'importbadinterwiki'       => 'अयोग्य आंतरविकि दुवा',
-'importnotext'             => 'रिकामे अथवा मजकुर नाही',
-'importsuccess'            => 'आयात पूर्ण झाली!',
-'import-parse-failure'     => 'XML आयात पृथक्करण अयशस्वी',
-'import-noarticle'         => 'आयात करण्याकरिता पान नाही!',
-'import-nonewrevisions'    => 'सारी आवर्तने पूर्वी आयात केली होती.',
-'xml-error-string'         => '$1 ओळ $2मध्ये , स्तंभ $3 (बाईट $4): $5',
+'import'                     => 'पाने आयात करा',
+'importinterwiki'            => 'आंतरविकि आयात',
+'import-interwiki-history'   => 'या पानाकरिताची सार्‍या इतिहास आवर्तनांची नक्कल करा',
+'import-interwiki-submit'    => 'आयात',
+'import-interwiki-namespace' => 'पाने नामविश्वात स्थानांतरीत करा:',
+'importstart'                => 'पाने आयात करत आहे...',
+'import-revision-count'      => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
+'importnopages'              => 'आयातीकरिता पाने नाहीत.',
+'importfailed'               => 'अयशस्वी आयात: $1',
+'importunknownsource'        => 'आयात स्रोत प्रकार अज्ञात',
+'importcantopen'             => 'आयातीत संचिका उघडणे जमले नाही',
+'importbadinterwiki'         => 'अयोग्य आंतरविकि दुवा',
+'importnotext'               => 'रिकामे अथवा मजकुर नाही',
+'importsuccess'              => 'आयात पूर्ण झाली!',
+'importnofile'               => 'कोणतीही आयातीत संचिका चढवलेली नाही.',
+'import-parse-failure'       => 'XML आयात पृथक्करण अयशस्वी',
+'import-noarticle'           => 'आयात करण्याकरिता पान नाही!',
+'import-nonewrevisions'      => 'सारी आवर्तने पूर्वी आयात केली होती.',
+'xml-error-string'           => '$1 ओळ $2मध्ये , स्तंभ $3 (बाईट $4): $5',
 
 # Import log
-'importlogpage'                 => 'ईम्पोर्ट सूची',
-'import-logentry-upload'        => 'संचिका चढवल्याने [[$1]] आयात',
-'import-logentry-upload-detail' => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
+'importlogpage'                    => 'ईम्पोर्ट सूची',
+'import-logentry-upload'           => 'संचिका चढवल्याने [[$1]] आयात',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
+'import-logentry-interwiki'        => 'आंतरविकिकरण $1',
+'import-logentry-interwiki-detail' => '$2 पासून $1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'माझे सदस्य पान',
@@ -1598,6 +1603,7 @@ $1',
 'tooltip-pt-watchlist'            => 'तुम्ही पहारा दिलेल्या पानांची यादी',
 'tooltip-pt-mycontris'            => 'माझ्या योगदानांची यादी',
 'tooltip-pt-login'                => 'आपणांस सदस्यत्व घेण्याची विनंती करण्यात येत आहे. सदस्यत्व घेणे अनिवार्य नाही.',
+'tooltip-pt-anonlogin'            => 'आपण खात्यात दाखल व्हावे या करिता प्रोत्साहन देतो, अर्थात ते अत्यावश्यक नाही.',
 'tooltip-pt-logout'               => 'बाहेर पडा',
 'tooltip-ca-talk'                 => 'पानाबद्दलच्या चर्चा',
 'tooltip-ca-edit'                 => 'तुम्ही हे पान बद्लू शकता. कृपया जतन करण्यापुर्वी झलक कळ वापरून पाहा.',
@@ -1625,6 +1631,7 @@ $1',
 'tooltip-t-emailuser'             => 'या सदस्याला इमेल पाठवा',
 'tooltip-t-upload'                => 'चित्रे किंवा माध्यम संचिका चढवा',
 'tooltip-t-specialpages'          => 'सर्व विशेष पृष्ठांची यादी',
+'tooltip-t-print'                 => 'या पानाची छापण्यायोग्य आवृत्ती',
 'tooltip-t-permalink'             => 'पानाच्या या आवर्तनाचा शाश्वत दुवा',
 'tooltip-ca-nstab-main'           => 'मजकुराचे पान पाहा',
 'tooltip-ca-nstab-user'           => 'सदस्य पान पाहा',
@@ -1669,16 +1676,29 @@ $1',
 'mw_math_png'    => 'नेहमीच पीएनजी (PNG) रेखाटा',
 'mw_math_simple' => 'सुलभ असल्यास एचटीएमएल (HTML); अन्यथा पीएनजी (PNG)',
 'mw_math_html'   => 'शक्य असल्यास एचटीएमएल (HTML); अन्यथा पीएनजी (PNG)',
+'mw_math_modern' => 'आधूनिक विचरकांकरिता सूचवलेले',
 'mw_math_mathml' => 'शक्य असल्यास मॅथ एमएल (MathML) (प्रयोगावस्था)',
 
 # Patrolling
-'markaspatrolleddiff' => 'टेहळणी केल्याची खूण करा',
+'markaspatrolleddiff'   => 'टेहळणी केल्याची खूण करा',
+'markaspatrolledtext'   => 'या पानावर गस्त झाल्याची खूण करा',
+'markedaspatrolled'     => 'गस्त केल्याची खूण केली',
+'markedaspatrolledtext' => 'निवडलेले आवर्तनास गस्त घातल्याची खून केली.',
+'rcpatroldisabledtext'  => 'सध्या ’अलिकडील बदल’ ची गस्त सुविधा अनुपलब्ध केली आहे.',
 
 # Patrol log
 'patrol-log-page' => 'टेहळणीतील नोंदी',
+'patrol-log-line' => '$2चे $1 $3 गस्त घातल्याची खूण केली',
+'patrol-log-auto' => '(स्वयंचलीत)',
 
 # Image deletion
-'deletedrevision' => 'जुनी आवृत्ती ($1) वगळली.',
+'deletedrevision'             => 'जुनी आवृत्ती ($1) वगळली.',
+'filedeleteerror-short'       => 'संचिका वगळताना त्रूटी: $1',
+'filedeleteerror-long'        => 'संचिका वगळताना त्रूटी आढळल्या:
+
+$1',
+'filedelete-missing'          => 'संचिका "$1" वगळता येत नाही, कारण ती अस्तित्वात नाही.',
+'filedelete-old-unregistered' => 'निर्देशीत संचिका आवर्तन "$1" विदागारात नाही.',
 
 # Browsing diffs
 'previousdiff' => '← मागील फरक',
@@ -1725,6 +1745,7 @@ $1',
 'exif-software'         => 'वापरलेली संगणन अज्ञावली',
 'exif-artist'           => 'लेखक',
 'exif-copyright'        => 'प्रताधिकार धारक',
+'exif-exifversion'      => 'Exif आवृत्ती',
 'exif-makernote'        => 'उत्पादकाच्या सूचना',
 'exif-usercomment'      => 'सदस्य प्रतिक्रीया',
 'exif-relatedsoundfile' => 'संबधीत ध्वनी संचिका',
@@ -1734,6 +1755,11 @@ $1',
 
 'exif-unknowndate' => 'अज्ञात तारीख',
 
+'exif-orientation-1' => 'सामान्य', # 0th row: top; 0th column: left
+'exif-orientation-3' => '180° फिरवले', # 0th row: bottom; 0th column: right
+'exif-orientation-6' => '90° CW फिरवले', # 0th row: right; 0th column: top
+'exif-orientation-8' => '90° CCW फिरवले', # 0th row: left; 0th column: bottom
+
 'exif-componentsconfiguration-0' => 'अस्तित्वात नाही',
 
 'exif-subjectdistance-value' => '$1 मीटर',
@@ -1742,6 +1768,7 @@ $1',
 'exif-meteringmode-1'   => 'ऍव्हरेज',
 'exif-meteringmode-255' => 'इतर',
 
+'exif-lightsource-0'   => 'अज्ञात',
 'exif-lightsource-1'   => 'सूर्यप्रकाश',
 'exif-lightsource-9'   => 'चांगले हवामान',
 'exif-lightsource-10'  => 'ढगाळ हवामान',

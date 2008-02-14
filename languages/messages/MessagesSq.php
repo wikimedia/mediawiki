@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Ergon
  * @author SPQRobin
+ * @author Cradel
  */
 
 $skinNames = array(
@@ -110,7 +111,7 @@ $messages = array(
 'thursday'      => 'E enjte',
 'friday'        => 'E premte',
 'saturday'      => 'E shtunë',
-'sun'           => 'Hën',
+'sun'           => 'Diel',
 'mon'           => 'Hën',
 'tue'           => 'Mar',
 'wed'           => 'Mër',
@@ -163,7 +164,7 @@ $messages = array(
 'category-empty'        => "''Kjo kategori aktualisht nuk përmban asnjë faqe apo media.''",
 
 'mainpagetext'      => 'Wiki software u instalua me sukses.',
-'mainpagedocfooter' => 'Ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
+'mainpagedocfooter' => 'Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 
 == Fillimisht ==
@@ -214,6 +215,7 @@ $messages = array(
 'deletethispage'    => 'Grise faqen',
 'undelete_short'    => 'Restauroni $1 redaktime',
 'protect'           => 'Mbroje',
+'protect_change'    => 'ndrysho nivelin e mbrojtjes',
 'protectthispage'   => 'Mbroje faqen',
 'unprotect'         => 'Liroje',
 'unprotectthispage' => 'Liroje faqen',
@@ -366,6 +368,7 @@ Pyetja: $2',
 'protectedinterface'   => 'Kjo faqe përmban tekst për pamjen gjuhësorë të softuerit dhe është e mbrojtur për të penguar keqpërdorimet.',
 'editinginterface'     => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin ose pamjen e softuerit. Ndryshimet e kësaj faqeje do të prekin tekstin ose pamjen për të gjithë përdoruesit e tjerë.",
 'sqlhidden'            => '(Pyetje SQL e fshehur)',
+'customcssjsprotected' => 'Nuk keni leje ta ndryshoni këtë faqe sepse përmban informata personale të një përdoruesi tjetër',
 
 # Login and logout pages
 'logouttitle'                => 'Përdoruesi doli',
@@ -482,6 +485,7 @@ You are not logged in. Your IP address will be recorded in this page's edit hist
 Vini re se nuk mund të përdorni "dërgoji email këtij përdoruesi" n.q.s. nuk keni një adresë të saktë të rregjistruar në [[Special:Preferences|parapëlqimet e përdoruesit]].
 
 Adresa e IP-së që keni është $3. Jepni këtë adresë në çdo ankesë.',
+'blockednoreason'          => 'nuk ka arsye',
 'whitelistedittitle'       => 'Duhet të hyni brënda për të redaktuar',
 'whitelistedittext'        => 'Duhet të $1 për të redaktuar artikuj.',
 'whitelistreadtitle'       => 'Duhet të hyni brënda për të lexuar',

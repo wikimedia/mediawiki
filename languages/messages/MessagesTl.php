@@ -14,10 +14,10 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Salungguhitan mga kawing:',
-'tog-highlightbroken'         => 'Ayusin mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
+'tog-underline'               => 'Salungguhitan ang mga kawing:',
+'tog-highlightbroken'         => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Pantayin ang mga talata',
-'tog-hideminor'               => 'Itago mga maliliit na pagbabago sa mga huling binago',
+'tog-hideminor'               => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
 'tog-extendwatchlist'         => 'Palawigin ang bantayan upang mapakita ang lahat na magagawang pagbabago.',
 'tog-usenewrc'                => 'Pinadagdagang huling binago (JavaScript)',
 'tog-numberheadings'          => 'Automatikong bilangin ang mga pamagat',
@@ -32,7 +32,7 @@ $messages = array(
 'tog-watchdefault'            => 'Iragdag mga pahinang binago ko sa bantayan ko',
 'tog-watchmoves'              => 'Iragdag mga pahinang inilipat ko sa bantayan ko',
 'tog-watchdeletion'           => 'Iragdag mga pahinang binura ko sa bantayan ko',
-'tog-minordefault'            => 'Markahan lahat ng pagbabago bilang maliit nang nakatakda',
+'tog-minordefault'            => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
 'tog-previewontop'            => 'Ipakita ang pribyu bago ang kahon ng pagbabago',
 'tog-previewonfirst'          => 'Ipakita paunang tingin sa unang pagbabago',
 'tog-nocache'                 => 'Salantain ang pagbaon ng pahina',
@@ -44,7 +44,7 @@ $messages = array(
 'tog-fancysig'                => 'Hilaw na lagda (walang automatikong pagkawing)',
 'tog-externaleditor'          => 'Gumamit ng mambabagong panlabas nang nakatakda',
 'tog-showjumplinks'           => 'Payagan "tumalon sa" na pampagmit na kawing',
-'tog-uselivepreview'          => 'Gamitin paunang tinging buhay (JavaScript) (Eksperimental)',
+'tog-uselivepreview'          => 'Gamitin ang buhay na pribyu (JavaScript) (Eksperimental)',
 'tog-forceeditsummary'        => 'Pagsabihan ako kapag nagpapasok ng walang-lamang buod ng pagbabago',
 'tog-watchlisthideown'        => 'Itago mga binago ko sa bantayan',
 'tog-watchlisthidebots'       => 'Itago mga binago ng bot sa bantayan',
@@ -55,7 +55,7 @@ $messages = array(
 'underline-never'   => 'Hindi magpakailanman',
 'underline-default' => 'Tinakda ng pambasa-basa',
 
-'skinpreview' => '(Paunang tingin)',
+'skinpreview' => '(Pribyu)',
 
 # Dates
 'sunday'        => 'Linggo',
@@ -346,7 +346,9 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'loginsuccesstitle'         => 'Matagumpay ang paglagda',
 'loginsuccess'              => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
 'nosuchusershort'           => 'Walang manggagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
+'passwordtooshort'          => 'Walang saysay o masyadong maigsi ang iyong hudyat. Dapat ito ay hindi bababa sa $1 karakter at ay magkaiba sa iyong bansag.',
 'passwordremindertitle'     => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
+'mailerror'                 => 'Kamalian sa pagpapadala ng liham: $1',
 'loginlanguagelabel'        => 'Wika: $1',
 
 # Edit page toolbar
@@ -397,7 +399,11 @@ upang makapagkarga ng talaksan.',
 'watchthisupload'   => 'Bantayan itong pahina',
 
 # Image list
-'nolinkstoimage' => 'Walang pahing tumuturo sa talaksang ito.',
+'filehist-filesize' => 'Laki ng talaksan',
+'nolinkstoimage'    => 'Walang pahing tumuturo sa talaksang ito.',
+
+# File reversion
+'filerevert-comment' => 'Komento:',
 
 # File deletion
 'filedelete'         => 'Burahin ang $1',
@@ -406,10 +412,11 @@ upang makapagkarga ng talaksan.',
 'filedelete-comment' => 'Komento:',
 'filedelete-submit'  => 'Burahin',
 'filedelete-success' => "Binura na ang '''$1'''.",
-'filedelete-nofile'  => "Hindi umiiral ang '''$1''' sa sayt na ito.",
+'filedelete-nofile'  => "Hindi umiiral ang '''$1''' sa {{SITENAME}}.",
 
 # Random page
-'randompage' => 'Pahinang walang-pili',
+'randompage'         => 'Pahinang walang-pili',
+'randompage-nopages' => 'Walang mga pahina sa ngalan-espasyong ito.',
 
 # Random redirect
 'randomredirect' => 'Pagkargang walang-pili',
@@ -431,6 +438,9 @@ upang makapagkarga ng talaksan.',
 'specialpages'       => 'Mga natatanging pahina',
 'spheading'          => 'Mga natatanging pahina para sa lahat ng manggagamit',
 'restrictedpheading' => 'Mga natatakdaang natatanging pahina',
+'newpages'           => 'Mga bagong pahina',
+'newpages-username'  => 'Bansag:',
+'ancientpages'       => 'Mga pinakalumang pahina',
 'move'               => 'Ilipat',
 'movethispage'       => 'Ilipat itong pahina',
 
@@ -520,12 +530,14 @@ Pumili muli ng ibang pangalan.',
 '1movedto2'               => 'Ang [[$1]] ay inilipat sa [[$2]]',
 '1movedto2_redir'         => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng pangkarga',
 'movereason'              => 'Dahilan:',
+'delete_and_move'         => 'Burahin at ilipat',
 'delete_and_move_confirm' => 'Oo, burahin ang pahina',
 
 # Export
 'export'          => 'Magluwas ng pahina',
 'exportcuronly'   => 'Isama lamang ang kasalukuyang rebisyon, hindi ang buong kasaysayan',
 'export-submit'   => 'Magluwas',
+'export-addcat'   => 'Magdagdag',
 'export-download' => 'Itala bilang talaksan',
 
 # Namespace 8 related
@@ -545,7 +557,7 @@ Pumili muli ng ibang pangalan.',
 'import'                  => 'Mag-angkat ng pahina',
 'import-interwiki-submit' => 'Mag-angkat',
 'importstart'             => 'Inaangkat ang mga pahina...',
-'importsuccess'           => 'Matagumpay ang pag-angkat!',
+'importsuccess'           => 'Tapos na ang pag-angkat!',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'    => 'Aking pahina ng manggagamit',
@@ -554,9 +566,22 @@ Pumili muli ng ibang pangalan.',
 'tooltip-pt-mycontris'   => 'Tala ng aking mga ambag',
 'tooltip-pt-logout'      => 'Umalis sa pagkalagda',
 
+# Attribution
+'othercontribs' => 'Batay sa gawa ni/nina $1.',
+
 # Spam protection
 'subcategorycount'     => 'Mayroong {{PLURAL:$1|isang subkategorya|$1 subkategorya}} sa kategoryang ito.',
 'category-media-count' => 'Mayroong {{PLURAL:$1|isang talaksan|$1 talaksan}} sa kategoryang ito.',
+
+# Info page
+'numedits'     => 'Bilang ng mga pagbabago (pahina): $1',
+'numtalkedits' => 'Bilang ng mga pagbabago (pahinang usapan): $1',
+
+# Patrol log
+'patrol-log-auto' => '(automatiko)',
+
+# Image deletion
+'filedeleteerror-short' => 'Kamalian sa pagbubura ng talaksan: $1',
 
 # Media information
 'file-nohires'         => '<small>Walang makuhang mas mataas na resolusyon.</small>',
@@ -597,5 +622,15 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Maaaring hindi mapakita sa talang ito ang mga pagbabagong mas bago sa $1 segundo.',
+
+# Special:Version
+'version-hook-subscribedby' => 'Sinuskribi ng/ni/nina',
+'version-version'           => 'Bersyon',
+'version-license'           => 'Lisensiya',
+'version-software-product'  => 'Produkto',
+'version-software-version'  => 'Bersyon',
+
+# Special:Filepath
+'filepath-page' => 'Talaksan:',
 
 );

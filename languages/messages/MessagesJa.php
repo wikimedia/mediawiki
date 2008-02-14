@@ -166,7 +166,13 @@ $messages = array(
 'category-empty'        => 'このカテゴリにはページまたはメディアがひとつもありません。',
 
 'mainpagetext'      => 'MediaWikiが正常にインストールされました。',
-'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/MediaWiki_localisation インターフェースの変更方法]や、そのほかの使い方・設定に関しては[http://meta.wikimedia.org/wiki/Help:Contents ユーザーズガイド]を参照してください。',
+'mainpagedocfooter' => '使い方・設定に関しては[http://meta.wikimedia.org/wiki/ヘルプ:目次 ユーザーズガイド]を参照してください。
+
+== はじめましょう ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定リスト]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]',
 
 'about'          => '解説',
 'article'        => '本文',
@@ -227,7 +233,7 @@ $messages = array(
 'userpage'          => '利用者ページを表示',
 'projectpage'       => 'プロジェクトページを表示',
 'imagepage'         => '画像のページを表示',
-'mediawikipage'     => 'インターフェースページを表示',
+'mediawikipage'     => 'メッセージページを表示',
 'templatepage'      => 'テンプレートページを表示',
 'viewhelppage'      => 'ヘルプページを表示',
 'categorypage'      => 'カテゴリページを表示',
@@ -306,7 +312,7 @@ $messages = array(
 'nstab-special'   => '特別ページ',
 'nstab-project'   => '解説',
 'nstab-image'     => '画像',
-'nstab-mediawiki' => 'インターフェース',
+'nstab-mediawiki' => 'メッセージ',
 'nstab-template'  => 'テンプレート',
 'nstab-help'      => 'ヘルプ',
 'nstab-category'  => 'カテゴリ',
@@ -416,7 +422,7 @@ $2',
 'username'                   => '利用者名:',
 'uid'                        => '利用者ID:',
 'yourrealname'               => '本名*:',
-'yourlanguage'               => 'インターフェース言語:',
+'yourlanguage'               => '使用言語:',
 'yourvariant'                => '字体変換',
 'yournick'                   => 'ニックネーム（署名用）:',
 'badsig'                     => '署名が正しくありません。HTMLタグを見直してください。',
@@ -1749,7 +1755,7 @@ $NEWPAGE
 'tooltip-ca-nstab-special'        => 'これは特別ページです。編集することはできません。',
 'tooltip-ca-nstab-project'        => 'プロジェクトページを表示',
 'tooltip-ca-nstab-image'          => '画像ページを表示',
-'tooltip-ca-nstab-mediawiki'      => 'インターフェースを表示',
+'tooltip-ca-nstab-mediawiki'      => 'システムメッセージを表示',
 'tooltip-ca-nstab-template'       => 'テンプレートを表示',
 'tooltip-ca-nstab-help'           => 'ヘルプページを表示',
 'tooltip-ca-nstab-category'       => 'カテゴリページを表示',
