@@ -4,6 +4,27 @@
   * @addtogroup Language
   *
   */
+$namespaceNames = array(
+	# NS_MEDIA            => 'Media', // FIXME: translation needed
+	NS_SPECIAL          => 'ພິເສດ',
+	NS_MAIN             => '',
+	NS_TALK             => 'ສົນທະນາ',
+	NS_USER             => 'ຜູ້ໃຊ້',
+	NS_USER_TALK        => 'ສົນທະນາຂອງຜູ້ໃຂ້',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'ສົນທະນາກ່ຽວກັບ$1',
+	NS_IMAGE            => 'ຮູບ',
+	NS_IMAGE_TALK       => 'ສົນທະນາກ່ຽວກັບຮູບ',
+	NS_MEDIAWIKI        => 'ມິເດຍວິກິ',
+	NS_MEDIAWIKI_TALK   => 'ສົນທະນາກ່ຽວກັບມິເດຍວິກິ',
+	NS_TEMPLATE         => 'ແມ່ແບບ',
+	NS_TEMPLATE_TALK    => 'ສົນທະນາກ່ຽວກັບແມ່ແບບ',
+	# NS_HELP             => 'Help', // FIXME: translation needed
+	# NS_HELP_TALK        => 'Help_talk', // FIXME: translation needed
+	NS_CATEGORY         => 'ໝວດ',
+	NS_CATEGORY_TALK    => 'ສົນທະນາກ່ຽວກັບໝວດ'
+);
+
 $digitTransformTable = array(
 	'0' => '໐', # &#x0ed0;
 	'1' => '໑', # &#x0ed1;
