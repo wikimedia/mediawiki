@@ -362,7 +362,7 @@ $messages = array(
 'updatedmarker'     => 'modifié depuis ma dernière visite',
 'info_short'        => 'Informations',
 'printableversion'  => 'Version imprimable',
-'permalink'         => 'Lien permanent',
+'permalink'         => 'Lien instantané',
 'print'             => 'Imprimer',
 'edit'              => 'Modifier',
 'editthispage'      => 'Modifier cette page',
@@ -526,7 +526,7 @@ Requête : $2',
 'viewsource'           => 'Voir le texte source',
 'viewsourcefor'        => 'pour $1',
 'actionthrottled'      => 'Action limitée',
-'actionthrottledtext'  => "Pour lutter contre le spam, l’utilisation de cette action est limitée à un certain nombre de fois dans un laps temps assez court. Il s'avère que vous avez dépassé cette limite. Essayez à nouveau dans quelques minutes.",
+'actionthrottledtext'  => 'Pour lutter contre le pollupostage ("spam"), l’utilisation de cette action est limitée à un certain nombre de fois dans un laps temps assez court. Il s\'avère que vous avez dépassé cette limite. Essayez à nouveau dans quelques minutes.',
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de l’article pour pouvoir travailler dessus :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
@@ -748,9 +748,9 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’
 'copyrightwarning2'         => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
 <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D'AUTEUR SANS AUTORISATION EXPRESSE !</strong>",
-'longpagewarning'           => "'''AVERTISSEMENT : cette page a une longueur de $1 kio ;
-certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
-'longpageerror'             => '<strong>ERREUR : Le texte que vous avez soumis fait $1 kio, ce qui dépasse la limite fixée à $2 kio. Le texte ne peut pas être sauvegardé.</strong>',
+'longpagewarning'           => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
+certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 Kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
+'longpageerror'             => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.</strong>',
 'readonlywarning'           => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier texte et le sauver pour plus tard.'''",
 'protectedpagewarning'      => "'''AVERTISSEMENT : cette page est protégée.
@@ -827,10 +827,9 @@ La raison donnée par $3 était ''$2''.",
 'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la ou les révision(s) cible(s) pour utiliser cette fonction.',
 'revdelete-selected'          => "{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :",
 'logdelete-selected'          => "{{PLURAL:$2|Événement de journal sélectionné|Événements de journal sélectionnés}} pour '''$1''' :",
-'revdelete-text'              => "Les révisions et évènements supprimés apparaîtront encore dans l'historique de l'article et les journaux,
-mais leur contenu textuel sera inaccessible au public.
+'revdelete-text'              => 'Les révisions et événements supprimés apparaîtront encore dans l’historique de l’article et les journaux, mais leur contenu textuel sera inaccessible au public.
 
-D'autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.",
+D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.',
 'revdelete-legend'            => 'Mettre en place des restrictions de version :',
 'revdelete-hide-text'         => 'Masquer le texte de la version',
 'revdelete-hide-name'         => 'Masquer l’action et la cible',
@@ -864,7 +863,7 @@ Assurez vous que ce changement puisse conserver la continuité de l'historique.
 'mergehistory-from'                => "Page d'origine :",
 'mergehistory-into'                => 'Page de destination :',
 'mergehistory-list'                => 'Édition des historiques fusionnables',
-'mergehistory-merge'               => "Les versions suivantes de [[:$1]] peuvent être fusionnées avec [[:$2]]. Utilisez le bouton radio  de la colonne pour fusionner uniquement les versions créées du début jusqu'à la date indiquée. Notez bien que l'utilisation des liens de navigation réinitialisera la colonne.",
+'mergehistory-merge'               => 'Les versions suivantes de [[:$1]] peuvent être fusionnées avec [[:$2]]. Utilisez le bouton radio de la colonne pour fusionner uniquement les versions créées du début jusqu’à la date indiquée. Notez bien que l’utilisation des liens de navigation réinitialisera la colonne.',
 'mergehistory-go'                  => 'Voir les éditions fusionnables',
 'mergehistory-submit'              => 'Fusionner les révisions',
 'mergehistory-empty'               => 'Aucune révision ne peut être fusionnée',
@@ -936,7 +935,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'math_unknown_function'    => 'fonction inconnue',
 'math_lexing_error'        => 'erreur lexicale',
 'math_syntax_error'        => 'erreur de syntaxe',
-'math_image_error'         => 'La conversion en PNG a échoué ; vérifiez l’installation de Latex, dvips, gs et convert',
+'math_image_error'         => 'La conversion en PNG a échoué ; vérifiez l’installation de LaTeX, dvips, gs et convert',
 'math_bad_tmpdir'          => 'Impossible de créer ou d’écrire dans le répertoire math temporaire',
 'math_bad_output'          => 'Impossible de créer ou d’écrire dans le répertoire math de sortie',
 'math_notexvc'             => 'L’exécutable « texvc » est introuvable. Lisez math/README pour le configurer.',
@@ -987,10 +986,10 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-available-none'        => 'Vous ne pouvez pas changer l’appartenance aux différents groupes.',
 'userrights-available-add'         => 'Vous pouvez ajouter des utilisateurs à $1.',
 'userrights-available-remove'      => 'Vous pouvez enlever des utilisateurs de $1.',
-'userrights-available-add-self'    => 'Vous pouvez vous ajouter vous-même dans {{PLURAL:$2|ce groupe|ces groupes}} : $1.',
+'userrights-available-add-self'    => 'Vous pouvez vous ajouter vous-même à {{PLURAL:$2|ce groupe|ces groupes}} : $1.',
 'userrights-available-remove-self' => 'Vous pouvez vous enlever vous-même de {{PLURAL:$2|ce groupe|ces groupes}} : $1.',
 'userrights-no-interwiki'          => "Vous n'êtes pas habilité pour modifier les droits des utilisateurs sur d'autres wikis.",
-'userrights-nodatabase'            => "La base de donnée « $1 » n'existe pas ou n'est pas en local.",
+'userrights-nodatabase'            => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
 'userrights-nologin'               => "Vous devez vous [[Special:Userlogin|connecter]] avec un compte administrateur pour donner les droits d'utilisateur.",
 'userrights-notallowed'            => "Votre compte n'est pas habilité pour donner des droits d'utilisateur.",
 
@@ -1089,7 +1088,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'filetype-missing'            => 'Le fichier n’a aucune extension (comme « .jpg » par exemple).',
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
-'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut-être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
+'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
 'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier $1. Êtes-vous certain de vouloir modifier ce fichier ?',
 'filepageexists'              => "Une page (pas une image) avec ce nom existe déjà. Veuillez verifier <strong><tt>$1</tt></strong> si vous n'êtes pas sûr de vouloir la modifier.",
 'fileexists-extension'        => 'Un fichier avec un nom similaire existe déjà :<br />
@@ -1121,14 +1120,14 @@ Veuillez vérifer le fichier.',
 'upload-wasdeleted'           => "'''Attention : Vous êtes en train d'importer un fichier qui a déjà été supprimé auparavant.'''
 
 Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. Le journal des suppressions vous donnera les éléments d'information.",
-'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numérique et qui ne décrit pas le fichier. Veuillez choisir un nom de fichier décrivant votre fichier.',
+'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
 
 'upload-proto-error'      => 'Protocole incorrect',
 'upload-proto-error-text' => 'L’import requiert des URLs commençant par <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error'       => 'Erreur interne',
 'upload-file-error-text'  => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un administrateur système.',
 'upload-misc-error'       => 'Erreur d’import inconnue',
-'upload-misc-error-text'  => 'Une erreur inconnue est survenue pendant l’import. Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau. Si le problème persiste, contactez à un administrateur système.',
+'upload-misc-error-text'  => 'Une erreur inconnue est survenue pendant l’import. Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau. Si le problème persiste, contactez un administrateur système.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ne peut pas atteindre l’URL',
@@ -1189,7 +1188,7 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'filerevert-defaultcomment' => 'Révoqué jusqu’à la version du $1 à $2',
 'filerevert-submit'         => 'Révoquer',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' a été révoqué jusqu\'à [$4 la version du $2 à $3].</span>',
-'filerevert-badversion'     => 'Il n’y a pas de version plus ancienne du fichier avec le Timestamp donné.',
+'filerevert-badversion'     => 'Il n’y a pas de version plus ancienne du fichier qui porte la date donnée.',
 
 # File deletion
 'filedelete'                  => 'Supprimer $1',
@@ -1206,8 +1205,8 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'filedelete-otherreason'      => 'Raison différente/supplémentaire :',
 'filedelete-reason-otherlist' => 'Raison différente',
 'filedelete-reason-dropdown'  => '*Motifs de suppression habituels
-** Violation de copyright
-** Fichier en double',
+** Violation de droit d’auteur
+** Fichier dupliqué',
 
 # MIME search
 'mimesearch'         => 'Recherche par type MIME',
@@ -1223,7 +1222,7 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 
 # Unused templates
 'unusedtemplates'     => 'Modèles inutilisés',
-'unusedtemplatestext' => 'Cette page liste toutes les pages de l’espace de noms « Modèle » qui ne sont inclus dans aucune autre page. N’oubliez pas de vérifier s’il n’y a pas d’autre lien vers les modèles avant de les supprimer.',
+'unusedtemplatestext' => 'Cette page liste toutes les pages de l’espace de noms « Modèle » qui ne sont incluses dans aucune autre page. N’oubliez pas de vérifier s’il n’y a pas d’autre lien vers les modèles avant de les supprimer.',
 'unusedtemplateswlh'  => 'autres liens',
 
 # Random page
@@ -1240,16 +1239,15 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'userstats'              => 'Statistiques utilisateur',
 'sitestatstext'          => "La base de données contient actuellement {{PLURAL:$1|'''$1''' page|'''$1''' pages}}.
 
-Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (« ébauches »), les pages de redirection, ainsi que d’autres pages qui ne sont pas considérées comme des articles.
-Si l’on exclut ces pages, il reste {{PLURAL:$2|'''$2''' page qui est probablement un véritable article|'''$2''' pages qui sont probablement de véritables articles}}.
+Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (« ébauches »), les pages de redirection, ainsi que d’autres pages qui ne sont pas considérées comme des articles. Si l’on exclut ces pages, il reste {{PLURAL:$2|'''$2''' page qui est probablement un véritable article|'''$2''' pages qui sont probablement de véritables articles}}.
 
-{{PLURAL:$8|'''$8''' fichier a été téléchargé|'''$8''' fichiers ont été téléchargés}}.
+{{PLURAL:$8|'''$8''' fichier a été téléversé|'''$8''' fichiers ont été téléversés}}.
 
 {{PLURAL:$3|'''$3''' page a été consultée|'''$3''' pages ont été consultées}} et {{PLURAL:$4|'''$4''' page modifiée|'''$4''' pages modifiées}}.
 
 Cela représente une moyenne de {{PLURAL:$5|'''$5''' modification|'''$5''' modifications}} par page et de {{PLURAL:$6|'''$6''' consultation|'''$6''' consultations}} pour une modification.
 
-Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_queue|la file de tâche]].",
+Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_queue|la file des tâches]].",
 'userstatstext'          => "Il y a {{PLURAL:$1|'''$1''' [[Special:Listusers|utilisateur enregistré]]. Il y a '''$2''' (ou '''$4%''') qui est $5 (voir $3).|'''$1''' [[Special:Listusers|utilisateurs enregistrés]]. Parmi ceux-ci, '''$2''' (ou '''$4%''') sont $5 (voir $3).}}",
 'statistics-mostpopular' => 'Pages les plus consultées',
 
@@ -1297,7 +1295,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'mostimages'              => 'Images les plus utilisées',
 'mostrevisions'           => 'Articles les plus modifiés',
 'allpages'                => 'Toutes les pages',
-'prefixindex'             => 'Toutes les pages par premières lettres',
+'prefixindex'             => 'Toutes les pages débutant par…',
 'shortpages'              => 'Pages courtes',
 'longpages'               => 'Pages longues',
 'deadendpages'            => 'Pages en impasse',
@@ -1366,17 +1364,14 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 # Special:Listusers
 'listusersfrom'      => 'Afficher les utilisateurs à partir de :',
 'listusers-submit'   => 'Montrer',
-'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes en majuscules / minuscules.',
+'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.',
 
 # E-mail user
 'mailnologin'     => 'Pas d’adresse',
-'mailnologintext' => 'Vous devez être [[Special:Userlogin|connecté]]
-et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]]
-pour avoir la permission d’envoyer un message à un autre utilisateur.',
+'mailnologintext' => 'Vous devez être [[Special:Userlogin|connecté]] et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]] pour avoir la permission d’envoyer un message à un autre utilisateur.',
 'emailuser'       => 'Envoyer un message à cet utilisateur',
 'emailpage'       => 'Envoyer un courriel à l’utilisateur',
-'emailpagetext'   => 'Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
-L’adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ « Expéditeur » de votre message afin que le destinataire puisse vous répondre.',
+'emailpagetext'   => 'Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message. L’adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ « Expéditeur » de votre message afin que le destinataire puisse vous répondre.',
 'usermailererror' => 'Erreur dans le sujet du courriel :',
 'defemailsubject' => 'Courriel envoyé depuis {{SITENAME}}',
 'noemailtitle'    => 'Pas d’adresse électronique',
@@ -1402,8 +1397,7 @@ L’adresse électronique que vous avez indiquée dans vos préférences appara�
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => 'La page « $1 » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
-Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées, et la page apparaîtra <b>en gras</b> dans les [[Special:Recentchanges|modifications récentes]] pour être repérée plus facilement.',
+'addedwatchtext'       => 'La page « $1 » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées, et la page apparaîtra <b>en gras</b> dans les [[Special:Recentchanges|modifications récentes]] pour être repérée plus facilement.',
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
@@ -1444,7 +1438,7 @@ Les prochaines modifications de cette page et de la page de discussion associée
 'enotif_anon_editor'           => 'utilisateur non-enregistré $1',
 'enotif_body'                  => 'Cher $WATCHINGUSERNAME,
 
-la page de {{SITENAME}} $PAGETITLE a été $CHANGEDORCREATED le $PAGEEDITDATE par $PAGEEDITOR, voyez $PAGETITLE_URL pour la version actuelle.
+la page $PAGETITLE de {{SITENAME}} a été $CHANGEDORCREATED le $PAGEEDITDATE par $PAGEEDITOR, voyez $PAGETITLE_URL pour la version actuelle.
 
 $NEWPAGE
 
@@ -1456,7 +1450,7 @@ wiki : $PAGEEDITOR_WIKI
 
 Il n’y aura pas de nouvelles notifications en cas d’autres modifications à moins que vous ne visitiez cette page. Vous pouvez aussi remettre à zéro le notificateur pour toutes les pages de votre liste de suivi.
 
-             Votre {{SITENAME}} système de notification
+             Votre système de notification {{SITENAME}}
 
 --
 Pour modifier les paramètres de votre liste de suivi, visitez
@@ -1556,8 +1550,8 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'viewdeletedpage'              => 'Historique de la page supprimée',
 'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive. Elles figurent toujours dans la base de données et peuvent être restaurées.
 L’archive peut être effacée périodiquement.',
-'undeleteextrahelp'            => "* Pour restaurer toutes les versions de cette page, laissez vierges toutes les cases à cocher. Pour ne restaurer que certaines version, cochez les cases correspondant aux versions qui sont à restaurer, puis cliquez sur '''''Restaurer'''''.
-* Astuce : Pour sélectionner plusieurs versions à la suite, cliquez sur la première case, puis faites Maj+clic sur la dernière case : toutes les cases intermédiaires sont décochées.
+'undeleteextrahelp'            => "* Pour restaurer toutes les versions de cette page, laissez vierges toutes les cases à cocher. Pour ne restaurer que certaines versions, cochez les cases correspondant aux versions qui sont à restaurer, puis cliquez sur '''''Restaurer'''''.
+* Astuce : Pour sélectionner plusieurs versions à la suite, cliquez sur la première case, puis faites Maj+clic sur la dernière case : toutes les cases intermédiaires seront cochées.
 * En cliquant sur le bouton '''''Réinitialiser''''', la boîte de résumé et les cases cochées seront remises à zéro.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|révision archivée|révisions archivées}}',
 'undeletehistory'              => 'Si vous restaurez la page, toutes les révisions seront replacées dans l’historique.
@@ -1575,7 +1569,7 @@ Si une nouvelle page avec le même nom a été créée depuis la suppression, le
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version restaurée|versions restaurées}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versions}} et $2 {{PLURAL:$2|fichier|fichiers}} restaurés',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichier restauré|fichiers restaurés}}',
-'cannotundelete'               => 'La restauration a échoué. Un autre utilisateur a probablement restauré la page avant.',
+'cannotundelete'               => 'La restauration a échoué. Un autre utilisateur a probablement déjà restauré la page.',
 'undeletedpage'                => "<big>'''La page $1 a été restaurée.'''</big>
 
 Consultez l’[[Special:Log/delete|historique des effacements]] pour voir la liste des récents effacements et restaurations de pages.",
@@ -1584,8 +1578,8 @@ Consultez l’[[Special:Log/delete|historique des effacements]] pour voir la lis
 'undelete-search-prefix'       => 'Montrer les pages commençant par :',
 'undelete-search-submit'       => 'Chercher',
 'undelete-no-results'          => 'Aucune page correspondant à la recherche n’a été trouvée dans les archives.',
-'undelete-filename-mismatch'   => 'Impossible de restaurer le fichier avec le timestamp $1 : fichier introuvable',
-'undelete-bad-store-key'       => 'Impossible de restaurer le fichier avec le timestamp $1 : le fichier était absent avant la suppression.',
+'undelete-filename-mismatch'   => 'Impossible de restaurer le fichier daté du $1 : fichier introuvable',
+'undelete-bad-store-key'       => 'Impossible de restaurer le fichier daté du $1 : le fichier était absent avant la suppression.',
 'undelete-cleanup-error'       => 'Erreur lors de la suppression de l’archive inutilisée « $1 ».',
 'undelete-missing-filearchive' => 'Impossible de restaurer le fichier avec l’ID $1 parce qu’il n’est pas dans la base de données. Il a peut-être déjà été restauré.',
 'undelete-error-short'         => 'Erreur lors de la restauration du fichier : $1',
@@ -1662,7 +1656,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipboptions'                  => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'autre',
 'ipbotherreason'              => 'Motif différent ou supplémentaire',
-'ipbhidename'                 => 'Masquer le nom d’utilisateur ou l’IP du log de blocage, de la liste des blocages actifs et de la liste des utilisateurs',
+'ipbhidename'                 => 'Masquer le nom d’utilisateur ou l’IP du journal des blocages, de la liste des blocages actifs et de la liste des utilisateurs',
 'badipaddress'                => 'L’adresse IP n’est pas correcte.',
 'blockipsuccesssub'           => 'Blocage réussi',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] a été bloqué.<br />Vous pouvez consulter la [[Special:Ipblocklist|liste des comptes et des adresses IP bloqués]].',
@@ -1672,8 +1666,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipb-blocklist-addr'          => 'Voir les blocages existants pour $1',
 'ipb-blocklist'               => 'Voir les blocages existants',
 'unblockip'                   => 'Débloquer un utilisateur ou une adresse IP',
-'unblockiptext'               => 'Utilisez le formulaire ci-dessous pour rétablir l’accès en écriture
-d’une adresse IP précédemment bloquée.',
+'unblockiptext'               => 'Utilisez le formulaire ci-dessous pour rétablir l’accès en écriture d’une adresse IP précédemment bloquée.',
 'ipusubmit'                   => 'Débloquer cette adresse',
 'unblocked'                   => '[[User:$1|$1]] a été débloqué',
 'unblocked-id'                => 'Le blocage $1 a été enlevé',
@@ -1688,14 +1681,14 @@ d’une adresse IP précédemment bloquée.',
 'anononlyblock'               => 'utilisateur non enregistré uniquement',
 'noautoblockblock'            => 'blocage automatique désactivé',
 'createaccountblock'          => 'création de compte bloquée',
-'emailblock'                  => 'e-mail bloqué',
-'ipblocklist-empty'           => 'La liste des adresses bloquées est actuellement vide.',
+'emailblock'                  => 'courriel bloqué',
+'ipblocklist-empty'           => 'La liste des adresses IP bloquées est actuellement vide.',
 'ipblocklist-no-results'      => 'L’adresse IP ou l’utilisateur n’a pas été bloqué.',
 'blocklink'                   => 'Bloquer',
 'unblocklink'                 => 'débloquer',
 'contribslink'                => 'Contributions',
 'autoblocker'                 => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
-'blocklogpage'                => 'Historique des blocages',
+'blocklogpage'                => 'Journal des blocages',
 'blocklogentry'               => 'a bloqué « [[$1]] » - durée : $2 $3',
 'blocklogtext'                => 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
 'unblocklogentry'             => 'a débloqué « $1 »',
@@ -1708,14 +1701,14 @@ d’une adresse IP précédemment bloquée.',
 'ipb_already_blocked'         => '« $1 » est déjà bloqué',
 'ipb_cant_unblock'            => 'Erreur : Le blocage d’ID $1 n’existe pas. Il est possible qu’un déblocage ait déjà été effectué.',
 'ipb_blocked_as_range'        => "Erreur : L'adresse IP $1 n'a pas été bloquée directement et ne peut donc être débloquée. Elle a été, cependant, bloquée par la plage $2 laquelle peut être débloquée.",
-'ip_range_invalid'            => 'Bloc IP incorrect.',
-'blockme'                     => 'Bloquez moi',
-'proxyblocker'                => 'Bloqueur de proxy',
+'ip_range_invalid'            => 'Plage IP incorrecte.',
+'blockme'                     => 'Bloquez-moi',
+'proxyblocker'                => 'Bloqueur de mandataires',
 'proxyblocker-disabled'       => 'Cette fonction est désactivée.',
-'proxyblockreason'            => 'Votre adresse IP a été bloquée car il s’agit d’un proxy ouvert. Merci de contacter votre fournisseur d’accès internet ou votre support technique et de l’informer de ce problème de sécurité.',
+'proxyblockreason'            => 'Votre adresse IP a été bloquée car il s’agit d’un mandataire ouvert. Merci de contacter votre fournisseur d’accès Internet ou votre support technique et de l’informer de ce problème de sécurité.',
 'proxyblocksuccess'           => 'Terminé.',
-'sorbsreason'                 => 'Votre adresse IP est listée en tant que proxy ouvert DNSBL.',
-'sorbs_create_account_reason' => 'Votre adresse IP est listée en tant que proxy ouvert DNSBL. Vous ne pouvez créer un compte',
+'sorbsreason'                 => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL.',
+'sorbs_create_account_reason' => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL. Vous ne pouvez créer un compte',
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base',
@@ -1741,14 +1734,13 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 
 # Move page
 'movepage'                => 'Renommer une page',
-'movepagetext'            => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
-L’ancien titre deviendra une page de redirection vers le nouveau titre. Les liens vers le titre de l’ancienne page ne seront pas changés ; veuillez vérifier que ce déplacement n’a pas créé de double redirect. Vous devez vous assurez que les liens continuent de pointer vers leur destination supposée.
+'movepagetext'            => 'Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L’ancien titre deviendra une page de redirection vers le nouveau titre. Les liens vers le titre de l’ancienne page ne seront pas changés ; veuillez vérifier que ce déplacement n’a pas créé de double redirection. Vous devez vous assurer que les liens continuent de pointer vers leur destination supposée.
 
 Une page ne sera pas déplacée si la page du nouveau titre existe déjà, à moins que cette dernière soit vide ou en redirection, et qu’elle n’ait pas d’historique. Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez effacer une page déjà existante par ce procédé.
 
 <b>ATTENTION ! </b>
-Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée. Assurez-vous d'en avoir compris les conséquences avant de continuer.",
-'movepagetalktext'        => 'La page de discussion associée, si présente, sera automatiquement renommée avec <b>sauf si :</b>
+Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée. Assurez-vous d’en avoir compris les conséquences avant de continuer.',
+'movepagetalktext'        => 'La page de discussion associée, si présente, sera automatiquement renommée <b>sauf si :</b>
 *Vous renommez une page vers un autre espace,
 *Une page de discussion existe déjà avec le nouveau nom, ou
 *Vous avez désélectionné le bouton ci-dessous.
@@ -1796,7 +1788,7 @@ Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous,
 Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] pour la page {{Mediawiki:mainpage}}.',
 'exportcuronly'     => 'Exporter uniquement la version courante sans l’historique complet',
 'exportnohistory'   => "---- 
-'''Note :''' l’exportation complète de l’historique des pages à l’aide de ce formulaire a été désactivée pour des raisons de performances.",
+'''Note :''' l’exportation complète de l’historique des pages à l’aide de ce formulaire a été désactivée pour des raisons de performance.",
 'export-submit'     => 'Exporter',
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
 'export-addcat'     => 'Ajouter',
@@ -1847,7 +1839,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'importnofile'               => 'Aucun fichier n’a été importé.',
 'importuploaderrorsize'      => 'Le téléchargement du fichier à importer a échoué. Sa taille est plus grande que celle autorisée.',
 'importuploaderrorpartial'   => 'Le téléchargement du fichier à importer a échoué. Celui-ci ne l’a été que partiellement.',
-'importuploaderrortemp'      => 'Le téléchargement du fichier à importer a échoué. Un dossier temporaire est manquant.',
+'importuploaderrortemp'      => 'Le téléversement du fichier à importer a échoué. Un dossier temporaire est manquant.',
 'import-parse-failure'       => "Rupture dans l'analyse de l'import XML",
 'import-noarticle'           => 'Aucune page à importer !',
 'import-nonewrevisions'      => 'Toute les révisions ont été importées auparavant.',
@@ -1856,7 +1848,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',
 'importlogpagetext'                => 'Imports administratifs de pages avec l’historique à partir des autres wikis.',
-'import-logentry-upload'           => 'a importé (téléchargement) $1',
+'import-logentry-upload'           => 'a importé (téléversement) $1',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
 'import-logentry-interwiki'        => 'a importé (transwiki) $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} depuis $2',
@@ -1889,7 +1881,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'tooltip-p-logo'                  => 'Page principale',
 'tooltip-n-mainpage'              => 'Visitez la page principale',
 'tooltip-n-portal'                => 'À propos du projet',
-'tooltip-n-currentevents'         => 'Trouver des informations sur les évènements actuels',
+'tooltip-n-currentevents'         => 'Trouver des informations sur les événements actuels',
 'tooltip-n-recentchanges'         => 'Liste des modifications récentes sur le wiki',
 'tooltip-n-randompage'            => 'Afficher une page au hasard',
 'tooltip-n-help'                  => 'Aide',
@@ -1933,7 +1925,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 
 # Metadata
 'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
-'nocreativecommons' => 'Les données méta « Creative Commons RDF » sont désactivées sur ce serveur.',
+'nocreativecommons' => 'Les métadonnées « Creative Commons RDF » sont désactivées sur ce serveur.',
 'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
 
 # Attribution
@@ -2032,7 +2024,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 # Metadata
 'metadata'          => 'Métadonnées',
-'metadata-help'     => 'Ce fichier contient des informations supplémentaires probablement ajoutées par l’appareil photo ou le scanner qui l’a produite. Si le fichier a été modifié, certains détails peuvent ne pas refléter l’image modifiée.',
+'metadata-help'     => 'Ce fichier contient des informations supplémentaires probablement ajoutées par l’appareil photo ou le numériseur qui l’a produite. Si le fichier a été modifié, certains détails peuvent ne pas refléter l’image modifiée.',
 'metadata-expand'   => 'Montrer les informations détaillées',
 'metadata-collapse' => 'Cacher les informations détaillées',
 'metadata-fields'   => 'Les champs de métadonnées d’EXIF listés dans ce message seront inclus dans la page de description de l’image quand la table de métadonnées sera réduite. Les autres champs seront cachés par défaut.
@@ -2131,7 +2123,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-devicesettingdescription'    => 'Description de la configuration du dispositif',
 'exif-subjectdistancerange'        => 'Distance du sujet',
 'exif-imageuniqueid'               => 'Identifiant unique de l’image',
-'exif-gpsversionid'                => 'Version du tag GPS',
+'exif-gpsversionid'                => 'Version de la balise GPS',
 'exif-gpslatituderef'              => 'Référence pour la latitude',
 'exif-gpslatitude'                 => 'Latitude',
 'exif-gpslongituderef'             => 'Référence pour la longitude',
@@ -2172,10 +2164,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-orientation-2' => 'Inversée horizontalement', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Tournée de 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Inversée verticalement', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Tournée de 90° à gauche et inversée verticalement', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Tournée de 90° à droite', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Tournée de 90° à droite et inversée verticalement', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Tournée de 90° à gauche', # 0th row: left; 0th column: bottom
+'exif-orientation-5' => 'Tournée de 90° dans le sens antihoraire et inversée verticalement', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Tournée de 90° dans le sens horaire', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Tournée de 90° dans le sens horaire et inversée verticalement', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Tournée de 90° dans le sens antihoraire', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'Données contiguës',
 'exif-planarconfiguration-2' => 'Données séparées',
@@ -2213,10 +2205,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-lightsource-9'   => 'Temps clair',
 'exif-lightsource-10'  => 'Temps nuageux',
 'exif-lightsource-11'  => 'Ombre',
-'exif-lightsource-12'  => 'Éclairage fluorescent « lumière du jour » (D 5700 – 7100K)',
-'exif-lightsource-13'  => 'Éclairage fluorescent blanc « jour » (N 4600 – 5400K)',
-'exif-lightsource-14'  => 'Éclairage fluorescent blanc « froid » (W 3900 – 4500K)',
-'exif-lightsource-15'  => 'Éclairage fluorescent blanc (WW 3200 – 3700K)',
+'exif-lightsource-12'  => 'Éclairage fluorescent « lumière du jour » (D 5700 – 7100 K)',
+'exif-lightsource-13'  => 'Éclairage fluorescent blanc « jour » (N 4600 – 5400 K)',
+'exif-lightsource-14'  => 'Éclairage fluorescent blanc « froid » (W 3900 – 4500 K)',
+'exif-lightsource-15'  => 'Éclairage fluorescent blanc (WW 3200 – 3700 K)',
 'exif-lightsource-17'  => 'Lumière standard A',
 'exif-lightsource-18'  => 'Lumière standard B',
 'exif-lightsource-19'  => 'Lumière standard C',
@@ -2229,7 +2221,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-sensingmethod-2' => 'Capteur de zone de couleurs monochromatiques',
 'exif-sensingmethod-3' => 'Capteur de zone de couleurs bichromatiques',
 'exif-sensingmethod-4' => 'Capteur de zone de couleurs trichromatiques',
-'exif-sensingmethod-5' => 'Capteur couleur séquenciel',
+'exif-sensingmethod-5' => 'Capteur couleur séquentiel',
 'exif-sensingmethod-7' => 'Capteur trilinéaire',
 'exif-sensingmethod-8' => 'Capteur couleur linéaire séquentiel',
 
@@ -2242,7 +2234,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 'exif-exposuremode-0' => 'Automatique',
 'exif-exposuremode-1' => 'Manuelle',
-'exif-exposuremode-2' => 'Mise entre parenthèses automatique',
+'exif-exposuremode-2' => 'Fourchette automatique',
 
 'exif-whitebalance-0' => 'Automatique',
 'exif-whitebalance-1' => 'Manuelle',
@@ -2284,7 +2276,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpslongitude-w' => 'Ouest',
 
 'exif-gpsstatus-a' => 'Mesure en cours',
-'exif-gpsstatus-v' => 'Interopérabilité de la mesure',
+'exif-gpsstatus-v' => 'Interfonctionnement de la mesure',
 
 'exif-gpsmeasuremode-2' => 'Mesure à 2 dimensions',
 'exif-gpsmeasuremode-3' => 'Mesure à 3 dimensions',
@@ -2313,10 +2305,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'confirmemail'            => 'Confirmer adresse de courriel',
 'confirmemail_noemail'    => 'L’adresse de courriel configurée dans vos [[Special:Preferences|préférences]] n’est pas valide.',
 'confirmemail_text'       => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci-dessous pour envoyer un courriel de confirmation à votre adresse. Le courriel contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.',
-'confirmemail_pending'    => '<div class="error"> Un code de confirmation vous a déjà été envoyé par e-mail ; si vous venez de créer votre compte, veuillez attendre quelques minutes que l’e-mail arrive avant de demander un nouveau code. </div>',
+'confirmemail_pending'    => '<div class="error"> Un code de confirmation vous a déjà été envoyé par courriel ; si vous venez de créer votre compte, veuillez attendre quelques minutes que le courriel arrive avant de demander un nouveau code. </div>',
 'confirmemail_send'       => 'Envoyer un code de confirmation',
 'confirmemail_sent'       => 'Courriel de confirmation envoyé',
-'confirmemail_oncreate'   => 'Un code de confirmation a été envoyé à votre adresse e-mail. Ce code n’est pas requis pour se connecter, mais vous en aurez besoin pour activer les fonctionnalités liées aux e-mails sur ce wiki.',
+'confirmemail_oncreate'   => 'Un code de confirmation a été envoyé à votre adresse de courriel. Ce code n’est pas requis pour se connecter, mais vous en aurez besoin pour activer les fonctionnalités liées aux courriels sur ce wiki.',
 'confirmemail_sendfailed' => 'Impossible d’envoyer le courriel de confirmation. Vérifiez votre adresse.
 
 Retour du programme de courriel : $1',
@@ -2328,7 +2320,7 @@ Retour du programme de courriel : $1',
 'confirmemail_subject'    => 'Confirmation d’adresse de courriel pour {{SITENAME}}',
 'confirmemail_body'       => 'Quelqu’un, probablement vous avec l’adresse IP $1, a enregistré un compte « $2 » avec cette adresse de courriel sur le site {{SITENAME}}.
 
-Pour confirmer que ce compte vous appartient vraiment et activer les fonctions de messagerie sur {{SITENAME}}, veuillez suivre le lien ci dessous dans votre navigateur :
+Pour confirmer que ce compte vous appartient vraiment et activer les fonctions de messagerie sur {{SITENAME}}, veuillez suivre le lien ci-dessous dans votre navigateur :
 
 $3
 
@@ -2346,7 +2338,7 @@ S’il ne s’agit pas de vous, n’ouvrez pas le lien. Ce code de confirmation 
 'trackbackdeleteok' => 'Le rétrolien a été supprimé avec succès.',
 
 # Delete conflict
-'deletedwhileediting' => 'Attention : cette page a été supprimée après que vous avez commencé à la modifier.',
+'deletedwhileediting' => 'Attention : cette page a été supprimée après que vous ayez commencé à la modifier.',
 'confirmrecreate'     => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant : 
 : ''$2'' 
 Veuillez confirmer que vous désirez recréer cet article.",
@@ -2439,7 +2431,7 @@ Essayez la prévisualisation normale.',
 'version-parserhooks'              => 'Extensions du parseur',
 'version-variables'                => 'Variables',
 'version-other'                    => 'Divers',
-'version-mediahandlers'            => 'Support media',
+'version-mediahandlers'            => 'Support média',
 'version-hooks'                    => 'Crochets',
 'version-extension-functions'      => 'Fonctions des extensions',
 'version-parser-extensiontags'     => 'Balises supplémentaires du parseur',

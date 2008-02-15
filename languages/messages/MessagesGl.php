@@ -263,7 +263,7 @@ $messages = array(
 
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Traído desde "$1"',
-'youhavenewmessages'      => 'Ten $1 ($2).',
+'youhavenewmessages'      => '<img src="http://upload.wikimedia.org/wikipedia/commons/3/36/Nuvola_apps_email.png" alt="" width="25" height="25" longdesc="/wiki/Image:Nuvola_apps_email.png" /> Ten $1 ($2).',
 'newmessageslink'         => 'mensaxes novas',
 'newmessagesdifflink'     => 'diferenzas coa revisión anterior',
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
@@ -1040,7 +1040,7 @@ PICT # misc.
 'imgdesc'                   => 'desc',
 'imgfile'                   => 'ficheiro',
 'filehist'                  => 'Historial do ficheiro',
-'filehist-help'             => 'Calque nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
+'filehist-help'             => 'Faga clic nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
 'filehist-deleteall'        => 'borrar todo',
 'filehist-deleteone'        => 'borrar isto',
 'filehist-revert'           => 'desfacer',
@@ -1108,7 +1108,7 @@ PICT # misc.
 
 # Unused templates
 'unusedtemplates'     => 'Modelos sen uso',
-'unusedtemplatestext' => "Esta páxina contén unha listaxe de todas as páxinas no espazo de nomes ''template'' que non están incluídas en ningunha outra páxina. Lembre verificar outros enlaces cara os ''templates'' antes de borralos.",
+'unusedtemplatestext' => 'Esta páxina contén unha listaxe de todas as páxinas no espazo de nomes modelo que non están incluídas en ningunha outra páxina. Lembre verificar outros enlaces cara aos modelos antes de borralos.',
 'unusedtemplateswlh'  => 'outros enlaces',
 
 # Random page
@@ -1124,7 +1124,7 @@ PICT # misc.
 'sitestats'              => 'Estatísticas de {{SITENAME}}',
 'userstats'              => 'Estatísticas do usuario',
 'sitestatstext'          => "Actualmente hai {{PLURAL:$1|'''1''' páxina|'''$1''' páxinas en total}} na base de datos.
-Isto inclúe as páxinas de discusión, as páxinas acerca de {{SITENAME}}, páxinas de contido mínimo, redireccións e outras que probabelmente non deberían considerarse como páxinas con contido.
+Isto inclúe as páxinas de conversa, as páxinas acerca de {{SITENAME}}, páxinas de contido mínimo, redireccións e outras que probabelmente non deberían considerarse como páxinas con contido.
 Excluíndo todo isto, hai {{PLURAL:$2|'''1''' páxina que é|'''$2''' páxinas que son}} probabelmente {{PLURAL:$2|páxina|páxinas}} con contido lexítimo. 
 
 Recibíronse '''$8''' {{PLURAL:$8|ficheiro|ficheiros}}.
@@ -1133,8 +1133,7 @@ Pedíronse un total de '''$3''' {{PLURAL:$3|páxina|páxinas}} e houbo '''$4''' 
 Isto resulta nunha media de '''$5''' edicións por páxina e '''$6''' visionados por edición.
 
 A lonxitude da [http://meta.wikimedia.org/wiki/Help:Job_queue cola de traballos] é de '''$7'''.",
-'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuario]] rexistrado|'''$1''' [[Special:Listusers|usuarios]] rexistrados}}, dos cais
-'''$2''' (ou '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
+'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuario]] rexistrado|'''$1''' [[Special:Listusers|usuarios]] rexistrados}}, dos cales '''$2''' (ou '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
 'statistics-mostpopular' => 'Páxinas máis vistas',
 
 'disambiguations'      => 'Páxinas de homónimos',
@@ -1144,7 +1143,7 @@ desde a [[MediaWiki:disambiguationspage|páxina de homónimos]].",
 
 'doubleredirects'     => 'Redireccións dobres',
 'doubleredirectstext' => '<b>Atención:</b> Esta lista por ter positivos falsos. Isto usualmente quere dicir que hai máis texto con ligazóns baixo o primeiro #REDIRECT.<br />
-Cada fileira contén ligazóns cara á primeira e segunda redirección, e tamén á primeira liña da segunda redirección, usualmente dando a páxina obxectivo "real", á que a primeira redirección debería apuntar.',
+Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tamén á primeira liña da segunda redirección, usualmente dando a páxina obxectivo "real", á que a primeira redirección debería apuntar.',
 
 'brokenredirects'        => 'Redireccións rotas',
 'brokenredirectstext'    => 'Estas redireccións ligan cara a unha páxina que non existe:',
@@ -1189,7 +1188,7 @@ Cada fileira contén ligazóns cara á primeira e segunda redirección, e tamén
 'deadendpages'            => 'Páxinas sen ligazóns cara a outras',
 'deadendpagestext'        => 'Estas páxinas non enlazan con ningunha outra páxina de {{SITENAME}}.',
 'protectedpages'          => 'Páxinas protexidas',
-'protectedpagestext'      => 'As seguintes páxinas están protexidas fronte a edición ou traslado',
+'protectedpagestext'      => 'As seguintes páxinas están protexidas fronte á edición ou traslado',
 'protectedpagesempty'     => 'Non hai páxinas protexidas neste momento',
 'protectedtitles'         => 'Títulos protexidos',
 'protectedtitlestext'     => 'Os seguintes títulos están protexidos da creación',
@@ -1299,7 +1298,7 @@ e a páxina aparecerá en '''negra''' na [[Special:Recentchanges|listaxe de camb
 'unwatchthispage'      => 'Deixar de vixiar',
 'notanarticle'         => 'Non é unha páxina de contido',
 'watchnochange'        => 'Ningún dos elementos baixo vixilancia foi editado no período de tempo amosado.',
-'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxinas}} vixiadas sen contar as de discusión.',
+'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxinas}} vixiadas sen contar as de conversa.',
 'wlheader-enotif'      => '* Está dispoñíbel a notificación por correo electrónico.',
 'wlheader-showupdated' => "* As páxinas que cambiaron desde a súa última visita amósanse en '''negra'''",
 'watchmethod-recent'   => 'buscando edicións recentes das páxinas vixiadas',
@@ -1411,7 +1410,7 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|disc.]]).',
 'protect-locked-dblock'       => 'Os niveis de protección non se poden modificar debido a un bloqueo da base de datos activa.
 Eis a configuración actual da páxina <strong>$1</strong>:',
 'protect-locked-access'       => 'A súa conta non dispón de permisos para mudar os niveis de protección.
-Eis a configuración actual da páxina <strong>$1</strong>:',
+Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'protect-cascadeon'           => 'Esta páxina está protexida neste momento porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|páxinas, que foron protexidas}} coa opción protección en serie activada. Pode mudar o nivel de protección da páxina pero iso non afectará á protección en serie.',
 'protect-default'             => '(predeterminado)',
 'protect-fallback'            => 'Require permisos de "$1"',
@@ -1645,9 +1644,9 @@ que xa existe.
 <b>ATENCIÓN!</b>
 Este cambio nunha páxina popular pode ser drástico e inesperado;
 por favor, asegúrese de que entende as consecuencias disto antes de seguir.",
-'movepagetalktext'        => "A páxina de discusión asociada, se existe, será automaticamente movida con esta '''agás que''':
+'movepagetalktext'        => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
 *Estea a mover a páxina empregando espazos de nomes,
-*Xa exista unha páxina de discusión con ese nome, ou
+*Xa exista unha páxina de conversa con ese nome, ou
 *Desactive a opción de abaixo.
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
@@ -1659,14 +1658,14 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'move-watch'              => 'Vixiar esta páxina',
 'movepagebtn'             => 'Mover páxina',
 'pagemovedsub'            => 'O movemento foi un éxito',
-'movepage-moved'          => '<big>\'\'\'"$1" moveuse para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" moveuse para "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido. Por favor escolla outro nome.',
 'cantmove-titleprotected' => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
-'talkexists'              => 'Só foi movida con éxito a páxina, pero a páxina de discusión non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.',
+'talkexists'              => 'Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.',
 'movedto'                 => 'movido a',
-'movetalk'                => 'Mover tamén a páxina de "discusión", se cómpre.',
-'talkpagemoved'           => 'A páxina de discusión correspondente foi movida tamén.',
-'talkpagenotmoved'        => 'A páxina de discusión correspondente <strong>non</strong> foi movida.',
+'movetalk'                => 'Mover tamén a páxina de "conversa", se cómpre.',
+'talkpagemoved'           => 'A páxina de conversa correspondente foi movida tamén.',
+'talkpagenotmoved'        => 'A páxina de conversa correspondente <strong>non</strong> foi movida.',
 '1movedto2'               => '[[$1]] movida a [[$2]]',
 '1movedto2_redir'         => '[[$1]] movida a [[$2]] sobre unha redirección',
 'movelogpage'             => 'Rexistro de traslados',
@@ -1757,17 +1756,17 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'A miña páxina de usuario',
 'tooltip-pt-anonuserpage'         => 'A páxina de usuario da IP desde a que está a editar',
-'tooltip-pt-mytalk'               => 'A miña páxina de discusión',
-'tooltip-pt-anontalk'             => 'Discusión acerca de edicións feitas desde este enderezo IP',
+'tooltip-pt-mytalk'               => 'A miña páxina de conversa',
+'tooltip-pt-anontalk'             => 'Conversa acerca de edicións feitas desde este enderezo IP',
 'tooltip-pt-preferences'          => 'As miñas preferencias',
 'tooltip-pt-watchlist'            => 'A listaxe de páxinas cuxas modificacións está a seguir',
 'tooltip-pt-mycontris'            => 'Listaxe das miñas contribucións',
 'tooltip-pt-login'                => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
 'tooltip-pt-anonlogin'            => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
 'tooltip-pt-logout'               => 'Saír do sistema',
-'tooltip-ca-talk'                 => 'Discusión acerca do contido da páxina',
+'tooltip-ca-talk'                 => 'Conversa acerca do contido da páxina',
 'tooltip-ca-edit'                 => 'Pode modificar esta páxina. Antes de gardala utilice, por favor, o botón de vista previa.',
-'tooltip-ca-addsection'           => 'Contribúa cun comentario a esta discusión.',
+'tooltip-ca-addsection'           => 'Contribúa cun comentario a esta conversa.',
 'tooltip-ca-viewsource'           => 'Esta páxina está protexida. Pode ver o código fonte.',
 'tooltip-ca-history'              => 'Versións anteriores desta páxina.',
 'tooltip-ca-protect'              => 'Protexer esta páxina',
@@ -1777,7 +1776,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-ca-watch'                => 'Engadir esta páxina á listaxe de vixilancia',
 'tooltip-ca-unwatch'              => 'Eliminar esta páxina da súa listaxe de vixilancia',
 'tooltip-search'                  => 'Procurar neste wiki [alt-f]',
-'tooltip-search-go'               => 'Ir a unha páxina con este texto exacto, se existir',
+'tooltip-search-go'               => 'Ir a unha páxina con este texto exacto, se existe',
 'tooltip-search-fulltext'         => 'Procurar este texto nas páxinas',
 'tooltip-p-logo'                  => 'Portada',
 'tooltip-n-mainpage'              => 'Visitar a Portada',
@@ -1854,10 +1853,10 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 # Info page
 'infosubtitle'   => 'Información da páxina',
 'numedits'       => 'Número de edicións (artigo): $1',
-'numtalkedits'   => 'Número de edicións (páxina de discusión): $1',
+'numtalkedits'   => 'Número de edicións (páxina de conversa): $1',
 'numwatchers'    => 'Número de vixiantes: $1',
 'numauthors'     => 'Número de autores distintos (artigo): $1',
-'numtalkauthors' => 'Número de autores distintos (páxina de discusión): $1',
+'numtalkauthors' => 'Número de autores distintos (páxina de conversa): $1',
 
 # Math options
 'mw_math_png'    => 'Orixinar sempre unha imaxe PNG',
@@ -2201,10 +2200,10 @@ Só se consideran os elementos dunha listaxe (liñas que comezan por *). A prime
 'confirmemail_noemail'    => 'Non ten configurado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] de usuario.',
 'confirmemail_text'       => '{{SITENAME}} require que vostede valide o seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: clique nesta ligazón para abrila no navegador web e 
 confirmar que o seu enderezo é válido.',
-'confirmemail_pending'    => '<div class="error"> Envíouselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código. </div>',
+'confirmemail_pending'    => '<div class="error"> Envióuselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.</div>',
 'confirmemail_send'       => 'Enviar por correo elecrónico un código de confirmación',
 'confirmemail_sent'       => 'Correo electrónico de confirmación enviado.',
-'confirmemail_oncreate'   => 'Envíouselle un código de confirmación ao enderezo de correo electrónico. Este código non é imprescindible para entrar no wiki pero é preciso para activar as funcións do wiki baseadas no correo.',
+'confirmemail_oncreate'   => 'Envióuselle un código de confirmación ao enderezo de correo electrónico. Este código non é imprescindible para entrar no wiki pero é preciso para activar as funcións do wiki baseadas no correo.',
 'confirmemail_sendfailed' => 'Non se puido enviar a mensaxe de correo de confirmación. Comprobe que no enderezo non haxa caracteres non válidos. O programa de correo informa do seguinte: $1',
 'confirmemail_invalid'    => 'Código de confirmación non válido. Pode que o código expirase.',
 'confirmemail_needlogin'  => 'Necesita $1 para confirmar o seu enderezo de correo electrónico.',
@@ -2297,7 +2296,7 @@ Tente a vista previa normal.',
 'lag-warn-high'   => 'Debido a unha grande demora do servidor da base de datos, pode que nesta listaxe non aparezan as modificacións feitas no(s) último(s) $1 segundo(s).',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'A súa listaxe de vixilancia inclúe {{PLURAL:$1|un título|$1 títulos}}, excluíndo as páxinas de discusión.',
+'watchlistedit-numitems'       => 'A súa listaxe de vixilancia inclúe {{PLURAL:$1|un título|$1 títulos}}, excluíndo as páxinas de conversa.',
 'watchlistedit-noitems'        => 'A súa listaxe de vixilancia non contén ningún título.',
 'watchlistedit-normal-title'   => 'Editar a listaxe de vixilancia',
 'watchlistedit-normal-legend'  => 'Eliminar títulos da listaxe de vixilancia',

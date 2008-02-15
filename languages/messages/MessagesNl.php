@@ -444,7 +444,7 @@ $messages = array(
 'toolbox'           => 'Hulpmiddelen',
 'userpage'          => 'Gebruikerspagina tonen',
 'projectpage'       => 'Projectpagina tonen',
-'imagepage'         => 'Afbeeldingspagina tonen',
+'imagepage'         => 'Mediabestandspagina tonen',
 'mediawikipage'     => 'Berichtpagina tonen',
 'templatepage'      => 'Sjabloonpagina tonen',
 'viewhelppage'      => 'Hulppagina tonen',
@@ -588,7 +588,7 @@ Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
 'querypage-no-updates' => 'Deze pagina kan niet bijgewerkt worden. Deze gegevens worden niet ververst.',
 'wrong_wfQuery_params' => 'Verkeerde parameters voor wfQuery()<br />
 Functie: $1<br />
-Query: $2',
+Zoekopdracht: $2',
 'viewsource'           => 'Brontekst tonen',
 'viewsourcefor'        => 'van $1',
 'actionthrottled'      => 'Handeling tegengehouden',
@@ -597,7 +597,7 @@ Query: $2',
 'viewsourcetext'       => 'U kan de brontekst van deze pagina bekijken en kopiëren:',
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
 'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die gebruikt wordt door de software. Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen. Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl Betawiki] te gebruiken, het vertalingsproject voor MediaWiki.",
-'sqlhidden'            => '(SQL-query verborgen)',
+'sqlhidden'            => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected'     => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
 'namespaceprotected'   => "U heeft geen rechten om pagina's in de naamruimte '''$1''' te bewerken.",
@@ -611,14 +611,14 @@ $2",
 U kan {{SITENAME}} nu anoniem gebruiken of weer aanmelden als dezelfde of een andere gebruiker. Mogelijk worden nog een aantal pagina's getoond alsof u aangemeld bent totdat u de cache van uw browser leegt.",
 'welcomecreation'            => '== Welkom, $1! ==
 
-Uw account is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te passen.',
+Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te passen.',
 'loginpagetitle'             => 'Gebruikersnaam',
 'yourname'                   => 'Gebruikersnaam',
 'yourpassword'               => 'Wachtwoord',
 'yourpasswordagain'          => 'Geef uw wachtwoord opnieuw in:',
 'remembermypassword'         => 'Aanmeldgegevens onthouden',
 'yourdomainname'             => 'Uw domein',
-'externaldberror'            => 'Er is een fout opgetreden bij het aanmelden bij de database of u heeft geen toestemming uw externe account bij te werken.',
+'externaldberror'            => 'Er is een fout opgetreden bij het aanmelden bij de database of u heeft geen toestemming uw externe gebruiker bij te werken.',
 'loginproblem'               => '<b>Er was een probleem bij het aanmelden.</b><br />Probeer het a.u.b. opnieuw.',
 'login'                      => 'Aanmelden',
 'loginprompt'                => 'U moet cookies ingeschakeld hebben om u te kunnen aanmelden bij {{SITENAME}}.',
@@ -715,7 +715,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'nowiki_sample'   => 'Voer hier de niet op te maken tekst in',
 'nowiki_tip'      => 'Wiki-opmaak negeren',
 'image_sample'    => 'Voorbeeld.png',
-'image_tip'       => 'Afbeelding',
+'image_tip'       => 'Mediabestand',
 'media_sample'    => 'Voorbeeld.ogg',
 'media_tip'       => 'Link naar bestand',
 'sig_tip'         => 'Uw handtekening met datum en tijd',
@@ -1149,12 +1149,12 @@ om bestanden te uploaden.',
 'uploaderror'                 => 'Uploadfout',
 'uploadtext'                  => "Gebruik het onderstaande formulier om bestanden te uploaden. Om eerder geüploade bestanden te bekijken of te zoeken kan u naar de [[Special:Imagelist|bestandslijst]] gaan. Uploads en verwijderingen worden bijgehouden in het [[Special:Log/upload|uploadlogboek]].
 
-Om de afbeelding of het bestand in te voegen in een pagina kan u een van de volgende codes gebruiken, al naar gelang het bestandsformaat dat van toepassing is:
+Om het bestand in te voegen in een pagina kan u een van de volgende codes gebruiken, al naar gelang het bestandsformaat dat van toepassing is:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.jpg]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.png|alternatieve tekst]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestand.ogg]]</nowiki>'''
 
-De laatste link is bedoeld voor mediabestanden.",
+De laatste link is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'upload-permitted'            => 'Toegelaten bestandstypes: $1.',
 'upload-preferred'            => 'Aangewezen bestandstypes: $1.',
 'upload-prohibited'           => 'Verboden bestandstypes: $1.',
@@ -1250,7 +1250,7 @@ PICT # overig
 'imagelisttext'             => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
 'getimagelist'              => 'bezig met ophalen bestandslijst',
 'ilsubmit'                  => 'Zoeken',
-'showlast'                  => 'Toon de laatste $1 afbeeldingen gesorteerd $2.',
+'showlast'                  => 'De laatste $1 bestanden tonen gesorteerd $2.',
 'byname'                    => 'op naam',
 'bydate'                    => 'op datum',
 'bysize'                    => 'op grootte',
@@ -1384,7 +1384,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'lonelypagestext'         => "Naar de onderstaande pagina's wordt vanuit {{SITENAME}} niet verwezen.",
 'uncategorizedpages'      => "Niet-gecategoriseerde pagina's",
 'uncategorizedcategories' => 'Niet-gecategoriseerde categorieën',
-'uncategorizedimages'     => 'Niet-gecategoriseerde afbeeldingen',
+'uncategorizedimages'     => 'Niet-gecategoriseerde bestanden',
 'uncategorizedtemplates'  => 'Niet-gecategoriseerde sjablonen',
 'unusedcategories'        => 'Ongebruikte categorieën',
 'unusedimages'            => 'Ongebruikte bestanden',
@@ -1707,7 +1707,7 @@ $1',
 'sp-contributions-username'    => 'IP-adres of gebruikersnaam:',
 'sp-contributions-submit'      => 'Tonen',
 
-'sp-newimages-showfrom' => 'Nieuwe afbeeldingen tonen vanaf $1',
+'sp-newimages-showfrom' => 'Nieuwe bestanden tonen vanaf $1',
 
 # What links here
 'whatlinkshere'       => 'Links naar deze pagina',
@@ -1896,7 +1896,7 @@ In het laatste geval kan u ook een link gebruiken, bijvoorbeeld [[Special:Export
 
 # Thumbnails
 'thumbnail-more'           => 'Groter',
-'missingimage'             => '<b>Afbeelding ontbreekt</b><br /><i>$1</i>',
+'missingimage'             => '<b>Bestand ontbreekt</b><br /><i>$1</i>',
 'filemissing'              => 'Bestand is zoek',
 'thumbnail_error'          => 'Fout bij het aanmaken van thumbnail: $1',
 'djvu_page_error'          => 'DjVu-pagina buiten bereik',
@@ -2101,7 +2101,7 @@ $1',
 'show-big-image-thumb' => '<small>Grootte van deze afbeelding: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'    => 'Nieuwe afbeeldingen',
+'newimages'    => 'Nieuwe bestanden',
 'showhidebots' => '(Bots $1)',
 'noimages'     => 'Niets te zien.',
 
@@ -2112,7 +2112,7 @@ $1',
 'bad_image_list' => "De opmaak is als volgt:
 
 Alleen regels in een lijst (regels die beginnen met *) worden verwerkt. De eerste link op een regel moet een link zijn naar een ongewenste afbeelding.
-Alle volgende links die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop de afbeelding in te tekst is opgenomen.",
+Alle volgende links die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop het bestand in de tekst is opgenomen.",
 
 # Metadata
 'metadata'          => 'Metadata',

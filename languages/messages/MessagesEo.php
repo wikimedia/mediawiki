@@ -472,10 +472,9 @@ ne estas permesate uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
 'accountcreated'             => 'Konto kreita',
 'accountcreatedtext'         => 'La uzanto-konto por $1 estas kreita.',
 'createaccount-title'        => 'Konto-kreado por {{SITENAME}}',
-'createaccount-text'         => 'Iu ($1) kreis konton por $2 en {{SITENAME}}
-($4). La pasvorto por "$2" estas "$3". Vi ensalutu kaj sxangxu vian pasvorton nun.
+'createaccount-text'         => 'Iu kreis konton por via retadreso en {{SITENAME}} ($4) nomata "$2", kun pasvorto "$3". Vi ensalutu kaj ŝanĝu vian pasvorton nun.
 
-Vi eblus ignori cxi mesagxon, se cxi konto estis kreita erare.',
+Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 
 # Password reset dialog
@@ -730,6 +729,10 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'revdelete-logaction'         => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}} farita por reĝimo $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
 
+# Merge log
+'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (revizioj gxis $3)',
+'revertmerge'        => 'Malkunigu',
+
 # Diffs
 'history-title'           => 'Redakto-historio de "$1"',
 'difference'              => '(Malsamoj inter versioj)',
@@ -794,7 +797,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-personal'           => 'Uzantodatumoj',
 'prefs-rc'                 => 'Lastaj ŝanĝoj kaj elmontro de stumpoj',
 'prefs-watchlist'          => 'Atentaro',
-'prefs-watchlist-days'     => 'Maksimuma nombro de tagoj montrendaj en la atentaro:',
+'prefs-watchlist-days'     => 'Nombro de tagoj montri en la atentaro:',
 'prefs-watchlist-edits'    => 'Maksimuma nombro de ŝanĝoj montrendaj en ekspandita atentaro:',
 'prefs-misc'               => 'Miksitaĵoj',
 'saveprefs'                => 'Konservu preferojn',
@@ -835,6 +838,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-groupsavailable' => 'Disponeblaj grupoj:',
 'userrights-groupshelp'      => 'Selektu grupojn el kiuj vi volas forigi aŭ al kiuj vi volas aldoni uzanton. Neselektitaj grupoj ne estos ŝanĝitaj. Vi povas malselekti grupon per STR.',
 'userrights-reason'          => 'Kialo por ŝanĝo:',
+'userrights-nodatabase'      => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
 
 # Groups
 'group'            => 'Grupo:',
@@ -906,6 +910,8 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 * <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.jpg]]</nowiki>
 * <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|teksto por retumiloj negrafikaj]]</nowiki>
 * <nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki> por ligi rekte al la dosiero.',
+'upload-permitted'            => 'Permesitaj dosiertipoj: $1.',
+'upload-preferred'            => 'Preferitaj dosiertipoj: $1.',
 'uploadlog'                   => 'loglibro de alŝutaĵoj',
 'uploadlogpage'               => 'Loglibro de alŝutaĵoj',
 'uploadlogpagetext'           => 'Jen la plej laste alŝutitaj dosieroj.
@@ -924,12 +930,14 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile'                   => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
 'fileexists'                  => 'Dosiero kun tia ĉi nomo jam ekzistas. Bonvolu kontroli $1 krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.',
+'fileexists-thumb'            => "<center>'''Ekzistanta bildo'''</center>",
 'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun tia ĉi nomo jam ekzistas en la komuna dosiero-deponejo; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Alŝuto sukcesis!',
 'uploadwarning'               => 'Averto',
 'savefile'                    => 'Konservu dosieron',
 'uploadedimage'               => 'alŝutis "[[$1]]"',
+'overwroteimage'              => 'alŝutis novan version de "[[$1]]"',
 'uploaddisabled'              => 'Ni petas pardonon, sed oni malebligis alŝutadon.',
 'uploaddisabledtext'          => 'Alŝutado de dosieroj estas malfunkciigita je tiu ĉi vikio.',
 'uploadscripted'              => 'HTML-aĵo aŭ skriptokodaĵo troviĝas en tiu ĉi dosiero, kiun TTT-foliumilo eble interpretus erare.',
@@ -942,7 +950,14 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'upload-proto-error' => 'Nevalida protokolo',
 'upload-file-error'  => 'Interna eraro',
 
-'license-nopreview' => '(Antaŭvido ne montrebla)',
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'URL-o ne estis atingebla',
+
+'license'            => 'Permesilo',
+'nolicense'          => 'Neniu elektita',
+'license-nopreview'  => '(Antaŭvido ne montrebla)',
+'upload_source_url'  => ' (valida, publike atingebla URL-o)',
+'upload_source_file' => ' (dosiero en via komputilo)',
 
 # Image list
 'imagelist'                 => 'Listo de alŝutitaj dosieroj',
@@ -958,6 +973,9 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'imgfile'                   => 'dosiero',
 'filehist'                  => 'Historio de dosiero',
 'filehist-help'             => 'Klaku daton/tempon por rigardi la dosieron kiel gxinaa sxajnita tiame.',
+'filehist-deleteall'        => 'forigu ĉiujn',
+'filehist-deleteone'        => 'forigu ĉi tiun',
+'filehist-revert'           => 'restarigu',
 'filehist-current'          => 'nuna',
 'filehist-datetime'         => 'Dato/Tempo',
 'filehist-user'             => 'Uzanto',
@@ -968,6 +986,8 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'linkstoimage'              => 'La jenaj paĝoj ligas al ĉi tiu dosiero:',
 'nolinkstoimage'            => 'Neniu paĝo ligas al ĉi tiu dosiero.',
 'sharedupload'              => 'Cxi tiu dosiero estas komunuma alsxuto kaj estas uzebla de aliaj projektoj.',
+'shareduploadwiki'          => 'Bonvolu vidi la $1 por plua informo.',
+'shareduploadwiki-linktext' => 'paĝon pri dosiera priskribo',
 'noimage'                   => 'Ne ekzistas dosiero kun tia nomo vi povas $1.',
 'noimage-linktext'          => 'alŝuti ĝin',
 'uploadnewversion-linktext' => 'Alŝutu novan version de ĉi tiu dosiero',
@@ -977,14 +997,19 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'imagelist_description'     => 'Priskribo',
 
 # File reversion
+'filerevert'         => 'Restarigu $1',
+'filerevert-legend'  => 'Restarigu dosieron',
+'filerevert-intro'   => '<span class="plainlinks">Vi restarigas \'\'\'[[Media:$1|$1]]\'\'\' al la [$4 versio de $3, $2].</span>',
 'filerevert-comment' => 'Komento:',
 
 # File deletion
 'filedelete'                  => 'Forigu $1',
+'filedelete-legend'           => 'Forigu dosieron.',
 'filedelete-intro'            => "Vi forigas '''[[Media:$1|$1]]'''.",
 'filedelete-comment'          => 'Komento:',
 'filedelete-submit'           => 'Forigu',
 'filedelete-success'          => "'''$1''' estas forigita.",
+'filedelete-nofile'           => "'''$1''' ne ekzistas en {{SITENAME}}.",
 'filedelete-otherreason'      => 'Alia/plua kialo:',
 'filedelete-reason-otherlist' => 'Alia kialo',
 'filedelete-reason-dropdown'  => '* Oftaj kialoj de forigo
@@ -1082,6 +1107,7 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'protectedpages'          => 'Protektitaj paĝoj',
 'protectedpagestext'      => 'La sekvaj paĝoj estas protektitaj kontraŭ movigo aŭ redaktado',
 'protectedpagesempty'     => 'Neniuj paĝoj estas momente protektitaj kun ĉi tiuj parametroj.',
+'protectedtitles'         => 'Protektitaj titoloj',
 'listusers'               => 'Uzantaro',
 'specialpages'            => 'Specialaj paĝoj',
 'spheading'               => 'Specialaj paĝoj',
@@ -1139,6 +1165,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'allpagesprefix'    => 'Montru paĝojn kun prefikso:',
 
 # Special:Listusers
+'listusersfrom'      => 'Montru uzantojn ekde:',
 'listusers-submit'   => 'Montri',
 'listusers-noresult' => 'Neniu uzanto trovita.',
 
@@ -1157,6 +1184,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 'emailsubject'    => 'Subjekto',
 'emailmessage'    => 'Mesaĝo',
 'emailsend'       => 'Sendu',
+'emailccme'       => 'Retpoŝtu al mi kopion de mia mesaĝo.',
+'emailccsubject'  => 'Kopio de via mesaĝo al $1: $2',
 'emailsent'       => 'Retmesaĝo sendita',
 'emailsenttext'   => 'Via retmesaĝo estas sendita.',
 
@@ -1197,13 +1226,15 @@ komprenata kiel rekomendo aŭ reklamo.',
 'watching'   => 'Rigardante...',
 'unwatching' => 'Malrigardante...',
 
-'enotif_mailer'      => 'Averta retmesaĝo de {{SITENAME}}',
-'enotif_reset'       => 'Marku ĉiujn vizititajn paĝojn',
-'enotif_newpagetext' => 'Tiu ĉi estas nova paĝo',
-'changed'            => 'ŝanĝita',
-'enotif_subject'     => 'la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED de $PAGEEDITOR',
-'enotif_lastvisited' => 'Vidu $1 por ĉiuj ŝanĝoj de post via lasta vizito.',
-'enotif_body'        => 'Kara $WATCHINGUSERNAME,
+'enotif_mailer'                => 'Averta retmesaĝo de {{SITENAME}}',
+'enotif_reset'                 => 'Marku ĉiujn vizititajn paĝojn',
+'enotif_newpagetext'           => 'Tiu ĉi estas nova paĝo',
+'enotif_impersonal_salutation' => '{{SITENAME}}-uzanto',
+'changed'                      => 'ŝanĝita',
+'created'                      => 'kreita',
+'enotif_subject'               => 'la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED de $PAGEEDITOR',
+'enotif_lastvisited'           => 'Vidu $1 por ĉiuj ŝanĝoj de post via lasta vizito.',
+'enotif_body'                  => 'Kara $WATCHINGUSERNAME,
 
 la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR, vidu {{fullurl:$PAGETITLE RAWURL}} por la nuna versio.
 
@@ -1436,6 +1467,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'infiniteblock'        => 'senfina',
 'expiringblock'        => 'finiĝas je $1',
 'anononlyblock'        => 'nur anonimuloj',
+'ipblocklist-empty'    => 'La forbarlibro estas malplena.',
 'blocklink'            => 'forbaru',
 'unblocklink'          => 'malforbaru',
 'contribslink'         => 'kontribuoj',
@@ -1445,6 +1477,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'blocklogtext'         => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry'      => '$1 estis malbarita',
 'ipb_expiry_invalid'   => 'Nevalida blokdaŭro.',
+'blockme'              => 'Forbaru min',
 'proxyblocksuccess'    => 'Farita.',
 
 # Developer tools
