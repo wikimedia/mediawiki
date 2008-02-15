@@ -570,11 +570,12 @@ class UploadForm {
 	 * Returns an empty string if there is no warning
 	 */
 	static function getExistsWarning( $file ) {
-		global $wgUser;
+		global $wgUser, $wgContLang;
 		// Check for uppercase extension. We allow these filenames but check if an image
 		// with lowercase extension exists already
 		$warning = '';
-		
+		$align = $wgContLang->isRtl() ? 'left' : 'right';
+
 		if( strpos( $file->getName(), '.' ) == false ) {
 			$partname = $file->getName();
 			$rawExtension = '';
@@ -599,10 +600,10 @@ class UploadForm {
 			$dlink = $sk->makeKnownLinkObj( $file->getTitle() );
 			if ( $file->allowInlineDisplay() ) {
 				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-					$file->getName(), 'right', array(), false, true );
+					$file->getName(), $align, array(), false, true );
 			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
 				$icon = $file->iconThumb();
-				$dlink2 = '<div style="float:right" id="mw-media-icon">' . 
+				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' . 
 					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . $dlink . '</div>';
 			} else {
 				$dlink2 = '';
@@ -619,10 +620,10 @@ class UploadForm {
 			$dlink = $sk->makeKnownLinkObj( $nt_lc );
 			if ( $file_lc->allowInlineDisplay() ) {
 				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-					$nt_lc->getText(), 'right', array(), false, true );
+					$nt_lc->getText(), $align, array(), false, true );
 			} elseif ( !$file_lc->allowInlineDisplay() && $file_lc->isSafeFile() ) {
 				$icon = $file_lc->iconThumb();
-				$dlink2 = '<div style="float:right" id="mw-media-icon">' . 
+				$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' . 
 					$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . $dlink . '</div>';
 			} else {
 				$dlink2 = '';
@@ -642,10 +643,10 @@ class UploadForm {
 				if ( $file_thb->allowInlineDisplay() ) {
 					$dlink2 = $sk->makeImageLinkObj( $nt_thb, 
 						wfMsgExt( 'fileexists-thumb', 'parseinline' ),
-						$nt_thb->getText(), 'right', array(), false, true );
+						$nt_thb->getText(), $align, array(), false, true );
 				} elseif ( !$file_thb->allowInlineDisplay() && $file_thb->isSafeFile() ) {
 					$icon = $file_thb->iconThumb();
-					$dlink2 = '<div style="float:right" id="mw-media-icon">' . 
+					$dlink2 = '<div style="float:' . $align . '" id="mw-media-icon">' . 
 						$icon->toHtml( array( 'desc-link' => true ) ) . '<br />' . 
 						$dlink . '</div>';
 				} else {
