@@ -598,7 +598,7 @@ class UploadForm {
 		if( $file->exists() ) {
 			$dlink = $sk->makeKnownLinkObj( $file->getTitle() );
 			if ( $file->allowInlineDisplay() ) {
-				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 					$file->getName(), 'right', array(), false, true );
 			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
 				$icon = $file->iconThumb();
@@ -618,7 +618,7 @@ class UploadForm {
 			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
 			$dlink = $sk->makeKnownLinkObj( $nt_lc );
 			if ( $file_lc->allowInlineDisplay() ) {
-				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 					$nt_lc->getText(), 'right', array(), false, true );
 			} elseif ( !$file_lc->allowInlineDisplay() && $file_lc->isSafeFile() ) {
 				$icon = $file_lc->iconThumb();
@@ -641,7 +641,7 @@ class UploadForm {
 				$dlink = $sk->makeKnownLinkObj( $nt_thb);
 				if ( $file_thb->allowInlineDisplay() ) {
 					$dlink2 = $sk->makeImageLinkObj( $nt_thb, 
-						wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+						wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 						$nt_thb->getText(), 'right', array(), false, true );
 				} elseif ( !$file_thb->allowInlineDisplay() && $file_thb->isSafeFile() ) {
 					$icon = $file_thb->iconThumb();
