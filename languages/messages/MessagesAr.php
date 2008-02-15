@@ -2289,6 +2289,7 @@ $1',
 'exif-exposuretime'                => 'مدة التعرض',
 'exif-exposuretime-format'         => '$1 ثانية ($2)',
 'exif-fnumber'                     => 'العدد البؤري',
+'exif-fnumber-format'              => 'البعد البؤري/$1',
 'exif-exposureprogram'             => 'برنامج التعرض',
 'exif-spectralsensitivity'         => 'الحساسية الطيفية',
 'exif-isospeedratings'             => 'تقييم سرعة أيزو',
@@ -2366,6 +2367,7 @@ $1',
 'exif-compression-6' => 'جيه بي إي جي',
 
 'exif-photometricinterpretation-2' => 'آر جي بي',
+'exif-photometricinterpretation-6' => 'واي سب سر',
 
 'exif-unknowndate' => 'تاريخ غير معروف',
 
@@ -2381,7 +2383,19 @@ $1',
 'exif-planarconfiguration-1' => 'صيغة تشنكي',
 'exif-planarconfiguration-2' => 'الصيغة المستوية',
 
+'exif-xyresolution-i' => '$1 نقطة لكل بوصة',
+'exif-xyresolution-c' => '$1 دي بي سي',
+
+'exif-colorspace-1'      => 'إس آر جي بي',
+'exif-colorspace-ffff.h' => 'إف إف إف إف.إتش',
+
 'exif-componentsconfiguration-0' => 'غير موجود',
+'exif-componentsconfiguration-1' => 'واي',
+'exif-componentsconfiguration-2' => 'سب',
+'exif-componentsconfiguration-3' => 'سر',
+'exif-componentsconfiguration-4' => 'آر',
+'exif-componentsconfiguration-5' => 'جي',
+'exif-componentsconfiguration-6' => 'بي',
 
 'exif-exposureprogram-0' => 'غير معرف',
 'exif-exposureprogram-1' => 'يدوي',

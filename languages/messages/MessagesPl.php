@@ -319,7 +319,7 @@ $messages = array(
 'jumptosearch'      => 'wyszukiwanie',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'O&nbsp;{{grammar:MS.lp|{{SITENAME}}}}',
+'aboutsite'         => 'O {{GRAMMAR:Ms.lp|{{SITENAME}}}}',
 'aboutpage'         => 'Project:O serwisie',
 'bugreports'        => 'Raport o błędach',
 'bugreportspage'    => 'Project:Błędy',

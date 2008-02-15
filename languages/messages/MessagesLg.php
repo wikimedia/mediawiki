@@ -381,6 +381,9 @@ oba ku gano agali ku lupapula luno.<br />
 'allnotinnamespace' => 'Empapula zonna (ezitali mu kkunngaanizo erya $1)',
 'allpagessubmit'    => 'Nona',
 
+# E-mail user
+'emailuser' => 'Memba ono musindikire e-mail',
+
 # Watchlist
 'watchlist'      => 'Emiko gyengoberera',
 'mywatchlist'    => 'Empapula zengoberera',
@@ -439,6 +442,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'blockipsuccesssub' => 'Memba agaaniddwa okuwandika',
 'blocklink'         => 'Ono agaanibwe okuwandiika',
 'contribslink'      => 'byawaddeyo',
+'blocklogpage'      => 'Abagaanidwa',
 'blocklogentry'     => '[[$1]] agaanidwa. Obuyinza bumuddizibwa ku $2 $3',
 
 # Move page
@@ -492,6 +496,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-n-sitesupport'           => "Nyiga wano ob'oyagala wiki okugiwa obuyambi obw'ensimbi",
 'tooltip-t-whatlinkshere'         => "Nyiga wano okulaba empapula ez'oku wiki zonna eziriko enyunzi ezikuggusa ku luno",
 'tooltip-t-contributions'         => "Nyiga wano ob'oyagala okumanya memba ono by'akozeyo ku wiki eno",
+'tooltip-t-emailuser'             => "Nyiga wano ob'oyagala memba ono okumusindikira e-mail",
 'tooltip-t-upload'                => "Bako fayiro ez'ebifaananyi, vidiyo oba malaboozi z'oteeka ku Wiki eno",
 'tooltip-t-specialpages'          => "Nyiga wano okulaba olukalala olw'empapula ez'enjawulo zonna",
 'tooltip-ca-nstab-user'           => "Nyiga wano ob'oyagala okulaba enfo ya memba",
@@ -551,5 +556,9 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 # Multipage image navigation
 'imgmultigo'      => 'Nona!',
 'imgmultigotopre' => 'Genda ku lupapula',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Kebera ebikyuse',
+'watchlisttools-edit' => "Kola ku lukalala lwe'mpapula z'ogoberera",
 
 );

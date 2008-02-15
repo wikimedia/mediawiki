@@ -380,6 +380,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Dës Aktioun gëtt et net',
+'nosuchactiontext'  => 'Déi Aktioun, déi an der URL ugi war, gëtt vun dëser Wiki net ënnerstetzt.',
 'nosuchspecialpage' => 'Spezialsäit gëtt et net',
 'nospecialpagetext' => "<big>'''Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.'''</big>
 
@@ -413,6 +414,7 @@ Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. So
 'filenotfound'         => 'De Fichier "$1" gouf net fonnt.',
 'fileexistserror'      => 'De Fichier "$1" konnt net geschriwwe ginn, wëll et dee Fichier scho gëtt.',
 'unexpected'           => 'Onerwarte Wert: "$1"="$2".',
+'formerror'            => 'Feeler: Dat wat Dir aginn hutt konnt net verschafft ginn.',
 'badarticleerror'      => 'Dës Aktioun kann net op dëser Säit duerchgefouert ginn.',
 'cannotdelete'         => "D'Bild oder d'Säit kann net geläscht ginn (ass waarscheinlech schonns vun engem Anere geläscht ginn).",
 'badtitle'             => 'Schlechten Titel',
@@ -509,6 +511,7 @@ Melt iech w.e.g. domatt un, soubal Dir et kritt hutt.',
 'blocked-mailpassword'       => "Déi vun iech benotzten IP-Adress ass fir d'Ännere vu Säite gespaart. Fir Mëssbrauch ze verhënneren, gouf d'Méiglechkeet fir een neit Passwuert unzefroen och gespaart.",
 'eauthentsent'               => "Eng Confirmatiouns-E-Mail gouf un déi uginnen Adress geschéckt.<br/ >
 Ier iergend eng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, muss der als éischt d'Instructiounen an der Confirmatiouns-E-Mail befollegen, fir ze bestätegen datt de Kont wierklech ären eegenen ass.",
+'throttled-mailpassword'     => 'Et gouf an de läschte(n) $1 Stonnen schonn ee neit Passwuert ugefrot. Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all $1 Stonnen een neit Passwuert ugefrot ginn.',
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Dir hutt scho(nn) $1 Konten. Dir kënnt keen Neie méi derbäikréien.',
 'emailauthenticated'         => 'Är E-Mailadress gouf bestätegt: $1..',
@@ -607,6 +610,7 @@ Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur
 'whitelistreadtext'         => 'Dir musst [[Special:Userlogin|ageloggt]] sinn, fir Säiten ze liesen.',
 'whitelistacctitle'         => 'Dir däerft kee Benotzerkont uleeën.',
 'whitelistacctext'          => 'Fir Konten op {{SITENAME}} kënnen opzemaachen musst Dir [[Special:Userlogin|ageloggt]] sinn an déi noutwänneg Rechter hunn.',
+'confirmedittitle'          => "Konfirmatioun vun ärer E-Mailadress ass erfuederlech fir z'änneren.",
 'nosuchsectiontitle'        => 'Et gëtt keen Abschnitt mat dem Numm',
 'nosuchsectiontext'         => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt. Well et den Abschnitt $1 net gëtt, gëtt et keng Plaz fir är Ännerung ze späicheren.",
 'loginreqtitle'             => 'Umeldung néideg',
@@ -666,6 +670,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'nocreatetitle'             => "D'Uleeë vun neie Säiten ass limitéiert.",
 'nocreatetext'              => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:Userlogin|umellen]].",
 'nocreate-loggedin'         => 'Dir hutt keng Berechtigung fir nei Säiten op {{SITENAME}} unzeleeën.',
+'permissionserrors'         => 'Berechtigungs-Feeler',
 'permissionserrorstext'     => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
 'recreate-deleted-warn'     => "'''Opgepasst: Dës Säit gouf schonns eng Kéier geläscht.'''
  
@@ -1357,6 +1362,8 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-expiring'            => 'bis $1 (UTC)',
 'protect-cascade'             => "Kaskade-Spär – alleguerten d'Schablounen déi an dës Säit agebonne si ginn och gespaart.",
 'protect-cantedit'            => "Dir kënnt d'Spär vun dëser Seite net änneren, well Dir net déi néideg Rechter hutt fir déi Säit z'änneren.",
+'restriction-type'            => 'Berechtigung:',
+'restriction-level'           => 'NIveau vun de Limitatiounen:',
 'minimum-size'                => 'Mindestgréisst:',
 'maximum-size'                => 'Maximalgréisst:',
 'pagesize'                    => '(Byten)',
