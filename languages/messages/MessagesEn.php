@@ -637,7 +637,7 @@ XHTML id names.
 'toolbox'           => 'Toolbox',
 'userpage'          => 'View user page',
 'projectpage'       => 'View project page',
-'imagepage'         => 'View image page',
+'imagepage'         => 'View media page',
 'mediawikipage'     => 'View message page',
 'templatepage'      => 'View template page',
 'viewhelppage'      => 'View help page',
@@ -928,9 +928,9 @@ You may ignore this message, if this account was created in error.',
 'nowiki_sample'   => 'Insert non-formatted text here',
 'nowiki_tip'      => 'Ignore wiki formatting',
 'image_sample'    => 'Example.jpg', # only translate this message to other languages if you have to change it
-'image_tip'       => 'Embedded image',
+'image_tip'       => 'Embedded file',
 'media_sample'    => 'Example.ogg', # only translate this message to other languages if you have to change it
-'media_tip'       => 'Media file link',
+'media_tip'       => 'File link',
 'sig_tip'         => 'Your signature with timestamp',
 'hr_tip'          => 'Horizontal line (use sparingly)',
 
@@ -1384,9 +1384,10 @@ Make sure that this change will maintain historical page continuity.
 'upload_directory_read_only'  => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'                 => 'Upload error',
 'upload-summary'              => '', # only translate this message to other languages if you have to change it
-'uploadtext'                  => "Use the form below to upload files, to view or search previously uploaded images go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
+'uploadtext'                  => "Use the form below to upload files.
+To view or search previously uploaded files go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
-To include the image in a page, use a link in the form
+To include a file in a page, use a link in the form
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
@@ -1415,12 +1416,12 @@ To include the image in a page, use a link in the form
 'largefileserver'             => 'This file is bigger than the server is configured to allow.',
 'emptyfile'                   => 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'                  => 'A file with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
-'filepageexists'              => 'A page (not image) with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
+'filepageexists'              => 'A page (not a file) with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
 'fileexists-extension'        => 'A file with a similar name exists:<br />
 Name of the uploading file: <strong><tt>$1</tt></strong><br />
 Name of the existing file: <strong><tt>$2</tt></strong><br />
 Please choose a different name.',
-'fileexists-thumb'            => "<center>'''Existing image'''</center>",
+'fileexists-thumb'            => "<center>'''Existing file'''</center>",
 'fileexists-thumbnail-yes'    => 'The file seems to be an image of reduced size <i>(thumbnail)</i>. Please check the file <strong><tt>$1</tt></strong>.<br />
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.',
 'file-thumbnail-no'           => 'The filename begins with <strong><tt>$1</tt></strong>. It seems to be an image of reduced size <i>(thumbnail)</i>.
@@ -1520,7 +1521,7 @@ PICT # misc.
 'imagelist_user'            => 'User',
 'imagelist_size'            => 'Size',
 'imagelist_description'     => 'Description',
-'imagelist_search_for'      => 'Search for image name:',
+'imagelist_search_for'      => 'Search for media name:',
 
 # File reversion
 'filerevert'                => 'Revert $1',
@@ -1638,7 +1639,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'uncategorizedpages-summary'      => '', # only translate this message to other languages if you have to change it
 'uncategorizedcategories'         => 'Uncategorized categories',
 'uncategorizedcategories-summary' => '', # only translate this message to other languages if you have to change it
-'uncategorizedimages'             => 'Uncategorized images',
+'uncategorizedimages'             => 'Uncategorized files',
 'uncategorizedimages-summary'     => '', # only translate this message to other languages if you have to change it
 'uncategorizedtemplates'          => 'Uncategorized templates',
 'uncategorizedtemplates-summary'  => '', # only translate this message to other languages if you have to change it
@@ -1658,7 +1659,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'mostlinkedtemplates-summary'     => '', # only translate this message to other languages if you have to change it
 'mostcategories'                  => 'Pages with the most categories',
 'mostcategories-summary'          => '', # only translate this message to other languages if you have to change it
-'mostimages'                      => 'Most linked to images',
+'mostimages'                      => 'Most linked to files',
 'mostimages-summary'              => '', # only translate this message to other languages if you have to change it
 'mostrevisions'                   => 'Pages with the most revisions',
 'mostrevisions-summary'           => '', # only translate this message to other languages if you have to change it
@@ -1695,7 +1696,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'intl'                            => 'Interlanguage links',
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
-'unusedimagestext'                => '<p>Please note that other web sites may link to an image with a direct URL, and so may still be listed here despite being in active use.</p>',
+'unusedimagestext'                => '<p>Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.</p>',
 'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
@@ -1999,7 +2000,7 @@ $1',
 'sp-contributions-footer'      => '-', # don't translate or duplicate this message to other languages
 'sp-contributions-footer-anon' => '-', # don't translate or duplicate this message to other languages
 
-'sp-newimages-showfrom' => 'Show new images starting from $1',
+'sp-newimages-showfrom' => 'Show new files starting from $1',
 
 # What links here
 'whatlinkshere'         => 'What links here',
@@ -2199,7 +2200,7 @@ In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{Media
 
 # Thumbnails
 'thumbnail-more'           => 'Enlarge',
-'missingimage'             => '<b>Missing image</b><br /><i>$1</i>',
+'missingimage'             => '<b>Missing file</b><br /><i>$1</i>',
 'filemissing'              => 'File missing',
 'thumbnail_error'          => 'Error creating thumbnail: $1',
 'djvu_page_error'          => 'DjVu page out of range',
@@ -2345,7 +2346,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-feed-atom'               => 'Atom feed for this page',
 'tooltip-t-contributions'         => 'View the list of contributions of this user',
 'tooltip-t-emailuser'             => 'Send a mail to this user',
-'tooltip-t-upload'                => 'Upload images or media files',
+'tooltip-t-upload'                => 'Upload files',
 'tooltip-t-specialpages'          => 'List of all special pages',
 'tooltip-t-print'                 => 'Printable version of this page',
 'tooltip-t-permalink'             => 'Permanent link to this version of the page',
@@ -2354,7 +2355,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-ca-nstab-media'          => 'View the media page',
 'tooltip-ca-nstab-special'        => "This is a special page, you can't edit the page itself",
 'tooltip-ca-nstab-project'        => 'View the project page',
-'tooltip-ca-nstab-image'          => 'View the image page',
+'tooltip-ca-nstab-image'          => 'View the file page',
 'tooltip-ca-nstab-mediawiki'      => 'View the system message',
 'tooltip-ca-nstab-template'       => 'View the template',
 'tooltip-ca-nstab-help'           => 'View the help page',
@@ -2455,7 +2456,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.<hr />",
-'imagemaxsize'         => 'Limit images on image description pages to:',
+'imagemaxsize'         => 'Limit images on file description pages to:',
 'thumbsize'            => 'Thumbnail size:',
 'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
 'widthheightpage'      => '$1×$2, $3 pages',
@@ -2481,8 +2482,8 @@ $1',
 # Bad image list
 'bad_image_list' => 'The format is as follows:
 
-Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
-Any subsequent links on the same line are considered to be exceptions, i.e. pages where the image may occur inline.',
+Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad file.
+Any subsequent links on the same line are considered to be exceptions, i.e. pages where the file may occur inline.',
 
 /*
 Short names for language variants used for language conversion links.
@@ -2521,7 +2522,7 @@ Variants for Chinese language
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it. If the file has been modified from its original state, some details may not fully reflect the modified image.',
+'metadata-help'     => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it. If the file has been modified from its original state, some details may not fully reflect the modified file.',
 'metadata-expand'   => 'Show extended details',
 'metadata-collapse' => 'Hide extended details',
 'metadata-fields'   => 'EXIF metadata fields listed in this message will be included on image page display when the metadata table is collapsed. Others will be hidden by default.
@@ -2899,7 +2900,7 @@ $1',
 'imgmultigo'         => 'Go!',
 'imgmultigotopre'    => 'Go to page',
 'imgmultigotopost'   => '', # only translate this message to other languages if you have to change it
-'imgmultiparseerror' => 'The image file appears to be corrupted or incorrect, so {{SITENAME}} cannot retrieve a list of pages.',
+'imgmultiparseerror' => 'The file appears to be corrupted or incorrect, so {{SITENAME}} cannot retrieve a list of pages.',
 
 # Table pager
 'ascending_abbrev'         => 'asc',
