@@ -1069,7 +1069,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'uploaderror'                 => 'Fehler beim Hochladen',
 'uploadtext'                  => "Gehe zu der [[Special:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen.
 
-Benutze dieses Formular, um neue Dateien hochzuladen. Klicke auf '''„Durchsuchen...“''', um einen Dateiauswahl-Dialog zu öffnen.
+Benutze dieses Formular, um neue Dateien hochzuladen. Klicke auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld '''„Quelldatei“''' angezeigt.
 Bestätige dann die Lizenz-Vereinbarung und klicke anschließend auf '''„Datei hochladen“'''.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
