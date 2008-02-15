@@ -1434,7 +1434,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
 'uploaddisabled'              => 'Uploads disabled',
 'uploaddisabledtext'          => 'File uploads are disabled on {{SITENAME}}.',
-'uploadscripted'              => 'This file contains HTML or script code that may be erroneously be interpreted by a web browser.',
+'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
 'uploadcorrupt'               => 'The file is corrupt or has an incorrect extension. Please check the file and upload again.',
 'uploadvirus'                 => 'The file contains a virus! Details: $1',
 'sourcefilename'              => 'Source filename',
