@@ -5,8 +5,8 @@
  * @addtogroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/messages.inc' );
-require_once( dirname( __FILE__ ) . '/messageTypes.inc' );
+require( dirname( __FILE__ ) . '/messages.inc' );
+require( dirname( __FILE__ ) . '/messageTypes.inc' );
 
 class MessageWriter {
 	static $optionalComment = 'only translate this message to other languages if you have to change it';
@@ -45,7 +45,7 @@ class MessageWriter {
 			}
 			if( $listUnknown && isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
 				echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
-				foreach ( $sortedMessages['unknown'] as $key => $value ) {
+				foreach( $sortedMessages['unknown'] as $key => $value ) {
 					echo "* " . $key . "\n";
 				}
 			}
@@ -68,8 +68,8 @@ class MessageWriter {
 
 		# Sort messages to blocks
 		$sortedMessages['unknown'] = $messages;
-		foreach ( $wgMessageStructure as $blockName => $block ) {
-			foreach ( $block as $key ) {
+		foreach( $wgMessageStructure as $blockName => $block ) {
+			foreach( $block as $key ) {
 				if( array_key_exists( $key, $sortedMessages['unknown'] ) ) {
 					$sortedMessages[$blockName][$key] = $sortedMessages['unknown'][$key];
 					unset( $sortedMessages['unknown'][$key] );
