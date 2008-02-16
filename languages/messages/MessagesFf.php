@@ -29,7 +29,7 @@ $messages = array(
 'sitesupport'       => 'Dokkal',
 'sitesupport-url'   => 'Project:Dokkal',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Winndannde',
 
 # General errors
@@ -47,7 +47,7 @@ $messages = array(
 # Image list
 'ilsubmit' => 'Yiilaade',
 
-# Miscellaneous special pages
+# Random page
 'randompage' => 'Ɗerewol kawral',
 
 # Special:Allpages

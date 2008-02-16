@@ -1812,7 +1812,6 @@ Se desejar, pode utilizar uma ligação, por exemplo [[{{ns:special}}:Export/{{M
 
 # Thumbnails
 'thumbnail-more'           => 'Ampliar',
-'missingimage'             => '<b>Imagem não encontrada</b><br /><i>$1</i>',
 'filemissing'              => 'Ficheiro não encontrado',
 'thumbnail_error'          => 'Erro ao criar miniatura: $1',
 'djvu_page_error'          => 'página DjVu inacessível',
@@ -2368,10 +2367,10 @@ $1',
 'useajaxsearch'    => 'Usar busca AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← página anterior',
-'imgmultipagenext'   => 'próxima página →',
-'imgmultigo'         => 'Ir!',
-'imgmultigotopre'    => 'Mostrar página',
+'imgmultipageprev' => '← página anterior',
+'imgmultipagenext' => 'próxima página →',
+'imgmultigo'       => 'Ir!',
+'imgmultigotopre'  => 'Mostrar página',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

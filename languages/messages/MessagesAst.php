@@ -1726,7 +1726,6 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandar',
-'missingimage'             => '<b>Falta la imaxe</b><br /><i>$1</i>',
 'filemissing'              => 'Falta archivu',
 'thumbnail_error'          => 'Error al crear la miniatura: $1',
 'djvu_page_error'          => 'Páxina DjVu fuera de llímites',
@@ -2280,10 +2279,10 @@ $1",
 'useajaxsearch'    => 'Usar la busca AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← páxina anterior',
-'imgmultipagenext'   => 'páxina siguiente →',
-'imgmultigo'         => '¡Dir!',
-'imgmultigotopre'    => 'Dir a la páxina',
+'imgmultipageprev' => '← páxina anterior',
+'imgmultipagenext' => 'páxina siguiente →',
+'imgmultigo'       => '¡Dir!',
+'imgmultigotopre'  => 'Dir a la páxina',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

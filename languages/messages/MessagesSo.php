@@ -119,6 +119,7 @@ $messages = array(
 'mypage'         => 'Boggeyga',
 'mytalk'         => 'Wadahadalkeyga',
 'anontalk'       => 'Wadahadalka IP:gan',
+'and'            => 'iyo',
 
 'errorpagetitle'    => 'Qalad',
 'returnto'          => 'Ku noqo $1.',
@@ -560,7 +561,6 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 
 # Attribution
 'anonymous' => "Isticmaalaha aanan la'aqoonsanin ee {{SITENAME}}",
-'and'       => 'iyo',
 
 # Spam protection
 'categoryarticlecount' => 'Waxaa {{PLURAL:$1|ku jira hal maqaal|ku jira $1 maqaal}} qeybtan.',

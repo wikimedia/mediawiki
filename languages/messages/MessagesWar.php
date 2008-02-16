@@ -141,7 +141,7 @@ $messages = array(
 'editsection'             => 'igliwat',
 'hidetoc'                 => 'tago-a',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulo',
 'nstab-mediawiki' => 'Mensahe',
 
@@ -200,13 +200,15 @@ $messages = array(
 # Unused templates
 'unusedtemplateswlh' => 'iba nga mga sumpay',
 
+# Random page
+'randompage' => 'Bisan ano nga pakli',
+
 # Statistics
 'statistics' => 'Mga estadistika',
 'sitestats'  => '{{SITENAME}} nga mga estadistika',
 
 # Miscellaneous special pages
 'allpages'     => 'Ngatanan nga mga pakli',
-'randompage'   => 'Bisan ano nga pakli',
 'longpages'    => 'Haglaba nga mga pakli',
 'specialpages' => 'Mga Ispisyal nga Pakli',
 'move'         => 'Balhina',

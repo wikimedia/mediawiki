@@ -1790,7 +1790,6 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:special}}:Expo
 
 # Thumbnails
 'thumbnail-more'           => 'Pówětšyś',
-'missingimage'             => '<b>wobraz felujo</b><br /><i>$1</i>',
 'filemissing'              => 'Dataja felujo',
 'thumbnail_error'          => 'Zmólka pśi stwórjenju pśeglěda: $1',
 'djvu_page_error'          => 'DjVu-bok pśesegujo wobłuk.',
@@ -2339,10 +2338,10 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.',
 'useajaxsearch'    => 'Pytanje z AJAX wužywaś',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← slědny bok',
-'imgmultipagenext'   => 'pśiducy bok →',
-'imgmultigo'         => 'W pórědku',
-'imgmultigotopre'    => 'Hyś na bok',
+'imgmultipageprev' => '← slědny bok',
+'imgmultipagenext' => 'pśiducy bok →',
+'imgmultigo'       => 'W pórědku',
+'imgmultigotopre'  => 'Hyś na bok',
 
 # Table pager
 'ascending_abbrev'         => 'górjej',

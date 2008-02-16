@@ -1339,7 +1339,6 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 
 # Thumbnails
 'thumbnail-more'  => 'Zmadho',
-'missingimage'    => '<b>Mungon figura</b><br /><i>$1</i>',
 'filemissing'     => 'Mungon skeda',
 'thumbnail_error' => 'Gabim gjatë krijimit të figurës përmbledhëse: $1',
 

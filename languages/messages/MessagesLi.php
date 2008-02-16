@@ -1637,7 +1637,6 @@ In 't letste geval kanse ouch 'ne link gebroeken, beveurbeild [[Special:Export/{
 
 # Thumbnails
 'thumbnail-more'           => 'Vergroete',
-'missingimage'             => '<b>Plaetsje neet besjikbaar</b><br /><i>$1</i>',
 'filemissing'              => 'Besjtand ontbrik',
 'thumbnail_error'          => "Fout bie 't aanmake van thumbnail: $1",
 'djvu_page_error'          => 'DjVu-pagina boete bereik',
@@ -2186,10 +2185,10 @@ $1',
 'useajaxsearch'    => 'AJAX-zeuke gebroeke',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← veurige pazjena',
-'imgmultipagenext'   => 'volgende pazjena →',
-'imgmultigo'         => 'Gank!',
-'imgmultigotopre'    => 'Gank nao pazjena',
+'imgmultipageprev' => '← veurige pazjena',
+'imgmultipagenext' => 'volgende pazjena →',
+'imgmultigo'       => 'Gank!',
+'imgmultigotopre'  => 'Gank nao pazjena',
 
 # Table pager
 'ascending_abbrev'         => 'opl.',

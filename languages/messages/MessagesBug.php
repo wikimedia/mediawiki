@@ -12,6 +12,7 @@ $messages = array(
 'about'    => 'Atajangeng',
 'qbedit'   => 'Sunting',
 'anontalk' => 'Bicara IP',
+'and'      => 'éréngé',
 
 'help'          => 'Panginring',
 'search'        => 'Sappa',
@@ -25,7 +26,7 @@ $messages = array(
 'mainpage'  => 'Halamang Utama',
 'portal'    => 'Portal komunitas',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-special' => 'Istimewa',
 'nstab-image'   => 'Rapang',
 'nstab-help'    => 'Panginring',
@@ -48,9 +49,11 @@ $messages = array(
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
 
+# Random page
+'randompage' => 'Halamang rawak',
+
 # Miscellaneous special pages
 'allpages'     => 'Maneng halamang',
-'randompage'   => 'Halamang rawak',
 'specialpages' => 'Halamang Istimewa',
 'ancientpages' => 'Artikel talloa',
 
@@ -94,7 +97,6 @@ Silakan pile aseng laing.',
 
 # Attribution
 'anonymous' => 'Pabbuak anonim {{SITENAME}}',
-'and'       => 'éréngé',
 
 # Media information
 'imagemaxsize' => 'Gangkai rapang pada keterangan rapang ri halamang hingga:',

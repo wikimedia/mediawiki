@@ -2086,7 +2086,6 @@ Soñğı jağdaýda siltemeni de, mısalı «{{{{ns:mediawiki}}:Mainpage}}» bet
 
 # Thumbnails
 'thumbnail-more'           => 'Ülkeýtw',
-'missingimage'             => '<b>Joğalğan swret </b><br /><i>$1</i>',
 'filemissing'              => 'Joğalğan faýl',
 'thumbnail_error'          => 'Nobaý jaratılw qatesi: $1',
 'djvu_page_error'          => 'DjVu beti mümkindi awmaqtıñ sırtındda',
@@ -2657,10 +2656,10 @@ $1',
 'comma-separator'     => ',&#32;',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← aldıñğı betke',
-'imgmultipagenext'   => 'kelesi betke →',
-'imgmultigo'         => 'Öt!',
-'imgmultigotopre'    => 'Mına betke ötw',
+'imgmultipageprev' => '← aldıñğı betke',
+'imgmultipagenext' => 'kelesi betke →',
+'imgmultigo'       => 'Öt!',
+'imgmultigotopre'  => 'Mına betke ötw',
 
 # Table pager
 'ascending_abbrev'         => 'ösw',

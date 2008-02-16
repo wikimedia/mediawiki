@@ -669,9 +669,6 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'allmessagesfilter'         => 'Filter mion ògłosów:',
 'allmessagesmodified'       => 'Pòkażë blós zjinaczone',
 
-# Thumbnails
-'missingimage' => '<b>Felëjący òbrôzk</b><br /><i>$1</i>',
-
 # Special:Import
 'import' => 'Impòrtëjë starnë',
 

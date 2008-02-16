@@ -2084,7 +2084,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'Үлкейту',
-'missingimage'             => '<b>Жоғалған сурет </b><br /><i>$1</i>',
 'filemissing'              => 'Жоғалған файл',
 'thumbnail_error'          => 'Нобай жаратылу қатесі: $1',
 'djvu_page_error'          => 'DjVu беті мүмкінді аумақтың сыртындда',
@@ -2655,10 +2654,10 @@ $1',
 'comma-separator'     => ',&#32;',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← алдыңғы бетке',
-'imgmultipagenext'   => 'келесі бетке →',
-'imgmultigo'         => 'Өт!',
-'imgmultigotopre'    => 'Мына бетке өту',
+'imgmultipageprev' => '← алдыңғы бетке',
+'imgmultipagenext' => 'келесі бетке →',
+'imgmultigo'       => 'Өт!',
+'imgmultigotopre'  => 'Мына бетке өту',
 
 # Table pager
 'ascending_abbrev'         => 'өсу',

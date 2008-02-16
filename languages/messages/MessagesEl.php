@@ -1857,7 +1857,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'Μεγέθυνση',
-'missingimage'             => '<b>Αγνοούμενη εικόνα</b><br /><i>$1</i>',
 'filemissing'              => 'Αγνοούμενο αρχείο',
 'thumbnail_error'          => 'Σφάλμα στη δημιουργία μικρογραφίας: $1',
 'djvu_page_error'          => 'Σελίδα DjVu εκτός ορίων',
@@ -2418,10 +2417,10 @@ $1',
 'useajaxsearch'    => 'Χρησιμοποίηση της αναζήτησης AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← προηγούμενη σελίδα',
-'imgmultipagenext'   => 'επόμενη σελίδα →',
-'imgmultigo'         => 'Πήγαινε!',
-'imgmultigotopre'    => 'Πήγαινε στη σελίδα',
+'imgmultipageprev' => '← προηγούμενη σελίδα',
+'imgmultipagenext' => 'επόμενη σελίδα →',
+'imgmultigo'       => 'Πήγαινε!',
+'imgmultigotopre'  => 'Πήγαινε στη σελίδα',
 
 # Table pager
 'ascending_abbrev'         => 'αυξ',

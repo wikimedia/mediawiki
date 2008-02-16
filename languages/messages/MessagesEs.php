@@ -1565,7 +1565,6 @@ En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/
 
 # Thumbnails
 'thumbnail-more'           => 'Aumentar',
-'missingimage'             => '<b>Falta imagen</b><br /><i>$1</i>',
 'filemissing'              => 'Falta archivo',
 'thumbnail_error'          => 'Error al crear miniatura: $1',
 'djvu_page_error'          => 'Página DjVu fuera de rango',
@@ -2093,10 +2092,10 @@ $1',
 'hideresults'      => 'Ocultar resultados',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← página anterior',
-'imgmultipagenext'   => 'siguiente página →',
-'imgmultigo'         => '¡Ir!',
-'imgmultigotopre'    => 'Ir a la página',
+'imgmultipageprev' => '← página anterior',
+'imgmultipagenext' => 'siguiente página →',
+'imgmultigo'       => '¡Ir!',
+'imgmultigotopre'  => 'Ir a la página',
 
 # Table pager
 'table_pager_next'         => 'Página siguiente',

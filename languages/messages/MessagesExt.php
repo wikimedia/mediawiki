@@ -1631,7 +1631,6 @@ Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandal',
-'missingimage'             => '<b>Farta la imahin</b><br /><i>$1</i>',
 'filemissing'              => 'Archivu escambulliu',
 'thumbnail_error'          => 'Marru criandu cuairu: $1',
 'djvu_page_error'          => 'Páhina DjVu huera el rangu',

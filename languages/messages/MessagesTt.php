@@ -145,6 +145,7 @@ $messages = array(
 'mytalk'         => 'Bäxäsem',
 'anontalk'       => 'Bu IP turında bäxäs',
 'navigation'     => 'Küçü',
+'and'            => 'wä',
 
 'errorpagetitle'    => 'Xata',
 'returnto'          => '«$1» bitenä qaytu.',
@@ -217,7 +218,7 @@ $messages = array(
 'restorelink'     => '$1 beterelgän bit',
 'feedlinks'       => 'Tasma:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Mäqälä',
 'nstab-user'      => 'Äğzä bite',
 'nstab-media'     => 'Media bite',
@@ -353,12 +354,10 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 # Diffs
 'difference'              => '(Yuramalar ayırması)',
 'lineno'                  => '$1. yul:',
-'editcurrent'             => 'Bu bitneñ ağımdağı yuramanı üzgärtü',
 'compareselectedversions' => 'Saylanğan yurama çağıştıru',
 
 # Search results
 'searchresults'     => 'Ezläw näticäse',
-'badquery'          => 'Ezläw sorawı xata belän cíılğan',
 'titlematches'      => 'Mäqälä başlığı kileşä',
 'notitlematches'    => 'Kileşkän bit başlığı yuq',
 'notextmatches'     => 'Kileşkän bit mätene yuq',
@@ -367,7 +366,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'showingresults'    => 'Asta <b>$1</b> näticä kürsätelä <b>$2</b>. keremnän başlap.',
 'showingresultsnum' => 'Asta <b>$3</b> näticä kürsätelä <b>$2</b>. keremnän başlap.',
 'powersearch'       => 'Ezläw',
-'blanknamespace'    => '(Töp)',
 
 # Preferences page
 'preferences'           => 'Köyläwlar',
@@ -462,6 +460,9 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 'imgfile'    => 'fayl',
 'imagelinks' => 'Räsem läñkerläre',
 
+# Random page
+'randompage' => 'Berär bit kürü',
+
 # Statistics
 'statistics' => 'Nöfüs',
 'sitestats'  => '{{SITENAME}} nöfüse',
@@ -485,18 +486,17 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 'popularpages'       => 'Ğämäli bitlär',
 'wantedpages'        => 'Kiräkle bitlär',
 'allpages'           => 'Bar bitlär',
-'randompage'         => 'Berär bit kürü',
 'shortpages'         => 'Qısqa bitlär',
 'longpages'          => 'Ozın bitlär',
 'listusers'          => 'Äğzä isemlege',
 'specialpages'       => 'Maxsus bitlär',
 'spheading'          => 'Bar keşelär öçen',
-'rclsub'             => '(«$1» bite belän bäyle bitlärgä)',
 'newpages'           => 'Yaña bitlär',
 'ancientpages'       => 'İñ iske bitlär',
 'intl'               => 'Tel-ara läñker',
 'move'               => 'Küçerü',
 'movethispage'       => 'Bu bit küçerü',
+'notargettitle'      => 'Maqsatsız',
 
 # Book sources
 'booksources' => 'Kitap çığanağı',
@@ -539,15 +539,12 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'notanarticle'      => 'Eçtälek belän bit tügel',
 'watchlistcontains' => 'Saqtezmäñ eçenä $1 bit kertelgän.',
 'wlnote'            => 'Asta soñğı <b>$2</b> säğät eçendä yasalğan $1 üzgärmä kürsätelä.',
-'wlsaved'           => 'Bu yurama säqtezmäñdä saqlanğan buldı',
 
 # Delete/protect/revert
 'deletepage'         => 'Beter bitne',
 'confirm'            => 'Raslaw',
 'excontent'          => 'eçtälege ide:',
 'exblank'            => 'bit buş ide',
-'confirmdelete'      => 'Beterüne raslaw',
-'deletesub'          => '(«$1» beterü)',
 'historywarning'     => 'Íğtíbar: Beterergä telägän biteneñ üz taríxı bar:',
 'actioncomplete'     => 'Ğämäl tämam',
 'deletedtext'        => '«$1» beterelgän buldı.
@@ -570,6 +567,9 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'undeletebtn'      => 'Torğız!',
 'undeletedarticle' => '«$1» torğızıldı',
 
+# Namespace form on various pages
+'blanknamespace' => '(Töp)',
+
 # Contributions
 'contributions' => 'Äğzä qatnaşuı',
 'mycontris'     => 'Qatnaşuım',
@@ -578,7 +578,6 @@ Soñğı beterülär $2 bitendä terkälenä.',
 
 # What links here
 'whatlinkshere' => 'Kem bäyle moña',
-'notargettitle' => 'Maqsatsız',
 'linklistsub'   => '(Läñker tezmäse)',
 'nolinkshere'   => 'Moña bäyle bitlär yuq.',
 'isredirect'    => 'küçerelü bite',
@@ -641,7 +640,6 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 
 # Thumbnails
 'thumbnail-more' => 'Zuraytası',
-'missingimage'   => '<b>Bulmağan räsem</b><br /><i>$1</i>',
 
 # Special:Import
 'import'        => 'Bitlärne yökläw',
@@ -712,7 +710,6 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 # Attribution
 'anonymous'     => "{{SITENAME}}'nıñ tanılmağan kerüçe",
 'siteuser'      => '{{SITENAME}} ägzäse $1',
-'and'           => 'wä',
 'othercontribs' => '«$1» eşenä nigezlänä.',
 'others'        => 'başqalar',
 'siteusers'     => '{{SITENAME}} ägzäse $1',

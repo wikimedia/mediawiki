@@ -1655,7 +1655,6 @@ Die Artikkel "[[$1]]" existiert al. Moatest du him foar ju Ferschuuwenge läskje
 
 # Thumbnails
 'thumbnail-more'           => 'fergratterje',
-'missingimage'             => '<b>Failjende Bielde</b><br /><i>$1</i>',
 'filemissing'              => 'Doatäi failt',
 'thumbnail_error'          => 'Failer bie dät Moakjen fon Foarschaubielde (Thumbnail): $1',
 'djvu_page_error'          => 'DjVu-Siede buute dät Siedenberäk',
@@ -2221,10 +2220,10 @@ $1',
 'useajaxsearch'    => 'Benutsje AJAX-unnerstutsede Säike',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← foarige Siede',
-'imgmultipagenext'   => 'naiste Siede →',
-'imgmultigo'         => 'OK',
-'imgmultigotopre'    => 'Gung tou Siede',
+'imgmultipageprev' => '← foarige Siede',
+'imgmultipagenext' => 'naiste Siede →',
+'imgmultigo'       => 'OK',
+'imgmultigotopre'  => 'Gung tou Siede',
 
 # Table pager
 'ascending_abbrev'         => 'ap',

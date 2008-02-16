@@ -126,6 +126,7 @@ $messages = array(
 'mytalk'         => 'Mea diskuti',
 'anontalk'       => 'Diskuto relatant ad ica IP',
 'navigation'     => 'Navigado',
+'and'            => 'ed',
 
 'errorpagetitle'    => 'Eroro',
 'returnto'          => 'Retrovenar a la pagino di $1.',
@@ -767,7 +768,6 @@ Voluntez selektar altra nomo.',
 
 # Thumbnails
 'thumbnail-more'  => 'Grandigez',
-'missingimage'    => '<b>Mankas imajo</b><br /><i>$1</i>',
 'thumbnail_error' => 'Ne sucesas krear thumbnail: $1',
 
 # Special:Import
@@ -817,7 +817,6 @@ Voluntez selektar altra nomo.',
 # Attribution
 'anonymous'     => 'Anonima uzanti di {{SITENAME}}',
 'siteuser'      => 'Uzanto che {{SITENAME}} $1',
-'and'           => 'ed',
 'othercontribs' => 'Bazizita en la laboro da $1.',
 'siteusers'     => 'Uzanti che {{SITENAME}} $1',
 

@@ -63,7 +63,7 @@ $messages = array(
 'ok'          => 'Sur',
 'editsection' => 'chanjya',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Ethygel',
 'nstab-user'      => 'Devnydhyer',
 'nstab-special'   => 'Arbennik',
@@ -93,8 +93,10 @@ $messages = array(
 # Image list
 'ilsubmit' => 'Hwilas',
 
+# Random page
+'randompage' => 'Folenn war amkan',
+
 # Miscellaneous special pages
-'randompage'   => 'Folenn war amkan',
 'specialpages' => 'Folennow arbennik',
 'move'         => 'Movya',
 

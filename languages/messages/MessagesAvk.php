@@ -1437,7 +1437,6 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 # Thumbnails
 'thumbnail-more'           => 'Tulogijara',
-'missingimage'             => '<b>Gracesa ewava</b><br /><i>$1</i>',
 'filemissing'              => 'Gracaf iyeltak',
 'thumbnail_error'          => 'Va $1 aluk redujara',
 'thumbnail_dest_directory' => 'Redura va kalbonja tir merotisa',

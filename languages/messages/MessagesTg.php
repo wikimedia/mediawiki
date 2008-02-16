@@ -1826,10 +1826,10 @@ $1',
 'useajaxsearch'    => 'Аз ҷустуҷӯи AJAX истифода кун',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← саҳифаи пешин',
-'imgmultipagenext'   => 'саҳифаи баъд →',
-'imgmultigo'         => 'Бирав!',
-'imgmultigotopre'    => 'рафтан ба саҳифа',
+'imgmultipageprev' => '← саҳифаи пешин',
+'imgmultipagenext' => 'саҳифаи баъд →',
+'imgmultigo'       => 'Бирав!',
+'imgmultigotopre'  => 'рафтан ба саҳифа',
 
 # Table pager
 'table_pager_next'         => 'Саҳифаи навбатӣ',

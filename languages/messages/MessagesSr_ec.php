@@ -1808,7 +1808,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'  => 'увећај',
-'missingimage'    => '<b>Овде недостаје слика</b><br /><i>$1</i>',
 'filemissing'     => 'Недостаје фајл',
 'thumbnail_error' => 'Грешка при прављењу умањене слике: $1',
 

@@ -1664,7 +1664,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'Улаатыннар',
-'missingimage'             => '<b>Ойуу көстүбэтэ</b><br /><i>$1</i>',
 'filemissing'              => 'Билэ көстүбэтэ',
 'thumbnail_error'          => 'Кыра ойууну оҥоруу сатаммата: $1',
 'djvu_page_error'          => 'DjVu сирэй тиһик таһыгар эбит',
@@ -2228,10 +2227,10 @@ $1',
 'useajaxsearch'    => 'AJAX көрдөөһүнү туһаныы',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← инники сирэй',
-'imgmultipagenext'   => 'аныгыскы сирэй →',
-'imgmultigo'         => 'Көс!',
-'imgmultigotopre'    => 'Бу сирэйгэ көс',
+'imgmultipageprev' => '← инники сирэй',
+'imgmultipagenext' => 'аныгыскы сирэй →',
+'imgmultigo'       => 'Көс!',
+'imgmultigotopre'  => 'Бу сирэйгэ көс',
 
 # Table pager
 'ascending_abbrev'         => 'улаатыннар',

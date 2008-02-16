@@ -1249,8 +1249,6 @@ Pi dari lu tò feedback e arricèviri ultiriuri assistenza:
 'excontentauthor'             => "Lu cuntinutu era: '$1' (e lu sulu cuntribbuturi era '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "Lu cuntinutu prima dû svacantamentu era: '$1'",
 'exblank'                     => 'la pàggina era vacanti',
-'confirmdelete'               => 'Cunferma la cancillazzioni',
-'deletesub'                   => '(Cancillannu "$1")',
 'historywarning'              => 'Accura: La pàggina ca stai pi cancillari havi na cronoluggìa:',
 'confirmdeletetext'           => "Stai cancillannu dû databbasi na pàggina o na mmàggini cu tutta la sò storia di manera pirmanenti. Pi fauri, cunferma ca tu ntenni fari sta cosa, ca tu hai caputu li cunziquenzi, e chi lu fai secunnu li linìi guida stabbiliti 'n [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Azzioni cumpritata',
@@ -1271,7 +1269,7 @@ Talìa $2 pi na lista di cancillazzioni ricenti.',
 
 Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User_talk:$3|discussioni]]).",
 'editcomment'                 => 'Lu cummentu â mudìfica era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) cu l'ùrtima virsioni di [[User:$1|$1]]",
+'revertpage'                  => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) cu l'ùrtima virsioni di [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Annullati li canciamenti di $1; ritornata â virsioni pricidenti di $2.',
 'sessionfailure'              => 'S\'hà virificatu un prubbrema cu la tò sissioni di login;
 lu sistema nun hà esiquitu lu cumannu mpartitu pi pricauzzioni.
@@ -1545,7 +1543,6 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 
 # Thumbnails
 'thumbnail-more'           => 'Ngrannisci',
-'missingimage'             => '<b>Mmàggini mancanti</b><br /><i>$1</i>',
 'filemissing'              => 'File mancanti',
 'thumbnail_error'          => 'Erruri ntâ criazzioni dâ miniatura: $1',
 'djvu_page_error'          => 'Nùmmuru di pàggina DjVu erratu',
@@ -1573,7 +1570,6 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'importhistoryconflict'      => 'Asìstinu rivisioni dâ cronoluggìa n cunflittu (sta pàggina putissi aviri già statu mpurtata)',
 'importnosources'            => 'Nun hà statu difinita na fonti pi la mpurtazzioni transwiki; la mpurtazzioni diretta dâ cronoluggìa nun è attiva.',
 'importnofile'               => 'Nun hà statu carrcatu nuddu file pi la mpurtazzioni.',
-'importuploaderror'          => 'Carricamentu dû file pi la mpurtazzioni nun arrinisciuta; è pussìbbili ca lu file è di diminzioni supiriuri a chiddi ammessi pi li upload.',
 
 # Import log
 'importlogpage'                    => 'Mpurtazzioni',
@@ -2059,10 +2055,10 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'hideresults'      => 'Ammuccia li risurtati',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pàggina pricidenti',
-'imgmultipagenext'   => 'pàggina siquenti →',
-'imgmultigo'         => "Va'",
-'imgmultigotopre'    => "Va' â pàggina",
+'imgmultipageprev' => '← pàggina pricidenti',
+'imgmultipagenext' => 'pàggina siquenti →',
+'imgmultigo'       => "Va'",
+'imgmultigotopre'  => "Va' â pàggina",
 
 # Table pager
 'ascending_abbrev'         => 'crisc',

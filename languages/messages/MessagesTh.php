@@ -1665,7 +1665,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'ขยาย',
-'missingimage'             => '<b>ไม่เจอภาพ</b><br /><i>$1</i>',
 'filemissing'              => 'ไม่เจอไฟล์',
 'thumbnail_error'          => 'เกิดปัญหาไม่สามารถธัมบ์เนลได้: $1',
 'djvu_page_error'          => 'หน้าเดจาวู (DjVu) เกินขนาด',
@@ -2209,10 +2208,10 @@ $1',
 'hideresults'      => 'ซ่อนผลลัพธ์',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← หน้าก่อนหน้า',
-'imgmultipagenext'   => 'หน้าถัดไป →',
-'imgmultigo'         => 'ไป!',
-'imgmultigotopre'    => 'ไปที่หน้า',
+'imgmultipageprev' => '← หน้าก่อนหน้า',
+'imgmultipagenext' => 'หน้าถัดไป →',
+'imgmultigo'       => 'ไป!',
+'imgmultigotopre'  => 'ไปที่หน้า',
 
 # Table pager
 'ascending_abbrev'         => 'หน้าไปหลัง',

@@ -29,26 +29,29 @@ $fallback8bitEncoding = "windows-1251";
 
 
 $messages = array(
-
-'edit' => 'Чиклх',
 'article' => 'Халх',
-'history' => 'Чикллһнə бүрткл',
-'nstab-main' => 'Халх',
-'nstab-user' => 'Орлцач',
-'nstab-template' => 'Зура',
-'nstab-help' => 'Цəəлһлһн',
-'nstab-category' => 'Янз',
-'talkpage' => 'Ухалвр',
+'mytalk'  => 'Мини күүндлһн бəəрм',
+
+'history'       => 'Чикллһнə бүрткл',
 'history_short' => 'Чикллһнə бүрткл',
+'edit'          => 'Чиклх',
+'talkpage'      => 'Ухалвр',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'Халх',
+'nstab-user'     => 'Орлцач',
+'nstab-template' => 'Зура',
+'nstab-help'     => 'Цəəлһлһн',
+'nstab-category' => 'Янз',
 
+# Login and logout pages
+'login'         => 'Оруллһн',
 'createaccount' => 'Выль вики-авторлэн регистрациез',
-'login' => 'Оруллһн',
-'mycontris' => 'Мини өгүллһдүд',
-'mytalk' => 'Мини күүндлһн бəəрм',
+
+# Preferences page
 'preferences' => 'Дурллһн',
 
+# Contributions
+'mycontris' => 'Мини өгүллһдүд',
+
 );
-
-
-

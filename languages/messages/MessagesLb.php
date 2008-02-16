@@ -1597,7 +1597,6 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 
 # Thumbnails
 'thumbnail-more'  => 'vergréisseren',
-'missingimage'    => '<b>Bild feelt</b><br /><i>$1</i>',
 'filemissing'     => 'Fichier feelt',
 'thumbnail_error' => 'Feeler beim Erstellen vum Thumbnail vun: $1',
 'djvu_page_error' => 'DjVu-Säit baussent dem Säiteberäich',

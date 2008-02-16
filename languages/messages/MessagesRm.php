@@ -64,6 +64,7 @@ $messages = array(
 'mytalk'     => 'Mia pagina da discussiun',
 'anontalk'   => 'Pagina da discussiun da questa IP',
 'navigation' => 'Navigaziun',
+'and'        => 'e',
 
 'returnto'         => 'Enavos tar $1.',
 'help'             => 'Agid',
@@ -274,7 +275,6 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 
 # Diffs
 'lineno'                  => 'Lingia $1:',
-'editcurrent'             => 'Editar la versiun actuala da quest artitgel',
 'compareselectedversions' => 'cumparegliar las versiuns selecziunadas',
 
 # Search results
@@ -483,8 +483,6 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 # Delete/protect/revert
 'deletepage'                  => 'Stidar la pagina',
 'confirm'                     => 'Confermar',
-'confirmdelete'               => 'Confermar il stidar',
-'deletesub'                   => '(Stidar "$1")',
 'confirmdeletetext'           => 'Ti es vidlonder da stidar permanentamain in artitgel u in maletg e tut las versiuns pli veglias ord la datoteca. <br /> 
 Conferma per plaschair che ti ta es conscient da las consequenzas e che ti ageschas tenor las [[{{MediaWiki:Policy-url}}|directivas da {{SITENAME}}]].',
 'actioncomplete'              => "L' acziun è terminada.",
@@ -513,10 +511,6 @@ Sin $2 chattas ti ina glista dals davos artitgels stidads.',
 'contributions' => "contribuziuns da l'utilisader",
 'mycontris'     => 'mias contribuziuns',
 
-'sp-contributions-newest' => 'ils pli novs',
-'sp-contributions-oldest' => 'ils pli vegls',
-'sp-contributions-newer'  => '$1 pli novs',
-'sp-contributions-older'  => '$1 pli vegls',
 'sp-contributions-submit' => 'Tschertga',
 
 # What links here
@@ -568,7 +562,6 @@ L\'artitgel da destinaziun "[[$1]]" exista gia. Vul ti stidar el per far plaz pe
 
 # Attribution
 'anonymous'     => 'Utilisader(s) anonim(s) da {{SITENAME}}',
-'and'           => 'e',
 'othercontribs' => 'Basescha sin la lavur da $1.',
 'others'        => 'auters',
 'creditspage'   => 'Statistica da la pagina',

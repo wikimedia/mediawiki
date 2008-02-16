@@ -1714,7 +1714,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 
 # Thumbnails
 'thumbnail-more'           => 'Suurenna',
-'missingimage'             => '<b>Puuttuva kuva</b><br /><i>$1</i>',
 'filemissing'              => 'Tiedosto puuttuu',
 'thumbnail_error'          => 'Pienoiskuvan luominen epäonnistui: $1',
 'djvu_page_error'          => 'DjVu-tiedostossa ei ole pyydettyä sivua',
@@ -2261,10 +2260,10 @@ $1',
 'useajaxsearch'    => 'Käytä AJAX-hakua',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← edellinen sivu',
-'imgmultipagenext'   => 'seuraava sivu →',
-'imgmultigo'         => 'Mene!',
-'imgmultigotopre'    => 'Mene sivulle',
+'imgmultipageprev' => '← edellinen sivu',
+'imgmultipagenext' => 'seuraava sivu →',
+'imgmultigo'       => 'Mene!',
+'imgmultigotopre'  => 'Mene sivulle',
 
 # Table pager
 'ascending_abbrev'         => 'nouseva',

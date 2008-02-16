@@ -2107,7 +2107,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'ۇلكەيتۋ',
-'missingimage'             => '<b>جوعالعان سۋرەت </b><br /><i>$1</i>',
 'filemissing'              => 'جوعالعان فايل',
 'thumbnail_error'          => 'نوباي جاراتىلۋ قاتەسى: $1',
 'djvu_page_error'          => 'DjVu بەتى مۇمكىندى اۋماقتىڭ سىرتىنددا',
@@ -2678,10 +2677,10 @@ $1',
 'comma-separator'     => '،&#32;',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← الدىڭعى بەتكە',
-'imgmultipagenext'   => 'كەلەسى بەتكە →',
-'imgmultigo'         => 'ٴوت!',
-'imgmultigotopre'    => 'مىنا بەتكە ٴوتۋ',
+'imgmultipageprev' => '← الدىڭعى بەتكە',
+'imgmultipagenext' => 'كەلەسى بەتكە →',
+'imgmultigo'       => 'ٴوت!',
+'imgmultigotopre'  => 'مىنا بەتكە ٴوتۋ',
 
 # Table pager
 'ascending_abbrev'         => 'ٴوسۋ',

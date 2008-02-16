@@ -96,6 +96,7 @@ $messages = array(
 'moredotdotdot'  => 'Tohiny...',
 'mypage'         => 'Pejiko',
 'mytalk'         => 'Ny diniko',
+'and'            => 'sy',
 
 'errorpagetitle'    => 'Tsy fetezana',
 'returnto'          => "Hiverina any amin'ny $1.",
@@ -771,8 +772,6 @@ Hevitrao sy fanampiana:
 'confirm'                     => 'Antero',
 'excontent'                   => "votoatiny: '$1'",
 'excontentauthor'             => "votoatiny: '$1' (ary i '[[Special:Contributions/$2|$2]]' irery ihany no nikitika azy)",
-'confirmdelete'               => 'Antero ny famafana pejy',
-'deletesub'                   => '(Famafana ny "$1")',
 'historywarning'              => 'Fampitandremana: Manana tantara io pejy hofafanao io (izany hoe farafaharatsiny indray mandeha niova):',
 'confirmdeletetext'           => "Handeha hamafa tanteraka ny pejy na sary miaraka amin'ny tantarany rehetra 
 ao anatin'ny toby ianao. Azafady mba hamafiso fa irinao tokoa izany, 
@@ -796,7 +795,7 @@ nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]); satria efa nisy nanova ny pej
 
 Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 'editcomment'                 => 'Toy izao no fanamarihana momba io fanovana io: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]",
+'revertpage'                  => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogtext'              => 'Eto ambany ny lisitry ny fiarovana/fanalana hidy ny pejy. Fanazavana fanampiny: jereo [[Special:Protectedpages]].',
 'protectedarticle'            => 'voaaro ny pejy "[[$1]]"',
 'unprotectedarticle'          => 'voaala ny fiarovana an\'i "[[$1]]"',
@@ -972,7 +971,6 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 
 # Thumbnails
 'thumbnail-more' => 'Angezao',
-'missingimage'   => '<b>Sary tsy hita</b><br /><i>$1</i>',
 'filemissing'    => 'Tsy hita ny rakitra',
 
 # Tooltip help for the actions
@@ -995,7 +993,6 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 # Attribution
 'anonymous' => "Mpikambana tsy mitonona anarana eto amin'ny {{SITENAME}}",
 'siteuser'  => '{{SITENAME}} mpikambana $1',
-'and'       => 'sy',
 'others'    => 'hafa',
 'siteusers' => '{{SITENAME}} mpikambana $1',
 

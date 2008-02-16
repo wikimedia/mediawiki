@@ -1573,7 +1573,6 @@ $NEWPAGE
 
 # Thumbnails
 'thumbnail-more'           => 'Павялічыць',
-'missingimage'             => '<b>Прапушчаная выява</b><br /><i>$1</i>',
 'filemissing'              => 'Адсутны файл',
 'thumbnail_error'          => 'Памылка пры стварэнні драбніцы: $1',
 'djvu_page_error'          => 'Старонка DjVu па-за інтэрвалам',
@@ -1990,10 +1989,10 @@ $1',
 'useajaxsearch'    => 'Пошук праз AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← папярэдняя старонка',
-'imgmultipagenext'   => 'наступная старонка →',
-'imgmultigo'         => 'Ісці!',
-'imgmultigotopre'    => 'Ісці на старонку',
+'imgmultipageprev' => '← папярэдняя старонка',
+'imgmultipagenext' => 'наступная старонка →',
+'imgmultigo'       => 'Ісці!',
+'imgmultigotopre'  => 'Ісці на старонку',
 
 # Table pager
 'ascending_abbrev'         => 'да больш.',

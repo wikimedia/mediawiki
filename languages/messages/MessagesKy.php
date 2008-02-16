@@ -55,6 +55,7 @@ $messages = array(
 'mypage'        => 'Барагым',
 'mytalk'        => 'Маегим',
 'navigation'    => 'Багыттоо',
+'and'           => 'жана',
 
 'errorpagetitle'   => 'Жаңылыш',
 'tagline'          => '{{SITENAME}} дан',
@@ -218,8 +219,8 @@ $messages = array(
 'randompage' => 'Тушкелди макала',
 
 # Statistics
-'statistics'    => 'Статистика',
-'userstats'     => 'Колдонуучулардын статистикасы',
+'statistics' => 'Статистика',
+'userstats'  => 'Колдонуучулардын статистикасы',
 
 # Miscellaneous special pages
 'unusedcategories' => 'Колдонулбаган категориялар',
@@ -302,7 +303,6 @@ $messages = array(
 'allmessagesmodified' => 'Өзгөрүүгө учурагандарды гана көрсөт',
 
 # Attribution
-'and'    => 'жана',
 'others' => 'башкалар',
 
 # Browsing diffs

@@ -48,7 +48,7 @@ $messages = array(
 'aboutsite' => 'ብዛዕባ {{SITENAME}} ብጠቅላላ',
 'mainpage'  => 'መበገሲ ገጽ',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'    => 'ፅሑፍ',
 'nstab-user'    => 'ናይ ፅሑፍ ኣባል',
 'nstab-project' => 'ናይ ፅሑፍ ዊኪፒዲያ',

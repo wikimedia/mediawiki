@@ -62,6 +62,7 @@ $messages = array(
 'mypage'         => 'Дæхи фарс',
 'mytalk'         => 'Дæумæ цы дзурынц',
 'navigation'     => 'хъæугæ æрвитæнтæ',
+'and'            => 'æмæ',
 
 'errorpagetitle'   => 'Рæдыд',
 'tagline'          => 'Сæрибар энциклопеди Википедийы æрмæг.',
@@ -97,7 +98,7 @@ $messages = array(
 'showtoc'         => 'равдис',
 'hidetoc'         => 'бамбæхс',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'Архайæджы фарс',
 'nstab-special'   => 'Сæрмагонд фарс',
 'nstab-image'     => 'Ныв',
@@ -136,7 +137,6 @@ $messages = array(
 'newarticle'  => '(Ног)',
 
 # History pages
-'revhistory' => 'Ивддзинæдты истори',
 'last'       => 'раздæры',
 'histlegend' => 'Куыд æй æмбарын: (нырыккон) = нырыккон версийæ хъауджыдæрдзинад, (раздæры) = раздæры версийæ хъауджыдæрдзинад, Ч = чысыл ивддзинад.',
 
@@ -144,12 +144,11 @@ $messages = array(
 'lineno' => 'Рæнхъ $1:',
 
 # Search results
-'searchresults'  => 'Цы ссардæуы',
-'titlematches'   => 'Статьяты сæргæндты æмцаутæ',
-'textmatches'    => 'Статьяты æмцаутæ',
-'prevn'          => '$1 фæстæмæ',
-'nextn'          => '$1 размæ',
-'blanknamespace' => '(Сæйраг)',
+'searchresults' => 'Цы ссардæуы',
+'titlematches'  => 'Статьяты сæргæндты æмцаутæ',
+'textmatches'   => 'Статьяты æмцаутæ',
+'prevn'         => '$1 фæстæмæ',
+'nextn'         => '$1 размæ',
 
 # Preferences page
 'qbsettings-none'         => 'Ма равдис',
@@ -186,8 +185,10 @@ $3',
 'byname'       => 'номмæ гæсгæ',
 'bydate'       => 'рæстæгмæ гæсгæ',
 'bysize'       => 'асмæ гæсгæ',
-'imghistory'   => 'Нывы ивддзинæдты лог',
 'linkstoimage' => 'Ацы нывæй чи пайда кæны, ахæм статьятæ:',
+
+# Random page
+'randompage' => 'Æнæбары æвзæрст фарс',
 
 # Statistics
 'userstatstext' => 'Регистрацигонд æрцыдысты <b>$1</b> архайджыты, уыдонæй <b>$2</b> — админтæ (кæс $3).',
@@ -198,7 +199,6 @@ $3',
 'lonelypages'  => 'Сидзæр фæрстæ',
 'wantedpages'  => 'Хъæугæ фæрстæ',
 'allpages'     => 'Æппæт фæрстæ',
-'randompage'   => 'Æнæбары æвзæрст фарс',
 'shortpages'   => 'Цыбыр фæрстæ',
 'longpages'    => 'Даргъ фæрстæ',
 'listusers'    => 'Архайджыты номхыгъд',
@@ -238,6 +238,9 @@ $3',
 # Delete/protect/revert
 'exblank' => 'фарс афтид уыдис',
 
+# Namespace form on various pages
+'blanknamespace' => '(Сæйраг)',
+
 # Contributions
 'contributions' => 'Йæ бавæрд',
 'mycontris'     => 'Дæ бавæрд',
@@ -262,15 +265,13 @@ $3',
 'importnotext' => 'Афтид у кæнæ текст дзы нæй',
 
 # Attribution
-'and'    => 'æмæ',
 'others' => 'æндæртæ',
 
 # Spam protection
 'subcategorycount'     => 'Ацы категорийы мидæг $1 дæлкатегорийы ис.',
 'categoryarticlecount' => 'Ацы категорийы мидæг $1 статьяйы ис.',
 
+# Special:Newimages
 'newimages' => 'Ног нывты галерей',
 
 );
-
-

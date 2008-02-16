@@ -51,6 +51,7 @@ $messages = array(
 'mypage'     => 'जिगु पौ',
 'mytalk'     => 'जिगु खं',
 'navigation' => 'परिवहन',
+'and'        => 'व',
 
 'search'           => 'मालादिसं',
 'history_short'    => 'इतिहास',
@@ -127,7 +128,6 @@ $messages = array(
 'whatlinkshere' => 'थन छु स्वाई',
 
 # Attribution
-'and'    => 'व',
 'others' => 'मेमेगु',
 
 # 'all' in various places, this might be different for inflected languages

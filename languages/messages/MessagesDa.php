@@ -1771,7 +1771,6 @@ Artiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads til f
 
 # Thumbnails
 'thumbnail-more'           => 'Forstør',
-'missingimage'             => '<b>Mangler billede</b><br /><i>$1</i>',
 'filemissing'              => 'Filen mangler',
 'thumbnail_error'          => 'Fejl ved oprettelse af thumbnail: $1',
 'djvu_page_error'          => 'DjVu-side udenfor sideområdet',
@@ -2327,10 +2326,10 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'useajaxsearch'    => 'Brug AJAX-søgning',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← forrige side',
-'imgmultipagenext'   => 'næste side →',
-'imgmultigo'         => 'OK',
-'imgmultigotopre'    => 'Gå til side',
+'imgmultipageprev' => '← forrige side',
+'imgmultipagenext' => 'næste side →',
+'imgmultigo'       => 'OK',
+'imgmultigotopre'  => 'Gå til side',
 
 # Table pager
 'ascending_abbrev'         => 'op',

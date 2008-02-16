@@ -1630,7 +1630,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'বড় করো',
-'missingimage'             => '<b>হারানো ছবি</b><br /><i>$1</i>',
 'filemissing'              => 'ফাইল হারিয়ে গেছে',
 'thumbnail_error'          => 'থাম্বনেইল সৃষ্টি করতে গিয়ে ত্রুটি: $1',
 'djvu_page_error'          => 'DjVu পাতা সীমার বাইরে',
@@ -2170,10 +2169,10 @@ $1',
 'useajaxsearch'    => 'এজ্যাক্স (AJAX) অনুসন্ধান ব্যবহার করা হোক',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← পূর্ববর্তী পাতা',
-'imgmultipagenext'   => 'পরবর্তী পাতা →',
-'imgmultigo'         => 'চলো!',
-'imgmultigotopre'    => 'পাতায় চলো',
+'imgmultipageprev' => '← পূর্ববর্তী পাতা',
+'imgmultipagenext' => 'পরবর্তী পাতা →',
+'imgmultigo'       => 'চলো!',
+'imgmultigotopre'  => 'পাতায় চলো',
 
 # Table pager
 'ascending_abbrev'         => 'আরোহণ',

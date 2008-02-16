@@ -1486,7 +1486,6 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 
 # Thumbnails
 'thumbnail-more'           => 'grötter maken',
-'missingimage'             => "'''Bild fehlt'''<br />''$1''",
 'filemissing'              => 'Datei fehlt',
 'thumbnail_error'          => 'Fehler bi dat Maken vun’t Duumnagel-Bild: $1',
 'thumbnail_dest_directory' => 'Kann Zielorner nich anleggen',

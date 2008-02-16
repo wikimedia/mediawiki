@@ -1405,7 +1405,6 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 
 # Thumbnails
 'thumbnail-more'  => 'Gretükön',
-'missingimage'    => '<b>Magod no dabinöl</b><br /><i>$1</i>',
 'filemissing'     => 'Ragiv deföl',
 'thumbnail_error' => 'Pöl pö jafam magodila: $1',
 
@@ -1679,10 +1678,10 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'useajaxsearch'    => 'Gebön suki ela AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pad büik',
-'imgmultipagenext'   => 'pad sököl →',
-'imgmultigo'         => 'Gololöd!',
-'imgmultigotopre'    => 'Golön lü pad',
+'imgmultipageprev' => '← pad büik',
+'imgmultipagenext' => 'pad sököl →',
+'imgmultigo'       => 'Gololöd!',
+'imgmultigotopre'  => 'Golön lü pad',
 
 # Table pager
 'table_pager_next'         => 'Pad sököl',

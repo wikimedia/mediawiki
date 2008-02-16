@@ -1741,7 +1741,6 @@ En iste zaguer caso tamién puede usar un binclo, por exemplo [[Special:Export/{
 
 # Thumbnails
 'thumbnail-more'           => 'Fer más gran',
-'missingimage'             => '<b>Imachen no trobata</b><br /><i>$1</i>',
 'filemissing'              => 'Archibo no trobato',
 'thumbnail_error'          => "S'ha produzito una error en creyar a miniatura: $1",
 'djvu_page_error'          => "Pachina DjVu difuera d'o rango",
@@ -2284,10 +2283,10 @@ $1",
 'useajaxsearch'    => 'Faiga serbir a busca en AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pachina anterior',
-'imgmultipagenext'   => 'pachina siguient →',
-'imgmultigo'         => 'Ir-ie!',
-'imgmultigotopre'    => "Ir t'a pachina",
+'imgmultipageprev' => '← pachina anterior',
+'imgmultipagenext' => 'pachina siguient →',
+'imgmultigo'       => 'Ir-ie!',
+'imgmultigotopre'  => "Ir t'a pachina",
 
 # Table pager
 'ascending_abbrev'         => 'asz',

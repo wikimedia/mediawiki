@@ -963,8 +963,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'allmessagesmodified'       => 'ʻAsi mai meʻa kuo liliu pē',
 
 # Thumbnails
-'missingimage' => '<b>Hala faitā</b><br /><i>$1</i>',
-'filemissing'  => 'ʻOku pulia ʻa e faile',
+'filemissing' => 'ʻOku pulia ʻa e faile',
 
 # Special:Import
 'import'                     => 'Hū mai ngaahi peesi',

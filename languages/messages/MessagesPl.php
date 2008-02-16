@@ -1730,7 +1730,6 @@ Można również użyć łącza, np. [[{{ns:special}}:Export/{{Mediawiki:mainpag
 
 # Thumbnails
 'thumbnail-more'           => 'Powiększ',
-'missingimage'             => '<b>Brak grafiki</b><br /><i>$1</i>',
 'filemissing'              => 'Brak pliku',
 'thumbnail_error'          => 'Błąd przy generowaniu miniatury: $1',
 'djvu_page_error'          => 'Strona DjVu poza zakresem',
@@ -2282,10 +2281,10 @@ $1',
 'useajaxsearch'    => 'Użyj wyszukiwania AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← poprzednia strona',
-'imgmultipagenext'   => 'następna strona →',
-'imgmultigo'         => 'Przejdź',
-'imgmultigotopre'    => 'Przejdź na stronę',
+'imgmultipageprev' => '← poprzednia strona',
+'imgmultipagenext' => 'następna strona →',
+'imgmultigo'       => 'Przejdź',
+'imgmultigotopre'  => 'Przejdź na stronę',
 
 # Table pager
 'ascending_abbrev'         => 'rosn.',

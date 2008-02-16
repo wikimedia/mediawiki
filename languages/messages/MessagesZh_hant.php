@@ -587,7 +587,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                   => '正在編輯$1',
-'editinguser'               => '正在更改用戶\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限',
+'editinguser'               => "正在更改用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限",
 'editingsection'            => '正在編輯$1 (段落)',
 'editingcomment'            => '正在編輯$1 (評論)',
 'editconflict'              => '編輯衝突：$1',
@@ -1696,7 +1696,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => '放大',
-'missingimage'             => '<b>缺少圖像</b><br /><i>$1</i>',
 'filemissing'              => '無法找到檔案',
 'thumbnail_error'          => '創建縮圖錯誤: $1',
 'djvu_page_error'          => 'DjVu頁面超出範圍',
@@ -2263,11 +2262,11 @@ $3
 'useajaxsearch'    => '使用AJAX搜索',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← 上一頁',
-'imgmultipagenext'   => '下一頁 →',
-'imgmultigo'         => '確定！',
-'imgmultigotopre'    => '到第',
-'imgmultigotopost'   => '頁',
+'imgmultipageprev' => '← 上一頁',
+'imgmultipagenext' => '下一頁 →',
+'imgmultigo'       => '確定！',
+'imgmultigotopre'  => '到第',
+'imgmultigotopost' => '頁',
 
 # Table pager
 'ascending_abbrev'         => '遞增',

@@ -1662,7 +1662,6 @@ $NEWPAGE
 
 # Thumbnails
 'thumbnail-more'           => '拡大',
-'missingimage'             => '<b>以下の画像が見つかりません。</b><br /><i>$1</i>',
 'filemissing'              => '<i>ファイルがありません</i>',
 'thumbnail_error'          => 'サムネイルの作成中にエラーが発生しました: $1',
 'djvu_page_error'          => '指定ページ数はDjVuページ範囲を越えています',
@@ -2249,11 +2248,11 @@ $1',
 'useajaxsearch'    => 'Ajax による検索を利用する',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; 前ページ',
-'imgmultipagenext'   => '次ページ &rarr;',
-'imgmultigo'         => '表示',
-'imgmultigotopre'    => 'このページへ',
-'imgmultigotopost'   => 'ページ目を',
+'imgmultipageprev' => '&larr; 前ページ',
+'imgmultipagenext' => '次ページ &rarr;',
+'imgmultigo'       => '表示',
+'imgmultigotopre'  => 'このページへ',
+'imgmultigotopost' => 'ページ目を',
 
 # Table pager
 'ascending_abbrev'         => '昇順',

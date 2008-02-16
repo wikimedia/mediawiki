@@ -1709,7 +1709,6 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:special}}:Ex
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandado',
-'missingimage'             => '<b>Imaxe ausente</b><br /><i>$1</i>',
 'filemissing'              => 'O ficheiro non se dá atopado',
 'thumbnail_error'          => 'Erro ao crear a imaxe en miniatura: $1',
 'djvu_page_error'          => 'Páxina DjVu fóra de rango',
@@ -2260,10 +2259,10 @@ $1',
 'useajaxsearch'    => 'Usar a procura AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← páxina anterior',
-'imgmultipagenext'   => 'seguinte páxina →',
-'imgmultigo'         => 'Ir!',
-'imgmultigotopre'    => 'Ir á páxina',
+'imgmultipageprev' => '← páxina anterior',
+'imgmultipagenext' => 'seguinte páxina →',
+'imgmultigo'       => 'Ir!',
+'imgmultigotopre'  => 'Ir á páxina',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

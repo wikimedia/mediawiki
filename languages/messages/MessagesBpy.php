@@ -175,6 +175,7 @@ $messages = array(
 'mytalk'         => 'মর য়্যারি-পরি',
 'anontalk'       => 'অচিনা এগর য়্যারির পাতা',
 'navigation'     => 'দিশা-ধরুনী',
+'and'            => 'বারো',
 
 # Metadata in edit box
 'metadata_help' => 'মেটাডাটা:',
@@ -428,7 +429,6 @@ $messages = array(
 
 # Delete/protect/revert
 'confirm'        => 'লেপকরানি',
-'confirmdelete'  => 'পুসানিহান লেপকর',
 'actioncomplete' => 'কামহান লমিল।',
 'cantrollback'   => 'আগেকার সঙস্করনহাত আলথকে যানা নুৱারলু, লমিলগা সম্পদনাকরেকুরা অগ পাতা অহানর আকখুলা লেখকগ।',
 
@@ -474,7 +474,6 @@ $messages = array(
 
 # Attribution
 'anonymous' => '{{SITENAME}}র বেনাঙর আতাকুরা(গি)',
-'and'       => 'বারো',
 
 # Spam protection
 'categoryarticlecount' => 'এরে বিষয়রথাকে $1হান নিবন্ধ আসে।',

@@ -1791,7 +1791,6 @@ En el darrer cas podeu fer servir un enllaç, com ara [[{{ns:special}}:Export/{{
 
 # Thumbnails
 'thumbnail-more'           => 'Amplia',
-'missingimage'             => '<b>Manca la imatge</b><br /><i>$1</i>',
 'filemissing'              => 'Fitxer inexistent',
 'thumbnail_error'          => "S'ha produït un error en crear la miniatura: $1",
 'djvu_page_error'          => "La pàgina DjVu està fora de l'abast",
@@ -2338,10 +2337,10 @@ $1",
 'useajaxsearch'    => 'Utilitza la cerca en AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; pàgina prèvia',
-'imgmultipagenext'   => 'pàgina següent &rarr;',
-'imgmultigo'         => 'Vés-hi',
-'imgmultigotopre'    => 'Ve a la pàgina',
+'imgmultipageprev' => '&larr; pàgina prèvia',
+'imgmultipagenext' => 'pàgina següent &rarr;',
+'imgmultigo'       => 'Vés-hi',
+'imgmultigotopre'  => 'Ve a la pàgina',
 
 # Table pager
 'table_pager_next'         => 'Pàgina següent',

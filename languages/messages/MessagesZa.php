@@ -54,7 +54,7 @@ $messages = array(
 
 'youhavenewmessages' => 'Mungz meiz $1（$2）。',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Faenzueng',
 'nstab-user' => 'Mae bouxdeiz',
 
@@ -95,8 +95,10 @@ $messages = array(
 # Image list
 'ilsubmit' => 'Cwmh',
 
+# Random page
+'randompage' => 'Mae zaihzex',
+
 # Miscellaneous special pages
-'randompage'        => 'Mae zaihzex',
 'specialpages'      => 'Doenghmae daegxsei',
 'newpages-username' => 'Ciu bouxdeiz:',
 'move'              => 'Caen',

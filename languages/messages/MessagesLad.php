@@ -21,6 +21,7 @@ $messages = array(
 'mypage'   => 'Mi pajina',
 'mytalk'   => 'Mi diskusion',
 'anontalk' => 'Diskusion para esta IP',
+'and'      => 'i',
 
 'help'          => 'Ayuda',
 'search'        => 'Bushkar',
@@ -49,9 +50,9 @@ $messages = array(
 'accountcreatedtext' => 'La kuenta de uzuario para $1 ha sido kreada.',
 
 # Edit pages
-'showdiff'         => 'Amostrar trokos',
-'accmailtitle'     => 'La kontrasenya ha sido embiada.',
-'accmailtext'      => 'La kontrasenya para "$1" se ha embiado a $2.',
+'showdiff'     => 'Amostrar trokos',
+'accmailtitle' => 'La kontrasenya ha sido embiada.',
+'accmailtext'  => 'La kontrasenya para "$1" se ha embiado a $2.',
 
 # Preferences page
 'preferences' => 'Preferensias',
@@ -97,6 +98,5 @@ $messages = array(
 
 # Attribution
 'anonymous' => 'Uzuario(s) anonimo(s) de {{SITENAME}}',
-'and'       => 'i',
 
 );

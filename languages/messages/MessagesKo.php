@@ -1448,7 +1448,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'  => '실제 크기로',
-'missingimage'    => "'''사라진 그림'''<br />''$1''",
 'filemissing'     => '파일 사라짐',
 'thumbnail_error' => '섬네일을 만드는 중 오류 발생: $1',
 'djvu_no_xml'     => 'DjVu 파일의 XML 정보를 읽을 수 없음',

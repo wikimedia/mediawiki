@@ -1822,7 +1822,6 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 
 # Thumbnails
 'thumbnail-more'           => 'Perbesar',
-'missingimage'             => '<strong>Berkas tak ditemukan</strong><br /><em>$1</em>',
 'filemissing'              => 'Berkas tak ditemukan',
 'thumbnail_error'          => 'Kesalahan sewaktu pembuatan gambar kecil (thumbnail): $1',
 'djvu_page_error'          => 'Halaman DjVu di luar rentang',
@@ -2352,10 +2351,10 @@ $1",
 'useajaxsearch'    => 'Gunakan pencarian AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; halaman sebelumnya',
-'imgmultipagenext'   => 'halaman selanjutnya &rarr;',
-'imgmultigo'         => 'Cari!',
-'imgmultigotopre'    => 'Ke halaman',
+'imgmultipageprev' => '&larr; halaman sebelumnya',
+'imgmultipagenext' => 'halaman selanjutnya &rarr;',
+'imgmultigo'       => 'Cari!',
+'imgmultigotopre'  => 'Ke halaman',
 
 # Table pager
 'ascending_abbrev'         => 'naik',

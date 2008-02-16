@@ -58,6 +58,7 @@ $messages = array(
 'mytalk'        => 'Mi diskushon',
 'anontalk'      => 'Diskushon pa e IP aki',
 'navigation'    => 'Nabegashon',
+'and'           => 'i',
 
 'errorpagetitle'    => 'Eror',
 'returnto'          => 'Bai bèk $1.',
@@ -281,7 +282,6 @@ Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di 
 
 # Delete/protect/revert
 'confirm'        => 'Konfirmá',
-'confirmdelete'  => 'Konfirmá kitamentu',
 'actioncomplete' => 'Akshon kompletá',
 'confirmprotect' => 'Konfirmá protekshon',
 
@@ -329,7 +329,6 @@ Por fabor skohe un otro título.',
 
 # Attribution
 'anonymous' => 'Uzadó(nan) anonimo di {{SITENAME}}',
-'and'       => 'i',
 
 # Spam protection
 'subcategorycount'     => 'Tin {{PLURAL:$1|1 supkategoria|$1 supkategorianan}} bou di e kategoria aki.',

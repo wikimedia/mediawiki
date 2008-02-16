@@ -1570,7 +1570,6 @@ In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{ns:
 
 # Thumbnails
 'thumbnail-more'           => 'Immannitta',
-'missingimage'             => '<b>Immàgina mancanti</b><br /><i>$1</i>',
 'filemissing'              => 'File mancanti',
 'thumbnail_error'          => "Errori i' la criazioni di la miniadduri: $1",
 'djvu_page_error'          => 'Nùmaru di pàgina DjVu ibbagliaddu',
@@ -1921,10 +1920,10 @@ $1',
 'useajaxsearch'    => "Zercha cu'AJAX",
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pàgina prizzidenti',
-'imgmultipagenext'   => 'pàgina sighenti →',
-'imgmultigo'         => 'Vai',
-'imgmultigotopre'    => 'Vai a la pàgina',
+'imgmultipageprev' => '← pàgina prizzidenti',
+'imgmultipagenext' => 'pàgina sighenti →',
+'imgmultigo'       => 'Vai',
+'imgmultigotopre'  => 'Vai a la pàgina',
 
 # Table pager
 'ascending_abbrev'         => 'crisc',

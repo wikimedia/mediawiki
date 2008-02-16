@@ -1443,7 +1443,6 @@ e-mail: $PAGEEDITOR_EMAIL
 
 # Thumbnails
 'thumbnail-more'           => 'Буют',
-'missingimage'             => '<b>Тапылмагъан ресим</b><br /><i>$1</i>',
 'filemissing'              => 'Файл тапылмады',
 'thumbnail_error'          => 'Кичик ресим (thumbnail) яратылгъанда бир хата чыкъты: $1',
 'thumbnail_invalid_params' => 'Янълыш thumbnail параметри',
@@ -1748,10 +1747,10 @@ $1',
 'hideresults'      => 'Нетиджелерни гизле',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← эвельки саифе',
-'imgmultipagenext'   => 'сонъраки саифе →',
-'imgmultigo'         => 'Бар',
-'imgmultigotopre'    => 'Бу саифеге бар',
+'imgmultipageprev' => '← эвельки саифе',
+'imgmultipagenext' => 'сонъраки саифе →',
+'imgmultigo'       => 'Бар',
+'imgmultigotopre'  => 'Бу саифеге бар',
 
 # Table pager
 'ascending_abbrev'         => 'кичиктен буюкке',

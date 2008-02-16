@@ -23,6 +23,7 @@ $messages = array(
 
 'qbedit'        => 'Kiwiwid',
 'moredotdotdot' => 'Iyuw...',
+'and'           => 'me',
 
 'errorpagetitle' => 'Dairinaiya',
 'help'           => 'Ipuok',
@@ -109,13 +110,10 @@ $messages = array(
 
 # Delete/protect/revert
 'confirm'        => 'Oebwigaga',
-'confirmdelete'  => 'Oebwigaga iyababa',
 'deletedarticle' => 'iyababa "[[$1]]"',
 
 # Contributions
 'contributions' => 'Mana engame totow inne',
 
-# Attribution
-'and' => 'me',
 
 );

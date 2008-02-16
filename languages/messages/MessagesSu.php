@@ -1383,7 +1383,6 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 
 # Thumbnails
 'thumbnail-more'  => 'Gedéan',
-'missingimage'    => '<b>Gambar leungit</b><br /><i>$1</i>',
 'filemissing'     => 'Koropak leungit',
 'thumbnail_error' => 'Kasalahan sawaktu nyieun gambar leutik (thumbnail): $1',
 'djvu_no_xml'     => 'XML keur koropak DjVu teu bisa dicokot',
@@ -1687,10 +1686,10 @@ $1',
 'hideresults'      => 'Sumputkeun hasil',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; kaca saacana',
-'imgmultipagenext'   => 'kaca salajeungna &rarr;',
-'imgmultigo'         => 'Téang!',
-'imgmultigotopre'    => 'Ka kaca',
+'imgmultipageprev' => '&larr; kaca saacana',
+'imgmultipagenext' => 'kaca salajeungna &rarr;',
+'imgmultigo'       => 'Téang!',
+'imgmultigotopre'  => 'Ka kaca',
 
 # Table pager
 'ascending_abbrev'         => 'naék',

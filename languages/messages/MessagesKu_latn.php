@@ -1322,7 +1322,6 @@ Rûpela "[[$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê 
 
 # Thumbnails
 'thumbnail-more' => 'Mezin bike',
-'missingimage'   => '<b>Wêne tune</b><br /><i>$1</i>',
 'filemissing'    => 'Data tune',
 
 # Special:Import

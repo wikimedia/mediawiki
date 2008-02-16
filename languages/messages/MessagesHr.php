@@ -1743,7 +1743,6 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:special}}:Export/
 
 # Thumbnails
 'thumbnail-more'           => 'Povećaj',
-'missingimage'             => '<b>Nedostaje slika</b><br /><i>$1</i>',
 'filemissing'              => 'Nedostaje datoteka',
 'thumbnail_error'          => 'Pogrješka pri izradbi sličice: $1',
 'djvu_page_error'          => "DjVu stranica nije dohvatljiva (''out of range'')",
@@ -2311,10 +2310,10 @@ $1',
 'useajaxsearch'    => 'Koristite AJAX-pretragu',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← prethodna slika',
-'imgmultipagenext'   => 'slijedeća slika →',
-'imgmultigo'         => 'Idi!',
-'imgmultigotopre'    => 'Idi na stranicu',
+'imgmultipageprev' => '← prethodna slika',
+'imgmultipagenext' => 'slijedeća slika →',
+'imgmultigo'       => 'Idi!',
+'imgmultigotopre'  => 'Idi na stranicu',
 
 # Table pager
 'ascending_abbrev'         => 'rast',

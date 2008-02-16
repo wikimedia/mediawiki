@@ -1506,8 +1506,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 
 # Thumbnails
 'thumbnail-more'  => 'Extinde',
-'missingimage'    => '<b>Imagine lipsă</b><br />
-<i>$1</i>',
 'filemissing'     => 'Fişier lipsă',
 'thumbnail_error' => 'Eroare la generarea previzualizării: $1',
 

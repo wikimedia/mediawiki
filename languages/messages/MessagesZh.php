@@ -10,7 +10,6 @@
 $fallback = 'zh-hans';
 
 $messages = array(
-
 /*
 Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.

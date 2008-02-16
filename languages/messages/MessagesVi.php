@@ -1764,7 +1764,6 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 
 # Thumbnails
 'thumbnail-more'           => 'Phóng lớn',
-'missingimage'             => '<b>Không có hình</b><br /><i>$1</i>',
 'filemissing'              => 'Không có tập tin',
 'thumbnail_error'          => 'Hình thu nhỏ có lỗi: $1',
 'djvu_page_error'          => 'Trang DjVu quá xa',
@@ -2325,10 +2324,10 @@ $1',
 'useajaxsearch'    => 'Dùng tìm kiếm AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← trang trước',
-'imgmultipagenext'   => 'trang sau →',
-'imgmultigo'         => 'Hiển thị',
-'imgmultigotopre'    => 'Xem trang',
+'imgmultipageprev' => '← trang trước',
+'imgmultipagenext' => 'trang sau →',
+'imgmultigo'       => 'Hiển thị',
+'imgmultigotopre'  => 'Xem trang',
 
 # Table pager
 'ascending_abbrev'         => 'tăng',

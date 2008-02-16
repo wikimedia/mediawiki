@@ -1733,7 +1733,6 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 
 # Thumbnails
 'thumbnail-more'           => 'Agrantir',
-'missingimage'             => '<b>Émâge manquenta</b><br /><i>$1</i>',
 'filemissing'              => 'Fichiér absent',
 'thumbnail_error'          => 'Èrror pendent la crèacion de la figura : $1',
 'djvu_page_error'          => 'Pâge DjVu en defôr de les limites',
@@ -2292,10 +2291,10 @@ $1',
 'useajaxsearch'    => 'Utilisar la rechèrche AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pâge prècèdenta',
-'imgmultipagenext'   => 'pâge siuventa →',
-'imgmultigo'         => 'Accèdar !',
-'imgmultigotopre'    => 'Arrevar a la pâge',
+'imgmultipageprev' => '← pâge prècèdenta',
+'imgmultipagenext' => 'pâge siuventa →',
+'imgmultigo'       => 'Accèdar !',
+'imgmultigotopre'  => 'Arrevar a la pâge',
 
 # Table pager
 'ascending_abbrev'         => 'crès',

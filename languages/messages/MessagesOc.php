@@ -1665,7 +1665,6 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandir',
-'missingimage'             => '<b>Imatge mancant</b><br /><i>$1</i>',
 'filemissing'              => 'Fichièr absent',
 'thumbnail_error'          => 'Error al moment de la creacion de la miniatura : $1',
 'djvu_page_error'          => 'Pagina DjVu fòra limits',
@@ -2213,10 +2212,10 @@ $1",
 'useajaxsearch'    => 'Utilizar la recèrca AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; pagina precedenta',
-'imgmultipagenext'   => 'pagina seguenta &rarr;',
-'imgmultigo'         => 'Accedir !',
-'imgmultigotopre'    => 'Accedir a la pagina',
+'imgmultipageprev' => '&larr; pagina precedenta',
+'imgmultipagenext' => 'pagina seguenta &rarr;',
+'imgmultigo'       => 'Accedir !',
+'imgmultigotopre'  => 'Accedir a la pagina',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

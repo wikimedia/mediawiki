@@ -167,6 +167,7 @@ $messages = array(
 'mytalk'         => 'Nire eztabaida',
 'anontalk'       => 'IP honen eztabaida',
 'navigation'     => 'Nabigazioa',
+'and'            => 'eta',
 
 'errorpagetitle'    => 'Errorea',
 'returnto'          => '$1(e)ra itzuli.',
@@ -1059,8 +1060,6 @@ Laguntza:
 'excontentauthor'             => "edukia honakoa zen: '$1' (parte hartu duen lankide bakarra: '$2')",
 'exbeforeblank'               => "hustu aurreko edukiera: '$1'",
 'exblank'                     => 'orrialdea hutsik zegoen',
-'confirmdelete'               => 'Ezabaketa baieztatu',
-'deletesub'                   => '("$1" ezabatzen)',
 'historywarning'              => 'Kontuz! Ezabatuko duzun orrialdeak honako historia du:',
 'confirmdeletetext'           => 'Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz egingo duzula.',
 'actioncomplete'              => 'Ekintza burutu da',
@@ -1078,7 +1077,7 @@ Laguntza:
 'cantrollback'                => 'Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.',
 'alreadyrolled'               => 'Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]) [[$1]](e)n egindako azken aldaketa desegin; beste norbaitek editatu du edo jada desegin du. Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]) egin du.',
 'editcomment'                 => 'Aldaketaren iruzkina: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.',
+'revertpage'                  => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Badirudi saioarekin arazoren bat dagoela; bandalismoak saihesteko ekintza hau ezeztatu egin da. Mesedez, nabigatzaileko "atzera" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.',
 'protectlogpage'              => 'Babes erregistroa',
 'protectlogtext'              => 'Orrialdeen blokeo eta desblokeo zerrenda azaltzen da jarraian.',
@@ -1180,7 +1179,7 @@ $1',
 'ipbcreateaccount'            => 'Kontua sortzea debekatu',
 'ipbsubmit'                   => 'Erabiltzaile hau blokeatu',
 'ipbother'                    => 'Beste denbora-tarte bat',
-'ipboptions'                  => '15 minutu:15 minutes,30 minutu:30 minutes,ordu 1:1 hour,2 ordu:2 hours,egun bat:1 day,3 egun:3 days,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,betirako:infinite',
+'ipboptions'                  => '15 minutu:15 minutes,30 minutu:30 minutes,ordu 1:1 hour,2 ordu:2 hours,egun bat:1 day,3 egun:3 days,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,betirako:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'beste bat',
 'badipaddress'                => 'Baliogabeko IP helbidea',
 'blockipsuccesssub'           => 'Blokeoa burutu da',
@@ -1301,7 +1300,6 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 
 # Thumbnails
 'thumbnail-more'  => 'Handitu',
-'missingimage'    => '<b>Irudia falta da</b><br /><i>$1</i>',
 'filemissing'     => 'Fitxategia falta da',
 'thumbnail_error' => 'Errorea irudi txikia sortzerakoan: $1',
 
@@ -1325,7 +1323,6 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'importhistoryconflict'      => 'Gatazka sortzen ari den berrikuspen historia dago (baliteke orrialdea lehenago inportatu izana)',
 'importnosources'            => 'Ez dago wikien arteko inportazio iturririk eta historialak zuzenean igotzea ezgaituta dago.',
 'importnofile'               => 'Ez da inportazio fitxategirik igo.',
-'importuploaderror'          => 'Inportazio fitxategiaren igoerak huts egin du; baliteke fitxategiaren tamaina baimendutakoa baino handiagoa izatea.',
 
 # Import log
 'importlogpage'                    => 'Inportazio erregistroa',
@@ -1405,7 +1402,6 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'anonymous'        => '{{SITENAME}}(e)ko lankide anonimoak',
 'siteuser'         => '{{SITENAME}}(e)ko $1 erabiltzailea',
 'lastmodifiedatby' => 'Orrialdearen azken aldaketa: $2, $1. Nork: $3.', # $1 date, $2 time, $3 user
-'and'              => 'eta',
 'othercontribs'    => '$1(r)en lanean oinarrituta.',
 'others'           => 'besteak',
 'siteusers'        => '{{SITENAME}}(e)ko $1 erabiltzailea(k)',
@@ -1488,7 +1484,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # External editor support
 'edit-externally'      => 'Fitxategi hau editatu kanpo-aplikazio bat erabiliz',

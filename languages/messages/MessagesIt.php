@@ -1748,7 +1748,6 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[Spec
 
 # Thumbnails
 'thumbnail-more'           => 'Ingrandisci',
-'missingimage'             => '<b>Immagine mancante</b><br /><i>$1</i>',
 'filemissing'              => 'File mancante',
 'thumbnail_error'          => 'Errore nella creazione della miniatura: $1',
 'djvu_page_error'          => 'Numero di pagina DjVu errato',
@@ -2315,10 +2314,10 @@ $1',
 'useajaxsearch'    => 'Usa la ricerca AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pagina precedente',
-'imgmultipagenext'   => 'pagina seguente →',
-'imgmultigo'         => 'Vai',
-'imgmultigotopre'    => 'Vai alla pagina',
+'imgmultipageprev' => '← pagina precedente',
+'imgmultipagenext' => 'pagina seguente →',
+'imgmultigo'       => 'Vai',
+'imgmultigotopre'  => 'Vai alla pagina',
 
 # Table pager
 'ascending_abbrev'         => 'cresc',

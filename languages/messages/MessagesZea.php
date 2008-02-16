@@ -113,12 +113,12 @@ $messages = array(
 'badaccess-group2' => 'De actie die-a je opgevroge ei is gerizzerveerd vò gebrukers uut de groepen $1.',
 'badaccess-groups' => 'De actie die-a je opgevroge ei is gerizzerveerd vò gebrukers uut de groepen $1.',
 
-'newmessageslink'    => 'nieuw bericht',
-'editsection'        => 'bewerken',
-'editold'            => 'bewerk',
-'toc'                => "In'oud",
-'showtoc'            => 'uutklappe',
-'hidetoc'            => 'inklappe',
+'newmessageslink' => 'nieuw bericht',
+'editsection'     => 'bewerken',
+'editold'         => 'bewerk',
+'toc'             => "In'oud",
+'showtoc'         => 'uutklappe',
+'hidetoc'         => 'inklappe',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bladzie',
@@ -290,7 +290,7 @@ A je de bladzie laeter weêr van je volglieste afaele wil, klik dan op \"nie me�
 'dellogpage'     => 'Wislogboek',
 'alreadyrolled'  => 'De lèste bewerkienge op [[$1]] deu [[User:$2|$2]] ([[User talk:$2|Overleggienge]]) kan nie vrommegedraoid ore; iemand aors eit de bladzie al bewerkt of ersteld.
 De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggienge]]).',
-'revertpage'     => 'Wiezigingen deur [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) teruggedraoid nae de lèste versie van [[User:$1|$1]]',
+'revertpage'     => 'Wiezigingen deur [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) teruggedraoid nae de lèste versie van [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage' => 'Beschermlogboek',
 
 # Undelete

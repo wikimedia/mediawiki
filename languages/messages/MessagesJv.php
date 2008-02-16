@@ -98,6 +98,7 @@ $messages = array(
 'mytalk'         => 'Gunemanku',
 'anontalk'       => 'Dhiskusi IP puniki',
 'navigation'     => 'Pandhu Arah',
+'and'            => 'lan',
 
 'returnto'         => 'Wangsul dumugi $1.',
 'tagline'          => 'Saka {{SITENAME}}',
@@ -386,8 +387,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'confirm'         => 'Dhedhes (konfirmasi)',
 'excontent'       => "isi sadurungé: '$1'",
 'excontentauthor' => "isiné mung arupa: '$1' (lan siji-sijiné sing nyumbang yaiku '$2')",
-'confirmdelete'   => 'Konfirmasi pambusakan',
-'deletesub'       => '(mBusak "$1")',
 'actioncomplete'  => 'Proses tuntas',
 'deletedtext'     => '"$1" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
 'deletedarticle'  => 'mbusak "[[$1]]"',
@@ -396,7 +395,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'deletecomment'   => 'Alesan dipun-busak',
 'rollback'        => 'Mangsulaken suntingan',
 'rollbacklink'    => 'balèaké',
-'revertpage'      => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]',
+'revertpage'      => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'  => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
 
 # Restrictions (nouns)
@@ -452,7 +451,6 @@ the list of currently operational bans and blocks.',
 # Attribution
 'anonymous'        => 'Panganggé {{SITENAME}} ingkang mboten kinawruhan.',
 'lastmodifiedatby' => 'Kaca iki pungkasan diowahi  $2, $1 déning $3.', # $1 date, $2 time, $3 user
-'and'              => 'lan',
 
 # Spam protection
 'categoryarticlecount' => 'Wonten $1 artikel ing kategori punika.',

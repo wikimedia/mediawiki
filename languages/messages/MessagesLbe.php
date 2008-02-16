@@ -47,7 +47,7 @@ $messages = array(
 'talkpagelinktext' => 'Ихтилат',
 'talk'             => 'Ихтилат',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Тарих',
 'nstab-user'     => 'Гьуртту хьума',
 'nstab-special'  => 'Къуллугъирал лажин',

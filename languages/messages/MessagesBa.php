@@ -30,35 +30,21 @@ $namespaceNames = array(
 $linkTrail = '/^((?:[a-z]|а|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я|ә|ө|ү|ғ|ҡ|ң|ҙ|ҫ|һ|“|»)+)(.*)$/sDu';
 
 $messages = array(
-'mainpage' => 'Баш бит',
+'about'          => 'Тасуирлау',
+'article'        => 'Мәҡәлә',
+'newwindow'      => '(яңы биттә)',
+'cancel'         => 'Бөтөрөргә',
+'qbfind'         => 'Эҙләү',
+'qbmyoptions'    => 'Көйләү',
+'qbspecialpages' => 'Махсус биттәр',
+'mypage'         => 'Шәхси бит',
+'mytalk'         => 'Минең менән фекер алышыу',
+'navigation'     => 'Төп йүнәлештәр',
+'and'            => 'һәм',
 
-'portal'          => 'Берләшмә',
-'portal-url'      => 'Project:Берләшмә ҡоро',
-'about'           => 'Тасуирлау',
-'aboutsite'       => '{{grammar:genitive|{{SITENAME}}}}-ның тасуирламаһы',
-'aboutpage'       => 'Project:Тасуирлама',
-'article'         => 'Мәҡәлә',
-'help'            => 'Белешмә',
-'sitesupport'     => 'Ярҙам итеү',
-'sitesupport-url' => 'Project:Эскерһеҙ ярҙам',
-'edithelp'        => 'Мөхәрирләү белешмәһе',
-'newwindow'       => '(яңы биттә)',
-'cancel'          => 'Бөтөрөргә',
-'qbfind'          => 'Эҙләү',
-'qbmyoptions'     => 'Көйләү',
-'qbspecialpages'  => 'Махсус биттәр',
-'mypage'          => 'Шәхси бит',
-'mytalk'          => 'Минең менән фекер алышыу',
-'navigation'      => 'Төп йүнәлештәр',
-
-'currentevents'     => 'Ағымдағы ваҡиғалар',
-'currentevents-url' => 'Project:Ағымдағы ваҡиғалар',
-
-'disclaimers'      => 'Яуаплылыҡтан баш тартыу',
-'disclaimerpage'   => 'Project:Яуаплылыҡтан баш тартыу',
-'privacy'          => 'Сер һаҡлау сәйәсәте',
 'errorpagetitle'   => 'Хата',
 'returnto'         => '$1 битенә ҡайтыу.',
+'help'             => 'Белешмә',
 'search'           => 'Эҙләү',
 'searchbutton'     => 'Табыу',
 'go'               => 'Күсеү',
@@ -79,16 +65,31 @@ $messages = array(
 'toolbox'          => 'Ярҙамсы йүнәлештәр',
 'otherlanguages'   => 'Башҡа телдәрҙә',
 'lastmodifiedat'   => 'Был биттең һуңғы тапҡыр үҙгәртелеү ваҡыты: $2, $1 .', # $1 date, $2 time
-'copyright'        => '$1 ярашлы эстәлеге менән һәр кем файҙалана ала.',
 'jumpto'           => 'Унда күсергә:',
 'jumptosearch'     => 'эҙләү',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'         => '{{grammar:genitive|{{SITENAME}}}}-ның тасуирламаһы',
+'aboutpage'         => 'Project:Тасуирлама',
+'copyright'         => '$1 ярашлы эстәлеге менән һәр кем файҙалана ала.',
+'currentevents'     => 'Ағымдағы ваҡиғалар',
+'currentevents-url' => 'Project:Ағымдағы ваҡиғалар',
+'disclaimers'       => 'Яуаплылыҡтан баш тартыу',
+'disclaimerpage'    => 'Project:Яуаплылыҡтан баш тартыу',
+'edithelp'          => 'Мөхәрирләү белешмәһе',
+'mainpage'          => 'Баш бит',
+'portal'            => 'Берләшмә',
+'portal-url'        => 'Project:Берләшмә ҡоро',
+'privacy'           => 'Сер һаҡлау сәйәсәте',
+'sitesupport'       => 'Ярҙам итеү',
+'sitesupport-url'   => 'Project:Эскерһеҙ ярҙам',
 
 'editsection' => 'үҙгәртергә',
 'toc'         => 'Эстәлеге',
 'showtoc'     => 'күрһәтергә',
 'hidetoc'     => 'йәшерергә',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Мәҡәлә',
 'nstab-user'      => 'Ҡатнашыусы',
 'nstab-special'   => 'Ярҙамсы бит',
@@ -143,11 +144,6 @@ $messages = array(
 'yourtext'       => 'Һеҙҙең текст',
 'yourdiff'       => 'Айырмалыҡтар',
 
-# Search results
-'badquery'       => 'Һорау дөрөҫ төҙөлмәгән',
-'badquerytext'   => 'Һорауығыҙҙы үтәп булмай. Моғайын, Һеҙ өс хәрефтән ҡыҫҡараҡ һүҙ эҙләйһегеҙҙер, йәки һүҙегеҙҙә хата барҙыр. Һорауығыҙҙы яңынан төҙөп ҡарағыҙ әле.',
-'blanknamespace' => 'Мәҡәләләр',
-
 # Preferences page
 'preferences' => 'Көйләүҙәр',
 
@@ -158,6 +154,9 @@ $messages = array(
 'recentchanges'     => 'Һуңғы үҙгәртеүҙәр',
 'recentchangestext' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
 
+# Recent changes linked
+'recentchangeslinked' => 'Бәйле үҙгәртеүҙәр',
+
 # Image list
 'imagelist_user' => 'Ҡатнашыусы',
 
@@ -167,21 +166,25 @@ $messages = array(
 # Unwatched pages
 'unwatchedpages' => 'Бер кем дә күҙәтмәгән биттәр',
 
+# Random page
+'randompage' => 'Осраҡлы мәҡәлә',
+
 # Statistics
 'userstatstext' => "Бөтәһе '''$1''' ҡатнашыусы теркәлгән, шуларҙан '''$2''' ($4 %) хәким бурыстарын үтәй.",
 
 # Miscellaneous special pages
-'allpages'            => 'Бөтә биттәр',
-'randompage'          => 'Осраҡлы мәҡәлә',
-'listusers'           => 'Ҡатнашыусылар исемлеге',
-'specialpages'        => 'Махсус биттәр',
-'spheading'           => 'Ярҙамсы биттәр',
-'recentchangeslinked' => 'Бәйле үҙгәртеүҙәр',
-'newpages-username'   => 'Ҡатнашыусы:',
-'ancientpages'        => 'Иң иҫке мәҡәләләр',
-'move'                => 'Яңы исем биреү',
+'allpages'          => 'Бөтә биттәр',
+'listusers'         => 'Ҡатнашыусылар исемлеге',
+'specialpages'      => 'Махсус биттәр',
+'spheading'         => 'Ярҙамсы биттәр',
+'newpages-username' => 'Ҡатнашыусы:',
+'ancientpages'      => 'Иң иҫке мәҡәләләр',
+'move'              => 'Яңы исем биреү',
 
 'alphaindexline' => '$1 алып $2 тиклем',
+
+# Special:Log
+'specialloguserlabel' => 'Ҡатнашыусы:',
 
 # Special:Allpages
 'allpagesfrom'      => 'Ошондай хәрефтәрҙән башланған биттәрҙе күрһәтергә:',
@@ -200,7 +203,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'    => 'Күҙәтеү исемлеге',
-'mywatchlist'    => 'Күҙәтеү исемлеге',
+'mywatchlist'  => 'Күҙәтеү исемлеге',
 'watchnologin' => 'Үҙегеҙҙе танытырға кәрәк',
 'addedwatch'   => 'Күҙәтеү исемлегенә өҫтәлде',
 'watch'        => 'Күҙәтергә',
@@ -214,7 +217,8 @@ $messages = array(
 'actioncomplete' => 'Ғәмәл үтәлде',
 
 # Namespace form on various pages
-'namespace' => 'Исемдәр арауығы:',
+'namespace'      => 'Исемдәр арауығы:',
+'blanknamespace' => 'Мәҡәләләр',
 
 # Contributions
 'contributions' => 'Ҡатнашыусы өлөшө',
@@ -231,11 +235,7 @@ $messages = array(
 
 # Attribution
 'siteuser'  => '{{grammar:genitive|{{SITENAME}}}} - ла ҡатнашыусы $1',
-'and'       => 'һәм',
 'siteusers' => '{{grammar:genitive|{{SITENAME}}}} - ла ҡатнашыусы (-лар) $1',
-
-# Labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Ҡатнашыусы:',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'бөтә',
@@ -244,5 +244,3 @@ $messages = array(
 'namespacesall'    => 'бөтә',
 
 );
-
-

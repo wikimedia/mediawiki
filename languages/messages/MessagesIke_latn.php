@@ -57,6 +57,7 @@ $messages = array(
 'mypage'         => 'ami mappitaq',
 'mytalk'         => 'atlarqutikka',
 'navigation'     => 'mianirivaa',
+'and'            => 'amma',
 
 'help'              => 'qajalippaa',
 'search'            => 'ivaaqpuq',
@@ -326,7 +327,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 
 # Attribution
 'anonymous' => 'ilisarnanngitittuq qatannguti nakit {{SITENAME}}',
-'and'       => 'amma',
 
 # Image deletion
 'deletedrevision' => 'nipaq utuqaq titiraqtaugiarngarut $1',

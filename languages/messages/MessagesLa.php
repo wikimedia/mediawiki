@@ -1425,10 +1425,10 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'articletitles' => "Paginae ab ''$1''",
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pagina superior',
-'imgmultipagenext'   => 'pagina proxima →',
-'imgmultigo'         => 'I!',
-'imgmultigotopre'    => 'Ire ad paginam',
+'imgmultipageprev' => '← pagina superior',
+'imgmultipagenext' => 'pagina proxima →',
+'imgmultigo'       => 'I!',
+'imgmultigotopre'  => 'Ire ad paginam',
 
 # Table pager
 'table_pager_next'         => 'Pagina proxima',

@@ -1863,7 +1863,6 @@ IP-адреса.',
 
 # Thumbnails
 'thumbnail-more'           => 'Увеличить',
-'missingimage'             => '<b>Изображение не найдено</b><br /><i>$1</i>',
 'filemissing'              => 'Файл не найден',
 'thumbnail_error'          => 'Ошибка создания миниатюры: $1',
 'djvu_page_error'          => 'Номер страницы DjVu вне досягаемости',
@@ -2450,10 +2449,10 @@ $1',
 'useajaxsearch'    => 'Использовать AJAX-поиск',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← предыдущая страница',
-'imgmultipagenext'   => 'следующая страница →',
-'imgmultigo'         => 'Перейти!',
-'imgmultigotopre'    => 'Перейти на страницу',
+'imgmultipageprev' => '← предыдущая страница',
+'imgmultipagenext' => 'следующая страница →',
+'imgmultigo'       => 'Перейти!',
+'imgmultigotopre'  => 'Перейти на страницу',
 
 # Table pager
 'ascending_abbrev'         => 'возр',

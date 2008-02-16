@@ -1736,7 +1736,6 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{ns:special}}:
 
 # Thumbnails
 'thumbnail-more'           => 'Padidinti',
-'missingimage'             => '<b>Trūkstamas paveikslėlis</b><br /><i>$1</i>',
 'filemissing'              => 'Dingęs failas',
 'thumbnail_error'          => 'Klaida kuriant sumažintą paveikslėlį: $1',
 'djvu_page_error'          => 'DjVu puslapis nepasiekiamas',
@@ -2299,10 +2298,10 @@ $1',
 'useajaxsearch'    => 'Naudoti AJAX paiešką',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← ankstesnis puslapis',
-'imgmultipagenext'   => 'kitas puslapis →',
-'imgmultigo'         => 'Eiti!',
-'imgmultigotopre'    => 'Pereiti į puslapį',
+'imgmultipageprev' => '← ankstesnis puslapis',
+'imgmultipagenext' => 'kitas puslapis →',
+'imgmultigo'       => 'Eiti!',
+'imgmultigotopre'  => 'Pereiti į puslapį',
 
 # Table pager
 'ascending_abbrev'         => 'didėjanti tvarka',

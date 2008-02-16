@@ -11,8 +11,6 @@
  * @author Raymond
  */
 
-
-
 $messages = array(
 # Dates
 'thursday' => 'Diardaoin',
@@ -34,6 +32,7 @@ $messages = array(
 'moredotdotdot'  => 'Barrachd...',
 'mypage'         => 'Mo dhuilleag',
 'anontalk'       => 'Labhairt air an IP seo',
+'and'            => 'agus',
 
 'errorpagetitle'    => 'Mearachd',
 'returnto'          => 'Till gu $1.',
@@ -297,11 +296,10 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'confirm'            => 'Daingnich',
 'excontent'          => "stuth a bh'ann: '$1'",
 'exblank'            => 'bha duilleag falamh',
-'deletesub'          => '(Dubhadh às "$1")',
 'actioncomplete'     => 'Gnìomh coileanta',
 'reverted'           => 'Tillte ri lethbhreac as ùire',
 'editcomment'        => 'Bha mìneachadh an deasaicheidh: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]',
+'revertpage'         => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectedarticle'   => 'dìonta "[[$1]]"',
 'unprotectedarticle' => '"[[$1]]" neo-dhìonta',
 'protectsub'         => '(A\'dìonadh "$1")',
@@ -364,7 +362,6 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 
 # Thumbnails
 'thumbnail-more' => 'Meudaich',
-'missingimage'   => "<b>Ìomhaigh a dh'easbhaidh</b><br /><i>$1</i>",
 'filemissing'    => "Faidhle a dh'easbhaidh",
 
 # Special:Import
@@ -376,7 +373,6 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'tooltip-preview'   => 'Roi-sheallaibh na mùthaidhean agaibh; cleachdaibh seo mas sàbhail sibh iad!',
 
 # Attribution
-'and'           => 'agus',
 'othercontribs' => 'Stèidhichte air obair le $1.',
 'others'        => 'eile',
 

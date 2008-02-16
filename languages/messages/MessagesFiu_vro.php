@@ -1508,7 +1508,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 
 # Thumbnails
 'thumbnail-more'           => 'Suurõndaq',
-'missingimage'             => '<b>Olõ-i pilti</b><br /><i>$1</i>',
 'filemissing'              => 'Olõ-i teedüstüt',
 'thumbnail_error'          => 'Väikupildi luuminõ lää-s kõrda: $1',
 'djvu_page_error'          => 'DjVu lehe viga',
@@ -2023,10 +2022,10 @@ $1',
 'hideresults'      => 'Käkiq tulõmusõq ärq',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← mineväne leht',
-'imgmultipagenext'   => 'järgmäne leht →',
-'imgmultigo'         => 'Mineq!',
-'imgmultigotopre'    => 'Mineq lehe pääle',
+'imgmultipageprev' => '← mineväne leht',
+'imgmultipagenext' => 'järgmäne leht →',
+'imgmultigo'       => 'Mineq!',
+'imgmultigotopre'  => 'Mineq lehe pääle',
 
 # Table pager
 'ascending_abbrev'         => 'ülespoolõ',

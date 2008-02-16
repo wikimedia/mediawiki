@@ -807,7 +807,6 @@ $messages = array(
 
 # Thumbnails
 'thumbnail-more' => 'لويول',
-'missingimage'   => '<b>ورک انځور</b><br /><i>$1</i>',
 'filemissing'    => 'دوتنه ورکه ده',
 
 # Tooltip help for the actions

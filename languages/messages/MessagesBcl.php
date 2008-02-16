@@ -1584,7 +1584,6 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:special}}:
 
 # Thumbnails
 'thumbnail-more'           => 'Padakulâon',
-'missingimage'             => '<b>Nawawarang ladawan</b><br /><i>$1</i>',
 'filemissing'              => "Nawawarâ an ''file''",
 'thumbnail_error'          => 'Error sa paggigibo kan retratito: $1',
 'djvu_page_error'          => 'luwas sa serye an páhina kan DjVu',
@@ -1914,10 +1913,10 @@ $1',
 'hideresults'      => 'Tagôon an mga resulta',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← nakaaging pahina',
-'imgmultipagenext'   => 'sunod na pahina →',
-'imgmultigo'         => 'Dumanán!',
-'imgmultigotopre'    => 'Magduman sa pahina',
+'imgmultipageprev' => '← nakaaging pahina',
+'imgmultipagenext' => 'sunod na pahina →',
+'imgmultigo'       => 'Dumanán!',
+'imgmultigotopre'  => 'Magduman sa pahina',
 
 # Table pager
 'ascending_abbrev'         => 'skt',

@@ -1670,7 +1670,6 @@ $NEWPAGE
 
 # Thumbnails
 'thumbnail-more'           => 'పెద్దది చెయ్యి',
-'missingimage'             => '<b>తప్పిపోయిన బొమ్మ</b><br /><i>$1</i>',
 'filemissing'              => 'ఫైలు కనపడుటలేదు',
 'thumbnail_error'          => '$1: నఖచిత్రం తయారుచెయ్యడంలో లోపం జరిగింది',
 'djvu_page_error'          => 'DjVu పేజీ రేంజి దాటిపోయింది',
@@ -2212,10 +2211,10 @@ $1',
 'useajaxsearch'    => 'వెతకేటప్పుడు AJAXను ఉపయోగించు',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← మునుపటి పేజీ',
-'imgmultipagenext'   => 'తరువాతి పేజీ →',
-'imgmultigo'         => 'వెళ్ళు!',
-'imgmultigotopre'    => 'ఈ పేజీకి వెళ్ళు',
+'imgmultipageprev' => '← మునుపటి పేజీ',
+'imgmultipagenext' => 'తరువాతి పేజీ →',
+'imgmultigo'       => 'వెళ్ళు!',
+'imgmultigotopre'  => 'ఈ పేజీకి వెళ్ళు',
 
 # Table pager
 'ascending_abbrev'         => 'ఆరోహణ',
