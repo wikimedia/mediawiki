@@ -1090,7 +1090,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
 'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
 'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier $1. Êtes-vous certain de vouloir modifier ce fichier ?',
-'filepageexists'              => "Une page (pas une image) avec ce nom existe déjà. Veuillez verifier <strong><tt>$1</tt></strong> si vous n'êtes pas sûr de vouloir la modifier.",
+'filepageexists'              => "Une page (pas un fichier) avec ce nom existe déjà. Veuillez vérifier <strong><tt>$1</tt></strong> si vous n'êtes pas sûr de vouloir la modifier.",
 'fileexists-extension'        => 'Un fichier avec un nom similaire existe déjà :<br />
 Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
 Nom du fichier existant : <strong><tt>$2</tt></strong><br />
@@ -2018,12 +2018,12 @@ $1',
 # Bad image list
 'bad_image_list' => "Le format est le suivant :
 
-Seulement les lignes commençant par * sont prises en compte. Le premier lien de la ligne est celui vers une mauvaise image.
+Seules, les listes d’énumération ( les lignes commençant par *) sont prises en considération. Le premier lien d’une ligne doit être vers celui d’une mauvaise image.
 Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des articles sur lesquels l'image doit apparaître.",
 
 # Metadata
 'metadata'          => 'Métadonnées',
-'metadata-help'     => 'Ce fichier contient des informations supplémentaires probablement ajoutées par l’appareil photo ou le numériseur qui l’a produite. Si le fichier a été modifié, certains détails peuvent ne pas refléter l’image modifiée.',
+'metadata-help'     => 'Ce fichier contient des informations supplémentaires probablement ajoutées par l’appareil photo numérique ou le numériseur qui l’a acquis. Si le fichier a été modifié depuis son état original, certains détails peuvent ne pas refléter entièrement l’image modifiée.',
 'metadata-expand'   => 'Montrer les informations détaillées',
 'metadata-collapse' => 'Cacher les informations détaillées',
 'metadata-fields'   => 'Les champs de métadonnées d’EXIF listés dans ce message seront inclus dans la page de description de l’image quand la table de métadonnées sera réduite. Les autres champs seront cachés par défaut.

@@ -918,16 +918,12 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadnologintext'           => 'ファイルをアップロードするには[[Special:Userlogin|ログイン]]する必要があります。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロード エラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。
-* 過去にアップロードされた画像は[[Special:Imagelist|{{int:imagelist}}]]で閲覧したり探したりできます。
-* アップロードや削除は[[Special:Log|ログ]]に記録されます。
-* 「{{int:uploadbtn}}」ボタンを押すと、アップロードが完了します。
-ページに画像を挿入するには
-* '''<nowiki>[[</nowiki>{{ns:image}}:File.jpg<nowiki>]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}:File.png|thumb|代替テキスト<nowiki>]]</nowiki>'''
-といった書式を使います。<br />画像ページではなくファイルに直接リンクするには
-* '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]]</nowiki>'''
-とします。",
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルは[[{{ns:Special}}:Imagelist|{{int:imagelist}}]]で閲覧したり探したりできます。アップロードや削除は[[{{ns:Special}}:Log/upload|アップロードログ]]に記録されます。
+
+以下の書式で、ページ上にファイル内容を表示（上2例）、またはファイルへ直接リンク（下1例）できます。
+* '''<nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.png|代替テキスト]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki>'''",
 'upload-permitted'            => '許可されているファイル形式： $1',
 'upload-preferred'            => '推奨されているファイル形式： $1',
 'upload-prohibited'           => '禁止されているファイル形式： $1',
@@ -953,15 +949,15 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'largefileserver'             => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
 'emptyfile'                   => 'あなたがアップロードしようとしているファイルは内容が空であるか、もしくはファイル名の指定が間違っています。もう一度、ファイル名が正しいか、あるいはアップロードしようとしたファイルであるかどうかを確認してください。',
 'fileexists'                  => 'この名前のファイルは既に存在しています。$1と置き換えるかどうかお確かめください。',
-'filepageexists'              => '同じ名前の（画像ではなく）ページが既に存在しています。置き換えるかどうか、まずは<strong><tt>$1</tt></strong>を確認してください。',
+'filepageexists'              => '同じ名前の（ファイルではなく）ページが既に存在しています。置き換えるかどうか、まずは <strong><tt>$1</tt></strong> を確認してください。',
 'fileexists-extension'        => '類似した名前のファイルが既に存在しています:<br />
 アップロード中のファイル: <strong><tt>$1</tt></strong><br />
 既存のファイル: <strong><tt>$2</tt></strong><br />
 ファイルが本当に違うものであるか、確認してください。',
-'fileexists-thumb'            => "<center>'''既存の画像'''</center>",
-'fileexists-thumbnail-yes'    => 'このファイルは既存の画像のサイズ縮小版（サムネール）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
-確認した画像がオリジナルサイズにおける元画像である場合、追加でサムネールを登録する必要はありません。',
-'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっています。画像が縮小版（サムネール）である場合があります。
+'fileexists-thumb'            => "<center>'''既存のファイル'''</center>",
+'fileexists-thumbnail-yes'    => 'このファイルはサムネイル（縮小版画像）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
+確認したファイルが通常サイズの元画像である場合、追加でサムネイルを登録する必要はありません。',
+'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小う版画像）である可能性が高いです。
 より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
 'fileexists-forbidden'        => 'この名前のファイルは既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
 [[Image:$1|thumb|center|$1]]',
@@ -979,11 +975,11 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています!! &nbsp;詳細: $1',
 'sourcefilename'              => 'ファイル名',
 'destfilename'                => '掲載するファイル名',
-'watchthisupload'             => '画像をウォッチ',
+'watchthisupload'             => 'このページをウォッチ',
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。アップロードの前に$1を確認してみてください。',
 'upload-wasdeleted'           => "'''警告:あなたは過去に削除されたファイルをアップロードしようとしています。'''
 
-このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
+このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除ログを表示しています:",
 'filename-bad-prefix'         => 'アップロードしようとしている <strong>"$1"</strong> のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。',
 
 'upload-proto-error'      => '不正なプロトコル',
@@ -1006,11 +1002,11 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
 # Image list
-'imagelist'                 => '画像リスト',
-'imagelisttext'             => '$1 枚の画像を $2 に表示しています',
-'getimagelist'              => '画像リストを取得',
+'imagelist'                 => 'ファイルリスト',
+'imagelisttext'             => "'''$1''' {{PLURAL:$1|個|個}}のファイルを $2 に表示しています",
+'getimagelist'              => 'ファイルリストを取得',
 'ilsubmit'                  => '検索',
-'showlast'                  => '$2に $1 枚の画像を表示',
+'showlast'                  => '$2に $1 個のファイルを表示',
 'byname'                    => '名前順',
 'bydate'                    => '日付順',
 'bysize'                    => 'サイズ順',
@@ -1029,12 +1025,12 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filehist-filesize'         => 'ファイルサイズ',
 'filehist-comment'          => 'コメント',
 'imagelinks'                => 'リンク',
-'linkstoimage'              => 'この画像にリンクしているページの一覧:',
-'nolinkstoimage'            => 'この画像にリンクしているページはありません。',
+'linkstoimage'              => 'このファイルにリンクしているページの一覧:',
+'nolinkstoimage'            => 'このファイルにリンクしているページはありません。',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'          => '詳しい情報は$1を参照してください。',
 'shareduploadwiki-linktext' => 'ファイルの詳細ページ',
-'noimage'                   => 'このファイル名の画像はありません。$1。',
+'noimage'                   => '同名のファイルは存在しません。「$1」リンクをクリックしてください。',
 'noimage-linktext'          => 'このファイル名でアップロードする',
 'uploadnewversion-linktext' => 'このファイルの新しいバージョンをアップロードする',
 'imagelist_date'            => '日時',
@@ -1042,7 +1038,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'imagelist_user'            => '利用者',
 'imagelist_size'            => 'サイズ（バイト）',
 'imagelist_description'     => '概要',
-'imagelist_search_for'      => '画像名で検索:',
+'imagelist_search_for'      => 'メディア名で検索:',
 
 # File reversion
 'filerevert'                => '$1 を差し戻す',
@@ -1066,7 +1062,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filedelete-nofile'           => "'''$1''' は{{SITENAME}}上に存在しません。",
 'filedelete-nofile-old'       => "指定された属性を持つ'''$1'''の古い版は存在しません。",
 'filedelete-iscurrent'        => 'このファイルの最新版を削除しようとしています。直前の版に差し戻してください。',
-'filedelete-otherreason'      => 'その他/追加理由',
+'filedelete-otherreason'      => 'その他/理由の付記:',
 'filedelete-reason-otherlist' => 'その他の理由',
 'filedelete-reason-dropdown'  => '*よくある削除理由
 ** 著作権侵害
@@ -1142,7 +1138,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'lonelypagestext'         => '以下のページは、どこからもリンクされていない孤立したページです。',
 'uncategorizedpages'      => 'カテゴリ未導入のページ',
 'uncategorizedcategories' => 'カテゴリ未導入のカテゴリ',
-'uncategorizedimages'     => 'カテゴリ未導入の画像',
+'uncategorizedimages'     => 'カテゴリ未分類のファイル',
 'uncategorizedtemplates'  => 'カテゴリ未導入のテンプレート',
 'unusedcategories'        => '使われていないカテゴリ',
 'unusedimages'            => '使われていない画像',
@@ -1476,7 +1472,7 @@ $NEWPAGE
 'sp-contributions-username'    => '利用者名または IPアドレス:',
 'sp-contributions-submit'      => '検索',
 
-'sp-newimages-showfrom' => '$1 以後現在までの新着画像を表示',
+'sp-newimages-showfrom' => '$1 以後現在までの新着ファイルを表示',
 
 # What links here
 'whatlinkshere'       => 'リンク元',
@@ -1851,7 +1847,7 @@ $NEWPAGE
 # Media information
 'mediawarning'         => "'''警告:''' このファイルは悪意のあるコードを含んでいる可能性があり、実行するとコンピューターが危害を被る場合があります。
 ----",
-'imagemaxsize'         => '画像ページで表示する画像の最大サイズ:',
+'imagemaxsize'         => 'ファイルページで表示する画像の最大サイズ:',
 'thumbsize'            => 'サムネイルの大きさ:',
 'widthheightpage'      => '$1×$2, $3 ページ',
 'file-info'            => '(ファイルサイズ: $1, MIMEタイプ: $2)',
@@ -1869,8 +1865,8 @@ $NEWPAGE
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：
 
-リストアイテム（ * で始まる行）のみであることが考慮されています。各行最初のリンクは、好ましくない画像へのリンクとしてください。
-各行2番目以降のリンクはその限りではありません。要は、画像へのリンクを列挙することです。',
+リストアイテム（ * で始まる行）のみであることが考慮されています。各行最初のリンクは、好ましくないファイルへのリンクとしてください。
+各行2番目以降のリンクはその限りではありません。要は、ファイルへのリンクを列挙することです。',
 
 /*
 Short names for language variants used for language conversion links.

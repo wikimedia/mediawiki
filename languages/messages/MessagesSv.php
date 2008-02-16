@@ -584,9 +584,9 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'nowiki_sample'   => 'Skriv in icke-wiki-formaterad text här',
 'nowiki_tip'      => 'Strunta i wikiformatering',
 'image_sample'    => 'Exempel.jpg',
-'image_tip'       => 'Inbäddad bild',
+'image_tip'       => 'Inbäddad fil',
 'media_sample'    => 'Exempel.mp3',
-'media_tip'       => 'Länk till mediafil',
+'media_tip'       => 'Länk till fil',
 'sig_tip'         => 'Din signatur med tidsstämpel',
 'hr_tip'          => 'Horisontell linje (använd sparsamt)',
 
@@ -1013,9 +1013,12 @@ $3',
 'uploadnologintext'           => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ladda upp filer.',
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
 'uploaderror'                 => 'Fel vid uppladdningen',
-'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer. För att titta på eller leta efter bilder som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]]. För att infoga en bild på en sida, använd en länk i följande format:
+'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer.
+För att titta på eller leta efter filer som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]].
+
+Använd en länk på något av följande format för att infoga en bild på en sida:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' eller
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alternativ text]]</nowiki>''' eller
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' om du vill länka direkt till filen.",
 'upload-permitted'            => 'Tillåtna filtyper: $1.',
 'upload-preferred'            => 'Föredragna filtyper: $1.',
@@ -1042,7 +1045,7 @@ $3',
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',
 'emptyfile'                   => 'Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.',
 'fileexists'                  => 'Det finns redan en fil med detta namn. Titta på $1, såvida du inte är säker på att du vill ändra den.',
-'filepageexists'              => 'Det finns redan en sida (inte en bild) med det här namnet. Kontrollera <strong><tt>$1</tt></strong> om du är osäker på om du vill ändra sidan.',
+'filepageexists'              => 'Det finns redan en sida (men inte någon fil) med det här namnet. Kontrollera <strong><tt>$1</tt></strong> om du är osäker på om du vill ändra sidan.',
 'fileexists-extension'        => 'En fil med ett liknande namn finns redan:<br />
 Namn på den fil du försöker ladda upp: <strong><tt>$1</tt></strong><br />
 Namn på filen som redan finns: <strong><tt>$2</tt></strong><br />
@@ -1061,7 +1064,7 @@ Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars
 'overwroteimage'              => 'laddade upp ny version av "[[$1]]"',
 'uploaddisabled'              => 'Uppladdningsfunktionen är avstängd',
 'uploaddisabledtext'          => 'Uppladdning av filer är avstängd på den här wikin',
-'uploadscripted'              => 'Denna fil innehåller HTML eller script, som webbläsare kan komma att tolka felaktigt.',
+'uploadscripted'              => 'Denna fil innehåller HTML eller script som felaktigt kan komma att tolkas av webbläsare.',
 'uploadcorrupt'               => 'Antingen har det blivit något fel på filen, eller så har den en felaktig filändelse. Kontrollera din fil, och ladda upp på nytt.',
 'uploadvirus'                 => 'Filen innehåller virus! Detaljer: $1',
 'sourcefilename'              => 'Ursprungsfilens namn',
@@ -1145,7 +1148,7 @@ PICT # allmänt bildprefix
 'imagelist_user'            => 'Användare',
 'imagelist_size'            => 'Storlek (bytes)',
 'imagelist_description'     => 'Filbeskrivning',
-'imagelist_search_for'      => 'Sök efter bildnamn:',
+'imagelist_search_for'      => 'Sök efter filnamn:',
 
 # File reversion
 'filerevert'                => 'Återställ $1',
@@ -1244,7 +1247,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'lonelypagestext'         => 'Följande sidor länkas inte till från någon annan sida på den här wikin.',
 'uncategorizedpages'      => 'Ej kategoriserade sidor',
 'uncategorizedcategories' => 'Ej kategoriserade kategorier',
-'uncategorizedimages'     => 'Bilder utan kategori',
+'uncategorizedimages'     => 'Filer utan kategori',
 'uncategorizedtemplates'  => 'Ej kategoriserade mallar',
 'unusedcategories'        => 'Tomma kategorier',
 'unusedimages'            => 'Oanvända bilder',
@@ -1255,7 +1258,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'mostlinkedcategories'    => 'Kategorier med flest länkar till sig',
 'mostlinkedtemplates'     => 'Mest använda mallar',
 'mostcategories'          => 'Sidor med flest kategorier',
-'mostimages'              => 'Bilder med flest länkar till sig',
+'mostimages'              => 'Filer med flest länkar till sig',
 'mostrevisions'           => 'Sidor med flest ändringar',
 'allpages'                => 'Alla sidor',
 'prefixindex'             => 'Prefixindex',
@@ -1279,8 +1282,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'intl'                    => 'Interwiki-länkar',
 'move'                    => 'Flytta',
 'movethispage'            => 'Flytta denna sida',
-'unusedimagestext'        => '<p>Lägg märke till att andra hemsidor kan länka till bilder 
-med en direkt URL, och kan därför bli listade här trots att de används kontinuerligt.',
+'unusedimagestext'        => '<p>Lägg märke till att andra webbplatser kan länka till filer med en direkt URL. Filer kan därför  användas trots att de finns i den här listan.</p>',
 'unusedcategoriestext'    => 'Följande kategorier finns men innehåller inga sidor eller underkategorier.',
 'notargettitle'           => 'Inget mål',
 'notargettext'            => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
@@ -1577,7 +1579,7 @@ $1',
 'sp-contributions-username'    => 'IP-adress eller användarnamn:',
 'sp-contributions-submit'      => 'Sök',
 
-'sp-newimages-showfrom' => 'Visa nya bilder från och med $1',
+'sp-newimages-showfrom' => 'Visa nya filer från och med $1',
 
 # What links here
 'whatlinkshere'       => 'Sidor som länkar hit',
@@ -1952,7 +1954,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
-'imagemaxsize'         => 'Begränsa bilders storlek på bildbeskrivningssidor till:',
+'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 sidor',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
@@ -1970,12 +1972,12 @@ $1',
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
 
-Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första länken på en rad anger en otillåten bild.
-Övriga länkar på en rad anger undantag, d.v.s. sidor där bilden tillåts användas.',
+Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första länken på en rad anger en otillåten fil.
+Övriga länkar på en rad anger undantag, d.v.s. sidor där filen tillåts användas.',
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Det här filen innehåller extrainformation som troligen lades till när bilden togs av en digitalkamera eller när det digitaliserades av en scanner. Om filen har modifierats kan det hända att vissa detaljer inte överensstämmer med den modifierade bilden.',
+'metadata-help'     => 'Den här filen innehåller extrainformation som troligen lades till av en digitalkamera eller scanner när filen skapades. Om filen har modifierats kan det hända att vissa detaljer inte överensstämmer med den modifierade filen.',
 'metadata-expand'   => 'Visa utökade detaljer',
 'metadata-collapse' => 'Dölj utökade detaljer',
 'metadata-fields'   => 'EXIF-fält som listas i det här meddelandet visas på bildsidan när metadatatabellen är minimerad.

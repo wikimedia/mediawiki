@@ -103,6 +103,7 @@ $messages = array(
 'tog-hideminor'               => 'Klänedön redakamis pülik su lised votükamas nulik',
 'tog-extendwatchlist'         => 'Stäänükön galädalisedi ad jonön votükamis tefik valik',
 'tog-usenewrc'                => 'Lised pamenodöl votükamas nulik (JavaScript)',
+'tog-numberheadings'          => 'Givön itjäfidiko nümis dilädatiädes',
 'tog-showtoolbar'             => 'Jonön redakastumemi (JavaScript)',
 'tog-editondblclick'          => 'Dälön redakön padis pö drän telik mugaknopa (JavaScript)',
 'tog-editsection'             => 'Dälön redakami dilädas me yüms: [redakön]',
@@ -198,6 +199,8 @@ $messages = array(
 'subcategories'         => 'Donaklads',
 'category-media-header' => 'Media in klad: "$1"',
 'category-empty'        => "''Klad at anu ninädon padis e ragivis nonikis.''",
+
+'mainpagetext' => "<big>'''El MediaWiki pestiton benosekiko.'''</big>",
 
 'about'          => 'Tefü',
 'article'        => 'Ninädapad',

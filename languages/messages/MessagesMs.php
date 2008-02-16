@@ -8,6 +8,7 @@
  * Init - This localisation is based on a file kindly donated by the folks at MIMOS
  * http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
  * Sep 2007 - Rewritten by the folks at ms.wikipedia.org
+ * @author Aviator
  */
 
 # Uncomment line below to use space charecter as thousands separator
@@ -184,56 +185,43 @@ $messages = array(
 'skinpreview' => '(Pratonton)',
 
 # Dates
-'sunday'        => 'Ahad',
-'monday'        => 'Isnin',
-'tuesday'       => 'Selasa',
-'wednesday'     => 'Rabu',
-'thursday'      => 'Khamis',
-'friday'        => 'Jumaat',
-'saturday'      => 'Sabtu',
-'sun'           => 'Aha',
-'mon'           => 'Isn',
-'tue'           => 'Sel',
-'wed'           => 'Rab',
-'thu'           => 'Kha',
-'fri'           => 'Jum',
-'sat'           => 'Sab',
-'january'       => 'Januari',
-'february'      => 'Februari',
-'march'         => 'Mac',
-'april'         => 'April',
-'may_long'      => 'Mei',
-'june'          => 'Jun',
-'july'          => 'Julai',
-'august'        => 'Ogos',
-'september'     => 'September',
-'october'       => 'Oktober',
-'november'      => 'November',
-'december'      => 'Disember',
-'january-gen'   => 'Januari',
-'february-gen'  => 'Februari',
-'march-gen'     => 'Mac',
-'april-gen'     => 'April',
-'may-gen'       => 'Mei',
-'june-gen'      => 'Jun',
-'july-gen'      => 'Julai',
-'august-gen'    => 'Ogos',
-'september-gen' => 'September',
-'october-gen'   => 'Oktober',
-'november-gen'  => 'November',
-'december-gen'  => 'Disember',
-'jan'           => 'Jan',
-'feb'           => 'Feb',
-'mar'           => 'Mac',
-'apr'           => 'Apr',
-'may'           => 'Mei',
-'jun'           => 'Jun',
-'jul'           => 'Jul',
-'aug'           => 'Ogo',
-'sep'           => 'Sep',
-'oct'           => 'Okt',
-'nov'           => 'Nov',
-'dec'           => 'Dis',
+'sunday'       => 'Ahad',
+'monday'       => 'Isnin',
+'tuesday'      => 'Selasa',
+'wednesday'    => 'Rabu',
+'thursday'     => 'Khamis',
+'friday'       => 'Jumaat',
+'saturday'     => 'Sabtu',
+'sun'          => 'Aha',
+'mon'          => 'Isn',
+'tue'          => 'Sel',
+'wed'          => 'Rab',
+'thu'          => 'Kha',
+'fri'          => 'Jum',
+'sat'          => 'Sab',
+'january'      => 'Januari',
+'february'     => 'Februari',
+'march'        => 'Mac',
+'may_long'     => 'Mei',
+'june'         => 'Jun',
+'july'         => 'Julai',
+'august'       => 'Ogos',
+'october'      => 'Oktober',
+'december'     => 'Disember',
+'january-gen'  => 'Januari',
+'february-gen' => 'Februari',
+'march-gen'    => 'Mac',
+'may-gen'      => 'Mei',
+'june-gen'     => 'Jun',
+'july-gen'     => 'Julai',
+'august-gen'   => 'Ogos',
+'october-gen'  => 'Oktober',
+'december-gen' => 'Disember',
+'mar'          => 'Mac',
+'may'          => 'Mei',
+'aug'          => 'Ogo',
+'oct'          => 'Okt',
+'dec'          => 'Dis',
 
 # Bits of text used by many pages
 'categories'            => 'Kategori',
@@ -269,9 +257,6 @@ $messages = array(
 'anontalk'       => 'Perbincangan bagi IP ini',
 'navigation'     => 'Navigasi',
 'and'            => 'dan',
-
-# Metadata in edit box
-'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Ralat',
 'returnto'          => 'Kembali ke $1.',
@@ -361,7 +346,6 @@ $messages = array(
 'versionrequired'     => 'MediaWiki versi $1 diperlukan',
 'versionrequiredtext' => 'MediaWiki versi $1 diperlukan untuk menggunakan laman ini. Sila lihat [[Special:Version|laman versi]].',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'Diambil daripada "$1"',
 'youhavenewmessages'      => 'Anda mempunyai $1 ($2).',
 'newmessageslink'         => 'mesej baru',
@@ -945,7 +929,6 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'resultsperpage'           => 'Jumlah padanan bagi setiap halaman:',
 'contextlines'             => 'Bilangan baris untuk dipaparkan bagi setiap capaian:',
 'contextchars'             => 'Bilangan askara konteks bagi setiap baris:',
-'stub-threshold'           => 'Threshold for <a href="#" class="stub">stub link</a> formatting (bytes):',
 'recentchangesdays'        => 'Bilangan hari dalam perubahan terkini:',
 'recentchangescount'       => 'Bilangan suntingan dalam perubahan terkini:',
 'savedprefs'               => 'Keutamaan anda disimpan.',
@@ -991,7 +974,6 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'group-all'           => '(semua)',
 
 'group-autoconfirmed-member' => 'Pengguna yang disahkan secara automatik',
-'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Penyelia',
 'group-bureaucrat-member'    => 'Birokrat',
 
@@ -1027,7 +1009,6 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'show'                              => 'Papar',
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'B',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 pemantau]',
 'rc_categories'                     => 'Hadkan kepada kategori (asingkan dengan "|")',
 'rc_categories_any'                 => 'Semua',
@@ -1178,7 +1159,6 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'filerevert-defaultcomment' => 'Dibalikkan kepada versi pada $2, $1',
 'filerevert-submit'         => 'Balikkan',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' telah dibalikkan kepada [$4 versi pada $3, $2].</span>',
-'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
 'filedelete'                  => 'Hapuskan $1',
@@ -1242,11 +1222,9 @@ Secara purata terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' papa
 
 Panjang [http://meta.wikimedia.org/wiki/Help:Job_queue barisan tugas] ialah '''\$7'''.",
 'userstatstext'          => "Terdapat '''$1''' [[Special:Listusers|pengguna]] berdaftar, dengan
-'''$2''' (atau '''$4%''') daripadanya mempunyai hak $5.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
-'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Pelencongan berganda',
@@ -1327,7 +1305,6 @@ menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
 serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 
 'categoriespagetext' => 'Kategori-kategori berikut wujud dalam wiki ini.',
-'data'               => 'Data',
 'userrights'         => 'Pengurusan hak pengguna',
 'groups'             => 'Kumpulan pengguna',
 'alphaindexline'     => '$1 hingga $2',
@@ -1476,6 +1453,7 @@ Maklum balas dan bantuan:
 'exbeforeblank'               => "kandungan sebelum pengosongan ialah: '$1'",
 'exblank'                     => 'laman tersebut kosong',
 'delete-confirm'              => 'Hapus "$1"',
+'delete-legend'               => 'Hapus',
 'historywarning'              => '<b>Amaran</b>: Laman yang ingin anda hapuskan mengandungi sejarah:',
 'confirmdeletetext'           => 'Anda sudah hendak menghapuskan sebuah laman berserta semua sejarahnya.
 Sila sahkan bahawa anda memang hendak berbuat demikian, anda faham akan
@@ -1728,6 +1706,7 @@ Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
 'ip_range_invalid'            => 'Julat IP tidak sah.',
 'blockme'                     => 'Sekat saya',
 'proxyblocker'                => 'Sekatan proksi',
+'proxyblocker-disabled'       => 'Fungsi ini dimatikan.',
 'proxyblockreason'            => 'Alamat IP anda telah disekat kerana ia merupakan proksi terbuka. Sila hubungi penyedia perkhidmatan Internet anda atau pihak sokongan teknikal dan beritahu mereka mengenai masalah berat ini.',
 'proxyblocksuccess'           => 'Siap.',
 'sorbsreason'                 => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
@@ -1850,8 +1829,6 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'thumbnail-more'           => 'Besarkan',
 'filemissing'              => 'Fail hilang',
 'thumbnail_error'          => 'Berlaku ralat ketika mencipta imej ringkas: $1',
-'djvu_page_error'          => 'DjVu page out of range',
-'djvu_no_xml'              => 'Unable to fetch XML for DjVu file',
 'thumbnail_invalid_params' => 'Parameter imej ringkas tidak sah',
 'thumbnail_dest_directory' => 'Direktori destinasi gagal diciptakans',
 
@@ -1862,7 +1839,6 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 Semua tarikh semakan dan nama penyunting akan dikekalkan.
 Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import]].',
 'import-interwiki-history'   => 'Salin semua versi sejarah bagi laman ini',
-'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Pindahkan laman ke dalam ruang nama:',
 'importtext'                 => 'Sila eksport fail daripada sumber wiki menggunakan kemudahan Special:Export, simpan dalam komputer anda dan muat naik di sini.',
 'importstart'                => 'Mengimport laman...',
@@ -1890,7 +1866,6 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'importlogpagetext'                => 'Senarai tindakan import laman dengan keseluruhan sejarah suntingannya daripada wiki lain.',
 'import-logentry-upload'           => 'mengimport [[$1]] dengan memuat naik fail',
 'import-logentry-upload-detail'    => '$1 semakan',
-'import-logentry-interwiki'        => 'transwikied $1',
 'import-logentry-interwiki-detail' => '$1 semakan daripada $2',
 
 # Tooltip help for the actions
@@ -2048,9 +2023,7 @@ $1',
 'noimages'     => 'Tiada imej.',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 's',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'j',
+'hours-abbrev' => 'j',
 
 # Bad image list
 'bad_image_list' => 'Berikut adalah format yang digunakan:
@@ -2059,7 +2032,6 @@ Hanya item senarai (baris yang dimulakan dengan *) diambil kira. Pautan pertama 
 Sebarang pautan berikutnya pada baris yang sama dikira sebagai pengecualian (rencana yang dibenarkan disertakan imej).',
 
 # Metadata
-'metadata'          => 'Metadata',
 'metadata-help'     => 'Fail ini mengandungi maklumat tambahan daripada kamera digital atau pengimbas yang digunakan untuk menghasilkannya. Jika fail ini telah diubah suai daripada rupa asalnya, beberapa butiran dalam maklumat ini mungkin sudah tidak relevan.',
 'metadata-expand'   => 'Tunjukkan butiran penuh',
 'metadata-collapse' => 'Sembunyikan butiran penuh',
@@ -2196,7 +2168,6 @@ Ruangan lain akan disembunyikan.
 
 'exif-unknowndate' => 'Tarikh tidak diketahui',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Dibalikkan secara mengufuk', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Dibalikkan secara menegak', # 0th row: bottom; 0th column: left
@@ -2211,7 +2182,6 @@ Ruangan lain akan disembunyikan.
 'exif-componentsconfiguration-0' => 'tiada',
 
 'exif-exposureprogram-0' => 'Tidak ditentukan',
-'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Atur cara normal',
 'exif-exposureprogram-3' => 'Mengutamakan bukaan',
 'exif-exposureprogram-4' => 'Mengutamakan pengatup',
@@ -2271,7 +2241,6 @@ Ruangan lain akan disembunyikan.
 'exif-whitebalance-0' => 'Imbangan warna putih automatik',
 'exif-whitebalance-1' => 'Imbangan warna putih manual',
 
-'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Potret',
 'exif-scenecapturetype-3' => 'Malam',
@@ -2282,15 +2251,12 @@ Ruangan lain akan disembunyikan.
 'exif-gaincontrol-3' => 'Gandaan rendah bawah',
 'exif-gaincontrol-4' => 'Gandaan tinggi bawah',
 
-'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Lembut',
 'exif-contrast-2' => 'Keras',
 
-'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Kepekatan rendah',
 'exif-saturation-2' => 'Kepekatan tinggi',
 
-'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Lembut',
 'exif-sharpness-2' => 'Keras',
 
@@ -2395,10 +2361,9 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'redirectingto' => 'Melencong ke [[$1]]...',
 
 # action=purge
-'confirm_purge'        => 'Kosongkan fail simpanan bagi laman ini?
+'confirm_purge' => 'Kosongkan fail simpanan bagi laman ini?
 
 $1',
-'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Cari laman mengandungi ''$1''.",
