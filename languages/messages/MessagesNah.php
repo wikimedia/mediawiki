@@ -58,7 +58,7 @@ $messages = array(
 'portal-url'  => 'Project:Calīxcuātl tocalpōl',
 'privacy'     => 'Tlahcuilōlli piyaliznahuatīlli',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'tlahcuilōlli',
 
 # Login and logout pages
@@ -80,9 +80,11 @@ $messages = array(
 'rcshowhidebots'    => '$1 tepoztlatēquitiltilīlli',
 'rclinks'           => 'Xiquittaz xōcoyōc $1 patlaliztli xōcoyōc $2 tōnalpan.<br />$3',
 
+# Random page
+'randompage' => 'Zāzotlein zāzanilli',
+
 # Miscellaneous special pages
 'allpages'     => 'Mochīntīn zāzanilli',
-'randompage'   => 'Zāzotlein zāzanilli',
 'ancientpages' => 'Huēhuehzāzanilli',
 
 # Attribution

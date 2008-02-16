@@ -1522,10 +1522,10 @@ Por favor, escolha outro título.',
 'confirm_purge_button' => 'OK',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← página anterior',
-'imgmultipagenext'   => 'próxima página →',
-'imgmultigo'         => 'Ir!',
-'imgmultigotopre'    => 'Mostrar página',
+'imgmultipageprev' => '← página anterior',
+'imgmultipagenext' => 'próxima página →',
+'imgmultigo'       => 'Ir!',
+'imgmultigotopre'  => 'Mostrar página',
 
 # Auto-summaries
 'autosumm-blank'   => 'Foi removido o conteúdo completo desta página',

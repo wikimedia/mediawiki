@@ -175,6 +175,7 @@ $messages = array(
 'mytalk'         => '我的對話頁',
 'anontalk'       => '該IP的對話頁',
 'navigation'     => '導航',
+'and'            => '和',
 
 # Metadata in edit box
 'metadata_help' => '元數據:',
@@ -620,7 +621,6 @@ $2',
 當中被$3封鎖的原因是''$2''",
 
 # History pages
-'revhistory'          => '修訂沿革',
 'viewpagelogs'        => '查詢這個頁面的日誌',
 'nohistory'           => '沒有本頁的修訂記錄。',
 'revnotfound'         => '沒有找到修訂記錄',
@@ -719,16 +719,12 @@ $2',
 'mergelogpagetext'   => '以下是一個最近由一個頁面的修訂沿革合併到另一個頁面的列表。',
 
 # Diffs
-'history-title'             => '「$1」的修訂沿革',
-'difference'                => '(修訂版本間差異)',
-'loadingrev'                => '載入修訂版本比較',
-'lineno'                    => '第$1行：',
-'editcurrent'               => '編輯本頁的當前修訂版本',
-'selectnewerversionfordiff' => '選擇更新的版本作比較',
-'selectolderversionfordiff' => '選擇更老的版本作比較',
-'compareselectedversions'   => '比較選定的版本',
-'editundo'                  => '撤銷',
-'diff-multi'                => '($1個中途的修訂版本沒有顯示。)',
+'history-title'           => '「$1」的修訂沿革',
+'difference'              => '(修訂版本間差異)',
+'lineno'                  => '第$1行：',
+'compareselectedversions' => '比較選定的版本',
+'editundo'                => '撤銷',
+'diff-multi'              => '($1個中途的修訂版本沒有顯示。)',
 
 # Search results
 'searchresults'         => '搜尋結果',
@@ -1138,7 +1134,6 @@ Template:消除歧義',
 'specialpages'            => '特殊頁面',
 'spheading'               => '所有使用者的特殊頁面',
 'restrictedpheading'      => '受限的特殊頁面',
-'rclsub'                  => '（從 "$1"鏈出的頁面）',
 'newpages'                => '最新頁面',
 'newpages-username'       => '使用者帳號:',
 'ancientpages'            => '最舊頁面',
@@ -1302,8 +1297,6 @@ $NEWPAGE
 'excontentauthor'             => '內容為: "$1" (而且唯一貢獻者為"$2")',
 'exbeforeblank'               => '被清空前的內容為: "$1"',
 'exblank'                     => '頁面為空',
-'confirmdelete'               => '確認刪除',
-'deletesub'                   => '（正在刪除「$1」）',
 'historywarning'              => '警告: 您將要刪除的頁內含有歷史',
 'confirmdeletetext'           => '您即將從資料庫中永遠刪除一個頁面或圖片以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
@@ -1334,7 +1327,7 @@ $NEWPAGE
 
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '復原由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本',
+'revertpage'                  => '復原由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '復原由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
@@ -1434,10 +1427,6 @@ $1',
 'month'         => '從該月份 (或更早):',
 'year'          => '從該年份 (或更早):',
 
-'sp-contributions-newest'      => '最新',
-'sp-contributions-oldest'      => '最舊',
-'sp-contributions-newer'       => '前$1次',
-'sp-contributions-older'       => '後$1次',
 'sp-contributions-newbies'     => '只顯示新建立之使用者的編修記錄',
 'sp-contributions-newbies-sub' => '新手',
 'sp-contributions-blocklog'    => '封鎖記錄',
@@ -1486,7 +1475,7 @@ $1',
 'ipbenableautoblock'          => '自動封鎖此使用者最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit'                   => '封鎖該地址',
 'ipbother'                    => '其它時間:',
-'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite',
+'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附帶原因:',
 'ipbhidename'                 => '在封鎖日誌、活躍封鎖列表以及使用者列表中隱藏使用者名／IP',
@@ -1534,12 +1523,12 @@ $1',
 'ipb_already_blocked'         => '已經封鎖"$1"',
 'ipb_cant_unblock'            => '錯誤: 找不到封鎖ID$1。可能已經解除封鎖。',
 'ipb_blocked_as_range'        => '錯誤: 該IP $1 無直接封鎖，不可以解除封鎖。但是它是在 $2 的封鎖範圍之內，該段範圍是可以解除封鎖的。',
-'ip_range_invalid'            => '無效的IP範圍。\n',
+'ip_range_invalid'            => '無效的IP範圍。\\n',
 'blockme'                     => '封鎖我',
 'proxyblocker'                => '代理封鎖器',
 'proxyblocker-disabled'       => '這個功能已經停用。',
 'proxyblockreason'            => '您的IP位址是一個開放的代理，它已經被封鎖。請聯繫您的網際網路服務提供商或技術支援者並告知告知他們該嚴重的安全問題。',
-'proxyblocksuccess'           => '完成。\n',
+'proxyblocksuccess'           => '完成。\\n',
 'sorbsreason'                 => '您的IP位址被 DNSBL列為屬於開放代理服務器.',
 'sorbs_create_account_reason' => '由於您的IP位址被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
 
@@ -1646,7 +1635,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => '放大',
-'missingimage'             => '<b>缺少圖片</b><br /><i>$1</i>',
 'filemissing'              => '無法找到檔案',
 'thumbnail_error'          => '建立縮圖錯誤: $1',
 'djvu_page_error'          => 'DjVu頁面超出範圍',
@@ -1676,7 +1664,6 @@ $1',
 'importhistoryconflict'      => '存在衝突的修訂沿革(可能在之前已經匯入過此頁面)',
 'importnosources'            => '跨Wiki匯入源沒有定義，同時不允許直接的歷史上傳。',
 'importnofile'               => '沒有上傳匯入檔案。',
-'importuploaderror'          => '上傳匯入檔案失敗；可能是該檔案大於允許的檔案上傳大小。',
 
 # Import log
 'importlogpage'                    => '匯入日誌',
@@ -1765,7 +1752,6 @@ $1',
 'anonymous'        => '{{SITENAME}}的匿名使用者',
 'siteuser'         => '{{SITENAME}}使用者$1',
 'lastmodifiedatby' => '此頁由$3於$1 $2的最後更改。', # $1 date, $2 time, $3 user
-'and'              => '和',
 'othercontribs'    => '在$1的工作基礎上。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}使用者$1',
@@ -1880,7 +1866,7 @@ Variants for Chinese language
 * 原始日期時間
 * 曝光時間
 * 光圈(F值)
-* 焦距',
+* 焦距', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => '寬度',
@@ -2198,7 +2184,7 @@ $1
 'redirectingto' => '重定向到[[$1]]...',
 
 # action=purge
-'confirm_purge'        => '要清除此頁面的快取嗎?\n\n$1',
+'confirm_purge'        => '要清除此頁面的快取嗎?\\n\\n$1',
 'confirm_purge_button' => '確定',
 
 # AJAX search
@@ -2208,11 +2194,11 @@ $1
 'hideresults'      => '隱藏結果',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← 上一頁',
-'imgmultipagenext'   => '下一頁 →',
-'imgmultigo'         => '確定！',
-'imgmultigotopre'    => '到第',
-'imgmultigotopost'   => '頁',
+'imgmultipageprev' => '← 上一頁',
+'imgmultipagenext' => '下一頁 →',
+'imgmultigo'       => '確定！',
+'imgmultigotopre'  => '到第',
+'imgmultigotopost' => '頁',
 
 # Table pager
 'ascending_abbrev'         => '遞增',
@@ -2265,5 +2251,6 @@ $1
 'watchlisttools-view' => '檢視有關更改',
 'watchlisttools-edit' => '檢視並編輯監視列表',
 'watchlisttools-raw'  => '編輯原始監視列表',
+
 
 );

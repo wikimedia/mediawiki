@@ -34,17 +34,28 @@ $separatorTransformTable = array(',' => ' ', '.' => ',' );
 
 $messages = array(
 'linkprefix' => '/^(.*?)(„|«)$/sDu',
+
 'article' => 'Статья',
-'createaccount' => 'выль вики-авторлэн регистрациез',
-'edit' => 'тупатыны',
-'hist' => 'история',
-'history' => 'Бамлэн историез',
+'mytalk'  => 'викиавтор сярысь вераськон',
+
+'history'       => 'Бамлэн историез',
 'history_short' => 'история',
-'login' => 'Википедие пырон',
-'mycontris' => 'мынам статьяосы',
-'mytalk' => 'викиавтор сярысь вераськон',
+'edit'          => 'тупатыны',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user' => 'викиавтор',
+
+# Login and logout pages
+'login'         => 'Википедие пырон',
+'createaccount' => 'выль вики-авторлэн регистрациез',
+
+# Preferences page
 'preferences' => 'настройкаос',
+
+# Recent changes
+'hist' => 'история',
+
+# Contributions
+'mycontris' => 'мынам статьяосы',
+
 );
-
-

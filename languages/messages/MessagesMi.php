@@ -26,20 +26,12 @@ $messages = array(
 'november'  => 'Whiringa-ā-rangi',
 'december'  => 'Hakihea',
 
-'mainpage' => 'Hau Kāinga',
-
-'portal'         => 'Tomokanga hapori',
-'portal-url'     => 'Project:Tomokanga hapori',
-'help'           => 'Whakamārama',
-'sitesupport'    => 'Koha',
 'cancel'         => 'Whakakore',
 'qbspecialpages' => 'Whārangi motuhake',
 'mytalk'         => 'Karere mōku',
 'navigation'     => 'Huarahi',
 
-'currentevents'     => 'Kōrero',
-'currentevents-url' => 'Project:Kōrero',
-
+'help'             => 'Whakamārama',
 'search'           => 'Rapua',
 'go'               => 'Haere',
 'history'          => 'Kōrero Nehe',
@@ -52,11 +44,19 @@ $messages = array(
 'talk'             => 'Kōrerorero',
 'toolbox'          => 'Pouaka utauta',
 
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'currentevents'     => 'Kōrero',
+'currentevents-url' => 'Project:Kōrero',
+'mainpage'          => 'Hau Kāinga',
+'portal'            => 'Tomokanga hapori',
+'portal-url'        => 'Project:Tomokanga hapori',
+'sitesupport'       => 'Koha',
+
 'toc'     => 'Rārangi kōrero',
 'showtoc' => 'whakakite',
 'hidetoc' => 'hunaia',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'tuhi pānui',
 'nstab-template' => 'papa tauira',
 'nstab-help'     => 'Āwhina',
@@ -77,24 +77,28 @@ $messages = array(
 'hide'          => 'Hunaia',
 'show'          => 'Whakaaturia',
 
+# Recent changes linked
+'recentchangeslinked' => 'Rerekētanga pū tahi',
+
 # Upload
 'upload' => 'Tuku atu',
 
+# Random page
+'randompage' => 'Tipihaere',
+
 # Miscellaneous special pages
-'allpages'            => 'Ngā whārangi katoa',
-'randompage'          => 'Tipihaere',
-'specialpages'        => 'Whārangi motuhake',
-'recentchangeslinked' => 'Rerekētanga pū tahi',
-'move'                => 'Nekehia',
+'allpages'     => 'Ngā whārangi katoa',
+'specialpages' => 'Whārangi motuhake',
+'move'         => 'Nekehia',
 
 # Special:Allpages
 'allpagessubmit' => 'Haere',
 
 # Watchlist
-'watchlist' => 'Rārangi mātaki',
+'watchlist'   => 'Rārangi mātaki',
 'mywatchlist' => 'Rārangi mātaki',
-'watch'     => 'Mātaki',
-'unwatch'   => 'kāti te mātaki',
+'watch'       => 'Mātaki',
+'unwatch'     => 'kāti te mātaki',
 
 # Contributions
 'contributions' => 'Ngā mahi a tēnei mema',
@@ -107,5 +111,3 @@ $messages = array(
 'allmessages' => 'Pānui pūnaha',
 
 );
-
-

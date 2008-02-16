@@ -1479,7 +1479,6 @@ $NEWPAGE
 
 # Thumbnails
 'thumbnail-more'           => '放大',
-'missingimage'             => '<b>冇圖像</b><br /><i>$1</i>',
 'filemissing'              => '尋伓到檔案',
 'thumbnail_error'          => '縮略圖冇扤正: $1',
 'djvu_page_error'          => 'DjVu頁超出範圍',
@@ -2018,10 +2017,10 @@ $1',
 'useajaxsearch'    => '用 AJAX 尋',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← 上頁',
-'imgmultipagenext'   => '下頁 →',
-'imgmultigo'         => '確定！',
-'imgmultigotopre'    => '去到第',
+'imgmultipageprev' => '← 上頁',
+'imgmultipagenext' => '下頁 →',
+'imgmultigo'       => '確定！',
+'imgmultigotopre'  => '去到第',
 
 # Table pager
 'ascending_abbrev'         => '增',

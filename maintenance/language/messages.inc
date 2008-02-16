@@ -1538,7 +1538,6 @@ $wgMessageStructure = array(
 	),
 	'thumbnails' => array(
 		'thumbnail-more',
-		'missingimage',
 		'filemissing',
 		'thumbnail_error',
 		'djvu_page_error',

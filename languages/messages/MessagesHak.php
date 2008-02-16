@@ -143,6 +143,7 @@ $messages = array(
 'mytalk'         => 'Ngô-ke tui-fa-hong',
 'anontalk'       => 'Ke-IP ke tui-fa hong',
 'navigation'     => 'Thô-hòng',
+'and'            => 'lâu',
 
 # Metadata in edit box
 'metadata_help' => 'Ngièn sṳ-kí:',
@@ -1309,7 +1310,6 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 
 # Thumbnails
 'thumbnail-more'           => 'Fong-thai',
-'missingimage'             => '<b>Khiet-séu thù-chhiong</b><br /><i>$1</i>',
 'filemissing'              => 'Mò-fap cháu-to tóng-on',
 'thumbnail_error'          => 'Chhóng-kien suk-thù chho-ngu: $1',
 'djvu_page_error'          => 'DjVu hong-mien chhêu-chhut fam-vì',
@@ -1422,7 +1422,6 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 'anonymous'        => '{{SITENAME}} ke ngia̍k-miàng yung-fu',
 'siteuser'         => '{{SITENAME}} Yung-fu-chá $1',
 'lastmodifiedatby' => 'Chhṳ́-chông yù $3 yî $1 $2 ke chui-heu kiên-kói.', # $1 date, $2 time, $3 user
-'and'              => 'lâu',
 'othercontribs'    => 'Chhai $1-ke kûng-chok kî-chhú song.',
 'others'           => 'khì-thâ',
 'siteusers'        => '{{SITENAME}} Yung-fu-chá $1',
@@ -1578,10 +1577,10 @@ $1',
 'hideresults'      => 'Yún-chhòng kiet-kó',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← sông yit-chông',
-'imgmultipagenext'   => 'hâ yit-chông →',
-'imgmultigo'         => 'Khok-thin!',
-'imgmultigotopre'    => 'To-thi',
+'imgmultipageprev' => '← sông yit-chông',
+'imgmultipagenext' => 'hâ yit-chông →',
+'imgmultigo'       => 'Khok-thin!',
+'imgmultigotopre'  => 'To-thi',
 
 # Table pager
 'ascending_abbrev'         => 'Suk-siá chen',

@@ -129,6 +129,7 @@ $messages = array(
 'mytalk'         => 'Διάλεκτός μου',
 'anontalk'       => 'Διάλεκτος πρὸ τοῦδε τοῦ IP',
 'navigation'     => 'Πλοήγησις',
+'and'            => 'καί',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',
@@ -461,7 +462,6 @@ $messages = array(
 'tooltip-save'              => 'Γράφειν τὰς μεταβολάς σου',
 
 # Attribution
-'and'    => 'καί',
 'others' => 'ἄλλοι',
 
 # Browsing diffs

@@ -1284,7 +1284,6 @@ Basqa atama saylan'",
 
 # Thumbnails
 'thumbnail-more'           => "U'lkeytiw",
-'missingimage'             => "<b>Tabılmag'an su'wret </b><br /><i>$1</i>",
 'filemissing'              => 'Fayl tabılmadı',
 'thumbnail_error'          => "Miniatyura jaratıw qa'teligi: $1",
 'thumbnail_invalid_params' => 'Miniatyura sazlawları natuwrı',

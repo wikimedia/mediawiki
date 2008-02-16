@@ -66,6 +66,7 @@ $messages = array(
 'qbfind'    => 'Лахар',
 'mytalk'    => 'Сан цІера дийцар',
 'anontalk'  => 'ХІар IP-адреси дийцар',
+'and'       => 'а',
 
 'errorpagetitle'    => 'ГІалат',
 'help'              => 'ГIo',
@@ -234,10 +235,9 @@ $messages = array(
 'wlshowlast'   => 'Гайт тІаьххара $1 сахьташ $2 денош $3',
 
 # Delete/protect/revert
-'confirm'       => 'Бакъдар',
-'confirmdelete' => 'ДIадайъар бакъде',
-'dellogpage'    => 'ДІадайан таптараш',
-'deletionlog'   => 'дІадайан таптараш',
+'confirm'     => 'Бакъдар',
+'dellogpage'  => 'ДІадайан таптараш',
+'deletionlog' => 'дІадайан таптараш',
 
 # Namespace form on various pages
 'blanknamespace' => '(Коьртаниг)',
@@ -273,7 +273,6 @@ $messages = array(
 
 # Attribution
 'siteuser' => 'Юзер {{grammar:genitive|{{SITENAME}}}} $1',
-'and'      => 'а',
 'others'   => 'Вуьш',
 
 # Media information

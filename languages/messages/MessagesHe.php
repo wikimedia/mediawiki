@@ -1934,9 +1934,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'הגדל',
-'missingimage'             => "'''תמונה חסרה'''
-
-'''$1''",
 'filemissing'              => 'קובץ חסר',
 'thumbnail_error'          => 'שגיאה ביצירת תמונה ממוזערת: $1',
 'djvu_page_error'          => 'דף ה־DjVu מחוץ לטווח',
@@ -2489,10 +2486,10 @@ $1',
 'useajaxsearch'    => 'שימוש בחיפוש AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&rarr; לדף הקודם',
-'imgmultipagenext'   => 'לדף הבא &larr;',
-'imgmultigo'         => 'הצגה',
-'imgmultigotopre'    => 'מעבר לדף',
+'imgmultipageprev' => '&rarr; לדף הקודם',
+'imgmultipagenext' => 'לדף הבא &larr;',
+'imgmultigo'       => 'הצגה',
+'imgmultigotopre'  => 'מעבר לדף',
 
 # Table pager
 'ascending_abbrev'         => 'עולה',

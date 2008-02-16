@@ -1859,7 +1859,6 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 
 # Thumbnails
 'thumbnail-more'           => 'vergrößern',
-'missingimage'             => '<b>Fehlendes Bild</b><br /><i>$1</i>',
 'filemissing'              => 'Datei fehlt',
 'thumbnail_error'          => 'Fehler beim Erstellen des Vorschaubildes: $1',
 'djvu_page_error'          => 'DjVu-Seite ausserhalb des Seitenbereichs',
@@ -2422,10 +2421,10 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'useajaxsearch'    => 'Benutze AJAX-unterstützte Suche',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← vorige Seite',
-'imgmultipagenext'   => 'nächste Seite →',
-'imgmultigo'         => 'OK',
-'imgmultigotopre'    => 'Gehe zu Seite',
+'imgmultipageprev' => '← vorige Seite',
+'imgmultipagenext' => 'nächste Seite →',
+'imgmultigo'       => 'OK',
+'imgmultigotopre'  => 'Gehe zu Seite',
 
 # Table pager
 'ascending_abbrev'         => 'auf',

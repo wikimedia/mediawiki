@@ -21,6 +21,7 @@ $messages = array(
 'saturday'  => 'Шаммат',
 
 'mytalk' => 'Дур бахlс',
+'and'    => 'ва',
 
 'errorpagetitle' => 'Гъалатl',
 'help'           => 'Кумек',
@@ -108,8 +109,5 @@ $messages = array(
 'movepage'    => 'Гьумералъул цlар хисизе',
 'movearticle' => 'Гьумералъул цIар хисизе',
 'movepagebtn' => 'Гьумералъул цlар хисизе',
-
-# Attribution
-'and' => 'ва',
 
 );

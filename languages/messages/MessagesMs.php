@@ -1848,7 +1848,6 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 
 # Thumbnails
 'thumbnail-more'           => 'Besarkan',
-'missingimage'             => '<b>Imej hilang</b><br /><i>$1</i>',
 'filemissing'              => 'Fail hilang',
 'thumbnail_error'          => 'Berlaku ralat ketika mencipta imej ringkas: $1',
 'djvu_page_error'          => 'DjVu page out of range',
@@ -2409,10 +2408,10 @@ $1',
 'useajaxsearch'    => 'Gunakan carian AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← halaman sebelumnya',
-'imgmultipagenext'   => 'halaman berikutnya →',
-'imgmultigo'         => 'Pergi!',
-'imgmultigotopre'    => 'Buka halaman',
+'imgmultipageprev' => '← halaman sebelumnya',
+'imgmultipagenext' => 'halaman berikutnya →',
+'imgmultigo'       => 'Pergi!',
+'imgmultigotopre'  => 'Buka halaman',
 
 # Table pager
 'ascending_abbrev'         => 'menaik',

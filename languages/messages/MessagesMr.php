@@ -1560,7 +1560,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'मोठे करा',
-'missingimage'             => '<b>चित्र सापडत नाही</b><br /><i>$1</i>',
 'filemissing'              => 'संचिका अस्तित्वात नाही',
 'thumbnail_error'          => '$1 चा इवलेसेचित्र बनविण्यात अडथळा आलेला आहे.',
 'djvu_page_error'          => 'टप्प्याच्या बाहेरचे DjVu पान',

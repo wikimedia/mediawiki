@@ -1639,7 +1639,6 @@ Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{ns:special
 
 # Thumbnails
 'thumbnail-more'           => 'Hatunchay',
-'missingimage'             => '<b>Manam rikcha kachkanchu</b><br /><i>$1</i>',
 'filemissing'              => 'Manam willañiqi kachkanchu',
 'thumbnail_error'          => 'Manam atinichu rikchachata kamayta: $1',
 'djvu_page_error'          => "DjVu nisqa p'anqaqa nisyum",
@@ -2193,10 +2192,10 @@ $1",
 'useajaxsearch'    => 'AJAX nisqawan maskay',
 
 # Multipage image navigation
-'imgmultipageprev'   => "← ñawpaq p'anqa",
-'imgmultipagenext'   => "qatiq p'anqa →",
-'imgmultigo'         => 'Riy!',
-'imgmultigotopre'    => "Riy p'anqaman",
+'imgmultipageprev' => "← ñawpaq p'anqa",
+'imgmultipagenext' => "qatiq p'anqa →",
+'imgmultigo'       => 'Riy!',
+'imgmultigotopre'  => "Riy p'anqaman",
 
 # Table pager
 'ascending_abbrev'         => 'wich',

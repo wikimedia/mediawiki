@@ -1766,9 +1766,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 
 # Thumbnails
 'thumbnail-more'           => 'powjetšić',
-'missingimage'             => '<b>Pobrachowacy wobraz</b>
-
-<i>$1</i>',
 'filemissing'              => 'Dataja pobrachuje',
 'thumbnail_error'          => 'Zmylk při wutworjenju miniaturki: $1',
 'djvu_page_error'          => 'Strona DjVU zwonka wobłuka strony',
@@ -2311,10 +2308,10 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'useajaxsearch'    => 'Pytanje AJAX wužiwać',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← předchadna strona',
-'imgmultipagenext'   => 'přichodna strona →',
-'imgmultigo'         => 'Dźi!',
-'imgmultigotopre'    => 'dźi k stronje',
+'imgmultipageprev' => '← předchadna strona',
+'imgmultipagenext' => 'přichodna strona →',
+'imgmultigo'       => 'Dźi!',
+'imgmultigotopre'  => 'dźi k stronje',
 
 # Table pager
 'ascending_abbrev'         => 'postupowacy',

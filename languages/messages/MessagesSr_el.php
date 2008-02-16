@@ -1490,7 +1490,6 @@ U drugom slučaju, možete takođe koristiti vezu, npr. [[{{ns:special}}:Export/
 
 # Thumbnails
 'thumbnail-more'  => 'uvećaj',
-'missingimage'    => '<b>Ovde nedostaje slika</b><br /><i>$1</i>',
 'filemissing'     => 'Nedostaje fajl',
 'thumbnail_error' => 'Greška pri pravljenju umanjene slike: $1',
 

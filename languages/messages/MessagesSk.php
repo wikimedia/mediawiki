@@ -1852,7 +1852,6 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 
 # Thumbnails
 'thumbnail-more'           => 'Zväčšiť',
-'missingimage'             => '<b>Chýbajúci obrázok</b><br /><i>$1</i>',
 'filemissing'              => 'Chýbajúci súbor',
 'thumbnail_error'          => 'Chyba pri vytváraní náhľadu: $1',
 'djvu_page_error'          => 'DjVu stránka mimo rozsahu',
@@ -2416,10 +2415,10 @@ $1',
 'useajaxsearch'    => 'Použiť AJAX vyhľadávanie',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; predošlá stránka',
-'imgmultipagenext'   => 'ďalšia stránka &rarr;',
-'imgmultigo'         => 'Vykonať',
-'imgmultigotopre'    => 'Prejsť na stránku',
+'imgmultipageprev' => '&larr; predošlá stránka',
+'imgmultipagenext' => 'ďalšia stránka &rarr;',
+'imgmultigo'       => 'Vykonať',
+'imgmultigotopre'  => 'Prejsť na stránku',
 
 # Table pager
 'ascending_abbrev'         => 'vzostupne',

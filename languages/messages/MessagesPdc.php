@@ -51,7 +51,7 @@ $messages = array(
 'portal'     => 'Gmeeschafts-Portal',
 'portal-url' => 'Project:Gmeeschafts-Portal',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-help' => 'Hilf',
 
 # Login and logout pages
@@ -71,9 +71,11 @@ $messages = array(
 # Image list
 'ilsubmit' => 'Guuck uff',
 
-# Miscellaneous special pages
+# Random page
 'randompage' => 'Ennich Ardickel',
-'move'       => 'ziehe',
+
+# Miscellaneous special pages
+'move' => 'ziehe',
 
 # Watchlist
 'watchlist'     => 'Mei Watsch-Lischt',

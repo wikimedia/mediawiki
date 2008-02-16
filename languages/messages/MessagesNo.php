@@ -1735,7 +1735,6 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 
 # Thumbnails
 'thumbnail-more'           => 'Forstørr',
-'missingimage'             => '<b>Bilde mangler</b><br /><i>$1</i>',
 'filemissing'              => 'Fila mangler',
 'thumbnail_error'          => 'Feil under oppretting av miniatyrbilde: $1',
 'djvu_page_error'          => 'DjVu-side ute av rekkevidde',
@@ -2279,10 +2278,10 @@ $1
 'useajaxsearch'    => 'Bruk AJAX-søk',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; forrige side',
-'imgmultipagenext'   => 'neste side &rarr;',
-'imgmultigo'         => 'Gå!',
-'imgmultigotopre'    => 'Gå til side',
+'imgmultipageprev' => '&larr; forrige side',
+'imgmultipagenext' => 'neste side &rarr;',
+'imgmultigo'       => 'Gå!',
+'imgmultigotopre'  => 'Gå til side',
 
 # Table pager
 'ascending_abbrev'         => 'stig.',

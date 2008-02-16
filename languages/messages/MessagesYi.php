@@ -188,6 +188,7 @@ $messages = array(
 'mytalk'         => 'מײַן שמועס',
 'anontalk'       => 'דאס רעדן פון דעם IP',
 'navigation'     => 'נאַװיגאַציע',
+'and'            => 'און',
 
 # Metadata in edit box
 'metadata_help' => 'מעטא־דעטא:',
@@ -1156,7 +1157,6 @@ $NEWPAGE
 # Attribution
 'anonymous'        => 'אנינאנימעס באנוצער(ס) פון {{SITENAME}}',
 'lastmodifiedatby' => 'די לעצטע ענדערונג פון די בלאט איז געווען $2, $1 ביי $3.', # $1 date, $2 time, $3 user
-'and'              => 'און',
 'creditspage'      => 'בלאט קרעדיטס',
 
 # Spam protection

@@ -1312,7 +1312,6 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 
 # Thumbnails
 'thumbnail-more'  => 'Ssemɣer',
-'missingimage'    => '<b>Tugna ulac-itt</b><br /><i>$1</i>',
 'filemissing'     => 'Afaylu ulac-it',
 'thumbnail_error' => 'Agul asmi yexleq tugna tamecṭuḥt: $1',
 
@@ -1563,10 +1562,10 @@ $1',
 'hideresults'      => 'Ffer igmad',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← asebter ssabeq',
-'imgmultipagenext'   => 'asebter ameḍfir →',
-'imgmultigo'         => 'Ruḥ!',
-'imgmultigotopre'    => 'Ruḥ s asebtar',
+'imgmultipageprev' => '← asebter ssabeq',
+'imgmultipagenext' => 'asebter ameḍfir →',
+'imgmultigo'       => 'Ruḥ!',
+'imgmultigotopre'  => 'Ruḥ s asebtar',
 
 # Table pager
 'ascending_abbrev'         => 'asawen',

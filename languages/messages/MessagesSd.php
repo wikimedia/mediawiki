@@ -23,6 +23,7 @@ $messages = array(
 
 'about'   => 'بابت',
 'article' => 'مسوَدو',
+'and'     => '۽',
 
 'search'           => 'ڳول',
 'go'               => 'کوليو',
@@ -93,7 +94,6 @@ $messages = array(
 
 # Delete/protect/revert
 'confirm'        => 'پڪ ڪريو',
-'confirmdelete'  => 'پڪ ڊاھيون',
 'confirmprotect' => 'تحفظڻ جي پڪ ڪريو',
 
 # Contributions
@@ -113,7 +113,6 @@ $messages = array(
 
 # Attribution
 'anonymous' => '{{SITENAME}} جا گمنام يوزرس',
-'and'       => '۽',
 
 # E-mail address confirmation
 'confirmemail_success' => 'توھان جي برق ٽپال جي پڪ ڪئي وئي آھي. ھاڻِ توھان لاگ ان ٿي وڪيءَ جو مزو وٺي سگھو ٿا',

@@ -1896,7 +1896,6 @@ In het laatste geval kan u ook een link gebruiken, bijvoorbeeld [[Special:Export
 
 # Thumbnails
 'thumbnail-more'           => 'Groter',
-'missingimage'             => '<b>Bestand ontbreekt</b><br /><i>$1</i>',
 'filemissing'              => 'Bestand is zoek',
 'thumbnail_error'          => 'Fout bij het aanmaken van thumbnail: $1',
 'djvu_page_error'          => 'DjVu-pagina buiten bereik',
@@ -2454,10 +2453,10 @@ $1',
 'useajaxsearch'    => 'AJAX-zoeken gebruiken',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← vorige pagina',
-'imgmultipagenext'   => 'volgende pagina →',
-'imgmultigo'         => 'OK',
-'imgmultigotopre'    => 'Gaan naar pagina',
+'imgmultipageprev' => '← vorige pagina',
+'imgmultipagenext' => 'volgende pagina →',
+'imgmultigo'       => 'OK',
+'imgmultigotopre'  => 'Gaan naar pagina',
 
 # Table pager
 'ascending_abbrev'         => 'opl.',

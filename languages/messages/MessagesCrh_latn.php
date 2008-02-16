@@ -1440,7 +1440,6 @@ Lütfen, başqa bir ad saylap yazıñız.',
 
 # Thumbnails
 'thumbnail-more'           => 'Büyüt',
-'missingimage'             => '<b>Tapılmağan resim</b><br /><i>$1</i>',
 'filemissing'              => 'Fayl tapılmadı',
 'thumbnail_error'          => 'Kiçik resim (thumbnail) yaratılğanda bir hata çıqtı: $1',
 'thumbnail_invalid_params' => 'Yañlış thumbnail parametri',
@@ -1745,10 +1744,10 @@ $1',
 'hideresults'      => 'Neticelerni gizle',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← evelki saife',
-'imgmultipagenext'   => 'soñraki saife →',
-'imgmultigo'         => 'Bar',
-'imgmultigotopre'    => 'Bu saifege bar',
+'imgmultipageprev' => '← evelki saife',
+'imgmultipagenext' => 'soñraki saife →',
+'imgmultigo'       => 'Bar',
+'imgmultigotopre'  => 'Bu saifege bar',
 
 # Table pager
 'ascending_abbrev'         => 'kiçikten büyükke',

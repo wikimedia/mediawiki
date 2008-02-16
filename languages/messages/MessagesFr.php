@@ -1807,7 +1807,6 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandir',
-'missingimage'             => '<b>Image manquante</b><br /><i>$1</i>',
 'filemissing'              => 'Fichier absent',
 'thumbnail_error'          => 'Erreur lors de la création de la miniature : $1',
 'djvu_page_error'          => 'Page DjVu hors limites',
@@ -2359,10 +2358,10 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'useajaxsearch'    => 'Utiliser la recherche AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← page précédente',
-'imgmultipagenext'   => 'page suivante →',
-'imgmultigo'         => 'Accéder !',
-'imgmultigotopre'    => 'Accéder à la page',
+'imgmultipageprev' => '← page précédente',
+'imgmultipagenext' => 'page suivante →',
+'imgmultigo'       => 'Accéder !',
+'imgmultigotopre'  => 'Accéder à la page',
 
 # Table pager
 'ascending_abbrev'         => 'crois',

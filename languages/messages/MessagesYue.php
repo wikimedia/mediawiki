@@ -669,7 +669,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'token_suffix_mismatch'     => '<strong>因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。 
 當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。</strong>',
 'editing'                   => '而家喺度編輯$1',
-'editinguser'               => '改緊用戶\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限',
+'editinguser'               => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
 'editingsection'            => '而家喺度編輯$1 （小節）',
 'editingcomment'            => '而家喺度編輯$1 （評論）',
 'editconflict'              => '編輯衝突：$1',
@@ -1748,7 +1748,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => '放大',
-'missingimage'             => '<b>唔見張圖</b><br /><i>$1</i>',
 'filemissing'              => '唔見個檔案',
 'thumbnail_error'          => '整唔到縮圖: $1',
 'djvu_page_error'          => 'DjVu頁超出範圍',
@@ -2330,11 +2329,11 @@ $1',
 'useajaxsearch'    => '用AJAX來搵嘢',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← 上一版',
-'imgmultipagenext'   => '下一版 →',
-'imgmultigo'         => '去!',
-'imgmultigotopre'    => '去到第',
-'imgmultigotopost'   => '版',
+'imgmultipageprev' => '← 上一版',
+'imgmultipagenext' => '下一版 →',
+'imgmultigo'       => '去!',
+'imgmultigotopre'  => '去到第',
+'imgmultigotopost' => '版',
 
 # Table pager
 'ascending_abbrev'         => '增',

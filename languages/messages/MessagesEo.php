@@ -1581,7 +1581,6 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 
 # Thumbnails
 'thumbnail-more'  => 'Pligrandigu',
-'missingimage'    => '<b>Mankanta bildo</b><br /><i>$1</i>',
 'filemissing'     => 'Mankanta dosiero',
 'thumbnail_error' => 'Okazis eraro kreante antaŭvidan bildeton: $1',
 

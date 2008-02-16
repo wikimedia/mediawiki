@@ -61,6 +61,7 @@ $messages = array(
 'mypage'         => 'ᐊᒥ ᒪᑉᐱᑕᖅ',
 'mytalk'         => 'ᐊᓪᓚᖁᑎᒃᑲ',
 'navigation'     => 'ᒥᐊᓂᕆᕚ',
+'and'            => 'ᐊᒻᒪ',
 
 'help'              => 'ᖃᔭᓕᑉᐹ',
 'search'            => 'ᐃᕚᖅᐳᖅ',
@@ -334,7 +335,6 @@ $messages = array(
 
 # Attribution
 'anonymous' => 'ᐃᓕᓴᕐᓇᙱᑎᑦᑐᖅ ᖃᑕᙳᑎ ᓇᑭᑦ {{SITENAME}}',
-'and'       => 'ᐊᒻᒪ',
 
 # Image deletion
 'deletedrevision' => 'ᓂᐸᖅ ᐅᑐᖃᖅ ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ $1',

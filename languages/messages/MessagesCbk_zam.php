@@ -37,7 +37,7 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Maga Reciente Cambio',
 
-# Miscellaneous special pages
+# Random page
 'randompage' => 'Pagina Escujido Automatico',
 
 # Special:Allpages

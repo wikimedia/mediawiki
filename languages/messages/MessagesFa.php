@@ -1887,7 +1887,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'بزرگ شود',
-'missingimage'             => '<b>تصویر مفقود</b><br /><i>$1</i>',
 'filemissing'              => 'پرونده وجود ندارد',
 'thumbnail_error'          => 'خطا در ایجاد انگشت‌دانه: $1',
 'djvu_page_error'          => 'صفحهٔ DjVu خارج از حدود مجاز',
@@ -2463,10 +2462,10 @@ $1',
 'semicolon-separator' => '؛',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&rarr; صفحهٔ پیشین',
-'imgmultipagenext'   => 'صفحهٔ بعد &larr;',
-'imgmultigo'         => 'برو!',
-'imgmultigotopre'    => 'رفتن به صفحه',
+'imgmultipageprev' => '&rarr; صفحهٔ پیشین',
+'imgmultipagenext' => 'صفحهٔ بعد &larr;',
+'imgmultigo'       => 'برو!',
+'imgmultigotopre'  => 'رفتن به صفحه',
 
 # Table pager
 'ascending_abbrev'         => 'صعودی',

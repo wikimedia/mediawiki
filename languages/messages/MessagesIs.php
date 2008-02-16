@@ -1561,7 +1561,6 @@ Síðan „[[$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fy
 
 # Thumbnails
 'thumbnail-more' => 'Stækka',
-'missingimage'   => '<b>Mynd vantar</b><br /><i>$1</i>',
 'filemissing'    => 'Skrá vantar',
 
 # Special:Import

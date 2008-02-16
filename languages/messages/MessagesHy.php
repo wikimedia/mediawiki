@@ -1802,7 +1802,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'Ընդարձակել',
-'missingimage'             => '<b>Պատկերը չգտնվեց</b><br /><i>$1</i>',
 'filemissing'              => 'Նման ֆայլ չկա',
 'thumbnail_error'          => 'Պատկերիկի ստեղծման սխալ. $1',
 'djvu_page_error'          => 'DjVu էջը լայնույթից դուրս է',
@@ -2110,10 +2109,10 @@ $1',
 'hideresults'      => 'Թաքցնել արդյունքները',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← նախորդ էջ',
-'imgmultipagenext'   => 'հաջորդ էջ →',
-'imgmultigo'         => 'Անցնե՜լ',
-'imgmultigotopre'    => 'Անցնել էջին',
+'imgmultipageprev' => '← նախորդ էջ',
+'imgmultipagenext' => 'հաջորդ էջ →',
+'imgmultigo'       => 'Անցնե՜լ',
+'imgmultigotopre'  => 'Անցնել էջին',
 
 # Table pager
 'ascending_abbrev'         => 'աճմ. կարգ.',

@@ -764,7 +764,6 @@ Template:Khu-pia̍t-ia̍h',
 
 # Thumbnails
 'thumbnail-more' => 'Hòng-tōa',
-'missingimage'   => '<b>Bô iáⁿ-siōng</b><br /><i>$1</i>',
 'filemissing'    => 'Bô tóng-àn',
 
 # Special:Import

@@ -148,8 +148,10 @@ $messages = array(
 # Upload
 'upload' => 'Ikeltė faila',
 
+# Random page
+'randompage' => 'Atsitiktinis straipsnis',
+
 # Miscellaneous special pages
-'randompage'   => 'Atsitiktinis straipsnis',
 'specialpages' => 'Specēlė̅jė poslapē',
 
 # Namespace 8 related

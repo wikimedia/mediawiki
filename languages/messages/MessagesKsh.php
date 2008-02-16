@@ -1561,7 +1561,6 @@ zo jroße Lass för dä Sörver.',
 
 # Thumbnails
 'thumbnail-more'  => 'Jrößer aanzeije',
-'missingimage'    => '<b>Dat Beld es nit do:</b><br />„$1“',
 'filemissing'     => 'Datei es nit do',
 'thumbnail_error' => 'Ene Fähler es opjetauch beim Maache vun enem Breefmarke/Thumbnail-Beldche: „$1“',
 

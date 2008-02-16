@@ -68,11 +68,12 @@ $messages = array(
 'portal'            => 'Mukova wegutse',
 'sitesupport'       => 'Zvipo',
 
-'newmessageslink' => 'mashoko matsva',
-'editsection'     => 'chinja',
-'editold'         => 'chinja',
+'newmessageslink'         => 'mashoko matsva',
+'youhavenewmessagesmulti' => 'Une mashoko matsva pa$1',
+'editsection'             => 'chinja',
+'editold'                 => 'chinja',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Gani',
 
 # General errors
@@ -124,8 +125,10 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'uploadnologin'   => 'Hauna kugamuchirwa',
 'watchthisupload' => 'Ringa peji rino',
 
+# Random page
+'randompage' => 'Peji nhemwa',
+
 # Miscellaneous special pages
-'randompage'   => 'Peji nhemwa',
 'specialpages' => 'Mapeji akakosha',
 'move'         => 'Chichinura',
 'movethispage' => 'Chichinura kupeji iri',
@@ -171,11 +174,7 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 # Trackbacks
 'trackbackremove' => ' ([$1 Delete])',
 
-'youhavenewmessagesmulti' => 'Une mashoko matsva pa$1',
-
 # Table pager
 'table_pager_limit_submit' => 'Enda',
 
 );
-
-

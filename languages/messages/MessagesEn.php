@@ -1025,7 +1025,7 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token. The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editing $1',
-'editinguser'               => 'Changing user rights of user \'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
+'editinguser'               => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editing $1 (section)',
 'editingcomment'            => 'Editing $1 (comment)',
 'editconflict'              => 'Edit conflict: $1',
@@ -2200,7 +2200,6 @@ In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{Media
 
 # Thumbnails
 'thumbnail-more'           => 'Enlarge',
-'missingimage'             => '<b>Missing file</b><br /><i>$1</i>',
 'filemissing'              => 'File missing',
 'thumbnail_error'          => 'Error creating thumbnail: $1',
 'djvu_page_error'          => 'DjVu page out of range',
@@ -2895,11 +2894,11 @@ $1',
 'comma-separator'     => ',&#32;', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
-'imgmultipageprev'   => '← previous page',
-'imgmultipagenext'   => 'next page →',
-'imgmultigo'         => 'Go!',
-'imgmultigotopre'    => 'Go to page',
-'imgmultigotopost'   => '', # only translate this message to other languages if you have to change it
+'imgmultipageprev' => '← previous page',
+'imgmultipagenext' => 'next page →',
+'imgmultigo'       => 'Go!',
+'imgmultigotopre'  => 'Go to page',
+'imgmultigotopost' => '', # only translate this message to other languages if you have to change it
 
 # Table pager
 'ascending_abbrev'         => 'asc',

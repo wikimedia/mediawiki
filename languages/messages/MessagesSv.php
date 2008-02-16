@@ -1760,7 +1760,6 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 
 # Thumbnails
 'thumbnail-more'           => 'Förstora',
-'missingimage'             => '<b>Bild saknas</b><br /><i>$1</i>',
 'filemissing'              => 'Fil saknas',
 'thumbnail_error'          => 'Ett fel uppstod när minibilden skulle skapas: $1',
 'djvu_page_error'          => 'DjVu-sida utanför gränserna',
@@ -2308,10 +2307,10 @@ $1',
 'useajaxsearch'    => 'Använd AJAX-sökning',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; föregående sida',
-'imgmultipagenext'   => 'nästa sida &rarr;',
-'imgmultigo'         => 'Gå',
-'imgmultigotopre'    => 'Gå till sida',
+'imgmultipageprev' => '&larr; föregående sida',
+'imgmultipagenext' => 'nästa sida &rarr;',
+'imgmultigo'       => 'Gå',
+'imgmultigotopre'  => 'Gå till sida',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',

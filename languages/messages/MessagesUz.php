@@ -100,7 +100,7 @@ $messages = array(
 'subcategories'   => 'Podkategoriyalar',
 'category-empty'  => "''Ushbu kategoriyada hozircha sahifa yoki fayllar yoʻq.''",
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xffʻʼ«„]+)$/sDu',
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
 'mainpagetext'      => "<big>'''MediaWiki muvaffaqiyatli o'rnatildi.'''</big>",
 'mainpagedocfooter' => "Wiki dasturini ishlatish haqida ma'lumot olish uchun  [http://meta.wikimedia.org/wiki/Help:Contents Foydalanuvchi qo'llanmasi] sahifasiga murojaat qiling.
 
@@ -118,6 +118,7 @@ $messages = array(
 'mytalk'         => 'Mening suhbatim',
 'anontalk'       => 'Bu IP uchun suhbat',
 'navigation'     => 'Saytda harakatlanish',
+'and'            => 'va',
 
 'errorpagetitle'   => 'Xato',
 'returnto'         => '$1 sahifasiga qaytish.',
@@ -397,7 +398,6 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'protectedpages'          => 'Himoyalangan sahifalar',
 'listusers'               => 'Foydalanuvchilar roʻyxati',
 'specialpages'            => 'Maxsus sahifalar',
-'rclsub'                  => '("$1" bogʻlangan sahifalarga)',
 'newpages'                => 'Yangi sahifalar',
 'move'                    => "Ko'chirish",
 'movethispage'            => 'Bu sahifani koʻchir',
@@ -463,10 +463,6 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'mycontris'     => 'mening hissam',
 'contribsub2'   => '$1 uchun ($2)',
 
-'sp-contributions-newest'   => 'Eng yangi',
-'sp-contributions-oldest'   => 'Eng eski',
-'sp-contributions-newer'    => 'Yangiroq $1',
-'sp-contributions-older'    => 'Eskiroq $1',
 'sp-contributions-newbies'  => 'Faqatgina yangi foydalanuvchilarning hissalarini koʻrsat',
 'sp-contributions-blocklog' => 'Chetlashtirish qaydlari',
 'sp-contributions-search'   => 'Hissalarni qidir',
@@ -485,7 +481,7 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 
 # Block/unblock
 'blockip'      => 'Foydalanuvchini chetlashtir',
-'ipboptions'   => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
+'ipboptions'   => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite', # display1:time1,display2:time2,...
 'ipblocklist'  => 'Chetlashtirilgan IP manzillari va foydalanuvchilar roʻyxati',
 'blocklink'    => 'chetlashtir',
 'contribslink' => 'hissasi',
@@ -505,7 +501,7 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'tooltip-pt-mytalk'               => 'Mening suhbat sahifam',
 'tooltip-pt-anontalk'             => 'Bu ip manzildan amalga oshirilgan tahrirlar munozarasi',
 'tooltip-pt-preferences'          => 'Mening moslamalarim',
-'tooltip-pt-watchlist'            => "Siz kuzatib borayotgan sahifalar ro\'yxati.",
+'tooltip-pt-watchlist'            => "Siz kuzatib borayotgan sahifalar ro\\'yxati.",
 'tooltip-pt-mycontris'            => "Mening hissa qo'shgan sahifalarim ro'yxati",
 'tooltip-pt-login'                => "Bu majburiyat bo'lmasada, kirishingiz taklif qilinadi.",
 'tooltip-pt-anonlogin'            => "Bu majburiyat bo'lmasada, kirishingiz taklif qilinadi.",
@@ -555,9 +551,6 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'tooltip-compareselectedversions' => "Bu sahifaning ikki tanlangan versiyalari o'rtasidagi farqni ko'rish.",
 'tooltip-watch'                   => "Bu sahifani kuzatuv ro'yxatingizga qo'shish",
 'tooltip-recreate'                => "Bu sahifani u o'chirilgan bo'lishiga qaramasdan qayta yaratish",
-
-# Attribution
-'and' => 'va',
 
 # Spam protection
 'subcategorycount'       => 'Bu kategoriya {{PLURAL:$1|bir|$1}} podkategoriyadan iborat.',

@@ -1804,7 +1804,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 
 # Thumbnails
 'thumbnail-more'           => 'Zvětšit',
-'missingimage'             => '<b>Chybějící obrázek</b><br /><i>$1</i>',
 'filemissing'              => 'Chybějící soubor',
 'thumbnail_error'          => 'Chyba při vytváření náhledu: $1',
 'djvu_page_error'          => 'Stránka DjVu mimo rozsah',
@@ -2362,10 +2361,10 @@ $1',
 'useajaxsearch'    => 'Použít při hledání AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← předchozí stránka',
-'imgmultipagenext'   => 'následující stránka →',
-'imgmultigo'         => 'Jít!',
-'imgmultigotopre'    => 'Přejít na stránku',
+'imgmultipageprev' => '← předchozí stránka',
+'imgmultipagenext' => 'následující stránka →',
+'imgmultigo'       => 'Jít!',
+'imgmultigotopre'  => 'Přejít na stránku',
 
 # Table pager
 'ascending_abbrev'         => 'vzestupně',

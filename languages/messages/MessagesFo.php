@@ -972,7 +972,6 @@ Grein við navninum "[[$1]]" finst longu. Ynskir tú at strika hana til tess at 
 
 # Thumbnails
 'thumbnail-more' => 'Víðka',
-'missingimage'   => '<b>Horvin mynd</b><br /><i>$1</i>',
 'filemissing'    => 'Fíla vantar',
 
 # Special:Import

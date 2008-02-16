@@ -93,6 +93,7 @@ $messages = array(
 'mypage'         => 'Mənim səhifəm',
 'mytalk'         => 'Danişiqlarım',
 'navigation'     => 'Rəhbər',
+'and'            => 'və',
 
 'errorpagetitle'    => 'Xəta',
 'returnto'          => '$1 səhifəsinə qayıt.',
@@ -157,7 +158,7 @@ $messages = array(
 'showtoc'            => 'göstər',
 'hidetoc'            => 'gizlə',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Məqalə',
 'nstab-user'      => 'İstifadəçi səhifəsi',
 'nstab-special'   => 'Xüsusi',
@@ -185,7 +186,6 @@ $messages = array(
 'yourpassword'               => 'Parol',
 'yourpasswordagain'          => 'Parolu təkrar yazın',
 'remembermypassword'         => 'Məni xatırla',
-'alreadyloggedin'            => '<strong>User $1, Siz onsuz da daxil olmusunuz!</strong><br />',
 'login'                      => 'Daxil ol',
 'loginprompt'                => '{{SITENAME}}-ya daxil olmaq üçün "veb kökələrinin" (cookies) istifadəsinə icazə verilməlidir.',
 'userlogin'                  => 'Daxil ol və ya istifadəçi yarat',
@@ -257,7 +257,6 @@ $messages = array(
 'templatesused'      => 'Bu səhifədə istifadə edilmiş şablonlar:',
 
 # History pages
-'revhistory'          => 'Versiya tarixçəsi',
 'currentrev'          => 'Hal-hazırkı versiya',
 'revisionasof'        => '$1 versiyası',
 'previousrevision'    => '←Əvvəlki versiya',
@@ -276,15 +275,13 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 # Diffs
 'difference'              => '(Versiyalar arasındakı fərq)',
 'lineno'                  => 'Sətir $1:',
-'editcurrent'             => 'Bu səhifənin hal-hazırkı versiyanı redaktə et',
 'compareselectedversions' => 'Seçilən versiyaları müqaisə et',
 
 # Search results
-'prevn'          => 'əvvəlki $1',
-'nextn'          => 'sonrakı $1',
-'viewprevnext'   => 'Göstər ($1) ($2) ($3).',
-'powersearch'    => 'Axtar',
-'blanknamespace' => '(Ana)',
+'prevn'        => 'əvvəlki $1',
+'nextn'        => 'sonrakı $1',
+'viewprevnext' => 'Göstər ($1) ($2) ($3).',
+'powersearch'  => 'Axtar',
 
 # Preferences page
 'preferences'        => 'Nizamlamalar',
@@ -331,6 +328,9 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'minoreditletter'   => 'k',
 'newpageletter'     => 'Y',
 
+# Recent changes linked
+'recentchangeslinked' => 'Əlaqəli redaktələr',
+
 # Upload
 'upload'            => 'Qarşıya yüklə',
 'uploadbtn'         => 'Sənəd yüklə',
@@ -352,8 +352,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'bydate'           => 'tarixe görə',
 'bysize'           => 'ölçüye görə',
 'imgdesc'          => 'desc',
-'imghistory'       => 'Faylın tarixçəsi',
-'deleteimg'        => 'sil',
 'noimage-linktext' => 'faylı yüklə',
 
 # MIME search
@@ -362,6 +360,9 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 
 # Unwatched pages
 'unwatchedpages' => 'İzlənməyən səhifələr',
+
+# Random page
+'randompage' => 'İxtiyari səhifə',
 
 # Statistics
 'statistics'    => 'Statistika',
@@ -395,14 +396,12 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 'mostcategories'          => 'Kateqoriyası ən çox olan məqalələr',
 'mostrevisions'           => 'Ən çox nəzərdən keçirilmiş (versiyalı) məqalələr',
 'allpages'                => 'Bütün səhifələr',
-'randompage'              => 'İxtiyari səhifə',
 'shortpages'              => 'Qısa səhifələr',
 'longpages'               => 'Uzun səhifələr',
 'listusers'               => 'İstifadəçi siyahı',
 'specialpages'            => 'Xüsusi səhifələr',
 'spheading'               => 'İstifadəçilər üçün xüsusi səhifələr',
 'restrictedpheading'      => 'İdarəçilər üçün xüsusi səhifələr',
-'recentchangeslinked'     => 'Əlaqəli redaktələr',
 'newpages'                => 'Yeni səhifələr',
 'ancientpages'            => 'Ən köhnə səhifələr',
 'move'                    => 'Adını dəyişdir',
@@ -413,8 +412,10 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 
 'categoriespagetext' => 'Wikide aşağıdaki kateqoriyalar var.',
 'version'            => 'Versiya',
-'log'                => 'Loglar',
-'alllogstext'        => "Qarşıya yükləmə, silmə, qoruma, bloklama ve sistem operatoru loqlarının birləşdirilmiş göstərməsi. Log növü, istifadəçi adı veya tə'sir edilən səhifəni seçib görüntünü kiçildə bilərsiniz.",
+
+# Special:Log
+'log'         => 'Loglar',
+'alllogstext' => "Qarşıya yükləmə, silmə, qoruma, bloklama ve sistem operatoru loqlarının birləşdirilmiş göstərməsi. Log növü, istifadəçi adı veya tə'sir edilən səhifəni seçib görüntünü kiçildə bilərsiniz.",
 
 # Special:Allpages
 'nextpage'       => 'Sonrakı səhifə ($1)',
@@ -438,7 +439,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 
 # Watchlist
 'watchlist'            => 'İzlədiyim səhifələr',
-'mywatchlist'            => 'İzlədiyim səhifələr',
+'mywatchlist'          => 'İzlədiyim səhifələr',
 'watchnologin'         => 'Daxil olmamısınız',
 'addedwatch'           => 'İzləmə siyahısına əlavə edildi.',
 'addedwatchtext'       => '"$1" səhifəsi [[Special:Watchlist|izlədiyiniz səhifələrə]] əlavə edildi. Bu səhifədə və əlaqəli müzakirə səhifəsində olacaq dəyişikliklər orada göstəriləcək və səhifə asanlıqla seçiləbilmək üçün [[Special:Recentchanges|son dəyişikliklər]]-də qalın şriftlərlə görsənəcəkdir.
@@ -458,13 +459,11 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'watchlistcontains'    => 'İzləmə siyahınızda $1 səhifə var.',
 'wlnote'               => 'Aşağıdakılar son <b>$2</b> saatdakı son $1 dəyişiklikdir.',
 'wlshowlast'           => 'Bunları göstər: son $1 saatı $2 günü $3',
-'wlsaved'              => 'Bu izləmə siyahınızın qeyd edilmiş halıdır.',
 
 # Delete/protect/revert
 'deletepage'     => 'Səhifəni sil',
 'confirm'        => 'Təsdiq et',
 'exblank'        => 'səhifə boş',
-'confirmdelete'  => 'Silmeyi təsdiq et',
 'actioncomplete' => 'Fəaliyyət tamamlandı',
 'deletedarticle' => 'silindi "[[$1]]"',
 'rollback'       => 'Əvvəlki versiya',
@@ -476,13 +475,14 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'viewdeletedpage' => 'Silinmiş səhifələri göstər',
 
 # Namespace form on various pages
-'namespace' => 'Adlar fəzası:',
-'invert'    => 'Seçilən xaricindəkiləri',
+'namespace'      => 'Adlar fəzası:',
+'invert'         => 'Seçilən xaricindəkiləri',
+'blanknamespace' => '(Ana)',
 
 # Contributions
 'contributions' => 'İstifadəçi köməkləri',
 'mycontris'     => 'Köməklərim',
-'contribsub2'    => 'For $1 ($2)',
+'contribsub2'   => 'For $1 ($2)',
 'uctop'         => '(son)',
 
 # What links here
@@ -562,9 +562,6 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'tooltip-t-specialpages'        => 'Xüsusi səhifələrin siyahəsi',
 'tooltip-ca-nstab-help'         => 'Kömək səhifəsi',
 
-# Attribution
-'and' => 'və',
-
 # Spam protection
 'subcategorycount'       => 'Bu kategoriyada $1 alt kategoriya var.',
 'categoryarticlecount'   => 'Bu kategoriyada $1 məqalə var.',
@@ -574,9 +571,11 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'previousdiff' => '← Əvvəlki fərq',
 'nextdiff'     => 'Sonrakı fərq →',
 
+# Media information
 'imagemaxsize' => 'Limit images on image description pages to:',
 'thumbsize'    => 'Kiçik ölçü:',
 
+# Special:Newimages
 'newimages' => 'Yeni faylların siyahısı',
 
 # 'all' in various places, this might be different for inflected languages
@@ -593,5 +592,3 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'confirmemail_subject'  => '{{SITENAME}} e-məktub təsdiq etme',
 
 );
-
-

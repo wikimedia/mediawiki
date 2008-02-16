@@ -8,8 +8,6 @@
  * @author Siebrand
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Kahalalo i nā loulou:',
@@ -91,6 +89,7 @@ $messages = array(
 'mytalk'        => 'Ka‘u ‘ōlelo',
 'anontalk'      => 'Ke kūkākūkā no kēia IP',
 'navigation'    => 'Ka papa huli mea',
+'and'           => 'a me',
 
 'errorpagetitle'   => 'Hewa',
 'tagline'          => 'Mai {{SITENAME}}',
@@ -322,7 +321,6 @@ hō‘ike ‘ia i lalo:",
 'changed' => 'ua loli ‘ia',
 
 # Delete/protect/revert
-'confirmdelete'  => 'Hōʻoia kāpae',
 'deletedarticle' => 'ua kāpae ‘ia "[[$1]]"',
 'dellogpagetext' => 'He helu o nā mea i kāpae ʻia hou i lalo.',
 'deletecomment'  => 'Ke kumu e kāpae',
@@ -385,9 +383,6 @@ hō‘ike ‘ia i lalo:",
 'tooltip-n-sitesupport'  => 'Kāko‘o mai',
 'tooltip-t-specialpages' => 'Helu o nā papa nui apau',
 'tooltip-save'           => 'Mālama i kāu ho‘opololei',
-
-# Attribution
-'and' => 'a me',
 
 # Spam protection
 'category-media-count' => 'Aia malaila {{PLURAL:$1|‘ekahi waihona|$1 waihona}} i kēia mahele.',

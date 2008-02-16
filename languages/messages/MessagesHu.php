@@ -1949,7 +1949,6 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[Speci
 
 # Thumbnails
 'thumbnail-more'           => 'Nagyít',
-'missingimage'             => '<b>Hiányzó kép</b><br /><i>$1</i>',
 'filemissing'              => 'A fájl nincs meg',
 'thumbnail_error'          => 'Hiba a bélyegkép létrehozásakor: $1',
 'djvu_page_error'          => 'A DjVu lap a tartományon kívülre esik',
@@ -2511,10 +2510,10 @@ $1',
 'useajaxsearch'    => 'AJAX-alapú kereső használata',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← előző oldal',
-'imgmultipagenext'   => 'következő oldal →',
-'imgmultigo'         => 'Menj',
-'imgmultigotopre'    => 'Oldalra',
+'imgmultipageprev' => '← előző oldal',
+'imgmultipagenext' => 'következő oldal →',
+'imgmultigo'       => 'Menj',
+'imgmultigotopre'  => 'Oldalra',
 
 # Table pager
 'ascending_abbrev'         => 'növ',

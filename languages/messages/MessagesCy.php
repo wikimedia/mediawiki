@@ -1415,7 +1415,6 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 
 # Thumbnails
 'thumbnail-more'  => 'Helaethwch',
-'missingimage'    => '<b>Delwedd yn eisiau</b><br /><i>$1</i>',
 'filemissing'     => 'Ffeil yn eisiau',
 'djvu_page_error' => 'Y dudalen DjVu allan o amrediad',
 'djvu_no_xml'     => 'Ddim yn gallu mofyn XML ar gyfer ffeil DjVu',

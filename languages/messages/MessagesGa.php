@@ -1328,7 +1328,6 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 
 # Thumbnails
 'thumbnail-more'  => 'Méadaigh',
-'missingimage'    => '<b>Íomhá ar iarraidh</b><br /><i>$1</i>',
 'filemissing'     => 'Comhad ar iarraidh',
 'thumbnail_error' => 'Earráid mionsamhail a chruthú: $1',
 

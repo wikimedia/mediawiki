@@ -329,6 +329,7 @@ $messages = array(
 'mytalk'         => 'Моя сторінка обговорення',
 'anontalk'       => 'Обговорення цієї IP адреси',
 'navigation'     => 'Навігація',
+'and'            => 'і',
 
 # Metadata in edit box
 'metadata_help' => 'Метадані:',
@@ -1304,8 +1305,6 @@ $NEWPAGE
 'excontentauthor'             => 'зміст був: «$1» (єдиним автором був [[{{ns:special}}:Contributions/$2|$2]])',
 'exbeforeblank'               => 'зміст до очистки: «$1»',
 'exblank'                     => 'стаття була порожньою',
-'confirmdelete'               => 'Підтвердити вилучення',
-'deletesub'                   => '(«$1» вилучається)',
 'historywarning'              => 'Попередження: Стаття, яку ви збираєтеся вилучити, має журнал редагувань:',
 'confirmdeletetext'           => 'Ви ось-ось назавжди вилучите статтю або файл і всі її журнали редагувань з бази даних.
 Будь-ласка, підтвердіть, що ви бажаєте зробити це, що ви повністю розумієте наслідки і що ви робите це у відповідності з [[{{ns:project}}:Правила|правилами Вікіпедії]].',
@@ -1329,7 +1328,7 @@ $NEWPAGE
 
 Остані редагування зробив [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'                 => 'Редагування прокоментовано так: <em>«$1»</em>.', # only shown if there is an edit comment
-'revertpage'                  => 'Відкинути всі редагування до зробленого $1',
+'revertpage'                  => 'Відкинути всі редагування до зробленого $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Здається, виникли проблеми с поточним сеансом роботи;
 цю дію було відмінено з ціллю попередити «захоплення сеансу».
 Будь-ласка, натисніть кнопку «Назад» й перезавантажте сторінку, з якої ви пришли.',
@@ -1557,7 +1556,6 @@ $NEWPAGE
 
 # Thumbnails
 'thumbnail-more'  => 'Збільшити',
-'missingimage'    => '<strong>Відсутнє зображення</strong><br /><em>$1</em>\\n',
 'filemissing'     => 'Файл не знайдено',
 'thumbnail_error' => 'Помилка створення мініатюри: $1',
 
@@ -1634,7 +1632,6 @@ The wiki server can't provide data in a format your client can read.",
 'anonymous'        => 'Анонімні користувачі {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => 'Користувач {{grammar:genitive|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Остання зміна $2, $1 користувачем $3.', # $1 date, $2 time, $3 user
-'and'              => 'і',
 'othercontribs'    => 'Базується на праці $1.',
 'others'           => 'інші',
 'siteusers'        => 'Користувач(і) {{grammar:genitive|{{SITENAME}}}} $1',

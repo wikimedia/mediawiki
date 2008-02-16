@@ -25,6 +25,7 @@ $messages = array(
 'mypage'         => 'Say bolong ko',
 'mytalk'         => 'Say tongtongan ko',
 'anontalk'       => 'Tongtongan para ed sayan IP',
+'and'            => 'san',
 
 'returnto'          => 'Impawel ed $1.',
 'help'              => 'Tolong',
@@ -264,7 +265,6 @@ No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"e
 'deletepage'          => 'Buralen so bolong',
 'confirm'             => 'Paletan',
 'exblank'             => 'Anggapoy laman na bolong',
-'confirmdelete'       => 'Paletanen so panbural',
 'actioncomplete'      => 'Asumpal lan agawa',
 'deletedtext'         => 'Abural lay "$1".
 Pinengneng so $2 para ed listaan na saray abural ran balo.',
@@ -347,7 +347,6 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 
 # Attribution
 'lastmodifiedatby' => 'Sampot ya binalo yan bolong nen agew ya $2, $1 nen $3.', # $1 date, $2 time, $3 user
-'and'              => 'san',
 
 # EXIF tags
 'exif-filesource' => 'File na pinanlapuan',

@@ -34,6 +34,7 @@ $messages = array(
 'qbspecialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 'mypage'         => "N'ka nyɛ",
 'mytalk'         => "N'ka baronyɛ",
+'and'            => 'ani',
 
 'help'           => 'Dɛmɛ',
 'search'         => 'Nyini',
@@ -84,7 +85,7 @@ $messages = array(
 'skin'        => 'Apparence',
 
 # Recent changes
-'hide'     => 'dogo',
+'hide' => 'dogo',
 
 # Image list
 'ilsubmit' => 'Nyini',
@@ -117,11 +118,7 @@ $messages = array(
 'movearticle' => 'Nyɛ telun',
 'movepagebtn' => 'Nyɛ telun',
 
-# Thumbnails
-'missingimage' => '<b>Janin tɛ</b><br /><i>$1</i>',
-
 # Attribution
-'and'    => 'ani',
 'others' => 'wɛrɛ',
 
 );

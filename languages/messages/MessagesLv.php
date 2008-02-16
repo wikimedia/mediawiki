@@ -942,7 +942,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 
 # Thumbnails
 'thumbnail-more' => 'Palielināt',
-'missingimage'   => '<b>Trūkst attēla</b><br /><i>$1</i>',
 'filemissing'    => 'Trūkst faila',
 
 # Tooltip help for the actions

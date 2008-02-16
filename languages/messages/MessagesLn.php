@@ -45,7 +45,7 @@ $messages = array(
 'ok'      => 'Nandimi',
 'hidetoc' => 'kobomba',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'ekakoli',
 'nstab-image'    => 'elilingi',
 'nstab-help'     => 'Bosálisi',
@@ -71,10 +71,12 @@ $messages = array(
 # File deletion
 'filedelete-submit' => 'Kolímwisa',
 
-# Miscellaneous special pages
+# Random page
 'randompage' => 'Lokásá epɔní tɛ́',
-'newpages'   => 'Ekakoli ya sika',
-'move'       => 'Kobóngola nkómbó',
+
+# Miscellaneous special pages
+'newpages' => 'Ekakoli ya sika',
+'move'     => 'Kobóngola nkómbó',
 
 # Watchlist
 'mywatchlist' => 'Nkásá nalandí',

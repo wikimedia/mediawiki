@@ -1832,7 +1832,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'Увеличаване',
-'missingimage'             => '<strong>Липсваща картинка</strong><br /><i>$1</i>',
 'filemissing'              => 'Липсващ файл',
 'thumbnail_error'          => 'Грешка при създаване на миникартинка: $1',
 'djvu_page_error'          => 'Номерът на DjVu-страницата е извън обхвата',
@@ -2322,10 +2321,10 @@ $1',
 'useajaxsearch'    => 'Използване на AJAX-търсене',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← предишна страница',
-'imgmultipagenext'   => 'следваща страница →',
-'imgmultigo'         => 'Отиване',
-'imgmultigotopre'    => 'Към страницата',
+'imgmultipageprev' => '← предишна страница',
+'imgmultipagenext' => 'следваща страница →',
+'imgmultigo'       => 'Отиване',
+'imgmultigotopre'  => 'Към страницата',
 
 # Table pager
 'ascending_abbrev'         => 'възх',

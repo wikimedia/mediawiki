@@ -6,7 +6,6 @@
  * @author WikedKentaur
  * @author SPQRobin
  * @author Nike
- * @author G - ג
  * @author Võrok
  * @author Siebrand
  * @author לערי ריינהארט
@@ -1116,7 +1115,6 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]',
 
 # Thumbnails
 'thumbnail-more' => 'Suurenda',
-'missingimage'   => '<b>Puudub pildifail</b><br /><i>$1</i>',
 
 # Special:Import
 'import'          => 'Lehekülgede import',

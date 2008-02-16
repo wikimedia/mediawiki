@@ -2007,7 +2007,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => 'تكبير',
-'missingimage'             => '<b>صورة غير موجودة</b><br /><i>$1</i>',
 'filemissing'              => 'الملف مفقود',
 'thumbnail_error'          => 'خطأ في إنشاء صورة مصغرة: $1',
 'djvu_page_error'          => 'صفحة DjVu خارج النطاق',
@@ -2602,10 +2601,10 @@ $1',
 'comma-separator'     => '،',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← الصفحة السابقة',
-'imgmultipagenext'   => 'الصفحة التالية →',
-'imgmultigo'         => 'اذهب!',
-'imgmultigotopre'    => 'اذهب إلى صفحة',
+'imgmultipageprev' => '← الصفحة السابقة',
+'imgmultipagenext' => 'الصفحة التالية →',
+'imgmultigo'       => 'اذهب!',
+'imgmultigotopre'  => 'اذهب إلى صفحة',
 
 # Table pager
 'ascending_abbrev'         => 'تصاعدي',

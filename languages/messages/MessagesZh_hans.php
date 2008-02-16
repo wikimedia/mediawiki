@@ -612,7 +612,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。</strong>',
 'editing'                   => '正在编辑$1',
-'editinguser'               => '正在更改用户\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限',
+'editinguser'               => "正在更改用户'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限",
 'editingsection'            => '正在编辑$1 (段落)',
 'editingcomment'            => '正在编辑$1 (评论)',
 'editconflict'              => '编辑冲突: $1',
@@ -1723,7 +1723,6 @@ $1',
 
 # Thumbnails
 'thumbnail-more'           => '放大',
-'missingimage'             => '<b>缺少图像</b><br /><i>$1</i>',
 'filemissing'              => '无法找到文件',
 'thumbnail_error'          => '创建缩略图错误: $1',
 'djvu_page_error'          => 'DjVu页面超出范围',
@@ -2290,11 +2289,11 @@ $3
 'useajaxsearch'    => '使用AJAX搜索',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← 上一页',
-'imgmultipagenext'   => '下一页 →',
-'imgmultigo'         => '确定！',
-'imgmultigotopre'    => '到第',
-'imgmultigotopost'   => '页',
+'imgmultipageprev' => '← 上一页',
+'imgmultipagenext' => '下一页 →',
+'imgmultigo'       => '确定！',
+'imgmultigotopre'  => '到第',
+'imgmultigotopost' => '页',
 
 # Table pager
 'ascending_abbrev'         => '升',

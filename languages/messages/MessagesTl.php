@@ -550,7 +550,6 @@ Pumili muli ng ibang pangalan.',
 
 # Thumbnails
 'thumbnail-more' => 'Palakihin',
-'missingimage'   => '<b>Nawawalang larawan</b><br /><i>$1</i>',
 'filemissing'    => 'Nawawala ang talaksan',
 
 # Special:Import

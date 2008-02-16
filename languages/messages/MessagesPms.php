@@ -1643,7 +1643,6 @@ Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré
 
 # Thumbnails
 'thumbnail-more'           => 'Slarga',
-'missingimage'             => '<b>Figura che a manca</b><br /><i>$1</i>',
 'filemissing'              => 'Archivi che a manca',
 'thumbnail_error'          => 'Eror antramentr che as fasìa la figurin-a: $1',
 'djvu_page_error'          => 'Pàgina DjVu fòra dij lìmit',
@@ -2210,10 +2209,10 @@ $1',
 'hideresults'      => "Stërma j'arsultà",
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pàgina andré',
-'imgmultipagenext'   => 'pàgina anans →',
-'imgmultigo'         => 'Va',
-'imgmultigotopre'    => 'Va a pàgina',
+'imgmultipageprev' => '← pàgina andré',
+'imgmultipagenext' => 'pàgina anans →',
+'imgmultigo'       => 'Va',
+'imgmultigotopre'  => 'Va a pàgina',
 
 # Table pager
 'ascending_abbrev'         => 'a chërse',

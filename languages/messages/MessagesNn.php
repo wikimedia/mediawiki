@@ -1807,7 +1807,6 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 
 # Thumbnails
 'thumbnail-more'  => 'Forstørr',
-'missingimage'    => '<b>Bilete manglar</b><br /><i>$1</i>',
 'filemissing'     => 'Fila manglar',
 'thumbnail_error' => 'Feil ved oppretting av miniatyrbilete: $1',
 
@@ -2269,9 +2268,9 @@ $1',
 'useajaxsearch'    => 'Bruk AJAX-søk',
 
 # Multipage image navigation
-'imgmultipageprev'   => '← førre side',
-'imgmultipagenext'   => 'neste side →',
-'imgmultigotopre'    => 'Gå til side',
+'imgmultipageprev' => '← førre side',
+'imgmultipagenext' => 'neste side →',
+'imgmultigotopre'  => 'Gå til side',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',

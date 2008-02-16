@@ -150,6 +150,7 @@ $messages = array(
 'mytalk'         => 'ਮੇਰੀ ਗੱਲਬਾਤ',
 'anontalk'       => 'ਇਹ IP ਲਈ ਗੱਲਬਾਤ',
 'navigation'     => 'ਨੇਵੀਗੇਸ਼ਨ',
+'and'            => 'ਅਤੇ',
 
 'errorpagetitle'    => 'ਗਲਤੀ',
 'returnto'          => '$1 ਨੇ ਗਲਤੀ ਦਿੱਤੀ',
@@ -249,7 +250,7 @@ $messages = array(
 'viewdeleted'             => '$1 ਵੇਖਣਾ?',
 'feedlinks'               => 'ਫੀਡ:',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ਲੇਖ',
 'nstab-user'      => 'ਯੂਜ਼ਰ ਪੇਜ਼',
 'nstab-media'     => 'ਮੀਡਿਆ ਪੇਜ਼',
@@ -432,7 +433,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'cantcreateaccounttitle' => 'ਅਕਾਊਂਟ ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ',
 
 # History pages
-'revhistory'          => 'ਰੀਵਿਜ਼ਨ ਅਤੀਤ',
 'viewpagelogs'        => 'ਇਹ ਪੇਜ਼ ਲਈ ਲਾਗ ਵੇਖੋ',
 'revnotfound'         => 'ਰੀਵਿਜ਼ਨ ਨਹੀਂ ਲੱਭਿਆ',
 'loadhist'            => 'ਪੇਜ਼ ਅਤੀਤ ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ',
@@ -675,6 +675,7 @@ to upload files.',
 'ancientpages'      => 'ਸਭ ਤੋਂ ਪੁਰਾਣੇ ਪੇਜ਼',
 'move'              => 'ਭੇਜੋ',
 'movethispage'      => 'ਇਹ ਪੇਜ਼ ਭੇਜੋ',
+'notargettitle'     => 'ਟਾਰਗੇਟ ਨਹੀਂ',
 
 # Book sources
 'booksources'    => 'ਕਿਤਾਬ ਸਰੋਤ',
@@ -743,8 +744,6 @@ to upload files.',
 'confirm'          => 'ਪੁਸ਼ਟੀ',
 'excontent'        => "ਸਮੱਗਰੀ ਸੀ: '$1'",
 'exblank'          => 'ਪੇਜ਼ ਖਾਲੀ ਹੈ',
-'confirmdelete'    => 'ਹਟਾਓ ਪੁਸ਼ਟੀ',
-'deletesub'        => '("$1" ਹਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ)',
 'actioncomplete'   => 'ਐਕਸ਼ਨ ਪੂਰਾ ਹੋਇਆ',
 'deletedarticle'   => '"[[$1]]" ਹਟਾਇਆ',
 'rollback_short'   => 'ਰੋਲਬੈਕ',
@@ -783,16 +782,11 @@ to upload files.',
 'mycontris'     => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2'   => '$1 ($2) ਲਈ',
 
-'sp-contributions-newest'      => 'ਸਭ ਤੋਂ ਨਵਾਂ',
-'sp-contributions-oldest'      => 'ਸਭ ਤੋਂ ਪੁਰਾਣਾ',
-'sp-contributions-newer'       => 'ਨਵਾਂ $1',
-'sp-contributions-older'       => 'ਪੁਰਾਣਾ $1',
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
 'sp-contributions-username'    => 'IP ਐਡਰੈੱਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',
 'sp-contributions-submit'      => 'ਖੋਜ',
 
 # What links here
-'notargettitle'       => 'ਟਾਰਗੇਟ ਨਹੀਂ',
 'linklistsub'         => '(ਲਿੰਕਾਂ ਦੀ ਲਿਸਟ)',
 'whatlinkshere-links' => '← ਲਿੰਕ',
 
@@ -854,8 +848,7 @@ to upload files.',
 'allmessagescurrent' => 'ਮੌਜੂਦਾ ਟੈਕਸਟ',
 
 # Thumbnails
-'missingimage' => '<b>ਚਿੱਤਰ ਗੁੰਮ</b><br /><i>$1</i>',
-'filemissing'  => 'ਫਾਇਲ ਗੁੰਮ ਹੈ',
+'filemissing' => 'ਫਾਇਲ ਗੁੰਮ ਹੈ',
 
 # Special:Import
 'import'                  => 'ਪੇਜ਼ ਇੰਪੋਰਟ ਕਰੋ',
@@ -900,7 +893,6 @@ to upload files.',
 'tooltip-upload'             => 'ਅੱਪਲੋਡ ਸਟਾਰਟ ਕਰੋ',
 
 # Attribution
-'and'         => 'ਅਤੇ',
 'others'      => 'ਹੋਰ',
 'siteusers'   => '{{SITENAME}} ਯੂਜ਼ਰ $1',
 'creditspage' => 'ਪੇਜ਼ ਮਾਣ',

@@ -61,6 +61,7 @@ $messages = array(
 'qbspecialpages' => 'Ol spesel pej',
 'mypage'         => 'Pej blong mi',
 'mytalk'         => 'Tingting blong mi',
+'and'            => 'mo',
 
 'edit'             => 'Jenisim hem',
 'newpage'          => 'Mekem niu pej',
@@ -75,7 +76,7 @@ $messages = array(
 'editsection'   => 'jenisim hem',
 'editold'       => 'jenisim hem',
 
-# Short words for each namespace, by default used in the 'article' tab in monobook
+# Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'    => 'Atikel',
 'nstab-special' => 'Spesel',
 
@@ -118,9 +119,6 @@ $messages = array(
 'tooltip-p-logo'     => 'Nambawan Pej',
 'tooltip-n-mainpage' => 'Go long Nambawan Pej',
 'tooltip-minoredit'  => 'Em i stap wan smol jenis',
-
-# Attribution
-'and' => 'mo',
 
 # Special:Newimages
 'showhidebots' => '($1 bot)',

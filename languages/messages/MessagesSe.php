@@ -130,6 +130,7 @@ $messages = array(
 'mytalk'         => 'Mu ságastallan',
 'anontalk'       => 'Ságastala dán IP-čujuhusain',
 'navigation'     => 'Navigašuvdna',
+'and'            => 'ja',
 
 # Metadata in edit box
 'metadata_help' => 'Sisdoallogovvádusat:',
@@ -1170,7 +1171,6 @@ $1 | $2',
 
 # Attribution
 'siteuser'    => '{{GRAMMAR:genitive|{{SITENAME}}}} geavaheaddji $1',
-'and'         => 'ja',
 'others'      => 'earát',
 'siteusers'   => '{{GRAMMAR:genitive|{{SITENAME}}}} geavaheaddji(t) $1',
 'creditspage' => 'Siiddu dahkkit',

@@ -1695,7 +1695,6 @@ Savet eo ar pennad tal \"[[\$1]]\" c'hoazh. Diverkañ anezhañ a fell deoc'h obe
 
 # Thumbnails
 'thumbnail-more'           => 'Brasaat',
-'missingimage'             => '<b>Skeudenn a vank</b><br /><i>$1</i>',
 'filemissing'              => 'Restr ezvezant',
 'thumbnail_error'          => 'Fazi e-ser krouiñ an alberz : $1',
 'djvu_page_error'          => 'Pajenn DjVu er-maez ar bevennoù',
@@ -2251,10 +2250,10 @@ $1',
 'useajaxsearch'    => 'Grit gant ar klask AJAX',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; pajenn gent',
-'imgmultipagenext'   => "pajenn war-lerc'h &rarr;",
-'imgmultigo'         => 'Mont !',
-'imgmultigotopre'    => "Mont d'ar bajenn",
+'imgmultipageprev' => '&larr; pajenn gent',
+'imgmultipagenext' => "pajenn war-lerc'h &rarr;",
+'imgmultigo'       => 'Mont !',
+'imgmultigotopre'  => "Mont d'ar bajenn",
 
 # Table pager
 'ascending_abbrev'         => 'pignat',

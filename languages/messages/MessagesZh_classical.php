@@ -487,7 +487,7 @@ $2',
 'missingcommenttext'        => '請贊之',
 'blockedtitle'              => '子見禁',
 'blockedtext'               => "<big>'''子名、IP見禁。'''</big>禁者$1也，因''$2''故。* 始之時為：$8* 終之時為：$6* 見禁之人：$7存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。",
-'autoblockedtext'           => "爾之IP或簿自禁，因簿先用，禁者$1也。因故：:\'\'$2\'\'* 始之時為：$8* 終之時為：$6存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子禁號為#$5。詢時切附之。",
+'autoblockedtext'           => "爾之IP或簿自禁，因簿先用，禁者$1也。因故：:\\'\\'$2\\'\\'* 始之時為：$8* 終之時為：$6存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子禁號為#$5。詢時切附之。",
 'blockedoriginalsource'     => "'''$1'''本源如下：",
 'blockededitsource'         => "子'''$1纂文'''如下：",
 'whitelistedittitle'        => '登簿以纂',
@@ -528,7 +528,7 @@ $2',
 <strong>纂文若合，惠再之。如復不成，簿重登焉。</strong>",
 'token_suffix_mismatch'     => '<strong>君修見拒，蓋因代理之故，亂事見兮。</strong>',
 'editing'                   => '纂$1',
-'editinguser'               => '正纂簿\'\'\'[[User:$1|$1]]\'\'\' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權',
+'editinguser'               => "正纂簿'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權",
 'editingsection'            => '纂節$1',
 'editingcomment'            => '贊$1',
 'editconflict'              => '纂沖$1',
@@ -646,11 +646,11 @@ $2',
 'mergelogpagetext'   => '下乃近頁之誌併至二頁之表也。',
 
 # Diffs
-'history-title'             => '$1之誌',
-'difference'                => '（辨異）',
-'lineno'                    => '列$1：',
-'compareselectedversions'   => '辨二擇',
-'editundo'                  => '悔',
+'history-title'           => '$1之誌',
+'difference'              => '（辨異）',
+'lineno'                  => '列$1：',
+'compareselectedversions' => '辨二擇',
+'editundo'                => '悔',
 
 # Search results
 'searchresults'         => '得尋',
@@ -786,10 +786,10 @@ $2',
 'newsectionsummary'                 => '/* $1 */ 新節',
 
 # Recent changes linked
-'recentchangeslinked'                    => '援引',
-'recentchangeslinked-title'              => '$1援引近易',
-'recentchangeslinked-noresult'           => '限期內無近易。',
-'recentchangeslinked-summary'            => "援引近易如下，有哨者'''粗體'''。",
+'recentchangeslinked'          => '援引',
+'recentchangeslinked-title'    => '$1援引近易',
+'recentchangeslinked-noresult' => '限期內無近易。',
+'recentchangeslinked-summary'  => "援引近易如下，有哨者'''粗體'''。",
 
 # Upload
 'upload'                     => '進獻',
@@ -822,9 +822,9 @@ $2',
 'minlength1'                 => '名務逾一字元。',
 'illegalfilename'            => '名"$1"不格，更之再焉。',
 'badfilename'                => '更名"$1。"。',
-'filetype-badmime'           => '「$1」之MIME類物檔案不能獻之。', 
-'filetype-unwanted-type'     => "'''「.\$1」'''乃無需之物類也。議之物類有\$2也。",
-'filetype-banned-type'       => "'''「.\$1」'''乃無允之物類也。允之物類有\$2也。",
+'filetype-badmime'           => '「$1」之MIME類物檔案不能獻之。',
+'filetype-unwanted-type'     => "'''「.$1」'''乃無需之物類也。議之物類有$2也。",
+'filetype-banned-type'       => "'''「.$1」'''乃無允之物類也。允之物類有$2也。",
 'filetype-missing'           => '檔名無後綴也（如「.jpg」）。',
 'large-file'                 => '檔長$2仟位元組，不逾$1為佳。',
 'emptyfile'                  => '無以獻，疑謬名也，惠核之。',
@@ -944,9 +944,9 @@ $2',
 'brokenredirects-edit'   => '(替)',
 'brokenredirects-delete' => '(刪)',
 
-'withoutinterwiki'         => '孤語',
-'withoutinterwiki-header'  => '頁下無鏈他語：',
-'withoutinterwiki-submit'  => '示',
+'withoutinterwiki'        => '孤語',
+'withoutinterwiki-header' => '頁下無鏈他語：',
+'withoutinterwiki-submit' => '示',
 
 'fewestrevisions' => '鮮察',
 
@@ -1157,7 +1157,7 @@ $NEWPAGE
 'cantrollback'                => '退修不成，作者獨也。',
 'alreadyrolled'               => '[[User:$2|$2]]（[[User talk:$2|議]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]]）',
 'editcomment'                 => '贊曰"<i>$1</i>"', # only shown if there is an edit comment
-'revertpage'                  => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]），復為[[User:$1|$1]]之本耳',
+'revertpage'                  => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]），復為[[User:$1|$1]]之本耳', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '去$1之作，復為$2之本耳。',
 'sessionfailure'              => '登簿有變。為防盜簿，返前重取再為之。',
 'protectlogpage'              => '誌緘',
@@ -1233,7 +1233,7 @@ $NEWPAGE
 'undelete-cleanup-error'       => '冗檔$1，欲刪而有誤也。',
 'undelete-missing-filearchive' => '$1無尋，或已還矣。',
 'undelete-error-short'         => '$1欲還而有誤也。',
-'undelete-error-long'          => '還檔有誤。欲還者：\n\n$1\n',
+'undelete-error-long'          => '還檔有誤。欲還者：\\n\\n$1\\n',
 
 # Namespace form on various pages
 'namespace'      => '名冊：',
@@ -1297,7 +1297,7 @@ $NEWPAGE
 'ipbenableautoblock'          => '屢禁此簿，新IP址、後繼亦如也。',
 'ipbsubmit'                   => '禁簿',
 'ipbother'                    => '別期',
-'ipboptions'                  => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite',
+'ipboptions'                  => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '它',
 'ipbotherreason'              => '補證、加證曰',
 'ipbhidename'                 => '簿名、IP址隱乎誌禁、表禁、點簿。',
@@ -1429,7 +1429,6 @@ $NEWPAGE
 
 # Thumbnails
 'thumbnail-more'           => '展',
-'missingimage'             => '<b>喪圖</b><br /><i>$1</i>',
 'filemissing'              => '喪檔',
 'thumbnail_error'          => '縮圖$1有誤',
 'djvu_page_error'          => 'DjVu page out of range',
@@ -1593,7 +1592,7 @@ $NEWPAGE
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',
 'filedeleteerror-short'           => '刪檔有誤：$1',
-'filedeleteerror-long'            => '刪檔有誤：\n\n$1\n',
+'filedeleteerror-long'            => '刪檔有誤：\\n\\n$1\\n',
 'filedelete-missing'              => '"$1"不存，無可刪也。',
 'filedelete-old-unregistered'     => '庫無舊審"$1"。',
 'filedelete-current-unregistered' => '庫無"$1"也。',
@@ -1640,17 +1639,16 @@ $NEWPAGE
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-make'              => '出廠',
-'exif-model'             => '型號',
-'exif-datetimeoriginal'  => '當攝',
-'exif-exposuretime'      => '曝光',
-'exif-fnumber'           => '光圈',
-'exif-focallength'       => '焦距',
 'exif-imagewidth'        => '寬',
 'exif-imagelength'       => '長',
 'exif-datetime'          => '文檔修訂之日期時辰',
+'exif-make'              => '出廠',
+'exif-model'             => '型號',
 'exif-datetimeoriginal'  => '數據生成之日期時辰',
 'exif-datetimedigitized' => '數位化之日期時辰',
+'exif-exposuretime'      => '曝光',
+'exif-fnumber'           => '光圈',
+'exif-focallength'       => '焦距',
 
 # External editor support
 'edit-externally'      => '以外部程式修此文',
@@ -1707,14 +1705,14 @@ $1',
 'useajaxsearch'    => '用AJAX尋之',
 
 # Separators for various lists
-'comma-separator'       => '、',
+'comma-separator' => '、',
 
 # Multipage image navigation
-'imgmultipageprev'   => '←前頁',
-'imgmultipagenext'   => '次頁→',
-'imgmultigo'         => '往',
-'imgmultigotopre'    => '往第',
-'imgmultigotopost'   => '頁',
+'imgmultipageprev' => '←前頁',
+'imgmultipagenext' => '次頁→',
+'imgmultigo'       => '往',
+'imgmultigotopre'  => '往第',
+'imgmultigotopost' => '頁',
 
 # Table pager
 'ascending_abbrev'         => '升冪',

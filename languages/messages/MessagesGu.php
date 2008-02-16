@@ -92,6 +92,7 @@ $messages = array(
 'mypage'        => 'મારું પાનું',
 'mytalk'        => 'મારી ચર્ચા',
 'navigation'    => 'પ્રદક્ષિણા',
+'and'           => 'અને',
 
 'tagline'          => '{{SITENAME}} થી',
 'help'             => 'મદદ',
@@ -353,9 +354,6 @@ $messages = array(
 'tooltip-n-recentchanges' => 'વિકિ માં હાલમા થયેલા ફેરફારો ની સૂચિ.',
 'tooltip-n-sitesupport'   => 'અમારું સમર્થન કરો',
 'tooltip-t-specialpages'  => 'ખાસ પાનાંઓની સૂચિ',
-
-# Attribution
-'and' => 'અને',
 
 # Info page
 'infosubtitle' => 'પાના વિષે માહિતી',

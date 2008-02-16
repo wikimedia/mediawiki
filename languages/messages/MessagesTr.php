@@ -1386,7 +1386,6 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 
 # Thumbnails
 'thumbnail-more'  => 'Büyüt',
-'missingimage'    => '<b>Bulunmayan resim</b><br /><i>$1</i>',
 'filemissing'     => 'Dosya bulunmadı',
 'thumbnail_error' => 'Önizleme oluşturmada hata: $1',
 
