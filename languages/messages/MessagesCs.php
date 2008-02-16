@@ -2366,7 +2366,6 @@ $1',
 'imgmultipagenext'   => 'následující stránka →',
 'imgmultigo'         => 'Jít!',
 'imgmultigotopre'    => 'Přejít na stránku',
-'imgmultiparseerror' => 'Soubor je zřejmě chybný nebo poškozený, nelze vyhledat seznam stránek.',
 
 # Table pager
 'ascending_abbrev'         => 'vzestupně',

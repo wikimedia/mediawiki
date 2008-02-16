@@ -2329,7 +2329,6 @@ $1',
 'imgmultipagenext'   => 'trang sau →',
 'imgmultigo'         => 'Hiển thị',
 'imgmultigotopre'    => 'Xem trang',
-'imgmultiparseerror' => 'Tập tin hình có vẻ bị hỏng nên {{SITENAME}} không thể lấy được danh sách các trang.',
 
 # Table pager
 'ascending_abbrev'         => 'tăng',

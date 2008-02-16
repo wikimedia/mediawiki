@@ -2413,7 +2413,6 @@ $1',
 'imgmultipagenext'   => 'halaman berikutnya →',
 'imgmultigo'         => 'Pergi!',
 'imgmultigotopre'    => 'Buka halaman',
-'imgmultiparseerror' => 'Imej ini rosak atau salah, oleh itu {{SITENAME}} tidak boleh mendapatkan senarai halaman.',
 
 # Table pager
 'ascending_abbrev'         => 'menaik',

@@ -1691,7 +1691,6 @@ $1',
 'imgmultipagenext'   => 'kaca salajeungna &rarr;',
 'imgmultigo'         => 'Téang!',
 'imgmultigotopre'    => 'Ka kaca',
-'imgmultiparseerror' => 'Koropak gambar sigana ruksak atawa teu sah, numatak {{SITENAME}} teu bisa nembongkeun daptar kaca.',
 
 # Table pager
 'ascending_abbrev'         => 'naék',

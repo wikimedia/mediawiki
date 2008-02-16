@@ -2331,7 +2331,6 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'imgmultipagenext'   => 'næste side →',
 'imgmultigo'         => 'OK',
 'imgmultigotopre'    => 'Gå til side',
-'imgmultiparseerror' => 'Filen er tilsyneladende defekt, så {{SITENAME}} ikke kan oprette en sideliste.',
 
 # Table pager
 'ascending_abbrev'         => 'op',

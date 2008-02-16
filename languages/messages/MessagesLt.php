@@ -2303,7 +2303,6 @@ $1',
 'imgmultipagenext'   => 'kitas puslapis →',
 'imgmultigo'         => 'Eiti!',
 'imgmultigotopre'    => 'Pereiti į puslapį',
-'imgmultiparseerror' => 'Paveikslėlio failas atrodo yra pažeistas arba neteisingas, taigi {{SITENAME}} negali gauti puslapių sąrašo.',
 
 # Table pager
 'ascending_abbrev'         => 'didėjanti tvarka',

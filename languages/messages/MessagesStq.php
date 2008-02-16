@@ -2225,7 +2225,6 @@ $1',
 'imgmultipagenext'   => 'naiste Siede →',
 'imgmultigo'         => 'OK',
 'imgmultigotopre'    => 'Gung tou Siede',
-'imgmultiparseerror' => 'Ju Doatäi schient stukken tou weesen, so dät {{SITENAME}} neen Siedenlieste moakje kon.',
 
 # Table pager
 'ascending_abbrev'         => 'ap',

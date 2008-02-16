@@ -2606,7 +2606,6 @@ $1',
 'imgmultipagenext'   => 'الصفحة التالية →',
 'imgmultigo'         => 'اذهب!',
 'imgmultigotopre'    => 'اذهب إلى صفحة',
-'imgmultiparseerror' => 'يبدو أن ملف الصورة به خطأ ما أو غير صحيح، لذا لا يمكن أن تعرض {{SITENAME}} قائمة بالملفات.',
 
 # Table pager
 'ascending_abbrev'         => 'تصاعدي',

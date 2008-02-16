@@ -2458,7 +2458,6 @@ $1',
 'imgmultipagenext'   => 'volgende pagina →',
 'imgmultigo'         => 'OK',
 'imgmultigotopre'    => 'Gaan naar pagina',
-'imgmultiparseerror' => "Het afbeeldingsbestand schijnt onjuist te zijn, zodat {{SITENAME}} geen lijst van pagina's kon terugvinden.",
 
 # Table pager
 'ascending_abbrev'         => 'opl.',

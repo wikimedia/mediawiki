@@ -2284,7 +2284,6 @@ $1",
 'imgmultipagenext'   => 'páxina siguiente →',
 'imgmultigo'         => '¡Dir!',
 'imgmultigotopre'    => 'Dir a la páxina',
-'imgmultiparseerror' => "L'archivu d'imaxe paez corruptu o incorreutu, polo que {{SITENAME}} nun pue obtener una llista de páxines.",
 
 # Table pager
 'ascending_abbrev'         => 'asc',

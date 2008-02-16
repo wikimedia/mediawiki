@@ -2272,7 +2272,6 @@ $1',
 'imgmultipageprev'   => '← førre side',
 'imgmultipagenext'   => 'neste side →',
 'imgmultigotopre'    => 'Gå til side',
-'imgmultiparseerror' => 'Biletfila ser ut til å vere øydelagd eller feil, så {{SITENAME}} kan ikkje hente inn ei liste over sider.',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',

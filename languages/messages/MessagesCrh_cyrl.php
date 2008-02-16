@@ -1752,7 +1752,6 @@ $1',
 'imgmultipagenext'   => 'сонъраки саифе →',
 'imgmultigo'         => 'Бар',
 'imgmultigotopre'    => 'Бу саифеге бар',
-'imgmultiparseerror' => 'Ресим файлы зарарлангъан я да хаталы, саифелер джедвели алынамай.',
 
 # Table pager
 'ascending_abbrev'         => 'кичиктен буюкке',

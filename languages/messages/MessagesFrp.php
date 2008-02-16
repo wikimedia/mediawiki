@@ -2296,7 +2296,6 @@ $1',
 'imgmultipagenext'   => 'pâge siuventa →',
 'imgmultigo'         => 'Accèdar !',
 'imgmultigotopre'    => 'Arrevar a la pâge',
-'imgmultiparseerror' => 'Ceti fichiér émâge est aparament corrompu ou fôx, et {{SITENAME}} pôt pas fornir una lista de les pâges.',
 
 # Table pager
 'ascending_abbrev'         => 'crès',

@@ -2342,7 +2342,6 @@ $1",
 'imgmultipagenext'   => 'pàgina següent &rarr;',
 'imgmultigo'         => 'Vés-hi',
 'imgmultigotopre'    => 'Ve a la pàgina',
-'imgmultiparseerror' => "Sembla que el fitxer de la imatge és corromput o no és vàlid, i per això no s'ha pogut procedir una llista de pàgines en {{SITENAME}}.",
 
 # Table pager
 'table_pager_next'         => 'Pàgina següent',

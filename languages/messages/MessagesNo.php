@@ -2283,7 +2283,6 @@ $1
 'imgmultipagenext'   => 'neste side &rarr;',
 'imgmultigo'         => 'Gå!',
 'imgmultigotopre'    => 'Gå til side',
-'imgmultiparseerror' => 'Denne bildefilen ser ut til å være ødelagt eller gal, så {{SITENAME}} kan ikke hente en liste over sider.',
 
 # Table pager
 'ascending_abbrev'         => 'stig.',

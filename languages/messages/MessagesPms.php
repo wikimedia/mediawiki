@@ -2214,7 +2214,6 @@ $1',
 'imgmultipagenext'   => 'pàgina anans →',
 'imgmultigo'         => 'Va',
 'imgmultigotopre'    => 'Va a pàgina',
-'imgmultiparseerror' => "L'archivi dla figura ò ch'a l'é nen giust ò ch'a l'ha patì chèich darmagi; {{SITENAME}} a-i la fa pa a tiré sù la lista dle pàgine.",
 
 # Table pager
 'ascending_abbrev'         => 'a chërse',

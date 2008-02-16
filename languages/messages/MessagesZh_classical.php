@@ -1715,7 +1715,6 @@ $1',
 'imgmultigo'         => '往',
 'imgmultigotopre'    => '往第',
 'imgmultigotopost'   => '頁',
-'imgmultiparseerror' => '此圖疑毀焉，{{SITENAME}}無以表之。',
 
 # Table pager
 'ascending_abbrev'         => '升冪',

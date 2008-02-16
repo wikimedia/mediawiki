@@ -1749,7 +1749,6 @@ $1',
 'imgmultipagenext'   => 'soñraki saife →',
 'imgmultigo'         => 'Bar',
 'imgmultigotopre'    => 'Bu saifege bar',
-'imgmultiparseerror' => 'Resim faylı zararlanğan ya da hatalı, saifeler cedveli alınamay.',
 
 # Table pager
 'ascending_abbrev'         => 'kiçikten büyükke',

@@ -2900,7 +2900,6 @@ $1',
 'imgmultigo'         => 'Go!',
 'imgmultigotopre'    => 'Go to page',
 'imgmultigotopost'   => '', # only translate this message to other languages if you have to change it
-'imgmultiparseerror' => 'The file appears to be corrupted or incorrect, so {{SITENAME}} cannot retrieve a list of pages.',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

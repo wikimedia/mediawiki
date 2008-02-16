@@ -2114,7 +2114,6 @@ $1',
 'imgmultipagenext'   => 'հաջորդ էջ →',
 'imgmultigo'         => 'Անցնե՜լ',
 'imgmultigotopre'    => 'Անցնել էջին',
-'imgmultiparseerror' => 'Պատկերի ֆայլը խաթարված է կամ սպարունակում է սխալ, այս պատճառով անհնարին է ստանալ էջերի ցանկը։',
 
 # Table pager
 'ascending_abbrev'         => 'աճմ. կարգ.',

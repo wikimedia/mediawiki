@@ -2454,7 +2454,6 @@ $1',
 'imgmultipagenext'   => 'следующая страница →',
 'imgmultigo'         => 'Перейти!',
 'imgmultigotopre'    => 'Перейти на страницу',
-'imgmultiparseerror' => 'Файл изображения повреждён или ошибочен, невозможно получить список страниц.',
 
 # Table pager
 'ascending_abbrev'         => 'возр',

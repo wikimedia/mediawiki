@@ -2515,7 +2515,6 @@ $1',
 'imgmultipagenext'   => 'következő oldal →',
 'imgmultigo'         => 'Menj',
 'imgmultigotopre'    => 'Oldalra',
-'imgmultiparseerror' => 'A képfájl sérültnek vagy hibásnak tűnik, ezért a {{SITENAME}} nem tudja visszakeresni a lapok listáját.',
 
 # Table pager
 'ascending_abbrev'         => 'növ',

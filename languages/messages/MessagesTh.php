@@ -2213,7 +2213,6 @@ $1',
 'imgmultipagenext'   => 'หน้าถัดไป →',
 'imgmultigo'         => 'ไป!',
 'imgmultigotopre'    => 'ไปที่หน้า',
-'imgmultiparseerror' => 'ไฟล์ภาพท่าทางจะมีปัญหา ดังนั้น ไม่สามารถใช้งานได้ที่ {{SITENAME}}',
 
 # Table pager
 'ascending_abbrev'         => 'หน้าไปหลัง',

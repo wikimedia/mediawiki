@@ -1925,7 +1925,6 @@ $1',
 'imgmultipagenext'   => 'pàgina sighenti →',
 'imgmultigo'         => 'Vai',
 'imgmultigotopre'    => 'Vai a la pàgina',
-'imgmultiparseerror' => "Lu file immàgina è ibbagliaddu o danniggiaddu, {{SITENAME}} nò è bonu à prisintà l'erencu di li pàgini.",
 
 # Table pager
 'ascending_abbrev'         => 'crisc',

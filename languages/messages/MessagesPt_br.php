@@ -1526,7 +1526,6 @@ Por favor, escolha outro título.',
 'imgmultipagenext'   => 'próxima página →',
 'imgmultigo'         => 'Ir!',
 'imgmultigotopre'    => 'Mostrar página',
-'imgmultiparseerror' => 'O arquivo parece estar corrompido ou com algum outro erro. Por conta disso, não será possível exibir uma listagem de páginas no wiki {{SITENAME}}.',
 
 # Auto-summaries
 'autosumm-blank'   => 'Foi removido o conteúdo completo desta página',

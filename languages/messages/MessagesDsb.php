@@ -2343,7 +2343,6 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.',
 'imgmultipagenext'   => 'pśiducy bok →',
 'imgmultigo'         => 'W pórědku',
 'imgmultigotopre'    => 'Hyś na bok',
-'imgmultiparseerror' => 'Wobraz jo defektny, toś njamóžo bok {{SITENAME}} lisćinu bokow wutwóriś.',
 
 # Table pager
 'ascending_abbrev'         => 'górjej',

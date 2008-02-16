@@ -1683,7 +1683,6 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'imgmultipagenext'   => 'pad sököl →',
 'imgmultigo'         => 'Gololöd!',
 'imgmultigotopre'    => 'Golön lü pad',
-'imgmultiparseerror' => 'Magodaragiv binon jiniko neverätik u dädik, klu {{SITENAME}} no kanon tuvön lisedi padas.',
 
 # Table pager
 'table_pager_next'         => 'Pad sököl',

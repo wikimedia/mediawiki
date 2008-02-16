@@ -2288,7 +2288,6 @@ $1",
 'imgmultipagenext'   => 'pachina siguient →',
 'imgmultigo'         => 'Ir-ie!',
 'imgmultigotopre'    => "Ir t'a pachina",
-'imgmultiparseerror' => 'Pareix que a imachen ye corrompita u incorreuta, y por ixo {{SITENAME}} no ha puesto obtener una lista de pachinas.',
 
 # Table pager
 'ascending_abbrev'         => 'asz',

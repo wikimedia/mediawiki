@@ -2319,7 +2319,6 @@ $1',
 'imgmultipagenext'   => 'pagina seguente →',
 'imgmultigo'         => 'Vai',
 'imgmultigotopre'    => 'Vai alla pagina',
-'imgmultiparseerror' => "Il file immagine è errato o danneggiato; {{SITENAME}} non è in grado di presentare l'elenco delle pagine.",
 
 # Table pager
 'ascending_abbrev'         => 'cresc',

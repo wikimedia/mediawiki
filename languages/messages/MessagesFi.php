@@ -2265,7 +2265,6 @@ $1',
 'imgmultipagenext'   => 'seuraava sivu →',
 'imgmultigo'         => 'Mene!',
 'imgmultigotopre'    => 'Mene sivulle',
-'imgmultiparseerror' => 'Kuva vaikuttaa olevan vioittunut tai väärä. {{SITENAME}} ei voi hakea listaa sivuista.',
 
 # Table pager
 'ascending_abbrev'         => 'nouseva',

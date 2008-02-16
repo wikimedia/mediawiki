@@ -2422,7 +2422,6 @@ $1',
 'imgmultipagenext'   => 'επόμενη σελίδα →',
 'imgmultigo'         => 'Πήγαινε!',
 'imgmultigotopre'    => 'Πήγαινε στη σελίδα',
-'imgmultiparseerror' => 'Αυτό το αρχείο εικόνας φαίνεται ότι είναι φθαρμένο ή εσφαλμένο, οπότε ο ιστότοπος {{SITENAME}} δεν μπορεί να ανακτήσει μια λίστα των σελίδων.',
 
 # Table pager
 'ascending_abbrev'         => 'αυξ',
