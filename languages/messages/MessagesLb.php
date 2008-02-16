@@ -551,7 +551,7 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'image_sample'    => 'Beispill.jpg',
 'image_tip'       => 'Bildlink',
 'media_sample'    => 'Beispill.ogg',
-'media_tip'       => 'Link op e Medien Fichier',
+'media_tip'       => 'Link op e Medieichier',
 'sig_tip'         => 'Är Ënnerschrëft matt Zäitstempel',
 'hr_tip'          => 'Horizontal Linn (mat Moosse gebrauchen)',
 
@@ -924,6 +924,7 @@ derbäisetzen.',
 'uploadtext'          => "Gitt op d'[[Special:Imagelist|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen.
 
 Benotzt dëse Formulair, fir nei Fichieren eropzelueden. Klickt op '''Duerchsichen ...''', fir eng Fënster opzemaachen wou Dir de Ficher eraussiche kënnt.
+
 Nodeem Dir e Fichier erausgesicht hutt gëtt de Numm vun dësem am Textfeld '''Quell-Fichier''' ugewisen.
 Confirméiert dann d'Lizenz a klickt duerno op '''Fichier eroplueden'''.
 Dat kann eng Zäit daueren, besonnesch bäi enger lueser Internet-Verbindung.
@@ -1662,7 +1663,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'tooltip-feed-atom'               => 'Atom-Feed fir dës Säit',
 'tooltip-t-contributions'         => 'Lëscht vun de Kontributiounen vun dësem Benotzer',
 'tooltip-t-emailuser'             => 'Dësem Benotzer eng E-Mail schécken',
-'tooltip-t-upload'                => 'Biller oder Medie-Fichierën eroplueden',
+'tooltip-t-upload'                => 'Biller oder Mediefichieren eroplueden',
 'tooltip-t-specialpages'          => 'Lëscht vun alle Spezialsäiten',
 'tooltip-t-print'                 => 'Versioun vun dëser Säit fir auszedrécken',
 'tooltip-t-permalink'             => 'Permanente Link op dës Versioun vun dëser Säit',
@@ -1762,7 +1763,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 # Metadata
 'metadata'          => 'Metadaten',
-'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benpotzte Scanner kommen. Duerch nodréilech Ännerungen vum Originalfichier kënnen eenzel Detailer verännert gi sinn.',
+'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benotzte Scanner kommen. Duerch nodréilech Ännerungen vum Originalfichier kënnen eenzel Detailer verännert gi sinn.',
 'metadata-expand'   => 'Weis detailléiert Informatiounen',
 'metadata-collapse' => 'Verstopp detailléiert Informatiounen',
 'metadata-fields'   => "Dës Felder vun den EXIF-Metadate ginn op Bildbeschreiwungssäite gewisen wann d'Metadatentafel zesummegeklappt ass. Déi aner sinn am Standard verstoppt, kënne awer ugewise ginn.

@@ -1636,12 +1636,30 @@ lanon zo loplekuyur. Ede iyeltak malion di zo betayar, konaka pinta va betayana 
 'exif-makernote'                   => 'Notes du fabricant',
 'exif-usercomment'                 => 'Favesikaf sebuks',
 'exif-relatedsoundfile'            => 'Fichier audio lié',
+'exif-exposureindex'               => 'Konedireka',
+'exif-filesource'                  => 'Iyeltakklita',
+'exif-scenetype'                   => 'Nakilord',
+'exif-exposuremode'                => 'Konedirinda',
 'exif-whitebalance'                => 'Balance des blancs',
 'exif-contrast'                    => 'Kevaxanuca',
 'exif-saturation'                  => 'Keldelanuca',
+'exif-gpslatituderef'              => 'Lentef ok geef laksiwak',
+'exif-gpslatitude'                 => 'Laksiwak',
+'exif-gpslongituderef'             => 'Ronef ok taltef wak',
+'exif-gpslongitude'                => 'Wak',
+'exif-gpsaltituderef'              => 'Ontinukeka',
+'exif-gpsaltitude'                 => 'Ontinuk',
+'exif-gpstrack'                    => 'Lizirania',
+'exif-gpsimgdirection'             => 'Ewavania',
+'exif-gpsdestlatitude'             => 'Kof laksiwak',
+'exif-gpsdestlongitude'            => 'Kof wak',
+'exif-gpsdestdistance'             => 'Kofa soluma',
+'exif-gpsdatestamp'                => 'GPS evla',
 
 # EXIF attributes
 'exif-compression-1' => 'Raxivariskafa',
+
+'exif-unknowndate' => 'Megrupena evla',
 
 'exif-orientation-1' => 'Preksafa', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Inversée horizontalement', # 0th row: top; 0th column: right
@@ -1653,6 +1671,43 @@ lanon zo loplekuyur. Ede iyeltak malion di zo betayar, konaka pinta va betayana 
 'exif-orientation-8' => 'Tournée de 90° à gauche', # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => "n'existe pas",
+
+'exif-exposuremode-0' => 'Mivaskafa konedira',
+'exif-exposuremode-1' => 'Nubedafa konedira',
+
+'exif-scenecapturetype-0' => 'Preksayon',
+'exif-scenecapturetype-1' => 'Patctoykoron',
+'exif-scenecapturetype-2' => 'Deltkoron',
+'exif-scenecapturetype-3' => 'Mielnakila',
+
+'exif-contrast-0' => 'Prekson',
+'exif-contrast-1' => 'Omon',
+'exif-contrast-2' => 'Ontinon',
+
+'exif-saturation-0' => 'Prekson',
+'exif-saturation-1' => 'Keldelamara',
+'exif-saturation-2' => 'Keldelapara',
+
+'exif-sharpness-0' => 'Prekson',
+'exif-sharpness-1' => 'Omon',
+'exif-sharpness-2' => 'Ontinon',
+
+'exif-subjectdistancerange-0' => 'Megrupenon',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Lentelaksiwak',
+'exif-gpslatitude-s' => 'Gelaksiwak',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Ronewak',
+'exif-gpslongitude-w' => 'Taltewak',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Bartivon decitmetrolk se',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Ageltania',
+'exif-gpsdirection-m' => 'Zatnia',
 
 # External editor support
 'edit-externally'      => 'Betara va bat iyeltak faveson va divef talpey',
@@ -1667,6 +1722,7 @@ lanon zo loplekuyur. Ede iyeltak malion di zo betayar, konaka pinta va betayana 
 
 # E-mail address confirmation
 'confirmemail'            => 'Va e-mail gruyel',
+'confirmemail_noemail'    => 'Bazene "email" mane koe rinaf [[Special:Preferences|favesikaf lodamaceem]] me tir enafe.',
 'confirmemail_text'       => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",
 'confirmemail_send'       => 'Envoyer un code de confirmation',
 'confirmemail_sent'       => 'Email de confirmation envoyé',
@@ -1674,6 +1730,7 @@ lanon zo loplekuyur. Ede iyeltak malion di zo betayar, konaka pinta va betayana 
 
 Rodjeyesi staksasiki : $1',
 'confirmemail_invalid'    => 'Code de confirmation incorrect. Le code a peut être expiré',
+'confirmemail_needlogin'  => 'Ta gruyera va "email" mane rin va $1 olegal.',
 'confirmemail_success'    => 'Votre email est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
 'confirmemail_loggedin'   => 'Votre adresse est maintenant confirmée',
 'confirmemail_error'      => 'Un problème est survenu en voulant enregistrer votre confirmation',
@@ -1690,6 +1747,7 @@ Si il ne s'agit pas de vous, n'ouvrez pas le lien. Ce code de confirmation expir
 'scarytranscludetoolong' => '[URL tir abrotcarsaf; rotaxe]',
 
 # Trackbacks
+'trackbackremove'   => ' ([$1 Sulara])',
 'trackbacklink'     => 'Sledasiki',
 'trackbackdeleteok' => 'Sledasiki tir sulanhayani.',
 
@@ -1701,6 +1759,9 @@ Si il ne s'agit pas de vous, n'ouvrez pas le lien. Ce code de confirmation expir
 'redirectingto' => 'Graskas kal [[$1]]...',
 
 # action=purge
+'confirm_purge'        => 'Palsexo ke batu bu zo gokarler ?
+
+$1',
 'confirm_purge_button' => 'En',
 
 # AJAX search
@@ -1708,25 +1769,35 @@ Si il ne s'agit pas de vous, n'ouvrez pas le lien. Ce code de confirmation expir
 'searchnamed'      => "Aneyara va teliz yo yoltkiraf gu ''$1''.",
 'articletitles'    => "Teliz yo tozakiraf gu ''$1''",
 'hideresults'      => 'Palsera va trasiks',
+'useajaxsearch'    => 'Favera va AJAX aneyara',
 
 # Multipage image navigation
 'imgmultipageprev' => '← abduebu',
 'imgmultipagenext' => 'radimebu →',
+'imgmultigo'       => 'Askí !',
 'imgmultigotopre'  => 'Grablera kal bu',
 
 # Table pager
-'table_pager_next'  => 'Radimefu bu',
-'table_pager_prev'  => 'Abduefu bu',
-'table_pager_first' => 'Taneafu bu',
-'table_pager_last'  => 'Ironokafu bu',
-'table_pager_empty' => 'Nedoy trasiks',
+'table_pager_next'         => 'Radimefu bu',
+'table_pager_prev'         => 'Abduefu bu',
+'table_pager_first'        => 'Taneafu bu',
+'table_pager_last'         => 'Ironokafu bu',
+'table_pager_limit'        => 'Nedira va buon $1 ra',
+'table_pager_limit_submit' => 'Askira',
+'table_pager_empty'        => 'Nedoy trasiks',
 
 # Auto-summaries
+'autosumm-blank'   => 'Sulas va varaf bucek',
+'autosumm-replace' => "Ikaplekura va bu kan '$1'",
 'autoredircomment' => 'Graskara va [[$1]]',
 'autosumm-new'     => 'Warzafu bu : $1',
 
 # Live preview
 'livepreview-loading' => 'Vajas…',
+'livepreview-ready'   => 'Vajas... Gadion !',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Betaks skuyun weti le $1 verast batliz me zo kovexalatar.',
 
 # Watchlist editor
 'watchlistedit-noitems'       => 'Rinafi suzdasiki va mek vergumvelt ruldar.',
@@ -1734,15 +1805,34 @@ Si il ne s'agit pas de vous, n'ouvrez pas le lien. Ce code de confirmation expir
 'watchlistedit-normal-legend' => 'Divsuzdasikira va vergumvelt',
 'watchlistedit-normal-submit' => 'Tioltera va vergumvelt',
 'watchlistedit-normal-done'   => '$1 vergumvelt kou rinafi suzdasiki su zo tiolted :',
+'watchlistedit-raw-title'     => 'Betara va rilafi suzdasiki',
+'watchlistedit-raw-legend'    => 'Betara va rilafi suzdasiki',
 'watchlistedit-raw-titles'    => 'Vergumvelteem :',
 'watchlistedit-raw-submit'    => 'Nuskera va suzdasiki',
 'watchlistedit-raw-done'      => 'Rinafi suzdasiki su zo nusker.',
 'watchlistedit-raw-added'     => '$1 vergumvelt su zo loplekud :',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 vergumvelt al zo arrundar |$1 vergumvelt al zo arrundad}} :',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Wira va icdef betakseem',
 'watchlisttools-edit' => 'Wira va suzdasiki isu betara',
 'watchlisttools-raw'  => 'Betara va suzdasiki',
+
+# Special:Version
+'version-extensions'               => 'Inkeyeni divatcesiki se',
+'version-specialpages'             => 'Aptaf bueem',
+'version-variables'                => 'Remvodeem',
+'version-other'                    => 'Ar',
+'version-hooks'                    => 'Demi se',
+'version-extension-functions'      => 'Divatces fliok se',
+'version-skin-extension-functions' => 'Wiatezaf divatces fliok se',
+'version-hook-name'                => 'Demiyolt',
+'version-hook-subscribedby'        => 'Wimpayan gan',
+'version-version'                  => 'Siatos',
+'version-license'                  => 'Sorta',
+'version-software'                 => 'Inkeyen talpeyot',
+'version-software-product'         => 'Warzeks',
+'version-software-version'         => 'Siatos',
 
 # Special:Filepath
 'filepath'        => 'Iyeltakkelda',

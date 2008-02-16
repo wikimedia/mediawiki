@@ -1180,7 +1180,7 @@ De laatste link is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'largefileserver'             => 'Het bestand is groter dan de instelling van de server toestaat.',
 'emptyfile'                   => 'Het bestand dat u heeft geüpload lijkt leeg te zijn. Dit zou kunnen komen door een typefout in de bestandsnaam. Ga a.u.b. na of u dit bestand werkelijk bedoelde te uploaden.',
 'fileexists'                  => 'Er bestaat al een bestand met deze naam. Controleer $1 als u niet zeker weet of u het huidige bestand wilt overschrijven.',
-'filepageexists'              => 'Een pagina (geen afbeelding) met deze naam bestaat al, gelieve <strong><tt>$1</tt></strong> te controleren als u niet zeker bent of u het wil wijzigen.',
+'filepageexists'              => 'Een pagina (geen bestand) met deze naam bestaat al. Controleer <strong><tt>$1</tt></strong> alstublieft als u niet zeker bent of u het wilt wijzigen.',
 'fileexists-extension'        => 'Een bestand met dezelfde naam bestaat al:<br />
 Naam van het geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van het bestaande bestand: <strong><tt>$2</tt></strong><br />
@@ -2110,12 +2110,12 @@ $1',
 # Bad image list
 'bad_image_list' => "De opmaak is als volgt:
 
-Alleen regels in een lijst (regels die beginnen met *) worden verwerkt. De eerste link op een regel moet een link zijn naar een ongewenste afbeelding.
+Alleen regels in een lijst (regels die beginnen met *) worden verwerkt. De eerste link op een regel moet een link zijn naar een ongewenst bestand.
 Alle volgende links die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop het bestand in de tekst is opgenomen.",
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand is aangepast, dan komen details mogelijk niet overeen met de gewijzigde afbeelding.',
+'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand is aangepast, dan komen details mogelijk niet overeen met het gewijzigde bestand.',
 'metadata-expand'   => 'Uitgebreide gegevens tonen',
 'metadata-collapse' => 'Uitgebreide gegevens verbergen',
 'metadata-fields'   => 'De EXIF-metadatavelden in dit bericht worden ook getoond op een afbeeldingspagina als de metadatatabel ingeklapt is. Andere velden worden verborgen.

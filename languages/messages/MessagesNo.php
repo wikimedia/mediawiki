@@ -314,7 +314,7 @@ $messages = array(
 'toolbox'           => 'Verktøy',
 'userpage'          => 'Vis brukerside',
 'projectpage'       => 'Vis prosjektside',
-'imagepage'         => 'Bildeside',
+'imagepage'         => 'Vis medieside',
 'mediawikipage'     => 'Vis beskjedside',
 'templatepage'      => 'Vis mal',
 'viewhelppage'      => 'Vis hjelpeside',
@@ -573,9 +573,9 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'nowiki_sample'   => 'Sett inn uformatert tekst her',
 'nowiki_tip'      => 'Ignorer wikiformatering',
 'image_sample'    => 'Eksempel.jpg',
-'image_tip'       => 'Bilde',
+'image_tip'       => 'Fil',
 'media_sample'    => 'Eksempel.ogg',
-'media_tip'       => 'Mediafillenke',
+'media_tip'       => 'Fillenke',
 'sig_tip'         => 'Din signatur med dato',
 'hr_tip'          => 'Horisontal linje',
 
@@ -990,10 +990,10 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'uploaderror'                 => 'Feil under opplasting av fil',
 'uploadtext'                  => "Bruk skjemaet under for å laste opp filer. For å se eller søke i tidligere opplastede filer, gå til [[Special:Imagelist|fillista]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
 
-For å inkludere et bilde på en side, bruk ei slik lenke:
+For å inkludere en fil på en side, bruk en slik lenke:
 *'''<nowiki>[[</nowiki>{{ns:image}}:Filnavn.jpg<nowiki>]]</nowiki>'''
 *'''<nowiki>[[</nowiki>{{ns:image}}:Filnavn.png|Alternativ tekst<nowiki>]]</nowiki>'''
-For å lenke direkte til bildet, skriv:
+For å lenke direkte til filen, skriv:
 *'''<nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki>'''",
 'upload-permitted'            => 'Tillatte filtyper: $1.',
 'upload-preferred'            => 'Foretrukne filtyper: $1',
@@ -1020,7 +1020,7 @@ For å lenke direkte til bildet, skriv:
 'largefileserver'             => 'Denne fila er større enn det tjeneren er konfigurert til å tillate.',
 'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
 'fileexists'                  => 'Ei fil med dette navnet finnes allerede. Sjekk $1 hvis du ikke er sikker på at du vil forandre den.',
-'filepageexists'              => 'En side (ikke bilde) med dette navnet finnes allerede, sjekk <strong><tt>$1</tt></strong> om du ikke er sikker på om du vil endre den.',
+'filepageexists'              => 'En side (ikke fil) med dette navnet finnes allerede, sjekk <strong><tt>$1</tt></strong> om du ikke er sikker på om du vil endre den.',
 'fileexists-extension'        => 'En fil med et lignende navn finnes:<br />
 Navnet på din fil: <strong><tt>$1</tt></strong><br />
 Navn på eksisterende fil: <strong><tt>$2</tt></strong><br />
@@ -1120,7 +1120,7 @@ PICT # div.
 'imagelist_user'            => 'Bruker',
 'imagelist_size'            => 'Størrelse (bytes)',
 'imagelist_description'     => 'Beskrivelse',
-'imagelist_search_for'      => 'Søk etter bildenavn:',
+'imagelist_search_for'      => 'Søk etter filnavn:',
 
 # File reversion
 'filerevert'                => 'Tilbakestill $1',
@@ -1219,7 +1219,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'lonelypagestext'         => 'Følgende sider blir ikke lenket til fra andre sider på {{SITENAME}}.',
 'uncategorizedpages'      => 'Ukategoriserte sider',
 'uncategorizedcategories' => 'Ukategoriserte kategorier',
-'uncategorizedimages'     => 'Ukategoriserte bilder',
+'uncategorizedimages'     => 'Ukategoriserte filer',
 'uncategorizedtemplates'  => 'Ukategoriserte maler',
 'unusedcategories'        => 'Ubrukte kategorier',
 'unusedimages'            => 'Ubrukte filer',
@@ -1230,7 +1230,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'mostlinkedcategories'    => 'Kategorier med flest sider',
 'mostlinkedtemplates'     => 'Mest brukte maler',
 'mostcategories'          => 'Sider med flest kategorier',
-'mostimages'              => 'Mest brukte bilder',
+'mostimages'              => 'Mest brukte filer',
 'mostrevisions'           => 'Artikler med flest revisjoner',
 'allpages'                => 'Alle sider',
 'prefixindex'             => 'Prefiksindeks',
@@ -1254,7 +1254,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'intl'                    => 'Språklenker',
 'move'                    => 'Flytt',
 'movethispage'            => 'Flytt siden',
-'unusedimagestext'        => '<p>Merk at andre sider kanskje lenker til et bilde med en direkte lenke, så bildet listes her selv om det faktisk er i bruk.</p>',
+'unusedimagestext'        => '<p>Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen listes her selv om den faktisk er i bruk.</p>',
 'unusedcategoriestext'    => 'Følgende kategorier eksisterer, men det er ingen sider i dem.',
 'notargettitle'           => 'Intet mål',
 'notargettext'            => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
@@ -1537,7 +1537,7 @@ $1',
 'sp-contributions-username'    => 'IP-adresse eller brukernavn:',
 'sp-contributions-submit'      => 'Søk',
 
-'sp-newimages-showfrom' => 'Vis nye bilder fra og med $1',
+'sp-newimages-showfrom' => 'Vis nye filer fra og med $1',
 
 # What links here
 'whatlinkshere'       => 'Lenker hit',
@@ -1817,7 +1817,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-feed-atom'               => 'Atom-føde for denne siden',
 'tooltip-t-contributions'         => 'Vis liste over bidrag fra denne brukeren',
 'tooltip-t-emailuser'             => 'Send en e-post til denne brukeren',
-'tooltip-t-upload'                => 'Last opp bilder eller mediefiler',
+'tooltip-t-upload'                => 'Last opp filer',
 'tooltip-t-specialpages'          => 'Liste over alle spesialsider',
 'tooltip-t-print'                 => 'Utskriftsvennlig versjon av denne siden',
 'tooltip-t-permalink'             => 'Permanent lenke til denne versjonen av siden',
@@ -1826,7 +1826,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-ca-nstab-media'          => 'Vis mediasiden',
 'tooltip-ca-nstab-special'        => 'Dette er en spesialside, og kan ikke redigeres.',
 'tooltip-ca-nstab-project'        => 'Vis prosjektsiden',
-'tooltip-ca-nstab-image'          => 'Vis bildesiden',
+'tooltip-ca-nstab-image'          => 'Vis filsiden',
 'tooltip-ca-nstab-mediawiki'      => 'Vis systembeskjeden',
 'tooltip-ca-nstab-template'       => 'Vis malen',
 'tooltip-ca-nstab-help'           => 'Vis hjelpesiden',
@@ -1924,7 +1924,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne fila kan inneholde farlig kode; ved å åpne den kan systemet ditt kompromitteres.<hr />",
-'imagemaxsize'         => 'Begrens bilder på bildebeskrivelsessider til:',
+'imagemaxsize'         => 'Begrens bilder på filbeskrivelsessider til:',
 'thumbsize'            => 'Miniatyrbildestørrelse:',
 'widthheightpage'      => '$1×$2, $3 sider',
 'file-info'            => '(filstørrelse: $1, MIME-type: $2)',
@@ -1942,11 +1942,11 @@ $1',
 # Bad image list
 'bad_image_list' => 'Formatet er slik:
 
-Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en linje må være en lenke til et dårlig bilde. Alle andre linker på samme linje anses å være unntak, altså artikler hvor bildet er tillatt brukt.',
+Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en linje må være en lenke til en dårlig fil. Alle andre linker på samme linje anses å være unntak, altså artikler hvor filen er tillatt brukt.',
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Denne fila inneholder tilleggsinformasjon, antagligvis fra digitalkameraet eller skanneren brukt til å lage eller digitalisere det. Hvis fila har blitt forandret fra utgangspunktet, kan enkelte detaljer kanskje være unøyaktige.',
+'metadata-help'     => 'Denne filen inneholder tilleggsinformasjon, antagligvis fra digitalkameraet eller skanneren brukt til å lage eller digitalisere det. Hvis filen har blitt forandret fra utgangspunktet, kan enkelte detaljer kanskje være unøyaktige.',
 'metadata-expand'   => 'Vis detaljer',
 'metadata-collapse' => 'Skjul detaljer',
 'metadata-fields'   => 'EXIF-metadatafelt i denne beskjeden vil bli inkludert på bildesiden mens metadatatabellen er slått sammen. Andre vil skjules som standard.

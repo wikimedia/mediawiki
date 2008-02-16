@@ -210,7 +210,7 @@ $messages = array(
 'toolbox'           => 'Caixa de ferramentas',
 'userpage'          => 'Ver páxina de usuario',
 'projectpage'       => 'Ver páxina do proxecto',
-'imagepage'         => 'Ver a páxina de imaxes',
+'imagepage'         => 'Ver a páxina de multimedia',
 'mediawikipage'     => 'Ver a páxina de mensaxes',
 'templatepage'      => 'Ver a páxina do modelo',
 'viewhelppage'      => 'Ver a páxina de axuda',
@@ -263,7 +263,7 @@ $messages = array(
 
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Traído desde "$1"',
-'youhavenewmessages'      => '<img src="http://upload.wikimedia.org/wikipedia/commons/3/36/Nuvola_apps_email.png" alt="" width="25" height="25" longdesc="/wiki/Image:Nuvola_apps_email.png" /> Ten $1 ($2).',
+'youhavenewmessages'      => 'Ten $1 ($2).',
 'newmessageslink'         => 'mensaxes novas',
 'newmessagesdifflink'     => 'diferenzas coa revisión anterior',
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
@@ -408,7 +408,7 @@ Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas 
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => '* Nome real (opcional): se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'loginerror'                 => 'Erro ao entrar ao sistema',
-'prefs-help-email'           => '*Correo electrónico (opcional): permite que outras persoas entren en contacto con vostede sen que revele a súa identidade.',
+'prefs-help-email'           => '*O correo electrónico é opcional, pero permite que outras persoas entren en contacto con vostede desde a súa páxina de usuario ou de converso sen que vostede revele a súa identidade.',
 'prefs-help-email-required'  => 'O enderezo de correo electrónico é requirido.',
 'nocookiesnew'               => "A conta de usuario foi creada, pero non está rexistrado. {{SITENAME}} usa ''cookies'' para o rexistro. Vostede ten deshabilitadas as ''cookies''. Por favor, habilíteas, e logo rexístrese co seu novo nome de usuario e contrasinal.",
 'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios. Vostede ten as cookies deshabilitadas. Por favor, habilíteas e ténteo de novo.',
@@ -480,9 +480,9 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'nowiki_sample'   => 'Insira aquí un texto non formatado',
 'nowiki_tip'      => 'Ignorar o formato wiki',
 'image_sample'    => 'Exemplo.jpg',
-'image_tip'       => 'Imaxe embebida',
+'image_tip'       => 'Ficheiro embebido',
 'media_sample'    => 'Exemplo.mp3',
-'media_tip'       => 'Ligazón a ficheiro multimedia',
+'media_tip'       => 'Ligazón a ficheiro',
 'sig_tip'         => 'A súa sinatura con selo temporal',
 'hr_tip'          => 'Liña horizontal (úsea con moderación)',
 
@@ -576,10 +576,10 @@ Por favor, ténteo de novo. Se segue sen funcionar, probe a saír do sistema e v
 'token_suffix_mismatch'     => "<strong>Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.
 Rexeitouse a edición para evitar que se corrompa o texto do artigo. Isto pode acontecer porque estea a
 empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.</strong>",
-'editing'                   => 'Editando "$1"',
+'editing'                   => 'Editando $1',
 'editinguser'               => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editando sección de "$1"',
-'editingcomment'            => 'Editando "$1" (comentario)',
+'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => 'Conflito de edición: $1',
 'explainconflict'           => '<big>Alguén cambiou esta páxina desque comezou a editala.</big>
 *A área de texto superior contén o texto da páxina tal e como existe na actualidade.
@@ -595,11 +595,8 @@ Se a garda, perderanse os cambios realizados tras esta revisión.</strong>',
 'copyrightwarning'          => 'Por favor, teña en conta que todas as contribucións a {{SITENAME}} considéranse publicadas baixo a $2 (vexa $1 para máis detalles). Se non quere que o que escriba se edite sen piedade e se redistribúa sen límites, entón non o envíe aquí.<br />
 Ao mesmo tempo, prométanos que o que escribiu é da súa autoría ou que está copiado dun recurso do dominio público ou que permite unha liberdade semellante.
 <strong>NON ENVÍE MATERIAL CON DEREITOS DE AUTOR SEN PERMISO!</strong>',
-'copyrightwarning2'         => 'Decátese de que todas as súas contribucións a {{SITENAME}}
-poden ser editadas, alteradas ou eliminadas por outras persoas.
-Se non quere que os seus escritos sexan editados sen piedade, non os envíe.
-<br />
-Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (ver $1 para detalles). <br />
+'copyrightwarning2'         => 'Decátese de que todas as súas contribucións a {{SITENAME}} poden ser editadas, alteradas ou eliminadas por outras persoas. Se non quere que os seus escritos sexan editados sen piedade, non os envíe.<br />
+Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (ver $1 para detalles).
 <strong>NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!</strong>',
 'longpagewarning'           => "ATENCIÓN: Esta páxina ten $1 ''kilobytes''; algúns navegadores poden ter problemas editando páxinas de 32kb ou máis.
 Por favor, considere partir a páxina en seccións máis pequenas.",
@@ -621,7 +618,7 @@ polo que non vai poder gardar as súas edicións polo de agora. Se cadra pode co
 'nocreatetext'              => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
 Pode volver atrás e editar unha páxina que xa existe ou, se non, [[Special:Userlogin|rexistrarse ou crear unha conta de acceso]].',
 'nocreate-loggedin'         => 'Non dispón de permiso para crear páxinas novas en {{SITENAME}}.',
-'permissionserrors'         => 'Erro de permisos',
+'permissionserrors'         => 'Erros de permisos',
 'permissionserrorstext'     => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
 'recreate-deleted-warn'     => "'''Atención: Vai volver crear unha páxina que xa se eliminou anteriormente.'''
 
@@ -931,9 +928,10 @@ e a do servidor (UTC).',
 'uploadnologintext'           => 'Ha de [[Special:Userlogin|entrar no sistema]] para poder subir ficheiros.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
-'uploadtext'                  => "Use o formulario de embaixo para enviar ficheiros; para ver ou procurar imaxes enviadas con anterioridade vaia á [[Special:Imagelist|listaxe de ficheiros enviados]]; os envíos e as eliminacións tamén se rexistran no [[Special:Log/upload|rexistro de envíos]].
+'uploadtext'                  => "Use o formulario de embaixo para enviar ficheiros.
+Para ver ou procurar imaxes enviadas con anterioridade vaia á [[Special:Imagelist|listaxe de ficheiros enviados]]; os envíos e as eliminacións tamén se rexistran no [[Special:Log/upload|rexistro de carga]].
 
-Para incluír unha imaxe na páxina, use unha ligazón do seguinte xeito:
+Para incluír un ficheiro na páxina, use unha ligazón do seguinte xeito:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ficheiro.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ficheiro.png|texto alternativo]]</nowiki>''' ou
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ficheiro.ogg]]</nowiki>''' para ligar directamente co ficheiro.",
@@ -962,7 +960,7 @@ Para incluír unha imaxe na páxina, use unha ligazón do seguinte xeito:
 'largefileserver'             => 'Este ficheiro é de maior tamaño que o permitido pola configuración do servidor.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro. Isto pode deberse a un erro ortográfico no seu nome. Por favor verifique se realmente quere cargar este ficheiro.',
 'fileexists'                  => 'Xa existe un ficheiro con ese nome. Por favor, verifique <strong><tt>$1</tt></strong> se non está seguro de que quere cambialo.',
-'filepageexists'              => 'Unha páxina (non imaxe) con ese nome xa existe, comprobe <strong><tt>$1</tt></strong> se non está seguro de que quere cambiala.',
+'filepageexists'              => 'Xa existe unha páxina (non un ficheiro) con ese nome; comprobe <strong><tt>$1</tt></strong> se non está seguro de que quere cambiala.',
 'fileexists-extension'        => 'Xa hai un ficheiro cun nome semellante:<br />
 Nome do ficheiro que tenta cargar: <strong><tt>$1</tt></strong><br />
 Nome de ficheiro que hai: <strong><tt>$2</tt></strong><br />
@@ -1064,7 +1062,7 @@ PICT # misc.
 'imagelist_user'            => 'Usuario',
 'imagelist_size'            => 'Tamaño (bytes)',
 'imagelist_description'     => 'Descrición',
-'imagelist_search_for'      => 'Buscar por nome de imaxe:',
+'imagelist_search_for'      => 'Buscar polo nome do ficheiro multimedia:',
 
 # File reversion
 'filerevert'                => 'Desfacer $1',
@@ -1168,7 +1166,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'lonelypagestext'         => 'As seguintes páxinas están illadas, non están enlazadas desde outras páxinas de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páxinas sen categorías',
 'uncategorizedcategories' => 'Categorías sen categorías',
-'uncategorizedimages'     => 'Imaxes sen categorías',
+'uncategorizedimages'     => 'Ficheiros sen categorizar',
 'uncategorizedtemplates'  => 'Modelos sen categorizar',
 'unusedcategories'        => 'Categorías sen uso',
 'unusedimages'            => 'Imaxes sen uso',
@@ -1179,7 +1177,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'mostlinkedcategories'    => 'Categorías máis enlazadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',
 'mostcategories'          => 'Artigos con máis categorías',
-'mostimages'              => 'Imaxes máis enlazadas',
+'mostimages'              => 'Ficheiros máis enlazados',
 'mostrevisions'           => 'Artigos con máis revisións',
 'allpages'                => 'Todas as páxinas',
 'prefixindex'             => 'Mostrar páxinas clasificadas polas letras iniciais',
@@ -1203,7 +1201,7 @@ Cada ringleira contén ligazóns cara á primeira e segunda redirección, e tam�
 'intl'                    => 'Ligazóns interlingua',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta páxina',
-'unusedimagestext'        => '<p>Por favor, teña en conta que outros sitios web poden ligar a unha imaxe mediante un enderezo URL e por iso poden aparecer listados aquí, mesmo estando en uso.</p>',
+'unusedimagestext'        => '<p>Por favor, teña en conta que outros sitios web poden ligar a un ficheiro mediante un enderezo URL e por iso poden aparecer listados aquí, mesmo estando en uso.</p>',
 'unusedcategoriestext'    => 'Existen as seguintes categorías, aínda que ningún artigo ou categoría as emprega.',
 'notargettitle'           => 'Sen obxectivo',
 'notargettext'            => 'Non especificou a páxina ou o usuario no cal
@@ -1504,7 +1502,7 @@ $1',
 'sp-contributions-username'    => 'Enderezo IP ou nome de usuario:',
 'sp-contributions-submit'      => 'Procura',
 
-'sp-newimages-showfrom' => 'Mostrar as novas imaxes comezando por $1',
+'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando por $1',
 
 # What links here
 'whatlinkshere'       => 'Páxinas que ligan con esta',
@@ -1658,7 +1656,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'move-watch'              => 'Vixiar esta páxina',
 'movepagebtn'             => 'Mover páxina',
 'pagemovedsub'            => 'O movemento foi un éxito',
-'movepage-moved'          => '<big>\'\'\'"$1" moveuse para "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" moveuse para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido. Por favor escolla outro nome.',
 'cantmove-titleprotected' => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
 'talkexists'              => 'Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.',
@@ -1743,6 +1741,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'importuploaderrortemp'      => 'Fallou o envío do ficheiro de importación. Falta un cartafol temporal.',
 'import-noarticle'           => 'Ningunha páxina para importar!',
 'import-nonewrevisions'      => 'Todas as revisións son previamente importadas.',
+'xml-error-string'           => '$1 na liña $2, col $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',
@@ -1791,7 +1790,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-feed-atom'               => 'Fonte de noticias atom para esta páxina',
 'tooltip-t-contributions'         => 'Ver a listaxe de contribucións deste usuario',
 'tooltip-t-emailuser'             => 'Enviarlle unha mensaxe a este usuario por correo electrónico',
-'tooltip-t-upload'                => 'Enviar imaxes ou ficheiros multimedia',
+'tooltip-t-upload'                => 'Enviar ficheiros',
 'tooltip-t-specialpages'          => 'Listaxe de todas as páxinas especiais',
 'tooltip-t-print'                 => 'Versión imprimíbel desta páxina',
 'tooltip-t-permalink'             => 'Ligazón permanente a esta versión da páxina',
@@ -1800,7 +1799,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-ca-nstab-media'          => 'Ver a páxina de multimedia',
 'tooltip-ca-nstab-special'        => 'Esta é unha páxina especial. Non a pode editar',
 'tooltip-ca-nstab-project'        => 'Ver a páxina do proxecto',
-'tooltip-ca-nstab-image'          => 'Ver a páxina da imaxe',
+'tooltip-ca-nstab-image'          => 'Ver a páxina do ficheiro',
 'tooltip-ca-nstab-mediawiki'      => 'Ver a mensaxe do sistema',
 'tooltip-ca-nstab-template'       => 'Ver o modelo',
 'tooltip-ca-nstab-help'           => 'Ver a páxina de axuda',
@@ -1899,7 +1898,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Aviso''': Este ficheiro pode conter código malicioso; o seu sistema pode quedar comprometido se chega a executalo.
 <hr />",
-'imagemaxsize'         => 'Limitar as dimensións das imaxes nas páxinas de descrición de imaxes a:',
+'imagemaxsize'         => 'Limitar as imaxes nas páxinas de descrición de ficheiros a:',
 'thumbsize'            => 'Tamaño da miniatura (Thumbnail):',
 'widthheightpage'      => '$1×$2, $3 páxinas',
 'file-info'            => 'Tamaño do ficheiro: $1, tipo MIME: $2',
@@ -1917,11 +1916,12 @@ $1',
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
 
-Só se consideran os elementos dunha listaxe (liñas que comezan por *). A primeira ligazón dunha liña ten que apuntar para unha imaxe mala. As ligazóns posteriores da mesma liña considéranse excepcións, isto é, artigos nos que a imaxe pode aparecer inserida na liña.',
+Só se consideran os elementos dunha listaxe (liñas que comezan por *). A primeira ligazón dunha liña ten que apuntar para unha imaxe mala.
+As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páxinas nas que o ficheiro pode aparecer inserido na liña.',
 
 # Metadata
 'metadata'          => 'Metadatos',
-'metadata-help'     => 'Este ficheiro contén información adicional, probabelmente engadida pola cámara dixital ou polo escáner usado para crear ou dixitalizar a imaxe. Se o ficheiro orixinal foi modificado, pode que algúns detalles non se reflictan na imaxe modificada.',
+'metadata-help'     => 'Este ficheiro contén información adicional, probabelmente engadida pola cámara dixital ou polo escáner usado para crear ou dixitalizar a imaxe. Se o ficheiro orixinal foi modificado, pode que algúns detalles non se reflictan no ficheiro modificado.',
 'metadata-expand'   => 'Mostrar detalles',
 'metadata-collapse' => 'Agochar detalles',
 'metadata-fields'   => 'Os campos de meta-datos EXIF listados nesta mensaxe incluiranse ao exhibir a páxina da imaxe cando se reduza a táboa dos meta-datos. Outros agocharanse por omisión. 
