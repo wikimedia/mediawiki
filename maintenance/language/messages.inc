@@ -2235,7 +2235,6 @@ $wgMessageStructure = array(
 		'imgmultigo',
 		'imgmultigotopre',
 		'imgmultigotopost',
-		'imgmultiparseerror',
 	),
 	'tablepager' => array(
 		'ascending_abbrev',

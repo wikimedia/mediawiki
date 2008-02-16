@@ -2197,7 +2197,6 @@ $1",
 'imgmultipagenext'   => "qatiq p'anqa →",
 'imgmultigo'         => 'Riy!',
 'imgmultigotopre'    => "Riy p'anqaman",
-'imgmultiparseerror' => "Rikcha willañiqiqa waqllisqam, mana allin kayta rikch'akun, chayrayku {{SITENAME}} manam p'anqa sutisuyuta chaskiyta atinchu.",
 
 # Table pager
 'ascending_abbrev'         => 'wich',

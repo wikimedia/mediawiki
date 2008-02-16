@@ -1567,7 +1567,6 @@ $1',
 'imgmultipagenext'   => 'asebter ameḍfir →',
 'imgmultigo'         => 'Ruḥ!',
 'imgmultigotopre'    => 'Ruḥ s asebtar',
-'imgmultiparseerror' => 'Afaylu n tugna yexser, ihi {{SITENAME}} ur yezmir ara a d-yaf umuɣ n isebtar.',
 
 # Table pager
 'ascending_abbrev'         => 'asawen',

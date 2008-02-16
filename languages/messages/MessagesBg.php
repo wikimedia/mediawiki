@@ -2326,7 +2326,6 @@ $1',
 'imgmultipagenext'   => 'следваща страница →',
 'imgmultigo'         => 'Отиване',
 'imgmultigotopre'    => 'Към страницата',
-'imgmultiparseerror' => 'Изглежда, че файлът е повреден, затова {{SITENAME}} не може да създаде списък на страници.',
 
 # Table pager
 'ascending_abbrev'         => 'възх',

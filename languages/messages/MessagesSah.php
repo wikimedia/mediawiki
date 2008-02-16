@@ -2232,7 +2232,6 @@ $1',
 'imgmultipagenext'   => 'аныгыскы сирэй →',
 'imgmultigo'         => 'Көс!',
 'imgmultigotopre'    => 'Бу сирэйгэ көс',
-'imgmultiparseerror' => 'Ойуу билэтэ алдьаммыт эбэтэр сыыһалаах, {{SITENAME}} сирэйдэрин испииһэгин көрдөрөр табыллыбата.',
 
 # Table pager
 'ascending_abbrev'         => 'улаатыннар',

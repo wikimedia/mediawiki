@@ -1429,7 +1429,6 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'imgmultipagenext'   => 'pagina proxima →',
 'imgmultigo'         => 'I!',
 'imgmultigotopre'    => 'Ire ad paginam',
-'imgmultiparseerror' => 'Imago corrupta vel invalida videtur, ergo {{SITENAME}} indicem paginarum extrahere non potest.',
 
 # Table pager
 'table_pager_next'         => 'Pagina proxima',

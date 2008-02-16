@@ -2493,7 +2493,6 @@ $1',
 'imgmultipagenext'   => 'לדף הבא &larr;',
 'imgmultigo'         => 'הצגה',
 'imgmultigotopre'    => 'מעבר לדף',
-'imgmultiparseerror' => 'קובץ התמונה פגום או שגוי, ולפיכך אין אפשרות לקבל רשימת דפים.',
 
 # Table pager
 'ascending_abbrev'         => 'עולה',

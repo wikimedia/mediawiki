@@ -1610,9 +1610,6 @@ $1",
 # AJAX search
 'articletitles' => "Erthyglau'n dechrau gyda: ''$1''",
 
-# Multipage image navigation
-'imgmultiparseerror' => "Mae'n ymddangos bod y ffeil delwedd wedi'i lygru neu ei fod yn anghywir, felly nid yw {{SITENAME}} yn gallu mofyn rhestr tudalennau.",
-
 # Table pager
 'ascending_abbrev'  => 'esgynnol',
 'descending_abbrev' => 'am lawr',

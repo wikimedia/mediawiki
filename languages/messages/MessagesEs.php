@@ -2097,7 +2097,6 @@ $1',
 'imgmultipagenext'   => 'siguiente página →',
 'imgmultigo'         => '¡Ir!',
 'imgmultigotopre'    => 'Ir a la página',
-'imgmultiparseerror' => 'La imagen parece corrupta o incorrecta, de modo que {{SITENAME}} no puede obtener una lista de páginas.',
 
 # Table pager
 'table_pager_next'         => 'Página siguiente',

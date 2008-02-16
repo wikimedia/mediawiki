@@ -1830,7 +1830,6 @@ $1',
 'imgmultipagenext'   => 'саҳифаи баъд →',
 'imgmultigo'         => 'Бирав!',
 'imgmultigotopre'    => 'рафтан ба саҳифа',
-'imgmultiparseerror' => 'Ба назар мерасад, ки парвандаи акс хароб ё нодуруст аст, ба ҳамин хотир {{SITENAME}} наметавонад феҳристе аз саҳифаҳо намоиш диҳад.',
 
 # Table pager
 'table_pager_next'         => 'Саҳифаи навбатӣ',

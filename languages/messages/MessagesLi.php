@@ -2190,7 +2190,6 @@ $1',
 'imgmultipagenext'   => 'volgende pazjena →',
 'imgmultigo'         => 'Gank!',
 'imgmultigotopre'    => 'Gank nao pazjena',
-'imgmultiparseerror' => "'t Aafbeeldingsbesjtandj sjint neet richtig te zeen, zoedet {{SITENAME}} gein lies van pazjena's kós trökvènje.",
 
 # Table pager
 'ascending_abbrev'         => 'opl.',

@@ -2315,7 +2315,6 @@ $1',
 'imgmultipagenext'   => 'slijedeća slika →',
 'imgmultigo'         => 'Idi!',
 'imgmultigotopre'    => 'Idi na stranicu',
-'imgmultiparseerror' => 'Slika je neispravna, te {{SITENAME}} ne može prikazati popis stranica slike.',
 
 # Table pager
 'ascending_abbrev'         => 'rast',

@@ -1994,7 +1994,6 @@ $1',
 'imgmultipagenext'   => 'наступная старонка →',
 'imgmultigo'         => 'Ісці!',
 'imgmultigotopre'    => 'Ісці на старонку',
-'imgmultiparseerror' => 'Здаецца, што файл выявы пашкоджаны або некарэктны, таму {{SITENAME}} не можа атрымаць спісу старонак.',
 
 # Table pager
 'ascending_abbrev'         => 'да больш.',

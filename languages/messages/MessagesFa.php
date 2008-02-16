@@ -2467,7 +2467,6 @@ $1',
 'imgmultipagenext'   => 'صفحهٔ بعد &larr;',
 'imgmultigo'         => 'برو!',
 'imgmultigotopre'    => 'رفتن به صفحه',
-'imgmultiparseerror' => 'به نظر می‌رسد که پرونده تصویر خراب شده‌است، به همین‌خاطر {{SITENAME}} نمی‌تواند فهرستی از صفحه‌ها نمایش دهد.',
 
 # Table pager
 'ascending_abbrev'         => 'صعودی',

@@ -2027,7 +2027,6 @@ $1',
 'imgmultipagenext'   => 'järgmäne leht →',
 'imgmultigo'         => 'Mineq!',
 'imgmultigotopre'    => 'Mineq lehe pääle',
-'imgmultiparseerror' => 'Pilt paistus ollõv viganõ vai võlss. {{SITENAME}} saa-i lehti nimekirjä andaq.',
 
 # Table pager
 'ascending_abbrev'         => 'ülespoolõ',

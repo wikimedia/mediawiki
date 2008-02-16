@@ -2213,7 +2213,6 @@ $1
 'imgmultigo'         => '確定！',
 'imgmultigotopre'    => '到第',
 'imgmultigotopost'   => '頁',
-'imgmultiparseerror' => '鏡像檔案可能已損壞或不正確，因此{{SITENAME}}無法找回頁面列表。',
 
 # Table pager
 'ascending_abbrev'         => '遞增',

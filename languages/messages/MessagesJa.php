@@ -2254,7 +2254,6 @@ $1',
 'imgmultigo'         => '表示',
 'imgmultigotopre'    => 'このページへ',
 'imgmultigotopost'   => 'ページ目を',
-'imgmultiparseerror' => '画像ファイルが壊れているか正しくないため、ページのリストを生成できませんでした。',
 
 # Table pager
 'ascending_abbrev'         => '昇順',

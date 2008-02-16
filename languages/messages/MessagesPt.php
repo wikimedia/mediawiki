@@ -2372,7 +2372,6 @@ $1',
 'imgmultipagenext'   => 'próxima página →',
 'imgmultigo'         => 'Ir!',
 'imgmultigotopre'    => 'Mostrar página',
-'imgmultiparseerror' => 'O ficheiro aparenta estar corrompido ou com algum outro erro. Por conta disso, não será possível exibir uma listagem de páginas no wiki {{SITENAME}}.',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

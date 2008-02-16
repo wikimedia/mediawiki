@@ -2420,7 +2420,6 @@ $1',
 'imgmultipagenext'   => 'ďalšia stránka &rarr;',
 'imgmultigo'         => 'Vykonať',
 'imgmultigotopre'    => 'Prejsť na stránku',
-'imgmultiparseerror' => 'Tento súbor obrázka vyzerá byť poškodený alebo nesprávny, takže {{SITENAME}} nemôže získať zoznam stránok.',
 
 # Table pager
 'ascending_abbrev'         => 'vzostupne',

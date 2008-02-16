@@ -2286,7 +2286,6 @@ $1',
 'imgmultipagenext'   => 'następna strona →',
 'imgmultigo'         => 'Przejdź',
 'imgmultigotopre'    => 'Przejdź na stronę',
-'imgmultiparseerror' => 'Plik obrazu wydaje się być uszkodzony lub nieprawidłowy i {{SITENAME}} nie możne odzyskać listy stron.',
 
 # Table pager
 'ascending_abbrev'         => 'rosn.',

@@ -2063,7 +2063,6 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'imgmultipagenext'   => 'pàggina siquenti →',
 'imgmultigo'         => "Va'",
 'imgmultigotopre'    => "Va' â pàggina",
-'imgmultiparseerror' => "Lu file mmàggini è erratu o danniggiatu; {{SITENAME}} nun è n gradu di prisentare l'alencu dî pàggini.",
 
 # Table pager
 'ascending_abbrev'         => 'crisc',

@@ -2255,7 +2255,6 @@ $1',
 'imgmultipagenext'   => "pajenn war-lerc'h &rarr;",
 'imgmultigo'         => 'Mont !',
 'imgmultigotopre'    => "Mont d'ar bajenn",
-'imgmultiparseerror' => "Evit doare eo brein pe faziek restr ar skeudenn-mañ; gant se n'hall ket {{SITENAME}} adtapout ur roll pajennoù.",
 
 # Table pager
 'ascending_abbrev'         => 'pignat',

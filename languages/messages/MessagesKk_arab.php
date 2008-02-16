@@ -2682,7 +2682,6 @@ $1',
 'imgmultipagenext'   => 'كەلەسى بەتكە →',
 'imgmultigo'         => 'ٴوت!',
 'imgmultigotopre'    => 'مىنا بەتكە ٴوتۋ',
-'imgmultiparseerror' => 'سۋرەت فايلى قىيراعان نە بۇرىس سىياقتى, سوندىقتان {{SITENAME}} بەت ٴتىزىمىن كەلتىرە المايدى.',
 
 # Table pager
 'ascending_abbrev'         => 'ٴوسۋ',

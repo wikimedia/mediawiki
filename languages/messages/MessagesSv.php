@@ -2312,7 +2312,6 @@ $1',
 'imgmultipagenext'   => 'nästa sida &rarr;',
 'imgmultigo'         => 'Gå',
 'imgmultigotopre'    => 'Gå till sida',
-'imgmultiparseerror' => 'Bildfilen verkar vara trasig eller felaktig, därför kan {{SITENAME}} inte hämta listan över sidor.',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',

@@ -2216,7 +2216,6 @@ $1',
 'imgmultipagenext'   => 'తరువాతి పేజీ →',
 'imgmultigo'         => 'వెళ్ళు!',
 'imgmultigotopre'    => 'ఈ పేజీకి వెళ్ళు',
-'imgmultiparseerror' => 'బొమ్మ ఫైలు పాడైనది లేదా సరియైనదికాదు, కనుక {{SITENAME}} ఆ పేజీల బాబితాను తీసుకురాలేకున్నది.',
 
 # Table pager
 'ascending_abbrev'         => 'ఆరోహణ',

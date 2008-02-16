@@ -2264,7 +2264,6 @@ $1',
 'imgmultipagenext'   => 'seguinte páxina →',
 'imgmultigo'         => 'Ir!',
 'imgmultigotopre'    => 'Ir á páxina',
-'imgmultiparseerror' => 'Parece que o ficheiro da imaxe está corrompido ou é incorrecto, polo que {{SITENAME}} non pode recuperar unha listaxe de páxinas.',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

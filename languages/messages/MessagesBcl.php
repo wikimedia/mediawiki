@@ -1918,7 +1918,6 @@ $1',
 'imgmultipagenext'   => 'sunod na pahina →',
 'imgmultigo'         => 'Dumanán!',
 'imgmultigotopre'    => 'Magduman sa pahina',
-'imgmultiparseerror' => "Minaluwas na raot o salâ an ''file'' na ladawan, kayâ an {{SITENAME}} dai makakua nin lista kan mga páhina.",
 
 # Table pager
 'ascending_abbrev'         => 'skt',

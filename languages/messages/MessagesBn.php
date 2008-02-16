@@ -2174,7 +2174,6 @@ $1',
 'imgmultipagenext'   => 'পরবর্তী পাতা →',
 'imgmultigo'         => 'চলো!',
 'imgmultigotopre'    => 'পাতায় চলো',
-'imgmultiparseerror' => 'এই ছবির ফাইলটি সম্ভবত নষ্ট বা ত্রুটিপূর্ণ, তাই {{SITENAME}} পাতাগুলির একটি তালিকা আনতে পারছে না।',
 
 # Table pager
 'ascending_abbrev'         => 'আরোহণ',

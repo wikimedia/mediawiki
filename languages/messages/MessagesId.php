@@ -2356,7 +2356,6 @@ $1",
 'imgmultipagenext'   => 'halaman selanjutnya &rarr;',
 'imgmultigo'         => 'Cari!',
 'imgmultigotopre'    => 'Ke halaman',
-'imgmultiparseerror' => 'Berkas gambar tampaknya rusak atau tak sah, sehingga {{SITENAME}} tidak dapat mengambil daftar halaman.',
 
 # Table pager
 'ascending_abbrev'         => 'naik',

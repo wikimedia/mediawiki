@@ -2295,7 +2295,6 @@ $3
 'imgmultigo'         => '确定！',
 'imgmultigotopre'    => '到第',
 'imgmultigotopost'   => '页',
-'imgmultiparseerror' => '镜像文件可能已损坏或不正确，因此{{SITENAME}}无法找回页面列表。',
 
 # Table pager
 'ascending_abbrev'         => '升',

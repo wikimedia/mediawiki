@@ -2315,7 +2315,6 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'imgmultipagenext'   => 'přichodna strona →',
 'imgmultigo'         => 'Dźi!',
 'imgmultigotopre'    => 'dźi k stronje',
-'imgmultiparseerror' => 'Dataja so zda wobškodźena być, tak zo {{SITENAME}} njemóže lisćinu stronow wutworić.',
 
 # Table pager
 'ascending_abbrev'         => 'postupowacy',

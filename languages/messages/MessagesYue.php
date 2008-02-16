@@ -2335,7 +2335,6 @@ $1',
 'imgmultigo'         => '去!',
 'imgmultigotopre'    => '去到第',
 'imgmultigotopost'   => '版',
-'imgmultiparseerror' => '個圖像檔可能已經損毀又或者唔正確，{{SITENAME}}唔能夠拎到頁面一覽。',
 
 # Table pager
 'ascending_abbrev'         => '增',

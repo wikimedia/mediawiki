@@ -2659,7 +2659,6 @@ $1',
 'imgmultipagenext'   => 'келесі бетке →',
 'imgmultigo'         => 'Өт!',
 'imgmultigotopre'    => 'Мына бетке өту',
-'imgmultiparseerror' => 'Сурет файлы қираған не бұрыс сияқты, сондықтан {{SITENAME}} бет тізімін келтіре алмайды.',
 
 # Table pager
 'ascending_abbrev'         => 'өсу',

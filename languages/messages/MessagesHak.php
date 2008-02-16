@@ -1582,7 +1582,6 @@ $1',
 'imgmultipagenext'   => 'hâ yit-chông →',
 'imgmultigo'         => 'Khok-thin!',
 'imgmultigotopre'    => 'To-thi',
-'imgmultiparseerror' => 'Kiang-chhiong tóng-on khó-nèn yí-kîn sún-fái fe̍t-chá chang-chhai, yîn-chhṳ́ {{SITENAME}} vù-fap cháu-fì vùn-chông lie̍t-péu.',
 
 # Table pager
 'ascending_abbrev'         => 'Suk-siá chen',

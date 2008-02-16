@@ -2363,7 +2363,6 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'imgmultipagenext'   => 'page suivante →',
 'imgmultigo'         => 'Accéder !',
 'imgmultigotopre'    => 'Accéder à la page',
-'imgmultiparseerror' => 'Ce fichier image est apparemment corrompu ou incorrect, et {{SITENAME}} ne peut pas fournir une liste des pages.',
 
 # Table pager
 'ascending_abbrev'         => 'crois',

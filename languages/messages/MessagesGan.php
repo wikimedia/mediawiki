@@ -2022,7 +2022,6 @@ $1',
 'imgmultipagenext'   => '下頁 →',
 'imgmultigo'         => '確定！',
 'imgmultigotopre'    => '去到第',
-'imgmultiparseerror' => '鏡像檔案可能扤壞嘞或伓正確，{{SITENAME}}也就找伓到頁面列表。',
 
 # Table pager
 'ascending_abbrev'         => '增',

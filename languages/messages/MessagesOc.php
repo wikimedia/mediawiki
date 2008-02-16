@@ -2217,7 +2217,6 @@ $1",
 'imgmultipagenext'   => 'pagina seguenta &rarr;',
 'imgmultigo'         => 'Accedir !',
 'imgmultigotopre'    => 'Accedir a la pagina',
-'imgmultiparseerror' => 'Aqueste fichièr imatge es aparentament corromput o incorrècte, e {{SITENAME}} pòt pas fornir una lista de las paginas.',
 
 # Table pager
 'ascending_abbrev'         => 'asc',

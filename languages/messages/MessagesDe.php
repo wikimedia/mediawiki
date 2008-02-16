@@ -2426,7 +2426,6 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'imgmultipagenext'   => 'nächste Seite →',
 'imgmultigo'         => 'OK',
 'imgmultigotopre'    => 'Gehe zu Seite',
-'imgmultiparseerror' => 'Die Datei scheint defekt zu sein, so dass {{SITENAME}} keine Seitenliste erstellen kann.',
 
 # Table pager
 'ascending_abbrev'         => 'auf',

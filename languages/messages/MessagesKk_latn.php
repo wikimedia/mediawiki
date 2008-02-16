@@ -2661,7 +2661,6 @@ $1',
 'imgmultipagenext'   => 'kelesi betke →',
 'imgmultigo'         => 'Öt!',
 'imgmultigotopre'    => 'Mına betke ötw',
-'imgmultiparseerror' => 'Swret faýlı qïrağan ne burıs sïyaqtı, sondıqtan {{SITENAME}} bet tizimin keltire almaýdı.',
 
 # Table pager
 'ascending_abbrev'         => 'ösw',
