@@ -5,12 +5,16 @@
  * @addtogroup Maintenance
  */
 
-require( dirname( __FILE__ ) . '/messages.inc' );
-require( dirname( __FILE__ ) . '/messageTypes.inc' );
-
 class MessageWriter {
 	static $optionalComment = 'only translate this message to other languages if you have to change it';
 	static $ignoredComment = "don't translate or duplicate this message to other languages";
+
+	static $loaded = false;
+	static $messageStructure;
+	static $blockComments;
+	static $messageComments;
+	static $ignoredMessages;
+	static $optionalMessages;
 
 	/**
 	 * Write a messages array as a PHP text and write it to the messages file.
@@ -63,12 +67,23 @@ class MessageWriter {
 	 * @return Array of the PHP text and the sorted messages array.
 	 */
 	public static function writeMessagesArray( $messages, $ignoredComments = false ) {
-		global $wgMessageStructure, $wgBlockComments, $wgMessageComments;
-		global $wgIgnoredMessages, $wgOptionalMessages;
+		# Load messages
+		if( !self::$loaded ) {
+			require( dirname( __FILE__ ) . '/messages.inc' );
+			self::$messageStructure = $wgMessageStructure;
+			self::$blockComments = $wgBlockComments;
+			self::$messageComments = $wgMessageComments;
+
+			require( dirname( __FILE__ ) . '/messageTypes.inc' );
+			self::$ignoredMessages = $wgIgnoredMessages;
+			self::$optionalMessages = $wgOptionalMessages;
+
+			self::$loaded = true;
+		}
 
 		# Sort messages to blocks
 		$sortedMessages['unknown'] = $messages;
-		foreach( $wgMessageStructure as $blockName => $block ) {
+		foreach( self::$messageStructure as $blockName => $block ) {
 			foreach( $block as $key ) {
 				if( array_key_exists( $key, $sortedMessages['unknown'] ) ) {
 					$sortedMessages[$blockName][$key] = $sortedMessages['unknown'][$key];
@@ -87,16 +102,16 @@ class MessageWriter {
 			}
 
 			if( $ignoredComments ) {
-				$ignored = $wgIgnoredMessages;
-				$optional = $wgOptionalMessages;
+				$ignored = self::$ignoredMessages;
+				$optional = self::$optionalMessages;
 			} else {
 				$ignored = array();
 				$optional = array();
 			}
-			$comments = self::makeComments( array_keys($messages), $wgMessageComments, $ignored, $optional );
+			$comments = self::makeComments( array_keys($messages), self::$messageComments, $ignored, $optional );
 
 			# Write the block
-			$messagesText .= self::writeMessagesBlock( $wgBlockComments[$block], $messages, $comments );
+			$messagesText .= self::writeMessagesBlock( self::$blockComments[$block], $messages, $comments );
 		}
 
 		# Write the unknown messages, alphabetically sorted.
