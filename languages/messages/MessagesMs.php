@@ -1222,6 +1222,7 @@ Secara purata terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' papa
 
 Panjang [http://meta.wikimedia.org/wiki/Help:Job_queue barisan tugas] ialah '''\$7'''.",
 'userstatstext'          => "Terdapat '''$1''' [[Special:Listusers|pengguna]] berdaftar, dengan
+'''$2''' (atau '''$4%''') daripadanya mempunyai hak $5.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
