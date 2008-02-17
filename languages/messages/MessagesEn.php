@@ -1951,6 +1951,7 @@ Revisions of files that you don't have permission to view will not be restored."
 'undeleterevision-missing'     => 'Invalid or missing revision. You may have a bad link, or the revision may have been restored or removed from the archive.',
 'undelete-nodiff'              => 'No previous revision found.',
 'undeletebtn'                  => 'Restore',
+'undeletelink'                 => 'restore',
 'undeletereset'                => 'Reset',
 'undeletecomment'              => 'Comment:',
 'undeletedarticle'             => 'restored "[[$1]]"',
