@@ -766,6 +766,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.
 'searchsubtitleinvalid' => 'Evit ar goulenn "$1"',
 'noexactmatch'          => "'''N'eus pajenn ebet anvet \"\$1\".''' Gallout a rit [[:\$1|krouiñ ar bajenn]].",
 'noexactmatch-nocreate' => "'''N'eus pajenn ebet anvet \"\$1\".'''",
+'toomanymatches'        => 'Re a respontoù a glot gant ar goulenn, klaskit gant ur goulenn all',
 'titlematches'          => 'Klotadurioù gant an titloù',
 'notitlematches'        => "N'emañ ar ger(ioù) goulennet e titl pennad ebet",
 'textmatches'           => 'Klotadurioù en testennoù',
@@ -934,12 +935,13 @@ Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ
 evit eilañ restroù war ar servijer.",
 'upload_directory_read_only'  => "N'hall ket ar servijer skrivañ e renkell ar c'hargadennoù ($1).",
 'uploaderror'                 => 'Fazi',
-'uploadtext'                  => "Grit gant ar furmskrid a-is evit enporzhiañ skeudennoù; evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:Imagelist|roll ar skeudennoù eilet war ar servijer]]. Kavet e vo ar skeudennoù enporzhiet pe diverket war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] ivez.
+'uploadtext'                  => "Grit gant ar furmskrid a-is evit enporzhiañ skeudennoù.
+Evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:Imagelist|roll ar skeudennoù eilet war ar servijer]]. Kavet e vo ar skeudennoù enporzhiet pe diverket war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] ivez.
 
 Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet evel-henn :
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.jpg]]</nowiki>''' pe
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.png|testenn all]]</nowiki>''' pe
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:anv_ar_restr.ogg]]</nowiki>''' evit ar sonioù.",
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:anv_ar_restr.ogg]]</nowiki>''' evit sevel ul liamm war-eeun war-du ar restr.",
 'upload-permitted'            => 'Seurtoù restroù aotreet : $1.',
 'upload-preferred'            => 'Seurtoù restroù gwellañ : $1.',
 'upload-prohibited'           => 'Seurtoù restroù berzet : $1.',
@@ -965,7 +967,7 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'largefileserver'             => "Brasoc'h eo ar restr-mañ eget ar pezh a c'hall ar servijer aotren.",
 'emptyfile'                   => "Evit doare eo goullo ar restr bet karget ganeoc'h. Moarvat eo abalamour d'an tipo en anv ar restr. Gwiriit mat e fell deoc'h pellgargañ ar restr-mañ.",
 'fileexists'                  => "Ur restr all gant an anv-se zo c'hoazh. Trugarez da wiriañ $1. Ha sur oc'h da gaout c'hoant da gemmañ ar restr-mañ ?",
-'filepageexists'              => "Bez'ez eus dija ur bajenn (ket ur skeudenn) gant an anv-mañ. Gwiriit <strong><tt>$1</tt></strong> ma n'oc'h ket peursur e vennit kemmañ anezhi.",
+'filepageexists'              => "Bez'ez eus dija ur bajenn (ket ur skeudenn) gant an anv-mañ. Gwiriit <strong><tt>$1</tt></strong> ma n'oc'h ket peursur e fell deoc'h kemmañ anezhi.",
 'fileexists-extension'        => "Bez' ez eus dija ur restr gant an anv-se war-bouez nebeut :<br />
 Anv ar restr pellgarget : <strong><tt>$1</tt></strong><br />
 Anv ar restr zo anezhi dija : <strong><tt>$2</tt></strong><br />
@@ -1068,7 +1070,7 @@ PICT # misc.
 'imagelist_user'            => 'Implijer',
 'imagelist_size'            => 'Ment (e bitoù)',
 'imagelist_description'     => 'Deskrivadur',
-'imagelist_search_for'      => 'Klask evit anv ar skeudenn :',
+'imagelist_search_for'      => 'Klask anv ar skeudenn :',
 
 # File reversion
 'filerevert'                => 'Disteuler $1',
@@ -1172,7 +1174,7 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'lonelypagestext'         => "N'eo ket liammet ar pajennoù da-heul ouzh pajenn all ebet eus {{SITENAME}}.",
 'uncategorizedpages'      => 'Pajennoù hep rummad ebet',
 'uncategorizedcategories' => 'Rummadoù hep rummadoù',
-'uncategorizedimages'     => 'Skeudennoù dirummad',
+'uncategorizedimages'     => 'Restroù hep rummad',
 'uncategorizedtemplates'  => 'Patromoù hep rummad',
 'unusedcategories'        => 'Rummadoù dizimplij',
 'unusedimages'            => 'Skeudennoù en o-unan',
@@ -1183,7 +1185,7 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'mostlinkedcategories'    => 'Rummadoù dezho al liammoù niverusañ',
 'mostlinkedtemplates'     => 'Patromoù implijet ar muiañ',
 'mostcategories'          => 'Pennadoù rummatet ar muiañ',
-'mostimages'              => 'Skeudennoù dezho al liammoù niverusañ',
+'mostimages'              => 'Skeudennoù implijet ar muiañ',
 'mostrevisions'           => 'Pennadoù bet kemmet ar muiañ',
 'allpages'                => 'An holl bajennoù',
 'prefixindex'             => 'An holl bajennoù dre o lizherenn gentañ',
@@ -1207,7 +1209,7 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'intl'                    => 'Liammoù etrewiki',
 'move'                    => 'adenvel',
 'movethispage'            => 'Adenvel ar bajenn',
-'unusedimagestext'        => "<p>Na zisoñjit ket e c'hall lec'hiennoù all, {{SITENAME}}où all, kaout ul liamm eeun war-du ar skeudenn-mañ hag e c'hall neuze ar skeudenn-mañ bezañ bet lakaet war ar roll-mañ tra m'emañ implijet e lec'h all.",
+'unusedimagestext'        => "Na zisoñjit ket e c'hall lec'hiennoù all kaout ul liamm eeun war-du ar skeudenn-mañ hag e c'hall neuze ar skeudenn-mañ bezañ rollet amañ c'hoazh daoust dezhi bezañ implijet e lec'h all.",
 'unusedcategoriestext'    => "Krouet eo bet ar rummadoù-mañ met n'int ket bet implijet e pennad pe rummad ebet.",
 'notargettitle'           => 'netra da gavout',
 'notargettext'            => 'Merkit anv ur bajenn da gavout pe hini un implijer.',
@@ -1459,6 +1461,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeleterevision-missing'     => "Stumm fall pe diank. Pe hoc'h eus heuliet ul liamm fall, pe eo bet diziverket ar stumm pe c'hoazh eo bet lamet diouzh an dielloù.",
 'undelete-nodiff'              => "N'eus bet kavet stumm kent ebet.",
 'undeletebtn'                  => 'Diziverkañ!',
+'undeletelink'                 => 'assevel',
 'undeletereset'                => 'Adderaouiñ',
 'undeletecomment'              => 'Notenn :',
 'undeletedarticle'             => 'Diziverket"$1"',
@@ -1506,7 +1509,7 @@ $1',
 'sp-contributions-username'    => "Anv implijer pe chomlec'h IP :",
 'sp-contributions-submit'      => 'Klask',
 
-'sp-newimages-showfrom' => 'Diskouez ar skeudennoù nevez adal $1',
+'sp-newimages-showfrom' => 'Diskouez ar restroù nevez adal $1',
 
 # What links here
 'whatlinkshere'       => 'Pajennoù liammet',
@@ -1887,7 +1890,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Diwallit''': Kodoù siek a c'hall bezañ er restr-mañ; ma'z erounezit anezhi e c'hallje tagañ ho reizhiad.<hr />",
-'imagemaxsize'         => 'Ment vrasañ ar skeudennoù er pajennoù deskrivañ skeudennoù :',
+'imagemaxsize'         => 'Ment vrasañ ar skeudennoù er pajennoù deskrivañ :',
 'thumbsize'            => 'Ment an alberz :',
 'widthheightpage'      => '$1×$2, $3 pajenn',
 'file-info'            => '(ment ar restr : $1, seurt MIME : $2)',
@@ -1906,11 +1909,11 @@ $1',
 'bad_image_list' => "Setu doare ar furmad :
 
 Ne seller nemet ouzh roll an elfennoù (linennoù a grog gant *). Ret eo d'al liamm kentañ war ul linenn bezañ ul liamm war-du ur skeudenn fall.
-Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lavaret eo pajennoù ma c'hall ar skeudenn dont war wel.",
+Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skouer pennadoù ma c'hall ar skeudenn dont war wel.",
 
 # Metadata
 'metadata'          => 'Metaroadennoù',
-'metadata-help'     => "Titouroù ouzhpen zo er restr-mañ; bet lakaet moarvat gant ar c'hamera niverel pe ar skanner implijet evit he niverelaat. Mard eo bet cheñchet ar skeudenn e-keñver he stad orin marteze ne vo ket kenkoulz munudoù zo.",
+'metadata-help'     => "Titouroù ouzhpen zo er restr-mañ; bet lakaet moarvat gant ar c'hamera niverel pe ar skanner implijet evit he niverelaat. Mard eo bet cheñchet ar skeudenn e-keñver he stad orin marteze ne vo ket kenkoulz munudoù zo e-keñver ar skeudenn kemmet.",
 'metadata-expand'   => 'Dispakañ ar munudoù',
 'metadata-collapse' => 'Krennañ ar munudoù',
 'metadata-fields'   => "Ensoc'het e vo ar maeziennoù metastlennoù EXIF rollet er gemennadenn-mañ e pajenn deskrivañ ar skeudenn pa vo punet taolenn ar metaroadennoù. Kuzhet e vo ar re all dre ziouer.

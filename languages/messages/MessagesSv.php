@@ -849,7 +849,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'searchsubtitleinvalid' => 'För sökbegreppet $1',
 'noexactmatch'          => "'''Det finns ingen sida med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
 'noexactmatch-nocreate' => "'''Det finns ingen sida med titeln \"\$1\".'''",
-'toomanymatches'        => 'För många resultat var besvarade, var god pröva en annan fråga',
+'toomanymatches'        => 'Sökningen gav för många resultat, försök med en annan fråga',
 'titlematches'          => 'Träffar i sidtitlar',
 'notitlematches'        => 'Det finns ingen sida vars titel överensstämmer med sökordet.',
 'textmatches'           => 'Sidor som innehåller sökordet:',
@@ -1534,6 +1534,7 @@ Sidversioner som du inte har behörighet att se kommer inte att återställas.',
 'undeleterevision-missing'     => 'Versionen finns inte eller är felaktig. Versionen kan ha återställts eller tagits bort från arkivet, du kan också ha följt en felaktig länk.',
 'undelete-nodiff'              => 'Ingen tidigare version hittades.',
 'undeletebtn'                  => 'Återställ',
+'undeletelink'                 => 'återställ',
 'undeletereset'                => 'Rensa',
 'undeletecomment'              => 'Kommentar:',
 'undeletedarticle'             => 'återställde "$1"',
@@ -1979,7 +1980,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Den här filen innehåller extrainformation som troligen lades till av en digitalkamera eller scanner när filen skapades. Om filen har modifierats kan det hända att vissa detaljer inte överensstämmer med den modifierade filen.',
+'metadata-help'     => 'Den här filen innehåller extrainformation som troligen lades till av en digitalkamera eller skanner när filen skapades. Om filen har modifierats kan det hända att vissa detaljer inte överensstämmer med den modifierade filen.',
 'metadata-expand'   => 'Visa utökade detaljer',
 'metadata-collapse' => 'Dölj utökade detaljer',
 'metadata-fields'   => 'EXIF-fält som listas i det här meddelandet visas på bildsidan när metadatatabellen är minimerad.
