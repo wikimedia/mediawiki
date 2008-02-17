@@ -781,7 +781,7 @@ U kan deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-sysop
 Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
 'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen gebruikersnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[Special:Userlogin/signup|maak dan een gebruikersnaam aan]] of [[Special:Userlogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
 'noarticletext'             => 'Deze pagina bevat geen tekst. U kan [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
-'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Gelieve te controleren of u deze pagina wel wil aanmaken/bewerken.',
+'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Controleer of u deze pagina wel wilt aanmaken/bewerken.',
 'clearyourcache'            => '\'\'\'Let op!\'\'\' Leeg uw cache nadat u de wijzigingen heeft opgeslagen.
 
 {| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"
@@ -956,7 +956,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'mergehistory-submit'              => 'Versies samenvoegen',
 'mergehistory-empty'               => 'Geen enkele versies kunnen samengevoegd worden',
 'mergehistory-success'             => '$3 versies van [[:$1|$1]] succesvol samengevoegd naar [[:$2|$2]].',
-'mergehistory-fail'                => 'Kan geen geschiedenis samenvoegen, gelieve opnieuw de pagina- en tijdparameters te controleren.',
+'mergehistory-fail'                => 'Kan geen geschiedenis samenvoegen, controleer opnieuw de pagina- en tijdparameters.',
 'mergehistory-no-source'           => 'Bronpagina $1 bestaat niet.',
 'mergehistory-no-destination'      => 'Bestemmingspagina $1 bestaat niet.',
 'mergehistory-invalid-source'      => 'De bronpagina moet een geldige titel zijn.',
@@ -983,6 +983,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
 'noexactmatch'          => "'''Er bestaat geen pagina genaamd \"\$1\".''' U kan deze [[:\$1|aanmaken]].",
 'noexactmatch-nocreate' => "'''Er bestaat geen pagina genaamd \"\$1\".'''",
+'toomanymatches'        => 'Er waren te veel resultaten. Probeer alstublieft een andere zoekopdracht',
 'titlematches'          => 'Overeenkomst met onderwerp',
 'notitlematches'        => 'Geen resultaten gevonden',
 'textmatches'           => 'Overeenkomst met inhoud',
@@ -1184,9 +1185,9 @@ De laatste link is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'fileexists-extension'        => 'Een bestand met dezelfde naam bestaat al:<br />
 Naam van het geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van het bestaande bestand: <strong><tt>$2</tt></strong><br />
-Gelieve een andere naam te kiezen.',
+Kies een andere naam.',
 'fileexists-thumb'            => "<center>'''Bestaande afbeelding'''</center>",
-'fileexists-thumbnail-yes'    => 'Het lijkt een afbeelding van een verkleinde grootte te zijn <i>(thumbnail)</i>. Gelieve het bestand <strong><tt>$1</tt></strong> te controleren.<br />
+'fileexists-thumbnail-yes'    => 'Het bestand lijkt een verkleinde versie te zijn <i>(thumbnail)</i>. Controleer het bestand <strong><tt>$1</tt></strong>.<br />
 Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte is, is het niet noodzakelijk een extra thumbnail te uploaden.',
 'file-thumbnail-no'           => 'De bestandsnaam begint met <strong><tt>$1</tt></strong>. Het lijkt een verkleinde afbeelding te zijn <i>(thumbnail)</i>. Als u deze afbeelding in volledige resolutie heeft, upload die afbeelding dan. Wijzig anders alstublieft de bestandsnaam.',
 'fileexists-forbidden'        => 'Er bestaat al een bestand met deze naam. Upload uw bestand onder een andere naam.
@@ -1208,7 +1209,7 @@ Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte i
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd. Raadpleeg het $1 voordat u het opnieuw toevoegt.',
 'upload-wasdeleted'           => "'''Waarschuwing: u bent een bestand dat eerder verwijderd was aan het uploaden.'''
 
-Gelieve zeker te zijn dat het geschikt is om door te gaan met het uploaden van dit bestand.
+Controleer of het inderdaad uw bedoeling is dit bestand te uploaden.
 Het verwijderingslogboek van dit bestand kan u hier zien:",
 'filename-bad-prefix'         => 'De naam van het bestand dat u aan het uploaden bent begint met <strong>"$1"</strong>, wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven. Kies alstublieft een duidelijke naam voor uw bestand.',
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
@@ -1660,6 +1661,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'undeleterevision-missing'     => 'Ongeldige of missende versie. Mogelijk heeft u een verkeerde verwijzing of is de versie hersteld of verwijderd uit het archief.',
 'undelete-nodiff'              => 'Geen eerdere versie gevonden.',
 'undeletebtn'                  => 'Terugplaatsen',
+'undeletelink'                 => 'terugplaatsen',
 'undeletereset'                => 'Herinstellen',
 'undeletecomment'              => 'Toelichting:',
 'undeletedarticle'             => '"[[$1]]" is teruggeplaatst',

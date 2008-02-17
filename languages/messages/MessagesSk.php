@@ -895,6 +895,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'searchsubtitleinvalid' => 'Na vyhľadávaciu požiadavku „$1“',
 'noexactmatch'          => "'''Neexistuje stránka nazvaná „$1“'''. Chcete '''[[:$1|vytvoriť novú stránku]]''' s týmto názvom?",
 'noexactmatch-nocreate' => "'''Stránka s názvom „$1“ neexistuje.'''",
+'toomanymatches'        => 'Hľadanie vrátilo príliš veľa výsledkov. Prosím, skúste inú požiadavku.',
 'titlematches'          => 'Vyhovujúce názvy stránok',
 'notitlematches'        => 'V názvoch stránok nebola nájdená zhoda',
 'textmatches'           => 'Zhody v textoch stránok',

@@ -8,13 +8,18 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Underline links:',
+'tog-underline'        => 'Underline links:',
+'tog-rememberpassword' => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
+'tog-previewontop'     => "Se àyẹ̀wò kí ẹ tó s'àtúnṣe",
 
-'cancel'         => 'Fagilé',
+'cancel'         => "Fa'gilé",
 'qbedit'         => 'Àtúnṣe',
+'qbpageoptions'  => 'Ojúewé yi',
 'qbmyoptions'    => 'Àwọn ojúewé mi',
 'qbspecialpages' => 'Àwọn ojúewé pàtàkì',
+'moredotdotdot'  => 'Ẹ̀kúnrẹ́rẹ́...',
 'mypage'         => 'Ojúewé mi',
+'mytalk'         => 'Ọ̀rọ̀ mi',
 'navigation'     => 'Atọ́ka',
 'and'            => 'àti',
 
@@ -45,32 +50,42 @@ $messages = array(
 'portal-url'   => 'Project:Èbúté Àwùjọ',
 'sitesupport'  => 'Se ẹ̀bùn owó',
 
+'badaccess-group0' => "A kò gbàyín l'áyè l'áti ṣe ohun tí ẹ bèrè fún.",
+
 'newmessageslink'         => 'ìfọ̀rọ̀ránsẹ́ tuntun',
 'youhavenewmessagesmulti' => 'Ẹ ní ìfọ̀rọ̀ránsẹ́ tuntun ni $1',
 'editsection'             => "s'àtúnṣe",
 'editold'                 => "s'àtúnṣe",
+'showtoc'                 => 'fihàn',
+'hidetoc'                 => 'bòmọ́lẹ̀',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Àyọkà',
 'nstab-user'      => 'Ojúewé ẹnitínṣe',
+'nstab-media'     => 'Ojúewé amóhùnmáwòrán',
 'nstab-special'   => 'Pàtàkì',
 'nstab-mediawiki' => 'Ìfọ̀rọ̀ránsẹ',
 
 # General errors
-'viewsource'     => 'Àfihàn ọ̀rọ̀àmì',
-'titleprotected' => 'This title has been protected from creation by [[User:$1|$1]]. The reason given is <i>$2</i>.',
+'viewsource'        => 'Àfihàn ọ̀rọ̀àmì',
+'protectedpagetext' => 'A ti se àtìpa ojúewé yi. Ẹ kò le se àtúnṣe.',
+'viewsourcetext'    => 'Ẹ lè wo ati ẹ lè se àwòkọ ọ̀rọ̀àmì ojúewé yi:',
+'titleprotected'    => 'This title has been protected from creation by [[User:$1|$1]]. The reason given is <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'        => 'Ẹnitínṣe tibọsóde',
+'welcomecreation'    => "== Ẹ kú àbọ̀, $1! ==
+
+A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọn ìfẹ́ràn {{SITENAME}} yín.",
 'loginpagetitle'     => 'Ẹnitínṣe tiwọlé',
 'yourname'           => 'Orúkọ ẹnitínṣe (username):',
 'yourpassword'       => 'Ọ̀rọ̀ìpamọ́:',
-'yourpasswordagain'  => 'Tẹ̀ẹ́kíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
+'yourpasswordagain'  => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
 'remembermypassword' => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
 'login'              => "Ẹ w'ọlé",
-'userlogin'          => "Ẹ w'ọlé / kí ẹ fi orúkọ sílẹ̀",
+'userlogin'          => "Ẹ w'ọlé / ẹ fi orúkọ sílẹ̀",
 'logout'             => "Ẹ bọ́s'óde",
-'userlogout'         => "Ẹ bọ́s'óde",
+'userlogout'         => "Ẹ ti bọ́s'óde",
 'notloggedin'        => "Ẹ kò tí w'ọlé",
 'nologinlink'        => 'Ẹ fi orúkọ sílẹ̀',
 'createaccount'      => 'Ẹ fi orúkọ sílẹ̀',

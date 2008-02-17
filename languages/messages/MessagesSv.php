@@ -15,6 +15,7 @@
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author Max sonnelid
+ * @author M.M.S.
  */
 
 $skinNames = array(
@@ -848,6 +849,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'searchsubtitleinvalid' => 'För sökbegreppet $1',
 'noexactmatch'          => "'''Det finns ingen sida med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
 'noexactmatch-nocreate' => "'''Det finns ingen sida med titeln \"\$1\".'''",
+'toomanymatches'        => 'För många resultat var besvarade, var god pröva en annan fråga',
 'titlematches'          => 'Träffar i sidtitlar',
 'notitlematches'        => 'Det finns ingen sida vars titel överensstämmer med sökordet.',
 'textmatches'           => 'Sidor som innehåller sökordet:',

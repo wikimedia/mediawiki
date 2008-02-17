@@ -908,6 +908,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchsubtitleinvalid' => 'Hledáno „$1“',
 'noexactmatch'          => "'''Neexistuje žádná stránka s názvem \"\$1\".''' Můžete ji však [[:\$1|vytvořit]].",
 'noexactmatch-nocreate' => "'''Neexistuje žádná stránka s názvem „$1“.'''",
+'toomanymatches'        => 'Požadavku odpovídá příliš mnoho záznamů, zkuste jiný dotaz.',
 'titlematches'          => 'Stránky s odpovídajícím názvem',
 'notitlematches'        => 'Žádné stránky názvem neodpovídají.',
 'textmatches'           => 'Stránky s odpovídajícím textem',

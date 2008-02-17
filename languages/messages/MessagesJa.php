@@ -679,7 +679,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 この版は公の履歴から削除されました。[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 削除記録]におそらくログがあります。</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-この版は公の履歴から削除されており、このサイトの{{int:group-sysop}}だけが内容を見ることができます。削除の詳細は[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 削除記録]を参照してください。
+この版は公の履歴から削除されており、{{SITENAME}}の{{int:group-sysop}}だけが内容を見ることができます。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。
 </div>',
 'rev-delundel'                => '復帰/削除',
 'revisiondelete'              => '版の削除と復帰',

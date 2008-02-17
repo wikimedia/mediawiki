@@ -760,9 +760,10 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'uploadnologin'     => 'Conventum non apertum est',
 'uploadnologintext' => '[[Special:Userlogin|Aperire conventum]] debes ut fasciculos oneres.',
 'uploaderror'       => 'Error onerati',
-'uploadtext'        => "Utere formam subter ad fasciculos onerandos. Ut videas aut quaeras fasciculos oneratos antea, adi [[Special:Imagelist|indicem fasciculorum oneratorum]]. Onerata et deleta in [[Special:Log/upload|notatione oneratorum]] notata sunt.
+'uploadtext'        => "Utere formam subter ad fasciculos onerandos.
+Ut videas aut quaeras fasciculos oneratos antea, adi [[Special:Imagelist|indicem fasciculorum oneratorum]]. Onerata et deleta in [[Special:Log/upload|notatione oneratorum]] notata sunt.
 
-Ad imaginem includendum in pagina, utere nexu
+Ad fasciculum includendum in pagina, utere nexu
 '''<nowiki>[[</nowiki>{{ns:image}}:File.jpg]]''' aut
 '''<nowiki>[[</nowiki>{{ns:image}}:File.png|verba alia]]''' aut
 '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg]]''' pro nexum directum ad fasciculum.",

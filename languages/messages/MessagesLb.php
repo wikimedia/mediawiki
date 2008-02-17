@@ -439,6 +439,7 @@ $2',
 'namespaceprotected'   => "Dir hutt net déi néideg Rechter fir d'Säiten am Nummraum '''$1''' ze änneren.",
 'customcssjsprotected' => 'Dir hutt net déi néideg Rechter fir dës Säit ze änneren, wëll si zu de perséinlechen Astellungen vun engem anere Benotzer gehéiert.',
 'ns-specialprotected'  => 'Säiten am {{ns:special}}-Nummraum kënnen net verännert ginn.',
+'titleprotected'       => 'Eng Säit mat dësem Numm kann net ugeluecht ginn. Dës Spär gouf vum [[User:$1|$1]] gemaach deen als Grond <i>$2</i> uginn huet.',
 
 # Login and logout pages
 'logouttitle'                => 'Benotzer-Ofmeldung',
@@ -449,7 +450,7 @@ Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech nacheemol als deeselwecht
 Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemeld wiert, bis Dir ärem Browser seng Cache eidelmaacht.',
 'welcomecreation'            => '== Wëllkomm, $1! ==
 
-Äre Kont gouf kreéiert. Denkt drun, Är {{SITENAME}}-Preferenzen anzestellen.',
+Äre Kont gouf kreéiert. Denkt drun, Är {{SITENAME}}-Astellungen unzepassen.',
 'loginpagetitle'             => 'Benotzer-Umeldung',
 'yourname'                   => 'Benotzernumm:',
 'yourpassword'               => 'Passwuert:',
@@ -584,7 +585,7 @@ Dir kënnt den/d' \$1 kontaktéieren oder ee vun deenen aneren [[{{MediaWiki:Gro
 
 Dëst sollt Der besonnesch maachen, wann der d'Gefill hutt, dass de Grond fir d'Spären net bei Iech läit. D'Ursaach dofir ass an deem Fall, datt der eng dynamesch IP hutt, iwwert en Access-Provider, iwwert deen och aner Leit fueren. Aus deem Grond ass et recommandéiert, sech e Benotzernumm zouzeleeën, fir all Mëssverständnes z'évitéieren. 
 
-Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gülteg E-Mail Adress bei äre [[Special:Preferences|Preferenzen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
+Dir kënnt d'Fonktioun \"Dësem Benotzer eng E-mail schécken\" nëmme benotzen, wann Dir eng gülteg E-Mail Adress bei äre [[Special:Preferences|Astellungen]] aginn hutt. Är aktuell-IP Adress ass \$3 an d'Nummer vun der Spär ass #\$5. Schreift dës w.e.g. bei all Fro dobäi.",
 'autoblockedtext'           => 'Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dëse vum $1 gespaart ginn ass. De Grond dofir war: 
 
 \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Mentioun am Logbuch]</span>) 
@@ -790,9 +791,9 @@ Sich no: $3 $9',
 'searchdisabled'        => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat H!ellef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Preferences page
-'preferences'             => 'Preferenzen',
+'preferences'             => 'Astellungen',
 'preferences-summary'     => 'Op dëser Spezialsäit kënnt Dir är Zougangsdaten änneren an Astellunge maachen déi een Afloss dorop hunn wéi äer Säiten op {{Sitename}} ausgesinn a wéi eenzel Säiten ugewise ginn.',
-'mypreferences'           => 'Meng Preferenzen',
+'mypreferences'           => 'Meng Astellungen',
 'prefs-edits'             => 'Zuel vun den Ännerungen:',
 'prefsnologin'            => 'Net ugemeld',
 'qbsettings'              => 'Geschirläischt',
@@ -830,7 +831,7 @@ Sich no: $3 $9',
 'stub-threshold'          => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',
 'recentchangesdays'       => 'Deeg déi an de Rezenten Ännerungen ugewise ginn:',
 'recentchangescount'      => 'Zuel vun Titele bei de rezenten Ännerungen an den Neie Säiten:',
-'savedprefs'              => 'Är Preferenze goufe gespäichert.',
+'savedprefs'              => 'Är Astellunge goufe gespäichert.',
 'timezonelegend'          => 'Zäitzon',
 'timezonetext'            => "Gitt d'Zuel vun de Stonnen an, déi tëscht ärer Zäitzon an der Serverzäit (UTC) leien (A West- a Mëtteleuropa ass dat +1 Stonn am Wanter an +2 am Summer).",
 'localtime'               => 'Lokalzäit:',
@@ -1240,10 +1241,10 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
 # E-mail user
-'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Preferenzen]] agestallt hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
+'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
 'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
-'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a senge Preferenzen agestallt huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mail Adress déi dir an Äre Preferenzen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
+'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a sengen Astellungen uginn huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mailadress déi dir an Ären Astellungen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',
@@ -1464,6 +1465,7 @@ $1',
 'ipbanononly'                 => 'Nëmmen anonym Benotzer spären',
 'ipbenableautoblock'          => 'Automatesch all IP spären duerch déi op dëse Benotzerkont zougegraff ka ginn',
 'ipbsubmit'                   => 'Dës IP-Adress resp dëse Benotzer spären',
+'ipbother'                    => 'Aner Dauer :',
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Aner Dauer',
 'ipbotherreason'              => 'Aneren oder zousätzleche Grond:',
@@ -1516,7 +1518,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 # Developer tools
 'lockdb'              => 'Datebank spären',
 'unlockdb'            => 'Spär vun der Datebank ophiewen',
-'lockdbtext'          => "Wann d'Datebank gespaart ass, ka kee Benotzer méi Säiten änneren, seng Preferenzen änneren, seng Iwwerwaachungslëscht änneren, an all aner Aarbecht, déi op d'Datebank zréckgräift. 
+'lockdbtext'          => "Wann d'Datebank gespaart ass, ka kee Benotzer Säiten änneren, seng Astellungen änneren, seng Iwwerwaachungslëscht änneren, an all aner Aarbecht, déi op d'Datebank zréckgräift. 
 
 W.e.g. konfirméiert, datt dir dëst wierklech maache wëllt, an datt dir d'Spär ewechhuelt soubal d'Maintenance-Aarbechten eriwwer sinn.",
 'unlockdbtext'        => "D'Ophiewe vun der Spär vun der Datebank léisst et erëm zou datt all Benotzer Säiten änneren, hir Astellungen an hir Iwwerwaachungslëscht veränneren an all aner Operatiounen déi Ännerungen an der Datebank erfuederen.
@@ -1630,7 +1632,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'tooltip-pt-userpage'             => 'Meng Benotzersäit',
 'tooltip-pt-mytalk'               => 'Meng Diskussioun',
 'tooltip-pt-anontalk'             => "Diskussioun iwwer d'Ännerungen déi vun dëser IP-Adress aus gemaach gi sinn",
-'tooltip-pt-preferences'          => 'Meng Preferenzen',
+'tooltip-pt-preferences'          => 'Meng Astellungen',
 'tooltip-pt-watchlist'            => 'Lëscht vu Säiten, bei deenen Der op Ännerungen oppasst',
 'tooltip-pt-mycontris'            => 'Lëscht vu menge Kontributiounen',
 'tooltip-pt-login'                => 'Sech unzemellen gëtt gäre gesinn, Dir musst et awer net maachen.',
@@ -1692,6 +1694,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'anonymous'        => 'Anonym(e) Benotzer op {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benotzer $1',
 'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer voum $3 fir d'lescht geännert.", # $1 date, $2 time, $3 user
+'othercontribs'    => 'Op der Basis vun der Aarbecht vum $1',
 'others'           => 'anerer',
 'siteusers'        => '{{SITENAME}}-Benotzer $1',
 'creditspage'      => 'Quellen',
@@ -1707,11 +1710,12 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'spam_blanking'          => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
 
 # Info page
-'infosubtitle' => 'Informatioun zur Säit',
-'numedits'     => 'Zuel vun den Ännerunge vun dëser Säit: $1',
-'numtalkedits' => 'Zuel vun den Ännerungen (Diskussiounssäit): $1',
-'numwatchers'  => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
-'numauthors'   => 'Zuel vu verschiddenen Auteuren: $1',
+'infosubtitle'   => 'Informatioun zur Säit',
+'numedits'       => 'Zuel vun den Ännerunge vun dëser Säit: $1',
+'numtalkedits'   => 'Zuel vun den Ännerungen (Diskussiounssäit): $1',
+'numwatchers'    => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
+'numauthors'     => 'Zuel vu verschiddenen Auteuren: $1',
+'numtalkauthors' => 'Zuel vun den Auteuren (Diskussiounssäit): $1',
 
 # Math options
 'mw_math_png'    => 'Ëmmer als PNG duerstellen',
@@ -1763,7 +1767,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 # Metadata
 'metadata'          => 'Metadaten',
-'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benotzte Scanner kommen. Duerch nodréilech Ännerungen vum Originalfichier kënnen eenzel Detailer verännert gi sinn.',
+'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benotzte Scanner kommen. Wann de Fichier nodréilech geännert gouf, kann et sinn datt eenzel Detailer net mat dem aktuelle Fichier iwwereestëmmen.',
 'metadata-expand'   => 'Weis detailléiert Informatiounen',
 'metadata-collapse' => 'Verstopp detailléiert Informatiounen',
 'metadata-fields'   => "Dës Felder vun den EXIF-Metadate ginn op Bildbeschreiwungssäite gewisen wann d'Metadatentafel zesummegeklappt ass. Déi aner sinn am Standard verstoppt, kënne awer ugewise ginn.
