@@ -248,7 +248,7 @@ $messages = array(
 'toolbox'           => "Boita d'espleches",
 'userpage'          => "Pagina d'utilizaire",
 'projectpage'       => 'Pagina meta',
-'imagepage'         => "Pagina d'imatge",
+'imagepage'         => 'Pagina del mèdia',
 'mediawikipage'     => 'Veire la pagina del messatge',
 'templatepage'      => 'Veire la pagina del modèl',
 'viewhelppage'      => "Veire la pagina d'ajuda",
@@ -394,7 +394,7 @@ Requèsta : $2',
 'protectedpagetext'    => 'Aquesta pagina es estada protegida per empachar sa modificacion.',
 'viewsourcetext'       => 'Podètz veire e copiar son còde font :',
 'protectedinterface'   => 'Aquesta pagina fornís de tèxt d’interfàcia pel logicial e es protegida per evitar los abuses.',
-'editinginterface'     => "'''Atencion:''' Sètz a editar una pagina qu'es utilizada per modificar lo tèxt de l'interfàcia del logicial. Los cambiaments sus aquesta pagina afectaràn l'aparéncia de l'interfàcia d'utilizaire pels autres utilizaires.",
+'editinginterface'     => "'''Atencion :''' sètz a editar una pagina utilizada per crear lo tèxt de l’interfàcia del logicial. Los cambiaments se repercutaràn, segon lo contèxt, sus totas o cèrtas paginas visiblas pels autres utilizaires. Per las traduccions, vos convidam a utilizar lo projècte Mediawiki d'internacionalizacion dels messatges [http://translatewiki.net/wiki/Main_Page?setlang=oc Betawiki].",
 'sqlhidden'            => '(Requèsta SQL amagada)',
 'cascadeprotected'     => 'Aquesta pagina es actualament protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta|las paginas seguentas}}, , que son estadas protegidas amb l’opcion « proteccion en cascada » activada :
 $2',
@@ -479,7 +479,9 @@ Abans qu’un autre corrièr sià mandat a aqueste compte, devretz seguir las in
 'accountcreated'             => 'Compte creat.',
 'accountcreatedtext'         => "Lo compte d'utilizaire de $1 es estat creat.",
 'createaccount-title'        => "Creacion d'un compte per {{SITENAME}}",
-'createaccount-text'         => "Qualqu'un ($1) a creat un compte per $2 sus {{SITENAME}} ($4). Lo senhal per « $2 » es « $3 ». Deuriatz dobir una session e cambiar tre ara aqueste senhal. Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
+'createaccount-text'         => "Qualqu'un a creat un compte per vòstra adreça de corrièr electronic sus {{SITENAME}} ($4) intitolat « $2 », amb per senhal « $3 ». Deuriaz dobrir una sessilha e cambiar, tre ara, aqueste senhal.
+
+Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'loginlanguagelabel'         => 'Lenga: $1',
 
 # Password reset dialog
@@ -509,9 +511,9 @@ Abans qu’un autre corrièr sià mandat a aqueste compte, devretz seguir las in
 'nowiki_sample'   => 'Picatz lo tèxt pas formatat aicí',
 'nowiki_tip'      => 'Ignorar la sintaxi wiki',
 'image_sample'    => 'Exemple.jpg',
-'image_tip'       => 'Imatge inserit',
+'image_tip'       => 'Fichièr inserit',
 'media_sample'    => 'Exemple.ogg',
-'media_tip'       => 'Ligam vèrs un fichièr mèdia',
+'media_tip'       => 'Ligam vèrs lo fichièr',
 'sig_tip'         => 'Vòstra signatura amb la data',
 'hr_tip'          => "Linha orizontala (n'abusetz pas)",
 
@@ -592,7 +594,7 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 <strong>Se la tentativa de modificacion èra legitima, ensajatz tornarmai. Se aquò capita pas encara , desconnectatz-vos, puèi reconnectatz-vos.</strong>",
 'token_suffix_mismatch'     => '<strong>Vòstra edicion es pas estada acceptada perque vòstre navegaire a mesclat los caractèrs de ponctuacion dins l’identificant d’edicion. L’edicion es estada rejetada per empachar la corrupcion del tèxt de l’article. Aqueste problèma se produtz quand utilizatz un proxy anonim amb problèma.</strong>',
 'editing'                   => 'modificacion de $1',
-'editinguser'               => 'modificacion de $1',
+'editinguser'               => "Cambiament dels dreches de l'utilizaire '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Modificacion de $1 (seccion)',
 'editingcomment'            => 'Modificacion de $1 (comentari)',
 'editconflict'              => 'Conflicte de modificacion : $1',
@@ -1045,17 +1047,18 @@ L'ora indicada es la del serveire (UTC).",
 'filerevert-badversion'     => 'I a pas de version mai anciana del fichièr amb lo Timestamp donat.',
 
 # File deletion
-'filedelete'             => 'Suprimís $1',
-'filedelete-legend'      => 'Suprimir lo fichièr',
-'filedelete-intro'       => "Sètz a suprimir '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Sètz a escafar la version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $2 a $3].</span>',
-'filedelete-comment'     => 'Comentari:',
-'filedelete-submit'      => 'Suprimir',
-'filedelete-success'     => "'''$1''' es estat suprimit.",
-'filedelete-success-old' => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' del $2 a $3 es estada suprimida.</span>',
-'filedelete-nofile'      => "'''$1''' existís pas sus aqueste site.",
-'filedelete-nofile-old'  => "Existís pas cap de version archivada de '''$1''' amb los atributs indicats.",
-'filedelete-iscurrent'   => "Sètz a ensajar de suprimir la version mai recenta d'aqueste fichièr. Devètz, deperabans, restablir una version anciana d'aqueste.",
+'filedelete'                  => 'Suprimís $1',
+'filedelete-legend'           => 'Suprimir lo fichièr',
+'filedelete-intro'            => "Sètz a suprimir '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Sètz a escafar la version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $2 a $3].</span>',
+'filedelete-comment'          => 'Comentari:',
+'filedelete-submit'           => 'Suprimir',
+'filedelete-success'          => "'''$1''' es estat suprimit.",
+'filedelete-success-old'      => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' del $2 a $3 es estada suprimida.</span>',
+'filedelete-nofile'           => "'''$1''' existís pas sus aqueste site.",
+'filedelete-nofile-old'       => "Existís pas cap de version archivada de '''$1''' amb los atributs indicats.",
+'filedelete-iscurrent'        => "Sètz a ensajar de suprimir la version mai recenta d'aqueste fichièr. Devètz, deperabans, restablir una version anciana d'aqueste.",
+'filedelete-reason-otherlist' => 'Autra rason',
 
 # MIME search
 'mimesearch'         => 'Recèrca per tipe MIME',
@@ -1131,7 +1134,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'lonelypagestext'         => 'Las paginas seguentas son pas ligadas a partir d’autras paginas de {{SITENAME}}.',
 'uncategorizedpages'      => 'Paginas sens categorias',
 'uncategorizedcategories' => 'Categorias sens categorias',
-'uncategorizedimages'     => 'Imatges sens categorias',
+'uncategorizedimages'     => 'Fichièrs sens categorias',
 'uncategorizedtemplates'  => 'Modèls sens categoria',
 'unusedcategories'        => 'Categorias inutilizadas',
 'unusedimages'            => 'Imatges orfanèls',
@@ -1142,7 +1145,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'mostlinkedcategories'    => 'Categorias mai utilizadas',
 'mostlinkedtemplates'     => 'Modèls mai utilizats',
 'mostcategories'          => 'Articles utilizant mai de categorias',
-'mostimages'              => 'Imatges mai utilizats',
+'mostimages'              => 'Fichièrs mai utilizats',
 'mostrevisions'           => 'Articles mai modificats',
 'allpages'                => 'Totas las paginas',
 'prefixindex'             => 'Totas las paginas per primièras letras',
@@ -1321,6 +1324,8 @@ Retorn e assisténcia :
 'excontentauthor'             => 'lo contengut èra : « $1 » (e lo sol contributor èra « [[Special:Contributions/$2|$2]] »)',
 'exbeforeblank'               => "lo contengut abans escafament èra :'$1'",
 'exblank'                     => 'pagina voida',
+'delete-confirm'              => 'Escafar "$1"',
+'delete-legend'               => 'Escafar',
 'historywarning'              => 'Atencion: La pagina que sètz a mand de suprimir a un istoric:',
 'confirmdeletetext'           => "Sètz a mand de suprimir definitivament de la banca de donadas una pagina
 o un imatge, e mai totas sas versions anterioras.
@@ -1336,7 +1341,7 @@ L'ora indicada es la del serveire (UTC).
 </ul>",
 'deletionlog'                 => 'traça dels escafaments',
 'reverted'                    => 'Restabliment de la version precedenta',
-'deletecomment'               => 'Motiu de la supression',
+'deletecomment'               => 'Motiu de la supression :',
 'deleteotherreason'           => 'Motius suplementaris o autres :',
 'deletereasonotherlist'       => 'Autre motiu',
 'deletereason-dropdown'       => "*Motius de supression mai corrents
@@ -1697,6 +1702,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importuploaderrorsize'      => "Lo telecargament del fichièr d'importar a pas capitat. Sa talha es mai granda que la autorizada.",
 'importuploaderrorpartial'   => "Lo telecargament del fichièr d'importar a pas capitat. Aqueste o es pas estat que parcialament.",
 'importuploaderrortemp'      => "Lo telecargament del fichièr d'importar a pas capitat. Un dorsièr temporari es mancant.",
+'import-noarticle'           => "Pas de pagina d'importar !",
 
 # Import log
 'importlogpage'                    => 'Istoric de las importacions de paginas',
@@ -2276,6 +2282,10 @@ Ensajatz la previsualizacion normala.',
 
 # Core parser functions
 'unknown_extension_tag' => "Balisa d'extension « $1 » desconeguda",
+
+# Special:Version
+'version-license'          => 'Licéncia',
+'version-software-product' => 'Produch',
 
 # Special:Filepath
 'filepath'         => "Camin d'accès d'un fichièr",

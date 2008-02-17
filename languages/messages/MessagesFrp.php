@@ -978,7 +978,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 'largefileserver'             => 'La talye de ceti fichiér est d’amont lo nivô lo ples hôt ôtorisâ.',
 'emptyfile'                   => 'Lo fichiér que vos voléd importar semble vouedo. Cen pôt étre diu a una èrror dens lo nom du fichiér. Volyéd controlar que vos dèsirâd franc copiyér ceti fichiér.',
 'fileexists'                  => 'Un fichiér avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr lo modifiar ?',
-'filepageexists'              => 'Una pâge (pas una émâge) avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr la modifiar ?',
+'filepageexists'              => 'Una pâge (pas un fichiér) avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr la modifiar ?',
 'fileexists-extension'        => 'Un fichiér avouéc un nom semblâblo ègziste ja :<br />
 Nom du fichiér a importar : <strong><tt>$1</tt></strong><br />
 Nom du fichiér ègzistent : <strong><tt>$2</tt></strong><br />
@@ -1942,12 +1942,12 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 # Bad image list
 'bad_image_list' => 'Lo format est lo siuvent :
 
-Solament les legnes comencient per * sont prêses en compto. Lo premiér lim de la legne est celi vers una môvésa émâge.
+Solament les listes d’ènumèracion (les legnes comencient per *) sont tegnues compto. Lo premiér lim d’una legne dêt étre vers celi d’una môvésa émâge.
 Los ôtros lims sur la méma legne sont considèrâs coment des èxcèpcions, per ègzemplo des articllos sur losquints l’émâge dêt aparêtre.',
 
 # Metadata
 'metadata'          => 'Mètabalyês',
-'metadata-help'     => 'Ceti fichiér contint des enformacions suplèmentères probâblament apondues per l’aparèly-fotô ou lo scanor que l’at fêt. Se lo fichiér at étâ modifiâ, cèrtins dètalys pôvont pas reflètar l’émâge modifiâ.',
+'metadata-help'     => 'Ceti fichiér contint des enformacions suplèmentères probâblament apondues per l’aparèly-fotô numerico ou lo scanor que l’at fêt. Se lo fichiér at étâ modifiâ dês son ètat originâl, cèrtins dètalys pôvont pas reflètar a chavon l’émâge modifiâ.',
 'metadata-expand'   => 'Montrar les enformacions dètalyês',
 'metadata-collapse' => 'Cachiér les enformacions dètalyês',
 'metadata-fields'   => 'Los champs de mètabalyês d’EXIF listâs dens ceti mèssâjo seront
@@ -2150,7 +2150,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-sensingmethod-7' => 'Captior trilinèâr',
 'exif-sensingmethod-8' => 'Captior color linèâr sèquencièl',
 
-'exif-filesource-3' => 'Aparèly fotografico numerico',
+'exif-filesource-3' => 'Aparèly-fotô numerico',
 
 'exif-scenetype-1' => 'Émâge tot drêt fotografiâ',
 

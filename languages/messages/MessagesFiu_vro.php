@@ -683,8 +683,13 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'overlogpagetext' => 'Tan om nimekiri vahtsõmbist kistutuisist ja kinniqpidämiisist, miä pututasõq kõrraldajidõ iist käkitüt sissu. Kaeq [[Special:Ipblocklist|puutridõ võrgoaadrõssidõ kinniqpidämisnimekirjä]], et nätäq, määntseq kinniqpidämiseq ommaq parhillaq jovvun.',
 
 # History merging
-'mergehistory'      => 'Panõq lehti aoluuq kokko',
-'mergehistory-from' => 'Lätteleht:',
+'mergehistory'       => 'Panõq lehti aoluuq kokko',
+'mergehistory-box'   => 'Panõq katõ lehe muutmiisi aolugu kokko:',
+'mergehistory-from'  => 'Lätteleht:',
+'mergehistory-into'  => 'Tsihtleht:',
+'mergehistory-list'  => 'Liidetäv muutmiisi aolugu',
+'mergehistory-merge' => 'Järgmädseq lehe [[:$1]] muutmisõq või mano pandaq lehe [[:$2]] muutmisaolukku. Võit valliq kujo, minkast vahtsõmbit kujjõ kokko ei pandaq, a võrgokaeja linke pruukminõ kaotas taa teedüse ärq.',
+'mergehistory-go'    => 'Näütäq kokkopantavit muutuisi',
 
 # Diffs
 'history-title'           => '"$1" muutmiisi nimekiri',

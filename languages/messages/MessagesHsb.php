@@ -982,14 +982,13 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'uploadnologintext'           => 'Dyrbiš [[{{ns:special}}:Userlogin|přizjewjeny]] być, zo by dataje nahrawać móhł.',
 'upload_directory_read_only'  => 'Nahrawanski zapis ($1) njehodźi so přez webserwer popisować.',
 'uploaderror'                 => 'Zmylk při nahrawanju',
-'uploadtext'                  => 'Wužij formular deleka, zo by nowe dataje nahrał; zo by prjedy nahrate wobrazy wobhladał abo pytał dźi k [[{{ns:special}}:Imagelist|lisćinje nahratych datajow]]; podrobnosće k nahrawanjam a wušmórnjenjam so tež w [[{{ns:special}}:Log/upload|protokolu nahrawanjow]] protokoluja.
+'uploadtext'                  => "Wužij formular deleka, zo by nowe dataje nahrał.
+Zo by prjedy nahrate dataje wobhladał abo pytał dźi k [[Special:Imagelist|lisćinje nahratych datajow]], nahraća a wušmórnjenja so tež w [[Special:Log/upload|protokolu nahraćow]] protokoluja.
 
-Zo by so wobraz do strony zapřijał, wužij wotkaz we formje
-* <b><nowiki>[[{{ns:image}}:Dataja.jpg]]</nowiki></b>
-*<b><nowiki>[[{{ns:image}}:Dataja.png|alternatiwny tekst]]</nowiki></b>
-
-abo zo by so direktnje z dataju zwjazało
-* <b><nowiki>[[{{ns:media}}:Dataja.ogg]]</nowiki></b>',
+Zo by dataju do strony zapřijał, wužij wotkaz we formje
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.png|alternatiwny tekst]]</nowiki>''' abo
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki>''' zo by direktnje k dataji wotkazał.",
 'upload-permitted'            => 'Dowolene datajowe typy: $1.',
 'upload-preferred'            => 'Preferowane datajowe typy: $1.',
 'upload-prohibited'           => 'Zakazane datajowe typy: $1.',
@@ -1286,7 +1285,7 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$
 'intl'                            => 'Mjezyrěčne wotkazy',
 'move'                            => 'Přesunyć',
 'movethispage'                    => 'Stronu přesunyć',
-'unusedimagestext'                => '<p>Prošu wobkedźbuj, zo je móžno zo so někotre z tutych datajow w druhich wikijach wužiwaja.</p>',
+'unusedimagestext'                => '<p>Prošu wobkedźbuj, zo druhe websydła móža k dataji z direktnym URL wotkazować a su hišće tu naspomnjene, hačrunjež so hižo aktiwnje wužiwaja.</p>',
 'unusedcategoriestext'            => 'Slědowace kategorije eksistuja, hačrunjež žana druha strona abo kategorija je njewužiwa.',
 'notargettitle'                   => 'Žadyn cil',
 'notargettext'                    => 'Njejsy cilowu stronu abo wužiwarja podał, zo by funkciju wuwjesć móhł.',
@@ -1578,7 +1577,7 @@ $1',
 'sp-contributions-username'    => 'IP-adresa abo wužiwarske mjeno:',
 'sp-contributions-submit'      => 'OK',
 
-'sp-newimages-showfrom' => 'nowe dataje započinajo z $1',
+'sp-newimages-showfrom' => 'Nowe dataje pokazać, započinajo z $1',
 
 # What links here
 'whatlinkshere'         => 'Što wotkazuje sem',
@@ -1848,7 +1847,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'tooltip-feed-atom'               => 'Atom-feed za tutu stronu',
 'tooltip-t-contributions'         => 'přinoški tutoho wužiwarja wobhladać',
 'tooltip-t-emailuser'             => 'wužiwarjej mejlku pósłać',
-'tooltip-t-upload'                => 'dataje nahrać',
+'tooltip-t-upload'                => 'Dataje nahrać',
 'tooltip-t-specialpages'          => 'lisćina wšěch specialnych stronow',
 'tooltip-t-print'                 => 'ćišćowy napohlad tuteje strony',
 'tooltip-t-permalink'             => 'trajny wotkaz k tutej wersiji strony',
@@ -1857,7 +1856,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'tooltip-ca-nstab-media'          => 'datajowu stronu wobhladać',
 'tooltip-ca-nstab-special'        => 'To je specialna strona. Njemóžeš ju wobdźěłać.',
 'tooltip-ca-nstab-project'        => 'projektowu stronu wobhladać',
-'tooltip-ca-nstab-image'          => 'wobrazowu stronu wobhladać',
+'tooltip-ca-nstab-image'          => 'Datajowu stronu pokazać',
 'tooltip-ca-nstab-mediawiki'      => 'systemowu zdźělenku wobhladać',
 'tooltip-ca-nstab-template'       => 'předłohu wobhladać',
 'tooltip-ca-nstab-help'           => 'pomocnu stronu wobhladać',

@@ -1008,22 +1008,14 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'uploadnologintext'           => 'Dejš se [[Special:Userlogin|pśizjawiś]], aby mógał dataje uploadowaś.',
 'upload_directory_read_only'  => 'Seśowy serwer njamóžo do uploadowego zapisa ($1) pisaś.',
 'uploaderror'                 => 'Zmólka pśi uploadowanju',
-'uploadtext'                  => "Źi na [[Special:Imagelist|lisćinu uploadowanych datajow]], aby mógał eksistěrujuce dataje pytaś a pokazaś.
+'uploadtext'                  => "Wužyj toś ten formular za uploadowanje nowych datajow.
 
-Wužywaj toś ten formular za uploadowanje nowych datajow. Tłoc na '''„Pśepytaś...“''', aby se dialog wócynił, w kótaremž móžoš dataje wuzwólowaś.
-Jo-lic dataja se wuzwóliła, pokažo se mě dataje w tekstowem pólu '''žrědło'''.
-Wobkšuś pón licencne dogrono a tłoc na '''dataju uploadowaś'''.
-To móžo chylu traś, wósebnje jolic maš pómały zwisk ze seśu.
+Źi na [[Special:Imagelist|lisćinu uploadowanych datajow]], aby mógł juž uploadowane dataje pytaś a pokazaś, uploadowanja a lašowanja se teke w [[Special:Log/upload|protokol uploadowanjow]] protokoluju.
 
-Coš-lic na jadnom boce '''wobraz''' wužywaś, ga piš na městnje wobraza na pś.:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:dataja.jpg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:dataja.jpg|Tekst wótkaza<nowiki>]]</nowiki></tt>'''
-
-Coš-lic '''medija-dataje''' zawězaś, ga piš na pś.:
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:dataja.ogg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:dataja.ogg|Tekst wótkaza<nowiki>]]</nowiki></tt>'''
-
-Pšosym mysli na to, až mógu druge wužywarje twóje dataje wulašowaś a změniś - rowno tak, ako pla normalnego wopśimjeśa boka.",
+Aby dataju do boka zapśimjeł, wužyj wótkaz we formje
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.png|alt text]]</nowiki>''' abo
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki>''' aby direktnje na dataju wótkazował.",
 'upload-permitted'            => 'Dowolone datajowe typy: $1.',
 'upload-preferred'            => 'Preferěrowane datajowe typy: $1.',
 'upload-prohibited'           => 'Njedowolone datajowe typy: $1.',
@@ -2000,11 +1992,12 @@ $1',
 # Bad image list
 'bad_image_list' => 'Format jo slědujucy:
 
-Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * stojaś wótkaz na njekśěty wobraz. Slědujuce wótkaze na nastawki w samskej smužce definěruju wuwześa, w kótarychž móžo wobraz weto se pokazaś.',
+Jano smužki, kótarež zachopiju z *, se wugódnośiju. Prědny wótkaz na smužce musy wótkaz na njekśětu dataju byś.
+Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž móžo dataja weto se pokazaś.',
 
 # Metadata
 'metadata'          => 'Metadaty',
-'metadata-help'     => 'Dataja wopśimjejo pśidatne informacije, kótarež póchadaju w normalnem paźe wót digitalneje kamery abo scannera. Pózdźejšne wobźěłanja su mógli toś te detajle změniś.',
+'metadata-help'     => 'Toś ta dataja wopśimjejo pśidatne informacije, kótarež nejskerjej póchadaju wót digitalneje kamery abo scannera. Jolic dataja bu pozdźej změnjona, njeby mógli někotare detaile změnjonu dataju wótbłyšćowaś.',
 'metadata-expand'   => 'rozšyrjone detaile pokazaś',
 'metadata-collapse' => 'rozšyrjone detaile schowaś',
 'metadata-fields'   => 'Slědujuce póla EXIF-metadatow se pokazuju na bokach, kótarež wopisuju wobraze; dalšne detaile, kótarež normalnje su schowane, mógu se pśidatnje pokazaś.

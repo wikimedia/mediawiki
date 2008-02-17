@@ -12,6 +12,7 @@
  * @author Veeven
  * @author Chaduvari
  * @author SPQRobin
+ * @author వైజాసత్య
  */
 
 $namespaceNames = array(
@@ -1978,6 +1979,7 @@ $1',
 'exif-sharpness'                   => 'పదును',
 'exif-devicesettingdescription'    => 'డివైసు సెట్టుంగుల వివరణ',
 'exif-subjectdistancerange'        => 'వస్తు దూరపు శ్రేణి',
+'exif-imageuniqueid'               => 'విలక్షణమైన బొమ్మ ఐడీ',
 'exif-gpsversionid'                => 'GPS ట్యాగు కూర్పు',
 'exif-gpslatituderef'              => 'ఉత్తర లేదా దక్షిణ అక్షాంశం',
 'exif-gpslatitude'                 => 'అక్షాంశం',
@@ -2074,6 +2076,9 @@ $1',
 'exif-sensingmethod-2' => 'ఒక-చిప్పున్న రంగును గుర్తించే సెన్సారు',
 'exif-sensingmethod-3' => 'రెండు-చిప్పులున్న రంగును గుర్తించే సెన్సారు',
 'exif-sensingmethod-4' => 'మూడు-చిప్పులున్న రంగును గుర్తించే సెన్సారు',
+'exif-sensingmethod-5' => 'వర్ణ అనుక్రమ సీమ సెన్సర్',
+'exif-sensingmethod-7' => 'త్రిసరళరేఖా సెన్సర్',
+'exif-sensingmethod-8' => 'వర్ణ అనుక్రమ రేఖా సెన్సర్',
 
 'exif-scenetype-1' => 'ఎటువంటి హంగులూ లేకుండా ఫొటోతీయబడిన బొమ్మ',
 
@@ -2093,6 +2098,10 @@ $1',
 'exif-scenecapturetype-3' => 'రాత్రి దృశ్యం',
 
 'exif-gaincontrol-0' => 'ఏదీ కాదు',
+'exif-gaincontrol-1' => 'చిన్న గెయిన్ పెంపు',
+'exif-gaincontrol-2' => 'పెద్ద గెయిన్ పెంపు',
+'exif-gaincontrol-3' => 'చిన్న గెయిన్ తగ్గింపు',
+'exif-gaincontrol-4' => 'పెద్ద గెయిన్ తగ్గింపు',
 
 'exif-contrast-0' => 'సాధారణ',
 'exif-contrast-1' => 'మృదువు',
@@ -2107,6 +2116,7 @@ $1',
 'exif-sharpness-2' => 'కఠినం',
 
 'exif-subjectdistancerange-0' => 'అజ్ఞాతం',
+'exif-subjectdistancerange-1' => 'మాక్రో',
 'exif-subjectdistancerange-2' => 'దగ్గరి దృశ్యం',
 'exif-subjectdistancerange-3' => 'దూరపు దృశ్యం',
 
@@ -2119,6 +2129,7 @@ $1',
 'exif-gpslongitude-w' => 'పశ్చిమ రేఖాంశం',
 
 'exif-gpsstatus-a' => 'కొలత జరుగుతూంది',
+'exif-gpsstatus-v' => 'కొలత ఇంటర్‌ఆపరేటబిలిటీ',
 
 'exif-gpsmeasuremode-2' => 'ద్వైమానిక కొలమానం',
 'exif-gpsmeasuremode-3' => 'త్రిదిశాత్మక కొలమానం',

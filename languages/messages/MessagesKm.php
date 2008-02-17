@@ -123,7 +123,7 @@ $messages = array(
 'dec'           => 'ធ្នូ',
 
 # Bits of text used by many pages
-'categories'            => 'ចំណាត់ក្រុម',
+'categories'            => 'ចំណាត់ថ្នាក់ក្រុម',
 'pagecategories'        => '{{PLURAL:$1|ចំណាត់ក្រុម|ចំណាត់ក្រុមនានា}}',
 'category_header'       => 'ទំព័រនានា ក្នុងចំណាត់ក្រុម "$1"',
 'subcategories'         => 'ចំណាត់ក្រុមរង នានា',
@@ -761,7 +761,7 @@ $1',
 'noimage'                   => 'គ្មានឈ្មោះ រូបភាព នេះទេ, អ្នកអាច $1 ។',
 'noimage-linktext'          => 'ផ្ទុកវាឡើង',
 'uploadnewversion-linktext' => 'ផ្ទុកឡើង មួយកំណែថ្មី នៃ ឯកសារនេះ',
-'imagelist_date'            => 'ថ្ងៃខែឆ្នាំ',
+'imagelist_date'            => 'កាលបរិច្ឆេទ',
 'imagelist_name'            => 'ឈ្មោះ',
 'imagelist_user'            => 'អ្នកប្រើប្រាស់',
 'imagelist_size'            => 'ទំហំ',
