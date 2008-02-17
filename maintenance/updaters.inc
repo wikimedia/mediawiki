@@ -1261,6 +1261,10 @@ END;
 function do_postgres_updates() {
 	global $wgDatabase, $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgShowExceptionDetails, $wgDBuser;
 
+	## Gather version numbers in case we need them
+	$version = $wgDatabase->getServerVersion(); ## long string
+	$numver = $wgDatabase->numeric_version; ## X.Y e.g. 8.3
+
 	$wgShowExceptionDetails = 1;
 
 	# Just in case their LocalSettings.php does not have this:
