@@ -1107,6 +1107,7 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta in historia prior apparebit, et recensitum recentissimum paginae necessario non renovabitur.',
 'undelete-revision'      => 'Emendatio deleta paginae $1 (ex $2) ab usore $3:',
 'undeletebtn'            => 'Restituere',
+'undeletelink'           => 'restituere',
 'undeletecomment'        => 'Sententia:',
 'undeletedarticle'       => 'restituit "[[$1]]"',
 'cannotundelete'         => 'Abrogatio deletionis fefellit; fortasse aliquis iam paginam restituit.',

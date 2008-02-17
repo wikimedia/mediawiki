@@ -485,6 +485,8 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'showpreview'             => 'Gweler blaenwelediad',
 'showdiff'                => 'Dangos newidiadau',
 'anoneditwarning'         => "'''Dalier sylw''': Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu'r dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy greu cyfrif (a mewngofnodi) cyn golygu.",
+'missingsummary'          => "'''Sylwer:''' Nid ydych wedi gosod nodyn yn y blwch 'Crynodeb'.
+Os y pwyswch eto ar 'Cadw'r dudalen' caiff y golygiad ei gadw heb nodyn.",
 'missingcommenttext'      => 'Rhowch eich sylwadau isod.',
 'missingcommentheader'    => "'''Nodyn:''' Nid ydych wedi cynnig unrhywbeth yn y blwch 'Pwnc/Pennawd:'. Os y cliciwch 'Cadw'r dudalen' eto fe gedwir y golygiad heb bennawd.",
 'summary-preview'         => "Rhagolwg o'r crynodeb",
