@@ -169,12 +169,12 @@ CONTROL;
 				$db = wfGetDB( DB_SLAVE );
 				$change = RecentChange::newFromConds(
 					array(
-						// Add redundant timestamp condition so we can use the
-						// existing index
+						// Add redundant user,timestamp condition so we can use the existing index
+						'rc_user_text'  => $this->mNewRev->getRawUserText(),
 						'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
 						'rc_this_oldid' => $this->mNewid,
 						'rc_last_oldid' => $this->mOldid,
-						'rc_patrolled' => 0,
+						'rc_patrolled' => 0
 					),
 					__METHOD__
 				);
