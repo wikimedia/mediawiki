@@ -395,6 +395,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12846) IE rtl.css issue in RTL wikis special:Preferences when selecting an
   LTR user language
 * (bug 13005) DISPLAYTITLE does not work on preview
+* (bug 13004) Fix error on Postgres searches that return too many results.
 
 == Parser changes in 1.12 ==
 

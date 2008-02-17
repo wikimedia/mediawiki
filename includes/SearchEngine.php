@@ -342,7 +342,16 @@ class SearchResultSet {
 /**
  * @addtogroup Search
  */
+class SearchResultTooMany {
+	## Some search engines may bail out if too many matches are found
+}
+
+
+/**
+ * @addtogroup Search
+ */
 class SearchResult {
+
 	function SearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 	}

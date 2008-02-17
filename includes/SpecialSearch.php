@@ -160,6 +160,15 @@ class SpecialSearch {
 		$search->setNamespaces( $this->namespaces );
 		$search->showRedirects = $this->searchRedirects;
 		$titleMatches = $search->searchTitle( $term );
+
+		// Sometimes the search engine knows there are too many hits
+		if ($titleMatches instanceof SearchResultTooMany) {
+			$wgOut->addWikiText( '==' . wfMsg( 'toomanymatches' ) . "==\n" );
+			$wgOut->addHTML( $this->powerSearchBox( $term ) );
+			$wgOut->addHTML( $this->powerSearchFocus() );
+			wfProfileOut( $fname );
+			return;
+		}
 		$textMatches = $search->searchText( $term );
 
 		$num = ( $titleMatches ? $titleMatches->numRows() : 0 )
