@@ -37,11 +37,24 @@ class SearchPostgres extends SearchEngine {
 	 * @access public
 	 */
 	function searchTitle( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->searchQuery( $term , 'titlevector', 'page_title' )));
+		$q = $this->searchQuery( $term , 'titlevector', 'page_title' );
+		$olderror = error_reporting(E_ERROR);
+		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
+		error_reporting($olderror);
+		if (!$resultSet) {
+			// Needed for "Query requires full scan, GIN doesn't support it"
+			return new SearchResultTooMany();
+		}
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
 	function searchText( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->searchQuery( $term, 'textvector', 'old_text' )));
+		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
+		$olderror = error_reporting(E_ERROR);
+		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
+		error_reporting($olderror);
+		if (!$resultSet) {
+			return new SearchResultTooMany();
+		}
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
