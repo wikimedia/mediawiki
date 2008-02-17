@@ -540,6 +540,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added siprop=namespacealiases to meta=siteinfo
 * Made multiple values for ucuser possible in list=usercontribs
 * (bug 12944) Added cmstart and cmend parameters to list=categorymembers
+* Allow queries to have a where range that does not match the range field
 
 === Languages updated in 1.12 ===
 
