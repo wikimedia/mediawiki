@@ -1684,6 +1684,7 @@ $NEWPAGE
 'undeleterevision-missing'     => 'הגרסה שגויה או חסרה. ייתכן שמדובר בקישור שבור, או שהגרסה שוחזרה או הוסרה מהארכיון.',
 'undelete-nodiff'              => 'לא נמצאה גרסה קודמת.',
 'undeletebtn'                  => 'שחזור',
+'undeletelink'                 => 'שחזור',
 'undeletereset'                => 'איפוס',
 'undeletecomment'              => 'תקציר:',
 'undeletedarticle'             => 'שחזר את [[$1]]',
