@@ -655,6 +655,7 @@ $wgMessageStructure = array(
 		'searchsubtitleinvalid',
 		'noexactmatch',
 		'noexactmatch-nocreate',
+		'toomanymatches',
 		'titlematches',
 		'notitlematches',
 		'textmatches',
