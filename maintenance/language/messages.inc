@@ -1327,6 +1327,7 @@ $wgMessageStructure = array(
 		'undeleterevision-missing',
 		'undelete-nodiff',
 		'undeletebtn',
+		'undeletelink',
 		'undeletereset',
 		'undeletecomment',
 		'undeletedarticle',

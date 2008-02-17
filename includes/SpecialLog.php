@@ -384,7 +384,7 @@ class LogViewer {
 			// show undelete link
 			} elseif ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
-					wfMsg( 'undeletebtn' ) ,
+					wfMsg( 'undeletelink' ) ,
 					'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 			// show unblock link
 			} elseif ( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
