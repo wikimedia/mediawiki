@@ -1265,8 +1265,10 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split an <arg> node into a three-element array: 
-	 *    PPNode name, string index and PPNode value
+	 * Split a <part> node into an associative array containing:
+	 *    name          PPNode name
+	 *    index         String index
+	 *    value         PPNode value 
 	 */
 	function splitArg() {
 		$bits = array();
@@ -1322,7 +1324,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * Split a <h> node
+	 * Split an <h> node
 	 */
 	function splitHeading() {
 		if ( $this->name !== 'h' ) {
