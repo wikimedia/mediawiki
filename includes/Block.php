@@ -16,8 +16,8 @@ class Block
 {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
 				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName, 
-				$mBlockEmail;
-	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster, $mByName;
+				$mBlockEmail, $mByName;
+	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster;
 	
 	const EB_KEEP_EXPIRED = 1;
 	const EB_FOR_UPDATE = 2;
@@ -270,7 +270,7 @@ class Block
 		if ( isset( $row->user_name ) ) {
 			$this->mByName = $row->user_name;
 		} else {
-			$this->mByName = false;
+			$this->mByName = $row->ipb_by_text;
 		}
 		$this->mRangeStart = $row->ipb_range_start;
 		$this->mRangeEnd = $row->ipb_range_end;
@@ -376,6 +376,15 @@ class Block
 			$this->mBlockEmail = 0; //Same goes for email...
 		}
 
+		if( !$this->mByName ) {
+			if( $this->mBy ) {
+				$this->mByName = User::whoIs( $this->mBy );
+			} else {
+				global $wgUser;
+				$this->mByName = $wgUser->getName();
+			}
+		}
+
 		# Don't collide with expired blocks
 		Block::purgeExpired();
 
@@ -386,6 +395,7 @@ class Block
 				'ipb_address' => $this->mAddress,
 				'ipb_user' => $this->mUser,
 				'ipb_by' => $this->mBy,
+				'ipb_by_text' => $this->mByName,
 				'ipb_reason' => $this->mReason,
 				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
 				'ipb_auto' => $this->mAuto,
@@ -592,9 +602,6 @@ class Block
 	 */
 	function getByName()
 	{
-		if ( $this->mByName === false ) {
-			$this->mByName = User::whoIs( $this->mBy );
-		}
 		return $this->mByName;
 	}
 
