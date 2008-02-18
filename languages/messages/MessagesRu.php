@@ -53,6 +53,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Обсуждение_категории',
 );
 
+$namespaceAliases = array(
+	'Участница'            => NS_USER,
+	'Обсуждение участницы' => NS_USER_TALK,
+);
+
 $skinNames = array(
 	'standard' => 'Стандартное',
 	'nostalgia' => 'Ностальгия',
