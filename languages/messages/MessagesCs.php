@@ -12,6 +12,7 @@
  * @author Nike
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Matěj Grabovský
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -335,6 +336,9 @@ $messages = array(
 'navigation'     => 'Navigace',
 'and'            => 'a',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'    => 'Chyba',
 'returnto'          => 'Návrat na stránku „$1“.',
 'tagline'           => 'Z {{grammar:2sg|{{SITENAME}}}}',
@@ -423,6 +427,7 @@ $messages = array(
 'versionrequired'     => 'Vyžadováno MediaWiki verze $1',
 'versionrequiredtext' => 'Pro použití této stránky je vyžadováno MediaWiki verze $1. Vizte [[{{ns:special}}:Version]].',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Citováno z „$1“',
 'youhavenewmessages'      => 'Máte $1 ($2).',
 'newmessageslink'         => 'nové zprávy',
@@ -569,6 +574,7 @@ Zkuste to znovu!',
 'yournick'                   => 'Alternativní podpis:',
 'badsig'                     => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'badsiglength'               => 'Jméno je příliš dlouhé; musí být kratší než $1 znaků.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'loginerror'                 => 'Chyba při přihlašování',
 'prefs-help-email'           => 'E-mail (volitelný): Umožní ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto adresu může být zasláno nové heslo v případě, že své heslo zapomenete.',
@@ -1018,6 +1024,7 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'group-all'           => '(všechny)',
 
 'group-autoconfirmed-member' => 'schválený uživatel',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Správce',
 'group-bureaucrat-member'    => 'Byrokrat',
 
@@ -1052,6 +1059,9 @@ $3',
 'hist'                              => 'historie',
 'hide'                              => 'skrýt',
 'show'                              => 'ukázat',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{plural:$1|sledující uživatel|sledující uživatelé|sledujících uživatelů}}]',
 'rc_categories'                     => 'Omezit na kategorie (oddělené „|“)',
 'rc_categories_any'                 => 'Všechny',
@@ -1359,6 +1369,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'booksources-text'          => 'Níže je seznam odkazů na servery prodávající knihy, nebo které mohou mít další informace o knihách, které hledáte.',
 
 'categoriespagetext' => 'Ve wiki existují následující kategorie:',
+'data'               => 'Data',
 'userrights'         => 'Správa uživatelských skupin',
 'groups'             => 'Uživatelské skupiny',
 'alphaindexline'     => 'od $1 do $2',
@@ -1584,6 +1595,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'undelete-nodiff'              => 'Nebyla nalezena žádná předchozí verze.',
 'undeletebtn'                  => 'Obnovit',
 'undeletelink'                 => 'obnovit',
+'undeletereset'                => 'Resetovat',
 'undeletecomment'              => 'Komentář:',
 'undeletedarticle'             => 'obnovuje „[[$1]]“',
 'undeletedrevisions'           => '{{plural:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
@@ -1716,6 +1728,7 @@ $1',
 'ipb_cant_unblock'            => 'Chyba: Blokování s ID $1 nebylo nalezeno. Uživatel již možná byl odblokován.',
 'ipb_blocked_as_range'        => 'Chyba: IP adresa $1 není blokována přímo a tak ji nelze odblokovat. Je částí zablokovaného rozsahu $2, který může být odblokován.',
 'ip_range_invalid'            => 'Neplatný IP rozsah.',
+'blockme'                     => 'Zablokuj mě',
 'proxyblocker'                => 'Blokování proxy serverů',
 'proxyblocker-disabled'       => 'Tato funkce je vypnuta.',
 'proxyblockreason'            => 'Vaše IP adresa byla zablokována, protože funguje jako otevřený proxy server. Kontaktujte svého poskytovatele internetového připojení nebo technickou podporu a informujte je o tomto vážném bezpečnostním problému.',
@@ -2016,6 +2029,7 @@ $1',
 Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na řádce musí být odkaz na soubor, kterému se zakazuje zobrazování na stránkách. Všechny další odkazy na řádce jsou považovány za výjimky, tedy stránky na kterých se obrázek může zobrazit.',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Tento soubor obsahuje dodatečné informace, poskytnuté zřejmě digitálním fotoaparátem nebo scannerem, kterým byl pořízen. Pokud byl soubor od té doby změněn, některé údaje mohou být neplatné.',
 'metadata-expand'   => 'Zobrazit podrobnosti',
 'metadata-collapse' => 'Skrýt podrobnosti',
@@ -2351,9 +2365,10 @@ Opravdu si přejete znovu tuto stránku založit?',
 'redirectingto' => 'Přesměrovává se na [[$1]]…',
 
 # action=purge
-'confirm_purge' => 'Aktualizovat cachovanou verzi této stránky?
+'confirm_purge'        => 'Aktualizovat cachovanou verzi této stránky?
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Hledat stránky obsahující ''$1''.",

@@ -54,11 +54,13 @@ $messages = array(
 'qbmyoptions'    => 'Nyeƒe axawo',
 'qbspecialpages' => 'Axa tɔxewo',
 'navigation'     => 'Mɔtabiala',
+'and'            => 'kpakple',
 
 'errorpagetitle'   => 'Vodada',
 'help'             => 'Kpekpeɖeŋu',
 'search'           => 'Dii',
 'searchbutton'     => 'Dii',
+'go'               => 'Yi',
 'searcharticle'    => 'Yi',
 'history_short'    => 'Xoxoawo',
 'edit'             => 'Trɔ asi le eŋu',
@@ -66,6 +68,7 @@ $messages = array(
 'talkpagelinktext' => 'Nyamedzroƒe',
 'talk'             => 'Nyamedzroƒe',
 'toolbox'          => 'Dɔwɔnuɖaka',
+'otherlanguages'   => 'Le gbe bubuwo me',
 'jumptonavigation' => 'kuɖɔɖoɖo',
 'jumptosearch'     => 'dii',
 
@@ -84,25 +87,33 @@ $messages = array(
 'editold'         => 'trɔ asi le eŋu',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user' => 'Ezãla axa',
+'nstab-main'      => 'Axa',
+'nstab-user'      => 'Ezãla axa',
+'nstab-special'   => 'Tɔxe',
+'nstab-mediawiki' => 'Nuŋɔŋlɔ',
 
 # General errors
+'error'      => 'Vodada',
 'viewsource' => 'Kpɔ alesi wowɔe',
 
 # Login and logout pages
-'login'          => 'Ge ɖe eme',
-'userlogin'      => 'Ge ɖe eme / ŋlɔ ŋkɔ daɖi',
-'logout'         => 'Do le eme',
-'userlogout'     => 'Do le eme',
-'nologinlink'    => 'Ŋlɔ ŋkɔ daɖi',
-'createaccount'  => 'Ŋlɔ ŋkɔ daɖi',
-'gotaccountlink' => 'Ge ɖe eme',
+'login'              => 'Ge ɖe eme',
+'userlogin'          => 'Ge ɖe eme / ŋlɔ ŋkɔ daɖi',
+'logout'             => 'Do le eme',
+'userlogout'         => 'Do le eme',
+'nologinlink'        => 'Ŋlɔ ŋkɔ daɖi',
+'createaccount'      => 'Ŋlɔ ŋkɔ daɖi',
+'gotaccountlink'     => 'Ge ɖe eme',
+'yourlanguage'       => 'Gbe:',
+'loginlanguagelabel' => 'Gbe: $1',
 
 # Edit pages
 'watchthis'   => 'Le ŋku ɖe axa sia ŋu',
 'savearticle' => 'Dzra axa sia ɖo',
 'showpreview' => 'Fiae do ŋgɔ',
 'showdiff'    => 'Fia tɔtrɔwo',
+'previewnote' => '<strong>Wole afii fiam do ŋgɔ, wome dzrae ɖo haɖeke o!</strong>',
+'editing'     => '$1 na etɔtrɔ',
 
 # Search results
 'powersearch' => 'Dii',

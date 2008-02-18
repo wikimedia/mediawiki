@@ -710,12 +710,12 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'image_sample'    => 'Pelda.jpg',
 'image_tip'       => 'Kép beszúrása',
 'media_sample'    => 'Peldaegyketto.ogg',
-'media_tip'       => 'Médiafájl-hivatkozás',
+'media_tip'       => 'Fájlhivatkozás',
 'sig_tip'         => 'Aláírás időponttal',
 'hr_tip'          => 'Vízszintes vonal (módjával használd)',
 
 # Edit pages
-'summary'                   => 'Összegzés',
+'summary'                   => 'Összefoglaló',
 'subject'                   => 'Téma/főcím',
 'minoredit'                 => 'Apró változtatás',
 'watchthis'                 => 'A lap figyelése',
@@ -988,6 +988,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 'searchsubtitleinvalid' => 'A "$1" kereséshez',
 'noexactmatch'          => "Nincs '''$1''' nevű lap. Készíthetsz egy [[:$1|új oldalt]] ezen a néven.",
 'noexactmatch-nocreate' => "'''Nem található „$1” nevű lap.'''",
+'toomanymatches'        => 'Túl sok találat van, próbálkozz egy másik lekérdezéssel',
 'titlematches'          => 'Címszó egyezik',
 'notitlematches'        => 'Nincs egyező címszó',
 'textmatches'           => 'Szócikk szövege egyezik',
@@ -1154,7 +1155,8 @@ A kijelöletlen csportok változatlanok maradnak. CTRL + bal kattintással tudod
 'uploadnologintext'           => 'Csak regisztrált felhasználók tölthetnek fel fájlokat. [[Special:Userlogin|Jelentkezz be]] vagy regisztrálj!',
 'upload_directory_read_only'  => 'A feltöltési könyvtár ($1) a webkiszolgáló által nem írható.',
 'uploaderror'                 => 'Feltöltési hiba',
-'uploadtext'                  => "Az alábbi űrlap használatával tölthetsz fel fájlokat. A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:Imagelist|feltöltött fájlok listájához]], a feltöltések és a törlések a [[Special:Log/upload|feltöltési naplóban]] is le vannak jegyezve.
+'uploadtext'                  => "Az alábbi űrlap használatával tölthetsz fel fájlokat.
+A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:Imagelist|feltöltött fájlok listájához]], a feltöltések és a törlések a [[Special:Log/upload|feltöltési naplóban]] is le vannak jegyezve.
 
 Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.png|alternatív szöveg]]</nowiki>''' vagy a közvetlen hivatkozáshoz használd a
@@ -1184,12 +1186,12 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',
 'emptyfile'                   => 'Az általad feltöltött fájl üresnek tűnik. Ez a fájlnévben lévő hibás karakter miatt lehet. Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
 'fileexists'                  => '<strong><tt>$1</tt></strong> névvel már létezik egy állomány. Ellenőrizd, hogy biztosan felül akarod-e írni!',
-'filepageexists'              => 'Egy oldal (nem kép) már létezik ezen a néven, kérlek ellenőrizd a(z) <strong><tt>$1</tt></strong> lapot, ha nem vagy biztos benne, hogy meg szeretnéd változtatni.',
+'filepageexists'              => 'Egy oldal (nem fájl) már létezik ezen a néven, kérlek ellenőrizd a(z) <strong><tt>$1</tt></strong> lapot, ha nem vagy biztos benne, hogy meg szeretnéd változtatni.',
 'fileexists-extension'        => 'Van hasonló nevű fájl:<br />
 A feltöltendő fájl neve: <strong><tt>$1</tt></strong><br />
 A létező fájl neve: <strong><tt>$2</tt></strong><br />
 Kérjük, hogy válassz másik nevet.',
-'fileexists-thumb'            => "'''<center>Ilyen nevű kép már van</center>'''",
+'fileexists-thumb'            => "<center>Ilyen nevű fájl már van</center>'''",
 'fileexists-thumbnail-yes'    => 'A fájl egy csökkentett méretű képnek <i>(bélyegképnek)</i> tűnik. Kérjük, hogy ellenőrizd a(z) <strong><tt>$1</tt></strong> fájlt.<br />
 Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor a bélyegképet nem kell külön feltöltened.',
 'file-thumbnail-no'           => 'A fájlnév a(z) <strong><tt>$1</tt></strong> karakterlánccal kezdődik. Úgy tűnik, hogy ez egy csökkentett méretű kép <i>(bélyegkép)</i>.
@@ -1285,7 +1287,7 @@ PICT # ált.
 'imagelist_user'            => 'felöltő',
 'imagelist_size'            => 'Méret',
 'imagelist_description'     => 'Leírás',
-'imagelist_search_for'      => 'Képnévre keresés:',
+'imagelist_search_for'      => 'Keresés kép nevére:',
 
 # File reversion
 'filerevert'                => '$1 visszaállítása',
@@ -1398,7 +1400,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'mostlinkedcategories'    => 'Legtöbbet hivatkozott kategóriák',
 'mostlinkedtemplates'     => 'Legtöbbet szerkesztett lapok',
 'mostcategories'          => 'Legtöbb kategóriába tartozó lapok',
-'mostimages'              => 'Legtöbbet használt képek',
+'mostimages'              => 'Legtöbbet hivatkozott fájlok',
 'mostrevisions'           => 'Legtöbb változattal rendelkező szócikkek',
 'allpages'                => 'Az összes lap listája',
 'prefixindex'             => 'Keresés előtag szerint',
@@ -1512,7 +1514,7 @@ nem kíván másoktól leveleket kapni.',
 'watchnologin'         => 'Nincs belépve',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Userlogin|be kell lépned]].',
 'addedwatch'           => 'Figyelőlistához hozzáfűzve',
-'addedwatchtext'       => "A(z) „<nowiki>\$1</nowiki>” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
+'addedwatchtext'       => "A(z) „<nowiki>$1</nowiki>” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
 Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.
 
 Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az oldalmenü „{{MediaWiki:Unwatchthispage}}” pontjával (vagy a „{{MediaWiki:Unwatch}}” füllel) teheted meg.",
@@ -1691,6 +1693,7 @@ a törölt változatoknak a tényleges szövege csak az adminisztrátorok szám�
 változatot visszaállították vagy eltávolították az archívumból.',
 'undelete-nodiff'              => 'Nem található korábbi változat.',
 'undeletebtn'                  => 'Helyreállítás',
+'undeletelink'                 => 'helyreállít',
 'undeletereset'                => 'Vissza',
 'undeletecomment'              => 'Helyreállítás oka:',
 'undeletedarticle'             => '„[[$1]]” helyreállítva',
@@ -2140,7 +2143,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, aminek futtatása kárt tehet a számítógépes rendszeredben.<hr />",
-'imagemaxsize'         => 'A képlapokon mutatott maximális képméret:',
+'imagemaxsize'         => 'A kép leírólapján mutatott legnagyobb képméret:',
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, $3 oldal',
 'file-info'            => '(fájlméret: $1, MIME típus: $2)',

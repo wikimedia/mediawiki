@@ -825,6 +825,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'searchsubtitleinvalid' => "Tìm '''$1'''",
 'noexactmatch'          => "'''Trang “$1” không tồn tại.''' Bạn có thể [[:$1|tạo trang này]].",
 'noexactmatch-nocreate' => "'''Không có trang nào có tên “$1”.'''",
+'toomanymatches'        => 'Có quá nhiều kết quả được trả về, xin hãy thử câu tìm kiếm khác',
 'titlematches'          => 'Đề mục tương tự',
 'notitlematches'        => 'Không có tên trang nào có nội dung tương tự',
 'textmatches'           => 'Câu chữ tương tự',
@@ -1500,10 +1501,11 @@ Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa
 'undeletehistorynoadmin'       => 'Trang này đã bị xóa. Lý do xóa trang được 
 hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này 
 trước khi bị xóa. Chỉ cóngười quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
-'undelete-revision'            => 'Đã xóa phiên bản của $1 (vào lúc $2) sửa đổi bởi $3:',
+'undelete-revision'            => 'Phiên bản của $1 do $3 xóa (vào lúc $2):',
 'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
 'undelete-nodiff'              => 'Không tìm thấy phiên bản cũ hơn.',
 'undeletebtn'                  => 'Phục hồi',
+'undeletelink'                 => 'phục hồi',
 'undeletereset'                => 'Tẩy trống',
 'undeletecomment'              => 'Lý do:',
 'undeletedarticle'             => 'đã phục hồi “$1”',

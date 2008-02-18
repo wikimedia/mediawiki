@@ -187,7 +187,7 @@ $messages = array(
 'toolbox'           => '工具盒',
 'userpage'          => '眵吖用戶頁',
 'projectpage'       => '眵吖計畫頁',
-'imagepage'         => '眵吖圖像頁',
+'imagepage'         => '眵吖媒體頁',
 'mediawikipage'     => '眵吖消息頁',
 'templatepage'      => '眵吖模板頁',
 'viewhelppage'      => '眵吖幫助頁',
@@ -218,6 +218,7 @@ $messages = array(
 'edithelp'          => '編寫幫助',
 'edithelppage'      => 'Help:啷編寫文章',
 'faq'               => 'FAQ',
+'faqpage'           => 'Project:問得蠻多箇問題',
 'helppage'          => 'Help:説明',
 'mainpage'          => '封面',
 'policy-url'        => 'Project:政策',
@@ -237,6 +238,7 @@ $messages = array(
 'versionrequired'     => '需要$1版嗰mediawiki',
 'versionrequiredtext' => '$1版嗰mediawiki才用得正箇頁。參看[[Special:Version|版本頁]]。',
 
+'ok'                      => '做得',
 'retrievedfrom'           => '版本頁 "$1"',
 'youhavenewmessages'      => '倷有 $1 ($2).',
 'newmessageslink'         => '新消息',
@@ -256,6 +258,7 @@ $messages = array(
 'site-rss-feed'           => '$1嗰RSS訊息',
 'site-atom-feed'          => '$1嗰Atom訊息',
 'page-rss-feed'           => '"$1"嗰RSS訊息',
+'page-atom-feed'          => '"$1" Atom Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文章',
@@ -327,7 +330,7 @@ $1',
 'protectedpagetext'    => '箇頁鎖到嘞，改伓正。',
 'viewsourcetext'       => '倷可以眵吖或複製箇頁嗰原始碼：',
 'protectedinterface'   => '箇頁給正嘞軟件嗰界面文本，佢拕鎖到怕人亂扤。',
-'editinginterface'     => "'''警告'''：倷編寫嗰頁面係用來提供軟件嗰界面文本，改動箇頁會礙到別嗰用戶嗰界面外觀。",
+'editinginterface'     => "!!糊糊涂涂!!'''警告'''：倷編寫嗰頁面係用來提供軟件嗰界面文本，改動箇頁會礙到別嗰用戶嗰界面外觀。",
 'sqlhidden'            => '(SQL 弆到嗰查詢)',
 'cascadeprotected'     => '箇頁已拕保護，因為佢拕「聯鎖保護」嗰{{PLURAL:$1|一隻|幾隻}}拕保護頁包到：
 $2',
@@ -364,6 +367,7 @@ $2',
 'createaccountmail'          => '通過email',
 'badretype'                  => '倷輸嗰密碼伓合。',
 'userexists'                 => '倷輸嗰用戶名係人家嗰，選過隻嘍！',
+'youremail'                  => '電子郵件：',
 'username'                   => '用戶名：',
 'uid'                        => '用戶ID：',
 'yourrealname'               => '真名：',
@@ -372,9 +376,11 @@ $2',
 'yournick'                   => '花名：',
 'badsig'                     => '原始簽名錯誤，請檢查HTML。',
 'badsiglength'               => '花名咁長？佢嗰長度要在$1隻字符以內。',
+'email'                      => '電子郵件',
 'prefs-help-realname'        => '真名係選填嗰，要係倷填嘞，倷嗰作品就會標到倷嗰名字。',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => 'email係選填嗰，佢可以讓伓認得倷嗰人通過email聯繫正倷。',
+'prefs-help-email-required'  => '需要電子郵件地址。',
 'nocookiesnew'               => '帳戶扤正嘞！測到倷關吥嘞Cookies，麻煩倷開到佢登入過。',
 'nocookieslogin'             => '箇首要用 Cookies 登入，測到倷關吥嘞Cookies，麻煩倷開到佢登入過。',
 'noname'                     => '倷冇輸正有效嗰用戶名。',
@@ -403,6 +409,7 @@ $2',
 'invalidemailaddress'        => 'email嗰格式伓合，請輸隻正確嗰email位址或清吥箇隻空格。',
 'accountcreated'             => '帳戶扤正嘍',
 'accountcreatedtext'         => '扤正嘍$1嗰帳戶。',
+'createaccount-title'        => '從{{SITENAME}}創建箇帳戶',
 'loginlanguagelabel'         => '語言: $1',
 
 # Password reset dialog
@@ -412,7 +419,7 @@ $2',
 'resetpass_submit'        => '設定密碼同到登入',
 'resetpass_success'       => '倷嗰密碼改正嘍！正幫倷登入...',
 'resetpass_bad_temporary' => '冇用嗰臨時密碼。可能倷改正嘞倷嗰密碼，或者重新要過隻新嗰臨時密碼。',
-'resetpass_forbidden'     => 'wiki 上改伓正密碼',
+'resetpass_forbidden'     => '在{{SITENAME}}上改伓得密碼',
 'resetpass_missing'       => '尋伓到資料。',
 
 # Edit page toolbar
@@ -430,8 +437,8 @@ $2',
 'math_tip'        => '數學公式 (LaTeX)',
 'nowiki_sample'   => '到箇首扻入非格式文本',
 'nowiki_tip'      => '扻入非格式文本',
-'image_tip'       => '扻入圖像',
-'media_tip'       => '媒體檔案連結',
+'image_tip'       => '扻進文件',
+'media_tip'       => '檔案連結',
 'sig_tip'         => '倷帶時間嗰簽名',
 'hr_tip'          => '橫線 (小聲使用)',
 
@@ -515,7 +522,7 @@ $2',
 'token_suffix_mismatch'     => '<strong>倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
 箇種情況通常係含到好多臭蟲、以網絡為主嗰匿名代理服務扤得。</strong>',
 'editing'                   => '眼下在編輯$1',
-'editinguser'               => '眼下在編輯用戶<b>$1</b>',
+'editinguser'               => "眼下在編輯用戶嗰權限 '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => '眼下在編輯$1 (段落)',
 'editingcomment'            => '眼下在編輯$1 (評論)',
 'editconflict'              => '編輯仗: $1',
@@ -540,6 +547,7 @@ $2',
 'protectedpagewarning'      => '<strong>警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正。</strong>',
 'semiprotectedpagewarning'  => "'''注意：'''箇頁拕鎖到嘞，單只註冊用戶編得正。",
 'cascadeprotectedwarning'   => '警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正，因為箇頁同底下嗰連鎖保護嗰{{PLURAL:$1|一隻|多隻}}頁面包到嘞:',
+'titleprotectedwarning'     => '<strong>警告：個只頁鎖嘅哩，只有某些人可以創建。</strong>',
 'templatesused'             => '箇隻頁面使用嗰模板有:',
 'templatesusedpreview'      => '箇隻預覽使用嗰模板有:',
 'templatesusedsection'      => '箇隻段落使用嗰模板有:',
@@ -802,9 +810,13 @@ $2',
 'uploadnologintext'           => '倷要[[Special:Userlogin|登入]]再上傳得正檔案。',
 'upload_directory_read_only'  => '上傳目錄($1)伓存在或冇寫入許可權。',
 'uploaderror'                 => '上傳出錯',
-'uploadtext'                  => "用下底嗰表格上傳檔案。 要眵或要尋先前上傳嗰圖像請去[[Special:Imagelist|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。 
+'uploadtext'                  => "用下底嗰表格上傳檔案。
+要眵或要尋先前上傳嗰圖像請去[[Special:Imagelist|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。 
 
-要係想到頁面要扻到圖像，用得正下底方式嗰連結: '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''， '''<nowiki>[[{{ns:image}}:file.png|替代文字]]</nowiki>''' 或 '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
+要係想扻文件到頁面，用得正下底方式嗰連結: 
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' 或
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' 直接連接到箇只文件。",
 'uploadlog'                   => '上傳日誌',
 'uploadlogpage'               => '上傳日誌',
 'uploadlogpagetext'           => '底下係最近上傳檔嗰通覽表。',
@@ -1005,7 +1017,7 @@ $2',
 'lonelypagestext'         => '底下頁面冇連結箇隻wiki別嗰頁面。',
 'uncategorizedpages'      => '冇歸類嗰頁面',
 'uncategorizedcategories' => '冇歸類嗰分類',
-'uncategorizedimages'     => '冇歸類嗰圖像',
+'uncategorizedimages'     => '冇歸類嗰文件',
 'uncategorizedtemplates'  => '冇歸類嗰模版',
 'unusedcategories'        => '冇使用嗰分類',
 'unusedimages'            => '冇使用嗰圖像',
@@ -1093,8 +1105,9 @@ $2',
 'emailpagetext'   => '要係箇隻用戶到佢嗰參數設置頁填哩有效嗰email位置，下底嗰表格會寄隻信息到箇隻用戶。
 倷到倷參數設置填嗰email位置會顯到email嗰「發信人」箇欄，咁樣箇隻用戶就回得正倷囉。',
 'usermailererror' => 'Mail位置返回錯誤:',
-'noemailtitle'    => '冇email地址',
-'noemailtext'     => '箇隻用戶還冇指定正一隻有效嗰email位址，或者佢伓願收別嗰用戶嗰email。',
+'defemailsubject' => '{{SITENAME}} 電子郵件',
+'noemailtitle'    => '冇得電子郵件地址',
+'noemailtext'     => '箇隻用戶還冇指定正一隻有效嗰電子郵件位址，或者佢伓願收別嗰用戶嗰電子郵件。',
 'emailfrom'       => '發信人',
 'emailto'         => '收信人',
 'emailsubject'    => '主題',
@@ -1390,6 +1403,7 @@ $NEWPAGE
 'ip_range_invalid'            => '冇用嗰IP範圍。',
 'blockme'                     => '封吥偶去',
 'proxyblocker'                => '代理封鎖器',
+'proxyblocker-disabled'       => '箇只功能毛得用哩',
 'proxyblockreason'            => '倷嗰IP係一隻公開嗰代理，佢拕封到嘞。請聯絡倷嗰Internet服務提供商或技術幫助再告誦佢俚箇隻嚴重嗰安全問題。',
 'proxyblocksuccess'           => '扤正囉。',
 'sorbsreason'                 => '倷嗰IP拕 DNSBL 歸到公開代理服務器。',
@@ -1502,10 +1516,11 @@ $NEWPAGE
 'importcantopen'             => '開伓正導入檔案',
 'importbadinterwiki'         => '扤壞嗰內部wiki連結',
 'importnotext'               => '空白或冇字',
-'importsuccess'              => '導入正嘞！',
+'importsuccess'              => '導進完了！',
 'importhistoryconflict'      => '挭過仗嗰修改歷史(之前就話伓定導過箇隻頁面)',
 'importnosources'            => '跨Wiki導入源冇定義，還伓準直接嗰歷史上傳。',
 'importnofile'               => '冇上傳導入檔案。',
+'import-parse-failure'       => 'XML 導進分析失敗',
 'import-noarticle'           => '冇得頁面導入！',
 
 # Import log
@@ -1959,7 +1974,7 @@ $1',
 
 # E-mail address confirmation
 'confirmemail'            => '確認email地址',
-'confirmemail_noemail'    => '倷冇到倷嗰[[Special:Preferences|用戶設置]]設正一隻有效嗰 email 地址。',
+'confirmemail_noemail'    => '倷冇到倷嗰[[Special:Preferences|用戶設置]]設正一隻有效嗰電子郵件地址。',
 'confirmemail_text'       => '箇隻網站要求倷用email功能之前確認下倷嗰email地址。按吖下底嗰鍵來發封確認郵件到倷嗰郵箱。佢會附帶一隻代碼連結；請到倷嗰瀏覽器打開箇隻連結來確認倷嗰email地址係有效嗰。',
 'confirmemail_pending'    => '<div class="error"> 
 一隻確認代碼發到倷嗰郵箱，噉可能要等幾分鐘。要係冇收到，請申請過新嗰確認碼！ </div>',
@@ -1974,7 +1989,7 @@ $1',
 'confirmemail_success'    => '倷嗰郵箱已得到嘞確認。嘎倷能登得正入同到使用箇隻網站。',
 'confirmemail_loggedin'   => '倷嗰email地址已得到確認。',
 'confirmemail_error'      => '確認過程出錯。',
-'confirmemail_subject'    => '{{SITENAME}}email地址確認',
+'confirmemail_subject'    => '{{SITENAME}}電子郵件地址確認',
 'confirmemail_body'       => 'IP地址$1嗰用戶(可能係倷)到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。 
 
 請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結: 
@@ -2040,8 +2055,8 @@ $1',
 'autosumm-new'     => '新頁: $1',
 
 # Live preview
-'livepreview-loading' => '載入中…',
-'livepreview-ready'   => '載入中… 正囉!',
+'livepreview-loading' => '正在載入…',
+'livepreview-ready'   => '正在載入… 完成哩!',
 'livepreview-failed'  => '即時預覽失敗! 試吖標準預覽。',
 'livepreview-error'   => '連接失敗: $1 "$2" 試吖標準預覽。',
 
@@ -2073,5 +2088,9 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => '伓認得個嗰擴展標籤 "$1"',
+
+# Special:Filepath
+'filepath'      => '文件路徑',
+'filepath-page' => '文件：',
 
 );

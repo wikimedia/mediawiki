@@ -7,6 +7,7 @@
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author Morten LJ
  * @author Max sonnelid
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -1148,17 +1149,18 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'filerevert-badversion'     => 'Der findes ingen lokal udgave af denne fil med det opgivne tidsstempel.',
 
 # File deletion
-'filedelete'             => 'Slet $1',
-'filedelete-legend'      => 'Slet fil',
-'filedelete-intro'       => "Du er ved at slette '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Du er ved at slette en tidligere version af \'\'\'[[Media:$1|$1]]\'\'\' fra [$4 $2, $3].</span>',
-'filedelete-comment'     => 'Kommentar:',
-'filedelete-submit'      => 'Slet',
-'filedelete-success'     => "'''$1''' er blevet slettet.",
-'filedelete-success-old' => '<span class="plainlinks">En gamllem version af \'\'\'[[Media:$1|$1]]\'\'\' fra $2, $3 er blevet slettet.</span>',
-'filedelete-nofile'      => "'''$1''' findes ikke på dette websted.",
-'filedelete-nofile-old'  => "Der findes ikke en version af '''$1''' fra $2, $3.",
-'filedelete-iscurrent'   => 'Du har forsøgt at slette den nyeste version. Gendan en tidligere udgave først.',
+'filedelete'                  => 'Slet $1',
+'filedelete-legend'           => 'Slet fil',
+'filedelete-intro'            => "Du er ved at slette '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Du er ved at slette en tidligere version af \'\'\'[[Media:$1|$1]]\'\'\' fra [$4 $2, $3].</span>',
+'filedelete-comment'          => 'Kommentar:',
+'filedelete-submit'           => 'Slet',
+'filedelete-success'          => "'''$1''' er blevet slettet.",
+'filedelete-success-old'      => '<span class="plainlinks">En gamllem version af \'\'\'[[Media:$1|$1]]\'\'\' fra $2, $3 er blevet slettet.</span>',
+'filedelete-nofile'           => "'''$1''' findes ikke på dette websted.",
+'filedelete-nofile-old'       => "Der findes ikke en version af '''$1''' fra $2, $3.",
+'filedelete-iscurrent'        => 'Du har forsøgt at slette den nyeste version. Gendan en tidligere udgave først.',
+'filedelete-reason-otherlist' => 'Anden grund',
 
 # MIME search
 'mimesearch'         => 'Søge efter MIME-type',
@@ -1445,6 +1447,8 @@ Tilbagemelding og yderligere hjælp:
 'excontentauthor'             => "indholdet var: '$1' (og den eneste forfatter var '$2')",
 'exbeforeblank'               => "indholdet før siden blev tømt var: '$1'",
 'exblank'                     => 'siden var tom',
+'delete-confirm'              => 'Slet «$1»',
+'delete-legend'               => 'Slet',
 'historywarning'              => 'Advarsel: Siden du er ved at slette har en historie:',
 'confirmdeletetext'           => 'Du er ved permanent at slette en side
 eller et billede sammen med hele den tilhørende historie fra databasen. Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne, og at du gør dette i overensstemmelse med
@@ -1489,7 +1493,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'protect_expiry_old'          => 'Udløbstiden ligger i fortiden.',
 'unprotectsub'                => '(Fjern beskyttelse af "$1")',
 'protect-unchain'             => 'Ændre flytningsbeskyttelse',
-'protect-text'                => "Her kan beskyttelsesstatus for siden '''<nowiki>\$1</nowiki>''' ses og ændres.",
+'protect-text'                => "Her kan beskyttelsesstatus for siden '''<nowiki>$1</nowiki>''' ses og ændres.",
 'protect-locked-blocked'      => 'Du kan ikke ændre sidens status, da din brugerkonto er spærret. Her er de aktuelle beskyttelsesindstillinger for siden <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Databasen er spærret, sidebeskyttelsen kan derfor ikke ændres. her er de aktuelle beskyttelsesindstillinger for siden <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Den brugerkonto har ikke de nødvendige rettigheder til at ændre sidebeskyttelsen. Her er de aktuelle beskyttelsesindstillinger for siden <strong>„$1“:</strong>',
@@ -1542,6 +1546,7 @@ Den aktuelle tekst for den slettede side er kun tilgængelig for administratorer
 'undeleterevision-missing'     => 'Ugyldig eller manglende version. Enten er henvisningen forkert eller versionen blev fjernet eller gendannet fra arkivet.',
 'undelete-nodiff'              => 'Der findes ingen tidligere version.',
 'undeletebtn'                  => 'Gendan!',
+'undeletelink'                 => 'gendan',
 'undeletereset'                => 'Afbryde',
 'undeletecomment'              => 'Begrundelse:',
 'undeletedarticle'             => 'gendannede "$1"',
@@ -2382,5 +2387,16 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukendt extension-tag: $1',
+
+# Special:Version
+'version-version'          => 'Version',
+'version-license'          => 'Licens',
+'version-software-product' => 'Produkt',
+'version-software-version' => 'Version',
+
+# Special:Filepath
+'filepath'        => 'Filsti',
+'filepath-page'   => 'Fil:',
+'filepath-submit' => 'Sti',
 
 );

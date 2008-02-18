@@ -999,7 +999,7 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'lonelypagestext'         => 'Batu bu se tid gluyasikiiskafu male aru bu koe {{SITENAME}}.',
 'uncategorizedpages'      => 'Lomiskaf bueem',
 'uncategorizedcategories' => 'Lomiskaf lomeem',
-'uncategorizedimages'     => 'Lomiskaf ewaveem',
+'uncategorizedimages'     => 'Lomiskaf iyeltak yo',
 'uncategorizedtemplates'  => 'Lomiskaf tezeem',
 'unusedcategories'        => 'Mefaven lomeem',
 'unusedimages'            => 'Avuwikaf ewaveem',
@@ -1503,7 +1503,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'tooltip-feed-atom'               => 'Atom rust icde batu bu',
 'tooltip-t-contributions'         => 'Wira va webekseem ke bat favesik',
 'tooltip-t-emailuser'             => 'Staksara pu bat favesik',
-'tooltip-t-upload'                => 'Kalvajara va mamaf ok ewavaf iyeltak',
+'tooltip-t-upload'                => 'Kalvajara va iyeltak',
 'tooltip-t-specialpages'          => 'Aptabueem',
 'tooltip-t-print'                 => 'Rorubian siatos ke batu bu',
 'tooltip-t-permalink'             => 'Elubkafi gluyasiki va bat busiatos',
@@ -1511,7 +1511,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'tooltip-ca-nstab-user'           => 'Wira va favesikbu',
 'tooltip-ca-nstab-special'        => 'Batu bu tis aptafu bu vaon me robetal',
 'tooltip-ca-nstab-project'        => 'Wira va abdumimaks bu',
-'tooltip-ca-nstab-image'          => 'Wira va ewava bu',
+'tooltip-ca-nstab-image'          => 'Wira va iyeltakbu',
 'tooltip-ca-nstab-mediawiki'      => 'Wira va bolkstaksa',
 'tooltip-ca-nstab-template'       => 'Wira va teza',
 'tooltip-ca-nstab-help'           => 'Wira va pomarabu',
@@ -1601,8 +1601,7 @@ Koti ari milconhafi gluyasiki roklon zo krafiar.',
 
 # Metadata
 'metadata'          => 'Veyorigeem',
-'metadata-help'     => 'Bat iyeltak va loplekufa giva ruldar. Bata giva male reduso ok tuotukaso wanuyasiko iku ksudasiko
-lanon zo loplekuyur. Ede iyeltak malion di zo betayar, konaka pinta va betayana ewava rotir me co-tcazed.',
+'metadata-help'     => 'Bat iyeltak va loplekufa giva ruldar. Bata giva male reduso ok tuotukaso wanuyasiko iku ksudasiko lanon zo loplekuyur. Ede iyeltak malion di zo betayar, konaka pinta va betayana ewava rotir me co-tcazenhed.',
 'metadata-expand'   => 'Nedira va pintapeem',
 'metadata-collapse' => 'Palsera va pintapeem',
 'metadata-fields'   => 'Divatceson va veyorigak EXIF veyorigafa rapta se vexalana koe bata staksa zo ko ewavabu zo kodoplekutud. Ara rapta omavon zo palseter.
