@@ -1297,8 +1297,10 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * Split an <arg> node into a three-element array: 
-	 *    PPNode name, string index and PPNode value
+	 * Split a <part> node into an associative array containing:
+	 *    name          PPNode name
+	 *    index         String index
+	 *    value         PPNode value 
 	 */
 	function splitArg() {
 		$names = $this->xpath->query( 'name', $this->node );
