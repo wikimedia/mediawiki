@@ -399,6 +399,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Parser changes in 1.12 ==
 
+For help with migration to the MediaWiki 1.12 parser, please visit:
+
+http://meta.wikimedia.org/wiki/Migration_to_the_new_preprocessor
+
 The parser pass order has changed from
 
    * Extension tag strip and render
@@ -430,22 +434,23 @@ will not be recognised by the preprocessor and hence will not prevent template
 expansion within them, but they will be stripped by the following HTML security
 pass.
 
-The rules for template expansion during message transformation were
-counterintuitive, mostly accidental and buggy. There are a few small changes in
-this version: for example, templates with dynamic names, as in "{{ {{a}} }}",
-are fully expanded as they are in HTML mode, whereas previously only the inner
-template was expanded. I'd like to make some larger breaking changes to message
-transformation, after a review of typical use cases.
+Bug 5678 has been fixed. This has a number of user-visible effects related to
+the removal of this double-parse. Please see the wiki page for examples. 
+
+Message transformation mode has been removed, and replaced with "preprocess"
+mode. This means that some MediaWiki namespace messages may need to be updated,
+especially ones which took advantage of the terribly counterintuitive behaviour
+of the former message mode. 
 
 The header identification routines for section edit and for numbering section
 edit links have been merged. This removes a significant failure mode and fixes a
 whole category of bugs (tracked by bug #4899). Wikitext headings uncovered by
-template expansion or comment removal will still be rendered into a heading tag,
-and will get an entry in the TOC, but will not have a section edit link.
-HTML-style headings will also not have a section edit link. Valid wikitext
-headings present in the template source text will get a template section edit
-link. This is a major break from previous behaviour, but I believe the effects
-are almost entirely beneficial.
+template expansion will still be rendered into a heading tag, and will get an 
+entry in the TOC, but will not have a section edit link. HTML-style headings 
+will also not have a section edit link. Valid wikitext headings present in the 
+template source text will get a template section edit link. This is a major 
+break from previous behaviour, but I believe the effects are almost entirely 
+beneficial.
 
 The main motivation for making these changes was performance. The new two-pass
 preprocessor can skip "dead branches" in template expansion, such as unfollowed
@@ -461,6 +466,14 @@ limit.
 
 The context in which XML-style extension tags are called has changed, so
 extensions which make use of the parser state may need compatibility changes.
+
+The new preprocessor syntax has been documented in Backus-Naur Form at:
+
+http://www.mediawiki.org/wiki/Preprocessor_ABNF
+
+The ExpandTemplates extension now has the ability to generate an XML parse 
+tree from wikitext source. This parse tree corresponds closely to the grammar
+documented on that page.
 
 === API changes in 1.12 ===
 
