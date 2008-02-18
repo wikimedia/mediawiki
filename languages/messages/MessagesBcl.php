@@ -416,7 +416,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'loginsuccesstitle'          => 'Matriumpo an paglaog',
 'loginsuccess'               => "'''Nakalaog ka na sa {{SITENAME}} bilang si \"\$1\".'''",
 'nosuchuser'                 => "Mayong parágamit sa pangaran na \"\$1\". Reparohon an pigsurat mo, o maggibo nin bâgong ''account''.",
-'nosuchusershort'            => 'Mayong parágamit sa nagngangaran na "$1". Reparohon an pigsurat mo.',
+'nosuchusershort'            => 'Mayong parágamit sa nagngangaran na "<nowiki>$1</nowiki>". Reparohon an pigsurat mo.',
 'nouserspecified'            => 'Kaipuhan mong kaagan nin pangaran.',
 'wrongpassword'              => 'Salâ an pigtaták na sekretong panlaog. Probaran giraray tabî.',
 'wrongpasswordempty'         => 'Mayong pigkaag na sekretong panlaog. Probaran giraray tabî.',
@@ -1270,7 +1270,7 @@ o ladawan kasabay an gabos na mga historya kaini.
 Konpirmaron tabî na talagang boot mong gibohon ini, nasasabotan mo an mga resulta, asin an piggigibo mo ini konporme sa
 [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Nagibo na',
-'deletedtext'                 => 'Pigparâ na an "$1" .
+'deletedtext'                 => 'Pigparâ na an "<nowiki>$1</nowiki>" .
 Hilingón tabî an $2 para mahiling an lista nin mga kaaagi pa sanang pagparâ.',
 'deletedarticle'              => 'pigparâ "[[$1]]"',
 'dellogpage'                  => 'Historial nin pagparâ',
@@ -1306,7 +1306,7 @@ Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, danga
 'protect_expiry_old'          => 'Pasado na an panahón nin pagpasó.',
 'unprotectsub'                => '(Binabawi an proteksión kan "$1")',
 'protect-unchain'             => 'Bawion an kandado sa mga permiso sa pagbalyó',
-'protect-text'                => 'Pwede mong hilingón asin bâgohon an tangga nin proteksyón digdi para sa páhina <strong>$1</strong>.',
+'protect-text'                => 'Pwede mong hilingón asin bâgohon an tangga nin proteksyón digdi para sa páhina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Dai mo pwedeng bâgohon an mga tangga kan proteksyon mientras na ika nababágat. Ini an mga presenteng pwesto kan páhina <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Dai puedeng ibalyo an mga nibel kan proteksión ta may actibong kandado sa base nin datos.
 Ini an mga puesta sa ngunyan kaining páhina <strong>$1</strong>:',

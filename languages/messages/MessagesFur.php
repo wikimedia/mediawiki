@@ -570,13 +570,13 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'watchnologin'         => 'No tu sês jentrât',
 'watchnologintext'     => "Tu 'nd âs di [[Special:Userlogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",
 'addedwatch'           => 'Zontât aes pagjinis tignudis di voli',
-'addedwatchtext'       => "La pagjine \"\$1\" e je stade zontade ae [[Special:Watchlist|liste di chês tignudis di voli]].
+'addedwatchtext'       => "La pagjine \"<nowiki>\$1</nowiki>\" e je stade zontade ae [[Special:Watchlist|liste di chês tignudis di voli]].
 Tal futûr i cambiaments a cheste pagjine e ae pagjine di discussion relative a saran segnalâts ca,
 e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins cambiaments]] cussì che tu puedis notâle daurman.
 
 <p>Se tu vuelis gjavâle de liste pi indevant, frache su \"No stâ tignî di voli\" te sbare in alt.",
 'removedwatch'         => 'Gjavade de liste',
-'removedwatchtext'     => 'La pagjine "$1" e je stade gjavade de liste di chês tignudis di voli.',
+'removedwatchtext'     => 'La pagjine "<nowiki>$1</nowiki>" e je stade gjavade de liste di chês tignudis di voli.',
 'watch'                => 'Ten di voli',
 'watchthispage'        => 'Ten di voli cheste pagjine',
 'unwatch'              => 'No stâ tignî di voli',
@@ -600,7 +600,7 @@ e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins
 'exbeforeblank'    => "il contignût prime di disvuedâ al jere: '$1'",
 'exblank'          => 'pagjine vueide',
 'historywarning'   => 'Atenzion: la pagjine che tu stâs eliminant e à un storic.',
-'deletedtext'      => '"$1" al è stât eliminât.
+'deletedtext'      => '"<nowiki>$1</nowiki>" al è stât eliminât.
 Cjale $2 par une liste des ultimis eliminazions.',
 'deletedarticle'   => 'eliminât "$1"',
 'dellogpage'       => 'Regjistri des eliminazions',

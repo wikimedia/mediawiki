@@ -134,7 +134,7 @@ class LoginForm {
 		if( WikiError::isError( $result ) ) {
 			$this->mainLoginForm( wfMsg( 'mailerror', $result->getMessage() ) );
 		} else {
-			$wgOut->addWikiText( wfMsg( 'accmailtext', $u->getName(), $u->getEmail() ) );
+			$wgOut->addWikiMsg( 'accmailtext', $u->getName(), $u->getEmail() );
 			$wgOut->returnToMain( false );
 		}
 		$u = 0;
@@ -164,9 +164,9 @@ class LoginForm {
 			global $wgOut;
 			$error = $u->sendConfirmationMail();
 			if( WikiError::isError( $error ) ) {
-				$wgOut->addWikiText( wfMsg( 'confirmemail_sendfailed', $error->getMessage() ) );
+				$wgOut->addWikiMsg( 'confirmemail_sendfailed', $error->getMessage() );
 			} else {
-				$wgOut->addWikiText( wfMsg( 'confirmemail_oncreate' ) );
+				$wgOut->addWikiMsg( 'confirmemail_oncreate' );
 			}
 		}
 
@@ -619,7 +619,7 @@ class LoginForm {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
-		$wgOut->addWikiText( wfMsg( 'whitelistacctext' ) );
+		$wgOut->addWikiMsg( 'whitelistacctext' );
 
 		$wgOut->returnToMain( false );
 	}
@@ -644,7 +644,7 @@ class LoginForm {
 		$blocker = User::whoIs( $wgUser->mBlock->mBy );
 		$block_reason = $wgUser->mBlock->mReason;
 
-		$wgOut->addWikiText( wfMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker ) );
+		$wgOut->addWikiMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker );
 		$wgOut->returnToMain( false );
 	}
 
@@ -813,7 +813,7 @@ class LoginForm {
 	function throttleHit( $limit ) {
 		global $wgOut;
 
-		$wgOut->addWikiText( wfMsg( 'acct_creation_throttle_hit', $limit ) );
+		$wgOut->addWikiMsg( 'acct_creation_throttle_hit', $limit );
 	}
 
 	/**

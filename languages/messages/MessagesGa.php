@@ -454,7 +454,7 @@ isteach. Tá fianáin díchumasaithe agat. Cumasaigh iad agus déan athiarracht,
 'loginsuccess'               => 'Tá tú logáilte isteach anois sa {{SITENAME}} mar "$1".',
 'nosuchuser'                 => 'Níl aon úsáideoir ann leis an ainm "$1".
 Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora nua a chruthú.',
-'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "$1". Cinntigh do litriú.',
+'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "<nowiki>$1</nowiki>". Cinntigh do litriú.',
 'nouserspecified'            => 'Caithfidh ainm úsáideoir a shonrú.',
 'wrongpassword'              => "D'iontráil tú focal faire mícheart (nó ar iarraidh). Déan iarracht eile le do thoil.",
 'wrongpasswordempty'         => 'Níor iontráil tú focal faire. Bain triail eile as.',
@@ -1014,13 +1014,13 @@ mian leis ríomhphost a fháil ón úsáideoirí eile.',
 'nowatchlist'          => 'Níl aon rud i do liosta faire.',
 'watchnologin'         => 'Níl tú logáilte isteach',
 'addedwatch'           => 'Curtha san liosta faire',
-'addedwatchtext'       => "Cuireadh an leathanach \"\$1\" le do [[Special:Watchlist|liosta faire]].
+'addedwatchtext'       => "Cuireadh an leathanach \"<nowiki>\$1</nowiki>\" le do [[Special:Watchlist|liosta faire]].
 Cuirfear athruithe amach anseo, don leathanach sin agus don leathanach phlé, ar an liosta ann,
 agus beidh '''cló trom''' ar a theideal san [[Special:Recentchanges|liosta de na hathruithe is déanaí]] sa chaoi go bhfeicfeá iad go héasca.
 
 Más mian leat an leathanach a bain amach do liosta faire níos déanaí, brúigh ar \"Stop ag faire\" ar an taobhbharra.",
 'removedwatch'         => 'Bainthe amach ón liosta faire',
-'removedwatchtext'     => 'Baineadh an leathanach "$1" amach ó do liosta faire.',
+'removedwatchtext'     => 'Baineadh an leathanach "<nowiki>$1</nowiki>" amach ó do liosta faire.',
 'watch'                => 'Fair',
 'watchthispage'        => 'Fair ar an leathanach seo',
 'unwatch'              => 'Stop ag faire',
@@ -1088,7 +1088,7 @@ chomh maith leis a chuid stair, ón bunachar sonraí.
 Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
 iarmhairtaí, agus go ndéanann tú é dar le [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Gníomh críochnaithe',
-'deletedtext'                 => 'scriosadh "$1".
+'deletedtext'                 => 'scriosadh "<nowiki>$1</nowiki>".
 Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 'deletedarticle'              => 'scriosadh "$1"',
 'dellogpage'                  => 'Cuntas_scriosaidh',
@@ -1120,7 +1120,7 @@ Féach ar [[Special:Protectedpages|Leathanach glasáilte]] chun a thuilleadh eol
 'protectcomment'              => 'Cúis don glasáil',
 'unprotectsub'                => '(Ag díghlasáil "$1")',
 'protect-unchain'             => 'Díghlasáil an cead athainmithe',
-'protect-text'                => 'Is féidir leat an leibhéal glasála a athrú anseo don leathanach <strong>$1</strong>.',
+'protect-text'                => 'Is féidir leat an leibhéal glasála a athrú anseo don leathanach <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(réamhshocrú)',
 'protect-level-autoconfirmed' => 'Bac úsáideoirí neamhchláraithe',
 'protect-level-sysop'         => 'Oibreoirí chórais amháin',

@@ -342,7 +342,7 @@ class LogViewer {
 	}
 
 	function showError( &$out ) {
-		$out->addWikiText( wfMsg( 'logempty' ) );
+		$out->addWikiMsg( 'logempty' );
 	}
 
 	/**

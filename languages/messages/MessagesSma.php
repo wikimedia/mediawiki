@@ -230,7 +230,7 @@ $messages = array(
 'loginsuccesstitle'     => 'Dov lea daelie sïjse logge',
 'loginsuccess'          => "'''Dov lea daelie sïjselogge nille {{SITENAME}} goh \"\$1\".'''",
 'nosuchuser'            => 'Dïhte gååvnese ijje nuhtjien goh nomme "$1". Gïehtjedidh dov baakoehtidh, jallh skaepede orre nuhtjien.',
-'nosuchusershort'       => 'Dïhte gååvnese ijje nuhtjien goh nomme "$1". Gïehtjedidh baakoehtidh.',
+'nosuchusershort'       => 'Dïhte gååvnese ijje nuhtjien goh nomme "<nowiki>$1</nowiki>". Gïehtjedidh baakoehtidh.',
 'nouserspecified'       => 'Dov galkedh tjaeledh nuhtjiennomme.',
 'wrongpassword'         => 'Loevesbaakoe lea gåarhmede. Vuejnedh vihth.',
 'wrongpasswordempty'    => 'Loevesbaakoe lea gåaroes. Vuejnedh vihth.',
@@ -581,7 +581,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'deletepage'                  => 'Tjåegkedh bielie',
 'historywarning'              => 'Vaaroehtidh: Bielie datne gïehtele ahte sihkut åtna histovrije:',
 'actioncomplete'              => 'Deahpadimmie voerkes',
-'deletedtext'                 => '"$1" lea sihkojuvvon.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
 Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
 'deletedarticle'              => 'sihkoj "[[$1]]"',
 'dellogpage'                  => 'Sihkkun logge',
@@ -596,7 +596,7 @@ Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
 'protect_expiry_invalid'      => 'Ov-jiltiige buaorasjnuvvenaigi.',
 'protect_expiry_old'          => 'Boarasnuvvenaigi lea vaesedh.',
 'protect-unchain'             => 'Tjuevtedh jåhtaluhpie',
-'protect-text'                => 'Daesnie dorje datne vuajna jih värrhtoedimmie vaarjelidhdaltese dejstie bielie <strong>$1</strong>.',
+'protect-text'                => 'Daesnie dorje datne vuajna jih värrhtoedimmie vaarjelidhdaltese dejstie bielie <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Dov nuhtjien åtna ijje luhpie gåajkoe värrhtoedimmie tjaeleste-vaarjelidh.
 Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie <strong>$1</strong> lea:',
 'protect-default'             => '(åvte-veeljeme)',

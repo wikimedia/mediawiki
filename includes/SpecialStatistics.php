@@ -32,7 +32,7 @@ function wfSpecialStatistics( $par = '' ) {
 		return;
 	} else {
 		$text = "__NOTOC__\n";
-		$text .= '==' . wfMsg( 'sitestats' ) . "==\n";
+		$text .= '==' . wfMsgNoTrans( 'sitestats' ) . "==\n";
 		$text .= wfMsgExt( 'sitestatstext', array( 'parsemag' ),
 			$wgLang->formatNum( $total ),
 			$wgLang->formatNum( $good ),
@@ -44,7 +44,7 @@ function wfSpecialStatistics( $par = '' ) {
 			$wgLang->formatNum( $images )
 	   	)."\n";
 
-		$text .= "==" . wfMsg( 'userstats' ) . "==\n";
+		$text .= "==" . wfMsgNoTrans( 'userstats' ) . "==\n";
 		$text .= wfMsgExt( 'userstatstext', array ( 'parsemag' ),
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
@@ -73,7 +73,7 @@ function wfSpecialStatistics( $par = '' ) {
 				)
 			);
 			if( $res->numRows() > 0 ) {
-				$text .= "==" . wfMsg( 'statistics-mostpopular' ) . "==\n";
+				$text .= "==" . wfMsgNoTrans( 'statistics-mostpopular' ) . "==\n";
 				while( $row = $res->fetchObject() ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 					if( $title instanceof Title )
@@ -83,7 +83,7 @@ function wfSpecialStatistics( $par = '' ) {
 			}
 		}
 		
-		$footer = wfMsg( 'statistics-footer' );
+		$footer = wfMsgNoTrans( 'statistics-footer' );
 		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' )
 			$text .= "\n" . $footer;
 			

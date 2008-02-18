@@ -200,7 +200,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		if ($shownav)
 			$wgOut->addHTML( $prevnext );
 	} else {
-		$wgOut->addWikiText( wfMsg( 'noimages' ) );
+		$wgOut->addWikiMsg( 'noimages' );
 	}
 }
 

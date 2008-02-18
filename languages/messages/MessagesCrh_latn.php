@@ -489,7 +489,7 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'loginsuccesstitle'          => 'Kiriş yapıldı',
 'loginsuccess'               => "'''$1 adınen {{SITENAME}} saytında çalışıp olasıñız.'''",
 'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñiz ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
-'nosuchusershort'            => '"$1" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
+'nosuchusershort'            => '"<nowiki>$1</nowiki>" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirgen/Belgilegen paroliñiz yañlıştır.',
 'wrongpasswordempty'         => 'Boş parol kirmeñiz/belgilemeñiz.',
@@ -1247,7 +1247,7 @@ Yardım ve teklifler içün:
 'confirmdeletetext'           => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
 Lütfen, neticelerini añlağanıñıznı, [[Special:Whatlinkshere/{{FULLPAGENAME}}|saifege bağlantılarını]] teşkergenden soñ ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
 'actioncomplete'              => 'İşlem tamamlandı.',
-'deletedtext'                 => '"$1" yoq etildi.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" yoq etildi.
 yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'deletedarticle'              => '"[[$1]]" yoq etildi',
 'dellogpage'                  => 'Yoq etüv jurnalı',
@@ -1272,7 +1272,7 @@ Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages
 'confirmprotect'              => 'Qorçalavnı tasdıqla',
 'protectcomment'              => 'Qorçalav altına aluv sebebi',
 'unprotectsub'                => '(qorçalav çıqarılır "$1")',
-'protect-text'                => '<strong>[[$1]]</strong> saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.',
+'protect-text'                => '<strong>[[<nowiki>$1</nowiki>]]</strong> saifesiniñ qorçalav seviyesini mından körip olur ve deñiştirip olasıñız.',
 'protect-default'             => '(standart)',
 'protect-level-autoconfirmed' => 'qayd olunmağan deñiştirmesin',
 'protect-level-sysop'         => 'tek administratorlar',

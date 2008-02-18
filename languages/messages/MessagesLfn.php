@@ -264,7 +264,7 @@ $messages = array(
 'loginsuccesstitle'     => 'Entra susedente',
 'loginsuccess'          => "'''Tu ia entrada aora a {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'            => 'Es no usor con la nom "$1". Esamina la spele, o crea un conta nova.',
-'nosuchusershort'       => 'Es no usor con esta nom "$1". Esamina la spele.',
+'nosuchusershort'       => 'Es no usor con esta nom "<nowiki>$1</nowiki>". Esamina la spele.',
 'nouserspecified'       => 'Tu debe indica un nom de usor.',
 'wrongpassword'         => 'La sinia de entra no es coreta. Per favore, atenta ancora.',
 'wrongpasswordempty'    => 'La sinia de entra es vacua. Per favore, atenta ancora.',
@@ -591,7 +591,7 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 'historywarning'              => 'Avisa! La paje ce tu intende sutrae, el ave un istoria:',
 'confirmdeletetext'           => 'Tu va pronto sutrae un paje con tota se istoria. Per favore, afirma ce tu intende esta, ce tu comprende la resultas, e ce tu fa esta en acorda con [[{{MediaWiki:Policy-url}}|la prometes]].',
 'actioncomplete'              => 'Ata completada',
-'deletedtext'                 => '"$1" ia es sutraeda.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ia es sutraeda.
 Vide $2 per un catalogo de sutraes resente.',
 'deletedarticle'              => 'sutraeda "[[$1]]"',
 'dellogpage'                  => 'catalogo de sutraes',
@@ -610,7 +610,7 @@ Vide $2 per un catalogo de sutraes resente.',
 'protect_expiry_old'          => 'Ora de fini es en la pasada.',
 'unprotectsub'                => "(Desprotejente ''$1'')",
 'protect-unchain'             => 'Desecura la permetes de move',
-'protect-text'                => 'Tu pote vide e cambia la nivel de proteje asi per la paje <strong>$1</strong>.',
+'protect-text'                => 'Tu pote vide e cambia la nivel de proteje asi per la paje <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Tu conta no ave permite per cambia niveles de proteje.
 Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'protect-cascadeon'           => 'Esta paje es aora protejeda per ce el es incluida en esta {{PLURAL:$1|paje|pajes}} ce ave proteje cascadente ativa. Tu pote cambia la nivel de proteje per esta paje, ma esta no va influense la proteje cascadente.',

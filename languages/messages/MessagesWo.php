@@ -348,7 +348,7 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'loginsuccesstitle'          => 'Sag xammeeku jàll na',
 'loginsuccess'               => 'Léegi nag duggu nga ci {{SITENAME}} yaay « $1 ».',
 'nosuchuser'                 => 'Amul benn jëfandikukat bu tuddu « $1 ». Xoolaatal bu baax mbindiin mi walla nga sos meneen sàqum jëfandikukat.',
-'nosuchusershort'            => 'Amul benn jëfandikukat bu tuddu « $1 ». Xoolaatal mbidiin mi.',
+'nosuchusershort'            => 'Amul benn jëfandikukat bu tuddu « <nowiki>$1</nowiki> ». Xoolaatal mbidiin mi.',
 'nouserspecified'            => 'Laaj na nga tànn ab turu jëfandikukat',
 'wrongpassword'              => 'Bii baatujàll baaxul. Jéemaatal.',
 'wrongpasswordempty'         => 'Duggaloo ab baatujàll, jéemaatal.',

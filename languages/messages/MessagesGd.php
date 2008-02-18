@@ -121,7 +121,7 @@ $1",
 'yourrealname'               => "An dearbh ainm a th'oirbh*",
 'yournick'                   => 'An leth-ainm agaibh (a chuirear ti teachdaireachdan)',
 'noname'                     => 'Chan eil sibh air ainm-cleachdair iomchaidh a chomharrachadh.',
-'nosuchusershort'            => 'Chan eil cleachdair leis an ainm "$1" ann; sgrùdaibh an litreachadh agaibh no cleachaibh am billeag gu h-ìseal gus cùnntas ùr a chrùthachadh.',
+'nosuchusershort'            => 'Chan eil cleachdair leis an ainm "<nowiki>$1</nowiki>" ann; sgrùdaibh an litreachadh agaibh no cleachaibh am billeag gu h-ìseal gus cùnntas ùr a chrùthachadh.',
 'wrongpassword'              => "Chan eil am facal-faire a sgrìobh sibh a-steach ceart. Feuchaibh a-rithis, ma's e ur toil e.",
 'acct_creation_throttle_hit' => 'Tha sinn duilich; tha sibh air $1 cùnntasan a chruthachadh cheana agus chan fhaod sibh barrachd a dhèanamh.',
 

@@ -302,7 +302,7 @@ Voluntez, ne obliviez chanjor vua preferaji.',
 'loginsuccess'               => "'''Vu eniris a {{SITENAME}} kom \"\$1\".'''",
 'nosuchuser'                 => 'Ne existas uzero "$1".
 Kontrolez posibla erori od uzez la formularo infre por krear nova uzerokonto.',
-'nosuchusershort'            => 'Esas nula uzero "$1". Kontrolez la espelado.',
+'nosuchusershort'            => 'Esas nula uzero "<nowiki>$1</nowiki>". Kontrolez la espelado.',
 'wrongpassword'              => 'La skribita pasovorto esis nekorekta. Voluntez probar itere.',
 'passwordtooshort'           => 'Vua Pasovorto es ne-valida o tro kurta. Ol mustas kontenar $1 literi od nombri ed mustas esar diferanta kam vua uzantonomo.',
 'mailmypassword'             => 'Sendez a me nova pasovorto per e-posto.',
@@ -612,7 +612,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'watchnologin'         => 'Vu ne startis sesiono',
 'watchnologintext'     => 'Vu mustas [[Special:Userlogin|enirir]] por modifikar vua surveyaji.',
 'addedwatch'           => 'Adjuntita a la listo de surveyaji',
-'addedwatchtext'       => "La pagino \"\$1\" atachesis a vua [[Special:Watchlist|listo de surveyaji]]. Futura chanji di ica pagino ed olua relatata debato-pagini montresos ibe, ed la pagino aparos per '''dika literi''' en la [[Special:Recentchanges|listo de recenta chanji]] por faciligar sua trovebleso.
+'addedwatchtext'       => "La pagino \"<nowiki>\$1</nowiki>\" atachesis a vua [[Special:Watchlist|listo de surveyaji]]. Futura chanji di ica pagino ed olua relatata debato-pagini montresos ibe, ed la pagino aparos per '''dika literi''' en la [[Special:Recentchanges|listo de recenta chanji]] por faciligar sua trovebleso.
 
 <p> Se vu volas efacar la pagino de vua listo de surveyaji pose, presez \"Ne plus surveyar\" en la selektaro.",
 'watch'                => 'Surveyar',
@@ -638,7 +638,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'exblank'            => 'La pagino esis vakua',
 'historywarning'     => 'Egardez: La pagino, quan vu efaceskas, havas versionaro:',
 'actioncomplete'     => 'Ago kompletigita',
-'deletedtext'        => '"$1" efacesis.
+'deletedtext'        => '"<nowiki>$1</nowiki>" efacesis.
 Videz $2 por obtenar registro di recenta efaci.',
 'deletedarticle'     => 'efacita "$1"',
 'dellogpagetext'     => 'Infre esas listo di la plu recenta efaci.',

@@ -528,7 +528,7 @@ S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
 'loginsuccess'               => 'Heu iniciat la sessió a {{SITENAME}} com a "$1".',
 'nosuchuser'                 => 'No hi ha cap usuari anomenat "$1".
 Reviseu-ne l\'ortografia, o creeu un nou compte d\'usuari.',
-'nosuchusershort'            => 'No hi ha cap usuari anomenat "$1". Comproveu que ho hàgiu escrit correctament.',
+'nosuchusershort'            => 'No hi ha cap usuari anomenat "<nowiki>$1</nowiki>". Comproveu que ho hàgiu escrit correctament.',
 'nouserspecified'            => "Heu d'especificar un nom d'usuari.",
 'wrongpassword'              => 'La contrasenya que heu introduït és incorrecta. Torneu-ho a provar.',
 'wrongpasswordempty'         => "La contrasenya que s'ha introduït era en blanc. Torneu-ho a provar.",
@@ -1434,7 +1434,7 @@ Suggeriments i ajuda:
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",
 'actioncomplete'              => "S'ha realitzat l'acció de manera satisfactòria.",
-'deletedtext'                 => '"$1" ha estat esborrat.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estat esborrat.
 Mostra $2 per a un registre dels esborrats més recents.',
 'deletedarticle'              => 'esborrat "$1"',
 'dellogpage'                  => "Registre_d'esborrats",
@@ -1479,7 +1479,7 @@ La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussi
 'protect_expiry_old'          => 'El temps de termini ja ha passat.',
 'unprotectsub'                => "(S'està desprotegint «$1»)",
 'protect-unchain'             => 'Permet diferent nivell de protecció per editar i per moure',
-'protect-text'                => 'Aquí podeu visualitzar i canviar el nivell de protecció de la pàgina «$1». Assegureu-vos de seguir les polítiques existents.',
+'protect-text'                => 'Aquí podeu visualitzar i canviar el nivell de protecció de la pàgina «<nowiki>$1</nowiki>». Assegureu-vos de seguir les polítiques existents.',
 'protect-locked-blocked'      => 'No podeu canviar els nivells de protecció mentre estigueu bloquejats. Ací hi ha els
 paràmetres actuals de la pàgina <strong>$1</strong>:',
 'protect-locked-dblock'       => "No poden canviar-se els nivells de protecció a casa d'un bloqueig actiu de la base de dades.

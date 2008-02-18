@@ -770,11 +770,11 @@ class Article {
 					$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
 					if( $this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
 						if( !$this->mRevision->userCan( Revision::DELETED_TEXT ) ) {
-							$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
+							$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
 							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 							return;
 						} else {
-							$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
+							$wgOut->addWikiMsg( 'rev-deleted-text-view' );
 							// and we are allowed to see...
 						}
 					}
@@ -852,7 +852,7 @@ class Article {
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 		if( $ns == NS_USER_TALK &&
 			User::isIP( $this->mTitle->getText() ) ) {
-			$wgOut->addWikiText( wfMsg('anontalkpagetext') );
+			$wgOut->addWikiMsg('anontalkpagetext');
 		}
 
 		# If we have been passed an &rcid= parameter, we want to give the user a
@@ -904,14 +904,14 @@ class Article {
 					$o->tb_name,
 					$rmvtxt);
 		}
-		$wgOut->addWikitext(wfMsg('trackbackbox', $tbtext));
+		$wgOut->addWikiMsg( 'trackbackbox', $tbtext );
 	}
 
 	function deletetrackback() {
 		global $wgUser, $wgRequest, $wgOut, $wgTitle;
 
 		if (!$wgUser->matchEditToken($wgRequest->getVal('token'))) {
-			$wgOut->addWikitext(wfMsg('sessionfailure'));
+			$wgOut->addWikiMsg( 'sessionfailure' );
 			return;
 		}
 
@@ -926,7 +926,7 @@ class Article {
 		$db = wfGetDB(DB_MASTER);
 		$db->delete('trackbacks', array('tb_id' => $wgRequest->getInt('tbid')));
 		$wgTitle->invalidateCache();
-		$wgOut->addWikiText(wfMsg('trackbackdeleteok'));
+		$wgOut->addWikiMsg('trackbackdeleteok');
 	}
 
 	function render() {
@@ -1569,7 +1569,7 @@ class Article {
 				# The user made this edit, and can't patrol it
 				# Tell them so, and then back off
 				$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
-				$wgOut->addWikiText( wfMsgNoTrans( 'markedaspatrollederror-noautopatrol' ) );
+				$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
 				$wgOut->returnToMain( false, $return );
 				return;
 			}
@@ -1582,7 +1582,7 @@ class Article {
 
 		# Inform the user
 		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
-		$wgOut->addWikiText( wfMsgNoTrans( 'markedaspatrolledtext' ) );
+		$wgOut->addWikiMsg( 'markedaspatrolledtext' );
 		$wgOut->returnToMain( false, $return );
 	}
 
@@ -1607,9 +1607,7 @@ class Article {
 			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-			$link = wfEscapeWikiText( $this->mTitle->getPrefixedText() );
-			$text = wfMsg( 'addedwatchtext', $link );
-			$wgOut->addWikiText( $text );
+			$wgOut->addWikiMsg( 'addedwatchtext', $this->mTitle->getPrefixedText() );
 		}
 
 		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
@@ -1654,9 +1652,7 @@ class Article {
 			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-			$link = wfEscapeWikiText( $this->mTitle->getPrefixedText() );
-			$text = wfMsg( 'removedwatchtext', $link );
-			$wgOut->addWikiText( $text );
+			$wgOut->addWikiMsg( 'removedwatchtext', $this->mTitle->getPrefixedText() );
 		}
 
 		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
@@ -1978,10 +1974,8 @@ class Article {
 		$bigHistory = $this->isBigDeletion();
 		if( $bigHistory && !$this->mTitle->userCan( 'bigdelete' ) ) {
 			global $wgLang, $wgDeleteRevisionsLimit;
-			$wgOut->addWikiText( "<div class='error'>\n" .
-				wfMsg( 'delete-toobig',
-					$wgLang->formatNum( $wgDeleteRevisionsLimit ) ) .
-				"</div>\n" );
+			$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n",
+				array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 			return;
 		}
 
@@ -2005,10 +1999,8 @@ class Article {
 			$wgOut->addHTML( '<strong>' . wfMsg( 'historywarning' ) . ' ' . $skin->historyLink() . '</strong>' );
 			if( $bigHistory ) {
 				global $wgLang, $wgDeleteRevisionsLimit;
-				$wgOut->addWikiText( "<div class='error'>\n" .
-					wfMsg( 'delete-warning-toobig',
-						$wgLang->formatNum( $wgDeleteRevisionsLimit ) ) .
-					"</div>\n" );
+				$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n",
+					array( 'delete-warning-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 			}
 		}
 		
@@ -2098,7 +2090,7 @@ class Article {
 
 		$wgOut->setSubtitle( wfMsg( 'delete-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->mTitle ) ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->addWikiText( wfMsg( 'confirmdeletetext' ) );
+		$wgOut->addWikiMsg( 'confirmdeletetext' );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->mTitle->getLocalURL( 'action=delete' . $par ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .
@@ -2167,15 +2159,14 @@ class Article {
 
 		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
 			if ( $this->doDeleteArticle( $reason ) ) {
-				$deleted = wfEscapeWikiText( $this->mTitle->getPrefixedText() );
+				$deleted = $this->mTitle->getPrefixedText();
 
 				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 				$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-				$loglink = '[[Special:Log/delete|' . wfMsg( 'deletionlog' ) . ']]';
-				$text = wfMsg( 'deletedtext', $deleted, $loglink );
+				$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
 
-				$wgOut->addWikiText( $text );
+				$wgOut->addWikiMsg( 'deletedtext', $deleted, $loglink );
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason));
 			} else {

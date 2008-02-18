@@ -109,9 +109,8 @@ CONTROL;
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadRevisionData() ) {
 			$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, {$this->mNewid})";
-			$mtext = wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addWikitext( $mtext );
+			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -284,9 +283,9 @@ CONTROL;
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 		#add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-		  	$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
+		  	$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
 		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-		  	$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
+		  	$wgOut->addWikiMsg( 'rev-deleted-text-view' );
 		}
 
 		if( !$this->mNewRev->isCurrent() ) {
@@ -335,9 +334,8 @@ CONTROL;
 		if ( ! $this->loadNewText() ) {
 			$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 			  "{$this->mNewid})";
-			$mtext = wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addWikitext( $mtext );
+			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -380,7 +378,7 @@ CONTROL;
 		global $wgOut;
 		$diff = $this->getDiff( $otitle, $ntitle );
 		if ( $diff === false ) {
-			$wgOut->addWikitext( wfMsg( 'missingarticle', "<nowiki>(fixme, bug)</nowiki>" ) );
+			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>(fixme, bug)</nowiki>" );
 			return false;
 		} else {
 			$this->showDiffStyle();

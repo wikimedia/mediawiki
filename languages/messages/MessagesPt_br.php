@@ -524,7 +524,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'loginsuccess'          => "'''Agora você está logado na {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'            => 'Não há nenhum usuário com o nome "$1".
 Verifique a grafia fornecida ou crie uma nova conta de usuário.',
-'nosuchusershort'       => 'Não há um usuário com o nome "$1". Verifique o nome fornecido.',
+'nosuchusershort'       => 'Não há um usuário com o nome "<nowiki>$1</nowiki>". Verifique o nome fornecido.',
 'nouserspecified'       => 'É necessário especificar um nome de usuário.',
 'wrongpassword'         => 'A senha que você forneceu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'    => 'O campo de senha foi deixado em branco. Por favor, tente novamente.',
@@ -1159,7 +1159,7 @@ possa encontrá-la com maior facilidade.
 
 Se desejar remover a página da sua lista de vigiados, clique em \"Deixar de vigiar\" na barra lateral ou de topo.",
 'removedwatch'         => 'Removida da lista de páginas vigiadas',
-'removedwatchtext'     => 'A página "$1" foi removida de sua lista de páginas vigiadas.',
+'removedwatchtext'     => 'A página "<nowiki>$1</nowiki>" foi removida de sua lista de páginas vigiadas.',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Interessar-se por esta página',
 'unwatch'              => 'Deixar de vigiar',
@@ -1200,7 +1200,7 @@ Se desejar remover a página da sua lista de vigiados, clique em \"Deixar de vig
 'confirmdeletetext'           => 'Você está  prestes a deletar permanentemente uma página ou imagem junto com todo seu histórico.
 Por favor, confirme que você realmente pretende fazer isto, que você compreende as conseqüências, e que você está fazendo isto em acordo com a [[{{MediaWiki:Policy-url}}|Política da {{SITENAME}}]].',
 'actioncomplete'              => 'Ação efetuada com sucesso',
-'deletedtext'                 => '"$1" foi eliminada.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" foi eliminada.
 Veja $2 para um registro de eliminações recentes.',
 'deletedarticle'              => 'eliminou "$1"',
 'dellogpage'                  => 'Registro de eliminação',
@@ -1238,7 +1238,7 @@ A última edição foi de  [[User:$3|$3]] ([[User talk:$3|Conversar com ele]]).'
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
 'unprotectsub'                => '(Desprotegendo "$1")',
 'protect-unchain'             => 'Desbloquear permissões de moção',
-'protect-text'                => 'Você pode, nesta página, alterar o nível de proteção para <strong>$1</strong>.',
+'protect-text'                => 'Você pode, nesta página, alterar o nível de proteção para <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Sua conta não possui permissões para alterar os níveis de proteção de uma página.
 Esta é a configuração atual para a página <strong>$1</strong>:',
 'protect-cascadeon'           => 'Esta página se encontra protegida, uma vez que se encontra incluída {{PLURAL:$1|na página listada a seguir, protegida|nas páginas listadas a seguir, protegidas}} com a "proteção progressiva" ativada. Você poderá alterar o nível de proteção desta página, mas isso não afetará a "proteção progressiva".',

@@ -30,7 +30,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				if( User::isValidEmailAddr( $wgUser->getEmail() ) ) {
 					$this->showRequestForm();
 				} else {
-					$wgOut->addWikiText( wfMsg( 'confirmemail_noemail' ) );
+					$wgOut->addWikiMsg( 'confirmemail_noemail' );
 				}
 			} else {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
@@ -52,19 +52,19 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getText( 'token' ) ) ) {
 			$ok = $wgUser->sendConfirmationMail();
 			if ( WikiError::isError( $ok ) ) {
-				$wgOut->addWikiText( wfMsg( 'confirmemail_sendfailed', $ok->toString() ) );
+				$wgOut->addWikiMsg( 'confirmemail_sendfailed', $ok->toString() );
 			} else {
-				$wgOut->addWikiText( wfMsg( 'confirmemail_sent' ) );
+				$wgOut->addWikiMsg( 'confirmemail_sent' );
 			}
 		} else {
 			if( $wgUser->isEmailConfirmed() ) {
 				$time = $wgLang->timeAndDate( $wgUser->mEmailAuthenticated, true );
-				$wgOut->addWikiText( wfMsg( 'emailauthenticated', $time ) );
+				$wgOut->addWikiMsg( 'emailauthenticated', $time );
 			}
 			if( $wgUser->isEmailConfirmationPending() ) {
-				$wgOut->addWikiText( wfMsg( 'confirmemail_pending' ) );
+				$wgOut->addWikiMsg( 'confirmemail_pending' );
 			}
-			$wgOut->addWikiText( wfMsg( 'confirmemail_text' ) );
+			$wgOut->addWikiMsg( 'confirmemail_text' );
 			$self = SpecialPage::getTitleFor( 'Confirmemail' );		
 			$form  = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
 			$form .= wfHidden( 'token', $wgUser->editToken() );
@@ -86,16 +86,16 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		if( is_object( $user ) ) {
 			if( $user->confirmEmail() ) {
 				$message = $wgUser->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
-				$wgOut->addWikiText( wfMsg( $message ) );
+				$wgOut->addWikiMsg( $message );
 				if( !$wgUser->isLoggedIn() ) {
 					$title = SpecialPage::getTitleFor( 'Userlogin' );
 					$wgOut->returnToMain( true, $title->getPrefixedText() );
 				}
 			} else {
-				$wgOut->addWikiText( wfMsg( 'confirmemail_error' ) );
+				$wgOut->addWikiMsg( 'confirmemail_error' );
 			}
 		} else {
-			$wgOut->addWikiText( wfMsg( 'confirmemail_invalid' ) );
+			$wgOut->addWikiMsg( 'confirmemail_invalid' );
 		}
 	}
 	

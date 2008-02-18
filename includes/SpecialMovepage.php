@@ -86,6 +86,7 @@ class MovePageForm {
 		if( $this->newTitle == '' ) {
 			# Show the current title as a default
 			# when the form is first opened.
+			$newTitle = $oldTitle;
 			$encNewTitle = $encOldTitle;
 		} else {
 			if( $err == '' ) {
@@ -100,12 +101,13 @@ class MovePageForm {
 					}
 				}
 			}
-			$encNewTitle = htmlspecialchars( $this->newTitle );
+			$newTitle = $this->newTitle;
+			$encNewTitle = htmlspecialchars( $newTitle );
 		}
 		$encReason = htmlspecialchars( $this->reason );
 
 		if ( $err == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
-			$wgOut->addWikiText( wfMsg( 'delete_and_move_text', $encNewTitle ) );
+			$wgOut->addWikiMsg( 'delete_and_move_text', $newTitle );
 			$movepagebtn = wfMsgHtml( 'delete_and_move' );
 			$submitVar = 'wpDeleteAndMove';
 			$confirm = "
@@ -114,7 +116,7 @@ class MovePageForm {
 				</tr>";
 			$err = '';
 		} else {
-			$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
+			$wgOut->addWikiMsg( 'movepagetext' );
 			$movepagebtn = wfMsgHtml( 'movepagebtn' );
 			$submitVar = 'wpMove';
 			$confirm = false;
@@ -124,7 +126,7 @@ class MovePageForm {
 		$considerTalk = ( !$ot->isTalkPage() && $oldTalk->exists() );
 
 		if ( $considerTalk ) {
-			$wgOut->addWikiText( wfMsg( 'movepagetalktext' ) );
+			$wgOut->addWikiMsg( 'movepagetalktext' );
 		}
 
 		$movearticle = wfMsgHtml( 'movearticle' );
@@ -294,21 +296,21 @@ class MovePageForm {
 
 		$talkmoved = $wgRequest->getVal( 'talkmoved' );
 		$oldUrl = $old->getFullUrl( 'redirect=no' );
-		$newUrl = $new->getFullURl();
-		$oldText = wfEscapeWikiText( $old->getPrefixedText() );
-		$newText = wfEscapeWikiText( $new->getPrefixedText() );
+		$newUrl = $new->getFullUrl();
+		$oldText = $old->getPrefixedText();
+		$newText = $new->getPrefixedText();
 		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
 		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
 
-		$s = wfMsg( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
+		$s = wfMsgNoTrans( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
 
 		if ( $talkmoved == 1 ) {
-			$s .= "\n\n" . wfMsg( 'talkpagemoved' );
+			$s .= "\n\n" . wfMsgNoTrans( 'talkpagemoved' );
 		} elseif( 'articleexists' == $talkmoved ) {
-			$s .= "\n\n" . wfMsg( 'talkexists' );
+			$s .= "\n\n" . wfMsgNoTrans( 'talkexists' );
 		} else {
 			if( !$old->isTalkPage() && $talkmoved != 'notalkpage' ) {
-				$s .= "\n\n" . wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) );
+				$s .= "\n\n" . wfMsgNoTrans( 'talkpagenotmoved', wfMsgNoTrans( $talkmoved ) );
 			}
 		}
 		$wgOut->addWikiText( $s );

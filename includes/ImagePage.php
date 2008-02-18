@@ -76,9 +76,9 @@ class ImagePage extends Article {
 
 		# Show shared description, if needed
 		if ( $this->mExtraDescription ) {
-			$fol = wfMsg( 'shareddescriptionfollows' );
+			$fol = wfMsgNoTrans( 'shareddescriptionfollows' );
 			if( $fol != '-' && !wfEmptyMsg( 'shareddescriptionfollows', $fol ) ) {
-				$wgOut->addWikiText( $fol );
+				$wgOut->addWikiMsg( $fol );
 			}
 			$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . '</div>' );
 		}
@@ -313,7 +313,7 @@ class ImagePage extends Article {
 				$filename = wfEscapeWikiText( $this->img->getName() );
 
 				if (!$this->img->isSafeFile()) {
-					$warning = wfMsg( 'mediawarning' );
+					$warning = wfMsgNoTrans( 'mediawarning' );
 					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">
 <span class="dangerousLink">[[Media:$filename|$filename]]</span>$dirmark

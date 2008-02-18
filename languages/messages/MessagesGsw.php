@@ -293,7 +293,7 @@ Im Fall dass Si mol Ihr Basswort vergässe hen cha Ihne au e ziitwiiligs Eimol-B
 'nosuchuser'                 => 'Dr Benutzername "$1" exischtiert nit.
 
 Yberprüf d Schribwis, odr meld dich als neijer Benutzer ô.',
-'nosuchusershort'            => 'S gibt kei Benutzername „$1“. Bitte yberprüf mol d Schribwis.',
+'nosuchusershort'            => 'S gibt kei Benutzername „<nowiki>$1</nowiki>“. Bitte yberprüf mol d Schribwis.',
 'nouserspecified'            => 'Bitte gib ä Benutzername ii.',
 'wrongpassword'              => "Sell Basswort isch falsch (odr fählt). Bitte versuech's nomol.",
 'wrongpasswordempty'         => 'Du hesch vagässe diin Basswort iizgeh. Bitte probiers nomol.',
@@ -666,7 +666,7 @@ Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
 'confirmdeletetext' => 'Du bisch drann, en Artikel oder es Bild mitsamt Versionsgschicht permanänt us der Datebank z lösche.
 Bitte bis dir über d Konsequänze bewusst, u bis sicher, das du di a üsi [[{{MediaWiki:Policy-url}}|Leitlinien]] haltisch.',
 'actioncomplete'    => 'Uftrag usgfuehrt.',
-'deletedtext'       => '«$1» isch glösche worde.
+'deletedtext'       => '«<nowiki>$1</nowiki>» isch glösche worde.
 Im $2 het’s e Lischte vo de letschte Löschige.',
 'deletionlog'       => 'Lösch-Logbuech',
 'deletecomment'     => 'Löschigsgrund',

@@ -379,7 +379,7 @@ Ustvarili ste račun. Če želite, si lahko prilagodite [[Special:Preferences|na
 'loginsuccess'               => 'Sedaj ste vpisani v {{GRAMMAR:tožilnik|{{SITENAME}}}} kot "$1".',
 'nosuchuser'                 => 'Uporabnik z imenom »$1« ne obstaja.
 Preverite črkovanje ali pa si z uporabo prikazanega obrazca ustvarite nov uporabniški račun.',
-'nosuchusershort'            => 'Uporabnik z imenom »$1« ne obstaja. Preverite črkovanje.',
+'nosuchusershort'            => 'Uporabnik z imenom »<nowiki>$1</nowiki>« ne obstaja. Preverite črkovanje.',
 'nouserspecified'            => 'Prosimo, vpišite uporabniško ime.',
 'wrongpassword'              => 'Vnesli ste napačno geslo. Prosimo, poskusite znova.',
 'wrongpasswordempty'         => 'Vpisali ste prazno geslo. Prosimo, poskusite znova.',
@@ -987,8 +987,8 @@ Povratna sporočila in pomoč:
 'confirmdeletetext'           => "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino. 
 Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 'actioncomplete'              => 'Poseg je končan',
-'deletedtext'                 => "»'''$1'''« je bila izbrisana. 
-Za zapise nedavnih brisanj glej $2.",
+'deletedtext'                 => "»'''<nowiki>\$1</nowiki>'''« je bila izbrisana. 
+Za zapise nedavnih brisanj glej \$2.",
 'deletedarticle'              => 'je izbrisal(-a) »$1«',
 'dellogpage'                  => 'Dnevnik brisanja',
 'dellogpagetext'              => 'Prikazan je seznam nedavnih brisanj z navedenim strežniškim časom (UTC). Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
@@ -1016,7 +1016,7 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'protectcomment'              => 'Razlog:',
 'unprotectsub'                => '(Odstranjujem zaščito strani »$1«)',
 'protect-unchain'             => 'Deblokiraj dovoljenja za premikanje',
-'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''$1'''.",
+'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>\$1</nowiki>'''.",
 'protect-default'             => 'Omogoči urejanje vsem uporabnikom',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrirane uporabnike',
 'protect-level-sysop'         => 'Blokiraj vse uporabnike (razen administratorjev)',

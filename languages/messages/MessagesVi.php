@@ -505,7 +505,7 @@ Tài khoản của bạn đã mở. Đừng quên thay đổi tùy chọn cá nh
 'loginsuccesstitle'          => 'Đăng nhập thành công',
 'loginsuccess'               => "'''Bạn đã đăng nhập vào {{SITENAME}} với tên “$1”.'''",
 'nosuchuser'                 => 'Thành viên “$1” không tồn tại. Xin kiểm tra lại tên, hoặc mở tài khoản mới.',
-'nosuchusershort'            => 'Không có thành viên nào có tên “$1”. Xin hãy kiểm tra lại chính tả.',
+'nosuchusershort'            => 'Không có thành viên nào có tên “<nowiki>$1</nowiki>”. Xin hãy kiểm tra lại chính tả.',
 'nouserspecified'            => 'Bạn phải đưa ra tên đăng ký.',
 'wrongpassword'              => 'Mật khẩu sai. Xin vui lòng nhập lại.',
 'wrongpasswordempty'         => 'Bạn chưa gõ vào mật khẩu. Xin thử lần nữa.',
@@ -1333,7 +1333,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'watchnologin'         => 'Chưa đăng nhập',
 'watchnologintext'     => 'Bạn phải [[Special:Userlogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addedwatch'           => 'Đã thêm vào danh sách theo dõi',
-'addedwatchtext'       => 'Trang “$1” đã được cho vào [[{{ns:Special}}:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[{{ns:Special}}:Recentchanges|danh sách các thay đổi mới]].
+'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[{{ns:Special}}:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[{{ns:Special}}:Recentchanges|danh sách các thay đổi mới]].
 
 Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
 'removedwatch'         => 'Đã ra khỏi danh sách theo dõi',
@@ -1413,7 +1413,7 @@ Xóa “$1”',
 'confirmdeletetext'           => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó. 
 Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].',
 'actioncomplete'              => 'Đã thực hiện xong',
-'deletedtext'                 => 'Đã xóa “$1”. Xem danh sách các xóa bỏ gần nhất tại $2.',
+'deletedtext'                 => 'Đã xóa “<nowiki>$1</nowiki>”. Xem danh sách các xóa bỏ gần nhất tại $2.',
 'deletedarticle'              => 'đã xóa “$1”',
 'dellogpage'                  => 'Nhật trình xóa',
 'dellogpagetext'              => 'Dưới đây là danh sách các trang bị xóa gần đây nhất.',
@@ -1453,7 +1453,7 @@ Sửa đổi lần cuối bởi [[User:$3|$3]] ([[User talk:$3|Thảo luận]]).
 'protect_expiry_old'          => 'Thời hạn đã qua.',
 'unprotectsub'                => '(Sắp mở khóa cho “$1”)',
 'protect-unchain'             => 'Vẫn cho đổi tên trang',
-'protect-text'                => 'Bạn có thể xem và đổi kiểu khóa trang <strong>$1</strong> ở đây.',
+'protect-text'                => 'Bạn có thể xem và đổi kiểu khóa trang <strong><nowiki>$1</nowiki></strong> ở đây.',
 'protect-locked-blocked'      => 'Bạn không thể đổi mức khóa khi bị cấm. Đây là trạng thái
 hiện tại của trang <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Hiện không thể đổi mức khóa do cơ sở dữ liệu bị khóa.

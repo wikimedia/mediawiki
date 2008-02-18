@@ -435,7 +435,7 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'loginsuccesstitle'          => 'Identificación correuta',
 'loginsuccess'               => "'''Quedasti identificáu en {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Nun hai nengún usuariu col nome "$1". Corrixi la escritura o crea una nueva cuenta d\'usuariu.',
-'nosuchusershort'            => 'Nun hai nengún usuariu col nome "$1". Mira que tea bien escritu.',
+'nosuchusershort'            => 'Nun hai nengún usuariu col nome "<nowiki>$1</nowiki>". Mira que tea bien escritu.',
 'nouserspecified'            => "Has especificar un nome d'usuariu.",
 'wrongpassword'              => 'Clave errónea.  Inténtalo otra vuelta.',
 'wrongpasswordempty'         => 'La clave taba en blanco. Inténtalo otra vuelta.',
@@ -1367,7 +1367,7 @@ Más aida y sofitu:
 'confirmdeletetext'           => "Tas a piques de borrar una páxina xunto con tol so historial.
 Por favor confirma que ye lo que quies facer, qu'entiendes les consecuencies, y que lo tas faciendo acordies coles [[{{MediaWiki:Policy-url}}|polítiques]].",
 'actioncomplete'              => 'Aición completada',
-'deletedtext'                 => 'Borróse "$1".
+'deletedtext'                 => 'Borróse "<nowiki>$1</nowiki>".
 Mira en $2 la llista de les últimes páxines borraes.',
 'deletedarticle'              => 'borró "[[$1]]"',
 'dellogpage'                  => 'Rexistru de borraos',
@@ -1411,7 +1411,7 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protect_expiry_old'          => 'La fecha de caducidá ta pasada.',
 'unprotectsub'                => '(Desprotexendo "$1")',
 'protect-unchain'             => 'Camudar los permisos pa tresllaos',
-'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong>$1</strong>.',
+'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta
 ye la configuración actual de la páxina <strong>$1</strong>:',
 'protect-locked-dblock'       => "Los niveles de proteición nun puen ser camudaos pol mor d'un bloquéu activu de

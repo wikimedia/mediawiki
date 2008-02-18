@@ -407,7 +407,7 @@ Kullanıcı adınız Türkçe karakter, boşluk '''içerebilir'''. Kullanıcı a
 'loginsuccesstitle'          => 'Oturum açıldı',
 'loginsuccess'               => '{{SITENAME}} sitesinde "$1" kullanıcı adıyla oturum açmış bulunmaktasınız.',
 'nosuchuser'                 => '"$1" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin veya yeni bir hesap açın.',
-'nosuchusershort'            => '"$1" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin.',
+'nosuchusershort'            => '"<nowiki>$1</nowiki>" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin.',
 'nouserspecified'            => 'Bir kullanıcı adı belirtmek zorundasınız.',
 'wrongpassword'              => 'Parolayı yanlış girdiniz. Lütfen tekrar deneyiniz.',
 'wrongpasswordempty'         => 'Boş parola girdiniz. Lütfen tekrar deneyiniz.',
@@ -1050,7 +1050,7 @@ Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğini
 'watchnologin'         => 'Oturum açık değil.',
 'watchnologintext'     => 'İzleme listenizi değiştirebilmek için [[Special:Userlogin|oturum açmalısınız]].',
 'addedwatch'           => 'İzleme listesine kaydedildi.',
-'addedwatchtext'       => '"$1" adlı sayfa [[Special:Watchlist|izleme listenize]] kaydedildi.
+'addedwatchtext'       => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|izleme listenize]] kaydedildi.
 
 Gelecekte, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecektir.
 
@@ -1058,7 +1058,7 @@ Kolayca seçilebilmeleri için de [[Special:Recentchanges|son değişiklikler li
 
 Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
 'removedwatch'         => 'İzleme listenizden silindi',
-'removedwatchtext'     => '"$1" sayfası izleme listenizden silinmiştir.',
+'removedwatchtext'     => '"<nowiki>$1</nowiki>" sayfası izleme listenizden silinmiştir.',
 'watch'                => 'İzlemeye al',
 'watchthispage'        => 'Sayfayı izle',
 'unwatch'              => 'Sayfa izlemeyi durdur',
@@ -1127,7 +1127,7 @@ Yardım ve öneriler için:
 'confirmdeletetext'           => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
 Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[{{MediaWiki:Policy-url}}|Silme kurallarına]] uygun olduğuna eminseniz, işlemi onaylayın.',
 'actioncomplete'              => 'İşlem tamamlandı.',
-'deletedtext'                 => '"$1" silindi.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" silindi.
 Yakın zamanda silinenleri görmek için: $2.',
 'deletedarticle'              => '"$1" silindi',
 'dellogpage'                  => 'Silme kayıtları',

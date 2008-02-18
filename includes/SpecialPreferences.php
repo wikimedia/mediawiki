@@ -524,11 +524,11 @@ class PreferencesForm {
 		$wgOut->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
 
 		if ( $this->mSuccess || 'success' == $status ) {
-			$wgOut->addWikitext( '<div class="successbox"><strong>'. wfMsg( 'savedprefs' ) . '</strong></div>' );
+			$wgOut->wrapWikiMsg( '<div class="successbox"><strong>$1</strong></div>', 'savedprefs' );
 		} else	if ( 'error' == $status ) {
-			$wgOut->addWikitext( '<div class="errorbox"><strong>' . $message  . '</strong></div>' );
+			$wgOut->addWikiText( '<div class="errorbox"><strong>' . $message  . '</strong></div>' );
 		} else if ( '' != $status ) {
-			$wgOut->addWikitext( $message . "\n----" );
+			$wgOut->addWikiText( $message . "\n----" );
 		}
 
 		$qbs = $wgLang->getQuickbarSettings();

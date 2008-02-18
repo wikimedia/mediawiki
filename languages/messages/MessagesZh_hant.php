@@ -443,7 +443,7 @@ $2',
 'loginsuccess'               => '你現在以 "$1"的身份登入{{SITENAME}}。',
 'nosuchuser'                 => '找不到用戶 "$1"。
 檢查您的拼寫，或者用下面的表格建立一個新帳號。',
-'nosuchusershort'            => '沒有一個名為「$1」的用戶。請檢查您輸入的文字是否有錯誤。',
+'nosuchusershort'            => '沒有一個名為「<nowiki>$1</nowiki>」的用戶。請檢查您輸入的文字是否有錯誤。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
 'wrongpasswordempty'         => '沒有輸入密碼！請重試。',
@@ -1283,7 +1283,7 @@ Template:消除歧義',
 
 如果您之後想將該頁面從監視清單中刪除，可點擊導航條中的\"停止監視\"連結。",
 'removedwatch'         => '已停止監視',
-'removedwatchtext'     => '頁面「$1」已經從您的監視頁面中移除。',
+'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從您的監視頁面中移除。',
 'watch'                => '監視',
 'watchthispage'        => '監視本頁',
 'unwatch'              => '取消監視',
@@ -1358,7 +1358,7 @@ $NEWPAGE
 'confirmdeletetext'           => '您即將刪除一個頁面或圖像以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
-'deletedtext'                 => '「$1」已經被刪除。最近刪除的紀錄請參見$2。',
+'deletedtext'                 => '「<nowiki>$1</nowiki>」已經被刪除。最近刪除的紀錄請參見$2。',
 'deletedarticle'              => '已刪除「$1」',
 'dellogpage'                  => '刪除紀錄',
 'dellogpagetext'              => '以下是最近刪除的紀錄列表。',
@@ -1400,7 +1400,7 @@ $NEWPAGE
 'protect_expiry_old'          => '終止時間已過去。',
 'unprotectsub'                => '(正在解除保護"$1")',
 'protect-unchain'             => '移動權限解鎖',
-'protect-text'                => '你可以在這裡瀏覽和修改對頁面<strong>$1</strong>的保護級別。',
+'protect-text'                => '你可以在這裡瀏覽和修改對頁面<strong><nowiki>$1</nowiki></strong>的保護級別。',
 'protect-locked-blocked'      => '您不能在被查封時更改保護級別。
 以下是<strong>$1</strong>現時的保護級別:',
 'protect-locked-dblock'       => '在資料庫鎖定時無法更改保護級別。

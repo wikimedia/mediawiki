@@ -66,7 +66,7 @@ class RevisionDeleteForm {
 	function show( $request ) {
 		global $wgOut, $wgUser;
 
-		$wgOut->addWikiText( wfMsg( 'revdelete-selected', $this->page->getPrefixedText() ) );
+		$wgOut->addWikiMsg( 'revdelete-selected', $this->page->getPrefixedText() );
 		
 		$wgOut->addHtml( "<ul>" );
 		foreach( $this->revisions as $revid ) {
@@ -80,7 +80,7 @@ class RevisionDeleteForm {
 		}
 		$wgOut->addHtml( "</ul>" );
 	
-		$wgOut->addWikiText( wfMsg( 'revdelete-text' ) );
+		$wgOut->addWikiMsg( 'revdelete-text' );
 		
 		$items = array(
 			wfInputLabel( wfMsg( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ),

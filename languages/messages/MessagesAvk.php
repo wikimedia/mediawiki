@@ -375,7 +375,7 @@ Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'loginsuccess'               => 'Rin wetce « $1 » moe {{SITENAME}} til dogluyarakiraf.',
 'nosuchuser'                 => '« $1 » favesik me krulder.
 Ageltal da va yolt al sutekanhal, oke ta redura va warzafa favesikpata va vlevef valdig favel.',
-'nosuchusershort'            => 'Me tir favesik digis va « $1 » yolt. Va sutekaks ageltal.',
+'nosuchusershort'            => 'Me tir favesik digis va « <nowiki>$1</nowiki> » yolt. Va sutekaks ageltal.',
 'nouserspecified'            => 'Va favesikyolt gobazel !',
 'wrongpassword'              => 'Remravlem tir volenaf. Tollwil !',
 'wrongpasswordempty'         => 'Remravlem bazeyen tir vlardaf.Vay tolon bazel !',
@@ -1116,7 +1116,7 @@ Va moniyaf betareem va batu bu is dofu prilarabu batlize zo bonjatad, ise ta lok
 
 Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vulegal.",
 'removedwatch'         => 'Sulayanu div suzdasiki',
-'removedwatchtext'     => '« $1 » bu div rinafi suzdasiki al zo sular.',
+'removedwatchtext'     => '« <nowiki>$1</nowiki> » bu div rinafi suzdasiki al zo sular.',
 'watch'                => 'Suzdá',
 'watchthispage'        => 'Va batu bu suzdá',
 'unwatch'              => 'Mea suzdá',
@@ -1164,7 +1164,7 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'confirmdeletetext'           => 'Rin va bu is varaf izvot fu sulal.
 Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:Policy-url}}|xoverteem]] askil !',
 'actioncomplete'              => 'Skuyuna sulara',
-'deletedtext'                 => '« $1 » tir sulayan.
+'deletedtext'                 => '« <nowiki>$1</nowiki> » tir sulayan.
 Ta vexala dem noeltaf sulareem va $2 disukel.',
 'deletedarticle'              => 'al sular va « $1 »',
 'dellogpage'                  => 'Izvot va sulareem',
@@ -1199,7 +1199,7 @@ Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'protect_expiry_old'          => 'Edjatena tir abdiugalafa.',
 'unprotectsub'                => '(Dimnendara va « $1 »)',
 'protect-unchain'             => 'Volelekara va arrundararictara',
-'protect-text'                => 'Rin va nendareka ke <strong>$1</strong> bu batlize rowil nume robetal.',
+'protect-text'                => 'Rin va nendareka ke <strong><nowiki>$1</nowiki></strong> bu batlize rowil nume robetal.',
 'protect-locked-access'       => 'Rinafa pata va betara va nendareka me rictar.
 Noeltaf plekukseem ke <strong>$1</strong> bu batlize tid :',
 'protect-cascadeon'           => 'Batu bu zo nendar kire va {{PLURAL:$1|bu disu|bu yo disu}} va tegisa stoyakorafa nendara pasur. Rin va nendareka va batu bu robetal vexe batcoba va stoyakorafa nendara me vanolatar.',

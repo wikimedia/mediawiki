@@ -410,7 +410,7 @@ Për piasì, che as j'abìlita e peuj che a preuva torna a rintré con sò stran
 'loginsuccess'               => 'A l\'ha avù ël përmess ëd conession al server ëd {{SITENAME}} con lë stranòm utent ëd "$1".',
 'nosuchuser'                 => 'Atension<br /><br /> dapress a na verìfica, a n\'arsulta pa gnin Utent che a l\'abia stranòm "$1".<br /><br />
 Për piasì, che a contròla ël nòm che a l\'ha batù, ò pura che a dòvra la domanda ambelessì sota për fé un cont Utent neuv.',
-'nosuchusershort'            => 'A-i é pa gnun utent che as ciama "$1". Për piasì, che a contròla se a l\'ha scrit tut giust.',
+'nosuchusershort'            => 'A-i é pa gnun utent che as ciama "<nowiki>$1</nowiki>". Për piasì, che a contròla se a l\'ha scrit tut giust.',
 'nouserspecified'            => 'A venta che a specìfica në stranòm utent',
 'wrongpassword'              => "La ciav batùa a l'é pa giusta.<br /><br />Che a preuva torna, për piasì.",
 'wrongpasswordempty'         => "A l'ha butà na ciav veujda. Për piasì, che a preuva torna.",
@@ -1236,12 +1236,12 @@ L'adrëssa eletrònica che a l'ha specificà ant ij sò \"gust\" a sarà butà c
 'watchnologintext'     => "A l'ha da manca prima ëd tut dë [[Special:Userlogin|rintré ant ël sistema]]
 për podej modifiché soa lista dla ròba dë tnì sot euj.",
 'addedwatch'           => "Sòn a l'é stait giontà a le pàgine che it ten-e sot euj",
-'addedwatchtext'       => " La pàgina  \"\$1\" a l'é staita giontà a tua [[Special:Watchlist|lista dla ròba da tnì sot euj]].
+'addedwatchtext'       => " La pàgina  \"<nowiki>\$1</nowiki>\" a l'é staita giontà a tua [[Special:Watchlist|lista dla ròba da tnì sot euj]].
 Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairerà ën <b>grassèt</b> ant la pàgina ëd j'[[Special:Recentchanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d'euj.
 
 Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a sgnaca \" Chita da tnì sot euj \" ant sla bara dij menù.",
 'removedwatch'         => "Gavà via da 'nt la lista dla ròba da tnì sot euj",
-'removedwatchtext'     => 'La pàgina  "$1" a l\'è staita gavà via da soa lista dla ròba da tnì sot euj.',
+'removedwatchtext'     => 'La pàgina  "<nowiki>$1</nowiki>" a l\'è staita gavà via da soa lista dla ròba da tnì sot euj.',
 'watch'                => 'ten sot euj',
 'watchthispage'        => "Ten sot euj st'artìcol-sì",
 'unwatch'              => 'Chita-lì da ten-e sossì sot euj',
@@ -1313,7 +1313,7 @@ Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
 'confirmdeletetext'           => "A sta për scancelé d'autut da 'nt la base dat na pàgina ò pura na figura, ansema a tuta soa cronologìa.<p>
 Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont ëd le conseguense ëd lòn che a fa, e che sòn a resta an pien an régola con lòn che a l'é stabilì ant la [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Travaj fait e finì',
-'deletedtext'                 => 'La pàgina "$1" a l\'é staita scancelà.
+'deletedtext'                 => 'La pàgina "<nowiki>$1</nowiki>" a l\'é staita scancelà.
 Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
 'deletedarticle'              => 'Scancelà "$1"',
 'dellogpage'                  => 'Registr djë scancelament',
@@ -1349,7 +1349,7 @@ Ch'a varda la [[Special:Protectedpages|Lista dle pàgine protegiùe]] për ës-c
 'protect_expiry_old'          => 'Scadensa già passà.',
 'unprotectsub'                => '(dësprotession ëd "$1")',
 'protect-unchain'             => 'Dësbloché ij permess ëd tramudé dla ròba',
-'protect-text'                => 'Ambelessì a peul vardé e cangé ël livel ëd protession dla pàgina <strong>$1</strong>.',
+'protect-text'                => 'Ambelessì a peul vardé e cangé ël livel ëd protession dla pàgina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => "Un a peul pa modifiché ij livel ëd protession antramentr ch'a l'é blocà chiel. Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",
 'protect-locked-dblock'       => "Ij livej ëd protession as peulo nen cambiesse antramentr che la base dat a l'é blocà.
 Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",

@@ -291,7 +291,7 @@ Tšhupaleloko (''account'') ya gago e tlhodilwe. O seke wa lebala go fetola dikg
 'loginsuccesstitle'          => 'O tsene ka katlego',
 'loginsuccess'               => "'''Bjale o tsene go {{SITENAME}} bjalo ka \"\$1\".'''",
 'nosuchuser'                 => 'Ga gona mošomiši wa leina la "$1". Lebele mopeleto wa gago goba o tlhome mošomiši yo mophsa.',
-'nosuchusershort'            => 'Ga gona mošomiši wa leina la "$1". Hlokomela mopeleto wa gago.',
+'nosuchusershort'            => 'Ga gona mošomiši wa leina la "<nowiki>$1</nowiki>". Hlokomela mopeleto wa gago.',
 'nouserspecified'            => 'O swanela ke go fana ka leina la mošomiši.',
 'wrongpassword'              => 'O loketše ditlhaka-tša-siphiri tšeo e sego tšona. Ka kgopelo, leka gape.',
 'wrongpasswordempty'         => 'Ga wa lokela ditlhaka-tša-siphiri. Ka kgopelo, leka gape.',
@@ -764,7 +764,7 @@ Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiš
 'confirmdeletetext'           => 'O phumula letlakala le histori ka moka ya lona.
 Ka kgopela sitlediša gore ke se o nyakago  go sedira, le gore o kwešiša ditla morago tša se, le gore seo o se dirago se latela melawana le ditaelo go ya ka [[{{MediaWiki:Policy-url}}|polisi]].',
 'actioncomplete'              => 'Kgopelo e phetilwe ka katlego',
-'deletedtext'                 => '"$1" e phumutšwe.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" e phumutšwe.
 Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'deletedarticle'              => 'E phumutšwe "[[$1]]"',
 'dellogpage'                  => "''Log'' yago phumula",
@@ -781,7 +781,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'protect_expiry_invalid'      => 'Fetatšatši, nako ye ga ya dumelwa.',
 'protect_expiry_old'          => 'Fetatšatši ke ya nako yeo e fetilego.',
 'protect-unchain'             => 'Dumella (tloša senotlolo) tumello ya go huduga',
-'protect-text'                => 'O ka lebelela lego fetola seemo sa go lota sa letlakala <strong>$1</strong>.',
+'protect-text'                => 'O ka lebelela lego fetola seemo sa go lota sa letlakala <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Tšhupaleloko ya gago ga ena tumello ya go fetola seemo sago lota ga letlakala. 
 Seemo sa go lota ga letlakala <strong>$1</strong>:',
 'protect-cascadeon'           => 'Letlakala le lotegile ka ge le akeretšwa ke {{PLURAL:$1|letlakala, leo lenalego|matlakala, analego}} golotega ga kakaretšo. O ka fetola go lotega ga letlakala le.',

@@ -345,7 +345,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'prefs-help-email-required' => 'Kinakailangan ang direksyong e-liham.',
 'loginsuccesstitle'         => 'Matagumpay ang paglagda',
 'loginsuccess'              => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
-'nosuchusershort'           => 'Walang manggagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
+'nosuchusershort'           => 'Walang manggagamit na may pangalang "<nowiki>$1</nowiki>". Pakitingnan ang iyong pagbaybay.',
 'passwordtooshort'          => 'Walang saysay o masyadong maigsi ang iyong hudyat. Dapat ito ay hindi bababa sa $1 karakter at ay magkaiba sa iyong bansag.',
 'passwordremindertitle'     => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
 'mailerror'                 => 'Kamalian sa pagpapadala ng liham: $1',

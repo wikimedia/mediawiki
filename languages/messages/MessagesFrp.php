@@ -454,7 +454,7 @@ Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres
 'loginsuccess'               => "'''Orendrêt, vos éte conèctâ dessus {{SITENAME}} a titro de « $1 ».'''",
 'nosuchuser'                 => 'L’utilisator « $1 » ègziste pas.
 Controlâd que vos éd bien ortografiâ lo nom, ou ben utilisâd lo formulèro ce-desot por crèar un novél compto utilisator.',
-'nosuchusershort'            => 'Y at pas de contributor avouéc lo nom « $1 ». Volyéd controlar l’ortografia.',
+'nosuchusershort'            => 'Y at pas de contributor avouéc lo nom « <nowiki>$1</nowiki> ». Volyéd controlar l’ortografia.',
 'nouserspecified'            => 'Vos dête buchiér un nom d’utilisator.',
 'wrongpassword'              => 'Lo mot de pâssa est fôx. Volyéd tornar èprovar.',
 'wrongpasswordempty'         => 'Vos éd pas entrâ de mot de pâssa. Volyéd tornar èprovar.',
@@ -1382,7 +1382,7 @@ Retôrn et assistance :
 'historywarning'              => 'Atencion : la pâge que vos éte prèst a suprimar at un historico :',
 'confirmdeletetext'           => 'Vos éte prèst a suprimar por de bon de la bâsa de balyês una pâge ou una émâge, et pués totes ses vèrsions prècèdentes. Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'actioncomplete'              => 'Accion fêta',
-'deletedtext'                 => '« $1 » at étâ suprimâ.
+'deletedtext'                 => '« <nowiki>$1</nowiki> » at étâ suprimâ.
 Vêde l’$2 por una lista de les novèles suprèssions.',
 'deletedarticle'              => 'at èfaciê « [[$1]] »',
 'dellogpage'                  => 'Historico de les suprèssions',
@@ -1426,7 +1426,7 @@ Clicâd dessus « Prècèdent » et rechargiéd la pâge de yô que vos vegnéd,
 'protect_expiry_old'          => 'Lo temps d’èxpiracion est ja passâ.',
 'unprotectsub'                => '(Dèprotègiér « $1 »)',
 'protect-unchain'             => 'Dèblocar les pèrmissions de renomâjo',
-'protect-text'                => 'Vos pouede consultar et modifiar lo nivô de protèccion de la pâge <strong>$1</strong>.
+'protect-text'                => 'Vos pouede consultar et modifiar lo nivô de protèccion de la pâge <strong><nowiki>$1</nowiki></strong>.
 Volyéd vos assurar que vos siude les [[Special:Protectedpages|règlles de dedens]].',
 'protect-locked-blocked'      => 'Vos pouede pas modifiar lo nivô de protèccion tant que vos éte blocâ.
 Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',

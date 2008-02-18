@@ -195,7 +195,7 @@ $messages = array(
 'loginsuccess'               => "'''Þu eart nū inmeldod tō {{SITENAME}} swā \"\$1\".'''",
 'nosuchuser'                 => 'Þǣr is nān brūcere be þǣm naman "$1".
 Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne brūcendhordcleofan.',
-'nosuchusershort'            => 'Þǣr is nān brūcend mid þǣm naman "$1".  Edscēawa on þīne wrītunge.',
+'nosuchusershort'            => 'Þǣr is nān brūcend mid þǣm naman "<nowiki>$1</nowiki>".  Edscēawa on þīne wrītunge.',
 'acct_creation_throttle_hit' => 'Hwæt, þu hæfst gēo geseted $1 hordcleofan. Þu ne canst settan ǣnige māran.',
 'accountcreated'             => 'Hordcleofan gescapen',
 'loginlanguagelabel'         => 'Sprǣc: $1',

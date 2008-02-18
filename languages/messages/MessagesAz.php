@@ -446,7 +446,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 
 Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə" düyməsinə vurun.',
 'removedwatch'         => 'İzləmə siyahısından çıxardılıb',
-'removedwatchtext'     => '"$1" səhifəsi izləmə siyahınızdan çıxardıldı.',
+'removedwatchtext'     => '"<nowiki>$1</nowiki>" səhifəsi izləmə siyahınızdan çıxardıldı.',
 'watch'                => 'İzlə',
 'watchthispage'        => 'Bu səhifəni izlə',
 'unwatch'              => 'İzləmə',

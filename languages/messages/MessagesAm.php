@@ -262,7 +262,7 @@ $messages = array(
 'loginsuccesstitle'     => 'መግባትዎ ተከናወነ!',
 'loginsuccess'          => 'እንደ «$1» ሆነው አሁን {{SITENAME}}ን ገብተዋል።',
 'nosuchuser'            => '«$1» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ ወይም አዲስ ብዕር ስም ያውጡ።',
-'nosuchusershort'       => '«$1» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ።',
+'nosuchusershort'       => '«<nowiki>$1</nowiki>» የሚል ብዕር ስም አልተገኘም። አጻጻፉን ይመልከቱ።',
 'nouserspecified'       => 'አንድ ብዕር ስም መጠቆም ያስፈልጋል።',
 'wrongpassword'         => 'የተሰጠው መግቢያ ቃል ልክ አልነበረም። ዳግመኛ ይሞክሩ።',
 'wrongpasswordempty'    => 'ምንም መግቢያ ቃል አልተሰጠም። ዳግመኛ ይሞክሩ።',
@@ -673,7 +673,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 በኋላ ጊዜ ገጹን ከሚከታተሉት ገጾች ለማስወግድ የፈለጉ እንደሆነ፣ በጫፉ ዳርቻ «አለመከታተል» የሚለውን ይጫኑ።",
 'removedwatch'         => 'ከሚከታተሉት ገጾች ተወገደ',
-'removedwatchtext'     => '«$1» የሚለው ከሚከታተሉት ገጾች ዝርዝር ጠፍቷል።',
+'removedwatchtext'     => '«<nowiki>$1</nowiki>» የሚለው ከሚከታተሉት ገጾች ዝርዝር ጠፍቷል።',
 'watch'                => 'ለመከታተል',
 'watchthispage'        => 'ይህንን ገጽ ለመከታተል',
 'unwatch'              => 'አለመከታተል',
@@ -701,7 +701,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'historywarning'              => 'ማስጠንቀቂያ፦ ለዚሁ ገጽ የዕትም ታሪክ ደግሞ ሊጠፋ ነው! :',
 'confirmdeletetext'           => 'አንድ ገጽ ወይም ስዕል ከነለውጦቹ በሙሉ ከዚሁ {{SITENAME}} ሊጠፋ ነው! ይህን ማድረግዎ ያሠቡበት መሆኑንና ማጥፋቱ በፖሊሲ ተገቢ እንደሆነ እባክዎ ያረጋግጡ፦',
 'actioncomplete'              => 'ተፈጽሟል',
-'deletedtext'                 => '«$1» ጠፍቷል።
+'deletedtext'                 => '«<nowiki>$1</nowiki>» ጠፍቷል።
 
 (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
 'deletedarticle'              => '«[[$1]]» አጠፋ',
@@ -724,7 +724,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'protect_expiry_invalid'      => "የተሰጠው 'የሚያልቅበት ጊዜ' ልክ አይደለም።",
 'protect_expiry_old'          => "የተሰጠው 'የሚያልቅበት ጊዜ' ባለፈው ግዜ ነበር።",
 'protect-unchain'             => 'ገጹን የማዛወር ፈቃዶች ለመፍታት',
-'protect-text'                => 'እዚህ ለገጹ «<strong>$1</strong>» የመቆለፍ ደረጃ መመልከት ወይም መቀይር ይችላሉ።',
+'protect-text'                => 'እዚህ ለገጹ «<strong><nowiki>$1</nowiki></strong>» የመቆለፍ ደረጃ መመልከት ወይም መቀይር ይችላሉ።',
 'protect-locked-access'       => 'እርስዎ ገጽ የመቆለፍ ወይም የመፍታት ፈቃድ የለዎም።<br />አሁኑ የዚሁ ገጽ መቆለፍ ደረጃ እንዲህ ነው፦ <strong>$1</strong>:',
 'protect-cascadeon'           => 'ይህ ገጽ ወደ ተከለከሉት አርእስቶች ተጨምሯል። የመቆለፍ ደረጃ እዚህ መቀየር ቢቻልዎም ገጹ ግን በሚከተለው ድርብ የተቆለፈ ገጽ ውስጥ ይጨመራል።',
 'protect-default'             => '(እንደ ወትሮ)',

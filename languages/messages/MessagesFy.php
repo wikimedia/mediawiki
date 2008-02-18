@@ -447,7 +447,7 @@ Ferjit net se oan jo foarkar oan te passen.',
 'loginsuccess'              => 'Jo binne no oanmelde op de {{SITENAME}} as: $1.',
 'nosuchuser'                => "Brûkersnamme en wachtwurd hearre net by elkoar.
 Besykje op 'e nij, of fier it wachtwurd twa kear yn en meitsje neie brûkersynstellings.",
-'nosuchusershort'           => 'De brûker "$1" bestiet net. Kontrolearje de skriuwwize.',
+'nosuchusershort'           => 'De brûker "<nowiki>$1</nowiki>" bestiet net. Kontrolearje de skriuwwize.',
 'nouserspecified'           => 'Jo moatte in brûkersnamme opjaan.',
 'wrongpassword'             => "Brûkersnamme en wachtwurd hearre net by elkoar.
 Besykje op 'e nij, of fier it wachtwurd twa kear yn en meitsje neie brûkersynstellings.",
@@ -912,13 +912,13 @@ of hat oanjaan gjin post fan oare brûkers krije te wollen.',
 'watchnologin'         => 'Not oanmeld in',
 'watchnologintext'     => 'Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.',
 'addedwatch'           => 'Oan folchlist tafoege',
-'addedwatchtext'       => 'De side "$1" is tafoege oan jo <a href="{{localurle:{{ns:special}}:Watchlist}}">folchlist</a>.
+'addedwatchtext'       => 'De side "<nowiki>$1</nowiki>" is tafoege oan jo <a href="{{localurle:{{ns:special}}:Watchlist}}">folchlist</a>.
 As dizze side sels, of de oerlisside, feroare wurd, dan komt dat dêr yn,
 en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Recentchanges}}">Koarts feroare</a> list.
 
 <p>As jo letter in side net mear folgje wolle, dan brûke jo "Ferjit dizze side".',
 'removedwatch'         => 'Net mear folgje',
-'removedwatchtext'     => 'De side "$1" stiet net mear op jo folchlist.',
+'removedwatchtext'     => 'De side "<nowiki>$1</nowiki>" stiet net mear op jo folchlist.',
 'watch'                => 'Folgje',
 'watchthispage'        => 'Folgje dizze side',
 'unwatch'              => 'Net folgje',
@@ -952,7 +952,7 @@ of ôfbyld, tegearre mei alle skiednis, út de databank.
 Befêstigje dat jo dat wier dwaan wolle. Befêstigje dat dat is wat jo witte wat it gefolch
 is en dat jo dit dogge neffens de [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Dien',
-'deletedtext'                 => '"$1" is wiske.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" is wiske.
 Sjoch "$2" foar in list fan wat resint wiske is.',
 'deletedarticle'              => '"$1" is wiske',
 'dellogpage'                  => 'Wisk_loch',
@@ -981,7 +981,7 @@ De lêste feroaring wie fan [[User:$3|$3]] ([[User talk:$3|Oerlis]]).',
 'protect_expiry_invalid'      => 'De oanjûne doer is ûnjildich.',
 'protect_expiry_old'          => 'Ferrindatum is yn it ferline',
 'protect-unchain'             => 'Ferskowen mûglik meitsje',
-'protect-text'                => 'Hjir kinne jo it befeiligingsnivo foar de side <strong>$1</strong> besjen en feroarje.',
+'protect-text'                => 'Hjir kinne jo it befeiligingsnivo foar de side <strong><nowiki>$1</nowiki></strong> besjen en feroarje.',
 'protect-locked-access'       => "'''Jo brûker hat gjin rjochten om it befeiligingsnivo te feroarjen.'''
 Dit binne de rinnende ynstellings foar de side <strong>$1</strong>:",
 'protect-cascadeon'           => "Dizze side is op 't stuit befeilige, om't er yn 'e folgjende {{PLURAL:$1|side|siden}} opnommen is, dy't befeilige {{PLURAL:$1|is|binne}} mei de kaskade-opsje. It befeiligingsnivo feroarje hat alhiel gjin effekt.",

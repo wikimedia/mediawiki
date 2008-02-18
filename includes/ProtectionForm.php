@@ -116,9 +116,7 @@ class ProtectionForm {
 				$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 			}
 
-			$notice = wfMsgExt( 'protect-cascadeon', array('parsemag'), count($cascadeSources) ) . "\r\n$titles";
-
-			$wgOut->addWikiText( $notice );
+			$wgOut->wrapWikiMsg( "$1\n$titles", array( 'protect-cascadeon', count($cascadeSources) ) );
 		}
 
 		$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
@@ -129,15 +127,12 @@ class ProtectionForm {
 		if( $this->disabled ) {
 			if( wfReadOnly() ) {
 				$wgOut->readOnlyPage();
-				$message = '';
-			}
-			if( $this->mPermErrors ) {
-				$message = $wgOut->formatPermissionsErrorMessage( $this->mPermErrors );
+			} elseif( $this->mPermErrors ) {
+				$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $this->mPermErrors ) );
 			}
 		} else {
-			$message = wfMsg( 'protect-text', wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
+			$wgOut->addWikiMsg( 'protect-text', $this->mTitle->getPrefixedText() );
 		}
-		$wgOut->addWikiText( $message );
 
 		$wgOut->addHTML( $this->buildForm() );
 

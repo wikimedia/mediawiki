@@ -225,17 +225,17 @@ class UserrightsPage extends SpecialPage {
 			list( $name, $database ) = array_map( 'trim', $parts );
 
 			if( !$wgUser->isAllowed( 'userrights-interwiki' ) ) {
-				$wgOut->addWikiText( wfMsg( 'userrights-no-interwiki' ) );
+				$wgOut->addWikiMsg( 'userrights-no-interwiki' );
 				return null;
 			}
 			if( !UserRightsProxy::validDatabase( $database ) ) {
-				$wgOut->addWikiText( wfMsg( 'userrights-nodatabase', $database ) );
+				$wgOut->addWikiMsg( 'userrights-nodatabase', $database );
 				return null;
 			}
 		}
 		
 		if( $name == '' ) {
-			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
+			$wgOut->addWikiMsg( 'nouserspecified' );
 			return false;
 		}
 		
@@ -251,7 +251,7 @@ class UserrightsPage extends SpecialPage {
 			}
 			
 			if( !$name ) {
-				$wgOut->addWikiText( wfMsg( 'noname' ) );
+				$wgOut->addWikiMsg( 'noname' );
 				return null;
 			}
 		}
@@ -263,7 +263,7 @@ class UserrightsPage extends SpecialPage {
 		}
 		
 		if( !$user || $user->isAnon() ) {
-			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
+			$wgOut->addWikiMsg( 'nosuchusershort', $username );
 			return null;
 		}
 		

@@ -128,7 +128,7 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'excontentauthor'   => "al cointgnû l'éra: '$1' (e l'ónic cuntribudôr l'éra '[[Special:Contributions/$2|$2]]')",
 'confirmdeletetext' => "Stèt per scanzlèr 'na pàgina o n'imàgin, insìmma a tòt la sô crunolugî dal database.
 Cunfermèr per piasèr ca saîv quàl che stèv par fêr, ca capîv al pussìbil counseguèinzi e ca stèv facènd quàst in confurmitê cun [[{{MediaWiki:Policy-url}}]].",
-'deletedtext'       => '"$1" l\'è stê scanzlê.
+'deletedtext'       => '"<nowiki>$1</nowiki>" l\'è stê scanzlê.
 Guèrda $2 par vèdder la lésta d\'al pàgin ch\'i sun stèdi scanzlèdi di recèint.',
 'deletedarticle'    => 'scanzlê "[[$1]]"',
 'dellogpage'        => 'Regestér dal scanzladûri',

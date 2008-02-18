@@ -966,7 +966,7 @@ wgAjaxLicensePreview = {$alp};
 			  "<span class='error'>{$msg}</span>\n" );
 		}
 		$wgOut->addHTML( '<div id="uploadtext">' );
-		$wgOut->addWikiText( wfMsgNoTrans( 'uploadtext', $this->mDesiredDestName ) );
+		$wgOut->addWikiMsg( 'uploadtext', $this->mDesiredDestName );
 		$wgOut->addHTML( "</div>\n" );
 
 		# Print a list of allowed file extensions, if so configured.  We ignore
@@ -1636,7 +1636,7 @@ EOT
 		);
 		if( $reader->hasRows() ) {
 			$out->addHtml( '<div id="mw-upload-deleted-warn">' );
-			$out->addWikiText( wfMsg( 'upload-wasdeleted' ) );
+			$out->addWikiMsg( 'upload-wasdeleted' );
 			$viewer = new LogViewer( $reader );
 			$viewer->showList( $out );
 			$out->addHtml( '</div>' );

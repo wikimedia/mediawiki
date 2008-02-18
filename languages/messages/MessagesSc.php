@@ -440,12 +440,12 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
 'watchnologintext' => 'Devi prima fare il [[Special:Userlogin|login]]
 per modificare la tua lista di osservati speciali.',
 'addedwatch'       => 'Aggiunto agli Osservati Speciali',
-'addedwatchtext'   => ' La pagina  "$1" è stata aggiunta alla tua [[Special:Watchlist|lista di osservati speciali]].
+'addedwatchtext'   => ' La pagina  "<nowiki>$1</nowiki>" è stata aggiunta alla tua [[Special:Watchlist|lista di osservati speciali]].
 Le future modifiche a questa pagina ed alla relativa pagina di discussione saranno elencate qui, e la pagina apparirà in <b>grassetto</b> nella pagina delle [[Special:Recentchanges|modifiche recenti]] per essere più facile da tener d\'occhio.
 
 Se in seguito vorrai togliere questo articolo dalla tua lista di osservati speciali, clicca " Smetti di seguire " nella barra dei menu.',
 'removedwatch'     => 'Rimosso dalla lista degli Osservati Speciali',
-'removedwatchtext' => 'La pagina  "$1" è stata rimossa dalla lista degli Osservati Speciali.',
+'removedwatchtext' => 'La pagina  "<nowiki>$1</nowiki>" è stata rimossa dalla lista degli Osservati Speciali.',
 'watchthispage'    => 'Segui questo articolo',
 'unwatchthispage'  => 'Smetti di seguire',
 'notanarticle'     => 'Non è un articolo',
@@ -457,7 +457,7 @@ Se in seguito vorrai togliere questo articolo dalla tua lista di osservati speci
 Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella
 [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Azione completata',
-'deletedtext'       => 'La pagina "$1" è stata cancellata.
+'deletedtext'       => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata.
 Vedi $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'    => 'Cancellata "$1"',
 'dellogpage'        => 'Deletion_log',

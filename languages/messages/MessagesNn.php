@@ -619,7 +619,7 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'loginsuccesstitle'          => 'Du er no innlogga',
 'loginsuccess'               => 'Du er no innlogga som «$1».',
 'nosuchuser'                 => 'Det finst ikkje nokon brukar med brukarnamnet «$1». Sjekk at du har skrive rett eller bruk skjemaet under til å opprette ein ny konto.',
-'nosuchusershort'            => 'Det finst ikkje nokon brukar med brukarnamnet «$1». Sjekk at du har skrive rett.',
+'nosuchusershort'            => 'Det finst ikkje nokon brukar med brukarnamnet «<nowiki>$1</nowiki>». Sjekk at du har skrive rett.',
 'nouserspecified'            => 'Du må oppgje eit brukarnamn.',
 'wrongpassword'              => 'Du har oppgjeve eit ugyldig passord. Prøv om att.',
 'wrongpasswordempty'         => 'Du oppgav ikkje noko passord. Ver venleg og prøv igjen.',
@@ -1432,11 +1432,11 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'watchnologin'         => 'Ikkje innlogga',
 'watchnologintext'     => 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna endre overvakingslista.',
 'addedwatch'           => 'Lagt til overvakingslista',
-'addedwatchtext'       => "Sida «$1» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:Recentchanges|siste endringar]]» for å gjera deg merksam på henne.
+'addedwatchtext'       => "Sida «<nowiki>\$1</nowiki>» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:Recentchanges|siste endringar]]» for å gjera deg merksam på henne.
 
 Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
 'removedwatch'         => 'Fjerna frå overvakingslista',
-'removedwatchtext'     => 'Sida «$1» er fjerna frå overvakingslista.',
+'removedwatchtext'     => 'Sida «<nowiki>$1</nowiki>» er fjerna frå overvakingslista.',
 'watch'                => 'Overvak',
 'watchthispage'        => 'Overvak denne sida',
 'unwatch'              => 'Fjern overvaking',
@@ -1508,7 +1508,7 @@ For hjelp og meir informasjon:
 'historywarning'              => 'Åtvaring: Sida du held på å slette har ein historikk:',
 'confirmdeletetext'           => 'Du held på å varig slette ei side eller eit bilete saman med heile den tilhøyrande historikken frå databasen. Stadfest at du verkeleg vil gjere dette, at du skjønar konsekvensane, og at du gjer dette i tråd med [[{{MediaWiki:Policy-url}}|retningslinene]].',
 'actioncomplete'              => 'Ferdig',
-'deletedtext'                 => '«$1» er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
+'deletedtext'                 => '«<nowiki>$1</nowiki>» er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
 'deletedarticle'              => 'sletta «[[$1]]»',
 'dellogpage'                  => 'Slettelogg',
 'dellogpagetext'              => 'Her er ei liste over dei siste slettingane.',
@@ -1548,7 +1548,7 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'protect_expiry_old'          => 'Utløpstida har allereie vore.',
 'unprotectsub'                => '(Fjernar vern av «$1»)',
 'protect-unchain'             => 'Tillat flytting',
-'protect-text'                => 'Her kan du kan sjå og endre på graden av vern for sida <strong>$1</strong>.',
+'protect-text'                => 'Her kan du kan sjå og endre på graden av vern for sida <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Du kan ikkje endre nivå på vern medan du er blokkert. Dette er dei noverande innstillingane for sida <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Du kan ikkje endre nivå på vern fordi databasen er låst akkurat no. Dette er dei noverande innstillingane for sida <strong>$1</strong>:',
 'protect-locked-access'       => 'Brukarkontoen din har ikkje tilgang til endring av vern.

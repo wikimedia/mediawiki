@@ -111,7 +111,7 @@ class MergehistoryForm {
 	function showMergeForm() {
 		global $wgOut, $wgScript;
 		
-		$wgOut->addWikiText( wfMsg( 'mergehistory-header' ) );
+		$wgOut->addWikiMsg( 'mergehistory-header' );
 		
 		$wgOut->addHtml(
 			Xml::openElement( 'form', array(
@@ -200,7 +200,7 @@ class MergehistoryForm {
 			$wgOut->addHTML( "</ul>" );
 			$wgOut->addHTML( $revisions->getNavigationBar() );
 		} else {
-			$wgOut->addWikiText( wfMsg( "mergehistory-empty" ) );
+			$wgOut->addWikiMsg( "mergehistory-empty" );
 		}
 
 		# Show relevant lines from the deletion log:
@@ -303,7 +303,7 @@ class MergehistoryForm {
 			__METHOD__ );
 		# Destination page must exist with revisions
 		if( !$maxtimestamp ) {
-			$wgOut->addWikiText( wfMsg('mergehistory-fail') );
+			$wgOut->addWikiMsg('mergehistory-fail');
 			return false;
 		}
 		# Leave the latest version no matter what
@@ -315,7 +315,7 @@ class MergehistoryForm {
 		$maxtimestamp = ($lasttime < $maxtimestamp) ? $lasttime : $maxtimestamp;
 		// $this->mTimestamp must be less than $maxtimestamp
 		if( $this->mTimestamp >= $maxtimestamp ) {
-			$wgOut->addWikiText( wfMsg('mergehistory-fail') );
+			$wgOut->addWikiMsg('mergehistory-fail');
 			return false;
 		}
 		# Update the revisions
@@ -334,7 +334,7 @@ class MergehistoryForm {
 			__METHOD__ );
 		# Check if this did anything
 		if( !$count = $dbw->affectedRows() ) {
-			$wgOut->addWikiText( wfMsg('mergehistory-fail') );
+			$wgOut->addWikiMsg('mergehistory-fail');
 			return false;
 		}
 		# Update our logs

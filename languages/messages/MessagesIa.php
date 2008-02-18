@@ -531,14 +531,14 @@ o ha optate pro non reciper e-mail de altere usatores.',
 'watchnologintext' => 'Tu debe [[Special:Userlogin|aperir un session]]
 pro modificar tu lista de paginas sub observation.',
 'addedwatch'       => 'Ponite sub observation',
-'addedwatchtext'   => "Le pagina \"\$1\" es ora in tu [[Special:Watchlist||lista de paginas sub observation]].
+'addedwatchtext'   => "Le pagina \"<nowiki>\$1</nowiki>\" es ora in tu [[Special:Watchlist||lista de paginas sub observation]].
 Modificationes futur a iste pagina e su pagina de discussion associate essera listate la,
 e le pagina apparera '''in nigretto''' in le [[Special:Recentchanges|lista de modificationes recente]] pro
 facilitar su identification.
 
 Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancellar observation\" in le barra de navigation.",
 'removedwatch'     => 'Observation cancellate',
-'removedwatchtext' => 'Le pagina "$1" non es plus sub observation.',
+'removedwatchtext' => 'Le pagina "<nowiki>$1</nowiki>" non es plus sub observation.',
 'watchthispage'    => 'Poner iste pagina sub observation',
 'unwatchthispage'  => 'Cancellar observation',
 'notanarticle'     => 'Non es un articulo',
@@ -551,7 +551,7 @@ o imagine del base de datos, conjunctemente con tote su chronologia de versiones
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
 e tu lo face de accordo con [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Action complete',
-'deletedtext'       => '"$1" ha essite eliminate.
+'deletedtext'       => '"<nowiki>$1</nowiki>" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
 'deletedarticle'    => '"$1" eliminate',
 'dellogpage'        => 'Registro_de_eliminationes',

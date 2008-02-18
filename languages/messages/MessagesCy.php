@@ -424,7 +424,7 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'loginsuccess'               => "'''Yr ydych wedi mewngofnodi i {{SITENAME}} wrth yr enw \"\$1\".'''",
 'nosuchuser'                 => 'Does dim defnyddwr gyda\'r enw "$1".
 Sicrhau rydych chi wedi sillafu\'n iawn, neu creuwch accownt newydd gyda\'r ffurflen isod.',
-'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "$1". Gwiriwch eich sillafu.',
+'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "<nowiki>$1</nowiki>". Gwiriwch eich sillafu.',
 'wrongpassword'              => "Mae'r allweddair rydych wedi teipio ddim yn cywir. Triwch eto, os gwelwch yn dda.",
 'wrongpasswordempty'         => 'Roedd y cyfrinair yn wag. Rhowch gynnig arall arni.',
 'passwordtooshort'           => "Mae eich cyfrinair yn rhy fyr. Mae'n rhaid cynnwys o leia $1 nôd.",
@@ -1089,7 +1089,7 @@ Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos
 
 Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" yn y bar ar frig y dudalen.",
 'removedwatch'         => 'Wedi diswyddo oddiwrth y rhestr gwylio',
-'removedwatchtext'     => 'Mae tudalen "$1" wedi cael ei diswyddo oddiwrth eich rhestr gwylio.',
+'removedwatchtext'     => 'Mae tudalen "<nowiki>$1</nowiki>" wedi cael ei diswyddo oddiwrth eich rhestr gwylio.',
 'watch'                => 'Gwylio',
 'watchthispage'        => 'Gwyliwch y tudalen hon',
 'unwatch'              => 'Stopio gwylio',
@@ -1156,7 +1156,7 @@ Am fwy o gymorth:
 'confirmdeletetext'           => "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.
 Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",
 'actioncomplete'              => "Wedi cwblhau'r weithred",
-'deletedtext'                 => 'Mae "$1" wedi\'i ddileu. 
+'deletedtext'                 => 'Mae "<nowiki>$1</nowiki>" wedi\'i ddileu. 
 Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'deletedarticle'              => 'wedi dileu "[[$1]]"',
 'dellogpage'                  => 'Log dileuon',
@@ -1191,7 +1191,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'protectcomment'              => 'Rheswm dros ddiogelu',
 'unprotectsub'                => '(Yn dad-ddiogelu "$1")',
 'protect-unchain'             => 'Datgloi hawliau symud',
-'protect-text'                => 'Yma, gallwch weld a newid y lefel diogelu ar gyfer y dudalen <strong>$1</strong>.',
+'protect-text'                => 'Yma, gallwch weld a newid y lefel diogelu ar gyfer y dudalen <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(rhagosodedig)',
 'protect-level-autoconfirmed' => 'Blocio defnyddwyr heb gyfrif',
 'protect-level-sysop'         => 'Gweinyddwyr yn unig',

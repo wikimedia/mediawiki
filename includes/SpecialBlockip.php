@@ -70,7 +70,7 @@ class IPBlockForm {
 		global $wgOut, $wgUser, $wgSysopUserBans, $wgContLang;
 
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
-		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
+		$wgOut->addWikiMsg( 'blockiptext' );
 
 		if($wgSysopUserBans) {
 			$mIpaddress = Xml::label( wfMsg( 'ipadressorusername' ), 'mw-bi-target' );

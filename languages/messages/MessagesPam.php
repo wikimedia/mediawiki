@@ -75,7 +75,7 @@ Melalang ne ing kekang account. E mo kakalingwan alilan deng kekang piniling {{S
 'badretype'                  => 'Ding password a linub mu ela mibabage.',
 'yourlanguage'               => 'Amanu:',
 'nosuchuser'                 => 'Alang talagamit a maku lagyung "$1". Pakalon me pangasulat o maglalang kang bayung account.',
-'nosuchusershort'            => 'Alang talagamit a maki lagyung "$1". Lon mu nung ustu ya pangasulat.',
+'nosuchusershort'            => 'Alang talagamit a maki lagyung "<nowiki>$1</nowiki>". Lon mu nung ustu ya pangasulat.',
 'blocked-mailpassword'       => 'Milako ya paintulut a manalili (mag-edit) ing kekang IP address, anya
 e malyaring gumamit king password recovery function bang e mayayabusu iti.',
 'acct_creation_throttle_hit' => 'Panupaya yu, mekalalang na kang $1 a account. E na ka malyaring gawa pa.',
@@ -235,7 +235,7 @@ manibat anyang tawli kang linabas.',
 'exblank'         => 'ala yang laman ing bulung',
 'historywarning'  => 'Babala: Maki amlat (history) ya ing bulung a kekang buburan:',
 'actioncomplete'  => 'Ing dapat mebuu ne.',
-'deletedtext'     => 'Mebura ya ing "$1".
+'deletedtext'     => 'Mebura ya ing "<nowiki>$1</nowiki>".
 Makasulat la king $2 deng pekabayung mebura.',
 'deletedarticle'  => 'mebura ne ing "[[$1]]"',
 'deletecomment'   => 'Sangkan ning pangabura',

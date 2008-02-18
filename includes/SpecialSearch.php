@@ -104,9 +104,9 @@ class SpecialSearch {
 			} 
 		}
 		if( $t->quickUserCan( 'create' ) && $t->quickUserCan( 'edit' ) ) {
-			$wgOut->addWikiText( wfMsg( 'noexactmatch', wfEscapeWikiText( $term ) ) );
+			$wgOut->addWikiMsg( 'noexactmatch', wfEscapeWikiText( $term ) );
 		} else {
-			$wgOut->addWikiText( wfMsg( 'noexactmatch-nocreate', wfEscapeWikiText( $term ) ) );
+			$wgOut->addWikiMsg( 'noexactmatch-nocreate', wfEscapeWikiText( $term ) );
 		}
 
 		return $this->showResults( $term );
@@ -123,7 +123,7 @@ class SpecialSearch {
 		$this->setupPage( $term );
 
 		global $wgOut;
-		$wgOut->addWikiText( wfMsg( 'searchresulttext' ) );
+		$wgOut->addWikiMsg( 'searchresulttext' );
 
 		if( '' === trim( $term ) ) {
 			// Empty query -- straight view of search form
@@ -194,27 +194,27 @@ class SpecialSearch {
 
 		if( $titleMatches ) {
 			if( $titleMatches->numRows() ) {
-				$wgOut->addWikiText( '==' . wfMsg( 'titlematches' ) . "==\n" );
+				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
 				$wgOut->addHTML( $this->showMatches( $titleMatches ) );
 			} else {
-				$wgOut->addWikiText( '==' . wfMsg( 'notitlematches' ) . "==\n" );
+				$wgOut->wrapWikiMsg( "==$1==\n", 'notitlematches' );
 			}
 			$titleMatches->free();
 		}
 
 		if( $textMatches ) {
 			if( $textMatches->numRows() ) {
-				$wgOut->addWikiText( '==' . wfMsg( 'textmatches' ) . "==\n" );
+				$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );
 				$wgOut->addHTML( $this->showMatches( $textMatches ) );
 			} elseif( $num == 0 ) {
 				# Don't show the 'no text matches' if we received title matches
-				$wgOut->addWikiText( '==' . wfMsg( 'notextmatches' ) . "==\n" );
+				$wgOut->wrapWikiMsg( "==$1==\n", 'notextmatches' );
 			}
 			$textMatches->free();
 		}
 
 		if ( $num == 0 ) {
-			$wgOut->addWikiText( wfMsg( 'nonefound' ) );
+			$wgOut->addWikiMsg( 'nonefound' );
 		}
 		if( $num || $this->offset ) {
 			$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
