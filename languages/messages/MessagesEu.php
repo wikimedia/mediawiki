@@ -7,6 +7,7 @@
  * @author Helix84
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Malafaya
  */
 
 $skinNames = array(
@@ -1200,7 +1201,7 @@ $1',
 'contribslink'                => 'ekarpenak',
 'autoblocker'                 => '"[[User:$1|$1]]"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: "\'\'\'$2\'\'\'"',
 'blocklogpage'                => 'Blokeo erregistroa',
-'blocklogentry'               => '"[[User:$1|$1]]" $2(e)ko iraungipenarekin blokeatu da.',
+'blocklogentry'               => '"[[$1]]" $2(e)ko iraungipenarekin blokeatu da. $3',
 'blocklogtext'                => 'Erabiltzaileen blokeoen ezarpen eta ezabaketen erregistroa da hau. Ez dira automatikoki blokeatutako IP helbideak zerrendatzen. Ikus [[Special:Ipblocklist|IP blokeoen zerrenda]] aktibo dauden blokeoak aztertzeko.',
 'unblocklogentry'             => '$1 desblokeatu da',
 'block-log-flags-anononly'    => 'erabiltzaile anonimoak bakarrik',

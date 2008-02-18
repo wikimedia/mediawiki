@@ -886,6 +886,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.
 'searchsubtitleinvalid' => 'Você pesquisou por "$1"',
 'noexactmatch'          => "'''Não existe uma página com o título \"\$1\".''' Você pode [[:\$1|criar tal página]].",
 'noexactmatch-nocreate' => "'''Não há uma página intitulada como \"\$1\".'''",
+'toomanymatches'        => 'Foram retornados demasiados resultados. Por favor, tente um filtro de pesquisa diferente',
 'titlematches'          => 'Resultados nos títulos das páginas',
 'notitlematches'        => 'Nenhum título de página coincide',
 'textmatches'           => 'Resultados dos textos das páginas',
@@ -1082,7 +1083,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'largefileserver'             => 'O tamanho deste ficheiro é superior ao qual o servidor encontra-se configurado para permitir.',
 'emptyfile'                   => 'O ficheiro que está a tentar carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do ficheiro. Por favor verifique se realmente deseja carregar este ficheiro.',
 'fileexists'                  => 'Já existe um ficheiro com este nome. Por favor, verifique <strong><tt>$1</tt></strong> caso não tenha a certeza se deseja alterar o ficheiro actual.',
-'filepageexists'              => 'Já existe uma página &mdash; e não uma imagem &mdash; com este nome. Por gentileza, verifique <strong><tt>$1</tt></strong> caso não tenha certeza se é isso que deseja alterar.',
+'filepageexists'              => 'Já existe uma página (e não um ficheiro) com este nome. Por favor, verifique <strong><tt>$1</tt></strong> caso não tenha certeza se é isso que deseja alterar.',
 'fileexists-extension'        => 'Já existe um ficheiro de nome similar:<br />
 Nome do ficheiro que está sendo enviado: <strong><tt>$1</tt></strong><br />
 Nome do ficheiro existente: <strong><tt>$2</tt></strong><br />
@@ -1578,6 +1579,7 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as ediçõ
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorrecto ou talvez a edição foi restaurada ou removida dos arquivos.',
 'undelete-nodiff'              => 'Não foram encontradas edições anteriores.',
 'undeletebtn'                  => 'Restaurar',
+'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Limpar',
 'undeletecomment'              => 'Comentário:',
 'undeletedarticle'             => 'restaurado "[[$1]]"',

@@ -1026,7 +1026,7 @@ For å lenke direkte til filen, skriv:
 Navnet på din fil: <strong><tt>$1</tt></strong><br />
 Navn på eksisterende fil: <strong><tt>$2</tt></strong><br />
 Den eneste forskjellen ligger i store/små bokstaver i filendelsen. Vennligst sjekk filene for likheter.',
-'fileexists-thumb'            => "<center>'''Eksisterende bilde'''</center>",
+'fileexists-thumb'            => "<center>'''Eksisterende fil'''</center>",
 'fileexists-thumbnail-yes'    => 'Filen ser ut til å være et bilde av redusert størrelse. Vennligst sjekk filen <strong><tt>$1</tt></strong>.<br />
 Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.',
 'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>. Det virker som om det er et bilde av redusert størrelse. Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
@@ -1334,7 +1334,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'watchnologin'         => 'Ikke logget inn',
 'watchnologintext'     => 'Du må være [[Special:Userlogin|logget inn]] for å kunne endre overvåkningslisten.',
 'addedwatch'           => 'Lagt til overvåkningslista',
-'addedwatchtext'       => "Siden «<nowiki>\$1</nowiki>» er føyd til [[Special:Watchlist|overvåkningslistea]]. Fremtidige endringer til denne siden og den tilhørende diskusjonssiden vil bli listet opp her, og siden vil fremstå '''fremhevet''' i [[Special:Recentchanges|lista over de siste endringene]] for å gjøre det lettere å finne den.
+'addedwatchtext'       => "Siden «<nowiki>$1</nowiki>» er føyd til [[Special:Watchlist|overvåkningslistea]]. Fremtidige endringer til denne siden og den tilhørende diskusjonssiden vil bli listet opp her, og siden vil fremstå '''fremhevet''' i [[Special:Recentchanges|lista over de siste endringene]] for å gjøre det lettere å finne den.
 
 Hvis du senere vil fjerne siden fra overvåkningslista, klikk «Avslutt overvåkning» ute i siden.",
 'removedwatch'         => 'Fjernet fra overvåkningslista',

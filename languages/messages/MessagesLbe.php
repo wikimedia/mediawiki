@@ -1,9 +1,10 @@
 <?php
-/**
-  * Lak language (лакку маз)
-  *
-  * @addtogroup Language
-  */
+/** Лакку (Лакку)
+ *
+ * @addtogroup Language
+ *
+ * @author M.M.S.
+ */
 
 $fallback = 'ru';
 
@@ -40,6 +41,7 @@ $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъы�
 
 $messages = array(
 'article' => 'Тарих',
+'qbedit'  => 'Дакьин дуван',
 
 'history'          => 'Макьала',
 'history_short'    => 'Макьала',
@@ -47,11 +49,32 @@ $messages = array(
 'talkpagelinktext' => 'Ихтилат',
 'talk'             => 'Ихтилат',
 
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'currentevents'     => 'Нанисса ишру',
+'currentevents-url' => 'Project:Нанисса ишру',
+'mainpage'          => 'Агьаммур лажин',
+
+'editsection' => 'дакьин дуван',
+'editold'     => 'дакьин дуван',
+
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Тарих',
 'nstab-user'     => 'Гьуртту хьума',
 'nstab-special'  => 'Къуллугъирал лажин',
+'nstab-image'    => 'Сурат',
 'nstab-template' => 'Шаблон',
 'nstab-category' => 'Категория',
+
+# Recent changes
+'recentchanges' => 'Махъсса дахханашивурту',
+
+# Image list
+'filehist-user' => 'Гьурттучув',
+
+# Miscellaneous special pages
+'move' => 'ЦIа даххана дан',
+
+# Special:Log
+'specialloguserlabel' => 'Гьурттучув:',
 
 );

@@ -1,7 +1,10 @@
 <?php
-/** Kalmyk
+/** Kalmyk (Хальмг)
  *
  * @addtogroup Language
+ *
+ * @author M.M.S.
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -27,15 +30,18 @@ $namespaceNames = array(
 
 $fallback8bitEncoding = "windows-1251";
 
-
 $messages = array(
 'article' => 'Халх',
 'mytalk'  => 'Мини күүндлһн бəəрм',
 
-'history'       => 'Чикллһнə бүрткл',
-'history_short' => 'Чикллһнə бүрткл',
-'edit'          => 'Чиклх',
-'talkpage'      => 'Ухалвр',
+'history'          => 'Чикллһнə бүрткл',
+'history_short'    => 'Чикллһнə бүрткл',
+'edit'             => 'Чиклх',
+'talkpage'         => 'Ухалвр',
+'talkpagelinktext' => 'Ухалвр',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'mainpage' => 'Эклц',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Халх',
@@ -50,6 +56,9 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Дурллһн',
+
+# Image list
+'filehist-user' => 'Орлцач',
 
 # Contributions
 'mycontris' => 'Мини өгүллһдүд',

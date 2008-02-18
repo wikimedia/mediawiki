@@ -286,6 +286,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadades:',
 
+'errorpagetitle'    => 'Error',
 'returnto'          => 'Torna cap a $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Ajuda',
@@ -469,7 +470,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Aquesta pàgina està protegida i no pot ser editada.',
 'viewsourcetext'       => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
 'protectedinterface'   => "Aquesta pàgina conté cadenes de text per a la interfície del programari, i és protegida per a previndre'n abusos.",
-'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'usuari per a tots els usuaris.",
+'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Pel que fa a les traduccions, plantegeu-vos utilitzar la [http://translatewiki.net/wiki/Main_Page?setlang=ca Betawiki], el projecte de traducció de MediaWiki.",
 'sqlhidden'            => '(consulta SQL oculta)',
 'cascadeprotected'     => "Aquesta pàgina està protegida i no es pot editar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
@@ -592,9 +593,9 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'nowiki_sample'   => 'Inseriu ací text no formatat',
 'nowiki_tip'      => 'Ignora la formatació wiki',
 'image_sample'    => 'Exemple.jpg',
-'image_tip'       => 'Imatge annexada',
+'image_tip'       => 'Fitxer incrustat',
 'media_sample'    => 'Exemple.ogg',
-'media_tip'       => 'Enllaç cap al fitxer multimèdia',
+'media_tip'       => 'Enllaç del fitxer',
 'sig_tip'         => 'La vostra signatura amb marca horària',
 'hr_tip'          => 'Línia horitzontal (useu-lo moderadament)',
 
@@ -818,6 +819,10 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
+'mergehistory-header'              => "Aquesta pàgina us permet fusionar les revisions de l'historial d'una pàgina origen en una més nova.
+Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgina.
+
+'''Com a mínim ha de perdurar la revisió actual de la pàgina d'origen.'''",
 'mergehistory-box'                 => 'Fusiona les revisions de dues pàgines:',
 'mergehistory-from'                => "Pàgina d'origen:",
 'mergehistory-into'                => 'Pàgina de destinació:',
@@ -854,6 +859,7 @@ Els altres administradors del projecte {{SITENAME}} encara podrien accedir al co
 'searchsubtitleinvalid' => 'Per consulta "$1"',
 'noexactmatch'          => "'''No hi ha cap pàgina anomenada «$1».''' Si voleu, podeu ajudar [[:$1|creant-la]].",
 'noexactmatch-nocreate' => "'''No hi ha cap pàgina amb títol «$1».'''",
+'toomanymatches'        => "S'han retornat masses coincidències. Proveu-ho amb una consulta diferent.",
 'titlematches'          => "Coincidències de títol d'article",
 'notitlematches'        => "No hi ha coincidències de títol d'article",
 'textmatches'           => "Coincidències de text d'article",
@@ -1050,12 +1056,14 @@ Totes les hores són les del servidor (UTC).",
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => "L'arxiu que heu carregat sembla estar buit. Això por ser degut a un mal caràcter en el nom de l'arxiu. Si us plau reviseu si realment voleu carregar aquest arxiu.",
 'fileexists'                  => 'Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu $1 si no esteu segurs de voler substituir-lo.',
-'filepageexists'              => 'Una pàgina (no imatge) amb aquest nom ja existeix, comproveu <strong><tt>$1</tt></strong> si no esteu segurs de voler canviar-la.',
+'filepageexists'              => 'Una pàgina (no un fitxer) amb aquest nom ja existeix, comproveu <strong><tt>$1</tt></strong> si no esteu segur de voler canviar-li el nom.',
 'fileexists-extension'        => 'Ja existeix un fitxer amb un nom semblant:<br />
 Nom del fitxer que es puja: <strong><tt>$1</tt></strong><br />
 Nom del fitxer existent: <strong><tt>$2</tt></strong><br />
 Si us plau, trieu un nom diferent.',
-'fileexists-thumb'            => "<center>'''Imatge existent'''</center>",
+'fileexists-thumb'            => "<center>'''Fitxer existent'''</center>",
+'file-thumbnail-no'           => 'El nom del fitxer comença amb <strong><tt>$1</tt></strong>. Sembla ser una imatge de mida reduïda <em>(miniatura)</em>.
+Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li el nom.',
 'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers; si us plau, torneu enrera i carregueu-ne una còpia amb un altre nom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => "El fitxer s'ha carregat amb èxit",
@@ -1076,6 +1084,7 @@ Si us plau, trieu un nom diferent.',
 
 Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer, perquè potser també acaba eliminat.
 A continuació teniu el registre d'esborrament per a que pugeu comprovar els motius que van portar a la seva eliminació:",
+'filename-bad-prefix'         => 'El nom del fitxer que esteu penjant comença amb <strong>«$1»</strong>, que és un nom no descriptiu que les càmeres digitals normalment assignen de forma automàtica. Trieu un de més descriptiu per al vostre fitxer.',
 
 'upload-proto-error'      => 'El protocol és incorrecte',
 'upload-proto-error-text' => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',
@@ -1132,7 +1141,7 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'imagelist_user'            => 'Usuari',
 'imagelist_size'            => 'Mida (octets)',
 'imagelist_description'     => 'Descripció',
-'imagelist_search_for'      => "Cerca un nom d'imatge:",
+'imagelist_search_for'      => "Cerca el nom d'un fitxer de medis:",
 
 # File reversion
 'filerevert'                => 'Reverteix $1',
@@ -1143,13 +1152,20 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 'filerevert-badversion'     => "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",
 
 # File deletion
-'filedelete'         => 'Suprimeix $1',
-'filedelete-legend'  => 'Suprimeix el fitxer',
-'filedelete-intro'   => "Esteu eliminant '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Comentari:',
-'filedelete-submit'  => 'Suprimeix',
-'filedelete-success' => "'''$1''' s'ha eliminat.",
-'filedelete-nofile'  => "'''$1''' no existeix dins el projecte {{SITENAME}}.",
+'filedelete'                  => 'Suprimeix $1',
+'filedelete-legend'           => 'Suprimeix el fitxer',
+'filedelete-intro'            => "Esteu eliminant '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Comentari:',
+'filedelete-submit'           => 'Suprimeix',
+'filedelete-success'          => "'''$1''' s'ha eliminat.",
+'filedelete-nofile'           => "'''$1''' no existeix dins el projecte {{SITENAME}}.",
+'filedelete-nofile-old'       => "No hi ha cap versió arxivada de '''$1''' amb els atributs especificats.",
+'filedelete-iscurrent'        => "Esteu provant de suprimir la versió més recent d'aquest fitxer. Revertiu a una versió més antiga abans.",
+'filedelete-otherreason'      => 'Motius alternatius/addicionals:',
+'filedelete-reason-otherlist' => 'Altres motius',
+'filedelete-reason-dropdown'  => "*Motius d'eliminació comuns
+** Violació dels drets d'autor / copyright
+** Fitxer duplicat",
 
 # MIME search
 'mimesearch' => 'Cerca per MIME',
@@ -1213,7 +1229,9 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'brokenredirects-edit'   => '(edita)',
 'brokenredirects-delete' => '(elimina)',
 
-'withoutinterwiki' => 'Pàgines sense enllaços a altres llengües',
+'withoutinterwiki'        => 'Pàgines sense enllaços a altres llengües',
+'withoutinterwiki-header' => "Les pàgines segúents no enllacen a versions d'altres llengües:",
+'withoutinterwiki-submit' => 'Mostra',
 
 'fewestrevisions' => 'Pàgines amb menys revisions',
 
@@ -1229,7 +1247,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'lonelypagestext'         => "Les següents pàgines no s'enllacen des d'altres pàgines del projecte {{SITENAME}}.",
 'uncategorizedpages'      => 'Pàgines sense categoria',
 'uncategorizedcategories' => 'Categories sense categoria',
-'uncategorizedimages'     => 'Imatges sense categoria',
+'uncategorizedimages'     => 'Fitxers sense categoria',
 'uncategorizedtemplates'  => 'Plantilles sense categoria',
 'unusedcategories'        => 'Categories sense articles',
 'unusedimages'            => 'Imatges sense ús',
@@ -1240,7 +1258,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'mostlinkedcategories'    => 'Categories més utilitzades',
 'mostlinkedtemplates'     => 'Plantilles més usades',
 'mostcategories'          => 'Pàgines que utilitzen més categories',
-'mostimages'              => 'Imatges més enllaçades',
+'mostimages'              => 'Més enllaçat a fitxers',
 'mostrevisions'           => 'Pàgines més modificades',
 'allpages'                => 'Totes les pàgines',
 'prefixindex'             => 'Cercar per prefix',
@@ -1264,7 +1282,7 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'intl'                    => 'Enllaços entre llengües',
 'move'                    => 'Reanomena',
 'movethispage'            => 'Trasllada la pàgina',
-'unusedimagestext'        => '<p>Noteu que altres llocs web poden enllaçar una imatge amb un URL directe i estar llistada aquí tot i estar en ús actiu.</p>',
+'unusedimagestext'        => '<p>Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL directe i estar llistat ací tot i estar en ús actiu.</p>',
 'unusedcategoriestext'    => 'Les pàgines de categoria següents existeixen encara que cap altre article o categoria les utilitza.',
 'notargettitle'           => 'No hi ha pàgina en blanc',
 'notargettext'            => 'No heu especificat a quina pàgina dur a terme aquesta funció.',
@@ -1512,45 +1530,47 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'restriction-level-all'           => 'qualsevol nivell',
 
 # Undelete
-'undelete'                 => 'Restaura una pàgina esborrada',
-'undeletepage'             => 'Mostra i restaura pàgines esborrades',
-'viewdeletedpage'          => 'Visualitza les pàgines eliminades',
-'undeletepagetext'         => "Les següents pàgines han estat esborrades però encara són a l'arxiu i poden ser restaurades. L'arxiu pot ser netejat
+'undelete'                     => 'Restaura una pàgina esborrada',
+'undeletepage'                 => 'Mostra i restaura pàgines esborrades',
+'viewdeletedpage'              => 'Visualitza les pàgines eliminades',
+'undeletepagetext'             => "Les següents pàgines han estat esborrades però encara són a l'arxiu i poden ser restaurades. L'arxiu pot ser netejat
 
 periòdicament.",
-'undeleteextrahelp'        => "Per a restaurar la pàgina sencera, deixeu totes les caselles sense seleccionar i
+'undeleteextrahelp'            => "Per a restaurar la pàgina sencera, deixeu totes les caselles sense seleccionar i
 cliqueu a  '''''Restaura'''''. Per a realitzar una restauració selectiva, marqueu les caselles que corresponguin
 a les revisions que voleu recuperar, i feu clic a '''''Restaura'''''. Si cliqueu '''''Reinicia''''', es netejarà el
 camp de comentari i es desmarcaran totes les caselles.",
-'undeleterevisions'        => '{{PLURAL:$1|Una revisió arxivada|$1 revisions arxivades}}',
-'undeletehistory'          => 'Si restaureu una pàgina, totes les revisions seran restaurades a la història.
+'undeleterevisions'            => '{{PLURAL:$1|Una revisió arxivada|$1 revisions arxivades}}',
+'undeletehistory'              => 'Si restaureu una pàgina, totes les revisions seran restaurades a la història.
 Si una nova pàgina amb el mateix nom ha estat creada des de l\'esborrat, les versions restaurades apareixeran com a història anterior, i la
 
 revisió actual del la pàgina "viva" no serà substituïda automàticament.',
-'undeletehistorynoadmin'   => "S'ha eliminat aquest article. El motiu es mostra
+'undeletehistorynoadmin'       => "S'ha eliminat aquest article. El motiu es mostra
 al resum a continuació, juntament amb detalls dels usuaris que havien editat aquesta pàgina
 abans de la seua eliminació. El text de les revisions eliminades només és accessible als administradors.",
-'undelete-revision'        => "S'ha eliminat la revisió de $1 de $2 (per $3):",
-'undeleterevision-missing' => "La revisió no és vàlida o hi manca. Podeu tenir-hi un mal enllaç, o bé
+'undelete-revision'            => "S'ha eliminat la revisió de $1 de $2 (per $3):",
+'undeleterevision-missing'     => "La revisió no és vàlida o hi manca. Podeu tenir-hi un mal enllaç, o bé
 pot haver-se restaurat o eliminat de l'arxiu.",
-'undelete-nodiff'          => "No s'ha trobat cap revisió anterior.",
-'undeletebtn'              => 'Restaura!',
-'undeletereset'            => 'Reinicia',
-'undeletecomment'          => 'Comentari:',
-'undeletedarticle'         => 'restaurat "$1"',
-'undeletedrevisions'       => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
-'undeletedrevisions-files' => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un arxiu|$2 arxius}} restaurats',
-'undeletedfiles'           => '$1 {{PLURAL:$1|arxiu restaurat|arxius restaurats}}',
-'cannotundelete'           => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
-'undeletedpage'            => "<big>'''S'ha restaurat «$1»'''</big>
+'undelete-nodiff'              => "No s'ha trobat cap revisió anterior.",
+'undeletebtn'                  => 'Restaura!',
+'undeletelink'                 => 'restaura',
+'undeletereset'                => 'Reinicia',
+'undeletecomment'              => 'Comentari:',
+'undeletedarticle'             => 'restaurat "$1"',
+'undeletedrevisions'           => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un arxiu|$2 arxius}} restaurats',
+'undeletedfiles'               => '$1 {{PLURAL:$1|arxiu restaurat|arxius restaurats}}',
+'cannotundelete'               => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
+'undeletedpage'                => "<big>'''S'ha restaurat «$1»'''</big>
 
 Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborraments i els restauraments més recents.",
-'undelete-header'          => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
-'undelete-search-box'      => 'Cerca pàgines esborrades',
-'undelete-search-prefix'   => 'Mostra pàgines que comencin:',
-'undelete-search-submit'   => 'Cerca',
-'undelete-no-results'      => "No s'ha trobat cap pàgina que hi concideixi a l'arxiu d'eliminació.",
-'undelete-error-long'      => "S'han produït errors en revertir la supressió del fitxer:
+'undelete-header'              => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
+'undelete-search-box'          => 'Cerca pàgines esborrades',
+'undelete-search-prefix'       => 'Mostra pàgines que comencin:',
+'undelete-search-submit'       => 'Cerca',
+'undelete-no-results'          => "No s'ha trobat cap pàgina que hi concideixi a l'arxiu d'eliminació.",
+'undelete-missing-filearchive' => "No s'ha pogut restaurar l'identificador $1 d'arxiu de fitxers perquè no es troba a la base de dades. Podria ser que ja s'hagués revertit l'eliminació.",
+'undelete-error-long'          => "S'han produït errors en revertir la supressió del fitxer:
 
 $1",
 
@@ -1778,6 +1798,7 @@ En el darrer cas podeu fer servir un enllaç, com ara [[{{ns:special}}:Export/{{
 'export-addcattext' => 'Afegeix pàgines de la categoria:',
 'export-addcat'     => 'Afegeix',
 'export-download'   => 'Ofereix desar com a fitxer',
+'export-templates'  => 'Inclou les plantilles',
 
 # Namespace 8 related
 'allmessages'               => 'Tots els missatges del sistema',
@@ -1820,8 +1841,12 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'importhistoryconflict'      => "Hi ha un conflicte de versions en l'historial (la pàgina podria haver sigut importada abans)",
 'importnosources'            => "No s'ha definit cap font d'origen interwiki i s'ha deshabilitat la càrrega directa d'una còpia de l'historial",
 'importnofile'               => "No s'ha pujat cap fitxer d'importació.",
+'importuploaderrorsize'      => "La càrrega del fitxer d'importació ha fallat. El fitxer és més gran que la mida de càrrega permesa.",
+'importuploaderrorpartial'   => "La càrrega del fitxer d'importació ha fallat. El fitxer s'ha penjat només parcialment.",
+'importuploaderrortemp'      => "La càrrega del fitxer d'importació ha fallat. Manca una carpeta temporal.",
 'import-parse-failure'       => "error a en importar l'XML",
 'import-noarticle'           => 'No hi ha pàgina a importar!',
+'import-nonewrevisions'      => "Totes les revisions s'havien importat abans.",
 'xml-error-string'           => '$1 a la línia $2, columna $3 (byte $4): $5',
 
 # Import log
@@ -1880,7 +1905,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'tooltip-ca-nstab-media'          => "Vegeu la pàgina de l'element multimèdia",
 'tooltip-ca-nstab-special'        => 'Aquesta pàgina és una pàgina especial, no podeu editar-la.',
 'tooltip-ca-nstab-project'        => 'Vegeu la pàgina del projecte',
-'tooltip-ca-nstab-image'          => 'Vegeu la pàgina de la imatge',
+'tooltip-ca-nstab-image'          => 'Visualitza la pàgina del fitxer',
 'tooltip-ca-nstab-mediawiki'      => 'Vegeu el missatge de sistema.',
 'tooltip-ca-nstab-template'       => 'Vegeu la plantilla.',
 'tooltip-ca-nstab-help'           => "Vegeu la pàgina d'ajuda.",
@@ -1994,8 +2019,8 @@ $1",
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:
 
-Només els elements de llista (les línies que comencin amb un *) es prenen en consideració. El primer enllaç de cada línia ha de ser el de la imatge dolent.
-La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgines on es permet fer servir la imatge.",
+Només els elements de llista (les línies que comencin amb un *) es prenen en consideració. El primer enllaç de cada línia ha de ser el d'un fitxer dolent.
+La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines on s'hi pot encabir el fitxer.",
 
 # Metadata
 'metadata'          => 'Metadades',
@@ -2115,6 +2140,7 @@ La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgin
 'exif-gpstrack'                    => 'Direcció del moviment',
 'exif-gpsimgdirectionref'          => 'Referència per la direcció de la imatge',
 'exif-gpsimgdirection'             => 'Direcció de la imatge',
+'exif-gpsmapdatum'                 => "S'han utilitzat dades d'informes geodètics",
 'exif-gpsdestlatituderef'          => 'Referència per a la latitud del destí',
 'exif-gpsdestlatitude'             => 'Latitud de la destinació',
 'exif-gpsdestlongituderef'         => 'Referència per a la longitud del destí',
@@ -2170,6 +2196,7 @@ La resta d'enllaços d'aquella línia són les excepcions, és a dir, les pàgin
 
 'exif-lightsource-0'   => 'Desconegut',
 'exif-lightsource-1'   => 'Llum de dia',
+'exif-lightsource-2'   => 'Fluorescent',
 'exif-lightsource-3'   => 'Tungstè (llum incandescent)',
 'exif-lightsource-4'   => 'Flaix',
 'exif-lightsource-9'   => 'Clar',
@@ -2367,6 +2394,7 @@ Trieu amb la previsualització normal.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Els canvis més nous de $1 segons podrien no mostrar-se a la llista.',
+'lag-warn-high'   => 'A causa de la lenta resposta del servidor de base de dades, els canvis més nous de $1 segons potser no es mostren aquesta llista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'La vostra llista de seguiment conté {{PLURAL:$1|1 títol|$1 títols}}, excloent-ne les pàgines de discussió.',
@@ -2379,6 +2407,8 @@ Trieu amb la previsualització normal.',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} eliminat de la vostra llista de seguiment:",
 'watchlistedit-raw-title'      => 'Edita la llista de seguiment crua',
 'watchlistedit-raw-legend'     => 'Edita la llista de seguiment crua',
+'watchlistedit-raw-explain'    => "Els títols de la vostra llista de seguiment es mostren a continuació, i poden editar-se afegint-los o suprimint-los de la llista; un títol per línia. En acabar, feu clic a Actualitza la llista de seguiment.
+També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'watchlistedit-raw-titles'     => 'Títols:',
 'watchlistedit-raw-submit'     => 'Actualitza la llista de seguiment',
 'watchlistedit-raw-done'       => "S'ha actualitzat la vostra llista de seguiment.",
@@ -2390,6 +2420,9 @@ Trieu amb la previsualització normal.',
 'watchlisttools-edit' => 'Visualitza i edita la llista de seguiment',
 'watchlisttools-raw'  => 'Edita la llista de seguiment sense format',
 
+# Core parser functions
+'unknown_extension_tag' => "Etiqueta d'extensió desconeguda «$1»",
+
 # Special:Version
 'version-extensions'               => 'Extensions instaŀlades',
 'version-specialpages'             => 'Pàgines especials',
@@ -2399,10 +2432,18 @@ Trieu amb la previsualització normal.',
 'version-skin-extension-functions' => "Funcions d'extensió per l'aparença (skin)",
 'version-hook-subscribedby'        => 'Usat per',
 'version-version'                  => 'Versió',
+'version-license'                  => 'Llicència',
+'version-software'                 => 'Programari instal·lat',
+'version-software-product'         => 'Producte',
+'version-software-version'         => 'Versió',
 
 # Special:Filepath
-'filepath'        => "Camí d'arxiu",
-'filepath-page'   => 'Arxiu:',
-'filepath-submit' => 'Camí',
+'filepath'         => "Camí d'arxiu",
+'filepath-page'    => 'Arxiu:',
+'filepath-submit'  => 'Camí',
+'filepath-summary' => "Aquesta pàgina especial retorna un camí complet d'un fitxer.
+Les imatges es mostren en plena resolució; altres tipus de fitxer s'incien amb el seu programa associat directament.
+
+Introduïu el nom del fitxer sense el prefix «{{ns:imatge}}»:",
 
 );
