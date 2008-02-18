@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK   => 'ສົນທະນາກ່ຽວກັບມິເດຍວິກິ',
 	NS_TEMPLATE         => 'ແມ່ແບບ',
 	NS_TEMPLATE_TALK    => 'ສົນທະນາກ່ຽວກັບແມ່ແບບ',
-	# NS_HELP             => 'Help', // FIXME: translation needed
-	# NS_HELP_TALK        => 'Help_talk', // FIXME: translation needed
+	NS_HELP             => 'ຊ່ວຍເຫຼືອ',
+	NS_HELP_TALK        => 'ສົນທະນາກ່ຽວກັບຊ່ວຍເຫຼືອ',
 	NS_CATEGORY         => 'ໝວດ',
 	NS_CATEGORY_TALK    => 'ສົນທະນາກ່ຽວກັບໝວດ'
 );
