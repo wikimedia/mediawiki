@@ -488,7 +488,7 @@ S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|pre
 'loginsuccess'               => 'Ha enzetato una sesión en {{SITENAME}} como "$1".',
 'nosuchuser'                 => 'No bi ha garra usuario clamato "$1".
 Comprebe si ha escrito bien o nombre u creye una nueba cuenta d\'usuario.',
-'nosuchusershort'            => 'No bi ha garra usuario con o nombre "$1". Comprebe si o nombre ye bien escrito.',
+'nosuchusershort'            => 'No bi ha garra usuario con o nombre "<nowiki>$1</nowiki>". Comprebe si o nombre ye bien escrito.',
 'nouserspecified'            => "Ha d'escribir un nombre d'usuario.",
 'wrongpassword'              => 'A palabra de paso endicata no ye correuta. Prebe unatra begada.',
 'wrongpasswordempty'         => 'No ha escrito garra palabra de paso. Prebe unatra begada.',
@@ -1413,7 +1413,7 @@ Por fabor, confirme que reyalment ye mirando de fer ixo, que entiende
 as consecuenzias, y que lo fa d'alcuerdo con as 
 [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
 'actioncomplete'              => 'Aizión rematada',
-'deletedtext'                 => '"$1" ha estato borrato.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estato borrato.
 Se beiga en $2 un rechistro d\'os borraus rezients.',
 'deletedarticle'              => 'borrato "$1"',
 'dellogpage'                  => 'Rechistro de borraus',
@@ -1454,7 +1454,7 @@ Por fabor, prete "Entazaga" en o suyo nabegador ta cargar a pachina d\'a que ben
 'protect_expiry_old'          => 'O tiempo de caduzidat ye una calendata ya pasata.',
 'unprotectsub'                => '(Esprotechendo "$1")',
 'protect-unchain'             => 'Confegurar premisos ta treslaus',
-'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong>$1</strong>.",
+'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong><nowiki>\$1</nowiki></strong>.",
 'protect-locked-blocked'      => "No puede cambiar os libels de protezión mientres ye bloqueyato. Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'protect-locked-dblock'       => "Os libels de protezión no se pueden cambiar por un bloqueyo autibo d'a base de datos.
 Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",

@@ -308,20 +308,18 @@ class QueryPage {
 				
 				if( $tRow ) {
 					$updated = $wgLang->timeAndDate( $tRow->qci_timestamp, true, true );
-					$cacheNotice = wfMsg( 'perfcachedts', $updated );
 					$wgOut->addMeta( 'Data-Cache-Time', $tRow->qci_timestamp );
 					$wgOut->addInlineScript( "var dataCacheTime = '{$tRow->qci_timestamp}';" );
+					$wgOut->addWikiMsg( 'perfcachedts', $updated );
 				} else {
-					$cacheNotice = wfMsg( 'perfcached' );
+					$wgOut->addWikiMsg( 'perfcached' );
 				}
-	
-				$wgOut->addWikiText( $cacheNotice );
 				
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
 				global $wgDisableQueryPageUpdate;
 				if( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
-					$wgOut->addWikiText( wfMsg( 'querypage-no-updates' ) );
+					$wgOut->addWikiMsg( 'querypage-no-updates' );
 				}
 				
 			}

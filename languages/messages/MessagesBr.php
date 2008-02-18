@@ -437,7 +437,7 @@ Na zisoñjit ket personelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndib
 'loginsuccess'               => 'Luget oc\'h bremañ war {{SITENAME}} evel "$1".',
 'nosuchuser'                 => 'N\'eus ket eus an implijer "$1".
 Gwiriit eo bet skrivet mat an anv ganeoc\'h pe implijit ar furmskrid a-is a-benn krouiñ ur gont implijer nevez.',
-'nosuchusershort'            => "N'eus perzhiad ebet gantañ an anv « $1 ». Gwiriit ar reizhskrivadur.",
+'nosuchusershort'            => "N'eus perzhiad ebet gantañ an anv « <nowiki>\$1</nowiki> ». Gwiriit ar reizhskrivadur.",
 'nouserspecified'            => "Ret eo deoc'h spisaat un anv implijer.",
 'wrongpassword'              => 'Ger-tremen kamm. Klaskit en-dro.',
 'wrongpasswordempty'         => 'Ger-tremen ebet. Lakait unan mar plij.',
@@ -1298,7 +1298,7 @@ Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet ama
 
 Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da evezhiañ" er framm merdeiñ.',
 'removedwatch'         => 'Lamet a-ziwar ar rollad evezhiañ',
-'removedwatchtext'     => 'Lamet eo bet ar bajenn « $1 » a-ziwar ho rollad evezhiañ.',
+'removedwatchtext'     => 'Lamet eo bet ar bajenn « <nowiki>$1</nowiki> » a-ziwar ho rollad evezhiañ.',
 'watch'                => 'Evezhiañ',
 'watchthispage'        => 'Evezhiañ ar bajenn-mañ',
 'unwatch'              => 'paouez da evezhiañ',
@@ -1370,7 +1370,7 @@ Evezhiadennoù ha skoazell pelloc\'h :
 'confirmdeletetext'           => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
 Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Diverkadenn kaset da benn',
-'deletedtext'                 => '"Diverket eo bet $1".
+'deletedtext'                 => '"Diverket eo bet <nowiki>$1</nowiki>".
 Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
 'deletedarticle'              => 'diverket "$1"',
 'dellogpage'                  => 'Roll ar pajennoù diverket',
@@ -1414,7 +1414,7 @@ Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro
 'protect_expiry_old'          => 'Echuet eo ar prantad termen.',
 'unprotectsub'                => '(Distankañ "$1")',
 'protect-unchain'             => 'Dibrennañ an aotreoù adenvel',
-'protect-text'                => "Amañ e c'hallit gwelet ha cheñch live gwareziñ ar bajenn <strong>$1</strong>.",
+'protect-text'                => "Amañ e c'hallit gwelet ha cheñch live gwareziñ ar bajenn <strong><nowiki>\$1</nowiki></strong>.",
 'protect-locked-blocked'      => 'E-keit ha ma viot stanket ne viot ket evit cheñch al live gwareziñ. Setu aze arventennoù a-vremañ ar bajenn <strong>$1</strong>:',
 'protect-locked-dblock'       => "N'haller ket cheñch al liveoù gwareziñ rk prennet eo an diaz titouroù.
 Setu doare a-vremañ ar bajenn <strong>$1</strong>:",

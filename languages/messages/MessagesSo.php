@@ -253,7 +253,7 @@ Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} 
 'loginsuccesstitle'          => 'Gudagalida waa la dhamaystiray',
 'loginsuccess'               => "'''Hada waxaad guda uga jirtaa {{SITENAME}} sida \"\$1\".'''",
 'nosuchuser'                 => 'Majiro isticmaale leh magacaan "$1". sax hingaadintaada, ama sameyso gudagale cusub.',
-'nosuchusershort'            => 'Majiro isticmaale leh gudagalahaan "$1". Sax hingaadaada.',
+'nosuchusershort'            => 'Majiro isticmaale leh gudagalahaan "<nowiki>$1</nowiki>". Sax hingaadaada.',
 'nouserspecified'            => 'Waa in aad gudagale keentaa.',
 'wrongpassword'              => 'Ereysirka waa qalad. Fadlan iskuday markale.',
 'wrongpasswordempty'         => 'Ereysir aan waxba ku jirin lama ogola. Fadlan iskuday markale.',

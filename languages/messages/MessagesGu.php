@@ -160,7 +160,7 @@ $messages = array(
 'createaccount'   => 'ખાતું સર્જન કરવું',
 'yourrealname'    => 'સાચું નામ:',
 'yourlanguage'    => 'ભાષા',
-'nosuchusershort' => '"$1" નામનું કોઈ નથી. તમારી જોડણી તપાસ કરો.',
+'nosuchusershort' => '"<nowiki>$1</nowiki>" નામનું કોઈ નથી. તમારી જોડણી તપાસ કરો.',
 'accountcreated'  => 'સર્જન કરેલું ખાતું',
 
 # Edit pages

@@ -4,8 +4,21 @@
  * Standard output handler for use with ob_start
  */
 function wfOutputHandler( $s ) {
-	global $wgDisableOutputCompression;
-	$s = wfMangleFlashPolicy( $s );
+	global $wgDisableOutputCompression, $wgValidateAllHtml;
+    $s = wfMangleFlashPolicy( $s );
+    if ( $wgValidateAllHtml ) {
+		$headers = apache_response_headers();
+		$isHTML = true;
+		foreach ( $headers as $name => $value ) {
+			if ( strtolower( $name ) == 'content-type' && strpos( $value, 'text/html' ) === false ) {
+				$isHTML = false;
+				break;
+			}
+		}
+		if ( $isHTML ) {
+			$s = wfHtmlValidationHandler( $s );
+		}
+	}
 	if ( !$wgDisableOutputCompression && !ini_get( 'zlib.output_compression' ) ) {
 		if ( !defined( 'MW_NO_OUTPUT_COMPRESSION' ) ) {
 			$s = wfGzipHandler( $s );
@@ -101,4 +114,60 @@ function wfDoContentLength( $length ) {
 	}
 }
 
+/**
+ * Replace the output with an error if the HTML is not valid
+ */
+function wfHtmlValidationHandler( $s ) {
+	global $IP;
+	$tidy = new tidy;
+	$tidy->parseString( $s, "$IP/includes/tidy.conf", 'utf8' );
+	if ( $tidy->getStatus() == 0 ) {
+		return $s;
+	}
+
+	header( 'Cache-Control: no-cache' );
+
+	$out = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>HTML validation error</title>
+<style>
+.highlight { background-color: #ffc }
+li { white-space: pre }
+</style>
+</head>
+<body>
+<h1>HTML validation error</h1>
+<ul>
+EOT;
+
+	$error = strtok( $tidy->errorBuffer, "\n" );
+	$badLines = array();
+	while ( $error !== false ) {
+		if ( preg_match( '/^line (\d+)/', $error, $m ) ) {
+			$lineNum = intval( $m[1] );
+			$badLines[$lineNum] = true;
+			$out .= "<li><a href=\"#line-{$lineNum}\">" . htmlspecialchars( $error ) . "</a></li>\n";
+		}
+		$error = strtok( "\n" );
+	}
+
+	$out .= '<pre>' . htmlspecialchars( $tidy->errorBuffer ) . '</pre>';
+	$out .= '<ol>';
+	$line = strtok( $s, "\n" );
+	$i = 1;
+	while ( $line !== false ) {
+		if ( isset( $badLines[$i] ) ) {
+			$out .= "<li class=\"highlight\" id=\"line-$i\">";
+		} else {
+			$out .= '<li>';
+		}
+		$out .= htmlspecialchars( $line ) . '</li>';
+		$line = strtok( "\n" );
+		$i++;
+	}
+	$out .= '</ol></body></html>';
+	return $out;
+}
 

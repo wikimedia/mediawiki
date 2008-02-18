@@ -949,7 +949,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'confirmdeletetext'           => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Aksie uitgevoer',
-'deletedtext'                 => '"$1" is geskrap.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" is geskrap.
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'deletedarticle'              => '"$1" geskrap',
 'dellogpage'                  => 'Skraplogboek',

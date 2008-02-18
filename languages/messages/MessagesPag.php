@@ -266,7 +266,7 @@ No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"e
 'confirm'             => 'Paletan',
 'exblank'             => 'Anggapoy laman na bolong',
 'actioncomplete'      => 'Asumpal lan agawa',
-'deletedtext'         => 'Abural lay "$1".
+'deletedtext'         => 'Abural lay "<nowiki>$1</nowiki>".
 Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'deletedarticle'      => 'binural so "[[$1]]"',
 'deletecomment'       => 'Aken buralen',

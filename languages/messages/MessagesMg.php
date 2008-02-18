@@ -289,7 +289,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'loginsuccesstitle'          => 'Tafiditra soa aman-tsara',
 'loginsuccess'               => "'''Tafiditra amin'ny {{SITENAME}} ianao ry \"\$1\".'''",
 'nosuchuser'                 => 'Tsy misy mpikambana manana izany solonanarana "$1" izany. Hamarino ny tsipelina na manokafa kaonty vaovao.',
-'nosuchusershort'            => 'Tsy misy mpikambana hoe "$1". Hamarino ny tsipelina.',
+'nosuchusershort'            => 'Tsy misy mpikambana hoe "<nowiki>$1</nowiki>". Hamarino ny tsipelina.',
 'wrongpassword'              => 'Diso ny tenimiafina. Manandrama tenimiafina hafa azafady.',
 'wrongpasswordempty'         => 'Tsy nampiditra tenimiafina ianao, azafady mba avereno indray.',
 'passwordtooshort'           => 'Fohy loatra io tenimiafina io. Farafahakeliny tokony hisy litera $1 ny tenimiafina.',
@@ -715,7 +715,7 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'watchnologin'         => 'Tsy tafiditra',
 'watchnologintext'     => 'Mila [[Special:Userlogin|miditra/misoratra anarana]] aloha ianao vao afaka manova ny lisitry ny pejy arahinao maso.',
 'addedwatch'           => "Tafiditra amin'ny lisitry ny pejy arahi-maso akaiky",
-'addedwatchtext'       => "Tafiditra anatin'ny lisitry ny [[Special:Watchlist|PejyArahiMaso]]-nao ny pejy \"\$1\".
+'addedwatchtext'       => "Tafiditra anatin'ny lisitry ny [[Special:Watchlist|PejyArahiMaso]]-nao ny pejy \"<nowiki>\$1</nowiki>\".
 Ny fanovana hisy amin'io pejy io sy ny pejin-dresaka miaraka aminy dia hiseho ao,
 ary rehefa miseho ao amin'ny [[Special:Recentchanges|lisitry ny takelaka vao niova]] io pejy io dia hatao ''matavy'' mba
 hahamora ny fahitana azy.
@@ -778,7 +778,7 @@ ao anatin'ny toby ianao. Azafady mba hamafiso fa irinao tokoa izany,
 fantatrao ny vokany ary mahalala ianao fa tsy mifanipaka amin'ny 
 [[{{MediaWiki:Policy-url}}|fepetra]] izao ataonao izany.",
 'actioncomplete'              => 'Vita ny asa',
-'deletedtext'                 => 'Voafafa i "$1".
+'deletedtext'                 => 'Voafafa i "<nowiki>$1</nowiki>".
 Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
 'deletedarticle'              => 'voafafa "[[$1]]"',
 'dellogpagetext'              => 'Eto ambany eto ny lisitry ny famafana pejy/sary faramparany.',
@@ -802,7 +802,7 @@ Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 'protectsub'                  => '(Fiarovana an\'i "$1")',
 'confirmprotect'              => 'Fanekena ny fiarovana pejy',
 'protectcomment'              => "Anton'ny fiarovana ny pejy",
-'protect-text'                => 'Afaka jerenao na ovainao eto ny politikam-piarovana ny pejy <strong>$1</strong>.',
+'protect-text'                => 'Afaka jerenao na ovainao eto ny politikam-piarovana ny pejy <strong><nowiki>$1</nowiki></strong>.',
 'protect-level-autoconfirmed' => 'Sakano ny mpikambana tsy misoratra anarana',
 'protect-level-sysop'         => 'Sysops ihany',
 

@@ -642,7 +642,7 @@ A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személ
 'loginsuccesstitle'          => 'Sikeres belépés',
 'loginsuccess'               => 'Beléptél a {{grammar:ba|{{SITENAME}}}} "$1" néven.',
 'nosuchuser'                 => 'Nincs "$1" nevű felhasználó. Ellenőrizd a helyesírást, vagy hozz létre új fiókot.',
-'nosuchusershort'            => 'Nincs "$1" nevű felhasználó. Ellenőrizd a helyesírást.',
+'nosuchusershort'            => 'Nincs "<nowiki>$1</nowiki>" nevű felhasználó. Ellenőrizd a helyesírást.',
 'nouserspecified'            => 'Meg kell adnod a felhasználónevet.',
 'wrongpassword'              => 'A megadott jelszó hibás. Próbáld meg újra.',
 'wrongpasswordempty'         => 'Nem adtál meg jelszót. Próbáld újra.',
@@ -1512,12 +1512,12 @@ nem kíván másoktól leveleket kapni.',
 'watchnologin'         => 'Nincs belépve',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Userlogin|be kell lépned]].',
 'addedwatch'           => 'Figyelőlistához hozzáfűzve',
-'addedwatchtext'       => "A(z) „$1” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
+'addedwatchtext'       => "A(z) „<nowiki>\$1</nowiki>” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
 Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.
 
 Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az oldalmenü „{{MediaWiki:Unwatchthispage}}” pontjával (vagy a „{{MediaWiki:Unwatch}}” füllel) teheted meg.",
 'removedwatch'         => 'Figyelőlistáról eltávolítva',
-'removedwatchtext'     => 'A „$1” lapot eltávolítottam a figyelőlistáról.',
+'removedwatchtext'     => 'A „<nowiki>$1</nowiki>” lapot eltávolítottam a figyelőlistáról.',
 'watch'                => 'Lap figyelése',
 'watchthispage'        => 'Lap figyelése',
 'unwatch'              => 'Lapfigyelés vége',
@@ -1594,7 +1594,7 @@ Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni,
 átlátod a következményeit, és a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]]
 összhangban cselekedsz.',
 'actioncomplete'              => 'Művelet végrehajtva',
-'deletedtext'                 => 'A(z) „$1” lapot törölted.
+'deletedtext'                 => 'A(z) „<nowiki>$1</nowiki>” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletedarticle'              => '„$1” törölve',
 'dellogpage'                  => 'Törlési_napló',

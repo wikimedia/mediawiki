@@ -336,7 +336,7 @@ Kullanıcı adınız '''var nicä içersin'''gagauzça nışan, boşluk . Savaş
 'loginsuccesstitle'          => 'Sessiya başarılan açıldı',
 'loginsuccess'               => '{{SITENAME}} saytında "$1" kullanıcı adılan sessiya açtınız.',
 'nosuchuser'                 => 'Burada "$1" adlı kullanıcı yok. Yokla bir taa nesoy yazdın, yaki eni esap yarat.',
-'nosuchusershort'            => 'Burada "$1" adlı kullanıcı yok. Yoklayın ani ad nesoy yazıldı.',
+'nosuchusershort'            => 'Burada "<nowiki>$1</nowiki>" adlı kullanıcı yok. Yoklayın ani ad nesoy yazıldı.',
 'nouserspecified'            => 'Läazım bir kullanıcı adı göstermää.',
 'wrongpassword'              => 'Parolu yannış girdiniz. Yalvarerêz tekrar denämää.',
 'wrongpasswordempty'         => 'Boş parol girdiniz. Yalvarerez tekrar denämää.',
@@ -656,7 +656,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'mywatchlist'          => 'Bakmaa listam',
 'watchlistfor'         => "('''$1''' için)",
 'addedwatch'           => 'Bakmaa listasına registrat edildi.',
-'addedwatchtext'       => '"$1" adlı sayfa [[Special:Watchlist|bakmaa listanıza]] registrat olundu.
+'addedwatchtext'       => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|bakmaa listanıza]] registrat olundu.
 
 Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler burada yazılacêk.
 
@@ -664,7 +664,7 @@ Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler 
 
 Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfaya bakmaa durgun" baalantısına.',
 'removedwatch'         => 'Bakmaa listanızdan silindi',
-'removedwatchtext'     => '"$1" yapraı siir listanızdan silindi.',
+'removedwatchtext'     => '"<nowiki>$1</nowiki>" yapraı siir listanızdan silindi.',
 'watch'                => 'Bak',
 'watchthispage'        => 'Bak bu sayfaya',
 'unwatch'              => 'Durgun sayfa izlemää',
@@ -684,7 +684,7 @@ Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfay
 'confirmdeletetext'           => 'Bu sayfayı yaki faylı silersiniz hepsi istoriyasılan bilä.
 Lütfen doorulayın ani siz neetlenersiniz bunu yapmaa, annêêrsiniz onun rezultatlarını hem inanêrsiniz ani bu [[{{MediaWiki:Policy-url}}|Silmää kanonnarına]] uyêr.',
 'actioncomplete'              => 'İşlik tamannandı.',
-'deletedtext'                 => '"$1" silindi.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" silindi.
 Yakın zamanda silinenleri görmää deyni: $2.',
 'deletedarticle'              => '"$1" silindi',
 'dellogpage'                  => 'Silmää jurnalı',

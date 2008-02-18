@@ -51,7 +51,7 @@ class DBLockForm {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( 'lockdb' ) );
-		$wgOut->addWikiText( wfMsg( 'lockdbtext' ) );
+		$wgOut->addWikiMsg( 'lockdbtext' );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
@@ -121,7 +121,7 @@ END
 
 		$wgOut->setPagetitle( wfMsg( 'lockdb' ) );
 		$wgOut->setSubtitle( wfMsg( 'lockdbsuccesssub' ) );
-		$wgOut->addWikiText( wfMsg( 'lockdbsuccesstext' ) );
+		$wgOut->addWikiMsg( 'lockdbsuccesstext' );
 	}
 	
 	public static function notWritable() {

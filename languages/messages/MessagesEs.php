@@ -424,7 +424,7 @@ Tu cuenta ha sido creada. No olvides personalizar [[Special:Preferences|tus pref
 'loginsuccess'               => 'Ha iniciado su sesión en {{SITENAME}} como "$1".',
 'nosuchuser'                 => 'No existe usuario alguno llamado "$1".
 Compruebe que lo ha escrito correctamente, o use el formulario de abajo para crear una nueva cuenta de usuario.',
-'nosuchusershort'            => 'No hay un usuario con el nombre "$1". Compruebe que lo ha escrito correctamente.',
+'nosuchusershort'            => 'No hay un usuario con el nombre "<nowiki>$1</nowiki>". Compruebe que lo ha escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
 'wrongpasswordempty'         => 'No ha escrito una contraseña, inténtelo de nuevo.',
@@ -1242,7 +1242,7 @@ así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
 consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}}|Políticas]].',
 'actioncomplete'              => 'Acción completa',
-'deletedtext'                 => '"$1" ha sido borrado.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ha sido borrado.
 Véase $2 para un registro de los borrados recientes.',
 'deletedarticle'              => 'borrado "$1"',
 'dellogpage'                  => 'Registro de borrados',
@@ -1281,7 +1281,7 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'protect_expiry_old'          => 'El tiempo de expiración está en el pasado.',
 'unprotectsub'                => '(Desprotegiendo "$1")',
 'protect-unchain'             => 'Configurar permisos para traslados',
-'protect-text'                => 'Puedes ver y modificar el nivel de protección de la página <strong>$1</strong>.',
+'protect-text'                => 'Puedes ver y modificar el nivel de protección de la página <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'No puede cambiar los niveles de protección estando bloqueado. A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Los niveles de protección no se pueden cambiar debido a un bloqueo activo de la base de datos.
 A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',

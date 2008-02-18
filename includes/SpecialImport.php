@@ -66,9 +66,9 @@ function wfSpecialImport( $page = '' ) {
 		}
 
 		if( WikiError::isError( $source ) ) {
-			$wgOut->addWikiText( '<p class="error">' . wfMsg( 'importfailed', wfEscapeWikiText( $source->getMessage() ) ) . '</p>' );
+			$wgOut->wrapWikiMsg( '<p class="error">$1</p>', array( 'importfailed', $source->getMessage() ) );
 		} else {
-			$wgOut->addWikiText( wfMsg( "importstart" ) );
+			$wgOut->addWikiMsg( "importstart" );
 
 			$importer = new WikiImporter( $source );
 			if( !is_null( $namespace ) ) {
@@ -82,13 +82,13 @@ function wfSpecialImport( $page = '' ) {
 
 			if( WikiError::isError( $result ) ) {
 				# No source or XML parse error
-				$wgOut->addWikiText( '<p class="error">' . wfMsg( 'importfailed', wfEscapeWikiText( $result->getMessage() ) ) . '</p>' );
+				$wgOut->wrapWikiMsg( '<p class="error">$1</p>', array( 'importfailed', $result->getMessage() ) );
 			} elseif( WikiError::isError( $resultCount ) ) {
 				# Zero revisions
-				$wgOut->addWikiText( '<p class="error">' . wfMsg( 'importfailed', wfEscapeWikiText( $resultCount->getMessage() ) ) . '</p>' );
+				$wgOut->wrapWikiMsg( '<p class="error">$1</p>', array( 'importfailed', $resultCount->getMessage() ) );
 			} else {
 				# Success!
-				$wgOut->addWikiText( wfMsg( 'importsuccess' ) );
+				$wgOut->addWikiMsg( 'importsuccess' );
 			}
 			$wgOut->addWikiText( '<hr />' );
 		}
@@ -97,7 +97,7 @@ function wfSpecialImport( $page = '' ) {
 	$action = $wgTitle->getLocalUrl( 'action=submit' );
 
 	if( $wgUser->isAllowed( 'importupload' ) ) {
-		$wgOut->addWikiText( wfMsg( "importtext" ) );
+		$wgOut->addWikiMsg( "importtext" );
 		$wgOut->addHTML( 
 			Xml::openElement( 'fieldset' ).
 			Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
@@ -111,7 +111,7 @@ function wfSpecialImport( $page = '' ) {
 		);
 	} else {
 		if( empty( $wgImportSources ) ) {
-			$wgOut->addWikiText( wfMsg( 'importnosources' ) );
+			$wgOut->addWikiMsg( 'importnosources' );
 		}
 	}
 

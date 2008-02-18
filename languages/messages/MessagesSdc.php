@@ -399,7 +399,7 @@ La registhrazioni è isthadda criadda currettamenti. No dimintiggà di passunari
 'loginsuccesstitle'          => 'Intradda effettuadda',
 'loginsuccess'               => "'''Lu cullegamentu a l'elaburaddori sivvidori di {{SITENAME}} cu l'innòmu utenti \"\$1\" è attibu.'''",
 'nosuchuser'                 => 'Nò è registhraddu caschunu utenti d\'innòmu "$1". Verifiggà l\'innòmu insiriddu o crià una noba registhrazioni.',
-'nosuchusershort'            => 'Nò è registhraddu caschunu utenti d\'innòmu "$1". Verifiggà l\'innòmu insiriddu.',
+'nosuchusershort'            => 'Nò è registhraddu caschunu utenti d\'innòmu "<nowiki>$1</nowiki>". Verifiggà l\'innòmu insiriddu.',
 'nouserspecified'            => "È nezzessàriu ippizzificà un'innòmu utenti.",
 'wrongpassword'              => "La paràura d'órdhini insiridda nò è curretta. Riprubà.",
 'wrongpasswordempty'         => "La paràura d'órdhini insiridda è biodda. Riprubà.",
@@ -1282,7 +1282,7 @@ Pa dì cosa ni pensi e dumandà assisthènzia:
 'confirmdeletetext'           => "Sei canzillendi pa sempri da la bancati una pàgina o un'immàgina, umpari a la cronologia d'edda.
 Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguènzi di l'azioni tóia e ch'edda è cunfòimmi a li [[{{MediaWiki:Policy-url}}|lìni ghia]].",
 'actioncomplete'              => 'Azioni cumpritadda',
-'deletedtext'                 => 'La pàgina "$1" è isthadda canzilladda. Cunsultha lu $2 pa un\'erencu di li pàgini canzilladdi da poggu tempu.',
+'deletedtext'                 => 'La pàgina "<nowiki>$1</nowiki>" è isthadda canzilladda. Cunsultha lu $2 pa un\'erencu di li pàgini canzilladdi da poggu tempu.',
 'deletedarticle'              => 'ha canzilladdu "[[$1]]"',
 'dellogpage'                  => 'Canzilladduri',
 'dellogpagetext'              => 'Inogghi so erencaddi li pàgini canzilladdi da poggu tempu.',
@@ -1316,7 +1316,7 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'protect_expiry_old'          => 'Ischadènzia già passadda.',
 'unprotectsub'                => '(Ibbruccu di "$1")',
 'protect-unchain'             => "Ischulliga i primmissi d'ippusthamentu",
-'protect-text'                => 'Chisthu mòdulu cunsenti di vidé e mudìfiggà lu libellu di prutizioni pa la pàgina <strong>$1</strong>.',
+'protect-text'                => 'Chisthu mòdulu cunsenti di vidé e mudìfiggà lu libellu di prutizioni pa la pàgina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => "Nò è pussìbiri mudìfiggà i libelli di prutizioni cand'è attibu un broccu. L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",
 'protect-locked-access'       => "Nò si diponi di li primmissi nezzessàri pa mudìfiggà lu libellu di prutizioni di la pàgina.
 L'impusthazioni currenti pa la pàgina so <strong>$1</strong>:",

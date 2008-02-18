@@ -120,7 +120,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 	
 	if($nitems == 0) {
-		$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
+		$wgOut->addWikiMsg( 'nowatchlist' );
 		return;
 	}
 
@@ -256,7 +256,7 @@ function wfSpecialWatchlist( $par ) {
 
 	# If there's nothing to show, stop here
 	if( $numRows == 0 ) {
-		$wgOut->addWikiText( wfMsgNoTrans( 'watchnochange' ) );
+		$wgOut->addWikiMsg( 'watchnochange' );
 		return;
 	}
 

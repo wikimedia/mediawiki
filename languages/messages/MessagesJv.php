@@ -388,7 +388,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'excontent'       => "isi sadurungé: '$1'",
 'excontentauthor' => "isiné mung arupa: '$1' (lan siji-sijiné sing nyumbang yaiku '$2')",
 'actioncomplete'  => 'Proses tuntas',
-'deletedtext'     => '"$1" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
+'deletedtext'     => '"<nowiki>$1</nowiki>" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
 'deletedarticle'  => 'mbusak "[[$1]]"',
 'dellogpage'      => 'Cathetan pambusakan',
 'deletionlog'     => 'Cathetan sing dibusak',

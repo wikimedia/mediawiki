@@ -407,7 +407,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 'loginsuccesstitle'          => 'Sisselogimine õnnestus',
 'loginsuccess'               => 'Te olete sisse loginud. Teie kasutajanimi on "$1".',
 'nosuchuser'                 => 'Kasutajat nimega "$1" ei ole olemas. Kontrollige kirjapilti või kasutage alljärgnevat vormi uue kasutajakonto loomiseks.',
-'nosuchusershort'            => 'Kasutajat nimega "$1" ei ole olemas. Kontrollige kirjapilti.',
+'nosuchusershort'            => 'Kasutajat nimega "<nowiki>$1</nowiki>" ei ole olemas. Kontrollige kirjapilti.',
 'wrongpassword'              => 'Vale parool. Proovige uuesti.',
 'passwordtooshort'           => 'Sisestatud parool on vigane või liiga lühike. See peab koosnema vähemalt $1 tähemärgist ning peab erinema kasutajanimest.',
 'mailmypassword'             => 'Saada mulle meili teel uus parool',
@@ -908,7 +908,7 @@ siin toodud pildid olla ikkagi aktiivses kasutuses.',
 'watchnologin'         => 'Ei ole sisse logitud',
 'watchnologintext'     => 'Jälgimisloendi muutmiseks peate [[Special:Userlogin|sisse logima]].',
 'addedwatch'           => 'Lisatud jälgimisloendile',
-'addedwatchtext'       => 'Lehekülg "$1" on lisatud Teie [[Special:Watchlist|jälgimisloendile]].
+'addedwatchtext'       => 'Lehekülg "<nowiki>$1</nowiki>" on lisatud Teie [[Special:Watchlist|jälgimisloendile]].
 
 Edasised muudatused käesoleval lehel ja sellega seotud aruteluküljel reastatakse jälgimisloendis ning [[Special:Recentchanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile <b>rasvase</b> kirja abil.
 
@@ -944,7 +944,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'historywarning'              => 'Hoiatus: leheküljel, mida tahate kustutada, on ajalugu:&nbsp;',
 'confirmdeletetext'           => 'Sa oled andmebaasist jäädavalt kustutamas lehte või pilti koos kogu tema ajalooga. Palun kinnita, et sa tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:Policy-url}}|sisekorraga]].',
 'actioncomplete'              => 'Toiming sooritatud',
-'deletedtext'                 => '"$1" on kustutatud. $2 lehel on nimekiri viimastest kustutatud lehekülgedest.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" on kustutatud. $2 lehel on nimekiri viimastest kustutatud lehekülgedest.',
 'deletedarticle'              => '"$1" kustutatud',
 'dellogpage'                  => 'Kustutatud_leheküljed',
 'dellogpagetext'              => 'Allpool on esitatud nimekiri viimastest kustutamistest.
@@ -967,7 +967,7 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'confirmprotect'              => 'Kinnita kaitsmine',
 'protectcomment'              => 'Põhjus',
 'unprotectsub'                => '(Lehekülje "$1" kaitse alt võtmine)',
-'protect-text'                => 'Siin võite vaadata ja muuta lehekülje <strong>$1</strong> kaitsesätteid.',
+'protect-text'                => 'Siin võite vaadata ja muuta lehekülje <strong><nowiki>$1</nowiki></strong> kaitsesätteid.',
 'protect-default'             => '(tavaline)',
 'protect-level-autoconfirmed' => 'Ainult registreeritud kasutajad',
 'protect-level-sysop'         => 'Ainult administraatorid',

@@ -614,7 +614,7 @@ class UndeleteForm {
 
 	function showSearchForm() {
 		global $wgOut, $wgScript;
-		$wgOut->addWikiText( wfMsg( 'undelete-header' ) );
+		$wgOut->addWikiMsg( 'undelete-header' );
 		
 		$wgOut->addHtml(
 			Xml::openElement( 'form', array(
@@ -637,11 +637,11 @@ class UndeleteForm {
 		global $wgLang, $wgContLang, $wgUser, $wgOut;
 		
 		if( $result->numRows() == 0 ) {
-			$wgOut->addWikiText( wfMsg( 'undelete-no-results' ) );
+			$wgOut->addWikiMsg( 'undelete-no-results' );
 			return;
 		}
 
-		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
+		$wgOut->addWikiMsg( "undeletepagetext" );
 
 		$sk = $wgUser->getSkin();
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
@@ -672,7 +672,7 @@ class UndeleteForm {
 		$rev = $archive->getRevision( $timestamp );
 		
 		if( !$rev ) {
-			$wgOut->addWikiTexT( wfMsg( 'undeleterevision-missing' ) );
+			$wgOut->addWikiMsg( 'undeleterevision-missing' );
 			return;
 		}
 		
@@ -842,14 +842,14 @@ class UndeleteForm {
 		/*
 		$text = $archive->getLastRevisionText();
 		if( is_null( $text ) ) {
-			$wgOut->addWikiText( wfMsg( "nohistory" ) );
+			$wgOut->addWikiMsg( "nohistory" );
 			return;
 		}
 		*/
 		if ( $this->mAllowed ) {
-			$wgOut->addWikiText( wfMsg( "undeletehistory" ) );
+			$wgOut->addWikiMsg( "undeletehistory" );
 		} else {
-			$wgOut->addWikiText( wfMsg( "undeletehistorynoadmin" ) );
+			$wgOut->addWikiMsg( "undeletehistorynoadmin" );
 		}
 
 		# List all stored revisions
@@ -983,7 +983,7 @@ class UndeleteForm {
 			$revisions->free();
 			$wgOut->addHTML("</ul>");
 		} else {
-			$wgOut->addWikiText( wfMsg( "nohistory" ) );
+			$wgOut->addWikiMsg( "nohistory" );
 		}
 
 		if( $haveFiles ) {

@@ -437,7 +437,7 @@ $2",
 'loginsuccesstitle'          => 'Aanmèlde geluk.',
 'loginsuccess'               => 'De bis noe es "$1" aangemèld bie {{SITENAME}}.',
 'nosuchuser'                 => 'Er bestaat geen gebroeker met de naam "$1". Controleer uw spelling, of gebruik onderstaand formulier om een nieuw gebroekersprofiel aan te maken.',
-'nosuchusershort'            => 'De gebroeker "$1" besjteit neet. Konterleer de sjriefwieze.',
+'nosuchusershort'            => 'De gebroeker "<nowiki>$1</nowiki>" besjteit neet. Konterleer de sjriefwieze.',
 'nouserspecified'            => "Doe deens 'ne gebroekersnaam op te gaeve.",
 'wrongpassword'              => "'t Ingegaeve wachwaord is neet zjus. Perbeer 't obbenuujts.",
 'wrongpasswordempty'         => "'t Ingegaeve wachwoord waor laeg. Perbeer 't obbenuujts.",
@@ -1248,13 +1248,13 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'watchnologin'         => 'De bis neet aangemèld',
 'watchnologintext'     => "De mós [[Special:Userlogin|aangemèld]] zeen veur 't verangere van dien volglies.",
 'addedwatch'           => 'Aan volglies toegeveug',
-'addedwatchtext'       => 'De pazjena "$1" is aan dien [[Special:Watchlist|volglies]] toegeveug.
+'addedwatchtext'       => 'De pazjena "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegeveug.
 Toekomstige verangeringe aan deze pazjena en de biebehurende euverlikpazjena weure hie vermèld. 
 Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:Recentchanges|liest van recènte verangeringe]]. <!-- zodat u ze eenvoudiger kan opmerken.-->
 
 <!-- huh? Wen se ein pazjena van dien volgliest wils haole mos e op "sjtop volge"  -- pagina wenst te verwijderen van uw volgliest klik dan op "Van volgliest verwijderen" in de menubalk. -->',
 'removedwatch'         => 'Van volglies aafhoale',
-'removedwatchtext'     => 'De pazjena "$1" is van dien volglies aafgehaold.',
+'removedwatchtext'     => 'De pazjena "<nowiki>$1</nowiki>" is van dien volglies aafgehaold.',
 'watch'                => 'Volg',
 'watchthispage'        => 'Volg dees pazjena',
 'unwatch'              => 'Sjtop volge',
@@ -1326,7 +1326,7 @@ Commentaar en wiejer assistentie:
 'historywarning'              => 'Waorsjuwing: de pazjena daese wils wisse haet meerdere versies:',
 'confirmdeletetext'           => "De sjteis op 't punt 'n pazjena of e plaetje veur ummer te wisse. Dit haolt allen inhawd en historie oet de database eweg. Bevèstig hieónger dat dit welzeker dien bedoeling is, dats te de gevolge begrieps.",
 'actioncomplete'              => 'Actie voltoeid',
-'deletedtext'                 => '"$1" is gewis. Zuug $2 vuur \'n euverzich van recèntelik gewisde pazjena\'s.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" is gewis. Zuug $2 vuur \'n euverzich van recèntelik gewisde pazjena\'s.',
 'deletedarticle'              => '"$1" is gewis',
 'dellogpage'                  => 'Wislogbook',
 'dellogpagetext'              => "Hie volg 'n lies van de meis recèntelik gewisde pazjena's en plaetjes.",
@@ -1367,7 +1367,7 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 'protect_expiry_old'          => "De pazjena verlöp in 't verleje.",
 'unprotectsub'                => '(Besjerming van "$1" opheve)',
 'protect-unchain'             => 'Maak verplaatse meugelik',
-'protect-text'                => "Hiej kinse 't beveiligingsniveau veur de pazjena <strong>$1</strong> bekieke en wiezige.",
+'protect-text'                => "Hiej kinse 't beveiligingsniveau veur de pazjena <strong><nowiki>\$1</nowiki></strong> bekieke en wiezige.",
 'protect-locked-blocked'      => "Doe kins 't beveiligingsniveau neet wiezige wielse geblokkeerd bös.
 Hiej zeen de hujige instellinge veur de pazjena <strong>[[$1]]</strong>:",
 'protect-locked-dblock'       => "'t Beveiligingsniveau kin neet waere gewiezig ómdet de database geslaote is.

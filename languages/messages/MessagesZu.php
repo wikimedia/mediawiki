@@ -122,7 +122,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'email'              => 'Iposi likagesi',
 'loginsuccesstitle'  => 'Ubengena',
 'nosuchuser'         => 'Akukho umsebenzisi unegama "$1". Hlola umbhalo wakho, noma dala ikhawundi elisha.',
-'nosuchusershort'    => 'Akukho umsebenzisi unegama "$1". Hlola umbhalo wakho.',
+'nosuchusershort'    => 'Akukho umsebenzisi unegama "<nowiki>$1</nowiki>". Hlola umbhalo wakho.',
 'emailconfirmlink'   => 'Qinisekisa ikheli likagesi lakho',
 'loginlanguagelabel' => 'Ulimi: $1',
 

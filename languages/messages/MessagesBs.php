@@ -743,7 +743,7 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 
 Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kliknite na "prekini praćenje" na paleti.',
 'removedwatch'         => 'Uklonjeno iz spiska praćenih članaka',
-'removedwatchtext'     => 'Stranica "$1" je uklonjena iz vašeg spiska praćenih članaka.',
+'removedwatchtext'     => 'Stranica "<nowiki>$1</nowiki>" je uklonjena iz vašeg spiska praćenih članaka.',
 'watch'                => 'Prati',
 'watchthispage'        => 'Prati ovu stranicu',
 'unwatch'              => 'Ukinite praćenje',
@@ -803,7 +803,7 @@ Molimo Vas da potvrdite da namjeravate da uradite ovo, da razumijete
 poslijedice, i da ovo radite u skladu sa
 [[{{MediaWiki:Policy-url}}|pravilima]] {{SITENAME}}.',
 'actioncomplete'              => 'Akcija završena',
-'deletedtext'                 => 'Članak "$1" je obrisan.
+'deletedtext'                 => 'Članak "<nowiki>$1</nowiki>" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletedarticle'              => 'obrisan "[[$1]]"',
 'dellogpage'                  => 'istorija brisanja',
@@ -828,7 +828,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'protectcomment'              => 'Razlog za zaštitu',
 'unprotectsub'                => '(Skidanje zaštite "$1")',
 'protect-unchain'             => 'Deblokirajte dozvole premještanja',
-'protect-text'                => 'Ovdje možete gledati i izmjeniti level zaštite za stranicu <strong>$1</strong>.',
+'protect-text'                => 'Ovdje možete gledati i izmjeniti level zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(standardno)',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrovane korisnike',
 'protect-level-sysop'         => 'Samo administratori',

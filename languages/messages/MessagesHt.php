@@ -215,7 +215,7 @@ $messages = array(
 'loginsuccess'          => 'Ou konekte kounye a nan {{SITENAME}} epi idantifyan sa a « $1 ».',
 'nosuchuser'            => 'Itilizatè « $1 » pa egziste.
 Byen gade ke ou byen ekri non ou, oubyen kreye yon nouvo kont.',
-'nosuchusershort'       => 'Pa genyen kontribitè ak non « $1 » sa a. Byen gade lòtograf ou an.',
+'nosuchusershort'       => 'Pa genyen kontribitè ak non « <nowiki>$1</nowiki> » sa a. Byen gade lòtograf ou an.',
 'nouserspecified'       => 'Ou dwèt mete non itilizatè ou an.',
 'wrongpassword'         => 'Mopas an pa korèk. Eseye ankò.',
 'wrongpasswordempty'    => 'Ou pa antre mopas ou an. Eseye ankò.',
@@ -479,7 +479,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'mywatchlist'          => 'Lis swivi',
 'watchlistfor'         => "(pou itilizatè '''$1''')",
 'addedwatch'           => 'Ajoute nan lis swivi',
-'addedwatchtext'       => 'Paj « $1 » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
+'addedwatchtext'       => 'Paj « <nowiki>$1</nowiki> » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
 Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <b>fonse </b> nan [[Special:Recentchanges|chanjman ki fèk fèt]] pou ou kapab wè yo pli fasilman.',
 'removedwatch'         => 'Retire nan lis swivi',
 'removedwatchtext'     => 'Paj « [[:$1]] » byen retire nan [[Special:Watchlist|lis swivi ou an]].',
@@ -501,7 +501,7 @@ Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <
 'historywarning'              => 'Atansyon, paj ou ap efase an genyen yon istorik :',
 'confirmdeletetext'           => 'Ou ap efase pou tout bon nan bazdone a yon paj oubyen yon imaj epi tout vèsyon li yo. Souple, konfime aksyon enpòtan sa a, ke ou konprann sa ou ap fè, nan dwa ak [[{{MediaWiki:Policy-url}}|lwa medyawiki a]].',
 'actioncomplete'              => 'Aksyon an fèt',
-'deletedtext'                 => '« $1 » efase.
+'deletedtext'                 => '« <nowiki>$1</nowiki> » efase.
 Gade $2 pou wè yon lis efasman resan.',
 'deletedarticle'              => 'efase « [[$1]] »',
 'dellogpage'                  => 'Istorik efasman yo',
@@ -516,7 +516,7 @@ Gade $2 pou wè yon lis efasman resan.',
 'protect_expiry_invalid'      => 'Dat ou mete a pou li ekspire pa bon',
 'protect_expiry_old'          => 'dat ekspirasyon an ja pase;',
 'protect-unchain'             => 'Debloàke pèmisyon yo pou renonmen, deplase',
-'protect-text'                => 'Ou mèt konsilte epi modifye nivo pwoteksyon paj sa a <strong>$1</strong>.
+'protect-text'                => 'Ou mèt konsilte epi modifye nivo pwoteksyon paj sa a <strong><nowiki>$1</nowiki></strong>.
 Souple, gade byen ke ou ap swivdwa ak [[{{MediaWiki:Policy-url}}|lwa nan medyawiki]].',
 'protect-locked-access'       => 'Ou pa genyen dwa ki ap pèmèt ou modifye pwoteksyon paj sa a.
 Men reglaj pou paj <strong>$1</strong> an kounye a:',

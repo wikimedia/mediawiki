@@ -518,7 +518,7 @@ Twójo wužywarske konto jo se zarědowało. Njezabydni, swóje {{SITENAME}} nas
 'loginsuccesstitle'          => 'Pśizjawjenje wuspěšne',
 'loginsuccess'               => "'''Sy něnto ako „$1” w {{GRAMMAR:lokatiw|{{SITENAME}}}} pśizjawjony.'''",
 'nosuchuser'                 => 'Wužywarske mě „$1“ njeeksistěrujo. Pśeglěduj pšawopis abo załož nowe konto.',
-'nosuchusershort'            => 'Wužywarske mě „$1“ njeeksistěrujo. Pśeglěduj pšawopis.',
+'nosuchusershort'            => 'Wužywarske mě „<nowiki>$1</nowiki>“ njeeksistěrujo. Pśeglěduj pšawopis.',
 'nouserspecified'            => 'Pšosym pódaj wužywarske mě.',
 'wrongpassword'              => 'Zapódane šćitne gronidło njejo pšawe. Pšosym wopytaj hyšći raz.',
 'wrongpasswordempty'         => 'Šćitne gronidło jo było prozne. Pšosym zapódaj jo hyšći raz.',
@@ -1394,13 +1394,13 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 'watchnologin'         => 'Njepśizjawjony(a)',
 'watchnologintext'     => 'Musyš byś [[Special:Userlogin|pśizjawjony]], aby mógał swóje wobglědowańka wobźěłaś.',
 'addedwatch'           => 'Jo k wobglědowańkam se dodało',
-'addedwatchtext'       => 'Bok „$1“ jo k twójim [[Special:Watchlist|wobglědowańkam]] se dodał.
+'addedwatchtext'       => 'Bok „<nowiki>$1</nowiki>“ jo k twójim [[Special:Watchlist|wobglědowańkam]] se dodał.
 
 Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju a w pśeglěźe [[Special:Recentchanges|slědnych změnow]] tucnje wóznamjeniju. 
 
 Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowědujucem boce na "dalej njewobglědowaś".',
 'removedwatch'         => 'Jo z wobglědowańkow se wulašowało',
-'removedwatchtext'     => 'Bok „$1“ jo z twójich wobglědowańkow wulašowany.',
+'removedwatchtext'     => 'Bok „<nowiki>$1</nowiki>“ jo z twójich wobglědowańkow wulašowany.',
 'watch'                => 'Wobglědowaś',
 'watchthispage'        => 'Bok wobglědowaś',
 'unwatch'              => 'Dalej njewobglědowaś',
@@ -1469,7 +1469,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'historywarning'              => 'Glědaj! Bok, kótaryž coš wulašowaś, ma stawizny:',
 'confirmdeletetext'           => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
 'actioncomplete'              => 'Akcija jo se wugbała.',
-'deletedtext'                 => '„$1“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
+'deletedtext'                 => '„<nowiki>$1</nowiki>“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
 'deletedarticle'              => 'wulašowane "[[$1]]"',
 'dellogpage'                  => 'log-lisćina wulašowanjow',
 'dellogpagetext'              => 'How jo log-lisćina wulašowanych bokow a datajow.',
@@ -1508,7 +1508,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protect_expiry_old'          => 'Zapódany cas jo wótběžał.',
 'unprotectsub'                => '(Šćitanje boka „$1“ se wótpóra)',
 'protect-unchain'             => 'Šćit pśed pśesunjenim změniś',
-'protect-text'                => "How móžoš status šćita boka '''$1''' wobglědowaś a jen změniś.",
+'protect-text'                => "How móžoš status šćita boka '''<nowiki>\$1</nowiki>''' wobglědowaś a jen změniś.",
 'protect-locked-blocked'      => 'Njamóžoš status šćita togo boka změniś, dokulaž jo twójo wužywarske konto se blokěrowało. How su aktualne nastajenja šćita za bok <strong>„$1“:</strong>.',
 'protect-locked-dblock'       => 'Datowa banka jo zamknjona a toś njejo móžno šćit boka změniś. How su aktualne nastajenja šćita za bok <strong>„$1“:</strong>.',
 'protect-locked-access'       => 'Wašo wužywarske konto njama notne pšawa za změnu šćita toś togo boka. How su aktualne nastajenja šćita boka <strong>„$1“:</strong>.',

@@ -395,7 +395,7 @@ Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstilling
 'loginsuccesstitle'          => 'Innritan væleydnað',
 'loginsuccess'               => "'''Tú hevur nú ritað inn í {{SITENAME}} sum \"\$1\".'''",
 'nosuchuser'                 => 'Eingin brúkari er við navninum "$1". Kanna stavseting ella nýt frymilin niðanfyri til at stovna nýggja kontu.',
-'nosuchusershort'            => 'Eingin brúkari er við navninum "$1". Kanna stavseting.',
+'nosuchusershort'            => 'Eingin brúkari er við navninum "<nowiki>$1</nowiki>". Kanna stavseting.',
 'wrongpassword'              => 'Loyniorðið, sum tú skrivaði, er skeivt. Vinaliga royn aftur.',
 'wrongpasswordempty'         => 'Loyniorð manglar. Vinarliga royn aftur.',
 'mailmypassword'             => 'Send mær eitt nýtt loyniorð',
@@ -789,7 +789,7 @@ ella hevur hann valt ikki at taka ímóti t-posti frá øðrum brúkarum.',
 'nowatchlist'          => 'Tú hevur ongar lutir í eftirlitinum.',
 'watchnologin'         => 'Tú hevur ikki ritað inn',
 'addedwatch'           => 'Lagt undir eftirlit',
-'addedwatchtext'       => "Síðan \"\$1\" er løgd undir [[Special:Watchlist|eftirlit]] hjá tær.
+'addedwatchtext'       => "Síðan \"<nowiki>\$1</nowiki>\" er løgd undir [[Special:Watchlist|eftirlit]] hjá tær.
 Framtíðar broytingar á hesi síðu og tilknýttu kjaksíðuni verða at síggja her.
 Tá sæst síðan sum '''feit skrift''' í [[Special:Recentchanges|broytingaryvirlitinum]] fyri at gera hana lættari at síggja.
 
@@ -829,7 +829,7 @@ Vinarliga vátta at tú ætlar at gera hetta, at tú skilur
 avleiðingarnar og at tú gert tað í tráð við
 [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'     => 'Verkið er fullgjørt',
-'deletedtext'        => '"$1" er nú strikað.
+'deletedtext'        => '"<nowiki>$1</nowiki>" er nú strikað.
 Sí $2 fyri fulla skráseting av strikingum.',
 'deletedarticle'     => 'strikaði "[[$1]]"',
 'dellogpage'         => 'Striku logg',

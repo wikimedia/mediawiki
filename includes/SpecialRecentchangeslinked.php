@@ -167,7 +167,7 @@ $GROUPBY
 			$rchanges[] = $obj;
 		}
 	} else {
-		$wgOut->addWikiText( wfMsg('recentchangeslinked-noresult') );
+		$wgOut->addWikiMsg('recentchangeslinked-noresult');
 	}
 	$s .= $list->endRecentChangesList();
 

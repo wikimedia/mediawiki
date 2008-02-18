@@ -1986,6 +1986,12 @@ $wgTidyInternal = extension_loaded( 'tidy' );
  */
 $wgDebugTidy = false;
 
+/**
+ * Validate the overall output using tidy and refuse 
+ * to display the page if it's not valid.
+ */
+$wgValidateAllHtml = false;
+
 /** See list of skins and their symbolic names in languages/Language.php */
 $wgDefaultSkin = 'monobook';
 

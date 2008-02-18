@@ -387,7 +387,7 @@ Isem n wemseqdac inek yettwaxleq. Ur tettuḍ ara ad tbeddleḍ Isemyifiyen n {{
 'loginsuccesstitle'          => 'Tkecmeḍ !',
 'loginsuccess'               => "'''Tkecmeḍ ar {{SITENAME}} s yisem n wemseqdac \"\$1\".'''",
 'nosuchuser'                 => 'Ulac isem n wemseqdac s yisem "$1". Ssenqed tira n yisem-nni, neɣ xelq isem n wemseqdac amaynut.',
-'nosuchusershort'            => 'Ulac isem n wemseqdac s yisem "$1". Ssenqed tira n yisem-nni.',
+'nosuchusershort'            => 'Ulac isem n wemseqdac s yisem "<nowiki>$1</nowiki>". Ssenqed tira n yisem-nni.',
 'nouserspecified'            => 'Yessefk ad tefkeḍ isem n wemseqdac.',
 'wrongpassword'              => 'Awal n tbaḍnit ɣaleṭ. Ɛreḍ daɣen.',
 'wrongpasswordempty'         => 'Awal n tbaḍnit ulac-it. Ɛreḍ daɣen.',
@@ -1152,7 +1152,7 @@ Tadhelt:
 'exblank'                 => 'asebter yella d ilem',
 'historywarning'          => 'Aɣtal: Asebter i ara temḥuḍ yesɛa amezruy:',
 'actioncomplete'          => 'Axdam yekfa',
-'deletedtext'             => '"$1" yettumḥa.
+'deletedtext'             => '"<nowiki>$1</nowiki>" yettumḥa.
 Ẓer $2 i aɣmis n yimḥayin imaynuten.',
 'deletedarticle'          => '"[[$1]]" yettumḥa',
 'dellogpage'              => 'Aɣmis n umḥay',

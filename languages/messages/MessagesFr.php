@@ -589,7 +589,7 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos préférences 
 'loginsuccess'               => 'Vous êtes maintenant connecté à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser'                 => 'L’utilisateur « $1 » n’existe pas.
 Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.',
-'nosuchusershort'            => 'Il n’y a pas de contributeur avec le nom « $1 ». Veuillez vérifier l’orthographe.',
+'nosuchusershort'            => 'Il n’y a pas de contributeur avec le nom « <nowiki>$1</nowiki> ». Veuillez vérifier l’orthographe.',
 'nouserspecified'            => 'Vous devez saisir un nom d’utilisateur.',
 'wrongpassword'              => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
@@ -1397,7 +1397,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => 'La page « $1 » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées, et la page apparaîtra <b>en gras</b> dans les [[Special:Recentchanges|modifications récentes]] pour être repérée plus facilement.',
+'addedwatchtext'       => 'La page « <nowiki>$1</nowiki> » a été ajoutée à votre [[Special:Watchlist|liste de suivi]]. Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées, et la page apparaîtra <b>en gras</b> dans les [[Special:Recentchanges|modifications récentes]] pour être repérée plus facilement.',
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
@@ -1471,7 +1471,7 @@ Retour et assistance :
 'historywarning'              => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
 'confirmdeletetext'           => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'              => 'Action effectuée',
-'deletedtext'                 => '« $1 » a été supprimé.
+'deletedtext'                 => '« <nowiki>$1</nowiki> » a été supprimé.
 Voir $2 pour une liste des suppressions récentes.',
 'deletedarticle'              => 'a effacé « [[$1]] »',
 'dellogpage'                  => 'Historique des suppressions',
@@ -1511,7 +1511,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'unprotectsub'                => '(Déprotéger « $1 »)',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
-'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong>$1</strong>.
+'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.
 Veuillez vous assurez que vous suivez les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué. 
 Voici les réglages actuels de la page <strong>$1</strong> :',

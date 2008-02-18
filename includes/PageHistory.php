@@ -83,7 +83,7 @@ class PageHistory {
 		 * Fail if article doesn't exist.
 		 */
 		if( !$this->mTitle->exists() ) {
-			$wgOut->addWikiText( wfMsg( 'nohistory' ) );
+			$wgOut->addWikiMsg( 'nohistory' );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -486,7 +486,7 @@ class PageHistory {
 		global $wgFeedClasses;
 		if( !isset( $wgFeedClasses[$type] ) ) {
 			global $wgOut;
-			$wgOut->addWikiText( wfMsg( 'feed-invalid' ) );
+			$wgOut->addWikiMsg( 'feed-invalid' );
 			return;
 		}
 		

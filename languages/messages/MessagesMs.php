@@ -510,7 +510,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'loginsuccesstitle'          => 'Berjaya log masuk',
 'loginsuccess'               => "'''Anda telah log masuk ke dalam {{SITENAME}} sebagai \"\$1\".'''",
 'nosuchuser'                 => 'Pengguna "$1" tidak wujud. Sila semak ejaan anda atau buka akaun baru.',
-'nosuchusershort'            => 'Pengguna "$1" tidak wujud. Sila semak ejaan anda.',
+'nosuchusershort'            => 'Pengguna "<nowiki>$1</nowiki>" tidak wujud. Sila semak ejaan anda.',
 'nouserspecified'            => 'Sila nyatakan nama pengguna.',
 'wrongpassword'              => 'Kata laluan yang dimasukkan adalah salah. Sila cuba lagi.',
 'wrongpasswordempty'         => 'Kata laluan yang dimasukkan adalah kosong. Sila cuba lagi.',
@@ -1460,7 +1460,7 @@ Maklum balas dan bantuan:
 Sila sahkan bahawa anda memang hendak berbuat demikian, anda faham akan
 akibatnya, dan perbuatan anda mematuhi [[{{MediaWiki:Policy-url}}|dasar kami]].',
 'actioncomplete'              => 'Tindakan berjaya',
-'deletedtext'                 => '"$1" telah dihapuskan.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" telah dihapuskan.
 Sila lihat $2 untuk rekod penghapusan terkini.',
 'deletedarticle'              => 'menghapuskan "[[$1]]"',
 'dellogpage'                  => 'Log penghapusan',
@@ -1505,7 +1505,7 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 'protect_expiry_old'          => 'Waktu tamat telah berlalu.',
 'unprotectsub'                => '(Menyahlindung "$1")',
 'protect-unchain'             => 'Buka kunci keizinan pemindahan',
-'protect-text'                => 'Anda boleh melihat dan menukar peringkat perlindungan bagi laman <strong>$1</strong>.',
+'protect-text'                => 'Anda boleh melihat dan menukar peringkat perlindungan bagi laman <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Anda telah disekat, justeru tidak boleh menukar peringkat perlindungan.
 Ini adalah tetapan semasa bagi laman <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Anda tidak boleh menukar peringkat perlindungan kerana pangkalan data sedang dikunci.

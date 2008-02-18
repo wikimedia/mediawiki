@@ -135,22 +135,22 @@ class FileRepoStatus {
 		}
 		if ( count( $this->errors ) == 1 ) {
 			$params = array_map( 'wfEscapeWikiText', $this->cleanParams( $this->errors[0]['params'] ) );
-			$s = wfMsgReal( $this->errors[0]['message'], $params );
+			$s = wfMsgReal( $this->errors[0]['message'], $params, true, false, false );
 			if ( $shortContext ) {
-				$s = wfMsg( $shortContext, $s );
+				$s = wfMsgNoTrans( $shortContext, $s );
 			} elseif ( $longContext ) {
-				$s = wfMsg( $longContext, "* $s\n" );
+				$s = wfMsgNoTrans( $longContext, "* $s\n" );
 			}
 		} else {
 			$s = '';
 			foreach ( $this->errors as $error ) {
 				$params = array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) );
-				$s .= '* ' . wfMsgReal( $error['message'], $params ) . "\n";
+				$s .= '* ' . wfMsgReal( $error['message'], $params, true, false, false ) . "\n";
 			}
 			if ( $longContext ) {
-				$s = wfMsg( $longContext, $s );
+				$s = wfMsgNoTrans( $longContext, $s );
 			} elseif ( $shortContext ) {
-				$s = wfMsg( $shortContext, "\n* $s\n" );
+				$s = wfMsgNoTrans( $shortContext, "\n* $s\n" );
 			}
 		}
 		return $s;

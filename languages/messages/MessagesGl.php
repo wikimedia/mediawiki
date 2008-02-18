@@ -417,7 +417,7 @@ Creouse a súa conta. Non esqueza [[Special:Preferences|personalizar]] as súas 
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Non hai ningún usuario co nome "$1".
 Verifique a sintaxe ou use o formulario que aparece a continuación para crear unha nova conta de usuario.',
-'nosuchusershort'            => 'Non hai un usuario co nome "$1". Verifique o nome que inseriu.',
+'nosuchusershort'            => 'Non hai un usuario co nome "<nowiki>$1</nowiki>". Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
 'wrongpassword'              => 'O contrasinal escrito é incorrecto. Por favor, insira outro.',
 'wrongpasswordempty'         => 'O contrasinal estaba en branco. Por favor, ténteo de novo.',
@@ -1285,7 +1285,7 @@ ou elixiu non recibir correo electrónico doutros usuarios.',
 'watchnologin'         => 'Non rexistrado',
 'watchnologintext'     => 'Para modificar a súa listaxe de vixilancia debe estar [[Special:Userlogin|rexistrado]].',
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
-'addedwatchtext'       => "A páxina \"'''\$1'''\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
+'addedwatchtext'       => "A páxina \"'''<nowiki>\$1</nowiki>'''\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
 Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados aquí,
 e a páxina aparecerá en '''negra''' na [[Special:Recentchanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización. Se quere eliminar esta páxina da súa listaxe de vixilancia, prema en \"Deixar de vixiar\" na barra lateral.",
 'removedwatch'         => 'Quitado da listaxe de vixilancia',
@@ -1361,7 +1361,7 @@ Feedback e axuda:
 'historywarning'              => 'Atención: A páxina que está a borrar ten un historial:',
 'confirmdeletetext'           => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos. Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras da [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'A acción foi completada',
-'deletedtext'                 => '"$1" foi borrado. 
+'deletedtext'                 => '"<nowiki>$1</nowiki>" foi borrado. 
 En $2 pode ver unha listaxe dos borrados recentes.',
 'deletedarticle'              => '"[[$1]]" foi borrado',
 'dellogpage'                  => 'Rexistro de borrado',
@@ -1403,7 +1403,7 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|disc.]]).',
 'protect_expiry_old'          => 'O momento de remate da protección corresponde ao pasado.',
 'unprotectsub'                => '(Desprotexendo "$1")',
 'protect-unchain'             => 'Desbloquear permisos de traslado',
-'protect-text'                => 'Aquí é onde pode ver e cambiar os niveis de protección para a páxina <strong>$1</strong>.',
+'protect-text'                => 'Aquí é onde pode ver e cambiar os niveis de protección para a páxina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Non poden modificar os niveis de protección mentres existe un bloqueo. Eis a configuración actual da páxina  <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Os niveis de protección non se poden modificar debido a un bloqueo da base de datos activa.
 Eis a configuración actual da páxina <strong>$1</strong>:',

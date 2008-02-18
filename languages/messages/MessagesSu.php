@@ -397,7 +397,7 @@ Rekening anjeun geus dijieun. Tong hilap ngarobih préferénsi {{SITENAME}} anje
 'loginsuccesstitle'          => 'Asup log geus hasil',
 'loginsuccess'               => 'Anjeun ayeuna geus asup log ka {{SITENAME}} salaku "$1".',
 'nosuchuser'                 => 'Teu aya pamaké nu ngaranna "$1". Pariksa éjahanana, atawa paké formulir di handap pikeun nyieun rekening pamaké anyar.',
-'nosuchusershort'            => 'Taya pamaké nu ngaranna "$1", pariksa éjahanana!',
+'nosuchusershort'            => 'Taya pamaké nu ngaranna "<nowiki>$1</nowiki>", pariksa éjahanana!',
 'nouserspecified'            => 'Anjeun kudu ngeusian ngaran landihan.',
 'wrongpassword'              => 'Sandi nu diasupkeun teu cocog. Mangga cobian deui.',
 'wrongpasswordempty'         => 'Sandina can kaeusian. Cobaan deui!',
@@ -1067,12 +1067,12 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'watchnologin'         => 'Can asup log',
 'watchnologintext'     => 'Anjeun kudu [[Special:Userlogin|asup log]] pikeun ngarobah awaskeuneun.',
 'addedwatch'           => 'Geus ditambahkeun ka awaskeuneun',
-'addedwatchtext'       => "Kaca \"\$1\" geus ditambahkeun ka [[Special:Watchlist|awaskeuneun]] anjeun.
+'addedwatchtext'       => "Kaca \"<nowiki>\$1</nowiki>\" geus ditambahkeun ka [[Special:Watchlist|awaskeuneun]] anjeun.
 Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di dinya, sarta kacana bakal katémbong '''dikandelan''' dina kaca [[Special:Recentchanges|Nu anyar robah]] sangkan leuwih gampang ngawaskeunana.
 
 <p>Mun jaga anjeun moal deui ngawaskeun parobahan na kaca éta, klik tumbu \"Eureun ngawaskeun\" na lajursisi.",
 'removedwatch'         => 'Dikaluarkeun ti awaskeuneun',
-'removedwatchtext'     => 'Kaca "$1" geus dikaluarkeun ti awaskeuneun anjeun.',
+'removedwatchtext'     => 'Kaca "<nowiki>$1</nowiki>" geus dikaluarkeun ti awaskeuneun anjeun.',
 'watch'                => 'awaskeun',
 'watchthispage'        => 'Awaskeun kaca ieu',
 'unwatch'              => 'Eureun ngawaskeun',
@@ -1140,7 +1140,7 @@ Asupan jeung bantuan salajengna:
 'historywarning'              => 'Perhatosan: Kaca nu rék dihapus mibanda',
 'confirmdeletetext'           => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
 'actioncomplete'              => 'Peta geus réngsé',
-'deletedtext'                 => '"$1" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
 'deletedarticle'              => 'ngahapus "$1"',
 'dellogpage'                  => 'Log_hapusan',
 'dellogpagetext'              => 'Di handap ieu daptar hapusan nu ahir-ahir, sakabéh wanci dumasar wanci server (UTC).',

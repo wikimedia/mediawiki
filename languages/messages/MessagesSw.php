@@ -203,7 +203,7 @@ $messages = array(
 'loginsuccesstitle'     => 'Umefaulu kuingia',
 'loginsuccess'          => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
 'nosuchuser'            => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya, au sajili akaunti mpya.',
-'nosuchusershort'       => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya.',
+'nosuchusershort'       => 'Hakuna mtumiaji mwenye jina "<nowiki>$1</nowiki>". Labda umeandika vibaya.',
 'nouserspecified'       => 'Lazima uandike jina la mtumiaji.',
 'wrongpassword'         => 'Umeingiza nywila ya makosa. Jaribu tena.',
 'wrongpasswordempty'    => 'Nywila ilikuwa tupu. Jaribu tena.',
@@ -517,7 +517,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'confirmdeletetext'           => 'Wewe unategemea kufuta ukurasa pamoja na historia yake yote.
 Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo yake, na kwamba unafuata [[{{MediaWiki:Policy-url}}|sera]].',
 'actioncomplete'              => 'Kitendo kimekwisha',
-'deletedtext'                 => '"$1" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
 'deletedarticle'              => '"[[$1]]" ilifutwa',
 'dellogpage'                  => 'Kumbukumbu ya ufutaji',
 'deletecomment'               => 'Sababu ya kufuta',
@@ -531,7 +531,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'protect_expiry_invalid'      => 'Muda wa kwisha ni batilifu.',
 'protect_expiry_old'          => 'Muda wa kuishi umepita tayari.',
 'protect-unchain'             => 'Fungua ruhusa za kusogeza',
-'protect-text'                => 'Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa <strong>$1</strong>.',
+'protect-text'                => 'Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
 Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 'protect-cascadeon'           => 'Ukurasa huu umelindwa kwa sababu umezingatiwa katika {{PLURAL:$1|ukurasa $1 unaolinda kurasa chini yake|kurasa $1 zinazolinda kurasa chini yake}}. Unaweza kubadilisha kiwango cha ulindaji wa ukurasa huu, lakini hutaathirika ulindaji kutoka kurasa juu yake.',

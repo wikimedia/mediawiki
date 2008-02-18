@@ -541,7 +541,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'loginsuccesstitle'          => 'Prihlásenie úspešné',
 'loginsuccess'               => "'''Teraz ste prihlásený do {{GRAMMAR:genitív|{{SITENAME}}}} ako „$1“.'''",
 'nosuchuser'                 => 'Používateľské meno „$1“ neexistuje. Skontrolujte preklepy alebo sa prihláste ako nový používateľ pomocou dolu zobrazeného formulára.',
-'nosuchusershort'            => 'V súčasnosti neexistuje používateľ s menom „$1“. Skontrolujte preklepy.',
+'nosuchusershort'            => 'V súčasnosti neexistuje používateľ s menom „<nowiki>$1</nowiki>“. Skontrolujte preklepy.',
 'nouserspecified'            => 'Musíte uviesť meno používateľa.',
 'wrongpassword'              => 'Zadané heslo je nesprávne. Skúste  znovu.',
 'wrongpasswordempty'         => 'Zadané heslo bolo prázdne. Skúste prosím znova.',
@@ -1494,7 +1494,7 @@ Návrhy a ďalšia pomoc:
 'historywarning'              => 'UPOZORNENIE: Stránka, ktorú chcete zmazať má históriu:',
 'confirmdeletetext'           => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
 'actioncomplete'              => 'Úloha bola dokončená',
-'deletedtext'                 => '"$1" bol zmazaný.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" bol zmazaný.
 Na $2 nájdete zoznam posledných zmazaní.',
 'deletedarticle'              => '„[[$1]]“ zmazaná',
 'dellogpage'                  => 'Záznam zmazaní',
@@ -1538,7 +1538,7 @@ Môžete si pozrieť aj [[Special:Protectedpages|zoznam momentálne platných za
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',
 'unprotectsub'                => '(Odomykám „$1“)',
 'protect-unchain'             => 'Odomknúť povolenia pre presun',
-'protect-text'                => 'Tu si môžete pozrieť a zmeniť úroveň ochrany stránky <strong>$1</strong>.',
+'protect-text'                => 'Tu si môžete pozrieť a zmeniť úroveň ochrany stránky <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
 Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Nie je možné zmeniť úroveň ochrany z dôvodu aktívneho zámku databázy.

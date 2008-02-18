@@ -422,7 +422,7 @@ Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len
 'exblank'         => 'i patrin sas chuchi',
 'historywarning'  => 'Dikh! La patrya so kames to khoses la si la puranipen:',
 'actioncomplete'  => 'Agorisardi buti',
-'deletedtext'     => '"$1" sas khosli.
+'deletedtext'     => '"<nowiki>$1</nowiki>" sas khosli.
 Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'deletedarticle'  => '"$1" sas khosli.',
 'rollback_short'  => 'Palemavilipen',

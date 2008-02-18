@@ -516,7 +516,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'loginsuccesstitle'          => 'Du er nå logget inn',
 'loginsuccess'               => 'Du er nå logget inn på {{SITENAME}} som «$1».',
 'nosuchuser'                 => 'Det eksisterer ingen bruker ved navn «$1». Sjekk stavemåten eller opprett en ny konto.',
-'nosuchusershort'            => 'Det finnes ingen bruker ved navn «$1». Kontroller stavemåten.',
+'nosuchusershort'            => 'Det finnes ingen bruker ved navn «<nowiki>$1</nowiki>». Kontroller stavemåten.',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
 'wrongpassword'              => 'Du har oppgitt et ugyldig passord. Prøv igjen.',
 'wrongpasswordempty'         => 'Du oppga ikke noe passord. Prøv igjen.',
@@ -1334,7 +1334,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'watchnologin'         => 'Ikke logget inn',
 'watchnologintext'     => 'Du må være [[Special:Userlogin|logget inn]] for å kunne endre overvåkningslisten.',
 'addedwatch'           => 'Lagt til overvåkningslista',
-'addedwatchtext'       => "Siden «$1» er føyd til [[Special:Watchlist|overvåkningslistea]]. Fremtidige endringer til denne siden og den tilhørende diskusjonssiden vil bli listet opp her, og siden vil fremstå '''fremhevet''' i [[Special:Recentchanges|lista over de siste endringene]] for å gjøre det lettere å finne den.
+'addedwatchtext'       => "Siden «<nowiki>\$1</nowiki>» er føyd til [[Special:Watchlist|overvåkningslistea]]. Fremtidige endringer til denne siden og den tilhørende diskusjonssiden vil bli listet opp her, og siden vil fremstå '''fremhevet''' i [[Special:Recentchanges|lista over de siste endringene]] for å gjøre det lettere å finne den.
 
 Hvis du senere vil fjerne siden fra overvåkningslista, klikk «Avslutt overvåkning» ute i siden.",
 'removedwatch'         => 'Fjernet fra overvåkningslista',
@@ -1448,7 +1448,7 @@ Tilbakemeldinger og videre assistanse:
 'protect_expiry_old'          => 'Utgangstiden har allerede vært.',
 'unprotectsub'                => '(Åpner «$1»)',
 'protect-unchain'             => 'Spesielle flyttingstillatelser',
-'protect-text'                => 'Du kan se og forandre beskyttelsesnivået for siden <strong>$1</strong> her.',
+'protect-text'                => 'Du kan se og forandre beskyttelsesnivået for siden <strong><nowiki>$1</nowiki></strong> her.',
 'protect-locked-blocked'      => 'Du kan ikke endre beskyttelsesnivåer mens du er blokkert. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Beskyttelsesnivåer kan ikke endres under en aktiv databasebeskyttelse. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
 'protect-locked-access'       => 'Kontoen din har ikke tillatelse til å endre beskyttelsesnivåer. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',

@@ -138,7 +138,7 @@ class WhatLinksHerePage {
 				list( $options['limit'], $options['offset']) = wfCheckLimits();
 				$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
 				$errMsg = isset( $this->namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
-				$wgOut->addWikiText( wfMsg( $errMsg, $this->target->getPrefixedText() ) );
+				$wgOut->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 			}
 			return;
 		}
@@ -193,7 +193,7 @@ class WhatLinksHerePage {
 
 		if ( $level == 0 ) {
 			$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
-			$wgOut->addWikiText( wfMsg( 'linkshere', $this->target->getPrefixedText() ) );
+			$wgOut->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
 			$prevnext = $this->getPrevNext( $limit, $prevId, $nextId, $options['namespace'] );
 			$wgOut->addHTML( $prevnext );

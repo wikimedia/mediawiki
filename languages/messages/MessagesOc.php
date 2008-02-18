@@ -451,7 +451,7 @@ Doblidetz pas de personalizar vòstre {{SITENAME}} en consultant la pagina Prefe
 'loginsuccess'               => 'Sètz actualament connectat(ada) sus {{SITENAME}} en tant que "$1".',
 'nosuchuser'                 => 'L\'utilizaire "$1" existís pas.
 Verificatz qu\'avètz plan ortografiat lo nom, o utilizatz lo formulari çai jos per crear un compte d\'utilizaire novèl.',
-'nosuchusershort'            => 'I a pas de contributor amb lo nom « $1 ». Verificatz l’ortografia.',
+'nosuchusershort'            => 'I a pas de contributor amb lo nom « <nowiki>$1</nowiki> ». Verificatz l’ortografia.',
 'nouserspecified'            => 'Devètz picar un nom d’utilizaire.',
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
 'wrongpasswordempty'         => 'Avètz pas entrat de senhal. Ensajatz tornarmai.',
@@ -1252,7 +1252,7 @@ L\'adreça electronica qu\'avètz indicada dins vòstras preferéncias apareisse
 'watchnologintext'     => 'Devètz èsser [[Special:Userlogin|connectat(ada)]]
 per modificar vòstra lista.',
 'addedwatch'           => 'Ajustat a la lista',
-'addedwatchtext'       => 'La pagina "$1" es estada ajustada a vòstra [[Special:Watchlist|lista de seguit]].
+'addedwatchtext'       => 'La pagina "<nowiki>$1</nowiki>" es estada ajustada a vòstra [[Special:Watchlist|lista de seguit]].
 Las modificacions venetas d\'aquesta pagina e de la pagina de discussion associada seràn repertoriadas aicí, e la pagina apareisserà <b>en gras</b> dins la [[Special:Recentchanges|lista dels darrièrs cambiaments]] per èsser localisada mai aisidament.
 
 Per suprimir aquesta pagina de vòstra lista de seguida, clicatz sus "Arrestar de seguir" dins lo quadre de navigacion.',
@@ -1331,7 +1331,7 @@ Retorn e assisténcia :
 o un imatge, e mai totas sas versions anterioras.
 Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncias e que fasètz aquò en acòrdi amb las [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Supression efectuada',
-'deletedtext'                 => '"$1" es estat suprimit.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" es estat suprimit.
 Vejatz $2 per una lista de las supressions recentas.',
 'deletedarticle'              => 'escafament de "[[$1]]"',
 'dellogpage'                  => 'Traça dels escafaments',
@@ -1378,7 +1378,7 @@ Clicatz sus « Precedent » e recargatz la pagina d’ont venètz, puèi ensajat
 'protect_expiry_old'          => 'Lo temps d’expiracion ja es passat.',
 'unprotectsub'                => '(Desprotegir « $1 »)',
 'protect-unchain'             => 'Desblocar las permissions de renomenatge',
-'protect-text'                => 'Podètz consultar e modificar lo nivèl de proteccion de la pagina <strong>$1</strong>. Asseguratz-vos que seguissètz las règlas intèrnas.',
+'protect-text'                => 'Podètz consultar e modificar lo nivèl de proteccion de la pagina <strong><nowiki>$1</nowiki></strong>. Asseguratz-vos que seguissètz las règlas intèrnas.',
 'protect-locked-blocked'      => 'Podètz pas modificar lo nivèl de proteccion tant que sètz blocat. Vaquí los reglatges actuals de la pagina <strong>$1</strong> :',
 'protect-locked-dblock'       => 'Lo nivèl de proteccion pòt pas èsser modificat perque la banca de donadas es blocada. Vaquí los reglatges actuals de la pagina <strong>$1</strong> :',
 'protect-locked-access'       => 'Avètz pas los dreches necessaris per modificar la proteccion de la pagina. Vaquí los reglatges actuals de la pagina <strong>$1</strong> :',

@@ -319,7 +319,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt ''{{gr
 'loginsuccesstitle'          => 'Ieiešana veiksmīga',
 'loginsuccess'               => 'Tu esi ienācis {{grammar:lokatīvs|{{SITENAME}}}} kā "$1".',
 'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai pareizi uzrakstīts, vai arī izveido jaunu kontu.',
-'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi vai pareizi uzrakstīts.',
+'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "<nowiki>$1</nowiki>". Pārbaudi vai pareizi uzrakstīts.',
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
 'wrongpasswordempty'         => 'Parole bija tukša. Lūdzu mēģini vēlreiz.',
@@ -761,11 +761,11 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'watchnologin'         => 'Neesi iegājis',
 'watchnologintext'     => 'Tev ir [[Special:Userlogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
 'addedwatch'           => 'Pievienots uzraugāmo sarakstam.',
-'addedwatchtext'       => "Lapa \"\$1\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:Recentchanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
+'addedwatchtext'       => "Lapa \"<nowiki>\$1</nowiki>\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:Recentchanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
 
 Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz saites '''neuzraudzīt''' rīku joslā.",
 'removedwatch'         => 'Lapa vairs netiek uzraudzīta',
-'removedwatchtext'     => 'Lapa "$1" ir izņemta no tava uzraugāmo lapu saraksta.',
+'removedwatchtext'     => 'Lapa "<nowiki>$1</nowiki>" ir izņemta no tava uzraugāmo lapu saraksta.',
 'watch'                => 'Uzraudzīt',
 'watchthispage'        => 'Uzraudzīt šo lapu',
 'unwatch'              => 'Neuzraudzīt',
@@ -794,7 +794,7 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'historywarning'     => 'Brīdinājums: Tu dzēsīsi lapu, kurai ir saglabātas iepriekšējas versijas.',
 'confirmdeletetext'  => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[Project:Vadlīnijas|vadlīnijām]].',
 'actioncomplete'     => 'Darbība pabeigta',
-'deletedtext'        => 'Lapa "$1" ir izdzēsta.
+'deletedtext'        => 'Lapa "<nowiki>$1</nowiki>" ir izdzēsta.
 Šeit var apskatīties pēdējos izdzēstos: "$2".',
 'deletedarticle'     => 'izdzēsu "$1"',
 'dellogpage'         => 'Dzēšanas reģistrs',

@@ -443,7 +443,7 @@ Via konto estas kreita. <span style="color:#ff0000">Ne forgesu fari viajn [[spec
 'loginsuccess'               => 'Vi ensalutis ĉe {{SITENAME}} kiel uzanto "$1".',
 'nosuchuser'                 => 'Neniu uzanto nomiĝas "$1".
 Bonvolu kontroli vian literumadon, aŭ uzu la malsupran formularon por krei novan konton.',
-'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "$1". Bonvolu kontroli vian ortografion.',
+'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "<nowiki>$1</nowiki>". Bonvolu kontroli vian ortografion.',
 'nouserspecified'            => 'Vi devas entajpi uzantonomon.',
 'wrongpassword'              => 'Vi tajpis malĝustan pasvorton. Bonvolu provi denove.',
 'wrongpasswordempty'         => 'Vi tajpis malplenan pasvorton. Bonvolu provi denove.',
@@ -1269,7 +1269,7 @@ Reagoj kaj plia helpo :
 'historywarning'              => 'Averto: la forigota paĝo havas historion:',
 'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'              => 'Ago farita',
-'deletedtext'                 => '"$1" estas forigita.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletedarticle'              => 'forigis "$1"',
 'dellogpage'                  => 'Loglibro de forigoj',

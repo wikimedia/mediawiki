@@ -563,7 +563,7 @@ Ne zaboravite da prilagodite sebi svoja {{SITENAME}} podešavanja.',
 'loginsuccesstitle'          => 'Prijavljivanje uspešno',
 'loginsuccess'               => "'''Sada ste prijavljeni na {{SITENAME}} kao \"\$1\".'''",
 'nosuchuser'                 => 'Ne postoji korisnik sa imenom "$1". Proverite da li ste dobro napisali ili napravite novi korisnički nalog.',
-'nosuchusershort'            => 'Ne postoji korisnik sa imenom "$1". Proverite da li ste dobro napisali.',
+'nosuchusershort'            => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>". Proverite da li ste dobro napisali.',
 'nouserspecified'            => 'Morate da naznačite korisničko ime.',
 'wrongpassword'              => 'Lozinka koju ste uneli je neispravna. Molimo pokušajte ponovo.',
 'wrongpasswordempty'         => 'Lozinka koju ste uneli je prazna. Molimo pokušajte ponovo.',
@@ -1237,7 +1237,7 @@ Molimo vas potvrdite da nameravate da uradite ovo, da razumete
 posledice, i da ovo radite u skladu sa
 [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Akcija završena',
-'deletedtext'                 => 'Članak "$1" je obrisan.
+'deletedtext'                 => 'Članak "<nowiki>$1</nowiki>" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletedarticle'              => 'obrisan "[[$1]]"',
 'dellogpage'                  => 'istorija brisanja',
@@ -1268,7 +1268,7 @@ Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda poku�
 'protectcomment'              => 'Razlog zaštite',
 'unprotectsub'                => '(skidanje zaštite "$1")',
 'protect-unchain'             => 'Otključaj dozvole premeštanja',
-'protect-text'                => 'Ovde možete pogledati i menjati nivo zaštite za stranicu <strong>$1</strong>.',
+'protect-text'                => 'Ovde možete pogledati i menjati nivo zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(standard)',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrovane korisnike',
 'protect-level-sysop'         => 'Samo za administratore',

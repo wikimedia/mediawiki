@@ -445,7 +445,7 @@ Također, ako zaboravite lozinku možemo vam na ovu adresu poslati novu, privrem
 'loginsuccesstitle'          => 'Prijava uspješna',
 'loginsuccess'               => 'Prijavili ste se na wiki kao "$1".',
 'nosuchuser'                 => 'Ne postoji suradnik s imenom "$1". Provjerite jeste li točno utipkali, ili otvorite novi suradnički račun koristeći donji obrazac.',
-'nosuchusershort'            => 'Ne postoji suradnik s imenom "$1". Provjerite vaš unos.',
+'nosuchusershort'            => 'Ne postoji suradnik s imenom "<nowiki>$1</nowiki>". Provjerite vaš unos.',
 'nouserspecified'            => 'Molimo navedite suradničko ime.',
 'wrongpassword'              => 'Lozinka koju ste unijeli nije ispravna. Pokušajte ponovno.',
 'wrongpasswordempty'         => 'Niste unijeli lozinku. Pokušajte ponovno.',
@@ -1312,12 +1312,12 @@ E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatel
 'watchnologintext'     => 'Morate biti [[Special:Userlogin|prijavljeni]]
 za promjene u popisu praćenja.',
 'addedwatch'           => 'Dodano u popis praćenja',
-'addedwatchtext'       => 'Stranica "$1" je dodana na vaš [[Special:Watchlist|popis praćenja]].
+'addedwatchtext'       => 'Stranica "<nowiki>$1</nowiki>" je dodana na vaš [[Special:Watchlist|popis praćenja]].
 Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, a stranica će biti ispisana
 <b>podebljano</b> u [[Special:Recentchanges|popisu nedavnih promjena]], da biste je lakše primijetili.
 <p>Ako poželite ukloniti stranicu s popisa praćenja, pritisnite "Prekini praćenje" u traci s naredbama.</p>',
 'removedwatch'         => 'Odstranjena s popisa praćenja',
-'removedwatchtext'     => 'Stranica "$1" je odstranjena s vašeg popisa praćenja.',
+'removedwatchtext'     => 'Stranica "<nowiki>$1</nowiki>" je odstranjena s vašeg popisa praćenja.',
 'watch'                => 'Prati',
 'watchthispage'        => 'Prati ovu stranicu',
 'unwatch'              => 'Prekini praćenje',
@@ -1392,7 +1392,7 @@ Za pomoć posjetite:
 'confirmdeletetext'           => 'Zauvijek ćete izbrisati stranicu ili sliku zajedno s prijašnjim inačicama.
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'actioncomplete'              => 'Zahvat završen',
-'deletedtext'                 => '"$1" je izbrisana.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" je izbrisana.
 Vidi $2 za evidenciju nedavnih brisanja.',
 'deletedarticle'              => 'izbrisano "$1"',
 'dellogpage'                  => 'Evidencija_brisanja',
@@ -1438,7 +1438,7 @@ Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutno za�
 'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',
 'unprotectsub'                => '(Uklanjam zaštitu stranice "$1")',
 'protect-unchain'             => 'Otključaj ovlaštenja za premještanje',
-'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong>$1</strong>.
+'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.
 Molim pripazite da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'protect-locked-blocked'      => 'Ne možete mijenjati nivo zaštite dok ste blokirani.
 Slijede postavke stranice <strong>$1</strong>:',

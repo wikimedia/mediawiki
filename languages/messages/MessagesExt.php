@@ -393,7 +393,7 @@ Ya está creá la tu cuenta. Recuerda chambal la tus preferéncias al tentu la {
 'loginsuccesstitle'          => 'Yeu, lo cúmu va esu?',
 'loginsuccess'               => "'''Acabihas d'entral en {{SITENAME}} con el nombri \"\$1\".'''",
 'nosuchuser'                 => 'Nu ai dengún usuáriu llamau "$1". Compreba qu\'esté bien escritu, u cria una cuenta nueva.',
-'nosuchusershort'            => 'Nu ai dengún usuáriu llamau "$1". Compreba qu\'esté bien escritu.',
+'nosuchusershort'            => 'Nu ai dengún usuáriu llamau "<nowiki>$1</nowiki>". Compreba qu\'esté bien escritu.',
 'nouserspecified'            => "Ebis escribil un nombri d'usuáriu.",
 'wrongpassword'              => 'La consínia escrebia nu es correta. Pol favol, preba otra vezi.',
 'wrongpasswordempty'         => 'As ehau en brancu la consínia. Pol favol, preba otra vezi.',
@@ -1305,7 +1305,7 @@ Ayua la Güiquipeya:
 Pol favol, confirma que realmenti quieis hazel esu, qu'entiendis las consecuencias, i que lo hazis dalcuerdu cola
 [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Ación acabihá',
-'deletedtext'                 => 'S\'á esborrau "$1" corretamenti.
+'deletedtext'                 => 'S\'á esborrau "<nowiki>$1</nowiki>" corretamenti.
 Consurta $2 pa vel los úrtimus esborraus.',
 'deletedarticle'              => 'esborrau "[[$1]]"',
 'dellogpage'                  => 'Rustrihu d´esborrau',
@@ -1347,7 +1347,7 @@ tu escrucaol pa cargal otra vezi la páhina i güervi a ententalu.",
 'protect_expiry_old'          => 'La fecha e cauciá está nel pasau.',
 'unprotectsub'                => '(Esprotehiendu "$1")',
 'protect-unchain'             => 'Desatarugal los premisus pa movel páhinas',
-'protect-text'                => 'Aquí pueis vel i chambal el nivel de proteción la páhina <strong>$1</strong>.',
+'protect-text'                => 'Aquí pueis vel i chambal el nivel de proteción la páhina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nu pueis chambal los nivelis de proteción mentris estés atarugau. Velaquí las ocionis atulais la páhina <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Nu se puein chambal los nivelis de proteción ebiu a un tarugu ativu ena basi e datus.
 Velaquí las ocionis atualis la páhina <strong>$1</strong>:',

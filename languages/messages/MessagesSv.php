@@ -526,7 +526,7 @@ Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'loginsuccess'               => 'Du är nu inloggad på {{SITENAME}} med användarnamnet "$1".',
 'nosuchuser'                 => 'Det finns ingen användare som heter "$1".
 Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt konto.',
-'nosuchusershort'            => 'Det finns ingen användare som heter "$1". Kontrollera att du stavat rätt.',
+'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
@@ -1370,7 +1370,7 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med \'\'\'fet stil\'\'\' i [[Special:Recentchanges|listan över de senaste ändringarna]] för att synas bättre.<br /><br />
 Om du inte längre vill att sidan skall finnas på din övervakningslista, klicka på  "avbevaka" uppe till höger.',
 'removedwatch'         => 'Borttagen från övervakningslista',
-'removedwatchtext'     => 'Sidan "$1" har blivit borttagen från din övervakningslista',
+'removedwatchtext'     => 'Sidan "<nowiki>$1</nowiki>" har blivit borttagen från din övervakningslista',
 'watch'                => 'bevaka',
 'watchthispage'        => 'Bevaka denna sida',
 'unwatch'              => 'avbevaka',
@@ -1443,7 +1443,7 @@ Feedback och hjälp:
 'confirmdeletetext'           => 'Du håller på att ta bort en sida med hela dess historik.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'              => 'Genomfört',
-'deletedtext'                 => '"$1" har tagits bort. 
+'deletedtext'                 => '"<nowiki>$1</nowiki>" har tagits bort. 
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'              => 'raderade "$1"',
 'dellogpage'                  => 'Raderingslogg',
@@ -1484,7 +1484,7 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
 'protect_expiry_old'          => 'Den angivna varaktighetentiden har redan passerats.',
 'unprotectsub'                => '(Tog bort skydd av "$1")',
 'protect-unchain'             => 'Lås upp flyttillstånd',
-'protect-text'                => 'Här kan du se och ändra skyddsnivån av sidan <strong>$1</strong>.',
+'protect-text'                => 'Här kan du se och ändra skyddsnivån av sidan <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad. 
 Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Skrivskydd kan inte ändras då databasen är låst.

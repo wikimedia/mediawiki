@@ -61,7 +61,7 @@ Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen an
 'noname'                     => 'Sie müssen einen gültigen Benutzernamen angeben.',
 'loginsuccess'               => 'Sie sind jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht. Überprüfen Sie die Schreibweise oder melden Sie sich als neuer Benutzer an.',
-'nosuchusershort'            => 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
+'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.',
 'wrongpasswordempty'         => 'Das eingegebene Passwort war leer. Bitte versuchen Sie es erneut.',
@@ -325,13 +325,13 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'watchlistanontext' => 'Sie müssen sich $1, um Ihre Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',
 'watchnologin'      => 'Sie sind nicht angemeldet',
 'watchnologintext'  => 'Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Beobachtungsliste zu bearbeiten.',
-'addedwatchtext'    => 'Die Seite „$1“ wurde zu Ihrer [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
+'addedwatchtext'    => 'Die Seite „<nowiki>$1</nowiki>“ wurde zu Ihrer [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
 in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt. 
 
 Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicken Sie auf der jeweiligen Seite auf „nicht mehr beobachten“.',
-'removedwatchtext'  => 'Die Seite „$1“ wurde von Ihrer Beobachtungsliste entfernt.',
+'removedwatchtext'  => 'Die Seite „<nowiki>$1</nowiki>“ wurde von Ihrer Beobachtungsliste entfernt.',
 'watchnochange'     => 'Keine der von Ihnen beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
 'watchlist-details' => 'Sie beobachten {{PLURAL:$1|1 Seite|$1 Seiten}}.',
 'watchlistcontains' => 'Ihre Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seiten}}.',
@@ -360,11 +360,11 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl
 # Delete/protect/revert
 'historywarning'         => 'Achtung, die Seite, die Sie löschen möchten, hat eine Versionsgeschichte:',
 'confirmdeletetext'      => 'Sie sind dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätigen Sie, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handeln.',
-'deletedtext'            => '„$1“ wurde gelöscht. Im $2 finden Sie eine Liste der letzten Löschungen.',
+'deletedtext'            => '„<nowiki>$1</nowiki>“ wurde gelöscht. Im $2 finden Sie eine Liste der letzten Löschungen.',
 'sessionfailure'         => 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
-'protect-text'           => "Hier können Sie den Schutzstatus für die Seite '''$1''' einsehen und ändern.",
+'protect-text'           => "Hier können Sie den Schutzstatus für die Seite '''<nowiki>\$1</nowiki>''' einsehen und ändern.",
 'protect-locked-blocked' => 'Sie können den Seitenschutz nicht ändern, da Ihr Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'  => 'Ihr Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
 'protect-cantedit'       => 'Sie können die Sperre dieser Seite nicht ändern, da Sie keine Berechtigung zum Bearbeiten der Seite haben.',

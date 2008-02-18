@@ -94,7 +94,7 @@ class EmailUserForm {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
-		$wgOut->addWikiText( wfMsg( "emailpagetext" ) );
+		$wgOut->addWikiMsg( "emailpagetext" );
 
 		if ( $this->subject === "" ) {
 			$this->subject = wfMsg( "defemailsubject" );

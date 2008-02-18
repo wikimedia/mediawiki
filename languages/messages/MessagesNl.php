@@ -654,7 +654,7 @@ Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te 
 'loginsuccesstitle'          => 'Aanmelden geslaagd',
 'loginsuccess'               => "'''U bent nu aangemeld bij {{SITENAME}} als \"\$1\".'''",
 'nosuchuser'                 => 'De gebruiker "$1" bestaat niet. Controleer de schrijfwijze of maak een nieuwe gebruiker aan.',
-'nosuchusershort'            => 'De gebruiker "$1" bestaat niet. Controleer de schrijfwijze.',
+'nosuchusershort'            => 'De gebruiker "<nowiki>$1</nowiki>" bestaat niet. Controleer de schrijfwijze.',
 'nouserspecified'            => 'U dient een gebruikersnaam op te geven.',
 'wrongpassword'              => 'Wachtwoord onjuist. Probeer het opnieuw.',
 'wrongpasswordempty'         => 'Het opgegeven wachtwoord was leeg. Probeer het opnieuw.',
@@ -1575,7 +1575,7 @@ Feedback en andere assistentie:
 'historywarning'              => 'Waarschuwing: de pagina die u wilt verwijderen heeft meerdere versies:',
 'confirmdeletetext'           => 'U staat op het punt een pagina te verwijderen, inclusief de geschiedenis. Bevestig alstublieft hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat de verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
 'actioncomplete'              => 'Handeling voltooid',
-'deletedtext'                 => '"$1" is verwijderd. Zie het $2 voor een overzicht van recente verwijderingen.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" is verwijderd. Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletedarticle'              => 'verwijderde "[[$1]]"',
 'dellogpage'                  => 'Verwijderingslogboek',
 'dellogpagetext'              => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
@@ -1615,7 +1615,7 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'protect_expiry_old'          => 'Verloopsdatum is in het verleden.',
 'unprotectsub'                => '(Beveiliging "$1" opgeheven)',
 'protect-unchain'             => 'Hernoemen mogelijk maken',
-'protect-text'                => 'Hier kan u het beveiligingsniveau voor de pagina <strong>$1</strong> bekijken en wijzigen.',
+'protect-text'                => 'Hier kan u het beveiligingsniveau voor de pagina <strong><nowiki>$1</nowiki></strong> bekijken en wijzigen.',
 'protect-locked-blocked'      => 'U kan het beveiligingsniveau niet wijzigen terwijl u geblokkeerd bent.
 Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:',
 'protect-locked-dblock'       => 'Het beveiligingsniveau kan niet worden gewijzigd omdat de database gesloten is.

@@ -554,7 +554,7 @@ Dein Benutzerkonto wurde eingerichtet. Vergiss nicht, deine Einstellungen anzupa
 'loginsuccesstitle'          => 'Anmeldung erfolgreich',
 'loginsuccess'               => 'Du bist jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht. Überprüfe die Schreibweise oder melde dich als neuer Benutzer an.',
-'nosuchusershort'            => 'Der Benutzername „$1“ existiert nicht. Bitte überprüfe die Schreibweise.',
+'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfe die Schreibweise.',
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuche es erneut.',
 'wrongpasswordempty'         => 'Das eingegebene Passwort war leer. Bitte versuche es erneut.',
@@ -1451,14 +1451,14 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'watchnologin'         => 'Du bist nicht angemeldet',
 'watchnologintext'     => 'Du musst [[Special:Userlogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
 'addedwatch'           => 'Zur Beobachtungsliste hinzugefügt',
-'addedwatchtext'       => 'Die Seite „$1“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
+'addedwatchtext'       => 'Die Seite „<nowiki>$1</nowiki>“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
 in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt. 
 
 Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klicke auf der jeweiligen Seite auf „nicht mehr beobachten“.',
 'removedwatch'         => 'Von der Beobachtungsliste entfernt',
-'removedwatchtext'     => 'Die Seite „$1“ wurde von deiner Beobachtungsliste entfernt.',
+'removedwatchtext'     => 'Die Seite „<nowiki>$1</nowiki>“ wurde von deiner Beobachtungsliste entfernt.',
 'watch'                => 'Beobachten',
 'watchthispage'        => 'Seite beobachten',
 'unwatch'              => 'nicht mehr beobachten',
@@ -1528,7 +1528,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'historywarning'              => 'Achtung, die Seite, die du löschen möchtest, hat eine Versionsgeschichte:',
 'confirmdeletetext'           => 'Du bist dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätige dazu, dass du dir der Konsequenzen bewusst bist, und dass du in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handelst.',
 'actioncomplete'              => 'Aktion beendet',
-'deletedtext'                 => '„$1“ wurde gelöscht. Im $2 findest du eine Liste der letzten Löschungen.',
+'deletedtext'                 => '„<nowiki>$1</nowiki>“ wurde gelöscht. Im $2 findest du eine Liste der letzten Löschungen.',
 'deletedarticle'              => 'hat „[[$1]]“ gelöscht',
 'dellogpage'                  => 'Lösch-Logbuch',
 'dellogpagetext'              => 'Dies ist das Logbuch der gelöschten Seiten und Dateien.',
@@ -1570,7 +1570,7 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'protect_expiry_old'          => 'Die Sperrzeit liegt in der Vergangenheit.',
 'unprotectsub'                => '(Aufhebung der Sperrung von „$1“)',
 'protect-unchain'             => 'Verschiebeschutz ändern',
-'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''$1''' einsehen und ändern.",
+'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''<nowiki>\$1</nowiki>''' einsehen und ändern.",
 'protect-locked-blocked'      => 'Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',

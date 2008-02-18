@@ -398,7 +398,7 @@ Vosse conte a stî ahivé.
 'nosuchuser'                 => "I g na nou uzeu dizo l' no «$1».
 Verifyîz çou k' vos avoz tapé, oudonbén rimplixhoz les ôtes tchamps
 et clitchîz sol boton po-z ahiver on novea conte.",
-'nosuchusershort'            => "I g na nou uzeu dizo l' no «$1». Verifyîz çou k' vos avoz tapé.",
+'nosuchusershort'            => "I g na nou uzeu dizo l' no «<nowiki>\$1</nowiki>». Verifyîz çou k' vos avoz tapé.",
 'nouserspecified'            => "Vos dvoz dner on no d' elodjaedje.",
 'wrongpassword'              => "Li scret ki vs avoz dné est måva. Rissayîz s' i vs plait.",
 'wrongpasswordempty'         => "Vos avoz dné on vude sicret. Rissayîz s' i vs plait.",
@@ -1019,14 +1019,14 @@ Do côp, c' est nén possibe di lyi evoyî èn emile.",
 'watchnologin'         => "Vos n' estoz nén elodjî",
 'watchnologintext'     => 'I vs fåt esse [[Special:Userlogin|elodjî]] po pleur candjî vosse djivêye des pådjes a shuve.',
 'addedwatch'           => 'Radjouté ås shuvous',
-'addedwatchtext'       => "Li pådje «$1» a stî radjoutêye a vosse [[Special:Watchlist|djivêye des pådjes a shuve]].
+'addedwatchtext'       => "Li pådje «<nowiki>\$1</nowiki>» a stî radjoutêye a vosse [[Special:Watchlist|djivêye des pådjes a shuve]].
 Tos les candjmints k' i gn årè di cisse pådje chal, 
 eyet di si pådje di copene, seront håynés chal, eyet li pådje serè metowe e '''cråssès letes'''
 el [[Special:Recentchanges|djivêye des dierins candjmints]] po k' ça soeye pus åjhey por vos del rimårker.
 
 Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «Èn pus shuve li pådje» dins l' bår di menu sol costé.",
 'removedwatch'         => 'Bodjî foû des shuvous',
-'removedwatchtext'     => 'Li pådje «$1» a stî bodjeye foû di vosse djivêye des pådjes a shuve.',
+'removedwatchtext'     => 'Li pådje «<nowiki>$1</nowiki>» a stî bodjeye foû di vosse djivêye des pådjes a shuve.',
 'watch'                => 'Shuve',
 'watchthispage'        => 'Shuve cisse pådje',
 'unwatch'              => 'Èn pus shuve',
@@ -1088,7 +1088,7 @@ Acertinez s' i vs plait ki c' est bén çoula ki vos vloz fé,
 ki vos comprindoz les consecwinces, et ki vos fjhoz çoula
 tot [[{{MediaWiki:Policy-url}}|shuvant les rîles]].",
 'actioncomplete'              => 'Fwait',
-'deletedtext'                 => 'Li pådje «$1» a stî disfacêye. Loukîz li $2 po ene
+'deletedtext'                 => 'Li pådje «<nowiki>$1</nowiki>» a stî disfacêye. Loukîz li $2 po ene
 djivêye des dierins disfaçaedjes.',
 'deletedarticle'              => 'pådje «$1» disfacêye',
 'dellogpage'                  => 'Djournå des disfaçaedjes',
@@ -1113,7 +1113,7 @@ Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'protectcomment'              => 'Råjhon po protedjî',
 'unprotectsub'                => '(Disprotedjant «$1»)',
 'protect-unchain'             => 'Disbloker les permissions di displaeçaedje',
-'protect-text'                => "Vos ploz droci vey eyet candjî l' livea d' protedjaedje pol pådje <strong>$1</strong>.",
+'protect-text'                => "Vos ploz droci vey eyet candjî l' livea d' protedjaedje pol pådje <strong><nowiki>\$1</nowiki></strong>.",
 'protect-default'             => '(prémetou)',
 'protect-level-autoconfirmed' => 'Bloker les uzeus nén eredjîstrés',
 'protect-level-sysop'         => 'Seulmint les manaedjeus',

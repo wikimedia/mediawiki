@@ -408,7 +408,7 @@ Rakiqunaykiqa kicharisqañam. Ama qunqaychu [[Special:Preferences|allinkachinayk
 'loginsuccess'               => 'Llamk\'apuy tiyayniykiqa qallarisqam {{SITENAME}}-pi "$1" sutiyuq kaspa.',
 'nosuchuser'                 => 'Nisqayki "$1" sutiyuq ruraqqa manam kanchu.
 Allin qillqasqaykita llanchiriy, ichataq urapi kaq hunt\'ana p\'anqata llamk\'achiy musuq rakiqunata kicharinaykipaq.',
-'nosuchusershort'            => 'Nisqayki "$1" sutiyuq ruraqqa manam kanchu.
+'nosuchusershort'            => 'Nisqayki "<nowiki>$1</nowiki>" sutiyuq ruraqqa manam kanchu.
 Allin qillqasqaykita llanchiriy.',
 'nouserspecified'            => 'Ruraqpa sutiykitam qunayki.',
 'wrongpassword'              => 'Qillqamusqayki yaykuna rimaqa manam allinchu. Huk kutita ruraykachay.',
@@ -1315,7 +1315,7 @@ Yanapasunaykipaq:
 'confirmdeletetext'           => "Qullunayachkanki p'anqatam icha rikchatam, wiñay kawsasqantapas.
 Ama hina kaspa, takyachiy munayniykita, qatiqninkunata riqsiyniykita, [[{{MediaWiki:Policy-url}}|kawpaykama]] rurayniykitapas.",
 'actioncomplete'              => 'Rurasqañam',
-'deletedtext'                 => '"$1" qullusqañam.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" qullusqañam.
 $2 nisqa p\'anqata qhaway ñaqha qullusqakunata rikunaykipaq.',
 'deletedarticle'              => 'qullusqa "$1"',
 'dellogpage'                  => 'Qullusqakuna',
@@ -1356,7 +1356,7 @@ Ama hina kaspa, llika wamp'unaykipi \"Ñawpaqman\" (\"Back\") ñit'ispa ñawpaq 
 'protect_expiry_old'          => 'Amachaypa puchukay pachanqa ñawpa pachapim.',
 'unprotectsub'                => '(Amachasqa "$1"-ta paskaspa)',
 'protect-unchain'             => "Astana saqillaykunata llamk'apuy chaylla",
-'protect-text'                => "<strong>$1</strong> sutiyuq p'anqap amachasqa kachkaynintaqa kaypim qhawayta hukchaytapas atinki.",
+'protect-text'                => "<strong><nowiki>\$1</nowiki></strong> sutiyuq p'anqap amachasqa kachkaynintaqa kaypim qhawayta hukchaytapas atinki.",
 'protect-locked-blocked'      => "Hark'asqa kaspayki manam atinkichu amachasqa kachkayninta hukchayta. Kay qatiqpiqa <strong>$1</strong> sutiyuq p'anqap kunan allinkachinankunatam rikunki:",
 'protect-locked-dblock'       => "Willañiqintin hark'asqa kachkaptinmi, manam atinkichu amachaypa kachkayninkunata hukchayta.
 Kay qatiqpiqa <strong>$1</strong> sutiyuq p'anqap kunan allinkachinankunatam rikunki:",

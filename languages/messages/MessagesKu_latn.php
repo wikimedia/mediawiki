@@ -413,7 +413,7 @@ Hesaba te hat afirandin. Tu dikarî niha tercîhên xwe eyar bikî.',
 'loginsuccesstitle'          => 'Têketin serkeftî!',
 'loginsuccess'               => 'Tu niha di {{SITENAME}} de qeydkirî yî wek "$1".',
 'nosuchuser'                 => 'Bikarhênera/ê bi navê "$1" tune. Navê rast binivîse an bi vê formê <b>hesabeke nû çêke</b>. (Ji bo hevalên nû "Têkeve" çênabe!)',
-'nosuchusershort'            => 'Li vê derê ne bikarhênerek bi navî "$1" heye. Li nivîsandinê xwe seke.',
+'nosuchusershort'            => 'Li vê derê ne bikarhênerek bi navî "<nowiki>$1</nowiki>" heye. Li nivîsandinê xwe seke.',
 'nouserspecified'            => 'Navî xwe wek bikarhêner têkê.',
 'wrongpassword'              => 'Şifreya ku te nivîsand şaşe. Ji kerema xwe careke din biceribîne.',
 'wrongpasswordempty'         => 'Cîhê şîfreya te vala ye. Carekê din binivisîne.',
@@ -1030,7 +1030,7 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'watchnologin'         => 'Te xwe qeyd nekirîye.',
 'watchnologintext'     => 'Ji bo xeyrandinê lîsteya te ya şopandinê tu gireke xwe [[Special:Userlogin|qedy kiribe]].',
 'addedwatch'           => 'Hat îlawekirinî listeya şopandinê',
-'addedwatchtext'       => "Rûpela \"\$1\" çû ser [[Special:Watchlist|lîsteya te ya şopandinê]].
+'addedwatchtext'       => "Rûpela \"<nowiki>\$1</nowiki>\" çû ser [[Special:Watchlist|lîsteya te ya şopandinê]].
 Li dahatû de her guhartoyek li wê rûpelê û rûpela guftûgo ya wê were kirin li vir dêt nîşan dan,
  
 Li rûpela [[Special:Recentchanges|Guherandinên dawî]] jî ji bo hasan dîtina wê, ew rûpel bi '''Nivîsa estûr''' dê nîşan dayîn.
@@ -1038,7 +1038,7 @@ Li rûpela [[Special:Recentchanges|Guherandinên dawî]] jî ji bo hasan dîtina
 
 <p>Her dem tu bixwazî ew rûpel li nav lîsteya te ya şopandinê derbikî, li ser wê rûpelê, klîk bike \"êdî neşopîne\".</p>",
 'removedwatch'         => 'Ji lîsteya şopandinê hate jêbirin',
-'removedwatchtext'     => 'Rûpela "$1" ji lîsteya te ya şopandinê hate jêbirin.',
+'removedwatchtext'     => 'Rûpela "<nowiki>$1</nowiki>" ji lîsteya te ya şopandinê hate jêbirin.',
 'watch'                => 'Bişopîne',
 'watchthispage'        => 'Vê rûpelê bişopîne',
 'unwatch'              => 'Êdî neşopîne',
@@ -1104,7 +1104,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 'historywarning'              => 'Hîşyar: Ew rûpel ku tu dixwazî jê bibî dîrokek heye:',
 'confirmdeletetext'           => 'Tu kê niha rûpelekê bi tev dîroka wê jêbibê. Xêra xwe zanibe tu kê niha çi bikê û zanibe, çi di wîkîyê da yê bibe. Hên jî seke, ku ev jêbirina bi [[{{MediaWiki:Policy-url}}|mafên wîkîyê]] ra dimeşin ya na.',
 'actioncomplete'              => 'Çalakî temam',
-'deletedtext'                 => '"$1" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
 'deletedarticle'              => '"$1" hat jêbirin',
 'dellogpage'                  => 'Reşahîya jêbirin',
 'dellogpagetext'              => 'Li jêr lîsteyek ji jêbirinên dawî heye.',

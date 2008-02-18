@@ -772,7 +772,7 @@ Tirkelgiñiz jaratıldı. {{SITENAME}} baptawıñızdı qalawıñızben özgertw
 'loginsuccesstitle'          => 'Kirwiñiz sätti ötti',
 'loginsuccess'               => "'''Siz endi {{SITENAME}} jobasına «$1» retinde kirip otırsız.'''",
 'nosuchuser'                 => 'Mında «$1» atawlı qatıswşı joq. Emleñizdi tekseriñiz, nemese jañadan tirkeliñiz.',
-'nosuchusershort'            => 'Mında «$1» atawlı qatıswşı joq. Emleñizdi tekseriñiz.',
+'nosuchusershort'            => 'Mında «<nowiki>$1</nowiki>» atawlı qatıswşı joq. Emleñizdi tekseriñiz.',
 'nouserspecified'            => 'Qatıswşı atın engiziwiñiz kerek.',
 'wrongpassword'              => 'Burıs qupïya söz engizilgen. Qaýta baýqap köriñiz.',
 'wrongpasswordempty'         => 'Qupïya söz bos bolğan. Qaýta baýqap köriñiz.',
@@ -1722,7 +1722,7 @@ Sın-pikir berw jäne bılaýğı järdem alw üşin:
 'confirmdeletetext'           => 'Betti nemese swretti barlıq tarïxımen birge derekqordan ärdaýım joýığıñız keletin sïyaqtı.
 Bunı joywdıñ zardabın tüsinip şın nïettengeniñizdi, jäne [[{{{{ns:mediawiki}}:Policy-url}}]] degenge laýıqtı dep sengeniñizdi quptañız.',
 'actioncomplete'              => 'Äreket bitti',
-'deletedtext'                 => '«$1» joýıldı. Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
+'deletedtext'                 => '«<nowiki>$1</nowiki>» joýıldı. Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
 'deletedarticle'              => '«[[$1]]» betin joýdı',
 'dellogpage'                  => 'Joyw_jwrnalı',
 'dellogpagetext'              => 'Tömende jwıqtağı joywlardıñ tizimi berilgen.',
@@ -1764,7 +1764,7 @@ Soñğı öñdewdi [[User:$3|$3]] ([[User_talk:$3|talqılawı]]) istegen.',
 'protect_expiry_old'          => 'Bitetin waqıtı ötip ketken.',
 'unprotectsub'                => '(«$1» qorğamawda)',
 'protect-unchain'             => 'Jıljıtw ruqsattarın berw',
-'protect-text'                => '<strong>$1</strong> betiniñ qorğaw deñgeýin qarap jäne özgertip şığa alasız.',
+'protect-text'                => '<strong><nowiki>$1</nowiki></strong> betiniñ qorğaw deñgeýin qarap jäne özgertip şığa alasız.',
 'protect-locked-blocked'      => 'Buğattawıñız öşirilgenşe deýin qorğaw deñgeýin özgerte almaýsız.
 Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 'protect-locked-dblock'       => 'Derekqordıñ qulıptawı belsendi bolğandıqtan qorğaw deñgeýleri özgertilmeýdi.

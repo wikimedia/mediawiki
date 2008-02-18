@@ -687,9 +687,10 @@ class SpecialPage
 		global $wgOut, $wgContLang;
 
 		$msg = $wgContLang->lc( $this->name() ) . '-summary';
-		$out = wfMsg( $msg );
-		if ( ! wfEmptyMsg( $msg, $out ) and  $out !== '' and ! $this->including() )
+		$out = wfMsgNoTrans( $msg );
+		if ( ! wfEmptyMsg( $msg, $out ) and  $out !== '' and ! $this->including() ) {
 			$wgOut->addWikiText( $out );
+		}
 
 	}
 

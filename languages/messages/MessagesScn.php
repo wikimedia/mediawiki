@@ -459,7 +459,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li p
 'loginsuccesstitle'          => 'Trasuta rinisciuta',
 'loginsuccess'               => "'''Ora trasisti nta {{SITENAME}} comu \"\$1\".'''",
 'nosuchuser'                 => 'Nun è riggistratu arcunu utenti di nomu "$1". Virificari lu nomu nziritu o criari un novu accessu.',
-'nosuchusershort'            => 'Nun c\'è nuddu utenti di nomu "$1". Cuntrolla l\'ortugrafìa.',
+'nosuchusershort'            => 'Nun c\'è nuddu utenti di nomu "<nowiki>$1</nowiki>". Cuntrolla l\'ortugrafìa.',
 'nouserspecified'            => 'È nicissariu spicificari un nomu utenti.',
 'wrongpassword'              => "La ''password'' chi mittisti nun è giusta. Prova n'àutra vota.",
 'wrongpasswordempty'         => 'Nun hà statu nzirita arcuna password. Ripruvari.',
@@ -1252,7 +1252,7 @@ Pi dari lu tò feedback e arricèviri ultiriuri assistenza:
 'historywarning'              => 'Accura: La pàggina ca stai pi cancillari havi na cronoluggìa:',
 'confirmdeletetext'           => "Stai cancillannu dû databbasi na pàggina o na mmàggini cu tutta la sò storia di manera pirmanenti. Pi fauri, cunferma ca tu ntenni fari sta cosa, ca tu hai caputu li cunziquenzi, e chi lu fai secunnu li linìi guida stabbiliti 'n [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Azzioni cumpritata',
-'deletedtext'                 => '"$1" ha statu cancillatu.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ha statu cancillatu.
 Talìa $2 pi na lista di cancillazzioni ricenti.',
 'deletedarticle'              => 'Hà cancillatu "[[$1]]"',
 'dellogpage'                  => 'Cancillazzioni',
@@ -1287,7 +1287,7 @@ Pi favuri utilizza lu tastu "\'n arreri" dû tò browser, ricàrrica la pàggina
 'protect_expiry_old'          => 'Scadenza già trascursa.',
 'unprotectsub'                => '(Rèvuca prutezzioni di "$1")',
 'protect-unchain'             => 'Sblocca pirmissu di spustamentu',
-'protect-text'                => 'Ccà poi vìdiri e canciari lu liveddu di prutezzioni pi la pàggina <strong>$1</strong>.',
+'protect-text'                => 'Ccà poi vìdiri e canciari lu liveddu di prutezzioni pi la pàggina <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nun pò canciari li liveddi di prutizzioni quannu sî bloccatu. Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Mpussibbili canciari li liveddi di prutizzioni pi nu bloccu dô database.
 Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',

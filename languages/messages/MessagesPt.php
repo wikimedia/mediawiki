@@ -545,7 +545,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser'                 => 'Não existe nenhum utilizador com o nome "$1".
 Verifique o nome que introduziu, ou crie uma nova conta de utilizador.',
-'nosuchusershort'            => 'Não existe um utilizador com o nome "$1". Verifique o nome que introduziu.',
+'nosuchusershort'            => 'Não existe um utilizador com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A palavra-chave introduzida está em branco. Por favor, tente novamente.',
@@ -1411,7 +1411,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 
 Se desejar remover a página da sua lista de vigiados clique em \"Desinteressar-se\" na barra lateral ou de topo.",
 'removedwatch'         => 'Removida da lista de artigos vigiados',
-'removedwatchtext'     => 'A página "$1" foi removida de sua lista de artigos vigiados.',
+'removedwatchtext'     => 'A página "<nowiki>$1</nowiki>" foi removida de sua lista de artigos vigiados.',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
 'unwatch'              => 'Desinteressar-se',
@@ -1485,7 +1485,7 @@ Contacto e assistência
 'confirmdeletetext'           => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
 'actioncomplete'              => 'Acção completada',
-'deletedtext'                 => '"$1" foi eliminada.
+'deletedtext'                 => '"<nowiki>$1</nowiki>" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'              => 'eliminada "[[$1]]"',
 'dellogpage'                  => 'Registo de eliminação',
@@ -1530,7 +1530,7 @@ Veja a [[Special:Protectedpages|lista de páginas protegidas]] para uma listagem
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
 'unprotectsub'                => '(Desprotegendo "$1")',
 'protect-unchain'             => 'Desbloquear permissões de moção',
-'protect-text'                => 'Você pode, nesta página, alterar o nível de proteção para <strong>$1</strong>.',
+'protect-text'                => 'Você pode, nesta página, alterar o nível de proteção para <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Você não poderá alterar os níveis de proteção enquanto estiver bloqueado. Esta é a configuração atual para a página <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Não é possível alterar os níveis de proteção, uma vez que a base de dados se encontra trancada.
 Esta é a configuração atual para a página <strong>$1</strong>:',

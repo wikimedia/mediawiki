@@ -450,7 +450,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
 'nosuchuser'                 => 'Nėra jokio naudotojo pavadinto „$1“. Patikrinkite rašybą, arba sukurkite naują paskyrą.',
-'nosuchusershort'            => 'Nėra jokio naudotojo pavadinto „$1“. Patikrinkite rašybą.',
+'nosuchusershort'            => 'Nėra jokio naudotojo pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
 'wrongpasswordempty'         => 'Įvestas slaptažodis yra tuščias. Pamėginkite vėl.',
@@ -1379,7 +1379,7 @@ Atsiliepimai ir pagalba:
 'confirmdeletetext'           => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį kartu su visa jo istorija.
 Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus padarinius, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].',
 'actioncomplete'              => 'Veiksmas atliktas',
-'deletedtext'                 => '„$1“ ištrintas.
+'deletedtext'                 => '„<nowiki>$1</nowiki>“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
 'deletedarticle'              => 'ištrynė „[[$1]]“',
 'dellogpage'                  => 'Šalinimų istorija',
@@ -1422,7 +1422,7 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'protect_expiry_old'          => 'Galiojimo laikas yra praeityje.',
 'unprotectsub'                => '(Atrakinamas „$1“)',
 'protect-unchain'             => 'Atrakinti pervardinimo teises',
-'protect-text'                => 'Čia jūs gali matyti ir keisti apsaugos lygį puslapiui <strong>$1</strong>.',
+'protect-text'                => 'Čia jūs gali matyti ir keisti apsaugos lygį puslapiui <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Jūs negalite keisti apsaugos lygių, kol esate užbluokuotas.
 Čia yra dabartiniai nustatymai puslapiui <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Apsaugos lygiai negali būti pakeisti dėl duomenų bazės užrakinimo.

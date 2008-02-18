@@ -519,7 +519,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => "'''你已經成功咁喺{{SITENAME}}登入做「$1」。'''",
 'nosuchuser'                 => '呢度冇叫做 "$1"嘅用戶。 請檢查你個名嘅輸入方法，或者建立一個新嘅戶口。',
-'nosuchusershort'            => '呢度冇叫做 "$1"嘅用戶。 請檢查你個名嘅輸入方法。',
+'nosuchusershort'            => '呢度冇叫做 "<nowiki>$1</nowiki>"嘅用戶。 請檢查你個名嘅輸入方法。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
@@ -1421,7 +1421,7 @@ wiki: $PAGEEDITOR_WIKI
 'confirmdeletetext'           => '你準備刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
 請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'              => '操作完成',
-'deletedtext'                 => '"$1"已經刪除。最近嘅刪除記錄請睇$2。',
+'deletedtext'                 => '"<nowiki>$1</nowiki>"已經刪除。最近嘅刪除記錄請睇$2。',
 'deletedarticle'              => '已經刪除"[[$1]]"',
 'dellogpage'                  => '刪除日誌',
 'dellogpagetext'              => '以下係最近嘅刪除清單。',
@@ -1462,7 +1462,7 @@ wiki: $PAGEEDITOR_WIKI
 'protect_expiry_old'          => '到期時間係響之前過去嘅。',
 'unprotectsub'                => '（解除緊"$1"嘅保護）',
 'protect-unchain'             => '解除移動權限嘅鎖定',
-'protect-text'                => '你可以喺呢度睇到同修改頁面<strong>$1</strong>嘅保護等級。',
+'protect-text'                => '你可以喺呢度睇到同修改頁面<strong><nowiki>$1</nowiki></strong>嘅保護等級。',
 'protect-locked-blocked'      => '當你響被封鎖嗰陣唔可以改呢版嘅保護等級。
 呢個係<strong>$1</strong>版嘅現時設定：',
 'protect-locked-dblock'       => '響資料庫主動鎖住咗嗰陣係唔可以改呢版嘅保護等級。

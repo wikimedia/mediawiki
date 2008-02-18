@@ -80,7 +80,7 @@ class IPUnblockForm {
 		global $wgOut, $wgUser, $wgSysopUserBans, $wgContLang;
 
 		$wgOut->setPagetitle( wfMsg( 'unblockip' ) );
-		$wgOut->addWikiText( wfMsg( 'unblockiptext' ) );
+		$wgOut->addWikiMsg( 'unblockiptext' );
 
 		$ipa = wfMsgHtml( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' );
 		$ipr = wfMsgHtml( 'ipbreason' );
@@ -91,7 +91,7 @@ class IPUnblockForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addWikitext( "<span class='error'>{$err}</span>\n" );
+			$wgOut->addWikiText( "<span class='error'>{$err}</span>\n" );
 		}
 		$token = htmlspecialchars( $wgUser->editToken() );
 
@@ -263,9 +263,9 @@ class IPUnblockForm {
 			);
 		} elseif ( $this->ip != '') {
 			$wgOut->addHTML( $this->searchForm() );
-			$wgOut->addWikiText( wfMsg( 'ipblocklist-no-results' ) );
+			$wgOut->addWikiMsg( 'ipblocklist-no-results' );
 		} else {
-			$wgOut->addWikiText( wfMsg( 'ipblocklist-empty' ) );
+			$wgOut->addWikiMsg( 'ipblocklist-empty' );
 		}
 	}
 

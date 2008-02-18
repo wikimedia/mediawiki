@@ -547,7 +547,7 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'exblank'            => 'bit buş ide',
 'historywarning'     => 'Íğtíbar: Beterergä telägän biteneñ üz taríxı bar:',
 'actioncomplete'     => 'Ğämäl tämam',
-'deletedtext'        => '«$1» beterelgän buldı.
+'deletedtext'        => '«<nowiki>$1</nowiki>» beterelgän buldı.
 Soñğı beterülär $2 bitendä terkälenä.',
 'deletedarticle'     => '«$1» beterelde',
 'dellogpage'         => 'Beterü_köndälege',

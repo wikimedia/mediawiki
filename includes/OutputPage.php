@@ -824,7 +824,7 @@ class OutputPage {
 		 * This could be a username, an ip range, or a single ip. */
 		$intended = $wgUser->mBlock->mAddress;
 
-		$this->addWikiText( wfMsg( $msg, $link, $reason, $ip, $name, $blockid, $blockExpiry, $intended, $blockTimestamp ) );
+		$this->addWikiMsg( $msg, $link, $reason, $ip, $name, $blockid, $blockExpiry, $intended, $blockTimestamp );
 
 		# Don't auto-return to special pages
 		if( $return ) {
@@ -899,7 +899,7 @@ class OutputPage {
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
 
-		$this->addWikiText( wfMsg( 'versionrequiredtext', $version ) );
+		$this->addWikiMsg( 'versionrequiredtext', $version );
 		$this->returnToMain();
 	}
 
@@ -1001,7 +1001,7 @@ class OutputPage {
 	 * @return string The wikitext error-messages, formatted into a list.
 	 */
 	public function formatPermissionsErrorMessage( $errors ) {
-		$text = wfMsgExt( 'permissionserrorstext', array( 'parsemag' ), count( $errors ) ) . "\n\n";
+		$text = wfMsgNoTrans( 'permissionserrorstext', count( $errors ) ) . "\n\n";
 
 		if (count( $errors ) > 1) {
 			$text .= '<ul class="permissions-errors">' . "\n";
@@ -1009,12 +1009,12 @@ class OutputPage {
 			foreach( $errors as $error )
 			{
 				$text .= '<li>';
-				$text .= call_user_func_array( 'wfMsg', $error );
+				$text .= call_user_func_array( 'wfMsgNoTrans', $error );
 				$text .= "</li>\n";
 			}
 			$text .= '</ul>';
 		} else {
-			$text .= '<div class="permissions-errors">' . call_user_func_array( 'wfMsg', $errors[0]) . '</div>';
+			$text .= '<div class="permissions-errors">' . call_user_func_array( 'wfMsgNoTrans', $errors[0]) . '</div>';
 		}
 
 		return $text;
@@ -1070,12 +1070,12 @@ class OutputPage {
 				// Should not happen, user should have called wfReadOnly() first
 				$reason = file_get_contents( $wgReadOnlyFile );
 			}
-			$this->addWikiText( wfMsg( 'readonlytext', $reason ) );
+			$this->addWikiMsg( 'readonlytext', $reason );
 		}
 
 		// Show source, if supplied
 		if( is_string( $source ) ) {
-			$this->addWikiText( wfMsg( 'viewsourcetext' ) );
+			$this->addWikiMsg( 'viewsourcetext' );
 			$text = wfOpenElement( 'textarea',
 						array( 'id'   => 'wpTextbox1',
 						       'name' => 'wpTextbox1',
@@ -1392,7 +1392,7 @@ class OutputPage {
 		$this->mRedirect = '';
 		$this->clearHTML();
 		$this->setStatusCode(503);
-		$this->addWikiText( wfMsg('actionthrottledtext') );
+		$this->addWikiMsg( 'actionthrottledtext' );
 
 		$this->returnToMain( false, $wgTitle );
 	}
@@ -1426,4 +1426,71 @@ class OutputPage {
 		}
 	}
 
+	/**
+	 * Add a wikitext-formatted message to the output.
+	 * This is equivalent to:
+	 *
+	 *    $wgOut->addWikiText( wfMsgNoTrans( ... ) )
+	 */
+	public function addWikiMsg( /*...*/ ) {
+		$args = func_get_args();
+		$name = array_shift( $args );
+		$this->addWikiMsgArray( $name, $args );
+	}
+
+	/**
+	 * Add a wikitext-formatted message to the output.
+	 * Like addWikiMsg() except the parameters are taken as an array
+	 * instead of a variable argument list.
+	 *
+	 * $options is passed through to wfMsgExt(), see that function for details.
+	 */
+	public function addWikiMsgArray( $name, $args, $options = array() ) {
+		$options[] = 'parse';
+		$text = wfMsgExt( $name, $options, $args );
+		$this->addHTML( $text );
+	}
+
+	/**
+	 * This function takes a number of message/argument specifications, wraps them in 
+	 * some overall structure, and then parses the result and adds it to the output.
+	 *
+	 * In the $wrap, $1 is replaced with the first message, $2 with the second, and so 
+	 * on. The subsequent arguments may either be strings, in which case they are the 
+	 * message names, or an arrays, in which case the first element is the message name,
+	 * and subsequent elements are the parameters to that message.
+	 *
+	 * The special named parameter 'options' in a message specification array is passed
+	 * through to the $options parameter of wfMsgExt(). 
+	 *
+	 * For example:
+	 *
+	 *    $wgOut->wrapWikiMsg( '<div class="error">$1</div>', 'some-error' );
+	 * 
+	 * Is equivalent to:
+	 *
+	 *    $wgOut->addWikiText( '<div class="error">' . wfMsgNoTrans( 'some-error' ) . '</div>' );
+	 */
+	public function wrapWikiMsg( $wrap /*, ...*/ ) {
+		$msgSpecs = func_get_args();
+		array_shift( $msgSpecs );
+		$msgSpecs = array_values( $msgSpecs );
+		$s = $wrap;
+		foreach ( $msgSpecs as $n => $spec ) {
+			$options = array();
+			if ( is_array( $spec ) ) {
+				$args = $spec;
+				$name = array_shift( $args );
+				if ( isset( $args['options'] ) ) {
+					$options = $args['options'];
+					unset( $args['options'] );
+				}
+			}  else {
+				$args = array();
+				$name = $spec;
+			}
+			$s = str_replace( '$' . ($n+1), wfMsgExt( $name, $options, $args ), $s );
+		}
+		$this->addHTML( $this->parse( $s ) );
+	}
 }

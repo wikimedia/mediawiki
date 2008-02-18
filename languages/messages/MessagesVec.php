@@ -259,7 +259,7 @@ Par rendere {{SITENAME}} più tua, e par usarla più scorrevolmente, non dimenti
 'loginsuccess'               => "'''El cołegamento al server de {{SITENAME}} con el nome utente \"\$1\" xè ativo.'''",
 'nosuchuser'                 => 'Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  "$1".<br /><br />
 Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.',
-'nosuchusershort'            => 'Non xè registrà nessun utente de nome "$1". Verifica el nome inserio.',
+'nosuchusershort'            => 'Non xè registrà nessun utente de nome "<nowiki>$1</nowiki>". Verifica el nome inserio.',
 'wrongpassword'              => "La password che te ghe messo non l'è mia giusta.<br /><br />Riprova, per favore.",
 'wrongpasswordempty'         => 'La password inseria xè voda. Riproa.',
 'passwordtooshort'           => "La to password l'è massa breve. La deve contegnere almanco $1 caratteri.",
@@ -622,12 +622,12 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne '''{{FORMATNUM|
 'watchnologintext'     => 'Devi prima fare il [[Special:Userlogin|login]]
 per modificare la tua lista di osservati speciali.',
 'addedwatch'           => 'Xontà ai tòi Osservati Speciali',
-'addedwatchtext'       => "La paxèna  \"\$1\" l'è stà xontà a la tua [[Special:Watchlist|lista de osservati speciali]].
+'addedwatchtext'       => "La paxèna  \"<nowiki>\$1</nowiki>\" l'è stà xontà a la tua [[Special:Watchlist|lista de osservati speciali]].
 Le future modifiche a stà pagina e a la relativa pagina de discussion le sarà elencae qui, e la paxèna apparirà in '''grasseto''' ne la paxèna de le [[Special:Recentchanges|modifiche recenti]] par essere pì facile da tener d'ocio.
 
 Se pì avanti te vorè tojere stò articolo da la to lista de Osservati Speciali, clicca \"Non seguire\" nella barra dei menu.",
 'removedwatch'         => 'Rimosso dalla lista degli Osservati Speciali',
-'removedwatchtext'     => 'La paxèna  "$1" xè stà rimossa da ła łista de i toi Osservati Speciałi.',
+'removedwatchtext'     => 'La paxèna  "<nowiki>$1</nowiki>" xè stà rimossa da ła łista de i toi Osservati Speciałi.',
 'watchthispage'        => 'Segui sta voçe',
 'notanarticle'         => 'Non xè na voçe',
 'watchnochange'        => "Nezsun de i to ojeti osservai l'è stà edità nel periodo mostrà.",
@@ -678,7 +678,7 @@ Par riscontri e ulteriore assistenzsa:
 Par cortesia, conferma che l'è to intenzsion proçedere a tałe scancełazsion, conferma che te ghè piena consapevołezsa de łe conseguenzse de la to azsion, e conferma che la to azsion l'è pienamente ottemperante a łe regołe stabilíe ne ła
 [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Azsión completà',
-'deletedtext'                 => 'La paxèna "$1" l\'è stà scancełà. Varda $2 par un ełenco de łe paxène scancełae de reçente.',
+'deletedtext'                 => 'La paxèna "<nowiki>$1</nowiki>" l\'è stà scancełà. Varda $2 par un ełenco de łe paxène scancełae de reçente.',
 'deletedarticle'              => 'Scancełà "$1"',
 'dellogpage'                  => 'Scancełazsión',
 'dellogpagetext'              => 'Qui de seguito, un ełenco de łe paxène scancełae de reçente.',

@@ -283,7 +283,7 @@ function wfSpecialContributions( $par = null ) {
 
 	$pager = new ContribsPager( $target, $options['namespace'], $options['year'], $options['month'] );
 	if ( !$pager->getNumRows() ) {
-		$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
+		$wgOut->addWikiMsg( 'nocontribs' );
 		return;
 	}
 
@@ -304,7 +304,7 @@ function wfSpecialContributions( $par = null ) {
 			: 'sp-contributions-footer';
 
 
-		$text = wfMsg( $message, $target );
+		$text = wfMsgNoTrans( $message, $target );
 		if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
 			$wgOut->addHtml( '<div class="mw-contributions-footer">' );
 			$wgOut->addWikiText( $text );

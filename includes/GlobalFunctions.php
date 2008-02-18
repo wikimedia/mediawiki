@@ -289,11 +289,6 @@ function wfReadOnly() {
  * Use wfMsgForContent() instead if the message should NOT
  * change depending on the user preferences.
  *
- * Note that the message may contain HTML, and is therefore
- * not safe for insertion anywhere. Some functions such as
- * addWikiText will do the escaping for you. Use wfMsgHtml()
- * if you need an escaped message.
- *
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
  * 
@@ -470,15 +465,13 @@ function wfMsgReplaceArgs( $message, $args ) {
 	// Replace arguments
 	if ( count( $args ) ) {
 		if ( is_array( $args[0] ) ) {
-			foreach ( $args[0] as $key => $val ) {
-				$message = str_replace( '$' . $key, $val, $message );
-			}
-		} else {
-			foreach( $args as $n => $param ) {
-				$replacementKeys['$' . ($n + 1)] = $param;
-			}
-			$message = strtr( $message, $replacementKeys );
+			$args = array_values( $args[0] );
 		}
+		$replacementKeys = array();
+		foreach( $args as $n => $param ) {
+			$replacementKeys['$' . ($n + 1)] = $param;
+		}
+		$message = strtr( $message, $replacementKeys );
 	}
 
 	return $message;
@@ -1841,10 +1834,12 @@ function wfShellExec( $cmd, &$retval=null ) {
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
 	
-	$output = array();
 	$retval = 1; // error by default?
-	exec( $cmd, $output, $retval ); // returns the last line of output.
-	return implode( "\n", $output );
+	ob_start();
+	passthru( $cmd, $retval );
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
 	
 }
 

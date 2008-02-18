@@ -39,12 +39,12 @@ class DBUnlockForm {
 
 		global $wgReadOnlyFile;
 		if( !file_exists( $wgReadOnlyFile ) ) {
-			$wgOut->addWikiText( wfMsg( 'databasenotlocked' ) );
+			$wgOut->addWikiMsg( 'databasenotlocked' );
 			return;
 		}
 
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
-		$wgOut->addWikiText( wfMsg( "unlockdbtext" ) );
+		$wgOut->addWikiMsg( "unlockdbtext" );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -103,7 +103,7 @@ END
 
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
 		$wgOut->setSubtitle( wfMsg( "unlockdbsuccesssub" ) );
-		$wgOut->addWikiText( wfMsg( "unlockdbsuccesstext", $ip ) );
+		$wgOut->addWikiMsg( "unlockdbsuccesstext", $ip );
 	}
 }
 

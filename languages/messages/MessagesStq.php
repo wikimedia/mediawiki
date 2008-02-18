@@ -402,7 +402,7 @@ Dien Benutserkonto wuude mäd Ärfoulch iengjucht. Ferjeet nit, dien Ienstaaleng
 'loginsuccesstitle'          => 'Anmäldenge mäd Ärfoulch',
 'loginsuccess'               => "'''Du bäst nu as \"\$1\" bie {{SITENAME}} anmälded.'''",
 'nosuchuser'                 => 'Die Benutsernoome "$1" bestoant nit. Uurpröiwe ju Schrieuwwiese, of mälde die as näien Benutser an.',
-'nosuchusershort'            => 'Die Benutsernooome "$1" bestoant nit. Jädden uurpröiwe ju Schrieuwwiese.',
+'nosuchusershort'            => 'Die Benutsernooome "<nowiki>$1</nowiki>" bestoant nit. Jädden uurpröiwe ju Schrieuwwiese.',
 'nouserspecified'            => 'Reek jädden n Benutsernoome an.',
 'wrongpassword'              => 'Dät Paaswoud is falsk. Fersäik dät jädden fonnäien.',
 'wrongpasswordempty'         => 'Du hääst ferjeeten, dien Paaswoud ientoureeken. Fersäk dät jädden fonnäien.',
@@ -1264,7 +1264,7 @@ un die Artikkel wäd in ju [[Special:Recentchanges|fon do lääste Annerengen]] 
 
 Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede ap \"Ferjeet disse Siede\".",
 'removedwatch'         => 'Fon ju Beooboachtengsslieste ou hoald',
-'removedwatchtext'     => 'Ju Siede „$1“ wuude fon dien Beooboachtengslieste wächhoald.',
+'removedwatchtext'     => 'Ju Siede „<nowiki>$1</nowiki>“ wuude fon dien Beooboachtengslieste wächhoald.',
 'watch'                => 'Beooboachtje',
 'watchthispage'        => 'Siede beooboachtje',
 'unwatch'              => 'Nit moor beooboachtje',
@@ -1337,7 +1337,7 @@ Hälpe tou ju Benutsenge rakt
 'historywarning'              => 'WOARSCHAUENGE: Ju Siede, ju du läskje moatest, häd ne Versionsgeschichte: &nbsp;',
 'confirmdeletetext'           => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:Policy-url}}]] honnelje.',
 'actioncomplete'              => 'Aktion be-eended',
-'deletedtext'                 => '"$1" wuude läsked. 
+'deletedtext'                 => '"<nowiki>$1</nowiki>" wuude läsked. 
 In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'deletedarticle'              => '"$1" wuude läsked',
 'dellogpage'                  => 'Läsk-Logbouk',
@@ -1378,7 +1378,7 @@ Annerengen an disse Siede foarnuumen häd.<br />Ju lääste Annerenge stamt fon 
 'protect_expiry_old'          => 'Ju Speertied lait in ju fergeene Tied.',
 'unprotectsub'                => '(Aphieuwenge fon ju Speerenge fon "$1")',
 'protect-unchain'             => 'Ferschuuweschuts annerje',
-'protect-text'                => "Hier koast du dän Schutsstoatus foar ju Siede '''$1''' ienkiekje un annerje.",
+'protect-text'                => "Hier koast du dän Schutsstoatus foar ju Siede '''<nowiki>\$1</nowiki>''' ienkiekje un annerje.",
 'protect-locked-blocked'      => 'Du koast dän Siedenschuts nit annerje, deer dien Benutserkonto speerd is. Hier sunt do aktuelle Siedenschuts-Ienstaalengen foar ju Siede <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Ju Doatenboank is speerd, die Siedenschuts kon deeruum nit annerd wäide. Hier sunt do aktuelle Siedenschuts-Ienstaalengen foar ju Siede <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Du bäst nit begjuchtiged, dän Siedenschutsstoatus tou annerjen. Hier is die aktuälle Schutsstoatus fon ju Siede <strong>$1</strong>:',
