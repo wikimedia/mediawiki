@@ -78,7 +78,7 @@ class ImagePage extends Article {
 		if ( $this->mExtraDescription ) {
 			$fol = wfMsgNoTrans( 'shareddescriptionfollows' );
 			if( $fol != '-' && !wfEmptyMsg( 'shareddescriptionfollows', $fol ) ) {
-				$wgOut->addWikiMsg( $fol );
+				$wgOut->addWikiText( $fol );
 			}
 			$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . '</div>' );
 		}
