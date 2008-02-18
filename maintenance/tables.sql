@@ -597,6 +597,9 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- User ID who made the block.
   ipb_by int unsigned NOT NULL default '0',
   
+  --User name of blocker
+  ipb_by_text varchar(255) binary NOT NULL default '',
+  
   -- Text comment made by blocker.
   ipb_reason tinyblob NOT NULL,
   
