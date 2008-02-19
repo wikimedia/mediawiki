@@ -5,7 +5,7 @@
   *
   */
 $namespaceNames = array(
-	# NS_MEDIA            => 'Media', // FIXME: translation needed
+	NS_MEDIA            => 'ສື່ອ',
 	NS_SPECIAL          => 'ພິເສດ',
 	NS_MAIN             => '',
 	NS_TALK             => 'ສົນທະນາ',
@@ -133,7 +133,7 @@ $messages = array(
 'jumptosearch'     => 'ຄົ້ນຫາ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'ກ່ຽວກັບ {{SITENAME}}',
+'aboutsite'     => 'ກ່ຽວກັບ{{SITENAME}}',
 'aboutpage'     => 'Project:ກ່ຽວກັບ',
 'copyright'     => 'ເນື້ອໃນ ສະໜອງໃຫ້ ພາຍໃຕ້ $1.',
 'copyrightpage' => '{{ns:project}}:ລິຂະສິດ',
