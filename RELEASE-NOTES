@@ -396,6 +396,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   LTR user language
 * (bug 13005) DISPLAYTITLE does not work on preview
 * (bug 13004) Fix error on Postgres searches that return too many results.
+* (bug 10677) Add link to the file description page on the shared repository
 
 == Parser changes in 1.12 ==
 

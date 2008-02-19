@@ -346,19 +346,27 @@ EOT
 		}
 	}
 
+	/**
+	 * Show a notice that the file is from a shared repository
+	 */
 	function printSharedImageText() {
 		global $wgOut, $wgUser;
 
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
-		$s = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml("sharedupload");
-		if ( $descUrl && !$descText) {
+		$s = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml( 'sharedupload' );
+		if ( $descUrl ) {
 			$sk = $wgUser->getSkin();
-			$link = $sk->makeExternalLink( $descUrl, wfMsg('shareduploadwiki-linktext') );
-			$s .= " " . wfMsgWikiHtml('shareduploadwiki', $link);
+			$link = $sk->makeExternalLink( $descUrl, wfMsg( 'shareduploadwiki-linktext' ) );
+			$msg = ( $descText ) ? 'shareduploadwiki-desc' : 'shareduploadwiki';
+			$msg = wfMsgExt( $msg, array( 'parseinline', 'replaceafter' ), $link );
+			if ( $msg != '-' ) {
+				# Show message only if not voided by local sysops
+				$s .= $msg;
+			}
 		}
 		$s .= "</div>";
-		$wgOut->addHTML($s);
+		$wgOut->addHTML( $s );
 
 		if ( $descText ) {
 			$this->mExtraDescription = $descText;
