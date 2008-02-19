@@ -256,7 +256,7 @@ $messages = array(
 'toolbox'           => '工具箱',
 'userpage'          => '查看用户页面',
 'projectpage'       => '查看计划页面',
-'imagepage'         => '查看图像页面',
+'imagepage'         => '查看媒体页面',
 'mediawikipage'     => '查看信息页面',
 'templatepage'      => '查看模板页面',
 'viewhelppage'      => '查看帮助页面',
@@ -522,8 +522,8 @@ $2',
 'math_tip'        => '插入数学公式 (LaTeX)',
 'nowiki_sample'   => '在此插入非格式文本',
 'nowiki_tip'      => '插入非格式文本',
-'image_tip'       => '嵌入图像',
-'media_tip'       => '媒体文件链接',
+'image_tip'       => '嵌入文件',
+'media_tip'       => '文件链接',
 'sig_tip'         => '带有时间的签名',
 'hr_tip'          => '水平线 (小心使用)',
 
@@ -788,6 +788,7 @@ $2',
 'searchsubtitleinvalid' => "搜索'''$1'''",
 'noexactmatch'          => "'''没找到标题为\"\$1\"的页面。''' 您可以[[:\$1|创建此页面]]。",
 'noexactmatch-nocreate' => "'''没找到标题为\"\$1\"的页面。'''",
+'toomanymatches'        => '过多的匹配已反应，请尝试一个不同的查询',
 'titlematches'          => '页面题目相符',
 'notitlematches'        => '没有找到匹配页面题目',
 'textmatches'           => '页面内容相符',
@@ -951,12 +952,12 @@ $2',
 'uploadnologintext'           => '您必须先[[Special:Userlogin|登录]]才能上传文件。',
 'upload_directory_read_only'  => '上传目录($1)不存在或无写权限。',
 'uploaderror'                 => '上载错误',
-'uploadtext'                  => "使用下面的表单来上传用在页面内新的图像文件。 
-要查看或搜索以前上传的图片
-可以进入[[Special:Imagelist|图像列表]]，
+'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。 
+要查看或搜索以前上传的文件
+可以进入[[Special:Imagelist|文件上传列表]]，
 上传和删除将在[[Special:Log/upload|上传日志]]中记录。
 
-要在页面中加入图像，使用以下形式的连接:
+要在页面中加入文件，使用以下形式的连接:
 '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''，
 '''<nowiki>[[{{ns:image}}:file.png|替换文字]]</nowiki>''' 或
 '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
@@ -990,7 +991,7 @@ $2',
 上载文件的档名: <strong><tt>$1</tt></strong><br />
 现有文件的档名: <strong><tt>$2</tt></strong><br />
 请选择一个不同的名字。',
-'fileexists-thumb'            => "<center>'''已经存在的图像'''</center>",
+'fileexists-thumb'            => "<center>'''已经存在的文件'''</center>",
 'fileexists-thumbnail-yes'    => '这个文件好像是一幅图像的缩图版本<i>(缩图)</i>。请检查清楚该文件<strong><tt>$1</tt></strong>。<br />
 如果检查后的文件是同原本图像的大小是一样的话，就不用再上载多一幅缩图。',
 'file-thumbnail-no'           => '该档名是以<strong><tt>$1</tt></strong>开始。它好像一幅图像的缩图版本<i>(缩图)</i>。
@@ -1073,7 +1074,7 @@ $2',
 'imagelist_user'            => '用户',
 'imagelist_size'            => '大小',
 'imagelist_description'     => '描述',
-'imagelist_search_for'      => '按图像名称搜索:',
+'imagelist_search_for'      => '按媒体名称搜索:',
 
 # File reversion
 'filerevert'                => '恢复$1',
@@ -1183,7 +1184,7 @@ Template:消除歧義',
 'lonelypagestext'         => '以下页面尚未被{{SITENAME}}中的其它页面链接。',
 'uncategorizedpages'      => '未归类页面',
 'uncategorizedcategories' => '未归类分类',
-'uncategorizedimages'     => '未归类图像',
+'uncategorizedimages'     => '未归类文件',
 'uncategorizedtemplates'  => '未归类模版',
 'unusedcategories'        => '未使用分类',
 'unusedimages'            => '未使用图像',
@@ -1194,7 +1195,7 @@ Template:消除歧義',
 'mostlinkedcategories'    => '最多链接分类',
 'mostlinkedtemplates'     => '最多链接模版',
 'mostcategories'          => '最多分类页面',
-'mostimages'              => '最多链接图像',
+'mostimages'              => '最多链接文件',
 'mostrevisions'           => '最多修订页面',
 'allpages'                => '所有页面',
 'prefixindex'             => '前缀索引',
@@ -1218,7 +1219,7 @@ Template:消除歧義',
 'intl'                    => '跨语言链接',
 'move'                    => '移动',
 'movethispage'            => '移动此页',
-'unusedimagestext'        => '<p>请注意其它网站可能直接通过 URL 链接此图像，所以这里列出的图像有可能依然被使用。</p>',
+'unusedimagestext'        => '<p>请注意其它网站可能直接通过 URL 链接此文件，所以这里列出的图像有可能依然被使用。</p>',
 'unusedcategoriestext'    => '虽然没有被其它页面或者分类所采用，但列表中的分类页依然存在。',
 'notargettitle'           => '无目标',
 'notargettext'            => '您还没有指定一个目标页面或用户以进行此项操作。',
@@ -1304,9 +1305,7 @@ Template:消除歧義',
 'addedwatchtext'       => "页面\"[[:\$1]]\"已经被加入到您的[[Special:Watchlist|监视列表]]中。
 将来有关此页面及其讨论页的任何修改将会在那里列出，
 而且还会在[[Special:Recentchanges|最近更改]]中
-以'''粗体'''形式列出以使起更容易识别。
-
-如果您之后想将该页面从监视列表中删除，可点击导航条中的\"停止监视\"链接。",
+以'''粗体'''形式列出以使起更容易识别。",
 'removedwatch'         => '已停止监视',
 'removedwatchtext'     => '页面"<nowiki>$1</nowiki>"已经从您的监视页面中移除。',
 'watch'                => '监视',
@@ -1473,6 +1472,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
 'undelete-nodiff'              => '找不到先前的修订版本。',
 'undeletebtn'                  => '恢复',
+'undeletelink'                 => '恢复',
 'undeletereset'                => '重设',
 'undeletecomment'              => '评论:',
 'undeletedarticle'             => '已恢复的"[[$1]]"',
@@ -1509,7 +1509,7 @@ $1',
 'nocontribs'    => '没有找到符合特征的更改。',
 'ucnote'        => '以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改。',
 'uclinks'       => '参看最后$1次修改；参看最后$2天。',
-'uctop'         => ' (最新修改)',
+'uctop'         => '(最新修改)',
 'month'         => '从该月份 (或更早):',
 'year'          => '从该年份 (或更早):',
 
@@ -1520,7 +1520,7 @@ $1',
 'sp-contributions-username'    => 'IP地址或用户名称：',
 'sp-contributions-submit'      => '搜索',
 
-'sp-newimages-showfrom' => '从$1开始显示新图像',
+'sp-newimages-showfrom' => '从$1开始显示新文件',
 
 # What links here
 'whatlinkshere'       => '链入页面',
@@ -1743,7 +1743,7 @@ $1',
 'importstart'                => '正在导入页面...',
 'import-revision-count'      => '$1个修订',
 'importnopages'              => '没有导入的页面。',
-'importfailed'               => '导入失败: $1',
+'importfailed'               => '导入失败: <nowiki>$1</nowiki>',
 'importunknownsource'        => '未知的源导入类型',
 'importcantopen'             => '无法打开导入文件',
 'importbadinterwiki'         => '损坏的内部 wiki 链接',
@@ -1807,7 +1807,7 @@ $1',
 'tooltip-feed-atom'               => '此页的 Atom 订阅',
 'tooltip-t-contributions'         => '查看该用户的贡献列表',
 'tooltip-t-emailuser'             => '向该用户发送一封邮件',
-'tooltip-t-upload'                => '上传图像或媒体文件',
+'tooltip-t-upload'                => '上传文件',
 'tooltip-t-specialpages'          => '所有特殊页面列表',
 'tooltip-t-print'                 => '这个页面的可打印版本',
 'tooltip-t-permalink'             => '这个页面版本的永久链接',
@@ -1816,7 +1816,7 @@ $1',
 'tooltip-ca-nstab-media'          => '查看媒体页面',
 'tooltip-ca-nstab-special'        => '这是一个特殊页面，您不能对它进行编辑',
 'tooltip-ca-nstab-project'        => '查看计划页面',
-'tooltip-ca-nstab-image'          => '查看图像页面',
+'tooltip-ca-nstab-image'          => '查看文件页面',
 'tooltip-ca-nstab-mediawiki'      => '查看系统界面消息',
 'tooltip-ca-nstab-template'       => '查看模板',
 'tooltip-ca-nstab-help'           => '查看帮助页面',
@@ -1914,7 +1914,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告''': 该文件可能包含恶意代码，运行它可能对您的系统带来危险。<hr>",
-'imagemaxsize'         => '在图像描述页对图像大小限制为:',
+'imagemaxsize'         => '在文件描述页对图像大小限制为:',
 'thumbsize'            => '缩略图大小:',
 'widthheightpage'      => '$1×$2, $3页',
 'file-info'            => '(文件大小: $1, MIME 类型: $2)',
@@ -1932,8 +1932,8 @@ $1',
 # Bad image list
 'bad_image_list' => '请根据以下的格式去编写:
 
-只有列示项目（以 * 开头的项目）会被考虑。第一个连结一定要连接去坏图像中。
-然后在同一行的连结会考虑作例外，即是幅图像可以在哪一个页面中同时显示。',
+只有列示项目（以 * 开头的项目）会被考虑。第一个连结一定要连接去坏文件中。
+然后在同一行的连结会考虑作例外，即是該文件可以在哪一个页面中同时显示。',
 
 /*
 Short names for language variants used for language conversion links.
