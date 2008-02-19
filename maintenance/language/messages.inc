@@ -929,6 +929,7 @@ $wgMessageStructure = array(
 		'nolinkstoimage',
 		'sharedupload',
 		'shareduploadwiki',
+		'shareduploadwiki-desc',
 		'shareduploadwiki-linktext',
 		'shareddescriptionfollows',
 		'noimage',

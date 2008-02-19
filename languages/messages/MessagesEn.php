@@ -1513,6 +1513,7 @@ PICT # misc.
 'nolinkstoimage'            => 'There are no pages that link to this file.',
 'sharedupload'              => 'This file is a shared upload and may be used by other projects.',
 'shareduploadwiki'          => 'Please see the $1 for further information.',
+'shareduploadwiki-desc'     => 'The description on its $1 there is shown below.',
 'shareduploadwiki-linktext' => 'file description page',
 'shareddescriptionfollows'  => '-', # don't translate or duplicate this message to other languages
 'noimage'                   => 'No file by this name exists, you can $1.',
