@@ -609,11 +609,11 @@ class UploadForm {
 				$dlink2 = '';
 			}
 
-			$warning .= '<li>' . wfMsgExt( 'fileexists', array(), $dlink ) . '</li>' . $dlink2;
+			$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseinline', $dlink ) . '</li>' . $dlink2;
 
 		} elseif( $file->getTitle()->getArticleID() ) {
 			$lnk = $sk->makeKnownLinkObj( $file->getTitle(), '', 'redirect=no' );
-			$warning .= '<li>' . wfMsgExt( 'filepageexists', array(), $lnk ) . '</li>';
+			$warning .= '<li>' . wfMsgExt( 'filepageexists', 'parseinline', $lnk ) . '</li>';
 		} elseif ( $file_lc && $file_lc->exists() ) {
 			# Check if image with lowercase extension exists.
 			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
