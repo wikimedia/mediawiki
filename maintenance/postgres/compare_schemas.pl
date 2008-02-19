@@ -279,7 +279,7 @@ timestamp TIMESTAMPTZ
 mediumblob BYTEA
 
 ## OTHER:
-bool CHAR # Sigh
+bool SMALLINT # Sigh
 
 };
 ## Allow specific exceptions to the above
