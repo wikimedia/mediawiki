@@ -1340,6 +1340,7 @@ function do_postgres_updates() {
 		array("archive",       "ar_page_id",           "INTEGER"),
 		array("image",         "img_sha1",             "TEXT NOT NULL DEFAULT ''"),
 		array("ipblocks",      "ipb_anon_only",        "CHAR NOT NULL DEFAULT '0'"),
+		array("ipblocks",      "ipb_by_text",          "TEXT NOT NULL DEFAULT ''"),
 		array("ipblocks",      "ipb_block_email",      "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_create_account",   "CHAR NOT NULL DEFAULT '1'"),
 		array("ipblocks",      "ipb_deleted",          "SMALLINT NOT NULL DEFAULT 0"),
