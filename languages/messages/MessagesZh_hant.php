@@ -236,7 +236,7 @@ $messages = array(
 'toolbox'           => '工具箱',
 'userpage'          => '查看用戶頁面',
 'projectpage'       => '查看計劃頁面',
-'imagepage'         => '查看圖像頁面',
+'imagepage'         => '查看媒體頁面',
 'mediawikipage'     => '檢視使用者介面訊息',
 'templatepage'      => '檢視模板頁面',
 'viewhelppage'      => '檢視說明頁面',
@@ -498,8 +498,8 @@ $2',
 'math_tip'        => '插入數學公式 (LaTeX)',
 'nowiki_sample'   => '在此插入非格式文字',
 'nowiki_tip'      => '插入非格式文字',
-'image_tip'       => '嵌入圖像',
-'media_tip'       => '媒體檔案連結',
+'image_tip'       => '嵌入檔案',
+'media_tip'       => '檔案連結',
 'sig_tip'         => '帶有時間的簽名',
 'hr_tip'          => '水平線 (小心使用)',
 
@@ -762,6 +762,7 @@ $2',
 'searchsubtitleinvalid' => '查詢"$1"',
 'noexactmatch'          => "'''沒找到標題為\"\$1\"的頁面。''' 您可以[[:\$1|創建此頁面]]。",
 'noexactmatch-nocreate' => "'''沒找到標題為\"\$1\"的頁面。'''",
+'toomanymatches'        => '過多的匹配已回應，請嘗試一個不同的查詢',
 'titlematches'          => '頁面題目相符',
 'notitlematches'        => '沒有找到匹配頁面題目',
 'textmatches'           => '頁面內容相符',
@@ -926,12 +927,12 @@ $2',
 才能上載檔案。',
 'upload_directory_read_only'  => '上傳目錄($1)不存在或無寫權限。',
 'uploaderror'                 => '上載錯誤',
-'uploadtext'                  => "使用下面的表單來上傳用在頁面內新的圖像檔案。 
-要檢視或搜索以前上傳的圖片
-可以進入[[Special:Imagelist|圖像清單]]，
+'uploadtext'                  => "使用下面的表單來上傳檔案。 
+要檢視或搜索以前上傳的檔案
+可以進入[[Special:Imagelist|檔案上傳清單]]，
 上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
 
-要在頁面中加入圖像，使用以下形式的連接:
+要在頁面中加入檔案，使用以下形式的連接:
 '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''，
 '''<nowiki>[[{{ns:image}}:file.png|替換文字]]</nowiki>''' 或
 '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
@@ -965,7 +966,7 @@ $2',
 上載檔案的檔名: <strong><tt>$1</tt></strong><br />
 現有檔案的檔名: <strong><tt>$2</tt></strong><br />
 請選擇一個不同的名字。',
-'fileexists-thumb'            => "<center>'''已經存在的圖像'''</center>",
+'fileexists-thumb'            => "<center>'''已經存在的檔案'''</center>",
 'fileexists-thumbnail-yes'    => '這個檔案好像是一幅圖像的縮圖版本<i>(縮圖)</i>。請檢查清楚該檔案<strong><tt>$1</tt></strong>。<br />
 如果檢查後的檔案是同原本圖像的大小是一樣的話，就不用再上載多一幅縮圖。',
 'file-thumbnail-no'           => '該檔名是以<strong><tt>$1</tt></strong>開始。它好像一幅圖像的縮圖版本<i>(縮圖)</i>。
@@ -1048,7 +1049,7 @@ $2',
 'imagelist_user'            => '用戶',
 'imagelist_size'            => '大小',
 'imagelist_description'     => '描述',
-'imagelist_search_for'      => '按圖像名稱搜索:',
+'imagelist_search_for'      => '按檔案名稱搜索:',
 
 # File reversion
 'filerevert'                => '恢復$1',
@@ -1158,7 +1159,7 @@ Template:消除歧義',
 'lonelypagestext'         => '以下頁面尚未被{{SITENAME}}中的其它頁面連結。',
 'uncategorizedpages'      => '待分類頁面',
 'uncategorizedcategories' => '待分類類別',
-'uncategorizedimages'     => '待分類圖片',
+'uncategorizedimages'     => '待分類檔案',
 'uncategorizedtemplates'  => '待分類模版',
 'unusedcategories'        => '未使用的分類',
 'unusedimages'            => '未使用圖像',
@@ -1169,7 +1170,7 @@ Template:消除歧義',
 'mostlinkedcategories'    => '最多連結分類',
 'mostlinkedtemplates'     => '最多連結模版',
 'mostcategories'          => '最多分類頁面',
-'mostimages'              => '最多連結圖像',
+'mostimages'              => '最多連結檔案',
 'mostrevisions'           => '最多修訂頁面',
 'allpages'                => '所有頁面',
 'prefixindex'             => '前綴索引',
@@ -1193,7 +1194,7 @@ Template:消除歧義',
 'intl'                    => '跨語言連結',
 'move'                    => '移動',
 'movethispage'            => '移動本頁',
-'unusedimagestext'        => '<p>請注意其它網站可能直接透過 URL 鏈接此圖像，所以這裡列出的圖像有可能依然被使用。</p>',
+'unusedimagestext'        => '<p>請注意其它網站可能直接透過 URL 鏈接此檔案，所以這裡列出的圖像有可能依然被使用。</p>',
 'unusedcategoriestext'    => '雖然沒有被其它頁面或者分類所採用，但列表中的分類頁依然存在。',
 'notargettitle'           => '無目標',
 'notargettext'            => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
@@ -1279,9 +1280,7 @@ Template:消除歧義',
 'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
 將來有關此頁面及其討論頁的任何修改將會在那裡列出，
 而且還會在[[Special:Recentchanges|最近更改]]中
-以'''粗體'''形式列出以使起更容易識別。
-
-如果您之後想將該頁面從監視清單中刪除，可點擊導航條中的\"停止監視\"連結。",
+以'''粗體'''形式列出以使起更容易識別。",
 'removedwatch'         => '已停止監視',
 'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從您的監視頁面中移除。',
 'watch'                => '監視',
@@ -1448,6 +1447,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
 'undelete-nodiff'              => '找不到先前的修訂版本。',
 'undeletebtn'                  => '恢復',
+'undeletelink'                 => '恢復',
 'undeletereset'                => '重設',
 'undeletecomment'              => '原因',
 'undeletedarticle'             => '已經恢復「$1」',
@@ -1482,7 +1482,7 @@ $1',
 'nocontribs'    => '沒有找到符合特徵的更改。',
 'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',
-'uctop'         => ' (最新修改)',
+'uctop'         => '(最新修改)',
 'month'         => '從該月份 (或更早):',
 'year'          => '從該年份 (或更早):',
 
@@ -1493,7 +1493,7 @@ $1',
 'sp-contributions-username'    => 'IP位址或用戶名稱：',
 'sp-contributions-submit'      => '搜尋',
 
-'sp-newimages-showfrom' => '從$1開始顯示新圖像',
+'sp-newimages-showfrom' => '從$1開始顯示新檔案',
 
 # What links here
 'whatlinkshere'       => '鏈入頁面',
@@ -1716,7 +1716,7 @@ $1',
 'importstart'                => '正在匯入頁面...',
 'import-revision-count'      => '$1個修訂',
 'importnopages'              => '沒有匯入的頁面。',
-'importfailed'               => '匯入失敗: $1',
+'importfailed'               => '匯入失敗: <nowiki>$1</nowiki>',
 'importunknownsource'        => '未知的源匯入類型',
 'importcantopen'             => '無法打開匯入檔案',
 'importbadinterwiki'         => '損壞的內部 wiki 連結',
@@ -1780,7 +1780,7 @@ $1',
 'tooltip-feed-atom'               => '訂閱本頁面歷史的Atom訊息',
 'tooltip-t-contributions'         => '查看該用戶的貢獻列表',
 'tooltip-t-emailuser'             => '向該用戶發送電子郵件',
-'tooltip-t-upload'                => '上傳圖像或多媒體檔',
+'tooltip-t-upload'                => '上傳檔案',
 'tooltip-t-specialpages'          => '全部特殊頁面的列表',
 'tooltip-t-print'                 => '這個頁面的可列印版本',
 'tooltip-t-permalink'             => '這個頁面版本的永久連結',
@@ -1789,7 +1789,7 @@ $1',
 'tooltip-ca-nstab-media'          => '查看多媒體檔案資訊頁面',
 'tooltip-ca-nstab-special'        => '本頁面會隨著資料庫的數據即時更新，任何人均不能直接編輯',
 'tooltip-ca-nstab-project'        => '查看項目頁面',
-'tooltip-ca-nstab-image'          => '查詢圖片頁面',
+'tooltip-ca-nstab-image'          => '查看檔案頁面',
 'tooltip-ca-nstab-mediawiki'      => '查看系統資訊',
 'tooltip-ca-nstab-template'       => '查看模板',
 'tooltip-ca-nstab-help'           => '查看幫助頁面',
@@ -1887,7 +1887,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr>",
-'imagemaxsize'         => '在圖像描述頁對圖像大小限制為:',
+'imagemaxsize'         => '在圖像描述頁對檔案大小限制為:',
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',
 'file-info'            => '(檔案大小: $1, MIME 類型: $2)',
@@ -1905,8 +1905,8 @@ $1',
 # Bad image list
 'bad_image_list' => '請根據以下的格式去編寫:
 
-只有列示項目（以 * 開頭的項目）會被考慮。第一個連結一定要連接去壞圖像中。
-然後在同一行的連結會考慮作例外，即是幅圖像可以在哪一個頁面中同時顯示。',
+只有列示項目（以 * 開頭的項目）會被考慮。第一個連結一定要連接去壞檔案中。
+然後在同一行的連結會考慮作例外，即是該檔案可以在哪一個頁面中同時顯示。',
 
 /*
 Short names for language variants used for language conversion links.
