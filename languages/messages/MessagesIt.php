@@ -306,7 +306,7 @@ I seguenti collegamenti sono in lingua inglese:
 'toolbox'           => 'Strumenti',
 'userpage'          => 'Visualizza la pagina utente',
 'projectpage'       => 'Visualizza la pagina di servizio',
-'imagepage'         => "Visualizza la pagina di descrizione dell'immagine",
+'imagepage'         => 'Visualizza la pagina del file',
 'mediawikipage'     => 'Visualizza il messaggio',
 'templatepage'      => 'Visualizza il template',
 'viewhelppage'      => 'Visualizza la pagina di aiuto',
@@ -576,7 +576,7 @@ Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'nowiki_sample'   => 'Inserire qui il testo non formattato',
 'nowiki_tip'      => 'Ignora la formattazione wiki',
 'image_sample'    => 'Esempio.jpg',
-'image_tip'       => 'Immagine incorporata',
+'image_tip'       => 'File incorporato',
 'media_sample'    => 'Esempio.ogg',
 'media_tip'       => 'Collegamento a file multimediale',
 'sig_tip'         => 'Firma con data e ora',
@@ -840,6 +840,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'searchsubtitleinvalid' => "Ricerca di '''$1'''",
 'noexactmatch'          => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
 'noexactmatch-nocreate' => "'''La pagina con titolo \"\$1\" non esiste.'''",
+'toomanymatches'        => 'Troppe corrispondenze. Modificare la richiesta.',
 'titlematches'          => 'Corrispondenze nel titolo delle pagine',
 'notitlematches'        => 'Nessuna corrispondenza nei titoli delle pagine',
 'textmatches'           => 'Corrispondenze nel testo delle pagine',
@@ -1004,12 +1005,12 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'uploaderror'                 => 'Errore nel caricamento',
 'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti e cancellazioni di file sono registrati nel [[Special:Log/upload|log degli upload]].
 
-Per inserire un'immagine in una pagina, fare un collegamento di questo tipo:
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png]]</nowiki>'''
+Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|testo alternativo]]</nowiki>'''
 usare invece
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
-per collegare direttamente gli altri tipi di file.",
+per generare un collegamento diretto al file.",
 'upload-permitted'            => 'Tipi di file consentiti: $1.',
 'upload-preferred'            => 'Tipi di file consigliati: $1.',
 'upload-prohibited'           => 'Tipi di file non consentiti: $1.',
@@ -1035,12 +1036,12 @@ per collegare direttamente gli altri tipi di file.",
 'largefileserver'             => 'Il file supera le dimensioni consentite dalla configurazione del server.',
 'emptyfile'                   => 'Il file appena caricato sembra essere vuoto. Ciò potrebbe essere dovuto ad un errore nel nome del file. Verificare che si intenda realmente caricare questo file.',
 'fileexists'                  => 'Un file con questo nome esiste già. Verificare prima $1 se non si è sicuri di volerlo sovrascrivere.',
-'filepageexists'              => "Una pagina (ma non un'immagine) con questo nome esiste già. Verificare prima <strong><tt>$1</tt></strong> se non si è sicuri di volerla modificare.",
+'filepageexists'              => 'Una pagina (ma non un file) con questo nome esiste già. Verificare prima <strong><tt>$1</tt></strong> se non si è sicuri di volerla modificare.',
 'fileexists-extension'        => "Un file con nome simile a questo esiste già; l'unica differenza è l'uso delle maiuscole nell'estensione:<br />
 Nome del file caricato: <strong><tt>$1</tt></strong><br />
 Nome del file esistente: <strong><tt>$2</tt></strong><br />
 Verificare che i due file non siano identici.",
-'fileexists-thumb'            => "<center>'''Immagine esistente'''</center>",
+'fileexists-thumb'            => "<center>'''File preesistente'''</center>",
 'fileexists-thumbnail-yes'    => "Il file caricato sembra essere il risultato di un'anteprima <i>(thumbnail)</i>. Verificare, per confronto, il file <strong><tt>$1</tt></strong>.<br />
 Se si tratta della stessa immagine, nelle dimensioni originali, non è necessario caricarne altre anteprime.",
 'file-thumbnail-no'           => "Il nome del file inizia con <strong><tt>$1</tt></strong>; sembra quindi essere il risultato di un'anteprima <i>(thumbnail)</i>.
@@ -1239,7 +1240,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti che provengono da altre pagine del sito.',
 'uncategorizedpages'      => 'Pagine prive di categorie',
 'uncategorizedcategories' => 'Categorie prive di categorie',
-'uncategorizedimages'     => 'Immagini prive di categorie',
+'uncategorizedimages'     => 'File privi di categorie',
 'uncategorizedtemplates'  => 'Template privi di categorie',
 'unusedcategories'        => 'Categorie non utilizzate',
 'unusedimages'            => 'File non utilizzati',
@@ -1250,7 +1251,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'mostlinkedcategories'    => 'Categorie più richiamate',
 'mostlinkedtemplates'     => 'Template più utilizzati',
 'mostcategories'          => 'Voci con più categorie',
-'mostimages'              => 'Immagini più richiamate',
+'mostimages'              => 'File più richiamati',
 'mostrevisions'           => 'Voci con più revisioni',
 'allpages'                => 'Tutte le pagine',
 'prefixindex'             => 'Indice delle voci per lettere iniziali',
@@ -1354,9 +1355,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
-'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede; il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.
-
-Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osservati speciali, fare clic su \"non seguire\" nella barra in alto.",
+'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. 
+D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede; il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
 'removedwatchtext'     => 'La pagina  "[[:$1]]" è stata eliminata dalla lista degli osservati speciali.',
 'watch'                => 'Segui',
@@ -1515,6 +1515,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
 'undelete-nodiff'              => 'Non è stata trovata nessuna revisione precedente.',
 'undeletebtn'                  => 'Ripristina',
+'undeletelink'                 => 'ripristina',
 'undeletereset'                => 'Reimposta',
 'undeletecomment'              => 'Commento:',
 'undeletedarticle'             => 'ha recuperato "[[$1]]"',
@@ -1562,7 +1563,7 @@ $1',
 'sp-contributions-username'    => 'Indirizzo IP o nome utente:',
 'sp-contributions-submit'      => 'Ricerca',
 
-'sp-newimages-showfrom' => 'Mostra le immagini più recenti a partire da $1',
+'sp-newimages-showfrom' => 'Mostra i file più recenti a partire da $1',
 
 # What links here
 'whatlinkshere'       => 'Puntano qui',
@@ -1832,7 +1833,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-feed-atom'               => 'Feed Atom per questa pagina',
 'tooltip-t-contributions'         => 'Lista dei contributi di questo utente',
 'tooltip-t-emailuser'             => 'Invia un messaggio e-mail a questo utente',
-'tooltip-t-upload'                => 'Carica immagini o file multimediali',
+'tooltip-t-upload'                => 'Carica file multimediali',
 'tooltip-t-specialpages'          => 'Lista di tutte le pagine speciali',
 'tooltip-t-print'                 => 'Versione stampabile di questa pagina',
 'tooltip-t-permalink'             => 'Collegamento permanente a questa versione della pagina',
@@ -1841,7 +1842,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-ca-nstab-media'          => 'Vedi la pagina del file multimediale',
 'tooltip-ca-nstab-special'        => 'Questa è una pagina speciale, non può essere modificata',
 'tooltip-ca-nstab-project'        => 'Vedi la pagina di servizio',
-'tooltip-ca-nstab-image'          => "Vedi la pagina dell'immagine",
+'tooltip-ca-nstab-image'          => 'Vedi la pagina del file',
 'tooltip-ca-nstab-mediawiki'      => 'Vedi il messaggio di sistema',
 'tooltip-ca-nstab-template'       => 'Vedi il template',
 'tooltip-ca-nstab-help'           => 'Vedi la pagina di aiuto',
@@ -1958,12 +1959,12 @@ $1',
 # Bad image list
 'bad_image_list' => "Il formato è il seguente:
 
-Vengono considerati soltanto gli elenchi puntati (righe che cominciano con il carattere *). Il primo collegamento su ciascuna riga dev'essere un collegamento a un'immagine indesiderata.
-I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (ovvero, pagine nelle quali l'immagine può essere richiamata normalmente).",
+Vengono considerati soltanto gli elenchi puntati (righe che cominciano con il carattere *). Il primo collegamento su ciascuna riga dev'essere un collegamento a un file indesiderato.
+I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (ovvero, pagine nelle quali il file può essere richiamato normalmente).",
 
 # Metadata
 'metadata'          => 'Metadati',
-'metadata-help'     => 'Questo file contiene informazioni aggiuntive, probabilmente aggiunte dalla fotocamera o dallo scanner usati per crearla o digitalizzarla. Se il file è stato modificato, alcuni dettagli potrebbero non corrispondere alle modifiche apportate.',
+'metadata-help'     => 'Questo file contiene informazioni aggiuntive, probabilmente aggiunte dalla fotocamera o dallo scanner usati per crearlo o digitalizzarlo. Se il file è stato modificato, alcuni dettagli potrebbero non corrispondere alle modifiche apportate.',
 'metadata-expand'   => 'Mostra dettagli',
 'metadata-collapse' => 'Nascondi dettagli',
 'metadata-fields'   => "I campi relativi ai metadati EXIF elencati in questo messaggio verranno mostrati sulla pagina dell'immagine quando la tabella dei metadati è presentata nella forma breve. Per impostazione predefinita, gli altri campi verranno nascosti.

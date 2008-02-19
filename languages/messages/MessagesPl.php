@@ -572,7 +572,7 @@ Możesz zignorować tą wiadomość, jeśli konto zostało stworzone przez pomy�
 'nowiki_sample'   => 'Wstaw tu tekst niesformatowany',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przyklad.jpg',
-'image_tip'       => 'Grafika osadzona',
+'image_tip'       => 'Plik osadzony',
 'media_sample'    => 'Przyklad.ogg',
 'media_tip'       => 'Link do pliku',
 'sig_tip'         => 'Twój podpis wraz z datą i czasem',
@@ -1017,7 +1017,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku. Sprawdź, czy nazwa jest prawidłowa.',
 'fileexists'                  => 'Plik o takiej nazwie już istnieje! Załadowanie nowej grafiki nieodwacalnie usunie już istniejącą ($1)! Upewnij się, że wiesz, co robisz.',
-'filepageexists'              => 'Istnieje już strona o tej nazwie (nie grafika), sprawdź <strong><tt>$1</tt></strong> jeżeli nie jesteś pewien czy chcesz ją zmienić.',
+'filepageexists'              => 'Istnieje już strona o tej nazwie (nie plik), sprawdź <strong><tt>$1</tt></strong> jeżeli nie jesteś pewien czy chcesz ją zmienić.',
 'fileexists-extension'        => 'Plik o podobnej nazwie już istnieje:<br />
 Nazwa przesyłanego pliku: <strong><tt>$1</tt></strong><br />
 Nazwa istniejącego pliku: <strong><tt>$2</tt></strong><br />
@@ -1494,6 +1494,7 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undeleterevision-missing'     => 'Nieprawidłowa lub brakująca wersja. Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z archiwum.',
 'undelete-nodiff'              => 'Nie znaleziono poprzednich wersji.',
 'undeletebtn'                  => 'Odtwórz',
+'undeletelink'                 => 'odtwórz',
 'undeletereset'                => 'Wyczyść',
 'undeletecomment'              => 'Powód odtworzenia:',
 'undeletedarticle'             => 'odtworzono "$1"',
@@ -1935,9 +1936,9 @@ $1',
 'noimages'     => 'Nic.',
 
 # Bad image list
-'bad_image_list' => 'Format jest następujący:
+'bad_image_list' => 'Dane należy prowadzić w formacie:
 
-Jedynie elementy listy (linijki zaczynające się od znaku *) są brane pod uwagę. Pierwszy link w linii musi być linkiem do złej grafiki. Następne linki w linii są traktowane jako wyjątki, tzn. strony, gdzie grafika może być wstawiona.',
+Jedynie elementy listy (linie zaczynające się od znaku *) brane są pod uwagę. Pierwszy link w linii musi być linkiem do zabronionego pliku. Następne linki w linii są traktowane jako wyjątki, są to nazwy stron, gdzie plik o zabronionej nazwie może być wstawiony.',
 
 # Metadata
 'metadata'          => 'Metadane',
