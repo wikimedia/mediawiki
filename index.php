@@ -56,7 +56,7 @@ if ( !is_null( $maxLag ) ) {
 $action = $wgRequest->getVal( 'action', 'view' );
 $title = $wgRequest->getVal( 'title' );
 
-$wgTitle = $mediaWiki->checkInitialQueries( $title,$action,$wgOut, $wgRequest, $wgContLang );
+$wgTitle = $mediaWiki->checkInitialQueries( $title, $action, $wgOut, $wgRequest, $wgContLang );
 if ($wgTitle == NULL) {
 	unset( $wgTitle );
 }
