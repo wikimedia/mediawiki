@@ -572,7 +572,7 @@ Aðgangurinn þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Pre
 'nocookieslogin'             => '{{SITENAME}} notar vefkökur til innskráningar. Vafrinn þinn er ekki að taka á móti þeim sem gerir það ókleyft að innskrá þig. Vinsamlegast virkjaðu móttöku kakna í vafranum þínum til að geta skráð þig inn.',
 'noname'                     => 'Ógilt notandanafn.',
 'loginsuccesstitle'          => 'Innskráning tókst',
-'loginsuccess'               => 'Þú ert nú innskráð(ur) á {{SITENAME}} sem „[[Notandi:$1|$1]]“.',
+'loginsuccess'               => 'Þú ert nú innskráð(ur) á {{SITENAME}} sem „[[User:$1|$1]]“.',
 'nosuchuser'                 => 'Enginn notandi er til undir nafninu „$1“.',
 'nosuchusershort'            => 'Það er enginn notandi með nafnið „<nowiki>$1</nowiki>“. Athugaðu hvort nafnið er ritað rétt.',
 'nouserspecified'            => 'Þú verður að taka fram notandanafn.',
@@ -1682,13 +1682,27 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'mw_math_modern' => 'Mælt með fyrir nýja vafra',
 'mw_math_mathml' => 'MathML ef mögulegt (tilraun)',
 
+# Patrolling
+'markaspatrolleddiff'                 => 'Merkja sem yfirfarið',
+'markaspatrolledtext'                 => 'Merkja þessa síðu sem yfirfarna',
+'markedaspatrolled'                   => 'Merkja sem yfirfarið',
+'markedaspatrolledtext'               => 'Valin breyting hefur verið merkt sem yfirfarin.',
+'rcpatroldisabled'                    => 'Slökkt á yfirferð nýlegra breytinga',
+'rcpatroldisabledtext'                => 'Yfirferð nýlegra breytinga er ekki virk.',
+'markedaspatrollederror'              => 'Get ekki merkt sem yfirfarið',
+'markedaspatrollederrortext'          => 'Þú verður að velja breytingu til að merkja sem yfirfarið.',
+'markedaspatrollederror-noautopatrol' => 'Þú hefur ekki réttindi til að merkja eigin breytingar sem yfirfarnar.',
+
 # Patrol log
+'patrol-log-page' => 'Yfirferðarskrá',
+'patrol-log-line' => 'merkti $1 eftir $2 sem yfirfarið $3',
 'patrol-log-auto' => '(sjálfkrafa)',
 
 # Image deletion
 'deletedrevision'       => 'Eydd gömul útgáfu $1',
 'filedeleteerror-short' => 'Villa við eyðingu: $1',
 'filedeleteerror-long'  => 'Það kom upp villa við eyðingu skráarinnar: $1',
+'filedelete-missing'    => 'Skránni „$1“ er ekki hægt að eyða vegna þess að hún er ekki til.',
 
 # Browsing diffs
 'previousdiff' => '← Fyrri breyting',
@@ -1701,6 +1715,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'file-info'            => '(stærð skráar: $1, MIME tegund: $2)',
 'file-info-size'       => '($1 × $2 depplar, stærð skráar: $3, MIME gerð: $4)',
 'file-nohires'         => '<small>Það er engin hærri upplausn til.</small>',
+'svg-long-desc'        => '(SVG-skrá, lágmark $1 × $2 dílar, skráarstærð: $3)',
 'show-big-image'       => 'Mesta upplausn',
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 
