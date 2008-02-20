@@ -39,6 +39,7 @@ $wgNewTables = array(
 	array( 'querycachetwo',    'patch-querycachetwo.sql' ),
 	array( 'redirect',         'patch-redirect.sql' ),
 	array( 'protected_titles', 'patch-protected_titles.sql' ),
+	array( 'page_props',       'patch-page_props.sql' ),
 );
 
 $wgNewFields = array(

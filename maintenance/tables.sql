@@ -1184,4 +1184,13 @@ CREATE TABLE /*$wgDBprefix*/protected_titles (
   KEY pt_timestamp (pt_timestamp)
 ) /*$wgDBTableOptions*/;
 
+-- Name/value pairs indexed by page_id
+CREATE TABLE /*$wgDBprefix*/page_props (
+  pp_page int NOT NULL,
+  pp_propname varbinary(60) NOT NULL,
+  pp_value blob NOT NULL,
+
+  PRIMARY KEY (pp_page,pp_propname)
+);
+
 -- vim: sw=2 sts=2 et

@@ -140,7 +140,19 @@ class MagicWord {
 		'numberofadmins' => 3600,
 		);
 
+	static public $mDoubleUnderscoreIDs = array(
+		'notoc',
+		'nogallery',
+		'forcetoc',
+		'toc',
+		'noeditsection',
+		'newsectionlink',
+		'hiddencat',
+	);
+
+
 	static public $mObjects = array();
+	static public $mDoubleUnderscoreArray = null;
 
 	/**#@-*/
 
@@ -197,7 +209,14 @@ class MagicWord {
 			return -1;
 		}
 	}
-	
+
+	/** Get a MagicWordArray of double-underscore entities */
+	static function getDoubleUnderscoreArray() {
+		if ( is_null( self::$mDoubleUnderscoreArray ) ) {
+			self::$mDoubleUnderscoreArray = new MagicWordArray( self::$mDoubleUnderscoreIDs );
+		}
+		return self::$mDoubleUnderscoreArray;
+	}
 	
 	# Initialises this object with an ID
 	function load( $id ) {
@@ -449,6 +468,7 @@ class MagicWordArray {
 	var $names = array();
 	var $hash;
 	var $baseRegex, $regex;
+	var $matches;
 
 	function __construct( $names = array() ) {
 		$this->names = $names;
@@ -555,6 +575,8 @@ class MagicWordArray {
 
 	/**
 	 * Parse a match array from preg_match
+	 * Returns array(magic word ID, parameter value)
+	 * If there is no parameter value, that element will be false.
 	 */
 	function parseMatch( $m ) {
 		reset( $m );
@@ -612,5 +634,26 @@ class MagicWordArray {
 			return $hash[0][$lc];
 		}
 		return false;
+	}
+
+	/**
+	 * Returns an associative array, ID => param value, for all items that match
+	 * Removes the matched items from the input string (passed by reference)
+	 */
+	public function matchAndRemove( &$text ) {
+		$found = array();
+		$regexes = $this->getRegex();
+		foreach ( $regexes as $regex ) {
+			if ( $regex === '' ) {
+				continue;
+			}
+			preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
+			foreach ( $matches as $m ) {
+				list( $name, $param ) = $this->parseMatch( $m );
+				$found[$name] = $param;
+			}
+			$text = preg_replace( $regex, '', $text );
+		}
+		return $found;
 	}
 }

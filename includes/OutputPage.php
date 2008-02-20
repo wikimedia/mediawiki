@@ -270,18 +270,40 @@ class OutputPage {
 	/**
 	 * Add an array of categories, with names in the keys
 	 */
-	public function addCategoryLinks($categories) {
+	public function addCategoryLinks( $categories ) {
 		global $wgUser, $wgContLang;
 
 		if ( !is_array( $categories ) ) {
 			return;
 		}
-		# Add the links to the link cache in a batch
+		if ( count( $categories ) == 0 ) {
+			return;
+		}
+		# Add the links to a LinkBatch
 		$arr = array( NS_CATEGORY => $categories );
 		$lb = new LinkBatch;
 		$lb->setArray( $arr );
-		$lb->execute();
 
+		# Fetch existence plus the hiddencat property
+		$dbr = wfGetDB( DB_SLAVE );
+		$pageTable = $dbr->tableName( 'page' );
+		$propsTable = $dbr->tableName( 'page_props' );
+		$where = $lb->constructSet( 'page', $dbr );
+		$sql = "SELECT page_id, page_namespace, page_title, pp_value FROM $pageTable LEFT JOIN $propsTable " . 
+			" ON pp_page=page_id WHERE ($where) AND pp_propname='hiddencat'";
+		$res = $dbr->query( $sql, __METHOD__ );
+
+		# Add the results to the link cache
+		$lb->addResultToCache( LinkCache::singleton(), $res );
+
+		# Remove categories with hiddencat
+		foreach ( $res as $row ) {
+			if ( isset( $row->pp_value ) ) {
+				unset( $categories[$row->page_title] );
+			}
+		}
+		
+		# Add the remaining categories to the skin
 		$sk = $wgUser->getSkin();
 		foreach ( $categories as $category => $unused ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
@@ -389,11 +411,11 @@ class OutputPage {
 		// Versioning...
 		$this->mTemplateIds += (array)$parserOutput->mTemplateIds;
 		
-		# Display title
+		// Display title
 		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
 			$this->setPageTitle( $dt );
 
-		# Hooks registered in the object
+		// Hooks registered in the object
 		global $wgParserOutputHooks;
 		foreach ( $parserOutput->getOutputHooks() as $hookInfo ) {
 			list( $hookName, $data ) = $hookInfo;

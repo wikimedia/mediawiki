@@ -73,12 +73,18 @@ class LinkBatch {
 	 * Return an array mapping PDBK to ID
 	 */
 	function executeInto( &$cache ) {
-		$fname = 'LinkBatch::executeInto';
-		wfProfileIn( $fname );
-		// Do query
+		wfProfileIn( __METHOD__ );
 		$res = $this->doQuery();
+		$ids = $this->addResultToCache( $cache, $res );
+		wfProfileOut( __METHOD__ );
+		return $ids;
+	}
+
+	/**
+	 * Add a ResultWrapper containing IDs and titles to a LinkCache object
+	 */
+	function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
-			wfProfileOut( $fname );
 			return array();
 		}
 
@@ -92,7 +98,6 @@ class LinkBatch {
 			$ids[$title->getPrefixedDBkey()] = $row->page_id;
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
-		$res->free();
 
 		// The remaining links in $data are bad links, register them as such
 		foreach ( $remaining as $ns => $dbkeys ) {
@@ -102,7 +107,6 @@ class LinkBatch {
 				$ids[$title->getPrefixedDBkey()] = 0;
 			}
 		}
-		wfProfileOut( $fname );
 		return $ids;
 	}
 
@@ -110,12 +114,10 @@ class LinkBatch {
 	 * Perform the existence test query, return a ResultWrapper with page_id fields
 	 */
 	function doQuery() {
-		$fname = 'LinkBatch::doQuery';
-
 		if ( $this->isEmpty() ) {
 			return false;
 		}
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		// Construct query
 		// This is very similar to Parser::replaceLinkHolders
@@ -123,22 +125,21 @@ class LinkBatch {
 		$page = $dbr->tableName( 'page' );
 		$set = $this->constructSet( 'page', $dbr );
 		if ( $set === false ) {
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE $set";
 
 		// Do query
-		$res = new ResultWrapper( $dbr,  $dbr->query( $sql, $fname ) );
-		wfProfileOut( $fname );
+		$res = new ResultWrapper( $dbr,  $dbr->query( $sql, __METHOD__ ) );
+		wfProfileOut( __METHOD__ );
 		return $res;
 	}
 
 	/**
 	 * Construct a WHERE clause which will match all the given titles.
-	 * Give the appropriate table's field name prefix ('page', 'pl', etc).
 	 *
-	 * @param $prefix String: ??
+	 * @param string $prefix the appropriate table's field name prefix ('page', 'pl', etc)
 	 * @return string
 	 * @public
 	 */
