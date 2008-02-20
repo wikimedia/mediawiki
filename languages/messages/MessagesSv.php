@@ -969,7 +969,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
 'rightslogtext'  => 'Detta är en logg över ändringar av användares rättigheter.',
-'rightslogentry' => 'grupptillhörighet för $1 ändrad från $2 till $3',
+'rightslogentry' => 'ändrade grupptillhörighet för $1 från $2 till $3',
 'rightsnone'     => '(inga)',
 
 # Recent changes
@@ -1141,7 +1141,8 @@ PICT # allmänt bildprefix
 'nolinkstoimage'            => 'Inga sidor länkar till den här bilden.',
 'sharedupload'              => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'          => 'Vänligen se $1 för mer information.',
-'shareduploadwiki-linktext' => 'Filens beskrivningssida',
+'shareduploadwiki-desc'     => 'Beskrivningen på $1 där visas nedan.',
+'shareduploadwiki-linktext' => 'filens beskrivningssida',
 'noimage'                   => 'Det finns ingen fil med detta namn. Du kan $1.',
 'noimage-linktext'          => 'ladda upp den',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',

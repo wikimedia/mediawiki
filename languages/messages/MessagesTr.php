@@ -213,7 +213,7 @@ $messages = array(
 'toolbox'           => 'Araçlar',
 'userpage'          => 'Kullanıcı sayfasını görüntüle',
 'projectpage'       => 'Proje sayfasına bak',
-'imagepage'         => 'Resim sayfasını görüntüle',
+'imagepage'         => 'Medya sayfasını görüntüle',
 'mediawikipage'     => 'Mesaj sayfasını göster',
 'templatepage'      => 'Şablon sayfasını görüntüle',
 'viewhelppage'      => 'Yardım sayfasına bak',
@@ -261,7 +261,8 @@ $messages = array(
 'badaccess-group2' => 'Yapmak istediğiniz işlem, sadece $1 grubundaki kullanıcılardan biri tarafından yapılabilir.',
 'badaccess-groups' => 'Yapmak istediğiniz işlem, sadece $1 grubundaki kullanıcılardan biri tarafından yapılabilir.',
 
-'versionrequired' => "MediaWiki'nin $1 sürümü gerekiyor",
+'versionrequired'     => "MediaWiki'nin $1 sürümü gerekiyor",
+'versionrequiredtext' => "Bu sayfayı kullanmak için MediaWiki'nin $1 versiyonu gerekmektedir. [[Special:Version|Versiyon sayfasına]] bakınız.",
 
 'ok'                      => 'TAMAM',
 'retrievedfrom'           => '"$1"\'dan alındı',
@@ -354,9 +355,11 @@ Sorgu: $2',
 'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
 'protectedinterface'   => 'Bu sayfa yazılımın arayüz metnini sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
 'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [http://translatewiki.net/wiki/Main_Page?setlang=tr Betawiki]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
+'sqlhidden'            => '(SQL gizli sorgu)',
 'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü "kademeli" seçeneği aktif hale getirilerek koruma altına alınan şu sayfalarda kullanılmaktadır:
 $2',
 'namespaceprotected'   => "'''$1''' alandındaki sayfaları düzenlemeye izniniz bulunmamaktadır.",
+'customcssjsprotected' => 'Bu sayfayı değiştirmeye yetkiniz bulunmamaktadır, çünkü bu sayfa başka bir kullanıcının kişisel ayarlarını içermektedir.',
 'ns-specialprotected'  => '{{ns:special}} alanadı içindeki sayfalar değiştirilemez.',
 
 # Login and logout pages
@@ -433,13 +436,17 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'invalidemailaddress'        => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',
 'accountcreated'             => 'Hesap açıldı',
 'accountcreatedtext'         => '$1 için bir kullanıcı hesabı açıldı.',
-'createaccount-title'        => '{{SITENAME}} icin yeni kullanıcı oluşturulması',
+'createaccount-title'        => '{{SITENAME}} için yeni kullanıcı hesabı oluşturulması',
 'loginlanguagelabel'         => 'Dil: $1',
 
 # Password reset dialog
-'resetpass'           => 'Kullanıcı parolayı sıfırla',
-'resetpass_header'    => 'Parolayı sıfırla',
-'resetpass_forbidden' => 'Parolalar {{SITENAME}} icin değiştirilmiyor',
+'resetpass'               => 'Kullanıcı parolasını sıfırla',
+'resetpass_header'        => 'Parolayı sıfırla',
+'resetpass_submit'        => 'Şifreyi ayarlayın ve oturum açın',
+'resetpass_success'       => 'Parolanız başarıyla değiştirldi! Şimdi oturumunuz açılıyor...',
+'resetpass_bad_temporary' => 'Geçersiz geçisi parola. Zaten başarıyla parolanızı değiştirmiş veya yeni geçici şifre istemiş olabilirsiniz.',
+'resetpass_forbidden'     => 'Parolalar {{SITENAME}} sitesinde değiştirilemiyor',
+'resetpass_missing'       => 'Form data yok.',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -464,21 +471,23 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'hr_tip'          => 'Yatay çizgi (çok sık kullanmayın)',
 
 # Edit pages
-'summary'                  => 'Özet',
-'subject'                  => 'Konu/başlık',
-'minoredit'                => 'Küçük değişiklik',
-'watchthis'                => 'Sayfayı izle',
-'savearticle'              => 'Sayfayı kaydet',
-'preview'                  => 'Önizleme',
-'showpreview'              => 'Önizlemeyi göster',
-'showlivepreview'          => 'Canlı önizleme',
-'showdiff'                 => 'Değişiklikleri göster',
-'anoneditwarning'          => 'Oturum açmadığınızdan maddenin değişiklik kayıtlarına rumuzunuz yerine IP adresiniz kaydedilecektir.',
-'missingsummary'           => "'''Uyarı:''' Herhangi bir özet yazmadın. Kaydet tuşu bir daha bastığında sayfayı özetsiz kaydetilecek.",
-'missingcommenttext'       => 'Lütfen aşağıda bir açıklama yazınız.',
-'summary-preview'          => 'Önizleme özeti',
-'blockedtitle'             => 'Kullanıcı erişimi engellendi.',
-'blockedtext'              => '<big>Erişiminiz $1 tarafından durdurulmuştur.</big>
+'summary'                   => 'Özet',
+'subject'                   => 'Konu/başlık',
+'minoredit'                 => 'Küçük değişiklik',
+'watchthis'                 => 'Sayfayı izle',
+'savearticle'               => 'Sayfayı kaydet',
+'preview'                   => 'Önizleme',
+'showpreview'               => 'Önizlemeyi göster',
+'showlivepreview'           => 'Canlı önizleme',
+'showdiff'                  => 'Değişiklikleri göster',
+'anoneditwarning'           => 'Oturum açmadığınızdan maddenin değişiklik kayıtlarına rumuzunuz yerine IP adresiniz kaydedilecektir.',
+'missingsummary'            => "'''Uyarı:''' Herhangi bir özet yazmadın. Kaydet tuşu bir daha bastığında sayfayı özetsiz kaydetilecek.",
+'missingcommenttext'        => 'Lütfen aşağıda bir açıklama yazınız.',
+'missingcommentheader'      => "'''Hatırlatıcı:''' Bu yorum için konu/başlık sunmadınız. Eğer tekrar Kaydet tuşuna basarsanız, değişikliğiniz konu/başlık olmadan kaydedilecektir.",
+'summary-preview'           => 'Önizleme özeti',
+'subject-preview'           => 'Konu/Başlık önizlemesi',
+'blockedtitle'              => 'Kullanıcı erişimi engellendi.',
+'blockedtext'               => '<big>Erişiminiz $1 tarafından durdurulmuştur.</big>
 
 Sizi engelleyen yönetici: $1. Engelleme sebebi: \'\'$2\'\'.
 
@@ -487,70 +496,85 @@ Belirtilen sebeb göre engellenmenizin uygun olmadığını düşünüyorsanız,
 Eğer [[Special:Preferences|tercihler]] kısmında geçerli bir e-posta adresi girmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamazsınız.
 
 Şu anda IP adresiniz $3. Lütfen sorgu yaparken bu adresi belirtiniz.',
-'blockednoreason'          => 'sebeb verilmedi',
-'blockedoriginalsource'    => "'''$1''' sayfasının kaynak metni aşağıdır:",
-'blockededitsource'        => "'''$1''' sayfasında '''yaptığınız değişikliğe''' ait metin aşağıdadır:",
-'whitelistedittitle'       => 'Değişiklik yapmak için oturum açmalısınız',
-'whitelistedittext'        => 'Değişiklik yapabilmek için $1.',
-'whitelistreadtitle'       => 'Okumak için oturum açmalısınız',
-'whitelistreadtext'        => 'Sayfaları okuyabilmek için [[Special:Userlogin|oturum açmalısınız]].',
-'whitelistacctitle'        => 'Hesap açma izniniz yok.',
-'confirmedittitle'         => 'Değişiklik yapmak için e-posta onaylaması gerekiyor',
-'confirmedittext'          => 'Sayfa değiştirmeden önce e-posta adresinizi onaylamalısınız. Lütfen [[Special:Preferences|tercihler]] kısmından e-postanızı ekleyin ve onaylayın.',
-'nosuchsectiontitle'       => 'Böyle bir bölüm yok',
-'loginreqtitle'            => 'Oturum açmanız gerekiyor',
-'loginreqlink'             => 'oturum aç',
-'loginreqpagetext'         => 'Öbür sayfaları görmek için $1 olmalısınız.',
-'accmailtitle'             => 'Parola gönderildi.',
-'accmailtext'              => "'$1' kullanıcısına ait parola $2 adresine gönderildi.",
-'newarticle'               => '(Yeni)',
-'newarticletext'           => "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız. Bu sayfayı yaratmak için aşağıdaki metin kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Buraya yanlışlıkla geldiyseniz, programınızın '''Geri''' tuşuna tıklayınız.",
-'anontalkpagetext'         => "----
+'autoblockedtext'           => 'IP adresiniz otomatik olarak engellendi çünkü başka bir kullaınıcı tarafından kullanılmaktaydı, $1 tarafından engellendi.
+Bunun için şu sebep belirtildi:
+:\'\'$2\'\'
+
+* Engellenmenin başlangıç zamanı: $8
+* Engellenmenin bitiş zamanı: $6
+
+Engelleme hakkında tartışmak için $1 ile veya diğer [[{{MediaWiki:Grouppage-sysop}}|yöneticilerden]] biriyle irtibata geçebilirsiniz.
+
+Not, [[Special:Preferences|kullanıcı tercihlerinize]] geçerli bir e-mail adresi eklemediyesiniz veya onu kullandığınız engellenmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamayabilirsiniz.
+
+Engellenme ID\'niz $5. Lütfen yapacağınız herhangi sorgularda bu ID bulunsun.',
+'blockednoreason'           => 'sebep verilmedi',
+'blockedoriginalsource'     => "'''$1''' sayfasının kaynak metni aşağıdır:",
+'blockededitsource'         => "'''$1''' sayfasında '''yaptığınız değişikliğe''' ait metin aşağıdadır:",
+'whitelistedittitle'        => 'Değişiklik yapmak için oturum açmalısınız',
+'whitelistedittext'         => 'Değişiklik yapabilmek için $1.',
+'whitelistreadtitle'        => 'Okumak için oturum açmalısınız',
+'whitelistreadtext'         => 'Sayfaları okuyabilmek için [[Special:Userlogin|oturum açmalısınız]].',
+'whitelistacctitle'         => 'Hesap açma izniniz yok.',
+'confirmedittitle'          => 'Değişiklik yapmak için e-posta onaylaması gerekiyor',
+'confirmedittext'           => 'Sayfa değiştirmeden önce e-posta adresinizi onaylamalısınız. Lütfen [[Special:Preferences|tercihler]] kısmından e-postanızı ekleyin ve onaylayın.',
+'nosuchsectiontitle'        => 'Böyle bir bölüm yok',
+'nosuchsectiontext'         => 'Bulunmayan bir konu başlığını değiştirmeyi denediniz. Burada $1 isimli bir konu başlığı bulunmamaktadır, katkınızı kaydedecek bir yer bulunmamaktadır.',
+'loginreqtitle'             => 'Oturum açmanız gerekiyor',
+'loginreqlink'              => 'oturum aç',
+'loginreqpagetext'          => 'Diğer sayfaları görmek için $1 olmalısınız.',
+'accmailtitle'              => 'Parola gönderildi.',
+'accmailtext'               => "'$1' kullanıcısına ait parola $2 adresine gönderildi.",
+'newarticle'                => '(Yeni)',
+'newarticletext'            => "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız. Bu sayfayı yaratmak için aşağıdaki metin kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Buraya yanlışlıkla geldiyseniz, programınızın '''Geri''' tuşuna tıklayınız.",
+'anontalkpagetext'          => "----
 ''Bu kayıtlı olmayan ya da kayıtlı adıyla sisteme giriş yapmamış bir kullanıcının mesaj sayfasıdır. Bu sebeple kimliği IP adresi ile gösterilmektedir. Bu tür IP adresleri diğer kişiler tarafından payşılabilir. Eğer siz de bir anonim kullanıcı iseniz ve yöneltilen yorumlar sizle ilgili değilse, [[Special:Userlogin|kayıt olun ya da sisteme girin ki]] ileride başka yanlış anlaşılma olmasın.''",
-'noarticletext'            => 'Bu sayfa boştur. Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]] veya bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazabilirsiniz].',
-'clearyourcache'           => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
-'usercssjsyoucanpreview'   => "<strong>İpucu:</strong> Sayfayı kaydetmeden önce <font style=\"border: 1px solid #0; background: #EEEEEE; padding : 2px\">'''önizlemeyi göster'''</font>'e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
-'usercsspreview'           => "'''Sadece test ediyorsun ya da önizleme görüyorsun - kullanıcı CSS dosyası henüz kaydolmadı.'''",
-'userjspreview'            => "'''Sadece test ediyorsun ya da önizleme görüyorsun - kullanıcı JavaScript'i henüz kaydolmadı.'''",
-'userinvalidcssjstitle'    => "''Uyarı:''' \"\$1\" adıyla bir tema yoktur. tema-adı.css ve .js dosyalarının adları küçük harf ile yazması gerek, yani {{ns:user}}:Temel/'''M'''onobook.css değil, {{ns:user}}:Temel/'''m'''onobook.css.",
-'updated'                  => '(Güncellendi)',
-'note'                     => '<strong>Not: </strong>',
-'previewnote'              => 'Bu yalnızca bir önizlemedir, ve değişiklikleriniz henüz kaydedilmemiştir!',
-'session_fail_preview'     => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
-'editing'                  => '"$1" sayfasını değiştirmektesiniz',
-'editinguser'              => '"$1" sayfasını değiştirmektesiniz',
-'editingsection'           => '"$1" sayfasında bölüm değiştirmektesiniz',
-'editingcomment'           => '$1 sayfasına mesaj eklemektesiniz.',
-'editconflict'             => 'Değişiklik çakışması: $1',
-'explainconflict'          => 'Siz sayfayı değiştirirken başka biri de değişiklik yaptı.
+'noarticletext'             => 'Bu sayfa boştur. Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]] veya bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazabilirsiniz].',
+'userpage-userdoesnotexist' => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
+'clearyourcache'            => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
+'usercssjsyoucanpreview'    => "<strong>İpucu:</strong> Sayfayı kaydetmeden önce <font style=\"border: 1px solid #0; background: #EEEEEE; padding : 2px\">'''önizlemeyi göster'''</font>'e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
+'usercsspreview'            => "'''Sadece test ediyorsun ya da önizleme görüyorsun - kullanıcı CSS dosyası henüz kaydolmadı.'''",
+'userjspreview'             => "'''Sadece test ediyorsun ya da önizleme görüyorsun - kullanıcı JavaScript'i henüz kaydolmadı.'''",
+'userinvalidcssjstitle'     => "''Uyarı:''' \"\$1\" adıyla bir tema yoktur. tema-adı.css ve .js dosyalarının adları küçük harf ile yazması gerek, yani {{ns:user}}:Temel/'''M'''onobook.css değil, {{ns:user}}:Temel/'''m'''onobook.css.",
+'updated'                   => '(Güncellendi)',
+'note'                      => '<strong>Not: </strong>',
+'previewnote'               => 'Bu yalnızca bir önizlemedir, ve değişiklikleriniz henüz kaydedilmemiştir!',
+'session_fail_preview'      => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
+'editing'                   => '"$1" sayfasını değiştirmektesiniz',
+'editinguser'               => '"$1" sayfasını değiştirmektesiniz',
+'editingsection'            => '"$1" sayfasında bölüm değiştirmektesiniz',
+'editingcomment'            => '$1 sayfasına mesaj eklemektesiniz.',
+'editconflict'              => 'Değişiklik çakışması: $1',
+'explainconflict'           => 'Siz sayfayı değiştirirken başka biri de değişiklik yaptı.
 Yukarıdaki yazı sayfanın şu anki halini göstermektedir.
 Sizin değişiklikleriniz alta gösterilmiştir. Son değişiklerinizi yazının içine eklemeniz gerekecektir. "Sayfayı kaydet"e bastığınızda <b>sadece</b> yukarıdaki yazı kaydedilecektir. <br />',
-'yourtext'                 => 'Sizin metniniz',
-'storedversion'            => 'Kaydedilmiş metin',
-'editingold'               => '<strong>DİKKAT: Sayfanın eski bir sürümünde değişiklik yapmaktasınız. 
+'yourtext'                  => 'Sizin metniniz',
+'storedversion'             => 'Kaydedilmiş metin',
+'editingold'                => '<strong>DİKKAT: Sayfanın eski bir sürümünde değişiklik yapmaktasınız. 
 Kaydettiğinizde bu tarihli sürümden günümüze kadar olan değişiklikler yok olacaktır.</strong>',
-'yourdiff'                 => 'Karşılaştırma',
-'copyrightwarning'         => "<strong>Lütfen dikkat:</strong> {{SITENAME}} sitesine yapılan bütün katkılar <i>$2</i>
+'yourdiff'                  => 'Karşılaştırma',
+'copyrightwarning'          => "<strong>Lütfen dikkat:</strong> {{SITENAME}} sitesine yapılan bütün katkılar <i>$2</i>
 sözleşmesi kapsamındadır (ayrıntılar için $1'a bakınız).
 Yaptığınız katkının başka katılımcılarca acımasızca değiştirilmesini ya da özgürce ve sınırsızca başka yerlere dağıtılmasını istemiyorsanız, katkıda bulunmayınız.<br />
 Ayrıca, buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldığına, ya da kamuya açık bir kaynaktan ya da başka bir özgür kaynaktan kopyalandığına güvence vermiş oluyorsunuz.<br />
 <strong><center>TELİF HAKKI İLE KORUNAN HİÇBİR ÇALIŞMAYI BURAYA EKLEMEYİNİZ!</center></strong>",
-'copyrightwarning2'        => 'Lütfen, {{SITENAME}} sitesinea bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
+'copyrightwarning2'         => 'Lütfen, {{SITENAME}} sitesinea bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
-'longpagewarning'          => '<strong>UYARI: Bu sayfa $1 kilobayt büyüklüğündedir; bazı tarayıcılar değişiklik yaparken 32kb ve üstü büyüklüklerde sorunlar yaşayabilir. Sayfayı bölümlere ayırmaya çalışın.</strong>',
-'readonlywarning'          => '<strong>DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz</strong>',
-'protectedpagewarning'     => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca yönetici olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
-'semiprotectedpagewarning' => "'''Uyarı''': Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.",
-'cascadeprotectedwarning'  => "'''UYARI:''' Bu sayfa sadece yöneticilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü \"kademeli koruma\" seçeneği aktif hale getirilerek korumaya alınan şu sayfalarda kullanılmaktadır:",
-'templatesused'            => 'Bu sayfada kullanılan şablonlar:',
-'templatesusedpreview'     => 'Bu önizlemede kullanılan şablonlar:',
-'templatesusedsection'     => 'Bu bölümde kullanılan şablonlar:',
-'template-protected'       => '(koruma)',
-'template-semiprotected'   => '(yarı-koruma)',
-'nocreatetext'             => '{{SITENAME}}, yeni sayfa oluşturulabilmesini engelledi.
+'longpagewarning'           => '<strong>UYARI: Bu sayfa $1 kilobayt büyüklüğündedir; bazı tarayıcılar değişiklik yaparken 32kb ve üstü büyüklüklerde sorunlar yaşayabilir. Sayfayı bölümlere ayırmaya çalışın.</strong>',
+'readonlywarning'           => '<strong>DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz</strong>',
+'protectedpagewarning'      => 'UYARI: Bu sayfa koruma altına alınmıştır ve yalnızca yönetici olanlar tarafından değiştirilebilir. Bu sayfayı değiştirirken lütfen [[Project:Koruma altına alınmış sayfa|korumalı sayfa kurallarını]] uygulayınız.',
+'semiprotectedpagewarning'  => "'''Uyarı''': Bu sayfa sadece kayıtlı kullanıcı olanlar tarafından değiştirilebilir.",
+'cascadeprotectedwarning'   => "'''UYARI:''' Bu sayfa sadece yöneticilik yetkileri olan kullanıcıların değişiklik yapabileceği şekilde koruma altına alınmıştır. Çünkü \"kademeli koruma\" seçeneği aktif hale getirilerek korumaya alınan şu sayfalarda kullanılmaktadır:",
+'templatesused'             => 'Bu sayfada kullanılan şablonlar:',
+'templatesusedpreview'      => 'Bu önizlemede kullanılan şablonlar:',
+'templatesusedsection'      => 'Bu bölümde kullanılan şablonlar:',
+'template-protected'        => '(koruma)',
+'template-semiprotected'    => '(yarı-koruma)',
+'nocreatetext'              => '{{SITENAME}}, yeni sayfa oluşturulabilmesini engelledi.
 Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Special:Userlogin|oturum açabilir]], değilseniz [[Special:Userlogin|kayıt olabilirsiniz]].',
-'permissionserrors'        => 'Müsaade hataları',
-'recreate-deleted-warn'    => "'''Uyarı: Daha önceden silinmiş bir sayfayı yeniden oluşturuyorsunuz.'''
+'nocreate-loggedin'         => '{{SITENAME}} üzerinde yeni sayfalar oluşturmaya yetkiniz yok.',
+'permissionserrors'         => 'İzin hataları',
+'recreate-deleted-warn'     => "'''Uyarı: Daha önceden silinmiş bir sayfayı yeniden oluşturuyorsunuz.'''
 
 Bu sayfayı düzenlemeye devam ederken bunun uygun olup olmadığını düşünmelisiniz.
 Kolaylık olması açısından bu sayfanın silme kayıtları burada belirtilmiştir:",
@@ -608,15 +632,15 @@ Tanımlar: (güncel) = güncel sürümle aradaki fark,
 'oversightlog' => 'Gözetmen kayıtları',
 
 # History merging
-'mergehistory-from'                => 'Kaynak sayfası:',
-'mergehistory-into'                => 'Gidilecek sayfası:',
-'mergehistory-no-source'           => 'Kaynak sayfa $1 yokdur.',
-'mergehistory-no-destination'      => 'Gidilecek sayfa $1 yokdur.',
-'mergehistory-invalid-source'      => 'Kaynak sayfa geçerli bir isim olmalı.',
-'mergehistory-invalid-destination' => 'Gidecek sayfa geçerli bir isim olmalı.',
+'mergehistory-from'                => 'Kaynak sayfa:',
+'mergehistory-into'                => 'Hedef sayfa:',
+'mergehistory-no-source'           => 'Kaynak sayfa $1 bulunmamaktadır.',
+'mergehistory-no-destination'      => 'Hedef sayfa $1 bulunmamaktadır.',
+'mergehistory-invalid-source'      => 'Kaynak sayfanın geçerli bir başlığı olmalı.',
+'mergehistory-invalid-destination' => 'Hedef sayfanın geçerli bir ismi olmalı.',
 
 # Merge log
-'mergelog' => 'Birleştirme log',
+'mergelog' => 'Birleştirme kaydı',
 
 # Diffs
 'history-title'           => '"$1" sayfasının geçmişi',
@@ -860,7 +884,7 @@ veya doğrudan bağlantı için
 'imagelist_search_for'      => 'Resim adı ara:',
 
 # File reversion
-'filerevert'         => '$1 eski haline döndür',
+'filerevert'         => '$1 dosyasını eski haline döndür',
 'filerevert-legend'  => 'Dosyayı eski haline döndür',
 'filerevert-comment' => 'Yorum:',
 'filerevert-submit'  => 'Eski haline döndür',
@@ -995,7 +1019,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'speciallogtitlelabel' => 'Başlık:',
 'log'                  => 'Kayıtlar',
 'all-logs-page'        => 'Tüm kayıtlar',
-'log-search-legend'    => 'Logları ara',
+'log-search-legend'    => 'Kayıtları ara',
 'alllogstext'          => '[[Special:Log/upload|Yükleme]], [[Special:Log/delete|silme]], [[Special:Log/move|taşıma]], [[Special:Log/protect|koruma altına alma]], [[Special:Log/newusers|yeni kullanıcı]], [[Special:Log/renameuser|kullanıcıların yeniden adlandırmaları]], [[Special:Log/block|erişim engelleme]], [[Special:Log/rights|yönetici hareketlerinin]] ve [[Special:Log/makebot|botların durumunun]] tümünün kayıtları. 
 
 Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsiniz.',
@@ -1497,7 +1521,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_mathml' => 'Mümkünse MathML (daha deneme aşamasında)',
 
 # Patrol log
-'patrol-log-page' => 'Kontrol log',
+'patrol-log-page' => 'Kontrol kaydı',
 'patrol-log-auto' => '(otomatik)',
 
 # Image deletion
@@ -1711,7 +1735,7 @@ birşey yok.
 Bu onay kodu $4 tarihine kadar geçerli olacak.',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[URL maalesef çok uzun]',
+'scarytranscludetoolong' => '[Maalesef URL çok uzun]',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Sil])',
@@ -1778,7 +1802,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 
 # Special:Version
 'version-variables'        => 'Değişkenler',
-'version-other'            => 'Başka',
+'version-other'            => 'Diğer',
 'version-version'          => 'Versiyon',
 'version-license'          => 'Lisans',
 'version-software-product' => 'Ürün',

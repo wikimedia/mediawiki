@@ -729,6 +729,10 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'revdelete-logaction'         => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}} farita por reĝimo $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
 
+# History merging
+'mergehistory-from' => 'Fontpaĝo:',
+'mergehistory-into' => 'Celpaĝo:',
+
 # Merge log
 'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (revizioj gxis $3)',
 'revertmerge'        => 'Malkunigu',
@@ -903,13 +907,14 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'uploadnologintext'           => 'Se vi volas alŝuti dosierojn, vi devas [[Special:Userlogin|ensaluti]].',
 'upload_directory_read_only'  => 'La TTT-servilo ne povas alskribi la alŝuto-dosierujon ($1).',
 'uploaderror'                 => 'Eraro okazis dum alŝuto',
-'uploadtext'                  => 'Uzu la jenan formon por alŝuti dosierojn; okulumi, aux serĉi antaŭe alŝutitajn bildojn, iru la [[Special:Imagelist|Listo de alŝutitaj dosieroj]]. Alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Loglibro de alŝutoj]].
+'uploadtext'                  => "Uzu la jenan formon por alŝuti dosierojn.
+Okulumi aux serĉi antaŭe alŝutitajn bildojn, iru la [[Special:Imagelist|Listo de alŝutitaj dosieroj]]. Alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Loglibro de alŝutoj]].
 
 Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 
-* <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.jpg]]</nowiki>
-* <nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|teksto por retumiloj negrafikaj]]</nowiki>
-* <nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki> por ligi rekte al la dosiero.',
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.jpg]]</nowiki>''' aŭ
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|teksto por retumiloj negrafikaj]]</nowiki>''' aŭ
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero.",
 'upload-permitted'            => 'Permesitaj dosiertipoj: $1.',
 'upload-preferred'            => 'Preferitaj dosiertipoj: $1.',
 'uploadlog'                   => 'loglibro de alŝutaĵoj',
@@ -926,6 +931,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'ignorewarnings'              => 'Ignoru ĉiajn avertojn',
 'illegalfilename'             => 'La dosiernomo $1 entenas karaktrojn kiuj ne estas permesitaj en paĝaj titoloj. Bonvolu renomi la dosieron kaj provu denove alŝuti ĝin.',
 'badfilename'                 => 'Dosiernomo estis ŝanĝita al "$1".',
+'filetype-missing'            => 'Ĉi dosiero ne inkluzivas finaĵon de dosiernomo (kiel ".jpg").',
 'large-file'                  => 'Oni rekomendas, ke dosieroj ne superu grandon de $1 bitokoj; tiu ĉi enhavas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile'                   => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
@@ -993,6 +999,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'uploadnewversion-linktext' => 'Alŝutu novan version de ĉi tiu dosiero',
 'imagelist_date'            => 'Dato',
 'imagelist_name'            => 'Nomo',
+'imagelist_user'            => 'Uzanto',
 'imagelist_size'            => 'Grandeco',
 'imagelist_description'     => 'Priskribo',
 
@@ -1001,6 +1008,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'filerevert-legend'  => 'Restarigu dosieron',
 'filerevert-intro'   => '<span class="plainlinks">Vi restarigas \'\'\'[[Media:$1|$1]]\'\'\' al la [$4 versio de $3, $2].</span>',
 'filerevert-comment' => 'Komento:',
+'filerevert-submit'  => 'Restarigu',
 
 # File deletion
 'filedelete'                  => 'Forigu $1',
@@ -1163,6 +1171,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'allpagesnext'      => 'Sekven',
 'allpagessubmit'    => 'Ek!',
 'allpagesprefix'    => 'Montru paĝojn kun prefikso:',
+'allpages-bad-ns'   => '{{SITENAME}} ne havas nomspacon "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Montru uzantojn ekde:',
@@ -1234,6 +1243,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 'created'                      => 'kreita',
 'enotif_subject'               => 'la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED de $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vidu $1 por ĉiuj ŝanĝoj de post via lasta vizito.',
+'enotif_lastdiff'              => 'Vidu $1 por okulumi cxi ŝanĝon.',
+'enotif_anon_editor'           => 'anonima uzanto $1',
 'enotif_body'                  => 'Kara $WATCHINGUSERNAME,
 
 la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR, vidu {{fullurl:$PAGETITLE RAWURL}} por la nuna versio.
@@ -1405,7 +1416,7 @@ $1',
 'sp-contributions-username'    => 'IP-adreso aŭ uzantonomo:',
 'sp-contributions-submit'      => 'Serĉu',
 
-'sp-newimages-showfrom' => 'Montru novajn bildojn komencante de $1',
+'sp-newimages-showfrom' => 'Montru novajn dosierojn komencante de $1',
 
 # What links here
 'whatlinkshere'       => 'Ligiloj ĉi tien',
@@ -1421,14 +1432,14 @@ $1',
 'whatlinkshere-links' => '← ligiloj',
 
 # Block/unblock
-'blockip'              => 'Forbaru uzanton/IP-adreson',
-'blockiptext'          => "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[{{MediaWiki:Policy-url}}|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
-'ipaddress'            => 'IP-adreso/nomo',
-'ipadressorusername'   => 'IP adreso aŭ uzantonomo',
-'ipbexpiry'            => 'Blokdaŭro',
-'ipbreason'            => 'Kialo',
-'ipbreasonotherlist'   => 'Alia kaŭzo',
-'ipbreason-dropdown'   => '*Oftaj kialoj de forbaro
+'blockip'                  => 'Forbaru uzanton/IP-adreson',
+'blockiptext'              => "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[{{MediaWiki:Policy-url}}|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
+'ipaddress'                => 'IP-adreso/nomo',
+'ipadressorusername'       => 'IP adreso aŭ uzantonomo',
+'ipbexpiry'                => 'Blokdaŭro',
+'ipbreason'                => 'Kialo',
+'ipbreasonotherlist'       => 'Alia kaŭzo',
+'ipbreason-dropdown'       => '*Oftaj kialoj de forbaro
 ** Enmetas malveraĵojn
 ** Forviŝas entenon el paĝoj
 ** Entrudas ligilojn al eksteraj paĝaroj
@@ -1436,49 +1447,51 @@ $1',
 ** Terurigema sinteno
 ** Misuzo de pluraj salutnomoj
 ** Neakceptebla uzanto-nomo',
-'ipbanononly'          => 'Forbaru nur anonimulojn',
-'ipbcreateaccount'     => 'Malpermesu kreadon de konto',
-'ipbemailban'          => 'Malebligu al uzanto sendi retpoŝton.',
-'ipbenableautoblock'   => 'Aŭtomate forbaru la lastan IP-adreson uzitan de la uzanto, kaj ĉiajn subsekvantajn adresojn el kiuj tiu provos redakti',
-'ipbsubmit'            => 'Forbaru la adreson',
-'ipbother'             => 'Alia daŭro',
-'ipboptions'           => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'       => 'alia',
-'ipbotherreason'       => 'Alia/aldona kaŭzo:',
-'ipbhidename'          => 'Kaŝu la uzantonomon/IP-on de la forbara loglibro, de la aktuala forbarlisto kaj de la uzantolisto.',
-'badipaddress'         => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
-'blockipsuccesssub'    => 'Oni sukcese forbaris la adreson/nomon.',
-'blockipsuccesstext'   => '"$1" estas forbarita. <br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].',
-'ipb-edit-dropdown'    => 'Redaktu kialojn de forbaro.',
-'ipb-unblock-addr'     => 'Malforbaru $1',
-'ipb-unblock'          => 'Malforbaru uzantnomon aŭ IP-adreson',
-'ipb-blocklist-addr'   => 'Rigardu ekzistantajn forbarojn por $1',
-'unblockip'            => 'Malforbaru IP-adreson/nomon',
-'unblockiptext'        => 'Per la jena formulo vi povas repovigi al iu
+'ipbanononly'              => 'Forbaru nur anonimulojn',
+'ipbcreateaccount'         => 'Malpermesu kreadon de konto',
+'ipbemailban'              => 'Malebligu al uzanto sendi retpoŝton.',
+'ipbenableautoblock'       => 'Aŭtomate forbaru la lastan IP-adreson uzitan de la uzanto, kaj ĉiajn subsekvantajn adresojn el kiuj tiu provos redakti',
+'ipbsubmit'                => 'Forbaru la adreson',
+'ipbother'                 => 'Alia daŭro',
+'ipboptions'               => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'           => 'alia',
+'ipbotherreason'           => 'Alia/aldona kaŭzo:',
+'ipbhidename'              => 'Kaŝu la uzantonomon/IP-on de la forbara loglibro, de la aktuala forbarlisto kaj de la uzantolisto.',
+'badipaddress'             => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
+'blockipsuccesssub'        => 'Oni sukcese forbaris la adreson/nomon.',
+'blockipsuccesstext'       => '"$1" estas forbarita. <br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].',
+'ipb-edit-dropdown'        => 'Redaktu kialojn de forbaro.',
+'ipb-unblock-addr'         => 'Malforbaru $1',
+'ipb-unblock'              => 'Malforbaru uzantnomon aŭ IP-adreson',
+'ipb-blocklist-addr'       => 'Rigardu ekzistantajn forbarojn por $1',
+'unblockip'                => 'Malforbaru IP-adreson/nomon',
+'unblockiptext'            => 'Per la jena formulo vi povas repovigi al iu
 forbarita IP-adreso/nomo la povon enskribi en la vikio.',
-'ipusubmit'            => 'Malforbaru la adreson',
-'unblocked'            => '[[User:$1|$1]] estas malforbarita.',
-'unblocked-id'         => 'Forbaro $1 estas forigita.',
-'ipblocklist'          => 'Listo de forbaritaj IP-adresoj/nomoj',
-'ipblocklist-legend'   => 'Trovu forbaritan uzanton.',
-'ipblocklist-username' => 'Uzantonomo aŭ IP-adreso:',
-'ipblocklist-submit'   => 'Serĉi',
-'blocklistline'        => 'Je $1, $2 forbaris $3 ($4)',
-'infiniteblock'        => 'senfina',
-'expiringblock'        => 'finiĝas je $1',
-'anononlyblock'        => 'nur anonimuloj',
-'ipblocklist-empty'    => 'La forbarlibro estas malplena.',
-'blocklink'            => 'forbaru',
-'unblocklink'          => 'malforbaru',
-'contribslink'         => 'kontribuoj',
-'autoblocker'          => 'Provizore forbarita aŭtomate pro tio, ke vi uzas la saman IP-adreson kiel "$1", kiu estis forbarita pro : "$2".',
-'blocklogpage'         => 'Forbarlibro',
-'blocklogentry'        => 'forbaris [[$1]] por daŭro de $2 $3',
-'blocklogtext'         => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
-'unblocklogentry'      => '$1 estis malbarita',
-'ipb_expiry_invalid'   => 'Nevalida blokdaŭro.',
-'blockme'              => 'Forbaru min',
-'proxyblocksuccess'    => 'Farita.',
+'ipusubmit'                => 'Malforbaru la adreson',
+'unblocked'                => '[[User:$1|$1]] estas malforbarita.',
+'unblocked-id'             => 'Forbaro $1 estas forigita.',
+'ipblocklist'              => 'Listo de forbaritaj IP-adresoj/nomoj',
+'ipblocklist-legend'       => 'Trovu forbaritan uzanton.',
+'ipblocklist-username'     => 'Uzantonomo aŭ IP-adreso:',
+'ipblocklist-submit'       => 'Serĉi',
+'blocklistline'            => 'Je $1, $2 forbaris $3 ($4)',
+'infiniteblock'            => 'senfina',
+'expiringblock'            => 'finiĝas je $1',
+'anononlyblock'            => 'nur anonimuloj',
+'ipblocklist-empty'        => 'La forbarlibro estas malplena.',
+'blocklink'                => 'forbaru',
+'unblocklink'              => 'malforbaru',
+'contribslink'             => 'kontribuoj',
+'autoblocker'              => 'Provizore forbarita aŭtomate pro tio, ke vi uzas la saman IP-adreson kiel "$1", kiu estis forbarita pro : "$2".',
+'blocklogpage'             => 'Forbarlibro',
+'blocklogentry'            => 'forbaris [[$1]] por daŭro de $2 $3',
+'blocklogtext'             => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
+'unblocklogentry'          => '$1 estis malbarita',
+'block-log-flags-nocreate' => 'kreado de kontoj malebligita',
+'block-log-flags-noemail'  => 'retpoŝto blokita',
+'ipb_expiry_invalid'       => 'Nevalida blokdaŭro.',
+'blockme'                  => 'Forbaru min',
+'proxyblocksuccess'        => 'Farita.',
 
 # Developer tools
 'lockdb'              => 'Ŝlosi datumaron',

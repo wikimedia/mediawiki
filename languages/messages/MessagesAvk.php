@@ -841,7 +841,7 @@ N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous
 Yolt ke kalvajayan iyeltak : <strong><tt>$1</tt></strong><br />
 Yolt ke tis iyeltak : <strong><tt>$2</tt></strong><br />
 Va amidaf yolt vay kiblal !',
-'fileexists-thumb'            => "<center>'''Kruldesa ewava'''</center>",
+'fileexists-thumb'            => "<center>'''Kruldes iyeltak'''</center>",
 'fileexists-forbidden'        => 'Milyoltaf iyeltak ixam krulder; vay dimpil aze va memilyoltaf bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Koe pakana bonja milyoltaf iyeltak ixam tir; vay dimpil aze kan ar yolt va bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Ksudanhara',
@@ -850,6 +850,7 @@ Va amidaf yolt vay kiblal !',
 'uploadedimage'               => '« [[$1]] » ksudayan mo zanisiko',
 'overwroteimage'              => 'kalvajayan siatos ke "[[$1]]"',
 'uploaddisabled'              => 'Skalev, staksera va iyeltak tir gritegirayan.',
+'uploaddisabledtext'          => 'Iyeltakkalvajara ko {{SITENAME}} tir gritegirayana.',
 'uploadcorrupt'               => 'Bat iyeltak tir avonanaf ok lumiskaf oke va mewadaf yolt digir.
 Va iyeltak gonageltal.',
 'uploadvirus'                 => 'Iyeltak va kio ruldar ! Pinta se : $1',
@@ -1149,6 +1150,7 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'changed'                      => 'betayan',
 'created'                      => 'reduyun',
 'enotif_lastvisited'           => 'Va $1 disukel ta da va kot betaks mali ironokafa worara wil.',
+'enotif_lastdiff'              => 'Ta wira va bat betaks va $1 disukel.',
 'enotif_anon_editor'           => '$1 yoltiskaf favesik',
 
 # Delete/protect/revert
@@ -1240,6 +1242,7 @@ Si une nouvelle page avec le même nom a été crée depuis la suppression, les 
 'undelete-revision'        => 'Sulayana betara va $1 (ik $2) gan $3 :',
 'undelete-nodiff'          => 'Mek abdif betaks trasin.',
 'undeletebtn'              => 'Skura va dimplekura !',
+'undeletelink'             => 'dimplekura',
 'undeletereset'            => 'Tolplekura',
 'undeletecomment'          => 'Sebuks :',
 'undeletedarticle'         => 'va « [[$1]] » al dimplekur',
@@ -1280,7 +1283,7 @@ $1',
 'sp-contributions-username'    => 'IP mane ok favesikyolt :',
 'sp-contributions-submit'      => 'Aneyara',
 
-'sp-newimages-showfrom' => 'Nedira va warzafa ewava dem toza male $1',
+'sp-newimages-showfrom' => 'Nedira va warzaf iyeltak dem toza male $1',
 
 # What links here
 'whatlinkshere'       => 'Gluyarakiraf bueem',
@@ -1575,14 +1578,16 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'patrol-log-auto' => '(mivaskon)',
 
 # Image deletion
-'deletedrevision'       => '$1 sulayan guazaf betaks',
-'filedeleteerror-short' => 'Rokla sulason va $1 iyeltak',
+'deletedrevision'                 => '$1 sulayan guazaf betaks',
+'filedeleteerror-short'           => 'Rokla sulason va $1 iyeltak',
+'filedelete-current-unregistered' => '"$1" bazen iyeltak me tir koe origak.',
 
 # Browsing diffs
 'previousdiff' => '← Abdifa amiduca',
 'nextdiff'     => 'Radimifa amiduca →',
 
 # Media information
+'widthheightpage'      => '$1×$2, $3 bu',
 'file-info-size'       => '($1 × $2 pixel, iyeltakaldo : $3, MIME ord : $4)',
 'file-nohires'         => '<small>Me deraykan logijaf lum.</small>',
 'svg-long-desc'        => '(SVG iyeltak, prekson $1 × $2 pixels, iyeltakaldo : $3)',
@@ -1590,8 +1595,9 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'show-big-image-thumb' => '<small>Lum ke bata abdinedira : $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages' => 'Warzaf ewaviyeltak yo',
-'noimages'  => 'Mecoba rowina',
+'newimages'    => 'Warzaf ewaviyeltak yo',
+'showhidebots' => '($1 stiernik)',
+'noimages'     => 'Mecoba rowina',
 
 # Bad image list
 'bad_image_list' => 'Breviz tir bat :
@@ -1616,6 +1622,7 @@ Koti ari milconhafi gluyasiki roklon zo krafiar.',
 'exif-imagewidth'                  => 'Mantuca',
 'exif-imagelength'                 => 'Ontinuca',
 'exif-compression'                 => 'Raxivaracave',
+'exif-orientation'                 => 'Woyok',
 'exif-samplesperpixel'             => 'Spertota',
 'exif-xresolution'                 => "Résolution de l'image en largeur",
 'exif-yresolution'                 => "Résolution de l'image en hauteur",
@@ -1630,11 +1637,17 @@ Koti ari milconhafi gluyasiki roklon zo krafiar.',
 'exif-artist'                      => 'Askisik',
 'exif-copyright'                   => 'Digisik va copyright',
 'exif-exifversion'                 => 'Version exif',
+'exif-colorspace'                  => 'Ksevaxo',
 'exif-pixelydimension'             => 'Mante ke enafa ewava',
 'exif-pixelxdimension'             => 'Ontine ke enafa ewava',
 'exif-makernote'                   => 'Notes du fabricant',
 'exif-usercomment'                 => 'Favesikaf sebuks',
 'exif-relatedsoundfile'            => 'Fichier audio lié',
+'exif-fnumber'                     => 'F Ota',
+'exif-brightnessvalue'             => 'Afiuca',
+'exif-lightsource'                 => 'Afiklita',
+'exif-flash'                       => 'Divafira',
+'exif-flashenergy'                 => 'Divafirafa',
 'exif-exposureindex'               => 'Konedireka',
 'exif-filesource'                  => 'Iyeltakklita',
 'exif-scenetype'                   => 'Nakilord',
@@ -1648,10 +1661,16 @@ Koti ari milconhafi gluyasiki roklon zo krafiar.',
 'exif-gpslongitude'                => 'Wak',
 'exif-gpsaltituderef'              => 'Ontinukeka',
 'exif-gpsaltitude'                 => 'Ontinuk',
+'exif-gpsspeedref'                 => 'Kaliucolk',
+'exif-gpstrackref'                 => 'Kallizirafa giva',
 'exif-gpstrack'                    => 'Lizirania',
+'exif-gpsimgdirectionref'          => 'Ewavaniafa giva',
 'exif-gpsimgdirection'             => 'Ewavania',
+'exif-gpsdestlatituderef'          => 'Kallaksiwakafa giva',
 'exif-gpsdestlatitude'             => 'Kof laksiwak',
+'exif-gpsdestlongituderef'         => 'Kalwakafa giva',
 'exif-gpsdestlongitude'            => 'Kof wak',
+'exif-gpsdestdistanceref'          => 'Kalsolumafa giva',
 'exif-gpsdestdistance'             => 'Kofa soluma',
 'exif-gpsdatestamp'                => 'GPS evla',
 
@@ -1670,6 +1689,10 @@ Koti ari milconhafi gluyasiki roklon zo krafiar.',
 'exif-orientation-8' => 'Tournée de 90° à gauche', # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => "n'existe pas",
+
+'exif-subjectdistance-value' => '$1 metrolk',
+
+'exif-lightsource-4' => 'Divafira',
 
 'exif-exposuremode-0' => 'Mivaskafa konedira',
 'exif-exposuremode-1' => 'Nubedafa konedira',
@@ -1799,6 +1822,7 @@ $1',
 'lag-warn-normal' => 'Betaks skuyun weti le $1 verast batliz me zo kovexalatar.',
 
 # Watchlist editor
+'watchlistedit-numitems'      => 'Rinafi suzdasiki va {{PLURAL:$1|1 vergumvelt|$1 vergumvelt}} ruldar, luke prilarabueem.',
 'watchlistedit-noitems'       => 'Rinafi suzdasiki va mek vergumvelt ruldar.',
 'watchlistedit-normal-title'  => 'Betara va suzdasiki',
 'watchlistedit-normal-legend' => 'Divsuzdasikira va vergumvelt',

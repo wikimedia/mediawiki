@@ -594,7 +594,7 @@ $2',
 'logouttitle'                => 'Kijelentkezés',
 'logouttext'                 => '<strong>Kijelentkeztél.</strong>
 
-Névtelenül folytathatod a(z) {{SITENAME}} használatát, vagy ismét bejelentkezhetsz ugyanezzel, vagy egy másik felhasználói névvel. Néhány oldalon lehet, hogy továbbra is azt látod, hogy bejelentkezve vagy, mindaddig, amíg nem üríted ki a böngésződ gyorsítótárát.',
+Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy ismét bejelentkezhetsz ugyanezzel, vagy egy másik felhasználói névvel. Néhány oldalon lehet, hogy továbbra is azt látod, hogy bejelentkezve vagy, mindaddig, amíg nem üríted ki a böngésződ gyorsítótárát.',
 'welcomecreation'            => '== Köszöntünk, $1! ==
 
 A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személyes beállításaidat.',
@@ -731,9 +731,9 @@ A blokkolást $1 tette. Az általa felhozott indok: ''$2''.
 
 * A blokkolás kezdete: $8
 * A blokkolás lejárata: $6
-* Szándékos blokkoló: $7
+* Blokkolt felhasználó: $7
 
-Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolásodat.
+Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolást.
 Az 'E-mail küldése ennek a felhasználónak' funkciót nem használhatod, ha a megadott e-mail cím a
 [[Special:Preferences|fiókbeállításaidban]] nem érvényes, és nem blokkolták annak a használatát.
 Jelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5. Kérjük, hogy érdeklődés esetén lehetőleg mindkettőt add meg.",
@@ -741,32 +741,33 @@ Jelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5. Kérjük, hogy ér
 
 :''$2''
 
-A blokk kezdete: '''$8''', lejárata: '''$6'''. Amíg a blokk életben van, nem tudod szerkeszteni a Wikipédiát. Semmi másban nem korlátoz a blokk – ha csak olvasni szeretnél, minden további nélkül megteheted.
+*A blokk kezdete: '''$8'''
+*A blokk lejárata: '''$6'''
 
-A blokk nem személy szerint téged, hanem az IP-címedet illeti. Egyes IP-címeken többen osztoznak, vagy más-más időpontban különböző felhasználók kapják meg. '''Elképzelhető, hogy egy másnak szánt blokkba futottál bele.''' (Ha nem érted, miért vagy blokkolva, valószínűleg ez a helyzet.) Ebben az esetben elnézésedet kérjük a kellemetlenségért. Próbáld meg bontani az internetkapcsolatot, és újracsatlakozni. Ha ez sem segít, értesítsd az egyik adminisztrátort.
+Kapcsolatba léphetsz $1 felhasználóval, vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolást.
 
-Kapcsolatfelvétel: '''Ha be vagy jelentkezve, és adtál meg email-címet''', küldhetsz levelet a blokkot beállító adminisztrátornak. Ezenkívül felveheted a kapcsolatot valamelyik más adminisztrátorral is.
+Az 'E-mail küldése ennek a felhasználónak' funkciót nem használhatod, ha a megadott e-mail cím a
+[[Special:Preferences|fiókbeállításaidban]] nem érvényes, és nem blokkolták annak a használatát.
 
-Blokkolásod azonosítószáma: $5. Kérjük, hogy érdeklődés esetén add meg ezt az azonosítószámot.",
+A blokkolás azonosítószáma: $5. Kérjük, hogy érdeklődés esetén ezt add meg.",
 'blockednoreason'           => 'nem lett ok megadva',
-'blockedoriginalsource'     => "'''$1''' forrása
-megtalálható alább:",
+'blockedoriginalsource'     => "'''$1''' forrása alább látható:",
 'blockededitsource'         => "'''$1''' lapon '''általad végrehajtott szerkesztések''' szövege:",
-'whitelistedittitle'        => 'A szerkesztéshez be kell lépned',
+'whitelistedittitle'        => 'A szerkesztéshez be kell jelentkezned',
 'whitelistedittext'         => 'A szócikkek szerkesztéséhez $1.',
 'whitelistreadtitle'        => 'Az olvasáshoz be kell lépned',
 'whitelistreadtext'         => '[[Special:Userlogin|Be kell lépned]] ahhoz, hogy cikkeket tudj olvasni.',
-'whitelistacctitle'         => 'Új fiók létrehozása a számodra nem engedélyezett',
-'whitelistacctext'          => 'Ahhoz, hogy ezen a Wikin új nevet regisztrálj [[Special:Userlogin|be kell lépned]] a szükséges engedélyszinttel.',
+'whitelistacctitle'         => 'Nem készíthetsz új felhasználói fiókot',
+'whitelistacctext'          => 'Felhasználói fiókok létrehozásához [[Special:Userlogin|be kell jelentkezned]] a szükséges jogosultságokkal.',
 'confirmedittitle'          => 'E-mail cím megerősítése szükséges a szerkesztéshez',
-'confirmedittext'           => 'A lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|felhasználói beállításaidban]] add meg és ellenőrizd az e-mail címedet.',
+'confirmedittext'           => 'A lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|felhasználói beállításaidban]] írd be, majd erősítsd meg az e-mail címedet.',
 'nosuchsectiontitle'        => 'Nincs ilyen szakasz',
-'nosuchsectiontext'         => 'A(z) $1. szakasz, amit szerkeszteni próbálsz, már nem létezik. Alighanem megváltoztatta valaki a lapot azután, hogy megjelent a böngésződben.',
-'loginreqtitle'             => 'Belépés szükséges',
-'loginreqlink'              => 'Be kell lépned',
+'nosuchsectiontext'         => 'Egy olyan szakaszt próbáltál meg szerkeszteni, amely nem létezik.  Mivel nincs $1. szakasz, ezért nem lehet elmenteni.',
+'loginreqtitle'             => 'Bejelentkezés szükséges',
+'loginreqlink'              => 'Be kell jelentkezned',
 'loginreqpagetext'          => '$1 más oldalak megtekintéséhez.',
 'accmailtitle'              => 'A jelszót elküldtük.',
-'accmailtext'               => '„$1” jelszavát elküldtük $2 címre.',
+'accmailtext'               => '„$1” jelszavát elküldtük a(z) $2 címre.',
 'newarticle'                => '(Új)',
 'newarticletext'            => "Egy olyan lapra mutató hivatkozást követtél, mely még nem létezik.
 Ha létre akarod hozni, csak gépeld be a szövegét a lenti szövegdobozba. Ha kész vagy, az „Előnézet megtekintése” gombbal ellenőrizheted, hogy úgy fog-e kinézni, ahogy szeretnéd, és a „Lap mentése” gombbal tudod elmenteni.
@@ -1272,6 +1273,7 @@ PICT # ált.
 'nolinkstoimage'            => 'Erre a képre nem hivatkozik lap.',
 'sharedupload'              => 'Ez a fájlt egy megosztott feltöltés, és más projektek használhatják.',
 'shareduploadwiki'          => 'Lásd a [$1 fájl leírólapját] a további információkért.',
+'shareduploadwiki-desc'     => 'A $1 található leírás alább látható.',
 'shareduploadwiki-linktext' => 'fájl leírólapját',
 'noimage'                   => 'Ezen a néven nem létezik médiafájl. Ha szeretnél, $1 egyet.',
 'noimage-linktext'          => 'feltölthetsz',

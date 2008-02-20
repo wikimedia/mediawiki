@@ -1362,6 +1362,7 @@ PICT # misc.
 'nolinkstoimage'            => 'لا توجد صفحات تصل لهذا الملف.',
 'sharedupload'              => 'هذا الملف تم رفعه للتشارك بين المشاريع ويمكن استخدامه في المشاريع الأخرى.',
 'shareduploadwiki'          => 'من فضلك انظر $1 لمزيد من المعلومات.',
+'shareduploadwiki-desc'     => 'الوصف على $1 هناك معروض بالأسفل.',
 'shareduploadwiki-linktext' => 'صفحة وصف الملف',
 'noimage'                   => 'لا يوجد ملف بهذا الاسم، بإمكانك أن تقوم بـ$1.',
 'noimage-linktext'          => 'رفعه',

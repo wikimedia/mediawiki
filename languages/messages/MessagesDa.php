@@ -8,6 +8,7 @@
  * @author Morten LJ
  * @author Max sonnelid
  * @author Jon Harald Søby
+ * @author M.M.S.
  */
 
 $namespaceNames = array(
@@ -2389,6 +2390,8 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'unknown_extension_tag' => 'Ukendt extension-tag: $1',
 
 # Special:Version
+'version-specialpages'     => 'Specielle sider',
+'version-other'            => 'Andre',
 'version-version'          => 'Version',
 'version-license'          => 'Licens',
 'version-software-product' => 'Produkt',

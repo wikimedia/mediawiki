@@ -17,6 +17,7 @@
  * @author Villate
  * @author Nike
  * @author MCruz
+ * @author Minh Nguyen
  */
 
 $namespaceNames = array(
@@ -1176,7 +1177,8 @@ PICT # misc.
 'nolinkstoimage'            => 'Nenhuma página aponta para este ficheiro.',
 'sharedupload'              => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
 'shareduploadwiki'          => 'Por favor, consulte a $1 para mais informações.',
-'shareduploadwiki-linktext' => 'página de descrição',
+'shareduploadwiki-desc'     => 'A descrição na sua $1 é mostrada abaixo.',
+'shareduploadwiki-linktext' => 'página de descrição de ficheiro',
 'noimage'                   => 'Não existe nenhum ficheiro com este nome. Se desejar, pode $1',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',

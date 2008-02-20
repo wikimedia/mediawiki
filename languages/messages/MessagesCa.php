@@ -323,7 +323,7 @@ $messages = array(
 'toolbox'           => 'Eines',
 'userpage'          => "Visualitza la pàgina d'usuari",
 'projectpage'       => 'Visualitza la pàgina del projecte',
-'imagepage'         => 'Visualitza la pàgina de la imatge',
+'imagepage'         => "Visualitza la pàgina de l'arxiu",
 'mediawikipage'     => 'Visualitza la pàgina de missatges',
 'templatepage'      => 'Visualitza la pàgina de plantilla',
 'viewhelppage'      => "Visualitza la pàgina d'ajuda",
@@ -466,6 +466,7 @@ Funció: $1<br />
 Consulta: $2',
 'viewsource'           => 'Mostra la font',
 'viewsourcefor'        => 'per a $1',
+'actionthrottled'      => 'Acció limitada',
 'actionthrottledtext'  => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
 'protectedpagetext'    => 'Aquesta pàgina està protegida i no pot ser editada.',
 'viewsourcetext'       => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
@@ -926,6 +927,7 @@ $2 Llista redireccions   Cerca $3 $9',
 'resultsperpage'           => 'Resultats a mostrar per pàgina',
 'contextlines'             => 'Línies a mostrar per resultat',
 'contextchars'             => 'Caràcters de context per línia',
+'stub-threshold'           => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',
 'recentchangesdays'        => 'Dies a mostrar en els canvis recents:',
 'recentchangescount'       => 'Nombre de títols en canvis recents',
 'savedprefs'               => 'Les vostres preferències han estat desades.',
@@ -1024,12 +1026,13 @@ Els grups no seleccionats no es canviaran. Podeu treure la selecció d'un grup a
 per a penjar-hi fitxers.",
 'upload_directory_read_only'  => 'El servidor web no pot escriure al directori de càrrega ($1)',
 'uploaderror'                 => "S'ha produït un error en l'intent de carregar",
-'uploadtext'                  => "Feu servir el formulari de davall per a carregar-hi una còpia d'un fitxer. Per a visualitzar o cercar imatges que s'hagueren carregat prèviament, aneu a la [[Special:Imagelist|llista de fitxers carregats]]. Les càrregues i les destruccions es registren en el [[Special:Log/upload|registre de càrregues]].
+'uploadtext'                  => "Feu servir el formulari de sota per a carregar fitxers.
+Per a visualitzar o cercar fitxers que s'hagen carregat prèviament, aneu a la [[Special:Imagelist|llista de fitxers carregats]]. Les càrregues i les destruccions es registren en el [[Special:Log/upload|registre de càrregues]].
 
 Per a incloure una imatge en un article, feu un enllaç de la forma
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.jpg]]</nowiki>''';
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.png|alt text]]</nowiki>'''; o per a sons
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitxer.ogg]]</nowiki>''' per a enllaçar-ho directament al fitxer.",
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.png|text alternatiu]]</nowiki>'''; o per a sons
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitxer.ogg]]</nowiki>''' per a enllaçar directament al fitxer.",
 'upload-permitted'            => 'Tipus de fitxer permesos: $1.',
 'upload-preferred'            => 'Tipus de fitxer preferits: $1.',
 'upload-prohibited'           => 'Tipus de fitxer prohibits: $1.',
@@ -1062,6 +1065,8 @@ Nom del fitxer que es puja: <strong><tt>$1</tt></strong><br />
 Nom del fitxer existent: <strong><tt>$2</tt></strong><br />
 Si us plau, trieu un nom diferent.',
 'fileexists-thumb'            => "<center>'''Fitxer existent'''</center>",
+'fileexists-thumbnail-yes'    => "Aquest fitxer sembla ser una imatge en mida reduïda (<i>thumbnail</i>). Comproveu si us plau el fitxer <strong><tt>$1</tt></strong>.<br />
+Si l'arxiu és la mateixa imatge a mida original no fa falta carregar una miniatura de més.",
 'file-thumbnail-no'           => 'El nom del fitxer comença amb <strong><tt>$1</tt></strong>. Sembla ser una imatge de mida reduïda <em>(miniatura)</em>.
 Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li el nom.',
 'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[Image:$1|thumb|center|$1]]',
@@ -1146,9 +1151,11 @@ A continuació teniu el registre d'esborrament per a que pugeu comprovar els mot
 # File reversion
 'filerevert'                => 'Reverteix $1',
 'filerevert-legend'         => 'Reverteix el fitxer',
+'filerevert-intro'          => '<span class="plainlinks">Esteu revertint \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 versió de  $3, $2].</span>',
 'filerevert-comment'        => 'Comentari:',
 'filerevert-defaultcomment' => "S'ha revertit a la versió com de $2, $1",
 'filerevert-submit'         => 'Reverteix',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha estat revertit a la [$4 versió de $3, $2].</span>',
 'filerevert-badversion'     => "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",
 
 # File deletion
@@ -1597,7 +1604,7 @@ $1",
 'sp-contributions-username'    => "Adreça IP o nom d'usuari:",
 'sp-contributions-submit'      => 'Cerca',
 
-'sp-newimages-showfrom' => 'Mostra imatges des de $1',
+'sp-newimages-showfrom' => 'Mostra arxius nous des de $1',
 
 # What links here
 'whatlinkshere'       => 'Què hi enllaça',
@@ -1688,6 +1695,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'ipb_expiry_invalid'          => "Data d'acabament no vàlida.",
 'ipb_already_blocked'         => '«$1» ja és blocat',
 'ipb_cant_unblock'            => "Errada: No s'ha trobat el núm. ID de bloqueig $1. És possible que ja s'haguera desblocat.",
+'ipb_blocked_as_range'        => "Error: L'adreça IP $1 no està blocada directament i per tant no pot ésser desbloquejada. Ara bé, sí que ho està per formar part del rang $2 que sí que pot ser desblocat.",
 'ip_range_invalid'            => 'Rang de IP no vàlid.',
 'blockme'                     => "Bloca'm",
 'proxyblocker'                => 'Blocatge de proxy',
@@ -2024,7 +2032,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 
 # Metadata
 'metadata'          => 'Metadades',
-'metadata-help'     => "Aquest arxiu conté informació addicional, probablement afegida per la càmera digital o l'escànner usat per a crear-lo o digitalitzar-lo. Si l'arxiu ha estat modificat posteriorment, alguns detalls poden no correspondre amb l'informació real de l'arxiu.",
+'metadata-help'     => "Aquest arxiu conté informació addicional, probablement afegida per la càmera digital o l'escànner usat per a crear-lo o digitalitzar-lo. Si l'arxiu ha estat modificat posteriorment, alguns detalls poden no reflectir les dades reals de l'arxiu modificat.",
 'metadata-expand'   => 'Mostra els detalls estesos',
 'metadata-collapse' => 'Amaga els detalls estesos',
 'metadata-fields'   => 'Els camps de metadades EXIF llistats en aquest missatge es mostraran en la pàgina de descripció de la imatge fins i tot quan la taula estigui plegada. La resta estaran ocults però es podran desplegar.
