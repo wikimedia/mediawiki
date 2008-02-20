@@ -290,7 +290,7 @@ class OutputPage {
 		$propsTable = $dbr->tableName( 'page_props' );
 		$where = $lb->constructSet( 'page', $dbr );
 		$sql = "SELECT page_id, page_namespace, page_title, pp_value FROM $pageTable LEFT JOIN $propsTable " . 
-			" ON pp_page=page_id WHERE ($where) AND pp_propname='hiddencat'";
+			" ON pp_propname='hiddencat' AND pp_page=page_id WHERE $where";
 		$res = $dbr->query( $sql, __METHOD__ );
 
 		# Add the results to the link cache
