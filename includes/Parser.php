@@ -98,7 +98,7 @@ class Parser
 	var $mInterwikiLinkHolders, $mLinkHolders;
 	var $mIncludeSizes, $mPPNodeCount, $mDefaultSort;
 	var $mTplExpandCache; // empty-frame expansion cache
-	var $mTplRedirCache, $mTplDomCache, $mHeadings;
+	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -147,51 +147,9 @@ class Parser
 		$this->mFirstCall = false;
 		
 		wfProfileIn( __METHOD__ );
-		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
 
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
-
-		# Syntax for arguments (see self::setFunctionHook):
-		#  "name for lookup in localized magic words array",
-		#  function callback,
-		#  optional SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}
-		#    instead of {{#int:...}})
-		$this->setFunctionHook( 'int',              array( 'CoreParserFunctions', 'intFunction'      ), SFH_NO_HASH );
-		$this->setFunctionHook( 'ns',               array( 'CoreParserFunctions', 'ns'               ), SFH_NO_HASH );
-		$this->setFunctionHook( 'urlencode',        array( 'CoreParserFunctions', 'urlencode'        ), SFH_NO_HASH );
-		$this->setFunctionHook( 'lcfirst',          array( 'CoreParserFunctions', 'lcfirst'          ), SFH_NO_HASH );
-		$this->setFunctionHook( 'ucfirst',          array( 'CoreParserFunctions', 'ucfirst'          ), SFH_NO_HASH );
-		$this->setFunctionHook( 'lc',               array( 'CoreParserFunctions', 'lc'               ), SFH_NO_HASH );
-		$this->setFunctionHook( 'uc',               array( 'CoreParserFunctions', 'uc'               ), SFH_NO_HASH );
-		$this->setFunctionHook( 'localurl',         array( 'CoreParserFunctions', 'localurl'         ), SFH_NO_HASH );
-		$this->setFunctionHook( 'localurle',        array( 'CoreParserFunctions', 'localurle'        ), SFH_NO_HASH );
-		$this->setFunctionHook( 'fullurl',          array( 'CoreParserFunctions', 'fullurl'          ), SFH_NO_HASH );
-		$this->setFunctionHook( 'fullurle',         array( 'CoreParserFunctions', 'fullurle'         ), SFH_NO_HASH );
-		$this->setFunctionHook( 'formatnum',        array( 'CoreParserFunctions', 'formatnum'        ), SFH_NO_HASH );
-		$this->setFunctionHook( 'grammar',          array( 'CoreParserFunctions', 'grammar'          ), SFH_NO_HASH );
-		$this->setFunctionHook( 'plural',           array( 'CoreParserFunctions', 'plural'           ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofpages',    array( 'CoreParserFunctions', 'numberofpages'    ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofusers',    array( 'CoreParserFunctions', 'numberofusers'    ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofarticles', array( 'CoreParserFunctions', 'numberofarticles' ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberoffiles',    array( 'CoreParserFunctions', 'numberoffiles'    ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofadmins',   array( 'CoreParserFunctions', 'numberofadmins'   ), SFH_NO_HASH );
-		$this->setFunctionHook( 'numberofedits',    array( 'CoreParserFunctions', 'numberofedits'    ), SFH_NO_HASH );
-		$this->setFunctionHook( 'language',         array( 'CoreParserFunctions', 'language'         ), SFH_NO_HASH );
-		$this->setFunctionHook( 'padleft',          array( 'CoreParserFunctions', 'padleft'          ), SFH_NO_HASH );
-		$this->setFunctionHook( 'padright',         array( 'CoreParserFunctions', 'padright'         ), SFH_NO_HASH );
-		$this->setFunctionHook( 'anchorencode',     array( 'CoreParserFunctions', 'anchorencode'     ), SFH_NO_HASH );
-		$this->setFunctionHook( 'special',          array( 'CoreParserFunctions', 'special'          ) );
-		$this->setFunctionHook( 'defaultsort',      array( 'CoreParserFunctions', 'defaultsort'      ), SFH_NO_HASH );
-		$this->setFunctionHook( 'filepath',         array( 'CoreParserFunctions', 'filepath'         ), SFH_NO_HASH );
-		$this->setFunctionHook( 'tag',              array( 'CoreParserFunctions', 'tagObj'           ), SFH_OBJECT_ARGS );
-
-		if ( $wgAllowDisplayTitle ) {
-			$this->setFunctionHook( 'displaytitle', array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
-		}
-		if ( $wgAllowSlowParserFunctions ) {
-			$this->setFunctionHook( 'pagesinnamespace', array( 'CoreParserFunctions', 'pagesinnamespace' ), SFH_NO_HASH );
-		}
-
+		CoreParserFunctions::register( $this );
 		$this->initialiseVariables();
 
 		wfRunHooks( 'ParserFirstCallInit', array( &$this ) );
@@ -256,6 +214,7 @@ class Parser
 		$this->mPPNodeCount = 0;
 		$this->mDefaultSort = false;
 		$this->mHeadings = array();
+		$this->mDoubleUnderscores = array();
 
 		# Fix cloning
 		if ( isset( $this->mPreprocessor ) && $this->mPreprocessor->parser !== $this ) {
@@ -991,8 +950,7 @@ class Parser
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
-		$text = $this->stripToc( $text );
-		$this->stripNoGallery( $text );
+		$text = $this->doDoubleUnderscore( $text );
 		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
 			$df =& DateFormatter::getInstance();
@@ -3302,32 +3260,11 @@ class Parser
 	}
 
 	/**
-	 * Detect __NOGALLERY__ magic word and set a placeholder
+	 * Strip double-underscore items like __NOGALLERY__ and __NOTOC__
+	 * Fills $this->mDoubleUnderscores, returns the modified text
 	 */
-	function stripNoGallery( &$text ) {
-		# if the string __NOGALLERY__ (not case-sensitive) occurs in the HTML,
-		# do not add TOC
-		$mw = MagicWord::get( 'nogallery' );
-		$this->mOutput->mNoGallery = $mw->matchAndRemove( $text ) ;
-	}
-
-	/**
-	 * Find the first __TOC__ magic word and set a <!--MWTOC-->
-	 * placeholder that will then be replaced by the real TOC in
-	 * ->formatHeadings, this works because at this points real
-	 * comments will have already been discarded by the sanitizer.
-	 *
-	 * Any additional __TOC__ magic words left over will be discarded
-	 * as there can only be one TOC on the page.
-	 */
-	function stripToc( $text ) {
-		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML,
-		# do not add TOC
-		$mw = MagicWord::get( 'notoc' );
-		if( $mw->matchAndRemove( $text ) ) {
-			$this->mShowToc = false;
-		}
-
+	function doDoubleUnderscore( $text ) {
+		// The position of __TOC__ needs to be recorded
 		$mw = MagicWord::get( 'toc' );
 		if( $mw->match( $text ) ) {
 			$this->mShowToc = true;
@@ -3338,6 +3275,20 @@ class Parser
 
 			// Only keep the first one.
 			$text = $mw->replace( '', $text );
+		}
+
+		// Now match and remove the rest of them
+		$mwa = MagicWord::getDoubleUnderscoreArray();
+		$this->mDoubleUnderscores = $mwa->matchAndRemove( $text );
+
+		if ( isset( $this->mDoubleUnderscores['nogallery'] ) ) {
+			$this->mOutput->mNoGallery = true;
+		}
+		if ( isset( $this->mDoubleUnderscores['notoc'] ) && !$this->mForceTocPosition ) {
+			$this->mShowToc = false;
+		}
+		if ( isset( $this->mDoubleUnderscores['hiddencat'] ) ) {
+			$this->mOutput->setProperty( 'hiddencat', 'y' );
 		}
 		return $text;
 	}
@@ -3367,8 +3318,7 @@ class Parser
 		}
 
 		# Inhibit editsection links if requested in the page
-		$esw =& MagicWord::get( 'noeditsection' );
-		if( $esw->matchAndRemove( $text ) ) {
+		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
 			$showEditLink = 0;
 		}
 
@@ -3384,14 +3334,13 @@ class Parser
 
 		# Allow user to stipulate that a page should have a "new section"
 		# link added via __NEWSECTIONLINK__
-		$mw =& MagicWord::get( 'newsectionlink' );
-		if( $mw->matchAndRemove( $text ) )
+		if ( isset( $this->mDoubleUnderscores['newsectionlink'] ) ) {
 			$this->mOutput->setNewSection( true );
+		}
 
 		# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
 		# override above conditions and always show TOC above first header
-		$mw =& MagicWord::get( 'forcetoc' );
-		if ($mw->matchAndRemove( $text ) ) {
+		if ( isset( $this->mDoubleUnderscores['forcetoc'] ) ) {
 			$this->mShowToc = true;
 			$enoughToc = true;
 		}

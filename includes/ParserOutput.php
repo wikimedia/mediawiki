@@ -22,8 +22,9 @@ class ParserOutput
 		$mHeadItems,        # Items to put in the <head> section
 		$mOutputHooks,      # Hook tags as per $wgParserOutputHooks
 		$mWarnings,         # Warning text to be returned to the user. Wikitext formatted.
-		$mSections;         # Table of contents
-	
+		$mSections,         # Table of contents
+		$mProperties;       # Name/value pairs to be cached in the DB
+
 	/**
 	 * Overridden title for display
 	 */
@@ -50,6 +51,7 @@ class ParserOutput
 		$this->mTemplateIds = array();
 		$this->mOutputHooks = array();
 		$this->mWarnings = array();
+		$this->mProperties = array();
 	}
 
 	function getText()                   { return $this->mText; }
@@ -183,7 +185,24 @@ class ParserOutput
 	public function getFlag( $flag ) {
 		return isset( $this->mFlags[$flag] );
 	}
-	
+
+	/**
+	 * Set a property to be cached in the DB
+	 */
+	public function setProperty( $name, $value ) {
+		$this->mProperties[$name] = $value;
+	}
+
+	public function getProperty( $name ){ 
+		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
+	}
+
+	public function getProperties() {
+		if ( !isset( $this->mProperties ) ) {
+			$this->mProperties = array();
+		}
+		return $this->mProperties;
+	}
 }
 
 

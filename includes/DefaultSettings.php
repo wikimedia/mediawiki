@@ -2937,3 +2937,11 @@ $wgParserConf = array(
  * Hooks should return strings or false
  */
 $wgExceptionHooks = array();
+
+/**
+ * Page property link table invalidation lists.
+ * Should only be set by extensions.
+ */
+$wgPagePropLinkInvalidations = array(
+	'hiddencat' => 'categorylinks',
+);

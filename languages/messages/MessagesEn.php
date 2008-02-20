@@ -337,6 +337,7 @@ $magicWords = array(
 	'defaultsort'            => array( 1,    'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'               => array( 0,    'FILEPATH:'              ),
 	'tag'                    => array( 0,    'tag'                    ),
+	'hiddencat'              => array( 1,    '__HIDDENCAT__'          ),
 );
 
 /**
