@@ -519,22 +519,51 @@ class OutputPage {
 		return wfSetVar( $this->mEnableClientCache, $state );
 	}
 
-	function uncacheableBecauseRequestvars() {
+	function getCacheVaryCookies() {
+		global $wgCookiePrefix;
+		return array( 
+			"{$wgCookiePrefix}Token",
+			"{$wgCookiePrefix}LoggedOut",
+			session_name() );
+	}
+
+	function uncacheableBecauseRequestVars() {
 		global $wgRequest;
 		return	$wgRequest->getText('useskin', false) === false
 			&& $wgRequest->getText('uselang', false) === false;
 	}
 
+	/**
+	 * Check if the request has a cache-varying cookie header
+	 * If it does, it's very important that we don't allow public caching
+	 */
+	function haveCacheVaryCookies() {
+		global $wgRequest, $wgCookiePrefix;
+		$cookieHeader = $wgRequest->getHeader( 'cookie' );
+		if ( $cookieHeader === false ) {
+			return false;
+		}
+		$cvCookies = $this->getCacheVaryCookies();
+		foreach ( $cvCookies as $cookieName ) {
+			# Check for a simple string match, like the way squid does it
+			if ( strpos( $cookieHeader, $cookieName ) ) {
+				wfDebug( __METHOD__.": found $cookieName\n" );
+				return true;
+			}
+		}
+		wfDebug( __METHOD__.": no cache-varying cookies found\n" );
+		return false;
+	}
+
 	/** Get a complete X-Vary-Options header */
 	public function getXVO() {
 		global $wgCookiePrefix;
-		return 'X-Vary-Options: ' . 
-			# User ID cookie
-			"Cookie;string-contains={$wgCookiePrefix}UserID;" . 
-			# Session cookie
-			'string-contains=' . session_name() . ',' . 
-			# Encoding checks for gzip only
-			'Accept-Encoding;list-contains=gzip';
+		$cvCookies = $this->getCacheVaryCookies();
+		$xvo = 'X-Vary-Options: Accept-Encoding;list-contains=gzip,Cookie;';
+		foreach ( $cvCookies as $cookieName ) {
+			$xvo .= 'string-contains=' . $cookieName;
+		}
+		return $xvo;
 	}
 
 	public function sendCacheControl() {
@@ -552,9 +581,9 @@ class OutputPage {
 		# Add an X-Vary-Options header for Squid with Wikimedia patches
 		$response->header( $this->getXVO() );
 
-		if( !$this->uncacheableBecauseRequestvars() && $this->mEnableClientCache ) {
+		if( !$this->uncacheableBecauseRequestVars() && $this->mEnableClientCache ) {
 			if( $wgUseSquid && session_id() == '' &&
-			  ! $this->isPrintable() && $this->mSquidMaxage != 0 )
+			  ! $this->isPrintable() && $this->mSquidMaxage != 0 && !$this->haveCacheVaryCookies() )
 			{
 				if ( $wgUseESI ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
