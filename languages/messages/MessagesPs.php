@@ -164,6 +164,7 @@ $messages = array(
 'edithelp'          => 'د لارښود سماد',
 'helppage'          => 'لارښود:لړليک',
 'mainpage'          => 'لومړی مخ',
+'policy-url'        => 'پروژه:تګلاره',
 'portal'            => 'ټولګړی ورټک',
 'portal-url'        => 'Project:ټولګړی ورټک',
 'privacy'           => 'د محرميت تګلاره',
@@ -204,6 +205,7 @@ $messages = array(
 # General errors
 'error'             => 'تېروتنه',
 'internalerror'     => 'کورنۍ ستونزه',
+'filedeleteerror'   => 'د "$1" دوتنه ړنګه نه شوه.',
 'filenotfound'      => '"$1" په نوم دوتنه مو و نه شوه موندلای.',
 'badarticleerror'   => 'دا کړنه پدې مخ نه شي ترسره کېدلای.',
 'cannotdelete'      => 'د اړونده مخ يا دوتنې ړنګېدنه ترسره نه شوه.  (کېدای شي چې دا د بل چا لخوا نه پخوا ړنګه شوې وي.)',
@@ -211,9 +213,15 @@ $messages = array(
 'viewsource'        => 'سرچينې کتل',
 'viewsourcefor'     => 'د $1 لپاره',
 'protectedpagetext' => 'همدا مخ د سمادولو د مخنيوي په تکل تړل شوی دی.',
+'viewsourcetext'    => 'تاسو د همدغه مخ توکي او سرچينې کتلی او لمېسلی شی:',
 
 # Login and logout pages
 'logouttitle'                => 'کارن-حساب نه وتنه',
+'logouttext'                 => '<strong>تاسو اوس د غونډال نه ووتلی.</strong><br />
+تاسو کولای شی چې پرته د کارن-نوم نه {{SITENAME}} په ورکنومي توګه وکاروی، او يا هم تاسو کولای شی چې په همدې کارن-نوم يا په کوم بل کارن-نوم خپلې ليکنې خپرې کړی. يادونه دې وي چې ځينې مخونو کې به تاسو لا تر اوسه پورې غونډال کې ننوتي ښکاری، تر څو تاسو د خپل کتنمل حافظه نه وي سپينه کړی.',
+'welcomecreation'            => '==$1 ښه راغلاست! ==
+
+ستاسو کارن-حساب جوړ شو. لطفاً د {{SITENAME}} لپاره خپلې خوښونې او غورتوبونه بدلول مه هېروی.',
 'loginpagetitle'             => 'کارن-حساب ته ننوتنه',
 'yourname'                   => 'کارن-نوم:',
 'yourpassword'               => 'پټنوم:',
@@ -274,6 +282,7 @@ $messages = array(
 'emailconfirmlink'           => 'د خپل د برېښناليک د پتې پخلی وکړی',
 'accountcreated'             => 'کارن-حساب مو جوړ شو.',
 'accountcreatedtext'         => 'د $1 لپاره يو کارن-حساب جوړ شو.',
+'createaccount-title'        => 'د {{SITENAME}} د کارن-حساب جوړېدنه',
 'loginlanguagelabel'         => 'ژبه: $1',
 
 # Password reset dialog
@@ -371,8 +380,8 @@ $messages = array(
 'searchsubtitle'        => "تاسو د '''[[:$1]]''' لپاره لټون کړی",
 'searchsubtitleinvalid' => "تاسو د '''$1''' لپاره لټون کړی",
 'prevn'                 => 'تېر $1',
-'nextn'                 => 'بل $1',
-'viewprevnext'          => 'کتل ($1) ($2) ($3)',
+'nextn'                 => 'راتلونکي $1',
+'viewprevnext'          => '($1) ($2) ($3) ښکاره کول',
 'powersearch'           => 'لټون',
 'powersearchtext'       => 'په نوم-تشيالونو کې لټون:<br />$1<br />$2 لړليک بياګرځول شوی<br />د $3 $9 لټون',
 
@@ -422,6 +431,8 @@ $messages = array(
 'group'     => 'ډله:',
 'group-all' => '(ټول)',
 
+'grouppage-sysop' => '{{ns:project}}:پازوالان',
+
 # User rights log
 'rightsnone' => '(هېڅ نه)',
 
@@ -437,7 +448,7 @@ $messages = array(
 'rcshowhideliu'                  => 'غونډال ته ننوتي $1 کارونکي',
 'rcshowhideanons'                => 'بې نومه کارونکي $1',
 'rcshowhidemine'                 => 'زما سمادېدنې $1',
-'rclinks'                        => 'هغه وروستي $1 ونجونه ښکاره کړی چې په $2 ورځو کې پېښ شوی<br />$3',
+'rclinks'                        => 'هغه وروستي $1 بدلونونه ښکاره کړی چې په $2 ورځو کې پېښ شوي<br />$3',
 'diff'                           => 'توپير',
 'hist'                           => 'پېښليک',
 'hide'                           => 'پټول',
@@ -463,6 +474,7 @@ $messages = array(
 '''<nowiki>[[Image:File.jpg]]</nowiki>''',
 '''<nowiki>[[Image:File.png|alt text]]</nowiki>''' او يا هم د رسنيزو دوتنو لپاره د راساً تړن (لېنک) چې په دې ډول دی
 '''<nowiki>[[Media:File.ogg]]</nowiki>''' وکاروی.",
+'uploadlogpage'        => 'د پورته شويو دوتنو يادښت',
 'uploadlogpagetext'    => 'دا لاندې د نوو پورته شوو دوتنو لړليک دی.',
 'filename'             => 'د دوتنې نوم',
 'filedesc'             => 'لنډيز',
@@ -554,6 +566,7 @@ $messages = array(
 
 'brokenredirects-delete' => '(ړنګول)',
 
+'withoutinterwiki'        => 'د ژبې د تړنو بې برخې مخونه',
 'withoutinterwiki-submit' => 'ښکاره کول',
 
 # Miscellaneous special pages
@@ -840,11 +853,11 @@ $messages = array(
 'tooltip-ca-nstab-mediawiki' => 'د غونډال پيغامونه ښکاره کول',
 'tooltip-ca-nstab-template'  => 'کينډۍ ښکاره کول',
 'tooltip-ca-nstab-help'      => 'د لارښود مخ کتل',
-'tooltip-minoredit'          => 'دا لکه يوه وړه سمادېدنه په نښه کړه[alt-i]',
+'tooltip-minoredit'          => 'دا لکه يوه وړه سمادېدنه په نښه کوي[alt-i]',
 'tooltip-save'               => 'ستاسو بدلونونه خوندي کوي',
 'tooltip-preview'            => 'ستاسو بدلونونه ښکاره کوي, لطفاً دا کړنه د خوندي کولو دمخه وکاروۍ! [alt-p]',
 'tooltip-diff'               => 'دا هغه بدلونونه چې تاسو په متن کې ترسره کړي، ښکاره کوي. [alt-v]',
-'tooltip-watch'              => 'همدا پاڼه خپل کتل شوي لړليک کې ورګډه کړی [alt-w]',
+'tooltip-watch'              => 'همدا مخ ستاسو کتلي لړليک کې ورګډوي [alt-w]',
 
 # Attribution
 'lastmodifiedatby' => 'دا مخ وروستی ځل د $3 لخوا په $2، $1 بدلون موندلی.', # $1 date, $2 time, $3 user
@@ -852,6 +865,7 @@ $messages = array(
 # Spam protection
 'subcategorycount'     => 'په همدې وېشنيزه کې {{PLURAL:$1|يوازې يوه بله وړه-وېشنيزه ده|$1 نورې وړې-وېشنيزې دي}}.',
 'categoryarticlecount' => 'په همدې وېشنيزه کې  {{PLURAL:$1|يو مخ دی|$1 مخونه دي}}.',
+'category-media-count' => 'په دې وېشنيزه کې {{PLURAL:$1|يوه دوتنه ده|$1 دوتنې دي}}.',
 
 # Info page
 'infosubtitle' => 'د مخ مالومات',

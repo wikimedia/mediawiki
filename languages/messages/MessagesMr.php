@@ -492,7 +492,7 @@ $2',
 'math_tip'        => 'गणितीय सूत्र (LaTeX)',
 'nowiki_sample'   => 'मजकूर इथे लिहा',
 'nowiki_tip'      => 'विकिभाषेप्रमाणे बदल करू नका',
-'image_tip'       => 'संलग्न चित्र',
+'image_tip'       => 'संलग्न संचिका',
 'media_tip'       => 'संचिकेचा दुवा',
 'sig_tip'         => 'वेळेबरोबर तुमची सही',
 'hr_tip'          => 'आडवी रेषा (कमी वापरा)',
@@ -761,6 +761,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'searchsubtitleinvalid' => "तुम्ही '''$1''' या शब्दाचा शोध घेत आहात.",
 'noexactmatch'          => "'''\"\$1\" या मथळ्याचा लेख अस्तित्त्वात नाही.''' तुम्ही हा लेख [[:\$1|लिहु शकता]].",
 'noexactmatch-nocreate' => "'''येथे \"\$1\" शिर्षकाचे पान नाही.'''",
+'toomanymatches'        => 'खूप एक्सारखी उत्तरे मिळाली,कृपया पृच्छा वेगळ्या तर्‍हेने करून पाहा',
 'titlematches'          => 'पानाचे शिर्षक जुळते',
 'notitlematches'        => 'कोणत्याही पानाचे शिर्षक जुळत नाही',
 'textmatches'           => 'पानातील मजकुर जुळतो',
@@ -923,9 +924,10 @@ $3ने ''$2'' कारण दिले आहे.",
 'uploadnologintext'           => 'संचिका चढविण्यासाठी तुम्हाला [[Special:Userlogin|प्रवेश]] करावा लागेल.',
 'upload_directory_read_only'  => '$1 या डिरेक्टरी मध्ये सर्व्हर लिहू शकत नाही.',
 'uploaderror'                 => 'चढवण्यात चुक',
-'uploadtext'                  => "खालील अर्ज नवीन संचिका चढविण्यासाठी वापरा. पूर्वी चढविलेल्या संचिका पाहण्यासाठी अथवा शोधण्यासाठी [[Special:Imagelist|चढविलेल्या संचिकांची यादी]] पहा. चढविलेल्या तसेच वगळलेल्या संचिकांची यादी पहाण्यासाठी [[Special:Log/upload|सूची]] पहा.
+'uploadtext'                  => "खालील अर्ज नवीन संचिका चढविण्यासाठी वापरा.
+पूर्वी चढविलेल्या संचिका पाहण्यासाठी अथवा शोधण्यासाठी [[Special:Imagelist|चढविलेल्या संचिकांची यादी]] पहा. चढविलेल्या तसेच वगळलेल्या संचिकांची यादी पहाण्यासाठी [[Special:Log/upload|सूची]] पहा.
 
-एखाद्या लेखात हे चित्र वापरण्यासाठी खालीलप्रमाणे दुवा द्या
+एखाद्या लेखात ही संचिका वापरण्यासाठी खालीलप्रमाणे दुवा द्या
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' किंवा
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' संचिकेला थेट दुवा देण्यासाठी वापरा.",
@@ -959,7 +961,7 @@ $3ने ''$2'' कारण दिले आहे.",
 चढवित असलेल्या संचिकेचे नाव: <strong><tt>$1</tt></strong><br />
 अस्तित्वात असलेल्या संचिकेचे नाव: <strong><tt>$2</tt></strong><br />
 कृपया दुसरे नाव निवडा.',
-'fileexists-thumb'            => "<center>'''अस्तित्वात असलेली संचिका'''</center>",
+'fileexists-thumb'            => "<center>'''सध्याची संचिका'''</center>",
 'fileexists-thumbnail-yes'    => 'आपण चढवित असलेली संचिका ही मोठ्या चित्राची झलक <i>(thumbnail)</i> असण्याची शक्यता आहे. कृपया <strong><tt>$1</tt></strong> ही संचिका तपासा.<br />
 जर तपासलेली संचिका ही याच आकाराची असेल तर नवीन झलक चढविण्याची गरज नाही.',
 'file-thumbnail-no'           => 'या संचिकेचे नाव <strong><tt>$1</tt></strong> पासून सुरू होत आहे. ही कदाचित झलक <i>(thumbnail)</i> असू शकते.
@@ -979,18 +981,25 @@ $3ने ''$2'' कारण दिले आहे.",
 'sourcefilename'              => 'स्रोत-संचिकानाम',
 'destfilename'                => 'नवे संचिकानाम',
 'watchthisupload'             => 'या पानावर बदलांसाठी लक्ष ठेवा.',
+'filewasdeleted'              => 'या नावाची संचिका या पूर्वी एकदा चढवून नंतर वगळली होती.तुम्ही ती पुन्हा चढवण्या अगोदर $1 तपासा.',
 'upload-wasdeleted'           => "'''सूचना: पूर्वी वगळण्यात आलेली संचिका तुम्ही पुन्हा चढवित आहात.'''
 
 कृपया तुम्ही करत असलेली कृती योग्य असल्याची खात्री करून घ्या.
 तुमच्या सोयीसाठी वगळल्याची नोंद पुढीलप्रमाणे:",
+'filename-bad-prefix'         => 'तुम्ही चढवत असलेल्या संचिकेचे नाव <strong>"$1"</strong> पासून सुरू होते, जे की अंकीय छाउ (कॅमेरा) ने दिलेले अवर्णनात्मक नाव आहे.कृपया तुमच्या संचिकेकरिता अधिक वर्णनात्मक नाव निवडा.',
 
-'upload-proto-error' => 'चूकीचा संकेत',
-'upload-file-error'  => 'अंतर्गत त्रूटी',
-'upload-misc-error'  => 'संचिका चढविताना माहित नसलेली त्रूटी आलेली आहे.',
+'upload-proto-error'      => 'चूकीचा संकेत',
+'upload-proto-error-text' => 'दूरस्थ चढवण्याच्या क्रियेत <code>http://</code>पासून किंवा <code>ftp://</code>पासून सूरू होणारी URL लागतात.',
+'upload-file-error'       => 'अंतर्गत त्रूटी',
+'upload-file-error-text'  => 'विदादात्यावर तात्पुरती संचिका तयार करण्याच्या प्रयत्न करत असताना अंतर्गत तांत्रिक अडचण आली.कृपया प्रचालकांशी संपर्क करा.',
+'upload-misc-error'       => 'संचिका चढविताना माहित नसलेली त्रूटी आलेली आहे.',
+'upload-misc-error-text'  => 'चढवताना अज्ञात तांत्रिक आदचण आली.कृपया URL सुयोग्य आणि उपलब्ध आहे का ते तपासा आणि पुन्हा प्रयत्न करा.जर अडचणे भेडसावणे चालूच राहीले तर प्रचालकांसी संपर्क करा.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'  => 'URLपाशी पोहोचले नाही',
-'upload-curl-error28' => 'चढवण्यात वेळगेली',
+'upload-curl-error6'       => 'URLपाशी पोहोचले नाही',
+'upload-curl-error6-text'  => 'दिलेल्या URL ला पोहचू शकलो नाही.कृपया URL बरोबर असून संकेतस्थळ चालू असल्याची पुनश्च खात्री करा.',
+'upload-curl-error28'      => 'चढवण्यात वेळगेली',
+'upload-curl-error28-text' => 'संकेतस्थळाने साद देण्यात खूप जास्त वेळ घेतला आहे,कृपया थोडा वेळ थांबा आणि पुन्हा प्रयत्न करा.कदाचित तुम्ही कमी गर्दीच्या वेळात प्रयत्न करू इच्छीताल.',
 
 'license'            => 'परवाना',
 'nolicense'          => 'काही निवडलेले नाही',
@@ -1026,6 +1035,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'nolinkstoimage'            => 'या चित्राशी जोडलेली पृष्ठे नाही आहेत.',
 'sharedupload'              => 'ही संचिका इतरही प्रकल्पांमध्ये वापरली गेल्याची शक्यता आहे.',
 'shareduploadwiki'          => 'अधिक माहितीसाठी $1 पहा.',
+'shareduploadwiki-desc'     => 'माहिती जी $1 वर आहे ती खाली दिलेली आहे.',
 'shareduploadwiki-linktext' => 'संचिका वर्णन पान',
 'noimage'                   => 'या नावाचे चित्र अस्तित्त्वात नाही. $1 करून पहा.',
 'noimage-linktext'          => 'चढवा',
@@ -1040,9 +1050,11 @@ $3ने ''$2'' कारण दिले आहे.",
 # File reversion
 'filerevert'                => '$1 पूर्वपद',
 'filerevert-legend'         => 'संचिका पूर्वपदास',
+'filerevert-intro'          => '<span class="plainlinks">तुम्ही [$3, $2 प्रमाणे आवर्तन$4 कडे] [[Media:$1|$1]]  उलटवत आहात.</span>',
 'filerevert-comment'        => 'प्रतिक्रीया:',
 'filerevert-defaultcomment' => '$2, $1 च्या आवृत्तीत पूर्वपदास',
 'filerevert-submit'         => 'पूर्वपद',
+'filerevert-success'        => '<span class="plainlinks"> [$3, $2 प्रमाणे आवर्तन $4]कडे \'\'\'[[Media:$1|$1]]\'\'\' उलटवण्यात आली.</span>',
 'filerevert-badversion'     => 'दिलेलेल्या वेळ मापनानुसार,या संचिकेकरिता कोणतीही पूर्वीची स्थानिक आवृत्ती नाही.',
 
 # File deletion
@@ -1052,8 +1064,10 @@ $3ने ''$2'' कारण दिले आहे.",
 'filedelete-comment'          => 'वगळ्ण्याची कारणे:',
 'filedelete-submit'           => 'वगळा',
 'filedelete-success'          => "'''$1'''वगळण्यात आले.",
+'filedelete-success-old'      => '<span class="plainlinks">$3, $2 वेळी \'\'\'[[Media:$1|$1]]\'\'\' चे आवर्तन वगळण्यात आले आहे .</span>',
 'filedelete-nofile'           => "'''$1''' {{SITENAME}}वर अस्तित्वात नाही.",
 'filedelete-nofile-old'       => "सांगितलेल्या गुणधर्मानुसार  '''$1'''चे कोणतेही विदा आवर्तन संचित नाही.",
+'filedelete-iscurrent'        => 'संचिकचे सर्वात अलिकडील आवर्तन वगळण्याचा तुम्ही प्रयत्न करत आहात.कृपया आधी जुने आवर्तन उलटवा.',
 'filedelete-otherreason'      => 'इतर/शिवाय अधिक कारण:',
 'filedelete-reason-otherlist' => 'इतर कारण',
 'filedelete-reason-dropdown'  => '*वगळण्याची सामान्य कारणे
@@ -1166,7 +1180,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'intl'                    => 'आंतर्भाषीय दुवे',
 'move'                    => 'स्थानांतरण',
 'movethispage'            => 'हे पान स्थानांतरित करा',
-'unusedimagestext'        => '<p>सक्रिय उपयोगात असून सुद्धा यादीत असेल,सरळURLने इतर संकेतस्थळे चित्राचा दुवा देऊ शकतात याची कृपया नोंद घ्या.</p>',
+'unusedimagestext'        => '<p>कृपया लक्षात घ्या की इतर संकेतस्थळे संचिकेशी थेट दुव्याने जोडल्या असू शकतात, त्यामुळे सक्रिय उपयोगात असून सुद्धा यादीत असू शकतात.</p>',
 'unusedcategoriestext'    => 'खालील वर्ग पाने अस्तित्वात आहेत पण कोणतेही लेख किंवा वर्ग त्यांचा वापर करत नाहीत.',
 'notargettitle'           => 'कर्म(target) नाही',
 'notargettext'            => 'ही क्रिया करण्यासाठी तुम्ही सदस्य किंवा पृष्ठ लिहिले नाही.',
@@ -1313,10 +1327,14 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 ** लेखकाची(लेखिकेची) विनंती
 ** प्रताधिकार उल्लंघन
 ** उत्पात',
+'delete-toobig'               => 'या पानाला खूप मोठी इतिहास यादी आहे, तसेच हे पान $1 पेक्षा जास्त वेळा बदलण्यात आलेले आहे. अशी पाने वगळणे हे {{SITENAME}} ला धोकादायक ठरू नये म्हणून शक्य केलेले नाही.',
+'delete-warning-toobig'       => '
+या पानाला खूप मोठी इतिहास यादी आहे, तसेच हे पान $1 पेक्षा जास्त वेळा बदलण्यात आलेले आहे. अशी पाने वगळणे हे Betawiki ला धोकादायक ठरू शकते; कृपया काळजीपूर्वक हे पान वगळा.',
 'rollback'                    => 'बदल उलटवा',
 'rollback_short'              => 'उलटवा',
 'rollbacklink'                => 'जुन्या आवृत्तीकडे पुन्हा जा',
 'rollbackfailed'              => 'बदल उलटवणे फसले',
+'cantrollback'                => 'जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.',
 'editcomment'                 => 'बदलासोबतची नोंद होती : "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
@@ -1763,6 +1781,7 @@ $1',
 'exif-imagewidth'               => 'रूंदी',
 'exif-imagelength'              => 'उंची',
 'exif-compression'              => 'आकुंचन योजना',
+'exif-orientation'              => 'वळण',
 'exif-samplesperpixel'          => 'घटकांची संख्या',
 'exif-make'                     => 'हुबहू छाउ (कॅमेरा) उत्पादक',
 'exif-model'                    => 'हुबहू छाउ (कॅमेरा) उपकरण',
@@ -1797,6 +1816,7 @@ $1',
 'exif-lightsource'              => 'प्रकाश स्रोत',
 'exif-flash'                    => "लख'''लखाट''' (फ्लॅश)",
 'exif-focallength'              => 'भींगाची मध्यवर्ती लांबी (फोकल लांबी)',
+'exif-subjectarea'              => 'विषय विभाग',
 'exif-flashenergy'              => 'लखाट उर्जा (फ्लॅश एनर्जी)',
 'exif-spatialfrequencyresponse' => 'विशाल लहर प्रतिक्रिया (स्पॅटीअल फ्रिक्वेन्सी रिस्पॉन्स)',
 'exif-focalplanexresolution'    => 'फोकल प्लेन x रिझोल्यूशन',
@@ -1811,10 +1831,15 @@ $1',
 'exif-customrendered'           => 'कस्टम इमेज प्रोसेसिंग',
 'exif-exposuremode'             => "'''प्रभाव'''न मोड",
 'exif-whitebalance'             => 'व्हाईट बॅलन्स',
+'exif-gaincontrol'              => 'दृश्य नियंत्रण',
 'exif-contrast'                 => 'विभेद (कॉन्ट्रास्ट)',
 'exif-sharpness'                => 'प्रखरता(शार्पनेस)',
 'exif-gpslatitude'              => 'अक्षांश',
 'exif-gpslongitude'             => 'रेखांश',
+'exif-gpsspeedref'              => 'वेग एकक',
+'exif-gpsimgdirection'          => 'चित्राची दिशा',
+'exif-gpsdestlatitude'          => 'अक्षांश लक्ष्य',
+'exif-gpsdestlongitude'         => 'रेखांशाचे लक्ष्य',
 
 'exif-unknowndate' => 'अज्ञात तारीख',
 
@@ -1824,6 +1849,11 @@ $1',
 'exif-orientation-8' => '90° CCW फिरवले', # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'अस्तित्वात नाही',
+
+'exif-exposureprogram-0' => 'अव्यक्त',
+'exif-exposureprogram-1' => 'हातकाम',
+'exif-exposureprogram-3' => 'रन्ध्र (ऍपर्चर) प्राथमिकता',
+'exif-exposureprogram-4' => 'झडप (शटर प्राथमिकता)',
 
 'exif-subjectdistance-value' => '$1 मीटर',
 
@@ -1878,6 +1908,14 @@ $1',
 'exif-subjectdistancerange-1' => 'मॅक्रो',
 'exif-subjectdistancerange-2' => 'जवळचे दृश्य',
 'exif-subjectdistancerange-3' => 'दूरचे दृश्य',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'उत्तर अक्षांश',
+'exif-gpslatitude-s' => 'दक्षीण अक्षांश',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'पूर्व रेखांश',
+'exif-gpslongitude-w' => 'पश्चिम रेखांश',
 
 'exif-gpsstatus-a' => 'मोजणी काम चालू आहे',
 'exif-gpsstatus-v' => 'आंतरोपयोगीक्षमतेचे मोजमाप',

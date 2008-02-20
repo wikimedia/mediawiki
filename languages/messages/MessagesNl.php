@@ -1274,6 +1274,7 @@ PICT # overig
 'nolinkstoimage'            => 'Geen enkele pagina gebruikt dit bestand.',
 'sharedupload'              => 'Dit bestand is een gedeelde upload en kan ook door andere projecten gebruikt worden.',
 'shareduploadwiki'          => 'Zie $1 voor verdere informatie.',
+'shareduploadwiki-desc'     => 'De $1 daar wordt hieronder getoond.',
 'shareduploadwiki-linktext' => 'bestandsbeschrijving',
 'noimage'                   => 'Er bestaat geen bestand met deze naam. U kan het $1.',
 'noimage-linktext'          => 'uploaden',

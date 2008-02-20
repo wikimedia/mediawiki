@@ -1295,7 +1295,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] to '''
 'allpagessubmit'    => 'Pokaż',
 'allpagesprefix'    => 'Pokaż zaczynające się od:',
 'allpagesbadtitle'  => 'Podana nazwa jest nieprawidłowa, zawiera prefiks międzyprojektowy lub międzyjęzykowy. Może ona także zawierać w sobie jeden lub więcej znaków których użycie w nazwach jest niedozwolone.',
-'allpages-bad-ns'   => 'W serwisie {{SITENAME}} nie istnieje przestrzeń nazw "$1".',
+'allpages-bad-ns'   => 'W {{GRAMMAR:Ms.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Wyświetl użytkowników zaczynając od:',
