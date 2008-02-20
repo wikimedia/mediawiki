@@ -43,6 +43,8 @@ if ( !function_exists( '__autoload' ) ) {
  */
 class WebRequest {
 	var $data = array();
+	var $headers;
+	private $_response;
 	
 	function __construct() {
 		/// @fixme This preemptive de-quoting can interfere with other web libraries
@@ -152,8 +154,6 @@ class WebRequest {
 		}
 		return array();
 	}
-	
-	private $_response;
 
 	/**
 	 * Recursively strips slashes from the given array;
@@ -181,7 +181,7 @@ class WebRequest {
 	 * @private
 	 */
 	function checkMagicQuotes() {
-		if ( get_magic_quotes_gpc() ) {
+		if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
 			$this->fix_magic_quotes( $_COOKIE );
 			$this->fix_magic_quotes( $_ENV );
 			$this->fix_magic_quotes( $_GET );
@@ -588,7 +588,34 @@ class WebRequest {
 		} 
 		return $this->_response;
 	}
-	
+
+	/**
+	 * Get a request header, or false if it isn't set
+	 * @param string $name Case-insensitive header name
+	 */
+	function getHeader( $name ) {
+		$name = strtoupper( $name );
+		if ( function_exists( 'apache_request_headers' ) ) {
+			if ( !isset( $this->headers ) ) {
+				$this->headers = array();
+				foreach ( apache_request_headers() as $tempName => $tempValue ) {
+					$this->headers[ strtoupper( $tempName ) ] = $tempValue;
+				}
+			}
+			if ( isset( $this->headers[$name] ) ) {
+				return $this->headers[$name];
+			} else {
+				return false;
+			}
+		} else {
+			$name = 'HTTP_' . str_replace( '-', '_', $name );
+			if ( isset( $_SERVER[$name] ) ) {
+				return $_SERVER[$name];
+			} else {
+				return false;
+			}
+		}
+	}
 }
 
 /**
@@ -610,6 +637,7 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
+		$this->headers = array();
 	}
 
 	function getText( $name, $default = '' ) {
@@ -635,6 +663,10 @@ class FauxRequest extends WebRequest {
 
 	function appendQuery( $query ) {
 		throw new MWException( 'FauxRequest::appendQuery() not implemented' );
+	}
+
+	function getHeader( $name ) {
+		return isset( $this->headers[$name] ) ? $this->headers[$name] : false;
 	}
 
 }
