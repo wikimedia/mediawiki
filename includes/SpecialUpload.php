@@ -1028,7 +1028,7 @@ wgAjaxLicensePreview = {$alp};
 				   "onfocus='" . 
 				     "toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");" .
 				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" .
-				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . "size='40' />" .
+				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . "size='60' />" .
 				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
 				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' " .
 				  "onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
@@ -1036,13 +1036,13 @@ wgAjaxLicensePreview = {$alp};
 				  "onfocus='" .
 				    "toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");" .
 				    "toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" .
-				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='40' DISABLED />" .
+				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='60' DISABLED />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 		} else {
 			$filename_form =
 				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
 				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") .
-				"size='40' />" .
+				"size='60' />" .
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
 		if ( $useAjaxDestCheck ) {
@@ -1070,7 +1070,7 @@ wgAjaxLicensePreview = {$alp};
 		<tr>
 			<td align='$align1'><label for='wpDestFile'>{$destfilename}:</label></td>
 			<td align='$align2'>
-				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' 
+				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60' 
 					value="$encDestName" $destOnkeyup />
 			</td>
 		</tr>
@@ -1117,12 +1117,12 @@ EOT
 			$wgOut->addHTML( "
 			        <td align='$align1' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
 					<td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
-					  value=\"$copystatus\" size='40' /></td>
+					  value=\"$copystatus\" size='60' /></td>
 		        </tr>
 			<tr>
 		        	<td align='$align1'><label for='wpUploadCopyStatus'>$filesource:</label></td>
 					<td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
-					  value=\"$uploadsource\" size='40' /></td>
+					  value=\"$uploadsource\" size='60' /></td>
 			</tr>
 			<tr>
 		");
