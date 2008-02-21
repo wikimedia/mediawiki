@@ -123,6 +123,13 @@ CREATE TABLE page_restrictions (
 );
 ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
+CREATE TABLE page_props (
+  pp_page      INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE,
+  pp_propname  TEXT     NOT NULL,
+  pp_value     TEXT     NOT NULL
+);
+ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_propname);
+CREATE INDEX page_props_propname ON page_props (pp_propname);
 
 CREATE TABLE archive (
   ar_namespace   SMALLINT     NOT NULL,
