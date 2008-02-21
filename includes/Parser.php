@@ -4443,6 +4443,8 @@ class Parser
 		$params['frame']['alt'] = $alt;
 		$params['frame']['caption'] = $caption;
 
+		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
+
 		# Linker does the rest
 		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'] );
 
