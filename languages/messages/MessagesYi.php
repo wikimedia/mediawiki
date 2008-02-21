@@ -978,7 +978,7 @@ $NEWPAGE
 'cannotundelete' => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
 
 # Namespace form on various pages
-'namespace'      => 'נעימספעיס:',
+'namespace'      => 'נאמענטייל:',
 'invert'         => 'ווײַז אַלע אויסער די',
 'blanknamespace' => '(הויפט)',
 
@@ -988,6 +988,7 @@ $NEWPAGE
 
 # What links here
 'whatlinkshere' => 'װאָס די אױף דאָס זײט פֿאַרבינדט',
+'linkshere'     => "די פאלגנדע בלעטער פארבינדן צום בלאט '''[[:$1]]''':",
 
 # Block/unblock
 'blockip'                  => 'באנוצער ארויסטרייבן',

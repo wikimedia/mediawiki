@@ -480,6 +480,9 @@ Query: $2',
 'viewsourcetext'       => 'Kannst den Borntext vun disse Siet ankieken un koperen:',
 'protectedinterface'   => 'Op disse Siet staht Narichtentexte för dat System un de Siet is dorüm sparrt.',
 'sqlhidden'            => '(SQL-Affraag versteken)',
+'namespaceprotected'   => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",
+'customcssjsprotected' => 'Du hest keen Rechten, disse Siet to ännern. Dor sünd persönliche Instellungen vun en annern Bruker in.',
+'ns-specialprotected'  => 'Sieden in’n Naamruum {{ns:special}} köönt nich ännert warrn.',
 
 # Login and logout pages
 'logouttitle'                => 'Bruker-Afmellen',
@@ -519,6 +522,7 @@ Vergeet nich, dien [[Special:Preferences|Instellen]] antopassen.',
 'email'                      => 'Nettbreef',
 'prefs-help-realname'        => 'De echte Naam mutt nich angeven warrn. Wenn du em angiffst, warrt de Naam bruukt, dat diene Arbeit di torekent warrn kann.',
 'loginerror'                 => 'Fehler bi dat Anmellen',
+'prefs-help-email-required'  => 'E-Mail-Adress nödig.',
 'nocookiesnew'               => 'De Brukertogang is anleggt, aver du büst nich inloggt. {{SITENAME}} bruukt för disse Funktschoon Cookies, aktiveer de Cookies un logg di denn mit dien nieg Brukernaam un den Password in.',
 'nocookieslogin'             => '{{SITENAME}} bruukt Cookies för dat Inloggen vun de Bruker. Du hest Cookies deaktiveert, aktiveer de Cookies un versöök dat noch eenmal.',
 'noname'                     => 'Du muttst en Brukernaam angeven.',
@@ -546,12 +550,14 @@ Ehrdat E-Mails vun annere Brukers över de E-Mail-Funkschoon kamen köönt, mutt
 'acct_creation_throttle_hit' => 'Du hest al $1 Brukerkontos anleggt. Du kannst nich noch mehr anleggen.',
 'emailconfirmlink'           => 'Nettbreef-Adress bestätigen',
 'accountcreated'             => 'Brukerkonto inricht',
+'createaccount-title'        => 'Konto anleggen för {{SITENAME}}',
 'loginlanguagelabel'         => 'Spraak: $1',
 
 # Password reset dialog
-'resetpass'        => 'Passwoort vun dat Brukerkonto trüchsetten',
-'resetpass_header' => 'Passwoort trüchsetten',
-'resetpass_submit' => 'Passwoort instellen un inloggen',
+'resetpass'         => 'Passwoort vun dat Brukerkonto trüchsetten',
+'resetpass_header'  => 'Passwoort trüchsetten',
+'resetpass_submit'  => 'Passwoort instellen un inloggen',
+'resetpass_missing' => 'Formular leddig',
 
 # Edit page toolbar
 'bold_sample'     => 'Fetten Text',
@@ -672,6 +678,7 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 'template-protected'       => '(schuult)',
 'template-semiprotected'   => '(half-schuult)',
 'edittools'                => '<!-- Disse Text warrt ünner de Finstern för dat Ännern un Hoochladen wiest. -->',
+'nocreatetitle'            => 'Opstellen vun ne’e Sieden is inschränkt.',
 'nocreatetext'             => '{{SITENAME}} verlööft di dat Opstellen vun ne’e Sieden nich. Du kannst blot Sieden ännern, de al dor sünd, oder du musst di [[Special:Userlogin|anmellen]].',
 'nocreate-loggedin'        => 'Du hest keen Verlööf, op {{SITENAME}} ne’e Sieden antoleggen.',
 'permissionserrors'        => 'Fehlers mit de Rechten',
@@ -744,8 +751,11 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'oversightlog' => 'Opsicht-Logbook',
 
 # History merging
-'mergehistory-from'   => 'Bornsiet:',
-'mergehistory-submit' => 'Versionen tohoopbringen',
+'mergehistory-from'           => 'Bornsiet:',
+'mergehistory-into'           => 'Teelsiet:',
+'mergehistory-submit'         => 'Versionen tohoopbringen',
+'mergehistory-no-source'      => 'Utgangssiet „$1“ gifft dat nich.',
+'mergehistory-no-destination' => 'Teelsiet „$1“ gifft dat nich.',
 
 # Merge log
 'revertmerge' => 'Tohoopbringen trüchdreihn',
@@ -764,6 +774,7 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'searchsubtitle'        => 'För de Söökanfraag „[[:$1]]“',
 'searchsubtitleinvalid' => 'För de Söökanfraag „$1“',
 'noexactmatch'          => 'Gifft kene Siet mit dissen Naam. Bruuk de Vulltextsöök oder legg de Siet [[:$1|nee]] an.',
+'noexactmatch-nocreate' => "'''Gifft kene Siet mit’n Titel „$1“.'''",
 'titlematches'          => 'Övereenstimmen mit Överschriften',
 'notitlematches'        => 'Kene Övereenstimmen',
 'textmatches'           => 'Övereenstimmen mit Texten',
@@ -802,6 +813,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'skin'                     => 'Utsehn vun de Steed',
 'math'                     => 'TeX',
 'dateformat'               => 'Datumsformat',
+'datedefault'              => 'Standard',
 'datetime'                 => 'Datum un Tiet',
 'math_failure'             => 'Parser-Fehler',
 'math_unknown_error'       => 'Unbekannten Fehler',
@@ -830,6 +842,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'resultsperpage'           => 'Treffer pro Siet',
 'contextlines'             => 'Lienen pro Treffer',
 'contextchars'             => 'Teken je Reeg',
+'recentchangesdays'        => 'Daag, de de List vun de „Ne’esten Ännern“ wiesen schall:',
 'recentchangescount'       => 'Antall „Letzte Ännern“',
 'savedprefs'               => 'Dien Instellen sünd spiekert.',
 'timezonelegend'           => 'Tietrebeet',
@@ -840,6 +853,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'guesstimezone'            => 'Ut den Browser övernehmen',
 'allowemail'               => 'Nettbreven vun annere Brukers annehmen',
 'defaultns'                => 'In disse Naamrüüm schall standardmatig söökt warrn:',
+'default'                  => 'Standard',
 'files'                    => 'Datein',
 
 # User rights
@@ -849,10 +863,13 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'userrights-editusergroup'    => 'Brukergruppen ännern',
 'saveusergroups'              => 'Brukergruppen spiekern',
 'userrights-groupsmember'     => 'Liddmaat vun:',
+'userrights-groupsremovable'  => 'Gruppen, de wegnahmen warrn köönt:',
 'userrights-groupsavailable'  => 'vörhannene Gruppen:',
 'userrights-reason'           => 'Grund:',
+'userrights-available-none'   => 'Du dröffst kene Brukerrechten ännern.',
 'userrights-available-add'    => 'Du kannst Brukers to disse Grupp{{PLURAL:$2||en}} tofögen: $1.',
 'userrights-available-remove' => 'Du kannst Brukers ut disse Grupp{{PLURAL:$2||en}} rutnehmen: $1.',
+'userrights-nodatabase'       => 'Datenbank $1 gifft dat nich oder is nich lokal.',
 
 # Groups
 'group'            => 'Grupp:',
@@ -975,6 +992,7 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'upload-misc-error'      => 'Unbekannt Fehler bi dat Hoochladen',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'  => 'Kunn de URL nich kriegen',
 'upload-curl-error28' => 'Tied-Ut bi dat Hoochladen',
 
 'nolicense'          => 'nix utwählt',
@@ -997,6 +1015,7 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'filehist-help'             => 'Klick op de Tiet, dat du de Datei ankieken kannst, so as se do utseeg.',
 'filehist-deleteall'        => 'all wegsmieten',
 'filehist-deleteone'        => 'dit wegsmieten',
+'filehist-revert'           => 'Trüchsetten',
 'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Datum/Tiet',
 'filehist-user'             => 'Bruker',
@@ -1018,17 +1037,20 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'imagelist_description'     => 'Beschrieven',
 
 # File reversion
+'filerevert'         => '„$1“ Trüchsetten',
 'filerevert-legend'  => 'Datei trüchsetten',
 'filerevert-comment' => 'Kommentar:',
+'filerevert-submit'  => 'Trüchsetten',
 
 # File deletion
-'filedelete'         => '$1 wegsmieten',
-'filedelete-legend'  => 'Datei wegsmieten',
-'filedelete-intro'   => "Du smittst '''[[Media:$1|$1]]''' weg.",
-'filedelete-comment' => 'Kommentar:',
-'filedelete-submit'  => 'Wegsmieten',
-'filedelete-success' => "'''$1''' wegsmeten.",
-'filedelete-nofile'  => "'''$1''' gifft dat nich op {{SITENAME}}.",
+'filedelete'                  => '$1 wegsmieten',
+'filedelete-legend'           => 'Datei wegsmieten',
+'filedelete-intro'            => "Du smittst '''[[Media:$1|$1]]''' weg.",
+'filedelete-comment'          => 'Kommentar:',
+'filedelete-submit'           => 'Wegsmieten',
+'filedelete-success'          => "'''$1''' wegsmeten.",
+'filedelete-nofile'           => "'''$1''' gifft dat nich op {{SITENAME}}.",
+'filedelete-reason-otherlist' => 'Annern Grund',
 
 # MIME search
 'mimesearch' => 'MIME-Söök',
@@ -1086,6 +1108,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 
 'withoutinterwiki'        => 'Sieden ahn Spraaklenken',
 'withoutinterwiki-header' => 'Disse Sieden hebbt keen Lenken na annere Spraakversionen:',
+'withoutinterwiki-submit' => 'Wies',
 
 'fewestrevisions' => 'Sieden mit de wenigsten Versionen',
 
@@ -1137,6 +1160,8 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'unusedcategoriestext'    => 'Disse Kategorien sünd leddig, keen Artikel un kene Ünnerkategorie steiht dor in.',
 'notargettitle'           => 'Kene Siet angeven',
 'notargettext'            => 'Du hest nich angeven, op welke Siet du disse Funktschoon anwennen willst.',
+'pager-newer-n'           => '{{PLURAL:$1|nächste|nächste $1}}',
+'pager-older-n'           => '{{PLURAL:$1|vörige|vörige $1}}',
 
 # Book sources
 'booksources'               => 'Bookhannel',
@@ -1242,6 +1267,8 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'enotif_newpagetext'           => 'Dit is en ne’e Siet.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Bruker',
 'changed'                      => 'ännert',
+'created'                      => 'opstellt',
+'enotif_anon_editor'           => 'Anonymen Bruker $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Siet wegsmieten',
@@ -1250,6 +1277,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'excontentauthor'             => 'Inholt weer: ‚$1‘ (un de eenzige Autor weer ‚[[Special:Contributions/$2|$2]]‘)',
 'exbeforeblank'               => 'Inholt vör dat Leddigmaken vun de Siet: ‚$1‘',
 'exblank'                     => 'Siet weer leddig',
+'delete-confirm'              => '„$1“ wegsmieten',
 'historywarning'              => 'Wohrschau: De Siet, de du bi büst to löschen, hett en Versionshistorie:',
 'confirmdeletetext'           => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
 Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]] hannelst.',
@@ -1289,7 +1317,7 @@ De letzte Ännern is vun [[User:$3|$3]]
 'protect_expiry_old'          => 'Utlooptiet al vörbi.',
 'unprotectsub'                => '(Beennen vun de Sparr vun „$1“)',
 'protect-unchain'             => 'Schuul vör dat Schuven ännern',
-'protect-text'                => "Hier kannst du den Schuulstatus för de Siet '''<nowiki>\$1</nowiki>''' ankieken un ännern.",
+'protect-text'                => "Hier kannst du den Schuulstatus för de Siet '''<nowiki>$1</nowiki>''' ankieken un ännern.",
 'protect-locked-access'       => 'Du hest nich de nödigen Rechten, den Schuulstatus vun de Siet to ännern. Dit sünd de aktuellen Instellungen för de Siet <strong>„$1“:</strong>',
 'protect-cascadeon'           => 'Disse Siet is aktuell dör ene Kaskadensparr schuult. Se is in de nakamen {{PLURAL:$1|Siet|Sieden}} inbunnen, de dör Kaskadensparr schuult {{PLURAL:$1|is|sünd}}. De Schuulstatus kann för disse Siet ännert warrn, dat hett aver keen Effekt op de Kaskadensparr:',
 'protect-default'             => '(normal)',
@@ -1318,6 +1346,7 @@ De letzte Ännern is vun [[User:$3|$3]]
 'undeletehistory'          => 'Wenn du disse Siet weerholst, warrt ok alle olen Versionen weerholt. Wenn siet dat Löschen en nieg Siet mit lieken
 Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse Siet wiest.',
 'undeletebtn'              => 'Wedderhalen!',
+'undeletereset'            => 'Afbreken',
 'undeletecomment'          => 'Grund:',
 'undeletedarticle'         => '„$1“ wedderhaalt',
 'undeletedrevisions'       => '{{Plural:$1|ene Version|$1 Versionen}} wedderhaalt',
@@ -1491,18 +1520,22 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'thumbnail_dest_directory' => 'Kann Zielorner nich anleggen',
 
 # Special:Import
-'import'                => 'Import vun Sieden',
-'importtext'            => 'Exporteer de Siet vun dat Utgangswiki mit Special:Export un laad de Datei denn över disse Siet weer hooch.',
-'importstart'           => 'Sieden warrt rinhaalt...',
-'import-revision-count' => '$1 {{PLURAL:$1|Version|Versionen}}',
-'importnopages'         => 'Gifft kene Sieden to’n Rinhalen.',
-'importfailed'          => 'Import hett kenen Spood: $1',
-'importcantopen'        => 'Kunn de Import-Datei nich apen maken',
-'importbadinterwiki'    => 'Verkehrt Interwiki-Lenk',
-'importnotext'          => 'Leddig oder keen Text',
-'importsuccess'         => 'Import hett Spood!',
-'importhistoryconflict' => 'Dor sünd al öllere Versionen, de mit dissen kollideert. (Mööglicherwies is de Siet al vörher importeert worrn)',
-'importnofile'          => 'Kene Import-Datei hoochladen.',
+'import'                     => 'Import vun Sieden',
+'import-interwiki-submit'    => 'Rinhalen',
+'import-interwiki-namespace' => 'Siet in Naamruum halen:',
+'importtext'                 => 'Exporteer de Siet vun dat Utgangswiki mit Special:Export un laad de Datei denn över disse Siet weer hooch.',
+'importstart'                => 'Sieden warrt rinhaalt...',
+'import-revision-count'      => '$1 {{PLURAL:$1|Version|Versionen}}',
+'importnopages'              => 'Gifft kene Sieden to’n Rinhalen.',
+'importfailed'               => 'Import hett kenen Spood: $1',
+'importcantopen'             => 'Kunn de Import-Datei nich apen maken',
+'importbadinterwiki'         => 'Verkehrt Interwiki-Lenk',
+'importnotext'               => 'Leddig oder keen Text',
+'importsuccess'              => 'Import hett Spood!',
+'importhistoryconflict'      => 'Dor sünd al öllere Versionen, de mit dissen kollideert. (Mööglicherwies is de Siet al vörher importeert worrn)',
+'importnofile'               => 'Kene Import-Datei hoochladen.',
+'import-noarticle'           => 'Kene Siet to’n Rinhalen angeven!',
+'xml-error-string'           => '$1 Reeg $2, Spalt $3, (Byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Import-Logbook',
@@ -1673,6 +1706,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 # EXIF tags
 'exif-imagewidth'          => 'Breed',
 'exif-imagelength'         => 'Hööchd',
+'exif-bitspersample'       => 'Bits je Farvkomponent',
 'exif-orientation'         => 'Utrichtung',
 'exif-imagedescription'    => 'Bildtitel',
 'exif-model'               => 'Kameramodell',
@@ -1683,12 +1717,17 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-exposuretime-format' => '$1 Sek. ($2)',
 'exif-fnumber'             => 'F-Nummer',
 'exif-shutterspeedvalue'   => 'Belichttiet',
+'exif-aperturevalue'       => 'Blennweert',
+'exif-brightnessvalue'     => 'Helligkeit',
+'exif-meteringmode'        => 'Meetmethood',
 'exif-lightsource'         => 'Lichtborn',
 'exif-flash'               => 'Blitz',
 'exif-flashenergy'         => 'Blitzstärk',
 'exif-filesource'          => 'Dateiborn',
 'exif-whitebalance'        => 'Wittutgliek',
 'exif-contrast'            => 'Kontrast',
+'exif-sharpness'           => 'Schärp',
+'exif-imageuniqueid'       => 'Bild-ID',
 'exif-gpslatitude'         => 'Breed',
 'exif-gpslongitude'        => 'Läng',
 'exif-gpsaltitude'         => 'Hööch',
@@ -1710,17 +1749,36 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 
 'exif-componentsconfiguration-0' => 'gifft dat nich',
 
+'exif-exposureprogram-1' => 'vun Hand',
+'exif-exposureprogram-2' => 'Standardprogramm',
+
 'exif-subjectdistance-value' => '$1 Meter',
 
-'exif-meteringmode-0' => 'Unbekannt',
-'exif-meteringmode-1' => 'Dörsnittlich',
-'exif-meteringmode-5' => 'Munster',
+'exif-meteringmode-0'   => 'Unbekannt',
+'exif-meteringmode-1'   => 'Dörsnittlich',
+'exif-meteringmode-5'   => 'Munster',
+'exif-meteringmode-6'   => 'Bilddeel',
+'exif-meteringmode-255' => 'Unbekannt',
 
-'exif-lightsource-0'  => 'unbekannt',
-'exif-lightsource-1'  => 'Daglicht',
-'exif-lightsource-4'  => 'Blitz',
-'exif-lightsource-9'  => 'Good Weder',
-'exif-lightsource-11' => 'Schatten',
+'exif-lightsource-0'   => 'unbekannt',
+'exif-lightsource-1'   => 'Daglicht',
+'exif-lightsource-3'   => 'Glöhlamp',
+'exif-lightsource-4'   => 'Blitz',
+'exif-lightsource-9'   => 'Good Weder',
+'exif-lightsource-10'  => 'Wulkig',
+'exif-lightsource-11'  => 'Schatten',
+'exif-lightsource-12'  => 'Daglicht fluoreszeren (D 5700–7100 K)',
+'exif-lightsource-13'  => 'Dagwitt fluoreszeren (N 4600–5400 K)',
+'exif-lightsource-14'  => 'Köhlwitt fluoreszeren (W 3900–4500 K)',
+'exif-lightsource-15'  => 'Witt fluoreszeren (WW 3200–3700 K)',
+'exif-lightsource-17'  => 'Standardlicht A',
+'exif-lightsource-18'  => 'Standardlicht B',
+'exif-lightsource-19'  => 'Standardlicht C',
+'exif-lightsource-255' => 'Annern Lichtborn',
+
+'exif-focalplaneresolutionunit-2' => 'Toll',
+
+'exif-sensingmethod-1' => 'Undefineert',
 
 'exif-whitebalance-0' => 'Automaatsch Wittutgliek',
 'exif-whitebalance-1' => 'Wittutgliek vun Hand',
@@ -1729,8 +1787,13 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-scenecapturetype-2' => 'Porträt',
 'exif-scenecapturetype-3' => 'Nacht',
 
+'exif-gaincontrol-0' => 'Keen',
+
 'exif-contrast-1' => 'Wiek',
 'exif-contrast-2' => 'Hart',
+
+'exif-saturation-1' => 'Sied',
+'exif-saturation-2' => 'Hooch',
 
 'exif-sharpness-1' => 'Wiek',
 'exif-sharpness-2' => 'Hart',
@@ -1747,6 +1810,11 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Läng Oost',
 'exif-gpslongitude-w' => 'Läng West',
+
+'exif-gpsstatus-a' => 'Meten löppt',
+
+'exif-gpsmeasuremode-2' => '2-dimensional meet',
+'exif-gpsmeasuremode-3' => '3-dimensional meet',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kilometers in’e Stünn',
@@ -1828,6 +1896,8 @@ $1',
 'imgmultigotopre'  => 'Gah na de Siet',
 
 # Table pager
+'ascending_abbrev'         => 'op',
+'descending_abbrev'        => 'dal',
 'table_pager_next'         => 'Nächste Siet',
 'table_pager_prev'         => 'Vörige Siet',
 'table_pager_first'        => 'Eerste Siet',
@@ -1870,6 +1940,12 @@ Versöök de normale Vörschau.',
 'watchlisttools-view' => 'Oppasslist ankieken',
 'watchlisttools-edit' => 'Oppasslist ankieken un ännern',
 'watchlisttools-raw'  => 'Oppasslist as Textlist ännern',
+
+# Special:Version
+'version-license'          => 'Lizenz',
+'version-software'         => 'Installeerte Software',
+'version-software-product' => 'Produkt',
+'version-software-version' => 'Version',
 
 # Special:Filepath
 'filepath'         => 'Dateipadd',

@@ -9,6 +9,8 @@
  * @author SPQRobin
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
@@ -460,7 +462,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'image_sample'    => 'Sabulugal.jpg',
 'image_tip'       => 'Imahin encuairá',
 'media_sample'    => 'Sabulugal.ogg',
-'media_tip'       => 'Atihu d´archivu "Meya"',
+'media_tip'       => "Atihu d'archivu",
 'sig_tip'         => 'Firma, fecha i ora',
 'hr_tip'          => 'Línia orizontal (deseparaol)',
 
@@ -549,7 +551,7 @@ Pol favol, ententa empuntala otra vezi, i si acontina marrandu, preba a afechal 
 'token_suffix_mismatch'     => "<strong>La tu eición nu á siu acetá ebiu a qu'el tu escrucaol mutiló los caráteris de puntuación nel eitol. La eición nu á siu acetá pa prevenil pobremas nel artículu.
 Esti pobrema se dá angunas vezis si estás gastandu un proxy anónimu basau en web que seya pobremáticu.</strong>",
 'editing'                   => 'Eitandu $1',
-'editinguser'               => 'Eitandu usuariu <b>$1</b>',
+'editinguser'               => "Chambandu los derechus del usuáriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Eitandu $1 (seción)',
 'editingcomment'            => 'Eitandu $1 (comentariu)',
 'editconflict'              => 'Conflitu d´eición: $1',
@@ -887,7 +889,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 pa empuntal archivus.',
 'upload_directory_read_only'  => "Nu puei escrebilsi nel diretoriu d'empuntu ($1) el sirviol.",
 'uploaderror'                 => 'Marru d´empuntu',
-'uploadtext'                  => "Gasta el hormulariu d'embahu pa empuntal archivus, pa vel u landeal imahis ya empuntás vaiti pala [[Special:Imagelist|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus tamién se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
+'uploadtext'                  => "Gasta el hormuláriu d'embahu pa empuntal archivus, pa vel u landeal imahin ya empuntás vaiti pala [[Special:Imagelist|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
 
 P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -1005,7 +1007,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'imagelist_user'            => 'Usuáriu',
 'imagelist_size'            => 'Grandol',
 'imagelist_description'     => 'Descrición',
-'imagelist_search_for'      => 'Landeal pol el nombri la imahin:',
+'imagelist_search_for'      => 'Landeal pol nombri la imahin:',
 
 # File reversion
 'filerevert'                => 'Revertil $1',
@@ -1107,7 +1109,7 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'lonelypagestext'         => 'Las siguientis páhinas nu están atihás (dendi otras páhinas) nesti güiqui.',
 'uncategorizedpages'      => 'Páhinas sin categorizal',
 'uncategorizedcategories' => 'Categorias sin categorizal',
-'uncategorizedimages'     => 'Imahis sin categorizal',
+'uncategorizedimages'     => 'Imahin sin categoriçal',
 'uncategorizedtemplates'  => 'Prantillas sin categoria',
 'unusedcategories'        => 'Categorias abaldonás',
 'unusedimages'            => 'Archivus abaldonaus',
@@ -1118,7 +1120,7 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'mostlinkedcategories'    => 'Categorias mas atihás',
 'mostlinkedtemplates'     => 'Prantillas mas atihás',
 'mostcategories'          => 'Páhinas con mas categorias',
-'mostimages'              => 'Imahis mas atihás',
+'mostimages'              => 'Imahin mas atihás',
 'mostrevisions'           => 'Artículus con mas revisionis',
 'allpages'                => 'Tolas páhinas',
 'prefixindex'             => 'Páhinas pol prefihu',
@@ -1438,7 +1440,7 @@ $1',
 'sp-contributions-username'    => 'IP u nombri d´usuáriu:',
 'sp-contributions-submit'      => 'Landeal',
 
-'sp-newimages-showfrom' => 'Muestral nuevas imahis qu´esmiencin pol $1',
+'sp-newimages-showfrom' => 'Muestral nuevas imahin qu´esmiencin pol $1',
 
 # What links here
 'whatlinkshere'       => "Lo qu'atiha aquí",
@@ -1708,7 +1710,7 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'tooltip-feed-atom'               => 'Atom feed pa esta páhina',
 'tooltip-t-contributions'         => 'Visoreal los endirguis desti usuáriu',
 'tooltip-t-emailuser'             => 'Envial un email a esti usuáriu',
-'tooltip-t-upload'                => 'Empuntal imahis u archivus murtimeya',
+'tooltip-t-upload'                => 'Empuntal archivus',
 'tooltip-t-specialpages'          => 'Lista e tolas páhinas especialis',
 'tooltip-t-print'                 => 'Velsión pa imprental desta páhina',
 'tooltip-t-permalink'             => 'Atihu remanenti a esta velsión de la páhina',
@@ -1717,7 +1719,7 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'tooltip-ca-nstab-media'          => 'Vel la páhina e "meya"',
 'tooltip-ca-nstab-special'        => 'Esta es una páhina especial, razón pola que nu pueis eitala',
 'tooltip-ca-nstab-project'        => 'Vel la páhina el proyeutu',
-'tooltip-ca-nstab-image'          => 'Vel la páhina la imahin',
+'tooltip-ca-nstab-image'          => 'Vel la páhina el archivu',
 'tooltip-ca-nstab-mediawiki'      => 'Vel el mensahi el sistema',
 'tooltip-ca-nstab-template'       => 'Vel la prantilla',
 'tooltip-ca-nstab-help'           => 'Vel la páhina d´ayua',
@@ -1833,7 +1835,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 
 # Metadata
 'metadata'          => 'Metadatus',
-'metadata-help'     => "Esti archivu contieni enhormación aicional (metadatus), probabrienti añiia pola cámara dehital, el escánel u el pograma gastau pa crialu u dehitalizalu. Si s'án hechu chambus nel archivu, es posibri que s'aigan perdiu detallis.",
+'metadata-help'     => "Esti archivu contieni enhormación aicional (metadatus), probabrienti añiia pola cámara dehital, el escánel u el pograma gastau pa crialu u dehitaliçalu. Si s'án hechu chambus nel archivu, es posibri que s'aigan perdiu detallis.",
 'metadata-expand'   => 'Muestral detallis',
 'metadata-collapse' => 'Açonchal detallis',
 'metadata-fields'   => 'Los datus de metadatus EXIF que se listan nesti mensahi se muestrarán ena páhina e descrición la imahin aún cuandu la tabra e metadatus esté açonchá. Desistin algotrus campus que se mantendrán açonchaus pol defetu.

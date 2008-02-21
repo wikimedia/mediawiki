@@ -407,6 +407,7 @@ $messages = array(
 'site-atom-feed'          => 'Feed Atom $1',
 'page-rss-feed'           => 'Feed RSS de "$1"',
 'page-atom-feed'          => 'Feed Atom de "$1"',
+'red-link-title'          => '$1 (ainda não escrito)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
@@ -611,7 +612,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Imagem anexa',
 'media_sample'    => 'Exemplo.ogg',
-'media_tip'       => 'Ligação a ficheiro interno de multimédia',
+'media_tip'       => 'Ligação para ficheiro',
 'sig_tip'         => 'Sua assinatura, com hora e data',
 'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
 

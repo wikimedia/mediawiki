@@ -80,6 +80,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'İzleme listemden bot değişikliklerini gizle',
 'tog-watchlisthideminor'      => 'İzleme listemden küçük değişiklikleri gizle',
 'tog-ccmeonemails'            => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
+'tog-diffonly'                => 'Geçmişin altındaki sayfaların içeriğini gösterme.',
 
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
@@ -570,10 +571,12 @@ Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalam
 'templatesusedsection'      => 'Bu bölümde kullanılan şablonlar:',
 'template-protected'        => '(koruma)',
 'template-semiprotected'    => '(yarı-koruma)',
+'nocreatetitle'             => 'Sayfa oluşturulması limitlendi',
 'nocreatetext'              => '{{SITENAME}}, yeni sayfa oluşturulabilmesini engelledi.
 Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Special:Userlogin|oturum açabilir]], değilseniz [[Special:Userlogin|kayıt olabilirsiniz]].',
 'nocreate-loggedin'         => '{{SITENAME}} üzerinde yeni sayfalar oluşturmaya yetkiniz yok.',
 'permissionserrors'         => 'İzin hataları',
+'permissionserrorstext'     => 'Aşağıdaki {{PLURAL:$1|sebep|sebepler}}den dolayı, bunu yapmaya yetkiniz yok:',
 'recreate-deleted-warn'     => "'''Uyarı: Daha önceden silinmiş bir sayfayı yeniden oluşturuyorsunuz.'''
 
 Bu sayfayı düzenlemeye devam ederken bunun uygun olup olmadığını düşünmelisiniz.
@@ -582,14 +585,19 @@ Kolaylık olması açısından bu sayfanın silme kayıtları burada belirtilmi�
 # "Undo" feature
 'undo-success' => 'Bu değişiklik geri alınabilir. Lütfen aşağıdaki karşılaştırmayı kontrol edin, gerçekten bu değişikliği yapmak istediğinizden emin olun ve sayfayı kaydederek bir önceki değişikliği geriye alın.',
 'undo-failure' => 'Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından $1 kullanıcısının değişikliği geri alındı.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Hesap oluşturulamıyor',
+'cantcreateaccount-text' => "Bu IP adresinden (<b>$1</b>) kullaınıcı hesabı oluşturulması [[User:$3|$3]] tarafından engellenmiştir.
+
+$3 tarafından verilen sebep ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Bu sayfa ile ilgili kayıtları göster',
 'nohistory'           => 'Bu sayfanın geçmiş sürümü yok.',
 'revnotfound'         => 'Sürüm bulunmadı',
+'revnotfoundtext'     => "İstemiş olduğunuz sayfanın eski versiyonu bulunamadı. Lütfen bu sayfaya erişmekte kullandığınız URL'yi kontrol edin.",
 'loadhist'            => 'Sayfa geçmişi yükleniyor',
 'currentrev'          => 'Güncel sürüm',
 'revisionasof'        => 'Sayfanın $1 tarihindeki hali',
@@ -614,19 +622,38 @@ Tanımlar: (güncel) = güncel sürümle aradaki fark,
 
 # Revision feed
 'history-feed-title'          => 'Değişiklik geçmişis',
+'history-feed-description'    => 'Viki üzerindeki bu sayfanın değişiklik geçmişi.',
 'history-feed-item-nocomment' => "$1, $2'de", # user at time
+'history-feed-empty'          => 'İstediğiniz sayfa bulunmamaktadır.
+Sayfa vikiden silinmiş ya da ismi değiştirilmiş olabilir.
+Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama yapmayı]] deneyin.',
 
 # Revision deletion
-'rev-deleted-comment'       => '(yorum silindi)',
-'rev-deleted-user'          => '(kullanıcı adı silindi)',
-'rev-deleted-event'         => '(madde silindi)',
-'rev-delundel'              => 'göster/gizle',
-'revisiondelete'            => 'Sürümleri sil/geri getir',
-'revdelete-hide-comment'    => 'Özeti gösterme',
-'revdelete-hide-user'       => "Değişikliği yapan kullanıcı adını/IP'i gizle",
-'revdelete-hide-restricted' => 'Bu kısıtlamaları yöneticilere ve kullanıcılara uygula',
-'revdelete-log'             => 'Log açıklama:',
-'revdelete-submit'          => 'Seçilen sürüme uygula',
+'rev-deleted-comment'         => '(yorum silindi)',
+'rev-deleted-user'            => '(kullanıcı adı silindi)',
+'rev-deleted-event'           => '(madde silindi)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Bu sayfa değişikliği kamu arşivlerinden silinmiştir.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulabilirsiniz.</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
+{{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.</div>',
+'rev-delundel'                => 'göster/gizle',
+'revisiondelete'              => 'Sürümleri sil/geri getir',
+'revdelete-nooldid-title'     => 'Hedef değişiklik yok',
+'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok.',
+'revdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:",
+'logdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili kayıt olayı|seçili kayıt olayları}}:",
+'revdelete-legend'            => 'Kısıtlamaları ayarla:',
+'revdelete-hide-text'         => 'Değişikilik yazısını gizle',
+'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
+'revdelete-hide-comment'      => 'Özeti gösterme',
+'revdelete-hide-user'         => "Değişikliği yapan kullanıcı adını/IP'i gizle",
+'revdelete-hide-restricted'   => 'Bu kısıtlamaları yöneticilere ve kullanıcılara uygula',
+'revdelete-suppress'          => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
+'revdelete-hide-image'        => 'Dosya içeriğini gizle',
+'revdelete-log'               => 'Log açıklama:',
+'revdelete-submit'            => 'Seçilen sürüme uygula',
 
 # Oversight log
 'oversightlog' => 'Gözetmen kayıtları',

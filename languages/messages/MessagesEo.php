@@ -730,8 +730,10 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
 
 # History merging
-'mergehistory-from' => 'Fontpaĝo:',
-'mergehistory-into' => 'Celpaĝo:',
+'mergehistory-from'           => 'Fontpaĝo:',
+'mergehistory-into'           => 'Celpaĝo:',
+'mergehistory-no-source'      => 'Fontpaĝo $1 ne ekzistas.',
+'mergehistory-no-destination' => 'Celpaĝo $1 ne ekzistas.',
 
 # Merge log
 'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (revizioj gxis $3)',

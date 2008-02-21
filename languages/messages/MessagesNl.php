@@ -516,6 +516,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
+'red-link-title'          => '$1 (bestaat nog niet)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pagina',
@@ -983,7 +984,7 @@ Wees zeker dat deze wijziging de geschiedenisdoorlopendheid van de pagina zal be
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
 'noexactmatch'          => "'''Er bestaat geen pagina genaamd \"\$1\".''' U kan deze [[:\$1|aanmaken]].",
 'noexactmatch-nocreate' => "'''Er bestaat geen pagina genaamd \"\$1\".'''",
-'toomanymatches'        => 'Er waren te veel resultaten. Probeer alstublieft een andere zoekopdracht',
+'toomanymatches'        => 'Er waren te veel resultaten. Probeer alstublieft een andere zoekopdracht.',
 'titlematches'          => 'Overeenkomst met onderwerp',
 'notitlematches'        => 'Geen resultaten gevonden',
 'textmatches'           => 'Overeenkomst met inhoud',
