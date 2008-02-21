@@ -66,9 +66,13 @@ class Linker {
 	 * @param $text String: FIXME
 	 * @param $class String: CSS class of the link, default ''.
 	 */
-	function getInternalLinkAttributesObj( &$nt, $text, $class='' ) {
+	function getInternalLinkAttributesObj( &$nt, $text, $class = '', $title = false ) {
 		$r = ($class != '') ? ' class="' . htmlspecialchars( $class ) . '"' : '';
-		$r .= ' title="' . $nt->getEscapedText() . '"';
+		if ( $title === false ) {
+			$r .= ' title="' . $nt->getEscapedText() . '"';
+		} else {
+			$r .= ' title="' . htmlspecialchars( $title ) . '"';
+		}
 		return $r;
 	}
 
@@ -340,16 +344,17 @@ class Linker {
 		if( $nt->getNamespace() == NS_SPECIAL ) {
 			$q = $query;
 		} else if ( '' == $query ) {
-			$q = 'action=edit';
+			$q = 'action=editredlink';
 		} else {
-			$q = 'action=edit&'.$query;
+			$q = 'action=editredlink&'.$query;
 		}
 		$u = $nt->escapeLocalURL( $q );
 
 		if ( '' == $text ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
-		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'new' );
+		$title = wfMsg( 'red-link-title', $nt->getText() );
+		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'new', $title );
 
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";

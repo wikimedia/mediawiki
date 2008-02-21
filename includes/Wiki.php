@@ -433,6 +433,7 @@ class MediaWiki {
 				}
 				/* Continue... */
 			case 'edit':
+			case 'editredlink':
 				if( wfRunHooks( 'CustomEditor', array( $article, $user ) ) ) {
 					$internal = $request->getVal( 'internaledit' );
 					$external = $request->getVal( 'externaledit' );

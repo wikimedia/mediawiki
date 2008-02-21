@@ -87,6 +87,29 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	}
 }
 
+/**
+ * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
+ */
+function wfArrayDiff2( $a, $b ) {
+	return array_udiff( $a, $b, 'wfArrayDiff2_cmp' );
+}
+function wfArrayDiff2_cmp( $a, $b ) {
+	if ( !is_array( $a ) ) {
+		return strcmp( $a, $b );
+	} elseif ( count( $a ) !== count( $b ) ) {
+		return count( $a ) < count( $b ) ? -1 : 1;
+	} else {
+		reset( $a );
+		reset( $b );
+		while( ( list( $keyA, $valueA ) = each( $a ) ) && ( list( $keyB, $valueB ) = each( $b ) ) ) {
+			$cmp = strcmp( $valueA, $valueB );
+			if ( $cmp !== 0 ) {
+				return $cmp;
+			}
+		}
+		return 0;
+	}
+}
 
 /**
  * Wrapper for clone(), for compatibility with PHP4-friendly extensions.

@@ -720,6 +720,7 @@ XHTML id names.
 'sitenotice'                   => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
 'anonnotice'                   => '-', # don't translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # don't translate or duplicate this message to other languages
+'red-link-title'               => '$1 (not yet written)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',

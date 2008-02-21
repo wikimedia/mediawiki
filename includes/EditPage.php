@@ -356,28 +356,21 @@ class EditPage {
 		}
 		
 		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage( $this->getContent() );
+			$this->readOnlyPage( $this->getContent() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 
 		$permErrors = $this->mTitle->getUserPermissionsErrors('edit', $wgUser);
 		if( !$this->mTitle->exists() ) {
-			# We can't use array_diff here, because that considers ANY TWO
-			# ARRAYS TO BE EQUAL.  Thanks, PHP.
-			$createErrors = $this->mTitle->getUserPermissionsErrors('create', $wgUser);
-			foreach( $createErrors as $error ) {
-				# in_array() actually *does* work as expected.
-				if( !in_array( $error, $permErrors ) ) {
-					$permErrors[] = $error;
-				}
-			}
+			$permErrors = array_merge( $permErrors, 
+				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors('create', $wgUser), $permErrors ) );
 		}
 
 		# Ignore some permissions errors.
 		$remove = array();
 		foreach( $permErrors as $error ) {
-			if ($this->preview || $this->diff &&
+			if ( ( $this->preview || $this->diff ) &&
 				($error[0] == 'blockedtext' || $error[0] == 'autoblockedtext'))
 			{
 				// Don't worry about blocks when previewing/diffing
@@ -393,11 +386,11 @@ class EditPage {
 				}
 			}
 		}
-		$permErrors = array_diff( $permErrors, $remove );
+		$permErrors = wfArrayDiff2( $permErrors, $remove );
 
-		if ( !empty($permErrors) ) {
+		if ( $permErrors ) {
 			wfDebug( __METHOD__.": User can't edit\n" );
-			$wgOut->readOnlyPage( $this->getContent(), true, $permErrors );
+			$this->readOnlyPage( $this->getContent(), true, $permErrors );
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
@@ -483,6 +476,23 @@ class EditPage {
 		$this->showEditForm();
 		wfProfileOut( __METHOD__."-business-end" );
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Show a read-only error
+	 * Parameters are the same as OutputPage:readOnlyPage()
+	 * Redirect to the article page if action=editredlink
+	 */
+	function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
+		global $wgRequest, $wgOut;
+		if ( $wgRequest->getVal( 'action' ) === 'editredlink' ) {
+			// The edit page was reached via a red link.
+			// Redirect to the article page and let them click the edit tab if 
+			// they really want a permission error.
+			$wgOut->redirect( $this->mTitle->getFullUrl() );
+		} else {
+			$wgOut->readOnlyPage( $source, $protected, $reasons );
+		}
 	}
 
 	/**
