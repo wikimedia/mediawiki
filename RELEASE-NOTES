@@ -161,7 +161,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12857) Patrol link on new pages should clear floats
 * (bug 12968) Render redirect wikilinks in a redirect class for customization
   via user/site CSS.
-* EditPageBeforeEditButtons hook added for altering the edit buttons below the edit box
+* EditPageBeforeEditButtons hook added for altering the edit buttons below the 
+  edit box.
+* __HIDDENCAT__ on a category page causes the category to be hidden on the 
+  article page.
+* Don't show edit permissions errors on a red link click, just redirect to the 
+  article. This is so that readers who don't know what a red link is aren't 
+  confused when they are told they are range-blocked.
+* Put "not yet written" in the title attribute of red links, so that readers
+  unfamiliar with the site might guess what the colour means.
 
 === Bug fixes in 1.12 ===
 

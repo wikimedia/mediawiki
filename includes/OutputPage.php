@@ -1065,7 +1065,7 @@ class OutputPage {
 			}
 			$text .= '</ul>';
 		} else {
-			$text .= '<div class="permissions-errors">' . call_user_func_array( 'wfMsgNoTrans', $errors[0]) . '</div>';
+			$text .= '<div class="permissions-errors">' . call_user_func_array( 'wfMsgNoTrans', reset( $errors ) ) . '</div>';
 		}
 
 		return $text;
