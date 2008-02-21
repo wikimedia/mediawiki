@@ -539,6 +539,7 @@ $messages = array(
 'site-atom-feed'          => 'Atom של $1',
 'page-rss-feed'           => 'RSS של $1',
 'page-atom-feed'          => 'Atom של $1',
+'red-link-title'          => '$1 (לא נכתב עדיין)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'דף תוכן',
