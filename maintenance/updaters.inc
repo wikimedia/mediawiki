@@ -1329,6 +1329,7 @@ function do_postgres_updates() {
 		array("mwuser",            "patch-mwuser.sql"),
 		array("pagecontent",       "patch-pagecontent.sql"),
 		array("querycachetwo",     "patch-querycachetwo.sql"),
+		array("page_props",        "patch-page_props.sql"),
 		array("page_restrictions", "patch-page_restrictions.sql"),
 		array("profiling",         "patch-profiling.sql"),
 		array("protected_titles",  "patch-protected_titles.sql"),

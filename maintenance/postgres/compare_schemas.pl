@@ -314,6 +314,8 @@ oi_minor_mime     varbinary(32)  TEXT
 oi_sha1           varbinary(32)  TEXT
 old_flags         tinyblob       TEXT
 old_text          mediumblob     TEXT
+pp_propname       varbinary(60)  TEXT
+pp_value          blob           TEXT
 page_restrictions tinyblob       TEXT # CSV string
 pf_server         varchar(30)    TEXT
 pr_level          varbinary(60)  TEXT
