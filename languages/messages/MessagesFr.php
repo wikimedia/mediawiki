@@ -458,6 +458,7 @@ $messages = array(
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de "$1"',
 'page-atom-feed'          => 'Flux Atom de "$1"',
+'red-link-title'          => '$1 (néanmoins pas rédigé)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
@@ -1170,7 +1171,8 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'nolinkstoimage'            => 'Aucune page ne contient cette image.',
 'sharedupload'              => 'Ce fichier est partagé et peut-être utilisé par d’autres projets.',
 'shareduploadwiki'          => 'Reportez-vous à la [$1 page de description] pour plus d’informations.',
-'shareduploadwiki-desc'     => 'La description de son $1 est là affichée ci-dessous.',
+'shareduploadwiki-desc'     => '
+La description de son $1 est là affichée ci-dessous.',
 'shareduploadwiki-linktext' => 'Page de description du fichier',
 'noimage'                   => 'Aucun fichier possèdant ce nom n’existe, vous pouvez $1.',
 'noimage-linktext'          => 'en importer un',

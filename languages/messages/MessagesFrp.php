@@ -313,6 +313,7 @@ $messages = array(
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de « $1 »',
 'page-atom-feed'          => 'Flux Atom de « $1 »',
+'red-link-title'          => '$1 (portant pas rèdigiê)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articllo',
@@ -584,8 +585,8 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'noarticletext'             => 'Y at por lo moment gins de tèxte sur ceta pâge ; vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de ceta pâge]] ou ben [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} la modifiar].',
 'userpage-userdoesnotexist' => 'Lo compto utilisator « $1 » est pas enregistrâ. Endicâd se vos voléd crèar ou ben èditar cela pâge.',
 'clearyourcache'            => "'''Nota :''' aprés avêr sôvâ, vos dête forciér lo rechargement de la pâge por vêre los changements : '''Mozilla / Firefox :''' ''Shift-Ctrl-R'' (''Shift-Cmd-R'' en '''Apple Mac'''), '''IE :''' ''Ctrl-F5'', '''Opera :''' ''F5'', '''Safari :''' ''⌘-R'', '''Konqueror :''' ''Ctrl-R''.",
-'usercssjsyoucanpreview'    => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye css/js devant que l’enregistrar.",
-'usercsspreview'            => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye css et qu’el at p’oncor étâ enregistrâ !'''",
+'usercssjsyoucanpreview'    => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye CSS/JS devant que l’enregistrar.",
+'usercsspreview'            => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS et qu’el at p’oncor étâ enregistrâ !'''",
 'userjspreview'             => "'''Rapelâd-vos que vos éte aprés visualisar ou èprovar voutron code JavaScript et qu’il at p’oncor étâ enregistrâ !'''",
 'userinvalidcssjstitle'     => "'''Atencion :''' ègziste pas d’entèrface « $1 ». Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres aprés lo nom d’utilisator et la bârra de fraccion /.<br />D’ense, {{ns:user}}:Foo/monobook.css est valido, pendent que {{ns:user}}:Foo/Monobook.css serat una fôlye de stilo envalida.",
 'updated'                   => '(Betâ a jorn)',
@@ -1844,8 +1845,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-upload'                  => 'Comenciér l’impôrt',
 
 # Stylesheets
-'common.css'   => '/* Lo css placiê ique serat aplicâ a totes les entèrfaces. */',
-'monobook.css' => '/* Lo css placiê ique afècterat los utilisators de l’entèrface Monobook. */',
+'common.css'   => '/* Lo CSS placiê ique serat aplicâ a totes les entèrfaces. */',
+'monobook.css' => '/* Lo CSS placiê ique afècterat los utilisators de l’entèrface Monobook. */',
 
 # Scripts
 'common.js'   => '/* Quint que seye lo JavaScript placiê ique serat chargiê por tôs los utilisators et por châque pâge accèdâ. */',

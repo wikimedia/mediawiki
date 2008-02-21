@@ -254,7 +254,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'redirectpagesub'   => 'Ümbersuunamisleht',
 'lastmodifiedat'    => 'Viimane muutmine: $2, $1', # $1 date, $2 time
 'viewcount'         => 'Seda lehekülge on külastatud {{plural:$1|üks kord|$1 korda}}.',
-'protectedpage'     => 'Kaitstud artikkel',
+'protectedpage'     => 'Kaitstud lehekülg',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}} tiitelandmed',
@@ -363,6 +363,7 @@ Funktsioon: $1<br />
 Päring: $2',
 'viewsource'           => 'Vaata lähteteksti',
 'viewsourcefor'        => '$1',
+'viewsourcetext'       => 'Võite vaadata ja kopeerida lehekülje algteksti:',
 'protectedinterface'   => 'Sellel leheküljel on tarkvara kasutajaliidese tekst. Kuritahtliku muutmise vältimiseks on lehekülg lukustatud.',
 'editinginterface'     => "'''Hoiatus:''' Te redigeerite tarkvara kasutajaliidese tekstiga lehekülge. Muudatused siin mõjutavad kõikide kasutajate kasutajaliidest.",
 
@@ -376,6 +377,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 'yourpassword'               => 'Teie parool',
 'yourpasswordagain'          => 'Sisestage parool uuesti',
 'remembermypassword'         => 'Parooli meeldejätmine tulevasteks seanssideks.',
+'yourdomainname'             => 'Teie domeen:',
 'loginproblem'               => '<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!',
 'login'                      => 'Logi sisse',
 'loginprompt'                => 'Teie brauser peab nõustuma küpsistega, et saaksite {{SITENAME}} lehele sisse logida.',
@@ -817,8 +819,9 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'doubleredirects'     => 'Kahekordsed ümbersuunamised',
 'doubleredirectstext' => 'Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise ümbersuunamislehe viide, mis tavaliselt on viiteks, kuhu esimene ümbersuunamisleht peaks otse suunama.',
 
-'brokenredirects'     => 'Vigased ümbersuunamised',
-'brokenredirectstext' => 'Järgmised leheküljed on ümber suunatud olematutele lehekülgedele.',
+'brokenredirects'        => 'Vigased ümbersuunamised',
+'brokenredirectstext'    => 'Järgmised leheküljed on ümber suunatud olematutele lehekülgedele.',
+'brokenredirects-delete' => '(kustuta)',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bait|baiti}}',
@@ -845,6 +848,7 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).',
 'shortpages'              => 'Lühikesed artiklid',
 'longpages'               => 'Pikad artiklid',
 'deadendpages'            => 'Edasipääsuta artiklid',
+'protectedpages'          => 'Kaitstud leheküljed',
 'listusers'               => 'Kasutajad',
 'specialpages'            => 'Erileheküljed',
 'spheading'               => 'Erileheküljed',
@@ -941,6 +945,8 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'excontentauthor'             => "sisu oli: '$1' (ja ainuke kirjutaja oli '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "sisu enne lehekülje tühjendamist: '$1'",
 'exblank'                     => 'lehekülg oli tühi',
+'delete-confirm'              => 'Kustuta "$1"',
+'delete-legend'               => 'Kustuta',
 'historywarning'              => 'Hoiatus: leheküljel, mida tahate kustutada, on ajalugu:&nbsp;',
 'confirmdeletetext'           => 'Sa oled andmebaasist jäädavalt kustutamas lehte või pilti koos kogu tema ajalooga. Palun kinnita, et sa tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse [[{{MediaWiki:Policy-url}}|sisekorraga]].',
 'actioncomplete'              => 'Toiming sooritatud',
@@ -952,6 +958,7 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'deletionlog'                 => 'Kustutatud leheküljed',
 'reverted'                    => 'Pöörduti tagasi varasemale versioonile',
 'deletecomment'               => 'Kustutamise põhjus',
+'deleteotherreason'           => 'Muu/täiendav põhjus:',
 'rollback'                    => 'Tühista muudatused',
 'rollback_short'              => 'Tühista',
 'rollbacklink'                => 'tühista',
@@ -971,11 +978,20 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'protect-default'             => '(tavaline)',
 'protect-level-autoconfirmed' => 'Ainult registreeritud kasutajad',
 'protect-level-sysop'         => 'Ainult administraatorid',
+'restriction-type'            => 'Lubatud:',
+'restriction-level'           => 'Kaitsmise tase:',
+'minimum-size'                => 'Min suurus',
+'maximum-size'                => 'Max suurus',
 'pagesize'                    => '(baiti)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redigeerimine',
 'restriction-move' => 'Teisaldamine',
+
+# Restriction levels
+'restriction-level-sysop'         => 'täielikult kaitstud',
+'restriction-level-autoconfirmed' => 'poolkaitstud',
+'restriction-level-all'           => 'kõik tasemed',
 
 # Undelete
 'undelete'               => 'Taasta kustutatud lehekülg',
@@ -1102,6 +1118,7 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'movelogpagetext'  => 'See logi sisaldab infot lehekülgede teisaldamistest.',
 'movereason'       => 'Põhjus',
 'revertmove'       => 'taasta',
+'delete_and_move'  => 'Kustuta ja teisalda',
 
 # Export
 'export' => 'Lehekülgede eksport',
@@ -1205,6 +1222,7 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'nextdiff'     => 'Järgmised erinevused →',
 
 # Media information
+'mediawarning' => "'''Hoiatus''': See fail võib sisaldada pahatahtlikku koodi, mille käivitamime võib kahjustada teie arvutisüsteemi.<hr />",
 'imagemaxsize' => 'Maksimaalne pildi suurus kirjelduslehekülgedel:',
 'thumbsize'    => 'Pisipildi suurus:',
 

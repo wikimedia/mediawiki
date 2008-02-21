@@ -11,6 +11,7 @@ $fallback = 'ro';
 
 $messages = array(
 # Dates
+'sun'       => 'Дум',
 'january'   => 'януарие',
 'february'  => 'фебруарие',
 'march'     => 'мартие',
@@ -35,6 +36,8 @@ $messages = array(
 'oct'       => 'окт',
 'nov'       => 'ное',
 'dec'       => 'деч',
+
+'mytalk' => 'Дискуцииле меле',
 
 'tagline'          => 'Де ла {{SITENAME}}',
 'help'             => 'Ажутор',
@@ -68,8 +71,12 @@ $messages = array(
 'site-rss-feed'   => '$1 Агрегат RSS',
 'site-atom-feed'  => '$1 Агрегат Atom',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-image' => 'Фишиер',
+
 # Login and logout pages
-'userlogin' => 'Креазэ конт / Аутентификаре',
+'userlogin'  => 'Креазэ конт / Аутентификаре',
+'userlogout' => 'Ынкиде сесиуня',
 
 # Edit pages
 'summary' => 'Резумат',
@@ -85,6 +92,9 @@ $messages = array(
 # Search results
 'powersearch' => 'Каутэ',
 
+# Preferences page
+'mypreferences' => 'Преферинцеле меле',
+
 # Recent changes
 'hist'            => 'ист',
 'minoreditletter' => 'м',
@@ -94,6 +104,9 @@ $messages = array(
 
 # Upload
 'upload' => 'Тримите фишиер',
+
+# Image list
+'filehist-user' => 'Утилизатор',
 
 # Miscellaneous special pages
 'nbytes'       => '{{PLURAL:$1|ун октет|$1 октець}}',
@@ -116,7 +129,9 @@ $messages = array(
 'thumbnail-more' => 'Екстинде',
 
 # Tooltip help for the actions
+'tooltip-pt-preferences'  => 'Преферинцеле меле',
 'tooltip-pt-login'        => 'Есте ынкуражат сэ се аутентификэ, дешь ачест лукру ну есте облигаториу.',
+'tooltip-pt-logout'       => 'Ынкиде сесиуня',
 'tooltip-ca-talk'         => 'Дискуцие деспре артикол',
 'tooltip-ca-edit'         => 'Поате едита ачастэ паӂинэ. Ле ругэм сэ превизуализязэ концинутул ынаинте де салваре.',
 'tooltip-search'          => 'Кэутаре ын {{SITENAME}}',
@@ -130,5 +145,6 @@ $messages = array(
 'tooltip-t-whatlinkshere' => 'Листа тутурор паӂинилор вики каре кондук спре ачастэ паӂинэ',
 'tooltip-t-upload'        => 'Тримите имаӂинь сау фишиере медия',
 'tooltip-t-specialpages'  => 'Листа тутурор паӂинилор де сервичиу',
+'tooltip-save'            => 'Салвязэ скимбэриле тале',
 
 );

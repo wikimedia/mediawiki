@@ -288,7 +288,7 @@ $messages = array(
 'toolbox'           => 'Ainas',
 'userpage'          => "Beyer a pachina d'usuario",
 'projectpage'       => "Beyer a pachina d'o procheuto",
-'imagepage'         => "Beyer a pachina d'a imachen",
+'imagepage'         => "Beyer a pachina de l'archibo",
 'mediawikipage'     => "Beyer a pachina d'o mensache",
 'templatepage'      => "Beyer a pachina d'a plantilla",
 'viewhelppage'      => "Beyer a pachina d'aduya",
@@ -516,10 +516,9 @@ Por fabor, identifique-se unatra bez malas que la reculla.',
 'accountcreated'             => 'Cuenta creyata',
 'accountcreatedtext'         => "S'ha creyato a cuenta d'usuario de $1.",
 'createaccount-title'        => 'Creyar una cuenta en {{SITENAME}}',
-'createaccount-text'         => 'Belún ($1) ha creyato una cuenta ta $2 en {{SITENAME}}
-($4). A palabra de paso ta "$2" ye "$3". Debería dentrar-ie y cambiar a suya palabra de paso.
+'createaccount-text'         => 'Belún ha creyato una cuenta con o nombre "$2" en {{SITENAME}} ($4), con a palabra de paso "$3" y endicando a suya adreza de correu. Abría de dentrar-ie agora y cambiar a suya palabra de paso.
 
-Si ista cuenta s\'ha creyato por error, simplament innore iste mensache.',
+Si a cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -549,9 +548,9 @@ Si ista cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'nowiki_sample'   => 'Escriba aquí testo sin de formato',
 'nowiki_tip'      => 'Inorar o formato wiki',
 'image_sample'    => 'Exemplo.jpg',
-'image_tip'       => 'Imachen enserita',
+'image_tip'       => 'Imachen encrustata',
 'media_sample'    => 'Exemplo.ogg',
-'media_tip'       => 'Binclo ta un archibo multimedia',
+'media_tip'       => "Binclo ta l'archibo",
 'sig_tip'         => 'Siñadura, calendata y ora',
 'hr_tip'          => 'Linia orizontal (en faiga un emplego amoderau)',
 
@@ -646,7 +645,7 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 <strong>Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe-se de zarrar a sesión y i dentre identificando-se de nuebas.</strong>",
 'token_suffix_mismatch'     => "<strong>S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.</strong>",
 'editing'                   => 'Editando $1',
-'editinguser'               => 'Editando $1',
+'editinguser'               => "S'esta cambiando os dreitos de l'usuario  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editando $1 (sezión)',
 'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => "Conflito d'edizión: $1",
@@ -815,6 +814,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.
 'searchsubtitleinvalid' => 'Ha mirato "$1"',
 'noexactmatch'          => "'''No esiste garra pachina tetulata \"\$1\".''' Puede aduyar [[:\$1|creyando-la]].",
 'noexactmatch-nocreate' => "'''No bi ha garra pachina tetulata \"\$1\".'''",
+'toomanymatches'        => "S'ha retornato masiadas coinzidenzias, por fabor, torne á prebar con una consulta diferent",
 'titlematches'          => 'Consonanzias de títols de pachina',
 'notitlematches'        => "No bi ha garra consonanzia en os títols d'as pachinas",
 'textmatches'           => "Consonanzias en o testo d'as pachinas",
@@ -975,10 +975,17 @@ As collas no trigatas no cambiarán. Puede sacar a selezión pretando de bez a t
 'uploadnologintext'           => "Ha d'estar [[{{ns:special}}:Userlogin|rechistrau]] ta cargar archibos.",
 'upload_directory_read_only'  => "O serbidor web no puede escribir en o direutorio de carga d'archibos ($1).",
 'uploaderror'                 => "S'ha produzito una error en cargar l'archibo",
-'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos; ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:Imagelist|lista d'archibos cargatos]]. As cargas y borraus d'archibos tamién son rechistratos en o [[Special:Log/upload|rechistro de cargas]].
+'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos.
+Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:Imagelist|lista d'archibos cargatos]]. As cargas y borraus d'archibos tamién son rechistratos en o [[Special:Log/upload|rechistro de cargas]].
 
-Ta encluyir a imachen en una pachina, emplegue un binclo d'una d'istas trazas '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|testo alternatibo]]</nowiki>''' u
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.",
+Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|testo alternatibo]]</nowiki>''' u
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.
+
+
+To include a file in a page, use a link in the form
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
 'upload-permitted'            => "Tipos d'archibo premititos: $1.",
 'upload-preferred'            => "Tipos d'archibo preferitos: $1.",
 'upload-prohibited'           => "Tipos d'archibo biedatos: $1.",
@@ -1016,7 +1023,7 @@ Ta encluyir a imachen en una pachina, emplegue un binclo d'una d'istas trazas ''
 Nombre de l'archibo que ye cargando: <strong><tt>$1</tt></strong><br />
 Nombre de l'archibo ya esistent: <strong><tt>$2</tt></strong><br />
 Por fabor, trigue un nombre diferent.",
-'fileexists-thumb'            => "<center>'''Imachen esistent'''</center>",
+'fileexists-thumb'            => "<center>'''Archibo esistent'''</center>",
 'fileexists-thumbnail-yes'    => "Parixe que l'archibo ye una imachen prou chicota <i>(miniatura)</i>. Comprebe por fabor l'archibo <strong><tt>$1</tt></strong>.<br />
 Si l'archibo comprebato ye a mesma imachen en tamaño orichinal no cal cargar una nueba miniatura.",
 'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
@@ -1103,6 +1110,7 @@ PICT # misz.
 'nolinkstoimage'            => 'Denguna pachina tiene un binclo ta ista imachen.',
 'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos.',
 'shareduploadwiki'          => 'Ta más informazión, consulte $1.',
+'shareduploadwiki-desc'     => "A descripzión d'o suyo $1 se bi amuestra en o cobaxo.",
 'shareduploadwiki-linktext' => "pachina de descripzión de l'archibo",
 'noimage'                   => 'No bi ha garra archibo con ixe nombre, pero puede $1.',
 'noimage-linktext'          => 'cargar-lo',
@@ -1112,7 +1120,7 @@ PICT # misz.
 'imagelist_user'            => 'Usuario',
 'imagelist_size'            => 'Grandaria (bytes)',
 'imagelist_description'     => 'Descripzión',
-'imagelist_search_for'      => "Mirar por nombre d'a imachen:",
+'imagelist_search_for'      => "Mirar por nombre de l'archibo:",
 
 # File reversion
 'filerevert'                => 'Rebertir $1',
@@ -1215,7 +1223,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'lonelypagestext'         => "Garra pachina de {{SITENAME}} wiki tiene binclos t'as pachinas que se listan contino.",
 'uncategorizedpages'      => 'Pachinas sin categorizar',
 'uncategorizedcategories' => 'Categorías sin categorizar',
-'uncategorizedimages'     => 'Imachens sin categorizar',
+'uncategorizedimages'     => 'Archibos sin categorizar',
 'uncategorizedtemplates'  => 'Plantillas sin categorizar',
 'unusedcategories'        => 'Categorías sin emplegar',
 'unusedimages'            => 'Imachens sin uso',
@@ -1226,7 +1234,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'mostlinkedcategories'    => 'Categorías más enlazadas',
 'mostlinkedtemplates'     => 'Plantillas más binculatas',
 'mostcategories'          => 'Pachinas con más categorías',
-'mostimages'              => 'Imachens más emplegatas',
+'mostimages'              => 'Archibos más emplegatos',
 'mostrevisions'           => 'Pachinas con más edizions',
 'allpages'                => 'Todas as pachinas',
 'prefixindex'             => 'Pachinas por prefixo',
@@ -1250,7 +1258,7 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'intl'                    => 'Binclos inter-luengas',
 'move'                    => 'Tresladar',
 'movethispage'            => 'Tresladar ista pachina',
-'unusedimagestext'        => '<p>Por fabor, pare cuenta que atros puestos web pueden tener binclos ta imachens dreitament con a suya URL. En ixe caso, podrían amanixer en ista lista encara que sí se faigan serbir.</p>',
+'unusedimagestext'        => '<p>Por fabor, pare cuenta que atros puestos web pueden tener binclos ta imachens con una URL dreita y, por ixo, podrían amanixer en ista lista encara que sí se faigan serbir autibament.</p>',
 'unusedcategoriestext'    => 'As siguients categoría son creyatas, pero no bi ha garra articlo u categoría que las faiga serbir.',
 'notargettitle'           => 'No bi ha garra pachina de destino',
 'notargettext'            => 'No ha espezificato en que pachina quiere aplicar ista funzión.',
@@ -1454,7 +1462,7 @@ Por fabor, prete "Entazaga" en o suyo nabegador ta cargar a pachina d\'a que ben
 'protect_expiry_old'          => 'O tiempo de caduzidat ye una calendata ya pasata.',
 'unprotectsub'                => '(Esprotechendo "$1")',
 'protect-unchain'             => 'Confegurar premisos ta treslaus',
-'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong><nowiki>\$1</nowiki></strong>.",
+'protect-text'                => "Puede beyer y cambiar o libel e protezión d'a pachina <strong><nowiki>$1</nowiki></strong>.",
 'protect-locked-blocked'      => "No puede cambiar os libels de protezión mientres ye bloqueyato. Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'protect-locked-dblock'       => "Os libels de protezión no se pueden cambiar por un bloqueyo autibo d'a base de datos.
 Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
@@ -1497,6 +1505,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'undeleterevision-missing'     => "Bersión no conforme u no trobata. Regular que o binclo sia incorreuto u que a bersión aiga estato restaurata u borrata de l'archibo.",
 'undelete-nodiff'              => "No s'ha trobato garra bersión anterior.",
 'undeletebtn'                  => 'Restaurar!',
+'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Prenzipiar',
 'undeletecomment'              => 'Razón ta restaurar:',
 'undeletedarticle'             => 'restaurata "$1"',
@@ -1544,7 +1553,7 @@ $1',
 'sp-contributions-username'    => "Adreza IP u nombre d'usuario:",
 'sp-contributions-submit'      => 'Mirar',
 
-'sp-newimages-showfrom' => 'Amostrar imachens nuebas dende $1',
+'sp-newimages-showfrom' => 'Amostrar archibos nuebos dende $1',
 
 # What links here
 'whatlinkshere'       => 'Pachinas que enlazan con ista',
@@ -1825,7 +1834,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-feed-atom'               => "Canal Atom d'ista pachina",
 'tooltip-t-contributions'         => "Beyer a lista de contrebuzions d'iste usuario",
 'tooltip-t-emailuser'             => 'Nimbiar un correu electronico ta iste usuario',
-'tooltip-t-upload'                => 'Puyar imáchens u archibos multimedia ta o serbidor',
+'tooltip-t-upload'                => 'Cargar archibos',
 'tooltip-t-specialpages'          => 'Lista de todas as pachinas espezials',
 'tooltip-t-print'                 => "Bersión imprentable d'a pachina",
 'tooltip-t-permalink'             => "Binclo permanet ta ista bersión d'a pachina",
@@ -1834,7 +1843,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-ca-nstab-media'          => "Beyer a pachina d'o elemento multimedia",
 'tooltip-ca-nstab-special'        => 'Ista ye una pachina espezial, y no puede editar-la',
 'tooltip-ca-nstab-project'        => "Beyer a pachina d'o procheuto",
-'tooltip-ca-nstab-image'          => "Beyer a pachina d'a imachen",
+'tooltip-ca-nstab-image'          => "Beyer a pachina de l'archibo",
 'tooltip-ca-nstab-mediawiki'      => 'Beyer o mensache de sistema',
 'tooltip-ca-nstab-template'       => 'Beyer a plantilla',
 'tooltip-ca-nstab-help'           => "Beyer a pachina d'aduya",
@@ -1923,7 +1932,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Pare cuenta''': Iste archibo puede contener codigo endino; si l'executa, podría meter en un contornillo a seguridat d'o suyo sistema.<hr />",
-'imagemaxsize'         => 'Limitar as imachens en as pachinas de descripzión á:',
+'imagemaxsize'         => "Limitar as imachens en as pachinas de descripzión d'archibos á:",
 'thumbsize'            => "Midas d'a miniatura:",
 'widthheightpage'      => '$1×$2, $3 pachinas',
 'file-info'            => "(grandaria de l'archibo: $1; tipo MIME: $2)",
@@ -1941,11 +1950,11 @@ $1",
 # Bad image list
 'bad_image_list' => "O formato ye asinas:
 
-Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O primer binclo de cada linia ha d'estar un binclo ta una imachen mala. Cualsiquiers atros binclos en a mesma linia se consideran eszepzions, i.e. pachinas an que a imachen puede amanexer enserita en a línia.",
+Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O primer binclo de cada linia ha d'estar un binclo ta un archibo malo. Cualsiquier atros binclos en a mesma linia se consideran eszepzions, i.e. pachinas an que l'archibo puede amanexer encrustato.",
 
 # Metadata
 'metadata'          => 'Metadatos',
-'metadata-help'     => "Iste archibo contiene informazión adizional (metadatos), probablement adibida por a camara dichital, o escáner u o programa emplegato ta creyar-lo u dichitalizar-lo.  Si l'archibo ha estato modificato dende o suyo estau orichinal, bels detalles podrían aber-se tresbatitos.",
+'metadata-help'     => "Iste archibo contiene informazión adizional, probablement adibida por a camara dichital, o escáner u o programa emplegato ta creyar-lo u dichitalizar-lo.  Si l'archibo ha estato modificato dende o suyo estau orichinal, bels detalles podrían no reflexar completament l'archibo modificato.",
 'metadata-expand'   => 'Amostrar informazión detallata',
 'metadata-collapse' => 'Amagar a informazión detallata',
 'metadata-fields'   => "Os campos de metadatos EXIF que amanixen en iste mensache s'amuestrarán en a pachina de descripzión d'a imachen, mesmo si a tabla ye plegata. Bi ha atros campos que remanirán amagatos por defeuto.
@@ -2340,5 +2349,34 @@ Prebe con a prebisualizazión normal.",
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" esconoixita',
+
+# Special:Version
+'version-extensions'               => 'Estensions instalatas',
+'version-specialpages'             => 'Pachinas espezials',
+'version-parserhooks'              => "Grifios d'o parser (parser hooks)",
+'version-variables'                => 'Bariables',
+'version-other'                    => 'Atros',
+'version-mediahandlers'            => "Maneyador d'archibos multimedia",
+'version-hooks'                    => 'Grifios (Hooks)',
+'version-extension-functions'      => "Funzions d'a estensión",
+'version-parser-extensiontags'     => "Etiquetas d'estensión d'o parseyador",
+'version-parser-function-hooks'    => "Grifios d'as funzions d'o parseyador",
+'version-skin-extension-functions' => "Funzions d'estensión de l'aparenzia (Skin)",
+'version-hook-name'                => "Nombre d'o grifio",
+'version-hook-subscribedby'        => 'Suscrito por',
+'version-version'                  => 'Bersión',
+'version-license'                  => 'Lizenzia',
+'version-software'                 => 'Software instalato',
+'version-software-product'         => 'Produto',
+'version-software-version'         => 'Bersión',
+
+# Special:Filepath
+'filepath'         => "Camín de l'archibo",
+'filepath-page'    => 'Archibo:',
+'filepath-submit'  => 'Camín',
+'filepath-summary' => "Ista pachina espezial le retorna o camín completo d'un archibo.
+As imachens s'amuestran en resoluzión completa, a resta d'archibos fan enzetar dreitament os suyos programas asoziatos.
+
+Escriba o nombre de l'archibo sin o prefixo \"{{ns:image}}:\".",
 
 );

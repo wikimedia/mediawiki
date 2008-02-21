@@ -114,6 +114,7 @@ $messages = array(
 'tog-editwidth'               => 'Cuir uasmhéid ar an mbosca eagair',
 'tog-watchcreations'          => 'Cuir ar mo liosta faire leathanaigh a chruthaím',
 'tog-watchdefault'            => 'Déan faire ar leathanaigh a athraíonn tú',
+'tog-watchmoves'              => 'Cuir ar mo liosta faire leathanaigh a athainmnaím',
 'tog-watchdeletion'           => 'Cuir ar mo liosta faire na leathanaigh a scriosaím',
 'tog-minordefault'            => 'Déan mionathrú de gach aon athrú, mar réamhshocrú',
 'tog-previewontop'            => 'Cuir an réamhamharc os cionn an bhosca eagair, <br />agus ná cuir é taobh thíos de',
@@ -131,6 +132,7 @@ $messages = array(
 'tog-uselivepreview'          => 'Bain úsáid as réamhamharc beo (JavaScript) (Turgnamhach)',
 'tog-watchlisthideown'        => 'Folaigh mo chuid athruithe ón liosta faire',
 'tog-watchlisthidebots'       => 'Folaigh athruithe de chuid róbait ón liosta faire',
+'tog-watchlisthideminor'      => 'Folaigh mionathruithe ón liosta faire',
 
 'underline-always'  => 'Déan é gach uair é',
 'underline-never'   => 'Ná déan é riamh',
@@ -196,6 +198,7 @@ $messages = array(
 'category_header'       => 'Ailt sa chatagóir "$1"',
 'subcategories'         => 'Fo-chatagóirí',
 'category-media-header' => 'Meáin sa chatagóir "$1"',
+'category-empty'        => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
 
 'mainpagetext'      => 'Suiteáladh an ríomhchlár vicí go rathúil.',
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
@@ -218,6 +221,9 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'anontalk'       => 'Plé don IP seo',
 'navigation'     => 'Nascleanúint',
 'and'            => 'agus',
+
+# Metadata in edit box
+'metadata_help' => 'Meiteasonraí:',
 
 'errorpagetitle'    => 'Earráid',
 'returnto'          => 'Dul ar ais go $1.',
@@ -256,6 +262,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'userpage'          => 'Féach ar lch úsáideora',
 'projectpage'       => 'Féach ar lch thionscadail',
 'imagepage'         => 'Féach ar lch íomhá',
+'templatepage'      => 'Féach ar leathanach an teimpléad',
 'viewtalkpage'      => 'Féach ar phlé',
 'otherlanguages'    => 'I dteangacha eile',
 'redirectedfrom'    => '(Athsheolta ó $1)',
@@ -285,6 +292,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'faqpage'           => 'Project:Ceisteanna_Coiteanta',
 'helppage'          => 'Help:Clár_ábhair',
 'mainpage'          => 'Príomhleathanach',
+'policy-url'        => 'Project:Polasaí',
 'portal'            => 'Ionad pobail',
 'portal-url'        => 'Project:Ionad pobail',
 'privacy'           => 'Polasaí príobháideachta',
@@ -869,9 +877,16 @@ uaslódáil é arís, le do thoil.',
 'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
 'imagelist_user'            => 'Úsáideoir',
 
+# File deletion
+'filedelete'        => 'Scrios $1',
+'filedelete-submit' => 'Scrios',
+
 # MIME search
 'mimesearch' => 'cuardaigh MIME',
 'download'   => 'íoslódáil',
+
+# Unwatched pages
+'unwatchedpages' => 'Leathanaigh gan faire',
 
 # Unused templates
 'unusedtemplates' => 'Teimpléid gan úsáid',
@@ -1082,6 +1097,7 @@ Aiseolas agus a thuilleadh cabhrach:
 'excontentauthor'             => "seo a bhí an t-inneachar: '$1' (agus ba é '[[Special:Contributions/$2|$2]]' an t-aon dhréachtóir)",
 'exbeforeblank'               => 'is é seo a raibh an ábhar roimh an folmhadh:',
 'exblank'                     => 'bhí an leathanach folamh',
+'delete-confirm'              => 'Scrios "$1"',
 'historywarning'              => 'Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh:',
 'confirmdeletetext'           => 'Tá tú ar tí leathanach nó íomhá a scrios,
 chomh maith leis a chuid stair, ón bunachar sonraí.
@@ -1260,8 +1276,8 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 'databasenotlocked'   => 'Níl an bunachar sonraí faoi ghlas.',
 
 # Move page
-'movepage'               => 'Athainmnigh an leathanach',
-'movepagetext'           => "Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid stair go léir chuig an teideal nua.
+'movepage'                => 'Athainmnigh an leathanach',
+'movepagetext'            => "Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid stair go léir chuig an teideal nua.
 Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua. Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá
 [[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste. Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.
 
@@ -1269,45 +1285,46 @@ Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach a
 
 <b>AIRE!</b>
 Is athrú tábhachtach é athainmniú má tá leathanach coitianta i gceist; cinntigh go dtuigeann tú na iarmhairtí go léir roimh a leanfá.",
-'movepagetalktext'       => "Aistreofar an leathanach phlé leis, má tá sin ann:
+'movepagetalktext'        => "Aistreofar an leathanach phlé leis, má tá sin ann:
 *'''muna''' bhfuil tú ag aistriú an leathanach trasna ainmspásanna,
 *'''muna''' bhfuil leathanach phlé neamhfholamh ann leis an teideal nua, nó
 *'''muna''' bhaineann tú an marc den bosca anseo thíos.
 
 Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lámha má tá sin an rud atá uait.",
-'movearticle'            => 'Athainmnigh an leathanach',
-'movenologin'            => 'Níl tú logáilte isteach',
-'movenologintext'        => "Ní mór duit bheith i d'úsáideoir cláraithe agus [[Special:Userlogin|logáilte isteach]] chun leathanach a hathainmniú.",
-'movenotallowed'         => 'Níl cead agat leathanaigh a athainmniú ar {{SITENAME}}.',
-'newtitle'               => 'Go teideal nua',
-'move-watch'             => 'Déan faire an leathanach seo',
-'movepagebtn'            => 'Athainmnigh an leathanach',
-'pagemovedsub'           => "D'éirigh leis an athainmniú",
-'movepage-moved'         => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'          => 'Tá leathanach leis an teideal seo ann fós, nó níl an
+'movearticle'             => 'Athainmnigh an leathanach',
+'movenologin'             => 'Níl tú logáilte isteach',
+'movenologintext'         => "Ní mór duit bheith i d'úsáideoir cláraithe agus [[Special:Userlogin|logáilte isteach]] chun leathanach a hathainmniú.",
+'movenotallowed'          => 'Níl cead agat leathanaigh a athainmniú ar {{SITENAME}}.',
+'newtitle'                => 'Go teideal nua',
+'move-watch'              => 'Déan faire an leathanach seo',
+'movepagebtn'             => 'Athainmnigh an leathanach',
+'pagemovedsub'            => "D'éirigh leis an athainmniú",
+'movepage-moved'          => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Tá leathanach leis an teideal seo ann fós, nó níl an
 teideal a rinne tú rogha air ina theideal bailí.
 Toghaigh teideal eile le do thoil.',
-'talkexists'             => "D'athainmníodh an leathanach é féin go rathúil, ach ní raibh sé ar a chumas an
+'talkexists'              => "D'athainmníodh an leathanach é féin go rathúil, ach ní raibh sé ar a chumas an
 leathanach phlé a hathainmniú dá bharr go bhfuil ceann ann cheana féin ag an teideal nua.
 Báigh tusa féin iad, le do thoil.",
-'movedto'                => 'athainmnithe go',
-'movetalk'               => 'Athainmnigh an leathanach "phlé" freisin, má bhfuil an leathanach sin ann.',
-'talkpagemoved'          => "D'athainmníodh an leathanach phlé frithiontráil.",
-'talkpagenotmoved'       => '<strong>Níor</strong> athainmníodh an leathanach phlé frithiontráil.',
-'1movedto2'              => "D'athainmníodh $1 bheith $2",
-'1movedto2_redir'        => "D'athainmníodh $1 bheith $2 thar athsheoladh",
-'movelogpage'            => 'Athainmnigh loga',
-'movelogpagetext'        => 'Liosta is ea seo thíos de leathanaigh athainmnithe.',
-'movereason'             => 'Cúis',
-'revertmove'             => 'athúsáid',
-'delete_and_move'        => 'Scrios agus athainmnigh',
-'delete_and_move_text'   => '==Tá scrios riachtanach==
+'movedto'                 => 'athainmnithe go',
+'movetalk'                => 'Athainmnigh an leathanach "phlé" freisin, má bhfuil an leathanach sin ann.',
+'talkpagemoved'           => "D'athainmníodh an leathanach phlé frithiontráil.",
+'talkpagenotmoved'        => '<strong>Níor</strong> athainmníodh an leathanach phlé frithiontráil.',
+'1movedto2'               => "D'athainmníodh $1 bheith $2",
+'1movedto2_redir'         => "D'athainmníodh $1 bheith $2 thar athsheoladh",
+'movelogpage'             => 'Athainmnigh loga',
+'movelogpagetext'         => 'Liosta is ea seo thíos de leathanaigh athainmnithe.',
+'movereason'              => 'Cúis',
+'revertmove'              => 'athúsáid',
+'delete_and_move'         => 'Scrios agus athainmnigh',
+'delete_and_move_text'    => '==Tá scrios riachtanach==
 
 Tá an t-alt "[[$1]]" ann cheana féin, a bhíodh ceaptha mar ainm nua don athainmniú. Ar
 mhaith leat é a scrios chun áit a dhéanamh don athainmniú?',
-'delete_and_move_reason' => "Scriosta chun áit a dhéanamh d'athainmniú",
-'selfmove'               => 'Tá an ainm céanna ag an bhfoinse mar atá ar an ainm sprice; ní féidir leathanach a athainmniú bheith é féin.',
-'immobile_namespace'     => 'Saghas speisialta leathanach atá ann san ainm sprice; ní féidir leathanaigh a athainmniú san ainmspás sin.',
+'delete_and_move_confirm' => 'Tá, scrios an leathanach',
+'delete_and_move_reason'  => "Scriosta chun áit a dhéanamh d'athainmniú",
+'selfmove'                => 'Tá an ainm céanna ag an bhfoinse mar atá ar an ainm sprice; ní féidir leathanach a athainmniú bheith é féin.',
+'immobile_namespace'      => 'Saghas speisialta leathanach atá ann san ainm sprice; ní féidir leathanaigh a athainmniú san ainmspás sin.',
 
 # Export
 'export'        => 'Easportáil leathanaigh',

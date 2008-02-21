@@ -167,7 +167,7 @@ $messages = array(
 'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
 'tog-rememberpassword'        => 'Kom ihåg lösenordet till nästa besök',
 'tog-editwidth'               => 'Full bredd på redigeringsrutan',
-'tog-watchcreations'          => 'Lägg till sidor jag skapar i min övervakningslista',
+'tog-watchcreations'          => 'Lägg till sidor jag skapar till min övervakningslista',
 'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min övervakningslista',
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min övervakningslista',
 'tog-watchdeletion'           => 'Lägg till sidor jag raderar i min övervakningslista',
@@ -398,6 +398,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-matning',
 'page-rss-feed'           => '"$1" RSS-matning',
 'page-atom-feed'          => '"$1" Atom-matning',
+'red-link-title'          => '$1 (inte skriven än)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Sida',

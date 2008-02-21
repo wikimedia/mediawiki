@@ -18,6 +18,7 @@
  * @author Siebrand
  * @author Piolinfax
  * @author Dmcdevit
+ * @author Toniher
  */
 
 $skinNames = array(
@@ -2145,6 +2146,9 @@ Intenta la previsualización normal.',
 'watchlisttools-view' => 'Ver cambios',
 'watchlisttools-edit' => 'Ver y editar tu lista de seguimiento',
 'watchlisttools-raw'  => 'Editar lista de seguimiento en crudo',
+
+# Special:Version
+'version-parserhooks' => "Lligams de l'analitzador",
 
 # Special:Filepath
 'filepath'        => 'Ruta de archivo',

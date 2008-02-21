@@ -120,7 +120,7 @@ $messages = array(
 
 'about'          => 'ስለ',
 'newwindow'      => '(ባዲስ መስኮት ውስጥ ይከፈታል።)',
-'cancel'         => 'ሰርዝ',
+'cancel'         => 'ይጥፋ',
 'qbfind'         => 'አግኝ',
 'qbbrowse'       => 'ቃኝ',
 'qbedit'         => 'አርም',
@@ -491,11 +491,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 ስዕልዎ በጽሑፍ እንዲታይ '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Filename.jpg]]</nowiki>''' ወይም
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Filename.png|thumb|ሌላ ጽሑፍ]]</nowiki>''' በሚመስል መልክ ይጠቅሙ።",
+'upload-permitted'  => 'የተፈቀዱት የፋይል አይነቶች፦ $1 ብቻ ናቸው።',
 'uploadlogpage'     => 'የፋይሎች መዝገብ (filelog)',
 'uploadlogpagetext' => 'ይህ መዝገብ በቅርቡ የተላኩት ፋይሎች ሁሉ ያሳያል።',
 'fileuploadsummary' => 'ማጠቃለያ፦',
 'ignorewarnings'    => 'ማስጠንቀቂያ ቸል ይበል',
 'uploadedimage'     => '«[[$1]]» ላከ',
+'overwroteimage'    => 'የ«[[$1]]» አዲስ ዕትም ላከ',
 'sourcefilename'    => 'የቆየው የፋይሉ ስም',
 'destfilename'      => 'የፋይሉ አዲስ ስም',
 'watchthisupload'   => 'ይህንን ገጽ ለመከታተል',
@@ -614,6 +616,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'movethispage'            => 'ይህንን ገጽ ለማዛወር',
 'unusedimagestext'        => '<p>እነኚህ ፋይሎች ከ{{SITENAME}} አልተያያዙም። ሆኖም ሳያጥፏቸው ከ{{SITENAME}} ውጭ በቀጥታ ተያይዘው የሚገኙ ድረ-ገጾች መኖራቸው እንደሚቻል ይገንዝቡ።</p>',
 'unusedcategoriestext'    => 'እነዚህ መደብ ገጾች ባዶ ናቸው። ምንም ጽሑፍ ወይም ግንኙነት የለባቸውም።',
+'pager-newer-n'           => '{{PLURAL:$1|ኋለኛ 1|ኋለኛ $1}}',
+'pager-older-n'           => '{{PLURAL:$1|ፊተኛ 1|ፊተኛ $1}}',
 
 # Book sources
 'booksources'               => 'የመጻሕፍት ቤቶችና ሸጪዎች',
@@ -695,9 +699,11 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 # Delete/protect/revert
 'deletepage'                  => 'ገጹ ይጥፋ',
+'confirm'                     => 'ማረጋገጫ',
 'excontent'                   => 'ይዞታ፦ «$1» አለ።',
 'excontentauthor'             => "ይዞታ '$1' አለ (የጻፈበትም '$2' ብቻ ነበር)",
 'exbeforeblank'               => 'ባዶ፤ ከተደመሰሰ በፊት ይዞታው «$1» አለ።',
+'delete-legend'               => 'ለማጥፋት',
 'historywarning'              => 'ማስጠንቀቂያ፦ ለዚሁ ገጽ የዕትም ታሪክ ደግሞ ሊጠፋ ነው! :',
 'confirmdeletetext'           => 'አንድ ገጽ ወይም ስዕል ከነለውጦቹ በሙሉ ከዚሁ {{SITENAME}} ሊጠፋ ነው! ይህን ማድረግዎ ያሠቡበት መሆኑንና ማጥፋቱ በፖሊሲ ተገቢ እንደሆነ እባክዎ ያረጋግጡ፦',
 'actioncomplete'              => 'ተፈጽሟል',
@@ -718,6 +724,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'protectedarticle'            => 'ገጹን «[[$1]]» ቆለፈው።',
 'modifiedarticleprotection'   => 'የመቆለፍ ደረጃ ለ«[[$1]]» ቀየረ።',
 'unprotectedarticle'          => 'ገጹን «[[$1]]» ፈታ።',
+'protectsub'                  => '(ለ«$1» የመቆለፍ ደረጃ ለማስተካከል)',
 'confirmprotect'              => 'የመቆለፍ ማረጋገጫ',
 'protectcomment'              => 'ማጠቃለያ፦',
 'protectexpiry'               => 'የሚያልቅበት ግዜ፦',
@@ -740,6 +747,10 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'minimum-size'                => 'ቢያንስ',
 'maximum-size'                => 'ቢበዛ',
 'pagesize'                    => 'byte መጠን ያለው ሁሉ',
+
+# Restrictions (nouns)
+'restriction-edit' => 'እንዲዘጋጅ፦',
+'restriction-move' => 'እንዲዛወር፦',
 
 # Restriction levels
 'restriction-level-sysop'         => 'በሙሉ ተቆልፎ',
@@ -776,6 +787,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 # What links here
 'whatlinkshere'       => 'ወዲህ የሚያያዝ',
 'whatlinkshere-title' => 'ወደ «$1» የሚያያዙት ገጾች',
+'whatlinkshere-page'  => 'ለገጽ (አርዕስት)፦',
 'linklistsub'         => '(ወዲህ የሚያያዝ)',
 'linkshere'           => 'የሚከተሉት ገጾች ወደዚሁ ተያይዘዋል።',
 'nolinkshere'         => 'ወዲህ የተያያዘ ገጽ የለም።',
@@ -850,7 +862,11 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'export' => 'ገጾች ወደ ሌላ ዊኪ ለመላክ',
 
 # Namespace 8 related
-'allmessages' => 'የድረገጽ መልክ መልእክቶች',
+'allmessages'        => 'የድረገጽ መልክ መልእክቶች',
+'allmessagesname'    => 'የመልእክት ስም',
+'allmessagesdefault' => 'የቆየው ጽሕፈት',
+'allmessagescurrent' => 'ያሁኑ ጽሕፈት',
+'allmessagestext'    => 'በ«MediaWiki» ክፍለ-ዊኪ ያሉት የድረገጽ መልክ መልእክቶች ሙሉ ዝርዝር ይህ ነው።',
 
 # Thumbnails
 'thumbnail-more'  => 'አጎላ',
@@ -871,6 +887,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'tooltip-ca-edit'                 => 'ይህን ገጽ ለማዘጋጀት ይችላሉ!',
 'tooltip-ca-addsection'           => 'ለዚሁ ውይይት ገጽ አዲስ አርዕስት ለመጨምር',
 'tooltip-ca-viewsource'           => 'ይህ ገጽ ተቆልፏል ~ ጥሬ ምንጩን መመልከት ይችላሉ...',
+'tooltip-ca-history'              => 'ለዚሁ ገጽ ያለፉትን እትሞች ለማየት',
 'tooltip-ca-protect'              => 'ይህንን ገጽ ለመቆለፍ',
 'tooltip-ca-delete'               => 'ይህንን ገጽ ለማጥፋት',
 'tooltip-ca-move'                 => 'ይህ ገጽ ወደ ሌላ አርእስት ለማዋወር',
@@ -889,7 +906,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'tooltip-t-emailuser'             => 'ወደዚሁ አባል ኢ-ሜል ለመላክ',
 'tooltip-t-upload'                => 'ፋይል ወይም ሥዕልን ወደ {{SITENAME}} ለመላክ',
 'tooltip-t-specialpages'          => 'የልዩ ገጾች ዝርዝር በሙሉ',
+'tooltip-ca-nstab-main'           => 'መጣጥፉን ለማየት',
 'tooltip-ca-nstab-user'           => 'የአባል መኖሪያ ገጽ ለማየት',
+'tooltip-ca-nstab-special'        => 'ይህ ልዩ ገጽ ነው - ሊያዘጋጁት አይችሉም',
 'tooltip-ca-nstab-project'        => 'ግብራዊ ገጹን ለማየት',
 'tooltip-ca-nstab-image'          => 'የፋይሉን ገጽ ለማየት',
 'tooltip-ca-nstab-template'       => 'የመልጠፊያውን ገጽ ለመመልከት',
@@ -901,12 +920,18 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'tooltip-diff'                    => 'እርስዎ የሚያደርጉት ለውጦች ከአሁኑ ዕትም ጋር ለማነጻጸር',
 'tooltip-compareselectedversions' => 'ካመለከቱት ዕትሞች መካከል ያለውን ልዩነት ለማነጻጸር',
 'tooltip-watch'                   => 'ይህንን ገጽ ወደተከታተሉት ገጾች ዝርዝር ለመጨምር',
+'tooltip-upload'                  => 'ለመጀመር ይጫኑ',
 
 # Spam protection
 'subcategorycount'       => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ ንዑስ-መደብ አለ|$1 ንዑስ-መደቦች አሉ}}።',
 'categoryarticlecount'   => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ መጣጥፍ አለ|$1 መጣጥፎች አሉ}}።',
 'category-media-count'   => 'በዚሁ መደብ {{PLURAL:$1|አንድ ፋይል አለ|$1 ፋይሎች አሉ}}።',
 'listingcontinuesabbrev' => '(ተቀጥሏል)',
+
+# Patrolling
+'markaspatrolledtext'   => 'ይህን ገጽ የተመለከተ ሆኖ ለማሳለፍ',
+'markedaspatrolled'     => 'የተመለከተ ሆኖ ተሳለፈ',
+'markedaspatrolledtext' => 'የተመረጠው ዕትም የተመለከተ ሆኖ ተሳለፈ።',
 
 # Browsing diffs
 'previousdiff' => '← የፊተኛው ለውጥ',

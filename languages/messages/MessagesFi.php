@@ -429,6 +429,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'site-atom-feed'          => '$1-Atom-syöte',
 'page-rss-feed'           => '$1 (RSS-syöte)',
 'page-atom-feed'          => '$1 (Atom-syöte)',
+'red-link-title'          => '$1 (ei vielä kirjoitettu)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Sivu',
@@ -842,6 +843,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'searchsubtitleinvalid' => 'Haku termeillä $1',
 'noexactmatch'          => 'Sivua ”$1” ei ole olemassa. Voit [[$1|luoda aiheesta uuden sivun]].',
 'noexactmatch-nocreate' => "'''Sivua nimeltä ”$1” ei ole.'''",
+'toomanymatches'        => 'Liian monta osumaa, kokeile erilaista kyselyä.',
 'titlematches'          => 'Osumat sivujen otsikoissa',
 'notitlematches'        => 'Hakusanaa ei löytynyt minkään sivun otsikosta',
 'textmatches'           => 'Osumat sivujen teksteissä',
@@ -1037,12 +1039,12 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'largefileserver'             => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'                   => 'Tiedosto, jota yritit lähettää, näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
 'fileexists'                  => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
-'filepageexists'              => 'Sivu (ei kuva) on jo olemassa tällä nimellä. Tarkista sivu <strong><tt>$1</tt></strong>, jos et ole varma että haluat muuttaa sitä.',
+'filepageexists'              => 'Sivu (ei tiedosto) on jo olemassa tällä nimellä. Tarkista sivu <strong><tt>$1</tt></strong>, jos et ole varma että haluat muuttaa sitä.',
 'fileexists-extension'        => 'Tiedosto, jolla on samankaltainen nimi, on jo olemassa:<br />
 Tallennetun tiedoston nimi: <strong><tt>$1</tt></strong><br />
 Olemassa olevan tiedoston nimi: <strong><tt>$2</tt></strong><br />
 Ainoa ero on tiedostopäätteen kirjainkoko. Tarkista ovatko tiedostot identtisiä.',
-'fileexists-thumb'            => "<center>'''Olemassa oleva kuva'''</center>",
+'fileexists-thumb'            => "<center>'''Olemassa oleva tiedosto'''</center>",
 'fileexists-thumbnail-yes'    => 'Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>. Tarkista tiedosto <strong><tt>$1</tt></strong>.<br />
 Jos yllä oleva tiedosto on alkuperäisversio samasta kuvasta, ei sille tarvi tallentaa pienoiskuvaa.',
 'file-thumbnail-no'           => 'Tiedostonimi alkaa merkkijonolla <strong><tt>$1</tt></strong>. Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>.
@@ -1234,7 +1236,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'mostlinkedcategories'    => 'Viitatuimmat luokat',
 'mostlinkedtemplates'     => 'Viitatuimmat mallineet',
 'mostcategories'          => 'Luokitelluimmat sivut',
-'mostimages'              => 'Viitatuimmat kuvat',
+'mostimages'              => 'Viitatuimmat tiedostot',
 'mostrevisions'           => 'Muokatuimmat sivut',
 'allpages'                => 'Kaikki sivut',
 'prefixindex'             => 'Sivujen katkaisuhaku',
@@ -1541,7 +1543,7 @@ $1',
 'sp-contributions-username'    => 'IP-osoite tai käyttäjätunnus',
 'sp-contributions-submit'      => 'Hae',
 
-'sp-newimages-showfrom' => 'Näytä uudet kuvat alkaen $1',
+'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1',
 
 # What links here
 'whatlinkshere'       => 'Tänne viittaavat sivut',
