@@ -272,6 +272,7 @@ $wgMessageStructure = array(
 		'sitenotice',
 		'anonnotice',
 		'newsectionheaderdefaultlevel',
+		'red-link-title',
 	),
 	'nstab' => array(
 		'nstab-main',
