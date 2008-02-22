@@ -461,7 +461,7 @@ Definition list with wikilink containing colon
 !! input
 ; [[Help:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=editredlink" class="new" title="Help:FAQ (not yet written)">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
+<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=editredlink" class="new" title="Help:FAQ">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -887,7 +887,7 @@ External links: wiki links within external link (Bug 3695)
 !! input
 [http://example.com [[wikilink]] embedded in ext link]
 !! result
-<p><a href="http://example.com" class="external text" title="http://example.com" rel="nofollow"></a><a href="/index.php?title=Wikilink&amp;action=editredlink" class="new" title="Wikilink (not yet written)">wikilink</a><a href="http://example.com" class="external text" title="http://example.com" rel="nofollow"> embedded in ext link</a>
+<p><a href="http://example.com" class="external text" title="http://example.com" rel="nofollow"></a><a href="/index.php?title=Wikilink&amp;action=editredlink" class="new" title="Wikilink">wikilink</a><a href="http://example.com" class="external text" title="http://example.com" rel="nofollow"> embedded in ext link</a>
 </p>
 !! end
 
@@ -1316,7 +1316,7 @@ Broken link
 !! input
 [[Zigzagzogzagzig]]
 !! result
-<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=editredlink" class="new" title="Zigzagzogzagzig (not yet written)">Zigzagzogzagzig</a>
+<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=editredlink" class="new" title="Zigzagzogzagzig">Zigzagzogzagzig</a>
 </p>
 !! end
 
@@ -1370,7 +1370,7 @@ Link to namespaces
 !! input
 [[Talk:Parser testing]], [[Meta:Disclaimers]]
 !! result
-<p><a href="/index.php?title=Talk:Parser_testing&amp;action=editredlink" class="new" title="Talk:Parser testing (not yet written)">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=editredlink" class="new" title="Meta:Disclaimers (not yet written)">Meta:Disclaimers</a>
+<p><a href="/index.php?title=Talk:Parser_testing&amp;action=editredlink" class="new" title="Talk:Parser testing">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=editredlink" class="new" title="Meta:Disclaimers">Meta:Disclaimers</a>
 </p>
 !! end
 
@@ -1379,7 +1379,7 @@ Piped link to namespace
 !! input
 [[Meta:Disclaimers|The disclaimers]]
 !! result
-<p><a href="/index.php?title=Meta:Disclaimers&amp;action=editredlink" class="new" title="Meta:Disclaimers (not yet written)">The disclaimers</a>
+<p><a href="/index.php?title=Meta:Disclaimers&amp;action=editredlink" class="new" title="Meta:Disclaimers">The disclaimers</a>
 </p>
 !! end
 
@@ -1397,7 +1397,7 @@ Link containing % (not as a hex sequence)
 !! input
 [[7% Solution]]
 !! result
-<p><a href="/index.php?title=7%25_Solution&amp;action=editredlink" class="new" title="7% Solution (not yet written)">7% Solution</a>
+<p><a href="/index.php?title=7%25_Solution&amp;action=editredlink" class="new" title="7% Solution">7% Solution</a>
 </p>
 !! end
 
@@ -1406,7 +1406,7 @@ Link containing % as a single hex sequence interpreted to char
 !! input
 [[7%25 Solution]]
 !! result
-<p><a href="/index.php?title=7%25_Solution&amp;action=editredlink" class="new" title="7% Solution (not yet written)">7% Solution</a>
+<p><a href="/index.php?title=7%25_Solution&amp;action=editredlink" class="new" title="7% Solution">7% Solution</a>
 </p>
 !!end
 
@@ -1452,7 +1452,7 @@ Link containing double-single-quotes '' in text (bug 4598 sanity check)
 !! input
 Some [[Link|pretty ''italics'' and stuff]]!
 !! result
-<p>Some <a href="/index.php?title=Link&amp;action=editredlink" class="new" title="Link (not yet written)">pretty <i>italics</i> and stuff</a>!
+<p>Some <a href="/index.php?title=Link&amp;action=editredlink" class="new" title="Link">pretty <i>italics</i> and stuff</a>!
 </p>
 !! end
 
@@ -1461,7 +1461,7 @@ Link containing double-single-quotes '' in text embedded in italics (bug 4598 sa
 !! input
 ''Some [[Link|pretty ''italics'' and stuff]]!
 !! result
-<p><i>Some </i><a href="/index.php?title=Link&amp;action=editredlink" class="new" title="Link (not yet written)"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
+<p><i>Some </i><a href="/index.php?title=Link&amp;action=editredlink" class="new" title="Link"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
 </p>
 !! end
 
@@ -2084,7 +2084,7 @@ Magic links: internal link to RFC (bug 479)
 !! input
 [[RFC 123]]
 !! result
-<p><a href="/index.php?title=RFC_123&amp;action=editredlink" class="new" title="RFC 123 (not yet written)">RFC 123</a>
+<p><a href="/index.php?title=RFC_123&amp;action=editredlink" class="new" title="RFC 123">RFC 123</a>
 </p>
 !! end
 
@@ -2124,7 +2124,7 @@ Nonexistant template
 !! input
 {{thistemplatedoesnotexist}}
 !! result
-<p><a href="/index.php?title=Template:Thistemplatedoesnotexist&amp;action=editredlink" class="new" title="Template:Thistemplatedoesnotexist (not yet written)">Template:Thistemplatedoesnotexist</a>
+<p><a href="/index.php?title=Template:Thistemplatedoesnotexist&amp;action=editredlink" class="new" title="Template:Thistemplatedoesnotexist">Template:Thistemplatedoesnotexist</a>
 </p>
 !! end
 
@@ -2306,7 +2306,7 @@ Template with thumb image (with link in description)
 {{paramtest|
   param =[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
 !! result
-This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="Image:Noimage.png">Image:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit" class="new" title="No link (not yet written)">link</a> <a href="/index.php?title=No_link&amp;action=editredlink" class="new" title="No link (not yet written)">caption</a></div></div></div>
+This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="Image:Noimage.png">Image:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit" class="new" title="No link">link</a> <a href="/index.php?title=No_link&amp;action=editredlink" class="new" title="No link">caption</a></div></div></div>
 
 !! end
 
@@ -3281,7 +3281,7 @@ Disabled subpages
 !! input
 [[/subpage]]
 !! result
-<p><a href="/index.php?title=/subpage&amp;action=editredlink" class="new" title="/subpage (not yet written)">/subpage</a>
+<p><a href="/index.php?title=/subpage&amp;action=editredlink" class="new" title="/subpage">/subpage</a>
 </p>
 !! end
 
@@ -3292,7 +3292,7 @@ subpage title=[[Page]]
 !! input
 {{/Subpage}}
 !! result
-<p><a href="/index.php?title=Page/Subpage&amp;action=editredlink" class="new" title="Page/Subpage (not yet written)">Page/Subpage</a>
+<p><a href="/index.php?title=Page/Subpage&amp;action=editredlink" class="new" title="Page/Subpage">Page/Subpage</a>
 </p>
 !! end
 
@@ -3804,7 +3804,7 @@ Image link to nonexistent file (bug 1850 - good)
 !! input
 [[:Image:No such.jpg]]
 !! result
-<p><a href="/index.php?title=Image:No_such.jpg&amp;action=editredlink" class="new" title="No such.jpg (not yet written)">Image:No such.jpg</a>
+<p><a href="/index.php?title=Image:No_such.jpg&amp;action=editredlink" class="new" title="No such.jpg">Image:No such.jpg</a>
 </p>
 !! end
 
@@ -5037,7 +5037,7 @@ Transclusion of nonexistent MediaWiki message
 !! input
 {{MediaWiki:Mainpagexxx}}
 !!result
-<p><a href="/index.php?title=MediaWiki:Mainpagexxx&amp;action=editredlink" class="new" title="MediaWiki:Mainpagexxx (not yet written)">MediaWiki:Mainpagexxx</a>
+<p><a href="/index.php?title=MediaWiki:Mainpagexxx&amp;action=editredlink" class="new" title="MediaWiki:Mainpagexxx">MediaWiki:Mainpagexxx</a>
 </p>
 !! end
 
@@ -5925,7 +5925,7 @@ Say the magic word
 </li><li> Talk
 </li><li> 
 </li><li> 
-</li><li> <a href="/index.php?title=Template:Dynamic&amp;action=editredlink" class="new" title="Template:Dynamic (not yet written)">Template:Dynamic</a>
+</li><li> <a href="/index.php?title=Template:Dynamic&amp;action=editredlink" class="new" title="Template:Dynamic">Template:Dynamic</a>
 </li></ul>
 
 !! end
@@ -6050,7 +6050,7 @@ Double RFC with a wiki link
 !! input
 RFC [[RFC 1234]]
 !! result
-<p>RFC <a href="/index.php?title=RFC_1234&amp;action=editredlink" class="new" title="RFC 1234 (not yet written)">RFC 1234</a>
+<p>RFC <a href="/index.php?title=RFC_1234&amp;action=editredlink" class="new" title="RFC 1234">RFC 1234</a>
 </p>
 !! end
 
@@ -6155,7 +6155,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../|L2]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=editredlink" class="new" title="Subpage test/L1/L2 (not yet written)">L2</a>
+<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=editredlink" class="new" title="Subpage test/L1/L2">L2</a>
 </p>
 !! end
 
@@ -6167,7 +6167,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=editredlink" class="new" title="Subpage test/L1/L2 (not yet written)">Subpage test/L1/L2</a>
+<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=editredlink" class="new" title="Subpage test/L1/L2">Subpage test/L1/L2</a>
 </p>
 !! end
 
@@ -6181,7 +6181,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../../|L1]]2
 !! result
-<p><a href="/index.php?title=Subpage_test/L1&amp;action=editredlink" class="new" title="Subpage test/L1 (not yet written)">L1</a>
+<p><a href="/index.php?title=Subpage_test/L1&amp;action=editredlink" class="new" title="Subpage test/L1">L1</a>
 </p>
 !! end
 
@@ -6194,7 +6194,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../..]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1/L2/..&amp;action=editredlink" class="new" title="Subpage test/L1 (not yet written)">../..</a>
+<p><a href="/index.php?title=Subpage_test/L1/L2/..&amp;action=editredlink" class="new" title="Subpage test/L1">../..</a>
 </p>
 !! end
 
@@ -6207,7 +6207,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../../////]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1&amp;action=editredlink" class="new" title="Subpage test/L1 (not yet written)">Subpage test/L1</a>
+<p><a href="/index.php?title=Subpage_test/L1&amp;action=editredlink" class="new" title="Subpage test/L1">Subpage test/L1</a>
 </p>
 !! end
 
@@ -6248,7 +6248,7 @@ RAW magic word
 !! input
 {{RAW:QUERTY}}
 !! result
-<p><a href="/index.php?title=Template:QUERTY&amp;action=editredlink" class="new" title="Template:QUERTY (not yet written)">Template:QUERTY</a>
+<p><a href="/index.php?title=Template:QUERTY&amp;action=editredlink" class="new" title="Template:QUERTY">Template:QUERTY</a>
 </p>
 !! end
 
