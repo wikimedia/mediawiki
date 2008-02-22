@@ -328,6 +328,7 @@ $messages = array(
 'site-atom-feed'          => '$1的Atom订阅',
 'page-rss-feed'           => '“$1”的RSS订阅',
 'page-atom-feed'          => '“$1”的Atom订阅',
+'red-link-title'          => '$1 (尚未撰写)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '页面',
@@ -1065,6 +1066,7 @@ $2',
 'nolinkstoimage'            => '没有页面链接到本文件。',
 'sharedupload'              => '该文件是一个共享上传，它可能在其它项目中被应用。',
 'shareduploadwiki'          => '请参阅$1以了解其相关信息。',
+'shareduploadwiki-desc'     => '它在$1上的描述于下面显示。',
 'shareduploadwiki-linktext' => '文件描述页面',
 'noimage'                   => '不存在此名称的文件，您可以$1。',
 'noimage-linktext'          => '上传它',
