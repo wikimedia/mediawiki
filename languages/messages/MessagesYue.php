@@ -382,6 +382,7 @@ $messages = array(
 'site-atom-feed'          => '$1嘅Atom Feed',
 'page-rss-feed'           => '"$1"嘅RSS Feed',
 'page-atom-feed'          => '"$1"嘅Atom Feed',
+'red-link-title'          => '$1 (未寫)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '版',
@@ -1118,6 +1119,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nolinkstoimage'            => '冇個頁面連結到呢個檔案。',
 'sharedupload'              => '呢個檔案係共用嘅上載，可以喺其他計劃中使用。“',
 'shareduploadwiki'          => '更多資訊請睇$1。',
+'shareduploadwiki-desc'     => '佢響$1上面嘅描述響下面度顯示。',
 'shareduploadwiki-linktext' => '檔案描述頁面',
 'noimage'                   => '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext'          => '上載佢',

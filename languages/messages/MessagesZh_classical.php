@@ -306,6 +306,7 @@ $messages = array(
 'site-atom-feed'          => '$1之Atom源',
 'page-rss-feed'           => '「$1」之RSS源',
 'page-atom-feed'          => '「$1」之Atom源',
+'red-link-title'          => '$1 (未纂)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文',
@@ -864,6 +865,7 @@ $2',
 'filehist-comment'          => '註',
 'imagelinks'                => '圖鏈',
 'shareduploadwiki'          => '詳閱$1。',
+'shareduploadwiki-desc'     => '$1上之示。',
 'shareduploadwiki-linktext' => '檔述',
 'imagelist_date'            => '時',
 'imagelist_name'            => '名',
