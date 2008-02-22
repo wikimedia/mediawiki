@@ -114,10 +114,6 @@ $magicWords = array(
 	'subpagenamee'        => array( '1', 'SUBPAGENAMEE', 'DEELPAGINANAAME' ),
 	'basepagename'        => array( '1', 'BASEPAGENAME', 'BASISPAGINANAAM' ),
 	'basepagenamee'       => array( '1', 'BASEPAGENAMEE', 'BASISPAGINANAAME' ),
-	'parentpagename'      => array( '1', 'PARENTPAGENAME', 'HOGEREPAGINANAAM' ),
-	'parentpagenamee'     => array( '1', 'PARENTPAGENAMEE', 'HOGEREPAGINANAAME' ),
-	'rootpagename'        => array( '1', 'ROOTPAGENAME', 'WORTELPAGINANAAM' ),
-	'rootpagenamee'       => array( '1', 'ROOTPAGENAMEE', 'WORTELPAGINANAAME' ),
 	'talkpagename'        => array( '1', 'TALKPAGENAME', 'OVERLEGPAGINANAAM' ),
 	'talkpagenamee'       => array( '1', 'TALKPAGENAMEE', 'OVERLEGPAGINANAAME' ),
 	'subjectpagename'     => array( '1', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'ONDERWERPPAGINANAAM', 'ARTIKELPAGINANAAM' ),
@@ -132,6 +128,7 @@ $magicWords = array(
 	'img_framed'          => array( '1', 'framed', 'enframed', 'frame', 'omkaderd' ),
 	'img_frameless'       => array( '1', 'frameless', 'kaderloos' ),
 	'img_page'            => array( '1', 'page=$1', 'page $1', 'pagina=$1', 'pagina $1' ),
+	'img_upright'         => array( '1', 'upright', 'upright=$1', 'upright $1', '1', 'rechtop', 'rechtop=$1', 'rechtop$1' ),
 	'img_border'          => array( '1', 'border', 'rand' ),
 	'img_baseline'        => array( '1', 'baseline', 'grondlijn' ),
 	'img_top'             => array( '1', 'top', 'boven' ),
@@ -184,6 +181,7 @@ $magicWords = array(
 	'special'             => array( '0', 'special', 'speciaal' ),
 	'defaultsort'         => array( '1', 'DEFAULTSORT:', 'STANDAARDSORTERING:' ),
 	'filepath'            => array( '0', 'FILEPATH:', 'BESTANDSPAD:' ),
+	'hiddencat'           => array( '1', '__HIDDENCAT__', '__VERBORGENCAT__' ),
 );
 
 $specialPageAliases = array(
