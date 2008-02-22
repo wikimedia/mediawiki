@@ -582,7 +582,13 @@ class OutputPage {
 		global $wgCookiePrefix;
 		$cvCookies = $this->getCacheVaryCookies();
 		$xvo = 'X-Vary-Options: Accept-Encoding;list-contains=gzip,Cookie;';
+		$first = true;
 		foreach ( $cvCookies as $cookieName ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$xvo .= ';';
+			}
 			$xvo .= 'string-contains=' . $cookieName;
 		}
 		return $xvo;
