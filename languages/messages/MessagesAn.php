@@ -356,6 +356,8 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|una edizión borrata|$1 edizions borratas}}',
 'feedlinks'               => 'Sendicazión como fuent de notizias:',
 'feed-invalid'            => 'Sendicazión como fuent de notizias no conforme.',
+'feed-unavailable'        => 'As fuents de sendicazión no son disponibles en {{SITENAME}}',
+'red-link-title'          => '$1 (encara no escrita)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articlo',

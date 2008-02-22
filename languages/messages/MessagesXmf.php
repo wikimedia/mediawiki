@@ -142,6 +142,8 @@ $messages = array(
 'yourdomainname'     => 'თქვან დომენ',
 'userlogin'          => 'მინულა',
 'userlogout'         => 'გუმულა',
+'gotaccountlink'     => 'მინულა',
+'yourrealname'       => 'ნამდვილ სახელ *',
 'yourlanguage'       => 'ნინა:',
 'loginlanguagelabel' => 'ნინა: $1',
 
@@ -211,13 +213,19 @@ $messages = array(
 'imagelinks'          => 'ბმულეფ',
 'imagelist_name'      => 'სახელ',
 
+# MIME search
+'mimesearch' => 'MIME გორუა',
+
 # Miscellaneous special pages
-'nbytes'       => '$1 ბაიტ',
-'nmembers'     => '$1 მაკათურ',
-'allpages'     => 'არძა გვერდ',
-'specialpages' => 'სპეციალურ გვერდეფ',
-'ancientpages' => 'ძვაშ გვერდეფ',
-'move'         => 'გინოღალა',
+'nbytes'               => '$1 ბაიტ',
+'nmembers'             => '$1 მაკათურ',
+'mostlinked'           => 'გვერდეფ, ნამუდგა არძას ბრალ ბმულეფ უღუნთ',
+'mostlinkedcategories' => 'კატეგორიეფ, ნამუდგა არძას ბრალ ბმულეფ უღუნთ',
+'mostcategories'       => 'სტატიეფ, ნამუდგა არძას ბრალ კატეგორიეფ უღუნთ',
+'allpages'             => 'არძა გვერდ',
+'specialpages'         => 'სპეციალურ გვერდეფ',
+'ancientpages'         => 'ძვაშ გვერდეფ',
+'move'                 => 'გინოღალა',
 
 'alphaindexline' => '$1-იშე $2-შა',
 'version'        => 'ვერსია',
@@ -226,13 +234,19 @@ $messages = array(
 'log' => 'ჟურნალეფ',
 
 # Watchlist
-'watchlist'   => 'ჩქიმ კონტროლიშ გვერდეფ',
-'mywatchlist' => 'ჩქიმ კონტროლიშ გვერდეფ',
-'watch'       => 'კონტროლ',
-'unwatch'     => 'კონტროლიშ გაუქვება',
+'watchlist'        => 'ჩქიმ კონტროლიშ გვერდეფ',
+'mywatchlist'      => 'ჩქიმ კონტროლიშ გვერდეფ',
+'removedwatchtext' => 'ასე გვერდ "[[:$1]]" ვარე თქვან კონტროლიშ გვერდეფც.',
+'watch'            => 'კონტროლ',
+'unwatch'          => 'კონტროლიშ გაუქვება',
 
 # Delete/protect/revert
-'rollbacklink' => 'გაუქვება',
+'rollbacklink'                => 'გაუქვება',
+'protectcomment'              => 'კომენტარ:',
+'protectexpiry'               => 'ვადა',
+'protect-default'             => '(სტანდარტულ)',
+'protect-level-autoconfirmed' => 'ვარეგისტრირებულ მომხმარებელეფიშ დაბლოკვა',
+'protect-level-sysop'         => 'ხოლო ადმინისტრატორეფ',
 
 # Undelete
 'undelete-search-submit' => 'გორუა',
@@ -256,7 +270,17 @@ $messages = array(
 'ipbotheroption'     => 'შხვა',
 'ipblocklist-submit' => 'გორუა',
 'blocklink'          => 'ბლოკირება',
+'unblocklink'        => 'ბლოკიშ მონწყუმა',
 'contribslink'       => 'ხანდა',
+
+# Move page
+'movepage'       => 'გვერდიშ გინოღალა',
+'movearticle'    => 'გვერდიშ გინოღალა',
+'newtitle'       => 'ახალ სახელ',
+'move-watch'     => 'თე გვერდიშ კონტროლ',
+'movepagebtn'    => 'გვერდიშ გინოღალა',
+'movepage-moved' => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'        => 'გინაღალულ რე',
 
 # Export
 'export' => 'გვერდეფიშ ექსპორტ',

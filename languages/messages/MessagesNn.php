@@ -13,6 +13,7 @@
  * @author Jon Harald Søby
  * @author SPQRobin
  * @author Dittaeva
+ * @author M.M.S.
  */
 
 /**
@@ -1817,7 +1818,7 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 'import-interwiki-submit' => 'Importer',
 'importtext'              => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
 For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
-'importstart'             => 'Importerer sider...',
+'importstart'             => 'Importerer sidene…',
 'import-revision-count'   => '$1 {{PLURAL:$1|versjon|versjonar}}',
 'importnopages'           => 'Ingen sider å importere.',
 'importfailed'            => 'Importeringa var mislukka: $1',
@@ -1889,7 +1890,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch'                   => 'Legg denne sida til i overvakingslista di [alt-w]',
 'tooltip-recreate'                => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
-'tooltip-upload'                  => 'Start opplasting',
+'tooltip-upload'                  => 'Start opplastinga',
 
 # Stylesheets
 'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
@@ -2272,6 +2273,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '← førre side',
 'imgmultipagenext' => 'neste side →',
+'imgmultigo'       => 'Gå!',
 'imgmultigotopre'  => 'Gå til side',
 
 # Table pager
