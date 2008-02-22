@@ -461,7 +461,7 @@ Definition list with wikilink containing colon
 !! input
 ; [[Help:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=editredlink" class="new" title="FAQ (not yet written)">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
+<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=editredlink" class="new" title="Help:FAQ (not yet written)">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -1370,7 +1370,7 @@ Link to namespaces
 !! input
 [[Talk:Parser testing]], [[Meta:Disclaimers]]
 !! result
-<p><a href="/index.php?title=Talk:Parser_testing&amp;action=editredlink" class="new" title="Parser testing (not yet written)">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=editredlink" class="new" title="Meta:Disclaimers (not yet written)">Meta:Disclaimers</a>
+<p><a href="/index.php?title=Talk:Parser_testing&amp;action=editredlink" class="new" title="Talk:Parser testing (not yet written)">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=editredlink" class="new" title="Meta:Disclaimers (not yet written)">Meta:Disclaimers</a>
 </p>
 !! end
 
@@ -2124,7 +2124,7 @@ Nonexistant template
 !! input
 {{thistemplatedoesnotexist}}
 !! result
-<p><a href="/index.php?title=Template:Thistemplatedoesnotexist&amp;action=editredlink" class="new" title="Thistemplatedoesnotexist (not yet written)">Template:Thistemplatedoesnotexist</a>
+<p><a href="/index.php?title=Template:Thistemplatedoesnotexist&amp;action=editredlink" class="new" title="Template:Thistemplatedoesnotexist (not yet written)">Template:Thistemplatedoesnotexist</a>
 </p>
 !! end
 
@@ -5037,7 +5037,7 @@ Transclusion of nonexistent MediaWiki message
 !! input
 {{MediaWiki:Mainpagexxx}}
 !!result
-<p><a href="/index.php?title=MediaWiki:Mainpagexxx&amp;action=editredlink" class="new" title="Mainpagexxx (not yet written)">MediaWiki:Mainpagexxx</a>
+<p><a href="/index.php?title=MediaWiki:Mainpagexxx&amp;action=editredlink" class="new" title="MediaWiki:Mainpagexxx (not yet written)">MediaWiki:Mainpagexxx</a>
 </p>
 !! end
 
@@ -5925,7 +5925,7 @@ Say the magic word
 </li><li> Talk
 </li><li> 
 </li><li> 
-</li><li> <a href="/index.php?title=Template:Dynamic&amp;action=editredlink" class="new" title="Dynamic (not yet written)">Template:Dynamic</a>
+</li><li> <a href="/index.php?title=Template:Dynamic&amp;action=editredlink" class="new" title="Template:Dynamic (not yet written)">Template:Dynamic</a>
 </li></ul>
 
 !! end
@@ -6248,7 +6248,7 @@ RAW magic word
 !! input
 {{RAW:QUERTY}}
 !! result
-<p><a href="/index.php?title=Template:QUERTY&amp;action=editredlink" class="new" title="QUERTY (not yet written)">Template:QUERTY</a>
+<p><a href="/index.php?title=Template:QUERTY&amp;action=editredlink" class="new" title="Template:QUERTY (not yet written)">Template:QUERTY</a>
 </p>
 !! end
 
