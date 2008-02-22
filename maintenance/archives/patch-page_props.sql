@@ -5,5 +5,5 @@ CREATE TABLE /*$wgDBprefix*/page_props (
   pp_value blob NOT NULL,
 
   PRIMARY KEY (pp_page,pp_propname)
-);
+) /*$wgDBTableOptions*/;
 
