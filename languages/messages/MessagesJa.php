@@ -304,6 +304,7 @@ $messages = array(
 'site-atom-feed'          => '$1 をAtomフィード',
 'page-rss-feed'           => '"$1" をRSSフィード',
 'page-atom-feed'          => '"$1" をAtomフィード',
+'red-link-title'          => '$1 （未作成ページ）',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '本文',

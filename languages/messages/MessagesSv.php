@@ -394,6 +394,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|en raderad version|$1 raderade versioner}}',
 'feedlinks'               => 'Matning:',
 'feed-invalid'            => 'Ugyldig abonnementsype.',
+'feed-unavailable'        => 'Sammanslagnings matningar (feeds) är inte tillgängliga på {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS-matning',
 'site-atom-feed'          => '$1 Atom-matning',
 'page-rss-feed'           => '"$1" RSS-matning',

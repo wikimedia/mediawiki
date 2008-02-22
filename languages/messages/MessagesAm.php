@@ -465,7 +465,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'rcshowhidebots'                 => 'bots $1',
 'rcshowhideliu'                  => 'ያባላት ለውጦች $1',
 'rcshowhideanons'                => 'የቁ. አድራሻ ለውጦች $1',
-'rcshowhidepatr'                 => '$1 የተቆጣጠሩ ለውጦች',
+'rcshowhidepatr'                 => 'የተቆጣጠሩ ለውጦች $1',
 'rcshowhidemine'                 => 'የኔ $1',
 'rclinks'                        => 'ባለፉት $2 ቀን ውስጥ የወጡት መጨረሻ $1 ለውጦች ይታዩ።<br />($3)',
 'diff'                           => 'ለውጡ',
@@ -514,6 +514,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'imgfile'                   => 'ፋይሉ',
 'filehist'                  => 'የፋይሉ ታሪክ',
 'filehist-help'             => 'የቀድሞው ዕትም ካለ ቀን/ሰዓቱን በመጫን መመልከት ይቻላል።',
+'filehist-deleteall'        => 'ሁሉን ለማጥፋት',
+'filehist-deleteone'        => 'ይህን ለማጥፋት',
+'filehist-revert'           => 'ወዲህ ይገለበጥ',
 'filehist-current'          => 'ያሁኑኑ',
 'filehist-datetime'         => 'ቀን /ሰዓት',
 'filehist-user'             => 'አቅራቢው',
@@ -524,6 +527,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'linkstoimage'              => 'የሚከተሉ ገጾች ወደዚሁ ፋይል ተያይዘዋል።',
 'nolinkstoimage'            => 'ወዲህ ፋይል የተያያዘ ገጽ የለም።',
 'sharedupload'              => 'ይህ ፋይል ከጋራ ምንጭ (Commons) የተቀሰመ ነው። በማንኛውም ዊኪ ላይ ሊጠቅም ይቻላል።',
+'shareduploadwiki-desc'     => 'በዚያ በ$1 የሚታየው መግለጫ እንዲህ ይላል፦',
+'shareduploadwiki-linktext' => 'ፋይል መግለጫ ገጹ',
 'noimage'                   => 'በዚህ ስም የሚታወቅ ፋይል የለም፤ እርስዎ ግን $1 ይችላሉ።',
 'noimage-linktext'          => 'ሊልኩት',
 'uploadnewversion-linktext' => 'ለዚሁ ፋይል አዲስ ዕትም ለመላክ',
@@ -532,6 +537,15 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'imagelist_user'            => 'አቅራቢው',
 'imagelist_size'            => 'መጠን (byte)',
 'imagelist_description'     => 'ማጠቃለያ',
+
+# File deletion
+'filedelete'             => '$1 ለማጥፋት',
+'filedelete-legend'      => 'ፋይልን ለማጥፋት',
+'filedelete-intro'       => "'''[[Media:$1|$1]]''' ሊያጥፉ ነው።",
+'filedelete-intro-old'   => '<span class="plainlinks">በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ\'\'\'[[Media:$1|$1]]\'\'\' እትም ሊያጥፉ ነው።</span>',
+'filedelete-comment'     => 'የማጥፋቱ ምክንያት፦',
+'filedelete-submit'      => 'ይጥፋ',
+'filedelete-otherreason' => 'ሌላ / ተጨማሪ ምክንያት፦',
 
 # MIME search
 'mimesearch' => 'የMIME ፍለጋ',
@@ -719,6 +733,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'deletereasonotherlist'       => 'ሌላ ምክንያት',
 'rollbacklink'                => 'ROLLBACK ይመለስ',
 'revertpage'                  => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => 'የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።',
 'protectlogpage'              => 'የማቆለፍ መዝገብ (prot. log)',
 'protectlogtext'              => 'ይህ መዝገብ ገጽ ሲቆለፍ ወይም ሲከፈት ይዘረዝራል። ለአሁኑ የተቆለፈውን ለመመልከት፣ [[Special:Protectedpages|የቆለፉትን ገጾች]] ደግሞ ያዩ።',
 'protectedarticle'            => 'ገጹን «[[$1]]» ቆለፈው።',
@@ -966,6 +981,10 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 * exposuretime
 * fnumber
 * focallength", # Do not translate list items
+
+# EXIF tags
+'exif-make'  => 'የካሜራው ሠሪ ድርጅት',
+'exif-model' => 'የካሜራው ዝርያ',
 
 # External editor support
 'edit-externally'      => 'ይህንን ፋይል በአፍአዊ ሶፍትዌር ለማዘጋጀት',

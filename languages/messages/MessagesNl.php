@@ -510,6 +510,7 @@ $messages = array(
 'restorelink'             => '$1 verwijderde {{PLURAL:$1|versie|versies}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Feedtype wordt niet ondersteund.',
+'feed-unavailable'        => 'Syndicatiefeeds zijn niet beschikbaar op {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS-feed',
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',

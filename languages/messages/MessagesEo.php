@@ -301,6 +301,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-fonto',
 'page-rss-feed'           => '"$1" RSS-fonto',
 'page-atom-feed'          => '"$1" Atom-abonilo',
+'red-link-title'          => '$1 (ankoraŭ ne verkita)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikolo',
@@ -736,6 +737,7 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'mergehistory-no-destination' => 'Celpaĝo $1 ne ekzistas.',
 
 # Merge log
+'mergelog'           => 'Loglibro de kunigoj',
 'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (revizioj gxis $3)',
 'revertmerge'        => 'Malkunigu',
 
@@ -1372,6 +1374,7 @@ versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭi
 revizio eble estis restarigita aŭ forigita de la arkivo.',
 'undelete-nodiff'              => 'Neniu antaŭa revizio trovebla.',
 'undeletebtn'                  => 'Restarigu!',
+'undeletelink'                 => 'restarigu',
 'undeletereset'                => 'Reŝarĝu',
 'undeletecomment'              => 'Komento:',
 'undeletedarticle'             => 'restarigis "$1"',
@@ -1480,6 +1483,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'infiniteblock'            => 'senfina',
 'expiringblock'            => 'finiĝas je $1',
 'anononlyblock'            => 'nur anonimuloj',
+'emailblock'               => 'retpoŝto forbarita',
 'ipblocklist-empty'        => 'La forbarlibro estas malplena.',
 'blocklink'                => 'forbaru',
 'unblocklink'              => 'malforbaru',
@@ -1489,6 +1493,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'blocklogentry'            => 'forbaris [[$1]] por daŭro de $2 $3',
 'blocklogtext'             => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry'          => '$1 estis malbarita',
+'block-log-flags-anononly' => 'nur anonimaj uzantoj',
 'block-log-flags-nocreate' => 'kreado de kontoj malebligita',
 'block-log-flags-noemail'  => 'retpoŝto blokita',
 'ipb_expiry_invalid'       => 'Nevalida blokdaŭro.',

@@ -233,6 +233,8 @@ $messages = array(
 'projectpage'       => 'Shikoni projekt-faqen',
 'imagepage'         => 'Shikoni faqen e figurës',
 'mediawikipage'     => 'Shikoni faqen e mesazhit',
+'templatepage'      => 'Shiko faqen e stampës',
+'viewhelppage'      => 'Shiko faqen për ndihmë',
 'categorypage'      => 'Shiko faqen e kategorisë',
 'viewtalkpage'      => 'Shikoni diskutimet',
 'otherlanguages'    => 'Në gjuhë të tjera',
@@ -350,6 +352,7 @@ Tregojani këtë përmbledhje një administruesi, duke shënuar edhe URL-in.',
 'filerenameerror'      => 'Nuk munda të ndërrojë emrin e skedës "$1" në "$2".',
 'filedeleteerror'      => 'Nuk munda të gris skedën "$1".',
 'filenotfound'         => 'Nuk munda të gjejë skedën "$1".',
+'fileexistserror'      => 'Dosja "$1" nuk mund të shkruhet : Kjo Dosje ekziston',
 'unexpected'           => 'Vlerë e papritur: "$1"="$2".',
 'formerror'            => 'Gabim: nuk munda të dërgoj formularin',
 'badarticleerror'      => 'Ky veprim nuk mund të bëhet në këtë faqe.',
@@ -406,6 +409,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'yourvariant'                => 'Varianti',
 'yournick'                   => 'Nënshkrimi',
 'badsig'                     => 'Sintaksa e signaturës është e pavlefshme, kontrolloni HTML-in.',
+'badsiglength'               => 'Emri i zgjedhur është shumë i gjatë; duhet të ketë më pak se $1 shkronja',
 'email'                      => 'Email',
 'prefs-help-realname'        => '* Emri i vërtetë (opsion): Për të përmendur emrin tuaj si kontribuues në varësi nga puna juaj këtu.',
 'loginerror'                 => 'Gabim hyrje',
@@ -485,6 +489,19 @@ You are not logged in. Your IP address will be recorded in this page's edit hist
 Vini re se nuk mund të përdorni "dërgoji email këtij përdoruesi" n.q.s. nuk keni një adresë të saktë të rregjistruar në [[Special:Preferences|parapëlqimet e përdoruesit]].
 
 Adresa e IP-së që keni është $3. Jepni këtë adresë në çdo ankesë.',
+'autoblockedtext'          => 'IP adresa juaj është bllokuar automatikisht sepse ishte përdorur nga një përdorues tjetër i cili ishte bllokuar nga $1.
+Arsyeja e dhënë për këtë është:
+
+:\'\'$2\'\'
+
+* Fillimi i bllokimit: $8
+* Afati i kalimit të bllokimit: $6
+
+Ju mund të kontaktoni $1 ose një tjetër [[{{MediaWiki:Grouppage-sysop}}|administrues]] për ta diskutuar bllokimin.
+
+Vini re : që nuk mund ta përdorni "dërgo e-mail" feature përveç nëse keni një e-mail valid të regjistruar në [[Special:Preferences|preferencat tuaja]]                                        dhe nuk jeni bllokuar nga përdorimi i tij.
+
+Numri idendifikues i bllokimit tuaj është $5. Ju lutemi përfshijeni këtë Numër në të gjitha kërkesat që i bëni.',
 'blockednoreason'          => 'nuk ka arsye',
 'whitelistedittitle'       => 'Duhet të hyni brënda për të redaktuar',
 'whitelistedittext'        => 'Duhet të $1 për të redaktuar artikuj.',
@@ -794,11 +811,13 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'uploadedfiles'               => 'Ngarkoni skeda',
 'ignorewarning'               => 'Shpërfille paralajmërimin dhe ruaje skedën.',
 'ignorewarnings'              => 'Shpërfill çdo paralajmërim',
+'minlength1'                  => 'Emri i dosjes duhet të jetë së paku një fjalë',
 'illegalfilename'             => 'Skeda "$1" përmban gërma që nuk lejohen tek titujt e faqeve. Ju lutem ndërrojani emrin dhe provoni ta ngarkoni përsëri.',
 'badfilename'                 => 'Emri i skedës është ndërruar në "$1".',
 'largefileserver'             => 'Skeda është më e madhe se sa serveri e lejon këtë.',
 'emptyfile'                   => 'Skeda që keni dhënë është bosh ose mbi madhësinë e lejushme. Kjo gjë mund të ndodhi nëse shtypni emrin gabim, prandaj kontrolloni nëse dëshironi të jepni skedën me këtë emër.',
 'fileexists'                  => 'Ekziston një skedë me atë emër, ju lutem kontrolloni $1 në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.',
+'fileexists-thumb'            => "<center>'''Dosja ekziston'''</center>",
 'fileexists-forbidden'        => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsh dhe ngarkoni këtë skedë me një emër të ri. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ekziston një skedë me të njëjtin emër në magazinën e përbashkët. Ju lutem kthehuni mbrapsh dhe ngarkojeni këtë skedë me një emër të ri. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Dhënie e sukseshme',
@@ -830,7 +849,9 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'imgdelete'                 => 'gris',
 'imgdesc'                   => 'për',
 'imgfile'                   => 'skeda',
+'filehist'                  => 'Historiku i dosjes',
 'filehist-datetime'         => 'Data/Ora',
+'filehist-user'             => 'Përdoruesi',
 'filehist-dimensions'       => 'Dimensionet',
 'imagelinks'                => 'Lidhje skedash',
 'linkstoimage'              => 'Këto faqe lidhen tek kjo skedë:',

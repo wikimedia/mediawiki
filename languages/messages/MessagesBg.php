@@ -465,6 +465,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom емисия',
 'page-rss-feed'           => '„$1“ RSS емисия',
 'page-atom-feed'          => '"$1" Atom емисия',
+'red-link-title'          => '$1 (страницата все още не съществува)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Страница',
