@@ -170,6 +170,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   confused when they are told they are range-blocked.
 * Put "not yet written" in the title attribute of red links, so that readers
   unfamiliar with the site might guess what the colour means.
+* One can turn off syndicatino feeds by setting $wgFeed to false
 
 === Bug fixes in 1.12 ===
 

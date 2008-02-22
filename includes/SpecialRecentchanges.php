@@ -326,6 +326,13 @@ function rcFilterByCategories ( &$rows , $categories , $any ) {
 function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 	global $messageMemc, $wgFeedCacheTimeout;
 	global $wgFeedClasses, $wgTitle, $wgSitename, $wgContLanguageCode;
+	global $wgFeed;
+	
+	if ( !$wgFeed ) {
+		global $wgOut;
+		$wgOut->addWikiMsg( 'feed-unavailable' );
+		return;
+	}
 
 	if( !isset( $wgFeedClasses[$feedFormat] ) ) {
 		wfHttpError( 500, "Internal Server Error", "Unsupported feed type." );
