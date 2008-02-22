@@ -2013,10 +2013,6 @@ class Language {
 		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
 	}
 	
-	static function localisationExist( $code ){
-		return ( file_exists( self::getMessagesFileName( $code ) ) || file_exists( self::getClassFileName( $code ) ) );	
-	}
-	
 	static function getLocalisationArray( $code, $disableCache = false ) {
 		self::loadLocalisation( $code, $disableCache );
 		return self::$mLocalisationCache[$code];
