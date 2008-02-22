@@ -511,6 +511,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|$1|$1}} ویرایش حذف‌شده',
 'feedlinks'               => 'خبرخوان:',
 'feed-invalid'            => 'اشکال در آبونمان خبرخوان',
+'feed-unavailable'        => 'خبرخوان‌ها در {{SITENAME}} قابل استفاده نیستند',
 'site-rss-feed'           => 'خبرخوان RSS برای $1',
 'site-atom-feed'          => 'خبرخوان Atom برای $1',
 'page-rss-feed'           => 'خبرخوان RSS برای «$1»',
