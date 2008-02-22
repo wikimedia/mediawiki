@@ -535,6 +535,7 @@ $messages = array(
 'restorelink'             => '{{plural:$1|גרסה מחוקה אחת|$1 גרסאות מחוקות}}',
 'feedlinks'               => 'הזנה:',
 'feed-invalid'            => 'סוג הזנת המנוי שגוי.',
+'feed-unavailable'        => 'הזנות אינן זמינות ב{{grammar:תחילית|{{SITENAME}}}}',
 'site-rss-feed'           => 'RSS של $1',
 'site-atom-feed'          => 'Atom של $1',
 'page-rss-feed'           => 'RSS של $1',
