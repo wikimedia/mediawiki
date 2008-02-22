@@ -24,6 +24,15 @@ function rebuildRecentChangesTablePass1()
 	print( "Loading from page and revision tables...\n" );
 
 	global $wgRCMaxAge;
+
+	print( '$wgRCMaxAge=' . $wgRCMaxAge );
+	$days = $wgRCMaxAge / 24 / 3600;
+	if ( intval($days) == $days ) {
+			print( " (" . $days . " days)\n" );
+	} else {
+			print( " (approx. " .  intval($days) . " days)\n" );
+	}
+
 	$cutoff = time() - $wgRCMaxAge;
 	$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),
 		array(
