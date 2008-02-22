@@ -263,6 +263,7 @@ $wgMessageStructure = array(
 		'restorelink',
 		'feedlinks',
 		'feed-invalid',
+		'feed-unavailable',
 		'site-rss-feed',
 		'site-atom-feed',
 		'page-rss-feed',
