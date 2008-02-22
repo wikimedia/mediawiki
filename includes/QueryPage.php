@@ -448,7 +448,13 @@ class QueryPage {
 	 * Similar to above, but packaging in a syndicated feed instead of a web page
 	 */
 	function doFeed( $class = '', $limit = 50 ) {
-		global $wgFeedClasses;
+		global $wgFeed, $wgFeedClasses;
+		
+		if ( !$wgFeed ) {
+			global $wgOut;
+			$wgOut->addWikiMsg( 'feed-unavailable' );
+			return;
+		}
 
 		if( isset($wgFeedClasses[$class]) ) {
 			$feed = new $wgFeedClasses[$class](

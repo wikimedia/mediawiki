@@ -711,6 +711,7 @@ XHTML id names.
 'restorelink'                  => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'feedlinks'                    => 'Feed:',
 'feed-invalid'                 => 'Invalid subscription feed type.',
+'feed-unavailable'             => 'Syndication feeds are not available on {{SITENAME}}',
 'site-rss-feed'                => '$1 RSS Feed',
 'site-atom-feed'               => '$1 Atom Feed',
 'page-rss-feed'                => '"$1" RSS Feed',

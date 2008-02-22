@@ -1337,7 +1337,7 @@ class OutputPage {
 	 * @return string HTML tag links to be put in the header.
 	 */
 	public function getHeadLinks() {
-		global $wgRequest;
+		global $wgRequest, $wgFeed;
 		$ret = '';
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
@@ -1372,32 +1372,34 @@ class OutputPage {
 			$ret .= " />\n";
 		}
 		
-		foreach( $this->getSyndicationLinks() as $format => $link ) {
-			# Use the page name for the title (accessed through $wgTitle since
-			# there's no other way).  In principle, this could lead to issues
-			# with having the same name for different feeds corresponding to
-			# the same page, but we can't avoid that at this low a level.
-			global $wgTitle;
-
+		if( $wgFeed ) {
+			foreach( $this->getSyndicationLinks() as $format => $link ) {
+				# Use the page name for the title (accessed through $wgTitle since
+				# there's no other way).  In principle, this could lead to issues
+				# with having the same name for different feeds corresponding to
+				# the same page, but we can't avoid that at this low a level.
+				global $wgTitle;
+	
+				$ret .= $this->feedLink(
+					$format,
+					$link,
+					wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
+			}
+	
+			# Recent changes feed should appear on every page
+			# Put it after the per-page feed to avoid changing existing behavior.
+			# It's still available, probably via a menu in your browser.
+			global $wgSitename;
+			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 			$ret .= $this->feedLink(
-				$format,
-				$link,
-				wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
+				'rss',
+				$rctitle->getFullURL( 'feed=rss' ),
+				wfMsg( 'site-rss-feed', $wgSitename ) );
+			$ret .= $this->feedLink(
+				'atom',
+				$rctitle->getFullURL( 'feed=atom' ),
+				wfMsg( 'site-atom-feed', $wgSitename ) );
 		}
-
-		# Recent changes feed should appear on every page
-		# Put it after the per-page feed to avoid changing existing behavior.
-		# It's still available, probably via a menu in your browser.
-		global $wgSitename;
-		$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-		$ret .= $this->feedLink(
-			'rss',
-			$rctitle->getFullURL( 'feed=rss' ),
-			wfMsg( 'site-rss-feed', $wgSitename ) );
-		$ret .= $this->feedLink(
-			'atom',
-			$rctitle->getFullURL( 'feed=atom' ),
-			wfMsg( 'site-atom-feed', $wgSitename ) );
 
 		return $ret;
 	}

@@ -2164,6 +2164,9 @@ $wgUseRCPatrol = true;
 /** Use new page patrolling to check new pages on special:Newpages */
 $wgUseNPPatrol = true;
 
+/** Provide syndication feeds (RSS, Atom) for eg REcentchanges, Newpages. */
+$wgFeed = true;
+
 /** Set maximum number of results to return in syndication feeds (RSS, Atom) for
  * eg Recentchanges, Newpages. */
 $wgFeedLimit = 50;
