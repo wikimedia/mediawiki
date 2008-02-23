@@ -350,11 +350,12 @@ class Linker {
 		}
 		$u = $nt->escapeLocalURL( $q );
 
-		$titleText = $nt->getFullText();
+		$titleText = $nt->getPrefixedText();
 		if ( '' == $text ) {
 			$text = htmlspecialchars( $titleText );
 		}
-		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'new', $titleText );
+		$titleAttr = wfMsg( 'red-link-title', $titleText );
+		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'new', $titleAttr );
 
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";

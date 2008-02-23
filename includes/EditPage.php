@@ -394,6 +394,10 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
+			if( $wgRequest->getVal( 'action' ) == 'editredlink' ) {
+				$wgOut->redirect( $this->mTitle->getFullUrl( 'action=edit' ) );
+				return;
+			}
 			if ( $this->save ) {
 				$this->formtype = 'save';
 			} else if ( $this->preview ) {
