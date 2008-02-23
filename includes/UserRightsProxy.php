@@ -65,7 +65,7 @@ class UserRightsProxy {
 	 * @param string $database
 	 * @return Database or null if invalid selection
 	 */
-	private static function getDB( $database ) {
+	public static function getDB( $database ) {
 		global $wgLocalDatabases, $wgDBname;
 		if( self::validDatabase( $database ) ) {
 			if( $database == $wgDBname ) {
