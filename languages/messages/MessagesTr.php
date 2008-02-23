@@ -282,6 +282,7 @@ $messages = array(
 'restorelink'             => 'silinmiş $1 değişikliği',
 'feedlinks'               => 'Besleme:',
 'feed-invalid'            => 'Hatalı besleme tipi.',
+'feed-unavailable'        => 'Sendikalaşma beslemeleri {{SITENAME}} üzerinde geçerli değil.',
 'site-rss-feed'           => '$1 RSS Beslemesi',
 'site-atom-feed'          => '$1 Atom Beslemesi',
 'page-rss-feed'           => '"$1" RSS Beslemesi',

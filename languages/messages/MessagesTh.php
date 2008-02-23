@@ -9,6 +9,7 @@
  * @author Ans
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Passawuth
  */
 
 $skinNames = array(
@@ -318,6 +319,7 @@ $messages = array(
 'restorelink'             => '$1 การแก้ไขที่ถูกลบ',
 'feedlinks'               => 'ฟีด',
 'feed-invalid'            => 'ฟีดที่สมัครไม่ถูกชนิด',
+'red-link-title'          => '$1 (ยังไม่ได้สร้าง)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'เนื้อหาหลัก',
@@ -1410,8 +1412,9 @@ $NEWPAGE
 'pagesize'                    => '(ไบต์)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'แก้',
-'restriction-move' => 'เปลี่ยนชื่อ',
+'restriction-edit'   => 'แก้',
+'restriction-move'   => 'เปลี่ยนชื่อ',
+'restriction-create' => 'สร้าง',
 
 # Restriction levels
 'restriction-level-sysop'         => 'ล็อกเต็มที่',
@@ -1432,6 +1435,7 @@ $NEWPAGE
 'undeleterevision-missing'     => 'รุ่นที่ต้องการดูไม่มี ข้อมูลอาจจะโดนลบ',
 'undelete-nodiff'              => 'ไม่พบรุ่นก่อนหน้า',
 'undeletebtn'                  => 'เรียกคืน',
+'undeletelink'                 => 'เรียกคืน',
 'undeletereset'                => 'ตั้งค่าใหม่',
 'undeletecomment'              => 'ความเห็น:',
 'undeletedarticle'             => 'เรียกคืน "[[$1]]"',

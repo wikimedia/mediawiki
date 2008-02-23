@@ -398,11 +398,15 @@ If ye pad at dabinon, ba etuvol säkädi in nünömasit. Nunolös, begö! osi gu
 'perfdisabled'         => 'Dun at penemögükon nelaidüpo bi nevifükon vüki so vemo, das nek kanon gebön oni.',
 'perfcached'           => 'Nüns sököl ekömons se el caché e ba no binons anuik.',
 'perfcachedts'         => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1.',
+'wrong_wfQuery_params' => 'Paramets neverätik lü wfQuery()<br />
+Dun: $1<br />
+Beg: $2',
 'viewsource'           => 'Logön fonäti',
 'viewsourcefor'        => 'tefü $1',
 'actionthrottled'      => 'Dun pemiedükon',
 'protectedpagetext'    => 'Pad at pejelon ad neletön redakami.',
 'viewsourcetext'       => 'Kanol logön e kopiedön fonätakoti pada at:',
+'protectedinterface'   => 'Pad at jafon vödemis sitanünas, ed anu pelökofärmükon ad vitön migebis.',
 'editinginterface'     => "'''Nuned:''' Anu redakol padi, kel labükon vödemi bevüik pro programem. Votükams pada at oflunons logoti gebanasita pro gebans votik.",
 'cascadeprotected'     => 'Pad at pejelon ta redakam, bi pakeninükon fa {{PLURAL:$1|pad|pads}} sököl, kels pejelons ma „jänajel“: $2',
 'namespaceprotected'   => "No dalol redakön padis in nemaspad: '''$1'''.",
@@ -761,6 +765,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons no
 'showingresultsnum'     => "Dono pajonons {{PLURAL:$3:|sek '''1'''|seks '''$3'''}}, primölo me nüm: '''$2'''.",
 'powersearch'           => 'Suk',
 'powersearchtext'       => 'Suk in nemaspad:<br />$1<br />$2 Lisedön lüodükömis<br />Sukazeil: $3 $9',
+'searchdisabled'        => 'Suk in {{SITENAME}} penemogükon. Vütimo kanol sukön yufü el Google. Demolös, das liseds onik tefü ninäd in {{SITENAME}} ba no binon anuik.',
 
 # Preferences page
 'preferences'           => 'Buükams',
@@ -950,9 +955,11 @@ If ragiv ya dabinöli binon magod ot gretota rigik, no zesüdos ad löpükön ma
 
 Vätälolös, va pötos ad löpükön ragivi at. Kodü koveniäl, jenotalised tefü moükam ragiva at pagivon is.",
 
-'upload-proto-error' => 'Protok neverätik',
-'upload-file-error'  => 'Pöl ninik',
-'upload-misc-error'  => 'Pök nesevädik pö löpükam',
+'upload-proto-error'      => 'Protok neverätik',
+'upload-proto-error-text' => 'Löpükam flagon elis URLs me <code>http://</code> u <code>ftp://</code> primölis.',
+'upload-file-error'       => 'Pöl ninik',
+'upload-file-error-text'  => 'Pöl ninik äjenon dü steifül ad jafön ragivi nelaidüpik pö dünanünöm. Begolös yufi guvana.',
+'upload-misc-error'       => 'Pök nesevädik pö löpükam',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'      => 'No eplöpos ad rivön eli URL',
@@ -1139,6 +1146,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'booksources-text'          => 'Is palisedons bevüresodatopäds votik, kels selons bukis nulik e pegebölis, e kels ba labons nünis pluik dö buks fa ol pasuköls:',
 
 'categoriespagetext' => 'Klads sököl dabinons in vüki at.',
+'userrights'         => 'Guvam gebanagitätas',
 'groups'             => 'Gebanagrups',
 'alphaindexline'     => '$1 jü $2',
 'version'            => 'Fomam',
@@ -1234,6 +1242,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'enotif_impersonal_salutation' => 'Geban {{SITENAME}}-a',
 'changed'                      => 'pevotüköl',
 'created'                      => 'pejafon',
+'enotif_subject'               => 'In {{SITENAME}}, pad: $PAGETITLE $CHANGEDORCREATED fa el $PAGEEDITOR',
 'enotif_lastvisited'           => 'Logolös eli $1 ad tuvön lisedi votükamas valik pos visit lätik ola.',
 'enotif_lastdiff'              => 'Logolös eli $1 ad tuvön votükami at.',
 'enotif_anon_editor'           => 'geban nennemik: $1',

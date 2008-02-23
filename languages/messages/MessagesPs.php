@@ -293,6 +293,7 @@ $messages = array(
 'bold_tip'        => 'روڼ ليک',
 'italic_sample'   => 'کوږ ليک',
 'italic_tip'      => 'کوږ ليک',
+'link_sample'     => 'د تړن سرليک',
 'link_tip'        => 'کورنی تړن',
 'extlink_tip'     => 'باندنۍ تړنې (د http:// مختاړی مه هېروی)',
 'headline_sample' => 'سرليک',

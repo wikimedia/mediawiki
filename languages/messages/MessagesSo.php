@@ -6,6 +6,7 @@
  * @author Mimursal
  * @author Nike
  * @author Siebrand
+ * @author Yariiska
  */
 
 
@@ -216,35 +217,41 @@ $messages = array(
 'nospecialpagetext' => 'Waxaad codsatay bogga khaas ah oo aanan jirin, liis boggaga khaaska ah ee jira waxaad laga helikartaa [[Special:Specialpages|liiska boggaga khaaska ah]].',
 
 # General errors
-'error'         => 'Qalad',
-'databaseerror' => 'Qalad ka dhacay database;ka',
-'cannotdelete'  => 'Lamatirtirikaro bogga ama faylka aad dooratay. (Waxaa laga yaabaa in qofkale uu horey u tirtiray.)',
-'badtitle'      => 'Cinwaan qaldan',
+'error'             => 'Qalad',
+'databaseerror'     => 'Qalad ka dhacay database;ka',
+'cannotdelete'      => 'Lamatirtirikaro bogga ama faylka aad dooratay. (Waxaa laga yaabaa in qofkale uu horey u tirtiray.)',
+'badtitle'          => 'Cinwaan qaldan',
+'protectedpagetext' => 'Beyjkan wuu xiranyahay si aan war loogabadalin.',
 
 # Login and logout pages
 'welcomecreation'            => "== Soo dhawoow, $1! ==
 
 Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} dooqaaga.",
 'loginpagetitle'             => 'Gudagalka isticmaalaha',
-'yourname'                   => 'Gudagal',
-'yourpassword'               => 'ereysir',
+'yourname'                   => 'Ereyga Gudagalka',
+'yourpassword'               => 'Ereysir ah',
 'yourpasswordagain'          => 'Markale ereysirkaaga',
-'remembermypassword'         => 'Kumbuyuutarkaan ku xasuusnaaw gudagaleyheyga',
+'remembermypassword'         => 'Kumbuyuutarkaan ku xasuusnaaw gudagalkeyga',
 'yourdomainname'             => 'Magacaga shabakada',
+'loginproblem'               => '<b>Dhibaato baa kajirtay gudagalkaaga.</b><br />Iskuday marlabaad!',
+'login'                      => 'Gudaha gal',
 'userlogin'                  => 'Gudaha gal / akoon sameyso',
 'logout'                     => 'Ka bax',
 'userlogout'                 => 'Ka bax',
 'notloggedin'                => 'Gudaha kuma jirtid',
 'nologinlink'                => 'Sameyso gudagale',
 'createaccount'              => 'Sameey gudagale',
+'gotaccount'                 => 'Waan heystaa gudagale? $1.',
+'gotaccountlink'             => 'Gudaha gal',
 'badretype'                  => 'Ereysiryada aad gelisay ismalaha.',
-'userexists'                 => 'Magaca isticmaalaha aad gelisay waa jiraa. Fadlan dalbo magac ka bedelan',
+'userexists'                 => 'Magaca isticmaalaha aad gelisay waa jiraa. Fadlan dooro magac ka bedelan.',
 'youremail'                  => 'E-boosto *:',
 'username'                   => 'Gudagal:',
 'uid'                        => 'Lambarka isticmaalaha:',
-'yourrealname'               => 'Magac *:',
+'yourrealname'               => 'Magacaaga runta ah:',
 'yourlanguage'               => 'luqad:',
 'yournick'                   => 'Naaneys:',
+'badsiglength'               => 'Naaneysta aad bey u dheertahay; waa in ay kayaraataa $1 erayo.',
 'email'                      => 'E-boosto',
 'prefs-help-realname'        => 'Optional: if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'                 => 'Qaladka gudagalista',

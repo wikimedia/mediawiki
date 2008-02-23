@@ -365,6 +365,7 @@ $messages = array(
 'site-atom-feed'          => 'Atom-Feed fir $1',
 'page-rss-feed'           => 'RSS-Feed fir "$1"',
 'page-atom-feed'          => 'Atom-Feed fir "$1"',
+'red-link-title'          => '$1 (Säit gëtt et (nach) net)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Säit',
@@ -390,6 +391,7 @@ All Spezialsäiten déi et gëtt sinn op der [[{{ns:special}}:Specialpages|Lesch
 'error'                => 'Feeler',
 'databaseerror'        => 'Datebank Feeler',
 'dberrortext'          => 'En Datebank Syntax Fehler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". MySQL Feeler "$3: $4".',
+'dberrortextcl'        => 'En Datebank Syntax Feeler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". De MySQL Feeler war "$3: $4".',
 'noconnect'            => 'Pardon! Et gëtt zur Zäit technesch Problemer op dëser Wiki, an et konnt keng Verbindung mat der Datebank op $1 gemaach ginn',
 'nodb'                 => "D'Datebank $1 konnt net gewielt ginn",
 'cachederror'          => 'Folgend Säit ass eng Kopie aus dem Cache an net onbedéngt aktuell.',
@@ -891,8 +893,8 @@ derbäisetzen.',
 'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– nei Säiten; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
 'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum <b>$2</b> un (maximum <b>$1</b> Ännerunge gi gewisen).",
 'rclistfrom'                        => 'Nëmmen Ännerungen zënter $1 weisen.',
-'rcshowhideminor'                   => 'Kleng Ännerungen $1',
-'rcshowhidebots'                    => 'Botten $1',
+'rcshowhideminor'                   => 'Kleng Ännerunge $1',
+'rcshowhidebots'                    => 'Botte $1',
 'rcshowhideliu'                     => 'Ugemellte Benotzer $1',
 'rcshowhideanons'                   => 'Anonym Benotzer $1',
 'rcshowhidepatr'                    => '$1 iwwerwaacht Ännerungen',
@@ -958,6 +960,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'minlength1'          => "D'Nimm vu Fichieren musse mindestens e Buchstaf/Caractère laang sinn.",
 'illegalfilename'     => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'         => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
+'filetype-badmime'    => 'Fichieren vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
 'filetype-missing'    => 'De Fichier huet keng Erweiderung (wéi z. B. ".jpg").',
 'large-file'          => "D'Fichieren sollte no Méiglechkeet net méi grouss wéi $1 sinn. Dëse Fhihier huet $2.",
 'largefileserver'     => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
@@ -1147,6 +1150,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'wantedcategories'                => 'Gewënschte Kategorien',
 'wantedcategories-summary'        => 'Op dëser Spezialsäit stinn all déi Kategorien, déi zwar op Säite benotzt ginn, déi awer nach net als Kategorie ugeluecht goufen.',
 'wantedpages'                     => 'Gewënschte Säiten',
+'wantedpages-summary'             => 'Op dëser Spezialsäit stinn all Säiten, déi nach net existéieren, déi awer scho vu Säiten, déi et scho gëtt, verlinkt sinn.',
 'mostlinked'                      => 'Dacks verlinkte Säiten',
 'mostlinked-summary'              => 'Op dëser Spezialsäit stinn, onofhängeg vum Nummraum, all déi besonnesch dacks verlinkte Säiten.',
 'mostlinkedcategories'            => 'Dacks benotzte Kategorien',
@@ -1294,7 +1298,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'watchlist-show-own'   => 'Meng Ännerunge weisen',
 'watchlist-hide-own'   => 'Meng Ännerunge verstoppen',
 'watchlist-show-minor' => 'Kleng Ännerunge weisen',
-'watchlist-hide-minor' => 'kleng Ännerungen verstoppen',
+'watchlist-hide-minor' => 'kleng Ännerunge verstoppen',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Iwwerwaachen …',
@@ -2041,13 +2045,16 @@ $1',
 
 # Special:Version
 'version-extensions'       => 'Installéiert Erweiderungen',
+'version-specialpages'     => 'Spezialsäiten',
 'version-other'            => 'Aner',
 'version-version'          => 'Versioun',
 'version-license'          => 'Lizenz',
 'version-software'         => 'Installéiert Software',
 'version-software-product' => 'Produkt',
+'version-software-version' => 'Versioun',
 
 # Special:Filepath
-'filepath-page' => 'Fichier:',
+'filepath-page'   => 'Fichier:',
+'filepath-submit' => 'Pad',
 
 );

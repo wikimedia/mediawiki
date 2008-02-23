@@ -378,6 +378,7 @@ I seguenti collegamenti sono in lingua inglese:
 'site-atom-feed'          => 'Feed Atom di $1',
 'page-rss-feed'           => 'Feed RSS per "$1"',
 'page-atom-feed'          => 'Feed Atom per "$1"',
+'red-link-title'          => '$1 (ancora da scrivere)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Voce',
@@ -1129,7 +1130,8 @@ PICT # misc.
 'nolinkstoimage'            => "Nessuna pagina contiene collegamenti all'immagine.",
 'sharedupload'              => 'Questo file è un upload condiviso; può essere quindi utilizzato da più progetti wiki.',
 'shareduploadwiki'          => 'Si veda $1 per ulteriori informazioni.',
-'shareduploadwiki-linktext' => 'la relativa pagina di descrizione',
+'shareduploadwiki-desc'     => 'La descrizione che appare in quella sede, sulla relativa $1, viene mostrata di seguito.',
+'shareduploadwiki-linktext' => 'pagina di descrizione del file',
 'noimage'                   => 'Un file con questo nome non esiste, vuoi $1 tu?',
 'noimage-linktext'          => 'caricarlo ora',
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',

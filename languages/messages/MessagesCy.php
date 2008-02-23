@@ -241,7 +241,7 @@ $messages = array(
 'redirectedfrom'    => '(Ail-cyfeiriad oddiwrth $1)',
 'redirectpagesub'   => 'Tudalen ailgyfeirio',
 'lastmodifiedat'    => 'Newidiwyd y dudalen hon ddiwethaf $2, $1.', # $1 date, $2 time
-'viewcount'         => "Mae'r tudalen hyn wedi cael ei gweld $1 o weithiau.",
+'viewcount'         => "Mae'r dudalen hon wedi cael {{PLURAL:$1|dim|$1|$1|$1|$1|$1}} ymweliad â hi.",
 'protectedpage'     => 'Tudalen amddiffyniol',
 'jumpto'            => 'Neidio i:',
 'jumptonavigation'  => 'llywio',
@@ -657,9 +657,9 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'notitlematches'        => 'Does dim teitlau erthygl yn cyfateb',
 'textmatches'           => 'Testun erthygl yn cyfateb',
 'notextmatches'         => 'Does dim testun erthyglau yn cyfateb',
-'prevn'                 => '$1 gynt',
-'nextn'                 => '$1 nesaf',
-'viewprevnext'          => 'Gweler ($1) ($2) ($3).',
+'prevn'                 => 'y $1 cynt',
+'nextn'                 => 'y $1 nesaf',
+'viewprevnext'          => 'Dangos ($1) ($2) ($3).',
 'showingresults'        => 'Yn dangos isod y <b>$1</b> canlyniadau yn dechrau gyda #<b>$2</b>.',
 'showingresultsnum'     => 'Yn dangos y <b>$3</b> canlyniad isod gan ddechrau gyda rhif <b>$2</b>.',
 'nonefound'             => '<strong>Sylwch</strong>: mae chwiliadau yn aml yn anlwyddiannus am achos mae\'r chwiliad yn edrych a geiriau cyffredin fel "y" ac "ac",
@@ -763,7 +763,7 @@ i setio ffafraethau defnyddwr.',
 'nchanges'                          => '$1 newidiad',
 'recentchanges'                     => 'Newidiadau diweddar',
 'recentchangestext'                 => "Traciwch y newidiadau mor diweddar i'r {{SITENAME}} ac i'r tudalen hon.",
-'rcnote'                            => "Isod mae'r <strong>$1</strong> newidiad diweddaraf yn y <strong>$2</strong> diwrnod diwethaf, hyd at $3.",
+'rcnote'                            => "Isod mae'r '''$1''' newidiad diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $3.",
 'rcnotefrom'                        => "Isod yw'r newidiadau ers <b>$2</b> (dangosir i fynu i <b>$1</b>).",
 'rclistfrom'                        => 'Dangos newidiadau newydd yn dechrau oddiwrth $1',
 'rcshowhideminor'                   => '$1 golygiadau bychain',
@@ -948,7 +948,7 @@ Ers sefydlu'r meddalwedd cafwyd '''\$3''' cais am weld tudalen a '''\$4''' golyg
 Ar gyfartaledd felly, bu '''\$5''' golygiad i bob tudalen, a '''\$6''' cais am weld tudalen ar gyfer pob golygiad.
 
 Hyd y [http://meta.wikimedia.org/wiki/Help:Job_queue rhes dasgau] yw '''\$7'''.",
-'userstatstext' => "Mae '''$1''' [[Special:Listusers|defnyddiwr]] ar y cofrestr defnyddwyr.
+'userstatstext' => "Mae '''$1''' {{PLURAL:$1|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|ddefnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]}} ar y cofrestr defnyddwyr.
 Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 
 'disambiguations'      => 'Tudalennau gwahaniaethu',
@@ -969,7 +969,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 beit',
-'ncategories'             => '$1 categori',
+'ncategories'             => '$1 {{PLURAL:$1|categori|categori|gategori|chategori|chategori|categori}}',
 'nlinks'                  => '$1 cysylltiadau',
 'nmembers'                => '$1 {{PLURAL:$1|aelod|aelod}}',
 'nrevisions'              => '$1 diwygiad',
@@ -1010,6 +1010,8 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
 'notargettitle'           => 'Dim targed',
 'notargettext'            => 'Dydych chi ddim wedi dewis tudalen targed neu defnyddwr.',
+'pager-newer-n'           => '{{PLURAL:$1|y $1 mwy diweddar|y 1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar}}. $1 is the number of items shown per page.',
+'pager-older-n'           => '{{PLURAL:$1|y $1 cynharach|y 1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach}}',
 
 # Book sources
 'booksources'               => 'Ffynonellau llyfrau',
@@ -1036,7 +1038,8 @@ Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, n
 'log-title-wildcard'   => "Chwilio am deitlau'n dechrau gyda'r geiriau hyn",
 
 # Special:Allpages
-'nextpage'          => 'Tudalen nesaf ($1)',
+'nextpage'          => 'Y bloc nesaf gan ddechrau gyda ($1)',
+'prevpage'          => 'Y bloc cynt gan ddechrau gyda ($1)',
 'allpagesfrom'      => 'Dangos pob tudalen gan ddechrau o:',
 'allarticles'       => 'Pob erthygl',
 'allinnamespace'    => 'Pob tudalen (parth $1)',
@@ -1103,8 +1106,8 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'watchmethod-list'     => 'yn gwirio tudalennau gwyliad am olygiadau diweddar',
 'watchlistcontains'    => '{{PLURAL:$1|Nid oes $1 tudalen|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr gwylio.',
 'iteminvalidname'      => "Problem gyda'r eitem '$1', enw annilys...",
-'wlnote'               => "Isod yw'r $1 newidiadau olaf yn y <b>$2</b> oriau diwethaf.",
-'wlshowlast'           => 'Dangos y $1 oriau $2 dyddiau $3 diwethaf',
+'wlnote'               => "Gweler isod y '''$1''' {{PLURAL:$1|newidiad|newidiad|newidiad|newidiad|newidiad|newidiad}} diweddaraf yn ystod y <b>$2</b> {{PLURAL:$1|awr|awr|awr|awr|awr|awr}} ddiwethaf.",
+'wlshowlast'           => "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 diwrnod diwethaf neu'r $3 newidiadau.",
 'watchlist-show-bots'  => 'Dangos golygiadau bot',
 'watchlist-hide-bots'  => 'Cuddio golygiadau bot',
 'watchlist-show-own'   => 'Dangos fy ngolygiadau',
@@ -1248,6 +1251,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 
 # What links here
 'whatlinkshere'      => "Beth sy'n cysylltu yma",
+'whatlinkshere-page' => 'Tudalen:',
 'linklistsub'        => '(Rhestr cysylltiadau)',
 'linkshere'          => "Mae'r tudalennau isod yn cysylltu â '''[[:$1]]''':",
 'nolinkshere'        => "Does dim tudalennau yn cysylltu â '''[[:$1]]''':",

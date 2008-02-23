@@ -218,16 +218,17 @@ $messages = array(
 'nstab-category'  => 'ምድብ',
 
 # General errors
-'badtitle'           => 'መጥፎ አርዕስት',
-'badtitletext'       => 'የፈለጉት አርዕስት ልክ አልነበረም። ምናልባት ለአርዕስት የማይሆን የፊደል ምልክት አለበት።',
-'perfcached'         => 'ማስታወቂያ፡ ይህ መረጃ በየጊዜ የሚታደስ ስለሆነ ዘመናዊ ሳይሆን የቆየ ሊሆን ይችላል።',
-'perfcachedts'       => 'የሚቀጥለው መረጃ ተቆጥቧል፣ መጨረሻ የታደሠው $1 እ.ኤ.አ. ነው።',
-'viewsource'         => 'ምንጩን ተመልከት',
-'viewsourcefor'      => 'ለ«$1»',
-'protectedpagetext'  => 'ይኸው ገጽ እንዳይታረም ተጠብቋል።',
-'viewsourcetext'     => 'የዚህን ገጽ ምንጭ ማየትና መቅዳት ይችላሉ።',
-'protectedinterface' => 'ይህ ገጽ ለስልቱ ገጽታ ጽሑፍን ያቀርባል፣፡ ስለዚህ እንዳይበላሽ ተጠብቋል።',
-'cascadeprotected'   => "'''ማስጠንቀቂያ፦''' ይህ አርእስት ሊፈጠር ወይም ሊቀየር አይቻልም። ምክንያቱም ወደ ተከለከሉት አርእስቶች ተጨምሯል። <br />This page cannot be created or changed, because it is included in the following page that is under 'cascading protection': <br />$2",
+'badtitle'             => 'መጥፎ አርዕስት',
+'badtitletext'         => 'የፈለጉት አርዕስት ልክ አልነበረም። ምናልባት ለአርዕስት የማይሆን የፊደል ምልክት አለበት።',
+'perfcached'           => 'ማስታወቂያ፡ ይህ መረጃ በየጊዜ የሚታደስ ስለሆነ ዘመናዊ ሳይሆን የቆየ ሊሆን ይችላል።',
+'perfcachedts'         => 'የሚቀጥለው መረጃ ተቆጥቧል፣ መጨረሻ የታደሠው $1 እ.ኤ.አ. ነው።',
+'querypage-no-updates' => 'ይህ ገጽ አሁን የታደሠ አይደለም። ወደፊትም መታደሱ ቀርቷል። በቅርብ ግዜ አይታደስም።',
+'viewsource'           => 'ምንጩን ተመልከት',
+'viewsourcefor'        => 'ለ«$1»',
+'protectedpagetext'    => 'ይኸው ገጽ እንዳይታረም ተጠብቋል።',
+'viewsourcetext'       => 'የዚህን ገጽ ምንጭ ማየትና መቅዳት ይችላሉ።',
+'protectedinterface'   => 'ይህ ገጽ ለስልቱ ገጽታ ጽሑፍን ያቀርባል፣፡ ስለዚህ እንዳይበላሽ ተጠብቋል።',
+'cascadeprotected'     => "'''ማስጠንቀቂያ፦''' ይህ አርእስት ሊፈጠር ወይም ሊቀየር አይቻልም። ምክንያቱም ወደ ተከለከሉት አርእስቶች ተጨምሯል። <br />This page cannot be created or changed, because it is included in the following page that is under 'cascading protection': <br />$2",
 
 # Login and logout pages
 'logouttext'            => '<strong>አሁን ወጥተዋል።</strong><br /> አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ። 
@@ -587,6 +588,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 'withoutinterwiki'        => 'በሌሎች ቋንቋዎች ያልተያያዙ',
 'withoutinterwiki-header' => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',
+'withoutinterwiki-submit' => 'ይታዩ',
 
 'fewestrevisions' => 'ለውጦች ያነሱላቸው መጣጥፎች',
 
@@ -775,6 +777,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'undelete'     => 'የተደለዘ ገጽ ለመመለስ',
 'undeletepage' => 'የተደለዘ ገጽ ለመመለስ',
 'undeletebtn'  => 'ይመለስ',
+'undeletelink' => 'ይመለስ',
 
 # Namespace form on various pages
 'namespace'      => 'ዓይነት፦',
@@ -947,6 +950,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'markaspatrolledtext'   => 'ይህን ገጽ የተመለከተ ሆኖ ለማሳለፍ',
 'markedaspatrolled'     => 'የተመለከተ ሆኖ ተሳለፈ',
 'markedaspatrolledtext' => 'የተመረጠው ዕትም የተመለከተ ሆኖ ተሳለፈ።',
+
+# Patrol log
+'patrol-log-auto' => '(በቀጥታ)',
 
 # Browsing diffs
 'previousdiff' => '← የፊተኛው ለውጥ',

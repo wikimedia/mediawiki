@@ -103,6 +103,7 @@ $messages = array(
 'talk'             => 'დისკუსია',
 'toolbox'          => 'ინსტრუმენტეფი',
 'otherlanguages'   => 'შხვა ნინალეფს',
+'redirectedfrom'   => '(გინოღალულ რე $1-იშე)',
 'redirectpagesub'  => 'გადამისამართ გვერდი',
 'jumptonavigation' => 'ნავიგაცია',
 'jumptosearch'     => 'გორუა',
@@ -118,10 +119,12 @@ $messages = array(
 'privacy'       => 'ანონიმურობაშ პოლიტიკა',
 'privacypage'   => 'Project:ანონიმურობაშ პოლიტიკა',
 
-'ok'            => 'ჯგირო',
-'retrievedfrom' => 'მიგორილ რე "$1"-იშე',
-'editold'       => 'რედაქტირება',
-'site-rss-feed' => '$1 RSS Feed',
+'ok'              => 'ჯგირო',
+'retrievedfrom'   => 'მიგორილ რე "$1"-იშე',
+'editsection'     => 'რედაქტირება',
+'editold'         => 'რედაქტირება',
+'editsectionhint' => 'სექციაშ რედაქტირება: $1',
+'site-rss-feed'   => '$1 RSS Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'სტატია',
@@ -200,6 +203,7 @@ $messages = array(
 'mypreferences' => 'ჩქიმ კონფიგურაცია',
 
 # Recent changes
+'recentchanges'   => 'ბოლო თიუალეფ',
 'rclistfrom'      => 'ახალ თირუალეფიშ ხილუა დოჭყაფულ $1-იშე',
 'hist'            => 'ისტ.',
 'minoreditletter' => 'ჭ',
@@ -257,6 +261,8 @@ $messages = array(
 # Contributions
 'contributions' => 'მომხმარებელიშ ხანდა',
 'mycontris'     => 'ჩქიმ ხანდა',
+
+'sp-contributions-blocklog' => 'ბლოკირებაშ ისტორია',
 
 # What links here
 'whatlinkshere-page'  => 'გვერდ:',

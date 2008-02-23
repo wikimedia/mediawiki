@@ -1112,7 +1112,7 @@ PICT # misz.
 'nolinkstoimage'            => 'Denguna pachina tiene un binclo ta ista imachen.',
 'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos.',
 'shareduploadwiki'          => 'Ta más informazión, consulte $1.',
-'shareduploadwiki-desc'     => "A descripzión d'o suyo $1 se bi amuestra en o cobaxo.",
+'shareduploadwiki-desc'     => "A descripzión d'a suyo $1 s'amuestra en o cobaxo.",
 'shareduploadwiki-linktext' => "pachina de descripzión de l'archibo",
 'noimage'                   => 'No bi ha garra archibo con ixe nombre, pero puede $1.',
 'noimage-linktext'          => 'cargar-lo',

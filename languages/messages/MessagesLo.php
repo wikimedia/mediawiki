@@ -1,9 +1,11 @@
 <?php
-/** Lao (ພາສາລາວ)
-  *
-  * @addtogroup Language
-  *
-  */
+/** Lao (ລາວ)
+ *
+ * @addtogroup Language
+ *
+ * @author Passawuth
+ */
+
 $namespaceNames = array(
 	NS_MEDIA            => 'ສື່ອ',
 	NS_SPECIAL          => 'ພິເສດ',
@@ -96,6 +98,7 @@ $messages = array(
 'article'        => 'ໜ້າເນື້ອໃນ',
 'newwindow'      => '(ເປີດເປັນ ປ່ອງຢ້ຽມ(ວິນໂດ)ໃໝ່ )',
 'cancel'         => 'ລົບລ້າງ',
+'qbedit'         => 'ດັດແກ້',
 'qbspecialpages' => 'ໜ້າພິເສດ',
 'mypage'         => 'ໜ້າຂ້ອຍ',
 'mytalk'         => 'ສົນທະນາຂ້ອຍ',
@@ -156,6 +159,7 @@ $messages = array(
 'showtoc'                 => 'ສະແດງ',
 'hidetoc'                 => 'ເຊື່ອງ',
 'viewdeleted'             => 'ເບິ່ງ $1 ບໍ?',
+'red-link-title'          => '$1 (ຍັງບໍ່ໄດ້ສ້າງ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ບົດຄວາມ',

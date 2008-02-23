@@ -447,6 +447,7 @@ $messages = array(
 'viewdeleted'             => 'Skoða $1?',
 'restorelink'             => '{{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
 'feedlinks'               => 'Nippan:',
+'red-link-title'          => '$1 (ekki enn skrifuð)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Grein',
@@ -1367,6 +1368,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'undelete-search-prefix'   => 'Sýna síður sem byrja á:',
 'undelete-search-submit'   => 'Leita',
 'undelete-no-results'      => 'Engar samsvarandi síður fundust í eyðingarskjalasafninu.',
+'undelete-error-short'     => 'Villa við endurvakningu skráar: $1',
 
 # Namespace form on various pages
 'namespace'      => 'Nafnrými:',
@@ -1393,7 +1395,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'whatlinkshere'       => 'Hvað tengist hingað',
 'whatlinkshere-title' => 'Síður sem tengjast $1',
 'whatlinkshere-page'  => 'Síða:',
-'linklistsub'         => '(Listi yfir ítengdar síður)',
+'linklistsub'         => '(Listi yfir tengla)',
 'linkshere'           => "Eftirfarandi síður tengjast á '''[[:$1]]''':",
 'nolinkshere'         => "Engar síður tengjast á '''[[:$1]]'''.",
 'nolinkshere-ns'      => "Engar síður tengjast '''[[:$1]]''' í þessu nafnrými.",
