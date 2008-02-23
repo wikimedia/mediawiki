@@ -1,5 +1,557 @@
 Change notes from older releases. For current info see RELEASE-NOTES.
 
+== MediaWiki 1.12 ==
+
+This is the Winter 2007 quarterly release.
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept
+"ready to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature developments
+will be made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain
+it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+=== Configuration changes in 1.12 ===
+* Marking edits as bot edits with Special:Contributions?bot=1 now requires the
+  markbotedit permission, rather than the rollback permission previously used.
+  This permission is assigned by default to the sysop group.
+* MediaWiki now checks if serialized files are out of date. New configuration
+  variable $wgCheckSerialized can be set to false to enable old behavior (i.e.
+  to not check and assume they are always up to date)
+* The rollback permission can now be rate-limited using the normal mechanism.
+* New configuration variable $wgExtraLanguageNames
+* Behaviour of $wgAddGroups and $wgRemoveGroups changed. New behaviour:
+* * Granting the userrights privilege allows arbitrary changing of rights.
+* * Without the userrights privilege, a user will be able to add and/or
+     remove the groups specified in $wgAddGroups and $wgRemoveGroups for
+     any groups they are in.
+* New permission userrights-interwiki for changing user rights on foreign wikis.
+* $wgImplictGroups for groups that are hidden from Special:Listusers, etc.
+* $wgAutopromote: automatically promote users who match specified criteria
+* $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf: allow users to add or remove
+  themselves from specified groups via Special:Userrights.
+* When $wgUseTidy has been enabled, PHP's Tidy module is now used if it is
+  present, in preference to an external Tidy executable which may or may not
+  be present. To force use of external Tidy even when the PHP module is
+  available, set $wgTidyInternal to false.
+
+
+=== New features in 1.12 ===
+* (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
+* Add {{filepath:}} parser function to get full path to an uploaded file,
+  complementing {{fullurl:}} for pages.
+* (bug 11136) If using Postgres, search path is explicitly set if wgDBmwschema
+  is not set to 'mediawiki', allowing multiple mediawiki instances per user.
+* (bug 11151) Add descriptive <title> to revision history page
+* (bug 5412) Add feed links for the site to all pages
+* (bug 11353) Add ability to retrieve raw section content via action=raw
+* (bug 6909) Show relevant deletion log lines when uploading a previously
+  deleted file
+* On SkinTemplate based skins (like MonoBook), omit confusing "edit"/"view
+  source" tab entirely if the page doesn't exist and the user isn't allowed to
+  create it
+* Clarify instructions given when an exception is thrown
+* AuthPlugin added strictUserAuth() method to allow per-user override
+  of the strict() authentication behavior.
+* (bug 7872) Deleted revisions can now be viewed as diffs showing changes
+  against the previous revision, whether currently deleted or live.
+* Added tooltips for the "Go" and "Search" buttons
+* (bug 11649) Show input form when Special:Whatlinkshere has no parameters
+* isValidEmailAddr hook added to User method of that name, to allow, e.g., re-
+  stricting e-mail addresses to a specific domain
+* Removed "Clear" link in watchlist editor tools, as people were afraid to
+  click it. Existing clear links will fall back to the raw editor, which is
+  very easy to clear your watchlist with.
+* (bug 1405) Add wgUseNPPatrol option to control patroling for new articles
+  on Special:Newpages
+* LogLine hook added to allow formatting custom entries in Special:Log.
+* Support for Iranian calendar
+* (bug 1401) Allow hiding logged-in users, bots and patrolled pages on
+  Special:Newpages
+* ChangesListInsertArticleLink hook added for adding extra article info to RC.
+* MediaWikiPerformAction hook added for diverting control after the main
+  globals have been set up but before any actions have been taken.
+* BeforeWatchlist hook added for filtering or replacing watchlist.
+* SkinTemplateTabAction hook added for altering the properties of tab links.
+* OutputPage::getRedirect public method added.
+* (bug 11848, 12506) Allow URL parameters 'section', 'editintro' and 'preload'
+  in Special:Mypage and Special:Mytalk
+* Add ot=raw to Special:Allmessages
+* Support for Hebrew calendar
+* Support for Hebrew numerals in dates and times
+* (bug 11315) Signatures can be configured in [[MediaWiki:Signature]] and
+  [[MediaWiki:Signature-anon]]
+* Signatures for anonymous users link to Special:Contributions page rather than
+  user page
+* Added --override switch for disabled pages in updateSpecialPages.php
+* Provide a unique message (ipb_blocked_as_range) if unblock of a single IP
+  fails
+  because it is part of a blocked range.
+* (bug 3973) Use a separate message for the email content when an account is
+  created by another user
+* dumpTextPass.php can spawn fetchText.php as a subprocess, which should restart
+  cleanly if database connections fail unpleasantly.
+* (bug 12028) Add Special:Listbots as shortcut for Special:Listusers/bot
+* (bug 9633) Add a predefined list of delete reasons to the deletion form
+* Show a warning message when creating/editing a user (talk) page but the user
+  does not exists
+* (bug 8396) Ignore out-of-date serialised message caches
+* (bug 12195) Undeleting pages now requires 'undelete' permission
+* (bug 11810) Localize displayed semicolons
+* (bug 11657) Support for Thai solar calendar
+* (bug 943) RSS feed for Recentchangeslinked
+* Introduced AbortMove hook
+* (bug 2919) Protection of nonexistent pages with regular protection interface.
+* Special:Upload now lists permitted/prohibited file extensions.
+* Split ambiguous filetype-badtype message into two new messages,
+  filetype-unwanted-type and filetype-banned-type.
+* Added link to the old title in Special:Movepage
+* On Special:Movepage, errors are now more noticeable.
+* It is now possible to change rights on other local wikis without the MakeSysop
+  extension
+* Add HTML ID's mw-read-only-warning and mw-anon-edit-warning to warnings when
+  editing to allow CSS styling.
+* Parser now returns list of sections
+* When a user is prohibited from creating a page, a title of "View source"
+  makes no sense, and there should be no "Return to [[Page]]" link.
+* (bug 12486) Protected titles now give a warning for privileged editors.
+* (bug 9939) Special:Search now sets focus to search input box when no existing
+  search is active
+* For Special:Userrights, use GET instead of POST to search for users.
+* Allow subpage syntax for Special:Userrights, i.e., Special:Userrights/Name.
+* When submitting changes on Special:Userrights, show the full form again, not
+  just the search box.
+* Added exception hooks
+* (bug 12574) Allow bots to specify whether an edit should be marked as a bot
+  edit, via the parameter 'bot'. (Default: '1')
+* (bug 12536) User should be able to get MediaWiki version from any page
+* (bug 12622) A JavaScript constant to declare whether api.php is available
+* Add caching to the AJAX search
+* Add APCOND_INGROUPS
+* Add DBA caching to installer
+* (bug 18585) Added a bunch of parameters to the revertpage message
+* Support redirects in image namespace
+* (bug 10049) Prefix index search and namespaces in Special:Withoutinterwiki
+* (bug 12668) Support for custom iPhone bookmark icon via $wgAppleTouchIcon
+* Add option to include templates in Special:Export.
+* (bug 12655) Added $wgUserEmailUseReplyTo config option to put sender
+  address in Reply-To instead of From for user-to-user emails.
+  This protects against SPF problems and privacy-leaking bounce messages
+  when using mailers that set the envelope sender to the From header value.
+* (bug 11897) Add alias [[Special:CreateAccount]] & [[Special:Userlogin/signup]]
+  for Special:Userlogin?type=signup
+* (bug 12214) Add a predefined list of delete reasons to the file deletion form
+* Merged backends for OpenSearch suggestions and AJAX search.
+  Both now accept namespace prefixes, handle 'Media:' and 'Special:' pages,
+  and reject interwiki prefixes. PrefixSearch class centralizes this code,
+  and the backend part can be overridden by the PrefixSearchBackend hook.
+* (bug 10365) Localization of Special:Version
+* When installing using Postgres, the Pl/Pgsql language is now checked for 
+  and installed when at the superuser level.
+* The default robot policy for the entire wiki is now configurable via the
+  $wgDefaultRobotPolicy setting.
+* (bug 12239) Use different separators for autocomments
+* (bug 12857) Patrol link on new pages should clear floats
+* (bug 12968) Render redirect wikilinks in a redirect class for customization
+  via user/site CSS.
+* EditPageBeforeEditButtons hook added for altering the edit buttons below the edit box
+
+=== Bug fixes in 1.12 ===
+
+* Subpages are now indexed for searching properly when using PostgreSQL
+* (bug 3846) Suppress warnings from, e.g. open_basedir when scanning for
+  ImageMagick, diff3 et al. during installation [patch by Jan Reininghaus]
+* (bug 7027) Shift handling of deletion permissions-checking to
+  getUserPermissionsErrors.
+* Login and signup forms are now more correct for right-to-left languages.
+* (bug 5387) Block log items on RecentChanges don't make use of possible
+  translations
+* (bug 11211) Pass, as a parameter to the protectedpagetext interface
+  message, the level of protection.
+* (bug 9611) Supply the blocker and reason for the cantcreateaccounttext
+  message.
+* (bug 8759) Fixed bug where rollback was allowed on protected pages for wikis
+  where rollback is given to non-sysops.
+* (bug 8834) Split off permission for editing user JavaScript and CSS from
+  editinterface to a new permission key editusercssjs.
+* (bug 11266) Set fallback language for Fulfulde (ff) to French
+* (bug 11179) Include image version deletion comment in public log
+* Fixed notice when accessing special page without read permission and whitelist
+  is not defined
+* (bug 9252) Fix for tidy funkiness when using editintro mode
+* (bug 4021) Fix for MySQL wildcard search
+* (bug 10699) Fix for MySQL phrase search
+* (bug 11321) Fix width of gallerybox when option "width=xxx" is used
+* (bug 7890) Special:BrokenRedirects links deleted redirects to a non-existent
+  page
+* Fix initial statistics when installing: add correct values
+* (bug 11342) Fix several 'returnto' links in permissions/error pages which
+  linked to the main page instead of targetted page
+* Strike the link to the redirect rather than using an asterisk in
+  Special:Listredirects
+* (bug 11355) Fix false positives in Safe Mode and other config detection
+  when boolean settings are disabled with 'Off' via php_admin_value/php_value
+* (bug 11292) Fixed unserialize errors with Postgres by creating special Blob
+  object.
+* (bug 11363) Make all metadata fields bytea when using Postgres.
+* (bug 11331) Add buildConcat() and use CASE not IF for DB compatibility. Make
+  oldimage cascade delete via image table for Postgres, change fa_storage_key
+  TEXT.
+* (bug 11438) Live Preview chops returned text
+* Show the right message on account creation when the user is blocked
+* (bug 11450) Fix creation of objectcache table on upgrade
+* Fix namespace selection after submit of Special:Newpages
+* Make input form of Special:Newpages nicer for RTL wikis
+* (bug 11462) Fix typo in LanguageGetSpecialPageAliases hook name
+* (bug 11474) Fix unintentional fall-through in math error handling
+* (bug 11478) Fix undefined method call in file deletion interface
+* (bug 278) Search results no longer highlight incorrect partial word matches
+* Compatibility with incorrectly detected old-style DJVU mime types
+* (bug 11560) Fix broken HTML output from weird link nesting in edit comments.
+  Nested links (as in image caption text) still don't work _right_ but they're
+  less wrong
+* (bug 9718) Remove unnecessary css from main.css causing spacing issues on
+  some browsers.
+* (bug 11574) Add an interface message loginstart, which, similarly to loginend,
+  appears just before the login form. Patch by MinuteElectron.
+* Do not cache category pages if using 'from' or 'until'
+* Created new hook getUserPermissionsErrors, to go with userCan changes.
+* Diff pages did not properly display css/js pages.
+* (bug 11620) Add call to User::isValidEmailAddr during accout creation.
+* (bug 11629) If $wgEmailConfirmToEdit is true, require people to supply an
+  email address when registering.
+* (bug 11612) Days to show in recent changes cannot be larger than 7
+* (bug 11131) Change filearchive width/height columns to int for Postgres
+* Support plural in undeleted{revisions,revisions-files,files}
+* (bug 11343) If the database is read-only, ensure that undelete fails.
+* (bug 11690) Show revert link for page moves in Special:Log to allowed users
+  only
+* Initial-lowercase prefix checks in namespaceDupes.php now actually work.
+* Fix regression in LinkBatch.php breaking PHP 5.0
+* (bug 11452) wfMsgExt uses sometimes wrong language object for parsing magic
+  words when called with options ''parsemag'' or ''content''.
+* (bug 11727) Support plural in 'historysize' message
+* (bug 11744) Incorrect return value from Title::getParentCategories()
+* (bug 11762) Fix native language name of Akan (ak)
+* (bug 11722) Fix inconsistent case in unprotect tabs
+* (bug 11795) Be more paranoid about confirming accept-encoding header is
+  present
+* (bug 11809) Use formatNum() for more numbers
+* (bug 11818) Fix native language name of Inuktitut (iu)
+* Remove all commas when parsing float numbers in sorted tables
+* Limit text field of deletion, protection and user rights changes reasons to
+  255 characters (already restricted in the database)
+* In the deletion default reasons, calculate how much text to get from the
+  article text, rather than getting 150 characters (which may be too much)
+* Add two messages for Special:Blockme which were used but undefined
+* (bug 11921) Support plural in message number_of_watching_users_pageview
+* If an IP address is blocked as part of a rangeblock, attempting to unblock
+  the single IP should not unblock the entire range.
+* (bug 6695) Fix native language name of Southern Sotho (Sesotho) (st)
+* Make action=render follow redirects by default
+* If restricted read access was enabled, whitelist didn't work with special
+  pages which had spaces in theirs names
+* If restricted read access was enabled, requests for non-existing special pages
+  threw an exception
+* Feeds for recent changes now provide correct URLs for the change, not just
+  the page
+* Check for if IP is blocked as part of a range when unblocking (see above bug-
+  fix) was faulty. Now fixed.
+* Fixed wpReason URL parameter to action=delete.
+* Do not force a password for account creation by email
+* Ensure that rate-limiting is applied to rollbacks.
+* Make a better rate-limiting error message (i.e. a normal MW error,
+  rather than an "Internal Server Error").
+* Do not present an image bigger than the source when 'frameless' option is used
+  (to be consistent with the 'thumb' option now)
+* Support {{PLURAL}} for import log
+* Make sure that the correct log entries are shown on Special:Userrights even
+  for users with special characters in their names
+* The number of watching users in watchlists was always reported as 1
+* namespaceDupes.php no longer dies when coming across an illegal title
+* (bug 12143) Do not show a link to patrol new pages for non existent pages
+* (bug 12166) Fix XHTML validity for Special:Emailuser
+* (bug 11346) Users who cannot edit a page can now no longer unprotect it.
+* (bug 451) Add a generic Traditional / Simplified Chinese conversion table,
+  instead of a Traditional conversion with Taiwan variant, and a Simplified
+  conversion with China variant.
+* (bug 12178) Fix wpReason parameter to action=delete, again.
+* Graceful behavior for updateRestrictions.php if a page already has records
+  in the page_restrictions matching its old page_restrictions field.
+  May help with odd upgrade issues or race condition.
+* (bug 11993) Remove contentsub "revision history"
+* (bug 11952) Ensure we quote_ident() all schema names as needed
+   inside of the DatabasePostgres.php file.
+* (bug 12184) Exceptions now sent to stderr instead of stdout for command-line
+  scripts, making for cleaner reporting during batch jobs. PHP errors will also
+  be redirected in most cases on PHP 5.2.4 and later, switching 'display_errors'
+  to 'stderr' at runtime.
+* (bug 12148) Text highlight wasn't applied to cleanly deleted and added
+  lines in diff output
+* (bug 10166) Fix a PHP warning in Language::getMagic
+* Only mark rollback edits as minor if the user can normally mark edits minor
+* Escape page names in the move successful page (e.g. for pages with two
+  apostrophes).
+* (bug 12145) Add localized names of kk-variants
+* (bug 12259) Localize the numbers in deleted pages on the sysop view
+* Set proper page title for successful file deletion
+* (bug 11221) Do not show 'Compare selected versions' button for a history page
+  with one revision only
+* (bug 12267) Set the default date format to Thai solar calender for the Thai
+  language
+* (bug 10184) Extensions' stylesheets and scripts should be loaded before
+  user-customized ones (like Common.css, Common.js)
+* (bug 12283) Special:Newpages forgets parameters
+* (bug 12031) All namespaces doesn't work in Special:Newpages
+* (bug 585) Only create searchindex replica table for parser tests if db is
+  MySQL
+* Allow --record option if parserTests.php to work when using Postgres
+* (bug 12296) Simplify cache epoch in default LocalSettings.php
+* (bug 12346) XML fix when body double-click and click handlers are present
+* Fix regression -- missing feed links in sidebar on Special:Recentchanges
+* (bug 12371) Handle more namespace case variants in namespaceDupes.php
+* (bug 12380) Bot-friendly EditPage::spamPage
+* (bug 8066) Spaces can't be entered in special page aliases
+* Hide undo link if user can't edit article
+* (bug 12416) Fix password setting for createAndPromote.php
+* (bug 3097) Inconsistently usable titles containing HTML character entities
+  are now forbidden. A run of cleanupTitles.php will fix up existing pages.
+* (bug 12446) Permissions check fix for undelete link
+* (bug 12451) AJAX title normalization tweaks
+* When a user creating a page is not allowed to either create the page nor edit
+  it, all applicable reasons are now shown.
+* (bug 11428) Allow $wgScript inside $wgArticlePath when emulating PATH_INFO
+  Fixes 'root'-style rewrite configurations
+* (bug 12493) Removed hardcoded MAX_FILE_SIZE from Special:Import upload form
+* (bug 12489) Special:Userrights listed in restricted section again
+* (bug 12553) Fixed invalid XHTML in edit conflict screen
+* (bug 12505) Fixed section=0 with action=raw
+* (bug 12614) Do not log user rights change that didn't change anything
+* (bug 12584) Don't reset cl_timestamp when auto-updating sort key on move
+* (bug 12588) Fix selection in namespace selector on Special:Newpages
+* Use only default options when generating RSS and Atom syndication links.
+  This should help prevent infinite link loops that some software may follow,
+  and will generally keep feed behavior cleaner.
+* (bug 12608) Unifying the spelling of getDBkey() in the code.
+* (bug 12611) Bot flag ignored in recent changes
+* (bug 12617) Decimal and thousands separators for Romanian
+* (bug 12567) Fix for misformatted read-only messages on edit, protect.
+  Also added proper read-only checks to several special pages.
+  Have removed read-only checks from the general user permission framework.
+* Creating a site with a name containing '#' is no longer permitted, since the
+  name will not work (but $wgSiteName is not checked if manually set).
+* (bug 12695) Suppress dvips verbiage from web server error log
+* (bug 12716) Unprotecting a non-protected page leaves a log entry
+* Log username blocks with canonical form of name instead of input form
+* (bug 11593, 12719) Fixes for overzealous invocation of thumb.php.
+  Non-image handlers and full-size images may now decline it, fixing
+  mystery failures when using $wgThumbnailScriptPath.
+* (bug 12327) Comma in username no longer disrupts mail headers
+* (bug 6436) Localization of Special:Import XML parser Error message(s).
+* Security fix for API on MSIE
+* (bug 12768) Database query syntax error in maintenance/storage/compressOld.inc
+* (bug 12753) Empty captions in MediaWiki:Sidebar result in PHP errors
+* (bug 12790) Page protection is not logged when edit-protection is used
+  and move-protection is not
+* (bug 12793) Fix for restricted namespaces/pages in Special:Export
+* Fix for Special:Export so it doesn't ignore the page named '0'
+* Don't display rollback link if the user doesn't have all required permissions
+* The comment of a time-limited protection now contains the date in the default
+  format
+* (bug 12880) wfLoadExtensionMessages does not use $fallback from MessagesXx.php
+* (bug 12885) Correction for Russian convertPlural function
+* (bug 12768) Make DatabasePostgres->hasContraint() schema aware.
+* (bug 12735) Truncate usernames in comments using mb_ functions.
+* (bug 12892) Poor tab indexing on "delete file" form
+* (bug 12660) When creating an account by e-mail, do not send the creator's IP
+  address
+* (bug 12931) Fix wrong global variable in SpecialVersion
+* (bug 12919) Use 'deletedrevision' message as content when deleting an old file
+  version
+* (bug 12952) Using Nosuchusershort instead of Nosuchuser when account creation
+  is disabled
+* (bug 12869) Magnify icon alignment should be adjusted using linked CSS
+* Fixing message cache updates for MediaWiki messages moves
+* (bug 12815) Signature timestamps were always in UTC, even if the timezone code
+  in parentheses after them claimed otherwise
+* (bug 12732) Fix installer and searching to handle built-in tsearch2 for Postgres.
+* (bug 12784) Change "bool" types to smallint to handle Postgres 8.3 strictness.
+* (bug 12301) Allow maintenance/findhooks.php to search hooks in multiple directories.
+* (bug 7681, 11559) Cookie values no longer override GET and POST variables.
+* (bug 5262) Fully-qualified $wgStylePath no longer corrupted on XML feeds
+* (bug 3269) Inaccessible titles ending in '/.' or '/..' now forbidden.
+* (bug 12935, 12981) Fully-qualify archive URLs in delete, revert messages
+* (bug 12938) Fix template expansion and 404 returns for action=raw with section
+* (bug 11567) Fix error checking for PEAR::Mail. UserMailer::send() now returns
+  true-or-WikiError, which seems to be the calling convention expected by half
+  its callers already
+* (bug 12846) IE rtl.css issue in RTL wikis special:Preferences when selecting an
+  LTR user language
+* (bug 13005) DISPLAYTITLE does not work on preview
+* (bug 13004) Fix error on Postgres searches that return too many results.
+
+== Parser changes in 1.12 ==
+
+For help with migration to the MediaWiki 1.12 parser, please visit:
+
+http://meta.wikimedia.org/wiki/Migration_to_the_new_preprocessor
+
+The parser pass order has changed from
+
+   * Extension tag strip and render
+   * HTML normalisation and security
+   * Template expansion
+   * Main section...
+
+to
+
+   * Template and extension tag parse to intermediate representation
+   * Template expansion and extension rendering
+   * HTML normalisation and security
+   * Main section...
+
+The main effect of this for the user is that the rules for uncovered syntax
+have changed.
+
+Uncovered main-pass syntax, such as HTML tags, are now generally valid, whereas
+previously in some cases they were escaped. For example, you could have "<ta" in
+one template, and "ble>" in another template, and put them together to make a
+valid <table> tag. Previously the result would have been "&lt;table&gt;".
+
+Uncovered preprocessor syntax is generally not recognised. For example, if you
+have "{{a" in Template:A and "b}}" in Template:B, then "{{a}}{{b}}" will be
+converted to a literal "{{ab}}" rather than the contents of Template:Ab. This
+was the case previously in HTML output mode, and is now uniformly the case in
+the other modes as well. HTML-style comments uncovered by template expansion
+will not be recognised by the preprocessor and hence will not prevent template
+expansion within them, but they will be stripped by the following HTML security
+pass.
+
+Bug 5678 has been fixed. This has a number of user-visible effects related to
+the removal of this double-parse. Please see the wiki page for examples. 
+
+Message transformation mode has been removed, and replaced with "preprocess"
+mode. This means that some MediaWiki namespace messages may need to be updated,
+especially ones which took advantage of the terribly counterintuitive behaviour
+of the former message mode. 
+
+The header identification routines for section edit and for numbering section
+edit links have been merged. This removes a significant failure mode and fixes a
+whole category of bugs (tracked by bug #4899). Wikitext headings uncovered by
+template expansion will still be rendered into a heading tag, and will get an 
+entry in the TOC, but will not have a section edit link. HTML-style headings 
+will also not have a section edit link. Valid wikitext headings present in the 
+template source text will get a template section edit link. This is a major 
+break from previous behaviour, but I believe the effects are almost entirely 
+beneficial.
+
+The main motivation for making these changes was performance. The new two-pass
+preprocessor can skip "dead branches" in template expansion, such as unfollowed
+#switch cases and unused defaults for template arguments. This provides a
+significant performance improvement in template-heavy test cases taken from
+Wikipedia. Parser function hooks can participate in this performance improvement
+by using the new SFH_OBJECT_ARGS flag during registration.
+
+The pre-expand include size limit has been removed, since there's no efficient
+way to calculate such a figure, and it would now be meaningless for performance
+anyway. The "preprocessor node count" takes its place, with a generous default
+limit.
+
+The context in which XML-style extension tags are called has changed, so
+extensions which make use of the parser state may need compatibility changes.
+
+The new preprocessor syntax has been documented in Backus-Naur Form at:
+
+http://www.mediawiki.org/wiki/Preprocessor_ABNF
+
+The ExpandTemplates extension now has the ability to generate an XML parse 
+tree from wikitext source. This parse tree corresponds closely to the grammar
+documented on that page.
+
+=== API changes in 1.12 ===
+
+Full API documentation is available at http://www.mediawiki.org/wiki/API
+
+* (bug 11275) Enable descending sort in categorymembers
+* (bug 11308) Allow the API to output the image metadata
+* (bug 11296) Temporary fix for escaping of ampersands inside links in
+  pretty-printed
+  help document.
+* (bug 11405) Expand templates implementation in the API
+* (bug 11218) Add option to feedwatchlist to display multiple revisions for each
+  page.
+* (bug 11404) Provide name of exception caught in error code field of internal
+  api error messages.
+* (bug 11534) rvendid doesn't work
+* Fixed rvlimit of the revisions query to only enforce the lower query limit if
+  revision content is requested.
+* Include svn revision number (if install is checked-out from svn) in siteinfo
+  query.
+* (bug 11173) Allow limited wikicode rendering via api.php
+* (bug 11572) API should provide interface for expanding templates
+* (bug 11569) Login should return the cookie prefix
+* (bug 11632) Breaking change: Specify the type of a change in the recentchanges
+  list as 'edit', 'new', 'log' instead of 0, 1, 2, respectively.
+* Compatibility fix for PHP 5.0.x.
+* Add rctype parameter to list=recentchanges that filters by type
+* Add apprtype and apprlevel parameters to filter list=allpages by protection
+  types and levels
+* Add apdir parameter to enable listing all pages from Z to A
+* (bug 11721) Use a different title for results than for the help page.
+* (bug 11562) Added a user_registration parameter/field to the list=allusers
+  query.
+* (bug 11588) Preserve document structure for empty dataset in backlinks query.
+* Outputting list of all user preferences rather than having to request them by
+  name
+* (bug 11206) api.php should honor maxlag
+* Make prop=info check for restrictions in the old format too.
+* Add apihighlimits permission, default for sysops and bots
+* Add limit=max to use maximal limit
+* Add action=parse to render parser output. Use it instead of action=render
+  which has been removed
+* Add rvtoken=rollback to prop=revisions
+* Add meta=allmessages to get messages from site's messages cache.
+* Use bold and italics highlighting only in API help
+* Added action={block,delete,move,protect,rollback,unblock,undelete} and
+  list={blocks,deletedrevs}
+* Fixed sessionid attribute in action=login
+* Standardized limits. Revisions and Deletedrevisions formerly using
+  200 / 10000, now 500 / 5000, in line with other modules.
+* Added list=allcategories module
+* (bug 12321) API list=blocks reveals private data
+* Fix output of wfSajaxSearch
+* (bug 12413) meta=userinfo missing <query> tag
+* Add list of sections to action=parse output
+* Added action=logout
+* Added cascade flag to prop=info&inprop=protections
+* Added wlshow parameter to list=watchlist, similar to rcshow
+  (list=recentchanges)
+* Added support for image thumbnailing to prop=imageinfo
+* action={login,block,delete,move,protect,rollback,unblock,undelete} now must be
+  POSTed
+* prop=imageinfo interface changed: iihistory replaced by iilimit, iistart and
+  iiend parameters
+* Added amlang parameter to meta=allmessages
+* Added apfilterlanglinks parameter to list=allpages, replacing
+  query.php?what=nolanglinks
+* (bug 12718) Added action=paraminfo module that provides information about API
+  modules and their parameters
+* Added iiurlwidth and iiurlheight parameters to prop=imageinfo
+* Added format=txt and format=dbg, imported from query.php
+* Added uiprop=editcount to meta=userinfo
+* Added list=users which fetches user information
+* Added list=random which fetches a list of random pages
+* Added page parameter to action=parse to facilitate parsing of existing pages
+* Added uiprop=ratelimits to meta=userinfo
+* Added siprop=namespacealiases to meta=siteinfo
+* Made multiple values for ucuser possible in list=usercontribs
+* (bug 12944) Added cmstart and cmend parameters to list=categorymembers
+* Allow queries to have a where range that does not match the range field
+
 == MediaWiki 1.11 ==
 
 This is the Summer 2007 branch release of MediaWiki.
