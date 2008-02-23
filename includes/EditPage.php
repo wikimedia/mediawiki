@@ -1306,6 +1306,21 @@ END
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n
 <input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n" );
 
+		/**
+		 * To make it harder for someone to slip a user a page
+		 * which submits an edit form to the wiki without their
+		 * knowledge, a random token is associated with the login
+		 * session. If it's not passed back with the submission,
+		 * we won't save the page, or render user JavaScript and
+		 * CSS previews.
+		 *
+		 * For anon editors, who may not have a session, we just
+		 * include the constant suffix to prevent editing from
+		 * broken text-mangling proxies.
+		 */
+		$token = htmlspecialchars( $wgUser->editToken() );
+		$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
+
 		$wgOut->addHTML( <<<END
 $recreate
 {$commentsubject}
@@ -1347,21 +1362,6 @@ END
 {$formattedtemplates}
 </div>
 " );
-
-		/**
-		 * To make it harder for someone to slip a user a page
-		 * which submits an edit form to the wiki without their
-		 * knowledge, a random token is associated with the login
-		 * session. If it's not passed back with the submission,
-		 * we won't save the page, or render user JavaScript and
-		 * CSS previews.
-		 *
-		 * For anon editors, who may not have a session, we just
-		 * include the constant suffix to prevent editing from
-		 * broken text-mangling proxies.
-		 */
-		$token = htmlspecialchars( $wgUser->editToken() );
-		$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 
 
 		# If a blank edit summary was previously provided, and the appropriate
