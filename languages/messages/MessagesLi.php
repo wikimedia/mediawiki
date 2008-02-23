@@ -306,10 +306,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|ein verwiederde versie|$1 verwiederde versies}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Feedtype wörd neet ongersteund.',
+'feed-unavailable'        => 'Syndicatiefeeds zeen neet besjikbaar op {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS-feed',
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
+'red-link-title'          => '$1 (nag neet aangemaak)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -746,6 +748,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
 'noexactmatch'          => "'''d'r Bestuit geine pazjena mit ongerwerp  $1.''' Doe kins 'm [[:$1|aanmake]].",
 'noexactmatch-nocreate' => "'''Er besteit gein pagina genaamp \"\$1\".'''",
+'toomanymatches'        => "d'r Wore te väöl resultate. Probeer estebleef  'n anger zeukopdrach.",
 'titlematches'          => 'Overeinkoms mèt volgende titels',
 'notitlematches'        => 'Geen enkele paginatitel gevonden met de opgegeven zoekterm',
 'textmatches'           => 'Euvereinkoms mèt artikelinhoud',
@@ -919,7 +922,9 @@ Gebroek óm 'n plaetje of 'n besjtand in 'n pazjena op te numme 'ne link in de v
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Besjtand.jpg]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Besjtand.png|alternatief teks]]</nowiki>'''
 of veur mediabesjtande:
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Besjtand.ogg]]</nowiki>'''",
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Besjtand.ogg]]</nowiki>'''
+
+De letste link is bedoeld veur mediabestenj die gein aafbeilding zeen.",
 'upload-permitted'            => 'Toegelaote bestandstypes: $1.',
 'upload-preferred'            => 'Aangeweze bestandstypes: $1.',
 'upload-prohibited'           => 'Verbaoje bestandstypes: $1.',
@@ -1024,6 +1029,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'nolinkstoimage'            => 'Gein enkele pazjena gebroek dees aafbeilding.',
 'sharedupload'              => 'literal translation',
 'shareduploadwiki'          => 'Zee $1 veur meer informatie.',
+'shareduploadwiki-desc'     => 'De $1 dao wuuerdj hiej ónger getuund.',
 'shareduploadwiki-linktext' => 'bestandsbesjrieving',
 'noimage'                   => "d'r bestuit gein bestand met deze naam. Doe kins 't $1.",
 'noimage-linktext'          => 'uploade',
@@ -1033,7 +1039,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'imagelist_user'            => 'Gebroeker',
 'imagelist_size'            => 'Gruutde (bytes)',
 'imagelist_description'     => 'Besjrieving',
-'imagelist_search_for'      => 'Zeuk nao bestand:',
+'imagelist_search_for'      => 'Zeuk nao bestandj:',
 
 # File reversion
 'filerevert'                => '$1 trökdrèjje',
@@ -1134,7 +1140,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'lonelypagestext'         => "Nao de ongerstäönde pagina's wörd vanoet {{SITENAME}} neet verweze.",
 'uncategorizedpages'      => "Ongekattegoriseerde pazjena's",
 'uncategorizedcategories' => 'Ongekattegoriseerde kattegorië',
-'uncategorizedimages'     => 'Óngecategorizeerde aafbeeldinge',
+'uncategorizedimages'     => 'Óngecategorizeerde bestenj',
 'uncategorizedtemplates'  => 'Óngecategorizeerde sjablone',
 'unusedcategories'        => 'Óngebroekde kategorieë',
 'unusedimages'            => 'Ongebroekde aafbeildinge',
@@ -1367,7 +1373,7 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 'protect_expiry_old'          => "De pazjena verlöp in 't verleje.",
 'unprotectsub'                => '(Besjerming van "$1" opheve)',
 'protect-unchain'             => 'Maak verplaatse meugelik',
-'protect-text'                => "Hiej kinse 't beveiligingsniveau veur de pazjena <strong><nowiki>\$1</nowiki></strong> bekieke en wiezige.",
+'protect-text'                => "Hiej kinse 't beveiligingsniveau veur de pazjena <strong><nowiki>$1</nowiki></strong> bekieke en wiezige.",
 'protect-locked-blocked'      => "Doe kins 't beveiligingsniveau neet wiezige wielse geblokkeerd bös.
 Hiej zeen de hujige instellinge veur de pazjena <strong>[[$1]]</strong>:",
 'protect-locked-dblock'       => "'t Beveiligingsniveau kin neet waere gewiezig ómdet de database geslaote is.
@@ -1413,6 +1419,7 @@ Dit zeen de hujige instellinge veur de pazjena <strong>[[$1]]</strong>:",
 'undeleterevision-missing'     => "Ongeldige of missende versie. Meugelik höbse 'n verkeerde verwiezing of is de versie hersteld of verwiederd oet 't archief.",
 'undelete-nodiff'              => 'Gein eerdere versie gevonje.',
 'undeletebtn'                  => 'Trökzètte!',
+'undeletelink'                 => 'trökplaatse',
 'undeletereset'                => 'Resette',
 'undeletecomment'              => 'Infermasie:',
 'undeletedarticle'             => '"$1" is truukgeplaatsj.',
@@ -1460,7 +1467,7 @@ $1",
 'sp-contributions-username'    => 'IP-adres of gebroekersnaam:',
 'sp-contributions-submit'      => 'Zeuk/tuun',
 
-'sp-newimages-showfrom' => 'Tuun nuuje afbeildinge vanaaf $1',
+'sp-newimages-showfrom' => 'Tuun nuuj aafbeildinge vanaaf $1',
 
 # What links here
 'whatlinkshere'       => 'Links nao dees pazjena',

@@ -292,12 +292,14 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|एक वगळलेले संपादन|$1 वगळलेली संपादने}}',
 'feedlinks'               => 'रसद (Feed):',
 'feed-invalid'            => 'अयोग्य रसद नोंदणी (Invalid subscription feed type).',
+'feed-unavailable'        => '{{SITENAME}}वर सिंडीकेशन फीड उपलब्ध नाहीत',
 'site-rss-feed'           => '$1 आरएसएस फीड',
 'site-atom-feed'          => '$1 ऍटम रसद (Atom Feed)',
 'page-rss-feed'           => '"$1" आर.एस.एस.रसद (RSS Feed)',
 'page-atom-feed'          => '"$1" ऍटम रसद (Atom Feed)',
 'feed-atom'               => 'ऍटम',
 'feed-rss'                => 'आर.एस.ए‍स.',
+'red-link-title'          => '$1 (अजून लिहीले नाही)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'लेख',
@@ -976,6 +978,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'overwroteimage'              => '"[[$1]]" या संचिकेची नवीन आवृत्ती चढविली.',
 'uploaddisabled'              => 'संचिका चढविण्यास बंदी घालण्यात आलेली आहे.',
 'uploaddisabledtext'          => '{{SITENAME}} वर संचिका चढविण्यास बंदी घालण्यात आलेली आहे.',
+'uploadscripted'              => 'या संचिकेत HTML किंवा स्क्रिप्ट कोडचा आंतर्भाव आहे, त्याचा एखाद्या विचरकाकडून विचीत्र अर्थ लावला जाऊ शकतो.',
 'uploadcorrupt'               => 'ही संचिका भ्रष्ट आहे किंवा तिचे नाव व्यवस्थित नाही. कृपया संचिका तपासा आणि पुन्हा चढवा.',
 'uploadvirus'                 => 'ह्या संचिकेत व्हायरस आहे. अधिक माहिती: $1',
 'sourcefilename'              => 'स्रोत-संचिकानाम',
@@ -1061,6 +1064,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'filedelete'                  => '$1 वगळा',
 'filedelete-legend'           => 'संचिका वगळा',
 'filedelete-intro'            => "तुम्ही '''[[Media:$1|$1]]''' वगळत आहात.",
+'filedelete-intro-old'        => '<span class="plainlinks">[$4 $3, $2]च्या वेळेचे \'\'\'[[Media:$1|$1]]\'\'\'चे आवर्तन तुम्ही वगळत आहात.</span>',
 'filedelete-comment'          => 'वगळ्ण्याची कारणे:',
 'filedelete-submit'           => 'वगळा',
 'filedelete-success'          => "'''$1'''वगळण्यात आले.",
@@ -1117,10 +1121,12 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'userstatstext'          => "सध्या '''1''' व्यक्ति मराठी मुक्त ज्ञानकोशाच्या [[Special:Listusers|सदस्य]] आहेत. यांपैकी '''$2'''(म्हणजे '''$4%''') सदस्यांना $5 अधिकार आहेत.",
 'statistics-mostpopular' => 'सर्वाधिक बघितली जाणारी पाने',
 
-'disambiguations'     => 'नि:संदिग्धकरण पृष्ठे',
-'disambiguationspage' => 'Template:नि:संदिग्धीकरण',
+'disambiguations'      => 'नि:संदिग्धकरण पृष्ठे',
+'disambiguationspage'  => 'Template:नि:संदिग्धीकरण',
+'disambiguations-text' => "निम्नलिखीत पाने एका '''नि:संदिग्धकरण पृष्ठास'''जोडली जातात. त्याऐवजी ती सुयोग्य विषयाशी जोडली जावयास हवीत.<br /> जर जर एखादे पान [[MediaWiki:Disambiguationspage]]पासून जोडलेला साचा वापरत असेल तर ते पान '''नि:संदिग्धकरण पृष्ठ''' गृहीत धरले जाते",
 
-'doubleredirects' => 'दुहेरी-पुनर्निर्देशने',
+'doubleredirects'     => 'दुहेरी-पुनर्निर्देशने',
+'doubleredirectstext' => 'हे पान अशा पानांची सूची पुरवते की जी पुर्ननिर्देशीत पाने दुसर्‍या पुर्ननिर्देशीत पानाकडे निर्देशीत झाली आहेत.प्रत्येक ओळीत पहिल्या आणि दुसर्‍या पुर्ननिर्देशनास दुवा दीला आहे सोबतच दुसरे पुर्ननिर्देशन ज्या पानाकडे पोहचते ते पण दिले आहे, जे की बरोबर असण्याची शक्यता आहे ,ते वस्तुत: पहिल्या पानापासूनचेही पुर्ननिर्देशन असावयास हवे.',
 
 'brokenredirects'        => 'मोडके पुनर्निर्देशन',
 'brokenredirectstext'    => 'खालील पुनर्निर्देशने अस्तित्वात नसलेली पाने जोडतात:',
@@ -1300,6 +1306,29 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'enotif_lastvisited'           => 'तुमच्या शेवटच्या भेटीनंतरचे बदल बघणयासाठी पहा - $1.',
 'enotif_lastdiff'              => 'हा बदल पहाण्याकरिता $1 पाहा.',
 'enotif_anon_editor'           => 'अनामिक उपयोगकर्ता $1',
+'enotif_body'                  => 'प्रिय $WATCHINGUSERNAME,
+
+
+The {{SITENAME}}चे  $PAGETITLE पान $PAGEEDITORने $PAGEEDITDATE तारखेस $CHANGEDORCREATED केले आहे ,सध्याच्या आवृत्तीकरिता पहा $PAGETITLE_URL.
+
+$NEWPAGE
+
+संपादकाचा आढावा : $PAGESUMMARY $PAGEMINOREDIT
+
+संपादकास संपर्क करा :
+विपत्र: $PAGEEDITOR_EMAIL
+विकि: $PAGEEDITOR_WIKI
+
+तुम्ही पानास भेट देत नाही तोपर्यंत पुढे होणार्‍या बदलांची इतर कोणतीही वेगळी सूचना नसेल.तुम्ही पहार्‍याच्या सूचीतील पहारा ठेवलेल्या पानांकरिताच्या सूचना पताकांचे पुर्नयोजन करु शकता.
+
+::::::तुमची मैत्रीपूर्ण {{SITENAME}} सुचना प्रणाली
+
+--
+
+तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{fullurl:{{ns:special}}:Watchlist/edit}}ला भेट द्या
+
+पुढील सहाय्य आणि प्रतिक्रीया:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'पान वगळा',
@@ -1330,11 +1359,14 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'delete-toobig'               => 'या पानाला खूप मोठी इतिहास यादी आहे, तसेच हे पान $1 पेक्षा जास्त वेळा बदलण्यात आलेले आहे. अशी पाने वगळणे हे {{SITENAME}} ला धोकादायक ठरू नये म्हणून शक्य केलेले नाही.',
 'delete-warning-toobig'       => '
 या पानाला खूप मोठी इतिहास यादी आहे, तसेच हे पान $1 पेक्षा जास्त वेळा बदलण्यात आलेले आहे. अशी पाने वगळणे हे Betawiki ला धोकादायक ठरू शकते; कृपया काळजीपूर्वक हे पान वगळा.',
-'rollback'                    => 'बदल उलटवा',
-'rollback_short'              => 'उलटवा',
-'rollbacklink'                => 'जुन्या आवृत्तीकडे पुन्हा जा',
-'rollbackfailed'              => 'बदल उलटवणे फसले',
+'rollback'                    => 'बदल वेगात माघारी न्या',
+'rollback_short'              => 'द्रूतमाघार',
+'rollbacklink'                => 'द्रूतमाघार',
+'rollbackfailed'              => 'द्रूतमाघार फसली',
 'cantrollback'                => 'जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.',
+'alreadyrolled'               => 'Cannot rollback last edit of by [[User:$2|$2]] ([[User talk:$2|Talk]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येतनाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
+
+शेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]])-चे होते.',
 'editcomment'                 => 'बदलासोबतची नोंद होती : "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
@@ -1351,6 +1383,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'unprotectsub'                => '("$1" असुरक्षित करत आहे)',
 'protect-unchain'             => 'स्थानांतरणाची परवानगी द्या',
 'protect-text'                => '<strong><nowiki>$1</nowiki></strong> या पानाची सुरक्षापातळी तुम्ही इथे पाहू शकता अथवा बदलू शकता.',
+'protect-locked-blocked'      => 'तुम्ही प्रतिबंधीत असताना सुरक्षा पातळी बदलू शकत नाही.येथे <strong>$1</strong> पानाकरिता सध्याची मांडणावळ आहे:',
+'protect-locked-dblock'       => 'विदागारास ताळे लागलेले असताना सुरक्षा पातळी बदलता येत नाही.येथे <strong>$1</strong> पानाकरिता सध्याची मांडणावळ आहे:',
 'protect-locked-access'       => 'तुम्हाला या पानाची सुरक्षा पातळी बदलण्याचे अधिकार नाहीत. 
 <strong>$1</strong> या पानाची सुरक्षा पातळी पुढीलप्रमाणे:',
 'protect-cascadeon'           => 'हे पान सध्या सुरक्षित आहे कारण ते {{PLURAL:$1|या पानाच्या|या पानांच्या}} सुरक्षा शिडीवर आहे. तुम्ही या पानाची सुरक्षा पातळी बदलू शकता, पण त्याने सुरक्षाशिडी मध्ये बदल होणार नाहीत.',
@@ -1382,6 +1416,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'undelete'                   => 'वगळलेली पाने पाहा',
 'undeletepage'               => 'वगळलेली पाने पाहा आणि पुर्नस्थापित करा',
 'viewdeletedpage'            => 'काढून टाकलेले लेख पाहा',
+'undeletepagetext'           => 'खालील पाने वगळली आहेत तरी सुद्धा विदागारात जतन आहेत आणि पुर्न्स्थापित करणे शक्य आहे. विदागारातील साठवण ठरावीक कालावधीने स्वच्छ करता येते.',
 'undeleterevisions'          => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}विदागारात संचीत',
 'undelete-revision'          => '$1चे($2चे)आवर्तन $3 ने वगळले:',
 'undelete-nodiff'            => 'पूर्वीचे कोणतेही आवर्तन आढळले नाही.',

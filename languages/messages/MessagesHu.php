@@ -501,6 +501,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom hírcsatorna',
 'page-rss-feed'           => '„$1” RSS hírcsatorna',
 'page-atom-feed'          => '„$1” Atom hírcsatorna',
+'red-link-title'          => '$1 (nincs még megírva)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Szócikk',

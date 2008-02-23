@@ -304,6 +304,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'site-atom-feed'          => '$1 Atom izvor',
 'page-rss-feed'           => '"$1" RSS izvor',
 'page-atom-feed'          => '"$1" Atom izvor',
+'red-link-title'          => '$1 (još nije napisano)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',
@@ -1074,6 +1075,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'nolinkstoimage'            => 'Nijedna stranica ne povezuje na ovu sliku.',
 'sharedupload'              => 'Ova je datoteka postavljena na zajedničkom poslužitelju i mogu je koristiti i ostali wikiji',
 'shareduploadwiki'          => 'Za podrobnije informacije vidi $1.',
+'shareduploadwiki-desc'     => 'Opis na njegovoj stranici $1 je prikazan ispod.',
 'shareduploadwiki-linktext' => 'stranica s opisom datoteke',
 'noimage'                   => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'          => 'postaviti',

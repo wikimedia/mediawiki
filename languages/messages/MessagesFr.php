@@ -454,6 +454,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 modification effacée|$1 modifications effacées}}',
 'feedlinks'               => 'Flux',
 'feed-invalid'            => 'Type de flux invalide.',
+'feed-unavailable'        => 'Les flux de syndication ne sont pas disponibles sur {{SITENAME}}',
 'site-rss-feed'           => 'Flux RSS de $1',
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de "$1"',
@@ -527,7 +528,7 @@ Requête : $2',
 'viewsource'           => 'Voir le texte source',
 'viewsourcefor'        => 'pour $1',
 'actionthrottled'      => 'Action limitée',
-'actionthrottledtext'  => 'Pour lutter contre le pollupostage ("spam"), l’utilisation de cette action est limitée à un certain nombre de fois dans un laps temps assez court. Il s\'avère que vous avez dépassé cette limite. Essayez à nouveau dans quelques minutes.',
+'actionthrottledtext'  => "Pour lutter contre les pourriels (« spam »), l’utilisation de cette action est limitée à un certain nombre de fois dans un laps temps assez court. Il s'avère que vous avez dépassé cette limite. Essayez à nouveau dans quelques minutes.",
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de l’article pour pouvoir travailler dessus :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
@@ -772,7 +773,7 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 'permissionserrorstext'     => 'Vous n’avez pas la permission d’effectuer l’opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
 'recreate-deleted-warn'     => "'''Attention : Vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
-Demandez-vous s’il est réellement approprié de la recréer en vous référant au journal des suppressions affiché ci-dessous :",
+Demandez-vous s’il est réellement approprié de la recréer en vous référant à l’historique des suppressions affiché ci-dessous :",
 
 # "Undo" feature
 'undo-success' => 'Cette modification va être défaite. Veuillez confirmer les changements (visibles en bas de cette page), puis sauvegarder si vous êtes d’accord. Merci de motiver l’annulation dans la boîte de résumé.',
@@ -786,7 +787,7 @@ Demandez-vous s’il est réellement approprié de la recréer en vous référan
 La raison donnée par $3 était ''$2''.",
 
 # History pages
-'viewpagelogs'        => 'Voir le journal de cette page',
+'viewpagelogs'        => 'Voir l’historique de cette page',
 'nohistory'           => 'Il n’existe pas d’historique pour cette page.',
 'revnotfound'         => 'Version introuvable',
 'revnotfoundtext'     => 'La version précédente de cette page n’a pas pu être retrouvée. Veuillez vérifier l’URL que vous avez utilisée pour accéder à cette page.',
@@ -820,15 +821,15 @@ La raison donnée par $3 était ''$2''.",
 'rev-deleted-comment'         => '(commentaire supprimé)',
 'rev-deleted-user'            => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'           => '(entrée supprimée)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. Il peut y avoir des détails dans le [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} journal des suppressions]. </div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans le [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} journal des suppressions]. </div>',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].</div>',
 'rev-delundel'                => 'afficher/masquer',
 'revisiondelete'              => 'Supprimer/Restaurer des versions',
 'revdelete-nooldid-title'     => 'Pas de cible pour la révision',
 'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la ou les révision(s) cible(s) pour utiliser cette fonction.',
 'revdelete-selected'          => "{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :",
-'logdelete-selected'          => "{{PLURAL:$2|Événement de journal sélectionné|Événements de journal sélectionnés}} pour '''$1''' :",
-'revdelete-text'              => 'Les révisions et événements supprimés apparaîtront encore dans l’historique de l’article et les journaux, mais leur contenu textuel sera inaccessible au public.
+'logdelete-selected'          => "{{PLURAL:$2|Événement d’historique sélectionné|Événements d’historiques sélectionnés}} pour '''$1''' :",
+'revdelete-text'              => 'Les révisions et événements supprimés apparaîtront encore dans l’historique de l’article, mais leur contenu textuel sera inaccessible au public.
 
 D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.',
 'revdelete-legend'            => 'Mettre en place des restrictions de version :',
@@ -840,7 +841,7 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-suppress'          => 'Supprimer les données des administrateurs et des autres',
 'revdelete-hide-image'        => 'Masquer le contenu du fichier',
 'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
-'revdelete-log'               => 'Commentaire pour le journal :',
+'revdelete-log'               => 'Commentaire pour l’historique :',
 'revdelete-submit'            => 'Appliquer à la version sélectionnée',
 'revdelete-logentry'          => 'La visibilité de la version a été modifiée pour [[$1]]',
 'logdelete-logentry'          => 'La visibilité de l’événement a été modifiée pour [[$1]]',
@@ -850,7 +851,7 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'logdelete-success'           => 'Visibilité des événements changée avec succès.',
 
 # Oversight log
-'oversightlog'    => "Journal d'oversight",
+'oversightlog'    => 'Historique de supervision',
 'overlogpagetext' => 'la liste ci-dessous montre les suppressions et blocages récents dont le contenu est masqué même pour les administrateurs.
 Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
 
@@ -876,7 +877,7 @@ Assurez vous que ce changement puisse conserver la continuité de l'historique.
 'mergehistory-invalid-destination' => 'La page de destination doit avoir un titre valide.',
 
 # Merge log
-'mergelog'           => 'Journal des fusions',
+'mergelog'           => 'Historique des fusions',
 'pagemerge-logentry' => "[[$1]] fusionnée avec [[$2]] (révisions jusqu'au $3)",
 'revertmerge'        => 'Séparer',
 'mergelogpagetext'   => "Voici, ci-dessous, la liste des fusions les plus récentes de l'historique d'une page avec une autre.",
@@ -1015,7 +1016,7 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 
 # User rights log
 'rightslog'      => 'Historique des modifications de statut',
-'rightslogtext'  => 'Ceci est un journal des modifications de statut d’utilisateur.',
+'rightslogtext'  => 'Ceci est l’historique des modifications de statut d’utilisateur.',
 'rightslogentry' => 'a modifié les droits de l’utilisateur « $1 » de $2 à $3',
 'rightsnone'     => '(aucun)',
 
@@ -1053,15 +1054,16 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
 
 # Upload
-'upload'                      => 'Importer un fichier',
-'uploadbtn'                   => 'Importer le fichier',
-'reupload'                    => 'Copier à nouveau',
+'upload'                      => 'Téléverser un fichier',
+'uploadbtn'                   => 'Téléverser le fichier',
+'reupload'                    => 'Téléverser à nouveau',
 'reuploaddesc'                => 'Retour au formulaire.',
 'uploadnologin'               => 'Non connecté(e)',
-'uploadnologintext'           => 'Vous devez être [[Special:Userlogin|connecté]] pour copier des fichiers sur le serveur.',
+'uploadnologintext'           => 'Vous devez être [[Special:Userlogin|connecté]] pour téléverser des fichiers sur le serveur.',
 'upload_directory_read_only'  => 'Le serveur Web ne peut écrire dans le dossier cible ($1).',
 'uploaderror'                 => 'Erreur',
-'uploadtext'                  => 'Utilisez ce formulaire pour copier des fichiers, pour voir ou rechercher des images précédemment copiées consultez la [[Special:Imagelist|liste de fichiers copiés]], les copies et suppressions sont aussi enregistrées dans le [[Special:Log/upload|journal des copies]].
+'uploadtext'                  => 'Utilisez ce formulaire pour téléverser des fichiers.
+Pour voir ou rechercher des images précédemment téléversées, consultez la [[Special:Imagelist|liste de fichiers téléversés]]. Les copies et suppressions sont aussi enregistrées dans l’[[Special:Log/upload|historique des téléversements]].
 
 Pour inclure une image dans une page, utilisez un lien de la forme
 <b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.jpg]]</nowiki></b>,
@@ -1070,15 +1072,15 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'upload-permitted'            => 'Formats de fichiers autorisés : $1.',
 'upload-preferred'            => 'Formats de fichiers préférés : $1.',
 'upload-prohibited'           => 'Formats de fichiers interdits : $1.',
-'uploadlog'                   => 'Historique des importations',
-'uploadlogpage'               => 'Historique des importations de fichiers multimédia',
-'uploadlogpagetext'           => 'Voici la liste des derniers fichiers copiés sur le serveur.',
+'uploadlog'                   => 'Historique des téléversements',
+'uploadlogpage'               => 'Historique des téléversements de fichiers multimédia',
+'uploadlogpagetext'           => 'Voici la liste des derniers fichiers téléversés sur le serveur.',
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
 'filestatus'                  => "Statut du droit d'auteur",
 'filesource'                  => 'Source',
-'uploadedfiles'               => 'Fichiers copiés',
+'uploadedfiles'               => 'Fichiers téléversés',
 'ignorewarning'               => 'Ignorer l’avertissement et sauvegarder le fichier.',
 'ignorewarnings'              => 'Ignorer les avertissements lors de l’import',
 'minlength1'                  => 'Le noms de fichiers doivent comprendre au moins une lettre.',
@@ -1104,13 +1106,13 @@ Si le fichier vérifié est la même image (dans une meilleure résolution), il 
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez changer le nom du fichier.',
 'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà ; merci de retourner en arrière et de copier le fichier sous un nouveau nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune ; veuillez revenir en arrière et le renvoyer sous un autre nom. [[Image:$1|thumb|center|$1]]',
-'successfulupload'            => 'Copie réussie',
+'successfulupload'            => 'Téléversement réussi',
 'uploadwarning'               => 'Attention !',
 'savefile'                    => 'Sauvegarder le fichier',
-'uploadedimage'               => 'a importé « [[$1]] »',
-'overwroteimage'              => 'a importé une nouvelle version de « [[$1]] »',
-'uploaddisabled'              => 'Désolé, l’import de fichier est désactivé.',
-'uploaddisabledtext'          => 'La copie de fichiers est désactivée sur ce wiki.',
+'uploadedimage'               => 'a téléversé « [[$1]] »',
+'overwroteimage'              => 'a téléversé une nouvelle version de « [[$1]] »',
+'uploaddisabled'              => 'Désolé, le téléversement de fichiers est désactivé.',
+'uploaddisabledtext'          => 'Le téléversement de fichiers est désactivé sur {{SITENAME}}.',
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur Internet.',
 'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifer le fichier.',
@@ -1119,22 +1121,22 @@ Veuillez vérifer le fichier.',
 'destfilename'                => 'Nom sous lequel le fichier sera enregistré',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été copié, puis supprimé. Vous devriez vérifier le $1 avant de procéder à une nouvelle copie.',
-'upload-wasdeleted'           => "'''Attention : Vous êtes en train d'importer un fichier qui a déjà été supprimé auparavant.'''
+'upload-wasdeleted'           => "'''Attention : Vous êtes en train de recréer un fichier qui a déjà été supprimé auparavant.'''
 
-Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. Le journal des suppressions vous donnera les éléments d'information.",
+Vous devriez considérer s’il est opportun de continuer le téléversement de ce fichier. L’historique des suppressions vous donnera des éléments d’information.",
 'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
 
 'upload-proto-error'      => 'Protocole incorrect',
-'upload-proto-error-text' => 'L’import requiert des URLs commençant par <code>http://</code> ou <code>ftp://</code>.',
+'upload-proto-error-text' => 'Le téléversement requiert des URLs commençant par <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error'       => 'Erreur interne',
 'upload-file-error-text'  => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un administrateur système.',
-'upload-misc-error'       => 'Erreur d’import inconnue',
-'upload-misc-error-text'  => 'Une erreur inconnue est survenue pendant l’import. Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau. Si le problème persiste, contactez un administrateur système.',
+'upload-misc-error'       => 'Erreur de téléversement inconnue',
+'upload-misc-error-text'  => 'Une erreur inconnue est survenue pendant le téléversement. Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau. Si le problème persiste, contactez un administrateur système.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ne peut pas atteindre l’URL',
 'upload-curl-error6-text'  => 'L’URL fournie ne peut pas être atteinte. Veuillez vérifier que l’URL est correcte et que le site est en ligne.',
-'upload-curl-error28'      => 'Dépassement du délai lors de l’import',
+'upload-curl-error28'      => 'Dépassement du délai lors du téléversement',
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
 'license'            => 'Licence',
@@ -1171,12 +1173,11 @@ Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. 
 'nolinkstoimage'            => 'Aucune page ne contient cette image.',
 'sharedupload'              => 'Ce fichier est partagé et peut-être utilisé par d’autres projets.',
 'shareduploadwiki'          => 'Reportez-vous à la [$1 page de description] pour plus d’informations.',
-'shareduploadwiki-desc'     => '
-La description de son $1 est là affichée ci-dessous.',
-'shareduploadwiki-linktext' => 'Page de description du fichier',
+'shareduploadwiki-desc'     => 'La $1 du répertoire partagé comprend la description affichée ci-dessous.',
+'shareduploadwiki-linktext' => 'page de description du fichier',
 'noimage'                   => 'Aucun fichier possèdant ce nom n’existe, vous pouvez $1.',
 'noimage-linktext'          => 'en importer un',
-'uploadnewversion-linktext' => 'Copier une nouvelle version de ce fichier',
+'uploadnewversion-linktext' => 'Téléverser une nouvelle version de ce fichier',
 'imagelist_date'            => 'Date',
 'imagelist_name'            => 'Nom',
 'imagelist_user'            => 'Utilisateur',
@@ -1343,11 +1344,11 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 # Special:Log
 'specialloguserlabel'  => 'Utilisateur :',
 'speciallogtitlelabel' => 'Titre :',
-'log'                  => 'Journaux',
-'all-logs-page'        => 'Tous les journaux',
-'log-search-legend'    => 'Chercher dans les journaux',
+'log'                  => 'Historiques',
+'all-logs-page'        => 'Tous les historiques',
+'log-search-legend'    => 'Chercher dans les historiques',
 'log-search-submit'    => 'OK',
-'alllogstext'          => 'Affichage combiné des journaux de copie, suppression, protection, blocage, et administrateur. Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’utilisateur ou la page concernée.',
+'alllogstext'          => 'Affichage combiné des historiques de copie, suppression, protection, blocage, etc. Vous pouvez restreindre la vue en sélectionnant un type d’historique, un nom d’utilisateur ou une page ciblée.',
 'logempty'             => 'Il n’y a rien dans l’historique pour cette page.',
 'log-title-wildcard'   => 'Chercher les titres commençant par le texte suivant',
 
@@ -1481,7 +1482,7 @@ Voir $2 pour une liste des suppressions récentes.',
 'dellogpage'                  => 'Historique des suppressions',
 'dellogpagetext'              => 'Voici la liste des suppressions récentes.
 L’heure indiquée est celle du serveur (UTC).',
-'deletionlog'                 => 'journal',
+'deletionlog'                 => 'historique des suppressions',
 'reverted'                    => 'Rétablissement de la version précédente',
 'deletecomment'               => 'Motif de la suppression',
 'deleteotherreason'           => 'Motifs supplémentaires ou autres :',
@@ -1577,7 +1578,7 @@ Si une nouvelle page avec le même nom a été créée depuis la suppression, le
 'cannotundelete'               => 'La restauration a échoué. Un autre utilisateur a probablement déjà restauré la page.',
 'undeletedpage'                => "<big>'''La page $1 a été restaurée.'''</big>
 
-Consultez l’[[Special:Log/delete|historique des effacements]] pour voir la liste des récents effacements et restaurations de pages.",
+Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir la liste des récentes suppressions et restaurations de pages.",
 'undelete-header'              => 'Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir les pages récemment supprimées.',
 'undelete-search-box'          => 'Chercher une page supprimée',
 'undelete-search-prefix'       => 'Montrer les pages commençant par :',
@@ -1610,7 +1611,7 @@ $1',
 
 'sp-contributions-newbies'     => 'Ne montrer que les contributions des nouveaux utilisateurs',
 'sp-contributions-newbies-sub' => 'Liste des contributions des nouveaux utilisateurs. Les pages qui ont été supprimées ne sont pas affichées.',
-'sp-contributions-blocklog'    => 'Journal des blocages',
+'sp-contributions-blocklog'    => 'Historique des blocages',
 'sp-contributions-search'      => 'Chercher les contributions',
 'sp-contributions-username'    => 'Adresse IP ou nom d’utilisateur:',
 'sp-contributions-submit'      => 'Chercher',
@@ -1661,7 +1662,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipboptions'                  => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'autre',
 'ipbotherreason'              => 'Motif différent ou supplémentaire',
-'ipbhidename'                 => 'Masquer le nom d’utilisateur ou l’IP du journal des blocages, de la liste des blocages actifs et de la liste des utilisateurs',
+'ipbhidename'                 => 'Masquer le nom d’utilisateur ou l’IP de l’historique des blocages, de la liste des blocages actifs et de la liste des utilisateurs',
 'badipaddress'                => 'L’adresse IP n’est pas correcte.',
 'blockipsuccesssub'           => 'Blocage réussi',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] a été bloqué.<br />Vous pouvez consulter la [[Special:Ipblocklist|liste des comptes et des adresses IP bloqués]].',
@@ -1693,7 +1694,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'unblocklink'                 => 'débloquer',
 'contribslink'                => 'Contributions',
 'autoblocker'                 => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
-'blocklogpage'                => 'Journal des blocages',
+'blocklogpage'                => 'Historique des blocages',
 'blocklogentry'               => 'a bloqué « [[$1]] » - durée : $2 $3',
 'blocklogtext'                => 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
 'unblocklogentry'             => 'a débloqué « $1 »',
@@ -1824,7 +1825,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'importinterwiki'            => 'Import inter-wiki',
 'import-interwiki-text'      => 'Sélectionnez un wiki et un titre de page à importer.
 Les dates des versions et les noms des éditeurs seront préservés.
-Toutes les actions d’importation interwiki sont conservées dans le [[Special:Log/import|journal d’import]].',
+Toutes les actions d’importation interwiki sont consignées dans l’[[Special:Log/import|historique des importations]].',
 'import-interwiki-history'   => 'Copier toutes les versions de l’historique de cette page',
 'import-interwiki-submit'    => 'Importer',
 'import-interwiki-namespace' => 'Transférer les pages dans l’espace de nom :',
@@ -1841,8 +1842,8 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'importhistoryconflict'      => 'Un conflit a été détecté dans l’historique des versions (cette page a pu être importée auparavant).',
 'importnosources'            => 'Aucune source inter-wiki n’a été définie et la copie directe d’historique est désactivée.',
 'importnofile'               => 'Aucun fichier n’a été importé.',
-'importuploaderrorsize'      => 'Le téléchargement du fichier à importer a échoué. Sa taille est plus grande que celle autorisée.',
-'importuploaderrorpartial'   => 'Le téléchargement du fichier à importer a échoué. Celui-ci ne l’a été que partiellement.',
+'importuploaderrorsize'      => 'Le téléversement du fichier a échoué. Sa taille est supérieure au maximum autorisé.',
+'importuploaderrorpartial'   => 'Le téléversement du fichier a échoué. Il ne l’a été que partiellement.',
 'importuploaderrortemp'      => 'Le téléversement du fichier à importer a échoué. Un dossier temporaire est manquant.',
 'import-parse-failure'       => "Rupture dans l'analyse de l'import XML",
 'import-noarticle'           => 'Aucune page à importer !',
@@ -1896,7 +1897,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'tooltip-feed-atom'               => 'Flux Atom pour cette page',
 'tooltip-t-contributions'         => 'Voir la liste des contributions de cet utilisateur',
 'tooltip-t-emailuser'             => 'Envoyer un courriel à cet utilisateur',
-'tooltip-t-upload'                => 'Importer une image ou fichier média sur le serveur',
+'tooltip-t-upload'                => 'Téléverser une image ou fichier média sur le serveur',
 'tooltip-t-specialpages'          => 'Liste de toutes les pages spéciales',
 'tooltip-t-print'                 => 'Version imprimable de cette page',
 'tooltip-t-permalink'             => 'Lien permanent vers cette version de la page',
@@ -1917,7 +1918,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'tooltip-compareselectedversions' => 'Afficher les différences entre deux versions de cette page',
 'tooltip-watch'                   => 'Ajouter cette page à votre liste de suivi',
 'tooltip-recreate'                => 'Recréer la page même si celle-ci a été effacée',
-'tooltip-upload'                  => 'Lancer l’import',
+'tooltip-upload'                  => 'Lancer le téléversement',
 
 # Stylesheets
 'common.css'   => '/** Le CSS placé ici sera appliqué à toutes les apparences. */',

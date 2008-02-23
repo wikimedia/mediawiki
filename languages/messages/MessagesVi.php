@@ -371,6 +371,7 @@ $messages = array(
 'restorelink'             => '$1 sửa đổi đã xóa',
 'feedlinks'               => 'Nạp:',
 'feed-invalid'            => 'Định dạng feed không hợp lệ.',
+'feed-unavailable'        => 'Không có feed tại {{SITENAME}}',
 'site-rss-feed'           => '$1 mục RSS',
 'site-atom-feed'          => '$1 mục Atom',
 'page-rss-feed'           => 'Mục RSS của “$1”',

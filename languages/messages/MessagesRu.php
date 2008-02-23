@@ -466,11 +466,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|$1 удалённую правку|$1 удалённые правки|$1 удалённых правок}}',
 'feedlinks'               => 'В виде:',
 'feed-invalid'            => 'Неправильный тип канала для подписки.',
+'feed-unavailable'        => 'Ленты синдикации не доступны на сайте {{SITENAME}}',
 'site-rss-feed'           => '$1 - RSS лента',
 'site-atom-feed'          => '$1 - Atom лента',
 'page-rss-feed'           => '«$1» - RSS лента',
 'page-atom-feed'          => '«$1» - Atom лента',
-'red-link-title'          => '$1 (ещё не написана)',
+'red-link-title'          => '$1 (ещё не написано)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Статья',
