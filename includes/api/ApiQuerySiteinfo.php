@@ -75,7 +75,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		
 		$data = array ();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
-		$data['mainpage'] = $mainPage->getText();
+		$data['mainpage'] = $mainPage->getPrefixedText();
 		$data['base'] = $mainPage->getFullUrl();
 		$data['sitename'] = $wgSitename;
 		$data['generator'] = "MediaWiki $wgVersion";
