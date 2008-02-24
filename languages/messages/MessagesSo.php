@@ -185,7 +185,8 @@ $messages = array(
 'portal-url'        => 'Project:Bortaalka jaaliyada',
 'sitesupport'       => 'Tabarucid',
 
-'badaccess' => 'Qalad dhinaca idanka',
+'badaccess'        => 'Qalad dhinaca idanka',
+'badaccess-group0' => 'Laguuma ogala in aad sameyso waxaad dooneysid.',
 
 'retrievedfrom'           => 'Waxaa laga keenay "$1"',
 'youhavenewmessages'      => 'Waxaa kuu taala $1 ($2).',
@@ -199,6 +200,7 @@ $messages = array(
 'thisisdeleted'           => 'Fiiri ama dib u sooceli $1?',
 'viewdeleted'             => 'Fiiri $1?',
 'feedlinks'               => 'Quudinta wararka:',
+'red-link-title'          => '$1 (wali lama qorin)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Maqaal',
@@ -224,6 +226,9 @@ $messages = array(
 'protectedpagetext' => 'Beyjkan wuu xiranyahay si aan war loogabadalin.',
 
 # Login and logout pages
+'logouttext'                 => '<strong>Hada waa aad ka baxday.</strong>
+
+Waad sii isticmaali kartaa {{SITENAME}}han adoonlagu aqoon, ama gudaha ayaad gali kartaa markale adiga oo isticmaalaya gudagalkaagii hore ama mid kaduwan. OGEYSIIS waxaa lagayabaa beyjajka qaarkood in ay yiraahdaa wali gudaha ayaad kujirtaa, ilaa aad internet barowsarkaaaga aad nadiifiso.',
 'welcomecreation'            => "== Soo dhawoow, $1! ==
 
 Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} dooqaaga.",
@@ -239,6 +244,7 @@ Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} 
 'logout'                     => 'Ka bax',
 'userlogout'                 => 'Ka bax',
 'notloggedin'                => 'Gudaha kuma jirtid',
+'nologin'                    => 'Maheysatid gudagale? $1.',
 'nologinlink'                => 'Sameyso gudagale',
 'createaccount'              => 'Sameey gudagale',
 'gotaccount'                 => 'Waan heystaa gudagale? $1.',
@@ -264,6 +270,7 @@ Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} 
 'nouserspecified'            => 'Waa in aad gudagale keentaa.',
 'wrongpassword'              => 'Ereysirka waa qalad. Fadlan iskuday markale.',
 'wrongpasswordempty'         => 'Ereysir aan waxba ku jirin lama ogola. Fadlan iskuday markale.',
+'passwordtooshort'           => 'Eraygaaga sirta ah waan mid aan jirin ama aad u gaaban. Waa in uu ugu yaraan ahaadaa $1 xarf(ood) kana duwanaadaa magaca gudagalkaaga.',
 'mailmypassword'             => 'E-boosto ku dir ereysirka',
 'noemail'                    => 'E-boosto lagama haayo isticmaalaha "$1".',
 'mailerror'                  => 'Waxaa dhacay qalad markii loo diraayey E-boosto: $1',
@@ -298,13 +305,15 @@ oo ku saabsan arrimaha soo socdo looma soo diridoono',
 Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudagal.</strong>",
 'session_fail_preview_html' => "<strong>Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.</strong>
 
-''Sababtoo ah wikigaan wuxuu leeyahay HTML ceyriin ah, horfiirintiisa waxaa loo qariyey si looga hortago weerar ka yimaada JavaScript:ga.''
+''Sababtoo ah {{SITENAME}}han wuxuu leeyahay HTML ceyriin ah, horfiirintiisa waxaa loo qariyey si looga hortago weerar ka yimaada JavaScriptga.''
 
-<strong>Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudagal.</strong>",
+<strong>Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.</strong>",
 'yourtext'                  => 'Qoraalkaaga',
 'editingold'                => '<strong>DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
 Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'yourdiff'                  => 'Kaladuwanaanshaha',
+'semiprotectedpagewarning'  => "'''Ogeysiis:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
+'nocreate-loggedin'         => 'Laguuma ogola inaad beyjaj cusub ku sameysid {{SITENAME}}han.',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Ma' sameynkaro gudagal (akoon)",
@@ -323,6 +332,9 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 
 # Revision feed
 'history-feed-title' => 'Taariikhda caddadyaasha',
+'history-feed-empty' => 'Beyjka aad dooneyso majiro.
+Waxaa lagayaabaa in laga tir tiray wikigan, ama magacii laga badalay.
+Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 
 # Revision deletion
 'rev-delundel'        => "i'tus/qari",
@@ -339,6 +351,7 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'prevn'                 => 'Ka horeeya $1',
 'nextn'                 => 'Ku xiga $1',
 'viewprevnext'          => 'Fiiri ($1) ($2) ($3).',
+'powersearch'           => 'Raadi',
 
 # Preferences page
 'preferences'          => 'Dooqyada',
@@ -381,6 +394,10 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 
 # Upload
 'uploadnologin'   => 'Gudaha kuma jirtid',
+'ignorewarning'   => 'Iska dhagooley digniinta ee faylka keedi.',
+'ignorewarnings'  => 'Iska dhagooley digkiinwalba',
+'minlength1'      => 'Faylka magaciisa waa in uu ugu yaraan noqdaa hal xaraf.',
+'badfilename'     => 'Faylka magaciisa waxaa lagu badalay "$1".',
 'savefile'        => 'Faylka kaydi',
 'watchthisupload' => 'Boggaan waardiyey',
 
@@ -389,7 +406,16 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'byname'           => 'hab magaceed',
 'bydate'           => 'hab taariikheed',
 'bysize'           => 'hab kala weynaan',
+'nolinkstoimage'   => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 'shareduploadwiki' => 'Fadlan meeshaa $1 ka fiiri warbixin dheeraad ah.',
+
+# File deletion
+'filedelete'         => 'Tirtir $1',
+'filedelete-legend'  => 'Tirtit faylka',
+'filedelete-intro'   => "Waxaad tirtireysaa '''[[Media:$1|$1]]'''.",
+'filedelete-comment' => 'Sababta loo tirtiray:',
+'filedelete-submit'  => 'Tirtir',
+'filedelete-success' => "'''$1''' waala tirtiray.",
 
 # Random page
 'randompage' => 'Ku nasiibso bog',
@@ -414,6 +440,9 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'booksources-go' => 'Soco',
 
 'alphaindexline' => '$1 ilaa $2',
+
+# Special:Log
+'log-search-submit' => 'Soco',
 
 # Special:Allpages
 'nextpage'          => 'Bogga ku xiga ($1)',

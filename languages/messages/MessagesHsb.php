@@ -350,6 +350,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 wušmórnjenu wersiju|$1 wušmórnjenej wersiji|$1 wušmórnjene wersije|$1 wušmórnjenych wersijow}}',
 'feedlinks'               => 'Kanal:',
 'feed-invalid'            => 'Njepłaćiwy typ abonementa.',
+'feed-unavailable'        => 'Syndikaciske kanale na {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji njesteja',
 'site-rss-feed'           => '$1 RSS kanal',
 'site-atom-feed'          => 'Atom-kanal za $1',
 'page-rss-feed'           => 'RSS-kanal za „$1“',

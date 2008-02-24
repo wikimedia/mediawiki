@@ -83,7 +83,7 @@ $messages = array(
 'tog-watchmoves'              => 'לייג צו בלעטער וואס איך באוועג צו מיין אכטונג ליסטע',
 'tog-watchdeletion'           => 'לייגן בלעטער וואס איך מעקן אויס צו מיין אויפפאסונג ליסטע',
 'tog-minordefault'            => "באגרעניץ אלע עדיט'ס ביי דיפאלט אלס קליין",
-'tog-previewontop'            => 'צײַג דעם "פֿאָרויסיגע װײַזונג" גלײַך בײַם ערשטע באַאַרבעטונג',
+'tog-previewontop'            => 'צײַג די "פֿאָרויסיגע װײַזונג" גלײַך בײַ דער ערשטער באַאַרבעטונג',
 'tog-previewonfirst'          => 'ווייזט פאראויסדיגע ווייזונג אינעם ערשטען ענדערונג',
 'tog-nocache'                 => "ס'זאל זיך נישט קעשן די בלאט",
 'tog-enotifwatchlistpages'    => 'אימעיל מיך ווען בלעטער וואס איך פאס אויף ווערט גענדערט',
@@ -1145,7 +1145,7 @@ $NEWPAGE
 'tooltip-ca-nstab-project'      => 'זעהט די פראיעקט בלאט',
 'tooltip-ca-nstab-image'        => 'זעהט די בילד בלאט',
 'tooltip-ca-nstab-mediawiki'    => 'זעהט די סיסטעם מעסעזשעס',
-'tooltip-ca-nstab-template'     => 'זעהט די מוסטער',
+'tooltip-ca-nstab-template'     => 'זעט דעם מוסטער',
 'tooltip-ca-nstab-help'         => 'זעהט די הילף בלעטער',
 'tooltip-ca-nstab-category'     => 'זעהט די קאטעגאריע בלאט',
 

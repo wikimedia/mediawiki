@@ -272,7 +272,8 @@ $messages = array(
 'sitesupport'       => 'Dhurime',
 'sitesupport-url'   => 'Project:Dhurime',
 
-'badaccess' => 'Gabim leje',
+'badaccess'        => 'Gabim leje',
+'badaccess-group1' => 'Ky veprim është i limituar për përdoruesit e grupit $1',
 
 'versionrequired'     => 'Nevojitet versioni $1 i MediaWiki-it',
 'versionrequiredtext' => 'Nevojitet versioni $1 i MediaWiki-it për përdorimin e kësaj faqeje. Shikoni [[Special:Version|versionin]] tuaj.',
@@ -367,6 +368,7 @@ Funksioni: $1<br />
 Pyetja: $2',
 'viewsource'           => 'Shikoni tekstin',
 'viewsourcefor'        => 'e $1',
+'protectedpagetext'    => 'Kjo faqe është mbyllur për të ndaluar redaktimin.',
 'viewsourcetext'       => 'Ju mund të shikoni dhe kopjoni tekstin burimor të kësaj faqe:',
 'protectedinterface'   => 'Kjo faqe përmban tekst për pamjen gjuhësorë të softuerit dhe është e mbrojtur për të penguar keqpërdorimet.',
 'editinginterface'     => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin ose pamjen e softuerit. Ndryshimet e kësaj faqeje do të prekin tekstin ose pamjen për të gjithë përdoruesit e tjerë.",
@@ -414,6 +416,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'prefs-help-realname'        => '* Emri i vërtetë (opsion): Për të përmendur emrin tuaj si kontribuues në varësi nga puna juaj këtu.',
 'loginerror'                 => 'Gabim hyrje',
 'prefs-help-email'           => '* Email (me dëshirë): mund të përdoret për tu kontaktuar nga përdorues të tjerë pa u treguar adresën, për ndërrimin e fjalëkalimit të llogarisë nëse e harroni, apo mjete të tjera.',
+'prefs-help-email-required'  => 'Kërkohet e-mail adresa .',
 'nocookiesnew'               => 'Llogaria e përdoruesit u hap, por nuk keni hyrë brenda akoma. {{SITENAME}} përdor "biskota" për të futur brenda përdoruesit. Prandaj, duhet të pranoni biskota dhe të provoni përsëri me nofkën dhe fjalëkalimin tuaj.',
 'nocookieslogin'             => '{{SITENAME}} përdor "biskota" për të futur brenda përdoruesit. Prandaj, duhet të pranoni "biskota" dhe të provoni përsëri.',
 'noname'                     => 'Nuk keni dhënë një emër të saktë.',
@@ -432,6 +435,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 Në qoftë se nuk e përdorni këtë fjalëkalim të ri, atëherë do të vazhdojë të përdoret ai i vjetri. Nuk ka nevojë ta ndryshoni fjalëkalimin në qoftë se nuk ishit ju që kërkuat fjalëkalim të ri.',
 'noemail'                    => 'Regjistri nuk ka adresë për përdoruesin "$1".',
 'passwordsent'               => 'Një fjalëkalim i ri është dërguar tek adresa e regjistruar për "$1". Provojeni përsëri hyrjen mbasi ta keni marrë fjalëkalimin.',
+'blocked-mailpassword'       => 'IP adresa juaj është bllokuar , si e tillë nuk lejohet të përdor funksionin pë rikthim të fjalkalimit , në mënyrë që të parandalohet abuzimi.',
 'eauthentsent'               => 'Një eMail konfirmues u dërgua te adresa e dhënë.
 Para se të pranohen eMail nga përdoruesit e tjerë, duhet që adressa e juaj të vërtetohet. 
 Ju lutemi ndiqni këshillat në eMailin e pranuar.',
@@ -511,6 +515,7 @@ Numri idendifikues i bllokimit tuaj është $5. Ju lutemi përfshijeni këtë Nu
 'whitelistacctext'         => 'Duhet të [[Special:Userlogin|hyni brënda]] dhe të keni të drejta të posaçme pasi tu lejohet të hapni llogari në Wiki.',
 'confirmedittitle'         => 'Nevojitet adresë email-i e vërtetuar për të redaktuar',
 'confirmedittext'          => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[Special:Preferences|parapëlqimet]] e juaja.',
+'nosuchsectiontitle'       => 'Asnjë seksion i tillë nuk ekziston',
 'loginreqtitle'            => 'Detyrohet hyrja',
 'loginreqlink'             => 'hyni',
 'loginreqpagetext'         => 'Ju duhet $1 për të parë faqe e tjera.',
@@ -640,6 +645,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 
 <span style="display:block; font-size: 89%; margin-left:.2em">Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.</span>
 </span>',
+'noexactmatch-nocreate' => "'''Faqja e titulluar \"\$1\" nuk ekziston'''",
 'titlematches'          => 'Tituj faqesh që përputhen',
 'notitlematches'        => 'Nuk ka asnjë titull faqeje që përputhet',
 'textmatches'           => 'Tekst faqesh që përputhet',
@@ -659,6 +665,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 # Preferences page
 'preferences'              => 'Parapëlqimet',
 'mypreferences'            => 'Parapëlqimet',
+'prefs-edits'              => 'Numri i redaktimeve:',
 'prefsnologin'             => 'Nuk keni hyrë brenda',
 'prefsnologintext'         => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të ndryshuar parapëlqimet e përdoruesit.',
 'prefsreset'               => 'Parapëlqimet janë rikthyer siç ishin.',
@@ -722,9 +729,11 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'userrights-editusergroup'   => 'Anëtarësimi tek grupet',
 'saveusergroups'             => 'Ruaj Grupin e Përdoruesve',
 'userrights-groupsmember'    => 'Anëtar i:',
+'userrights-groupsremovable' => 'Grupet që mund të hiqen:',
 'userrights-groupsavailable' => 'Të mundshme:',
 'userrights-groupshelp'      => 'Duke zgjedhur nga lista e anëtarësimit mund të çanëtarësosh, dhe duke zgjedhur nga lista e grupeve të mundshme mund të anëtarësosh. Nuk do të ndryshojë anëtarësimi tek grupet e pazgjedhura. Mund të zgjedhësh ose çzgjedhësh duke mbajtur shtypur butonin Ctrl dhe majtas-shtypur.',
 'userrights-reason'          => 'Arsyeja për ndryshimin:',
+'userrights-available-none'  => 'Nuk ju lejohet anëtarsimi.',
 
 # Groups
 'group'            => 'Grupi:',
@@ -750,6 +759,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 # Recent changes
 'recentchanges'                     => 'Ndryshime së fundmi',
 'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
+'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
 'rcnote'                            => 'Më poshtë janë <strong>$1</strong> ndryshime së fundmi gjatë <strong>$2</strong> ditëve sipas të dhënave nga $3.',
 'rcnotefrom'                        => 'Më poshtë janë ndryshime së fundmi nga <b>$2</b> (treguar deri në <b>$1</b>).',
 'rclistfrom'                        => 'Tregon ndryshime së fundmi duke filluar nga $1',
@@ -1597,9 +1607,13 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'exif-lightsource-11'  => 'Hije',
 'exif-lightsource-255' => 'Tjetër burim drite',
 
+'exif-sensingmethod-1' => 'e Padefinuar',
+
 'exif-scenecapturetype-1' => 'Peizazh',
 'exif-scenecapturetype-2' => 'Portret',
 'exif-scenecapturetype-3' => 'Pamje nate',
+
+'exif-gaincontrol-0' => 'Asnjë',
 
 'exif-contrast-0' => 'Normale',
 'exif-contrast-1' => 'I dobët',
@@ -1707,6 +1721,11 @@ $1',
 'articletitles'    => "Artikuj që fillojnë me ''$1''",
 'hideresults'      => 'Fshih rezultatet',
 
+# Multipage image navigation
+'imgmultipagenext' => 'faqja tjetër →',
+'imgmultigo'       => 'Shko!',
+'imgmultigotopre'  => 'Shko tek kjo faqe',
+
 # Table pager
 'table_pager_next'         => 'Faqja më pas',
 'table_pager_prev'         => 'Faqja më parë',
@@ -1721,6 +1740,24 @@ $1',
 'autosumm-replace' => "Faqja u zëvendësua me '$1'",
 'autoredircomment' => 'Përcjellim te [[$1]]',
 'autosumm-new'     => 'Faqe e re: $1',
+
+# Watchlist editor
+'watchlistedit-noitems'       => 'Lista juaj mbikqyrëse nuk ka titull.',
+'watchlistedit-normal-title'  => 'Redakto listën mbikqyrëse',
+'watchlistedit-normal-legend' => 'Largo titujt nga lista mbikqyrëse',
+'watchlistedit-normal-submit' => 'Largo Titujt',
+'watchlistedit-raw-titles'    => 'Titujt:',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Shih dhe redakto listën mbikqyrëse.',
+
+# Special:Version
+'version-other'            => 'Të tjera',
+'version-version'          => 'Verzioni',
+'version-license'          => 'Liqenca',
+'version-software'         => 'Softverët e instaluar',
+'version-software-product' => 'Produkti',
+'version-software-version' => 'Verzioni',
 
 # Special:Filepath
 'filepath'        => 'Vendndodhja e skedave',

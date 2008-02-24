@@ -624,7 +624,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'template-semiprotected'    => '（半保護）',
 'edittools'                 => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'             => 'ページを作成できません',
-'nocreatetext'              => 'Betawikiではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',
+'nocreatetext'              => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',
 'nocreate-loggedin'         => '{{SITENAME}}で新しいページを作成する権限がありません。',
 'permissionserrors'         => '認証エラー',
 'permissionserrorstext'     => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',

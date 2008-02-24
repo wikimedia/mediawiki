@@ -167,7 +167,7 @@ $messages = array(
 
 ==Kiel komenci==
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfigurajxoj] (angla)
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfiguraĵoj] (angla)
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angla)
 * [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
 
@@ -363,7 +363,7 @@ Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).',
 'directorycreateerror' => 'Ne povis krei dosierujon "$1".',
 'filenotfound'         => 'Neeblis trovi dosieron "$1".',
 'fileexistserror'      => 'Ne eblas skribi en la dosieron "$1": dosiero ekzistas',
-'unexpected'           => 'Neatendita valuto: "$1"="$2".',
+'unexpected'           => 'Neatendita valoro: "$1"="$2".',
 'formerror'            => 'Eraro: neeblis liveri formulon',
 'badarticleerror'      => 'Tiun ĉi agon oni ne povas apliki al tiu ĉi artikolo.',
 'cannotdelete'         => 'Neeblis forigi la elektitan paĝon aŭ dosieron.',
@@ -481,6 +481,7 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 # Password reset dialog
 'resetpass'               => 'Refaru konto-pasvorton',
 'resetpass_announce'      => 'Vi ensalutis kun provizora retposxtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton cxi tien:',
+'resetpass_text'          => '<!-- Aldonu tekston cxi tien -->',
 'resetpass_header'        => 'Refaru pasvorton.',
 'resetpass_submit'        => 'Faru pasvorton kaj ensalutu',
 'resetpass_success'       => 'Via pasvorto estis sukcese sxangxita! Nun ensalutanta vin...',
@@ -731,11 +732,16 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventoj}} al [[$3]] farita por reĝimo $2',
 
 # History merging
-'mergehistory-box'            => 'Kunigu reviziojn de du paĝoj:',
-'mergehistory-from'           => 'Fontpaĝo:',
-'mergehistory-into'           => 'Celpaĝo:',
-'mergehistory-no-source'      => 'Fontpaĝo $1 ne ekzistas.',
-'mergehistory-no-destination' => 'Celpaĝo $1 ne ekzistas.',
+'mergehistory'                     => 'Kunigu historiojn de paĝoj',
+'mergehistory-box'                 => 'Kunigu reviziojn de du paĝoj:',
+'mergehistory-from'                => 'Fontpaĝo:',
+'mergehistory-into'                => 'Celpaĝo:',
+'mergehistory-submit'              => 'Kunigu reviziojn',
+'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi',
+'mergehistory-no-source'           => 'Fontpaĝo $1 ne ekzistas.',
+'mergehistory-no-destination'      => 'Celpaĝo $1 ne ekzistas.',
+'mergehistory-invalid-source'      => 'Fontpaĝo devas esti valida titolo.',
+'mergehistory-invalid-destination' => 'Celpaĝo devas esti valida titolo.',
 
 # Merge log
 'mergelog'           => 'Loglibro de kunigoj',
@@ -862,9 +868,10 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'group-sysop-member'         => 'Sisopo',
 'group-bureaucrat-member'    => 'Burokrato',
 
-'grouppage-bot'        => '{{ns:project}}:Robotoj',
-'grouppage-sysop'      => '{{ns:project}}:Administrantoj',
-'grouppage-bureaucrat' => '{{ns:project}}:Burokratoj',
+'grouppage-autoconfirmed' => '{{ns:project}}:Aŭtomate konfirmitaj uzantoj',
+'grouppage-bot'           => '{{ns:project}}:Robotoj',
+'grouppage-sysop'         => '{{ns:project}}:Administrantoj',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burokratoj',
 
 # User rights log
 'rightslog'      => 'Loglibro de uzanto-rajtoj',
@@ -1052,7 +1059,8 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'randompage-nopages' => 'Ne ekzistas paĝoj en ĉi tiu nomspaco.',
 
 # Random redirect
-'randomredirect' => 'Hazarda alidirekto',
+'randomredirect'         => 'Hazarda alidirekto',
+'randomredirect-nopages' => 'Estas neniuj alidirektiloj en ĉi nomspaco.',
 
 # Statistics
 'statistics'             => 'Statistiko',
@@ -1498,6 +1506,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'unblocklogentry'             => '$1 estis malbarita',
 'block-log-flags-anononly'    => 'nur anonimaj uzantoj',
 'block-log-flags-nocreate'    => 'kreado de kontoj malebligita',
+'block-log-flags-noautoblock' => 'aŭtoblokado malebligita',
 'block-log-flags-noemail'     => 'retpoŝto blokita',
 'ipb_expiry_invalid'          => 'Nevalida blokdaŭro.',
 'ipb_already_blocked'         => '"$1" estas jam forbarita',
@@ -1626,6 +1635,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'import-interwiki-history' => 'Kopiu ĉiuj versioj el historio por ĉi pago.',
 'import-interwiki-submit'  => 'Importi',
 'importtext'               => 'Bonvole eksportu la dosieron el la fonta vikio per la ilo Speciala:Export, konservu ĝin sur via disko kaj poste alŝutu ĝin tien ĉi.',
+'importstart'              => 'Importante paĝojn...',
 'import-revision-count'    => '$1 {{PLURAL:$1|versio|versioj}}',
 'importnopages'            => 'Neniu paĝo por importi.',
 'importfailed'             => 'Malsukcesis la importo: $1',
@@ -1743,7 +1753,10 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'patrol-log-auto' => '(aŭtomata)',
 
 # Image deletion
-'deletedrevision' => 'Forigita malnova versio $1',
+'deletedrevision'      => 'Forigita malnova versio $1',
+'filedeleteerror-long' => 'Eraroj renkontritaj kiam forigante la dosieron:
+
+$1',
 
 # Browsing diffs
 'previousdiff' => '← Iru al antaŭa ŝanĝo',
@@ -1755,6 +1768,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'imagemaxsize'         => 'Elmontru bildojn en bildpriskribaj paĝoj je maksimume :',
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 paĝoj',
+'file-info'            => '(pezo de dosiero: $1, MIME-tipo: $2)',
 'file-info-size'       => '($1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4)',
 'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',
 'svg-long-desc'        => '(SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3)',
@@ -1767,13 +1781,14 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'noimages'     => 'Nenio videbla.',
 
 # Bad image list
-'bad_image_list' => 'La formato de la listo de malbonaj bildoj estas jen:
+'bad_image_list' => 'La formato estas jen:
 
-Nur listeroj (kun linio komence de steleto *) estas konsiderata. La komenca ligilo de linio devas esti ligilo al malbona bildo. Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la bildo estas permesita esti montrata.)',
+Nur listeroj (kun linio komence de steleto *) estas konsiderata. La komenca ligilo de linio devas esti ligilo al malbona bildo. 
+Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la bildo estas permesita esti montrata.)',
 
 # Metadata
 'metadata'          => 'Metadatumo',
-'metadata-help'     => 'Ĉi tiu dosiero enhavas pluan informon, verŝajne aldonita de la cifereca fotilo aux skanilo uzata krei aux skani ĝin. Se la dosiero estis ŝanĝita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
+'metadata-help'     => 'Ĉi dosiero enhavas plian informon, verŝajne aldonita de la cifereca fotilo aux skanilo uzata krei aux skani ĝin. Se la dosiero estis ŝanĝita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
 'metadata-expand'   => 'Montru etendajn detalojn',
 'metadata-collapse' => 'Kaŝu etendajn detalojn',
 'metadata-fields'   => 'La jenaj EXIF-metadatumaj kampoj estos inkluzivitaj en bildo-paĝoj kiam la metadatuma tabelo estas disfaldigita. Aliaj estos kaŝita defaŭlte.
@@ -1786,13 +1801,14 @@ Nur listeroj (kun linio komence de steleto *) estas konsiderata. La komenca ligi
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'      => 'Larĝeco',
-'exif-imagelength'     => 'Alteco',
-'exif-artist'          => 'Kreinto',
-'exif-pixelxdimension' => 'Valind image height',
-'exif-aperturevalue'   => 'Aperturo',
-'exif-brightnessvalue' => 'Heleco',
-'exif-contrast'        => 'Kontrasto',
+'exif-imagewidth'       => 'Larĝeco',
+'exif-imagelength'      => 'Alteco',
+'exif-ycbcrpositioning' => 'Y kaj C situado',
+'exif-artist'           => 'Kreinto',
+'exif-pixelxdimension'  => 'Valind image height',
+'exif-aperturevalue'    => 'Aperturo',
+'exif-brightnessvalue'  => 'Heleco',
+'exif-contrast'         => 'Kontrasto',
 
 'exif-unknowndate' => 'Nekonata dato',
 
@@ -1803,6 +1819,8 @@ Nur listeroj (kun linio komence de steleto *) estas konsiderata. La komenca ligi
 'exif-subjectdistance-value' => '$1 metroj',
 
 'exif-meteringmode-0' => 'Nekonata',
+
+'exif-sharpness-0' => 'Ordinara',
 
 # External editor support
 'edit-externally'      => 'Ŝanĝu ĉi dosieron per ekstera softvaro',
@@ -1828,6 +1846,7 @@ Retpoŝta programo sciigis: $1',
 'confirmemail_success'    => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
 'confirmemail_loggedin'   => 'Via retadreso estas nun konfirmita.',
 'confirmemail_error'      => 'Io misokazis dum konservo de via konfirmo.',
+'confirmemail_subject'    => '{{SITENAME}} konfirmado de retadreso',
 'confirmemail_body'       => 'Iu, verŝajne vi ĉe la IP-adreso $1, enregistrigis per tiu 
 ĉi retpoŝtadreso la konton "$2" ĉe {{SITENAME}}.
 
@@ -1867,13 +1886,17 @@ $1',
 'confirm_purge_button' => 'Bone',
 
 # AJAX search
-'articletitles' => "Artikoloj komencante de ''$1''",
-'hideresults'   => 'Kaŝu rezultojn',
+'searchcontaining' => "Serĉu paĝojn enhavantajn ''$1''.",
+'searchnamed'      => "Serĉu paĝojn nomatajn ''$1''.",
+'articletitles'    => "Artikoloj komencante de ''$1''",
+'hideresults'      => 'Kaŝu rezultojn',
+'useajaxsearch'    => 'Uzu AJAX serĉon',
 
 # Multipage image navigation
 'imgmultipageprev' => '← antaŭa paĝo',
 'imgmultipagenext' => 'sekva paĝo →',
 'imgmultigo'       => 'Ek!',
+'imgmultigotopre'  => 'Iru al paĝon',
 
 # Table pager
 'ascending_abbrev'         => 'sprn',
@@ -1886,6 +1909,7 @@ $1',
 'table_pager_empty'        => 'Neniaj rezultoj',
 
 # Auto-summaries
+'autosumm-replace' => "Anstataŭigante paĝojn kun '$1'",
 'autoredircomment' => 'Redirektante al [[$1]]',
 'autosumm-new'     => 'Nova paĝo: $1',
 
@@ -1894,8 +1918,11 @@ $1',
 'livepreview-ready'   => 'Ŝargiĝadas… Preta!',
 
 # Watchlist editor
+'watchlistedit-noitems'      => 'Via atentaro enhavas neniujn titolojn.',
 'watchlistedit-normal-title' => 'Redaktu atentaron',
+'watchlistedit-normal-done'  => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}} de via atentaro:',
 'watchlistedit-raw-titles'   => 'Titoloj:',
+'watchlistedit-raw-done'     => 'Via atentaro estas ĝisdatigita.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Montru koncernajn ŝanĝojn',
@@ -1903,8 +1930,9 @@ $1',
 'watchlisttools-raw'  => 'Redakti krudan atentaron',
 
 # Special:Version
-'version-version' => 'Versio',
-'version-license' => 'Permesilo',
+'version-version'          => 'Versio',
+'version-license'          => 'Permesilo',
+'version-software-version' => 'Versio',
 
 # Special:Filepath
 'filepath'         => 'Dosiera pado',

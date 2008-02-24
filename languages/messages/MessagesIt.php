@@ -374,6 +374,7 @@ I seguenti collegamenti sono in lingua inglese:
 'restorelink'             => '{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Modalità di sottoscrizione del feed non valida.',
+'feed-unavailable'        => 'Non sono disponibili feed per i contenuti di {{SITENAME}}',
 'site-rss-feed'           => 'Feed RSS di $1',
 'site-atom-feed'          => 'Feed Atom di $1',
 'page-rss-feed'           => 'Feed RSS per "$1"',

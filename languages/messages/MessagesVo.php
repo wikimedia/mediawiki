@@ -1708,6 +1708,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gpslatitude'         => 'Videt',
 'exif-gpslongituderef'     => 'Lunet Lofüdik u Vesüdik',
 'exif-gpslongitude'        => 'Lunet',
+'exif-gpsaltitude'         => 'Geilot',
 'exif-gpsdestlatitude'     => 'Zeilavidet',
 'exif-gpsdestlongitude'    => 'Zeilalunet',
 'exif-gpsareainformation'  => 'Nem topäda: GPS',
