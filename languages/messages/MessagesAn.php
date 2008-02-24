@@ -306,7 +306,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Informazión sobre {{SITENAME}}',
-'aboutpage'         => 'Project:Informazión sobre',
+'aboutpage'         => 'Project:Sobre',
 'bugreports'        => "Informes d'errors d'o software",
 'bugreportspage'    => "Project:Informes d'errors",
 'copyright'         => 'O conteniu ye disponible baxo a lizenzia $1.',
@@ -1112,11 +1112,11 @@ PICT # misz.
 'nolinkstoimage'            => 'Denguna pachina tiene un binclo ta ista imachen.',
 'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos.',
 'shareduploadwiki'          => 'Ta más informazión, consulte $1.',
-'shareduploadwiki-desc'     => "A descripzión d'a suyo $1 s'amuestra en o cobaxo.",
+'shareduploadwiki-desc'     => "A descripzión d'o suyo $1 s'amuestra en o cobaxo.",
 'shareduploadwiki-linktext' => "pachina de descripzión de l'archibo",
 'noimage'                   => 'No bi ha garra archibo con ixe nombre, pero puede $1.',
 'noimage-linktext'          => 'cargar-lo',
-'uploadnewversion-linktext' => "Cargar una nueba bersión d'ista archibo",
+'uploadnewversion-linktext' => "Cargar una nueba bersión d'iste archibo",
 'imagelist_date'            => 'Calendata',
 'imagelist_name'            => 'Nombre',
 'imagelist_user'            => 'Usuario',

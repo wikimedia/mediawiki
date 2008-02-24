@@ -559,7 +559,7 @@ Se chegou aquí por erro, simplemente prema no botón '''para atrás''' do seu n
 'noarticletext'             => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist' => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'            => "'''Nota:''' Despois de gravar, cómpre limpar a memoria ''caché'' do seu navegador para ver os cambios: '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (\"Cmd-Maiúsculas-R\" nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que clica en \"Refrescar\" ou prema \"Ctrl-F5\"; , '''Opera:''' prema ''F5''. '''Konqueror:''': simplemente prema no botón \"Recargar\" ou prema \"F5\"; os usuarios de '''Opera''' pode que teñan que limpar completamente a caché en '''Ferramentas→Preferencias'''.",
-'usercssjsyoucanpreview'    => '<strong>Nota:</strong> Use o botón de "Vista previa" para verificar o novo css/js antes de gardalo.',
+'usercssjsyoucanpreview'    => '<strong>Nota:</strong> Use o botón "Mostrar vista previa" para verificar o novo css/js antes de gardalo.',
 'usercsspreview'            => "'''Lembre que só está avaliando o uso do css, non foi aínda gardado!'''",
 'userjspreview'             => "'''Lembre que só está testando/previsualizando o seu javascript de usuario, non foi aínda gardado!'''",
 'userinvalidcssjstitle'     => "'''Aviso:''' Non hai ningún tema \"\$1\". Lembre que as páxinas .css e .js utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/monobook.css no canto de {{ns:user}}:Foo/Monobook.css.",

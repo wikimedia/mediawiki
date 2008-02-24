@@ -148,6 +148,7 @@ $messages = array(
 'delete'           => 'ስርዝ',
 'deletethispage'   => 'ይህን ገጽ ሰርዝ',
 'protect'          => 'ጠብቅ',
+'protect_change'   => 'የመቆለፍ ደረጃ ለመቀይር',
 'newpage'          => 'አዲስ ገጽ',
 'talkpage'         => 'ስለዚሁ ገጽ ለመወያየት',
 'talkpagelinktext' => 'ውይይት',
@@ -450,7 +451,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'grouppage-sysop' => '{{ns:project}}:መጋቢዎች',
 
 # User rights log
-'rightslog' => 'የአባል መብቶች መዝገብ',
+'rightslog'      => 'የአባል መብቶች መዝገብ',
+'rightslogtext'  => 'ይህ መዝገብ የአባል መብቶች ሲለወጡ ይዘረዝራል።',
+'rightslogentry' => 'የ$1 ማዕረግ ከ$2 ወደ $3 ለወጠ',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
@@ -719,6 +722,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'excontent'                   => 'ይዞታ፦ «$1» አለ።',
 'excontentauthor'             => "ይዞታ '$1' አለ (የጻፈበትም '$2' ብቻ ነበር)",
 'exbeforeblank'               => 'ባዶ፤ ከተደመሰሰ በፊት ይዞታው «$1» አለ።',
+'delete-confirm'              => '«$1» ለማጥፋት',
 'delete-legend'               => 'ለማጥፋት',
 'historywarning'              => 'ማስጠንቀቂያ፦ ለዚሁ ገጽ የዕትም ታሪክ ደግሞ ሊጠፋ ነው! :',
 'confirmdeletetext'           => 'አንድ ገጽ ወይም ስዕል ከነለውጦቹ በሙሉ ከዚሁ {{SITENAME}} ሊጠፋ ነው! ይህን ማድረግዎ ያሠቡበት መሆኑንና ማጥፋቱ በፖሊሲ ተገቢ እንደሆነ እባክዎ ያረጋግጡ፦',
@@ -774,10 +778,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'restriction-level-autoconfirmed' => 'በከፊል ተቆልፎ',
 
 # Undelete
-'undelete'     => 'የተደለዘ ገጽ ለመመለስ',
-'undeletepage' => 'የተደለዘ ገጽ ለመመለስ',
-'undeletebtn'  => 'ይመለስ',
-'undeletelink' => 'ይመለስ',
+'undelete'          => 'የተደለዘ ገጽ ለመመለስ',
+'undeletepage'      => 'የተደለዘ ገጽ ለመመለስ',
+'undeleteextrahelp' => "እትሞቹን በሙሉ ለመመልስ፣ ሳጥኖቹ ሁሉ ባዶ ሆነው ይቆዩና 'ይመለስ' የሚለውን ይጫኑ። <br/>አንዳንድ እትም ብቻ ለመመልስ፣ የተፈለገውን እትሞች በየሳጥኖቹ አመልክተው 'ይመለስ' ይጫኑ። <br/>'ባዶ ይደረግ' ቢጫን፣ ማጠቃልያውና ሳጥኖቹ ሁሉ እንደገና ባዶ ይሆናሉ።",
+'undeletebtn'       => 'ይመለስ',
+'undeletelink'      => 'ይመለስ',
+'undeletereset'     => 'ባዶ ይደረግ',
+'undeletecomment'   => 'ማጠቃልያ፦',
 
 # Namespace form on various pages
 'namespace'      => 'ዓይነት፦',
@@ -952,6 +959,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'markedaspatrolledtext' => 'የተመረጠው ዕትም የተመለከተ ሆኖ ተሳለፈ።',
 
 # Patrol log
+'patrol-log-line' => 'እትም $1 ከ$2 የተመለከተ ሆኖ አሳለፈ',
 'patrol-log-auto' => '(በቀጥታ)',
 
 # Browsing diffs

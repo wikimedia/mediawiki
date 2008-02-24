@@ -15,6 +15,7 @@
  * @author Nike
  * @author Siebrand
  * @author Mahitgar
+ * @author प्रणव कुलकर्णी
  */
 
 $namespaceNames = array(
@@ -470,7 +471,7 @@ $2',
 'loginlanguagelabel'         => 'भाषा: $1',
 
 # Password reset dialog
-'resetpass'               => 'परवलीचा शब्द पूर्वपदावर न्या (reset).',
+'resetpass'               => 'परवलीचा शब्द पुर्नयोजन(रिसेट)करा.',
 'resetpass_announce'      => 'तुम्ही इमेलमधून दिलेल्या तात्पुरत्या शब्दांकाने प्रवेश केलेला आहे. आपली सदस्य नोंदणी पूर्ण करण्यासाठी कृपया इथे नवीन परवलीचा शब्द द्या:',
 'resetpass_header'        => 'परवलीचे पुर्नयोजन करा',
 'resetpass_submit'        => 'परवलीचा शब्द टाका आणि प्रवेश करा',
@@ -1118,7 +1119,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 त्याची सरासरी संपादने  '''$5'''प्रतिपान,आणि '''$6''' भेटी प्रति संपादन.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]लांबी'''$7'''आहे.",
-'userstatstext'          => "सध्या '''1''' व्यक्ति मराठी मुक्त ज्ञानकोशाच्या [[Special:Listusers|सदस्य]] आहेत. यांपैकी '''$2'''(म्हणजे '''$4%''') सदस्यांना $5 अधिकार आहेत.",
+'userstatstext'          => "सध्या {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]| '''$1''' नोंदीकृत  [[Special:Listusers|सदस्य]]}} आहेत, पैकी'''$2''' (किंवा '''$4%''')सदस्यांना $5 अधिकार {{PLURAL:$2|आहे|आहेत }} .",
 'statistics-mostpopular' => 'सर्वाधिक बघितली जाणारी पाने',
 
 'disambiguations'      => 'नि:संदिग्धकरण पृष्ठे',
@@ -1370,7 +1371,9 @@ $NEWPAGE
 'editcomment'                 => 'बदलासोबतची नोंद होती : "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
+'sessionfailure'              => 'तुमच्या दाखल सत्रात काही समस्या दिसते;सत्र अपहारणा पासून काळजी घेण्याच्या दृष्टीने ही कृती रद्द केली गेली आहे.कपया आपल्या विचरकाच्या "back" कळीवर टिचकी मारा आणि तुम्ही ज्या पानावरून आला ते पुन्हा चढवा,आणि प्रत प्रयत्न करा.',
 'protectlogpage'              => 'सुरक्षा नोंदी',
+'protectlogtext'              => 'पानांना लावलेल्या ताळ्यांची आणि ताळे उघडण्याबद्दलच्या पानाची खाली सूची दिली आहे.सध्याच्या सुरक्षीत पानांबद्दलच्या माहितीकरिता [[Special:Protectedpages|सुरक्षीत पानांची सूची]] पहा.',
 'protectedarticle'            => '"[[$1]]" सुरक्षित केला',
 'modifiedarticleprotection'   => '"[[$1]]"करिता सुरक्षापातळी बदलली',
 'unprotectedarticle'          => '"[[$1]]" असुरक्षित केला.',
@@ -1413,31 +1416,43 @@ $NEWPAGE
 'restriction-level-all'           => 'कोणतीही पातळी',
 
 # Undelete
-'undelete'                   => 'वगळलेली पाने पाहा',
-'undeletepage'               => 'वगळलेली पाने पाहा आणि पुर्नस्थापित करा',
-'viewdeletedpage'            => 'काढून टाकलेले लेख पाहा',
-'undeletepagetext'           => 'खालील पाने वगळली आहेत तरी सुद्धा विदागारात जतन आहेत आणि पुर्न्स्थापित करणे शक्य आहे. विदागारातील साठवण ठरावीक कालावधीने स्वच्छ करता येते.',
-'undeleterevisions'          => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}विदागारात संचीत',
-'undelete-revision'          => '$1चे($2चे)आवर्तन $3 ने वगळले:',
-'undelete-nodiff'            => 'पूर्वीचे कोणतेही आवर्तन आढळले नाही.',
-'undeletebtn'                => 'वगळण्याची क्रिया रद्द करा',
-'undeletelink'               => 'पुर्न्स्थापित करा',
-'undeletereset'              => 'पूर्ववत',
-'undeletecomment'            => 'प्रतिक्रीया:',
-'undeletedarticle'           => '"[[$1]]" पुर्नस्थापित',
-'undeletedrevisions'         => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}} पुर्नस्थापित',
-'undeletedrevisions-files'   => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}}आणि {{PLURAL:$2|1 संचिका|$2 संचिका}} पुर्नस्थापित',
-'undeletedfiles'             => '{{PLURAL:$1|1 संचिका|$1 संचिका}} पुर्नस्थापित',
-'cannotundelete'             => 'वगळणे उलटवणे फसले; इतर कुणी तुमच्या आधी वगळणे उलटवले असु शकते.',
-'undelete-header'            => 'अलिकडील वगळलेल्या पानांकरिता [[Special:Log/delete|वगळलेल्या नोंदी]] पाहा.',
-'undelete-search-box'        => 'वगळलेली पाने शोधा',
-'undelete-search-prefix'     => 'पासून सूरू होणारी पाने दाखवा:',
-'undelete-search-submit'     => 'शोध',
-'undelete-no-results'        => 'वगळलेल्यांच्या विदांमध्ये जुळणारी पाने सापडली नाहीत.',
-'undelete-filename-mismatch' => '$1 वेळेचे, वगळलेल्या संचिकेचे आवर्तन उलटवता येत नाही: नजुळणारे संचिकानाव',
-'undelete-cleanup-error'     => 'न वापरलेली विदा संचिका "$1" वगळताना त्रूटी दाखवते.',
-'undelete-error-short'       => 'संचिकेचे वगळणे उलटवताना त्रूटी: $1',
-'undelete-error-long'        => 'संचिकेचे वगळणे उलटवताना त्रूटींचा अडथळा आला:
+'undelete'                     => 'वगळलेली पाने पाहा',
+'undeletepage'                 => 'वगळलेली पाने पाहा आणि पुर्नस्थापित करा',
+'viewdeletedpage'              => 'काढून टाकलेले लेख पाहा',
+'undeletepagetext'             => 'खालील पाने वगळली आहेत तरी सुद्धा विदागारात जतन आहेत आणि पुर्न्स्थापित करणे शक्य आहे. विदागारातील साठवण ठरावीक कालावधीने स्वच्छ करता येते.',
+'undeleteextrahelp'            => "संपूर्ण पान पुर्नस्थापित करण्याकरिता,सारे रकाने रिकामे ठेवा आणि '''''पुर्नस्थापन'''''वर टिचकी मारा.निवडक पुर्नस्थापन करण्याकरिता,ज्या आवर्तनांचे पुर्नस्थापन करावयाचे त्यांचे रकाने निवडा , आणि '''''पुर्नस्थापन'''''वर टिचकी मारा.'''''पुर्नयोजन ''''' वर टिचकी मारल्यास सारे रकाने आणि प्रतिक्रीया खिडकी रिकामी होईल.",
+'undeleterevisions'            => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}विदागारात संचीत',
+'undeletehistory'              => 'जर तुम्ही पान पुर्नस्थापित केले तर ,सारी आवर्तने इतिहासात पुर्नस्थापित होतील.
+वगळल्या पासून त्याच नावाचे नवे पान तयार केले गेले असेले तर, पुर्नस्थापित  आवर्तने पाठीमागील इतिहासात दिसतील.पुर्नस्थापना नंतर संचिकांच्या आवर्तनांवरील बंधने गळून पडतील याची नोंद घ्या.',
+'undeleterevdel'               => 'पृष्ठ पानाचे आवर्तन अर्धवट वगळले जाणार असेल तर पुर्नस्थापनाची कृती केली जाणार नाही.अशा प्रसंगी,तुम्ही अगदी अलिकडील आवर्तने अनचेक किंवा अनहाईड केलीच पाहिजे.
+तुम्हाला पहाण्याची परवानगी नसलेली संचिका आवर्तने पुर्नस्थापित केली जाणार नाहीत.',
+'undeletehistorynoadmin'       => 'हे पान वगळले गेले आहे.वगळण्याचे कारण खालील आढाव्यात,वगळण्यापूर्वी संपादीत करणार्‍या संपादकांच्या माहिती सोबत,दाखवले आहे. वगळलेल्या आवर्त्नांचा नेमका मजकुर केवळ प्रचालकांना उपलब्ध असेल.',
+'undelete-revision'            => '$1चे($2चे)आवर्तन $3 ने वगळले:',
+'undeleterevision-missing'     => 'अयोग्य अथवा नसापडणारे आवर्तन.तुमचा दुवा कदाचित चूकीचा असेल, किंवा आवर्तन पुर्नस्थापित केले गेले असेल किंवा विदागारातून वगळले असेल.',
+'undelete-nodiff'              => 'पूर्वीचे कोणतेही आवर्तन आढळले नाही.',
+'undeletebtn'                  => 'वगळण्याची क्रिया रद्द करा',
+'undeletelink'                 => 'पुर्न्स्थापित करा',
+'undeletereset'                => 'पूर्ववत',
+'undeletecomment'              => 'प्रतिक्रीया:',
+'undeletedarticle'             => '"[[$1]]" पुर्नस्थापित',
+'undeletedrevisions'           => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}} पुर्नस्थापित',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}}आणि {{PLURAL:$2|1 संचिका|$2 संचिका}} पुर्नस्थापित',
+'undeletedfiles'               => '{{PLURAL:$1|1 संचिका|$1 संचिका}} पुर्नस्थापित',
+'cannotundelete'               => 'वगळणे उलटवणे फसले; इतर कुणी तुमच्या आधी वगळणे उलटवले असु शकते.',
+'undeletedpage'                => "<big>'''$1ला पुर्नस्थापित केले'''</big>
+
+अलिकडिल वगळलेल्या आणि पुर्नस्थापितांच्या नोंदीकरिता [[Special:Log/delete|वगळल्याच्या नोंदी]] पहा .",
+'undelete-header'              => 'अलिकडील वगळलेल्या पानांकरिता [[Special:Log/delete|वगळलेल्या नोंदी]] पाहा.',
+'undelete-search-box'          => 'वगळलेली पाने शोधा',
+'undelete-search-prefix'       => 'पासून सूरू होणारी पाने दाखवा:',
+'undelete-search-submit'       => 'शोध',
+'undelete-no-results'          => 'वगळलेल्यांच्या विदांमध्ये जुळणारी पाने सापडली नाहीत.',
+'undelete-filename-mismatch'   => '$1 वेळेचे, वगळलेल्या संचिकेचे आवर्तन उलटवता येत नाही: नजुळणारे संचिकानाव',
+'undelete-bad-store-key'       => '$1वेळ दिलेली संचिका आवर्तन पुर्नस्थापित करता येत नाही:संचिका वगळण्यापुर्वी पासून मिळाली नव्हती.',
+'undelete-cleanup-error'       => 'न वापरलेली विदा संचिका "$1" वगळताना त्रूटी दाखवते.',
+'undelete-missing-filearchive' => 'संचिका विदास्मृती ID $1 पुर्नस्थापित करू शकत नाही कारण ती विदागारात उपलब्ध नाही.ती आधीच पुर्नस्थापित केली असण्याची शक्यता सुद्धा असू शकते.',
+'undelete-error-short'         => 'संचिकेचे वगळणे उलटवताना त्रूटी: $1',
+'undelete-error-long'          => 'संचिकेचे वगळणे उलटवताना त्रूटींचा अडथळा आला:
 
 $1',
 
@@ -1482,21 +1497,36 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'हा अंकपत्ता आडवा',
+'blockiptext'                 => 'एखाद्या विशिष्ट अंकपत्त्याची किंवा सदस्याची लिहिण्याची क्षमता प्रतिबंधीत  करण्याकरिता खालील सारणी वापरा.
+हे केवळ उच्छेद टाळण्याच्याच दृष्टीने आणि [[{{MediaWiki:Policy-url}}|निती]]स अनुसरून केले पाहिजे.
+खाली विशिष्ट कारण भरा(उदाहरणार्थ,ज्या पानांवर उच्छेद माजवला गेला त्यांची उद्धरणे देऊन).',
 'ipaddress'                   => 'अंकपत्ता',
 'ipadressorusername'          => 'अंकपत्ता किंवा सदस्यनाम:',
 'ipbexpiry'                   => 'समाप्ति:',
 'ipbreason'                   => 'कारण',
 'ipbreasonotherlist'          => 'इतर कारण',
+'ipbreason-dropdown'          => '*प्रतिबंधनाची सामान्य कारणे 
+** चुकीची माहिती भरणे
+** पानांवरील मजकुर काढणे
+** बाह्यसंकेतस्थाळाचे चिखलणी(स्पॅमींग) दुवे देणे
+** पानात अटरफटर/वेडगळ भरणे
+** धमकावणारे/उपद्रवी वर्तन  
+** असंख्य खात्यांचा गैरवापर
+** अस्विकार्ह सदस्यनाम',
 'ipbanononly'                 => 'केवळ अनामिक सदस्यांना प्रतिबंधीत करा',
 'ipbcreateaccount'            => 'खात्याची निर्मिती प्रतिबंधईत करा',
 'ipbemailban'                 => 'सदस्यांना विपत्र पाठवण्यापासून प्रतिबंधीत करा',
+'ipbenableautoblock'          => 'या सदस्याने वापरलेला शेवटचा अंकपत्ता आणि जेथून या पुढे तो संपादनाचा प्रयत्न करेले ते ते सर्व अंकपत्ते आपोआप प्रतिबंधीत करा.',
 'ipbsubmit'                   => 'हा पत्ता आडवा',
 'ipbother'                    => 'इतर वेळ:',
 'ipboptions'                  => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'इतर',
 'ipbotherreason'              => 'इतर/अजून कारण:',
+'ipbhidename'                 => 'सदस्य नाम/अंकपत्ता प्रतिबंधन नोंदी, प्रतिबंधनाची चालू यादी आणि सदस्य यादी इत्यादीतून लपवा',
 'badipaddress'                => 'अंकपत्ता बरोबर नाही.',
 'blockipsuccesssub'           => 'आडवणूक यशस्वी झाली',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]ला प्रतिबंधीत केले.<br />
+प्रतिबंधनांचा आढावा घेण्याकरिता [[Special:Ipblocklist|अंकपत्ता प्रतिबंधन सूची]] पहा.',
 'ipb-edit-dropdown'           => 'प्रतिबंधाची कारणे संपादा',
 'ipb-unblock-addr'            => '$1चा प्रतिबंध उठवा',
 'ipb-unblock'                 => 'सदस्यनाव आणि अंकपत्त्यावरचे प्रतिबंधन उठवा',
@@ -1523,8 +1553,12 @@ $1',
 'blocklink'                   => 'आडवा',
 'unblocklink'                 => 'सोडवा',
 'contribslink'                => 'योगदान',
+'autoblocker'                 => 'स्वयंचलितप्रतिबंधन केले गे कारण तुमचा अंकपत्ता अशात "[[User:$1|$1]]"ने वापरला होता.$1\'च्या प्रतिबंधनाकरिता दिलेले कारण:"$2" आहे.',
 'blocklogpage'                => 'ब्लॉक यादी',
 'blocklogentry'               => '[[$1]] ला $2 $3 पर्यंत ब्लॉक केलेले आहे',
+'blocklogtext'                => 'हि सदस्यांच्या प्रतिबंधनाची आणि प्रतिबंधने उठवल्याची नोंद आहे.
+आपोआप प्रतिबंधीत केलेले अंकपत्ते नमुद केलेले नाहीत.
+सध्या लागू असलेल्या बंद्या आणि प्रतिबंधनांच्या यादीकरिता [[Special:Ipblocklist|अंकपत्ता प्रतिबंधन सूची]] पहा.',
 'unblocklogentry'             => 'प्रतिबंधन $1 हटवले',
 'block-log-flags-anononly'    => 'केवळ अनामिक सदस्य',
 'block-log-flags-nocreate'    => 'खाते तयारकरणे अवरूद्ध केले',
@@ -1534,15 +1568,23 @@ $1',
 'ipb_expiry_invalid'          => 'अयोग्य समाप्ति काळ.',
 'ipb_already_blocked'         => '"$1" आधीच अवरूद्ध केले',
 'ipb_cant_unblock'            => 'त्रूटी: प्रतिबंधन क्र.$1 मिळाला नाही. त्यावरील प्रतिबंधन कदाचित आधीच उठवले असेल.',
+'ipb_blocked_as_range'        => 'त्रूटी:अंकपत्ता IP $1 हा प्रत्यक्षपणे प्रतिबंधीत केलेला नाही आणि अप्रतिबंधीत करता येत नाही.तो,अर्थात,$2पल्ल्याचा भाग म्हाणून तो प्रतिबंधीत केलेला आहे,जो की अप्रतिबंधीत करता येत नाही.',
 'ip_range_invalid'            => 'अंकपत्ता अयोग्य टप्प्यात.',
 'blockme'                     => 'मला प्रतिबंधीत करा',
 'proxyblocker'                => 'प्रातिनिधी(प्रॉक्झी)प्रतिबंधक',
 'proxyblocker-disabled'       => 'हे कार्य अवरूद्ध केले आहे.',
+'proxyblockreason'            => 'तुमचा अंकपत्ता प्रतिबंधीत केला आहे कारण तो उघड-उघड प्रतिनिधी आहे.कृपया तुमच्या आंतरजाल सेवा दात्यास किंवा तंत्रज्ञास पाचारण संपर्क करा आणि त्यांचे या गंभीर सुरक्षाप्रश्ना कडे लक्ष वेधा.',
 'proxyblocksuccess'           => 'झाले.',
+'sorbsreason'                 => '{{SITENAME}}ने वापरलेल्या DNSBL मध्ये तुमच्या अंकपत्त्याची नोंद उघड-उघड प्रतिनिधी म्हणून सूचित केली आहे.',
+'sorbs_create_account_reason' => '{{SITENAME}}च्या DNSBLने तुमचा अंकपत्ता उघड-उघड प्रतिनिधी म्हणून सूचित केला आहे.तुम्ही खाते उघडू शकत नाही',
 
 # Developer tools
 'lockdb'              => 'विदागारास ताळे ठोका',
 'unlockdb'            => 'विदागाराचे ताळे उघडा',
+'lockdbtext'          => 'विदागारास ताळे ठोकल्याने सर्व सदस्यांची संपादन क्षमता, त्यांच्या सदस्य पसंती बदलणे,त्यांच्या पहार्‍याच्या सूची संपादीत करणे,आणि विदेत बदल घडवणार्‍या इतर गोष्टी संस्थगीत होतील.
+कृपया तुम्हाला हेच करावयाचे आहे आणि भरण-पोषणा नंतर विदागाराचे ताळे उघडावयाचे आहे हे निश्चित करा.',
+'unlockdbtext'        => 'विदागाराचे ताळे उघडल्याने सर्व सदस्यांची संपादन क्षमता, त्यांच्या सदस्य पसंती बदलणे,त्यांच्या पहार्‍याच्या सूची संपादीत करणे,आणि विदेत बदल घडवणार्‍या इतर गोष्टीची क्षमता पुन्हा उपलब्ध होईल.
+कृपया तुम्हाला हेच करावयाचे आहे हे निश्चित करा.',
 'lockconfirm'         => 'होय,मला खरेच विदागारास ताळे ठोकायच आहे.',
 'unlockconfirm'       => 'होय,मला खरेच विदागाराचे ताळे उघडवयाचे आहे.',
 'lockbtn'             => 'विदागारास ताळे ठोका',
@@ -1550,7 +1592,10 @@ $1',
 'locknoconfirm'       => 'आपण होकार पेटीत होकार भरला नाही.',
 'lockdbsuccesssub'    => 'विदागरास ताळे यशस्वी',
 'unlockdbsuccesssub'  => 'विदागाराचे ताळे काढले',
+'lockdbsuccesstext'   => 'विदागारास ताळे ठोकण्यात आले आहे.<br />
+तुमच्याकडून भरण-पोषण पूर्ण झाल्या नंतर [[Special:Unlockdb|ताळे उघडण्याचे]] लक्षात ठेवा.',
 'unlockdbsuccesstext' => 'विदागाराचे ताळे उघडण्यात आले आहे.',
+'lockfilenotwritable' => 'विदा ताळे संचिका लेखनीय नाही.विदेस ताळे लावण्याकरिता किंवा उघडण्याकरिता, ती आंतरजाल विदादात्याकडून लेखनीय असावयास हवी.',
 'databasenotlocked'   => 'विदागारास ताळे नही',
 
 # Move page
@@ -1596,6 +1641,9 @@ $1',
 'movereason'              => 'कारण',
 'revertmove'              => 'पूर्वपदास न्या',
 'delete_and_move'         => 'वगळा आणि स्थानांतरित करा',
+'delete_and_move_text'    => '==वगळण्याची आवशकता==
+
+लक्ष्यपान  "[[$1]]" आधीच अस्तीत्वात आहे.स्थानांतराचा मार्ग मोकळाकरण्या करिता तुम्हाला ते वगळावयाचे आहे काय?',
 'delete_and_move_confirm' => 'होय, पान वगळा',
 'delete_and_move_reason'  => 'आधीचे पान वगळून स्थानांतर केले',
 'selfmove'                => 'स्रोत आणि लक्ष्य पाने समान आहेत; एखादे पान स्वत:च्याच जागी स्थानांतरीत करता येत नाही.',
@@ -1603,6 +1651,11 @@ $1',
 
 # Export
 'export'            => 'पाने निर्यात करा',
+'exporttext'        => 'तुम्ही एखाद्या विशिष्ट पानाचा मजकुर आणि संपादन इतिहास किंवा  पानांचा संच एखाद्या XML वेष्ठणात ठेवून निर्यात करू शकता.हे तुम्हाला [[Special:Import|पान आयात करा]]वापरून मिडीयाविकि वापरणार्‍या इतर विकित आयात करता येईल.
+
+पाने निर्यात करण्या करिता,एका ओळीत एक मथळा असे, खालील मजकुर रकान्यात मथळे भरा आणि तुम्हाला ’सध्याची आवृत्ती तसेच सर्व जुन्या आवृत्ती ,पानाच्या इतिहास ओळी सोबत’, किंवा ’केवळ सध्याची आवृत्ती शेवटच्या संपादनाच्या माहिती सोबत’ हवी आहे का ते निवडा. 
+
+तुम्ही नंतरच्या बाबतीत एखादा दुवा सुद्धा वापरू शकता, उदाहरणार्थ "[[{{MediaWiki:Mainpage}}]]" पाना करिता [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] .',
 'exportcuronly'     => 'संपूर्ण इतिहास नको,केवळ आताचे आवर्तन आंर्तभूत करा',
 'exportnohistory'   => "----
 '''सूचना:''' या फॉर्मचा वापर करून पानाचा पूर्ण इतिहास निर्यात करण्याची सुविधा कार्यकुशलतेच्या कारणंनी अनुपल्ब्ढ ठेवली आहे.",
@@ -1613,13 +1666,14 @@ $1',
 'export-templates'  => 'साचे आंतरभूत करा',
 
 # Namespace 8 related
-'allmessages'         => 'सर्व प्रणाली-संदेश',
-'allmessagesname'     => 'नाव',
-'allmessagesdefault'  => 'सुरुवातीचा मजकूर',
-'allmessagescurrent'  => 'सध्याचा मजकूर',
-'allmessagestext'     => 'MediaWiki नामविश्वातील सर्व प्रणाली संदेशांची यादी',
-'allmessagesfilter'   => 'संदेशनावांची चाळणी:',
-'allmessagesmodified' => 'फक्त बदललेले दाखवा',
+'allmessages'               => 'सर्व प्रणाली-संदेश',
+'allmessagesname'           => 'नाव',
+'allmessagesdefault'        => 'सुरुवातीचा मजकूर',
+'allmessagescurrent'        => 'सध्याचा मजकूर',
+'allmessagestext'           => 'MediaWiki नामविश्वातील सर्व प्रणाली संदेशांची यादी',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' वापरता येत नाही कारण'''\$wgUseDatabaseMessages''' मालवला आहे.",
+'allmessagesfilter'         => 'संदेशनावांची चाळणी:',
+'allmessagesmodified'       => 'फक्त बदललेले दाखवा',
 
 # Thumbnails
 'thumbnail-more'           => 'मोठे करा',
@@ -1633,9 +1687,13 @@ $1',
 # Special:Import
 'import'                     => 'पाने आयात करा',
 'importinterwiki'            => 'आंतरविकि आयात',
+'import-interwiki-text'      => 'आयात करण्याकरिता एक विकि आणि पानाचा मथळा निवडा.
+आवर्तनांच्या तारखा आणि संपादकांची नावे जतन केली जातील.
+सर्व आंतरविकि आयात क्रिया [[Special:Log/import|आयात नोंदीत]] दाखल केल्या आहेत.',
 'import-interwiki-history'   => 'या पानाकरिताची सार्‍या इतिहास आवर्तनांची नक्कल करा',
 'import-interwiki-submit'    => 'आयात',
 'import-interwiki-namespace' => 'पाने नामविश्वात स्थानांतरीत करा:',
+'importtext'                 => 'कृपया Special:Export सुविधा वापरून स्रोत विकिकडून संचिका निर्यात करा,ती तुमच्या तबकडीवर जतन करा आणि येथे चढवा.',
 'importstart'                => 'पाने आयात करत आहे...',
 'import-revision-count'      => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
 'importnopages'              => 'आयातीकरिता पाने नाहीत.',
@@ -1646,7 +1704,11 @@ $1',
 'importnotext'               => 'रिकामे अथवा मजकुर नाही',
 'importsuccess'              => 'आयात पूर्ण झाली!',
 'importhistoryconflict'      => 'उपलब्ध इतिहास आवर्तने परस्पर विरोधी आहेत(हे पान पूर्वी आयात केले असण्याची शक्यता आहे)',
+'importnosources'            => 'कोणतेही आंतरविकि आयात स्रोत व्यक्त केलेले नाहीत आणि प्रत्यक्ष इतिहास चढवा अनुपलब्ध केले आहे.',
 'importnofile'               => 'कोणतीही आयातीत संचिका चढवलेली नाही.',
+'importuploaderrorsize'      => 'आयात संचिकेचे चढवणे फसले.संचिका चढवण्याच्या मान्यताप्राप्त आकारा पेक्षा मोठी आहे.',
+'importuploaderrorpartial'   => 'आयात संचिकेचे चढवणे फसले.संचिका केवळ अर्धवटच चढू शकली.',
+'importuploaderrortemp'      => 'आयात संचिकेचे चढवणे फसले.एक तात्पुरती धारिका मिळत नाही.',
 'import-parse-failure'       => 'XML आयात पृथक्करण अयशस्वी',
 'import-noarticle'           => 'आयात करण्याकरिता पान नाही!',
 'import-nonewrevisions'      => 'सारी आवर्तने पूर्वी आयात केली होती.',
@@ -1654,6 +1716,7 @@ $1',
 
 # Import log
 'importlogpage'                    => 'ईम्पोर्ट सूची',
+'importlogpagetext'                => 'इतर विकिक्डून पानांची, संपादकीय इतिहासासहीत, प्रबंधकीय आयात.',
 'import-logentry-upload'           => 'संचिका चढवल्याने [[$1]] आयात',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
 'import-logentry-interwiki'        => 'आंतरविकिकरण $1',
@@ -1677,10 +1740,12 @@ $1',
 'tooltip-ca-history'              => 'या पानाच्या जुन्या आवृत्या.',
 'tooltip-ca-protect'              => 'हे पान सुरक्षित करा',
 'tooltip-ca-delete'               => 'हे पान वगळा',
+'tooltip-ca-undelete'             => 'या पानाची वगळण्यापूर्वी केलेली संपादने पुर्नस्थापित करा',
 'tooltip-ca-move'                 => 'हे पान स्थानांतरित करा.',
 'tooltip-ca-watch'                => 'हे पान तुमच्या पहार्‍याची सूचीत टाका',
 'tooltip-ca-unwatch'              => 'हे पान पहार्‍याच्या सूचीतून काढा.',
 'tooltip-search'                  => '{{SITENAME}} शोधा',
+'tooltip-search-go'               => 'या नेमक्या नावाच्या पानाकडे,अस्तित्वात असल्यास, चला',
 'tooltip-search-fulltext'         => 'या मजकुराकरिता पान शोधा',
 'tooltip-p-logo'                  => 'मुखपृष्ठ',
 'tooltip-n-mainpage'              => 'मुखपृष्ठाला भेट द्या',
@@ -1716,7 +1781,13 @@ $1',
 'tooltip-diff'                    => 'या पाठ्यातील तुम्ही केलेले बदल दाखवा.',
 'tooltip-compareselectedversions' => 'निवडलेल्या आवृत्त्यांमधील बदल दाखवा.',
 'tooltip-watch'                   => 'हे पान तुमच्या पहार्‍याच्या सूचीत टाका.',
+'tooltip-recreate'                => 'हे पान मागे वगळले असले तरी नवनिर्मीत करा',
 'tooltip-upload'                  => 'चढवणे सुरूकरा',
+
+# Metadata
+'nodublincore'      => 'या विदादात्याकरिता Dublin Core RDF metadata अनुपलब्ध केला आहे.',
+'nocreativecommons' => 'या विदादात्याकरिता Creative Commons RDF metadata अनुपलब्ध आहे.',
+'notacceptable'     => 'विकि विदादाता तुमचा घेता वाचू शकेल अशा स्वरूपात(संरचनेत) विदा पुरवू शकत नाही.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} वरील अनामिक सदस्य',
@@ -1730,17 +1801,23 @@ $1',
 
 # Spam protection
 'spamprotectiontitle'    => 'केर(स्पॅम) सुरक्षा चाचणी',
+'spamprotectiontext'     => 'तुम्ही जतन करू इच्छित असलेले पान चिखलणी रोधक चाळणीने प्रतिबंधीत केले आहे.असे बाहेरच्या संकेतस्थळाचा दुवा देण्याची शक्यता असल्यामुळे घडू शकते.',
+'spamprotectionmatch'    => 'खालील मजकुरामुळे आमची चिखलणी रोधक चाळणी सुरू झाली: $1',
 'subcategorycount'       => 'या वर्गात {{PLURAL:$1|एक उपवर्ग आहे.|$1 उपवर्ग आहेत.}}',
 'categoryarticlecount'   => 'या वर्गात {{PLURAL:$1|एक लेख आहे.|$1 लेख आहेत.}}',
 'category-media-count'   => 'या वर्गात {{PLURAL:$1|एक संचिका आहे.|$1 संचिका आहेत.}}',
 'listingcontinuesabbrev' => 'पुढे.',
 'spambot_username'       => 'मिडियाविकि स्पॅम स्वछता',
+'spam_reverting'         => '$1शी दुवे नसलेल्या गेल्या आवर्तनाकडे परत उलटवत आहे',
+'spam_blanking'          => '$1शी दुवे असलेली सर्व आवर्तने,रिक्त केली जात आहेत',
 
 # Info page
-'infosubtitle' => 'पानाची माहिती',
-'numedits'     => 'संपादनांची संख्या (पान): $1',
-'numtalkedits' => 'संपादनांची संख्या(चर्चा पान): $1',
-'numwatchers'  => 'बघ्यांची संख्या: $1',
+'infosubtitle'   => 'पानाची माहिती',
+'numedits'       => 'संपादनांची संख्या (पान): $1',
+'numtalkedits'   => 'संपादनांची संख्या(चर्चा पान): $1',
+'numwatchers'    => 'बघ्यांची संख्या: $1',
+'numauthors'     => 'स्पष्ट पणे वेगळ्या लेखकांची संख्या (पान): $1',
+'numtalkauthors' => 'स्पष्टपणे वेग-वेगळ्या लेखकांची संख्या(चर्चा पान): $1',
 
 # Math options
 'mw_math_png'    => 'नेहमीच पीएनजी (PNG) रेखाटा',
@@ -1751,13 +1828,15 @@ $1',
 'mw_math_mathml' => 'शक्य असल्यास मॅथ एमएल (MathML) (प्रयोगावस्था)',
 
 # Patrolling
-'markaspatrolleddiff'    => 'टेहळणी केल्याची खूण करा',
-'markaspatrolledtext'    => 'या पानावर गस्त झाल्याची खूण करा',
-'markedaspatrolled'      => 'गस्त केल्याची खूण केली',
-'markedaspatrolledtext'  => 'निवडलेले आवर्तनास गस्त घातल्याची खून केली.',
-'rcpatroldisabled'       => 'अलिकडील बदलची गस्ती अनुपलब्ध',
-'rcpatroldisabledtext'   => 'सध्या ’अलिकडील बदल’ ची गस्त सुविधा अनुपलब्ध केली आहे.',
-'markedaspatrollederror' => 'गस्तीची खूण करता येत नाही',
+'markaspatrolleddiff'                 => 'टेहळणी केल्याची खूण करा',
+'markaspatrolledtext'                 => 'या पानावर गस्त झाल्याची खूण करा',
+'markedaspatrolled'                   => 'गस्त केल्याची खूण केली',
+'markedaspatrolledtext'               => 'निवडलेले आवर्तनास गस्त घातल्याची खून केली.',
+'rcpatroldisabled'                    => 'अलिकडील बदलची गस्ती अनुपलब्ध',
+'rcpatroldisabledtext'                => 'सध्या ’अलिकडील बदल’ ची गस्त सुविधा अनुपलब्ध केली आहे.',
+'markedaspatrollederror'              => 'गस्तीची खूण करता येत नाही',
+'markedaspatrollederrortext'          => 'गस्त घातल्याची खूण करण्याकरिता तुम्हाला एक आवर्तन नमुद करावे लागेल.',
+'markedaspatrollederror-noautopatrol' => 'तुम्हाला स्वत:च्याच बदलांवर गस्त घातल्याची खूण करण्याची परवानगी नाही.',
 
 # Patrol log
 'patrol-log-page' => 'टेहळणीतील नोंदी',
@@ -1765,20 +1844,23 @@ $1',
 'patrol-log-auto' => '(स्वयंचलीत)',
 
 # Image deletion
-'deletedrevision'             => 'जुनी आवृत्ती ($1) वगळली.',
-'filedeleteerror-short'       => 'संचिका वगळताना त्रूटी: $1',
-'filedeleteerror-long'        => 'संचिका वगळताना त्रूटी आढळल्या:
+'deletedrevision'                 => 'जुनी आवृत्ती ($1) वगळली.',
+'filedeleteerror-short'           => 'संचिका वगळताना त्रूटी: $1',
+'filedeleteerror-long'            => 'संचिका वगळताना त्रूटी आढळल्या:
 
 $1',
-'filedelete-missing'          => 'संचिका "$1" वगळता येत नाही, कारण ती अस्तित्वात नाही.',
-'filedelete-old-unregistered' => 'निर्देशीत संचिका आवर्तन "$1" विदागारात नाही.',
+'filedelete-missing'              => 'संचिका "$1" वगळता येत नाही, कारण ती अस्तित्वात नाही.',
+'filedelete-old-unregistered'     => 'निर्देशीत संचिका आवर्तन "$1" विदागारात नाही.',
+'filedelete-current-unregistered' => 'नमुद संचिका "$1" विदागारात नाही.',
+'filedelete-archive-read-only'    => 'विदागार धारीका "$1" आंतरजाल विदादात्याकडून लेखनीय नाही.',
 
 # Browsing diffs
 'previousdiff' => '← मागील फरक',
 'nextdiff'     => 'पुढील फरक →',
 
 # Media information
-'imagemaxsize'         => 'चित्र वर्णन पानांवरील चित्रांना मर्यादा घाला:',
+'mediawarning'         => "'''सावधान''': या संचिकेत डंखी संकेत असू शकतो,जो वापरल्याने तुमच्या संगणक प्रणालीस नाजूक परिस्थितीस सामोरे जावे लागू शकते.<hr />",
+'imagemaxsize'         => 'संचिका वर्णन पानांवरील चित्रांना मर्यादा घाला:',
 'thumbsize'            => 'इवलासा आकार:',
 'widthheightpage'      => '$1×$2, $3 पाने',
 'file-info'            => '(संचिका प्रकार:$1,विविधामाप(माईम)प्रकार: $2)',
@@ -1794,14 +1876,15 @@ $1',
 'noimages'     => 'बघण्यासारखे येथे काही नाही.',
 
 # Bad image list
-'bad_image_list' => 'रूपरेषा:
+'bad_image_list' => 'रूपरेषा खालील प्रमाणे आहे:
 
-फक्त यादीमधील संचिका (ज्यांच्यापुढे * हे चिन्ह आहे) लक्षात घेतलेल्या आहेत. ओळीवरील पहिला दुवा हा चुकीच्या संचिकेचा असल्याची खात्री करा. 
+फक्त यादीमधील संचिका (ज्यांच्यापुढे * हे चिन्ह आहे अशा ओळी) लक्षात घेतलेल्या आहेत. ओळीवरील पहिला दुवा हा चुकीच्या संचिकेचा असल्याची खात्री करा.
+ 
 त्यापुढील दुवे हे अपवाद आहेत, म्हणजेच असे लेख जिथे ही संचिका मिळू शकते.',
 
 # Metadata
 'metadata'          => 'मेटाडाटा',
-'metadata-help'     => 'या संचिकेत जास्तीची माहिती आहे, जी ही संचिका बनवताना / चढवताना दिलेली आहे. जर या संचिकेत काही बदल केले असतील तर ती माहिती नवीन संचिकेशी जुळणार नाही.',
+'metadata-help'     => 'या संचिकेत जास्तीची माहिती आहे,बहुधा संचिका अंकनीकरणाकरिता किंवा निर्मीतीकरिता वापरलेल्या अंकीय हूबहु छाउ (कॅमेरा) किंवा (स्कॅनर) कडून हि माहिती जमा झाली आहे.जर या संचिका मूळ स्थ्ती पासून बदलली असेल तर काही माहिती नवीन संचिकेशी पूर्ण जुळणार नाही.',
 'metadata-expand'   => 'जास्तीची माहिती दाखवा',
 'metadata-collapse' => 'जास्तीची माहिती लपवा',
 'metadata-fields'   => 'या यादीतील जी माहिती दिलेली असेल ती माहिती संचिकेच्या खाली मेटाडाटा माहितीत दिसेल. बाकीची माहिती झाकलेली राहील.
@@ -1813,108 +1896,204 @@ $1',
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'               => 'रूंदी',
-'exif-imagelength'              => 'उंची',
-'exif-compression'              => 'आकुंचन योजना',
-'exif-orientation'              => 'वळण',
-'exif-samplesperpixel'          => 'घटकांची संख्या',
-'exif-make'                     => 'हुबहू छाउ (कॅमेरा) उत्पादक',
-'exif-model'                    => 'हुबहू छाउ (कॅमेरा) उपकरण',
-'exif-software'                 => 'वापरलेली संगणन अज्ञावली',
-'exif-artist'                   => 'लेखक',
-'exif-copyright'                => 'प्रताधिकार धारक',
-'exif-exifversion'              => 'Exif आवृत्ती',
-'exif-flashpixversion'          => 'पाठींबा असलेली फ्लॅशपीक्स मानक आवृत्ती',
-'exif-colorspace'               => 'रंगांकन (कलर स्पेस)',
-'exif-componentsconfiguration'  => 'प्रत्येक घटकाचा अर्थ',
-'exif-pixelydimension'          => 'आकृतीची सुयोग्य रूंदी',
-'exif-pixelxdimension'          => 'आकृतीची सुयोग्य उंची',
-'exif-makernote'                => 'उत्पादकाच्या सूचना',
-'exif-usercomment'              => 'सदस्य प्रतिक्रीया',
-'exif-relatedsoundfile'         => 'संबधीत ध्वनी संचिका',
-'exif-datetimeoriginal'         => 'विदा निर्मितीची तारीख आणि वेळ',
-'exif-datetimedigitized'        => 'अंकनीकरणाची तारीख आणि वेळ',
-'exif-exposuretime'             => 'छायांकन कालावधी',
-'exif-exposuretime-format'      => '$1 सेक ($2)',
-'exif-fnumber'                  => 'F क्रमांक',
-'exif-exposureprogram'          => "'''प्रभाव'''न कार्य (एक्स्पोजर प्रोग्राम)",
-'exif-spectralsensitivity'      => 'झोत संवेदनशीलता (स्पेक्ट्रल सेन्सिटीव्हिटी)',
-'exif-isospeedratings'          => 'आंतरराष्ट्रीय मानक संस्थेचे वेग मुल्यमापन',
-'exif-oecf'                     => 'दृक्वैद्यूतसंचरण परिवर्तन कारक (ऑप्टोईलेक्ट्रॉनिक कन्व्हर्शन फॅक्टर)',
-'exif-shutterspeedvalue'        => 'शटर वेग',
-'exif-aperturevalue'            => 'रन्ध्र (ऍपर्चर)',
-'exif-brightnessvalue'          => 'झळाळी (ब्राईटपणा)',
-'exif-exposurebiasvalue'        => 'प्रभावन अभिनत (एक्सपोजर बायस)',
-'exif-maxaperturevalue'         => 'महत्तम जमिनी रन्ध्र(लॅंड ऍपर्चर)',
-'exif-subjectdistance'          => 'गोष्टीपासूनचे अंतर',
-'exif-meteringmode'             => 'मीटरींग मोड',
-'exif-lightsource'              => 'प्रकाश स्रोत',
-'exif-flash'                    => "लख'''लखाट''' (फ्लॅश)",
-'exif-focallength'              => 'भींगाची मध्यवर्ती लांबी (फोकल लांबी)',
-'exif-subjectarea'              => 'विषय विभाग',
-'exif-flashenergy'              => 'लखाट उर्जा (फ्लॅश एनर्जी)',
-'exif-spatialfrequencyresponse' => 'विशाल लहर प्रतिक्रिया (स्पॅटीअल फ्रिक्वेन्सी रिस्पॉन्स)',
-'exif-focalplanexresolution'    => 'फोकल प्लेन x रिझोल्यूशन',
-'exif-focalplaneyresolution'    => 'फोकल प्लेन Y रिझोल्यूशन',
-'exif-focalplaneresolutionunit' => 'फोकल प्लेन  रिझोल्यूशन माप',
-'exif-subjectlocation'          => 'लक्ष्य स्थळ',
-'exif-exposureindex'            => 'प्रभावन सूची',
-'exif-sensingmethod'            => 'सेन्सींग पद्धती',
-'exif-filesource'               => 'संचिका स्रोत',
-'exif-scenetype'                => 'दृष्य प्रकार',
-'exif-cfapattern'               => 'CFA पॅटर्न',
-'exif-customrendered'           => 'कस्टम इमेज प्रोसेसिंग',
-'exif-exposuremode'             => "'''प्रभाव'''न मोड",
-'exif-whitebalance'             => 'व्हाईट बॅलन्स',
-'exif-gaincontrol'              => 'दृश्य नियंत्रण',
-'exif-contrast'                 => 'विभेद (कॉन्ट्रास्ट)',
-'exif-sharpness'                => 'प्रखरता(शार्पनेस)',
-'exif-gpslatitude'              => 'अक्षांश',
-'exif-gpslongitude'             => 'रेखांश',
-'exif-gpsspeedref'              => 'वेग एकक',
-'exif-gpsimgdirection'          => 'चित्राची दिशा',
-'exif-gpsdestlatitude'          => 'अक्षांश लक्ष्य',
-'exif-gpsdestlongitude'         => 'रेखांशाचे लक्ष्य',
+'exif-imagewidth'                  => 'रूंदी',
+'exif-imagelength'                 => 'उंची',
+'exif-bitspersample'               => 'प्रती घटक बीट्स',
+'exif-compression'                 => 'आकुंचन योजना',
+'exif-photometricinterpretation'   => 'चित्रांश विन्यास (पिक्सेल कॉम्पोझीशन)',
+'exif-orientation'                 => 'वळण',
+'exif-samplesperpixel'             => 'घटकांची संख्या',
+'exif-planarconfiguration'         => 'विदा रचना',
+'exif-ycbcrsubsampling'            => 'Y चे C शी  उपनमुनातपासणी (सबसॅम्पलींग) गुणोत्तर',
+'exif-ycbcrpositioning'            => 'Y आणि C प्रतिस्थापना (पोझीशनींग)',
+'exif-xresolution'                 => 'समांतर रिझोल्यूशन',
+'exif-yresolution'                 => 'उभे रिझोल्यूशन',
+'exif-resolutionunit'              => 'X आणि Y रिझोल्यूशन चे मानक प्रमाण',
+'exif-stripoffsets'                => 'चित्रविदा स्थान',
+'exif-rowsperstrip'                => 'प्रत्येक पट्टीतील ओळींची संख्या',
+'exif-stripbytecounts'             => 'प्रत्येक आकुंचीत पट्टीतील बाईट्सची संख्या',
+'exif-jpeginterchangeformat'       => 'JPEG SOI करिता ऑफसेट',
+'exif-jpeginterchangeformatlength' => 'JPEG विदे च्या बाईट्स',
+'exif-transferfunction'            => 'ट्रान्स्फर फंक्शन',
+'exif-whitepoint'                  => 'धवल बिंदू क्रोमॅटिसिटी',
+'exif-primarychromaticities'       => 'क्रोमॅटिसिटीज ऑफ प्राईमारिटीज',
+'exif-ycbcrcoefficients'           => 'कलर स्पेस ट्रान्स्फॉर्मेशन मॅट्रीक्स कोएफिशीयंट्स',
+'exif-referenceblackwhite'         => 'काळ्या आणि पांढर्‍या संदर्भ मुल्यांची जोडी',
+'exif-datetime'                    => 'संचिका बदल तारीख आणि वेळ',
+'exif-imagedescription'            => 'चित्र शीर्षक',
+'exif-make'                        => 'हुबहू छाउ (कॅमेरा) उत्पादक',
+'exif-model'                       => 'हुबहू छाउ (कॅमेरा) उपकरण',
+'exif-software'                    => 'वापरलेली संगणन अज्ञावली',
+'exif-artist'                      => 'लेखक',
+'exif-copyright'                   => 'प्रताधिकार धारक',
+'exif-exifversion'                 => 'Exif आवृत्ती',
+'exif-flashpixversion'             => 'पाठींबा असलेली फ्लॅशपीक्स मानक आवृत्ती',
+'exif-colorspace'                  => 'रंगांकन (कलर स्पेस)',
+'exif-componentsconfiguration'     => 'प्रत्येक घटकाचा अर्थ',
+'exif-compressedbitsperpixel'      => 'चित्र आकुंचन स्थिती',
+'exif-pixelydimension'             => 'आकृतीची सुयोग्य रूंदी',
+'exif-pixelxdimension'             => 'आकृतीची सुयोग्य उंची',
+'exif-makernote'                   => 'उत्पादकाच्या सूचना',
+'exif-usercomment'                 => 'सदस्य प्रतिक्रीया',
+'exif-relatedsoundfile'            => 'संबधीत ध्वनी संचिका',
+'exif-datetimeoriginal'            => 'विदा निर्मितीची तारीख आणि वेळ',
+'exif-datetimedigitized'           => 'अंकनीकरणाची तारीख आणि वेळ',
+'exif-subsectime'                  => 'तारीख वेळ उपसेकंद',
+'exif-subsectimeoriginal'          => 'तारीखवेळमुळ उपसेकंद',
+'exif-subsectimedigitized'         => 'तारीखवेळ अंकनीकृत उपसेकंद',
+'exif-exposuretime'                => 'छायांकन कालावधी',
+'exif-exposuretime-format'         => '$1 सेक ($2)',
+'exif-fnumber'                     => 'F क्रमांक',
+'exif-exposureprogram'             => "'''प्रभाव'''न कार्य (एक्स्पोजर प्रोग्राम)",
+'exif-spectralsensitivity'         => 'झोत संवेदनशीलता (स्पेक्ट्रल सेन्सिटीव्हिटी)',
+'exif-isospeedratings'             => 'आंतरराष्ट्रीय मानक संस्थेचे वेग मुल्यमापन',
+'exif-oecf'                        => 'दृक्वैद्यूतसंचरण परिवर्तन कारक (ऑप्टोईलेक्ट्रॉनिक कन्व्हर्शन फॅक्टर)',
+'exif-shutterspeedvalue'           => 'शटर वेग',
+'exif-aperturevalue'               => 'रन्ध्र (ऍपर्चर)',
+'exif-brightnessvalue'             => 'झळाळी (ब्राईटपणा)',
+'exif-exposurebiasvalue'           => 'प्रभावन अभिनत (एक्सपोजर बायस)',
+'exif-maxaperturevalue'            => 'महत्तम जमिनी रन्ध्र(लॅंड ऍपर्चर)',
+'exif-subjectdistance'             => 'गोष्टीपासूनचे अंतर',
+'exif-meteringmode'                => 'मीटरींग मोड',
+'exif-lightsource'                 => 'प्रकाश स्रोत',
+'exif-flash'                       => "लख'''लखाट''' (फ्लॅश)",
+'exif-focallength'                 => 'भींगाची मध्यवर्ती लांबी (फोकल लांबी)',
+'exif-subjectarea'                 => 'विषय विभाग',
+'exif-flashenergy'                 => 'लखाट उर्जा (फ्लॅश एनर्जी)',
+'exif-spatialfrequencyresponse'    => 'विशाल लहर प्रतिक्रिया (स्पॅटीअल फ्रिक्वेन्सी रिस्पॉन्स)',
+'exif-focalplanexresolution'       => 'फोकल प्लेन x रिझोल्यूशन',
+'exif-focalplaneyresolution'       => 'फोकल प्लेन Y रिझोल्यूशन',
+'exif-focalplaneresolutionunit'    => 'फोकल प्लेन  रिझोल्यूशन माप',
+'exif-subjectlocation'             => 'लक्ष्य स्थळ',
+'exif-exposureindex'               => 'प्रभावन सूची',
+'exif-sensingmethod'               => 'सेन्सींग पद्धती',
+'exif-filesource'                  => 'संचिका स्रोत',
+'exif-scenetype'                   => 'दृष्य प्रकार',
+'exif-cfapattern'                  => 'CFA पॅटर्न',
+'exif-customrendered'              => 'कस्टम इमेज प्रोसेसिंग',
+'exif-exposuremode'                => "'''प्रभाव'''न मोड",
+'exif-whitebalance'                => 'व्हाईट बॅलन्स',
+'exif-digitalzoomratio'            => 'अंकीय झूम गुणोत्तर',
+'exif-focallengthin35mmfilm'       => 'भींगाची मध्यवर्ती लांबी (फोकल लांबी) ३५ मी.मी. फील्ममध्ये',
+'exif-scenecapturetype'            => 'दृश्य टिपण्याचा प्रकार',
+'exif-gaincontrol'                 => 'दृश्य नियंत्रण',
+'exif-contrast'                    => 'विभेद (कॉन्ट्रास्ट)',
+'exif-saturation'                  => 'सॅचूरेशन',
+'exif-sharpness'                   => 'प्रखरता(शार्पनेस)',
+'exif-devicesettingdescription'    => 'उपकरण रचना वर्णन',
+'exif-subjectdistancerange'        => 'गोष्टीपासूनचे पल्ला अंतर',
+'exif-imageuniqueid'               => 'विशिष्ट चित्र क्रमांक',
+'exif-gpsversionid'                => 'GPS खूण आवृत्ती',
+'exif-gpslatituderef'              => 'उत्तर किंवा दक्षीण अक्षांश',
+'exif-gpslatitude'                 => 'अक्षांश',
+'exif-gpslongituderef'             => 'पूर्व किंवा पश्चिम रेखांश',
+'exif-gpslongitude'                => 'रेखांश',
+'exif-gpsaltituderef'              => 'उन्नतांश संदर्भ',
+'exif-gpsaltitude'                 => 'उन्नतांश (अल्टीट्यूड)',
+'exif-gpstimestamp'                => 'GPS वेळ(ऍटॉमिक घड्याळ)',
+'exif-gpssatellites'               => 'मापनाकरिता वापरलेला उपग्रह',
+'exif-gpsstatus'                   => 'प्राप्तकर्त्याची स्थिती',
+'exif-gpsmeasuremode'              => 'मापन स्थिती',
+'exif-gpsdop'                      => 'मापन अचूकता',
+'exif-gpsspeedref'                 => 'वेग एकक',
+'exif-gpsspeed'                    => 'GPS प्राप्तकर्त्याचा वेग',
+'exif-gpstrackref'                 => 'हालचालीच्या दिशेकरिता संदर्भ',
+'exif-gpstrack'                    => 'हालचालीची दिशा',
+'exif-gpsimgdirectionref'          => 'चित्राच्या दिशेकरिता संदर्भ',
+'exif-gpsimgdirection'             => 'चित्राची दिशा',
+'exif-gpsmapdatum'                 => 'Geodetic पाहणी विदा वापरली',
+'exif-gpsdestlatituderef'          => 'लक्ष्याचे अक्षांशाकरिता संदर्भ',
+'exif-gpsdestlatitude'             => 'अक्षांश लक्ष्य',
+'exif-gpsdestlongituderef'         => 'लक्ष्याचे रेखांशकरिता संदर्भ',
+'exif-gpsdestlongitude'            => 'रेखांशाचे लक्ष्य',
+'exif-gpsdestbearingref'           => 'बियरींग डेस्टीनेशनकरिता संदर्भ',
+'exif-gpsdestbearing'              => 'बीअरींग ऑफ डेस्टीनेशन',
+'exif-gpsdestdistanceref'          => 'लक्ष्यस्थळापर्यंतच्या अंतराकरिता संदर्भ',
+'exif-gpsdestdistance'             => 'लक्ष्यस्थळापर्यंतचे अंतर',
+'exif-gpsprocessingmethod'         => 'GPS प्रक्रीया पद्धतीचे नाव',
+'exif-gpsareainformation'          => 'GPS विभागाचे नाव',
+'exif-gpsdatestamp'                => 'GPSतारीख',
+'exif-gpsdifferential'             => 'GPS डिफरेंशीअल सुधारणा',
+
+# EXIF attributes
+'exif-compression-1' => 'अनाकुंचीत',
 
 'exif-unknowndate' => 'अज्ञात तारीख',
 
 'exif-orientation-1' => 'सामान्य', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'समांतर पालटले', # 0th row: top; 0th column: right
 'exif-orientation-3' => '180° फिरवले', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'उभ्या बाजूने पालटले', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => '९०° CCW अंशात वळवले आणि उभे पालटले', # 0th row: left; 0th column: top
 'exif-orientation-6' => '90° CW फिरवले', # 0th row: right; 0th column: top
+'exif-orientation-7' => '90° CW वळवले आणि उभे पलटवले', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => '90° CCW फिरवले', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'चंकी संरचना (रूपरेषा)',
+'exif-planarconfiguration-2' => 'प्लानर संरचना(रूपरेषा)',
 
 'exif-componentsconfiguration-0' => 'अस्तित्वात नाही',
 
 'exif-exposureprogram-0' => 'अव्यक्त',
 'exif-exposureprogram-1' => 'हातकाम',
+'exif-exposureprogram-2' => 'सामान्य प्रोग्रॅम',
 'exif-exposureprogram-3' => 'रन्ध्र (ऍपर्चर) प्राथमिकता',
 'exif-exposureprogram-4' => 'झडप (शटर प्राथमिकता)',
+'exif-exposureprogram-5' => 'क्रियेटीव्ह कार्यक्रम(विषयाच्या खोलीस बायस्ड)',
+'exif-exposureprogram-6' => 'कृती कार्यक्रम(द्रूत आवर्तद्वार(शटर) वेग कडे बायस्ड)',
+'exif-exposureprogram-7' => 'व्यक्तिचित्र स्थिती(क्लोजप छायाचित्रांकरिता आऊट ऑफ फोकस बॅकग्राऊंड सहीत)',
+'exif-exposureprogram-8' => 'लॅंडस्केप स्थिती (लॅंडस्केप छायाचित्रांकरिता बॅकग्राऊंड इन फोकस सहीत)',
 
 'exif-subjectdistance-value' => '$1 मीटर',
 
 'exif-meteringmode-0'   => 'अज्ञात',
 'exif-meteringmode-1'   => 'ऍव्हरेज',
+'exif-meteringmode-2'   => 'सेंटरवेटेड सरासरी',
+'exif-meteringmode-3'   => 'स्पॉट',
+'exif-meteringmode-4'   => 'मल्टीस्पॉट',
+'exif-meteringmode-5'   => 'पद्धत(पॅटर्न)',
+'exif-meteringmode-6'   => 'अर्धवट',
 'exif-meteringmode-255' => 'इतर',
 
 'exif-lightsource-0'   => 'अज्ञात',
 'exif-lightsource-1'   => 'सूर्यप्रकाश',
+'exif-lightsource-2'   => 'फ्लूरोसेंट',
+'exif-lightsource-3'   => 'टंगस्ट्न (इनकॅन्‍डेसेंट प्रकाश)',
 'exif-lightsource-4'   => "लख'''लखाट''' (फ्लॅश)",
 'exif-lightsource-9'   => 'चांगले हवामान',
 'exif-lightsource-10'  => 'ढगाळ हवामान',
 'exif-lightsource-11'  => 'छटा',
 'exif-lightsource-12'  => 'दिवसप्रकाशी फ्लूरोशेंट (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'दिवस प्रकाशी फ्लूरोसेंट (N ४६०० – ५४०० K)',
 'exif-lightsource-14'  => 'शीतल पांढरा फ्लूरोशेंट (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'व्हाईट फ्लूरोसेंट(WW ३२०० – ३७००K)',
 'exif-lightsource-17'  => 'प्रकाश दर्जा A',
 'exif-lightsource-18'  => 'प्रकाश दर्जा B',
 'exif-lightsource-19'  => 'प्रमाण प्रकाश C',
+'exif-lightsource-24'  => 'ISO स्टूडीयो टंगस्टन',
 'exif-lightsource-255' => 'इतर प्रकाश स्रोत',
 
 'exif-focalplaneresolutionunit-2' => 'इंच',
 
 'exif-sensingmethod-1' => 'अव्यक्त',
+'exif-sensingmethod-2' => 'वन चीप कलर एरीया सेन्‍सर',
+'exif-sensingmethod-3' => 'टू चीप कलर एरीया सेन्‍सर',
+'exif-sensingmethod-4' => 'थ्री चीप कलर एरीया सेन्‍सर',
+'exif-sensingmethod-5' => 'कलर सिक्वेण्शीयल एरीया सेंसॉर',
+'exif-sensingmethod-7' => 'ट्राय्‍एलिनीयर सेंसर',
+'exif-sensingmethod-8' => 'कलर सिक्वेंशीयल लिनीयर सेन्‍सर',
+
+'exif-scenetype-1' => 'डायरेक्टली छायाचित्रीत चित्र',
+
+'exif-customrendered-0' => 'नियमीत प्रक्रीया',
+'exif-customrendered-1' => 'आवडीनुसार प्रक्रीया',
 
 'exif-exposuremode-0' => 'स्वयंचलित छायांकन',
 'exif-exposuremode-1' => 'अस्वयंचलित छायांकन',
+'exif-exposuremode-2' => 'स्वयंसिद्ध कंस',
+
+'exif-whitebalance-0' => 'ऍटो व्हाईट बॅलेन्स',
+'exif-whitebalance-1' => 'मॅन्यूअल व्हाईट बॅलेन्स',
 
 'exif-scenecapturetype-0' => 'दर्जा',
 'exif-scenecapturetype-1' => 'आडवे',
@@ -1980,13 +2159,19 @@ $1',
 
 # E-mail address confirmation
 'confirmemail'            => 'इमेल पत्ता पडताळून पहा',
+'confirmemail_noemail'    => '[[Special:Preferences|सदस्य पसंतीत]] तुम्ही शाबीत विपत्र पत्ता दिलेला नाही.',
+'confirmemail_text'       => 'विपत्र सुविधा वापरण्या पूर्वी {{SITENAME}}वर तुमचा विपत्र पत्ता  शाबीत करणे गरजेचे आहे.तुमच्या पत्त्यावर निश्चितीकरण विपत्र पाठवण्याकरिता खालील बटण सुरू करा.विपत्रात कुटसंकेत असलेला दुवा असेल;तुमचा विपत्र पत्ता शाबीत करण्या करिता तुमच्या विचरकात हा दिलेला दुवा चढवा.',
+'confirmemail_pending'    => '<div class="error">एक निश्चितीकरण कुटसंकेत आधीच तुम्हाला विपत्र केला आहे; जर तुम्ही खाते अशातच उघडले असेल तर,एक नवा कुट संकेत मागण्यापूर्वी,पाठवलेला मिळण्याकरिता थोडी मिनिटे वाट पहाणे तुम्हाला आवडू शकेल.</div>',
 'confirmemail_send'       => 'विपत्र निश्चितीकरण नियमावली',
 'confirmemail_sent'       => 'शाबितीकरण विपत्र पाठवले.',
+'confirmemail_oncreate'   => 'तुमच्या विपत्र पत्त्यावर निश्चितीकरण कुटसंकेत पाठवला होता .
+हा कुटसंकेत तुम्हाला खात्यात दाखल होण्याकरिता लागणार नाही,पण तुम्हाला तो कोणतीही विपत्रावर अवलंबून कोणतीही सुविधा उपलब्ध करून घेण्यापूर्वी द्यावा लागेल.',
 'confirmemail_sendfailed' => 'पोच-विपत्र पाठवू शकलो नाही.अयोग्य चिन्हांकरिता पत्ता तपासा.
 
 मेलर वापसी: $1',
 'confirmemail_invalid'    => 'अयोग्य निश्चितीकरण नियमावली.नियमावली काल समाप्त झाला असु शकेल.',
 'confirmemail_needlogin'  => 'तुमचा विपत्रपत्ता शाबीत करण्यासाठी तुम्ही $1 करावयास हवे.',
+'confirmemail_success'    => 'तुमचा विपत्रपत्ता शाबीत झाला आहे.तुम्ही आता दाखल होऊ शकता आणि विकिचा आनंद घेऊ शकता.',
 'confirmemail_loggedin'   => 'तुमचा विपत्र पत्ता आता शाबीत झाला आहे.',
 'confirmemail_error'      => 'तुमची निश्चिती जतन करताना काही तरी चूकले',
 'confirmemail_subject'    => '{{SITENAME}} विपत्र पत्ता शाबीत',
@@ -1997,12 +2182,16 @@ $1',
 'scarytranscludetoolong'  => '[URL खूप लांब आहे; क्षमस्व]',
 
 # Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">या पानाकरिता मागेवळून पहा:<br />$1</div>',
 'trackbackremove'   => '([$1 वगळा])',
 'trackbacklink'     => 'पाठीमाग(पाठलाग)',
 'trackbackdeleteok' => 'पाठलाग यशस्वीपणे वगळला.',
 
 # Delete conflict
 'deletedwhileediting' => 'सुचना: तुम्ही संपादन सुरू केल्यानंतर हे पान वगळले गेले आहे.',
+'confirmrecreate'     => "तुम्ही संपादन सुरू केल्यानंतर सदस्य [[User:$1|$1]] ([[User talk:$1|चर्चा]])ने हे पान पुढील कारणाने वगळले:
+: ''$2''
+कृपया हे पान खरेच पुन्हा निर्मीत करून हवे आहे का हे निश्चित करा.",
 'recreate'            => 'पुर्ननिर्माण',
 
 # HTML dump
@@ -2052,6 +2241,7 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '$1 सेकंदाच्या आतले बदल या यादी नसण्याची शक्यता आहे.',
+'lag-warn-high'   => 'विदा विदादात्यास लागणार्‍या अत्यूच्च कालावधी मूळे, $1 सेकंदापेक्षा नवे बदल या सूचीत न दाखवले जाण्याची शक्यता आहे.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'चर्चा पाने सोडून, {{PLURAL:$1|1 शीर्षक पान|$1 शीर्षक पाने}} तुमच्या पहार्‍याच्या सूचीत आहेत.',
@@ -2101,8 +2291,12 @@ $1',
 'version-software-version'         => 'आवृत्ती(Version)',
 
 # Special:Filepath
-'filepath'        => 'संचिका मार्ग',
-'filepath-page'   => 'संचिका:',
-'filepath-submit' => 'मार्ग',
+'filepath'         => 'संचिका मार्ग',
+'filepath-page'    => 'संचिका:',
+'filepath-submit'  => 'मार्ग',
+'filepath-summary' => 'हे विशेष पान संचिकेचा संपूर्ण मार्ग कळवते.
+चित्रे संपूर्ण रिझोल्यूशन मध्ये दाखवली आहेत,इतर संचिका प्रकार त्यांच्या संबधीत प्रोग्रामने प्रत्यक्ष सुरू होतात.
+
+"{{ns:image}}:" पूर्वपदा शिवाय संचिकेचे नाव भरा.',
 
 );
