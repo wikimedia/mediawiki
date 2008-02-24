@@ -1097,7 +1097,7 @@ class OutputPage {
 	 * @param array  $reasons   List of reasons for this error, as returned by Title::getUserPermissionsErrors().
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
-		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
+		global $wgUser, $wgTitle;
 		$skin = $wgUser->getSkin();
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
@@ -1121,12 +1121,7 @@ class OutputPage {
 		} else {
 			// Wiki is read only
 			$this->setPageTitle( wfMsg( 'readonly' ) );
-			if ( $wgReadOnly ) {
-				$reason = $wgReadOnly;
-			} else {
-				// Should not happen, user should have called wfReadOnly() first
-				$reason = file_get_contents( $wgReadOnlyFile );
-			}
+			$reason = wfReadOnlyReason();
 			$this->addWikiMsg( 'readonlytext', $reason );
 		}
 
