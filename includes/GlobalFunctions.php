@@ -305,6 +305,11 @@ function wfReadOnly() {
 	return (bool)$wgReadOnly;
 }
 
+function wfReadOnlyReason() {
+	global $wgReadOnly;
+	wfReadOnly();
+	return $wgReadOnly;
+}
 
 /**
  * Get a message from anywhere, for the current user language.
