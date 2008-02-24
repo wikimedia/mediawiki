@@ -108,6 +108,11 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->fld_title = isset ($prop['title']);
 			$this->fld_ids = isset ($prop['ids']);
 			$this->fld_sizes = isset ($prop['sizes']);
+			$this->fld_patrolled = isset($prop['patrolled']);
+			
+			global $wgUser;
+			if($this->fld_patrolled && !$wgUser->isAllowed('patrol'))
+				$this->dieUsage("You need the patrol right to request the patrolled flag");
 
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf('rc_id', $this->fld_ids);			
@@ -122,6 +127,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addFieldsIf('rc_new', $this->fld_flags);
 			$this->addFieldsIf('rc_old_len', $this->fld_sizes);
 			$this->addFieldsIf('rc_new_len', $this->fld_sizes);
+			$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
 		}
 
 		/* Specify the limit for our query. It's $limit+1 because we (possibly) need to 
@@ -239,6 +245,10 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		if ($this->fld_comment && !empty ($row->rc_comment)) {
 			$vals['comment'] = $row->rc_comment;
 		}
+		
+		/* Add the patrolled flag */
+		if ($this->fld_patrolled && $row->rc_patrolled == 1)
+			$vals['patrolled'] = '';
 
 		return $vals;
 	}
@@ -289,7 +299,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'timestamp',
 					'title',
 					'ids',
-					'sizes'
+					'sizes',
+					'patrolled'
 				)
 			),
 			'show' => array (
