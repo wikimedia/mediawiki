@@ -18,7 +18,7 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
-=== Configuration changes in 1.12 ===
+=== Configuration changes in 1.13 ===
 
 * ...
 
@@ -31,17 +31,17 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   confused when they are told they are range-blocked.
 * One can turn off syndicatino feeds by setting $wgFeed to false
 
-=== Bug fixes in 1.12 ===
+=== Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository
 * (bug 13084) Increase size of source/destination filename fields in upload form
 * (bug 13115) rebuildrecentchanges should print the current value of $wgRCMaxAge
 
-=== API changes in 1.12 ===
+=== API changes in 1.13 ===
 
 * ....
 
-=== Languages updated in 1.12 ===
+=== Languages updated in 1.13 ===
 
 * ...
 
