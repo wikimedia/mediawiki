@@ -1771,6 +1771,7 @@ class Article {
 				if ( $cascade )
 					$comment .= "$cascade_description";
 				
+				$rowsAffected = false;
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
@@ -1778,11 +1779,18 @@ class Article {
 							array( 'pr_page' => $id, 'pr_type' => $action
 								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ? 1 : 0
 								, 'pr_expiry' => $encodedExpiry ), __METHOD__  );
+						if($dbw->affectedRows() != 0)
+							$rowsAffected = true;
 					} else {
 						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 							'pr_type' => $action ), __METHOD__ );
+						if($dbw->affectedRows() != 0)
+							$rowsAffected = true;
 					}
 				}
+				if(!$rowsAffected)
+					// No change
+					return true;
 
 				# Insert a null revision
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
