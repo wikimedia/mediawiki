@@ -452,7 +452,7 @@ abstract class ApiBase {
 						if( $value == 'max' ) {
 							if( $parseMaxLimit ) {
 								$value = $this->getMain()->canApiHighLimits() ? $paramSettings[self :: PARAM_MAX2] : $paramSettings[self :: PARAM_MAX];
-								$this->getResult()->addValue( 'limits', 'limit', $value );
+								$this->getResult()->addValue( 'limits', $this->getModuleName(), $value );
 								$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
 							}
 						}
